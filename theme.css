@@ -1,28 +1,190 @@
-{
-  "name": "History Go",
-  "short_name": "HistoryGo",
-  "start_url": "./index.html",
-  "display": "standalone",
-  "background_color": "#0d1b2a",
-  "theme_color": "#1976d2",
-  "orientation": "portrait-primary",
-  "description": "Samle steder, personer og historier i virkeligheten med History Go.",
-  "icons": [
-    {
-      "src": "icons/icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "icons/icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    },
-    {
-      "src": "icons/icon-maskable.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "maskable"
-    }
-  ]
+/* === HISTORY GO – FESTIVAL THEME === */
+
+/* Palett (poster style) */
+:root{
+  --bg:        #0d1b2a;      /* mørk blå bakgrunn */
+  --panel:     #10243a;      /* mørk blå panel */
+  --card:      rgba(255,255,255,0.06);
+  --card-bd:   rgba(255,255,255,0.18);
+  --text:      #f7fafc;      /* lys tekst */
+  --muted:     #b8c2cc;
+
+  --blue:      #1976d2;      /* app-blå */
+  --red:       #e63946;
+  --yellow:    #ffb703;
+  --green:     #2a9d8f;
+
+  --shadow:    0 10px 24px rgba(0,0,0,.35);
+  --radius:    16px;
 }
+
+/* Base */
+*{ box-sizing:border-box; }
+html,body{ height:100%; }
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background:
+    radial-gradient(1200px 800px at 80% -10%, #143355 0%, transparent 70%),
+    radial-gradient(900px 600px  at -10% 100%, #0f2742 0%, transparent 65%),
+    var(--bg);
+  color:var(--text);
+}
+
+/* Header – mørk bar med tydelig tittel */
+header{
+  position:sticky; top:0; z-index:5;
+  background:linear-gradient(180deg, #0f2742 0%, #0d1b2a 100%);
+  border-bottom:2px solid #0f355f;
+  padding:16px 18px;
+  display:flex; align-items:center; justify-content:space-between;
+}
+h1{ margin:0; font-size:20px; letter-spacing:.5px; font-weight:900; }
+.test{ display:flex; align-items:center; gap:8px; font-weight:700; }
+
+/* Layout */
+main{ padding:18px; }
+.section{ margin-bottom:22px; }
+.title{
+  display:inline-block;
+  background:var(--yellow);
+  color:#111;
+  font-weight:900;
+  padding:6px 10px;
+  border-radius:10px;
+  box-shadow:var(--shadow);
+}
+
+/* Kort (glass + bold) */
+.card{
+  background:var(--card);
+  border:2px solid var(--card-bd);
+  border-radius:var(--radius);
+  padding:14px;
+  margin-top:12px;
+  display:flex; gap:12px; align-items:flex-start;
+  backdrop-filter: blur(12px);
+  box-shadow: var(--shadow);
+}
+.name{ font-weight:900; font-size:16px; letter-spacing:.2px; }
+.meta{ color:var(--muted); font-weight:700; }
+.desc{ color:#e8edf2; margin-top:6px; line-height:1.25; }
+.dist{ margin-top:8px; font-weight:900; color:var(--yellow); }
+
+/* Knapper (store CTA-flater) */
+.btn{
+  border:0; border-radius:12px; padding:12px 16px;
+  font-weight:900; letter-spacing:.3px; cursor:pointer;
+  box-shadow: var(--shadow);
+}
+.primary{ background:var(--red); color:#fff; }
+.ghost{ background:rgba(255,255,255,.12); color:#fff; }
+
+/* Chips/badges */
+.badge{
+  display:inline-flex; align-items:center;
+  gap:8px; padding:10px 12px;
+  border-radius:999px;
+  font-weight:900;
+  background:var(--blue); color:#fff;
+  box-shadow: var(--shadow);
+  white-space:nowrap;
+}
+
+/* Lister/grid */
+.grid{ display:flex; gap:10px; overflow-x:auto; padding:6px 2px; }
+.row { display:flex; gap:12px; align-items:center; }
+.muted{ color:var(--muted); }
+
+/* Diplomer – “trophy cards” */
+.diploma{
+  background:var(--card);
+  border:2px solid var(--card-bd);
+  border-radius:var(--radius);
+  padding:12px 14px;
+  box-shadow:var(--shadow);
+}
+.tag{
+  display:inline-block;
+  background:#0f2f51; color:#dbe7f3;
+  border-radius:999px; padding:4px 10px;
+  font-weight:800; margin-left:8px; font-size:12px;
+}
+.tier{ font-weight:900; margin-left:8px; }
+.tier::before{ margin-right:6px; content:""; }
+.tier.bronse::before{ content:"🥉"; }
+.tier.sølv::before  { content:"🥈"; }
+.tier.gull::before  { content:"🥇"; }
+
+/* Fargelag for diplomer (plakatstil) */
+.diploma.bronse{
+  background: linear-gradient(180deg,#513a26 0%, #2d2118 100%);
+  border-color:#a57b4a;
+}
+.diploma.sølv{
+  background: linear-gradient(180deg,#3e4a55 0%, #252c33 100%);
+  border-color:#aab6c1;
+}
+.diploma.gull{
+  background: linear-gradient(180deg,#745a00 0%, #3d2f00 100%);
+  border-color:#f3d36b;
+}
+
+/* Kategori‐striper (tykk stripe + badge-farge) */
+.card.cat-historie      { border-left:10px solid var(--blue);  }
+.card.cat-kultur        { border-left:10px solid var(--red);   }
+.card.cat-severdigheter { border-left:10px solid var(--yellow);}
+.card.cat-sport,
+.card.cat-natur         { border-left:10px solid var(--green); }
+
+.badge.cat-historie      { background:var(--blue); }
+.badge.cat-kultur        { background:var(--red); }
+.badge.cat-severdigheter { background:var(--yellow); color:#111; }
+.badge.cat-sport,
+.badge.cat-natur         { background:var(--green); }
+
+/* Toast */
+#toast{
+  position:fixed; left:50%; bottom:24px; transform:translateX(-50%);
+  background:var(--red); color:#fff;
+  padding:12px 16px; border-radius:12px;
+  font-weight:900; letter-spacing:.3px;
+  display:none; z-index:9999; box-shadow:var(--shadow);
+}
+
+/* === Galleri (personer) – avatar-kort === */
+.person-card{
+  background:var(--card);
+  border:2px solid var(--card-bd);
+  border-radius:var(--radius);
+  padding:14px; display:flex; gap:14px; align-items:center;
+  backdrop-filter: blur(12px); box-shadow:var(--shadow);
+}
+.person-card .avatar{
+  width:60px; height:60px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-weight:1000; font-size:18px; color:#fff;
+  background:var(--blue);
+  box-shadow:var(--shadow);
+}
+.person-card .info{ flex:1; }
+.person-card .name{ font-weight:900; }
+.person-card .sub{ color:var(--muted); font-size:13px; }
+
+.pill{
+  display:inline-block; font-weight:900; font-size:12px;
+  padding:6px 10px; border-radius:999px; margin-right:6px;
+  box-shadow: var(--shadow);
+}
+.pill.person{ background:var(--red); color:#fff; }
+.pill.event { background:var(--yellow); color:#111; }
+.pill.now   { background:var(--green); color:#fff; }
+.pill.soon  { background:#0f2f51; color:#dbe7f3; }
+
+.person-actions{ display:flex; gap:10px; }
+.person-btn{
+  border:0; border-radius:12px; padding:10px 14px;
+  font-weight:900; background:var(--yellow); color:#111;
+  box-shadow:var(--shadow); cursor:pointer;
+}
+.person-btn.ghost{ background:rgba(255,255,255,.12); color:#fff; }
