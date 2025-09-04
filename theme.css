@@ -231,3 +231,31 @@ h1{ margin:0; font-size:20px; letter-spacing:.5px; font-weight:900; }
   background: var(--yellow);
   color: #111;
 }
+/* === Hurtigmeny-knapper (chips) === */
+.view-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.view-tabs button {
+  background: var(--yellow);
+  color: #111;
+  border: none;
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+  transition: background 0.2s;
+}
+
+.view-tabs button:hover {
+  background: #ffd54f;
+}
+
+.view-tabs button.active {
+  background: var(--blue);
+  color: #fff;
+}
