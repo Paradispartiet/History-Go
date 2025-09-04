@@ -1,7 +1,7 @@
 // sw.js — History Go (stale-while-revalidate)
 
 // ❗ Bytt versjon når du endrer ASSETS (v4, v5, ...)
-const CACHE = "history-go-v4";
+const CACHE = "history-go-v5";
 
 const ASSETS = [
   "./",
