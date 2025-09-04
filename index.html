@@ -9,39 +9,37 @@
   <link rel="stylesheet" href="theme.css" />
 </head>
 <body>
-<header>
-  <h1>History Go</h1>
-  <label class="test">Testmodus <input id="testToggle" type="checkbox"></label>
-</header>
+  <header>
+    <h1>History Go</h1>
+    <label class="test">Testmodus <input id="testToggle" type="checkbox"></label>
+  </header>
 
-<main>
-  <div class="section">
-    <div class="title">Nærmest nå</div>
-    <div id="status" class="muted">Henter posisjon…</div>
-    <div id="list"></div>
-  </div>
+  <main>
+    <div class="section">
+      <div class="title">Nærmest nå</div>
+      <div id="status" class="muted">Henter posisjon…</div>
+      <div id="list"></div>
+    </div>
 
-  <div class="section">
-    <div class="title">Samlingen min (<span id="count">0</span>)</div>
-    <div id="collection" class="grid"></div>
-  </div>
+    <div class="section">
+      <div class="title">Samlingen min (<span id="count">0</span>)</div>
+      <div id="collection" class="grid"></div>
+    </div>
 
-  <div class="section">
-    <div class="title">Diplomer</div>
-    <div id="diplomas" class="grid"></div>
-  </div>
-</main>
+    <div class="section">
+      <div class="title">Diplomer</div>
+      <div id="diplomas" class="grid"></div>
+    </div>
+  </main>
 
-<!-- Toast -->
-<div id="toast" style="position:fixed;left:50%;bottom:22px;transform:translateX(-50%);
-background:#1976d2;color:#fff;padding:10px 14px;border-radius:10px;
-font-weight:800;display:none;z-index:9999">Låst opp ✅</div>
+  <!-- Toast -->
+  <div id="toast">Låst opp ✅</div>
 
-<script src="app.js"></script>
-<script>
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('./sw.js').catch(()=>{});
-  }
-</script>
+  <script src="app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./sw.js').catch(()=>{});
+    }
+  </script>
 </body>
 </html>
