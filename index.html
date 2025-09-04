@@ -5,36 +5,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>History Go</title>
 
-  <!-- Leaflet -->
+  <!-- PWA (valgfritt, behold hvis du allerede har disse) -->
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#1976d2" />
+
+  <!-- Leaflet (kart) -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-  <!-- Tema -->
-  <link rel="stylesheet" href="theme.css?v=1" />
+  <!-- Stil -->
+  <link rel="stylesheet" href="themes.css" />
 </head>
 <body>
 
-  <!-- Kart i bakgrunnen -->
+  <!-- Kartet ligger bak alt -->
   <div id="map"></div>
 
   <!-- Toast -->
-  <div id="toast">OK</div>
+  <div id="toast">Låst opp ✅</div>
 
-  <!-- Hovedpanel (rulles) -->
-  <main id="panel">
-    <header class="top">
-      <h1>History Go</h1>
-      <label class="test">Testmodus <input id="testToggle" type="checkbox"></label>
-    </header>
+  <!-- Topp (enkel) -->
+  <header>
+    <h1>History Go</h1>
+    <label class="test">Testmodus <input id="testToggle" type="checkbox" /></label>
+  </header>
 
-    <!-- Nærmest nå (kun 2 kort) -->
+  <!-- Innhold -->
+  <main>
+    <!-- Nærmest nå (viser kun 2 steder) -->
     <section class="section">
       <div class="title">Severdigheter i nærheten</div>
       <div id="status" class="muted">Henter posisjon…</div>
       <div id="list"></div>
     </section>
 
-    <!-- Samlingen min -->
+    <!-- Samling -->
     <section class="section">
       <div class="title">Samlingen min (<span id="count">0</span>)</div>
       <div id="collection" class="grid"></div>
@@ -43,17 +48,17 @@
     <!-- Diplomer -->
     <section class="section">
       <div class="title">Diplomer</div>
-      <div id="diplomas" class=""></div>
+      <div id="diplomas" class="grid"></div>
     </section>
 
     <!-- Galleri (personer) -->
     <section class="section">
       <div class="title">Galleri (personer)</div>
-      <div id="gallery"></div>
+      <div id="gallery" class="grid"></div>
     </section>
   </main>
 
-  <script src="app.js?v=1"></script>
+  <script src="app.js"></script>
   <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('./sw.js').catch(()=>{});
