@@ -22,30 +22,27 @@
     crossorigin=""
   ></script>
 
-  <!-- Stil -->
-  <link rel="stylesheet" href="theme.css?v=2" />
+  <!-- Tema -->
+  <link rel="stylesheet" href="theme.css?v=3" />
 </head>
 <body>
 
-  <!-- Kart i bakgrunnen (u-blurret) -->
+  <!-- Kart i bakgrunnen -->
   <div id="map"></div>
 
   <!-- Toast -->
   <div id="toast">Låst opp ✅</div>
 
-  <!-- Skyvbart ark over kartet -->
-  <div id="sheet" aria-hidden="false">
-    <div class="sheet-handle" aria-label="Dra for å vise/skjule"></div>
+  <!-- Trekkbart panel over kartet (ALT innholdet ligger her) -->
+  <div id="panel" class="panel">
+    <div id="panelGrab" class="grabber" aria-label="Dra for å vise/skjule"></div>
 
     <main>
-      <!-- Nærmest nå (viser maks 2) -->
+      <!-- Nærmest nå -->
       <section class="section">
         <div class="title">Severdigheter i nærheten</div>
         <div id="status" class="muted">Henter posisjon…</div>
         <div id="list"></div>
-        <div style="text-align:center;margin-top:10px">
-          <button class="btn ghost" data-action="vis-flere">Vis flere</button>
-        </div>
       </section>
 
       <!-- Samlingen -->
@@ -68,9 +65,8 @@
     </main>
   </div>
 
-  <script src="app.js?v=2"></script>
+  <script src="app.js?v=3"></script>
   <script>
-    // service worker (valgfritt)
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('./sw.js').catch(()=>{});
     }
