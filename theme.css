@@ -127,3 +127,29 @@ main{
 .map-only header, .map-only main{ display:none; }
 .map-only #map{ filter:none; opacity:1; border-radius:0; }
 .map-only .map-exit{ display:block; }
+
+/* SVG-ikoner generelt */
+.ico { width:18px; height:18px; display:inline-block; vertical-align:-3px; }
+
+/* Badges med ikon */
+.badge { display:flex; align-items:center; gap:8px; }
+.badge .ico { flex:0 0 auto; }
+
+/* Diplomer – plass til ikon til venstre */
+.diploma { position:relative; padding-left:48px; }
+.diploma .ico { position:absolute; left:14px; top:50%; transform:translateY(-50%); width:22px; height:22px; }
+
+/* Personkort – ikonlinje */
+.iconline { display:flex; gap:10px; margin-top:6px; opacity:.95; }
+.iconline .ico { width:16px; height:16px; }
+
+/* Kart-legend */
+.map-legend{
+  position:fixed; right:10px; bottom:10px; z-index:3;
+  background:rgba(13,27,42,.9); border:1px solid #1e3142;
+  border-radius:12px; padding:8px 10px; color:#e3e8ef;
+  display:flex; gap:10px; align-items:center;
+  box-shadow:0 6px 16px rgba(0,0,0,.3);
+}
+.map-legend .item{ display:flex; align-items:center; gap:6px; }
+.map-legend .ico{ width:16px; height:16px; }
