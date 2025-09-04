@@ -13,95 +13,64 @@
   <link
     rel="stylesheet"
     href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    integrity="sha256-p4nXA0JbHlN+hmNHzzRCf9tD/mizyoHS5obTRR9BMY="
     crossorigin=""
   />
   <script
     src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-    crossorigin="">
-  </script>
+    integrity="sha256-20nQCchB9co0qIjJZRQuk2/Z9W+NkivyxNV11vTlZBo="
+    crossorigin=""
+  ></script>
 
   <!-- Stil -->
-  <link rel="stylesheet" href="theme.css?v=1" />
+  <link rel="stylesheet" href="theme.css?v=2" />
 </head>
 <body>
-  <!-- Kart i bakgrunnen -->
+
+  <!-- Kart i bakgrunnen (u-blurret) -->
   <div id="map"></div>
 
   <!-- Toast -->
   <div id="toast">Låst opp ✅</div>
 
-  <!-- Topp -->
-  <header>
-    <h1>History Go</h1>
-    <label class="test">Testmodus <input id="testToggle" type="checkbox"></label>
+  <!-- Skyvbart ark over kartet -->
+  <div id="sheet" aria-hidden="false">
+    <div class="sheet-handle" aria-label="Dra for å vise/skjule"></div>
 
-  </header>
+    <main>
+      <!-- Nærmest nå (viser maks 2) -->
+      <section class="section">
+        <div class="title">Severdigheter i nærheten</div>
+        <div id="status" class="muted">Henter posisjon…</div>
+        <div id="list"></div>
+        <div style="text-align:center;margin-top:10px">
+          <button class="btn ghost" data-action="vis-flere">Vis flere</button>
+        </div>
+      </section>
 
-  <!-- Innhold -->
-  <main>
-    <!-- Nærmest nå -->
-    <div class="section">
-      <div class="title view-toggle" data-view="nearby">Severdigheter i nærheten</div>
-      <div id="status" class="muted">Henter posisjon…</div>
-      <div id="list"></div>
-    </div>
+      <!-- Samlingen -->
+      <section class="section">
+        <div class="title">Samlingen min (<span id="count">0</span>)</div>
+        <div id="collection" class="grid"></div>
+      </section>
 
-    <!-- Dine steder -->    
-    <div class="section">
-      <div class="title view-toggle" data-view="collection">Samlingen min (<span id="count">0</span>)</div>
-      <div id="collection" class="grid"></div>
-    </div>
+      <!-- Diplomer -->
+      <section class="section">
+        <div class="title">Diplomer</div>
+        <div id="diplomas" class="grid"></div>
+      </section>
 
-    <!-- Diplomer -->
-    <div class="section">
-      <div class="title view-toggle" data-view="diplomas">Diplomer</div>
-      <div id="diplomas" class="grid"></div>
-    </div>
-
-    <!-- Dine folk -->
-    <div class="section">  
-      <div class="title view-toggle" data-view="people">Galleri (personer)</div>
-      <div id="gallery" class="grid"></div>
-    </div>
-  </main>
-
-  <!-- Rullgardin (sheet) -->
-  <div id="sheet" class="sheet" aria-hidden="true">
-    <div class="sheet-handle"></div>
-    <div class="sheet-title">Meny</div>
-
-    <div class="sheet-group">
-      <button class="sheet-item" data-view="nearby">Severdigheter i nærheten</button>
-      <button class="sheet-item" data-view="collection">Dine steder</button>
-      <button class="sheet-item" data-view="people">Dine folk</button>
-      <button class="sheet-item" data-view="diplomas">Dine diplomer</button>
-    </div>
-
-    <div class="sheet-title">Filter</div>
-    <div class="sheet-group">
-      <select id="catFilter" class="sheet-select">
-        <option value="">Alle kategorier</option>
-        <option value="Historie">Historie</option>
-        <option value="Kultur">Kultur</option>
-        <option value="Severdigheter">Severdigheter</option>
-        <option value="Sport">Sport</option>
-        <option value="Natur">Natur</option>
-      </select>
-    </div>
-
-    <div class="sheet-actions">
-      <button id="sheetClose" class="btn ghost">Lukk</button>
-      <button id="sheetApply" class="btn primary">Bruk</button>
-    </div>
+      <!-- Galleri (personer) -->
+      <section class="section">
+        <div class="title">Galleri (personer)</div>
+        <div id="gallery" class="grid"></div>
+      </section>
+    </main>
   </div>
 
-  <!-- App -->
-  <script src="app.js?v=1"></script>
-
-  <!-- Service worker (kan slås PÅ igjen når alt virker) -->
+  <script src="app.js?v=2"></script>
   <script>
+    // service worker (valgfritt)
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('./sw.js').catch(()=>{});
     }
