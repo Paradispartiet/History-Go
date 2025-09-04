@@ -1,9 +1,5 @@
 /* ====== GLOBALT ====== */
-html, body {
-  margin:0; padding:0;
-  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-  background:#0d1b2a; color:#fff; height:100vh;
-}
+html, body { margin:0; padding:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; background:#0d1b2a; color:#fff; height:100vh; }
 *{ box-sizing:border-box; }
 
 /* ====== KART ====== */
@@ -11,16 +7,12 @@ html, body {
   position:fixed; top:0; left:0; right:0; bottom:0; z-index:0;
   filter: blur(2px) saturate(1.05) brightness(0.95);
   opacity:.95;
-  border-radius: 20px; /* rundere kanter rundt hele kartet */
-  overflow:hidden;
 }
 
 /* ====== TOAST ====== */
 #toast{
   position:fixed; left:50%; top:12px; transform:translateX(-50%);
-  background:#1976d2; color:#fff;
-  padding:10px 16px; border-radius:14px;
-  display:none; z-index:10; font-weight:700;
+  background:#1976d2; color:#fff; padding:10px 16px; border-radius:14px; display:none; z-index:10; font-weight:700;
   box-shadow:0 4px 10px rgba(0,0,0,.25);
 }
 
@@ -29,31 +21,42 @@ header{
   position:relative; z-index:2;
   background: rgba(13,27,42,.75);
   backdrop-filter: blur(4px);
-  border-bottom: 1px solid #152536;
+  border:1px solid #152536;
   padding: 14px 18px;
   display:flex; align-items:center; justify-content:space-between;
-  border-radius: 16px; /* mykere header */
+  border-radius: 16px;
   margin: 8px;
 }
 h1{ margin:0; font-size:18px; font-weight:900; }
+.head-actions{ display:flex; align-items:center; gap:10px; }
 .test{ display:flex; align-items:center; gap:8px; color:#d5dde6; }
+
+/* Liten link-knapp */
+.link-btn{
+  background:transparent;
+  border:1px solid #2a3b4d;
+  color:#e8eef7;
+  padding:8px 12px;
+  border-radius:10px;
+  font-weight:700;
+  cursor:pointer;
+}
 
 /* ====== Innholdspanel ====== */
 main{
   position:relative; z-index:1;
   margin:12px;
-  background: rgba(13,27,42,.88);
+  background: rgba(13,27,42,.75); /* lysere */
   backdrop-filter: blur(6px);
   border:1px solid #1e3142;
-  border-radius:20px; /* rundere panel */
+  border-radius:20px;
   padding:16px;
   box-shadow: 0 12px 30px rgba(0,0,0,.3);
 }
 .section{ margin-bottom:20px; }
 .title{
-  display:inline-block; background:#ffb703; color:#111;
-  padding:8px 14px; border-radius:14px;
-  font-weight:900; margin-bottom:10px;
+  display:inline-block; background:#f7c75c; color:#111;
+  padding:8px 14px; border-radius:14px; font-weight:900; margin-bottom:10px;
 }
 .muted{ color:#b7c2cf; }
 
@@ -66,82 +69,67 @@ main{
 .name{ font-weight:900; }
 .meta{ color:#b7c2cf; margin-top:2px; }
 .desc{ color:#e3e8ef; margin-top:6px; }
-.dist{ color:#ffb703; font-weight:900; margin-top:6px; }
+.dist{ color:#f7c75c; font-weight:900; margin-top:6px; }
 
-/* Grid/Badges */
+/* Grid/Badges – mild palett */
 .grid{ display:flex; flex-wrap:wrap; gap:10px; }
 .badge{
-  background:#1976d2; color:#fff;
-  padding:10px 14px; border-radius:14px;
-  font-weight:800; white-space:nowrap;
+  display:flex; align-items:center; gap:8px;
+  padding:10px 14px; border-radius:14px; font-weight:800; white-space:nowrap; color:#fff;
   box-shadow:0 2px 6px rgba(0,0,0,.25);
 }
+.badge .ico{ width:14px; height:14px; }
+
+.badge.historie       { background:#5c8fd9; }            /* mild blå */
+.badge.kultur         { background:#f06b6b; }
+.badge.sport          { background:#81c784; }
+.badge.severdigheter  { background:#f7c75c; color:#111; } /* gul -> mørk tekst */
+.badge.natur          { background:#4db6ac; }
 
 /* Diplomer */
 .diploma{
-  min-width:240px;
-  background:#1b263b;
-  border:1px solid #253547;
-  border-radius:16px;
-  padding:14px;
-  margin-right:10px; margin-bottom:10px;
+  position:relative;
+  min-width:240px; background:#1b263b; border:1px solid #253547; border-radius:16px; padding:14px; margin-right:10px; margin-bottom:10px;
   box-shadow:0 4px 12px rgba(0,0,0,.25);
+  padding-left:48px; /* plass til ikon */
 }
+.diploma .ico{ position:absolute; left:14px; top:50%; transform:translateY(-50%); width:22px; height:22px; }
 .tier{ font-weight:900; margin-left:6px; }
-.tier.bronse::before{ content:"🥉 "; }
-.tier.sølv::before{ content:"🥈 "; }
-.tier.gull::before{ content:"🥇 "; }
-.diploma.bronse{ border-left:6px solid #cd7f32; border-radius:16px; }
-.diploma.sølv{   border-left:6px solid #aaa; border-radius:16px; }
-.diploma.gull{   border-left:6px solid #ffd700; border-radius:16px; }
+.diploma.bronse{ border-left:6px solid #cd7f32; }
+.diploma.sølv{   border-left:6px solid #c0c0c0; }
+.diploma.gull{   border-left:6px solid #ffd700; }
 
 /* Personkort */
 .person-card{
-  background:#1b263b; border:1px solid #253547;
-  border-radius:16px; padding:14px;
-  display:flex; align-items:center; gap:14px;
-  box-shadow:0 4px 12px rgba(0,0,0,.25);
+  background:#1b263b; border:1px solid #253547; border-radius:16px; padding:14px;
+  display:flex; align-items:center; gap:14px; box-shadow:0 4px 12px rgba(0,0,0,.25);
 }
 .avatar{
-  width:50px; height:50px; border-radius:50%;
-  background:#1976d2; color:#fff;
-  display:flex; align-items:center; justify-content:center; font-weight:900;
+  width:50px; height:50px; border-radius:50%; background:#5c8fd9; color:#fff;
+  display:flex; align-items:center; justify-content:center; font-weight:900; font-size:18px;
+  box-shadow:0 3px 8px rgba(0,0,0,.3);
 }
+.iconline{ display:flex; gap:10px; margin-top:6px; opacity:.95; }
+.iconline .ico{ width:16px; height:16px; }
 .person-btn{
-  margin-left:auto; border:0; border-radius:14px;
-  padding:10px 14px;
-  background:#ffb703; color:#111; font-weight:900;
+  margin-left:auto; border:0; border-radius:14px; padding:10px 14px; background:#f7c75c; color:#111; font-weight:900;
   box-shadow:0 3px 8px rgba(0,0,0,.3);
 }
 
-/* ====== Kartmodus (kun kartet synlig) ====== */
-.map-exit{
-  position:fixed; top:12px; right:12px; z-index:9999; display:none;
-  background:#111; color:#fff;
-  border:0; border-radius:50%;
-  width:40px; height:40px;
-  font-size:20px; line-height:40px;
-  text-align:center; cursor:pointer; opacity:.9;
-  box-shadow:0 3px 10px rgba(0,0,0,.3);
+/* --- Store, klikkvennlige kart-pinner --- */
+.leaflet-marker-icon.pin { position: relative; }
+.pin .pin-ring{
+  width:44px; height:44px; border-radius:50%;
+  background: rgba(255,255,255,.08);
+  box-shadow: 0 2px 8px rgba(0,0,0,.25);
 }
-.map-only header, .map-only main{ display:none; }
-.map-only #map{ filter:none; opacity:1; border-radius:0; }
-.map-only .map-exit{ display:block; }
-
-/* SVG-ikoner generelt */
-.ico { width:18px; height:18px; display:inline-block; vertical-align:-3px; }
-
-/* Badges med ikon */
-.badge { display:flex; align-items:center; gap:8px; }
-.badge .ico { flex:0 0 auto; }
-
-/* Diplomer – plass til ikon til venstre */
-.diploma { position:relative; padding-left:48px; }
-.diploma .ico { position:absolute; left:14px; top:50%; transform:translateY(-50%); width:22px; height:22px; }
-
-/* Personkort – ikonlinje */
-.iconline { display:flex; gap:10px; margin-top:6px; opacity:.95; }
-.iconline .ico { width:16px; height:16px; }
+.pin .pin-dot{
+  position:absolute; left:50%; top:50%;
+  width:14px; height:14px; border-radius:50%;
+  transform: translate(-50%,-50%);
+  border:3px solid #111;
+  background:#5c8fd9; /* settes over av JS per kategori */
+}
 
 /* Kart-legend */
 .map-legend{
@@ -153,3 +141,14 @@ main{
 }
 .map-legend .item{ display:flex; align-items:center; gap:6px; }
 .map-legend .ico{ width:16px; height:16px; }
+
+/* Kartmodus (kun kartet synlig) */
+.map-exit{
+  position:fixed; top:12px; right:12px; z-index:9999; display:none;
+  background:#111; color:#fff; border:0; border-radius:50%; width:40px; height:40px;
+  font-size:20px; line-height:40px; text-align:center; cursor:pointer; opacity:.9;
+  box-shadow:0 3px 10px rgba(0,0,0,.3);
+}
+.map-only header, .map-only main{ display:none; }
+.map-only #map{ filter:none; opacity:1; }
+.map-only .map-exit{ display:block; }
