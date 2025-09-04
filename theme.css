@@ -1,24 +1,19 @@
 /* === HISTORY GO – FESTIVAL THEME === */
-
-/* Palett (poster style) */
 :root{
-  --bg:        #0d1b2a;      /* mørk blå bakgrunn */
-  --panel:     #10243a;      /* mørk blå panel */
+  --bg:        #0d1b2a;
+  --panel:     #10243a;
   --card:      rgba(255,255,255,0.06);
   --card-bd:   rgba(255,255,255,0.18);
-  --text:      #f7fafc;      /* lys tekst */
+  --text:      #f7fafc;
   --muted:     #b8c2cc;
-
-  --blue:      #1976d2;      /* app-blå */
+  --blue:      #1976d2;
   --red:       #e63946;
   --yellow:    #ffb703;
   --green:     #2a9d8f;
-
   --shadow:    0 10px 24px rgba(0,0,0,.35);
   --radius:    16px;
 }
 
-/* Base */
 *{ box-sizing:border-box; }
 html,body{ height:100%; }
 body{
@@ -31,9 +26,22 @@ body{
   color:var(--text);
 }
 
-/* Header – mørk bar med tydelig tittel */
+/* Kart under innholdet */
+#map{ position:fixed; inset:0; z-index:0; }
+header, main{ position:relative; z-index:1; }
+main{
+  background: rgba(0,0,0,0.38);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-top: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  border-radius: 0 0 16px 16px;
+  padding: 18px;
+}
+
+/* Header */
 header{
-  position:sticky; top:0; z-index:5;
+  position:sticky; top:0; z-index:2;
   background:linear-gradient(180deg, #0f2742 0%, #0d1b2a 100%);
   border-bottom:2px solid #0f355f;
   padding:16px 18px;
@@ -42,8 +50,7 @@ header{
 h1{ margin:0; font-size:20px; letter-spacing:.5px; font-weight:900; }
 .test{ display:flex; align-items:center; gap:8px; font-weight:700; }
 
-/* Layout */
-main{ padding:18px; }
+/* Seksjoner */
 .section{ margin-bottom:22px; }
 .title{
   display:inline-block;
@@ -55,7 +62,7 @@ main{ padding:18px; }
   box-shadow:var(--shadow);
 }
 
-/* Kort (glass + bold) */
+/* Kort */
 .card{
   background:var(--card);
   border:2px solid var(--card-bd);
@@ -71,16 +78,7 @@ main{ padding:18px; }
 .desc{ color:#e8edf2; margin-top:6px; line-height:1.25; }
 .dist{ margin-top:8px; font-weight:900; color:var(--yellow); }
 
-/* Knapper (store CTA-flater) */
-.btn{
-  border:0; border-radius:12px; padding:12px 16px;
-  font-weight:900; letter-spacing:.3px; cursor:pointer;
-  box-shadow: var(--shadow);
-}
-.primary{ background:var(--red); color:#fff; }
-.ghost{ background:rgba(255,255,255,.12); color:#fff; }
-
-/* Chips/badges */
+.grid{ display:flex; gap:10px; overflow-x:auto; padding:6px 2px; }
 .badge{
   display:inline-flex; align-items:center;
   gap:8px; padding:10px 12px;
@@ -91,12 +89,15 @@ main{ padding:18px; }
   white-space:nowrap;
 }
 
-/* Lister/grid */
-.grid{ display:flex; gap:10px; overflow-x:auto; padding:6px 2px; }
-.row { display:flex; gap:12px; align-items:center; }
-.muted{ color:var(--muted); }
+.btn{
+  border:0; border-radius:12px; padding:12px 16px;
+  font-weight:900; letter-spacing:.3px; cursor:pointer;
+  box-shadow: var(--shadow);
+}
+.primary{ background:var(--red); color:#fff; }
+.ghost{ background:rgba(255,255,255,.12); color:#fff; }
 
-/* Diplomer – “trophy cards” */
+/* Diplomer */
 .diploma{
   background:var(--card);
   border:2px solid var(--card-bd);
@@ -115,33 +116,16 @@ main{ padding:18px; }
 .tier.bronse::before{ content:"🥉"; }
 .tier.sølv::before  { content:"🥈"; }
 .tier.gull::before  { content:"🥇"; }
+.diploma.bronse{ background: linear-gradient(180deg,#513a26 0%, #2d2118 100%); border-color:#a57b4a; }
+.diploma.sølv  { background: linear-gradient(180deg,#3e4a55 0%, #252c33 100%); border-color:#aab6c1; }
+.diploma.gull  { background: linear-gradient(180deg,#745a00 0%, #3d2f00 100%); border-color:#f3d36b; }
 
-/* Fargelag for diplomer (plakatstil) */
-.diploma.bronse{
-  background: linear-gradient(180deg,#513a26 0%, #2d2118 100%);
-  border-color:#a57b4a;
-}
-.diploma.sølv{
-  background: linear-gradient(180deg,#3e4a55 0%, #252c33 100%);
-  border-color:#aab6c1;
-}
-.diploma.gull{
-  background: linear-gradient(180deg,#745a00 0%, #3d2f00 100%);
-  border-color:#f3d36b;
-}
-
-/* Kategori‐striper (tykk stripe + badge-farge) */
+/* Kategori‐striper */
 .card.cat-historie      { border-left:10px solid var(--blue);  }
 .card.cat-kultur        { border-left:10px solid var(--red);   }
 .card.cat-severdigheter { border-left:10px solid var(--yellow);}
 .card.cat-sport,
 .card.cat-natur         { border-left:10px solid var(--green); }
-
-.badge.cat-historie      { background:var(--blue); }
-.badge.cat-kultur        { background:var(--red); }
-.badge.cat-severdigheter { background:var(--yellow); color:#111; }
-.badge.cat-sport,
-.badge.cat-natur         { background:var(--green); }
 
 /* Toast */
 #toast{
@@ -152,7 +136,49 @@ main{ padding:18px; }
   display:none; z-index:9999; box-shadow:var(--shadow);
 }
 
-/* === Galleri (personer) – avatar-kort === */
+/* FAB */
+.fab{
+  position: fixed;
+  right: 18px; bottom: 18px; z-index: 3;
+  width: 56px; height: 56px; border-radius: 50%;
+  border: 0; cursor: pointer;
+  font-size: 22px; font-weight: 900; color:#111;
+  background: var(--yellow);
+  box-shadow: var(--shadow);
+}
+
+/* Sheet */
+.sheet{
+  position: fixed; left: 0; right: 0; bottom: -60%;
+  z-index: 4;
+  background: rgba(0,0,0,.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-top: 2px solid rgba(255,255,255,.18);
+  border-radius: 16px 16px 0 0;
+  padding: 12px 14px 16px;
+  transition: bottom .25s ease;
+}
+.sheet[aria-hidden="false"]{ bottom: 0; }
+.sheet-handle{
+  width: 46px; height: 5px; border-radius: 99px; margin: 6px auto 10px;
+  background: rgba(255,255,255,.3);
+}
+.sheet-title{
+  font-weight: 900; margin: 6px 4px 8px; color: #fff;
+}
+.sheet-group{ display: grid; gap: 8px; margin: 4px 0 12px; }
+.sheet-item{
+  text-align: left; padding: 12px; border-radius: 12px; border: 1px solid rgba(255,255,255,.2);
+  background: rgba(255,255,255,.06); color:#fff; font-weight: 800; cursor: pointer;
+}
+.sheet-select{
+  width: 100%; border-radius: 12px; padding: 10px 12px; border: 1px solid rgba(255,255,255,.2);
+  background: rgba(255,255,255,.06); color:#fff; font-weight: 700;
+}
+.sheet-actions{ display:flex; gap:10px; justify-content:flex-end; }
+
+/* Galleri (personer) */
 .person-card{
   background:var(--card);
   border:2px solid var(--card-bd);
@@ -180,7 +206,6 @@ main{ padding:18px; }
 .pill.event { background:var(--yellow); color:#111; }
 .pill.now   { background:var(--green); color:#fff; }
 .pill.soon  { background:#0f2f51; color:#dbe7f3; }
-
 .person-actions{ display:flex; gap:10px; }
 .person-btn{
   border:0; border-radius:12px; padding:10px 14px;
