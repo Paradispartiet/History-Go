@@ -1,25 +1,20 @@
-// sw.js — History Go (stale-while-revalidate)
-
-// ❗ Bytt versjon når du endrer ASSETS (v4, v5, ...)
-const CACHE = "history-go-v5";
-
+// sw.js — History Go
+const CACHE = "history-go-v1";
 const ASSETS = [
   "./",
   "./index.html",
   "./theme.css",
   "./app.js",
   "./places.json",
-  "./people.json",     // valgfri — ok om mangler
+  "./people.json",
   "./manifest.json"
 ];
 
-// Installer: legg alt i cache
 self.addEventListener("install", (e) => {
   self.skipWaiting();
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(ASSETS)));
 });
 
-// Aktiver: fjern gammel cache
 self.addEventListener("activate", (e) => {
   e.waitUntil(
     caches.keys().then((keys) =>
@@ -28,28 +23,19 @@ self.addEventListener("activate", (e) => {
   );
 });
 
-// Hent: stale-while-revalidate
 self.addEventListener("fetch", (e) => {
   const req = e.request;
-
-  // Bare GET bør caches
   if (req.method !== "GET") return;
-
   e.respondWith(
     caches.match(req).then((cached) => {
-      const fetchPromise = fetch(req)
-        .then((netRes) => {
-          // Bare cache suksessfulle, samme-origin svar
-          if (netRes && netRes.status === 200 && netRes.type === "basic") {
-            const copy = netRes.clone();
-            caches.open(CACHE).then((c) => c.put(req, copy));
-          }
-          return netRes;
-        })
-        .catch(() => cached); // offline fallback til cache hvis finnes
-
-      // Returner cache først (raskt), oppdater i bakgrunnen
-      return cached || fetchPromise;
+      const fetched = fetch(req).then((res) => {
+        if (res && res.status === 200 && res.type === "basic") {
+          const copy = res.clone();
+          caches.open(CACHE).then((c) => c.put(req, copy));
+        }
+        return res;
+      }).catch(() => cached);
+      return cached || fetched;
     })
   );
 });
