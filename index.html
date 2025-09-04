@@ -12,10 +12,10 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-  <link rel="stylesheet" href="theme.css?v=iconpack1" />
+  <link rel="stylesheet" href="theme.css?v=v1" />
 </head>
 <body>
-  <!-- Kart -->
+  <!-- Kart i bakgrunnen -->
   <div id="map"></div>
   <!-- Toast -->
   <div id="toast">Låst opp ✅</div>
@@ -23,10 +23,13 @@
   <!-- Topp -->
   <header>
     <h1>History Go</h1>
-    <label class="test">Testmodus <input id="testToggle" type="checkbox"></label>
+    <div class="head-actions">
+      <label class="test">Testmodus <input id="testToggle" type="checkbox" /></label>
+      <button id="btnMap" class="link-btn" type="button">Se kart</button>
+    </div>
   </header>
 
-  <!-- Innhold -->
+  <!-- Innholdspanel -->
   <main>
     <section class="section">
       <div class="title">Severdigheter i nærheten</div>
@@ -35,7 +38,7 @@
     </section>
 
     <section class="section">
-      <div class="title">Samlingen min (<span id="count">0</span>)</div>
+      <div class="title">Min samling (<span id="count">0</span>)</div>
       <div id="collection" class="grid"></div>
     </section>
 
@@ -50,10 +53,13 @@
     </section>
   </main>
 
-  <!-- Kart-legend plasseres via JS -->
+  <!-- Kart-legend (fylles av JS) -->
   <div id="mapLegend" class="map-legend" style="display:none"></div>
 
-  <script src="app.js?v=iconpack1"></script>
+  <!-- Lukk kart (vises i kartmodus) -->
+  <button id="mapExit" class="map-exit" aria-label="Lukk kart" type="button">×</button>
+
+  <script src="app.js?v=v1"></script>
   <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('./sw.js').catch(()=>{});
@@ -66,7 +72,6 @@
       <path d="M12 22s7-7 7-12a7 7 0 1 0-14 0c0 5 7 12 7 12z" fill="currentColor"/>
       <circle cx="12" cy="10" r="3" fill="#0d1b2a"/>
     </symbol>
-
     <!-- kategorier -->
     <symbol id="ico-castle" viewBox="0 0 24 24">
       <path d="M3 10h18v10H3z" fill="currentColor"/>
@@ -90,7 +95,6 @@
     <symbol id="ico-tree" viewBox="0 0 24 24">
       <path d="M12 2l6 8h-4l4 6h-5l2 6H9l2-6H6l4-6H6l6-8z" fill="currentColor"/>
     </symbol>
-
     <!-- troféer / medaljer -->
     <symbol id="ico-trophy" viewBox="0 0 24 24">
       <path d="M7 3h10v3h3a4 4 0 0 1-4 4c-1.5 3-3.5 3-5 0a4 4 0 0 1-4-4h3V3z" fill="currentColor"/>
@@ -106,8 +110,7 @@
     <symbol id="ico-medal-gold" viewBox="0 0 24 24">
       <circle cx="12" cy="12" r="7" fill="#ffd700"/><path d="M7 3h4l1 3h-4zM13 3h4l-1 3h-4z" fill="#d4af37"/>
     </symbol>
-
-    <!-- person-tag ikoner -->
+    <!-- person/pills -->
     <symbol id="ico-user" viewBox="0 0 24 24">
       <circle cx="12" cy="8" r="4" fill="currentColor"/><path d="M4 20c2-4 14-4 16 0" fill="currentColor"/>
     </symbol>
