@@ -5,16 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>History Go</title>
 
-  <!-- PWA -->
+  <!-- PWA (valgfritt) -->
   <link rel="manifest" href="manifest.json" />
   <meta name="theme-color" content="#0d1b2a" />
 
   <!-- Leaflet (kart) -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIINnHnnHzRcF9tD/mi2y0HS5obTRR9BMY="
+    crossorigin=""
+  />
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQ0Ccb9co0qIjJZRGuk2/Z9W+NkiyxNV1lv1IZBo="
+    crossorigin=""
+  ></script>
 
   <!-- Stil -->
-  <link rel="stylesheet" href="theme.css" />
+  <link rel="stylesheet" href="theme.css?v=sheet1" />
 </head>
 <body>
 
@@ -22,45 +31,41 @@
   <div id="map"></div>
 
   <!-- Toast -->
-  <div id="toast">OK</div>
+  <div id="toast">Låst opp ✅</div>
 
-  <!-- Topp (kun tittel + testmodus) -->
-  <header class="top">
-    <h1>History Go</h1>
-    <label class="test">Testmodus <input id="testToggle" type="checkbox" /></label>
-  </header>
+  <!-- Sheet / innhold (scrollbart lag over kartet) -->
+  <div class="section-sheet" id="sheet">
+    <main>
 
-  <!-- Bottom-sheet (kan dras opp/ned) -->
-  <main id="sheet">
-    <div class="handle"></div>
+      <!-- Nærmest nå -->
+      <div class="section">
+        <div class="title">Severdigheter i nærheten</div>
+        <div id="status" class="muted">Henter posisjon…</div>
+        <div id="list"></div>
+      </div>
 
-    <!-- Nærmest nå (kun 2 kort) -->
-    <section class="section">
-      <div class="title">Severdigheter i nærheten</div>
-      <div id="status" class="muted">Henter posisjon…</div>
-      <div id="list"></div>
-    </section>
+      <!-- Dine steder -->
+      <div class="section">
+        <div class="title">Samlingen min (<span id="count">0</span>)</div>
+        <div id="collection" class="grid"></div>
+      </div>
 
-    <!-- Samling -->
-    <section class="section">
-      <div class="title">Samlingen min (<span id="count">0</span>)</div>
-      <div id="collection" class="grid"></div>
-    </section>
+      <!-- Diplomer -->
+      <div class="section">
+        <div class="title">Diplomer</div>
+        <div id="diplomas" class="grid"></div>
+      </div>
 
-    <!-- Diplomer -->
-    <section class="section">
-      <div class="title">Diplomer</div>
-      <div id="diplomas" class="grid"></div>
-    </section>
+      <!-- Dine folk -->
+      <div class="section">
+        <div class="title">Galleri (personer)</div>
+        <div id="gallery"></div>
+      </div>
 
-    <!-- Galleri (personer) -->
-    <section class="section">
-      <div class="title">Galleri (personer)</div>
-      <div id="gallery"></div>
-    </section>
-  </main>
+    </main>
+  </div>
 
-  <script src="app.js"></script>
+  <script src="app.js?v=sheet1"></script>
   <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('./sw.js').catch(()=>{});
