@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>History Go</title>
 
-  <!-- PWA (valgfritt, behold hvis du allerede har disse) -->
+  <!-- PWA -->
   <link rel="manifest" href="manifest.json" />
   <meta name="theme-color" content="#1976d2" />
 
@@ -14,17 +14,17 @@
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
   <!-- Stil -->
-  <link rel="stylesheet" href="themes.css" />
+  <link rel="stylesheet" href="theme.css" />
 </head>
 <body>
 
-  <!-- Kartet ligger bak alt -->
+  <!-- Kart -->
   <div id="map"></div>
 
   <!-- Toast -->
   <div id="toast">Låst opp ✅</div>
 
-  <!-- Topp (enkel) -->
+  <!-- Topp -->
   <header>
     <h1>History Go</h1>
     <label class="test">Testmodus <input id="testToggle" type="checkbox" /></label>
@@ -32,7 +32,7 @@
 
   <!-- Innhold -->
   <main>
-    <!-- Nærmest nå (viser kun 2 steder) -->
+    <!-- Nærmest nå -->
     <section class="section">
       <div class="title">Severdigheter i nærheten</div>
       <div id="status" class="muted">Henter posisjon…</div>
@@ -51,7 +51,7 @@
       <div id="diplomas" class="grid"></div>
     </section>
 
-    <!-- Galleri (personer) -->
+    <!-- Galleri -->
     <section class="section">
       <div class="title">Galleri (personer)</div>
       <div id="gallery" class="grid"></div>
