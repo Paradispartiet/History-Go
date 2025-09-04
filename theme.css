@@ -1,103 +1,166 @@
+/* === History Go Theme === */
+
+/* Farger */
 :root {
-  --bg-app:#f6f7f9;
-  --fg:#111;
-  --border:#e3e8ef;
-  --primary:#1976d2;
-  --ghost-bg:#e8eef7;
-  --muted:#666;
+  --blue: #1976d2;
+  --blue-light: #e8eef7;
+  --red: #e63946;
+  --yellow: #ffb703;
+  --green: #2a9d8f;
+  --gray-light: #e3e8ef;
+  --gray: #555;
+  --gray-dark: #333;
+  --bg: #f6f7f9;
+  --text: #111;
 }
 
-/* Base */
+/* Reset */
 body {
-  margin:0;
-  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-  background:var(--bg-app);
-  color:var(--fg);
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
 }
+
+/* Header */
 header {
-  position:sticky;top:0;
-  background:#fff;
-  border-bottom:1px solid var(--border);
-  padding:14px 16px;
-  display:flex;justify-content:space-between;align-items:center;
+  position: sticky;
+  top: 0;
+  background: #fff;
+  border-bottom: 1px solid var(--gray-light);
+  padding: 14px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-h1 { font-size:18px;margin:0;font-weight:800; }
-.test { display:flex;align-items:center;gap:8px; }
-main { padding:14px; }
-.section { margin-bottom:18px; }
-.title { font-weight:800;margin-bottom:8px; }
-
-/* Kort og liste */
-.card {
-  background:#fff;
-  border:1px solid var(--border);
-  border-radius:12px;
-  padding:12px;
-  margin-bottom:10px;
-  display:flex;gap:10px;
+h1 {
+  font-size: 18px;
+  margin: 0;
+  font-weight: 800;
 }
-.name { font-weight:800; }
-.meta { color:#555; }
-.desc { color:#333;margin-top:6px; }
-.dist { color:var(--primary);margin-top:6px;font-weight:700; }
-
-/* Knapper */
-.btn {
-  border:0;
-  border-radius:10px;
-  padding:10px 14px;
-  font-weight:800;
-}
-.primary { background:var(--primary);color:#fff; }
-.ghost { background:var(--ghost-bg);color:var(--primary); }
-
-/* Badges */
-.badge {
-  background:var(--primary);
-  color:#fff;
-  border-radius:10px;
-  padding:8px 10px;
-  margin-right:8px;
-  white-space:nowrap;
+.test {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 /* Layout */
-.grid { display:flex;overflow-x:auto;gap:8px;padding-bottom:6px; }
-.muted { color:var(--muted); }
-.row { display:flex;gap:10px;align-items:center; }
+main {
+  padding: 14px;
+}
+.section {
+  margin-bottom: 18px;
+}
+.title {
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+/* Kort */
+.card {
+  background: #fff;
+  border: 1px solid var(--gray-light);
+  border-radius: 12px;
+  padding: 12px;
+  margin-bottom: 10px;
+  display: flex;
+  gap: 10px;
+}
+.name {
+  font-weight: 800;
+}
+.meta {
+  color: var(--gray);
+}
+.desc {
+  color: var(--gray-dark);
+  margin-top: 6px;
+}
+.dist {
+  color: var(--blue);
+  margin-top: 6px;
+  font-weight: 700;
+}
+
+/* Knapper */
+.btn {
+  border: 0;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-weight: 800;
+  cursor: pointer;
+}
+.primary {
+  background: var(--blue);
+  color: #fff;
+}
+.ghost {
+  background: var(--blue-light);
+  color: var(--blue);
+}
+
+/* Ikoner og badges */
+.badge {
+  background: var(--blue);
+  color: #fff;
+  border-radius: 10px;
+  padding: 8px 10px;
+  margin-right: 8px;
+  white-space: nowrap;
+}
+.grid {
+  display: flex;
+  overflow-x: auto;
+  gap: 8px;
+  padding-bottom: 6px;
+}
+.row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.muted {
+  color: #666;
+}
 
 /* Diplomer */
 .diploma {
-  border:1px solid var(--border);
-  background:#fff;
-  border-radius:12px;
-  padding:10px 12px;
+  border: 1px solid var(--gray-light);
+  background: #fff;
+  border-radius: 12px;
+  padding: 10px 12px;
 }
 .tag {
-  font-size:12px;
-  padding:2px 8px;
-  border-radius:999px;
-  background:#eef2ff;
-  color:#2b4c7e;
-  margin-left:6px;
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--blue-light);
+  color: var(--blue);
+  margin-left: 6px;
 }
-.tier { font-weight:800;margin-left:6px; }
-.tier::before { margin-right:4px;content:""; }
-.tier.bronse::before { content:"🥉"; }
-.tier.sølv::before   { content:"🥈"; }
-.tier.gull::before   { content:"🥇"; }
+.tier {
+  font-weight: 800;
+  margin-left: 6px;
+}
+.tier::before {
+  margin-right: 4px;
+  content: "";
+}
+.tier.bronse::before { content: "🥉"; }
+.tier.sølv::before   { content: "🥈"; }
+.tier.gull::before   { content: "🥇"; }
 
 /* Toast */
 #toast {
-  position:fixed;
-  left:50%;
-  bottom:22px;
-  transform:translateX(-50%);
-  background:var(--primary);
-  color:#fff;
-  padding:10px 14px;
-  border-radius:10px;
-  font-weight:800;
-  display:none;
-  z-index:9999;
+  position: fixed;
+  left: 50%;
+  bottom: 22px;
+  transform: translateX(-50%);
+  background: var(--blue);
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-weight: 800;
+  display: none;
+  z-index: 9999;
 }
