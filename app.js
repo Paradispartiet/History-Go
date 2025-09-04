@@ -1,13 +1,28 @@
-// Last steder fra places.json
+// ==============================
+// History Go – app.js (full)
+// ==============================
+
+// Last steder og personer fra JSON
 let PLACES = [];
-fetch('places.json').then(r => r.json()).then(data => {
-  PLACES = data;
+let PEOPLE = [];
+
+Promise.all([
+  fetch('places.json').then(r => r.json()),
+  fetch('people.json').then(r => r.json()).catch(() => []) // people.json er valgfritt
+]).then(([places, people]) => {
+  PLACES = places;
+  PEOPLE = people;
   boot();
 });
 
 // --- LocalStorage state ---
-const visited  = JSON.parse(localStorage.getItem("visited_places") || "{}");
-const diplomas = JSON.parse(localStorage.getItem("diplomas_by_category") || "{}");
+const visited        = JSON.parse(localStorage.getItem("visited_places") || "{}");           // merker (steder)
+const diplomas       = JSON.parse(localStorage.getItem("diplomas_by_category") || "{}");     // diplomer per kategori
+const peopleCollected= JSON.parse(localStorage.getItem("people_collected") || "{}");         // galleri (personer)
+
+function saveVisited()   { localStorage.setItem("visited_places", JSON.stringify(visited)); renderCollection(); }
+function saveDiplomas()  { localStorage.setItem("diplomas_by_category", JSON.stringify(diplomas)); }
+function savePeople()    { localStorage.setItem("people_collected", JSON.stringify(peopleCollected)); }
 
 // --- DOM refs ---
 const elList       = document.getElementById("list");
@@ -15,14 +30,11 @@ const elStatus     = document.getElementById("status");
 const elCollection = document.getElementById("collection");
 const elCount      = document.getElementById("count");
 const elDiplomas   = document.getElementById("diplomas");
+const elGallery    = document.getElementById("gallery");
 const testToggle   = document.getElementById("testToggle");
 
 // --- Diplom terskler (juster fritt) ---
 const DIPLOMA_THRESHOLDS = { bronse: 10, sølv: 25, gull: 50 };
-
-// --- Persist ---
-function saveVisited()  { localStorage.setItem("visited_places", JSON.stringify(visited)); renderCollection(); }
-function saveDiplomas() { localStorage.setItem("diplomas_by_category", JSON.stringify(diplomas)); }
 
 // --- Hjelpere ---
 function distMeters(a, b){
@@ -46,12 +58,25 @@ function tierForCount(n){
 function tierRank(t){ return ({bronse:1, sølv:2, gull:3}[t]||0); }
 function tierEmoji(t){ return t==="gull"?"🥇":t==="sølv"?"🥈":t==="bronse"?"🥉":""; }
 
+// Tidsvindu for personer (events/figurer)
+function isActive(person, now=new Date()){
+  if (!person.window || !person.window.length) return true; // alltid aktiv hvis ikke definert
+  for (const w of person.window){
+    let s=new Date(w.start), e=new Date(w.end);
+    if (w.repeat === "yearly"){ s.setFullYear(now.getFullYear()); e.setFullYear(now.getFullYear()); }
+    if (now >= s && now <= e) return true;
+  }
+  return false;
+}
+
 // --- Toast ---
-let lastAwardAt=0;
+let lastAwardAt = 0;
 function showToast(msg="Låst opp ✅"){
   const t=document.getElementById("toast");
-  t.textContent=msg; t.style.display="block";
-  setTimeout(()=>t.style.display="none",1600);
+  if(!t) return;
+  t.textContent = msg;
+  t.style.display = "block";
+  setTimeout(()=> t.style.display = "none", 1600);
 }
 
 // --- Renderere ---
@@ -59,15 +84,16 @@ function renderCollection(){
   const items = PLACES.filter(p=>visited[p.id]);
   elCollection.innerHTML = items.length
     ? items.map(p=>`<div class="badge">${p.name}</div>`).join("")
-    : `<div class="muted">Besøk et sted for å låse opp ditt første ikon.</div>`;
+    : `<div class="muted">Besøk et sted for å låse opp ditt første merke.</div>`;
   elCount.textContent = items.length;
 }
 
 function renderList(user){
-  const sorted=PLACES.map(p=>{
-    const d=user?Math.round(distMeters(user,{lat:p.lat,lon:p.lon})):null;
-    return {...p,d};
+  const sorted = PLACES.map(p=>{
+    const d = user ? Math.round(distMeters(user,{lat:p.lat,lon:p.lon})) : null;
+    return {...p, d};
   }).sort((a,b)=>(a.d??1e12)-(b.d??1e12));
+
   elList.innerHTML = sorted.map(p=>`
     <div class="card">
       <div style="flex:1">
@@ -76,7 +102,8 @@ function renderList(user){
         <div class="desc">${p.desc}</div>
         <div class="dist">${p.d==null?"–":`Avstand: ${p.d} m`}</div>
       </div>
-    </div>`).join("");
+    </div>
+  `).join("");
 }
 
 function renderDiplomas(){
@@ -105,16 +132,24 @@ function renderDiplomas(){
   }).join("");
 }
 
-// --- Badges og diplomer ---
+function renderGallery(){
+  if (!elGallery) return; // hvis du ikke har lagt til seksjonen ennå
+  const got = PEOPLE.filter(p => peopleCollected[p.id]);
+  elGallery.innerHTML = got.length
+    ? got.map(p => `<div class="badge">${p.name}</div>`).join("")
+    : `<div class="muted">Samle personer ved events og høytider (f.eks. Julenissen i desember).</div>`;
+}
+
+// --- Utdeling: steder (merker) + diplomer ---
 function awardBadge(place){
   if (visited[place.id]) return false;
   visited[place.id] = true;
   saveVisited();
 
   const now=Date.now();
-  if(now-lastAwardAt>1200){ showToast(`Låst opp: ${place.name} ✅`); lastAwardAt=now; }
+  if(now - lastAwardAt > 1200){ showToast(`Låst opp: ${place.name} ✅`); lastAwardAt = now; }
 
-  // sjekk diplom
+  // Sjekk om diplom økes i denne kategorien
   const counts  = countVisitedByCategory();
   const cat     = place.category;
   const newTier = tierForCount(counts[cat]||0);
@@ -132,24 +167,47 @@ function checkProximity(user){
   const radiusBoost = testToggle.checked ? 5000 : 0;
   for(const p of PLACES){
     const r = Math.max(p.r, radiusBoost ? Math.max(p.r, radiusBoost) : p.r);
-    const d = Math.round(distMeters(user,{lat:p.lat,lon:p.lon}));
-    if(d <= r) awardBadge(p);
+    const d = Math.round(distMeters(user, {lat:p.lat,lon:p.lon}));
+    if (d <= r) awardBadge(p);
   }
   renderList(user);
   renderDiplomas();
+}
+
+// --- Utdeling: personer (Galleri) ---
+function awardPerson(p){
+  if (peopleCollected[p.id]) return false;
+  peopleCollected[p.id] = Date.now();
+  savePeople();
+  showToast(`Samlet: ${p.name} ✅`);
+  renderGallery();
+  return true;
+}
+
+function checkProximityPeople(user){
+  const radiusBoost = testToggle.checked ? 5000 : 0;
+  const now = new Date();
+  for (const p of PEOPLE){
+    if (!isActive(p, now)) continue;
+    const r = Math.max(p.r, radiusBoost ? Math.max(p.r, radiusBoost) : p.r);
+    const d = Math.round(distMeters(user, {lat:p.lat, lon:p.lon}));
+    if (d <= r) awardPerson(p);
+  }
 }
 
 // --- Init ---
 function boot(){
   renderCollection();
   renderDiplomas();
+  renderGallery();
 
-  if("geolocation" in navigator){
+  if ("geolocation" in navigator){
     navigator.geolocation.watchPosition(pos=>{
       const {latitude, longitude} = pos.coords;
       window.__lastPos = {lat:latitude, lon:longitude};
       elStatus.textContent = `Din posisjon: ${latitude.toFixed(5)}, ${longitude.toFixed(5)}`;
       checkProximity(window.__lastPos);
+      checkProximityPeople(window.__lastPos);
     }, err=>{
       elStatus.textContent = "Kunne ikke hente posisjon: " + err.message;
     }, { enableHighAccuracy:true, maximumAge:5000, timeout:15000 });
