@@ -1,137 +1,98 @@
-/* === History Go – tema (sheet + kart) === */
-:root{
-  --bg:#0d1b2a;         /* mørk blå natt */
-  --panel:#0f1f33f5;    /* semitransparent panel */
-  --text:#eef2f7;
-  --muted:#9fb0c3;
-  --blue:#1976d2;
-  --red:#e63946;
-  --yellow:#ffb703;
-  --green:#2a9d8f;
-  --gray:#374151;
-  --gray2:#1b2a41;
-  --card:#0f1f33cc;
-  --border:#28425f;
+html, body {
+  margin:0; padding:0;
+  width:100%; height:100%;
+  font-family: system-ui, sans-serif;
+  background:#0d1b2a;
+  color:#fff;
+  overflow:hidden;
 }
 
-/* Basis */
-*{ box-sizing:border-box; }
-html,body{ height:100%; }
-body{
-  margin:0;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  color:var(--text);
-  background:var(--bg);
-  overflow:hidden; /* scroll skjer i sheetet */
-}
-
-/* Kart bakgrunn */
-#map{
-  position:fixed;
-  inset:0;
+/* Kart */
+#map {
+  position:absolute;
+  top:0; left:0; right:0; bottom:0;
   z-index:0;
   filter: blur(2px) saturate(1.05) brightness(0.95);
-  opacity:.98;
-}
-
-/* Sheet (scrollbart lag over kartet) */
-.section-sheet{
-  position:fixed;
-  left:0; right:0; bottom:0;
-  max-height:70vh;               /* hvor mye av skjermen det dekker */
-  background:var(--panel);
-  backdrop-filter: blur(8px);
-  border-radius:16px 16px 0 0;
-  padding:12px 14px 18px 14px;
-  overflow-y:auto;               /* <- gir scrolling */
-  -webkit-overflow-scrolling:touch;
-  z-index:2;
-}
-.section-sheet::before{
-  content:"";
-  display:block;
-  width:44px; height:4px;
-  background:#8aa0b8;
-  border-radius:2px;
-  margin:6px auto 10px auto;
-}
-
-/* Layout/seksjoner */
-.section{ margin-bottom:18px; }
-.title{
-  display:inline-block;
-  font-weight:900;
-  background:var(--yellow);
-  color:#111;
-  padding:6px 12px;
-  border-radius:12px;
-  margin-bottom:10px;
-}
-.muted{ color:var(--muted); }
-
-/* Kort / lister */
-.card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:14px;
-  padding:14px;
-  margin:10px 0;
-  box-shadow: 0 4px 12px rgba(0,0,0,.18) inset, 0 2px 10px rgba(0,0,0,.15);
-}
-.name{ font-weight:900; }
-.meta{ color:#c7d6e6; }
-.desc{ color:#e1e8f1; margin:8px 0 6px; }
-.dist{ color:var(--yellow); font-weight:900; }
-
-/* Chips / grid */
-.grid{ display:flex; gap:8px; flex-wrap:wrap; }
-.badge{
-  padding:8px 10px;
-  border-radius:999px;
-  font-weight:800;
-  white-space:nowrap;
-  background:#1e3a5f;
-  border:1px solid var(--border);
-}
-.badge.blue{ background:var(--blue); color:#fff; }
-.badge.red{ background:var(--red); color:#fff; }
-.badge.green{ background:var(--green); color:#fff; }
-.badge.yellow{ background:var(--yellow); color:#111; }
-
-/* Diplomer */
-.diploma{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:14px;
-  padding:14px;
-  min-width:220px;
-}
-.diploma .name{ font-weight:900; }
-.tier{ font-weight:900; margin-left:6px; }
-.tier::before{ margin-right:4px; content:""; }
-.tier.bronse::before{ content:"🥉"; }
-.tier.sølv::before{ content:"🥈"; }
-.tier.gull::before{ content:"🥇"; }
-
-/* Personkort */
-.person-card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:14px;
-  padding:14px;
-  display:flex; align-items:center; gap:12px;
-}
-.avatar{
-  width:46px; height:46px; border-radius:50%;
-  background:var(--blue); color:#fff; font-weight:900;
-  display:flex; align-items:center; justify-content:center;
 }
 
 /* Toast */
-#toast{
-  position:fixed; left:50%; transform:translateX(-50%);
-  bottom:24px; z-index:9999;
-  background:var(--blue); color:#fff;
-  padding:10px 14px; border-radius:10px; font-weight:900;
+#toast {
   display:none;
+  position:fixed;
+  bottom:80px;
+  left:50%;
+  transform:translateX(-50%);
+  background:#333;
+  padding:6px 12px;
+  border-radius:6px;
+  z-index:10;
+}
+
+/* Panel-lag */
+#panel {
+  position:absolute;
+  bottom:0; left:0; right:0;
+  background:rgba(13,27,42,0.96);
+  border-radius:12px 12px 0 0;
+  max-height:80%;
+  overflow-y:auto;
+  z-index:5;
+  padding:12px;
+  touch-action:pan-y;
+}
+
+.section { margin-bottom:20px; }
+.title {
+  font-weight:bold;
+  margin-bottom:8px;
+  background:#ffb703;
+  color:#111;
+  display:inline-block;
+  padding:4px 8px;
+  border-radius:6px;
+}
+.card {
+  background:#1b263b;
+  margin:6px 0;
+  padding:8px;
+  border-radius:8px;
+}
+.dist { color:#ffb703; font-weight:700; }
+
+/* Merker */
+.badge {
+  display:inline-block;
+  margin:2px;
+  padding:4px 8px;
+  border-radius:6px;
+  font-size:0.9em;
+  background:#1976d2;
+}
+
+/* Diplomer */
+.diploma {
+  background:#1b263b;
+  margin:6px 0;
+  padding:8px;
+  border-radius:8px;
+}
+
+/* Galleri */
+.person-card {
+  background:#1b263b;
+  padding:10px;
+  border-radius:8px;
+  margin:6px 0;
+  display:flex;
+  align-items:center;
+}
+.avatar {
+  width:36px; height:36px;
+  border-radius:50%;
+  background:#1976d2;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-right:10px;
+  font-weight:700;
 }
