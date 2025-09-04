@@ -1,34 +1,19 @@
-// sw.js — History Go (v4)
-const CACHE = "history-go-v7";
-
+// sw.js — enkel, build-basert cache
+const build = new URL(location).searchParams.get('b') || 'DEV';
+const CACHE = "history-go-" + build;
 const ASSETS = [
   "./",
   "./index.html",
-
-  // Versjonerte filer (matcher index.html referanser)
-  "./theme.css?v=4",
-  "./app.js?v=4",
-
-  // Uversjonerte (fallback hvis noen laster uten query)
   "./theme.css",
   "./app.js",
-
-  // Data / manifest
   "./places.json",
   "./people.json",
-  "./manifest.json",
-
-  // PWA-ikoner (juster hvis du har andre stier/navn)
-  "./icons/icon-192.png",
-  "./icons/icon-512.png",
-  "./icons/icon-maskable.png"
+  "./manifest.json"
 ];
 
 self.addEventListener("install", (e) => {
   self.skipWaiting();
-  e.waitUntil(
-    caches.open(CACHE).then((c) => c.addAll(ASSETS))
-  );
+  e.waitUntil(caches.open(CACHE).then((c) => c.addAll(ASSETS)));
 });
 
 self.addEventListener("activate", (e) => {
@@ -39,19 +24,18 @@ self.addEventListener("activate", (e) => {
   );
 });
 
-// Stale-while-revalidate
 self.addEventListener("fetch", (e) => {
   const req = e.request;
   if (req.method !== "GET") return;
-
-  // Bare cache same-origin
-  const url = new URL(req.url);
-  if (url.origin !== self.location.origin) {
-    // Pass-through for tredjepart (Leaflet-CDN osv.)
-    return;
-  }
-
   e.respondWith(
     caches.match(req).then((cached) => {
       const fetched = fetch(req).then((res) => {
-        // Oppdater cache for "basic
+        if (res && res.status === 200 && res.type === "basic") {
+          caches.open(CACHE).then((c) => c.put(req, res.clone()));
+        }
+        return res;
+      }).catch(() => cached);
+      return cached || fetched;
+    })
+  );
+});
