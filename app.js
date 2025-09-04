@@ -1,501 +1,297 @@
-// ==============================
-// History Go – app.js (full pakke)
-// Steder + Diplomer + Personer + Kart (Leaflet) + Sheet-meny + Filter
-// ==============================
+/* ===============================
+   HISTORY GO – mini-app (client)
+   Renders: Nearby, Collection, Diplomas, Gallery
+   =============================== */
 
-// --- Data ---
-let PLACES = [];
-let PEOPLE = [];
+/* ---------- Kategori → CSS badge-klasse ---------- */
+const CATEGORY_TO_CLASS = {
+  "Historie": "badge-historie",
+  "Kultur": "badge-kultur",
+  "Sport": "badge-sport",
+  "Severdigheter": "badge-severdigheter",
+  "Natur": "badge-natur"
+};
 
-Promise.all([
-  fetch('places.json').then(r => r.json()),
-  fetch('people.json').then(r => r.json()).catch(() => []) // people.json er valgfri
-]).then(([places, people]) => {
-  PLACES = places;
-  PEOPLE = people;
-  boot();
-});
+/* ---------- Dummy data (kan byttes ut med API) ---------- */
+const PLACES = [
+  { id: "akershus",        name: "Akershus festning",      category: "Historie",      lat:59.909, lon:10.739, desc:"Middelalderborg og kongsresidens.", distance:null },
+  { id: "opera",           name: "Den Norske Opera & Ballett", category: "Kultur",    lat:59.907, lon:10.753, desc:"Ikonisk bygg med takvandring.",    distance:null },
+  { id: "ullevål",         name: "Ullevål stadion",        category: "Sport",         lat:59.948, lon:10.737, desc:"Nasjonalstadion.",                 distance:null },
+  { id: "vigelandsparken", name: "Vigelandsparken",        category: "Severdigheter", lat:59.927, lon:10.699, desc:"Verdens største skulpturpark.",   distance:null },
+  { id: "frammuseet",      name: "Frammuseet",             category: "Historie",      lat:59.906, lon:10.699, desc:"Polarekspedisjoner og FRAM.",      distance:null },
+  { id: "intility",        name: "Intility Arena (VIF)",   category: "Sport",         lat:59.914, lon:10.791, desc:"Hjemmebanen til Vålerenga.",       distance:null },
+  { id: "nasjonalmus",     name: "Nasjonalmuseet",         category: "Kultur",        lat:59.913, lon:10.731, desc:"Nordens største kunstmuseum.",     distance:null },
+  { id: "deichman",        name: "Deichman Bjørvika",      category: "Kultur",        lat:59.910, lon:10.752, desc:"Hovedbiblioteket i Oslo.",         distance:null },
+  { id: "botanisk",        name: "Botanisk hage",          category: "Severdigheter", lat:59.917, lon:10.771, desc:"Grønn oase og museer.",            distance:null },
+  { id: "rådhus",          name: "Oslo rådhus",            category: "Historie",      lat:59.913, lon:10.734, desc:"Nobelseremoniens hjem.",           distance:null }
+];
 
-// --- LocalStorage state ---
-const visited         = JSON.parse(localStorage.getItem("visited_places") || "{}");
-const diplomas        = JSON.parse(localStorage.getItem("diplomas_by_category") || "{}");
-const peopleCollected = JSON.parse(localStorage.getItem("people_collected") || "{}");
+const INITIAL_COLLECTION = [
+  "akershus","rådhus","nasjonalmus","opera","ullevål","intility",
+  "frammuseet","vigelandsparken","botanisk","deichman"
+];
 
-function saveVisited()  { localStorage.setItem("visited_places", JSON.stringify(visited));  renderCollection(); }
-function saveDiplomas() { localStorage.setItem("diplomas_by_category", JSON.stringify(diplomas)); }
-function savePeople()   { localStorage.setItem("people_collected", JSON.stringify(peopleCollected)); }
+const DIPLOMAS = [
+  { id:"d1", name:"Oslo – Grunnpakke", tier:"bronse", meta:"Fullfør 5 steder", desc:"De første fem stedene i sentrum er låst opp." },
+  { id:"d2", name:"Kulturstien",       tier:"sølv",   meta:"Fullfør 8 kultursteder", desc:"Museer, bibliotek og scenehus." },
+  { id:"d3", name:"Historie-mester",   tier:"gull",   meta:"Fullfør 12 historiske steder", desc:"Du kan byens tidslinjer." }
+];
 
-// --- DOM refs ---
-const elList       = document.getElementById("list");
-const elStatus     = document.getElementById("status");
-const elCollection = document.getElementById("collection");
-const elCount      = document.getElementById("count");
-const elDiplomas   = document.getElementById("diplomas");
-const elGallery    = document.getElementById("gallery");
-const testToggle   = document.getElementById("testToggle");
+const PEOPLE = [
+  { id:"nansen", initials:"FN", name:"Fridtjof Nansen", sub:"Oppdager • Humanist", pills:["Person","Quiz","Nær"], now:true },
+  { id:"ibsen",  initials:"HI", name:"Henrik Ibsen",    sub:"Dramatiker • «Et dukkehjem»", pills:["Person","Snart"], now:false }
+];
 
-// --- Visnings-/filterstate ---
-let CURRENT_VIEW = "nearby"; // "nearby" | "collection" | "people" | "diplomas"
-let ACTIVE_CAT   = "";       // "" = alle
-
-// --- Diplom terskler ---
-const DIPLOMA_THRESHOLDS = { bronse: 10, sølv: 25, gull: 50 };
-
-// ==============================
-// Hjelpere
-// ==============================
-function distMeters(a, b){
-  const R=6371000, toRad=d=>d*Math.PI/180;
-  const dLat=toRad(b.lat-a.lat), dLon=toRad(b.lon-a.lon);
-  const la1=toRad(a.lat), la2=toRad(b.lat);
-  const x=Math.sin(dLat/2)**2 + Math.cos(la1)*Math.cos(la2)*Math.sin(dLon/2)**2;
-  return R*2*Math.atan2(Math.sqrt(x), Math.sqrt(1-x));
-}
-function countVisitedByCategory(){
-  const counts = {};
-  for (const p of PLACES) if (visited[p.id]) counts[p.category] = (counts[p.category]||0)+1;
-  return counts;
-}
-function tierForCount(n){
-  if (n >= DIPLOMA_THRESHOLDS.gull)  return "gull";
-  if (n >= DIPLOMA_THRESHOLDS.sølv)  return "sølv";
-  if (n >= DIPLOMA_THRESHOLDS.bronse) return "bronse";
-  return null;
-}
-function tierRank(t){ return ({bronse:1, sølv:2, gull:3}[t]||0); }
-function tierEmoji(t){ return t==="gull"?"🥇":t==="sølv"?"🥈":t==="bronse"?"🥉":""; }
-
-function catClass(cat){
-  const k=(cat||"").toLowerCase();
-  if (k.startsWith("hist")) return "cat-historie";
-  if (k.startsWith("kul"))  return "cat-kultur";
-  if (k.startsWith("sev"))  return "cat-severdigheter";
-  if (k.startsWith("sport"))return "cat-sport";
-  if (k.startsWith("natur"))return "cat-natur";
-  return "";
-}
-function catColor(cat){
-  const c=(cat||"").toLowerCase();
-  if (c.includes("kultur")) return "#e63946";
-  if (c.includes("severdig")) return "#ffb703";
-  if (c.includes("sport") || c.includes("natur")) return "#2a9d8f";
-  return "#1976d2"; // historie/default
-}
-
-// Sesong/tidsvindu for personer (events/figurer)
-function isActive(person, now=new Date()){
-  if (!person.window || !person.window.length) return true;
-  for (const w of person.window){
-    let s=new Date(w.start), e=new Date(w.end);
-    if (w.repeat === "yearly"){ s.setFullYear(now.getFullYear()); e.setFullYear(now.getFullYear()); }
-    if (now >= s && now <= e) return true;
+/* ---------- State & storage ---------- */
+const storage = {
+  getCollection(){
+    try {
+      const raw = localStorage.getItem("collection");
+      if (raw) return JSON.parse(raw);
+    } catch(_) {}
+    return INITIAL_COLLECTION.slice();
+  },
+  setCollection(arr){
+    try { localStorage.setItem("collection", JSON.stringify(arr)); } catch(_) {}
   }
-  return false;
-}
+};
 
-// ==============================
-// Toast
-// ==============================
-let lastAwardAt = 0;
-function showToast(msg="Låst opp ✅"){
-  const t=document.getElementById("toast");
-  if(!t) return;
-  t.textContent = msg;
-  t.style.display = "block";
-  setTimeout(()=> t.style.display = "none", 1600);
-}
+/* ---------- DOM refs ---------- */
+const el = {
+  map:       document.getElementById("map"),
+  status:    document.getElementById("status"),
+  list:      document.getElementById("list"),
+  collection:document.getElementById("collection"),
+  count:     document.getElementById("count"),
+  diplomas:  document.getElementById("diplomas"),
+  gallery:   document.getElementById("gallery"),
+  toast:     document.getElementById("toast"),
+  testToggle:document.getElementById("testToggle"),
+  fabMenu:   document.getElementById("fabMenu"),
+  sheet:     document.getElementById("sheet"),
+  sheetClose:document.getElementById("sheetClose"),
+  sheetApply:document.getElementById("sheetApply"),
+  catFilter: document.getElementById("catFilter")
+};
 
-// ==============================
-// Leaflet-kart
-// ==============================
-let MAP, placeLayer, peopleLayer, userMarker, userCircle;
+/* ---------- Map (Leaflet) ---------- */
+let map, userMarker;
 
-function initMap(start={lat:59.9139, lon:10.7522, zoom:13}){
-  MAP = L.map('map', { zoomControl:false, worldCopyJump:true })
-          .setView([start.lat, start.lon], start.zoom);
+function initMap(center=[59.9139, 10.7522], zoom=13){
+  map = L.map('map', { zoomControl:false, attributionControl:false }).setView(center, zoom);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom:19, attribution:'© OpenStreetMap'
+  }).addTo(map);
 
-  // Mørk basemap
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-    attribution: '&copy; OpenStreetMap, &copy; CARTO'
-  }).addTo(MAP);
-
-  placeLayer  = L.layerGroup().addTo(MAP);
-  peopleLayer = L.layerGroup().addTo(MAP);
-
-  redrawPlaces();
-  redrawPeople();
-}
-
-function placeMarker(p){
-  return L.circleMarker([p.lat, p.lon], {
-    radius: 8,
-    color: catColor(p.category),
-    weight: 3,
-    opacity: 1,
-    fillColor: "#111",
-    fillOpacity: 0.9
-  });
-}
-
-function redrawPlaces(){
-  if (!MAP) return;
-  placeLayer.clearLayers();
-
-  const data = ACTIVE_CAT
-    ? PLACES.filter(p => (p.category||'').toLowerCase().includes(ACTIVE_CAT.toLowerCase()))
-    : PLACES;
-
-  data.forEach(p=>{
-    const m = placeMarker(p).addTo(placeLayer);
-
-    // radius (synlig guide)
-    const r = p.r || 120;
-    L.circle([p.lat,p.lon], {
-      radius: r,
-      color: catColor(p.category),
-      weight: 1.5,
-      opacity: 0.6,
-      fillOpacity: 0
-    }).addTo(placeLayer);
-
-    // popup (Lås opp)
-    m.bindPopup(`
-      <div style="min-width:200px">
-        <div style="font-weight:900">${p.name}</div>
-        <div style="opacity:.8">${p.category || ""} • radius ${r} m</div>
-        <div style="margin-top:8px">${p.desc||""}</div>
-        <div style="margin-top:10px">
-          <button id="unlock_${p.id}" class="btn primary" style="width:100%">Lås opp</button>
-        </div>
-      </div>
-    `);
-
-    m.on('popupopen', ()=>{
-      const btn = document.getElementById(`unlock_${p.id}`);
-      if (!btn) return;
-      btn.onclick = ()=>{
-        const pos = window.__lastPos;
-        const boost = testToggle?.checked ? 5000 : 0;
-        const rEff = Math.max(p.r || 120, boost);
-        if (!pos){ awardBadge(p); return; }
-        const d = Math.round(distMeters(pos, {lat:p.lat, lon:p.lon}));
-        if (d <= rEff) awardBadge(p);
-        else showToast(`Du er ${d} m unna (trenger ${rEff} m)`);
-      };
+  // markers for places
+  PLACES.forEach(p=>{
+    const color = pickColor(p.category);
+    const marker = L.circleMarker([p.lat, p.lon], {
+      radius:7, fillOpacity:0.9, weight:1, color:"#111", fillColor:color
     });
+    marker.addTo(map).bindPopup(`<strong>${p.name}</strong><br>${p.category}`);
   });
 }
 
-function redrawPeople(){
-  if (!MAP) return;
-  peopleLayer.clearLayers();
-  if (!PEOPLE?.length) return;
+function setUserMarker(lat, lon){
+  if (!map) return;
+  const icon = L.circleMarker([lat, lon], {radius:8, color:"#fff", weight:2, fillColor:"#1976d2", fillOpacity:1});
+  if (userMarker) { userMarker.setLatLng([lat,lon]); }
+  else { userMarker = icon.addTo(map).bindPopup("Du er her"); }
+}
 
-  const now = new Date();
-  PEOPLE.forEach(pr=>{
-    if (!isActive(pr, now)) return;
+/* ---------- Utils ---------- */
+function pickColor(category){
+  switch(category){
+    case "Historie": return "#1976d2";
+    case "Kultur": return "#e63946";
+    case "Sport": return "#2a9d8f";
+    case "Severdigheter": return "#ffb703";
+    case "Natur": return "#4caf50";
+    default: return "#888";
+  }
+}
 
-    const m = L.circleMarker([pr.lat, pr.lon], {
-      radius: 7,
-      color: "#ffb703",
-      weight: 3,
-      fillColor: "#111",
-      fillOpacity: .9
-    }).addTo(peopleLayer);
+function haversine(lat1, lon1, lat2, lon2){
+  const R = 6371e3;
+  const toRad = d => d * Math.PI/180;
+  const dLat = toRad(lat2 - lat1);
+  const dLon = toRad(lon2 - lon1);
+  const a = Math.sin(dLat/2)**2 +
+            Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
+            Math.sin(dLon/2)**2;
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+  return R * c; // meters
+}
 
-    m.bindPopup(`
-      <div style="min-width:200px">
-        <div style="font-weight:900">${pr.name}</div>
-        <div style="opacity:.8">${(pr.tags||[]).join(", ")}</div>
-        <div style="margin-top:8px">${pr.desc||""}</div>
-        <div style="margin-top:10px">
-          <button id="collect_${pr.id}" class="btn" style="background:#2a9d8f;color:#fff;width:100%">Samle</button>
-        </div>
+function formatDistance(m){
+  if (m < 1000) return `${Math.round(m)} m unna`;
+  return `${(m/1000).toFixed(1)} km unna`;
+}
+
+function showToast(msg="OK"){
+  el.toast.textContent = msg;
+  el.toast.style.display = "block";
+  setTimeout(()=> el.toast.style.display = "none", 1500);
+}
+
+/* ---------- Renderers ---------- */
+function renderNearby(list){
+  el.list.innerHTML = "";
+  list.forEach(p=>{
+    const stripeClass =
+      p.category === "Historie"      ? "cat-historie" :
+      p.category === "Kultur"        ? "cat-kultur" :
+      p.category === "Sport"         ? "cat-sport" :
+      p.category === "Severdigheter" ? "cat-severdigheter" :
+      "cat-natur";
+
+    const distance = p.distance != null ? `<div class="dist">${formatDistance(p.distance)}</div>` : "";
+
+    const card = document.createElement("article");
+    card.className = `card ${stripeClass}`;
+    card.innerHTML = `
+      <div>
+        <div class="name">${p.name}</div>
+        <div class="meta">${p.category} • Oslo</div>
+        <p class="desc">${p.desc || ""}</p>
+        ${distance}
       </div>
-    `);
-
-    m.on('popupopen', ()=>{
-      const btn = document.getElementById(`collect_${pr.id}`);
-      if (!btn) return;
-      btn.onclick = ()=>{
-        const pos = window.__lastPos;
-        const boost = testToggle?.checked ? 5000 : 0;
-        const rEff = Math.max(pr.r || 150, boost);
-        if (!pos){ awardPerson(pr); return; }
-        const d = Math.round(distMeters(pos, {lat:pr.lat, lon:pr.lon}));
-        if (d <= rEff) awardPerson(pr);
-        else showToast(`Du er ${d} m unna (trenger ${rEff} m)`);
-      };
-    });
+    `;
+    el.list.appendChild(card);
   });
-}
-
-function updateUserOnMap(pos){
-  if (!MAP) return;
-  const {lat, lon} = pos;
-
-  if (!userMarker){
-    userMarker = L.marker([lat, lon], {
-      icon: L.divIcon({
-        className: "",
-        html: `<div style="
-          width:16px;height:16px;border-radius:50%;
-          background:#00e676;box-shadow:0 0 0 3px rgba(0,230,118,.35);
-          border:2px solid #063;"></div>`
-      })
-    }).addTo(MAP);
-    userCircle = L.circle([lat, lon], {
-      radius: 25,
-      color: "#00e676",
-      weight: 1,
-      opacity: .6,
-      fillColor: "#00e676",
-      fillOpacity: .12
-    }).addTo(MAP);
-  } else {
-    userMarker.setLatLng([lat, lon]);
-    userCircle.setLatLng([lat, lon]);
-  }
-}
-
-// ==============================
-// Renderere (med view/filter)
-// ==============================
-function showView(v){
-  CURRENT_VIEW = v;
-
-  const sec = {
-    nearby:     document.querySelector('#list')?.closest('.section'),
-    collection: document.querySelector('#collection')?.closest('.section'),
-    diplomas:   document.querySelector('#diplomas')?.closest('.section'),
-    people:     document.querySelector('#gallery')?.closest('.section'),
-  };
-  for (const k of Object.keys(sec)){
-    if (!sec[k]) continue;
-    sec[k].style.display = (k===v ? 'block' : 'none');
-  }
-
-  // Render riktig innhold
-  renderList(window.__lastPos);
-  renderCollection();
-  renderDiplomas();
-  renderGallery();
 }
 
 function renderCollection(){
-  if (CURRENT_VIEW !== "collection") return;
-  const items = PLACES.filter(p=>visited[p.id]);
-  elCollection.innerHTML = items.length
-    ? items.map(p=>`<div class="badge ${catClass(p.category)}">${p.name}</div>`).join("")
-    : `<div class="muted">Besøk et sted for å låse opp ditt første merke.</div>`;
-  elCount.textContent = items.length;
-}
+  const ids = storage.getCollection();
+  const items = ids
+    .map(id => PLACES.find(p=>p.id===id))
+    .filter(Boolean);
 
-function renderList(user){
-  const base = ACTIVE_CAT
-    ? PLACES.filter(p => (p.category||'').toLowerCase().includes(ACTIVE_CAT.toLowerCase()))
-    : PLACES;
-
-  const sorted = base.map(p=>{
-    const d = user ? Math.round(distMeters(user,{lat:p.lat,lon:p.lon})) : null;
-    return {...p, d};
-  }).sort((a,b)=>(a.d??1e12)-(b.d??1e12));
-
-  // Kun i "nearby"-visning
-  if (CURRENT_VIEW !== "nearby") { elList.innerHTML = ""; return; }
-
-  elList.innerHTML = sorted.map(p=>{
-    const c = catClass(p.category);
-    const radius = testToggle?.checked ? Math.max(p.r,5000) : p.r;
-    const dist = p.d==null ? "–" : `Avstand: ${p.d} m`;
-    return `
-      <div class="card ${c}">
-        <div style="flex:1">
-          <div class="name">${p.name}</div>
-          <div class="meta">${p.category || ""} • radius ${radius} m</div>
-          <div class="desc">${p.desc || ""}</div>
-          <div class="dist">${dist}</div>
-        </div>
-      </div>`;
-  }).join("");
+  el.collection.innerHTML = "";
+  items.forEach(item=>{
+    const chip = document.createElement("span");
+    chip.className = `badge ${CATEGORY_TO_CLASS[item.category]||""}`;
+    chip.textContent = item.name;
+    el.collection.appendChild(chip);
+  });
+  el.count.textContent = items.length;
 }
 
 function renderDiplomas(){
-  if (CURRENT_VIEW !== "diplomas") return;
-
-  const counts = countVisitedByCategory();
-  const allCats = [...new Set(PLACES.map(p=>p.category))];
-
-  elDiplomas.innerHTML = allCats.map(cat=>{
-    const n    = counts[cat] || 0;
-    const tier = diplomas[cat] || null;
-
-    const next =
-      n < DIPLOMA_THRESHOLDS.bronse ? `→ ${DIPLOMA_THRESHOLDS.bronse-n} til bronse`
-    : n < DIPLOMA_THRESHOLDS.sølv   ? `→ ${DIPLOMA_THRESHOLDS.sølv-n} til sølv`
-    : n < DIPLOMA_THRESHELDS.gull   ? `→ ${DIPLOMA_THRESHELDS.gull-n} til gull`
-    : "Maks!";
-
-    const tierLabel = tier
-      ? `<span class="tier ${tier}">${tierEmoji(tier)} ${tier?.toUpperCase()}</span>`
-      : "";
-    const tierClass = tier ? ` ${tier}` : "";
-
-    return `
-      <div class="diploma${tierClass}">
-        <div><strong>${cat}</strong> <span class="tag">${n} steder</span> ${tierLabel}</div>
-        <div class="muted">${next}</div>
-      </div>`;
-  }).join("");
+  el.diplomas.innerHTML = "";
+  DIPLOMAS.forEach(d=>{
+    const box = document.createElement("div");
+    box.className = `diploma ${d.tier}`;
+    box.innerHTML = `
+      <div class="name">${d.name} <span class="tier ${d.tier}">${capitalize(d.tier)}</span></div>
+      <div class="meta">${d.meta}</div>
+      <p class="desc">${d.desc}</p>
+    `;
+    el.diplomas.appendChild(box);
+  });
 }
 
 function renderGallery(){
-  if (CURRENT_VIEW !== "people" || !elGallery) return;
-  const got = PEOPLE.filter(p => peopleCollected[p.id]);
+  el.gallery.innerHTML = "";
+  PEOPLE.forEach(p=>{
+    const card = document.createElement("article");
+    card.className = "person-card";
+    const pills = p.pills.map(x=>{
+      const cls = x === "Person" ? "person" : (x === "Quiz" ? "event" : (x==="Nær"?"now":"soon"));
+      return `<span class="pill ${cls}">${x}</span>`;
+    }).join("");
 
-  elGallery.innerHTML = got.length
-    ? got.map(p => `
-      <div class="person-card">
-        <div class="avatar">${(p.initials || (p.name||"")[0]).slice(0,2).toUpperCase()}</div>
-        <div class="info">
-          <div class="name">${p.name}</div>
-          <div class="sub">${p.desc || ""}</div>
-          <div style="margin-top:6px">
-            ${(p.tags||[]).map(t=>{
-              const map={person:"pill person",event:"pill event",sesong:"pill event",now:"pill now",soon:"pill soon"};
-              const cls = map[t] || "pill";
-              const label = t.charAt(0).toUpperCase()+t.slice(1);
-              return `<span class="${cls}">${label}</span>`;
-            }).join("")}
-          </div>
-        </div>
-        <div class="person-actions">
-          <button class="person-btn">Samlet</button>
-        </div>
+    card.innerHTML = `
+      <div class="avatar">${p.initials}</div>
+      <div class="info">
+        <div class="name">${p.name}</div>
+        <div class="sub">${p.sub}</div>
+        <p class="desc">${p.now ? "Lås opp ved Fram-museet og ta «Polarekspedisjoner»." : "Finn sitat ved teatret og svar for merke."}</p>
+        <div class="person-actions">${pills}</div>
       </div>
-    `).join("")
-    : `<div class="muted">Samle personer ved events og høytider (f.eks. Julenissen i desember).</div>`;
-}
-
-// ==============================
-// Utdeling (steder/personer) + nærhet
-// ==============================
-function awardBadge(place){
-  if (visited[place.id]) return false;
-  visited[place.id] = true;
-  saveVisited();
-
-  const now=Date.now();
-  if(now - lastAwardAt > 1200){ showToast(`Låst opp: ${place.name} ✅`); lastAwardAt = now; }
-
-  // Oppdater diplom
-  const counts  = countVisitedByCategory();
-  const cat     = place.category;
-  const newTier = tierForCount(counts[cat]||0);
-  const oldTier = diplomas[cat] || null;
-
-  if(newTier && tierRank(newTier) > tierRank(oldTier)){
-    diplomas[cat] = newTier; saveDiplomas();
-    showToast(`${tierEmoji(newTier)} ${cat}: ${newTier.toUpperCase()}!`);
-    renderDiplomas();
-  }
-  return true;
-}
-
-function checkProximity(user){
-  const radiusBoost = testToggle?.checked ? 5000 : 0;
-  for(const p of PLACES){
-    const r = Math.max(p.r, radiusBoost ? Math.max(p.r, radiusBoost) : p.r);
-    const d = Math.round(distMeters(user,{lat:p.lat,lon:p.lon}));
-    if (d <= r) awardBadge(p);
-  }
-  renderList(user);
-  renderDiplomas();
-}
-
-function awardPerson(p){
-  if (peopleCollected[p.id]) return false;
-  peopleCollected[p.id] = Date.now();
-  savePeople();
-  showToast(`Samlet: ${p.name} ✅`);
-  renderGallery();
-  return true;
-}
-
-function checkProximityPeople(user){
-  const radiusBoost = testToggle?.checked ? 5000 : 0;
-  const now = new Date();
-  for (const p of PEOPLE){
-    if (!isActive(p, now)) continue;
-    const r = Math.max(p.r, radiusBoost ? Math.max(p.r, radiusBoost) : p.r);
-    const d = Math.round(distMeters(user, {lat:p.lat, lon:p.lon}));
-    if (d <= r) awardPerson(p);
-  }
-}
-
-// ==============================
-// Sheet / FAB
-// ==============================
-function wireSheet(){
-  const sheet = document.getElementById('sheet');
-  const fab   = document.getElementById('fabMenu');
-  const close = document.getElementById('sheetClose');
-  const apply = document.getElementById('sheetApply');
-  const catSel= document.getElementById('catFilter');
-
-  fab?.addEventListener('click', ()=> sheet?.setAttribute('aria-hidden','false'));
-  close?.addEventListener('click', ()=> sheet?.setAttribute('aria-hidden','true'));
-
-  // Bytt visning
-  sheet?.querySelectorAll('.sheet-item').forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      const v = btn.getAttribute('data-view');
-      if (v){ showView(v); }
-    });
-  });
-
-  // Bruk kategori-filter
-  apply?.addEventListener('click', ()=>{
-    ACTIVE_CAT = catSel?.value || "";
-    sheet?.setAttribute('aria-hidden','true');
-    renderList(window.__lastPos);
-    redrawPlaces(); // filtrer pins
+      <button class="person-btn ${p.now ? "" : "ghost"}">${p.now?"Gå til":"Forbered"}</button>
+    `;
+    el.gallery.appendChild(card);
   });
 }
 
-// ==============================
-// Init
-// ==============================
-function boot(){
-  // Kart først
-  initMap({lat:59.9139, lon:10.7522, zoom:13});
+function capitalize(s){ return s.charAt(0).toUpperCase()+s.slice(1); }
 
-  // Startvisning
-  showView("nearby");
-  wireSheet();
+/* ---------- Filters (sheet) ---------- */
+function openSheet(){ el.sheet.setAttribute("aria-hidden","false"); }
+function closeSheet(){ el.sheet.setAttribute("aria-hidden","true"); }
 
-  if ("geolocation" in navigator){
-    navigator.geolocation.watchPosition(pos=>{
-      const {latitude, longitude} = pos.coords;
-      window.__lastPos = {lat:latitude, lon:longitude};
-      elStatus.textContent = `Din posisjon: ${latitude.toFixed(5)}, ${longitude.toFixed(5)}`;
+function applyFilter(){
+  const cat = el.catFilter.value; // "" = alle
+  const src = [...PLACES];
+  const filtered = cat ? src.filter(p=>p.category===cat) : src;
+  renderNearby(filteredWithDistance(filtered, currentPos));
+  closeSheet();
+}
 
-      // Kart-posisjon
-      updateUserOnMap(window.__lastPos);
+/* ---------- Geolokasjon & sortering ---------- */
+let currentPos = null;
 
-      // Nærhet
-      checkProximity(window.__lastPos);
-      checkProximityPeople(window.__lastPos);
-    }, err=>{
-      elStatus.textContent = "Kunne ikke hente posisjon: " + err.message;
-    }, { enableHighAccuracy:true, maximumAge:5000, timeout:15000 });
+function filteredWithDistance(arr, pos){
+  if (!pos) return arr;
+  return arr
+    .map(p => ({...p, distance: haversine(pos.lat, pos.lon, p.lat, p.lon)}))
+    .sort((a,b)=> (a.distance??Infinity) - (b.distance??Infinity));
+}
+
+function requestLocation(){
+  if (!navigator.geolocation){
+    el.status.textContent = "Geolokasjon støttes ikke.";
+    renderNearby(PLACES);
+    return;
+  }
+  el.status.textContent = "Henter posisjon…";
+  navigator.geolocation.getCurrentPosition(
+    (geo)=>{
+      currentPos = { lat: geo.coords.latitude, lon: geo.coords.longitude };
+      el.status.textContent = "Posisjon funnet.";
+      setUserMarker(currentPos.lat, currentPos.lon);
+      renderNearby(filteredWithDistance(PLACES, currentPos));
+    },
+    ()=>{
+      el.status.textContent = "Kunne ikke hente posisjon.";
+      renderNearby(PLACES);
+    },
+    { enableHighAccuracy:true, timeout:7000, maximumAge:10000 }
+  );
+}
+
+/* ---------- Testmodus ---------- */
+function setTestMode(on){
+  if (on){
+    currentPos = { lat:59.910, lon:10.752 }; // Oslo S-ish
+    el.status.textContent = "Testmodus: Oslo S";
+    if (map){ setUserMarker(currentPos.lat, currentPos.lon); map.setView([currentPos.lat,currentPos.lon], 14); }
+    renderNearby(filteredWithDistance(PLACES, currentPos));
+    showToast("Testmodus PÅ");
   } else {
-    elStatus.textContent = "Nettleseren støtter ikke geolokasjon.";
+    showToast("Testmodus AV");
+    requestLocation();
   }
-
-  // Testmodus toggle
-  testToggle?.addEventListener("change", ()=>{
-    renderList(window.__lastPos);
-    redrawPlaces(); // oppdatér effektiv radius i popups
-  });
 }
+
+/* ---------- Init ---------- */
+function initUI(){
+  // FAB -> open sheet
+  el.fabMenu.addEventListener("click", openSheet);
+  el.sheetClose.addEventListener("click", closeSheet);
+  el.sheetApply.addEventListener("click", applyFilter);
+  el.testToggle.addEventListener("change", (e)=> setTestMode(e.target.checked));
+}
+
+function init(){
+  initMap();
+  initUI();
+  renderCollection();
+  renderDiplomas();
+  renderGallery();
+  requestLocation();
+}
+
+document.addEventListener("DOMContentLoaded", init);
