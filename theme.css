@@ -1,4 +1,4 @@
-/* === History Go Theme (ark over kart) === */
+/* === History Go – tema (kart + trekkbart panel) === */
 
 /* Farger */
 :root{
@@ -7,9 +7,8 @@
   --red:#e63946;
   --yellow:#ffb703;
   --green:#2a9d8f;
-  --gray-light:#30343a;
-  --muted:#b8c0cc;
   --text:#fff;
+  --muted:#b8c0cc;
   --bg:#0d1b2a;
 }
 
@@ -18,7 +17,7 @@
 html,body{height:100%}
 body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text)}
 
-/* Kart fullt bak */
+/* Kart bak */
 #map{position:fixed;inset:0;z-index:0}
 
 /* Toast */
@@ -28,24 +27,28 @@ body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-ser
   font-weight:800;display:none;z-index:9
 }
 
-/* Skyvbart ark */
-#sheet{
-  position:fixed;left:0;right:0;bottom:0;z-index:3;
-  transform:translateY(var(--sheet-y,40vh));
-  transition:transform .24s ease;
-  border-top-left-radius:16px;border-top-right-radius:16px;
-  background:rgba(18,20,24,.72);
-  backdrop-filter:blur(8px) saturate(120%);
-  -webkit-backdrop-filter:blur(8px) saturate(120%);
-  box-shadow:0 -8px 32px rgba(0,0,0,.35);
+/* Trekkbart panel (ark) */
+.panel{
+  --panel-h: 78vh; /* start-høyde (juster fritt) */
+  position:fixed;left:0;right:0;bottom:0;z-index:2;
+  height:var(--panel-h);
+  overflow:auto;
+  border-radius:18px 18px 0 0;
+  background:rgba(17,24,39,0.72); /* mørk, men ikke sort */
+  backdrop-filter:blur(8px) saturate(110%);
+  -webkit-backdrop-filter:blur(8px) saturate(110%);
+  box-shadow:0 -6px 30px rgba(0,0,0,.40);
 }
-.sheet-handle{height:28px;display:grid;place-content:center;touch-action:none}
-.sheet-handle::before{
-  content:"";width:48px;height:5px;border-radius:999px;background:rgba(255,255,255,.35)
+.grabber{
+  position:sticky;top:0;z-index:3;
+  display:flex;justify-content:center;padding:10px 0 6px;
 }
-#sheet > main{padding:8px 12px 18px;max-height:calc(100vh - 84px);overflow:auto}
+.grabber::before{
+  content:"";width:46px;height:5px;border-radius:999px;background:rgba(255,255,255,.55)
+}
+.panel > main{ padding: 4px 12px 18px; }
 
-/* Layout-komponenter */
+/* Innhold */
 .section{margin-bottom:16px}
 .title{display:inline-block;background:var(--yellow);color:#111;font-weight:900;border-radius:12px;padding:6px 10px;margin:8px 0}
 .muted{color:var(--muted)}
@@ -64,7 +67,7 @@ body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-ser
 .btn{border:0;border-radius:10px;padding:10px 14px;font-weight:800;cursor:pointer}
 .ghost{background:rgba(255,255,255,.12);color:#fff}
 
-/* Chips/badges/grids */
+/* Chips/grids */
 .grid{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px}
 .badge{background:var(--blue);color:#fff;border-radius:999px;padding:8px 10px;white-space:nowrap}
 
