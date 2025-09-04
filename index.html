@@ -4,43 +4,54 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>History Go</title>
+
+  <!-- PWA -->
   <link rel="manifest" href="manifest.json" />
   <meta name="theme-color" content="#1976d2" />
+
+  <!-- CSS -->
   <link rel="stylesheet" href="theme.css" />
 </head>
 <body>
+  <!-- Toast -->
+  <div id="toast">Låst opp ✅</div>
+
   <header>
     <h1>History Go</h1>
     <label class="test">Testmodus <input id="testToggle" type="checkbox"></label>
   </header>
 
   <main>
+    <!-- Nærmest nå -->
     <div class="section">
       <div class="title">Nærmest nå</div>
       <div id="status" class="muted">Henter posisjon…</div>
       <div id="list"></div>
     </div>
 
+    <!-- Samling -->
     <div class="section">
       <div class="title">Samlingen min (<span id="count">0</span>)</div>
       <div id="collection" class="grid"></div>
     </div>
 
+    <!-- Diplomer -->
     <div class="section">
       <div class="title">Diplomer</div>
       <div id="diplomas" class="grid"></div>
     </div>
 
+    <!-- Galleri (personer) -->
     <div class="section">
-  <div class="title">Galleri (personer)</div>
-  <div id="gallery" class="grid"></div>
-</div>
+      <div class="title">Galleri (personer)</div>
+      <div id="gallery" class="grid"></div>
+    </div>
   </main>
 
-  <!-- Toast -->
-  <div id="toast">Låst opp ✅</div>
-
+  <!-- App script -->
   <script src="app.js"></script>
+
+  <!-- Service worker -->
   <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('./sw.js').catch(()=>{});
