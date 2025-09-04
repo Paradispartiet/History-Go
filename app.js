@@ -1,61 +1,43 @@
 // ==============================
-// History Go – app.js (stabil)
-// - Kart bak (Leaflet), mild blur i CSS
-// - Kun 2 steder i "nærmest nå"
-// - Enkel header m/ testmodus
-// - Self-check + datasjekk + cache-busting ferdig
+// History Go – app.js med kartmodus + historie-popups
 // ==============================
 
 const NEARBY_LIMIT = 2;
 const START_POS = { lat: 59.9139, lon: 10.7522, zoom: 13 };
 
-// ---- Self-check (fanger manglende IDer) ----
-(function selfCheck(){
-  const need = ["map","toast","testToggle","status","list","collection","count","diplomas","gallery"];
-  const miss = need.filter(id => !document.getElementById(id));
-  if (miss.length) {
-    const box = document.createElement('div');
-    box.style.cssText = "position:fixed;left:8px;bottom:8px;background:#e63946;color:#fff;padding:8px 10px;border-radius:8px;z-index:9999;font:12px/1.2 system-ui";
-    box.textContent = "Mangler elementer: " + miss.join(", ");
-    document.body.appendChild(box);
-    console.warn("Mangler DOM-noder:", miss);
-  }
-})();
-
-// ---- Enkle validerere for data ----
-function validatePlaces(arr){
-  if (!Array.isArray(arr)) return [];
-  return arr.filter(p =>
-    p && p.id && p.name && typeof p.lat === "number" && typeof p.lon === "number"
-  );
-}
-function validatePeople(arr){ return Array.isArray(arr) ? arr : []; }
-
-// ---- Data ----
 let PLACES = [];
 let PEOPLE = [];
 
+// Self-check for manglende IDs
+(function selfCheck(){
+  const need = ["map","toast","mapExit","mapToggle","testToggle","status","list","collection","count","diplomas","gallery"];
+  const miss = need.filter(id => !document.getElementById(id));
+  if (miss.length) console.warn("Mangler DOM-noder:", miss);
+})();
+
+// Last data
 Promise.all([
-  fetch('places.json').then(r => r.json()).then(validatePlaces),
-  fetch('people.json').then(r => r.json()).then(validatePeople).catch(() => [])
+  fetch('places.json').then(r => r.json()).catch(()=>[]),
+  fetch('people.json').then(r => r.json()).catch(()=>[])
 ]).then(([places, people]) => {
-  PLACES = places || [];
-  PEOPLE = people || [];
+  PLACES = Array.isArray(places) ? places : [];
+  PEOPLE = Array.isArray(people) ? people : [];
   init();
 });
 
-// ---- LocalStorage state ----
+// State (localStorage)
 const visited         = JSON.parse(localStorage.getItem("visited_places") || "{}");
 const diplomas        = JSON.parse(localStorage.getItem("diplomas_by_category") || "{}");
 const peopleCollected = JSON.parse(localStorage.getItem("people_collected") || "{}");
+const saveVisited = () => localStorage.setItem("visited_places", JSON.stringify(visited));
+const saveDiplomas= () => localStorage.setItem("diplomas_by_category", JSON.stringify(diplomas));
+const savePeople  = () => localStorage.setItem("people_collected", JSON.stringify(peopleCollected));
 
-const saveVisited  = () => localStorage.setItem("visited_places", JSON.stringify(visited));
-const saveDiplomas = () => localStorage.setItem("diplomas_by_category", JSON.stringify(diplomas));
-const savePeople   = () => localStorage.setItem("people_collected", JSON.stringify(peopleCollected));
-
-// ---- DOM ----
+// DOM
 const el = {
   map:        document.getElementById('map'),
+  mapToggle:  document.getElementById('mapToggle'),
+  mapExit:    document.getElementById('mapExit'),
   status:     document.getElementById('status'),
   list:       document.getElementById('list'),
   collection: document.getElementById('collection'),
@@ -66,13 +48,13 @@ const el = {
   test:       document.getElementById('testToggle')
 };
 
-// ---- Diplomer ----
+// Diplomer
 const DIP = { bronse:5, sølv:8, gull:12 };
 const tierRank = t => ({bronse:1,sølv:2,gull:3}[t]||0);
 const tierFor  = n => (n>=DIP.gull?'gull': n>=DIP.sølv?'sølv': n>=DIP.bronse?'bronse': null);
 const tierEmoji= t => t==='gull'?'🥇':t==='sølv'?'🥈':t==='bronse'?'🥉':'';
 
-// ---- Kart (Leaflet) ----
+// Kart (Leaflet)
 let MAP, userMarker;
 function initMap(){
   MAP = L.map('map',{zoomControl:false,attributionControl:false})
@@ -80,21 +62,39 @@ function initMap(){
 
   L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{maxZoom:19}).addTo(MAP);
 
+  // Marker + rik popup (title + category + history/desc)
   PLACES.forEach(p=>{
-    L.circleMarker([p.lat,p.lon], {
-      radius:7, weight:2, color:'#111', fillColor:pickColor(p.category), fillOpacity:.9
-    }).addTo(MAP).bindPopup(`<strong>${p.name}</strong><br>${p.category||''}`);
+    const title = p.name || '';
+    const cat   = p.category || '';
+    const hist  = p.history || p.desc || '';
+
+    const marker = L.circleMarker([p.lat,p.lon], {
+      radius:7, weight:2, color:'#111',
+      fillColor: pickColor(cat), fillOpacity:.95
+    }).addTo(MAP);
+
+    marker.bindPopup(`
+      <div style="min-width:220px">
+        <div style="font-weight:900;font-size:14px">${title}</div>
+        <div style="opacity:.75;margin-bottom:6px">${cat}</div>
+        <div style="line-height:1.35">${hist}</div>
+      </div>
+    `);
   });
 }
 function setUser(lat,lon){
   if(!MAP) return;
   if(!userMarker){
-    userMarker = L.circleMarker([lat,lon], {radius:8,weight:2,color:'#fff',fillColor:'#1976d2',fillOpacity:1})
+    userMarker = L.circleMarker([lat,lon], {radius:8, weight:2, color:'#fff', fillColor:'#1976d2', fillOpacity:1})
       .addTo(MAP).bindPopup('Du er her');
-  } else userMarker.setLatLng([lat,lon]);
+  } else {
+    userMarker.setLatLng([lat,lon]);
+  }
+  // I kartmodus kan størrelse være feil før resize
+  setTimeout(()=> MAP.invalidateSize(), 50);
 }
 
-// ---- Hjelpere ----
+// Hjelpere
 function pickColor(cat){
   const c=(cat||'').toLowerCase();
   if(c.includes('kultur')) return '#e63946';
@@ -119,7 +119,17 @@ function countVisitedByCategory(){
   const m={}; for(const p of PLACES) if(visited[p.id]) m[p.category]=(m[p.category]||0)+1; return m;
 }
 
-// ---- Render ----
+// Kartmodus (kun kartet synlig)
+function enterMapOnly(){
+  document.body.classList.add('map-only');
+  setTimeout(()=> MAP && MAP.invalidateSize(), 50);
+}
+function exitMapOnly(){
+  document.body.classList.remove('map-only');
+  setTimeout(()=> MAP && MAP.invalidateSize(), 50);
+}
+
+// Render – nærmest nå (kun 2)
 function renderNearby(pos){
   const arr = PLACES.map(p=>{
     const d = pos ? Math.round(haversine(pos,{lat:p.lat,lon:p.lon})) : null;
@@ -135,6 +145,8 @@ function renderNearby(pos){
     </article>
   `).join('');
 }
+
+// Render – samling
 function renderCollection(){
   const items = PLACES.filter(p=>visited[p.id]);
   el.collection.innerHTML = items.length
@@ -145,12 +157,17 @@ function renderCollection(){
     : `<div class="muted">Besøk et sted for å låse opp ditt første merke.</div>`;
   el.count.textContent = items.length;
 }
+
+// Render – diplomer
+const DIPLOMA_THRESHOLDS = DIP;
 function renderDiplomas(){
   const counts=countVisitedByCategory();
   const cats=[...new Set(PLACES.map(p=>p.category))];
   el.diplomas.innerHTML = cats.map(cat=>{
     const n=counts[cat]||0, t=tierFor(n);
-    const next = n<DIP.bronse?`→ ${DIP.bronse-n} til bronse` : n<DIP.sølv?`→ ${DIP.sølv-n} til sølv` : n<DIP.gull?`→ ${DIP.gull-n} til gull` : 'Maks!';
+    const next = n<DIPLOMA_THRESHOLDS.bronse?`→ ${DIPLOMA_THRESHOLDS.bronse-n} til bronse`
+               : n<DIPLOMA_THRESHOLDS.sølv  ?`→ ${DIPLOMA_THRESHOLDS.sølv-n} til sølv`
+               : n<DIPLOMA_THRESHOLDS.gull  ?`→ ${DIPLOMA_THRESHOLDS.gull-n} til gull` : 'Maks!';
     const label = t?`<span class="tier ${t}">${tierEmoji(t)} ${t.toUpperCase()}</span>`:'';
     const cls = t?` ${t}`:'';
     return `<div class="diploma${cls}">
@@ -160,6 +177,8 @@ function renderDiplomas(){
     </div>`;
   }).join('');
 }
+
+// Render – galleri (enkelt)
 function renderGallery(){
   const got = PEOPLE.filter(p=>peopleCollected[p.id]);
   el.gallery.innerHTML = got.length
@@ -175,7 +194,7 @@ function renderGallery(){
     : `<div class="muted">Samle personer ved events og høytider (f.eks. Julenissen i desember).</div>`;
 }
 
-// ---- Geo ----
+// Geo
 let currentPos=null;
 function startGeo(){
   if(!navigator.geolocation){ el.status.textContent='Geolokasjon støttes ikke.'; renderNearby(null); return; }
@@ -191,12 +210,13 @@ function startGeo(){
   }, { enableHighAccuracy:true, maximumAge:5000, timeout:15000 });
 }
 
-// ---- Init ----
+// Init
 function init(){
   initMap();
   renderCollection(); renderDiplomas(); renderGallery();
   startGeo();
 
+  // Testmodus
   el.test?.addEventListener('change', e=>{
     if(e.target.checked){
       currentPos={lat:START_POS.lat, lon:START_POS.lon};
@@ -209,4 +229,8 @@ function init(){
       startGeo();
     }
   });
+
+  // Kartmodus
+  el.mapToggle?.addEventListener('click', enterMapOnly);
+  el.mapExit?.addEventListener('click', exitMapOnly);
 }
