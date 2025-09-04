@@ -1,61 +1,43 @@
-<!doctype html>
-<html lang="no">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>History Go</title>
+<!-- Kart i bakgrunnen -->
+<div id="map"></div>
+<button id="mapExit" class="map-exit" aria-label="Lukk kart">×</button>
 
-  <!-- Leaflet (kart) -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<!-- Toast -->
+<div id="toast">Låst opp ✅</div>
 
-  <!-- Stil -->
-  <link rel="stylesheet" href="theme.css" />
-</head>
-<body>
-  <!-- REQUIRED IDS: map, toast, mapExit, mapToggle, testToggle, status, list, collection, count, diplomas, gallery -->
+<!-- Topp -->
+<header>
+  <h1>History Go</h1>
+  <label class="test">Testmodus <input id="testToggle" type="checkbox"></label>
+</header>
 
-  <!-- Kart i bakgrunnen -->
-  <div id="map"></div>
-  <!-- Tilbake fra kartmodus -->
-  <button id="mapExit" class="map-exit" type="button" aria-label="Tilbake">✕</button>
+<!-- Innhold -->
+<main id="panel">
+  <!-- Nærmest nå -->
+  <section class="section">
+    <div class="title">Severdigheter i nærheten</div>
+    <button id="btnSeeMap" class="link-btn" style="margin-left:8px;">Se kart</button>
+    <div id="status" class="muted">Henter posisjon…</div>
+    <div id="list"></div>
+  </section>
 
-  <!-- Toast -->
-  <div id="toast">Låst opp ✅</div>
+  <!-- Dine steder -->
+  <section class="section">
+    <div class="title">Samlingen min (<span id="count">0</span>)</div>
+    <div id="collection" class="grid"></div>
+  </section>
 
-  <!-- Topp (enkel) -->
-  <header>
-    <h1>History Go</h1>
-    <div style="display:flex;gap:8px;align-items:center">
-      <button id="mapToggle" class="link-btn" type="button">Kart</button>
-      <label class="test">Testmodus <input id="testToggle" type="checkbox" /></label>
-    </div>
-  </header>
+  <!-- Diplomer -->
+  <section class="section">
+    <div class="title">Diplomer</div>
+    <div id="diplomas" class="grid"></div>
+  </section>
 
-  <!-- Innhold -->
-  <main>
-    <section class="section">
-      <div class="title">Severdigheter i nærheten</div>
-      <div id="status" class="muted">Henter posisjon…</div>
-      <div id="list"></div>
-    </section>
+  <!-- Dine folk -->
+  <section class="section">
+    <div class="title">Galleri (personer)</div>
+    <div id="gallery" class=""></div>
+  </section>
+</main>
 
-    <section class="section">
-      <div class="title">Samlingen min (<span id="count">0</span>)</div>
-      <div id="collection" class="grid"></div>
-    </section>
-
-    <section class="section">
-      <div class="title">Diplomer</div>
-      <div id="diplomas" class="grid"></div>
-    </section>
-
-    <section class="section">
-      <div class="title">Galleri (personer)</div>
-      <div id="gallery" class="grid"></div>
-    </section>
-  </main>
-
-  <script src="app.js"></script>
-</body>
-</html>
+<script src="app.js"></script>
