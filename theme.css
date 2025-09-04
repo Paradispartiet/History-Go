@@ -1,129 +1,102 @@
-/* === History Go – Sheet over kart === */
-
-/* Farger */
+/* === Variabler === */
 :root{
-  --blue:#1976d2;
-  --blue2:#1b6cc5;
-  --blue-light:#e8eef7;
-  --red:#e63946;
+  --bg:#0d1b2a;         /* bakgrunn rundt kartet */
+  --text:#eef5ff;
+  --muted:#a8b3c7;
   --yellow:#ffb703;
+  --blue:#1976d2;
+  --blue-ghost:#e8eef7;
   --green:#2a9d8f;
-  --ink:#0d1b2a;
-  --ink-2:#0f2237;
-  --muted:#64748b;
-  --card:#121e2e;
-  --card-2:#16263b;
-  --line:#22344d;
-  --text:#f8fafc;
+  --red:#e63946;
+  --card:#111827d9;     /* mørk gjennomsiktig kort */
+  --stroke:#3b3f46;
+  --ring:#ffffff2b;
 }
 
-/* Base */
+/* grunn */
 *{box-sizing:border-box}
 html,body{height:100%}
-body{
-  margin:0;
-  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-  color:var(--text);
-  background:var(--ink);
-}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
 
-/* Kart bak */
+/* kart i bakgrunnen */
 #map{
-  position:fixed; inset:0;
-  z-index:0;
+  position:fixed; inset:0; z-index:0;
 }
 
-/* Toast */
-#toast{
-  position:fixed; left:50%; bottom:20px; transform:translateX(-50%);
-  background:var(--blue); color:#fff; padding:10px 14px; border-radius:10px;
-  font-weight:800; display:none; z-index:30;
+/* topp */
+.top{
+  position:fixed; left:0; right:0; top:0; z-index:2;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:10px 14px; background:linear-gradient(180deg,#08131f,transparent);
 }
+h1{margin:0;font-size:18px;font-weight:900}
+.test{display:flex;align-items:center;gap:8px;color:var(--muted)}
 
-/* Sheet/panel */
+/* bottom sheet */
 #sheet{
-  position:fixed; left:0; right:0; bottom:0;
-  max-height:70vh; /* kan dras opp til nesten full høyde */
-  background:rgba(13,27,42,.92);
-  -webkit-backdrop-filter: saturate(120%) blur(2px);
-  backdrop-filter: saturate(120%) blur(2px);
+  position:absolute; left:0; right:0; bottom:0; z-index:1;
+  background:#0b1627d9;
+  backdrop-filter:blur(3px);
   border-radius:16px 16px 0 0;
-  border-top:1px solid rgba(255,255,255,.06);
-  box-shadow:0 -10px 30px rgba(0,0,0,.35);
-  padding:12px 14px 20px;
+  padding:14px;
   overflow:auto;
-  z-index:10;
+  max-height:88vh; height:50vh; /* JS justerer dette når man drar */
 }
-
 #sheet .handle{
-  width:44px; height:5px; border-radius:999px;
-  background:#9aa7b8; opacity:.65; margin:6px auto 10px;
+  width:56px; height:6px; border-radius:999px;
+  background:#94a3b833; margin:4px auto 12px;
 }
 
-/* Layout småting */
+/* seksjoner */
 .section{margin-bottom:18px}
 .title{
-  display:inline-block;
-  background:var(--yellow); color:#111;
-  font-weight:900; padding:6px 12px; border-radius:12px;
-  margin-bottom:10px;
+  display:inline-block; padding:6px 10px; border-radius:10px;
+  background:var(--yellow); color:#111; font-weight:900; margin-bottom:10px;
 }
-.muted{color:#cdd5df; opacity:.75}
-.grid{display:flex; gap:8px; overflow-x:auto; padding-bottom:6px}
-.row{display:flex; gap:10px; align-items:center}
-.center{justify-content:center}
+.muted{color:var(--muted)}
 
-/* Kort */
-.card{
-  background:linear-gradient(180deg,var(--card),var(--card-2));
-  border:1px solid var(--line);
-  border-radius:14px;
-  padding:12px; margin-bottom:10px;
-  box-shadow:0 6px 16px rgba(0,0,0,.25);
+/* kort / badges */
+#list .card, .person-card, .diploma{
+  background:var(--card);
+  border:1px solid var(--stroke);
+  border-radius:14px; padding:12px; margin:10px 2px;
+  box-shadow:0 6px 16px var(--ring);
 }
 .name{font-weight:900}
-.meta{color:#cbd5e1; opacity:.9; margin-top:2px}
-.desc{color:#e2e8f0; opacity:.9; margin-top:6px}
-.dist{color:var(--yellow); font-weight:900; margin-top:8px}
+.meta{color:#b8c2d6}
+.desc{color:#d6deea; margin-top:4px}
+.dist{color:var(--yellow); font-weight:900; margin-top:6px}
 
-/* Knapper */
-.btn{
-  border:0; border-radius:10px; padding:10px 14px; font-weight:800; cursor:pointer;
-}
-.ghost{background:var(--blue-light); color:var(--blue)}
-.primary{background:var(--blue); color:#fff}
-
-/* Chips */
+.grid{display:flex; gap:8px; overflow-x:auto; padding-bottom:4px}
 .badge{
-  border-radius:999px; padding:8px 12px; font-weight:800; white-space:nowrap;
-  background:var(--blue); color:#fff;
+  background:var(--blue); color:#fff; border-radius:10px;
+  padding:8px 10px; white-space:nowrap;
 }
-.badge-historie{background:var(--blue)}
-.badge-kultur{background:var(--red)}
-.badge-severdigheter{background:var(--yellow); color:#111}
-.badge-sport{background:var(--green)}
 
-/* Diplomer */
-.diploma{min-width:260px}
+/* diplomer */
 .diploma .name{font-weight:900}
-.diploma .tier{margin-left:6px; font-weight:900}
-.diploma .tier::before{content:""; margin-right:4px}
-.diploma.bronse{background:linear-gradient(180deg,#3b2a1f,#2a211c); border:1px solid #5b4738}
-.diploma.sølv{background:linear-gradient(180deg,#2c3642,#222b37); border:1px solid #3f4a58}
-.diploma.gull{background:linear-gradient(180deg,#5f4a17,#44350f); border:1px solid #8b6b22}
-.tier.bronse::before{content:"🥉"} .tier.sølv::before{content:"🥈"} .tier.gull::before{content:"🥇"}
+.tag{font-size:12px; padding:2px 8px; border-radius:999px; background:var(--blue-ghost); color:var(--blue); margin-left:6px}
+.tier{font-weight:900; margin-left:6px}
+.tier::before{content:""; margin-right:4px}
+.tier.bronse::before{content:"🥉"} .diploma.bronse{background:#2b1f14d9;border-color:#7b5b3a}
+.tier.sølv::before{content:"🥈"}   .diploma.sølv{background:#1f2430d9;border-color:#7a8aa0}
+.tier.gull::before{content:"🥇"}   .diploma.gull{background:#2e260ed9;border-color:#c9a841}
 
-/* Personkort */
-.person-card{
-  display:flex; gap:12px; align-items:center;
-  background:linear-gradient(180deg,var(--card),var(--card-2));
-  border:1px solid var(--line); border-radius:14px; padding:12px; min-width:300px;
+/* personer */
+.person-card{display:flex; gap:12px; align-items:center}
+.person-card .avatar{
+  width:52px;height:52px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--blue); color:#fff; font-weight:900; flex-shrink:0;
 }
-.avatar{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;background:var(--blue); color:#fff}
-.person-btn{border:0;border-radius:10px;padding:8px 12px;font-weight:800;background:var(--blue);color:#fff}
-.person-btn.ghost{background:var(--blue-light);color:var(--blue)}
-.pill{display:inline-block;font-weight:800;font-size:12px;padding:4px 8px;border-radius:999px;margin-right:6px}
-.pill.person{background:var(--red);color:#fff}
-.pill.event{background:var(--yellow);color:#111}
-.pill.now{background:var(--green);color:#fff}
-.pill.soon{background:var(--blue-light);color:var(--blue)}
+.person-btn{
+  margin-left:auto; border:0; border-radius:10px; padding:8px 12px;
+  background:var(--blue); color:#fff; font-weight:900
+}
+
+/* toast */
+#toast{
+  position:fixed; left:50%; transform:translateX(-50%);
+  bottom:22px; padding:10px 14px; border-radius:10px;
+  background:var(--blue); color:#fff; font-weight:900; display:none; z-index:9;
+}
