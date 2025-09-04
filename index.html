@@ -22,8 +22,7 @@
     crossorigin=""
   ></script>
 
-  <!-- Tema -->
-  <link rel="stylesheet" href="theme.css?v=3" />
+  <link rel="stylesheet" href="theme.css?v=4" />
 </head>
 <body>
 
@@ -33,12 +32,12 @@
   <!-- Toast -->
   <div id="toast">Låst opp ✅</div>
 
-  <!-- Trekkbart panel over kartet (ALT innholdet ligger her) -->
+  <!-- Skyvbart panel over kartet (alt innholdet) -->
   <div id="panel" class="panel">
     <div id="panelGrab" class="grabber" aria-label="Dra for å vise/skjule"></div>
 
     <main>
-      <!-- Nærmest nå -->
+      <!-- Nærmest nå (viser maks 2) -->
       <section class="section">
         <div class="title">Severdigheter i nærheten</div>
         <div id="status" class="muted">Henter posisjon…</div>
@@ -65,7 +64,7 @@
     </main>
   </div>
 
-  <script src="app.js?v=3"></script>
+  <script src="app.js?v=4"></script>
   <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('./sw.js').catch(()=>{});
