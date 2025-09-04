@@ -1,49 +1,63 @@
 <!doctype html>
 <html lang="no">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>History Go</title>
 
   <!-- Leaflet -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-  <!-- Stil -->
-  <link rel="stylesheet" href="theme.css?v=7" />
-<script src="app.js?v=7"></script>
+  <!-- Tema -->
+  <link rel="stylesheet" href="theme.css?v=1" />
 </head>
 <body>
-  <!-- Kart -->
+
+  <!-- Kart i bakgrunnen -->
   <div id="map"></div>
 
   <!-- Toast -->
-  <div id="toast">✅</div>
+  <div id="toast">OK</div>
 
-  <!-- Hovedinnhold -->
+  <!-- Hovedpanel (rulles) -->
   <main id="panel">
+    <header class="top">
+      <h1>History Go</h1>
+      <label class="test">Testmodus <input id="testToggle" type="checkbox"></label>
+    </header>
+
+    <!-- Nærmest nå (kun 2 kort) -->
     <section class="section">
       <div class="title">Severdigheter i nærheten</div>
       <div id="status" class="muted">Henter posisjon…</div>
       <div id="list"></div>
     </section>
 
+    <!-- Samlingen min -->
     <section class="section">
       <div class="title">Samlingen min (<span id="count">0</span>)</div>
       <div id="collection" class="grid"></div>
     </section>
 
+    <!-- Diplomer -->
     <section class="section">
       <div class="title">Diplomer</div>
-      <div id="diplomas" class="grid"></div>
+      <div id="diplomas" class=""></div>
     </section>
 
+    <!-- Galleri (personer) -->
     <section class="section">
       <div class="title">Galleri (personer)</div>
       <div id="gallery"></div>
     </section>
   </main>
 
-  <script src="app.js"></script>
+  <script src="app.js?v=1"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./sw.js').catch(()=>{});
+    }
+  </script>
 </body>
 </html>
