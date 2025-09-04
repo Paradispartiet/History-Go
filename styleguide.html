@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>History Go – Styleguide</title>
+  <style>
+    :root{
+      --bg-deep:#0A1D37;   /* mørk blå */
+      --bg-panel:#2F3C52;  /* gråblå */
+      --fg:#ffffff;
+
+      --yellow:#FFD700;    /* steder */
+      --red:#E63946;       /* personer / event */
+      --green:#06D6A0;     /* fullført/success */
+      --blue:#118AB2;      /* kultur/info/quiz */
+      --orange:#FF7C43;    /* CTA-knapper */
+      --lilac:#9B5DE5;     /* spesial */
+
+      --bronze:#CD7F32;
+      --silver:#C0C0C0;
+      --gold:#FFD700;
+
+      --muted:#97A3B6;
+      --card:#ffffff;
+      --border:#e3e8ef;
+
+      --radius:14px;
+      --shadow:0 8px 24px rgba(0,0,0,.18);
+    }
+
+    *{box-sizing:border-box} body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg-deep);color:var(--fg)}
+    header{position:sticky;top:0;background:var(--bg-panel);padding:14px 16px;display:flex;justify-content:space-between;align-items:center}
+    h1{margin:0;font-size:18px;font-weight:800}
+    main{padding:16px;max-width:1024px;margin:0 auto}
+    section{margin-bottom:28px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+    .swatch{border-radius:12px;padding:14px;border:1px solid rgba(255,255,255,.1)}
+    .swatch .chip{height:64px;border-radius:10px;box-shadow:var(--shadow);margin-bottom:10px}
+    .swatch code{font-size:12px;color:var(--muted)}
+    .row{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{border:0;border-radius:12px;padding:12px 16px;font-weight:800;cursor:pointer}
+    .btn.cta{background:var(--orange);color:#000}
+    .btn.ghost{background:transparent;border:2px solid var(--fg);color:var(--fg)}
+    .btn.success{background:var(--green);color:#002315}
+
+    .card{background:var(--card);color:#111;border:1px solid var(--border);border-radius:var(--radius);padding:14px}
+    .meta{color:#555}
+    .badge{display:inline-block;background:var(--yellow);color:#111;border-radius:999px;padding:6px 10px;font-weight:800}
+    .badge.red{background:var(--red);color:#fff}
+    .badge.green{background:var(--green);color:#013a2b}
+    .badge.blue{background:var(--blue);color:#fff}
+
+    .diploma{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:14px}
+    .tag{font-size:12px;padding:2px 8px;border-radius:999px;background:#eef2ff;color:#2b4c7e;margin-left:6px}
+    .tier{font-weight:800;margin-left:6px}
+    .tier::before{margin-right:4px}
+    .tier.bronse::before{content:"🥉"}
+    .tier.sølv::before{content:"🥈"}
+    .tier.gull::before{content:"🥇"}
+
+    .chip-cat{display:inline-block;border-radius:999px;padding:6px 10px;font-weight:800}
+    .cat-historie{background:var(--blue);color:#fff}
+    .cat-kultur{background:var(--lilac);color:#fff}
+    .cat-sport{background:var(--green);color:#013a2b}
+    .cat-severd{background:var(--yellow);color:#111}
+
+    .note{color:var(--muted);font-size:13px}
+    a.back{color:#fff;text-decoration:none;opacity:.8}
+  </style>
+</head>
+<body>
+<header>
+  <h1>History Go – Styleguide</h1>
+  <a class="back" href="./">← Til appen</a>
+</header>
+
+<main>
+  <section>
+    <h2>Palett</h2>
+    <div class="grid">
+      <div class="swatch"><div class="chip" style="background:var(--bg-deep)"></div><strong>Mørk blå</strong><br /><code>#0A1D37</code></div>
+      <div class="swatch"><div class="chip" style="background:var(--bg-panel)"></div><strong>Gråblå</strong><br /><code>#2F3C52</code></div>
+      <div class="swatch"><div class="chip" style="background:var(--yellow)"></div><strong>Gul (steder)</strong><br /><code>#FFD700</code></div>
+      <div class="swatch"><div class="chip" style="background:var(--red)"></div><strong>Rød (person)</strong><br /><code>#E63946</code></div>
+      <div class="swatch"><div class="chip" style="background:var(--green)"></div><strong>Grønn (ok)</strong><br /><code>#06D6A0</code></div>
+      <div class="swatch"><div class="chip" style="background:var(--blue)"></div><strong>Blå (info)</strong><br /><code>#118AB2</code></div>
+      <div class="swatch"><div class="chip" style="background:var(--orange)"></div><strong>CTA</strong><br /><code>#FF7C43</code></div>
+      <div class="swatch"><div class="chip" style="background:var(--lilac)"></div><strong>Spesial</strong><br /><code>#9B5DE5</code></div>
+    </div>
+    <p class="note">Bruk gul/rød/grønn/blå for markører og merker; bakgrunn holdes mørk blå.</p>
+  </section>
+
+  <section>
+    <h2>Knapper</h2>
+    <div class="row">
+      <button class="btn cta">CHECK IN</button>
+      <button class="btn success">Låst opp ✅</button>
+      <button class="btn ghost">Sekundær</button>
+    </div>
+  </section>
+
+  <section>
+    <h2>Kort og “Merker”</h2>
+    <div class="grid">
+      <div class="card">
+        <strong>Oslo rådhus</strong>
+        <div class="meta">Historie • radius 120 m</div>
+        <p>Nobels fredspris-seremoni.</p>
+        <div class="row">
+          <span class="badge">Sted</span>
+          <span class="badge blue">Historie</span>
+          <span class="badge green">Besøkt</span>
+        </div>
+      </div>
+      <div class="card">
+        <strong>Den Norske Opera &amp; Ballett</strong>
+        <div class="meta">Kultur • radius 150 m</div>
+        <p>Operahuset i Bjørvika.</p>
+        <div class="row">
+          <span class="badge">Sted</span>
+          <span class="badge" style="background:#9B5DE5;color:#fff">Kultur</span>
+          <span class="badge">Lås opp</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Diplomer</h2>
+    <div class="grid">
+      <div class="diploma">
+        <div><strong>Historie</strong> <span class="tag">12 steder</span> <span class="tier bronse">BRONSE</span></div>
+        <div class="meta">→ 13 til sølv</div>
+      </div>
+      <div class="diploma">
+        <div><strong>Kultur</strong> <span class="tag">28 steder</span> <span class="tier sølv">SØLV</span></div>
+        <div class="meta">→ 22 til gull</div>
+      </div>
+      <div class="diploma">
+        <div><strong>Sport</strong> <span class="tag">51 steder</span> <span class="tier gull">GULL</span></div>
+        <div class="meta">Maks!</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Kategori-chips</h2>
+    <div class="row">
+      <span class="chip-cat cat-historie">Historie</span>
+      <span class="chip-cat cat-kultur">Kultur</span>
+      <span class="chip-cat cat-sport">Sport</span>
+      <span class="chip-cat cat-severd">Severdigheter</span>
+    </div>
+  </section>
+
+  <section>
+    <h2>Toast (eksempel)</h2>
+    <div class="row">
+      <div class="card">Bruker PWAens toast: <code>#toast</code> i appen.</div>
+    </div>
+  </section>
+</main>
+</body>
+</html>
