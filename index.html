@@ -5,26 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>History Go</title>
 
-  <!-- PWA -->
-  <link rel="manifest" href="manifest.json" />
-  <meta name="theme-color" content="#1976d2" />
-
   <!-- Leaflet (kart) -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
   <!-- Stil -->
-  <link rel="stylesheet" href="theme.css" />
+  <link rel="stylesheet" href="theme.css?v=BUILD_2025-09-04-22-30" />
 </head>
 <body>
+  <!-- REQUIRED IDS: map, toast, testToggle, status, list, collection, count, diplomas, gallery -->
 
-  <!-- Kart -->
+  <!-- Kart i bakgrunnen -->
   <div id="map"></div>
 
   <!-- Toast -->
   <div id="toast">Låst opp ✅</div>
 
-  <!-- Topp -->
+  <!-- Topp (enkel) -->
   <header>
     <h1>History Go</h1>
     <label class="test">Testmodus <input id="testToggle" type="checkbox" /></label>
@@ -32,36 +29,33 @@
 
   <!-- Innhold -->
   <main>
-    <!-- Nærmest nå -->
     <section class="section">
       <div class="title">Severdigheter i nærheten</div>
       <div id="status" class="muted">Henter posisjon…</div>
       <div id="list"></div>
     </section>
 
-    <!-- Samling -->
     <section class="section">
       <div class="title">Samlingen min (<span id="count">0</span>)</div>
       <div id="collection" class="grid"></div>
     </section>
 
-    <!-- Diplomer -->
     <section class="section">
       <div class="title">Diplomer</div>
       <div id="diplomas" class="grid"></div>
     </section>
 
-    <!-- Galleri -->
     <section class="section">
       <div class="title">Galleri (personer)</div>
       <div id="gallery" class="grid"></div>
     </section>
   </main>
 
-  <script src="app.js"></script>
+  <script src="app.js?v=BUILD_2025-09-04-22-30"></script>
   <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('./sw.js').catch(()=>{});
+    const PROD = true; // sett false om du vil slå av SW i arbeid
+    if (PROD && 'serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./sw.js?b=BUILD_2025-09-04-22-30').catch(()=>{});
     }
   </script>
 </body>
