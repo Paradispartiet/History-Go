@@ -26,6 +26,31 @@
     .grid{display:flex;overflow-x:auto;gap:8px;padding-bottom:6px}
     .muted{color:#666}
     .row{display:flex;gap:10px;align-items:center}
+    .diploma {
+  border:1px solid #e3e8ef;
+  background:#fff;
+  border-radius:12px;
+  padding:10px 12px;
+}
+.tag {
+  font-size:12px;
+  padding:2px 8px;
+  border-radius:999px;
+  background:#eef2ff;
+  color:#2b4c7e;
+  margin-left:6px;
+}
+.tier {
+  font-weight:800;
+  margin-left:6px;
+  .tier::before {
+  margin-right:4px;
+}
+
+.tier.bronse::before { content:"🥉"; }
+.tier.sølv::before   { content:"🥈"; }
+.tier.gull::before   { content:"🥇"; }
+}
   </style>
 </head>
 <div id="toast" style="position:fixed;left:50%;bottom:22px;transform:translateX(-50%);
