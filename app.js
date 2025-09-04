@@ -1,10 +1,6 @@
 // ==============================
-// History Go – app.js (alt i ett)
-// - Kart i bakgrunnen (Leaflet) + "Se kart" fullskjerm-modus
-// - Maks 2 steder i "Nærmest nå"
-// - SVG-ikoner for kategorier/diplomer/personpills
-// - Samling, Diplomer, Galleri
-// - Testmodus-knapp (Oslo sentrum)
+// History Go – app.js (v1)
+// Kart + "Se kart" + 2 nærmeste + mild palett + ikoner + diplomer + galleri
 // ==============================
 
 // ---- Konstanter ----
@@ -27,6 +23,7 @@ function savePeople(){   localStorage.setItem("people_collected", JSON.stringify
 
 // ---- DOM ----
 const el = {
+  body:       document.body,
   map:        document.getElementById('map'),
   status:     document.getElementById('status'),
   list:       document.getElementById('list'),
@@ -39,8 +36,7 @@ const el = {
   btnMap:     document.getElementById('btnMap'),
   mapExit:    document.getElementById('mapExit'),
   mapLegend:  document.getElementById('mapLegend'),
-  header:     document.querySelector('header'),
-  body:       document.body
+  header:     document.querySelector('header')
 };
 
 // ---- Hjelpere (ikoner/farger/diplom) ----
@@ -54,10 +50,11 @@ function svgIdForCategory(cat){
 }
 function colorForCategory(cat){
   const k=(cat||'').toLowerCase();
-  if (k.includes('kultur')) return '#e63946';
-  if (k.includes('severd')) return '#ffb703';
-  if (k.includes('sport')||k.includes('natur')) return '#2a9d8f';
-  return '#1976d2';
+  if (k.includes('kultur')) return '#f06b6b';
+  if (k.includes('severd')) return '#f7c75c';
+  if (k.includes('sport'))  return '#81c784';
+  if (k.includes('natur'))  return '#4db6ac';
+  return '#5c8fd9'; // historie / default
 }
 function medalIdForTier(t){
   return t==='gull' ? 'ico-medal-gold'
@@ -91,6 +88,16 @@ function countVisitedByCategory(){
 // ---- Leaflet-kart ----
 let MAP, userMarker;
 
+function makePlaceIcon(color){
+  return L.divIcon({
+    className: 'pin',
+    html: `<div class="pin-ring"></div><div class="pin-dot" style="background:${color}"></div>`,
+    iconSize: [44,44],
+    iconAnchor: [22,22],
+    popupAnchor: [0,-22]
+  });
+}
+
 function initMap() {
   MAP = L.map('map', { zoomControl:false, attributionControl:false })
           .setView([START_POS.lat, START_POS.lon], START_POS.zoom);
@@ -99,22 +106,21 @@ function initMap() {
     attribution: '&copy; OpenStreetMap, &copy; CARTO', maxZoom: 19
   }).addTo(MAP);
 
-  // Markører for steder
+  // Markører for steder (store, klikkvennlige)
   PLACES.forEach(p=>{
-    L.circleMarker([p.lat, p.lon], {
-      radius:7, weight:2, color:'#111', fillColor:colorForCategory(p.category), fillOpacity:.9
-    })
-    .addTo(MAP)
-    .bindPopup(`
-      <div style="min-width:220px">
-        <div style="display:flex;align-items:center;gap:8px;font-weight:900">
-          <svg class="ico" style="color:${colorForCategory(p.category)}"><use href="#${svgIdForCategory(p.category)}"/></svg>
-          ${p.name}
+    const color = colorForCategory(p.category);
+    L.marker([p.lat, p.lon], { icon: makePlaceIcon(color) })
+      .addTo(MAP)
+      .bindPopup(`
+        <div style="min-width:220px">
+          <div style="display:flex;align-items:center;gap:8px;font-weight:900">
+            <svg class="ico" style="color:${color}"><use href="#${svgIdForCategory(p.category)}"/></svg>
+            ${p.name}
+          </div>
+          <div style="opacity:.8;margin:4px 0">${p.category||''}</div>
+          <div style="line-height:1.35">${p.desc||''}</div>
         </div>
-        <div style="opacity:.8;margin:4px 0">${p.category||''}</div>
-        <div style="line-height:1.35">${p.desc||''}</div>
-      </div>
-    `);
+      `);
   });
 
   buildLegend();
@@ -124,7 +130,7 @@ function setUser(lat, lon){
   if (!MAP) return;
   if (!userMarker) {
     userMarker = L.circleMarker([lat, lon], {
-      radius:8, weight:2, color:'#fff', fillColor:'#1976d2', fillOpacity:1
+      radius:8, weight:2, color:'#fff', fillColor:'#5c8fd9', fillOpacity:1
     }).addTo(MAP).bindPopup('Du er her');
   } else {
     userMarker.setLatLng([lat, lon]);
@@ -132,46 +138,24 @@ function setUser(lat, lon){
 }
 
 function buildLegend(){
-  // Legg til legend nederst hvis den ikke finnes
   if (!el.mapLegend){
     const div = document.createElement('div');
     div.id = 'mapLegend';
     div.className = 'map-legend';
-    el.body.appendChild(div);
+    document.body.appendChild(div);
     el.mapLegend = div;
   }
   el.mapLegend.innerHTML = `
-    <div class="item"><svg class="ico" style="color:#1976d2"><use href="#ico-castle"/></svg>Historie</div>
-    <div class="item"><svg class="ico" style="color:#e63946"><use href="#ico-theatre"/></svg>Kultur</div>
-    <div class="item"><svg class="ico" style="color:#2a9d8f"><use href="#ico-ball"/></svg>Sport</div>
-    <div class="item"><svg class="ico" style="color:#ffb703"><use href="#ico-camera"/></svg>Severd.</div>
-    <div class="item"><svg class="ico" style="color:#2a9d8f"><use href="#ico-tree"/></svg>Natur</div>
+    <div class="item"><svg class="ico" style="color:#5c8fd9"><use href="#ico-castle"/></svg>Historie</div>
+    <div class="item"><svg class="ico" style="color:#f06b6b"><use href="#ico-theatre"/></svg>Kultur</div>
+    <div class="item"><svg class="ico" style="color:#81c784"><use href="#ico-ball"/></svg>Sport</div>
+    <div class="item"><svg class="ico" style="color:#f7c75c"><use href="#ico-camera"/></svg>Severd.</div>
+    <div class="item"><svg class="ico" style="color:#4db6ac"><use href="#ico-tree"/></svg>Natur</div>
   `;
   el.mapLegend.style.display = 'flex';
 }
 
 // ---- Kartmodus (Se kart / lukk) ----
-function ensureMapButtons(){
-  // Se kart-knapp i header
-  if (!el.btnMap){
-    const btn = document.createElement('button');
-    btn.id = 'btnMap';
-    btn.className = 'link-btn';
-    btn.textContent = 'Se kart';
-    (el.header || document.body).appendChild(btn);
-    el.btnMap = btn;
-  }
-  // Lukk (×) knapp over kart
-  if (!el.mapExit){
-    const x = document.createElement('button');
-    x.id = 'mapExit';
-    x.className = 'map-exit';
-    x.setAttribute('aria-label','Lukk kart');
-    x.textContent = '×';
-    document.body.appendChild(x);
-    el.mapExit = x;
-  }
-}
 function openMap(){
   document.body.classList.add('map-only');
   setTimeout(()=> { if (MAP) MAP.invalidateSize(); }, 60);
@@ -196,9 +180,7 @@ function renderNearby(pos){
         ${p.category||''} • Oslo
       </div>
       <p class="desc">${p.desc||''}</p>
-      <div class="dist">
-        ${p.d==null ? '' : (p.d<1000 ? `${p.d} m unna` : `${(p.d/1000).toFixed(1)} km unna`)}
-      </div>
+      <div class="dist">${p.d==null ? '' : (p.d<1000 ? `${p.d} m unna` : `${(p.d/1000).toFixed(1)} km unna`)}</div>
     </article>
   `).join('');
 }
@@ -207,7 +189,7 @@ function renderCollection(){
   const items = PLACES.filter(p=>visited[p.id]);
   el.collection.innerHTML = items.length
     ? items.map(p=>`
-      <span class="badge" style="background:${colorForCategory(p.category)};${colorForCategory(p.category)==='#ffb703'?'color:#111;':''}">
+      <span class="badge ${badgeClass(p.category)}" style="${colorForCategory(p.category)==='#f7c75c'?'color:#111;':''}">
         <svg class="ico"><use href="#${svgIdForCategory(p.category)}"/></svg>
         ${p.name}
       </span>`).join('')
@@ -266,7 +248,7 @@ function renderGallery(){
   }).join('');
 }
 
-// ---- Utdeling (kan trigges fra test/utvidelse) ----
+// ---- Utdeling (eksempel) ----
 function awardBadge(place){
   if (visited[place.id]) return;
   visited[place.id] = true; saveVisited();
@@ -303,9 +285,18 @@ function requestLocation(){
   }, { enableHighAccuracy:true, timeout:8000, maximumAge:10000 });
 }
 
+// ---- Utils ----
+function badgeClass(cat){
+  const k=(cat||'').toLowerCase();
+  if (k.includes('kultur')) return 'kultur';
+  if (k.includes('severd')) return 'severdigheter';
+  if (k.includes('sport'))  return 'sport';
+  if (k.includes('natur'))  return 'natur';
+  return 'historie';
+}
+
 // ---- Init ----
 function init(){
-  ensureMapButtons();          // lag Se kart / × hvis mangler
   initMap();
   renderCollection();
   renderDiplomas();
