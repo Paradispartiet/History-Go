@@ -105,3 +105,15 @@ main{
 .map-only header, .map-only main{ display:none; }
 .map-only #map{ filter:none; opacity:1; }
 .map-only .map-exit{ display:block; }
+
+/* Gjør panelet scrollbart hvis innholdet blir langt */
+main{
+  max-height: calc(100vh - 60px);
+  overflow-y: auto;
+}
+
+/* Litt safer mot iPhone-kanter/notch */
+header, main{
+  padding-left:  max(14px, env(safe-area-inset-left));
+  padding-right: max(14px, env(safe-area-inset-right));
+}
