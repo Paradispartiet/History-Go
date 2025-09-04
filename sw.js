@@ -1,18 +1,34 @@
-// sw.js — History Go
-const CACHE = "history-go-v3";
+// sw.js — History Go (v4)
+const CACHE = "history-go-v4";
+
 const ASSETS = [
   "./",
   "./index.html",
+
+  // Versjonerte filer (matcher index.html referanser)
+  "./theme.css?v=4",
+  "./app.js?v=4",
+
+  // Uversjonerte (fallback hvis noen laster uten query)
   "./theme.css",
   "./app.js",
+
+  // Data / manifest
   "./places.json",
   "./people.json",
-  "./manifest.json"
+  "./manifest.json",
+
+  // PWA-ikoner (juster hvis du har andre stier/navn)
+  "./icons/icon-192.png",
+  "./icons/icon-512.png",
+  "./icons/icon-maskable.png"
 ];
 
 self.addEventListener("install", (e) => {
   self.skipWaiting();
-  e.waitUntil(caches.open(CACHE).then((c) => c.addAll(ASSETS)));
+  e.waitUntil(
+    caches.open(CACHE).then((c) => c.addAll(ASSETS))
+  );
 });
 
 self.addEventListener("activate", (e) => {
@@ -23,19 +39,19 @@ self.addEventListener("activate", (e) => {
   );
 });
 
+// Stale-while-revalidate
 self.addEventListener("fetch", (e) => {
   const req = e.request;
   if (req.method !== "GET") return;
+
+  // Bare cache same-origin
+  const url = new URL(req.url);
+  if (url.origin !== self.location.origin) {
+    // Pass-through for tredjepart (Leaflet-CDN osv.)
+    return;
+  }
+
   e.respondWith(
     caches.match(req).then((cached) => {
       const fetched = fetch(req).then((res) => {
-        if (res && res.status === 200 && res.type === "basic") {
-          const copy = res.clone();
-          caches.open(CACHE).then((c) => c.put(req, copy));
-        }
-        return res;
-      }).catch(() => cached);
-      return cached || fetched;
-    })
-  );
-});
+        // Oppdater cache for "basic
