@@ -14,7 +14,8 @@
   --text: #111;
 }
 
-/* Reset */
+/* Reset & base */
+* { box-sizing: border-box; }
 body {
   margin: 0;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
@@ -33,30 +34,15 @@ header {
   justify-content: space-between;
   align-items: center;
 }
-h1 {
-  font-size: 18px;
-  margin: 0;
-  font-weight: 800;
-}
-.test {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
+h1 { font-size: 18px; margin: 0; font-weight: 800; }
+.test { display: flex; align-items: center; gap: 8px; }
 
 /* Layout */
-main {
-  padding: 14px;
-}
-.section {
-  margin-bottom: 18px;
-}
-.title {
-  font-weight: 800;
-  margin-bottom: 8px;
-}
+main { padding: 14px; }
+.section { margin-bottom: 18px; }
+.title { font-weight: 800; margin-bottom: 8px; }
 
-/* Kort */
+/* Kort / lister */
 .card {
   background: #fff;
   border: 1px solid var(--gray-light);
@@ -66,21 +52,10 @@ main {
   display: flex;
   gap: 10px;
 }
-.name {
-  font-weight: 800;
-}
-.meta {
-  color: var(--gray);
-}
-.desc {
-  color: var(--gray-dark);
-  margin-top: 6px;
-}
-.dist {
-  color: var(--blue);
-  margin-top: 6px;
-  font-weight: 700;
-}
+.name { font-weight: 800; }
+.meta { color: var(--gray); }
+.desc { color: var(--gray-dark); margin-top: 6px; }
+.dist { color: var(--blue); margin-top: 6px; font-weight: 700; }
 
 /* Knapper */
 .btn {
@@ -90,16 +65,10 @@ main {
   font-weight: 800;
   cursor: pointer;
 }
-.primary {
-  background: var(--blue);
-  color: #fff;
-}
-.ghost {
-  background: var(--blue-light);
-  color: var(--blue);
-}
+.primary { background: var(--blue); color: #fff; }
+.ghost   { background: var(--blue-light); color: var(--blue); }
 
-/* Ikoner og badges */
+/* Badges / chips */
 .badge {
   background: var(--blue);
   color: #fff;
@@ -108,20 +77,9 @@ main {
   margin-right: 8px;
   white-space: nowrap;
 }
-.grid {
-  display: flex;
-  overflow-x: auto;
-  gap: 8px;
-  padding-bottom: 6px;
-}
-.row {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
-.muted {
-  color: #666;
-}
+.grid { display: flex; overflow-x: auto; gap: 8px; padding-bottom: 6px; }
+.row  { display: flex; gap: 10px; align-items: center; }
+.muted{ color: #666; }
 
 /* Diplomer */
 .diploma {
@@ -138,20 +96,32 @@ main {
   color: var(--blue);
   margin-left: 6px;
 }
-.tier {
-  font-weight: 800;
-  margin-left: 6px;
-}
-.tier::before {
-  margin-right: 4px;
-  content: "";
-}
+.tier { font-weight: 800; margin-left: 6px; }
+.tier::before { margin-right: 4px; content: ""; }
 .tier.bronse::before { content: "🥉"; }
 .tier.sølv::before   { content: "🥈"; }
 .tier.gull::before   { content: "🥇"; }
 
+/* Diplomer som “trofékort” (valgfri bakgrunn) */
+.diploma.bronse { background:#f3e7db; border-color:#e2c9a5; }
+.diploma.sølv   { background:#eef0f3; border-color:#cfd6dd; }
+.diploma.gull   { background:#fff4cc; border-color:#f3d36b; }
+
+/* Kategori-farger (brukes av app.js via catClass) */
+.card.cat-historie      { border-left: 6px solid var(--blue); }
+.card.cat-kultur        { border-left: 6px solid var(--red); }
+.card.cat-severdigheter { border-left: 6px solid var(--yellow); }
+.card.cat-sport,
+.card.cat-natur         { border-left: 6px solid var(--green); }
+
+.badge.cat-historie      { background: var(--blue); }
+.badge.cat-kultur        { background: var(--red); }
+.badge.cat-severdigheter { background: var(--yellow); color:#111; }
+.badge.cat-sport,
+.badge.cat-natur         { background: var(--green); }
+
 /* Toast */
-#toast {
+#toast{
   position: fixed;
   left: 50%;
   bottom: 22px;
@@ -164,8 +134,9 @@ main {
   display: none;
   z-index: 9999;
 }
+
 /* === Galleri (personer) === */
-.person-card {
+.person-card{
   background:#fff;
   border:1px solid var(--gray-light);
   border-radius:12px;
@@ -174,21 +145,20 @@ main {
   gap:12px;
   align-items:center;
 }
-.person-card .avatar {
+.person-card .avatar{
   width:54px; height:54px; border-radius:50%;
   display:flex; align-items:center; justify-content:center;
   font-weight:900; color:#fff; background:var(--red);
   flex-shrink:0;
 }
-.person-card .avatar.blue  { background:var(--blue); }
-.person-card .avatar.green { background:var(--green); }
-.person-card .avatar.yellow{ background:var(--yellow); color:#111; }
-
+.person-card .avatar.blue   { background:var(--blue); }
+.person-card .avatar.green  { background:var(--green); }
+.person-card .avatar.yellow { background:var(--yellow); color:#111; }
 .person-card .info { flex:1; }
 .person-card .name { font-weight:800; }
 .person-card .sub  { color:var(--gray); font-size:13px; }
 
-.pill {
+.pill{
   display:inline-block; font-weight:800; font-size:12px;
   padding:4px 8px; border-radius:999px; margin-right:6px;
 }
@@ -197,25 +167,9 @@ main {
 .pill.now    { background:var(--green); color:#fff; }
 .pill.soon   { background:var(--blue-light); color:var(--blue); }
 
-.person-actions { display:flex; gap:8px; }
-.person-btn {
+.person-actions{ display:flex; gap:8px; }
+.person-btn{
   border:0; border-radius:10px; padding:8px 12px; font-weight:800; cursor:pointer;
   background:var(--blue); color:#fff;
 }
-.person-btn.ghost { background:var(--blue-light); color:var(--blue); }
-
-/* — Kategori-farger — */
-.card.cat-historie   { border-left:6px solid var(--blue);  }
-.card.cat-kultur     { border-left:6px solid var(--red);   }
-.card.cat-severdigheter { border-left:6px solid var(--yellow);}
-.card.cat-sport, .card.cat-natur { border-left:6px solid var(--green); }
-
-.badge.cat-historie{ background:var(--blue); }
-.badge.cat-kultur{ background:var(--red); }
-.badge.cat-severdigheter{ background:var(--yellow); color:#111; }
-.badge.cat-sport, .badge.cat-natur{ background:var(--green); }
-
-/* — Diplomer som “trofékort” — */
-.diploma.bronse { background:#f3e7db; border-color:#e2c9a5; }
-.diploma.sølv   { background:#eef0f3; border-color:#cfd6dd; }
-.diploma.gull   { background:#fff4cc; border-color:#f3d36b; }
+.person-btn.ghost{ background:var(--blue-light); color:var(--blue); }
