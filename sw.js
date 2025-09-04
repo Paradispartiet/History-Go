@@ -1,4 +1,4 @@
-const CACHE = "history-go-v2"; // <- bump versjon når du endrer noe
+const CACHE = "history-go-v3"; // <- bump versjon når du endrer noe
 const ASSETS = [
   "./",
   "./index.html",
