@@ -10,20 +10,11 @@
   <meta name="theme-color" content="#0d1b2a" />
 
   <!-- Leaflet (kart) -->
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha256-p4NxAoJBhIINnHhmNHzRCf9t0/mIzyoHS5obTRR9BMY="
-    crossorigin=""
-  />
-  <script
-    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    integrity="sha256-20nQccNb9co0qjlJZRGuk2/29VM+NkivyNV11vT1ZBo="
-    crossorigin=""
-  ></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
   <!-- Stil -->
-  <link rel="stylesheet" href="theme.css?v=sheet1" />
+  <link rel="stylesheet" href="theme.css" />
 </head>
 <body>
 
@@ -31,20 +22,23 @@
   <div id="map"></div>
 
   <!-- Toast -->
-  <div id="toast">Låst opp ✅</div>
+  <div id="toast">OK</div>
 
-  <!-- Sheet/panel over kartet -->
-  <main id="sheet" aria-live="polite">
-    <div class="handle" aria-hidden="true"></div>
+  <!-- Topp (kun tittel + testmodus) -->
+  <header class="top">
+    <h1>History Go</h1>
+    <label class="test">Testmodus <input id="testToggle" type="checkbox" /></label>
+  </header>
 
-    <!-- Nærmest nå -->
+  <!-- Bottom-sheet (kan dras opp/ned) -->
+  <main id="sheet">
+    <div class="handle"></div>
+
+    <!-- Nærmest nå (kun 2 kort) -->
     <section class="section">
       <div class="title">Severdigheter i nærheten</div>
       <div id="status" class="muted">Henter posisjon…</div>
       <div id="list"></div>
-      <div class="row center" style="margin-top:10px">
-        <button id="btnMore" class="btn ghost" style="display:none">Vis flere</button>
-      </div>
     </section>
 
     <!-- Samling -->
@@ -59,14 +53,14 @@
       <div id="diplomas" class="grid"></div>
     </section>
 
-    <!-- Galleri -->
+    <!-- Galleri (personer) -->
     <section class="section">
       <div class="title">Galleri (personer)</div>
       <div id="gallery"></div>
     </section>
   </main>
 
-  <script src="app.js?v=sheet1"></script>
+  <script src="app.js"></script>
   <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('./sw.js').catch(()=>{});
