@@ -14,16 +14,16 @@ const CATEGORY_TO_CLASS = {
 
 /* ---------- Dummy data (kan byttes ut med API) ---------- */
 const PLACES = [
-  { id: "akershus",        name: "Akershus festning",      category: "Historie",      lat:59.909, lon:10.739, desc:"Middelalderborg og kongsresidens.", distance:null },
-  { id: "opera",           name: "Den Norske Opera & Ballett", category: "Kultur",    lat:59.907, lon:10.753, desc:"Ikonisk bygg med takvandring.",    distance:null },
-  { id: "ullevål",         name: "Ullevål stadion",        category: "Sport",         lat:59.948, lon:10.737, desc:"Nasjonalstadion.",                 distance:null },
-  { id: "vigelandsparken", name: "Vigelandsparken",        category: "Severdigheter", lat:59.927, lon:10.699, desc:"Verdens største skulpturpark.",   distance:null },
-  { id: "frammuseet",      name: "Frammuseet",             category: "Historie",      lat:59.906, lon:10.699, desc:"Polarekspedisjoner og FRAM.",      distance:null },
-  { id: "intility",        name: "Intility Arena (VIF)",   category: "Sport",         lat:59.914, lon:10.791, desc:"Hjemmebanen til Vålerenga.",       distance:null },
-  { id: "nasjonalmus",     name: "Nasjonalmuseet",         category: "Kultur",        lat:59.913, lon:10.731, desc:"Nordens største kunstmuseum.",     distance:null },
-  { id: "deichman",        name: "Deichman Bjørvika",      category: "Kultur",        lat:59.910, lon:10.752, desc:"Hovedbiblioteket i Oslo.",         distance:null },
-  { id: "botanisk",        name: "Botanisk hage",          category: "Severdigheter", lat:59.917, lon:10.771, desc:"Grønn oase og museer.",            distance:null },
-  { id: "rådhus",          name: "Oslo rådhus",            category: "Historie",      lat:59.913, lon:10.734, desc:"Nobelseremoniens hjem.",           distance:null }
+  { id: "akershus", name: "Akershus festning", category: "Historie", lat:59.909, lon:10.739, desc:"Middelalderborg og kongsresidens.", distance:null },
+  { id: "opera", name: "Den Norske Opera & Ballett", category: "Kultur", lat:59.907, lon:10.753, desc:"Ikonisk bygg med takvandring.", distance:null },
+  { id: "ullevål", name: "Ullevål stadion", category: "Sport", lat:59.948, lon:10.737, desc:"Nasjonalstadion.", distance:null },
+  { id: "vigelandsparken", name: "Vigelandsparken", category: "Severdigheter", lat:59.927, lon:10.699, desc:"Verdens største skulpturpark.", distance:null },
+  { id: "frammuseet", name: "Frammuseet", category: "Historie", lat:59.906, lon:10.699, desc:"Polarekspedisjoner og FRAM.", distance:null },
+  { id: "intility", name: "Intility Arena (VIF)", category: "Sport", lat:59.914, lon:10.791, desc:"Hjemmebanen til Vålerenga.", distance:null },
+  { id: "nasjonalmus", name: "Nasjonalmuseet", category: "Kultur", lat:59.913, lon:10.731, desc:"Nordens største kunstmuseum.", distance:null },
+  { id: "deichman", name: "Deichman Bjørvika", category: "Kultur", lat:59.910, lon:10.752, desc:"Hovedbiblioteket i Oslo.", distance:null },
+  { id: "botanisk", name: "Botanisk hage", category: "Severdigheter", lat:59.917, lon:10.771, desc:"Grønn oase og museer.", distance:null },
+  { id: "rådhus", name: "Oslo rådhus", category: "Historie", lat:59.913, lon:10.734, desc:"Nobelseremoniens hjem.", distance:null }
 ];
 
 const INITIAL_COLLECTION = [
@@ -71,8 +71,52 @@ const el = {
   sheet:     document.getElementById("sheet"),
   sheetClose:document.getElementById("sheetClose"),
   sheetApply:document.getElementById("sheetApply"),
-  catFilter: document.getElementById("catFilter")
+  catFilter: document.getElementById("catFilter"),
+
+  // seksjoner (brukes av showView)
+  sectionNearby:     document.querySelector('#list')?.closest('.section'),
+  sectionCollection: document.querySelector('#collection')?.closest('.section'),
+  sectionDiplomas:   document.querySelector('#diplomas')?.closest('.section'),
+  sectionPeople:     document.querySelector('#gallery')?.closest('.section'),
+
+  // hurtigknapper (legg de inn i HTML hvis du vil)
+  btnNearby:    document.getElementById('btnNearby'),
+  btnCollection:document.getElementById('btnCollection'),
+  btnDiplomas:  document.getElementById('btnDiplomas'),
+  btnPeople:    document.getElementById('btnPeople'),
 };
+
+/* ---------- Visnings-state ---------- */
+let CURRENT_VIEW = 'nearby'; // 'nearby' | 'collection' | 'diplomas' | 'people'
+
+function showView(view){
+  CURRENT_VIEW = view;
+
+  const mapSec = {
+    nearby: el.sectionNearby,
+    collection: el.sectionCollection,
+    diplomas: el.sectionDiplomas,
+    people: el.sectionPeople
+  };
+
+  Object.entries(mapSec).forEach(([k, node])=>{
+    if (!node) return;
+    node.style.display = (k === view ? 'block' : 'none');
+  });
+
+  // re-render det som er synlig
+  if (view === 'nearby') renderNearby(filteredWithDistance(PLACES, currentPos));
+  if (view === 'collection') renderCollection();
+  if (view === 'diplomas') renderDiplomas();
+  if (view === 'people') renderGallery();
+}
+
+function wireQuickToggles(){
+  el.btnNearby    && el.btnNearby.addEventListener('click',    ()=>showView('nearby'));
+  el.btnCollection&& el.btnCollection.addEventListener('click',()=>showView('collection'));
+  el.btnDiplomas  && el.btnDiplomas.addEventListener('click',  ()=>showView('diplomas'));
+  el.btnPeople    && el.btnPeople.addEventListener('click',    ()=>showView('people'));
+}
 
 /* ---------- Map (Leaflet) ---------- */
 let map, userMarker;
@@ -279,15 +323,19 @@ function setTestMode(on){
 /* ---------- Init ---------- */
 function initUI(){
   // FAB -> open sheet
-  el.fabMenu.addEventListener("click", openSheet);
-  el.sheetClose.addEventListener("click", closeSheet);
-  el.sheetApply.addEventListener("click", applyFilter);
-  el.testToggle.addEventListener("change", (e)=> setTestMode(e.target.checked));
+  el.fabMenu && el.fabMenu.addEventListener("click", openSheet);
+  el.sheetClose && el.sheetClose.addEventListener("click", closeSheet);
+  el.sheetApply && el.sheetApply.addEventListener("click", applyFilter);
+  el.testToggle && el.testToggle.addEventListener("change", (e)=> setTestMode(e.target.checked));
+  // hurtigknapper
+  wireQuickToggles();
 }
 
 function init(){
   initMap();
   initUI();
+  // startvisning
+  showView('nearby');
   renderCollection();
   renderDiplomas();
   renderGallery();
