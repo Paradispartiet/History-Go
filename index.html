@@ -7,22 +7,23 @@
 
   <!-- PWA -->
   <link rel="manifest" href="manifest.json" />
-  <meta name="theme-color" content="#1976d2" />
+  <meta name="theme-color" content="#0d1b2a" />
 
   <!-- Leaflet (kart) -->
   <link
     rel="stylesheet"
     href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha256-p4nXA0JbHlN+hmNHzzRCf9tD/mizyoHS5obTRR9BMY="
+    integrity="sha256-p4NxAoJBhIINnHhmNHzRCf9t0/mIzyoHS5obTRR9BMY="
     crossorigin=""
   />
   <script
     src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    integrity="sha256-20nQCchB9co0qIjJZRQuk2/Z9W+NkivyxNV11vTlZBo="
+    integrity="sha256-20nQccNb9co0qjlJZRGuk2/29VM+NkivyNV11vT1ZBo="
     crossorigin=""
   ></script>
 
-  <link rel="stylesheet" href="theme.css?v=4" />
+  <!-- Stil -->
+  <link rel="stylesheet" href="theme.css?v=sheet1" />
 </head>
 <body>
 
@@ -32,39 +33,40 @@
   <!-- Toast -->
   <div id="toast">Låst opp ✅</div>
 
-  <!-- Skyvbart panel over kartet (alt innholdet) -->
-  <div id="panel" class="panel">
-    <div id="panelGrab" class="grabber" aria-label="Dra for å vise/skjule"></div>
+  <!-- Sheet/panel over kartet -->
+  <main id="sheet" aria-live="polite">
+    <div class="handle" aria-hidden="true"></div>
 
-    <main>
-      <!-- Nærmest nå (viser maks 2) -->
-      <section class="section">
-        <div class="title">Severdigheter i nærheten</div>
-        <div id="status" class="muted">Henter posisjon…</div>
-        <div id="list"></div>
-      </section>
+    <!-- Nærmest nå -->
+    <section class="section">
+      <div class="title">Severdigheter i nærheten</div>
+      <div id="status" class="muted">Henter posisjon…</div>
+      <div id="list"></div>
+      <div class="row center" style="margin-top:10px">
+        <button id="btnMore" class="btn ghost" style="display:none">Vis flere</button>
+      </div>
+    </section>
 
-      <!-- Samlingen -->
-      <section class="section">
-        <div class="title">Samlingen min (<span id="count">0</span>)</div>
-        <div id="collection" class="grid"></div>
-      </section>
+    <!-- Samling -->
+    <section class="section">
+      <div class="title">Samlingen min (<span id="count">0</span>)</div>
+      <div id="collection" class="grid"></div>
+    </section>
 
-      <!-- Diplomer -->
-      <section class="section">
-        <div class="title">Diplomer</div>
-        <div id="diplomas" class="grid"></div>
-      </section>
+    <!-- Diplomer -->
+    <section class="section">
+      <div class="title">Diplomer</div>
+      <div id="diplomas" class="grid"></div>
+    </section>
 
-      <!-- Galleri (personer) -->
-      <section class="section">
-        <div class="title">Galleri (personer)</div>
-        <div id="gallery" class="grid"></div>
-      </section>
-    </main>
-  </div>
+    <!-- Galleri -->
+    <section class="section">
+      <div class="title">Galleri (personer)</div>
+      <div id="gallery"></div>
+    </section>
+  </main>
 
-  <script src="app.js?v=4"></script>
+  <script src="app.js?v=sheet1"></script>
   <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('./sw.js').catch(()=>{});
