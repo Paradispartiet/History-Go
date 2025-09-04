@@ -1,5 +1,5 @@
 // ==============================
-// History Go – app.js (full)
+// History Go – app.js (steder + diplomer + personer)
 // ==============================
 
 // Last steder og personer fra JSON
@@ -16,9 +16,9 @@ Promise.all([
 });
 
 // --- LocalStorage state ---
-const visited        = JSON.parse(localStorage.getItem("visited_places") || "{}");           // merker (steder)
-const diplomas       = JSON.parse(localStorage.getItem("diplomas_by_category") || "{}");     // diplomer per kategori
-const peopleCollected= JSON.parse(localStorage.getItem("people_collected") || "{}");         // galleri (personer)
+const visited         = JSON.parse(localStorage.getItem("visited_places") || "{}");           // merker (steder)
+const diplomas        = JSON.parse(localStorage.getItem("diplomas_by_category") || "{}");     // diplomer per kategori
+const peopleCollected = JSON.parse(localStorage.getItem("people_collected") || "{}");         // galleri (personer)
 
 function saveVisited()   { localStorage.setItem("visited_places", JSON.stringify(visited)); renderCollection(); }
 function saveDiplomas()  { localStorage.setItem("diplomas_by_category", JSON.stringify(diplomas)); }
@@ -133,7 +133,7 @@ function renderDiplomas(){
 }
 
 function renderGallery(){
-  if (!elGallery) return; // hvis du ikke har lagt til seksjonen ennå
+  if (!elGallery) return; // hvis ikke seksjonen finnes ennå
   const got = PEOPLE.filter(p => peopleCollected[p.id]);
   elGallery.innerHTML = got.length
     ? got.map(p => `<div class="badge">${p.name}</div>`).join("")
