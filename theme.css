@@ -1,4 +1,4 @@
-/* === History Go – tema (kart + trekkbart panel) === */
+/* === History Go – tema (kart + skyvbart panel) === */
 
 /* Farger */
 :root{
@@ -27,17 +27,17 @@ body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-ser
   font-weight:800;display:none;z-index:9
 }
 
-/* Trekkbart panel (ark) */
+/* Skyvbart panel (ark) */
 .panel{
-  --panel-h: 78vh; /* start-høyde (juster fritt) */
+  --panel-h: 78vh; /* start-høyde */
   position:fixed;left:0;right:0;bottom:0;z-index:2;
   height:var(--panel-h);
   overflow:auto;
   border-radius:18px 18px 0 0;
-  background:rgba(17,24,39,0.72); /* mørk, men ikke sort */
-  backdrop-filter:blur(8px) saturate(110%);
-  -webkit-backdrop-filter:blur(8px) saturate(110%);
-  box-shadow:0 -6px 30px rgba(0,0,0,.40);
+  background:rgba(17,24,39,0.68);     /* mørk, men ikke svart */
+  backdrop-filter: blur(6px) saturate(110%); /* lett blur (ikke for mørkt) */
+  -webkit-backdrop-filter: blur(6px) saturate(110%);
+  box-shadow:0 -6px 30px rgba(0,0,0,.35);
 }
 .grabber{
   position:sticky;top:0;z-index:3;
