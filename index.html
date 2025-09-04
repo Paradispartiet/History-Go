@@ -10,13 +10,15 @@
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
   <!-- Stil -->
-  <link rel="stylesheet" href="theme.css?v=BUILD_2025-09-04-22-30" />
+  <link rel="stylesheet" href="theme.css" />
 </head>
 <body>
-  <!-- REQUIRED IDS: map, toast, testToggle, status, list, collection, count, diplomas, gallery -->
+  <!-- REQUIRED IDS: map, toast, mapExit, mapToggle, testToggle, status, list, collection, count, diplomas, gallery -->
 
   <!-- Kart i bakgrunnen -->
   <div id="map"></div>
+  <!-- Tilbake fra kartmodus -->
+  <button id="mapExit" class="map-exit" type="button" aria-label="Tilbake">✕</button>
 
   <!-- Toast -->
   <div id="toast">Låst opp ✅</div>
@@ -24,7 +26,10 @@
   <!-- Topp (enkel) -->
   <header>
     <h1>History Go</h1>
-    <label class="test">Testmodus <input id="testToggle" type="checkbox" /></label>
+    <div style="display:flex;gap:8px;align-items:center">
+      <button id="mapToggle" class="link-btn" type="button">Kart</button>
+      <label class="test">Testmodus <input id="testToggle" type="checkbox" /></label>
+    </div>
   </header>
 
   <!-- Innhold -->
@@ -51,12 +56,6 @@
     </section>
   </main>
 
-  <script src="app.js?v=BUILD_2025-09-04-22-30"></script>
-  <script>
-    const PROD = true; // sett false om du vil slå av SW i arbeid
-    if (PROD && 'serviceWorker' in navigator) {
-      navigator.serviceWorker.register('./sw.js?b=BUILD_2025-09-04-22-30').catch(()=>{});
-    }
-  </script>
+  <script src="app.js"></script>
 </body>
 </html>
