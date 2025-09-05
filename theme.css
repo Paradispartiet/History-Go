@@ -1,163 +1,120 @@
-/* ===== Global ===== */
-html,body{margin:0;padding:0;height:100%}
-body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:#0d1b2a;color:#eaf1f7}
+/* ====== GLOBALT ====== */
+html,body{margin:0;padding:0;height:100vh;background:#0d1b2a;color:#eef3f8;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;}
 *{box-sizing:border-box}
 
-/* ===== Map ===== */
+/* ====== KART ====== */
 #map{
-  position:fixed; inset:0; z-index:0;
-  filter: blur(2px) saturate(1.05) brightness(0.95);
-  opacity:.96;
+  position:fixed;inset:0;z-index:0;
+  filter:blur(2px) saturate(1.05) brightness(0.92);
+  opacity:.90;
+  transition:.25s ease;
 }
+.map-only #map{filter:none;opacity:1}
 
-/* ===== Toast ===== */
+/* ====== TOAST ====== */
 #toast{
-  position:fixed; left:50%; top:12px; transform:translateX(-50%);
-  background:#1976d2; color:#fff; padding:8px 12px;
-  border-radius:12px; display:none; z-index:10; font-weight:700;
-  box-shadow:0 4px 12px rgba(0,0,0,.3);
+  position:fixed;left:50%;top:12px;transform:translateX(-50%);
+  background:#1976d2;color:#fff;padding:8px 12px;border-radius:10px;font-weight:800;
+  display:none;z-index:20;
 }
 
-/* ===== Header (glass) ===== */
-.hdr{
-  position:sticky; top:0; z-index:5;
-  display:flex; align-items:center; justify-content:space-between; gap:12px;
-  padding:12px 14px;
-  background:rgba(13,27,42,.70);
-  backdrop-filter:blur(8px);
-  border-bottom:1px solid rgba(255,255,255,.08);
+/* ====== Header ====== */
+header{
+  position:relative;z-index:2;margin:8px 8px 0; padding:10px 14px;
+  background:rgba(13,27,42,.70); backdrop-filter:blur(6px);
+  border:1px solid #1a2b3c;border-radius:14px;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
 }
-.brand{font-weight:900;letter-spacing:.2px}
-.hdr-tabs{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
-.hdr-tools{display:flex;align-items:center;gap:10px}
-.test{display:flex;align-items:center;gap:6px;opacity:.9}
+h1{margin:0;font-size:18px;font-weight:900}
+.row{display:flex;align-items:center;gap:8px}
+.test{color:#cbd7e4;font-weight:600}
+.link-btn{
+  background:rgba(255,255,255,.06);border:1px solid #2b3d51;color:#e9f1fb;
+  padding:8px 12px;border-radius:999px;font-weight:800;cursor:pointer;
+}
 
-/* Pills / buttons */
-.pill{
-  border:0;cursor:pointer;padding:9px 14px;border-radius:999px;
-  font-weight:900;font-size:14px;background:#ffb703;color:#111;
-  box-shadow:0 2px 6px rgba(0,0,0,.15);
-  transition:transform .06s ease, box-shadow .2s ease;
+/* ====== Panel ====== */
+main{
+  position:relative;z-index:1;margin:8px;padding:12px;
+  background:rgba(13,27,42,.84); backdrop-filter:blur(8px);
+  border:1px solid #1b2e41;border-radius:16px;box-shadow:0 10px 24px rgba(0,0,0,.25);
 }
-.pill.small{padding:7px 12px;font-size:13px}
-.pill:hover{transform:translateY(-1px);box-shadow:0 4px 10px rgba(0,0,0,.18)}
-.ghost{
-  padding:9px 12px;border-radius:999px;font-weight:800;cursor:pointer;
-  border:1px solid rgba(255,255,255,.22);
-  background:rgba(255,255,255,.08);color:#e8eef7;
-}
-.ghost.small{padding:7px 10px;font-size:13px}
-
-/* ===== Panel ===== */
-main#panel{
-  position:relative; z-index:1; margin:12px;
-  background:rgba(13,27,42,.84);
-  backdrop-filter:blur(6px);
-  border:1px solid rgba(255,255,255,.10);
-  border-radius:16px; padding:12px;
-  box-shadow:0 10px 28px rgba(0,0,0,.22);
-}
-.section{margin-bottom:16px}
+.section{margin-bottom:18px}
 .title{
-  display:inline-block;background:#ffb703;color:#111;
-  padding:6px 12px;border-radius:12px;font-weight:900;margin-bottom:10px;
+  display:inline-block;background:#ffb703;color:#111;padding:8px 12px;border-radius:12px;
+  font-weight:900;cursor:pointer;user-select:none
 }
+.title:active{transform:scale(.98)}
 .muted{color:#b7c2cf}
 
-/* Kort */
+/* ====== Kort & badges ====== */
 .card{
-  background:rgba(27,38,59,.9);
-  border:1px solid #253547;border-radius:16px;
-  padding:14px;margin-bottom:12px;
-  box-shadow:0 6px 20px rgba(0,0,0,.25);
+  background:#162233;border:1px solid #223447;border-radius:16px;padding:14px;margin:10px 0;
 }
-.name{font-weight:900;font-size:16px}
+.name{font-weight:900}
 .meta{color:#b7c2cf;margin-top:4px}
-.desc{color:#e3e8ef;margin-top:8px}
+.desc{color:#e8eef7;margin-top:8px}
 .dist{color:#ffb703;font-weight:900;margin-top:8px}
 
-/* Chips / grids */
-.grid{display:flex;flex-wrap:wrap;gap:10px}
-.chips .chip{
-  background:rgba(25,118,210,.90); color:#fff;
-  padding:8px 12px;border-radius:14px;font-weight:700;white-space:nowrap;
-  box-shadow:0 2px 6px rgba(0,0,0,.2)
+.grid{display:flex;flex-wrap:wrap;gap:8px}
+.badge{
+  padding:8px 12px;border-radius:12px;font-weight:800;white-space:nowrap;cursor:pointer;
+  opacity:.88;border:1px solid rgba(255,255,255,.1)
 }
-.chips .chip.red{background:rgba(230,57,70,.90)}
-.chips .chip.yellow{background:rgba(255,183,3,.90);color:#111}
-.chips .chip.green{background:rgba(42,157,143,.90)}
-.one-line{
-  max-height:42px; overflow:hidden; position:relative;
-  -webkit-mask-image:linear-gradient(180deg,#000 70%,transparent 100%);
-  mask-image:linear-gradient(180deg,#000 70%,transparent 100%);
+.badge:hover{opacity:1}
+
+/* Samling: “+N flere” */
+.chip-more{
+  margin-top:8px; padding:8px 12px;border-radius:999px;border:1px solid #2b3d51;
+  background:rgba(255,255,255,.06);color:#e9f1fb;font-weight:800;cursor:pointer
 }
 
 /* Diplomer */
 .diploma{
-  min-width:240px;background:rgba(27,38,59,.9);
-  border:1px solid #253547;border-radius:16px;padding:14px;
-  margin-right:10px;margin-bottom:10px;position:relative;
-  box-shadow:0 6px 20px rgba(0,0,0,.25);
+  min-width:260px; background:#152235;border:1px solid #203349;border-radius:16px;padding:14px;
 }
-.diploma::before{
-  content:"";position:absolute;left:0;top:0;bottom:0;width:6px;border-radius:16px 0 0 16px;opacity:.95
-}
-.diploma.bronse::before{background:linear-gradient(180deg,#cd7f32,#b96c25)}
-.diploma.sølv::before{background:linear-gradient(180deg,#cfd6dd,#aeb7c2)}
-.diploma.gull::before{background:linear-gradient(180deg,#ffd700,#e0bc37)}
-.tier{font-weight:900;margin-left:6px}
-.progress{height:6px;background:rgba(255,255,255,.12);border-radius:999px;margin-top:8px;overflow:hidden}
-.progress > i{display:block;height:100%;background:#ffb703;border-radius:999px;width:0%}
+.diploma .name{font-weight:900}
+.diploma .bar{height:6px;border-radius:6px;background:#27374a;margin-top:8px;overflow:hidden}
+.diploma .bar > span{display:block;height:100%;background:#ffb703}
+.diploma .stripe{height:4px;border-radius:4px;margin:8px 0;opacity:.8}
+.diploma.bronse .stripe{background:linear-gradient(90deg,#b0713c,#e6b07a)}
+.diploma.sølv   .stripe{background:linear-gradient(90deg,#9aa3ad,#e4e7ea)}
+.diploma.gull   .stripe{background:linear-gradient(90deg,#d7b43e,#ffe27a)}
 
-/* Personkort */
-.person{
-  background:rgba(27,38,59,.9);border:1px solid #253547;border-radius:16px;
-  padding:14px;display:flex;align-items:center;gap:14px;
-  box-shadow:0 6px 20px rgba(0,0,0,.25)
+/* Personkort (placeholder / galleriet) */
+.person-card{
+  background:#162233;border:1px solid #223447;border-radius:16px;padding:12px;display:flex;gap:12px;align-items:center
 }
-.avatar{
-  width:46px;height:46px;border-radius:50%;background:#1976d2;color:#fff;
-  display:flex;align-items:center;justify-content:center;font-weight:900
-}
+.avatar{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;color:#fff;background:#1976d2}
 
-/* Info-card (bunn) */
-#infocard{
-  position:fixed;left:0;right:0;bottom:12px;z-index:6;display:none;
+/* ====== Kartmodus ====== */
+.map-exit{
+  position:fixed;top:12px;right:12px;z-index:30;display:none;
+  background:rgba(0,0,0,.6);color:#fff;border:0;border-radius:999px;width:40px;height:40px;
+  font-size:18px;line-height:40px;text-align:center;cursor:pointer
 }
-#infocard .info-inner{
-  margin:0 12px;background:rgba(13,27,42,.92);
-  border:1px solid rgba(255,255,255,.1);border-radius:16px;
-  padding:12px;box-shadow:0 10px 28px rgba(0,0,0,.35)
+.map-only header,.map-only main{display:none}
+.map-only .map-exit{display:block}
+
+/* ====== Info-kort ====== */
+.info-card{
+  position:fixed;left:0;right:0;bottom:-300px;z-index:25;
+  transition:transform .25s ease, bottom .25s ease; pointer-events:none;
 }
-.info-title{font-weight:900}
-.info-meta{color:#b7c2cf;margin-top:2px}
-.info-desc{color:#e3e8ef;margin-top:8px}
-.info-actions{display:flex;gap:8px;margin-top:10px}
-
-/* Samling-sheet */
-#sheet{position:fixed;inset:0;z-index:7;background:rgba(0,0,0,.35);display:none}
-#sheet[aria-hidden="false"]{display:block}
-.sheet-inner{
-  position:absolute;left:0;right:0;bottom:0;background:rgba(13,27,42,.96);
-  border-top:1px solid rgba(255,255,255,.12);border-radius:16px 16px 0 0;
-  padding:14px;max-height:60vh;overflow:auto
+.info-card[aria-hidden="false"]{bottom:0;pointer-events:auto}
+.info-inner{
+  margin:8px; padding:12px;border-radius:16px;background:rgba(13,27,42,.90);
+  border:1px solid #1b2e41; backdrop-filter:blur(8px);
 }
-.sheet-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;font-weight:900}
+.info-header{display:flex;align-items:center;justify-content:space-between}
+.ic-title{font-weight:900;font-size:16px}
+.ic-meta{color:#c4ced9}
+.ic-desc{margin:10px 0;color:#e9f1fb}
+.info-actions{display:flex;gap:8px}
+.btn{border:0;border-radius:12px;padding:10px 14px;font-weight:900;cursor:pointer}
+.primary{background:#1976d2;color:#fff}
 
-/* Modal (“Les mer”) */
-#modal{position:fixed;inset:0;z-index:8;background:rgba(0,0,0,.45);display:none}
-#modal[aria-hidden="false"]{display:block}
-.modal-inner{
-  position:absolute;left:12px;right:12px;top:8%;background:rgba(13,27,42,.96);
-  border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:14px;max-height:80vh;overflow:auto
-}
-.modal-head{display:flex;align-items:center;justify-content:space-between;font-weight:900;margin-bottom:8px}
-.modal-actions{margin-top:10px}
-
-/* Map-only */
-.map-only #panel,.map-only .hdr{display:none}
-.map-only #map{filter:none;opacity:1}
-
-/* Misc */
-a{color:#ffb703;text-decoration:none}
-a:hover{text-decoration:underline}
+/* ====== Kartmarkør-hitbox ====== */
+.leaflet-div-icon{background:transparent;border:0}
+.hitbox-36{width:36px;height:36px;border-radius:18px;display:flex;align-items:center;justify-content:center}
+.hit-dot{width:12px;height:12px;border-radius:6px;border:2px solid #111;box-shadow:0 0 0 4px rgba(0,0,0,.25)}
