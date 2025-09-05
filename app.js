@@ -1,36 +1,38 @@
 // ==============================
-// History Go – app.js
-// Kart-modus, auto-follow, info-kort, "Se flere", milde farger, ikoner
+// History Go – app.js (Merker erstatter Diplomer)
+// - Poeng fra sted (+1), person (+1), quiz (+1)
+// - Kart-modus, auto-follow, info-kort, “Se flere”
 // ==============================
 
-// ---- Konstanter ----
 const NEARBY_LIMIT = 2;
-const START_POS = { lat: 59.9139, lon: 10.7522, zoom: 13 }; // Oslo sentrum
-const DIPLOMA_THRESHOLDS = { bronse: 5, sølv: 8, gull: 12 };
+const START_POS = { lat: 59.9139, lon: 10.7522, zoom: 13 };
 
-// ---- Data ----
+// Data
 let PLACES = [];
 let PEOPLE = [];
+let BADGES = [];
 
 Promise.all([
   fetch('places.json').then(r => r.json()),
-  fetch('people.json').then(r => r.json()).catch(() => [])
-]).then(([places, people]) => {
+  fetch('people.json').then(r => r.json()).catch(() => []),
+  fetch('badges.json').then(r => r.json()).catch(() => [])
+]).then(([places, people, badges]) => {
   PLACES = places || [];
   PEOPLE = people || [];
+  BADGES = badges || [];
   init();
 });
 
-// ---- LocalStorage ----
+// Storage
 const visited         = JSON.parse(localStorage.getItem("visited_places") || "{}");
-const diplomas        = JSON.parse(localStorage.getItem("diplomas_by_category") || "{}");
 const peopleCollected = JSON.parse(localStorage.getItem("people_collected") || "{}");
+const badgeProgress   = JSON.parse(localStorage.getItem("badge_progress") || "{}"); // { [badgeId]: { points, tier } }
 
 function saveVisited(){  localStorage.setItem("visited_places", JSON.stringify(visited));  renderCollection(); }
-function saveDiplomas(){ localStorage.setItem("diplomas_by_category", JSON.stringify(diplomas)); }
 function savePeople(){   localStorage.setItem("people_collected", JSON.stringify(peopleCollected)); }
+function saveBadges(){   localStorage.setItem("badge_progress", JSON.stringify(badgeProgress)); }
 
-// ---- DOM ----
+// DOM
 const el = {
   map:        document.getElementById('map'),
   overlay:    document.getElementById('overlay'),
@@ -38,7 +40,7 @@ const el = {
   list:       document.getElementById('list'),
   collection: document.getElementById('collectionGrid'),
   count:      document.getElementById('count'),
-  diplomas:   document.getElementById('diplomas'),
+  badges:     document.getElementById('badges'),
   gallery:    document.getElementById('gallery'),
   toast:      document.getElementById('toast'),
   test:       document.getElementById('testToggle'),
@@ -56,17 +58,20 @@ const el = {
   infoDesc:   document.getElementById('infoDesc'),
   infoMore:   document.getElementById('infoMoreBtn'),
   infoUnlock: document.getElementById('infoUnlockBtn'),
-  infoClose:  document.getElementById('infoClose')
+  infoClose:  document.getElementById('infoClose'),
+  quizDlg:    document.getElementById('quizDialog'),
+  quizClose:  document.getElementById('quizClose'),
+  quizBody:   document.getElementById('quizBody'),
 };
 
-// ---- State ----
 let map, placeLayer, peopleLayer, userMarker;
 let isMapMode = false;
 let autoFollow = false;
 let currentPos = null;
 let lastClickedPlace = null;
+let lastQuizPerson = null;
 
-// ---- Utils ----
+// Utils
 function showToast(msg='OK'){
   if(!el.toast) return;
   el.toast.textContent = msg;
@@ -86,49 +91,71 @@ function pickColor(cat){
   if (c.includes('sport')) return '#2a9d8f';
   if (c.includes('natur')) return '#4caf50';
   if (c.includes('urban')) return '#3a7bd5';
-  return '#1976d2'; // historie/standard
+  return '#1976d2';
 }
-const tierRank = t => ({ bronse:1, sølv:2, gull:3 }[t] || 0);
-const tierFor  = n => (n>=DIPLOMA_THRESHOLDS.gull?'gull': n>=DIPLOMA_THRESHOLDS.sølv?'sølv': n>=DIPLOMA_THRESHOLDS.bronse?'bronse': null);
-const tierEmoji= t => t==='gull'?'🥇':t==='sølv'?'🥈':t==='bronse'?'🥉':'';
 
-// ---- Kart ----
+// Kategori -> merke-id (poengkonto)
+function badgeIdForCategory(cat){
+  const c=(cat||'').toLowerCase();
+  if (c.includes('historie')) return 'tidslinje';
+  if (c.includes('kultur'))   return 'kunst_kultur';
+  if (c.includes('sport'))    return 'sport';
+  if (c.includes('natur'))    return 'natur';
+  if (c.includes('urban'))    return 'by_arkitektur';
+  return 'oppdager'; // fallback
+}
+
+// Merke-hjelpere
+function findBadge(badgeId){ return BADGES.find(b => b.id === badgeId); }
+function evaluateTier(badgeId){
+  const b = findBadge(badgeId); if (!b) return null;
+  const pts = (badgeProgress[badgeId]?.points) || 0;
+  let unlocked = null;
+  for (const t of b.tiers){
+    if (pts >= t.threshold) unlocked = t.id;
+  }
+  return unlocked;
+}
+function awardBadgePoints(badgeId, pts=1){
+  if (!badgeProgress[badgeId]) badgeProgress[badgeId] = { points: 0, tier: null };
+  badgeProgress[badgeId].points += pts;
+  const prevTier = badgeProgress[badgeId].tier;
+  const newTier = evaluateTier(badgeId);
+  if (newTier && newTier !== prevTier){
+    badgeProgress[badgeId].tier = newTier;
+    const b = findBadge(badgeId);
+    const tierObj = b.tiers.find(t => t.id === newTier);
+    showToast(`${b?.icon||'⭐'} ${b?.name||'Merke'}: ${tierObj?.label||'Nytt nivå'}!`);
+  } else {
+    const b = findBadge(badgeId);
+    showToast(`+${pts} poeng i ${b?.name||'merke'}`);
+  }
+  saveBadges();
+  renderBadges();
+}
+
+// Kart
 function initMap(){
   map = L.map('map', { zoomControl:false, attributionControl:false }).setView([START_POS.lat, START_POS.lon], START_POS.zoom);
-
   L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; OpenStreetMap, &copy; CARTO', maxZoom: 19
   }).addTo(map);
-
   placeLayer  = L.layerGroup().addTo(map);
   peopleLayer = L.layerGroup().addTo(map);
-
   drawPlaces();
 }
-
 function addPlaceMarker(p){
   const color = pickColor(p.category);
-
-  // Visuell liten prikk
   const mark = L.circleMarker([p.lat, p.lon], {
     radius:7, weight:2, color:'#111', fillColor:color, fillOpacity:.9
   }).addTo(placeLayer);
-
-  // Usynlig stor hitbox
   const hit = L.circleMarker([p.lat, p.lon], {
     radius:20, weight:0, color:'transparent', fillColor:'transparent', fillOpacity:0, interactive:true
   }).addTo(placeLayer);
-
   const open = ()=> openInfoCard(p);
-  mark.on('click', open);
-  hit.on('click', open);
+  mark.on('click', open); hit.on('click', open);
 }
-
-function drawPlaces(){
-  placeLayer.clearLayers();
-  PLACES.forEach(addPlaceMarker);
-}
-
+function drawPlaces(){ placeLayer.clearLayers(); PLACES.forEach(addPlaceMarker); }
 function updateUserOnMap(pos){
   if (!map || !pos) return;
   if (!userMarker){
@@ -143,27 +170,99 @@ function updateUserOnMap(pos){
   }
 }
 
-// ---- Info-kort ----
+// Info-kort + personer/quiz
 function openInfoCard(place){
   lastClickedPlace = place;
   el.infoIcon.textContent  = place.icon || '📍';
   el.infoTitle.textContent = place.name;
   el.infoMeta.textContent  = `${place.category} • radius ${place.r||120} m`;
   el.infoDesc.textContent  = place.desc || '';
+
+  // Personer på stedet
+  const here = PEOPLE.filter(pr => pr.placeId === place.id);
+  const peopleBlock = here.length ? `
+    <div class="info-people">
+      <div class="info-people-title">Personer her</div>
+      <div class="info-people-list">
+        ${here.map(pr => `
+          <button class="person-chip" data-person="${pr.id}">
+            ${(pr.initials||pr.name.slice(0,2)).toUpperCase()} – ${pr.name}
+          </button>`).join('')}
+      </div>
+    </div>
+  ` : '';
+  el.infoDesc.innerHTML = (place.desc || '') + peopleBlock;
+
+  if (here.length){
+    el.infoDesc.querySelectorAll('.person-chip').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const pid = btn.getAttribute('data-person');
+        const person = PEOPLE.find(p=>p.id===pid);
+        if (person) openQuiz(person, place);
+      });
+    });
+  }
+
   el.infoCard.hidden = false;
 }
 function closeInfoCard(){ el.infoCard.hidden = true; }
 
-// ---- Nearby / Collection / Diplomas / Gallery ----
+function openQuiz(person, placeForContext){
+  lastQuizPerson = person;
+  const q = person.quiz;
+  if (!q || !Array.isArray(q.choices)) {
+    // Ingen quiz → samle person direkte (+ poeng for person)
+    awardPerson(person, placeForContext);
+    return;
+  }
+  el.quizTitle.textContent = `Quiz: ${person.name}`;
+  el.quizBody.innerHTML = `
+    <p class="quiz-q">${q.question}</p>
+    <div class="quiz-options">
+      ${q.choices.map((c, i)=>`
+        <button class="quiz-option" data-i="${i}">${c}</button>
+      `).join('')}
+    </div>
+    ${q.hint ? `<p class="quiz-hint muted">Hint: ${q.hint}</p>` : ``}
+  `;
+  el.quizBody.querySelectorAll('.quiz-option').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const idx = Number(btn.getAttribute('data-i'));
+      const correct = idx === q.answerIndex;
+      if (correct){
+        // Samle person (om ikke allerede)
+        awardPerson(person, placeForContext);
+        // Quiz-poeng → eksplisitt badgeId eller default "kunnskap"
+        const award = person.quiz?.award;
+        const badgeId = award?.badgeId || 'kunnskap';
+        const pts = award?.points || 1;
+        awardBadgePoints(badgeId, pts);
+        closeDialog(el.quizDlg);
+      } else {
+        showToast('Feil, prøv igjen ✍️');
+      }
+    });
+  });
+  openDialog(el.quizDlg);
+}
+
+// Åpne/lukk dialog
+function openDialog(dlg){ try{ dlg.showModal(); }catch{ dlg.setAttribute('open',''); } }
+function closeDialog(dlg){ try{ dlg.close(); }catch{ dlg.removeAttribute('open'); } }
+el.infoClose?.addEventListener('click', closeInfoCard);
+el.infoMore?.addEventListener('click', ()=>{
+  if (!lastClickedPlace) return;
+  alert(`${lastClickedPlace.name}\n\n${lastClickedPlace.desc||''}`);
+});
+el.quizClose?.addEventListener('click', ()=> closeDialog(el.quizDlg));
+
+// Nearby / collection / badges / gallery
 function renderNearby(pos){
   const withDist = PLACES.map(p=>{
     const d = pos ? Math.round(haversine(pos, {lat:p.lat,lon:p.lon})) : null;
     return {...p, d};
   }).sort((a,b)=>(a.d??1e12)-(b.d??1e12));
-
-  // Kun 2 i panelet
   const subset = withDist.slice(0, NEARBY_LIMIT);
-
   el.list.innerHTML = subset.map(p=>`
     <article class="card">
       <div>
@@ -174,11 +273,8 @@ function renderNearby(pos){
       </div>
     </article>
   `).join('');
-
-  // Fyll sheet-lista med resten
   fillNearbySheet(withDist.slice(NEARBY_LIMIT));
 }
-
 function fillNearbySheet(items){
   el.sheetList.innerHTML = items.length
     ? items.map(p=>`
@@ -193,10 +289,8 @@ function fillNearbySheet(items){
     `).join('')
     : `<div class="muted">Ingen flere i nærheten nå.</div>`;
 }
-
 function renderCollection(){
   const items = PLACES.filter(p=>visited[p.id]);
-  // Vis første 8 som chips
   const SHOW = 8;
   const head = items.slice(0, SHOW);
   const rest = items.length - head.length;
@@ -204,14 +298,12 @@ function renderCollection(){
   el.collection.innerHTML = head.length
     ? head.map(p=>`<span class="badge">${p.icon||'📍'} ${p.name}</span>`).join('')
     : `<div class="muted">Besøk et sted for å låse opp ditt første merke.</div>`;
-
   el.count.textContent = `(${items.length})`;
 
   if (rest > 0){
     el.expandColl.hidden = false;
     el.expandColl.textContent = `+${rest} flere`;
     el.expandColl.onclick = ()=>{
-      // Enkel utvidelse: legg til resten én gang
       el.collection.insertAdjacentHTML('beforeend',
         items.slice(SHOW).map(p=>`<span class="badge">${p.icon||'📍'} ${p.name}</span>`).join('')
       );
@@ -221,41 +313,27 @@ function renderCollection(){
     el.expandColl.hidden = true;
   }
 }
-
-function countVisitedByCategory(){
-  const counts = {};
-  for (const p of PLACES) if (visited[p.id]) counts[p.category] = (counts[p.category]||0)+1;
-  return counts;
-}
-
-function renderDiplomas(){
-  const counts = countVisitedByCategory();
-  const cats = [...new Set(PLACES.map(p=>p.category))];
-
-  el.diplomas.innerHTML = cats.map(cat=>{
-    const n = counts[cat]||0;
-    const t = diplomas[cat] || null;
-    const next =
-      n < DIPLOMA_THRESHOLDS.bronse ? `→ ${DIPLOMA_THRESHOLDS.bronse-n} til bronse` :
-      n < DIPLOMA_THRESHOLDS.sølv   ? `→ ${DIPLOMA_THRESHOLDS.sølv-n} til sølv`   :
-      n < DIPLOMA_THRESHOLDS.gull   ? `→ ${DIPLOMA_THRESHOLDS.gull-n} til gull`   : 'Maks!';
-    const tLabel = t ? `<span class="tier ${t}">${tierEmoji(t)} ${t.toUpperCase()}</span>` : '';
-    const tClass = t ? ` ${t}` : '';
-    const goal =
-      n < DIPLOMA_THRESHOLDS.bronse ? DIPLOMA_THRESHOLDS.bronse :
-      n < DIPLOMA_THRESHOLDS.sølv   ? DIPLOMA_THRESHOLDS.sølv   :
-      n < DIPLOMA_THRESHOLDS.gull   ? DIPLOMA_THRESHOLDS.gull   : n;
-    const pct = Math.max(0, Math.min(100, Math.round((n / goal) * 100)));
-
+function renderBadges(){
+  if (!el.badges) return;
+  el.badges.innerHTML = BADGES.map(b=>{
+    const pts  = badgeProgress[b.id]?.points || 0;
+    const tier = badgeProgress[b.id]?.tier || null;
+    const tierLabel = tier ? b.tiers.find(t=>t.id===tier)?.label : null;
+    const next = b.tiers.find(t => !tier || t.threshold > pts);
+    const goal = next ? next.threshold : pts || 1;
+    const pct  = Math.max(0, Math.min(100, Math.round((pts/goal)*100)));
     return `
-      <div class="diploma${tClass}">
-        <div class="name">${cat} ${tLabel}</div>
-        <div class="meta">${next}</div>
+      <div class="diploma">
+        <div class="name">${b.icon||'⭐'} ${b.name} ${tierLabel?`<span class="tier">${tierLabel}</span>`:''}</div>
+        <div class="meta">${b.desc}</div>
         <div class="progress"><span style="width:${pct}%;"></span></div>
-      </div>`;
+        <div class="muted" style="margin-top:6px">
+          ${next ? `→ ${goal-pts} poeng til ${next.label}` : `Maks nivå!`}
+        </div>
+      </div>
+    `;
   }).join('');
 }
-
 function renderGallery(){
   if (!el.gallery) return;
   const got = PEOPLE.filter(p=>peopleCollected[p.id]);
@@ -273,22 +351,34 @@ function renderGallery(){
     : `<div class="muted">Samle personer ved steder og events.</div>`;
 }
 
-// ---- Nærhet / tildeling ----
+// Tildeling: sted/person
 function awardBadge(place){
   if (visited[place.id]) return;
-  visited[place.id] = true; saveVisited();
+  visited[place.id] = true;
+  saveVisited();
   showToast(`Låst opp: ${place.icon||'📍'} ${place.name} ✅`);
 
-  const counts = countVisitedByCategory();
-  const newTier = tierFor(counts[place.category]||0);
-  const oldTier = diplomas[place.category] || null;
-  if (newTier && tierRank(newTier) > tierRank(oldTier)){
-    diplomas[place.category] = newTier; saveDiplomas();
-    showToast(`${tierEmoji(newTier)} ${place.category}: ${newTier.toUpperCase()}!`);
-    renderDiplomas();
+  // Merke-poeng for sted
+  const badgeId = badgeIdForCategory(place.category);
+  awardBadgePoints(badgeId, 1);
+}
+function awardPerson(person, placeForContext){
+  if (peopleCollected[person.id]) {
+    // fortsatt poeng for å bestå quiz kan skje separat
+    return;
   }
+  peopleCollected[person.id] = Date.now();
+  savePeople();
+  showToast(`Samlet: ${person.name} ✅`);
+
+  // Merke-poeng for person (knyttet til stedets kategori hvis vi har place)
+  const place = placeForContext || PLACES.find(pl=>pl.id === person.placeId);
+  const badgeId = person.quiz?.award?.badgeId || (place ? badgeIdForCategory(place.category) : 'kunnskap');
+  awardBadgePoints(badgeId, 1);
+  renderGallery();
 }
 
+// Radius-sjekk for sted
 function canUnlock(place, pos){
   if (!pos) return false;
   const d = Math.round(haversine(pos, {lat:place.lat, lon:place.lon}));
@@ -296,7 +386,7 @@ function canUnlock(place, pos){
   return d <= rEff;
 }
 
-// ---- Kartmodus / Auto-follow ----
+// Kartmodus / auto-follow
 function setMapMode(on){
   isMapMode = !!on;
   document.body.classList.toggle('map-only', isMapMode);
@@ -309,14 +399,13 @@ function setMapMode(on){
     closeInfoCard();
   }
 }
-
 function setAutoFollow(on){
   autoFollow = !!on;
   el.centerBtn.classList.toggle('active', autoFollow);
   if (autoFollow && currentPos) updateUserOnMap(currentPos);
 }
 
-// ---- Geolokasjon ----
+// Geolokasjon
 function startGeolocation(){
   if (!navigator.geolocation){
     el.status.textContent = 'Geolokasjon støttes ikke.';
@@ -335,12 +424,13 @@ function startGeolocation(){
   }, { enableHighAccuracy:true, timeout:15000, maximumAge:5000 });
 }
 
-// ---- Info-kort handling ----
-el.infoClose?.addEventListener('click', closeInfoCard);
-el.infoMore?.addEventListener('click', ()=>{
-  if (!lastClickedPlace) return;
-  alert(`${lastClickedPlace.name}\n\n${lastClickedPlace.desc||''}`);
-});
+// “Se flere i nærheten” sheet
+function openNearbySheet(){ openDialog(el.sheet); el.nearbyMore.setAttribute('aria-expanded','true'); }
+function closeNearbySheet(){ closeDialog(el.sheet); el.nearbyMore.setAttribute('aria-expanded','false'); }
+el.nearbyMore?.addEventListener('click', openNearbySheet);
+el.sheetClose?.addEventListener('click', closeNearbySheet);
+
+// Info-kort knapper
 el.infoUnlock?.addEventListener('click', ()=>{
   if (!lastClickedPlace) return;
   if (el.test?.checked || canUnlock(lastClickedPlace, currentPos)){
@@ -352,38 +442,22 @@ el.infoUnlock?.addEventListener('click', ()=>{
     showToast(`Du er ${d} m unna (trenger ≤ ${r} m)`);
   }
 });
-
-// ---- “Se flere i nærheten” sheet ----
-function openNearbySheet(){
-  try { el.sheet.showModal(); }
-  catch { el.sheet.setAttribute('open',''); } // enkel fallback
-}
-function closeNearbySheet(){
-  try { el.sheet.close(); }
-  catch { el.sheet.removeAttribute('open'); }
-}
-el.nearbyMore?.addEventListener('click', ()=>{
-  el.nearbyMore.setAttribute('aria-expanded','true');
-  openNearbySheet();
-});
-el.sheetClose?.addEventListener('click', ()=>{
-  el.nearbyMore.setAttribute('aria-expanded','false');
-  closeNearbySheet();
+el.infoMore?.addEventListener('click', ()=>{
+  if (!lastClickedPlace) return;
+  alert(`${lastClickedPlace.name}\n\n${lastClickedPlace.desc||''}`);
 });
 
-// ---- Init ----
+// Init
 function init(){
   initMap();
   renderCollection();
-  renderDiplomas();
+  renderBadges();
   renderGallery();
   startGeolocation();
 
-  // FAB & sentrer
   el.fabMap?.addEventListener('click', ()=> setMapMode(!isMapMode));
   el.centerBtn?.addEventListener('click', ()=> setAutoFollow(!autoFollow));
 
-  // Testmodus
   el.test?.addEventListener('change', e=>{
     if (e.target.checked){
       currentPos = { lat: START_POS.lat, lon: START_POS.lon };
