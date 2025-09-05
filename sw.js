@@ -1,5 +1,5 @@
 // sw.js — History Go (v4)
-const CACHE = "history-go-v6";
+const CACHE = "history-go-v7";
 const ASSETS = [
   "./",
   "./index.html",
