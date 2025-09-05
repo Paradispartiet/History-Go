@@ -6,125 +6,108 @@
   <title>History Go</title>
 
   <link rel="manifest" href="manifest.json" />
-  <meta name="theme-color" content="#1976d2" />
 
   <!-- Leaflet -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-  <link rel="stylesheet" href="theme.css?v=v1" />
+  <link rel="stylesheet" href="theme.css" />
 </head>
 <body>
+
   <!-- Kart i bakgrunnen -->
   <div id="map"></div>
-  <!-- Toast -->
-  <div id="toast">Låst opp ✅</div>
 
-  <!-- Topp -->
-  <header>
-    <h1>History Go</h1>
-    <div class="head-actions">
-      <label class="test">Testmodus <input id="testToggle" type="checkbox" /></label>
-      <button id="btnMap" class="link-btn" type="button">Se kart</button>
+  <!-- Toast -->
+  <div id="toast" role="status" aria-live="polite"></div>
+
+  <!-- Glass-header -->
+  <header class="hdr">
+    <div class="brand">History Go</div>
+
+    <nav class="hdr-tabs">
+      <button class="pill" data-scroll="#nearby">Steder i nærheten</button>
+      <button class="pill" data-scroll="#collectionSec">Dine steder</button>
+      <button class="pill" data-scroll="#diplomasSec">Diplomer</button>
+      <button class="pill" data-scroll="#peopleSec">Folk</button>
+    </nav>
+
+    <div class="hdr-tools">
+      <label class="test">
+        <span>Testmodus</span>
+        <input id="testToggle" type="checkbox" />
+      </label>
+      <button id="mapToggle" class="ghost">Se kart</button>
     </div>
   </header>
 
-  <!-- Innholdspanel -->
-  <main>
-    <section class="section">
+  <!-- Panel foran kartet -->
+  <main id="panel">
+    <!-- Nærmest nå -->
+    <section id="nearby" class="section">
       <div class="title">Severdigheter i nærheten</div>
       <div id="status" class="muted">Henter posisjon…</div>
       <div id="list"></div>
     </section>
 
-    <section class="section">
+    <!-- Min samling (kompakt) -->
+    <section id="collectionSec" class="section">
       <div class="title">Min samling (<span id="count">0</span>)</div>
-      <div id="collection" class="grid"></div>
+      <div id="collection" class="grid chips one-line"></div>
+      <button id="moreCollection" class="ghost" style="display:none;margin-top:8px;"></button>
     </section>
 
-    <section class="section">
+    <!-- Diplomer -->
+    <section id="diplomasSec" class="section">
       <div class="title">Diplomer</div>
       <div id="diplomas" class="grid"></div>
     </section>
 
-    <section class="section">
+    <!-- Galleri (personer) -->
+    <section id="peopleSec" class="section">
       <div class="title">Galleri (personer)</div>
       <div id="gallery" class="grid"></div>
     </section>
   </main>
 
-  <!-- Kart-legend (fylles av JS) -->
-  <div id="mapLegend" class="map-legend" style="display:none"></div>
+  <!-- Info-kort (nederst, ved markør-klikk) -->
+  <aside id="infocard" aria-hidden="true">
+    <div class="info-inner">
+      <div class="info-title" id="infoTitle"></div>
+      <div class="info-meta" id="infoMeta"></div>
+      <div class="info-desc" id="infoDesc"></div>
+      <div class="info-actions">
+        <button id="infoMore" class="pill small">Les mer</button>
+        <button id="infoClose" class="ghost small">Lukk</button>
+      </div>
+    </div>
+  </aside>
 
-  <!-- Lukk kart (vises i kartmodus) -->
-  <button id="mapExit" class="map-exit" aria-label="Lukk kart" type="button">×</button>
+  <!-- Samling-sheet (viser alle badges) -->
+  <div id="sheet" aria-hidden="true">
+    <div class="sheet-inner" role="dialog" aria-labelledby="sheetTitle">
+      <div class="sheet-head">
+        <div id="sheetTitle">Hele samlingen</div>
+        <button id="sheetClose" class="ghost small">Lukk</button>
+      </div>
+      <div id="sheetBody" class="grid chips"></div>
+    </div>
+  </div>
 
-  <script src="app.js?v=v1"></script>
-  <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('./sw.js').catch(()=>{});
-    }
-  </script>
+  <!-- Modal for “Les mer” -->
+  <div id="modal" aria-hidden="true">
+    <div class="modal-inner" role="dialog" aria-labelledby="modalTitle">
+      <div class="modal-head">
+        <div id="modalTitle"></div>
+        <button id="modalClose" class="ghost small">Lukk</button>
+      </div>
+      <div id="modalBody"></div>
+      <div class="modal-actions">
+        <a id="modalLink" class="pill small" target="_blank" rel="noopener">Kilde</a>
+      </div>
+    </div>
+  </div>
 
-  <!-- SVG SPRITE (ikonpakke) -->
-  <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
-    <symbol id="ico-pin" viewBox="0 0 24 24">
-      <path d="M12 22s7-7 7-12a7 7 0 1 0-14 0c0 5 7 12 7 12z" fill="currentColor"/>
-      <circle cx="12" cy="10" r="3" fill="#0d1b2a"/>
-    </symbol>
-    <!-- kategorier -->
-    <symbol id="ico-castle" viewBox="0 0 24 24">
-      <path d="M3 10h18v10H3z" fill="currentColor"/>
-      <path d="M5 10V6h2v2h2V6h2v2h2V6h2v2h2V6h2v4" fill="currentColor"/>
-      <rect x="7" y="14" width="3" height="6" fill="#0d1b2a"/>
-      <rect x="14" y="14" width="3" height="6" fill="#0d1b2a"/>
-    </symbol>
-    <symbol id="ico-theatre" viewBox="0 0 24 24">
-      <path d="M4 5h16v6a8 8 0 0 1-16 0V5z" fill="currentColor"/>
-      <circle cx="9" cy="9" r="1" fill="#0d1b2a"/><circle cx="15" cy="9" r="1" fill="#0d1b2a"/>
-      <path d="M8 12c1.5 1.2 3.5 1.2 5 0" stroke="#0d1b2a" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-    </symbol>
-    <symbol id="ico-ball" viewBox="0 0 24 24">
-      <circle cx="12" cy="12" r="9" fill="currentColor"/>
-      <path d="M12 3v18M3 12h18M6 6l12 12M6 18L18 6" stroke="#0d1b2a" stroke-width="1" opacity=".6"/>
-    </symbol>
-    <symbol id="ico-camera" viewBox="0 0 24 24">
-      <path d="M4 7h4l2-2h4l2 2h4v12H4z" fill="currentColor"/>
-      <circle cx="12" cy="13" r="4" fill="#0d1b2a"/>
-    </symbol>
-    <symbol id="ico-tree" viewBox="0 0 24 24">
-      <path d="M12 2l6 8h-4l4 6h-5l2 6H9l2-6H6l4-6H6l6-8z" fill="currentColor"/>
-    </symbol>
-    <!-- troféer / medaljer -->
-    <symbol id="ico-trophy" viewBox="0 0 24 24">
-      <path d="M7 3h10v3h3a4 4 0 0 1-4 4c-1.5 3-3.5 3-5 0a4 4 0 0 1-4-4h3V3z" fill="currentColor"/>
-      <rect x="9" y="14" width="6" height="2" fill="currentColor"/>
-      <rect x="8" y="16" width="8" height="2" fill="currentColor"/>
-    </symbol>
-    <symbol id="ico-medal-bronze" viewBox="0 0 24 24">
-      <circle cx="12" cy="12" r="7" fill="#cd7f32"/><path d="M7 3h4l1 3h-4zM13 3h4l-1 3h-4z" fill="#996037"/>
-    </symbol>
-    <symbol id="ico-medal-silver" viewBox="0 0 24 24">
-      <circle cx="12" cy="12" r="7" fill="#c0c0c0"/><path d="M7 3h4l1 3h-4zM13 3h4l-1 3h-4z" fill="#9a9a9a"/>
-    </symbol>
-    <symbol id="ico-medal-gold" viewBox="0 0 24 24">
-      <circle cx="12" cy="12" r="7" fill="#ffd700"/><path d="M7 3h4l1 3h-4zM13 3h4l-1 3h-4z" fill="#d4af37"/>
-    </symbol>
-    <!-- person/pills -->
-    <symbol id="ico-user" viewBox="0 0 24 24">
-      <circle cx="12" cy="8" r="4" fill="currentColor"/><path d="M4 20c2-4 14-4 16 0" fill="currentColor"/>
-    </symbol>
-    <symbol id="ico-quiz" viewBox="0 0 24 24">
-      <path d="M4 4h16v14H5l-1 2V4z" fill="currentColor"/>
-      <circle cx="12" cy="9" r="1.8" fill="#0d1b2a"/>
-      <path d="M10.5 12c0-2 3-1.5 3-3 0-.8-.7-1.5-1.5-1.5" stroke="#0d1b2a" stroke-width="1.2" fill="none"/>
-    </symbol>
-    <symbol id="ico-near" viewBox="0 0 24 24">
-      <use href="#ico-pin"/>
-    </symbol>
-    <symbol id="ico-soon" viewBox="0 0 24 24">
-      <circle cx="12" cy="12" r="8" fill="currentColor"/><path d="M12 7v5l3 3" stroke="#0d1b2a" stroke-width="2" fill="none" stroke-linecap="round"/>
-    </symbol>
-  </svg>
+  <script src="app.js"></script>
 </body>
 </html>
