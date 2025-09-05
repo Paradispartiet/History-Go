@@ -4,10 +4,9 @@
   --yellow:#ffb703; --yellow-85:#ffb703d9;
   --green:#2a9d8f;
   --bg-deep:#0d1b2a;
-  --panel:#12263aE6; /* litt lysere */
+  --panel:#12263aE6;
   --line:#1e3142; --line-soft:#23384c;
   --text:#ffffff; --muted:#b7c2cf;
-  --chip:#1b263b; --chip-line:#253547;
   --shadow:0 10px 28px rgba(0,0,0,.25);
   --radius:14px; --radius-sm:10px;
 }
@@ -20,7 +19,7 @@ body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;backgr
 #map{position:fixed; inset:0; z-index:0}
 #overlay{
   position:fixed; inset:0; z-index:1;
-  background:rgba(255,255,255,.10); /* lys og subtil */
+  background:rgba(255,255,255,.10);
   pointer-events:none;
 }
 
@@ -42,7 +41,7 @@ body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;backgr
 .title{ display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:8px }
 .title .title-text{
   padding:6px 10px; border-radius:999px;
-  font-weight:900; color:#111; background:var(--yellow-85); /* liten mild label */
+  font-weight:900; color:#111; background:var(--yellow-85);
 }
 .muted{ color:var(--muted) }
 
@@ -72,23 +71,14 @@ body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;backgr
   font-weight:800; white-space:nowrap; border:1px solid var(--line-soft);
 }
 
-/* ====== Diplomer ====== */
+/* ====== MERKER (tidl. diplomer) ====== */
 .diploma{
   min-width:260px; background:#172638; border:1px solid var(--line-soft);
   border-radius:var(--radius-sm); padding:12px;
-  box-shadow: inset 0 0 0 3px transparent; position:relative;
+  box-shadow: inset 4px 0 0 0 transparent;
 }
 .diploma .name{ display:flex; align-items:center; gap:8px }
 .tier{ font-weight:900; }
-.tier::before{ content:""; margin-right:4px }
-.tier.bronse::before{ content:"🥉" }
-.tier.sølv::before{ content:"🥈" }
-.tier.gull::before{ content:"🥇" }
-.diploma.bronse{ box-shadow: inset 4px 0 0 0 #cd7f3288 }
-.diploma.sølv{   box-shadow: inset 4px 0 0 0 #bbb }
-.diploma.gull{   box-shadow: inset 4px 0 0 0 #ffd70088 }
-
-/* Progresjon */
 .progress{ margin-top:8px; height:6px; background:#0f1e2e; border-radius:999px; overflow:hidden; border:1px solid var(--line) }
 .progress > span{ display:block; height:100%; background:linear-gradient(90deg, #ffb703, #ffe08a) }
 
@@ -119,7 +109,7 @@ body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;backgr
 #centerBtn[hidden]{ display:none }
 #centerBtn.active{ background:var(--green) }
 
-/* Map-only: skjul panel, fjern overlay */
+/* Map-only */
 body.map-only #panel{ display:none }
 body.map-only #overlay{ background:transparent }
 body.map-only #centerBtn{ display:block }
@@ -132,7 +122,6 @@ body.map-only #centerBtn{ display:block }
 }
 #infoCard[hidden]{ display:none }
 .info-header{ display:flex; align-items:center; gap:10px }
-.info-icon{ font-size:20px }
 .info-title{ font-weight:900 }
 .info-meta{ color:var(--muted); font-size:13px }
 .info-close{
@@ -144,17 +133,27 @@ body.map-only #centerBtn{ display:block }
 button.primary{ background:var(--blue); color:#fff; border:0; padding:10px 14px; border-radius:10px; font-weight:800; cursor:pointer }
 button.ghost{ background:transparent; color:#e8eef7; border:1px solid var(--line); padding:10px 14px; border-radius:10px; font-weight:800; cursor:pointer }
 
-/* ====== Dialog (Se flere) ====== */
-dialog#nearbySheet{
-  border:1px solid var(--line); border-radius:14px; padding:0; background:#12263a; color:#fff;
-  width:min(720px, 92vw);
-}
+/* ====== Dialog (Se flere / Quiz) ====== */
+dialog{ border:1px solid var(--line); border-radius:14px; padding:0; background:#12263a; color:#fff; width:min(720px, 92vw); }
 dialog::backdrop{ background:rgba(0,0,0,.35) }
-.sheet-header{
-  display:flex; align-items:center; justify-content:space-between; gap:8px;
-  padding:12px; border-bottom:1px solid var(--line);
+.sheet-header{ display:flex; align-items:center; justify-content:space-between; gap:8px; padding:12px; border-bottom:1px solid var(--line); }
+.sheet-close{ background:transparent; border:1px solid var(--line); color:#e8eef7; padding:6px 10px; border-radius:8px; cursor:pointer; }
+#nearbySheetList, .quiz-body{ padding:12px }
+
+/* Personer i info-kort */
+.info-people{ margin-top:10px }
+.info-people-title{ font-weight:900; margin-bottom:6px }
+.info-people-list{ display:flex; flex-wrap:wrap; gap:8px }
+.person-chip{
+  border:1px solid var(--line); color:#e8eef7; background:transparent;
+  padding:8px 10px; border-radius:999px; font-weight:800; cursor:pointer;
 }
-.sheet-close{
-  background:transparent; border:1px solid var(--line); color:#e8eef7; padding:6px 10px; border-radius:8px; cursor:pointer;
+
+/* Quiz */
+.quiz-q{ font-weight:900; margin:0 0 8px 0 }
+.quiz-options{ display:grid; gap:8px }
+.quiz-option{
+  text-align:left; border:1px solid var(--line); background:#172638; color:#e8eef7;
+  padding:10px 12px; border-radius:10px; font-weight:800; cursor:pointer;
 }
-#nearbySheetList{ padding:12px }
+.quiz-hint{ margin-top:8px; color:var(--muted) }
