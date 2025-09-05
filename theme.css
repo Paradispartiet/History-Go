@@ -1,120 +1,160 @@
-/* ====== GLOBALT ====== */
-html,body{margin:0;padding:0;height:100vh;background:#0d1b2a;color:#eef3f8;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;}
-*{box-sizing:border-box}
-
-/* ====== KART ====== */
-#map{
-  position:fixed;inset:0;z-index:0;
-  filter:blur(2px) saturate(1.05) brightness(0.92);
-  opacity:.90;
-  transition:.25s ease;
+/* ====== Variabler ====== */
+:root{
+  --blue:#1976d2; --blue-90:#1976d2e6;
+  --yellow:#ffb703; --yellow-85:#ffb703d9;
+  --green:#2a9d8f;
+  --bg-deep:#0d1b2a;
+  --panel:#12263aE6; /* litt lysere */
+  --line:#1e3142; --line-soft:#23384c;
+  --text:#ffffff; --muted:#b7c2cf;
+  --chip:#1b263b; --chip-line:#253547;
+  --shadow:0 10px 28px rgba(0,0,0,.25);
+  --radius:14px; --radius-sm:10px;
 }
-.map-only #map{filter:none;opacity:1}
 
-/* ====== TOAST ====== */
+/* ====== Base ====== */
+html,body{height:100%;margin:0}
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg-deep);color:var(--text)}
+
+/* ====== Kart ====== */
+#map{position:fixed; inset:0; z-index:0}
+#overlay{
+  position:fixed; inset:0; z-index:1;
+  background:rgba(255,255,255,.10); /* lys og subtil */
+  pointer-events:none;
+}
+
+/* ====== Toast ====== */
 #toast{
-  position:fixed;left:50%;top:12px;transform:translateX(-50%);
-  background:#1976d2;color:#fff;padding:8px 12px;border-radius:10px;font-weight:800;
-  display:none;z-index:20;
-}
-
-/* ====== Header ====== */
-header{
-  position:relative;z-index:2;margin:8px 8px 0; padding:10px 14px;
-  background:rgba(13,27,42,.70); backdrop-filter:blur(6px);
-  border:1px solid #1a2b3c;border-radius:14px;
-  display:flex;align-items:center;justify-content:space-between;gap:12px;
-}
-h1{margin:0;font-size:18px;font-weight:900}
-.row{display:flex;align-items:center;gap:8px}
-.test{color:#cbd7e4;font-weight:600}
-.link-btn{
-  background:rgba(255,255,255,.06);border:1px solid #2b3d51;color:#e9f1fb;
-  padding:8px 12px;border-radius:999px;font-weight:800;cursor:pointer;
+  position:fixed; left:50%; top:12px; transform:translateX(-50%);
+  background:var(--blue); color:#fff; padding:8px 12px; border-radius:8px;
+  display:none; z-index:5; font-weight:800; box-shadow:var(--shadow);
 }
 
 /* ====== Panel ====== */
-main{
-  position:relative;z-index:1;margin:8px;padding:12px;
-  background:rgba(13,27,42,.84); backdrop-filter:blur(8px);
-  border:1px solid #1b2e41;border-radius:16px;box-shadow:0 10px 24px rgba(0,0,0,.25);
+#panel{
+  position:relative; z-index:2; margin:12px;
+  background:var(--panel); border:1px solid var(--line);
+  border-radius:var(--radius); padding:12px; box-shadow:var(--shadow);
 }
-.section{margin-bottom:18px}
-.title{
-  display:inline-block;background:#ffb703;color:#111;padding:8px 12px;border-radius:12px;
-  font-weight:900;cursor:pointer;user-select:none
+.section{ margin-bottom:16px }
+.section.small{ opacity:.9; font-size:13px }
+.title{ display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:8px }
+.title .title-text{
+  padding:6px 10px; border-radius:999px;
+  font-weight:900; color:#111; background:var(--yellow-85); /* liten mild label */
 }
-.title:active{transform:scale(.98)}
-.muted{color:#b7c2cf}
+.muted{ color:var(--muted) }
 
-/* ====== Kort & badges ====== */
+/* ====== Lenke-knapper ====== */
+.link-btn{
+  background:transparent; border:1px solid var(--line);
+  color:#e8eef7; padding:6px 10px; border-radius:8px; font-weight:800; cursor:pointer;
+}
+
+/* ====== Kort ====== */
 .card{
-  background:#162233;border:1px solid #223447;border-radius:16px;padding:14px;margin:10px 0;
+  background:#172638; border:1px solid var(--line-soft);
+  border-radius:var(--radius-sm); padding:12px; margin-bottom:10px;
 }
-.name{font-weight:900}
-.meta{color:#b7c2cf;margin-top:4px}
-.desc{color:#e8eef7;margin-top:8px}
-.dist{color:#ffb703;font-weight:900;margin-top:8px}
+.name{ font-weight:900 }
+.meta{ color:var(--muted); margin-top:2px }
+.desc{ color:#e3e8ef; margin-top:6px }
+.dist{ color:var(--yellow); font-weight:900; margin-top:6px }
 
-.grid{display:flex;flex-wrap:wrap;gap:8px}
+/* ====== Grid/Badges ====== */
+.grid{ display:flex; flex-wrap:wrap; gap:8px }
+.grid.one-row{ flex-wrap:nowrap; overflow-x:auto; scrollbar-width:none }
+.grid.one-row::-webkit-scrollbar{ display:none }
+
 .badge{
-  padding:8px 12px;border-radius:12px;font-weight:800;white-space:nowrap;cursor:pointer;
-  opacity:.88;border:1px solid rgba(255,255,255,.1)
-}
-.badge:hover{opacity:1}
-
-/* Samling: “+N flere” */
-.chip-more{
-  margin-top:8px; padding:8px 12px;border-radius:999px;border:1px solid #2b3d51;
-  background:rgba(255,255,255,.06);color:#e9f1fb;font-weight:800;cursor:pointer
+  background:#1f3a57e0; color:#fff; padding:8px 10px; border-radius:999px;
+  font-weight:800; white-space:nowrap; border:1px solid var(--line-soft);
 }
 
-/* Diplomer */
+/* ====== Diplomer ====== */
 .diploma{
-  min-width:260px; background:#152235;border:1px solid #203349;border-radius:16px;padding:14px;
+  min-width:260px; background:#172638; border:1px solid var(--line-soft);
+  border-radius:var(--radius-sm); padding:12px;
+  box-shadow: inset 0 0 0 3px transparent; position:relative;
 }
-.diploma .name{font-weight:900}
-.diploma .bar{height:6px;border-radius:6px;background:#27374a;margin-top:8px;overflow:hidden}
-.diploma .bar > span{display:block;height:100%;background:#ffb703}
-.diploma .stripe{height:4px;border-radius:4px;margin:8px 0;opacity:.8}
-.diploma.bronse .stripe{background:linear-gradient(90deg,#b0713c,#e6b07a)}
-.diploma.sølv   .stripe{background:linear-gradient(90deg,#9aa3ad,#e4e7ea)}
-.diploma.gull   .stripe{background:linear-gradient(90deg,#d7b43e,#ffe27a)}
+.diploma .name{ display:flex; align-items:center; gap:8px }
+.tier{ font-weight:900; }
+.tier::before{ content:""; margin-right:4px }
+.tier.bronse::before{ content:"🥉" }
+.tier.sølv::before{ content:"🥈" }
+.tier.gull::before{ content:"🥇" }
+.diploma.bronse{ box-shadow: inset 4px 0 0 0 #cd7f3288 }
+.diploma.sølv{   box-shadow: inset 4px 0 0 0 #bbb }
+.diploma.gull{   box-shadow: inset 4px 0 0 0 #ffd70088 }
 
-/* Personkort (placeholder / galleriet) */
+/* Progresjon */
+.progress{ margin-top:8px; height:6px; background:#0f1e2e; border-radius:999px; overflow:hidden; border:1px solid var(--line) }
+.progress > span{ display:block; height:100%; background:linear-gradient(90deg, #ffb703, #ffe08a) }
+
+/* ====== Personkort ====== */
 .person-card{
-  background:#162233;border:1px solid #223447;border-radius:16px;padding:12px;display:flex;gap:12px;align-items:center
+  background:#172638; border:1px solid var(--line-soft); border-radius:var(--radius-sm);
+  padding:12px; display:flex; align-items:center; gap:12px;
 }
-.avatar{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;color:#fff;background:#1976d2}
+.avatar{
+  width:44px; height:44px; border-radius:50%; background:var(--blue); color:#fff;
+  display:flex; align-items:center; justify-content:center; font-weight:900; flex-shrink:0;
+}
+.person-btn{ margin-left:auto; border:0; border-radius:10px; padding:8px 12px; background:var(--yellow-85); color:#111; font-weight:900 }
 
-/* ====== Kartmodus ====== */
-.map-exit{
-  position:fixed;top:12px;right:12px;z-index:30;display:none;
-  background:rgba(0,0,0,.6);color:#fff;border:0;border-radius:999px;width:40px;height:40px;
-  font-size:18px;line-height:40px;text-align:center;cursor:pointer
+/* ====== FAB & Kartmodus ====== */
+#fabMap{
+  position:fixed; right:14px; bottom:18px; z-index:3;
+  width:56px; height:56px; border-radius:50%; border:0;
+  background:var(--blue); color:#fff; font-size:22px; font-weight:800;
+  box-shadow:var(--shadow); cursor:pointer;
 }
-.map-only header,.map-only main{display:none}
-.map-only .map-exit{display:block}
+#centerBtn{
+  position:fixed; left:14px; bottom:18px; z-index:3;
+  width:48px; height:48px; border-radius:50%; border:0;
+  background:#0d1b2a; color:#fff; font-size:20px; font-weight:800;
+  box-shadow:var(--shadow); cursor:pointer;
+}
+#centerBtn[hidden]{ display:none }
+#centerBtn.active{ background:var(--green) }
+
+/* Map-only: skjul panel, fjern overlay */
+body.map-only #panel{ display:none }
+body.map-only #overlay{ background:transparent }
+body.map-only #centerBtn{ display:block }
 
 /* ====== Info-kort ====== */
-.info-card{
-  position:fixed;left:0;right:0;bottom:-300px;z-index:25;
-  transition:transform .25s ease, bottom .25s ease; pointer-events:none;
+#infoCard{
+  position:fixed; left:12px; right:12px; bottom:12px; z-index:4;
+  background:#15263ae6; border:1px solid var(--line); border-radius:16px; padding:12px;
+  box-shadow:var(--shadow);
 }
-.info-card[aria-hidden="false"]{bottom:0;pointer-events:auto}
-.info-inner{
-  margin:8px; padding:12px;border-radius:16px;background:rgba(13,27,42,.90);
-  border:1px solid #1b2e41; backdrop-filter:blur(8px);
+#infoCard[hidden]{ display:none }
+.info-header{ display:flex; align-items:center; gap:10px }
+.info-icon{ font-size:20px }
+.info-title{ font-weight:900 }
+.info-meta{ color:var(--muted); font-size:13px }
+.info-close{
+  margin-left:auto; background:transparent; border:1px solid var(--line);
+  color:#e8eef7; width:32px; height:32px; border-radius:8px; cursor:pointer;
 }
-.info-header{display:flex;align-items:center;justify-content:space-between}
-.ic-title{font-weight:900;font-size:16px}
-.ic-meta{color:#c4ced9}
-.ic-desc{margin:10px 0;color:#e9f1fb}
-.info-actions{display:flex;gap:8px}
-.btn{border:0;border-radius:12px;padding:10px 14px;font-weight:900;cursor:pointer}
-.primary{background:#1976d2;color:#fff}
+.info-desc{ color:#e3e8ef; margin-top:8px }
+.info-actions{ display:flex; gap:8px; margin-top:10px }
+button.primary{ background:var(--blue); color:#fff; border:0; padding:10px 14px; border-radius:10px; font-weight:800; cursor:pointer }
+button.ghost{ background:transparent; color:#e8eef7; border:1px solid var(--line); padding:10px 14px; border-radius:10px; font-weight:800; cursor:pointer }
 
-/* ====== Kartmarkør-hitbox ====== */
-.leaflet-div-icon{background:transparent;border:0}
-.hitbox-36{width:36px;height:36px;border-radius:18px;display:flex;align-items:center;justify-content:center}
-.hit-dot{width:12px;height:12px;border-radius:6px;border:2px solid #111;box-shadow:0 0 0 4px rgba(0,0,0,.25)}
+/* ====== Dialog (Se flere) ====== */
+dialog#nearbySheet{
+  border:1px solid var(--line); border-radius:14px; padding:0; background:#12263a; color:#fff;
+  width:min(720px, 92vw);
+}
+dialog::backdrop{ background:rgba(0,0,0,.35) }
+.sheet-header{
+  display:flex; align-items:center; justify-content:space-between; gap:8px;
+  padding:12px; border-bottom:1px solid var(--line);
+}
+.sheet-close{
+  background:transparent; border:1px solid var(--line); color:#e8eef7; padding:6px 10px; border-radius:8px; cursor:pointer;
+}
+#nearbySheetList{ padding:12px }
