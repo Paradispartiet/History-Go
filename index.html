@@ -6,84 +6,99 @@
   <title>History Go</title>
 
   <!-- Leaflet -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <link href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" rel="stylesheet">
+  <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-  <!-- Stil -->
-  <link rel="stylesheet" href="theme.css" />
   <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#1976d2" />
+
+  <link rel="stylesheet" href="theme.css" />
 </head>
 <body>
-  <!-- Kart i bakgrunnen -->
-  <div id="map"></div>
-  <button id="mapExit" class="map-exit" aria-label="Lukk kart">✕</button>
+  <!-- Kart -->
+  <div id="map" aria-label="Kart"></div>
+  <div id="overlay" aria-hidden="true"></div>
 
   <!-- Toast -->
-  <div id="toast">OK</div>
+  <div id="toast" role="status" aria-live="polite">OK</div>
 
-  <!-- Topp -->
-  <header>
-    <h1>History Go</h1>
-    <div class="row">
-      <label class="test">Testmodus <input id="testToggle" type="checkbox"></label>
-      <button id="toggleMap" class="link-btn">Se kart</button>
-    </div>
-  </header>
-
-  <!-- Innholdspanel -->
-  <main id="panel">
+  <!-- Panel -->
+  <main id="panel" aria-label="Innhold">
     <!-- Nærmest nå -->
-    <section id="sec-nearby" class="section">
-      <div class="title" role="button" tabindex="0" data-target="sec-nearby">Severdigheter i nærheten</div>
+    <section class="section" id="nearbySection">
+      <div class="title">
+        <span class="title-text">Severdigheter i nærheten</span>
+        <button id="nearbyMoreBtn" class="link-btn" aria-expanded="false">Se flere</button>
+      </div>
       <div id="status" class="muted">Henter posisjon…</div>
       <div id="list"></div>
     </section>
 
     <!-- Min samling -->
-    <section id="sec-collection" class="section">
-      <div class="title" role="button" tabindex="0" data-target="sec-collection">
-        Min samling (<span id="count">0</span>)
+    <section class="section">
+      <div class="title">
+        <span class="title-text">Min samling</span>
+        <span class="muted" id="count">(0)</span>
       </div>
-      <div class="grid" id="collection"></div>
-      <button id="moreCollection" class="chip-more" style="display:none"></button>
+      <div id="collectionGrid" class="grid one-row"></div>
+      <button id="expandCollection" class="link-btn" hidden>+0 flere</button>
     </section>
 
     <!-- Diplomer -->
-    <section id="sec-diplomas" class="section">
-      <div class="title" role="button" tabindex="0" data-target="sec-diplomas">Diplomer</div>
+    <section class="section">
+      <div class="title"><span class="title-text">Diplomer</span></div>
       <div id="diplomas" class="grid"></div>
     </section>
 
-    <!-- Galleri -->
-    <section id="sec-gallery" class="section">
-      <div class="title" role="button" tabindex="0" data-target="sec-gallery">Galleri (personer)</div>
+    <!-- Galleri (personer) -->
+    <section class="section">
+      <div class="title"><span class="title-text">Galleri (personer)</span></div>
       <div id="gallery" class="grid"></div>
     </section>
+
+    <div class="section small">
+      <label class="test">
+        <input id="testToggle" type="checkbox" />
+        Testmodus (Oslo S)
+      </label>
+    </div>
   </main>
 
-  <!-- Info-kort (dukker opp når man klikker markør/kort/badge) -->
-  <div id="infoCard" class="info-card" aria-hidden="true">
-    <div class="info-inner">
-      <div class="info-header">
-        <div>
-          <div id="icTitle" class="ic-title">Tittel</div>
-          <div id="icMeta"  class="ic-meta">Kategori • Sted</div>
-        </div>
-        <button id="infoClose" class="link-btn">Lukk</button>
+  <!-- FAB: kart-modus -->
+  <button id="fabMap" aria-label="Se kart" title="Se kart">🗺️</button>
+  <!-- Sentrer (auto-follow) – vises kun i kart-modus -->
+  <button id="centerBtn" aria-label="Sentrer posisjon" title="Sentrer" hidden>◎</button>
+
+  <!-- Info-kort nederst -->
+  <div id="infoCard" hidden aria-live="polite">
+    <div class="info-header">
+      <div class="info-icon" id="infoIcon">📍</div>
+      <div class="info-titlewrap">
+        <div class="info-title" id="infoTitle">Tittel</div>
+        <div class="info-meta" id="infoMeta">Kategori • radius</div>
       </div>
-      <div id="icDesc" class="ic-desc">Beskrivelse her…</div>
-      <div class="info-actions">
-        <button id="icMore" class="btn primary">Les mer</button>
-      </div>
+      <button class="info-close" id="infoClose" aria-label="Lukk">✕</button>
+    </div>
+    <div class="info-desc" id="infoDesc">Beskrivelse</div>
+    <div class="info-actions">
+      <button id="infoMoreBtn" class="ghost">Les mer</button>
+      <button id="infoUnlockBtn" class="primary">Lås opp</button>
     </div>
   </div>
 
-  <!-- App -->
+  <!-- “Se flere i nærheten” sheet -->
+  <dialog id="nearbySheet" aria-label="Flere i nærheten">
+    <div class="sheet-header">
+      <strong>Flere i nærheten</strong>
+      <button id="nearbySheetClose" class="sheet-close" aria-label="Lukk">✕</button>
+    </div>
+    <div id="nearbySheetList"></div>
+  </dialog>
+
   <script src="app.js"></script>
   <script>
-    // SW (behold / bump cache i sw.js)
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('./sw.js');
+      navigator.serviceWorker.register('./sw.js').catch(()=>{});
     }
   </script>
 </body>
