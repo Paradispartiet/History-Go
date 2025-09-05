@@ -4,15 +4,19 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>History Go</title>
+
   <link rel="manifest" href="manifest.json" />
   <meta name="theme-color" content="#1976d2" />
+
   <!-- Leaflet -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <!-- Theme -->
+
+  <!-- Tema -->
   <link rel="stylesheet" href="theme.css" />
 </head>
 <body>
+
   <!-- KART -->
   <div id="map" aria-label="Kart"></div>
 
@@ -21,23 +25,17 @@
   <button id="btnCenter" class="map-center" aria-label="Sentrer meg">◎</button>
 
   <!-- TOAST -->
-  <div id="toast">OK</div>
+  <div id="toast" style="display:none;">Kunne ikke laste data.</div>
 
   <!-- HEADER (minimal) -->
   <header>
     <h1>History Go</h1>
     <button id="btnSeeMap" class="link-btn">Se kart</button>
+    <label class="test small">Testmodus <input id="testToggle" type="checkbox" /></label>
   </header>
 
   <!-- INNHOLD -->
   <main>
-    <!-- Status + test -->
-    <div class="section row between">
-      <div id="status" class="muted">Henter posisjon…</div>
-      <label class="test small">Testmodus <input id="testToggle" type="checkbox" /></label>
-    </div>
-
-    <!-- Steder i nærheten (viser 2) -->
     <section class="section">
       <div class="title underline underline-blue">Steder i nærheten</div>
       <div id="nearbyList"></div>
@@ -46,22 +44,21 @@
       </div>
     </section>
 
-    <!-- Min samling (én rad + +N flere) -->
     <section class="section">
-      <div class="title underline underline-gold">Min samling (<span id="collectionCount">0</span>)</div>
+      <div class="title underline underline-gold">
+        Min samling (<span id="collectionCount">0</span>)
+      </div>
       <div id="collectionGrid" class="grid"></div>
       <div class="row right">
-        <button id="btnMoreCollection" class="ghost-btn" style="display:none">+ flere</button>
+        <button id="btnMoreCollection" class="ghost-btn" style="display:none;">+ flere</button>
       </div>
     </section>
 
-    <!-- Merker -->
     <section class="section">
       <div class="title underline underline-soft">Merker</div>
       <div id="merits" class="grid"></div>
     </section>
 
-    <!-- Galleri (personer) -->
     <section class="section">
       <div class="title underline underline-red">Galleri (personer)</div>
       <div id="gallery"></div>
@@ -122,6 +119,7 @@
     </div>
   </div>
 
+  <!-- Scripts -->
   <script src="app.js"></script>
   <script>
     if ('serviceWorker' in navigator) {
