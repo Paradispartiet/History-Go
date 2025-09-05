@@ -44,10 +44,10 @@
       <button id="expandCollection" class="link-btn" hidden>+0 flere</button>
     </section>
 
-    <!-- Diplomer -->
+    <!-- Merker (erstatter Diplomer) -->
     <section class="section">
-      <div class="title"><span class="title-text">Diplomer</span></div>
-      <div id="diplomas" class="grid"></div>
+      <div class="title"><span class="title-text">Merker</span></div>
+      <div id="badges" class="grid"></div>
     </section>
 
     <!-- Galleri (personer) -->
@@ -93,6 +93,15 @@
       <button id="nearbySheetClose" class="sheet-close" aria-label="Lukk">✕</button>
     </div>
     <div id="nearbySheetList"></div>
+  </dialog>
+
+  <!-- Quiz-dialog (for personer) -->
+  <dialog id="quizDialog" aria-label="Quiz">
+    <div class="sheet-header">
+      <strong id="quizTitle">Quiz</strong>
+      <button id="quizClose" class="sheet-close" aria-label="Lukk">✕</button>
+    </div>
+    <div id="quizBody" class="quiz-body"></div>
   </dialog>
 
   <script src="app.js"></script>
