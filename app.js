@@ -1,18 +1,15 @@
 // ==============================
-// History Go – app.js (v1)
-// Kart + "Se kart" + 2 nærmeste + mild palett + ikoner + diplomer + galleri
+// History Go – app.js (forside)
 // ==============================
 
-// ---- Konstanter ----
 const NEARBY_LIMIT = 2;
-const START_POS = { lat: 59.9139, lon: 10.7522, zoom: 13 }; // Oslo sentrum
-const DIPLOMA_THRESHOLDS = { bronse: 5, sølv: 8, gull: 12 };
+const START_POS = { lat: 59.9139, lon: 10.7522, zoom: 13 };
 
-// ---- Data ----
+// Data
 let PLACES = [];
 let PEOPLE = [];
 
-// ---- LocalStorage state ----
+// State / storage
 const visited         = JSON.parse(localStorage.getItem("visited_places") || "{}");
 const diplomas        = JSON.parse(localStorage.getItem("diplomas_by_category") || "{}");
 const peopleCollected = JSON.parse(localStorage.getItem("people_collected") || "{}");
@@ -21,281 +18,319 @@ function saveVisited(){  localStorage.setItem("visited_places", JSON.stringify(v
 function saveDiplomas(){ localStorage.setItem("diplomas_by_category", JSON.stringify(diplomas)); }
 function savePeople(){   localStorage.setItem("people_collected", JSON.stringify(peopleCollected)); }
 
-// ---- DOM ----
+// DOM
 const el = {
-  body:       document.body,
   map:        document.getElementById('map'),
+  toast:      document.getElementById('toast'),
   status:     document.getElementById('status'),
   list:       document.getElementById('list'),
   collection: document.getElementById('collection'),
   count:      document.getElementById('count'),
   diplomas:   document.getElementById('diplomas'),
   gallery:    document.getElementById('gallery'),
-  toast:      document.getElementById('toast'),
+
+  moreBtn:    document.getElementById('moreCollection'),
+  sheet:      document.getElementById('sheet'),
+  sheetBody:  document.getElementById('sheetBody'),
+  sheetClose: document.getElementById('sheetClose'),
+
+  infoCard:   document.getElementById('infocard'),
+  infoTitle:  document.getElementById('infoTitle'),
+  infoMeta:   document.getElementById('infoMeta'),
+  infoDesc:   document.getElementById('infoDesc'),
+  infoMore:   document.getElementById('infoMore'),
+  infoClose:  document.getElementById('infoClose'),
+
+  modal:      document.getElementById('modal'),
+  modalTitle: document.getElementById('modalTitle'),
+  modalBody:  document.getElementById('modalBody'),
+  modalLink:  document.getElementById('modalLink'),
+  modalClose: document.getElementById('modalClose'),
+
   test:       document.getElementById('testToggle'),
-  btnMap:     document.getElementById('btnMap'),
-  mapExit:    document.getElementById('mapExit'),
-  mapLegend:  document.getElementById('mapLegend'),
-  header:     document.querySelector('header')
+  mapToggle:  document.getElementById('mapToggle')
 };
 
-// ---- Hjelpere (ikoner/farger/diplom) ----
-function svgIdForCategory(cat){
-  const k=(cat||'').toLowerCase();
-  if (k.includes('kultur')) return 'ico-theatre';
-  if (k.includes('severd')) return 'ico-camera';
-  if (k.includes('sport'))  return 'ico-ball';
-  if (k.includes('natur'))  return 'ico-tree';
-  return 'ico-castle';
-}
-function colorForCategory(cat){
-  const k=(cat||'').toLowerCase();
-  if (k.includes('kultur')) return '#f06b6b';
-  if (k.includes('severd')) return '#f7c75c';
-  if (k.includes('sport'))  return '#81c784';
-  if (k.includes('natur'))  return '#4db6ac';
-  return '#5c8fd9'; // historie / default
-}
-function medalIdForTier(t){
-  return t==='gull' ? 'ico-medal-gold'
-       : t==='sølv' ? 'ico-medal-silver'
-       : t==='bronse' ? 'ico-medal-bronze'
-       : 'ico-trophy';
-}
+// Diplomer
+const DIPLOMA_THRESHOLDS = { bronse: 10, sølv: 25, gull: 50 };
 const tierRank = t => ({ bronse:1, sølv:2, gull:3 }[t] || 0);
-const tierFor  = n => (n>=DIPLOMA_THRESHOLDS.gull?'gull' : n>=DIPLOMA_THRESHOLDS.sølv?'sølv' : n>=DIPLOMA_THRESHOLDS.bronse?'bronse' : null);
+const tierFor  = n => (n>=DIPLOMA_THRESHOLDS.gull?'gull': n>=DIPLOMA_THRESHOLDS.sølv?'sølv': n>=DIPLOMA_THRESHOLDS.bronse?'bronse': null);
+const tierEmoji = t => t==='gull'?'🥇':t==='sølv'?'🥈':t==='bronse'?'🥉':'';
 
-// ---- Hjelpere (annet) ----
+// Utils
+function pickColor(cat){
+  const c=(cat||'').toLowerCase();
+  if (c.includes('kultur')) return '#e63946';
+  if (c.includes('sever'))  return '#ffb703';
+  if (c.includes('sport')||c.includes('natur')) return '#2a9d8f';
+  return '#1976d2';
+}
 function haversine(a,b){
-  const R=6371e3, toRad=d=>d*Math.PI/180;
+  const R=6371e3,toRad=d=>d*Math.PI/180;
   const dLat=toRad(b.lat-a.lat), dLon=toRad(b.lon-a.lon);
   const la1=toRad(a.lat), la2=toRad(b.lat);
   const x=Math.sin(dLat/2)**2 + Math.cos(la1)*Math.cos(la2)*Math.sin(dLon/2)**2;
   return R*2*Math.atan2(Math.sqrt(x), Math.sqrt(1-x));
 }
-function showToast(msg='OK'){
+function showToast(msg){
   if(!el.toast) return;
-  el.toast.textContent = msg;
-  el.toast.style.display='block';
-  setTimeout(()=> el.toast.style.display='none', 1400);
+  el.toast.textContent=msg; el.toast.style.display='block';
+  setTimeout(()=> el.toast.style.display='none',1400);
 }
 function countVisitedByCategory(){
-  const counts = {};
-  for (const p of PLACES) if (visited[p.id]) counts[p.category] = (counts[p.category]||0)+1;
+  const counts={};
+  for(const p of PLACES) if(visited[p.id]) counts[p.category]=(counts[p.category]||0)+1;
   return counts;
 }
 
-// ---- Leaflet-kart ----
+// Map (Leaflet)
 let MAP, userMarker;
-
-function makePlaceIcon(color){
-  return L.divIcon({
-    className: 'pin',
-    html: `<div class="pin-ring"></div><div class="pin-dot" style="background:${color}"></div>`,
-    iconSize: [44,44],
-    iconAnchor: [22,22],
-    popupAnchor: [0,-22]
-  });
-}
-
-function initMap() {
+function initMap(){
   MAP = L.map('map', { zoomControl:false, attributionControl:false })
-          .setView([START_POS.lat, START_POS.lon], START_POS.zoom);
+        .setView([START_POS.lat, START_POS.lon], START_POS.zoom);
 
   L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; OpenStreetMap, &copy; CARTO', maxZoom: 19
   }).addTo(MAP);
 
-  // Markører for steder (store, klikkvennlige)
-  PLACES.forEach(p=>{
-    const color = colorForCategory(p.category);
-    L.marker([p.lat, p.lon], { icon: makePlaceIcon(color) })
-      .addTo(MAP)
-      .bindPopup(`
-        <div style="min-width:220px">
-          <div style="display:flex;align-items:center;gap:8px;font-weight:900">
-            <svg class="ico" style="color:${color}"><use href="#${svgIdForCategory(p.category)}"/></svg>
-            ${p.name}
-          </div>
-          <div style="opacity:.8;margin:4px 0">${p.category||''}</div>
-          <div style="line-height:1.35">${p.desc||''}</div>
-        </div>
-      `);
-  });
-
-  buildLegend();
+  // Plasser markører med stor hitbox
+  drawPlaceMarkers();
 }
-
 function setUser(lat, lon){
-  if (!MAP) return;
-  if (!userMarker) {
-    userMarker = L.circleMarker([lat, lon], {
-      radius:8, weight:2, color:'#fff', fillColor:'#5c8fd9', fillOpacity:1
+  if(!MAP) return;
+  if(!userMarker){
+    userMarker = L.circleMarker([lat,lon], {
+      radius:8, weight:2, color:'#fff', fillColor:'#1976d2', fillOpacity:1
     }).addTo(MAP).bindPopup('Du er her');
-  } else {
-    userMarker.setLatLng([lat, lon]);
-  }
+  } else userMarker.setLatLng([lat,lon]);
 }
 
-function buildLegend(){
-  if (!el.mapLegend){
-    const div = document.createElement('div');
-    div.id = 'mapLegend';
-    div.className = 'map-legend';
-    document.body.appendChild(div);
-    el.mapLegend = div;
-  }
-  el.mapLegend.innerHTML = `
-    <div class="item"><svg class="ico" style="color:#5c8fd9"><use href="#ico-castle"/></svg>Historie</div>
-    <div class="item"><svg class="ico" style="color:#f06b6b"><use href="#ico-theatre"/></svg>Kultur</div>
-    <div class="item"><svg class="ico" style="color:#81c784"><use href="#ico-ball"/></svg>Sport</div>
-    <div class="item"><svg class="ico" style="color:#f7c75c"><use href="#ico-camera"/></svg>Severd.</div>
-    <div class="item"><svg class="ico" style="color:#4db6ac"><use href="#ico-tree"/></svg>Natur</div>
+// Place markers + hitbox + click -> info card
+function drawPlaceMarkers(){
+  if(!MAP) return;
+  PLACES.forEach(p=>{
+    // Synlig prikk
+    const dot = L.circleMarker([p.lat,p.lon], {
+      radius:7, weight:2, color:'#111', fillColor:pickColor(p.category), fillOpacity:.95
+    }).addTo(MAP);
+
+    // Usynlig hitbox (36px-ish)
+    const hit = L.circle([p.lat,p.lon], {
+      radius: 30, color:'#000', opacity:0, fillOpacity:0, interactive:true
+    }).addTo(MAP);
+
+    const open = ()=> openInfoCard(p);
+    dot.on('click', open);
+    hit.on('click', open);
+  });
+}
+
+// Info-card
+let currentPlace = null;
+function openInfoCard(p){
+  currentPlace = p;
+  el.infoTitle.textContent = p.name;
+  el.infoMeta.textContent  = `${p.category||''}`;
+  el.infoDesc.textContent  = p.desc || '';
+  el.infoCard.style.display = 'block';
+
+  el.infoMore.onclick = ()=>{
+    if(p.details){
+      openModal(p);
+    } else if(p.link){
+      window.open(p.link, '_blank', 'noopener');
+    } else {
+      showToast('Ingen mer info tilgjengelig.');
+    }
+  };
+}
+function closeInfoCard(){
+  el.infoCard.style.display='none';
+  currentPlace=null;
+}
+el.infoClose.addEventListener('click', closeInfoCard);
+
+// Modal
+function openModal(p){
+  el.modalTitle.textContent = p.name;
+  el.modalBody.innerHTML = `
+    <p class="muted" style="margin-top:0">${p.category||''}</p>
+    <p>${(p.details || p.desc || 'Ingen detaljert tekst tilgjengelig.')}</p>
   `;
-  el.mapLegend.style.display = 'flex';
+  if(p.link){
+    el.modalLink.style.display='inline-block';
+    el.modalLink.href = p.link;
+  } else {
+    el.modalLink.style.display='none';
+  }
+  el.modal.setAttribute('aria-hidden','false');
 }
+function closeModal(){ el.modal.setAttribute('aria-hidden','true'); }
+el.modalClose.addEventListener('click', closeModal);
+el.modal.addEventListener('click', (e)=>{ if(e.target===el.modal) closeModal(); });
 
-// ---- Kartmodus (Se kart / lukk) ----
-function openMap(){
-  document.body.classList.add('map-only');
-  setTimeout(()=> { if (MAP) MAP.invalidateSize(); }, 60);
+// Map-only toggle
+function setMapOnly(on){
+  document.body.classList.toggle('map-only', !!on);
+  if(el.mapToggle) el.mapToggle.textContent = on ? 'Skjul kart' : 'Se kart';
+  setTimeout(()=> MAP && MAP.invalidateSize(), 180);
 }
-function closeMap(){
-  document.body.classList.remove('map-only');
-  setTimeout(()=> { if (MAP) MAP.invalidateSize(); }, 60);
-}
+el.mapToggle.addEventListener('click', ()=> setMapOnly(!document.body.classList.contains('map-only')));
 
-// ---- Render ----
+// Nearby (2 stk)
 function renderNearby(pos){
   const withDist = PLACES.map(p=>{
-    const d = pos ? Math.round(haversine(pos, {lat:p.lat,lon:p.lon})) : null;
+    const d = pos ? Math.round(haversine(pos,{lat:p.lat,lon:p.lon})) : null;
     return {...p, d};
-  }).sort((a,b)=>(a.d??1e12)-(b.d??1e12)).slice(0, NEARBY_LIMIT);
+  }).sort((a,b)=>(a.d??1e12)-(b.d??1e12));
 
-  el.list.innerHTML = withDist.map(p=>`
+  const subset = withDist.slice(0, NEARBY_LIMIT);
+  el.list.innerHTML = subset.map(p=>`
     <article class="card">
       <div class="name">${p.name}</div>
-      <div class="meta">
-        <svg class="ico" style="color:${colorForCategory(p.category)}"><use href="#${svgIdForCategory(p.category)}"/></svg>
-        ${p.category||''} • Oslo
-      </div>
-      <p class="desc">${p.desc||''}</p>
-      <div class="dist">${p.d==null ? '' : (p.d<1000 ? `${p.d} m unna` : `${(p.d/1000).toFixed(1)} km unna`)}</div>
+      <div class="meta">${p.category||''}</div>
+      <div class="desc">${p.desc||''}</div>
+      <div class="dist">${p.d==null?'':(p.d<1000?`${p.d} m`:`${(p.d/1000).toFixed(1)} km`)} unna</div>
     </article>
   `).join('');
 }
 
+// Samling (1 linje + +N flere)
 function renderCollection(){
   const items = PLACES.filter(p=>visited[p.id]);
   el.collection.innerHTML = items.length
-    ? items.map(p=>`
-      <span class="badge ${badgeClass(p.category)}" style="${colorForCategory(p.category)==='#f7c75c'?'color:#111;':''}">
-        <svg class="ico"><use href="#${svgIdForCategory(p.category)}"/></svg>
-        ${p.name}
-      </span>`).join('')
+    ? items.map(p=>`<span class="chip ${chipClass(p.category)}">${p.name}</span>`).join('')
     : `<div class="muted">Besøk et sted for å låse opp ditt første merke.</div>`;
-  el.count.textContent = items.length;
-}
 
+  el.count.textContent = items.length;
+
+  // +N
+  const overflow = Math.max(0, items.length - 6);
+  if(overflow>0){
+    el.moreBtn.style.display='inline-block';
+    el.moreBtn.textContent = `+${overflow} flere`;
+  } else el.moreBtn.style.display='none';
+
+  // Sheet-body (full liste)
+  el.sheetBody.innerHTML = items.map(p=>`<span class="chip ${chipClass(p.category)}">${p.name}</span>`).join('');
+}
+function chipClass(cat){
+  const c=(cat||'').toLowerCase();
+  if(c.includes('kultur')) return 'red';
+  if(c.includes('sever'))  return 'yellow';
+  if(c.includes('sport')||c.includes('natur')) return 'green';
+  return '';
+}
+el.moreBtn.addEventListener('click', ()=> el.sheet.setAttribute('aria-hidden','false'));
+el.sheetClose.addEventListener('click', ()=> el.sheet.setAttribute('aria-hidden','true'));
+el.sheet.addEventListener('click', (e)=>{ if(e.target===el.sheet) el.sheet.setAttribute('aria-hidden','true'); });
+
+// Diplomer
 function renderDiplomas(){
   const counts = countVisitedByCategory();
-  const cats = [...new Set(PLACES.map(p=>p.category))];
+  const allCats = [...new Set(PLACES.map(p=>p.category))];
 
-  el.diplomas.innerHTML = cats.map(cat=>{
-    const n = counts[cat]||0;
-    const t = tierFor(n);
+  el.diplomas.innerHTML = allCats.map(cat=>{
+    const n    = counts[cat] || 0;
+    const tier = diplomas[cat] || tierFor(n);
     const next =
       n < DIPLOMA_THRESHOLDS.bronse ? `→ ${DIPLOMA_THRESHOLDS.bronse-n} til bronse` :
       n < DIPLOMA_THRESHOLDS.sølv   ? `→ ${DIPLOMA_THRESHOLDS.sølv-n} til sølv`   :
       n < DIPLOMA_THRESHOLDS.gull   ? `→ ${DIPLOMA_THRESHOLDS.gull-n} til gull`   : 'Maks!';
-    const medalId = t ? medalIdForTier(t) : 'ico-trophy';
+
+    const tClass = tier ? ` ${tier}` : '';
+    const progMax =
+      n < DIPLOMA_THRESHOLDS.bronse ? DIPLOMA_THRESHOLDS.bronse :
+      n < DIPLOMA_THRESHOLDS.sølv   ? DIPLOMA_THRESHOLDS.sølv :
+      DIPLOMA_THRESHOLDS.gull;
+    const pct = Math.min(100, Math.round((n / progMax) * 100));
+
     return `
-      <div class="diploma${t?` ${t}`:''}">
-        <svg class="ico"><use href="#${medalId}"/></svg>
-        <div class="name">${cat}</div>
-        <div class="meta">Fullfør for å låse opp nivåer</div>
-        <p class="desc">${next}</p>
-      </div>`;
+      <div class="diploma${tClass}">
+        <div class="name">${cat} ${tier?`<span class="tier">${tier.toUpperCase()}</span>`:''}</div>
+        <div class="meta">Progresjon: ${n}/${progMax}</div>
+        <div class="progress"><i style="width:${pct}%"></i></div>
+        <div class="desc" style="margin-top:8px">${next}</div>
+      </div>
+    `;
   }).join('');
 }
 
+// Galleri
 function renderGallery(){
-  if (!el.gallery) return;
   const got = PEOPLE.filter(p=>peopleCollected[p.id]);
-  if (!got.length){
-    el.gallery.innerHTML = `<div class="muted">Samle personer ved events og høytider (f.eks. Julenissen i desember).</div>`;
-    return;
-  }
-  el.gallery.innerHTML = got.map(p=>{
-    const pills = (p.pills||[]).map(x=>{
-      const k=(x||'').toLowerCase();
-      const id = k==='person' ? 'ico-user'
-              : k==='quiz'   ? 'ico-quiz'
-              : (k==='nær'||k==='naer'||k==='near') ? 'ico-near'
-              : k==='snart'  ? 'ico-soon' : 'ico-pin';
-      return `<span><svg class="ico"><use href="#${id}"/></svg>${x}</span>`;
-    }).join('');
-    return `
-      <article class="person-card">
-        <div class="avatar">${(p.initials||p.name?.slice(0,2)||'??').toUpperCase()}</div>
-        <div class="info">
+  el.gallery.innerHTML = got.length
+    ? got.map(p=>`
+      <div class="person">
+        <div class="avatar">${(p.initials || (p.name||'')[0]).slice(0,2).toUpperCase()}</div>
+        <div style="flex:1">
           <div class="name">${p.name}</div>
           <div class="meta">${p.sub||p.desc||''}</div>
-          ${pills? `<div class="iconline">${pills}</div>`:''}
         </div>
-        <button class="person-btn">Samlet</button>
-      </article>`;
-  }).join('');
+        <button class="ghost small" disabled>Samlet</button>
+      </div>
+    `).join('')
+    : `<div class="muted">Samle personer ved events og høytider (f.eks. Julenissen i desember).</div>`;
 }
 
-// ---- Utdeling (eksempel) ----
+// Award (valgfritt auto i testmodus)
 function awardBadge(place){
-  if (visited[place.id]) return;
-  visited[place.id] = true; saveVisited();
+  if(visited[place.id]) return;
+  visited[place.id]=true; saveVisited();
   showToast(`Låst opp: ${place.name} ✅`);
 
-  const catCounts = countVisitedByCategory();
-  const newTier = tierFor(catCounts[place.category]||0);
+  const counts = countVisitedByCategory();
+  const newTier = tierFor(counts[place.category]||0);
   const oldTier = diplomas[place.category] || null;
-  if (newTier && tierRank(newTier) > tierRank(oldTier)){
-    diplomas[place.category] = newTier; saveDiplomas();
-    showToast(`${newTier.toUpperCase()} i ${place.category}!`);
+  if(newTier && tierRank(newTier) > tierRank(oldTier)){
+    diplomas[place.category]=newTier; saveDiplomas();
+    showToast(`${tierEmoji(newTier)} ${place.category}: ${newTier.toUpperCase()}!`);
     renderDiplomas();
   }
 }
 
-// ---- Geolokasjon ----
+// Geolokasjon & nearby
 let currentPos = null;
-
 function requestLocation(){
-  if (!navigator.geolocation){
-    el.status && (el.status.textContent = 'Geolokasjon støttes ikke.');
-    renderNearby(null);
-    return;
+  if(!navigator.geolocation){
+    el.status.textContent='Geolokasjon støttes ikke.'; renderNearby(null); return;
   }
-  el.status && (el.status.textContent = 'Henter posisjon…');
+  el.status.textContent='Henter posisjon…';
   navigator.geolocation.getCurrentPosition(g=>{
-    currentPos = { lat:g.coords.latitude, lon:g.coords.longitude };
-    el.status && (el.status.textContent = 'Posisjon funnet.');
+    currentPos = {lat:g.coords.latitude, lon:g.coords.longitude};
+    el.status.textContent='Posisjon funnet.';
     setUser(currentPos.lat, currentPos.lon);
     renderNearby(currentPos);
   }, _=>{
-    el.status && (el.status.textContent = 'Kunne ikke hente posisjon.');
-    renderNearby(null);
-  }, { enableHighAccuracy:true, timeout:8000, maximumAge:10000 });
+    el.status.textContent='Kunne ikke hente posisjon.'; renderNearby(null);
+  }, {enableHighAccuracy:true, timeout:8000, maximumAge:10000});
 }
 
-// ---- Utils ----
-function badgeClass(cat){
-  const k=(cat||'').toLowerCase();
-  if (k.includes('kultur')) return 'kultur';
-  if (k.includes('severd')) return 'severdigheter';
-  if (k.includes('sport'))  return 'sport';
-  if (k.includes('natur'))  return 'natur';
-  return 'historie';
-}
+// Header pille-knapper: smooth scroll
+document.querySelectorAll('.pill[data-scroll]').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    const sel = btn.getAttribute('data-scroll');
+    const target = document.querySelector(sel);
+    if(!target) return;
+    const top = target.getBoundingClientRect().top + window.scrollY - 72;
+    window.scrollTo({ top, behavior:'smooth' });
+  });
+});
 
-// ---- Init ----
+// Testmodus
+el.test.addEventListener('change', e=>{
+  if(e.target.checked){
+    currentPos = {lat:START_POS.lat, lon:START_POS.lon};
+    el.status.textContent='Testmodus: Oslo sentrum';
+    setUser(currentPos.lat, currentPos.lon);
+    renderNearby(currentPos);
+    showToast('Testmodus PÅ');
+  } else {
+    showToast('Testmodus AV'); requestLocation();
+  }
+});
+
+// Init
 function init(){
   initMap();
   renderCollection();
@@ -303,32 +338,29 @@ function init(){
   renderGallery();
   requestLocation();
 
-  // Testmodus
-  el.test?.addEventListener('change', e=>{
-    if (e.target.checked){
-      currentPos = { lat: START_POS.lat, lon: START_POS.lon };
-      el.status && (el.status.textContent = 'Testmodus: Oslo sentrum');
-      setUser(currentPos.lat, currentPos.lon);
-      renderNearby(currentPos);
-      showToast('Testmodus PÅ');
-    } else {
-      showToast('Testmodus AV');
-      requestLocation();
+  // Info/Modal close via ESC
+  document.addEventListener('keydown', (e)=>{
+    if(e.key==='Escape'){
+      if(el.modal.getAttribute('aria-hidden')==='false') closeModal();
+      if(el.sheet.getAttribute('aria-hidden')==='false') el.sheet.setAttribute('aria-hidden','true');
+      if(el.infoCard.style.display==='block') closeInfoCard();
     }
   });
 
-  // Kart-knapper
-  el.btnMap?.addEventListener('click', openMap);
-  el.mapExit?.addEventListener('click', closeMap);
-  document.addEventListener('keydown', (e)=>{ if (e.key === 'Escape') closeMap(); });
+  // Klikk utenfor infokort -> lukk
+  document.addEventListener('click', (e)=>{
+    if(el.infoCard.style.display==='block'){
+      const box = el.infoCard.querySelector('.info-inner');
+      if(box && !box.contains(e.target) && e.target !== el.infoCard) closeInfoCard();
+    }
+  });
 }
 
-// ---- Last data og start ----
 Promise.all([
-  fetch('places.json').then(r => r.json()),
-  fetch('people.json').then(r => r.json()).catch(() => [])
-]).then(([places, people]) => {
-  PLACES = places || [];
-  PEOPLE = people || [];
+  fetch('places.json').then(r=>r.json()),
+  fetch('people.json').then(r=>r.json()).catch(()=>[])
+]).then(([places, people])=>{
+  PLACES = places||[];
+  PEOPLE = people||[];
   init();
 });
