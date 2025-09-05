@@ -2,112 +2,107 @@
 <html lang="no">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>History Go</title>
 
+  <!-- PWA -->
+  <meta name="theme-color" content="#1976d2" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+
   <!-- Leaflet -->
-  <link href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-  <link rel="manifest" href="manifest.json" />
-  <meta name="theme-color" content="#1976d2" />
-
+  <!-- Styles -->
   <link rel="stylesheet" href="theme.css" />
 </head>
 <body>
-  <!-- Kart -->
-  <div id="map" aria-label="Kart"></div>
-  <div id="overlay" aria-hidden="true"></div>
+  <!-- MAP -->
+  <div id="map" aria-label="Kart over Oslo"></div>
+
+  <!-- Kart-knapper (vises kun i kart-modus) -->
+  <button id="mapExit"   class="fab fab-exit"   aria-label="Lukk kart">✕</button>
+  <button id="mapCenter" class="fab fab-center" aria-label="Sentrer på meg">🎯</button>
+  <button id="mapFollow" class="fab fab-follow" aria-pressed="false" aria-label="Følg meg">▶︎</button>
 
   <!-- Toast -->
-  <div id="toast" role="status" aria-live="polite">OK</div>
+  <div id="toast" role="status" aria-live="polite"></div>
 
-  <!-- Panel -->
-  <main id="panel" aria-label="Innhold">
-    <!-- Nærmest nå -->
-    <section class="section" id="nearbySection">
-      <div class="title">
-        <span class="title-text">Severdigheter i nærheten</span>
-        <button id="nearbyMoreBtn" class="link-btn" aria-expanded="false">Se flere</button>
-      </div>
-      <div id="status" class="muted">Henter posisjon…</div>
-      <div id="list"></div>
-    </section>
-
-    <!-- Min samling -->
-    <section class="section">
-      <div class="title">
-        <span class="title-text">Min samling</span>
-        <span class="muted" id="count">(0)</span>
-      </div>
-      <div id="collectionGrid" class="grid one-row"></div>
-      <button id="expandCollection" class="link-btn" hidden>+0 flere</button>
-    </section>
-
-    <!-- Merker (erstatter Diplomer) -->
-    <section class="section">
-      <div class="title"><span class="title-text">Merker</span></div>
-      <div id="badges" class="grid"></div>
-    </section>
-
-    <!-- Galleri (personer) -->
-    <section class="section">
-      <div class="title"><span class="title-text">Galleri (personer)</span></div>
-      <div id="gallery" class="grid"></div>
-    </section>
-
-    <div class="section small">
-      <label class="test">
+  <!-- HEADER -->
+  <header>
+    <h1>History Go</h1>
+    <div class="right">
+      <label class="toggle">
         <input id="testToggle" type="checkbox" />
-        Testmodus (Oslo S)
+        <span>Testmodus</span>
       </label>
+      <button id="seeMapBtn" class="pill" aria-label="Se kart">Se kart</button>
     </div>
+  </header>
+
+  <!-- PANEL -->
+  <main id="panel" role="main">
+    <!-- NÆRHET -->
+    <section class="section">
+      <h2 class="section-title"><span>Severdigheter i nærheten</span></h2>
+      <div id="status" class="muted">Henter posisjon…</div>
+      <div id="nearbyList"></div>
+      <div id="nearbyMoreWrap" class="more-wrap" hidden>
+        <button id="showMoreNearby" class="link-btn">Se flere i nærheten</button>
+      </div>
+    </section>
+
+    <!-- MIN SAMLING -->
+    <section class="section">
+      <h2 class="section-title"><span>Min samling <span id="collectionCount">0</span></span></h2>
+      <div id="collection" class="chips"></div>
+      <div id="moreCollectionWrap" hidden>
+        <button id="showMoreCollection" class="link-btn">+<span id="moreCollectionN"></span> flere</button>
+      </div>
+    </section>
+
+    <!-- MERKER (tidl. diplomer) -->
+    <section class="section">
+      <h2 class="section-title"><span>Merker</span></h2>
+      <div id="badges" class="badge-grid"></div>
+    </section>
+
+    <!-- GALLERI -->
+    <section class="section">
+      <h2 class="section-title"><span>Galleri (personer)</span></h2>
+      <div id="gallery" class="people-grid"></div>
+    </section>
   </main>
 
-  <!-- FAB: kart-modus -->
-  <button id="fabMap" aria-label="Se kart" title="Se kart">🗺️</button>
-  <!-- Sentrer (auto-follow) – vises kun i kart-modus -->
-  <button id="centerBtn" aria-label="Sentrer posisjon" title="Sentrer" hidden>◎</button>
-
-  <!-- Info-kort nederst -->
-  <div id="infoCard" hidden aria-live="polite">
-    <div class="info-header">
-      <div class="info-icon" id="infoIcon">📍</div>
-      <div class="info-titlewrap">
-        <div class="info-title" id="infoTitle">Tittel</div>
-        <div class="info-meta" id="infoMeta">Kategori • radius</div>
-      </div>
-      <button class="info-close" id="infoClose" aria-label="Lukk">✕</button>
+  <!-- INFO-KORT (nederst) -->
+  <aside id="placeCard" class="place-card" aria-live="polite" hidden>
+    <div class="pc-title" id="pcTitle"></div>
+    <div class="pc-meta"  id="pcMeta"></div>
+    <div class="pc-desc"  id="pcDesc"></div>
+    <div class="pc-actions">
+      <button id="pcRead"  class="pill pill-ghost">Les mer</button>
+      <button id="pcClose" class="pill">Lukk</button>
     </div>
-    <div class="info-desc" id="infoDesc">Beskrivelse</div>
-    <div class="info-actions">
-      <button id="infoMoreBtn" class="ghost">Les mer</button>
-      <button id="infoUnlockBtn" class="primary">Lås opp</button>
+  </aside>
+
+  <!-- SHEET: fler i nærheten -->
+  <div id="moreNearbySheet" class="sheet" hidden aria-modal="true" role="dialog">
+    <div class="sheet-inner">
+      <div class="sheet-handle"></div>
+      <h3>Flere i nærheten</h3>
+      <div id="moreNearbyList"></div>
+      <button id="closeMoreNearby" class="pill full">Lukk</button>
     </div>
   </div>
 
-  <!-- “Se flere i nærheten” sheet -->
-  <dialog id="nearbySheet" aria-label="Flere i nærheten">
-    <div class="sheet-header">
-      <strong>Flere i nærheten</strong>
-      <button id="nearbySheetClose" class="sheet-close" aria-label="Lukk">✕</button>
-    </div>
-    <div id="nearbySheetList"></div>
-  </dialog>
-
-  <!-- Quiz-dialog (for personer) -->
-  <dialog id="quizDialog" aria-label="Quiz">
-    <div class="sheet-header">
-      <strong id="quizTitle">Quiz</strong>
-      <button id="quizClose" class="sheet-close" aria-label="Lukk">✕</button>
-    </div>
-    <div id="quizBody" class="quiz-body"></div>
-  </dialog>
-
-  <script src="app.js"></script>
+  <script defer src="app.js"></script>
   <script>
+    // SW registrering
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('./sw.js').catch(()=>{});
+      navigator.serviceWorker.register('./sw.js');
     }
   </script>
 </body>
