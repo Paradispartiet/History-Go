@@ -5,109 +5,86 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>History Go</title>
 
-  <link rel="manifest" href="manifest.json" />
-
   <!-- Leaflet -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
+  <!-- Stil -->
   <link rel="stylesheet" href="theme.css" />
+  <link rel="manifest" href="manifest.json" />
 </head>
 <body>
-
   <!-- Kart i bakgrunnen -->
   <div id="map"></div>
+  <button id="mapExit" class="map-exit" aria-label="Lukk kart">✕</button>
 
   <!-- Toast -->
-  <div id="toast" role="status" aria-live="polite"></div>
+  <div id="toast">OK</div>
 
-  <!-- Glass-header -->
-  <header class="hdr">
-    <div class="brand">History Go</div>
-
-    <nav class="hdr-tabs">
-      <button class="pill" data-scroll="#nearby">Steder i nærheten</button>
-      <button class="pill" data-scroll="#collectionSec">Dine steder</button>
-      <button class="pill" data-scroll="#diplomasSec">Diplomer</button>
-      <button class="pill" data-scroll="#peopleSec">Folk</button>
-    </nav>
-
-    <div class="hdr-tools">
-      <label class="test">
-        <span>Testmodus</span>
-        <input id="testToggle" type="checkbox" />
-      </label>
-      <button id="mapToggle" class="ghost">Se kart</button>
+  <!-- Topp -->
+  <header>
+    <h1>History Go</h1>
+    <div class="row">
+      <label class="test">Testmodus <input id="testToggle" type="checkbox"></label>
+      <button id="toggleMap" class="link-btn">Se kart</button>
     </div>
   </header>
 
-  <!-- Panel foran kartet -->
+  <!-- Innholdspanel -->
   <main id="panel">
     <!-- Nærmest nå -->
-    <section id="nearby" class="section">
-      <div class="title">Severdigheter i nærheten</div>
+    <section id="sec-nearby" class="section">
+      <div class="title" role="button" tabindex="0" data-target="sec-nearby">Severdigheter i nærheten</div>
       <div id="status" class="muted">Henter posisjon…</div>
       <div id="list"></div>
     </section>
 
-    <!-- Min samling (kompakt) -->
-    <section id="collectionSec" class="section">
-      <div class="title">Min samling (<span id="count">0</span>)</div>
-      <div id="collection" class="grid chips one-line"></div>
-      <button id="moreCollection" class="ghost" style="display:none;margin-top:8px;"></button>
+    <!-- Min samling -->
+    <section id="sec-collection" class="section">
+      <div class="title" role="button" tabindex="0" data-target="sec-collection">
+        Min samling (<span id="count">0</span>)
+      </div>
+      <div class="grid" id="collection"></div>
+      <button id="moreCollection" class="chip-more" style="display:none"></button>
     </section>
 
     <!-- Diplomer -->
-    <section id="diplomasSec" class="section">
-      <div class="title">Diplomer</div>
+    <section id="sec-diplomas" class="section">
+      <div class="title" role="button" tabindex="0" data-target="sec-diplomas">Diplomer</div>
       <div id="diplomas" class="grid"></div>
     </section>
 
-    <!-- Galleri (personer) -->
-    <section id="peopleSec" class="section">
-      <div class="title">Galleri (personer)</div>
+    <!-- Galleri -->
+    <section id="sec-gallery" class="section">
+      <div class="title" role="button" tabindex="0" data-target="sec-gallery">Galleri (personer)</div>
       <div id="gallery" class="grid"></div>
     </section>
   </main>
 
-  <!-- Info-kort (nederst, ved markør-klikk) -->
-  <aside id="infocard" aria-hidden="true">
+  <!-- Info-kort (dukker opp når man klikker markør/kort/badge) -->
+  <div id="infoCard" class="info-card" aria-hidden="true">
     <div class="info-inner">
-      <div class="info-title" id="infoTitle"></div>
-      <div class="info-meta" id="infoMeta"></div>
-      <div class="info-desc" id="infoDesc"></div>
+      <div class="info-header">
+        <div>
+          <div id="icTitle" class="ic-title">Tittel</div>
+          <div id="icMeta"  class="ic-meta">Kategori • Sted</div>
+        </div>
+        <button id="infoClose" class="link-btn">Lukk</button>
+      </div>
+      <div id="icDesc" class="ic-desc">Beskrivelse her…</div>
       <div class="info-actions">
-        <button id="infoMore" class="pill small">Les mer</button>
-        <button id="infoClose" class="ghost small">Lukk</button>
-      </div>
-    </div>
-  </aside>
-
-  <!-- Samling-sheet (viser alle badges) -->
-  <div id="sheet" aria-hidden="true">
-    <div class="sheet-inner" role="dialog" aria-labelledby="sheetTitle">
-      <div class="sheet-head">
-        <div id="sheetTitle">Hele samlingen</div>
-        <button id="sheetClose" class="ghost small">Lukk</button>
-      </div>
-      <div id="sheetBody" class="grid chips"></div>
-    </div>
-  </div>
-
-  <!-- Modal for “Les mer” -->
-  <div id="modal" aria-hidden="true">
-    <div class="modal-inner" role="dialog" aria-labelledby="modalTitle">
-      <div class="modal-head">
-        <div id="modalTitle"></div>
-        <button id="modalClose" class="ghost small">Lukk</button>
-      </div>
-      <div id="modalBody"></div>
-      <div class="modal-actions">
-        <a id="modalLink" class="pill small" target="_blank" rel="noopener">Kilde</a>
+        <button id="icMore" class="btn primary">Les mer</button>
       </div>
     </div>
   </div>
 
+  <!-- App -->
   <script src="app.js"></script>
+  <script>
+    // SW (behold / bump cache i sw.js)
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./sw.js');
+    }
+  </script>
 </body>
 </html>
