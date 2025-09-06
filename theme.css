@@ -175,3 +175,32 @@ main{
   position:fixed; left:50%; top:12px; transform:translateX(-50%);
   background:#1976d2; color:#fff; padding:8px 12px; border-radius:10px; display:none; z-index:50; font-weight:800;
 }
+/* === Byoriginal badge på personmarkører === */
+.leaflet-marker-icon.person.byoriginal,
+.leaflet-interactive.person.byoriginal {
+  filter: drop-shadow(0 0 2px rgba(255,255,255,.45));
+}
+
+/* DivIcon-variant: liten diamant oppe til høyre */
+.person.byoriginal .badge,
+.byoriginal-badge {
+  position: absolute;
+  right: -2px;
+  top: -2px;
+  width: 10px;
+  height: 10px;
+  transform: rotate(45deg);
+  background: #ffffff;
+  opacity: .95;
+  border: 2px solid rgba(0,0,0,.35);
+  border-radius: 1px;
+  box-shadow: 0 0 2px rgba(0,0,0,.35);
+  pointer-events: none;
+}
+
+/* CircleMarker-variant: litt tykkere hvit ring */
+.leaflet-interactive.person.byoriginal {
+  stroke: #ffffff !important;
+  stroke-opacity: .95 !important;
+  stroke-width: 3.5px !important;
+}
