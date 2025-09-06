@@ -4,53 +4,46 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>History Go</title>
+
   <link rel="manifest" href="manifest.json" />
   <meta name="theme-color" content="#1976d2" />
 
   <!-- Leaflet -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
   <!-- Theme -->
   <link rel="stylesheet" href="theme.css" />
 </head>
 <body>
-  <!-- KART -->
+  <!-- KART (bakgrunn) -->
   <div id="map" aria-label="Kart"></div>
 
-  <!-- KART-KNAPPER (kun i kart-modus) -->
+  <!-- KART-KNAPPER (vises i kart-modus) -->
   <button id="btnExitMap" class="map-exit" aria-label="Tilbake">✕</button>
   <button id="btnCenter" class="map-center" aria-label="Sentrer meg">◎</button>
-  <button id="btnFollow" class="map-follow" aria-label="Auto-follow">➤</button>
 
   <!-- TOAST -->
-  <div id="toast" style="display:none;">OK</div>
+  <div id="toast" style="display:none">OK</div>
 
   <!-- HEADER (minimal) -->
   <header>
     <h1>History Go</h1>
-    <div class="header-actions">
-      <button id="btnSeeMap" class="pill-btn">
-        <span class="pill-ico">🗺️</span><span>Se kart</span>
-      </button>
+    <div class="row">
+      <label class="test small">Testmodus <input id="testToggle" type="checkbox" /></label>
+      <button id="btnSeeMap" class="link-btn">Se kart</button>
     </div>
   </header>
 
   <!-- INNHOLD -->
   <main>
-    <!-- Status + test -->
     <div class="section row between">
       <div id="status" class="muted">Henter posisjon…</div>
-      <label class="test small">
-        Testmodus <input id="testToggle" type="checkbox" />
-      </label>
     </div>
 
     <!-- Steder i nærheten (viser 2) -->
     <section class="section">
-      <div class="title underline underline-blue">
-        Steder i nærheten
-      </div>
+      <div class="title underline underline-blue">Steder i nærheten</div>
       <div id="nearbyList"></div>
       <div class="row right">
         <button id="btnSeeMoreNearby" class="ghost-btn">Se flere i nærheten</button>
@@ -59,10 +52,8 @@
 
     <!-- Min samling (én rad + +N flere) -->
     <section class="section">
-      <div class="title underline underline-gold">
-        Min samling (<span id="collectionCount">0</span>)
-      </div>
-      <div id="collectionGrid" class="grid chips-row"></div>
+      <div class="title underline underline-gold">Min samling (<span id="collectionCount">0</span>)</div>
+      <div id="collectionGrid" class="grid"></div>
       <div class="row right">
         <button id="btnMoreCollection" class="ghost-btn" style="display:none">+ flere</button>
       </div>
@@ -74,7 +65,7 @@
       <div id="merits" class="grid"></div>
     </section>
 
-    <!-- Galleri (viser kun personer du har samlet) -->
+    <!-- Galleri (kun personer du har samlet) -->
     <section class="section">
       <div class="title underline underline-red">Galleri (personer)</div>
       <div id="gallery"></div>
@@ -91,9 +82,13 @@
       <button id="pcClose" class="pc-close" aria-label="Lukk">✕</button>
     </div>
     <div id="pcDesc" class="pc-desc">Beskrivelse…</div>
+
+    <!-- Personer på stedet (quiz for å samle) -->
+    <div id="pcPeople" class="pc-people"></div>
+
     <div class="pc-actions">
       <button id="pcMore" class="ghost-btn">Les mer</button>
-      <button id="pcUnlock" class="primary-btn">Lås opp</button>
+      <button id="pcUnlock" class="primary-btn">Lås opp sted</button>
     </div>
   </div>
 
@@ -102,7 +97,7 @@
     <div class="sheet-card">
       <div class="sheet-head">
         <div class="sheet-title">Flere i nærheten</div>
-        <button data-close="#sheetNearby" class="sheet-close" aria-label="Lukk">✕</button>
+        <button data-close="#sheetNearby" class="sheet-close">✕</button>
       </div>
       <div id="sheetNearbyBody"></div>
     </div>
@@ -113,7 +108,7 @@
     <div class="sheet-card">
       <div class="sheet-head">
         <div class="sheet-title">Samlingen din</div>
-        <button data-close="#sheetCollection" class="sheet-close" aria-label="Lukk">✕</button>
+        <button data-close="#sheetCollection" class="sheet-close">✕</button>
       </div>
       <div id="sheetCollectionBody" class="grid"></div>
     </div>
@@ -121,7 +116,7 @@
 
   <!-- QUIZ MODAL -->
   <div id="quizModal" aria-hidden="true" role="dialog" aria-label="Quiz">
-    <div class="quiz-card" role="document">
+    <div class="quiz-card">
       <div class="quiz-head">
         <div class="quiz-title" id="quizTitle">Quiz</div>
         <button class="quiz-close" id="quizClose" aria-label="Lukk">✕</button>
@@ -130,7 +125,7 @@
         <div id="quizQuestion" class="quiz-q">…</div>
         <div id="quizChoices" class="quiz-choices"></div>
         <div id="quizProgress" class="quiz-progress"></div>
-        <div id="quizFeedback" class="quiz-feedback" aria-live="polite"></div>
+        <div id="quizFeedback" class="quiz-feedback"></div>
       </div>
     </div>
   </div>
