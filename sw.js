@@ -1,5 +1,5 @@
 // sw.js — History Go (v11)
-const CACHE = 'history-go-v11';
+const CACHE = 'history-go-v11.1';
 
 // Filer vi vil ha offline (samme origin)
 const ASSETS = [
