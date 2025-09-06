@@ -1,157 +1,177 @@
 /* ====== GLOBAL ====== */
-html, body { margin:0; padding:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; background:#0d1b2a; color:#fff; height:100vh; }
+html, body { margin:0; padding:0; height:100%; }
+body{
+  font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  background:#0d1b2a; color:#fff;
+}
 *{ box-sizing:border-box; }
 
-/* ====== KART (natt + mild blur) ====== */
+/* ====== KART ====== */
 #map{
   position:fixed; inset:0; z-index:0;
-  filter: blur(2px) saturate(1.05) brightness(0.95);
-  opacity:.96;
+  /* Lysere natt: mer detaljer synlig */
+  filter: blur(2px) brightness(0.98) contrast(1.06) saturate(1.06);
+  opacity:.97;
 }
 
-/* ====== TOAST ====== */
-#toast{
-  position:fixed; left:50%; top:12px; transform:translateX(-50%);
-  background:#1976d2; color:#fff; padding:8px 12px; border-radius:12px;
-  display:none; z-index:10; font-weight:800;
+/* Kart-knapper */
+.map-exit{
+  position:fixed; top:12px; right:12px; z-index:20; display:none;
+  background:#111; color:#fff; border:0; border-radius:999px; width:40px; height:40px;
+  font-size:18px; line-height:40px; text-align:center; cursor:pointer; opacity:.92;
 }
+.map-center{
+  position:fixed; bottom:16px; right:16px; z-index:20; display:none;
+  background:#111; color:#fff; border:0; border-radius:12px; width:44px; height:44px;
+  font-size:18px; line-height:44px; text-align:center; cursor:pointer; opacity:.92;
+}
+
+/* Map-only mode */
+.map-only header, .map-only main{ display:none; }
+.map-only #map{ filter:none; opacity:1; }
+.map-only .map-exit, .map-only .map-center{ display:block; }
 
 /* ====== Header ====== */
 header{
   position:relative; z-index:2;
-  background: rgba(13,27,42,.75);
+  background: rgba(13,27,42,.78);
   backdrop-filter: blur(6px);
-  border-bottom: 1px solid #152536;
+  border-bottom: 1px solid #1e3142;
   padding: 10px 14px;
   display:flex; align-items:center; justify-content:space-between;
-  border-radius:0 0 16px 16px;
 }
 h1{ margin:0; font-size:18px; font-weight:900; }
-.header-actions{ display:flex; align-items:center; gap:8px; }
-.test.small{ color:#d5dde6; font-size:12px; }
+.head-actions{ display:flex; gap:10px; align-items:center; }
 .link-btn{
   background:transparent; border:1px solid #2a3b4d; color:#e8eef7;
-  padding:8px 12px; border-radius:12px; font-weight:800; cursor:pointer;
+  padding:8px 12px; border-radius:999px; font-weight:800; cursor:pointer;
 }
+.test.small{ color:#b7c2cf; display:flex; align-items:center; gap:6px; }
 
 /* ====== Innholdspanel ====== */
 main{
   position:relative; z-index:1; margin:12px;
-  background: rgba(13,27,42,.86);
+  background: rgba(13,27,42,.88);
   backdrop-filter: blur(8px);
-  border:1px solid #1e3142; border-radius:18px; padding:14px;
-  box-shadow: 0 10px 28px rgba(0,0,0,.25);
+  border:1px solid #1e3142; border-radius:16px; padding:14px;
+  box-shadow: 0 12px 28px rgba(0,0,0,.28);
 }
 .section{ margin-bottom:16px; }
-.title{ font-weight:900; margin-bottom:8px; display:inline-block; }
-.underline{ border-bottom:3px solid rgba(255,255,255,.08); padding-bottom:4px; border-radius:2px; }
-.underline-blue{ box-shadow: inset 0 -3px 0 #4aa3f0; }
-.underline-gold{ box-shadow: inset 0 -3px 0 #f7c948; }
-.underline-soft{ box-shadow: inset 0 -3px 0 #a0aec0; }
-.underline-red{  box-shadow: inset 0 -3px 0 #ef7d7d; }
-.muted{ color:#b7c2cf; }
 .row{ display:flex; gap:10px; align-items:center; }
-.right{ justify-content:flex-end; }
-.between{ justify-content:space-between; }
+.row.between{ justify-content:space-between; }
+.row.right{ justify-content:flex-end; }
+.muted{ color:#b7c2cf; }
 
-/* Kort */
+/* Tittel med subtil fargestripe (ikke gule piller) */
+.title{ font-weight:900; margin-bottom:10px; display:inline-block; padding-bottom:4px; }
+.underline{ border-bottom:3px solid rgba(255,255,255,.14); }
+.underline-blue{    border-color:#5aa0ff; }
+.underline-red{     border-color:#ff8b8b; }
+.underline-gold{    border-color:#ffd46b; }
+.underline-soft{    border-color:#d7e0ea; }
+.underline-purple{  border-color:#c08aff; } /* Vitenskap */
+
+/* ====== Grids ====== */
+.grid{ display:grid; gap:10px; }
+.grid-3{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width:420px){ .grid-3{ grid-template-columns: repeat(3, minmax(96px,1fr)); } }
+
+/* Kort (sted/person) */
 .card{
   background:#1b263b; border:1px solid #253547;
-  border-radius:16px; padding:12px; margin-bottom:10px;
+  border-radius:14px; padding:12px; min-height:104px;
+  display:flex; flex-direction:column; justify-content:space-between; overflow:hidden;
 }
 .name{ font-weight:900; }
-.meta{ color:#b7c2cf; margin-top:2px; }
-.desc{ color:#e3e8ef; margin-top:6px; }
-.dist{ color:#ffb703; font-weight:900; margin-top:6px; }
+.meta{ color:#b7c2cf; margin-top:2px; font-size:13px; }
+.desc{ color:#e3e8ef; margin-top:6px; font-size:13px; }
+.dist{ color:#ffd46b; font-weight:900; margin-top:6px; }
 
-/* Knappestiler */
-.primary-btn{
-  background:#1976d2; color:#fff; border:0; border-radius:12px; padding:10px 14px; font-weight:900; cursor:pointer;
+/* Badges / chips */
+.badge{
+  display:inline-flex; align-items:center; gap:6px;
+  padding:8px 10px; border-radius:999px; font-weight:800;
+  max-width:100%; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+  border:1px solid rgba(255,255,255,.08);
 }
+.badge .i{ display:inline-block; width:16px; height:16px; border-radius:4px; }
+
+/* Kategorifarger (mildere 88% opacity) */
+:root{
+  --hist:#1976d2;    /* Historie */
+  --kult:#e63946;    /* Kultur */
+  --sport:#2a9d8f;   /* Sport */
+  --natur:#4caf50;   /* Natur */
+  --urban:#ffb703;   /* Urban Life */
+  --viten:#9b59b6;   /* Vitenskap (ny) */
+}
+.badge.hist   { background: color-mix(in srgb, var(--hist) 22%, #1b263b); }
+.badge.kult   { background: color-mix(in srgb, var(--kult) 22%, #1b263b); }
+.badge.sport  { background: color-mix(in srgb, var(--sport)22%, #1b263b); }
+.badge.natur  { background: color-mix(in srgb, var(--natur)22%, #1b263b); }
+.badge.urban  { background: color-mix(in srgb, var(--urban)22%, #1b263b); color:#111; }
+.badge.viten  { background: color-mix(in srgb, var(--viten)22%, #1b263b); }
+
+/* Knapper */
 .ghost-btn{
-  background:rgba(255,255,255,.08); color:#e8eef7; border:1px solid #2a3b4d; border-radius:12px; padding:8px 12px; font-weight:800; cursor:pointer;
+  background:transparent; border:1px solid #2a3b4d; color:#e8eef7;
+  padding:8px 12px; border-radius:10px; font-weight:800; cursor:pointer;
 }
-.ghost-btn.tiny{ padding:6px 10px; border-radius:10px; font-size:12px; }
-
-/* Grid/Badges (mildere farger) */
-.grid{ display:flex; flex-wrap:wrap; gap:8px; }
-.badge{ padding:8px 10px; border-radius:12px; font-weight:800; white-space:nowrap; border:1px solid rgba(255,255,255,.08); }
-.badge.hist{ background:rgba(25,118,210,.85); }
-.badge.kult{ background:rgba(230,57,70,.85); }
-.badge.sport{ background:rgba(42,157,143,.85); }
-.badge.natur{ background:rgba(100,200,150,.85); }
-.badge.urban{ background:rgba(255,183,3,.85); color:#111; }
-
-/* Merker (poeng per kategori) */
-.merit{
-  background:#1b263b; border:1px solid #253547; border-radius:14px; padding:10px 12px; min-width:180px;
-}
-.merit .bar{ margin-top:8px; height:8px; border-radius:999px; background:rgba(255,255,255,.1); overflow:hidden; }
-.merit .fill{ height:100%; border-radius:999px; }
-
-/* Personkort */
-.person-card{
-  background:#1b263b; border:1px solid #253547; border-radius:16px; padding:12px;
-  display:flex; align-items:center; gap:12px;
-}
-.avatar{
-  width:46px; height:46px; border-radius:50%; background:#1976d2; color:#fff;
-  display:flex; align-items:center; justify-content:center; font-weight:900;
-}
-.person-btn{
-  margin-left:auto; border:0; border-radius:12px; padding:8px 12px; background:#ffb703; color:#111; font-weight:900; cursor:pointer;
+.primary-btn{
+  background:#1976d2; color:#fff;
+  padding:10px 14px; border-radius:12px; border:0; font-weight:900; cursor:pointer;
 }
 
-/* Info-card nederst */
+/* ====== Place card ====== */
 #placeCard{
-  position:fixed; left:12px; right:12px; bottom:12px; z-index:3;
-  background:#162236; border:1px solid #253547; border-radius:16px; padding:12px; display:none;
-  box-shadow: 0 10px 28px rgba(0,0,0,.35);
+  position:fixed; left:12px; right:12px; bottom:12px; z-index:15;
+  background:#1b263b; border:1px solid #253547; border-radius:16px; padding:12px;
+  display:none;
+  box-shadow: 0 14px 36px rgba(0,0,0,.35);
 }
-.pc-head{ display:flex; justify-content:space-between; align-items:center; gap:8px; }
+#placeCard[aria-hidden="false"]{ display:block; }
+.pc-head{ display:flex; justify-content:space-between; align-items:center; gap:10px; }
 .pc-title{ font-weight:900; }
-.pc-meta{ color:#b7c2cf; font-size:12px; margin-top:2px; }
-.pc-desc{ color:#e3e8ef; margin:8px 0; }
-.pc-actions{ display:flex; gap:8px; }
-.pc-close{ background:transparent; border:1px solid #2a3b4d; color:#e8eef7; border-radius:12px; padding:6px 10px; cursor:pointer; }
+.pc-meta{ color:#b7c2cf; font-size:13px; }
+.pc-desc{ margin-top:8px; color:#e3e8ef; }
+.pc-actions{ display:flex; gap:8px; margin-top:10px; }
+.pc-close{ border:0; width:34px; height:34px; border-radius:999px; background:#111; color:#fff; }
 
-/* Sheet */
-.sheet{ position:fixed; inset:0; z-index:4; background:rgba(0,0,0,.35); display:none; }
+/* ====== Sheets ====== */
+.sheet{
+  position:fixed; inset:0; background:rgba(0,0,0,.35); display:none; z-index:30;
+}
 .sheet[aria-hidden="false"]{ display:block; }
 .sheet-card{
-  position:absolute; left:0; right:0; bottom:0; background:#162236; border:1px solid #253547;
-  border-radius:16px 16px 0 0; padding:12px; max-height:70vh; overflow:auto;
+  position:absolute; left:0; right:0; bottom:0; background:#0f2032; border-top-left-radius:16px; border-top-right-radius:16px;
+  border-top:1px solid #1e3142; padding:12px; max-height:80vh; overflow:auto;
 }
-.sheet-head{ display:flex; justify-content:space-between; align-items:center; }
+.sheet-head{ display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; }
 .sheet-title{ font-weight:900; }
-.sheet-close{ background:transparent; border:1px solid #2a3b4d; color:#e8eef7; border-radius:12px; padding:6px 10px; cursor:pointer; }
+.sheet-close{ border:0; background:#111; color:#fff; width:34px; height:34px; border-radius:999px; }
 
-/* Quiz */
-#quizModal{ position:fixed; inset:0; z-index:5; display:none; background:rgba(0,0,0,.45); }
+/* ====== Quiz ====== */
+#quizModal{ position:fixed; inset:0; background:rgba(0,0,0,.45); display:none; z-index:40; }
 #quizModal[aria-hidden="false"]{ display:block; }
-.quiz-card{ background:#162236; border:1px solid #253547; border-radius:16px; max-width:520px; margin:60px auto; padding:14px; }
-.quiz-head{ display:flex; justify-content:space-between; align-items:center; }
+.quiz-card{
+  position: absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+  width:min(560px, 92vw); background:#132337; border:1px solid #22364a; border-radius:16px; padding:14px;
+}
+.quiz-head{ display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
 .quiz-title{ font-weight:900; }
-.quiz-close{ background:transparent; border:1px solid #2a3b4d; color:#e8eef7; border-radius:12px; padding:6px 10px; cursor:pointer; }
-.quiz-q{ margin:10px 0; }
+.quiz-close{ border:0; width:34px; height:34px; border-radius:999px; background:#111; color:#fff; }
+.quiz-q{ margin:10px 0; font-size:16px; font-weight:700; }
 .quiz-choices{ display:grid; gap:8px; }
-.quiz-choices button{ text-align:left; }
-.quiz-progress{ margin-top:8px; color:#b7c2cf; font-size:12px; }
-.quiz-feedback{ margin-top:8px; min-height:20px; }
-
-/* Aktivitet */
-.activity-feed{ display:flex; flex-direction:column; gap:8px; }
-.activity-item{ background:#1b263b; border:1px solid #253547; border-radius:14px; padding:10px 12px; }
-
-/* Kartmodus */
-.map-exit{
-  position:fixed; top:12px; right:12px; z-index:9; display:none;
-  background:#111; color:#fff; border:0; border-radius:999px; width:40px; height:40px; font-size:18px; line-height:40px; text-align:center; cursor:pointer; opacity:.95;
+.quiz-choices button{
+  text-align:left; border:1px solid #2a3b4d; background:#1b2a3f; color:#fff; padding:10px 12px; border-radius:10px; cursor:pointer;
 }
-.map-center{
-  position:fixed; bottom:92px; right:14px; z-index:9; display:none;
-  background:#111; color:#fff; border:0; border-radius:999px; width:44px; height:44px; font-size:18px; line-height:44px; text-align:center; cursor:pointer; opacity:.95;
+.quiz-choices button.correct{ border-color:#2ecc71; background:#163424; }
+.quiz-choices button.wrong  { border-color:#e74c3c; background:#3a1b1b; }
+.quiz-progress{ margin-top:8px; color:#cfd8e3; font-size:13px; }
+.quiz-feedback{ margin-top:8px; font-weight:800; }
+
+/* ====== Toast ====== */
+#toast{
+  position:fixed; left:50%; top:12px; transform:translateX(-50%);
+  background:#1976d2; color:#fff; padding:8px 12px; border-radius:10px; display:none; z-index:50; font-weight:800;
 }
-.map-only header, .map-only main{ display:none; }
-.map-only #map{ filter:none; opacity:1; }
-.map-only .map-exit, .map-only .map-center{ display:block; }
