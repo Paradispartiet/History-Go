@@ -1,5 +1,5 @@
 // History Go – sw.js (ny)
-const CACHE_VERSION = 'historygo-v9'; // bump når du shipper
+const CACHE_VERSION = 'historygo-v10'; // bump når du shipper
 const CORE = [
   './',
   './index.html',
