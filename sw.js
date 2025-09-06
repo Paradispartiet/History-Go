@@ -1,82 +1,140 @@
-// sw.js — History Go (v11)
-const CACHE = 'history-go-v11.1';
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>History Go</title>
 
-// Filer vi vil ha offline (samme origin)
-const ASSETS = [
-  './',
-  './index.html',
-  './theme.css',
-  './app.js',
-  './manifest.json',
-  './places.json',
-  './people.json',
-  './quizzes.json',
-  './badges.json',
-  // Ikoner (hvis de finnes hos deg)
-  './icons/icon-192.png',
-  './icons/icon-512.png',
-  './icons/icon-maskable.png',
-];
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#1976d2" />
 
-// Install: legg kjente assets i cache
-self.addEventListener('install', (evt) => {
-  self.skipWaiting();
-  evt.waitUntil(
-    caches.open(CACHE).then((c) => c.addAll(ASSETS))
-  );
-});
+  <!-- Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-// Activate: fjern gamle cacher
-self.addEventListener('activate', (evt) => {
-  evt.waitUntil(
-    caches.keys().then((keys) =>
-      Promise.all(keys.filter((k) => k !== CACHE).map((k) => caches.delete(k)))
-    ).then(() => self.clients.claim())
-  );
-});
+  <!-- Theme -->
+  <link rel="stylesheet" href="theme.css" />
+</head>
+<body>
+  <!-- KART (bakgrunn) -->
+  <div id="map" aria-label="Kart"></div>
 
-// Fetch-strategi
-// - Navigasjoner: nett først, fallback cache (offline-støtte)
-// - Andre GET: "stale-while-revalidate" for ressurser på samme origin
-// - Eksterne domener (f.eks. kart-tiles): cache'es ikke her
-self.addEventListener('fetch', (evt) => {
-  const req = evt.request;
-  if (req.method !== 'GET') return;
+  <!-- KART-KNAPPER (vises i kart-modus) -->
+  <button id="btnExitMap" class="map-exit" aria-label="Tilbake">✕</button>
+  <button id="btnCenter" class="map-center" aria-label="Sentrer meg">◎</button>
 
-  const url = new URL(req.url);
-  const sameOrigin = url.origin === self.location.origin;
+  <!-- TOAST -->
+  <div id="toast" style="display:none">OK</div>
 
-  // HTML / navigasjon
-  if (req.mode === 'navigate' || (req.headers.get('accept') || '').includes('text/html')) {
-    evt.respondWith(
-      fetch(req).then((res) => {
-        // legg en kopi av index.html i cache
-        const copy = res.clone();
-        caches.open(CACHE).then((c) => c.put('./index.html', copy));
-        return res;
-      }).catch(async () => {
-        const cached = await caches.match('./index.html');
-        return cached || new Response('<h1>Offline</h1>', { headers: { 'Content-Type': 'text/html' }});
-      })
-    );
-    return;
-  }
+  <!-- HEADER (minimal) -->
+  <header>
+    <h1>History Go</h1>
+    <div class="row">
+      <label class="test small">Testmodus <input id="testToggle" type="checkbox" /></label>
+      <button id="btnSeeMap" class="link-btn">Se kart</button>
+    </div>
+  </header>
 
-  // Andre same-origin GET: SWR
-  if (sameOrigin) {
-    evt.respondWith((async () => {
-      const cache = await caches.open(CACHE);
-      const cached = await cache.match(req);
-      const network = fetch(req).then((res) => {
-        if (res && res.status === 200) cache.put(req, res.clone());
-        return res;
-      }).catch(() => null);
+  <!-- INNHOLD -->
+  <main>
+    <div class="section row between">
+      <div id="status" class="muted">Henter posisjon…</div>
+    </div>
 
-      return cached || network || new Response('Offline', { status: 503 });
-    })());
-    return;
-  }
+    <!-- Steder i nærheten (viser 2) -->
+    <section class="section">
+      <div class="title underline underline-blue">Steder i nærheten</div>
+      <div id="nearbyList"></div>
+      <div class="row right">
+        <button id="btnSeeMoreNearby" class="ghost-btn">Se flere i nærheten</button>
+      </div>
+    </section>
 
-  // Cross-origin (f.eks. Leaflet-tiles): la nettleseren håndtere (ingen SW-cache)
-  return;
-});
+    <!-- Min samling (én rad + +N flere) -->
+    <section class="section">
+      <div class="title underline underline-gold">Min samling (<span id="collectionCount">0</span>)</div>
+      <div id="collectionGrid" class="grid"></div>
+      <div class="row right">
+        <button id="btnMoreCollection" class="ghost-btn" style="display:none">+ flere</button>
+      </div>
+    </section>
+
+    <!-- Merker (poeng/valør per kategori) -->
+    <section class="section">
+      <div class="title underline underline-soft">Merker</div>
+      <div id="merits" class="grid"></div>
+    </section>
+
+    <!-- Galleri (kun personer du har samlet) -->
+    <section class="section">
+      <div class="title underline underline-red">Galleri (personer)</div>
+      <div id="gallery"></div>
+    </section>
+  </main>
+
+  <!-- PLACE INFO-CARD (nederst) -->
+  <div id="placeCard" aria-hidden="true">
+    <div class="pc-head">
+      <div>
+        <div id="pcTitle" class="pc-title">Tittel</div>
+        <div id="pcMeta" class="pc-meta">Kategori • radius</div>
+      </div>
+      <button id="pcClose" class="pc-close" aria-label="Lukk">✕</button>
+    </div>
+    <div id="pcDesc" class="pc-desc">Beskrivelse…</div>
+
+    <!-- Personer på stedet (quiz for å samle) -->
+    <div id="pcPeople" class="pc-people"></div>
+
+    <div class="pc-actions">
+      <button id="pcMore" class="ghost-btn">Les mer</button>
+      <button id="pcUnlock" class="primary-btn">Lås opp sted</button>
+    </div>
+  </div>
+
+  <!-- SHEET: Se flere i nærheten -->
+  <div id="sheetNearby" class="sheet" aria-hidden="true">
+    <div class="sheet-card">
+      <div class="sheet-head">
+        <div class="sheet-title">Flere i nærheten</div>
+        <button data-close="#sheetNearby" class="sheet-close">✕</button>
+      </div>
+      <div id="sheetNearbyBody"></div>
+    </div>
+  </div>
+
+  <!-- SHEET: Flere i samlingen -->
+  <div id="sheetCollection" class="sheet" aria-hidden="true">
+    <div class="sheet-card">
+      <div class="sheet-head">
+        <div class="sheet-title">Samlingen din</div>
+        <button data-close="#sheetCollection" class="sheet-close">✕</button>
+      </div>
+      <div id="sheetCollectionBody" class="grid"></div>
+    </div>
+  </div>
+
+  <!-- QUIZ MODAL -->
+  <div id="quizModal" aria-hidden="true" role="dialog" aria-label="Quiz">
+    <div class="quiz-card">
+      <div class="quiz-head">
+        <div class="quiz-title" id="quizTitle">Quiz</div>
+        <button class="quiz-close" id="quizClose" aria-label="Lukk">✕</button>
+      </div>
+      <div class="quiz-body">
+        <div id="quizQuestion" class="quiz-q">…</div>
+        <div id="quizChoices" class="quiz-choices"></div>
+        <div id="quizProgress" class="quiz-progress"></div>
+        <div id="quizFeedback" class="quiz-feedback"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./sw.js').catch(()=>{});
+    }
+  </script>
+</body>
+</html>
