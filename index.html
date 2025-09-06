@@ -4,32 +4,29 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>History Go</title>
-
   <link rel="manifest" href="manifest.json" />
   <meta name="theme-color" content="#1976d2" />
-
   <!-- Leaflet -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
   <!-- Theme -->
   <link rel="stylesheet" href="theme.css" />
 </head>
 <body>
-  <!-- KART (bakgrunn) -->
+  <!-- KART -->
   <div id="map" aria-label="Kart"></div>
 
-  <!-- KART-KNAPPER (vises i kart-modus) -->
+  <!-- KART-KNAPPER -->
   <button id="btnExitMap" class="map-exit" aria-label="Tilbake">✕</button>
   <button id="btnCenter" class="map-center" aria-label="Sentrer meg">◎</button>
 
   <!-- TOAST -->
   <div id="toast" style="display:none">OK</div>
 
-  <!-- HEADER (minimal) -->
+  <!-- HEADER -->
   <header>
     <h1>History Go</h1>
-    <div class="row">
+    <div class="header-actions">
       <label class="test small">Testmodus <input id="testToggle" type="checkbox" /></label>
       <button id="btnSeeMap" class="link-btn">Se kart</button>
     </div>
@@ -41,7 +38,7 @@
       <div id="status" class="muted">Henter posisjon…</div>
     </div>
 
-    <!-- Steder i nærheten (viser 2) -->
+    <!-- Steder i nærheten (to kort) -->
     <section class="section">
       <div class="title underline underline-blue">Steder i nærheten</div>
       <div id="nearbyList"></div>
@@ -50,7 +47,7 @@
       </div>
     </section>
 
-    <!-- Min samling (én rad + +N flere) -->
+    <!-- Min samling -->
     <section class="section">
       <div class="title underline underline-gold">Min samling (<span id="collectionCount">0</span>)</div>
       <div id="collectionGrid" class="grid"></div>
@@ -59,20 +56,29 @@
       </div>
     </section>
 
-    <!-- Merker (poeng/valør per kategori) -->
+    <!-- Merker (poeng per kategori fra quiz) -->
     <section class="section">
       <div class="title underline underline-soft">Merker</div>
       <div id="merits" class="grid"></div>
     </section>
 
-    <!-- Galleri (kun personer du har samlet) -->
+    <!-- Galleri (KUN personer du har samlet) -->
     <section class="section">
       <div class="title underline underline-red">Galleri (personer)</div>
       <div id="gallery"></div>
     </section>
+
+    <!-- Aktivitet -->
+    <section class="section">
+      <div class="title underline underline-soft">Aktivitet</div>
+      <div id="activityFeed" class="activity-feed"></div>
+      <div class="row right">
+        <button id="btnClearFeed" class="ghost-btn tiny" aria-label="Tøm aktivitet">Tøm</button>
+      </div>
+    </section>
   </main>
 
-  <!-- PLACE INFO-CARD (nederst) -->
+  <!-- PLACE INFO-CARD -->
   <div id="placeCard" aria-hidden="true">
     <div class="pc-head">
       <div>
@@ -82,17 +88,13 @@
       <button id="pcClose" class="pc-close" aria-label="Lukk">✕</button>
     </div>
     <div id="pcDesc" class="pc-desc">Beskrivelse…</div>
-
-    <!-- Personer på stedet (quiz for å samle) -->
-    <div id="pcPeople" class="pc-people"></div>
-
     <div class="pc-actions">
       <button id="pcMore" class="ghost-btn">Les mer</button>
-      <button id="pcUnlock" class="primary-btn">Lås opp sted</button>
+      <button id="pcUnlock" class="primary-btn">Lås opp</button>
     </div>
   </div>
 
-  <!-- SHEET: Se flere i nærheten -->
+  <!-- SHEET: Flere i nærheten -->
   <div id="sheetNearby" class="sheet" aria-hidden="true">
     <div class="sheet-card">
       <div class="sheet-head">
@@ -114,7 +116,7 @@
     </div>
   </div>
 
-  <!-- QUIZ MODAL -->
+  <!-- QUIZ -->
   <div id="quizModal" aria-hidden="true" role="dialog" aria-label="Quiz">
     <div class="quiz-card">
       <div class="quiz-head">
