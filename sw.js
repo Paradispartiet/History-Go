@@ -1,5 +1,5 @@
 // sw.js — History Go v11
-const CACHE = 'history-go-v11';
+const CACHE = 'history-go-v12';
 
 // App-shell som bør være tilgjengelig offline
 const APP_ASSETS = [
