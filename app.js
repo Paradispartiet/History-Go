@@ -1,12 +1,13 @@
 // ==============================
-// History Go – app.js (v11+)
-// - Ny kategori: Vitenskap
-// - Grid 3 per rad
-// - Personer i nærheten
-// - Kart lysere, personer på kart
-// - Senter-knapp = engangs-sentrering
+// History Go – app.js (v11++)
+// - Ny kategori: Vitenskap (farger/klasse)
+// - Personer på kartet, kategorifarget, stor hitbox
+// - Personer uten lat/lon arver posisjon fra placeId
+// - Engangs-senterknapp (ikke toggle)
 // - Galleri viser KUN samlet personer
-// - Quiz-feedback tregere (mer lesbar)
+// - Quiz-feedback tregere (lesbar)
+// - "Se flere i nærheten" sheet
+// - Samling: 3 per rad (6 chips i panelet, resten i sheet)
 // ==============================
 
 // ---- Konstanter ----
@@ -73,22 +74,31 @@ const el = {
 
 // ---- Kategorifarge → hex ----
 function catColor(cat=""){
-  const c = cat.toLowerCase();
-  if (c.includes("kultur")) return "#e63946";
-  if (c.includes("urban"))  return "#ffb703";
-  if (c.includes("sport"))  return "#2a9d8f";
-  if (c.includes("natur"))  return "#4caf50";
+  const c = String(cat||"").toLowerCase();
+  if (c.includes("kultur"))    return "#e63946";
+  if (c.includes("urban"))     return "#ffb703";
+  if (c.includes("sport"))     return "#2a9d8f";
+  if (c.includes("natur"))     return "#4caf50";
   if (c.includes("vitenskap")) return "#9b59b6";
   return "#1976d2"; // Historie / default
 }
 function catClass(cat=""){
-  const c = cat.toLowerCase();
-  if (c.includes("kultur")) return "kult";
-  if (c.includes("urban"))  return "urban";
-  if (c.includes("sport"))  return "sport";
-  if (c.includes("natur"))  return "natur";
+  const c = String(cat||"").toLowerCase();
+  if (c.includes("kultur"))    return "kult";
+  if (c.includes("urban"))     return "urban";
+  if (c.includes("sport"))     return "sport";
+  if (c.includes("natur"))     return "natur";
   if (c.includes("vitenskap")) return "viten";
   return "hist";
+}
+function tagToCat(tags=[]){
+  const t = (tags||[]).join(" ").toLowerCase();
+  if (t.includes("kultur"))    return "Kultur";
+  if (t.includes("urban"))     return "Urban Life";
+  if (t.includes("sport"))     return "Sport";
+  if (t.includes("natur"))     return "Natur";
+  if (t.includes("vitenskap")) return "Vitenskap";
+  return "Historie";
 }
 
 // ---- Geo utils ----
@@ -102,6 +112,7 @@ function distMeters(a,b){
 
 // ---- Toast ----
 function showToast(msg="OK", ms=1400){
+  if (!el.toast) return;
   el.toast.textContent = msg;
   el.toast.style.display = "block";
   setTimeout(()=> el.toast.style.display="none", ms);
@@ -111,12 +122,13 @@ function showToast(msg="OK", ms=1400){
 // Kart (Leaflet)
 // ==============================
 let MAP, placeLayer, peopleLayer, userMarker, userPulse;
+let currentPos = null;
 
 function initMap() {
   MAP = L.map('map', { zoomControl:false, attributionControl:false })
           .setView([START.lat, START.lon], START.zoom);
 
-  // Night style, men mer tydelig
+  // Nattstil – mer detaljert
   L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
     maxZoom: 19,
     attribution: '© OpenStreetMap, © CARTO'
@@ -124,6 +136,18 @@ function initMap() {
 
   placeLayer  = L.layerGroup().addTo(MAP);
   peopleLayer = L.layerGroup().addTo(MAP);
+}
+
+// Person-posisjon: bruk egne koordinater, ellers arve fra sted
+function personCoord(pr){
+  if (typeof pr.lat === 'number' && typeof pr.lon === 'number') {
+    return { lat: pr.lat, lon: pr.lon };
+  }
+  const pl = PLACES.find(x => x.id === pr.placeId);
+  if (pl && typeof pl.lat === 'number' && typeof pl.lon === 'number') {
+    return { lat: pl.lat, lon: pl.lon };
+  }
+  return null;
 }
 
 function drawPlaceMarkers() {
@@ -138,7 +162,7 @@ function drawPlaceMarkers() {
       fillOpacity: 0.9
     }).addTo(placeLayer);
 
-    // stor usynlig hitbox:
+    // stor usynlig hitbox for touch
     const hb = L.circle([p.lat, p.lon], {radius: 36, opacity:0, fillOpacity:0}).addTo(placeLayer);
 
     const openCard = () => openPlaceCard(p);
@@ -150,7 +174,9 @@ function drawPlaceMarkers() {
 function drawPeopleMarkers() {
   peopleLayer.clearLayers();
   PEOPLE.forEach(pr=>{
-    // Kun personer knyttet til et sted (placeId) → vis på kartet ved personens koordinat
+    const pos = personCoord(pr);
+    if (!pos) return;
+
     const html = `
       <div style="
         width:28px;height:28px;border-radius:999px;
@@ -158,27 +184,16 @@ function drawPeopleMarkers() {
         display:flex;align-items:center;justify-content:center;
         font-weight:900; font-size:12px; border:2px solid #111;
         box-shadow:0 0 0 3px rgba(0,0,0,.25);
-      ">${(pr.initials||'').slice(0,2).toUpperCase()}</div>`;
+      ">${(pr.initials||pr.name||'?').slice(0,2).toUpperCase()}</div>`;
     const icon = L.divIcon({ className:"", html, iconSize:[28,28], iconAnchor:[14,14] });
-    const mk = L.marker([pr.lat,pr.lon], { icon }).addTo(peopleLayer);
 
-    // “hitbox”: stor transparent sirkel
-    const hb = L.circle([pr.lat, pr.lon], {radius: 36, opacity:0, fillOpacity:0}).addTo(peopleLayer);
+    const mk = L.marker([pos.lat,pos.lon], { icon }).addTo(peopleLayer);
+    const hb = L.circle([pos.lat,pos.lon], {radius: 36, opacity:0, fillOpacity:0}).addTo(peopleLayer);
 
     const openFromPerson = () => openPlaceCardByPerson(pr);
     mk.on('click', openFromPerson);
     hb.on('click', openFromPerson);
   });
-}
-
-function tagToCat(tags=[]){
-  const t = (tags.join(" ")||"").toLowerCase();
-  if (t.includes("kultur")) return "Kultur";
-  if (t.includes("urban"))  return "Urban Life";
-  if (t.includes("sport"))  return "Sport";
-  if (t.includes("natur"))  return "Natur";
-  if (t.includes("vitenskap")) return "Vitenskap";
-  return "Historie";
 }
 
 function setUser(lat, lon){
@@ -208,6 +223,7 @@ function openPlaceCard(p){
   el.pcDesc.textContent  = p.desc || "";
   el.pc.setAttribute('aria-hidden','false');
 
+  el.pcUnlock.textContent = visited[p.id] ? "Allerede låst opp" : "Lås opp";
   el.pcUnlock.onclick = ()=> {
     if (visited[p.id]) { showToast("Allerede låst opp"); return; }
     visited[p.id] = true; saveVisited();
@@ -215,7 +231,6 @@ function openPlaceCard(p){
   };
 
   el.pcMore.onclick = () => {
-    // Åpne eventuelt ekstern kilde – nå bare toast
     showToast("Mer info kommer 📖", 1600);
   };
 }
@@ -223,15 +238,14 @@ function openPlaceCard(p){
 function openPlaceCardByPerson(person){
   const place = PLACES.find(x => x.id === person.placeId) || {
     id:"personloc", name:person.name, category: tagToCat(person.tags),
-    r: person.r || 150, desc: person.desc || "", lat: person.lat, lon: person.lon
+    r: person.r || 150, desc: person.desc || ""
   };
   openPlaceCard(place);
-  // Legg på “Ta quiz”-knapp i stedet for Lås opp for person?
   el.pcUnlock.textContent = "Ta quiz";
   el.pcUnlock.onclick = ()=> startQuizForPerson(person.id);
 }
 
-el.pcClose.addEventListener('click', ()=> {
+el.pcClose?.addEventListener('click', ()=> {
   el.pc.setAttribute('aria-hidden','true');
   el.pcUnlock.textContent = "Lås opp";
 });
@@ -239,8 +253,6 @@ el.pcClose.addEventListener('click', ()=> {
 // ==============================
 // Render – kort og lister
 // ==============================
-let currentPos = null;
-
 function renderNearbyPlaces(){
   const sorted = PLACES
     .map(p => ({...p, _d: currentPos ? Math.round(distMeters(currentPos, {lat:p.lat,lon:p.lon})) : null }))
@@ -251,8 +263,12 @@ function renderNearbyPlaces(){
 
 function renderNearbyPeople(){
   if (!currentPos) { el.nearPeople.innerHTML = ""; return; }
-  const candidates = PEOPLE
-    .map(pr=>({ ...pr, _d: Math.round(distMeters(currentPos,{lat:pr.lat,lon:pr.lon})) }))
+  const candidates = PEOPLE.map(pr=>{
+      const pos = personCoord(pr);
+      if (!pos) return null;
+      return { ...pr, _pos: pos, _d: Math.round(distMeters(currentPos, pos)) };
+    })
+    .filter(Boolean)
     .filter(pr => pr._d <= (pr.r||200) + (el.test?.checked ? 5000 : 0))
     .sort((a,b)=>a._d-b._d)
     .slice(0, 6);
@@ -355,12 +371,16 @@ function buildSeeMoreNearby(){
 
 // Klikkdelegasjon for kort-knapper
 document.addEventListener('click', (e)=>{
-  const openId = e.target.getAttribute?.('data-open');
+  const t = e.target;
+  if (!t?.getAttribute) return;
+
+  const openId = t.getAttribute('data-open');
   if (openId){
     const p = PLACES.find(x=>x.id===openId);
     if (p) openPlaceCard(p);
   }
-  const quizId = e.target.getAttribute?.('data-quiz');
+
+  const quizId = t.getAttribute('data-quiz');
   if (quizId){
     startQuizForPerson(quizId);
   }
@@ -388,12 +408,7 @@ function startQuizForPerson(personId){
   const q = QUIZZES.filter(x=>x.personId===personId);
   if (!q || !q.length) { showToast("Ingen quiz enda – kommer!"); return; }
 
-  // For enkelhet tar vi første quiz for personen
-  quizState = {
-    quiz: q[0],
-    i: 0,
-    answers: []
-  };
+  quizState = { quiz: q[0], i: 0, answers: [] };
   el.quizTitle.textContent = quizState.quiz.title;
   el.quizFeedback.textContent = "";
   showQuizQuestion();
@@ -416,9 +431,7 @@ function showQuizQuestion(){
       btn.classList.add(correct ? 'correct':'wrong');
       el.quizFeedback.textContent = correct ? "Riktig! 🎉" : (item.explanation || "Feil svar.");
 
-      setTimeout(()=>{
-        nextQuizStep(correct);
-      }, QUIZ_FEEDBACK_MS);
+      setTimeout(()=> nextQuizStep(correct), QUIZ_FEEDBACK_MS);
     };
   });
 }
@@ -428,18 +441,15 @@ function nextQuizStep(correct){
   quizState.answers.push(correct);
   quizState.i++;
   if (quizState.i >= quiz.questions.length){
-    // Ferdig – gi poeng og samle personen
     const allCorrect = quizState.answers.every(x=>x);
     const cat = quiz.reward?.category || "Historie";
     const pts = quiz.reward?.points || 1;
     merits[cat] = merits[cat] || { level:"Nybegynner", points:0 };
     merits[cat].points += pts;
-    // Dummy level-oppdatering
     if (merits[cat].points >= 10) merits[cat].level = "Mester";
     else if (merits[cat].points >= 5) merits[cat].level = "Kjentmann";
     saveMerits();
 
-    // Samle person
     const pid = quiz.personId;
     peopleCollected[pid] = Date.now();
     savePeople();
@@ -456,7 +466,7 @@ function nextQuizStep(correct){
   }
 }
 
-document.getElementById('quizClose').addEventListener('click', ()=>{
+document.getElementById('quizClose')?.addEventListener('click', ()=>{
   el.quizModal.setAttribute('aria-hidden','true');
 });
 
@@ -484,7 +494,7 @@ function requestLocation(){
 }
 
 // Engangs-sentrering (ikke toggle)
-el.btnCenter.addEventListener('click', ()=>{
+el.btnCenter?.addEventListener('click', ()=>{
   if (currentPos && MAP){
     MAP.setView([currentPos.lat, currentPos.lon], Math.max(MAP.getZoom(), 15), {animate:true});
     showToast("Sentrert");
@@ -494,11 +504,11 @@ el.btnCenter.addEventListener('click', ()=>{
 // ==============================
 // Kart-modus toggle
 // ==============================
-el.btnSeeMap.addEventListener('click', ()=>{
+el.btnSeeMap?.addEventListener('click', ()=>{
   document.body.classList.add('map-only');
   el.btnCenter.style.display = "block";
 });
-el.btnExitMap.addEventListener('click', ()=>{
+el.btnExitMap?.addEventListener('click', ()=>{
   document.body.classList.remove('map-only');
   el.btnCenter.style.display = "none";
 });
@@ -506,7 +516,7 @@ el.btnExitMap.addEventListener('click', ()=>{
 // ==============================
 // “Se flere i nærheten”
 // ==============================
-el.seeMore.addEventListener('click', ()=>{
+el.seeMore?.addEventListener('click', ()=>{
   buildSeeMoreNearby();
   openSheet(el.sheetNear);
 });
