@@ -1,60 +1,82 @@
-// History Go – sw.js (ny)
-const CACHE_VERSION = 'historygo-v10'; // bump når du shipper
-const CORE = [
+// sw.js — History Go (v11)
+const CACHE = 'history-go-v11';
+
+// Filer vi vil ha offline (samme origin)
+const ASSETS = [
   './',
   './index.html',
   './theme.css',
   './app.js',
+  './manifest.json',
   './places.json',
   './people.json',
   './quizzes.json',
   './badges.json',
+  // Ikoner (hvis de finnes hos deg)
+  './icons/icon-192.png',
+  './icons/icon-512.png',
+  './icons/icon-maskable.png',
 ];
 
-self.addEventListener('install', (e) => {
+// Install: legg kjente assets i cache
+self.addEventListener('install', (evt) => {
   self.skipWaiting();
-  e.waitUntil(
-    caches.open(CACHE_VERSION).then((c) => c.addAll(CORE).catch(()=>{}))
+  evt.waitUntil(
+    caches.open(CACHE).then((c) => c.addAll(ASSETS))
   );
 });
 
-self.addEventListener('activate', (e) => {
-  e.waitUntil((async () => {
-    const keys = await caches.keys();
-    await Promise.all(keys.map(k => (k !== CACHE_VERSION) ? caches.delete(k) : null));
-    await self.clients.claim();
-    console.log('[SW] Active:', CACHE_VERSION);
-  })());
+// Activate: fjern gamle cacher
+self.addEventListener('activate', (evt) => {
+  evt.waitUntil(
+    caches.keys().then((keys) =>
+      Promise.all(keys.filter((k) => k !== CACHE).map((k) => caches.delete(k)))
+    ).then(() => self.clients.claim())
+  );
 });
 
-self.addEventListener('fetch', (e) => {
-  const url = new URL(e.request.url);
-  // alltid nett først for JSON/JS/CSS (for å slippe utdaterte data)
-  if (/\.(json|js|css)$/.test(url.pathname)) {
-    e.respondWith((async () => {
-      try {
-        const fresh = await fetch(e.request, { cache: 'no-store' });
-        const cache = await caches.open(CACHE_VERSION);
-        cache.put(e.request, fresh.clone()).catch(()=>{});
-        return fresh;
-      } catch {
-        const cached = await caches.match(e.request);
-        return cached || Response.error();
-      }
+// Fetch-strategi
+// - Navigasjoner: nett først, fallback cache (offline-støtte)
+// - Andre GET: "stale-while-revalidate" for ressurser på samme origin
+// - Eksterne domener (f.eks. kart-tiles): cache'es ikke her
+self.addEventListener('fetch', (evt) => {
+  const req = evt.request;
+  if (req.method !== 'GET') return;
+
+  const url = new URL(req.url);
+  const sameOrigin = url.origin === self.location.origin;
+
+  // HTML / navigasjon
+  if (req.mode === 'navigate' || (req.headers.get('accept') || '').includes('text/html')) {
+    evt.respondWith(
+      fetch(req).then((res) => {
+        // legg en kopi av index.html i cache
+        const copy = res.clone();
+        caches.open(CACHE).then((c) => c.put('./index.html', copy));
+        return res;
+      }).catch(async () => {
+        const cached = await caches.match('./index.html');
+        return cached || new Response('<h1>Offline</h1>', { headers: { 'Content-Type': 'text/html' }});
+      })
+    );
+    return;
+  }
+
+  // Andre same-origin GET: SWR
+  if (sameOrigin) {
+    evt.respondWith((async () => {
+      const cache = await caches.open(CACHE);
+      const cached = await cache.match(req);
+      const network = fetch(req).then((res) => {
+        if (res && res.status === 200) cache.put(req, res.clone());
+        return res;
+      }).catch(() => null);
+
+      return cached || network || new Response('Offline', { status: 503 });
     })());
     return;
   }
-  // default: cache-first fallback
-  e.respondWith((async () => {
-    const cached = await caches.match(e.request);
-    if (cached) return cached;
-    try {
-      const fresh = await fetch(e.request);
-      const cache = await caches.open(CACHE_VERSION);
-      cache.put(e.request, fresh.clone()).catch(()=>{});
-      return fresh;
-    } catch {
-      return Response.error();
-    }
-  })());
+
+  // Cross-origin (f.eks. Leaflet-tiles): la nettleseren håndtere (ingen SW-cache)
+  return;
 });
