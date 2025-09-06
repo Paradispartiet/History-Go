@@ -18,17 +18,17 @@
 
   <!-- KART-KNAPPER -->
   <button id="btnExitMap" class="map-exit" aria-label="Tilbake">✕</button>
-  <button id="btnCenter" class="map-center" aria-label="Sentrer meg">◎</button>
+  <button id="btnCenter"  class="map-center" aria-label="Sentrer meg">◎</button>
 
   <!-- TOAST -->
   <div id="toast" style="display:none">OK</div>
 
-  <!-- HEADER -->
+  <!-- HEADER (minimal) -->
   <header>
     <h1>History Go</h1>
-    <div class="header-actions">
-      <label class="test small">Testmodus <input id="testToggle" type="checkbox" /></label>
+    <div class="head-actions">
       <button id="btnSeeMap" class="link-btn">Se kart</button>
+      <label class="test small">Testmodus <input id="testToggle" type="checkbox" /></label>
     </div>
   </header>
 
@@ -38,43 +38,40 @@
       <div id="status" class="muted">Henter posisjon…</div>
     </div>
 
-    <!-- Steder i nærheten (to kort) -->
+    <!-- STEDER I NÆRHETEN -->
     <section class="section">
       <div class="title underline underline-blue">Steder i nærheten</div>
-      <div id="nearbyList"></div>
+      <div id="nearbyList" class="grid grid-3"></div>
       <div class="row right">
         <button id="btnSeeMoreNearby" class="ghost-btn">Se flere i nærheten</button>
       </div>
     </section>
 
-    <!-- Min samling -->
+    <!-- PERSONER I NÆRHETEN -->
+    <section class="section">
+      <div class="title underline underline-red">Personer i nærheten</div>
+      <div id="nearbyPeople" class="grid grid-3"></div>
+    </section>
+
+    <!-- MIN SAMLING -->
     <section class="section">
       <div class="title underline underline-gold">Min samling (<span id="collectionCount">0</span>)</div>
-      <div id="collectionGrid" class="grid"></div>
+      <div id="collectionGrid" class="grid grid-3"></div>
       <div class="row right">
         <button id="btnMoreCollection" class="ghost-btn" style="display:none">+ flere</button>
       </div>
     </section>
 
-    <!-- Merker (poeng per kategori fra quiz) -->
+    <!-- MERKER -->
     <section class="section">
       <div class="title underline underline-soft">Merker</div>
-      <div id="merits" class="grid"></div>
+      <div id="merits" class="grid grid-3"></div>
     </section>
 
-    <!-- Galleri (KUN personer du har samlet) -->
+    <!-- GALLERI (samlede personer) -->
     <section class="section">
-      <div class="title underline underline-red">Galleri (personer)</div>
-      <div id="gallery"></div>
-    </section>
-
-    <!-- Aktivitet -->
-    <section class="section">
-      <div class="title underline underline-soft">Aktivitet</div>
-      <div id="activityFeed" class="activity-feed"></div>
-      <div class="row right">
-        <button id="btnClearFeed" class="ghost-btn tiny" aria-label="Tøm aktivitet">Tøm</button>
-      </div>
+      <div class="title underline underline-purple">Galleri (samlede personer)</div>
+      <div id="gallery" class="grid grid-3"></div>
     </section>
   </main>
 
@@ -94,14 +91,14 @@
     </div>
   </div>
 
-  <!-- SHEET: Flere i nærheten -->
+  <!-- SHEET: Se flere i nærheten -->
   <div id="sheetNearby" class="sheet" aria-hidden="true">
     <div class="sheet-card">
       <div class="sheet-head">
         <div class="sheet-title">Flere i nærheten</div>
         <button data-close="#sheetNearby" class="sheet-close">✕</button>
       </div>
-      <div id="sheetNearbyBody"></div>
+      <div id="sheetNearbyBody" class="grid grid-3"></div>
     </div>
   </div>
 
@@ -112,11 +109,11 @@
         <div class="sheet-title">Samlingen din</div>
         <button data-close="#sheetCollection" class="sheet-close">✕</button>
       </div>
-      <div id="sheetCollectionBody" class="grid"></div>
+      <div id="sheetCollectionBody" class="grid grid-3"></div>
     </div>
   </div>
 
-  <!-- QUIZ -->
+  <!-- QUIZ MODAL -->
   <div id="quizModal" aria-hidden="true" role="dialog" aria-label="Quiz">
     <div class="quiz-card">
       <div class="quiz-head">
