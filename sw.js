@@ -1,40 +1,33 @@
-// History Go – enkel, “stille” SW som ikke spammer konsollen
-const CACHE = 'hg-v15';
-const CORE = [
-  '/', '/index.html', '/theme.css', '/app.js',
-  '/places.json', '/people.json', '/quizzes.json'
-];
+// Minimal, stille SW: cache kun same-origin; ignorer tredjepart (tiles, OSRM) → ingen "opaque"-støy
+const CACHE = 'hg-v14';
 
-self.addEventListener('install', e=>{
-  e.waitUntil(caches.open(CACHE).then(c=>c.addAll(CORE)));
+self.addEventListener('install', e => {
+  e.waitUntil(caches.open(CACHE).then(c => c.addAll([
+    './','./index.html','./theme.css','./app.js'
+  ])));
   self.skipWaiting();
 });
 
-self.addEventListener('activate', e=>{
+self.addEventListener('activate', e => {
   e.waitUntil(
-    caches.keys().then(keys=>Promise.all(
-      keys.filter(k=>k!==CACHE).map(k=>caches.delete(k))
-    ))
+    caches.keys().then(keys => Promise.all(keys.map(k => k!==CACHE && caches.delete(k))))
   );
   self.clients.claim();
 });
 
-self.addEventListener('fetch', e=>{
+self.addEventListener('fetch', e => {
   const url = new URL(e.request.url);
-
-  // Ikke cache eksterne kart-tiles og routing (hindrer "opaque" spam)
-  if (url.hostname.includes('cartocdn.com') || url.hostname.includes('project-osrm.org')) {
-    return; // la nettverket håndtere
+  // Bare cache same-origin GET
+  if (url.origin === self.location.origin && e.request.method === 'GET') {
+    e.respondWith(
+      caches.match(e.request).then(hit => hit || fetch(e.request).then(res => {
+        const copy = res.clone();
+        caches.open(CACHE).then(c => c.put(e.request, copy));
+        return res;
+      }))
+    );
+  } else {
+    // tredjepart → bare fetch (ikke cache, ikke logg)
+    e.respondWith(fetch(e.request));
   }
-
-  // Same-origin: cache-first med nettverksfallback
-  e.respondWith(
-    caches.match(e.request).then(res => {
-      return res || fetch(e.request).then(net => {
-        const clone = net.clone();
-        caches.open(CACHE).then(c=>c.put(e.request, clone));
-        return net;
-      }).catch(()=>res);
-    })
-  );
 });
