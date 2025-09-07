@@ -1,139 +1,123 @@
-/* ====== GLOBAL ====== */
-html, body { margin:0; padding:0; height:100%; background:#0b1522; color:#fff;
-  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; }
-* { box-sizing: border-box; }
+:root{
+  --bg:#0b1320;
+  --card: rgba(15,22,33,.86);         /* gjennomsiktig kort */
+  --card-border: rgba(255,255,255,.06);
+  --text:#e8edf7;
+  --muted:#9fb0c3;
+  --accent:#1976d2;
+}
 
-/* ====== KART ====== */
+html,body{height:100%;}
+body{
+  margin:0; color:var(--text); background:var(--bg); font:16px/1.45 system-ui, -apple-system, Segoe UI, Roboto, Arial;
+}
+
+/* Kart bak alt innhold */
 #map{
   position:fixed; inset:0; z-index:0;
-  filter: saturate(1.05) brightness(0.92); /* litt mer detaljer i nattkart */
-  opacity: .96;
 }
 
-/* Lett “glass” over panelene – kart skimter gjennom */
-header, main {
-  position:relative; z-index:1;
-  background: rgba(13,27,42,.72); /* lysere enn før */
+/* Paneler oppå kartet med “glass” */
+header, main, #placeCard, .sheet-card, .quiz-card{
   backdrop-filter: blur(6px);
-  border: 1px solid #1c2e41;
-  box-shadow: 0 10px 30px rgba(0,0,0,.25);
 }
-header { border-radius: 16px; margin: 12px; padding: 10px 14px; display:flex; align-items:center; justify-content:space-between; }
-main   { border-radius: 16px; margin: 12px; padding: 12px; }
-
-/* ====== Toast ====== */
-#toast{
-  position:fixed; left:50%; top:12px; transform:translateX(-50%);
-  background:#1976d2; color:#fff; padding:8px 12px; border-radius:12px; display:none; z-index:10; font-weight:700;
+header{
+  position:sticky; top:0; z-index:5;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:12px 16px;
+  background:linear-gradient( to bottom, rgba(11,19,32,.92), rgba(11,19,32,.75) );
 }
+h1{margin:0; font-size:18px;}
+.link-btn{background:#0e1a2d;border:1px solid var(--card-border);color:#cfe6ff;padding:8px 10px;border-radius:10px;}
 
-/* ====== Map controls (ikke overlapp) ====== */
-.map-controls{
-  position:fixed; left:12px; top:12px; z-index:3; display:flex; gap:8px; align-items:center;
+main{
+  position:relative; z-index:1; padding:12px 12px 72px;
 }
-.map-exit{ display:none; background:#111; color:#fff; border:0; border-radius:999px; width:38px; height:38px; font-size:18px; cursor:pointer; opacity:.95; }
-.map-center{ display:none; background:#111; color:#fff; border:0; border-radius:999px; width:38px; height:38px; font-size:18px; cursor:pointer; opacity:.95; }
-.link-btn{
-  background:rgba(26,38,55,.85); border:1px solid #2a3b4d; color:#e8eef7;
-  padding:6px 12px; border-radius:999px; font-weight:700; cursor:pointer;
+.section{
+  background:var(--card); border:1px solid var(--card-border);
+  border-radius:16px; padding:14px; margin:10px 0;
 }
+.title{font-weight:700; margin-bottom:10px;}
+.underline{display:inline-block; position:relative; padding-bottom:6px;}
+.underline::after{content:""; position:absolute; left:0; bottom:0; height:4px; width:90px; border-radius:3px; opacity:.8;}
+.underline-blue::after{background:#4895ef;}
+.underline-gold::after{background:#f2c94c;}
+.underline-soft::after{background:#93c5fd;}
+.underline-red::after{background:#ff6b6b;}
 
-/* Kartmodus */
-body.map-only header, body.map-only main { display:none; }
-body.map-only .map-exit, body.map-only .map-center { display:inline-flex; }
+.row{display:flex; gap:10px; align-items:center;}
+.between{justify-content:space-between;}
+.right{justify-content:flex-end;}
+.muted{color:var(--muted);}
 
-/* ====== Typo & layout ====== */
-.section{ margin-bottom:16px; }
-.title{ display:inline-block; background:rgba(255,255,255,.06); color:#fff;
-  padding:6px 10px; border-radius:10px; font-weight:900; margin-bottom:8px; }
-.muted{ color:#b7c2cf; }
-.row{ display:flex; gap:8px; align-items:center; }
-.row.right{ justify-content:flex-end; }
-.row.between{ justify-content:space-between; }
+.grid{display:grid; gap:10px;}
+.grid-3{grid-template-columns:repeat(3,minmax(0,1fr));}
 
-/* Underlines (subtile fargestriper) */
-.underline{ box-shadow: inset 0 -3px 0 rgba(255,255,255,.06); }
-.underline-blue{ box-shadow: inset 0 -3px 0 #5fb3ff55; }
-.underline-gold{ box-shadow: inset 0 -3px 0 #ffd16655; }
-.underline-soft{ box-shadow: inset 0 -3px 0 #cfd8dc55; }
-.underline-red{ box-shadow: inset 0 -3px 0 #ff6b6b55; }
-.underline-violet{ box-shadow: inset 0 -3px 0 #b388ff55; }
-
-/* Kort */
 .card{
-  background:rgba(27,38,59,.78); border:1px solid #253547;
-  border-radius:14px; padding:12px; margin-bottom:10px;
+  background:var(--card); border:1px solid var(--card-border);
+  border-radius:14px; padding:12px; margin:10px 0;
 }
-.name{ font-weight:900; }
-.meta{ color:#b7c2cf; margin-top:2px; }
-.desc{ color:#e3e8ef; margin-top:6px; }
-.dist{ color:#ffb703; font-weight:900; margin-top:6px; }
-.primary-btn{
-  background:#ffb703; color:#111; border:0; border-radius:999px; padding:8px 12px; font-weight:900; cursor:pointer;
+.card .name{font-weight:800; margin-bottom:4px;}
+.card .meta{color:var(--muted); font-size:14px;}
+.card .desc{margin:8px 0 12px; color:#d9e5f3}
+
+button,.ghost-btn,.primary-btn{
+  border-radius:12px; padding:8px 12px; cursor:pointer; border:0;
 }
-.ghost-btn{
-  background:transparent; color:#e8eef7; border:1px solid #2a3b4d; border-radius:999px; padding:8px 12px; cursor:pointer;
+.ghost-btn{background:#0e1a2d; color:#cfe6ff; border:1px solid var(--card-border);}
+.primary-btn{background:#ffd166; color:#111; font-weight:800;}
+
+.badge{display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border-radius:999px; background:#0e1a2d; border:1px solid var(--card-border);}
+.badge .i{display:inline-block;width:10px;height:10px;border-radius:999px}
+
+/* Map controls */
+.map-controls{
+  position:fixed; right:12px; bottom:12px; z-index:4;
+  display:flex; flex-direction:column; gap:8px;
+}
+.map-controls button{
+  width:44px; height:44px; border-radius:999px;
+  background:rgba(15,22,33,.92); color:#fff; border:1px solid var(--card-border);
+  font-size:20px; line-height:1;
 }
 
-/* Grid + små ikoner */
-.grid{ display:flex; flex-wrap:wrap; gap:8px; }
-.icons-3 > *{ flex:0 0 calc(33.333% - 6px); }
-
-/* Badge-ikon (svært små) */
-.badge-icon{
-  display:flex; align-items:center; gap:6px;
-  background:rgba(26,38,55,.7); border:1px solid #253547;
-  border-radius:12px; padding:8px; min-width:0;
-}
-.badge-icon .dot{
-  width:18px; height:18px; border-radius:999px; border:2px solid #0d1b2a;
-  display:inline-flex; align-items:center; justify-content:center; font-size:10px; font-weight:900; color:#0d1b2a;
-}
-.badge-icon .label{ overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-weight:700; }
-
-/* Person-/samle-ikon */
-.person-item, .collection-item{
-  display:flex; align-items:center; gap:6px;
-  background:rgba(26,38,55,.7); border:1px solid #253547; border-radius:12px; padding:8px;
-}
-.person-item .dot, .collection-item .dot{ width:22px; height:22px; border-radius:999px; border:2px solid #0d1b2a;
-  display:flex; align-items:center; justify-content:center; font-weight:900; }
-
-/* Place card */
-#placeCard[aria-hidden="true"]{ display:none; }
+/* Place card (bunnark) */
 #placeCard{
-  position:fixed; left:12px; right:12px; bottom:12px; z-index:4;
-  background:rgba(18,28,44,.95); border:1px solid #1f3244; border-radius:14px; padding:12px;
+  position:fixed; left:12px; right:12px; bottom:12px; z-index:3;
+  background:var(--card); border:1px solid var(--card-border);
+  border-radius:16px; padding:12px; display:none;
 }
-.pc-head{ display:flex; align-items:center; justify-content:space-between; }
-.pc-title{ font-weight:900; font-size:16px; }
-.pc-meta{ color:#b7c2cf; font-size:12px; }
-.pc-desc{ margin:8px 0 10px; color:#e3e8ef; }
-.pc-close{ background:#111; color:#fff; border:0; border-radius:999px; width:32px; height:32px; cursor:pointer; }
-.pc-actions{ display:flex; gap:8px; }
+#placeCard[aria-hidden="false"]{display:block;}
+.pc-head{display:flex; justify-content:space-between; align-items:center; gap:8px;}
+.pc-title{font-weight:900; font-size:16px;}
+.pc-meta{color:var(--muted)}
+.pc-desc{margin:10px 0;}
+.pc-actions{display:flex; gap:10px; flex-wrap:wrap;}
+.pc-close{background:#0e1a2d; border:1px solid var(--card-border); color:#fff; border-radius:10px; padding:6px 10px}
 
-/* Sheets & Quiz */
-.sheet[aria-hidden="true"], #quizModal[aria-hidden="true"]{ display:none; }
-.sheet{ position:fixed; left:0; right:0; bottom:0; z-index:5; background:rgba(0,0,0,.35); }
-.sheet-card{ background:#152338; border-radius:14px 14px 0 0; border:1px solid #21344a; padding:12px; }
-.sheet-head{ display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; }
-.sheet-title{ font-weight:900; }
-.sheet-close{ background:#111; color:#fff; border:0; border-radius:999px; width:32px; height:32px; cursor:pointer; }
+/* Sheet */
+.sheet{position:fixed; inset:0; z-index:6; background:rgba(0,0,0,.4); display:none;}
+.sheet[aria-hidden="false"]{display:block;}
+.sheet-card{position:absolute; left:0; right:0; bottom:0; background:var(--card); border:1px solid var(--card-border); border-radius:16px 16px 0 0; padding:12px}
+.sheet-head{display:flex; justify-content:space-between; align-items:center;}
+.sheet-close{background:#0e1a2d; border:1px solid var(--card-border); color:#fff; border-radius:10px; padding:6px 10px}
 
-.quiz-card{ background:#152338; border:1px solid #21344a; border-radius:14px; padding:12px; position:fixed; left:12px; right:12px; top:15%; z-index:6; }
-.quiz-head{ display:flex; justify-content:space-between; align-items:center; }
-.quiz-title{ font-weight:900; }
-.quiz-q{ margin:12px 0; }
-.quiz-choices button{ display:block; width:100%; margin-bottom:8px; border-radius:10px; padding:10px; border:1px solid #2a3b4d; background:rgba(26,38,55,.6); color:#fff; cursor:pointer; }
-.quiz-choices button.correct{ border-color:#00e676; box-shadow:0 0 0 2px #00e67655 inset; }
-.quiz-choices button.wrong{ border-color:#ef5350; box-shadow:0 0 0 2px #ef535055 inset; }
-.quiz-progress{ color:#b7c2cf; margin-top:6px; }
-.quiz-feedback{ margin-top:6px; font-weight:800; }
+/* Quiz */
+#quizModal{position:fixed; inset:0; z-index:7; background:rgba(0,0,0,.45); display:none;}
+#quizModal[aria-hidden="false"]{display:block;}
+.quiz-card{position:absolute; left:12px; right:12px; top:10%; background:var(--card); border:1px solid var(--card-border); border-radius:16px; padding:12px}
+.quiz-head{display:flex; justify-content:space-between; align-items:center;}
+.quiz-choices{display:grid; gap:10px; margin-top:10px}
+.quiz-choices button{background:#0e1a2d; border:1px solid var(--card-border); color:#fff}
+.quiz-choices button.correct{background:#2ecc71;color:#111}
+.quiz-choices button.wrong{background:#e63946}
 
-/* Kategori-farger (små variasjoner brukes via inline) */
-.kult .dot{ background:#e63946; }
-.urban .dot{ background:#ffb703; }
-.sport .dot{ background:#2a9d8f; }
-.natur .dot{ background:#4caf50; }
-.viten .dot{ background:#9b59b6; }
-.hist .dot{ background:#1976d2; }
+#toast{
+  position:fixed; top:12px; left:50%; transform:translateX(-50%);
+  background:#1f2a44; color:#cfe6ff; padding:8px 12px; border-radius:12px; border:1px solid var(--card-border);
+  z-index:8; display:none;
+}
+
+/* Kart-modus: skjul hovedinnhold, la kartet styre */
+body.map-only main, body.map-only header{display:none;}
+body.map-only #placeCard{bottom:12px;}
