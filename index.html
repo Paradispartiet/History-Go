@@ -4,7 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>History Go</title>
-  <meta name="theme-color" content="#121212" />
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#0b1118" />
 
   <!-- Leaflet -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -14,7 +15,7 @@
   <link rel="stylesheet" href="theme.css" />
 </head>
 <body>
-  <!-- KART (bakgrunn og kart-modus) -->
+  <!-- KART (bakgrunn i normalvisning, fullskjerm i kart-modus) -->
   <div id="map" aria-label="Kart"></div>
 
   <!-- KART-KNAPPER (vises i kart-modus) -->
@@ -22,61 +23,64 @@
   <button id="btnCenter" class="map-center" aria-label="Sentrer meg">◎</button>
 
   <!-- TOAST -->
-  <div id="toast" role="status" aria-live="polite" style="display:none;">OK</div>
+  <div id="toast">OK</div>
 
   <!-- HEADER -->
   <header>
     <h1>History Go</h1>
-    <button id="btnSeeMap" class="link-btn">Se kart</button>
+    <div class="row gap">
+      <div id="status" class="muted">Henter posisjon…</div>
+      <label class="test small">Testmodus <input id="testToggle" type="checkbox" /></label>
+      <button id="btnSeeMap" class="link-btn">Se kart</button>
+    </div>
   </header>
 
   <!-- INNHOLD -->
   <main>
-    <!-- Status + test -->
-    <div class="section row between">
-      <div id="status" class="muted">Henter posisjon…</div>
-      <label class="test small">Testmodus
-        <input id="testToggle" type="checkbox" />
-      </label>
-    </div>
-
-    <!-- Steder i nærheten (kun 2) -->
+    <!-- Steder i nærheten -->
     <section class="section">
       <div class="title underline underline-blue">Steder i nærheten</div>
-      <div id="nearbyList" class="stack"></div>
-
-      <!-- Personer i nærheten -->
-      <div class="subheading">Personer i nærheten</div>
-      <div id="nearbyPeople" class="stack"></div>
-
+      <div id="nearbyList"></div>
       <div class="row right">
         <button id="btnSeeMoreNearby" class="ghost-btn">Se flere i nærheten</button>
       </div>
     </section>
 
+    <!-- Personer i nærheten -->
+    <section class="section">
+      <div class="title underline underline-red">Personer i nærheten</div>
+      <div id="nearbyPeople"></div>
+    </section>
+
     <!-- Min samling -->
     <section class="section">
       <div class="title underline underline-gold">Min samling (<span id="collectionCount">0</span>)</div>
-      <div id="collectionGrid" class="grid-3"></div>
+      <div id="collectionGrid" class="grid"></div>
       <div class="row right">
         <button id="btnMoreCollection" class="ghost-btn" style="display:none">+ flere</button>
       </div>
     </section>
 
-    <!-- Merker (nivå per kategori) -->
+    <!-- Merker -->
     <section class="section">
       <div class="title underline underline-soft">Merker</div>
-      <div id="merits" class="stack"></div>
+      <div id="merits"></div>
     </section>
 
-    <!-- Galleri (samlede personer) -->
-    <section class="section">
+    <!-- Galleri (personer) – kun samlet -->
+    <section class="section" id="gallerySection">
       <div class="title underline underline-red">Galleri (personer)</div>
-      <div id="gallery" class="grid-3"></div>
+      <div id="gallery" class="grid"></div>
+    </section>
+
+    <!-- Aktivitetslogg -->
+    <section class="section" id="activitySection">
+      <div class="title underline underline-soft">Aktivitetslogg</div>
+      <ul id="activityLog" class="activity-list"></ul>
     </section>
   </main>
 
-  <!-- PLACE INFO-CARD (nederst) -->
+  <!-- PLACE INFO-CARD -->
   <div id="placeCard" aria-hidden="true">
     <div class="pc-head">
       <div>
@@ -99,7 +103,7 @@
         <div class="sheet-title">Flere i nærheten</div>
         <button data-close="#sheetNearby" class="sheet-close">✕</button>
       </div>
-      <div id="sheetNearbyBody" class="stack"></div>
+      <div id="sheetNearbyBody"></div>
     </div>
   </div>
 
@@ -110,7 +114,7 @@
         <div class="sheet-title">Samlingen din</div>
         <button data-close="#sheetCollection" class="sheet-close">✕</button>
       </div>
-      <div id="sheetCollectionBody" class="grid-3"></div>
+      <div id="sheetCollectionBody" class="grid"></div>
     </div>
   </div>
 
@@ -131,6 +135,11 @@
   </div>
 
   <!-- App -->
-  <script defer src="app.js"></script>
+  <script src="app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./sw.js').catch(()=>{});
+    }
+  </script>
 </body>
 </html>
