@@ -1,32 +1,23 @@
 <!doctype html>
 <html lang="no">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <title>History Go</title>
-  <meta name="theme-color" content="#0b1320" />
-  <link rel="manifest" href="manifest.json" />
 
-  <!-- Leaflet -->
+  <!-- Styles -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-  <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
-  <!-- Leaflet Routing Machine (ekte rute via OSRM) -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css">
-  <script defer src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.min.js"></script>
-
   <link rel="stylesheet" href="theme.css">
 </head>
 <body>
+
   <!-- KART -->
   <div id="map" aria-label="Kart"></div>
-
   <!-- KART-KNAPPER -->
   <div class="map-controls">
-    <button id="btnZoomIn"  aria-label="Zoom inn">+</button>
-    <button id="btnCenter"  aria-label="Sentrer meg">◎</button>
-    <button id="btnZoomOut" aria-label="Zoom ut">−</button>
-    <button id="btnExitMap" aria-label="Tilbake">✕</button>
+    <button id="btnCenter" aria-label="Sentrer" title="Sentrer">◎</button>
+    <button id="btnExitMap" aria-label="Lukk kart" title="Lukk">✕</button>
   </div>
 
   <!-- TOAST -->
@@ -35,109 +26,115 @@
   <!-- HEADER -->
   <header>
     <h1>History Go</h1>
-    <button id="btnSeeMap" class="link-btn">Se kart</button>
+    <div class="header-actions">
+      <label class="toggle">
+        <input type="checkbox" id="testToggle">
+        <span>Testmodus</span>
+      </label>
+      <button id="btnSeeMap" class="pill">🗺️ Se kart</button>
+    </div>
   </header>
 
   <!-- INNHOLD -->
   <main>
-    <div class="section row between">
-      <div id="status" class="muted">Henter posisjon…</div>
-      <label class="test small">Testmodus <input id="testToggle" type="checkbox" /></label>
-    </div>
+    <p id="status" class="muted">Henter posisjon…</p>
 
-    <section class="section">
-      <div class="title underline underline-blue">Steder i nærheten</div>
-      <div id="nearbyList"></div>
+    <!-- Nær -->
+    <section>
+      <h2>Steder i nærheten</h2>
+      <div id="nearbyList" class="stack"></div>
       <div class="row right">
         <button id="btnSeeMoreNearby" class="ghost-btn">Se flere i nærheten</button>
       </div>
     </section>
 
-    <section class="section">
-      <div class="title underline underline-soft">Personer i nærheten</div>
-      <div id="nearbyPeople"></div>
+    <!-- Personer i nærheten -->
+    <section>
+      <h2>Personer i nærheten</h2>
+      <div id="nearbyPeople" class="stack"></div>
     </section>
 
-    <section class="section">
-      <div class="title underline underline-gold">
-        Min samling (<span id="collectionCount">0</span>)
-      </div>
-      <div id="collectionGrid" class="grid grid-3"></div>
+    <!-- Min samling -->
+    <section>
+      <h2>Min samling (<span id="collectionCount">0</span>)</h2>
+      <div id="collectionGrid" class="chips"></div>
       <div class="row right">
         <button id="btnMoreCollection" class="ghost-btn" style="display:none">+ flere</button>
       </div>
     </section>
 
-    <section class="section">
-      <div class="title underline underline-soft">Merker</div>
-      <div id="merits" class="grid"></div>
+    <!-- Merker -->
+    <section>
+      <h2>Merker</h2>
+      <div id="merits" class="stack"></div>
     </section>
 
-    <section class="section">
-      <div class="title underline underline-red">Galleri (personer)</div>
-      <div id="gallery"></div>
+    <!-- Galleri -->
+    <section>
+      <h2>Galleri (personer)</h2>
+      <div id="gallery" class="chips"></div>
     </section>
   </main>
 
-  <!-- PLACE CARD -->
-  <div id="placeCard" aria-hidden="true">
-    <div class="pc-head">
-      <div>
-        <div id="pcTitle" class="pc-title">Tittel</div>
-        <div id="pcMeta" class="pc-meta">Kategori • radius</div>
+  <!-- PLACE INFO-CARD -->
+  <div id="placeCard" aria-hidden="true" role="dialog" aria-label="Sted">
+    <div class="pc-body">
+      <button id="pcClose" class="pc-x" aria-label="Lukk">×</button>
+      <h3 id="pcTitle"></h3>
+      <div id="pcMeta" class="muted"></div>
+      <p id="pcDesc"></p>
+      <div class="pc-actions">
+        <a id="pcMore" class="ghost-btn" href="#" target="_blank" rel="noopener">Mer info</a>
+        <button id="pcUnlock" class="primary-btn">Lås opp</button>
+        <button id="pcRoute" class="ghost-btn">Vis rute</button>
       </div>
-      <button id="pcClose" class="pc-close" aria-label="Lukk">✕</button>
-    </div>
-    <div id="pcDesc" class="pc-desc">Beskrivelse…</div>
-    <div class="pc-actions">
-      <a id="pcMore" class="ghost-btn" target="_blank" rel="noopener">Mer info</a>
-      <button id="pcRoute" class="ghost-btn">Vis rute</button>
-      <button id="pcUnlock" class="primary-btn">Lås opp</button>
     </div>
   </div>
 
-  <!-- SHEETS -->
+  <!-- SHEET: Se flere i nærheten -->
   <div id="sheetNearby" class="sheet" aria-hidden="true">
-    <div class="sheet-card">
+    <div class="sheet-body">
       <div class="sheet-head">
-        <div class="sheet-title">Flere i nærheten</div>
-        <button data-close="#sheetNearby" class="sheet-close">✕</button>
+        <h4>Flere i nærheten</h4>
+        <button class="sheet-close" data-close="#sheetNearby">×</button>
       </div>
-      <div id="sheetNearbyBody"></div>
+      <div id="sheetNearbyBody" class="stack"></div>
     </div>
   </div>
 
+  <!-- SHEET: Flere i samlingen -->
   <div id="sheetCollection" class="sheet" aria-hidden="true">
-    <div class="sheet-card">
+    <div class="sheet-body">
       <div class="sheet-head">
-        <div class="sheet-title">Samlingen din</div>
-        <button data-close="#sheetCollection" class="sheet-close">✕</button>
+        <h4>Samlingen</h4>
+        <button class="sheet-close" data-close="#sheetCollection">×</button>
       </div>
-      <div id="sheetCollectionBody" class="grid grid-3"></div>
+      <div id="sheetCollectionBody" class="chips"></div>
     </div>
   </div>
 
-  <!-- QUIZ -->
+  <!-- QUIZ MODAL -->
   <div id="quizModal" aria-hidden="true" role="dialog" aria-label="Quiz">
-    <div class="quiz-card">
-      <div class="quiz-head">
-        <div class="quiz-title" id="quizTitle">Quiz</div>
-        <button class="quiz-close" id="quizClose" aria-label="Lukk">✕</button>
+    <div class="quiz-body">
+      <h3 id="quizTitle">Quiz</h3>
+      <p id="quizQuestion"></p>
+      <div id="quizChoices" class="choices"></div>
+      <div class="row between">
+        <small id="quizProgress" class="muted"></small>
+        <small id="quizFeedback"></small>
       </div>
-      <div class="quiz-body">
-        <div id="quizQuestion" class="quiz-q">…</div>
-        <div id="quizChoices" class="quiz-choices"></div>
-        <div id="quizProgress" class="quiz-progress"></div>
-        <div id="quizFeedback" class="quiz-feedback"></div>
+      <div class="row right">
+        <button id="quizClose" class="ghost-btn">Lukk</button>
       </div>
     </div>
   </div>
 
+  <!-- Scripts -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.min.js"></script>
   <script src="app.js"></script>
   <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('./sw.js').catch(()=>{});
-    }
+    if ('serviceWorker' in navigator) navigator.serviceWorker.register('./sw.js');
   </script>
 </body>
 </html>
