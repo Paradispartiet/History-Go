@@ -1,203 +1,232 @@
-/* ====== BASE ====== */
+/* ====== Basen ====== */
 :root{
-  --bg:#0d1b2a;
-  --panel: rgba(13,27,42,.86);
-  --panel-brd:#1e3142;
-  --ink:#e8eef7;
-  --muted:#b7c2cf;
+  --bg:#0c0f14;
+  --bg-soft:#11151b;
+  --glass:rgba(20,24,31,0.55);
+  --card:#151a21;
+  --text:#e6ecf3;
+  --muted:#9aa6b2;
+  --line:#242b34;
 
-  /* kategori-farger */
-  --hist:#1976d2;
-  --kult:#e63946;
-  --urban:#ffb703;
-  --sport:#2a9d8f;
-  --natur:#4caf50;
-  --viten:#9b59b6;
+  --blue:#1976d2;    /* Historie (default) */
+  --red:#e63946;     /* Kultur */
+  --teal:#2a9d8f;    /* Sport */
+  --green:#4caf50;   /* Natur */
+  --gold:#ffb703;    /* Urban Life */
+  --violet:#9b59b6;  /* Vitenskap */
+
+  --radius:16px;
+  --shadow:0 6px 24px rgba(0,0,0,0.35);
 }
-
-*{ box-sizing:border-box; }
-html, body{ height:100%; }
+*{box-sizing:border-box}
+html,body{height:100%}
 body{
-  margin:0; padding:0;
-  font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-  background: var(--bg); color:#fff;
+  margin:0;
+  font:16px/1.45 system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Apple Color Emoji","Segoe UI Emoji";
+  color:var(--text);
+  background:var(--bg);
 }
 
-/* ====== MAP ====== */
+/* ====== Kart ====== */
 #map{
-  position:fixed; inset:0; z-index:0;
-  filter: blur(1.5px) saturate(1.06) brightness(0.92);
-  opacity:.96;
+  position:fixed; inset:0;
+  z-index:0;
+  filter:contrast(1.05) saturate(1.05) brightness(0.9);
 }
-body.map-only #map{ filter:none; opacity:1; }
-
-/* Kartknapper */
-.map-exit, .map-center{
-  position:fixed; z-index:9999; border:0; cursor:pointer;
-  width:40px; height:40px; border-radius:12px;
-  background: rgba(17,17,17,.9); color:#fff; font-weight:900;
-  box-shadow:0 8px 20px rgba(0,0,0,.35);
+body:not(.map-only) #map::after{
+  /* lett, lys overlay slik at kort leses godt men kartet synes */
+  content:""; position:absolute; inset:0; z-index:1;
+  background:linear-gradient(180deg, rgba(10,12,16,.55), rgba(10,12,16,.65));
+  backdrop-filter: blur(1px);
 }
-.map-exit{ top:12px; right:12px; display:none; }
-.map-center{ bottom:16px; right:16px; display:none; }
-body.map-only .map-exit{ display:block; }
-
-/* ====== TOAST ====== */
-#toast{
-  position:fixed; left:50%; top:12px; transform:translateX(-50%);
-  background:#1976d2; color:#fff; padding:8px 12px; border-radius:10px;
-  display:none; z-index:10; font-weight:800; box-shadow:0 8px 20px rgba(0,0,0,.3);
+.map-exit,.map-center{
+  position:fixed; z-index:4;
+  border:none; border-radius:999px;
+  background:rgba(20,24,31,.85);
+  color:#fff; width:44px; height:44px;
+  display:none; align-items:center; justify-content:center;
+  box-shadow:var(--shadow);
 }
+.map-exit{ top:14px; left:14px; }
+.map-center{ right:14px; bottom:14px; }
+body.map-only .map-exit,
+body.map-only .map-center{ display:flex; }
 
-/* ====== HEADER ====== */
+/* ====== Layout ====== */
 header{
-  position:relative; z-index:2;
-  background: rgba(13,27,42,.72);
+  position:sticky; top:0; z-index:2;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:16px 16px;
+  background:var(--glass);
   backdrop-filter: blur(6px);
-  border-bottom:1px solid #152536;
-  padding: 10px 14px;
-  display:flex; align-items:center; justify-content:space-between; gap:12px;
+  border-bottom:1px solid var(--line);
 }
-h1{ margin:0; font-size:18px; font-weight:900; letter-spacing:.2px; }
-.hdr-actions{ display:flex; align-items:center; gap:10px; }
-.test.small{ color:#d5dde6; font-size:12px; display:flex; gap:6px; align-items:center; }
+h1{font-size:18px; margin:0; letter-spacing:.3px}
 
-/* Link-knapp */
-.link-btn{
-  background:transparent; border:1px solid #2a3b4d; color:#e8eef7;
-  padding:6px 10px; border-radius:10px; font-weight:800; cursor:pointer;
-}
-
-/* ====== MAIN PANEL ====== */
 main{
-  position:relative; z-index:1;
-  margin:12px;
-  background: var(--panel);
-  backdrop-filter: blur(8px);
-  border:1px solid var(--panel-brd);
-  border-radius:16px; padding:12px;
-  box-shadow: 0 12px 28px rgba(0,0,0,.25);
+  position:relative; z-index:2;
+  padding:16px;
+  max-width:960px; margin:0 auto;
 }
-.section{ margin-bottom:18px; }
-.muted{ color:var(--muted); }
-
-/* Titler m/ underline stripe (ikke piller) */
-.title{
-  display:inline-block; color:#fff; font-weight:900; font-size:14px;
-  padding:4px 2px 6px; margin-bottom:8px;
-  border-bottom:3px solid rgba(255,255,255,.08);
-}
-.underline-blue{  box-shadow: inset 0 -3px 0 0 var(--hist); }
-.underline-gold{  box-shadow: inset 0 -3px 0 0 var(--urban); }
-.underline-red{   box-shadow: inset 0 -3px 0 0 var(--kult); }
-.underline-soft{  box-shadow: inset 0 -3px 0 0 rgba(255,255,255,.15); }
-.underline-green{ box-shadow: inset 0 -3px 0 0 var(--natur); }
-
-/* Layout utils */
-.row{ display:flex; gap:10px; align-items:center; }
+.section{ margin:18px 0 12px; }
+.row{ display:flex; gap:12px; align-items:center; }
 .row.between{ justify-content:space-between; }
 .row.right{ justify-content:flex-end; }
 
-/* Kort */
+.stack{ display:grid; gap:12px; }
+
+.grid-3{
+  display:grid; gap:10px;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+}
+@media (max-width:560px){
+  .grid-3{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+}
+
+/* ====== Typo ====== */
+.title{ font-weight:700; margin:8px 0 10px; }
+.subheading{ color:var(--muted); margin:8px 0 8px; font-size:14px; }
+.muted{ color:var(--muted); font-size:14px; }
+
+/* underlines (ikke piller) */
+.underline{ position:relative; display:inline-block; padding-bottom:6px; }
+.underline::after{
+  content:""; position:absolute; left:0; right:0; bottom:0; height:3px; border-radius:2px;
+  background:linear-gradient(90deg, rgba(255,255,255,.15), rgba(255,255,255,.05));
+}
+.underline-blue::after{ background:linear-gradient(90deg, var(--blue), transparent 70%); }
+.underline-gold::after{ background:linear-gradient(90deg, var(--gold), transparent 70%); }
+.underline-soft::after{ background:linear-gradient(90deg, #aab4be, transparent 70%); }
+.underline-red::after{ background:linear-gradient(90deg, var(--red), transparent 70%); }
+
+/* ====== Kort ====== */
 .card{
-  background:#1b263b; border:1px solid #253547;
-  border-radius:14px; padding:12px; margin-bottom:10px;
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:12px 12px;
 }
-.name{ font-weight:900; }
-.meta{ color:#b7c2cf; margin-top:2px; font-size:12px; }
-.desc{ color:#e3e8ef; margin-top:6px; font-size:13px; }
-.dist{ color:var(--urban); font-weight:900; margin-top:6px; }
+.card .name{ font-weight:700; }
+.card .meta{ color:var(--muted); font-size:13px; margin-top:2px; }
+.card .desc{ color:#cfd8e3; font-size:14px; margin:8px 0 6px; }
+.dist{ color:var(--muted); font-size:13px; }
 
-/* Grid/Badges – 3 per rad føles best i denne tettheten */
-.grid{ display:flex; flex-wrap:wrap; gap:8px; }
+/* ====== Badges ====== */
 .badge{
-  background:#22314a; color:#fff; padding:8px 10px; border-radius:999px;
-  font-weight:800; white-space:nowrap; border:1px solid #2b3d55;
-  display:inline-flex; align-items:center; gap:8px;
+  display:inline-flex; align-items:center; gap:6px;
+  padding:6px 10px;
+  border-radius:999px;
+  font-size:13px; background:rgba(255,255,255,.06);
+  border:1px solid var(--line);
 }
-.badge .i{ width:10px; height:10px; border-radius:999px; display:inline-block; }
-
-/* Kategori toner på chips */
-.badge.hist{  border-color: color-mix(in srgb, var(--hist) 50%, #1b263b); }
-.badge.kult{  border-color: color-mix(in srgb, var(--kult) 50%, #1b263b); }
-.badge.urban{ border-color: color-mix(in srgb, var(--urban)50%, #1b263b); }
-.badge.sport{ border-color: color-mix(in srgb, var(--sport)50%, #1b263b); }
-.badge.natur{ border-color: color-mix(in srgb, var(--natur)50%, #1b263b); }
-.badge.viten{ border-color: color-mix(in srgb, var(--viten)50%, #1b263b); }
-
-/* Knappestiler */
-.primary-btn{
-  background:var(--urban); color:#111; border:0; border-radius:12px;
-  padding:8px 12px; font-weight:900; cursor:pointer;
+.badge .i{
+  display:inline-block; width:10px; height:10px; border-radius:99px;
+  box-shadow:0 0 0 2px rgba(0,0,0,.25);
 }
+/* valør-klasser (bare farge-ramme-toning) */
+.badge.hist{ box-shadow:inset 0 0 0 1px rgba(25,118,210,.35); }
+.badge.kult{ box-shadow:inset 0 0 0 1px rgba(230,57,70,.35); }
+.badge.sport{ box-shadow:inset 0 0 0 1px rgba(42,157,143,.35); }
+.badge.natur{ box-shadow:inset 0 0 0 1px rgba(76,175,80,.35); }
+.badge.urban{ box-shadow:inset 0 0 0 1px rgba(255,183,3,.35); }
+.badge.viten{ box-shadow:inset 0 0 0 1px rgba(155,89,182,.35); }
+
+/* ====== Knapper ====== */
+button{
+  appearance:none; border:none; cursor:pointer;
+  background:var(--blue); color:#fff;
+  padding:10px 14px; border-radius:12px; font-weight:700;
+}
+button:disabled{ opacity:.6; cursor:not-allowed; }
+.primary-btn{ background:var(--blue); }
 .ghost-btn{
-  background:transparent; color:#fff; border:1px solid #2a3b4d;
-  border-radius:12px; padding:8px 12px; font-weight:800; cursor:pointer;
+  background:transparent; color:#e6ecf3;
+  border:1px solid var(--line);
 }
+.link-btn{
+  background:transparent; color:#fff; text-decoration:underline; border:none;
+  padding:6px 6px; border-radius:8px;
+}
+.small{ font-size:14px; }
 
-/* ====== Place Card (bottom sheet light) ====== */
+/* ====== Place Card (bottom sheet-lite) ====== */
 #placeCard{
-  position:fixed; left:12px; right:12px; bottom:12px; z-index:5;
-  background: rgba(13,27,42,.96);
-  border:1px solid #1e3142; border-radius:16px; padding:12px;
-  box-shadow:0 18px 32px rgba(0,0,0,.35);
-  display:none;
+  position:fixed; left:10px; right:10px; bottom:10px; z-index:3;
+  background:rgba(15,18,24,.92);
+  border:1px solid var(--line); border-radius:16px;
+  box-shadow:var(--shadow);
+  padding:12px;
+  transform:translateY(120%); transition:transform .25s ease;
 }
-#placeCard[aria-hidden="false"]{ display:block; }
-.pc-head{ display:flex; align-items:center; justify-content:space-between; gap:10px; }
-.pc-title{ font-weight:900; font-size:16px; }
-.pc-meta{ color:var(--muted); font-size:12px; margin-top:2px; }
-.pc-desc{ color:#e3e8ef; margin:8px 0 10px; }
+#placeCard[aria-hidden="false"]{ transform:translateY(0); }
+.pc-head{ display:flex; align-items:center; justify-content:space-between; gap:8px; }
+.pc-title{ font-weight:800; font-size:16px; }
+.pc-meta{ color:var(--muted); font-size:13px; margin-top:2px; }
+.pc-desc{ margin:10px 0; color:#dbe4ee; }
 .pc-actions{ display:flex; gap:8px; justify-content:flex-end; }
-.pc-close{ background:#111; color:#fff; border:0; border-radius:10px; width:32px; height:32px; cursor:pointer; }
+.pc-close{
+  background:transparent; color:#fff; border:1px solid var(--line);
+  width:36px; height:36px; border-radius:10px;
+}
 
 /* ====== Sheets ====== */
 .sheet{
-  position:fixed; inset:0; z-index:30;
-  background: rgba(0,0,0,.35);
-  display:none;
+  position:fixed; inset:0; z-index:5; display:flex; align-items:flex-end; justify-content:center;
+  background:rgba(0,0,0,.35);
+  visibility:hidden; opacity:0; transition:opacity .2s ease, visibility .2s ease;
 }
-.sheet[aria-hidden="false"]{ display:block; }
+.sheet[aria-hidden="false"]{ visibility:visible; opacity:1; }
 .sheet-card{
-  position:absolute; left:0; right:0; bottom:0;
-  background: rgba(13,27,42,.98);
-  border-top:1px solid #203142;
-  border-radius:16px 16px 0 0;
-  padding:12px; box-shadow:0 -16px 40px rgba(0,0,0,.35);
+  width:100%; max-width:980px; background:var(--bg-soft);
+  border-top-left-radius:20px; border-top-right-radius:20px;
+  border:1px solid var(--line); box-shadow:var(--shadow);
+  padding:12px; min-height:35vh;
 }
-.sheet-head{ display:flex; align-items:center; justify-content:space-between; }
-.sheet-title{ font-weight:900; }
-.sheet-close{ background:#111; color:#fff; border:0; border-radius:10px; width:32px; height:32px; cursor:pointer; }
+.sheet-head{ display:flex; justify-content:space-between; align-items:center; }
+.sheet-title{ font-weight:800; }
+.sheet-close{
+  background:transparent; border:1px solid var(--line); color:#fff;
+  width:36px; height:36px; border-radius:10px;
+}
 
-/* ====== Quiz Modal ====== */
+/* ====== Quiz modal ====== */
 #quizModal{
-  position:fixed; inset:0; z-index:40; display:none;
-  background: rgba(0,0,0,.45);
+  position:fixed; inset:0; z-index:6; display:flex; align-items:center; justify-content:center;
+  background:rgba(0,0,0,.45);
+  visibility:hidden; opacity:0; transition:opacity .2s ease, visibility .2s ease;
 }
-#quizModal[aria-hidden="false"]{ display:block; }
+#quizModal[aria-hidden="false"]{ visibility:visible; opacity:1; }
 .quiz-card{
-  width:min(720px, calc(100% - 24px)); margin:60px auto; padding:12px;
-  background: rgba(13,27,42,.98); border:1px solid #22364a; border-radius:16px;
-  box-shadow:0 24px 40px rgba(0,0,0,.35);
+  width:min(680px, calc(100% - 24px));
+  background:var(--bg-soft); border:1px solid var(--line);
+  border-radius:18px; box-shadow:var(--shadow); padding:12px;
 }
-.quiz-head{ display:flex; align-items:center; justify-content:space-between; }
-.quiz-title{ font-weight:900; }
-.quiz-close{ background:#111; color:#fff; border:0; border-radius:10px; width:32px; height:32px; cursor:pointer; }
-.quiz-q{ font-weight:700; margin:10px 0; }
-.quiz-choices{ display:flex; flex-direction:column; gap:8px; }
-.quiz-choices button{
-  background:#1b263b; border:1px solid #2a3b4d; color:#fff; padding:10px 12px;
-  border-radius:12px; text-align:left; cursor:pointer; font-weight:700;
+.quiz-head{ display:flex; justify-content:space-between; align-items:center; }
+.quiz-title{ font-weight:800; }
+.quiz-close{ background:transparent; border:1px solid var(--line); color:#fff; width:36px; height:36px; border-radius:10px; }
+.quiz-q{ font-size:18px; margin:12px 0; }
+.quiz-choices{ display:grid; gap:8px; }
+.quiz-choices button{ text-align:left; }
+.quiz-choices button.correct{ outline:2px solid #7bd88f; }
+.quiz-choices button.wrong{ outline:2px solid #ff6b6b; }
+.quiz-progress{ color:var(--muted); margin-top:6px; font-size:14px; }
+.quiz-feedback{ margin-top:8px; font-weight:700; }
+
+/* ====== Toast ====== */
+#toast{
+  position:fixed; left:50%; transform:translateX(-50%);
+  bottom:22px; z-index:7;
+  background:#1f2833; color:#fff; padding:10px 14px;
+  border:1px solid var(--line); border-radius:12px; box-shadow:var(--shadow);
 }
-.quiz-choices button.correct{ border-color:#00e676; box-shadow:0 0 0 2px rgba(0,230,118,.2) inset; }
-.quiz-choices button.wrong{ border-color:#e53935; box-shadow:0 0 0 2px rgba(229,57,53,.2) inset; }
-.quiz-progress{ color:var(--muted); font-size:12px; margin-top:6px; }
-.quiz-feedback{ margin-top:8px; font-weight:800; }
 
-/* ====== Map-only toggle ====== */
-body.map-only header, body.map-only main{ display:none; }
-body.map-only .map-exit{ display:block; }
-body.map-only .map-center{ display:block; }
+/* ====== Skjul i kart-modus ====== */
+body.map-only header,
+body.map-only main,
+body.map-only #placeCard,
+body.map-only .sheet,
+body.map-only #quizModal{ display:none !important; }
 
-/* ====== A11y tweaks ====== */
-button:focus-visible{ outline:2px solid #fff; outline-offset:2px; }
+/* ====== Småting ====== */
+.test input{ margin-left:6px; transform:translateY(1px); }
