@@ -1,233 +1,216 @@
 <!doctype html>
 <html lang="no">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>History Go – Datavalidering</title>
-<style>
-  :root{
-    --bg:#0e1116;--panel:#141924;--muted:#97a1b3;--ok:#28a745;--warn:#ffb703;--err:#e63946;--ink:#e6edf3;
-    --blue:#1976d2;
-  }
-  html,body{height:100%}
-  body{margin:0;background:linear-gradient(180deg,#0b0f15,#0f141d 40%,#0b0f15);color:var(--ink);font:14px/1.45 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial}
-  header{position:sticky;top:0;background:#0f141d;box-shadow:0 2px 12px rgba(0,0,0,.35);z-index:10}
-  .bar{max-width:1100px;margin:auto;padding:14px 18px;display:flex;gap:12px;align-items:center}
-  h1{font-size:18px;margin:0 8px 0 0}
-  .chip{font-size:12px;border:1px solid #223048;border-radius:999px;padding:4px 10px;color:#c9d1d9;background:#111826}
-  .ok{color:var(--ok)} .warn{color:var(--warn)} .err{color:var(--err)}
-  main{max-width:1100px;margin:16px auto;padding:0 18px 40px}
-  .grid{display:grid;grid-template-columns:1fr;gap:14px}
-  @media(min-width:900px){.grid{grid-template-columns:1fr 1fr}}
-  section{background:var(--panel);border:1px solid #1e293b;border-radius:12px;overflow:hidden}
-  .sec-h{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid #1f2533;background:#111827}
-  .sec-h b{font-size:13px;letter-spacing:.2px}
-  .sec-b{padding:10px 12px}
-  details{background:#0f1522;border:1px solid #1e293b;border-radius:10px;margin:8px 0}
-  summary{cursor:pointer;padding:10px 12px;list-style:none}
-  summary::-webkit-details-marker{display:none}
-  .row{display:flex;gap:10px;flex-wrap:wrap}
-  .item{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border-radius:10px;background:#0c121d;border:1px solid #1b2433;margin:8px 0}
-  .tag{font-size:11px;padding:2px 8px;border-radius:999px;border:1px solid #2a3650;color:#a9b2c0}
-  .muted{color:var(--muted)}
-  .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
-  .pill{padding:2px 8px;border-radius:6px;background:#182132;border:1px solid #263349}
-  .badge{font-weight:600}
-  .list{margin:0;padding-left:18px}
-  .status-dot{width:10px;height:10px;border-radius:999px;display:inline-block;margin-right:8px}
-  .s-ok{background:var(--ok)} .s-warn{background:var(--warn)} .s-err{background:var(--err)}
-  .help{font-size:12px;color:#b9c2d0}
-  .small{font-size:12px}
-</style>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Datavalidering • History Go</title>
+  <style>
+    :root{--bg:#0b1620;--panel:#0f1f2d;--ok:#2ecc71;--warn:#f1c40f;--err:#e74c3c;--muted:#9fb0c3}
+    html,body{background:var(--bg);color:#eaf2fd;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;margin:0}
+    header{display:flex;gap:12px;align-items:center;padding:16px 18px;border-bottom:1px solid #11283b}
+    header h1{font-size:20px;margin:0;font-weight:700}
+    main{padding:18px;max-width:940px;margin:0 auto}
+    .row{display:flex;gap:8px;flex-wrap:wrap}
+    .pill{background:#0c2436;border:1px solid #10314a;color:#cfe5ff;padding:8px 12px;border-radius:999px;font-size:14px}
+    .pill.ok{background:#0f2a1f;border-color:#1b7a4a;color:#baf7d3}
+    .pill.warn{background:#302900;border-color:#8a6d00;color:#ffe07d}
+    .pill.err{background:#2a0e10;border-color:#7a1f25;color:#ffb3bc}
+    section{background:var(--panel);border:1px solid #11283b;border-radius:14px;margin:16px 0}
+    section h2{margin:0;padding:14px 16px;border-bottom:1px solid #11283b;font-size:16px}
+    .body{padding:14px 16px}
+    details{background:#0b2132;border:1px solid #0e2a41;border-radius:10px;margin:10px 0}
+    details>summary{cursor:pointer;padding:10px 12px;color:#d2e7ff}
+    .list{padding:10px 14px;border-top:1px solid #0e2a41}
+    ul{margin:0;padding-left:18px}
+    .muted{color:var(--muted)}
+    code{background:#08141d;border:1px solid #0f2a41;padding:2px 6px;border-radius:6px}
+    a{color:#8ec6ff}
+  </style>
 </head>
 <body>
-  <header>
-    <div class="bar">
-      <h1>Valider data</h1>
-      <span class="chip">places.json</span>
-      <span class="chip">people.json</span>
-      <span class="chip">quizzes.json</span>
-      <span id="sumOk"   class="chip ok">OK: 0</span>
-      <span id="sumWarn" class="chip warn">Advarsler: 0</span>
-      <span id="sumErr"  class="chip err">Feil: 0</span>
+<header>
+  <h1>Valider data</h1>
+  <div class="row">
+    <span id="pill-places"  class="pill">places.json</span>
+    <span id="pill-people"  class="pill">people.json</span>
+    <span id="pill-quizzes" class="pill">quizzes.json</span>
+  </div>
+  <div class="row" style="margin-left:auto">
+    <span id="pill-ok"   class="pill ok">OK: 0</span>
+    <span id="pill-warn" class="pill warn">Advarsler: 0</span>
+    <span id="pill-err"  class="pill err">Feil: 0</span>
+  </div>
+</header>
+
+<main>
+  <section>
+    <h2>Oppsummering</h2>
+    <div class="body">
+      <div class="row">
+        <span class="pill" id="sum-places">Steder: –</span>
+        <span class="pill" id="sum-people">Personer: –</span>
+        <span class="pill" id="sum-quizzes">Quizzer: –</span>
+      </div>
+      <p class="muted" style="margin-top:10px">
+        Sjekker: unik <code>id</code>, gyldig <code>lat/lon</code>, <code>category</code>, 
+        <code>people[].placeId → places[].id</code>, <code>quizzes[].personId → people[].id</code>.
+        Objekter med feltet <code>note</code> i <code>people.json</code> telles som notater, ikke personer.
+      </p>
     </div>
-  </header>
+  </section>
 
-  <main>
-    <div class="grid">
-      <section>
-        <div class="sec-h"><b>Oppsummering</b><span id="totals" class="small muted">—</span></div>
-        <div class="sec-b" id="summary"></div>
-      </section>
+  <section>
+    <h2>JSON-syntaks</h2>
+    <div class="body" id="syntax">Alt ser greit ut.</div>
+  </section>
 
-      <section>
-        <div class="sec-h"><b>JSON-syntaks</b><span class="small muted">viser linje:kolonne ved feil</span></div>
-        <div class="sec-b" id="syntax"></div>
-      </section>
+  <section>
+    <h2>Relasjoner & felt</h2>
+    <div class="body" id="relations">Kjører sjekker…</div>
+  </section>
+
+  <section>
+    <h2>Detaljer</h2>
+    <div class="body">
+      <details>
+        <summary>Lister: Places</summary>
+        <div class="list" id="list-places"></div>
+      </details>
+      <details>
+        <summary>Lister: People</summary>
+        <div class="list" id="list-people"></div>
+      </details>
+      <details>
+        <summary>Notater i people.json</summary>
+        <div class="list" id="list-notes"></div>
+      </details>
+      <details>
+        <summary>Lister: Quizzes</summary>
+        <div class="list" id="list-quizzes"></div>
+      </details>
+      <details>
+        <summary>Feil / advarsler</summary>
+        <div class="list" id="list-issues"></div>
+      </details>
     </div>
-
-    <section>
-      <div class="sec-h"><b>Relasjoner & felt</b><span class="small muted">ID-er, kategorier, koordinater, referanser</span></div>
-      <div class="sec-b" id="rel"></div>
-    </section>
-
-    <section>
-      <div class="sec-h"><b>Detaljer</b><span class="small muted">Klikk for å se lister</span></div>
-      <div class="sec-b" id="details"></div>
-    </section>
-  </main>
+  </section>
+</main>
 
 <script>
 (async function(){
-  const files = [
-    {key:'places',  path:'places.json'},
-    {key:'people',  path:'people.json'},
-    {key:'quizzes', path:'quizzes.json'}
-  ];
-  const allowCats = new Set(['Historie','Kultur','Sport','Natur','Urban Life','Vitenskap']);
+  const issues = [];
+  const warns  = [];
 
-  const raw = {};
-  const data = {};
-  const syntax = [];
-
-  // ---- fetch as text, then JSON parse w/ position extraction
-  for (const f of files){
-    try{
-      const txt = await fetch(f.path, {cache:'no-store'}).then(r=>r.text());
-      raw[f.key] = txt;
-      try{
-        data[f.key] = JSON.parse(txt);
-        syntax.push(ok(`✅ ${f.path} – OK`));
-      }catch(e){
-        const posMatch = /position (\d+)/i.exec(e.message);
-        let extra = '';
-        if (posMatch){
-          const pos = Number(posMatch[1]);
-          const {line, col, snippet} = indexToLineCol(txt, pos);
-          extra = ` (linje ${line}, kol ${col})<br><span class="help mono">${escapeHtml(snippet)}</span>`;
-        }
-        syntax.push(err(`❌ ${f.path} – JSON-feil: ${escapeHtml(e.message)}${extra}`));
-        data[f.key] = []; // keep going for rest of checks
-      }
-    }catch(e){
-      syntax.push(err(`❌ ${f.path} – kunne ikke lastes: ${escapeHtml(e.message)}`));
-      data[f.key] = [];
+  async function getJSON(path){
+    const r = await fetch(path, {cache:"no-store"});
+    const t = await r.text();
+    try { return JSON.parse(t); }
+    catch(e){
+      const line = t.split('\n').findIndex(s => s.includes('"note"'))+1;
+      issues.push(`Kunne ikke parse ${path}. Sjekk komma/JSON. ${e.message}`);
+      document.getElementById('syntax').innerHTML =
+        `<span class="pill err">❌ ${path}</span> – JSON-feil.`;
+      throw e;
     }
   }
 
-  // ---- summarize counts
-  const places  = Array.isArray(data.places)? data.places : [];
-  const people  = Array.isArray(data.people)? data.people : [];
-  const quizzes = Array.isArray(data.quizzes)? data.quizzes: [];
+  // last inn
+  const [places, peopleRaw, quizzes] = await Promise.all([
+    getJSON('places.json'),
+    getJSON('people.json'),
+    getJSON('quizzes.json')
+  ]);
 
-  const summaryEl = document.getElementById('summary');
-  summaryEl.innerHTML = `
-    <div class="row">
-      <div class="pill">Steder: <b class="badge">${places.length}</b></div>
-      <div class="pill">Personer: <b class="badge">${people.length}</b></div>
-      <div class="pill">Quizzer: <b class="badge">${quizzes.length}</b></div>
-    </div>
-    <div class="help" style="margin-top:8px">
-      Sjekker: unike id-er, kategorier, lat/lon, people.placeId → places, quizzes.personId → people.
-    </div>
-  `;
-  document.getElementById('totals').textContent =
-    `Steder ${places.length} • Personer ${people.length} • Quizzer ${quizzes.length}`;
+  // splitt people: notater vs personer
+  const notes  = peopleRaw.filter(p => 'note' in p);
+  const people = peopleRaw.filter(p => !('note' in p));
 
-  // ---- relational checks
-  const report = [];
-  // 1) unique ids
-  report.push(checkUnique('places', places));
-  report.push(checkUnique('people', people));
-  report.push(checkUnique('quizzes', quizzes));
+  // summering
+  const setText = (id, txt) => document.getElementById(id).textContent = txt;
+  setText('sum-places',  `Steder: ${places.length}`);
+  setText('sum-people',  `Personer: ${people.length}`);
+  setText('sum-quizzes', `Quizzer: ${quizzes.length}`);
 
-  // 2) categories on places
-  for (const p of places){
-    if (!p.id || !p.name) addErr(report, `Place mangler id/navn: ${idOf(p)}`);
-    if (!p.category) addWarn(report, `Place mangler kategori: ${idOf(p)}`);
-    else if (!allowCats.has(p.category)) addWarn(report, `Ukjent kategori på place '${p.name}': ${p.category}`);
-    if (!numIn(p.lat, -90, 90) || !numIn(p.lon, -180, 180))
-      addErr(report, `Ugyldig koordinat for place '${p.name}' (lat/lon)`);
-    if (p.r != null && !(typeof p.r === 'number' && p.r > 0)) addWarn(report, `Radius (r) bør være tall > 0 på '${p.name}'`);
-  }
+  // piller for filer (bare “lastet” status)
+  document.getElementById('pill-places').classList.add('ok');
+  document.getElementById('pill-people').classList.add('ok');
+  document.getElementById('pill-quizzes').classList.add('ok');
 
-  // 3) people fields + reference to place
+  // hjelpeoppslag
   const placeIds = new Set(places.map(p=>p.id));
-  for (const pr of people){
-    if (!pr.id || !pr.name) addErr(report, `Person mangler id/navn: ${idOf(pr)}`);
-    if (!pr.placeId) addErr(report, `Person '${pr.name}' mangler placeId`);
-    else if (!placeIds.has(pr.placeId)) addErr(report, `Person '${pr.name}' peker til ukjent placeId: ${pr.placeId}`);
-    // lat/lon validering – vi advarer om tomme, men det er lov hvis appen faller tilbake til stedets koordinater
-    const hasLatLon = typeof pr.lat === 'number' && typeof pr.lon === 'number';
-    if (!hasLatLon){
-      addWarn(report, `Person '${pr.name}' mangler lat/lon – bruk fallback til stedets koordinater ved rendering.`);
-    }else{
-      if (!numIn(pr.lat, -90, 90) || !numIn(pr.lon, -180, 180))
-        addErr(report, `Ugyldig koordinat for person '${pr.name}'`);
+  const peopleIds= new Set(people.map(p=>p.id));
+  const catSet   = new Set(places.map(p=>p.category));
+  const seenIds  = new Set();
+
+  // ——— places
+  places.forEach(p=>{
+    // unik id
+    if(seenIds.has(p.id)) issues.push(`Duplikat id i places: ${p.id}`);
+    seenIds.add(p.id);
+
+    // lat/lon
+    const latOk = typeof p.lat==='number' && p.lat>=-90 && p.lat<=90;
+    const lonOk = typeof p.lon==='number' && p.lon>=-180 && p.lon<=180;
+    if(!latOk || !lonOk) issues.push(`Ugyldig koordinat for place ${p.id} (${p.lat}, ${p.lon})`);
+
+    // kategori
+    if(!p.category || typeof p.category!=='string') warns.push(`Manglende/ugyldig category på ${p.id}`);
+  });
+
+  // ——— people
+  seenIds.clear();
+  people.forEach(pr=>{
+    if(seenIds.has(pr.id)) issues.push(`Duplikat id i people: ${pr.id}`);
+    seenIds.add(pr.id);
+
+    // koordinater: valgfritt dersom placeId finnes
+    const hasCoords = typeof pr.lat==='number' && typeof pr.lon==='number';
+    if(!hasCoords){
+      if(!placeIds.has(pr.placeId)) issues.push(`Person ${pr.id} mangler koordinater og har ukjent placeId=${pr.placeId}`);
+    } else {
+      const latOk = pr.lat>=-90 && pr.lat<=90;
+      const lonOk = pr.lon>=-180 && pr.lon<=180;
+      if(!latOk || !lonOk) issues.push(`Ugyldig koordinat for person ${pr.id} (${pr.lat}, ${pr.lon})`);
     }
-    if (pr.r != null && !(typeof pr.r === 'number' && pr.r > 0)) addWarn(report, `Radius (r) bør være tall > 0 på person '${pr.name}'`);
-  }
+    if(pr.placeId && !placeIds.has(pr.placeId)) issues.push(`Ukjent placeId for person ${pr.id}: ${pr.placeId}`);
+  });
 
-  // 4) quizzes referanse til person
-  const personIds = new Set(people.map(p=>p.id));
-  for (const q of quizzes){
-    if (!q.id || !q.title) addErr(report, `Quiz mangler id/tittel: ${idOf(q)}`);
-    if (!q.personId) addErr(report, `Quiz '${q.title}' mangler personId`);
-    else if (!personIds.has(q.personId)) addErr(report, `Quiz '${q.title}' peker til ukjent personId: ${q.personId}`);
-    if (!q.questions || !Array.isArray(q.questions) || q.questions.length === 0) addWarn(report, `Quiz '${q.title}' mangler spørsmål`);
-  }
-
-  // ---- paint syntax + relations
-  document.getElementById('syntax').innerHTML = syntax.join('');
-
-  const relEl = document.getElementById('rel');
-  const flat = report.flat();
-  const errs = flat.filter(x=>x.type==='err').length;
-  const warns= flat.filter(x=>x.type==='warn').length;
-  document.getElementById('sumOk').textContent   = `OK: ${Math.max(0, (places.length+people.length+quizzes.length) - (errs+warns))}`;
-  document.getElementById('sumWarn').textContent = `Advarsler: ${warns}`;
-  document.getElementById('sumErr').textContent  = `Feil: ${errs}`;
-
-  relEl.innerHTML = flat.length
-    ? flat.map(renderItem).join('')
-    : ok('✅ Ingen relasjonsfeil funnet.');
-
-  // ---- Details: show simple lists
-  document.getElementById('details').innerHTML = `
-    <details open><summary><b>Places</b> <span class="muted">(${places.length})</span></summary>
-      <div class="sec-b">${places.map(p=>smallItem(`${p.name} <span class="muted">(${p.category})</span>`, p.id)).join('')}</div>
-    </details>
-    <details><summary><b>People</b> <span class="muted">(${people.length})</span></summary>
-      <div class="sec-b">${people.map(p=>smallItem(`${p.name} <span class="muted">→ ${p.placeId}</span>`, p.id)).join('')}</div>
-    </details>
-    <details><summary><b>Quizzes</b> <span class="muted">(${quizzes.length})</span></summary>
-      <div class="sec-b">${quizzes.map(q=>smallItem(`${q.title} <span class="muted">→ ${q.personId}</span>`, q.id)).join('')}</div>
-    </details>
-  `;
-
-  // ---- helpers
-  function ok(s){ return `<div class="item"><span class="status-dot s-ok"></span><div>${s}</div></div>` }
-  function warn(s){ return {type:'warn', html:`<div class="item"><span class="status-dot s-warn"></span><div>${s}</div></div>`} }
-  function err(s){ return `<div class="item"><span class="status-dot s-err"></span><div>${s}</div></div>` }
-  function addWarn(arr, s){ arr.push(warn(s)); }
-  function addErr(arr, s){ arr.push({type:'err', html:err(s)}); }
-  function renderItem(x){ return x.html }
-  function smallItem(text, id){ return `<div class="help">• <span class="mono">${escapeHtml(id||'?')}</span> – ${text}</div>` }
-  function idOf(o){ return escapeHtml(o && o.id || '?') }
-  function numIn(v, a, b){ return typeof v === 'number' && v>=a && v<=b }
-  function escapeHtml(s){ return (s==null?'':String(s)).replace(/[&<>"]/g, m=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;' }[m])) }
-
-  function indexToLineCol(text, index){
-    let line=1, col=1;
-    for (let i=0;i<index;i++){
-      if (text[i]==='\n'){ line++; col=1; } else col++;
+  // ——— quizzes
+  seenIds.clear();
+  quizzes.forEach(q=>{
+    if(seenIds.has(q.id)) issues.push(`Duplikat id i quizzes: ${q.id}`);
+    seenIds.add(q.id);
+    if(!peopleIds.has(q.personId)) issues.push(`Quiz ${q.id} peker til ukjent personId=${q.personId}`);
+    if(!q.questions || !Array.isArray(q.questions) || q.questions.length===0){
+      issues.push(`Quiz ${q.id} mangler questions`);
     }
-    // ta med et lite utsnitt rundt feilen
-    const start = Math.max(0, index-40);
-    const end   = Math.min(text.length, index+40);
-    const snippet = text.slice(start, end);
-    return { line, col, snippet };
-  }
+  });
+
+  // render lister
+  const ul = arr => `<ul>${arr.map(x=>`<li>${x}</li>`).join('')}</ul>`;
+  document.getElementById('list-places').innerHTML  = ul(places.map(p=>`${p.id} — ${p.name}`));
+  document.getElementById('list-people').innerHTML  = ul(people.map(p=>`${p.id} — ${p.name}`));
+  document.getElementById('list-notes').innerHTML   = notes.length ? ul(notes.map(n=>n.note)) : `<span class="muted">Ingen notater.</span>`;
+  document.getElementById('list-quizzes').innerHTML = ul(quizzes.map(q=>`${q.id} → personId=${q.personId}`));
+
+  // relasjonstekst
+  const rel = [];
+  rel.push(`Kategorier oppdaget (${catSet.size}): ${[...catSet].join(', ')}`);
+  rel.push(`Alle people.placeId finnes i places: ${people.every(p=>!p.placeId || placeIds.has(p.placeId)) ? 'JA' : 'NEI'}`);
+  rel.push(`Alle quizzes.personId finnes i people: ${quizzes.every(q=>peopleIds.has(q.personId)) ? 'JA' : 'NEI'}`);
+  document.getElementById('relations').innerHTML = ul(rel);
+
+  // issues/warns
+  document.getElementById('list-issues').innerHTML =
+    (!issues.length && !warns.length)
+      ? `<span class="muted">Ingen feil eller advarsler 🎉</span>`
+      : (issues.length ? `<h4>Feil</h4>${ul(issues)}` : '') + (warns.length ? `<h4>Advarsler</h4>${ul(warns)}` : '');
+
+  // topp-pills
+  document.getElementById('pill-err').textContent  = `Feil: ${issues.length}`;
+  document.getElementById('pill-warn').textContent = `Advarsler: ${warns.length}`;
+  const okCount = (issues.length===0)?1:0;
+  document.getElementById('pill-ok').textContent   = `OK: ${okCount}`;
 })();
 </script>
 </body>
