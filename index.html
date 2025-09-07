@@ -8,89 +8,78 @@
   <link rel="manifest" href="manifest.json" />
 
   <!-- Leaflet -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
   <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-  <!-- App styles -->
+  <!-- Styles -->
   <link rel="stylesheet" href="theme.css" />
+
+  <!-- Icons (inline SVG helper) -->
+  <script defer src="icons.js"></script>
+
+  <!-- App -->
+  <script defer src="app.js"></script>
 </head>
 <body>
   <!-- KART -->
   <div id="map" aria-label="Kart"></div>
 
-  <!-- KART-KNAPPER (bare i kart-modus) -->
-  <button id="btnExitMap" class="map-exit" aria-label="Tilbake">✕</button>
-  <button id="btnCenter" class="map-center" aria-label="Sentrer">◎</button>
+  <!-- Kart-knapper (kun i kart-modus) -->
+  <button id="btnExitMap"   class="map-exit"   aria-label="Tilbake" title="Tilbake">✕</button>
+  <button id="btnCenter"    class="map-center" aria-label="Sentrer meg" title="Sentrer">◎</button>
+  <button id="btnFilter"    class="map-filter" aria-label="Filter" title="Filter">☰</button>
+  <button id="btnClearRoute" class="map-clear" aria-label="Fjern sti" title="Fjern sti">—</button>
 
   <!-- TOAST -->
-  <div id="toast" role="status">OK</div>
+  <div id="toast">OK</div>
 
   <!-- HEADER -->
   <header>
-    <div class="brand">
-      <span class="logo">🏙️</span>
-      <h1>History Go</h1>
+    <h1>History Go</h1>
+    <div class="header-actions">
+      <label class="test small">Testmodus <input id="testToggle" type="checkbox" /></label>
+      <button id="btnSeeMap" class="link-btn">Se kart</button>
     </div>
-    <button id="btnSeeMap" class="pill-btn" aria-label="Se kart">
-      <span class="ico">🗺️</span> Se kart
-    </button>
   </header>
 
-  <!-- INNHOLD (forside) -->
+  <!-- INNHOLD -->
   <main>
-    <div class="section row between">
+    <div class="section">
       <div id="status" class="muted">Henter posisjon…</div>
-      <label class="test small">Testmodus <input id="testToggle" type="checkbox" /></label>
     </div>
 
-    <!-- STEDER I NÆRHETEN -->
-    <section class="section panel">
-      <div class="title underline underline-blue">
-        <span class="ico">📍</span> Steder i nærheten
-      </div>
+    <!-- Steder i nærheten (2) -->
+    <section class="section">
+      <div class="title underline underline-blue">Steder i nærheten</div>
       <div id="nearbyList"></div>
       <div class="row right">
         <button id="btnSeeMoreNearby" class="ghost-btn">Se flere i nærheten</button>
       </div>
     </section>
 
-    <!-- PERSONER I NÆRHETEN -->
-    <section class="section panel">
-      <div class="title underline underline-red">
-        <span class="ico">🧑‍🤝‍🧑</span> Personer i nærheten
-      </div>
-      <div id="nearbyPeople"></div>
-    </section>
-
-    <!-- MIN SAMLING -->
-    <section class="section panel">
-      <div class="title underline underline-gold">
-        <span class="ico">📦</span> Min samling (<span id="collectionCount">0</span>)
-      </div>
-      <div id="collectionGrid" class="grid"></div>
+    <!-- Mine steder (ikoner + navn) -->
+    <section class="section">
+      <div class="title underline underline-gold">Mine steder (<span id="collectionCount">0</span>)</div>
+      <div id="ownedPlacesGrid" class="icon-grid"></div>
       <div class="row right">
         <button id="btnMoreCollection" class="ghost-btn" style="display:none">+ flere</button>
       </div>
     </section>
 
-    <!-- MERKER -->
-    <section class="section panel">
-      <div class="title underline underline-soft">
-        <span class="ico">🏷️</span> Merker
-      </div>
-      <div id="merits" class="grid"></div>
+    <!-- Mine personer (ikoner + navn, kun samlet) -->
+    <section class="section">
+      <div class="title underline underline-red">Mine personer</div>
+      <div id="ownedPeopleGrid" class="icon-grid"></div>
     </section>
 
-    <!-- GALLERI (SAMLEDE PERSONER) -->
-    <section class="section panel">
-      <div class="title underline underline-purple">
-        <span class="ico">🖼️</span> Galleri (personer)
-      </div>
-      <div id="gallery"></div>
+    <!-- Merker -->
+    <section class="section">
+      <div class="title underline underline-soft">Merker</div>
+      <div id="merits" class="grid"></div>
     </section>
   </main>
 
-  <!-- PLACE INFO-CARD -->
+  <!-- PLACE CARD -->
   <div id="placeCard" aria-hidden="true">
     <div class="pc-head">
       <div>
@@ -103,6 +92,7 @@
     <div class="pc-actions">
       <a id="pcMore" class="ghost-btn" target="_blank" rel="noopener">Mer info</a>
       <button id="pcUnlock" class="primary-btn">Lås opp</button>
+      <button id="pcRoute"  class="link-btn">Vis rute</button>
     </div>
   </div>
 
@@ -110,21 +100,45 @@
   <div id="sheetNearby" class="sheet" aria-hidden="true">
     <div class="sheet-card">
       <div class="sheet-head">
-        <div class="sheet-title"><span class="ico">📍</span> Flere i nærheten</div>
+        <div class="sheet-title">Flere i nærheten</div>
         <button data-close="#sheetNearby" class="sheet-close">✕</button>
       </div>
       <div id="sheetNearbyBody"></div>
     </div>
   </div>
 
-  <!-- SHEET: Flere i samlingen -->
+  <!-- SHEET: Hele samlingen -->
   <div id="sheetCollection" class="sheet" aria-hidden="true">
     <div class="sheet-card">
       <div class="sheet-head">
-        <div class="sheet-title"><span class="ico">📦</span> Samlingen din</div>
+        <div class="sheet-title">Samlingen din</div>
         <button data-close="#sheetCollection" class="sheet-close">✕</button>
       </div>
       <div id="sheetCollectionBody" class="grid"></div>
+    </div>
+  </div>
+
+  <!-- SHEET: Filter -->
+  <div id="sheetFilter" class="sheet" aria-hidden="true">
+    <div class="sheet-card">
+      <div class="sheet-head">
+        <div class="sheet-title">Filter</div>
+        <button data-close="#sheetFilter" class="sheet-close">✕</button>
+      </div>
+      <div id="filterBody" class="filter-body">
+        <div class="filter-row">
+          <label><input type="checkbox" class="flt-cat" value="Historie" checked/> Historie</label>
+          <label><input type="checkbox" class="flt-cat" value="Kultur" checked/> Kultur</label>
+          <label><input type="checkbox" class="flt-cat" value="Sport" checked/> Sport</label>
+          <label><input type="checkbox" class="flt-cat" value="Natur" checked/> Natur</label>
+          <label><input type="checkbox" class="flt-cat" value="Urban Life" checked/> Urban Life</label>
+          <label><input type="checkbox" class="flt-cat" value="Vitenskap" checked/> Vitenskap</label>
+        </div>
+        <div class="filter-row">
+          <label><input type="checkbox" id="fltPlaces" checked/> Vis steder</label>
+          <label><input type="checkbox" id="fltPeople" checked/> Vis personer</label>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -144,7 +158,6 @@
     </div>
   </div>
 
-  <script defer src="app.js"></script>
   <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('./sw.js').catch(()=>{});
