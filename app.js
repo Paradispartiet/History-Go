@@ -495,10 +495,11 @@ function wire(){
 
 function boot(){
   initMap();
+
   Promise.all([
-    fetch('places.json').then(r=>r.json()),
-    fetch('people.json').then(r=>r.json()).catch(()=>[]),
-    fetch('quizzes.json').then(r=>r.json()).catch(()=>[])
+    fetch('places.json').then(r=>r.ok?r.json():Promise.reject('places.json ' + r.status)),
+    fetch('people.json').then(r=>r.ok?r.json():Promise.reject('people.json ' + r.status)).catch((e)=>{ console.error('PEOPLE LOAD FAIL', e); return []; }),
+    fetch('quizzes.json').then(r=>r.ok?r.json():Promise.reject('quizzes.json ' + r.status)).catch(()=>[])
   ]).then(([places, people, quizzes])=>{
     PLACES = places||[];
     PEOPLE = people||[];
@@ -514,8 +515,9 @@ function boot(){
     renderGallery();
 
     requestLocation();
-  }).catch(()=>{
-    showToast("Kunne ikke laste data.", 1600);
+  }).catch((e)=>{
+    console.error('DATA LOAD ERROR', e);
+    showToast("Kunne ikke laste data.", 2000);
   });
 
   wire();
