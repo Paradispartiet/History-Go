@@ -3,14 +3,19 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>History Go v14</title>
+  <title>History Go</title>
+  <meta name="theme-color" content="#0b1320" />
   <link rel="manifest" href="manifest.json" />
-  <meta name="theme-color" content="#0d1b2a" />
+
   <!-- Leaflet -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
   <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <!-- App theme -->
-  <link rel="stylesheet" href="theme.css" />
+
+  <!-- Leaflet Routing Machine (ekte rute via OSRM) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css">
+  <script defer src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.min.js"></script>
+
+  <link rel="stylesheet" href="theme.css">
 </head>
 <body>
   <!-- KART -->
@@ -18,27 +23,28 @@
 
   <!-- KART-KNAPPER -->
   <div class="map-controls">
-    <button id="btnSeeMap" class="link-btn" aria-label="Se kart">🗺️ Se kart</button>
-    <button id="btnExitMap" class="map-exit" aria-label="Tilbake">✕</button>
-    <button id="btnCenter" class="map-center" aria-label="Sentrer meg">◎</button>
+    <button id="btnZoomIn"  aria-label="Zoom inn">+</button>
+    <button id="btnCenter"  aria-label="Sentrer meg">◎</button>
+    <button id="btnZoomOut" aria-label="Zoom ut">−</button>
+    <button id="btnExitMap" aria-label="Tilbake">✕</button>
   </div>
 
   <!-- TOAST -->
   <div id="toast" role="status" aria-live="polite">OK</div>
 
-  <!-- HEADER (minimalt) -->
+  <!-- HEADER -->
   <header>
     <h1>History Go</h1>
-    <label class="test small">Testmodus <input id="testToggle" type="checkbox" /></label>
+    <button id="btnSeeMap" class="link-btn">Se kart</button>
   </header>
 
   <!-- INNHOLD -->
   <main>
     <div class="section row between">
       <div id="status" class="muted">Henter posisjon…</div>
+      <label class="test small">Testmodus <input id="testToggle" type="checkbox" /></label>
     </div>
 
-    <!-- Steder i nærheten (viser 2) -->
     <section class="section">
       <div class="title underline underline-blue">Steder i nærheten</div>
       <div id="nearbyList"></div>
@@ -47,35 +53,33 @@
       </div>
     </section>
 
-    <!-- Personer i nærheten -->
     <section class="section">
-      <div class="title underline underline-red">Personer i nærheten</div>
+      <div class="title underline underline-soft">Personer i nærheten</div>
       <div id="nearbyPeople"></div>
     </section>
 
-    <!-- Min samling -->
     <section class="section">
-      <div class="title underline underline-gold">Min samling (<span id="collectionCount">0</span>)</div>
-      <div id="collectionGrid" class="grid icons-3"></div>
+      <div class="title underline underline-gold">
+        Min samling (<span id="collectionCount">0</span>)
+      </div>
+      <div id="collectionGrid" class="grid grid-3"></div>
       <div class="row right">
         <button id="btnMoreCollection" class="ghost-btn" style="display:none">+ flere</button>
       </div>
     </section>
 
-    <!-- Merker (poeng/nivåer) -->
     <section class="section">
       <div class="title underline underline-soft">Merker</div>
       <div id="merits" class="grid"></div>
     </section>
 
-    <!-- Galleri: bare SAMLEDE personer -->
     <section class="section">
-      <div class="title underline underline-violet">Samlede personer</div>
-      <div id="gallery" class="grid icons-3"></div>
+      <div class="title underline underline-red">Galleri (personer)</div>
+      <div id="gallery"></div>
     </section>
   </main>
 
-  <!-- PLACE INFO-CARD -->
+  <!-- PLACE CARD -->
   <div id="placeCard" aria-hidden="true">
     <div class="pc-head">
       <div>
@@ -86,13 +90,13 @@
     </div>
     <div id="pcDesc" class="pc-desc">Beskrivelse…</div>
     <div class="pc-actions">
-      <a id="pcMore" href="#" target="_blank" rel="noopener" class="ghost-btn">Mer info</a>
+      <a id="pcMore" class="ghost-btn" target="_blank" rel="noopener">Mer info</a>
+      <button id="pcRoute" class="ghost-btn">Vis rute</button>
       <button id="pcUnlock" class="primary-btn">Lås opp</button>
-      <button id="pcRoute" class="link-btn">Vis rute</button>
     </div>
   </div>
 
-  <!-- SHEET: Se flere i nærheten -->
+  <!-- SHEETS -->
   <div id="sheetNearby" class="sheet" aria-hidden="true">
     <div class="sheet-card">
       <div class="sheet-head">
@@ -103,18 +107,17 @@
     </div>
   </div>
 
-  <!-- SHEET: Flere i samlingen -->
   <div id="sheetCollection" class="sheet" aria-hidden="true">
     <div class="sheet-card">
       <div class="sheet-head">
         <div class="sheet-title">Samlingen din</div>
         <button data-close="#sheetCollection" class="sheet-close">✕</button>
       </div>
-      <div id="sheetCollectionBody" class="grid"></div>
+      <div id="sheetCollectionBody" class="grid grid-3"></div>
     </div>
   </div>
 
-  <!-- QUIZ MODAL -->
+  <!-- QUIZ -->
   <div id="quizModal" aria-hidden="true" role="dialog" aria-label="Quiz">
     <div class="quiz-card">
       <div class="quiz-head">
