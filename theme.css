@@ -1,85 +1,137 @@
 :root{
-  --bg:#06121a;
-  --card:rgba(9,20,30,.78);
-  --muted:#9fb3c7;
-  --line:#1e2b36;
-  --pill:#0b2a3d;
-  --accent:#7cc0ff;
+  --bg: #0a1929;
+  --panel-bg: rgba(13,27,42,.86); /* translucent so the map shines through */
+  --panel-border: rgba(255,255,255,.06);
+  --text: #dde7f5;
+  --muted: #97a6bc;
+  --primary: #1976d2;
+  --ok: #2ecc71;
+  --warn: #ffb703;
+
+  --hist: #1976d2;
+  --kult: #e63946;
+  --sport: #2a9d8f;
+  --natur: #4caf50;
+  --urban: #ffb703;
+  --viten: #9b59b6;
+
+  --card-radius: 12px;
+  --shadow: 0 10px 24px rgba(0,0,0,.35);
 }
+
 *{box-sizing:border-box}
 html,body{height:100%}
 body{
-  margin:0; color:#edf6ff; background:var(--bg); font:16px/1.45 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  background: var(--bg); color: var(--text);
 }
 
-/* Map */
-#map{position:fixed; inset:0; z-index:0;}
-.map-controls{position:fixed; right:12px; bottom:12px; z-index:20; display:flex; flex-direction:column; gap:8px}
+/* Map layer always behind */
+#map{
+  position: fixed; inset: 0; z-index: 0;
+  filter: none;
+}
+.map-controls{
+  position: fixed; right: 12px; bottom: 12px; z-index: 12;
+  display: grid; gap: 8px;
+}
 .map-controls button{
-  width:44px; height:44px; border-radius:999px; background:rgba(9,20,30,.9); color:#fff; border:1px solid rgba(255,255,255,.15);
+  width: 44px; height: 44px; border-radius: 999px; border: 1px solid var(--panel-border);
+  background: rgba(20,30,45,.9); color:#fff; box-shadow: var(--shadow);
 }
-body:not(.map-only) #btnExitMap{display:none}
+#btnExitMap{ display:none; }
 
-/* Layout over map */
-header, main > section, .card, .sheet .sheet-body, #placeCard .pc-body, #quizModal .quiz-body{
-  background:var(--card);
-  border:1px solid rgba(120,160,200,.12);
-  backdrop-filter: blur(2px) saturate(1.1);
-  -webkit-backdrop-filter: blur(2px) saturate(1.1);
-  border-radius:14px;
+/* Toast */
+#toast{
+  position: fixed; top: 14px; left: 50%; transform: translateX(-50%);
+  background: rgba(0,0,0,.7); color:#fff; padding:8px 14px; border-radius: 999px;
+  font-weight:600; display:none; z-index: 15;
 }
-header{position:relative; z-index:10; margin:12px; padding:12px 14px; display:flex; align-items:center; justify-content:space-between}
-h1{margin:0; font-size:20px}
-.header-actions{display:flex; align-items:center; gap:10px}
-.toggle span{opacity:.8}
-.pill{padding:8px 12px; border-radius:999px; background:var(--pill); color:#cfe9ff; border:1px solid rgba(255,255,255,.15)}
-main{position:relative; z-index:10; padding:0 12px 100px}
-main > section{padding:12px 12px; margin:12px 0}
 
-.stack{display:grid; gap:12px}
-.row{display:flex; gap:10px; align-items:center}
-.row.right{justify-content:flex-end}
-.row.between{justify-content:space-between}
-
-.card{padding:12px}
-.card .name{font-weight:700}
-.card .meta{color:var(--muted); font-size:13px}
-.card .desc{opacity:.9}
-.muted{color:var(--muted)}
-.ghost-btn,.primary-btn,.pill{
-  cursor:pointer; border:none; outline:none;
+/* Header */
+header{
+  position: relative; z-index: 5;
+  display:flex; align-items:center; justify-content:space-between;
+  padding: 16px 14px;
+  background: linear-gradient(180deg, rgba(10,25,41,.95), rgba(10,25,41,.65) 70%, transparent);
 }
-.ghost-btn{background:transparent; color:#cfe9ff; border:1px solid rgba(255,255,255,.2); padding:8px 12px; border-radius:999px}
-.primary-btn{background:#ffd166; color:#111; padding:8px 12px; border-radius:10px}
-#toast{position:fixed; left:50%; transform:translateX(-50%); top:12px; z-index:30; display:none; background:#111a; padding:8px 12px; border-radius:10px}
+.brand{ font-weight:800; letter-spacing:.3px }
+.actions{ display:flex; gap:10px; align-items:center }
+.toggle{ display:flex; gap:6px; align-items:center; font-size:.9rem }
+.toggle input{ accent-color: var(--primary); }
+
+/* Panels on top of map */
+main{ position: relative; z-index: 5; padding: 8px 10px 44px }
+.panel{
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--card-radius);
+  padding: 10px; margin: 10px 0;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(2px); /* slight polish */
+}
+.panel h2{ display:flex; align-items:center; justify-content:space-between; margin:6px 2px 12px; font-size:1rem }
+.muted{ color: var(--muted) }
+
+/* Cards & chips */
+.cards{ display:grid; gap:10px }
+.card{
+  background: rgba(255,255,255,.02);
+  border: 1px solid var(--panel-border);
+  border-radius: 12px; padding: 12px;
+}
+.card .name{ font-weight:700 }
+.card .meta{ color: var(--muted); font-size:.9rem; margin:2px 0 4px }
+.card .row{ display:flex; gap:8px; align-items:center }
+.card .row.between{ justify-content:space-between }
+
+/* small icon chips for collection/gallery */
+.chips{ display:flex; flex-wrap:wrap; gap:8px }
+.badge{
+  --dot: var(--hist);
+  display:inline-flex; align-items:center; gap:6px;
+  padding:6px 10px; border-radius:999px; border:1px solid var(--panel-border);
+  background: rgba(255,255,255,.02); font-size:.9rem;
+}
+.badge .i{
+  width:24px; height:24px; border-radius:999px; display:inline-block;
+  border:2px solid rgba(0,0,0,.55);
+}
+
+/* Buttons */
+button{ cursor:pointer; border:none }
+.primary{ background: var(--primary); color:#fff; padding:10px 14px; border-radius:10px }
+.secondary{ background: rgba(255,255,255,.08); color:#fff; padding:10px 14px; border-radius:10px; border:1px solid var(--panel-border) }
+.ghost{ background: transparent; color:#fff; padding:8px 12px; border-radius:999px; border:1px solid var(--panel-border) }
+.icon{ width:36px; height:36px; border-radius:999px; background: rgba(255,255,255,.08); color:#fff; border:1px solid var(--panel-border) }
+.chip.ghost{ font-size:.9rem }
 
 /* Place card */
-#placeCard{position:fixed; left:0; right:0; bottom:0; z-index:25; padding:10px; display:grid}
-#placeCard[aria-hidden="true"]{display:none}
-.pc-body{padding:12px}
-.pc-x{position:absolute; right:14px; top:10px; background:transparent; color:#fff; border:0; font-size:24px}
-.pc-actions{display:flex; gap:10px; flex-wrap:wrap}
+.place-card{ position: fixed; left:0; right:0; bottom:0; z-index: 10; transform: translateY(110%); transition: .25s transform ease; }
+.place-card[aria-hidden="false"]{ transform: translateY(0); }
+.place-card .pc-body{
+  margin: 0 8px 8px; padding: 12px;
+  background: var(--panel-bg); border: 1px solid var(--panel-border); border-radius: 14px; box-shadow: var(--shadow);
+}
+.pc-title{ display:flex; justify-content:space-between; align-items:center }
+.pc-meta{ color: var(--muted); margin:4px 0 6px }
+.pc-actions{ display:flex; gap:8px; align-items:center; flex-wrap:wrap }
 
-/* Sheets */
-.sheet{position:fixed; left:0; right:0; bottom:0; z-index:26; padding:10px; display:grid}
-.sheet[aria-hidden="true"]{display:none}
-.sheet-body{padding:10px}
-.sheet-head{display:flex; align-items:center; justify-content:space-between}
-.sheet-close{background:transparent; border:0; color:#fff; font-size:22px}
-
-/* Quiz */
-#quizModal{position:fixed; inset:0; display:grid; place-items:center; z-index:27}
-#quizModal[aria-hidden="true"]{display:none}
-.quiz-body{max-width:520px; width:92%; padding:16px}
-.choices{display:grid; gap:10px}
-.choices button{padding:10px 12px; border-radius:10px; border:1px solid rgba(255,255,255,.2); background:#11212b; color:#fff}
-.choices button.correct{background:#1db954}
-.choices button.wrong{background:#b91d1d}
-
-/* Chips / badges (små ikoner) */
-.chips{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px}
-.badge{display:inline-flex; align-items:center; gap:6px; padding:6px 8px; border-radius:999px; font-size:12px; line-height:1; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12)}
-.badge .i{width:10px;height:10px;border-radius:999px;display:inline-block}
+/* Sheets & modal */
+.sheet{ position: fixed; inset:auto 0 0 0; z-index: 11; background: var(--panel-bg); border-top:1px solid var(--panel-border); transform: translateY(110%); transition: .25s }
+.sheet[aria-hidden="false"]{ transform: translateY(0) }
+.sheet-head{ display:flex; justify-content:space-between; align-items:center; padding:10px 12px; border-bottom:1px solid var(--panel-border) }
+.sheet-body{ padding:10px 12px }
+.modal{ position:fixed; inset:0; display:grid; place-items:center; background: rgba(0,0,0,.4); z-index:20; transform: scale(.98); opacity:0; pointer-events:none; transition:.2s }
+.modal[aria-hidden="false"]{ transform: none; opacity:1; pointer-events:auto }
+.modal-body{ width:min(680px,calc(100% - 24px)); background: var(--panel-bg); border:1px solid var(--panel-border); border-radius:14px; padding:14px; box-shadow: var(--shadow) }
+.modal-head{ display:flex; justify-content:space-between; align-items:center; margin-bottom:8px }
+.quiz-choices{ display:grid; gap:8px }
+.quiz-choices button{ padding:10px; border:1px solid var(--panel-border); border-radius:10px; background: rgba(255,255,255,.03); color:#fff }
+.quiz-choices button.correct{ outline:2px solid var(--ok) }
+.quiz-choices button.wrong{ outline:2px solid #ff5b5b }
+.quiz-feedback{ margin-top:6px; font-weight:700 }
 
 /* Map-only mode */
-body.map-only header, body.map-only main{display:none}
+body.map-only header, body.map-only main{ display:none }
+body.map-only #btnExitMap{ display:block }
