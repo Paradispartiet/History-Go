@@ -3,52 +3,42 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>History Go</title>
-  <meta name="theme-color" content="#0d1b2a" />
+  <title>History Go v14</title>
   <link rel="manifest" href="manifest.json" />
-
+  <meta name="theme-color" content="#0d1b2a" />
   <!-- Leaflet -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
-  <!-- Styles -->
+  <!-- App theme -->
   <link rel="stylesheet" href="theme.css" />
-
-  <!-- Icons (inline SVG helper) -->
-  <script defer src="icons.js"></script>
-
-  <!-- App -->
-  <script defer src="app.js"></script>
 </head>
 <body>
   <!-- KART -->
   <div id="map" aria-label="Kart"></div>
 
-  <!-- Kart-knapper (kun i kart-modus) -->
-  <button id="btnExitMap"   class="map-exit"   aria-label="Tilbake" title="Tilbake">✕</button>
-  <button id="btnCenter"    class="map-center" aria-label="Sentrer meg" title="Sentrer">◎</button>
-  <button id="btnFilter"    class="map-filter" aria-label="Filter" title="Filter">☰</button>
-  <button id="btnClearRoute" class="map-clear" aria-label="Fjern sti" title="Fjern sti">—</button>
+  <!-- KART-KNAPPER -->
+  <div class="map-controls">
+    <button id="btnSeeMap" class="link-btn" aria-label="Se kart">🗺️ Se kart</button>
+    <button id="btnExitMap" class="map-exit" aria-label="Tilbake">✕</button>
+    <button id="btnCenter" class="map-center" aria-label="Sentrer meg">◎</button>
+  </div>
 
   <!-- TOAST -->
-  <div id="toast">OK</div>
+  <div id="toast" role="status" aria-live="polite">OK</div>
 
-  <!-- HEADER -->
+  <!-- HEADER (minimalt) -->
   <header>
     <h1>History Go</h1>
-    <div class="header-actions">
-      <label class="test small">Testmodus <input id="testToggle" type="checkbox" /></label>
-      <button id="btnSeeMap" class="link-btn">Se kart</button>
-    </div>
+    <label class="test small">Testmodus <input id="testToggle" type="checkbox" /></label>
   </header>
 
   <!-- INNHOLD -->
   <main>
-    <div class="section">
+    <div class="section row between">
       <div id="status" class="muted">Henter posisjon…</div>
     </div>
 
-    <!-- Steder i nærheten (2) -->
+    <!-- Steder i nærheten (viser 2) -->
     <section class="section">
       <div class="title underline underline-blue">Steder i nærheten</div>
       <div id="nearbyList"></div>
@@ -57,29 +47,35 @@
       </div>
     </section>
 
-    <!-- Mine steder (ikoner + navn) -->
+    <!-- Personer i nærheten -->
     <section class="section">
-      <div class="title underline underline-gold">Mine steder (<span id="collectionCount">0</span>)</div>
-      <div id="ownedPlacesGrid" class="icon-grid"></div>
+      <div class="title underline underline-red">Personer i nærheten</div>
+      <div id="nearbyPeople"></div>
+    </section>
+
+    <!-- Min samling -->
+    <section class="section">
+      <div class="title underline underline-gold">Min samling (<span id="collectionCount">0</span>)</div>
+      <div id="collectionGrid" class="grid icons-3"></div>
       <div class="row right">
         <button id="btnMoreCollection" class="ghost-btn" style="display:none">+ flere</button>
       </div>
     </section>
 
-    <!-- Mine personer (ikoner + navn, kun samlet) -->
-    <section class="section">
-      <div class="title underline underline-red">Mine personer</div>
-      <div id="ownedPeopleGrid" class="icon-grid"></div>
-    </section>
-
-    <!-- Merker -->
+    <!-- Merker (poeng/nivåer) -->
     <section class="section">
       <div class="title underline underline-soft">Merker</div>
       <div id="merits" class="grid"></div>
     </section>
+
+    <!-- Galleri: bare SAMLEDE personer -->
+    <section class="section">
+      <div class="title underline underline-violet">Samlede personer</div>
+      <div id="gallery" class="grid icons-3"></div>
+    </section>
   </main>
 
-  <!-- PLACE CARD -->
+  <!-- PLACE INFO-CARD -->
   <div id="placeCard" aria-hidden="true">
     <div class="pc-head">
       <div>
@@ -90,9 +86,9 @@
     </div>
     <div id="pcDesc" class="pc-desc">Beskrivelse…</div>
     <div class="pc-actions">
-      <a id="pcMore" class="ghost-btn" target="_blank" rel="noopener">Mer info</a>
+      <a id="pcMore" href="#" target="_blank" rel="noopener" class="ghost-btn">Mer info</a>
       <button id="pcUnlock" class="primary-btn">Lås opp</button>
-      <button id="pcRoute"  class="link-btn">Vis rute</button>
+      <button id="pcRoute" class="link-btn">Vis rute</button>
     </div>
   </div>
 
@@ -107,7 +103,7 @@
     </div>
   </div>
 
-  <!-- SHEET: Hele samlingen -->
+  <!-- SHEET: Flere i samlingen -->
   <div id="sheetCollection" class="sheet" aria-hidden="true">
     <div class="sheet-card">
       <div class="sheet-head">
@@ -115,30 +111,6 @@
         <button data-close="#sheetCollection" class="sheet-close">✕</button>
       </div>
       <div id="sheetCollectionBody" class="grid"></div>
-    </div>
-  </div>
-
-  <!-- SHEET: Filter -->
-  <div id="sheetFilter" class="sheet" aria-hidden="true">
-    <div class="sheet-card">
-      <div class="sheet-head">
-        <div class="sheet-title">Filter</div>
-        <button data-close="#sheetFilter" class="sheet-close">✕</button>
-      </div>
-      <div id="filterBody" class="filter-body">
-        <div class="filter-row">
-          <label><input type="checkbox" class="flt-cat" value="Historie" checked/> Historie</label>
-          <label><input type="checkbox" class="flt-cat" value="Kultur" checked/> Kultur</label>
-          <label><input type="checkbox" class="flt-cat" value="Sport" checked/> Sport</label>
-          <label><input type="checkbox" class="flt-cat" value="Natur" checked/> Natur</label>
-          <label><input type="checkbox" class="flt-cat" value="Urban Life" checked/> Urban Life</label>
-          <label><input type="checkbox" class="flt-cat" value="Vitenskap" checked/> Vitenskap</label>
-        </div>
-        <div class="filter-row">
-          <label><input type="checkbox" id="fltPlaces" checked/> Vis steder</label>
-          <label><input type="checkbox" id="fltPeople" checked/> Vis personer</label>
-        </div>
-      </div>
     </div>
   </div>
 
@@ -158,6 +130,7 @@
     </div>
   </div>
 
+  <script src="app.js"></script>
   <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('./sw.js').catch(()=>{});
