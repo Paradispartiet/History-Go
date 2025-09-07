@@ -1,5 +1,5 @@
 // History Go – enkel, “stille” SW som ikke spammer konsollen
-const CACHE = 'hg-v1';
+const CACHE = 'hg-v15';
 const CORE = [
   '/', '/index.html', '/theme.css', '/app.js',
   '/places.json', '/people.json', '/quizzes.json'
