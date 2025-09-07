@@ -1,162 +1,233 @@
 <!doctype html>
 <html lang="no">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>History Go – datasjekk</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>History Go – Datavalidering</title>
 <style>
-  :root { --ok:#2e7d32; --warn:#f57c00; --err:#c62828; --muted:#7986cb; }
-  body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif; margin: 24px; }
-  h1 { margin: 0 0 16px; }
-  .summary { display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: 10px; margin: 16px 0 24px; }
-  .card { border: 1px solid #e0e0e0; border-radius: 10px; padding: 12px 14px; background: #fafafa; }
-  .ok    { border-left: 5px solid var(--ok); }
-  .warn  { border-left: 5px solid var(--warn); }
-  .err   { border-left: 5px solid var(--err); }
-  .muted { color:#666; }
-  details { border: 1px dashed #ddd; border-radius: 8px; padding: 10px 12px; margin: 10px 0; background: #fff; }
-  table { width: 100%; border-collapse: collapse; margin: 6px 0; }
-  th, td { border-bottom: 1px solid #eee; text-align: left; padding: 6px 8px; font-size: 14px; }
-  th { background: #fafafa; }
-  code { background:#f3f3f3; border-radius:4px; padding:0 4px; }
-  .pill { display:inline-block; font-size:12px; background:#eee; padding:2px 8px; border-radius:999px; }
-  .ts { color:#999; font-size:12px; }
+  :root{
+    --bg:#0e1116;--panel:#141924;--muted:#97a1b3;--ok:#28a745;--warn:#ffb703;--err:#e63946;--ink:#e6edf3;
+    --blue:#1976d2;
+  }
+  html,body{height:100%}
+  body{margin:0;background:linear-gradient(180deg,#0b0f15,#0f141d 40%,#0b0f15);color:var(--ink);font:14px/1.45 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial}
+  header{position:sticky;top:0;background:#0f141d;box-shadow:0 2px 12px rgba(0,0,0,.35);z-index:10}
+  .bar{max-width:1100px;margin:auto;padding:14px 18px;display:flex;gap:12px;align-items:center}
+  h1{font-size:18px;margin:0 8px 0 0}
+  .chip{font-size:12px;border:1px solid #223048;border-radius:999px;padding:4px 10px;color:#c9d1d9;background:#111826}
+  .ok{color:var(--ok)} .warn{color:var(--warn)} .err{color:var(--err)}
+  main{max-width:1100px;margin:16px auto;padding:0 18px 40px}
+  .grid{display:grid;grid-template-columns:1fr;gap:14px}
+  @media(min-width:900px){.grid{grid-template-columns:1fr 1fr}}
+  section{background:var(--panel);border:1px solid #1e293b;border-radius:12px;overflow:hidden}
+  .sec-h{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid #1f2533;background:#111827}
+  .sec-h b{font-size:13px;letter-spacing:.2px}
+  .sec-b{padding:10px 12px}
+  details{background:#0f1522;border:1px solid #1e293b;border-radius:10px;margin:8px 0}
+  summary{cursor:pointer;padding:10px 12px;list-style:none}
+  summary::-webkit-details-marker{display:none}
+  .row{display:flex;gap:10px;flex-wrap:wrap}
+  .item{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border-radius:10px;background:#0c121d;border:1px solid #1b2433;margin:8px 0}
+  .tag{font-size:11px;padding:2px 8px;border-radius:999px;border:1px solid #2a3650;color:#a9b2c0}
+  .muted{color:var(--muted)}
+  .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+  .pill{padding:2px 8px;border-radius:6px;background:#182132;border:1px solid #263349}
+  .badge{font-weight:600}
+  .list{margin:0;padding-left:18px}
+  .status-dot{width:10px;height:10px;border-radius:999px;display:inline-block;margin-right:8px}
+  .s-ok{background:var(--ok)} .s-warn{background:var(--warn)} .s-err{background:var(--err)}
+  .help{font-size:12px;color:#b9c2d0}
+  .small{font-size:12px}
 </style>
 </head>
 <body>
-<h1>History Go – datasjekk</h1>
-<div class="ts" id="ts"></div>
-<div id="summary" class="summary"></div>
-<div id="report"></div>
+  <header>
+    <div class="bar">
+      <h1>Valider data</h1>
+      <span class="chip">places.json</span>
+      <span class="chip">people.json</span>
+      <span class="chip">quizzes.json</span>
+      <span id="sumOk"   class="chip ok">OK: 0</span>
+      <span id="sumWarn" class="chip warn">Advarsler: 0</span>
+      <span id="sumErr"  class="chip err">Feil: 0</span>
+    </div>
+  </header>
+
+  <main>
+    <div class="grid">
+      <section>
+        <div class="sec-h"><b>Oppsummering</b><span id="totals" class="small muted">—</span></div>
+        <div class="sec-b" id="summary"></div>
+      </section>
+
+      <section>
+        <div class="sec-h"><b>JSON-syntaks</b><span class="small muted">viser linje:kolonne ved feil</span></div>
+        <div class="sec-b" id="syntax"></div>
+      </section>
+    </div>
+
+    <section>
+      <div class="sec-h"><b>Relasjoner & felt</b><span class="small muted">ID-er, kategorier, koordinater, referanser</span></div>
+      <div class="sec-b" id="rel"></div>
+    </section>
+
+    <section>
+      <div class="sec-h"><b>Detaljer</b><span class="small muted">Klikk for å se lister</span></div>
+      <div class="sec-b" id="details"></div>
+    </section>
+  </main>
 
 <script>
-(async function run(){
-  const tsEl = document.getElementById('ts');
-  tsEl.textContent = new Date().toLocaleString('no-NO');
+(async function(){
+  const files = [
+    {key:'places',  path:'places.json'},
+    {key:'people',  path:'people.json'},
+    {key:'quizzes', path:'quizzes.json'}
+  ];
+  const allowCats = new Set(['Historie','Kultur','Sport','Natur','Urban Life','Vitenskap']);
 
-  async function load(name){
-    const r = await fetch(name, {cache:'no-store'});
-    if (!r.ok) throw new Error(name + ' ' + r.status);
-    return r.json();
+  const raw = {};
+  const data = {};
+  const syntax = [];
+
+  // ---- fetch as text, then JSON parse w/ position extraction
+  for (const f of files){
+    try{
+      const txt = await fetch(f.path, {cache:'no-store'}).then(r=>r.text());
+      raw[f.key] = txt;
+      try{
+        data[f.key] = JSON.parse(txt);
+        syntax.push(ok(`✅ ${f.path} – OK`));
+      }catch(e){
+        const posMatch = /position (\d+)/i.exec(e.message);
+        let extra = '';
+        if (posMatch){
+          const pos = Number(posMatch[1]);
+          const {line, col, snippet} = indexToLineCol(txt, pos);
+          extra = ` (linje ${line}, kol ${col})<br><span class="help mono">${escapeHtml(snippet)}</span>`;
+        }
+        syntax.push(err(`❌ ${f.path} – JSON-feil: ${escapeHtml(e.message)}${extra}`));
+        data[f.key] = []; // keep going for rest of checks
+      }
+    }catch(e){
+      syntax.push(err(`❌ ${f.path} – kunne ikke lastes: ${escapeHtml(e.message)}`));
+      data[f.key] = [];
+    }
   }
 
-  let places=[], people=[], quizzes=[];
-  let errors=[], warnings=[], infos=[];
-  try {
-    [places, people, quizzes] = await Promise.all([
-      load('places.json'), load('people.json'), load('quizzes.json')
-    ]);
-  } catch (e) {
-    errors.push(`Kunne ikke laste en eller flere filer: ${e.message}`);
+  // ---- summarize counts
+  const places  = Array.isArray(data.places)? data.places : [];
+  const people  = Array.isArray(data.people)? data.people : [];
+  const quizzes = Array.isArray(data.quizzes)? data.quizzes: [];
+
+  const summaryEl = document.getElementById('summary');
+  summaryEl.innerHTML = `
+    <div class="row">
+      <div class="pill">Steder: <b class="badge">${places.length}</b></div>
+      <div class="pill">Personer: <b class="badge">${people.length}</b></div>
+      <div class="pill">Quizzer: <b class="badge">${quizzes.length}</b></div>
+    </div>
+    <div class="help" style="margin-top:8px">
+      Sjekker: unike id-er, kategorier, lat/lon, people.placeId → places, quizzes.personId → people.
+    </div>
+  `;
+  document.getElementById('totals').textContent =
+    `Steder ${places.length} • Personer ${people.length} • Quizzer ${quizzes.length}`;
+
+  // ---- relational checks
+  const report = [];
+  // 1) unique ids
+  report.push(checkUnique('places', places));
+  report.push(checkUnique('people', people));
+  report.push(checkUnique('quizzes', quizzes));
+
+  // 2) categories on places
+  for (const p of places){
+    if (!p.id || !p.name) addErr(report, `Place mangler id/navn: ${idOf(p)}`);
+    if (!p.category) addWarn(report, `Place mangler kategori: ${idOf(p)}`);
+    else if (!allowCats.has(p.category)) addWarn(report, `Ukjent kategori på place '${p.name}': ${p.category}`);
+    if (!numIn(p.lat, -90, 90) || !numIn(p.lon, -180, 180))
+      addErr(report, `Ugyldig koordinat for place '${p.name}' (lat/lon)`);
+    if (p.r != null && !(typeof p.r === 'number' && p.r > 0)) addWarn(report, `Radius (r) bør være tall > 0 på '${p.name}'`);
   }
 
-  // --- hjelpefunksjoner ---
-  const byId = arr => Object.fromEntries(arr.map(x=>[x.id,x]));
-  const uniq = arr => Array.from(new Set(arr));
-  const isNum = x => typeof x === 'number' && Number.isFinite(x);
-  const inRange = (v,min,max) => isNum(v) && v>=min && v<=max;
-
-  // --- PLACES ---
-  if (places && Array.isArray(places)){
-    const ids = places.map(p=>p.id);
-    const dups = ids.filter((x,i)=>ids.indexOf(x)!==i);
-    if (dups.length) errors.push(`Dupliserte place.id: ${uniq(dups).join(', ')}`);
-
-    places.forEach(p=>{
-      if (!p.id || !p.name) errors.push(`Place mangler id/navn: ${JSON.stringify(p)}`);
-      if (!inRange(p.lat, -90, 90) || !inRange(p.lon, -180, 180))
-        errors.push(`Ugyldige koordinater for place ${p.id} (${p.lat}, ${p.lon})`);
-      if (!isNum(p.r) || p.r<=0) warnings.push(`Mistenkelig radius for place ${p.id}: ${p.r}`);
-      if (!p.category) warnings.push(`Place uten kategori: ${p.id}`);
-    });
+  // 3) people fields + reference to place
+  const placeIds = new Set(places.map(p=>p.id));
+  for (const pr of people){
+    if (!pr.id || !pr.name) addErr(report, `Person mangler id/navn: ${idOf(pr)}`);
+    if (!pr.placeId) addErr(report, `Person '${pr.name}' mangler placeId`);
+    else if (!placeIds.has(pr.placeId)) addErr(report, `Person '${pr.name}' peker til ukjent placeId: ${pr.placeId}`);
+    // lat/lon validering – vi advarer om tomme, men det er lov hvis appen faller tilbake til stedets koordinater
+    const hasLatLon = typeof pr.lat === 'number' && typeof pr.lon === 'number';
+    if (!hasLatLon){
+      addWarn(report, `Person '${pr.name}' mangler lat/lon – bruk fallback til stedets koordinater ved rendering.`);
+    }else{
+      if (!numIn(pr.lat, -90, 90) || !numIn(pr.lon, -180, 180))
+        addErr(report, `Ugyldig koordinat for person '${pr.name}'`);
+    }
+    if (pr.r != null && !(typeof pr.r === 'number' && pr.r > 0)) addWarn(report, `Radius (r) bør være tall > 0 på person '${pr.name}'`);
   }
 
-  // --- PEOPLE ---
-  if (people && Array.isArray(people)){
-    const ids = people.map(x=>x.id);
-    const dups = ids.filter((x,i)=>ids.indexOf(x)!==i);
-    if (dups.length) errors.push(`Dupliserte person.id: ${uniq(dups).join(', ')}`);
-
-    const placesMap = byId(places);
-    people.forEach(pr=>{
-      if (!pr.id || !pr.name) errors.push(`Person mangler id/navn: ${JSON.stringify(pr)}`);
-      // Koordinater er valgfrie; hvis ikke satt, trekkes fra place senere i appen.
-      if ((pr.lat!=null || pr.lon!=null) && (!inRange(pr.lat,-90,90) || !inRange(pr.lon,-180,180)))
-        errors.push(`Ugyldige koordinater for person ${pr.id} (${pr.lat}, ${pr.lon})`);
-      if (!pr.placeId) errors.push(`Person ${pr.id} mangler placeId`);
-      else if (!placesMap[pr.placeId]) errors.push(`Person ${pr.id} har placeId som ikke finnes: ${pr.placeId}`);
-    });
+  // 4) quizzes referanse til person
+  const personIds = new Set(people.map(p=>p.id));
+  for (const q of quizzes){
+    if (!q.id || !q.title) addErr(report, `Quiz mangler id/tittel: ${idOf(q)}`);
+    if (!q.personId) addErr(report, `Quiz '${q.title}' mangler personId`);
+    else if (!personIds.has(q.personId)) addErr(report, `Quiz '${q.title}' peker til ukjent personId: ${q.personId}`);
+    if (!q.questions || !Array.isArray(q.questions) || q.questions.length === 0) addWarn(report, `Quiz '${q.title}' mangler spørsmål`);
   }
 
-  // --- QUIZZES ---
-  if (quizzes && Array.isArray(quizzes)){
-    const ids = quizzes.map(q=>q.id);
-    const dups = ids.filter((x,i)=>ids.indexOf(x)!==i);
-    if (dups.length) errors.push(`Dupliserte quiz.id: ${uniq(dups).join(', ')}`);
+  // ---- paint syntax + relations
+  document.getElementById('syntax').innerHTML = syntax.join('');
 
-    const peopleMap = byId(people);
-    const allowedCats = new Set(['Historie','Kultur','Sport','Natur','Urban Life','Vitenskap']);
-    quizzes.forEach(q=>{
-      if (!q.id || !q.personId) errors.push(`Quiz mangler id/personId: ${JSON.stringify(q)}`);
-      if (q.personId && !peopleMap[q.personId]) errors.push(`Quiz ${q.id} refererer ukjent personId: ${q.personId}`);
-      if (!Array.isArray(q.questions) || q.questions.length===0) errors.push(`Quiz ${q.id} har ingen spørsmål`);
-      if (q.reward?.category && !allowedCats.has(q.reward.category))
-        warnings.push(`Quiz ${q.id} reward-kategori er ukjent: ${q.reward.category}`);
-      (q.questions||[]).forEach((item,idx)=>{
-        if (!item || typeof item.text!=='string') errors.push(`Quiz ${q.id} spørsmål #${idx+1} mangler tekst`);
-        if (!Array.isArray(item.choices) || item.choices.length<2) errors.push(`Quiz ${q.id} spørsmål #${idx+1} har for få svaralternativer`);
-        if (!isNum(item.answerIndex) || item.answerIndex<0 || item.answerIndex>= (item.choices?.length||0))
-          errors.push(`Quiz ${q.id} spørsmål #${idx+1}: answerIndex utenfor gyldig område`);
-      });
-    });
-  }
+  const relEl = document.getElementById('rel');
+  const flat = report.flat();
+  const errs = flat.filter(x=>x.type==='err').length;
+  const warns= flat.filter(x=>x.type==='warn').length;
+  document.getElementById('sumOk').textContent   = `OK: ${Math.max(0, (places.length+people.length+quizzes.length) - (errs+warns))}`;
+  document.getElementById('sumWarn').textContent = `Advarsler: ${warns}`;
+  document.getElementById('sumErr').textContent  = `Feil: ${errs}`;
 
-  // --- Tilleggsanalyser ---
-  // Personer uten eksplisitte koordinater (FYI)
-  const peopleNoCoords = (people||[]).filter(p=>p.lat==null || p.lon==null);
-  if (peopleNoCoords.length) infos.push(`${peopleNoCoords.length} personer mangler egne koordinater (de vil arve fra sitt sted i appen).`);
+  relEl.innerHTML = flat.length
+    ? flat.map(renderItem).join('')
+    : ok('✅ Ingen relasjonsfeil funnet.');
 
-  // Steder uten personer
-  const placeIdsWithPeople = new Set((people||[]).map(p=>p.placeId));
-  const placesWithoutPeople = (places||[]).filter(p=>!placeIdsWithPeople.has(p.id));
-  if (placesWithoutPeople.length) infos.push(`${placesWithoutPeople.length} steder har ingen tilknyttede personer (OK, bare informasjon).`);
-
-  // --- Render oppsummering ---
-  const summary = document.getElementById('summary');
-  summary.innerHTML = `
-    <div class="card ${errors.length?'err':'ok'}"><b>${errors.length ? 'Feil' : 'Ingen feil'}</b><br><span class="muted">${errors.length} funnet</span></div>
-    <div class="card ${warnings.length?'warn':'ok'}"><b>${warnings.length ? 'Advarsler' : 'Ingen advarsler'}</b><br><span class="muted">${warnings.length} funnet</span></div>
-    <div class="card"><b>Steder</b><br><span class="muted">${(places||[]).length} objekter</span></div>
-    <div class="card"><b>Personer</b><br><span class="muted">${(people||[]).length} objekter</span></div>
-    <div class="card"><b>Quizzer</b><br><span class="muted">${(quizzes||[]).length} objekter</span></div>
+  // ---- Details: show simple lists
+  document.getElementById('details').innerHTML = `
+    <details open><summary><b>Places</b> <span class="muted">(${places.length})</span></summary>
+      <div class="sec-b">${places.map(p=>smallItem(`${p.name} <span class="muted">(${p.category})</span>`, p.id)).join('')}</div>
+    </details>
+    <details><summary><b>People</b> <span class="muted">(${people.length})</span></summary>
+      <div class="sec-b">${people.map(p=>smallItem(`${p.name} <span class="muted">→ ${p.placeId}</span>`, p.id)).join('')}</div>
+    </details>
+    <details><summary><b>Quizzes</b> <span class="muted">(${quizzes.length})</span></summary>
+      <div class="sec-b">${quizzes.map(q=>smallItem(`${q.title} <span class="muted">→ ${q.personId}</span>`, q.id)).join('')}</div>
+    </details>
   `;
 
-  // --- Render detaljer ---
-  const report = document.getElementById('report');
-  function renderList(title, arr, level){
-    const cls = level==='err' ? 'err' : level==='warn' ? 'warn' : 'muted';
-    const items = arr.map(x=>`<tr><td>${x}</td></tr>`).join('');
-    return `
-      <details ${arr.length? 'open':''}>
-        <summary><span class="pill ${cls}">${title}</span> <span class="muted">(${arr.length})</span></summary>
-        ${arr.length ? `<table><tbody>${items}</tbody></table>` : `<div class="muted">Ingen.</div>`}
-      </details>
-    `;
-  }
+  // ---- helpers
+  function ok(s){ return `<div class="item"><span class="status-dot s-ok"></span><div>${s}</div></div>` }
+  function warn(s){ return {type:'warn', html:`<div class="item"><span class="status-dot s-warn"></span><div>${s}</div></div>`} }
+  function err(s){ return `<div class="item"><span class="status-dot s-err"></span><div>${s}</div></div>` }
+  function addWarn(arr, s){ arr.push(warn(s)); }
+  function addErr(arr, s){ arr.push({type:'err', html:err(s)}); }
+  function renderItem(x){ return x.html }
+  function smallItem(text, id){ return `<div class="help">• <span class="mono">${escapeHtml(id||'?')}</span> – ${text}</div>` }
+  function idOf(o){ return escapeHtml(o && o.id || '?') }
+  function numIn(v, a, b){ return typeof v === 'number' && v>=a && v<=b }
+  function escapeHtml(s){ return (s==null?'':String(s)).replace(/[&<>"]/g, m=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;' }[m])) }
 
-  report.innerHTML = [
-    renderList('Feil', errors, 'err'),
-    renderList('Advarsler', warnings, 'warn'),
-    renderList('Info', infos, 'info'),
-    `<details>
-      <summary>Rådata (antall)</summary>
-      <table><tbody>
-        <tr><th>places.json</th><td>${(places||[]).length}</td></tr>
-        <tr><th>people.json</th><td>${(people||[]).length}</td></tr>
-        <tr><th>quizzes.json</th><td>${(quizzes||[]).length}</td></tr>
-      </tbody></table>
-    </details>`
-  ].join('');
+  function indexToLineCol(text, index){
+    let line=1, col=1;
+    for (let i=0;i<index;i++){
+      if (text[i]==='\n'){ line++; col=1; } else col++;
+    }
+    // ta med et lite utsnitt rundt feilen
+    const start = Math.max(0, index-40);
+    const end   = Math.min(text.length, index+40);
+    const snippet = text.slice(start, end);
+    return { line, col, snippet };
+  }
 })();
 </script>
 </body>
