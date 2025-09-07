@@ -1,13 +1,9 @@
 // ==============================
-// History Go – app.js (v11++)
-// - Ny kategori: Vitenskap (farger/klasse)
-// - Personer på kartet, kategorifarget, stor hitbox
-// - Personer uten lat/lon arver posisjon fra placeId
-// - Engangs-senterknapp (ikke toggle)
-// - Galleri viser KUN samlet personer
-// - Quiz-feedback tregere (lesbar)
-// - "Se flere i nærheten" sheet
-// - Samling: 3 per rad (6 chips i panelet, resten i sheet)
+// History Go — app.js (v12, “riktig”)
+// - Personer vises på kartet (fallback til placeId-koordinater)
+// - Ikoner brukes konsekvent (emoji, ingen eksterne filer)
+// - Engangs-sentrer, kartmodus, “Se flere i nærheten”, quiz mm.
+// - Robust mot manglende noder
 // ==============================
 
 // ---- Konstanter ----
@@ -24,80 +20,86 @@ const visited         = JSON.parse(localStorage.getItem("visited_places") || "{}
 const peopleCollected = JSON.parse(localStorage.getItem("people_collected") || "{}");
 const merits          = JSON.parse(localStorage.getItem("merits_by_category") || "{}"); // {Kategori:{level,points}}
 
-function saveVisited(){  localStorage.setItem("visited_places", JSON.stringify(visited));  renderCollection(); }
-function savePeople(){   localStorage.setItem("people_collected", JSON.stringify(peopleCollected)); renderGallery(); }
-function saveMerits(){   localStorage.setItem("merits_by_category", JSON.stringify(merits)); renderMerits(); }
-
-// ---- DOM ----
+// ---- DOM helpers ----
+const $ = (sel) => document.querySelector(sel);
 const el = {
-  map:        document.getElementById('map'),
-  toast:      document.getElementById('toast'),
-  status:     document.getElementById('status'),
+  map:        $('#map'),
+  toast:      $('#toast'),
+  status:     $('#status'),
 
-  btnSeeMap:  document.getElementById('btnSeeMap'),
-  btnExitMap: document.getElementById('btnExitMap'),
-  btnCenter:  document.getElementById('btnCenter'),
-  test:       document.getElementById('testToggle'),
+  btnSeeMap:  $('#btnSeeMap'),
+  btnExitMap: $('#btnExitMap'),
+  btnCenter:  $('#btnCenter'),
+  test:       $('#testToggle'),
 
-  list:       document.getElementById('nearbyList'),
-  nearPeople: document.getElementById('nearbyPeople'),
-  seeMore:    document.getElementById('btnSeeMoreNearby'),
-  sheetNear:  document.getElementById('sheetNearby'),
-  sheetNearBody: document.getElementById('sheetNearbyBody'),
+  list:       $('#nearbyList'),
+  nearPeople: $('#nearbyPeople'),
+  seeMore:    $('#btnSeeMoreNearby'),
+  sheetNear:  $('#sheetNearby'),
+  sheetNearBody: $('#sheetNearbyBody'),
 
-  collectionGrid: document.getElementById('collectionGrid'),
-  collectionCount:document.getElementById('collectionCount'),
-  btnMoreCollection: document.getElementById('btnMoreCollection'),
-  sheetCollection: document.getElementById('sheetCollection'),
-  sheetCollectionBody: document.getElementById('sheetCollectionBody'),
+  collectionGrid: $('#collectionGrid'),
+  collectionCount:$('#collectionCount'),
+  btnMoreCollection: $('#btnMoreCollection'),
+  sheetCollection: $('#sheetCollection'),
+  sheetCollectionBody: $('#sheetCollectionBody'),
 
-  merits:     document.getElementById('merits'),
-  gallery:    document.getElementById('gallery'),
+  merits:     $('#merits'),
+  gallery:    $('#gallery'),
 
   // Place card
-  pc:         document.getElementById('placeCard'),
-  pcTitle:    document.getElementById('pcTitle'),
-  pcMeta:     document.getElementById('pcMeta'),
-  pcDesc:     document.getElementById('pcDesc'),
-  pcMore:     document.getElementById('pcMore'),
-  pcUnlock:   document.getElementById('pcUnlock'),
-  pcClose:    document.getElementById('pcClose'),
+  pc:       $('#placeCard'),
+  pcTitle:  $('#pcTitle'),
+  pcMeta:   $('#pcMeta'),
+  pcDesc:   $('#pcDesc'),
+  pcMore:   $('#pcMore'),
+  pcUnlock: $('#pcUnlock'),
+  pcClose:  $('#pcClose'),
 
   // Quiz
-  quizModal:  document.getElementById('quizModal'),
-  quizTitle:  document.getElementById('quizTitle'),
-  quizQ:      document.getElementById('quizQuestion'),
-  quizChoices:document.getElementById('quizChoices'),
-  quizProgress:document.getElementById('quizProgress'),
-  quizFeedback:document.getElementById('quizFeedback'),
+  quizModal:   $('#quizModal'),
+  quizTitle:   $('#quizTitle'),
+  quizQ:       $('#quizQuestion'),
+  quizChoices: $('#quizChoices'),
+  quizProgress:$('#quizProgress'),
+  quizFeedback:$('#quizFeedback'),
 };
 
-// ---- Kategorifarge → hex ----
+// ---- Kategorier (farge + ikon + css) ----
 function catColor(cat=""){
-  const c = String(cat||"").toLowerCase();
-  if (c.includes("kultur"))    return "#e63946";
-  if (c.includes("urban"))     return "#ffb703";
-  if (c.includes("sport"))     return "#2a9d8f";
-  if (c.includes("natur"))     return "#4caf50";
-  if (c.includes("vitenskap")) return "#9b59b6";
+  const c = cat.toLowerCase();
+  if (c.includes("kultur"))     return "#e63946";
+  if (c.includes("urban"))      return "#ffb703";
+  if (c.includes("sport"))      return "#2a9d8f";
+  if (c.includes("natur"))      return "#4caf50";
+  if (c.includes("vitenskap"))  return "#9b59b6";
   return "#1976d2"; // Historie / default
 }
+function catIcon(cat=""){
+  const c = cat.toLowerCase();
+  if (c.includes("kultur"))     return "🎭";
+  if (c.includes("urban"))      return "🏙️";
+  if (c.includes("sport"))      return "🏅";
+  if (c.includes("natur"))      return "🌿";
+  if (c.includes("vitenskap"))  return "🔬";
+  return "🏛️"; // Historie
+}
 function catClass(cat=""){
-  const c = String(cat||"").toLowerCase();
-  if (c.includes("kultur"))    return "kult";
-  if (c.includes("urban"))     return "urban";
-  if (c.includes("sport"))     return "sport";
-  if (c.includes("natur"))     return "natur";
-  if (c.includes("vitenskap")) return "viten";
+  const c = cat.toLowerCase();
+  if (c.includes("kultur"))     return "kult";
+  if (c.includes("urban"))      return "urban";
+  if (c.includes("sport"))      return "sport";
+  if (c.includes("natur"))      return "natur";
+  if (c.includes("vitenskap"))  return "viten";
   return "hist";
 }
 function tagToCat(tags=[]){
   const t = (tags||[]).join(" ").toLowerCase();
-  if (t.includes("kultur"))    return "Kultur";
-  if (t.includes("urban"))     return "Urban Life";
-  if (t.includes("sport"))     return "Sport";
-  if (t.includes("natur"))     return "Natur";
-  if (t.includes("vitenskap")) return "Vitenskap";
+  if (t.includes("kultur"))     return "Kultur";
+  if (t.includes("urban"))      return "Urban Life";
+  if (t.includes("sport"))      return "Sport";
+  if (t.includes("natur"))      return "Natur";
+  if (t.includes("vitenskap"))  return "Vitenskap";
   return "Historie";
 }
 
@@ -122,13 +124,12 @@ function showToast(msg="OK", ms=1400){
 // Kart (Leaflet)
 // ==============================
 let MAP, placeLayer, peopleLayer, userMarker, userPulse;
-let currentPos = null;
 
 function initMap() {
   MAP = L.map('map', { zoomControl:false, attributionControl:false })
           .setView([START.lat, START.lon], START.zoom);
 
-  // Nattstil – mer detaljert
+  // Mørk men tydelig bakgrunn
   L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
     maxZoom: 19,
     attribution: '© OpenStreetMap, © CARTO'
@@ -138,21 +139,10 @@ function initMap() {
   peopleLayer = L.layerGroup().addTo(MAP);
 }
 
-// Person-posisjon: bruk egne koordinater, ellers arve fra sted
-function personCoord(pr){
-  if (typeof pr.lat === 'number' && typeof pr.lon === 'number') {
-    return { lat: pr.lat, lon: pr.lon };
-  }
-  const pl = PLACES.find(x => x.id === pr.placeId);
-  if (pl && typeof pl.lat === 'number' && typeof pl.lon === 'number') {
-    return { lat: pl.lat, lon: pl.lon };
-  }
-  return null;
-}
-
 function drawPlaceMarkers() {
   placeLayer.clearLayers();
   PLACES.forEach(p=>{
+    if (!isFinite(p.lat) || !isFinite(p.lon)) return;
     const m = L.circleMarker([p.lat, p.lon], {
       radius: 7,
       color: catColor(p.category),
@@ -162,7 +152,7 @@ function drawPlaceMarkers() {
       fillOpacity: 0.9
     }).addTo(placeLayer);
 
-    // stor usynlig hitbox for touch
+    // stor usynlig hitbox
     const hb = L.circle([p.lat, p.lon], {radius: 36, opacity:0, fillOpacity:0}).addTo(placeLayer);
 
     const openCard = () => openPlaceCard(p);
@@ -171,24 +161,33 @@ function drawPlaceMarkers() {
   });
 }
 
+function coordsForPerson(pr){
+  // 1) eksplisitte koordinater
+  if (isFinite(pr.lat) && isFinite(pr.lon)) return {lat:pr.lat, lon:pr.lon};
+  // 2) fallback: stedets koordinater
+  const loc = PLACES.find(x=>x.id===pr.placeId);
+  if (loc && isFinite(loc.lat) && isFinite(loc.lon)) return {lat:loc.lat, lon:loc.lon};
+  return null;
+}
+
 function drawPeopleMarkers() {
   peopleLayer.clearLayers();
   PEOPLE.forEach(pr=>{
-    const pos = personCoord(pr);
-    if (!pos) return;
+    const c = coordsForPerson(pr);
+    if (!c) return;
 
+    const cat = tagToCat(pr.tags);
     const html = `
       <div style="
         width:28px;height:28px;border-radius:999px;
-        background:${catColor(tagToCat(pr.tags))}; color:#111;
+        background:${catColor(cat)}; color:#111;
         display:flex;align-items:center;justify-content:center;
         font-weight:900; font-size:12px; border:2px solid #111;
         box-shadow:0 0 0 3px rgba(0,0,0,.25);
-      ">${(pr.initials||pr.name||'?').slice(0,2).toUpperCase()}</div>`;
+      ">${(pr.initials||'').slice(0,2).toUpperCase()}</div>`;
     const icon = L.divIcon({ className:"", html, iconSize:[28,28], iconAnchor:[14,14] });
-
-    const mk = L.marker([pos.lat,pos.lon], { icon }).addTo(peopleLayer);
-    const hb = L.circle([pos.lat,pos.lon], {radius: 36, opacity:0, fillOpacity:0}).addTo(peopleLayer);
+    const mk = L.marker([c.lat,c.lon], { icon }).addTo(peopleLayer);
+    const hb = L.circle([c.lat, c.lon], {radius: 36, opacity:0, fillOpacity:0}).addTo(peopleLayer);
 
     const openFromPerson = () => openPlaceCardByPerson(pr);
     mk.on('click', openFromPerson);
@@ -218,42 +217,49 @@ let currentPlace = null;
 
 function openPlaceCard(p){
   currentPlace = p;
-  el.pcTitle.textContent = p.name;
-  el.pcMeta.textContent  = `${p.category} • radius ${p.r||120} m`;
-  el.pcDesc.textContent  = p.desc || "";
+  if (!el.pc) return;
+  if (el.pcTitle) el.pcTitle.innerHTML = `${catIcon(p.category)} ${p.name}`;
+  if (el.pcMeta)  el.pcMeta.textContent  = `${p.category} • radius ${p.r||120} m`;
+  if (el.pcDesc)  el.pcDesc.textContent  = p.desc || "";
   el.pc.setAttribute('aria-hidden','false');
 
-  el.pcUnlock.textContent = visited[p.id] ? "Allerede låst opp" : "Lås opp";
-  el.pcUnlock.onclick = ()=> {
-    if (visited[p.id]) { showToast("Allerede låst opp"); return; }
-    visited[p.id] = true; saveVisited();
-    showToast(`Låst opp: ${p.name} ✅`);
-  };
-
-  el.pcMore.onclick = () => {
-    showToast("Mer info kommer 📖", 1600);
-  };
+  if (el.pcUnlock){
+    el.pcUnlock.textContent = "Lås opp";
+    el.pcUnlock.onclick = ()=> {
+      if (visited[p.id]) { showToast("Allerede låst opp"); return; }
+      visited[p.id] = true; saveVisited();
+      showToast(`Låst opp: ${p.name} ✅`);
+    };
+  }
+  if (el.pcMore){
+    el.pcMore.onclick = () => showToast("Mer info kommer 📖", 1600);
+  }
 }
 
 function openPlaceCardByPerson(person){
   const place = PLACES.find(x => x.id === person.placeId) || {
     id:"personloc", name:person.name, category: tagToCat(person.tags),
-    r: person.r || 150, desc: person.desc || ""
+    r: person.r || 150, desc: person.desc || "", ...(coordsForPerson(person)||{})
   };
   openPlaceCard(place);
-  el.pcUnlock.textContent = "Ta quiz";
-  el.pcUnlock.onclick = ()=> startQuizForPerson(person.id);
+  if (el.pcUnlock){
+    el.pcUnlock.textContent = "Ta quiz";
+    el.pcUnlock.onclick = ()=> startQuizForPerson(person.id);
+  }
 }
 
 el.pcClose?.addEventListener('click', ()=> {
-  el.pc.setAttribute('aria-hidden','true');
-  el.pcUnlock.textContent = "Lås opp";
+  el.pc?.setAttribute('aria-hidden','true');
+  if (el.pcUnlock) el.pcUnlock.textContent = "Lås opp";
 });
 
 // ==============================
 // Render – kort og lister
 // ==============================
+let currentPos = null;
+
 function renderNearbyPlaces(){
+  if (!el.list) return;
   const sorted = PLACES
     .map(p => ({...p, _d: currentPos ? Math.round(distMeters(currentPos, {lat:p.lat,lon:p.lon})) : null }))
     .sort((a,b)=>(a._d??1e12)-(b._d??1e12));
@@ -262,11 +268,14 @@ function renderNearbyPlaces(){
 }
 
 function renderNearbyPeople(){
+  if (!el.nearPeople) return; // valgfri seksjon
   if (!currentPos) { el.nearPeople.innerHTML = ""; return; }
-  const candidates = PEOPLE.map(pr=>{
-      const pos = personCoord(pr);
-      if (!pos) return null;
-      return { ...pr, _pos: pos, _d: Math.round(distMeters(currentPos, pos)) };
+  const candidates = PEOPLE
+    .map(pr=>{
+      const c = coordsForPerson(pr);
+      if (!c) return null;
+      return { ...pr, lat:c.lat, lon:c.lon,
+        _d: Math.round(distMeters(currentPos,{lat:c.lat,lon:c.lon})) };
     })
     .filter(Boolean)
     .filter(pr => pr._d <= (pr.r||200) + (el.test?.checked ? 5000 : 0))
@@ -280,7 +289,7 @@ function renderPlaceCard(p){
   return `
     <article class="card">
       <div>
-        <div class="name">${p.name}</div>
+        <div class="name">${catIcon(p.category)} ${p.name}</div>
         <div class="meta">${p.category||""} • Oslo</div>
         <p class="desc">${p.desc||""}</p>
       </div>
@@ -297,7 +306,7 @@ function renderPersonCardInline(pr){
   return `
     <article class="card">
       <div>
-        <div class="name">${pr.name}</div>
+        <div class="name">${catIcon(cat)} ${pr.name}</div>
         <div class="meta">${cat}</div>
         <p class="desc">${pr.desc||""}</p>
       </div>
@@ -310,8 +319,9 @@ function renderPersonCardInline(pr){
 }
 
 function renderCollection(){
+  if (!el.collectionGrid) return;
   const items = PLACES.filter(p => visited[p.id]);
-  el.collectionCount.textContent = items.length;
+  if (el.collectionCount) el.collectionCount.textContent = items.length;
 
   // 3 per rad i panelet, resten i sheet
   const first = items.slice(0, 6);
@@ -319,50 +329,60 @@ function renderCollection(){
 
   el.collectionGrid.innerHTML = first.map(p => `
     <span class="badge ${catClass(p.category)}">
-      <span class="i" style="background:${catColor(p.category)}"></span> ${p.name}
+      <span class="i" style="background:${catColor(p.category)}"></span>
+      ${catIcon(p.category)} ${p.name}
     </span>`).join("");
 
-  if (rest.length){
-    el.btnMoreCollection.style.display = "inline-flex";
-    el.btnMoreCollection.onclick = ()=>{
-      el.sheetCollectionBody.innerHTML = rest.map(p => `
-        <span class="badge ${catClass(p.category)}">
-          <span class="i" style="background:${catColor(p.category)}"></span> ${p.name}
-        </span>`).join("");
-      openSheet(el.sheetCollection);
-    };
-  } else {
-    el.btnMoreCollection.style.display = "none";
+  if (el.btnMoreCollection){
+    if (rest.length){
+      el.btnMoreCollection.style.display = "inline-flex";
+      el.btnMoreCollection.onclick = ()=>{
+        if (!el.sheetCollectionBody) return;
+        el.sheetCollectionBody.innerHTML = rest.map(p => `
+          <span class="badge ${catClass(p.category)}">
+            <span class="i" style="background:${catColor(p.category)}"></span>
+            ${catIcon(p.category)} ${p.name}
+          </span>`).join("");
+        openSheet(el.sheetCollection);
+      };
+    } else {
+      el.btnMoreCollection.style.display = "none";
+    }
   }
 }
 
 function renderMerits(){
-  // Viser alle kategorier vi har sett, inkl. Vitenskap
+  if (!el.merits) return;
   const cats = new Set(PLACES.map(p=>p.category).concat(["Vitenskap"]));
   el.merits.innerHTML = [...cats].map(cat=>{
     const m = merits[cat] || { level: "Nybegynner", points: 0 };
     return `
       <div class="card">
-        <div class="name">${cat}</div>
+        <div class="name">${catIcon(cat)} ${cat}</div>
         <div class="meta">Nivå: ${m.level} • Poeng: ${m.points}</div>
-        <div class="row right"><button class="ghost-btn" disabled>Progresjon</button></div>
       </div>
     `;
   }).join("");
 }
 
 function renderGallery(){
+  if (!el.gallery) return;
   // Bare personer som er samlet
   const got = PEOPLE.filter(p => !!peopleCollected[p.id]);
-  el.gallery.innerHTML = got.length ? got.map(p=>`
-    <span class="badge ${catClass(tagToCat(p.tags))}">
-      <span class="i" style="background:${catColor(tagToCat(p.tags))}"></span> ${p.name}
-    </span>
-  `).join("") : `<div class="muted">Samle personer ved å møte dem og klare quizen.</div>`;
+  el.gallery.innerHTML = got.length ? got.map(p=>{
+    const cat = tagToCat(p.tags);
+    return `
+      <span class="badge ${catClass(cat)}">
+        <span class="i" style="background:${catColor(cat)}"></span>
+        ${catIcon(cat)} ${p.name}
+      </span>
+    `;
+  }).join("") : `<div class="muted">Samle personer ved å møte dem og klare quizen.</div>`;
 }
 
 // “Se flere i nærheten” sheet
 function buildSeeMoreNearby(){
+  if (!el.sheetNearBody) return;
   const sorted = PLACES
     .map(p => ({...p, _d: currentPos ? Math.round(distMeters(currentPos, {lat:p.lat,lon:p.lon})) : null }))
     .sort((a,b)=>(a._d??1e12)-(b._d??1e12));
@@ -379,7 +399,6 @@ document.addEventListener('click', (e)=>{
     const p = PLACES.find(x=>x.id===openId);
     if (p) openPlaceCard(p);
   }
-
   const quizId = t.getAttribute('data-quiz');
   if (quizId){
     startQuizForPerson(quizId);
@@ -409,31 +428,34 @@ function startQuizForPerson(personId){
   if (!q || !q.length) { showToast("Ingen quiz enda – kommer!"); return; }
 
   quizState = { quiz: q[0], i: 0, answers: [] };
-  el.quizTitle.textContent = quizState.quiz.title;
-  el.quizFeedback.textContent = "";
+  if (el.quizTitle)   el.quizTitle.textContent = quizState.quiz.title;
+  if (el.quizFeedback)el.quizFeedback.textContent = "";
   showQuizQuestion();
-  el.quizModal.setAttribute('aria-hidden','false');
+  el.quizModal?.setAttribute('aria-hidden','false');
 }
 
 function showQuizQuestion(){
   const { quiz, i } = quizState;
   const item = quiz.questions[i];
-  el.quizQ.textContent = item.text;
-  el.quizChoices.innerHTML = item.choices.map((c, idx)=>`
-    <button data-choice="${idx}">${c}</button>
-  `).join("");
-  el.quizProgress.textContent = `Spørsmål ${i+1} av ${quiz.questions.length}`;
+  if (!item) return;
 
-  el.quizChoices.querySelectorAll('button').forEach(btn=>{
-    btn.onclick = ()=>{
-      const pick = Number(btn.getAttribute('data-choice'));
-      const correct = (pick === item.answerIndex);
-      btn.classList.add(correct ? 'correct':'wrong');
-      el.quizFeedback.textContent = correct ? "Riktig! 🎉" : (item.explanation || "Feil svar.");
+  if (el.quizQ) el.quizQ.textContent = item.text;
+  if (el.quizChoices) {
+    el.quizChoices.innerHTML = item.choices.map((c, idx)=>`
+      <button data-choice="${idx}">${c}</button>
+    `).join("");
+    el.quizChoices.querySelectorAll('button').forEach(btn=>{
+      btn.onclick = ()=>{
+        const pick = Number(btn.getAttribute('data-choice'));
+        const correct = (pick === item.answerIndex);
+        btn.classList.add(correct ? 'correct':'wrong');
+        if (el.quizFeedback) el.quizFeedback.textContent = correct ? "Riktig! 🎉" : (item.explanation || "Feil svar.");
 
-      setTimeout(()=> nextQuizStep(correct), QUIZ_FEEDBACK_MS);
-    };
-  });
+        setTimeout(()=> nextQuizStep(correct), QUIZ_FEEDBACK_MS);
+      };
+    });
+  }
+  if (el.quizProgress) el.quizProgress.textContent = `Spørsmål ${i+1} av ${quiz.questions.length}`;
 }
 
 function nextQuizStep(correct){
@@ -441,53 +463,52 @@ function nextQuizStep(correct){
   quizState.answers.push(correct);
   quizState.i++;
   if (quizState.i >= quiz.questions.length){
+    // Ferdig – gi poeng og samle personen
     const allCorrect = quizState.answers.every(x=>x);
     const cat = quiz.reward?.category || "Historie";
     const pts = quiz.reward?.points || 1;
     merits[cat] = merits[cat] || { level:"Nybegynner", points:0 };
     merits[cat].points += pts;
+    // enkel nivålogikk
     if (merits[cat].points >= 10) merits[cat].level = "Mester";
     else if (merits[cat].points >= 5) merits[cat].level = "Kjentmann";
-    saveMerits();
+    localStorage.setItem("merits_by_category", JSON.stringify(merits));
+    renderMerits();
 
+    // Samle person
     const pid = quiz.personId;
     peopleCollected[pid] = Date.now();
-    savePeople();
+    localStorage.setItem("people_collected", JSON.stringify(peopleCollected));
+    renderNearbyPeople();
+    renderGallery();
 
-    el.quizFeedback.textContent = allCorrect ? "Flott! Merke oppdatert ✨" : "Ferdig – prøv igjen for full score!";
-    setTimeout(()=>{
-      el.quizModal.setAttribute('aria-hidden','true');
-      renderNearbyPeople();
-      renderGallery();
-    }, 900);
+    if (el.quizFeedback) el.quizFeedback.textContent = allCorrect ? "Flott! Merke oppdatert ✨" : "Ferdig – prøv igjen for full score!";
+    setTimeout(()=> el.quizModal?.setAttribute('aria-hidden','true'), 900);
   } else {
-    el.quizFeedback.textContent = "";
+    if (el.quizFeedback) el.quizFeedback.textContent = "";
     showQuizQuestion();
   }
 }
-
-document.getElementById('quizClose')?.addEventListener('click', ()=>{
-  el.quizModal.setAttribute('aria-hidden','true');
-});
+$('#quizClose')?.addEventListener('click', ()=> el.quizModal?.setAttribute('aria-hidden','true'));
 
 // ==============================
 // Geolokasjon
 // ==============================
 function requestLocation(){
   if (!navigator.geolocation){
-    el.status.textContent = "Geolokasjon støttes ikke.";
+    el.status && (el.status.textContent = "Geolokasjon støttes ikke.");
     renderNearbyPlaces(); renderNearbyPeople();
     return;
   }
-  el.status.textContent = "Henter posisjon…";
+  el.status && (el.status.textContent = "Henter posisjon…");
   navigator.geolocation.getCurrentPosition(g=>{
     currentPos = { lat:g.coords.latitude, lon:g.coords.longitude };
-    el.status.textContent = "Posisjon funnet.";
+    el.status && (el.status.textContent = "Posisjon funnet.");
     setUser(currentPos.lat, currentPos.lon);
     renderNearbyPlaces();
     renderNearbyPeople();
   }, _=>{
-    el.status.textContent = "Kunne ikke hente posisjon.";
+    el.status && (el.status.textContent = "Kunne ikke hente posisjon.");
     renderNearbyPlaces();
     renderNearbyPeople();
   }, { enableHighAccuracy:true, timeout:8000, maximumAge:10000 });
@@ -506,11 +527,11 @@ el.btnCenter?.addEventListener('click', ()=>{
 // ==============================
 el.btnSeeMap?.addEventListener('click', ()=>{
   document.body.classList.add('map-only');
-  el.btnCenter.style.display = "block";
+  if (el.btnCenter) el.btnCenter.style.display = "block";
 });
 el.btnExitMap?.addEventListener('click', ()=>{
   document.body.classList.remove('map-only');
-  el.btnCenter.style.display = "none";
+  if (el.btnCenter) el.btnCenter.style.display = "none";
 });
 
 // ==============================
@@ -535,7 +556,7 @@ function wire(){
   el.test?.addEventListener('change', e=>{
     if (e.target.checked){
       currentPos = { lat: START.lat, lon: START.lon };
-      el.status.textContent = "Testmodus: Oslo sentrum";
+      el.status && (el.status.textContent = "Testmodus: Oslo sentrum");
       setUser(currentPos.lat, currentPos.lon);
       renderNearbyPlaces();
       renderNearbyPeople();
@@ -570,10 +591,15 @@ function boot(){
 
     requestLocation();
   }).catch(()=>{
-    showToast("Kunne ikke laste data.", 1600);
+    showToast("Kunne ikke laste data.", 1800);
   });
 
   wire();
 }
 
 document.addEventListener('DOMContentLoaded', boot);
+
+// ---- Lagre helpers som bruker render (etter init) ----
+function saveVisited(){  localStorage.setItem("visited_places", JSON.stringify(visited));  renderCollection(); }
+function savePeople(){   localStorage.setItem("people_collected", JSON.stringify(peopleCollected)); renderGallery(); }
+function saveMerits(){   localStorage.setItem("merits_by_category", JSON.stringify(merits)); renderMerits(); }
