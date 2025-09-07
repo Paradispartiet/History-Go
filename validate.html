@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="no">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>History Go – datasjekk</title>
+<style>
+  :root { --ok:#2e7d32; --warn:#f57c00; --err:#c62828; --muted:#7986cb; }
+  body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif; margin: 24px; }
+  h1 { margin: 0 0 16px; }
+  .summary { display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: 10px; margin: 16px 0 24px; }
+  .card { border: 1px solid #e0e0e0; border-radius: 10px; padding: 12px 14px; background: #fafafa; }
+  .ok    { border-left: 5px solid var(--ok); }
+  .warn  { border-left: 5px solid var(--warn); }
+  .err   { border-left: 5px solid var(--err); }
+  .muted { color:#666; }
+  details { border: 1px dashed #ddd; border-radius: 8px; padding: 10px 12px; margin: 10px 0; background: #fff; }
+  table { width: 100%; border-collapse: collapse; margin: 6px 0; }
+  th, td { border-bottom: 1px solid #eee; text-align: left; padding: 6px 8px; font-size: 14px; }
+  th { background: #fafafa; }
+  code { background:#f3f3f3; border-radius:4px; padding:0 4px; }
+  .pill { display:inline-block; font-size:12px; background:#eee; padding:2px 8px; border-radius:999px; }
+  .ts { color:#999; font-size:12px; }
+</style>
+</head>
+<body>
+<h1>History Go – datasjekk</h1>
+<div class="ts" id="ts"></div>
+<div id="summary" class="summary"></div>
+<div id="report"></div>
+
+<script>
+(async function run(){
+  const tsEl = document.getElementById('ts');
+  tsEl.textContent = new Date().toLocaleString('no-NO');
+
+  async function load(name){
+    const r = await fetch(name, {cache:'no-store'});
+    if (!r.ok) throw new Error(name + ' ' + r.status);
+    return r.json();
+  }
+
+  let places=[], people=[], quizzes=[];
+  let errors=[], warnings=[], infos=[];
+  try {
+    [places, people, quizzes] = await Promise.all([
+      load('places.json'), load('people.json'), load('quizzes.json')
+    ]);
+  } catch (e) {
+    errors.push(`Kunne ikke laste en eller flere filer: ${e.message}`);
+  }
+
+  // --- hjelpefunksjoner ---
+  const byId = arr => Object.fromEntries(arr.map(x=>[x.id,x]));
+  const uniq = arr => Array.from(new Set(arr));
+  const isNum = x => typeof x === 'number' && Number.isFinite(x);
+  const inRange = (v,min,max) => isNum(v) && v>=min && v<=max;
+
+  // --- PLACES ---
+  if (places && Array.isArray(places)){
+    const ids = places.map(p=>p.id);
+    const dups = ids.filter((x,i)=>ids.indexOf(x)!==i);
+    if (dups.length) errors.push(`Dupliserte place.id: ${uniq(dups).join(', ')}`);
+
+    places.forEach(p=>{
+      if (!p.id || !p.name) errors.push(`Place mangler id/navn: ${JSON.stringify(p)}`);
+      if (!inRange(p.lat, -90, 90) || !inRange(p.lon, -180, 180))
+        errors.push(`Ugyldige koordinater for place ${p.id} (${p.lat}, ${p.lon})`);
+      if (!isNum(p.r) || p.r<=0) warnings.push(`Mistenkelig radius for place ${p.id}: ${p.r}`);
+      if (!p.category) warnings.push(`Place uten kategori: ${p.id}`);
+    });
+  }
+
+  // --- PEOPLE ---
+  if (people && Array.isArray(people)){
+    const ids = people.map(x=>x.id);
+    const dups = ids.filter((x,i)=>ids.indexOf(x)!==i);
+    if (dups.length) errors.push(`Dupliserte person.id: ${uniq(dups).join(', ')}`);
+
+    const placesMap = byId(places);
+    people.forEach(pr=>{
+      if (!pr.id || !pr.name) errors.push(`Person mangler id/navn: ${JSON.stringify(pr)}`);
+      // Koordinater er valgfrie; hvis ikke satt, trekkes fra place senere i appen.
+      if ((pr.lat!=null || pr.lon!=null) && (!inRange(pr.lat,-90,90) || !inRange(pr.lon,-180,180)))
+        errors.push(`Ugyldige koordinater for person ${pr.id} (${pr.lat}, ${pr.lon})`);
+      if (!pr.placeId) errors.push(`Person ${pr.id} mangler placeId`);
+      else if (!placesMap[pr.placeId]) errors.push(`Person ${pr.id} har placeId som ikke finnes: ${pr.placeId}`);
+    });
+  }
+
+  // --- QUIZZES ---
+  if (quizzes && Array.isArray(quizzes)){
+    const ids = quizzes.map(q=>q.id);
+    const dups = ids.filter((x,i)=>ids.indexOf(x)!==i);
+    if (dups.length) errors.push(`Dupliserte quiz.id: ${uniq(dups).join(', ')}`);
+
+    const peopleMap = byId(people);
+    const allowedCats = new Set(['Historie','Kultur','Sport','Natur','Urban Life','Vitenskap']);
+    quizzes.forEach(q=>{
+      if (!q.id || !q.personId) errors.push(`Quiz mangler id/personId: ${JSON.stringify(q)}`);
+      if (q.personId && !peopleMap[q.personId]) errors.push(`Quiz ${q.id} refererer ukjent personId: ${q.personId}`);
+      if (!Array.isArray(q.questions) || q.questions.length===0) errors.push(`Quiz ${q.id} har ingen spørsmål`);
+      if (q.reward?.category && !allowedCats.has(q.reward.category))
+        warnings.push(`Quiz ${q.id} reward-kategori er ukjent: ${q.reward.category}`);
+      (q.questions||[]).forEach((item,idx)=>{
+        if (!item || typeof item.text!=='string') errors.push(`Quiz ${q.id} spørsmål #${idx+1} mangler tekst`);
+        if (!Array.isArray(item.choices) || item.choices.length<2) errors.push(`Quiz ${q.id} spørsmål #${idx+1} har for få svaralternativer`);
+        if (!isNum(item.answerIndex) || item.answerIndex<0 || item.answerIndex>= (item.choices?.length||0))
+          errors.push(`Quiz ${q.id} spørsmål #${idx+1}: answerIndex utenfor gyldig område`);
+      });
+    });
+  }
+
+  // --- Tilleggsanalyser ---
+  // Personer uten eksplisitte koordinater (FYI)
+  const peopleNoCoords = (people||[]).filter(p=>p.lat==null || p.lon==null);
+  if (peopleNoCoords.length) infos.push(`${peopleNoCoords.length} personer mangler egne koordinater (de vil arve fra sitt sted i appen).`);
+
+  // Steder uten personer
+  const placeIdsWithPeople = new Set((people||[]).map(p=>p.placeId));
+  const placesWithoutPeople = (places||[]).filter(p=>!placeIdsWithPeople.has(p.id));
+  if (placesWithoutPeople.length) infos.push(`${placesWithoutPeople.length} steder har ingen tilknyttede personer (OK, bare informasjon).`);
+
+  // --- Render oppsummering ---
+  const summary = document.getElementById('summary');
+  summary.innerHTML = `
+    <div class="card ${errors.length?'err':'ok'}"><b>${errors.length ? 'Feil' : 'Ingen feil'}</b><br><span class="muted">${errors.length} funnet</span></div>
+    <div class="card ${warnings.length?'warn':'ok'}"><b>${warnings.length ? 'Advarsler' : 'Ingen advarsler'}</b><br><span class="muted">${warnings.length} funnet</span></div>
+    <div class="card"><b>Steder</b><br><span class="muted">${(places||[]).length} objekter</span></div>
+    <div class="card"><b>Personer</b><br><span class="muted">${(people||[]).length} objekter</span></div>
+    <div class="card"><b>Quizzer</b><br><span class="muted">${(quizzes||[]).length} objekter</span></div>
+  `;
+
+  // --- Render detaljer ---
+  const report = document.getElementById('report');
+  function renderList(title, arr, level){
+    const cls = level==='err' ? 'err' : level==='warn' ? 'warn' : 'muted';
+    const items = arr.map(x=>`<tr><td>${x}</td></tr>`).join('');
+    return `
+      <details ${arr.length? 'open':''}>
+        <summary><span class="pill ${cls}">${title}</span> <span class="muted">(${arr.length})</span></summary>
+        ${arr.length ? `<table><tbody>${items}</tbody></table>` : `<div class="muted">Ingen.</div>`}
+      </details>
+    `;
+  }
+
+  report.innerHTML = [
+    renderList('Feil', errors, 'err'),
+    renderList('Advarsler', warnings, 'warn'),
+    renderList('Info', infos, 'info'),
+    `<details>
+      <summary>Rådata (antall)</summary>
+      <table><tbody>
+        <tr><th>places.json</th><td>${(places||[]).length}</td></tr>
+        <tr><th>people.json</th><td>${(people||[]).length}</td></tr>
+        <tr><th>quizzes.json</th><td>${(quizzes||[]).length}</td></tr>
+      </tbody></table>
+    </details>`
+  ].join('');
+})();
+</script>
+</body>
+</html>
