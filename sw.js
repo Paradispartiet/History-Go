@@ -1,5 +1,5 @@
 // sw v14 – liten, trygg cache
-const CACHE = 'hg-v14';
+const CACHE = 'hg-v15';
 const ASSETS = [
   './',
   './index.html',
