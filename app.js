@@ -1,24 +1,26 @@
-<script>
 // ==============================
-// History Go – app.js (v11.3)
+// History Go – app.js (v12 full)
 // ==============================
 
+// ---- Konstanter ----
 const START = { lat: 59.9139, lon: 10.7522, zoom: 13 };
 const NEARBY_LIMIT = 2;
 const QUIZ_FEEDBACK_MS = 2600;
 
+// ---- State ----
 let PLACES = [];
 let PEOPLE = [];
 let QUIZZES = [];
 
 const visited         = JSON.parse(localStorage.getItem("visited_places") || "{}");
 const peopleCollected = JSON.parse(localStorage.getItem("people_collected") || "{}");
-const merits          = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
+const merits          = JSON.parse(localStorage.getItem("merits_by_category") || "{}"); // {Kategori:{level,points}}
 
 function saveVisited(){  localStorage.setItem("visited_places", JSON.stringify(visited));  renderCollection(); }
 function savePeople(){   localStorage.setItem("people_collected", JSON.stringify(peopleCollected)); renderGallery(); }
 function saveMerits(){   localStorage.setItem("merits_by_category", JSON.stringify(merits)); renderMerits(); }
 
+// ---- DOM ----
 const el = {
   map:        document.getElementById('map'),
   toast:      document.getElementById('toast'),
@@ -44,6 +46,7 @@ const el = {
   merits:     document.getElementById('merits'),
   gallery:    document.getElementById('gallery'),
 
+  // Place card
   pc:         document.getElementById('placeCard'),
   pcTitle:    document.getElementById('pcTitle'),
   pcMeta:     document.getElementById('pcMeta'),
@@ -52,6 +55,7 @@ const el = {
   pcUnlock:   document.getElementById('pcUnlock'),
   pcClose:    document.getElementById('pcClose'),
 
+  // Quiz
   quizModal:  document.getElementById('quizModal'),
   quizTitle:  document.getElementById('quizTitle'),
   quizQ:      document.getElementById('quizQuestion'),
@@ -60,7 +64,7 @@ const el = {
   quizFeedback:document.getElementById('quizFeedback'),
 };
 
-// ---------- kategorifarger ----------
+// ---- Kategorifarge → hex ----
 function catColor(cat=""){
   const c = cat.toLowerCase();
   if (c.includes("kultur")) return "#e63946";
@@ -68,7 +72,7 @@ function catColor(cat=""){
   if (c.includes("sport"))  return "#2a9d8f";
   if (c.includes("natur"))  return "#4caf50";
   if (c.includes("vitenskap")) return "#9b59b6";
-  return "#1976d2";
+  return "#1976d2"; // Historie / default
 }
 function catClass(cat=""){
   const c = cat.toLowerCase();
@@ -79,17 +83,8 @@ function catClass(cat=""){
   if (c.includes("vitenskap")) return "viten";
   return "hist";
 }
-function tagToCat(tags=[]){
-  const t = (tags.join(" ")||"").toLowerCase();
-  if (t.includes("kultur")) return "Kultur";
-  if (t.includes("urban"))  return "Urban Life";
-  if (t.includes("sport"))  return "Sport";
-  if (t.includes("natur"))  return "Natur";
-  if (t.includes("vitenskap")) return "Vitenskap";
-  return "Historie";
-}
 
-// ---------- geo/ux ----------
+// ---- Geo utils ----
 function distMeters(a,b){
   const R=6371e3, toRad=d=>d*Math.PI/180;
   const dLat=toRad(b.lat-a.lat), dLon=toRad(b.lon-a.lon);
@@ -97,6 +92,8 @@ function distMeters(a,b){
   const x=Math.sin(dLat/2)**2 + Math.cos(la1)*Math.cos(la2)*Math.sin(dLon/2)**2;
   return R*2*Math.atan2(Math.sqrt(x), Math.sqrt(1-x));
 }
+
+// ---- Toast ----
 function showToast(msg="OK", ms=1400){
   el.toast.textContent = msg;
   el.toast.style.display = "block";
@@ -112,6 +109,7 @@ function initMap() {
   MAP = L.map('map', { zoomControl:false, attributionControl:false })
           .setView([START.lat, START.lon], START.zoom);
 
+  // Night style, men lesbar
   L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
     maxZoom: 19,
     attribution: '© OpenStreetMap, © CARTO'
@@ -133,6 +131,7 @@ function drawPlaceMarkers() {
       fillOpacity: 0.9
     }).addTo(placeLayer);
 
+    // større "hitbox"
     const hb = L.circle([p.lat, p.lon], {radius: 36, opacity:0, fillOpacity:0}).addTo(placeLayer);
 
     const openCard = () => openPlaceCard(p);
@@ -141,18 +140,35 @@ function drawPlaceMarkers() {
   });
 }
 
+function resolvePersonCoords(person){
+  // Sikrer at personer uten lat/lon får posisjon fra sitt sted
+  if (typeof person.lat === "number" && typeof person.lon === "number") return person;
+  if (!person.placeId) return person;
+  const pl = PLACES.find(x => x.id === person.placeId);
+  if (pl){
+    person.lat = pl.lat;
+    person.lon = pl.lon;
+    if (!person.r) person.r = pl.r || 150;
+  }
+  return person;
+}
+
 function drawPeopleMarkers() {
   peopleLayer.clearLayers();
   PEOPLE.forEach(pr=>{
+    resolvePersonCoords(pr);
+    if (typeof pr.lat !== "number" || typeof pr.lon !== "number") return; // fortsatt ukjent
+
     const html = `
       <div style="
         width:28px;height:28px;border-radius:999px;
-        background:${catColor(tagToCat(pr.tags))}; color:#111;
-        display:flex;align-items:center;justify-content:center;
+        background:${catColor('urban')}; /* byoriginaler/folk -> gul/orange */
+        color:#111; display:flex;align-items:center;justify-content:center;
         font-weight:900; font-size:12px; border:2px solid #111;
         box-shadow:0 0 0 3px rgba(0,0,0,.25);
       ">${(pr.initials||'').slice(0,2).toUpperCase()}</div>`;
     const icon = L.divIcon({ className:"", html, iconSize:[28,28], iconAnchor:[14,14] });
+
     const mk = L.marker([pr.lat,pr.lon], { icon }).addTo(peopleLayer);
     const hb = L.circle([pr.lat, pr.lon], {radius: 36, opacity:0, fillOpacity:0}).addTo(peopleLayer);
 
@@ -162,22 +178,23 @@ function drawPeopleMarkers() {
   });
 }
 
-// ==============================
-// Data normalisering
-// ==============================
-function normalizePeople() {
-  const placeById = Object.fromEntries(PLACES.map(p=>[p.id,p]));
-  PEOPLE = PEOPLE.map(pr=>{
-    if (typeof pr.lat !== "number" || typeof pr.lon !== "number") {
-      const host = placeById[pr.placeId];
-      if (host) return { ...pr, lat: host.lat, lon: host.lon, r: pr.r || host.r || 160 };
-    }
-    return pr;
-  });
+function setUser(lat, lon){
+  if (!MAP) return;
+  if (!userMarker){
+    userMarker = L.circleMarker([lat,lon], {
+      radius:8, weight:2, color:'#fff', fillColor:'#1976d2', fillOpacity:1
+    }).addTo(MAP).bindPopup('Du er her');
+    userPulse = L.circle([lat,lon], {
+      radius: 25, color:'#00e676', weight:1, opacity:.6, fillColor:'#00e676', fillOpacity:.12
+    }).addTo(MAP);
+  } else {
+    userMarker.setLatLng([lat,lon]);
+    userPulse.setLatLng([lat,lon]);
+  }
 }
 
 // ==============================
-// Place Card & Person → Quiz
+// Place Card
 // ==============================
 let currentPlace = null;
 
@@ -188,6 +205,7 @@ function openPlaceCard(p){
   el.pcDesc.textContent  = p.desc || "";
   el.pc.setAttribute('aria-hidden','false');
 
+  // Lås opp
   el.pcUnlock.textContent = "Lås opp";
   el.pcUnlock.onclick = ()=> {
     if (visited[p.id]) { showToast("Allerede låst opp"); return; }
@@ -195,19 +213,20 @@ function openPlaceCard(p){
     showToast(`Låst opp: ${p.name} ✅`);
   };
 
+  // Mer info → Google
   el.pcMore.onclick = () => {
     const q = encodeURIComponent(`${p.name} Oslo`);
-    window.open(`https://www.google.com/search?q=${q}`, '_blank');
+    window.open(`https://www.google.com/search?q=${q}`, "_blank", "noopener");
   };
 }
 
 function openPlaceCardByPerson(person){
   const place = PLACES.find(x => x.id === person.placeId) || {
-    id:"personloc", name:person.name, category: tagToCat(person.tags),
+    id:"personloc", name:person.name, category: "Urban Life",
     r: person.r || 150, desc: person.desc || "", lat: person.lat, lon: person.lon
   };
   openPlaceCard(place);
-
+  // “Ta quiz” for person
   el.pcUnlock.textContent = "Ta quiz";
   el.pcUnlock.onclick = ()=> startQuizForPerson(person.id);
 }
@@ -231,17 +250,33 @@ function renderNearbyPlaces(){
 }
 
 function renderNearbyPeople(){
-  if (!currentPos) { el.nearPeople.innerHTML = ""; return; }
-  const candidates = PEOPLE
-    .map(pr=>({ ...pr, _d: Math.round(distMeters(currentPos,{lat:pr.lat,lon:pr.lon})) }))
-    .filter(pr => pr._d <= (pr.r||200) + (el.test?.checked ? 5000 : 0))
-    .sort((a,b)=>a._d-b._d)
-    .slice(0, 6);
+  // Resolving coords first
+  PEOPLE.forEach(resolvePersonCoords);
 
-  el.nearPeople.innerHTML = candidates.map(renderPersonCardInline).join("");
+  let arr = PEOPLE.map(pr=>{
+    let _d = null;
+    if (currentPos && typeof pr.lat === "number" && typeof pr.lon === "number"){
+      _d = Math.round(distMeters(currentPos,{lat:pr.lat,lon:pr.lon}));
+    }
+    return {...pr, _d};
+  });
+
+  if (currentPos){
+    arr = arr
+      .filter(pr => pr._d !== null && pr._d <= (pr.r||200) + (el.test?.checked ? 5000 : 0))
+      .sort((a,b)=>a._d-b._d);
+  } else {
+    // Ingen posisjon ennå – vis topp 6 uten distanse
+    arr = arr.slice(0,6);
+  }
+
+  el.nearPeople.innerHTML = arr.slice(0,6).map(renderPersonCardInline).join("");
 }
 
 function renderPlaceCard(p){
+  const distTxt = (p._d==null ? "" : (p._d<1000? `${p._d} m` : `${(p._d/1000).toFixed(1)} km`));
+  const q = encodeURIComponent(`${p.name} Oslo`);
+  const g = `https://www.google.com/search?q=${q}`;
   return `
     <article class="card">
       <div>
@@ -250,24 +285,24 @@ function renderPlaceCard(p){
         <p class="desc">${p.desc||""}</p>
       </div>
       <div class="row between">
-        <div class="dist">${p._d==null ? "" : (p._d<1000? `${p._d} m` : `${(p._d/1000).toFixed(1)} km`)}</div>
-        <button class="ghost-btn" data-more="${encodeURIComponent(p.name+' Oslo')}">Mer info</button>
+        <div class="dist">${distTxt}</div>
+        <a class="ghost-btn" href="${g}" target="_blank" rel="noopener">Mer info</a>
+        <button class="ghost-btn" data-open="${p.id}">Åpne</button>
       </div>
     </article>
   `;
 }
 
 function renderPersonCardInline(pr){
-  const cat = tagToCat(pr.tags);
   return `
     <article class="card">
       <div>
         <div class="name">${pr.name}</div>
-        <div class="meta">${cat}</div>
+        <div class="meta">Byoriginal</div>
         <p class="desc">${pr.desc||""}</p>
       </div>
       <div class="row between">
-        <div class="dist">${pr._d<1000? `${pr._d} m` : `${(pr._d/1000).toFixed(1)} km`}</div>
+        <div class="dist">${pr._d==null ? "" : (pr._d<1000? `${pr._d} m` : `${(pr._d/1000).toFixed(1)} km`)}</div>
         <button class="primary-btn" data-quiz="${pr.id}">Ta quiz</button>
       </div>
     </article>
@@ -277,6 +312,7 @@ function renderPersonCardInline(pr){
 function renderCollection(){
   const items = PLACES.filter(p => visited[p.id]);
   el.collectionCount.textContent = items.length;
+
   const first = items.slice(0, 6);
   const rest  = items.slice(6);
 
@@ -307,6 +343,7 @@ function renderMerits(){
       <div class="card">
         <div class="name">${cat}</div>
         <div class="meta">Nivå: ${m.level} • Poeng: ${m.points}</div>
+        <div class="row right"><button class="ghost-btn" disabled>Progresjon</button></div>
       </div>
     `;
   }).join("");
@@ -315,13 +352,13 @@ function renderMerits(){
 function renderGallery(){
   const got = PEOPLE.filter(p => !!peopleCollected[p.id]);
   el.gallery.innerHTML = got.length ? got.map(p=>`
-    <span class="badge ${catClass(tagToCat(p.tags))}">
-      <span class="i" style="background:${catColor(tagToCat(p.tags))}"></span> ${p.name}
+    <span class="badge ${catClass("Urban Life")}">
+      <span class="i" style="background:${catColor("Urban Life")}"></span> ${p.name}
     </span>
   `).join("") : `<div class="muted">Samle personer ved å møte dem og klare quizen.</div>`;
 }
 
-// “Se flere i nærheten”
+// “Se flere i nærheten” sheet
 function buildSeeMoreNearby(){
   const sorted = PLACES
     .map(p => ({...p, _d: currentPos ? Math.round(distMeters(currentPos, {lat:p.lat,lon:p.lon})) : null }))
@@ -329,11 +366,12 @@ function buildSeeMoreNearby(){
   el.sheetNearBody.innerHTML = sorted.slice(NEARBY_LIMIT, NEARBY_LIMIT+18).map(renderPlaceCard).join("");
 }
 
-// delegasjon for kort-knapper
+// Klikkdelegasjon for kort-knapper
 document.addEventListener('click', (e)=>{
-  const moreQ = e.target.getAttribute?.('data-more');
-  if (moreQ){
-    window.open(`https://www.google.com/search?q=${moreQ}`, '_blank');
+  const openId = e.target.getAttribute?.('data-open');
+  if (openId){
+    const p = PLACES.find(x=>x.id===openId);
+    if (p) openPlaceCard(p);
   }
   const quizId = e.target.getAttribute?.('data-quiz');
   if (quizId){
@@ -369,6 +407,7 @@ function startQuizForPerson(personId){
   showQuizQuestion();
   el.quizModal.setAttribute('aria-hidden','false');
 }
+
 function showQuizQuestion(){
   const { quiz, i } = quizState;
   const item = quiz.questions[i];
@@ -384,10 +423,12 @@ function showQuizQuestion(){
       const correct = (pick === item.answerIndex);
       btn.classList.add(correct ? 'correct':'wrong');
       el.quizFeedback.textContent = correct ? "Riktig! 🎉" : (item.explanation || "Feil svar.");
+
       setTimeout(()=> nextQuizStep(correct), QUIZ_FEEDBACK_MS);
     };
   });
 }
+
 function nextQuizStep(correct){
   const { quiz } = quizState;
   quizState.answers.push(correct);
@@ -416,6 +457,7 @@ function nextQuizStep(correct){
     showQuizQuestion();
   }
 }
+
 document.getElementById('quizClose').addEventListener('click', ()=>{
   el.quizModal.setAttribute('aria-hidden','true');
 });
@@ -423,7 +465,6 @@ document.getElementById('quizClose').addEventListener('click', ()=>{
 // ==============================
 // Geolokasjon
 // ==============================
-let currentPos = null;
 function requestLocation(){
   if (!navigator.geolocation){
     el.status.textContent = "Geolokasjon støttes ikke.";
@@ -444,61 +485,74 @@ function requestLocation(){
   }, { enableHighAccuracy:true, timeout:8000, maximumAge:10000 });
 }
 
-function setUser(lat, lon){
-  if (!MAP) return;
-  if (!userMarker){
-    userMarker = L.circleMarker([lat,lon], {
-      radius:8, weight:2, color:'#fff', fillColor:'#1976d2', fillOpacity:1
-    }).addTo(MAP).bindPopup('Du er her');
-    userPulse = L.circle([lat,lon], {
-      radius: 25, color:'#00e676', weight:1, opacity:.6, fillColor:'#00e676', fillOpacity:.12
-    }).addTo(MAP);
-  } else {
-    userMarker.setLatLng([lat,lon]);
-    userPulse.setLatLng([lat,lon]);
-  }
-}
-
-// ==============================
-// Kart-modus & kontroller
-// ==============================
-el.btnCenter.addEventListener('click', ()=>{
+// Engangs-sentrering (ikke toggle)
+el.btnCenter?.addEventListener('click', ()=>{
   if (currentPos && MAP){
     MAP.setView([currentPos.lat, currentPos.lon], Math.max(MAP.getZoom(), 15), {animate:true});
     showToast("Sentrert");
   }
 });
-el.btnSeeMap.addEventListener('click', ()=>{
+
+// ==============================
+// Kart-modus toggle
+// ==============================
+el.btnSeeMap?.addEventListener('click', ()=>{
   document.body.classList.add('map-only');
-  el.btnCenter.style.display = "block";
+  el.btnCenter && (el.btnCenter.style.display = "block");
 });
-el.btnExitMap.addEventListener('click', ()=>{
+el.btnExitMap?.addEventListener('click', ()=>{
   document.body.classList.remove('map-only');
-  el.btnCenter.style.display = "none";
+  el.btnCenter && (el.btnCenter.style.display = "none");
 });
 
+// ==============================
 // “Se flere i nærheten”
+// ==============================
 el.seeMore?.addEventListener('click', ()=>{
   buildSeeMoreNearby();
   openSheet(el.sheetNear);
 });
 
 // ==============================
-// Boot
+// Init
 // ==============================
+function wire(){
+  document.querySelectorAll('.sheet-close').forEach(b=>{
+    b.addEventListener('click', ()=> {
+      const sel = b.getAttribute('data-close');
+      if (sel) document.querySelector(sel)?.setAttribute('aria-hidden','true');
+    });
+  });
+
+  el.test?.addEventListener('change', e=>{
+    if (e.target.checked){
+      currentPos = { lat: START.lat, lon: START.lon };
+      el.status.textContent = "Testmodus: Oslo sentrum";
+      setUser(currentPos.lat, currentPos.lon);
+      renderNearbyPlaces();
+      renderNearbyPeople();
+      showToast("Testmodus PÅ");
+    } else {
+      showToast("Testmodus AV");
+      requestLocation();
+    }
+  });
+}
+
 function boot(){
   initMap();
+
   Promise.all([
     fetch('places.json').then(r=>r.json()),
     fetch('people.json').then(r=>r.json()).catch(()=>[]),
     fetch('quizzes.json').then(r=>r.json()).catch(()=>[])
   ]).then(([places, people, quizzes])=>{
     PLACES = places||[];
-    PEOPLE = people||[];
+    PEOPLE = (people||[]).map(p=>({ ...p })); // kopier
     QUIZZES = quizzes||[];
 
-    // ★ Kritisk: fyll inn manglende lat/lon for personer
-    normalizePeople();
+    // Viktig: gi personer koordinater fra stedet hvis mangler
+    PEOPLE.forEach(resolvePersonCoords);
 
     drawPlaceMarkers();
     drawPeopleMarkers();
@@ -513,6 +567,8 @@ function boot(){
   }).catch(()=>{
     showToast("Kunne ikke laste data.", 1600);
   });
+
+  wire();
 }
+
 document.addEventListener('DOMContentLoaded', boot);
-</script>
