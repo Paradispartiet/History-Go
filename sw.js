@@ -1,5 +1,5 @@
 // sw.js — History Go (minimal, v13)
-const VERSION = 'v13.0.0';
+const VERSION = 'v13.1.0';
 const CACHE = `hg-${VERSION}`;
 
 const CORE = [
