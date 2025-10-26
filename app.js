@@ -632,12 +632,15 @@ async function fetchWikiSummary(name){
   }catch(_){ return ""; }
 }
 
-function closePlaceOverlay(){
-  document.getElementById('placeOverlay')?.remove();
+function closePlaceOverlay() {
+  const ov = document.getElementById('placeOverlay');
+  if (ov) ov.remove();
 }
 
 async function showPlaceOverlay(place) {
-  document.getElementById('placeOverlay')?.remove();
+  // Fjern eventuelle tidligere overlays
+  const existing = document.getElementById('placeOverlay');
+  if (existing) existing.remove();
 
   const overlay = document.createElement('div');
   overlay.id = 'placeOverlay';
@@ -659,7 +662,6 @@ async function showPlaceOverlay(place) {
           <a class="ghost" href="https://no.wikipedia.org/wiki/${encodeURIComponent(place.name)}" target="_blank" rel="noopener">Åpne Wikipedia</a>
         </div>
       </div>
-
       <div class="right">
         ${peopleHere.length ? peopleHere.map(p => `
           <div class="card">
@@ -671,7 +673,14 @@ async function showPlaceOverlay(place) {
         : '<div class="muted">Ingen personer registrert.</div>'}
       </div>
     </div>`;
+
   document.body.appendChild(overlay);
+
+  // 🔹 Lukking ved klikk utenfor (ekstra trygghet)
+  overlay.addEventListener('click', e => {
+    if (e.target.id === 'placeOverlay') closePlaceOverlay();
+  });
+}
 }
 
 
