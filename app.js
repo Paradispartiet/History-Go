@@ -1,3 +1,29 @@
+// =====================================================
+// HISTORY GO – APP.JS – MODULOVERSIKT
+// =====================================================
+//
+// 1.  KONSTANTER OG INIT-VARIABLER
+// 2.  ELEMENTREFERANSER (DOM-cache)
+// 3.  KATEGORIFUNKSJONER (farge, klasse, tag)
+// 4.  GEO OG AVSTANDSBEREGNING
+// 5.  BRUKERPOSISJON OG KART (ruter, markører)
+// 6.  STED- OG PERSONKORT
+// 7.  LISTEVISNINGER (nærområde, samling, galleri)
+// 8.  MERKER, NIVÅER OG FREMGANG
+// 9.  HENDELSER OG SHEETS
+// 10. GEOLOKASJON OG MAP-MODUS
+// 11. INITIALISERING OG BOOT
+// 12. STED-OVERLAY (tekst + personer)
+// 13. MERKE-OPPDATERING VED VISNING
+//
+// 🟩 Nye funksjoner:
+//     Legg dem i riktig modul og bruk samme
+//     kommentar-format, f.eks.:
+//     // -----------------------------------------------------
+//     // 14. DIPLOM OG BRUKERPROFIL
+//     // -----------------------------------------------------
+//
+
 // ==============================
 // History Go – app.js (v14 plan applied)
 // ==============================
