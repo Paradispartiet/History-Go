@@ -296,6 +296,11 @@ button{cursor:pointer;border:none}
   padding:14px;
   box-shadow:var(--shadow);
 }
+/* Når quiz-modalen er aktiv, demp kartet i bakgrunnen */
+body:has(#quizModal[aria-hidden="false"]) #map {
+  filter: brightness(0.4) blur(2px);
+  transition: filter .3s ease;
+}
 .modal-head{
   display:flex;justify-content:space-between;align-items:center;
   margin-bottom:8px;
