@@ -501,6 +501,13 @@ function boot(){
 document.addEventListener('DOMContentLoaded', boot);
 
 // ===================================================================
+// TOAST – liten melding nede på skjermen
+// ===================================================================
+function showToast(…){…}
+…
+async function renderBadges(){…}
+
+// ===================================================================
 // AUTOMATISK OPPDATERING AV MERKER VED VISNING
 // ===================================================================
 
