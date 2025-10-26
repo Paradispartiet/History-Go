@@ -8,10 +8,10 @@
   <link rel="stylesheet" href="theme.css">
 
   <!-- Leaflet -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="" crossorigin="">
-  <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="" crossorigin=""></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+  <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 
-  <!-- Leaflet Routing Machine (for real street routes) -->
+  <!-- Leaflet Routing Machine -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css">
   <script defer src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script>
 
@@ -19,10 +19,10 @@
   <script defer src="app.js"></script>
 </head>
 <body>
-  <!-- Map (always behind) -->
+  <!-- Kart (bakgrunn) -->
   <div id="map" aria-label="Kart"></div>
 
-  <!-- Floating map controls -->
+  <!-- Kart-knapper -->
   <div class="map-controls">
     <button id="btnCenter" title="Sentrer">⌖</button>
     <button id="btnExitMap" title="Lukk kart" aria-label="Lukk kart">✕</button>
@@ -43,33 +43,40 @@
   </header>
 
   <main>
+    <!-- Nærområde -->
     <section class="panel">
-      <h2>Steder i nærheten <button id="btnSeeMoreNearby" class="chip ghost">Se flere i nærheten</button></h2>
+      <h2>Steder i nærheten 
+        <button id="btnSeeMoreNearby" class="chip ghost">Se flere i nærheten</button>
+      </h2>
       <div id="status" class="muted">Henter posisjon…</div>
       <div id="nearbyList" class="cards"></div>
     </section>
 
+    <!-- Personer -->
     <section class="panel">
       <h2>Personer i nærheten</h2>
       <div id="nearbyPeople" class="cards"></div>
     </section>
 
-<section class="panel">
-  <h2>Samling</h2>
-  
-  <h3>🏅 Merker</h3>
-  <div id="merits"></div>
-  
-  <h3>🏛️ Steder</h3>
-  <div id="collectionGrid" class="chips"></div>
+    <!-- Samling -->
+    <section class="panel">
+      <h2>Samling 
+        <button id="btnMoreCollection" class="chip ghost">Se hele samlingen</button>
+      </h2>
 
-  <h3>👥 Personer</h3>
-  <div id="gallery" class="chips"></div>
+      <h3>🏅 Merker</h3>
+      <div id="progress-display" class="muted" style="margin-bottom:8px;"></div>
+      <div id="merits"></div>
 
-</section>
+      <h3>🏛️ Steder</h3>
+      <div id="collectionGrid" class="chips"></div>
+
+      <h3>👥 Personer</h3>
+      <div id="gallery" class="chips"></div>
+    </section>
   </main>
 
-  <!-- Place sheet/card -->
+  <!-- Stedkort -->
   <div id="placeCard" class="place-card" aria-hidden="true">
     <div class="pc-body">
       <div class="pc-title">
@@ -86,7 +93,7 @@
     </div>
   </div>
 
-  <!-- “Se flere i nærheten” -->
+  <!-- “Se flere i nærheten” sheet -->
   <div id="sheetNearby" class="sheet" aria-hidden="true">
     <div class="sheet-head">
       <h3>Se flere i nærheten</h3>
@@ -95,7 +102,7 @@
     <div id="sheetNearbyBody" class="sheet-body"></div>
   </div>
 
-  <!-- “Flere i samlingen” -->
+  <!-- “Min samling” sheet -->
   <div id="sheetCollection" class="sheet" aria-hidden="true">
     <div class="sheet-head">
       <h3>Min samling</h3>
@@ -104,22 +111,26 @@
     <div id="sheetCollectionBody" class="sheet-body"></div>
   </div>
 
-  <!-- Quiz modal -->
-  <div id="quizModal" class="modal" aria-hidden="true" role="dialog" aria-label="Quiz">
+  <!-- Quiz-modal (bygges dynamisk, men behold fallback) -->
+  <div id="quizModal" class="modal" aria-hidden="true">
     <div class="modal-body">
       <div class="modal-head">
-        <h3 id="quizTitle">Quiz</h3>
-        <button id="quizClose" class="icon">✕</button>
+        <strong id="quizTitle">Quiz</strong>
+        <button class="ghost" id="quizClose">Lukk</button>
       </div>
-      <div id="quizProgress" class="muted"></div>
-      <p id="quizQuestion"></p>
-      <div id="quizChoices" class="quiz-choices"></div>
-      <div id="quizFeedback" class="quiz-feedback"></div>
+      <div class="sheet-body">
+        <div id="quizQ" style="margin:6px 0 10px;font-weight:600"></div>
+        <div id="quizChoices" class="quiz-choices"></div>
+        <div style="display:flex;justify-content:space-between;margin-top:8px;">
+          <span id="quizFeedback" class="quiz-feedback"></span>
+          <small id="quizProgress" class="muted"></small>
+        </div>
+      </div>
     </div>
   </div>
 
+  <!-- Service Worker -->
   <script>
-    // SW register (safe and simple)
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('./sw.js').catch(()=>{});
