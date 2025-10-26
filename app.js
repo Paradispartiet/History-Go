@@ -239,6 +239,7 @@ function drawPeopleMarkers() {
     const icon = L.divIcon({ className:"", html, iconSize:[28,28], iconAnchor:[14,14] });
     const mk = L.marker([pr.lat, pr.lon], { icon }).addTo(peopleLayer);
     const hb = L.circle([pr.lat, pr.lon], { radius:36, opacity:0, fillOpacity:0 }).addTo(peopleLayer);
+    mk.unbindPopup(); // hindrer Leaflet i å vise "fun fact"-popup
     const openFromPerson = () => openPlaceCardByPerson(pr);
     mk.on('click', openFromPerson);
     hb.on('click', openFromPerson);
