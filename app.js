@@ -461,6 +461,58 @@ function updateMeritLevel(cat, newPoints) {
   }
 }
 
+/* =======================================================
+   HISTORY GO – Poengsystem og progresjon
+   ======================================================= */
+
+const userProgress = JSON.parse(localStorage.getItem("historygo_progress")) || {};
+
+// Oppdater poeng når man har svart riktig på tre spørsmål
+function updateProgress(categoryId) {
+  if (!userProgress[categoryId]) {
+    userProgress[categoryId] = { correct: 0, points: 0 };
+  }
+
+  userProgress[categoryId].correct++;
+
+  if (userProgress[categoryId].correct % 3 === 0) {
+    userProgress[categoryId].points++;
+    alert(`⭐ Du har tjent 1 poeng i ${categoryId}!`);
+  }
+
+  localStorage.setItem("historygo_progress", JSON.stringify(userProgress));
+  updateBadgeDisplay(categoryId);
+}
+
+// Viser brukerens fremgang (kan kobles til UI)
+function updateBadgeDisplay(categoryId) {
+  const display = document.getElementById("progress-display");
+  if (!display) return;
+
+  const { correct = 0, points = 0 } = userProgress[categoryId] || {};
+  display.textContent = `Riktige svar: ${correct}  •  Poeng: ${points}`;
+}
+
+/* =======================================================
+   Justert checkAnswer-funksjon
+   ======================================================= */
+
+function checkAnswer(button, selected, correct) {
+  const parent = button.parentElement;
+  Array.from(parent.querySelectorAll("button")).forEach(b => b.disabled = true);
+
+  const categoryId = document.querySelector("h2").textContent.toLowerCase().replace("quiz: ", "");
+
+  if (selected === correct) {
+    button.classList.add("correct");
+    updateProgress(categoryId);
+  } else {
+    button.classList.add("wrong");
+    const correctBtn = Array.from(parent.querySelectorAll("button")).find(b => b.textContent === correct);
+    if (correctBtn) correctBtn.classList.add("correct");
+  }
+}
+
 // ==============================
 // 9. HENDELSER OG SHEETS
 // ==============================
