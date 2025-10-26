@@ -406,69 +406,6 @@ document.querySelectorAll('[data-close]').forEach(btn=>{
   });
 });
 
-// Quiz
-let quizState = null;
-
-function startQuizForPerson(personId){
-  const q = QUIZZES.filter(x=>x.personId===personId);
-  if (!q || !q.length) { showToast("Ingen quiz enda – kommer!"); return; }
-  quizState = { quiz: q[0], i: 0, answers: [] };
-  el.quizTitle.textContent = quizState.quiz.title;
-  el.quizFeedback.textContent = "";
-  showQuizQuestion();
-  el.quizModal.setAttribute('aria-hidden','false');
-}
-
-function showQuizQuestion(){
-  const { quiz, i } = quizState;
-  const item = quiz.questions[i];
-  el.quizQ.textContent = item.text;
-  el.quizChoices.innerHTML = item.choices.map((c, idx)=>`
-    <button data-choice="${idx}">${c}</button>
-  `).join("");
-  el.quizProgress.textContent = `Spørsmål ${i+1} av ${quiz.questions.length}`;
-  el.quizChoices.querySelectorAll('button').forEach(btn=>{
-    btn.onclick = ()=>{
-      const pick = Number(btn.getAttribute('data-choice'));
-      const correct = (pick === item.answerIndex);
-      btn.classList.add(correct ? 'correct':'wrong');
-      el.quizFeedback.textContent = correct ? "Riktig! 🎉" : (item.explanation || "Feil svar.");
-      setTimeout(()=> nextQuizStep(correct), QUIZ_FEEDBACK_MS);
-    };
-  });
-}
-
-function nextQuizStep(correct){
-  const { quiz } = quizState;
-  quizState.answers.push(correct);
-  quizState.i++;
-  if (quizState.i >= quiz.questions.length){
-    const allCorrect = quizState.answers.every(x=>x);
-    const cat = quiz.reward?.category || "Historie";
-    const pts = quiz.reward?.points || 1;
-    merits[cat] = merits[cat] || { level:"Nybegynner", points:0 };
-    merits[cat].points += pts;
-    updateMeritLevel(cat, merits[cat].points);
-    if (merits[cat].points >= 10) merits[cat].level = "Mester";
-    else if (merits[cat].points >= 5) merits[cat].level = "Kjentmann";
-    saveMerits();
-
-    peopleCollected[quiz.personId] = Date.now();
-    savePeople();
-
-    el.quizFeedback.textContent = allCorrect ? "Flott! Merke oppdatert ✨" : "Ferdig – prøv igjen for full score!";
-    setTimeout(()=>{
-      el.quizModal.setAttribute('aria-hidden','true');
-      renderNearbyPeople();
-      renderGallery();
-    }, 900);
-  } else {
-    el.quizFeedback.textContent = "";
-    showQuizQuestion();
-  }
-}
-document.getElementById('quizClose').addEventListener('click', ()=> el.quizModal.setAttribute('aria-hidden','true'));
-
 // Geolocation
 function requestLocation(){
   if (!navigator.geolocation){
