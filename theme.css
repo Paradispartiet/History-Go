@@ -200,18 +200,21 @@ button{cursor:pointer;border:none}
 /* --- 6.2 PLACE OVERLAY – utvidet visning ved trykk på sted --- */
 .place-overlay {
   position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 160px;
-  height: 60vh;
-  background: var(--panel-bg);         /* solid bakgrunn */
-  border-top: 1px solid var(--panel-border);
+  left: 0; right: 0; bottom: 160px;
+  height: auto;
+  border: none;
   z-index: 25;
   display: flex;
   justify-content: center;
   align-items: start;
   animation: slideUp .25s ease;
-  backdrop-filter: none;               /* fjernet blur/gjennomsiktighet */
+  background: none;         /* fjernet grå bakgrunn */
+  backdrop-filter: none;    /* fjernet blur */
+  pointer-events: none;     /* lar kartet forbli aktivt */
+}
+
+.place-overlay-content {
+  pointer-events: auto;     /* bevarer klikk inni boksen */
 }
 
 .place-overlay-content {
