@@ -182,7 +182,7 @@ function showRouteTo(place){
     if (routeControl){ MAP.removeControl(routeControl); routeControl = null; }
     routeControl = L.Routing.control({
       waypoints: [from, to],
-      router: L.Routing.osrmv1({ serviceUrl: 'https://router.project-osrm.org/route/v1' }),
+      router: L.Routing.osrmv1({ serviceUrl: 'https://routing.openstreetmap.de/routed-foot/route/v1' }),
       addWaypoints: false, draggableWaypoints: false, fitSelectedRoutes: true, show: false,
       lineOptions: { styles: [{color:'#cfe8ff', opacity:1, weight:6}] },
       createMarker: ()=>null
