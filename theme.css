@@ -1,3 +1,6 @@
+/* ===================================================== */
+/* 1. TEMA OG VARIABLER                                  */
+/* ===================================================== */
 :root{
   --bg: #0a1929;
   --panel-bg: rgba(13,27,42,.86); /* translucent so the map shines through */
@@ -19,152 +22,277 @@
   --shadow: 0 10px 24px rgba(0,0,0,.35);
 }
 
+/* ===================================================== */
+/* 2. BASIS OG TYPOGRAFI                                 */
+/* ===================================================== */
 *{box-sizing:border-box}
 html,body{height:100%}
 body{
-  margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-  background: var(--bg); color: var(--text);
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
 }
+.muted{color:var(--muted)}
 
-/* Map layer always behind */
+/* ===================================================== */
+/* 3. KART OG NAVIGASJON                                 */
+/* ===================================================== */
 #map{
-  position: fixed; inset: 0; z-index: 0;
-  filter: none;
+  position:fixed;inset:0;z-index:0;
+  filter:none;
 }
 .map-controls{
-  position: fixed; right: 12px; bottom: 12px; z-index: 12;
-  display: grid; gap: 8px;
+  position:fixed;right:12px;bottom:12px;z-index:12;
+  display:grid;gap:8px;
 }
 .map-controls button{
-  width: 44px; height: 44px; border-radius: 999px; border: 1px solid var(--panel-border);
-  background: rgba(20,30,45,.9); color:#fff; box-shadow: var(--shadow);
+  width:44px;height:44px;border-radius:999px;
+  border:1px solid var(--panel-border);
+  background:rgba(20,30,45,.9);color:#fff;
+  box-shadow:var(--shadow);
 }
-#btnExitMap{ display:none; }
+#btnExitMap{display:none}
 
-/* Toast */
+/* ===================================================== */
+/* 4. OVERORDNEDE UI-ELEMENTER (header, main, toast)     */
+/* ===================================================== */
 #toast{
-  position: fixed; top: 14px; left: 50%; transform: translateX(-50%);
-  background: rgba(0,0,0,.7); color:#fff; padding:8px 14px; border-radius: 999px;
-  font-weight:600; display:none; z-index: 15;
+  position:fixed;top:14px;left:50%;transform:translateX(-50%);
+  background:rgba(0,0,0,.7);color:#fff;
+  padding:8px 14px;border-radius:999px;
+  font-weight:600;display:none;z-index:15;
 }
-
-/* Header */
 header{
-  position: relative; z-index: 5;
-  display:flex; align-items:center; justify-content:space-between;
-  padding: 16px 14px;
-  background: linear-gradient(180deg, rgba(10,25,41,.95), rgba(10,25,41,.65) 70%, transparent);
+  position:relative;z-index:5;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 14px;
+  background:linear-gradient(180deg,rgba(10,25,41,.95),rgba(10,25,41,.65) 70%,transparent);
 }
-.brand{ font-weight:800; letter-spacing:.3px }
-.actions{ display:flex; gap:10px; align-items:center }
-.toggle{ display:flex; gap:6px; align-items:center; font-size:.9rem }
-.toggle input{ accent-color: var(--primary); }
+.brand{font-weight:800;letter-spacing:.3px}
+.actions{display:flex;gap:10px;align-items:center}
+.toggle{display:flex;gap:6px;align-items:center;font-size:.9rem}
+.toggle input{accent-color:var(--primary)}
+main{position:relative;z-index:5;padding:8px 10px 44px}
 
-/* Panels on top of map */
-main{ position: relative; z-index: 5; padding: 8px 10px 44px }
+/* ===================================================== */
+/* 5. PANELER, KORT, KNAPPER, BADGES                     */
+/* ===================================================== */
 .panel{
-  background: var(--panel-bg);
-  border: 1px solid var(--panel-border);
-  border-radius: var(--card-radius);
-  padding: 10px; margin: 10px 0;
-  box-shadow: var(--shadow);
-  backdrop-filter: blur(2px); /* slight polish */
+  background:var(--panel-bg);
+  border:1px solid var(--panel-border);
+  border-radius:var(--card-radius);
+  padding:10px;margin:10px 0;
+  box-shadow:var(--shadow);
+  backdrop-filter:blur(2px);
 }
-.panel h2{ display:flex; align-items:center; justify-content:space-between; margin:6px 2px 12px; font-size:1rem }
-.muted{ color: var(--muted) }
+.panel h2{
+  display:flex;align-items:center;justify-content:space-between;
+  margin:6px 2px 12px;font-size:1rem;
+}
 
-/* Cards & chips */
-.cards{ display:grid; gap:10px }
+/* Kort & chips */
+.cards{display:grid;gap:10px}
 .card{
-  background: rgba(255,255,255,.02);
-  border: 1px solid var(--panel-border);
-  border-radius: 12px; padding: 12px;
+  background:rgba(255,255,255,.02);
+  border:1px solid var(--panel-border);
+  border-radius:12px;
+  padding:12px;
 }
-.card .name{ font-weight:700 }
-.card .meta{ color: var(--muted); font-size:.9rem; margin:2px 0 4px }
-.card .row{ display:flex; gap:8px; align-items:center }
-.card .row.between{ justify-content:space-between }
+.card .name{font-weight:700}
+.card .meta{color:var(--muted);font-size:.9rem;margin:2px 0 4px}
+.card .row{display:flex;gap:8px;align-items:center}
+.card .row.between{justify-content:space-between}
 
-/* small icon chips for collection/gallery */
-.chips{ display:flex; flex-wrap:wrap; gap:8px }
+/* Chips / badges */
+.chips{display:flex;flex-wrap:wrap;gap:8px}
 .badge{
-  --dot: var(--hist);
-  display:inline-flex; align-items:center; gap:6px;
-  padding:6px 10px; border-radius:999px; border:1px solid var(--panel-border);
-  background: rgba(255,255,255,.02); font-size:.9rem;
+  --dot:var(--hist);
+  display:inline-flex;align-items:center;gap:6px;
+  padding:6px 10px;border-radius:999px;
+  border:1px solid var(--panel-border);
+  background:rgba(255,255,255,.02);
+  font-size:.9rem;
 }
 .badge .i{
-  width:24px; height:24px; border-radius:999px; display:inline-block;
+  width:24px;height:24px;border-radius:999px;
+  display:inline-block;
   border:2px solid rgba(0,0,0,.55);
 }
 
-/* Buttons */
-button{ cursor:pointer; border:none }
-.primary{ background: var(--primary); color:#fff; padding:10px 14px; border-radius:10px }
-.secondary{ background: rgba(255,255,255,.08); color:#fff; padding:10px 14px; border-radius:10px; border:1px solid var(--panel-border) }
-.ghost{ background: transparent; color:#fff; padding:8px 12px; border-radius:999px; border:1px solid var(--panel-border) }
-.icon{ width:36px; height:36px; border-radius:999px; background: rgba(255,255,255,.08); color:#fff; border:1px solid var(--panel-border) }
-.chip.ghost{ font-size:.9rem }
+/* Knapper */
+button{cursor:pointer;border:none}
+.primary{background:var(--primary);color:#fff;padding:10px 14px;border-radius:10px}
+.secondary{background:rgba(255,255,255,.08);color:#fff;padding:10px 14px;border-radius:10px;border:1px solid var(--panel-border)}
+.ghost{background:transparent;color:#fff;padding:8px 12px;border-radius:999px;border:1px solid var(--panel-border)}
+.icon{width:36px;height:36px;border-radius:999px;background:rgba(255,255,255,.08);color:#fff;border:1px solid var(--panel-border)}
+.chip.ghost{font-size:.9rem}
 
-/* Place card */
-.place-card{ position: fixed; left:0; right:0; bottom:0; z-index: 10; transform: translateY(110%); transition: .25s transform ease; }
-.place-card[aria-hidden="false"]{ transform: translateY(0); }
+/* ===================================================== */
+/* 6. KOMPONENTER                                        */
+/* ===================================================== */
+
+/* --- 6.1 PLACE CARD (boksen nederst) --- */
+.place-card{
+  position:fixed;left:0;right:0;bottom:0;z-index:10;
+  transform:translateY(110%);transition:.25s transform ease;
+}
+.place-card[aria-hidden="false"]{transform:translateY(0)}
 .place-card .pc-body{
-  margin: 0 8px 8px; padding: 12px;
-  background: var(--panel-bg); border: 1px solid var(--panel-border); border-radius: 14px; box-shadow: var(--shadow);
+  margin:0 8px 8px;padding:12px;
+  background:var(--panel-bg);
+  border:1px solid var(--panel-border);
+  border-radius:14px;box-shadow:var(--shadow);
 }
-.pc-title{ display:flex; justify-content:space-between; align-items:center }
-.pc-meta{ color: var(--muted); margin:4px 0 6px }
-.pc-actions{ display:flex; gap:8px; align-items:center; flex-wrap:wrap }
+.pc-title{display:flex;justify-content:space-between;align-items:center}
+.pc-meta{color:var(--muted);margin:4px 0 6px}
+.pc-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 
-/* Sheets & modal */
-.sheet{ position: fixed; inset:auto 0 0 0; z-index: 11; background: var(--panel-bg); border-top:1px solid var(--panel-border); transform: translateY(110%); transition: .25s }
-.sheet[aria-hidden="false"]{ transform: translateY(0) }
-.sheet-head{ display:flex; justify-content:space-between; align-items:center; padding:10px 12px; border-bottom:1px solid var(--panel-border) }
-.sheet-body{ padding:10px 12px }
-.modal{ position:fixed; inset:0; display:grid; place-items:center; background: rgba(0,0,0,.4); z-index:20; transform: scale(.98); opacity:0; pointer-events:none; transition:.2s }
-.modal[aria-hidden="false"]{ transform: none; opacity:1; pointer-events:auto }
-.modal-body{ width:min(680px,calc(100% - 24px)); background: var(--panel-bg); border:1px solid var(--panel-border); border-radius:14px; padding:14px; box-shadow: var(--shadow) }
-.modal-head{ display:flex; justify-content:space-between; align-items:center; margin-bottom:8px }
-.quiz-choices{ display:grid; gap:8px }
-.quiz-choices button{ padding:10px; border:1px solid var(--panel-border); border-radius:10px; background: rgba(255,255,255,.03); color:#fff }
-.quiz-choices button.correct{ outline:2px solid var(--ok) }
-.quiz-choices button.wrong{ outline:2px solid #ff5b5b }
-.quiz-feedback{ margin-top:6px; font-weight:700 }
-
-/* Map-only mode */
-body.map-only header, body.map-only main{ display:none }
-body.map-only #btnExitMap{ display:block }
-
-.badge-card {
-  display: flex;
-  align-items: center;
-  gap: 0.7rem;
-  background: #111;
-  border: 1px solid #222;
-  padding: 0.6rem 0.8rem;
-  border-radius: 6px;
-  margin-bottom: 0.6rem;
+/* --- 6.2 PLACE OVERLAY – utvidet visning ved trykk på sted --- */
+.place-overlay{
+  position:fixed;
+  left:0;right:0;bottom:160px;
+  height:60vh;
+  background:var(--panel-bg);
+  backdrop-filter:blur(6px);
+  border-top:1px solid var(--panel-border);
+  z-index:25;
+  display:flex;
+  justify-content:center;
+  align-items:start;
+  animation:slideUp .25s ease;
+}
+.place-overlay-content{
+  width:min(1000px,94%);
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+  padding:20px;
+  overflow-y:auto;
+}
+.place-overlay .left{
+  overflow-y:auto;
+  padding-right:10px;
+}
+.place-overlay .left img{
+  width:100%;
+  max-height:240px;
+  object-fit:cover;
+  border-radius:10px;
+  margin-bottom:10px;
+}
+.place-overlay .right{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  overflow-y:auto;
+}
+.place-overlay .card{
+  background:rgba(255,255,255,0.04);
+  border:1px solid var(--panel-border);
+  border-radius:var(--card-radius);
+  padding:12px;
+  box-shadow:var(--shadow);
+}
+.place-overlay .card strong{font-size:1.05rem}
+.place-overlay .card .muted{color:var(--muted);font-size:.9rem}
+.place-overlay .card p{margin:4px 0 6px}
+.place-overlay .close-overlay{
+  position:absolute;top:10px;right:14px;
+  font-size:1.5rem;
+  background:transparent;border:none;
+  color:var(--text);cursor:pointer;
 }
 
-.badge-icon-ring {
-  width: 32px;
-  height: 32px;
-  border-radius: 999px;
-  border: 2px solid var(--yellow); /* blir overstyrt inline pr kategori */
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* --- 6.3 SHEETS OG MODALER --- */
+.sheet{
+  position:fixed;inset:auto 0 0 0;z-index:11;
+  background:var(--panel-bg);
+  border-top:1px solid var(--panel-border);
+  transform:translateY(110%);
+  transition:.25s;
+}
+.sheet[aria-hidden="false"]{transform:translateY(0)}
+.sheet-head{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:10px 12px;border-bottom:1px solid var(--panel-border);
+}
+.sheet-body{padding:10px 12px}
+.modal{
+  position:fixed;inset:0;
+  display:grid;place-items:center;
+  background:rgba(0,0,0,.4);z-index:20;
+  transform:scale(.98);opacity:0;pointer-events:none;
+  transition:.2s;
+}
+.modal[aria-hidden="false"]{transform:none;opacity:1;pointer-events:auto}
+.modal-body{
+  width:min(680px,calc(100% - 24px));
+  background:var(--panel-bg);
+  border:1px solid var(--panel-border);
+  border-radius:14px;
+  padding:14px;
+  box-shadow:var(--shadow);
+}
+.modal-head{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:8px;
 }
 
-.badge-icon { font-size: 1.3rem; line-height: 1; }
-.badge-info small { color: var(--muted); font-size: 0.88rem; }
-
-/* Effekt ved nytt merke-nivå */
-@keyframes badgePulse {
-  0%   { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,255,255,0); }
-  30%  { transform: scale(1.05); box-shadow: 0 0 10px 3px rgba(255,255,255,0.15); }
-  60%  { transform: scale(1.02); box-shadow: 0 0 8px 2px rgba(255,255,255,0.1); }
-  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,255,255,0); }
+/* --- 6.4 QUIZ --- */
+.quiz-choices{display:grid;gap:8px}
+.quiz-choices button{
+  padding:10px;
+  border:1px solid var(--panel-border);
+  border-radius:10px;
+  background:rgba(255,255,255,.03);
+  color:#fff;
 }
-.badge-pulse { animation: badgePulse 1.2s ease-out; border-color: var(--yellow); }
+.quiz-choices button.correct{outline:2px solid var(--ok)}
+.quiz-choices button.wrong{outline:2px solid #ff5b5b}
+.quiz-feedback{margin-top:6px;font-weight:700}
+
+/* --- 6.5 MERKER / BADGES --- */
+.badge-card{
+  display:flex;align-items:center;gap:.7rem;
+  background:#111;
+  border:1px solid #222;
+  padding:.6rem .8rem;
+  border-radius:6px;
+  margin-bottom:.6rem;
+}
+.badge-icon-ring{
+  width:32px;height:32px;border-radius:999px;
+  border:2px solid var(--yellow);
+  display:flex;align-items:center;justify-content:center;
+}
+.badge-icon{font-size:1.3rem;line-height:1}
+.badge-info small{color:var(--muted);font-size:.88rem}
+
+/* ===================================================== */
+/* 7. TILSTANDER OG EFFEKTER                             */
+/* ===================================================== */
+body.map-only header,
+body.map-only main{display:none}
+body.map-only #btnExitMap{display:block}
+
+/* Effekter og animasjoner */
+@keyframes slideUp{
+  from{transform:translateY(100%);opacity:0}
+  to{transform:none;opacity:1}
+}
+@keyframes badgePulse{
+  0%{transform:scale(1);box-shadow:0 0 0 0 rgba(255,255,255,0)}
+  30%{transform:scale(1.05);box-shadow:0 0 10px 3px rgba(255,255,255,0.15)}
+  60%{transform:scale(1.02);box-shadow:0 0 8px 2px rgba(255,255,255,0.1)}
+  100%{transform:scale(1);box-shadow:0 0 0 0 rgba(255,255,255,0)}
+}
+.badge-pulse{animation:badgePulse 1.2s ease-out;border-color:var(--yellow)}
+
+/* ===================================================== */
+/* 8. RESPONSIVE JUSTERINGER                              */
+/* ===================================================== */
+@media (max-width:720px){
+  .place-overlay-content{grid-template-columns:1fr;height:100%;overflow-y:auto}
+  .place-overlay{height:80vh}
+}
