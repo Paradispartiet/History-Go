@@ -616,6 +616,46 @@ window.startQuizForPerson = startQuizForPerson;
 }
 document.addEventListener('DOMContentLoaded', boot);
 
+// =====================================================
+// Felles popup for steder (tekst + personer)
+// =====================================================
+function showPlaceOverlay(place) {
+  // Fjern tidligere popup hvis den finnes
+  document.getElementById('placeOverlay')?.remove();
+
+  const overlay = document.createElement('div');
+  overlay.id = 'placeOverlay';
+  overlay.className = 'place-overlay';
+
+  const peopleHere = PEOPLE.filter(p => p.placeId === place.id);
+
+  overlay.innerHTML = `
+    <button class="close-overlay" onclick="closePlaceOverlay()">×</button>
+    <div class="place-overlay-content">
+      <div class="left">
+        <h2>${place.name}</h2>
+        <p class="muted">${place.category || ''} • radius ${place.r || 150} m</p>
+        ${place.image ? `<img src="${place.image}" alt="${place.name}" style="width:100%;border-radius:8px;margin-bottom:10px;">` : ''}
+        <p>${place.desc || 'Ingen beskrivelse tilgjengelig.'}</p>
+      </div>
+
+      <div class="right">
+        ${peopleHere.length ? peopleHere.map(p => `
+          <div class="card">
+            <strong>${p.name}</strong><br>
+            <span class="muted">${tagToCat(p.tags)}</span>
+            <p>${p.desc || ''}</p>
+            <button class="primary" onclick="startQuizForPerson('${p.id}')">Ta quiz</button>
+          </div>`).join('')
+        : '<div class="muted">Ingen personer registrert.</div>'}
+      </div>
+    </div>`;
+  document.body.appendChild(overlay);
+}
+function closePlaceOverlay(){
+  document.getElementById('placeOverlay')?.remove();
+}
+
 // ===================================================================
 // AUTOMATISK OPPDATERING AV MERKER VED VISNING
 // ===================================================================
