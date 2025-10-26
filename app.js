@@ -1,5 +1,5 @@
 // =====================================================
-// HISTORY GO – APP.JS (clean, production)
+// HISTORY GO – APP.JS (stabil produksjonsversjon v16)
 // =====================================================
 //
 // 1.  KONSTANTER OG INIT-VARIABLER
@@ -113,7 +113,7 @@ function catClass(cat=""){
 }
 function tagToCat(tags=[]){
   const t = (tags.join(" ")||"").toLowerCase();
-  if (t.includes("kultur")) return "Kultur & kultur";
+  if (t.includes("kultur")) return "Kultur"; // <- fikset (var "Kultur & kultur")
   if (t.includes("populær") || t.includes("populaer") || t.includes("pop")) return "Populærkultur";
   if (t.includes("urban"))  return "Urban Life";
   if (t.includes("sport"))  return "Sport";
@@ -436,7 +436,7 @@ async function renderMerits() {
     let status = `Nivå: ${m.level} • Poeng: ${m.points}`;
     if (badge) {
       const next = badge.tiers.find(t => m.points < t.threshold);
-      status = next ? `${m.points}/${next.threshold} poeng (→ ${next.label})`
+      status = next ? `${m.points}/${next.threshold} poeng (→ ${t.next || next.label})`
                     : `${m.points} poeng – maks nivå`;
     }
 
@@ -680,26 +680,20 @@ async function showPlaceOverlay(place) {
   overlay.addEventListener('click', e => {
     if (e.target.id === 'placeOverlay') closePlaceOverlay();
   });
-}
-}
+} // ← viktig: avslutter showPlaceOverlay riktig
 
 
 // ==============================
 // 12. QUIZ – DYNAMISK LASTER, MODAL & SCORE
 // ==============================
 
-// Filkartlegging per kategori-id
+// Filkartlegging per kategori-id (ryddet til eksisterende filer)
 const QUIZ_FILE_MAP = {
   "historie": "quiz_historie.json",
   "kunst": "quiz_kunst.json",
   "sport": "quiz_sport.json",
   "politikk": "quiz_politikk.json",
-  "populaerkultur": "quiz_populaerkultur.json",
-  "musikk": "quiz_musikk.json",
-  "by": "quiz_by.json",
-  "natur": "quiz_natur.json",
-  "vitenskap": "quiz_vitenskap.json",
-  "subkultur": "quiz_subkultur.json"
+  "populaerkultur": "quiz_populaerkultur.json"
 };
 
 async function loadQuizForCategory(categoryId) {
@@ -755,7 +749,7 @@ async function startQuizForPerson(personId) {
   const person = PEOPLE.find(p => p.id === personId);
   if (!person) { showToast("Fant ikke person"); return; }
 
-  const displayCat = tagToCat(person.tags);             // f.eks. "Sport" / "Kultur & kultur" / "Populærkultur"
+  const displayCat = tagToCat(person.tags);             // f.eks. "Sport" / "Kultur" / "Populærkultur"
   const categoryId  = catIdFromDisplay(displayCat);      // f.eks. "sport" / "kunst" / "populaerkultur"
 
   const items = await loadQuizForCategory(categoryId);
