@@ -166,6 +166,65 @@ function showRouteTo(place){
     MAP.fitBounds(routeLine.getBounds(), {padding:[40,40]});
     showToast('Vis som linje (ingen ruter-tjeneste)', 2000);
   }
+  // -----------------------------------------------------
+// Kart og markører
+// -----------------------------------------------------
+let MAP, userMarker, userPulse, routeLine, routeControl, placeLayer, peopleLayer;
+
+function initMap() {
+  MAP = L.map('map').setView([START.lat, START.lon], START.zoom);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap',
+    maxZoom: 19
+  }).addTo(MAP);
+
+  placeLayer = L.layerGroup().addTo(MAP);
+  peopleLayer = L.layerGroup().addTo(MAP);
+}
+
+function drawPlaceMarkers() {
+  if (!MAP || !PLACES.length) return;
+  placeLayer.clearLayers();
+
+  PLACES.forEach(p => {
+    const mk = L.circleMarker([p.lat, p.lon], {
+      radius: 8,
+      color: '#fff',
+      weight: 1,
+      fillColor: catColor(p.category),
+      fillOpacity: 1
+    }).addTo(placeLayer);
+
+    mk.bindTooltip(p.name, { permanent: false, direction: "top" });
+    mk.on('click', () => openPlaceCard(p));
+  });
+}
+
+function drawPeopleMarkers() {
+  if (!MAP || !PEOPLE.length) return;
+  peopleLayer.clearLayers();
+
+  PEOPLE.forEach(pr => {
+    if (!pr.lat || !pr.lon) return;
+
+    const html = `
+      <div style="
+        width:28px;height:28px;border-radius:999px;
+        background:${catColor(tagToCat(pr.tags))}; color:#111;
+        display:flex;align-items:center;justify-content:center;
+        font-weight:900; font-size:12px; border:2px solid #111;
+        box-shadow:0 0 0 3px rgba(0,0,0,.25);
+      ">
+        ${(pr.initials || '').slice(0,2).toUpperCase()}
+      </div>`;
+
+    const icon = L.divIcon({ className:"", html, iconSize:[28,28], iconAnchor:[14,14] });
+    const mk = L.marker([pr.lat, pr.lon], { icon }).addTo(peopleLayer);
+    const hb = L.circle([pr.lat, pr.lon], { radius:36, opacity:0, fillOpacity:0 }).addTo(peopleLayer);
+    const openFromPerson = () => openPlaceCardByPerson(pr);
+    mk.on('click', openFromPerson);
+    hb.on('click', openFromPerson);
+  });
 }
 
 // Place card
