@@ -202,15 +202,16 @@ button{cursor:pointer;border:none}
   position: fixed;
   left: 0;
   right: 0;
-  bottom: 160px;           /* løfter boksen opp fra bunnen */
-  height: 60vh;            /* gjør den lavere så bunnen synes */
+  bottom: 160px;
+  height: 60vh;
+  background: var(--panel-bg);         /* solid bakgrunn */
+  border-top: 1px solid var(--panel-border);
   z-index: 25;
-  display: grid;
-  place-items: center;
-  background: rgba(0,0,0,0.55);
-  backdrop-filter: blur(6px);
-  padding: 20px;
-  animation: fadeIn .25s ease;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  animation: slideUp .25s ease;
+  backdrop-filter: none;               /* fjernet blur/gjennomsiktighet */
 }
 
 .place-overlay-content {
