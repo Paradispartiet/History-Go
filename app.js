@@ -191,6 +191,7 @@ function openPlaceCard(p){
   showToast(`Låst opp: ${p.name} ✅`);
 };
   el.pcRoute.onclick = ()=> showRouteTo(p);
+  showPlaceOverlay(p);
 }
 
 function openPlaceCardByPerson(person){
