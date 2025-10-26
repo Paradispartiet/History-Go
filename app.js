@@ -640,13 +640,26 @@ function startQuizForPerson(personId){
             renderStep();
           } else {
             closeQuiz();
-            // TODO: koble til merits/poeng senere (backend). Midlertidig lokal XP:
+                        closeQuiz();
+
+            // 🎖️ Oppdater merits (lokalt)
             try {
-              const rewardPts = quiz.reward?.points ?? 1;
-              const key = 'HG_xp';
-              const cur = Number(localStorage.getItem(key) || 0);
-              localStorage.setItem(key, String(cur + rewardPts));
-            } catch(e){}
+              const cat = tagToCat(
+                (QUIZZES.find(q => q.personId === personId)?.tags) || []
+              );
+              const points = correctCount; // 1 poeng per riktig svar
+              merits[cat] = merits[cat] || { level: "Nybegynner", points: 0 };
+              merits[cat].points += points;
+
+              if (merits[cat].points >= 10) merits[cat].level = "Mester";
+              else if (merits[cat].points >= 5) merits[cat].level = "Kjentmann";
+
+              saveMerits();
+              updateMeritLevel(cat, merits[cat].points);
+            } catch (e) {
+              console.warn("Kunne ikke oppdatere merits", e);
+            }
+
             showToast(`Quiz fullført: ${correctCount}/${quiz.questions.length} 🎉`);
           }
         }, QUIZ_FEEDBACK_MS);
