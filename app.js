@@ -183,6 +183,7 @@ function openPlaceCard(p){
   const cat = p.category || "Historie";
   merits[cat] = merits[cat] || { level:"Nybegynner", points:0 };
   merits[cat].points += 1;
+  updateMeritLevel(cat, merits[cat].points); 
   if (merits[cat].points >= 10) merits[cat].level = "Mester";
   else if (merits[cat].points >= 5) merits[cat].level = "Kjentmann";
   saveMerits();
@@ -285,31 +286,82 @@ function renderCollection(){
     </span>`).join("");
 }
 
-async function renderMerits(){
-  const badges = await fetch("badges.json").then(r=>r.json());
-  const cats = new Set(PLACES.map(p=>p.category).concat(["Vitenskap"]));
+// ===================================================================
+// MERKER OG FREMGANG – med ikoner og tynne fargeringer
+// ===================================================================
+async function renderMerits() {
+  const container = document.getElementById("merits");
+  if (!container) return;
 
-  el.merits.innerHTML = [...cats].map(cat=>{
-    const m = merits[cat] || { level:"Nybegynner", points:0 };
-    // match badge ved å sjekke id/navn mot kategori
-    const badge = badges.find(b =>
-      cat.toLowerCase().includes(b.id) ||
-      b.name.toLowerCase().includes(cat.toLowerCase())
+  const badges = await fetch("badges.json").then(r => r.json());
+  const merits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
+
+  // Vis brukers kategorier hvis finnes, ellers vis alle badges
+  const cats = Object.keys(merits).length ? Object.keys(merits) : badges.map(b => b.name);
+
+  container.innerHTML = cats.map(cat => {
+    const m = merits[cat] || { level: "Nybegynner", points: 0 };
+
+    // Match badge på navn/id
+    const badge = badges.find(
+      b =>
+        cat.toLowerCase().includes(b.id) ||
+        b.name.toLowerCase().includes(cat.toLowerCase())
     );
+    const icon = badge ? badge.icon : "⭐";
+
+    // Farge pr kategori (samme som kartet)
+    const lower = cat.toLowerCase();
+    let color = "#1976d2"; // Historie default
+    if (lower.includes("kultur")) color = "#e63946";
+    else if (lower.includes("urban")) color = "#ffb703";
+    else if (lower.includes("sport")) color = "#2a9d8f";
+    else if (lower.includes("natur")) color = "#4caf50";
+    else if (lower.includes("vitenskap")) color = "#9b59b6";
+
+    // Statuslinje
     let status = `Nivå: ${m.level} • Poeng: ${m.points}`;
-    if (badge){
+    if (badge) {
       const next = badge.tiers.find(t => m.points < t.threshold);
       status = next
         ? `${m.points}/${next.threshold} poeng (→ ${next.label})`
         : `${m.points} poeng – maks nivå`;
     }
+
     return `
-      <div class="card">
-        <div class="name">${cat}</div>
-        <div class="meta">${status}</div>
+      <div class="card badge-card">
+        <div class="badge-icon-ring" style="border-color:${color}">
+          <span class="badge-icon">${icon}</span>
+        </div>
+        <div class="badge-info">
+          <strong>${cat}</strong><br>
+          <small>${status}</small>
+        </div>
       </div>
     `;
   }).join("");
+}
+
+// ===================================================================
+// ANIMASJON VED NYTT NIVÅ + terskelsjekk
+// ===================================================================
+function pulseBadge(cat) {
+  const cards = document.querySelectorAll(".badge-card");
+  cards.forEach(card => {
+    const name = card.querySelector(".badge-info strong")?.textContent || "";
+    if (name.trim().toLowerCase() === cat.trim().toLowerCase()) {
+      card.classList.add("badge-pulse");
+      setTimeout(() => card.classList.remove("badge-pulse"), 1200);
+    }
+  });
+}
+
+function updateMeritLevel(cat, newPoints) {
+  const thresholds = [3, 7, 12];
+  if (thresholds.includes(newPoints)) {
+    showToast(`🏅 Nytt nivå i ${cat}!`);
+    pulseBadge(cat);
+  }
 }
 
 function renderGallery(){
@@ -396,6 +448,7 @@ function nextQuizStep(correct){
     const pts = quiz.reward?.points || 1;
     merits[cat] = merits[cat] || { level:"Nybegynner", points:0 };
     merits[cat].points += pts;
+    updateMeritLevel(cat, merits[cat].points);
     if (merits[cat].points >= 10) merits[cat].level = "Mester";
     else if (merits[cat].points >= 5) merits[cat].level = "Kjentmann";
     saveMerits();
@@ -503,24 +556,17 @@ document.addEventListener('DOMContentLoaded', boot);
 // ===================================================================
 // AUTOMATISK OPPDATERING AV MERKER VED VISNING
 // ===================================================================
-
-// Når brukeren åpner eller trykker på "Merker"-panelet
 document.addEventListener("DOMContentLoaded", () => {
-  const meritsPanel = document.querySelector("section.panel h2");
-  if (!meritsPanel) return;
-
-  // Sjekk alle h2-elementer – finn den som heter "Merker"
   document.querySelectorAll("section.panel h2").forEach(h2 => {
     if (h2.textContent.trim().startsWith("Merker")) {
-      // Kjør en gang ved lasting
-      renderBadges();
+      // Oppdater ved lasting
+      renderMerits();
 
-      // Kjør også hver gang panelet blir synlig (scroll eller klikk)
+      // Oppdater hver gang panelet kommer i view
       const observer = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting) {
-          renderBadges();
-        }
+        if (entries[0].isIntersecting) renderMerits();
       }, { threshold: 0.3 });
+
       observer.observe(h2);
     }
   });
