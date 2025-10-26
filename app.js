@@ -33,7 +33,6 @@ const QUIZ_FEEDBACK_MS = 650; // én kilde sannhet
 
 let PLACES = [];
 let PEOPLE = [];
-let QUIZZES = [];
 
 const visited         = JSON.parse(localStorage.getItem("visited_places") || "{}");
 const peopleCollected = JSON.parse(localStorage.getItem("people_collected") || "{}");
@@ -393,7 +392,180 @@ function buildSeeMoreNearby(){
     .sort((a,b)=>(a._d??1e12)-(b._d??1e12));
   el.sheetNearBody.innerHTML = sorted.slice(NEARBY_LIMIT, NEARBY_LIMIT+24).map(renderPlaceCard).join("");
 }
+/* =======================================================
+   HISTORY GO – Dynamisk lasting av quiz per kategori
+   ======================================================= */
 
+async function loadQuizForCategory(categoryId) {
+  try {
+    const fileMap = {
+      "historie": "quiz_historie.json",
+      "kunst": "quiz_kunst.json",
+      "sport": "quiz_sport.json",
+      "politikk": "quiz_politikk.json",
+      "populaerkultur": "quiz_populaerkultur.json",
+      "musikk": "quiz_musikk.json"
+    };
+
+    const file = fileMap[categoryId];
+    if (!file) {
+      console.warn("Ingen quizfil funnet for kategori:", categoryId);
+      return [];
+    }
+
+    const response = await fetch(file, { cache: "no-store" });
+    if (!response.ok) throw new Error("Feil ved lasting av " + file);
+    const quizzes = await response.json();
+
+    if (!Array.isArray(quizzes)) {
+      console.error("Feil format i", file);
+      return [];
+    }
+
+    console.log(`✅ Lastet ${quizzes.length} spørsmål fra ${file}`);
+    return quizzes.filter(q => q.categoryId === categoryId);
+  } catch (err) {
+    console.error("Kunne ikke laste quiz for kategori:", categoryId, err);
+    return [];
+  }
+}
+
+/* =======================================================
+   Håndter brukerklikk på kategori
+   ======================================================= */
+
+document.querySelectorAll(".category-button").forEach(btn => {
+  btn.addEventListener("click", async () => {
+    const categoryId = btn.dataset.category;
+    const quizzes = await loadQuizForCategory(categoryId);
+    renderQuiz(quizzes, categoryId);
+  });
+});
+
+/* =======================================================
+   Automatisk fallback ved første innlasting
+   ======================================================= */
+
+window.addEventListener("DOMContentLoaded", async () => {
+  const defaultCategory = "historie"; // fallback
+  const quizzes = await loadQuizForCategory(defaultCategory);
+  renderQuiz(quizzes, defaultCategory);
+});
+
+/* =======================================================
+   Viser quizen i UI
+   ======================================================= */
+
+function renderQuiz(quizzes, categoryId) {
+  const container = document.getElementById("quiz-container");
+  container.innerHTML = "";
+
+  if (!quizzes.length) {
+    container.innerHTML = `<p>Ingen spørsmål funnet for denne kategorien.</p>`;
+    return;
+  }
+
+  const title = document.createElement("h2");
+  title.textContent = "Quiz: " + categoryId.charAt(0).toUpperCase() + categoryId.slice(1);
+  container.appendChild(title);
+
+  quizzes.forEach(q => {
+    const card = document.createElement("div");
+    card.className = "quiz-card";
+
+    const question = document.createElement("p");
+    question.textContent = q.question;
+    card.appendChild(question);
+
+    q.options.forEach(option => {
+      const btn = document.createElement("button");
+      btn.textContent = option;
+      btn.className = "quiz-option";
+      btn.onclick = () => checkAnswer(btn, option, q.answer);
+      card.appendChild(btn);
+    });
+
+    container.appendChild(card);
+  });
+}
+/* =======================================================
+   START QUIZ FOR PERSON – NY DYNAMISK VERSJON
+   ======================================================= */
+async function startQuizForPerson(personId) {
+  try {
+    const person = PEOPLE.find(p => p.id === personId);
+    if (!person) {
+      console.warn("Fant ikke person med id:", personId);
+      showToast("Fant ikke person");
+      return;
+    }
+
+    const categoryId = tagToCat(person.tags)?.toLowerCase();
+    if (!categoryId) {
+      console.warn("Fant ingen kategori for:", person.name);
+      showToast("Ingen kategori tilknyttet denne personen");
+      return;
+    }
+
+    const quizzes = await loadQuizForCategory(categoryId);
+    const quiz = quizzes.find(q => q.personId === personId);
+    if (!quiz) {
+      showToast("Ingen quiz tilgjengelig for " + person.name);
+      return;
+    }
+
+    renderQuiz([quiz], categoryId);
+    console.log(`🎯 Åpnet quiz for ${person.name} i kategori ${categoryId}`);
+  } catch (err) {
+    console.error("Feil ved lasting av quiz for person:", err);
+    showToast("Kunne ikke laste quiz");
+  }
+}
+/* =======================================================
+   Sjekk svar og gi visuell tilbakemelding
+   ======================================================= */
+
+function checkAnswer(button, selected, correct) {
+  const parent = button.parentElement;
+  Array.from(parent.querySelectorAll("button")).forEach(b => b.disabled = true);
+
+  if (selected === correct) {
+    button.classList.add("correct");
+  } else {
+    button.classList.add("wrong");
+    const correctBtn = Array.from(parent.querySelectorAll("button")).find(b => b.textContent === correct);
+    if (correctBtn) correctBtn.classList.add("correct");
+  }
+}
+/* =======================================================
+   Sjekk svar og gi visuell tilbakemelding + poenglogikk
+   ======================================================= */
+function checkAnswer(button, selected, correct) {
+  const parent = button.parentElement;
+  Array.from(parent.querySelectorAll("button")).forEach(b => b.disabled = true);
+
+  const isCorrect = selected === correct;
+  if (isCorrect) {
+    button.classList.add("correct");
+
+    // --- 📊 Poengtelling ---
+    const categoryId = parent.closest("[data-category]")?.dataset.category || "ukjent";
+    const key = `quiz_correct_${categoryId}`;
+    const current = parseInt(localStorage.getItem(key) || "0", 10) + 1;
+    localStorage.setItem(key, current);
+
+    if (current >= 3) {
+      updateBadgeProgress(categoryId, 1);
+      localStorage.setItem(key, 0); // nullstill etter poeng
+      showToast(`+1 poeng i ${categoryId}!`);
+      console.log(`🏅 Bruker fikk poeng i ${categoryId}`);
+    }
+  } else {
+    button.classList.add("wrong");
+    const correctBtn = Array.from(parent.querySelectorAll("button")).find(b => b.textContent === correct);
+    if (correctBtn) correctBtn.classList.add("correct");
+  }
+}
 // ==============================
 // 8. MERKER, NIVÅER OG FREMGANG
 // ==============================
