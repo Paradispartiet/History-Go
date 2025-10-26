@@ -543,12 +543,125 @@ function boot(){
     renderMerits();
     renderGallery();
 
-    requestLocation();
+        requestLocation();
+
+    // 🔵 Start kontinuerlig geolokasjon
+    if (navigator.geolocation) {
+      navigator.geolocation.watchPosition(
+        pos => {
+          const { latitude, longitude } = pos.coords;
+          currentPos = { lat: latitude, lon: longitude };
+          setUser(latitude, longitude);
+          renderNearbyPlaces();
+          renderNearbyPeople();
+        },
+        err => console.warn("Ingen posisjon:", err),
+        { enableHighAccuracy: true }
+      );
+    }
   }).catch((e)=>{
     console.error('DATA LOAD ERROR', e);
     showToast("Kunne ikke laste data.", 2000);
   });
 
+// ——— QUIZ ENGINE (minimal) ———
+const QUIZ_FEEDBACK_MS = 650;
+
+function ensureQuizUI(){
+  if (document.getElementById('quizModal')) return;
+  const m = document.createElement('div');
+  m.className = 'modal';
+  m.id = 'quizModal';
+  m.setAttribute('aria-hidden','true');
+  m.innerHTML = `
+    <div class="modal-body">
+      <div class="modal-head">
+        <strong id="quizTitle">Quiz</strong>
+        <button class="ghost" id="quizClose">Lukk</button>
+      </div>
+      <div class="sheet-body">
+        <div id="quizQ" style="margin:6px 0 10px;font-weight:600"></div>
+        <div id="quizChoices" class="quiz-choices"></div>
+        <div style="display:flex;justify-content:space-between;margin-top:8px;">
+          <span id="quizFeedback" class="quiz-feedback"></span>
+          <small id="quizProgress" class="muted"></small>
+        </div>
+      </div>
+    </div>`;
+  document.body.appendChild(m);
+  m.addEventListener('click', e=>{
+    if (e.target.id==='quizModal') closeQuiz();
+  });
+  document.getElementById('quizClose').onclick = closeQuiz;
+  document.addEventListener('keydown', e=>{
+    if (e.key==='Escape') closeQuiz();
+  });
+}
+function openQuiz(){ ensureQuizUI(); document.getElementById('quizModal').setAttribute('aria-hidden','false'); }
+function closeQuiz(){ const el=document.getElementById('quizModal'); if(el) el.setAttribute('aria-hidden','true'); }
+
+function startQuizForPerson(personId){
+  const quiz = (QUIZZES||[]).find(q => q.personId === personId);
+  if (!quiz || !quiz.questions || !quiz.questions.length){ showToast('Ingen quiz her enda'); return; }
+
+  ensureQuizUI();
+  const el = {
+    title: document.getElementById('quizTitle'),
+    q: document.getElementById('quizQ'),
+    choices: document.getElementById('quizChoices'),
+    progress: document.getElementById('quizProgress'),
+    feedback: document.getElementById('quizFeedback')
+  };
+
+  el.title.textContent = quiz.title || 'Quiz';
+  let i = 0, correctCount = 0;
+
+  function renderStep(){
+    const q = quiz.questions[i];
+    el.q.textContent = q.text;
+    el.choices.innerHTML = q.choices.map((opt, idx)=>`<button data-idx="${idx}">${opt}</button>`).join('');
+    el.progress.textContent = `${i+1}/${quiz.questions.length}`;
+    el.feedback.textContent = '';
+
+    el.choices.querySelectorAll('button').forEach(btn=>{
+      btn.onclick = () => {
+        const chosen = Number(btn.dataset.idx);
+        const ok = chosen === Number(q.answerIndex);
+        btn.classList.add(ok ? 'correct' : 'wrong');
+        el.feedback.textContent = ok ? 'Riktig ✅' : 'Feil ❌';
+        if (ok) correctCount++;
+
+        // lås valg
+        el.choices.querySelectorAll('button').forEach(b=>b.disabled = true);
+
+        setTimeout(()=>{
+          i++;
+          if (i < quiz.questions.length){
+            renderStep();
+          } else {
+            closeQuiz();
+            // TODO: koble til merits/poeng senere (backend). Midlertidig lokal XP:
+            try {
+              const rewardPts = quiz.reward?.points ?? 1;
+              const key = 'HG_xp';
+              const cur = Number(localStorage.getItem(key) || 0);
+              localStorage.setItem(key, String(cur + rewardPts));
+            } catch(e){}
+            showToast(`Quiz fullført: ${correctCount}/${quiz.questions.length} 🎉`);
+          }
+        }, QUIZ_FEEDBACK_MS);
+      };
+    });
+  }
+
+  openQuiz();
+  renderStep();
+}
+
+// Eksponer globalt, så eksisterende knapper kan kalle den:
+// <button class="btn-quiz" onclick="startQuizForPerson('ibsen_national')">Ta quiz</button>
+window.startQuizForPerson = startQuizForPerson;
+  
   wire();
 }
 document.addEventListener('DOMContentLoaded', boot);
