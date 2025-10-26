@@ -123,21 +123,6 @@ function distMeters(a,b){
   return R*2*Math.atan2(Math.sqrt(x), Math.sqrt(1-x));
 }
 
-      <div style="
-        width:28px;height:28px;border-radius:999px;
-        background:${catColor(tagToCat(pr.tags))}; color:#111;
-        display:flex;align-items:center;justify-content:center;
-        font-weight:900; font-size:12px; border:2px solid #111;
-        box-shadow:0 0 0 3px rgba(0,0,0,.25);
-      ">${(pr.initials||'').slice(0,2).toUpperCase()}</div>`;
-    const icon = L.divIcon({ className:"", html, iconSize:[28,28], iconAnchor:[14,14] });
-    const mk = L.marker([pr.lat,pr.lon], { icon }).addTo(peopleLayer);
-    const hb = L.circle([pr.lat, pr.lon], {radius: 36, opacity:0, fillOpacity:0}).addTo(peopleLayer);
-    const openFromPerson = () => openPlaceCardByPerson(pr);
-    mk.on('click', openFromPerson); hb.on('click', openFromPerson);
-  });
-}
-
 function setUser(lat, lon){
   if (!MAP) return;
   if (!userMarker){
