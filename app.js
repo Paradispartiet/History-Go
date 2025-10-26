@@ -87,55 +87,53 @@ const el = {
 
 
 // ==============================
-// 3. KATEGORIFUNKSJONER
+// 3. KATEGORIFUNKSJONER – RIKTIG
 // ==============================
+
+// Brukes for farger og klasser (visning)
 function catColor(cat=""){
   const c = cat.toLowerCase();
-  if (c.includes("kultur")) return "#e63946";
+  if (c.includes("kunst") || c.includes("kultur")) return "#e63946";
   if (c.includes("urban"))  return "#ffb703";
   if (c.includes("sport"))  return "#2a9d8f";
   if (c.includes("natur"))  return "#4caf50";
   if (c.includes("vitenskap")) return "#9b59b6";
   if (c.includes("politikk")) return "#c77dff";
-  if (c.includes("musikk")) return "#ff66cc";
+  if (c.includes("musikk") || c.includes("pop")) return "#ff66cc";
   return "#1976d2";
 }
+
 function catClass(cat=""){
   const c = cat.toLowerCase();
-  if (c.includes("kultur")) return "kult";
+  if (c.includes("kunst") || c.includes("kultur")) return "kult";
   if (c.includes("urban"))  return "urban";
   if (c.includes("sport"))  return "sport";
   if (c.includes("natur"))  return "natur";
   if (c.includes("vitenskap")) return "viten";
   if (c.includes("politikk")) return "poli";
-  if (c.includes("musikk")) return "musikk";
+  if (c.includes("musikk") || c.includes("pop")) return "musikk";
   return "hist";
 }
-function tagToCat(tags=[]){
-  const t = (tags.join(" ")||"").toLowerCase();
-  if (t.includes("kultur")) return "Kultur"; // <- fikset (var "Kultur & kultur")
-  if (t.includes("populær") || t.includes("populaer") || t.includes("pop")) return "Populærkultur";
-  if (t.includes("urban"))  return "Urban Life";
-  if (t.includes("sport"))  return "Sport";
-  if (t.includes("natur"))  return "Natur & miljø";
-  if (t.includes("vitenskap") || t.includes("filosofi")) return "Vitenskap & filosofi";
-  if (t.includes("politikk") || t.includes("samfunn")) return "Politikk & samfunn";
-  if (t.includes("musikk")) return "Musikk & scenekunst";
-  if (t.includes("arkitektur") || t.includes("by")) return "By & arkitektur";
-  return "Historie";
+
+// Brukes for å finne riktig quiz-fil (kobling til QUIZ_FILE_MAP)
+function tagToCat(tags = []) {
+  const t = (Array.isArray(tags) ? tags.join(" ") : tags || "").toLowerCase();
+  if (t.includes("historie") || t.includes("historisk")) return "historie";
+  if (t.includes("kunst") || t.includes("kultur")) return "kunst";
+  if (t.includes("sport") || t.includes("idrett")) return "sport";
+  if (t.includes("politikk") || t.includes("samfunn")) return "politikk";
+  if (t.includes("populær") || t.includes("populaer") || t.includes("pop")) return "populaerkultur";
+  return "historie";
 }
+
+// Brukes når vi skal vise poeng og oppdatere badges (oversettelse mellom visningsnavn og id)
 function catIdFromDisplay(name=""){
   const n = name.toLowerCase();
   if (n.includes("historie")) return "historie";
-  if (n.includes("vitenskap")) return "vitenskap";
-  if (n.includes("kultur")) return "kunst";
-  if (n.includes("musikk")) return "musikk";
-  if (n.includes("natur")) return "natur";
+  if (n.includes("kunst") || n.includes("kultur")) return "kunst";
   if (n.includes("sport")) return "sport";
-  if (n.includes("by")) return "by";
   if (n.includes("politikk")) return "politikk";
-  if (n.includes("populær")) return "populaerkultur";
-  if (n.includes("subkultur")) return "subkultur";
+  if (n.includes("populær") || n.includes("populaer")) return "populaerkultur";
   return "historie";
 }
 
