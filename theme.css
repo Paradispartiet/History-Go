@@ -135,3 +135,36 @@ button{ cursor:pointer; border:none }
 /* Map-only mode */
 body.map-only header, body.map-only main{ display:none }
 body.map-only #btnExitMap{ display:block }
+
+.badge-card {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  background: #111;
+  border: 1px solid #222;
+  padding: 0.6rem 0.8rem;
+  border-radius: 6px;
+  margin-bottom: 0.6rem;
+}
+
+.badge-icon-ring {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  border: 2px solid var(--yellow); /* blir overstyrt inline pr kategori */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.badge-icon { font-size: 1.3rem; line-height: 1; }
+.badge-info small { color: var(--muted); font-size: 0.88rem; }
+
+/* Effekt ved nytt merke-nivå */
+@keyframes badgePulse {
+  0%   { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,255,255,0); }
+  30%  { transform: scale(1.05); box-shadow: 0 0 10px 3px rgba(255,255,255,0.15); }
+  60%  { transform: scale(1.02); box-shadow: 0 0 8px 2px rgba(255,255,255,0.1); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,255,255,0); }
+}
+.badge-pulse { animation: badgePulse 1.2s ease-out; border-color: var(--yellow); }
