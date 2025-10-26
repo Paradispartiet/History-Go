@@ -682,6 +682,30 @@ async function showPlaceOverlay(place) {
   });
 } // ← viktig: avslutter showPlaceOverlay riktig
 
+// ==============================
+// KARTMODUS – SE KART / LUKK KART
+// ==============================
+
+function enterMapMode() {
+  document.body.classList.add("map-mode");
+  el.btnSeeMap.style.display = "none";
+  el.btnExitMap.style.display = "block";
+  document.querySelector("main").style.display = "none";
+  document.querySelector("header").style.display = "none";
+  showToast("Kartmodus");
+}
+
+function exitMapMode() {
+  document.body.classList.remove("map-mode");
+  el.btnSeeMap.style.display = "block";
+  el.btnExitMap.style.display = "none";
+  document.querySelector("main").style.display = "";
+  document.querySelector("header").style.display = "";
+  showToast("Tilbake til oversikt");
+}
+
+el.btnSeeMap?.addEventListener("click", enterMapMode);
+el.btnExitMap?.addEventListener("click", exitMapMode);
 
 // ==============================
 // 12. QUIZ – DYNAMISK LASTER, MODAL & SCORE
