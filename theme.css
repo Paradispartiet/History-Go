@@ -191,12 +191,15 @@ button{cursor:pointer;border:none}
 /* --- 6.2 PLACE OVERLAY – utvidet visning ved trykk på sted --- */
 .place-overlay {
   position: fixed;
-  inset: 0;
+  left: 0;
+  right: 0;
+  bottom: 160px;           /* løfter boksen opp fra bunnen */
+  height: 60vh;            /* gjør den lavere så bunnen synes */
   z-index: 25;
   display: grid;
   place-items: center;
-  background: rgba(0,0,0,0.55);           /* mørkt slør over kartet */
-  backdrop-filter: blur(6px);             /* glød fra kartet bak */
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(6px);
   padding: 20px;
   animation: fadeIn .25s ease;
 }
