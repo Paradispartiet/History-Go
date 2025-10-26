@@ -200,49 +200,53 @@ button{cursor:pointer;border:none}
 /* --- 6.2 PLACE OVERLAY – utvidet visning ved trykk på sted --- */
 .place-overlay {
   position: fixed;
-  left: 0; right: 0; bottom: 160px;
+  left: 0; 
+  right: 0; 
+  bottom: 160px;
   height: auto;
-  border: none;
   z-index: 25;
   display: flex;
   justify-content: center;
-  align-items: start;
+  align-items: flex-start;
   animation: slideUp .25s ease;
-  background: none;         /* fjernet grå bakgrunn */
-  backdrop-filter: none;    /* fjernet blur */
-  pointer-events: none;     /* lar kartet forbli aktivt */
+  background: none;          /* ingen hel-dekning */
+  backdrop-filter: none;     /* fjernet blur utenfor boksen */
+  pointer-events: none;      /* lar kartet og knapper forbli aktive */
 }
 
+/* selve innholdsboksen (tar imot klikk) */
 .place-overlay-content {
-  pointer-events: auto;     /* bevarer klikk inni boksen */
-}
-
-.place-overlay-content {
+  pointer-events: auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 24px;
-  background: rgba(13,27,42,0.9);         /* 90 % dekning – kartet skimtes svakt */
+  background: rgba(13,27,42,0.9);     /* lett transparent mørk bakgrunn */
   border: 1px solid var(--panel-border);
   border-radius: 12px;
   padding: 24px 28px;
   box-shadow: var(--shadow);
-  max-width: 960px;                       /* sentrert og smalere */
+  max-width: 960px;
   width: 100%;
-  backdrop-filter: blur(4px);             /* lett blur inne i boksen */
+  backdrop-filter: blur(4px);         /* subtil glass-effekt */
+  animation: fadeIn .3s ease;
 }
 
+/* innholdssøyler */
 .place-overlay .left,
 .place-overlay .right {
   max-height: 70vh;
   overflow-y: auto;
 }
 
+/* bilder */
 .place-overlay .left img {
   width: 100%;
   border-radius: 10px;
   margin-bottom: 10px;
+  object-fit: cover;
 }
 
+/* lukkeknapp */
 .close-overlay {
   position: absolute;
   top: 14px;
@@ -254,23 +258,43 @@ button{cursor:pointer;border:none}
   cursor: pointer;
 }
 
+/* tekstjusteringer */
+.place-overlay-content h2,
 .place-overlay-content p,
-.place-overlay-content strong,
-.place-overlay-content h2 {
-  color: #eef3ff;              /* litt lysere tekst for bedre lesbarhet */
+.place-overlay-content strong {
+  color: #eef3ff;
   line-height: 1.5;
 }
 
 .place-overlay-content .muted {
-  color: #a5b6d1;              /* svakere, men fortsatt tydelig */
+  color: #a5b6d1;
 }
-/* Mobil */
+
+/* fade-in */
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+/* skjul/disable hvis hidden */
+#placeOverlay[hidden],
+.place-overlay[hidden] {
+  display: none !important;
+  pointer-events: none !important;
+}
+
+/* --- Responsivt: mobil og små skjermer --- */
 @media (max-width: 800px) {
   .place-overlay-content {
     grid-template-columns: 1fr;
     gap: 14px;
     max-width: 94%;
     padding: 18px;
+  }
+  .place-overlay {
+    bottom: 0;
+    height: 80vh;
+    align-items: flex-end;
   }
 }
 
