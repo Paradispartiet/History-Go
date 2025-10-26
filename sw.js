@@ -1,5 +1,5 @@
 // SW v14b – safer for GitHub Pages
-const V = 'hg-v18';
+const V = 'hg-v19';
 const CORE = ['index.html','theme.css','app.js','icons.js','places.json','people.json','quizzes.json'];
 
 self.addEventListener('install', e=>{
