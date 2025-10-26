@@ -288,22 +288,27 @@ button{cursor:pointer;border:none}
   transition:.2s;
 }
 .modal[aria-hidden="false"]{transform:none;opacity:1;pointer-events:auto}
-.modal-body{
-  width:min(680px,calc(100% - 24px));
-  background:var(--panel-bg);
-  border:1px solid var(--panel-border);
-  border-radius:14px;
-  padding:14px;
-  box-shadow:var(--shadow);
+.modal-body {
+  width: min(680px, calc(100% - 24px));
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: 14px;           /* matcher panelene */
+  padding: 20px;                 /* litt luftigere */
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(8px);    /* lett glass-effekt */
 }
+
+.modal-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
 /* Når quiz-modalen er aktiv, demp kartet i bakgrunnen */
 body:has(#quizModal[aria-hidden="false"]) #map {
   filter: brightness(0.4) blur(2px);
   transition: filter .3s ease;
-}
-.modal-head{
-  display:flex;justify-content:space-between;align-items:center;
-  margin-bottom:8px;
 }
 
 /* --- 6.4 QUIZ --- */
