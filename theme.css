@@ -313,17 +313,38 @@ body:has(#quizModal[aria-hidden="false"]) #map {
 }
 
 /* --- 6.4 QUIZ --- */
-.quiz-choices{display:grid;gap:8px}
-.quiz-choices button{
-  padding:10px;
-  border:1px solid var(--panel-border);
-  border-radius:10px;
-  background:rgba(255,255,255,.03);
-  color:#fff;
+.quiz-choices {
+  display: grid;
+  gap: 8px;
 }
-.quiz-choices button.correct{outline:2px solid var(--ok)}
-.quiz-choices button.wrong{outline:2px solid #ff5b5b}
-.quiz-feedback{margin-top:6px;font-weight:700}
+
+.quiz-choices button {
+  padding: 10px 14px;
+  border: 1px solid var(--panel-border);
+  border-radius: 10px;
+  background: var(--primary);
+  color: #fff;
+  font-weight: 600;
+  transition: background .2s ease, transform .1s ease;
+}
+
+.quiz-choices button:hover {
+  background: #1b82e0;
+  transform: scale(1.02);
+}
+
+.quiz-choices button.correct {
+  outline: 2px solid var(--ok);
+}
+
+.quiz-choices button.wrong {
+  outline: 2px solid #ff5b5b;
+}
+
+.quiz-feedback {
+  margin-top: 6px;
+  font-weight: 700;
+}
 
 /* --- 6.5 MERKER / BADGES --- */
 .badge-card{
