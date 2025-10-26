@@ -104,6 +104,40 @@ function showToast(msg="OK", ms=1400){
   setTimeout(()=> el.toast.style.display="none", ms);
 }
 
+// ===================================================================
+// PROGRESJON OG MERKER
+// ===================================================================
+async function addProgress(category, points = 1) {
+  const key = "hg-progress";
+  const data = JSON.parse(localStorage.getItem(key) || "{}");
+
+  // Oppdater poeng i valgt kategori
+  const cleanCat = (category || "").trim();
+  data[cleanCat] = (data[cleanCat] || 0) + points;
+  localStorage.setItem(key, JSON.stringify(data));
+
+  // Hent merker og sjekk om et nytt nivå er nådd
+  try {
+    const badges = await fetch("badges.json", { cache: "no-store" }).then(r => r.json());
+    const total = data[cleanCat];
+
+    // Finn merke som matcher kategori
+    const badge =
+      badges.find(b => cleanCat.toLowerCase().includes(b.id)) ||
+      badges.find(b => b.name.toLowerCase().includes(cleanCat.toLowerCase())) ||
+      null;
+    if (!badge) return;
+
+    // Sjekk om man traff et nytt nivå
+    const tier = badge.tiers.find(t => total === t.threshold);
+    if (tier) {
+      showToast(`🏅 Du nådde nivået «${tier.label}» i ${badge.name}!`);
+    }
+  } catch (err) {
+    console.warn("Klarte ikke å oppdatere merker:", err);
+  }
+}
+
 // Map
 let MAP, placeLayer, peopleLayer, userMarker, userPulse, routeControl, routeLine;
 
@@ -223,10 +257,19 @@ function openPlaceCard(p){
   el.pcUnlock.textContent = visited[p.id] ? "Låst opp" : "Lås opp";
   el.pcUnlock.disabled = !!visited[p.id];
   el.pcUnlock.onclick = ()=> {
-    if (visited[p.id]) { showToast("Allerede låst opp"); return; }
-    visited[p.id] = true; saveVisited();
-    showToast(`Låst opp: ${p.name} ✅`);
-  };
+  if (visited[p.id]) { showToast("Allerede låst opp"); return; }
+  visited[p.id] = true; saveVisited();
+
+  // 🏅 Poeng til kategori ved sted-opplåsning
+  const cat = p.category || "Historie";
+  merits[cat] = merits[cat] || { level:"Nybegynner", points:0 };
+  merits[cat].points += 1;
+  if (merits[cat].points >= 10) merits[cat].level = "Mester";
+  else if (merits[cat].points >= 5) merits[cat].level = "Kjentmann";
+  saveMerits();
+
+  showToast(`Låst opp: ${p.name} ✅`);
+};
   el.pcRoute.onclick = ()=> showRouteTo(p);
 }
 
@@ -323,14 +366,28 @@ function renderCollection(){
     </span>`).join("");
 }
 
-function renderMerits(){
+async function renderMerits(){
+  const badges = await fetch("badges.json").then(r=>r.json());
   const cats = new Set(PLACES.map(p=>p.category).concat(["Vitenskap"]));
+
   el.merits.innerHTML = [...cats].map(cat=>{
-    const m = merits[cat] || { level: "Nybegynner", points: 0 };
+    const m = merits[cat] || { level:"Nybegynner", points:0 };
+    // match badge ved å sjekke id/navn mot kategori
+    const badge = badges.find(b =>
+      cat.toLowerCase().includes(b.id) ||
+      b.name.toLowerCase().includes(cat.toLowerCase())
+    );
+    let status = `Nivå: ${m.level} • Poeng: ${m.points}`;
+    if (badge){
+      const next = badge.tiers.find(t => m.points < t.threshold);
+      status = next
+        ? `${m.points}/${next.threshold} poeng (→ ${next.label})`
+        : `${m.points} poeng – maks nivå`;
+    }
     return `
       <div class="card">
         <div class="name">${cat}</div>
-        <div class="meta">Nivå: ${m.level} • Poeng: ${m.points}</div>
+        <div class="meta">${status}</div>
       </div>
     `;
   }).join("");
