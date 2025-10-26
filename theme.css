@@ -1,32 +1,30 @@
 /* ===================================================== */
-/* HISTORY GO – THEME.CSS – STRUKTUR OG SEKSJONER        */
+/* HISTORY GO – THEME.CSS (REN OG STABIL VERSJON)        */
 /* ===================================================== */
 /*
-1. TEMA OG VARIABLER
-2. BASIS OG TYPOGRAFI
-3. KART OG NAVIGASJON
-4. OVERORDNEDE UI-ELEMENTER (header, main, toast)
-5. PANELER, KORT, KNAPPER, BADGES
-6. KOMPONENTER
-   6.1 Place Card
-   6.2 Place Overlay
-   6.3 Sheets og Modaler
-   6.4 Quiz
-   6.5 Merker / Badges
-7. TILSTANDER OG EFFEKTER
-8. RESPONSIVE JUSTERINGER
-9. STØRRE LUKKEKNAPPER MED HOVER-EFFEKT
+1.  Variabler & grunnstil
+2.  Kart & kartmodus
+3.  Topplinje, main & toast
+4.  Paneler, kort, rutenett
+5.  Knapper & chips/badges
+6.  Place Card (sheet)
+7.  Place Overlay
+8.  Sheets (bunnark)
+9.  Modal (quiz)
+10. Quiz-stiler
+11. Merker / badge-kort
+12. Effekter & media
 */
 
 /* ===================================================== */
-/* 1. TEMA OG VARIABLER                                  */
+/* 1) Variabler & grunnstil                              */
 /* ===================================================== */
 :root{
   --bg: #0a1929;
-  --panel-bg: rgba(13,27,42,.86);
-  --panel-border: rgba(255,255,255,.06);
-  --text: #dde7f5;
-  --muted: #97a6bc;
+  --panel: rgba(13,27,42,.86);
+  --panel-border: rgba(255,255,255,.08);
+  --text: #e6eef9;
+  --muted: #9bb0c9;
   --primary: #1976d2;
   --ok: #2ecc71;
   --warn: #ffb703;
@@ -38,201 +36,299 @@
   --urban: #ffb703;
   --viten: #9b59b6;
 
-  --card-radius: 12px;
+  --radius: 12px;
   --shadow: 0 10px 24px rgba(0,0,0,.35);
 }
 
-/* ===================================================== */
-/* 2. BASIS OG TYPOGRAFI                                 */
-/* ===================================================== */
 *{box-sizing:border-box}
 html,body{height:100%}
 body{
   margin:0;
-  font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
-  background:var(--bg);
-  color:var(--text);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
 }
 .muted{color:var(--muted)}
 
+/* Links */
+a{color:#8ec6ff;text-decoration:none}
+a:hover{text-decoration:underline}
+
 /* ===================================================== */
-/* 3. KART OG NAVIGASJON                                 */
+/* 2) Kart & kartmodus                                   */
 /* ===================================================== */
-#map{
-  position:fixed;inset:0;z-index:0;
-  filter:none;
-}
+#map{ position:fixed; inset:0; z-index:0; }
+
 .map-controls{
-  position:fixed;right:12px;bottom:12px;z-index:12;
-  display:grid;gap:8px;
+  position:fixed; right:12px; bottom:12px; z-index:12;
+  display:grid; gap:8px;
 }
 .map-controls button{
-  width:44px;height:44px;border-radius:999px;
+  width:44px; height:44px; border-radius:999px;
   border:1px solid var(--panel-border);
-  background:rgba(20,30,45,.9);color:#fff;
-  box-shadow:var(--shadow);
+  background: rgba(20,30,45,.9); color:#fff;
+  box-shadow: var(--shadow);
 }
-#btnExitMap{display:none}
+
+/* Kartmodus – ENESTE sannhet: 'map-only' */
+#btnExitMap{ display:none }
+body.map-only header,
+body.map-only main{ display:none !important }
+body.map-only #btnExitMap{ display:block !important }
+body.map-only #btnSeeMap{ display:none !important }
 
 /* ===================================================== */
-/* 4. OVERORDNEDE UI-ELEMENTER (header, main, toast)     */
+/* 3) Topplinje, main & toast                            */
 /* ===================================================== */
-#toast{
-  position:fixed;top:14px;left:50%;transform:translateX(-50%);
-  background:rgba(0,0,0,.7);color:#fff;
-  padding:8px 14px;border-radius:999px;
-  font-weight:600;display:none;z-index:15;
-}
 header{
-  position:relative;z-index:5;
-  display:flex;align-items:center;justify-content:space-between;
+  position:relative; z-index:5;
+  display:flex; align-items:center; justify-content:space-between;
   padding:16px 14px;
-  background:linear-gradient(180deg,rgba(10,25,41,.95),rgba(10,25,41,.65) 70%,transparent);
+  background: linear-gradient(180deg, rgba(10,25,41,.95), rgba(10,25,41,.65) 70%, transparent);
 }
-.brand{font-weight:800;letter-spacing:.3px}
-.actions{display:flex;gap:10px;align-items:center}
-.toggle{display:flex;gap:6px;align-items:center;font-size:.9rem}
-.toggle input{accent-color:var(--primary)}
-main{position:relative;z-index:5;padding:8px 10px 44px}
+.brand{ font-weight:800; letter-spacing:.3px }
+.actions{ display:flex; gap:10px; align-items:center }
+.toggle{ display:flex; gap:6px; align-items:center; font-size:.9rem }
+.toggle input{ accent-color: var(--primary) }
+
+main{ position:relative; z-index:5; padding:8px 10px 56px }
+
+#toast{
+  position:fixed; top:14px; left:50%; transform:translateX(-50%);
+  background: rgba(0,0,0,.72); color:#fff;
+  padding:8px 14px; border-radius:999px; font-weight:700;
+  display:none; z-index:15;
+}
 
 /* ===================================================== */
-/* 5. PANELER, KORT, KNAPPER, BADGES                     */
+/* 4) Paneler, kort, rutenett                            */
 /* ===================================================== */
 .panel{
-  background:var(--panel-bg);
+  background: var(--panel);
   border:1px solid var(--panel-border);
-  border-radius:var(--card-radius);
-  padding:10px;margin:10px 0;
-  box-shadow:var(--shadow);
-  backdrop-filter:blur(2px);
+  border-radius: var(--radius);
+  padding:12px; margin:10px 0;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(2px);
 }
 .panel h2{
-  display:flex;align-items:center;justify-content:space-between;
-  margin:6px 2px 12px;font-size:1rem;
+  display:flex; align-items:center; justify-content:space-between;
+  margin:6px 2px 12px; font-size:1rem;
 }
 
-/* Kort & chips */
-.cards{display:grid;gap:10px}
+.cards{ display:grid; gap:10px }
 .card{
-  background:rgba(255,255,255,.02);
+  background: rgba(255,255,255,.02);
   border:1px solid var(--panel-border);
-  border-radius:12px;
+  border-radius: var(--radius);
   padding:12px;
 }
-.card .name{font-weight:700}
-.card .meta{color:var(--muted);font-size:.9rem;margin:2px 0 4px}
-.card .row{display:flex;gap:8px;align-items:center}
-.card .row.between{justify-content:space-between}
+.card .name{ font-weight:700 }
+.card .meta{ color:var(--muted); font-size:.9rem; margin:2px 0 4px }
+.card .row{ display:flex; gap:8px; align-items:center }
+.card .row.between{ justify-content:space-between }
 
-/* Chips / badges */
-.chips{display:flex;flex-wrap:wrap;gap:8px}
-.badge{
-  --dot:var(--hist);
-  display:inline-flex;align-items:center;gap:6px;
-  padding:6px 10px;border-radius:999px;
+/* ===================================================== */
+/* 5) Knapper & chips/badges                             */
+/* ===================================================== */
+button{ cursor:pointer; border:none }
+.primary{
+  background: var(--primary); color:#fff;
+  padding:10px 14px; border-radius:10px; font-weight:600;
+}
+.secondary{
+  background: rgba(255,255,255,.08); color:#fff;
+  padding:10px 14px; border-radius:10px;
   border:1px solid var(--panel-border);
-  background:rgba(255,255,255,.02);
-  font-size:.9rem;
+}
+.ghost{
+  background: transparent; color:#fff;
+  padding:8px 12px; border-radius:999px;
+  border:1px solid var(--panel-border);
+}
+.icon{
+  width:44px; height:44px; border-radius:999px;
+  background: rgba(255,255,255,.08); color:#fff;
+  border:1px solid var(--panel-border);
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.2rem;
+}
+
+.chips{ display:flex; flex-wrap:wrap; gap:8px }
+.badge{
+  display:inline-flex; align-items:center; gap:8px;
+  padding:6px 10px; border-radius:999px;
+  border:1px solid var(--panel-border);
+  background: rgba(255,255,255,.02);
+  font-size:.92rem;
 }
 .badge .i{
-  width:24px;height:24px;border-radius:999px;
-  display:inline-block;
-  border:2px solid rgba(0,0,0,.55);
+  width:22px; height:22px; border-radius:999px;
+  display:inline-block; border:2px solid rgba(0,0,0,.55);
+}
+.badge.kult .i{ background: var(--kult) }
+.badge.urban .i{ background: var(--urban) }
+.badge.sport .i{ background: var(--sport) }
+.badge.natur .i{ background: var(--natur) }
+.badge.viten .i{ background: var(--viten) }
+.badge.hist .i{ background: var(--hist) }
+
+/* ===================================================== */
+/* 6) Place Card (sheet)                                 */
+/* ===================================================== */
+.place-card{
+  position:fixed; left:0; right:0; bottom:0; z-index:11;
+  background: var(--panel);
+  border:1px solid var(--panel-border);
+  border-radius: 16px 16px 0 0;
+  box-shadow: var(--shadow);
+  transform: translateY(100%); opacity:0;
+  transition: transform .22s ease, opacity .2s ease;
+}
+.place-card[aria-hidden="false"]{ transform:none; opacity:1 }
+.pc-body{ padding:14px }
+.pc-title{ display:flex; align-items:center; justify-content:space-between; gap:10px }
+.pc-meta{ color:var(--muted); margin:4px 0 8px }
+.pc-desc{ margin:0 0 10px }
+.pc-actions{ display:flex; gap:8px; flex-wrap:wrap }
+
+/* ===================================================== */
+/* 7) Place Overlay                                      */
+/* ===================================================== */
+.place-overlay{
+  position:fixed; inset:0; z-index:14; background:rgba(0,0,0,.55);
+  display:flex; align-items:flex-end; justify-content:center;
+}
+.place-overlay .place-overlay-content{
+  width:min(960px, 96vw); max-height:82vh;
+  background:var(--panel);
+  border:1px solid var(--panel-border);
+  border-radius:16px 16px 0 0;
+  box-shadow:var(--shadow);
+  display:grid; grid-template-columns: 1.2fr .8fr; gap:16px;
+  padding:16px; overflow:auto;
+}
+.close-overlay{
+  position:absolute; top:12px; right:12px;
+  width:44px; height:44px; border-radius:999px;
+  border:1px solid var(--panel-border);
+  background:rgba(255,255,255,.08); color:#fff; font-size:1.4rem;
+}
+.place-overlay .left p{ line-height:1.5 }
+.place-overlay .right .card{ margin-bottom:10px }
+
+/* ===================================================== */
+/* 8) Sheets (bunnark)                                   */
+/* ===================================================== */
+.sheet{
+  position:fixed; left:0; right:0; bottom:0; z-index:13;
+  background: var(--panel);
+  border:1px solid var(--panel-border);
+  border-radius: 16px 16px 0 0;
+  box-shadow: var(--shadow);
+  transform: translateY(100%); opacity:0;
+  transition: transform .22s ease, opacity .2s ease;
+}
+.sheet[aria-hidden="false"]{ transform:none; opacity:1 }
+.sheet-head{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:12px 14px; border-bottom:1px solid var(--panel-border)
+}
+.sheet-body{ padding:12px 14px }
+
+/* Close-knapper som ikoner */
+.sheet-close{
+  width:44px; height:44px; border-radius:999px;
+  border:1px solid var(--panel-border);
+  background:rgba(255,255,255,.08); color:#fff; font-size:1.4rem;
 }
 
-/* Knapper */
-button{cursor:pointer;border:none}
-.primary{background:var(--primary);color:#fff;padding:10px 14px;border-radius:10px}
-.secondary{background:rgba(255,255,255,.08);color:#fff;padding:10px 14px;border-radius:10px;border:1px solid var(--panel-border)}
-.ghost{background:transparent;color:#fff;padding:8px 12px;border-radius:999px;border:1px solid var(--panel-border)}
-.icon{width:36px;height:36px;border-radius:999px;background:rgba(255,255,255,.08);color:#fff;border:1px solid var(--panel-border)}
-.chip.ghost{font-size:.9rem}
-
 /* ===================================================== */
-/* 6. KOMPONENTER (forkortet)                            */
+/* 9) Modal (quiz)                                       */
 /* ===================================================== */
-/* ... eksisterende komponentkode beholdes her ... */
-
-/* ===================================================== */
-/* 7. TILSTANDER OG EFFEKTER                             */
-/* ===================================================== */
-body.map-only header,
-body.map-only main{display:none}
-body.map-only #btnExitMap{display:block}
-
-@keyframes slideUp{
-  from{transform:translateY(100%);opacity:0}
-  to{transform:none;opacity:1}
+.modal{
+  position:fixed; inset:0; z-index:15; display:none;
+  background: rgba(0,0,0,.55);
 }
+.modal[aria-hidden="false"]{ display:block }
+.modal .modal-body{
+  position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+  width:min(680px, 92vw);
+  background: var(--panel);
+  border:1px solid var(--panel-border);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  padding:14px;
+}
+.modal-head{
+  display:flex; align-items:center; justify-content:space-between; gap:10px;
+  margin-bottom:8px;
+}
+#quizClose{
+  width:44px; height:44px; border-radius:999px;
+  border:1px solid var(--panel-border);
+  background:rgba(255,255,255,.08); color:#fff; font-size:1.4rem;
+}
+
+/* ===================================================== */
+/* 10) Quiz-stiler                                       */
+/* ===================================================== */
+#quizProgress{ color:var(--muted); margin-bottom:6px }
+#quizQuestion{ margin:8px 0 10px; font-weight:700 }
+.quiz-choices{
+  display:grid; gap:8px;
+}
+.quiz-choices button{
+  text-align:left; width:100%;
+  padding:10px 12px; border-radius:10px; border:1px solid var(--panel-border);
+  background: rgba(255,255,255,.03); color:#fff;
+}
+.quiz-choices button.correct{
+  border-color:#1b7a4a; background: rgba(27,122,74,.18);
+}
+.quiz-choices button.wrong{
+  border-color:#7a1f25; background: rgba(122,31,37,.18);
+}
+.quiz-feedback{ min-height:1.2em; font-weight:700 }
+
+/* ===================================================== */
+/* 11) Merker / badge-kort                               */
+/* ===================================================== */
+#merits{ display:grid; gap:10px }
+.badge-card{
+  display:flex; gap:12px; align-items:center;
+  background: rgba(255,255,255,.02);
+  border:1px solid var(--panel-border);
+  border-radius: var(--radius);
+  padding:10px;
+}
+.badge-icon-ring{
+  width:42px; height:42px; border-radius:999px;
+  display:flex; align-items:center; justify-content:center;
+  border:3px solid var(--primary);
+}
+.badge-icon{ font-size:1.2rem }
+.badge-info small{ color:var(--muted) }
+
+/* Puls ved nivåoppnåelse */
 @keyframes badgePulse{
-  0%{transform:scale(1);box-shadow:0 0 0 0 rgba(255,255,255,0)}
-  30%{transform:scale(1.05);box-shadow:0 0 10px 3px rgba(255,255,255,0.15)}
-  60%{transform:scale(1.02);box-shadow:0 0 8px 2px rgba(255,255,255,0.1)}
-  100%{transform:scale(1);box-shadow:0 0 0 0 rgba(255,255,255,0)}
+  0%{transform:scale(1); box-shadow:0 0 0 0 rgba(255,255,255,0)}
+  40%{transform:scale(1.06); box-shadow:0 0 10px 4px rgba(255,255,255,.16)}
+  100%{transform:scale(1); box-shadow:0 0 0 0 rgba(255,255,255,0)}
 }
-.badge-pulse{animation:badgePulse 1.2s ease-out;border-color:var(--yellow)}
+.badge-pulse{ animation: badgePulse 1.2s ease-out }
 
 /* ===================================================== */
-/* 8. RESPONSIVE JUSTERINGER                              */
+/* 12) Effekter & media                                  */
 /* ===================================================== */
-@media (max-width:720px){
-  .place-overlay-content{grid-template-columns:1fr;height:100%;overflow-y:auto}
-  .place-overlay{height:80vh}
+@media (max-width:760px){
+  .place-overlay .place-overlay-content{ grid-template-columns:1fr; max-height:80vh }
 }
 
-/* ===================================================== */
-/* 9. STØRRE LUKKEKNAPPER MED HOVER-EFFEKT               */
-/* ===================================================== */
-.icon {
-  width: 52px;
-  height: 52px;
-  font-size: 1.8rem;
-  line-height: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.15s ease, transform 0.1s ease;
-}
-
-.icon:hover {
-  background: rgba(255,255,255,0.15);
-  transform: scale(1.05);
-}
-
-.close-overlay,
-.sheet-close,
-#quizClose,
-#pcClose,
-#btnExitMap {
-  font-size: 2rem !important;
-  width: 56px !important;
-  height: 56px !important;
-  border: 1px solid var(--panel-border);
-  border-radius: 999px;
-  color: #fff;
-  background: rgba(255,255,255,.08);
-  cursor: pointer;
-  transition: background 0.15s ease, transform 0.1s ease;
-}
-
-.close-overlay:hover,
+.icon:hover,
 .sheet-close:hover,
 #quizClose:hover,
 #pcClose:hover,
-#btnExitMap:hover {
-  background: rgba(255,255,255,.15);
-  transform: scale(1.08);
-}
-
-@media (max-width: 720px) {
-  .icon,
-  .close-overlay,
-  .sheet-close,
-  #quizClose,
-  #pcClose,
-  #btnExitMap {
-    width: 64px !important;
-    height: 64px !important;
-    font-size: 2.2rem !important;
-  }
+#btnExitMap:hover{
+  filter:brightness(1.1);
 }
