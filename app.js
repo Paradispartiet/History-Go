@@ -97,87 +97,6 @@ function distMeters(a,b){
   return R*2*Math.atan2(Math.sqrt(x), Math.sqrt(1-x));
 }
 
-// Toast
-function showToast(msg="OK", ms=1400){
-  el.toast.textContent = msg;
-  el.toast.style.display = "block";
-  setTimeout(()=> el.toast.style.display="none", ms);
-}
-
-// ===================================================================
-// PROGRESJON OG MERKER
-// ===================================================================
-async function addProgress(category, points = 1) {
-  const key = "hg-progress";
-  const data = JSON.parse(localStorage.getItem(key) || "{}");
-
-  // Oppdater poeng i valgt kategori
-  const cleanCat = (category || "").trim();
-  data[cleanCat] = (data[cleanCat] || 0) + points;
-  localStorage.setItem(key, JSON.stringify(data));
-
-  // Hent merker og sjekk om et nytt nivå er nådd
-  try {
-    const badges = await fetch("badges.json", { cache: "no-store" }).then(r => r.json());
-    const total = data[cleanCat];
-
-    // Finn merke som matcher kategori
-    const badge =
-      badges.find(b => cleanCat.toLowerCase().includes(b.id)) ||
-      badges.find(b => b.name.toLowerCase().includes(cleanCat.toLowerCase())) ||
-      null;
-    if (!badge) return;
-
-    // Sjekk om man traff et nytt nivå
-    const tier = badge.tiers.find(t => total === t.threshold);
-    if (tier) {
-      showToast(`🏅 Du nådde nivået «${tier.label}» i ${badge.name}!`);
-    }
-  } catch (err) {
-    console.warn("Klarte ikke å oppdatere merker:", err);
-  }
-}
-
-// Map
-let MAP, placeLayer, peopleLayer, userMarker, userPulse, routeControl, routeLine;
-
-function initMap() {
-  MAP = L.map('map', { zoomControl:false, attributionControl:false })
-          .setView([START.lat, START.lon], START.zoom);
-
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-    maxZoom: 19,
-    attribution: '© OpenStreetMap, © CARTO'
-  }).addTo(MAP);
-
-  placeLayer  = L.layerGroup().addTo(MAP);
-  peopleLayer = L.layerGroup().addTo(MAP);
-}
-
-function drawPlaceMarkers() {
-  placeLayer.clearLayers();
-  PLACES.forEach(p=>{
-    const m = L.circleMarker([p.lat, p.lon], {
-      radius: 7, color: catColor(p.category), weight: 3, opacity: 1,
-      fillColor: "#0d1b2a", fillOpacity: 0.9
-    }).addTo(placeLayer);
-    const hb = L.circle([p.lat, p.lon], {radius: 36, opacity:0, fillOpacity:0}).addTo(placeLayer);
-    const openCard = () => openPlaceCard(p);
-    m.on('click', openCard); hb.on('click', openCard);
-  });
-}
-
-function drawPeopleMarkers() {
-  peopleLayer.clearLayers();
-  PEOPLE.forEach(pr=>{
-    // Ensure coordinates: fall back to place
-    if ((pr.lat==null||pr.lon==null) && pr.placeId){
-      const plc = PLACES.find(x=>x.id===pr.placeId);
-      if (plc){ pr.lat = plc.lat; pr.lon = plc.lon; }
-    }
-    if (pr.lat==null||pr.lon==null) return;
-
-    const html = `
       <div style="
         width:28px;height:28px;border-radius:999px;
         background:${catColor(tagToCat(pr.tags))}; color:#111;
@@ -580,3 +499,29 @@ function boot(){
   wire();
 }
 document.addEventListener('DOMContentLoaded', boot);
+
+// ===================================================================
+// AUTOMATISK OPPDATERING AV MERKER VED VISNING
+// ===================================================================
+
+// Når brukeren åpner eller trykker på "Merker"-panelet
+document.addEventListener("DOMContentLoaded", () => {
+  const meritsPanel = document.querySelector("section.panel h2");
+  if (!meritsPanel) return;
+
+  // Sjekk alle h2-elementer – finn den som heter "Merker"
+  document.querySelectorAll("section.panel h2").forEach(h2 => {
+    if (h2.textContent.trim().startsWith("Merker")) {
+      // Kjør en gang ved lasting
+      renderBadges();
+
+      // Kjør også hver gang panelet blir synlig (scroll eller klikk)
+      const observer = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          renderBadges();
+        }
+      }, { threshold: 0.3 });
+      observer.observe(h2);
+    }
+  });
+});
