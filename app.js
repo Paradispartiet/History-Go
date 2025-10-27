@@ -809,6 +809,9 @@ function closeQuiz(){ const el=document.getElementById('quizModal'); if(el) el.s
 
 // Starter quiz for person: samler alle spørsmål i kategori som matcher personId
 async function startQuizForPerson(personId) {
+  console.log("▶️ START QUIZ", personId);
+console.log("Person funnet:", PEOPLE.find(p => p.id === personId));
+console.log("Kategori:", tagToCat(PEOPLE.find(p => p.id === personId)?.tags));
   const person = PEOPLE.find(p => p.id === personId);
   if (!person) { showToast("Fant ikke person"); return; }
 
