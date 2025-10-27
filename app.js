@@ -589,13 +589,19 @@ function boot(){
 
   Promise.all([
     fetch('places.json').then(r => r.json()),
-    fetch('people.json').then(r => r.json())
+    fetch('people.json').then(r => r.json()),
+    fetch('quiz_historie.json').then(r => r.json()).catch(() => []),
+    fetch('quiz_kunst.json').then(r => r.json()).catch(() => []),
+    fetch('quiz_sport.json').then(r => r.json()).catch(() => []),
+    fetch('quiz_politikk.json').then(r => r.json()).catch(() => []),
+    fetch('quiz_populaerkultur.json').then(r => r.json()).catch(() => []),
+    fetch('quiz_subkultur.json').then(r => r.json()).catch(() => [])
   ])
   .then(([places, people]) => {
     PLACES = places || [];
     PEOPLE = people || [];
 
-    // ✅ Vent litt slik at kartet er klart (spesielt på iPad Safari)
+    // ✅ Liten forsinkelse for å sikre at Leaflet-kartet er klart (iPad Safari)
     setTimeout(() => {
       try { drawPlaceMarkers(); } catch(e){ console.warn("places fail", e); }
       try { drawPeopleMarkers(); } catch(e){ console.warn("people fail", e); }
