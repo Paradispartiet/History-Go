@@ -1,5 +1,9 @@
-// SW v16 – stabil versjon for GitHub Pages og lokal testing
-const V = 'hg-v17.1.4';
+// =====================================================
+// SERVICE WORKER – HISTORY GO v17.2 (stabil versjon)
+// For GitHub Pages og lokal testing
+// =====================================================
+
+const V = 'hg-v17.2';
 const CORE = [
   'index.html',
   'theme.css',
@@ -15,7 +19,7 @@ const CORE = [
 ];
 
 // ------------------------------------------------------------
-// INSTALL
+// INSTALL – legg alt i cache
 // ------------------------------------------------------------
 self.addEventListener('install', e => {
   e.waitUntil(
@@ -38,12 +42,12 @@ self.addEventListener('activate', e => {
 });
 
 // ------------------------------------------------------------
-// FETCH – strategi: HTML = network-first, static = cache-first
+// FETCH – HTML = network-first, static = cache-first
 // ------------------------------------------------------------
 self.addEventListener('fetch', e => {
   const url = new URL(e.request.url);
 
-  // HTML → network-first (for å hente nye builds)
+  // HTML → network-first for å hente nye builds
   if (e.request.destination === 'document') {
     e.respondWith(
       fetch(e.request)
@@ -57,20 +61,19 @@ self.addEventListener('fetch', e => {
     return;
   }
 
-  // Same-origin static → cache-first
+  // Same-origin statiske filer → cache-first
   if (url.origin === location.origin) {
     e.respondWith(
-      caches.match(e.request).then(
-        res =>
-          res ||
-          fetch(e.request).then(r => {
-            const copy = r.clone();
-            caches.open(V).then(c => c.put(e.request, copy));
-            return r;
-          })
+      caches.match(e.request).then(res =>
+        res ||
+        fetch(e.request).then(r => {
+          const copy = r.clone();
+          caches.open(V).then(c => c.put(e.request, copy));
+          return r;
+        })
       )
     );
   }
 
-  // cross-origin (tiles, OSRM, Google) → network only
+  // Cross-origin (kartfliser, OSRM, Wikipedia) → network-only
 });
