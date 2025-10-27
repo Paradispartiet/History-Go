@@ -686,18 +686,18 @@ async function showPlaceOverlay(place) {
           <a class="ghost" href="https://no.wikipedia.org/wiki/${encodeURIComponent(place.name)}" target="_blank" rel="noopener">Åpne Wikipedia</a>
         </div>
       </div>
-      <div class="right">
-        ${peopleHere.length ? peopleHere.map(p => `
-          <div class="card">
-            <strong>${p.name}</strong><br>
-            <span class="muted">${tagToCat(p.tags)}</span>
-            <p>${p.desc || ''}</p>
-            <button class="primary" onclick="startQuizForPerson('${p.id}')">Ta quiz</button>
-          </div>`).join('')
-        : '<div class="muted">Ingen personer registrert.</div>'}
-      </div>
-    </div>`;
-
+<div class="right">
+  ${peopleHere.length ? peopleHere.map(p => `
+    <div class="card">
+      <strong>${p.name}</strong><br>
+      <span class="muted">${tagToCat(p.tags)}</span>
+      <p>${p.desc || ''}</p>
+      <button class="primary" data-quiz="${p.id}">Ta quiz</button>
+    </div>`).join('')
+  : '<div class="muted">Ingen personer registrert.</div>'}
+</div>
+</div>`;
+  
   document.body.appendChild(overlay);
 
   // 🔹 Lukking ved klikk utenfor (ekstra trygghet)
