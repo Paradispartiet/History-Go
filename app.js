@@ -588,20 +588,18 @@ function boot(){
   initMap();
 
   Promise.all([
-  fetch('places.json').then(r=>r.json()),
-  fetch('people.json').then(r=>r.json()),
-  fetch('quiz_historie.json').then(r=>r.json()),
-  fetch('quiz_kunst.json').then(r=>r.json()),
-  fetch('quiz_sport.json').then(r=>r.json()),
-  fetch('quiz_politikk.json').then(r=>r.json()),
-  fetch('quiz_populaerkultur.json').then(r=>r.json())
-]).then(([places,people,q1,q2,q3,q4,q5])=>{
-  PLACES = places||[];
-  PEOPLE = people||[];
-  QUIZZES = [...q1,...q2,...q3,...q4,...q5];
+    fetch('places.json').then(r => r.json()),
+    fetch('people.json').then(r => r.json())
+  ])
+  .then(([places, people]) => {
+    PLACES = places || [];
+    PEOPLE = people || [];
 
-    try { drawPlaceMarkers(); } catch(_){}
-    try { drawPeopleMarkers(); } catch(_){}
+    // ✅ Vent litt slik at kartet er klart (spesielt på iPad Safari)
+    setTimeout(() => {
+      try { drawPlaceMarkers(); } catch(e){ console.warn("places fail", e); }
+      try { drawPeopleMarkers(); } catch(e){ console.warn("people fail", e); }
+    }, 400);
 
     renderNearbyPlaces();
     renderNearbyPeople();
@@ -620,13 +618,14 @@ function boot(){
           renderNearbyPlaces();
           renderNearbyPeople();
         },
-        ()=>{},
+        () => {},
         { enableHighAccuracy: true }
       );
     }
 
     wire();
-  }).catch(()=>{
+  })
+  .catch(() => {
     showToast("Kunne ikke laste data.", 2000);
   });
 }
