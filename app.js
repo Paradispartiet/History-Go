@@ -577,11 +577,17 @@ function boot(){
   initMap();
 
   Promise.all([
-    fetch('places.json', {cache:'no-store'}).then(r=>r.ok?r.json():Promise.reject('places.json')),
-    fetch('people.json', {cache:'no-store'}).then(r=>r.ok?r.json():Promise.reject('people.json')).catch(()=>[])
-  ]).then(([places, people])=>{
-    PLACES = places||[];
-    PEOPLE = people||[];
+  fetch('places.json').then(r=>r.json()),
+  fetch('people.json').then(r=>r.json()),
+  fetch('quiz_historie.json').then(r=>r.json()),
+  fetch('quiz_kunst.json').then(r=>r.json()),
+  fetch('quiz_sport.json').then(r=>r.json()),
+  fetch('quiz_politikk.json').then(r=>r.json()),
+  fetch('quiz_populaerkultur.json').then(r=>r.json())
+]).then(([places,people,q1,q2,q3,q4,q5])=>{
+  PLACES = places||[];
+  PEOPLE = people||[];
+  QUIZZES = [...q1,...q2,...q3,...q4,...q5];
 
     try { drawPlaceMarkers(); } catch(_){}
     try { drawPeopleMarkers(); } catch(_){}
