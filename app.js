@@ -172,25 +172,36 @@ function setUser(lat, lon){
 
 function showRouteTo(place){
   if (!MAP) return;
-  router: L.Routing.osrmv1({ serviceUrl: 'https://routing.openstreetmap.de/routed-foot/route/v1' }),
-  const to   = L.latLng(place.lat, place.lon);
+
+  const from = currentPos
+    ? L.latLng(currentPos.lat, currentPos.lon)
+    : L.latLng(START.lat, START.lon);
+  const to = L.latLng(place.lat, place.lon);
 
   if (routeLine){ MAP.removeLayer(routeLine); routeLine = null; }
 
-  try{
+  try {
     if (!L.Routing) throw new Error('no LRM');
     if (routeControl){ MAP.removeControl(routeControl); routeControl = null; }
+
     routeControl = L.Routing.control({
       waypoints: [from, to],
-      router: L.Routing.osrmv1({ serviceUrl: 'https://routing.openstreetmap.de/routed-foot/route/v1' }),
-      addWaypoints: false, draggableWaypoints: false, fitSelectedRoutes: true, show: false,
-      lineOptions: { styles: [{color:'#cfe8ff', opacity:1, weight:6}] },
-      createMarker: ()=>null
+      router: L.Routing.osrmv1({
+        serviceUrl: 'https://routing.openstreetmap.de/routed-foot/route/v1',
+        profile: 'foot'
+      }),
+      addWaypoints: false,
+      draggableWaypoints: false,
+      fitSelectedRoutes: true,
+      show: false,
+      lineOptions: { styles: [{ color: '#cfe8ff', opacity: 1, weight: 6 }] },
+      createMarker: () => null
     }).addTo(MAP);
+
     showToast('Rute lagt.');
-  }catch(e){
-    routeLine = L.polyline([from, to], {color:'#cfe8ff', weight:5, opacity:1}).addTo(MAP);
-    MAP.fitBounds(routeLine.getBounds(), {padding:[40,40]});
+  } catch(e) {
+    routeLine = L.polyline([from, to], { color:'#cfe8ff', weight:5, opacity:1 }).addTo(MAP);
+    MAP.fitBounds(routeLine.getBounds(), { padding:[40,40] });
     showToast('Vis linje (ingen rutetjeneste)');
   }
 }
