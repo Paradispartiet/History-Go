@@ -4,20 +4,31 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <title>History Go</title>
+
   <link rel="manifest" href="manifest.json">
   <link rel="stylesheet" href="theme.css">
 
-  <!-- Leaflet -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
-  <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <!-- Leaflet må lastes FØR app.js (uten defer) -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity=""
+    crossorigin=""
+  >
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 
   <!-- Leaflet Routing Machine -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css">
-  <script defer src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script>
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css"
+  >
+  <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script>
 
+  <!-- Egne filer -->
   <script defer src="icons.js"></script>
   <script defer src="app.js"></script>
 </head>
+
 <body>
   <!-- Kart (bakgrunn) -->
   <div id="map" aria-label="Kart"></div>
@@ -45,7 +56,8 @@
   <main>
     <!-- Nærområde -->
     <section class="panel">
-      <h2>Steder i nærheten 
+      <h2>
+        Steder i nærheten
         <button id="btnSeeMoreNearby" class="chip ghost">Se flere i nærheten</button>
       </h2>
       <div id="status" class="muted">Henter posisjon…</div>
@@ -60,7 +72,8 @@
 
     <!-- Samling -->
     <section class="panel">
-      <h2>Samling 
+      <h2>
+        Samling
         <button id="btnMoreCollection" class="chip ghost">Se hele samlingen</button>
       </h2>
 
@@ -111,7 +124,7 @@
     <div id="sheetCollectionBody" class="sheet-body"></div>
   </div>
 
-  <!-- Quiz-modal (bygges dynamisk, men behold fallback) -->
+  <!-- Quiz-modal -->
   <div id="quizModal" class="modal" aria-hidden="true">
     <div class="modal-body">
       <div class="modal-head">
