@@ -172,7 +172,7 @@ function setUser(lat, lon){
 
 function showRouteTo(place){
   if (!MAP) return;
-  const from = currentPos ? L.latLng(currentPos.lat, currentPos.lon) : L.latLng(START.lat, START.lon);
+  router: L.Routing.osrmv1({ serviceUrl: 'https://routing.openstreetmap.de/routed-foot/route/v1' }),
   const to   = L.latLng(place.lat, place.lon);
 
   if (routeLine){ MAP.removeLayer(routeLine); routeLine = null; }
