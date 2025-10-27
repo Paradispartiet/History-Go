@@ -631,7 +631,11 @@ function boot(){
 }
 
 document.addEventListener('DOMContentLoaded', boot);
-
+// Aktiver "Se flere i nærheten"-knappen igjen
+el.seeMore?.addEventListener('click', () => {
+  buildSeeMoreNearby();
+  openSheet(el.sheetNear);
+});
 
 // ==============================
 // 11. STED-OVERLAY (tekst + personer)
