@@ -557,101 +557,102 @@ document.querySelectorAll('[data-close]').forEach(btn=>{
   });
 });
 
-
 // ==============================
-// 10. INITIALISERING OG BOOT
+// 10. INITIALISERING OG BOOT (REN OG KORREKT)
 // ==============================
-function wire(){
-  document.querySelectorAll('.sheet-close').forEach(b=>{
-    b.addEventListener('click', ()=> {
+function wire() {
+  document.querySelectorAll('.sheet-close').forEach(b => {
+    b.addEventListener('click', () => {
       const sel = b.getAttribute('data-close');
-      if (sel) document.querySelector(sel)?.setAttribute('aria-hidden','true');
+      if (sel) document.querySelector(sel)?.setAttribute('aria-hidden', 'true');
     });
   });
 
-  el.test?.addEventListener('change', e=>{
-    if (e.target.checked){
+  el.test?.addEventListener('change', e => {
+    if (e.target.checked) {
       currentPos = { lat: START.lat, lon: START.lon };
       el.status.textContent = "Testmodus: Oslo sentrum";
       setUser(currentPos.lat, currentPos.lon);
-      renderNearbyPlaces(); renderNearbyPeople();
+      renderNearbyPlaces();
+      renderNearbyPeople();
       showToast("Testmodus PÅ");
     } else {
-      showToast("Testmodus AV"); requestLocation();
+      showToast("Testmodus AV");
+      requestLocation();
     }
   });
 }
 
-function requestLocation(){
-  if (!navigator.geolocation){
+function requestLocation() {
+  if (!navigator.geolocation) {
     el.status.textContent = "Geolokasjon støttes ikke.";
-    renderNearbyPlaces(); renderNearbyPeople(); return;
-  }
-  el.status.textContent = "Henter posisjon…";
-  navigator.geolocation.getCurrentPosition(g=>{
-    currentPos = { lat:g.coords.latitude, lon:g.coords.longitude };
-    el.status.textContent = "Posisjon funnet.";
-    setUser(currentPos.lat, currentPos.lon);
-    renderNearbyPlaces(); renderNearbyPeople();
-  }, _=>{
-    el.status.textContent = "Kunne ikke hente posisjon.";
-    renderNearbyPlaces(); renderNearbyPeople();
-  }, { enableHighAccuracy:true, timeout:8000, maximumAge:10000 });
-}
-
-function boot(){
-  initMap();
-
-  Promise.all([
-    fetch('places.json').then(r => r.json()),
-    fetch('people.json').then(r => r.json()),
-    fetch('quiz_historie.json').then(r => r.json()).catch(() => []),
-    fetch('quiz_kunst.json').then(r => r.json()).catch(() => []),
-    fetch('quiz_sport.json').then(r => r.json()).catch(() => []),
-    fetch('quiz_politikk.json').then(r => r.json()).catch(() => []),
-    fetch('quiz_populaerkultur.json').then(r => r.json()).catch(() => []),
-    fetch('quiz_subkultur.json').then(r => r.json()).catch(() => [])
-  ])
-  .then(([places, people]) => {
-    PLACES = places || [];
-    PEOPLE = people || [];
-
-    // ✅ Liten forsinkelse for å sikre at Leaflet-kartet er klart (iPad Safari)
-    setTimeout(() => {
-      try { drawPlaceMarkers(); } catch(e){ console.warn("places fail", e); }
-      try { drawPeopleMarkers(); } catch(e){ console.warn("people fail", e); }
-    }, 400);
-
     renderNearbyPlaces();
     renderNearbyPeople();
-    renderCollection();
-    renderMerits();
-    renderGallery();
+    return;
+  }
+  el.status.textContent = "Henter posisjon…";
+  navigator.geolocation.getCurrentPosition(g => {
+    currentPos = { lat: g.coords.latitude, lon: g.coords.longitude };
+    el.status.textContent = "Posisjon funnet.";
+    setUser(currentPos.lat, currentPos.lon);
+    renderNearbyPlaces();
+    renderNearbyPeople();
+  }, _ => {
+    el.status.textContent = "Kunne ikke hente posisjon.";
+    renderNearbyPlaces();
+    renderNearbyPeople();
+  }, { enableHighAccuracy: true, timeout: 8000, maximumAge: 10000 });
+}
 
-    requestLocation();
+function boot() {
+  initMap();
 
-    if (navigator.geolocation) {
-      navigator.geolocation.watchPosition(
-        pos => {
-          const { latitude, longitude } = pos.coords;
-          currentPos = { lat: latitude, lon: longitude };
-          setUser(latitude, longitude);
-          renderNearbyPlaces();
-          renderNearbyPeople();
-        },
-        () => {},
-        { enableHighAccuracy: true }
-      );
-    }
+  // Laster kun places og people – quizfiler lastes dynamisk ved behov
+  Promise.all([
+    fetch('places.json').then(r => r.json()),
+    fetch('people.json').then(r => r.json())
+  ])
+    .then(([places, people]) => {
+      PLACES = places || [];
+      PEOPLE = people || [];
 
-    wire();
-  })
-  .catch(() => {
-    showToast("Kunne ikke laste data.", 2000);
-  });
+      // Forsinkelse for iPad Safari slik at kartet rekker å initialisere
+      setTimeout(() => {
+        try { drawPlaceMarkers(); } catch (e) { console.warn("places fail", e); }
+        try { drawPeopleMarkers(); } catch (e) { console.warn("people fail", e); }
+      }, 400);
+
+      renderNearbyPlaces();
+      renderNearbyPeople();
+      renderCollection();
+      renderMerits();
+      renderGallery();
+
+      requestLocation();
+
+      if (navigator.geolocation) {
+        navigator.geolocation.watchPosition(
+          pos => {
+            const { latitude, longitude } = pos.coords;
+            currentPos = { lat: latitude, lon: longitude };
+            setUser(latitude, longitude);
+            renderNearbyPlaces();
+            renderNearbyPeople();
+          },
+          () => { },
+          { enableHighAccuracy: true }
+        );
+      }
+
+      wire(); // Koble knapper og testmodus
+    })
+    .catch(() => {
+      showToast("Kunne ikke laste data.", 2000);
+    });
 }
 
 document.addEventListener('DOMContentLoaded', boot);
+
 // Aktiver "Se flere i nærheten"-knappen igjen
 el.seeMore?.addEventListener('click', () => {
   buildSeeMoreNearby();
