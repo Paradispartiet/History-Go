@@ -437,7 +437,7 @@ function buildSeeMoreNearby(){
 
 
 // ==============================
-// 8. MERKER, NIVÅER OG FREMGANG (NY VERSJON)
+// 8. MERKER, NIVÅER OG FREMGANG (KORRIGERT VERSJON)
 // ==============================
 async function renderMerits() {
   const container = document.getElementById("merits");
@@ -519,26 +519,35 @@ function updateBadgeDisplay(categoryId) {
   display.textContent = `Riktige svar: ${rec.correct} • Poeng: ${rec.points}`;
 }
 
-async function addCorrectAndMaybePoint(categoryDisplay) {
+// =====================================================
+//  POENGSYSTEM – HVER TREDJE FULLFØRTE QUIZ
+// =====================================================
+async function addCompletedQuizAndMaybePoint(categoryDisplay, quizId) {
   const categoryId = catIdFromDisplay(categoryDisplay);
-  if (!userProgress[categoryId]) userProgress[categoryId] = { correct: 0, points: 0 };
-  userProgress[categoryId].correct++;
+  const progress = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
+  progress[categoryId] = progress[categoryId] || { completed: [] };
 
-  // Gi 1 poeng for hver 3 riktige svar
-  if (userProgress[categoryId].correct % 3 === 0) {
-    userProgress[categoryId].points++;
+  // Hindre dobbel poeng for samme quiz
+  if (progress[categoryId].completed.includes(quizId)) return;
+
+  // Registrer fullført quiz
+  progress[categoryId].completed.push(quizId);
+  localStorage.setItem("quiz_progress", JSON.stringify(progress));
+
+  const totalCompleted = progress[categoryId].completed.length;
+
+  // Gi +1 poeng hver tredje fullførte quiz
+  if (totalCompleted % 3 === 0) {
     const catLabel = categoryDisplay;
-
     merits[catLabel] = merits[catLabel] || { level: "Nybegynner", points: 0 };
     merits[catLabel].points += 1;
 
-    // Finn nytt nivå basert på badges.json
+    // Oppdater nivå ut fra badges.json
     const badges = await fetch("badges.json", { cache: "no-store" }).then(r => r.json());
     const badge = badges.find(b =>
       catLabel.toLowerCase().includes(b.id) ||
       b.name.toLowerCase().includes(catLabel.toLowerCase())
     );
-
     if (badge) {
       for (let i = badge.tiers.length - 1; i >= 0; i--) {
         const tier = badge.tiers[i];
@@ -551,11 +560,13 @@ async function addCorrectAndMaybePoint(categoryDisplay) {
 
     saveMerits();
     updateMeritLevel(catLabel, merits[catLabel].points);
-    showToast(`+1 poeng i ${catLabel}!`);
+    showToast(`🏅 +1 poeng i ${catLabel}!`);
   }
+}
 
-  localStorage.setItem("historygo_progress", JSON.stringify(userProgress));
-  updateBadgeDisplay(categoryId);
+function saveMerits() {
+  localStorage.setItem("merits_by_category", JSON.stringify(merits));
+  renderMerits();
 }
 
 
@@ -778,7 +789,7 @@ el.btnSeeMap?.addEventListener("click", enterMapMode);
 el.btnExitMap?.addEventListener("click", exitMapMode);
 
 // ==============================
-// 12. QUIZ – DYNAMISK LASTER, MODAL & SCORE
+// 12. QUIZ – DYNAMISK LASTER, MODAL & SCORE (NYTT SYSTEM)
 // ==============================
 
 // Filkartlegging per kategori-id (ryddet til eksisterende filer)
@@ -838,11 +849,10 @@ function ensureQuizUI(){
 function openQuiz(){ ensureQuizUI(); document.getElementById('quizModal').setAttribute('aria-hidden','false'); }
 function closeQuiz(){ const el=document.getElementById('quizModal'); if(el) el.setAttribute('aria-hidden','true'); }
 
-// Starter quiz for person: samler alle spørsmål i kategori som matcher personId
+// ==============================
+// START QUIZ FOR PERSON
+// ==============================
 async function startQuizForPerson(personId) {
-  console.log("▶️ START QUIZ", personId);
-console.log("Person funnet:", PEOPLE.find(p => p.id === personId));
-console.log("Kategori:", tagToCat(PEOPLE.find(p => p.id === personId)?.tags));
   const person = PEOPLE.find(p => p.id === personId);
   if (!person) { showToast("Fant ikke person"); return; }
 
@@ -853,9 +863,8 @@ console.log("Kategori:", tagToCat(PEOPLE.find(p => p.id === personId)?.tags));
   const questionsForPerson = items.filter(q => q.personId === personId);
   if (!questionsForPerson.length) { showToast("Ingen quiz tilgjengelig her ennå"); return; }
 
-  // Konverter til modal-format { text, choices, answerIndex }
   const qs = questionsForPerson.map(q => {
-    const idx = (q.options||[]).findIndex(o => o === q.answer);
+    const idx = (q.options || []).findIndex(o => o === q.answer);
     return { text: q.question, choices: q.options || [], answerIndex: idx >= 0 ? idx : 0 };
   });
 
@@ -864,16 +873,16 @@ console.log("Kategori:", tagToCat(PEOPLE.find(p => p.id === personId)?.tags));
     title: person.name || "Quiz",
     questions: qs,
     onEnd: (correctCount, total) => {
-      if (correctCount > 0) {
-        // én correct teller som 1 riktig i “per 3 riktige = +1 poeng”
-        for (let i=0; i<correctCount; i++) addCorrectAndMaybePoint(displayCat);
-      }
+      // ny logikk: gi poeng basert på fullførte quizer, ikke antall riktige
+      addCompletedQuizAndMaybePoint(displayCat, personId);
       showToast(`Quiz fullført: ${correctCount}/${total} 🎉`);
     }
   });
 }
 
-// Kategori-knapper (valgfritt): laster alle spørsmål i kategorien og viser som “kort” i en container
+// ==============================
+// RENDER QUIZ-LISTE (KATEGORI-VISNING)
+// ==============================
 document.querySelectorAll(".category-button")?.forEach(btn => {
   btn.addEventListener("click", async () => {
     const categoryId = btn.dataset.category;
@@ -882,7 +891,6 @@ document.querySelectorAll(".category-button")?.forEach(btn => {
   });
 });
 
-// Render listevisning (ikke modal) – brukes når man åpner en kategori
 function renderQuizList(quizzes, categoryId) {
   const container = document.getElementById("quiz-container");
   if (!container) return;
@@ -915,7 +923,6 @@ function renderQuizList(quizzes, categoryId) {
         Array.from(card.querySelectorAll("button")).forEach(b => b.disabled = true);
         if (isCorrect) {
           btn.classList.add("correct");
-          addCorrectAndMaybePoint(title.textContent.replace("Quiz: ",""));
         } else {
           btn.classList.add("wrong");
           const correctBtn = Array.from(card.querySelectorAll("button")).find(b => b.textContent === q.answer);
@@ -929,7 +936,9 @@ function renderQuizList(quizzes, categoryId) {
   });
 }
 
-// Modal-flow (ett spørsmål av gangen)
+// ==============================
+// MODAL QUIZ FLOW
+// ==============================
 function runQuizFlow({ title="Quiz", questions=[], onEnd=()=>{} }){
   ensureQuizUI();
   const qs = {
@@ -976,7 +985,9 @@ function runQuizFlow({ title="Quiz", questions=[], onEnd=()=>{} }){
   renderStep();
 }
 
-// Auto-fallback første last (valgfritt: vis “historie”)
+// ==============================
+// AUTO-FALLBACK (STANDARD: HISTORIE)
+// ==============================
 window.addEventListener("DOMContentLoaded", async () => {
   const defaultCategory = "historie";
   const container = document.getElementById("quiz-container");
@@ -985,6 +996,6 @@ window.addEventListener("DOMContentLoaded", async () => {
   renderQuizList(quizzes, defaultCategory);
 });
 
-// Eksponer for HTML onclick
+// Eksponer funksjoner
 window.startQuizForPerson = startQuizForPerson;
 window.closePlaceOverlay = closePlaceOverlay;
