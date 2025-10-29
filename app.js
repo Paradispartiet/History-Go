@@ -107,6 +107,7 @@ function catColor(cat=""){
   if (c.includes("vitenskap") || c.includes("filosofi")) return "#9b59b6";
   if (c.includes("kunst") || c.includes("kultur")) return "#ffb703";
   if (c.includes("musikk") || c.includes("scene")) return "#ff66cc";
+  if (c.includes("litteratur") || c.includes("poesi")) return "#f6c800";   // 📚 NY LINJE
   if (c.includes("natur") || c.includes("miljoe")) return "#4caf50";
   if (c.includes("sport") || c.includes("idrett") || c.includes("lek")) return "#2a9d8f";
   if (c.includes("by") || c.includes("arkitektur")) return "#e63946";
@@ -119,6 +120,7 @@ function catColor(cat=""){
 function catClass(cat=""){
   const c = norm(cat);
   if (c.includes("kunst") || c.includes("kultur")) return "kult";
+  if (c.includes("litteratur") || c.includes("poesi")) return "litt";     // 📚 NY LINJE
   if (c.includes("subkultur")) return "sub";
   if (c.includes("sport")) return "sport";
   if (c.includes("natur")) return "natur";
@@ -130,13 +132,14 @@ function catClass(cat=""){
   return "hist";
 }
 
-// Kategorier brukt i quiz-fil-kartet (må samsvare med badge-ID)
+// Kategorier brukt i quiz-fil-kartet
 function tagToCat(tags = []) {
   const t = norm(Array.isArray(tags) ? tags.join(" ") : tags || "");
 
   if (t.includes("vitenskap") || t.includes("filosofi")) return "vitenskap";
   if (t.includes("kunst") || t.includes("kultur")) return "kunst";
   if (t.includes("musikk") || t.includes("scene")) return "musikk";
+  if (t.includes("litteratur") || t.includes("poesi")) return "litteratur"; // 📚 NY LINJE
   if (t.includes("natur") || t.includes("miljoe")) return "natur";
   if (t.includes("sport") || t.includes("idrett") || t.includes("lek")) return "sport";
   if (t.includes("by") || t.includes("arkitektur")) return "by";
@@ -801,18 +804,6 @@ const QUIZ_FILE_MAP = {
   "vitenskap": "quiz_vitenskap.json",
   "sport": "quiz_sport.json",
   "by": "quiz_by.json",
-  "politikk": "quiz_politikk.json",
-  "populaerkultur": "quiz_populaerkultur.json",
-  "subkultur": "quiz_subkultur.json"
-};
-
-// Filkartlegging per kategori-id (ryddet til eksisterende filer)
-const QUIZ_FILE_MAP = {
-  "historie": "quiz_historie.json",
-  "kunst": "quiz_kunst.json",
-  "musikk": "quiz_musikk.json",
-  "litteratur": "quiz_litteratur.json",
-  "sport": "quiz_sport.json",
   "politikk": "quiz_politikk.json",
   "populaerkultur": "quiz_populaerkultur.json",
   "subkultur": "quiz_subkultur.json"
