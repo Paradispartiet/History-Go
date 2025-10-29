@@ -437,31 +437,37 @@ function buildSeeMoreNearby(){
 
 
 // ==============================
-// 8. MERKER, NIVÅER OG FREMGANG
+// 8. MERKER, NIVÅER OG FREMGANG (NY VERSJON)
 // ==============================
 async function renderMerits() {
   const container = document.getElementById("merits");
   if (!container) return;
 
-  const badges = await fetch("badges.json", {cache:"no-store"}).then(r => r.json());
+  const badges = await fetch("badges.json", { cache: "no-store" }).then(r => r.json());
   const localMerits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
 
-  const cats = Object.keys(localMerits).length ? Object.keys(localMerits) : badges.map(b => b.name);
+  // Hvis ingen lagrede data: lag tomme kategorier basert på badges
+  const cats = Object.keys(localMerits).length
+    ? Object.keys(localMerits)
+    : badges.map(b => b.name);
 
   container.innerHTML = cats.map(cat => {
-    const m = localMerits[cat] || { level: "Nybegynner", points: 0 };
+    const merit = localMerits[cat] || { level: "Nybegynner", points: 0 };
     const badge = badges.find(b =>
       cat.toLowerCase().includes(b.id) ||
       b.name.toLowerCase().includes(cat.toLowerCase())
     );
     const icon = badge ? badge.icon : "⭐";
-    const color = badge ? badge.color : catColor(cat);
+    const color = badge ? badge.color : "#888";
 
-    let status = `Nivå: ${m.level} • Poeng: ${m.points}`;
+    let nextLabel = "maks nivå";
+    let nextThreshold = merit.points;
     if (badge) {
-      const next = badge.tiers.find(t => m.points < t.threshold);
-      status = next ? `${m.points}/${next.threshold} poeng (→ ${t.next || next.label})`
-                    : `${m.points} poeng – maks nivå`;
+      const next = badge.tiers.find(t => merit.points < t.threshold);
+      if (next) {
+        nextLabel = next.label;
+        nextThreshold = next.threshold;
+      }
     }
 
     return `
@@ -471,7 +477,7 @@ async function renderMerits() {
         </div>
         <div class="badge-info">
           <strong>${cat}</strong><br>
-          <small>${status}</small>
+          <small>${merit.points}/${nextThreshold} poeng (→ ${nextLabel})</small>
         </div>
       </div>`;
   }).join("");
@@ -488,36 +494,60 @@ function pulseBadge(cat) {
   });
 }
 
-function updateMeritLevel(cat, newPoints) {
-  const thresholds = [3, 7, 12];
-  const catName = cat;
-  if (thresholds.includes(newPoints)) {
-    showToast(`🏅 Nytt nivå i ${catName}!`);
-    pulseBadge(catName);
+async function updateMeritLevel(cat, newPoints) {
+  const badges = await fetch("badges.json", { cache: "no-store" }).then(r => r.json());
+  const badge = badges.find(b =>
+    cat.toLowerCase().includes(b.id) ||
+    b.name.toLowerCase().includes(cat.toLowerCase())
+  );
+  if (!badge) return;
+
+  for (let i = badge.tiers.length - 1; i >= 0; i--) {
+    const tier = badge.tiers[i];
+    if (newPoints === tier.threshold) {
+      showToast(`🏅 Nytt nivå i ${cat}: ${tier.label}!`);
+      pulseBadge(cat);
+      break;
+    }
   }
 }
 
 function updateBadgeDisplay(categoryId) {
   const display = document.getElementById("progress-display");
   if (!display) return;
-  const rec = userProgress[categoryId] || {correct:0, points:0};
-  display.textContent = `Riktige svar: ${rec.correct}  •  Poeng: ${rec.points}`;
+  const rec = userProgress[categoryId] || { correct: 0, points: 0 };
+  display.textContent = `Riktige svar: ${rec.correct} • Poeng: ${rec.points}`;
 }
 
-function addCorrectAndMaybePoint(categoryIdDisplay){
-  const categoryId = catIdFromDisplay(categoryIdDisplay);
+async function addCorrectAndMaybePoint(categoryDisplay) {
+  const categoryId = catIdFromDisplay(categoryDisplay);
   if (!userProgress[categoryId]) userProgress[categoryId] = { correct: 0, points: 0 };
   userProgress[categoryId].correct++;
 
+  // Gi 1 poeng for hver 3 riktige svar
   if (userProgress[categoryId].correct % 3 === 0) {
     userProgress[categoryId].points++;
-    const catLabel = categoryIdDisplay;
-    merits[catLabel] = merits[catLabel] || { level:"Nybegynner", points:0 };
+    const catLabel = categoryDisplay;
+
+    merits[catLabel] = merits[catLabel] || { level: "Nybegynner", points: 0 };
     merits[catLabel].points += 1;
 
-    if (merits[catLabel].points >= 12) merits[catLabel].level = "Historiker";
-    else if (merits[catLabel].points >= 7) merits[catLabel].level = "Forteller";
-    else if (merits[catLabel].points >= 3) merits[catLabel].level = "Tidsreisende";
+    // Finn nytt nivå basert på badges.json
+    const badges = await fetch("badges.json", { cache: "no-store" }).then(r => r.json());
+    const badge = badges.find(b =>
+      catLabel.toLowerCase().includes(b.id) ||
+      b.name.toLowerCase().includes(catLabel.toLowerCase())
+    );
+
+    if (badge) {
+      for (let i = badge.tiers.length - 1; i >= 0; i--) {
+        const tier = badge.tiers[i];
+        if (merits[catLabel].points >= tier.threshold) {
+          merits[catLabel].level = tier.label;
+          break;
+        }
+      }
+    }
 
     saveMerits();
     updateMeritLevel(catLabel, merits[catLabel].points);
