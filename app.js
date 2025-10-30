@@ -695,12 +695,6 @@ function boot() {
       dataReady = true;
 maybeDrawMarkers();
 
-      // Forsinkelse for iPad Safari slik at kartet rekker å initialisere
-MAP.whenReady(() => {
-  try { drawPlaceMarkers(); } catch (e) { console.warn("places fail", e); }
-  try { drawPeopleMarkers(); } catch (e) { console.warn("people fail", e); }
-});
-
       renderNearbyPlaces();
       renderNearbyPeople();
       renderCollection();
