@@ -300,6 +300,15 @@ function drawPeopleMarkers() {
   });
 }
 
+// ==============================
+// HJELPEFUNKSJON – tegner markører når alt er klart
+// ==============================
+function maybeDrawMarkers() {
+  if (mapReady && dataReady) {
+    drawPlaceMarkers();
+    drawPeopleMarkers();
+  }
+}
 
 // ==============================
 // 6. STED- OG PERSONKORT
