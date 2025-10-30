@@ -804,7 +804,6 @@ const QUIZ_FILE_MAP = {
   "populaerkultur": "quiz_populaerkultur.json",
   "musikk": "quiz_musikk.json",
   "subkultur": "quiz_subkultur.json",
-  "by": "quiz_by.json",
   "vitenskap": "quiz_vitenskap.json",
   "natur": "quiz_natur.json"
 };
