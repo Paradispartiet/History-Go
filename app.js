@@ -795,18 +795,18 @@ el.btnExitMap?.addEventListener("click", exitMapMode);
 // 12. QUIZ – DYNAMISK LASTER, MODAL & SCORE (NYTT SYSTEM)
 // ==============================
 
+// Filkartlegging for alle kategorier
 const QUIZ_FILE_MAP = {
   "historie": "quiz_historie.json",
   "kunst": "quiz_kunst.json",
-  "musikk": "quiz_musikk.json",
-  "litteratur": "quiz_litteratur.json",
-  "natur": "quiz_natur.json",
-  "vitenskap": "quiz_vitenskap.json",
   "sport": "quiz_sport.json",
-  "by": "quiz_by.json",
   "politikk": "quiz_politikk.json",
   "populaerkultur": "quiz_populaerkultur.json",
-  "subkultur": "quiz_subkultur.json"
+  "musikk": "quiz_musikk.json",
+  "subkultur": "quiz_subkultur.json",
+  "by": "quiz_by.json",
+  "vitenskap": "quiz_vitenskap.json",
+  "natur": "quiz_natur.json"
 };
 
 async function loadQuizForCategory(categoryId) {
