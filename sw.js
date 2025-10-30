@@ -3,7 +3,7 @@
 // For GitHub Pages og lokal testing
 // =====================================================
 
-const V = 'hg-v17.2.1.5';
+const V = 'hg-v18.0.0';
 const CORE = [
   'index.html',
   'theme.css',
@@ -11,11 +11,15 @@ const CORE = [
   'icons.js',
   'places.json',
   'people.json',
-  'quiz_historie.json',
+  'quiz_vitenskap.json',
+  'quiz_litteratur.json',
   'quiz_kunst.json',
+  'quiz_musikk.json',
   'quiz_sport.json',
   'quiz_politikk.json',
-  'quiz_populaerkultur.json'
+  'quiz_natur.json',
+  'quiz_populaerkultur.json',
+  'quiz_subkultur.json'
 ];
 
 // ------------------------------------------------------------
