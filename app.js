@@ -576,19 +576,22 @@ function saveMerits() {
 // ==============================
 // 9. HENDELSER OG SHEETS
 // ==============================
-document.addEventListener('click', (e)=>{
+document.addEventListener('click', (e) => {
   const openId = e.target.getAttribute?.('data-open');
-  if (openId){
-    const p = PLACES.find(x=>x.id===openId);
+  if (openId) {
+    const p = PLACES.find(x => x.id === openId);
     if (p) openPlaceCard(p);
   }
+
   const infoName = e.target.getAttribute?.('data-info');
-  if (infoName){
+  if (infoName) {
     window.open(`https://www.google.com/search?q=${decodeURIComponent(infoName)} Oslo`, '_blank');
   }
+
+  // Felles quiz-håndtering (person eller sted)
   const quizId = e.target.getAttribute?.('data-quiz');
-  if (quizId){
-    startQuizForPerson(quizId);
+  if (quizId) {
+    startQuiz(quizId); // <-- NY funksjon som støtter både personId og placeId
   }
 });
 
