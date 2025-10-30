@@ -558,11 +558,17 @@ function saveMerits() {
 // ==============================
 // 9. HENDELSER OG SHEETS
 // ==============================
+// ==============================
+// 9. HENDELSER OG SHEETS
+// ==============================
 document.addEventListener('click', (e) => {
   const openId = e.target.getAttribute?.('data-open');
   if (openId) {
     const p = PLACES.find(x => x.id === openId);
-    if (p) openPlaceCard(p);
+    if (p) {
+      closePlaceOverlay();
+      showPlaceOverlay(p);
+    }
   }
 
   const infoName = e.target.getAttribute?.('data-info');
@@ -572,9 +578,7 @@ document.addEventListener('click', (e) => {
 
   // Felles quiz-håndtering (person eller sted)
   const quizId = e.target.getAttribute?.('data-quiz');
-  if (quizId) {
-    startQuiz(quizId); // <-- NY funksjon som støtter både personId og placeId
-  }
+  if (quizId) startQuiz(quizId);
 });
 
 function openSheet(sheet){ sheet?.setAttribute('aria-hidden','false'); }
