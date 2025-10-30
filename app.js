@@ -757,11 +757,21 @@ async function showPlaceOverlay(place) {
       <div class="left">
         <h2>${place.name}</h2>
         <p class="muted">${place.category || ''} • radius ${place.r || 150} m</p>
-        ${place.image ? `<img src="${place.image}" alt="${place.name}" style="width:100%;border-radius:8px;margin-bottom:10px;">` : ''}
+
+        ${place.image ? `<img src="${place.image}" alt="${place.name}" style="width:100%;border-radius:8px;margin:10px 0;">` : ''}
+
         <p>${summary || (place.desc || 'Ingen beskrivelse tilgjengelig.')}</p>
-        <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap">
-          <a class="ghost" href="${googleUrl(place.name)}" target="_blank" rel="noopener">Åpne Google</a>
-          <a class="ghost" href="https://no.wikipedia.org/wiki/${encodeURIComponent(place.name)}" target="_blank" rel="noopener">Åpne Wikipedia</a>
+
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;">
+          <button class="primary" onclick='showRouteTo(${JSON.stringify(place)})'>Vis rute</button>
+          <button class="ghost" onclick="window.open('${googleUrl(place.name)}','_blank')">Google</button>
+          <button class="ghost" onclick="window.open('https://no.wikipedia.org/wiki/${encodeURIComponent(place.name)}','_blank')">Wikipedia</button>
+        </div>
+
+        <hr style="border:none;border-top:1px solid rgba(255,255,255,.1);margin:14px 0;">
+
+        <div style="margin-top:12px;">
+          <button class="primary" data-quiz="${place.id}">Ta quiz om stedet</button>
         </div>
       </div>
 
@@ -774,11 +784,6 @@ async function showPlaceOverlay(place) {
             <button class="primary" data-quiz="${p.id}">Ta quiz</button>
           </div>`).join('')
         : '<div class="muted">Ingen personer registrert.</div>'}
-
-        <!-- 🔹 Ny seksjon: quiz for stedet -->
-        <div style="margin-top:16px;">
-          <button class="primary" data-quiz="${place.id}">Ta quiz om stedet</button>
-        </div>
       </div>
     </div>`;
 
