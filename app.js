@@ -683,6 +683,8 @@ function boot() {
     .then(([places, people]) => {
       PLACES = places || [];
       PEOPLE = people || [];
+      dataReady = true;
+maybeDrawMarkers();
 
       // Forsinkelse for iPad Safari slik at kartet rekker å initialisere
 MAP.whenReady(() => {
