@@ -819,7 +819,7 @@ const QUIZ_FILE_MAP = {
   "musikk": "quiz_musikk.json",
   "subkultur": "quiz_subkultur.json",
   "vitenskap": "quiz_vitenskap.json",
-  "natur": "quiz_natur.json"
+  "natur": "quiz_natur.json",
   "litteratur": "quiz_litteratur.json",
 };
 
