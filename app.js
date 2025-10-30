@@ -692,8 +692,8 @@ function boot() {
     .then(([places, people]) => {
       PLACES = places || [];
       PEOPLE = people || [];
-      dataReady = true;
-maybeDrawMarkers();
+dataReady = true;
+setTimeout(() => maybeDrawMarkers(), 600);
 
       renderNearbyPlaces();
       renderNearbyPeople();
