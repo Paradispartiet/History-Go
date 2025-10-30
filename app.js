@@ -681,8 +681,9 @@ function boot() {
     .then(([places, people]) => {
       PLACES = places || [];
       PEOPLE = people || [];
+      
 dataReady = true;
-setTimeout(() => maybeDrawMarkers(), 600);
+if (mapReady) maybeDrawMarkers();
 
       renderNearbyPlaces();
       renderNearbyPeople();
