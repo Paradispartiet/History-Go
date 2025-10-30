@@ -862,21 +862,51 @@ function closeQuiz(){ const el=document.getElementById('quizModal'); if(el) el.s
 // ==============================
 // START QUIZ FOR PERSON
 // ==============================
-async function startQuizForPerson(personId) {
-  const person = PEOPLE.find(p => p.id === personId);
-  if (!person) { showToast("Fant ikke person"); return; }
+async function startQuiz(targetId) {
+  // Finn person eller sted
+  const person = PEOPLE.find(p => p.id === targetId);
+  const place = PLACES.find(p => p.id === targetId);
 
-  const displayCat = tagToCat(person.tags);             // f.eks. "Sport" / "Kultur" / "Populærkultur"
-  const categoryId  = catIdFromDisplay(displayCat);      // f.eks. "sport" / "kunst" / "populaerkultur"
+  if (!person && !place) { 
+    showToast("Fant verken person eller sted"); 
+    return; 
+  }
 
+  // Bestem kategori (bruker personens tags eller stedets kategori)
+  const displayCat = person
+    ? tagToCat(person.tags)
+    : place.category || "historie";
+
+  const categoryId = catIdFromDisplay(displayCat);
+
+  // Last riktig quizfil
   const items = await loadQuizForCategory(categoryId);
-  const questionsForPerson = items.filter(q => q.personId === personId);
-  if (!questionsForPerson.length) { showToast("Ingen quiz tilgjengelig her ennå"); return; }
+  const questionsForTarget = items.filter(
+    q => q.personId === targetId || q.placeId === targetId
+  );
 
-  const qs = questionsForPerson.map(q => {
+  if (!questionsForTarget.length) {
+    showToast("Ingen quiz tilgjengelig her ennå");
+    return;
+  }
+
+  const qs = questionsForTarget.map(q => {
     const idx = (q.options || []).findIndex(o => o === q.answer);
     return { text: q.question, choices: q.options || [], answerIndex: idx >= 0 ? idx : 0 };
   });
+
+  const title = person ? person.name : place.name;
+
+  openQuiz();
+  runQuizFlow({
+    title,
+    questions: qs,
+    onEnd: (correctCount, total) => {
+      addCompletedQuizAndMaybePoint(displayCat, targetId);
+      showToast(`Quiz fullført: ${correctCount}/${total} 🎉`);
+    }
+  });
+}
 
   openQuiz();
   runQuizFlow({
@@ -1007,5 +1037,5 @@ window.addEventListener("DOMContentLoaded", async () => {
 });
 
 // Eksponer funksjoner
-window.startQuizForPerson = startQuizForPerson;
+window.startQuiz = startQuiz;
 window.closePlaceOverlay = closePlaceOverlay;
