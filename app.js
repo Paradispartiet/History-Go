@@ -269,42 +269,6 @@ function drawPlaceMarkers() {
   });
 }
 
-function drawPeopleMarkers() {
-  if (!MAP || !PEOPLE.length) return;
-  peopleLayer.clearLayers();
-
-  PEOPLE.forEach(pr => {
-    if ((pr.lat == null || pr.lon == null) && pr.placeId) {
-      const plc = PLACES.find(x => x.id === pr.placeId);
-      if (plc) { pr.lat = plc.lat; pr.lon = plc.lon; }
-    }
-    if (pr.lat == null || pr.lon == null) return;
-
-    // 🎯 Vi dropper initialer helt — ingen markørikon for personer
-    // (om du vil fjerne dem fra kartet fullstendig: kommenter ut alt under)
-    const mk = L.circleMarker([pr.lat, pr.lon], {
-      radius: 5,
-      color: '#fff',
-      weight: 1,
-      fillColor: catColor(tagToCat(pr.tags)),
-      fillOpacity: 0.8
-    }).addTo(peopleLayer);
-
-    // 👇 Klikk åpner samme overlay som steder
-    mk.on('click', () => {
-      const place = PLACES.find(x => x.id === pr.placeId);
-      if (place) showPlaceOverlay(place);
-      else showPlaceOverlay({
-        id: "personloc",
-        name: pr.name,
-        category: tagToCat(pr.tags),
-        desc: pr.desc,
-        lat: pr.lat,
-        lon: pr.lon
-      });
-    });
-  });
-}
 // ==============================
 // 6. STED- OG PERSONKORT
 // ==============================
