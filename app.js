@@ -230,7 +230,6 @@ let dataReady = false;
 function maybeDrawMarkers() {
   if (mapReady && dataReady) {
     drawPlaceMarkers();
-    drawPeopleMarkers();
   }
 }
 
