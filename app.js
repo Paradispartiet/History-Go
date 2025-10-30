@@ -908,15 +908,6 @@ async function startQuiz(targetId) {
 
   const title = person ? person.name : place.name;
 
-  openQuiz();
-  runQuizFlow({
-    title,
-    questions: qs,
-    onEnd: (correctCount, total) => {
-      addCompletedQuizAndMaybePoint(displayCat, targetId);
-      showToast(`Quiz fullført: ${correctCount}/${total} 🎉`);
-    }
-  });
 }
 
   openQuiz();
