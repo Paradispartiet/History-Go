@@ -224,6 +224,16 @@ function showRouteTo(place){
   }
 }
 
+let mapReady = false;
+let dataReady = false;
+
+function maybeDrawMarkers() {
+  if (mapReady && dataReady) {
+    drawPlaceMarkers();
+    drawPeopleMarkers();
+  }
+}
+
 function initMap() {
   MAP = L.map('map').setView([START.lat, START.lon], START.zoom);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -233,6 +243,12 @@ function initMap() {
 
   placeLayer = L.layerGroup().addTo(MAP);
   peopleLayer = L.layerGroup().addTo(MAP);
+
+  // 🚀 viktig: marker at kartet er klart
+  MAP.whenReady(() => {
+    mapReady = true;
+    maybeDrawMarkers();
+  });
 }
 
 function drawPlaceMarkers() {
