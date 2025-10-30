@@ -171,7 +171,7 @@ function distMeters(a,b){
 // ==============================
 // 5. BRUKERPOSISJON OG KART (ruter, markører)
 // ==============================
-let MAP, userMarker, userPulse, routeLine, routeControl, placeLayer, peopleLayer;
+let MAP, userMarker, userPulse, routeLine, routeControl, placeLayer;
 
 function setUser(lat, lon){
   if (!MAP) return;
