@@ -325,19 +325,24 @@ function openPlaceCard(p){
   showPlaceOverlay(p);
 }
 
-function openPlaceCardByPerson(person){
+function openPlaceCardByPerson(person) {
   const place = PLACES.find(x => x.id === person.placeId) || {
-    id:"personloc", name:person.name, category: tagToCat(person.tags),
-    r: person.r || 150, desc: person.desc || "", lat: person.lat, lon: person.lon
+    id: "personloc",
+    name: person.name,
+    category: tagToCat(person.tags),
+    r: person.r || 150,
+    desc: person.desc || "",
+    lat: person.lat,
+    lon: person.lon
   };
   openPlaceCard(place);
   el.pcUnlock.textContent = "Ta quiz";
   el.pcUnlock.disabled = false;
-  el.pcUnlock.onclick = ()=> startQuizForPerson(person.id);
+  el.pcUnlock.onclick = () => startQuiz(person.id); // ← NY linje
 }
 
-el.pcClose?.addEventListener('click', ()=> {
-  el.pc.setAttribute('aria-hidden','true');
+el.pcClose?.addEventListener('click', () => {
+  el.pc.setAttribute('aria-hidden', 'true');
   el.pcUnlock.textContent = "Lås opp";
 });
 
