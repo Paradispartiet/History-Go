@@ -12,7 +12,6 @@
   <link
     rel="stylesheet"
     href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity=""
     crossorigin=""
   >
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
@@ -23,11 +22,6 @@
     href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css"
   >
   <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script>
-
-  <!-- Egne filer -->
-  <script defer src="icons.js"></script>
-  <script defer src="app.js"></script>
-  <script defer src="routes.js"></script>
 </head>
 
 <body>
@@ -66,19 +60,17 @@
     </section>
 
     <!-- Personer -->
-<section class="panel">
-  <h2>Personer i nærheten</h2>
-  <div id="nearbyPeople" class="cards"></div>
+    <section class="panel">
+      <h2>Personer i nærheten</h2>
+      <div id="nearbyPeople" class="cards"></div>
 
-  <!-- Testknapp for ruter -->
-<div style="margin-top:12px;display:flex;flex-wrap:wrap;gap:8px;">
-  <button class="primary" onclick="showRouteOverlay('vitenskapsruten')">🧠 Vitenskapsruten</button>
-  <button class="primary" onclick="showRouteOverlay('kunstruten_sentrum')">🎨 Kunstruten</button>
-  <button class="primary" onclick="showRouteOverlay('skulpturruten_vigeland')">🗿 Skulpturruten</button>
-</div>
-</section>
+      <div style="margin-top:12px;display:flex;flex-wrap:wrap;gap:8px;">
+        <button class="primary" onclick="showRouteOverlay('vitenskapsruten')">🧠 Vitenskapsruten</button>
+        <button class="primary" onclick="showRouteOverlay('kunstruten_sentrum')">🎨 Kunstruten</button>
+        <button class="primary" onclick="showRouteOverlay('skulpturruten_vigeland')">🗿 Skulpturruten</button>
+      </div>
+    </section>
 
-    
     <!-- Samling -->
     <section class="panel">
       <h2>
@@ -159,5 +151,10 @@
       });
     }
   </script>
+
+  <!-- Egne JS-filer -->
+  <script src="icons.js" defer></script>
+  <script src="routes.js" defer></script>
+  <script src="app.js" defer></script>
 </body>
 </html>
