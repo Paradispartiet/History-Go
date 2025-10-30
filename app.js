@@ -872,30 +872,25 @@ function openQuiz(){ ensureQuizUI(); document.getElementById('quizModal').setAtt
 function closeQuiz(){ const el=document.getElementById('quizModal'); if(el) el.setAttribute('aria-hidden','true'); }
 
 // ==============================
-// START QUIZ FOR PERSON
+// START QUIZ (person eller sted)
 // ==============================
 async function startQuiz(targetId) {
   // Finn person eller sted
   const person = PEOPLE.find(p => p.id === targetId);
-  const place = PLACES.find(p => p.id === targetId);
+  const place  = PLACES.find(p => p.id === targetId);
 
-  if (!person && !place) { 
-    showToast("Fant verken person eller sted"); 
-    return; 
+  if (!person && !place) {
+    showToast("Fant verken person eller sted");
+    return;
   }
 
-  // Bestem kategori (bruker personens tags eller stedets kategori)
-  const displayCat = person
-    ? tagToCat(person.tags)
-    : place.category || "historie";
-
+  // Bestem kategori (tags for person, category for sted)
+  const displayCat = person ? tagToCat(person.tags) : (place.category || "historie");
   const categoryId = catIdFromDisplay(displayCat);
 
-  // Last riktig quizfil
+  // Last riktig quizfil og filtrer til dette målet
   const items = await loadQuizForCategory(categoryId);
-  const questionsForTarget = items.filter(
-    q => q.personId === targetId || q.placeId === targetId
-  );
+  const questionsForTarget = items.filter(q => q.personId === targetId || q.placeId === targetId);
 
   if (!questionsForTarget.length) {
     showToast("Ingen quiz tilgjengelig her ennå");
@@ -909,15 +904,15 @@ async function startQuiz(targetId) {
 
   const title = person ? person.name : place.name;
 
-}
-
   openQuiz();
   runQuizFlow({
-    title: person.name || "Quiz",
+    title,
     questions: qs,
     onEnd: (correctCount, total) => {
-      // ny logikk: gi poeng basert på fullførte quizer, ikke antall riktige
-      addCompletedQuizAndMaybePoint(displayCat, personId);
+      // +1 poeng hver tredje fullførte quiz i denne kategorien
+      addCompletedQuizAndMaybePoint(displayCat, targetId);
+      // valgfritt: markér personen som samlet
+      if (person) { peopleCollected[targetId] = true; savePeople(); }
       showToast(`Quiz fullført: ${correctCount}/${total} 🎉`);
     }
   });
