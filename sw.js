@@ -11,7 +11,6 @@ const CORE = [
   'icons.js',
   'places.json',
   'people.json',
-  'quiz_steder.json',
   'quiz_vitenskap.json',
   'quiz_litteratur.json',
   'quiz_kunst.json',
