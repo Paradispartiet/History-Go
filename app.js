@@ -264,7 +264,8 @@ function drawPlaceMarkers() {
     }).addTo(placeLayer);
 
     mk.bindTooltip(p.name, { permanent: false, direction: "top" });
-    mk.on('click', () => openPlaceCard(p));
+    // 👉 Klikk åpner nå den sammenslåtte overlayen
+    mk.on('click', () => showPlaceOverlay(p));
   });
 }
 
@@ -273,29 +274,35 @@ function drawPeopleMarkers() {
   peopleLayer.clearLayers();
 
   PEOPLE.forEach(pr => {
-    if ((pr.lat==null || pr.lon==null) && pr.placeId){
-      const plc = PLACES.find(x=>x.id===pr.placeId);
-      if (plc){ pr.lat = plc.lat; pr.lon = plc.lon; }
+    if ((pr.lat == null || pr.lon == null) && pr.placeId) {
+      const plc = PLACES.find(x => x.id === pr.placeId);
+      if (plc) { pr.lat = plc.lat; pr.lon = plc.lon; }
     }
-    if (pr.lat==null || pr.lon==null) return;
+    if (pr.lat == null || pr.lon == null) return;
 
-    const html = `
-      <div style="
-        width:28px;height:28px;border-radius:999px;
-        background:${catColor(tagToCat(pr.tags))}; color:#111;
-        display:flex;align-items:center;justify-content:center;
-        font-weight:900; font-size:12px; border:2px solid #111;
-        box-shadow:0 0 0 3px rgba(0,0,0,.25);
-      ">
-        ${(pr.initials || '').slice(0,2).toUpperCase()}
-      </div>`;
+    // 🎯 Vi dropper initialer helt — ingen markørikon for personer
+    // (om du vil fjerne dem fra kartet fullstendig: kommenter ut alt under)
+    const mk = L.circleMarker([pr.lat, pr.lon], {
+      radius: 5,
+      color: '#fff',
+      weight: 1,
+      fillColor: catColor(tagToCat(pr.tags)),
+      fillOpacity: 0.8
+    }).addTo(peopleLayer);
 
-    const icon = L.divIcon({ className:"", html, iconSize:[28,28], iconAnchor:[14,14] });
-    const mk = L.marker([pr.lat, pr.lon], { icon }).addTo(peopleLayer);
-    const hb = L.circle([pr.lat, pr.lon], { radius:36, opacity:0, fillOpacity:0 }).addTo(peopleLayer);
-    const openFromPerson = () => openPlaceCardByPerson(pr);
-    mk.on('click', openFromPerson);
-    hb.on('click', openFromPerson);
+    // 👇 Klikk åpner samme overlay som steder
+    mk.on('click', () => {
+      const place = PLACES.find(x => x.id === pr.placeId);
+      if (place) showPlaceOverlay(place);
+      else showPlaceOverlay({
+        id: "personloc",
+        name: pr.name,
+        category: tagToCat(pr.tags),
+        desc: pr.desc,
+        lat: pr.lat,
+        lon: pr.lon
+      });
+    });
   });
 }
 // ==============================
