@@ -253,8 +253,12 @@ function drawPlaceMarkers() {
     }).addTo(placeLayer);
 
     mk.bindTooltip(p.name, { permanent: false, direction: "top" });
-    // 👉 Klikk åpner nå den sammenslåtte overlayen
-    mk.on('click', () => showPlaceOverlay(p));
+
+    // 👉 Klikk åpner kun overlay (ikke placeCard)
+    mk.on('click', () => {
+      closePlaceOverlay();
+      showPlaceOverlay(p);
+    });
   });
 }
 
