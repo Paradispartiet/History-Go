@@ -74,17 +74,7 @@ const el = {
   sheetCollectionBody: document.getElementById('sheetCollectionBody'),
 
   gallery:    document.getElementById('gallery'),
-
-  pc:         document.getElementById('placeCard'),
-  pcTitle:    document.getElementById('pcTitle'),
-  pcMeta:     document.getElementById('pcMeta'),
-  pcDesc:     document.getElementById('pcDesc'),
-  pcMore:     document.getElementById('pcMore'),
-  pcUnlock:   document.getElementById('pcUnlock'),
-  pcRoute:    document.getElementById('pcRoute'),
-  pcClose:    document.getElementById('pcClose'),
 };
-
 
 // ==============================
 // ==============================
