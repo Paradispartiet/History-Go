@@ -820,7 +820,7 @@ const QUIZ_FILE_MAP = {
   "subkultur": "quiz_subkultur.json",
   "vitenskap": "quiz_vitenskap.json",
   "natur": "quiz_natur.json",
-  "litteratur": "quiz_litteratur.json",
+  "litteratur": "quiz_litteratur.json"
 };
 
 async function loadQuizForCategory(categoryId) {
