@@ -173,24 +173,7 @@ button{ cursor:pointer; border:none }
 .badge.viten .i{ background: var(--viten) }
 .badge.hist .i{ background: var(--hist) }
 
-/* ===================================================== */
-/* 6) Place Card (sheet)                                 */
-/* ===================================================== */
-.place-card{
-  position:fixed; left:0; right:0; bottom:0; z-index:11;
-  background: var(--panel);
-  border:1px solid var(--panel-border);
-  border-radius: 16px 16px 0 0;
-  box-shadow: var(--shadow);
-  transform: translateY(100%); opacity:0;
-  transition: transform .22s ease, opacity .2s ease;
-}
-.place-card[aria-hidden="false"]{ transform:none; opacity:1 }
-.pc-body{ padding:14px }
-.pc-title{ display:flex; align-items:center; justify-content:space-between; gap:10px }
-.pc-meta{ color:var(--muted); margin:4px 0 8px }
-.pc-desc{ margin:0 0 10px }
-.pc-actions{ display:flex; gap:8px; flex-wrap:wrap }
+
 
 /* ===================================================== */
 /* 7) Place Overlay                                      */
