@@ -27,6 +27,7 @@
   <!-- Egne filer -->
   <script defer src="icons.js"></script>
   <script defer src="app.js"></script>
+  <script defer src="routes.js"></script>
 </head>
 
 <body>
@@ -65,11 +66,19 @@
     </section>
 
     <!-- Personer -->
-    <section class="panel">
-      <h2>Personer i nærheten</h2>
-      <div id="nearbyPeople" class="cards"></div>
-    </section>
+<section class="panel">
+  <h2>Personer i nærheten</h2>
+  <div id="nearbyPeople" class="cards"></div>
 
+  <!-- Testknapp for ruter -->
+  <div style="margin-top:12px;">
+    <button class="primary" onclick="showRouteOverlay('vitenskapsruten')">
+      🧠 Vitenskapsruten
+    </button>
+  </div>
+</section>
+
+    
     <!-- Samling -->
     <section class="panel">
       <h2>
