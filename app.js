@@ -241,7 +241,6 @@ function initMap() {
   }).addTo(MAP);
 
   placeLayer = L.layerGroup().addTo(MAP);
-  peopleLayer = L.layerGroup().addTo(MAP);
 
   // 🚀 viktig: marker at kartet er klart
   MAP.whenReady(() => {
