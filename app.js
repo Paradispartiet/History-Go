@@ -279,21 +279,23 @@ function openPlaceCard(p){
   el.pcDesc.textContent  = p.desc || "";
   el.pc.setAttribute('aria-hidden','false');
 
-  el.pcMore.onclick = () => window.open(googleUrl(p.name), '_blank');
-  el.pcUnlock.textContent = visited[p.id] ? "Låst opp" : "Lås opp";
-  el.pcUnlock.disabled = !!visited[p.id];
-
   el.pcUnlock.onclick = ()=> {
-  if (visited[p.id]) { showToast("Allerede låst opp"); return; }
+  if (visited[p.id]) { 
+    showToast("Allerede låst opp"); 
+    return; 
+  }
+
   visited[p.id] = true; 
   saveVisited();
 
-  // Poeng: +1 i riktig kategori, ingen gamle nivånavn
-  const cat = p.category || "Historie";
-  merits[cat] = merits[cat] || { points: 0 };
-  merits[cat].points += 1;
-  saveMerits();
-  updateMeritLevel(cat, merits[cat].points); // leser terskler fra badges.json
+  // Poeng: +1 i riktig kategori — men bare hvis kategori faktisk finnes
+  const cat = p.category;
+  if (cat && cat.trim()) {
+    merits[cat] = merits[cat] || { points: 0 };
+    merits[cat].points += 1;
+    saveMerits();
+    updateMeritLevel(cat, merits[cat].points);
+  }
 
   showToast(`Låst opp: ${p.name} ✅`);
 };
