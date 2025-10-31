@@ -771,7 +771,7 @@ async function showPlaceOverlay(place) {
 // ==============================
 
 function enterMapMode() {
-  document.body.classList.add("map-mode");
+  document.body.classList.add("map-only");
   el.btnSeeMap.style.display = "none";
   el.btnExitMap.style.display = "block";
   document.querySelector("main").style.display = "none";
@@ -780,7 +780,7 @@ function enterMapMode() {
 }
 
 function exitMapMode() {
-  document.body.classList.remove("map-mode");
+  document.body.classList.remove("map-only");
   el.btnSeeMap.style.display = "block";
   el.btnExitMap.style.display = "none";
   document.querySelector("main").style.display = "";
