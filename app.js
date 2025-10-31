@@ -830,6 +830,7 @@ function ensureQuizUI(){
   m.className = 'modal';
   m.id = 'quizModal';
   m.setAttribute('aria-hidden','true');
+  m.style.zIndex = 9999; // 🟡 Legg til dette: alltid øverst
   m.innerHTML = `
     <div class="modal-body">
       <div class="modal-head">
@@ -845,7 +846,13 @@ function ensureQuizUI(){
         </div>
       </div>
     </div>`;
+
   document.body.appendChild(m);
+
+  // 🟢 Flytt opp quiz-modalens plassering i DOM hvis main finnes
+  const main = document.querySelector("main");
+  if (main) document.body.insertBefore(m, main);
+
   m.addEventListener('click', e=>{
     if (e.target.id==='quizModal') closeQuiz();
   });
