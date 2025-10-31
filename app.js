@@ -897,14 +897,19 @@ async function startQuiz(targetId) {
 
   const title = person ? person.name : place.name;
 
+  // ✅ Lukker sted-overlay før modalen åpnes
+  closePlaceOverlay();
+
+  // ✅ Åpner modalen (nå alltid på toppnivå)
   openQuiz();
+
   runQuizFlow({
     title,
     questions: qs,
     onEnd: (correctCount, total) => {
       // +1 poeng hver tredje fullførte quiz i denne kategorien
       addCompletedQuizAndMaybePoint(displayCat, targetId);
-      // valgfritt: markér personen som samlet
+      // markér personen som samlet (hvis aktuelt)
       if (person) { peopleCollected[targetId] = true; savePeople(); }
       showToast(`Quiz fullført: ${correctCount}/${total} 🎉`);
     }
