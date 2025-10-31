@@ -1013,10 +1013,6 @@ async function getQuizCategoriesFromBadges() {
     const res = await fetch("badges.json", { cache: "no-store" });
     if (!res.ok) return [];
     const badges = await res.json(); // forventer [{ id, name, ... }]
-    // Bruk id, dropp "historie" hvis den finnes fortsatt i fila
-    const ids = badges
-      .map(b => (b.id || "").toLowerCase())
-      .filter(id => id && id !== "historie");
     // Fjern duplikater, behold rekkefølgen i badges.json
     return [...new Set(ids)];
   } catch {
