@@ -1,5 +1,5 @@
 // =====================================================
-// SERVICE WORKER – HISTORY GO v17.3 (stabil versjon)
+// SERVICE WORKER – HISTORY GO v17.4 (stabil versjon)
 // For GitHub Pages og lokal testing
 // =====================================================
 
