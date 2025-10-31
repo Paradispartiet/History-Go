@@ -1007,17 +1007,41 @@ function runQuizFlow({ title="Quiz", questions=[], onEnd=()=>{} }){
   renderStep();
 }
 
-// ==============================
-// AUTO-FALLBACK (STANDARD: HISTORIE)
-// ==============================
+// --- Hent kategorier direkte fra badges.json (ikke hardkod) ---
+async function getQuizCategoriesFromBadges() {
+  try {
+    const res = await fetch("badges.json", { cache: "no-store" });
+    if (!res.ok) return [];
+    const badges = await res.json(); // forventer [{ id, name, ... }]
+    // Bruk id, dropp "historie" hvis den finnes fortsatt i fila
+    const ids = badges
+      .map(b => (b.id || "").toLowerCase())
+      .filter(id => id && id !== "historie");
+    // Fjern duplikater, behold rekkefølgen i badges.json
+    return [...new Set(ids)];
+  } catch {
+    return [];
+  }
+}
+
+// --- Auto-fallback: første kategori fra badges som faktisk har quizer ---
 window.addEventListener("DOMContentLoaded", async () => {
-  const defaultCategory = "historie";
   const container = document.getElementById("quiz-container");
   if (!container) return;
-  const quizzes = await loadQuizForCategory(defaultCategory);
-  renderQuizList(quizzes, defaultCategory);
-});
 
-// Eksponer funksjoner
-window.startQuiz = startQuiz;
-window.closePlaceOverlay = closePlaceOverlay;
+  const order = await getQuizCategoriesFromBadges(); // ← kommer fra badges.json
+  let quizzes = [];
+  let activeCat = null;
+
+  for (const cat of order) {
+    quizzes = await loadQuizForCategory(cat); // din eksisterende funksjon
+    if (quizzes.length) { activeCat = cat; break; }
+  }
+
+  if (!activeCat) {
+    container.style.display = "none"; // ingen quizer i noen badge-kategorier
+    return;
+  }
+
+  renderQuizList(quizzes, activeCat);
+});
