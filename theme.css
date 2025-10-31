@@ -78,6 +78,15 @@ body.map-only #btnExitMap{ display:block !important }
 body.map-only #btnSeeMap{ display:none !important }
 
 /* ===================================================== */
+/* Kartmodus – sørg for at modaler fortsatt vises        */
+/* ===================================================== */
+body.map-only #quizModal,
+body.map-mode #quizModal {
+  display: flex !important;   /* tving visning selv om main/header er skjult */
+  z-index: 9999 !important;   /* hold modalen over kart og kontroller */
+}
+
+/* ===================================================== */
 /* 3) Topplinje, main & toast                            */
 /* ===================================================== */
 header{
