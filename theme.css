@@ -256,11 +256,19 @@ button{ cursor:pointer; border:none }
   display:flex; align-items:center; justify-content:space-between; gap:10px;
   margin-bottom:8px;
 }
-#quizClose{
-  width:44px; height:44px; border-radius:999px;
-  border:1px solid var(--panel-border);
-  background:rgba(255,255,255,.08); color:#fff; font-size:1.4rem;
-}
+#quizClose {
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: 1px solid var(--panel-border);
+  background: rgba(255,255,255,.08);
+  color: #fff;
+  font-size: 1.4rem;
+
+  /* kun for å gjøre den klikkbar */
+  pointer-events: auto;
+  cursor: pointer;
+  touch-action: manipulation; /* iPad/Safari */
 
 /* ===================================================== */
 /* 10) Quiz-stiler                                       */
