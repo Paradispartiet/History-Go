@@ -282,21 +282,22 @@ function openPlaceCard(p){
   el.pcMore.onclick = () => window.open(googleUrl(p.name), '_blank');
   el.pcUnlock.textContent = visited[p.id] ? "Låst opp" : "Lås opp";
   el.pcUnlock.disabled = !!visited[p.id];
+
   el.pcUnlock.onclick = ()=> {
-    if (visited[p.id]) { showToast("Allerede låst opp"); return; }
-    visited[p.id] = true; saveVisited();
+  if (visited[p.id]) { showToast("Allerede låst opp"); return; }
+  visited[p.id] = true; 
+  saveVisited();
 
-    const cat = p.category || "Historie";
-    merits[cat] = merits[cat] || { level:"Nybegynner", points:0 };
-    merits[cat].points += 1;
-    updateMeritLevel(cat, merits[cat].points);
-    if (merits[cat].points >= 12) merits[cat].level = "Historiker";
-    else if (merits[cat].points >= 7) merits[cat].level = "Forteller";
-    else if (merits[cat].points >= 3) merits[cat].level = "Tidsreisende";
-    saveMerits();
+  // Poeng: +1 i riktig kategori, ingen gamle nivånavn
+  const cat = p.category || "Historie";
+  merits[cat] = merits[cat] || { points: 0 };
+  merits[cat].points += 1;
+  saveMerits();
+  updateMeritLevel(cat, merits[cat].points); // leser terskler fra badges.json
 
-    showToast(`Låst opp: ${p.name} ✅`);
-  };
+  showToast(`Låst opp: ${p.name} ✅`);
+};
+  
   el.pcRoute.onclick = ()=> showRouteTo(p);
 
   showPlaceOverlay(p);
