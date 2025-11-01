@@ -413,69 +413,59 @@ body.by .app-frame            { outline-color: var(--urban); }
 body:not([class]) .app-frame  { outline-color: var(--primary); }
 
 /* ===================================================== */
-/* BADGE-MODAL (fasitvindu for merker) – MED LUKKEKNAPP  */
+/*  BADGE-MODAL STIL                                     */
 /* ===================================================== */
 .badge-modal {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,.55);       /* semitransparent mørk bakgrunn */
+  background: rgba(0,0,0,.55); /* gjennomsiktig slør */
   display: none;
   align-items: center;
   justify-content: center;
-  z-index: 10005;                    /* foran alt annet */
+  z-index: 9999;
 }
 
 .badge-modal-inner {
-  width: min(640px, 94vw);
   background: var(--panel);
-  border-radius: 14px;
+  border-radius: 12px;
   box-shadow: var(--shadow);
-  padding: 22px 20px 24px;
-  color: var(--text);
-  max-height: 85vh;
+  padding: 16px;
+  max-width: 640px;
+  width: 90%;
+  max-height: 80vh;
   overflow-y: auto;
-  position: relative;
-  z-index: 10006;                    /* innhold over bakgrunn */
-  border-top: 4px solid var(--primary);
+  color: var(--text);
 }
 
 .badge-modal-header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 10px;
+  gap: 10px;
+  margin-bottom: 8px;
 }
 
 .badge-icon-large {
-  font-size: 2.4rem;
+  font-size: 2rem;
 }
 
 .badge-close {
   position: absolute;
   top: 12px;
   right: 12px;
-  width: 44px;
-  height: 44px;
+  width: 40px;
+  height: 40px;
   border-radius: 999px;
   border: 1px solid var(--panel-border);
   background: rgba(255,255,255,.08);
   color: #fff;
   font-size: 1.4rem;
-  cursor: pointer;
 }
 
 .quiz-fasit {
-  margin-bottom: 14px;
-  background: rgba(255,255,255,.03);
-  padding: 10px 12px;
-  border-radius: 8px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  padding-bottom: 6px;
 }
-.quiz-fasit .q {
-  font-weight: 600;
-  margin-bottom: 4px;
-}
-.quiz-fasit .a {
-  color: var(--muted);
-  margin: 0;
-}
+
+.quiz-fasit .q { font-weight: 600; }
+.quiz-fasit .a { color: var(--muted); font-size: 0.9rem; }
