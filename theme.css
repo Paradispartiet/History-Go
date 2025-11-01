@@ -50,17 +50,14 @@ body{
 }
 .muted{color:var(--muted)}
 
-/* ===================================================== */
-/* Fast sort bakgrunn + subtil farget kant (kategori)     */
-/* ===================================================== */
 .app-frame {
   position: fixed;
   inset: 0;
-  background: transparent;              /* ikke dekk kartet */
-  box-shadow: 0 0 0 8px var(--primary); /* farget ramme */
-  pointer-events: none;                 /* lar kart og UI fungere */
-  z-index: 9999;                        /* alltid øverst */
-  transition: box-shadow 0.4s ease;
+  background: rgba(0,0,0,0.85);     /* lett sort bakgrunn – ikke helt dekkende */
+  box-shadow: 0 0 0 8px var(--primary);  /* farget ramme */
+  pointer-events: none;             /* lar kart og UI klikkes som vanlig */
+  z-index: 9999;                    /* alltid øverst */
+  transition: box-shadow 0.4s ease, background 0.4s ease;
 }
 
 /* Links */
@@ -413,5 +410,4 @@ body.politikk .app-frame      { outline-color: #c77dff; }
 body.populaerkultur .app-frame{ outline-color: var(--urban); }
 body.subkultur .app-frame     { outline-color: #ff66cc; }
 body.by .app-frame            { outline-color: var(--urban); }
-
 body:not([class]) .app-frame  { outline-color: var(--primary); }
