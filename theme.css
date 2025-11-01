@@ -413,16 +413,16 @@ body.by .app-frame            { outline-color: var(--urban); }
 body:not([class]) .app-frame  { outline-color: var(--primary); }
 
 /* ===================================================== */
-/* BADGE-MODAL (fasitvindu for merker)                   */
+/* BADGE-MODAL (fasitvindu for merker) – FIKSET          */
 /* ===================================================== */
 .badge-modal {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,.65);
+  background: rgba(0,0,0,.55);   /* lett mørk bakgrunn, ikke helsort */
   display: none;
   align-items: center;
   justify-content: center;
-  z-index: 10002;
+  z-index: 10005;                /* ligger over kart og ramme */
 }
 .badge-modal-inner {
   width: min(640px, 94vw);
@@ -433,6 +433,8 @@ body:not([class]) .app-frame  { outline-color: var(--primary); }
   color: var(--text);
   max-height: 85vh;
   overflow-y: auto;
+  position: relative;
+  z-index: 10006;                /* sørger for at innholdet vises foran sløret */
 }
 .badge-modal-header {
   display: flex;
