@@ -998,35 +998,41 @@ function runQuizFlow({ title="Quiz", questions=[], onEnd=()=>{} }){
   let i = 0, correctCount = 0;
 
   function renderStep(){
-    const q = questions[i];
-    qs.q.textContent = q.text;
-    qs.choices.innerHTML = q.choices.map((opt, idx)=>`<button data-idx="${idx}">${opt}</button>`).join('');
-    qs.progress.textContent = `${i+1}/${questions.length}`;
-    qs.feedback.textContent = '';
+  const q = questions[i];
+  qs.q.textContent = q.text;
+  qs.choices.innerHTML = q.choices
+    .map((opt, idx)=>`<button data-idx="${idx}">${opt}</button>`)
+    .join('');
+  qs.progress.textContent = `${i+1}/${questions.length}`;
+  qs.feedback.textContent = '';
 
-    qs.choices.querySelectorAll('button').forEach(btn=>{
-      btn.onclick = () => {
-        const chosen = Number(btn.dataset.idx);
-        const ok = chosen === Number(q.answerIndex);
-        btn.classList.add(ok ? 'correct' : 'wrong');
-        qs.feedback.textContent = ok ? 'Riktig ✅' : 'Feil ❌';
-        if (ok) correctCount++;
+  // 🟢 Oppdater progress-baren
+  const bar = document.querySelector(".quiz-progress .bar");
+  if (bar) bar.style.width = `${((i + 1) / questions.length) * 100}%`;
 
-        qs.choices.querySelectorAll('button').forEach(b=>b.disabled = true);
+  qs.choices.querySelectorAll('button').forEach(btn=>{
+    btn.onclick = () => {
+      const chosen = Number(btn.dataset.idx);
+      const ok = chosen === Number(q.answerIndex);
+      btn.classList.add(ok ? 'correct' : 'wrong');
+      qs.feedback.textContent = ok ? 'Riktig ✅' : 'Feil ❌';
+      if (ok) correctCount++;
 
-        setTimeout(()=>{
-          i++;
-          if (i < questions.length){
-            renderStep();
-          } else {
-            closeQuiz();
-            onEnd(correctCount, questions.length);
-          }
-        }, QUIZ_FEEDBACK_MS);
-      };
-    });
-  }
+      qs.choices.querySelectorAll('button').forEach(b=>b.disabled = true);
 
+      setTimeout(()=>{
+        i++;
+        if (i < questions.length){
+          renderStep();
+        } else {
+          closeQuiz();
+          onEnd(correctCount, questions.length);
+        }
+      }, QUIZ_FEEDBACK_MS);
+    };
+  });
+}
+  
   renderStep();
 }
 
