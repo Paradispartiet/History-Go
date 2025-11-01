@@ -1043,9 +1043,9 @@ async function getQuizCategoriesFromBadges() {
   try {
     const res = await fetch("badges.json", { cache: "no-store" });
     if (!res.ok) return [];
-    const badges = await res.json(); // forventer [{ id, name, ... }]
-    // Fjern duplikater, behold rekkefølgen i badges.json
-    return [...new Set(ids)];
+    const badges = await res.json();
+    // returnerer rekkefølgen fra badges.json
+    return badges.map(b => b.id);
   } catch {
     return [];
   }
