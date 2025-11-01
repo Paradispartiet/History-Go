@@ -400,3 +400,20 @@ body.map-only #map {
   margin-bottom: 8px;
   object-fit: cover;
 }
+/* ===================================================== */
+/* Dynamisk farge på mobilramme                          */
+/* ===================================================== */
+.app-frame { transition: border-color 0.4s ease; }
+
+body.kunst .app-frame         { border-color: var(--kult); }
+body.litteratur .app-frame    { border-color: var(--hist); }
+body.musikk .app-frame        { border-color: #ff66cc; }
+body.sport .app-frame         { border-color: var(--sport); }
+body.natur .app-frame         { border-color: var(--natur); }
+body.vitenskap .app-frame     { border-color: var(--viten); }
+body.politikk .app-frame      { border-color: #c77dff; }
+body.populaerkultur .app-frame{ border-color: var(--urban); }
+body.subkultur .app-frame     { border-color: #ff66cc; }
+body.by .app-frame            { border-color: var(--urban); }
+
+body:not([class]) .app-frame { border-color: var(--primary); }
