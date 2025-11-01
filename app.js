@@ -1100,14 +1100,14 @@ async function showBadgeModal(categoryDisplay) {
     completed.includes(q.personId || q.placeId)
   ).reverse(); // 👉 nyeste først
 
-  // bygg HTML
+// bygg HTML
 const html = `
   <div class="badge-modal-inner" style="border-top:4px solid ${badge.color}">
     <button class="badge-close" id="closeBadgeModal">✕</button>
 
     ${
       badge.id
-        ? `<img src="badges/${badge.id}.png" alt="${badge.name}" class="badge-image"
+        ? `<img src="${badge.image || `bilder/merker/${badge.id}.png`}" alt="${badge.name}" class="badge-image"
                 style="width:100%;border-radius:10px;margin-bottom:10px;object-fit:cover;">`
         : ""
     }
@@ -1121,7 +1121,7 @@ const html = `
     </div>
 
     <hr>
-
+    
     ${
       done.length
         ? done.map(q => `
