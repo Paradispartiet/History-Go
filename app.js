@@ -913,13 +913,13 @@ runQuizFlow({
     if (person) {
       peopleCollected[targetId] = true;
       savePeople();
-      showPersonPopup(person);   // 👈 denne linjen viser NFT-kortet
+      showPersonPopup(person);   // 👈 viser NFT-kortet
+      document.getElementById("gallery")?.scrollIntoView({ behavior: "smooth" }); // 👈 scroll til galleriet
     }
 
     showToast(`Quiz fullført: ${correctCount}/${total} 🎉`);
   }
 });
-}
 
 // ==============================
 // RENDER QUIZ-LISTE (KATEGORI-VISNING)
