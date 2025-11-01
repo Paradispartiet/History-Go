@@ -1074,3 +1074,78 @@ function showPersonPopup(person) {
   setTimeout(() => card.classList.add("visible"), 20);
   setTimeout(() => card.remove(), 3000);
 }
+// ==============================
+//  BADGE-MODAL – VIS FASIT & STATUS
+// ==============================
+async function showBadgeModal(categoryDisplay) {
+  const categoryId = catIdFromDisplay(categoryDisplay);
+  const progress = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
+  const completed = progress[categoryId]?.completed || [];
+
+  // hent metadata om merket
+  const badges = await fetch("badges.json", { cache: "no-store" }).then(r => r.json());
+  const badge = badges.find(b =>
+    categoryId.toLowerCase().includes(b.id) ||
+    b.name.toLowerCase().includes(categoryId.toLowerCase())
+  ) || { name: categoryDisplay, color: "#999", icon: "🏅" };
+
+  // hent poeng & nivå
+  const merits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
+  const merit = merits[categoryDisplay] || { level: "Nybegynner", points: 0 };
+
+  // hent alle quizer for kategorien
+  const all = await loadQuizForCategory(categoryId);
+  // ta bare de som er fullført
+  const done = all.filter(q =>
+    completed.includes(q.personId || q.placeId)
+  ).reverse(); // 👉 nyeste først
+
+  // bygg HTML
+  const html = `
+  <div class="badge-modal-inner" style="border-top:4px solid ${badge.color}">
+    <div class="badge-modal-header">
+      <span class="badge-icon-large" style="color:${badge.color}">${badge.icon}</span>
+      <div>
+        <h2>${badge.name}</h2>
+        <p class="muted">Nivå: ${merit.level} · Poeng: ${merit.points}</p>
+      </div>
+    </div>
+    <hr>
+    ${
+      done.length
+        ? done.map(q => `
+          <div class="quiz-fasit">
+            <p class="q">${q.question}</p>
+            <p class="a">✅ Riktig svar: <strong>${q.answer}</strong></p>
+          </div>`).join("")
+        : `<p class="muted">Ingen fullførte quizer ennå.</p>`
+    }
+    <button class="ghost" id="closeBadgeModal">Lukk</button>
+  </div>`;
+
+  // lag modal-element
+  let modal = document.getElementById("badgeModal");
+  if (!modal) {
+    modal = document.createElement("div");
+    modal.id = "badgeModal";
+    modal.className = "badge-modal";
+    document.body.appendChild(modal);
+  }
+  modal.innerHTML = html;
+  modal.style.display = "flex";
+
+  // lukking
+  document.getElementById("closeBadgeModal").onclick = () => modal.remove();
+  modal.addEventListener("click", e => {
+    if (e.target.id === "badgeModal") modal.remove();
+  });
+}
+
+// 📌 lytter på klikk på merkesamlingen
+document.addEventListener("click", e => {
+  const badgeCard = e.target.closest(".badge-card");
+  if (badgeCard) {
+    const cat = badgeCard.querySelector("strong")?.textContent?.trim();
+    if (cat) showBadgeModal(cat);
+  }
+});
