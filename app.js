@@ -924,6 +924,7 @@ runQuizFlow({
     showToast(`Quiz fullført: ${correctCount}/${total} 🎉`);
   }
 });
+}
 
 // ==============================
 // RENDER QUIZ-LISTE (KATEGORI-VISNING)
