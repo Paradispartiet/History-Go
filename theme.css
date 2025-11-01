@@ -413,37 +413,58 @@ body.by .app-frame            { outline-color: var(--urban); }
 body:not([class]) .app-frame  { outline-color: var(--primary); }
 
 /* ===================================================== */
-/* BADGE-MODAL (fasitvindu for merker) – FIKSET          */
+/* BADGE-MODAL (fasitvindu for merker) – MED LUKKEKNAPP  */
 /* ===================================================== */
 .badge-modal {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,.55);   /* lett mørk bakgrunn, ikke helsort */
+  background: rgba(0,0,0,.55);       /* semitransparent mørk bakgrunn */
   display: none;
   align-items: center;
   justify-content: center;
-  z-index: 10005;                /* ligger over kart og ramme */
+  z-index: 10005;                    /* foran alt annet */
 }
+
 .badge-modal-inner {
   width: min(640px, 94vw);
   background: var(--panel);
   border-radius: 14px;
   box-shadow: var(--shadow);
-  padding: 20px;
+  padding: 22px 20px 24px;
   color: var(--text);
   max-height: 85vh;
   overflow-y: auto;
   position: relative;
-  z-index: 10006;                /* sørger for at innholdet vises foran sløret */
+  z-index: 10006;                    /* innhold over bakgrunn */
+  border-top: 4px solid var(--primary);
 }
+
 .badge-modal-header {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 12px;
+  margin-bottom: 10px;
 }
+
 .badge-icon-large {
   font-size: 2.4rem;
 }
+
+.badge-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: 1px solid var(--panel-border);
+  background: rgba(255,255,255,.08);
+  color: #fff;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
 .quiz-fasit {
   margin-bottom: 14px;
   background: rgba(255,255,255,.03);
@@ -457,8 +478,4 @@ body:not([class]) .app-frame  { outline-color: var(--primary); }
 .quiz-fasit .a {
   color: var(--muted);
   margin: 0;
-}
-#closeBadgeModal {
-  margin-top: 10px;
-  width: 100%;
 }
