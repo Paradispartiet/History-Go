@@ -1133,35 +1133,37 @@ const html = `
     }
   </div>`;
 
-  // lag modal-element
-  let modal = document.getElementById("badgeModal");
-  if (!modal) {
-    modal = document.createElement("div");
-    modal.id = "badgeModal";
-    modal.className = "badge-modal";
-    document.body.appendChild(modal);
-  }
+// lag modal-element
+let modal = document.getElementById("badgeModal");
+if (!modal) {
+  modal = document.createElement("div");
+  modal.id = "badgeModal";
+  modal.className = "badge-modal";
+  document.body.appendChild(modal);
+}
 
-  modal.innerHTML = html;
-  modal.style.display = "flex";
+modal.innerHTML = html;
+modal.style.display = "flex";
 
-  // sørg for transparent bakgrunn (feilsikring)
-  modal.style.background = "rgba(0,0,0,.55)";
-  modal.style.zIndex = 9999;
+// 💡 Gjør bakgrunn helt gjennomsiktig (ingen svart slør)
+modal.style.background = "transparent";
+modal.style.zIndex = 9999;
 
-  // Lukking ved X eller klikk utenfor
-  modal.querySelector("#closeBadgeModal").onclick = () => modal.remove();
-  modal.addEventListener("click", e => {
-    if (e.target.id === "badgeModal") modal.remove();
-  });
+// Lukking ved X eller klikk utenfor
+const closeBtn = modal.querySelector("#closeBadgeModal");
+if (closeBtn) closeBtn.onclick = () => modal.remove();
 
-  // Lukking med Escape
-  document.addEventListener("keydown", e => {
-    if (e.key === "Escape") modal.remove();
-  });
-} // 👈 denne klammen avslutter showBadgeModal-funksjonen
+modal.addEventListener("click", e => {
+  if (e.target.id === "badgeModal") modal.remove();
+});
 
-// 📌 lytter på klikk på merkesamlingen (skal stå utenfor funksjonen)
+// Lukking med Escape
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape") modal.remove();
+});
+} // 👈 avslutter showBadgeModal()
+
+// 📌 Lytter på klikk i merkesamlingen
 document.addEventListener("click", e => {
   const badgeCard = e.target.closest(".badge-card");
   if (badgeCard) {
