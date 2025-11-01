@@ -1141,15 +1141,24 @@ const html = `
     modal.className = "badge-modal";
     document.body.appendChild(modal);
   }
+
   modal.innerHTML = html;
   modal.style.display = "flex";
 
-  // lukking
-  document.getElementById("closeBadgeModal").onclick = () => modal.remove();
+  // sørg for transparent bakgrunn (feilsikring)
+  modal.style.background = "rgba(0,0,0,.55)";
+  modal.style.zIndex = 9999;
+
+  // Lukking ved X eller klikk utenfor
+  modal.querySelector("#closeBadgeModal").onclick = () => modal.remove();
   modal.addEventListener("click", e => {
     if (e.target.id === "badgeModal") modal.remove();
   });
-}
+
+  // Lukking med Escape
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape") modal.remove();
+  });
 
 // 📌 lytter på klikk på merkesamlingen
 document.addEventListener("click", e => {
