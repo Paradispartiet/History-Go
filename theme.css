@@ -401,21 +401,15 @@ body.map-only #map {
   border-radius: 999px;
   margin-bottom: 8px;
   object-fit: cover;
-}
-/* ===================================================== */
-/* Dynamisk farge på mobilramme                          */
-/* ===================================================== */
-.app-frame { transition: border-color 0.4s ease; }
-
-body.kunst .app-frame         { border-color: var(--kult); }
-body.litteratur .app-frame    { border-color: var(--hist); }
-body.musikk .app-frame        { border-color: #ff66cc; }
-body.sport .app-frame         { border-color: var(--sport); }
-body.natur .app-frame         { border-color: var(--natur); }
-body.vitenskap .app-frame     { border-color: var(--viten); }
-body.politikk .app-frame      { border-color: #c77dff; }
-body.populaerkultur .app-frame{ border-color: var(--urban); }
-body.subkultur .app-frame     { border-color: #ff66cc; }
-body.by .app-frame            { border-color: var(--urban); }
-
-body:not([class]) .app-frame { border-color: var(--primary); }
+  
+}/* Dynamisk kategori-farge via --primary */
+body.kunst .app-frame         { --primary: #ffb703; }
+body.litteratur .app-frame    { --primary: #f6c800; }
+body.musikk .app-frame        { --primary: #ff66cc; }
+body.sport .app-frame         { --primary: #2a9d8f; }
+body.natur .app-frame         { --primary: #4caf50; }
+body.vitenskap .app-frame     { --primary: #9b59b6; }
+body.politikk .app-frame      { --primary: #c77dff; }
+body.populaerkultur .app-frame{ --primary: #ffb703; }
+body.subkultur .app-frame     { --primary: #ff66cc; }
+body.by .app-frame            { --primary: #e63946; }
