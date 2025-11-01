@@ -807,6 +807,7 @@ const QUIZ_FILE_MAP = {
   "vitenskap": "quiz_vitenskap.json",
   "natur": "quiz_natur.json",
   "litteratur": "quiz_litteratur.json"
+  "by": "quiz_by.json",
 };
 
 async function loadQuizForCategory(categoryId) {
