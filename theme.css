@@ -56,12 +56,11 @@ body{
 .app-frame {
   position: fixed;
   inset: 0;
-  pointer-events: none;       /* lar alt under fungere som vanlig */
-  background: #000;           /* helsvart bakgrunn */
-  box-shadow: 0 0 0 3px var(--primary); /* tynn farget kant */
-  border-radius: 0;           /* dekker helt ut til kanten */
-  transition: box-shadow 0.4s ease;
-  z-index: -1;                 /* bak alt innhold */
+  background: #000;
+  outline: 3px solid var(--primary);   /* lager kant rundt alt */
+  pointer-events: none;                /* lar alt over være klikkbart */
+  z-index: -1;                         /* legges bak kart, paneler og alt annet */
+  transition: outline-color 0.4s ease; /* smooth fargeovergang */
 }
 /* Links */
 a{color:#8ec6ff;text-decoration:none}
