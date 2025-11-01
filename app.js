@@ -1104,6 +1104,14 @@ async function showBadgeModal(categoryDisplay) {
 const html = `
   <div class="badge-modal-inner" style="border-top:4px solid ${badge.color}">
     <button class="badge-close" id="closeBadgeModal">✕</button>
+
+    ${
+      badge.id
+        ? `<img src="badges/${badge.id}.png" alt="${badge.name}" class="badge-image"
+                style="width:100%;border-radius:10px;margin-bottom:10px;object-fit:cover;">`
+        : ""
+    }
+
     <div class="badge-modal-header">
       <span class="badge-icon-large" style="color:${badge.color}">${badge.icon}</span>
       <div>
@@ -1111,7 +1119,9 @@ const html = `
         <p class="muted">Nivå: ${merit.level} · Poeng: ${merit.points}</p>
       </div>
     </div>
+
     <hr>
+
     ${
       done.length
         ? done.map(q => `
