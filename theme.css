@@ -401,14 +401,15 @@ body.map-only #map {
   margin-bottom: 8px;
   object-fit: cover;
   
-}/* Dynamisk kategori-farge via --primary */
-body.kunst .app-frame         { --primary: #ffb703; }
-body.litteratur .app-frame    { --primary: #f6c800; }
-body.musikk .app-frame        { --primary: #ff66cc; }
-body.sport .app-frame         { --primary: #2a9d8f; }
-body.natur .app-frame         { --primary: #4caf50; }
-body.vitenskap .app-frame     { --primary: #9b59b6; }
-body.politikk .app-frame      { --primary: #c77dff; }
-body.populaerkultur .app-frame{ --primary: #ffb703; }
-body.subkultur .app-frame     { --primary: #ff66cc; }
-body.by .app-frame            { --primary: #e63946; }
+body.kunst .app-frame         { outline-color: var(--kult); }
+body.litteratur .app-frame    { outline-color: var(--hist); }
+body.musikk .app-frame        { outline-color: #ff66cc; }
+body.sport .app-frame         { outline-color: var(--sport); }
+body.natur .app-frame         { outline-color: var(--natur); }
+body.vitenskap .app-frame     { outline-color: var(--viten); }
+body.politikk .app-frame      { outline-color: #c77dff; }
+body.populaerkultur .app-frame{ outline-color: var(--urban); }
+body.subkultur .app-frame     { outline-color: #ff66cc; }
+body.by .app-frame            { outline-color: var(--urban); }
+
+body:not([class]) .app-frame  { outline-color: var(--primary); }
