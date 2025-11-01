@@ -1101,8 +1101,9 @@ async function showBadgeModal(categoryDisplay) {
   ).reverse(); // 👉 nyeste først
 
   // bygg HTML
-  const html = `
+const html = `
   <div class="badge-modal-inner" style="border-top:4px solid ${badge.color}">
+    <button class="badge-close" id="closeBadgeModal">✕</button>
     <div class="badge-modal-header">
       <span class="badge-icon-large" style="color:${badge.color}">${badge.icon}</span>
       <div>
@@ -1120,7 +1121,6 @@ async function showBadgeModal(categoryDisplay) {
           </div>`).join("")
         : `<p class="muted">Ingen fullførte quizer ennå.</p>`
     }
-    <button class="ghost" id="closeBadgeModal">Lukk</button>
   </div>`;
 
   // lag modal-element
