@@ -561,9 +561,6 @@ function saveMerits() {
 // ==============================
 // 9. HENDELSER OG SHEETS
 // ==============================
-// ==============================
-// 9. HENDELSER OG SHEETS
-// ==============================
 document.addEventListener('click', (e) => {
   const openId = e.target.getAttribute?.('data-open');
   if (openId) {
