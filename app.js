@@ -899,20 +899,26 @@ async function startQuiz(targetId) {
   // ✅ Lukker sted-overlay før modalen åpnes
   closePlaceOverlay();
 
-  // ✅ Åpner modalen (nå alltid på toppnivå)
-  openQuiz();
+// ✅ Åpner modalen (nå alltid på toppnivå)
+openQuiz();
 
-  runQuizFlow({
-    title,
-    questions: qs,
-    onEnd: (correctCount, total) => {
-      // +1 poeng hver tredje fullførte quiz i denne kategorien
-      addCompletedQuizAndMaybePoint(displayCat, targetId);
-      // markér personen som samlet (hvis aktuelt)
-      if (person) { peopleCollected[targetId] = true; savePeople(); }
-      showToast(`Quiz fullført: ${correctCount}/${total} 🎉`);
+runQuizFlow({
+  title,
+  questions: qs,
+  onEnd: (correctCount, total) => {
+    // +1 poeng hver tredje fullførte quiz i denne kategorien
+    addCompletedQuizAndMaybePoint(displayCat, targetId);
+
+    // markér personen som samlet (hvis aktuelt)
+    if (person) {
+      peopleCollected[targetId] = true;
+      savePeople();
+      showPersonPopup(person);   // 👈 denne linjen viser NFT-kortet
     }
-  });
+
+    showToast(`Quiz fullført: ${correctCount}/${total} 🎉`);
+  }
+});
 }
 
 // ==============================
