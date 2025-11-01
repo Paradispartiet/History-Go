@@ -50,14 +50,18 @@ body{
 }
 .muted{color:var(--muted)}
 
+/* ===================================================== */
+/* RAMME RUNDT APPEN – REN OG FAST VERSJON               */
+/* ===================================================== */
 .app-frame {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.85);     /* lett sort bakgrunn – ikke helt dekkende */
-  box-shadow: 0 0 0 8px var(--primary);  /* farget ramme */
-  pointer-events: none;             /* lar kart og UI klikkes som vanlig */
-  z-index: 9999;                    /* alltid øverst */
-  transition: box-shadow 0.4s ease, background 0.4s ease;
+  background: transparent;                 /* ingen svart bakgrunn */
+  outline: 6px solid var(--primary);       /* tydelig farget ramme */
+  border-radius: 0;                        /* kvadratisk */
+  pointer-events: none;                    /* lar alt under klikkes */
+  z-index: 20;                             /* over kartet, under modaler */
+  transition: outline-color .3s ease;
 }
 
 /* Links */
