@@ -831,23 +831,27 @@ function ensureQuizUI(){
   m.id = 'quizModal';
   m.setAttribute('aria-hidden','true');
   m.innerHTML = `
-    <div class="modal-body">
-      <div class="modal-head">
-        <strong id="quizTitle">Quiz</strong>
-        <button class="ghost" id="quizClose">Lukk</button>
-      </div>
-      <div class="sheet-body">
-        <div id="quizQ" style="margin:6px 0 10px;font-weight:600"></div>
-        <div id="quizChoices" class="quiz-choices"></div>
-        <div style="display:flex;justify-content:space-between;margin-top:8px;">
-          <span id="quizFeedback" class="quiz-feedback"></span>
-          <small id="quizProgress" class="muted"></small>
-        </div>
-      </div>
-    </div>`;
-m.style.zIndex = 9999; // 🟡 Legg til dette: alltid øverst
-  document.body.appendChild(m);
+  <div class="modal-body">
+  <div class="modal-head">
+    <strong id="quizTitle">Quiz</strong>
+    <button class="ghost" id="quizClose">Lukk</button>
+  </div>
 
+  <!-- 🟢 Legg til denne linjen rett her -->
+  <div class="quiz-progress"><div class="bar"></div></div>
+
+  <div class="sheet-body">
+    <div id="quizQ" style="margin:6px 0 10px;font-weight:600"></div>
+    <div id="quizChoices" class="quiz-choices"></div>
+    <div style="display:flex;justify-content:space-between;margin-top:8px;">
+      <span id="quizFeedback" class="quiz-feedback"></span>
+      <small id="quizProgress" class="muted"></small>
+    </div>
+  </div>
+</div>`;
+m.style.zIndex = 9999; // 🟡 Legg til dette: alltid øverst
+document.body.appendChild(m);
+  
   // 🟢 Flytt opp quiz-modalens plassering i DOM hvis main finnes
   const main = document.querySelector("main");
   if (main) document.body.insertBefore(m, main);
