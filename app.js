@@ -1033,25 +1033,3 @@ async function getQuizCategoriesFromBadges() {
     return [];
   }
 }
-
-// --- Auto-fallback: første kategori fra badges som faktisk har quizer ---
-window.addEventListener("DOMContentLoaded", async () => {
-  const container = document.getElementById("quiz-container");
-  if (!container) return;
-
-  const order = await getQuizCategoriesFromBadges(); // ← kommer fra badges.json
-  let quizzes = [];
-  let activeCat = null;
-
-  for (const cat of order) {
-    quizzes = await loadQuizForCategory(cat); // din eksisterende funksjon
-    if (quizzes.length) { activeCat = cat; break; }
-  }
-
-  if (!activeCat) {
-    container.style.display = "none"; // ingen quizer i noen badge-kategorier
-    return;
-  }
-
-  renderQuizList(quizzes, activeCat);
-});
