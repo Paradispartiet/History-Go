@@ -1159,8 +1159,9 @@ const html = `
   document.addEventListener("keydown", e => {
     if (e.key === "Escape") modal.remove();
   });
+} // 👈 denne klammen avslutter showBadgeModal-funksjonen
 
-// 📌 lytter på klikk på merkesamlingen
+// 📌 lytter på klikk på merkesamlingen (skal stå utenfor funksjonen)
 document.addEventListener("click", e => {
   const badgeCard = e.target.closest(".badge-card");
   if (badgeCard) {
