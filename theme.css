@@ -56,12 +56,13 @@ body{
 .app-frame {
   position: fixed;
   inset: 0;
-  background: #000;
-  outline: 3px solid var(--primary);   /* lager kant rundt alt */
-  pointer-events: none;                /* lar alt over være klikkbart */
-  z-index: -1;                         /* legges bak kart, paneler og alt annet */
-  transition: outline-color 0.4s ease; /* smooth fargeovergang */
+  background: transparent;              /* ikke dekk kartet */
+  box-shadow: 0 0 0 8px var(--primary); /* farget ramme */
+  pointer-events: none;                 /* lar kart og UI fungere */
+  z-index: 9999;                        /* alltid øverst */
+  transition: box-shadow 0.4s ease;
 }
+
 /* Links */
 a{color:#8ec6ff;text-decoration:none}
 a:hover{text-decoration:underline}
