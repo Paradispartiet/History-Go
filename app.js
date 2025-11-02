@@ -242,6 +242,12 @@ function showRouteTo(place){
 let mapReady = false;
 let dataReady = false;
 
+function maybeDrawMarkers() {
+  if (mapReady && dataReady) {
+    drawPlaceMarkers();
+  }
+}
+
 function drawPlaceMarkers() {
   if (!MAP || !PLACES.length) return;
   placeLayer.clearLayers();
