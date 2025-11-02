@@ -832,49 +832,61 @@ async function loadQuizForCategory(categoryId) {
 }
 
 // Bygger modal-UI én gang
-function ensureQuizUI(){
-  if (document.getElementById('quizModal')) return;
-  const m = document.createElement('div');
-  m.className = 'modal';
-  m.id = 'quizModal';
-  m.setAttribute('aria-hidden','true');
-  m.innerHTML = `
-  <div class="modal-body">
-  <div class="modal-head">
-    <strong id="quizTitle">Quiz</strong>
-    <button class="ghost" id="quizClose">Lukk</button>
-  </div>
+function ensureQuizUI() {
+  let m = document.getElementById('quizModal');
+  if (!m) {
+    m = document.createElement('div');
+    m.className = 'modal';
+    m.id = 'quizModal';
+    m.setAttribute('aria-hidden','true');
+    m.innerHTML = `
+      <div class="modal-body">
+        <div class="modal-head">
+          <strong id="quizTitle">Quiz</strong>
+          <button class="ghost" id="quizClose">Lukk</button>
+        </div>
 
-  <!-- 🟢 Legg til denne linjen rett her -->
-  <div class="quiz-progress"><div class="bar"></div></div>
+        <div class="quiz-progress"><div class="bar"></div></div>
 
-  <div class="sheet-body">
-    <div id="quizQ" style="margin:6px 0 10px;font-weight:600"></div>
-    <div id="quizChoices" class="quiz-choices"></div>
-    <div style="display:flex;justify-content:space-between;margin-top:8px;">
-      <span id="quizFeedback" class="quiz-feedback"></span>
-      <small id="quizProgress" class="muted"></small>
-    </div>
-  </div>
-</div>`;
-m.style.zIndex = 9999; // 🟡 Legg til dette: alltid øverst
-document.body.appendChild(m);
-  
-  // 🟢 Flytt opp quiz-modalens plassering i DOM hvis main finnes
-  const main = document.querySelector("main");
-  if (main) document.body.insertBefore(m, main);
+        <div class="sheet-body">
+          <div id="quizQ" style="margin:6px 0 10px;font-weight:600"></div>
+          <div id="quizChoices" class="quiz-choices"></div>
+          <div style="display:flex;justify-content:space-between;margin-top:8px;">
+            <span id="quizFeedback" class="quiz-feedback"></span>
+            <small id="quizProgress" class="muted"></small>
+          </div>
+        </div>
+      </div>`;
+    document.body.appendChild(m);
 
-  m.addEventListener('click', e=>{
-    if (e.target.id==='quizModal') closeQuiz();
+    // Flytt opp i DOM om nødvendig
+    const main = document.querySelector("main");
+    if (main) document.body.insertBefore(m, main);
+  }
+
+  // alltid koble lukking på nytt
+  const closeBtn = m.querySelector('#quizClose');
+  if (closeBtn) closeBtn.onclick = closeQuiz;
+
+  m.addEventListener('click', e => {
+    if (e.target.id === 'quizModal') closeQuiz();
   });
-  document.getElementById('quizClose').onclick = closeQuiz;
-  document.addEventListener('keydown', e=>{
-    if (e.key==='Escape') closeQuiz();
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeQuiz();
   });
 }
-function openQuiz(){ ensureQuizUI(); document.getElementById('quizModal').setAttribute('aria-hidden','false'); }
-function closeQuiz(){ const el=document.getElementById('quizModal'); if(el) el.setAttribute('aria-hidden','true'); }
 
+function openQuiz() {
+  ensureQuizUI();
+  const el = document.getElementById('quizModal');
+  if (el) el.setAttribute('aria-hidden','false');
+}
+
+function closeQuiz() {
+  const el = document.getElementById('quizModal');
+  if (el) el.setAttribute('aria-hidden','true');
+}
 // ==============================
 // START QUIZ (person eller sted)
 // ==============================
