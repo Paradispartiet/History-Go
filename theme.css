@@ -418,18 +418,23 @@ button{ cursor:pointer; border:none }
   border: 3px solid var(--primary);
 }
 
-.badge-icon { font-size: 1.2rem; }
-.badge-info small { color: var(--muted); }
-
-/* 🔹 Mindre merkeikoner i popup-boksene */
-.badge-modal .badge-icon-ring {
-  width: 24px;
-  height: 24px;
-  border-width: 2px;
-  font-size: 0.9rem;
+.badge-thumb {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: contain;
+  background: transparent;
+  display: block;
 }
-.badge-modal .badge-icon-large {
-  font-size: 1.5rem;
+
+.badge-info small {
+  color: var(--muted);
+}
+
+.badge-icon-ring:hover .badge-thumb {
+  transform: scale(1.08);
+  filter: brightness(1.15);
+  transition: transform .25s ease, filter .25s ease;
 }
 
 /* Puls ved nivåoppnåelse */
