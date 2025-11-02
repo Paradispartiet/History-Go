@@ -519,18 +519,23 @@ body:not([class]) .app-frame  { outline-color: var(--primary); }
   100% { box-shadow: 0 0 18px var(--primary), 0 0 30px rgba(0,0,0,.4) inset; }
 }
 
+/* === APP-RAMME (farget indre kant + mørk ytre ramme) === */
+@keyframes framePulse {
+  0%   { box-shadow: 0 0 18px var(--primary), 0 0 30px rgba(0,0,0,.4) inset; }
+  50%  { box-shadow: 0 0 28px var(--primary), 0 0 35px rgba(0,0,0,.55) inset; }
+  100% { box-shadow: 0 0 18px var(--primary), 0 0 30px rgba(0,0,0,.4) inset; }
+}
+
 .app-frame {
   position: fixed;
   inset: 0;
-  border: 3px solid var(--primary);       /* farget indre kant */
-  outline: 8px solid rgba(0,0,0,0.85);    /* mørk ytterramme */
-  border-radius: 8px;
+  border: 3px solid var(--primary);          /* farget kant */
+  outline: 8px solid rgba(0,0,0,0.85);       /* mørk ytre ramme */
+  border-radius: 10px;
   pointer-events: none;
   z-index: 20;
   background: transparent;
-  box-shadow:
-    0 0 10px rgba(0,0,0,.6),
-    0 0 22px var(--primary);
+  animation: framePulse 6s ease-in-out infinite;
   transition: border-color .4s ease, box-shadow .4s ease;
 }
 
@@ -539,36 +544,24 @@ body:not([class]) .app-frame  { outline-color: var(--primary); }
   content: "";
   position: absolute;
   inset: 0;
-  border-radius: 8px;
+  border-radius: 10px;
   box-shadow: 0 0 20px var(--primary) inset;
   opacity: 0.3;
   pointer-events: none;
   transition: box-shadow .4s ease, opacity .4s ease;
 }
 
-.app-frame {
-  position: fixed;
-  inset: 0;
-  border: 3px solid var(--primary);
-  outline: 8px solid rgba(0,0,0,0.85); /* sort ytre ramme */
-  border-radius: 10px;
-  pointer-events: none;
-  z-index: 20;
-  background: transparent;
-  animation: framePulse 6s ease-in-out infinite;
-  transition: border-color .4s ease, box-shadow .4s ease;
-}
-/* Farger fra badges.json */
-body.vitenskap .app-frame      { border-color: #9b59b6; box-shadow: 0 0 20px rgba(155,89,182,.4); }
-body.kunst .app-frame          { border-color: #ffb703; box-shadow: 0 0 20px rgba(255,183,3,.4); }
-body.by .app-frame             { border-color: #e63946; box-shadow: 0 0 20px rgba(230,57,70,.4); }
-body.musikk .app-frame         { border-color: #ff66cc; box-shadow: 0 0 20px rgba(255,102,204,.4); }
-body.litteratur .app-frame     { border-color: #f6c800; box-shadow: 0 0 20px rgba(246,200,0,.4); }
-body.natur .app-frame          { border-color: #4caf50; box-shadow: 0 0 20px rgba(76,175,80,.4); }
-body.sport .app-frame          { border-color: #2a9d8f; box-shadow: 0 0 20px rgba(42,157,143,.4); }
-body.politikk .app-frame       { border-color: #c77dff; box-shadow: 0 0 20px rgba(199,125,255,.4); }
-body.populaerkultur .app-frame { border-color: #ffb703; box-shadow: 0 0 20px rgba(255,183,3,.4); }
-body.subkultur .app-frame      { border-color: #ff66cc; box-shadow: 0 0 20px rgba(255,102,204,.4); }
+/* Kategori-farger */
+body.vitenskap .app-frame      { border-color: #9b59b6; }
+body.kunst .app-frame          { border-color: #ffb703; }
+body.by .app-frame             { border-color: #e63946; }
+body.musikk .app-frame         { border-color: #ff66cc; }
+body.litteratur .app-frame     { border-color: #f6c800; }
+body.natur .app-frame          { border-color: #4caf50; }
+body.sport .app-frame          { border-color: #2a9d8f; }
+body.politikk .app-frame       { border-color: #c77dff; }
+body.populaerkultur .app-frame { border-color: #ffb703; }
+body.subkultur .app-frame      { border-color: #ff66cc; }
 
 /* ===================================================== */
 /* 15) Kort og paneler – glassaktig og fargereaktivt     */
