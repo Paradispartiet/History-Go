@@ -224,29 +224,86 @@ button{ cursor:pointer; border:none }
 .place-overlay .right .card{ margin-bottom:10px }
 
 /* ===================================================== */
-/* 8) Sheets (bunnark)                                   */
+/* 8) Sheets (bunnark) – forbedret og mer oversiktlig     */
 /* ===================================================== */
-.sheet{
-  position:fixed; left:0; right:0; bottom:0; z-index:13;
-  background: var(--panel);
-  border:1px solid var(--panel-border);
+.sheet {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 13;
+  background: rgba(10, 25, 41, 0.96);  /* mørkere og tydelig */
+  border-top: 2px solid rgba(255,255,255,0.12);
   border-radius: 16px 16px 0 0;
-  box-shadow: var(--shadow);
-  transform: translateY(100%); opacity:0;
-  transition: transform .22s ease, opacity .2s ease;
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.6);
+  transform: translateY(100%);
+  opacity: 0;
+  transition: transform .25s ease, opacity .25s ease;
+  backdrop-filter: blur(6px);
 }
-.sheet[aria-hidden="false"]{ transform:none; opacity:1 }
-.sheet-head{
-  display:flex; align-items:center; justify-content:space-between;
-  padding:12px 14px; border-bottom:1px solid var(--panel-border)
-}
-.sheet-body{ padding:12px 14px }
 
-/* Close-knapper som ikoner */
-.sheet-close{
-  width:44px; height:44px; border-radius:999px;
-  border:1px solid var(--panel-border);
-  background:rgba(255,255,255,.08); color:#fff; font-size:1.4rem;
+.sheet[aria-hidden="false"] {
+  transform: none;
+  opacity: 1;
+}
+
+.sheet-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  background: rgba(255,255,255,0.05);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  border-radius: 16px 16px 0 0;
+}
+
+.sheet-body {
+  padding: 14px 16px 20px;
+  display: grid;
+  gap: 12px;
+  overflow-y: auto;
+  max-height: 70vh;
+}
+
+/* Kortene i "Se flere i nærheten" */
+.sheet-body .card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 10px;
+  padding: 14px;
+  transition: background .2s ease, transform .2s ease;
+}
+.sheet-body .card:hover {
+  background: rgba(255,255,255,0.08);
+  transform: translateY(-2px);
+}
+
+.sheet-body .name {
+  font-weight: 700;
+  font-size: 1rem;
+  color: #fff;
+}
+
+.sheet-body .meta {
+  color: #a9b7c7;
+  font-size: 0.9rem;
+  margin-bottom: 6px;
+}
+
+.sheet-body .desc {
+  color: #d0d8e4;
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.sheet-close {
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  font-size: 1.4rem;
 }
 
 /* ===================================================== */
