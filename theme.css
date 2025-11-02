@@ -282,29 +282,50 @@ button{ cursor:pointer; border:none }
 /* ===================================================== */
 /* 9) Modal (quiz)                                       */
 /* ===================================================== */
-.modal{
-  position:fixed; inset:0; z-index:9999; display:none;
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 10050;              /* 🔺 Sørger for at modalen ligger over alt */
+  display: none;
   background: rgba(0,0,0,.55);
+  pointer-events: auto;        /* 🔹 Sikrer klikk på knapper */
 }
-.modal[aria-hidden="false"]{ display:block }
-.modal .modal-body{
-  position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
-  width:min(680px, 92vw);
+
+.modal[aria-hidden="false"] {
+  display: block;
+}
+
+.modal .modal-body {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: min(680px, 92vw);
   background: var(--panel);
-  border:1px solid var(--panel-border);
+  border: 1px solid var(--panel-border);
   border-radius: 14px;
   box-shadow: var(--shadow);
-  padding:14px;
+  padding: 14px;
+  z-index: 10051;              /* 🔹 Sørger for at X-knappen er klikkbar */
 }
-.modal-head{
-  display:flex; align-items:center; justify-content:space-between; gap:10px;
-  margin-bottom:8px;
+
+.modal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
 }
+
 #quizClose {
-  width: 44px; height: 44px; border-radius: 999px;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
   border: 1px solid var(--panel-border);
   background: rgba(255,255,255,.08);
-  color: #fff; font-size: 1.4rem;
+  color: #fff;
+  font-size: 1.4rem;
+  z-index: 10052;              /* 🔹 Helt øverst, alltid klikkbar */
 }
 
 
