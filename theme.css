@@ -513,30 +513,26 @@ body:not([class]) .app-frame  { outline-color: var(--primary); }
 /* ===================================================== */
 /* 14) RAMME RUNDT APPEN – PULSERENDE OG KLARFARGET      */
 /* ===================================================== */
-@keyframes framePulse {
-  0%   { box-shadow: 0 0 18px var(--primary), 0 0 30px rgba(0,0,0,.4) inset; }
-  50%  { box-shadow: 0 0 28px var(--primary), 0 0 35px rgba(0,0,0,.55) inset; }
-  100% { box-shadow: 0 0 18px var(--primary), 0 0 30px rgba(0,0,0,.4) inset; }
-}
 
-/* === APP-RAMME (farget indre kant + mørk ytre ramme) === */
 @keyframes framePulse {
-  0%   { box-shadow: 0 0 18px var(--primary), 0 0 30px rgba(0,0,0,.4) inset; }
-  50%  { box-shadow: 0 0 28px var(--primary), 0 0 35px rgba(0,0,0,.55) inset; }
-  100% { box-shadow: 0 0 18px var(--primary), 0 0 30px rgba(0,0,0,.4) inset; }
+  0%   { box-shadow: 0 0 14px var(--primary) inset, 0 0 24px rgba(0,0,0,.4); }
+  50%  { box-shadow: 0 0 22px var(--primary) inset, 0 0 28px rgba(0,0,0,.55); }
+  100% { box-shadow: 0 0 14px var(--primary) inset, 0 0 24px rgba(0,0,0,.4); }
 }
 
 .app-frame {
   position: fixed;
-  inset: 0;
-  border: 3px solid var(--primary);          /* farget kant */
-  outline: 8px solid rgba(0,0,0,0.85);       /* mørk ytre ramme */
+  inset: 10px;                    /* litt luft fra kanten – så ikke dekker kartet */
+  border: 3px solid var(--primary);
   border-radius: 10px;
   pointer-events: none;
   z-index: 20;
-  background: transparent;
+  background: rgba(0,0,0,0.6);    /* mørk, men gjennomskinnelig ramme */
+  box-shadow:
+    0 0 12px rgba(0,0,0,.6),
+    0 0 22px var(--primary);
   animation: framePulse 6s ease-in-out infinite;
-  transition: border-color .4s ease, box-shadow .4s ease;
+  transition: border-color .4s ease, box-shadow .4s ease, background .4s ease;
 }
 
 /* Indre glød i kategoriens farge */
@@ -545,8 +541,8 @@ body:not([class]) .app-frame  { outline-color: var(--primary); }
   position: absolute;
   inset: 0;
   border-radius: 10px;
-  box-shadow: 0 0 20px var(--primary) inset;
-  opacity: 0.3;
+  box-shadow: 0 0 18px var(--primary) inset;
+  opacity: .25;
   pointer-events: none;
   transition: box-shadow .4s ease, opacity .4s ease;
 }
