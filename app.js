@@ -36,7 +36,6 @@ const userProgress    = JSON.parse(localStorage.getItem("historygo_progress") ||
 
 function saveVisited(){  localStorage.setItem("visited_places", JSON.stringify(visited));  renderCollection(); }
 function savePeople(){   localStorage.setItem("people_collected", JSON.stringify(peopleCollected)); renderGallery(); }
-function saveMerits(){   localStorage.setItem("merits_by_category", JSON.stringify(merits)); renderMerits(); }
 
 function showToast(msg, ms=2000){
   const t = el.toast;
@@ -188,6 +187,22 @@ function setUser(lat, lon){
   }
 }
 
+function initMap() {
+  MAP = L.map('map', { zoomControl: false }).setView([START.lat, START.lon], START.zoom);
+  placeLayer = L.layerGroup().addTo(MAP);
+
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; <a href="https://carto.com/attributions">CARTO</a>',
+    subdomains: 'abcd',
+    maxZoom: 19
+  }).addTo(MAP);
+
+  MAP.whenReady(() => {
+    mapReady = true;
+    maybeDrawMarkers();
+  });
+}
+
 function showRouteTo(place){
   if (!MAP) return;
 
@@ -226,25 +241,6 @@ function showRouteTo(place){
 
 let mapReady = false;
 let dataReady = false;
-
-function maybeDrawMarkers() {
-  if (mapReady && dataReady) {
-    drawPlaceMarkers();
-  }
-}
-
-L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-  attribution: '&copy; <a href="https://carto.com/attributions">CARTO</a>',
-  subdomains: 'abcd',
-  maxZoom: 19
-}).addTo(MAP);
-
-  // 🚀 viktig: marker at kartet er klart
-  MAP.whenReady(() => {
-    mapReady = true;
-    maybeDrawMarkers();
-  });
-}
 
 function drawPlaceMarkers() {
   if (!MAP || !PLACES.length) return;
