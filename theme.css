@@ -500,6 +500,20 @@ button{ cursor:pointer; border:none }
 .quiz-fasit .a { color: var(--muted); font-size: 0.9rem; }
 
 /* ===================================================== */
+/* 11c) BADGE-BILDE SOM IKON (runde, uten bakgrunn)      */
+/* ===================================================== */
+.badge-image {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: contain;              /* behold proporsjoner */
+  background: transparent;          /* ingen bakgrunnsfarge */
+  display: block;
+  margin: 0 auto 12px auto;         /* sentrert */
+  box-shadow: 0 0 8px rgba(255,255,255,.08); /* lett glød */
+}
+
+/* ===================================================== */
 /* 12) Effekter & media                                  */
 /* ===================================================== */
 @media (max-width:760px){
