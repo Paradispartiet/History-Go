@@ -527,7 +527,7 @@ body:not([class]) .app-frame  { outline-color: var(--primary); }
   border-radius: 10px;
   pointer-events: none;
   z-index: 20;
-  background: rgba(0,0,0,0.6);    /* mørk, men gjennomskinnelig ramme */
+  background: transparent;        /* ✅ fjernet mørk flate */
   box-shadow:
     0 0 12px rgba(0,0,0,.6),
     0 0 22px var(--primary);
