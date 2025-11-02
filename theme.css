@@ -363,7 +363,23 @@ button{ cursor:pointer; border:none }
   background: var(--primary);
   transition: width .4s ease;
 }
+/* ===================================================== */
+/* 10c) Quiz-fade effekt ved avslutning                  */
+/* ===================================================== */
+#quizModal.fade-out .modal-body {
+  animation: quizFadeOut 0.45s ease forwards;
+}
 
+@keyframes quizFadeOut {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -40%) scale(0.95);
+  }
+}
 
 /* ===================================================== */
 /* 11) Merker / badge-kort                               */
