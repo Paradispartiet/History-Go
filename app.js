@@ -1191,3 +1191,13 @@ document.addEventListener("click", e => {
     if (cat) showBadgeModal(cat);
   }
 });
+
+// ==============================
+//  SIKRER AT MARKØRER TEGNES (failsafe)
+// ==============================
+let drawCheck = setInterval(() => {
+  if (mapReady && dataReady && PLACES.length > 0) {
+    maybeDrawMarkers();
+    clearInterval(drawCheck);
+  }
+}, 500);
