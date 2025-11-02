@@ -233,14 +233,11 @@ function maybeDrawMarkers() {
   }
 }
 
-function initMap() {
-  MAP = L.map('map').setView([START.lat, START.lon], START.zoom);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; OpenStreetMap',
-    maxZoom: 19
-  }).addTo(MAP);
-
-  placeLayer = L.layerGroup().addTo(MAP);
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+  attribution: '&copy; <a href="https://carto.com/attributions">CARTO</a>',
+  subdomains: 'abcd',
+  maxZoom: 19
+}).addTo(MAP);
 
   // 🚀 viktig: marker at kartet er klart
   MAP.whenReady(() => {
