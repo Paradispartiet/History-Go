@@ -511,43 +511,29 @@ body:not([class]) .app-frame  { outline-color: var(--primary); }
 .quiz-fasit .a { color: var(--muted); font-size: 0.9rem; }
 
 /* ===================================================== */
-/* 14) RAMME RUNDT APPEN – PULSERENDE OG KLARFARGET      */
+/* 14) RAMME RUNDT APPEN – MØRK OG DISKRET              */
 /* ===================================================== */
-
-@keyframes framePulse {
-  0%   { box-shadow: 0 0 14px var(--primary) inset, 0 0 24px rgba(0,0,0,.4); }
-  50%  { box-shadow: 0 0 22px var(--primary) inset, 0 0 28px rgba(0,0,0,.55); }
-  100% { box-shadow: 0 0 14px var(--primary) inset, 0 0 24px rgba(0,0,0,.4); }
-}
 
 .app-frame {
   position: fixed;
-  inset: 10px;                    /* litt luft fra kanten – så ikke dekker kartet */
-  border: 3px solid var(--primary);
-  border-radius: 10px;
+  inset: 0;                         /* går helt ut til skjermkanten */
+  border: 3px solid var(--primary); /* tynn farget indre strek */
+  outline: 8px solid #000;          /* helsort ytterramme */
+  border-radius: 0;                 /* ingen avrunding */
+  background: transparent;
   pointer-events: none;
   z-index: 20;
-  background: transparent;        /* ✅ fjernet mørk flate */
-  box-shadow:
-    0 0 12px rgba(0,0,0,.6),
-    0 0 22px var(--primary);
-  animation: framePulse 6s ease-in-out infinite;
-  transition: border-color .4s ease, box-shadow .4s ease, background .4s ease;
+  box-shadow: none;                 /* ingen glød */
+  animation: none;                  /* ingen puls */
+  transition: none;
 }
 
-/* Indre glød i kategoriens farge */
+/* Fjernet indre glød */
 .app-frame::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 10px;
-  box-shadow: 0 0 18px var(--primary) inset;
-  opacity: .25;
-  pointer-events: none;
-  transition: box-shadow .4s ease, opacity .4s ease;
+  content: none;
 }
 
-/* Kategori-farger */
+/* Kategori-farger beholdes */
 body.vitenskap .app-frame      { border-color: #9b59b6; }
 body.kunst .app-frame          { border-color: #ffb703; }
 body.by .app-frame             { border-color: #e63946; }
