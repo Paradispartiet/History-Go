@@ -657,9 +657,9 @@ function boot() {
     .then(([places, people]) => {
       PLACES = places || [];
       PEOPLE = people || [];
-      
-dataReady = true;
-if (mapReady) maybeDrawMarkers();
+
+      dataReady = true;
+      if (mapReady) maybeDrawMarkers();
 
       renderNearbyPlaces();
       renderNearbyPeople();
@@ -678,7 +678,7 @@ if (mapReady) maybeDrawMarkers();
             renderNearbyPlaces();
             renderNearbyPeople();
           },
-          () => { },
+          () => {},
           { enableHighAccuracy: true }
         );
       }
@@ -692,12 +692,21 @@ if (mapReady) maybeDrawMarkers();
 
 document.addEventListener('DOMContentLoaded', boot);
 
+// Sikrer at markørene alltid tegnes når kartet og data er ferdig
+document.addEventListener('DOMContentLoaded', () => {
+  const checkReady = setInterval(() => {
+    if (mapReady && dataReady) {
+      maybeDrawMarkers();
+      clearInterval(checkReady);
+    }
+  }, 400);
+});
+
 // Aktiver "Se flere i nærheten"-knappen igjen
 el.seeMore?.addEventListener('click', () => {
   buildSeeMoreNearby();
   openSheet(el.sheetNear);
 });
-
 // ==============================
 // 11. STED-OVERLAY (tekst + personer)
 // ==============================
