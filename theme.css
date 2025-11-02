@@ -232,19 +232,15 @@ button{ cursor:pointer; border:none }
   right: 0;
   bottom: 0;
   z-index: 13;
-  background: rgba(10, 25, 41, 0.96);  /* mørkere og tydelig */
-  border-top: 2px solid rgba(255,255,255,0.12);
+  background: rgba(13, 27, 42, 0.95);  /* fast mørk bakgrunn */
+  border: 1px solid var(--panel-border);
   border-radius: 16px 16px 0 0;
-  box-shadow: 0 -4px 20px rgba(0,0,0,0.6);
+  box-shadow: var(--shadow);
   transform: translateY(100%);
-  opacity: 0;
-  transition: transform .25s ease, opacity .25s ease;
-  backdrop-filter: blur(6px);
+  transition: transform .22s ease, opacity .2s ease;
 }
-
 .sheet[aria-hidden="false"] {
   transform: none;
-  opacity: 1;
 }
 
 .sheet-head {
