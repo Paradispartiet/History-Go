@@ -50,23 +50,6 @@ body{
 }
 .muted{color:var(--muted)}
 
-/* ===================================================== */
-/* RAMME RUNDT APPEN – REN OG FAST VERSJON               */
-/* ===================================================== */
-.app-frame {
-  position: fixed;
-  inset: 0;
-  background: transparent;                 /* ingen svart bakgrunn */
-  outline: 6px solid var(--primary);       /* tydelig farget ramme */
-  border-radius: 0;                        /* kvadratisk */
-  pointer-events: none;                    /* lar alt under klikkes */
-  z-index: 20;                             /* over kartet, under modaler */
-  transition: outline-color .3s ease;
-}
-
-/* Links */
-a{color:#8ec6ff;text-decoration:none}
-a:hover{text-decoration:underline}
 
 /* ===================================================== */
 /* 2) Kart & kartmodus                                   */
@@ -528,17 +511,26 @@ body:not([class]) .app-frame  { outline-color: var(--primary); }
 .quiz-fasit .a { color: var(--muted); font-size: 0.9rem; }
 
 /* ===================================================== */
-/* 14) Dynamisk ramme og kategori-farger                 */
+/* 14) RAMME RUNDT APPEN – PULSERENDE OG KLARFARGET      */
 /* ===================================================== */
+@keyframes framePulse {
+  0%   { box-shadow: 0 0 18px var(--primary), 0 0 30px rgba(0,0,0,.4) inset; }
+  50%  { box-shadow: 0 0 28px var(--primary), 0 0 35px rgba(0,0,0,.55) inset; }
+  100% { box-shadow: 0 0 18px var(--primary), 0 0 30px rgba(0,0,0,.4) inset; }
+}
+
 .app-frame {
   position: fixed;
   inset: 0;
-  border: 2px solid var(--primary);
+  border: 3px solid var(--primary);       /* farget indre kant */
+  outline: 8px solid rgba(0,0,0,0.85);    /* mørk ytterramme */
   border-radius: 8px;
   pointer-events: none;
   z-index: 20;
   background: transparent;
-  box-shadow: 0 0 20px rgba(0,0,0,.45);
+  box-shadow:
+    0 0 10px rgba(0,0,0,.6),
+    0 0 22px var(--primary);
   transition: border-color .4s ease, box-shadow .4s ease;
 }
 
@@ -549,11 +541,23 @@ body:not([class]) .app-frame  { outline-color: var(--primary); }
   inset: 0;
   border-radius: 8px;
   box-shadow: 0 0 20px var(--primary) inset;
-  opacity: .25;
+  opacity: 0.3;
   pointer-events: none;
-  transition: box-shadow .4s ease;
+  transition: box-shadow .4s ease, opacity .4s ease;
 }
 
+.app-frame {
+  position: fixed;
+  inset: 0;
+  border: 3px solid var(--primary);
+  outline: 8px solid rgba(0,0,0,0.85); /* sort ytre ramme */
+  border-radius: 10px;
+  pointer-events: none;
+  z-index: 20;
+  background: transparent;
+  animation: framePulse 6s ease-in-out infinite;
+  transition: border-color .4s ease, box-shadow .4s ease;
+}
 /* Farger fra badges.json */
 body.vitenskap .app-frame      { border-color: #9b59b6; box-shadow: 0 0 20px rgba(155,89,182,.4); }
 body.kunst .app-frame          { border-color: #ffb703; box-shadow: 0 0 20px rgba(255,183,3,.4); }
