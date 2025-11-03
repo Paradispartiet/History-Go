@@ -988,22 +988,25 @@ function runQuizFlow({ title = "Quiz", questions = [], onEnd = () => {} }) {
 }
 
 // ==============================
-// PERSON-POPUP VED FULLFØRT QUIZ
+// PERSON-POPUP VED FULLFØRT QUIZ (FAST VERSJON)
 // ==============================
 function showPersonPopup(person) {
+  // hvis image mangler i objektet, bygg bane automatisk fra id
+  const imgPath = person.image || `bilder/kort/people/${person.id}.PNG`;
+
   const card = document.createElement("div");
   card.className = "person-popup";
   card.innerHTML = `
     <div class="popup-inner">
-      <img src="${person.image || 'default.png'}" alt="${person.name}">
+      <img src="${imgPath}" alt="${person.name}">
       <h3>${person.name}</h3>
       <p>${tagToCat(person.tags)}</p>
     </div>`;
+
   document.body.appendChild(card);
   setTimeout(() => card.classList.add("visible"), 20);
   setTimeout(() => card.remove(), 3000);
 }
-
 // ==============================
 // BADGE-MODAL – VIS FASIT & STATUS
 // ==============================
