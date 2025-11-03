@@ -1132,10 +1132,9 @@ async function showBadgeModal(categoryDisplay) {
   const merits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
   const merit = merits[categoryDisplay] || { level: "Nybegynner", points: 0 };
 
-  // 🔹 hent alle quizer for kategorien og filtrer fullførte
+   // 🔹 hent alle quizer for kategorien og filtrer fullførte
   const all = await loadQuizForCategory(categoryId);
   const done = all.filter(q => completed.includes(q.personId || q.placeId)).reverse();
-}
 
   // bygg HTML
   const html = `
@@ -1194,7 +1193,7 @@ async function showBadgeModal(categoryDisplay) {
   document.addEventListener("keydown", e => {
     if (e.key === "Escape") modal.remove();
   });
-}
+} // 👈 riktig slutt på showBadgeModal()
 
 // 📌 Lytter på klikk i merkesamlingen
 document.addEventListener("click", e => {
