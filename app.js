@@ -86,71 +86,80 @@ const el = {
 };
 
 // ==============================
-// ==============================
-// 3. KATEGORIFUNKSJONER – FULL KORRESPONDANSE MED BADGES
+// 3. KATEGORIFUNKSJONER – FULL KORRESPONDANSE MED BADGES (uten "historie")
 // ==============================
 
-function norm(s=""){
+function norm(s = "") {
   return String(s)
     .toLowerCase()
     .trim()
-    .replace(/æ/g,"ae")
-    .replace(/ø/g,"oe")
-    .replace(/å/g,"aa");
+    .replace(/æ/g, "ae")
+    .replace(/ø/g, "oe")
+    .replace(/å/g, "aa");
 }
 
-// Farger og CSS-klasser (bruker badge-fargene)
-function catColor(cat=""){
+// ------------------------------
+// Farger (bruker badge-fargene)
+// ------------------------------
+function catColor(cat = "") {
   const c = norm(cat);
-  if (c.includes("historie")) return "#1976d2";
   if (c.includes("vitenskap") || c.includes("filosofi")) return "#9b59b6";
   if (c.includes("kunst") || c.includes("kultur")) return "#ffb703";
   if (c.includes("musikk") || c.includes("scene")) return "#ff66cc";
-  if (c.includes("litteratur") || c.includes("poesi")) return "#f6c800";   // 📚 NY LINJE
+  if (c.includes("litteratur") || c.includes("poesi")) return "#f6c800";
   if (c.includes("natur") || c.includes("miljoe")) return "#4caf50";
   if (c.includes("sport") || c.includes("idrett") || c.includes("lek")) return "#2a9d8f";
   if (c.includes("by") || c.includes("arkitektur")) return "#e63946";
   if (c.includes("politikk") || c.includes("samfunn")) return "#c77dff";
   if (c.includes("populaer") || c.includes("pop")) return "#ffb703";
-  if (c.includes("subkultur")) return "#ff66cc";
-  return "#1976d2";
+  if (c.includes("subkultur") || c.includes("urban")) return "#ff66cc";
+  return "#9b59b6"; // fallback
 }
 
-function catClass(cat=""){
+// ------------------------------
+// CSS-klasser for chips/badges
+// ------------------------------
+function catClass(cat = "") {
   const c = norm(cat);
-  if (c.includes("kunst") || c.includes("kultur")) return "kult";
-  if (c.includes("litteratur") || c.includes("poesi")) return "litt";     // 📚 NY LINJE
-  if (c.includes("subkultur")) return "sub";
-  if (c.includes("sport")) return "sport";
-  if (c.includes("natur")) return "natur";
-  if (c.includes("vitenskap") || c.includes("filosofi")) return "viten";
-  if (c.includes("politikk") || c.includes("samfunn")) return "poli";
+  if (c.includes("vitenskap") || c.includes("filosofi")) return "vitenskap";
+  if (c.includes("kunst") || c.includes("kultur")) return "kunst";
   if (c.includes("musikk") || c.includes("scene")) return "musikk";
+  if (c.includes("litteratur") || c.includes("poesi")) return "litteratur";
+  if (c.includes("natur") || c.includes("miljoe")) return "natur";
+  if (c.includes("sport") || c.includes("idrett") || c.includes("lek")) return "sport";
   if (c.includes("by") || c.includes("arkitektur")) return "by";
-  if (c.includes("populaer") || c.includes("pop")) return "pop";
-  return "hist";
+  if (c.includes("politikk") || c.includes("samfunn")) return "politikk";
+  if (c.includes("populaer") || c.includes("pop")) return "populaerkultur";
+  if (c.includes("subkultur") || c.includes("urban")) return "subkultur";
+  return "vitenskap";
 }
 
+// ------------------------------
 // Kategorier brukt i quiz-fil-kartet
+// ------------------------------
 function tagToCat(tags = []) {
   const t = norm(Array.isArray(tags) ? tags.join(" ") : tags || "");
+
+  // 🔹 Viktig: sjekk spesifikke kulturtyper før "kunst/kultur"
+  if (t.includes("subkultur") || t.includes("urban")) return "subkultur";
+  if (t.includes("populaer") || t.includes("pop")) return "populaerkultur";
 
   if (t.includes("vitenskap") || t.includes("filosofi")) return "vitenskap";
   if (t.includes("kunst") || t.includes("kultur")) return "kunst";
   if (t.includes("musikk") || t.includes("scene")) return "musikk";
-  if (t.includes("litteratur") || t.includes("poesi")) return "litteratur"; // 📚 NY LINJE
+  if (t.includes("litteratur") || t.includes("poesi")) return "litteratur";
   if (t.includes("natur") || t.includes("miljoe")) return "natur";
   if (t.includes("sport") || t.includes("idrett") || t.includes("lek")) return "sport";
   if (t.includes("by") || t.includes("arkitektur")) return "by";
   if (t.includes("politikk") || t.includes("samfunn")) return "politikk";
-  if (t.includes("subkultur") || t.includes("urban")) return "subkultur";
-  if (t.includes("populaer") || t.includes("pop")) return "populaerkultur";
-  if (t.includes("historie") || t.includes("historisk")) return "historie";
 
-  return "historie";
+  return "vitenskap"; // fallback
 }
 
-function catIdFromDisplay(name=""){
+// ------------------------------
+// Enkel bridge for visningsnavn
+// ------------------------------
+function catIdFromDisplay(name = "") {
   return tagToCat(name);
 }
 
