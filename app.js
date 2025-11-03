@@ -1124,73 +1124,66 @@ async function showBadgeModal(categoryDisplay) {
 
   // hent alle quizer for kategorien
   const all = await loadQuizForCategory(categoryId);
-  // ta bare de som er fullført
-  const done = all.filter(q =>
-    completed.includes(q.personId || q.placeId)
-  ).reverse(); // 👉 nyeste først
+  const done = all.filter(q => completed.includes(q.personId || q.placeId)).reverse();
 
-// bygg HTML
-const html = `
-  <div class="badge-modal-inner" style="border-top:4px solid ${badge.color}">
-    <button class="badge-close" id="closeBadgeModal">✕</button>
+  // bygg HTML
+  const html = `
+    <div class="badge-modal-inner" style="border-top:4px solid ${badge.color}">
+      <button class="badge-close" id="closeBadgeModal">✕</button>
 
-    ${
-      badge.id
-        ? `<img src="${badge.image || `bilder/merker/${badge.id}.png`}" alt="${badge.name}" class="badge-image"
-                style="width:100%;border-radius:10px;margin-bottom:10px;object-fit:cover;">`
-        : ""
-    }
+      ${
+        badge.id
+          ? `<img src="${badge.image || `bilder/merker/${badge.id}.png`}" alt="${badge.name}" class="badge-image">`
+          : ""
+      }
 
-    <div class="badge-modal-header">
-      <span class="badge-icon-large" style="color:${badge.color}">${badge.icon}</span>
-      <div>
-        <h2>${badge.name}</h2>
-        <p class="muted">Nivå: ${merit.level} · Poeng: ${merit.points}</p>
+      <div class="badge-modal-header">
+        <span class="badge-icon-large" style="color:${badge.color}">${badge.icon}</span>
+        <div>
+          <h2>${badge.name}</h2>
+          <p class="muted">Nivå: ${merit.level} · Poeng: ${merit.points}</p>
+        </div>
       </div>
-    </div>
 
-    <hr>
-    
-    ${
-      done.length
-        ? done.map(q => `
-          <div class="quiz-fasit">
-            <p class="q">${q.question}</p>
-            <p class="a">✅ Riktig svar: <strong>${q.answer}</strong></p>
-          </div>`).join("")
-        : `<p class="muted">Ingen fullførte quizer ennå.</p>`
-    }
-  </div>`;
+      <hr>
 
-// lag modal-element
-let modal = document.getElementById("badgeModal");
-if (!modal) {
-  modal = document.createElement("div");
-  modal.id = "badgeModal";
-  modal.className = "badge-modal";
-  document.body.appendChild(modal);
+      ${
+        done.length
+          ? done.map(q => `
+            <div class="quiz-fasit">
+              <p class="q">${q.question}</p>
+              <p class="a">✅ Riktig svar: <strong>${q.answer}</strong></p>
+            </div>`).join("")
+          : `<p class="muted">Ingen fullførte quizer ennå.</p>`
+      }
+    </div>`;
+
+  // lag modal-element
+  let modal = document.getElementById("badgeModal");
+  if (!modal) {
+    modal = document.createElement("div");
+    modal.id = "badgeModal";
+    modal.className = "badge-modal";
+    document.body.appendChild(modal);
+  }
+
+  modal.innerHTML = html;
+  modal.style.display = "flex";
+  modal.style.background = "transparent";
+  modal.style.zIndex = 9999;
+
+  // lukking
+  const closeBtn = modal.querySelector("#closeBadgeModal");
+  if (closeBtn) closeBtn.onclick = () => modal.remove();
+
+  modal.addEventListener("click", e => {
+    if (e.target.id === "badgeModal") modal.remove();
+  });
+
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape") modal.remove();
+  });
 }
-
-modal.innerHTML = html;
-modal.style.display = "flex";
-
-// 💡 Gjør bakgrunn helt gjennomsiktig (ingen svart slør)
-modal.style.background = "transparent";
-modal.style.zIndex = 9999;
-
-// Lukking ved X eller klikk utenfor
-const closeBtn = modal.querySelector("#closeBadgeModal");
-if (closeBtn) closeBtn.onclick = () => modal.remove();
-
-modal.addEventListener("click", e => {
-  if (e.target.id === "badgeModal") modal.remove();
-});
-
-// Lukking med Escape
-document.addEventListener("keydown", e => {
-  if (e.key === "Escape") modal.remove();
-});
-} // 👈 avslutter showBadgeModal()
 
 // 📌 Lytter på klikk i merkesamlingen
 document.addEventListener("click", e => {
