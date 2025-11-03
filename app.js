@@ -818,12 +818,11 @@ el.btnSeeMap?.addEventListener("click", enterMapMode);
 el.btnExitMap?.addEventListener("click", exitMapMode);
 
 // ==============================
-// 12. QUIZ – DYNAMISK LASTER, MODAL & SCORE (NYTT SYSTEM)
+// 12. QUIZ – DYNAMISK LASTER, MODAL & SCORE
 // ==============================
 
-// Filkartlegging for alle kategorier
+// --- Filkartlegging for alle kategorier ---
 const QUIZ_FILE_MAP = {
-  "historie": "quiz_historie.json",
   "kunst": "quiz_kunst.json",
   "sport": "quiz_sport.json",
   "politikk": "quiz_politikk.json",
@@ -836,250 +835,156 @@ const QUIZ_FILE_MAP = {
   "by": "quiz_by.json"
 };
 
+// --- Laster riktig quizfil etter kategori ---
 async function loadQuizForCategory(categoryId) {
+  const file = QUIZ_FILE_MAP[categoryId];
+  if (!file) return [];
   try {
-    const file = QUIZ_FILE_MAP[categoryId];
-    if (!file) return [];
     const response = await fetch(file, { cache: "no-store" });
-    if (!response.ok) throw new Error();
-    const quizzes = await response.json();
-    if (!Array.isArray(quizzes)) return [];
-    return quizzes.filter(q => (q.categoryId || "").toLowerCase() === categoryId.toLowerCase());
-  } catch (_) {
+    if (!response.ok) return [];
+    const data = await response.json();
+    return Array.isArray(data)
+      ? data.filter(q => (q.categoryId || "").toLowerCase() === categoryId.toLowerCase())
+      : [];
+  } catch {
     return [];
   }
 }
 
-// Bygger modal-UI én gang
 // ==============================
-// QUIZ-UI – REN OG STABIL VERSJON
+// QUIZ-UI – MODAL SOM BYGGES DYNAMISK
 // ==============================
 function ensureQuizUI() {
-  if (!document.getElementById('quizModal')) {
-    const m = document.createElement('div');
-    m.id = 'quizModal';
-    m.className = 'modal';
-    m.innerHTML = `
-      <div class="modal-body">
-        <div class="modal-head">
-          <strong id="quizTitle">Quiz</strong>
-          <button class="ghost" id="quizClose">Lukk</button>
+  if (document.getElementById("quizModal")) return;
+  const m = document.createElement("div");
+  m.id = "quizModal";
+  m.className = "modal";
+  m.innerHTML = `
+    <div class="modal-body">
+      <div class="modal-head">
+        <strong id="quizTitle">Quiz</strong>
+        <button class="ghost" id="quizClose">Lukk</button>
+      </div>
+      <div class="quiz-progress"><div class="bar"></div></div>
+      <div class="sheet-body">
+        <div id="quizQ" style="margin:6px 0 10px;font-weight:600"></div>
+        <div id="quizChoices" class="quiz-choices"></div>
+        <div style="display:flex;justify-content:space-between;margin-top:8px;">
+          <span id="quizFeedback" class="quiz-feedback"></span>
+          <small id="quizProgress" class="muted"></small>
         </div>
-        <div class="quiz-progress"><div class="bar"></div></div>
-        <div class="sheet-body">
-          <div id="quizQ" style="margin:6px 0 10px;font-weight:600"></div>
-          <div id="quizChoices" class="quiz-choices"></div>
-          <div style="display:flex;justify-content:space-between;margin-top:8px;">
-            <span id="quizFeedback" class="quiz-feedback"></span>
-            <small id="quizProgress" class="muted"></small>
-          </div>
-        </div>
-      </div>`;
-    document.body.appendChild(m);
-  }
+      </div>
+    </div>`;
+  document.body.appendChild(m);
 
-  // koble lukking på nytt
-  const modal = document.getElementById('quizModal');
-  modal.querySelector('#quizClose').onclick = closeQuiz;
-  modal.addEventListener('click', e => { if (e.target.id === 'quizModal') closeQuiz(); });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeQuiz(); });
+  // Lukking
+  const modal = document.getElementById("quizModal");
+  modal.querySelector("#quizClose").onclick = closeQuiz;
+  modal.addEventListener("click", e => { if (e.target.id === "quizModal") closeQuiz(); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape") closeQuiz(); });
 }
 
 function openQuiz() {
   ensureQuizUI();
-  const el = document.getElementById('quizModal');
-  el.style.display = 'flex';
-  el.classList.remove('fade-out');
+  const el = document.getElementById("quizModal");
+  el.style.display = "flex";
+  el.classList.remove("fade-out");
 }
 
 function closeQuiz() {
-  const el = document.getElementById('quizModal');
+  const el = document.getElementById("quizModal");
   if (!el) return;
-  el.classList.add('fade-out');
-  setTimeout(() => el.remove(), 450); // matcher CSS-animasjonens varighet
+  el.classList.add("fade-out");
+  setTimeout(() => el.remove(), 450); // matcher CSS-animasjon
 }
 
 // ==============================
 // START QUIZ (person eller sted)
 // ==============================
 async function startQuiz(targetId) {
-  // Finn person eller sted
   const person = PEOPLE.find(p => p.id === targetId);
   const place  = PLACES.find(p => p.id === targetId);
+  if (!person && !place) return showToast("Fant verken person eller sted");
 
-  if (!person && !place) {
-    showToast("Fant verken person eller sted");
-    return;
-  }
-
-  // Bestem kategori (tags for person, category for sted)
-  const displayCat = person ? tagToCat(person.tags) : (place.category || "historie");
+  const displayCat = person ? tagToCat(person.tags) : (place.category || "vitenskap");
   const categoryId = catIdFromDisplay(displayCat);
-
-  // Last riktig quizfil og filtrer til dette målet
   const items = await loadQuizForCategory(categoryId);
-  const questionsForTarget = items.filter(q => q.personId === targetId || q.placeId === targetId);
+  const questions = items.filter(q => q.personId === targetId || q.placeId === targetId);
+  if (!questions.length) return showToast("Ingen quiz tilgjengelig her ennå");
 
-  if (!questionsForTarget.length) {
-    showToast("Ingen quiz tilgjengelig her ennå");
-    return;
-  }
+  const formatted = questions.map(q => ({
+    text: q.question,
+    choices: q.options || [],
+    answerIndex: (q.options || []).findIndex(o => o === q.answer)
+  }));
 
-  const qs = questionsForTarget.map(q => {
-    const idx = (q.options || []).findIndex(o => o === q.answer);
-    return { text: q.question, choices: q.options || [], answerIndex: idx >= 0 ? idx : 0 };
-  });
-
-  const title = person ? person.name : place.name;
-
-  // ✅ Lukker sted-overlay før modalen åpnes
   closePlaceOverlay();
+  openQuiz();
 
-// ✅ Åpner modalen (nå alltid på toppnivå)
-openQuiz();
-
-runQuizFlow({
-  title,
-  questions: qs,
-  onEnd: (correctCount, total) => {
-    // +1 poeng hver tredje fullførte quiz i denne kategorien
-    addCompletedQuizAndMaybePoint(displayCat, targetId);
-
-    // markér personen som samlet (hvis aktuelt)
-    if (person) {
-      peopleCollected[targetId] = true;
-      savePeople();
-      showPersonPopup(person);   // 👈 viser NFT-kortet
-      document.getElementById("gallery")?.scrollIntoView({ behavior: "smooth" }); // 👈 scroll til galleriet
+  runQuizFlow({
+    title: person ? person.name : place.name,
+    questions: formatted,
+    onEnd: (correct, total) => {
+      addCompletedQuizAndMaybePoint(displayCat, targetId);
+      if (person) {
+        peopleCollected[targetId] = true;
+        savePeople();
+        showPersonPopup(person);
+        document.getElementById("gallery")?.scrollIntoView({ behavior: "smooth" });
+      }
+      showToast(`Quiz fullført: ${correct}/${total} 🎉`);
     }
-
-    showToast(`Quiz fullført: ${correctCount}/${total} 🎉`);
-  }
-});
-}
-
-// ==============================
-// RENDER QUIZ-LISTE (KATEGORI-VISNING)
-// ==============================
-document.querySelectorAll(".category-button")?.forEach(btn => {
-  btn.addEventListener("click", async () => {
-    const categoryId = btn.dataset.category;
-    const quizzes = await loadQuizForCategory(categoryId);
-    renderQuizList(quizzes, categoryId);
-  });
-});
-
-function renderQuizList(quizzes, categoryId) {
-  const container = document.getElementById("quiz-container");
-  if (!container) return;
-  container.innerHTML = "";
-
-  if (!quizzes.length) {
-    container.innerHTML = `<p>Ingen spørsmål funnet for denne kategorien.</p>`;
-    return;
-  }
-
-  const title = document.createElement("h2");
-  title.textContent = "Quiz: " + categoryId.charAt(0).toUpperCase() + categoryId.slice(1);
-  container.appendChild(title);
-
-  quizzes.forEach(q => {
-    const card = document.createElement("div");
-    card.className = "quiz-card";
-    card.dataset.category = categoryId;
-
-    const question = document.createElement("p");
-    question.textContent = q.question;
-    card.appendChild(question);
-
-    (q.options || []).forEach(option => {
-      const btn = document.createElement("button");
-      btn.textContent = option;
-      btn.className = "quiz-option";
-      btn.onclick = () => {
-        const isCorrect = option === q.answer;
-        Array.from(card.querySelectorAll("button")).forEach(b => b.disabled = true);
-        if (isCorrect) {
-          btn.classList.add("correct");
-        } else {
-          btn.classList.add("wrong");
-          const correctBtn = Array.from(card.querySelectorAll("button")).find(b => b.textContent === q.answer);
-          if (correctBtn) correctBtn.classList.add("correct");
-        }
-      };
-      card.appendChild(btn);
-    });
-
-    container.appendChild(card);
   });
 }
 
 // ==============================
 // MODAL QUIZ FLOW
 // ==============================
-function runQuizFlow({ title="Quiz", questions=[], onEnd=()=>{} }){
+function runQuizFlow({ title = "Quiz", questions = [], onEnd = () => {} }) {
   ensureQuizUI();
   const qs = {
-    title: document.getElementById('quizTitle'),
-    q: document.getElementById('quizQ'),
-    choices: document.getElementById('quizChoices'),
-    progress: document.getElementById('quizProgress'),
-    feedback: document.getElementById('quizFeedback')
+    title: document.getElementById("quizTitle"),
+    q: document.getElementById("quizQ"),
+    choices: document.getElementById("quizChoices"),
+    progress: document.getElementById("quizProgress"),
+    feedback: document.getElementById("quizFeedback")
   };
   qs.title.textContent = title;
 
   let i = 0, correctCount = 0;
 
-  function renderStep(){
-  const q = questions[i];
-  qs.q.textContent = q.text;
-  qs.choices.innerHTML = q.choices
-    .map((opt, idx)=>`<button data-idx="${idx}">${opt}</button>`)
-    .join('');
-  qs.progress.textContent = `${i+1}/${questions.length}`;
-  qs.feedback.textContent = '';
+  function step() {
+    const q = questions[i];
+    qs.q.textContent = q.text;
+    qs.choices.innerHTML = q.choices.map((opt, idx) =>
+      `<button data-idx="${idx}">${opt}</button>`
+    ).join("");
+    qs.progress.textContent = `${i + 1}/${questions.length}`;
+    qs.feedback.textContent = "";
 
-  // 🟢 Oppdater progress-baren
-  const bar = document.querySelector(".quiz-progress .bar");
-  if (bar) bar.style.width = `${((i + 1) / questions.length) * 100}%`;
+    const bar = document.querySelector(".quiz-progress .bar");
+    if (bar) bar.style.width = `${((i + 1) / questions.length) * 100}%`;
 
-  qs.choices.querySelectorAll('button').forEach(btn=>{
-    btn.onclick = () => {
-      const chosen = Number(btn.dataset.idx);
-      const ok = chosen === Number(q.answerIndex);
-      btn.classList.add(ok ? 'correct' : 'wrong');
-      qs.feedback.textContent = ok ? 'Riktig ✅' : 'Feil ❌';
-      if (ok) correctCount++;
-
-      qs.choices.querySelectorAll('button').forEach(b=>b.disabled = true);
-
-      setTimeout(()=>{
-        i++;
-        if (i < questions.length){
-          renderStep();
-        } else {
-          closeQuiz();
-          onEnd(correctCount, questions.length);
-        }
-      }, QUIZ_FEEDBACK_MS);
-    };
-  });
-}
-  
-  renderStep();
-}
-
-// --- Hent kategorier direkte fra badges.json (ikke hardkod) ---
-async function getQuizCategoriesFromBadges() {
-  try {
-    const res = await fetch("badges.json", { cache: "no-store" });
-    if (!res.ok) return [];
-    const badges = await res.json();
-    // returnerer rekkefølgen fra badges.json
-    return badges.map(b => b.id);
-  } catch {
-    return [];
+    qs.choices.querySelectorAll("button").forEach(btn => {
+      btn.onclick = () => {
+        const ok = Number(btn.dataset.idx) === q.answerIndex;
+        btn.classList.add(ok ? "correct" : "wrong");
+        qs.feedback.textContent = ok ? "Riktig ✅" : "Feil ❌";
+        if (ok) correctCount++;
+        qs.choices.querySelectorAll("button").forEach(b => b.disabled = true);
+        setTimeout(() => {
+          i++;
+          if (i < questions.length) step();
+          else {
+            closeQuiz();
+            onEnd(correctCount, questions.length);
+          }
+        }, QUIZ_FEEDBACK_MS);
+      };
+    });
   }
+
+  step();
 }
 
 // ==============================
@@ -1098,18 +1003,16 @@ function showPersonPopup(person) {
   setTimeout(() => card.classList.add("visible"), 20);
   setTimeout(() => card.remove(), 3000);
 }
+
 // ==============================
-//  BADGE-MODAL – VIS FASIT & STATUS (RETTET)
+// BADGE-MODAL – VIS FASIT & STATUS
 // ==============================
 async function showBadgeModal(categoryDisplay) {
   const categoryId = catIdFromDisplay(categoryDisplay);
   const progress = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
   const completed = progress[categoryId]?.completed || [];
 
-  // 🔹 hent metadata om merker
   const badges = await fetch("badges.json", { cache: "no-store" }).then(r => r.json());
-
-  // 🔹 finn riktig merke uten å blande "kunst" og "scenekunst"
   const badge = badges.find(b => {
     const id = b.id.toLowerCase();
     const name = b.name.toLowerCase();
@@ -1119,25 +1022,17 @@ async function showBadgeModal(categoryDisplay) {
            (cat.includes(id) && !cat.includes("scene"));
   }) || { name: categoryDisplay, color: "#999", icon: "🏅" };
 
-  // 🔹 hent poeng & nivå
   const merits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
   const merit = merits[categoryDisplay] || { level: "Nybegynner", points: 0 };
 
-  // 🔹 hent alle quizer for kategorien og filtrer fullførte
   const all = await loadQuizForCategory(categoryId);
   const done = all.filter(q => completed.includes(q.personId || q.placeId)).reverse();
 
-  // bygg HTML
   const html = `
     <div class="badge-modal-inner" style="border-top:4px solid ${badge.color}">
       <button class="badge-close" id="closeBadgeModal">✕</button>
-
-      ${
-        badge.id
-          ? `<img src="${badge.image || `bilder/merker/${badge.id}.png`}" alt="${badge.name}" class="badge-image">`
-          : ""
-      }
-
+      ${badge.id ? `<img src="${badge.image || `bilder/merker/${badge.id}.png`}" 
+        alt="${badge.name}" class="badge-image">` : ""}
       <div class="badge-modal-header">
         <span class="badge-icon-large" style="color:${badge.color}">${badge.icon}</span>
         <div>
@@ -1145,21 +1040,19 @@ async function showBadgeModal(categoryDisplay) {
           <p class="muted">Nivå: ${merit.level} · Poeng: ${merit.points}</p>
         </div>
       </div>
-
       <hr>
-
       ${
         done.length
           ? done.map(q => `
-            <div class="quiz-fasit">
-              <p class="q">${q.question}</p>
-              <p class="a">✅ Riktig svar: <strong>${q.answer}</strong></p>
-            </div>`).join("")
+              <div class="quiz-fasit">
+                <p class="q">${q.question}</p>
+                <p class="a">✅ Riktig svar: <strong>${q.answer}</strong></p>
+              </div>`
+            ).join("")
           : `<p class="muted">Ingen fullførte quizer ennå.</p>`
       }
     </div>`;
 
-  // lag modal-element
   let modal = document.getElementById("badgeModal");
   if (!modal) {
     modal = document.createElement("div");
@@ -1173,20 +1066,13 @@ async function showBadgeModal(categoryDisplay) {
   modal.style.background = "transparent";
   modal.style.zIndex = 9999;
 
-  // lukking
   const closeBtn = modal.querySelector("#closeBadgeModal");
   if (closeBtn) closeBtn.onclick = () => modal.remove();
-
-  modal.addEventListener("click", e => {
-    if (e.target.id === "badgeModal") modal.remove();
-  });
-
-  document.addEventListener("keydown", e => {
-    if (e.key === "Escape") modal.remove();
-  });
+  modal.addEventListener("click", e => { if (e.target.id === "badgeModal") modal.remove(); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape") modal.remove(); });
 }
 
-// 📌 Lytter på klikk i merkesamlingen
+// --- Lytter på klikk i merkesamlingen ---
 document.addEventListener("click", e => {
   const badgeCard = e.target.closest(".badge-card");
   if (badgeCard) {
@@ -1195,9 +1081,7 @@ document.addEventListener("click", e => {
   }
 });
 
-// ==============================
-//  SIKRER AT MARKØRER TEGNES (failsafe)
-// ==============================
+// --- Failsafe: Tegner markører når alt er lastet ---
 let drawCheck = setInterval(() => {
   if (mapReady && dataReady && PLACES.length > 0) {
     maybeDrawMarkers();
