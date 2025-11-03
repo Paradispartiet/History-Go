@@ -1106,7 +1106,7 @@ function showPersonPopup(person) {
   setTimeout(() => card.remove(), 3000);
 }
 // ==============================
-//  BADGE-MODAL – VIS FASIT & STATUS
+//  BADGE-MODAL – VIS FASIT & STATUS (RETTET)
 // ==============================
 async function showBadgeModal(categoryDisplay) {
   const categoryId = catIdFromDisplay(categoryDisplay);
@@ -1121,8 +1121,6 @@ async function showBadgeModal(categoryDisplay) {
     const id = b.id.toLowerCase();
     const name = b.name.toLowerCase();
     const cat = categoryId.toLowerCase();
-
-    // eksakt eller tydelig samsvar, men unngår delord som "kunst" i "scenekunst"
     return id === cat || name === cat ||
            id === cat.replace(/\s*&\s*/g, "") ||
            (cat.includes(id) && !cat.includes("scene"));
@@ -1132,7 +1130,7 @@ async function showBadgeModal(categoryDisplay) {
   const merits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
   const merit = merits[categoryDisplay] || { level: "Nybegynner", points: 0 };
 
-   // 🔹 hent alle quizer for kategorien og filtrer fullførte
+  // 🔹 hent alle quizer for kategorien og filtrer fullførte
   const all = await loadQuizForCategory(categoryId);
   const done = all.filter(q => completed.includes(q.personId || q.placeId)).reverse();
 
@@ -1193,7 +1191,7 @@ async function showBadgeModal(categoryDisplay) {
   document.addEventListener("keydown", e => {
     if (e.key === "Escape") modal.remove();
   });
-} // 👈 riktig slutt på showBadgeModal()
+}
 
 // 📌 Lytter på klikk i merkesamlingen
 document.addEventListener("click", e => {
