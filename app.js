@@ -1113,20 +1113,29 @@ async function showBadgeModal(categoryDisplay) {
   const progress = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
   const completed = progress[categoryId]?.completed || [];
 
-  // hent metadata om merket
+  // 🔹 hent metadata om merker
   const badges = await fetch("badges.json", { cache: "no-store" }).then(r => r.json());
-  const badge = badges.find(b =>
-    categoryId.toLowerCase().includes(b.id) ||
-    b.name.toLowerCase().includes(categoryId.toLowerCase())
-  ) || { name: categoryDisplay, color: "#999", icon: "🏅" };
 
-  // hent poeng & nivå
+  // 🔹 finn riktig merke uten å blande "kunst" og "scenekunst"
+  const badge = badges.find(b => {
+    const id = b.id.toLowerCase();
+    const name = b.name.toLowerCase();
+    const cat = categoryId.toLowerCase();
+
+    // eksakt eller tydelig samsvar, men unngår delord som "kunst" i "scenekunst"
+    return id === cat || name === cat ||
+           id === cat.replace(/\s*&\s*/g, "") ||
+           (cat.includes(id) && !cat.includes("scene"));
+  }) || { name: categoryDisplay, color: "#999", icon: "🏅" };
+
+  // 🔹 hent poeng & nivå
   const merits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
   const merit = merits[categoryDisplay] || { level: "Nybegynner", points: 0 };
 
-  // hent alle quizer for kategorien
+  // 🔹 hent alle quizer for kategorien og filtrer fullførte
   const all = await loadQuizForCategory(categoryId);
   const done = all.filter(q => completed.includes(q.personId || q.placeId)).reverse();
+}
 
   // bygg HTML
   const html = `
