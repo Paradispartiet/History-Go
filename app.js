@@ -463,7 +463,9 @@ async function renderMerits() {
       cat.toLowerCase().includes(b.id) ||
       b.name.toLowerCase().includes(cat.toLowerCase())
     );
-    const icon = badge ? badge.icon : "⭐";
+    const icon = badge
+  ? `<img src="${badge.image}" alt="${badge.name}" class="badge-thumb">`
+  : "⭐";
     const color = badge ? badge.color : "#888";
 
     let nextLabel = "maks nivå";
