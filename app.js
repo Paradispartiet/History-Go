@@ -851,22 +851,21 @@ async function loadQuizForCategory(categoryId) {
 }
 
 // Bygger modal-UI én gang
+// ==============================
+// QUIZ-UI – REN OG STABIL VERSJON
+// ==============================
 function ensureQuizUI() {
-  let m = document.getElementById('quizModal');
-  if (!m) {
-    m = document.createElement('div');
-    m.className = 'modal';
+  if (!document.getElementById('quizModal')) {
+    const m = document.createElement('div');
     m.id = 'quizModal';
-    m.setAttribute('aria-hidden','true');
+    m.className = 'modal';
     m.innerHTML = `
       <div class="modal-body">
         <div class="modal-head">
           <strong id="quizTitle">Quiz</strong>
           <button class="ghost" id="quizClose">Lukk</button>
         </div>
-
         <div class="quiz-progress"><div class="bar"></div></div>
-
         <div class="sheet-body">
           <div id="quizQ" style="margin:6px 0 10px;font-weight:600"></div>
           <div id="quizChoices" class="quiz-choices"></div>
@@ -877,35 +876,29 @@ function ensureQuizUI() {
         </div>
       </div>`;
     document.body.appendChild(m);
-
-    // Flytt opp i DOM om nødvendig
-    const main = document.querySelector("main");
-    if (main) document.body.insertBefore(m, main);
   }
 
-  // alltid koble lukking på nytt
-  const closeBtn = m.querySelector('#quizClose');
-  if (closeBtn) closeBtn.onclick = closeQuiz;
-
-  m.addEventListener('click', e => {
-    if (e.target.id === 'quizModal') closeQuiz();
-  });
-
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') closeQuiz();
-  });
+  // koble lukking på nytt
+  const modal = document.getElementById('quizModal');
+  modal.querySelector('#quizClose').onclick = closeQuiz;
+  modal.addEventListener('click', e => { if (e.target.id === 'quizModal') closeQuiz(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeQuiz(); });
 }
 
 function openQuiz() {
   ensureQuizUI();
   const el = document.getElementById('quizModal');
-  if (el) el.setAttribute('aria-hidden','false');
+  el.style.display = 'flex';
+  el.classList.remove('fade-out');
 }
 
 function closeQuiz() {
   const el = document.getElementById('quizModal');
-  if (el) el.setAttribute('aria-hidden','true');
+  if (!el) return;
+  el.classList.add('fade-out');
+  setTimeout(() => el.remove(), 450); // matcher CSS-animasjonens varighet
 }
+
 // ==============================
 // START QUIZ (person eller sted)
 // ==============================
