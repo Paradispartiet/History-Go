@@ -357,24 +357,6 @@ function renderNearbyPlaces(){
   el.list.innerHTML = sorted.slice(0, NEARBY_LIMIT).map(renderPlaceCard).join("");
 }
 
-function renderNearbyPeople(){
-  if (!currentPos) { el.nearPeople.innerHTML = ""; return; }
-  const candidates = PEOPLE
-    .map(pr=>{
-      if ((pr.lat==null||pr.lon==null) && pr.placeId){
-        const plc = PLACES.find(x=>x.id===pr.placeId);
-        if (plc){ pr.lat = plc.lat; pr.lon = plc.lon; }
-      }
-      return ({ ...pr, _d: Math.round(distMeters(currentPos,{lat:pr.lat,lon:pr.lon})) });
-    })
-    .filter(pr => pr.lat!=null && pr.lon!=null)
-    .filter(pr => pr._d <= (pr.r||200) + (el.test?.checked ? 5000 : 0))
-    .sort((a,b)=>a._d-b._d)
-    .slice(0, 6);
-
-  el.nearPeople.innerHTML = candidates.map(renderPersonCardInline).join("");
-}
-
 function renderPlaceCard(p){
   const dist = p._d==null ? "" : (p._d<1000? `${p._d} m` : `${(p._d/1000).toFixed(1)} km`);
   return `
@@ -649,7 +631,7 @@ function wire() {
       el.status.textContent = "Testmodus: Oslo sentrum";
       setUser(currentPos.lat, currentPos.lon);
       renderNearbyPlaces();
-      renderNearbyPeople();
+      // renderNearbyPeople();  ← fjernet
       showToast("Testmodus PÅ");
     } else {
       showToast("Testmodus AV");
@@ -662,7 +644,7 @@ function requestLocation() {
   if (!navigator.geolocation) {
     el.status.textContent = "Geolokasjon støttes ikke.";
     renderNearbyPlaces();
-    renderNearbyPeople();
+    // renderNearbyPeople();  ← fjernet
     return;
   }
   el.status.textContent = "Henter posisjon…";
@@ -671,11 +653,11 @@ function requestLocation() {
     el.status.textContent = "Posisjon funnet.";
     setUser(currentPos.lat, currentPos.lon);
     renderNearbyPlaces();
-    renderNearbyPeople();
+    // renderNearbyPeople();  ← fjernet
   }, _ => {
     el.status.textContent = "Kunne ikke hente posisjon.";
     renderNearbyPlaces();
-    renderNearbyPeople();
+    // renderNearbyPeople();  ← fjernet
   }, { enableHighAccuracy: true, timeout: 8000, maximumAge: 10000 });
 }
 
@@ -695,7 +677,7 @@ function boot() {
       if (mapReady) maybeDrawMarkers();
 
       renderNearbyPlaces();
-      renderNearbyPeople();
+      // renderNearbyPeople();  ← fjernet
       renderCollection();
       renderMerits();
       renderGallery();
@@ -709,7 +691,7 @@ function boot() {
             currentPos = { lat: latitude, lon: longitude };
             setUser(latitude, longitude);
             renderNearbyPlaces();
-            renderNearbyPeople();
+            // renderNearbyPeople();  ← fjernet
           },
           () => {},
           { enableHighAccuracy: true }
@@ -725,21 +707,6 @@ function boot() {
 
 document.addEventListener('DOMContentLoaded', boot);
 
-// Sikrer at markørene alltid tegnes når kartet og data er ferdig
-document.addEventListener('DOMContentLoaded', () => {
-  const checkReady = setInterval(() => {
-    if (mapReady && dataReady) {
-      maybeDrawMarkers();
-      clearInterval(checkReady);
-    }
-  }, 400);
-});
-
-// Aktiver "Se flere i nærheten"-knappen igjen
-el.seeMore?.addEventListener('click', () => {
-  buildSeeMoreNearby();
-  openSheet(el.sheetNear);
-});
 // ==============================
 // 11. STED-OVERLAY (tekst + personer)
 // ==============================
