@@ -59,18 +59,6 @@
       <div id="nearbyList" class="cards"></div>
     </section>
 
-    <!-- Personer -->
-    <section class="panel">
-      <h2>Personer i nærheten</h2>
-      <div id="nearbyPeople" class="cards"></div>
-
-      <div style="margin-top:12px;display:flex;flex-wrap:wrap;gap:8px;">
-        <button class="primary" onclick="showRouteOverlay('vitenskapsruten')">🧠 Vitenskapsruten</button>
-        <button class="primary" onclick="showRouteOverlay('kunstruten_sentrum')">🎨 Kunstruten</button>
-        <button class="primary" onclick="showRouteOverlay('skulpturruten_vigeland')">🗿 Skulpturruten</button>
-      </div>
-    </section>
-
 <!-- Merkesamling -->
 <section class="panel">
   <h2 class="merkesamling-title">
@@ -88,6 +76,18 @@
   <div id="gallery" class="chips"></div>
 </section>
 
+<!-- Ruter -->
+<section class="panel">
+  <h2>Utforsk ruter</h2>
+  <p class="muted">Følg tematiske ruter gjennom byens historie, kunst og vitenskap.</p>
+
+  <div class="route-buttons" style="margin-top:12px;display:flex;flex-wrap:wrap;gap:10px;">
+    <button class="primary" onclick="showRouteOverlay('vitenskapsruten')">🧠 Vitenskapsruten</button>
+    <button class="primary" onclick="showRouteOverlay('kunstruten_sentrum')">🎨 Kunstruten</button>
+    <button class="primary" onclick="showRouteOverlay('skulpturruten_vigeland')">🗿 Skulpturruten</button>
+  </div>
+</section>
+    
   <!-- “Se flere i nærheten” sheet -->
   <div id="sheetNearby" class="sheet" aria-hidden="true">
     <div class="sheet-head">
