@@ -465,7 +465,7 @@ function buildSeeMoreNearby(){
 
 
 // ==============================
-// 8. MERKER, NIVÅER OG FREMGANG (KORRIGERT VERSJON)
+// 8. MERKER, NIVÅER OG FREMGANG (OPPDATERT – NIVÅ HENTES FRA BADGES.JSON)
 // ==============================
 async function renderMerits() {
   const container = document.getElementById("merits");
@@ -474,49 +474,56 @@ async function renderMerits() {
   const badges = await fetch("badges.json", { cache: "no-store" }).then(r => r.json());
   const localMerits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
 
-  // Hvis ingen lagrede data: lag tomme kategorier basert på badges
   const cats = Object.keys(localMerits).length
     ? Object.keys(localMerits)
     : badges.map(b => b.name);
 
+  // Hjelpefunksjon: velg riktig medalje basert på nivåets plassering i badge.tiers
+  function medalByIndex(index) {
+    if (index <= 0) return "🥉";   // første nivå
+    if (index === 1) return "🥈";  // andre nivå
+    if (index === 2) return "🥇";  // tredje nivå
+    return "🏆";                   // alt over tredje = toppnivå
+  }
+
   container.innerHTML = cats.map(cat => {
     const merit = localMerits[cat] || { level: "Nybegynner", points: 0 };
+
+    // Finn badge for denne kategorien
     const badge = badges.find(b =>
       cat.toLowerCase().includes(b.id) ||
       b.name.toLowerCase().includes(cat.toLowerCase())
     );
-    const icon = badge
-  ? `<img src="${badge.image}" alt="${badge.name}" class="badge-thumb">`
-  : "⭐";
-    const color = badge ? badge.color : "#888";
+    if (!badge) return "";
 
-    let nextLabel = "maks nivå";
-    let nextThreshold = merit.points;
-    if (badge) {
-      const next = badge.tiers.find(t => merit.points < t.threshold);
-      if (next) {
-        nextLabel = next.label;
-        nextThreshold = next.threshold;
-      }
-    }
+    // Finn riktig nivå basert på badge.tiers
+    const tierIndex = badge.tiers.findIndex(t => t.label === merit.level);
+    const medal = medalByIndex(tierIndex);
+
+    const icon = `<img src="${badge.image}" alt="${badge.name}" class="badge-mini-icon">`;
+    const color = badge.color || "#888";
 
     return `
-      <div class="card badge-card">
-        <div class="badge-icon-ring" style="border-color:${color}">
-          <span class="badge-icon">${icon}</span>
-        </div>
-        <div class="badge-info">
-          <strong>${cat}</strong><br>
-          <small>${merit.points}/${nextThreshold} poeng (→ ${nextLabel})</small>
-        </div>
+      <div class="badge-mini" data-badge="${badge.id}" style="--badge-color:${color}" title="${badge.name} – nivå: ${merit.level}">
+        ${icon}
+        <div class="badge-level">${medal}</div>
+        <div class="badge-mini-label">${badge.name}</div>
       </div>`;
   }).join("");
+
+  // Klikk for å åpne detaljmodal
+  container.querySelectorAll(".badge-mini").forEach(el => {
+    el.addEventListener("click", () => {
+      const name = el.querySelector(".badge-mini-label")?.textContent;
+      if (name) showBadgeModal(name);
+    });
+  });
 }
 
 function pulseBadge(cat) {
-  const cards = document.querySelectorAll(".badge-card");
+  const cards = document.querySelectorAll(".badge-mini");
   cards.forEach(card => {
-    const name = card.querySelector(".badge-info strong")?.textContent || "";
+    const name = card.querySelector(".badge-mini-label")?.textContent || "";
     if (name.trim().toLowerCase() === cat.trim().toLowerCase()) {
       card.classList.add("badge-pulse");
       setTimeout(() => card.classList.remove("badge-pulse"), 1200);
@@ -540,13 +547,6 @@ async function updateMeritLevel(cat, newPoints) {
       break;
     }
   }
-}
-
-function updateBadgeDisplay(categoryId) {
-  const display = document.getElementById("progress-display");
-  if (!display) return;
-  const rec = userProgress[categoryId] || { correct: 0, points: 0 };
-  display.textContent = `Riktige svar: ${rec.correct} • Poeng: ${rec.points}`;
 }
 
 // =====================================================
