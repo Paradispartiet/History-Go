@@ -425,13 +425,35 @@ function renderCollection(){
     </span>`).join("");
 }
 
-function renderGallery(){
+function renderGallery() {
   const got = PEOPLE.filter(p => !!peopleCollected[p.id]);
-  el.gallery.innerHTML = got.length ? got.map(p=>`
-    <span class="badge ${catClass(tagToCat(p.tags))}" title="${p.name}">
-      <span class="i" style="background:${catColor(tagToCat(p.tags))}"></span> ${p.name}
-    </span>
-  `).join("") : `<div class="muted">Samle personer ved å møte dem og klare quizen.</div>`;
+  if (!el.gallery) return;
+
+  if (!got.length) {
+    el.gallery.innerHTML = `<div class="muted">Samle personer ved å møte dem og klare quizen.</div>`;
+    return;
+  }
+
+  el.gallery.innerHTML = got.map(p => {
+    const imgPath = p.image || `bilder/kort/people/${p.id}.PNG`;
+    const cat = tagToCat(p.tags);
+    const color = catColor(cat);
+
+    return `
+      <div class="person-card" data-person="${p.id}" title="${p.name}">
+        <img src="${imgPath}" alt="${p.name}" class="person-thumb">
+        <div class="person-label" style="color:${color}">${p.name}</div>
+      </div>`;
+  }).join("");
+
+  // Klikk åpner popup-kortet igjen
+  el.gallery.querySelectorAll(".person-card").forEach(card => {
+    card.addEventListener("click", () => {
+      const id = card.dataset.person;
+      const person = PEOPLE.find(p => p.id === id);
+      if (person) showPersonPopup(person);
+    });
+  });
 }
 
 function buildSeeMoreNearby(){
