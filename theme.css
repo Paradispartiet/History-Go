@@ -387,12 +387,13 @@ button{ cursor:pointer; border:none }
 }
 
 /* ===================================================== */
-/* 11) Merker / badge-kort                               */
+/* 11) Merker / Badge-kort – kompakt, fargerik og interaktiv */
 /* ===================================================== */
+
 .merkesamling-title {
   font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
   font-weight: 600;
-  font-size: 1.3rem;   /* litt større */
+  font-size: 1.3rem;
   color: var(--yellow);
   display: flex;
   align-items: center;
@@ -401,54 +402,72 @@ button{ cursor:pointer; border:none }
   margin-bottom: 0.8rem;
 }
 
-#merits { display: grid; gap: 10px; }
-
-.badge-card {
-  display: flex;
+/* === Samlet grid for alle merker === */
+#merits {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
   gap: 12px;
-  align-items: center;
-  background: rgba(255,255,255,.02);
+  margin-top: 10px;
+}
+
+/* === Individuelt merke === */
+.badge-mini {
+  position: relative;
+  background: rgba(255,255,255,0.03);
   border: 1px solid var(--panel-border);
-  border-radius: var(--radius);
-  padding: 14px 16px;  /* mer luft */
+  border-radius: 10px;
+  padding: 10px 6px 12px 6px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform .25s ease, box-shadow .25s ease;
+  box-shadow: 0 0 6px rgba(0,0,0,0.25);
 }
 
-.badge-icon-ring {
-  width: 42px;
-  height: 42px;
-  border-radius: 999px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 3px solid var(--primary);
+.badge-mini:hover {
+  transform: scale(1.06);
+  box-shadow: 0 0 10px rgba(255,255,255,0.15);
 }
 
-.badge-thumb {
-  width: 32px;
-  height: 32px;
+/* === Ikon med fargering === */
+.badge-mini-icon {
+  width: 46px;
+  height: 46px;
   border-radius: 50%;
   object-fit: contain;
-  background: transparent;
   display: block;
+  margin: 0 auto 6px auto;
+  background: #111;
+  border: 3px solid var(--badge-color, rgba(255,255,255,0.25));
+  box-shadow: 0 0 6px var(--badge-color, rgba(255,255,255,0.2));
 }
 
-.badge-info small {
-  color: var(--muted);
+/* === Medalje (nivåindikator) === */
+.badge-level {
+  font-size: 1.2rem;
+  line-height: 1;
+  margin-bottom: 4px;
+  color: var(--yellow);
 }
 
-.badge-icon-ring:hover .badge-thumb {
-  transform: scale(1.08);
-  filter: brightness(1.15);
-  transition: transform .25s ease, filter .25s ease;
+/* === Kategorinavn === */
+.badge-mini-label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #fff;
+  line-height: 1.2;
+  letter-spacing: 0.2px;
+  white-space: normal;
 }
 
-/* Puls ved nivåoppnåelse */
+/* === Puls-effekt ved nivåoppnåelse === */
 @keyframes badgePulse {
   0%   { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,255,255,0); }
-  40%  { transform: scale(1.06); box-shadow: 0 0 10px 4px rgba(255,255,255,.16); }
+  40%  { transform: scale(1.08); box-shadow: 0 0 12px 4px rgba(255,255,255,.15); }
   100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,255,255,0); }
 }
-.badge-pulse { animation: badgePulse 1.2s ease-out; }
+.badge-pulse {
+  animation: badgePulse 1s ease-out;
+}
 
 
 /* ===================================================== */
