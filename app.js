@@ -988,25 +988,66 @@ function runQuizFlow({ title = "Quiz", questions = [], onEnd = () => {} }) {
 }
 
 // ==============================
-// PERSON-POPUP VED FULLFØRT QUIZ (FAST VERSJON)
+// PERSON-POPUP VED FULLFØRT QUIZ (FORBEDRET SAMLEKORT-VISNING)
 // ==============================
 function showPersonPopup(person) {
-  // hvis image mangler i objektet, bygg bane automatisk fra id
   const imgPath = person.image || `bilder/kort/people/${person.id}.PNG`;
+  const cat = tagToCat(person.tags);
+  const desc = person.desc || "Ingen beskrivelse tilgjengelig.";
 
   const card = document.createElement("div");
   card.className = "person-popup";
   card.innerHTML = `
-    <div class="popup-inner">
-      <img src="${imgPath}" alt="${person.name}">
-      <h3>${person.name}</h3>
-      <p>${tagToCat(person.tags)}</p>
+    <div class="popup-inner" 
+         style="width:280px;max-width:80vw;background:rgba(15,15,20,0.95);
+                color:#fff;border-radius:12px;padding:18px;text-align:center;
+                box-shadow:0 0 20px rgba(0,0,0,0.6);display:flex;
+                flex-direction:column;align-items:center;animation:fadeIn .4s ease;">
+      
+      <img src="${imgPath}" alt="${person.name}"
+           style="width:180px;height:180px;object-fit:contain;object-position:center;
+                  border-radius:8px;margin-bottom:10px;">
+
+      <h3 style="margin:6px 0 4px;font-size:1.25em;">${person.name}</h3>
+      <p style="margin:0 0 10px;color:#ccc;font-size:0.9em;">${cat}</p>
+
+      <p style="font-size:0.85em;line-height:1.4;color:#ddd;margin:0 0 14px;">
+        ${desc}
+      </p>
+
+      <div style="background:#222;padding:8px 10px;border-radius:6px;font-size:0.9em;
+                  color:#f6c800;display:inline-block;">
+        🏅 Du har nå samlet kortet for <strong>${person.name}</strong>!
+      </div>
     </div>`;
 
   document.body.appendChild(card);
   setTimeout(() => card.classList.add("visible"), 20);
-  setTimeout(() => card.remove(), 3000);
+  setTimeout(() => card.remove(), 4200);
 }
+
+// Enkle animasjonsstiler – legg bare inn én gang
+const style = document.createElement("style");
+style.textContent = `
+.person-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.9);
+  opacity: 0;
+  transition: all 0.4s ease;
+  z-index: 9999;
+}
+.person-popup.visible {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+}
+@keyframes fadeIn {
+  from {opacity:0;transform:translate(-50%,-50%) scale(0.85);}
+  to   {opacity:1;transform:translate(-50%,-50%) scale(1);}
+}`;
+document.head.appendChild(style);
+
 // ==============================
 // BADGE-MODAL – VIS FASIT & STATUS
 // ==============================
