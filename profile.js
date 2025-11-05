@@ -91,26 +91,56 @@ document.getElementById("editProfileBtn")?.addEventListener("click", openProfile
 // --------------------------------------
 // DEL PROFILKORT (vanlig skjermbilde)
 // --------------------------------------
-async function shareProfileCard() {
-  const card = document.getElementById("profileCard");
-  if (!card) return showToast("Fant ikke profilkortet");
-  showToast("Lager bilde …");
-  const canvas = await html2canvas(card, { backgroundColor: "#111", scale: 3, useCORS: true });
-  const dataUrl = canvas.toDataURL("image/png");
-  const blob = await fetch(dataUrl).then(r => r.blob());
-  const file = new File([blob], "profilkort.png", { type: "image/png" });
-  if (navigator.share && navigator.canShare({ files: [file] })) {
-    await navigator.share({ files: [file], title: "Mitt History Go-kort", text: "Se min fremgang i History Go!" });
-    showToast("Profilkort delt ✅");
-  } else {
-    const a = document.createElement("a");
-    a.href = dataUrl;
-    a.download = "profilkort.png";
-    a.click();
-    showToast("Bilde lastet ned ✅");
-  }
+function openProfileModal() {
+  const modal = document.createElement("div");
+  modal.className = "profile-modal";
+  modal.innerHTML = `
+    <div class="profile-modal-inner">
+      <h3>Endre profil</h3>
+      <label>Navn</label>
+      <input id="newName" value="${localStorage.getItem("user_name") || "Utforsker #182"}">
+      <label>Emoji</label>
+      <input id="newEmoji" maxlength="2" value="${localStorage.getItem("user_avatar") || "🧭"}">
+      <label>Farge</label>
+      <input id="newColor" type="color" value="${localStorage.getItem("user_color") || "#f6c800"}">
+      <button id="saveProfile">Lagre</button>
+      <button id="cancelProfile" style="margin-left:6px;background:#444;color:#fff;">Avbryt</button>
+    </div>`;
+  document.body.appendChild(modal);
+  modal.style.display = "flex"; // ✅ NØDVENDIG FOR Å VISE MODALEN
+
+  modal.querySelector("#cancelProfile").onclick = () => modal.remove();
+
+  modal.querySelector("#saveProfile").onclick = () => {
+    const newName = modal.querySelector("#newName").value.trim() || "Utforsker #182";
+    const newEmoji = modal.querySelector("#newEmoji").value.trim() || "🧭";
+    const newColor = modal.querySelector("#newColor").value;
+
+    // 🔹 lagre til localStorage
+    localStorage.setItem("user_name", newName);
+    localStorage.setItem("user_avatar", newEmoji);
+    localStorage.setItem("user_color", newColor);
+
+    // 🔹 oppdater direkte i DOM (uten å vente på reload)
+    const nameEl = document.getElementById("profileName");
+    const avatarEl = document.getElementById("profileAvatar");
+    if (nameEl) nameEl.textContent = newName;
+    if (avatarEl) {
+      avatarEl.textContent = newEmoji;
+      avatarEl.style.borderColor = newColor;
+    }
+
+    modal.remove();
+    showToast("Profil oppdatert ✅");
+
+    // 🔹 kjør renderProfileCard trygt hvis data finnes
+    if (typeof renderProfileCard === "function") {
+      try { renderProfileCard(); } catch(e) {}
+    }
+  };
 }
-document.getElementById("shareProfileBtn")?.addEventListener("click", shareProfileCard);
+
+document.getElementById("editProfileBtn")?.addEventListener("click", openProfileModal);
 
 // --------------------------------------
 // HISTORIEKORT – TIDSLINJE (PROFILVERSJON)
