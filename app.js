@@ -614,6 +614,11 @@ document.querySelectorAll('[data-close]').forEach(btn=>{
   });
 });
 
+el.seeMore?.addEventListener('click', () => {
+  buildSeeMoreNearby();
+  openSheet(el.sheetNear);
+});
+
 // ==============================
 // 10. INITIALISERING OG BOOT (REN OG KORREKT)
 // ==============================
