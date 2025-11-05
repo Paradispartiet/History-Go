@@ -217,7 +217,7 @@ function initMap() {
       mapEl.style.inset = '0';
       mapEl.style.width = '100%';
       mapEl.style.height = '100%';
-      mapEl.style.zIndex = '0';
+      mapEl.style.zIndex = '-1';
     }
   });
 }
