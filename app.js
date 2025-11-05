@@ -1163,3 +1163,243 @@ let drawCheck = setInterval(() => {
     clearInterval(drawCheck);
   }
 }, 500);
+
+// ============================================================
+// === START PROFIL & MERKER – HISTORY GO v18+ ===============
+// ============================================================
+
+// --------------------------------------
+// PROFILKORT OG RENDERING
+// --------------------------------------
+function renderProfileCard() {
+  const name = localStorage.getItem("user_name") || "Utforsker #182";
+  const emoji = localStorage.getItem("user_avatar") || "🧭";
+  const color = localStorage.getItem("user_color") || "#f6c800";
+  const visitedCount = Object.keys(visited).length;
+  const peopleCount = Object.keys(peopleCollected).length;
+  const fav = Object.entries(merits).sort((a,b)=>b[1].points-a[1].points)[0];
+  const favCat = fav ? fav[0] : "Ingen ennå";
+
+  const avatar = document.getElementById("profileAvatar");
+  if (!avatar) return; // sikkerhet ved første lasting
+
+  document.getElementById("profileName").textContent = name;
+  avatar.textContent = emoji;
+  avatar.style.borderColor = color;
+  document.getElementById("statPlaces").textContent = `${visitedCount} steder`;
+  document.getElementById("statPeople").textContent = `${peopleCount} personer`;
+  document.getElementById("statCategory").textContent = `Favoritt: ${favCat}`;
+}
+document.addEventListener("DOMContentLoaded", renderProfileCard);
+
+// --------------------------------------
+// PROFIL-REDIGERINGSMODAL
+// --------------------------------------
+function openProfileModal() {
+  const modal = document.createElement("div");
+  modal.className = "profile-modal";
+  modal.innerHTML = `
+    <div class="profile-modal-inner">
+      <h3>Endre profil</h3>
+      <label>Navn</label>
+      <input id="newName" value="${localStorage.getItem("user_name") || "Utforsker #182"}">
+      <label>Emoji</label>
+      <input id="newEmoji" maxlength="2" value="${localStorage.getItem("user_avatar") || "🧭"}">
+      <label>Farge</label>
+      <input id="newColor" type="color" value="${localStorage.getItem("user_color") || "#f6c800"}">
+      <button id="saveProfile">Lagre</button>
+      <button id="cancelProfile" style="margin-left:6px;background:#444;color:#fff;">Avbryt</button>
+    </div>`;
+  document.body.appendChild(modal);
+
+  modal.querySelector("#cancelProfile").onclick = () => modal.remove();
+  modal.querySelector("#saveProfile").onclick = () => {
+    localStorage.setItem("user_name", modal.querySelector("#newName").value.trim() || "Utforsker #182");
+    localStorage.setItem("user_avatar", modal.querySelector("#newEmoji").value.trim() || "🧭");
+    localStorage.setItem("user_color", modal.querySelector("#newColor").value);
+    modal.remove();
+    renderProfileCard();
+    showToast("Profil oppdatert ✅");
+  };
+}
+document.getElementById("editProfileBtn")?.addEventListener("click", openProfileModal);
+
+// --------------------------------------
+// DEL PROFILKORT (vanlig skjermbilde)
+// --------------------------------------
+async function shareProfileCard() {
+  const card = document.getElementById("profileCard");
+  if (!card) return showToast("Fant ikke profilkortet");
+  showToast("Lager bilde …");
+  const canvas = await html2canvas(card, { backgroundColor: "#111", scale: 3, useCORS: true });
+  const dataUrl = canvas.toDataURL("image/png");
+  const blob = await fetch(dataUrl).then(r => r.blob());
+  const file = new File([blob], "profilkort.png", { type: "image/png" });
+  if (navigator.share && navigator.canShare({ files: [file] })) {
+    await navigator.share({ files: [file], title: "Mitt History Go-kort", text: "Se min fremgang i History Go!" });
+    showToast("Profilkort delt ✅");
+  } else {
+    const a = document.createElement("a");
+    a.href = dataUrl;
+    a.download = "profilkort.png";
+    a.click();
+    showToast("Bilde lastet ned ✅");
+  }
+}
+document.getElementById("shareProfileBtn")?.addEventListener("click", shareProfileCard);
+
+// --------------------------------------
+// PLAKAT-VARIANT (samlekortstil)
+// --------------------------------------
+async function makeProfilePoster() {
+  const poster = document.getElementById("profilePoster");
+  if (!poster) return;
+  const name = localStorage.getItem("user_name") || "Utforsker #182";
+  const emoji = localStorage.getItem("user_avatar") || "🧭";
+  const color = localStorage.getItem("user_color") || "#f6c800";
+  const visitedCount = Object.keys(visited).length;
+  const peopleCount = Object.keys(peopleCollected).length;
+  const fav = Object.entries(merits).sort((a,b)=>b[1].points-a[1].points)[0];
+  const favCat = fav ? fav[0] : "Ingen ennå";
+
+  document.getElementById("posterAvatar").textContent = emoji;
+  document.getElementById("posterAvatar").style.borderColor = color;
+  document.getElementById("posterName").textContent = name;
+  document.getElementById("posterStats").textContent = `${visitedCount} steder · ${peopleCount} personer · Favoritt: ${favCat}`;
+
+  poster.style.display = "block";
+  const canvas = await html2canvas(poster, { backgroundColor: "#0a0a0a", scale: 3, useCORS: true });
+  const dataUrl = canvas.toDataURL("image/png");
+  const blob = await fetch(dataUrl).then(r => r.blob());
+  const file = new File([blob], "historygo_kort.png", { type: "image/png" });
+  if (navigator.share && navigator.canShare({ files: [file] })) {
+    await navigator.share({ files: [file], title: "Mitt History Go-kort", text: "Mitt samlekort i History Go!" });
+    showToast("Kort delt ✅");
+  } else {
+    const a = document.createElement("a");
+    a.href = dataUrl;
+    a.download = "historygo_kort.png";
+    a.click();
+    showToast("Kort lagret ✅");
+  }
+  poster.style.display = "none";
+}
+document.getElementById("shareProfileBtn")?.addEventListener("contextmenu", e => {
+  e.preventDefault();
+  makeProfilePoster();
+});
+
+// --------------------------------------
+// MERKESAMLING + POPUP + QUIZ-FLYINN
+// --------------------------------------
+async function renderUserBadges() {
+  const grid = document.getElementById("userBadgesGrid");
+  if (!grid) return;
+
+  const localMerits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
+  const badges = await fetch("badges.json", { cache: "no-store" }).then(r => r.json());
+  const owned = Object.keys(localMerits);
+
+  if (!owned.length) {
+    grid.innerHTML = `<div class="muted">Ingen merker ennå – ta quizer for å låse opp!</div>`;
+    return;
+  }
+
+  function medalByIndex(i) {
+    return i <= 0 ? "🥉" : i === 1 ? "🥈" : i === 2 ? "🥇" : "🏆";
+  }
+
+  grid.innerHTML = owned.map(cat => {
+    const m = localMerits[cat];
+    const b = badges.find(x => cat.toLowerCase().includes(x.id) || x.name.toLowerCase().includes(cat.toLowerCase()));
+    if (!b) return "";
+    const ti = b.tiers.findIndex(t => t.label === m.level);
+    return `
+      <div class="badge-mini" data-cat="${b.name}" style="--badge-color:${b.color}" title="${b.name} – ${m.level}">
+        <img src="${b.image}" alt="${b.name}">
+        <div>${b.name.split("&")[0]}</div>
+        <div class="badge-level">${medalByIndex(ti)}</div>
+      </div>`;
+  }).join("");
+
+  grid.querySelectorAll(".badge-mini").forEach(btn =>
+    btn.addEventListener("click", () => showUserBadgePopup(btn.dataset.cat))
+  );
+}
+
+async function showUserBadgePopup(categoryDisplay) {
+  const categoryId = catIdFromDisplay(categoryDisplay);
+  const progress = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
+  const completed = progress[categoryId]?.completed || [];
+  const badges = await fetch("badges.json", { cache: "no-store" }).then(r => r.json());
+  const badge = badges.find(b => categoryDisplay.toLowerCase().includes(b.id) || b.name.toLowerCase().includes(categoryDisplay.toLowerCase()));
+  const merits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
+  const merit = merits[categoryDisplay] || { level: "Nybegynner", points: 0 };
+
+  const html = `
+    <div class="user-badge-popup" id="userBadgeModal">
+      <div class="ub-inner">
+        <button class="close-ub" id="closeUB">×</button>
+        <img src="${badge?.image}" alt="${badge?.name}" class="ub-icon">
+        <h2>${badge?.name || categoryDisplay}</h2>
+        <p class="muted">Nivå: ${merit.level} · Poeng: ${merit.points}</p>
+        <hr>
+        <p><strong>Fullførte quizer:</strong> ${completed.length || 0}</p>
+        ${
+          completed.length
+            ? `<ul>${completed.map(id => {
+                const pr = PEOPLE.find(p => p.id === id);
+                const pl = PLACES.find(p => p.id === id);
+                const name = pr?.name || pl?.name || id;
+                return `<li>${name}</li>`;
+              }).join("")}</ul>`
+            : `<p class="muted">Ingen quizer fullført ennå.</p>`
+        }
+        <hr>
+        <div id="quizLaunchZone"></div>
+      </div>
+    </div>`;
+
+  document.body.insertAdjacentHTML("beforeend", html);
+  document.getElementById("closeUB").onclick = () => document.getElementById("userBadgeModal")?.remove();
+  document.getElementById("userBadgeModal").addEventListener("click", e => {
+    if (e.target.id === "userBadgeModal") e.currentTarget.remove();
+  });
+
+  // --- knappelogikk ---
+  const quizLaunch = document.getElementById("quizLaunchZone");
+  const visitedPlaces = PLACES.filter(p =>
+    visited[p.id] && tagToCat(p.category).toLowerCase() === categoryId.toLowerCase()
+  );
+
+  if (!visitedPlaces.length) {
+    quizLaunch.innerHTML = `<p class="muted">Du må først låse opp et sted i denne kategorien for å ta quiz.</p>`;
+  } else {
+    quizLaunch.innerHTML = `
+      <p><strong>Ta quiz fra et av dine steder:</strong></p>
+      <select id="quizPlaceSelect" style="width:100%;padding:6px;border-radius:6px;margin:6px 0;background:#222;color:#fff;">
+        ${visitedPlaces.map(p => `<option value="${p.id}">${p.name}</option>`).join("")}
+      </select>
+      <button id="launchQuizFromBadge" class="primary small" style="margin-top:6px;">Start quiz her</button>
+    `;
+
+    document.getElementById("launchQuizFromBadge").onclick = async () => {
+      const id = document.getElementById("quizPlaceSelect").value;
+      const place = PLACES.find(p => p.id === id);
+      if (!place || !MAP) return;
+      document.getElementById("userBadgeModal")?.remove();
+      MAP.flyTo([place.lat, place.lon], 16, { duration: 1.2 });
+      pulseMarker(place.lat, place.lon);
+      showToast(`Du er ved ${place.name} – quiz starter …`);
+      await new Promise(r => setTimeout(r, 1400));
+      startQuiz(place.id);
+    };
+  }
+}
+
+// kall denne i boot()
+renderUserBadges();
+
+// ============================================================
+// === SLUTT PROFIL & MERKER =================================
+// ============================================================
