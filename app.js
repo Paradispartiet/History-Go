@@ -1080,7 +1080,7 @@ async function startQuiz(targetId) {
     }
   }
 });
-
+}
 // ==============================
 // MODAL QUIZ FLOW
 // ==============================
