@@ -6,8 +6,10 @@
 const V = 'hg-v18.0.39';
 const CORE = [
   'index.html',
+  'profile.html',
   'theme.css',
   'app.js',
+  'profile.js',
   'icons.js',
   'places.json',
   'people.json',
