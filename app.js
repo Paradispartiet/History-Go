@@ -709,9 +709,7 @@ function requestLocation() {
 }
 
 function boot() {
-  initMap();
-
-  // Laster kun places og people – quizfiler lastes dynamisk ved behov
+  // Laster places og people først
   Promise.all([
     fetch('places.json').then(r => r.json()),
     fetch('people.json').then(r => r.json())
@@ -721,10 +719,12 @@ function boot() {
       PEOPLE = people || [];
 
       dataReady = true;
-      if (mapReady) maybeDrawMarkers();
+
+      // 👉 Nå kan kartet initialiseres — etter at DOM og data finnes
+      initMap();
+      maybeDrawMarkers();
 
       renderNearbyPlaces();
-      // renderNearbyPeople();  ← fjernet
       renderCollection();
       renderMerits();
       renderGallery();
@@ -738,7 +738,6 @@ function boot() {
             currentPos = { lat: latitude, lon: longitude };
             setUser(latitude, longitude);
             renderNearbyPlaces();
-            // renderNearbyPeople();  ← fjernet
           },
           () => {},
           { enableHighAccuracy: true }
