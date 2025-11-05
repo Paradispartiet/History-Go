@@ -307,6 +307,20 @@ function googleUrl(name){
   return `https://www.google.com/search?q=${q}`;
 }
 
+// Liten visuell effekt når et sted låses opp
+function pulseMarker(lat, lon) {
+  if (!MAP) return;
+  const pulse = L.circle([lat, lon], {
+    radius: 30,
+    color: '#ffd700',
+    weight: 2,
+    opacity: 0.9,
+    fillColor: '#ffd700',
+    fillOpacity: 0.3
+  }).addTo(MAP);
+  setTimeout(() => MAP.removeLayer(pulse), 1000);
+}
+
 function openPlaceCard(p){
   currentPlace = p;
   el.pcTitle.textContent = p.name;
@@ -315,28 +329,29 @@ function openPlaceCard(p){
   el.pc.setAttribute('aria-hidden','false');
 
   el.pcUnlock.onclick = ()=> {
-  if (visited[p.id]) { 
-    showToast("Allerede låst opp"); 
-    return; 
-  }
+    if (visited[p.id]) { 
+      showToast("Allerede låst opp"); 
+      return; 
+    }
 
-  visited[p.id] = true; 
-  saveVisited();
+    visited[p.id] = true; 
+    saveVisited();
+    drawPlaceMarkers();          // 🔄 Oppdater kartet umiddelbart
+    pulseMarker(p.lat, p.lon);   // ✨ Kort glød på markøren
 
-  // Poeng: +1 i riktig kategori — men bare hvis kategori faktisk finnes
-  const cat = p.category;
-  if (cat && cat.trim()) {
-    merits[cat] = merits[cat] || { points: 0 };
-    merits[cat].points += 1;
-    saveMerits();
-    updateMeritLevel(cat, merits[cat].points);
-  }
+    // Poeng: +1 i riktig kategori — men bare hvis kategori faktisk finnes
+    const cat = p.category;
+    if (cat && cat.trim()) {
+      merits[cat] = merits[cat] || { points: 0 };
+      merits[cat].points += 1;
+      saveMerits();
+      updateMeritLevel(cat, merits[cat].points);
+    }
 
-  showToast(`Låst opp: ${p.name} ✅`);
-};
+    showToast(`Låst opp: ${p.name} ✅`);
+  };
   
   el.pcRoute.onclick = ()=> showRouteTo(p);
-
   showPlaceOverlay(p);
 }
 
@@ -353,7 +368,7 @@ function openPlaceCardByPerson(person) {
   openPlaceCard(place);
   el.pcUnlock.textContent = "Ta quiz";
   el.pcUnlock.disabled = false;
-  el.pcUnlock.onclick = () => startQuiz(person.id); // ← NY linje
+  el.pcUnlock.onclick = () => startQuiz(person.id);
 }
 
 el.pcClose?.addEventListener('click', () => {
