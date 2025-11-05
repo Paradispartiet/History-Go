@@ -1414,6 +1414,58 @@ async function showUserBadgePopup(categoryDisplay) {
 // kall denne i boot()
 renderUserBadges();
 
+// kall denne i boot()
+renderUserBadges();
+
+// ==========================================
+// HISTORIEKORT – TIDSLINJE (PROFILVERSJON)
+// ==========================================
+function renderTimelineProfile() {
+  const body = document.getElementById("timelineBody");
+  const bar = document.getElementById("timelineProgressBar");
+  const txt = document.getElementById("timelineProgressText");
+  if (!body) return;
+
+  const got = PEOPLE.filter(p => !!peopleCollected[p.id]);
+  const total = PEOPLE.length;
+  const count = got.length;
+
+  if (bar) {
+    const pct = total ? (count / total) * 100 : 0;
+    bar.style.width = `${pct.toFixed(1)}%`;
+  }
+  if (txt) txt.textContent = `Du har samlet ${count} av ${total} historiekort`;
+
+  if (!got.length) {
+    body.innerHTML = `<div class="muted">Du har ingen historiekort ennå.</div>`;
+    return;
+  }
+
+  const sorted = got
+    .map(p => ({ ...p, year: p.year || 0 }))
+    .sort((a, b) => a.year - b.year);
+
+  body.innerHTML = sorted.map(p => {
+    const img = p.image || `bilder/kort/people/${p.id}.PNG`;
+    const yearLabel = p.year || "–";
+    return `
+      <div class="timeline-card" data-person="${p.id}">
+        <img src="${img}" alt="${p.name}">
+        <div class="timeline-name">${p.name}</div>
+        <div class="timeline-year">${yearLabel}</div>
+      </div>`;
+  }).join("");
+
+  body.querySelectorAll(".timeline-card").forEach(c => {
+    c.addEventListener("click", () => {
+      const id = c.dataset.person;
+      const pr = PEOPLE.find(p => p.id === id);
+      if (pr) showPersonPopup(pr);
+    });
+  });
+}
+document.addEventListener("DOMContentLoaded", renderTimelineProfile);
+  
 // ============================================================
 // === SLUTT PROFIL & MERKER =================================
 // ============================================================
