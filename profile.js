@@ -54,6 +54,7 @@ function openProfileModal() {
       <button id="cancelProfile" style="margin-left:6px;background:#444;color:#fff;">Avbryt</button>
     </div>`;
   document.body.appendChild(modal);
+  modal.style.display = "flex"; // ✅ viser modalen
 
   modal.querySelector("#cancelProfile").onclick = () => modal.remove();
 
@@ -67,7 +68,7 @@ function openProfileModal() {
     localStorage.setItem("user_avatar", newEmoji);
     localStorage.setItem("user_color", newColor);
 
-    // 🔹 oppdater direkte i DOM (uten å vente på reload)
+    // 🔹 oppdater direkte i DOM
     const nameEl = document.getElementById("profileName");
     const avatarEl = document.getElementById("profileAvatar");
     if (nameEl) nameEl.textContent = newName;
@@ -79,61 +80,6 @@ function openProfileModal() {
     modal.remove();
     showToast("Profil oppdatert ✅");
 
-    // 🔹 kjør renderProfileCard trygt hvis data finnes
-    if (typeof renderProfileCard === "function") {
-      try { renderProfileCard(); } catch(e) {}
-    }
-  };
-}
-
-document.getElementById("editProfileBtn")?.addEventListener("click", openProfileModal);
-
-// --------------------------------------
-// DEL PROFILKORT (vanlig skjermbilde)
-// --------------------------------------
-function openProfileModal() {
-  const modal = document.createElement("div");
-  modal.className = "profile-modal";
-  modal.innerHTML = `
-    <div class="profile-modal-inner">
-      <h3>Endre profil</h3>
-      <label>Navn</label>
-      <input id="newName" value="${localStorage.getItem("user_name") || "Utforsker #182"}">
-      <label>Emoji</label>
-      <input id="newEmoji" maxlength="2" value="${localStorage.getItem("user_avatar") || "🧭"}">
-      <label>Farge</label>
-      <input id="newColor" type="color" value="${localStorage.getItem("user_color") || "#f6c800"}">
-      <button id="saveProfile">Lagre</button>
-      <button id="cancelProfile" style="margin-left:6px;background:#444;color:#fff;">Avbryt</button>
-    </div>`;
-  document.body.appendChild(modal);
-  modal.style.display = "flex"; // ✅ NØDVENDIG FOR Å VISE MODALEN
-
-  modal.querySelector("#cancelProfile").onclick = () => modal.remove();
-
-  modal.querySelector("#saveProfile").onclick = () => {
-    const newName = modal.querySelector("#newName").value.trim() || "Utforsker #182";
-    const newEmoji = modal.querySelector("#newEmoji").value.trim() || "🧭";
-    const newColor = modal.querySelector("#newColor").value;
-
-    // 🔹 lagre til localStorage
-    localStorage.setItem("user_name", newName);
-    localStorage.setItem("user_avatar", newEmoji);
-    localStorage.setItem("user_color", newColor);
-
-    // 🔹 oppdater direkte i DOM (uten å vente på reload)
-    const nameEl = document.getElementById("profileName");
-    const avatarEl = document.getElementById("profileAvatar");
-    if (nameEl) nameEl.textContent = newName;
-    if (avatarEl) {
-      avatarEl.textContent = newEmoji;
-      avatarEl.style.borderColor = newColor;
-    }
-
-    modal.remove();
-    showToast("Profil oppdatert ✅");
-
-    // 🔹 kjør renderProfileCard trygt hvis data finnes
     if (typeof renderProfileCard === "function") {
       try { renderProfileCard(); } catch(e) {}
     }
