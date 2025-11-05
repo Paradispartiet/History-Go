@@ -257,22 +257,39 @@ function maybeDrawMarkers() {
   }
 }
 
+ffunction lighten(hex, amount = 0.35) {
+  // Gjør fargen lysere ved å øke RGB-verdiene
+  const c = hex.replace('#','');
+  const num = parseInt(c,16);
+  let r = Math.min(255, (num >> 16) + 255 * amount);
+  let g = Math.min(255, ((num >> 8) & 0x00FF) + 255 * amount);
+  let b = Math.min(255, (num & 0x0000FF) + 255 * amount);
+  return `rgb(${r},${g},${b})`;
+}
+
 function drawPlaceMarkers() {
   if (!MAP || !PLACES.length) return;
   placeLayer.clearLayers();
 
   PLACES.forEach(p => {
+    const isVisited = !!visited[p.id];
+    const fill = isVisited ? lighten(catColor(p.category), 0.35) : catColor(p.category);
+    const border = isVisited ? '#ffd700' : '#fff'; // gullkant hvis besøkt
+
     const mk = L.circleMarker([p.lat, p.lon], {
-      radius: 8,
-      color: '#fff',
-      weight: 1,
-      fillColor: catColor(p.category),
+      radius: isVisited ? 9 : 8,
+      color: border,
+      weight: 2,
+      fillColor: fill,
       fillOpacity: 1
     }).addTo(placeLayer);
 
-    mk.bindTooltip(p.name, { permanent: false, direction: "top" });
+    mk.bindTooltip(
+      isVisited ? `✅ ${p.name}` : p.name,
+      { permanent: false, direction: "top" }
+    );
 
-    // 👉 Klikk åpner kun overlay (ikke placeCard)
+    // Klikk åpner kun overlay (ikke placeCard)
     mk.on('click', () => {
       closePlaceOverlay();
       showPlaceOverlay(p);
