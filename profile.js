@@ -1,15 +1,15 @@
 // ============================================================
-// === HISTORY GO – PROFILE.JS (ren v18, koblet mot app.js) ===
+// === HISTORY GO – PROFILE.JS (v19, full integrasjon) ========
 // ============================================================
 //
-// Denne filen håndterer kun profilsiden:
-// 1. Profilkort (navn, emoji, farge)
-// 2. Profilredigering
-// 3. Deling av profilkort (html2canvas)
-// 4. Tidslinje for historiekort
-// 5. Kall til felles funksjoner fra app.js (merker, samling, galleri)
+// Håndterer profilsiden:
+// - Profilkort (navn, emoji, farge)
+// - Profilredigering
+// - Deling (html2canvas)
+// - Historiekort / tidslinje
+// - Kall til felles funksjoner fra app.js
 //
-// app.js må være lastet først!
+// Krever at app.js lastes først.
 // ============================================================
 
 // --------------------------------------
@@ -25,7 +25,7 @@ function renderProfileCard() {
   const favCat = fav ? fav[0] : "Ingen ennå";
 
   const avatar = document.getElementById("profileAvatar");
-  if (!avatar) return; // sikkerhet ved første lasting
+  if (!avatar) return;
 
   document.getElementById("profileName").textContent = name;
   avatar.textContent = emoji;
@@ -54,7 +54,7 @@ function openProfileModal() {
       <button id="cancelProfile" style="margin-left:6px;background:#444;color:#fff;">Avbryt</button>
     </div>`;
   document.body.appendChild(modal);
-  modal.style.display = "flex"; // ✅ viser modalen
+  modal.style.display = "flex";
 
   modal.querySelector("#cancelProfile").onclick = () => modal.remove();
 
@@ -63,26 +63,18 @@ function openProfileModal() {
     const newEmoji = modal.querySelector("#newEmoji").value.trim() || "🧭";
     const newColor = modal.querySelector("#newColor").value;
 
-    // 🔹 lagre til localStorage
     localStorage.setItem("user_name", newName);
     localStorage.setItem("user_avatar", newEmoji);
     localStorage.setItem("user_color", newColor);
 
-    // 🔹 oppdater direkte i DOM
-    const nameEl = document.getElementById("profileName");
+    document.getElementById("profileName").textContent = newName;
     const avatarEl = document.getElementById("profileAvatar");
-    if (nameEl) nameEl.textContent = newName;
-    if (avatarEl) {
-      avatarEl.textContent = newEmoji;
-      avatarEl.style.borderColor = newColor;
-    }
+    avatarEl.textContent = newEmoji;
+    avatarEl.style.borderColor = newColor;
 
     modal.remove();
     showToast("Profil oppdatert ✅");
-
-    if (typeof renderProfileCard === "function") {
-      try { renderProfileCard(); } catch(e) {}
-    }
+    renderProfileCard();
   };
 }
 
@@ -112,9 +104,7 @@ function renderTimelineProfile() {
     return;
   }
 
-  const sorted = got
-    .map(p => ({ ...p, year: p.year || 0 }))
-    .sort((a, b) => a.year - b.year);
+  const sorted = got.map(p => ({ ...p, year: p.year || 0 })).sort((a, b) => a.year - b.year);
 
   body.innerHTML = sorted.map(p => {
     const img = p.image || `bilder/kort/people/${p.id}.PNG`;
@@ -137,12 +127,17 @@ function renderTimelineProfile() {
 }
 
 // --------------------------------------
-// INITIALISERING
+// FULL INITIALISERING MED DATA
 // --------------------------------------
-document.addEventListener("DOMContentLoaded", () => {
+Promise.all([
+  fetch("people.json").then(r => r.json()).then(d => PEOPLE = d),
+  fetch("places.json").then(r => r.json()).then(d => PLACES = d),
+  fetch("badges.json").then(r => r.json()).then(d => BADGES = d)
+]).then(() => {
+  dataReady = true;
   renderProfileCard();
-  renderTimelineProfile();
-  renderUserBadges(); // fra app.js
-  renderCollection(); // fra app.js
-  renderGallery();    // fra app.js
+  renderMerits();       // riktig funksjon for merker
+  renderCollection();   // steder
+  renderGallery();      // personer
+  renderTimelineProfile(); // tidslinje
 });
