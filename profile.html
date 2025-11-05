@@ -4,9 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Min profil | History Go</title>
-  <link rel="stylesheet" href="styles.css">
+
+  <!-- Stil og bibliotek -->
+  <link rel="stylesheet" href="theme.css">
   <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+
+  <!-- JS-filer -->
   <script defer src="app.js"></script>
+  <script defer src="profile.js"></script>
 </head>
 
 <body class="profile-page">
@@ -43,7 +48,7 @@
   <hr>
 
   <!-- MERKER -->
-  <section>
+  <section class="profile-block">
     <h3>Mine merker</h3>
     <div id="userBadgesGrid" class="badge-grid"></div>
   </section>
@@ -51,7 +56,7 @@
   <hr>
 
   <!-- STEDER -->
-  <section>
+  <section class="profile-block">
     <h3>Steder jeg har besøkt</h3>
     <div id="collectionGrid" class="badge-grid"></div>
   </section>
@@ -59,21 +64,21 @@
   <hr>
 
   <!-- PERSONER -->
-  <section>
+  <section class="profile-block">
     <h3>Personer jeg har møtt</h3>
     <div id="gallery" class="gallery-grid"></div>
   </section>
 
-<!-- HISTORIEKORT – TIDSLINJE -->
-<section id="timelineSection" class="profile-block">
-  <h3>Historiekort – tidslinje</h3>
-  <div class="timeline-progress">
-    <div id="timelineProgressBar" class="timeline-progress-bar"></div>
-  </div>
-  <p id="timelineProgressText" class="timeline-progress-text muted"></p>
-  <div id="timelineBody" class="timeline-body"></div>
-</section>
-  
+  <!-- HISTORIEKORT – TIDSLINJE -->
+  <section id="timelineSection" class="profile-block">
+    <h3>Historiekort – tidslinje</h3>
+    <div class="timeline-progress">
+      <div id="timelineProgressBar" class="timeline-progress-bar"></div>
+    </div>
+    <p id="timelineProgressText" class="timeline-progress-text muted"></p>
+    <div id="timelineBody" class="timeline-body"></div>
+  </section>
+
 </main>
 
 <footer>
