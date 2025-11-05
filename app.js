@@ -948,20 +948,25 @@ async function startQuiz(targetId) {
   openQuiz();
 
   runQuizFlow({
-    title: person ? person.name : place.name,
-    questions: formatted,
-    onEnd: (correct, total) => {
-      addCompletedQuizAndMaybePoint(displayCat, targetId);
-      if (person) {
-        peopleCollected[targetId] = true;
-        savePeople();
-        showPersonPopup(person);
-        document.getElementById("gallery")?.scrollIntoView({ behavior: "smooth" });
-      }
-      showToast(`Quiz fullført: ${correct}/${total} 🎉`);
+  title: person ? person.name : place.name,
+  questions: formatted,
+  onEnd: (correct, total) => {
+    addCompletedQuizAndMaybePoint(displayCat, targetId);
+    if (person) {
+      peopleCollected[targetId] = true;
+      savePeople();
+      showPersonPopup(person);
+      document.getElementById("gallery")?.scrollIntoView({ behavior: "smooth" });
     }
-  });
-}
+    showToast(`Quiz fullført: ${correct}/${total} 🎉`);
+
+    // ✨ Pulse på stedet som hører til personen når quizen fullføres
+    if (person && person.placeId) {
+      const plc = PLACES.find(p => p.id === person.placeId);
+      if (plc) pulseMarker(plc.lat, plc.lon);
+    }
+  }
+});
 
 // ==============================
 // MODAL QUIZ FLOW
