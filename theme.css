@@ -937,6 +937,64 @@ button.primary.small:hover { opacity: .9; }
   color: #fff;
 }
 
+/* --- HISTORIEKORT TIDSLINJE (profilvisning) --- */
+#timelineSection {
+  margin-top: 32px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+.timeline-progress {
+  width: 100%;
+  height: 6px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 8px 0 4px 0;
+}
+.timeline-progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #f6c800, #ffb703);
+  transition: width 0.4s ease;
+}
+.timeline-progress-text {
+  font-size: 0.85em;
+  margin-bottom: 10px;
+  text-align: right;
+}
+.timeline-body {
+  display: flex;
+  overflow-x: auto;
+  gap: 30px;
+  padding: 10px 0 16px 0;
+  scroll-snap-type: x mandatory;
+  align-items: flex-start;
+}
+.timeline-card {
+  flex: 0 0 auto;
+  width: 140px;
+  text-align: center;
+  scroll-snap-align: center;
+}
+.timeline-card img {
+  width: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+  border: 2px solid #f6c800;
+  margin-bottom: 6px;
+  transition: transform 0.2s ease;
+}
+.timeline-name {
+  font-size: 0.9em;
+  font-weight: 500;
+}
+.timeline-year {
+  font-size: 0.8em;
+  color: #ccc;
+}
+.timeline-card:hover img {
+  transform: scale(1.05);
+}
 /* ============================================================
    === SLUTT PROFIL & MERKER ================================
    ============================================================ */
