@@ -928,6 +928,11 @@ function enterMapMode() {
   el.btnExitMap.style.display = "block";
   document.querySelector("main").style.display = "none";
   document.querySelector("header").style.display = "none";
+
+  // 🔧 Flytt kartet øverst når kartmodus er aktiv
+  const mapEl = document.getElementById("map");
+  if (mapEl) mapEl.style.zIndex = "10";
+
   showToast("Kartmodus");
 }
 
@@ -937,12 +942,16 @@ function exitMapMode() {
   el.btnExitMap.style.display = "none";
   document.querySelector("main").style.display = "";
   document.querySelector("header").style.display = "";
+
+  // 🔧 Flytt kartet bak igjen når du går ut av kartmodus
+  const mapEl = document.getElementById("map");
+  if (mapEl) mapEl.style.zIndex = "0";
+
   showToast("Tilbake til oversikt");
 }
 
 el.btnSeeMap?.addEventListener("click", enterMapMode);
 el.btnExitMap?.addEventListener("click", exitMapMode);
-
 // ==============================
 // 12. QUIZ – DYNAMISK LASTER, MODAL & SCORE
 // ==============================
