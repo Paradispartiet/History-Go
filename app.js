@@ -257,7 +257,7 @@ function maybeDrawMarkers() {
   }
 }
 
-ffunction lighten(hex, amount = 0.35) {
+function lighten(hex, amount = 0.35) {
   // Gjør fargen lysere ved å øke RGB-verdiene
   const c = hex.replace('#','');
   const num = parseInt(c,16);
