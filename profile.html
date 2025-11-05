@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Profil | History Go</title>
+  <meta name="description" content="Se din fremgang, dine merker og historiekort i History Go.">
+  <link rel="icon" href="bilder/ikon.PNG">
+  <link rel="stylesheet" href="theme.css">
+</head>
+<body>
+
+<header class="site-header">
+  <a href="index.html" class="brand">
+    <img src="bilder/logo.PNG" alt="History Go logo">
+    <span>History Go</span>
+  </a>
+  <button id="btnSeeMap" class="primary small">🗺️ Vis kart</button>
+</header>
+
+<main class="profile-page">
+
+  <!-- PROFILKORT -->
+  <section id="profileCard" class="profile-card">
+    <div id="profileAvatar" class="profile-avatar">🧭</div>
+    <div class="profile-info">
+      <h2 id="profileName">Utforsker #182</h2>
+      <p id="statPlaces">0 steder</p>
+      <p id="statPeople">0 personer</p>
+      <p id="statCategory">Favoritt: –</p>
+      <div class="profile-buttons">
+        <button id="editProfileBtn" class="ghost small">Rediger profil</button>
+        <button id="shareProfileBtn" class="primary small">Del kort</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROFIL-KORT-PLAKAT (SKJULT FOR DELING) -->
+  <div id="profilePoster" style="display:none;">
+    <div id="posterAvatar" class="profile-avatar"></div>
+    <h2 id="posterName"></h2>
+    <p id="posterStats"></p>
+  </div>
+
+  <!-- MERKESAMLING -->
+  <section id="profileMerits" class="profile-block">
+    <h3>Dine merker</h3>
+    <div id="merits"></div>
+  </section>
+
+  <!-- SAMLING – STEDER DU HAR LÅST OPP -->
+  <section id="profileCollection" class="profile-block">
+    <h3>Steder du har låst opp</h3>
+    <div id="collectionGrid" class="collection-grid"></div>
+    <p id="collectionCount" class="muted small"></p>
+  </section>
+
+  <!-- PERSON-GALLERI -->
+  <section id="profileGallery" class="profile-block">
+    <h3>Samlede personer</h3>
+    <div id="gallery"></div>
+  </section>
+
+  <!-- HISTORIEKORT – TIDSLINJE -->
+  <section id="timelineSection" class="profile-block">
+    <h3>Historiekort – tidslinje</h3>
+    <div class="timeline-progress">
+      <div id="timelineProgressBar" class="timeline-progress-bar"></div>
+    </div>
+    <p id="timelineProgressText" class="timeline-progress-text muted"></p>
+    <div id="timelineBody" class="timeline-body"></div>
+  </section>
+
+</main>
+
+<!-- TOAST -->
+<div id="toast" class="toast"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
