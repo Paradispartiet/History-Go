@@ -793,8 +793,11 @@ body.subkultur .app-frame      { border-color: #ff66cc; }
 
 /* PROFILMODAL */
 .profile-modal {
-  position: fixed; inset: 0;
-  display: flex; align-items: center; justify-content: center;
+  position: fixed;
+  inset: 0;
+  display: none; /* ← denne må være NONE i stedet for flex */
+  align-items: center;
+  justify-content: center;
   background: rgba(0,0,0,.7);
   z-index: 9999;
 }
@@ -927,9 +930,12 @@ button.primary.small:hover { opacity: .9; }
 
 /* POPUP FOR MERKER */
 .user-badge-popup {
-  position: fixed; inset: 0;
+  position: fixed;
+  inset: 0;
   background: rgba(0,0,0,.8);
-  display: flex; align-items: center; justify-content: center;
+  display: none; /* ← endre fra flex til none */
+  align-items: center;
+  justify-content: center;
   z-index: 9999;
 }
 .ub-inner {
