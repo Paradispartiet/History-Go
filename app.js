@@ -210,9 +210,15 @@ function initMap() {
     mapReady = true;
     maybeDrawMarkers();
 
-    // 🔧 legg til denne – sørg for at kartet starter bak alt innhold
+    // 🔧 Riktig oppsett – sørg for at kartet vises bak alt annet, men fyller hele skjermen
     const mapEl = document.getElementById('map');
-    if (mapEl) mapEl.style.zIndex = '0';
+    if (mapEl) {
+      mapEl.style.position = 'fixed';
+      mapEl.style.inset = '0';
+      mapEl.style.width = '100%';
+      mapEl.style.height = '100%';
+      mapEl.style.zIndex = '0';
+    }
   });
 }
 
