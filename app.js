@@ -745,6 +745,20 @@ function boot() {
 document.addEventListener('DOMContentLoaded', boot);
 
 // ==============================
+//  AKTIVER PROFILSIDE (v18+)
+// ==============================
+document.addEventListener("DOMContentLoaded", () => {
+  const isProfile = document.querySelector(".profile-page");
+  if (!isProfile) return;
+
+  renderProfileCard();
+  renderCollection();
+  renderMerits();
+  renderGallery();
+  renderUserBadges();
+});
+
+// ==============================
 // 11. STED-OVERLAY (tekst + personer)
 // ==============================
 async function fetchWikiSummary(name){
