@@ -209,6 +209,10 @@ function initMap() {
   MAP.whenReady(() => {
     mapReady = true;
     maybeDrawMarkers();
+
+    // 🔧 legg til denne – sørg for at kartet starter bak alt innhold
+    const mapEl = document.getElementById('map');
+    if (mapEl) mapEl.style.zIndex = '0';
   });
 }
 
