@@ -130,7 +130,7 @@
     });
   }
 
-  // --- REDIGERINGS-MODAL ---
+  // --- REDIGERINGSMODAL ---
   function setupEditModal() {
     const btn = document.getElementById("editProfileBtn");
     if (!btn) return;
