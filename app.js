@@ -709,7 +709,9 @@ function requestLocation() {
 }
 
 function boot() {
-  // Laster places og people først
+  initMap(); // 🟢 start kartet med én gang
+
+  // Laster places og people deretter
   Promise.all([
     fetch('places.json').then(r => r.json()),
     fetch('people.json').then(r => r.json())
@@ -719,9 +721,6 @@ function boot() {
       PEOPLE = people || [];
 
       dataReady = true;
-
-      // 👉 Nå kan kartet initialiseres — etter at DOM og data finnes
-      initMap();
       maybeDrawMarkers();
 
       renderNearbyPlaces();
@@ -744,7 +743,7 @@ function boot() {
         );
       }
 
-      wire(); // Koble knapper og testmodus
+      wire();
     })
     .catch(() => {
       showToast("Kunne ikke laste data.", 2000);
