@@ -56,15 +56,36 @@ function openProfileModal() {
   document.body.appendChild(modal);
 
   modal.querySelector("#cancelProfile").onclick = () => modal.remove();
+
   modal.querySelector("#saveProfile").onclick = () => {
-    localStorage.setItem("user_name", modal.querySelector("#newName").value.trim() || "Utforsker #182");
-    localStorage.setItem("user_avatar", modal.querySelector("#newEmoji").value.trim() || "🧭");
-    localStorage.setItem("user_color", modal.querySelector("#newColor").value);
+    const newName = modal.querySelector("#newName").value.trim() || "Utforsker #182";
+    const newEmoji = modal.querySelector("#newEmoji").value.trim() || "🧭";
+    const newColor = modal.querySelector("#newColor").value;
+
+    // 🔹 lagre til localStorage
+    localStorage.setItem("user_name", newName);
+    localStorage.setItem("user_avatar", newEmoji);
+    localStorage.setItem("user_color", newColor);
+
+    // 🔹 oppdater direkte i DOM (uten å vente på reload)
+    const nameEl = document.getElementById("profileName");
+    const avatarEl = document.getElementById("profileAvatar");
+    if (nameEl) nameEl.textContent = newName;
+    if (avatarEl) {
+      avatarEl.textContent = newEmoji;
+      avatarEl.style.borderColor = newColor;
+    }
+
     modal.remove();
-    renderProfileCard();
     showToast("Profil oppdatert ✅");
+
+    // 🔹 kjør renderProfileCard trygt hvis data finnes
+    if (typeof renderProfileCard === "function") {
+      try { renderProfileCard(); } catch(e) {}
+    }
   };
 }
+
 document.getElementById("editProfileBtn")?.addEventListener("click", openProfileModal);
 
 // --------------------------------------
