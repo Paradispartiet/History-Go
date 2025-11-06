@@ -651,16 +651,14 @@ button{ cursor:pointer; border:none }
 .app-frame {
   position: fixed;
   inset: 0;
-  border: 6px solid #000;              /* tykk, helt sort kant */
-  border-radius: 18px;                 /* avrundede hjørner */
+  border: 6px solid #000;      /* helt sort kant */
+  border-radius: 18px;         /* avrundede hjørner */
   background: transparent;
   pointer-events: none;
   z-index: 20;
-  box-shadow:
-    0 0 0 3px rgba(255,255,255,0.05) inset,  /* svak indre glød */
-    0 0 25px rgba(0,0,0,0.6);                /* lett ytre skygge */
-  transition: box-shadow .3s ease;
+  box-shadow: none !important; /* fjerner glød/skygge */
 }
+
 
 /* ===================================================== */
 /* 16) Ruter-seksjon – Utforsk tematiske ruter           */
