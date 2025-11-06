@@ -119,7 +119,33 @@ header{
   padding:16px 14px;
   background: linear-gradient(180deg, rgba(10,25,41,.95), rgba(10,25,41,.65) 70%, transparent);
 }
-.brand{ font-weight:800; letter-spacing:.3px }
+/* === Brand med ikon i headeren === */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  font-size: 1.3rem;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.brand-logo {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+  border-radius: 6px;
+  background: rgba(255,255,255,0.1);
+  padding: 3px;
+}
+
+.brand-name {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-weight: 700;
+  color: #f6c800; /* gul History Go-tone */
+}
+
 .actions{ display:flex; gap:10px; align-items:center }
 .toggle{ display:flex; gap:6px; align-items:center; font-size:.9rem }
 .toggle input{ accent-color: var(--primary) }
@@ -1042,4 +1068,56 @@ button.primary.small:hover { opacity: .9; }
   color: #f6c800;
   font-size: 1.4em;
   cursor: pointer;
+}
+
+/* ===================================================== */
+/* HEADER – PROFILVERSJON                                */
+/* ===================================================== */
+.profile-page .site-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  padding: 14px 18px;
+  background: linear-gradient(180deg, rgba(10,25,41,.95), rgba(10,25,41,.65) 70%, transparent);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.back-link {
+  text-decoration: none;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #fff;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  padding: 4px 10px;
+  transition: background .2s ease;
+}
+.back-link:hover {
+  background: rgba(255,255,255,0.15);
+}
+
+/* Samme logo og brand-stil som forsiden */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  font-size: 1.3rem;
+  color: #fff;
+  letter-spacing: 0.3px;
+}
+.brand-logo {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  border-radius: 6px;
+  background: rgba(255,255,255,0.1);
+  padding: 3px;
+}
+.brand-name {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-weight: 700;
+  color: #f6c800;
 }
