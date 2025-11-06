@@ -17,15 +17,15 @@
 // --------------------------------------
 function renderProfileCard() {
   const name = localStorage.getItem("user_name") || "Utforsker #182";
-  const color = localStorage.getItem("user_color") || "#f6c800";
   const visitedCount = Object.keys(visited).length;
   const peopleCount = Object.keys(peopleCollected).length;
-  const fav = Object.entries(merits).sort((a, b) => b[1].points - a[1].points)[0];
+
+  const fav = Object.entries(merits)
+    .sort((a, b) => b[1].points - a[1].points)[0];
+
   const favCat = fav ? fav[0] : "Ingen ennå";
 
   document.getElementById("profileName").textContent = name;
-  avatar.textContent = emoji;
-  avatar.style.borderColor = color;
   document.getElementById("statPlaces").textContent = `${visitedCount} steder`;
   document.getElementById("statPeople").textContent = `${peopleCount} personer`;
   document.getElementById("statCategory").textContent = `Favoritt: ${favCat}`;
