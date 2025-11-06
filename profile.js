@@ -36,6 +36,13 @@ function renderProfileCard() {
 }
 
 // --------------------------------------
+// HENT LOKALDATA FRA LAGRING
+// --------------------------------------
+const visited = JSON.parse(localStorage.getItem("visited") || "{}");
+const peopleCollected = JSON.parse(localStorage.getItem("peopleCollected") || "{}");
+const merits = JSON.parse(localStorage.getItem("merits") || "{}");
+
+// --------------------------------------
 // PROFIL-REDIGERINGSMODAL
 // --------------------------------------
 function openProfileModal() {
