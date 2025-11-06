@@ -728,17 +728,23 @@ button{ cursor:pointer; border:none }
 .profile-sub { color: #ccc; font-size: 0.9em; margin: 3px 0; }
 .profile-stats { font-size: 0.85em; color: #bbb; }
 
+/* Ny pen “Endre”-knapp */
 #editProfileBtn {
-  position: absolute;
-  top: 8px; right: 10px;
-  background: transparent;
-  border: none;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.12);
+  padding: 6px 12px;
+  border-radius: 8px;
   color: #f6c800;
-  font-size: 1.2em;
+  font-weight: 600;
+  font-size: 0.95rem;
   cursor: pointer;
-  transition: opacity .2s;
+  transition: background .2s ease, transform .15s ease;
 }
-#editProfileBtn:hover { opacity: .8; }
+
+#editProfileBtn:hover {
+  background: rgba(255,255,255,0.12);
+  transform: translateY(-1px);
+}
 
 /* PROFILMODAL */
 .profile-modal {
