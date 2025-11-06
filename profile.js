@@ -17,15 +17,11 @@
 // --------------------------------------
 function renderProfileCard() {
   const name = localStorage.getItem("user_name") || "Utforsker #182";
-  const emoji = localStorage.getItem("user_avatar") || "🧭";
   const color = localStorage.getItem("user_color") || "#f6c800";
   const visitedCount = Object.keys(visited).length;
   const peopleCount = Object.keys(peopleCollected).length;
   const fav = Object.entries(merits).sort((a, b) => b[1].points - a[1].points)[0];
   const favCat = fav ? fav[0] : "Ingen ennå";
-
-  const avatar = document.getElementById("profileAvatar");
-  if (!avatar) return;
 
   document.getElementById("profileName").textContent = name;
   avatar.textContent = emoji;
