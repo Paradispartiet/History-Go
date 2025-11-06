@@ -754,44 +754,44 @@ document.addEventListener('DOMContentLoaded', boot);
 
 // === MINI-PROFIL PÅ FORSIDEN – VISER NAVN, STATISTIKK, QUIZZER ===
 document.addEventListener("DOMContentLoaded", () => {
-  const av = document.getElementById("miniAvatar");
   const nm = document.getElementById("miniName");
   const st = document.getElementById("miniStats");
-  if (!av || !nm || !st) return;
+  if (!nm || !st) return;
 
-  // Hent lagrede verdier
-  const name = localStorage.getItem("user_name") || "Utforsker #182";
-  const emoji = localStorage.getItem("user_avatar") || "🧭";
+  // Bruk samme nøkler som profilsiden
+  const name  = localStorage.getItem("user_name")  || "Utforsker #182";
   const color = localStorage.getItem("user_color") || "#f6c800";
 
-  // Statistikk
-  const visited = JSON.parse(localStorage.getItem("visited_places") || "{}");
-  const merits  = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
-  const progress = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
+  // Hent progresjon fra lagring
+  const visited         = JSON.parse(localStorage.getItem("visited") || "{}");
+  const merits          = JSON.parse(localStorage.getItem("merits") || "{}");
+  const peopleCollected = JSON.parse(localStorage.getItem("peopleCollected") || "{}");
+  const quizProgress    = JSON.parse(localStorage.getItem("quizProgress") || "{}");
 
+  // Tell opp
   const visitedCount = Object.keys(visited).length;
-  const badgeCount = Object.keys(merits).length;
-  const quizCount = Object.values(progress)
-    .map(v => (v.completed ? v.completed.length : 0))
+  const badgeCount   = Object.keys(merits).length;
+  const quizCount    = Object.values(quizProgress)
+    .map(v => (Array.isArray(v.completed) ? v.completed.length : 0))
     .reduce((a,b) => a + b, 0);
 
-  // Render
-  av.textContent = emoji;
-  av.style.borderColor = color;
+  // Sett navn og farge
   nm.textContent = name;
+  nm.style.color = color;
+
+  // Sett statistikktekst
   st.textContent = `${visitedCount} steder · ${badgeCount} merker · ${quizCount} quizzer`;
 });
 
 // --- Interaktive lenker i mini-profil ---
 document.getElementById("linkPlaces")?.addEventListener("click", () => {
-  enterMapMode(); // viser kartet
+  enterMapMode();
   showToast("Viser steder på kartet");
 });
 
 document.getElementById("linkBadges")?.addEventListener("click", () => {
   window.location.href = "profile.html#userBadgesGrid";
 });
-
 
 
 // === QUIZ-HISTORIKK MODAL (forside) ===
