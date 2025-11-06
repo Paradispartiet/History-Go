@@ -646,38 +646,6 @@ button{ cursor:pointer; border:none }
 }
 
 /* ===================================================== */
-/* 14) RAMME RUNDT APPEN – MØRK OG DISKRET              */
-/* ===================================================== */
-.app-frame {
-  position: fixed;
-  inset: 0;                         /* går helt ut til skjermkanten */
-  border: 3px solid var(--primary); /* tynn farget indre strek */
-  outline: 8px solid #000;          /* helsort ytterramme */
-  border-radius: 0;                 /* ingen avrunding */
-  background: transparent;
-  pointer-events: none;
-  z-index: 20;
-  box-shadow: none;                 /* ingen glød */
-  animation: none;                  /* ingen puls */
-  transition: none;
-}
-/* ingen indre glød */
-.app-frame::after { content: none; }
-
-/* Kategori-farger for rammen */
-body.vitenskap .app-frame      { border-color: #9b59b6; }
-body.kunst .app-frame          { border-color: #ffb703; }
-body.by .app-frame             { border-color: #e63946; }
-body.musikk .app-frame         { border-color: #ff66cc; }
-body.litteratur .app-frame     { border-color: #f6c800; }
-body.natur .app-frame          { border-color: #4caf50; }
-body.sport .app-frame          { border-color: #2a9d8f; }
-body.politikk .app-frame       { border-color: #c77dff; }
-body.populaerkultur .app-frame { border-color: #ffb703; }
-body.subkultur .app-frame      { border-color: #ff66cc; }
-
-
-/* ===================================================== */
 /* 14) RAMME RUNDT APPEN – NY SORT OG AVRUNDET           */
 /* ===================================================== */
 .app-frame {
