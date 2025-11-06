@@ -678,38 +678,21 @@ body.subkultur .app-frame      { border-color: #ff66cc; }
 
 
 /* ===================================================== */
-/* 15) Kort og paneler – solid og tydelig versjon        */
+/* 14) RAMME RUNDT APPEN – NY SORT OG AVRUNDET           */
 /* ===================================================== */
-.panel, .card, .badge-card {
-  background: rgba(13,27,42,0.96);   /* mørk, ugjennomsiktig bakgrunn */
-  border: 1px solid rgba(255,255,255,.08);
-  border-radius: 14px;
-  box-shadow: 0 3px 10px rgba(0,0,0,.25);
-  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease, background .25s ease;
+.app-frame {
+  position: fixed;
+  inset: 0;
+  border: 6px solid #000;              /* tykk, helt sort kant */
+  border-radius: 18px;                 /* avrundede hjørner */
+  background: transparent;
+  pointer-events: none;
+  z-index: 20;
+  box-shadow:
+    0 0 0 3px rgba(255,255,255,0.05) inset,  /* svak indre glød */
+    0 0 25px rgba(0,0,0,0.6);                /* lett ytre skygge */
+  transition: box-shadow .3s ease;
 }
-.panel:hover, .card:hover, .badge-card:hover {
-  transform: translateY(-3px);
-  border-color: rgba(255,255,255,.18);
-  box-shadow: 0 8px 20px rgba(0,0,0,.45);
-  background: rgba(20,30,45,0.96);   /* mørkere ved hover */
-}
-/* Badge-ringen får fargeglød */
-.badge-icon-ring {
-  background: rgba(255,255,255,.05);
-  box-shadow: 0 0 6px rgba(255,255,255,.08) inset;
-  transition: transform .3s ease, box-shadow .3s ease;
-}
-.badge-card:hover .badge-icon-ring {
-  transform: scale(1.08);
-  box-shadow: 0 0 12px currentColor;
-}
-/* Puls ved nivåoppnåelse – sterkere og mer farget */
-@keyframes badgePulse {
-  0%   { transform:scale(1); box-shadow:0 0 0 0 rgba(255,255,255,0) }
-  40%  { transform:scale(1.08); box-shadow:0 0 10px 5px rgba(255,255,255,.25) }
-  100% { transform:scale(1); box-shadow:0 0 0 0 rgba(255,255,255,0) }
-}
-.badge-pulse { animation: badgePulse 1.2s ease-out }
 
 /* ===================================================== */
 /* 16) Ruter-seksjon – Utforsk tematiske ruter           */
