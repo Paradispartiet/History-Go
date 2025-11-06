@@ -1004,29 +1004,58 @@ button.primary.small:hover { opacity: .9; }
   transform: scale(1.05);
 }
 
-/* MINI-PROFILSEKSJON PÅ FORSIDEN */
+/* ===================================================== */
+/* NY MINI-PROFIL – HISTORY GO ELEGANT PANEL              */
+/* ===================================================== */
 .mini-profile {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(25,25,30,.95), rgba(10,15,25,.95));
+  border-left: 4px solid #f6c800;
+  border-radius: 12px;
+  padding: 16px 18px;
+  margin-bottom: 26px;
+  box-shadow: 0 0 18px rgba(246,200,0,.05), inset 0 0 6px rgba(255,255,255,.04);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.mini-profile:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 22px rgba(246,200,0,.15), inset 0 0 10px rgba(255,255,255,.06);
+}
+
+.profile-top {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 14px;
-  background: rgba(25,25,30,0.9);
-  border-left: 5px solid #f6c800;
+  margin-bottom: 4px;
+}
+.profile-top h3 {
+  margin: 0;
+  font-size: 1.15rem;
+  letter-spacing: .2px;
   color: #fff;
-  margin-bottom: 20px;
 }
 
-.mini-profile .info a:hover {
+.arrow-link {
   color: #f6c800;
+  font-size: 1.35rem;
+  text-decoration: none;
+  transition: transform .2s ease;
 }
+.arrow-link:hover { transform: translateX(3px); }
 
-.linkish {
-  cursor: pointer;
+.mini-profile .muted {
+  color: var(--muted);
+  font-size: .92rem;
+  margin: 0;
+  line-height: 1.4;
+}
+.mini-profile .linkish {
   color: #f6c800;
   text-decoration: none;
+  font-weight: 500;
 }
-.linkish:hover {
-  text-decoration: underline;
-}
+.mini-profile .linkish:hover { text-decoration: underline; }
 
 /* ============================================================
    === SLUTT PROFIL & MERKER ================================
