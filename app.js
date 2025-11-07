@@ -653,43 +653,55 @@ function requestLocation() {
 function boot() {
   initMap(); // 🟢 start kartet med én gang
 
-  // Laster places og people deretter
+  // Laster places og people med presise feilmeldinger
   Promise.all([
-    fetch('places.json').then(r => r.json()),
-    fetch('people.json').then(r => r.json())
+    fetch('places.json')
+      .then(r => {
+        if (!r.ok) throw new Error(`places.json (${r.status})`);
+        return r.json();
+      })
+      .catch(err => { throw new Error(`Feil ved lasting av places.json → ${err.message}`); }),
+
+    fetch('people.json')
+      .then(r => {
+        if (!r.ok) throw new Error(`people.json (${r.status})`);
+        return r.json();
+      })
+      .catch(err => { throw new Error(`Feil ved lasting av people.json → ${err.message}`); })
   ])
-    .then(([places, people]) => {
-      PLACES = places || [];
-      PEOPLE = people || [];
+  .then(([places, people]) => {
+    PLACES = places || [];
+    PEOPLE = people || [];
 
-      dataReady = true;
-      maybeDrawMarkers();
+    dataReady = true;
+    maybeDrawMarkers();
 
-      renderNearbyPlaces();
-      renderCollection();
-      renderMerits();
-      renderGallery();
+    renderNearbyPlaces();
+    renderCollection();
+    renderMerits();
+    renderGallery();
 
-      requestLocation();
+    requestLocation();
 
-      if (navigator.geolocation) {
-        navigator.geolocation.watchPosition(
-          pos => {
-            const { latitude, longitude } = pos.coords;
-            currentPos = { lat: latitude, lon: longitude };
-            setUser(latitude, longitude);
-            renderNearbyPlaces();
-          },
-          () => {},
-          { enableHighAccuracy: true }
-        );
-      }
+    if (navigator.geolocation) {
+      navigator.geolocation.watchPosition(
+        pos => {
+          const { latitude, longitude } = pos.coords;
+          currentPos = { lat: latitude, lon: longitude };
+          setUser(latitude, longitude);
+          renderNearbyPlaces();
+        },
+        () => {},
+        { enableHighAccuracy: true }
+      );
+    }
 
-      wire();
-    })
-    .catch(() => {
-      showToast("Kunne ikke laste data.", 2000);
-    });
+    wire();
+  })
+  .catch(err => {
+    console.error("❌ Datafeil i boot():", err);
+    showToast(`Kunne ikke laste data (${err.message})`, 4000);
+  });
 }
 
 document.addEventListener('DOMContentLoaded', boot);
