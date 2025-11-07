@@ -146,7 +146,7 @@ function renderTimelineProfile() {
 }
 
 // --------------------------------------
-// MINE MERKER (hentet fra merits_by_category)
+// MINE MERKER – runde ikoner med medalje øverst til høyre
 // --------------------------------------
 async function renderMerits() {
   const container = document.getElementById("merits");
@@ -159,42 +159,41 @@ async function renderMerits() {
     ? Object.keys(localMerits)
     : badges.map(b => b.name);
 
-  // Hjelpefunksjon: velg riktig medalje basert på nivåets plassering i badge.tiers
+  // Hjelpefunksjon for riktig medalje
   function medalByIndex(index) {
-    if (index <= 0) return "🥉";   // første nivå
-    if (index === 1) return "🥈";  // andre nivå
-    if (index === 2) return "🥇";  // tredje nivå
-    return "🏆";                   // alt over tredje = toppnivå
+    if (index <= 0) return "🥉";
+    if (index === 1) return "🥈";
+    if (index === 2) return "🥇";
+    return "🏆";
   }
 
   container.innerHTML = cats.map(cat => {
     const merit = localMerits[cat] || { level: "Nybegynner", points: 0 };
-
     const badge = badges.find(b =>
       cat.toLowerCase().includes(b.id) ||
       b.name.toLowerCase().includes(cat.toLowerCase())
     );
     if (!badge) return "";
 
+    // Finn riktig medalje basert på nivå
     const tierIndex = badge.tiers.findIndex(t => t.label === merit.level);
     const medal = medalByIndex(tierIndex);
 
-    const icon = `<img src="${badge.image}" alt="${badge.name}" class="badge-mini-icon">`;
-    const color = badge.color || "#888";
-
     return `
-      <div class="badge-mini" data-badge="${badge.id}" style="--badge-color:${color}" title="${badge.name} – nivå: ${merit.level}">
-        ${icon}
-        <div class="badge-level">${medal}</div>
-        <div class="badge-mini-label">${badge.name}</div>
+      <div class="badge-mini" data-badge="${badge.id}">
+        <div class="badge-wrapper">
+          <img src="${badge.image}" alt="${badge.name}" class="badge-mini-icon">
+          <span class="badge-medal">${medal}</span>
+        </div>
       </div>`;
   }).join("");
 
-  // Aktiver klikk for å åpne detaljmodal
+  // Klikk for å åpne detaljmodal
   container.querySelectorAll(".badge-mini").forEach(el => {
     el.addEventListener("click", () => {
-      const name = el.querySelector(".badge-mini-label")?.textContent;
-      if (name) showBadgeModal(name);
+      const id = el.dataset.badge;
+      const badge = badges.find(b => b.id === id);
+      if (badge) showBadgeModal(badge.name);
     });
   });
 }
