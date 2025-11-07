@@ -1,42 +1,42 @@
 // ============================================================
-// === HISTORY GO – PROFILE.JS (v19, full integrasjon) ========
+// === HISTORY GO – PROFILE.JS (v20, stabil og synkronisert) ===
 // ============================================================
 //
 // Håndterer profilsiden:
-// - Profilkort (navn, emoji, farge)
+// - Profilkort (navn, emoji, farge, statistikk)
 // - Profilredigering
 // - Deling (html2canvas)
 // - Historiekort / tidslinje
-// - Kall til felles funksjoner fra app.js
+// - Leser ferske data direkte fra localStorage
 //
-// Krever at app.js lastes først.
+// Krever at app.js lastes først (for PEOPLE, PLACES, BADGES)
 // ============================================================
+
 
 // --------------------------------------
 // PROFILKORT OG RENDERING
 // --------------------------------------
 function renderProfileCard() {
   const name = localStorage.getItem("user_name") || "Utforsker #182";
+
+  // 🔹 Hent ferske data direkte fra lagring
+  const visited         = JSON.parse(localStorage.getItem("visited_places") || "{}");
+  const peopleCollected = JSON.parse(localStorage.getItem("people_collected") || "{}");
+  const merits          = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
+
   const visitedCount = Object.keys(visited).length;
-  const peopleCount = Object.keys(peopleCollected).length;
+  const peopleCount  = Object.keys(peopleCollected).length;
 
-  const fav = Object.entries(merits)
-    .sort((a, b) => b[1].points - a[1].points)[0];
+  const favEntry = Object.entries(merits)
+    .sort((a, b) => (b[1].points || 0) - (a[1].points || 0))[0];
+  const favCat = favEntry ? favEntry[0] : "Ingen ennå";
 
-  const favCat = fav ? fav[0] : "Ingen ennå";
-
-  document.getElementById("profileName").textContent = name;
-  document.getElementById("statPlaces").textContent = `${visitedCount} steder`;
-  document.getElementById("statPeople").textContent = `${peopleCount} personer`;
+  document.getElementById("profileName").textContent  = name;
+  document.getElementById("statPlaces").textContent   = `${visitedCount} steder`;
+  document.getElementById("statPeople").textContent   = `${peopleCount} personer`;
   document.getElementById("statCategory").textContent = `Favoritt: ${favCat}`;
 }
 
-/// --------------------------------------
-// HENT LOKALDATA FRA LAGRING (RIKTIGE NØKLER)
-// --------------------------------------
-const visited = JSON.parse(localStorage.getItem("visited_places") || "{}");
-const peopleCollected = JSON.parse(localStorage.getItem("people_collected") || "{}");
-const merits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
 
 // --------------------------------------
 // PROFIL-REDIGERINGSMODAL
@@ -62,13 +62,13 @@ function openProfileModal() {
   modal.querySelector("#cancelProfile").onclick = () => modal.remove();
 
   modal.querySelector("#saveProfile").onclick = () => {
-    const newName = modal.querySelector("#newName").value.trim() || "Utforsker #182";
+    const newName  = modal.querySelector("#newName").value.trim()  || "Utforsker #182";
     const newEmoji = modal.querySelector("#newEmoji").value.trim() || "🧭";
     const newColor = modal.querySelector("#newColor").value;
 
-    localStorage.setItem("user_name", newName);
+    localStorage.setItem("user_name",  newName);
     localStorage.setItem("user_avatar", newEmoji);
-    localStorage.setItem("user_color", newColor);
+    localStorage.setItem("user_color",  newColor);
 
     document.getElementById("profileName").textContent = newName;
     const avatarEl = document.getElementById("profileAvatar");
@@ -83,16 +83,19 @@ function openProfileModal() {
 
 document.getElementById("editProfileBtn")?.addEventListener("click", openProfileModal);
 
+
 // --------------------------------------
 // HISTORIEKORT – TIDSLINJE (PROFILVERSJON)
 // --------------------------------------
 function renderTimelineProfile() {
   const body = document.getElementById("timelineBody");
-  const bar = document.getElementById("timelineProgressBar");
-  const txt = document.getElementById("timelineProgressText");
+  const bar  = document.getElementById("timelineProgressBar");
+  const txt  = document.getElementById("timelineProgressText");
   if (!body) return;
 
-  const got = PEOPLE.filter(p => !!peopleCollected[p.id]);
+  const peopleCollected = JSON.parse(localStorage.getItem("people_collected") || "{}");
+
+  const got   = PEOPLE.filter(p => !!peopleCollected[p.id]);
   const total = PEOPLE.length;
   const count = got.length;
 
@@ -107,7 +110,8 @@ function renderTimelineProfile() {
     return;
   }
 
-  const sorted = got.map(p => ({ ...p, year: p.year || 0 })).sort((a, b) => a.year - b.year);
+  const sorted = got.map(p => ({ ...p, year: p.year || 0 }))
+                    .sort((a, b) => a.year - b.year);
 
   body.innerHTML = sorted.map(p => {
     const img = p.image || `bilder/kort/people/${p.id}.PNG`;
@@ -120,14 +124,15 @@ function renderTimelineProfile() {
       </div>`;
   }).join("");
 
-  body.querySelectorAll(".timeline-card").forEach(c => {
-    c.addEventListener("click", () => {
-      const id = c.dataset.person;
-      const pr = PEOPLE.find(p => p.id === id);
-      if (pr) showPersonPopup(pr);
+  body.querySelectorAll(".timeline-card").forEach(card => {
+    card.addEventListener("click", () => {
+      const id = card.dataset.person;
+      const person = PEOPLE.find(p => p.id === id);
+      if (person) showPersonPopup(person);
     });
   });
 }
+
 
 // --------------------------------------
 // FULL INITIALISERING MED DATA
@@ -139,29 +144,22 @@ Promise.all([
 ]).then(() => {
   dataReady = true;
   renderProfileCard();
-  renderMerits();       // riktig funksjon for merker
-  renderCollection();   // steder
-  renderGallery();      // personer
-  renderTimelineProfile(); // tidslinje
-});
-
-setTimeout(() => {
-  renderProfileCard();
   renderMerits();
   renderCollection();
   renderGallery();
   renderTimelineProfile();
-}, 600);
+});
 
+
+// --------------------------------------
+// SIKKERHET – VENT PÅ DATA VED TREG LAST
+// --------------------------------------
 document.addEventListener("DOMContentLoaded", () => {
-  const waitForData = setInterval(() => {
-    if (typeof visited !== "undefined" && typeof merits !== "undefined") {
-      clearInterval(waitForData);
-      renderProfileCard();
-      renderMerits();
-      renderCollection();
-      renderGallery();
-      renderTimelineProfile();
-    }
-  }, 300);
+  setTimeout(() => {
+    renderProfileCard();
+    renderMerits();
+    renderCollection();
+    renderGallery();
+    renderTimelineProfile();
+  }, 600);
 });
