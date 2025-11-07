@@ -152,3 +152,16 @@ setTimeout(() => {
   renderGallery();
   renderTimelineProfile();
 }, 600);
+
+document.addEventListener("DOMContentLoaded", () => {
+  const waitForData = setInterval(() => {
+    if (typeof visited !== "undefined" && typeof merits !== "undefined") {
+      clearInterval(waitForData);
+      renderProfileCard();
+      renderMerits();
+      renderCollection();
+      renderGallery();
+      renderTimelineProfile();
+    }
+  }, 300);
+});
