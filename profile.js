@@ -81,7 +81,19 @@ function openProfileModal() {
   };
 }
 
-document.getElementById("editProfileBtn")?.addEventListener("click", openProfileModal);
+document.addEventListener("DOMContentLoaded", () => {
+  const editBtn = document.getElementById("editProfileBtn");
+  if (editBtn) {
+    editBtn.addEventListener("click", openProfileModal);
+  }
+
+  // kjør også standardoppdatering når DOM er klar
+  renderProfileCard();
+  renderMerits();
+  renderCollection();
+  renderGallery();
+  renderTimelineProfile();
+});
 
 
 // --------------------------------------
