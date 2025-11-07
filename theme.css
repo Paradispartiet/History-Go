@@ -434,6 +434,42 @@ button{ cursor:pointer; border:none }
 }
 
 /* ===================================================== */
+/* 10d) QUIZ – KNAPPER OG ANIMASJON VED PERFEKT SCORE     */
+/* ===================================================== */
+
+/* Fast stil for tidligere fullført quiz */
+button.quiz-done {
+  background: rgba(255,215,0,0.12);
+  border: 1px solid rgba(255,215,0,0.5);
+  color: #ffd700;
+  cursor: default;
+  font-weight: 600;
+  position: relative;
+  padding-left: 1.6em;
+}
+
+/* Liten medalje foran teksten */
+button.quiz-done::before {
+  content: "🏅";
+  position: absolute;
+  left: 0.6em;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1em;
+}
+
+/* Kort gullglød første gang man klarer alt riktig */
+@keyframes quizGlow {
+  0%   { box-shadow: 0 0 0px 0 rgba(255,215,0,0); }
+  40%  { box-shadow: 0 0 16px 6px rgba(255,215,0,0.8); }
+  100% { box-shadow: 0 0 0px 0 rgba(255,215,0,0); }
+}
+
+button.quiz-done.blink {
+  animation: quizGlow 1.2s ease-out;
+}
+
+/* ===================================================== */
 /* 11) Merker / Badge-kort – kompakt, fargerik og interaktiv */
 /* ===================================================== */
 
