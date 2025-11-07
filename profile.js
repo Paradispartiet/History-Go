@@ -31,12 +31,12 @@ function renderProfileCard() {
   document.getElementById("statCategory").textContent = `Favoritt: ${favCat}`;
 }
 
+/// --------------------------------------
+// HENT LOKALDATA FRA LAGRING (RIKTIGE NØKLER)
 // --------------------------------------
-// HENT LOKALDATA FRA LAGRING
-// --------------------------------------
-const visited = JSON.parse(localStorage.getItem("visited") || "{}");
-const peopleCollected = JSON.parse(localStorage.getItem("peopleCollected") || "{}");
-const merits = JSON.parse(localStorage.getItem("merits") || "{}");
+const visited = JSON.parse(localStorage.getItem("visited_places") || "{}");
+const peopleCollected = JSON.parse(localStorage.getItem("people_collected") || "{}");
+const merits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
 
 // --------------------------------------
 // PROFIL-REDIGERINGSMODAL
@@ -144,3 +144,11 @@ Promise.all([
   renderGallery();      // personer
   renderTimelineProfile(); // tidslinje
 });
+
+setTimeout(() => {
+  renderProfileCard();
+  renderMerits();
+  renderCollection();
+  renderGallery();
+  renderTimelineProfile();
+}, 600);
