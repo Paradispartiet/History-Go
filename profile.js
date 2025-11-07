@@ -175,3 +175,47 @@ document.addEventListener("DOMContentLoaded", () => {
     renderTimelineProfile();
   }, 600);
 });
+
+// --------------------------------------
+// MERKE-MODAL (viser info og quiz-liste)
+// --------------------------------------
+function showBadgeModal(catName) {
+  const badges = JSON.parse(localStorage.getItem("badges_cache") || "[]");
+  const merits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
+  const quizProgress = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
+
+  const badge = badges.find(b =>
+    catName.toLowerCase().includes(b.id) ||
+    b.name.toLowerCase().includes(catName.toLowerCase())
+  );
+  if (!badge) return;
+
+  // Quiz-liste for denne kategorien
+  const catId = badge.id;
+  const completed = quizProgress[catId]?.completed || [];
+
+  const listHtml = completed.length
+    ? `<ul>${completed.map(q => `<li>${q}</li>`).join("")}</ul>`
+    : `<p class="muted">Ingen quizzer fullført ennå.</p>`;
+
+  // Bygg modalen
+  const modal = document.createElement("div");
+  modal.className = "badge-modal";
+  modal.innerHTML = `
+    <div class="badge-modal-inner">
+      <button class="close-badge">✕</button>
+      <img src="${badge.image}" alt="${badge.name}" class="badge-modal-icon">
+      <h2>${badge.name}</h2>
+      <p class="muted">${badge.description}</p>
+      <h4>Dine quizzer</h4>
+      ${listHtml}
+    </div>`;
+
+  document.body.appendChild(modal);
+  modal.style.display = "flex";
+
+  modal.querySelector(".close-badge").onclick = () => modal.remove();
+  modal.addEventListener("click", e => {
+    if (e.target === modal) modal.remove();
+  });
+}
