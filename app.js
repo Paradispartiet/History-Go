@@ -988,7 +988,7 @@ function closeQuiz() {
   const el = document.getElementById("quizModal");
   if (!el) return;
   el.classList.add("fade-out");
-  setTimeout(() => el.remove(), 450);
+  setTimeout(() => el.remove(), 450); // matcher CSS-animasjon
 }
 
 // ==============================
@@ -1022,6 +1022,7 @@ async function startQuiz(targetId) {
 
       if (perfect) {
         addCompletedQuizAndMaybePoint(displayCat, targetId);
+        markQuizAsDone(targetId);
         if (person) {
           peopleCollected[targetId] = true;
           savePeople();
@@ -1033,22 +1034,27 @@ async function startQuiz(targetId) {
         showToast(`Fullført: ${correct}/${total} – prøv igjen for full score.`);
       }
 
-      // 🔹 Marker knappen "Ta quiz" som tatt + gullblink første gang
-      const quizBtns = document.querySelectorAll(`[data-quiz="${targetId}"]`);
-      quizBtns.forEach(btn => {
-        const firstTime = !btn.classList.contains("quiz-done");
-        btn.classList.add("quiz-done");
-        btn.innerHTML = "✔️ Tatt (kan gjentas)";
-        if (firstTime && perfect) {
-          btn.classList.add("blink");
-          setTimeout(() => btn.classList.remove("blink"), 1200);
-        }
-      });
-
+      // ✨ Pulse på stedet som hører til personen når quizen fullføres
       if (person && person.placeId) {
         const plc = PLACES.find(p => p.id === person.placeId);
         if (plc) pulseMarker(plc.lat, plc.lon);
       }
+    }
+  });
+}
+
+// ==============================
+// MARKER QUIZ SOM FULLFØRT
+// ==============================
+function markQuizAsDone(targetId) {
+  const quizBtns = document.querySelectorAll(`[data-quiz="${targetId}"]`);
+  quizBtns.forEach(btn => {
+    const firstTime = !btn.classList.contains("quiz-done");
+    btn.classList.add("quiz-done");
+    btn.innerHTML = "✔️ Tatt (kan gjentas)";
+    if (firstTime) {
+      btn.classList.add("blink");
+      setTimeout(() => btn.classList.remove("blink"), 1200);
     }
   });
 }
