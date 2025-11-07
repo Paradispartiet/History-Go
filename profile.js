@@ -45,8 +45,6 @@ function openProfileModal() {
       <h3>Endre profil</h3>
       <label>Navn</label>
       <input id="newName" value="${localStorage.getItem("user_name") || "Utforsker #182"}">
-      <label>Emoji</label>
-      <input id="newEmoji" maxlength="2" value="${localStorage.getItem("user_avatar") || "🧭"}">
       <label>Farge</label>
       <input id="newColor" type="color" value="${localStorage.getItem("user_color") || "#f6c800"}">
       <button id="saveProfile">Lagre</button>
@@ -55,24 +53,23 @@ function openProfileModal() {
   document.body.appendChild(modal);
   modal.style.display = "flex";
 
+  // ❌ Avbryt-knappen
   modal.querySelector("#cancelProfile").onclick = () => modal.remove();
 
+  // 💾 Lagre endringer
   modal.querySelector("#saveProfile").onclick = () => {
-    const newName  = modal.querySelector("#newName").value.trim()  || "Utforsker #182";
-    const newEmoji = modal.querySelector("#newEmoji").value.trim() || "🧭";
+    const newName  = modal.querySelector("#newName").value.trim() || "Utforsker #182";
     const newColor = modal.querySelector("#newColor").value;
 
-    localStorage.setItem("user_name",  newName);
-    localStorage.setItem("user_avatar", newEmoji);
-    localStorage.setItem("user_color",  newColor);
+    localStorage.setItem("user_name", newName);
+    localStorage.setItem("user_color", newColor);
 
     document.getElementById("profileName").textContent = newName;
     const avatarEl = document.getElementById("profileAvatar");
-    avatarEl.textContent = newEmoji;
-    avatarEl.style.borderColor = newColor;
+    if (avatarEl) avatarEl.style.borderColor = newColor;
 
-    modal.remove();
     showToast("Profil oppdatert ✅");
+    modal.remove(); // ✅ Lukk modalen etter lagring
     renderProfileCard();
   };
 }
