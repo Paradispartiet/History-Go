@@ -145,6 +145,59 @@ function renderTimelineProfile() {
   });
 }
 
+// --------------------------------------
+// MINE MERKER (hentet fra merits_by_category)
+// --------------------------------------
+async function renderMerits() {
+  const container = document.getElementById("merits");
+  if (!container) return;
+
+  const badges = await fetch("badges.json", { cache: "no-store" }).then(r => r.json());
+  const localMerits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
+
+  const cats = Object.keys(localMerits).length
+    ? Object.keys(localMerits)
+    : badges.map(b => b.name);
+
+  // Hjelpefunksjon: velg riktig medalje basert på nivåets plassering i badge.tiers
+  function medalByIndex(index) {
+    if (index <= 0) return "🥉";   // første nivå
+    if (index === 1) return "🥈";  // andre nivå
+    if (index === 2) return "🥇";  // tredje nivå
+    return "🏆";                   // alt over tredje = toppnivå
+  }
+
+  container.innerHTML = cats.map(cat => {
+    const merit = localMerits[cat] || { level: "Nybegynner", points: 0 };
+
+    const badge = badges.find(b =>
+      cat.toLowerCase().includes(b.id) ||
+      b.name.toLowerCase().includes(cat.toLowerCase())
+    );
+    if (!badge) return "";
+
+    const tierIndex = badge.tiers.findIndex(t => t.label === merit.level);
+    const medal = medalByIndex(tierIndex);
+
+    const icon = `<img src="${badge.image}" alt="${badge.name}" class="badge-mini-icon">`;
+    const color = badge.color || "#888";
+
+    return `
+      <div class="badge-mini" data-badge="${badge.id}" style="--badge-color:${color}" title="${badge.name} – nivå: ${merit.level}">
+        ${icon}
+        <div class="badge-level">${medal}</div>
+        <div class="badge-mini-label">${badge.name}</div>
+      </div>`;
+  }).join("");
+
+  // Aktiver klikk for å åpne detaljmodal
+  container.querySelectorAll(".badge-mini").forEach(el => {
+    el.addEventListener("click", () => {
+      const name = el.querySelector(".badge-mini-label")?.textContent;
+      if (name) showBadgeModal(name);
+    });
+  });
+}
 
 // --------------------------------------
 // FULL INITIALISERING MED DATA
