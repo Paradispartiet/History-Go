@@ -971,7 +971,6 @@ function ensureQuizUI() {
     </div>`;
   document.body.appendChild(m);
 
-  // Lukking
   const modal = document.getElementById("quizModal");
   modal.querySelector("#quizClose").onclick = closeQuiz;
   modal.addEventListener("click", e => { if (e.target.id === "quizModal") closeQuiz(); });
@@ -989,7 +988,7 @@ function closeQuiz() {
   const el = document.getElementById("quizModal");
   if (!el) return;
   el.classList.add("fade-out");
-  setTimeout(() => el.remove(), 450); // matcher CSS-animasjon
+  setTimeout(() => el.remove(), 450);
 }
 
 // ==============================
@@ -1016,26 +1015,44 @@ async function startQuiz(targetId) {
   openQuiz();
 
   runQuizFlow({
-  title: person ? person.name : place.name,
-  questions: formatted,
-  onEnd: (correct, total) => {
-    addCompletedQuizAndMaybePoint(displayCat, targetId);
-    if (person) {
-      peopleCollected[targetId] = true;
-      savePeople();
-      showPersonPopup(person);
-      document.getElementById("gallery")?.scrollIntoView({ behavior: "smooth" });
-    }
-    showToast(`Quiz fullført: ${correct}/${total} 🎉`);
+    title: person ? person.name : place.name,
+    questions: formatted,
+    onEnd: (correct, total) => {
+      const perfect = correct === total;
 
-    // ✨ Pulse på stedet som hører til personen når quizen fullføres
-    if (person && person.placeId) {
-      const plc = PLACES.find(p => p.id === person.placeId);
-      if (plc) pulseMarker(plc.lat, plc.lon);
+      if (perfect) {
+        addCompletedQuizAndMaybePoint(displayCat, targetId);
+        if (person) {
+          peopleCollected[targetId] = true;
+          savePeople();
+          showPersonPopup(person);
+          document.getElementById("gallery")?.scrollIntoView({ behavior: "smooth" });
+        }
+        showToast(`Perfekt! ${total}/${total} riktige 🎯 Du fikk poeng og kort!`);
+      } else {
+        showToast(`Fullført: ${correct}/${total} – prøv igjen for full score.`);
+      }
+
+      // 🔹 Marker knappen "Ta quiz" som tatt + gullblink første gang
+      const quizBtns = document.querySelectorAll(`[data-quiz="${targetId}"]`);
+      quizBtns.forEach(btn => {
+        const firstTime = !btn.classList.contains("quiz-done");
+        btn.classList.add("quiz-done");
+        btn.innerHTML = "✔️ Tatt (kan gjentas)";
+        if (firstTime && perfect) {
+          btn.classList.add("blink");
+          setTimeout(() => btn.classList.remove("blink"), 1200);
+        }
+      });
+
+      if (person && person.placeId) {
+        const plc = PLACES.find(p => p.id === person.placeId);
+        if (plc) pulseMarker(plc.lat, plc.lon);
+      }
     }
-  }
-});
+  });
 }
+
 // ==============================
 // MODAL QUIZ FLOW
 // ==============================
@@ -1073,8 +1090,9 @@ function runQuizFlow({ title = "Quiz", questions = [], onEnd = () => {} }) {
         qs.choices.querySelectorAll("button").forEach(b => b.disabled = true);
         setTimeout(() => {
           i++;
-          if (i < questions.length) step();
-          else {
+          if (i < questions.length) {
+            step();
+          } else {
             closeQuiz();
             onEnd(correctCount, questions.length);
           }
