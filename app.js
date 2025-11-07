@@ -489,61 +489,15 @@ function buildSeeMoreNearby(){
 
 
 // ==============================
-// 8. MERKER, NIVÅER OG FREMGANG (OPPDATERT – NIVÅ HENTES FRA BADGES.JSON)
+// 8. MERKER, NIVÅER OG FREMGANG (RENSKET VERSJON)
 // ==============================
-async function renderMerits() {
-  const container = document.getElementById("merits");
-  if (!container) return;
 
-  const badges = await fetch("badges.json", { cache: "no-store" }).then(r => r.json());
-  const localMerits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
-
-  const cats = Object.keys(localMerits).length
-    ? Object.keys(localMerits)
-    : badges.map(b => b.name);
-
-  // Hjelpefunksjon: velg riktig medalje basert på nivåets plassering i badge.tiers
-  function medalByIndex(index) {
-    if (index <= 0) return "🥉";   // første nivå
-    if (index === 1) return "🥈";  // andre nivå
-    if (index === 2) return "🥇";  // tredje nivå
-    return "🏆";                   // alt over tredje = toppnivå
-  }
-
-  container.innerHTML = cats.map(cat => {
-    const merit = localMerits[cat] || { level: "Nybegynner", points: 0 };
-
-    // Finn badge for denne kategorien
-    const badge = badges.find(b =>
-      cat.toLowerCase().includes(b.id) ||
-      b.name.toLowerCase().includes(cat.toLowerCase())
-    );
-    if (!badge) return "";
-
-    // Finn riktig nivå basert på badge.tiers
-    const tierIndex = badge.tiers.findIndex(t => t.label === merit.level);
-    const medal = medalByIndex(tierIndex);
-
-    const icon = `<img src="${badge.image}" alt="${badge.name}" class="badge-mini-icon">`;
-    const color = badge.color || "#888";
-
-    return `
-      <div class="badge-mini" data-badge="${badge.id}" style="--badge-color:${color}" title="${badge.name} – nivå: ${merit.level}">
-        ${icon}
-        <div class="badge-level">${medal}</div>
-        <div class="badge-mini-label">${badge.name}</div>
-      </div>`;
-  }).join("");
-
-  // Klikk for å åpne detaljmodal
-  container.querySelectorAll(".badge-mini").forEach(el => {
-    el.addEventListener("click", () => {
-      const name = el.querySelector(".badge-mini-label")?.textContent;
-      if (name) showBadgeModal(name);
-    });
-  });
+// Lagre alle poeng og nivåer
+function saveMerits() {
+  localStorage.setItem("merits_by_category", JSON.stringify(merits));
 }
 
+// Pulsanimasjon når man får nytt nivå (kan brukes i fremtidig effekt)
 function pulseBadge(cat) {
   const cards = document.querySelectorAll(".badge-mini");
   cards.forEach(card => {
@@ -555,6 +509,7 @@ function pulseBadge(cat) {
   });
 }
 
+// Oppdater nivå ved ny poengsum
 async function updateMeritLevel(cat, newPoints) {
   const badges = await fetch("badges.json", { cache: "no-store" }).then(r => r.json());
   const badge = badges.find(b =>
@@ -573,9 +528,7 @@ async function updateMeritLevel(cat, newPoints) {
   }
 }
 
-// =====================================================
-//  POENGSYSTEM – HVER TREDJE FULLFØRTE QUIZ
-// =====================================================
+// Poengsystem – gi +1 poeng per fullført quiz
 async function addCompletedQuizAndMaybePoint(categoryDisplay, quizId) {
   const categoryId = catIdFromDisplay(categoryDisplay);
   const progress = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
@@ -588,41 +541,30 @@ async function addCompletedQuizAndMaybePoint(categoryDisplay, quizId) {
   progress[categoryId].completed.push(quizId);
   localStorage.setItem("quiz_progress", JSON.stringify(progress));
 
-  const totalCompleted = progress[categoryId].completed.length;
+  const catLabel = categoryDisplay;
+  merits[catLabel] = merits[catLabel] || { level: "Nybegynner", points: 0 };
+  merits[catLabel].points += 1; // nå +1 for hver fullførte quiz
 
-  // Gi +1 poeng hver tredje fullførte quiz
-  if (totalCompleted % 3 === 0) {
-    const catLabel = categoryDisplay;
-    merits[catLabel] = merits[catLabel] || { level: "Nybegynner", points: 0 };
-    merits[catLabel].points += 1;
-
-    // Oppdater nivå ut fra badges.json
-    const badges = await fetch("badges.json", { cache: "no-store" }).then(r => r.json());
-    const badge = badges.find(b =>
-      catLabel.toLowerCase().includes(b.id) ||
-      b.name.toLowerCase().includes(catLabel.toLowerCase())
-    );
-    if (badge) {
-      for (let i = badge.tiers.length - 1; i >= 0; i--) {
-        const tier = badge.tiers[i];
-        if (merits[catLabel].points >= tier.threshold) {
-          merits[catLabel].level = tier.label;
-          break;
-        }
+  // Oppdater nivå ut fra badges.json
+  const badges = await fetch("badges.json", { cache: "no-store" }).then(r => r.json());
+  const badge = badges.find(b =>
+    catLabel.toLowerCase().includes(b.id) ||
+    b.name.toLowerCase().includes(catLabel.toLowerCase())
+  );
+  if (badge) {
+    for (let i = badge.tiers.length - 1; i >= 0; i--) {
+      const tier = badge.tiers[i];
+      if (merits[catLabel].points >= tier.threshold) {
+        merits[catLabel].level = tier.label;
+        break;
       }
     }
-
-    saveMerits();
-    updateMeritLevel(catLabel, merits[catLabel].points);
-    showToast(`🏅 +1 poeng i ${catLabel}!`);
   }
-}
 
-function saveMerits() {
-  localStorage.setItem("merits_by_category", JSON.stringify(merits));
-  renderMerits();
+  saveMerits();
+  updateMeritLevel(catLabel, merits[catLabel].points);
+  showToast(`🏅 +1 poeng i ${catLabel}!`);
 }
-
 
 // ==============================
 // 9. HENDELSER OG SHEETS
