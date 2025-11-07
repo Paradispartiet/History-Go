@@ -806,6 +806,8 @@ document.addEventListener("DOMContentLoaded", () => {
 // ==============================
 // 11. STED-OVERLAY (tekst + personer)
 // ==============================
+
+// --- Henter kort wiki-oppsummering ---
 async function fetchWikiSummary(name){
   try{
     const url = `https://no.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(name)}`;
@@ -816,11 +818,19 @@ async function fetchWikiSummary(name){
   }catch(_){ return ""; }
 }
 
+// --- Lukker overlay ---
 function closePlaceOverlay() {
   const ov = document.getElementById('placeOverlay');
   if (ov) ov.remove();
 }
 
+// --- Sjekker om quiz er tatt perfekt ---
+function isQuizDone(targetId) {
+  const progress = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
+  return Object.values(progress).some(v => Array.isArray(v.completed) && v.completed.includes(targetId));
+}
+
+// --- Viser overlay for valgt sted ---
 async function showPlaceOverlay(place) {
   // Fjern eventuelle tidligere overlays
   const existing = document.getElementById('placeOverlay');
@@ -870,6 +880,21 @@ async function showPlaceOverlay(place) {
     </div>`;
 
   document.body.appendChild(overlay);
+
+  // --- Sett "Tatt"-status på quiz-knapper (sted + personer) ---
+  const placeBtn = overlay.querySelector(`button[data-quiz="${place.id}"]`);
+  if (placeBtn && isQuizDone(place.id)) {
+    placeBtn.classList.add("quiz-done");
+    placeBtn.innerHTML = "✔️ Tatt (kan gjentas)";
+  }
+
+  peopleHere.forEach(p => {
+    const btn = overlay.querySelector(`button[data-quiz="${p.id}"]`);
+    if (btn && isQuizDone(p.id)) {
+      btn.classList.add("quiz-done");
+      btn.innerHTML = "✔️ Tatt (kan gjentas)";
+    }
+  });
 
   // Lukking ved klikk utenfor
   overlay.addEventListener('click', e => {
