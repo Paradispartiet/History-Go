@@ -449,141 +449,62 @@ button{ cursor:pointer; border:none }
   margin-bottom: 0.8rem;
 }
 
-/* === Samlet grid for alle merker === */
+/* === MERKER I GRID === */
 #merits {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
-  gap: 12px;
-  margin-top: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 22px;
+  justify-items: center;
+  margin-top: 20px;
 }
 
-/* === Individuelt merke === */
 .badge-mini {
-  position: relative;
-  background: rgba(255,255,255,0.03);
-  border: 1px solid var(--panel-border);
-  border-radius: 10px;
-  padding: 10px 6px 12px 6px;
-  text-align: center;
   cursor: pointer;
-  transition: transform .25s ease, box-shadow .25s ease;
-  box-shadow: 0 0 6px rgba(0,0,0,0.25);
+  transition: transform 0.15s ease;
 }
-
 .badge-mini:hover {
-  transform: scale(1.06);
-  box-shadow: 0 0 10px rgba(255,255,255,0.15);
+  transform: scale(1.05);
 }
 
-/* === Ikon med fargering === */
+.badge-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
 .badge-mini-icon {
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;     /* gjør bildet rundt */
-  object-fit: cover;       /* fyller sirkelen pent */
-  display: block;
-  margin: 0 auto 8px auto; /* sentrert med litt luft under */
-}
-
-/* === Medalje (nivåindikator) === */
-.badge-level {
-  font-size: 1.2rem;
-  line-height: 1;
-  margin-bottom: 4px;
-  color: var(--yellow);
-}
-
-/* === Kategorinavn === */
-.badge-mini-label {
-  font-size: 0.8rem;
-  font-weight: 500;
-  color: #fff;
-  line-height: 1.2;
-  letter-spacing: 0.2px;
-  white-space: normal;
-}
-
-/* === Puls-effekt ved nivåoppnåelse === */
-@keyframes badgePulse {
-  0%   { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,255,255,0); }
-  40%  { transform: scale(1.08); box-shadow: 0 0 12px 4px rgba(255,255,255,.15); }
-  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,255,255,0); }
-}
-.badge-pulse {
-  animation: badgePulse 1s ease-out;
-}
-
-
-/* ===================================================== */
-/* 11b) BADGE-MODAL STIL                                 */
-/* ===================================================== */
-.badge-modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,.55); /* gjennomsiktig slør */
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-}
-
-.badge-modal-inner {
-  background: var(--panel);
-  border-radius: 12px;
-  box-shadow: var(--shadow);
-  padding: 16px;
-  max-width: 640px;
-  width: 90%;
-  max-height: 80vh;
-  overflow-y: auto;
-  color: var(--text);
-}
-
-.badge-modal-header {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 8px;
-}
-
-.badge-icon-large {
-  font-size: 2rem;
-}
-
-.badge-close {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  width: 40px;
-  height: 40px;
-  border-radius: 999px;
-  border: 1px solid var(--panel-border);
-  background: rgba(255,255,255,.08);
-  color: #fff;
-  font-size: 1.4rem;
-}
-
-.quiz-fasit {
-  margin-bottom: 10px;
-  border-bottom: 1px solid rgba(255,255,255,.08);
-  padding-bottom: 6px;
-}
-
-.quiz-fasit .q { font-weight: 600; }
-.quiz-fasit .a { color: var(--muted); font-size: 0.9rem; }
-
-/* ===================================================== */
-/* 11c) BADGE-BILDE SOM IKON (runde, uten bakgrunn)      */
-/* ===================================================== */
-.badge-image {
-  width: 96px;
-  height: 96px;
+  width: 110px;
+  height: 110px;
   border-radius: 50%;
-  object-fit: contain;              /* behold proporsjoner */
-  background: transparent;          /* ingen bakgrunnsfarge */
+  object-fit: cover;
   display: block;
-  margin: 0 auto 12px auto;         /* sentrert */
-  box-shadow: 0 0 8px rgba(255,255,255,.08); /* lett glød */
+  box-shadow: 0 0 10px rgba(0,0,0,0.25);
+}
+
+.badge-medal {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  font-size: 2rem;
+  transform: rotate(5deg);
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.5));
+  user-select: none;
+}
+
+/* === Responsivt – én rad på små skjermer === */
+@media (max-width: 520px) {
+  #merits {
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+    gap: 16px;
+  }
+  .badge-mini-icon {
+    width: 90px;
+    height: 90px;
+  }
+  .badge-medal {
+    font-size: 1.6rem;
+    top: -8px;
+    right: -8px;
+  }
 }
 
 /* ===================================================== */
@@ -827,86 +748,6 @@ button.primary.small:hover { opacity: .9; }
   opacity: .9;
 }
 
-/* MERKESAMLING */
-.user-badges {
-  margin: 0 12px 24px;
-  padding: 14px 16px;
-  background: rgba(25,25,30,.9);
-  border: 1px solid rgba(255,255,255,.08);
-  border-radius: 10px;
-  color: #fff;
-}
-.user-badges h3 {
-  margin: 0 0 10px;
-  font-size: 1.1em;
-  color: #f6c800;
-}
-.user-badges-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-.badge-mini {
-  position: relative;
-  width: 68px; height: 68px;
-  border-radius: 50%;
-  background: rgba(255,255,255,.05);
-  border: 2px solid var(--badge-color,#777);
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  font-size: .7em;
-  color: #fff;
-  cursor: pointer;
-  transition: transform .2s;
-}
-.badge-mini:hover { transform: scale(1.07); }
-.badge-mini img {
-  width: 32px; height: 32px;
-  object-fit: contain;
-  margin-bottom: 4px;
-}
-.badge-level {
-  position: absolute;
-  bottom: 2px; right: 3px;
-  font-size: .85em;
-}
-
-/* POPUP FOR MERKER */
-.user-badge-popup {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,.8);
-  display: none; /* ← endre fra flex til none */
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-}
-.ub-inner {
-  background: rgba(25,25,30,.95);
-  color: #fff;
-  padding: 22px 24px;
-  border-radius: 12px;
-  width: 90%; max-width: 340px;
-  text-align: center;
-  position: relative;
-}
-.close-ub {
-  position: absolute;
-  top: 8px; right: 10px;
-  background: none;
-  border: none;
-  color: #f6c800;
-  font-size: 1.2em;
-  cursor: pointer;
-}
-.ub-icon {
-  width: 64px; height: 64px;
-  margin-bottom: 10px;
-}
-#quizPlaceSelect option {
-  background: #222;
-  color: #fff;
-}
 
 /* --- HISTORIEKORT TIDSLINJE (profilvisning) --- */
 #timelineSection {
