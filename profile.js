@@ -1,15 +1,12 @@
 // ============================================================
-// === HISTORY GO – PROFILE.JS (v20, stabil og synkronisert) ===
+// === HISTORY GO – PROFILE.JS (v21, ren og stabil) ============
 // ============================================================
 //
 // Håndterer profilsiden:
-// - Profilkort (navn, emoji, farge, statistikk)
-// - Profilredigering
-// - Deling (html2canvas)
-// - Historiekort / tidslinje
-// - Leser ferske data direkte fra localStorage
-//
-// Krever at app.js lastes først (for PEOPLE, PLACES, BADGES)
+//  - Profilkort og redigering
+//  - Historiekort / tidslinje
+//  - Merker og modaler
+//  - Leser data direkte fra localStorage
 // ============================================================
 
 
@@ -19,7 +16,6 @@
 function renderProfileCard() {
   const name = localStorage.getItem("user_name") || "Utforsker #182";
 
-  // 🔹 Hent ferske data direkte fra lagring
   const visited         = JSON.parse(localStorage.getItem("visited_places") || "{}");
   const peopleCollected = JSON.parse(localStorage.getItem("people_collected") || "{}");
   const merits          = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
@@ -81,23 +77,9 @@ function openProfileModal() {
   };
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  const editBtn = document.getElementById("editProfileBtn");
-  if (editBtn) {
-    editBtn.addEventListener("click", openProfileModal);
-  }
-
-  // kjør også standardoppdatering når DOM er klar
-  renderProfileCard();
-  renderMerits();
-  renderCollection();
-  renderGallery();
-  renderTimelineProfile();
-});
-
 
 // --------------------------------------
-// HISTORIEKORT – TIDSLINJE (PROFILVERSJON)
+// HISTORIEKORT – TIDSLINJE
 // --------------------------------------
 function renderTimelineProfile() {
   const body = document.getElementById("timelineBody");
@@ -106,15 +88,11 @@ function renderTimelineProfile() {
   if (!body) return;
 
   const peopleCollected = JSON.parse(localStorage.getItem("people_collected") || "{}");
-
   const got   = PEOPLE.filter(p => !!peopleCollected[p.id]);
   const total = PEOPLE.length;
   const count = got.length;
 
-  if (bar) {
-    const pct = total ? (count / total) * 100 : 0;
-    bar.style.width = `${pct.toFixed(1)}%`;
-  }
+  if (bar) bar.style.width = `${(total ? (count / total) * 100 : 0).toFixed(1)}%`;
   if (txt) txt.textContent = `Du har samlet ${count} av ${total} historiekort`;
 
   if (!got.length) {
@@ -122,60 +100,46 @@ function renderTimelineProfile() {
     return;
   }
 
-  const sorted = got.map(p => ({ ...p, year: p.year || 0 }))
-                    .sort((a, b) => a.year - b.year);
-
-  body.innerHTML = sorted.map(p => {
-    const img = p.image || `bilder/kort/people/${p.id}.PNG`;
-    const yearLabel = p.year || "–";
-    return `
-      <div class="timeline-card" data-person="${p.id}">
-        <img src="${img}" alt="${p.name}">
-        <div class="timeline-name">${p.name}</div>
-        <div class="timeline-year">${yearLabel}</div>
-      </div>`;
-  }).join("");
+  const sorted = got.map(p => ({ ...p, year: p.year || 0 })).sort((a,b) => a.year - b.year);
+  body.innerHTML = sorted.map(p => `
+    <div class="timeline-card" data-person="${p.id}">
+      <img src="${p.image || `bilder/kort/people/${p.id}.PNG`}" alt="${p.name}">
+      <div class="timeline-name">${p.name}</div>
+      <div class="timeline-year">${p.year || "–"}</div>
+    </div>`).join("");
 
   body.querySelectorAll(".timeline-card").forEach(card => {
     card.addEventListener("click", () => {
-      const id = card.dataset.person;
-      const person = PEOPLE.find(p => p.id === id);
+      const person = PEOPLE.find(p => p.id === card.dataset.person);
       if (person) showPersonPopup(person);
     });
   });
 }
 
+
 // --------------------------------------
-// MINE MERKER – runde ikoner med medalje øverst til høyre
+// MINE MERKER – runde ikoner med medalje
 // --------------------------------------
 async function renderMerits() {
   const container = document.getElementById("merits");
   if (!container) return;
 
-  const badges = await fetch("badges.json", { cache: "no-store" }).then(r => r.json());
+  const badges = await fetch("badges.json").then(r => r.json());
   const localMerits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
+  const cats = Object.keys(localMerits).length ? Object.keys(localMerits) : badges.map(b => b.name);
 
-  const cats = Object.keys(localMerits).length
-    ? Object.keys(localMerits)
-    : badges.map(b => b.name);
-
-  // Hjelpefunksjon for riktig medalje
-  function medalByIndex(index) {
-    if (index <= 0) return "🥉";
-    if (index === 1) return "🥈";
-    if (index === 2) return "🥇";
-    return "🏆";
+  function medalByIndex(i) {
+    return i <= 0 ? "🥉" : i === 1 ? "🥈" : i === 2 ? "🥇" : "🏆";
   }
 
   container.innerHTML = cats.map(cat => {
-    const merit = localMerits[cat] || { level: "Nybegynner", points: 0 };
+    const merit = localMerits[cat] || { level: "Nybegynner" };
     const badge = badges.find(b =>
       cat.toLowerCase().includes(b.id) ||
       b.name.toLowerCase().includes(cat.toLowerCase())
     );
     if (!badge) return "";
 
-    // Finn riktig medalje basert på nivå
     const tierIndex = badge.tiers.findIndex(t => t.label === merit.level);
     const medal = medalByIndex(tierIndex);
 
@@ -188,51 +152,20 @@ async function renderMerits() {
       </div>`;
   }).join("");
 
-  // Klikk for å åpne detaljmodal
   container.querySelectorAll(".badge-mini").forEach(el => {
     el.addEventListener("click", () => {
-      const id = el.dataset.badge;
-      const badge = badges.find(b => b.id === id);
+      const badge = badges.find(b => b.id === el.dataset.badge);
       if (badge) showBadgeModal(badge.name);
     });
   });
 }
 
-// --------------------------------------
-// FULL INITIALISERING MED DATA
-// --------------------------------------
-Promise.all([
-  fetch("people.json").then(r => r.json()).then(d => PEOPLE = d),
-  fetch("places.json").then(r => r.json()).then(d => PLACES = d),
-  fetch("badges.json").then(r => r.json()).then(d => BADGES = d)
-]).then(() => {
-  dataReady = true;
-  renderProfileCard();
-  renderMerits();
-  renderCollection();
-  renderGallery();
-  renderTimelineProfile();
-});
-
 
 // --------------------------------------
-// SIKKERHET – VENT PÅ DATA VED TREG LAST
-// --------------------------------------
-document.addEventListener("DOMContentLoaded", () => {
-  setTimeout(() => {
-    renderProfileCard();
-    renderMerits();
-    renderCollection();
-    renderGallery();
-    renderTimelineProfile();
-  }, 600);
-});
-
-// --------------------------------------
-// MERKE-MODAL (viser info og quiz-liste)
+// MERKE-MODAL (viser info + quiz-liste)
 // --------------------------------------
 function showBadgeModal(catName) {
-  const badges = JSON.parse(localStorage.getItem("badges_cache") || "[]");
+  const badges = BADGES || [];
   const merits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
   const quizProgress = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
 
@@ -242,7 +175,6 @@ function showBadgeModal(catName) {
   );
   if (!badge) return;
 
-  // Quiz-liste for denne kategorien
   const catId = badge.id;
   const completed = quizProgress[catId]?.completed || [];
 
@@ -250,7 +182,6 @@ function showBadgeModal(catName) {
     ? `<ul>${completed.map(q => `<li>${q}</li>`).join("")}</ul>`
     : `<p class="muted">Ingen quizzer fullført ennå.</p>`;
 
-  // Bygg modalen
   const modal = document.createElement("div");
   modal.className = "badge-modal";
   modal.innerHTML = `
@@ -258,16 +189,41 @@ function showBadgeModal(catName) {
       <button class="close-badge">✕</button>
       <img src="${badge.image}" alt="${badge.name}" class="badge-modal-icon">
       <h2>${badge.name}</h2>
-      <p class="muted">${badge.description}</p>
+      <p class="muted">Nivå: ${merits[badge.name]?.level || "Nybegynner"}</p>
       <h4>Dine quizzer</h4>
       ${listHtml}
     </div>`;
-
   document.body.appendChild(modal);
   modal.style.display = "flex";
 
   modal.querySelector(".close-badge").onclick = () => modal.remove();
-  modal.addEventListener("click", e => {
-    if (e.target === modal) modal.remove();
-  });
+  modal.addEventListener("click", e => { if (e.target === modal) modal.remove(); });
 }
+
+
+// --------------------------------------
+// INITIALISERING MED DATA
+// --------------------------------------
+Promise.all([
+  fetch("people.json").then(r => r.json()).then(d => PEOPLE = d),
+  fetch("places.json").then(r => r.json()).then(d => PLACES = d),
+  fetch("badges.json").then(r => r.json()).then(d => BADGES = d)
+]).then(() => {
+  renderProfileCard();
+  renderMerits();
+  renderCollection();
+  renderGallery();
+  renderTimelineProfile();
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const editBtn = document.getElementById("editProfileBtn");
+  if (editBtn) editBtn.addEventListener("click", openProfileModal);
+  setTimeout(() => {
+    renderProfileCard();
+    renderMerits();
+    renderCollection();
+    renderGallery();
+    renderTimelineProfile();
+  }, 600);
+});
