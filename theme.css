@@ -477,15 +477,12 @@ button{ cursor:pointer; border:none }
 
 /* === Ikon med fargering === */
 .badge-mini-icon {
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  object-fit: contain;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;     /* gjør bildet rundt */
+  object-fit: cover;       /* fyller sirkelen pent */
   display: block;
-  margin: 0 auto 6px auto;
-  background: #111;
-  border: 3px solid var(--badge-color, rgba(255,255,255,0.25));
-  box-shadow: 0 0 6px var(--badge-color, rgba(255,255,255,0.2));
+  margin: 0 auto 8px auto; /* sentrert med litt luft under */
 }
 
 /* === Medalje (nivåindikator) === */
