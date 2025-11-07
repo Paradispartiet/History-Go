@@ -763,10 +763,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const color = localStorage.getItem("user_color") || "#f6c800";
 
   // Hent progresjon fra lagring
-  const visited         = JSON.parse(localStorage.getItem("visited") || "{}");
-  const merits          = JSON.parse(localStorage.getItem("merits") || "{}");
-  const peopleCollected = JSON.parse(localStorage.getItem("peopleCollected") || "{}");
-  const quizProgress    = JSON.parse(localStorage.getItem("quizProgress") || "{}");
+  // Hent progresjon fra lagring (riktige nøkler)
+const visited         = JSON.parse(localStorage.getItem("visited_places") || "{}");
+const merits          = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
+const peopleCollected = JSON.parse(localStorage.getItem("people_collected") || "{}");
+const quizProgress    = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
 
   // Tell opp
   const visitedCount = Object.keys(visited).length;
