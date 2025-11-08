@@ -874,6 +874,13 @@ function isQuizDone(targetId) {
   return Object.values(progress).some(v => Array.isArray(v.completed) && v.completed.includes(targetId));
 }
 
+function getPersonsByPlace(placeId) {
+  return PEOPLE.filter(p =>
+    (Array.isArray(p.places) && p.places.includes(placeId)) ||
+    p.placeId === placeId
+  );
+}
+
 // --- Viser overlay for valgt sted ---
 async function showPlaceOverlay(place) {
   // Fjern eventuelle tidligere overlays
@@ -884,7 +891,7 @@ async function showPlaceOverlay(place) {
   overlay.id = 'placeOverlay';
   overlay.className = 'place-overlay';
 
-  const peopleHere = PEOPLE.filter(p => p.placeId === place.id);
+  const peopleHere = getPersonsByPlace(place.id);
   const summary = await fetchWikiSummary(place.name);
 
   overlay.innerHTML = `
