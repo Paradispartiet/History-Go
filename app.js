@@ -237,11 +237,9 @@ function initMap() {
   });
 } // ✅ korrekt avslutning av initMap()
 
-// =====================================================
-// PEOPLE → PLACES LINKING (flere steder per person)
-// =====================================================
+// PEOPLE → PLACES LINKING (kun kobling, ingen markører)
 function linkPeopleToPlaces() {
-  if (!PLACES.length || !PEOPLE.length) return;
+  if (!MAP || !PLACES.length || !PEOPLE.length) return;
 
   PEOPLE.forEach(person => {
     let linkedPlaces = [];
@@ -253,14 +251,15 @@ function linkPeopleToPlaces() {
       if (single) linkedPlaces.push(single);
     }
 
-    // Legg bare til info på eksisterende steder (ingen nye markører)
+    if (!linkedPlaces.length) return;
+
+    // kun knytte person -> eksisterende steder (ingen nye markører)
     linkedPlaces.forEach(lp => {
       lp.people = lp.people || [];
       lp.people.push(person);
     });
   });
 }
-
     // Lager popup med navn og beskrivelse
     const placeNames = linkedPlaces.map(p => p.name).join(", ");
     const popupHTML = `
