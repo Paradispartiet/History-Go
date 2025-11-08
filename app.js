@@ -500,6 +500,36 @@ function renderCollection(){
     </span>`).join("");
 }
 
+// ==============================
+// RENDER MERITS – VISER FREMGANG OG NIVÅ
+// ==============================
+function renderMerits() {
+  const grid = document.getElementById("userBadgesGrid");
+  if (!grid) return;
+
+  const merits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
+  const items = Object.entries(merits);
+
+  if (!items.length) {
+    grid.innerHTML = `<div class="muted">Ingen merker ennå – ta quizer for å tjene poeng!</div>`;
+    return;
+  }
+
+  grid.innerHTML = items.map(([cat, info]) => {
+    const color = catColor(cat);
+    const level = info.level || "Nybegynner";
+    const pts = info.points || 0;
+    return `
+      <div class="badge-card" style="border-left:4px solid ${color}">
+        <div class="badge-info">
+          <strong>${cat}</strong><br>
+          <span class="muted">Nivå: ${level} · Poeng: ${pts}</span>
+        </div>
+        <span class="badge-icon" style="color:${color}">🏅</span>
+      </div>`;
+  }).join("");
+}
+
 function renderGallery() {
   const got = PEOPLE.filter(p => !!peopleCollected[p.id]);
   if (!el.gallery) return;
