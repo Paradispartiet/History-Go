@@ -260,24 +260,6 @@ function linkPeopleToPlaces() {
     });
   });
 }
-    // Lager popup med navn og beskrivelse
-    const placeNames = linkedPlaces.map(p => p.name).join(", ");
-    const popupHTML = `
-      <div class="person-popup">
-        <h3>${person.name}</h3>
-        <p>${person.desc || ""}</p>
-        <p><i>${placeNames}</i></p>
-      </div>
-    `;
-
-    linkedPlaces.forEach(lp => {
-      if (!lp.lat || !lp.lon) return;
-      L.marker([lp.lat, lp.lon], { title: person.name })
-        .addTo(MAP)
-        .bindPopup(popupHTML);
-    });
-  });
-}
 
 function showRouteTo(place){
   if (!MAP) return;
