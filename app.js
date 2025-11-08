@@ -255,6 +255,14 @@ function linkPeopleToPlaces() {
 
     if (!linkedPlaces.length) return;
 
+    // Legg bare til info på eksisterende steder (ingen nye markører)
+    linkedPlaces.forEach(lp => {
+      lp.people = lp.people || [];
+      lp.people.push(person);
+    });
+  });
+}
+
     const placeNames = linkedPlaces.map(p => p.name).join(", ");
     const popupHTML = `
       <div class="person-popup">
