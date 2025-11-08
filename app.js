@@ -794,13 +794,6 @@ function boot() {
 
 document.addEventListener('DOMContentLoaded', boot);
 
-// ✅ maybeDrawMarkers skal ikke ha linkPeopleToPlaces her
-function maybeDrawMarkers() {
-  if (mapReady && dataReady) {
-    drawPlaceMarkers();  // kun steder
-  }
-}
-
 // === MINI-PROFIL PÅ FORSIDEN – VISER NAVN, STATISTIKK, QUIZZER ===
 document.addEventListener("DOMContentLoaded", () => {
   const nm = document.getElementById("miniName");
