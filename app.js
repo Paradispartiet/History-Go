@@ -261,9 +261,6 @@ function linkPeopleToPlaces() {
       lp.people.push(person);
     });
 
-    // (Ingen nye markører lages her – bare datakobling)
-  });
-}
     // Lager popup med navn og beskrivelse
     const placeNames = linkedPlaces.map(p => p.name).join(", ");
     const popupHTML = `
