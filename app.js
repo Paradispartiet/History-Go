@@ -215,6 +215,17 @@ function initMap() {
     mapReady = true;
     maybeDrawMarkers();
 
+    const mapEl = document.getElementById('map');
+    if (mapEl) {
+      mapEl.style.position = 'fixed';
+      mapEl.style.inset = '0';
+      mapEl.style.width = '100%';
+      mapEl.style.height = '100%';
+      mapEl.style.zIndex = '1';
+    }
+  });
+} // ← lukk initMap her
+
 // =====================================================
 // PEOPLE → PLACES LINKING (flere steder per person)
 // =====================================================
@@ -222,7 +233,6 @@ function linkPeopleToPlaces() {
   if (!MAP || !PLACES.length || !PEOPLE.length) return;
 
   PEOPLE.forEach(person => {
-    // Finn alle steder knyttet til personen
     let linkedPlaces = [];
 
     if (Array.isArray(person.places)) {
