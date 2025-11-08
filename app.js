@@ -1033,7 +1033,7 @@ function exitMapMode() {
 
   // 🔧 Flytt kartet bak igjen når du går ut av kartmodus
   const mapEl = document.getElementById("map");
-  if (mapEl) mapEl.style.zIndex = "0";
+  if (mapEl) mapEl.style.zIndex = "1";
 
   showToast("Tilbake til oversikt");
 }
