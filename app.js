@@ -215,6 +215,43 @@ function initMap() {
     mapReady = true;
     maybeDrawMarkers();
 
+// =====================================================
+// PEOPLE → PLACES LINKING (flere steder per person)
+// =====================================================
+function linkPeopleToPlaces() {
+  if (!MAP || !PLACES.length || !PEOPLE.length) return;
+
+  PEOPLE.forEach(person => {
+    // Finn alle steder knyttet til personen
+    let linkedPlaces = [];
+
+    if (Array.isArray(person.places)) {
+      linkedPlaces = PLACES.filter(p => person.places.includes(p.id));
+    } else if (person.placeId) {
+      const single = PLACES.find(p => p.id === person.placeId);
+      if (single) linkedPlaces.push(single);
+    }
+
+    if (!linkedPlaces.length) return;
+
+    const placeNames = linkedPlaces.map(p => p.name).join(", ");
+    const popupHTML = `
+      <div class="person-popup">
+        <h3>${person.name}</h3>
+        <p>${person.desc}</p>
+        <p><i>${placeNames}</i></p>
+      </div>
+    `;
+
+    linkedPlaces.forEach(lp => {
+      if (!lp.lat || !lp.lon) return;
+      L.marker([lp.lat, lp.lon], { title: person.name })
+        .addTo(MAP)
+        .bindPopup(popupHTML);
+    });
+  });
+}
+    
     // 🔧 Riktig oppsett – sørg for at kartet vises bak alt annet, men fyller hele skjermen
     const mapEl = document.getElementById('map');
     if (mapEl) {
