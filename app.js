@@ -260,6 +260,7 @@ function linkPeopleToPlaces() {
     });
   });
 }
+
     // Lager popup med navn og beskrivelse
     const placeNames = linkedPlaces.map(p => p.name).join(", ");
     const popupHTML = `
