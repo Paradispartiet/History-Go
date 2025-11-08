@@ -186,18 +186,28 @@ function distMeters(a,b){
 // ==============================
 let MAP, userMarker, userPulse, routeLine, routeControl, placeLayer;
 
-function setUser(lat, lon){
+function setUser(lat, lon) {
   if (!MAP) return;
-  if (!userMarker){
-    userMarker = L.circleMarker([lat,lon], {
-      radius:8, weight:2, color:'#fff', fillColor:'#1976d2', fillOpacity:1
+  if (!userMarker) {
+    userMarker = L.circleMarker([lat, lon], {
+      radius: 8,
+      weight: 2,
+      color: '#fff',
+      fillColor: '#1976d2',
+      fillOpacity: 1
     }).addTo(MAP).bindPopup('Du er her');
-    userPulse = L.circle([lat,lon], {
-      radius: 25, color:'#00e676', weight:1, opacity:.6, fillColor:'#00e676', fillOpacity:.12
+
+    userPulse = L.circle([lat, lon], {
+      radius: 25,
+      color: '#00e676',
+      weight: 1,
+      opacity: 0.6,
+      fillColor: '#00e676',
+      fillOpacity: 0.12
     }).addTo(MAP);
   } else {
-    userMarker.setLatLng([lat,lon]);
-    userPulse.setLatLng([lat,lon]);
+    userMarker.setLatLng([lat, lon]);
+    userPulse.setLatLng([lat, lon]);
   }
 }
 
@@ -215,6 +225,7 @@ function initMap() {
     mapReady = true;
     maybeDrawMarkers();
 
+    // 🔧 Sørg for at kartet dekker hele skjermen bak innholdet
     const mapEl = document.getElementById('map');
     if (mapEl) {
       mapEl.style.position = 'fixed';
@@ -224,7 +235,7 @@ function initMap() {
       mapEl.style.zIndex = '1';
     }
   });
-} // ← lukk initMap her
+} // ✅ korrekt avslutning av initMap()
 
 // =====================================================
 // PEOPLE → PLACES LINKING (flere steder per person)
@@ -235,7 +246,7 @@ function linkPeopleToPlaces() {
   PEOPLE.forEach(person => {
     let linkedPlaces = [];
 
-    if (Array.isArray(person.places)) {
+    if (Array.isArray(person.places) && person.places.length > 0) {
       linkedPlaces = PLACES.filter(p => person.places.includes(p.id));
     } else if (person.placeId) {
       const single = PLACES.find(p => p.id === person.placeId);
@@ -259,18 +270,6 @@ function linkPeopleToPlaces() {
         .addTo(MAP)
         .bindPopup(popupHTML);
     });
-  });
-}
-    
-    // 🔧 Riktig oppsett – sørg for at kartet vises bak alt annet, men fyller hele skjermen
-    const mapEl = document.getElementById('map');
-    if (mapEl) {
-      mapEl.style.position = 'fixed';
-      mapEl.style.inset = '0';
-      mapEl.style.width = '100%';
-      mapEl.style.height = '100%';
-      mapEl.style.zIndex = '1';
-    }
   });
 }
 
