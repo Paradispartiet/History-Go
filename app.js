@@ -718,6 +718,8 @@ function boot() {
     dataReady = true;
     maybeDrawMarkers();
 
+    linkPeopleToPlaces();
+    
     renderNearbyPlaces();
     renderCollection();
     renderMerits();
