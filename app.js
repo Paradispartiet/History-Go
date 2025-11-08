@@ -704,7 +704,6 @@ function requestLocation() {
 function boot() {
   initMap(); // 🟢 start kartet med én gang
 
-  // Laster places og people med presise feilmeldinger
   Promise.all([
     fetch('places.json')
       .then(r => {
@@ -725,11 +724,8 @@ function boot() {
     PEOPLE = people || [];
 
     dataReady = true;
-    maybeDrawMarkers();
+    maybeDrawMarkers();   // ⬅️ linkPeopleToPlaces flyttes inn hit (se nedenfor)
 
-    linkPeopleToPlaces();
-    
-    renderNearbyPlaces();
     renderCollection();
     renderMerits();
     renderGallery();
@@ -758,6 +754,14 @@ function boot() {
 }
 
 document.addEventListener('DOMContentLoaded', boot);
+
+// ✅ Oppdatert maybeDrawMarkers — sørger for at linkPeopleToPlaces kjører på riktig tidspunkt
+function maybeDrawMarkers() {
+  if (mapReady && dataReady) {
+    drawPlaceMarkers();
+    linkPeopleToPlaces();  // ← flyttet hit, så den kjører først når kart og data begge er klare
+  }
+}
 
 // === MINI-PROFIL PÅ FORSIDEN – VISER NAVN, STATISTIKK, QUIZZER ===
 document.addEventListener("DOMContentLoaded", () => {
