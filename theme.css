@@ -64,7 +64,8 @@ body{
 #map {
   position: fixed;
   inset: 0;
-  z-index: 0 !important;
+  z-index: 1; /* ← var 0, nå synlig */
+  background: #000; /* trygg bakgrunn */
 }
 
 /* Hovedinnhold over kartet */
