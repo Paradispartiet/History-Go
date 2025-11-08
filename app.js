@@ -103,6 +103,7 @@ function norm(s = "") {
 // ------------------------------
 function catColor(cat = "") {
   const c = norm(cat);
+  if (c.includes("historie") || c.includes("fortid") || c.includes("middelalder") || c.includes("arkeologi")) return "#344B80";   // Historie – dyp blå
   if (c.includes("vitenskap") || c.includes("filosofi")) return "#9b59b6";
   if (c.includes("kunst") || c.includes("kultur")) return "#ffb703";
   if (c.includes("musikk") || c.includes("scene")) return "#ff66cc";
@@ -122,6 +123,7 @@ function catColor(cat = "") {
 // ------------------------------
 function catClass(cat = "") {
   const c = norm(cat);
+  if (c.includes("historie") || c.includes("fortid") || c.includes("middelalder") || c.includes("arkeologi")) return "historie";
   if (c.includes("vitenskap") || c.includes("filosofi")) return "vitenskap";
   if (c.includes("kunst") || c.includes("kultur")) return "kunst";
   if (c.includes("musikk") || c.includes("scene")) return "musikk";
@@ -144,6 +146,7 @@ function tagToCat(tags = []) {
   const t = norm(Array.isArray(tags) ? tags.join(" ") : tags || "");
 
   // 🔹 Viktig: sjekk spesifikke kulturtyper før "kunst/kultur"
+  if (t.includes("historie") || t.includes("fortid") || t.includes("middelalder") || t.includes("arkeologi")) return "historie";
   if (t.includes("subkultur") || t.includes("urban")) return "subkultur";
   if (t.includes("populaer") || t.includes("pop")) return "populaerkultur";
   if (t.includes("vitenskap") || t.includes("filosofi")) return "vitenskap";
