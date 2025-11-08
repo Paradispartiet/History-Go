@@ -956,7 +956,9 @@ const QUIZ_FILE_MAP = {
   "vitenskap": "quiz_vitenskap.json",
   "natur": "quiz_natur.json",
   "litteratur": "quiz_litteratur.json",
-  "by": "quiz_by.json"
+  "by": "quiz_by.json",
+  "historie": "quiz_historie.json",
+  "naeringsliv": "quiz_naeringsliv.json"
 };
 
 // --- Laster riktig quizfil etter kategori ---
