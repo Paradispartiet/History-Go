@@ -255,12 +255,13 @@ function linkPeopleToPlaces() {
 
     if (!linkedPlaces.length) return;
 
-    // Knytter personen til eksisterende steder
+    // Bare legg info på eksisterende steder (ingen nye markører)
     linkedPlaces.forEach(lp => {
       lp.people = lp.people || [];
       lp.people.push(person);
     });
-
+  });
+}
     // Lager popup med navn og beskrivelse
     const placeNames = linkedPlaces.map(p => p.name).join(", ");
     const popupHTML = `
