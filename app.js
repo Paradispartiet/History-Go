@@ -709,28 +709,31 @@ function boot() {
       .then(r => {
         if (!r.ok) throw new Error(`places.json (${r.status})`);
         return r.json();
-      })
-      .catch(err => { throw new Error(`Feil ved lasting av places.json → ${err.message}`); }),
-
+      }),
     fetch('people.json')
       .then(r => {
         if (!r.ok) throw new Error(`people.json (${r.status})`);
         return r.json();
       })
-      .catch(err => { throw new Error(`Feil ved lasting av people.json → ${err.message}`); })
   ])
   .then(([places, people]) => {
     PLACES = places || [];
     PEOPLE = people || [];
 
     dataReady = true;
-    maybeDrawMarkers();   // ⬅️ linkPeopleToPlaces flyttes inn hit (se nedenfor)
+    maybeDrawMarkers();   // tegner kun PLACES
 
     renderCollection();
     renderMerits();
     renderGallery();
 
     requestLocation();
+
+    // ✅ linkPeopleToPlaces kjøres én gang, når kart + data er klart
+    setTimeout(() => {
+      linkPeopleToPlaces();
+      renderNearbyPlaces();
+    }, 800);
 
     if (navigator.geolocation) {
       navigator.geolocation.watchPosition(
@@ -755,11 +758,10 @@ function boot() {
 
 document.addEventListener('DOMContentLoaded', boot);
 
-// ✅ Oppdatert maybeDrawMarkers — sørger for at linkPeopleToPlaces kjører på riktig tidspunkt
+// ✅ maybeDrawMarkers skal ikke ha linkPeopleToPlaces her
 function maybeDrawMarkers() {
   if (mapReady && dataReady) {
-    drawPlaceMarkers();
-    linkPeopleToPlaces();  // ← flyttet hit, så den kjører først når kart og data begge er klare
+    drawPlaceMarkers();  // kun steder
   }
 }
 
