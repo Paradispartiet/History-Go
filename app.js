@@ -1031,9 +1031,8 @@ function exitMapMode() {
   document.querySelector("main").style.display = "";
   document.querySelector("header").style.display = "";
 
-  // 🔧 Flytt kartet bak igjen når du går ut av kartmodus
   const mapEl = document.getElementById("map");
-  if (mapEl) mapEl.style.zIndex = "1";
+  if (mapEl) mapEl.style.zIndex = "1";  // ← ikke "0"
 
   showToast("Tilbake til oversikt");
 }
