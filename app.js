@@ -222,19 +222,19 @@ function initMap() {
   }).addTo(MAP);
 
   MAP.whenReady(() => {
-    mapReady = true;
-    maybeDrawMarkers();
+  mapReady = true;
+  if (dataReady) maybeDrawMarkers(); // ← kjør kun når data også er klart
 
-    // 🔧 Sørg for at kartet dekker hele skjermen bak innholdet
-    const mapEl = document.getElementById('map');
-    if (mapEl) {
-      mapEl.style.position = 'fixed';
-      mapEl.style.inset = '0';
-      mapEl.style.width = '100%';
-      mapEl.style.height = '100%';
-      mapEl.style.zIndex = '1';
-    }
-  });
+  // 🔧 Sørg for at kartet dekker hele skjermen bak innholdet
+  const mapEl = document.getElementById('map');
+  if (mapEl) {
+    mapEl.style.position = 'fixed';
+    mapEl.style.inset = '0';
+    mapEl.style.width = '100%';
+    mapEl.style.height = '100%';
+    mapEl.style.zIndex = '1';
+  }
+});
 } // ✅ korrekt avslutning av initMap()
 
 // PEOPLE → PLACES LINKING (kun kobling, ingen markører)
@@ -757,7 +757,7 @@ function boot() {
     PEOPLE = people || [];
 
     dataReady = true;
-    maybeDrawMarkers();   // tegner kun PLACES
+    if (mapReady) maybeDrawMarkers();  // ✅ kjør kun hvis kartet er klart
 
     renderCollection();
     renderMerits();
