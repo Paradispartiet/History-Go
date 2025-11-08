@@ -241,7 +241,7 @@ function initMap() {
 // PEOPLE → PLACES LINKING (flere steder per person)
 // =====================================================
 function linkPeopleToPlaces() {
-  if (!MAP || !PLACES.length || !PEOPLE.length) return;
+  if (!PLACES.length || !PEOPLE.length) return;
 
   PEOPLE.forEach(person => {
     let linkedPlaces = [];
@@ -253,9 +253,7 @@ function linkPeopleToPlaces() {
       if (single) linkedPlaces.push(single);
     }
 
-    if (!linkedPlaces.length) return;
-
-    // Bare legg info på eksisterende steder (ingen nye markører)
+    // Legg bare til info på eksisterende steder (ingen nye markører)
     linkedPlaces.forEach(lp => {
       lp.people = lp.people || [];
       lp.people.push(person);
