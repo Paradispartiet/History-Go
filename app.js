@@ -111,6 +111,7 @@ function catColor(cat = "") {
   if (c.includes("sport") || c.includes("idrett") || c.includes("lek")) return "#2a9d8f";
   if (c.includes("by") || c.includes("arkitektur")) return "#e63946";
   if (c.includes("politikk") || c.includes("samfunn")) return "#c77dff";
+  if (c.includes("naering") || c.includes("industri") || c.includes("arbeid")) return "#ff8800";
   if (c.includes("populaer") || c.includes("pop")) return "#ffb703";
   if (c.includes("subkultur") || c.includes("urban")) return "#ff66cc";
   return "#9b59b6"; // fallback
@@ -129,8 +130,10 @@ function catClass(cat = "") {
   if (c.includes("sport") || c.includes("idrett") || c.includes("lek")) return "sport";
   if (c.includes("by") || c.includes("arkitektur")) return "by";
   if (c.includes("politikk") || c.includes("samfunn")) return "politikk";
+  if (c.includes("naering") || c.includes("industri") || c.includes("arbeid")) return "naeringsliv";
   if (c.includes("populaer") || c.includes("pop")) return "populaerkultur";
   if (c.includes("subkultur") || c.includes("urban")) return "subkultur";
+  
   return "vitenskap";
 }
 
@@ -143,7 +146,6 @@ function tagToCat(tags = []) {
   // 🔹 Viktig: sjekk spesifikke kulturtyper før "kunst/kultur"
   if (t.includes("subkultur") || t.includes("urban")) return "subkultur";
   if (t.includes("populaer") || t.includes("pop")) return "populaerkultur";
-
   if (t.includes("vitenskap") || t.includes("filosofi")) return "vitenskap";
   if (t.includes("kunst") || t.includes("kultur")) return "kunst";
   if (t.includes("musikk") || t.includes("scene")) return "musikk";
@@ -152,7 +154,7 @@ function tagToCat(tags = []) {
   if (t.includes("sport") || t.includes("idrett") || t.includes("lek")) return "sport";
   if (t.includes("by") || t.includes("arkitektur")) return "by";
   if (t.includes("politikk") || t.includes("samfunn")) return "politikk";
-
+  if (t.includes("naering") || t.includes("industri") || t.includes("arbeid")) return "naeringsliv";
   return "vitenskap"; // fallback
 }
 
