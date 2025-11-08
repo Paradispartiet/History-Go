@@ -255,19 +255,18 @@ function linkPeopleToPlaces() {
 
     if (!linkedPlaces.length) return;
 
-    // Legg bare til info på eksisterende steder (ingen nye markører)
+    // Knytter personen til eksisterende steder
     linkedPlaces.forEach(lp => {
       lp.people = lp.people || [];
       lp.people.push(person);
     });
-  });
-}
 
+    // Lager popup med navn og beskrivelse
     const placeNames = linkedPlaces.map(p => p.name).join(", ");
     const popupHTML = `
       <div class="person-popup">
         <h3>${person.name}</h3>
-        <p>${person.desc}</p>
+        <p>${person.desc || ""}</p>
         <p><i>${placeNames}</i></p>
       </div>
     `;
