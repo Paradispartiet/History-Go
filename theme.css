@@ -420,7 +420,67 @@ button{ cursor:pointer; border:none }
 
 
 /* ===================================================== */
-/* 10b) Quiz-progress-bar                                */
+/* 11b) BADGE-MODAL STIL                                 */
+/* ===================================================== */
+.badge-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  backdrop-filter: blur(3px);
+}
+
+.badge-modal[style*="display: flex"] {
+  display: flex; /* sørger for at den faktisk vises */
+}
+
+.badge-modal-inner {
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: 14px;
+  padding: 20px;
+  max-width: 520px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 0 25px rgba(0,0,0,0.6);
+  text-align: center;
+  animation: fadeInBadge .25s ease-out;
+}
+
+.badge-modal-icon {
+  width: 180px;
+  height: auto;
+  margin: 0 auto 12px auto;
+  display: block;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(255,255,255,0.15);
+}
+
+.close-badge {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+@keyframes fadeInBadge {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* ===================================================== */
+/* 10c) Quiz-progress-bar                                */
 /* ===================================================== */
 .quiz-progress {
   width: 100%;
@@ -440,7 +500,7 @@ button{ cursor:pointer; border:none }
 
 
 /* ===================================================== */
-/* 10c) Quiz-fade effekt ved avslutning                  */
+/* 10d) Quiz-fade effekt ved avslutning                  */
 /* ===================================================== */
 #quizModal.fade-out .modal-body {
   animation: quizFadeOut 0.45s ease forwards;
@@ -459,7 +519,7 @@ button{ cursor:pointer; border:none }
 
 
 /* ===================================================== */
-/* 10d) QUIZ – KNAPPER OG ANIMASJON VED PERFEKT SCORE    */
+/* 10e) QUIZ – KNAPPER OG ANIMASJON VED PERFEKT SCORE    */
 /* ===================================================== */
 
 /* Fast stil for tidligere fullført quiz */
