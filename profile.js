@@ -115,7 +115,7 @@ function renderTimelineProfile() {
 
 
 // --------------------------------------
-// MINE MERKER – runde ikoner med medalje
+// MINE MERKER – runde ikoner med medalje (klikkbare)
 // --------------------------------------
 async function renderMerits() {
   const container = document.getElementById("merits");
@@ -141,7 +141,7 @@ async function renderMerits() {
     const medal = medalByIndex(tierIndex);
 
     return `
-      <div class="badge-mini" data-badge="${badge.id}">
+      <div class="badge-mini" data-badge="${badge.id}" role="button" tabindex="0" style="cursor:pointer;">
         <div class="badge-wrapper">
           <img src="${badge.image}" alt="${badge.name}" class="badge-mini-icon">
           <span class="badge-medal">${medal}</span>
@@ -149,45 +149,75 @@ async function renderMerits() {
       </div>`;
   }).join("");
 
+  // Hele kortet blir klikkbart + tastatur (Enter/Space)
+  const makeOpen = (el) => {
+    const id = el.dataset.badge;
+    const badge = badges.find(b => b.id === id);
+    if (badge) showBadgeModal(badge);
+  };
+
   container.querySelectorAll(".badge-mini").forEach(el => {
-    el.addEventListener("click", () => {
-      const badge = badges.find(b => b.id === el.dataset.badge);
-      if (badge) showBadgeModal(badge.name);
+    el.addEventListener("click", () => makeOpen(el));
+    el.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        makeOpen(el);
+      }
     });
   });
 }
 
 
 // --------------------------------------
-// MERKE-MODAL (viser info + quiz-liste)
+// MERKE-MODAL (bilde + nivå + teller + quizliste med spørsmålstitler)
 // --------------------------------------
-function showBadgeModal(catName) {
-  const badges = BADGES || [];
+async function showBadgeModal(badge) {
   const merits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
   const quizProgress = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
 
-  const badge = badges.find(b =>
-    catName.toLowerCase().includes(b.id) ||
-    b.name.toLowerCase().includes(catName.toLowerCase())
-  );
-  if (!badge) return;
-
   const catId = badge.id;
-  const completed = quizProgress[catId]?.completed || [];
+  const completedIds = quizProgress[catId]?.completed || [];
 
-  const listHtml = completed.length
-    ? `<ul>${completed.map(q => `<li>${q}</li>`).join("")}</ul>`
+  // Prøv å laste riktig quiz-fil for kategorien (f.eks. quiz_vitenskap.json)
+  let quizData = [];
+  try {
+    const res = await fetch(`quiz_${catId}.json`, { cache: "no-store" });
+    if (res.ok) quizData = await res.json();
+  } catch (_) { /* stille fallback */ }
+
+  // Filtrer til riktig kategori (i tilfelle blandede categoryId i filene)
+  const inThisCategory = Array.isArray(quizData)
+    ? quizData.filter(q => (q.categoryId || "").toLowerCase() === catId.toLowerCase())
+    : [];
+
+  const totalInCat = inThisCategory.length;
+
+  // Lag oppslag for rask tittel-henting
+  const byId = Object.fromEntries(inThisCategory.map(q => [q.id, q]));
+
+  // Fullførte i denne kategorien (de som faktisk finnes i filen)
+  const completedHere = completedIds.filter(id => !!byId[id]);
+
+  const counterHtml = `<p class="muted" style="margin:.2rem 0 1rem;">Du har fullført <strong>${completedHere.length}</strong> av <strong>${totalInCat}</strong> quizzer i denne kategorien.</p>`;
+
+  const listHtml = completedHere.length
+    ? `<ul>${completedHere.map(qid => {
+        const q = byId[qid];
+        const label = q?.question || qid;
+        return `<li>${label}</li>`;
+      }).join("")}</ul>`
     : `<p class="muted">Ingen quizzer fullført ennå.</p>`;
 
   const modal = document.createElement("div");
   modal.className = "badge-modal";
   modal.innerHTML = `
     <div class="badge-modal-inner">
-      <button class="close-badge">✕</button>
+      <button class="close-badge" aria-label="Lukk">✕</button>
       <img src="${badge.image}" alt="${badge.name}" class="badge-modal-icon">
-      <h2>${badge.name}</h2>
-      <p class="muted">Nivå: ${merits[badge.name]?.level || "Nybegynner"}</p>
-      <h4>Dine quizzer</h4>
+      <h2 style="margin:.4rem 0 .2rem;">${badge.name}</h2>
+      <p class="muted" style="margin:.2rem 0 .6rem;">Nivå: ${merits[badge.name]?.level || "Nybegynner"}</p>
+      ${counterHtml}
+      <h4 style="margin:.6rem 0 .3rem;">Dine quizzer</h4>
       ${listHtml}
     </div>`;
   document.body.appendChild(modal);
