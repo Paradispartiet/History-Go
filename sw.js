@@ -15,6 +15,8 @@ const CORE = [
   'people.json',
   'quiz_vitenskap.json',
   'quiz_litteratur.json',
+  'quiz_historie.json',
+  'quiz_naeringsliv.json',
   'quiz_kunst.json',
   'quiz_musikk.json',
   'quiz_sport.json',
