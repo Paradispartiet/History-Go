@@ -347,3 +347,24 @@ function triggerProfileUpdate() {
 
 // Gjør funksjonen tilgjengelig globalt, slik at app.js kan kalle den
 window.triggerProfileUpdate = triggerProfileUpdate;
+
+// ------------------------------------------------------------
+// FANG OPP NÅR APP.JS ER FERDIG LASTET OG DATA ER TILGJENGELIG
+// ------------------------------------------------------------
+window.addEventListener("load", () => {
+  // Prøv på nytt når hele siden er ferdig og PLACES/PEOPLE finnes
+  const waitForData = setInterval(() => {
+    if (Array.isArray(window.PLACES) && window.PLACES.length > 0) {
+      console.log("🔁 Data fra app.js tilgjengelig – oppdaterer profil");
+      renderProfileCard();
+      renderCollection();
+      renderGallery();
+      renderMerits();
+      renderTimelineProfile();
+      clearInterval(waitForData);
+    }
+  }, 500);
+
+  // Avbryt etter 5 sekunder hvis ingenting lastes
+  setTimeout(() => clearInterval(waitForData), 5000);
+});
