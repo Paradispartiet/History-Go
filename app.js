@@ -672,22 +672,35 @@ function boot() {
         return r.json();
       })
   ])
-    
   .then(([places, people]) => {
-  PLACES = places || [];
-  PEOPLE = people || [];
+    PLACES = places || [];
+    PEOPLE = people || [];
 
-  dataReady = true;
-  if (mapReady) maybeDrawMarkers();  // ✅ kjør kun hvis kartet er klart
+    dataReady = true;
+    if (mapReady) maybeDrawMarkers(); // ✅ tegn markører når kart er klart
 
-  requestLocation();  // ← fortsetter rett hit
-    
-    // ✅ linkPeopleToPlaces kjøres én gang, når kart + data er klart
+    // 📍 Start lokasjonsinnhenting
+    requestLocation();
+
+    // ✅ Link personer til steder (kjøres når alt er klart)
     setTimeout(() => {
       linkPeopleToPlaces();
       renderNearbyPlaces();
     }, 800);
 
+    // 🩵 Sørg for at stedene faktisk vises når posisjon OG data er klare
+    if (dataReady && currentPos) {
+      renderNearbyPlaces();
+    } else {
+      const waitForPos = setInterval(() => {
+        if (dataReady && currentPos) {
+          renderNearbyPlaces();
+          clearInterval(waitForPos);
+        }
+      }, 600);
+    }
+
+    // 🔁 Live-oppdatering av posisjon
     if (navigator.geolocation) {
       navigator.geolocation.watchPosition(
         pos => {
@@ -700,6 +713,14 @@ function boot() {
         { enableHighAccuracy: true }
       );
     }
+
+    wire(); // kobler opp event listeners
+  })
+  .catch(err => {
+    console.error("❌ Datafeil i boot():", err);
+    showToast(`Kunne ikke laste data (${err.message})`, 4000);
+  });
+}
 
     wire();
   })
