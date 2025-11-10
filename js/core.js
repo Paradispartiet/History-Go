@@ -70,18 +70,14 @@ function remove(key) {
 // --------------------------------------
 // HJELPEFUNKSJONER
 // --------------------------------------
-
-// Normaliser streng (for fargevalg, kategorier etc.)
 function norm(str = "") {
   return str.toLowerCase().replace(/\s+/g, "_").trim();
 }
 
-// Tilfeldig ID
 function uid(prefix = "id") {
   return prefix + "_" + Math.random().toString(36).substr(2, 9);
 }
 
-// Vise toast
 function showToast(msg, ms = 2500) {
   const toast = document.getElementById("toast");
   if (!toast) return;
@@ -104,17 +100,24 @@ async function boot() {
   const settings = await fetchJSON("data/settings.json");
   window.appSettings = settings || {};
 
-  // Last inn basisdata (asynkront, men globalt)
-  const [places, people, badges] = await Promise.all([
+  // Last inn basisdata
+  const [places, people, badges, routes] = await Promise.all([
     fetchJSON("data/places.json"),
     fetchJSON("data/people.json"),
     fetchJSON("data/badges.json"),
+    fetchJSON("data/routes.json"),
   ]);
 
-  window.data = { places, people, badges };
+  // Sett global struktur
+  window.HG = window.HG || {};
+  HG.data = { places, people, badges, routes };
+  window.data = HG.data; // kompatibilitet med eldre kode
 
-  debug("✅ Data lastet");
-  if (typeof initApp === "function") initApp();
+  debug(`✅ Data lastet (${places?.length || 0} steder)`);
+
+  // Start appen
+  if (app?.initApp) app.initApp();
+  else if (typeof initApp === "function") initApp();
 }
 
 // Start automatisk når DOM er klar
