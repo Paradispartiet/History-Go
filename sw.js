@@ -2,7 +2,7 @@
 // === HISTORY GO – SW.JS (v1.0, offline + cache-first) =======
 // ============================================================
 
-const VERSION = "v1.0.2";
+const VERSION = "v1.0.3";
 const STATIC_CACHE = `hg-static-${VERSION}`;
 const RUNTIME_CACHE = `hg-runtime-${VERSION}`;
 
@@ -13,7 +13,7 @@ const CORE_ASSETS = [
   "/profile.html",
 
   // CSS (bruk den stien du faktisk har; denne matcher filene vi lagde)
-  "/theme.css",
+  "/css/theme.css",
 
   // JS
   "/js/core.js",
