@@ -1,8 +1,8 @@
 // ============================================================
-// === HISTORY GO – PROFILE.JS (v25, stabil kombinert versjon) =
+// === HISTORY GO – PROFILE.JS (v26, stabil + sortert tidslinje)
 // ============================================================
 //
-//  Kombinerer det beste fra v21 (stabil) og v24 (visuelle forbedringer):
+//  Kombinerer det beste fra v21 og v24, med forbedret sortering:
 //   ✅ Profilkort og redigering
 //   ✅ Historiekort / tidslinje for både personer og steder
 //   ✅ Merker og quiz-oversikt
@@ -68,7 +68,7 @@ function openProfileModal() {
 }
 
 // --------------------------------------
-// HISTORIEKORT – TIDSLINJE (steder + personer)
+// HISTORIEKORT – TIDSLINJE (steder + personer, sortert etter år + navn)
 // --------------------------------------
 function renderTimelineProfile() {
   const body = document.getElementById("timelineBody");
@@ -86,8 +86,12 @@ function renderTimelineProfile() {
     ...p, type: "person", year: p.year || 0
   }));
 
-  const combined = [...collectedPlaces, ...collectedPeople]
-    .sort((a, b) => a.year - b.year);
+  const combined = [...collectedPlaces, ...collectedPeople].sort((a, b) => {
+    const ay = a.year || 0;
+    const by = b.year || 0;
+    if (ay === by) return a.name.localeCompare(b.name);
+    return ay - by;
+  });
 
   const total = PLACES.length + PEOPLE.length;
   const count = combined.length;
@@ -289,7 +293,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // --------------------------------------
-// LITEN ANIMASJON FOR NYE KORT
+// ANIMASJON FOR NYE KORT
 // --------------------------------------
 const style = document.createElement("style");
 style.textContent = `
