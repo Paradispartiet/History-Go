@@ -1,17 +1,36 @@
 // ============================================================
-// === HISTORY GO – PROFILE.JS (v28, stabil og fullsynk) ======
+// === HISTORY GO – PROFILE.JS (v29, stabil + trygg fallback) ==
 // ============================================================
 //
-// Kombinerer det beste fra v21 og v26, men kobles direkte til
-// app.js for full synkronisering og sanntidsoppdatering.
+// Bygger på v28, men legger til robust datalasting og trygg init.
 //
-// ✅ Viser bokser for besøkte steder
-// ✅ Teller personer, steder og merker korrekt
-// ✅ Oppdateres automatisk etter quiz (samme eller annen fane)
-// ✅ Ingen ekstra fetch – bruker globale PLACES/PEOPLE/BADGES
-// ✅ Wiki-popup for personer
-// ✅ Profilkort + del som bilde
+// ✅ Venter på globale PLACES/PEOPLE/BADGES fra app.js
+// ✅ Laster selv manglende data uten duplisering
+// ✅ Viser bokser, merker, personer og tidslinje korrekt
+// ✅ Full sanntidssynk via storage-event
 // ============================================================
+
+
+// -----------------------------------------------------------
+// SIKRER AT PROFIL HAR DATA FRA app.js ELLER LASTER SELV
+// -----------------------------------------------------------
+async function ensureProfileData() {
+  const needPlaces = !window.PLACES || !Array.isArray(window.PLACES) || !window.PLACES.length;
+  const needPeople = !window.PEOPLE || !Array.isArray(window.PEOPLE) || !window.PEOPLE.length;
+  const needBadges = !window.BADGES || !Array.isArray(window.BADGES) || !window.BADGES.length;
+
+  if (needPlaces || needPeople || needBadges) {
+    console.log("📦 Laster manglende data for profil...");
+    const [places, people, badges] = await Promise.all([
+      needPlaces ? fetch("places.json").then(r => r.json()) : window.PLACES,
+      needPeople ? fetch("people.json").then(r => r.json()) : window.PEOPLE,
+      needBadges ? fetch("badges.json").then(r => r.json()) : window.BADGES
+    ]);
+    window.PLACES = places;
+    window.PEOPLE = people;
+    window.BADGES = badges;
+  }
+}
 
 
 // --------------------------------------
@@ -33,6 +52,7 @@ function renderProfileCard() {
   document.getElementById("statPeople").textContent = `${peopleCount} personer`;
   document.getElementById("statCategory").textContent = `Favoritt: ${favCat}`;
 }
+
 
 // --------------------------------------
 // VIS BESØKTE STEDER SOM BOKSER
@@ -63,6 +83,7 @@ function renderCollection() {
   });
 }
 
+
 // --------------------------------------
 // VIS PERSONER SOM ER SAMLET
 // --------------------------------------
@@ -91,6 +112,7 @@ function renderGallery() {
     });
   });
 }
+
 
 // --------------------------------------
 // MERKER (nivå og poeng)
@@ -123,6 +145,7 @@ function renderMerits() {
       </div>`;
   }).join("");
 }
+
 
 // --------------------------------------
 // TIDSLINJE (steder + personer)
@@ -178,6 +201,7 @@ function renderTimelineProfile() {
   });
 }
 
+
 // --------------------------------------
 // WIKI-POPUP FOR PERSONER
 // --------------------------------------
@@ -217,19 +241,22 @@ async function showPersonInfoModal(person){
   }
 }
 
+
 // --------------------------------------
 // INIT OG OPPDATERING
 // --------------------------------------
-function initProfile(){
+async function initProfile(){
+  await ensureProfileData(); // ✅ viktig: vent på data
   renderProfileCard();
   renderMerits();
   renderCollection();
   renderGallery();
   renderTimelineProfile();
-  console.log("✅ Profil lastet.");
+  console.log("✅ Profil lastet med alle data.");
 }
 
 document.addEventListener("DOMContentLoaded",initProfile);
+
 
 // --------------------------------------
 // SANNTIDSOPPDATERING (storage-event)
@@ -240,6 +267,7 @@ window.addEventListener("storage",event=>{
   console.log("🔄 Oppdaterer profil etter endring:",event.key);
   try{initProfile();}catch(e){console.warn("⚠️ Oppdateringsfeil:",e);}
 });
+
 
 // --------------------------------------
 // DEL PROFIL SOM BILDE
