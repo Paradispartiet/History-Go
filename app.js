@@ -662,19 +662,16 @@ function boot() {
         return r.json();
       })
   ])
+    
   .then(([places, people]) => {
-    PLACES = places || [];
-    PEOPLE = people || [];
+  PLACES = places || [];
+  PEOPLE = people || [];
 
-    dataReady = true;
-    if (mapReady) maybeDrawMarkers();  // ✅ kjør kun hvis kartet er klart
+  dataReady = true;
+  if (mapReady) maybeDrawMarkers();  // ✅ kjør kun hvis kartet er klart
 
-    renderCollection();
-    renderMerits();
-    renderGallery();
-
-    requestLocation();
-
+  requestLocation();  // ← fortsetter rett hit
+    
     // ✅ linkPeopleToPlaces kjøres én gang, når kart + data er klart
     setTimeout(() => {
       linkPeopleToPlaces();
