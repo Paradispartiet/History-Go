@@ -1447,13 +1447,13 @@ function showPlacePopup(place) {
   }, 3200);
 }
 
-// ============================================================
-// === KLIKK PÅ MERKER OG STEDER INNE PÅ PROFILSIDEN =========
-// ============================================================
+// ------------------------------------------------------------
+// Klikk i profilen – merker og steder
+// ------------------------------------------------------------
 document.addEventListener("click", (e) => {
-  // Klikk på sted i samlingen (badge)
-  const badge = e.target.closest("#collectionGrid .badge");
-  if (badge) {
+  // Klikk på sted i samlingen
+  if (e.target.closest("#collectionGrid .badge")) {
+    const badge = e.target.closest("#collectionGrid .badge");
     const name = badge.textContent.trim();
     const p = PLACES.find(x => x.name === name);
     if (p) {
@@ -1462,11 +1462,11 @@ document.addEventListener("click", (e) => {
     }
   }
 
-  // Klikk på merke-kort (kategori)
-  const userBadge = e.target.closest("#merits .badge-mini, .badge-card");
-  if (userBadge) {
-    const label = userBadge.querySelector("strong, .badge-mini-label")?.textContent?.trim();
-    if (label) showBadgeModal(label);
+  // Klikk på brukermerke (kategori)
+  if (e.target.closest("#userBadgesGrid .badge-card")) {
+    const el = e.target.closest(".badge-card");
+    const cat = el.querySelector("strong")?.textContent?.trim();
+    if (cat) showBadgeModal(cat);
   }
 });
 // ============================================================
