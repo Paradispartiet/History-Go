@@ -1058,27 +1058,42 @@ async function startQuiz(targetId) {
     onEnd: (correct, total) => {
       const perfect = correct === total;
 
-      if (place) {
-  // 🗺️ Nytt: registrer stedet som besøkt og vis popup 
+if (person) {
+  // 👤 Registrer personen som samlet
+  const collected = JSON.parse(localStorage.getItem("people_collected") || "{}");
+  if (!collected[person.id]) {
+    collected[person.id] = { timestamp: Date.now() };
+    localStorage.setItem("people_collected", JSON.stringify(collected));
+    showPersonPopup(person);
+
+    // 🔄 Varsle profilsiden om nytt personkort
+    try {
+      const bc = new BroadcastChannel('historygo');
+      bc.postMessage({ type: 'people:update', id: person.id });
+      bc.close();
+    } catch {}
+  }
+}
+
+if (place) {
+  // 🗺️ Registrer stedet som besøkt
   const visited = JSON.parse(localStorage.getItem("visited_places") || "{}");
   if (!visited[place.id]) {
     visited[place.id] = { timestamp: Date.now() };
     localStorage.setItem("visited_places", JSON.stringify(visited));
     showPlacePopup(place);
 
-    // 🔄 Varsle profilsiden (oppdater tidslinje og samling)
+    // 🔄 Varsle profilsiden om nytt sted
     try {
-      // sender signal på tvers av faner/sider
       const bc = new BroadcastChannel('historygo');
       bc.postMessage({ type: 'visited:update', id: place.id });
       bc.close();
     } catch {}
 
-    // fortsatt fint å trigge lokalt for forsiden
+    // Oppdater forsiden umiddelbart
     window.dispatchEvent(new Event("visited_places_updated"));
   }
 }
-
   showToast(`Perfekt! ${total}/${total} riktige 🎯 Du fikk poeng og kort!`);
 } else {
   showToast(`Fullført: ${correct}/${total} – prøv igjen for full score.`);
