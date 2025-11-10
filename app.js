@@ -474,42 +474,7 @@ function renderPersonCardInline(pr){
     </article>`;
 }
 
-function renderCollection() {
-  const items = PLACES.filter(p => visited[p.id]);
-  const grid = el.collectionGrid;
-  if (!grid) return;
 
-  const count = el.collectionCount;
-  if (count) count.textContent = items.length;
-
-  if (!items.length) {
-    grid.innerHTML = `<div class="muted">Ingen steder besøkt ennå.</div>`;
-    return;
-  }
-
-  // Lag små bildebokser i stedet for prikker
-  grid.innerHTML = items.map(p => {
-    const img = p.image || `bilder/kort/places/${p.id}.PNG`; // fallback til kortbilde
-    return `
-      <div class="visited-place" data-place="${p.id}" title="Trykk for å åpne ${p.name}">
-        <img src="${img}" alt="${p.name}" class="visited-thumb">
-        <div class="visited-label">${p.name}</div>
-      </div>
-    `;
-  }).join("");
-
-  // Klikk for å åpne stedet
-  grid.querySelectorAll(".visited-place").forEach(el => {
-    el.addEventListener("click", () => {
-      const pid = el.dataset.place;
-      const plc = PLACES.find(p => p.id === pid);
-      if (plc) {
-        closePlaceOverlay();
-        showPlaceOverlay(plc);
-      }
-    });
-  });
-}
 // ==============================
 // RENDER MERITS – VISER FREMGANG OG NIVÅ
 // ==============================
