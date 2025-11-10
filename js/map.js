@@ -1,39 +1,23 @@
 // ============================================================
-// === HISTORY GO – MAP.JS (v3.0, Leaflet-kart og ruter) =======
-// ============================================================
-//
-// Ansvar:
-//  • Tegne Leaflet-kart og markører for alle steder
-//  • Vise ruter (routes.json)
-//  • Varsle resten av appen når et sted trykkes
-//  • Highlight/støtte for nærliggende steder
-//
+// === HISTORY GO – MAP.JS (v3.1, Leaflet-kart og ruter) ======
 // ============================================================
 
 const map = (() => {
-
   let leafletMap;
   let markers = {};
-  let currentRoute = null;
 
-  // ----------------------------------------------------------
-  // 1) INITIERING AV KART
-  // ----------------------------------------------------------
   function initMap(places = [], routes = []) {
     if (!window.L) {
       console.error("Leaflet mangler – kunne ikke starte kart.");
       return;
     }
 
-    // Opprett kart
     leafletMap = L.map("map", {
       zoomControl: false,
       attributionControl: false,
       preferCanvas: true,
-      worldCopyJump: false,
-    }).setView([59.9139, 10.7522], 13); // sentrum av Oslo
+    }).setView([59.9139, 10.7522], 13);
 
-    // Bakgrunnslag (OpenStreetMap standard)
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       maxZoom: 19,
     }).addTo(leafletMap);
@@ -45,11 +29,10 @@ const map = (() => {
   }
 
   // ----------------------------------------------------------
-  // 2) MARKØRER FOR STEDER
+  // 2) MARKØRER
   // ----------------------------------------------------------
   function drawPlaceMarkers(places) {
     if (!leafletMap || !Array.isArray(places)) return;
-
     places.forEach((p) => {
       const color = catColor(p.category);
       const icon = L.divIcon({
@@ -58,54 +41,47 @@ const map = (() => {
         iconSize: [16, 16],
         iconAnchor: [8, 8],
       });
-
       const m = L.marker([p.lat, p.lon], { icon })
         .addTo(leafletMap)
         .on("click", () => handlePlaceClick(p.id));
-
       markers[p.id] = m;
     });
   }
 
   // ----------------------------------------------------------
-  // 3) RUTER
+  // 3) RUTER (fra routes.json → stops[])
   // ----------------------------------------------------------
   function drawRouteLines(routes) {
     if (!leafletMap || !Array.isArray(routes)) return;
     routes.forEach((r) => {
       const color = r.color || "#FFD600";
-      const coords = (r.places || [])
-        .map((pid) => {
-          const pl = (window.data?.places || []).find((p) => p.id === pid);
+      const coords = (r.stops || [])
+        .map((s) => {
+          const pl = (HG?.data?.places || []).find(
+            (p) => p.id === s.placeId
+          );
           return pl ? [pl.lat, pl.lon] : null;
         })
         .filter(Boolean);
-
       if (coords.length > 1) {
-        L.polyline(coords, {
-          color,
-          weight: 3,
-          opacity: 0.8,
-        }).addTo(leafletMap);
+        L.polyline(coords, { color, weight: 3, opacity: 0.8 }).addTo(
+          leafletMap
+        );
       }
     });
   }
 
   // ----------------------------------------------------------
-  // 4) INTERAKSJON – TRYKK PÅ STED
+  // 4) TRYKK PÅ STED
   // ----------------------------------------------------------
   function handlePlaceClick(placeId) {
-    const pl = (window.data?.places || []).find((x) => x.id === placeId);
+    const pl = (HG?.data?.places || []).find((x) => x.id === placeId);
     if (!pl) return;
-
-    // Puls-effekt på markør
     pulseMarker(placeId);
-
-    // Send globalt event slik at app.js starter quiz
-    const event = new CustomEvent("placeSelected", { detail: { placeId } });
-    document.dispatchEvent(event);
-
-    showToast(`📍 ${pl.name}`);
+    document.dispatchEvent(
+      new CustomEvent("placeSelected", { detail: { placeId } })
+    );
+    ui.showToast(`📍 ${pl.name}`);
   }
 
   // ----------------------------------------------------------
@@ -125,10 +101,10 @@ const map = (() => {
   }
 
   // ----------------------------------------------------------
-  // 6) NÆRLIGGENDE STEDER (radius)
+  // 6) NÆRLIGGENDE STEDER
   // ----------------------------------------------------------
   function highlightNearbyPlaces(lat, lon, radius = 150) {
-    const nearby = (window.data?.places || []).filter((p) => {
+    const nearby = (HG?.data?.places || []).filter((p) => {
       const d = distance(lat, lon, p.lat, p.lon);
       return d <= radius;
     });
@@ -148,7 +124,7 @@ const map = (() => {
   }
 
   // ----------------------------------------------------------
-  // 7) KATEGORIFARGER
+  // 7) FARGER
   // ----------------------------------------------------------
   function catColor(cat = "") {
     const c = cat.toLowerCase();
@@ -166,12 +142,5 @@ const map = (() => {
     return "#FFD600";
   }
 
-  // ----------------------------------------------------------
-  // 8) EKSPORTERTE FUNKSJONER
-  // ----------------------------------------------------------
-  return {
-    initMap,
-    pulseMarker,
-    highlightNearbyPlaces,
-  };
+  return { initMap, pulseMarker, highlightNearbyPlaces };
 })();
