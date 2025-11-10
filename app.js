@@ -1447,26 +1447,29 @@ function showPlacePopup(place) {
   }, 3200);
 }
 
-// ------------------------------------------------------------
-// Klikk i profilen – merker og steder
-// ------------------------------------------------------------
-document.addEventListener("click", (e) => {
-  // Klikk på sted i samlingen
-  if (e.target.closest("#collectionGrid .badge")) {
-    const badge = e.target.closest("#collectionGrid .badge");
-    const name = badge.textContent.trim();
-    const p = PLACES.find(x => x.name === name);
-    if (p) {
-      closePlaceOverlay();
-      showPlaceOverlay(p);
-    }
+// ============================================================
+// === PROFIL: SIKRER AT MERKER OG STEDER LASTES ==============
+// ============================================================
+document.addEventListener("DOMContentLoaded", () => {
+  const isProfile = document.body.classList.contains("profile-page");
+  if (!isProfile) return; // bare på profilsiden
+
+  // 1. Last places.json hvis ikke allerede lastet
+  if (!window.PLACES || !PLACES.length) {
+    fetch("places.json")
+      .then(r => r.json())
+      .then(data => {
+        window.PLACES = data;
+        renderCollection();
+      })
+      .catch(err => console.warn("Kunne ikke laste places.json:", err));
+  } else {
+    renderCollection();
   }
 
-  // Klikk på brukermerke (kategori)
-  if (e.target.closest("#userBadgesGrid .badge-card")) {
-    const el = e.target.closest(".badge-card");
-    const cat = el.querySelector("strong")?.textContent?.trim();
-    if (cat) showBadgeModal(cat);
+  // 2. Last merker fra localStorage og tegn dem
+  if (typeof renderMerits === "function") {
+    renderMerits();
   }
 });
 
@@ -1498,6 +1501,11 @@ document.addEventListener("click", e => {
   closePlaceOverlay();
   showPlaceOverlay(p);
 });
-// ============================================================
-// === SLUTT PROFIL & MERKER ================================
-// ============================================================
+
+// --- Failsafe: Tegner markører når alt er lastet ---
+let drawCheck = setInterval(() => {
+  if (mapReady && dataReady && PLACES.length > 0) {
+    maybeDrawMarkers();
+    clearInterval(drawCheck);
+  }
+}, 500);
