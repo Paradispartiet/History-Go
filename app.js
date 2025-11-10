@@ -1102,12 +1102,15 @@ async function startQuiz(targetId) {
   const place  = PLACES.find(p => p.id === targetId);
   if (!person && !place) return showToast("Fant verken person eller sted");
 
+  // Finn riktig kategori
   const displayCat = person ? tagToCat(person.tags) : (place.category || "vitenskap");
   const categoryId = catIdFromDisplay(displayCat);
   const items = await loadQuizForCategory(categoryId);
   const questions = items.filter(q => q.personId === targetId || q.placeId === targetId);
+
   if (!questions.length) return showToast("Ingen quiz tilgjengelig her ennå");
 
+  // Formater spørsmålene
   const formatted = questions.map(q => ({
     text: q.question,
     choices: q.options || [],
@@ -1117,6 +1120,7 @@ async function startQuiz(targetId) {
   closePlaceOverlay();
   openQuiz();
 
+  // Kjører selve quizflyten
   runQuizFlow({
     title: person ? person.name : place.name,
     questions: formatted,
@@ -1124,31 +1128,38 @@ async function startQuiz(targetId) {
       const perfect = correct === total;
 
       if (perfect) {
-  addCompletedQuizAndMaybePoint(displayCat, targetId);
-  markQuizAsDone(targetId);
+        addCompletedQuizAndMaybePoint(displayCat, targetId);
+        markQuizAsDone(targetId);
 
-  if (person) {
-    peopleCollected[targetId] = true;
-    savePeople();
-    showPersonPopup(person);
-    document.getElementById("gallery")?.scrollIntoView({ behavior: "smooth" });
-  }
+        // Hvis det er en person: lagre kort og vis popup
+        if (person) {
+          peopleCollected[targetId] = true;
+          savePeople();
+          showPersonPopup(person);
+          document.getElementById("gallery")?.scrollIntoView({ behavior: "smooth" });
+        }
 
-  if (place) {
-    visited[place.id] = true;
-    saveVisited();
-    drawPlaceMarkers();
-    pulseMarker(place.lat, place.lon);
-    showPlacePopup(place);   // ✨ denne linjen viser popupen
-    showToast(`Låst opp: ${place.name} ✅`);
-  }
+        showToast(`Perfekt! ${total}/${total} riktige 🎯 Du fikk poeng og kort!`);
 
-  showToast(`Perfekt! ${total}/${total} riktige 🎯 Du fikk poeng og kort!`);
-} else {
-  showToast(`Fullført: ${correct}/${total} – prøv igjen for full score.`);
-}
+        // ✨ NYTT: Oppdater profil automatisk – alle sider, alle faner
+        try {
+          // Oppdater i samme fane (lokal profil)
+          if (window.triggerProfileUpdate) {
+            window.triggerProfileUpdate();
+          }
 
-      // ✨ Pulse på stedet som hører til personen når quizen fullføres
+          // Trigger event for andre åpne sider (f.eks. profile.html)
+          localStorage.setItem("quiz_refresh", Date.now().toString());
+          window.dispatchEvent(new StorageEvent("storage", { key: "quiz_refresh" }));
+        } catch (e) {
+          console.warn("Oppdateringsfeil ved synk:", e);
+        }
+
+      } else {
+        showToast(`Fullført: ${correct}/${total} – prøv igjen for full score.`);
+      }
+
+      // ✨ Marker sted på kartet ved perfekt resultat
       if (person && person.placeId) {
         const plc = PLACES.find(p => p.id === person.placeId);
         if (plc) pulseMarker(plc.lat, plc.lon);
