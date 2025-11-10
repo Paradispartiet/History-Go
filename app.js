@@ -1058,27 +1058,23 @@ async function startQuiz(targetId) {
     onEnd: (correct, total) => {
       const perfect = correct === total;
 
-      if (perfect) {
-  addCompletedQuizAndMaybePoint(displayCat, targetId);
-  markQuizAsDone(targetId);
-
-  if (person) {
-    // Person-kort som før
-    peopleCollected[targetId] = true;
-    savePeople();
-    showPersonPopup(person);
-    document.getElementById("gallery")?.scrollIntoView({ behavior: "smooth" });
-  }
-
-  if (place) {
+      if (place) {
   // 🗺️ Nytt: registrer stedet som besøkt og vis popup 
   const visited = JSON.parse(localStorage.getItem("visited_places") || "{}");
   if (!visited[place.id]) {
     visited[place.id] = { timestamp: Date.now() };
     localStorage.setItem("visited_places", JSON.stringify(visited));
-    showPlacePopup(place); // <- bruker popup-funksjonen vi la til
+    showPlacePopup(place);
 
     // 🔄 Varsle profilsiden (oppdater tidslinje og samling)
+    try {
+      // sender signal på tvers av faner/sider
+      const bc = new BroadcastChannel('historygo');
+      bc.postMessage({ type: 'visited:update', id: place.id });
+      bc.close();
+    } catch {}
+
+    // fortsatt fint å trigge lokalt for forsiden
     window.dispatchEvent(new Event("visited_places_updated"));
   }
 }
