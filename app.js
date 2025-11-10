@@ -1,5 +1,5 @@
 // ============================================================
-// === HISTORY GO – APP.JS (v2.6, hovedkoordinator) ===========
+// === HISTORY GO – APP.JS (v2.7, hovedkoordinator) ===========
 // ============================================================
 //
 // Ansvar:
@@ -11,6 +11,8 @@
 //
 // ============================================================
 
+const HG = {}; // globalt navnerom for data og bruker
+
 const app = (() => {
 
   // ----------------------------------------------------------
@@ -21,14 +23,17 @@ const app = (() => {
       console.log("📦 Initialiserer History Go...");
 
       // Sørg for at data er lastet (fra core.js)
-      if (!window.HG || !HG.data || !HG.data.places) {
-        console.warn("HG-data ikke funnet – venter på core.boot()");
+      if (!window.data || !data.places) {
+        console.warn("Data ikke funnet – venter på core.boot()");
         await new Promise(r => setTimeout(r, 500));
       }
 
+      // Sett opp global data
+      HG.data = window.data || {};
+
       // Hent brukerdata
       HG.user = {
-        name: localStorage.getItem("user_name") || "Ukjent",
+        name: localStorage.getItem("user_name") || "Ukjent spiller",
         color: localStorage.getItem("user_color") || "#FFD600"
       };
 
@@ -41,7 +46,7 @@ const app = (() => {
       // Hendelser og eventkoblinger
       attachEventListeners();
 
-      ui.showToast(`Velkommen tilbake, ${HG.user.name}!`);
+      showToast(`Velkommen tilbake, ${HG.user.name}!`);
     } catch (err) {
       console.error("Feil ved oppstart:", err);
     }
@@ -51,25 +56,25 @@ const app = (() => {
   // 2) MODULSTART
   // ----------------------------------------------------------
   function initMap() {
-    if (typeof map !== "undefined" && map.initMap) {
+    if (window.map && typeof map.initMap === "function") {
       map.initMap(HG.data.places, HG.data.routes);
     }
   }
 
   function initUI() {
-    if (typeof ui !== "undefined" && ui.initUI) {
+    if (window.ui && typeof ui.initUI === "function") {
       ui.initUI();
     }
   }
 
   function initQuizSystem() {
-    if (typeof quiz !== "undefined" && quiz.initQuizSystem) {
+    if (window.quiz && typeof quiz.initQuizSystem === "function") {
       quiz.initQuizSystem(HG.data.badges);
     }
   }
 
   function initProfileMini() {
-    if (typeof Profile !== "undefined" && Profile.initProfileMini) {
+    if (window.Profile && typeof Profile.initProfileMini === "function") {
       Profile.initProfileMini();
     }
   }
@@ -94,8 +99,9 @@ const app = (() => {
   // 4) QUIZ OG PROGRESJON
   // ----------------------------------------------------------
   function startQuizForPlace(placeId) {
-    if (!quiz || !quiz.startQuiz) return;
-    quiz.startQuiz(placeId);
+    if (window.quiz && typeof quiz.startQuiz === "function") {
+      quiz.startQuiz(placeId);
+    }
   }
 
   function handleQuizCompletion(result) {
@@ -112,23 +118,23 @@ const app = (() => {
       window.dispatchEvent(new Event("updateProfile"));
 
       // 3. Gi bruker tilbakemelding
-      ui.showToast(`+${result.points} poeng i ${result.categoryId}!`);
+      showToast(`+${result.points} poeng i ${result.categoryId}!`);
     } catch (err) {
       console.error("Feil ved håndtering av quiz:", err);
     }
   }
 
   // ----------------------------------------------------------
-  // 5) PROGRESJONSFUNKSJONER (enkle wrappers)
+  // 5) PROGRESJONSFUNKSJONER
   // ----------------------------------------------------------
   function addCompletedQuizAndMaybePoint(result) {
-    const progress = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
+    const progress = load("quiz_progress", {});
     progress[result.quizId] = result;
-    localStorage.setItem("quiz_progress", JSON.stringify(progress));
+    save("quiz_progress", progress);
   }
 
   function updateMeritLevel(categoryId, newPoints = 5) {
-    const merits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
+    const merits = load("merits_by_category", {});
     if (!merits[categoryId]) merits[categoryId] = { points: 0, valør: "Bronse" };
     merits[categoryId].points += newPoints;
 
@@ -137,39 +143,48 @@ const app = (() => {
     else if (merits[categoryId].points >= 50) merits[categoryId].valør = "Sølv";
     else merits[categoryId].valør = "Bronse";
 
-    localStorage.setItem("merits_by_category", JSON.stringify(merits));
+    save("merits_by_category", merits);
   }
 
   function addVisitedPlace(placeId) {
-    const visited = JSON.parse(localStorage.getItem("visited_places") || "[]");
+    const visited = load("visited_places", []);
     if (!visited.find(p => p.id === placeId)) {
       const pl = HG.data.places.find(p => p.id === placeId);
       if (pl) {
         visited.push({ id: pl.id, name: pl.name, year: pl.year, desc: pl.desc });
-        localStorage.setItem("visited_places", JSON.stringify(visited));
-        ui.showToast(`📍 Du har besøkt ${pl.name}`);
+        save("visited_places", visited);
+        showToast(`📍 Du har besøkt ${pl.name}`);
       }
     }
   }
 
   function unlockPeopleAtPlace(placeId) {
     const allPeople = HG.data.people || [];
-    const collected = JSON.parse(localStorage.getItem("people_collected") || "[]");
+    const collected = load("people_collected", []);
     const placePeople = allPeople.filter(p => p.placeId === placeId);
 
     placePeople.forEach(p => {
       if (!collected.find(c => c.id === p.id)) {
         collected.push({ id: p.id, name: p.name, year: p.year });
-        ui.showToast(`👤 Ny person: ${p.name}`);
+        showToast(`👤 Ny person: ${p.name}`);
       }
     });
 
-    localStorage.setItem("people_collected", JSON.stringify(collected));
+    save("people_collected", collected);
   }
 
   // ----------------------------------------------------------
   // 6) VERKTØY
   // ----------------------------------------------------------
+  function showToast(msg) {
+    const t = document.getElementById("toast");
+    if (!t) return;
+    t.textContent = msg;
+    t.style.display = "block";
+    clearTimeout(showToast._timer);
+    showToast._timer = setTimeout(() => (t.style.display = "none"), 2500);
+  }
+
   function saveUserState() {
     localStorage.setItem("user_name", HG.user.name);
     localStorage.setItem("user_color", HG.user.color);
@@ -179,7 +194,7 @@ const app = (() => {
     if (confirm("Vil du slette all progresjon?")) {
       localStorage.clear();
       window.dispatchEvent(new Event("updateProfile"));
-      ui.showToast("Progresjon nullstilt");
+      showToast("Progresjon nullstilt");
     }
   }
 
@@ -196,15 +211,13 @@ const app = (() => {
 })();
 
 // ============================================================
-// === AUTO-START VED LASTING AV SIDEN ========================
+// === AUTO-START =============================================
 // ============================================================
 
-window.addEventListener("DOMContentLoaded", () => {
-  if (typeof core !== "undefined" && core.boot) {
-    core.boot().then(() => app.initApp());
+document.addEventListener("DOMContentLoaded", () => {
+  if (typeof boot === "function") {
+    boot(); // core.boot() kaller initApp automatisk
   } else {
-    console.warn("core.js ikke lastet – prøver å starte direkte");
     app.initApp();
   }
 });
-
