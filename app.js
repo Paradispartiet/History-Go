@@ -35,9 +35,16 @@ const merits          = JSON.parse(localStorage.getItem("merits_by_category") ||
 const userProgress    = JSON.parse(localStorage.getItem("historygo_progress") || "{}");
 
 function saveVisited() {
+  // lagre nye steder lokalt
   localStorage.setItem("visited_places", JSON.stringify(visited));
-  renderNearbyPlaces(); // ✅ oppdater forsiden i stedet for profil-funksjon
+
+  // ✅ oppdater forsiden umiddelbart
+  renderNearbyPlaces();
+
+  // 🔄 varsle profilsiden om at noe er nytt
+  window.dispatchEvent(new Event("visited_places_updated"));
 }
+
 function savePeople(){   localStorage.setItem("people_collected", JSON.stringify(peopleCollected)); renderGallery(); }
 
 function showToast(msg, ms=2000){
