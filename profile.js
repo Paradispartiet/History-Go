@@ -1,5 +1,5 @@
 // ============================================================
-// === HISTORY GO – PROFILE.JS (v23, stabil og kompatibel) =====
+// === HISTORY GO – PROFILE.JS (v24, stabil + delingsfunksjon) =
 // ============================================================
 //
 // Håndterer profilsiden:
@@ -8,6 +8,7 @@
 //  - Merker og modaler
 //  - Person-infoboks (wiki + kort)
 //  - Leser data direkte fra localStorage
+//  - ✨ Nytt: Del profil som bilde (html2canvas)
 // ============================================================
 
 // ------------------------------------------------------------
@@ -161,14 +162,12 @@ async function renderMerits() {
   const badges = await fetch("badges.json").then(r => r.json());
   const localMerits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
   const cats = Object.keys(localMerits).length ? Object.keys(localMerits) : badges.map(b => b.name);
-
   const medalByIndex = (i) => (i <= 0 ? "🥉" : i === 1 ? "🥈" : i === 2 ? "🥇" : "🏆");
 
   container.innerHTML = cats.map(cat => {
     const merit = localMerits[cat] || { level: "Nybegynner" };
     const badge = badges.find(b =>
-      cat.toLowerCase().includes(b.id) ||
-      b.name.toLowerCase().includes(cat.toLowerCase())
+      cat.toLowerCase().includes(b.id) || b.name.toLowerCase().includes(cat.toLowerCase())
     );
     if (!badge) return "";
 
@@ -325,7 +324,7 @@ async function showPersonInfoModal(person) {
 }
 
 // --------------------------------------
-// INITIALISERING
+// INITIALISERING + DEL PROFIL
 // --------------------------------------
 Promise.all([
   fetch("people.json").then(r => r.json()).then(d => PEOPLE = d),
@@ -342,6 +341,23 @@ Promise.all([
 document.addEventListener("DOMContentLoaded", () => {
   const editBtn = document.getElementById("editProfileBtn");
   if (editBtn) editBtn.addEventListener("click", openProfileModal);
+
+  // ✨ Ny delingsfunksjon
+  const shareBtn = document.getElementById("shareProfileBtn");
+  if (shareBtn && window.html2canvas) {
+    shareBtn.addEventListener("click", () => {
+      const node = document.getElementById("profileCard");
+      if (!node) return;
+      html2canvas(node).then(canvas => {
+        const link = document.createElement("a");
+        link.download = "min_profil.png";
+        link.href = canvas.toDataURL("image/png");
+        link.click();
+        showToast("Profil lagret som bilde 📸");
+      });
+    });
+  }
+
   setTimeout(() => {
     renderProfileCard();
     renderMerits();
