@@ -23,25 +23,43 @@
   <!-- Ramme rundt appen -->
   <div class="app-frame" aria-hidden="true"></div>
 
-  <!-- Header -->
+  <!-- HEADER -->
   <header class="site-header">
     <div class="brand">
       <img src="bilder/logo_historygo.PNG" alt="History Go" class="brand-logo">
       <span class="brand-name">History Go</span>
     </div>
-    <button id="btnProfile" class="btn-profile" aria-label="Åpne profil">🧭</button>
+    <div class="header-buttons">
+      <button id="toggleMode" class="btn-toggle">Utforsk</button>
+      <button id="btnProfile" class="btn-profile" aria-label="Åpne profil">🧭</button>
+    </div>
   </header>
 
-  <!-- Hovedinnhold -->
+  <!-- HOVEDINNHOLD -->
   <main id="appMain">
     <!-- Kart -->
     <div id="map"></div>
+
+    <!-- Mørkt bakgrunnsslør -->
+    <div id="backdrop" class="backdrop" aria-hidden="true"></div>
 
     <!-- Mini-profil -->
     <section id="miniProfile" class="mini-profile">
       <h2 id="playerName">Spiller</h2>
       <p id="playerStats">0 steder · 0 merker</p>
     </section>
+
+    <!-- UTFORSK-PANEL (sheet) -->
+    <div id="exploreSheet" class="sheet">
+      <div class="sheet-head">
+        <h3>Steder i nærheten</h3>
+        <button class="sheet-close" onclick="ui.closeSheet('exploreSheet')">×</button>
+      </div>
+      <div id="nearbyList" class="sheet-content"></div>
+
+      <h3 style="padding:10px 16px 0;">Utforsk ruter</h3>
+      <div id="routesList" class="sheet-content"></div>
+    </div>
 
     <!-- Toast -->
     <div id="toast" aria-live="polite"></div>
@@ -59,14 +77,14 @@
   </div>
 
   <!-- JS-moduler i riktig rekkefølge -->
-<script src="js/core.js"></script>
-<script src="js/ui.js"></script>   <!-- ← denne mangler -->
-<script src="js/map.js"></script>
-<script src="js/quiz.js"></script>
-<script src="js/app.js"></script>
-<script src="js/profile.js"></script>
-<script src="js/data.js"></script>
-  
+  <script src="js/core.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/map.js"></script>
+  <script src="js/quiz.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/profile.js"></script>
+  <script src="js/data.js"></script>
+
   <!-- Service Worker -->
   <script>
     if ('serviceWorker' in navigator) {
