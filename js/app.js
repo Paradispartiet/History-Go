@@ -1,17 +1,15 @@
 // ============================================================
-// === HISTORY GO – APP.JS (v2.7, hovedkoordinator) ===========
+// === HISTORY GO – APP.JS (v2.8, stabil hovedkoordinator) ====
 // ============================================================
 //
-// Ansvar:
-//  - Starter appen etter core.boot()
-//  - Initierer kart, UI, quizsystem og mini-profil
-//  - Håndterer brukerhendelser (sted → quiz → progresjon)
-//  - Oppdaterer localStorage og sender updateProfile-event
-//  - Binder sammen alle moduler i History Go
+//  • Starter appen etter core.boot()
+//  • Initierer kart, quiz og mini-profil
+//  • Håndterer quiz-flyt, poeng, steder og personer
+//  • Oppdaterer localStorage og sender updateProfile-event
 //
 // ============================================================
 
-const HG = {}; // globalt navnerom for data og bruker
+const HG = window.HG || {}; // globalt navnerom for data og bruker
 
 const app = (() => {
 
@@ -22,14 +20,11 @@ const app = (() => {
     try {
       console.log("📦 Initialiserer History Go...");
 
-      // Sørg for at data er lastet (fra core.js)
-      if (!window.data || !data.places) {
+      // Sørg for at data er lastet (fra core.boot)
+      if (!HG.data || !HG.data.places) {
         console.warn("Data ikke funnet – venter på core.boot()");
-        await new Promise(r => setTimeout(r, 500));
+        await new Promise(r => setTimeout(r, 400));
       }
-
-      // Sett opp global data
-      HG.data = window.data || {};
 
       // Hent brukerdata
       HG.user = {
@@ -38,12 +33,10 @@ const app = (() => {
       };
 
       // Start moduler
-      initMap();
-      initUI();
-      initQuizSystem();
-      initProfileMini();
+      if (map?.initMap) map.initMap(HG.data.places, HG.data.routes);
+      if (quiz?.initQuizSystem) quiz.initQuizSystem(HG.data.badges);
+      if (Profile?.initProfileMini) Profile.initProfileMini();
 
-      // Hendelser og eventkoblinger
       attachEventListeners();
 
       showToast(`Velkommen tilbake, ${HG.user.name}!`);
@@ -53,37 +46,10 @@ const app = (() => {
   }
 
   // ----------------------------------------------------------
-  // 2) MODULSTART
-  // ----------------------------------------------------------
-  function initMap() {
-    if (window.map && typeof map.initMap === "function") {
-      map.initMap(HG.data.places, HG.data.routes);
-    }
-  }
-
-  function initUI() {
-    if (window.ui && typeof ui.initUI === "function") {
-      ui.initUI();
-    }
-  }
-
-  function initQuizSystem() {
-    if (window.quiz && typeof quiz.initQuizSystem === "function") {
-      quiz.initQuizSystem(HG.data.badges);
-    }
-  }
-
-  function initProfileMini() {
-    if (window.Profile && typeof Profile.initProfileMini === "function") {
-      Profile.initProfileMini();
-    }
-  }
-
-  // ----------------------------------------------------------
-  // 3) HENDELSER OG FLYT
+  // 2) HENDELSER OG FLYT
   // ----------------------------------------------------------
   function attachEventListeners() {
-    // Når bruker trykker på sted i kart
+    // Når bruker trykker på sted i kartet
     document.addEventListener("placeSelected", (e) => {
       const placeId = e.detail.placeId;
       if (placeId) startQuizForPlace(placeId);
@@ -96,28 +62,21 @@ const app = (() => {
   }
 
   // ----------------------------------------------------------
-  // 4) QUIZ OG PROGRESJON
+  // 3) QUIZ OG PROGRESJON
   // ----------------------------------------------------------
   function startQuizForPlace(placeId) {
-    if (window.quiz && typeof quiz.startQuiz === "function") {
-      quiz.startQuiz(placeId);
-    }
+    if (quiz?.startQuiz) quiz.startQuiz(placeId);
   }
 
   function handleQuizCompletion(result) {
     try {
       console.log("🏁 Quiz fullført:", result);
-
-      // 1. Oppdater progresjon
       addCompletedQuizAndMaybePoint(result);
       updateMeritLevel(result.categoryId, result.points);
       addVisitedPlace(result.placeId);
       unlockPeopleAtPlace(result.placeId);
 
-      // 2. Live-oppdater profil
       window.dispatchEvent(new Event("updateProfile"));
-
-      // 3. Gi bruker tilbakemelding
       showToast(`+${result.points} poeng i ${result.categoryId}!`);
     } catch (err) {
       console.error("Feil ved håndtering av quiz:", err);
@@ -125,7 +84,7 @@ const app = (() => {
   }
 
   // ----------------------------------------------------------
-  // 5) PROGRESJONSFUNKSJONER
+  // 4) PROGRESJONSFUNKSJONER
   // ----------------------------------------------------------
   function addCompletedQuizAndMaybePoint(result) {
     const progress = load("quiz_progress", {});
@@ -138,7 +97,6 @@ const app = (() => {
     if (!merits[categoryId]) merits[categoryId] = { points: 0, valør: "Bronse" };
     merits[categoryId].points += newPoints;
 
-    // Enkel valørlogikk
     if (merits[categoryId].points >= 100) merits[categoryId].valør = "Gull";
     else if (merits[categoryId].points >= 50) merits[categoryId].valør = "Sølv";
     else merits[categoryId].valør = "Bronse";
@@ -174,15 +132,24 @@ const app = (() => {
   }
 
   // ----------------------------------------------------------
-  // 6) VERKTØY
+  // 5) LAGRING & VISNING
   // ----------------------------------------------------------
+  function load(key, def) {
+    try { return JSON.parse(localStorage.getItem(key)) || def; }
+    catch { return def; }
+  }
+
+  function save(key, val) {
+    localStorage.setItem(key, JSON.stringify(val));
+  }
+
   function showToast(msg) {
     const t = document.getElementById("toast");
     if (!t) return;
     t.textContent = msg;
     t.style.display = "block";
     clearTimeout(showToast._timer);
-    showToast._timer = setTimeout(() => (t.style.display = "none"), 2500);
+    showToast._timer = setTimeout(() => (t.style.display = "none"), 2400);
   }
 
   function saveUserState() {
@@ -199,7 +166,7 @@ const app = (() => {
   }
 
   // ----------------------------------------------------------
-  // 7) EKSPORTERTE FUNKSJONER
+  // 6) EKSPORT
   // ----------------------------------------------------------
   return {
     initApp,
@@ -210,14 +177,10 @@ const app = (() => {
   };
 })();
 
-// ============================================================
-// === AUTO-START =============================================
-// ============================================================
-
+// ----------------------------------------------------------
+// AUTO-START
+// ----------------------------------------------------------
 document.addEventListener("DOMContentLoaded", () => {
-  if (typeof boot === "function") {
-    boot(); // core.boot() kaller initApp automatisk
-  } else {
-    app.initApp();
-  }
+  if (typeof boot === "function") boot();
+  else app.initApp();
 });
