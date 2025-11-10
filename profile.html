@@ -5,17 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Min profil | History Go</title>
 
-  <!-- Stil -->
   <link rel="stylesheet" href="theme.css">
-
-  <!-- Verktøy (for eksport/deling) -->
   <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 </head>
 
 <body class="profile-page">
   <div class="app-frame" aria-hidden="true"></div>
 
-  <!-- HEADER -->
   <header class="site-header">
     <a href="index.html" class="brand back-link" aria-label="Til forsiden">←</a>
     <div class="brand">
@@ -49,7 +45,7 @@
       <div id="merits"></div>
     </section>
 
-    <!-- SAMLING (steder og personer) -->
+    <!-- SAMLING -->
     <section class="panel" aria-label="Samling">
       <h2>Min samling</h2>
       <div id="collectionGrid" class="chips"></div>
@@ -67,8 +63,29 @@
     </section>
   </main>
 
-  <!-- Scriptrekkefølge: app.js før profile.js -->
+  <!-- JS -->
   <script defer src="app.js"></script>
   <script src="profile.js"></script>
+
+  <!-- DEBUG-VISNING AV LAGRING -->
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const box = document.createElement("pre");
+    box.id = "debugStorage";
+    box.style.position = "fixed";
+    box.style.bottom = "0";
+    box.style.left = "0";
+    box.style.width = "100%";
+    box.style.maxHeight = "40vh";
+    box.style.overflow = "auto";
+    box.style.background = "rgba(0,0,0,0.9)";
+    box.style.color = "#0f0";
+    box.style.font = "12px monospace";
+    box.style.padding = "10px";
+    box.style.borderTop = "2px solid #333";
+    box.textContent = JSON.stringify(localStorage, null, 2);
+    document.body.appendChild(box);
+  });
+  </script>
 </body>
 </html>
