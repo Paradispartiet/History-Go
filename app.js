@@ -1363,3 +1363,35 @@ function showPlacePopup(place) {
     setTimeout(() => popup.remove(), 500);
   }, 3200);
 }
+
+// =====================================================
+// GJENOPPRETTET KOBLING MELLOM FORSIDE OG PROFIL
+// =====================================================
+
+// Når data lastes inn eller posisjon oppdateres, skal begge sider vite det
+window.addEventListener("visited_places_updated", () => {
+  try {
+    // ✅ Oppdater forside: vis nye steder i nærheten
+    renderNearbyPlaces();
+
+    // ✅ Oppdater profil hvis den er åpen
+    if (document.querySelector(".profile-page")) {
+      renderCollection();
+      renderGallery();
+      renderMerits();
+    }
+  } catch (err) {
+    console.warn("⚠️ Oppdatering av besøkte steder feilet:", err);
+  }
+});
+
+// Ekstra sikkerhet: sørg for at visited-data er synkronisert ved oppstart
+document.addEventListener("DOMContentLoaded", () => {
+  const stored = JSON.parse(localStorage.getItem("visited_places") || "{}");
+  Object.assign(visited, stored);
+});
+
+// =====================================================
+// INITIALISERING OG START
+// =====================================================
+document.addEventListener('DOMContentLoaded', boot);
