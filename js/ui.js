@@ -1,12 +1,10 @@
 // ============================================================
-// === HISTORY GO – UI.JS (v3.0, overlays og toasts) ==========
+// === HISTORY GO – UI.JS (v3.1, stabil) ======================
 // ============================================================
 //
-// Ansvar:
-//  • Vise og skjule toasts, sheets og modaler
-//  • Kontrollere overgangseffekter og brukeropplevelse
+//  • Viser toasts, sheets og modaler
+//  • Kontroll på fade-effekter, overganger og brukermeldinger
 //  • Brukes av app.js, quiz.js og profile.js
-//
 // ============================================================
 
 const ui = (() => {
@@ -16,6 +14,9 @@ const ui = (() => {
   // ----------------------------------------------------------
   function initUI() {
     console.log("🎨 UI-modul initialisert");
+    // sørg for at toast starter skjult
+    const toast = document.getElementById("toast");
+    if (toast) toast.style.display = "none";
   }
 
   // ----------------------------------------------------------
@@ -24,17 +25,17 @@ const ui = (() => {
   function showToast(msg, ms = 2500) {
     const toast = document.getElementById("toast");
     if (!toast) return;
-    toast.textContent = msg;
-    toast.style.opacity = "0";
-    toast.style.display = "block";
 
-    // Fade-in
-    toast.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 200, fill: "forwards" });
+    toast.textContent = msg;
+    toast.style.display = "block";
+    toast.style.opacity = "0";
+
+    // Fade inn
+    toast.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 150, fill: "forwards" });
 
     clearTimeout(showToast._timer);
     showToast._timer = setTimeout(() => {
-      // Fade-out
-      toast.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 400, fill: "forwards" })
+      toast.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 300, fill: "forwards" })
         .onfinish = () => (toast.style.display = "none");
     }, ms);
   }
@@ -66,26 +67,34 @@ const ui = (() => {
   function openModal(title = "", contentHTML = "") {
     const modal = document.getElementById("modal");
     if (!modal) return;
-    modal.querySelector("#modalTitle").textContent = title;
-    modal.querySelector("#modalContent").innerHTML = contentHTML;
+
+    const titleEl = modal.querySelector("#modalTitle");
+    const contentEl = modal.querySelector("#modalContent");
+    if (titleEl) titleEl.textContent = title;
+    if (contentEl) contentEl.innerHTML = contentHTML;
+
     modal.setAttribute("aria-hidden", "false");
+    fadeIn(modal, 200);
   }
 
   function closeModal() {
     const modal = document.getElementById("modal");
     if (!modal) return;
-    modal.setAttribute("aria-hidden", "true");
+    fadeOut(modal, 200);
+    setTimeout(() => modal.setAttribute("aria-hidden", "true"), 220);
   }
 
   // ----------------------------------------------------------
   // 5) VISUELLE HJELPEFUNKSJONER
   // ----------------------------------------------------------
   function fadeIn(el, duration = 250) {
+    if (!el) return;
     el.style.display = "block";
     el.animate([{ opacity: 0 }, { opacity: 1 }], { duration, fill: "forwards" });
   }
 
   function fadeOut(el, duration = 250) {
+    if (!el) return;
     el.animate([{ opacity: 1 }, { opacity: 0 }], { duration, fill: "forwards" })
       .onfinish = () => (el.style.display = "none");
   }
@@ -101,11 +110,18 @@ const ui = (() => {
     openModal,
     closeModal,
     fadeIn,
-    fadeOut,
+    fadeOut
   };
 })();
+
+// ----------------------------------------------------------
+// GLOBAL LYTTERE
+// ----------------------------------------------------------
 
 // Lukkeknapp for modal (X)
 document.addEventListener("click", (e) => {
   if (e.target.id === "closeModal") ui.closeModal();
 });
+
+// Automatisk initiering
+document.addEventListener("DOMContentLoaded", () => ui.initUI());
