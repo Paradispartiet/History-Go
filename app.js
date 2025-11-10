@@ -1306,8 +1306,8 @@ function showPersonPopup(person) {
 }
 
 // Enkle animasjonsstiler – legg bare inn én gang
-const style = document.createElement("style");
-style.textContent = `
+const stylePersonPopup = document.createElement("style");
+stylePersonPopup.textContent = `
 .person-popup {
   position: fixed;
   top: 50%;
