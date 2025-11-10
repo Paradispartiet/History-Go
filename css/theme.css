@@ -57,11 +57,13 @@ button{cursor:pointer;}
 /* ===================================================== */
 /* 2) Kart & kartmodus                                   */
 /* ===================================================== */
-#map{
+#map {
   position: absolute;
   inset: 0;
-  height: 100dvh;
-  z-index: 1;         /* kartet under overlays/toasts */
+  width: 100%;
+  height: 100vh;          /* ← bruk 100vh i stedet for 100dvh for Leaflet */
+  z-index: 1;
+  background: #0a1929;    /* fallback-bakgrunn */
 }
 
 /* ===================================================== */
