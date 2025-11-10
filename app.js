@@ -1469,6 +1469,35 @@ document.addEventListener("click", (e) => {
     if (cat) showBadgeModal(cat);
   }
 });
+
+// ============================================================
+// === KLIKK I PROFILEN – MERKER OG STEDER ====================
+// ============================================================
+
+// Klikk på minimerte merker (grid med runde ikoner)
+document.addEventListener("click", e => {
+  const badgeMini = e.target.closest("#userBadgesGrid .badge-mini");
+  if (badgeMini) {
+    const label = badgeMini.querySelector(".badge-mini-label, strong")?.textContent?.trim();
+    if (label) showBadgeModal(label);
+  }
+});
+
+// Klikk på sted i "Steder jeg har besøkt"
+document.addEventListener("click", e => {
+  const placeBadge = e.target.closest("#collectionGrid .badge");
+  if (!placeBadge) return;
+
+  const name = placeBadge.textContent.trim();
+  const p = PLACES.find(x => x.name === name);
+  if (!p) {
+    console.warn("Fant ikke sted:", name);
+    return;
+  }
+
+  closePlaceOverlay();
+  showPlaceOverlay(p);
+});
 // ============================================================
 // === SLUTT PROFIL & MERKER ================================
 // ============================================================
