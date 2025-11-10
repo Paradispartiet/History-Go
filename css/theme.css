@@ -1,68 +1,47 @@
 /* ===================================================== */
-/* HISTORY GO – THEME.CSS (STABIL VERSJON 2025-11-11)   */
-/* ===================================================== */
-/*
-1. Variabler & grunnstil
-2. Kart & kartmodus
-3. Toppfelt / header
-4. Toast / meldinger
-5. Paneler og kort
-6. Knapper & merker
-7. Modal / quiz
-8. Personkort & overlays
-9. App-ramme
-*/
-
-/* ===================================================== */
-/* 1) Variabler & grunnstil                              */
+/* HISTORY GO – THEME.CSS (UTFORSK PREMIUM 2025)          */
 /* ===================================================== */
 :root {
   --bg: #0a1929;
-  --panel: rgba(13,27,42,.86);
+  --panel: rgba(13,27,42,.88);
   --panel-border: rgba(255,255,255,.08);
   --text: #fff;
   --accent: #FFD600;
   --shadow: 0 0 20px rgba(0,0,0,.45);
 
-  /* Kategorifarger */
-  --hist: #344B80;
-  --viten: #9b59b6;
-  --kult: #ffb703;
-  --musikk: #ff66cc;
-  --lit: #f6c800;
-  --natur: #4caf50;
-  --sport: #2a9d8f;
-  --urban: #e63946;
+  --hist:#344B80; --viten:#9b59b6; --kult:#ffb703;
+  --musikk:#ff66cc; --lit:#f6c800; --natur:#4caf50;
+  --sport:#2a9d8f; --urban:#e63946;
 }
 
-/* Reset */
 html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  background: var(--bg);
-  color: var(--text);
+  margin: 0; padding: 0; height: 100%;
+  background: var(--bg); color: var(--text);
   font-family: system-ui, sans-serif;
   overflow: hidden;
 }
 
-h1,h2,h3,p { margin:0; padding:0; }
-button { cursor:pointer; }
-
 /* ===================================================== */
-/* 2) Kart & kartmodus                                   */
+/* KART                                                   */
 /* ===================================================== */
 #map {
   position: absolute;
   inset: 0;
   width: 100%;
-  height: 100vh;          /* iPad-sikkert */
-  z-index: 1;
+  height: 100vh;
   background: var(--bg);
+  z-index: 1;
+  transition: transform .45s ease, filter .45s ease;
+}
+
+/* Når panelet er åpent – kartet dimmes og zoomes litt */
+.sheet-open ~ #map {
+  transform: scale(.98) translateY(-8px);
+  filter: brightness(.65) blur(1px);
 }
 
 /* ===================================================== */
-/* 3) Toppfelt / header                                  */
+/* HEADER                                                 */
 /* ===================================================== */
 .site-header {
   position: absolute;
@@ -77,9 +56,11 @@ button { cursor:pointer; }
   border-bottom: 1px solid rgba(255,255,255,.05);
   z-index: 20;
 }
-.brand { display:flex; align-items:center; gap:8px; }
-.brand-logo { height:32px; }
-.brand-name { font-weight:600; letter-spacing:0.5px; }
+
+.brand { display: flex; align-items: center; gap: 8px; }
+.brand-logo { height: 32px; }
+.brand-name { font-weight: 600; letter-spacing: 0.5px; }
+
 .btn-profile {
   background: var(--accent);
   color: #000;
@@ -87,328 +68,109 @@ button { cursor:pointer; }
   border-radius: 50%;
   width: 36px; height: 36px;
   font-size: 18px;
+  box-shadow: 0 0 0 2px rgba(0,0,0,.3);
 }
 
+.btn-toggle {
+  background: var(--accent);
+  border: none;
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-weight: 600;
+  color: #000;
+  transition: background .2s ease, transform .1s ease;
+}
+.btn-toggle:active { transform: scale(0.97); }
+
 /* ===================================================== */
-/* 4) Toast / meldinger                                 */
+/* TOAST                                                  */
 /* ===================================================== */
 #toast {
   position: fixed;
-  bottom: 16px;
+  bottom: 18px;
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(0,0,0,.7);
+  background: rgba(0,0,0,.75);
   color: var(--text);
   padding: 8px 16px;
   border-radius: 8px;
   font-size: 14px;
   display: none;
   z-index: 2000;
+  backdrop-filter: blur(6px);
 }
 
 /* ===================================================== */
-/* 5) Paneler og kort                                   */
+/* UTFORSK-PANEL                                          */
 /* ===================================================== */
-.panel, .card {
-  background: var(--panel);
-  border: 1px solid var(--panel-border);
-  border-radius: 14px;
-  box-shadow: var(--shadow);
-  padding: 12px;
-}
-
-/* ===================================================== */
-/* 6) Knapper & merker                                  */
-/* ===================================================== */
-.btn {
-  background: var(--accent);
-  color: #000;
-  border: none;
-  border-radius: 8px;
-  padding: 8px 14px;
-  font-weight: 600;
-}
-
-.badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  border-radius: 999px;
-  padding: 4px 10px;
-  font-size: 13px;
-  font-weight: 500;
-  color: #000;
-}
-.badge .i {
-  width: 18px; height: 18px;
-  border-radius: 999px;
-  border: 2px solid rgba(0,0,0,.4);
-}
-.badge.historie .i   { background: var(--hist); }
-.badge.vitenskap .i  { background: var(--viten); }
-.badge.kunst .i      { background: var(--kult); }
-.badge.musikk .i     { background: var(--musikk); }
-.badge.litteratur .i { background: var(--lit); }
-.badge.natur .i      { background: var(--natur); }
-.badge.sport .i      { background: var(--sport); }
-.badge.by .i         { background: var(--urban); }
-.badge.politikk .i   { background: #c77dff; }
-.badge.populaerkultur .i { background: #ff6f00; }
-.badge.subkultur .i      { background: #00c2ff; }
-
-/* ===================================================== */
-/* 7) Modal / quiz                                       */
-/* ===================================================== */
-.modal {
-  position: fixed;
-  inset: 0;
-  z-index: 10050;
-  display: none;
-  background: rgba(0,0,0,.55);
-}
-.modal[aria-hidden="false"] { display: block; }
-.modal .modal-body {
-  position: absolute;
-  left: 50%; top: 50%;
-  transform: translate(-50%, -50%);
-  width: min(680px, 92vw);
-  background: var(--panel);
-  border: 1px solid var(--panel-border);
-  border-radius: 14px;
-  box-shadow: var(--shadow);
-  padding: 14px;
-  z-index: 10051;
-}
-.modal-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 8px;
-}
-
-/* ===================================================== */
-/* 8) Personkort & overlays                              */
-/* ===================================================== */
-.person-popup {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,.6);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 80;
-}
-.person-card {
-  background: var(--panel);
-  border: 1px solid var(--panel-border);
-  border-radius: 12px;
-  padding: 12px;
-  width: min(420px, 90vw);
-}
-
-/* ===================================================== */
-/* 9) App-ramme                                          */
-/* ===================================================== */
-.app-frame {
-  position: fixed;
-  inset: 0;
-  border: 6px solid #000;
-  border-radius: 18px;
-  background: transparent;
-  pointer-events: none;
-  z-index: 5;
-  box-shadow:
-    0 0 0 3px rgba(255,255,255,0.05) inset,
-    0 0 25px rgba(0,0,0,0.6);
-}
-/* ===================================================== */
-/* 10) UTFORSK-PANEL: NÆRMESTE STEDER + RUTER            */
-/* ===================================================== */
-
 .sheet {
   position: fixed;
-  left: 0; right: 0; bottom: 0;
+  bottom: 0; left: 0; right: 0;
+  height: 60vh;
   background: var(--panel);
-  backdrop-filter: blur(8px);
-  border-top: 1px solid rgba(255,255,255,.08);
-  border-radius: 16px 16px 0 0;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border: 1px solid var(--panel-border);
+  box-shadow: 0 -3px 25px rgba(0,0,0,.5);
   transform: translateY(100%);
+  opacity: 0;
   transition: transform .4s ease, opacity .3s ease;
-  z-index: 50;
-  color: var(--text);
-  box-shadow: 0 -2px 25px rgba(0,0,0,.45);
-}
-.sheet.sheet-open {
-  transform: translateY(0);
-  opacity: 1;
-}
-
-.sheet-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 12px 16px;
-  border-bottom: 1px solid rgba(255,255,255,.1);
-}
-.sheet-head h3 {
-  margin: 0;
-  font-size: 1.05rem;
-  font-weight: 600;
-}
-.sheet-close {
-  background: none;
-  border: none;
-  color: #fff;
-  font-size: 1.5rem;
-  cursor: pointer;
-}
-
-.sheet-content {
-  padding: 10px 16px 16px;
-  display: grid;
-  gap: 10px;
-}
-
-/* --- Nærmeste steder ------------------------------------ */
-.nearby-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: rgba(255,255,255,.05);
-  border: 1px solid rgba(255,255,255,.08);
-  border-radius: 10px;
-  padding: 10px 14px;
-  transition: background .2s ease;
-}
-.nearby-item:hover {
-  background: rgba(255,255,255,.1);
-}
-.nearby-info strong {
-  font-weight: 600;
-  color: #fff;
-}
-.nearby-info small {
-  color: rgba(255,255,255,.7);
-  font-size: 13px;
-}
-.btn-quiz {
-  background: var(--accent);
-  border: none;
-  color: #000;
-  padding: 6px 12px;
-  border-radius: 6px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background .2s ease;
-}
-.btn-quiz:hover {
-  background: #ffe84d;
-}
-
-/* --- Utforsk ruter -------------------------------------- */
-.route-item {
-  background: rgba(255,255,255,.05);
-  border: 1px solid rgba(255,255,255,.08);
-  border-radius: 10px;
-  padding: 10px 14px;
-  cursor: pointer;
-  transition: background .2s ease;
-}
-.route-item:hover {
-  background: rgba(255,255,255,.1);
-}
-.route-item strong {
-  color: var(--accent);
-  font-weight: 600;
-}
-.route-item small {
-  color: rgba(255,255,255,.75);
-  font-size: 13px;
-}
-
-/* --- Bakgrunnsslør bak panelet -------------------------- */
-.backdrop {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,.35);
-  backdrop-filter: blur(4px);
-  opacity: 0;
-  pointer-events: none;
-  z-index: 40;
-  transition: opacity .3s ease;
-}
-.sheet-open + .backdrop,
-.backdrop.active {
-  opacity: 1;
-  pointer-events: all;
-}
-/* ===================================================== */
-/* 10) UTFORSK-PANEL (SHEET) – STEDER & RUTER            */
-/* ===================================================== */
-.sheet {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 55vh;
-  background: var(--panel);
-  border-top: 1px solid var(--panel-border);
-  border-radius: 16px 16px 0 0;
-  box-shadow: 0 -4px 20px rgba(0,0,0,.5);
-  transform: translateY(100%);
-  transition: transform .35s ease, opacity .25s ease;
-  opacity: 0;
-  z-index: 60;
+  z-index: 15;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 }
-
 .sheet.sheet-open {
   transform: translateY(0);
   opacity: 1;
 }
 
+/* Header inne i panelet */
 .sheet-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 14px 18px 6px;
-  border-bottom: 1px solid rgba(255,255,255,.05);
   position: sticky;
   top: 0;
   background: rgba(10,25,41,.95);
   backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px 8px;
+  border-bottom: 1px solid rgba(255,255,255,.05);
   z-index: 2;
 }
 .sheet-head h3 {
   font-size: 17px;
   font-weight: 600;
+  margin: 0;
 }
 .sheet-close {
-  background: transparent;
+  background: none;
   border: none;
-  color: var(--accent);
+  color: var(--text);
   font-size: 22px;
-  line-height: 1;
   cursor: pointer;
+  opacity: 0.7;
+  transition: opacity .2s ease;
 }
+.sheet-close:hover { opacity: 1; }
 
-/* ------------------------------- */
-/* Stedene i nærheten              */
-/* ------------------------------- */
+/* Innhold i panelet */
 .sheet-content {
   padding: 10px 16px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
+
+/* Nærmeste steder og ruter */
 .nearby-item, .route-item {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
   background: rgba(255,255,255,.04);
-  border: 1px solid rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.06);
   border-radius: 12px;
   padding: 10px 14px;
-  margin-bottom: 8px;
-  transition: background .2s ease, transform .2s ease;
+  transition: background .25s ease, transform .2s ease;
 }
 .nearby-item:hover, .route-item:hover {
   background: rgba(255,255,255,.08);
@@ -419,50 +181,34 @@ button { cursor:pointer; }
   color: #fff;
 }
 .nearby-info small {
-  color: rgba(255,255,255,.6);
+  color: rgba(255,255,255,.7);
+  font-size: 13px;
 }
-
-/* ------------------------------- */
-/* Knapp inne i sted-listen        */
-/* ------------------------------- */
 .btn-quiz {
   background: var(--accent);
-  border: none;
-  border-radius: 10px;
   color: #000;
-  font-weight: 600;
+  border: none;
+  border-radius: 8px;
   padding: 6px 12px;
-  font-size: 13px;
+  font-weight: 600;
   cursor: pointer;
+  transition: background .2s ease, transform .1s ease;
 }
-.btn-quiz:hover {
-  background: #ffea61;
-}
+.btn-quiz:hover { background: #ffea4f; }
+.btn-quiz:active { transform: scale(0.97); }
 
-/* ------------------------------- */
-/* Ruter-listen                    */
-/* ------------------------------- */
-.route-item strong {
-  font-size: 15px;
-  color: var(--accent);
-}
-.route-item small {
-  color: rgba(255,255,255,.6);
-}
-
-/* ------------------------------- */
-/* Mørk bakgrunnsslør              */
-/* ------------------------------- */
+/* ===================================================== */
+/* BAKGRUNNSSLØR                                          */
+/* ===================================================== */
 .backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,.55);
-  z-index: 50;
-  opacity: 0;
+  background: rgba(0,0,0,0);
+  z-index: 10;
   pointer-events: none;
-  transition: opacity .25s ease;
+  transition: background .35s ease;
 }
 .backdrop.active {
-  opacity: 1;
+  background: rgba(0,0,0,.5);
   pointer-events: all;
 }
