@@ -39,6 +39,17 @@ const app = (() => {
       renderRoutesRow(); // viser ruter i panelet
       tryLocateUser();   // henter posisjon og viser nærmeste
 
+      // Aktiver "Utforsk"-knappen i header
+const toggleBtn = document.getElementById("toggleMode");
+if (toggleBtn) {
+  toggleBtn.onclick = () => {
+    const sheet = document.getElementById("exploreSheet");
+    const isOpen = sheet.classList.contains("sheet-open");
+    if (isOpen) ui.closeSheet("exploreSheet");
+    else ui.openSheet("exploreSheet");
+  };
+}
+      
       showToast(`Velkommen tilbake, ${HG.user.name}!`);
     } catch (err) {
       console.error("Feil ved oppstart:", err);
