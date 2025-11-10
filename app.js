@@ -1359,8 +1359,26 @@ let drawCheck = setInterval(() => {
   }
 }, 500);
 
-
-
+// ============================================================
+// === STED-POPUP NÅR DU FULLFØRER QUIZ =======================
+// ============================================================
+function showPlacePopup(place) {
+  const popup = document.createElement("div");
+  popup.className = "place-popup";
+  popup.innerHTML = `
+    <div class="place-popup-inner">
+      <img src="bilder/kort/places/${place.id}.PNG" alt="${place.name}" class="place-popup-img">
+      <h3>${place.name}</h3>
+      <p class="muted">Nytt sted lagt til samlingen!</p>
+    </div>
+  `;
+  document.body.appendChild(popup);
+  requestAnimationFrame(() => popup.classList.add("visible"));
+  setTimeout(() => {
+    popup.classList.remove("visible");
+    setTimeout(() => popup.remove(), 500);
+  }, 3200);
+}
 // ============================================================
 // === SLUTT PROFIL & MERKER ================================
 // ============================================================
