@@ -808,6 +808,33 @@ const quizProgress    = JSON.parse(localStorage.getItem("quiz_progress") || "{}"
   st.textContent = `${visitedCount} steder · ${badgeCount} merker · ${quizCount} quizzer`;
 });
 
+window.addEventListener("storage", (event) => {
+  const keys = ["visited_places", "people_collected", "merits_by_category", "quiz_refresh"];
+  if (!keys.includes(event.key)) return;
+
+  const nm = document.getElementById("miniName");
+  const st = document.getElementById("miniStats");
+  if (!nm || !st) return;
+
+  const name  = localStorage.getItem("user_name")  || "Utforsker #182";
+  const color = localStorage.getItem("user_color") || "#f6c800";
+  const visited         = JSON.parse(localStorage.getItem("visited_places") || "{}");
+  const merits          = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
+  const quizProgress    = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
+
+  const visitedCount = Object.keys(visited).length;
+  const badgeCount   = Object.keys(merits).length;
+  const quizCount    = Object.values(quizProgress)
+    .map(v => (Array.isArray(v.completed) ? v.completed.length : 0))
+    .reduce((a,b) => a + b, 0);
+
+  nm.textContent = name;
+  nm.style.color = color;
+  st.textContent = `${visitedCount} steder · ${badgeCount} merker · ${quizCount} quizzer`;
+  console.log("🔄 Mini-profil oppdatert automatisk.");
+});
+
+
 // --- Interaktive lenker i mini-profil ---
 document.getElementById("linkPlaces")?.addEventListener("click", () => {
   enterMapMode();
