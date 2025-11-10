@@ -1446,6 +1446,29 @@ function showPlacePopup(place) {
     setTimeout(() => popup.remove(), 500);
   }, 3200);
 }
+
+// ============================================================
+// === KLIKK PÅ MERKER OG STEDER INNE PÅ PROFILSIDEN =========
+// ============================================================
+document.addEventListener("click", (e) => {
+  // Klikk på sted i samlingen (badge)
+  const badge = e.target.closest("#collectionGrid .badge");
+  if (badge) {
+    const name = badge.textContent.trim();
+    const p = PLACES.find(x => x.name === name);
+    if (p) {
+      closePlaceOverlay();
+      showPlaceOverlay(p);
+    }
+  }
+
+  // Klikk på merke-kort (kategori)
+  const userBadge = e.target.closest("#merits .badge-mini, .badge-card");
+  if (userBadge) {
+    const label = userBadge.querySelector("strong, .badge-mini-label")?.textContent?.trim();
+    if (label) showBadgeModal(label);
+  }
+});
 // ============================================================
 // === SLUTT PROFIL & MERKER ================================
 // ============================================================
