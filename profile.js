@@ -288,37 +288,40 @@ document.addEventListener("DOMContentLoaded",()=>{
     });
   }
 });
-
 // ============================================================
-// === KLIKK PÅ MERKER + ANIMASJON (v4 – endelig) =============
+// === KLIKK PÅ MERKER (vent til app.js er klar) ==============
 // ============================================================
-document.addEventListener("DOMContentLoaded", () => {
-  document.body.addEventListener("click", e => {
-    const el = e.target.closest(".badge-mini");
-    if (!el) return;
+document.addEventListener("click", e => {
+  const el = e.target.closest(".badge-mini");
+  if (!el) return;
 
-    const badgeId = el.dataset.badge;
-    const badgeObj = (window.BADGES || []).find(
-      b => b.id === badgeId || b.name.toLowerCase() === badgeId.toLowerCase()
-    );
-    const catName = badgeObj ? badgeObj.name : badgeId;
-    console.log("🎯 Åpner merkeboks for:", catName);
+  const badgeId = el.dataset.badge;
+  const badgeObj = (window.BADGES || []).find(
+    b => b.id === badgeId || b.name.toLowerCase() === badgeId.toLowerCase()
+  );
+  const catName = badgeObj ? badgeObj.name : badgeId;
+  console.log("🎯 Klikk på merke:", catName);
 
-    if (typeof showBadgeModal === "function") {
-      showBadgeModal(catName);
+  // 🔹 Forsinket kall til showBadgeModal til den finnes
+  const tryShow = () => {
+    if (typeof window.showBadgeModal === "function") {
+      window.showBadgeModal(catName);
 
       const modal = document.getElementById("badgeModal");
       if (modal) {
         modal.style.display = "flex";
         modal.style.background = "rgba(0,0,0,0.7)";
-        modal.style.backdropFilter = "blur(2px)";
+        modal.style.backdropFilter = "blur(3px)";
         modal.classList.add("fadeZoomIn");
       }
+    } else {
+      setTimeout(tryShow, 200);
     }
-  });
+  };
+  tryShow();
 });
 
-// --- Fade + zoom-inn-animasjon ---
+// --- Animasjon ---
 const style = document.createElement("style");
 style.textContent = `
 #badgeModal {
@@ -329,13 +332,5 @@ style.textContent = `
 #badgeModal.fadeZoomIn {
   opacity: 1;
   transform: scale(1);
-}
-.badge-modal-inner {
-  animation: popIn .35s ease;
-}
-@keyframes popIn {
-  from { transform: scale(0.94); opacity: 0; }
-  to   { transform: scale(1); opacity: 1; }
-}
-`;
+}`;
 document.head.appendChild(style);
