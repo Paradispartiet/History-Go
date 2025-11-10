@@ -258,18 +258,22 @@ async function showPersonInfoModal(person) {
 }
 
 // --------------------------------------
-// INIT + DEL PROFIL
+// INIT + DEL PROFIL – vent til data er lastet ferdig
 // --------------------------------------
 Promise.all([
   fetch("people.json").then(r => r.json()).then(d => PEOPLE = d),
   fetch("places.json").then(r => r.json()).then(d => PLACES = d),
   fetch("badges.json").then(r => r.json()).then(d => BADGES = d)
-]).then(() => {
+]).then(async () => {
+  // Vent 600ms for å sikre at alt er klart fra app.js
+  await new Promise(r => setTimeout(r, 600));
+
   renderProfileCard();
   renderMerits();
   renderCollection();
   renderGallery();
   renderTimelineProfile();
+  console.log("✅ Profil ferdig lastet.");
 });
 
 document.addEventListener("DOMContentLoaded", () => {
