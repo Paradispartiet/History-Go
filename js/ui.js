@@ -1,10 +1,12 @@
 // ============================================================
-// === HISTORY GO – UI.JS (v3.2, stabil) ======================
+// === HISTORY GO – UI.JS (v3.3, overlays og toasts) ==========
 // ============================================================
 //
-//  • Viser og skjuler toasts, sheets og modaler
-//  • Sørger for jevne animasjoner og iPad-kompatibilitet
+// Ansvar:
+//  • Vise og skjule toasts, sheets og modaler
+//  • Kontrollere overgangseffekter og brukeropplevelse
 //  • Brukes av app.js, quiz.js og profile.js
+//
 // ============================================================
 
 const ui = (() => {
@@ -14,9 +16,8 @@ const ui = (() => {
   // ----------------------------------------------------------
   function initUI() {
     console.log("🎨 UI-modul initialisert");
-    // Sikrer at toast starter skjult
     const toast = document.getElementById("toast");
-    if (toast) toast.style.display = "none";
+    if (toast) toast.style.display = "none"; // start skjult
   }
 
   // ----------------------------------------------------------
@@ -30,14 +31,21 @@ const ui = (() => {
     toast.style.display = "block";
     toast.style.opacity = "0";
 
-    // Fade-in
-    toast.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 200, fill: "forwards" });
+    // Fade inn
+    toast.animate([{ opacity: 0 }, { opacity: 1 }], {
+      duration: 200,
+      fill: "forwards",
+      easing: "ease-out"
+    });
 
     clearTimeout(showToast._timer);
     showToast._timer = setTimeout(() => {
-      // Fade-out
-      toast.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 400, fill: "forwards" })
-        .onfinish = () => (toast.style.display = "none");
+      // Fade ut
+      toast.animate([{ opacity: 1 }, { opacity: 0 }], {
+        duration: 400,
+        fill: "forwards",
+        easing: "ease-in"
+      }).onfinish = () => (toast.style.display = "none");
     }, ms);
   }
 
@@ -47,18 +55,24 @@ const ui = (() => {
   function openSheet(id) {
     const el = document.getElementById(id);
     if (!el) return;
+
     el.classList.add("sheet-open");
-    el.style.transform = "translateY(0)";
-    el.style.opacity = "1";
+    el.animate([
+      { transform: "translateY(100%)", opacity: 0 },
+      { transform: "translateY(0)", opacity: 1 }
+    ], { duration: 250, fill: "forwards", easing: "ease-out" });
   }
 
   function closeSheet(id) {
     const el = document.getElementById(id);
     if (!el) return;
-    el.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 200, fill: "forwards" })
+
+    el.animate([
+      { transform: "translateY(0)", opacity: 1 },
+      { transform: "translateY(100%)", opacity: 0 }
+    ], { duration: 200, fill: "forwards", easing: "ease-in" })
       .onfinish = () => {
         el.classList.remove("sheet-open");
-        el.style.transform = "translateY(100%)";
       };
   }
 
@@ -69,21 +83,22 @@ const ui = (() => {
     const modal = document.getElementById("modal");
     if (!modal) return;
 
-    const titleEl = modal.querySelector("#modalTitle");
+    const titleEl   = modal.querySelector("#modalTitle");
     const contentEl = modal.querySelector("#modalContent");
 
-    if (titleEl) titleEl.textContent = title;
-    if (contentEl) contentEl.innerHTML = contentHTML;
+    if (titleEl)   titleEl.textContent   = title;
+    if (contentEl) contentEl.innerHTML   = contentHTML;
 
     modal.setAttribute("aria-hidden", "false");
-    fadeIn(modal, 150);
+    fadeIn(modal, 180);
   }
 
   function closeModal() {
     const modal = document.getElementById("modal");
     if (!modal) return;
-    fadeOut(modal, 150);
-    setTimeout(() => modal.setAttribute("aria-hidden", "true"), 180);
+
+    fadeOut(modal, 180);
+    setTimeout(() => modal.setAttribute("aria-hidden", "true"), 200);
   }
 
   // ----------------------------------------------------------
@@ -92,13 +107,20 @@ const ui = (() => {
   function fadeIn(el, duration = 250) {
     if (!el) return;
     el.style.display = "block";
-    el.animate([{ opacity: 0 }, { opacity: 1 }], { duration, fill: "forwards" });
+    el.animate([{ opacity: 0 }, { opacity: 1 }], {
+      duration,
+      fill: "forwards",
+      easing: "ease-out"
+    });
   }
 
   function fadeOut(el, duration = 250) {
     if (!el) return;
-    el.animate([{ opacity: 1 }, { opacity: 0 }], { duration, fill: "forwards" })
-      .onfinish = () => (el.style.display = "none");
+    el.animate([{ opacity: 1 }, { opacity: 0 }], {
+      duration,
+      fill: "forwards",
+      easing: "ease-in"
+    }).onfinish = () => (el.style.display = "none");
   }
 
   // ----------------------------------------------------------
@@ -112,15 +134,15 @@ const ui = (() => {
     openModal,
     closeModal,
     fadeIn,
-    fadeOut,
+    fadeOut
   };
 })();
 
 // ----------------------------------------------------------
-// GLOBALT: lukking og init
+// GLOBALT: Lukking og initiering
 // ----------------------------------------------------------
 document.addEventListener("click", (e) => {
   if (e.target.id === "closeModal") ui.closeModal();
 });
 
-document.addEventListener("DOMContentLoaded", ui.initUI);
+document.addEventListener("DOMContentLoaded", () => ui.initUI());
