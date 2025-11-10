@@ -1124,18 +1124,29 @@ async function startQuiz(targetId) {
       const perfect = correct === total;
 
       if (perfect) {
-        addCompletedQuizAndMaybePoint(displayCat, targetId);
-        markQuizAsDone(targetId);
-        if (person) {
-          peopleCollected[targetId] = true;
-          savePeople();
-          showPersonPopup(person);
-          document.getElementById("gallery")?.scrollIntoView({ behavior: "smooth" });
-        }
-        showToast(`Perfekt! ${total}/${total} riktige 🎯 Du fikk poeng og kort!`);
-      } else {
-        showToast(`Fullført: ${correct}/${total} – prøv igjen for full score.`);
-      }
+  addCompletedQuizAndMaybePoint(displayCat, targetId);
+  markQuizAsDone(targetId);
+
+  if (person) {
+    peopleCollected[targetId] = true;
+    savePeople();
+    showPersonPopup(person);
+    document.getElementById("gallery")?.scrollIntoView({ behavior: "smooth" });
+  }
+
+  if (place) {
+    visited[place.id] = true;
+    saveVisited();
+    drawPlaceMarkers();
+    pulseMarker(place.lat, place.lon);
+    showPlacePopup(place);   // ✨ denne linjen viser popupen
+    showToast(`Låst opp: ${place.name} ✅`);
+  }
+
+  showToast(`Perfekt! ${total}/${total} riktige 🎯 Du fikk poeng og kort!`);
+} else {
+  showToast(`Fullført: ${correct}/${total} – prøv igjen for full score.`);
+}
 
       // ✨ Pulse på stedet som hører til personen når quizen fullføres
       if (person && person.placeId) {
