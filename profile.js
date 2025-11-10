@@ -308,3 +308,42 @@ style.textContent = `
     100% { box-shadow: none; transform: scale(1); }
   }`;
 document.head.appendChild(style);
+
+
+// ------------------------------------------------------------
+// SANNTIDSOPPDATERING FRA ALLE SIDER (synkronisering)
+// ------------------------------------------------------------
+//
+//  Lytter etter endringer i localStorage (steder, personer, merker)
+//  slik at profilen oppdateres automatisk uansett hvor quiz tas.
+//
+
+window.addEventListener("storage", (event) => {
+  const keys = ["visited_places", "people_collected", "merits_by_category", "quiz_progress"];
+  if (!keys.includes(event.key)) return;
+
+  console.log("🔄 Oppdaterer profil etter endring:", event.key);
+  try {
+    renderProfileCard();
+    renderCollection();
+    renderGallery();
+    renderMerits();
+    renderTimelineProfile();
+  } catch (err) {
+    console.warn("⚠️ Oppdateringsfeil:", err);
+  }
+});
+
+// ------------------------------------------------------------
+// LOKAL OPPDATERING VED POENG ELLER QUIZ (samme fane)
+// ------------------------------------------------------------
+//
+//  Hvis quizen tas i samme fane, trigges også et kunstig storage-event
+//  slik at profilen oppdateres momentant uten å laste siden på nytt.
+//
+function triggerProfileUpdate() {
+  window.dispatchEvent(new StorageEvent("storage", { key: "visited_places" }));
+}
+
+// Gjør funksjonen tilgjengelig globalt, slik at app.js kan kalle den
+window.triggerProfileUpdate = triggerProfileUpdate;
