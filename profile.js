@@ -334,3 +334,5 @@ style.textContent = `
   transform: scale(1);
 }`;
 document.head.appendChild(style);
+
+console.log("✅ Profile.js aktiv og lytter etter merker");
