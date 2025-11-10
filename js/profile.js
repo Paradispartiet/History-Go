@@ -1,53 +1,42 @@
 // ============================================================
-// === HISTORY GO – PROFILE.JS (v2.6, live oppdatering) =======
+// === HISTORY GO – PROFILE.JS (v2.8, stabil live-sync) =======
 // ============================================================
 //
-// Nytt i denne versjonen:
-//  ✅ Automatisk oppdatering når localStorage endres (merker, steder, personer, quizer)
-//  ✅ Registrerer eventlistener for "storage" og "updateProfile" (intern refresh)
-//  ✅ Rask synkronisering mellom kart/app og profilsiden
-//
+//  • Leser data direkte fra HG.data (core.js)
+//  • Viser profil, merker, personer, steder og tidslinje
+//  • Oppdateres automatisk ved quiz/fullføring (updateProfile)
 // ============================================================
 
 window.addEventListener("DOMContentLoaded", () => {
-  Profile.initProfilePage();
+  // Vent til data er ferdig lastet fra core.js
+  const waitForData = setInterval(() => {
+    if (window.HG?.data?.places?.length) {
+      clearInterval(waitForData);
+      Profile.initProfilePage();
+    }
+  }, 150);
 });
 
 const Profile = (() => {
-
   let DATA = { places: [], people: [], badges: [] };
 
   // ----------------------------------------------------------
   // 1) INITIERING
   // ----------------------------------------------------------
   async function initProfilePage() {
-    await loadAllData();
+    DATA = HG?.data || DATA;
     renderAll();
     setupButtons();
     setupModalClose();
     setupLiveUpdates();
+    console.log("👤 Profilside initialisert");
   }
 
   // ----------------------------------------------------------
-  // 2) LASTING AV DATA
-  // ----------------------------------------------------------
-  async function loadAllData() {
-    try {
-      const [places, people, badges] = await Promise.all([
-        fetch("data/places.json").then(r => r.json()),
-        fetch("data/people.json").then(r => r.json()),
-        fetch("data/badges.json").then(r => r.json())
-      ]);
-      DATA = { places, people, badges };
-    } catch (err) {
-      console.error("Kunne ikke laste data:", err);
-    }
-  }
-
-  // ----------------------------------------------------------
-  // 3) RENDER-PAKKER
+  // 2) RENDER
   // ----------------------------------------------------------
   function renderAll() {
+    if (!DATA.places.length) DATA = HG?.data || DATA;
     renderProfileCard();
     renderMerits();
     renderPeople();
@@ -58,25 +47,34 @@ const Profile = (() => {
   function renderProfileCard() {
     const name = localStorage.getItem("user_name") || "Ukjent bruker";
     const color = localStorage.getItem("user_color") || "#FFD600";
-    const merits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
-    const visited = JSON.parse(localStorage.getItem("visited_places") || "[]");
-    const people = JSON.parse(localStorage.getItem("people_collected") || "[]");
+    const merits = load("merits_by_category", {});
+    const visited = load("visited_places", []);
+    const people = load("people_collected", []);
 
-    document.getElementById("profileName").textContent = name;
-    document.getElementById("profileAvatar").style.background = color;
-    document.getElementById("placesCount").textContent = visited.length;
-    document.getElementById("peopleCount").textContent = people.length;
-    document.getElementById("badgesCount").textContent = Object.keys(merits).length;
+    const elName   = document.getElementById("profileName");
+    const elAvatar = document.getElementById("profileAvatar");
+    const elPlaces = document.getElementById("placesCount");
+    const elPeople = document.getElementById("peopleCount");
+    const elBadges = document.getElementById("badgesCount");
+    const elLevel  = document.getElementById("profileLevel");
+    if (!elName) return;
+
+    elName.textContent = name;
+    elAvatar.style.background = color;
+    elPlaces.textContent = visited.length;
+    elPeople.textContent = people.length;
+    elBadges.textContent = Object.keys(merits).length;
 
     const totalPoints = Object.values(merits).reduce((a, b) => a + (b.points || 0), 0);
     const level = Math.floor(totalPoints / 50) + 1;
-    document.getElementById("profileLevel").textContent = `Historiker · nivå ${level}`;
+    elLevel.textContent = `Historiker · nivå ${level}`;
   }
 
   function renderMerits() {
     const container = document.getElementById("badgesGrid");
+    if (!container) return;
     container.innerHTML = "";
-    const merits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
+    const merits = load("merits_by_category", {});
 
     DATA.badges.forEach(b => {
       const valør = (merits[b.id]?.valør) || "Ingen";
@@ -93,8 +91,9 @@ const Profile = (() => {
 
   function renderPeople() {
     const container = document.getElementById("peopleGrid");
+    if (!container) return;
     container.innerHTML = "";
-    const collected = JSON.parse(localStorage.getItem("people_collected") || "[]");
+    const collected = load("people_collected", []);
     const ids = new Set(collected.map(p => p.id));
 
     DATA.people.filter(p => ids.has(p.id)).forEach(p => {
@@ -109,15 +108,16 @@ const Profile = (() => {
 
   function renderPlaces() {
     const container = document.getElementById("placesGrid");
+    if (!container) return;
     container.innerHTML = "";
-    const visited = JSON.parse(localStorage.getItem("visited_places") || "[]");
+    const visited = load("visited_places", []);
     const ids = new Set(visited.map(p => p.id));
 
     DATA.places.filter(pl => ids.has(pl.id)).forEach(pl => {
       const div = document.createElement("div");
       div.className = "place-thumb";
       div.innerHTML = `
-        <img src="bilder/kort/people/${pl.image || pl.id}.PNG" alt="${pl.name}">
+        <img src="bilder/kort/places/${pl.image || pl.id}.PNG" alt="${pl.name}">
         <span>${pl.name}</span>`;
       div.onclick = () => openPlaceModal(pl.id);
       container.appendChild(div);
@@ -126,9 +126,10 @@ const Profile = (() => {
 
   function renderTimeline() {
     const container = document.getElementById("timelineList");
+    if (!container) return;
     container.innerHTML = "";
-    const visited = JSON.parse(localStorage.getItem("visited_places") || "[]");
-    const collected = JSON.parse(localStorage.getItem("people_collected") || "[]");
+    const visited = load("visited_places", []);
+    const collected = load("people_collected", []);
 
     const allItems = [
       ...DATA.places.filter(p => visited.some(v => v.id === p.id)),
@@ -140,7 +141,8 @@ const Profile = (() => {
       div.className = "timeline-item";
       div.innerHTML = `
         <strong>${item.year || "–"}</strong> ${item.name}
-        <img src="bilder/kort/people/${item.id}.PNG" alt="${item.name}" class="timeline-thumb">`;
+        <img src="bilder/kort/${DATA.people.find(p => p.id === item.id) ? "people" : "places"}/${item.id}.PNG"
+             alt="${item.name}" class="timeline-thumb">`;
       div.onclick = () => {
         if (DATA.people.find(p => p.id === item.id)) openPersonModal(item.id);
         else openPlaceModal(item.id);
@@ -150,13 +152,14 @@ const Profile = (() => {
   }
 
   // ----------------------------------------------------------
-  // 4) MODALER
+  // 3) MODALER
   // ----------------------------------------------------------
   function openBadgeModal(categoryId) {
     const modal = document.getElementById("badgeModal");
+    if (!modal) return;
     const title = document.getElementById("badgeModalTitle");
     const content = document.getElementById("badgeModalContent");
-    const progress = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
+    const progress = load("quiz_progress", {});
     const badgeData = DATA.badges.find(b => b.id === categoryId);
 
     title.textContent = `Merke: ${badgeData?.name || categoryId}`;
@@ -166,7 +169,7 @@ const Profile = (() => {
     Object.values(progress).forEach(q => {
       if (q.categoryId === categoryId) {
         const li = document.createElement("li");
-        li.innerHTML = `<strong>${q.placeName}</strong><br>Spørsmål: ${q.question}<br>Ditt svar: ${q.answer}`;
+        li.textContent = `${q.placeId || "Sted"} – ${q.points} poeng`;
         list.appendChild(li);
       }
     });
@@ -174,40 +177,37 @@ const Profile = (() => {
     modal.setAttribute("aria-hidden", "false");
   }
 
-  function openPersonModal(personId) {
-    const modal = document.getElementById("personModal");
-    const nameEl = document.getElementById("personModalName");
-    const content = document.getElementById("personModalContent");
-    const p = DATA.people.find(x => x.id === personId);
+  function openPersonModal(id) {
+    const p = DATA.people.find(x => x.id === id);
     if (!p) return;
-    nameEl.textContent = p.name;
-    content.innerHTML = `
+    const modal = document.getElementById("personModal");
+    document.getElementById("personModalName").textContent = p.name;
+    document.getElementById("personModalContent").innerHTML = `
       <p>${p.desc || ""}</p>
-      <img src="bilder/kort/people/${p.id}.PNG" alt="${p.name}" class="person-card">
-      <p><em>Kilde: Wikipedia / Google</em></p>`;
+      <img src="bilder/kort/people/${p.id}.PNG" alt="${p.name}" class="person-card">`;
     modal.setAttribute("aria-hidden", "false");
   }
 
-  function openPlaceModal(placeId) {
-    const modal = document.getElementById("placeModal");
-    const title = document.getElementById("placeModalName");
-    const content = document.getElementById("placeModalContent");
-    const pl = DATA.places.find(p => p.id === placeId);
+  function openPlaceModal(id) {
+    const pl = DATA.places.find(p => p.id === id);
     if (!pl) return;
-    title.textContent = pl.name;
-    content.innerHTML = `
+    const modal = document.getElementById("placeModal");
+    document.getElementById("placeModalName").textContent = pl.name;
+    document.getElementById("placeModalContent").innerHTML = `
       <p>${pl.desc || ""}</p>
-      <img src="bilder/kort/people/${pl.image || pl.id}.PNG" alt="${pl.name}" class="place-card">
+      <img src="bilder/kort/places/${pl.image || pl.id}.PNG" alt="${pl.name}" class="place-card">
       <p><small>År: ${pl.year || "–"}</small></p>`;
     modal.setAttribute("aria-hidden", "false");
   }
 
   // ----------------------------------------------------------
-  // 5) EKSPORT & NULLSTILL
+  // 4) KNAPPER OG NULLSTILL
   // ----------------------------------------------------------
   function setupButtons() {
-    document.getElementById("exportProfileBtn").onclick = exportProfile;
-    document.getElementById("resetProfileBtn").onclick = resetProfileData;
+    const exp = document.getElementById("exportProfileBtn");
+    const rst = document.getElementById("resetProfileBtn");
+    if (exp) exp.onclick = exportProfile;
+    if (rst) rst.onclick = resetProfileData;
   }
 
   function exportProfile() {
@@ -227,7 +227,7 @@ const Profile = (() => {
   }
 
   // ----------------------------------------------------------
-  // 6) MODAL-KONTROLL
+  // 5) MODAL-KONTROLL
   // ----------------------------------------------------------
   function setupModalClose() {
     document.querySelectorAll(".close-modal").forEach(btn => {
@@ -239,40 +239,27 @@ const Profile = (() => {
   }
 
   // ----------------------------------------------------------
-  // 7) LIVE OPPDATERING (NYTT)
+  // 6) LIVE-OPPDATERING
   // ----------------------------------------------------------
   function setupLiveUpdates() {
-    // a) Oppdater profil hvis noe endres i localStorage fra annet vindu
     window.addEventListener("storage", (e) => {
-      if (e.key && [
-        "visited_places",
-        "people_collected",
-        "merits_by_category",
-        "quiz_progress"
-      ].includes(e.key)) {
+      if (["visited_places", "people_collected", "merits_by_category", "quiz_progress"].includes(e.key)) {
         renderAll();
       }
     });
-
-    // b) Oppdater internt (når app.js eller quiz.js sender custom event)
-    window.addEventListener("updateProfile", () => {
-      renderAll();
-    });
+    window.addEventListener("updateProfile", renderAll);
   }
 
-  // Ekstern funksjon som app/quiz kan kalle direkte
-  function refreshProfile() {
-    renderAll();
-  }
+  const load = (k, f) => JSON.parse(localStorage.getItem(k) || JSON.stringify(f));
 
   // ----------------------------------------------------------
-  // Eksporter offentlig API
+  // EKSPORT
   // ----------------------------------------------------------
   return {
     initProfilePage,
     openBadgeModal,
     openPersonModal,
     openPlaceModal,
-    refreshProfile
+    refreshProfile: renderAll
   };
 })();
