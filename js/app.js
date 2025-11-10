@@ -1,15 +1,16 @@
 // ============================================================
-// === HISTORY GO – APP.JS (v2.8, stabil hovedkoordinator) ====
+// === HISTORY GO – APP.JS (v3.0, stabil med utforskpanel) ====
 // ============================================================
 //
 //  • Starter appen etter core.boot()
 //  • Initierer kart, quiz og mini-profil
 //  • Håndterer quiz-flyt, poeng, steder og personer
+//  • Viser nærmeste steder og ruter i utforskpanelet
 //  • Oppdaterer localStorage og sender updateProfile-event
 //
 // ============================================================
 
-const HG = window.HG || {}; // globalt navnerom for data og bruker
+const HG = window.HG || {};
 
 const app = (() => {
 
@@ -20,24 +21,23 @@ const app = (() => {
     try {
       console.log("📦 Initialiserer History Go...");
 
-      // Sørg for at data er lastet (fra core.boot)
       if (!HG.data || !HG.data.places) {
         console.warn("Data ikke funnet – venter på core.boot()");
         await new Promise(r => setTimeout(r, 400));
       }
 
-      // Hent brukerdata
       HG.user = {
         name: localStorage.getItem("user_name") || "Ukjent spiller",
         color: localStorage.getItem("user_color") || "#FFD600"
       };
 
-      // Start moduler
       if (map?.initMap) map.initMap(HG.data.places, HG.data.routes);
       if (quiz?.initQuizSystem) quiz.initQuizSystem(HG.data.badges);
       if (Profile?.initProfileMini) Profile.initProfileMini();
 
       attachEventListeners();
+      renderRoutesRow(); // viser ruter i panelet
+      tryLocateUser();   // henter posisjon og viser nærmeste
 
       showToast(`Velkommen tilbake, ${HG.user.name}!`);
     } catch (err) {
@@ -46,19 +46,84 @@ const app = (() => {
   }
 
   // ----------------------------------------------------------
-  // 2) HENDELSER OG FLYT
+  // 2) GEOLOKASJON OG UTFORSKPANEL
   // ----------------------------------------------------------
-  function attachEventListeners() {
-    // Når bruker trykker på sted i kartet
-    document.addEventListener("placeSelected", (e) => {
-      const placeId = e.detail.placeId;
-      if (placeId) startQuizForPlace(placeId);
+  function tryLocateUser() {
+    if (!navigator.geolocation) return renderNearbyPlaces(null);
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        renderNearbyPlaces([pos.coords.latitude, pos.coords.longitude]);
+      },
+      () => renderNearbyPlaces(null),
+      { enableHighAccuracy: true, timeout: 5000 }
+    );
+  }
+
+  function renderNearbyPlaces(userPos) {
+    const list = document.getElementById("nearbyList");
+    if (!list) return;
+    list.innerHTML = "";
+
+    const places = HG.data.places || [];
+    let sorted = [];
+
+    if (userPos) {
+      sorted = places
+        .map(p => ({
+          ...p,
+          dist: distance(userPos[0], userPos[1], p.lat, p.lon)
+        }))
+        .sort((a, b) => a.dist - b.dist)
+        .slice(0, 6);
+    } else {
+      sorted = places.slice(0, 6);
+    }
+
+    sorted.forEach(p => {
+      const km = p.dist ? (p.dist / 1000).toFixed(2) + " km" : "";
+      const item = document.createElement("div");
+      item.className = "nearby-item";
+      item.innerHTML = `
+        <div class="nearby-info">
+          <strong>${p.name}</strong><br>
+          <small>${p.category || ""} ${km ? "· " + km : ""}</small>
+        </div>
+        <button class="btn-quiz" data-id="${p.id}">Start</button>
+      `;
+      item.querySelector("button").onclick = () => startQuizForPlace(p.id);
+      list.appendChild(item);
     });
 
-    // Når quiz fullføres
-    document.addEventListener("quizCompleted", (e) => {
-      handleQuizCompletion(e.detail);
+    ui.openSheet("exploreSheet");
+  }
+
+  function renderRoutesRow() {
+    const list = document.getElementById("routesList");
+    if (!list) return;
+    list.innerHTML = "";
+
+    (HG.data.routes || []).forEach(r => {
+      const div = document.createElement("div");
+      div.className = "route-item";
+      div.innerHTML = `
+        <strong>${r.name}</strong><br>
+        <small>${r.category || ""}</small>
+      `;
+      div.onclick = () => showRouteOnMap(r);
+      list.appendChild(div);
     });
+  }
+
+  function showRouteOnMap(route) {
+    ui.closeSheet("exploreSheet");
+    if (route && map?.highlightNearbyPlaces) {
+      const coords = route.stops?.[0];
+      if (coords?.placeId) {
+        const pl = HG.data.places.find(p => p.id === coords.placeId);
+        if (pl) map.highlightNearbyPlaces(pl.lat, pl.lon, 300);
+      }
+    }
+    showToast(`🗺️ Viser rute: ${route.name}`);
   }
 
   // ----------------------------------------------------------
@@ -132,17 +197,27 @@ const app = (() => {
   }
 
   // ----------------------------------------------------------
-  // 5) LAGRING & VISNING
+  // 5) HJELPEFUNKSJONER
   // ----------------------------------------------------------
+  function distance(lat1, lon1, lat2, lon2) {
+    const R = 6371e3;
+    const φ1 = (lat1 * Math.PI) / 180;
+    const φ2 = (lat2 * Math.PI) / 180;
+    const Δφ = ((lat2 - lat1) * Math.PI) / 180;
+    const Δλ = ((lon2 - lon1) * Math.PI) / 180;
+    const a =
+      Math.sin(Δφ / 2) ** 2 +
+      Math.cos(φ1) * Math.cos(φ2) * Math.sin(Δλ / 2) ** 2;
+    return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  }
+
   function load(key, def) {
     try { return JSON.parse(localStorage.getItem(key)) || def; }
     catch { return def; }
   }
-
   function save(key, val) {
     localStorage.setItem(key, JSON.stringify(val));
   }
-
   function showToast(msg) {
     const t = document.getElementById("toast");
     if (!t) return;
@@ -152,28 +227,13 @@ const app = (() => {
     showToast._timer = setTimeout(() => (t.style.display = "none"), 2400);
   }
 
-  function saveUserState() {
-    localStorage.setItem("user_name", HG.user.name);
-    localStorage.setItem("user_color", HG.user.color);
-  }
-
-  function resetProgress() {
-    if (confirm("Vil du slette all progresjon?")) {
-      localStorage.clear();
-      window.dispatchEvent(new Event("updateProfile"));
-      showToast("Progresjon nullstilt");
-    }
-  }
-
   // ----------------------------------------------------------
   // 6) EKSPORT
   // ----------------------------------------------------------
   return {
     initApp,
     handleQuizCompletion,
-    startQuizForPlace,
-    saveUserState,
-    resetProgress
+    startQuizForPlace
   };
 })();
 
