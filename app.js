@@ -547,23 +547,24 @@ function renderGallery() {
   const visitedPlaces = JSON.parse(localStorage.getItem("visited_places") || "{}");
   const collectedPeople = JSON.parse(localStorage.getItem("people_collected") || "{}");
 
-  // Bygg arrays med tidsstempel
+  // --- Personer ---
   const gotPeople = PEOPLE.filter(p => !!collectedPeople[p.id]).map(p => ({
     type: "person",
     id: p.id,
     name: p.name,
     img: p.image || `bilder/kort/people/${p.id}.PNG`,
     color: catColor(tagToCat(p.tags)),
-    timestamp: collectedPeople[p.id]?.timestamp || 0
+    year: p.year || 0
   }));
 
+  // --- Steder ---
   const gotPlaces = PLACES.filter(p => !!visitedPlaces[p.id]).map(p => ({
     type: "place",
     id: p.id,
     name: p.name,
     img: p.image || `bilder/kort/places/${p.id}.PNG`,
     color: catColor(p.category),
-    timestamp: visitedPlaces[p.id]?.timestamp || 0
+    year: p.year || p.founded || p.built || 0
   }));
 
   const allCards = [...gotPeople, ...gotPlaces];
@@ -573,14 +574,16 @@ function renderGallery() {
     return;
   }
 
-  // Sorter kronologisk (eldst først)
-  allCards.sort((a, b) => a.timestamp - b.timestamp);
+  // Sorter historisk (eldst først)
+  allCards.sort((a, b) => a.year - b.year);
 
-  // Bygg kortene
+  // Bygg tidslinjen
   gallery.innerHTML = allCards.map(item => `
     <div class="timeline-card" data-type="${item.type}" data-id="${item.id}" title="${item.name}">
       <img src="${item.img}" alt="${item.name}" class="timeline-thumb">
-      <div class="timeline-label" style="color:${item.color}">${item.name}</div>
+      <div class="timeline-label" style="color:${item.color}">
+        ${item.name}<br><small class="muted">${item.year || "–"}</small>
+      </div>
     </div>
   `).join("");
 
