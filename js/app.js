@@ -1,18 +1,20 @@
 // ============================================================
-// === HISTORY GO – APP.JS (v3.0, stabil med utforskpanel) ====
+// === HISTORY GO – APP.JS (v3.1, live nærhet og utforsk) ====
 // ============================================================
 //
 //  • Starter appen etter core.boot()
-//  • Initierer kart, quiz og mini-profil
-//  • Håndterer quiz-flyt, poeng, steder og personer
-//  • Viser nærmeste steder og ruter i utforskpanelet
-//  • Oppdaterer localStorage og sender updateProfile-event
+//  • Viser nærmeste steder + ruter i utforskpanelet
+//  • Oppdaterer automatisk når brukeren beveger seg
+//  • Håndterer quiz-flyt, progresjon og profiloppdatering
 //
 // ============================================================
 
 const HG = window.HG || {};
 
 const app = (() => {
+
+  let lastPos = null;
+  let watchId = null;
 
   // ----------------------------------------------------------
   // 1) INITIERING
@@ -31,25 +33,27 @@ const app = (() => {
         color: localStorage.getItem("user_color") || "#FFD600"
       };
 
+      // Start moduler
       if (map?.initMap) map.initMap(HG.data.places, HG.data.routes);
       if (quiz?.initQuizSystem) quiz.initQuizSystem(HG.data.badges);
       if (Profile?.initProfileMini) Profile.initProfileMini();
 
       attachEventListeners();
-      renderRoutesRow(); // viser ruter i panelet
-      tryLocateUser();   // henter posisjon og viser nærmeste
 
-      // Aktiver "Utforsk"-knappen i header
-const toggleBtn = document.getElementById("toggleMode");
-if (toggleBtn) {
-  toggleBtn.onclick = () => {
-    const sheet = document.getElementById("exploreSheet");
-    const isOpen = sheet.classList.contains("sheet-open");
-    if (isOpen) ui.closeSheet("exploreSheet");
-    else ui.openSheet("exploreSheet");
-  };
-}
-      
+      renderRoutesList();
+      tryLocateUser(); // start geolokasjon og utforskpanel
+
+      // Utforsk-knapp
+      const toggleBtn = document.getElementById("toggleMode");
+      if (toggleBtn) {
+        toggleBtn.onclick = () => {
+          const sheet = document.getElementById("exploreSheet");
+          const isOpen = sheet.classList.contains("sheet-open");
+          if (isOpen) ui.closeSheet("exploreSheet");
+          else ui.openSheet("exploreSheet");
+        };
+      }
+
       showToast(`Velkommen tilbake, ${HG.user.name}!`);
     } catch (err) {
       console.error("Feil ved oppstart:", err);
@@ -57,19 +61,50 @@ if (toggleBtn) {
   }
 
   // ----------------------------------------------------------
-  // 2) GEOLOKASJON OG UTFORSKPANEL
+  // 2) GEOLOKASJON & LIVE OPPDATERING
   // ----------------------------------------------------------
   function tryLocateUser() {
-    if (!navigator.geolocation) return renderNearbyPlaces(null);
+    if (!navigator.geolocation) {
+      console.warn("Geolokasjon ikke støttet");
+      renderNearbyPlaces(null);
+      return;
+    }
+
     navigator.geolocation.getCurrentPosition(
       (pos) => {
-        renderNearbyPlaces([pos.coords.latitude, pos.coords.longitude]);
+        lastPos = [pos.coords.latitude, pos.coords.longitude];
+        renderNearbyPlaces(lastPos);
+        startWatchingPosition();
       },
-      () => renderNearbyPlaces(null),
-      { enableHighAccuracy: true, timeout: 5000 }
+      (err) => {
+        console.warn("Kunne ikke hente posisjon:", err);
+        renderNearbyPlaces(null);
+      },
+      { enableHighAccuracy: true, timeout: 6000 }
     );
   }
 
+  function startWatchingPosition() {
+    if (!navigator.geolocation) return;
+    if (watchId) navigator.geolocation.clearWatch(watchId);
+
+    watchId = navigator.geolocation.watchPosition(
+      (pos) => {
+        const newPos = [pos.coords.latitude, pos.coords.longitude];
+        const moved = !lastPos || distance(...lastPos, ...newPos) > 100; // >100m
+        if (moved) {
+          lastPos = newPos;
+          renderNearbyPlaces(newPos);
+        }
+      },
+      (err) => console.warn("watchPosition-feil:", err),
+      { enableHighAccuracy: true, maximumAge: 5000 }
+    );
+  }
+
+  // ----------------------------------------------------------
+  // 3) UTFORSKPANEL
+  // ----------------------------------------------------------
   function renderNearbyPlaces(userPos) {
     const list = document.getElementById("nearbyList");
     if (!list) return;
@@ -108,7 +143,7 @@ if (toggleBtn) {
     ui.openSheet("exploreSheet");
   }
 
-  function renderRoutesRow() {
+  function renderRoutesList() {
     const list = document.getElementById("routesList");
     if (!list) return;
     list.innerHTML = "";
@@ -128,9 +163,9 @@ if (toggleBtn) {
   function showRouteOnMap(route) {
     ui.closeSheet("exploreSheet");
     if (route && map?.highlightNearbyPlaces) {
-      const coords = route.stops?.[0];
-      if (coords?.placeId) {
-        const pl = HG.data.places.find(p => p.id === coords.placeId);
+      const firstStop = route.stops?.[0];
+      if (firstStop?.placeId) {
+        const pl = HG.data.places.find(p => p.id === firstStop.placeId);
         if (pl) map.highlightNearbyPlaces(pl.lat, pl.lon, 300);
       }
     }
@@ -138,7 +173,7 @@ if (toggleBtn) {
   }
 
   // ----------------------------------------------------------
-  // 3) QUIZ OG PROGRESJON
+  // 4) QUIZ OG PROGRESJON
   // ----------------------------------------------------------
   function startQuizForPlace(placeId) {
     if (quiz?.startQuiz) quiz.startQuiz(placeId);
@@ -160,7 +195,7 @@ if (toggleBtn) {
   }
 
   // ----------------------------------------------------------
-  // 4) PROGRESJONSFUNKSJONER
+  // 5) PROGRESJONSFUNKSJONER
   // ----------------------------------------------------------
   function addCompletedQuizAndMaybePoint(result) {
     const progress = load("quiz_progress", {});
@@ -208,7 +243,7 @@ if (toggleBtn) {
   }
 
   // ----------------------------------------------------------
-  // 5) HJELPEFUNKSJONER
+  // 6) HJELPEFUNKSJONER
   // ----------------------------------------------------------
   function distance(lat1, lon1, lat2, lon2) {
     const R = 6371e3;
@@ -239,7 +274,7 @@ if (toggleBtn) {
   }
 
   // ----------------------------------------------------------
-  // 6) EKSPORT
+  // 7) EKSPORT
   // ----------------------------------------------------------
   return {
     initApp,
