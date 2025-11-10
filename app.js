@@ -1124,18 +1124,31 @@ async function startQuiz(targetId) {
       const perfect = correct === total;
 
       if (perfect) {
-        addCompletedQuizAndMaybePoint(displayCat, targetId);
-        markQuizAsDone(targetId);
-        if (person) {
-          peopleCollected[targetId] = true;
-          savePeople();
-          showPersonPopup(person);
-          document.getElementById("gallery")?.scrollIntoView({ behavior: "smooth" });
-        }
-        showToast(`Perfekt! ${total}/${total} riktige 🎯 Du fikk poeng og kort!`);
-      } else {
-        showToast(`Fullført: ${correct}/${total} – prøv igjen for full score.`);
-      }
+  addCompletedQuizAndMaybePoint(displayCat, targetId);
+  markQuizAsDone(targetId);
+
+  if (person) {
+    // Person-kort som før
+    peopleCollected[targetId] = true;
+    savePeople();
+    showPersonPopup(person);
+    document.getElementById("gallery")?.scrollIntoView({ behavior: "smooth" });
+  }
+
+  if (place) {
+    // 🗺️ Nytt: registrer stedet som besøkt og vis popup
+    const visited = JSON.parse(localStorage.getItem("visited_places") || "{}");
+    if (!visited[place.id]) {
+      visited[place.id] = { timestamp: Date.now() };
+      localStorage.setItem("visited_places", JSON.stringify(visited));
+      showPlacePopup(place); // <- bruker popup-funksjonen vi la til
+    }
+  }
+
+  showToast(`Perfekt! ${total}/${total} riktige 🎯 Du fikk poeng og kort!`);
+} else {
+  showToast(`Fullført: ${correct}/${total} – prøv igjen for full score.`);
+}
 
       // ✨ Pulse på stedet som hører til personen når quizen fullføres
       if (person && person.placeId) {
