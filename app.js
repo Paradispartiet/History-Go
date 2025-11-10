@@ -34,7 +34,10 @@ const merits          = JSON.parse(localStorage.getItem("merits_by_category") ||
 // progress for “+1 poeng per 3 riktige”
 const userProgress    = JSON.parse(localStorage.getItem("historygo_progress") || "{}");
 
-function saveVisited(){  localStorage.setItem("visited_places", JSON.stringify(visited));  renderCollection(); }
+function saveVisited() {
+  localStorage.setItem("visited_places", JSON.stringify(visited));
+  renderNearbyPlaces();   // viser stedene på forsiden igjen
+}
 function savePeople(){   localStorage.setItem("people_collected", JSON.stringify(peopleCollected)); renderGallery(); }
 
 function showToast(msg, ms=2000){
