@@ -1,15 +1,11 @@
 // ============================================================
-// === HISTORY GO – PROFILE.JS (v26, stabil + sortert tidslinje)
+// === HISTORY GO – PROFILE.JS (v27, full synk & stabil) ======
 // ============================================================
 //
-//  Kombinerer det beste fra v21 og v24, med forbedret sortering:
-//   ✅ Profilkort og redigering
-//   ✅ Historiekort / tidslinje for både personer og steder
-//   ✅ Merker og quiz-oversikt
-//   ✅ Steds-kort i samling
-//   ✅ Person-info med wiki-henting
-//   ✅ Del profil som bilde (html2canvas)
-//   🚫 Ingen BroadcastChannel (alt oppdateres lokalt)
+// ✅ Viser steder, personer, merker og tidslinje
+// ✅ Oppdaterer seg umiddelbart når quizer tas (alle sider)
+// ✅ Ingen BroadcastChannel – alt skjer via localStorage
+// ✅ Leser data (PLACES/PEOPLE/BADGES) direkte fra app.js
 // ============================================================
 
 // --------------------------------------
@@ -68,13 +64,13 @@ function openProfileModal() {
 }
 
 // --------------------------------------
-// HISTORIEKORT – TIDSLINJE (steder + personer, sortert etter år + navn)
+// HISTORIEKORT – TIDSLINJE
 // --------------------------------------
 function renderTimelineProfile() {
   const body = document.getElementById("timelineBody");
   const bar = document.getElementById("timelineProgressBar");
   const txt = document.getElementById("timelineProgressText");
-  if (!body) return;
+  if (!body || !window.PLACES || !window.PEOPLE) return;
 
   const visited = JSON.parse(localStorage.getItem("visited_places") || "{}");
   const peopleCollected = JSON.parse(localStorage.getItem("people_collected") || "{}");
@@ -133,6 +129,7 @@ function renderTimelineProfile() {
 // --------------------------------------
 function renderGallery() {
   const collected = JSON.parse(localStorage.getItem("people_collected") || "{}");
+  if (!window.PEOPLE) return;
   const got = PEOPLE.filter(p => !!collected[p.id]);
   const gallery = document.getElementById("gallery");
   if (!gallery) return;
@@ -192,7 +189,7 @@ async function renderMerits() {
 // --------------------------------------
 function renderCollection() {
   const grid = document.getElementById("collectionGrid");
-  if (!grid) return;
+  if (!grid || !window.PLACES) return;
 
   const visited = JSON.parse(localStorage.getItem("visited_places") || "{}");
   const items = PLACES.filter(p => !!visited[p.id]);
@@ -257,29 +254,52 @@ async function showPersonInfoModal(person) {
   }
 }
 
-// --------------------------------------
-// INIT + DEL PROFIL – vent til data er lastet ferdig
-// --------------------------------------
-Promise.all([
-  fetch("people.json").then(r => r.json()).then(d => PEOPLE = d),
-  fetch("places.json").then(r => r.json()).then(d => PLACES = d),
-  fetch("badges.json").then(r => r.json()).then(d => BADGES = d)
-]).then(async () => {
-  // Vent 600ms for å sikre at alt er klart fra app.js
-  await new Promise(r => setTimeout(r, 600));
+// ------------------------------------------------------------
+// INITIER PROFIL ETTER AT APP.JS HAR LASTET DATA
+// ------------------------------------------------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const waitForAppData = setInterval(() => {
+    if (window.PLACES?.length && window.PEOPLE?.length) {
+      console.log("✅ Profil: data fra app.js oppdaget");
+      clearInterval(waitForAppData);
 
-  renderProfileCard();
-  renderMerits();
-  renderCollection();
-  renderGallery();
-  renderTimelineProfile();
-  console.log("✅ Profil ferdig lastet.");
+      renderProfileCard();
+      renderMerits();
+      renderCollection();
+      renderGallery();
+      renderTimelineProfile();
+    }
+  }, 400);
+
+  // fallback etter 5 sek
+  setTimeout(() => clearInterval(waitForAppData), 5000);
 });
 
+// ------------------------------------------------------------
+// LIVE-OPPDATERING NÅR QUIZ TAS (fra alle sider / faner)
+// ------------------------------------------------------------
+window.addEventListener("storage", (event) => {
+  const keys = ["visited_places", "people_collected", "merits_by_category", "quiz_progress", "quiz_refresh"];
+  if (!keys.includes(event.key)) return;
+
+  console.log("🔄 Oppdaterer profil etter endring:", event.key);
+  try {
+    renderProfileCard();
+    renderCollection();
+    renderGallery();
+    renderMerits();
+    renderTimelineProfile();
+  } catch (err) {
+    console.warn("⚠️ Oppdateringsfeil:", err);
+  }
+});
+
+// ------------------------------------------------------------
+// DEL PROFIL SOM BILDE (html2canvas)
+// ------------------------------------------------------------
 document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("editProfileBtn")?.addEventListener("click", openProfileModal);
 
-  // Del profil som bilde
   const shareBtn = document.getElementById("shareProfileBtn");
   if (shareBtn && window.html2canvas) {
     shareBtn.addEventListener("click", () => {
@@ -296,9 +316,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// --------------------------------------
+// ------------------------------------------------------------
 // ANIMASJON FOR NYE KORT
-// --------------------------------------
+// ------------------------------------------------------------
 const style = document.createElement("style");
 style.textContent = `
   .new-highlight { animation: glowFade 2s ease; }
@@ -308,63 +328,3 @@ style.textContent = `
     100% { box-shadow: none; transform: scale(1); }
   }`;
 document.head.appendChild(style);
-
-
-// ------------------------------------------------------------
-// SANNTIDSOPPDATERING FRA ALLE SIDER (synkronisering)
-// ------------------------------------------------------------
-//
-//  Lytter etter endringer i localStorage (steder, personer, merker)
-//  slik at profilen oppdateres automatisk uansett hvor quiz tas.
-//
-
-window.addEventListener("storage", (event) => {
-  const keys = ["visited_places", "people_collected", "merits_by_category", "quiz_progress"];
-  if (!keys.includes(event.key)) return;
-
-  console.log("🔄 Oppdaterer profil etter endring:", event.key);
-  try {
-    renderProfileCard();
-    renderCollection();
-    renderGallery();
-    renderMerits();
-    renderTimelineProfile();
-  } catch (err) {
-    console.warn("⚠️ Oppdateringsfeil:", err);
-  }
-});
-
-// ------------------------------------------------------------
-// LOKAL OPPDATERING VED POENG ELLER QUIZ (samme fane)
-// ------------------------------------------------------------
-//
-//  Hvis quizen tas i samme fane, trigges også et kunstig storage-event
-//  slik at profilen oppdateres momentant uten å laste siden på nytt.
-//
-function triggerProfileUpdate() {
-  window.dispatchEvent(new StorageEvent("storage", { key: "visited_places" }));
-}
-
-// Gjør funksjonen tilgjengelig globalt, slik at app.js kan kalle den
-window.triggerProfileUpdate = triggerProfileUpdate;
-
-// ------------------------------------------------------------
-// FANG OPP NÅR APP.JS ER FERDIG LASTET OG DATA ER TILGJENGELIG
-// ------------------------------------------------------------
-window.addEventListener("load", () => {
-  // Prøv på nytt når hele siden er ferdig og PLACES/PEOPLE finnes
-  const waitForData = setInterval(() => {
-    if (Array.isArray(window.PLACES) && window.PLACES.length > 0) {
-      console.log("🔁 Data fra app.js tilgjengelig – oppdaterer profil");
-      renderProfileCard();
-      renderCollection();
-      renderGallery();
-      renderMerits();
-      renderTimelineProfile();
-      clearInterval(waitForData);
-    }
-  }, 500);
-
-  // Avbryt etter 5 sekunder hvis ingenting lastes
-  setTimeout(() => clearInterval(waitForData), 5000);
-});
