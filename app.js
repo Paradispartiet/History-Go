@@ -722,16 +722,7 @@ function boot() {
   });
 }
 
-    wire();
-  })
-  .catch(err => {
-    console.error("❌ Datafeil i boot():", err);
-    showToast(`Kunne ikke laste data (${err.message})`, 4000);
-  });
-}
-
 document.addEventListener('DOMContentLoaded', boot);
-
 // === MINI-PROFIL PÅ FORSIDEN – VISER NAVN, STATISTIKK, QUIZZER ===
 document.addEventListener("DOMContentLoaded", () => {
   const nm = document.getElementById("miniName");
