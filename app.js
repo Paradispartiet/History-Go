@@ -1446,6 +1446,9 @@ function showPlacePopup(place) {
     setTimeout(() => popup.remove(), 500);
   }, 3200);
 }
+
+// --- Gjør funksjonen global slik at profile.js kan bruke den ---
+window.showBadgeModal = showBadgeModal;
 // ============================================================
 // === SLUTT PROFIL & MERKER ================================
 // ============================================================
