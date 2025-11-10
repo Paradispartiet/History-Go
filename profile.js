@@ -236,6 +236,139 @@ async function showBadgeModal(badge) {
   modal.addEventListener("click", e => { if (e.target === modal) modal.remove(); });
 }
 
+function renderCollection() {
+  const items = PLACES.filter(p => visited[p.id]);
+  const grid = el.collectionGrid;
+  if (!grid) return;
+
+  const count = el.collectionCount;
+  if (count) count.textContent = items.length;
+
+  if (!items.length) {
+    grid.innerHTML = `<div class="muted">Ingen steder besøkt ennå.</div>`;
+    return;
+  }
+
+  // Lag små bildebokser i stedet for prikker
+  grid.innerHTML = items.map(p => {
+    const img = p.image || `bilder/kort/places/${p.id}.PNG`; // fallback til kortbilde
+    return `
+      <div class="visited-place" data-place="${p.id}" title="Trykk for å åpne ${p.name}">
+        <img src="${img}" alt="${p.name}" class="visited-thumb">
+        <div class="visited-label">${p.name}</div>
+      </div>
+    `;
+  }).join("");
+
+  // Klikk for å åpne stedet
+  grid.querySelectorAll(".visited-place").forEach(el => {
+    el.addEventListener("click", () => {
+      const pid = el.dataset.place;
+      const plc = PLACES.find(p => p.id === pid);
+      if (plc) {
+        closePlaceOverlay();
+        showPlaceOverlay(plc);
+      }
+    });
+  });
+}
+
+// ==============================
+// RENDER MERITS – VISER FREMGANG OG NIVÅ
+// ==============================
+function renderMerits() {
+  const grid = document.getElementById("userBadgesGrid");
+  if (!grid) return;
+
+  const merits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
+  const items = Object.entries(merits);
+
+  if (!items.length) {
+    grid.innerHTML = `<div class="muted">Ingen merker ennå – ta quizer for å tjene poeng!</div>`;
+    return;
+  }
+
+  grid.innerHTML = items.map(([cat, info]) => {
+    const color = catColor(cat);
+    const level = info.level || "Nybegynner";
+    const pts = info.points || 0;
+    return `
+      <div class="badge-card" style="border-left:4px solid ${color}">
+        <div class="badge-info">
+          <strong>${cat}</strong><br>
+          <span class="muted">Nivå: ${level} · Poeng: ${pts}</span>
+        </div>
+        <span class="badge-icon" style="color:${color}">🏅</span>
+      </div>`;
+  }).join("");
+}
+
+function renderGallery() {
+  const gallery = el.gallery;
+  if (!gallery) return;
+
+  const visitedPlaces = JSON.parse(localStorage.getItem("visited_places") || "{}");
+  const collectedPeople = JSON.parse(localStorage.getItem("people_collected") || "{}");
+
+  // --- Personer ---
+  const gotPeople = PEOPLE.filter(p => !!collectedPeople[p.id]).map(p => ({
+    type: "person",
+    id: p.id,
+    name: p.name,
+    img: p.image || `bilder/kort/people/${p.id}.PNG`,
+    color: catColor(tagToCat(p.tags)),
+    year: p.year || 0
+  }));
+
+  // --- Steder ---
+  const gotPlaces = PLACES.filter(p => !!visitedPlaces[p.id]).map(p => ({
+    type: "place",
+    id: p.id,
+    name: p.name,
+    img: p.image || `bilder/kort/places/${p.id}.PNG`,
+    color: catColor(p.category),
+    year: p.year || p.founded || p.built || 0
+  }));
+
+  const allCards = [...gotPeople, ...gotPlaces];
+
+  if (!allCards.length) {
+    gallery.innerHTML = `<div class="muted">Samle personer og steder for å bygge din historietidslinje.</div>`;
+    return;
+  }
+
+  // Sorter historisk (eldst først)
+  allCards.sort((a, b) => a.year - b.year);
+
+  // Bygg tidslinjen
+  gallery.innerHTML = allCards.map(item => `
+    <div class="timeline-card" data-type="${item.type}" data-id="${item.id}" title="${item.name}">
+      <img src="${item.img}" alt="${item.name}" class="timeline-thumb">
+      <div class="timeline-label" style="color:${item.color}">
+        ${item.name}<br><small class="muted">${item.year || "–"}</small>
+      </div>
+    </div>
+  `).join("");
+
+  // Klikk-hendelser
+  gallery.querySelectorAll(".timeline-card").forEach(card => {
+    card.addEventListener("click", () => {
+      const id = card.dataset.id;
+      const type = card.dataset.type;
+      if (type === "person") {
+        const person = PEOPLE.find(p => p.id === id);
+        if (person) showPersonPopup(person);
+      } else if (type === "place") {
+        const place = PLACES.find(p => p.id === id);
+        if (place) {
+          closePlaceOverlay();
+          showPlaceOverlay(place);
+        }
+      }
+    });
+  });
+}
+
 
 // ============================================================
 // === PERSON-INFO MODAL (wiki + kort med fallback) ============
