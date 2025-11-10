@@ -20,7 +20,7 @@
 </head>
 
 <body class="app-page">
-  <!-- Ramme rundt appen -->
+  <!-- Ramme -->
   <div class="app-frame" aria-hidden="true"></div>
 
   <!-- HEADER -->
@@ -37,19 +37,10 @@
 
   <!-- HOVEDINNHOLD -->
   <main id="appMain">
-    <!-- Kart -->
     <div id="map"></div>
-
-    <!-- Mørkt bakgrunnsslør -->
     <div id="backdrop" class="backdrop" aria-hidden="true"></div>
 
-    <!-- Mini-profil -->
-    <section id="miniProfile" class="mini-profile">
-      <h2 id="playerName">Spiller</h2>
-      <p id="playerStats">0 steder · 0 merker</p>
-    </section>
-
-    <!-- UTFORSK-PANEL (sheet) -->
+    <!-- Utforskpanel -->
     <div id="exploreSheet" class="sheet">
       <div class="sheet-head">
         <h3>Steder i nærheten</h3>
@@ -76,7 +67,7 @@
     </div>
   </div>
 
-  <!-- JS-moduler i riktig rekkefølge -->
+  <!-- JS -->
   <script src="js/core.js"></script>
   <script src="js/ui.js"></script>
   <script src="js/map.js"></script>
@@ -85,7 +76,6 @@
   <script src="js/profile.js"></script>
   <script src="js/data.js"></script>
 
-  <!-- Service Worker -->
   <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker
