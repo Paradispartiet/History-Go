@@ -32,18 +32,54 @@ const peopleCollected = JSON.parse(localStorage.getItem("people_collected") || "
 const merits          = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
 
 // progress for “+1 poeng per 3 riktige”
-const userProgress    = JSON.parse(localStorage.getItem("historygo_progress") || "{}");
+const userProgress = JSON.parse(localStorage.getItem("historygo_progress") || "{}");
 
-function saveVisited(){  localStorage.setItem("visited_places", JSON.stringify(visited));  renderCollection(); }
-function savePeople(){   localStorage.setItem("people_collected", JSON.stringify(peopleCollected)); renderGallery(); }
+// ==============================
+// LAGRE BESØKTE STEDER
+// ==============================
+function saveVisited() {
+  localStorage.setItem("visited_places", JSON.stringify(visited));
 
-function showToast(msg, ms=2000){
+  // 🔄 Oppdater forsiden (dersom du viser steder i nærheten der)
+  renderNearbyPlaces?.();
+
+  // 🛰️ Varsle profilsiden om oppdatering
+  try {
+    new BroadcastChannel('historygo').postMessage({ type: 'visited:update' });
+  } catch (err) {
+    console.warn("Kunne ikke sende BroadcastChannel-melding:", err);
+  }
+}
+
+// ==============================
+// LAGRE SAMLede PERSONER
+// ==============================
+function savePeople() {
+  localStorage.setItem("people_collected", JSON.stringify(peopleCollected));
+
+  // 🔄 Oppdater eventuelt lokalt galleri
+  renderGallery?.();
+
+  // 🛰️ Varsle profilsiden om oppdatering
+  try {
+    new BroadcastChannel('historygo').postMessage({ type: 'people:update' });
+  } catch (err) {
+    console.warn("Kunne ikke sende BroadcastChannel-melding:", err);
+  }
+}
+
+// ==============================
+// VIS MELDINGER (TOASTS)
+// ==============================
+function showToast(msg, ms = 2000) {
   const t = el.toast;
   if (!t) return;
   t.textContent = msg;
   t.style.display = 'block';
   clearTimeout(t._hide);
-  t._hide = setTimeout(()=>{ t.style.display = 'none'; }, ms);
+  t._hide = setTimeout(() => {
+    t.style.display = 'none';
+  }, ms);
 }
 
 
