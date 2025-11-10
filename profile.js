@@ -387,12 +387,13 @@ function highlightNewTimelineCards() {
   setTimeout(() => last.classList.remove("new-highlight"), 2000);
 }
 
-const style = document.createElement("style");
-style.textContent = `
+// -- erstatt tidligere "const style = ..." i profile.js med dette --
+const profileStyle = document.createElement("style");
+profileStyle.textContent = `
   .new-highlight { animation: glowFade 2s ease; }
   @keyframes glowFade {
     0% { box-shadow: 0 0 10px #ffd600; transform: scale(1.04); }
     50% { box-shadow: 0 0 20px #ffec80; transform: scale(1.02); }
     100% { box-shadow: none; transform: scale(1); }
   }`;
-document.head.appendChild(style);
+document.head.appendChild(profileStyle);
