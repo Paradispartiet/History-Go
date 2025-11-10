@@ -1,27 +1,22 @@
 /* ===================================================== */
-/* HISTORY GO – THEME.CSS (REN OG STABIL VERSJON)        */
+/* HISTORY GO – THEME.CSS (STABIL VERSJON 2025-11-11)   */
 /* ===================================================== */
 /*
-1.  Variabler & grunnstil
-2.  Kart & kartmodus
-3.  Topplinje, main & toast
-4.  Paneler, kort, rutenett
-5.  Knapper & chips/badges
-6.  Place Card (sheet)
-7.  Place Overlay
-8.  Sheets (bunnark)
-9.  Modal (quiz)
-10. Quiz-stiler
-11. Merker / badge-kort
-12. Person-popup
-13. Ramme rundt appen
-14. Kort og paneler – solid versjon
+1. Variabler & grunnstil
+2. Kart & kartmodus
+3. Toppfelt / header
+4. Toast / meldinger
+5. Paneler og kort
+6. Knapper & merker
+7. Modal / quiz
+8. Personkort & overlays
+9. App-ramme
 */
 
 /* ===================================================== */
 /* 1) Variabler & grunnstil                              */
 /* ===================================================== */
-:root{
+:root {
   --bg: #0a1929;
   --panel: rgba(13,27,42,.86);
   --panel-border: rgba(255,255,255,.08);
@@ -40,19 +35,19 @@
   --urban: #e63946;
 }
 
-/* Reset og basis */
-html,body{
-  margin:0;
-  padding:0;
-  background:var(--bg);
-  color:var(--text);
-  font-family:system-ui, sans-serif;
-  height:100%;
-  overflow:hidden;
+/* Reset */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, sans-serif;
+  overflow: hidden;
 }
 
-h1,h2,h3,p{margin:0; padding:0;}
-button{cursor:pointer;}
+h1,h2,h3,p { margin:0; padding:0; }
+button { cursor:pointer; }
 
 /* ===================================================== */
 /* 2) Kart & kartmodus                                   */
@@ -61,244 +56,168 @@ button{cursor:pointer;}
   position: absolute;
   inset: 0;
   width: 100%;
-  height: 100vh;          /* ← bruk 100vh i stedet for 100dvh for Leaflet */
+  height: 100vh;          /* iPad-sikkert */
   z-index: 1;
-  background: #0a1929;    /* fallback-bakgrunn */
+  background: var(--bg);
 }
 
 /* ===================================================== */
-/* 3) Topplinje, main & toast                            */
+/* 3) Toppfelt / header                                  */
 /* ===================================================== */
-.site-header{
-  position:absolute;
-  top:0; left:0; right:0;
-  height:56px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:0 12px;
-  background:rgba(0,0,0,.45);
-  backdrop-filter:blur(6px);
-  border-bottom:1px solid rgba(255,255,255,.05);
-  z-index:20;
+.site-header {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+  background: rgba(0,0,0,.45);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid rgba(255,255,255,.05);
+  z-index: 20;
 }
-.brand{display:flex; align-items:center; gap:8px;}
-.brand-logo{height:32px;}
-.brand-name{font-weight:600; letter-spacing:0.5px;}
-.btn-profile{
-  background:var(--accent);
-  color:#000;
-  border:none;
-  border-radius:50%;
-  width:36px; height:36px;
-  font-size:18px;
-}
-
-/* Toast */
-#toast{
-  position:fixed;
-  bottom:16px; left:50%;
-  transform:translateX(-50%);
-  background:rgba(0,0,0,.7);
-  color:var(--text);
-  padding:8px 16px;
-  border-radius:8px;
-  font-size:14px;
-  display:none;
-  z-index:2000;
+.brand { display:flex; align-items:center; gap:8px; }
+.brand-logo { height:32px; }
+.brand-name { font-weight:600; letter-spacing:0.5px; }
+.btn-profile {
+  background: var(--accent);
+  color: #000;
+  border: none;
+  border-radius: 50%;
+  width: 36px; height: 36px;
+  font-size: 18px;
 }
 
 /* ===================================================== */
-/* 4) Paneler, kort, rutenett                            */
+/* 4) Toast / meldinger                                 */
 /* ===================================================== */
-.panel{
-  background:var(--panel);
-  border:1px solid var(--panel-border);
-  border-radius:14px;
-  padding:12px;
-  box-shadow:var(--shadow);
+#toast {
+  position: fixed;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,.7);
+  color: var(--text);
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  display: none;
+  z-index: 2000;
 }
 
 /* ===================================================== */
-/* 5) Knapper & chips/badges                             */
+/* 5) Paneler og kort                                   */
 /* ===================================================== */
-.btn{
-  background:var(--accent);
-  color:#000;
-  border:none;
-  border-radius:8px;
-  padding:8px 14px;
-  font-weight:600;
-}
-.badge{
-  display:inline-flex;
-  align-items:center;
-  gap:4px;
-  border-radius:999px;
-  padding:4px 10px;
-  font-size:13px;
-  font-weight:500;
-  color:#000;
-}
-.badge .i{
-  width:18px; height:18px;
-  border-radius:999px;
-  border:2px solid rgba(0,0,0,.4);
-}
-.badge.historie .i{ background: var(--hist); }
-.badge.vitenskap .i{ background: var(--viten); }
-.badge.kunst .i{ background: var(--kult); }
-.badge.musikk .i{ background: var(--musikk); }
-.badge.litteratur .i{ background: var(--lit); }
-.badge.natur .i{ background: var(--natur); }
-.badge.sport .i{ background: var(--sport); }
-.badge.by .i{ background: var(--urban); }
-.badge.politikk .i{ background: #c77dff; }
-.badge.populaerkultur .i{ background: #ff6f00; }
-.badge.subkultur .i{ background: #00c2ff; }
-
-/* ===================================================== */
-/* 6) Place Card (sheet)                                 */
-/* ===================================================== */
-.place-card{
-  position:absolute;
-  bottom:0;
-  left:0; right:0;
-  background:var(--panel);
-  border-top:1px solid var(--panel-border);
-  border-radius:16px 16px 0 0;
-  padding:14px;
-  box-shadow:0 -2px 18px rgba(0,0,0,.5);
-  z-index:50;
+.panel, .card {
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  padding: 12px;
 }
 
 /* ===================================================== */
-/* 7) Place Overlay                                      */
+/* 6) Knapper & merker                                  */
 /* ===================================================== */
-.place-overlay{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.6);
-  backdrop-filter:blur(4px);
-  z-index:40;
+.btn {
+  background: var(--accent);
+  color: #000;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-weight: 600;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #000;
+}
+.badge .i {
+  width: 18px; height: 18px;
+  border-radius: 999px;
+  border: 2px solid rgba(0,0,0,.4);
+}
+.badge.historie .i   { background: var(--hist); }
+.badge.vitenskap .i  { background: var(--viten); }
+.badge.kunst .i      { background: var(--kult); }
+.badge.musikk .i     { background: var(--musikk); }
+.badge.litteratur .i { background: var(--lit); }
+.badge.natur .i      { background: var(--natur); }
+.badge.sport .i      { background: var(--sport); }
+.badge.by .i         { background: var(--urban); }
+.badge.politikk .i   { background: #c77dff; }
+.badge.populaerkultur .i { background: #ff6f00; }
+.badge.subkultur .i      { background: #00c2ff; }
+
+/* ===================================================== */
+/* 7) Modal / quiz                                       */
+/* ===================================================== */
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 10050;
+  display: none;
+  background: rgba(0,0,0,.55);
+}
+.modal[aria-hidden="false"] { display: block; }
+.modal .modal-body {
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  width: min(680px, 92vw);
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  padding: 14px;
+  z-index: 10051;
+}
+.modal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
 }
 
 /* ===================================================== */
-/* 8) Sheets (bunnark)                                   */
+/* 8) Personkort & overlays                              */
 /* ===================================================== */
-.sheet{
-  position:fixed;
-  bottom:0; left:0; right:0;
-  background:var(--panel);
-  border-top:1px solid var(--panel-border);
-  border-radius:14px 14px 0 0;
-  box-shadow:0 -4px 24px rgba(0,0,0,.5);
-  max-height:85%;
-  overflow:auto;
-  z-index:60;
+.person-popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 80;
+}
+.person-card {
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: 12px;
+  padding: 12px;
+  width: min(420px, 90vw);
 }
 
 /* ===================================================== */
-/* 9) Modal (quiz)                                       */
+/* 9) App-ramme                                          */
 /* ===================================================== */
-.modal{
-  position:fixed;
-  inset:0;
-  z-index:10050;
-  display:none;
-  background:rgba(0,0,0,.55);
-}
-.modal[aria-hidden="false"]{ display:block; }
-.modal .modal-body{
-  position:absolute;
-  left:50%; top:50%;
-  transform:translate(-50%,-50%);
-  width:min(680px,92vw);
-  background:var(--panel);
-  border:1px solid var(--panel-border);
-  border-radius:14px;
-  box-shadow:var(--shadow);
-  padding:14px;
-  z-index:10051;
-}
-.modal-head{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  margin-bottom:8px;
-}
-
-/* ===================================================== */
-/* 10) Quiz-stiler                                       */
-/* ===================================================== */
-.quiz-option{
-  display:block;
-  padding:10px;
-  background:rgba(255,255,255,.08);
-  border:1px solid rgba(255,255,255,.1);
-  border-radius:10px;
-  margin-bottom:8px;
-}
-.quiz-option.correct{ background:rgba(76,175,80,.25); }
-.quiz-option.wrong{ background:rgba(244,67,54,.25); }
-
-/* ===================================================== */
-/* 11) Merker / badge-kort                               */
-/* ===================================================== */
-.badge-card{
-  display:inline-block;
-  text-align:center;
-  padding:8px;
-}
-.badge-card img{
-  width:60px;
-  height:60px;
-  border-radius:50%;
-}
-
-/* ===================================================== */
-/* 12) Person-popup                                      */
-/* ===================================================== */
-.person-popup{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.6);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  z-index:80;
-}
-.person-card{
-  background:var(--panel);
-  border:1px solid var(--panel-border);
-  border-radius:12px;
-  padding:12px;
-  width:min(420px,90vw);
-}
-
-/* ===================================================== */
-/* 13) Ramme rundt appen                                 */
-/* ===================================================== */
-.app-frame{
-  position:fixed;
-  inset:0;
-  border:6px solid #000;
-  border-radius:18px;
-  background:transparent;
-  pointer-events:none;
-  z-index:5;
+.app-frame {
+  position: fixed;
+  inset: 0;
+  border: 6px solid #000;
+  border-radius: 18px;
+  background: transparent;
+  pointer-events: none;
+  z-index: 5;
   box-shadow:
     0 0 0 3px rgba(255,255,255,0.05) inset,
     0 0 25px rgba(0,0,0,0.6);
-}
-
-/* ===================================================== */
-/* 14) Kort og paneler – solid versjon                   */
-/* ===================================================== */
-.card{
-  background:var(--panel);
-  border:1px solid var(--panel-border);
-  border-radius:14px;
-  box-shadow:var(--shadow);
-  overflow:hidden;
 }
