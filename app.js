@@ -919,7 +919,7 @@ document.addEventListener("DOMContentLoaded", () => {
   renderCollection();
   renderMerits();
   renderGallery();
-  renderUserBadges();
+    if (typeof renderUserBadges === "function") renderUserBadges();
 });
 
 // ==============================
