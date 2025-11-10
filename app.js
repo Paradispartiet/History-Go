@@ -1344,7 +1344,9 @@ document.head.appendChild(style);
 // ==============================
 // BADGE-MODAL – VIS FASIT & STATUS
 // ==============================
+
 async function showBadgeModal(categoryDisplay) {
+  console.log("🎉 showBadgeModal aktivert for:", categoryDisplay);  // ← flyttet hit
   const categoryId = catIdFromDisplay(categoryDisplay);
   const progress = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
   const completed = progress[categoryId]?.completed || [];
