@@ -10,6 +10,30 @@
 //  - Leser data direkte fra localStorage
 // ============================================================
 
+// ============================================================
+// === HISTORY GO – PROFILE.JS ================================
+// ============================================================
+
+// ... (eventuelle globale variabler eller funksjoner over her)
+
+// ------------------------------------------------------------
+// 🛰️ BroadcastChannel – sanntidsoppdatering fra forsiden
+// ------------------------------------------------------------
+try {
+  const bc = new BroadcastChannel('historygo');
+  bc.onmessage = (ev) => {
+    if (!ev?.data?.type) return;
+
+    if (ev.data.type === 'visited:update' || ev.data.type === 'people:update') {
+      renderProfileCard();
+      renderMerits();
+      renderCollection();
+      renderGallery();
+      renderTimelineProfile();
+      highlightNewTimelineCards();
+    }
+  };
+} catch {}
 
 // --------------------------------------
 // PROFILKORT OG RENDERING
