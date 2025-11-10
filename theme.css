@@ -1192,3 +1192,37 @@ button.primary.small:hover { opacity: .9; }
 .close-btn:hover {
   background: rgba(255,255,255,.18);
 }
+
+/* ===================================================== */
+/* STED-POPUP – kort som dukker opp ved fullført quiz   */
+/* ===================================================== */
+.place-popup {
+  position: fixed;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%) scale(.85);
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: 16px;
+  padding: 16px 22px;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(0,0,0,.5);
+  opacity: 0;
+  z-index: 10070;
+  transition: all .35s ease;
+}
+.place-popup.visible {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+.place-popup-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.place-popup-img {
+  width: 240px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  border: 1px solid rgba(255,255,255,.15);
+  box-shadow: 0 0 12px rgba(0,0,0,.45);
+}
