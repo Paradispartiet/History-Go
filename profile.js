@@ -237,11 +237,14 @@ async function showBadgeModal(badge) {
 }
 
 function renderCollection() {
-  const items = PLACES.filter(p => visited[p.id]);
-  const grid = el.collectionGrid;
+  const grid  = document.getElementById("collectionGrid");
+  const count = document.getElementById("collectionCount");
   if (!grid) return;
 
-  const count = el.collectionCount;
+  // 🔍 Hent oppdatert liste over besøkte steder
+  const visited = JSON.parse(localStorage.getItem("visited_places") || "{}");
+  const items = PLACES.filter(p => !!visited[p.id]);
+
   if (count) count.textContent = items.length;
 
   if (!items.length) {
@@ -249,9 +252,9 @@ function renderCollection() {
     return;
   }
 
-  // Lag små bildebokser i stedet for prikker
+  // 📍 Lag små bildebokser i stedet for prikker
   grid.innerHTML = items.map(p => {
-    const img = p.image || `bilder/kort/places/${p.id}.PNG`; // fallback til kortbilde
+    const img = p.image || `bilder/kort/places/${p.id}.PNG`;
     return `
       <div class="visited-place" data-place="${p.id}" title="Trykk for å åpne ${p.name}">
         <img src="${img}" alt="${p.name}" class="visited-thumb">
@@ -260,14 +263,14 @@ function renderCollection() {
     `;
   }).join("");
 
-  // Klikk for å åpne stedet
+  // 🖱️ Klikk for å åpne stedet
   grid.querySelectorAll(".visited-place").forEach(el => {
     el.addEventListener("click", () => {
       const pid = el.dataset.place;
       const plc = PLACES.find(p => p.id === pid);
       if (plc) {
-        closePlaceOverlay();
-        showPlaceOverlay(plc);
+        closePlaceOverlay?.();
+        showPlaceOverlay?.(plc);
       }
     });
   });
