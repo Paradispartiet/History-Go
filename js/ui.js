@@ -146,3 +146,37 @@ document.addEventListener("click", (e) => {
 });
 
 document.addEventListener("DOMContentLoaded", () => ui.initUI());
+
+// ----------------------------------------------------------
+// 7) BAKGRUNNSSLØR FOR SHEETS
+// ----------------------------------------------------------
+(function setupBackdropControl() {
+  // Opprett #backdrop hvis den ikke finnes
+  if (!document.getElementById("backdrop")) {
+    const b = document.createElement("div");
+    b.id = "backdrop";
+    b.className = "backdrop";
+    document.body.appendChild(b);
+  }
+
+  const backdrop = document.getElementById("backdrop");
+
+  // Når et sheet åpnes
+  document.addEventListener("sheetOpened", () => {
+    backdrop.classList.add("active");
+  });
+
+  // Når et sheet lukkes
+  document.addEventListener("sheetClosed", () => {
+    backdrop.classList.remove("active");
+  });
+
+  // Klikk på slør → lukk panelet
+  backdrop.addEventListener("click", () => {
+    backdrop.classList.remove("active");
+    document.querySelectorAll(".sheet.sheet-open").forEach(el => {
+      el.classList.remove("sheet-open");
+      el.style.transform = "translateY(100%)";
+    });
+  });
+})();
