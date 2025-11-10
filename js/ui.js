@@ -1,9 +1,9 @@
 // ============================================================
-// === HISTORY GO – UI.JS (v3.1, stabil) ======================
+// === HISTORY GO – UI.JS (v3.2, stabil) ======================
 // ============================================================
 //
-//  • Viser toasts, sheets og modaler
-//  • Kontroll på fade-effekter, overganger og brukermeldinger
+//  • Viser og skjuler toasts, sheets og modaler
+//  • Sørger for jevne animasjoner og iPad-kompatibilitet
 //  • Brukes av app.js, quiz.js og profile.js
 // ============================================================
 
@@ -14,7 +14,7 @@ const ui = (() => {
   // ----------------------------------------------------------
   function initUI() {
     console.log("🎨 UI-modul initialisert");
-    // sørg for at toast starter skjult
+    // Sikrer at toast starter skjult
     const toast = document.getElementById("toast");
     if (toast) toast.style.display = "none";
   }
@@ -30,12 +30,13 @@ const ui = (() => {
     toast.style.display = "block";
     toast.style.opacity = "0";
 
-    // Fade inn
-    toast.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 150, fill: "forwards" });
+    // Fade-in
+    toast.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 200, fill: "forwards" });
 
     clearTimeout(showToast._timer);
     showToast._timer = setTimeout(() => {
-      toast.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 300, fill: "forwards" })
+      // Fade-out
+      toast.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 400, fill: "forwards" })
         .onfinish = () => (toast.style.display = "none");
     }, ms);
   }
@@ -70,18 +71,19 @@ const ui = (() => {
 
     const titleEl = modal.querySelector("#modalTitle");
     const contentEl = modal.querySelector("#modalContent");
+
     if (titleEl) titleEl.textContent = title;
     if (contentEl) contentEl.innerHTML = contentHTML;
 
     modal.setAttribute("aria-hidden", "false");
-    fadeIn(modal, 200);
+    fadeIn(modal, 150);
   }
 
   function closeModal() {
     const modal = document.getElementById("modal");
     if (!modal) return;
-    fadeOut(modal, 200);
-    setTimeout(() => modal.setAttribute("aria-hidden", "true"), 220);
+    fadeOut(modal, 150);
+    setTimeout(() => modal.setAttribute("aria-hidden", "true"), 180);
   }
 
   // ----------------------------------------------------------
@@ -110,18 +112,15 @@ const ui = (() => {
     openModal,
     closeModal,
     fadeIn,
-    fadeOut
+    fadeOut,
   };
 })();
 
 // ----------------------------------------------------------
-// GLOBAL LYTTERE
+// GLOBALT: lukking og init
 // ----------------------------------------------------------
-
-// Lukkeknapp for modal (X)
 document.addEventListener("click", (e) => {
   if (e.target.id === "closeModal") ui.closeModal();
 });
 
-// Automatisk initiering
-document.addEventListener("DOMContentLoaded", () => ui.initUI());
+document.addEventListener("DOMContentLoaded", ui.initUI);
