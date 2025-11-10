@@ -446,3 +446,46 @@ document.addEventListener("DOMContentLoaded", () => {
     renderTimelineProfile();
   }, 600);
 });
+
+// -----------------------------------------------------------
+// 🔄 OPPDATER PROFILSIDE NÅR BESØKTE STEDER ENDRES
+// -----------------------------------------------------------
+window.addEventListener("storage", (e) => {
+  if (e.key === "visited_places") {
+    renderCollection();
+    renderGallery();
+    renderTimelineProfile();
+
+    // ✨ Vis visuell markering på nye kort
+    highlightNewTimelineCards();
+  }
+});
+
+// -----------------------------------------------------------
+// ✨ MARKER NYE KORT MED LYS GLØD / FADE-IN
+// -----------------------------------------------------------
+function highlightNewTimelineCards() {
+  const cards = document.querySelectorAll(".timeline-card");
+  if (!cards.length) return;
+
+  // Finn siste kort (det som mest sannsynlig ble lagt til)
+  const lastCard = cards[cards.length - 1];
+  if (!lastCard) return;
+
+  lastCard.classList.add("new-highlight");
+  setTimeout(() => lastCard.classList.remove("new-highlight"), 2000);
+}
+
+// Legg til enkel animasjonsstil
+const style = document.createElement("style");
+style.textContent = `
+  .new-highlight {
+    animation: glowFade 2s ease;
+  }
+  @keyframes glowFade {
+    0% { box-shadow: 0 0 10px #ffd600; transform: scale(1.04); }
+    50% { box-shadow: 0 0 20px #ffec80; transform: scale(1.02); }
+    100% { box-shadow: none; transform: scale(1); }
+  }
+`;
+document.head.appendChild(style);
