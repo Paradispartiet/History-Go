@@ -1126,12 +1126,34 @@ async function startQuiz(targetId) {
       if (perfect) {
         addCompletedQuizAndMaybePoint(displayCat, targetId);
         markQuizAsDone(targetId);
+
+        // 👤 Person fullført
         if (person) {
           peopleCollected[targetId] = true;
-          savePeople();
+          localStorage.setItem("people_collected", JSON.stringify(peopleCollected));
+
+          // 🛰️ Varsle profilsiden
+          new BroadcastChannel('historygo').postMessage({ type: 'people:update', id: targetId });
+
           showPersonPopup(person);
           document.getElementById("gallery")?.scrollIntoView({ behavior: "smooth" });
         }
+
+        // 🗺️ Sted fullført
+        if (place) {
+          const visited = JSON.parse(localStorage.getItem("visited_places") || "{}");
+          if (!visited[place.id]) {
+            visited[place.id] = { timestamp: Date.now() };
+            localStorage.setItem("visited_places", JSON.stringify(visited));
+
+            // 🛰️ Varsle profilsiden
+            new BroadcastChannel('historygo').postMessage({ type: 'visited:update', id: place.id });
+
+            showPlacePopup(place);
+            window.dispatchEvent(new Event("visited_places_updated"));
+          }
+        }
+
         showToast(`Perfekt! ${total}/${total} riktige 🎯 Du fikk poeng og kort!`);
       } else {
         showToast(`Fullført: ${correct}/${total} – prøv igjen for full score.`);
