@@ -8,7 +8,25 @@
 //  - Merker og modaler
 //  - Leser data direkte fra localStorage
 // ============================================================
-
+function debug(msg) {
+  const box = document.getElementById("debugBox") || (() => {
+    const b = document.createElement("div");
+    b.id = "debugBox";
+    b.style.position = "fixed";
+    b.style.bottom = "8px";
+    b.style.left = "8px";
+    b.style.background = "rgba(0,0,0,.7)";
+    b.style.color = "#0f0";
+    b.style.padding = "6px 10px";
+    b.style.font = "12px monospace";
+    b.style.borderRadius = "6px";
+    b.style.zIndex = 99999;
+    document.body.appendChild(b);
+    return b;
+  })();
+  box.textContent = msg;
+  console.log(msg);
+}
 
 // --------------------------------------
 // PROFILKORT OG RENDERING
