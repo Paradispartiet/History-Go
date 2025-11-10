@@ -36,7 +36,7 @@ const userProgress    = JSON.parse(localStorage.getItem("historygo_progress") ||
 
 function saveVisited() {
   localStorage.setItem("visited_places", JSON.stringify(visited));
-  renderNearbyPlaces();   // viser stedene på forsiden igjen
+  renderNearbyPlaces(); // ✅ oppdater forsiden i stedet for profil-funksjon
 }
 function savePeople(){   localStorage.setItem("people_collected", JSON.stringify(peopleCollected)); renderGallery(); }
 
