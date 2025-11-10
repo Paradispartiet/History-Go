@@ -342,3 +342,127 @@ button { cursor:pointer; }
   opacity: 1;
   pointer-events: all;
 }
+/* ===================================================== */
+/* 10) UTFORSK-PANEL (SHEET) – STEDER & RUTER            */
+/* ===================================================== */
+.sheet {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 55vh;
+  background: var(--panel);
+  border-top: 1px solid var(--panel-border);
+  border-radius: 16px 16px 0 0;
+  box-shadow: 0 -4px 20px rgba(0,0,0,.5);
+  transform: translateY(100%);
+  transition: transform .35s ease, opacity .25s ease;
+  opacity: 0;
+  z-index: 60;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.sheet.sheet-open {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.sheet-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px 6px;
+  border-bottom: 1px solid rgba(255,255,255,.05);
+  position: sticky;
+  top: 0;
+  background: rgba(10,25,41,.95);
+  backdrop-filter: blur(8px);
+  z-index: 2;
+}
+.sheet-head h3 {
+  font-size: 17px;
+  font-weight: 600;
+}
+.sheet-close {
+  background: transparent;
+  border: none;
+  color: var(--accent);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+/* ------------------------------- */
+/* Stedene i nærheten              */
+/* ------------------------------- */
+.sheet-content {
+  padding: 10px 16px 24px;
+}
+.nearby-item, .route-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.05);
+  border-radius: 12px;
+  padding: 10px 14px;
+  margin-bottom: 8px;
+  transition: background .2s ease, transform .2s ease;
+}
+.nearby-item:hover, .route-item:hover {
+  background: rgba(255,255,255,.08);
+  transform: translateY(-2px);
+}
+.nearby-info strong {
+  font-size: 15px;
+  color: #fff;
+}
+.nearby-info small {
+  color: rgba(255,255,255,.6);
+}
+
+/* ------------------------------- */
+/* Knapp inne i sted-listen        */
+/* ------------------------------- */
+.btn-quiz {
+  background: var(--accent);
+  border: none;
+  border-radius: 10px;
+  color: #000;
+  font-weight: 600;
+  padding: 6px 12px;
+  font-size: 13px;
+  cursor: pointer;
+}
+.btn-quiz:hover {
+  background: #ffea61;
+}
+
+/* ------------------------------- */
+/* Ruter-listen                    */
+/* ------------------------------- */
+.route-item strong {
+  font-size: 15px;
+  color: var(--accent);
+}
+.route-item small {
+  color: rgba(255,255,255,.6);
+}
+
+/* ------------------------------- */
+/* Mørk bakgrunnsslør              */
+/* ------------------------------- */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.55);
+  z-index: 50;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .25s ease;
+}
+.backdrop.active {
+  opacity: 1;
+  pointer-events: all;
+}
