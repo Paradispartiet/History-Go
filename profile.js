@@ -333,6 +333,6 @@ styleBadge.textContent = `
   opacity: 1;
   transform: scale(1);
 }`;
-document.head.appendChild(style);
+document.head.appendChild(styleBadge);
 
 console.log("✅ Profile.js aktiv og lytter etter merker");
