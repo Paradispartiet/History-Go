@@ -147,6 +147,8 @@ async function renderMerits() {
     return i <= 0 ? "🥉" : i === 1 ? "🥈" : i === 2 ? "🥇" : "🏆";
   }
 
+debug("✅ Data lastet og profil tegnet");
+  
   container.innerHTML = cats.map(cat => {
     const merit = localMerits[cat] || { level: "Nybegynner" };
     const badge = badges.find(b =>
@@ -217,28 +219,27 @@ function showBadgeModal(catName) {
 
 
 // --------------------------------------
-// INITIALISERING MED DATA
+// INITIALISERING MED DATA – REN VERSJON
 // --------------------------------------
-Promise.all([
-  fetch("people.json").then(r => r.json()).then(d => PEOPLE = d),
-  fetch("places.json").then(r => r.json()).then(d => PLACES = d),
-  fetch("badges.json").then(r => r.json()).then(d => BADGES = d)
-]).then(() => {
-  renderProfileCard();
-  renderMerits();
-  renderCollection();
-  renderGallery();
-  renderTimelineProfile();
-});
+debug("🔄 Laster data …");
 
-document.addEventListener("DOMContentLoaded", () => {
-  const editBtn = document.getElementById("editProfileBtn");
-  if (editBtn) editBtn.addEventListener("click", openProfileModal);
-  setTimeout(() => {
+Promise.all([
+  fetch("people.json").then(r => r.json()).then(d => (PEOPLE = d)),
+  fetch("places.json").then(r => r.json()).then(d => (PLACES = d)),
+  fetch("badges.json").then(r => r.json()).then(d => (BADGES = d))
+]).then(() => {
+  debug("✅ Data lastet – tegner profil …");
+
+  // Vent til dokumentet og app.js er klare
+  document.addEventListener("DOMContentLoaded", () => {
     renderProfileCard();
     renderMerits();
-    renderCollection();
-    renderGallery();
+
+    // kjør bare hvis funksjonene finnes (app.js er lastet)
+    if (typeof renderCollection === "function") renderCollection();
+    if (typeof renderGallery === "function") renderGallery();
+
     renderTimelineProfile();
-  }, 600);
+    debug("✨ Profil ferdig tegnet");
+  });
 });
