@@ -1139,16 +1139,34 @@ async function startQuiz(targetId) {
           document.getElementById("gallery")?.scrollIntoView({ behavior: "smooth" });
         }
 
+        // Hvis det er et sted: registrer som besøkt og vis popup
+        if (place) {
+          visited[place.id] = true;
+          saveVisited();
+          drawPlaceMarkers();
+          pulseMarker(place.lat, place.lon);
+          showPlacePopup(place);
+          showToast(`Låst opp: ${place.name} ✅`);
+        }
+
         showToast(`Perfekt! ${total}/${total} riktige 🎯 Du fikk poeng og kort!`);
 
-        // ✨ NYTT: Oppdater profil automatisk – alle sider, alle faner
-        try {
-          // Oppdater i samme fane (lokal profil)
-          if (window.triggerProfileUpdate) {
-            window.triggerProfileUpdate();
+        // ✨ Oppdater profil umiddelbart hvis den finnes i samme fane
+        if (typeof window.renderProfileCard === "function") {
+          try {
+            renderProfileCard();
+            renderCollection();
+            renderGallery();
+            renderMerits();
+            renderTimelineProfile();
+          } catch (e) {
+            console.warn("Profiloppdatering feilet:", e);
           }
+        }
 
-          // Trigger event for andre åpne sider (f.eks. profile.html)
+        // ✨ Oppdater alle andre faner automatisk
+        try {
+          if (window.triggerProfileUpdate) window.triggerProfileUpdate();
           localStorage.setItem("quiz_refresh", Date.now().toString());
           window.dispatchEvent(new StorageEvent("storage", { key: "quiz_refresh" }));
         } catch (e) {
