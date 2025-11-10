@@ -887,20 +887,6 @@ function showQuizHistory() {
 document.getElementById("linkQuiz")?.addEventListener("click", showQuizHistory);
 
 // ==============================
-//  AKTIVER PROFILSIDE (v18+)
-// ==============================
-document.addEventListener("DOMContentLoaded", () => {
-  const isProfile = document.querySelector(".profile-page");
-  if (!isProfile) return;
-
-  renderProfileCard();
-  renderCollection();
-  renderMerits();
-  renderGallery();
-  renderUserBadges();
-});
-
-// ==============================
 // 11. STED-OVERLAY (tekst + personer)
 // ==============================
 
