@@ -322,8 +322,8 @@ document.addEventListener("click", e => {
 });
 
 // --- Animasjon ---
-const style = document.createElement("style");
-style.textContent = `
+const styleBadge = document.createElement("style");
+styleBadge.textContent = `
 #badgeModal {
   opacity: 0;
   transform: scale(0.94);
