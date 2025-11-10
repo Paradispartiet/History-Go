@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Min profil | History Go</title>
+
+  <link rel="stylesheet" href="css/theme.css">
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script defer src="js/profile.js"></script>
+</head>
+
+<body class="profile-page">
+  <div class="app-frame" aria-hidden="true"></div>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <a href="index.html" class="brand back-link">←</a>
+    <div class="brand">
+      <img src="bilder/logo_historygo.PNG" alt="History Go" class="brand-logo">
+      <span class="brand-name">Min profil</span>
+    </div>
+  </header>
+
+  <main id="profileMain">
+    <!-- 1. PROFILKORT -->
+    <section id="profileCard" class="profile-card">
+      <div class="profile-info">
+        <div class="profile-avatar" id="profileAvatar"></div>
+        <div class="profile-meta">
+          <h2 id="profileName">Brukernavn</h2>
+          <p id="profileLevel">Historiker · nivå 1</p>
+          <p id="profileStats">
+            <span id="placesCount">0</span> steder ·
+            <span id="peopleCount">0</span> personer ·
+            <span id="badgesCount">0</span> merker
+          </p>
+        </div>
+      </div>
+      <div class="profile-actions">
+        <button id="exportProfileBtn">Del / eksporter</button>
+        <button id="resetProfileBtn" class="danger">Nullstill</button>
+      </div>
+    </section>
+
+    <!-- 2. MERKER -->
+    <section id="badgesSection" class="profile-section">
+      <h3>Merker</h3>
+      <div id="badgesGrid" class="badge-grid"></div>
+    </section>
+
+    <!-- 3. PERSONER -->
+    <section id="peopleSection" class="profile-section">
+      <h3>Personer</h3>
+      <div id="peopleGrid" class="people-grid"></div>
+    </section>
+
+    <!-- 4. STEDER -->
+    <section id="placesSection" class="profile-section">
+      <h3>Steder besøkt</h3>
+      <div id="placesGrid" class="places-grid"></div>
+    </section>
+
+    <!-- 5. TIDSLINJE -->
+    <section id="timelineSection" class="profile-section">
+      <h3>Tidslinje</h3>
+      <div id="timelineList" class="timeline-list"></div>
+    </section>
+  </main>
+
+  <!-- 6. MODALS / SPRETT-OPP-BOKSER -->
+  <!-- Merke-modal -->
+  <div id="badgeModal" class="modal" aria-hidden="true">
+    <div class="modal-body">
+      <div class="modal-head">
+        <h4 id="badgeModalTitle"></h4>
+        <button class="close-modal" data-close="badgeModal">✕</button>
+      </div>
+      <div id="badgeModalContent" class="modal-content"></div>
+    </div>
+  </div>
+
+  <!-- Person-modal -->
+  <div id="personModal" class="modal" aria-hidden="true">
+    <div class="modal-body">
+      <div class="modal-head">
+        <h4 id="personModalName"></h4>
+        <button class="close-modal" data-close="personModal">✕</button>
+      </div>
+      <div id="personModalContent" class="modal-content"></div>
+    </div>
+  </div>
+
+  <!-- Sted-modal -->
+  <div id="placeModal" class="modal" aria-hidden="true">
+    <div class="modal-body">
+      <div class="modal-head">
+        <h4 id="placeModalName"></h4>
+        <button class="close-modal" data-close="placeModal">✕</button>
+      </div>
+      <div id="placeModalContent" class="modal-content"></div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <a href="index.html" class="tilbake-link nederst">← Til forsiden</a>
+    <p>© 2025 History Go</p>
+  </footer>
+</body>
+</html>
