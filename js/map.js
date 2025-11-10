@@ -1,11 +1,20 @@
 // ============================================================
-// === HISTORY GO – MAP.JS (v3.1, Leaflet-kart og ruter) ======
+// === HISTORY GO – MAP.JS (v3.2, stabil) =====================
+// ============================================================
+//
+//  • Tegner Leaflet-kart og markører for steder
+//  • Viser ruter fra routes.json (stops[] → placeId)
+//  • Varsler app.js når bruker trykker på sted
+//  • Har støtte for puls og nærhetseffekter
 // ============================================================
 
 const map = (() => {
   let leafletMap;
   let markers = {};
 
+  // ----------------------------------------------------------
+  // 1) INITIERING AV KART
+  // ----------------------------------------------------------
   function initMap(places = [], routes = []) {
     if (!window.L) {
       console.error("Leaflet mangler – kunne ikke starte kart.");
@@ -16,14 +25,21 @@ const map = (() => {
       zoomControl: false,
       attributionControl: false,
       preferCanvas: true,
+      worldCopyJump: false,
     }).setView([59.9139, 10.7522], 13);
 
+    // Bakgrunnslag
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       maxZoom: 19,
+      tileSize: 256,
+      crossOrigin: true,
     }).addTo(leafletMap);
 
     drawPlaceMarkers(places);
     drawRouteLines(routes);
+
+    // 🧭 Kritisk for Safari/iPad: oppdater størrelse etter innlasting
+    setTimeout(() => leafletMap.invalidateSize(), 400);
 
     console.log(`🗺️ Kart initialisert med ${places.length} steder`);
   }
@@ -33,6 +49,7 @@ const map = (() => {
   // ----------------------------------------------------------
   function drawPlaceMarkers(places) {
     if (!leafletMap || !Array.isArray(places)) return;
+
     places.forEach((p) => {
       const color = catColor(p.category);
       const icon = L.divIcon({
@@ -41,9 +58,11 @@ const map = (() => {
         iconSize: [16, 16],
         iconAnchor: [8, 8],
       });
+
       const m = L.marker([p.lat, p.lon], { icon })
         .addTo(leafletMap)
         .on("click", () => handlePlaceClick(p.id));
+
       markers[p.id] = m;
     });
   }
@@ -53,20 +72,18 @@ const map = (() => {
   // ----------------------------------------------------------
   function drawRouteLines(routes) {
     if (!leafletMap || !Array.isArray(routes)) return;
+
     routes.forEach((r) => {
       const color = r.color || "#FFD600";
       const coords = (r.stops || [])
         .map((s) => {
-          const pl = (HG?.data?.places || []).find(
-            (p) => p.id === s.placeId
-          );
+          const pl = (HG?.data?.places || []).find((p) => p.id === s.placeId);
           return pl ? [pl.lat, pl.lon] : null;
         })
         .filter(Boolean);
+
       if (coords.length > 1) {
-        L.polyline(coords, { color, weight: 3, opacity: 0.8 }).addTo(
-          leafletMap
-        );
+        L.polyline(coords, { color, weight: 3, opacity: 0.8 }).addTo(leafletMap);
       }
     });
   }
@@ -77,10 +94,12 @@ const map = (() => {
   function handlePlaceClick(placeId) {
     const pl = (HG?.data?.places || []).find((x) => x.id === placeId);
     if (!pl) return;
+
     pulseMarker(placeId);
-    document.dispatchEvent(
-      new CustomEvent("placeSelected", { detail: { placeId } })
-    );
+
+    // Send globalt event slik at app.js starter quiz
+    document.dispatchEvent(new CustomEvent("placeSelected", { detail: { placeId } }));
+
     ui.showToast(`📍 ${pl.name}`);
   }
 
@@ -142,5 +161,8 @@ const map = (() => {
     return "#FFD600";
   }
 
+  // ----------------------------------------------------------
+  // 8) EKSPORT
+  // ----------------------------------------------------------
   return { initMap, pulseMarker, highlightNearbyPlaces };
 })();
