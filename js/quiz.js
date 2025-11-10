@@ -1,5 +1,5 @@
 // ============================================================
-// === HISTORY GO – QUIZ.JS (v3.0, spørsmål og poeng) =========
+// === HISTORY GO – QUIZ.JS (v3.1, stabil) ====================
 // ============================================================
 //
 // Ansvar:
@@ -22,7 +22,8 @@ const quiz = (() => {
   // ----------------------------------------------------------
   function initQuizSystem(badges = []) {
     console.log("🧩 Quizsystem klart");
-    window.badges = badges || [];
+    window.HG = window.HG || {};
+    HG.badges = badges || [];
   }
 
   // ----------------------------------------------------------
@@ -30,18 +31,19 @@ const quiz = (() => {
   // ----------------------------------------------------------
   async function startQuiz(placeId) {
     try {
-      const place = (window.data?.places || []).find(p => p.id === placeId);
-      if (!place) return ui.showToast("Fant ikke sted for quiz");
+      // Bruk HG.data (ikke window.data)
+      const place = (HG.data?.places || []).find(p => p.id === placeId);
+      if (!place) return showToast("Fant ikke sted for quiz");
 
-      const category = place.category || "ukjent";
+      const category = (place.category || "ukjent").toLowerCase();
       const file = `data/quiz_${category}.json`;
       const quizData = await fetchJSON(file);
-      if (!quizData || quizData.length === 0) return ui.showToast("Ingen spørsmål tilgjengelig");
+      if (!quizData || quizData.length === 0) return showToast("Ingen spørsmål tilgjengelig");
 
       // Filtrer spørsmål for valgt sted
       allQuestions = quizData.filter(q => q.placeId === placeId);
       if (allQuestions.length === 0) {
-        ui.showToast("Ingen spørsmål for dette stedet enda");
+        showToast("Ingen spørsmål for dette stedet enda");
         return;
       }
 
@@ -53,7 +55,7 @@ const quiz = (() => {
       runQuizFlow();
     } catch (err) {
       console.error("Feil ved startQuiz:", err);
-      ui.showToast("Kunne ikke starte quiz");
+      showToast("Kunne ikke starte quiz");
     }
   }
 
@@ -76,7 +78,7 @@ const quiz = (() => {
       <p class="quiz-progress">${currentIndex + 1} / ${allQuestions.length}</p>
     `;
 
-    ui.openModal("Quiz", html);
+    openModal("Quiz", html);
 
     document.querySelectorAll(".quiz-option").forEach(btn => {
       btn.addEventListener("click", () => handleAnswer(q, btn.dataset.answer, btn));
@@ -91,11 +93,11 @@ const quiz = (() => {
 
     if (correct) {
       btn.classList.add("correct");
-      score += 5; // standardpoeng – senere: badges.json.points[0]
-      ui.showToast("✅ Riktig!");
+      score += 5; // standardpoeng
+      showToast("✅ Riktig!");
     } else {
       btn.classList.add("wrong");
-      ui.showToast("❌ Feil svar");
+      showToast("❌ Feil svar");
     }
 
     // Deaktiver alle knapper
@@ -134,16 +136,53 @@ const quiz = (() => {
       timestamp: new Date().toISOString(),
     };
 
-    ui.closeModal();
-    ui.showToast(`🎯 Du fikk ${totalPoints} poeng!`);
+    closeModal();
+    showToast(`🎯 Du fikk ${totalPoints} poeng!`);
 
     // Send event til app.js for progresjon
-    const ev = new CustomEvent("quizCompleted", { detail: result });
-    document.dispatchEvent(ev);
+    document.dispatchEvent(new CustomEvent("quizCompleted", { detail: result }));
   }
 
   // ----------------------------------------------------------
-  // 7) EKSPORTERTE FUNKSJONER
+  // 7) MODAL & TOAST HJELPERE
+  // ----------------------------------------------------------
+  function openModal(title, content) {
+    const modal = document.getElementById("modal");
+    const titleEl = document.getElementById("modalTitle");
+    const bodyEl = document.getElementById("modalContent");
+
+    if (!modal || !titleEl || !bodyEl) return;
+    titleEl.textContent = title;
+    bodyEl.innerHTML = content;
+    modal.setAttribute("aria-hidden", "false");
+  }
+
+  function closeModal() {
+    const modal = document.getElementById("modal");
+    if (modal) modal.setAttribute("aria-hidden", "true");
+  }
+
+  function showToast(msg) {
+    const t = document.getElementById("toast");
+    if (t) t.textContent = msg;
+  }
+
+  // ----------------------------------------------------------
+  // 8) DATAHJELPERE
+  // ----------------------------------------------------------
+  async function fetchJSON(path) {
+    try {
+      const r = await fetch(path);
+      if (!r.ok) throw new Error(r.status);
+      return await r.json();
+    } catch (err) {
+      console.warn("Feil ved lasting av", path, err);
+      return [];
+    }
+  }
+
+  // ----------------------------------------------------------
+  // 9) EKSPORT
   // ----------------------------------------------------------
   return {
     initQuizSystem,
@@ -152,3 +191,8 @@ const quiz = (() => {
     finalizeQuizResult,
   };
 })();
+
+// Automatisk init ved DOM-load
+window.addEventListener("DOMContentLoaded", () => {
+  if (quiz && quiz.initQuizSystem) quiz.initQuizSystem();
+});
