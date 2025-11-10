@@ -1,24 +1,20 @@
 // ============================================================
-// === HISTORY GO – DATA.JS (v3.0, cache og koblinger) ========
+// === HISTORY GO – DATA.JS (v3.1, stabil cache og koblinger) ==
 // ============================================================
 //
-// Ansvar:
-//  • Lese og cache JSON-data fra /data/
-//  • Tilby søk og filtrering av steder, personer, merker og quizer
-//  • Håndtere sammenhenger mellom steder, personer og kategorier
-//  • Sikre at alle moduler kan hente data raskt fra minne
-//
+//  • Leser og cacher JSON-data fra /data/
+//  • Gir søk og filtrering av steder, personer, merker og quizer
+//  • Holder alt i minne via HG.data for rask tilgang
 // ============================================================
 
 const Data = (() => {
 
-  // Lokal cache i minnet
   const CACHE = {
     places: [],
     people: [],
     badges: [],
     routes: [],
-    quizzes: {},
+    quizzes: {}
   };
 
   // ----------------------------------------------------------
@@ -26,11 +22,13 @@ const Data = (() => {
   // ----------------------------------------------------------
   async function loadAll() {
     try {
+      console.log("🔄 Laster alle History Go-data ...");
+
       const [places, people, badges, routes] = await Promise.all([
         fetchJSON("data/places.json"),
         fetchJSON("data/people.json"),
         fetchJSON("data/badges.json"),
-        fetchJSON("data/routes.json"),
+        fetchJSON("data/routes.json")
       ]);
 
       CACHE.places = places || [];
@@ -38,22 +36,27 @@ const Data = (() => {
       CACHE.badges = badges || [];
       CACHE.routes = routes || [];
 
-      // Forhåndslast quiz-filer for alle kategorier (valgfritt)
+      // Forhåndslast quiz-filer (valgfritt)
       const quizFiles = [
         "historie", "vitenskap", "kunst", "litteratur",
         "musikk", "naeringsliv", "natur", "politikk",
         "populaerkultur", "sport", "subkultur"
       ];
+
       for (const qf of quizFiles) {
         const data = await fetchJSON(`data/quiz_${qf}.json`);
         CACHE.quizzes[qf] = data || [];
       }
 
-      console.log("🧠 Data lastet og cachet");
+      // Koble til global struktur slik at alle moduler kan lese
+      window.HG = window.HG || {};
+      HG.data = CACHE;
+
+      console.log(`✅ Data lastet (${CACHE.places.length} steder)`);
       return CACHE;
 
     } catch (err) {
-      console.error("Feil ved lasting av data:", err);
+      console.error("❌ Feil ved lasting av data:", err);
       return null;
     }
   }
@@ -61,45 +64,19 @@ const Data = (() => {
   // ----------------------------------------------------------
   // 2) HENTE DATA
   // ----------------------------------------------------------
-  function getPlaces() {
-    return CACHE.places;
-  }
-
-  function getPeople() {
-    return CACHE.people;
-  }
-
-  function getBadges() {
-    return CACHE.badges;
-  }
-
-  function getRoutes() {
-    return CACHE.routes;
-  }
-
-  function getQuizzes(categoryId) {
-    return CACHE.quizzes[categoryId] || [];
-  }
+  const getPlaces  = () => CACHE.places;
+  const getPeople  = () => CACHE.people;
+  const getBadges  = () => CACHE.badges;
+  const getRoutes  = () => CACHE.routes;
+  const getQuizzes = (categoryId) => CACHE.quizzes[categoryId] || [];
 
   // ----------------------------------------------------------
   // 3) FILTRERING OG KOBLINGER
   // ----------------------------------------------------------
-  function getPeopleAtPlace(placeId) {
-    return CACHE.people.filter(p => p.placeId === placeId);
-  }
-
-  function getPlaceById(id) {
-    return CACHE.places.find(p => p.id === id);
-  }
-
-  function getBadgeByCategory(cat) {
-    const id = norm(cat);
-    return CACHE.badges.find(b => b.id === id);
-  }
-
-  function getRouteByCategory(cat) {
-    return CACHE.routes.find(r => r.category === cat);
-  }
+  const getPeopleAtPlace = (placeId) => CACHE.people.filter(p => p.placeId === placeId);
+  const getPlaceById     = (id)      => CACHE.places.find(p => p.id === id);
+  const getBadgeByCategory = (cat)   => CACHE.badges.find(b => norm(cat) === b.id);
+  const getRouteByCategory = (cat)   => CACHE.routes.find(r => norm(r.category) === norm(cat));
 
   // ----------------------------------------------------------
   // 4) SØK OG FILTRERINGSFUNKSJONER
@@ -107,7 +84,8 @@ const Data = (() => {
   function searchPlaces(keyword = "") {
     const k = keyword.toLowerCase();
     return CACHE.places.filter(p =>
-      p.name.toLowerCase().includes(k) || p.desc.toLowerCase().includes(k)
+      p.name.toLowerCase().includes(k) ||
+      (p.desc || "").toLowerCase().includes(k)
     );
   }
 
@@ -126,12 +104,10 @@ const Data = (() => {
   // ----------------------------------------------------------
   // 5) TILGANG FOR ANDRE MODULER
   // ----------------------------------------------------------
-  function exportCache() {
-    return structuredClone(CACHE);
-  }
+  const exportCache = () => structuredClone(CACHE);
 
   // ----------------------------------------------------------
-  // 6) EKSPORTERTE FUNKSJONER
+  // 6) EKSPORT
   // ----------------------------------------------------------
   return {
     loadAll,
@@ -147,6 +123,6 @@ const Data = (() => {
     searchPlaces,
     filterPlacesByCategory,
     filterPeopleByTag,
-    exportCache,
+    exportCache
   };
 })();
