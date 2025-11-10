@@ -1071,14 +1071,17 @@ async function startQuiz(targetId) {
   }
 
   if (place) {
-    // 🗺️ Nytt: registrer stedet som besøkt og vis popup
-    const visited = JSON.parse(localStorage.getItem("visited_places") || "{}");
-    if (!visited[place.id]) {
-      visited[place.id] = { timestamp: Date.now() };
-      localStorage.setItem("visited_places", JSON.stringify(visited));
-      showPlacePopup(place); // <- bruker popup-funksjonen vi la til
-    }
+  // 🗺️ Nytt: registrer stedet som besøkt og vis popup 
+  const visited = JSON.parse(localStorage.getItem("visited_places") || "{}");
+  if (!visited[place.id]) {
+    visited[place.id] = { timestamp: Date.now() };
+    localStorage.setItem("visited_places", JSON.stringify(visited));
+    showPlacePopup(place); // <- bruker popup-funksjonen vi la til
+
+    // 🔄 Varsle profilsiden (oppdater tidslinje og samling)
+    window.dispatchEvent(new Event("visited_places_updated"));
   }
+}
 
   showToast(`Perfekt! ${total}/${total} riktige 🎯 Du fikk poeng og kort!`);
 } else {
