@@ -290,38 +290,52 @@ document.addEventListener("DOMContentLoaded",()=>{
 });
 
 // ============================================================
-// === KLIKK PÅ MERKER (åpne quiz-boks) + visuell effekt ======
+// === KLIKK PÅ MERKER + ANIMASJON (v4 – endelig) =============
 // ============================================================
-document.addEventListener("click", e => {
-  const badge = e.target.closest(".badge-mini");
-  if (!badge) return;
-  const catId = badge.dataset.badge;
-  if (!catId) return;
+document.addEventListener("DOMContentLoaded", () => {
+  document.body.addEventListener("click", e => {
+    const el = e.target.closest(".badge-mini");
+    if (!el) return;
 
-  // 🔹 Åpner boksen via showBadgeModal fra app.js
-  if (typeof showBadgeModal === "function") {
-    showBadgeModal(catId);
+    const badgeId = el.dataset.badge;
+    const badgeObj = (window.BADGES || []).find(
+      b => b.id === badgeId || b.name.toLowerCase() === badgeId.toLowerCase()
+    );
+    const catName = badgeObj ? badgeObj.name : badgeId;
+    console.log("🎯 Åpner merkeboks for:", catName);
 
-    // ✨ Legg til fade-inn bakgrunn for modalen
-    const modal = document.getElementById("badgeModal");
-    if (modal) {
-      modal.style.background = "rgba(0,0,0,0.65)";
-      modal.style.backdropFilter = "blur(2px)";
-      modal.style.display = "flex";
-      modal.classList.add("fadeInBadge");
+    if (typeof showBadgeModal === "function") {
+      showBadgeModal(catName);
+
+      const modal = document.getElementById("badgeModal");
+      if (modal) {
+        modal.style.display = "flex";
+        modal.style.background = "rgba(0,0,0,0.7)";
+        modal.style.backdropFilter = "blur(2px)";
+        modal.classList.add("fadeZoomIn");
+      }
     }
-  }
+  });
 });
 
-// --- Enkel fade-inn-animasjon for merkemodalen ---
+// --- Fade + zoom-inn-animasjon ---
 const style = document.createElement("style");
 style.textContent = `
 #badgeModal {
   opacity: 0;
-  transition: opacity .35s ease;
+  transform: scale(0.94);
+  transition: opacity .35s ease, transform .35s ease;
 }
-#badgeModal.fadeInBadge {
+#badgeModal.fadeZoomIn {
   opacity: 1;
+  transform: scale(1);
+}
+.badge-modal-inner {
+  animation: popIn .35s ease;
+}
+@keyframes popIn {
+  from { transform: scale(0.94); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
 }
 `;
 document.head.appendChild(style);
