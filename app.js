@@ -478,16 +478,24 @@ function renderCollection(){
   const items = PLACES.filter(p => visited[p.id]);
   const grid = el.collectionGrid;
   if (!grid) return;
+
   const count = el.collectionCount;
   if (count) count.textContent = items.length;
 
-  const first = items.slice(0, 18);
-  grid.innerHTML = first.map(p => `
-    <span class="badge ${catClass(p.category)}" title="${p.name}">
-      <span class="i" style="background:${catColor(p.category)}"></span> ${p.name}
-    </span>`).join("");
-}
+  if (!items.length) {
+    grid.innerHTML = `<div class="muted">Ingen steder besøkt ennå.</div>`;
+    return;
+  }
 
+  grid.innerHTML = items.map(p => `
+    <span class="badge visited-place ${catClass(p.category)}" 
+          data-place="${p.id}" 
+          title="Trykk for å åpne ${p.name}">
+      <span class="i" style="background:${catColor(p.category)}"></span>
+      ${p.name}
+    </span>
+  `).join("");
+}
 // ==============================
 // RENDER MERITS – VISER FREMGANG OG NIVÅ
 // ==============================
