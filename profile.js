@@ -1,11 +1,12 @@
 // ============================================================
-// === HISTORY GO – PROFILE.JS (v21, ren og stabil) ============
+// === HISTORY GO – PROFILE.JS (v22, med person-modal) =========
 // ============================================================
 //
 // Håndterer profilsiden:
 //  - Profilkort og redigering
 //  - Historiekort / tidslinje
 //  - Merker og modaler
+//  - Person-infoboks (wiki + kort)
 //  - Leser data direkte fra localStorage
 // ============================================================
 
@@ -53,23 +54,17 @@ function openProfileModal() {
   document.body.appendChild(modal);
   modal.style.display = "flex";
 
-  // ❌ Avbryt-knappen
   modal.querySelector("#cancelProfile").onclick = () => modal.remove();
-
-  // 💾 Lagre endringer
   modal.querySelector("#saveProfile").onclick = () => {
     const newName  = modal.querySelector("#newName").value.trim() || "Utforsker #182";
     const newColor = modal.querySelector("#newColor").value;
-
     localStorage.setItem("user_name", newName);
     localStorage.setItem("user_color", newColor);
-
     document.getElementById("profileName").textContent = newName;
     const avatarEl = document.getElementById("profileAvatar");
     if (avatarEl) avatarEl.style.borderColor = newColor;
-
     showToast("Profil oppdatert ✅");
-    modal.remove(); // ✅ Lukk modalen etter lagring
+    modal.remove();
     renderProfileCard();
   };
 }
@@ -115,7 +110,38 @@ function renderTimelineProfile() {
 
 
 // --------------------------------------
-// MINE MERKER – runde ikoner med medalje (klikkbare)
+// PERSONGALLERI – kun ansiktsbilder (_face.PNG)
+// --------------------------------------
+function renderGallery() {
+  const collected = JSON.parse(localStorage.getItem("people_collected") || "{}");
+  const got = PEOPLE.filter(p => !!collected[p.id]);
+  const gallery = document.getElementById("gallery");
+  if (!gallery) return;
+
+  if (!got.length) {
+    gallery.innerHTML = `<div class="muted">Samle personer ved å møte dem og klare quizen.</div>`;
+    return;
+  }
+
+  gallery.innerHTML = got.map(p => `
+    <div class="person-card" data-person="${p.id}" title="${p.name}">
+      <img src="bilder/people/${p.id}_face.PNG" alt="${p.name}" class="person-face-thumb">
+      <div class="person-label">${p.name}</div>
+    </div>
+  `).join("");
+
+  gallery.querySelectorAll(".person-card").forEach(card => {
+    card.addEventListener("click", () => {
+      const id = card.dataset.person;
+      const person = PEOPLE.find(p => p.id === id);
+      if (person) showPersonPopup(person);
+    });
+  });
+}
+
+
+// --------------------------------------
+// MINE MERKER – runde ikoner med medalje
 // --------------------------------------
 async function renderMerits() {
   const container = document.getElementById("merits");
@@ -125,9 +151,7 @@ async function renderMerits() {
   const localMerits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
   const cats = Object.keys(localMerits).length ? Object.keys(localMerits) : badges.map(b => b.name);
 
-  function medalByIndex(i) {
-    return i <= 0 ? "🥉" : i === 1 ? "🥈" : i === 2 ? "🥇" : "🏆";
-  }
+  function medalByIndex(i) { return i <= 0 ? "🥉" : i === 1 ? "🥈" : i === 2 ? "🥇" : "🏆"; }
 
   container.innerHTML = cats.map(cat => {
     const merit = localMerits[cat] || { level: "Nybegynner" };
@@ -139,7 +163,6 @@ async function renderMerits() {
 
     const tierIndex = badge.tiers.findIndex(t => t.label === merit.level);
     const medal = medalByIndex(tierIndex);
-
     return `
       <div class="badge-mini" data-badge="${badge.id}" role="button" tabindex="0" style="cursor:pointer;">
         <div class="badge-wrapper">
@@ -149,7 +172,6 @@ async function renderMerits() {
       </div>`;
   }).join("");
 
-  // Hele kortet blir klikkbart + tastatur (Enter/Space)
   const makeOpen = (el) => {
     const id = el.dataset.badge;
     const badge = badges.find(b => b.id === id);
@@ -158,7 +180,7 @@ async function renderMerits() {
 
   container.querySelectorAll(".badge-mini").forEach(el => {
     el.addEventListener("click", () => makeOpen(el));
-    el.addEventListener("keydown", (e) => {
+    el.addEventListener("keydown", e => {
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
         makeOpen(el);
@@ -169,43 +191,31 @@ async function renderMerits() {
 
 
 // --------------------------------------
-// MERKE-MODAL (bilde + nivå + teller + quizliste med spørsmålstitler)
+// MERKE-MODAL (quiz-oversikt)
 // --------------------------------------
 async function showBadgeModal(badge) {
   const merits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
   const quizProgress = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
-
   const catId = badge.id;
   const completedIds = quizProgress[catId]?.completed || [];
 
-  // Prøv å laste riktig quiz-fil for kategorien (f.eks. quiz_vitenskap.json)
   let quizData = [];
   try {
     const res = await fetch(`quiz_${catId}.json`, { cache: "no-store" });
     if (res.ok) quizData = await res.json();
-  } catch (_) { /* stille fallback */ }
+  } catch (_) {}
 
-  // Filtrer til riktig kategori (i tilfelle blandede categoryId i filene)
   const inThisCategory = Array.isArray(quizData)
     ? quizData.filter(q => (q.categoryId || "").toLowerCase() === catId.toLowerCase())
     : [];
 
   const totalInCat = inThisCategory.length;
-
-  // Lag oppslag for rask tittel-henting
   const byId = Object.fromEntries(inThisCategory.map(q => [q.id, q]));
-
-  // Fullførte i denne kategorien (de som faktisk finnes i filen)
   const completedHere = completedIds.filter(id => !!byId[id]);
 
   const counterHtml = `<p class="muted" style="margin:.2rem 0 1rem;">Du har fullført <strong>${completedHere.length}</strong> av <strong>${totalInCat}</strong> quizzer i denne kategorien.</p>`;
-
   const listHtml = completedHere.length
-    ? `<ul>${completedHere.map(qid => {
-        const q = byId[qid];
-        const label = q?.question || qid;
-        return `<li>${label}</li>`;
-      }).join("")}</ul>`
+    ? `<ul>${completedHere.map(qid => `<li>${byId[qid]?.question || qid}</li>`).join("")}</ul>`
     : `<p class="muted">Ingen quizzer fullført ennå.</p>`;
 
   const modal = document.createElement("div");
@@ -222,9 +232,58 @@ async function showBadgeModal(badge) {
     </div>`;
   document.body.appendChild(modal);
   modal.style.display = "flex";
-
   modal.querySelector(".close-badge").onclick = () => modal.remove();
   modal.addEventListener("click", e => { if (e.target === modal) modal.remove(); });
+}
+
+
+// ============================================================
+// === PERSON-INFO MODAL (wiki + kort med fallback) ============
+// ============================================================
+async function showPersonPopup(person) {
+  try {
+    const wikiUrl = `https://no.wikipedia.org/w/api.php?action=query&origin=*&format=json&prop=extracts&exintro=true&titles=${encodeURIComponent(person.name)}`;
+    const res = await fetch(wikiUrl);
+    const data = await res.json();
+    const page = Object.values(data.query.pages)[0];
+    const extract = page?.extract || "Ingen informasjon funnet.";
+
+    const facePath = `bilder/people/${person.id}_face.PNG`;
+    const cardPath = `bilder/kort/people/${person.id}.PNG`;
+
+    let imgToUse = facePath;
+    try {
+      const check = await fetch(facePath, { method: "HEAD" });
+      if (!check.ok) imgToUse = cardPath;
+    } catch { imgToUse = cardPath; }
+
+    const modal = document.createElement("div");
+    modal.className = "person-info-modal";
+    modal.innerHTML = `
+      <div class="person-info-body">
+        <button class="close-btn" aria-label="Lukk">✕</button>
+        <div class="person-header">
+          <img src="${imgToUse}" alt="${person.name}" class="person-face">
+          <div>
+            <h2>${person.name}</h2>
+            ${person.year ? `<p class="muted">${person.year}</p>` : ""}
+          </div>
+        </div>
+        <div class="person-info-text">${extract}</div>
+        <div class="person-card-mini">
+          <img src="${cardPath}" class="mini-card" alt="Kort">
+          <p class="muted">Trykk for å åpne History Go-kortet</p>
+        </div>
+      </div>`;
+    document.body.appendChild(modal);
+
+    modal.querySelector(".close-btn").onclick = () => modal.remove();
+    modal.addEventListener("click", e => { if (e.target === modal) modal.remove(); });
+    modal.querySelector(".mini-card").onclick = () => openPlaceCardByPerson(person);
+  } catch (err) {
+    console.error("Feil ved lasting av personinfo:", err);
+    showToast("Kunne ikke hente info 📚");
+  }
 }
 
 
