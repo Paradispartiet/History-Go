@@ -755,8 +755,11 @@ function requestLocation() {
   }, { enableHighAccuracy: true, timeout: 8000, maximumAge: 10000 });
 }
 
+// ==============================
+// 2. BOOT – STARTER APPEN
+// ==============================
 function boot() {
-  initMap(); // 🟢 start kartet med én gang
+  initMap(); // 🟢 start kartet umiddelbart
 
   Promise.all([
     fetch('places.json')
@@ -775,20 +778,30 @@ function boot() {
     PEOPLE = people || [];
 
     dataReady = true;
-    if (mapReady) maybeDrawMarkers();  // ✅ kjør kun hvis kartet er klart
+    if (mapReady) maybeDrawMarkers(); // ✅ tegn markører når kartet er klart
 
-    renderCollection();
-    renderMerits();
-    renderGallery();
-
+    // 📍 Start lokasjonsinnhenting
     requestLocation();
 
-    // ✅ linkPeopleToPlaces kjøres én gang, når kart + data er klart
+    // ✅ Knytt personer til steder når alt er lastet
     setTimeout(() => {
       linkPeopleToPlaces();
       renderNearbyPlaces();
     }, 800);
 
+    // 🩵 Sørg for at stedene vises når både data og posisjon er klare
+    if (dataReady && currentPos) {
+      renderNearbyPlaces();
+    } else {
+      const waitForPos = setInterval(() => {
+        if (dataReady && currentPos) {
+          renderNearbyPlaces();
+          clearInterval(waitForPos);
+        }
+      }, 600);
+    }
+
+    // 🔁 Live-oppdatering av posisjon
     if (navigator.geolocation) {
       navigator.geolocation.watchPosition(
         pos => {
@@ -802,7 +815,7 @@ function boot() {
       );
     }
 
-    wire();
+    wire(); // kobler event-listeners (knapper, modaler, etc.)
   })
   .catch(err => {
     console.error("❌ Datafeil i boot():", err);
