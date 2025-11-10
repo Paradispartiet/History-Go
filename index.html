@@ -6,10 +6,13 @@
   <title>History Go</title>
 
   <!-- Stil -->
-  <link rel="stylesheet" href="theme.css">
+  <link rel="stylesheet" href="css/theme.css">
 
   <!-- Leaflet -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  />
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
   <!-- Ikon og manifest -->
@@ -18,7 +21,6 @@
 </head>
 
 <body class="app-page">
-
   <!-- Ramme rundt appen -->
   <div class="app-frame" aria-hidden="true"></div>
 
@@ -33,7 +35,6 @@
 
   <!-- Hovedinnhold -->
   <main id="appMain">
-
     <!-- Kart -->
     <div id="map"></div>
 
@@ -61,23 +62,23 @@
     </div>
   </div>
 
-  <!-- JS-moduler -->
+  <!-- JS-moduler (riktig rekkefølge) -->
   <script src="js/core.js"></script>
-  <script src="js/app.js"></script>
-  <script src="js/map.js"></script>
   <script src="js/ui.js"></script>
+  <script src="js/map.js"></script>
   <script src="js/quiz.js"></script>
+  <script src="js/app.js"></script>
   <script src="js/profile.js"></script>
   <script src="js/data.js"></script>
 
-  <!-- Service worker -->
+  <!-- Service Worker -->
   <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('sw.js')
-        .then(() => console.log('Service Worker registrert'))
-        .catch(err => console.warn('SW-feil:', err));
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker
+        .register("sw.js")
+        .then(() => console.log("✅ Service Worker registrert"))
+        .catch((err) => console.warn("SW-feil:", err));
     }
   </script>
-
 </body>
 </html>
