@@ -541,32 +541,64 @@ function renderMerits() {
 }
 
 function renderGallery() {
-  const got = PEOPLE.filter(p => !!peopleCollected[p.id]);
-  if (!el.gallery) return;
+  const gallery = el.gallery;
+  if (!gallery) return;
 
-  if (!got.length) {
-    el.gallery.innerHTML = `<div class="muted">Samle personer ved å møte dem og klare quizen.</div>`;
+  const visitedPlaces = JSON.parse(localStorage.getItem("visited_places") || "{}");
+  const collectedPeople = JSON.parse(localStorage.getItem("people_collected") || "{}");
+
+  // Bygg arrays med tidsstempel
+  const gotPeople = PEOPLE.filter(p => !!collectedPeople[p.id]).map(p => ({
+    type: "person",
+    id: p.id,
+    name: p.name,
+    img: p.image || `bilder/kort/people/${p.id}.PNG`,
+    color: catColor(tagToCat(p.tags)),
+    timestamp: collectedPeople[p.id]?.timestamp || 0
+  }));
+
+  const gotPlaces = PLACES.filter(p => !!visitedPlaces[p.id]).map(p => ({
+    type: "place",
+    id: p.id,
+    name: p.name,
+    img: p.image || `bilder/kort/places/${p.id}.PNG`,
+    color: catColor(p.category),
+    timestamp: visitedPlaces[p.id]?.timestamp || 0
+  }));
+
+  const allCards = [...gotPeople, ...gotPlaces];
+
+  if (!allCards.length) {
+    gallery.innerHTML = `<div class="muted">Samle personer og steder for å bygge din historietidslinje.</div>`;
     return;
   }
 
-  el.gallery.innerHTML = got.map(p => {
-    const imgPath = p.image || `bilder/kort/people/${p.id}.PNG`;
-    const cat = tagToCat(p.tags);
-    const color = catColor(cat);
+  // Sorter kronologisk (eldst først)
+  allCards.sort((a, b) => a.timestamp - b.timestamp);
 
-    return `
-      <div class="person-card" data-person="${p.id}" title="${p.name}">
-        <img src="${imgPath}" alt="${p.name}" class="person-thumb">
-        <div class="person-label" style="color:${color}">${p.name}</div>
-      </div>`;
-  }).join("");
+  // Bygg kortene
+  gallery.innerHTML = allCards.map(item => `
+    <div class="timeline-card" data-type="${item.type}" data-id="${item.id}" title="${item.name}">
+      <img src="${item.img}" alt="${item.name}" class="timeline-thumb">
+      <div class="timeline-label" style="color:${item.color}">${item.name}</div>
+    </div>
+  `).join("");
 
-  // Klikk åpner popup-kortet igjen
-  el.gallery.querySelectorAll(".person-card").forEach(card => {
+  // Klikk-hendelser
+  gallery.querySelectorAll(".timeline-card").forEach(card => {
     card.addEventListener("click", () => {
-      const id = card.dataset.person;
-      const person = PEOPLE.find(p => p.id === id);
-      if (person) showPersonPopup(person);
+      const id = card.dataset.id;
+      const type = card.dataset.type;
+      if (type === "person") {
+        const person = PEOPLE.find(p => p.id === id);
+        if (person) showPersonPopup(person);
+      } else if (type === "place") {
+        const place = PLACES.find(p => p.id === id);
+        if (place) {
+          closePlaceOverlay();
+          showPlaceOverlay(place);
+        }
+      }
     });
   });
 }
