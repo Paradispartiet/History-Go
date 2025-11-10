@@ -288,3 +288,40 @@ document.addEventListener("DOMContentLoaded",()=>{
     });
   }
 });
+
+// ============================================================
+// === KLIKK PÅ MERKER (åpne quiz-boks) + visuell effekt ======
+// ============================================================
+document.addEventListener("click", e => {
+  const badge = e.target.closest(".badge-mini");
+  if (!badge) return;
+  const catId = badge.dataset.badge;
+  if (!catId) return;
+
+  // 🔹 Åpner boksen via showBadgeModal fra app.js
+  if (typeof showBadgeModal === "function") {
+    showBadgeModal(catId);
+
+    // ✨ Legg til fade-inn bakgrunn for modalen
+    const modal = document.getElementById("badgeModal");
+    if (modal) {
+      modal.style.background = "rgba(0,0,0,0.65)";
+      modal.style.backdropFilter = "blur(2px)";
+      modal.style.display = "flex";
+      modal.classList.add("fadeInBadge");
+    }
+  }
+});
+
+// --- Enkel fade-inn-animasjon for merkemodalen ---
+const style = document.createElement("style");
+style.textContent = `
+#badgeModal {
+  opacity: 0;
+  transition: opacity .35s ease;
+}
+#badgeModal.fadeInBadge {
+  opacity: 1;
+}
+`;
+document.head.appendChild(style);
