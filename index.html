@@ -9,8 +9,7 @@
   <link rel="stylesheet" href="css/theme.css">
 
   <!-- Leaflet -->
-  <link rel="stylesheet"
-        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
   <!-- Ikon og manifest -->
@@ -29,20 +28,25 @@
     </div>
   </header>
 
-  <!-- MINI-PROFIL -->
+  <!-- MINI-PROFIL (panel øverst) -->
   <section id="miniProfile" class="mini-profile">
     <div class="mini-info">
       <strong id="miniName" contenteditable="true" spellcheck="false">Utforsker #182</strong>
       <p id="miniStats">0 steder · 0 merker · 0 quizzer</p>
     </div>
-    <button id="openProfile" class="mini-btn">→</button>
+    <a id="openProfile" class="mini-btn" href="profile.html" aria-label="Åpne profil">→</a>
   </section>
 
   <!-- HOVEDINNHOLD -->
   <main id="appMain">
-
     <!-- KART -->
     <div id="map" class="map-visible"></div>
+
+    <!-- Kart-etikett (brukt av app.js v3.5) -->
+    <div id="mapLabel" class="map-label" style="display:none;">
+      <span>Kartmodus</span>
+      <button class="btn-close-map" title="Lukk">×</button>
+    </div>
 
     <!-- UTFORSK-PANEL -->
     <div id="exploreSheet" class="sheet sheet-open">
@@ -59,12 +63,12 @@
     <div id="toast" aria-live="polite"></div>
   </main>
 
-  <!-- MODALER (quiz / steder / ruter) -->
+  <!-- MODAL (quiz / steder / ruter) -->
   <div id="modal" class="modal" aria-hidden="true">
     <div class="modal-body">
       <div class="modal-head">
         <h4 id="modalTitle"></h4>
-        <button id="closeModal" aria-label="Lukk">×</button>
+        <button id="closeModal" data-close="modal" aria-label="Lukk">×</button>
       </div>
       <div id="modalContent"></div>
     </div>
