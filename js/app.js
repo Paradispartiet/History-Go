@@ -54,6 +54,35 @@ const app = (() => {
         document.body.classList.toggle("map-active");
       });
     }
+      // ================================================
+  // AUTO-LAGRING AV NAVN FRA MINI-PROFILEN
+  // ================================================
+  function initMiniProfileNameSave() {
+    const nameEl = document.querySelector(".mini-profile .name");
+    if (!nameEl) return;
+
+    const savedName = localStorage.getItem("playerName");
+    if (savedName) nameEl.textContent = savedName;
+
+    nameEl.addEventListener("blur", saveName);
+    nameEl.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        nameEl.blur();
+      }
+    });
+
+    function saveName() {
+      const newName = nameEl.textContent.trim();
+      if (newName.length > 0) {
+        localStorage.setItem("playerName", newName);
+        window.dispatchEvent(new Event("updateProfile"));
+      }
+    }
+  }
+
+  // Kjør når appen starter
+  document.addEventListener("DOMContentLoaded", initMiniProfileNameSave);
   }
 
   // ----------------------------------------------------------
@@ -345,6 +374,38 @@ function initMiniProfile() {
     return "#FFD600";
   }
 
+  // ==================================================
+// REDIGERBART NAVN PÅ PROFILKORTET
+// ==================================================
+function initEditableProfileName() {
+  const nameEl = document.querySelector(".profile-card .name");
+  if (!nameEl) return;
+
+  // Hent eksisterende navn fra localStorage
+  const savedName = localStorage.getItem("playerName");
+  if (savedName) nameEl.textContent = savedName;
+
+  // Aktiver redigering
+  nameEl.setAttribute("contenteditable", "true");
+  nameEl.addEventListener("blur", saveName);
+  nameEl.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      nameEl.blur();
+    }
+  });
+
+  function saveName() {
+    const newName = nameEl.textContent.trim();
+    if (newName.length > 0) {
+      localStorage.setItem("playerName", newName);
+      // Oppdater mini-profilen i hovedappen
+      window.dispatchEvent(new Event("updateProfile"));
+    }
+  }
+}
+
+document.addEventListener("DOMContentLoaded", initEditableProfileName);
   // ----------------------------------------------------------
   // EKSPORT
   // ----------------------------------------------------------
@@ -354,8 +415,3 @@ function initMiniProfile() {
     startQuizForPlace
   };
 })();
-
-document.addEventListener("DOMContentLoaded", () => {
-  if (typeof boot === "function") boot();
-  else app.initApp();
-});
