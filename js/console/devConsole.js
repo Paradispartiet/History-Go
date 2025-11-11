@@ -1,23 +1,19 @@
 // ============================================================
-// === HISTORY GO – DEV CONSOLE (interaktiv terminal) =========
+// === HISTORY GO – DEV CONSOLE (v2.0, multiline + logg) ======
 // ============================================================
 //
-//  Åpnes/lukkes med: ~  (tilde-tasten)
-//
-//  Kommandoer (eksempler):
-//   • help
-//   • list places
-//   • list routes
-//   • list people
-//   • clear storage
-//   • reload
-//   • debug on / debug off
-//   • log HG.data
+//  • Åpnes med tilde (~)
+//  • Shift+Enter = ny linje
+//  • Skriver alt til intern app.log (localStorage)
+//  • Henter historikk via kommandoer:
+//      → show log
+//      → clear log
 // ============================================================
 
 (function() {
   let consoleOpen = false;
   let consoleEl, inputEl, outputEl;
+  const logKey = "app_log";
 
   // ----------------------------------------------------------
   // INITIER TERMINAL
@@ -31,7 +27,7 @@
       left: "0",
       width: "100%",
       height: "40vh",
-      background: "rgba(0,0,0,.88)",
+      background: "rgba(0,0,0,.9)",
       color: "#0f0",
       fontFamily: "monospace",
       fontSize: "13px",
@@ -48,8 +44,7 @@
     outputEl.style.overflowY = "auto";
     outputEl.style.paddingRight = "6px";
 
-    inputEl = document.createElement("input");
-    inputEl.type = "text";
+    inputEl = document.createElement("textarea");
     inputEl.placeholder = "skriv kommando...";
     Object.assign(inputEl.style, {
       width: "100%",
@@ -59,7 +54,9 @@
       fontFamily: "monospace",
       fontSize: "13px",
       padding: "5px 8px",
-      outline: "none"
+      outline: "none",
+      resize: "none",
+      height: "40px"
     });
 
     consoleEl.appendChild(outputEl);
@@ -67,14 +64,15 @@
     document.body.appendChild(consoleEl);
 
     inputEl.addEventListener("keydown", e => {
-      if (e.key === "Enter") {
+      if (e.key === "Enter" && !e.shiftKey) {
+        e.preventDefault();
         const cmd = inputEl.value.trim();
         if (cmd) runCommand(cmd);
         inputEl.value = "";
       }
     });
 
-    console.log("🧠 DevConsole initialisert");
+    console.log("🧠 DevConsole v2.0 initialisert");
   }
 
   // ----------------------------------------------------------
@@ -91,36 +89,41 @@
   // KJØR KOMMANDO
   // ----------------------------------------------------------
   function runCommand(cmd) {
-    const log = msg => {
-      const div = document.createElement("div");
-      div.textContent = msg;
-      outputEl.appendChild(div);
-      outputEl.scrollTop = outputEl.scrollHeight;
-    };
-
-    log(`> ${cmd}`);
+    logLine(`> ${cmd}`);
 
     try {
       const [main, arg1, arg2] = cmd.toLowerCase().split(" ");
 
       switch (main) {
         case "help":
-          log("Kommandoer:");
-          log(" help, list places|people|routes, clear storage, reload");
-          log(" debug on/off, log HG.data");
+          logLine("Kommandoer:");
+          logLine(" help, list places|people|routes");
+          logLine(" clear storage, show log, clear log, reload");
+          logLine(" debug on/off, log HG.data");
           break;
 
         case "list":
           if (arg1 === "places") logList(HG.data.places, "name");
           else if (arg1 === "people") logList(HG.data.people, "name");
           else if (arg1 === "routes") logList(HG.data.routes, "name");
-          else log("Ukjent kategori.");
+          else logLine("Ukjent kategori.");
           break;
 
         case "clear":
           if (arg1 === "storage") {
             localStorage.clear();
-            log("🧹 localStorage slettet");
+            logLine("🧹 localStorage slettet");
+          } else if (arg1 === "log") {
+            localStorage.removeItem(logKey);
+            logLine("🧼 Logg tømt");
+          }
+          break;
+
+        case "show":
+          if (arg1 === "log") {
+            const entries = JSON.parse(localStorage.getItem(logKey) || "[]");
+            logLine(`📜 Logg (${entries.length} linjer):`);
+            entries.slice(-50).forEach(e => logLine(e));
           }
           break;
 
@@ -131,46 +134,53 @@
         case "debug":
           if (arg1 === "on") {
             localStorage.setItem("debug", "true");
-            log("✅ Debug aktivert");
+            logLine("✅ Debug aktivert");
           } else if (arg1 === "off") {
             localStorage.removeItem("debug");
-            log("❌ Debug deaktivert");
+            logLine("❌ Debug deaktivert");
           }
           break;
 
         case "log":
           if (arg1 === "hg.data") {
-            log(JSON.stringify(HG.data, null, 2));
+            logLine(JSON.stringify(HG.data, null, 2));
           } else {
-            log("Ukjent log-kommando.");
+            logLine("Ukjent log-kommando.");
           }
           break;
 
         default:
-          log(eval(cmd));
+          // eval — trygg eval med output
+          const result = eval(cmd);
+          logLine(result === undefined ? "(ingen returverdi)" : result);
       }
     } catch (err) {
-      const error = document.createElement("div");
-      error.textContent = `⚠️ Feil: ${err.message}`;
-      error.style.color = "#f66";
-      outputEl.appendChild(error);
+      logLine(`⚠️ Feil: ${err.message}`, true);
     }
   }
 
   // ----------------------------------------------------------
-  // HJELPERE
+  // LOGG-HJELPERE
   // ----------------------------------------------------------
+  function logLine(text, isError = false) {
+    const div = document.createElement("div");
+    div.textContent = text;
+    if (isError) div.style.color = "#f66";
+    outputEl.appendChild(div);
+    outputEl.scrollTop = outputEl.scrollHeight;
+
+    const log = JSON.parse(localStorage.getItem(logKey) || "[]");
+    log.push(text);
+    localStorage.setItem(logKey, JSON.stringify(log.slice(-500))); // maks 500 linjer
+  }
+
   function logList(arr, key) {
-    if (!arr?.length) return outputEl.innerHTML += "<div>(tom liste)</div>";
-    arr.slice(0, 10).forEach(e => {
-      const div = document.createElement("div");
-      div.textContent = `- ${e[key] || "(ingen navn)"}`;
-      outputEl.appendChild(div);
-    });
+    if (!arr?.length) return logLine("(tom liste)");
+    arr.slice(0, 10).forEach(e => logLine(`- ${e[key] || "(ingen navn)"}`));
   }
 
   // ----------------------------------------------------------
-  // AKTIVERING MED ~
+  // HOTKEY ~
   // ----------------------------------------------------------
   document.addEventListener("keydown", e => {
     if (e.key === "~") toggleConsole();
