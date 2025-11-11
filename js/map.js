@@ -40,11 +40,11 @@ const map = (() => {
       worldCopyJump: false,
     }).setView([59.9139, 10.7522], 13);
 
-    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      maxZoom: 19,
-      tileSize: 256,
-      crossOrigin: true,
-    }).addTo(leafletMap);
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+  attribution: '©OpenStreetMap, ©Carto',
+  subdomains: 'abcd',
+  maxZoom: 19
+}).addTo(leafletMap);
 
     drawPlaceMarkers(places);
 
@@ -188,14 +188,57 @@ const map = (() => {
       pulseMarker(placeId);
     }
   }
+  // ----------------------------------------------------------
+  // VIS RUTE PÅ KART (lyst dag-sti på mørkt nattkart)
+  // ----------------------------------------------------------
+  function showRouteNow(route) {
+    if (!route || !window.L || !leafletMap) return;
 
+    // Fjern tidligere rute hvis en finnes
+    if (map._activeLineOuter) leafletMap.removeLayer(map._activeLineOuter);
+    if (map._activeLineInner) leafletMap.removeLayer(map._activeLineInner);
+
+    // Hent koordinater fra ruten
+    const coords = (route.stops || [])
+      .map(s => {
+        const pl = HG.data.places.find(p => p.id === s.placeId);
+        return pl ? [pl.lat, pl.lon] : null;
+      })
+      .filter(Boolean);
+
+    if (coords.length < 2) return;
+
+    // Lys effekt rundt stien (nattlys)
+    map._activeLineOuter = L.polyline(coords, {
+      color: "#fff6b0",     // myk gyllen glød
+      weight: 8,
+      opacity: 0.18,
+      lineJoin: "round",
+      lineCap: "round"
+    }).addTo(leafletMap);
+
+    // Selve fotstien – tynnere og sterkere
+    map._activeLineInner = L.polyline(coords, {
+      color: "#ffe97f",     // varm lys-gul sti
+      weight: 4,
+      opacity: 0.9,
+      lineJoin: "round",
+      lineCap: "round"
+    }).addTo(leafletMap);
+
+    // Zoom til ruten
+    leafletMap.fitBounds(L.latLngBounds(coords).pad(0.2));
+
+    console.log(`🟡 Viser rute: ${route.name}`);
+  }
   // ----------------------------------------------------------
   // 8) EKSPORT
   // ----------------------------------------------------------
   return {
-    initMap,
-    focusOnPlace,
-    pulseMarker,
-    highlightNearbyPlaces,
-  };
+  initMap,
+  focusOnPlace,
+  pulseMarker,
+  highlightNearbyPlaces,
+  showRouteNow, // 👈 legg til denne
+};
 })();
