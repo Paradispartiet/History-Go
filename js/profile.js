@@ -113,6 +113,20 @@ const Profile = (() => {
     const totalPoints = Object.values(merits).reduce((a, b) => a + (b.points || 0), 0);
     const level = Math.floor(totalPoints / 50) + 1;
     setText("profileLevel", `Historiker · nivå ${level}`);
+
+    // --- Tillat endring av brukernavn kun i profilen ---
+    const elName = document.getElementById("profileName");
+    if (elName) {
+      elName.contentEditable = true;
+      elName.addEventListener("input", () => {
+        const newName = elName.textContent.trim() || "Utforsker";
+        localStorage.setItem("user_name", newName);
+        HG.user.name = newName;
+
+        // Send oppdatering slik at mini-profilen endres på forsiden
+        window.dispatchEvent(new Event("updateProfile"));
+      });
+    }
   }
 
   function renderMerits() {
