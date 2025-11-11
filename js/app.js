@@ -1,12 +1,13 @@
 // ============================================================
-// === HISTORY GO – APP.JS (v3.5, komplett og stabil) =========
+// === HISTORY GO – APP.JS (v3.7, komplett og ryddig) =========
 // ============================================================
 //
 //  • Utforskpanel alltid synlig
 //  • Kartetikett viser nærmeste sted / valgt rute
+//  • Reset-knapp for å fjerne aktiv rute
+//  • Eventkobling for quiz og steder
 //  • Automatisk fargekoding etter kategori
 //  • Håndterer quizresultater, progresjon og profiloppdatering
-//
 // ============================================================
 
 const HG = window.HG || {};
@@ -15,55 +16,60 @@ const app = (() => {
   let lastPos = null;
   let watchId = null;
 
-// ----------------------------------------------------------
-// INITIERING (RYDDET OG MODULÆR)
-// ----------------------------------------------------------
-async function initApp() {
-  try {
-    console.log("📦 Initialiserer History Go...");
+  // ----------------------------------------------------------
+  // 1) INITIERING
+  // ----------------------------------------------------------
+  async function initApp() {
+    try {
+      console.log("📦 Initialiserer History Go...");
 
-    // Vent til dataene er lastet inn fra core.js
-    if (!HG.data || !HG.data.places) {
-      console.warn("Data ikke funnet – venter på core.boot()");
-      await new Promise(r => setTimeout(r, 400));
+      if (!HG.data || !HG.data.places) {
+        console.warn("Data ikke funnet – venter på core.boot()");
+        await new Promise(r => setTimeout(r, 400));
+      }
+
+      HG.user = {
+        name: localStorage.getItem("user_name") || "Ukjent spiller",
+        color: localStorage.getItem("user_color") || "#FFD600"
+      };
+
+      // Delmoduler
+      if (map?.initMap) map.initMap(HG.data.places, HG.data.routes);
+      if (Routes?.initRoutes) Routes.initRoutes();
+      if (quiz?.initQuizSystem) quiz.initQuizSystem();
+
+      initMiniProfile();
+      tryLocateUser();
+      attachEventListeners();
+
+      showToast(`Velkommen tilbake, ${HG.user.name}!`);
+    } catch (err) {
+      console.error("Feil ved oppstart:", err);
     }
-
-    // Hent eller opprett brukerprofil
-    HG.user = {
-      name: localStorage.getItem("user_name") || "Ukjent spiller",
-      color: localStorage.getItem("user_color") || "#FFD600"
-    };
-
-    // --- Start del-moduler ---
-    if (map?.initMap) map.initMap(HG.data.places, HG.data.routes);
-    if (Routes?.initRoutes) Routes.initRoutes();      // 👈 ny modul
-    if (quiz?.initQuizSystem) quiz.initQuizSystem();  // sørg for at quiz.js er klar
-    initMiniProfile();                                // vis liten profil øverst
-    tryLocateUser();                                  // finn brukerposisjon
-    attachEventListeners();                           // legg til klikk-hendelser
-
-    // Velkomstmelding
-    showToast(`Velkommen tilbake, ${HG.user.name}!`);
-
-  } catch (err) {
-    console.error("Feil ved oppstart:", err);
   }
-}
 
   // ----------------------------------------------------------
-  // HENDELSER
+  // 2) HENDELSER
   // ----------------------------------------------------------
   function attachEventListeners() {
     const mapLabel = document.getElementById("mapLabel");
     if (mapLabel) {
-      mapLabel.addEventListener("click", () => {
-        document.body.classList.toggle("map-active");
-      });
+      mapLabel.addEventListener("click", () =>
+        document.body.classList.toggle("map-active")
+      );
+    }
+
+    const resetBtn = document.getElementById("resetMapBtn");
+    if (resetBtn) {
+      resetBtn.onclick = () => {
+        if (map?.clearActiveRoute) map.clearActiveRoute();
+        showToast("🌍 Full kartvisning gjenopprettet");
+      };
     }
   }
 
   // ----------------------------------------------------------
-  // GEOLOKASJON
+  // 3) GEOLOKASJON
   // ----------------------------------------------------------
   function tryLocateUser() {
     if (!navigator.geolocation) {
@@ -82,13 +88,11 @@ async function initApp() {
   }
 
   function startWatchingPosition() {
-    if (!navigator.geolocation) return;
     if (watchId) navigator.geolocation.clearWatch(watchId);
     watchId = navigator.geolocation.watchPosition(
       pos => {
         const newPos = [pos.coords.latitude, pos.coords.longitude];
-        const moved = !lastPos || distance(...lastPos, ...newPos) > 100;
-        if (moved) {
+        if (!lastPos || distance(...lastPos, ...newPos) > 100) {
           lastPos = newPos;
           renderNearbyPlaces(newPos);
         }
@@ -98,69 +102,52 @@ async function initApp() {
     );
   }
 
-// ----------------------------------------------------------
-// UTFORSKPANEL – viser steder i nærheten (med "Se på kart")
-// ----------------------------------------------------------
-function renderNearbyPlaces(userPos) {
-  const list = document.getElementById("nearbyList");
-  if (!list) return;
-  list.innerHTML = "";
+  // ----------------------------------------------------------
+  // 4) UTFORSKPANEL
+  // ----------------------------------------------------------
+  function renderNearbyPlaces(userPos) {
+    const list = document.getElementById("nearbyList");
+    if (!list) return;
+    list.innerHTML = "";
 
-  const places = HG.data.places || [];
-  let sorted = [];
+    const places = HG.data.places || [];
+    let sorted = userPos
+      ? places.map(p => ({
+          ...p,
+          dist: distance(userPos[0], userPos[1], p.lat, p.lon)
+        }))
+        .sort((a, b) => a.dist - b.dist)
+        .slice(0, 6)
+      : places.slice(0, 6);
 
-  // Sorter etter avstand hvis posisjon finnes
-  if (userPos) {
-    sorted = places
-      .map(p => ({
-        ...p,
-        dist: distance(userPos[0], userPos[1], p.lat, p.lon)
-      }))
-      .sort((a, b) => a.dist - b.dist)
-      .slice(0, 6);
-  } else {
-    sorted = places.slice(0, 6);
+    sorted.forEach(p => {
+      const km = p.dist ? (p.dist / 1000).toFixed(2) + " km" : "";
+      const color = getCategoryColor(p.category);
+      const item = document.createElement("div");
+      item.className = "nearby-item";
+      item.style.borderLeft = `4px solid ${color}`;
+      item.innerHTML = `
+        <div class="nearby-info">
+          <strong>${p.name}</strong><br>
+          <small>${p.category || ""} ${km ? "· " + km : ""}</small>
+        </div>
+        <div class="nearby-actions">
+          <button class="btn-quiz" data-id="${p.id}">Start</button>
+          <button class="btn-map" data-id="${p.id}">Se på kart</button>
+        </div>`;
+      item.querySelector(".btn-quiz").onclick = () => startQuizForPlace(p.id);
+      item.querySelector(".btn-map").onclick = () => {
+        map?.focusOnPlace?.(p.id);
+        showToast(`📍 Viser ${p.name} på kartet`);
+      };
+      list.appendChild(item);
+    });
+
+    updateMapLabelArea(userPos);
   }
 
-  sorted.forEach(p => {
-    const km = p.dist ? (p.dist / 1000).toFixed(2) + " km" : "";
-    const color = getCategoryColor(p.category);
-
-    const item = document.createElement("div");
-    item.className = "nearby-item";
-    item.style.borderLeft = `4px solid ${color}`;
-    item.innerHTML = `
-      <div class="nearby-info">
-        <strong>${p.name}</strong><br>
-        <small>${p.category || ""} ${km ? "· " + km : ""}</small>
-      </div>
-      <div class="nearby-actions">
-        <button class="btn-quiz" data-id="${p.id}">Start</button>
-        <button class="btn-map" data-id="${p.id}">Se på kart</button>
-      </div>
-    `;
-
-    // Start quiz-knapp
-    item.querySelector(".btn-quiz").onclick = () => startQuizForPlace(p.id);
-
-    // Se på kart-knapp
-    item.querySelector(".btn-map").onclick = () => {
-      if (map?.focusOnPlace) {
-        map.focusOnPlace(p.id);
-        showToast(`📍 Viser ${p.name} på kartet`);
-      } else {
-        console.warn("map.focusOnPlace mangler i map.js");
-      }
-    };
-
-    list.appendChild(item);
-  });
-
-  updateMapLabelArea(userPos);
-}
-
   // ----------------------------------------------------------
-  // KARTMODUS / ETIKETT
+  // 5) KARTMODUS / ETIKETT
   // ----------------------------------------------------------
   function showRouteOnMap(route) {
     if (route && map?.highlightNearbyPlaces) {
@@ -208,44 +195,35 @@ function renderNearbyPlaces(userPos) {
     }
   }
 
-// ----------------------------------------------------------
-// MINI-PROFIL (viser navn, men ikke redigerbar)
-// ----------------------------------------------------------
-function initMiniProfile() {
-  const miniName = document.getElementById("miniName");
-  const miniStats = document.getElementById("miniStats");
-  const openBtn = document.getElementById("openProfile");
-  if (!miniName || !miniStats) return;
+  // ----------------------------------------------------------
+  // 6) MINI-PROFIL
+  // ----------------------------------------------------------
+  function initMiniProfile() {
+    const miniName = document.getElementById("miniName");
+    const miniStats = document.getElementById("miniStats");
+    const openBtn = document.getElementById("openProfile");
+    if (!miniName || !miniStats) return;
 
-  // --- Sett navn fra lagring ---
-  miniName.textContent = localStorage.getItem("user_name") || "Utforsker";
+    miniName.textContent = localStorage.getItem("user_name") || "Utforsker";
 
-  // --- Statistikk ---
-  function updateStats() {
-    const places = load("visited_places", []);
-    const merits = load("merits_by_category", {});
-    const quizzes = Object.keys(load("quiz_progress", {})).length;
-    miniStats.textContent = `${places.length} steder · ${Object.keys(merits).length} merker · ${quizzes} quizzer`;
-  }
+    function updateStats() {
+      const places = load("visited_places", []);
+      const merits = load("merits_by_category", {});
+      const quizzes = Object.keys(load("quiz_progress", {})).length;
+      miniStats.textContent = `${places.length} steder · ${Object.keys(merits).length} merker · ${quizzes} quizzer`;
+    }
+    updateStats();
 
-  updateStats();
+    if (openBtn) openBtn.onclick = () => (window.location.href = "profile.html");
 
-  // --- Åpne profilside ---
-  if (openBtn) {
-    openBtn.addEventListener("click", () => {
-      window.location.href = "profile.html";
+    window.addEventListener("updateProfile", () => {
+      miniName.textContent = localStorage.getItem("user_name") || "Utforsker";
+      updateStats();
     });
   }
 
-  // --- Oppdater når profilnavn endres ---
-  window.addEventListener("updateProfile", () => {
-    miniName.textContent = localStorage.getItem("user_name") || "Utforsker";
-    updateStats();
-  });
-}
-
   // ----------------------------------------------------------
-  // QUIZRESULTAT
+  // 7) QUIZRESULTAT
   // ----------------------------------------------------------
   function startQuizForPlace(placeId) {
     if (quiz?.startQuiz) quiz.startQuiz(placeId);
@@ -302,7 +280,7 @@ function initMiniProfile() {
   }
 
   // ----------------------------------------------------------
-  // HJELPERE
+  // 8) HJELPERE
   // ----------------------------------------------------------
   function distance(lat1, lon1, lat2, lon2) {
     const R = 6371e3;
@@ -316,18 +294,8 @@ function initMiniProfile() {
     return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   }
 
-  function load(key, def) {
-    try {
-      return JSON.parse(localStorage.getItem(key)) || def;
-    } catch {
-      return def;
-    }
-  }
-
-  function save(key, val) {
-    localStorage.setItem(key, JSON.stringify(val));
-  }
-
+  function load(key, def) { try { return JSON.parse(localStorage.getItem(key)) || def; } catch { return def; } }
+  function save(key, val) { localStorage.setItem(key, JSON.stringify(val)); }
   function showToast(msg) {
     const t = document.getElementById("toast");
     if (!t) return;
@@ -354,11 +322,7 @@ function initMiniProfile() {
   // ----------------------------------------------------------
   // EKSPORT
   // ----------------------------------------------------------
-  return {
-    initApp,
-    handleQuizCompletion,
-    startQuizForPlace
-  };
+  return { initApp, handleQuizCompletion, startQuizForPlace, showRouteOnMap };
 })();
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -366,50 +330,12 @@ document.addEventListener("DOMContentLoaded", () => {
   else app.initApp();
 });
 
-// === WIRING (støtt både direkte kall og event-basert) ======
-document.addEventListener("placeSelected", (e) => {
+// === WIRING (event-baserte kall) ============================
+document.addEventListener("placeSelected", e => {
   const { placeId } = e.detail || {};
   if (placeId && quiz?.startQuiz) quiz.startQuiz(placeId);
 });
 
-document.addEventListener("quizCompleted", (e) => {
-  if (!e?.detail) return;
-  handleQuizCompletion(e.detail);
+document.addEventListener("quizCompleted", e => {
+  if (e?.detail) app.handleQuizCompletion(e.detail);
 });
-
-// === MINI-PROFIL (leser, men endrer ikke navn her) =========
-function initMiniProfile() {
-  const miniName = document.getElementById("miniName");
-  const miniStats = document.getElementById("miniStats");
-  const openBtn  = document.getElementById("openProfile");
-  if (!miniName || !miniStats) return;
-
-  miniName.textContent = localStorage.getItem("user_name") || "Utforsker";
-
-  function updateStats() {
-    const places = load("visited_places", []);
-    const merits = load("merits_by_category", {});
-    const quizzes = Object.keys(load("quiz_progress", {})).length;
-    miniStats.textContent =
-      `${places.length} steder · ${Object.keys(merits).length} merker · ${quizzes} quizzer`;
-  }
-  updateStats();
-
-  if (openBtn) openBtn.onclick = () => (window.location.href = "profile.html");
-
-  // Oppdater når profil-siden lagrer nytt navn/progresjon
-  window.addEventListener("updateProfile", () => {
-    miniName.textContent = localStorage.getItem("user_name") || "Utforsker";
-    updateStats();
-  });
-}
-
-// === QUIZ-FLYT (uendret logikk, men kall oppdaterer profil) =
-function handleQuizCompletion(result) {
-  addCompletedQuizAndMaybePoint(result);
-  updateMeritLevel(result.categoryId, result.points);
-  addVisitedPlace(result.placeId);
-  unlockPeopleAtPlace(result.placeId);
-  window.dispatchEvent(new Event("updateProfile")); // <- viktig
-  showToast(`+${result.points} poeng i ${result.categoryId}!`);
-}
