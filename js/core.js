@@ -104,13 +104,13 @@ async function boot() {
   const settings = await fetchJSON(`${basePath}settings.json`);
   window.appSettings = settings || {};
 
-  // Last inn basisdata
-  const [places, people, badges, routes] = await Promise.all([
-    fetchJSON(`${basePath}places.json`),
-    fetchJSON(`${basePath}people.json`),
-    fetchJSON(`${basePath}badges.json`),
-    fetchJSON(`${basePath}routes.json`),
-  ]);
+ const settings = await fetchJSON("data/settings.json");
+const [places, people, badges, routes] = await Promise.all([
+  fetchJSON("data/places.json"),
+  fetchJSON("data/people.json"),
+  fetchJSON("data/badges.json"),
+  fetchJSON("data/routes.json"),
+]);
 
   // Sett global struktur
   window.HG = window.HG || {};
