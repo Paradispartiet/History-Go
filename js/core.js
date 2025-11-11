@@ -92,6 +92,9 @@ function showToast(msg, ms = 2500) {
 // --------------------------------------
 // BOOT – hovedstart for History Go
 // --------------------------------------
+// --------------------------------------
+// BOOT – hovedstart for History Go
+// --------------------------------------
 async function boot() {
   debug("🔄 Starter History Go ...");
 
@@ -100,45 +103,45 @@ async function boot() {
     ? "History-Go/data/"
     : "data/";
 
-  // Last inn konfig (valgfritt)
-  const settings = await fetchJSON(`${basePath}settings.json`);
-  window.appSettings = settings || {};
+  try {
+    // Last inn konfig (valgfritt)
+    const settings = await fetchJSON(`${basePath}settings.json`);
+    window.appSettings = settings || {};
+    console.log("⚙️ SETTINGS:", settings);
 
- const settings = await fetchJSON("data/settings.json");
-const [places, people, badges, routes] = await Promise.all([
-  fetchJSON("data/places.json"),
-  fetchJSON("data/people.json"),
-  fetchJSON("data/badges.json"),
-  fetchJSON("data/routes.json"),
-]);
+    // Last inn basisdata
+    const [places, people, badges, routes] = await Promise.all([
+      fetchJSON(`${basePath}places.json`),
+      fetchJSON(`${basePath}people.json`),
+      fetchJSON(`${basePath}badges.json`),
+      fetchJSON(`${basePath}routes.json`),
+    ]);
+    console.log("📦 DATA:", { places, people, badges, routes });
 
-  // Sett global struktur
-  window.HG = window.HG || {};
-  HG.data = { places, people, badges, routes };
-  window.data = HG.data; // kompatibilitet med eldre kode
+    // Sett global struktur
+    window.HG = window.HG || {};
+    HG.data = { places, people, badges, routes };
+    window.data = HG.data; // kompatibilitet med eldre kode
 
-  debug(`✅ Data lastet (${places?.length || 0} steder)`);
+    debug(`✅ Data lastet (${places?.length || 0} steder)`);
 
-  // Start appen om initApp finnes
-  if (window.app?.initApp) {
-    app.initApp();
-  } else if (typeof initApp === "function") {
-    initApp();
-  } else {
-    // --- Fallback: vis kart direkte ---
-    if (window.map?.initMap && HG.data.places) {
+    // Start appen om initApp finnes
+    if (window.app?.initApp) {
+      app.initApp();
+    } else if (typeof initApp === "function") {
+      initApp();
+    } else if (window.map?.initMap && HG.data.places) {
+      // --- Fallback: start kart direkte ---
       map.initMap(HG.data.places, HG.data.routes || []);
       debug("🗺️ Kart startet via fallback");
     } else {
       console.warn("⚠️ Ingen initApp-funksjon eller kartmodul funnet.");
     }
+  } catch (err) {
+    console.error("💥 BOOT FEIL:", err);
   }
 }
-window.addEventListener("load", () => {
-  setTimeout(() => {
-    console.log("DEBUG HG.data:", HG.data);
-  }, 1500);
-});
+
 // --------------------------------------
 // AUTO-START
 // --------------------------------------
