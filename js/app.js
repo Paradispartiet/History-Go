@@ -92,63 +92,66 @@ const app = (() => {
     );
   }
 
-  // ----------------------------------------------------------
-  // UTFORSKPANEL
-  // ----------------------------------------------------------
-  function renderNearbyPlaces(userPos) {
-    const list = document.getElementById("nearbyList");
-    if (!list) return;
-    list.innerHTML = "";
+// ----------------------------------------------------------
+// UTFORSKPANEL – viser steder i nærheten (med "Se på kart")
+// ----------------------------------------------------------
+function renderNearbyPlaces(userPos) {
+  const list = document.getElementById("nearbyList");
+  if (!list) return;
+  list.innerHTML = "";
 
-    const places = HG.data.places || [];
-    let sorted = [];
+  const places = HG.data.places || [];
+  let sorted = [];
 
-    if (userPos) {
-      sorted = places
-        .map(p => ({
-          ...p,
-          dist: distance(userPos[0], userPos[1], p.lat, p.lon)
-        }))
-        .sort((a, b) => a.dist - b.dist)
-        .slice(0, 6);
-    } else {
-      sorted = places.slice(0, 6);
-    }
+  // Sorter etter avstand hvis posisjon finnes
+  if (userPos) {
+    sorted = places
+      .map(p => ({
+        ...p,
+        dist: distance(userPos[0], userPos[1], p.lat, p.lon)
+      }))
+      .sort((a, b) => a.dist - b.dist)
+      .slice(0, 6);
+  } else {
+    sorted = places.slice(0, 6);
+  }
 
-    sorted.forEach(p => {
-      const km = p.dist ? (p.dist / 1000).toFixed(2) + " km" : "";
-      const item = document.createElement("div");
-      item.className = "nearby-item";
-      item.innerHTML = `
-        <div class="nearby-info">
-          <strong>${p.name}</strong><br>
-          <small>${p.category || ""} ${km ? "· " + km : ""}</small>
-        </div>
+  sorted.forEach(p => {
+    const km = p.dist ? (p.dist / 1000).toFixed(2) + " km" : "";
+    const color = getCategoryColor(p.category);
+
+    const item = document.createElement("div");
+    item.className = "nearby-item";
+    item.style.borderLeft = `4px solid ${color}`;
+    item.innerHTML = `
+      <div class="nearby-info">
+        <strong>${p.name}</strong><br>
+        <small>${p.category || ""} ${km ? "· " + km : ""}</small>
+      </div>
+      <div class="nearby-actions">
         <button class="btn-quiz" data-id="${p.id}">Start</button>
-      `;
-      item.querySelector("button").onclick = () => startQuizForPlace(p.id);
-      list.appendChild(item);
-    });
+        <button class="btn-map" data-id="${p.id}">Se på kart</button>
+      </div>
+    `;
 
-    updateMapLabelArea(userPos);
-  }
+    // Start quiz-knapp
+    item.querySelector(".btn-quiz").onclick = () => startQuizForPlace(p.id);
 
-  function renderRoutesList() {
-    const list = document.getElementById("routesList");
-    if (!list) return;
-    list.innerHTML = "";
+    // Se på kart-knapp
+    item.querySelector(".btn-map").onclick = () => {
+      if (map?.focusOnPlace) {
+        map.focusOnPlace(p.id);
+        showToast(`📍 Viser ${p.name} på kartet`);
+      } else {
+        console.warn("map.focusOnPlace mangler i map.js");
+      }
+    };
 
-    (HG.data.routes || []).forEach(r => {
-      const div = document.createElement("div");
-      div.className = "route-item";
-      div.innerHTML = `
-        <strong>${r.name}</strong><br>
-        <small>${r.category || ""}</small>
-      `;
-      div.onclick = () => showRouteOnMap(r);
-      list.appendChild(div);
-    });
-  }
+    list.appendChild(item);
+  });
+
+  updateMapLabelArea(userPos);
+}
 
   // ----------------------------------------------------------
   // KARTMODUS / ETIKETT
