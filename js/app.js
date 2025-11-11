@@ -1,11 +1,10 @@
 // ============================================================
-// === HISTORY GO – APP.JS (v3.2, utforsk fast + se kart) =====
+// === HISTORY GO – APP.JS (v3.2, fast utforskpanel + farge) ==
 // ============================================================
 //
-//  • Starter appen etter core.boot()
-//  • Viser nærmeste steder + ruter i utforskpanelet (fast åpent)
-//  • “Se kart” / “Vis panel” og (×) styrer panelet + backdrop
-//  • Live-oppdatering ved bevegelse (watchPosition)
+//  • Utforskpanel er alltid synlig, kart aktiveres via knapp
+//  • Kartetikett viser nærmeste sted eller valgt rute
+//  • Automatisk fargekoding etter kategori
 //  • Håndterer quiz-flyt, progresjon og profiloppdatering
 //
 // ============================================================
@@ -23,32 +22,23 @@ const app = (() => {
     try {
       console.log("📦 Initialiserer History Go...");
 
-      // Vent på data (fra core.boot)
       if (!HG.data || !HG.data.places) {
         console.warn("Data ikke funnet – venter på core.boot()");
         await new Promise(r => setTimeout(r, 400));
       }
 
-      // Bruker
       HG.user = {
         name: localStorage.getItem("user_name") || "Ukjent spiller",
         color: localStorage.getItem("user_color") || "#FFD600"
       };
 
-      // Moduler
       if (map?.initMap) map.initMap(HG.data.places, HG.data.routes);
       if (quiz?.initQuizSystem) quiz.initQuizSystem(HG.data.badges);
       if (Profile?.initProfileMini) Profile.initProfileMini();
 
-      // Hendelser + UI
       attachEventListeners();
       renderRoutesList();
       tryLocateUser();
-
-      wirePanelButtons();             // ← “Se kart” / (×) / backdrop
-      ui.openSheet('exploreSheet');   // start med panelet åpent
-      const backdrop = document.getElementById('backdrop');
-      if (backdrop) backdrop.classList.add('active');
 
       showToast(`Velkommen tilbake, ${HG.user.name}!`);
     } catch (err) {
@@ -57,25 +47,20 @@ const app = (() => {
   }
 
   // ----------------------------------------------------------
-  // 2) GEOLOKASJON & LIVE OPPDATERING
+  // 2) GEOLOKASJON & LIVE-OPPDATERING
   // ----------------------------------------------------------
   function tryLocateUser() {
     if (!navigator.geolocation) {
-      console.warn("Geolokasjon ikke støttet");
       renderNearbyPlaces(null);
       return;
     }
-
     navigator.geolocation.getCurrentPosition(
-      (pos) => {
+      pos => {
         lastPos = [pos.coords.latitude, pos.coords.longitude];
         renderNearbyPlaces(lastPos);
         startWatchingPosition();
       },
-      (err) => {
-        console.warn("Kunne ikke hente posisjon:", err);
-        renderNearbyPlaces(null);
-      },
+      () => renderNearbyPlaces(null),
       { enableHighAccuracy: true, timeout: 6000 }
     );
   }
@@ -83,17 +68,16 @@ const app = (() => {
   function startWatchingPosition() {
     if (!navigator.geolocation) return;
     if (watchId) navigator.geolocation.clearWatch(watchId);
-
     watchId = navigator.geolocation.watchPosition(
-      (pos) => {
+      pos => {
         const newPos = [pos.coords.latitude, pos.coords.longitude];
-        const moved = !lastPos || distance(...lastPos, ...newPos) > 100; // >100 m
+        const moved = !lastPos || distance(...lastPos, ...newPos) > 100;
         if (moved) {
           lastPos = newPos;
           renderNearbyPlaces(newPos);
         }
       },
-      (err) => console.warn("watchPosition-feil:", err),
+      err => console.warn("watchPosition-feil:", err),
       { enableHighAccuracy: true, maximumAge: 5000 }
     );
   }
@@ -136,10 +120,7 @@ const app = (() => {
       list.appendChild(item);
     });
 
-    // Panelet skal være synlig når vi har (re)rendret
-    ui.openSheet("exploreSheet");
-    const backdrop = document.getElementById('backdrop');
-    if (backdrop) backdrop.classList.add('active');
+    updateMapLabelArea(userPos);
   }
 
   function renderRoutesList() {
@@ -159,8 +140,10 @@ const app = (() => {
     });
   }
 
+  // ----------------------------------------------------------
+  // 4) KARTMODUS / ETIKETT
+  // ----------------------------------------------------------
   function showRouteOnMap(route) {
-    closePanel(); // gi full plass til kartet når rute vises
     if (route && map?.highlightNearbyPlaces) {
       const firstStop = route.stops?.[0];
       if (firstStop?.placeId) {
@@ -168,11 +151,47 @@ const app = (() => {
         if (pl) map.highlightNearbyPlaces(pl.lat, pl.lon, 300);
       }
     }
+
+    const color = getCategoryColor(route.category);
+    const mapLabel = document.getElementById("mapLabel");
+    if (mapLabel) {
+      mapLabel.firstChild.textContent = `Kartmodus · ${route.name}`;
+      mapLabel.style.color = color;
+      mapLabel.style.borderColor = color;
+      mapLabel.style.display = "flex";
+    }
+
     showToast(`🗺️ Viser rute: ${route.name}`);
   }
 
+  function updateMapLabelArea(userPos) {
+    const mapLabel = document.getElementById("mapLabel");
+    if (!mapLabel || !userPos || !HG?.data?.places?.length) return;
+
+    // Behold rutetekst hvis aktiv
+    const currentText = mapLabel.firstChild?.textContent || "";
+    if (currentText.includes("rute") || currentText.includes("Ruten")) return;
+
+    const nearest = HG.data.places
+      .map(p => ({
+        ...p,
+        dist: distance(userPos[0], userPos[1], p.lat, p.lon)
+      }))
+      .sort((a, b) => a.dist - b.dist)[0];
+
+    if (nearest && nearest.dist < 1500) {
+      mapLabel.firstChild.textContent = `Kartmodus · ${nearest.name}`;
+      mapLabel.style.color = getCategoryColor(nearest.category);
+      mapLabel.style.borderColor = getCategoryColor(nearest.category);
+    } else {
+      mapLabel.firstChild.textContent = "Kartmodus";
+      mapLabel.style.color = "#FFD600";
+      mapLabel.style.borderColor = "rgba(255,255,255,.15)";
+    }
+  }
+
   // ----------------------------------------------------------
-  // 4) QUIZ OG PROGRESJON
+  // 5) QUIZ OG PROGRESJON
   // ----------------------------------------------------------
   function startQuizForPlace(placeId) {
     if (quiz?.startQuiz) quiz.startQuiz(placeId);
@@ -180,7 +199,6 @@ const app = (() => {
 
   function handleQuizCompletion(result) {
     try {
-      console.log("🏁 Quiz fullført:", result);
       addCompletedQuizAndMaybePoint(result);
       updateMeritLevel(result.categoryId, result.points);
       addVisitedPlace(result.placeId);
@@ -193,9 +211,6 @@ const app = (() => {
     }
   }
 
-  // ----------------------------------------------------------
-  // 5) PROGRESJON
-  // ----------------------------------------------------------
   function addCompletedQuizAndMaybePoint(result) {
     const progress = load("quiz_progress", {});
     progress[result.quizId] = result;
@@ -206,11 +221,9 @@ const app = (() => {
     const merits = load("merits_by_category", {});
     if (!merits[categoryId]) merits[categoryId] = { points: 0, valør: "Bronse" };
     merits[categoryId].points += newPoints;
-
     if (merits[categoryId].points >= 100) merits[categoryId].valør = "Gull";
     else if (merits[categoryId].points >= 50) merits[categoryId].valør = "Sølv";
     else merits[categoryId].valør = "Bronse";
-
     save("merits_by_category", merits);
   }
 
@@ -230,74 +243,17 @@ const app = (() => {
     const allPeople = HG.data.people || [];
     const collected = load("people_collected", []);
     const placePeople = allPeople.filter(p => p.placeId === placeId);
-
     placePeople.forEach(p => {
       if (!collected.find(c => c.id === p.id)) {
         collected.push({ id: p.id, name: p.name, year: p.year });
         showToast(`👤 Ny person: ${p.name}`);
       }
     });
-
     save("people_collected", collected);
   }
 
   // ----------------------------------------------------------
-  // 6) UI-KNAPPER (Se kart / Vis panel / × / backdrop)
-  // ----------------------------------------------------------
-  function wirePanelButtons() {
-    const seeBtn   = document.getElementById('btnSeeMap')   || document.getElementById('toggleMode'); // fallback
-    const closeBtn = document.getElementById('btnCloseSheet');
-    const sheet    = document.getElementById('exploreSheet');
-    const backdrop = document.getElementById('backdrop');
-
-    const openPanel = () => {
-      ui.openSheet('exploreSheet');
-      if (backdrop) backdrop.classList.add('active');
-      if (seeBtn) seeBtn.textContent = 'Se kart';
-    };
-
-    const closePanel = () => {
-      ui.closeSheet('exploreSheet');
-      if (backdrop) backdrop.classList.remove('active');
-      if (seeBtn) seeBtn.textContent = 'Vis panel';
-    };
-
-    // eksporterer for bruk i andre funksjoner (showRouteOnMap)
-    app._openPanel = openPanel;
-    app._closePanel = closePanel;
-
-    if (seeBtn) {
-      seeBtn.onclick = () => {
-        const isOpen = sheet.classList.contains('sheet-open');
-        isOpen ? closePanel() : openPanel();
-      };
-    }
-    if (closeBtn) closeBtn.onclick = closePanel;
-    if (backdrop) backdrop.onclick = closePanel;
-  }
-
-  // Hjelpere for intern bruk
-  function closePanel(){ app._closePanel?.(); }
-  function openPanel(){ app._openPanel?.(); }
-
-  // ----------------------------------------------------------
-  // 7) HENDELSER FRA KART/QUIZ
-  // ----------------------------------------------------------
-  function attachEventListeners() {
-    // Trykk på sted → start quiz
-    document.addEventListener("placeSelected", (e) => {
-      const placeId = e.detail?.placeId;
-      if (placeId) startQuizForPlace(placeId);
-    });
-
-    // Når quiz fullføres
-    document.addEventListener("quizCompleted", (e) => {
-      if (e.detail) handleQuizCompletion(e.detail);
-    });
-  }
-
-  // ----------------------------------------------------------
-  // 8) HJELPEFUNKSJONER
+  // 6) HJELPEFUNKSJONER
   // ----------------------------------------------------------
   function distance(lat1, lon1, lat2, lon2) {
     const R = 6371e3;
@@ -305,9 +261,8 @@ const app = (() => {
     const φ2 = (lat2 * Math.PI) / 180;
     const Δφ = ((lat2 - lat1) * Math.PI) / 180;
     const Δλ = ((lon2 - lon1) * Math.PI) / 180;
-    const a =
-      Math.sin(Δφ / 2) ** 2 +
-      Math.cos(φ1) * Math.cos(φ2) * Math.sin(Δλ / 2) ** 2;
+    const a = Math.sin(Δφ / 2) ** 2 +
+              Math.cos(φ1) * Math.cos(φ2) * Math.sin(Δλ / 2) ** 2;
     return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   }
 
@@ -315,9 +270,8 @@ const app = (() => {
     try { return JSON.parse(localStorage.getItem(key)) || def; }
     catch { return def; }
   }
-  function save(key, val) {
-    localStorage.setItem(key, JSON.stringify(val));
-  }
+  function save(key, val) { localStorage.setItem(key, JSON.stringify(val)); }
+
   function showToast(msg) {
     const t = document.getElementById("toast");
     if (!t) return;
@@ -327,8 +281,22 @@ const app = (() => {
     showToast._timer = setTimeout(() => (t.style.display = "none"), 2400);
   }
 
+  function getCategoryColor(cat = "") {
+    const c = cat.toLowerCase();
+    if (c.includes("historie")) return "#344B80";
+    if (c.includes("vitenskap")) return "#9b59b6";
+    if (c.includes("kunst")) return "#ffb703";
+    if (c.includes("musikk")) return "#ff66cc";
+    if (c.includes("litteratur")) return "#f6c800";
+    if (c.includes("natur")) return "#4caf50";
+    if (c.includes("sport")) return "#2a9d8f";
+    if (c.includes("by")) return "#e63946";
+    if (c.includes("politikk")) return "#c77dff";
+    return "#FFD600";
+  }
+
   // ----------------------------------------------------------
-  // 9) EKSPORT
+  // 7) EKSPORT
   // ----------------------------------------------------------
   return {
     initApp,
