@@ -11,90 +11,86 @@ const map = (() => {
   let leafletMap;
   let markers = {};
 
-  // ----------------------------------------------------------
-  // 1) INITIER KARTET (dag under natt, for lysrute-effekt)
-  // ----------------------------------------------------------
-  function initMap(places = [], routes = []) {
-    if (!window.L) {
-      console.error("Leaflet mangler – kunne ikke starte kart.");
+b// ----------------------------------------------------------
+// 2) MARKØRER (oppdatert for v3.7 med hover og debug-trygghet)
+// ----------------------------------------------------------
+function drawPlaceMarkers(places = []) {
+  if (!leafletMap || !Array.isArray(places)) {
+    console.warn("❗ drawPlaceMarkers: leafletMap eller places mangler");
+    return;
+  }
+
+  // Fjern gamle markører hvis noen finnes
+  Object.values(markers).forEach(m => leafletMap.removeLayer(m));
+  markers = {};
+
+  const visited = load("visited_places", []);
+  const visitedIds = visited.map(v => v.id);
+
+  places.forEach(p => {
+    if (!p.lat || !p.lon) {
+      console.warn(`⚠️ Ugyldige koordinater for sted: ${p.name}`);
       return;
     }
 
-    leafletMap = L.map("map", {
-      zoomControl: false,
-      attributionControl: false,
-      preferCanvas: true,
-      worldCopyJump: false,
-    }).setView([59.9139, 10.7522], 13);
+    const color = catColor(p.category);
+    const visitedHere = visitedIds.includes(p.id);
 
-    // --- Dagkart (under) ---
-    const dayLayer = L.tileLayer(
-      "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-      { maxZoom: 19, zIndex: 1 }
-    ).addTo(leafletMap);
-
-    // --- Nattkart (over) ---
-    const nightLayer = L.tileLayer(
-      "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
-      { maxZoom: 19, opacity: 1, zIndex: 2 }
-    ).addTo(leafletMap);
-
-    drawPlaceMarkers(places);
-    setTimeout(() => leafletMap.invalidateSize(), 400);
-
-    console.log(`🗺️ Kart initialisert med ${places.length} steder (dag/natt-lag aktivert)`);
-
-    map._dayLayer = dayLayer;
-    map._nightLayer = nightLayer;
-  }
-
-  // ----------------------------------------------------------
-  // 2) MARKØRER (med "Ta quiz"-knapp)
-  // ----------------------------------------------------------
-  function drawPlaceMarkers(places) {
-    if (!leafletMap || !Array.isArray(places)) return;
-
-    const visited = load("visited_places", []);
-    const visitedIds = visited.map(v => v.id);
-
-    places.forEach((p) => {
-      const color = catColor(p.category);
-      const visitedHere = visitedIds.includes(p.id);
-
-      const icon = L.divIcon({
-        className: "place-marker",
-        html: `<div style="
-          background:${color};
-          border:${visitedHere ? '2px solid #fff' : '2px solid transparent'};
-          box-shadow:${visitedHere ? '0 0 8px #fff5' : '0 0 5px rgba(0,0,0,.4)'};
-        "></div>`,
-        iconSize: [16, 16],
-        iconAnchor: [8, 8],
-      });
-
-      const m = L.marker([p.lat, p.lon], { icon }).addTo(leafletMap);
-      const popupHTML = `
-        <strong>${p.name}</strong><br>
-        <small>${p.category || ""}</small><br><br>
-        <button class="popup-quiz-btn" data-id="${p.id}">Ta quiz</button>
-      `;
-
-      m.bindPopup(popupHTML);
-      m.on("popupopen", (e) => {
-        const btn = e.popup._contentNode.querySelector(".popup-quiz-btn");
-        if (btn) {
-          btn.onclick = () => {
-            if (window.quiz?.startQuiz) quiz.startQuiz(p.id);
-            e.popup._close();
-          };
-        }
-      });
-
-      m.on("click", () => handlePlaceClick(p.id));
-      markers[p.id] = m;
+    // Lag ikon
+    const icon = L.divIcon({
+      className: "place-marker",
+      html: `<div style="
+        background:${color};
+        border:${visitedHere ? '2px solid #fff' : '2px solid transparent'};
+        box-shadow:${visitedHere ? '0 0 8px #fff5' : '0 0 5px rgba(0,0,0,.4)'};
+        width:14px; height:14px; border-radius:50%;
+        transition: transform .15s ease;
+      "></div>`,
+      iconSize: [16, 16],
+      iconAnchor: [8, 8]
     });
-  }
 
+    // Lag markør og popup
+    const m = L.marker([p.lat, p.lon], { icon }).addTo(leafletMap);
+    const popupHTML = `
+      <strong>${p.name}</strong><br>
+      <small>${p.category || ""}</small><br><br>
+      <button class="popup-quiz-btn" data-id="${p.id}">Ta quiz</button>
+      <button class="popup-map-btn" data-id="${p.id}" style="margin-left:6px;">Se på kart</button>
+    `;
+
+    m.bindPopup(popupHTML);
+
+    // Popup-handlinger
+    m.on("popupopen", e => {
+      const node = e.popup._contentNode;
+      const quizBtn = node.querySelector(".popup-quiz-btn");
+      const mapBtn = node.querySelector(".popup-map-btn");
+
+      if (quizBtn) {
+        quizBtn.onclick = () => {
+          e.popup._close();
+          if (window.quiz?.startQuiz) quiz.startQuiz(p.id);
+        };
+      }
+      if (mapBtn) {
+        mapBtn.onclick = () => {
+          e.popup._close();
+          if (window.map?.focusOnPlace) map.focusOnPlace(p.id);
+        };
+      }
+    });
+
+    // Klikk og hover-effekter
+    m.on("click", () => handlePlaceClick(p.id));
+    m.on("mouseover", () => m._icon.querySelector("div").style.transform = "scale(1.4)");
+    m.on("mouseout",  () => m._icon.querySelector("div").style.transform = "scale(1)");
+
+    markers[p.id] = m;
+  });
+
+  console.log(`📍 Tegnet ${Object.keys(markers).length} steder på kartet`);
+}
   // ----------------------------------------------------------
   // 3) TRYKK PÅ STED
   // ----------------------------------------------------------
