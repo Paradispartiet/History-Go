@@ -2,7 +2,7 @@
 // === HISTORY GO – SW.JS (v1.0, offline + cache-first) =======
 // ============================================================
 
-const VERSION = "v1.0.08";
+const VERSION = "v1.0.09";
 const STATIC_CACHE = `hg-static-${VERSION}`;
 const RUNTIME_CACHE = `hg-runtime-${VERSION}`;
 
