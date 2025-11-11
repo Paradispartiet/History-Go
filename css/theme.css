@@ -398,4 +398,57 @@ html, body {
 @keyframes modalPop {
   from { transform: scale(.96); opacity: 0; }
   to { transform: scale(1); opacity: 1; }
+
+  
 }
+/* ===================================================== */
+/* MINI-PROFIL                                            */
+/* ===================================================== */
+.mini-profile {
+  position: absolute;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(92%, 560px);
+  background: rgba(13,27,42,.82);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 14px;
+  padding: 10px 14px;
+  box-shadow: 0 6px 18px rgba(0,0,0,.35);
+  backdrop-filter: blur(8px);
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mini-profile strong {
+  font-size: 15px;
+  color: #FFD600;
+  outline: none;
+  cursor: text;
+  border-bottom: 1px dashed transparent;
+  transition: border-color .2s ease;
+}
+.mini-profile strong:focus {
+  border-bottom: 1px dashed #FFD600;
+}
+
+.mini-profile p {
+  margin: 0;
+  font-size: 13px;
+  color: rgba(255,255,255,.8);
+}
+
+.mini-btn {
+  background: var(--accent);
+  color: #000;
+  font-weight: 700;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 10px;
+  cursor: pointer;
+  transition: transform .15s ease, background .2s ease;
+}
+.mini-btn:hover { background: #ffea4f; transform: translateY(-1px); }
+
