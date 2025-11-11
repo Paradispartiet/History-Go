@@ -5,12 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>History Go</title>
 
+  <!-- Stil -->
   <link rel="stylesheet" href="css/theme.css">
 
   <!-- Leaflet -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
+  <!-- Ikon og manifest -->
   <link rel="icon" href="bilder/logo_historygo.PNG">
   <link rel="manifest" href="manifest.json">
 </head>
@@ -24,42 +27,64 @@
       <img src="bilder/logo_historygo.PNG" alt="History Go" class="brand-logo">
       <span class="brand-name">History Go</span>
     </div>
-    <div class="header-buttons">
-      <button id="btnSeeMap" class="btn-toggle">Se kart</button>
-      <button id="btnProfile" class="btn-profile" aria-label="Åpne profil">🧭</button>
-    </div>
+    <button id="btnProfile" class="btn-profile" aria-label="Min profil">🧭</button>
   </header>
 
+  <!-- HOVEDINNHOLD -->
   <main id="appMain">
-    <div id="map"></div>
 
-    <!-- Bakgrunnsslør -->
-    <div id="backdrop" class="backdrop active" aria-hidden="true"></div>
+    <!-- KART (bakgrunn) -->
+    <div id="map" class="map-visible"></div>
 
-    <!-- UTFORSK-PANEL: starter åpent -->
-    <section id="exploreSheet" class="sheet sheet-open" aria-live="polite">
+    <!-- PANEL: UTFORSK (fast synlig) -->
+    <div id="exploreSheet" class="sheet sheet-open">
       <div class="sheet-head">
         <h3>Steder i nærheten</h3>
-        <button class="sheet-close" id="btnCloseSheet" aria-label="Skjul panel">×</button>
       </div>
-
       <div id="nearbyList" class="sheet-content"></div>
 
-      <h3 class="sheet-subtitle">Utforsk ruter</h3>
+      <h3 style="padding:10px 16px 0;">Utforsk ruter</h3>
       <div id="routesList" class="sheet-content"></div>
-    </section>
 
+      <h3 style="padding:10px 16px 0;">Dine merker</h3>
+      <div id="badgesList" class="sheet-content"></div>
+    </div>
+
+    <!-- TOAST -->
     <div id="toast" aria-live="polite"></div>
   </main>
 
-  <!-- Modal for quiz -->
-  <div id="modal" class="modal" aria-hidden="true">
+  <!-- MODALER -->
+  <!-- STED -->
+  <div id="placeModal" class="modal" aria-hidden="true">
     <div class="modal-body">
       <div class="modal-head">
-        <h2 id="modalTitle"></h2>
-        <button id="closeModal" aria-label="Lukk">×</button>
+        <h4 id="placeModalTitle"></h4>
+        <button class="close-modal" data-close="placeModal">✕</button>
       </div>
-      <div id="modalContent"></div>
+      <div id="placeModalContent" class="modal-content"></div>
+    </div>
+  </div>
+
+  <!-- RUTE -->
+  <div id="routeModal" class="modal" aria-hidden="true">
+    <div class="modal-body">
+      <div class="modal-head">
+        <h4 id="routeModalTitle"></h4>
+        <button class="close-modal" data-close="routeModal">✕</button>
+      </div>
+      <div id="routeModalContent" class="modal-content"></div>
+    </div>
+  </div>
+
+  <!-- MERKE -->
+  <div id="badgeModal" class="modal" aria-hidden="true">
+    <div class="modal-body">
+      <div class="modal-head">
+        <h4 id="badgeModalTitle"></h4>
+        <button class="close-modal" data-close="badgeModal">✕</button>
+      </div>
+      <div id="badgeModalContent" class="modal-content"></div>
     </div>
   </div>
 
@@ -72,9 +97,11 @@
   <script src="js/profile.js"></script>
   <script src="js/data.js"></script>
 
+  <!-- Service Worker -->
   <script>
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('sw.js')
+      navigator.serviceWorker
+        .register('sw.js')
         .then(() => console.log('✅ Service Worker registrert'))
         .catch(err => console.warn('SW-feil:', err));
     }
