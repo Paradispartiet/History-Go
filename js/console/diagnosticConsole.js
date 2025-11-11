@@ -191,6 +191,7 @@
     help() {
       printBlock('Kommandoer', {
         'status': 'kort oversikt (map, data, storage, events)',
+        'mapcheck': 'sjekker kartstatus (Leaflet, initMap, data osv.)',
         'events': 'siste 20 hendelser',
         'routes check': 'valider ruter mot places',
         'storage check': 'list nøkler og størrelse',
@@ -201,6 +202,41 @@
       }, 'cmd');
     },
 
+    mapcheck() {
+      const mapEl = document.getElementById("map");
+      const exists   = !!mapEl;
+      const hasSize  = exists && (mapEl.offsetHeight > 0 && mapEl.offsetWidth > 0);
+      const leaflet  = (typeof L !== "undefined");
+      const initFn   = typeof map?.initMap === "function";
+      const dataOK   = !!(window.HG?.data?.places?.length);
+      const lastEvt  = (state.eventsLog.slice(-1)[0] || null);
+
+      const result = {
+        "🗺️  #map-element": exists ? "✅ finnes" : "❌ mangler",
+        "📏  størrelse > 0": hasSize ? "✅ ja" : "❌ null høyde/bredde",
+        "🧭  Leaflet (L)": leaflet ? "✅ lastet" : "❌ ikke funnet",
+        "⚙️  map.initMap()": initFn ? "✅ definert" : "❌ mangler",
+        "📦  HG.data.places": dataOK ? `✅ ${HG.data.places.length} steder` : "❌ ingen data",
+      };
+
+      printBlock("Kart-diagnose", result);
+
+      if (!hasSize)  print("💡 Sjekk CSS: `#map { position:absolute; inset:0; height:100vh; }`", "warn");
+      if (!leaflet)  print("💡 Leaflet ikke lastet – sjekk rekkefølgen på <script> i index.html.", "warn");
+      if (!initFn)   print("💡 `map.initMap` mangler – sjekk js/map.js er lastet før app.js.", "warn");
+      if (!dataOK)   print("💡 Data ikke lastet – sjekk `core.js` → `boot()` og JSON-stier.", "warn");
+
+      if (lastEvt) {
+        printBlock("Siste app-event", {
+          name: lastEvt.name,
+          time: new Date(lastEvt.t).toLocaleTimeString(),
+          detail: lastEvt.detail ?? null
+        });
+      } else {
+        print("ℹ️ Ingen app-events registrert ennå.", "cmd");
+      }
+    },
+    
     status() {
       printBlock('Map', readMapStatus());
       printBlock('Data', readDataStatus());
