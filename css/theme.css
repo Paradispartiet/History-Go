@@ -452,3 +452,54 @@ html, body {
 }
 .mini-btn:hover { background: #ffea4f; transform: translateY(-1px); }
 
+/* ===== TIDSLINJE ===== */
+.timeline {
+  display:flex; flex-direction:column; gap:14px;
+  border-left:2px solid var(--panel-border);
+  padding-left:12px; margin-top:10px;
+}
+.timeline-item{position:relative;padding-left:10px;}
+.timeline-item::before{
+  content:"•";position:absolute;left:-14px;top:0;
+  color:var(--accent,#FFD600);font-size:18px;
+}
+.timeline-item h3{margin:0;font-size:1rem;color:var(--text);}
+.timeline-item p{margin:2px 0 0;color:var(--text-dim);font-size:.9rem;}
+.timeline-item img{width:100%;max-width:280px;border-radius:8px;margin-top:6px;border:1px solid var(--panel-border);}
+.timeline-item.person img{width:80px;height:80px;border-radius:50%;object-fit:cover;border:2px solid var(--panel-border);}
+.timeline.badges{flex-direction:row;flex-wrap:wrap;gap:12px;border:none;padding-left:0;}
+.timeline.badges .timeline-item{width:72px;text-align:center;padding-left:0;}
+.timeline.badges .timeline-item::before{content:none;}
+.timeline.badges img{width:64px;height:64px;border-radius:50%;border:2px solid var(--panel-border);background:var(--panel);}
+.timeline.badges h3{margin:4px 0 0;font-size:.8rem;color:var(--text-dim);}
+
+/* ===== BADGE-MODAL ===== */
+#badgeModal .modal-body{
+  max-width:420px;background:var(--panel);
+  border:1px solid var(--panel-border);
+  border-radius:12px;padding:14px;color:var(--text);
+}
+#badgeModal img{width:96px;height:96px;border-radius:50%;margin-bottom:10px;}
+
+/* ===================================================== */
+/* DEL-PROFIL-KNAPP                                      */
+/* ===================================================== */
+.share-section {
+  margin: 20px 0 60px;
+  text-align: center;
+}
+
+.btn-share {
+  background: var(--accent, #FFD600);
+  color: #000;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.btn-share:hover {
+  background: #ffea6b;
+}
