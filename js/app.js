@@ -149,26 +149,7 @@ const app = (() => {
   // ----------------------------------------------------------
   // 5) KARTMODUS / ETIKETT
   // ----------------------------------------------------------
-  function showRouteOnMap(route) {
-    if (route && map?.highlightNearbyPlaces) {
-      const firstStop = route.stops?.[0];
-      if (firstStop?.placeId) {
-        const pl = HG.data.places.find(p => p.id === firstStop.placeId);
-        if (pl) map.highlightNearbyPlaces(pl.lat, pl.lon, 300);
-      }
-    }
-
-    const color = getCategoryColor(route.category);
-    const mapLabel = document.getElementById("mapLabel");
-    if (mapLabel) {
-      mapLabel.firstChild.textContent = `Kartmodus · ${route.name}`;
-      mapLabel.style.color = color;
-      mapLabel.style.borderColor = color;
-      mapLabel.style.display = "flex";
-    }
-
-    showToast(`🗺️ Viser rute: ${route.name}`);
-  }
+  
 
   function updateMapLabelArea(userPos) {
     const mapLabel = document.getElementById("mapLabel");
