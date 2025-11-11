@@ -199,26 +199,41 @@ const app = (() => {
     }
   }
 
-  // ----------------------------------------------------------
-  // MINI-PROFIL
-  // ----------------------------------------------------------
-  function initMiniProfile() {
-    const miniName = document.getElementById("miniName");
-    const miniStats = document.getElementById("miniStats");
-    if (!miniName || !miniStats) return;
+// ----------------------------------------------------------
+// MINI-PROFIL (viser navn, men ikke redigerbar)
+// ----------------------------------------------------------
+function initMiniProfile() {
+  const miniName = document.getElementById("miniName");
+  const miniStats = document.getElementById("miniStats");
+  const openBtn = document.getElementById("openProfile");
+  if (!miniName || !miniStats) return;
 
-    miniName.textContent = HG.user.name;
-    miniName.oninput = () => {
-      const newName = miniName.textContent.trim();
-      localStorage.setItem("user_name", newName);
-      HG.user.name = newName;
-    };
+  // --- Sett navn fra lagring ---
+  miniName.textContent = localStorage.getItem("user_name") || "Utforsker";
 
+  // --- Statistikk ---
+  function updateStats() {
     const places = load("visited_places", []);
     const merits = load("merits_by_category", {});
     const quizzes = Object.keys(load("quiz_progress", {})).length;
     miniStats.textContent = `${places.length} steder · ${Object.keys(merits).length} merker · ${quizzes} quizzer`;
   }
+
+  updateStats();
+
+  // --- Åpne profilside ---
+  if (openBtn) {
+    openBtn.addEventListener("click", () => {
+      window.location.href = "profile.html";
+    });
+  }
+
+  // --- Oppdater når profilnavn endres ---
+  window.addEventListener("updateProfile", () => {
+    miniName.textContent = localStorage.getItem("user_name") || "Utforsker";
+    updateStats();
+  });
+}
 
   // ----------------------------------------------------------
   // QUIZRESULTAT
