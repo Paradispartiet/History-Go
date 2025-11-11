@@ -7,7 +7,9 @@
 //  - Initielle hjelpefunksjoner og boot()
 // ============================================================
 
-// Enkel debug-boks (vises nederst i hjørnet)
+// --------------------------------------
+// DEBUG-BOKS
+// --------------------------------------
 function debug(msg) {
   const box = document.getElementById("debugBox") || (() => {
     const b = document.createElement("div");
@@ -88,11 +90,8 @@ function showToast(msg, ms = 2500) {
 }
 
 // --------------------------------------
-// BOOT
+// BOOT – hovedstart for History Go
 // --------------------------------------
-//
-// Leser konfig og starter appen
-//
 async function boot() {
   debug("🔄 Starter History Go ...");
 
@@ -108,9 +107,6 @@ async function boot() {
     fetchJSON("data/routes.json"),
   ]);
 
-const routes = await fetchJSON("data/routes.json");
-HG.data = { places, people, badges, routes };
-  
   // Sett global struktur
   window.HG = window.HG || {};
   HG.data = { places, people, badges, routes };
@@ -123,5 +119,7 @@ HG.data = { places, people, badges, routes };
   else if (typeof initApp === "function") initApp();
 }
 
-// Start automatisk når DOM er klar
+// --------------------------------------
+// AUTO-START
+// --------------------------------------
 document.addEventListener("DOMContentLoaded", boot);
