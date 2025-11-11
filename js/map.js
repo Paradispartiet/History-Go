@@ -179,57 +179,74 @@ const map = (() => {
       pulseMarker(placeId);
     }
   }
+// ----------------------------------------------------------
+// VIS RUTE PÅ KART – ekte gangvei + låst tykkelse
+// ----------------------------------------------------------
+async function showRouteNow(route) {
+  if (!route || !leafletMap) return;
+ui?.showToast?.("⏳ Henter rute...");
+  // Fjern tidligere rute
+  clearActiveRoute();
 
-  // ----------------------------------------------------------
-  // 8) VIS RUTE PÅ KART (dag under natt med dynamisk lysrute)
-  // ----------------------------------------------------------
-  function showRouteNow(route) {
-    if (!route || !window.L || !leafletMap) return;
+  // 1. Hent koordinater for stedene i ruten
+  const coordPairs = (route.stops || [])
+    .map(s => {
+      const pl = HG.data.places.find(p => p.id === s.placeId);
+      return pl ? [pl.lon, pl.lat] : null; // lon, lat (for OSRM)
+    })
+    .filter(Boolean);
 
-    // Fjern tidligere ruter
-    if (map._activeLineOuter) leafletMap.removeLayer(map._activeLineOuter);
-    if (map._activeLineInner) leafletMap.removeLayer(map._activeLineInner);
+  if (coordPairs.length < 2) return;
 
-    const coords = (route.stops || [])
-      .map(s => {
-        const pl = HG.data.places.find(p => p.id === s.placeId);
-        return pl ? [pl.lat, pl.lon] : null;
-      })
-      .filter(Boolean);
-    if (coords.length < 2) return;
-
-    // 🌗 Fade mellom natt og dag under ruten
-    if (map._nightLayer) map._nightLayer.setOpacity(0.88);
-    if (map._dayLayer) map._dayLayer.setOpacity(1.0);
-
-    // --- Lysere slør som dekker gater og fasader (gjennomsiktig) ---
-    map._activeLineOuter = L.polyline(coords, {
-      color: "#ffffff",
-      weight: 34,
-      opacity: 0.12,
-      lineJoin: "round",
-      lineCap: "round"
-    }).addTo(leafletMap);
-
-    // --- Midtlinje med varm glød ---
-    map._activeLineInner = L.polyline(coords, {
-      color: "#ffe97f",
-      weight: 5,
-      opacity: 0.95,
-      lineJoin: "round",
-      lineCap: "round"
-    }).addTo(leafletMap);
-
-    leafletMap.fitBounds(L.latLngBounds(coords).pad(0.2));
-
-    // Etter 12 sekunder – fade natt tilbake
-    setTimeout(() => {
-      if (map._nightLayer) map._nightLayer.setOpacity(1.0);
-      if (map._dayLayer) map._dayLayer.setOpacity(0.9);
-    }, 12000);
-
-    console.log(`🌕 Daglys langs rute aktivert: ${route.name}`);
+  // 2. Hent ekte gangrute fra OSRM (OpenStreetMap)
+  const query = coordPairs.map(c => c.join(',')).join(';');
+  const url = `https://router.project-osrm.org/route/v1/foot/${query}?overview=full&geometries=geojson`;
+  let walkCoords = [];
+  try {
+    const res = await fetch(url);
+    const json = await res.json();
+    walkCoords = json.routes[0].geometry.coordinates.map(c => [c[1], c[0]]);
+  } catch (err) {
+    console.warn("Kunne ikke hente fotrute:", err);
+    // Fallback til rett linje mellom punktene
+    walkCoords = coordPairs.map(c => [c[1], c[0]]);
   }
+
+  // 3. Tegn lagene (i shadowPane = fast tykkelse)
+  map._activeGlow = L.polyline(walkCoords, {
+    color: "#fffbe6",
+    weight: 30,
+    opacity: 0.08,
+    pane: 'shadowPane',
+    lineJoin: "round",
+    lineCap: "round"
+  }).addTo(leafletMap);
+
+  map._activeLineOuter = L.polyline(walkCoords, {
+    color: "#fff6b0",
+    weight: 8,
+    opacity: 0.22,
+    pane: 'shadowPane',
+    lineJoin: "round",
+    lineCap: "round"
+  }).addTo(leafletMap);
+
+  map._activeLineInner = L.polyline(walkCoords, {
+    color: "#ffe97f",
+    weight: 4,
+    opacity: 0.9,
+    pane: 'shadowPane',
+    lineJoin: "round",
+    lineCap: "round"
+  }).addTo(leafletMap);
+
+  // 4. Zoom pent til hele ruten
+  leafletMap.fitBounds(L.latLngBounds(walkCoords).pad(0.2));
+
+  console.log(`🥾 Fotrute aktivert: ${route.name}`);
+}
+
+  
 
   // ----------------------------------------------------------
   // 9) EKSPORT
