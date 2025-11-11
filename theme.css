@@ -1025,3 +1025,128 @@ button.primary.small:hover { opacity: .9; }
   font-weight: 700;
   color: #f6c800;
 }
+/* ===================================================== */
+/* 17) PROFILSIDE – KORT, GRID OG LISTE                  */
+/* ===================================================== */
+
+.profile-section {
+  margin: 22px auto;
+  padding: 14px 16px;
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  max-width: 640px;
+}
+
+.profile-section h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: var(--accent);
+}
+
+/* Profilkortet med statistikk */
+#profileCard {
+  text-align: center;
+  padding-top: 20px;
+}
+
+#profileName {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+#profileCard .stats {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+}
+
+#profileCard .stats div {
+  text-align: center;
+}
+
+#profileCard .stats span {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+#profileCard small {
+  color: var(--text-dim);
+  font-size: 0.8rem;
+}
+
+/* Grid for merker og personer */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 10px;
+}
+
+.grid img,
+.grid .badge-icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--panel-border);
+}
+
+/* Liste for steder og tidslinje */
+.list,
+.timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.list li,
+.timeline li {
+  padding: 8px 0;
+  border-bottom: 1px solid var(--panel-border);
+}
+
+.list li:last-child,
+.timeline li:last-child {
+  border-bottom: none;
+}
+
+.muted {
+  color: var(--text-dim);
+  font-size: 0.9rem;
+}
+
+/* Knapper */
+#actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn {
+  background: var(--accent);
+  color: #000;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn:hover {
+  background: #ffea70;
+}
+
+.btn.danger {
+  background: #c23;
+  color: #fff;
+}
+
+.btn.danger:hover {
+  background: #e33;
+}
