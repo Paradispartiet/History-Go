@@ -1,13 +1,13 @@
 // ============================================================
-// === HISTORY GO – DEV CONSOLE (v2.0, multiline + logg) ======
+// === HISTORY GO – DEV CONSOLE (v2.1, timestamp + autoscroll)
 // ============================================================
 //
-//  • Åpnes med tilde (~)
-//  • Shift+Enter = ny linje
-//  • Skriver alt til intern app.log (localStorage)
-//  • Henter historikk via kommandoer:
-//      → show log
-//      → clear log
+//  • Åpnes med ~ (tilde)
+//  • Shift+Enter for multiline
+//  • Intern logg lagres i localStorage (app_log)
+//  • Kommandoer:
+//      help, list, clear storage/log, show log/detailed,
+//      debug on/off, log HG.data, reload
 // ============================================================
 
 (function() {
@@ -63,6 +63,7 @@
     consoleEl.appendChild(inputEl);
     document.body.appendChild(consoleEl);
 
+    // --- multiline + enter ---
     inputEl.addEventListener("keydown", e => {
       if (e.key === "Enter" && !e.shiftKey) {
         e.preventDefault();
@@ -72,7 +73,7 @@
       }
     });
 
-    console.log("🧠 DevConsole v2.0 initialisert");
+    console.log("🧠 DevConsole v2.1 initialisert");
   }
 
   // ----------------------------------------------------------
@@ -83,6 +84,31 @@
     consoleOpen = !consoleOpen;
     consoleEl.style.display = consoleOpen ? "flex" : "none";
     if (consoleOpen) inputEl.focus();
+  }
+
+  // ----------------------------------------------------------
+  // HJELPEFUNKSJONER
+  // ----------------------------------------------------------
+  const timestamp = () => new Date().toLocaleTimeString("no-NO", { hour12: false });
+  const loadLog = () => JSON.parse(localStorage.getItem(logKey) || "[]");
+  const saveLog = arr => localStorage.setItem(logKey, JSON.stringify(arr.slice(-500)));
+
+  function logLine(text, isError = false) {
+    const time = timestamp();
+    const div = document.createElement("div");
+    div.innerHTML = `<span class="timestamp">[${time}]</span> ${text}`;
+    if (isError) div.classList.add("error");
+    outputEl.appendChild(div);
+    outputEl.scrollTop = outputEl.scrollHeight;
+
+    const log = loadLog();
+    log.push({ time, text });
+    saveLog(log);
+  }
+
+  function logList(arr, key) {
+    if (!arr?.length) return logLine("(tom liste)");
+    arr.slice(0, 10).forEach(e => logLine(`- ${e[key] || "(ingen navn)"}`));
   }
 
   // ----------------------------------------------------------
@@ -98,7 +124,7 @@
         case "help":
           logLine("Kommandoer:");
           logLine(" help, list places|people|routes");
-          logLine(" clear storage, show log, clear log, reload");
+          logLine(" clear storage|log, show log|detailed, reload");
           logLine(" debug on/off, log HG.data");
           break;
 
@@ -121,9 +147,13 @@
 
         case "show":
           if (arg1 === "log") {
-            const entries = JSON.parse(localStorage.getItem(logKey) || "[]");
+            const entries = loadLog();
             logLine(`📜 Logg (${entries.length} linjer):`);
-            entries.slice(-50).forEach(e => logLine(e));
+            entries.slice(-50).forEach(e => logLine(e.text));
+          } else if (arg1 === "detailed") {
+            const entries = loadLog();
+            logLine(`📜 Detaljert logg (${entries.length} linjer):`);
+            entries.slice(-50).forEach(e => logLine(`[${e.time}] ${e.text}`));
           }
           break;
 
@@ -142,41 +172,17 @@
           break;
 
         case "log":
-          if (arg1 === "hg.data") {
-            logLine(JSON.stringify(HG.data, null, 2));
-          } else {
-            logLine("Ukjent log-kommando.");
-          }
+          if (arg1 === "hg.data") logLine(JSON.stringify(HG.data, null, 2));
+          else logLine("Ukjent log-kommando.");
           break;
 
         default:
-          // eval — trygg eval med output
           const result = eval(cmd);
-          logLine(result === undefined ? "(ingen returverdi)" : result);
+          logLine(result === undefined ? "(ingen returverdi)" : String(result));
       }
     } catch (err) {
       logLine(`⚠️ Feil: ${err.message}`, true);
     }
-  }
-
-  // ----------------------------------------------------------
-  // LOGG-HJELPERE
-  // ----------------------------------------------------------
-  function logLine(text, isError = false) {
-    const div = document.createElement("div");
-    div.textContent = text;
-    if (isError) div.style.color = "#f66";
-    outputEl.appendChild(div);
-    outputEl.scrollTop = outputEl.scrollHeight;
-
-    const log = JSON.parse(localStorage.getItem(logKey) || "[]");
-    log.push(text);
-    localStorage.setItem(logKey, JSON.stringify(log.slice(-500))); // maks 500 linjer
-  }
-
-  function logList(arr, key) {
-    if (!arr?.length) return logLine("(tom liste)");
-    arr.slice(0, 10).forEach(e => logLine(`- ${e[key] || "(ingen navn)"}`));
   }
 
   // ----------------------------------------------------------
