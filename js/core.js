@@ -108,6 +108,9 @@ async function boot() {
     fetchJSON("data/routes.json"),
   ]);
 
+const routes = await fetchJSON("data/routes.json");
+HG.data = { places, people, badges, routes };
+  
   // Sett global struktur
   window.HG = window.HG || {};
   HG.data = { places, people, badges, routes };
