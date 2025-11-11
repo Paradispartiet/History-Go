@@ -24,33 +24,45 @@ const map = (() => {
   let leafletMap;
   let markers = {};
 
-  // ----------------------------------------------------------
-  // 1) INITIER KARTET
-  // ----------------------------------------------------------
-  function initMap(places = [], routes = []) {
-    if (!window.L) {
-      console.error("Leaflet mangler – kunne ikke starte kart.");
-      return;
-    }
-
-    leafletMap = L.map("map", {
-      zoomControl: false,
-      attributionControl: false,
-      preferCanvas: true,
-      worldCopyJump: false,
-    }).setView([59.9139, 10.7522], 13);
-
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-  attribution: '©OpenStreetMap, ©Carto',
-  subdomains: 'abcd',
-  maxZoom: 19
-}).addTo(leafletMap);
-
-    drawPlaceMarkers(places);
-
-    setTimeout(() => leafletMap.invalidateSize(), 400);
-    console.log(`🗺️ Kart initialisert med ${places.length} steder`);
+// ----------------------------------------------------------
+// 1) INITIER KARTET (dag under natt, for lysrute-effekt)
+// ----------------------------------------------------------
+function initMap(places = [], routes = []) {
+  if (!window.L) {
+    console.error("Leaflet mangler – kunne ikke starte kart.");
+    return;
   }
+
+  leafletMap = L.map("map", {
+    zoomControl: false,
+    attributionControl: false,
+    preferCanvas: true,
+    worldCopyJump: false,
+  }).setView([59.9139, 10.7522], 13);
+
+  // --- Dagkart (under) ---
+  const dayLayer = L.tileLayer(
+    "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+    { maxZoom: 19, zIndex: 1 }
+  ).addTo(leafletMap);
+
+  // --- Nattkart (over) ---
+  const nightLayer = L.tileLayer(
+    "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
+    { maxZoom: 19, opacity: 1, zIndex: 2 }
+  ).addTo(leafletMap);
+
+  drawPlaceMarkers(places);
+
+  // Viktig for Safari/iPad – oppdater størrelse etter innlasting
+  setTimeout(() => leafletMap.invalidateSize(), 400);
+
+  console.log(`🗺️ Kart initialisert med ${places.length} steder (dag/natt-lag aktivert)`);
+
+  // Gjør lagene tilgjengelige hvis vi vil endre opasitet senere
+  map._dayLayer = dayLayer;
+  map._nightLayer = nightLayer;
+}
 
   // ----------------------------------------------------------
   // 2) MARKØRER (med "Ta quiz"-knapp)
@@ -188,49 +200,54 @@ const map = (() => {
       pulseMarker(placeId);
     }
   }
-  // ----------------------------------------------------------
-  // VIS RUTE PÅ KART (lyst dag-sti på mørkt nattkart)
-  // ----------------------------------------------------------
-  function showRouteNow(route) {
-    if (!route || !window.L || !leafletMap) return;
+// ----------------------------------------------------------
+// VIS RUTE PÅ KART (gjennomsiktig dag-lys på nattkart)
+// ----------------------------------------------------------
+function showRouteNow(route) {
+  if (!route || !window.L || !leafletMap) return;
 
-    // Fjern tidligere rute hvis en finnes
-    if (map._activeLineOuter) leafletMap.removeLayer(map._activeLineOuter);
-    if (map._activeLineInner) leafletMap.removeLayer(map._activeLineInner);
+  // Fjern tidligere rute hvis en finnes
+  if (map._activeLineOuter) leafletMap.removeLayer(map._activeLineOuter);
+  if (map._activeLineInner) leafletMap.removeLayer(map._activeLineInner);
 
-    // Hent koordinater fra ruten
-    const coords = (route.stops || [])
-      .map(s => {
-        const pl = HG.data.places.find(p => p.id === s.placeId);
-        return pl ? [pl.lat, pl.lon] : null;
-      })
-      .filter(Boolean);
+  // Hent koordinater fra stops[]
+  const coords = (route.stops || [])
+    .map(s => {
+      const pl = HG.data.places.find(p => p.id === s.placeId);
+      return pl ? [pl.lat, pl.lon] : null;
+    })
+    .filter(Boolean);
 
-    if (coords.length < 2) return;
+  if (coords.length < 2) return;
 
-    // Lys effekt rundt stien (nattlys)
-    map._activeLineOuter = L.polyline(coords, {
-      color: "#fff6b0",     // myk gyllen glød
-      weight: 8,
-      opacity: 0.18,
-      lineJoin: "round",
-      lineCap: "round"
-    }).addTo(leafletMap);
+  // --- Juster nattlagets opasitet for tydelig lyskontrast ---
+  if (map._nightLayer) map._nightLayer.setOpacity(0.9);
+  if (map._dayLayer) map._dayLayer.setOpacity(1.0);
 
-    // Selve fotstien – tynnere og sterkere
-    map._activeLineInner = L.polyline(coords, {
-      color: "#ffe97f",     // varm lys-gul sti
-      weight: 4,
-      opacity: 0.9,
-      lineJoin: "round",
-      lineCap: "round"
-    }).addTo(leafletMap);
+  // --- Lysere glød (bred, svak gjennomsiktighet) ---
+  map._activeLineOuter = L.polyline(coords, {
+    color: "#ffffff",
+    weight: 32,          // dekker gate + fasader
+    opacity: 0.15,       // delvis transparent – avslører dagkart under
+    lineJoin: "round",
+    lineCap: "round"
+  }).addTo(leafletMap);
 
-    // Zoom til ruten
-    leafletMap.fitBounds(L.latLngBounds(coords).pad(0.2));
+  // --- Selve fotstien (lysere midtlinje) ---
+  map._activeLineInner = L.polyline(coords, {
+    color: "#ffe97f",
+    weight: 5,
+    opacity: 0.9,
+    lineJoin: "round",
+    lineCap: "round"
+  }).addTo(leafletMap);
 
-    console.log(`🟡 Viser rute: ${route.name}`);
-  }
+  // --- Zoom til ruten ---
+  leafletMap.fitBounds(L.latLngBounds(coords).pad(0.2));
+
+  console.log(`🌕 Viser rute med daglys-effekt: ${route.name}`);
+}
+  
   // ----------------------------------------------------------
   // 8) EKSPORT
   // ----------------------------------------------------------
