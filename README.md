@@ -1,3 +1,114 @@
+# 🧭 HISTORY GO — CHANGELOG v3.7  
+**Utgivelsesdato:** 11. november 2025  
+**Utviklingsfase:** Stabil kjerne, testfase før full profilintegrasjon  
+
+---
+
+## 🚀 **Nyheter og hovedendringer**
+### 🔸 Full modulstruktur (uavhengige, samkjørte filer)
+Appen er nå delt i separate moduler som kan lastes, oppdateres og testes isolert:
+- `core.js` – ansvar for lasting av JSON, lagring og `boot()`.
+- `app.js` – hovedmotor for logikk, brukerflyt, progresjon og eventhåndtering.
+- `map.js` – viser mørkt nattkart og lysende fotruter.
+- `routes.js` – nytt system for visning og aktivering av ruter.
+- `ui.js` – felles visuell modul for sheets, toasts og modaler.
+- `quiz.js` – styrer quizflyt og scoring (oppdatert for kompatibilitet med v3.7).
+- `profile.js` – håndterer profil, merker, personer og tidslinje (pågående oppgradering).
+
+---
+
+## 🗺️ **Kart og ruter**
+- Ny **nattmodus** med sort bakgrunn (`dark_all` fra CartoDB).  
+- Lysende fotruter tegnes i tre lag:
+  - **Glød (opacity 0.08)** – illusjon av dagslys under.
+  - **Ytre linje (opacity 0.22)** – diffus varme.
+  - **Indre linje (opacity 0.9)** – klar gyllen sti.
+- Ruter hentes fra `routes.json` og vises med fargekode per kategori.  
+- “Se på kart”-knapp i utforskpanelet åpner valgt rute direkte.  
+
+---
+
+## 📍 **Steder og posisjon**
+- Brukerens posisjon spores med `watchPosition()` og oppdateres automatisk.
+- Nærmeste steder vises i et permanent **Utforskpanel**.
+- Hvert sted har:
+  - avstand i km  
+  - kategori  
+  - to knapper: **Start quiz** og **Se på kart**
+- Kartvisningen fokuserer mykt på valgt sted via `map.focusOnPlace()`.
+
+---
+
+## 🎖️ **Progresjonssystem**
+Alt lagres lokalt via `localStorage`, og oppdateres løpende:
+
+| Type | Nøkkel | Innhold |
+|------|---------|----------|
+| Fullførte quizzer | `quiz_progress` | quizId, poeng, kategori |
+| Merker | `merits_by_category` | poengsum og valør (Bronse/Sølv/Gull) |
+| Besøkte steder | `visited_places` | navn, år, beskrivelse, koordinater |
+| Personer | `people_collected` | navn, år, sted, bilde |
+
+Oppdatering skjer automatisk gjennom `window.dispatchEvent("updateProfile")`, slik at profil og mini-profil alltid viser siste status.
+
+---
+
+## 👤 **Mini-profil**
+- Viser brukernavn og antall steder, merker og quizzer.
+- Oppdateres automatisk ved hvert poeng eller sted.
+- Klikk på profilnavnet åpner `profile.html`.
+- Leser og oppdaterer brukerdata fra `localStorage` (`user_name`, `user_color`).
+
+---
+
+## 🧩 **UI og effekter (v3.4)**
+- Toastmeldinger med fade-in/out animasjon.  
+- Sheets (bunnark) og modaler med glidende bevegelse.  
+- Globalt bakgrunnsslør som aktiveres automatisk ved `sheetOpened/sheetClosed`.  
+- Alle UI-elementer kan kalles direkte via `ui.showToast()`, `ui.openModal()`, `ui.closeSheet()`, etc.
+
+---
+
+## ⚙️ **Kjernesystem (`core.js`)**
+- Ny, stabil `boot()`-funksjon som laster:
+
+  data/places.json
+data/people.json
+data/badges.json
+data/routes.json
+
+
+- Setter `HG.data` og starter appen automatisk når DOM er klar.
+- Trygg feilhåndtering og sanntids-debug via `debug(msg)` i grønn boks nederst på skjermen.
+
+---
+
+## 🧠 **Kvalitet og robusthet**
+- Alle funksjoner kapslet i moduler (`(() => { ... })()`) → ingen globale variabler lekker.  
+- Alle kritiske hendelser (`sheetOpened`, `updateProfile`, `quizCompleted`) håndteres konsekvent.  
+- Klare visuelle effekter uten z-index-konflikter.  
+- Kompatibel med iPad (Safari) og desktop.
+
+---
+
+## 🧭 **Neste milepæl: v3.8**
+1. **Fullføre profilvinduet (profile.js v2.1)**  
+ – Vis badges, personer og tidslinje med trykkbare kort.  
+2. **Quiz.js finpuss**  
+ – Sikre riktig poenglogikk og kategori-synk med merits.  
+3. **README + teknisk dokumentasjon**  
+ – Samlet arkitektur, modulrekkefølge og dataflyt-diagram.  
+4. **iPad-test og ytelsesmåling**  
+ – Finjustere animasjoner, cache og visningsflyt.  
+
+---
+
+## 🏁 **Versjonssignatur**
+> **History Go – v3.7 (Night Trails Build)**  
+> Strukturert, modulær, og klar for full funksjonalitet.  
+> Lysruter på mørkt kart. Alt henger sammen.
+
+
 # 🗺️ HISTORY GO — README v5.4
 
 ![Status](https://img.shields.io/badge/status-active-brightgreen) ![Version](https://img.shields.io/badge/version-v5.4-blue) ![Offline](https://img.shields.io/badge/offline-supported-yellow) ![License](https://img.shields.io/badge/license-CC--BY--SA--4.0-orange)
