@@ -4,199 +4,53 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Min profil | History Go</title>
-
-  <!-- Stil -->
   <link rel="stylesheet" href="theme.css">
-  <link rel="icon" href="bilder/logo_historygo.PNG">
-
-  <!-- Leaflet (for bakgrunnskartet) -->
-  <link rel="stylesheet"
-        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
-  <!-- HTML2Canvas (eksport av profilkort) -->
-  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
-
-  <style>
-    html, body {
-      margin: 0; padding: 0; height: 100%;
-      font-family: system-ui, sans-serif;
-      color: #fff; background: #0a1929; overflow: hidden;
-    }
-
-    /* --- Kartbakgrunn --- */
-    #profileMap {
-      position: fixed; inset: 0; z-index: 1;
-      filter: brightness(.85) saturate(1.1);
-    }
-
-    /* --- Header --- */
-    header.site-header {
-      position: fixed; top: 0; left: 0; right: 0;
-      height: 56px; display: flex; align-items: center;
-      justify-content: space-between;
-      padding: 0 14px;
-      background: rgba(0,0,0,.45);
-      backdrop-filter: blur(6px);
-      border-bottom: 1px solid rgba(255,255,255,.08);
-      z-index: 5;
-    }
-    .back-link { color: #FFD600; font-size: 22px; text-decoration: none; }
-    .brand { display: flex; align-items: center; gap: 6px; }
-    .brand-logo { height: 30px; }
-    .brand-name { font-weight: 600; }
-
-    /* --- Hovedinnhold --- */
-    main {
-      position: relative; z-index: 4;
-      margin-top: 56px;
-      height: calc(100% - 56px);
-      overflow-y: auto;
-      background: linear-gradient(to bottom,
-        rgba(10,25,41,.45), rgba(10,25,41,.9));
-      backdrop-filter: blur(8px);
-      padding: 16px;
-    }
-
-    .panel {
-      background: rgba(13,27,42,.68);
-      border: 1px solid rgba(255,255,255,.1);
-      border-radius: 14px;
-      box-shadow:
-        0 0 18px rgba(0,0,0,.35),
-        0 0 25px rgba(255,255,255,.05) inset;
-      padding: 14px; margin-bottom: 18px;
-    }
-
-    h2, h3 { margin: 0 0 8px; font-weight: 600;
-      text-shadow: 0 1px 2px rgba(0,0,0,.5); }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-      gap: 10px;
-    }
-
-    /* --- Profilkort --- */
-    .profile-avatar {
-      width: 60px; height: 60px; border-radius: 50%;
-      background: #FFD600;
-      box-shadow: 0 0 10px rgba(255,214,0,.5);
-    }
-
-    /* --- Merker / personer / steder --- */
-    .badge-item, .place-thumb { text-align: center; font-size: 13px; cursor: pointer; }
-    .badge-item img, .place-thumb img {
-      width: 64px; height: 64px; border-radius: 10px;
-      object-fit: cover; margin-bottom: 4px;
-      box-shadow: 0 0 10px rgba(0,0,0,.4);
-    }
-    .person-avatar {
-      width: 70px; height: 70px; border-radius: 50%;
-      border: 2px solid #fff; object-fit: cover; cursor: pointer;
-      box-shadow: 0 0 10px rgba(0,0,0,.4);
-    }
-
-    /* --- Tidslinje --- */
-    .timeline-item {
-      display: flex; align-items: center; justify-content: space-between;
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: 10px; padding: 8px 10px; margin-bottom: 8px;
-      cursor: pointer; transition: background .2s ease, transform .2s ease;
-    }
-    .timeline-item:hover {
-      background: rgba(255,255,255,.12);
-      transform: translateY(-2px);
-    }
-    .timeline-thumb {
-      width: 46px; height: 46px; border-radius: 6px;
-      object-fit: cover; margin-left: 10px;
-      box-shadow: 0 0 8px rgba(0,0,0,.5);
-    }
-
-    /* --- Toast (brukes av ui.js) --- */
-    #toast {
-      position: fixed; bottom: 16px; left: 50%;
-      transform: translateX(-50%);
-      background: rgba(0,0,0,.7); color: #fff;
-      padding: 8px 16px; border-radius: 8px;
-      font-size: 14px; display: none; z-index: 2000;
-      box-shadow: 0 0 10px rgba(0,0,0,.5);
-    }
-  </style>
+  <script defer src="profile.js"></script>
 </head>
+<body class="profile-page">
 
-<body>
-  <div id="profileMap"></div>
-
-  <!-- HEADER -->
-  <header class="site-header">
-    <a href="index.html" class="back-link">←</a>
-    <div class="brand">
-      <img src="bilder/logo_historygo.PNG" alt="History Go" class="brand-logo">
-      <span class="brand-name">Min profil</span>
-    </div>
-  </header>
-
-  <!-- HOVEDINNHOLD -->
-  <main id="profileMain">
-    <section class="panel">
-      <div style="display:flex;align-items:center;gap:10px;">
-        <div id="profileAvatar" class="profile-avatar"></div>
-        <div>
-          <h2 id="profileName">Spiller</h2>
-          <small id="profileLevel">Historiker · nivå 1</small>
-        </div>
-      </div>
-      <p style="margin-top:10px;">
-        <strong id="placesCount">0</strong> steder · 
-        <strong id="peopleCount">0</strong> personer · 
-        <strong id="badgesCount">0</strong> merker
-      </p>
-    </section>
-
-    <section class="panel">
-      <h3>Merker</h3>
-      <div id="badgesGrid" class="grid"></div>
-    </section>
-
-    <section class="panel">
-      <h3>Personer du har møtt</h3>
-      <div id="peopleGrid" class="grid"></div>
-    </section>
-
-    <section class="panel">
-      <h3>Steder du har besøkt</h3>
-      <div id="placesGrid" class="grid"></div>
-    </section>
-
-    <section class="panel">
-      <h3>Tidslinje</h3>
-      <div id="timelineList"></div>
-    </section>
-
-    <section class="panel" style="text-align:center;">
-      <button id="exportProfileBtn" class="btn">Eksporter profil</button>
-      <button id="resetProfileBtn" class="btn" style="margin-left:8px;">Nullstill</button>
-    </section>
-
-    <div id="toast" aria-live="polite"></div>
-  </main>
-
-  <!-- Felles modal fra ui.js -->
-  <div id="modal" aria-hidden="true">
-    <div class="modal-body">
-      <div class="modal-head">
-        <h3 id="modalTitle"></h3>
-        <button id="closeModal">×</button>
-      </div>
-      <div id="modalContent"></div>
-    </div>
+<header class="site-header">
+  <a href="index.html" class="brand back-link">←</a>
+  <div class="brand">
+    <img src="bilder/logo_historygo.PNG" alt="History Go logo" class="brand-logo">
+    <span class="brand-name">Min profil</span>
   </div>
+</header>
 
-  <!-- JS -->
-  <script src="core.js"></script>
-  <script src="ui.js"></script>
-  <script src="profile.js"></script>
+<main>
+  <section class="profile-card">
+    <h1 class="name" contenteditable="true">Spiller</h1>
+    <div class="profile-stats">
+      <p>Fullførte quizer: <span class="stat-quizzes">0</span></p>
+      <p>Besøkte steder: <span class="stat-places">0</span></p>
+      <p>Opplåste merker: <span class="stat-badges">0</span></p>
+      <p>Poeng: <span class="stat-points">0</span></p>
+      <p>Nivå: <span class="stat-level">1</span></p>
+    </div>
+  </section>
+
+  <section class="timeline-section">
+    <h2>Tidslinje</h2>
+    <div id="timeline" class="timeline"></div>
+
+    <h2>Personer du har møtt</h2>
+    <div id="peopleTimeline" class="timeline"></div>
+
+    <h2>Merker og prestasjoner</h2>
+    <div id="badgeTimeline" class="timeline badges"></div>
+  </section>
+</main>
+
+<!-- Modal for merker -->
+<div id="badgeModal" class="modal" aria-hidden="true">
+  <div class="modal-body">
+    <div class="modal-head">
+      <h3 id="badgeModalTitle">Merke</h3>
+      <button class="close-btn" onclick="closeBadgeModal()">✕</button>
+    </div>
+    <div id="badgeModalContent"></div>
+  </div>
+</div>
+
 </body>
 </html>
