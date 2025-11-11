@@ -303,7 +303,7 @@ const app = (() => {
   // ----------------------------------------------------------
   // EKSPORT
   // ----------------------------------------------------------
-  return { initApp, handleQuizCompletion, startQuizForPlace, showRouteOnMap };
+  return { initApp, handleQuizCompletion, startQuizForPlace };
 })();
 
 document.addEventListener("DOMContentLoaded", () => {
