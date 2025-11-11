@@ -185,6 +185,17 @@ const map = (() => {
   }
 
   // ----------------------------------------------------------
+  // 9) FOKUSER PÅ STED (for "Se på kart"-knappen)
+  // ----------------------------------------------------------
+  function focusOnPlace(placeId) {
+    const pl = (HG?.data?.places || []).find(p => p.id === placeId);
+    if (pl && leafletMap) {
+      leafletMap.setView([pl.lat, pl.lon], 16);
+      pulseMarker(placeId); // liten animasjon for å fremheve stedet
+    }
+  }
+  
+  // ----------------------------------------------------------
   // EKSPORT
   // ----------------------------------------------------------
   return {
