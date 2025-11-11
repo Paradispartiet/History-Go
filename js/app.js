@@ -359,3 +359,83 @@ document.addEventListener("DOMContentLoaded", () => {
   if (typeof boot === "function") boot();
   else app.initApp();
 });
+
+// === WIRING (støtt både direkte kall og event-basert) ======
+document.addEventListener("placeSelected", (e) => {
+  const { placeId } = e.detail || {};
+  if (placeId && quiz?.startQuiz) quiz.startQuiz(placeId);
+});
+
+document.addEventListener("quizCompleted", (e) => {
+  if (!e?.detail) return;
+  handleQuizCompletion(e.detail);
+});
+
+// === MINI-PROFIL (leser, men endrer ikke navn her) =========
+function initMiniProfile() {
+  const miniName = document.getElementById("miniName");
+  const miniStats = document.getElementById("miniStats");
+  const openBtn  = document.getElementById("openProfile");
+  if (!miniName || !miniStats) return;
+
+  miniName.textContent = localStorage.getItem("user_name") || "Utforsker";
+
+  function updateStats() {
+    const places = load("visited_places", []);
+    const merits = load("merits_by_category", {});
+    const quizzes = Object.keys(load("quiz_progress", {})).length;
+    miniStats.textContent =
+      `${places.length} steder · ${Object.keys(merits).length} merker · ${quizzes} quizzer`;
+  }
+  updateStats();
+
+  if (openBtn) openBtn.onclick = () => (window.location.href = "profile.html");
+
+  // Oppdater når profil-siden lagrer nytt navn/progresjon
+  window.addEventListener("updateProfile", () => {
+    miniName.textContent = localStorage.getItem("user_name") || "Utforsker";
+    updateStats();
+  });
+}
+
+// === ROUTES-LISTE + “Se på kart” (ingen auto-gul rute) =====
+function renderRoutesList() {
+  const list = document.getElementById("routesList");
+  if (!list) return;
+  list.innerHTML = "";
+
+  (HG.data.routes || []).forEach(r => {
+    const div = document.createElement("div");
+    div.className = "route-item";
+    div.innerHTML = `
+      <strong>${r.name}</strong><br>
+      <small>${r.category || ""}</small>
+      <div style="margin-top:6px">
+        <button class="btn-quiz" data-id="${r.id}">Se på kart</button>
+      </div>
+    `;
+    div.querySelector("button").onclick = () => {
+      if (map?.showRoute) map.showRoute(r); // tegner først ved valg
+      const color = getCategoryColor(r.category || "");
+      const mapLabel = document.getElementById("mapLabel");
+      if (mapLabel) {
+        mapLabel.firstChild && (mapLabel.firstChild.textContent = `Kartmodus · ${r.name}`);
+        mapLabel.style.color = color;
+        mapLabel.style.borderColor = color;
+        mapLabel.style.display = "flex";
+      }
+      showToast(`🗺️ Viser rute: ${r.name}`);
+    };
+    list.appendChild(div);
+  });
+}
+
+// === QUIZ-FLYT (uendret logikk, men kall oppdaterer profil) =
+function handleQuizCompletion(result) {
+  addCompletedQuizAndMaybePoint(result);
+  updateMeritLevel(result.categoryId, result.points);
+  addVisitedPlace(result.placeId);
+  unlockPeopleAtPlace(result.placeId);
+  window.dispatchEvent(new Event("updateProfile")); // <- viktig
+  showToast(`+${result.points} poeng i ${result.categoryId}!`);
+}
