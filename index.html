@@ -5,16 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>History Go</title>
 
-  <!-- Stil -->
   <link rel="stylesheet" href="css/theme.css">
 
   <!-- Leaflet -->
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-  <!-- Ikon og manifest -->
   <link rel="icon" href="bilder/logo_historygo.PNG">
   <link rel="manifest" href="manifest.json">
 </head>
@@ -29,35 +25,34 @@
       <span class="brand-name">History Go</span>
     </div>
     <div class="header-buttons">
-      <button id="toggleMap" class="btn-toggle">Se kart</button>
+      <button id="btnSeeMap" class="btn-toggle">Se kart</button>
       <button id="btnProfile" class="btn-profile" aria-label="Åpne profil">🧭</button>
     </div>
   </header>
 
-  <!-- INNHOLD -->
   <main id="appMain">
-    <!-- Kart -->
-    <div id="map" class="map-hidden"></div>
-    <div id="mapLabel" class="map-label" hidden>
-      KARTMODUS
-      <button id="closeMap" class="btn-close-map" aria-label="Lukk kart">×</button>
-    </div>
+    <div id="map"></div>
 
-    <!-- Utforskpanel -->
-    <div id="exploreSheet" class="sheet sheet-open">
+    <!-- Bakgrunnsslør -->
+    <div id="backdrop" class="backdrop active" aria-hidden="true"></div>
+
+    <!-- UTFORSK-PANEL: starter åpent -->
+    <section id="exploreSheet" class="sheet sheet-open" aria-live="polite">
       <div class="sheet-head">
         <h3>Steder i nærheten</h3>
+        <button class="sheet-close" id="btnCloseSheet" aria-label="Skjul panel">×</button>
       </div>
+
       <div id="nearbyList" class="sheet-content"></div>
 
-      <h3 style="padding:10px 16px 0;">Utforsk ruter</h3>
+      <h3 class="sheet-subtitle">Utforsk ruter</h3>
       <div id="routesList" class="sheet-content"></div>
-    </div>
+    </section>
 
     <div id="toast" aria-live="polite"></div>
   </main>
 
-  <!-- Modal -->
+  <!-- Modal for quiz -->
   <div id="modal" class="modal" aria-hidden="true">
     <div class="modal-body">
       <div class="modal-head">
@@ -68,7 +63,7 @@
     </div>
   </div>
 
-  <!-- JS -->
+  <!-- JS-moduler -->
   <script src="js/core.js"></script>
   <script src="js/ui.js"></script>
   <script src="js/map.js"></script>
@@ -78,32 +73,8 @@
   <script src="js/data.js"></script>
 
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const mapEl = document.getElementById("map");
-      const sheet = document.getElementById("exploreSheet");
-      const toggleBtn = document.getElementById("toggleMap");
-      const label = document.getElementById("mapLabel");
-      const closeBtn = document.getElementById("closeMap");
-
-      function openMap() {
-        mapEl.classList.add("map-visible");
-        sheet.classList.add("sheet-hidden");
-        label.hidden = false;
-      }
-
-      function closeMapView() {
-        mapEl.classList.remove("map-visible");
-        sheet.classList.remove("sheet-hidden");
-        label.hidden = true;
-      }
-
-      toggleBtn.addEventListener("click", openMap);
-      closeBtn.addEventListener("click", closeMapView);
-    });
-
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker
-        .register('sw.js')
+      navigator.serviceWorker.register('sw.js')
         .then(() => console.log('✅ Service Worker registrert'))
         .catch(err => console.warn('SW-feil:', err));
     }
