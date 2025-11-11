@@ -134,7 +134,11 @@ const [places, people, badges, routes] = await Promise.all([
     }
   }
 }
-
+window.addEventListener("load", () => {
+  setTimeout(() => {
+    console.log("DEBUG HG.data:", HG.data);
+  }, 1500);
+});
 // --------------------------------------
 // AUTO-START
 // --------------------------------------
