@@ -1,10 +1,11 @@
 // ============================================================
-// === HISTORY GO – APP.JS (v3.1, live nærhet og utforsk) ====
+// === HISTORY GO – APP.JS (v3.2, utforsk fast + se kart) =====
 // ============================================================
 //
 //  • Starter appen etter core.boot()
-//  • Viser nærmeste steder + ruter i utforskpanelet
-//  • Oppdaterer automatisk når brukeren beveger seg
+//  • Viser nærmeste steder + ruter i utforskpanelet (fast åpent)
+//  • “Se kart” / “Vis panel” og (×) styrer panelet + backdrop
+//  • Live-oppdatering ved bevegelse (watchPosition)
 //  • Håndterer quiz-flyt, progresjon og profiloppdatering
 //
 // ============================================================
@@ -12,7 +13,6 @@
 const HG = window.HG || {};
 
 const app = (() => {
-
   let lastPos = null;
   let watchId = null;
 
@@ -23,36 +23,32 @@ const app = (() => {
     try {
       console.log("📦 Initialiserer History Go...");
 
+      // Vent på data (fra core.boot)
       if (!HG.data || !HG.data.places) {
         console.warn("Data ikke funnet – venter på core.boot()");
         await new Promise(r => setTimeout(r, 400));
       }
 
+      // Bruker
       HG.user = {
         name: localStorage.getItem("user_name") || "Ukjent spiller",
         color: localStorage.getItem("user_color") || "#FFD600"
       };
 
-      // Start moduler
+      // Moduler
       if (map?.initMap) map.initMap(HG.data.places, HG.data.routes);
       if (quiz?.initQuizSystem) quiz.initQuizSystem(HG.data.badges);
       if (Profile?.initProfileMini) Profile.initProfileMini();
 
+      // Hendelser + UI
       attachEventListeners();
-
       renderRoutesList();
-      tryLocateUser(); // start geolokasjon og utforskpanel
+      tryLocateUser();
 
-      // Utforsk-knapp
-      const toggleBtn = document.getElementById("toggleMode");
-      if (toggleBtn) {
-        toggleBtn.onclick = () => {
-          const sheet = document.getElementById("exploreSheet");
-          const isOpen = sheet.classList.contains("sheet-open");
-          if (isOpen) ui.closeSheet("exploreSheet");
-          else ui.openSheet("exploreSheet");
-        };
-      }
+      wirePanelButtons();             // ← “Se kart” / (×) / backdrop
+      ui.openSheet('exploreSheet');   // start med panelet åpent
+      const backdrop = document.getElementById('backdrop');
+      if (backdrop) backdrop.classList.add('active');
 
       showToast(`Velkommen tilbake, ${HG.user.name}!`);
     } catch (err) {
@@ -91,7 +87,7 @@ const app = (() => {
     watchId = navigator.geolocation.watchPosition(
       (pos) => {
         const newPos = [pos.coords.latitude, pos.coords.longitude];
-        const moved = !lastPos || distance(...lastPos, ...newPos) > 100; // >100m
+        const moved = !lastPos || distance(...lastPos, ...newPos) > 100; // >100 m
         if (moved) {
           lastPos = newPos;
           renderNearbyPlaces(newPos);
@@ -140,7 +136,10 @@ const app = (() => {
       list.appendChild(item);
     });
 
+    // Panelet skal være synlig når vi har (re)rendret
     ui.openSheet("exploreSheet");
+    const backdrop = document.getElementById('backdrop');
+    if (backdrop) backdrop.classList.add('active');
   }
 
   function renderRoutesList() {
@@ -161,7 +160,7 @@ const app = (() => {
   }
 
   function showRouteOnMap(route) {
-    ui.closeSheet("exploreSheet");
+    closePanel(); // gi full plass til kartet når rute vises
     if (route && map?.highlightNearbyPlaces) {
       const firstStop = route.stops?.[0];
       if (firstStop?.placeId) {
@@ -195,7 +194,7 @@ const app = (() => {
   }
 
   // ----------------------------------------------------------
-  // 5) PROGRESJONSFUNKSJONER
+  // 5) PROGRESJON
   // ----------------------------------------------------------
   function addCompletedQuizAndMaybePoint(result) {
     const progress = load("quiz_progress", {});
@@ -243,7 +242,62 @@ const app = (() => {
   }
 
   // ----------------------------------------------------------
-  // 6) HJELPEFUNKSJONER
+  // 6) UI-KNAPPER (Se kart / Vis panel / × / backdrop)
+  // ----------------------------------------------------------
+  function wirePanelButtons() {
+    const seeBtn   = document.getElementById('btnSeeMap')   || document.getElementById('toggleMode'); // fallback
+    const closeBtn = document.getElementById('btnCloseSheet');
+    const sheet    = document.getElementById('exploreSheet');
+    const backdrop = document.getElementById('backdrop');
+
+    const openPanel = () => {
+      ui.openSheet('exploreSheet');
+      if (backdrop) backdrop.classList.add('active');
+      if (seeBtn) seeBtn.textContent = 'Se kart';
+    };
+
+    const closePanel = () => {
+      ui.closeSheet('exploreSheet');
+      if (backdrop) backdrop.classList.remove('active');
+      if (seeBtn) seeBtn.textContent = 'Vis panel';
+    };
+
+    // eksporterer for bruk i andre funksjoner (showRouteOnMap)
+    app._openPanel = openPanel;
+    app._closePanel = closePanel;
+
+    if (seeBtn) {
+      seeBtn.onclick = () => {
+        const isOpen = sheet.classList.contains('sheet-open');
+        isOpen ? closePanel() : openPanel();
+      };
+    }
+    if (closeBtn) closeBtn.onclick = closePanel;
+    if (backdrop) backdrop.onclick = closePanel;
+  }
+
+  // Hjelpere for intern bruk
+  function closePanel(){ app._closePanel?.(); }
+  function openPanel(){ app._openPanel?.(); }
+
+  // ----------------------------------------------------------
+  // 7) HENDELSER FRA KART/QUIZ
+  // ----------------------------------------------------------
+  function attachEventListeners() {
+    // Trykk på sted → start quiz
+    document.addEventListener("placeSelected", (e) => {
+      const placeId = e.detail?.placeId;
+      if (placeId) startQuizForPlace(placeId);
+    });
+
+    // Når quiz fullføres
+    document.addEventListener("quizCompleted", (e) => {
+      if (e.detail) handleQuizCompletion(e.detail);
+    });
+  }
+
+  // ----------------------------------------------------------
+  // 8) HJELPEFUNKSJONER
   // ----------------------------------------------------------
   function distance(lat1, lon1, lat2, lon2) {
     const R = 6371e3;
@@ -274,7 +328,7 @@ const app = (() => {
   }
 
   // ----------------------------------------------------------
-  // 7) EKSPORT
+  // 9) EKSPORT
   // ----------------------------------------------------------
   return {
     initApp,
