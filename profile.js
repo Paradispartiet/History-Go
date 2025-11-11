@@ -19,18 +19,24 @@ function renderProfileCard() {
   const visited         = JSON.parse(localStorage.getItem("visited_places") || "{}");
   const peopleCollected = JSON.parse(localStorage.getItem("people_collected") || "{}");
   const merits          = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
+  const quizProgress    = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
 
   const visitedCount = Object.keys(visited).length;
-  const peopleCount  = Object.keys(peopleCollected).length;
+  const quizCount = Object.values(quizProgress)
+    .map(v => Array.isArray(v.completed) ? v.completed.length : 0)
+    .reduce((a,b) => a+b, 0);
+  const streak = Number(localStorage.getItem("user_streak") || 0);
 
-  const favEntry = Object.entries(merits)
-    .sort((a, b) => (b[1].points || 0) - (a[1].points || 0))[0];
-  const favCat = favEntry ? favEntry[0] : "Ingen ennå";
+  // Skriv ut til de faktiske feltene i din HTML
+  const nameEl   = document.getElementById("profileName");
+  const visitEl  = document.getElementById("statVisited");
+  const quizEl   = document.getElementById("statQuizzes");
+  const streakEl = document.getElementById("statStreak");
 
-  document.getElementById("profileName").textContent  = name;
-  document.getElementById("statPlaces").textContent   = `${visitedCount} steder`;
-  document.getElementById("statPeople").textContent   = `${peopleCount} personer`;
-  document.getElementById("statCategory").textContent = `Favoritt: ${favCat}`;
+  if (nameEl)   nameEl.textContent   = name;
+  if (visitEl)  visitEl.textContent  = visitedCount;
+  if (quizEl)   quizEl.textContent   = quizCount;
+  if (streakEl) streakEl.textContent = streak;
 }
 
 
@@ -79,7 +85,7 @@ function openProfileModal() {
 // HISTORIEKORT – TIDSLINJE
 // --------------------------------------
 function renderTimelineProfile() {
-  const body = document.getElementById("timelineBody");
+  const body = document.getElementById("timelineList");
   const bar  = document.getElementById("timelineProgressBar");
   const txt  = document.getElementById("timelineProgressText");
   if (!body) return;
@@ -157,6 +163,38 @@ async function renderMerits() {
   });
 }
 
+// --------------------------------------
+// PERSONER DU HAR LÅST OPP (AVATARER)
+// --------------------------------------
+function renderCollection() {
+  const grid = document.getElementById("peopleGrid");
+  if (!grid) return;
+
+  const peopleCollected = JSON.parse(localStorage.getItem("people_collected") || "{}");
+
+  if (!Object.keys(peopleCollected).length) {
+    grid.innerHTML = `<div class="muted">Ingen personer låst opp ennå.</div>`;
+    return;
+  }
+
+  const collected = PEOPLE.filter(p => peopleCollected[p.id]);
+  collected.sort((a, b) => a.name.localeCompare(b.name));
+
+  grid.innerHTML = collected.map(p => `
+    <div class="avatar-card" data-person="${p.id}">
+      <img src="${p.image || `bilder/kort/people/${p.id}.PNG`}" 
+           alt="${p.name}" class="avatar-img">
+      <div class="avatar-name">${p.name}</div>
+    </div>
+  `).join("");
+
+  grid.querySelectorAll(".avatar-card").forEach(card => {
+    card.addEventListener("click", () => {
+      const person = PEOPLE.find(p => p.id === card.dataset.person);
+      if (person) showPersonPopup(person);
+    });
+  });
+}
 
 // --------------------------------------
 // MERKE-MODAL (viser info + quiz-liste)
