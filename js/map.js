@@ -135,22 +135,34 @@ function handlePlaceClick(placeId) {
     leafletMap.flyTo([pl.lat, pl.lon], 16, { duration: 1.2 });
   }
 }
-  // ----------------------------------------------------------
-  // 4) VISUELLE EFFEKTER (PULS)
-  // ----------------------------------------------------------
-  function pulseMarker(id) {
-    const el = markers[id]?._icon?.querySelector("div");
-    if (!el) return;
-    el.animate(
-      [
-        { transform: "scale(1)", opacity: 1 },
-        { transform: "scale(1.5)", opacity: 0.4 },
-        { transform: "scale(1)", opacity: 1 },
-      ],
-      { duration: 700, easing: "ease-out" }
-    );
-  }
+  
+// ----------------------------------------------------------
+// 4) VISUELLE EFFEKTER – PULS PÅ MARKØR
+// ----------------------------------------------------------
+function pulseMarker(id) {
+  const el = markers[id]?._icon?.querySelector("div");
+  if (!el) return;
 
+  // Nullstill eventuell tidligere animasjon
+  el.style.transition = "none";
+  el.style.transform = "scale(1)";
+  el.style.opacity = "1";
+
+  // Trigger reflow (for å nullstille animasjonen helt)
+  void el.offsetWidth;
+
+  // Start ny puls
+  el.style.transition = "transform 0.6s cubic-bezier(0.33, 1, 0.68, 1), opacity 0.6s ease";
+  el.style.transform = "scale(1.7)";
+  el.style.opacity = "0.4";
+
+  // Gå tilbake til normal
+  setTimeout(() => {
+    el.style.transform = "scale(1)";
+    el.style.opacity = "1";
+  }, 600);
+}
+  
   // ----------------------------------------------------------
   // 5) NÆRHET & HJELPERE
   // ----------------------------------------------------------
