@@ -15,34 +15,40 @@ const app = (() => {
   let lastPos = null;
   let watchId = null;
 
-  // ----------------------------------------------------------
-  // INITIERING
-  // ----------------------------------------------------------
-  async function initApp() {
-    try {
-      console.log("📦 Initialiserer History Go...");
+// ----------------------------------------------------------
+// INITIERING (RYDDET OG MODULÆR)
+// ----------------------------------------------------------
+async function initApp() {
+  try {
+    console.log("📦 Initialiserer History Go...");
 
-      if (!HG.data || !HG.data.places) {
-        console.warn("Data ikke funnet – venter på core.boot()");
-        await new Promise(r => setTimeout(r, 400));
-      }
-
-      HG.user = {
-        name: localStorage.getItem("user_name") || "Ukjent spiller",
-        color: localStorage.getItem("user_color") || "#FFD600"
-      };
-
-      if (map?.initMap) map.initMap(HG.data.places, HG.data.routes);
-      initMiniProfile();
-      renderRoutesList();
-      tryLocateUser();
-      attachEventListeners();
-
-      showToast(`Velkommen tilbake, ${HG.user.name}!`);
-    } catch (err) {
-      console.error("Feil ved oppstart:", err);
+    // Vent til dataene er lastet inn fra core.js
+    if (!HG.data || !HG.data.places) {
+      console.warn("Data ikke funnet – venter på core.boot()");
+      await new Promise(r => setTimeout(r, 400));
     }
+
+    // Hent eller opprett brukerprofil
+    HG.user = {
+      name: localStorage.getItem("user_name") || "Ukjent spiller",
+      color: localStorage.getItem("user_color") || "#FFD600"
+    };
+
+    // --- Start del-moduler ---
+    if (map?.initMap) map.initMap(HG.data.places, HG.data.routes);
+    if (Routes?.initRoutes) Routes.initRoutes();      // 👈 ny modul
+    if (quiz?.initQuizSystem) quiz.initQuizSystem();  // sørg for at quiz.js er klar
+    initMiniProfile();                                // vis liten profil øverst
+    tryLocateUser();                                  // finn brukerposisjon
+    attachEventListeners();                           // legg til klikk-hendelser
+
+    // Velkomstmelding
+    showToast(`Velkommen tilbake, ${HG.user.name}!`);
+
+  } catch (err) {
+    console.error("Feil ved oppstart:", err);
   }
+}
 
   // ----------------------------------------------------------
   // HENDELSER
@@ -395,38 +401,6 @@ function initMiniProfile() {
   window.addEventListener("updateProfile", () => {
     miniName.textContent = localStorage.getItem("user_name") || "Utforsker";
     updateStats();
-  });
-}
-
-// === ROUTES-LISTE + “Se på kart” (ingen auto-gul rute) =====
-function renderRoutesList() {
-  const list = document.getElementById("routesList");
-  if (!list) return;
-  list.innerHTML = "";
-
-  (HG.data.routes || []).forEach(r => {
-    const div = document.createElement("div");
-    div.className = "route-item";
-    div.innerHTML = `
-      <strong>${r.name}</strong><br>
-      <small>${r.category || ""}</small>
-      <div style="margin-top:6px">
-        <button class="btn-quiz" data-id="${r.id}">Se på kart</button>
-      </div>
-    `;
-    div.querySelector("button").onclick = () => {
-      if (map?.showRoute) map.showRoute(r); // tegner først ved valg
-      const color = getCategoryColor(r.category || "");
-      const mapLabel = document.getElementById("mapLabel");
-      if (mapLabel) {
-        mapLabel.firstChild && (mapLabel.firstChild.textContent = `Kartmodus · ${r.name}`);
-        mapLabel.style.color = color;
-        mapLabel.style.borderColor = color;
-        mapLabel.style.display = "flex";
-      }
-      showToast(`🗺️ Viser rute: ${r.name}`);
-    };
-    list.appendChild(div);
   });
 }
 
