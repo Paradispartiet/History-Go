@@ -82,63 +82,62 @@ function openProfileModal() {
 
 
 // --------------------------------------
-// TIDSLINJE – KOMBINERTE STEDER + PERSONER
+// HISTORIEKORT – KOMBINERT HORISONTAL TIDSLINJE
 // --------------------------------------
 function renderTimelineProfile() {
-  const body = document.getElementById("timelineList");
+  const body = document.getElementById("timelineBody");
+  const bar  = document.getElementById("timelineProgressBar");
+  const txt  = document.getElementById("timelineProgressText");
   if (!body) return;
 
   const visited         = JSON.parse(localStorage.getItem("visited_places") || "{}");
   const peopleCollected = JSON.parse(localStorage.getItem("people_collected") || "{}");
 
-  // hent data
-  const visitedPlaces = PLACES.filter(p => visited[p.id]);
-  const collectedPeople = PEOPLE.filter(p => peopleCollected[p.id]);
+  const visitedPlaces   = (PLACES || []).filter(p => visited[p.id]);
+  const collectedPeople = (PEOPLE || []).filter(p => peopleCollected[p.id]);
 
-  // slå sammen og sorter etter år
+  // Slå sammen og sorter etter år
   const allItems = [
     ...visitedPlaces.map(p => ({
       type: "place",
       id: p.id,
       name: p.name,
-      year: p.year || 0,
-      category: p.category || "",
+      year: Number(p.year) || 0,
       image: p.image || `bilder/kort/places/${p.id}.PNG`
     })),
     ...collectedPeople.map(p => ({
       type: "person",
       id: p.id,
       name: p.name,
-      year: p.year || 0,
-      category: "person",
+      year: Number(p.year) || 0,
       image: p.image || `bilder/kort/people/${p.id}.PNG`
     }))
-  ].sort((a, b) => (a.year || 0) - (b.year || 0));
+  ].sort((a, b) => a.year - b.year);
 
-  // ingen data ennå
+  const total = allItems.length;
+  if (bar) bar.style.width = `${(total ? (total / (PEOPLE.length + PLACES.length)) * 100 : 0).toFixed(1)}%`;
+  if (txt) txt.textContent = total ? `Du har låst opp ${total} historiekort` : "";
+
+  // Ingen data ennå
   if (!allItems.length) {
-    body.innerHTML = `<li class="muted">Du har ingen historiekort eller steder ennå.</li>`;
+    body.innerHTML = `<div class="muted">Du har ingen historiekort ennå.</div>`;
     return;
   }
 
-  // bygg HTML for tidslinjen
+  // Bygg kortene
   body.innerHTML = allItems.map(item => `
-    <li class="timeline-entry ${item.type}" data-id="${item.id}">
-      <div class="timeline-thumb">
-        <img src="${item.image}" alt="${item.name}">
-      </div>
-      <div class="timeline-info">
-        <strong>${item.name}</strong><br>
-        <span class="muted">${item.type === "person" ? "Person" : "Sted"}${item.year ? " · " + item.year : ""}</span>
-      </div>
-    </li>
+    <div class="timeline-card ${item.type}" data-id="${item.id}">
+      <img src="${item.image}" alt="${item.name}">
+      <div class="timeline-name">${item.name}</div>
+      <div class="timeline-year">${item.year || "–"}</div>
+    </div>
   `).join("");
 
-  // legg til klikk – åpner riktig popup
-  body.querySelectorAll(".timeline-entry").forEach(entry => {
-    entry.addEventListener("click", () => {
-      const id = entry.dataset.id;
-      if (entry.classList.contains("person")) {
+  // Klikk for popup
+  body.querySelectorAll(".timeline-card").forEach(card => {
+    card.addEventListener("click", () => {
+      const id = card.dataset.id;
+      if (card.classList.contains("person")) {
         const person = PEOPLE.find(p => p.id === id);
         if (person) showPersonPopup(person);
       } else {
