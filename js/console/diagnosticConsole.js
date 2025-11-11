@@ -296,21 +296,21 @@
       const visible = state.el.style.display !== 'none';
       visible ? api.hide() : api.show();
     }
-
-    // ----------------------------------------------------------
-// DIAGNOSE-KNAPP (vises kun med ?dev=1)
-// ----------------------------------------------------------
-if (window.location.search.includes("dev=1")) {
-  const btn = document.createElement("button");
-  btn.textContent = "🩺";
-  btn.title = "Åpne diagnosekonsoll";
-  btn.className = "hg-console-btn";
-  btn.onclick = () => {
-    const visible = state.el.style.display !== "none";
-    visible ? api.hide() : api.show();
-  };
-  document.body.appendChild(btn);
-}
-    
   });
+
+  // ----------------------------------------------------------
+  // DIAGNOSE-KNAPP (vises kun med ?dev=1)
+  // ----------------------------------------------------------
+  if (window.location.search.includes("dev=1")) {
+    const btn = document.createElement("button");
+    btn.textContent = "🩺";
+    btn.title = "Åpne diagnosekonsoll";
+    btn.className = "hg-console-btn";
+    btn.onclick = () => {
+      const visible = state.el.style.display !== "none";
+      visible ? api.hide() : api.show();
+    };
+    document.body.appendChild(btn);
+  }
+
 })();
