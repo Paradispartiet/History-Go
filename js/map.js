@@ -1,5 +1,5 @@
 // ============================================================
-// === HISTORY GO – MAP.JS (farger per kategori) ==============
+// === HISTORY GO – MAP.JS (bilder + hover-effekt) ============
 // ============================================================
 
 (function initMap(){
@@ -24,26 +24,26 @@
   }).addTo(map);
 
   // ----------------------------------------------------------
-  // Hjelpefunksjon – velg farge etter kategori
+  // Farge per kategori
   // ----------------------------------------------------------
   function catColor(cat = "") {
     const c = cat.toLowerCase();
-    if (c.includes("historie")) return "#344B80";     // dyp blå
-    if (c.includes("vitenskap")) return "#9b59b6";    // lilla
-    if (c.includes("kunst")) return "#ffb703";        // gull
-    if (c.includes("musikk")) return "#ff66cc";       // rosa
-    if (c.includes("litteratur")) return "#f6c800";   // gul
-    if (c.includes("natur")) return "#4caf50";        // grønn
-    if (c.includes("sport")) return "#2a9d8f";        // turkis
-    if (c.includes("by")) return "#e63946";           // rød
-    if (c.includes("politikk")) return "#c77dff";     // lilla-rosa
+    if (c.includes("historie")) return "#344B80";
+    if (c.includes("vitenskap")) return "#9b59b6";
+    if (c.includes("kunst")) return "#ffb703";
+    if (c.includes("musikk")) return "#ff66cc";
+    if (c.includes("litteratur")) return "#f6c800";
+    if (c.includes("natur")) return "#4caf50";
+    if (c.includes("sport")) return "#2a9d8f";
+    if (c.includes("by")) return "#e63946";
+    if (c.includes("politikk")) return "#c77dff";
     if (c.includes("populaerkultur")) return "#00c2ff";
     if (c.includes("subkultur")) return "#00c2ff";
-    return "#FFD600"; // fallback
+    return "#FFD600";
   }
 
   // ----------------------------------------------------------
-  // Tegn alle steder som markører
+  // Tegn alle steder som markører med bilde-popup
   // ----------------------------------------------------------
   setTimeout(() => {
     const places = HG.data?.places || [];
@@ -52,20 +52,37 @@
 
       const color = catColor(p.category || "");
       const markerIcon = L.divIcon({
-        html: `<div style="
-          width:18px;height:18px;
-          background:${color};
-          border-radius:50%;
-          border:2px solid white;
-          box-shadow:0 0 6px ${color}88;
-        "></div>`,
+        html: `<div class="hg-marker" 
+                    style="--c:${color};"></div>`,
         className: "",
         iconSize: [18,18],
         iconAnchor: [9,9]
       });
 
       const marker = L.marker([p.lat, p.lon], { icon: markerIcon }).addTo(map);
-      marker.bindPopup(`<b>${p.name}</b><br>${p.desc || ""}`);
+
+      const imgHtml = p.image
+        ? `<img src="${p.image}" alt="${p.name}" 
+                style="width:100%;max-width:220px;border-radius:8px;margin-bottom:6px;">`
+        : "";
+
+      const popupHtml = `
+        ${imgHtml}
+        <b>${p.name}</b><br>
+        <small>${p.desc || ""}</small>
+      `;
+
+      marker.bindPopup(popupHtml);
+
+      // Hover-effekt: legg til / fjern glød
+      marker.on("mouseover", () => {
+        const el = marker.getElement()?.querySelector(".hg-marker");
+        if (el) el.style.boxShadow = `0 0 10px 3px ${color}99`;
+      });
+      marker.on("mouseout", () => {
+        const el = marker.getElement()?.querySelector(".hg-marker");
+        if (el) el.style.boxShadow = `0 0 6px ${color}55`;
+      });
     });
   }, 500);
 })();
