@@ -1,14 +1,15 @@
 // ============================================================
-// === HISTORY GO – CORE.JS (v3.8, stabil base) ===============
+// === HISTORY GO – CORE.JS (v3.9, full debug-versjon) ========
 // ============================================================
 //
 //  • Leser JSON-data med riktig sti (lokalt / GitHub Pages)
-//  • Lagring og lasting fra localStorage
-//  • Starter appen (boot) og sender data til HG.data
+//  • Viser tydelig feillogging for alle JSON- og bildefeil
+//  • Oppretter HG.data og starter appen
+//  • Har innebygd debug-boks og konsoll-logging
 // ============================================================
 
 // --------------------------------------
-// DEBUG-BOKS (grønn tekst nederst)
+// DEBUG-BOKS (nederst på skjermen)
 // --------------------------------------
 function debug(msg) {
   const box = document.getElementById("debugBox") || (() => {
@@ -31,16 +32,23 @@ function debug(msg) {
 }
 
 // --------------------------------------
-// JSON-LESER MED FEILHÅNDTERING
+// JSON-LESER MED FEILHÅNDTERING + LOGG
 // --------------------------------------
 async function fetchJSON(path) {
   try {
     const res = await fetch(path);
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    if (!res.ok) {
+      console.error(`❌ Klarte ikke hente ${path} (status ${res.status})`);
+      if (res.status === 404) {
+        console.warn(`💡 Filen finnes ikke der du tror – sjekk at ${path} faktisk ligger i repoet ditt.`);
+      }
+      throw new Error(`HTTP ${res.status}`);
+    }
     const data = await res.json();
+    console.log(`📥 Lastet ${path} (${Array.isArray(data) ? data.length + " elementer" : "OK"})`);
     return data;
   } catch (err) {
-    console.error(`❌ Feil ved lasting av ${path}:`, err);
+    console.error(`⚠️ Feil ved lasting av ${path}:`, err.message || err);
     return null;
   }
 }
@@ -83,7 +91,6 @@ async function boot() {
   const basePath = window.location.pathname.includes("History-Go")
     ? "History-Go/data/"
     : "data/";
-
   console.log("📂 BasePath satt til:", basePath);
 
   // Last inn konfig (valgfritt)
@@ -103,12 +110,12 @@ async function boot() {
   HG.data = { places, people, badges, routes };
   window.data = HG.data; // kompatibilitet med eldre kode
 
-  console.log("✅ DATA:", HG.data);
-
-  if (places && places.length > 0)
+  // Status
+  if (places && places.length > 0) {
     debug(`✅ Data lastet (${places.length} steder)`);
-  else
+  } else {
     debug("⚠️ Ingen steder lastet – sjekk sti eller JSON-filer");
+  }
 
   // Start appen
   if (window.app?.initApp) {
@@ -119,6 +126,17 @@ async function boot() {
     console.warn("⚠️ Ingen initApp-funksjon funnet.");
   }
 }
+
+// --------------------------------------
+// BILDE-OVERVÅKER – logger manglende filer
+// --------------------------------------
+window.addEventListener("error", (e) => {
+  const target = e.target || e.srcElement;
+  if (target.tagName === "IMG") {
+    console.error(`🖼️ Mangler bilde: ${target.src}`);
+    console.warn("💡 Sjekk at filen finnes i /bilder/ og at filnavnet har .PNG (store bokstaver).");
+  }
+}, true);
 
 // --------------------------------------
 // AUTO-START
