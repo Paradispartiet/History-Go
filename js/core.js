@@ -1,5 +1,5 @@
 // ============================================================
-// === HISTORY GO – CORE.JS (stabil base) =====================
+// === HISTORY GO – CORE.JS (stabil base, GitHub + fallback) ==
 // ============================================================
 //
 //  - Lasting av JSON-data
@@ -95,16 +95,21 @@ function showToast(msg, ms = 2500) {
 async function boot() {
   debug("🔄 Starter History Go ...");
 
+  // Automatisk riktig bane for GitHub Pages eller lokal kjøring
+  const basePath = window.location.pathname.includes("History-Go")
+    ? "History-Go/data/"
+    : "data/";
+
   // Last inn konfig (valgfritt)
-  const settings = await fetchJSON("History-Go/data/settings.json");
+  const settings = await fetchJSON(`${basePath}settings.json`);
   window.appSettings = settings || {};
 
   // Last inn basisdata
   const [places, people, badges, routes] = await Promise.all([
-    fetchJSON("History-Go/data/places.json"),
-    fetchJSON("History-Go/data/people.json"),
-    fetchJSON("History-Go/data/badges.json"),
-    fetchJSON("History-Go/data/routes.json"),
+    fetchJSON(`${basePath}places.json`),
+    fetchJSON(`${basePath}people.json`),
+    fetchJSON(`${basePath}badges.json`),
+    fetchJSON(`${basePath}routes.json`),
   ]);
 
   // Sett global struktur
@@ -114,21 +119,20 @@ async function boot() {
 
   debug(`✅ Data lastet (${places?.length || 0} steder)`);
 
-  // Start appen
-  if (app?.initApp) app.initApp();
-  else if (typeof initApp === "function") initApp();
-}
-
-  // Sett global struktur
-  window.HG = window.HG || {};
-  HG.data = { places, people, badges, routes };
-  window.data = HG.data; // kompatibilitet med eldre kode
-
-  debug(`✅ Data lastet (${places?.length || 0} steder)`);
-
-  // Start appen
-  if (app?.initApp) app.initApp();
-  else if (typeof initApp === "function") initApp();
+  // Start appen om initApp finnes
+  if (window.app?.initApp) {
+    app.initApp();
+  } else if (typeof initApp === "function") {
+    initApp();
+  } else {
+    // --- Fallback: vis kart direkte ---
+    if (window.map?.initMap && HG.data.places) {
+      map.initMap(HG.data.places, HG.data.routes || []);
+      debug("🗺️ Kart startet via fallback");
+    } else {
+      console.warn("⚠️ Ingen initApp-funksjon eller kartmodul funnet.");
+    }
+  }
 }
 
 // --------------------------------------
