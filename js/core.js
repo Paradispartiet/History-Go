@@ -1,10 +1,11 @@
 // ============================================================
-// === HISTORY GO – CORE.JS (stabil base, GitHub + fallback) ==
+// === HISTORY GO – CORE.JS (stabil base + live-status) =======
 // ============================================================
 //
 //  - Lasting av JSON-data
 //  - Lagring og henting fra localStorage
 //  - Initielle hjelpefunksjoner og boot()
+//  - Viser grønn statusboks når data er lastet
 // ============================================================
 
 // --------------------------------------
@@ -48,13 +49,9 @@ async function fetchJSON(path) {
 // LOCALSTORAGE-HÅNDTERING
 // --------------------------------------
 function save(key, value) {
-  try {
-    localStorage.setItem(key, JSON.stringify(value));
-  } catch (err) {
-    console.warn("Kunne ikke lagre:", key, err);
-  }
+  try { localStorage.setItem(key, JSON.stringify(value)); }
+  catch (err) { console.warn("Kunne ikke lagre:", key, err); }
 }
-
 function load(key, fallback = null) {
   try {
     const val = localStorage.getItem(key);
@@ -64,22 +61,13 @@ function load(key, fallback = null) {
     return fallback;
   }
 }
-
-function remove(key) {
-  localStorage.removeItem(key);
-}
+function remove(key) { localStorage.removeItem(key); }
 
 // --------------------------------------
 // HJELPEFUNKSJONER
 // --------------------------------------
-function norm(str = "") {
-  return str.toLowerCase().replace(/\s+/g, "_").trim();
-}
-
-function uid(prefix = "id") {
-  return prefix + "_" + Math.random().toString(36).substr(2, 9);
-}
-
+function norm(str = "") { return str.toLowerCase().replace(/\s+/g, "_").trim(); }
+function uid(prefix = "id") { return prefix + "_" + Math.random().toString(36).substr(2, 9); }
 function showToast(msg, ms = 2500) {
   const toast = document.getElementById("toast");
   if (!toast) return;
@@ -89,9 +77,6 @@ function showToast(msg, ms = 2500) {
   showToast._timer = setTimeout(() => (toast.style.display = "none"), ms);
 }
 
-// --------------------------------------
-// BOOT – hovedstart for History Go
-// --------------------------------------
 // --------------------------------------
 // BOOT – hovedstart for History Go
 // --------------------------------------
@@ -107,7 +92,6 @@ async function boot() {
     // Last inn konfig (valgfritt)
     const settings = await fetchJSON(`${basePath}settings.json`);
     window.appSettings = settings || {};
-    console.log("⚙️ SETTINGS:", settings);
 
     // Last inn basisdata
     const [places, people, badges, routes] = await Promise.all([
@@ -116,7 +100,6 @@ async function boot() {
       fetchJSON(`${basePath}badges.json`),
       fetchJSON(`${basePath}routes.json`),
     ]);
-    console.log("📦 DATA:", { places, people, badges, routes });
 
     // Sett global struktur
     window.HG = window.HG || {};
@@ -141,6 +124,20 @@ async function boot() {
     console.error("💥 BOOT FEIL:", err);
   }
 }
+
+// --------------------------------------
+// LIVE STATUSBOKS (viser HG.data-status)
+// --------------------------------------
+window.addEventListener("load", () => {
+  setTimeout(() => {
+    const d = document.createElement("div");
+    d.style.cssText = "position:fixed;bottom:4px;left:4px;background:#0008;color:#0f0;padding:6px 10px;font:12px monospace;z-index:99999;border-radius:6px;";
+    const count = HG?.data?.places?.length || 0;
+    d.textContent = count ? `✅ HG.data lastet (${count} steder)` : `⚠️ HG.data tom`;
+    document.body.appendChild(d);
+    console.log("DEBUG HG.data:", HG.data);
+  }, 1500);
+});
 
 // --------------------------------------
 // AUTO-START
