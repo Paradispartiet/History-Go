@@ -287,9 +287,35 @@
     },
 
     'debug on'()  { state.debugEnabled = true;  print('Debug: ON', 'cmd'); },
-    'debug off'() { state.debugEnabled = false; print('Debug: OFF', 'cmd'); },
+'debug off'() { state.debugEnabled = false; print('Debug: OFF', 'cmd'); },
 
-    'clear log'() { if (state.out) state.out.innerHTML = ''; },
+// ----------------------------------------------------------
+// EVAL / RUN – kjør hvilken som helst JS-kommando trygt
+// ----------------------------------------------------------
+run(rawExpr) {
+  if (!rawExpr) {
+    print("⚠️ Bruk: run <kode>", "warn");
+    print('Eksempel: run typeof map.showRouteNow', 'cmd');
+    return;
+  }
+  try {
+    const result = eval(rawExpr);
+    if (result instanceof Promise) {
+      result.then(res => printBlock(`✅ Resultat (Promise)`, res))
+            .catch(err => print(`❌ Feil: ${err}`, "error"));
+    } else if (typeof result === "object") {
+      printBlock(`✅ Resultat`, result);
+    } else {
+      print(`✅ ${String(result)}`, "cmd");
+    }
+  } catch (err) {
+    print(`❌ Feil i uttrykk: ${err}`, "error");
+  }
+},
+
+'clear log'() { if (state.out) state.out.innerHTML = ''; },
+    
+hide() { HGConsole.hide(); },
 
     hide() { HGConsole.hide(); },
   };
