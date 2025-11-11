@@ -1,12 +1,12 @@
 // ============================================================
-// === HISTORY GO – PROFILE.JS (v3.0 med bakgrunnskart) =======
+// === HISTORY GO – PROFILE.JS (v3.5, popup + bakgrunnskart) ==
 // ============================================================
 //
-//  • Leser data direkte fra HG.data (core.js)
+//  • Leser data fra HG.data (core.js)
 //  • Viser profil, merker, personer, steder og tidslinje
-//  • Kartet ligger i bakgrunnen (kun brukerens data)
-//  • Klikk på sted/person zoomer på kartet
-//  • Live-oppdatering ved updateProfile-event
+//  • Klikk åpner popup (modal) med detaljer og bilde
+//  • Kart bakgrunn viser besøkte steder og personer
+//  • Live-oppdateres ved updateProfile-event
 // ============================================================
 
 window.addEventListener("DOMContentLoaded", () => {
@@ -30,8 +30,9 @@ const Profile = (() => {
     initMap();
     renderAll();
     setupButtons();
+    setupModalClose();
     setupLiveUpdates();
-    console.log("👤 Profilside (v3.0) initialisert");
+    console.log("👤 Profilside (v3.5) initialisert");
   }
 
   // ----------------------------------------------------------
@@ -73,7 +74,7 @@ const Profile = (() => {
         const icon = L.divIcon({
           className: "person-marker",
           html: `<div style="width:28px;height:28px;border-radius:50%;
-            background:url('bilder/people/${per.id}.PNG') center/cover no-repeat;
+            background:url('bilder/kort/people/${per.id}.PNG') center/cover no-repeat;
             border:2px solid #fff;box-shadow:0 0 4px #000;"></div>`,
           iconSize: [28,28]
         });
@@ -82,19 +83,6 @@ const Profile = (() => {
           .addTo(map);
       }
     });
-  }
-
-  function focusOn(id, type = "place") {
-    const visited = load("visited_places", []);
-    const people = load("people_collected", []);
-    if (type === "place") {
-      const pl = visited.find(p => p.id === id);
-      if (pl?.lat && pl?.lon) map.setView([pl.lat, pl.lon], 16);
-    } else {
-      const person = people.find(p => p.id === id);
-      const pl = visited.find(v => v.id === person?.placeId);
-      if (pl?.lat && pl?.lon) map.setView([pl.lat, pl.lon], 16);
-    }
   }
 
   // ----------------------------------------------------------
@@ -140,6 +128,7 @@ const Profile = (() => {
         <img src="bilder/merker/${b.id}.PNG" alt="${b.name}">
         <span>${b.name}</span>
         <small>${valør}</small>`;
+      div.onclick = () => openBadgeModal(b.id);
       container.appendChild(div);
     });
   }
@@ -155,7 +144,7 @@ const Profile = (() => {
       img.src = `bilder/kort/people/${p.id}.PNG`;
       img.alt = p.name;
       img.className = "person-avatar";
-      img.onclick = () => focusOn(p.id, "person");
+      img.onclick = () => openPersonModal(p.id);
       container.appendChild(img);
     });
   }
@@ -172,7 +161,7 @@ const Profile = (() => {
       div.innerHTML = `
         <img src="bilder/kort/places/${pl.image || pl.id}.PNG" alt="${pl.name}">
         <span>${pl.name}</span>`;
-      div.onclick = () => focusOn(pl.id, "place");
+      div.onclick = () => openPlaceModal(pl.id);
       container.appendChild(div);
     });
   }
@@ -190,22 +179,82 @@ const Profile = (() => {
     ].sort((a, b) => (a.year || 0) - (b.year || 0));
 
     allItems.forEach(item => {
+      const isPerson = !!DATA.people.find(p => p.id === item.id);
       const div = document.createElement("div");
       div.className = "timeline-item";
       div.innerHTML = `
         <strong>${item.year || "–"}</strong> ${item.name}
-        <img src="bilder/kort/${DATA.people.find(p => p.id === item.id) ? "people" : "places"}/${item.id}.PNG"
+        <img src="bilder/kort/${isPerson ? "people" : "places"}/${item.id}.PNG"
              alt="${item.name}" class="timeline-thumb">`;
       div.onclick = () => {
-        const isPerson = !!DATA.people.find(p => p.id === item.id);
-        focusOn(item.id, isPerson ? "person" : "place");
+        if (isPerson) openPersonModal(item.id);
+        else openPlaceModal(item.id);
       };
       container.appendChild(div);
     });
   }
 
   // ----------------------------------------------------------
-  // 4) KNAPPER OG NULLSTILL
+  // 4) MODALER
+  // ----------------------------------------------------------
+  function openBadgeModal(categoryId) {
+    const modal = byId("badgeModal");
+    const title = byId("badgeModalTitle");
+    const content = byId("badgeModalContent");
+    const progress = load("quiz_progress", {});
+    const badgeData = DATA.badges.find(b => b.id === categoryId);
+
+    title.textContent = `Merke: ${badgeData?.name || categoryId}`;
+    content.innerHTML = "";
+
+    const list = document.createElement("ul");
+    Object.values(progress).forEach(q => {
+      if (q.categoryId === categoryId) {
+        const li = document.createElement("li");
+        li.textContent = `${q.placeId || "Sted"} – ${q.points} poeng`;
+        list.appendChild(li);
+      }
+    });
+    content.appendChild(list);
+    modal.setAttribute("aria-hidden", "false");
+  }
+
+  function openPersonModal(id) {
+    const p = DATA.people.find(x => x.id === id);
+    if (!p) return;
+    const modal = byId("personModal");
+    byId("personModalName").textContent = p.name;
+    byId("personModalContent").innerHTML = `
+      <p>${p.desc || ""}</p>
+      <img src="bilder/kort/people/${p.id}.PNG" alt="${p.name}">
+      <p><small>År: ${p.year || "–"}</small></p>`;
+    modal.setAttribute("aria-hidden", "false");
+  }
+
+  function openPlaceModal(id) {
+    const pl = DATA.places.find(p => p.id === id);
+    if (!pl) return;
+    const modal = byId("placeModal");
+    byId("placeModalName").textContent = pl.name;
+    byId("placeModalContent").innerHTML = `
+      <p>${pl.desc || ""}</p>
+      <img src="bilder/kort/places/${pl.image || pl.id}.PNG" alt="${pl.name}">
+      <p><small>År: ${pl.year || "–"}</small></p>`;
+    modal.setAttribute("aria-hidden", "false");
+  }
+
+  function setupModalClose() {
+    document.querySelectorAll(".close-modal").forEach(btn => {
+      btn.onclick = () => {
+        const id = btn.dataset.close;
+        const m = byId(id);
+        if (m) m.setAttribute("aria-hidden", "true");
+      };
+    });
+  }
+
+  // ----------------------------------------------------------
+  // 5) KNAPPER OG NULLSTILL
   // ----------------------------------------------------------
   function setupButtons() {
     const exp = byId("exportProfileBtn");
@@ -232,10 +281,10 @@ const Profile = (() => {
   }
 
   // ----------------------------------------------------------
-  // 5) LIVE-OPPDATERING
+  // 6) LIVE-OPPDATERING
   // ----------------------------------------------------------
   function setupLiveUpdates() {
-    window.addEventListener("storage", (e) => {
+    window.addEventListener("storage", e => {
       if (["visited_places", "people_collected", "merits_by_category", "quiz_progress"].includes(e.key)) {
         renderAll();
       }
@@ -244,7 +293,7 @@ const Profile = (() => {
   }
 
   // ----------------------------------------------------------
-  // 6) HJELPERE
+  // 7) HJELPERE
   // ----------------------------------------------------------
   const load = (k, f) => JSON.parse(localStorage.getItem(k) || JSON.stringify(f));
   const byId = (id) => document.getElementById(id);
@@ -254,5 +303,10 @@ const Profile = (() => {
   // ----------------------------------------------------------
   // EKSPORT
   // ----------------------------------------------------------
-  return { initProfilePage };
+  return {
+    initProfilePage,
+    openBadgeModal,
+    openPersonModal,
+    openPlaceModal
+  };
 })();
