@@ -1150,3 +1150,81 @@ button.primary.small:hover { opacity: .9; }
 .btn.danger:hover {
   background: #e33;
 }
+/* ===================================================== */
+/* 18) BADGE-MODAL – Åpnes når man trykker på et merke   */
+/* ===================================================== */
+
+.badge-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+}
+
+.badge-modal[aria-hidden="false"],
+.badge-modal[style*="display: flex"] {
+  display: flex;
+}
+
+.badge-modal-inner {
+  position: relative;
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  padding: 20px;
+  width: min(90vw, 420px);
+  max-height: 80vh;
+  overflow-y: auto;
+  text-align: center;
+  animation: fadeIn .3s ease;
+}
+
+.badge-modal-icon {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  margin-bottom: 10px;
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+}
+
+.badge-modal h2 {
+  margin: 0;
+  color: var(--accent);
+}
+
+.badge-modal .quiz-list {
+  list-style: none;
+  margin: 10px 0 0 0;
+  padding: 0;
+}
+
+.badge-modal .quiz-list li {
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  color: var(--text);
+  font-size: 0.9rem;
+}
+
+.badge-modal .quiz-list li:last-child {
+  border-bottom: none;
+}
+
+.badge-modal .close-badge {
+  position: absolute;
+  right: 16px;
+  top: 10px;
+  background: none;
+  color: var(--text);
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+  transition: transform .2s ease;
+}
+.badge-modal .close-badge:hover {
+  transform: scale(1.1);
+}
