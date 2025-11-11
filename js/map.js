@@ -6,6 +6,18 @@
 //  • Popup inneholder “Ta quiz”-knapp som starter quizen
 //  • Ingen faste ruter vises automatisk
 //  • Støtter puls, nærhets-effekt og “Se på kart”
+//
+// ------------------------------------------------------------
+// INNHOLDSFORTEGNELSE
+// ------------------------------------------------------------
+// 1) Initier kartet
+// 2) Markører (med "Ta quiz"-knapp)
+// 3) Trykk på sted
+// 4) Visuelle effekter (puls)
+// 5) Nærhet & hjelpere (load, distance)
+// 6) Farger (kategori / badge)
+// 7) Fokuser på sted (“Se på kart”)
+// 8) Eksport av offentlige funksjoner
 // ============================================================
 
 const map = (() => {
@@ -13,7 +25,7 @@ const map = (() => {
   let markers = {};
 
   // ----------------------------------------------------------
-  // INITIER KARTET
+  // 1) INITIER KARTET
   // ----------------------------------------------------------
   function initMap(places = [], routes = []) {
     if (!window.L) {
@@ -28,7 +40,6 @@ const map = (() => {
       worldCopyJump: false,
     }).setView([59.9139, 10.7522], 13);
 
-    // Bakgrunnslag
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       maxZoom: 19,
       tileSize: 256,
@@ -37,14 +48,12 @@ const map = (() => {
 
     drawPlaceMarkers(places);
 
-    // Viktig for Safari/iPad
     setTimeout(() => leafletMap.invalidateSize(), 400);
-
     console.log(`🗺️ Kart initialisert med ${places.length} steder`);
   }
 
   // ----------------------------------------------------------
-  // MARKØRER (med "Ta quiz"-knapp)
+  // 2) MARKØRER (med "Ta quiz"-knapp)
   // ----------------------------------------------------------
   function drawPlaceMarkers(places) {
     if (!leafletMap || !Array.isArray(places)) return;
@@ -92,22 +101,7 @@ const map = (() => {
   }
 
   // ----------------------------------------------------------
-  // “SE PÅ KART” FRA APP.JS
-  // ----------------------------------------------------------
-  function focusOnPlace(placeId) {
-    const pl = (HG?.data?.places || []).find((x) => x.id === placeId);
-    if (!pl || !leafletMap) return;
-
-    leafletMap.setView([pl.lat, pl.lon], 16, { animate: true });
-    const marker = markers[placeId];
-    if (marker) {
-      marker.openPopup();
-      pulseMarker(placeId);
-    }
-  }
-
-  // ----------------------------------------------------------
-  // TRYKK PÅ STED
+  // 3) TRYKK PÅ STED
   // ----------------------------------------------------------
   function handlePlaceClick(placeId) {
     const pl = (HG?.data?.places || []).find((x) => x.id === placeId);
@@ -119,7 +113,7 @@ const map = (() => {
   }
 
   // ----------------------------------------------------------
-  // VISUELLE EFFEKTER
+  // 4) VISUELLE EFFEKTER (PULS)
   // ----------------------------------------------------------
   function pulseMarker(id) {
     const el = markers[id]?._icon?.querySelector("div");
@@ -135,7 +129,7 @@ const map = (() => {
   }
 
   // ----------------------------------------------------------
-  // NÆRHET & HJELPERE
+  // 5) NÆRHET & HJELPERE
   // ----------------------------------------------------------
   function highlightNearbyPlaces(lat, lon, radius = 150) {
     const nearby = (HG?.data?.places || []).filter((p) => {
@@ -166,7 +160,7 @@ const map = (() => {
   }
 
   // ----------------------------------------------------------
-  // FARGER
+  // 6) FARGER (KATEGORI / BADGE)
   // ----------------------------------------------------------
   function catColor(cat = "") {
     const c = cat.toLowerCase();
@@ -185,18 +179,18 @@ const map = (() => {
   }
 
   // ----------------------------------------------------------
-  // 9) FOKUSER PÅ STED (for "Se på kart"-knappen)
+  // 7) FOKUSER PÅ STED (“Se på kart”)
   // ----------------------------------------------------------
   function focusOnPlace(placeId) {
     const pl = (HG?.data?.places || []).find(p => p.id === placeId);
     if (pl && leafletMap) {
       leafletMap.setView([pl.lat, pl.lon], 16);
-      pulseMarker(placeId); // liten animasjon for å fremheve stedet
+      pulseMarker(placeId);
     }
   }
-  
+
   // ----------------------------------------------------------
-  // EKSPORT
+  // 8) EKSPORT
   // ----------------------------------------------------------
   return {
     initMap,
