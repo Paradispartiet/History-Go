@@ -8,12 +8,12 @@
   <!-- Stil -->
   <link rel="stylesheet" href="theme.css">
 
-  <!-- Verktøy (for deling/eksport av profilkort) -->
+  <!-- Verktøy for deling/eksport -->
   <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 </head>
 
 <body class="profile-page">
-  <!-- Ramme rundt appen -->
+  <!-- Ramme -->
   <div class="app-frame" aria-hidden="true"></div>
 
   <!-- Topp -->
@@ -26,86 +26,57 @@
   </header>
 
   <main id="profileMain">
-    <!-- Profilkort -->
-    <section id="profileCard" class="panel profile-card" aria-label="Profil">
-      <div class="profile-head">
-        <div class="avatar" id="profileAvatar" aria-hidden="true"></div>
-        <div class="meta">
-          <h1 class="title" id="profileName">Ukjent spiller</h1>
-          <p class="subtitle">
-            <span id="profileTitle">Historiker</span> · nivå <span id="profileLevel">1</span>
-          </p>
-        </div>
-        <button id="editProfileBtn" class="btn primary small" type="button">Rediger</button>
-      </div>
 
-      <div class="stats chips" role="list" aria-label="Statistikk">
-        <span class="chip" role="listitem">
-          Besøkt: <strong id="statVisited">0</strong>
-        </span>
-        <span class="chip" role="listitem">
-          Quiz ferdig: <strong id="statQuizzes">0</strong>
-        </span>
-        <span class="chip" role="listitem">
-          Streak: <strong id="statStreak">0</strong> dager
-        </span>
+    <!-- PROFILKORT -->
+    <section id="profileCard" class="profile-section card">
+      <h2 id="profileName">Utforsker</h2>
+      <div class="stats">
+        <div><span id="statVisited">0</span><br><small>Besøkt</small></div>
+        <div><span id="statQuizzes">0</span><br><small>Quiz fullført</small></div>
+        <div><span id="statStreak">0</span><br><small>Streak</small></div>
       </div>
     </section>
 
-    <!-- Merker -->
-    <section id="badges" class="panel" aria-label="Merker">
-      <div class="panel-head">
-        <h2>Merker</h2>
-        <div class="chips">
-          <span class="chip">Historie</span>
-          <span class="chip">Vitenskap</span>
-          <span class="chip">Kunst</span>
-          <span class="chip">Musikk</span>
-          <span class="chip">Natur</span>
-          <span class="chip">Sport</span>
-          <span class="chip">By</span>
-          <span class="chip">Politikk</span>
-          <span class="chip">Litteratur</span>
-          <span class="chip">Populærkultur</span>
-          <span class="chip">Subkultur</span>
-        </div>
-      </div>
-
-      <div id="badgeGrid" class="grid badges" aria-live="polite"></div>
+    <!-- MERKER -->
+    <section id="merits" class="profile-section">
+      <h2>Mine merker</h2>
+      <div id="badgeGrid" class="grid"></div>
     </section>
 
-    <!-- Tidslinje / historikk -->
-    <section id="history" class="panel" aria-label="Tidslinje">
-      <div class="panel-head">
-        <h2>Din tidslinje</h2>
-        <p class="muted">Alt du har besøkt – med quizscore og dato.</p>
-      </div>
-      <ul id="timelineList" class="list timeline" aria-live="polite"></ul>
+    <!-- PERSONER -->
+    <section id="people" class="profile-section">
+      <h2>Personer du har låst opp</h2>
+      <div id="peopleGrid" class="grid"></div>
     </section>
 
-    <!-- Handlinger -->
-    <section id="profileActions" class="panel" aria-label="Handlinger">
-      <div class="actions">
-        <button id="btnExportProfile" class="btn">Eksporter profilkort</button>
-        <button id="btnShareProfile" class="btn">Del</button>
-        <button id="btnClearData" class="btn danger">Nullstill data</button>
-      </div>
+    <!-- STEDER -->
+    <section id="places" class="profile-section">
+      <h2>Steder du har besøkt</h2>
+      <ul id="visitedList" class="list"></ul>
     </section>
+
+    <!-- TIDSLINJE -->
+    <section id="timeline" class="profile-section">
+      <h2>Tidslinje</h2>
+      <ul id="timelineList" class="timeline"></ul>
+    </section>
+
+    <!-- HANDLINGER -->
+    <section id="actions" class="profile-section">
+      <button id="btnExport" class="btn">Del profilkort</button>
+      <button id="btnReset" class="btn danger">Nullstill fremgang</button>
+    </section>
+
   </main>
 
-  <!-- Modal (gjenbrukes til redigering, merker, osv.) -->
-  <div id="modal" class="modal" aria-hidden="true" aria-labelledby="modalTitle" role="dialog">
-    <div class="modal-body">
-      <div class="modal-head">
-        <h3 id="modalTitle">Modal</h3>
-        <button id="modalClose" class="icon-btn" aria-label="Lukk">✕</button>
-      </div>
-      <div id="modalContent" class="modal-content"></div>
-    </div>
+  <!-- Modal for popup-vinduer -->
+  <div id="modal" class="modal" aria-hidden="true">
+    <div class="modal-body"></div>
   </div>
 
-  <!-- Scriptrekkefølge: app.js før profile.js -->
-  <script defer src="app.js"></script>
+  <!-- Script -->
+  <script src="app.js"></script>
   <script src="profile.js"></script>
+
 </body>
 </html>
