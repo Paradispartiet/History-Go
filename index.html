@@ -30,21 +30,20 @@
       <span class="brand-name">History Go</span>
     </div>
     <div class="header-buttons">
-      <button id="toggleMode" class="btn-toggle">Utforsk</button>
+      <button id="toggleMap" class="btn-toggle">Se kart</button>
       <button id="btnProfile" class="btn-profile" aria-label="Åpne profil">🧭</button>
     </div>
   </header>
 
   <!-- HOVEDINNHOLD -->
   <main id="appMain">
-    <div id="map"></div>
-    <div id="backdrop" class="backdrop" aria-hidden="true"></div>
+    <!-- Kart -->
+    <div id="map" class="map-hidden"></div>
 
-    <!-- Utforskpanel -->
-    <div id="exploreSheet" class="sheet">
+    <!-- Utforskpanel alltid oppe -->
+    <div id="exploreSheet" class="sheet sheet-open">
       <div class="sheet-head">
         <h3>Steder i nærheten</h3>
-        <button class="sheet-close" onclick="ui.closeSheet('exploreSheet')">×</button>
       </div>
       <div id="nearbyList" class="sheet-content"></div>
 
@@ -77,6 +76,20 @@
   <script src="js/data.js"></script>
 
   <script>
+    // Bytt mellom kart og utforskpanel
+    document.addEventListener("DOMContentLoaded", () => {
+      const mapEl = document.getElementById("map");
+      const sheet = document.getElementById("exploreSheet");
+      const btn = document.getElementById("toggleMap");
+
+      btn.addEventListener("click", () => {
+        const kartmodus = mapEl.classList.toggle("map-visible");
+        sheet.classList.toggle("sheet-hidden", kartmodus);
+        btn.textContent = kartmodus ? "Utforsk" : "Se kart";
+      });
+    });
+
+    // Service Worker
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker
         .register('sw.js')
