@@ -1,11 +1,11 @@
 // ============================================================
-// === HISTORY GO – ROUTES.JS (v1.1, komplett og kompatibel) ===
+// === HISTORY GO – ROUTES.JS (v1.2, stabil med feilhåndtering) ===
 // ============================================================
 //
-//  • Leser rutedata fra HG.data.routes (lastet via core.js)
+//  • Leser rutedata fra HG.data.routes (via core.js)
 //  • Viser ruter i utforsk-panelet under “Utforsk ruter”
-//  • Hver rute har en “Se på kart”-knapp som tegner ruten via map.showRouteNow()
-//  • Minimal og effektiv – ingen lasting av kart eller data her
+//  • “Se på kart”-knapp sender ruten til map.showRouteNow()
+//  • Minimal, rask og fullstendig kompatibel med app.js + map.js
 //
 // ------------------------------------------------------------
 // INNHOLDSFORTEGNELSE
@@ -19,7 +19,7 @@
 const Routes = (() => {
 
   // ----------------------------------------------------------
-  // 1) INITIERING (kan kalles fra app.initApp)
+  // 1) INITIERING
   // ----------------------------------------------------------
   function initRoutes() {
     console.log("📜 Ruter klar:", (HG?.data?.routes || []).length, "ruter funnet");
@@ -64,6 +64,9 @@ const Routes = (() => {
         if (map?.showRouteNow && route) {
           map.showRouteNow(route);
           ui.showToast(`🗺️ Viser rute: ${r.name}`);
+        } else {
+          console.warn("⚠️ showRouteNow ikke tilgjengelig i map.js");
+          ui.showToast("Kan ikke vise rute – kart ikke klart");
         }
       };
 
