@@ -96,16 +96,28 @@ async function boot() {
   debug("🔄 Starter History Go ...");
 
   // Last inn konfig (valgfritt)
-  const settings = await fetchJSON("data/settings.json");
+  const settings = await fetchJSON("History-Go/data/settings.json");
   window.appSettings = settings || {};
 
   // Last inn basisdata
   const [places, people, badges, routes] = await Promise.all([
-    fetchJSON("data/places.json"),
-    fetchJSON("data/people.json"),
-    fetchJSON("data/badges.json"),
-    fetchJSON("data/routes.json"),
+    fetchJSON("History-Go/data/places.json"),
+    fetchJSON("History-Go/data/people.json"),
+    fetchJSON("History-Go/data/badges.json"),
+    fetchJSON("History-Go/data/routes.json"),
   ]);
+
+  // Sett global struktur
+  window.HG = window.HG || {};
+  HG.data = { places, people, badges, routes };
+  window.data = HG.data; // kompatibilitet med eldre kode
+
+  debug(`✅ Data lastet (${places?.length || 0} steder)`);
+
+  // Start appen
+  if (app?.initApp) app.initApp();
+  else if (typeof initApp === "function") initApp();
+}
 
   // Sett global struktur
   window.HG = window.HG || {};
