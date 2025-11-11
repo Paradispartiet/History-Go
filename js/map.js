@@ -182,6 +182,19 @@ const map = (() => {
 // ----------------------------------------------------------
 // VIS RUTE PÅ KART – ekte gangvei + låst tykkelse
 // ----------------------------------------------------------
+
+// ----------------------------------------------------------
+// FJERN EKSISTERENDE RUTE
+// ----------------------------------------------------------
+function clearActiveRoute() {
+  ['_activeGlow', '_activeLineOuter', '_activeLineInner'].forEach(k => {
+    if (map[k]) {
+      leafletMap.removeLayer(map[k]);
+      map[k] = null;
+    }
+  });
+}
+  
 async function showRouteNow(route) {
   if (!route || !leafletMap) return;
 ui?.showToast?.("⏳ Henter rute...");
