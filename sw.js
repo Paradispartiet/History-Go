@@ -2,7 +2,7 @@
 // === HISTORY GO – SERVICE WORKER (stabil basis) =============
 // ============================================================
 
-const CACHE_NAME = "historygo-v1.1.2.1";
+const CACHE_NAME = "historygo-v1.1.2.2";
 
 // Filer som alltid skal ligge i cache
 const CORE_ASSETS = [
