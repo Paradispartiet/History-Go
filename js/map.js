@@ -11,6 +11,45 @@ const map = (() => {
   let leafletMap;
   let markers = {};
 
+// ----------------------------------------------------------
+// 1) INITIER KARTET (dag under natt, for lysrute-effekt)
+// ----------------------------------------------------------
+function initMap(places = [], routes = []) {
+  if (!window.L) {
+    console.error("Leaflet mangler – kunne ikke starte kart.");
+    return;
+  }
+
+  leafletMap = L.map("map", {
+    zoomControl: false,
+    attributionControl: false,
+    preferCanvas: true,
+    worldCopyJump: false,
+  }).setView([59.9139, 10.7522], 13);
+
+  // --- Dagkart (under) ---
+  const dayLayer = L.tileLayer(
+    "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+    { maxZoom: 19, zIndex: 1 }
+  ).addTo(leafletMap);
+
+  // --- Nattkart (over) ---
+  const nightLayer = L.tileLayer(
+    "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
+    { maxZoom: 19, opacity: 1, zIndex: 2 }
+  ).addTo(leafletMap);
+
+  // Tegn stedene
+  drawPlaceMarkers(places);
+  setTimeout(() => leafletMap.invalidateSize(), 400);
+
+  // Lagre referanse
+  map._dayLayer = dayLayer;
+  map._nightLayer = nightLayer;
+
+  console.log(`🗺️ Kart initialisert med ${places.length} steder (dag/natt aktivert)`);
+}
+  
 b// ----------------------------------------------------------
 // 2) MARKØRER (oppdatert for v3.7 med hover og debug-trygghet)
 // ----------------------------------------------------------
