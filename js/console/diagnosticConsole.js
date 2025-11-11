@@ -1,131 +1,97 @@
 // =============================================================
-// HISTORY GO — DIAGNOSTIC CONSOLE (v3.0, read-only)
+// HISTORY GO — DIAGNOSTIC CONSOLE (v3.1, utvidet og trygg)
 //  • Åpne/lukk:  Ctrl + `   (tilde/backtick)
 //  • Viser status, events, ruter, localStorage og JS-feil
-//  • Endrer aldri app-data (kun leser og logger)
+//  • Evaluerer JS-uttrykk uten å endre app-data
 // =============================================================
 (() => {
-  if (window.HGConsole) return; // enkel guard
+  if (window.HGConsole) return;
 
   // -----------------------------
   // Små utils
   // -----------------------------
   const ts = () => new Date().toLocaleTimeString();
-  const safeJSON = (x) => {
-    try { return JSON.stringify(x, null, 2); } catch { return String(x); }
-  };
-  const kb = (n) => `${(n/1024).toFixed(1)} KB`;
+  const safeJSON = (x) => { try { return JSON.stringify(x, null, 2); } catch { return String(x); } };
+  const kb = (n) => `${(n / 1024).toFixed(1)} KB`;
 
   // -----------------------------
-  // UI oppsett (lager panelet)
+  // UI
   // -----------------------------
   function createUI() {
-    const wrap = document.createElement('section');
-    wrap.id = 'devConsole';
-    wrap.className = 'hg-console';
-    wrap.style.display = 'none';
+    const wrap = document.createElement("section");
+    wrap.id = "devConsole";
+    wrap.className = "hg-console";
+    wrap.style.display = "none";
     wrap.innerHTML = `
       <div class="hg-console-output" id="hgOut" aria-live="polite"></div>
       <textarea class="hg-console-input" id="hgIn" rows="2" spellcheck="false"
-        placeholder="skriv 'help' for kommandoer …"></textarea>
-    `;
+        placeholder="skriv 'help' for kommandoer …"></textarea>`;
     document.body.appendChild(wrap);
 
-    const input = wrap.querySelector('#hgIn');
-    input.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' && !e.shiftKey) {
+    const input = wrap.querySelector("#hgIn");
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" && !e.shiftKey) {
         e.preventDefault();
         runCommand(input.value.trim());
-        input.value = '';
+        input.value = "";
       }
     });
     return wrap;
   }
 
   // -----------------------------
-  // Intern logg (kun konsollens egen)
+  // Tilstand og logging
   // -----------------------------
-  const state = {
-    el: null,
-    out: null,
-    eventsLog: [],
-    jsErrors: [],
-    debugEnabled: false,
-    originalDispatch: null,
-  };
-
-  function print(line, cls = 'log') {
+  const state = { el: null, out: null, eventsLog: [], jsErrors: [], originalDispatch: null };
+  function print(line, cls = "log") {
     if (!state.out) return;
-    const div = document.createElement('div');
+    const div = document.createElement("div");
     div.className = `hg-log ${cls}`;
     div.innerHTML = `<span class="ts">[${ts()}]</span> ${line}`;
     state.out.appendChild(div);
     state.out.scrollTop = state.out.scrollHeight;
   }
-
-  function printBlock(title, obj, cls = 'log') {
+  function printBlock(title, obj, cls = "log") {
     print(`<strong>${title}</strong>`, cls);
     print(`<pre>${safeJSON(obj)}</pre>`, cls);
   }
 
   // -----------------------------
-  // Event-tracking (read-only)
+  // Event tracking (read-only)
   // -----------------------------
   function hookDispatch() {
     if (state.originalDispatch) return;
     state.originalDispatch = window.dispatchEvent.bind(window);
     window.dispatchEvent = (evt) => {
       try {
-        const name = evt?.type || '(ukjent)';
-        state.eventsLog.push({ t: Date.now(), name, detail: evt?.detail });
+        state.eventsLog.push({ t: Date.now(), name: evt?.type, detail: evt?.detail });
         if (state.eventsLog.length > 200) state.eventsLog.shift();
       } catch {}
       return state.originalDispatch(evt);
     };
   }
-
-  function unhookDispatch() {
-    if (state.originalDispatch) {
-      window.dispatchEvent = state.originalDispatch;
-      state.originalDispatch = null;
-    }
-  }
-
-  // Lytt også direkte på noen kjerne-events
-  ['updateProfile','sheetOpened','sheetClosed','quizCompleted','placeSelected','routeActivated']
-    .forEach(ev => window.addEventListener(ev, (e) => {
+  ["updateProfile","sheetOpened","sheetClosed","quizCompleted","placeSelected","routeActivated"]
+    .forEach(ev => window.addEventListener(ev, e => {
       state.eventsLog.push({ t: Date.now(), name: ev, detail: e?.detail });
       if (state.eventsLog.length > 200) state.eventsLog.shift();
     }));
 
   // -----------------------------
-  // JS-feil (read-only)
+  // Feilfangst
   // -----------------------------
-  window.addEventListener('error', (e) => {
-    state.jsErrors.push({
-      time: Date.now(),
-      message: e?.message,
-      file: e?.filename,
-      line: e?.lineno,
-      col: e?.colno,
-    });
-  });
-  window.addEventListener('unhandledrejection', (e) => {
-    state.jsErrors.push({
-      time: Date.now(),
-      message: `Promise rejection: ${e?.reason}`,
-    });
-  });
+  window.addEventListener("error", e =>
+    state.jsErrors.push({ time: Date.now(), message: e?.message, file: e?.filename, line: e?.lineno, col: e?.colno })
+  );
+  window.addEventListener("unhandledrejection", e =>
+    state.jsErrors.push({ time: Date.now(), message: `Promise rejection: ${e?.reason}` })
+  );
 
   // -----------------------------
-  // Lesestatus (muterer ikke)
+  // Statusfunksjoner
   // -----------------------------
   function readMapStatus() {
-    const Lmap = window.map;                  // vår modul
-    const lf = window.L && document.getElementById('map') ? (L?.map ? true : true) : false;
-    let center=null, zoom=null, active=false;
-
-    // prøv å lese Leaflet-instansen fra map-modulen (leafletMap)
+    const Lmap = window.map;
+    let center = null, zoom = null, active = false;
     try {
       const leafletMap = (Lmap && Lmap._getLeafletMap) ? Lmap._getLeafletMap() : null;
       if (leafletMap) {
@@ -135,244 +101,161 @@
         active = true;
       }
     } catch {}
-
-    return { leafletPresent: !!lf, active, center, zoom };
+    return { leafletPresent: !!window.L, active, center, zoom };
   }
-
   function readDataStatus() {
     const d = window.HG?.data || {};
     return {
-      places: Array.isArray(d.places) ? d.places.length : 0,
-      people: Array.isArray(d.people) ? d.people.length : 0,
-      badges: Array.isArray(d.badges) ? d.badges.length : 0,
-      routes: Array.isArray(d.routes) ? d.routes.length : 0,
-      missing: Object.fromEntries(['places','people','badges','routes'].map(k => [k, !d[k]]))
+      places: d.places?.length || 0,
+      people: d.people?.length || 0,
+      badges: d.badges?.length || 0,
+      routes: d.routes?.length || 0
     };
   }
-
   function readStorageStatus() {
-    let bytes = 0;
+    let bytes = 0, keys = [];
     try {
-      for (let i=0; i<localStorage.length; i++) {
+      for (let i = 0; i < localStorage.length; i++) {
         const k = localStorage.key(i);
-        const v = localStorage.getItem(k) || '';
-        bytes += k.length + v.length;
-      }
-    } catch {}
-    const keys = [];
-    try {
-      for (let i=0; i<localStorage.length; i++) {
-        const k = localStorage.key(i);
+        bytes += k.length + (localStorage.getItem(k) || "").length;
         keys.push(k);
       }
     } catch {}
     return { keys, approxSize: kb(bytes) };
   }
-
   function checkRoutes() {
     const routes = window.HG?.data?.routes || [];
     const places = new Set((window.HG?.data?.places || []).map(p => p.id));
-    const report = routes.map(r => {
+    const rep = routes.map(r => {
       const stops = (r.stops || []).map(s => s.placeId);
       const missing = stops.filter(id => !places.has(id));
       return { id: r.id || r.name, name: r.name, stops: stops.length, missing };
     });
-    return {
-      total: routes.length,
-      problems: report.filter(x => x.missing.length > 0),
-      ok: report.filter(x => x.missing.length === 0)
-    };
+    return { total: routes.length, problems: rep.filter(x => x.missing.length), ok: rep.filter(x => !x.missing.length) };
   }
 
   // -----------------------------
-  // Kommandoer (read-only)
+  // Kommandoer
   // -----------------------------
   const commands = {
     help() {
-      printBlock('Kommandoer', {
-        'status': 'kort oversikt (map, data, storage, events)',
-        'mapcheck': 'sjekker kartstatus (Leaflet, initMap, data osv.)',
-        'events': 'siste 20 hendelser',
-        'routes check': 'valider ruter mot places',
-        'storage check': 'list nøkler og størrelse',
-        'errors': 'JS-feil / promise-feil',
-        'debug on/off': 'slå ekstra logging i denne konsollen av/på',
-        'clear log': 'tøm konsollens visning (ikke data)',
-        'hide': 'skjul konsollen'
-      }, 'cmd');
+      printBlock("Kommandoer", {
+        status: "kort oversikt (map, data, storage, events)",
+        mapcheck: "sjekker kartstatus (Leaflet, initMap, data osv.)",
+        events: "siste 20 hendelser",
+        "routes check": "valider ruter mot places",
+        "storage check": "list nøkler og størrelse",
+        errors: "JS-feil / promise-feil",
+        "debug on/off": "slå ekstra logging i denne konsollen av/på",
+        "clear log": "tøm konsollens visning",
+        hide: "skjul konsollen"
+      }, "cmd");
     },
-
     mapcheck() {
       const mapEl = document.getElementById("map");
-      const exists   = !!mapEl;
-      const hasSize  = exists && (mapEl.offsetHeight > 0 && mapEl.offsetWidth > 0);
-      const leaflet  = (typeof L !== "undefined");
-      const initFn   = typeof map?.initMap === "function";
-      const dataOK   = !!(window.HG?.data?.places?.length);
-      const lastEvt  = (state.eventsLog.slice(-1)[0] || null);
-
+      const leaflet = typeof L !== "undefined";
+      const initFn = typeof map?.initMap === "function";
+      const dataOK = !!window.HG?.data?.places?.length;
       const result = {
-        "🗺️  #map-element": exists ? "✅ finnes" : "❌ mangler",
-        "📏  størrelse > 0": hasSize ? "✅ ja" : "❌ null høyde/bredde",
-        "🧭  Leaflet (L)": leaflet ? "✅ lastet" : "❌ ikke funnet",
-        "⚙️  map.initMap()": initFn ? "✅ definert" : "❌ mangler",
-        "📦  HG.data.places": dataOK ? `✅ ${HG.data.places.length} steder` : "❌ ingen data",
+        "#map-element": mapEl ? "✅ finnes" : "❌ mangler",
+        "Leaflet (L)": leaflet ? "✅ lastet" : "❌ ikke funnet",
+        "map.initMap()": initFn ? "✅ definert" : "❌ mangler",
+        "HG.data.places": dataOK ? `✅ ${HG.data.places.length} steder` : "❌ ingen data"
       };
-
       printBlock("Kart-diagnose", result);
-
-      if (!hasSize)  print("💡 Sjekk CSS: `#map { position:absolute; inset:0; height:100vh; }`", "warn");
-      if (!leaflet)  print("💡 Leaflet ikke lastet – sjekk rekkefølgen på <script> i index.html.", "warn");
-      if (!initFn)   print("💡 `map.initMap` mangler – sjekk js/map.js er lastet før app.js.", "warn");
-      if (!dataOK)   print("💡 Data ikke lastet – sjekk `core.js` → `boot()` og JSON-stier.", "warn");
-
-      if (lastEvt) {
-        printBlock("Siste app-event", {
-          name: lastEvt.name,
-          time: new Date(lastEvt.t).toLocaleTimeString(),
-          detail: lastEvt.detail ?? null
-        });
-      } else {
-        print("ℹ️ Ingen app-events registrert ennå.", "cmd");
-      }
     },
-    
     status() {
-      printBlock('Map', readMapStatus());
-      printBlock('Data', readDataStatus());
-      printBlock('Storage', readStorageStatus());
-      printBlock('Events (count)', { count: state.eventsLog.length });
+      printBlock("Map", readMapStatus());
+      printBlock("Data", readDataStatus());
+      printBlock("Storage", readStorageStatus());
+      printBlock("Events (count)", { count: state.eventsLog.length });
     },
-
     events() {
       const last = state.eventsLog.slice(-20).map(e => ({
-        time: new Date(e.t).toLocaleTimeString(),
-        name: e.name,
-        detail: e.detail ? e.detail : null
+        time: new Date(e.t).toLocaleTimeString(), name: e.name, detail: e.detail || null
       }));
-      printBlock('Siste hendelser', last);
+      printBlock("Siste hendelser", last);
     },
-
-    'routes check'() {
+    "routes check"() {
       const rep = checkRoutes();
-      printBlock('Ruter OK', rep.ok.map(x => ({ id:x.id, name:x.name, stops:x.stops })));
-      if (rep.problems.length) {
-        printBlock('Ruter med manglende steder', rep.problems, 'warn');
-      } else {
-        print('Ingen ruteproblemer funnet.', 'cmd');
-      }
+      printBlock("Ruter OK", rep.ok);
+      if (rep.problems.length) printBlock("Ruter med manglende steder", rep.problems, "warn");
+      else print("Ingen ruteproblemer funnet.", "cmd");
     },
-
-    'storage check'() {
-      printBlock('LocalStorage', readStorageStatus());
-      const keys = ['visited_places','people_collected','merits_by_category','quiz_progress'];
-      const dump = {};
-      keys.forEach(k => {
-        try { dump[k] = JSON.parse(localStorage.getItem(k) || 'null'); }
-        catch { dump[k] = '(kunne ikke parse)'; }
-      });
-      printBlock('Utvalgte nøkler', dump);
-    },
-
+    "storage check"() { printBlock("LocalStorage", readStorageStatus()); },
     errors() {
-      if (!state.jsErrors.length) {
-        print('Ingen JS-feil registrert siden last.', 'cmd');
-      } else {
-        const list = state.jsErrors.map(e => ({
-          time: new Date(e.time).toLocaleTimeString(),
-          message: e.message, file: e.file, line: e.line, col: e.col
-        }));
-        printBlock('JS-feil', list, 'error');
-      }
+      if (!state.jsErrors.length) print("Ingen JS-feil registrert.", "cmd");
+      else printBlock("JS-feil", state.jsErrors, "error");
     },
-
-    'debug on'()  { state.debugEnabled = true;  print('Debug: ON', 'cmd'); },
-'debug off'() { state.debugEnabled = false; print('Debug: OFF', 'cmd'); },
-
-// ----------------------------------------------------------
-// EVAL / RUN – kjør hvilken som helst JS-kommando trygt
-// ----------------------------------------------------------
-run(rawExpr) {
-  if (!rawExpr) {
-    print("⚠️ Bruk: run <kode>", "warn");
-    print('Eksempel: run typeof map.showRouteNow', 'cmd');
-    return;
-  }
-  try {
-    const result = eval(rawExpr);
-    if (result instanceof Promise) {
-      result.then(res => printBlock(`✅ Resultat (Promise)`, res))
-            .catch(err => print(`❌ Feil: ${err}`, "error"));
-    } else if (typeof result === "object") {
-      printBlock(`✅ Resultat`, result);
-    } else {
-      print(`✅ ${String(result)}`, "cmd");
-    }
-  } catch (err) {
-    print(`❌ Feil i uttrykk: ${err}`, "error");
-  }
-},
-
-'clear log'() { if (state.out) state.out.innerHTML = ''; },
-    
-hide() { HGConsole.hide(); },
-
-    hide() { HGConsole.hide(); },
+    "debug on"() { print("Debug: ON", "cmd"); },
+    "debug off"() { print("Debug: OFF", "cmd"); },
+    "clear log"() { state.out.innerHTML = ""; },
+    hide() { HGConsole.hide(); }
   };
 
+  // -----------------------------
+  // Kommando-parser + eval med grønn suksess
+  // -----------------------------
   function runCommand(raw) {
     if (!raw) return;
-    print(`› ${raw}`, 'cmd');
-    const cmd = raw.toLowerCase();
+    print(`› ${raw}`, "cmd");
+    const m = raw.match(/^(\w+)\s*:?\s*(.*)$/);
+    const cmd = m ? m[1].toLowerCase() : raw.toLowerCase();
+    const arg = (m && m[2]) ? m[2] : "";
     const fn = commands[cmd];
     if (fn) {
-      try { fn(); } catch (e) { print(`Feil i kommando: ${e}`, 'error'); }
-    } else {
-      print(`Ukjent kommando. Skriv <strong>help</strong>.`, 'warn');
+      try { fn(arg); print(`<span style="color:#7CFC00;">✅ Utført</span>`, "cmd"); }
+      catch (e) { print(`❌ Feil: ${e}`, "error"); }
+      return;
     }
+    try {
+      const res = eval(raw);
+      if (res instanceof Promise)
+        res.then(v => { printBlock("Eval-resultat (Promise)", v); print(`<span style="color:#7CFC00;">✅ Kjørte Promise</span>`, "cmd"); })
+           .catch(e => print(`❌ Feil: ${e}`, "error"));
+      else if (typeof res === "object") { printBlock("Eval-resultat", res); print(`<span style="color:#7CFC00;">✅ Objekt lest</span>`, "cmd"); }
+      else { print(`<span style="color:#7CFC00;">✅ ${String(res)}</span>`, "cmd"); }
+    } catch (e) { print(`❌ Eval-feil: ${e}`, "error"); }
   }
 
   // -----------------------------
   // Public API
   // -----------------------------
   const api = {
-    show() { state.el.style.display = 'flex'; },
-    hide() { state.el.style.display = 'none'; },
-    log(msg, type='log') { print(String(msg), type); },
+    show() { state.el.style.display = "flex"; },
+    hide() { state.el.style.display = "none"; },
+    log(msg, type = "log") { print(String(msg), type); },
     run: runCommand
   };
   window.HGConsole = api;
 
   // -----------------------------
-  // Init ved last
+  // Init
   // -----------------------------
   state.el = createUI();
-  state.out = state.el.querySelector('#hgOut');
+  state.out = state.el.querySelector("#hgOut");
   hookDispatch();
-  print('History Go Diagnostic Console · v3.0 (read-only). Skriv "help".', 'cmd');
+  print("History Go Diagnostic Console · v3.1 (read-only). Skriv \"help\".", "cmd");
 
-  // Toggle: Ctrl + `
-  window.addEventListener('keydown', (e) => {
-    if (e.ctrlKey && e.key === '`') {
+  // Toggle Ctrl+`
+  window.addEventListener("keydown", (e) => {
+    if (e.ctrlKey && e.key === "`") {
       e.preventDefault();
-      const visible = state.el.style.display !== 'none';
-      visible ? api.hide() : api.show();
+      const vis = state.el.style.display !== "none";
+      vis ? api.hide() : api.show();
     }
   });
 
-  // ----------------------------------------------------------
-  // DIAGNOSE-KNAPP (vises kun med ?dev=1)
-  // ----------------------------------------------------------
+  // Diagnose-knapp (?dev=1)
   if (window.location.search.includes("dev=1")) {
     const btn = document.createElement("button");
     btn.textContent = "🩺";
     btn.title = "Åpne diagnosekonsoll";
     btn.className = "hg-console-btn";
     btn.onclick = () => {
-      const visible = state.el.style.display !== "none";
-      visible ? api.hide() : api.show();
+      const vis = state.el.style.display !== "none";
+      vis ? api.hide() : api.show();
     };
     document.body.appendChild(btn);
   }
-
 })();
