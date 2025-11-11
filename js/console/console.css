@@ -131,3 +131,29 @@
   .hg-console{ height: 52vh; }
   .hg-console-input{ height: 56px; }
 }
+
+/* ===================================================== */
+/* Diagnoseknapp – vises kun i dev-modus (?dev=1)        */
+/* ===================================================== */
+.hg-console-btn {
+  position: fixed;
+  bottom: 12px;
+  right: 12px;
+  background: rgba(0,255,120,0.12);
+  border: 1px solid rgba(0,255,120,0.35);
+  color: #00ff6a;
+  font-size: 18px;
+  border-radius: 10px;
+  padding: 6px 10px;
+  cursor: pointer;
+  z-index: 999999;
+  box-shadow: 0 0 12px rgba(0,255,120,0.25);
+  transition: background .2s ease, transform .2s ease;
+}
+.hg-console-btn:hover {
+  background: rgba(0,255,120,0.2);
+  transform: translateY(-2px);
+}
+.hg-console-btn:active {
+  transform: translateY(0);
+}
