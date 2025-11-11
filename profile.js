@@ -224,7 +224,6 @@ function renderCollection() {
     });
   });
 }
-
 // --------------------------------------
 // MERKE-MODAL – viser bilde, nivå og quiz-liste
 // --------------------------------------
