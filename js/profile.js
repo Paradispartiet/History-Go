@@ -1,12 +1,12 @@
 // ============================================================
-// === HISTORY GO – PROFILE.JS (v3.5, popup + bakgrunnskart) ==
+// === HISTORY GO – PROFILE.JS (v3.7, kompatibel & stabil) ====
 // ============================================================
 //
 //  • Leser data fra HG.data (core.js)
-//  • Viser profil, merker, personer, steder og tidslinje
-//  • Klikk åpner popup (modal) med detaljer og bilde
-//  • Kart bakgrunn viser besøkte steder og personer
-//  • Live-oppdateres ved updateProfile-event
+//  • Viser profilkort, merker, personer, steder og tidslinje
+//  • Har eget kartlag (#profileMap) med besøkte steder og personer
+//  • Bruker ui.js for toasts, men egne modaler for detaljer
+//  • Live-oppdateres ved updateProfile og storage-hendelser
 // ============================================================
 
 window.addEventListener("DOMContentLoaded", () => {
@@ -20,41 +20,45 @@ window.addEventListener("DOMContentLoaded", () => {
 
 const Profile = (() => {
   let DATA = { places: [], people: [], badges: [] };
-  let map = null;
+  let profileMap = null; // egen kartinstans for profilen
 
   // ----------------------------------------------------------
   // 1) INITIERING
   // ----------------------------------------------------------
   async function initProfilePage() {
     DATA = HG?.data || DATA;
-    initMap();
+    initProfileMap();
     renderAll();
     setupButtons();
     setupModalClose();
     setupLiveUpdates();
-    console.log("👤 Profilside (v3.5) initialisert");
+    console.log("👤 Profilside (v3.7) initialisert");
   }
 
   // ----------------------------------------------------------
-  // 2) KART
+  // 2) KART (egen Leaflet-instans)
   // ----------------------------------------------------------
-  function initMap() {
-    map = L.map("map", { zoomControl: false }).setView([59.9139, 10.7522], 13);
+  function initProfileMap() {
+    profileMap = L.map("profileMap", { zoomControl: false, attributionControl: false })
+      .setView([59.9139, 10.7522], 13);
+
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       attribution: "© OpenStreetMap"
-    }).addTo(map);
-    updateMapMarkers();
+    }).addTo(profileMap);
+
+    updateProfileMapMarkers();
   }
 
-  function updateMapMarkers() {
-    if (!map) return;
+  function updateProfileMapMarkers() {
+    if (!profileMap) return;
     const visited = load("visited_places", []);
     const people = load("people_collected", []);
-    map.eachLayer(l => {
-      if (l instanceof L.CircleMarker || l instanceof L.Marker) map.removeLayer(l);
+
+    profileMap.eachLayer(l => {
+      if (l instanceof L.CircleMarker || l instanceof L.Marker) profileMap.removeLayer(l);
     });
 
-    // Steder (gule sirkler)
+    // --- Steder (gule sirkler) ---
     visited.forEach(p => {
       if (p.lat && p.lon) {
         const marker = L.circleMarker([p.lat, p.lon], {
@@ -63,11 +67,11 @@ const Profile = (() => {
           fillColor: "#FFD600",
           fillOpacity: 0.9
         }).bindPopup(`<strong>${p.name}</strong><br>${p.desc || ""}`);
-        marker.addTo(map);
+        marker.addTo(profileMap);
       }
     });
 
-    // Personer (runde bilder)
+    // --- Personer (runde bilder) ---
     people.forEach(per => {
       const pl = visited.find(v => v.id === per.placeId);
       if (pl?.lat && pl?.lon) {
@@ -80,7 +84,7 @@ const Profile = (() => {
         });
         L.marker([pl.lat, pl.lon], { icon })
           .bindPopup(`<strong>${per.name}</strong><br>${pl.name}`)
-          .addTo(map);
+          .addTo(profileMap);
       }
     });
   }
@@ -94,7 +98,7 @@ const Profile = (() => {
     renderPeople();
     renderPlaces();
     renderTimeline();
-    updateMapMarkers();
+    updateProfileMapMarkers();
   }
 
   function renderProfileCard() {
@@ -114,7 +118,7 @@ const Profile = (() => {
     const level = Math.floor(totalPoints / 50) + 1;
     setText("profileLevel", `Historiker · nivå ${level}`);
 
-    // --- Tillat endring av brukernavn kun i profilen ---
+    // Redigerbart navn
     const elName = document.getElementById("profileName");
     if (elName) {
       elName.contentEditable = true;
@@ -122,9 +126,8 @@ const Profile = (() => {
         const newName = elName.textContent.trim() || "Utforsker";
         localStorage.setItem("user_name", newName);
         HG.user.name = newName;
-
-        // Send oppdatering slik at mini-profilen endres på forsiden
         window.dispatchEvent(new Event("updateProfile"));
+        ui.showToast("📝 Navn oppdatert");
       });
     }
   }
@@ -212,63 +215,44 @@ const Profile = (() => {
   // 4) MODALER
   // ----------------------------------------------------------
   function openBadgeModal(categoryId) {
-    const modal = byId("badgeModal");
-    const title = byId("badgeModalTitle");
-    const content = byId("badgeModalContent");
-    const progress = load("quiz_progress", {});
     const badgeData = DATA.badges.find(b => b.id === categoryId);
-
-    title.textContent = `Merke: ${badgeData?.name || categoryId}`;
-    content.innerHTML = "";
-
-    const list = document.createElement("ul");
+    const progress = load("quiz_progress", {});
+    let html = `<p>${badgeData?.desc || ""}</p><ul>`;
     Object.values(progress).forEach(q => {
-      if (q.categoryId === categoryId) {
-        const li = document.createElement("li");
-        li.textContent = `${q.placeId || "Sted"} – ${q.points} poeng`;
-        list.appendChild(li);
-      }
+      if (q.categoryId === categoryId) html += `<li>${q.placeId || "Sted"} – ${q.points} poeng</li>`;
     });
-    content.appendChild(list);
-    modal.setAttribute("aria-hidden", "false");
+    html += "</ul>";
+    ui.openModal(`Merke: ${badgeData?.name || categoryId}`, html);
   }
 
   function openPersonModal(id) {
     const p = DATA.people.find(x => x.id === id);
     if (!p) return;
-    const modal = byId("personModal");
-    byId("personModalName").textContent = p.name;
-    byId("personModalContent").innerHTML = `
+    const html = `
+      <img src="bilder/kort/people/${p.id}.PNG" alt="${p.name}" style="width:100%;border-radius:8px;margin-bottom:8px;">
       <p>${p.desc || ""}</p>
-      <img src="bilder/kort/people/${p.id}.PNG" alt="${p.name}">
-      <p><small>År: ${p.year || "–"}</small></p>`;
-    modal.setAttribute("aria-hidden", "false");
+      <small>År: ${p.year || "–"}</small>`;
+    ui.openModal(p.name, html);
   }
 
   function openPlaceModal(id) {
     const pl = DATA.places.find(p => p.id === id);
     if (!pl) return;
-    const modal = byId("placeModal");
-    byId("placeModalName").textContent = pl.name;
-    byId("placeModalContent").innerHTML = `
+    const html = `
+      <img src="bilder/kort/places/${pl.image || pl.id}.PNG" alt="${pl.name}" style="width:100%;border-radius:8px;margin-bottom:8px;">
       <p>${pl.desc || ""}</p>
-      <img src="bilder/kort/places/${pl.image || pl.id}.PNG" alt="${pl.name}">
-      <p><small>År: ${pl.year || "–"}</small></p>`;
-    modal.setAttribute("aria-hidden", "false");
+      <small>År: ${pl.year || "–"}</small>`;
+    ui.openModal(pl.name, html);
   }
 
   function setupModalClose() {
-    document.querySelectorAll(".close-modal").forEach(btn => {
-      btn.onclick = () => {
-        const id = btn.dataset.close;
-        const m = byId(id);
-        if (m) m.setAttribute("aria-hidden", "true");
-      };
+    document.addEventListener("click", e => {
+      if (e.target.classList.contains("close-modal")) ui.closeModal();
     });
   }
 
   // ----------------------------------------------------------
-  // 5) KNAPPER OG NULLSTILL
+  // 5) KNAPPER
   // ----------------------------------------------------------
   function setupButtons() {
     const exp = byId("exportProfileBtn");
@@ -283,15 +267,25 @@ const Profile = (() => {
       link.download = "HistoryGo_Profil.png";
       link.href = canvas.toDataURL();
       link.click();
+      ui.showToast("📸 Profil eksportert som bilde");
     });
   }
 
   function resetProfileData() {
-    if (confirm("Vil du slette all progresjon?")) {
-      localStorage.clear();
-      renderAll();
-      updateMapMarkers();
-    }
+    ui.openModal("Nullstill profil", `
+      <p>Vil du slette all progresjon og starte på nytt?</p>
+      <button id="confirmResetBtn">Ja, slett alt</button>
+    `);
+    setTimeout(() => {
+      const btn = byId("confirmResetBtn");
+      if (btn) btn.onclick = () => {
+        localStorage.clear();
+        renderAll();
+        updateProfileMapMarkers();
+        ui.closeModal();
+        ui.showToast("🧹 Profilen er nullstilt");
+      };
+    }, 100);
   }
 
   // ----------------------------------------------------------
