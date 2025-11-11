@@ -1,11 +1,12 @@
 // ============================================================
-// === HISTORY GO – ROUTES.JS (v1.2, stabil med feilhåndtering) ===
+// === HISTORY GO – ROUTES.JS (v1.3, nattkart + lys fotruter) ===
 // ============================================================
 //
-//  • Leser rutedata fra HG.data.routes (via core.js)
+//  • Leser rutedata fra HG.data.routes (lastet via core.js)
 //  • Viser ruter i utforsk-panelet under “Utforsk ruter”
-//  • “Se på kart”-knapp sender ruten til map.showRouteNow()
-//  • Minimal, rask og fullstendig kompatibel med app.js + map.js
+//  • “Se på kart”-knapp tegner lysende rute via map.showRouteNow()
+//  • Automatisk rydding av forrige rute med map.clearActiveRoute()
+//  • Minimal, rask og fullt kompatibel med map.js v3.4
 //
 // ------------------------------------------------------------
 // INNHOLDSFORTEGNELSE
@@ -22,7 +23,7 @@ const Routes = (() => {
   // 1) INITIERING
   // ----------------------------------------------------------
   function initRoutes() {
-    console.log("📜 Ruter klar:", (HG?.data?.routes || []).length, "ruter funnet");
+    console.log("📜 Ruter klar:", (HG?.data?.routes || []).length, "funnet");
     renderRoutesList();
   }
 
@@ -55,19 +56,24 @@ const Routes = (() => {
           padding:4px 10px;
           border-radius:8px;
           cursor:pointer;
-        ">Se på kart</button>
+        ">🗺️ Se på kart</button>
       `;
 
-      // Knytt knapp til kart
+      // --- Knytt knapp til kartet ---
       div.querySelector(".see-map-btn").onclick = () => {
         const route = routes.find(x => x.id === r.id);
-        if (map?.showRouteNow && route) {
-          map.showRouteNow(route);
-          ui.showToast(`🗺️ Viser rute: ${r.name}`);
-        } else {
+        if (!map || !map.showRouteNow) {
           console.warn("⚠️ showRouteNow ikke tilgjengelig i map.js");
-          ui.showToast("Kan ikke vise rute – kart ikke klart");
+          ui?.showToast?.("Kan ikke vise rute – kart ikke klart");
+          return;
         }
+
+        // Fjern forrige rute før ny tegnes
+        if (map.clearActiveRoute) map.clearActiveRoute();
+
+        // Tegn ny rute
+        map.showRouteNow(route);
+        ui?.showToast?.(`🗺️ Viser rute: ${r.name}`);
       };
 
       list.appendChild(div);
@@ -75,7 +81,7 @@ const Routes = (() => {
   }
 
   // ----------------------------------------------------------
-  // 3) HJELPERE – farge etter kategori
+  // 3) HJELPER – farge etter kategori
   // ----------------------------------------------------------
   function getCategoryColor(cat = "") {
     const c = cat.toLowerCase();
