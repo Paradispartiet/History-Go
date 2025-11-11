@@ -258,4 +258,24 @@
     };
     document.body.appendChild(btn);
   }
+
+  // ----------------------------------------------------------
+// HURTIG-HELP (vises direkte i konsollen ved "help")
+// ----------------------------------------------------------
+commands.help = function() {
+  printBlock('🩺 HISTORY GO – HURTIG-HJELP', {
+    'status': 'Systemoversikt (map, data, storage, events)',
+    'mapcheck': 'Diagnose av kart (Leaflet, initMap, data)',
+    'events': 'Siste 20 hendelser',
+    'routes check': 'Valider ruter mot places',
+    'storage check': 'Vis localStorage-nøkler og data',
+    'errors': 'Vis JS-feil og Promise-feil',
+    'run <kode>': 'Kjør JS-kommando (f.eks. run HG.data)',
+    'debug on/off': 'Aktiver eller deaktiver ekstra logging',
+    'clear log': 'Tøm visningen (ikke data)',
+    'hide': 'Skjul konsollen'
+  }, 'cmd');
+
+  print("💡 Tips: Bruk <strong>run</strong> for å teste koden din direkte.<br>Eksempel: <code>run typeof map.initMap</code>", "cmd");
+};
 })();
