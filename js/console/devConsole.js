@@ -1,13 +1,22 @@
 // ============================================================
-// === HISTORY GO – DEV CONSOLE (v2.1, timestamp + autoscroll)
+// === HISTORY GO – DEV CONSOLE (v2.2, interactive cmds) =====
 // ============================================================
 //
-//  • Åpnes med ~ (tilde)
-//  • Shift+Enter for multiline
-//  • Intern logg lagres i localStorage (app_log)
-//  • Kommandoer:
-//      help, list, clear storage/log, show log/detailed,
-//      debug on/off, log HG.data, reload
+//  Åpnes med ~ (tilde). Shift+Enter for multiline.
+//
+//  Nye kommandoer:
+//   • whoami                → viser HG.user (navn/farge)
+//   • profile               → sammendrag av profil (level, poeng)
+//   • profile set name "..."|color #hex
+//   • stats                 → teller alt (steder, personer, quiz, merker)
+//   • routes                → liste ruter (id + navn)
+//   • route open <id|#idx>  → åpner rute i kartet
+//   • mapinfo               → zoom, center, aktive lag/opacity
+//
+//  Eksisterende:
+//   • help, list places|people|routes
+//   • clear storage|log, show log|detailed, reload
+//   • debug on/off, log HG.data
 // ============================================================
 
 (function() {
@@ -15,55 +24,34 @@
   let consoleEl, inputEl, outputEl;
   const logKey = "app_log";
 
-  // ----------------------------------------------------------
-  // INITIER TERMINAL
-  // ----------------------------------------------------------
+  // ---------- utils: storage ----------
+  const loadJSON = (k, fallback) => {
+    try { return JSON.parse(localStorage.getItem(k)) ?? fallback; }
+    catch { return fallback; }
+  };
+  const saveJSON = (k, v) => localStorage.setItem(k, JSON.stringify(v));
+  const timestamp = () => new Date().toLocaleTimeString("no-NO", { hour12: false });
+
+  // ---------- dom: init ----------
   function initConsole() {
+    if (document.getElementById("devConsole")) return;
+
     consoleEl = document.createElement("div");
     consoleEl.id = "devConsole";
-    Object.assign(consoleEl.style, {
-      position: "fixed",
-      bottom: "0",
-      left: "0",
-      width: "100%",
-      height: "40vh",
-      background: "rgba(0,0,0,.9)",
-      color: "#0f0",
-      fontFamily: "monospace",
-      fontSize: "13px",
-      borderTop: "1px solid rgba(255,255,255,.2)",
-      zIndex: 999999,
-      display: "none",
-      flexDirection: "column",
-      padding: "8px",
-      boxSizing: "border-box"
-    });
+    consoleEl.className = "hg-console";
 
     outputEl = document.createElement("div");
-    outputEl.style.flex = "1";
-    outputEl.style.overflowY = "auto";
-    outputEl.style.paddingRight = "6px";
+    outputEl.className = "hg-console-output";
 
     inputEl = document.createElement("textarea");
-    inputEl.placeholder = "skriv kommando...";
-    Object.assign(inputEl.style, {
-      width: "100%",
-      background: "rgba(255,255,255,.1)",
-      border: "1px solid rgba(255,255,255,.2)",
-      color: "#fff",
-      fontFamily: "monospace",
-      fontSize: "13px",
-      padding: "5px 8px",
-      outline: "none",
-      resize: "none",
-      height: "40px"
-    });
+    inputEl.className = "hg-console-input";
+    inputEl.placeholder = "skriv kommando… (help)";
 
     consoleEl.appendChild(outputEl);
     consoleEl.appendChild(inputEl);
     document.body.appendChild(consoleEl);
 
-    // --- multiline + enter ---
+    // multiline + enter
     inputEl.addEventListener("keydown", e => {
       if (e.key === "Enter" && !e.shiftKey) {
         e.preventDefault();
@@ -73,12 +61,9 @@
       }
     });
 
-    console.log("🧠 DevConsole v2.1 initialisert");
+    logLine("🧠 DevConsole v2.2 initialisert");
   }
 
-  // ----------------------------------------------------------
-  // VIS / SKJUL
-  // ----------------------------------------------------------
   function toggleConsole() {
     if (!consoleEl) initConsole();
     consoleOpen = !consoleOpen;
@@ -86,109 +71,235 @@
     if (consoleOpen) inputEl.focus();
   }
 
-  // ----------------------------------------------------------
-  // HJELPEFUNKSJONER
-  // ----------------------------------------------------------
-  const timestamp = () => new Date().toLocaleTimeString("no-NO", { hour12: false });
-  const loadLog = () => JSON.parse(localStorage.getItem(logKey) || "[]");
-  const saveLog = arr => localStorage.setItem(logKey, JSON.stringify(arr.slice(-500)));
+  // ---------- logging ----------
+  const loadLog = () => loadJSON(logKey, []);
+  const saveLog = (arr) => saveJSON(logKey, arr.slice(-500));
 
-  function logLine(text, isError = false) {
+  function logLine(text, type = "info") {
     const time = timestamp();
     const div = document.createElement("div");
-    div.innerHTML = `<span class="timestamp">[${time}]</span> ${text}`;
-    if (isError) div.classList.add("error");
+    div.className = `hg-log ${type}`;
+    div.innerHTML = `<span class="ts">[${time}]</span> ${escapeHTML(text)}`;
     outputEl.appendChild(div);
     outputEl.scrollTop = outputEl.scrollHeight;
 
     const log = loadLog();
-    log.push({ time, text });
+    log.push({ time, text, type });
     saveLog(log);
   }
+  const escapeHTML = s => String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 
   function logList(arr, key) {
     if (!arr?.length) return logLine("(tom liste)");
-    arr.slice(0, 10).forEach(e => logLine(`- ${e[key] || "(ingen navn)"}`));
+    arr.slice(0, 20).forEach((e, i) => logLine(`${i+1}. ${e[key] ?? "(ingen navn)"}  ${e.id ? `— ${e.id}` : ""}`));
   }
 
-  // ----------------------------------------------------------
-  // KJØR KOMMANDO
-  // ----------------------------------------------------------
-  function runCommand(cmd) {
-    logLine(`> ${cmd}`);
+  // ---------- helpers: domain ----------
+  function profileSummary() {
+    const merits = loadJSON("merits_by_category", {});
+    const visited = loadJSON("visited_places", []);
+    const people  = loadJSON("people_collected", []);
+    const quizzes = loadJSON("quiz_progress", {});
+    const totalPoints = Object.values(merits).reduce((a, m) => a + (m?.points || 0), 0);
+    const level = Math.floor(totalPoints / 50) + 1;
+    return { merits, visited, people, quizzes, totalPoints, level };
+  }
 
-    try {
-      const [main, arg1, arg2] = cmd.toLowerCase().split(" ");
+  function openRouteByKey(key) {
+    const routes = window.HG?.data?.routes || [];
+    if (!routes.length) { logLine("Ingen ruter i HG.data.routes", "warn"); return; }
 
-      switch (main) {
-        case "help":
-          logLine("Kommandoer:");
-          logLine(" help, list places|people|routes");
-          logLine(" clear storage|log, show log|detailed, reload");
-          logLine(" debug on/off, log HG.data");
-          break;
+    let route = null;
+    if (key.startsWith("#")) {
+      const idx = parseInt(key.slice(1), 10) - 1;
+      route = routes[idx];
+    } else {
+      route = routes.find(r => r.id === key);
+    }
+    if (!route) { logLine("Fant ikke rute", "warn"); return; }
 
-        case "list":
-          if (arg1 === "places") logList(HG.data.places, "name");
-          else if (arg1 === "people") logList(HG.data.people, "name");
-          else if (arg1 === "routes") logList(HG.data.routes, "name");
-          else logLine("Ukjent kategori.");
-          break;
-
-        case "clear":
-          if (arg1 === "storage") {
-            localStorage.clear();
-            logLine("🧹 localStorage slettet");
-          } else if (arg1 === "log") {
-            localStorage.removeItem(logKey);
-            logLine("🧼 Logg tømt");
-          }
-          break;
-
-        case "show":
-          if (arg1 === "log") {
-            const entries = loadLog();
-            logLine(`📜 Logg (${entries.length} linjer):`);
-            entries.slice(-50).forEach(e => logLine(e.text));
-          } else if (arg1 === "detailed") {
-            const entries = loadLog();
-            logLine(`📜 Detaljert logg (${entries.length} linjer):`);
-            entries.slice(-50).forEach(e => logLine(`[${e.time}] ${e.text}`));
-          }
-          break;
-
-        case "reload":
-          location.reload();
-          break;
-
-        case "debug":
-          if (arg1 === "on") {
-            localStorage.setItem("debug", "true");
-            logLine("✅ Debug aktivert");
-          } else if (arg1 === "off") {
-            localStorage.removeItem("debug");
-            logLine("❌ Debug deaktivert");
-          }
-          break;
-
-        case "log":
-          if (arg1 === "hg.data") logLine(JSON.stringify(HG.data, null, 2));
-          else logLine("Ukjent log-kommando.");
-          break;
-
-        default:
-          const result = eval(cmd);
-          logLine(result === undefined ? "(ingen returverdi)" : String(result));
-      }
-    } catch (err) {
-      logLine(`⚠️ Feil: ${err.message}`, true);
+    // Prøv routes-modul, ellers map.showRouteNow
+    if (window.Routes?.activateRoute) {
+      window.Routes.activateRoute(route.id);
+      logLine(`Rute aktivert via Routes: ${route.name}`);
+    } else if (window.map?.showRouteNow) {
+      window.map.showRouteNow(route);
+      logLine(`Rute aktivert via map: ${route.name}`);
+    } else {
+      logLine("Ingen rutefunksjon tilgjengelig (mangler Routes/map)", "error");
     }
   }
 
-  // ----------------------------------------------------------
-  // HOTKEY ~
-  // ----------------------------------------------------------
+  // ---------- command parser (med sitat/quotes) ----------
+  function splitArgs(cmd) {
+    const re = /"([^"]+)"|'([^']+)'|(\S+)/g;
+    const out = [];
+    let m;
+    while ((m = re.exec(cmd))) out.push(m[1] || m[2] || m[3]);
+    return out;
+  }
+
+  // ---------- run command ----------
+  function runCommand(raw) {
+    logLine(`> ${raw}`, "cmd");
+    try {
+      const parts = splitArgs(raw);
+      const main = (parts[0] || "").toLowerCase();
+      const a1 = (parts[1] || "").toLowerCase();
+      const a2 = (parts[2] || "").toLowerCase();
+
+      switch (main) {
+        case "help":
+          logLine("help, whoami, profile, profile set name \"…\"|color #hex, stats");
+          logLine("routes, route open <id|#idx>, mapinfo");
+          logLine("list places|people|routes");
+          logLine("clear storage|log, show log|detailed, reload, debug on/off, log HG.data");
+          break;
+
+        case "whoami": {
+          const user = window.HG?.user || {
+            name: localStorage.getItem("user_name") || "Ukjent",
+            color: localStorage.getItem("user_color") || "#FFD600"
+          };
+          logLine(`Bruker: ${user.name} · farge: ${user.color}`);
+          break;
+        }
+
+        case "profile": {
+          if (a1 === "set" && a2 === "name" && parts[3]) {
+            const newName = parts.slice(3).join(" ");
+            localStorage.setItem("user_name", newName);
+            if (window.HG) window.HG.user = { ...(window.HG.user||{}), name: newName };
+            window.dispatchEvent(new Event("updateProfile"));
+            logLine(`Navn oppdatert → ${newName}`);
+            break;
+          }
+          if (a1 === "set" && a2 === "color" && parts[3]) {
+            const col = parts[3];
+            localStorage.setItem("user_color", col);
+            if (window.HG) window.HG.user = { ...(window.HG.user||{}), color: col };
+            window.dispatchEvent(new Event("updateProfile"));
+            logLine(`Farge oppdatert → ${col}`);
+            break;
+          }
+          const u = window.HG?.user || {};
+          const { totalPoints, level } = profileSummary();
+          logLine(`Profil: ${u.name || localStorage.getItem("user_name") || "Ukjent"} · nivå ${level} · ${totalPoints}p`);
+          break;
+        }
+
+        case "stats": {
+          const { merits, visited, people, quizzes, totalPoints, level } = profileSummary();
+          logLine(`Steder: ${visited.length} · Personer: ${people.length} · Quiz: ${Object.keys(quizzes).length} · Merker: ${Object.keys(merits).length}`);
+          logLine(`Poeng: ${totalPoints} · Nivå: ${level}`);
+          break;
+        }
+
+        case "routes":
+          logLine("Ruter:");
+          logList(window.HG?.data?.routes || [], "name");
+          break;
+
+        case "route":
+          if (a1 === "open" && parts[2]) openRouteByKey(parts[2]);
+          else logLine("Bruk: route open <id|#index>");
+          break;
+
+        case "mapinfo": {
+          const L = window.L, m = window.map;
+          const lm = document.getElementById("map") && window?.map && m;
+          const g = window?.map && m;
+          const leafletMap = m && m._getLeafletMap ? m._getLeafletMap() : (window._leaflet_map || null);
+          // Fallback: prøv å finne fra global Leaflet
+          const mapGuess = leafletMap || (window._leaflet_map = (window?.L && L?.map ? null : null));
+          try {
+            const mm = (window?.map && window.map._leafletMap) || null;
+            const ll = mm || leafletMap;
+            if (!ll) { logLine("Fant ikke Leaflet-kartinstans", "warn"); break; }
+            const c = ll.getCenter(), z = ll.getZoom();
+            logLine(`Kart: zoom ${z} · center ${c.lat.toFixed(5)}, ${c.lng.toFixed(5)}`);
+            const nl = window.map?._nightLayer?.options?.opacity ?? "(?)";
+            const dl = window.map?._dayLayer?.options?.opacity ?? "(?)";
+            logLine(`Lag: night=${nl} · day=${dl}`);
+            const hasRoute = !!(window.map?._activeLineInner || window.map?._activeLineOuter || window.map?._activeGlow);
+            logLine(`Aktiv rute: ${hasRoute ? "ja" : "nei"}`);
+          } catch (e) {
+            logLine(`mapinfo-feil: ${e.message}`, "error");
+          }
+          break;
+        }
+
+        case "list":
+          if (a1 === "places") logList(HG?.data?.places || [], "name");
+          else if (a1 === "people") logList(HG?.data?.people || [], "name");
+          else if (a1 === "routes") logList(HG?.data?.routes || [], "name");
+          else logLine("Ukjent kategori (places|people|routes).");
+          break;
+
+        case "clear":
+          if (a1 === "storage") {
+            localStorage.clear();
+            window.dispatchEvent(new Event("updateProfile"));
+            logLine("🧹 localStorage slettet");
+          } else if (a1 === "log") {
+            localStorage.removeItem(logKey);
+            logLine("🧼 Logg tømt");
+          } else logLine("Bruk: clear storage|log");
+          break;
+
+        case "show":
+          if (a1 === "log") {
+            const entries = loadLog();
+            logLine(`📜 Logg (${entries.length} linjer):`);
+            entries.slice(-50).forEach(e => logLine(e.text));
+          } else if (a1 === "detailed") {
+            const entries = loadLog();
+            logLine(`📜 Detaljert logg (${entries.length} linjer):`);
+            entries.slice(-50).forEach(e => logLine(`[${e.time}] ${e.text}`));
+          } else logLine("Bruk: show log|detailed");
+          break;
+
+        case "reload": location.reload(); break;
+
+        case "debug":
+          if (a1 === "on")  { localStorage.setItem("debug","true"); logLine("✅ Debug aktivert"); }
+          else if (a1 === "off") { localStorage.removeItem("debug"); logLine("❌ Debug deaktivert"); }
+          else logLine("Bruk: debug on|off");
+          break;
+
+        case "log":
+          if ((parts[1] || "").toLowerCase() === "hg.data") {
+            logLine(JSON.stringify(HG?.data || {}, null, 2));
+          } else logLine("Bruk: log HG.data");
+          break;
+
+        default:
+          // Fallback: eval (bevisst synlig, intern dev-verktøy)
+          // eslint-disable-next-line no-eval
+          const result = eval(raw);
+          logLine(result === undefined ? "(ingen returverdi)" : String(result));
+      }
+    } catch (err) {
+      logLine(`⚠️ Feil: ${err.message}`, "error");
+    }
+  }
+
+  // Hotkey
   document.addEventListener("keydown", e => {
-    if (e.key === "~") toggleConsole();
+    if (e.key === "~") {
+      e.preventDefault();
+      toggleConsole();
+    }
   });
+
+  // Gi map.js mulighet til å eksponere Leaflet-instans om ønskelig
+  // (valgfritt – ikke påkrevd)
+  if (!window.map?._getLeafletMap && window.map) {
+    try {
+      Object.defineProperty(window.map, "_getLeafletMap", {
+        value: () => window.map?._leafletMap || null,
+        writable: false
+      });
+    } catch {}
+  }
 })();
