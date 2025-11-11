@@ -212,3 +212,41 @@ html, body {
   background: rgba(0,0,0,.5);
   pointer-events: all;
 }
+/* ===================================================== */
+/* KARTMODUS OG PANELOVERGANG                           */
+/* ===================================================== */
+
+.map-hidden { display: none; }
+.map-visible {
+  display: block;
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  transition: opacity .4s ease;
+}
+
+/* Når kart vises – skjul utforskpanel */
+.sheet-hidden {
+  transform: translateY(100%);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform .4s ease, opacity .3s ease;
+}
+
+/* Etikett øverst i kartmodus */
+.map-label {
+  position: fixed;
+  top: 70px;
+  right: 18px;
+  background: rgba(0,0,0,.6);
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: .8px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.15);
+  z-index: 25;
+  backdrop-filter: blur(6px);
+  transition: opacity .3s ease;
+}
