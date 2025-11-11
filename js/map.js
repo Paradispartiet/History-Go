@@ -91,18 +91,50 @@ function drawPlaceMarkers(places = []) {
 
   console.log(`📍 Tegnet ${Object.keys(markers).length} steder på kartet`);
 }
-  // ----------------------------------------------------------
-  // 3) TRYKK PÅ STED
-  // ----------------------------------------------------------
-  function handlePlaceClick(placeId) {
-    const pl = (HG?.data?.places || []).find((x) => x.id === placeId);
-    if (!pl) return;
-
-    pulseMarker(placeId);
-    document.dispatchEvent(new CustomEvent("placeSelected", { detail: { placeId } }));
-    ui.showToast(`📍 ${pl.name}`);
+// ----------------------------------------------------------
+// 3) TRYKK PÅ STED (viser info, oppdaterer profil, logger event)
+// ----------------------------------------------------------
+function handlePlaceClick(placeId) {
+  const pl = (HG?.data?.places || []).find(x => x.id === placeId);
+  if (!pl) {
+    console.warn(`⚠️ Fant ikke sted med id: ${placeId}`);
+    return;
   }
 
+  // Puls på markøren
+  pulseMarker(placeId);
+
+  // Vis toast med stedets navn og kategori
+  ui?.showToast?.(`📍 ${pl.name} (${pl.category || "ukjent"})`);
+
+  // Oppdater besøksliste i localStorage hvis ikke fra før
+  const visited = load("visited_places", []);
+  const already = visited.some(v => v.id === placeId);
+  if (!already) {
+    visited.push({
+      id: pl.id,
+      name: pl.name,
+      category: pl.category,
+      lat: pl.lat,
+      lon: pl.lon,
+      year: pl.year || null,
+      date: new Date().toISOString()
+    });
+    save("visited_places", visited);
+    window.dispatchEvent(new Event("updateProfile"));
+  }
+
+  // Aktiver event for andre moduler
+  document.dispatchEvent(new CustomEvent("placeSelected", { detail: { placeId } }));
+
+  // Logg til konsollen (diagnose)
+  if (window.HGConsole) HGConsole.log(`📍 Klikket på sted: ${pl.name}`, "cmd");
+
+  // Fokusér på kartet (myk animasjon)
+  if (leafletMap && pl.lat && pl.lon) {
+    leafletMap.flyTo([pl.lat, pl.lon], 16, { duration: 1.2 });
+  }
+}
   // ----------------------------------------------------------
   // 4) VISUELLE EFFEKTER (PULS)
   // ----------------------------------------------------------
