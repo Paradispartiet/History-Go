@@ -82,39 +82,69 @@ function openProfileModal() {
 
 
 // --------------------------------------
-// HISTORIEKORT – TIDSLINJE
+// TIDSLINJE – KOMBINERTE STEDER + PERSONER
 // --------------------------------------
 function renderTimelineProfile() {
   const body = document.getElementById("timelineList");
-  const bar  = document.getElementById("timelineProgressBar");
-  const txt  = document.getElementById("timelineProgressText");
   if (!body) return;
 
+  const visited         = JSON.parse(localStorage.getItem("visited_places") || "{}");
   const peopleCollected = JSON.parse(localStorage.getItem("people_collected") || "{}");
-  const got   = PEOPLE.filter(p => !!peopleCollected[p.id]);
-  const total = PEOPLE.length;
-  const count = got.length;
 
-  if (bar) bar.style.width = `${(total ? (count / total) * 100 : 0).toFixed(1)}%`;
-  if (txt) txt.textContent = `Du har samlet ${count} av ${total} historiekort`;
+  // hent data
+  const visitedPlaces = PLACES.filter(p => visited[p.id]);
+  const collectedPeople = PEOPLE.filter(p => peopleCollected[p.id]);
 
-  if (!got.length) {
-    body.innerHTML = `<div class="muted">Du har ingen historiekort ennå.</div>`;
+  // slå sammen og sorter etter år
+  const allItems = [
+    ...visitedPlaces.map(p => ({
+      type: "place",
+      id: p.id,
+      name: p.name,
+      year: p.year || 0,
+      category: p.category || "",
+      image: p.image || `bilder/kort/places/${p.id}.PNG`
+    })),
+    ...collectedPeople.map(p => ({
+      type: "person",
+      id: p.id,
+      name: p.name,
+      year: p.year || 0,
+      category: "person",
+      image: p.image || `bilder/kort/people/${p.id}.PNG`
+    }))
+  ].sort((a, b) => (a.year || 0) - (b.year || 0));
+
+  // ingen data ennå
+  if (!allItems.length) {
+    body.innerHTML = `<li class="muted">Du har ingen historiekort eller steder ennå.</li>`;
     return;
   }
 
-  const sorted = got.map(p => ({ ...p, year: p.year || 0 })).sort((a,b) => a.year - b.year);
-  body.innerHTML = sorted.map(p => `
-    <div class="timeline-card" data-person="${p.id}">
-      <img src="${p.image || `bilder/kort/people/${p.id}.PNG`}" alt="${p.name}">
-      <div class="timeline-name">${p.name}</div>
-      <div class="timeline-year">${p.year || "–"}</div>
-    </div>`).join("");
+  // bygg HTML for tidslinjen
+  body.innerHTML = allItems.map(item => `
+    <li class="timeline-entry ${item.type}" data-id="${item.id}">
+      <div class="timeline-thumb">
+        <img src="${item.image}" alt="${item.name}">
+      </div>
+      <div class="timeline-info">
+        <strong>${item.name}</strong><br>
+        <span class="muted">${item.type === "person" ? "Person" : "Sted"}${item.year ? " · " + item.year : ""}</span>
+      </div>
+    </li>
+  `).join("");
 
-  body.querySelectorAll(".timeline-card").forEach(card => {
-    card.addEventListener("click", () => {
-      const person = PEOPLE.find(p => p.id === card.dataset.person);
-      if (person) showPersonPopup(person);
+  // legg til klikk – åpner riktig popup
+  body.querySelectorAll(".timeline-entry").forEach(entry => {
+    entry.addEventListener("click", () => {
+      const id = entry.dataset.id;
+      if (entry.classList.contains("person")) {
+        const person = PEOPLE.find(p => p.id === id);
+        if (person) showPersonPopup(person);
+      } else {
+        const place = PLACES.find(p => p.id === id);
+        if (place) showPlacePopup(place);
+      }
     });
   });
 }
