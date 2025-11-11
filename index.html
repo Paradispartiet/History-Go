@@ -20,7 +20,6 @@
 </head>
 
 <body class="app-page">
-  <!-- Ramme -->
   <div class="app-frame" aria-hidden="true"></div>
 
   <!-- HEADER -->
@@ -35,12 +34,16 @@
     </div>
   </header>
 
-  <!-- HOVEDINNHOLD -->
+  <!-- INNHOLD -->
   <main id="appMain">
     <!-- Kart -->
     <div id="map" class="map-hidden"></div>
+    <div id="mapLabel" class="map-label" hidden>
+      KARTMODUS
+      <button id="closeMap" class="btn-close-map" aria-label="Lukk kart">×</button>
+    </div>
 
-    <!-- Utforskpanel alltid oppe -->
+    <!-- Utforskpanel -->
     <div id="exploreSheet" class="sheet sheet-open">
       <div class="sheet-head">
         <h3>Steder i nærheten</h3>
@@ -51,11 +54,10 @@
       <div id="routesList" class="sheet-content"></div>
     </div>
 
-    <!-- Toast -->
     <div id="toast" aria-live="polite"></div>
   </main>
 
-  <!-- Modal for quiz -->
+  <!-- Modal -->
   <div id="modal" class="modal" aria-hidden="true">
     <div class="modal-body">
       <div class="modal-head">
@@ -76,20 +78,29 @@
   <script src="js/data.js"></script>
 
   <script>
-    // Bytt mellom kart og utforskpanel
     document.addEventListener("DOMContentLoaded", () => {
       const mapEl = document.getElementById("map");
       const sheet = document.getElementById("exploreSheet");
-      const btn = document.getElementById("toggleMap");
+      const toggleBtn = document.getElementById("toggleMap");
+      const label = document.getElementById("mapLabel");
+      const closeBtn = document.getElementById("closeMap");
 
-      btn.addEventListener("click", () => {
-        const kartmodus = mapEl.classList.toggle("map-visible");
-        sheet.classList.toggle("sheet-hidden", kartmodus);
-        btn.textContent = kartmodus ? "Utforsk" : "Se kart";
-      });
+      function openMap() {
+        mapEl.classList.add("map-visible");
+        sheet.classList.add("sheet-hidden");
+        label.hidden = false;
+      }
+
+      function closeMapView() {
+        mapEl.classList.remove("map-visible");
+        sheet.classList.remove("sheet-hidden");
+        label.hidden = true;
+      }
+
+      toggleBtn.addEventListener("click", openMap);
+      closeBtn.addEventListener("click", closeMapView);
     });
 
-    // Service Worker
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker
         .register('sw.js')
