@@ -1094,13 +1094,23 @@ function closeQuiz() {
 }
 
 // ==============================
-// START QUIZ (person eller sted)
+// START QUIZ (person eller sted) – OPPDATERT VERSJON
 // ==============================
 async function startQuiz(targetId) {
   const person = PEOPLE.find(p => p.id === targetId);
   const place  = PLACES.find(p => p.id === targetId);
   if (!person && !place) return showToast("Fant verken person eller sted");
 
+  // --- Krever fysisk besøk før quiz kan tas ---
+  const visitedPlaces = JSON.parse(localStorage.getItem("visited_places") || "{}");
+  if (place && !visitedPlaces[place.id]) {
+    return showToast("📍 Du må besøke stedet først for å ta denne quizen.");
+  }
+  if (person && person.placeId && !visitedPlaces[person.placeId]) {
+    return showToast("📍 Du må besøke stedet først for å ta denne quizen.");
+  }
+
+  // --- Hent quizdata ---
   const displayCat = person ? tagToCat(person.tags) : (place.category || "vitenskap");
   const categoryId = catIdFromDisplay(displayCat);
   const items = await loadQuizForCategory(categoryId);
@@ -1116,6 +1126,7 @@ async function startQuiz(targetId) {
   closePlaceOverlay();
   openQuiz();
 
+  // --- Kjør quizflyt ---
   runQuizFlow({
     title: person ? person.name : place.name,
     questions: formatted,
@@ -1125,18 +1136,28 @@ async function startQuiz(targetId) {
       if (perfect) {
         addCompletedQuizAndMaybePoint(displayCat, targetId);
         markQuizAsDone(targetId);
+
         if (person) {
           peopleCollected[targetId] = true;
           savePeople();
           showPersonPopup(person);
           document.getElementById("gallery")?.scrollIntoView({ behavior: "smooth" });
+        } 
+        else if (place) {
+          // Bare vis kort hvis stedet er besøkt fysisk
+          if (visitedPlaces[place.id]) {
+            showPlacePopup(place);
+            pulseMarker(place.lat, place.lon);
+          }
         }
+
         showToast(`Perfekt! ${total}/${total} riktige 🎯 Du fikk poeng og kort!`);
+        window.dispatchEvent(new Event("updateProfile"));
       } else {
         showToast(`Fullført: ${correct}/${total} – prøv igjen for full score.`);
       }
 
-      // ✨ Pulse på stedet som hører til personen når quizen fullføres
+      // ✨ Pulse markør for personens sted
       if (person && person.placeId) {
         const plc = PLACES.find(p => p.id === person.placeId);
         if (plc) pulseMarker(plc.lat, plc.lon);
