@@ -189,6 +189,40 @@ async function renderMerits() {
   });
 }
 
+function openBadgeModalFromBadge(badge) {
+  const modal = document.getElementById("badgeModal");
+  if (!modal) return;
+
+  const modalImg = modal.querySelector(".badge-img");
+  const modalTitle = modal.querySelector(".badge-title");
+  const modalLevel = modal.querySelector(".badge-level");
+  const quizList = modal.querySelector(".badge-quizzes");
+  const progressBar = modal.querySelector(".badge-progress-bar");
+  const progressText = modal.querySelector(".badge-progress-text");
+
+  // hent brukerens fremgang
+  const merits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
+  const merit = merits[badge.name] || {};
+  const quizzes = merit.quizzes || [];
+  const totalQuizzes = badge.totalQuizzes || (badge.tiers?.length ?? 5);
+  const done = quizzes.length;
+  const percent = Math.min(100, Math.round((done / totalQuizzes) * 100));
+
+  // fyll inn data
+  modalImg.src = badge.image;
+  modalImg.alt = badge.name;
+  modalTitle.textContent = badge.name;
+  modalLevel.textContent = merit.level || "Nybegynner";
+  progressBar.style.width = percent + "%";
+  progressText.textContent = `${done} av ${totalQuizzes} quizer fullført`;
+  quizList.innerHTML = done
+    ? quizzes.map(q => `<li>${q}</li>`).join("")
+    : "<li>Ingen quizer fullført ennå</li>";
+
+  // vis modalen
+  modal.style.display = "flex";
+}
+
 // --------------------------------------
 // PERSONER DU HAR LÅST OPP
 // --------------------------------------
