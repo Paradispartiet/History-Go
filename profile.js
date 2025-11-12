@@ -1,5 +1,5 @@
 // ============================================================
-// === HISTORY GO – PROFILE.JS (v23, stabil og komplett) ======
+// === HISTORY GO – PROFILE.JS (v23 – stabil og komplett) =====
 // ============================================================
 //
 // Håndterer profilsiden:
@@ -22,24 +22,19 @@ function renderProfileCard() {
 
   const visited         = JSON.parse(localStorage.getItem("visited_places") || "{}");
   const peopleCollected = JSON.parse(localStorage.getItem("people_collected") || "{}");
-  const merits          = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
   const quizProgress    = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
 
   const visitedCount = Object.keys(visited).length;
   const quizCount = Object.values(quizProgress)
     .map(v => Array.isArray(v.completed) ? v.completed.length : 0)
     .reduce((a,b) => a+b, 0);
+
   const streak = Number(localStorage.getItem("user_streak") || 0);
 
-  const nameEl   = document.getElementById("profileName");
-  const visitEl  = document.getElementById("statVisited");
-  const quizEl   = document.getElementById("statQuizzes");
-  const streakEl = document.getElementById("statStreak");
-
-  if (nameEl)   nameEl.textContent   = name;
-  if (visitEl)  visitEl.textContent  = visitedCount;
-  if (quizEl)   quizEl.textContent   = quizCount;
-  if (streakEl) streakEl.textContent = streak;
+  document.getElementById("profileName").textContent = name;
+  document.getElementById("statVisited").textContent = visitedCount;
+  document.getElementById("statQuizzes").textContent = quizCount;
+  document.getElementById("statStreak").textContent = streak;
 }
 
 // --------------------------------------
@@ -53,11 +48,15 @@ function openProfileModal() {
       <h3>Endre profil</h3>
       <label>Navn</label>
       <input id="newName" value="${localStorage.getItem("user_name") || "Utforsker #182"}">
+
       <label>Farge</label>
       <input id="newColor" type="color" value="${localStorage.getItem("user_color") || "#f6c800"}">
+
       <button id="saveProfile">Lagre</button>
       <button id="cancelProfile" style="margin-left:6px;background:#444;color:#fff;">Avbryt</button>
-    </div>`;
+    </div>
+  `;
+
   document.body.appendChild(modal);
   modal.style.display = "flex";
 
@@ -71,8 +70,6 @@ function openProfileModal() {
     localStorage.setItem("user_color", newColor);
 
     document.getElementById("profileName").textContent = newName;
-    const avatarEl = document.getElementById("profileAvatar");
-    if (avatarEl) avatarEl.style.borderColor = newColor;
 
     showToast("Profil oppdatert ✅");
     modal.remove();
@@ -85,15 +82,16 @@ function openProfileModal() {
 // --------------------------------------
 function renderTimelineProfile() {
   const body = document.getElementById("timelineBody");
+  if (!body) return;
+
   const bar  = document.getElementById("timelineProgressBar");
   const txt  = document.getElementById("timelineProgressText");
-  if (!body) return;
 
   const visited         = JSON.parse(localStorage.getItem("visited_places") || "{}");
   const peopleCollected = JSON.parse(localStorage.getItem("people_collected") || "{}");
 
-  const visitedPlaces   = (PLACES || []).filter(p => visited[p.id]);
-  const collectedPeople = (PEOPLE || []).filter(p => peopleCollected[p.id]);
+  const visitedPlaces   = PLACES.filter(p => visited[p.id]);
+  const collectedPeople = PEOPLE.filter(p => peopleCollected[p.id]);
 
   const allItems = [
     ...visitedPlaces.map(p => ({
@@ -112,11 +110,12 @@ function renderTimelineProfile() {
     }))
   ].sort((a, b) => a.year - b.year);
 
+  // fremdrift
   const total = allItems.length;
   if (bar) bar.style.width = `${(total ? (total / (PEOPLE.length + PLACES.length)) * 100 : 0).toFixed(1)}%`;
   if (txt) txt.textContent = total ? `Du har låst opp ${total} historiekort` : "";
 
-  if (!allItems.length) {
+  if (!total) {
     body.innerHTML = `<div class="muted">Du har ingen historiekort ennå.</div>`;
     return;
   }
@@ -133,11 +132,9 @@ function renderTimelineProfile() {
     card.addEventListener("click", () => {
       const id = card.dataset.id;
       if (card.classList.contains("person")) {
-        const person = PEOPLE.find(p => p.id === id);
-        if (person) showPersonPopup(person);
+        showPersonPopup(PEOPLE.find(p => p.id === id));
       } else {
-        const place = PLACES.find(p => p.id === id);
-        if (place) showPlaceOverlay(place);
+        showPlaceOverlay(PLACES.find(p => p.id === id));
       }
     });
   });
@@ -152,13 +149,15 @@ async function renderMerits() {
 
   const badges = await fetch("badges.json", { cache: "no-store" }).then(r => r.json());
   const localMerits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
-  const cats = Object.keys(localMerits).length ? Object.keys(localMerits) : badges.map(b => b.name);
+
+  const cats = Object.keys(localMerits).length 
+    ? Object.keys(localMerits)
+    : badges.map(b => b.name);
 
   function medalByIndex(i) {
     return i <= 0 ? "🥉" : i === 1 ? "🥈" : i === 2 ? "🥇" : "🏆";
   }
 
-  // Tegn merkene
   container.innerHTML = cats.map(cat => {
     const merit = localMerits[cat] || { level: "Nybegynner" };
     const badge = badges.find(b =>
@@ -168,43 +167,40 @@ async function renderMerits() {
     if (!badge) return "";
 
     const tierIndex = badge.tiers.findIndex(t => t.label === merit.level);
-    const medal = medalByIndex(tierIndex);
-
     return `
       <div class="badge-mini" data-badge-id="${badge.id}">
         <div class="badge-wrapper">
           <img src="${badge.image}" alt="${badge.name}" class="badge-mini-icon">
-          <span class="badge-medal">${medal}</span>
+          <span class="badge-medal">${medalByIndex(tierIndex)}</span>
         </div>
       </div>`;
   }).join("");
 
-  // 👉 legg til klikk på alle merkene etter at HTML-en er laget
   container.querySelectorAll(".badge-mini").forEach(tile => {
     tile.addEventListener("click", () => {
       const id = tile.dataset.badgeId;
       const badge = badges.find(b => b.id === id);
-      if (badge) openBadgeModalFromBadge(badge);
+      openBadgeModalFromBadge(badge);
     });
   });
 }
 
 // --------------------------------------
-// BADGE-MODAL – viser bilde, nivå og alle quizer med riktige svar
+// BADGE-MODAL
 // --------------------------------------
 async function openBadgeModalFromBadge(badgeRef) {
-  const modal       = document.getElementById("badgeModal");
+  const modal = document.getElementById("badgeModal");
   if (!modal) return;
 
-  const modalImg    = modal.querySelector(".badge-img");
-const modalTitle  = modal.querySelector(".badge-title");
-const modalLevel  = modal.querySelector(".badge-level");
-const quizList    = modal.querySelector(".badge-quizzes");
+  // elementer
+  const modalImg   = modal.querySelector(".badge-img");
+  const modalTitle = modal.querySelector(".badge-title");
+  const modalLevel = modal.querySelector(".badge-level");
+  const quizList   = modal.querySelector(".badge-quizzes");
 
-  // Finn riktig badge i badges.json
+  // riktig badge
   const badge = BADGES.find(b => b.id === badgeRef.id) || badgeRef;
 
-  // Hent brukerens fremgang og quiz-resultater
   const merits       = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
   const quizProgress = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
 
@@ -212,63 +208,60 @@ const quizList    = modal.querySelector(".badge-quizzes");
   const quizzes = merit.quizzes || [];
   const level   = merit.level || "Nybegynner";
 
-  // Hent alle quizer fra quizzene som tilhører denne kategorien
-  const allQuizzes = await fetch("quizzes.json", { cache: "no-store" }).then(r => r.json());
+  const allQuizzes   = await fetch("quizzes.json", { cache:"no-store" }).then(r => r.json());
   const badgeQuizzes = allQuizzes.filter(q => q.categoryId === badge.id);
 
-  // Bygg quiz-listen med riktige svar
+  // bygg quizliste
   let listHTML = "";
+
   if (quizzes.length) {
     quizzes.forEach(qid => {
       const q = badgeQuizzes.find(x => x.id === qid);
-      if (q) {
-        // finn brukerens riktige svar fra quiz_progress
-        const userData = quizProgress[q.id] || {};
-        const correct  = q.answer || "(ukjent)";
-        const userAns  = userData.answer || correct;
+      if (!q) return;
 
-        const isCorrect = userAns === correct;
-        listHTML += `
-          <li>
-            <strong>${q.question}</strong><br>
-            <small>Riktig svar: <span style="color:${isCorrect ? 'var(--accent)' : '#ccc'}">${correct}</span></small>
-          </li>`;
-      }
+      const userData = quizProgress[q.id] || {};
+      const correct  = q.answer || "(ukjent)";
+      const userAns  = userData.answer || correct;
+      const isCorrect = userAns === correct;
+
+      listHTML += `
+        <li>
+          <strong>${q.question}</strong><br>
+          <small>Riktig svar: <span style="color:${isCorrect ? 'var(--accent)' : '#ccc'}">${correct}</span></small>
+        </li>
+      `;
     });
   } else {
     listHTML = "<li>Ingen quizer fullført ennå</li>";
   }
 
-  // Fyll inn info fra badge
+  // fyll inn info
   modalImg.src = badge.image;
   modalTitle.textContent = badge.name;
   modalLevel.textContent = level;
   quizList.innerHTML = listHTML;
 
-  // Vis modal
-  modal.setAttribute("aria-hidden", "false");
+  // vis modal
   modal.style.display = "flex";
+  modal.setAttribute("aria-hidden", "false");
 
-// Lukk
-const closeBtn = modal.querySelector(".close-btn");
-if (closeBtn) {
-  closeBtn.onclick = () => closeBadgeModal();
+  // lukking (rettet!)
+  const closeBtn = modal.querySelector(".close-btn");
+  if (closeBtn) closeBtn.onclick = () => closeBadgeModal();
+
+  modal.onclick = e => { if (e.target === modal) closeBadgeModal(); };
 }
 
-modal.onclick = e => {
-  if (e.target === modal) closeBadgeModal();
-};
-  
 function closeBadgeModal() {
   const modal = document.getElementById("badgeModal");
-  if (modal) {
-    modal.setAttribute("aria-hidden", "true");
-    modal.style.display = "none";
-  }
+  if (!modal) return;
+
+  modal.style.display = "none";
+  modal.setAttribute("aria-hidden", "true");
 }
-  
+
 // --------------------------------------
-// PERSONER DU HAR LÅST OPP
+// PERSONER
 // --------------------------------------
 function renderPeopleCollection() {
   const grid = document.getElementById("peopleGrid");
@@ -292,26 +285,26 @@ function renderPeopleCollection() {
   `).join("");
 
   grid.querySelectorAll(".avatar-card").forEach(card => {
-    card.addEventListener("click", () => {
+    card.onclick = () => {
       const person = PEOPLE.find(p => p.id === card.dataset.person);
-      if (person) showPersonPopup(person);
-    });
+      showPersonPopup(person);
+    };
   });
 }
 
 // --------------------------------------
-// STEDER DU HAR BESØKT
+// STEDER
 // --------------------------------------
 async function renderPlacesCollection() {
   const container = document.getElementById("collectionGrid");
   if (!container) return;
 
-  const raw = localStorage.getItem("visited_places") ||
-              localStorage.getItem("places_visited") ||
-              localStorage.getItem("visitedPlaces") ||
-              "{}";
-  const visited = JSON.parse(raw);
+  const raw = localStorage.getItem("visited_places") 
+          || localStorage.getItem("places_visited")
+          || localStorage.getItem("visitedPlaces")
+          || "{}";
 
+  const visited = JSON.parse(raw);
   const places = await fetch("places.json").then(r => r.json());
 
   const visitedPlaces = Array.isArray(visited)
@@ -332,21 +325,18 @@ async function renderPlacesCollection() {
   `).join("");
 
   container.querySelectorAll(".place-card").forEach(el => {
-    el.addEventListener("click", () => {
-      const id = el.dataset.id;
-      const place = places.find(p => p.id === id);
-      if (place) showPlaceOverlay(place);
-    });
+    el.onclick = () => showPlaceOverlay(places.find(p => p.id === el.dataset.id));
   });
 }
 
 // --------------------------------------
-// FALLBACK-FUNKSJONER
+// FALLBACK
 // --------------------------------------
 function showPlaceOverlay(place) {
   if (!place) return;
   const modal = document.createElement("div");
   modal.className = "place-overlay";
+
   modal.innerHTML = `
     <div class="place-overlay-content">
       <button class="close-overlay" aria-label="Lukk">×</button>
@@ -355,23 +345,29 @@ function showPlaceOverlay(place) {
         <p class="meta">${place.category || ""} · ${place.year || ""}</p>
         <p>${place.desc || ""}</p>
       </div>
-    </div>`;
+    </div>
+  `;
+
   document.body.appendChild(modal);
+
   modal.querySelector(".close-overlay").onclick = () => modal.remove();
-  modal.addEventListener("click", e => { if (e.target === modal) modal.remove(); });
+  modal.onclick = e => { if (e.target === modal) modal.remove(); };
 }
 
 function showPersonPopup(person) {
   if (!person) return;
   const popup = document.createElement("div");
   popup.className = "person-popup visible";
+
   popup.innerHTML = `
     <img src="${person.image || `bilder/kort/people/${person.id}.PNG`}" alt="${person.name}">
     <h3>${person.name}</h3>
     <p>${person.year || ""}</p>
-    <p>${person.desc || ""}</p>`;
+    <p>${person.desc || ""}</p>
+  `;
+
   document.body.appendChild(popup);
-  popup.addEventListener("click", () => popup.remove());
+  popup.onclick = () => popup.remove();
 }
 
 // --------------------------------------
@@ -389,9 +385,11 @@ Promise.all([
   renderTimelineProfile();
 });
 
+// Ny DOM-init
 document.addEventListener("DOMContentLoaded", () => {
   const editBtn = document.getElementById("editProfileBtn");
-  if (editBtn) editBtn.addEventListener("click", openProfileModal);
+  if (editBtn) editBtn.onclick = openProfileModal;
+
   setTimeout(() => {
     renderProfileCard();
     renderMerits();
