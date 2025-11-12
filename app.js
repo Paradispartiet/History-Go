@@ -1123,19 +1123,27 @@ async function startQuiz(targetId) {
       const perfect = correct === total;
 
       if (perfect) {
-        addCompletedQuizAndMaybePoint(displayCat, targetId);
-        markQuizAsDone(targetId);
-        if (person) {
-          peopleCollected[targetId] = true;
-          savePeople();
-          showPersonPopup(person);
-          document.getElementById("gallery")?.scrollIntoView({ behavior: "smooth" });
-        }
-        showToast(`Perfekt! ${total}/${total} riktige 🎯 Du fikk poeng og kort!`);
-      } else {
-        showToast(`Fullført: ${correct}/${total} – prøv igjen for full score.`);
-      }
+  addCompletedQuizAndMaybePoint(displayCat, targetId);
+  markQuizAsDone(targetId);
 
+  if (person) {
+    // Når quizen gjelder en person
+    peopleCollected[targetId] = true;
+    savePeople();
+    showPersonPopup(person);
+    document.getElementById("gallery")?.scrollIntoView({ behavior: "smooth" });
+  } 
+  else if (place) {
+    // Når quizen gjelder et sted
+    visited[place.id] = true;
+    saveVisited();
+    showPlacePopup(place);
+  }
+
+  showToast(`Perfekt! ${total}/${total} riktige 🎯 Du fikk poeng og kort!`);
+} else {
+  showToast(`Fullført: ${correct}/${total} – prøv igjen for full score.`);
+}
       // ✨ Pulse på stedet som hører til personen når quizen fullføres
       if (person && person.placeId) {
         const plc = PLACES.find(p => p.id === person.placeId);
@@ -1274,41 +1282,112 @@ style.textContent = `
 document.head.appendChild(style);
 
 // ==============================
-// STED-POPUP VED FULLFØRT QUIZ (mini-kort + wiki)
+// STED-POPUP VED FULLFØRT QUIZ (wiki + bilde + personer)
 // ==============================
 async function showPlacePopup(place) {
   if (!place) return;
 
-  // Hent kort sammendrag fra Wikipedia
   const summary = await fetchWikiSummary(place.name);
   const imgPath = place.image || `bilder/kort/places/${place.id}.PNG`;
+  const color = catColor(place.category);
+  const year  = place.year || "";
+  const wikiUrl = `https://no.wikipedia.org/wiki/${encodeURIComponent(place.name)}`;
 
+  // Sjekk om Wikipedia-siden finnes
+  let wikiExists = false;
+  try {
+    const head = await fetch(wikiUrl, { method: "HEAD" });
+    wikiExists = head.ok;
+  } catch (_) { wikiExists = false; }
+
+  // Finn personer knyttet til stedet
+  const relatedPeople = PEOPLE.filter(p =>
+    (Array.isArray(p.places) && p.places.includes(place.id)) ||
+    p.placeId === place.id
+  );
+
+  const peopleHtml = relatedPeople.length
+    ? `<div class="people-row" style="display:flex;flex-wrap:wrap;gap:10px;margin-top:10px;">
+         ${relatedPeople.map(p => `
+           <div class="person-face" data-person="${p.id}" title="${p.name}" 
+                style="text-align:center;width:70px;">
+             <img src="bilder/kort/people/${p.id}_face.PNG" 
+                  alt="${p.name}" 
+                  style="width:60px;height:60px;object-fit:cover;
+                         border-radius:50%;border:2px solid rgba(255,255,255,.2);">
+             <div style="font-size:0.8em;color:#ccc;margin-top:4px;">${p.name}</div>
+           </div>
+         `).join("")}
+       </div>`
+    : `<div class="muted" style="margin-top:8px;">Ingen personer registrert.</div>`;
+
+  // Hovedkortet
   const card = document.createElement("div");
   card.className = "place-popup";
   card.innerHTML = `
     <div class="popup-inner"
-         style="width:300px;max-width:90vw;background:rgba(15,15,20,0.95);
-                color:#fff;border-radius:12px;padding:18px;text-align:center;
-                box-shadow:0 0 20px rgba(0,0,0,0.6);display:flex;
-                flex-direction:column;align-items:center;animation:fadeIn .4s ease;">
-      
-      <img src="${imgPath}" alt="${place.name}"
-           style="width:100%;border-radius:8px;margin-bottom:10px;">
+         style="width:min(92vw,700px);max-height:80vh;overflow-y:auto;
+                background:rgba(15,15,20,0.95);
+                border-top:6px solid ${color};
+                color:#fff;border-radius:14px;padding:20px 24px;text-align:left;
+                box-shadow:0 0 28px rgba(0,0,0,0.7);
+                animation:fadeIn .4s ease;">
 
-      <h3 style="margin:6px 0 4px;font-size:1.2em;">${place.name}</h3>
-      <p style="font-size:0.85em;line-height:1.4;color:#ddd;margin:0 0 12px;">
+      <img src="${imgPath}" alt="${place.name}"
+           style="width:100%;border-radius:10px;margin-bottom:14px;">
+
+      <h2 style="margin:6px 0 4px;font-size:1.4em;">${place.name}</h2>
+      <p style="margin:0 0 12px;color:#aaa;font-size:0.9em;">
+        ${place.category || "Kategori ukjent"}${year ? " • " + year : ""}
+      </p>
+
+      <p style="font-size:0.95em;line-height:1.55;color:#ddd;margin:0 0 16px;white-space:pre-line;">
         ${summary || place.desc || "Ingen beskrivelse tilgjengelig."}
       </p>
 
-      <div style="background:#222;padding:8px 10px;border-radius:6px;
-                  font-size:0.9em;color:#f6c800;">
+      <div style="background:#222;padding:10px 12px;border-radius:8px;
+                  font-size:0.95em;color:#f6c800;text-align:center;
+                  margin-top:12px;">
         🏅 Du har låst opp <strong>${place.name}</strong>!
+      </div>
+
+      ${wikiExists ? `
+        <div style="text-align:center;margin-top:16px;">
+          <a href="${wikiUrl}" target="_blank" rel="noopener noreferrer"
+             style="color:#58a6ff;text-decoration:none;font-size:0.9em;">
+             ➜ Les mer på Wikipedia
+          </a>
+        </div>` : ""}
+
+      <hr style="border:none;border-top:1px solid rgba(255,255,255,.1);margin:18px 0 10px;">
+
+      <h4 style="margin:0 0 6px;">Personer knyttet til stedet:</h4>
+      ${peopleHtml}
+
+      <div style="text-align:center;margin-top:20px;">
+        <button class="ghost" style="padding:6px 12px;color:#fff;
+                border:1px solid rgba(255,255,255,.2);border-radius:6px;">
+          Lukk
+        </button>
       </div>
     </div>`;
 
   document.body.appendChild(card);
+
+  // vis og koble lukking
   setTimeout(() => card.classList.add("visible"), 20);
-  setTimeout(() => card.remove(), 4600);
+  const closeBtn = card.querySelector("button");
+  closeBtn.addEventListener("click", () => card.remove());
+  card.addEventListener("click", e => { if (e.target === card) card.remove(); });
+
+  // klikk på person-ansikt åpner person-popup
+  card.querySelectorAll(".person-face").forEach(face => {
+    face.addEventListener("click", e => {
+      e.stopPropagation();
+      const person = PEOPLE.find(p => p.id === face.dataset.person);
+      if (person) showPersonPopup(person);
+    });
+  });
 }
 
 // ==============================
