@@ -5,13 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Min profil | History Go</title>
 
+  <!-- Stil -->
   <link rel="stylesheet" href="theme.css">
+
+  <!-- Verktøy (for deling/eksport av profilkort) -->
   <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 </head>
 
 <body class="profile-page">
 
-  <!-- Badge-modal -->
+  <!-- Badge-modal (riktig plassering!) -->
   <div id="badgeModal" class="modal" style="display:none;">
     <div class="modal-content">
       <img class="badge-img" src="" alt="Merke">
@@ -76,7 +79,9 @@
     <section class="profile-section" id="timelineSection">
       <h2>Tidslinje</h2>
       <div id="timelineProgressText" class="timeline-progress-text"></div>
-      <div class="timeline-progress"><div id="timelineProgressBar" class="timeline-progress-bar"></div></div>
+      <div class="timeline-progress">
+        <div id="timelineProgressBar" class="timeline-progress-bar"></div>
+      </div>
       <div id="timelineBody" class="timeline-body"></div>
     </section>
 
