@@ -178,15 +178,21 @@ async function renderMerits() {
       </div>`;
   }).join("");
 
-  container.addEventListener("click", e => {
-    const tile = e.target.closest(".badge-mini");
-    if (!tile) return;
-    const id = tile.dataset.badgeId;
-    const badge = badges.find(b => b.id === id);
-    if (badge) openBadgeModalFromBadge(badge);
-  });
-}
+  // Klikkbare merker – stabil versjon
+container.onclick = (e) => {
+  const tile = e.target.closest(".badge-mini");
+  if (!tile) return;
+  const id = tile.dataset.badgeId;
+  const badge = badges.find(b => b.id === id);
+  if (!badge) return;
 
+  // Åpne badge-modal trygt
+  try {
+    openBadgeModalFromBadge(badge);
+  } catch (err) {
+    console.warn("Klarte ikke åpne badge-modal:", err);
+  }
+};
 // --------------------------------------
 // PERSONER DU HAR LÅST OPP
 // --------------------------------------
