@@ -61,31 +61,52 @@ body{
 /* ===================================================== */
 /* 2) Kart & kartmodus                                   */
 /* ===================================================== */
-#map{ position:fixed; inset:0; z-index:0; }
-
-.map-controls{
-  position:fixed; right:12px; bottom:12px; z-index:12;
-  display:grid; gap:8px;
+#map {
+  position: fixed;
+  inset: 0;
+  z-index: 0 !important;
 }
-.map-controls button{
-  width:44px; height:44px; border-radius:999px;
-  border:1px solid var(--panel-border);
-  background: rgba(20,30,45,.9); color:#fff;
+
+/* Hovedinnhold over kartet */
+main, header {
+  position: relative;
+  z-index: 2;
+}
+
+/* Kartmodus – viser bare kartet */
+body.map-only header,
+body.map-only main {
+  display: none !important;
+}
+
+body.map-only #map {
+  z-index: 10; /* Kart øverst i kartmodus */
+}
+
+/* Kartkontroller */
+.map-controls {
+  position: fixed;
+  right: 12px;
+  bottom: 12px;
+  z-index: 12;
+  display: grid;
+  gap: 8px;
+}
+.map-controls button {
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: 1px solid var(--panel-border);
+  background: rgba(20,30,45,.9);
+  color: #fff;
   box-shadow: var(--shadow);
 }
 
-/* Kartmodus – ENESTE sannhet: 'map-only' */
-#btnExitMap{ display:none }
-body.map-only header,
-body.map-only main{ display:none !important }
-body.map-only #btnExitMap{ display:block !important }
-body.map-only #btnSeeMap{ display:none !important }
-
-/* Kartmodus – sørg for at modaler fortsatt vises */
+/* Kartmodus – modaler skal fortsatt vises */
 body.map-only #quizModal,
 body.map-mode #quizModal {
-  display: flex !important;   /* tving visning selv om main/header er skjult */
-  z-index: 9999 !important;   /* over kart og kontroller */
+  display: flex !important;
+  z-index: 9999 !important;
 }
 
 
@@ -556,7 +577,6 @@ button{ cursor:pointer; border:none }
 #btnExitMap:hover{
   filter:brightness(1.1);
 }
-body.map-only #map { z-index: 10 !important; }
 
 
 /* ===================================================== */
@@ -771,8 +791,11 @@ body.subkultur .app-frame      { border-color: #ff66cc; }
 
 /* PROFILMODAL */
 .profile-modal {
-  position: fixed; inset: 0;
-  display: flex; align-items: center; justify-content: center;
+  position: fixed;
+  inset: 0;
+  display: none; /* ← denne må være NONE i stedet for flex */
+  align-items: center;
+  justify-content: center;
   background: rgba(0,0,0,.7);
   z-index: 9999;
 }
@@ -905,9 +928,12 @@ button.primary.small:hover { opacity: .9; }
 
 /* POPUP FOR MERKER */
 .user-badge-popup {
-  position: fixed; inset: 0;
+  position: fixed;
+  inset: 0;
   background: rgba(0,0,0,.8);
-  display: flex; align-items: center; justify-content: center;
+  display: none; /* ← endre fra flex til none */
+  align-items: center;
+  justify-content: center;
   z-index: 9999;
 }
 .ub-inner {
@@ -995,6 +1021,87 @@ button.primary.small:hover { opacity: .9; }
 .timeline-card:hover img {
   transform: scale(1.05);
 }
+
+/* MINI-PROFILSEKSJON PÅ FORSIDEN */
+.mini-profile {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: rgba(25,25,30,0.9);
+  border-left: 5px solid #f6c800;
+  color: #fff;
+  margin-bottom: 20px;
+}
+.mini-profile .avatar {
+  background: rgba(255,255,255,0.05);
+  border: 2px solid #f6c800;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.mini-profile .info a:hover {
+  color: #f6c800;
+}
+
+.linkish {
+  cursor: pointer;
+  color: #f6c800;
+  text-decoration: none;
+}
+.linkish:hover {
+  text-decoration: underline;
+}
+
 /* ============================================================
    === SLUTT PROFIL & MERKER ================================
    ============================================================ */
+
+/* QUIZ-HISTORIKK MODAL */
+.quiz-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+.quiz-modal-inner {
+  background: #111;
+  color: #fff;
+  padding: 20px 24px;
+  border-radius: 10px;
+  max-width: 360px;
+  width: 90%;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  animation: fadeIn .3s ease;
+}
+.quiz-modal-inner h2 {
+  margin-top: 0;
+  color: #f6c800;
+  text-align: center;
+}
+.quiz-history-list {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 0 0;
+}
+.quiz-history-list li {
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.quiz-history-list li strong {
+  color: #fff;
+}
+.quiz-close {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  background: none;
+  border: none;
+  color: #f6c800;
+  font-size: 1.4em;
+  cursor: pointer;
+}

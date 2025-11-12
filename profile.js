@@ -54,42 +54,39 @@ function openProfileModal() {
       <button id="cancelProfile" style="margin-left:6px;background:#444;color:#fff;">Avbryt</button>
     </div>`;
   document.body.appendChild(modal);
+  modal.style.display = "flex"; // ✅ viser modalen
 
   modal.querySelector("#cancelProfile").onclick = () => modal.remove();
+
   modal.querySelector("#saveProfile").onclick = () => {
-    localStorage.setItem("user_name", modal.querySelector("#newName").value.trim() || "Utforsker #182");
-    localStorage.setItem("user_avatar", modal.querySelector("#newEmoji").value.trim() || "🧭");
-    localStorage.setItem("user_color", modal.querySelector("#newColor").value);
+    const newName = modal.querySelector("#newName").value.trim() || "Utforsker #182";
+    const newEmoji = modal.querySelector("#newEmoji").value.trim() || "🧭";
+    const newColor = modal.querySelector("#newColor").value;
+
+    // 🔹 lagre til localStorage
+    localStorage.setItem("user_name", newName);
+    localStorage.setItem("user_avatar", newEmoji);
+    localStorage.setItem("user_color", newColor);
+
+    // 🔹 oppdater direkte i DOM
+    const nameEl = document.getElementById("profileName");
+    const avatarEl = document.getElementById("profileAvatar");
+    if (nameEl) nameEl.textContent = newName;
+    if (avatarEl) {
+      avatarEl.textContent = newEmoji;
+      avatarEl.style.borderColor = newColor;
+    }
+
     modal.remove();
-    renderProfileCard();
     showToast("Profil oppdatert ✅");
+
+    if (typeof renderProfileCard === "function") {
+      try { renderProfileCard(); } catch(e) {}
+    }
   };
 }
-document.getElementById("editProfileBtn")?.addEventListener("click", openProfileModal);
 
-// --------------------------------------
-// DEL PROFILKORT (vanlig skjermbilde)
-// --------------------------------------
-async function shareProfileCard() {
-  const card = document.getElementById("profileCard");
-  if (!card) return showToast("Fant ikke profilkortet");
-  showToast("Lager bilde …");
-  const canvas = await html2canvas(card, { backgroundColor: "#111", scale: 3, useCORS: true });
-  const dataUrl = canvas.toDataURL("image/png");
-  const blob = await fetch(dataUrl).then(r => r.blob());
-  const file = new File([blob], "profilkort.png", { type: "image/png" });
-  if (navigator.share && navigator.canShare({ files: [file] })) {
-    await navigator.share({ files: [file], title: "Mitt History Go-kort", text: "Se min fremgang i History Go!" });
-    showToast("Profilkort delt ✅");
-  } else {
-    const a = document.createElement("a");
-    a.href = dataUrl;
-    a.download = "profilkort.png";
-    a.click();
-    showToast("Bilde lastet ned ✅");
-  }
-}
-document.getElementById("shareProfileBtn")?.addEventListener("click", shareProfileCard);
+document.getElementById("editProfileBtn")?.addEventListener("click", openProfileModal);
 
 // --------------------------------------
 // HISTORIEKORT – TIDSLINJE (PROFILVERSJON)

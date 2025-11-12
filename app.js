@@ -209,6 +209,16 @@ function initMap() {
   MAP.whenReady(() => {
     mapReady = true;
     maybeDrawMarkers();
+
+    // 🔧 Riktig oppsett – sørg for at kartet vises bak alt annet, men fyller hele skjermen
+    const mapEl = document.getElementById('map');
+    if (mapEl) {
+      mapEl.style.position = 'fixed';
+      mapEl.style.inset = '0';
+      mapEl.style.width = '100%';
+      mapEl.style.height = '100%';
+      mapEl.style.zIndex = '1';
+    }
   });
 }
 
@@ -699,9 +709,9 @@ function requestLocation() {
 }
 
 function boot() {
-  initMap();
+  initMap(); // 🟢 start kartet med én gang
 
-  // Laster kun places og people – quizfiler lastes dynamisk ved behov
+  // Laster places og people deretter
   Promise.all([
     fetch('places.json').then(r => r.json()),
     fetch('people.json').then(r => r.json())
@@ -711,10 +721,9 @@ function boot() {
       PEOPLE = people || [];
 
       dataReady = true;
-      if (mapReady) maybeDrawMarkers();
+      maybeDrawMarkers();
 
       renderNearbyPlaces();
-      // renderNearbyPeople();  ← fjernet
       renderCollection();
       renderMerits();
       renderGallery();
@@ -728,14 +737,13 @@ function boot() {
             currentPos = { lat: latitude, lon: longitude };
             setUser(latitude, longitude);
             renderNearbyPlaces();
-            // renderNearbyPeople();  ← fjernet
           },
           () => {},
           { enableHighAccuracy: true }
         );
       }
 
-      wire(); // Koble knapper og testmodus
+      wire();
     })
     .catch(() => {
       showToast("Kunne ikke laste data.", 2000);
@@ -743,6 +751,88 @@ function boot() {
 }
 
 document.addEventListener('DOMContentLoaded', boot);
+
+// === MINI-PROFIL PÅ FORSIDEN – VISER NAVN, STATISTIKK, QUIZZER ===
+document.addEventListener("DOMContentLoaded", () => {
+  const av = document.getElementById("miniAvatar");
+  const nm = document.getElementById("miniName");
+  const st = document.getElementById("miniStats");
+  if (!av || !nm || !st) return;
+
+  // Hent lagrede verdier
+  const name = localStorage.getItem("user_name") || "Utforsker #182";
+  const emoji = localStorage.getItem("user_avatar") || "🧭";
+  const color = localStorage.getItem("user_color") || "#f6c800";
+
+  // Statistikk
+  const visited = JSON.parse(localStorage.getItem("visited_places") || "{}");
+  const merits  = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
+  const progress = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
+
+  const visitedCount = Object.keys(visited).length;
+  const badgeCount = Object.keys(merits).length;
+  const quizCount = Object.values(progress)
+    .map(v => (v.completed ? v.completed.length : 0))
+    .reduce((a,b) => a + b, 0);
+
+  // Render
+  av.textContent = emoji;
+  av.style.borderColor = color;
+  nm.textContent = name;
+  st.textContent = `${visitedCount} steder · ${badgeCount} merker · ${quizCount} quizzer`;
+});
+
+// --- Interaktive lenker i mini-profil ---
+document.getElementById("linkPlaces")?.addEventListener("click", () => {
+  enterMapMode(); // viser kartet
+  showToast("Viser steder på kartet");
+});
+
+document.getElementById("linkBadges")?.addEventListener("click", () => {
+  window.location.href = "profile.html#userBadgesGrid";
+});
+
+
+
+// === QUIZ-HISTORIKK MODAL (forside) ===
+function showQuizHistory() {
+  const progress = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
+  const allCompleted = Object.entries(progress)
+    .flatMap(([cat, val]) => (val.completed || []).map(id => ({ category: cat, id })));
+
+  if (!allCompleted.length) {
+    showToast("Du har ingen fullførte quizzer ennå.");
+    return;
+  }
+
+  // hent PEOPLE og PLACES fra global state
+  const recent = allCompleted.slice(-8).reverse(); // vis siste 8
+  const list = recent.map(item => {
+    const person = PEOPLE.find(p => p.id === item.id);
+    const place  = PLACES.find(p => p.id === item.id);
+    const name   = person?.name || place?.name || item.id;
+    const cat    = item.category || "–";
+    return `<li><strong>${name}</strong><br><span class="muted">${cat}</span></li>`;
+  }).join("");
+
+  const html = `
+    <div class="quiz-modal" id="quizHistoryModal">
+      <div class="quiz-modal-inner">
+        <button class="quiz-close" id="closeQuizHistory">✕</button>
+        <h2>Fullførte quizzer</h2>
+        <ul class="quiz-history-list">${list}</ul>
+      </div>
+    </div>`;
+
+  document.body.insertAdjacentHTML("beforeend", html);
+
+  const modal = document.getElementById("quizHistoryModal");
+  document.getElementById("closeQuizHistory").onclick = () => modal.remove();
+  modal.addEventListener("click", e => { if (e.target.id === "quizHistoryModal") modal.remove(); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape") modal.remove(); });
+}
+
+document.getElementById("linkQuiz")?.addEventListener("click", showQuizHistory);
 
 // ==============================
 //  AKTIVER PROFILSIDE (v18+)
@@ -842,6 +932,11 @@ function enterMapMode() {
   el.btnExitMap.style.display = "block";
   document.querySelector("main").style.display = "none";
   document.querySelector("header").style.display = "none";
+
+  // 🔧 Flytt kartet øverst når kartmodus er aktiv
+  const mapEl = document.getElementById("map");
+  if (mapEl) mapEl.style.zIndex = "10";
+
   showToast("Kartmodus");
 }
 
@@ -851,12 +946,16 @@ function exitMapMode() {
   el.btnExitMap.style.display = "none";
   document.querySelector("main").style.display = "";
   document.querySelector("header").style.display = "";
+
+  // 🔧 Flytt kartet bak igjen når du går ut av kartmodus
+  const mapEl = document.getElementById("map");
+  if (mapEl) mapEl.style.zIndex = "0";
+
   showToast("Tilbake til oversikt");
 }
 
 el.btnSeeMap?.addEventListener("click", enterMapMode);
 el.btnExitMap?.addEventListener("click", exitMapMode);
-
 // ==============================
 // 12. QUIZ – DYNAMISK LASTER, MODAL & SCORE
 // ==============================
