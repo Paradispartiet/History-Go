@@ -1103,15 +1103,19 @@ async function startQuiz(targetId) {
   const place  = PLACES.find(p => p.id === targetId);
   if (!person && !place) return showToast("Fant verken person eller sted");
 
-  // --- Krever fysisk besøk før quiz kan tas ---
+// --- Krever fysisk besøk før quiz kan tas (men ikke i testmodus) ---
+if (!el.test?.checked) {
   const visitedPlaces = JSON.parse(localStorage.getItem("visited_places") || "{}");
+
   if (place && !visitedPlaces[place.id]) {
     return showToast("📍 Du må besøke stedet først for å ta denne quizen.");
   }
+
   if (person && person.placeId && !visitedPlaces[person.placeId]) {
     return showToast("📍 Du må besøke stedet først for å ta denne quizen.");
   }
-
+}
+  
   // --- Hent quizdata ---
   const displayCat = person ? tagToCat(person.tags) : (place.category || "vitenskap");
   const categoryId = catIdFromDisplay(displayCat);
