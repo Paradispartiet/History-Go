@@ -1274,6 +1274,44 @@ style.textContent = `
 document.head.appendChild(style);
 
 // ==============================
+// STED-POPUP VED FULLFØRT QUIZ (mini-kort + wiki)
+// ==============================
+async function showPlacePopup(place) {
+  if (!place) return;
+
+  // Hent kort sammendrag fra Wikipedia
+  const summary = await fetchWikiSummary(place.name);
+  const imgPath = place.image || `bilder/kort/places/${place.id}.PNG`;
+
+  const card = document.createElement("div");
+  card.className = "place-popup";
+  card.innerHTML = `
+    <div class="popup-inner"
+         style="width:300px;max-width:90vw;background:rgba(15,15,20,0.95);
+                color:#fff;border-radius:12px;padding:18px;text-align:center;
+                box-shadow:0 0 20px rgba(0,0,0,0.6);display:flex;
+                flex-direction:column;align-items:center;animation:fadeIn .4s ease;">
+      
+      <img src="${imgPath}" alt="${place.name}"
+           style="width:100%;border-radius:8px;margin-bottom:10px;">
+
+      <h3 style="margin:6px 0 4px;font-size:1.2em;">${place.name}</h3>
+      <p style="font-size:0.85em;line-height:1.4;color:#ddd;margin:0 0 12px;">
+        ${summary || place.desc || "Ingen beskrivelse tilgjengelig."}
+      </p>
+
+      <div style="background:#222;padding:8px 10px;border-radius:6px;
+                  font-size:0.9em;color:#f6c800;">
+        🏅 Du har låst opp <strong>${place.name}</strong>!
+      </div>
+    </div>`;
+
+  document.body.appendChild(card);
+  setTimeout(() => card.classList.add("visible"), 20);
+  setTimeout(() => card.remove(), 4600);
+}
+
+// ==============================
 // BADGE-MODAL – VIS FASIT & STATUS
 // ==============================
 async function showBadgeModal(categoryDisplay) {
