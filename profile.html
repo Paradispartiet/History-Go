@@ -15,24 +15,22 @@
 <body class="profile-page">
 
   <!-- Badge-modal -->
-  <div id="badgeModal" class="modal" style="display:none;">
-    <div class="modal-content">
-      <img class="badge-img" src="" alt="Merke">
-      <h3 class="badge-title"></h3>
-      <p class="badge-level"></p>
+<div id="badgeModal" class="modal" aria-hidden="true" style="display:none;">
+  <div class="modal-content">
+    <img class="badge-img" src="" alt="Merke">
+    <h3 class="badge-title"></h3>
+    <p class="badge-level"></p>
 
-      <div class="badge-progress">
-        <div class="badge-progress-bar"></div>
-      </div>
-      <p class="badge-progress-text"></p>
-
-      <ul class="badge-quizzes"></ul>
-
-      <button class="close-btn" onclick="document.getElementById('badgeModal').style.display='none'">
-        Lukk
-      </button>
+    <div class="badge-progress">
+      <div class="badge-progress-bar"></div>
     </div>
+    <p class="badge-progress-text"></p>
+
+    <ul class="badge-quizzes"></ul>
+
+    <button class="close-badge close-btn">Lukk</button>
   </div>
+</div>
 
   <!-- Ramme rundt appen -->
   <div class="app-frame" aria-hidden="true"></div>
