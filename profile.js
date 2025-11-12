@@ -294,11 +294,40 @@ function showPersonPopup(person) {
   popup.addEventListener("click", () => popup.remove());
 }
 
-// --------------------------------------
-// INITIALISERING
-// --------------------------------------
+// ------------------------------------------------------------
+// LASTER ALLE PEOPLE-FILER (hoved + 9 kategorier)
+// ------------------------------------------------------------
+async function loadPeopleCombined() {
+  const sources = [
+    "people.json",
+    "people/people_historie.json",
+    "people/people_vitenskap.json",
+    "people/people_kunst.json",
+    "people/people_musikk.json",
+    "people/people_natur.json",
+    "people/people_sport.json",
+    "people/people_by.json",
+    "people/people_politikk.json",
+    "people/people_populaerkultur.json",
+    "people/people_subkultur.json"
+  ];
+
+  const all = await Promise.all(
+    sources.map(src =>
+      fetch(src)
+        .then(r => (r.ok ? r.json() : []))
+        .catch(() => [])
+    )
+  );
+
+  return all.flat(); // slår sammen alle personer til én samlet liste
+}
+
+// ------------------------------------------------------------
+// INITIALISERING MED DATA
+// ------------------------------------------------------------
 Promise.all([
-  fetch("people.json").then(r => r.json()).then(d => PEOPLE = d),
+  loadPeopleCombined().then(d => PEOPLE = d),
   fetch("places.json").then(r => r.json()).then(d => PLACES = d),
   fetch("badges.json").then(r => r.json()).then(d => BADGES = d)
 ]).then(() => {
