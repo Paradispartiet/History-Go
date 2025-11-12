@@ -249,11 +249,16 @@ const quizList    = modal.querySelector(".badge-quizzes");
   modal.setAttribute("aria-hidden", "false");
   modal.style.display = "flex";
 
- // Lukk
+// Lukk
 const closeBtn = modal.querySelector(".close-btn");
-if (closeBtn) closeBtn.onclick = () => closeBadgeModal();
-modal.onclick = e => { if (e.target === modal) closeBadgeModal(); };
+if (closeBtn) {
+  closeBtn.onclick = () => closeBadgeModal();
+}
 
+modal.onclick = e => {
+  if (e.target === modal) closeBadgeModal();
+};
+  
 function closeBadgeModal() {
   const modal = document.getElementById("badgeModal");
   if (modal) {
