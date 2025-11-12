@@ -9,6 +9,9 @@
 //  - Leser data direkte fra localStorage
 // ============================================================
 
+let PEOPLE = [];
+let PLACES = [];
+let BADGES = [];
 
 // --------------------------------------
 // PROFILKORT OG RENDERING
@@ -156,9 +159,12 @@ async function renderMerits() {
   const container = document.getElementById("merits");
   if (!container) return;
 
-  const badges = await fetch("badges.json").then(r => r.json());
+  const badges = await fetch("badges.json", { cache: "no-store" }).then(r => r.json());
   const localMerits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
-  const cats = Object.keys(localMerits).length ? Object.keys(localMerits) : badges.map(b => b.name);
+
+  const cats = Object.keys(localMerits).length
+    ? Object.keys(localMerits)
+    : badges.map(b => b.name);
 
   function medalByIndex(i) {
     return i <= 0 ? "🥉" : i === 1 ? "🥈" : i === 2 ? "🥇" : "🏆";
@@ -176,7 +182,7 @@ async function renderMerits() {
     const medal = medalByIndex(tierIndex);
 
     return `
-      <div class="badge-mini" data-badge="${badge.id}">
+      <div class="badge-mini" data-badge-id="${badge.id}">
         <div class="badge-wrapper">
           <img src="${badge.image}" alt="${badge.name}" class="badge-mini-icon">
           <span class="badge-medal">${medal}</span>
@@ -184,12 +190,14 @@ async function renderMerits() {
       </div>`;
   }).join("");
 
-  container.querySelectorAll(".badge-mini").forEach(el => {
-    el.addEventListener("click", () => {
-      const badge = badges.find(b => b.id === el.dataset.badge);
-      if (badge) showBadgeModal(badge.name);
-    });
-  });
+  // Delegert klikk: robust på iPad/mobil og uavhengig av hvor man trykker i kortet
+  container.addEventListener("click", (e) => {
+    const tile = e.target.closest(".badge-mini");
+    if (!tile) return;
+    const id = tile.dataset.badgeId;
+    const badge = badges.find(b => b.id === id);
+    if (badge) openBadgeModalFromBadge(badge);
+  }, { passive: true });
 }
 
 // --------------------------------------
@@ -227,10 +235,11 @@ function renderCollection() {
 // --------------------------------------
 // MERKE-MODAL – viser bilde, nivå og quiz-liste
 // --------------------------------------
-function showBadgeModal(badge) {
+function openBadgeModalFromBadge(badge) {
+  if (!badge) return;
+
   const merits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
   const quizProgress = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
-
   const catId = badge.id;
   const catName = badge.name;
   const completed = quizProgress[catId]?.completed || [];
@@ -244,7 +253,7 @@ function showBadgeModal(badge) {
   modal.className = "badge-modal";
   modal.innerHTML = `
     <div class="badge-modal-inner">
-      <button class="close-badge">✕</button>
+      <button class="close-badge" aria-label="Lukk">×</button>
       <img src="${badge.image}" alt="${badge.name}" class="badge-modal-icon">
       <h2>${catName}</h2>
       <p class="muted">Nivå: ${level}</p>
@@ -255,8 +264,6 @@ function showBadgeModal(badge) {
 
   modal.style.display = "flex";
   modal.setAttribute("aria-hidden", "false");
-
-  // Lukking
   modal.querySelector(".close-badge").onclick = () => modal.remove();
   modal.addEventListener("click", e => { if (e.target === modal) modal.remove(); });
 }
