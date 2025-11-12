@@ -208,7 +208,7 @@ container.onclick = (e) => {
 }
 
 // --------------------------------------
-// PERSONER DU HAR LÅST OPP
+// PERSONER DU HAR LÅST OPP (runde ansikter)
 // --------------------------------------
 function renderPeopleCollection() {
   const grid = document.getElementById("peopleGrid");
@@ -225,15 +225,15 @@ function renderPeopleCollection() {
   collected.sort((a, b) => a.name.localeCompare(b.name));
 
   grid.innerHTML = collected.map(p => `
-    <div class="avatar-card" data-person="${p.id}">
-      <img src="${p.image || `bilder/kort/people/${p.id}.PNG`}" alt="${p.name}" class="avatar-img">
-      <div class="avatar-name">${p.name}</div>
+    <div class="person-face" data-person="${p.id}" title="${p.name}">
+      <img src="bilder/people/${p.id}.PNG" alt="${p.name}">
     </div>
   `).join("");
 
-  grid.querySelectorAll(".avatar-card").forEach(card => {
-    card.addEventListener("click", () => {
-      const person = PEOPLE.find(p => p.id === card.dataset.person);
+  // Klikk åpner popup med kort + wikiinfo
+  grid.querySelectorAll(".person-face").forEach(face => {
+    face.addEventListener("click", () => {
+      const person = PEOPLE.find(p => p.id === face.dataset.person);
       if (person) showPersonPopup(person);
     });
   });
