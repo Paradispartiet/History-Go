@@ -196,10 +196,10 @@ async function openBadgeModalFromBadge(badgeRef) {
   const modal       = document.getElementById("badgeModal");
   if (!modal) return;
 
-  const modalImg    = modal.querySelector(".badge-modal-icon");
-  const modalTitle  = modal.querySelector(".badge-modal-title");
-  const modalLevel  = modal.querySelector(".badge-modal-level");
-  const quizList    = modal.querySelector(".quiz-list");
+  const modalImg    = modal.querySelector(".badge-img");
+const modalTitle  = modal.querySelector(".badge-title");
+const modalLevel  = modal.querySelector(".badge-level");
+const quizList    = modal.querySelector(".badge-quizzes");
 
   // Finn riktig badge i badges.json
   const badge = BADGES.find(b => b.id === badgeRef.id) || badgeRef;
