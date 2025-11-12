@@ -1241,3 +1241,27 @@ async function boot() {
 }
 
 document.addEventListener("DOMContentLoaded", boot);
+
+// ====== FIX: BADGE-KLIKK FUNGERER IGJEN ======
+document.addEventListener('click', (e) => {
+  const badgeEl = e.target.closest('[data-badge-id]');
+  if (!badgeEl) return;
+
+  const badgeId = badgeEl.getAttribute('data-badge-id');
+  const modal = document.getElementById('badgeModal');
+  if (!modal) return;
+
+  const badge = BADGES.find(b => b.id === badgeId);
+  if (!badge) return;
+
+  const merits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
+  const info = merits[badge.name] || merits[badge.id] || { level: "Nybegynner", points: 0 };
+
+  modal.querySelector('.badge-img').src = badge.image;
+  modal.querySelector('.badge-title').textContent = badge.name;
+  modal.querySelector('.badge-level').textContent = info.level;
+  modal.querySelector('.badge-progress-text').textContent = `${info.points} poeng`;
+
+  modal.style.display = "flex";
+  modal.setAttribute("aria-hidden", "false");
+});
