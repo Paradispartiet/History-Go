@@ -288,3 +288,25 @@ document.addEventListener("DOMContentLoaded", () => {
     renderTimelineProfile();
   }, 600);
 });
+
+// --------------------------------------
+// GJØR STEDER KLIKKBARE PÅ PROFILSIDEN
+// --------------------------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const grid = document.getElementById("collectionGrid");
+  if (!grid) return;
+
+  grid.addEventListener("click", e => {
+    const span = e.target.closest("span.badge");
+    if (!span) return;
+
+    const name = span.title;
+    const place = PLACES.find(p => p.name === name);
+    if (place) {
+      closePlaceOverlay();     // lukk eventuelle gamle overlays
+      showPlaceOverlay(place); // vis info og quiz for stedet
+    } else {
+      showToast(`Fant ikke sted: ${name}`);
+    }
+  });
+});
