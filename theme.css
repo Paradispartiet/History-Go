@@ -1315,3 +1315,11 @@ button.primary.small:hover { opacity: .9; }
   padding: 6px 14px;
   font-weight: 600;
 }
+
+/* === FIX: Tving modaler og popup-kort OVER app-frame === */
+#badgeModal,
+.modal,
+.person-popup,
+.place-overlay {
+  z-index: 999999 !important;
+}
