@@ -650,6 +650,27 @@ button.quiz-done.blink {
   white-space:normal;
 }
 
+.place-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.9);
+  opacity: 0;
+  transition: all 0.4s ease;
+  z-index: 9999;
+}
+.place-popup.visible {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+}
+.place-popup .popup-inner::-webkit-scrollbar {
+  width: 8px;
+}
+.place-popup .popup-inner::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.2);
+  border-radius: 4px;
+}
+
 /* ===================================================== */
 /* 16) Ruter-seksjon – Utforsk tematiske ruter           */
 /* ===================================================== */
