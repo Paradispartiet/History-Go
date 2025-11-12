@@ -1210,3 +1210,31 @@ function showPlacePopup(place) {
   setTimeout(() => card.classList.add("visible"), 20);
   setTimeout(() => card.remove(), 4200);
 }
+
+// ==============================
+// 13. BOOT-FUNKSJON – LASTER DATA OG STARTER KART
+// ==============================
+async function boot() {
+  initMap();
+
+  try {
+    const [places, people] = await Promise.all([
+      fetch("places.json", { cache: "no-store" }).then(r => r.json()),
+      fetch("people.json", { cache: "no-store" }).then(r => r.json())
+    ]);
+    PLACES = places;
+    PEOPLE = people;
+    linkPeopleToPlaces();
+    dataReady = true;
+    maybeDrawMarkers();
+  } catch (e) {
+    console.error("Feil ved lasting av data:", e);
+    showToast("Kunne ikke laste steder/personer");
+  }
+
+  wire();
+  requestLocation();
+  renderCollection();
+}
+
+document.addEventListener("DOMContentLoaded", boot);
