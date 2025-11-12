@@ -158,6 +158,7 @@ async function renderMerits() {
     return i <= 0 ? "🥉" : i === 1 ? "🥈" : i === 2 ? "🥇" : "🏆";
   }
 
+  // Tegn merkene
   container.innerHTML = cats.map(cat => {
     const merit = localMerits[cat] || { level: "Nybegynner" };
     const badge = badges.find(b =>
@@ -178,12 +179,13 @@ async function renderMerits() {
       </div>`;
   }).join("");
 
-  container.addEventListener("click", e => {
-    const tile = e.target.closest(".badge-mini");
-    if (!tile) return;
-    const id = tile.dataset.badgeId;
-    const badge = badges.find(b => b.id === id);
-    if (badge) openBadgeModalFromBadge(badge);
+  // 👉 legg til klikk på alle merkene etter at HTML-en er laget
+  container.querySelectorAll(".badge-mini").forEach(tile => {
+    tile.addEventListener("click", () => {
+      const id = tile.dataset.badgeId;
+      const badge = badges.find(b => b.id === id);
+      if (badge) openBadgeModalFromBadge(badge);
+    });
   });
 }
 
