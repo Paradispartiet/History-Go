@@ -1,46 +1,46 @@
 // ============================================================
-// === HISTORY GO – PROFILE.JS (v23, stabil og komplett) ======
+// === HISTORY GO – PROFILE.JS (v19, full integrasjon) ========
 // ============================================================
 //
 // Håndterer profilsiden:
-//  - Profilkort og redigering
-//  - Historiekort / tidslinje
-//  - Merker og modaler
-//  - Personer og steder brukeren har låst opp
-//  - Leser data direkte fra localStorage
+// - Profilkort (navn, emoji, farge)
+// - Profilredigering
+// - Deling (html2canvas)
+// - Historiekort / tidslinje
+// - Kall til felles funksjoner fra app.js
+//
+// Krever at app.js lastes først.
 // ============================================================
-
-let PEOPLE = [];
-let PLACES = [];
-let BADGES = [];
 
 // --------------------------------------
 // PROFILKORT OG RENDERING
 // --------------------------------------
 function renderProfileCard() {
   const name = localStorage.getItem("user_name") || "Utforsker #182";
-
-  const visited         = JSON.parse(localStorage.getItem("visited_places") || "{}");
-  const peopleCollected = JSON.parse(localStorage.getItem("people_collected") || "{}");
-  const merits          = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
-  const quizProgress    = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
-
+  const emoji = localStorage.getItem("user_avatar") || "🧭";
+  const color = localStorage.getItem("user_color") || "#f6c800";
   const visitedCount = Object.keys(visited).length;
-  const quizCount = Object.values(quizProgress)
-    .map(v => Array.isArray(v.completed) ? v.completed.length : 0)
-    .reduce((a,b) => a+b, 0);
-  const streak = Number(localStorage.getItem("user_streak") || 0);
+  const peopleCount = Object.keys(peopleCollected).length;
+  const fav = Object.entries(merits).sort((a, b) => b[1].points - a[1].points)[0];
+  const favCat = fav ? fav[0] : "Ingen ennå";
 
-  const nameEl   = document.getElementById("profileName");
-  const visitEl  = document.getElementById("statVisited");
-  const quizEl   = document.getElementById("statQuizzes");
-  const streakEl = document.getElementById("statStreak");
+  const avatar = document.getElementById("profileAvatar");
+  if (!avatar) return;
 
-  if (nameEl)   nameEl.textContent   = name;
-  if (visitEl)  visitEl.textContent  = visitedCount;
-  if (quizEl)   quizEl.textContent   = quizCount;
-  if (streakEl) streakEl.textContent = streak;
+  document.getElementById("profileName").textContent = name;
+  avatar.textContent = emoji;
+  avatar.style.borderColor = color;
+  document.getElementById("statPlaces").textContent = `${visitedCount} steder`;
+  document.getElementById("statPeople").textContent = `${peopleCount} personer`;
+  document.getElementById("statCategory").textContent = `Favoritt: ${favCat}`;
 }
+
+// --------------------------------------
+// HENT LOKALDATA FRA LAGRING
+// --------------------------------------
+const visited = JSON.parse(localStorage.getItem("visited") || "{}");
+const peopleCollected = JSON.parse(localStorage.getItem("peopleCollected") || "{}");
+const merits = JSON.parse(localStorage.getItem("merits") || "{}");
 
 // --------------------------------------
 // PROFIL-REDIGERINGSMODAL
@@ -53,6 +53,8 @@ function openProfileModal() {
       <h3>Endre profil</h3>
       <label>Navn</label>
       <input id="newName" value="${localStorage.getItem("user_name") || "Utforsker #182"}">
+      <label>Emoji</label>
+      <input id="newEmoji" maxlength="2" value="${localStorage.getItem("user_avatar") || "🧭"}">
       <label>Farge</label>
       <input id="newColor" type="color" value="${localStorage.getItem("user_color") || "#f6c800"}">
       <button id="saveProfile">Lagre</button>
@@ -64,259 +66,85 @@ function openProfileModal() {
   modal.querySelector("#cancelProfile").onclick = () => modal.remove();
 
   modal.querySelector("#saveProfile").onclick = () => {
-    const newName  = modal.querySelector("#newName").value.trim() || "Utforsker #182";
+    const newName = modal.querySelector("#newName").value.trim() || "Utforsker #182";
+    const newEmoji = modal.querySelector("#newEmoji").value.trim() || "🧭";
     const newColor = modal.querySelector("#newColor").value;
 
     localStorage.setItem("user_name", newName);
+    localStorage.setItem("user_avatar", newEmoji);
     localStorage.setItem("user_color", newColor);
 
     document.getElementById("profileName").textContent = newName;
     const avatarEl = document.getElementById("profileAvatar");
-    if (avatarEl) avatarEl.style.borderColor = newColor;
+    avatarEl.textContent = newEmoji;
+    avatarEl.style.borderColor = newColor;
 
-    showToast("Profil oppdatert ✅");
     modal.remove();
+    showToast("Profil oppdatert ✅");
     renderProfileCard();
   };
 }
 
+document.getElementById("editProfileBtn")?.addEventListener("click", openProfileModal);
+
 // --------------------------------------
-// HISTORIEKORT – TIDSLINJE
+// HISTORIEKORT – TIDSLINJE (PROFILVERSJON)
 // --------------------------------------
 function renderTimelineProfile() {
   const body = document.getElementById("timelineBody");
-  const bar  = document.getElementById("timelineProgressBar");
-  const txt  = document.getElementById("timelineProgressText");
+  const bar = document.getElementById("timelineProgressBar");
+  const txt = document.getElementById("timelineProgressText");
   if (!body) return;
 
-  const visited         = JSON.parse(localStorage.getItem("visited_places") || "{}");
-  const peopleCollected = JSON.parse(localStorage.getItem("people_collected") || "{}");
+  const got = PEOPLE.filter(p => !!peopleCollected[p.id]);
+  const total = PEOPLE.length;
+  const count = got.length;
 
-  const visitedPlaces   = (PLACES || []).filter(p => visited[p.id]);
-  const collectedPeople = (PEOPLE || []).filter(p => peopleCollected[p.id]);
+  if (bar) {
+    const pct = total ? (count / total) * 100 : 0;
+    bar.style.width = `${pct.toFixed(1)}%`;
+  }
+  if (txt) txt.textContent = `Du har samlet ${count} av ${total} historiekort`;
 
-  const allItems = [
-    ...visitedPlaces.map(p => ({
-      type: "place",
-      id: p.id,
-      name: p.name,
-      year: Number(p.year) || 0,
-      image: p.image || `bilder/kort/places/${p.id}.PNG`
-    })),
-    ...collectedPeople.map(p => ({
-      type: "person",
-      id: p.id,
-      name: p.name,
-      year: Number(p.year) || 0,
-      image: p.image || `bilder/kort/people/${p.id}.PNG`
-    }))
-  ].sort((a, b) => a.year - b.year);
-
-  const total = allItems.length;
-  if (bar) bar.style.width = `${(total ? (total / (PEOPLE.length + PLACES.length)) * 100 : 0).toFixed(1)}%`;
-  if (txt) txt.textContent = total ? `Du har låst opp ${total} historiekort` : "";
-
-  if (!allItems.length) {
+  if (!got.length) {
     body.innerHTML = `<div class="muted">Du har ingen historiekort ennå.</div>`;
     return;
   }
 
-  body.innerHTML = allItems.map(item => `
-    <div class="timeline-card ${item.type}" data-id="${item.id}">
-      <img src="${item.image}" alt="${item.name}">
-      <div class="timeline-name">${item.name}</div>
-      <div class="timeline-year">${item.year || "–"}</div>
-    </div>
-  `).join("");
+  const sorted = got.map(p => ({ ...p, year: p.year || 0 })).sort((a, b) => a.year - b.year);
 
-  body.querySelectorAll(".timeline-card").forEach(card => {
-    card.addEventListener("click", () => {
-      const id = card.dataset.id;
-      if (card.classList.contains("person")) {
-        const person = PEOPLE.find(p => p.id === id);
-        if (person) showPersonPopup(person);
-      } else {
-        const place = PLACES.find(p => p.id === id);
-        if (place) showPlaceOverlay(place);
-      }
-    });
-  });
-}
-
-// --------------------------------------
-// MINE MERKER
-// --------------------------------------
-async function renderMerits() {
-  const container = document.getElementById("merits");
-  if (!container) return;
-
-  const badges = await fetch("badges.json", { cache: "no-store" }).then(r => r.json());
-  const localMerits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
-  const cats = Object.keys(localMerits).length ? Object.keys(localMerits) : badges.map(b => b.name);
-
-  function medalByIndex(i) {
-    return i <= 0 ? "🥉" : i === 1 ? "🥈" : i === 2 ? "🥇" : "🏆";
-  }
-
-  container.innerHTML = cats.map(cat => {
-    const merit = localMerits[cat] || { level: "Nybegynner" };
-    const badge = badges.find(b =>
-      cat.toLowerCase().includes(b.id) ||
-      b.name.toLowerCase().includes(cat.toLowerCase())
-    );
-    if (!badge) return "";
-
-    const tierIndex = badge.tiers.findIndex(t => t.label === merit.level);
-    const medal = medalByIndex(tierIndex);
-
+  body.innerHTML = sorted.map(p => {
+    const img = p.image || `bilder/kort/people/${p.id}.PNG`;
+    const yearLabel = p.year || "–";
     return `
-      <div class="badge-mini" data-badge-id="${badge.id}">
-        <div class="badge-wrapper">
-          <img src="${badge.image}" alt="${badge.name}" class="badge-mini-icon">
-          <span class="badge-medal">${medal}</span>
-        </div>
+      <div class="timeline-card" data-person="${p.id}">
+        <img src="${img}" alt="${p.name}">
+        <div class="timeline-name">${p.name}</div>
+        <div class="timeline-year">${yearLabel}</div>
       </div>`;
   }).join("");
 
-  container.addEventListener("click", e => {
-    const tile = e.target.closest(".badge-mini");
-    if (!tile) return;
-    const id = tile.dataset.badgeId;
-    const badge = badges.find(b => b.id === id);
-    if (badge) openBadgeModalFromBadge(badge);
-  });
-}
-
-// --------------------------------------
-// PERSONER DU HAR LÅST OPP
-// --------------------------------------
-function renderPeopleCollection() {
-  const grid = document.getElementById("peopleGrid");
-  if (!grid) return;
-
-  const peopleCollected = JSON.parse(localStorage.getItem("people_collected") || "{}");
-
-  if (!Object.keys(peopleCollected).length) {
-    grid.innerHTML = `<div class="muted">Ingen personer låst opp ennå.</div>`;
-    return;
-  }
-
-  const collected = PEOPLE.filter(p => peopleCollected[p.id]);
-  collected.sort((a, b) => a.name.localeCompare(b.name));
-
-  grid.innerHTML = collected.map(p => `
-    <div class="avatar-card" data-person="${p.id}">
-      <img src="${p.image || `bilder/kort/people/${p.id}.PNG`}" alt="${p.name}" class="avatar-img">
-      <div class="avatar-name">${p.name}</div>
-    </div>
-  `).join("");
-
-  grid.querySelectorAll(".avatar-card").forEach(card => {
-    card.addEventListener("click", () => {
-      const person = PEOPLE.find(p => p.id === card.dataset.person);
-      if (person) showPersonPopup(person);
+  body.querySelectorAll(".timeline-card").forEach(c => {
+    c.addEventListener("click", () => {
+      const id = c.dataset.person;
+      const pr = PEOPLE.find(p => p.id === id);
+      if (pr) showPersonPopup(pr);
     });
   });
 }
 
 // --------------------------------------
-// STEDER DU HAR BESØKT
-// --------------------------------------
-async function renderPlacesCollection() {
-  const container = document.getElementById("collectionGrid");
-  if (!container) return;
-
-  const raw = localStorage.getItem("visited_places") ||
-              localStorage.getItem("places_visited") ||
-              localStorage.getItem("visitedPlaces") ||
-              "{}";
-  const visited = JSON.parse(raw);
-
-  const places = await fetch("places.json").then(r => r.json());
-
-  const visitedPlaces = Array.isArray(visited)
-    ? places.filter(p => visited.includes(p.id))
-    : places.filter(p => visited[p.id]);
-
-  if (!visitedPlaces.length) {
-    container.innerHTML = `<p class="muted">Ingen steder besøkt ennå.</p>`;
-    return;
-  }
-
-  container.innerHTML = visitedPlaces.map(p => `
-    <div class="card place-card" data-id="${p.id}">
-      <div class="name">${p.name}</div>
-      <div class="meta">${p.category || ""} · ${p.year || ""}</div>
-      <p class="desc">${p.desc || ""}</p>
-    </div>
-  `).join("");
-
-  container.querySelectorAll(".place-card").forEach(el => {
-    el.addEventListener("click", () => {
-      const id = el.dataset.id;
-      const place = places.find(p => p.id === id);
-      if (place) showPlaceOverlay(place);
-    });
-  });
-}
-
-// --------------------------------------
-// FALLBACK-FUNKSJONER
-// --------------------------------------
-function showPlaceOverlay(place) {
-  if (!place) return;
-  const modal = document.createElement("div");
-  modal.className = "place-overlay";
-  modal.innerHTML = `
-    <div class="place-overlay-content">
-      <button class="close-overlay" aria-label="Lukk">×</button>
-      <div class="left">
-        <h2>${place.name}</h2>
-        <p class="meta">${place.category || ""} · ${place.year || ""}</p>
-        <p>${place.desc || ""}</p>
-      </div>
-    </div>`;
-  document.body.appendChild(modal);
-  modal.querySelector(".close-overlay").onclick = () => modal.remove();
-  modal.addEventListener("click", e => { if (e.target === modal) modal.remove(); });
-}
-
-function showPersonPopup(person) {
-  if (!person) return;
-  const popup = document.createElement("div");
-  popup.className = "person-popup visible";
-  popup.innerHTML = `
-    <img src="${person.image || `bilder/kort/people/${person.id}.PNG`}" alt="${person.name}">
-    <h3>${person.name}</h3>
-    <p>${person.year || ""}</p>
-    <p>${person.desc || ""}</p>`;
-  document.body.appendChild(popup);
-  popup.addEventListener("click", () => popup.remove());
-}
-
-// --------------------------------------
-// INITIALISERING
+// FULL INITIALISERING MED DATA
 // --------------------------------------
 Promise.all([
   fetch("people.json").then(r => r.json()).then(d => PEOPLE = d),
   fetch("places.json").then(r => r.json()).then(d => PLACES = d),
   fetch("badges.json").then(r => r.json()).then(d => BADGES = d)
 ]).then(() => {
+  dataReady = true;
   renderProfileCard();
-  renderMerits();
-  renderPeopleCollection();
-  renderPlacesCollection();
-  renderTimelineProfile();
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-  const editBtn = document.getElementById("editProfileBtn");
-  if (editBtn) editBtn.addEventListener("click", openProfileModal);
-  setTimeout(() => {
-    renderProfileCard();
-    renderMerits();
-    renderPeopleCollection();
-    renderPlacesCollection();
-    renderTimelineProfile();
-  }, 600);
+  renderMerits();       // riktig funksjon for merker
+  renderCollection();   // steder
+  renderGallery();      // personer
+  renderTimelineProfile(); // tidslinje
 });
