@@ -300,6 +300,42 @@ function showPersonPopup(person) {
   popup.addEventListener("click", () => popup.remove());
 }
 
+// --------------------------------------
+// MERKE-MODAL – viser bilde, nivå og quiz-liste
+// --------------------------------------
+function openBadgeModalFromBadge(badge) {
+  if (!badge) return;
+
+  const merits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
+  const quizProgress = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
+  const catId = badge.id;
+  const catName = badge.name;
+  const completed = quizProgress[catId]?.completed || [];
+  const level = merits[catName]?.level || "Nybegynner";
+
+  const listHtml = completed.length
+    ? `<ul class="quiz-list">${completed.map(q => `<li>${q}</li>`).join("")}</ul>`
+    : `<p class="muted">Ingen quizzer fullført ennå.</p>`;
+
+  const modal = document.createElement("div");
+  modal.className = "badge-modal";
+  modal.innerHTML = `
+    <div class="badge-modal-inner">
+      <button class="close-badge" aria-label="Lukk">×</button>
+      <img src="${badge.image}" alt="${badge.name}" class="badge-modal-icon">
+      <h2>${catName}</h2>
+      <p class="muted">Nivå: ${level}</p>
+      <h4>Dine quizzer</h4>
+      ${listHtml}
+    </div>`;
+  document.body.appendChild(modal);
+
+  modal.style.display = "flex";
+  modal.setAttribute("aria-hidden", "false");
+  modal.querySelector(".close-badge").onclick = () => modal.remove();
+  modal.addEventListener("click", e => { if (e.target === modal) modal.remove(); });
+}
+  
 // ------------------------------------------------------------
 // LASTER ALLE PEOPLE-FILER (hoved + 9 kategorier)
 // ------------------------------------------------------------
