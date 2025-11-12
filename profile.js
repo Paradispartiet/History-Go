@@ -190,33 +190,66 @@ async function renderMerits() {
 }
 
 // --------------------------------------
-// BADGE-MODAL – vis bilde, nivå og quizer
+// BADGE-MODAL – viser bilde, nivå og alle quizer med riktige svar
 // --------------------------------------
-function openBadgeModalFromBadge(badge) {
+async function openBadgeModalFromBadge(badgeRef) {
   const modal       = document.getElementById("badgeModal");
+  if (!modal) return;
+
   const modalImg    = modal.querySelector(".badge-modal-icon");
   const modalTitle  = modal.querySelector(".badge-modal-title");
   const modalLevel  = modal.querySelector(".badge-modal-level");
   const quizList    = modal.querySelector(".quiz-list");
 
-  const merits  = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
-  const merit   = merits[badge.name] || {};
+  // Finn riktig badge i badges.json
+  const badge = BADGES.find(b => b.id === badgeRef.id) || badgeRef;
+
+  // Hent brukerens fremgang og quiz-resultater
+  const merits       = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
+  const quizProgress = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
+
+  const merit   = merits[badge.name] || merits[badge.id] || {};
   const quizzes = merit.quizzes || [];
   const level   = merit.level || "Nybegynner";
 
-  // Fyll inn innhold
+  // Hent alle quizer fra quizzene som tilhører denne kategorien
+  const allQuizzes = await fetch("quizzes.json", { cache: "no-store" }).then(r => r.json());
+  const badgeQuizzes = allQuizzes.filter(q => q.categoryId === badge.id);
+
+  // Bygg quiz-listen med riktige svar
+  let listHTML = "";
+  if (quizzes.length) {
+    quizzes.forEach(qid => {
+      const q = badgeQuizzes.find(x => x.id === qid);
+      if (q) {
+        // finn brukerens riktige svar fra quiz_progress
+        const userData = quizProgress[q.id] || {};
+        const correct  = q.answer || "(ukjent)";
+        const userAns  = userData.answer || correct;
+
+        const isCorrect = userAns === correct;
+        listHTML += `
+          <li>
+            <strong>${q.question}</strong><br>
+            <small>Riktig svar: <span style="color:${isCorrect ? 'var(--accent)' : '#ccc'}">${correct}</span></small>
+          </li>`;
+      }
+    });
+  } else {
+    listHTML = "<li>Ingen quizer fullført ennå</li>";
+  }
+
+  // Fyll inn info fra badge
   modalImg.src = badge.image;
   modalTitle.textContent = badge.name;
   modalLevel.textContent = level;
-  quizList.innerHTML = quizzes.length
-    ? quizzes.map(q => `<li>${q}</li>`).join("")
-    : "<li>Ingen quizer fullført ennå</li>";
+  quizList.innerHTML = listHTML;
 
   // Vis modal
   modal.setAttribute("aria-hidden", "false");
   modal.style.display = "flex";
 
-  // Lukk på klikk utenfor eller på ×
+  // Lukk
   const closeBtn = modal.querySelector(".close-badge");
   closeBtn.onclick = () => closeBadgeModal();
   modal.onclick = e => { if (e.target === modal) closeBadgeModal(); };
@@ -229,7 +262,6 @@ function closeBadgeModal() {
     modal.style.display = "none";
   }
 }
-
 // --------------------------------------
 // PERSONER DU HAR LÅST OPP
 // --------------------------------------
