@@ -3,7 +3,7 @@
 // For GitHub Pages og lokal testing
 // =====================================================
 
-const V = 'hg-v18.2.1.34';
+const V = 'hg-v18.2.1.35';
 const CORE = [
   'index.html',
   'profile.html',
