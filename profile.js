@@ -189,38 +189,45 @@ async function renderMerits() {
   });
 }
 
+// --------------------------------------
+// BADGE-MODAL – vis bilde, nivå og quizer
+// --------------------------------------
 function openBadgeModalFromBadge(badge) {
-  const modal = document.getElementById("badgeModal");
-  if (!modal) return;
+  const modal       = document.getElementById("badgeModal");
+  const modalImg    = modal.querySelector(".badge-modal-icon");
+  const modalTitle  = modal.querySelector(".badge-modal-title");
+  const modalLevel  = modal.querySelector(".badge-modal-level");
+  const quizList    = modal.querySelector(".quiz-list");
 
-  const modalImg = modal.querySelector(".badge-img");
-  const modalTitle = modal.querySelector(".badge-title");
-  const modalLevel = modal.querySelector(".badge-level");
-  const quizList = modal.querySelector(".badge-quizzes");
-  const progressBar = modal.querySelector(".badge-progress-bar");
-  const progressText = modal.querySelector(".badge-progress-text");
-
-  // hent brukerens fremgang
-  const merits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
-  const merit = merits[badge.name] || {};
+  const merits  = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
+  const merit   = merits[badge.name] || {};
   const quizzes = merit.quizzes || [];
-  const totalQuizzes = badge.totalQuizzes || (badge.tiers?.length ?? 5);
-  const done = quizzes.length;
-  const percent = Math.min(100, Math.round((done / totalQuizzes) * 100));
+  const level   = merit.level || "Nybegynner";
 
-  // fyll inn data
+  // Fyll inn innhold
   modalImg.src = badge.image;
-  modalImg.alt = badge.name;
   modalTitle.textContent = badge.name;
-  modalLevel.textContent = merit.level || "Nybegynner";
-  progressBar.style.width = percent + "%";
-  progressText.textContent = `${done} av ${totalQuizzes} quizer fullført`;
-  quizList.innerHTML = done
+  modalLevel.textContent = level;
+  quizList.innerHTML = quizzes.length
     ? quizzes.map(q => `<li>${q}</li>`).join("")
     : "<li>Ingen quizer fullført ennå</li>";
 
-  // vis modalen
+  // Vis modal
+  modal.setAttribute("aria-hidden", "false");
   modal.style.display = "flex";
+
+  // Lukk på klikk utenfor eller på ×
+  const closeBtn = modal.querySelector(".close-badge");
+  closeBtn.onclick = () => closeBadgeModal();
+  modal.onclick = e => { if (e.target === modal) closeBadgeModal(); };
+}
+
+function closeBadgeModal() {
+  const modal = document.getElementById("badgeModal");
+  if (modal) {
+    modal.setAttribute("aria-hidden", "true");
+    modal.style.display = "none";
+  }
 }
 
 // --------------------------------------
@@ -253,42 +260,6 @@ function renderPeopleCollection() {
       if (person) showPersonPopup(person);
     });
   });
-}
-
-// --------------------------------------
-// BADGE-MODAL – vis bilde, nivå og quizer
-// --------------------------------------
-function openBadgeModalFromBadge(badge) {
-  const modal = document.getElementById("badgeModal");
-  if (!modal) return;
-
-  const modalImg = modal.querySelector(".badge-img");
-  const modalTitle = modal.querySelector(".badge-title");
-  const modalLevel = modal.querySelector(".badge-level");
-  const quizList = modal.querySelector(".badge-quizzes");
-  const progressBar = modal.querySelector(".badge-progress-bar");
-  const progressText = modal.querySelector(".badge-progress-text");
-
-  // hent brukerdata
-  const merits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
-  const merit = merits[badge.name] || {};
-  const quizzes = merit.quizzes || [];
-  const totalQuizzes = badge.totalQuizzes || (badge.tiers?.length ?? 5);
-  const done = quizzes.length;
-  const percent = Math.min(100, Math.round((done / totalQuizzes) * 100));
-
-  // fyll inn modalinnhold
-  modalImg.src = badge.image;
-  modalImg.alt = badge.name;
-  modalTitle.textContent = badge.name;
-  modalLevel.textContent = merit.level || "Nybegynner";
-  progressBar.style.width = percent + "%";
-  progressText.textContent = `${done} av ${totalQuizzes} quizer fullført`;
-  quizList.innerHTML = done
-    ? quizzes.map(q => `<li>${q}</li>`).join("")
-    : "<li>Ingen quizer fullført ennå</li>";
-
-  modal.style.display = "flex";
 }
 
 // --------------------------------------
