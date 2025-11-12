@@ -1,11 +1,12 @@
 // ============================================================
-// === HISTORY GO – PROFILE.JS (v21, ren og stabil) ============
+// === HISTORY GO – PROFILE.JS (v22, ren og stabil) ============
 // ============================================================
 //
 // Håndterer profilsiden:
 //  - Profilkort og redigering
 //  - Historiekort / tidslinje
 //  - Merker og modaler
+//  - Personer og steder du har låst opp
 //  - Leser data direkte fra localStorage
 // ============================================================
 
@@ -30,7 +31,6 @@ function renderProfileCard() {
     .reduce((a,b) => a+b, 0);
   const streak = Number(localStorage.getItem("user_streak") || 0);
 
-  // Skriv ut til de faktiske feltene i din HTML
   const nameEl   = document.getElementById("profileName");
   const visitEl  = document.getElementById("statVisited");
   const quizEl   = document.getElementById("statQuizzes");
@@ -41,7 +41,6 @@ function renderProfileCard() {
   if (quizEl)   quizEl.textContent   = quizCount;
   if (streakEl) streakEl.textContent = streak;
 }
-
 
 // --------------------------------------
 // PROFIL-REDIGERINGSMODAL
@@ -62,10 +61,7 @@ function openProfileModal() {
   document.body.appendChild(modal);
   modal.style.display = "flex";
 
-  // ❌ Avbryt-knappen
   modal.querySelector("#cancelProfile").onclick = () => modal.remove();
-
-  // 💾 Lagre endringer
   modal.querySelector("#saveProfile").onclick = () => {
     const newName  = modal.querySelector("#newName").value.trim() || "Utforsker #182";
     const newColor = modal.querySelector("#newColor").value;
@@ -78,14 +74,13 @@ function openProfileModal() {
     if (avatarEl) avatarEl.style.borderColor = newColor;
 
     showToast("Profil oppdatert ✅");
-    modal.remove(); // ✅ Lukk modalen etter lagring
+    modal.remove();
     renderProfileCard();
   };
 }
 
-
 // --------------------------------------
-// HISTORIEKORT – KOMBINERT HORISONTAL TIDSLINJE
+// HISTORIEKORT – HORISONTAL TIDSLINJE
 // --------------------------------------
 function renderTimelineProfile() {
   const body = document.getElementById("timelineBody");
@@ -99,7 +94,6 @@ function renderTimelineProfile() {
   const visitedPlaces   = (PLACES || []).filter(p => visited[p.id]);
   const collectedPeople = (PEOPLE || []).filter(p => peopleCollected[p.id]);
 
-  // Slå sammen og sorter etter år
   const allItems = [
     ...visitedPlaces.map(p => ({
       type: "place",
@@ -121,13 +115,11 @@ function renderTimelineProfile() {
   if (bar) bar.style.width = `${(total ? (total / (PEOPLE.length + PLACES.length)) * 100 : 0).toFixed(1)}%`;
   if (txt) txt.textContent = total ? `Du har låst opp ${total} historiekort` : "";
 
-  // Ingen data ennå
   if (!allItems.length) {
     body.innerHTML = `<div class="muted">Du har ingen historiekort ennå.</div>`;
     return;
   }
 
-  // Bygg kortene
   body.innerHTML = allItems.map(item => `
     <div class="timeline-card ${item.type}" data-id="${item.id}">
       <img src="${item.image}" alt="${item.name}">
@@ -136,7 +128,6 @@ function renderTimelineProfile() {
     </div>
   `).join("");
 
-  // Klikk for popup
   body.querySelectorAll(".timeline-card").forEach(card => {
     card.addEventListener("click", () => {
       const id = card.dataset.id;
@@ -145,15 +136,14 @@ function renderTimelineProfile() {
         if (person) showPersonPopup(person);
       } else {
         const place = PLACES.find(p => p.id === id);
-        if (place) showPlacePopup(place);
+        if (place) showPlaceOverlay(place);
       }
     });
   });
 }
 
-
 // --------------------------------------
-// MINE MERKER – runde ikoner med medalje
+// MINE MERKER – RUNDE IKONER MED MEDALJE
 // --------------------------------------
 async function renderMerits() {
   const container = document.getElementById("merits");
@@ -190,8 +180,7 @@ async function renderMerits() {
       </div>`;
   }).join("");
 
-  // Delegert klikk: robust på iPad/mobil og uavhengig av hvor man trykker i kortet
-  container.addEventListener("click", (e) => {
+  container.addEventListener("click", e => {
     const tile = e.target.closest(".badge-mini");
     if (!tile) return;
     const id = tile.dataset.badgeId;
@@ -201,39 +190,7 @@ async function renderMerits() {
 }
 
 // --------------------------------------
-// PERSONER DU HAR LÅST OPP (AVATARER)
-// --------------------------------------
-function renderCollection() {
-  const grid = document.getElementById("peopleGrid");
-  if (!grid) return;
-
-  const peopleCollected = JSON.parse(localStorage.getItem("people_collected") || "{}");
-
-  if (!Object.keys(peopleCollected).length) {
-    grid.innerHTML = `<div class="muted">Ingen personer låst opp ennå.</div>`;
-    return;
-  }
-
-  const collected = PEOPLE.filter(p => peopleCollected[p.id]);
-  collected.sort((a, b) => a.name.localeCompare(b.name));
-
-  grid.innerHTML = collected.map(p => `
-    <div class="avatar-card" data-person="${p.id}">
-      <img src="${p.image || `bilder/kort/people/${p.id}.PNG`}" 
-           alt="${p.name}" class="avatar-img">
-      <div class="avatar-name">${p.name}</div>
-    </div>
-  `).join("");
-
-  grid.querySelectorAll(".avatar-card").forEach(card => {
-    card.addEventListener("click", () => {
-      const person = PEOPLE.find(p => p.id === card.dataset.person);
-      if (person) showPersonPopup(person);
-    });
-  });
-}
-// --------------------------------------
-// MERKE-MODAL – viser bilde, nivå og quiz-liste
+// MERKE-MODAL – VISER NIVÅ OG QUIZ-LISTE
 // --------------------------------------
 function openBadgeModalFromBadge(badge) {
   if (!badge) return;
@@ -269,10 +226,42 @@ function openBadgeModalFromBadge(badge) {
 }
 
 // --------------------------------------
-// VIS BESØKTE STEDER PÅ PROFILSIDEN
+// PERSONER DU HAR LÅST OPP (AVATARER)
 // --------------------------------------
-async function renderCollection() {
-  const container = document.getElementById("badgeGrid") || document.getElementById("collectionGrid");
+function renderPeopleCollection() {
+  const grid = document.getElementById("peopleGrid");
+  if (!grid) return;
+
+  const peopleCollected = JSON.parse(localStorage.getItem("people_collected") || "{}");
+  if (!Object.keys(peopleCollected).length) {
+    grid.innerHTML = `<div class="muted">Ingen personer låst opp ennå.</div>`;
+    return;
+  }
+
+  const collected = PEOPLE.filter(p => peopleCollected[p.id]);
+  collected.sort((a, b) => a.name.localeCompare(b.name));
+
+  grid.innerHTML = collected.map(p => `
+    <div class="avatar-card" data-person="${p.id}">
+      <img src="${p.image || `bilder/kort/people/${p.id}.PNG`}" 
+           alt="${p.name}" class="avatar-img">
+      <div class="avatar-name">${p.name}</div>
+    </div>
+  `).join("");
+
+  grid.querySelectorAll(".avatar-card").forEach(card => {
+    card.addEventListener("click", () => {
+      const person = PEOPLE.find(p => p.id === card.dataset.person);
+      if (person) showPersonPopup(person);
+    });
+  });
+}
+
+// --------------------------------------
+// STEDER DU HAR BESØKT
+// --------------------------------------
+async function renderPlacesCollection() {
+  const container = document.getElementById("collectionGrid");
   if (!container) return;
 
   const visited = JSON.parse(localStorage.getItem("visited_places") || "{}");
@@ -281,10 +270,7 @@ async function renderCollection() {
     return;
   }
 
-  // hent places.json
   const places = await fetch("places.json").then(r => r.json());
-
-  // filtrer ut de brukeren har besøkt
   const visitedPlaces = places.filter(p => visited[p.id]);
 
   container.innerHTML = visitedPlaces.map(p => `
@@ -295,7 +281,6 @@ async function renderCollection() {
     </div>
   `).join("");
 
-  // klikk for å åpne sted
   container.querySelectorAll(".place-card").forEach(el => {
     el.addEventListener("click", () => {
       const id = el.dataset.id;
@@ -315,8 +300,8 @@ Promise.all([
 ]).then(() => {
   renderProfileCard();
   renderMerits();
-  renderCollection();
-  renderGallery();
+  renderPeopleCollection();
+  renderPlacesCollection();
   renderTimelineProfile();
 });
 
@@ -326,30 +311,8 @@ document.addEventListener("DOMContentLoaded", () => {
   setTimeout(() => {
     renderProfileCard();
     renderMerits();
-    renderCollection();
-    renderGallery();
+    renderPeopleCollection();
+    renderPlacesCollection();
     renderTimelineProfile();
   }, 600);
-});
-
-// --------------------------------------
-// GJØR STEDER KLIKKBARE PÅ PROFILSIDEN
-// --------------------------------------
-document.addEventListener("DOMContentLoaded", () => {
-  const grid = document.getElementById("collectionGrid");
-  if (!grid) return;
-
-  grid.addEventListener("click", e => {
-    const span = e.target.closest("span.badge");
-    if (!span) return;
-
-    const name = span.title;
-    const place = PLACES.find(p => p.name === name);
-    if (place) {
-      closePlaceOverlay();     // lukk eventuelle gamle overlays
-      showPlaceOverlay(place); // vis info og quiz for stedet
-    } else {
-      showToast(`Fant ikke sted: ${name}`);
-    }
-  });
 });
