@@ -1150,6 +1150,45 @@ button.primary.small:hover { opacity: .9; }
 .btn.danger:hover {
   background: #e33;
 }
+
+/* ===================================================== */
+/* 17nn) STEDER PÅ PROFILSIDEN – SAMME STIL SOM KARTKORT  */
+/* ===================================================== */
+.place-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+  transition: background .2s ease, transform .2s ease;
+  cursor: pointer;
+}
+
+.place-card:hover {
+  background: rgba(255,255,255,0.07);
+  transform: translateY(-2px);
+}
+
+.place-card .name {
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: #fff;
+  margin-bottom: 2px;
+}
+
+.place-card .meta {
+  font-size: 0.88rem;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.place-card .desc {
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: #d0d8e4;
+}
+
 /* ===================================================== */
 /* 18) BADGE-MODAL – Åpnes når man trykker på et merke   */
 /* ===================================================== */
