@@ -249,11 +249,10 @@ const quizList    = modal.querySelector(".badge-quizzes");
   modal.setAttribute("aria-hidden", "false");
   modal.style.display = "flex";
 
-  // Lukk
-  const closeBtn = modal.querySelector(".close-badge");
-  closeBtn.onclick = () => closeBadgeModal();
-  modal.onclick = e => { if (e.target === modal) closeBadgeModal(); };
-}
+ // Lukk
+const closeBtn = modal.querySelector(".close-btn");
+if (closeBtn) closeBtn.onclick = () => closeBadgeModal();
+modal.onclick = e => { if (e.target === modal) closeBadgeModal(); };
 
 function closeBadgeModal() {
   const modal = document.getElementById("badgeModal");
@@ -262,6 +261,7 @@ function closeBadgeModal() {
     modal.style.display = "none";
   }
 }
+  
 // --------------------------------------
 // PERSONER DU HAR LÅST OPP
 // --------------------------------------
