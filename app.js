@@ -1023,10 +1023,11 @@ if (!el.test?.checked) {
         } 
         else if (place) {
           // Bare vis kort hvis stedet er besøkt fysisk
-          if (visitedPlaces[place.id]) {
-            showPlacePopup(place);
-            pulseMarker(place.lat, place.lon);
-          }
+          // ✅ Vis popup også i testmodus
+if (visitedPlaces[place.id] || el.test?.checked) {
+  showPlacePopup(place);
+  pulseMarker(place.lat, place.lon);
+}
         }
 
         showToast(`Perfekt! ${total}/${total} riktige 🎯 Du fikk poeng og kort!`);
