@@ -3,16 +3,20 @@
 // For GitHub Pages og lokal testing
 // =====================================================
 
-const V = 'hg-v18.0.4.12';
+const V = 'hg-v18.2.1.35';
 const CORE = [
   'index.html',
+  'profile.html',
   'theme.css',
   'app.js',
+  'profile.js',
   'icons.js',
   'places.json',
   'people.json',
   'quiz_vitenskap.json',
   'quiz_litteratur.json',
+  'quiz_historie.json',
+  'quiz_naeringsliv.json',
   'quiz_kunst.json',
   'quiz_musikk.json',
   'quiz_sport.json',

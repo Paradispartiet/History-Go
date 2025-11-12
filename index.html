@@ -34,21 +34,53 @@
     <button id="btnExitMap" title="Lukk kart" aria-label="Lukk kart">✕</button>
   </div>
 
+    <!-- Place Card (sheet) -->
+<div id="placeCard" aria-hidden="true">
+  <h2 id="pcTitle"></h2>
+  <div id="pcMeta"></div>
+  <p id="pcDesc"></p>
+  <div class="row">
+    <button id="pcUnlock" class="primary">Lås opp</button>
+    <button id="pcRoute" class="ghost">Rute</button>
+    <button id="pcClose" class="ghost">✕</button>
+  </div>
+</div>
+  
   <!-- Toast -->
   <div id="toast" role="status" aria-live="polite">OK</div>
 
-  <header>
-    <div class="brand">History Go</div>
-    <div class="actions">
-      <button id="btnSeeMap" class="secondary">Se kart</button>
-      <label class="toggle">
-        <input id="testToggle" type="checkbox" />
-        <span>Testmodus</span>
-      </label>
-    </div>
-  </header>
+  <header class="site-header">
+  <div class="brand">
+    <img src="bilder/logo_historygo.PNG" alt="History Go logo" class="brand-logo">
+    <span class="brand-name">History Go</span>
+  </div>
+  <div class="actions">
+    <button id="btnSeeMap" class="secondary">Se kart</button>
+    <label class="toggle">
+      <input id="testToggle" type="checkbox" />
+      <span>Testmodus</span>
+    </label>
+  </div>
+</header>
 
   <main>
+
+    <!-- === MINI-PROFIL (forside) === -->
+<section id="miniProfile" class="panel mini-profile">
+  <div class="info">
+    <div class="profile-top">
+      <h3 id="miniName">Utforsker #182</h3>
+      <a href="profile.html" class="arrow-link" title="Gå til profilen din">→</a>
+    </div>
+
+    <p id="miniStats" class="muted">
+      <span id="linkPlaces" class="linkish">0 steder</span> · 
+      <span id="linkBadges" class="linkish">0 merker</span> · 
+      <span id="linkQuiz" class="linkish">0 quizzer</span>
+    </p>
+  </div>
+</section>
+    
     <!-- Nærområde -->
     <section class="panel">
       <h2>
@@ -59,33 +91,32 @@
       <div id="nearbyList" class="cards"></div>
     </section>
 
-<!-- Merkesamling -->
-<section class="panel">
-  <h2 class="merkesamling-title">
-    🏅 Merkesamling
-    <button id="btnMoreCollection" class="chip ghost">Se hele samlingen</button>
-  </h2>
-
-  <div id="progress-display" class="muted" style="margin-bottom:8px;"></div>
-  <div id="merits"></div>
-
-  <h3>🏛️ Steder</h3>
-  <div id="collectionGrid" class="chips"></div>
-
-  <h3>👥 Personer</h3>
-  <div id="gallery" class="chips"></div>
-</section>
-
 <!-- Ruter -->
 <section class="panel">
   <h2>Utforsk ruter</h2>
   <p class="muted">Følg tematiske ruter gjennom byens historie, kunst og vitenskap.</p>
 
   <div class="route-buttons" style="margin-top:12px;display:flex;flex-wrap:wrap;gap:10px;">
-    <button class="primary" onclick="showRouteOverlay('vitenskapsruten')">🧠 Vitenskapsruten</button>
-    <button class="primary" onclick="showRouteOverlay('kunstruten_sentrum')">🎨 Kunstruten</button>
-    <button class="primary" onclick="showRouteOverlay('skulpturruten_vigeland')">🗿 Skulpturruten</button>
-  </div>
+  <button class="primary"
+    onclick="loadRoutes().then(()=>focusRouteOnMap('vitenskapsruten'))">
+    🧠 Vitenskapsruten
+  </button>
+
+  <button class="primary"
+    onclick="loadRoutes().then(()=>focusRouteOnMap('kunstruten_sentrum'))">
+    🎨 Kunstruten
+  </button>
+
+  <button class="primary"
+    onclick="loadRoutes().then(()=>focusRouteOnMap('skulpturruten_vigeland'))">
+    🗿 Skulpturruten
+  </button>
+
+  <button class="primary"
+    onclick="loadRoutes().then(()=>focusRouteOnMap('industrieruten_sentrum'))">
+    🏭 Industrieruten
+  </button>
+</div>
 </section>
     
   <!-- “Se flere i nærheten” sheet -->
@@ -95,15 +126,6 @@
       <button class="sheet-close" data-close="#sheetNearby">✕</button>
     </div>
     <div id="sheetNearbyBody" class="sheet-body"></div>
-  </div>
-
-  <!-- “Min samling” sheet -->
-  <div id="sheetCollection" class="sheet" aria-hidden="true">
-    <div class="sheet-head">
-      <h3>Min samling</h3>
-      <button class="sheet-close" data-close="#sheetCollection">✕</button>
-    </div>
-    <div id="sheetCollectionBody" class="sheet-body"></div>
   </div>
 
 
@@ -117,9 +139,8 @@
   </script>
 
   <!-- Egne JS-filer -->
-  <script src="icons.js" defer></script>
-  <script src="routes.js" defer></script>
-  <script src="app.js" defer></script>
+<script src="app.js" defer></script>
+<script src="routes.js" defer></script>
 
     <div class="app-frame"></div>
 </body>

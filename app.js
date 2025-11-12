@@ -103,6 +103,7 @@ function norm(s = "") {
 // ------------------------------
 function catColor(cat = "") {
   const c = norm(cat);
+  if (c.includes("historie") || c.includes("fortid") || c.includes("middelalder") || c.includes("arkeologi")) return "#344B80";   // Historie – dyp blå
   if (c.includes("vitenskap") || c.includes("filosofi")) return "#9b59b6";
   if (c.includes("kunst") || c.includes("kultur")) return "#ffb703";
   if (c.includes("musikk") || c.includes("scene")) return "#ff66cc";
@@ -111,6 +112,7 @@ function catColor(cat = "") {
   if (c.includes("sport") || c.includes("idrett") || c.includes("lek")) return "#2a9d8f";
   if (c.includes("by") || c.includes("arkitektur")) return "#e63946";
   if (c.includes("politikk") || c.includes("samfunn")) return "#c77dff";
+  if (c.includes("naering") || c.includes("industri") || c.includes("arbeid")) return "#ff8800";
   if (c.includes("populaer") || c.includes("pop")) return "#ffb703";
   if (c.includes("subkultur") || c.includes("urban")) return "#ff66cc";
   return "#9b59b6"; // fallback
@@ -121,6 +123,7 @@ function catColor(cat = "") {
 // ------------------------------
 function catClass(cat = "") {
   const c = norm(cat);
+  if (c.includes("historie") || c.includes("fortid") || c.includes("middelalder") || c.includes("arkeologi")) return "historie";
   if (c.includes("vitenskap") || c.includes("filosofi")) return "vitenskap";
   if (c.includes("kunst") || c.includes("kultur")) return "kunst";
   if (c.includes("musikk") || c.includes("scene")) return "musikk";
@@ -129,8 +132,10 @@ function catClass(cat = "") {
   if (c.includes("sport") || c.includes("idrett") || c.includes("lek")) return "sport";
   if (c.includes("by") || c.includes("arkitektur")) return "by";
   if (c.includes("politikk") || c.includes("samfunn")) return "politikk";
+  if (c.includes("naering") || c.includes("industri") || c.includes("arbeid")) return "naeringsliv";
   if (c.includes("populaer") || c.includes("pop")) return "populaerkultur";
   if (c.includes("subkultur") || c.includes("urban")) return "subkultur";
+  
   return "vitenskap";
 }
 
@@ -141,9 +146,9 @@ function tagToCat(tags = []) {
   const t = norm(Array.isArray(tags) ? tags.join(" ") : tags || "");
 
   // 🔹 Viktig: sjekk spesifikke kulturtyper før "kunst/kultur"
+  if (t.includes("historie") || t.includes("fortid") || t.includes("middelalder") || t.includes("arkeologi")) return "historie";
   if (t.includes("subkultur") || t.includes("urban")) return "subkultur";
   if (t.includes("populaer") || t.includes("pop")) return "populaerkultur";
-
   if (t.includes("vitenskap") || t.includes("filosofi")) return "vitenskap";
   if (t.includes("kunst") || t.includes("kultur")) return "kunst";
   if (t.includes("musikk") || t.includes("scene")) return "musikk";
@@ -152,7 +157,7 @@ function tagToCat(tags = []) {
   if (t.includes("sport") || t.includes("idrett") || t.includes("lek")) return "sport";
   if (t.includes("by") || t.includes("arkitektur")) return "by";
   if (t.includes("politikk") || t.includes("samfunn")) return "politikk";
-
+  if (t.includes("naering") || t.includes("industri") || t.includes("arbeid")) return "naeringsliv";
   return "vitenskap"; // fallback
 }
 
@@ -181,18 +186,28 @@ function distMeters(a,b){
 // ==============================
 let MAP, userMarker, userPulse, routeLine, routeControl, placeLayer;
 
-function setUser(lat, lon){
+function setUser(lat, lon) {
   if (!MAP) return;
-  if (!userMarker){
-    userMarker = L.circleMarker([lat,lon], {
-      radius:8, weight:2, color:'#fff', fillColor:'#1976d2', fillOpacity:1
+  if (!userMarker) {
+    userMarker = L.circleMarker([lat, lon], {
+      radius: 8,
+      weight: 2,
+      color: '#fff',
+      fillColor: '#1976d2',
+      fillOpacity: 1
     }).addTo(MAP).bindPopup('Du er her');
-    userPulse = L.circle([lat,lon], {
-      radius: 25, color:'#00e676', weight:1, opacity:.6, fillColor:'#00e676', fillOpacity:.12
+
+    userPulse = L.circle([lat, lon], {
+      radius: 25,
+      color: '#00e676',
+      weight: 1,
+      opacity: 0.6,
+      fillColor: '#00e676',
+      fillOpacity: 0.12
     }).addTo(MAP);
   } else {
-    userMarker.setLatLng([lat,lon]);
-    userPulse.setLatLng([lat,lon]);
+    userMarker.setLatLng([lat, lon]);
+    userPulse.setLatLng([lat, lon]);
   }
 }
 
@@ -207,8 +222,42 @@ function initMap() {
   }).addTo(MAP);
 
   MAP.whenReady(() => {
-    mapReady = true;
-    maybeDrawMarkers();
+  mapReady = true;
+  if (dataReady) maybeDrawMarkers(); // ← kjør kun når data også er klart
+
+  // 🔧 Sørg for at kartet dekker hele skjermen bak innholdet
+  const mapEl = document.getElementById('map');
+  if (mapEl) {
+    mapEl.style.position = 'fixed';
+    mapEl.style.inset = '0';
+    mapEl.style.width = '100%';
+    mapEl.style.height = '100%';
+    mapEl.style.zIndex = '1';
+  }
+});
+} // ✅ korrekt avslutning av initMap()
+
+// PEOPLE → PLACES LINKING (kun kobling, ingen markører)
+function linkPeopleToPlaces() {
+  if (!MAP || !PLACES.length || !PEOPLE.length) return;
+
+  PEOPLE.forEach(person => {
+    let linkedPlaces = [];
+
+    if (Array.isArray(person.places) && person.places.length > 0) {
+      linkedPlaces = PLACES.filter(p => person.places.includes(p.id));
+    } else if (person.placeId) {
+      const single = PLACES.find(p => p.id === person.placeId);
+      if (single) linkedPlaces.push(single);
+    }
+
+    if (!linkedPlaces.length) return;
+
+    // kun knytte person -> eksisterende steder (ingen nye markører)
+    linkedPlaces.forEach(lp => {
+      lp.people = lp.people || [];
+      lp.people.push(person);
+    });
   });
 }
 
@@ -257,7 +306,7 @@ function maybeDrawMarkers() {
   }
 }
 
-ffunction lighten(hex, amount = 0.35) {
+function lighten(hex, amount = 0.35) {
   // Gjør fargen lysere ved å øke RGB-verdiene
   const c = hex.replace('#','');
   const num = parseInt(c,16);
@@ -439,37 +488,6 @@ function renderCollection(){
     </span>`).join("");
 }
 
-function renderGallery() {
-  const got = PEOPLE.filter(p => !!peopleCollected[p.id]);
-  if (!el.gallery) return;
-
-  if (!got.length) {
-    el.gallery.innerHTML = `<div class="muted">Samle personer ved å møte dem og klare quizen.</div>`;
-    return;
-  }
-
-  el.gallery.innerHTML = got.map(p => {
-    const imgPath = p.image || `bilder/kort/people/${p.id}.PNG`;
-    const cat = tagToCat(p.tags);
-    const color = catColor(cat);
-
-    return `
-      <div class="person-card" data-person="${p.id}" title="${p.name}">
-        <img src="${imgPath}" alt="${p.name}" class="person-thumb">
-        <div class="person-label" style="color:${color}">${p.name}</div>
-      </div>`;
-  }).join("");
-
-  // Klikk åpner popup-kortet igjen
-  el.gallery.querySelectorAll(".person-card").forEach(card => {
-    card.addEventListener("click", () => {
-      const id = card.dataset.person;
-      const person = PEOPLE.find(p => p.id === id);
-      if (person) showPersonPopup(person);
-    });
-  });
-}
-
 function buildSeeMoreNearby(){
   const sorted = PLACES
     .map(p => ({...p, _d: currentPos ? Math.round(distMeters(currentPos, {lat:p.lat,lon:p.lon})) : null }))
@@ -479,61 +497,15 @@ function buildSeeMoreNearby(){
 
 
 // ==============================
-// 8. MERKER, NIVÅER OG FREMGANG (OPPDATERT – NIVÅ HENTES FRA BADGES.JSON)
+// 8. MERKER, NIVÅER OG FREMGANG (RENSKET VERSJON)
 // ==============================
-async function renderMerits() {
-  const container = document.getElementById("merits");
-  if (!container) return;
 
-  const badges = await fetch("badges.json", { cache: "no-store" }).then(r => r.json());
-  const localMerits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
-
-  const cats = Object.keys(localMerits).length
-    ? Object.keys(localMerits)
-    : badges.map(b => b.name);
-
-  // Hjelpefunksjon: velg riktig medalje basert på nivåets plassering i badge.tiers
-  function medalByIndex(index) {
-    if (index <= 0) return "🥉";   // første nivå
-    if (index === 1) return "🥈";  // andre nivå
-    if (index === 2) return "🥇";  // tredje nivå
-    return "🏆";                   // alt over tredje = toppnivå
-  }
-
-  container.innerHTML = cats.map(cat => {
-    const merit = localMerits[cat] || { level: "Nybegynner", points: 0 };
-
-    // Finn badge for denne kategorien
-    const badge = badges.find(b =>
-      cat.toLowerCase().includes(b.id) ||
-      b.name.toLowerCase().includes(cat.toLowerCase())
-    );
-    if (!badge) return "";
-
-    // Finn riktig nivå basert på badge.tiers
-    const tierIndex = badge.tiers.findIndex(t => t.label === merit.level);
-    const medal = medalByIndex(tierIndex);
-
-    const icon = `<img src="${badge.image}" alt="${badge.name}" class="badge-mini-icon">`;
-    const color = badge.color || "#888";
-
-    return `
-      <div class="badge-mini" data-badge="${badge.id}" style="--badge-color:${color}" title="${badge.name} – nivå: ${merit.level}">
-        ${icon}
-        <div class="badge-level">${medal}</div>
-        <div class="badge-mini-label">${badge.name}</div>
-      </div>`;
-  }).join("");
-
-  // Klikk for å åpne detaljmodal
-  container.querySelectorAll(".badge-mini").forEach(el => {
-    el.addEventListener("click", () => {
-      const name = el.querySelector(".badge-mini-label")?.textContent;
-      if (name) showBadgeModal(name);
-    });
-  });
+// Lagre alle poeng og nivåer
+function saveMerits() {
+  localStorage.setItem("merits_by_category", JSON.stringify(merits));
 }
 
+// Pulsanimasjon når man får nytt nivå (kan brukes i fremtidig effekt)
 function pulseBadge(cat) {
   const cards = document.querySelectorAll(".badge-mini");
   cards.forEach(card => {
@@ -545,6 +517,7 @@ function pulseBadge(cat) {
   });
 }
 
+// Oppdater nivå ved ny poengsum
 async function updateMeritLevel(cat, newPoints) {
   const badges = await fetch("badges.json", { cache: "no-store" }).then(r => r.json());
   const badge = badges.find(b =>
@@ -563,9 +536,7 @@ async function updateMeritLevel(cat, newPoints) {
   }
 }
 
-// =====================================================
-//  POENGSYSTEM – HVER TREDJE FULLFØRTE QUIZ
-// =====================================================
+// Poengsystem – gi +1 poeng per fullført quiz
 async function addCompletedQuizAndMaybePoint(categoryDisplay, quizId) {
   const categoryId = catIdFromDisplay(categoryDisplay);
   const progress = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
@@ -578,41 +549,30 @@ async function addCompletedQuizAndMaybePoint(categoryDisplay, quizId) {
   progress[categoryId].completed.push(quizId);
   localStorage.setItem("quiz_progress", JSON.stringify(progress));
 
-  const totalCompleted = progress[categoryId].completed.length;
+  const catLabel = categoryDisplay;
+  merits[catLabel] = merits[catLabel] || { level: "Nybegynner", points: 0 };
+  merits[catLabel].points += 1; // nå +1 for hver fullførte quiz
 
-  // Gi +1 poeng hver tredje fullførte quiz
-  if (totalCompleted % 3 === 0) {
-    const catLabel = categoryDisplay;
-    merits[catLabel] = merits[catLabel] || { level: "Nybegynner", points: 0 };
-    merits[catLabel].points += 1;
-
-    // Oppdater nivå ut fra badges.json
-    const badges = await fetch("badges.json", { cache: "no-store" }).then(r => r.json());
-    const badge = badges.find(b =>
-      catLabel.toLowerCase().includes(b.id) ||
-      b.name.toLowerCase().includes(catLabel.toLowerCase())
-    );
-    if (badge) {
-      for (let i = badge.tiers.length - 1; i >= 0; i--) {
-        const tier = badge.tiers[i];
-        if (merits[catLabel].points >= tier.threshold) {
-          merits[catLabel].level = tier.label;
-          break;
-        }
+  // Oppdater nivå ut fra badges.json
+  const badges = await fetch("badges.json", { cache: "no-store" }).then(r => r.json());
+  const badge = badges.find(b =>
+    catLabel.toLowerCase().includes(b.id) ||
+    b.name.toLowerCase().includes(catLabel.toLowerCase())
+  );
+  if (badge) {
+    for (let i = badge.tiers.length - 1; i >= 0; i--) {
+      const tier = badge.tiers[i];
+      if (merits[catLabel].points >= tier.threshold) {
+        merits[catLabel].level = tier.label;
+        break;
       }
     }
-
-    saveMerits();
-    updateMeritLevel(catLabel, merits[catLabel].points);
-    showToast(`🏅 +1 poeng i ${catLabel}!`);
   }
-}
 
-function saveMerits() {
-  localStorage.setItem("merits_by_category", JSON.stringify(merits));
-  renderMerits();
+  saveMerits();
+  updateMeritLevel(catLabel, merits[catLabel].points);
+  showToast(`🏅 +1 poeng i ${catLabel}!`);
 }
-
 
 // ==============================
 // 9. HENDELSER OG SHEETS
@@ -698,55 +658,97 @@ function requestLocation() {
   }, { enableHighAccuracy: true, timeout: 8000, maximumAge: 10000 });
 }
 
-function boot() {
-  initMap();
+document.addEventListener('DOMContentLoaded', boot);
 
-  // Laster kun places og people – quizfiler lastes dynamisk ved behov
-  Promise.all([
-    fetch('places.json').then(r => r.json()),
-    fetch('people.json').then(r => r.json())
-  ])
-    .then(([places, people]) => {
-      PLACES = places || [];
-      PEOPLE = people || [];
+// === MINI-PROFIL PÅ FORSIDEN – VISER NAVN, STATISTIKK, QUIZZER ===
+document.addEventListener("DOMContentLoaded", () => {
+  const nm = document.getElementById("miniName");
+  const st = document.getElementById("miniStats");
+  if (!nm || !st) return;
 
-      dataReady = true;
-      if (mapReady) maybeDrawMarkers();
+  // Bruk samme nøkler som profilsiden
+  const name  = localStorage.getItem("user_name")  || "Utforsker #182";
+  const color = localStorage.getItem("user_color") || "#f6c800";
 
-      renderNearbyPlaces();
-      // renderNearbyPeople();  ← fjernet
-      renderCollection();
-      renderMerits();
-      renderGallery();
+  // Hent progresjon fra lagring
+  // Hent progresjon fra lagring (riktige nøkler)
+const visited         = JSON.parse(localStorage.getItem("visited_places") || "{}");
+const merits          = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
+const peopleCollected = JSON.parse(localStorage.getItem("people_collected") || "{}");
+const quizProgress    = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
 
-      requestLocation();
+  // Tell opp
+  const visitedCount = Object.keys(visited).length;
+  const badgeCount   = Object.keys(merits).length;
+  const quizCount    = Object.values(quizProgress)
+    .map(v => (Array.isArray(v.completed) ? v.completed.length : 0))
+    .reduce((a,b) => a + b, 0);
 
-      if (navigator.geolocation) {
-        navigator.geolocation.watchPosition(
-          pos => {
-            const { latitude, longitude } = pos.coords;
-            currentPos = { lat: latitude, lon: longitude };
-            setUser(latitude, longitude);
-            renderNearbyPlaces();
-            // renderNearbyPeople();  ← fjernet
-          },
-          () => {},
-          { enableHighAccuracy: true }
-        );
-      }
+  // Sett navn og farge
+  nm.textContent = name;
+  nm.style.color = color;
 
-      wire(); // Koble knapper og testmodus
-    })
-    .catch(() => {
-      showToast("Kunne ikke laste data.", 2000);
-    });
+  // Sett statistikktekst
+  st.textContent = `${visitedCount} steder · ${badgeCount} merker · ${quizCount} quizzer`;
+});
+
+// --- Interaktive lenker i mini-profil ---
+document.getElementById("linkPlaces")?.addEventListener("click", () => {
+  enterMapMode();
+  showToast("Viser steder på kartet");
+});
+
+document.getElementById("linkBadges")?.addEventListener("click", () => {
+  window.location.href = "profile.html#userBadgesGrid";
+});
+
+
+// === QUIZ-HISTORIKK MODAL (forside) ===
+function showQuizHistory() {
+  const progress = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
+  const allCompleted = Object.entries(progress)
+    .flatMap(([cat, val]) => (val.completed || []).map(id => ({ category: cat, id })));
+
+  if (!allCompleted.length) {
+    showToast("Du har ingen fullførte quizzer ennå.");
+    return;
+  }
+
+  // hent PEOPLE og PLACES fra global state
+  const recent = allCompleted.slice(-8).reverse(); // vis siste 8
+  const list = recent.map(item => {
+    const person = PEOPLE.find(p => p.id === item.id);
+    const place  = PLACES.find(p => p.id === item.id);
+    const name   = person?.name || place?.name || item.id;
+    const cat    = item.category || "–";
+    return `<li><strong>${name}</strong><br><span class="muted">${cat}</span></li>`;
+  }).join("");
+
+  const html = `
+    <div class="quiz-modal" id="quizHistoryModal">
+      <div class="quiz-modal-inner">
+        <button class="quiz-close" id="closeQuizHistory">✕</button>
+        <h2>Fullførte quizzer</h2>
+        <ul class="quiz-history-list">${list}</ul>
+      </div>
+    </div>`;
+
+  document.body.insertAdjacentHTML("beforeend", html);
+
+  const modal = document.getElementById("quizHistoryModal");
+  document.getElementById("closeQuizHistory").onclick = () => modal.remove();
+  modal.addEventListener("click", e => { if (e.target.id === "quizHistoryModal") modal.remove(); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape") modal.remove(); });
 }
 
-document.addEventListener('DOMContentLoaded', boot);
+document.getElementById("linkQuiz")?.addEventListener("click", showQuizHistory);
+
 
 // ==============================
 // 11. STED-OVERLAY (tekst + personer)
 // ==============================
+
+// --- Henter kort wiki-oppsummering ---
 async function fetchWikiSummary(name){
   try{
     const url = `https://no.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(name)}`;
@@ -757,11 +759,26 @@ async function fetchWikiSummary(name){
   }catch(_){ return ""; }
 }
 
+// --- Lukker overlay ---
 function closePlaceOverlay() {
   const ov = document.getElementById('placeOverlay');
   if (ov) ov.remove();
 }
 
+// --- Sjekker om quiz er tatt perfekt ---
+function isQuizDone(targetId) {
+  const progress = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
+  return Object.values(progress).some(v => Array.isArray(v.completed) && v.completed.includes(targetId));
+}
+
+function getPersonsByPlace(placeId) {
+  return PEOPLE.filter(p =>
+    (Array.isArray(p.places) && p.places.includes(placeId)) ||
+    p.placeId === placeId
+  );
+}
+
+// --- Viser overlay for valgt sted ---
 async function showPlaceOverlay(place) {
   // Fjern eventuelle tidligere overlays
   const existing = document.getElementById('placeOverlay');
@@ -771,7 +788,7 @@ async function showPlaceOverlay(place) {
   overlay.id = 'placeOverlay';
   overlay.className = 'place-overlay';
 
-  const peopleHere = PEOPLE.filter(p => p.placeId === place.id);
+  const peopleHere = getPersonsByPlace(place.id);
   const summary = await fetchWikiSummary(place.name);
 
   overlay.innerHTML = `
@@ -812,6 +829,21 @@ async function showPlaceOverlay(place) {
 
   document.body.appendChild(overlay);
 
+  // --- Sett "Tatt"-status på quiz-knapper (sted + personer) ---
+  const placeBtn = overlay.querySelector(`button[data-quiz="${place.id}"]`);
+  if (placeBtn && isQuizDone(place.id)) {
+    placeBtn.classList.add("quiz-done");
+    placeBtn.innerHTML = "✔️ Tatt (kan gjentas)";
+  }
+
+  peopleHere.forEach(p => {
+    const btn = overlay.querySelector(`button[data-quiz="${p.id}"]`);
+    if (btn && isQuizDone(p.id)) {
+      btn.classList.add("quiz-done");
+      btn.innerHTML = "✔️ Tatt (kan gjentas)";
+    }
+  });
+
   // Lukking ved klikk utenfor
   overlay.addEventListener('click', e => {
     if (e.target.id === 'placeOverlay') closePlaceOverlay();
@@ -828,6 +860,11 @@ function enterMapMode() {
   el.btnExitMap.style.display = "block";
   document.querySelector("main").style.display = "none";
   document.querySelector("header").style.display = "none";
+
+  // 🔧 Flytt kartet øverst når kartmodus er aktiv
+  const mapEl = document.getElementById("map");
+  if (mapEl) mapEl.style.zIndex = "10";
+
   showToast("Kartmodus");
 }
 
@@ -837,11 +874,16 @@ function exitMapMode() {
   el.btnExitMap.style.display = "none";
   document.querySelector("main").style.display = "";
   document.querySelector("header").style.display = "";
+
+  const mapEl = document.getElementById("map");
+  if (mapEl) mapEl.style.zIndex = "1";  // ← ikke "0"
+
   showToast("Tilbake til oversikt");
 }
 
 el.btnSeeMap?.addEventListener("click", enterMapMode);
 el.btnExitMap?.addEventListener("click", exitMapMode);
+
 
 // ==============================
 // 12. QUIZ – DYNAMISK LASTER, MODAL & SCORE
@@ -858,7 +900,9 @@ const QUIZ_FILE_MAP = {
   "vitenskap": "quiz_vitenskap.json",
   "natur": "quiz_natur.json",
   "litteratur": "quiz_litteratur.json",
-  "by": "quiz_by.json"
+  "by": "quiz_by.json",
+  "historie": "quiz_historie.json",
+  "naeringsliv": "quiz_naeringsliv.json"
 };
 
 // --- Laster riktig quizfil etter kategori ---
@@ -903,7 +947,6 @@ function ensureQuizUI() {
     </div>`;
   document.body.appendChild(m);
 
-  // Lukking
   const modal = document.getElementById("quizModal");
   modal.querySelector("#quizClose").onclick = closeQuiz;
   modal.addEventListener("click", e => { if (e.target.id === "quizModal") closeQuiz(); });
@@ -925,13 +968,27 @@ function closeQuiz() {
 }
 
 // ==============================
-// START QUIZ (person eller sted)
+// START QUIZ (person eller sted) – OPPDATERT VERSJON
 // ==============================
 async function startQuiz(targetId) {
   const person = PEOPLE.find(p => p.id === targetId);
   const place  = PLACES.find(p => p.id === targetId);
   if (!person && !place) return showToast("Fant verken person eller sted");
 
+// --- Krever fysisk besøk før quiz kan tas (men ikke i testmodus) ---
+if (!el.test?.checked) {
+  const visitedPlaces = JSON.parse(localStorage.getItem("visited_places") || "{}");
+
+  if (place && !visitedPlaces[place.id]) {
+    return showToast("📍 Du må besøke stedet først for å ta denne quizen.");
+  }
+
+  if (person && person.placeId && !visitedPlaces[person.placeId]) {
+    return showToast("📍 Du må besøke stedet først for å ta denne quizen.");
+  }
+}
+  
+  // --- Hent quizdata ---
   const displayCat = person ? tagToCat(person.tags) : (place.category || "vitenskap");
   const categoryId = catIdFromDisplay(displayCat);
   const items = await loadQuizForCategory(categoryId);
@@ -947,26 +1004,62 @@ async function startQuiz(targetId) {
   closePlaceOverlay();
   openQuiz();
 
+  // --- Kjør quizflyt ---
   runQuizFlow({
-  title: person ? person.name : place.name,
-  questions: formatted,
-  onEnd: (correct, total) => {
-    addCompletedQuizAndMaybePoint(displayCat, targetId);
-    if (person) {
-      peopleCollected[targetId] = true;
-      savePeople();
-      showPersonPopup(person);
-      document.getElementById("gallery")?.scrollIntoView({ behavior: "smooth" });
-    }
-    showToast(`Quiz fullført: ${correct}/${total} 🎉`);
+    title: person ? person.name : place.name,
+    questions: formatted,
+    onEnd: (correct, total) => {
+      const perfect = correct === total;
 
-    // ✨ Pulse på stedet som hører til personen når quizen fullføres
-    if (person && person.placeId) {
-      const plc = PLACES.find(p => p.id === person.placeId);
-      if (plc) pulseMarker(plc.lat, plc.lon);
+      if (perfect) {
+        addCompletedQuizAndMaybePoint(displayCat, targetId);
+        markQuizAsDone(targetId);
+
+        if (person) {
+          peopleCollected[targetId] = true;
+          savePeople();
+          showPersonPopup(person);
+          document.getElementById("gallery")?.scrollIntoView({ behavior: "smooth" });
+        } 
+        else if (place) {
+          // Bare vis kort hvis stedet er besøkt fysisk
+          // ✅ Vis popup også i testmodus
+if (visitedPlaces[place.id] || el.test?.checked) {
+  showPlacePopup(place);
+  pulseMarker(place.lat, place.lon);
+}
+        }
+
+        showToast(`Perfekt! ${total}/${total} riktige 🎯 Du fikk poeng og kort!`);
+        window.dispatchEvent(new Event("updateProfile"));
+      } else {
+        showToast(`Fullført: ${correct}/${total} – prøv igjen for full score.`);
+      }
+
+      // ✨ Pulse markør for personens sted
+      if (person && person.placeId) {
+        const plc = PLACES.find(p => p.id === person.placeId);
+        if (plc) pulseMarker(plc.lat, plc.lon);
+      }
     }
-  }
-});
+  });
+}
+
+// ==============================
+// MARKER QUIZ SOM FULLFØRT
+// ==============================
+function markQuizAsDone(targetId) {
+  const quizBtns = document.querySelectorAll(`[data-quiz="${targetId}"]`);
+  quizBtns.forEach(btn => {
+    const firstTime = !btn.classList.contains("quiz-done");
+    btn.classList.add("quiz-done");
+    btn.innerHTML = "✔️ Tatt (kan gjentas)";
+    if (firstTime) {
+      btn.classList.add("blink");
+      setTimeout(() => btn.classList.remove("blink"), 1200);
+    }
+  });
+}
 
 // ==============================
 // MODAL QUIZ FLOW
@@ -1005,8 +1098,9 @@ function runQuizFlow({ title = "Quiz", questions = [], onEnd = () => {} }) {
         qs.choices.querySelectorAll("button").forEach(b => b.disabled = true);
         setTimeout(() => {
           i++;
-          if (i < questions.length) step();
-          else {
+          if (i < questions.length) {
+            step();
+          } else {
             closeQuiz();
             onEnd(correctCount, questions.length);
           }
@@ -1080,326 +1174,68 @@ style.textContent = `
 document.head.appendChild(style);
 
 // ==============================
-// BADGE-MODAL – VIS FASIT & STATUS
+// STED-POPUP VED FULLFØRT QUIZ (SAMME STIL SOM PERSON)
 // ==============================
-async function showBadgeModal(categoryDisplay) {
-  const categoryId = catIdFromDisplay(categoryDisplay);
-  const progress = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
-  const completed = progress[categoryId]?.completed || [];
+function showPlacePopup(place) {
+  const imgPath = place.image || `bilder/kort/places/${place.id}.PNG`;
+  const cat = place.category || "Historie";
+  const desc = place.desc || "Ingen beskrivelse tilgjengelig.";
 
-  const badges = await fetch("badges.json", { cache: "no-store" }).then(r => r.json());
-  const badge = badges.find(b => {
-    const id = b.id.toLowerCase();
-    const name = b.name.toLowerCase();
-    const cat = categoryId.toLowerCase();
-    return id === cat || name === cat ||
-           id === cat.replace(/\s*&\s*/g, "") ||
-           (cat.includes(id) && !cat.includes("scene"));
-  }) || { name: categoryDisplay, color: "#999", icon: "🏅" };
+  const card = document.createElement("div");
+  card.className = "person-popup"; // samme animasjon og stil
+  card.innerHTML = `
+    <div class="popup-inner" 
+         style="width:280px;max-width:80vw;background:rgba(15,15,20,0.95);
+                color:#fff;border-radius:12px;padding:18px;text-align:center;
+                box-shadow:0 0 20px rgba(0,0,0,0.6);display:flex;
+                flex-direction:column;align-items:center;animation:fadeIn .4s ease;">
+      
+      <img src="${imgPath}" alt="${place.name}"
+           style="width:180px;height:180px;object-fit:contain;object-position:center;
+                  border-radius:8px;margin-bottom:10px;">
 
-  const merits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
-  const merit = merits[categoryDisplay] || { level: "Nybegynner", points: 0 };
+      <h3 style="margin:6px 0 4px;font-size:1.25em;">${place.name}</h3>
+      <p style="margin:0 0 10px;color:#ccc;font-size:0.9em;">${cat}</p>
 
-  const all = await loadQuizForCategory(categoryId);
-  const done = all.filter(q => completed.includes(q.personId || q.placeId)).reverse();
+      <p style="font-size:0.85em;line-height:1.4;color:#ddd;margin:0 0 14px;">
+        ${desc}
+      </p>
 
-  const html = `
-    <div class="badge-modal-inner" style="border-top:4px solid ${badge.color}">
-      <button class="badge-close" id="closeBadgeModal">✕</button>
-      ${badge.id ? `<img src="${badge.image || `bilder/merker/${badge.id}.png`}" 
-        alt="${badge.name}" class="badge-image">` : ""}
-      <div class="badge-modal-header">
-        <span class="badge-icon-large" style="color:${badge.color}">${badge.icon}</span>
-        <div>
-          <h2>${badge.name}</h2>
-          <p class="muted">Nivå: ${merit.level} · Poeng: ${merit.points}</p>
-        </div>
+      <div style="background:#222;padding:8px 10px;border-radius:6px;font-size:0.9em;
+                  color:#FFD600;display:inline-block;">
+        🏛️ Du har fullført quizen og samlet stedet <strong>${place.name}</strong>!
       </div>
-      <hr>
-      ${
-        done.length
-          ? done.map(q => `
-              <div class="quiz-fasit">
-                <p class="q">${q.question}</p>
-                <p class="a">✅ Riktig svar: <strong>${q.answer}</strong></p>
-              </div>`
-            ).join("")
-          : `<p class="muted">Ingen fullførte quizer ennå.</p>`
-      }
     </div>`;
 
-  let modal = document.getElementById("badgeModal");
-  if (!modal) {
-    modal = document.createElement("div");
-    modal.id = "badgeModal";
-    modal.className = "badge-modal";
-    document.body.appendChild(modal);
-  }
-
-  modal.innerHTML = html;
-  modal.style.display = "flex";
-  modal.style.background = "transparent";
-  modal.style.zIndex = 9999;
-
-  const closeBtn = modal.querySelector("#closeBadgeModal");
-  if (closeBtn) closeBtn.onclick = () => modal.remove();
-  modal.addEventListener("click", e => { if (e.target.id === "badgeModal") modal.remove(); });
-  document.addEventListener("keydown", e => { if (e.key === "Escape") modal.remove(); });
+  document.body.appendChild(card);
+  setTimeout(() => card.classList.add("visible"), 20);
+  setTimeout(() => card.remove(), 4200);
 }
 
-// --- Lytter på klikk i merkesamlingen ---
-document.addEventListener("click", e => {
-  const badgeCard = e.target.closest(".badge-card");
-  if (badgeCard) {
-    const cat = badgeCard.querySelector("strong")?.textContent?.trim();
-    if (cat) showBadgeModal(cat);
-  }
-});
+// ==============================
+// 13. BOOT-FUNKSJON – LASTER DATA OG STARTER KART
+// ==============================
+async function boot() {
+  initMap();
 
-// --- Failsafe: Tegner markører når alt er lastet ---
-let drawCheck = setInterval(() => {
-  if (mapReady && dataReady && PLACES.length > 0) {
+  try {
+    const [places, people] = await Promise.all([
+      fetch("places.json", { cache: "no-store" }).then(r => r.json()),
+      fetch("people.json", { cache: "no-store" }).then(r => r.json())
+    ]);
+    PLACES = places;
+    PEOPLE = people;
+    linkPeopleToPlaces();
+    dataReady = true;
     maybeDrawMarkers();
-    clearInterval(drawCheck);
-  }
-}, 500);
-
-// ============================================================
-// === START PROFIL & MERKER – HISTORY GO v18+ ===============
-// ============================================================
-
-// --------------------------------------
-// PROFILKORT OG RENDERING
-// --------------------------------------
-function renderProfileCard() {
-  const name = localStorage.getItem("user_name") || "Utforsker #182";
-  const emoji = localStorage.getItem("user_avatar") || "🧭";
-  const color = localStorage.getItem("user_color") || "#f6c800";
-  const visitedCount = Object.keys(visited).length;
-  const peopleCount = Object.keys(peopleCollected).length;
-  const fav = Object.entries(merits).sort((a,b)=>b[1].points-a[1].points)[0];
-  const favCat = fav ? fav[0] : "Ingen ennå";
-
-  const avatar = document.getElementById("profileAvatar");
-  if (!avatar) return; // sikkerhet ved første lasting
-
-  document.getElementById("profileName").textContent = name;
-  avatar.textContent = emoji;
-  avatar.style.borderColor = color;
-  document.getElementById("statPlaces").textContent = `${visitedCount} steder`;
-  document.getElementById("statPeople").textContent = `${peopleCount} personer`;
-  document.getElementById("statCategory").textContent = `Favoritt: ${favCat}`;
-}
-document.addEventListener("DOMContentLoaded", renderProfileCard);
-
-// --------------------------------------
-// PROFIL-REDIGERINGSMODAL
-// --------------------------------------
-function openProfileModal() {
-  const modal = document.createElement("div");
-  modal.className = "profile-modal";
-  modal.innerHTML = `
-    <div class="profile-modal-inner">
-      <h3>Endre profil</h3>
-      <label>Navn</label>
-      <input id="newName" value="${localStorage.getItem("user_name") || "Utforsker #182"}">
-      <label>Emoji</label>
-      <input id="newEmoji" maxlength="2" value="${localStorage.getItem("user_avatar") || "🧭"}">
-      <label>Farge</label>
-      <input id="newColor" type="color" value="${localStorage.getItem("user_color") || "#f6c800"}">
-      <button id="saveProfile">Lagre</button>
-      <button id="cancelProfile" style="margin-left:6px;background:#444;color:#fff;">Avbryt</button>
-    </div>`;
-  document.body.appendChild(modal);
-
-  modal.querySelector("#cancelProfile").onclick = () => modal.remove();
-  modal.querySelector("#saveProfile").onclick = () => {
-    localStorage.setItem("user_name", modal.querySelector("#newName").value.trim() || "Utforsker #182");
-    localStorage.setItem("user_avatar", modal.querySelector("#newEmoji").value.trim() || "🧭");
-    localStorage.setItem("user_color", modal.querySelector("#newColor").value);
-    modal.remove();
-    renderProfileCard();
-    showToast("Profil oppdatert ✅");
-  };
-}
-document.getElementById("editProfileBtn")?.addEventListener("click", openProfileModal);
-
-// --------------------------------------
-// DEL PROFILKORT (vanlig skjermbilde)
-// --------------------------------------
-async function shareProfileCard() {
-  const card = document.getElementById("profileCard");
-  if (!card) return showToast("Fant ikke profilkortet");
-  showToast("Lager bilde …");
-  const canvas = await html2canvas(card, { backgroundColor: "#111", scale: 3, useCORS: true });
-  const dataUrl = canvas.toDataURL("image/png");
-  const blob = await fetch(dataUrl).then(r => r.blob());
-  const file = new File([blob], "profilkort.png", { type: "image/png" });
-  if (navigator.share && navigator.canShare({ files: [file] })) {
-    await navigator.share({ files: [file], title: "Mitt History Go-kort", text: "Se min fremgang i History Go!" });
-    showToast("Profilkort delt ✅");
-  } else {
-    const a = document.createElement("a");
-    a.href = dataUrl;
-    a.download = "profilkort.png";
-    a.click();
-    showToast("Bilde lastet ned ✅");
-  }
-}
-document.getElementById("shareProfileBtn")?.addEventListener("click", shareProfileCard);
-
-// --------------------------------------
-// PLAKAT-VARIANT (samlekortstil)
-// --------------------------------------
-async function makeProfilePoster() {
-  const poster = document.getElementById("profilePoster");
-  if (!poster) return;
-  const name = localStorage.getItem("user_name") || "Utforsker #182";
-  const emoji = localStorage.getItem("user_avatar") || "🧭";
-  const color = localStorage.getItem("user_color") || "#f6c800";
-  const visitedCount = Object.keys(visited).length;
-  const peopleCount = Object.keys(peopleCollected).length;
-  const fav = Object.entries(merits).sort((a,b)=>b[1].points-a[1].points)[0];
-  const favCat = fav ? fav[0] : "Ingen ennå";
-
-  document.getElementById("posterAvatar").textContent = emoji;
-  document.getElementById("posterAvatar").style.borderColor = color;
-  document.getElementById("posterName").textContent = name;
-  document.getElementById("posterStats").textContent = `${visitedCount} steder · ${peopleCount} personer · Favoritt: ${favCat}`;
-
-  poster.style.display = "block";
-  const canvas = await html2canvas(poster, { backgroundColor: "#0a0a0a", scale: 3, useCORS: true });
-  const dataUrl = canvas.toDataURL("image/png");
-  const blob = await fetch(dataUrl).then(r => r.blob());
-  const file = new File([blob], "historygo_kort.png", { type: "image/png" });
-  if (navigator.share && navigator.canShare({ files: [file] })) {
-    await navigator.share({ files: [file], title: "Mitt History Go-kort", text: "Mitt samlekort i History Go!" });
-    showToast("Kort delt ✅");
-  } else {
-    const a = document.createElement("a");
-    a.href = dataUrl;
-    a.download = "historygo_kort.png";
-    a.click();
-    showToast("Kort lagret ✅");
-  }
-  poster.style.display = "none";
-}
-document.getElementById("shareProfileBtn")?.addEventListener("contextmenu", e => {
-  e.preventDefault();
-  makeProfilePoster();
-});
-
-// --------------------------------------
-// MERKESAMLING + POPUP + QUIZ-FLYINN
-// --------------------------------------
-async function renderUserBadges() {
-  const grid = document.getElementById("userBadgesGrid");
-  if (!grid) return;
-
-  const localMerits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
-  const badges = await fetch("badges.json", { cache: "no-store" }).then(r => r.json());
-  const owned = Object.keys(localMerits);
-
-  if (!owned.length) {
-    grid.innerHTML = `<div class="muted">Ingen merker ennå – ta quizer for å låse opp!</div>`;
-    return;
+  } catch (e) {
+    console.error("Feil ved lasting av data:", e);
+    showToast("Kunne ikke laste steder/personer");
   }
 
-  function medalByIndex(i) {
-    return i <= 0 ? "🥉" : i === 1 ? "🥈" : i === 2 ? "🥇" : "🏆";
-  }
-
-  grid.innerHTML = owned.map(cat => {
-    const m = localMerits[cat];
-    const b = badges.find(x => cat.toLowerCase().includes(x.id) || x.name.toLowerCase().includes(cat.toLowerCase()));
-    if (!b) return "";
-    const ti = b.tiers.findIndex(t => t.label === m.level);
-    return `
-      <div class="badge-mini" data-cat="${b.name}" style="--badge-color:${b.color}" title="${b.name} – ${m.level}">
-        <img src="${b.image}" alt="${b.name}">
-        <div>${b.name.split("&")[0]}</div>
-        <div class="badge-level">${medalByIndex(ti)}</div>
-      </div>`;
-  }).join("");
-
-  grid.querySelectorAll(".badge-mini").forEach(btn =>
-    btn.addEventListener("click", () => showUserBadgePopup(btn.dataset.cat))
-  );
+  wire();
+  requestLocation();
+  renderCollection();
 }
 
-async function showUserBadgePopup(categoryDisplay) {
-  const categoryId = catIdFromDisplay(categoryDisplay);
-  const progress = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
-  const completed = progress[categoryId]?.completed || [];
-  const badges = await fetch("badges.json", { cache: "no-store" }).then(r => r.json());
-  const badge = badges.find(b => categoryDisplay.toLowerCase().includes(b.id) || b.name.toLowerCase().includes(categoryDisplay.toLowerCase()));
-  const merits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
-  const merit = merits[categoryDisplay] || { level: "Nybegynner", points: 0 };
-
-  const html = `
-    <div class="user-badge-popup" id="userBadgeModal">
-      <div class="ub-inner">
-        <button class="close-ub" id="closeUB">×</button>
-        <img src="${badge?.image}" alt="${badge?.name}" class="ub-icon">
-        <h2>${badge?.name || categoryDisplay}</h2>
-        <p class="muted">Nivå: ${merit.level} · Poeng: ${merit.points}</p>
-        <hr>
-        <p><strong>Fullførte quizer:</strong> ${completed.length || 0}</p>
-        ${
-          completed.length
-            ? `<ul>${completed.map(id => {
-                const pr = PEOPLE.find(p => p.id === id);
-                const pl = PLACES.find(p => p.id === id);
-                const name = pr?.name || pl?.name || id;
-                return `<li>${name}</li>`;
-              }).join("")}</ul>`
-            : `<p class="muted">Ingen quizer fullført ennå.</p>`
-        }
-        <hr>
-        <div id="quizLaunchZone"></div>
-      </div>
-    </div>`;
-
-  document.body.insertAdjacentHTML("beforeend", html);
-  document.getElementById("closeUB").onclick = () => document.getElementById("userBadgeModal")?.remove();
-  document.getElementById("userBadgeModal").addEventListener("click", e => {
-    if (e.target.id === "userBadgeModal") e.currentTarget.remove();
-  });
-
-  // --- knappelogikk ---
-  const quizLaunch = document.getElementById("quizLaunchZone");
-  const visitedPlaces = PLACES.filter(p =>
-    visited[p.id] && tagToCat(p.category).toLowerCase() === categoryId.toLowerCase()
-  );
-
-  if (!visitedPlaces.length) {
-    quizLaunch.innerHTML = `<p class="muted">Du må først låse opp et sted i denne kategorien for å ta quiz.</p>`;
-  } else {
-    quizLaunch.innerHTML = `
-      <p><strong>Ta quiz fra et av dine steder:</strong></p>
-      <select id="quizPlaceSelect" style="width:100%;padding:6px;border-radius:6px;margin:6px 0;background:#222;color:#fff;">
-        ${visitedPlaces.map(p => `<option value="${p.id}">${p.name}</option>`).join("")}
-      </select>
-      <button id="launchQuizFromBadge" class="primary small" style="margin-top:6px;">Start quiz her</button>
-    `;
-
-    document.getElementById("launchQuizFromBadge").onclick = async () => {
-      const id = document.getElementById("quizPlaceSelect").value;
-      const place = PLACES.find(p => p.id === id);
-      if (!place || !MAP) return;
-      document.getElementById("userBadgeModal")?.remove();
-      MAP.flyTo([place.lat, place.lon], 16, { duration: 1.2 });
-      pulseMarker(place.lat, place.lon);
-      showToast(`Du er ved ${place.name} – quiz starter …`);
-      await new Promise(r => setTimeout(r, 1400));
-      startQuiz(place.id);
-    };
-  }
-}
-
-// kall denne i boot()
-renderUserBadges();
-
-// ============================================================
-// === SLUTT PROFIL & MERKER =================================
-// ============================================================
+document.addEventListener("DOMContentLoaded", boot);
