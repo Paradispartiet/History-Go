@@ -209,16 +209,6 @@ function initMap() {
   MAP.whenReady(() => {
     mapReady = true;
     maybeDrawMarkers();
-
-    // 🔧 Riktig oppsett – sørg for at kartet vises bak alt annet, men fyller hele skjermen
-    const mapEl = document.getElementById('map');
-    if (mapEl) {
-      mapEl.style.position = 'fixed';
-      mapEl.style.inset = '0';
-      mapEl.style.width = '100%';
-      mapEl.style.height = '100%';
-      mapEl.style.zIndex = '1';
-    }
   });
 }
 
@@ -267,7 +257,7 @@ function maybeDrawMarkers() {
   }
 }
 
-function lighten(hex, amount = 0.35) {
+ffunction lighten(hex, amount = 0.35) {
   // Gjør fargen lysere ved å øke RGB-verdiene
   const c = hex.replace('#','');
   const num = parseInt(c,16);
@@ -709,9 +699,9 @@ function requestLocation() {
 }
 
 function boot() {
-  initMap(); // 🟢 start kartet med én gang
+  initMap();
 
-  // Laster places og people deretter
+  // Laster kun places og people – quizfiler lastes dynamisk ved behov
   Promise.all([
     fetch('places.json').then(r => r.json()),
     fetch('people.json').then(r => r.json())
@@ -721,9 +711,10 @@ function boot() {
       PEOPLE = people || [];
 
       dataReady = true;
-      maybeDrawMarkers();
+      if (mapReady) maybeDrawMarkers();
 
       renderNearbyPlaces();
+      // renderNearbyPeople();  ← fjernet
       renderCollection();
       renderMerits();
       renderGallery();
@@ -737,13 +728,14 @@ function boot() {
             currentPos = { lat: latitude, lon: longitude };
             setUser(latitude, longitude);
             renderNearbyPlaces();
+            // renderNearbyPeople();  ← fjernet
           },
           () => {},
           { enableHighAccuracy: true }
         );
       }
 
-      wire();
+      wire(); // Koble knapper og testmodus
     })
     .catch(() => {
       showToast("Kunne ikke laste data.", 2000);
@@ -751,102 +743,6 @@ function boot() {
 }
 
 document.addEventListener('DOMContentLoaded', boot);
-
-// === MINI-PROFIL PÅ FORSIDEN – VISER NAVN, STATISTIKK, QUIZZER ===
-document.addEventListener("DOMContentLoaded", () => {
-  const nm = document.getElementById("miniName");
-  const st = document.getElementById("miniStats");
-  if (!nm || !st) return;
-
-  // Bruk samme nøkler som profilsiden
-  const name  = localStorage.getItem("user_name")  || "Utforsker #182";
-  const color = localStorage.getItem("user_color") || "#f6c800";
-
-  // Hent progresjon fra lagring
-  const visited         = JSON.parse(localStorage.getItem("visited") || "{}");
-  const merits          = JSON.parse(localStorage.getItem("merits") || "{}");
-  const peopleCollected = JSON.parse(localStorage.getItem("peopleCollected") || "{}");
-  const quizProgress    = JSON.parse(localStorage.getItem("quizProgress") || "{}");
-
-  // Tell opp
-  const visitedCount = Object.keys(visited).length;
-  const badgeCount   = Object.keys(merits).length;
-  const quizCount    = Object.values(quizProgress)
-    .map(v => (Array.isArray(v.completed) ? v.completed.length : 0))
-    .reduce((a,b) => a + b, 0);
-
-  // Sett navn og farge
-  nm.textContent = name;
-  nm.style.color = color;
-
-  // Sett statistikktekst
-  st.textContent = `${visitedCount} steder · ${badgeCount} merker · ${quizCount} quizzer`;
-});
-
-// --- Interaktive lenker i mini-profil ---
-document.getElementById("linkPlaces")?.addEventListener("click", () => {
-  enterMapMode();
-  showToast("Viser steder på kartet");
-});
-
-document.getElementById("linkBadges")?.addEventListener("click", () => {
-  window.location.href = "profile.html#userBadgesGrid";
-});
-
-
-// === QUIZ-HISTORIKK MODAL (forside) ===
-function showQuizHistory() {
-  const progress = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
-  const allCompleted = Object.entries(progress)
-    .flatMap(([cat, val]) => (val.completed || []).map(id => ({ category: cat, id })));
-
-  if (!allCompleted.length) {
-    showToast("Du har ingen fullførte quizzer ennå.");
-    return;
-  }
-
-  // hent PEOPLE og PLACES fra global state
-  const recent = allCompleted.slice(-8).reverse(); // vis siste 8
-  const list = recent.map(item => {
-    const person = PEOPLE.find(p => p.id === item.id);
-    const place  = PLACES.find(p => p.id === item.id);
-    const name   = person?.name || place?.name || item.id;
-    const cat    = item.category || "–";
-    return `<li><strong>${name}</strong><br><span class="muted">${cat}</span></li>`;
-  }).join("");
-
-  const html = `
-    <div class="quiz-modal" id="quizHistoryModal">
-      <div class="quiz-modal-inner">
-        <button class="quiz-close" id="closeQuizHistory">✕</button>
-        <h2>Fullførte quizzer</h2>
-        <ul class="quiz-history-list">${list}</ul>
-      </div>
-    </div>`;
-
-  document.body.insertAdjacentHTML("beforeend", html);
-
-  const modal = document.getElementById("quizHistoryModal");
-  document.getElementById("closeQuizHistory").onclick = () => modal.remove();
-  modal.addEventListener("click", e => { if (e.target.id === "quizHistoryModal") modal.remove(); });
-  document.addEventListener("keydown", e => { if (e.key === "Escape") modal.remove(); });
-}
-
-document.getElementById("linkQuiz")?.addEventListener("click", showQuizHistory);
-
-// ==============================
-//  AKTIVER PROFILSIDE (v18+)
-// ==============================
-document.addEventListener("DOMContentLoaded", () => {
-  const isProfile = document.querySelector(".profile-page");
-  if (!isProfile) return;
-
-  renderProfileCard();
-  renderCollection();
-  renderMerits();
-  renderGallery();
-  renderUserBadges();
-});
 
 // ==============================
 // 11. STED-OVERLAY (tekst + personer)
@@ -932,11 +828,6 @@ function enterMapMode() {
   el.btnExitMap.style.display = "block";
   document.querySelector("main").style.display = "none";
   document.querySelector("header").style.display = "none";
-
-  // 🔧 Flytt kartet øverst når kartmodus er aktiv
-  const mapEl = document.getElementById("map");
-  if (mapEl) mapEl.style.zIndex = "10";
-
   showToast("Kartmodus");
 }
 
@@ -946,16 +837,12 @@ function exitMapMode() {
   el.btnExitMap.style.display = "none";
   document.querySelector("main").style.display = "";
   document.querySelector("header").style.display = "";
-
-  // 🔧 Flytt kartet bak igjen når du går ut av kartmodus
-  const mapEl = document.getElementById("map");
-  if (mapEl) mapEl.style.zIndex = "0";
-
   showToast("Tilbake til oversikt");
 }
 
 el.btnSeeMap?.addEventListener("click", enterMapMode);
 el.btnExitMap?.addEventListener("click", exitMapMode);
+
 // ==============================
 // 12. QUIZ – DYNAMISK LASTER, MODAL & SCORE
 // ==============================
@@ -1080,7 +967,7 @@ async function startQuiz(targetId) {
     }
   }
 });
-}
+
 // ==============================
 // MODAL QUIZ FLOW
 // ==============================
@@ -1277,6 +1164,131 @@ let drawCheck = setInterval(() => {
   }
 }, 500);
 
+// ============================================================
+// === START PROFIL & MERKER – HISTORY GO v18+ ===============
+// ============================================================
+
+// --------------------------------------
+// PROFILKORT OG RENDERING
+// --------------------------------------
+function renderProfileCard() {
+  const name = localStorage.getItem("user_name") || "Utforsker #182";
+  const emoji = localStorage.getItem("user_avatar") || "🧭";
+  const color = localStorage.getItem("user_color") || "#f6c800";
+  const visitedCount = Object.keys(visited).length;
+  const peopleCount = Object.keys(peopleCollected).length;
+  const fav = Object.entries(merits).sort((a,b)=>b[1].points-a[1].points)[0];
+  const favCat = fav ? fav[0] : "Ingen ennå";
+
+  const avatar = document.getElementById("profileAvatar");
+  if (!avatar) return; // sikkerhet ved første lasting
+
+  document.getElementById("profileName").textContent = name;
+  avatar.textContent = emoji;
+  avatar.style.borderColor = color;
+  document.getElementById("statPlaces").textContent = `${visitedCount} steder`;
+  document.getElementById("statPeople").textContent = `${peopleCount} personer`;
+  document.getElementById("statCategory").textContent = `Favoritt: ${favCat}`;
+}
+document.addEventListener("DOMContentLoaded", renderProfileCard);
+
+// --------------------------------------
+// PROFIL-REDIGERINGSMODAL
+// --------------------------------------
+function openProfileModal() {
+  const modal = document.createElement("div");
+  modal.className = "profile-modal";
+  modal.innerHTML = `
+    <div class="profile-modal-inner">
+      <h3>Endre profil</h3>
+      <label>Navn</label>
+      <input id="newName" value="${localStorage.getItem("user_name") || "Utforsker #182"}">
+      <label>Emoji</label>
+      <input id="newEmoji" maxlength="2" value="${localStorage.getItem("user_avatar") || "🧭"}">
+      <label>Farge</label>
+      <input id="newColor" type="color" value="${localStorage.getItem("user_color") || "#f6c800"}">
+      <button id="saveProfile">Lagre</button>
+      <button id="cancelProfile" style="margin-left:6px;background:#444;color:#fff;">Avbryt</button>
+    </div>`;
+  document.body.appendChild(modal);
+
+  modal.querySelector("#cancelProfile").onclick = () => modal.remove();
+  modal.querySelector("#saveProfile").onclick = () => {
+    localStorage.setItem("user_name", modal.querySelector("#newName").value.trim() || "Utforsker #182");
+    localStorage.setItem("user_avatar", modal.querySelector("#newEmoji").value.trim() || "🧭");
+    localStorage.setItem("user_color", modal.querySelector("#newColor").value);
+    modal.remove();
+    renderProfileCard();
+    showToast("Profil oppdatert ✅");
+  };
+}
+document.getElementById("editProfileBtn")?.addEventListener("click", openProfileModal);
+
+// --------------------------------------
+// DEL PROFILKORT (vanlig skjermbilde)
+// --------------------------------------
+async function shareProfileCard() {
+  const card = document.getElementById("profileCard");
+  if (!card) return showToast("Fant ikke profilkortet");
+  showToast("Lager bilde …");
+  const canvas = await html2canvas(card, { backgroundColor: "#111", scale: 3, useCORS: true });
+  const dataUrl = canvas.toDataURL("image/png");
+  const blob = await fetch(dataUrl).then(r => r.blob());
+  const file = new File([blob], "profilkort.png", { type: "image/png" });
+  if (navigator.share && navigator.canShare({ files: [file] })) {
+    await navigator.share({ files: [file], title: "Mitt History Go-kort", text: "Se min fremgang i History Go!" });
+    showToast("Profilkort delt ✅");
+  } else {
+    const a = document.createElement("a");
+    a.href = dataUrl;
+    a.download = "profilkort.png";
+    a.click();
+    showToast("Bilde lastet ned ✅");
+  }
+}
+document.getElementById("shareProfileBtn")?.addEventListener("click", shareProfileCard);
+
+// --------------------------------------
+// PLAKAT-VARIANT (samlekortstil)
+// --------------------------------------
+async function makeProfilePoster() {
+  const poster = document.getElementById("profilePoster");
+  if (!poster) return;
+  const name = localStorage.getItem("user_name") || "Utforsker #182";
+  const emoji = localStorage.getItem("user_avatar") || "🧭";
+  const color = localStorage.getItem("user_color") || "#f6c800";
+  const visitedCount = Object.keys(visited).length;
+  const peopleCount = Object.keys(peopleCollected).length;
+  const fav = Object.entries(merits).sort((a,b)=>b[1].points-a[1].points)[0];
+  const favCat = fav ? fav[0] : "Ingen ennå";
+
+  document.getElementById("posterAvatar").textContent = emoji;
+  document.getElementById("posterAvatar").style.borderColor = color;
+  document.getElementById("posterName").textContent = name;
+  document.getElementById("posterStats").textContent = `${visitedCount} steder · ${peopleCount} personer · Favoritt: ${favCat}`;
+
+  poster.style.display = "block";
+  const canvas = await html2canvas(poster, { backgroundColor: "#0a0a0a", scale: 3, useCORS: true });
+  const dataUrl = canvas.toDataURL("image/png");
+  const blob = await fetch(dataUrl).then(r => r.blob());
+  const file = new File([blob], "historygo_kort.png", { type: "image/png" });
+  if (navigator.share && navigator.canShare({ files: [file] })) {
+    await navigator.share({ files: [file], title: "Mitt History Go-kort", text: "Mitt samlekort i History Go!" });
+    showToast("Kort delt ✅");
+  } else {
+    const a = document.createElement("a");
+    a.href = dataUrl;
+    a.download = "historygo_kort.png";
+    a.click();
+    showToast("Kort lagret ✅");
+  }
+  poster.style.display = "none";
+}
+document.getElementById("shareProfileBtn")?.addEventListener("contextmenu", e => {
+  e.preventDefault();
+  makeProfilePoster();
+});
+
 // --------------------------------------
 // MERKESAMLING + POPUP + QUIZ-FLYINN
 // --------------------------------------
@@ -1389,5 +1401,5 @@ async function showUserBadgePopup(categoryDisplay) {
 renderUserBadges();
 
 // ============================================================
-// === SLUTT PROFIL & MERKER ================================
+// === SLUTT PROFIL & MERKER =================================
 // ============================================================

@@ -61,52 +61,31 @@ body{
 /* ===================================================== */
 /* 2) Kart & kartmodus                                   */
 /* ===================================================== */
-#map {
-  position: fixed;
-  inset: 0;
-  z-index: 0 !important;
-}
+#map{ position:fixed; inset:0; z-index:0; }
 
-/* Hovedinnhold over kartet */
-main, header {
-  position: relative;
-  z-index: 2;
+.map-controls{
+  position:fixed; right:12px; bottom:12px; z-index:12;
+  display:grid; gap:8px;
 }
-
-/* Kartmodus – viser bare kartet */
-body.map-only header,
-body.map-only main {
-  display: none !important;
-}
-
-body.map-only #map {
-  z-index: 10; /* Kart øverst i kartmodus */
-}
-
-/* Kartkontroller */
-.map-controls {
-  position: fixed;
-  right: 12px;
-  bottom: 12px;
-  z-index: 12;
-  display: grid;
-  gap: 8px;
-}
-.map-controls button {
-  width: 44px;
-  height: 44px;
-  border-radius: 999px;
-  border: 1px solid var(--panel-border);
-  background: rgba(20,30,45,.9);
-  color: #fff;
+.map-controls button{
+  width:44px; height:44px; border-radius:999px;
+  border:1px solid var(--panel-border);
+  background: rgba(20,30,45,.9); color:#fff;
   box-shadow: var(--shadow);
 }
 
-/* Kartmodus – modaler skal fortsatt vises */
+/* Kartmodus – ENESTE sannhet: 'map-only' */
+#btnExitMap{ display:none }
+body.map-only header,
+body.map-only main{ display:none !important }
+body.map-only #btnExitMap{ display:block !important }
+body.map-only #btnSeeMap{ display:none !important }
+
+/* Kartmodus – sørg for at modaler fortsatt vises */
 body.map-only #quizModal,
 body.map-mode #quizModal {
-  display: flex !important;
-  z-index: 9999 !important;
+  display: flex !important;   /* tving visning selv om main/header er skjult */
+  z-index: 9999 !important;   /* over kart og kontroller */
 }
 
 
@@ -577,6 +556,7 @@ button{ cursor:pointer; border:none }
 #btnExitMap:hover{
   filter:brightness(1.1);
 }
+body.map-only #map { z-index: 10 !important; }
 
 
 /* ===================================================== */
@@ -743,340 +723,4 @@ body.subkultur .app-frame      { border-color: #ff66cc; }
 .route-buttons button:active {
   transform: scale(0.97);
   box-shadow: 0 0 6px rgba(0,0,0,.25);
-}
-
-/* ============================================================
-   === START PROFIL & MERKER – HISTORY GO v18+ ===============
-   ============================================================ */
-
-/* PROFILKORT */
-.profile-card {
-  position: relative;
-  display: flex;
-  align-items: center;
-  background: rgba(25,25,30,0.9);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-left: 5px solid #f6c800;
-  border-radius: 10px;
-  padding: 14px 18px;
-  margin: 10px 12px 18px;
-  color: #fff;
-  box-shadow: 0 0 20px rgba(0,0,0,0.25);
-}
-.profile-right { flex: 1; margin-left: 14px; }
-.profile-right h2 { margin: 0; font-size: 1.2em; }
-.profile-sub { color: #ccc; font-size: 0.9em; margin: 3px 0; }
-.profile-stats { font-size: 0.85em; color: #bbb; }
-
-#editProfileBtn {
-  position: absolute;
-  top: 8px; right: 10px;
-  background: transparent;
-  border: none;
-  color: #f6c800;
-  font-size: 1.2em;
-  cursor: pointer;
-  transition: opacity .2s;
-}
-#editProfileBtn:hover { opacity: .8; }
-
-/* PROFILMODAL */
-.profile-modal {
-  position: fixed;
-  inset: 0;
-  display: none; /* ← denne må være NONE i stedet for flex */
-  align-items: center;
-  justify-content: center;
-  background: rgba(0,0,0,.7);
-  z-index: 9999;
-}
-.profile-modal-inner {
-  background: rgba(25,25,30,.95);
-  border: 1px solid rgba(255,255,255,.1);
-  border-radius: 10px;
-  padding: 20px 24px;
-  color: #fff;
-  max-width: 300px; width: 80%;
-  text-align: center;
-}
-.profile-modal-inner input {
-  width: 100%;
-  margin: 6px 0 12px;
-  padding: 8px;
-  border: 1px solid rgba(255,255,255,.1);
-  border-radius: 6px;
-  background: rgba(255,255,255,.05);
-  color: #fff;
-}
-.profile-modal-inner button {
-  margin-top: 10px;
-  background: #f6c800;
-  border: none;
-  color: #000;
-  padding: 8px 14px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 600;
-}
-
-/* DELING / PLAKAT */
-button.primary.small {
-  font-size: .9em;
-  padding: 6px 12px;
-  border-radius: 6px;
-  background: #f6c800;
-  border: none;
-  color: #000;
-  cursor: pointer;
-  transition: opacity .25s;
-}
-button.primary.small:hover { opacity: .9; }
-
-.profile-poster {
-  width: 400px; height: 600px;
-  position: relative;
-  background: #111; color: #fff;
-  font-family: system-ui, sans-serif;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 0 25px rgba(0,0,0,.6);
-}
-.poster-bg {
-  position: absolute; inset: 0;
-  background:
-    radial-gradient(circle at 70% 30%, rgba(246,200,0,.15), transparent 70%),
-    radial-gradient(circle at 20% 80%, rgba(255,255,255,.1), transparent 70%),
-    #0a0a0a;
-}
-.poster-content {
-  text-align: center;
-  padding: 60px 20px;
-  position: relative;
-  z-index: 2;
-}
-.poster-logo {
-  position: absolute; bottom: 25px;
-  width: 100%;
-  text-align: center;
-  font-weight: 700;
-  letter-spacing: 2px;
-  color: #f6c800;
-  opacity: .9;
-}
-
-/* MERKESAMLING */
-.user-badges {
-  margin: 0 12px 24px;
-  padding: 14px 16px;
-  background: rgba(25,25,30,.9);
-  border: 1px solid rgba(255,255,255,.08);
-  border-radius: 10px;
-  color: #fff;
-}
-.user-badges h3 {
-  margin: 0 0 10px;
-  font-size: 1.1em;
-  color: #f6c800;
-}
-.user-badges-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-.badge-mini {
-  position: relative;
-  width: 68px; height: 68px;
-  border-radius: 50%;
-  background: rgba(255,255,255,.05);
-  border: 2px solid var(--badge-color,#777);
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  font-size: .7em;
-  color: #fff;
-  cursor: pointer;
-  transition: transform .2s;
-}
-.badge-mini:hover { transform: scale(1.07); }
-.badge-mini img {
-  width: 32px; height: 32px;
-  object-fit: contain;
-  margin-bottom: 4px;
-}
-.badge-level {
-  position: absolute;
-  bottom: 2px; right: 3px;
-  font-size: .85em;
-}
-
-/* POPUP FOR MERKER */
-.user-badge-popup {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,.8);
-  display: none; /* ← endre fra flex til none */
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-}
-.ub-inner {
-  background: rgba(25,25,30,.95);
-  color: #fff;
-  padding: 22px 24px;
-  border-radius: 12px;
-  width: 90%; max-width: 340px;
-  text-align: center;
-  position: relative;
-}
-.close-ub {
-  position: absolute;
-  top: 8px; right: 10px;
-  background: none;
-  border: none;
-  color: #f6c800;
-  font-size: 1.2em;
-  cursor: pointer;
-}
-.ub-icon {
-  width: 64px; height: 64px;
-  margin-bottom: 10px;
-}
-#quizPlaceSelect option {
-  background: #222;
-  color: #fff;
-}
-
-/* --- HISTORIEKORT TIDSLINJE (profilvisning) --- */
-#timelineSection {
-  margin-top: 32px;
-  padding-top: 12px;
-  border-top: 1px solid rgba(255,255,255,0.1);
-}
-.timeline-progress {
-  width: 100%;
-  height: 6px;
-  background: rgba(255,255,255,0.08);
-  border-radius: 4px;
-  overflow: hidden;
-  margin: 8px 0 4px 0;
-}
-.timeline-progress-bar {
-  height: 100%;
-  width: 0%;
-  background: linear-gradient(90deg, #f6c800, #ffb703);
-  transition: width 0.4s ease;
-}
-.timeline-progress-text {
-  font-size: 0.85em;
-  margin-bottom: 10px;
-  text-align: right;
-}
-.timeline-body {
-  display: flex;
-  overflow-x: auto;
-  gap: 30px;
-  padding: 10px 0 16px 0;
-  scroll-snap-type: x mandatory;
-  align-items: flex-start;
-}
-.timeline-card {
-  flex: 0 0 auto;
-  width: 140px;
-  text-align: center;
-  scroll-snap-align: center;
-}
-.timeline-card img {
-  width: 100%;
-  border-radius: 10px;
-  object-fit: cover;
-  border: 2px solid #f6c800;
-  margin-bottom: 6px;
-  transition: transform 0.2s ease;
-}
-.timeline-name {
-  font-size: 0.9em;
-  font-weight: 500;
-}
-.timeline-year {
-  font-size: 0.8em;
-  color: #ccc;
-}
-.timeline-card:hover img {
-  transform: scale(1.05);
-}
-
-/* MINI-PROFILSEKSJON PÅ FORSIDEN */
-.mini-profile {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  background: rgba(25,25,30,0.9);
-  border-left: 5px solid #f6c800;
-  color: #fff;
-  margin-bottom: 20px;
-}
-
-.mini-profile .info a:hover {
-  color: #f6c800;
-}
-
-.linkish {
-  cursor: pointer;
-  color: #f6c800;
-  text-decoration: none;
-}
-.linkish:hover {
-  text-decoration: underline;
-}
-
-/* ============================================================
-   === SLUTT PROFIL & MERKER ================================
-   ============================================================ */
-
-/* QUIZ-HISTORIKK MODAL */
-.quiz-modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.7);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-}
-.quiz-modal-inner {
-  background: #111;
-  color: #fff;
-  padding: 20px 24px;
-  border-radius: 10px;
-  max-width: 360px;
-  width: 90%;
-  box-shadow: 0 0 20px rgba(0,0,0,0.5);
-  animation: fadeIn .3s ease;
-}
-.quiz-modal-inner h2 {
-  margin-top: 0;
-  color: #f6c800;
-  text-align: center;
-}
-.quiz-history-list {
-  list-style: none;
-  padding: 0;
-  margin: 10px 0 0 0;
-}
-.quiz-history-list li {
-  margin-bottom: 10px;
-  padding-bottom: 6px;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-}
-.quiz-history-list li strong {
-  color: #fff;
-}
-.quiz-close {
-  position: absolute;
-  top: 14px;
-  right: 18px;
-  background: none;
-  border: none;
-  color: #f6c800;
-  font-size: 1.4em;
-  cursor: pointer;
 }
