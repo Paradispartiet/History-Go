@@ -585,31 +585,90 @@ button.quiz-done.blink {
 
 
 /* ===================================================== */
-/* 13) Person-popup ved fullført quiz                    */
+/* PERSON-POPUP – REN OG UTEN INLINE STIL                */
 /* ===================================================== */
+
 .person-popup {
   position: fixed;
-  left: 50%; top: 50%;
-  transform: translate(-50%, -50%) scale(.8);
-  background: var(--panel);
-  border: 1px solid var(--panel-border);
-  border-radius: 12px;
-  box-shadow: var(--shadow);
-  text-align: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.9);
   opacity: 0;
-  transition: all .25s ease;
-  z-index: 10001;
-  padding: 20px;
+  transition: all 0.4s ease;
+  z-index: 9999;
 }
+
 .person-popup.visible {
-  opacity: 1;
   transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
 }
-.person-popup img {
-  width: 80px; height: 80px;
-  border-radius: 999px;
-  margin-bottom: 8px;
-  object-fit: cover;
+
+.person-popup .popup-inner {
+  width: min(92vw, 700px);
+  max-height: 80vh;
+  overflow-y: auto;
+  background: rgba(15,15,20,0.95);
+  border-top: 6px solid var(--border-color, #f6c800);
+  color: #fff;
+  border-radius: 14px;
+  padding: 20px 24px;
+  text-align: left;
+  box-shadow: 0 0 28px rgba(0,0,0,0.7);
+  animation: fadeIn .4s ease;
+}
+
+.person-popup .popup-image {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 14px;
+}
+
+.person-popup .popup-title {
+  margin: 0 0 6px;
+  font-size: 1.4em;
+}
+
+.person-popup .popup-category {
+  margin: 0 0 12px;
+  color: #ccc;
+  font-size: 0.9em;
+}
+
+.person-popup .popup-text {
+  font-size: 0.95em;
+  line-height: 1.55;
+  color: #ddd;
+  margin: 0 0 16px;
+  white-space: pre-line;
+}
+
+.person-popup .popup-badge {
+  background: #222;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 0.95em;
+  color: #f6c800;
+  text-align: center;
+  margin-bottom: 14px;
+}
+
+.person-popup .popup-actions {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.person-popup .popup-actions .close-popup {
+  padding: 6px 12px;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: 6px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.person-popup .popup-actions .close-popup:hover {
+  border-color: #f6c800;
+  color: #f6c800;
 }
 
 /* 13b. Person-galleri (rundt ikon + navn + klikk) */
@@ -649,6 +708,10 @@ button.quiz-done.blink {
   max-width:92px;      /* bryt lange navn pent */
   white-space:normal;
 }
+
+/* ===================================================== */
+/* PLACE-POPUP                                           */
+/* ===================================================== */
 
 .place-popup {
   position: fixed;
