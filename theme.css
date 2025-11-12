@@ -64,7 +64,8 @@ body{
 #map {
   position: fixed;
   inset: 0;
-  z-index: 0 !important;
+  z-index: 1; /* ← var 0, nå synlig */
+  background: #000; /* trygg bakgrunn */
 }
 
 /* Hovedinnhold over kartet */
@@ -119,7 +120,33 @@ header{
   padding:16px 14px;
   background: linear-gradient(180deg, rgba(10,25,41,.95), rgba(10,25,41,.65) 70%, transparent);
 }
-.brand{ font-weight:800; letter-spacing:.3px }
+/* === Brand med ikon i headeren === */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  font-size: 1.3rem;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.brand-logo {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+  border-radius: 6px;
+  background: rgba(255,255,255,0.1);
+  padding: 3px;
+}
+
+.brand-name {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-weight: 700;
+  color: #f6c800; /* gul History Go-tone */
+}
+
 .actions{ display:flex; gap:10px; align-items:center }
 .toggle{ display:flex; gap:6px; align-items:center; font-size:.9rem }
 .toggle input{ accent-color: var(--primary) }
@@ -211,13 +238,12 @@ button{ cursor:pointer; border:none }
 .badge.sport .i{ background: var(--sport); }       /* Sport & lek */
 .badge.natur .i{ background: var(--natur); }       /* Natur & miljø */
 .badge.vitenskap .i{ background: var(--viten); }   /* Vitenskap & filosofi */
-.badge.historie .i{ background: var(--hist); }     /* Historie */
 .badge.politikk .i{ background: #c77dff; }         /* Politikk & samfunn */
 .badge.litteratur .i{ background: #f6c800; }       /* Litteratur & poesi */
 .badge.populaerkultur .i{ background: #ffb703; }   /* Populærkultur */
 .badge.subkultur .i{ background: #ff66cc; }        /* Subkultur */
 .badge.musikk .i{ background: #ff66cc; }           /* Musikk & scenekunst */
-
+.badge.naeringsliv .i{ background: #ff8800; }      /* Næringsliv & industri */
 
 /* ===================================================== */
 /* 6) Place Card (sheet)                                 */
@@ -311,10 +337,10 @@ button{ cursor:pointer; border:none }
 .modal {
   position: fixed;
   inset: 0;
-  z-index: 10050;              /* 🔺 Sørger for at modalen ligger over alt */
+  z-index: 10050;              /* Sørger for at modalen ligger over alt */
   display: none;
   background: rgba(0,0,0,.55);
-  pointer-events: auto;        /* 🔹 Sikrer klikk på knapper */
+  pointer-events: auto;        /* Sikrer klikk på knapper */
 }
 
 .modal[aria-hidden="false"] {
@@ -332,7 +358,7 @@ button{ cursor:pointer; border:none }
   border-radius: 14px;
   box-shadow: var(--shadow);
   padding: 14px;
-  z-index: 10051;              /* 🔹 Sørger for at X-knappen er klikkbar */
+  z-index: 10051;              /* Sørger for at X-knappen er klikkbar */
 }
 
 .modal-head {
@@ -351,44 +377,68 @@ button{ cursor:pointer; border:none }
   background: rgba(255,255,255,.08);
   color: #fff;
   font-size: 1.4rem;
-  z-index: 10052;              /* 🔹 Helt øverst, alltid klikkbar */
+  z-index: 10052;              /* Helt øverst, alltid klikkbar */
 }
 
 
 /* ===================================================== */
 /* 10) Quiz-stiler                                       */
 /* ===================================================== */
-#quizProgress{ color:var(--muted); margin-bottom:6px }
-#quizQuestion{ margin:8px 0 10px; font-weight:700 }
-.quiz-choices{ display:grid; gap:8px; }
-.quiz-choices button{
-  text-align:left; width:100%;
-  padding:10px 12px; border-radius:10px; border:1px solid var(--panel-border);
-  background: rgba(255,255,255,.03); color:#fff;
+#quizProgress { color: var(--muted); margin-bottom: 6px; }
+#quizQuestion { margin: 8px 0 10px; font-weight: 700; }
+
+.quiz-choices {
+  display: grid;
+  gap: 8px;
 }
-.quiz-choices button.correct{
-  border-color:#1b7a4a; background: rgba(27,122,74,.18);
+
+.quiz-choices button {
+  text-align: left;
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--panel-border);
+  background: rgba(255,255,255,.03);
+  color: #fff;
+  transition: background .2s ease, border-color .2s ease;
 }
-.quiz-choices button.wrong{
-  border-color:#7a1f25; background: rgba(122,31,37,.18);
+
+.quiz-choices button.correct {
+  border-color: #1b7a4a;
+  background: rgba(27,122,74,.18);
 }
-.quiz-feedback{ min-height:1.2em; font-weight:700 }
+
+.quiz-choices button.wrong {
+  border-color: #7a1f25;
+  background: rgba(122,31,37,.18);
+}
+
+.quiz-feedback {
+  min-height: 1.2em;
+  font-weight: 700;
+}
 
 
 /* ===================================================== */
 /* 10b) Quiz-progress-bar                                */
 /* ===================================================== */
 .quiz-progress {
-  width: 100%; height: 6px;
+  width: 100%;
+  height: 6px;
   background: rgba(255,255,255,.1);
-  border-radius: 3px; overflow: hidden;
+  border-radius: 3px;
+  overflow: hidden;
   margin-bottom: 10px;
 }
+
 .quiz-progress .bar {
-  height: 100%; width: 0%;
+  height: 100%;
+  width: 0%;
   background: var(--primary);
   transition: width .4s ease;
 }
+
+
 /* ===================================================== */
 /* 10c) Quiz-fade effekt ved avslutning                  */
 /* ===================================================== */
@@ -407,6 +457,43 @@ button{ cursor:pointer; border:none }
   }
 }
 
+
+/* ===================================================== */
+/* 10d) QUIZ – KNAPPER OG ANIMASJON VED PERFEKT SCORE    */
+/* ===================================================== */
+
+/* Fast stil for tidligere fullført quiz */
+button.quiz-done {
+  background: rgba(255,215,0,0.12);
+  border: 1px solid rgba(255,215,0,0.5);
+  color: #ffd700;
+  cursor: default;
+  font-weight: 600;
+  position: relative;
+  padding-left: 1.6em;
+}
+
+/* Liten medalje foran teksten */
+button.quiz-done::before {
+  content: "🏅";
+  position: absolute;
+  left: 0.6em;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1em;
+}
+
+/* Kort gullglød første gang man klarer alt riktig */
+@keyframes quizGlow {
+  0%   { box-shadow: 0 0 0px 0 rgba(255,215,0,0); }
+  40%  { box-shadow: 0 0 16px 6px rgba(255,215,0,0.8); }
+  100% { box-shadow: 0 0 0px 0 rgba(255,215,0,0); }
+}
+
+button.quiz-done.blink {
+  animation: quizGlow 1.2s ease-out;
+}
+
 /* ===================================================== */
 /* 11) Merker / Badge-kort – kompakt, fargerik og interaktiv */
 /* ===================================================== */
@@ -423,144 +510,62 @@ button{ cursor:pointer; border:none }
   margin-bottom: 0.8rem;
 }
 
-/* === Samlet grid for alle merker === */
+/* === MERKER I GRID === */
 #merits {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
-  gap: 12px;
-  margin-top: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 22px;
+  justify-items: center;
+  margin-top: 20px;
 }
 
-/* === Individuelt merke === */
 .badge-mini {
-  position: relative;
-  background: rgba(255,255,255,0.03);
-  border: 1px solid var(--panel-border);
-  border-radius: 10px;
-  padding: 10px 6px 12px 6px;
-  text-align: center;
   cursor: pointer;
-  transition: transform .25s ease, box-shadow .25s ease;
-  box-shadow: 0 0 6px rgba(0,0,0,0.25);
+  transition: transform 0.15s ease;
 }
-
 .badge-mini:hover {
-  transform: scale(1.06);
-  box-shadow: 0 0 10px rgba(255,255,255,0.15);
+  transform: scale(1.05);
 }
 
-/* === Ikon med fargering === */
+.badge-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
 .badge-mini-icon {
-  width: 46px;
-  height: 46px;
+  width: 110px;
+  height: 110px;
   border-radius: 50%;
-  object-fit: contain;
+  object-fit: cover;
   display: block;
-  margin: 0 auto 6px auto;
-  background: #111;
-  border: 3px solid var(--badge-color, rgba(255,255,255,0.25));
-  box-shadow: 0 0 6px var(--badge-color, rgba(255,255,255,0.2));
+  box-shadow: 0 0 10px rgba(0,0,0,0.25);
 }
 
-/* === Medalje (nivåindikator) === */
-.badge-level {
-  font-size: 1.2rem;
-  line-height: 1;
-  margin-bottom: 4px;
-  color: var(--yellow);
-}
-
-/* === Kategorinavn === */
-.badge-mini-label {
-  font-size: 0.8rem;
-  font-weight: 500;
-  color: #fff;
-  line-height: 1.2;
-  letter-spacing: 0.2px;
-  white-space: normal;
-}
-
-/* === Puls-effekt ved nivåoppnåelse === */
-@keyframes badgePulse {
-  0%   { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,255,255,0); }
-  40%  { transform: scale(1.08); box-shadow: 0 0 12px 4px rgba(255,255,255,.15); }
-  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,255,255,0); }
-}
-.badge-pulse {
-  animation: badgePulse 1s ease-out;
-}
-
-
-/* ===================================================== */
-/* 11b) BADGE-MODAL STIL                                 */
-/* ===================================================== */
-.badge-modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,.55); /* gjennomsiktig slør */
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-}
-
-.badge-modal-inner {
-  background: var(--panel);
-  border-radius: 12px;
-  box-shadow: var(--shadow);
-  padding: 16px;
-  max-width: 640px;
-  width: 90%;
-  max-height: 80vh;
-  overflow-y: auto;
-  color: var(--text);
-}
-
-.badge-modal-header {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 8px;
-}
-
-.badge-icon-large {
-  font-size: 2rem;
-}
-
-.badge-close {
+.badge-medal {
   position: absolute;
-  top: 12px;
-  right: 12px;
-  width: 40px;
-  height: 40px;
-  border-radius: 999px;
-  border: 1px solid var(--panel-border);
-  background: rgba(255,255,255,.08);
-  color: #fff;
-  font-size: 1.4rem;
+  top: -10px;
+  right: -10px;
+  font-size: 2rem;
+  transform: rotate(5deg);
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.5));
+  user-select: none;
 }
 
-.quiz-fasit {
-  margin-bottom: 10px;
-  border-bottom: 1px solid rgba(255,255,255,.08);
-  padding-bottom: 6px;
-}
-
-.quiz-fasit .q { font-weight: 600; }
-.quiz-fasit .a { color: var(--muted); font-size: 0.9rem; }
-
-/* ===================================================== */
-/* 11c) BADGE-BILDE SOM IKON (runde, uten bakgrunn)      */
-/* ===================================================== */
-.badge-image {
-  width: 96px;
-  height: 96px;
-  border-radius: 50%;
-  object-fit: contain;              /* behold proporsjoner */
-  background: transparent;          /* ingen bakgrunnsfarge */
-  display: block;
-  margin: 0 auto 12px auto;         /* sentrert */
-  box-shadow: 0 0 8px rgba(255,255,255,.08); /* lett glød */
+/* === Responsivt – én rad på små skjermer === */
+@media (max-width: 520px) {
+  #merits {
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+    gap: 16px;
+  }
+  .badge-mini-icon {
+    width: 90px;
+    height: 90px;
+  }
+  .badge-medal {
+    font-size: 1.6rem;
+    top: -8px;
+    right: -8px;
+  }
 }
 
 /* ===================================================== */
@@ -646,72 +651,6 @@ button{ cursor:pointer; border:none }
 }
 
 /* ===================================================== */
-/* 14) RAMME RUNDT APPEN – MØRK OG DISKRET              */
-/* ===================================================== */
-.app-frame {
-  position: fixed;
-  inset: 0;                         /* går helt ut til skjermkanten */
-  border: 3px solid var(--primary); /* tynn farget indre strek */
-  outline: 8px solid #000;          /* helsort ytterramme */
-  border-radius: 0;                 /* ingen avrunding */
-  background: transparent;
-  pointer-events: none;
-  z-index: 20;
-  box-shadow: none;                 /* ingen glød */
-  animation: none;                  /* ingen puls */
-  transition: none;
-}
-/* ingen indre glød */
-.app-frame::after { content: none; }
-
-/* Kategori-farger for rammen */
-body.vitenskap .app-frame      { border-color: #9b59b6; }
-body.kunst .app-frame          { border-color: #ffb703; }
-body.by .app-frame             { border-color: #e63946; }
-body.musikk .app-frame         { border-color: #ff66cc; }
-body.litteratur .app-frame     { border-color: #f6c800; }
-body.natur .app-frame          { border-color: #4caf50; }
-body.sport .app-frame          { border-color: #2a9d8f; }
-body.politikk .app-frame       { border-color: #c77dff; }
-body.populaerkultur .app-frame { border-color: #ffb703; }
-body.subkultur .app-frame      { border-color: #ff66cc; }
-
-
-/* ===================================================== */
-/* 15) Kort og paneler – solid og tydelig versjon        */
-/* ===================================================== */
-.panel, .card, .badge-card {
-  background: rgba(13,27,42,0.96);   /* mørk, ugjennomsiktig bakgrunn */
-  border: 1px solid rgba(255,255,255,.08);
-  border-radius: 14px;
-  box-shadow: 0 3px 10px rgba(0,0,0,.25);
-  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease, background .25s ease;
-}
-.panel:hover, .card:hover, .badge-card:hover {
-  transform: translateY(-3px);
-  border-color: rgba(255,255,255,.18);
-  box-shadow: 0 8px 20px rgba(0,0,0,.45);
-  background: rgba(20,30,45,0.96);   /* mørkere ved hover */
-}
-/* Badge-ringen får fargeglød */
-.badge-icon-ring {
-  background: rgba(255,255,255,.05);
-  box-shadow: 0 0 6px rgba(255,255,255,.08) inset;
-  transition: transform .3s ease, box-shadow .3s ease;
-}
-.badge-card:hover .badge-icon-ring {
-  transform: scale(1.08);
-  box-shadow: 0 0 12px currentColor;
-}
-/* Puls ved nivåoppnåelse – sterkere og mer farget */
-@keyframes badgePulse {
-  0%   { transform:scale(1); box-shadow:0 0 0 0 rgba(255,255,255,0) }
-  40%  { transform:scale(1.08); box-shadow:0 0 10px 5px rgba(255,255,255,.25) }
-  100% { transform:scale(1); box-shadow:0 0 0 0 rgba(255,255,255,0) }
-}
-.badge-pulse { animation: badgePulse 1.2s ease-out }
-
-/* ===================================================== */
 /* 16) Ruter-seksjon – Utforsk tematiske ruter           */
 /* ===================================================== */
 .route-buttons {
@@ -763,31 +702,28 @@ body.subkultur .app-frame      { border-color: #ff66cc; }
   color: #fff;
   box-shadow: 0 0 20px rgba(0,0,0,0.25);
 }
-.profile-left { flex: 0 0 64px; }
-.avatar {
-  width: 64px; height: 64px;
-  font-size: 34px;
-  background: rgba(255,255,255,0.05);
-  border: 2px solid #f6c800;
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-}
 .profile-right { flex: 1; margin-left: 14px; }
 .profile-right h2 { margin: 0; font-size: 1.2em; }
 .profile-sub { color: #ccc; font-size: 0.9em; margin: 3px 0; }
 .profile-stats { font-size: 0.85em; color: #bbb; }
 
+/* Ny pen “Endre”-knapp */
 #editProfileBtn {
-  position: absolute;
-  top: 8px; right: 10px;
-  background: transparent;
-  border: none;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.12);
+  padding: 6px 12px;
+  border-radius: 8px;
   color: #f6c800;
-  font-size: 1.2em;
+  font-weight: 600;
+  font-size: 0.95rem;
   cursor: pointer;
-  transition: opacity .2s;
+  transition: background .2s ease, transform .15s ease;
 }
-#editProfileBtn:hover { opacity: .8; }
+
+#editProfileBtn:hover {
+  background: rgba(255,255,255,0.12);
+  transform: translateY(-1px);
+}
 
 /* PROFILMODAL */
 .profile-modal {
@@ -863,15 +799,6 @@ button.primary.small:hover { opacity: .9; }
   position: relative;
   z-index: 2;
 }
-.poster-avatar {
-  font-size: 64px;
-  width: 120px; height: 120px;
-  margin: 0 auto 20px;
-  background: rgba(255,255,255,.05);
-  border: 3px solid #f6c800;
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-}
 .poster-logo {
   position: absolute; bottom: 25px;
   width: 100%;
@@ -882,92 +809,11 @@ button.primary.small:hover { opacity: .9; }
   opacity: .9;
 }
 
-/* MERKESAMLING */
-.user-badges {
-  margin: 0 12px 24px;
-  padding: 14px 16px;
-  background: rgba(25,25,30,.9);
-  border: 1px solid rgba(255,255,255,.08);
-  border-radius: 10px;
-  color: #fff;
-}
-.user-badges h3 {
-  margin: 0 0 10px;
-  font-size: 1.1em;
-  color: #f6c800;
-}
-.user-badges-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-.badge-mini {
-  position: relative;
-  width: 68px; height: 68px;
-  border-radius: 50%;
-  background: rgba(255,255,255,.05);
-  border: 2px solid var(--badge-color,#777);
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  font-size: .7em;
-  color: #fff;
-  cursor: pointer;
-  transition: transform .2s;
-}
-.badge-mini:hover { transform: scale(1.07); }
-.badge-mini img {
-  width: 32px; height: 32px;
-  object-fit: contain;
-  margin-bottom: 4px;
-}
-.badge-level {
-  position: absolute;
-  bottom: 2px; right: 3px;
-  font-size: .85em;
-}
-
-/* POPUP FOR MERKER */
-.user-badge-popup {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,.8);
-  display: none; /* ← endre fra flex til none */
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-}
-.ub-inner {
-  background: rgba(25,25,30,.95);
-  color: #fff;
-  padding: 22px 24px;
-  border-radius: 12px;
-  width: 90%; max-width: 340px;
-  text-align: center;
-  position: relative;
-}
-.close-ub {
-  position: absolute;
-  top: 8px; right: 10px;
-  background: none;
-  border: none;
-  color: #f6c800;
-  font-size: 1.2em;
-  cursor: pointer;
-}
-.ub-icon {
-  width: 64px; height: 64px;
-  margin-bottom: 10px;
-}
-#quizPlaceSelect option {
-  background: #222;
-  color: #fff;
-}
 
 /* --- HISTORIEKORT TIDSLINJE (profilvisning) --- */
 #timelineSection {
   margin-top: 32px;
   padding-top: 12px;
-  border-top: 1px solid rgba(255,255,255,0.1);
 }
 .timeline-progress {
   width: 100%;
@@ -1022,36 +868,58 @@ button.primary.small:hover { opacity: .9; }
   transform: scale(1.05);
 }
 
-/* MINI-PROFILSEKSJON PÅ FORSIDEN */
+/* ===================================================== */
+/* NY MINI-PROFIL – HISTORY GO ELEGANT PANEL              */
+/* ===================================================== */
 .mini-profile {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  background: rgba(25,25,30,0.9);
-  border-left: 5px solid #f6c800;
-  color: #fff;
-  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(25,25,30,.95), rgba(10,15,25,.95));
+  border-left: 4px solid #f6c800;
+  border-radius: 12px;
+  padding: 16px 18px;
+  margin-bottom: 26px;
+  box-shadow: 0 0 18px rgba(246,200,0,.05), inset 0 0 6px rgba(255,255,255,.04);
+  transition: transform .25s ease, box-shadow .25s ease;
 }
-.mini-profile .avatar {
-  background: rgba(255,255,255,0.05);
-  border: 2px solid #f6c800;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.mini-profile .info a:hover {
-  color: #f6c800;
+.mini-profile:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 22px rgba(246,200,0,.15), inset 0 0 10px rgba(255,255,255,.06);
 }
 
-.linkish {
-  cursor: pointer;
+.profile-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+.profile-top h3 {
+  margin: 0;
+  font-size: 1.15rem;
+  letter-spacing: .2px;
+  color: #fff;
+}
+
+.arrow-link {
+  color: #f6c800;
+  font-size: 1.35rem;
+  text-decoration: none;
+  transition: transform .2s ease;
+}
+.arrow-link:hover { transform: translateX(3px); }
+
+.mini-profile .muted {
+  color: var(--muted);
+  font-size: .92rem;
+  margin: 0;
+  line-height: 1.4;
+}
+.mini-profile .linkish {
   color: #f6c800;
   text-decoration: none;
+  font-weight: 500;
 }
-.linkish:hover {
-  text-decoration: underline;
-}
+.mini-profile .linkish:hover { text-decoration: underline; }
 
 /* ============================================================
    === SLUTT PROFIL & MERKER ================================
@@ -1104,4 +972,298 @@ button.primary.small:hover { opacity: .9; }
   color: #f6c800;
   font-size: 1.4em;
   cursor: pointer;
+}
+
+/* ===================================================== */
+/* HEADER – PROFILVERSJON                                */
+/* ===================================================== */
+.profile-page .site-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  padding: 14px 18px;
+  background: linear-gradient(180deg, rgba(10,25,41,.95), rgba(10,25,41,.65) 70%, transparent);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.back-link {
+  text-decoration: none;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #fff;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  padding: 4px 10px;
+  transition: background .2s ease;
+}
+.back-link:hover {
+  background: rgba(255,255,255,0.15);
+}
+
+/* Samme logo og brand-stil som forsiden */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  font-size: 1.3rem;
+  color: #fff;
+  letter-spacing: 0.3px;
+}
+.brand-logo {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  border-radius: 6px;
+  background: rgba(255,255,255,0.1);
+  padding: 3px;
+}
+.brand-name {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-weight: 700;
+  color: #f6c800;
+}
+/* ===================================================== */
+/* 17) PROFILSIDE – KORT, GRID OG LISTE                  */
+/* ===================================================== */
+
+.profile-section {
+  margin: 22px auto;
+  padding: 14px 16px;
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  max-width: 640px;
+}
+
+.profile-section h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: var(--accent);
+}
+
+/* Profilkortet med statistikk */
+#profileCard {
+  text-align: center;
+  padding-top: 20px;
+}
+
+#profileName {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+#profileCard .stats {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+}
+
+#profileCard .stats div {
+  text-align: center;
+}
+
+#profileCard .stats span {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+#profileCard small {
+  color: var(--text-dim);
+  font-size: 0.8rem;
+}
+
+/* Grid for merker og personer */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 10px;
+}
+
+.grid img,
+.grid .badge-icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--panel-border);
+}
+
+/* Liste for steder og tidslinje */
+.list,
+.timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.list li,
+.timeline li {
+  padding: 8px 0;
+  border-bottom: 1px solid var(--panel-border);
+}
+
+.list li:last-child,
+.timeline li:last-child {
+  border-bottom: none;
+}
+
+.muted {
+  color: var(--text-dim);
+  font-size: 0.9rem;
+}
+
+/* Knapper */
+#actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn {
+  background: var(--accent);
+  color: #000;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn:hover {
+  background: #ffea70;
+}
+
+.btn.danger {
+  background: #c23;
+  color: #fff;
+}
+
+.btn.danger:hover {
+  background: #e33;
+}
+
+/* ===================================================== */
+/* 17nn) STEDER PÅ PROFILSIDEN – SAMME STIL SOM KARTKORT  */
+/* ===================================================== */
+.place-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+  transition: background .2s ease, transform .2s ease;
+  cursor: pointer;
+}
+
+.place-card:hover {
+  background: rgba(255,255,255,0.07);
+  transform: translateY(-2px);
+}
+
+.place-card .name {
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: #fff;
+  margin-bottom: 2px;
+}
+
+.place-card .meta {
+  font-size: 0.88rem;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.place-card .desc {
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: #d0d8e4;
+}
+
+/* ===================================================== */
+/* 18) BADGE-MODAL – Åpnes når man trykker på et merke   */
+/* ===================================================== */
+
+.badge-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+}
+
+.badge-modal[aria-hidden="false"],
+.badge-modal[style*="display: flex"] {
+  display: flex;
+}
+
+.badge-modal-inner {
+  position: relative;
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  padding: 20px;
+  width: min(90vw, 420px);
+  max-height: 80vh;
+  overflow-y: auto;
+  text-align: center;
+  animation: fadeIn .3s ease;
+}
+
+.badge-modal-icon {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  margin-bottom: 10px;
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+}
+
+.badge-modal h2 {
+  margin: 0;
+  color: var(--accent);
+}
+
+.badge-modal .quiz-list {
+  list-style: none;
+  margin: 10px 0 0 0;
+  padding: 0;
+}
+
+.badge-modal .quiz-list li {
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  color: var(--text);
+  font-size: 0.9rem;
+}
+
+.badge-modal .quiz-list li:last-child {
+  border-bottom: none;
+}
+
+.badge-modal .close-badge {
+  position: absolute;
+  right: 16px;
+  top: 10px;
+  background: none;
+  color: var(--text);
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+  transition: transform .2s ease;
+}
+.badge-modal .close-badge:hover {
+  transform: scale(1.1);
 }

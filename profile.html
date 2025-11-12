@@ -5,84 +5,76 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Min profil | History Go</title>
 
-  <!-- Stil og bibliotek -->
+  <!-- Stil -->
   <link rel="stylesheet" href="theme.css">
-  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 
-  <!-- JS-filer -->
-  <script defer src="app.js"></script>
-  <script defer src="profile.js"></script>
+  <!-- Verktøy (for deling/eksport av profilkort) -->
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 </head>
 
 <body class="profile-page">
-<header class="site-header">
-  <a href="index.html" class="brand">← Tilbake</a>
-  <h1>Min profil</h1>
-</header>
 
-<main>
+  <!-- Ramme rundt appen -->
+  <div class="app-frame" aria-hidden="true"></div>
 
-  <!-- PROFILKORT -->
-  <section id="profileCard" class="profile-card">
-    <div id="profileAvatar" class="avatar"></div>
-    <div class="info">
+  <!-- HEADER -->
+  <header class="site-header">
+    <a href="index.html" class="back-link" aria-label="Til forsiden">←</a>
+    <div class="brand">
+      <img src="bilder/logo_historygo.PNG" alt="History Go" class="brand-logo">
+      <span class="brand-name">Min profil</span>
+    </div>
+  </header>
+
+  <main id="profileMain">
+    <!-- Profilkort -->
+    <section class="profile-section" id="profileCard">
       <h2 id="profileName">Utforsker #182</h2>
-      <p id="statPlaces">0 steder</p>
-      <p id="statPeople">0 personer</p>
-      <p id="statCategory">Favoritt: –</p>
-    </div>
+      <div class="stats">
+        <div><span id="statVisited">0</span><br><small>Besøkt</small></div>
+        <div><span id="statQuizzes">0</span><br><small>Quiz fullført</small></div>
+        <div><span id="statStreak">0</span><br><small>Streak</small></div>
+      </div>
+    </section>
 
-    <div class="profile-actions">
-      <button id="editProfileBtn" class="ghost small">Endre</button>
-      <button id="shareProfileBtn" class="ghost small">Del</button>
-    </div>
-  </section>
+    <!-- MERKER -->
+    <section class="profile-section">
+      <h2>Mine merker</h2>
+      <div id="merits"></div>
+    </section>
 
-  <!-- PROFILPOSTER (for deling) -->
-  <div id="profilePoster" class="profile-poster" style="display:none;">
-    <div id="posterAvatar" class="avatar" style="margin:auto;"></div>
-    <h2 id="posterName"></h2>
-    <p id="posterStats" class="muted"></p>
-  </div>
+    <!-- PERSONER -->
+    <section class="profile-section">
+      <h2>Personer du har låst opp</h2>
+      <div id="peopleGrid"></div>
+    </section>
 
-  <hr>
+    <!-- STEDER -->
+    <section class="profile-section">
+      <h2>Steder du har besøkt</h2>
+      <div id="collectionGrid"></div>
+    </section>
 
-  <!-- MERKER -->
-  <section class="profile-block">
-    <h3>Mine merker</h3>
-    <div id="userBadgesGrid" class="badge-grid"></div>
-  </section>
+    <!-- TIDSLINJE -->
+    <section class="profile-section" id="timelineSection">
+      <h2>Tidslinje</h2>
+      <div id="timelineProgressText" class="timeline-progress-text"></div>
+      <div class="timeline-progress"><div id="timelineProgressBar" class="timeline-progress-bar"></div></div>
+      <div id="timelineBody" class="timeline-body"></div>
+    </section>
 
-  <hr>
+    <!-- HANDLINGER -->
+    <section class="profile-section" id="actions">
+      <button id="editProfileBtn" class="btn">Endre profil</button>
+      <button id="exportProfileBtn" class="btn">Del profilkort</button>
+      <button id="resetProfileBtn" class="btn danger">Nullstill fremgang</button>
+    </section>
+  </main>
 
-  <!-- STEDER -->
-  <section class="profile-block">
-    <h3>Steder jeg har besøkt</h3>
-    <div id="collectionGrid" class="badge-grid"></div>
-  </section>
+  <!-- Toast for meldinger -->
+  <div id="toast"></div>
 
-  <hr>
-
-  <!-- PERSONER -->
-  <section class="profile-block">
-    <h3>Personer jeg har møtt</h3>
-    <div id="gallery" class="gallery-grid"></div>
-  </section>
-
-  <!-- HISTORIEKORT – TIDSLINJE -->
-  <section id="timelineSection" class="profile-block">
-    <h3>Historiekort – tidslinje</h3>
-    <div class="timeline-progress">
-      <div id="timelineProgressBar" class="timeline-progress-bar"></div>
-    </div>
-    <p id="timelineProgressText" class="timeline-progress-text muted"></p>
-    <div id="timelineBody" class="timeline-body"></div>
-  </section>
-
-</main>
-
-<footer>
-  <p class="muted">© 2025 History Go</p>
-</footer>
+  <!-- JS-FILER -->
+  <script src="profile.js"></script>
 </body>
 </html>
