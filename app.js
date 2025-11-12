@@ -658,61 +658,6 @@ function requestLocation() {
   }, { enableHighAccuracy: true, timeout: 8000, maximumAge: 10000 });
 }
 
-function boot() {
-  initMap(); // 🟢 start kartet med én gang
-
-  Promise.all([
-    fetch('places.json')
-      .then(r => {
-        if (!r.ok) throw new Error(`places.json (${r.status})`);
-        return r.json();
-      }),
-    fetch('people.json')
-      .then(r => {
-        if (!r.ok) throw new Error(`people.json (${r.status})`);
-        return r.json();
-      })
-  ])
-  .then(([places, people]) => {
-    PLACES = places || [];
-    PEOPLE = people || [];
-
-    dataReady = true;
-    if (mapReady) maybeDrawMarkers();  // ✅ kjør kun hvis kartet er klart
-
-    renderCollection();
-    renderMerits();
-    renderGallery();
-
-    requestLocation();
-
-    // ✅ linkPeopleToPlaces kjøres én gang, når kart + data er klart
-    setTimeout(() => {
-      linkPeopleToPlaces();
-      renderNearbyPlaces();
-    }, 800);
-
-    if (navigator.geolocation) {
-      navigator.geolocation.watchPosition(
-        pos => {
-          const { latitude, longitude } = pos.coords;
-          currentPos = { lat: latitude, lon: longitude };
-          setUser(latitude, longitude);
-          renderNearbyPlaces();
-        },
-        () => {},
-        { enableHighAccuracy: true }
-      );
-    }
-
-    wire();
-  })
-  .catch(err => {
-    console.error("❌ Datafeil i boot():", err);
-    showToast(`Kunne ikke laste data (${err.message})`, 4000);
-  });
-}
-
 document.addEventListener('DOMContentLoaded', boot);
 
 // === MINI-PROFIL PÅ FORSIDEN – VISER NAVN, STATISTIKK, QUIZZER ===
