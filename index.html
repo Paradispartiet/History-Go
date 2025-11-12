@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="nb">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>History Go</title>
+
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="theme.css">
+
+  <!-- Leaflet må lastes FØR app.js (uten defer) -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    crossorigin=""
+  >
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+
+  <!-- Leaflet Routing Machine -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css"
+  >
+  <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script>
+</head>
+
+<body>
+  <!-- Kart (bakgrunn) -->
+  <div id="map" aria-label="Kart"></div>
+
+  <!-- Kart-knapper -->
+  <div class="map-controls">
+    <button id="btnCenter" title="Sentrer">⌖</button>
+    <button id="btnExitMap" title="Lukk kart" aria-label="Lukk kart">✕</button>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" role="status" aria-live="polite">OK</div>
+
+  <header>
+    <div class="brand">History Go</div>
+    <div class="actions">
+      <button id="btnSeeMap" class="secondary">Se kart</button>
+      <label class="toggle">
+        <input id="testToggle" type="checkbox" />
+        <span>Testmodus</span>
+      </label>
+    </div>
+  </header>
+
+  <main>
+    <!-- Nærområde -->
+    <section class="panel">
+      <h2>
+        Steder i nærheten
+        <button id="btnSeeMoreNearby" class="chip ghost">Se flere i nærheten</button>
+      </h2>
+      <div id="status" class="muted">Henter posisjon…</div>
+      <div id="nearbyList" class="cards"></div>
+    </section>
+
+<!-- Merkesamling -->
+<section class="panel">
+  <h2 class="merkesamling-title">
+    🏅 Merkesamling
+    <button id="btnMoreCollection" class="chip ghost">Se hele samlingen</button>
+  </h2>
+
+  <div id="progress-display" class="muted" style="margin-bottom:8px;"></div>
+  <div id="merits"></div>
+
+  <h3>🏛️ Steder</h3>
+  <div id="collectionGrid" class="chips"></div>
+
+  <h3>👥 Personer</h3>
+  <div id="gallery" class="chips"></div>
+</section>
+
+<!-- Ruter -->
+<section class="panel">
+  <h2>Utforsk ruter</h2>
+  <p class="muted">Følg tematiske ruter gjennom byens historie, kunst og vitenskap.</p>
+
+  <div class="route-buttons" style="margin-top:12px;display:flex;flex-wrap:wrap;gap:10px;">
+    <button class="primary" onclick="showRouteOverlay('vitenskapsruten')">🧠 Vitenskapsruten</button>
+    <button class="primary" onclick="showRouteOverlay('kunstruten_sentrum')">🎨 Kunstruten</button>
+    <button class="primary" onclick="showRouteOverlay('skulpturruten_vigeland')">🗿 Skulpturruten</button>
+  </div>
+</section>
+    
+  <!-- “Se flere i nærheten” sheet -->
+  <div id="sheetNearby" class="sheet" aria-hidden="true">
+    <div class="sheet-head">
+      <h3>Se flere i nærheten</h3>
+      <button class="sheet-close" data-close="#sheetNearby">✕</button>
+    </div>
+    <div id="sheetNearbyBody" class="sheet-body"></div>
+  </div>
+
+  <!-- “Min samling” sheet -->
+  <div id="sheetCollection" class="sheet" aria-hidden="true">
+    <div class="sheet-head">
+      <h3>Min samling</h3>
+      <button class="sheet-close" data-close="#sheetCollection">✕</button>
+    </div>
+    <div id="sheetCollectionBody" class="sheet-body"></div>
+  </div>
+
+
+  <!-- Service Worker -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').catch(()=>{});
+      });
+    }
+  </script>
+
+  <!-- Egne JS-filer -->
+  <script src="icons.js" defer></script>
+  <script src="routes.js" defer></script>
+  <script src="app.js" defer></script>
+
+    <div class="app-frame"></div>
+</body>
+</html>
