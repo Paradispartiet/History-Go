@@ -1113,7 +1113,7 @@ function runQuizFlow({ title = "Quiz", questions = [], onEnd = () => {} }) {
 }
 
 // ==============================
-// PERSON-POPUP VED FULLFØRT QUIZ (FORBEDRET SAMLEKORT-VISNING)
+// PERSON-POPUP (NY VERSJON)
 // ==============================
 function showPersonPopup(person) {
   const imgPath = person.image || `bilder/kort/people/${person.id}.PNG`;
@@ -1124,34 +1124,75 @@ function showPersonPopup(person) {
   card.className = "person-popup";
   card.innerHTML = `
     <div class="popup-inner" 
-         style="width:280px;max-width:80vw;background:rgba(15,15,20,0.95);
-                color:#fff;border-radius:12px;padding:18px;text-align:center;
-                box-shadow:0 0 20px rgba(0,0,0,0.6);display:flex;
-                flex-direction:column;align-items:center;animation:fadeIn .4s ease;">
+         style="width:290px;max-width:85vw;background:rgba(15,15,20,0.95);
+                color:#fff;border-radius:14px;padding:20px;text-align:center;
+                box-shadow:0 0 25px rgba(0,0,0,0.7);display:flex;
+                flex-direction:column;align-items:center;animation:fadeIn .35s ease;">
       
       <img src="${imgPath}" alt="${person.name}"
-           style="width:180px;height:180px;object-fit:contain;object-position:center;
-                  border-radius:8px;margin-bottom:10px;">
+           style="width:180px;height:180px;object-fit:contain;border-radius:10px;margin-bottom:12px;">
 
-      <h3 style="margin:6px 0 4px;font-size:1.25em;">${person.name}</h3>
-      <p style="margin:0 0 10px;color:#ccc;font-size:0.9em;">${cat}</p>
+      <h3 style="margin:6px 0 4px;font-size:1.3em;">${person.name}</h3>
+      <p style="margin:0 0 10px;color:#bbb;font-size:0.9em;">${cat}</p>
 
-      <p style="font-size:0.85em;line-height:1.4;color:#ddd;margin:0 0 14px;">
+      <p style="font-size:0.85em;line-height:1.45;color:#ddd;margin:0 0 14px;">
         ${desc}
       </p>
 
-      <div style="background:#222;padding:8px 10px;border-radius:6px;font-size:0.9em;
-                  color:#f6c800;display:inline-block;">
+      <div style="background:#222;padding:10px 12px;border-radius:8px;
+                  font-size:0.9em;color:#FFD600;">
         🏅 Du har nå samlet kortet for <strong>${person.name}</strong>!
       </div>
     </div>`;
 
   document.body.appendChild(card);
-  setTimeout(() => card.classList.add("visible"), 20);
+  setTimeout(() => card.classList.add("visible"), 10);
   setTimeout(() => card.remove(), 4200);
 }
 
-// Enkle animasjonsstiler – legg bare inn én gang
+
+// ==============================
+// STED-POPUP (NY VERSJON)
+// ==============================
+function showPlacePopup(place) {
+  const imgPath = place.image || `bilder/kort/places/${place.id}.PNG`;
+  const cat = place.category || "Historie";
+  const desc = place.desc || "Ingen beskrivelse tilgjengelig.";
+
+  const card = document.createElement("div");
+  card.className = "person-popup";
+  card.innerHTML = `
+    <div class="popup-inner" 
+         style="width:290px;max-width:85vw;background:rgba(15,15,20,0.95);
+                color:#fff;border-radius:14px;padding:20px;text-align:center;
+                box-shadow:0 0 25px rgba(0,0,0,0.7);display:flex;
+                flex-direction:column;align-items:center;animation:fadeIn .35s ease;">
+      
+      <img src="${imgPath}" alt="${place.name}"
+           style="width:180px;height:180px;object-fit:contain;border-radius:10px;margin-bottom:12px;">
+
+      <h3 style="margin:6px 0 4px;font-size:1.3em;">${place.name}</h3>
+      <p style="margin:0 0 10px;color:#bbb;font-size:0.9em;">${cat}</p>
+
+      <p style="font-size:0.85em;line-height:1.45;color:#ddd;margin:0 0 14px;">
+        ${desc}
+      </p>
+
+      <div style="background:#222;padding:10px 12px;border-radius:8px;
+                  font-size:0.9em;color:#FFD600;">
+        🏛️ Du har fullført quizen og samlet stedet <strong>${place.name}</strong>!
+      </div>
+    </div>`;
+
+  document.body.appendChild(card);
+  setTimeout(() => card.classList.add("visible"), 10);
+  setTimeout(() => card.remove(), 4200);
+}
+
+
+// ==============================
+// ANIMASJONSSTILER
+// ==============================
 const style = document.createElement("style");
 style.textContent = `
 .person-popup {
@@ -1160,7 +1201,7 @@ style.textContent = `
   left: 50%;
   transform: translate(-50%, -50%) scale(0.9);
   opacity: 0;
-  transition: all 0.4s ease;
+  transition: all 0.35s ease;
   z-index: 9999;
 }
 .person-popup.visible {
@@ -1172,45 +1213,6 @@ style.textContent = `
   to   {opacity:1;transform:translate(-50%,-50%) scale(1);}
 }`;
 document.head.appendChild(style);
-
-// ==============================
-// STED-POPUP VED FULLFØRT QUIZ (SAMME STIL SOM PERSON)
-// ==============================
-function showPlacePopup(place) {
-  const imgPath = place.image || `bilder/kort/places/${place.id}.PNG`;
-  const cat = place.category || "Historie";
-  const desc = place.desc || "Ingen beskrivelse tilgjengelig.";
-
-  const card = document.createElement("div");
-  card.className = "person-popup"; // samme animasjon og stil
-  card.innerHTML = `
-    <div class="popup-inner" 
-         style="width:280px;max-width:80vw;background:rgba(15,15,20,0.95);
-                color:#fff;border-radius:12px;padding:18px;text-align:center;
-                box-shadow:0 0 20px rgba(0,0,0,0.6);display:flex;
-                flex-direction:column;align-items:center;animation:fadeIn .4s ease;">
-      
-      <img src="${imgPath}" alt="${place.name}"
-           style="width:180px;height:180px;object-fit:contain;object-position:center;
-                  border-radius:8px;margin-bottom:10px;">
-
-      <h3 style="margin:6px 0 4px;font-size:1.25em;">${place.name}</h3>
-      <p style="margin:0 0 10px;color:#ccc;font-size:0.9em;">${cat}</p>
-
-      <p style="font-size:0.85em;line-height:1.4;color:#ddd;margin:0 0 14px;">
-        ${desc}
-      </p>
-
-      <div style="background:#222;padding:8px 10px;border-radius:6px;font-size:0.9em;
-                  color:#FFD600;display:inline-block;">
-        🏛️ Du har fullført quizen og samlet stedet <strong>${place.name}</strong>!
-      </div>
-    </div>`;
-
-  document.body.appendChild(card);
-  setTimeout(() => card.classList.add("visible"), 20);
-  setTimeout(() => card.remove(), 4200);
-}
 
 // ==============================
 // 13. BOOT-FUNKSJON – LASTER DATA OG STARTER KART
