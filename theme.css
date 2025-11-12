@@ -1189,81 +1189,76 @@ button.primary.small:hover { opacity: .9; }
   color: #d0d8e4;
 }
 
-/* ===================================================== */
-/* 18) BADGE-MODAL – Åpnes når man trykker på et merke   */
-/* ===================================================== */
-
-.badge-modal {
+/* === Badge-modal === */
+.modal {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.6);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 10000;
-}
-
-.badge-modal[aria-hidden="false"],
-.badge-modal[style*="display: flex"] {
+  background: rgba(0,0,0,.7);
   display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
 }
-
-.badge-modal-inner {
-  position: relative;
+.modal-content {
   background: var(--panel);
   border: 1px solid var(--panel-border);
   border-radius: 14px;
-  box-shadow: var(--shadow);
   padding: 20px;
-  width: min(90vw, 420px);
-  max-height: 80vh;
-  overflow-y: auto;
   text-align: center;
-  animation: fadeIn .3s ease;
+  width: 300px;
+  color: var(--text);
+  box-shadow: 0 0 25px rgba(0,0,0,0.4);
 }
-
-.badge-modal-icon {
-  width: 100px;
-  height: 100px;
-  object-fit: contain;
+.badge-img {
+  width: 72px;
+  height: 72px;
+  border-radius: 12px;
+  margin-bottom: 8px;
+  border: 2px solid var(--panel-border);
+}
+.badge-title {
+  background: var(--accent);
+  color: #000;
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 8px;
+  margin: 6px 0;
+  font-weight: 600;
+}
+.badge-level {
+  color: var(--text-dim);
   margin-bottom: 10px;
-  border-radius: 50%;
-  border: 2px solid var(--accent);
 }
-
-.badge-modal h2 {
-  margin: 0;
-  color: var(--accent);
+.badge-progress {
+  background: rgba(255,255,255,0.1);
+  height: 6px;
+  border-radius: 6px;
+  overflow: hidden;
+  margin: 4px 0 8px;
 }
-
-.badge-modal .quiz-list {
+.badge-progress-bar {
+  height: 100%;
+  width: 0;
+  background: var(--accent);
+  transition: width .4s ease;
+}
+.badge-progress-text {
+  font-size: .85em;
+  color: var(--text-dim);
+  margin-bottom: 8px;
+}
+.badge-quizzes {
   list-style: none;
-  margin: 10px 0 0 0;
   padding: 0;
+  margin: 0 0 8px 0;
+  font-size: .9em;
+  color: var(--text-dim);
 }
-
-.badge-modal .quiz-list li {
-  padding: 6px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-  color: var(--text);
-  font-size: 0.9rem;
-}
-
-.badge-modal .quiz-list li:last-child {
-  border-bottom: none;
-}
-
-.badge-modal .close-badge {
-  position: absolute;
-  right: 16px;
-  top: 10px;
-  background: none;
-  color: var(--text);
+.close-btn {
+  background: var(--accent);
+  color: #000;
   border: none;
-  font-size: 1.4rem;
-  cursor: pointer;
-  transition: transform .2s ease;
-}
-.badge-modal .close-badge:hover {
-  transform: scale(1.1);
+  border-radius: 8px;
+  padding: 6px 14px;
+  font-weight: 600;
 }
