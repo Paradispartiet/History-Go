@@ -193,6 +193,8 @@ container.onclick = (e) => {
     console.warn("Klarte ikke åpne badge-modal:", err);
   }
 };
+}
+
 // --------------------------------------
 // PERSONER DU HAR LÅST OPP
 // --------------------------------------
