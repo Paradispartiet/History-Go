@@ -291,6 +291,43 @@ async function renderPlacesCollection() {
 }
 
 // --------------------------------------
+// ENKELLE FALLBACK-FUNKSJONER PÅ PROFILSIDEN
+// --------------------------------------
+
+// Viser info om et sted i en enkel modal
+function showPlaceOverlay(place) {
+  if (!place) return;
+  const modal = document.createElement("div");
+  modal.className = "place-overlay";
+  modal.innerHTML = `
+    <div class="place-overlay-content">
+      <button class="close-overlay" aria-label="Lukk">×</button>
+      <div class="left">
+        <h2>${place.name}</h2>
+        <p class="meta">${place.category || ""} · ${place.year || ""}</p>
+        <p>${place.desc || ""}</p>
+      </div>
+    </div>`;
+  document.body.appendChild(modal);
+  modal.querySelector(".close-overlay").onclick = () => modal.remove();
+  modal.addEventListener("click", e => { if (e.target === modal) modal.remove(); });
+}
+
+// Viser info om en person i en enkel popup
+function showPersonPopup(person) {
+  if (!person) return;
+  const popup = document.createElement("div");
+  popup.className = "person-popup visible";
+  popup.innerHTML = `
+    <img src="${person.image || `bilder/kort/people/${person.id}.PNG`}" alt="${person.name}">
+    <h3>${person.name}</h3>
+    <p>${person.year || ""}</p>
+    <p>${person.desc || ""}</p>`;
+  document.body.appendChild(popup);
+  popup.addEventListener("click", () => popup.remove());
+}
+
+// --------------------------------------
 // INITIALISERING MED DATA
 // --------------------------------------
 Promise.all([
