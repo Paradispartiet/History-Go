@@ -1221,65 +1221,60 @@ function runQuizFlow({ title = "Quiz", questions = [], onEnd = () => {} }) {
 }
 
 // ==============================
-// PERSON-POPUP VED FULLFØRT QUIZ (FORBEDRET SAMLEKORT-VISNING)
+// PERSON-POPUP (kort + wiki-info)
 // ==============================
-function showPersonPopup(person) {
+async function showPersonPopup(person) {
+  if (!person) return;
+
   const imgPath = person.image || `bilder/kort/people/${person.id}.PNG`;
+  const summary = await fetchWikiSummary(person.name);
   const cat = tagToCat(person.tags);
-  const desc = person.desc || "Ingen beskrivelse tilgjengelig.";
+  const desc = person.desc || "";
+  const color = catColor(cat);
 
   const card = document.createElement("div");
   card.className = "person-popup";
   card.innerHTML = `
-    <div class="popup-inner" 
-         style="width:280px;max-width:80vw;background:rgba(15,15,20,0.95);
-                color:#fff;border-radius:12px;padding:18px;text-align:center;
-                box-shadow:0 0 20px rgba(0,0,0,0.6);display:flex;
-                flex-direction:column;align-items:center;animation:fadeIn .4s ease;">
+    <div class="popup-inner"
+         style="width:min(92vw,700px);max-height:80vh;overflow-y:auto;
+                background:rgba(15,15,20,0.95);
+                border-top:6px solid ${color};
+                color:#fff;border-radius:14px;padding:20px;text-align:left;
+                box-shadow:0 0 28px rgba(0,0,0,0.7);
+                animation:fadeIn .4s ease;">
       
       <img src="${imgPath}" alt="${person.name}"
-           style="width:180px;height:180px;object-fit:contain;object-position:center;
-                  border-radius:8px;margin-bottom:10px;">
+           style="width:100%;border-radius:10px;margin-bottom:14px;">
 
-      <h3 style="margin:6px 0 4px;font-size:1.25em;">${person.name}</h3>
-      <p style="margin:0 0 10px;color:#ccc;font-size:0.9em;">${cat}</p>
+      <h2 style="margin:0 0 6px;">${person.name}</h2>
+      <p style="margin:0 0 12px;color:#ccc;font-size:0.9em;">${cat}</p>
 
-      <p style="font-size:0.85em;line-height:1.4;color:#ddd;margin:0 0 14px;">
-        ${desc}
+      <p style="font-size:0.95em;line-height:1.55;color:#ddd;margin:0 0 16px;">
+        ${summary || desc || "Ingen beskrivelse tilgjengelig."}
       </p>
 
-      <div style="background:#222;padding:8px 10px;border-radius:6px;font-size:0.9em;
-                  color:#f6c800;display:inline-block;">
+      <div style="background:#222;padding:10px 12px;border-radius:8px;
+                  font-size:0.95em;color:#f6c800;text-align:center;
+                  margin-bottom:14px;">
         🏅 Du har nå samlet kortet for <strong>${person.name}</strong>!
+      </div>
+
+      <div style="text-align:center;">
+        <button class="ghost" style="padding:6px 12px;color:#fff;
+                border:1px solid rgba(255,255,255,.2);border-radius:6px;">
+          Lukk
+        </button>
       </div>
     </div>`;
 
   document.body.appendChild(card);
   setTimeout(() => card.classList.add("visible"), 20);
-  setTimeout(() => card.remove(), 4200);
+  
+  // lukking
+  const closeBtn = card.querySelector("button");
+  closeBtn.addEventListener("click", () => card.remove());
+  card.addEventListener("click", e => { if (e.target === card) card.remove(); });
 }
-
-// Enkle animasjonsstiler – legg bare inn én gang
-const style = document.createElement("style");
-style.textContent = `
-.person-popup {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0.9);
-  opacity: 0;
-  transition: all 0.4s ease;
-  z-index: 9999;
-}
-.person-popup.visible {
-  transform: translate(-50%, -50%) scale(1);
-  opacity: 1;
-}
-@keyframes fadeIn {
-  from {opacity:0;transform:translate(-50%,-50%) scale(0.85);}
-  to   {opacity:1;transform:translate(-50%,-50%) scale(1);}
-}`;
-document.head.appendChild(style);
 
 // ==============================
 // STED-POPUP VED FULLFØRT QUIZ (wiki + bilde + personer)
