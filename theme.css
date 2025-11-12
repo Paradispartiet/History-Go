@@ -710,7 +710,7 @@ button.quiz-done.blink {
 }
 
 /* ===================================================== */
-/* PLACE-POPUP                                           */
+/* PLACE-POPUP – REN OG UTEN INLINE STIL                 */
 /* ===================================================== */
 
 .place-popup {
@@ -722,10 +722,88 @@ button.quiz-done.blink {
   transition: all 0.4s ease;
   z-index: 9999;
 }
+
 .place-popup.visible {
   transform: translate(-50%, -50%) scale(1);
   opacity: 1;
 }
+
+.place-popup .popup-inner {
+  width: min(92vw, 760px);
+  max-height: 85vh;
+  overflow-y: auto;
+  background: rgba(15,15,20,0.95);
+  border-top: 6px solid var(--border-color, #f6c800);
+  color: #fff;
+  border-radius: 14px;
+  padding: 22px 26px;
+  text-align: left;
+  box-shadow: 0 0 28px rgba(0,0,0,0.7);
+  animation: fadeIn .4s ease;
+}
+
+/* Bilde av stedet (kortet) */
+.place-popup .popup-image {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 14px;
+  object-fit: cover;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+/* Tittel og kategori */
+.place-popup .popup-title {
+  margin: 0 0 6px;
+  font-size: 1.4em;
+}
+
+.place-popup .popup-category {
+  margin: 0 0 12px;
+  color: #ccc;
+  font-size: 0.9em;
+}
+
+/* Tekst fra Wikipedia eller beskrivelse */
+.place-popup .popup-text {
+  font-size: 0.95em;
+  line-height: 1.55;
+  color: #ddd;
+  margin: 0 0 18px;
+  white-space: pre-line;
+}
+
+/* Fremhevet bekreftelse */
+.place-popup .popup-badge {
+  background: #222;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 0.95em;
+  color: #f6c800;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+/* Lukkeknapp */
+.place-popup .popup-actions {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.place-popup .popup-actions .close-popup {
+  padding: 6px 12px;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: 6px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.place-popup .popup-actions .close-popup:hover {
+  border-color: #f6c800;
+  color: #f6c800;
+}
+
+/* Scrollbar for lange artikler */
 .place-popup .popup-inner::-webkit-scrollbar {
   width: 8px;
 }
