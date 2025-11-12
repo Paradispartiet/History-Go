@@ -870,7 +870,6 @@ document.addEventListener("DOMContentLoaded", () => {
   renderCollection();
   renderMerits();
   renderGallery();
-  renderUserBadges();
 });
 
 // ==============================
