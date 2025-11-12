@@ -1,12 +1,12 @@
 // ============================================================
-// === HISTORY GO – PROFILE.JS (v22, ren og stabil) ============
+// === HISTORY GO – PROFILE.JS (v23, stabil og komplett) ======
 // ============================================================
 //
 // Håndterer profilsiden:
 //  - Profilkort og redigering
 //  - Historiekort / tidslinje
 //  - Merker og modaler
-//  - Personer og steder du har låst opp
+//  - Personer og steder brukeren har låst opp
 //  - Leser data direkte fra localStorage
 // ============================================================
 
@@ -62,6 +62,7 @@ function openProfileModal() {
   modal.style.display = "flex";
 
   modal.querySelector("#cancelProfile").onclick = () => modal.remove();
+
   modal.querySelector("#saveProfile").onclick = () => {
     const newName  = modal.querySelector("#newName").value.trim() || "Utforsker #182";
     const newColor = modal.querySelector("#newColor").value;
@@ -80,7 +81,7 @@ function openProfileModal() {
 }
 
 // --------------------------------------
-// HISTORIEKORT – HORISONTAL TIDSLINJE
+// HISTORIEKORT – TIDSLINJE
 // --------------------------------------
 function renderTimelineProfile() {
   const body = document.getElementById("timelineBody");
@@ -143,7 +144,7 @@ function renderTimelineProfile() {
 }
 
 // --------------------------------------
-// MINE MERKER – RUNDE IKONER MED MEDALJE
+// MINE MERKER
 // --------------------------------------
 async function renderMerits() {
   const container = document.getElementById("merits");
@@ -151,10 +152,7 @@ async function renderMerits() {
 
   const badges = await fetch("badges.json", { cache: "no-store" }).then(r => r.json());
   const localMerits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
-
-  const cats = Object.keys(localMerits).length
-    ? Object.keys(localMerits)
-    : badges.map(b => b.name);
+  const cats = Object.keys(localMerits).length ? Object.keys(localMerits) : badges.map(b => b.name);
 
   function medalByIndex(i) {
     return i <= 0 ? "🥉" : i === 1 ? "🥈" : i === 2 ? "🥇" : "🏆";
@@ -186,53 +184,18 @@ async function renderMerits() {
     const id = tile.dataset.badgeId;
     const badge = badges.find(b => b.id === id);
     if (badge) openBadgeModalFromBadge(badge);
-  }, { passive: true });
+  });
 }
 
 // --------------------------------------
-// MERKE-MODAL – VISER NIVÅ OG QUIZ-LISTE
-// --------------------------------------
-function openBadgeModalFromBadge(badge) {
-  if (!badge) return;
-
-  const merits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
-  const quizProgress = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
-  const catId = badge.id;
-  const catName = badge.name;
-  const completed = quizProgress[catId]?.completed || [];
-  const level = merits[catName]?.level || "Nybegynner";
-
-  const listHtml = completed.length
-    ? `<ul class="quiz-list">${completed.map(q => `<li>${q}</li>`).join("")}</ul>`
-    : `<p class="muted">Ingen quizzer fullført ennå.</p>`;
-
-  const modal = document.createElement("div");
-  modal.className = "badge-modal";
-  modal.innerHTML = `
-    <div class="badge-modal-inner">
-      <button class="close-badge" aria-label="Lukk">×</button>
-      <img src="${badge.image}" alt="${badge.name}" class="badge-modal-icon">
-      <h2>${catName}</h2>
-      <p class="muted">Nivå: ${level}</p>
-      <h4>Dine quizzer</h4>
-      ${listHtml}
-    </div>`;
-  document.body.appendChild(modal);
-
-  modal.style.display = "flex";
-  modal.setAttribute("aria-hidden", "false");
-  modal.querySelector(".close-badge").onclick = () => modal.remove();
-  modal.addEventListener("click", e => { if (e.target === modal) modal.remove(); });
-}
-
-// --------------------------------------
-// PERSONER DU HAR LÅST OPP (AVATARER)
+// PERSONER DU HAR LÅST OPP
 // --------------------------------------
 function renderPeopleCollection() {
   const grid = document.getElementById("peopleGrid");
   if (!grid) return;
 
   const peopleCollected = JSON.parse(localStorage.getItem("people_collected") || "{}");
+
   if (!Object.keys(peopleCollected).length) {
     grid.innerHTML = `<div class="muted">Ingen personer låst opp ennå.</div>`;
     return;
@@ -243,8 +206,7 @@ function renderPeopleCollection() {
 
   grid.innerHTML = collected.map(p => `
     <div class="avatar-card" data-person="${p.id}">
-      <img src="${p.image || `bilder/kort/people/${p.id}.PNG`}" 
-           alt="${p.name}" class="avatar-img">
+      <img src="${p.image || `bilder/kort/people/${p.id}.PNG`}" alt="${p.name}" class="avatar-img">
       <div class="avatar-name">${p.name}</div>
     </div>
   `).join("");
@@ -264,14 +226,22 @@ async function renderPlacesCollection() {
   const container = document.getElementById("collectionGrid");
   if (!container) return;
 
-  const visited = JSON.parse(localStorage.getItem("visited_places") || "{}");
-  if (!Object.keys(visited).length) {
+  const raw = localStorage.getItem("visited_places") ||
+              localStorage.getItem("places_visited") ||
+              localStorage.getItem("visitedPlaces") ||
+              "{}";
+  const visited = JSON.parse(raw);
+
+  const places = await fetch("places.json").then(r => r.json());
+
+  const visitedPlaces = Array.isArray(visited)
+    ? places.filter(p => visited.includes(p.id))
+    : places.filter(p => visited[p.id]);
+
+  if (!visitedPlaces.length) {
     container.innerHTML = `<p class="muted">Ingen steder besøkt ennå.</p>`;
     return;
   }
-
-  const places = await fetch("places.json").then(r => r.json());
-  const visitedPlaces = places.filter(p => visited[p.id]);
 
   container.innerHTML = visitedPlaces.map(p => `
     <div class="card place-card" data-id="${p.id}">
@@ -291,10 +261,8 @@ async function renderPlacesCollection() {
 }
 
 // --------------------------------------
-// ENKELLE FALLBACK-FUNKSJONER PÅ PROFILSIDEN
+// FALLBACK-FUNKSJONER
 // --------------------------------------
-
-// Viser info om et sted i en enkel modal
 function showPlaceOverlay(place) {
   if (!place) return;
   const modal = document.createElement("div");
@@ -313,7 +281,6 @@ function showPlaceOverlay(place) {
   modal.addEventListener("click", e => { if (e.target === modal) modal.remove(); });
 }
 
-// Viser info om en person i en enkel popup
 function showPersonPopup(person) {
   if (!person) return;
   const popup = document.createElement("div");
@@ -328,7 +295,7 @@ function showPersonPopup(person) {
 }
 
 // --------------------------------------
-// INITIALISERING MED DATA
+// INITIALISERING
 // --------------------------------------
 Promise.all([
   fetch("people.json").then(r => r.json()).then(d => PEOPLE = d),
