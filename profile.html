@@ -12,25 +12,27 @@
   <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 </head>
 
-<!-- Badge-modal -->
-<div id="badgeModal" class="modal" style="display:none;">
-  <div class="modal-content">
-    <img class="badge-img" src="" alt="Merke">
-    <h3 class="badge-title"></h3>
-    <p class="badge-level"></p>
+<body class="profile-page">
 
-    <div class="badge-progress">
-      <div class="badge-progress-bar"></div>
+  <!-- Badge-modal (riktig plassering!) -->
+  <div id="badgeModal" class="modal" style="display:none;">
+    <div class="modal-content">
+      <img class="badge-img" src="" alt="Merke">
+      <h3 class="badge-title"></h3>
+      <p class="badge-level"></p>
+
+      <div class="badge-progress">
+        <div class="badge-progress-bar"></div>
+      </div>
+      <p class="badge-progress-text"></p>
+
+      <ul class="badge-quizzes"></ul>
+
+      <button class="close-btn" onclick="document.getElementById('badgeModal').style.display='none'">
+        Lukk
+      </button>
     </div>
-    <p class="badge-progress-text"></p>
-
-    <ul class="badge-quizzes"></ul>
-
-    <button class="close-btn" onclick="document.getElementById('badgeModal').style.display='none'">
-      Lukk
-    </button>
   </div>
-</div>
 
 <body class="profile-page">
 
