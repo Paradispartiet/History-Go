@@ -34,6 +34,18 @@
     <button id="btnExitMap" title="Lukk kart" aria-label="Lukk kart">✕</button>
   </div>
 
+    <!-- Place Card (sheet) -->
+<div id="placeCard" aria-hidden="true">
+  <h2 id="pcTitle"></h2>
+  <div id="pcMeta"></div>
+  <p id="pcDesc"></p>
+  <div class="row">
+    <button id="pcUnlock" class="primary">Lås opp</button>
+    <button id="pcRoute" class="ghost">Rute</button>
+    <button id="pcClose" class="ghost">✕</button>
+  </div>
+</div>
+  
   <!-- Toast -->
   <div id="toast" role="status" aria-live="polite">OK</div>
 
@@ -126,7 +138,6 @@
     }
   </script>
 
-  <!-- Egne JS-filer -->
   <!-- Egne JS-filer -->
 <script src="app.js" defer></script>
 <script src="routes.js" defer></script>
