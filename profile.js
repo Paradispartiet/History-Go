@@ -43,7 +43,7 @@ function renderProfileCard() {
 }
 
 // --------------------------------------
-// PROFIL-REDIGERINGSMODAL
+// PROFIL-REDIGERINGSMODAL (stabil versjon)
 // --------------------------------------
 function openProfileModal() {
   const modal = document.createElement("div");
@@ -55,13 +55,21 @@ function openProfileModal() {
       <input id="newName" value="${localStorage.getItem("user_name") || "Utforsker #182"}">
       <label>Farge</label>
       <input id="newColor" type="color" value="${localStorage.getItem("user_color") || "#f6c800"}">
-      <button id="saveProfile">Lagre</button>
-      <button id="cancelProfile" style="margin-left:6px;background:#444;color:#fff;">Avbryt</button>
+      <div style="margin-top:10px;display:flex;gap:6px;justify-content:flex-end;">
+        <button id="cancelProfile" class="ghost">Avbryt</button>
+        <button id="saveProfile" class="primary">Lagre</button>
+      </div>
     </div>`;
   document.body.appendChild(modal);
   modal.style.display = "flex";
 
-  modal.querySelector("#cancelProfile").onclick = () => modal.remove();
+  // Lukke-funksjon med liten fade-out-forsinkelse
+  const closeModal = () => {
+    modal.classList.add("fade-out");
+    setTimeout(() => modal.remove(), 250);
+  };
+
+  modal.querySelector("#cancelProfile").onclick = closeModal;
 
   modal.querySelector("#saveProfile").onclick = () => {
     const newName  = modal.querySelector("#newName").value.trim() || "Utforsker #182";
@@ -75,11 +83,15 @@ function openProfileModal() {
     if (avatarEl) avatarEl.style.borderColor = newColor;
 
     showToast("Profil oppdatert ✅");
-    modal.remove();
     renderProfileCard();
+    closeModal();  // ✅ lukkes jevnt etter lagring
   };
-}
 
+  // Lukk ved klikk utenfor
+  modal.addEventListener("click", e => {
+    if (e.target === modal) closeModal();
+  });
+}
 // --------------------------------------
 // HISTORIEKORT – TIDSLINJE
 // --------------------------------------
