@@ -261,6 +261,42 @@ function showBadgeModal(badge) {
   modal.addEventListener("click", e => { if (e.target === modal) modal.remove(); });
 }
 
+// --------------------------------------
+// VIS BESØKTE STEDER PÅ PROFILSIDEN
+// --------------------------------------
+async function renderCollection() {
+  const container = document.getElementById("badgeGrid") || document.getElementById("collectionGrid");
+  if (!container) return;
+
+  const visited = JSON.parse(localStorage.getItem("visited_places") || "{}");
+  if (!Object.keys(visited).length) {
+    container.innerHTML = `<p class="muted">Ingen steder besøkt ennå.</p>`;
+    return;
+  }
+
+  // hent places.json
+  const places = await fetch("places.json").then(r => r.json());
+
+  // filtrer ut de brukeren har besøkt
+  const visitedPlaces = places.filter(p => visited[p.id]);
+
+  container.innerHTML = visitedPlaces.map(p => `
+    <div class="card place-card" data-id="${p.id}">
+      <div class="name">${p.name}</div>
+      <div class="meta">${p.category || ""} · ${p.year || ""}</div>
+      <p class="desc">${p.desc || ""}</p>
+    </div>
+  `).join("");
+
+  // klikk for å åpne sted
+  container.querySelectorAll(".place-card").forEach(el => {
+    el.addEventListener("click", () => {
+      const id = el.dataset.id;
+      const place = places.find(p => p.id === id);
+      if (place) showPlaceOverlay(place);
+    });
+  });
+}
 
 // --------------------------------------
 // INITIALISERING MED DATA
