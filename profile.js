@@ -1,400 +1,361 @@
 // ============================================================
-// === HISTORY GO – PROFILE.JS (v23 – stabil og komplett) =====
+// HISTORY GO – PROFILE.JS (v24 – HELT NY OG STABIL)
 // ============================================================
 //
-// Håndterer profilsiden:
-//  - Profilkort og redigering
-//  - Historiekort / tidslinje
-//  - Merker og modaler
-//  - Personer og steder brukeren har låst opp
-//  - Leser data direkte fra localStorage
+//  Denne fila kjører KUN på profile.html. Ikke i app.js.
+//
+//  Den gjør dette:
+//   ✓ Leser people.json / places.json / badges.json
+//   ✓ Viser profilkortet (navn + statistikk)
+//   ✓ Viser merker + åpner badge-modal riktig
+//   ✓ Viser personer du har låst opp
+//   ✓ Viser steder du har besøkt
+//   ✓ Viser tidslinjen
+//   ✓ Viser popup for person/sted (samme stil som app.js)
+//   ✓ 100% kompatibel med all localStorage-logikk fra app.js
+//
 // ============================================================
 
+
+// GLOBALT
 let PEOPLE = [];
 let PLACES = [];
 let BADGES = [];
 
-// --------------------------------------
-// PROFILKORT OG RENDERING
-// --------------------------------------
-function renderProfileCard() {
-  const name = localStorage.getItem("user_name") || "Utforsker #182";
 
-  const visited         = JSON.parse(localStorage.getItem("visited_places") || "{}");
-  const peopleCollected = JSON.parse(localStorage.getItem("people_collected") || "{}");
-  const quizProgress    = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
+// ------------------------------------------------------------
+// UTLESNING AV LOCALSTORAGE (TRYGG)
+// ------------------------------------------------------------
+function ls(name, fallback = {}) {
+  try {
+    return JSON.parse(localStorage.getItem(name)) || fallback;
+  } catch {
+    return fallback;
+  }
+}
+
+
+// ------------------------------------------------------------
+// PROFILKORT
+// ------------------------------------------------------------
+function renderProfileCard() {
+  const visited = ls("visited_places", {});
+  const quizProgress = ls("quiz_progress", {});
+  const streak = Number(localStorage.getItem("user_streak") || 0);
+
+  const userName = localStorage.getItem("user_name") || "Utforsker #182";
 
   const visitedCount = Object.keys(visited).length;
   const quizCount = Object.values(quizProgress)
     .map(v => Array.isArray(v.completed) ? v.completed.length : 0)
-    .reduce((a,b) => a+b, 0);
+    .reduce((a,b)=>a+b, 0);
 
-  const streak = Number(localStorage.getItem("user_streak") || 0);
-
-  document.getElementById("profileName").textContent = name;
+  document.getElementById("profileName").textContent = userName;
   document.getElementById("statVisited").textContent = visitedCount;
   document.getElementById("statQuizzes").textContent = quizCount;
   document.getElementById("statStreak").textContent = streak;
 }
 
-// --------------------------------------
-// PROFIL-REDIGERINGSMODAL
-// --------------------------------------
+
+// ------------------------------------------------------------
+// MERKER – GRID + MODAL
+// ------------------------------------------------------------
+async function renderMerits() {
+  const box = document.getElementById("merits");
+  if (!box) return;
+
+  const merits = ls("merits_by_category", {});
+  const cats = Object.keys(merits);
+
+  box.innerHTML = cats.map(cat => {
+    const merit = merits[cat];
+    const badge = BADGES.find(b =>
+      cat.toLowerCase().includes(b.id) ||
+      b.name.toLowerCase().includes(cat.toLowerCase())
+    );
+    if (!badge) return "";
+
+    const levelIndex = badge.tiers.findIndex(t => t.label === merit.level);
+    const medal = levelIndex === 0 ? "🥉" :
+                  levelIndex === 1 ? "🥈" :
+                  levelIndex === 2 ? "🥇" : "🏆";
+
+    return `
+      <div class="badge-mini" data-badge-id="${badge.id}">
+        <div class="badge-wrapper">
+          <img src="${badge.image}" class="badge-mini-icon" alt="${badge.name}">
+          <span class="badge-medal">${medal}</span>
+        </div>
+      </div>`;
+  }).join("");
+
+  // Klikk → modal
+  box.querySelectorAll(".badge-mini").forEach(el => {
+    el.addEventListener("click", () => {
+      const id = el.dataset.badgeId;
+      const badge = BADGES.find(b => b.id === id);
+      openBadgeModal(badge);
+    });
+  });
+}
+
+
+function openBadgeModal(badge) {
+  const modal = document.getElementById("badgeModal");
+  if (!modal || !badge) return;
+
+  const merits = ls("merits_by_category", {});
+  const info = merits[badge.name] || merits[badge.id] || { level:"Nybegynner", points:0 };
+
+  modal.querySelector(".badge-img").src = badge.image;
+  modal.querySelector(".badge-title").textContent = badge.name;
+  modal.querySelector(".badge-level").textContent = info.level;
+  modal.querySelector(".badge-progress-text").textContent = `${info.points} poeng`;
+
+  // Progressbar
+  const bar = modal.querySelector(".badge-progress-bar");
+  const max = badge.tiers[badge.tiers.length - 1].threshold;
+  bar.style.width = `${Math.min(100, (info.points / max) * 100)}%`;
+
+  // Quizer (vises bare liste)
+  const list = modal.querySelector(".badge-quizzes");
+  list.innerHTML = "";
+
+  const progress = ls("quiz_progress", {});
+  const completed = [];
+  for (const cat of Object.keys(progress)) {
+    progress[cat].completed?.forEach(q => completed.push(q));
+  }
+  list.innerHTML = completed.length
+    ? completed.map(id => `<li>${id}</li>`).join("")
+    : "<li>Ingen quiz fullført ennå</li>";
+
+  modal.style.display = "flex";
+  modal.setAttribute("aria-hidden", "false");
+
+  modal.onclick = e => {
+    if (e.target.id === "badgeModal") closeBadgeModal();
+  };
+
+  modal.querySelector(".close-btn").onclick = closeBadgeModal;
+}
+
+function closeBadgeModal() {
+  const m = document.getElementById("badgeModal");
+  if (!m) return;
+  m.style.display = "none";
+  m.setAttribute("aria-hidden", "true");
+}
+
+
+// ------------------------------------------------------------
+// PERSONER
+// ------------------------------------------------------------
+function renderPeopleCollection() {
+  const grid = document.getElementById("peopleGrid");
+  if (!grid) return;
+
+  const collected = ls("people_collected", {});
+
+  const peopleUnlocked = PEOPLE.filter(p => collected[p.id]);
+  if (!peopleUnlocked.length) {
+    grid.innerHTML = `<div class="muted">Ingen personer låst opp ennå.</div>`;
+    return;
+  }
+
+  grid.innerHTML = peopleUnlocked.map(p => `
+    <div class="avatar-card" data-person="${p.id}">
+      <img src="${p.image || `bilder/kort/people/${p.id}.PNG`}" class="avatar-img">
+      <div class="avatar-name">${p.name}</div>
+    </div>
+  `).join("");
+
+  grid.querySelectorAll(".avatar-card").forEach(el => {
+    el.onclick = () => showPersonPopup(PEOPLE.find(p => p.id === el.dataset.person));
+  });
+}
+
+
+// ------------------------------------------------------------
+// STEDER
+// ------------------------------------------------------------
+function renderPlacesCollection() {
+  const grid = document.getElementById("collectionGrid");
+  if (!grid) return;
+
+  const visited = ls("visited_places", {});
+  const places = PLACES.filter(p => visited[p.id]);
+
+  if (!places.length) {
+    grid.innerHTML = `<div class="muted">Ingen steder besøkt ennå.</div>`;
+    return;
+  }
+
+  grid.innerHTML = places.map(p => `
+    <div class="card place-card" data-place="${p.id}">
+      <div class="name">${p.name}</div>
+      <div class="meta">${p.category} · ${p.year || ""}</div>
+      <p class="desc">${p.desc || ""}</p>
+    </div>
+  `).join("");
+
+  grid.querySelectorAll(".place-card").forEach(el => {
+    el.onclick = () => showPlacePopup(PLACES.find(p => p.id === el.dataset.place));
+  });
+}
+
+
+// ------------------------------------------------------------
+// TIDSLINJE
+// ------------------------------------------------------------
+function renderTimeline() {
+  const body = document.getElementById("timelineBody");
+  const bar  = document.getElementById("timelineProgressBar");
+  const txt  = document.getElementById("timelineProgressText");
+  if (!body) return;
+
+  const visited = ls("visited_places", {});
+  const collected = ls("people_collected", {});
+
+  const items = [
+    ...PLACES.filter(p => visited[p.id]).map(p => ({
+      type:"place", id:p.id, name:p.name, year:Number(p.year)||0,
+      image:p.image || `bilder/kort/places/${p.id}.PNG`
+    })),
+    ...PEOPLE.filter(p => collected[p.id]).map(p => ({
+      type:"person", id:p.id, name:p.name, year:Number(p.year)||0,
+      image:p.image || `bilder/kort/people/${p.id}.PNG`
+    })),
+  ].sort((a,b)=>a.year - b.year);
+
+  const count = items.length;
+  if (count === 0) {
+    body.innerHTML = `<div class="muted">Du har ingen historiekort ennå.</div>`;
+    return;
+  }
+
+  body.innerHTML = items.map(x => `
+    <div class="timeline-card ${x.type}" data-id="${x.id}">
+      <img src="${x.image}">
+      <div class="timeline-name">${x.name}</div>
+      <div class="timeline-year">${x.year || "–"}</div>
+    </div>
+  `).join("");
+
+  const max = PEOPLE.length + PLACES.length;
+  if (bar) bar.style.width = `${(count/max)*100}%`;
+  if (txt) txt.textContent = `Du har låst opp ${count} kort`;
+
+  body.querySelectorAll(".timeline-card").forEach(el => {
+    el.onclick = () => {
+      const id = el.dataset.id;
+      const person = PEOPLE.find(p=>p.id===id);
+      if (person) return showPersonPopup(person);
+      const place = PLACES.find(p=>p.id===id);
+      if (place) return showPlacePopup(place);
+    };
+  });
+}
+
+
+// ------------------------------------------------------------
+// POPUPS (samme stil som app.js)
+// ------------------------------------------------------------
+function showPersonPopup(person) {
+  if (!person) return;
+
+  const card = document.createElement("div");
+  card.className = "person-popup";
+  card.innerHTML = `
+    <img src="${person.image || `bilder/kort/people/${person.id}.PNG`}">
+    <h3>${person.name}</h3>
+    <p>${person.year || ""}</p>
+    <p>${person.desc || ""}</p>
+  `;
+  document.body.appendChild(card);
+  setTimeout(()=>card.classList.add("visible"), 10);
+  setTimeout(()=>card.remove(), 3800);
+}
+
+function showPlacePopup(place) {
+  if (!place) return;
+
+  const card = document.createElement("div");
+  card.className = "person-popup";
+  card.innerHTML = `
+    <img src="${place.image || `bilder/kort/places/${place.id}.PNG`}">
+    <h3>${place.name}</h3>
+    <p>${place.year || ""}</p>
+    <p>${place.desc || ""}</p>
+  `;
+  document.body.appendChild(card);
+  setTimeout(()=>card.classList.add("visible"), 10);
+  setTimeout(()=>card.remove(), 3800);
+}
+
+
+// ------------------------------------------------------------
+// EDIT-PROFILMODAL
+// ------------------------------------------------------------
 function openProfileModal() {
+  const name = localStorage.getItem("user_name") || "Utforsker #182";
+  const color = localStorage.getItem("user_color") || "#f6c800";
+
   const modal = document.createElement("div");
   modal.className = "profile-modal";
   modal.innerHTML = `
     <div class="profile-modal-inner">
       <h3>Endre profil</h3>
       <label>Navn</label>
-      <input id="newName" value="${localStorage.getItem("user_name") || "Utforsker #182"}">
-
+      <input id="newName" value="${name}">
       <label>Farge</label>
-      <input id="newColor" type="color" value="${localStorage.getItem("user_color") || "#f6c800"}">
-
+      <input id="newColor" type="color" value="${color}">
       <button id="saveProfile">Lagre</button>
       <button id="cancelProfile" style="margin-left:6px;background:#444;color:#fff;">Avbryt</button>
     </div>
   `;
-
   document.body.appendChild(modal);
   modal.style.display = "flex";
 
   modal.querySelector("#cancelProfile").onclick = () => modal.remove();
-
   modal.querySelector("#saveProfile").onclick = () => {
-    const newName  = modal.querySelector("#newName").value.trim() || "Utforsker #182";
+    const newName = modal.querySelector("#newName").value.trim() || "Utforsker #182";
     const newColor = modal.querySelector("#newColor").value;
 
     localStorage.setItem("user_name", newName);
     localStorage.setItem("user_color", newColor);
 
-    document.getElementById("profileName").textContent = newName;
-
-    showToast("Profil oppdatert ✅");
-    modal.remove();
     renderProfileCard();
+    modal.remove();
   };
 }
 
-// --------------------------------------
-// HISTORIEKORT – TIDSLINJE
-// --------------------------------------
-function renderTimelineProfile() {
-  const body = document.getElementById("timelineBody");
-  if (!body) return;
 
-  const bar  = document.getElementById("timelineProgressBar");
-  const txt  = document.getElementById("timelineProgressText");
-
-  const visited         = JSON.parse(localStorage.getItem("visited_places") || "{}");
-  const peopleCollected = JSON.parse(localStorage.getItem("people_collected") || "{}");
-
-  const visitedPlaces   = PLACES.filter(p => visited[p.id]);
-  const collectedPeople = PEOPLE.filter(p => peopleCollected[p.id]);
-
-  const allItems = [
-    ...visitedPlaces.map(p => ({
-      type: "place",
-      id: p.id,
-      name: p.name,
-      year: Number(p.year) || 0,
-      image: p.image || `bilder/kort/places/${p.id}.PNG`
-    })),
-    ...collectedPeople.map(p => ({
-      type: "person",
-      id: p.id,
-      name: p.name,
-      year: Number(p.year) || 0,
-      image: p.image || `bilder/kort/people/${p.id}.PNG`
-    }))
-  ].sort((a, b) => a.year - b.year);
-
-  // fremdrift
-  const total = allItems.length;
-  if (bar) bar.style.width = `${(total ? (total / (PEOPLE.length + PLACES.length)) * 100 : 0).toFixed(1)}%`;
-  if (txt) txt.textContent = total ? `Du har låst opp ${total} historiekort` : "";
-
-  if (!total) {
-    body.innerHTML = `<div class="muted">Du har ingen historiekort ennå.</div>`;
-    return;
-  }
-
-  body.innerHTML = allItems.map(item => `
-    <div class="timeline-card ${item.type}" data-id="${item.id}">
-      <img src="${item.image}" alt="${item.name}">
-      <div class="timeline-name">${item.name}</div>
-      <div class="timeline-year">${item.year || "–"}</div>
-    </div>
-  `).join("");
-
-  body.querySelectorAll(".timeline-card").forEach(card => {
-    card.addEventListener("click", () => {
-      const id = card.dataset.id;
-      if (card.classList.contains("person")) {
-        showPersonPopup(PEOPLE.find(p => p.id === id));
-      } else {
-        showPlaceOverlay(PLACES.find(p => p.id === id));
-      }
-    });
-  });
-}
-
-// --------------------------------------
-// MINE MERKER
-// --------------------------------------
-async function renderMerits() {
-  const container = document.getElementById("merits");
-  if (!container) return;
-
-  const badges = await fetch("badges.json", { cache: "no-store" }).then(r => r.json());
-  const localMerits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
-
-  const cats = Object.keys(localMerits).length 
-    ? Object.keys(localMerits)
-    : badges.map(b => b.name);
-
-  function medalByIndex(i) {
-    return i <= 0 ? "🥉" : i === 1 ? "🥈" : i === 2 ? "🥇" : "🏆";
-  }
-
-  container.innerHTML = cats.map(cat => {
-    const merit = localMerits[cat] || { level: "Nybegynner" };
-    const badge = badges.find(b =>
-      cat.toLowerCase().includes(b.id) ||
-      b.name.toLowerCase().includes(cat.toLowerCase())
-    );
-    if (!badge) return "";
-
-    const tierIndex = badge.tiers.findIndex(t => t.label === merit.level);
-    return `
-      <div class="badge-mini" data-badge-id="${badge.id}">
-        <div class="badge-wrapper">
-          <img src="${badge.image}" alt="${badge.name}" class="badge-mini-icon">
-          <span class="badge-medal">${medalByIndex(tierIndex)}</span>
-        </div>
-      </div>`;
-  }).join("");
-
-  container.querySelectorAll(".badge-mini").forEach(tile => {
-    tile.addEventListener("click", () => {
-      const id = tile.dataset.badgeId;
-      const badge = badges.find(b => b.id === id);
-      openBadgeModalFromBadge(badge);
-    });
-  });
-}
-
-// --------------------------------------
-// BADGE-MODAL
-// --------------------------------------
-async function openBadgeModalFromBadge(badgeRef) {
-  const modal = document.getElementById("badgeModal");
-  if (!modal) return;
-
-  // elementer
-  const modalImg   = modal.querySelector(".badge-img");
-  const modalTitle = modal.querySelector(".badge-title");
-  const modalLevel = modal.querySelector(".badge-level");
-  const quizList   = modal.querySelector(".badge-quizzes");
-
-  // riktig badge
-  const badge = BADGES.find(b => b.id === badgeRef.id) || badgeRef;
-
-  const merits       = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
-  const quizProgress = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
-
-  const merit   = merits[badge.name] || merits[badge.id] || {};
-  const quizzes = merit.quizzes || [];
-  const level   = merit.level || "Nybegynner";
-
-  const allQuizzes   = await fetch("quizzes.json", { cache:"no-store" }).then(r => r.json());
-  const badgeQuizzes = allQuizzes.filter(q => q.categoryId === badge.id);
-
-  // bygg quizliste
-  let listHTML = "";
-
-  if (quizzes.length) {
-    quizzes.forEach(qid => {
-      const q = badgeQuizzes.find(x => x.id === qid);
-      if (!q) return;
-
-      const userData = quizProgress[q.id] || {};
-      const correct  = q.answer || "(ukjent)";
-      const userAns  = userData.answer || correct;
-      const isCorrect = userAns === correct;
-
-      listHTML += `
-        <li>
-          <strong>${q.question}</strong><br>
-          <small>Riktig svar: <span style="color:${isCorrect ? 'var(--accent)' : '#ccc'}">${correct}</span></small>
-        </li>
-      `;
-    });
-  } else {
-    listHTML = "<li>Ingen quizer fullført ennå</li>";
-  }
-
-  // fyll inn info
-  modalImg.src = badge.image;
-  modalTitle.textContent = badge.name;
-  modalLevel.textContent = level;
-  quizList.innerHTML = listHTML;
-
-  // vis modal
-  modal.style.display = "flex";
-  modal.setAttribute("aria-hidden", "false");
-
-  // lukking (rettet!)
-  const closeBtn = modal.querySelector(".close-btn");
-  if (closeBtn) closeBtn.onclick = () => closeBadgeModal();
-
-  modal.onclick = e => { if (e.target === modal) closeBadgeModal(); };
-}
-
-function closeBadgeModal() {
-  const modal = document.getElementById("badgeModal");
-  if (!modal) return;
-
-  modal.style.display = "none";
-  modal.setAttribute("aria-hidden", "true");
-}
-
-// --------------------------------------
-// PERSONER
-// --------------------------------------
-function renderPeopleCollection() {
-  const grid = document.getElementById("peopleGrid");
-  if (!grid) return;
-
-  const peopleCollected = JSON.parse(localStorage.getItem("people_collected") || "{}");
-
-  if (!Object.keys(peopleCollected).length) {
-    grid.innerHTML = `<div class="muted">Ingen personer låst opp ennå.</div>`;
-    return;
-  }
-
-  const collected = PEOPLE.filter(p => peopleCollected[p.id]);
-  collected.sort((a, b) => a.name.localeCompare(b.name));
-
-  grid.innerHTML = collected.map(p => `
-    <div class="avatar-card" data-person="${p.id}">
-      <img src="${p.image || `bilder/kort/people/${p.id}.PNG`}" alt="${p.name}" class="avatar-img">
-      <div class="avatar-name">${p.name}</div>
-    </div>
-  `).join("");
-
-  grid.querySelectorAll(".avatar-card").forEach(card => {
-    card.onclick = () => {
-      const person = PEOPLE.find(p => p.id === card.dataset.person);
-      showPersonPopup(person);
-    };
-  });
-}
-
-// --------------------------------------
-// STEDER
-// --------------------------------------
-async function renderPlacesCollection() {
-  const container = document.getElementById("collectionGrid");
-  if (!container) return;
-
-  const raw = localStorage.getItem("visited_places") 
-          || localStorage.getItem("places_visited")
-          || localStorage.getItem("visitedPlaces")
-          || "{}";
-
-  const visited = JSON.parse(raw);
-  const places = await fetch("places.json").then(r => r.json());
-
-  const visitedPlaces = Array.isArray(visited)
-    ? places.filter(p => visited.includes(p.id))
-    : places.filter(p => visited[p.id]);
-
-  if (!visitedPlaces.length) {
-    container.innerHTML = `<p class="muted">Ingen steder besøkt ennå.</p>`;
-    return;
-  }
-
-  container.innerHTML = visitedPlaces.map(p => `
-    <div class="card place-card" data-id="${p.id}">
-      <div class="name">${p.name}</div>
-      <div class="meta">${p.category || ""} · ${p.year || ""}</div>
-      <p class="desc">${p.desc || ""}</p>
-    </div>
-  `).join("");
-
-  container.querySelectorAll(".place-card").forEach(el => {
-    el.onclick = () => showPlaceOverlay(places.find(p => p.id === el.dataset.id));
-  });
-}
-
-// --------------------------------------
-// FALLBACK
-// --------------------------------------
-function showPlaceOverlay(place) {
-  if (!place) return;
-  const modal = document.createElement("div");
-  modal.className = "place-overlay";
-
-  modal.innerHTML = `
-    <div class="place-overlay-content">
-      <button class="close-overlay" aria-label="Lukk">×</button>
-      <div class="left">
-        <h2>${place.name}</h2>
-        <p class="meta">${place.category || ""} · ${place.year || ""}</p>
-        <p>${place.desc || ""}</p>
-      </div>
-    </div>
-  `;
-
-  document.body.appendChild(modal);
-
-  modal.querySelector(".close-overlay").onclick = () => modal.remove();
-  modal.onclick = e => { if (e.target === modal) modal.remove(); };
-}
-
-function showPersonPopup(person) {
-  if (!person) return;
-  const popup = document.createElement("div");
-  popup.className = "person-popup visible";
-
-  popup.innerHTML = `
-    <img src="${person.image || `bilder/kort/people/${person.id}.PNG`}" alt="${person.name}">
-    <h3>${person.name}</h3>
-    <p>${person.year || ""}</p>
-    <p>${person.desc || ""}</p>
-  `;
-
-  document.body.appendChild(popup);
-  popup.onclick = () => popup.remove();
-}
-
-// --------------------------------------
-// INITIALISERING
-// --------------------------------------
+// ------------------------------------------------------------
+// INIT
+// ------------------------------------------------------------
 Promise.all([
-  fetch("people.json").then(r => r.json()).then(d => PEOPLE = d),
-  fetch("places.json").then(r => r.json()).then(d => PLACES = d),
-  fetch("badges.json").then(r => r.json()).then(d => BADGES = d)
+  fetch("people.json").then(r=>r.json()).then(d=>PEOPLE=d),
+  fetch("places.json").then(r=>r.json()).then(d=>PLACES=d),
+  fetch("badges.json").then(r=>r.json()).then(d=>BADGES=d)
 ]).then(() => {
   renderProfileCard();
   renderMerits();
   renderPeopleCollection();
   renderPlacesCollection();
-  renderTimelineProfile();
+  renderTimeline();
 });
 
-// Ny DOM-init
 document.addEventListener("DOMContentLoaded", () => {
   const editBtn = document.getElementById("editProfileBtn");
   if (editBtn) editBtn.onclick = openProfileModal;
 
-  setTimeout(() => {
+  // Sync etter quiz (app.js)
+  window.addEventListener("updateProfile", () => {
     renderProfileCard();
     renderMerits();
     renderPeopleCollection();
     renderPlacesCollection();
-    renderTimelineProfile();
-  }, 600);
+    renderTimeline();
+  });
 });
