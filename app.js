@@ -79,8 +79,7 @@ const el = {
   list:          document.getElementById("nearbyList"),
   seeMore:       document.getElementById("btnSeeMoreNearby"),
   sheetNear:     document.getElementById("sheetNearby"),
-  sheetNearBody: document.getElementById("sheetNearbyBody")
-};
+  sheetNearBody: document.getElementById("sheetNearbyBody"),
 
   // Place Card (sheet)
   pc:       document.getElementById("placeCard"),
@@ -91,7 +90,6 @@ const el = {
   pcRoute:  document.getElementById("pcRoute"),
   pcClose:  document.getElementById("pcClose")
 };
-
 
 // ==============================
 // 3. KATEGORIFUNKSJONER
