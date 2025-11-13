@@ -8,21 +8,23 @@
   <link rel="manifest" href="manifest.json">
   <link rel="stylesheet" href="theme.css">
 
-  <!-- Leaflet må lastes FØR app.js (uten defer) -->
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    crossorigin=""
-  >
+  <!-- Popup-systemet -->
+  <script src="popup-utils.js"></script>
+
+  <!-- Leaflet må komme før app.js -->
+  <link rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        crossorigin="">
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 
-  <!-- Leaflet Routing Machine -->
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css"
-  >
+  <!-- Routing Machine -->
+  <link rel="stylesheet"
+        href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css">
   <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script>
-</head>
+
+  <!-- HOVED-APPEN (kun én gang, ikke defer) -->
+  <script src="app.js"></script>
+</head>   <!--  👈  VIKTIG!  -->
 
 <body>
   <!-- Kart (bakgrunn) -->
@@ -34,53 +36,52 @@
     <button id="btnExitMap" title="Lukk kart" aria-label="Lukk kart">✕</button>
   </div>
 
-    <!-- Place Card (sheet) -->
-<div id="placeCard" aria-hidden="true">
-  <h2 id="pcTitle"></h2>
-  <div id="pcMeta"></div>
-  <p id="pcDesc"></p>
-  <div class="row">
-    <button id="pcUnlock" class="primary">Lås opp</button>
-    <button id="pcRoute" class="ghost">Rute</button>
-    <button id="pcClose" class="ghost">✕</button>
+  <!-- Place Card (sheet) -->
+  <div id="placeCard" aria-hidden="true">
+    <h2 id="pcTitle"></h2>
+    <div id="pcMeta"></div>
+    <p id="pcDesc"></p>
+    <div class="row">
+      <button id="pcUnlock" class="primary">Lås opp</button>
+      <button id="pcRoute" class="ghost">Rute</button>
+      <button id="pcClose" class="ghost">✕</button>
+    </div>
   </div>
-</div>
-  
+
   <!-- Toast -->
   <div id="toast" role="status" aria-live="polite">OK</div>
 
   <header class="site-header">
-  <div class="brand">
-    <img src="bilder/logo_historygo.PNG" alt="History Go logo" class="brand-logo">
-    <span class="brand-name">History Go</span>
-  </div>
-  <div class="actions">
-    <button id="btnSeeMap" class="secondary">Se kart</button>
-    <label class="toggle">
-      <input id="testToggle" type="checkbox" />
-      <span>Testmodus</span>
-    </label>
-  </div>
-</header>
+    <div class="brand">
+      <img src="bilder/logo_historygo.PNG" alt="History Go logo" class="brand-logo">
+      <span class="brand-name">History Go</span>
+    </div>
+    <div class="actions">
+      <button id="btnSeeMap" class="secondary">Se kart</button>
+      <label class="toggle">
+        <input id="testToggle" type="checkbox" />
+        <span>Testmodus</span>
+      </label>
+    </div>
+  </header>
 
   <main>
-
     <!-- === MINI-PROFIL (forside) === -->
-<section id="miniProfile" class="panel mini-profile">
-  <div class="info">
-    <div class="profile-top">
-      <h3 id="miniName">Utforsker #182</h3>
-      <a href="profile.html" class="arrow-link" title="Gå til profilen din">→</a>
-    </div>
+    <section id="miniProfile" class="panel mini-profile">
+      <div class="info">
+        <div class="profile-top">
+          <h3 id="miniName">Utforsker #182</h3>
+          <a href="profile.html" class="arrow-link" title="Gå til profilen din">→</a>
+        </div>
 
-    <p id="miniStats" class="muted">
-      <span id="linkPlaces" class="linkish">0 steder</span> · 
-      <span id="linkBadges" class="linkish">0 merker</span> · 
-      <span id="linkQuiz" class="linkish">0 quizzer</span>
-    </p>
-  </div>
-</section>
-    
+        <p id="miniStats" class="muted">
+          <span id="linkPlaces" class="linkish">0 steder</span> · 
+          <span id="linkBadges" class="linkish">0 merker</span> · 
+          <span id="linkQuiz" class="linkish">0 quizzer</span>
+        </p>
+      </div>
+    </section>
+
     <!-- Nærområde -->
     <section class="panel">
       <h2>
@@ -91,43 +92,43 @@
       <div id="nearbyList" class="cards"></div>
     </section>
 
-<!-- Ruter -->
-<section class="panel">
-  <h2>Utforsk ruter</h2>
-  <p class="muted">Følg tematiske ruter gjennom byens historie, kunst og vitenskap.</p>
+    <!-- Ruter -->
+    <section class="panel">
+      <h2>Utforsk ruter</h2>
+      <p class="muted">Følg tematiske ruter gjennom byens historie, kunst og vitenskap.</p>
 
-  <div class="route-buttons" style="margin-top:12px;display:flex;flex-wrap:wrap;gap:10px;">
-  <button class="primary"
-    onclick="loadRoutes().then(()=>focusRouteOnMap('vitenskapsruten'))">
-    🧠 Vitenskapsruten
-  </button>
+      <div class="route-buttons" style="margin-top:12px;display:flex;flex-wrap:wrap;gap:10px;">
+        <button class="primary"
+          onclick="loadRoutes().then(()=>focusRouteOnMap('vitenskapsruten'))">
+          🧠 Vitenskapsruten
+        </button>
 
-  <button class="primary"
-    onclick="loadRoutes().then(()=>focusRouteOnMap('kunstruten_sentrum'))">
-    🎨 Kunstruten
-  </button>
+        <button class="primary"
+          onclick="loadRoutes().then(()=>focusRouteOnMap('kunstruten_sentrum'))">
+          🎨 Kunstruten
+        </button>
 
-  <button class="primary"
-    onclick="loadRoutes().then(()=>focusRouteOnMap('skulpturruten_vigeland'))">
-    🗿 Skulpturruten
-  </button>
+        <button class="primary"
+          onclick="loadRoutes().then(()=>focusRouteOnMap('skulpturruten_vigeland'))">
+          🗿 Skulpturruten
+        </button>
 
-  <button class="primary"
-    onclick="loadRoutes().then(()=>focusRouteOnMap('industrieruten_sentrum'))">
-    🏭 Industrieruten
-  </button>
-</div>
-</section>
-    
-  <!-- “Se flere i nærheten” sheet -->
-  <div id="sheetNearby" class="sheet" aria-hidden="true">
-    <div class="sheet-head">
-      <h3>Se flere i nærheten</h3>
-      <button class="sheet-close" data-close="#sheetNearby">✕</button>
+        <button class="primary"
+          onclick="loadRoutes().then(()=>focusRouteOnMap('industrieruten_sentrum'))">
+          🏭 Industrieruten
+        </button>
+      </div>
+    </section>
+
+    <!-- “Se flere i nærheten” sheet -->
+    <div id="sheetNearby" class="sheet" aria-hidden="true">
+      <div class="sheet-head">
+        <h3>Se flere i nærheten</h3>
+        <button class="sheet-close" data-close="#sheetNearby">✕</button>
+      </div>
+      <div id="sheetNearbyBody" class="sheet-body"></div>
     </div>
-    <div id="sheetNearbyBody" class="sheet-body"></div>
-  </div>
-
+  </main>
 
   <!-- Service Worker -->
   <script>
@@ -138,10 +139,9 @@
     }
   </script>
 
-  <!-- Egne JS-filer -->
-<script src="app.js" defer></script>
-<script src="routes.js" defer></script>
+  <!-- Routes må gjerne defer -->
+  <script src="routes.js" defer></script>
 
-    <div class="app-frame"></div>
+  <div class="app-frame"></div>
 </body>
 </html>
