@@ -369,7 +369,16 @@ function drawPlaceMarkers() {
     });
 
     mk.on("click", () => {
+  // Lukk tidligere overlays
+  closePlaceOverlay();
+
+  // Vis overlay (tekst + personer + quiz)
+  showPlaceOverlay(p);
+
+  // Vis den nye globale popupen (kort + bilde + info)
+  if (window.showPlacePopup) {
     window.showPlacePopup(p);
+  }
 });
   });
 }
