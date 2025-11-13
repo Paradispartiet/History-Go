@@ -427,11 +427,6 @@ function openPlaceCard(p) {
 
   el.pcRoute.onclick = () => showRouteTo(p);
   
-  // ❌ showPlaceOverlay(p) — FJERNET
-  // ✔️ popup-systemet brukes nå
-  if (window.showPlacePopup) {
-    window.showPlacePopup(p);
-  }
 }
 
 function openPlaceCardByPerson(person) {
