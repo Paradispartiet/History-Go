@@ -1328,7 +1328,7 @@ function runQuizFlow({ title = "Quiz", questions = [], onEnd = () => {} }) {
 // ============================================================
 //  UNIVERSAL PERSON INFO POPUP
 // ============================================================
-function showPersonPopup(person) {
+window.showPersonPopup = function(person) {
   if (!person) return;
 
   // Finn ansikt + kortbilde
@@ -1416,7 +1416,7 @@ function showPersonPopup(person) {
 // ============================================================
 // UNIVERSAL STEDS-POPUP (info-popup, ikke reward)
 // ============================================================
-function showPlacePopup(place) {
+window.showPlacePopup = function(place) {
   if (!place) return;
 
   // Bilde av kortet
