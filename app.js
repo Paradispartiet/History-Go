@@ -832,7 +832,10 @@ function requestLocation() {
   );
 }
 
-// MINI-PROFIL + quiz-historikk på forsiden
+
+// ==============================
+// MINI-PROFIL + quiz-historikk
+// ==============================
 function initMiniProfile() {
   const nm = document.getElementById("miniName");
   const st = document.getElementById("miniStats");
@@ -841,9 +844,9 @@ function initMiniProfile() {
   const name  = localStorage.getItem("user_name")  || "Utforsker #182";
   const color = localStorage.getItem("user_color") || "#f6c800";
 
-  const visitedLS         = JSON.parse(localStorage.getItem("visited_places") || "{}");
-  const meritsLS          = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
-  const quizProgress      = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
+  const visitedLS    = JSON.parse(localStorage.getItem("visited_places") || "{}");
+  const meritsLS     = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
+  const quizProgress = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
 
   const visitedCount = Object.keys(visitedLS).length;
   const badgeCount   = Object.keys(meritsLS).length;
@@ -871,9 +874,9 @@ function showQuizHistory() {
   const list = recent
     .map(item => {
       const person = PEOPLE.find(p => p.id === item.id);
-      const place = PLACES.find(p => p.id === item.id);
+      const place  = PLACES.find(p => p.id === item.id);
       const name = person?.name || place?.name || item.id;
-      const cat = item.category || "–";
+      const cat  = item.category || "–";
       return `<li><strong>${name}</strong><br><span class="muted">${cat}</span></li>`;
     })
     .join("");
@@ -899,12 +902,13 @@ function showQuizHistory() {
   });
 }
 
+
+// ==============================
+// MINI-PROFIL — linkene
+// ==============================
 function wireMiniProfileLinks() {
-  document.getElementById("linkPlaces")?.addEventListener("click", () => {
-    // erstatter enterMapMode()
-    document.body.classList.add("map-mode");
-    showToast("Viser steder på kartet");
-  });
+  // 🔥 Korrekt: bruk enterMapMode()
+  document.getElementById("linkPlaces")?.addEventListener("click", enterMapMode);
 
   document.getElementById("linkBadges")?.addEventListener("click", () => {
     window.location.href = "profile.html#userBadgesGrid";
@@ -913,7 +917,10 @@ function wireMiniProfileLinks() {
   document.getElementById("linkQuiz")?.addEventListener("click", showQuizHistory);
 }
 
+
+// ==============================
 // BOOT
+// ==============================
 async function boot() {
   initMap();
 
@@ -952,6 +959,9 @@ document.addEventListener("DOMContentLoaded", () => {
 function enterMapMode() {
   document.body.classList.add("map-only");
 
+  // Lukk overlay hvis det var åpent
+  closePlaceOverlay();
+
   if (el.btnSeeMap)  el.btnSeeMap.style.display  = "none";
   if (el.btnExitMap) el.btnExitMap.style.display = "block";
 
@@ -968,6 +978,9 @@ function enterMapMode() {
 
 function exitMapMode() {
   document.body.classList.remove("map-only");
+
+  // Lukk overlay hvis det var åpent
+  closePlaceOverlay();
 
   if (el.btnSeeMap)  el.btnSeeMap.style.display  = "block";
   if (el.btnExitMap) el.btnExitMap.style.display = "none";
@@ -987,22 +1000,25 @@ el.btnSeeMap?.addEventListener("click", enterMapMode);
 el.btnExitMap?.addEventListener("click", exitMapMode);
 
 
+
+
+
 // ==============================
 // 13. QUIZ – DYNAMISK LASTER, MODAL & SCORE
 // ==============================
 const QUIZ_FILE_MAP = {
-  kunst:        "quiz_kunst.json",
-  sport:        "quiz_sport.json",
-  politikk:     "quiz_politikk.json",
+  kunst:         "quiz_kunst.json",
+  sport:         "quiz_sport.json",
+  politikk:      "quiz_politikk.json",
   populaerkultur:"quiz_populaerkultur.json",
-  musikk:       "quiz_musikk.json",
-  subkultur:    "quiz_subkultur.json",
-  vitenskap:    "quiz_vitenskap.json",
-  natur:        "quiz_natur.json",
-  litteratur:   "quiz_litteratur.json",
-  by:           "quiz_by.json",
-  historie:     "quiz_historie.json",
-  naeringsliv:  "quiz_naeringsliv.json"
+  musikk:        "quiz_musikk.json",
+  subkultur:     "quiz_subkultur.json",
+  vitenskap:     "quiz_vitenskap.json",
+  natur:         "quiz_natur.json",
+  litteratur:    "quiz_litteratur.json",
+  by:            "quiz_by.json",
+  historie:      "quiz_historie.json",
+  naeringsliv:   "quiz_naeringsliv.json"
 };
 
 async function loadQuizForCategory(categoryId) {
@@ -1125,10 +1141,17 @@ async function startQuiz(targetId) {
         if (person) {
           peopleCollected[targetId] = true;
           savePeople();
+
+          // 🔥 VIKTIG: sørger for at profilsiden oppdaterer seg live
+          window.dispatchEvent(new Event("updateProfile"));
+
           showRewardPerson(person);
-          document
-            .getElementById("gallery")
-            ?.scrollIntoView({ behavior: "smooth" });
+
+          const galleryEl = document.getElementById("gallery");
+          if (galleryEl) {
+            galleryEl.scrollIntoView({ behavior: "smooth" });
+          }
+
         } else if (place) {
           // Vis kort hvis stedet er besøkt eller testmodus
           const visitedPlaces = visited;
@@ -1138,9 +1161,7 @@ async function startQuiz(targetId) {
           }
         }
 
-        showToast(
-          `Perfekt! ${total}/${total} riktige 🎯 Du fikk poeng og kort!`
-        );
+        showToast(`Perfekt! ${total}/${total} riktige 🎯 Du fikk poeng og kort!`);
         window.dispatchEvent(new Event("updateProfile"));
       } else {
         showToast(
