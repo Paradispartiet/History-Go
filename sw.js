@@ -13,6 +13,7 @@ const CORE = [
   'icons.js',
   'places.json',
   'people.json',
+  'popup-utils.js',
   'quiz_vitenskap.json',
   'quiz_litteratur.json',
   'quiz_historie.json',
