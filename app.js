@@ -429,11 +429,6 @@ function openPlaceCard(p) {
   // ----- RUTE -----
   el.pcRoute.onclick = () => showRouteTo(p);
 
-  // ----- Dette er superviktig -----
-  // Her viser vi det fine overlayet med personer
-  showPlaceOverlay(p);
-}
-
 function openPlaceCardByPerson(person) {
   const place =
     PLACES.find(x => x.id === person.placeId) || {
