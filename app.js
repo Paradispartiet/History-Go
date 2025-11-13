@@ -390,69 +390,64 @@ function pulseMarker(lat, lon) {
   setTimeout(() => MAP.removeLayer(pulse), 1000);
 }
 
-function openPlaceCard(p) {
-  if (!el.pc) return;
+function openPlaceCard(place) {
+  if (!place) return;
 
-  currentPlace = p;
-  el.pcTitle.textContent = p.name;
-  el.pcMeta.textContent = `${p.category} • radius ${p.r || 120} m`;
-  el.pcDesc.textContent = p.desc || "";
+  // Sett aktive data
+  currentPlace = place;
   el.pc.setAttribute("aria-hidden", "false");
 
-  // ----- LÅS OPP -----
-  el.pcUnlock.textContent = "Lås opp";
-  el.pcUnlock.disabled = false;
-  el.pcUnlock.onclick = () => {
-    if (visited[p.id]) {
-      showToast("Allerede låst opp");
-      return;
-    }
+  // Bildet
+  const img = `bilder/kort/places/${place.id}.PNG`;
+  el.pcImage.src = img;
 
-    visited[p.id] = true;
+  // Tekst
+  el.pcTitle.textContent = place.name;
+  el.pcMeta.textContent = `${place.category} • radius ${place.r || 120} m`;
+  el.pcDesc.textContent = place.desc || "";
+
+  // Personer tilknyttet stedet
+  const people = PEOPLE.filter(p => p.placeId === place.id);
+  if (people.length) {
+    el.pcPeople.innerHTML = people
+      .map(p => `<img src="bilder/people/${p.id}_face.PNG" data-person="${p.id}">`)
+      .join("");
+  } else {
+    el.pcPeople.innerHTML = `<p class="muted">Ingen personer registrert her.</p>`;
+  }
+
+  // Person-popup
+  el.pcPeople.querySelectorAll("[data-person]").forEach(btn => {
+    btn.onclick = () => {
+      const person = PEOPLE.find(x => x.id === btn.dataset.person);
+      window.showPersonPopup(person);
+    };
+  });
+
+  // Mer info → åpner stedspopup
+  el.pcInfo.onclick = () => window.showPlacePopup(place);
+
+  // Ta quiz
+  el.pcQuiz.onclick = () => startQuiz(place.id);
+
+  // Lås opp
+  el.pcUnlock.onclick = () => {
+    if (visited[place.id]) return showToastp("Allerede låst opp.");
+    visited[place.id] = true;
     saveVisited();
     drawPlaceMarkers();
-    pulseMarker(p.lat, p.lon);
-
-    // Poeng
-    const cat = p.category;
-    if (cat && cat.trim()) {
-      merits[cat] = merits[cat] || { points: 0 };
-      merits[cat].points += 1;
-      saveMerits();
-      updateMeritLevel(cat, merits[cat].points);
-    }
-
-    showToast(`Låst opp: ${p.name} ✅`);
-    window.dispatchEvent(new Event("updateProfile"));
+    pulseMarker(place.lat, place.lon);
+    showToast(`Låst opp ${place.name} ✔`);
   };
 
-  // ----- RUTE -----
-  el.pcRoute.onclick = () => showRouteTo(p);
+  // Rute
+  el.pcRoute.onclick = () => showRouteTo(place);
 
-function openPlaceCardByPerson(person) {
-  const place =
-    PLACES.find(x => x.id === person.placeId) || {
-      id: "personloc",
-      name: person.name,
-      category: tagToCat(person.tags),
-      r: person.r || 150,
-      desc: person.desc || "",
-      lat: person.lat,
-      lon: person.lon
-    };
-
-  openPlaceCard(place);
-
-  el.pcUnlock.textContent = "Ta quiz";
-  el.pcUnlock.disabled = false;
-  el.pcUnlock.onclick = () => startQuiz(person.id);
+  // Lukk
+  el.pcClose.onclick = () => {
+    el.pc.setAttribute("aria-hidden", "true");
+  };
 }
-
-el.pcClose?.addEventListener("click", () => {
-  if (!el.pc) return;
-  el.pc.setAttribute("aria-hidden", "true");
-  el.pcUnlock.textContent = "Lås opp";
-});
 
 
 
