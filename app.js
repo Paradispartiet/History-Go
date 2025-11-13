@@ -1229,7 +1229,7 @@ async function startQuiz(targetId) {
         if (person) {
           peopleCollected[targetId] = true;
           savePeople();
-          showPersonPopup(person);
+          showRewardPerson(person);
           document
             .getElementById("gallery")
             ?.scrollIntoView({ behavior: "smooth" });
@@ -1237,7 +1237,7 @@ async function startQuiz(targetId) {
           // Vis kort hvis stedet er besøkt eller testmodus
           const visitedPlaces = visited;
           if (visitedPlaces[place.id] || el.test?.checked) {
-            showPlacePopup(place);
+            showRewardPlace(place);
             pulseMarker(place.lat, place.lon);
           }
         }
