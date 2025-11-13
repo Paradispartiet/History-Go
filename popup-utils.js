@@ -2,6 +2,10 @@
    UNIVERSAL PERSON & PLACE POPUP – History Go
    ============================================================ */
 
+/* ---- SIKKERHETSLAG: HINDRER AT APPEN STOPPER ---- */
+if (!window.PLACES) window.PLACES = [];
+if (!window.PEOPLE) window.PEOPLE = [];
+
 /* ------------------------------------------------------------
    Person-popup
 ------------------------------------------------------------ */
@@ -12,7 +16,9 @@ window.showPersonPopup = function(person) {
   const cardImg = person.image || `bilder/kort/people/${person.id}.PNG`;
   const wiki = person.wiki || "";
   const works = person.works || [];
-  const places = (window.PLACES || []).filter(p => p.people?.includes(person.id));
+  const places = (window.PLACES || []).filter(
+    p => Array.isArray(p.people) && p.people.includes(person.id)
+  );
 
   const el = document.createElement("div");
   el.className = "hg-popup";
@@ -21,7 +27,6 @@ window.showPersonPopup = function(person) {
       <button class="hg-popup-close">✕</button>
 
       <img src="${face}" class="hg-popup-face">
-
       <h2 class="hg-popup-name">${person.name}</h2>
 
       <img src="${cardImg}" class="hg-popup-cardimg">
@@ -57,10 +62,8 @@ window.showPersonPopup = function(person) {
     </div>
   `;
 
-  // Close
   el.querySelector(".hg-popup-close").onclick = () => el.remove();
 
-  // Klikk på steder → åpner steds-popup
   el.querySelectorAll("[data-place]").forEach(btn => {
     btn.onclick = () => {
       const place = (window.PLACES || []).find(p => p.id === btn.dataset.place);
@@ -81,7 +84,9 @@ window.showPlacePopup = function(place) {
 
   const fullImg = place.image || `bilder/kort/places/${place.id}.PNG`;
   const thumbImg = `bilder/kort/places/${place.id}.PNG`;
-  const peopleHere = (window.PEOPLE || []).filter(p => p.placeId === place.id);
+  const peopleHere = (window.PEOPLE || []).filter(
+    p => p.placeId === place.id
+  );
 
   const el = document.createElement("div");
   el.className = "hg-popup";
@@ -90,7 +95,6 @@ window.showPlacePopup = function(place) {
       <button class="hg-popup-close">✕</button>
 
       <img src="${fullImg}" class="hg-popup-img" alt="${place.name}">
-
       <h3 class="hg-popup-title">${place.name}</h3>
       <p class="hg-popup-cat">${place.category || ""}</p>
 
@@ -126,10 +130,8 @@ window.showPlacePopup = function(place) {
 
   document.body.appendChild(el);
 
-  // Close
   el.querySelector(".hg-popup-close").onclick = () => el.remove();
 
-  // Klikk på personer → åpne person-popup
   el.querySelectorAll("[data-person]").forEach(btn => {
     btn.onclick = () => {
       const person = (window.PEOPLE || []).find(p => p.id === btn.dataset.person);
