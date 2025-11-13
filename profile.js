@@ -171,7 +171,7 @@ function renderPeopleCollection() {
   `).join("");
 
   grid.querySelectorAll(".avatar-card").forEach(el => {
-    el.onclick = () => showPersonPopup(PEOPLE.find(p => p.id === el.dataset.person));
+    el.onclick = () => window.showPersonPopup(PEOPLE.find(p => p.id === el.dataset.person));
   });
 }
 
@@ -200,7 +200,7 @@ function renderPlacesCollection() {
   `).join("");
 
   grid.querySelectorAll(".place-card").forEach(el => {
-    el.onclick = () => showPlacePopup(PLACES.find(p => p.id === el.dataset.place));
+    el.onclick = () => window.showPlacePopup(PLACES.find(p => p.id === el.dataset.place));
   });
 }
 
@@ -250,9 +250,9 @@ function renderTimeline() {
     el.onclick = () => {
       const id = el.dataset.id;
       const person = PEOPLE.find(p=>p.id===id);
-      if (person) return showPersonPopup(person);
+      if (person) return window.showPersonPopup(person);
       const place = PLACES.find(p=>p.id===id);
-      if (place) return showPlacePopup(place);
+      if (place) return window.showPlacePopup(place);
     };
   });
 }
