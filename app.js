@@ -81,11 +81,15 @@ const el = {
   sheetNear:     document.getElementById("sheetNearby"),
   sheetNearBody: document.getElementById("sheetNearbyBody"),
 
-  // Place Card (sheet)
+    // Place Card (sheet)
   pc:       document.getElementById("placeCard"),
+  pcImage:  document.getElementById("pcImage"),
   pcTitle:  document.getElementById("pcTitle"),
   pcMeta:   document.getElementById("pcMeta"),
   pcDesc:   document.getElementById("pcDesc"),
+  pcPeople: document.getElementById("pcPeople"),
+  pcInfo:   document.getElementById("pcInfo"),
+  pcQuiz:   document.getElementById("pcQuiz"),
   pcUnlock: document.getElementById("pcUnlock"),
   pcRoute:  document.getElementById("pcRoute"),
   pcClose:  document.getElementById("pcClose")
@@ -391,64 +395,145 @@ function pulseMarker(lat, lon) {
 }
 
 function openPlaceCard(place) {
+  if (!el.pc) return;
   if (!place) return;
 
-  // Sett aktive data
   currentPlace = place;
-  el.pc.setAttribute("aria-hidden", "false");
 
-  // Bildet
-  const img = `bilder/kort/places/${place.id}.PNG`;
-  el.pcImage.src = img;
+  // Skjul først, så fyll og vis
+  el.pc.setAttribute("aria-hidden", "true");
 
-  // Tekst
-  el.pcTitle.textContent = place.name;
-  el.pcMeta.textContent = `${place.category} • radius ${place.r || 120} m`;
-  el.pcDesc.textContent = place.desc || "";
-
-  // Personer tilknyttet stedet
-  const people = PEOPLE.filter(p => p.placeId === place.id);
-  if (people.length) {
-    el.pcPeople.innerHTML = people
-      .map(p => `<img src="bilder/people/${p.id}_face.PNG" data-person="${p.id}">`)
-      .join("");
-  } else {
-    el.pcPeople.innerHTML = `<p class="muted">Ingen personer registrert her.</p>`;
+  // Bilde av stedet
+  if (el.pcImage) {
+    const img = place.image || `bilder/kort/places/${place.id}.PNG`;
+    el.pcImage.src = img;
+    el.pcImage.alt = place.name || "";
   }
 
-  // Person-popup
-  el.pcPeople.querySelectorAll("[data-person]").forEach(btn => {
-    btn.onclick = () => {
-      const person = PEOPLE.find(x => x.id === btn.dataset.person);
-      window.showPersonPopup(person);
+  // Tekst
+  el.pcTitle.textContent = place.name || "";
+  el.pcMeta.textContent  = `${place.category || ""} • radius ${place.r || 120} m`;
+  el.pcDesc.textContent  = place.desc || "";
+
+  // Personer tilknyttet stedet:
+  //  - helst via place.people
+  //  - ellers via PEOPLE.placeId
+  const people =
+    (place.people && place.people.length)
+      ? place.people
+          .map(pId =>
+            typeof pId === "string"
+              ? (PEOPLE.find(x => x.id === pId) || null)
+              : PEOPLE.find(x => x.id === pId.id)
+          )
+          .filter(Boolean)
+      : PEOPLE.filter(p => p.placeId === place.id);
+
+  if (el.pcPeople) {
+    if (people.length) {
+      el.pcPeople.innerHTML = people
+        .map(p => `
+          <button class="person-chip" data-person="${p.id}">
+            <img src="bilder/people/${p.id}_face.PNG" alt="${p.name}">
+            <span>${p.name}</span>
+          </button>
+        `)
+        .join("");
+    } else {
+      el.pcPeople.innerHTML = `<p class="muted">Ingen personer registrert her.</p>`;
+    }
+
+    // Klikk på person → universal person-popup
+    el.pcPeople.querySelectorAll("[data-person]").forEach(btn => {
+      btn.onclick = () => {
+        const person = PEOPLE.find(x => x.id === btn.dataset.person);
+        if (person && window.showPersonPopup) {
+          window.showPersonPopup(person);
+        }
+      };
+    });
+  }
+
+  // Mer info → stedspopup (eller Google fallback)
+  if (el.pcInfo) {
+    el.pcInfo.onclick = () => {
+      if (window.showPlacePopup) {
+        window.showPlacePopup(place);
+      } else {
+        const url = googleUrl(place.name);
+        window.open(url, "_blank");
+      }
     };
-  });
+  }
 
-  // Mer info → åpner stedspopup
-  el.pcInfo.onclick = () => window.showPlacePopup(place);
+  // Standard: quiz om stedet
+  if (el.pcQuiz) {
+    el.pcQuiz.onclick = () => startQuiz(place.id);
+  }
 
-  // Ta quiz
-  el.pcQuiz.onclick = () => startQuiz(place.id);
+  // Lås opp-sted
+  if (el.pcUnlock) {
+    el.pcUnlock.textContent = "Lås opp";
+    el.pcUnlock.disabled = false;
+    el.pcUnlock.onclick = () => {
+      if (visited[place.id]) {
+        return showToast("Allerede låst opp");
+      }
 
-  // Lås opp
-  el.pcUnlock.onclick = () => {
-    if (visited[place.id]) return showToastp("Allerede låst opp.");
-    visited[place.id] = true;
-    saveVisited();
-    drawPlaceMarkers();
-    pulseMarker(place.lat, place.lon);
-    showToast(`Låst opp ${place.name} ✔`);
-  };
+      visited[place.id] = true;
+      saveVisited();
+      drawPlaceMarkers();
+      pulseMarker(place.lat, place.lon);
 
-  // Rute
-  el.pcRoute.onclick = () => showRouteTo(place);
+      const cat = place.category;
+      if (cat && cat.trim()) {
+        merits[cat] = merits[cat] || { points: 0, level: "Nybegynner" };
+        merits[cat].points += 1;
+        saveMerits();
+        updateMeritLevel(cat, merits[cat].points);
+      }
 
-  // Lukk
-  el.pcClose.onclick = () => {
-    el.pc.setAttribute("aria-hidden", "true");
-  };
+      showToast(`Låst opp: ${place.name} ✅`);
+      window.dispatchEvent(new Event("updateProfile"));
+    };
+  }
+
+  // Rute-knapp
+  if (el.pcRoute) {
+    el.pcRoute.onclick = () => showRouteTo(place);
+  }
+
+  // Til slutt: vis kortet
+  el.pc.setAttribute("aria-hidden", "false");
 }
 
+function openPlaceCardByPerson(person) {
+  if (!person) return;
+
+  const place =
+    PLACES.find(x => x.id === person.placeId) || {
+      id: "personloc",
+      name: person.name,
+      category: tagToCat(person.tags),
+      r: person.r || 150,
+      desc: person.desc || "",
+      lat: person.lat,
+      lon: person.lon
+    };
+
+  // Vis panelet for stedet
+  openPlaceCard(place);
+
+  // Når vi kommer via person: quiz-knappen gjelder personen
+  if (el.pcQuiz) {
+    el.pcQuiz.onclick = () => startQuiz(person.id);
+  }
+}
+
+el.pcClose?.addEventListener("click", () => {
+  if (!el.pc) return;
+  el.pc.setAttribute("aria-hidden", "true");
+});
 
 
 // ==============================
