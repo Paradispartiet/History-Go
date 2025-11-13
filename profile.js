@@ -259,42 +259,6 @@ function renderTimeline() {
 
 
 // ------------------------------------------------------------
-// POPUPS (samme stil som app.js)
-// ------------------------------------------------------------
-function showPersonPopup(person) {
-  if (!person) return;
-
-  const card = document.createElement("div");
-  card.className = "person-popup";
-  card.innerHTML = `
-    <img src="${person.image || `bilder/kort/people/${person.id}.PNG`}">
-    <h3>${person.name}</h3>
-    <p>${person.year || ""}</p>
-    <p>${person.desc || ""}</p>
-  `;
-  document.body.appendChild(card);
-  setTimeout(()=>card.classList.add("visible"), 10);
-  setTimeout(()=>card.remove(), 3800);
-}
-
-function showPlacePopup(place) {
-  if (!place) return;
-
-  const card = document.createElement("div");
-  card.className = "person-popup";
-  card.innerHTML = `
-    <img src="${place.image || `bilder/kort/places/${place.id}.PNG`}">
-    <h3>${place.name}</h3>
-    <p>${place.year || ""}</p>
-    <p>${place.desc || ""}</p>
-  `;
-  document.body.appendChild(card);
-  setTimeout(()=>card.classList.add("visible"), 10);
-  setTimeout(()=>card.remove(), 3800);
-}
-
-
-// ------------------------------------------------------------
 // EDIT-PROFILMODAL
 // ------------------------------------------------------------
 function openProfileModal() {
