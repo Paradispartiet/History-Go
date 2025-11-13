@@ -11,29 +11,38 @@
   <!-- Stil -->
   <link rel="stylesheet" href="theme.css">
 
-  <!-- Popup-systemet (må komme før app.js) -->
-  <script src="popup-utils.js"></script>
-
-  <!-- Leaflet (må lastes før app.js, uten defer!) -->
+  <!-- Leaflet CSS -->
   <link rel="stylesheet"
         href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         crossorigin="" />
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-          crossorigin=""></script>
 
-  <!-- Leaflet Routing Machine -->
+  <!-- Leaflet Routing Machine CSS -->
   <link rel="stylesheet"
         href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css" />
-  <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script>
 
-  <!-- HOVED-APPEN -->
-  <script src="app.js"></script>
+  <!-- Usynlige containere som app.js trenger -->
+  <div id="collectionGrid" style="display:none"></div>
+  <div id="collectionCount" style="display:none"></div>
+  <div id="gallery" style="display:none"></div>
+
+  <!-- Badge-modal (må finnes, men skjules) -->
+  <div id="badgeModal" class="modal" aria-hidden="true" style="display:none;">
+    <div class="modal-content">
+      <img class="badge-img" src="" alt="Merke">
+      <h3 class="badge-title"></h3>
+      <p class="badge-level"></p>
+      <div class="badge-progress"><div class="badge-progress-bar"></div></div>
+      <p class="badge-progress-text"></p>
+      <ul class="badge-quizzes"></ul>
+      <button class="close-btn">Lukk</button>
+    </div>
+  </div>
 </head>
 
 <body>
 
   <!-- ============================ -->
-  <!--             KART             -->
+  <!--            KART             -->
   <!-- ============================ -->
 
   <div id="map" aria-label="Kart"></div>
@@ -42,7 +51,6 @@
     <button id="btnCenter"  title="Sentrer">⌖</button>
     <button id="btnExitMap" title="Lukk kart" aria-label="Lukk kart">✕</button>
   </div>
-
 
   <!-- ============================ -->
   <!--        PLACE CARD            -->
@@ -60,16 +68,11 @@
     </div>
   </div>
 
-
-  <!-- ============================ -->
-  <!--            TOAST             -->
-  <!-- ============================ -->
-
+  <!-- Toast -->
   <div id="toast" role="status" aria-live="polite"></div>
 
-
   <!-- ============================ -->
-  <!--            HEADER            -->
+  <!--           HEADER             -->
   <!-- ============================ -->
 
   <header class="site-header">
@@ -87,7 +90,6 @@
       </label>
     </div>
   </header>
-
 
   <!-- ============================ -->
   <!--             MAIN             -->
@@ -113,7 +115,6 @@
       </div>
     </section>
 
-
     <!-- NÆROMRÅDE -->
     <section class="panel">
       <h2>
@@ -125,8 +126,7 @@
       <div id="nearbyList" class="cards"></div>
     </section>
 
-
-    <!-- TEMARUTER -->
+    <!-- RUTER -->
     <section class="panel">
       <h2>Utforsk ruter</h2>
       <p class="muted">Følg tematiske ruter gjennom byens historie, kunst og vitenskap.</p>
@@ -156,8 +156,7 @@
       </div>
     </section>
 
-
-    <!-- SEE MORE SHEET -->
+    <!-- Se flere i nærheten -->
     <div id="sheetNearby" class="sheet" aria-hidden="true">
       <div class="sheet-head">
         <h3>Se flere i nærheten</h3>
@@ -169,9 +168,8 @@
 
   </main>
 
-
   <!-- ============================ -->
-  <!--      SERVICE WORKER          -->
+  <!--      SERVICE WORKER         -->
   <!-- ============================ -->
 
   <script>
@@ -182,31 +180,27 @@
     }
   </script>
 
+  <!-- ============================ -->
+  <!--  RIKTIG SKRIPT-REKKEFØLGE   -->
+  <!-- ============================ -->
+
+  <!-- Popup-system -->
+  <script src="popup-utils.js"></script>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+          crossorigin=""></script>
+
+  <!-- Routing Machine -->
+  <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script>
+
+  <!-- App JS (må sist!) -->
+  <script src="app.js"></script>
+
   <!-- Ruter (kan være defer) -->
   <script src="routes.js" defer></script>
 
   <div class="app-frame"></div>
-
-
-  <!-- ============================ -->
-  <!--   USYNLIGE CONTAINERE HER!  -->
-  <!-- ============================ -->
-
-  <div id="collectionGrid" style="display:none"></div>
-  <div id="collectionCount" style="display:none"></div>
-  <div id="gallery" style="display:none"></div>
-
-  <div id="badgeModal" class="modal" aria-hidden="true" style="display:none;">
-    <div class="modal-content">
-      <img class="badge-img" src="" alt="Merke">
-      <h3 class="badge-title"></h3>
-      <p class="badge-level"></p>
-      <div class="badge-progress"><div class="badge-progress-bar"></div></div>
-      <p class="badge-progress-text"></p>
-      <ul class="badge-quizzes"></ul>
-      <button class="close-btn">Lukk</button>
-    </div>
-  </div>
 
 </body>
 </html>
