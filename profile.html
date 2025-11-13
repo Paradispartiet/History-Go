@@ -10,30 +10,32 @@
 
   <!-- Verktøy (for deling/eksport av profilkort) -->
   <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+
+  <!-- Popup-systemet (MÅ ligge før profile.js) -->
+  <script src="popup-utils.js"></script>
 </head>
 
 <body class="profile-page">
 
- <!-- Badge-modal -->
-<div id="badgeModal" class="modal" aria-hidden="true" style="display:none;">
-  <div class="modal-content">
-    
-    <img class="badge-img" src="" alt="Merke">
-    <h3 class="badge-title"></h3>
-    <p class="badge-level"></p>
+  <!-- Badge-modal -->
+  <div id="badgeModal" class="modal" aria-hidden="true" style="display:none;">
+    <div class="modal-content">
+      
+      <img class="badge-img" src="" alt="Merke">
+      <h3 class="badge-title"></h3>
+      <p class="badge-level"></p>
 
-    <div class="badge-progress">
-      <div class="badge-progress-bar"></div>
+      <div class="badge-progress">
+        <div class="badge-progress-bar"></div>
+      </div>
+
+      <p class="badge-progress-text"></p>
+      <ul class="badge-quizzes"></ul>
+
+      <button class="close-badge close-btn">Lukk</button>
     </div>
-
-    <p class="badge-progress-text"></p>
-    <ul class="badge-quizzes"></ul>
-
-    <!-- VIKTIG: denne MÅ ha begge klassene -->
-    <button class="close-badge close-btn">Lukk</button>
-
   </div>
-</div>
+
   <!-- Ramme rundt appen -->
   <div class="app-frame" aria-hidden="true"></div>
 
@@ -48,7 +50,7 @@
 
   <main id="profileMain">
 
-    <!-- Profilkort -->
+    <!-- PROFILKORT -->
     <section class="profile-section" id="profileCard">
       <h2 id="profileName">Utforsker #182</h2>
       <div class="stats">
@@ -79,10 +81,13 @@
     <!-- TIDSLINJE -->
     <section class="profile-section" id="timelineSection">
       <h2>Tidslinje</h2>
+
       <div id="timelineProgressText" class="timeline-progress-text"></div>
+
       <div class="timeline-progress">
         <div id="timelineProgressBar" class="timeline-progress-bar"></div>
       </div>
+
       <div id="timelineBody" class="timeline-body"></div>
     </section>
 
@@ -95,10 +100,10 @@
 
   </main>
 
-  <!-- Toast for meldinger -->
+  <!-- Toast -->
   <div id="toast"></div>
 
-  <!-- JS-FILER -->
+  <!-- JavaScript -->
   <script src="profile.js"></script>
 </body>
 </html>
