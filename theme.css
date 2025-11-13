@@ -13,12 +13,15 @@
 9.  Modal (quiz)
 10. Quiz-stiler
 10b. Quiz-progress-bar
+10c. Quiz-fade-effekt
+10d. Quiz – knapper / perfekt score
 11. Merker / badge-kort
 12. Effekter & media
 13. Person-popup
 14. Ramme rundt appen – mørk og diskret
-15. Kort og paneler – solid versjon
-16. (plass til evt. fremtidige tillegg)
+15. Profil & merker (profilside + mini-profil)
+16. Ruter-seksjon
+17. Profil-side strukturer
 */
 
 /* ===================================================== */
@@ -43,6 +46,11 @@
 
   --radius: 12px;
   --shadow: 0 10px 24px rgba(0,0,0,.35);
+
+  /* Nye fellesvariabler brukt i profil/kort */
+  --accent: #f6c800;
+  --yellow: #f6c800;
+  --text-dim: #9bb0c9;
 }
 
 *{box-sizing:border-box}
@@ -983,60 +991,6 @@ button.primary.small:hover { opacity: .9; }
 .mini-profile .linkish:hover { text-decoration: underline; }
 
 
-/* ============================================================
-   === SLUTT PROFIL & MERKER ================================
-   ============================================================ */
-
-/* QUIZ-HISTORIKK MODAL */
-.quiz-modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.7);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-}
-.quiz-modal-inner {
-  background: #111;
-  color: #fff;
-  padding: 20px 24px;
-  border-radius: 10px;
-  max-width: 360px;
-  width: 90%;
-  box-shadow: 0 0 20px rgba(0,0,0,0.5);
-  animation: fadeIn .3s ease;
-}
-.quiz-modal-inner h2 {
-  margin-top: 0;
-  color: #f6c800;
-  text-align: center;
-}
-.quiz-history-list {
-  list-style: none;
-  padding: 0;
-  margin: 10px 0 0 0;
-}
-.quiz-history-list li {
-  margin-bottom: 10px;
-  padding-bottom: 6px;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-}
-.quiz-history-list li strong {
-  color: #fff;
-}
-.quiz-close {
-  position: absolute;
-  top: 14px;
-  right: 18px;
-  background: none;
-  border: none;
-  color: #f6c800;
-  font-size: 1.4em;
-  cursor: pointer;
-}
-
-
 /* ===================================================== */
 /* HEADER – PROFILVERSJON                                */
 /* ===================================================== */
@@ -1066,7 +1020,7 @@ button.primary.small:hover { opacity: .9; }
 }
 
 /* Samme logo og brand-stil som forsiden */
-.brand {
+.profile-page .brand {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -1075,7 +1029,7 @@ button.primary.small:hover { opacity: .9; }
   color: #fff;
   letter-spacing: 0.3px;
 }
-.brand-logo {
+.profile-page .brand-logo {
   width: 32px;
   height: 32px;
   object-fit: contain;
@@ -1083,7 +1037,7 @@ button.primary.small:hover { opacity: .9; }
   background: rgba(255,255,255,0.1);
   padding: 3px;
 }
-.brand-name {
+.profile-page .brand-name {
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   font-weight: 700;
   color: #f6c800;
@@ -1326,4 +1280,22 @@ button.primary.small:hover { opacity: .9; }
 .person-popup,
 .place-overlay {
   z-index: 999999 !important;
+}
+
+
+/* ===================================================== */
+/* 14) RAMME RUNDT APPEN – NY SORT OG AVRUNDET           */
+/* ===================================================== */
+.app-frame {
+  position: fixed;
+  inset: 0;
+  border: 6px solid #000;
+  border-radius: 18px;
+  background: transparent;
+  pointer-events: none;
+  z-index: 20;
+  box-shadow:
+    0 0 0 3px rgba(255,255,255,0.05) inset,
+    0 0 25px rgba(0,0,0,0.6);
+  transition: box-shadow .3s ease;
 }
