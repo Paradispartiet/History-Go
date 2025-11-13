@@ -1325,6 +1325,96 @@ function runQuizFlow({ title = "Quiz", questions = [], onEnd = () => {} }) {
 }
 
 
+// ============================================================
+//  UNIVERSAL PERSON INFO POPUP
+// ============================================================
+function showPersonPopup(person) {
+  if (!person) return;
+
+  // Finn ansikt + kortbilde
+  const face = `bilder/people/${person.id}_face.PNG`;
+  const cardImg = person.image || `bilder/kort/people/${person.id}.PNG`;
+
+  // Wiki / verk / steder
+  const wiki = person.wiki || "";
+  const works = person.works || [];
+  const placeMatches = PLACES.filter(p => p.people?.includes(person.id));
+
+  // Lag popupen
+  const el = document.createElement("div");
+  el.className = "hg-popup";
+
+  el.innerHTML = `
+    <div class="hg-popup-inner">
+
+      <!-- Close -->
+      <button class="hg-popup-close">✕</button>
+
+      <!-- Top: face -->
+      <img src="${face}" class="hg-popup-face">
+
+      <h2 class="hg-popup-name">${person.name}</h2>
+
+      <!-- Kortbilde nederst til høyre -->
+      <img src="${cardImg}" class="hg-popup-cardimg">
+
+      <!-- Verk-listen -->
+      <div class="hg-section">
+        <h3>Verk</h3>
+        ${
+          works.length
+            ? `<ul class="hg-works">
+                ${works.map(w => `<li>${w}</li>`).join("")}
+               </ul>`
+            : `<p class="hg-muted">Ingen registrerte verk.</p>`
+        }
+      </div>
+
+      <!-- Wiki -->
+      <div class="hg-section">
+        <h3>Om personen</h3>
+        <p class="hg-wiki">${wiki}</p>
+      </div>
+
+      <!-- Steder personen finnes -->
+      <div class="hg-section">
+        <h3>Steder</h3>
+        ${
+          placeMatches.length
+            ? `<div class="hg-places">
+                ${placeMatches
+                  .map(
+                    p => `
+                  <div class="hg-place" data-place="${p.id}">
+                    📍 ${p.name}
+                  </div>`
+                  )
+                  .join("")}
+               </div>`
+            : `<p class="hg-muted">Ingen stedstilknytning.</p>`
+        }
+      </div>
+
+    </div>
+  `;
+
+  // Lukking
+  el.querySelector(".hg-popup-close").onclick = () => el.remove();
+
+  // Klikk på steder → åpner steds-popup
+  el.querySelectorAll("[data-place]").forEach(btn => {
+    btn.onclick = () => {
+      const place = PLACES.find(p => p.id === btn.dataset.place);
+      el.remove();
+      showPlacePopup(place);
+    };
+  });
+
+  document.body.appendChild(el);
+}
+
+
+
 // ==============================
 // 14. QUIZ-REWARD POPUPS
 // (Små, auto-close, IKKE info-popup)
@@ -1403,8 +1493,6 @@ function showRewardPlace(place) {
   setTimeout(() => card.classList.add("visible"), 10);
   setTimeout(() => card.remove(), 4200);
 }
-
-
 
 // Ekstra animasjonsstil for reward popup
 const rewardStyle = document.createElement("style");
