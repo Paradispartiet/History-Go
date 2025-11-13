@@ -52,21 +52,32 @@
     <button id="btnExitMap" title="Lukk kart" aria-label="Lukk kart">✕</button>
   </div>
 
-  <!-- ============================ -->
-  <!--        PLACE CARD            -->
-  <!-- ============================ -->
-
   <div id="placeCard" aria-hidden="true">
-    <h2 id="pcTitle"></h2>
-    <div id="pcMeta"></div>
-    <p id="pcDesc"></p>
+  <div class="pc-body">
 
-    <div class="row">
+    <!-- Bilde av stedet -->
+    <img id="pcImage" class="pc-img" src="" alt="">
+
+    <!-- Tittel, kategori, radius -->
+    <h2 id="pcTitle"></h2>
+    <div id="pcMeta" class="pc-meta"></div>
+
+    <!-- Beskrivelse -->
+    <p id="pcDesc" class="pc-desc"></p>
+
+    <!-- Personer tilknyttet stedet -->
+    <div id="pcPeople" class="pc-people"></div>
+
+    <!-- Knapper -->
+    <div class="pc-actions">
+      <button id="pcInfo"   class="secondary">Mer info</button>
+      <button id="pcQuiz"   class="primary">Ta quiz</button>
       <button id="pcUnlock" class="primary">Lås opp</button>
       <button id="pcRoute"  class="ghost">Rute</button>
       <button id="pcClose"  class="ghost">✕</button>
     </div>
   </div>
+</div>
 
   <!-- Toast -->
   <div id="toast" role="status" aria-live="polite"></div>
