@@ -399,9 +399,9 @@ function openPlaceCard(p) {
   el.pcDesc.textContent = p.desc || "";
   el.pc.setAttribute("aria-hidden", "false");
 
+  // ----- LÅS OPP -----
   el.pcUnlock.textContent = "Lås opp";
   el.pcUnlock.disabled = false;
-
   el.pcUnlock.onclick = () => {
     if (visited[p.id]) {
       showToast("Allerede låst opp");
@@ -413,9 +413,10 @@ function openPlaceCard(p) {
     drawPlaceMarkers();
     pulseMarker(p.lat, p.lon);
 
+    // Poeng
     const cat = p.category;
     if (cat && cat.trim()) {
-      merits[cat] = merits[cat] || { points: 0, level: "Nybegynner" };
+      merits[cat] = merits[cat] || { points: 0 };
       merits[cat].points += 1;
       saveMerits();
       updateMeritLevel(cat, merits[cat].points);
@@ -425,8 +426,12 @@ function openPlaceCard(p) {
     window.dispatchEvent(new Event("updateProfile"));
   };
 
+  // ----- RUTE -----
   el.pcRoute.onclick = () => showRouteTo(p);
-  
+
+  // ----- Dette er superviktig -----
+  // Her viser vi det fine overlayet med personer
+  showPlaceOverlay(p);
 }
 
 function openPlaceCardByPerson(person) {
@@ -443,7 +448,6 @@ function openPlaceCardByPerson(person) {
 
   openPlaceCard(place);
 
-  if (!el.pcUnlock) return;
   el.pcUnlock.textContent = "Ta quiz";
   el.pcUnlock.disabled = false;
   el.pcUnlock.onclick = () => startQuiz(person.id);
@@ -454,7 +458,6 @@ el.pcClose?.addEventListener("click", () => {
   el.pc.setAttribute("aria-hidden", "true");
   el.pcUnlock.textContent = "Lås opp";
 });
-
 
 // ==============================
 // 7. LISTEVISNINGER
