@@ -643,11 +643,12 @@ button.quiz-done.blink {
 
 
 /* ===================================================== */
-/* 13) Person-popup ved fullført quiz                    */
+/* 13) Reward-popup ved fullført quiz (gamle stilen)      */
 /* ===================================================== */
-.person-popup {
+.reward-popup {
   position: fixed;
-  left: 50%; top: 50%;
+  left: 50%;
+  top: 50%;
   transform: translate(-50%, -50%) scale(.8);
   background: var(--panel);
   border: 1px solid var(--panel-border);
@@ -659,12 +660,15 @@ button.quiz-done.blink {
   z-index: 10001;
   padding: 20px;
 }
-.person-popup.visible {
+
+.reward-popup.visible {
   opacity: 1;
   transform: translate(-50%, -50%) scale(1);
 }
-.person-popup img {
-  width: 80px; height: 80px;
+
+.reward-popup img {
+  width: 80px;
+  height: 80px;
   border-radius: 999px;
   margin-bottom: 8px;
   object-fit: cover;
