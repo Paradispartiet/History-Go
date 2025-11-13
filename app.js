@@ -76,19 +76,11 @@ const el = {
   btnCenter:  document.getElementById("btnCenter"),
   test:       document.getElementById("testToggle"),
 
-  list:       document.getElementById("nearbyList"),
-  nearPeople: document.getElementById("nearbyPeople"),
-  seeMore:    document.getElementById("btnSeeMoreNearby"),
-  sheetNear:  document.getElementById("sheetNearby"),
-  sheetNearBody: document.getElementById("sheetNearbyBody"),
-
-  collectionGrid:      document.getElementById("collectionGrid"),
-  collectionCount:     document.getElementById("collectionCount"),
-  btnMoreCollection:   document.getElementById("btnMoreCollection"),
-  sheetCollection:     document.getElementById("sheetCollection"),
-  sheetCollectionBody: document.getElementById("sheetCollectionBody"),
-
-  gallery: document.getElementById("gallery"),
+  list:          document.getElementById("nearbyList"),
+  seeMore:       document.getElementById("btnSeeMoreNearby"),
+  sheetNear:     document.getElementById("sheetNearby"),
+  sheetNearBody: document.getElementById("sheetNearbyBody")
+};
 
   // Place Card (sheet)
   pc:       document.getElementById("placeCard"),
