@@ -26,14 +26,14 @@
         href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css" />
   <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script>
 
-  <!-- HOVED-APPEN — LASTES KUN ÉN GANG -->
+  <!-- HOVED-APPEN -->
   <script src="app.js"></script>
 </head>
 
 <body>
 
   <!-- ============================ -->
-  <!--           KART              -->
+  <!--             KART             -->
   <!-- ============================ -->
 
   <div id="map" aria-label="Kart"></div>
@@ -45,7 +45,7 @@
 
 
   <!-- ============================ -->
-  <!--        PLACE CARD (sheet)    -->
+  <!--        PLACE CARD            -->
   <!-- ============================ -->
 
   <div id="placeCard" aria-hidden="true">
@@ -182,10 +182,31 @@
     }
   </script>
 
-  <!-- Routes kan være defer -->
+  <!-- Ruter (kan være defer) -->
   <script src="routes.js" defer></script>
 
   <div class="app-frame"></div>
+
+
+  <!-- ============================ -->
+  <!--   USYNLIGE CONTAINERE HER!  -->
+  <!-- ============================ -->
+
+  <div id="collectionGrid" style="display:none"></div>
+  <div id="collectionCount" style="display:none"></div>
+  <div id="gallery" style="display:none"></div>
+
+  <div id="badgeModal" class="modal" aria-hidden="true" style="display:none;">
+    <div class="modal-content">
+      <img class="badge-img" src="" alt="Merke">
+      <h3 class="badge-title"></h3>
+      <p class="badge-level"></p>
+      <div class="badge-progress"><div class="badge-progress-bar"></div></div>
+      <p class="badge-progress-text"></p>
+      <ul class="badge-quizzes"></ul>
+      <button class="close-btn">Lukk</button>
+    </div>
+  </div>
 
 </body>
 </html>
