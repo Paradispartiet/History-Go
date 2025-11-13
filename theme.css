@@ -713,6 +713,117 @@ button.quiz-done.blink {
 }
 
 
+
+/* ============================================================
+   UNIVERSAL PERSON/PLACE POPUP – HISTORY GO
+   ============================================================ */
+
+.hg-popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+}
+
+.hg-popup-inner {
+  position: relative;
+  width: min(420px, 90vw);
+  max-height: 90vh;
+  overflow-y: auto;
+  background: rgba(15,15,20,0.95);
+  border-radius: 16px;
+  padding: 24px;
+  color: #fff;
+  box-shadow: 0 0 35px rgba(0,0,0,0.6);
+}
+
+/* Close */
+.hg-popup-close {
+  position: absolute;
+  top: 12px; right: 12px;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  font-size: 1.2rem;
+}
+
+/* Face image */
+.hg-popup-face {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 12px;
+  display: block;
+  margin: 0 auto 12px;
+}
+
+/* Kortbilde (flyter i hjørnet) */
+.hg-popup-cardimg {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 8px;
+  opacity: .9;
+  border: 2px solid rgba(255,255,255,0.3);
+}
+
+/* Section titles */
+.hg-section {
+  margin-top: 20px;
+}
+.hg-section h3 {
+  margin: 0 0 6px;
+  font-size: 1.05rem;
+  color: #f6c800;
+}
+
+/* Wiki text */
+.hg-wiki {
+  line-height: 1.5;
+  color: #ddd;
+}
+
+/* Verk-listen */
+.hg-works {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.hg-works li {
+  padding: 4px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Steder personen finnes */
+.hg-places {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.hg-place {
+  padding: 6px 10px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background .2s;
+}
+.hg-place:hover {
+  background: rgba(255,255,255,0.12);
+}
+
+.hg-muted {
+  color: #999;
+  font-size: 0.9rem;
+}
+
 /* ===================================================== */
 /* 16) Ruter-seksjon – Utforsk tematiske ruter           */
 /* ===================================================== */
