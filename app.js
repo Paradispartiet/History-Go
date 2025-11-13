@@ -359,11 +359,9 @@ function drawPlaceMarkers() {
     });
 
     mk.on("click", () => {
-      // KUN popup-utils systemet
-      if (window.showPlacePopup) {
-        window.showPlacePopup(p);
-      }
-    });
+  // Utforskersiden skal bruke place card
+  openPlaceCard(p);
+});
   });
 }
 
