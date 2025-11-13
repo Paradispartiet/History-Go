@@ -951,32 +951,34 @@ document.addEventListener("DOMContentLoaded", () => {
 // ==============================
 function enterMapMode() {
   document.body.classList.add("map-only");
-  if (el.btnSeeMap) el.btnSeeMap.style.display = "none";
+
+  if (el.btnSeeMap)  el.btnSeeMap.style.display  = "none";
   if (el.btnExitMap) el.btnExitMap.style.display = "block";
 
-  const main = document.querySelector("main");
+  const main   = document.querySelector("main");
   const header = document.querySelector("header");
-  if (main) main.style.display = "none";
+  if (main)   main.style.display   = "none";
   if (header) header.style.display = "none";
 
   const mapEl = document.getElementById("map");
-  if (mapEl) mapEl.style.zIndex = "10";
+  if (mapEl) mapEl.style.zIndex = "10";   // Kart øverst
 
   showToast("Kartmodus");
 }
 
 function exitMapMode() {
   document.body.classList.remove("map-only");
-  if (el.btnSeeMap) el.btnSeeMap.style.display = "block";
+
+  if (el.btnSeeMap)  el.btnSeeMap.style.display  = "block";
   if (el.btnExitMap) el.btnExitMap.style.display = "none";
 
-  const main = document.querySelector("main");
+  const main   = document.querySelector("main");
   const header = document.querySelector("header");
-  if (main) main.style.display = "";
+  if (main)   main.style.display   = "";
   if (header) header.style.display = "";
 
   const mapEl = document.getElementById("map");
-  if (mapEl) mapEl.style.zIndex = "1";
+  if (mapEl) mapEl.style.zIndex = "1";    // Kart tilbake bak innhold
 
   showToast("Tilbake til oversikt");
 }
