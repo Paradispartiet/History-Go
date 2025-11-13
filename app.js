@@ -682,14 +682,13 @@ document.addEventListener("click", e => {
   const target = e.target;
 
   // Åpne sted fra kort (data-open)
-  const openId = target.getAttribute?.("data-open");
-  if (openId) {
-    const p = PLACES.find(x => x.id === openId);
-    if (p) {
-      // Bruk popup-systemet
-      window.showPlacePopup(p);
-    }
+const openId = target.getAttribute?.("data-open");
+if (openId) {
+  const p = PLACES.find(x => x.id === openId);
+  if (p) {
+    openPlaceCard(p);   // tilbake til det vanlige stedspanelet
   }
+}
 
   // "Mer info" (Google)
   const infoName = target.getAttribute?.("data-info");
