@@ -459,68 +459,7 @@ el.pcClose?.addEventListener("click", () => {
   el.pcUnlock.textContent = "Lås opp";
 });
 
-// ==============================
-// PLACE OVERLAY – viser personer + info
-// ==============================
-function showPlaceOverlay(place) {
-  closePlaceOverlay();
 
-  const wrap = document.createElement("div");
-  wrap.className = "place-overlay";
-  wrap.innerHTML = `
-    <div class="place-overlay-content">
-      <button class="close-overlay">✕</button>
-
-      <div class="left">
-        <h2>${place.name}</h2>
-        <p>${place.desc || ""}</p>
-        <p class="meta">${place.category} • radius ${place.r || 120} m</p>
-
-        <a href="${googleUrl(place.name)}" target="_blank" class="primary">
-          Mer info →
-        </a>
-      </div>
-
-      <div class="right">
-        <h3>Personer</h3>
-        ${
-          (place.people && place.people.length)
-            ? place.people
-                .map(p => {
-                  const pr = PEOPLE.find(x => x.id === p.id || x.id === p);
-                  if (!pr) return "";
-                  return `
-                    <div class="card person-card" data-person="${pr.id}">
-                      <img src="bilder/people/${pr.id}_face.PNG" class="person-thumb">
-                      <div class="name">${pr.name}</div>
-                      <div class="meta">${tagToCat(pr.tags)}</div>
-                    </div>
-                  `;
-                })
-                .join("")
-            : "<p class='muted'>Ingen personer tilknyttet</p>"
-        }
-      </div>
-    </div>
-  `;
-
-  // Lukk overlay
-  wrap.querySelector(".close-overlay").onclick = () => wrap.remove();
-
-  // Klikk på person → åpne popup
-  wrap.querySelectorAll("[data-person]").forEach(btn => {
-    btn.onclick = () => {
-      const person = PEOPLE.find(x => x.id === btn.dataset.person);
-      if (person) window.showPersonPopup(person);
-    };
-  });
-
-  document.body.appendChild(wrap);
-}
-
-function closePlaceOverlay() {
-  document.querySelector(".place-overlay")?.remove();
-}
 
 // ==============================
 // 7. LISTEVISNINGER
