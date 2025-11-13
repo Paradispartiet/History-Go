@@ -369,9 +369,8 @@ function drawPlaceMarkers() {
     });
 
     mk.on("click", () => {
-      closePlaceOverlay();
-      showPlaceOverlay(p);
-    });
+    window.showPlacePopup(p);
+});
   });
 }
 
