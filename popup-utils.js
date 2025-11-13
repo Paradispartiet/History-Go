@@ -1,38 +1,23 @@
-// ============================================================
-// HISTORY GO – POPUP-UTILS (GLOBAL & STABIL)
-// ============================================================
-// Denne fila styrer ALLE popups for hele History Go.
-// Brukes både av app.js og profile.js uten duplikater.
-//
-//  Inneholder:
-//   ✓ showPersonPopup()
-//   ✓ showPlacePopup()
-//   ✓ showRewardPerson()
-//   ✓ showRewardPlace()
-// ============================================================
+/* ============================================================
+   UNIVERSAL PERSON & PLACE POPUP – History Go
+   ============================================================ */
 
-
-// ------------------------------------------------------------
-// PERSON INFO POPUP (stor info-popup)
-// ------------------------------------------------------------
-function showPersonPopup(person) {
+/* ------------------------------------------------------------
+   Person-popup
+------------------------------------------------------------ */
+window.showPersonPopup = function(person) {
   if (!person) return;
 
   const face = `bilder/people/${person.id}_face.PNG`;
   const cardImg = person.image || `bilder/kort/people/${person.id}.PNG`;
-
   const wiki = person.wiki || "";
   const works = person.works || [];
-  const placeMatches = (window.PLACES || []).filter(p =>
-    p.people?.includes(person.id) || p.placeId === person.id
-  );
+  const places = (window.PLACES || []).filter(p => p.people?.includes(person.id));
 
   const el = document.createElement("div");
   el.className = "hg-popup";
-
   el.innerHTML = `
     <div class="hg-popup-inner">
-
       <button class="hg-popup-close">✕</button>
 
       <img src="${face}" class="hg-popup-face">
@@ -45,7 +30,7 @@ function showPersonPopup(person) {
         <h3>Verk</h3>
         ${
           works.length
-            ? `<ul class="hg-works">${works.map(w=>`<li>${w}</li>`).join("")}</ul>`
+            ? `<ul class="hg-works">${works.map(w => `<li>${w}</li>`).join("")}</ul>`
             : `<p class="hg-muted">Ingen registrerte verk.</p>`
         }
       </div>
@@ -58,160 +43,98 @@ function showPersonPopup(person) {
       <div class="hg-section">
         <h3>Steder</h3>
         ${
-          placeMatches.length
+          places.length
             ? `<div class="hg-places">
-                ${placeMatches.map(p =>
-                  `<div class="hg-place" data-place="${p.id}">📍 ${p.name}</div>`
-                ).join("")}
+                ${places
+                  .map(
+                    p => `<div class="hg-place" data-place="${p.id}">📍 ${p.name}</div>`
+                  )
+                  .join("")}
                </div>`
             : `<p class="hg-muted">Ingen stedstilknytning.</p>`
         }
       </div>
-
     </div>
   `;
 
-  // ACTIONS
+  // Close
   el.querySelector(".hg-popup-close").onclick = () => el.remove();
 
+  // Klikk på steder → åpner steds-popup
   el.querySelectorAll("[data-place]").forEach(btn => {
     btn.onclick = () => {
-      const pl = window.PLACES?.find(x => x.id === btn.dataset.place);
+      const place = (window.PLACES || []).find(p => p.id === btn.dataset.place);
       el.remove();
-      showPlacePopup(pl);
+      window.showPlacePopup(place);
     };
   });
 
   document.body.appendChild(el);
-}
+};
 
 
-// ------------------------------------------------------------
-// STED INFO POPUP (stor info-popup)
-// ------------------------------------------------------------
-function showPlacePopup(place) {
+/* ------------------------------------------------------------
+   Steds-popup
+------------------------------------------------------------ */
+window.showPlacePopup = function(place) {
   if (!place) return;
 
   const fullImg = place.image || `bilder/kort/places/${place.id}.PNG`;
-  const peopleHere = (window.PEOPLE || []).filter(p =>
-    p.placeId === place.id || place.people?.includes(p.id)
-  );
+  const thumbImg = `bilder/kort/places/${place.id}.PNG`;
+  const peopleHere = (window.PEOPLE || []).filter(p => p.placeId === place.id);
 
   const el = document.createElement("div");
   el.className = "hg-popup";
-
   el.innerHTML = `
     <div class="hg-popup-inner">
       <button class="hg-popup-close">✕</button>
 
-      <img src="${fullImg}" class="hg-popup-img">
+      <img src="${fullImg}" class="hg-popup-img" alt="${place.name}">
 
-      <h2 class="hg-popup-title">${place.name}</h2>
+      <h3 class="hg-popup-title">${place.name}</h3>
       <p class="hg-popup-cat">${place.category || ""}</p>
 
       <p class="hg-popup-desc">${place.desc || ""}</p>
 
       ${
         peopleHere.length
-          ? `<h3 class="hg-popup-sub">Personer</h3>
-             <div class="hg-popup-people">
-               ${peopleHere.map(p =>
-                 `<img src="bilder/people/${p.id}_face.PNG" data-person="${p.id}" class="hg-popup-face">`
-               ).join("")}
-             </div>`
+          ? `
+            <div class="hg-section">
+              <h3>Personer</h3>
+              <div class="hg-popup-people">
+                ${peopleHere
+                  .map(
+                    p => `
+                  <div class="hg-popup-face" data-person="${p.id}">
+                    <img src="bilder/people/${p.id}_face.PNG">
+                  </div>`
+                  )
+                  .join("")}
+              </div>
+            </div>
+          `
           : ""
       }
 
-      <img src="${fullImg}" class="hg-popup-cardthumb">
+      <img src="${thumbImg}" class="hg-popup-cardthumb">
 
       <div class="hg-popup-locations">
         <div class="loc-chip">📍 ${place.lat.toFixed(5)}, ${place.lon.toFixed(5)}</div>
       </div>
-
     </div>
   `;
 
-  // ACTIONS
+  document.body.appendChild(el);
+
+  // Close
   el.querySelector(".hg-popup-close").onclick = () => el.remove();
 
+  // Klikk på personer → åpne person-popup
   el.querySelectorAll("[data-person]").forEach(btn => {
     btn.onclick = () => {
-      const pr = window.PEOPLE?.find(x => x.id === btn.dataset.person);
+      const person = (window.PEOPLE || []).find(p => p.id === btn.dataset.person);
       el.remove();
-      showPersonPopup(pr);
+      window.showPersonPopup(person);
     };
   });
-
-  document.body.appendChild(el);
-}
-
-
-// ------------------------------------------------------------
-// REWARD POPUP – PERSON
-// ------------------------------------------------------------
-function showRewardPerson(person) {
-  if (!person) return;
-
-  const imgPath = person.image || `bilder/kort/people/${person.id}.PNG`;
-
-  const el = document.createElement("div");
-  el.className = "reward-popup";
-  el.innerHTML = `
-    <div class="popup-inner">
-      <img src="${imgPath}" class="reward-img">
-
-      <h3>${person.name}</h3>
-      <p class="reward-cat">${(person.tags||[]).join(", ")}</p>
-
-      <p class="reward-desc">${person.desc || ""}</p>
-
-      <div class="reward-banner">
-        🏅 Du har samlet kortet <strong>${person.name}</strong>!
-      </div>
-    </div>
-  `;
-
-  document.body.appendChild(el);
-  setTimeout(() => el.classList.add("visible"), 20);
-  setTimeout(() => el.remove(), 4200);
-}
-
-
-// ------------------------------------------------------------
-// REWARD POPUP – PLACE
-// ------------------------------------------------------------
-function showRewardPlace(place) {
-  if (!place) return;
-
-  const imgPath = place.image || `bilder/kort/places/${place.id}.PNG`;
-
-  const el = document.createElement("div");
-  el.className = "reward-popup";
-  el.innerHTML = `
-    <div class="popup-inner">
-      <img src="${imgPath}" class="reward-img">
-
-      <h3>${place.name}</h3>
-      <p class="reward-cat">${place.category || ""}</p>
-
-      <p class="reward-desc">${place.desc || ""}</p>
-
-      <div class="reward-banner">
-        🏛️ Du har samlet stedet <strong>${place.name}</strong>!
-      </div>
-    </div>
-  `;
-
-  document.body.appendChild(el);
-  setTimeout(() => el.classList.add("visible"), 20);
-  setTimeout(() => el.remove(), 4200);
-}
-
-
-// ------------------------------------------------------------
-// GJØR FUNKSJONENE GLOBALT TILGJENGELIGE
-// ------------------------------------------------------------
-window.showPersonPopup = showPersonPopup;
-window.showPlacePopup  = showPlacePopup;
-window.showRewardPerson = showRewardPerson;
-window.showRewardPlace  = showRewardPlace;
+};
