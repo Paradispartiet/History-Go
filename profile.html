@@ -13,33 +13,12 @@
 </head>
 
 <body class="profile-page">
-
- <!-- Badge-modal -->
-<div id="badgeModal" class="modal" aria-hidden="true" style="display:none;">
-  <div class="modal-content">
-    
-    <img class="badge-img" src="" alt="Merke">
-    <h3 class="badge-title"></h3>
-    <p class="badge-level"></p>
-
-    <div class="badge-progress">
-      <div class="badge-progress-bar"></div>
-    </div>
-
-    <p class="badge-progress-text"></p>
-    <ul class="badge-quizzes"></ul>
-
-    <!-- VIKTIG: denne MÅ ha begge klassene -->
-    <button class="close-badge close-btn">Lukk</button>
-
-  </div>
-</div>
   <!-- Ramme rundt appen -->
   <div class="app-frame" aria-hidden="true"></div>
 
-  <!-- HEADER -->
+  <!-- Topp -->
   <header class="site-header">
-    <a href="index.html" class="back-link" aria-label="Til forsiden">←</a>
+    <a href="index.html" class="brand back-link" aria-label="Til forsiden">←</a>
     <div class="brand">
       <img src="bilder/logo_historygo.PNG" alt="History Go" class="brand-logo">
       <span class="brand-name">Min profil</span>
@@ -47,58 +26,92 @@
   </header>
 
   <main id="profileMain">
-
     <!-- Profilkort -->
-    <section class="profile-section" id="profileCard">
-      <h2 id="profileName">Utforsker #182</h2>
-      <div class="stats">
-        <div><span id="statVisited">0</span><br><small>Besøkt</small></div>
-        <div><span id="statQuizzes">0</span><br><small>Quiz fullført</small></div>
-        <div><span id="statStreak">0</span><br><small>Streak</small></div>
+    <section class="profile-section">
+      <div id="profileCard">
+        <h1 id="profileName">Utforsker #182</h1>
+        <div class="stats">
+          <div>
+            <span id="statVisited">0</span><br>
+            <small>Steder</small>
+          </div>
+          <div>
+            <span id="statQuizzes">0</span><br>
+            <small>Quizer</small>
+          </div>
+          <div>
+            <span id="statStreak">0</span><br>
+            <small>Streak</small>
+          </div>
+        </div>
+        <div style="margin-top:12px;">
+          <button id="editProfileBtn" class="btn">Endre profil</button>
+        </div>
       </div>
     </section>
 
-    <!-- MERKER -->
+    <!-- Merker -->
     <section class="profile-section">
-      <h2>Mine merker</h2>
+      <h2>Merker</h2>
       <div id="merits"></div>
     </section>
 
-    <!-- PERSONER -->
+    <!-- Personer -->
     <section class="profile-section">
-      <h2>Personer du har låst opp</h2>
+      <h2>Personer du har møtt</h2>
       <div id="peopleGrid"></div>
     </section>
 
-    <!-- STEDER -->
+    <!-- Steder -->
     <section class="profile-section">
       <h2>Steder du har besøkt</h2>
       <div id="collectionGrid"></div>
     </section>
 
-    <!-- TIDSLINJE -->
+    <!-- Tidslinje -->
     <section class="profile-section" id="timelineSection">
       <h2>Tidslinje</h2>
-      <div id="timelineProgressText" class="timeline-progress-text"></div>
       <div class="timeline-progress">
-        <div id="timelineProgressBar" class="timeline-progress-bar"></div>
+        <div class="timeline-progress-bar" id="timelineProgressBar"></div>
       </div>
-      <div id="timelineBody" class="timeline-body"></div>
+      <div class="timeline-progress-text" id="timelineProgressText"></div>
+      <div class="timeline-body" id="timelineBody"></div>
     </section>
 
-    <!-- HANDLINGER -->
-    <section class="profile-section" id="actions">
-      <button id="editProfileBtn" class="btn">Endre profil</button>
-      <button id="exportProfileBtn" class="btn">Del profilkort</button>
-      <button id="resetProfileBtn" class="btn danger">Nullstill fremgang</button>
+    <!-- Handlinger -->
+    <section class="profile-section">
+      <h2>Handlinger</h2>
+      <div id="actions">
+        <button class="btn" id="shareProfileBtn">Del profilplakat</button>
+        <button class="btn danger" id="resetProgressBtn">Nullstill fremgang</button>
+      </div>
     </section>
-
   </main>
 
-  <!-- Toast for meldinger -->
+  <!-- Badge-modal -->
+  <div id="badgeModal" class="modal" aria-hidden="true">
+    <div class="modal-body modal-content">
+      <img src="" alt="" class="badge-img">
+      <div class="badge-title">Merkenavn</div>
+      <div class="badge-level">Nivå</div>
+
+      <div class="badge-progress">
+        <div class="badge-progress-bar"></div>
+      </div>
+      <div class="badge-progress-text"></div>
+
+      <ul class="badge-quizzes">
+        <li>Ingen quizer fullført ennå.</li>
+      </ul>
+
+      <button type="button" class="close-btn">Lukk</button>
+    </div>
+  </div>
+
+  <!-- Toast -->
   <div id="toast"></div>
 
-  <!-- JS-FILER -->
+  <!-- Logikk -->
   <script src="profile.js"></script>
 </body>
 </html>
