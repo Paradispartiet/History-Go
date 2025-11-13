@@ -1326,15 +1326,18 @@ function runQuizFlow({ title = "Quiz", questions = [], onEnd = () => {} }) {
 
 
 // ==============================
-// 14. PERSON- OG STED-POPUP
+// 14. QUIZ-REWARD POPUPS
+// (Små, auto-close, IKKE info-popup)
 // ==============================
-function showPersonPopup(person) {
+
+// PERSON – reward-popup etter fullført personquiz
+function showRewardPerson(person) {
   const imgPath = person.image || `bilder/kort/people/${person.id}.PNG`;
   const cat = tagToCat(person.tags);
   const desc = person.desc || "Ingen beskrivelse tilgjengelig.";
 
   const card = document.createElement("div");
-  card.className = "person-popup";
+  card.className = "reward-popup";
   card.innerHTML = `
     <div class="popup-inner" 
          style="width:290px;max-width:85vw;background:rgba(15,15,20,0.95);
@@ -1363,13 +1366,16 @@ function showPersonPopup(person) {
   setTimeout(() => card.remove(), 4200);
 }
 
-function showPlacePopup(place) {
+
+
+// PLACE – reward-popup etter fullført stedsquiz
+function showRewardPlace(place) {
   const imgPath = place.image || `bilder/kort/places/${place.id}.PNG`;
   const cat = place.category || "Historie";
   const desc = place.desc || "Ingen beskrivelse tilgjengelig.";
 
   const card = document.createElement("div");
-  card.className = "person-popup";
+  card.className = "reward-popup";
   card.innerHTML = `
     <div class="popup-inner" 
          style="width:290px;max-width:85vw;background:rgba(15,15,20,0.95);
@@ -1389,7 +1395,7 @@ function showPlacePopup(place) {
 
       <div style="background:#222;padding:10px 12px;border-radius:8px;
                   font-size:0.9em;color:#FFD600;">
-        🏛️ Du har fullført quizen og samlet stedet <strong>${place.name}</strong>!
+        🏛️ Du har samlet stedet <strong>${place.name}</strong>!
       </div>
     </div>`;
 
@@ -1398,10 +1404,12 @@ function showPlacePopup(place) {
   setTimeout(() => card.remove(), 4200);
 }
 
-// Ekstra animasjonsstil for popup
-const style = document.createElement("style");
-style.textContent = `
-.person-popup {
+
+
+// Ekstra animasjonsstil for reward popup
+const rewardStyle = document.createElement("style");
+rewardStyle.textContent = `
+.reward-popup {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -1410,7 +1418,7 @@ style.textContent = `
   transition: all 0.35s ease;
   z-index: 9999;
 }
-.person-popup.visible {
+.reward-popup.visible {
   transform: translate(-50%, -50%) scale(1);
   opacity: 1;
 }
@@ -1418,4 +1426,4 @@ style.textContent = `
   from {opacity:0;transform:translate(-50%,-50%) scale(0.85);}
   to   {opacity:1;transform:translate(-50%,-50%) scale(1);}
 }`;
-document.head.appendChild(style);
+document.head.appendChild(rewardStyle);
