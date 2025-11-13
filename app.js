@@ -588,11 +588,13 @@ function renderGallery() {
 // ==============================
 // 8. MERKER, NIVÅER OG FREMGANG
 // ==============================
+
+// Puls-animasjon på badge basert på badge.id (ikke label)
 function pulseBadge(cat) {
-  const cards = document.querySelectorAll(".badge-mini");
-  cards.forEach(card => {
-    const name = card.querySelector(".badge-mini-label")?.textContent || "";
-    if (name.trim().toLowerCase() === cat.trim().toLowerCase()) {
+  const id = catIdFromDisplay(cat);  // f.eks. "vitenskap"
+
+  document.querySelectorAll(".badge-mini").forEach(card => {
+    if (card.dataset.badgeId === id) {
       card.classList.add("badge-pulse");
       setTimeout(() => card.classList.remove("badge-pulse"), 1200);
     }
@@ -611,10 +613,10 @@ async function ensureBadgesLoaded() {
 // Oppdater nivå ved ny poengsum
 async function updateMeritLevel(cat, newPoints) {
   await ensureBadgesLoaded();
+
+  const id = catIdFromDisplay(cat);
   const badge = BADGES.find(
-    b =>
-      cat.toLowerCase().includes(b.id) ||
-      b.name.toLowerCase().includes(cat.toLowerCase())
+    b => b.id === id || b.name.toLowerCase() === cat.toLowerCase()
   );
   if (!badge) return;
 
@@ -631,25 +633,28 @@ async function updateMeritLevel(cat, newPoints) {
 // Poengsystem – +1 poeng per fullført quiz
 async function addCompletedQuizAndMaybePoint(categoryDisplay, quizId) {
   const categoryId = catIdFromDisplay(categoryDisplay);
+
   const progress = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
   progress[categoryId] = progress[categoryId] || { completed: [] };
 
-  // Hindre dobbel poeng for samme quiz
   if (progress[categoryId].completed.includes(quizId)) return;
 
   progress[categoryId].completed.push(quizId);
   localStorage.setItem("quiz_progress", JSON.stringify(progress));
 
+  // Merits følger fortsatt display-navn (din regel)
   const catLabel = categoryDisplay;
   merits[catLabel] = merits[catLabel] || { level: "Nybegynner", points: 0 };
   merits[catLabel].points += 1;
 
   await ensureBadgesLoaded();
+
   const badge = BADGES.find(
     b =>
-      catLabel.toLowerCase().includes(b.id) ||
-      b.name.toLowerCase().includes(catLabel.toLowerCase())
+      b.id === categoryId ||
+      b.name.toLowerCase() === catLabel.toLowerCase()
   );
+
   if (badge) {
     for (let i = badge.tiers.length - 1; i >= 0; i--) {
       const tier = badge.tiers[i];
@@ -666,10 +671,10 @@ async function addCompletedQuizAndMaybePoint(categoryDisplay, quizId) {
   window.dispatchEvent(new Event("updateProfile"));
 }
 
-
 // ==============================
 // 9. HENDELSER (CLICK-DELEGATION) OG SHEETS
 // ==============================
+
 function openSheet(sheet) {
   sheet?.setAttribute("aria-hidden", "false");
 }
@@ -686,12 +691,12 @@ document.addEventListener("click", e => {
   if (openId) {
     const p = PLACES.find(x => x.id === openId);
     if (p) {
-      closePlaceOverlay();
-      showPlaceOverlay(p);
+      // Bruk popup-systemet
+      window.showPlacePopup(p);
     }
   }
 
-  // Mer info (Google)
+  // "Mer info" (Google)
   const infoName = target.getAttribute?.("data-info");
   if (infoName) {
     window.open(
@@ -706,13 +711,14 @@ document.addEventListener("click", e => {
     startQuiz(quizId);
   }
 
-  // Badge-klikk (profilmerker)
+  // Badge-klikk
   const badgeEl = target.closest?.("[data-badge-id]");
   if (badgeEl) {
     handleBadgeClick(badgeEl);
   }
 });
 
+// "Lukk"-knapper for sheets
 document.querySelectorAll("[data-close]").forEach(btn => {
   btn.addEventListener("click", () => {
     const sel = btn.getAttribute("data-close");
@@ -720,11 +726,15 @@ document.querySelectorAll("[data-close]").forEach(btn => {
   });
 });
 
+// "Se flere i nærheten"
 el.seeMore?.addEventListener("click", () => {
   buildSeeMoreNearby();
   openSheet(el.sheetNear);
 });
 
+// ----------------------------------------------------------
+// BADGE MODAL
+// ----------------------------------------------------------
 async function handleBadgeClick(badgeEl) {
   const badgeId = badgeEl.getAttribute("data-badge-id");
   const modal = document.getElementById("badgeModal");
@@ -737,23 +747,24 @@ async function handleBadgeClick(badgeEl) {
   const localMerits = JSON.parse(
     localStorage.getItem("merits_by_category") || "{}"
   );
-  const info = localMerits[badge.name] || localMerits[badge.id] || {
-    level: "Nybegynner",
-    points: 0
-  };
 
-  const imgEl     = modal.querySelector(".badge-img");
-  const titleEl   = modal.querySelector(".badge-title");
-  const levelEl   = modal.querySelector(".badge-level");
-  const textEl    = modal.querySelector(".badge-progress-text");
-  const barEl     = modal.querySelector(".badge-progress-bar");
+  const info =
+    localMerits[badge.name] ||
+    localMerits[badge.id] ||
+    { level: "Nybegynner", points: 0 };
+
+  const imgEl   = modal.querySelector(".badge-img");
+  const titleEl = modal.querySelector(".badge-title");
+  const levelEl = modal.querySelector(".badge-level");
+  const textEl  = modal.querySelector(".badge-progress-text");
+  const barEl   = modal.querySelector(".badge-progress-bar");
 
   if (imgEl)   imgEl.src = badge.image;
   if (titleEl) titleEl.textContent = badge.name;
   if (levelEl) levelEl.textContent = info.level;
   if (textEl)  textEl.textContent = `${info.points} poeng`;
 
-  if (barEl && badge.tiers && badge.tiers.length) {
+  if (barEl && badge.tiers?.length) {
     const max = badge.tiers[badge.tiers.length - 1].threshold || 1;
     const pct = Math.max(0, Math.min(100, (info.points / max) * 100));
     barEl.style.width = `${pct}%`;
@@ -763,13 +774,13 @@ async function handleBadgeClick(badgeEl) {
   modal.setAttribute("aria-hidden", "false");
 
   const closeBtn = modal.querySelector(".close-btn");
-  closeBtn &&
-    (closeBtn.onclick = () => {
+  if (closeBtn) {
+    closeBtn.onclick = () => {
       modal.style.display = "none";
       modal.setAttribute("aria-hidden", "true");
-    });
+    };
+  }
 }
-
 
 // ==============================
 // 10. INITIALISERING OG BOOT
@@ -797,6 +808,7 @@ function requestLocation() {
     return;
   }
   if (el.status) el.status.textContent = "Henter posisjon…";
+
   navigator.geolocation.getCurrentPosition(
     g => {
       currentPos = { lat: g.coords.latitude, lon: g.coords.longitude };
@@ -881,7 +893,8 @@ function showQuizHistory() {
 
 function wireMiniProfileLinks() {
   document.getElementById("linkPlaces")?.addEventListener("click", () => {
-    enterMapMode();
+    // erstatter enterMapMode()
+    document.body.classList.add("map-mode");
     showToast("Viser steder på kartet");
   });
 
@@ -923,133 +936,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initMiniProfile();
   wireMiniProfileLinks();
 });
-
-
-// ==============================
-// 11. STED-OVERLAY (tekst + personer)
-// ==============================
-async function fetchWikiSummary(name) {
-  try {
-    const url = `https://no.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(
-      name
-    )}`;
-    const res = await fetch(url, { headers: { Accept: "application/json" } });
-    if (!res.ok) throw new Error("No wiki");
-    const data = await res.json();
-    return data.extract || "";
-  } catch (_) {
-    return "";
-  }
-}
-
-function closePlaceOverlay() {
-  const ov = document.getElementById("placeOverlay");
-  if (ov) ov.remove();
-}
-
-function isQuizDone(targetId) {
-  const progress = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
-  return Object.values(progress).some(
-    v => Array.isArray(v.completed) && v.completed.includes(targetId)
-  );
-}
-
-function getPersonsByPlace(placeId) {
-  return PEOPLE.filter(
-    p =>
-      (Array.isArray(p.places) && p.places.includes(placeId)) ||
-      p.placeId === placeId
-  );
-}
-
-async function showPlaceOverlay(place) {
-  const existing = document.getElementById("placeOverlay");
-  if (existing) existing.remove();
-
-  const overlay = document.createElement("div");
-  overlay.id = "placeOverlay";
-  overlay.className = "place-overlay";
-
-  const peopleHere = getPersonsByPlace(place.id);
-  const summary = await fetchWikiSummary(place.name);
-
-  overlay.innerHTML = `
-    <button class="close-overlay" onclick="closePlaceOverlay()">×</button>
-    <div class="place-overlay-content">
-      <div class="left">
-        <h2>${place.name}</h2>
-        <p class="muted">${place.category || ""} • radius ${place.r || 150} m</p>
-
-        ${
-          place.image
-            ? `<img src="${place.image}" alt="${place.name}" style="width:100%;border-radius:8px;margin:10px 0;">`
-            : ""
-        }
-
-        <p>${summary || place.desc || "Ingen beskrivelse tilgjengelig."}</p>
-
-        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;">
-          <button class="primary" data-route="${place.id}">Vis rute</button>
-          <button class="ghost" onclick="window.open('${googleUrl(
-            place.name
-          )}','_blank')">Google</button>
-          <button class="ghost" onclick="window.open('https://no.wikipedia.org/wiki/${encodeURIComponent(
-            place.name
-          )}','_blank')">Wikipedia</button>
-        </div>
-
-        <hr style="border:none;border-top:1px solid rgba(255,255,255,.1);margin:14px 0;">
-
-        <div style="margin-top:12px;">
-          <button class="primary" data-quiz="${place.id}">Ta quiz om stedet</button>
-        </div>
-      </div>
-
-      <div class="right">
-        ${
-          peopleHere.length
-            ? peopleHere
-                .map(
-                  p => `
-          <div class="card">
-            <strong>${p.name}</strong><br>
-            <span class="muted">${tagToCat(p.tags)}</span>
-            <p>${p.desc || ""}</p>
-            <button class="primary" data-quiz="${p.id}">Ta quiz</button>
-          </div>`
-                )
-                .join("")
-            : '<div class="muted">Ingen personer registrert.</div>'
-        }
-      </div>
-    </div>`;
-
-  document.body.appendChild(overlay);
-
-  // Rute-knapp (bruk data-route)
-  overlay
-    .querySelector(`[data-route="${place.id}"]`)
-    ?.addEventListener("click", () => showRouteTo(place));
-
-  // Sett "Tatt"-status
-  const placeBtn = overlay.querySelector(`button[data-quiz="${place.id}"]`);
-  if (placeBtn && isQuizDone(place.id)) {
-    placeBtn.classList.add("quiz-done");
-    placeBtn.innerHTML = "✔️ Tatt (kan gjentas)";
-  }
-
-  peopleHere.forEach(p => {
-    const btn = overlay.querySelector(`button[data-quiz="${p.id}"]`);
-    if (btn && isQuizDone(p.id)) {
-      btn.classList.add("quiz-done");
-      btn.innerHTML = "✔️ Tatt (kan gjentas)";
-    }
-  });
-
-  overlay.addEventListener("click", e => {
-    if (e.target.id === "placeOverlay") closePlaceOverlay();
-  });
-}
 
 
 // ==============================
