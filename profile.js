@@ -16,6 +16,9 @@
 //
 // ============================================================
 
+// Sørg for at globale popup-funksjoner finnes i app.js
+window.showPersonPopup = window.showPersonPopup || (() => {});
+window.showPlacePopup  = window.showPlacePopup  || (() => {});
 
 // GLOBALT
 let PEOPLE = [];
@@ -171,8 +174,11 @@ function renderPeopleCollection() {
   `).join("");
 
   grid.querySelectorAll(".avatar-card").forEach(el => {
-    el.onclick = () => window.showPersonPopup(PEOPLE.find(p => p.id === el.dataset.person));
-  });
+  el.onclick = () => {
+    const pr = PEOPLE.find(p => p.id === el.dataset.person);
+    window.showPersonPopup(pr);
+  };
+});
 }
 
 
@@ -200,8 +206,11 @@ function renderPlacesCollection() {
   `).join("");
 
   grid.querySelectorAll(".place-card").forEach(el => {
-    el.onclick = () => window.showPlacePopup(PLACES.find(p => p.id === el.dataset.place));
-  });
+  el.onclick = () => {
+    const pl = PLACES.find(p => p.id === el.dataset.place);
+    window.showPlacePopup(pl);
+  };
+});
 }
 
 
@@ -247,14 +256,16 @@ function renderTimeline() {
   if (txt) txt.textContent = `Du har låst opp ${count} kort`;
 
   body.querySelectorAll(".timeline-card").forEach(el => {
-    el.onclick = () => {
-      const id = el.dataset.id;
-      const person = PEOPLE.find(p=>p.id===id);
-      if (person) return window.showPersonPopup(person);
-      const place = PLACES.find(p=>p.id===id);
-      if (place) return window.showPlacePopup(place);
-    };
-  });
+  el.onclick = () => {
+    const id = el.dataset.id;
+
+    const pr = PEOPLE.find(p => p.id === id);
+    if (pr) return window.showPersonPopup(pr);
+
+    const pl = PLACES.find(p => p.id === id);
+    if (pl) return window.showPlacePopup(pl);
+  };
+});
 }
 
 
