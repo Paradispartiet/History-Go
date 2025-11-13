@@ -1,1421 +1,684 @@
-// =====================================================
-// HISTORY GO – APP.JS (stabil produksjonsversjon v17)
-// =====================================================
+// ============================================================
+// HISTORY GO – APP.JS (hovedapp – kart, quiz, miniprofil)
+// ============================================================
 //
-// 1.  KONSTANTER OG INIT-VARIABLER
-// 2.  ELEMENTREFERANSER (DOM-cache)
-// 3.  KATEGORIFUNKSJONER (farge, klasse, tag)
-// 4.  GEO OG AVSTANDSBEREGNING
-// 5.  BRUKERPOSISJON OG KART (ruter, markører)
-// 6.  STED- OG PERSONKORT
-// 7.  LISTEVISNINGER (nærområde, samling, galleri)
-// 8.  MERKER, NIVÅER OG FREMGANG
-// 9.  HENDELSER (click-delegation) OG SHEETS
-// 10. INITIALISERING OG BOOT
-// 11. STED-OVERLAY (tekst + personer)
-// 12. KARTMODUS
-// 13. QUIZ – DYNAMISK LASTER, MODAL & SCORE
-// 14. PERSON- OG STED-POPUP
-// =====================================================
+//  - Laster places.json, people.json, badges.json
+//  - Tegner kart (Leaflet) og markører
+//  - Håndterer quiz-modal, poeng, badges
+//  - Holder styr på visited_places, people_collected,
+//    merits_by_category og quiz_progress i localStorage
+//  - Oppdaterer miniprofil og sender "updateProfile"-event
+//
+// ============================================================
 
+let MAP = null;
+let USER_MARKER = null;
+let PLACES = [];
+let PEOPLE = [];
+let BADGES = [];
 
-// ==============================
-// 1. KONSTANTER OG INIT-VARIABLER
-// ==============================
-const START            = { lat: 59.9139, lon: 10.7522, zoom: 13 };
-const NEARBY_LIMIT     = 2;
-const QUIZ_FEEDBACK_MS = 650;
+let mapReady = false;
+let dataReady = false;
 
-let PLACES  = [];
-let PEOPLE  = [];
-let BADGES  = [];
-
-const visited         = JSON.parse(localStorage.getItem("visited_places") || "{}");
-const peopleCollected = JSON.parse(localStorage.getItem("people_collected") || "{}");
-const merits          = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
-
-// progress for “+1 poeng per 3 riktige” (reservert)
-const userProgress    = JSON.parse(localStorage.getItem("historygo_progress") || "{}");
-
-function saveVisited() {
-  localStorage.setItem("visited_places", JSON.stringify(visited));
-  renderCollection();
-}
-
-function savePeople() {
-  localStorage.setItem("people_collected", JSON.stringify(peopleCollected));
-  renderGallery();
-}
-
-function saveMerits() {
-  localStorage.setItem("merits_by_category", JSON.stringify(merits));
-}
-
-function showToast(msg, ms = 2000) {
-  const t = el.toast;
-  if (!t) return;
-  t.textContent = msg;
-  t.style.display = "block";
-  clearTimeout(t._hide);
-  t._hide = setTimeout(() => {
-    t.style.display = "none";
-  }, ms);
-}
-
-
-// ==============================
-// 2. ELEMENTREFERANSER (DOM-cache)
-// ==============================
-const el = {
-  map:        document.getElementById("map"),
-  toast:      document.getElementById("toast"),
-  status:     document.getElementById("status"),
-
-  btnSeeMap:  document.getElementById("btnSeeMap"),
-  btnExitMap: document.getElementById("btnExitMap"),
-  btnCenter:  document.getElementById("btnCenter"),
-  test:       document.getElementById("testToggle"),
-
-  list:       document.getElementById("nearbyList"),
-  nearPeople: document.getElementById("nearbyPeople"),
-  seeMore:    document.getElementById("btnSeeMoreNearby"),
-  sheetNear:  document.getElementById("sheetNearby"),
-  sheetNearBody: document.getElementById("sheetNearbyBody"),
-
-  collectionGrid:      document.getElementById("collectionGrid"),
-  collectionCount:     document.getElementById("collectionCount"),
-  btnMoreCollection:   document.getElementById("btnMoreCollection"),
-  sheetCollection:     document.getElementById("sheetCollection"),
-  sheetCollectionBody: document.getElementById("sheetCollectionBody"),
-
-  gallery: document.getElementById("gallery"),
-
-  // Place Card (sheet)
-  pc:       document.getElementById("placeCard"),
-  pcTitle:  document.getElementById("pcTitle"),
-  pcMeta:   document.getElementById("pcMeta"),
-  pcDesc:   document.getElementById("pcDesc"),
-  pcUnlock: document.getElementById("pcUnlock"),
-  pcRoute:  document.getElementById("pcRoute"),
-  pcClose:  document.getElementById("pcClose")
+const QUIZ_FILE_MAP = {
+  historie: "quizzes_historie.json",
+  vitenskap: "quizzes_vitenskap.json",
+  kunst: "quizzes_kunst.json",
+  musikk: "quizzes_musikk.json",
+  natur: "quizzes_natur.json",
+  sport: "quizzes_sport.json",
+  by: "quizzes_by.json",
+  politikk: "quizzes_politikk.json",
+  populaerkultur: "quizzes_popkultur.json",
+  subkultur: "quizzes_subkultur.json",
+  naeringsliv: "quizzes_naeringsliv.json"
 };
 
-
-// ==============================
-// 3. KATEGORIFUNKSJONER
-// ==============================
-function norm(s = "") {
-  return String(s)
-    .toLowerCase()
-    .trim()
-    .replace(/æ/g, "ae")
-    .replace(/ø/g, "oe")
-    .replace(/å/g, "aa");
+// ------------------------------------------------------------
+//  HJELPEFUNKSJONER
+// ------------------------------------------------------------
+function norm(str = "") {
+  return (str || "").toString().toLowerCase()
+    .replace(/å/g,"a").replace(/ø/g,"o").replace(/æ/g,"ae")
+    .replace(/\s+/g," ").trim();
 }
 
-// Farger (bruker badge-fargene)
+function showToast(msg) {
+  const t = document.getElementById("toast");
+  if (!t) {
+    alert(msg);
+    return;
+  }
+  t.textContent = msg;
+  t.style.display = "block";
+  clearTimeout(window.__toastTimer);
+  window.__toastTimer = setTimeout(() => {
+    t.style.display = "none";
+  }, 2200);
+}
+
+// ------------------------------------------------------------
+//  KATEGORIFARGER / KLASSER
+// ------------------------------------------------------------
 function catColor(cat = "") {
   const c = norm(cat);
   if (c.includes("historie") || c.includes("fortid") || c.includes("middelalder") || c.includes("arkeologi")) return "#344B80";   // Historie – dyp blå
-  if (c.includes("vitenskap") || c.includes("filosofi")) return "#9b59b6";
-  if (c.includes("kunst") || c.includes("kultur")) return "#ffb703";
-  if (c.includes("musikk") || c.includes("scene")) return "#ff66cc";
-  if (c.includes("litteratur") || c.includes("poesi")) return "#f6c800";
-  if (c.includes("natur") || c.includes("miljoe")) return "#4caf50";
-  if (c.includes("sport") || c.includes("idrett") || c.includes("lek")) return "#2a9d8f";
-  if (c.includes("by") || c.includes("arkitektur")) return "#e63946";
-  if (c.includes("politikk") || c.includes("samfunn")) return "#c77dff";
-  if (c.includes("naering") || c.includes("industri") || c.includes("arbeid")) return "#ff8800";
-  if (c.includes("populaer") || c.includes("pop")) return "#ffb703";
-  if (c.includes("subkultur") || c.includes("urban")) return "#ff66cc";
-  return "#9b59b6"; // fallback
+  if (c.includes("vitenskap") || c.includes("filosofi")) return "#9b59b6";                         // Vitenskap & filosofi – lilla
+  if (c.includes("kunst") || c.includes("kultur")) return "#ffb703";                               // Kunst & kultur – gul/oransje
+  if (c.includes("musikk") || c.includes("scene")) return "#ff66cc";                               // Musikk & scenekunst – rosa
+  if (c.includes("litteratur") || c.includes("poesi") || c.includes("forfatter")) return "#f6c800"; // Litteratur & poesi – gul
+  if (c.includes("natur") || c.includes("miljoe")) return "#4caf50";                               // Natur & miljø – grønn
+  if (c.includes("sport") || c.includes("idrett") || c.includes("lek")) return "#2a9d8f";          // Sport & lek – turkis
+  if (c.includes("by") || c.includes("arkitektur")) return "#e63946";                              // By & arkitektur – rød
+  if (c.includes("politikk") || c.includes("samfunn")) return "#c77dff";                           // Politikk & samfunn – lilla
+  if (c.includes("populaer") || c.includes("popkultur")) return "#ffb703";                         // Populærkultur – oransje
+  if (c.includes("subkultur")) return "#ff66cc";                                                   // Subkultur – rosa
+  if (c.includes("naeringsliv") || c.includes("industri")) return "#ff8800";                       // Næringsliv & industri – oransje
+  return "#1976d2";                                                                                // Standard blå
 }
 
-// CSS-klasser
 function catClass(cat = "") {
   const c = norm(cat);
   if (c.includes("historie") || c.includes("fortid") || c.includes("middelalder") || c.includes("arkeologi")) return "historie";
   if (c.includes("vitenskap") || c.includes("filosofi")) return "vitenskap";
   if (c.includes("kunst") || c.includes("kultur")) return "kunst";
   if (c.includes("musikk") || c.includes("scene")) return "musikk";
-  if (c.includes("litteratur") || c.includes("poesi")) return "litteratur";
+  if (c.includes("litteratur") || c.includes("poesi") || c.includes("forfatter")) return "litteratur";
   if (c.includes("natur") || c.includes("miljoe")) return "natur";
   if (c.includes("sport") || c.includes("idrett") || c.includes("lek")) return "sport";
   if (c.includes("by") || c.includes("arkitektur")) return "by";
   if (c.includes("politikk") || c.includes("samfunn")) return "politikk";
-  if (c.includes("naering") || c.includes("industri") || c.includes("arbeid")) return "naeringsliv";
-  if (c.includes("populaer") || c.includes("pop")) return "populaerkultur";
-  if (c.includes("subkultur") || c.includes("urban")) return "subkultur";
-  return "vitenskap";
+  if (c.includes("populaer") || c.includes("popkultur")) return "populaerkultur";
+  if (c.includes("subkultur")) return "subkultur";
+  if (c.includes("naeringsliv") || c.includes("industri")) return "naeringsliv";
+  return "";
 }
 
-// Kategorier brukt i quiz-fil-kartet
-function tagToCat(tags = []) {
-  const t = norm(Array.isArray(tags) ? tags.join(" ") : tags || "");
-
-  if (t.includes("historie") || t.includes("fortid") || t.includes("middelalder") || t.includes("arkeologi")) return "historie";
-  if (t.includes("subkultur") || t.includes("urban")) return "subkultur";
-  if (t.includes("populaer") || t.includes("pop")) return "populaerkultur";
-  if (t.includes("vitenskap") || t.includes("filosofi")) return "vitenskap";
+// Mapping fra tag → kategori-id brukt i badges / merits
+function tagToCat(tag = "") {
+  const t = norm(tag);
+  if (!t) return "";
+  if (t.includes("historie") || t.includes("fortid")) return "historie";
+  if (t.includes("vitenskap") || t.includes("forskning") || t.includes("filosofi")) return "vitenskap";
   if (t.includes("kunst") || t.includes("kultur")) return "kunst";
-  if (t.includes("musikk") || t.includes("scene")) return "musikk";
-  if (t.includes("litteratur") || t.includes("poesi")) return "litteratur";
-  if (t.includes("natur") || t.includes("miljoe")) return "natur";
+  if (t.includes("musikk") || t.includes("konsert") || t.includes("scene")) return "musikk";
+  if (t.includes("litteratur") || t.includes("forfatter") || t.includes("lesing")) return "litteratur";
+  if (t.includes("natur") || t.includes("miljoe") || t.includes("park")) return "natur";
   if (t.includes("sport") || t.includes("idrett") || t.includes("lek")) return "sport";
-  if (t.includes("by") || t.includes("arkitektur")) return "by";
-  if (t.includes("politikk") || t.includes("samfunn")) return "politikk";
-  if (t.includes("naering") || t.includes("industri") || t.includes("arbeid")) return "naeringsliv";
-
-  return "vitenskap";
+  if (t.includes("by") || t.includes("arkitektur") || t.includes("gate")) return "by";
+  if (t.includes("politikk") || t.includes("samfunn") || t.includes("demokrati")) return "politikk";
+  if (t.includes("populaer") || t.includes("popkultur") || t.includes("film") || t.includes("spill")) return "populaerkultur";
+  if (t.includes("subkultur")) return "subkultur";
+  if (t.includes("naeringsliv") || t.includes("industri") || t.includes("arbeidsplass")) return "naeringsliv";
+  return "";
 }
 
-// Bridge for visningsnavn
-function catIdFromDisplay(name = "") {
-  return tagToCat(name);
-}
-
-
-// ==============================
-// 4. GEO OG AVSTANDSBEREGNING
-// ==============================
-function distMeters(a, b) {
-  const R = 6371e3;
-  const toRad = d => d * Math.PI / 180;
-  const dLat = toRad(b.lat - a.lat);
-  const dLon = toRad(b.lon - a.lon);
-  const la1 = toRad(a.lat);
-  const la2 = toRad(b.lat);
-  const x = Math.sin(dLat / 2) ** 2 +
-            Math.cos(la1) * Math.cos(la2) *
-            Math.sin(dLon / 2) ** 2;
-  return R * 2 * Math.atan2(Math.sqrt(x), Math.sqrt(1 - x));
-}
-
-
-// ==============================
-// 5. BRUKERPOSISJON OG KART
-// ==============================
-let MAP, userMarker, userPulse, routeLine, routeControl, placeLayer;
-let mapReady = false;
-let dataReady = false;
-
-function setUser(lat, lon) {
-  if (!MAP) return;
-  const pos = [lat, lon];
-
-  if (!userMarker) {
-    userMarker = L.circleMarker(pos, {
-      radius: 8,
-      weight: 2,
-      color: "#fff",
-      fillColor: "#1976d2",
-      fillOpacity: 1
-    }).addTo(MAP).bindPopup("Du er her");
-
-    userPulse = L.circle(pos, {
-      radius: 25,
-      color: "#00e676",
-      weight: 1,
-      opacity: 0.6,
-      fillColor: "#00e676",
-      fillOpacity: 0.12
-    }).addTo(MAP);
-  } else {
-    userMarker.setLatLng(pos);
-    userPulse.setLatLng(pos);
-  }
-}
-
-function initMap() {
-  if (!el.map) return;
-
-  MAP = L.map("map", { zoomControl: false }).setView(
-    [START.lat, START.lon],
-    START.zoom
-  );
-  placeLayer = L.layerGroup().addTo(MAP);
-
-  L.tileLayer(
-    "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
-    {
-      attribution: '&copy; <a href="https://carto.com/attributions">CARTO</a>',
-      subdomains: "abcd",
-      maxZoom: 19
-    }
-  ).addTo(MAP);
-
-  MAP.whenReady(() => {
-    mapReady = true;
-    if (dataReady) maybeDrawMarkers();
-
-    // Kartet dekker hele skjermen
-    const mapEl = document.getElementById("map");
-    if (mapEl) {
-      mapEl.style.position = "fixed";
-      mapEl.style.inset = "0";
-      mapEl.style.width = "100%";
-      mapEl.style.height = "100%";
-      mapEl.style.zIndex = "1";
-    }
-  });
-}
-
-// PEOPLE → PLACES-linking (kun kobling, ingen markører)
-function linkPeopleToPlaces() {
-  if (!PLACES.length || !PEOPLE.length) return;
-
-  PEOPLE.forEach(person => {
-    let linkedPlaces = [];
-
-    if (Array.isArray(person.places) && person.places.length > 0) {
-      linkedPlaces = PLACES.filter(p => person.places.includes(p.id));
-    } else if (person.placeId) {
-      const single = PLACES.find(p => p.id === person.placeId);
-      if (single) linkedPlaces.push(single);
-    }
-
-    if (!linkedPlaces.length) return;
-
-    linkedPlaces.forEach(lp => {
-      lp.people = lp.people || [];
-      lp.people.push(person);
-    });
-  });
-}
-
-function showRouteTo(place) {
-  if (!MAP || !place) return;
-
-  const from = currentPos
-    ? L.latLng(currentPos.lat, currentPos.lon)
-    : L.latLng(START.lat, START.lon);
-  const to = L.latLng(place.lat, place.lon);
-
-  if (routeLine) {
-    MAP.removeLayer(routeLine);
-    routeLine = null;
-  }
-
+// ------------------------------------------------------------
+//  DATAINNLESING
+// ------------------------------------------------------------
+async function loadData() {
   try {
-    if (!L.Routing) throw new Error("no LRM");
-    if (routeControl) {
-      MAP.removeControl(routeControl);
-      routeControl = null;
-    }
-
-    routeControl = L.Routing.control({
-      waypoints: [from, to],
-      router: L.Routing.osrmv1({
-        serviceUrl: "https://routing.openstreetmap.de/routed-foot/route/v1",
-        profile: "foot"
-      }),
-      addWaypoints: false,
-      draggableWaypoints: false,
-      fitSelectedRoutes: true,
-      show: false,
-      lineOptions: { styles: [{ color: "#cfe8ff", opacity: 1, weight: 6 }] },
-      createMarker: () => null
-    }).addTo(MAP);
-
-    showToast("Rute lagt.");
-  } catch (e) {
-    routeLine = L.polyline([from, to], {
-      color: "#cfe8ff",
-      weight: 5,
-      opacity: 1
-    }).addTo(MAP);
-    MAP.fitBounds(routeLine.getBounds(), { padding: [40, 40] });
-    showToast("Vis linje (ingen rutetjeneste)");
-  }
-}
-
-function maybeDrawMarkers() {
-  if (mapReady && dataReady) {
-    drawPlaceMarkers();
-  }
-}
-
-function lighten(hex, amount = 0.35) {
-  const c = hex.replace("#", "");
-  const num = parseInt(c, 16);
-  let r = Math.min(255, (num >> 16) + 255 * amount);
-  let g = Math.min(255, ((num >> 8) & 0x00ff) + 255 * amount);
-  let b = Math.min(255, (num & 0x0000ff) + 255 * amount);
-  return `rgb(${r},${g},${b})`;
-}
-
-function drawPlaceMarkers() {
-  if (!MAP || !PLACES.length || !placeLayer) return;
-  placeLayer.clearLayers();
-
-  PLACES.forEach(p => {
-    const isVisited = !!visited[p.id];
-    const fill = isVisited
-      ? lighten(catColor(p.category), 0.35)
-      : catColor(p.category);
-    const border = isVisited ? "#ffd700" : "#fff";
-
-    const mk = L.circleMarker([p.lat, p.lon], {
-      radius: isVisited ? 9 : 8,
-      color: border,
-      weight: 2,
-      fillColor: fill,
-      fillOpacity: 1
-    }).addTo(placeLayer);
-
-    mk.bindTooltip(isVisited ? `✅ ${p.name}` : p.name, {
-      permanent: false,
-      direction: "top"
-    });
-
-    mk.on("click", () => {
-      closePlaceOverlay();
-      showPlaceOverlay(p);
-    });
-  });
-}
-
-
-// ==============================
-// 6. STED- OG PERSONKORT
-// ==============================
-let currentPlace = null;
-
-function googleUrl(name) {
-  const q = encodeURIComponent(`site:no.wikipedia.org ${name} Oslo`);
-  return `https://www.google.com/search?q=${q}`;
-}
-
-// Liten visuell effekt når et sted låses opp
-function pulseMarker(lat, lon) {
-  if (!MAP) return;
-  const pulse = L.circle([lat, lon], {
-    radius: 30,
-    color: "#ffd700",
-    weight: 2,
-    opacity: 0.9,
-    fillColor: "#ffd700",
-    fillOpacity: 0.3
-  }).addTo(MAP);
-  setTimeout(() => MAP.removeLayer(pulse), 1000);
-}
-
-function openPlaceCard(p) {
-  if (!el.pc) return;
-
-  currentPlace = p;
-  el.pcTitle.textContent = p.name;
-  el.pcMeta.textContent = `${p.category} • radius ${p.r || 120} m`;
-  el.pcDesc.textContent = p.desc || "";
-  el.pc.setAttribute("aria-hidden", "false");
-
-  el.pcUnlock.textContent = "Lås opp";
-  el.pcUnlock.disabled = false;
-
-  el.pcUnlock.onclick = () => {
-    if (visited[p.id]) {
-      showToast("Allerede låst opp");
-      return;
-    }
-
-    visited[p.id] = true;
-    saveVisited();
-    drawPlaceMarkers();
-    pulseMarker(p.lat, p.lon);
-
-    const cat = p.category;
-    if (cat && cat.trim()) {
-      merits[cat] = merits[cat] || { points: 0, level: "Nybegynner" };
-      merits[cat].points += 1;
-      saveMerits();
-      updateMeritLevel(cat, merits[cat].points);
-    }
-
-    showToast(`Låst opp: ${p.name} ✅`);
-    window.dispatchEvent(new Event("updateProfile"));
-  };
-
-  el.pcRoute.onclick = () => showRouteTo(p);
-  showPlaceOverlay(p);
-}
-
-function openPlaceCardByPerson(person) {
-  const place =
-    PLACES.find(x => x.id === person.placeId) || {
-      id: "personloc",
-      name: person.name,
-      category: tagToCat(person.tags),
-      r: person.r || 150,
-      desc: person.desc || "",
-      lat: person.lat,
-      lon: person.lon
-    };
-
-  openPlaceCard(place);
-
-  if (!el.pcUnlock) return;
-  el.pcUnlock.textContent = "Ta quiz";
-  el.pcUnlock.disabled = false;
-  el.pcUnlock.onclick = () => startQuiz(person.id);
-}
-
-el.pcClose?.addEventListener("click", () => {
-  if (!el.pc) return;
-  el.pc.setAttribute("aria-hidden", "true");
-  el.pcUnlock.textContent = "Lås opp";
-});
-
-
-// ==============================
-// 7. LISTEVISNINGER
-// ==============================
-let currentPos = null;
-
-function renderNearbyPlaces() {
-  if (!el.list) return;
-
-  const sorted = PLACES
-    .map(p => ({
-      ...p,
-      _d: currentPos ? Math.round(distMeters(currentPos, { lat: p.lat, lon: p.lon })) : null
-    }))
-    .sort((a, b) => (a._d ?? 1e12) - (b._d ?? 1e12));
-
-  el.list.innerHTML = sorted
-    .slice(0, NEARBY_LIMIT)
-    .map(renderPlaceCard)
-    .join("");
-}
-
-function renderPlaceCard(p) {
-  const dist =
-    p._d == null
-      ? ""
-      : p._d < 1000
-      ? `${p._d} m`
-      : `${(p._d / 1000).toFixed(1)} km`;
-
-  return `
-    <article class="card">
-      <div>
-        <div class="name">${p.name}</div>
-        <div class="meta">${p.category || ""} • Oslo</div>
-        <p class="desc">${p.desc || ""}</p>
-      </div>
-      <div class="row between">
-        <div class="dist">${dist}</div>
-        <div class="row">
-          <button class="ghost" data-open="${p.id}">Åpne</button>
-          <button class="ghost" data-info="${encodeURIComponent(p.name)}">Mer info</button>
-        </div>
-      </div>
-    </article>`;
-}
-
-function renderPersonCardInline(pr) {
-  const cat = tagToCat(pr.tags);
-  const dist =
-    pr._d < 1000 ? `${pr._d} m` : `${(pr._d / 1000).toFixed(1)} km`;
-
-  return `
-    <article class="card">
-      <div>
-        <div class="name">${pr.name}</div>
-        <div class="meta">${cat}</div>
-        <p class="desc">${pr.desc || ""}</p>
-      </div>
-      <div class="row between">
-        <div class="dist">${dist}</div>
-        <button class="primary" data-quiz="${pr.id}">Ta quiz</button>
-      </div>
-    </article>`;
-}
-
-function renderCollection() {
-  const grid = el.collectionGrid;
-  if (!grid) return;
-
-  const items = PLACES.filter(p => visited[p.id]);
-
-  if (el.collectionCount) el.collectionCount.textContent = items.length;
-
-  const first = items.slice(0, 18);
-  grid.innerHTML = first
-    .map(
-      p => `
-    <span class="badge ${catClass(p.category)}" title="${p.name}">
-      <span class="i" style="background:${catColor(p.category)}"></span> ${p.name}
-    </span>`
-    )
-    .join("");
-}
-
-function buildSeeMoreNearby() {
-  if (!el.sheetNearBody) return;
-
-  const sorted = PLACES
-    .map(p => ({
-      ...p,
-      _d: currentPos ? Math.round(distMeters(currentPos, { lat: p.lat, lon: p.lon })) : null
-    }))
-    .sort((a, b) => (a._d ?? 1e12) - (b._d ?? 1e12));
-
-  el.sheetNearBody.innerHTML = sorted
-    .slice(NEARBY_LIMIT, NEARBY_LIMIT + 24)
-    .map(renderPlaceCard)
-    .join("");
-}
-
-function renderGallery() {
-  if (!el.gallery) return;
-  const collectedIds = Object.keys(peopleCollected).filter(id => peopleCollected[id]);
-  const collectedPeople = PEOPLE.filter(p => collectedIds.includes(p.id));
-
-  el.gallery.innerHTML = collectedPeople
-    .map(p => {
-      const imgPath = p.image || `bilder/kort/people/${p.id}.PNG`;
-      const cat = tagToCat(p.tags);
-      return `
-        <div class="person-card" data-quiz="${p.id}">
-          <img src="${imgPath}" alt="${p.name}" class="person-thumb">
-          <div class="person-label" style="color:${catColor(cat)}">${p.name}</div>
-        </div>`;
-    })
-    .join("");
-}
-
-
-// ==============================
-// 8. MERKER, NIVÅER OG FREMGANG
-// ==============================
-function pulseBadge(cat) {
-  const cards = document.querySelectorAll(".badge-mini");
-  cards.forEach(card => {
-    const name = card.querySelector(".badge-mini-label")?.textContent || "";
-    if (name.trim().toLowerCase() === cat.trim().toLowerCase()) {
-      card.classList.add("badge-pulse");
-      setTimeout(() => card.classList.remove("badge-pulse"), 1200);
-    }
-  });
-}
-
-async function ensureBadgesLoaded() {
-  if (BADGES && BADGES.length) return;
-  try {
-    BADGES = await fetch("badges.json", { cache: "no-store" }).then(r => r.json());
-  } catch {
-    BADGES = [];
-  }
-}
-
-// Oppdater nivå ved ny poengsum
-async function updateMeritLevel(cat, newPoints) {
-  await ensureBadgesLoaded();
-  const badge = BADGES.find(
-    b =>
-      cat.toLowerCase().includes(b.id) ||
-      b.name.toLowerCase().includes(cat.toLowerCase())
-  );
-  if (!badge) return;
-
-  for (let i = badge.tiers.length - 1; i >= 0; i--) {
-    const tier = badge.tiers[i];
-    if (newPoints === tier.threshold) {
-      showToast(`🏅 Nytt nivå i ${cat}: ${tier.label}!`);
-      pulseBadge(cat);
-      break;
-    }
-  }
-}
-
-// Poengsystem – +1 poeng per fullført quiz
-async function addCompletedQuizAndMaybePoint(categoryDisplay, quizId) {
-  const categoryId = catIdFromDisplay(categoryDisplay);
-  const progress = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
-  progress[categoryId] = progress[categoryId] || { completed: [] };
-
-  // Hindre dobbel poeng for samme quiz
-  if (progress[categoryId].completed.includes(quizId)) return;
-
-  progress[categoryId].completed.push(quizId);
-  localStorage.setItem("quiz_progress", JSON.stringify(progress));
-
-  const catLabel = categoryDisplay;
-  merits[catLabel] = merits[catLabel] || { level: "Nybegynner", points: 0 };
-  merits[catLabel].points += 1;
-
-  await ensureBadgesLoaded();
-  const badge = BADGES.find(
-    b =>
-      catLabel.toLowerCase().includes(b.id) ||
-      b.name.toLowerCase().includes(catLabel.toLowerCase())
-  );
-  if (badge) {
-    for (let i = badge.tiers.length - 1; i >= 0; i--) {
-      const tier = badge.tiers[i];
-      if (merits[catLabel].points >= tier.threshold) {
-        merits[catLabel].level = tier.label;
-        break;
-      }
-    }
-  }
-
-  saveMerits();
-  updateMeritLevel(catLabel, merits[catLabel].points);
-  showToast(`🏅 +1 poeng i ${catLabel}!`);
-  window.dispatchEvent(new Event("updateProfile"));
-}
-
-
-// ==============================
-// 9. HENDELSER (CLICK-DELEGATION) OG SHEETS
-// ==============================
-function openSheet(sheet) {
-  sheet?.setAttribute("aria-hidden", "false");
-}
-function closeSheet(sheet) {
-  sheet?.setAttribute("aria-hidden", "true");
-}
-
-// Felles click-delegation for steder, info, quiz og merker
-document.addEventListener("click", e => {
-  const target = e.target;
-
-  // Åpne sted fra kort (data-open)
-  const openId = target.getAttribute?.("data-open");
-  if (openId) {
-    const p = PLACES.find(x => x.id === openId);
-    if (p) {
-      closePlaceOverlay();
-      showPlaceOverlay(p);
-    }
-  }
-
-  // Mer info (Google)
-  const infoName = target.getAttribute?.("data-info");
-  if (infoName) {
-    window.open(
-      `https://www.google.com/search?q=${decodeURIComponent(infoName)} Oslo`,
-      "_blank"
-    );
-  }
-
-  // Quiz (person eller sted)
-  const quizId = target.getAttribute?.("data-quiz");
-  if (quizId) {
-    startQuiz(quizId);
-  }
-
-  // Badge-klikk (profilmerker)
-  const badgeEl = target.closest?.("[data-badge-id]");
-  if (badgeEl) {
-    handleBadgeClick(badgeEl);
-  }
-});
-
-document.querySelectorAll("[data-close]").forEach(btn => {
-  btn.addEventListener("click", () => {
-    const sel = btn.getAttribute("data-close");
-    document.querySelector(sel)?.setAttribute("aria-hidden", "true");
-  });
-});
-
-el.seeMore?.addEventListener("click", () => {
-  buildSeeMoreNearby();
-  openSheet(el.sheetNear);
-});
-
-async function handleBadgeClick(badgeEl) {
-  const badgeId = badgeEl.getAttribute("data-badge-id");
-  const modal = document.getElementById("badgeModal");
-  if (!badgeId || !modal) return;
-
-  await ensureBadgesLoaded();
-  const badge = BADGES.find(b => b.id === badgeId);
-  if (!badge) return;
-
-  const localMerits = JSON.parse(
-    localStorage.getItem("merits_by_category") || "{}"
-  );
-  const info = localMerits[badge.name] || localMerits[badge.id] || {
-    level: "Nybegynner",
-    points: 0
-  };
-
-  const imgEl     = modal.querySelector(".badge-img");
-  const titleEl   = modal.querySelector(".badge-title");
-  const levelEl   = modal.querySelector(".badge-level");
-  const textEl    = modal.querySelector(".badge-progress-text");
-  const barEl     = modal.querySelector(".badge-progress-bar");
-
-  if (imgEl)   imgEl.src = badge.image;
-  if (titleEl) titleEl.textContent = badge.name;
-  if (levelEl) levelEl.textContent = info.level;
-  if (textEl)  textEl.textContent = `${info.points} poeng`;
-
-  if (barEl && badge.tiers && badge.tiers.length) {
-    const max = badge.tiers[badge.tiers.length - 1].threshold || 1;
-    const pct = Math.max(0, Math.min(100, (info.points / max) * 100));
-    barEl.style.width = `${pct}%`;
-  }
-
-  modal.style.display = "flex";
-  modal.setAttribute("aria-hidden", "false");
-
-  const closeBtn = modal.querySelector(".close-btn");
-  closeBtn &&
-    (closeBtn.onclick = () => {
-      modal.style.display = "none";
-      modal.setAttribute("aria-hidden", "true");
-    });
-}
-
-
-// ==============================
-// 10. INITIALISERING OG BOOT
-// ==============================
-function wire() {
-  // Testmodus-bryter
-  el.test?.addEventListener("change", e => {
-    if (e.target.checked) {
-      currentPos = { lat: START.lat, lon: START.lon };
-      if (el.status) el.status.textContent = "Testmodus: Oslo sentrum";
-      setUser(currentPos.lat, currentPos.lon);
-      renderNearbyPlaces();
-      showToast("Testmodus PÅ");
-    } else {
-      showToast("Testmodus AV");
-      requestLocation();
-    }
-  });
-}
-
-function requestLocation() {
-  if (!navigator.geolocation) {
-    if (el.status) el.status.textContent = "Geolokasjon støttes ikke.";
-    renderNearbyPlaces();
-    return;
-  }
-  if (el.status) el.status.textContent = "Henter posisjon…";
-  navigator.geolocation.getCurrentPosition(
-    g => {
-      currentPos = { lat: g.coords.latitude, lon: g.coords.longitude };
-      if (el.status) el.status.textContent = "Posisjon funnet.";
-      setUser(currentPos.lat, currentPos.lon);
-      renderNearbyPlaces();
-    },
-    _ => {
-      if (el.status) el.status.textContent = "Kunne ikke hente posisjon.";
-      renderNearbyPlaces();
-    },
-    { enableHighAccuracy: true, timeout: 8000, maximumAge: 10000 }
-  );
-}
-
-// MINI-PROFIL + quiz-historikk på forsiden
-function initMiniProfile() {
-  const nm = document.getElementById("miniName");
-  const st = document.getElementById("miniStats");
-  if (!nm || !st) return;
-
-  const name  = localStorage.getItem("user_name")  || "Utforsker #182";
-  const color = localStorage.getItem("user_color") || "#f6c800";
-
-  const visitedLS         = JSON.parse(localStorage.getItem("visited_places") || "{}");
-  const meritsLS          = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
-  const quizProgress      = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
-
-  const visitedCount = Object.keys(visitedLS).length;
-  const badgeCount   = Object.keys(meritsLS).length;
-  const quizCount    = Object.values(quizProgress)
-    .map(v => (Array.isArray(v.completed) ? v.completed.length : 0))
-    .reduce((a, b) => a + b, 0);
-
-  nm.textContent = name;
-  nm.style.color = color;
-  st.textContent = `${visitedCount} steder · ${badgeCount} merker · ${quizCount} quizzer`;
-}
-
-function showQuizHistory() {
-  const progress = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
-  const allCompleted = Object.entries(progress).flatMap(([cat, val]) =>
-    (val.completed || []).map(id => ({ category: cat, id }))
-  );
-
-  if (!allCompleted.length) {
-    showToast("Du har ingen fullførte quizzer ennå.");
-    return;
-  }
-
-  const recent = allCompleted.slice(-8).reverse();
-  const list = recent
-    .map(item => {
-      const person = PEOPLE.find(p => p.id === item.id);
-      const place = PLACES.find(p => p.id === item.id);
-      const name = person?.name || place?.name || item.id;
-      const cat = item.category || "–";
-      return `<li><strong>${name}</strong><br><span class="muted">${cat}</span></li>`;
-    })
-    .join("");
-
-  const html = `
-    <div class="quiz-modal" id="quizHistoryModal">
-      <div class="quiz-modal-inner">
-        <button class="quiz-close" id="closeQuizHistory">✕</button>
-        <h2>Fullførte quizzer</h2>
-        <ul class="quiz-history-list">${list}</ul>
-      </div>
-    </div>`;
-
-  document.body.insertAdjacentHTML("beforeend", html);
-
-  const modal = document.getElementById("quizHistoryModal");
-  document.getElementById("closeQuizHistory").onclick = () => modal.remove();
-  modal.addEventListener("click", e => {
-    if (e.target.id === "quizHistoryModal") modal.remove();
-  });
-  document.addEventListener("keydown", e => {
-    if (e.key === "Escape") modal.remove();
-  });
-}
-
-function wireMiniProfileLinks() {
-  document.getElementById("linkPlaces")?.addEventListener("click", () => {
-    enterMapMode();
-    showToast("Viser steder på kartet");
-  });
-
-  document.getElementById("linkBadges")?.addEventListener("click", () => {
-    window.location.href = "profile.html#userBadgesGrid";
-  });
-
-  document.getElementById("linkQuiz")?.addEventListener("click", showQuizHistory);
-}
-
-// BOOT
-async function boot() {
-  initMap();
-
-  try {
-    const [places, people] = await Promise.all([
-      fetch("places.json", { cache: "no-store" }).then(r => r.json()),
-      fetch("people.json", { cache: "no-store" }).then(r => r.json())
+    const [places, people, badges] = await Promise.all([
+      fetch("places.json", {cache:"no-store"}).then(r=>r.json()),
+      fetch("people.json", {cache:"no-store"}).then(r=>r.json()),
+      fetch("badges.json", {cache:"no-store"}).then(r=>r.json())
     ]);
     PLACES = places;
     PEOPLE = people;
-    linkPeopleToPlaces();
+    BADGES = badges;
     dataReady = true;
-    maybeDrawMarkers();
-  } catch (e) {
-    console.error("Feil ved lasting av data:", e);
-    showToast("Kunne ikke laste steder/personer");
-  }
-
-  await ensureBadgesLoaded();
-  wire();
-  requestLocation();
-  renderCollection();
-  renderGallery();
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-  boot();
-  initMiniProfile();
-  wireMiniProfileLinks();
-});
-
-
-// ==============================
-// 11. STED-OVERLAY (tekst + personer)
-// ==============================
-async function fetchWikiSummary(name) {
-  try {
-    const url = `https://no.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(
-      name
-    )}`;
-    const res = await fetch(url, { headers: { Accept: "application/json" } });
-    if (!res.ok) throw new Error("No wiki");
-    const data = await res.json();
-    return data.extract || "";
-  } catch (_) {
-    return "";
-  }
-}
-
-function closePlaceOverlay() {
-  const ov = document.getElementById("placeOverlay");
-  if (ov) ov.remove();
-}
-
-function isQuizDone(targetId) {
-  const progress = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
-  return Object.values(progress).some(
-    v => Array.isArray(v.completed) && v.completed.includes(targetId)
-  );
-}
-
-function getPersonsByPlace(placeId) {
-  return PEOPLE.filter(
-    p =>
-      (Array.isArray(p.places) && p.places.includes(placeId)) ||
-      p.placeId === placeId
-  );
-}
-
-async function showPlaceOverlay(place) {
-  const existing = document.getElementById("placeOverlay");
-  if (existing) existing.remove();
-
-  const overlay = document.createElement("div");
-  overlay.id = "placeOverlay";
-  overlay.className = "place-overlay";
-
-  const peopleHere = getPersonsByPlace(place.id);
-  const summary = await fetchWikiSummary(place.name);
-
-  overlay.innerHTML = `
-    <button class="close-overlay" onclick="closePlaceOverlay()">×</button>
-    <div class="place-overlay-content">
-      <div class="left">
-        <h2>${place.name}</h2>
-        <p class="muted">${place.category || ""} • radius ${place.r || 150} m</p>
-
-        ${
-          place.image
-            ? `<img src="${place.image}" alt="${place.name}" style="width:100%;border-radius:8px;margin:10px 0;">`
-            : ""
-        }
-
-        <p>${summary || place.desc || "Ingen beskrivelse tilgjengelig."}</p>
-
-        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;">
-          <button class="primary" data-route="${place.id}">Vis rute</button>
-          <button class="ghost" onclick="window.open('${googleUrl(
-            place.name
-          )}','_blank')">Google</button>
-          <button class="ghost" onclick="window.open('https://no.wikipedia.org/wiki/${encodeURIComponent(
-            place.name
-          )}','_blank')">Wikipedia</button>
-        </div>
-
-        <hr style="border:none;border-top:1px solid rgba(255,255,255,.1);margin:14px 0;">
-
-        <div style="margin-top:12px;">
-          <button class="primary" data-quiz="${place.id}">Ta quiz om stedet</button>
-        </div>
-      </div>
-
-      <div class="right">
-        ${
-          peopleHere.length
-            ? peopleHere
-                .map(
-                  p => `
-          <div class="card">
-            <strong>${p.name}</strong><br>
-            <span class="muted">${tagToCat(p.tags)}</span>
-            <p>${p.desc || ""}</p>
-            <button class="primary" data-quiz="${p.id}">Ta quiz</button>
-          </div>`
-                )
-                .join("")
-            : '<div class="muted">Ingen personer registrert.</div>'
-        }
-      </div>
-    </div>`;
-
-  document.body.appendChild(overlay);
-
-  // Rute-knapp (bruk data-route)
-  overlay
-    .querySelector(`[data-route="${place.id}"]`)
-    ?.addEventListener("click", () => showRouteTo(place));
-
-  // Sett "Tatt"-status
-  const placeBtn = overlay.querySelector(`button[data-quiz="${place.id}"]`);
-  if (placeBtn && isQuizDone(place.id)) {
-    placeBtn.classList.add("quiz-done");
-    placeBtn.innerHTML = "✔️ Tatt (kan gjentas)";
-  }
-
-  peopleHere.forEach(p => {
-    const btn = overlay.querySelector(`button[data-quiz="${p.id}"]`);
-    if (btn && isQuizDone(p.id)) {
-      btn.classList.add("quiz-done");
-      btn.innerHTML = "✔️ Tatt (kan gjentas)";
+    if (mapReady) {
+      drawPlaceMarkers();
     }
+  } catch (e) {
+    console.error("Feil ved lasting av data", e);
+    showToast("Kunne ikke laste data.");
+  }
+}
+
+// ------------------------------------------------------------
+//  KART
+// ------------------------------------------------------------
+function initMap() {
+  if (typeof L === "undefined") {
+    console.error("Leaflet er ikke lastet");
+    return;
+  }
+
+  MAP = L.map("map", {
+    center: [59.9139, 10.7522],
+    zoom: 13,
+    zoomControl: false
   });
 
-  overlay.addEventListener("click", e => {
-    if (e.target.id === "placeOverlay") closePlaceOverlay();
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    maxZoom: 19
+  }).addTo(MAP);
+
+  mapReady = true;
+  if (dataReady) {
+    drawPlaceMarkers();
+  }
+
+  // Forsøk å hente brukerposisjon
+  if ("geolocation" in navigator) {
+    navigator.geolocation.watchPosition(
+      pos => setUser(pos.coords),
+      err => console.warn("Geolokasjon-feil", err),
+      { enableHighAccuracy:true, maximumAge:15000, timeout:10000 }
+    );
+  }
+}
+
+function setUser(coords) {
+  if (!MAP || !coords) return;
+  const latlng = [coords.latitude, coords.longitude];
+  if (!USER_MARKER) {
+    USER_MARKER = L.circleMarker(latlng, {
+      radius: 8,
+      color: "#fff",
+      weight: 2,
+      fillColor: "#f6c800",
+      fillOpacity: 0.9
+    }).addTo(MAP);
+  } else {
+    USER_MARKER.setLatLng(latlng);
+  }
+}
+
+// ------------------------------------------------------------
+//  MARKØRER
+// ------------------------------------------------------------
+function drawPlaceMarkers() {
+  if (!MAP || !Array.isArray(PLACES)) return;
+
+  PLACES.forEach(place => {
+    if (!place.lat || !place.lng) return;
+
+    const color = catColor(place.category || "");
+    const marker = L.circleMarker([place.lat, place.lng], {
+      radius: 7,
+      color: "#fff",
+      weight: 1.5,
+      fillColor: color,
+      fillOpacity: 0.95
+    }).addTo(MAP);
+
+    marker.on("click", () => {
+      openPlaceCard(place);
+    });
   });
 }
 
+function openPlaceCard(place) {
+  const card = document.getElementById("placeCard");
+  if (!card || !place) return;
 
-// ==============================
-// 12. KARTMODUS
-// ==============================
-function enterMapMode() {
-  document.body.classList.add("map-only");
-  if (el.btnSeeMap) el.btnSeeMap.style.display = "none";
-  if (el.btnExitMap) el.btnExitMap.style.display = "block";
+  card.querySelector(".name").textContent = place.name;
+  card.querySelector(".meta").textContent = `${place.category || ""} · ${place.year || ""}`;
+  card.querySelector(".desc").textContent = place.desc || "";
 
-  const main = document.querySelector("main");
-  const header = document.querySelector("header");
-  if (main) main.style.display = "none";
-  if (header) header.style.display = "none";
+  card.dataset.placeId = place.id;
+  card.setAttribute("aria-hidden","false");
 
-  const mapEl = document.getElementById("map");
-  if (mapEl) mapEl.style.zIndex = "10";
+  const btnUnlock = document.getElementById("pcUnlock");
+  const btnRoute  = document.getElementById("pcRoute");
+  const btnClose  = document.getElementById("pcClose");
 
-  showToast("Kartmodus");
+  if (btnUnlock) {
+    btnUnlock.onclick = () => {
+      startQuizForPlace(place);
+    };
+  }
+  if (btnRoute) {
+    btnRoute.onclick = () => showRouteTo(place);
+  }
+  if (btnClose) {
+    btnClose.onclick = () => {
+      card.setAttribute("aria-hidden","true");
+    };
+  }
 }
 
-function exitMapMode() {
-  document.body.classList.remove("map-only");
-  if (el.btnSeeMap) el.btnSeeMap.style.display = "block";
-  if (el.btnExitMap) el.btnExitMap.style.display = "none";
-
-  const main = document.querySelector("main");
-  const header = document.querySelector("header");
-  if (main) main.style.display = "";
-  if (header) header.style.display = "";
-
-  const mapEl = document.getElementById("map");
-  if (mapEl) mapEl.style.zIndex = "1";
-
-  showToast("Tilbake til oversikt");
+// Dummy – rutetegning (kan utvides)
+function showRouteTo(place) {
+  if (!MAP || !place) return;
+  showToast(`Rute til ${place.name} (kommer senere)`);
 }
 
-el.btnSeeMap?.addEventListener("click", enterMapMode);
-el.btnExitMap?.addEventListener("click", exitMapMode);
-
-
-// ==============================
-// 13. QUIZ – DYNAMISK LASTER, MODAL & SCORE
-// ==============================
-const QUIZ_FILE_MAP = {
-  kunst:        "quiz_kunst.json",
-  sport:        "quiz_sport.json",
-  politikk:     "quiz_politikk.json",
-  populaerkultur:"quiz_populaerkultur.json",
-  musikk:       "quiz_musikk.json",
-  subkultur:    "quiz_subkultur.json",
-  vitenskap:    "quiz_vitenskap.json",
-  natur:        "quiz_natur.json",
-  litteratur:   "quiz_litteratur.json",
-  by:           "quiz_by.json",
-  historie:     "quiz_historie.json",
-  naeringsliv:  "quiz_naeringsliv.json"
-};
-
-async function loadQuizForCategory(categoryId) {
-  const file = QUIZ_FILE_MAP[categoryId];
+// ------------------------------------------------------------
+//  QUIZ – LASTING OG START
+// ------------------------------------------------------------
+async function loadQuizzesForCategory(catId) {
+  const file = QUIZ_FILE_MAP[catId];
   if (!file) return [];
   try {
-    const response = await fetch(file, { cache: "no-store" });
-    if (!response.ok) return [];
-    const data = await response.json();
-    return Array.isArray(data)
-      ? data.filter(
-          q => (q.categoryId || "").toLowerCase() === categoryId.toLowerCase()
-        )
-      : [];
-  } catch {
+    const data = await fetch(file, {cache:"no-store"}).then(r=>r.json());
+    return Array.isArray(data) ? data : [];
+  } catch (e) {
+    console.error("Feil ved lasting av quiz-fil", file, e);
     return [];
   }
 }
 
-function ensureQuizUI() {
-  if (document.getElementById("quizModal")) return;
-
-  const m = document.createElement("div");
-  m.id = "quizModal";
-  m.className = "modal";
-  m.innerHTML = `
-    <div class="modal-body">
-      <div class="modal-head">
-        <strong id="quizTitle">Quiz</strong>
-        <button class="ghost" id="quizClose">Lukk</button>
-      </div>
-      <div class="quiz-progress"><div class="bar"></div></div>
-      <div class="sheet-body">
-        <div id="quizQuestion" style="margin:6px 0 10px;font-weight:600"></div>
-        <div id="quizChoices" class="quiz-choices"></div>
-        <div style="display:flex;justify-content:space-between;margin-top:8px;">
-          <span id="quizFeedback" class="quiz-feedback"></span>
-          <small id="quizProgress" class="muted"></small>
-        </div>
-      </div>
-    </div>`;
-  document.body.appendChild(m);
-
-  const modal = document.getElementById("quizModal");
-  modal.querySelector("#quizClose").onclick = closeQuiz;
-  modal.addEventListener("click", e => {
-    if (e.target.id === "quizModal") closeQuiz();
-  });
-  document.addEventListener("keydown", e => {
-    if (e.key === "Escape") closeQuiz();
-  });
-}
-
-function openQuiz() {
-  ensureQuizUI();
-  const modal = document.getElementById("quizModal");
-  modal.style.display = "flex";
-  modal.classList.remove("fade-out");
-}
-
-function closeQuiz() {
+async function startQuiz(config) {
+  const { quizId, place, person, categoryId, testModeToggleId } = config || {};
   const modal = document.getElementById("quizModal");
   if (!modal) return;
-  modal.classList.add("fade-out");
-  setTimeout(() => modal.remove(), 450);
-}
 
-// START QUIZ
-async function startQuiz(targetId) {
-  const person = PEOPLE.find(p => p.id === targetId);
-  const place  = PLACES.find(p => p.id === targetId);
-  if (!person && !place) {
-    showToast("Fant verken person eller sted");
-    return;
-  }
+  const el = {
+    progress: modal.querySelector("#quizProgress"),
+    question: modal.querySelector("#quizQuestion"),
+    choices:  modal.querySelector(".quiz-choices"),
+    feedback: modal.querySelector(".quiz-feedback"),
+    bar:      modal.querySelector(".quiz-progress .bar"),
+    closeBtn: modal.querySelector("#quizClose"),
+    test:     testModeToggleId ? document.getElementById(testModeToggleId) : null
+  };
 
-  // Krever fysisk besøk før quiz (ikke i testmodus)
+  modal.setAttribute("aria-hidden","false");
+  modal.style.display = "block";
+  modal.classList.remove("fade-out");
+
+  // --- Krever fysisk besøk før quiz kan tas ---
   if (!el.test?.checked) {
-    const visitedPlaces = visited; // bruk GLOBAL visited
+    const visitedPlaces = JSON.parse(localStorage.getItem("visited_places") || "{}");
     if (place && !visitedPlaces[place.id]) {
-      showToast("📍 Du må besøke stedet først for å ta denne quizen.");
-      return;
+      return showToast("📍 Du må besøke stedet først for å ta denne quizen.");
     }
     if (person && person.placeId && !visitedPlaces[person.placeId]) {
-      showToast("📍 Du må besøke stedet først for å ta denne quizen.");
-      return;
+      return showToast("📍 Du må besøke stedet først for å ta denne quizen.");
     }
   }
 
-  // Hent quizdata
-  const displayCat = person ? tagToCat(person.tags) : (place.category || "vitenskap");
-  const categoryId = catIdFromDisplay(displayCat);
-  const items      = await loadQuizForCategory(categoryId);
-  const questions  = items.filter(
-    q => q.personId === targetId || q.placeId === targetId
-  );
-  if (!questions.length) {
-    showToast("Ingen quiz tilgjengelig her ennå");
+  // Hent riktig quizer
+  const cat = categoryId || (place ? catClass(place.category || "") : (person ? person.categoryId : ""));
+  const quizzes = await loadQuizzesForCategory(cat);
+  if (!quizzes.length) {
+    showToast("Ingen quizer tilgjengelig her ennå.");
+    modal.setAttribute("aria-hidden","true");
+    modal.style.display = "none";
     return;
   }
 
-  const formatted = questions.map(q => ({
-    text: q.question,
-    choices: q.options || [],
-    answerIndex: (q.options || []).findIndex(o => o === q.answer)
-  }));
-
-  openQuiz();
-
-  runQuizFlow({
-    title: person ? person.name : place.name,
-    questions: formatted,
-    onEnd: (correct, total) => {
-      const perfect = correct === total;
-
-      if (perfect) {
-        addCompletedQuizAndMaybePoint(displayCat, targetId);
-        markQuizAsDone(targetId);
-
-        if (person) {
-          peopleCollected[targetId] = true;
-          savePeople();
-          showPersonPopup(person);
-          document
-            .getElementById("gallery")
-            ?.scrollIntoView({ behavior: "smooth" });
-        } else if (place) {
-          // Vis kort hvis stedet er besøkt eller testmodus
-          const visitedPlaces = visited;
-          if (visitedPlaces[place.id] || el.test?.checked) {
-            showPlacePopup(place);
-            pulseMarker(place.lat, place.lon);
-          }
-        }
-
-        showToast(
-          `Perfekt! ${total}/${total} riktige 🎯 Du fikk poeng og kort!`
-        );
-        window.dispatchEvent(new Event("updateProfile"));
-      } else {
-        showToast(
-          `Fullført: ${correct}/${total} – prøv igjen for full score.`
-        );
-      }
-
-      if (person && person.placeId) {
-        const plc = PLACES.find(p => p.id === person.placeId);
-        if (plc) pulseMarker(plc.lat, plc.lon);
-      }
-    }
-  });
-}
-
-function markQuizAsDone(targetId) {
-  const quizBtns = document.querySelectorAll(`[data-quiz="${targetId}"]`);
-  quizBtns.forEach(btn => {
-    const firstTime = !btn.classList.contains("quiz-done");
-    btn.classList.add("quiz-done");
-    btn.innerHTML = "✔️ Tatt (kan gjentas)";
-    if (firstTime) {
-      btn.classList.add("blink");
-      setTimeout(() => btn.classList.remove("blink"), 1200);
-    }
-  });
-}
-
-function runQuizFlow({ title = "Quiz", questions = [], onEnd = () => {} }) {
-  ensureQuizUI();
-  const qs = {
-    title:    document.getElementById("quizTitle"),
-    q:        document.getElementById("quizQuestion"),
-    choices:  document.getElementById("quizChoices"),
-    progress: document.getElementById("quizProgress"),
-    feedback: document.getElementById("quizFeedback")
-  };
-  qs.title.textContent = title;
-
-  let i = 0;
-  let correctCount = 0;
-
-  function step() {
-    const q = questions[i];
-    qs.q.textContent = q.text;
-    qs.choices.innerHTML = q.choices
-      .map((opt, idx) => `<button data-idx="${idx}">${opt}</button>`)
-      .join("");
-    qs.progress.textContent = `${i + 1}/${questions.length}`;
-    qs.feedback.textContent = "";
-
-    const bar = document.querySelector(".quiz-progress .bar");
-    if (bar) bar.style.width = `${((i + 1) / questions.length) * 100}%`;
-
-    qs.choices.querySelectorAll("button").forEach(btn => {
-      btn.onclick = () => {
-        const ok = Number(btn.dataset.idx) === q.answerIndex;
-        btn.classList.add(ok ? "correct" : "wrong");
-        qs.feedback.textContent = ok ? "Riktig ✅" : "Feil ❌";
-        if (ok) correctCount++;
-        qs.choices
-          .querySelectorAll("button")
-          .forEach(b => (b.disabled = true));
-        setTimeout(() => {
-          i++;
-          if (i < questions.length) {
-            step();
-          } else {
-            closeQuiz();
-            onEnd(correctCount, questions.length);
-          }
-        }, QUIZ_FEEDBACK_MS);
-      };
-    });
+  const quiz = quizId ? quizzes.find(q => q.id === quizId) : quizzes[0];
+  if (!quiz) {
+    showToast("Fant ikke denne quizen.");
+    modal.setAttribute("aria-hidden","true");
+    modal.style.display = "none";
+    return;
   }
 
-  step();
+  let answered = false;
+  const quizProgress = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
+  const existing = quizProgress[quiz.id] || { completed: [], best: 0 };
+
+  let correctCount = 0;
+  const total = 1; // én oppgave per modal nå
+
+  // Render én quiz
+  el.progress.textContent = `1 / ${total}`;
+  el.question.textContent = quiz.question || "";
+  el.choices.innerHTML = "";
+  el.feedback.textContent = "";
+  if (el.bar) el.bar.style.width = "0%";
+
+  const answers = quiz.options || [];
+  answers.forEach(option => {
+    const btn = document.createElement("button");
+    btn.textContent = option;
+    btn.onclick = () => {
+      if (answered) return;
+      answered = true;
+
+      const isCorrect = option === quiz.answer;
+      if (isCorrect) {
+        btn.classList.add("correct");
+        correctCount = 1;
+        el.feedback.textContent = "Riktig! ✅";
+      } else {
+        btn.classList.add("wrong");
+        el.feedback.textContent = "Ikke helt. Prøv igjen senere.";
+      }
+
+      if (el.bar) el.bar.style.width = "100%";
+
+      setTimeout(() => {
+        finishQuiz(quiz, correctCount, total, { place, person, testMode: !!el.test?.checked });
+      }, 650);
+    };
+    el.choices.appendChild(btn);
+  });
+
+  if (el.closeBtn) {
+    el.closeBtn.onclick = () => {
+      modal.classList.add("fade-out");
+      setTimeout(() => {
+        modal.setAttribute("aria-hidden","true");
+        modal.style.display = "none";
+      }, 400);
+    };
+  }
 }
 
+// Wrapper for startQuiz fra place-card
+function startQuizForPlace(place) {
+  if (!place) return;
+  startQuiz({ place, categoryId: catClass(place.category || ""), testModeToggleId: "testModeToggle" });
+}
 
-// ==============================
-// 14. PERSON- OG STED-POPUP
-// ==============================
+// ------------------------------------------------------------
+//  QUIZ – FULLFØRING / LAGRING / BADGES
+// ------------------------------------------------------------
+function finishQuiz(quiz, correctCount, total, ctx) {
+  const modal = document.getElementById("quizModal");
+  if (modal) {
+    modal.classList.add("fade-out");
+    setTimeout(() => {
+      modal.setAttribute("aria-hidden","true");
+      modal.style.display = "none";
+    }, 400);
+  }
+
+  const { place, person, testMode } = ctx || {};
+  const allCorrect = correctCount === total;
+
+  if (!quiz || !allCorrect) {
+    // lagrer ingenting hvis alt ikke er riktig – men vi kunne lagret forsøk
+    return;
+  }
+
+  // quiz_progress
+  const quizProgress = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
+  const existing = quizProgress[quiz.id] || { completed: [], best: 0 };
+
+  existing.completed = Array.from(new Set([...(existing.completed || []), new Date().toISOString()]));
+  existing.best = Math.max(existing.best || 0, correctCount);
+
+  quizProgress[quiz.id] = existing;
+  localStorage.setItem("quiz_progress", JSON.stringify(quizProgress));
+
+  // visited_places
+  const visited = JSON.parse(localStorage.getItem("visited_places") || "{}");
+  if (place && !visited[place.id]) {
+    visited[place.id] = { first: new Date().toISOString() };
+  }
+  if (person && person.placeId && !visited[person.placeId]) {
+    visited[person.placeId] = { first: new Date().toISOString() };
+  }
+  localStorage.setItem("visited_places", JSON.stringify(visited));
+
+  // people_collected
+  if (person) {
+    const peopleCollected = JSON.parse(localStorage.getItem("people_collected") || "{}");
+    peopleCollected[person.id] = { first: new Date().toISOString() };
+    localStorage.setItem("people_collected", JSON.stringify(peopleCollected));
+  }
+
+  // Oppdater merits/badges
+  updateMeritsFromQuiz(quiz);
+
+  // Popups – også i testmodus
+  if (person) {
+    const personObj = PEOPLE.find(p => p.id === person.id) || person;
+    showPersonPopup(personObj);
+  } else if (place) {
+    const placeObj = PLACES.find(p => p.id === place.id) || place;
+    // Her var det tidligere brukt visitedPlaces[place.id] → nå bruker vi visited[]
+    if (visited[place.id] || testMode) {
+      showPlacePopup(placeObj);
+    }
+  }
+
+  // Signal til miniprofil osv.
+  try {
+    window.dispatchEvent(new Event("updateProfile"));
+  } catch(e) {}
+
+  showToast("Quiz fullført med toppscore! 🏅");
+}
+
+// ------------------------------------------------------------
+//  MERITS / BADGES
+// ------------------------------------------------------------
+function updateMeritsFromQuiz(quiz) {
+  if (!quiz || !quiz.categoryId) return;
+
+  const catId = quiz.categoryId;
+  const merits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
+
+  const existing = merits[catId] || { points:0, level:"Nybegynner", quizzes:[] };
+  const newPoints = (existing.points || 0) + 10;
+
+  const quizzes = Array.from(new Set([...(existing.quizzes || []), quiz.id]));
+
+  let level = existing.level;
+  if (newPoints >= 100) level = "Ekspert";
+  else if (newPoints >= 60) level = "Viderekommen";
+  else if (newPoints >= 30) level = "Lærd";
+
+  merits[catId] = {
+    points: newPoints,
+    level,
+    quizzes
+  };
+
+  localStorage.setItem("merits_by_category", JSON.stringify(merits));
+}
+
+// ------------------------------------------------------------
+//  PERSON-POPUP & PLACE-POPUP (brukes både her og på profil)
+// ------------------------------------------------------------
 function showPersonPopup(person) {
-  const imgPath = person.image || `bilder/kort/people/${person.id}.PNG`;
-  const cat = tagToCat(person.tags);
-  const desc = person.desc || "Ingen beskrivelse tilgjengelig.";
+  if (!person) return;
+  const popup = document.createElement("div");
+  popup.className = "person-popup visible";
 
-  const card = document.createElement("div");
-  card.className = "person-popup";
-  card.innerHTML = `
-    <div class="popup-inner" 
-         style="width:290px;max-width:85vw;background:rgba(15,15,20,0.95);
-                color:#fff;border-radius:14px;padding:20px;text-align:center;
-                box-shadow:0 0 25px rgba(0,0,0,0.7);display:flex;
-                flex-direction:column;align-items:center;animation:fadeIn .35s ease;">
-      
-      <img src="${imgPath}" alt="${person.name}"
-           style="width:180px;height:180px;object-fit:contain;border-radius:10px;margin-bottom:12px;">
+  popup.innerHTML = `
+    <img src="${person.image || `bilder/kort/people/${person.id}.PNG`}" alt="${person.name}">
+    <h3>${person.name}</h3>
+    <p>${person.year || ""}</p>
+    <p>${person.desc || ""}</p>
+  `;
 
-      <h3 style="margin:6px 0 4px;font-size:1.3em;">${person.name}</h3>
-      <p style="margin:0 0 10px;color:#bbb;font-size:0.9em;">${cat}</p>
-
-      <p style="font-size:0.85em;line-height:1.45;color:#ddd;margin:0 0 14px;">
-        ${desc}
-      </p>
-
-      <div style="background:#222;padding:10px 12px;border-radius:8px;
-                  font-size:0.9em;color:#FFD600;">
-        🏅 Du har nå samlet kortet for <strong>${person.name}</strong>!
-      </div>
-    </div>`;
-
-  document.body.appendChild(card);
-  setTimeout(() => card.classList.add("visible"), 10);
-  setTimeout(() => card.remove(), 4200);
+  document.body.appendChild(popup);
+  popup.onclick = () => popup.remove();
 }
 
 function showPlacePopup(place) {
-  const imgPath = place.image || `bilder/kort/places/${place.id}.PNG`;
-  const cat = place.category || "Historie";
-  const desc = place.desc || "Ingen beskrivelse tilgjengelig.";
+  if (!place) return;
+  const modal = document.createElement("div");
+  modal.className = "place-overlay";
 
-  const card = document.createElement("div");
-  card.className = "person-popup";
-  card.innerHTML = `
-    <div class="popup-inner" 
-         style="width:290px;max-width:85vw;background:rgba(15,15,20,0.95);
-                color:#fff;border-radius:14px;padding:20px;text-align:center;
-                box-shadow:0 0 25px rgba(0,0,0,0.7);display:flex;
-                flex-direction:column;align-items:center;animation:fadeIn .35s ease;">
-      
-      <img src="${imgPath}" alt="${place.name}"
-           style="width:180px;height:180px;object-fit:contain;border-radius:10px;margin-bottom:12px;">
-
-      <h3 style="margin:6px 0 4px;font-size:1.3em;">${place.name}</h3>
-      <p style="margin:0 0 10px;color:#bbb;font-size:0.9em;">${cat}</p>
-
-      <p style="font-size:0.85em;line-height:1.45;color:#ddd;margin:0 0 14px;">
-        ${desc}
-      </p>
-
-      <div style="background:#222;padding:10px 12px;border-radius:8px;
-                  font-size:0.9em;color:#FFD600;">
-        🏛️ Du har fullført quizen og samlet stedet <strong>${place.name}</strong>!
+  modal.innerHTML = `
+    <div class="place-overlay-content">
+      <button class="close-overlay" aria-label="Lukk">×</button>
+      <div class="left">
+        <h2>${place.name}</h2>
+        <p class="meta">${place.category || ""} · ${place.year || ""}</p>
+        <p>${place.desc || ""}</p>
       </div>
-    </div>`;
+    </div>
+  `;
 
-  document.body.appendChild(card);
-  setTimeout(() => card.classList.add("visible"), 10);
-  setTimeout(() => card.remove(), 4200);
+  document.body.appendChild(modal);
+
+  modal.querySelector(".close-overlay").onclick = () => modal.remove();
+  modal.onclick = e => { if (e.target === modal) modal.remove(); };
 }
 
-// Ekstra animasjonsstil for popup
-const style = document.createElement("style");
-style.textContent = `
-.person-popup {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0.9);
-  opacity: 0;
-  transition: all 0.35s ease;
-  z-index: 9999;
+// ------------------------------------------------------------
+//  BADGES (klikk på små-badger i hovedapp)
+// ------------------------------------------------------------
+async function ensureBadgesLoaded() {
+  if (BADGES && BADGES.length) return;
+  try {
+    const data = await fetch("badges.json", {cache:"no-store"}).then(r=>r.json());
+    BADGES = Array.isArray(data) ? data : [];
+  } catch (e) {
+    console.error("Kunne ikke laste badges.json", e);
+  }
 }
-.person-popup.visible {
-  transform: translate(-50%, -50%) scale(1);
-  opacity: 1;
+
+function openBadgeModalFromMain(badgeId) {
+  const badge = (BADGES || []).find(b => b.id === badgeId);
+  if (!badge) return;
+
+  // Gjenbruker badge-modal fra profil (hvis den finnes i DOM)
+  const modal = document.getElementById("badgeModal");
+  if (!modal) {
+    showToast("Badge-vinduet er ikke tilgjengelig på denne siden.");
+    return;
+  }
+
+  const merits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
+  const merit  = merits[badge.id] || merits[badge.name] || {};
+
+  const modalImg   = modal.querySelector(".badge-img");
+  const modalTitle = modal.querySelector(".badge-title");
+  const modalLevel = modal.querySelector(".badge-level");
+  const quizList   = modal.querySelector(".badge-quizzes");
+  const progBar    = modal.querySelector(".badge-progress-bar");
+  const progText   = modal.querySelector(".badge-progress-text");
+
+  const points  = Number(merit.points || 0);
+  const level   = merit.level || "Nybegynner";
+  const quizzes = Array.isArray(merit.quizzes) ? merit.quizzes.length : 0;
+
+  if (modalImg)   modalImg.src = badge.image;
+  if (modalTitle) modalTitle.textContent = badge.name;
+  if (modalLevel) modalLevel.textContent = level;
+
+  if (progBar) {
+    let pct = 0;
+    if (points >= 100) pct = 100;
+    else if (points >= 60) pct = 60;
+    else if (points >= 30) pct = 30;
+    else if (points > 0) pct = 15;
+    progBar.style.width = pct + "%";
+  }
+
+  if (progText) {
+    progText.textContent = points ? `Poeng: ${points}` : "";
+  }
+
+  if (quizList) {
+    if (quizzes > 0) {
+      quizList.innerHTML = `<li>Fullførte quizer i denne kategorien: ${quizzes}</li>`;
+    } else {
+      quizList.innerHTML = "<li>Ingen quizer fullført ennå.</li>";
+    }
+  }
+
+  modal.style.display = "flex";
+  modal.setAttribute("aria-hidden","false");
+
+  const closeBtn = modal.querySelector(".close-btn");
+  if (closeBtn) closeBtn.onclick = () => {
+    modal.style.display = "none";
+    modal.setAttribute("aria-hidden","true");
+  };
+  modal.onclick = e => { if (e.target === modal) {
+    modal.style.display = "none";
+    modal.setAttribute("aria-hidden","true");
+  }};
 }
-@keyframes fadeIn {
-  from {opacity:0;transform:translate(-50%,-50%) scale(0.85);}
-  to   {opacity:1;transform:translate(-50%,-50%) scale(1);}
-}`;
-document.head.appendChild(style);
+
+// Global klikklytter for små-badger i hovedapp (hvis du bruker data-badge-id)
+document.addEventListener("click", (e) => {
+  const badgeEl = e.target.closest("[data-badge-id]");
+  if (!badgeEl) return;
+  const badgeId = badgeEl.getAttribute("data-badge-id");
+  if (!badgeId) return;
+  ensureBadgesLoaded().then(() => openBadgeModalFromMain(badgeId));
+});
+
+// ------------------------------------------------------------
+//  MINIPROFIL I HOVEDAPP
+// ------------------------------------------------------------
+function renderMiniProfile() {
+  const el = document.querySelector(".mini-profile");
+  if (!el) return;
+
+  const name = localStorage.getItem("user_name") || "Utforsker #182";
+  const visited = JSON.parse(localStorage.getItem("visited_places") || "{}");
+  const quizProgress = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
+  const peopleCollected = JSON.parse(localStorage.getItem("people_collected") || "{}");
+
+  const visitedCount = Object.keys(visited).length;
+  const quizCount = Object.values(quizProgress)
+    .map(v => Array.isArray(v.completed) ? v.completed.length : 0)
+    .reduce((a,b) => a+b, 0);
+  const peopleCount = Object.keys(peopleCollected).length;
+
+  const nameEl = el.querySelector("[data-mini-name]");
+  const statsEl = el.querySelector("[data-mini-stats]");
+
+  if (nameEl) nameEl.textContent = name;
+  if (statsEl) {
+    statsEl.textContent = `${visitedCount} steder · ${quizCount} quizer · ${peopleCount} personer`;
+  }
+}
+
+// Lytt etter globale oppdateringer
+window.addEventListener("updateProfile", () => {
+  renderMiniProfile();
+});
+
+// ------------------------------------------------------------
+//  INIT
+// ------------------------------------------------------------
+function boot() {
+  const mapEl = document.getElementById("map");
+  if (mapEl) {
+    initMap();
+  }
+  loadData();
+  renderMiniProfile();
+}
+
+document.addEventListener("DOMContentLoaded", boot);
+
+// ------------------------------------------------------------
+//  EKSTRA – QUIZ-HISTORIKK MODAL (hvis du bruker den på index)
+// ------------------------------------------------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const modal = document.querySelector(".quiz-modal");
+  if (!modal) return;
+
+  const listEl = modal.querySelector(".quiz-history-list");
+  const closeBtn = modal.querySelector(".quiz-close");
+
+  function openHistory() {
+    const quizProgress = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
+    const entries = Object.entries(quizProgress);
+    if (!entries.length) {
+      listEl.innerHTML = "<li>Ingen quizer gjennomført ennå.</li>";
+    } else {
+      listEl.innerHTML = entries.map(([id, data]) => {
+        const count = Array.isArray(data.completed) ? data.completed.length : 0;
+        return `<li><strong>${id}</strong><br><small>Fullført ${count} ganger</small></li>`;
+      }).join("");
+    }
+    modal.style.display = "flex";
+  }
+
+  const trigger = document.getElementById("openQuizHistory");
+  if (trigger) trigger.onclick = openHistory;
+
+  if (closeBtn) {
+    closeBtn.onclick = () => { modal.style.display = "none"; };
+  }
+  modal.onclick = e => { if (e.target === modal) modal.style.display = "none"; };
+});
+
+// ------------------------------------------------------------
+//  STYLE-TWEEK (placeholder – hvis du bruker dette til tema)
+// ------------------------------------------------------------
+(function injectStyleTweak(){
+  const s = document.createElement("style");
+  s.textContent = `
+    body.map-only .mini-profile { display:none; }
+  `;
+  document.head.appendChild(s);
+})();
