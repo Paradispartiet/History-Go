@@ -830,7 +830,6 @@ button.quiz-done.blink {
 /* 12) Effekter & media                                  */
 /* ===================================================== */
 @media (max-width:760px){
-  .place-overlay .place-overlay-content{ grid-template-columns:1fr; max-height:80vh }
 }
 
 .icon:hover,
@@ -1711,15 +1710,6 @@ button.primary.small:hover { opacity: .9; }
   padding: 6px 14px;
   font-weight: 600;
 }
-
-/* === FIX: Tving modaler og popup-kort OVER app-frame === */
-#badgeModal,
-.modal,
-.person-popup,
-.place-overlay {
-  z-index: 999999 !important;
-}
-
 
 /* ============================
    PERSONER – AVATAR GRID
