@@ -1663,3 +1663,23 @@ button.primary.small:hover { opacity: .9; }
   /* Kartet er statisk og kan brukes normalt */
   touch-action: pan-x pan-y;
 }
+/* ================================
+   FULLSKJERM KARTMODUS (Se kart)
+   ================================ */
+body.map-only #map {
+  position: fixed;
+  inset: 0;
+  height: 100vh !important;
+  width: 100vw !important;
+  border-radius: 0 !important;
+  z-index: 20;
+}
+
+body.map-only main,
+body.map-only header {
+  display: none !important;
+}
+
+body.map-only .map-controls {
+  z-index: 30 !important;
+}
