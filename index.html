@@ -19,13 +19,18 @@
   <!-- Leaflet Routing Machine CSS -->
   <link rel="stylesheet"
         href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css" />
+</head>
 
-  <!-- Usynlige containere som app.js trenger -->
+<body>
+
+  <!-- ========================================================= -->
+  <!-- USYNLIGE DATA-CONTAINERE (MÅ LIGGE I BODY, IKKE I HEAD)    -->
+  <!-- ========================================================= -->
   <div id="collectionGrid" style="display:none"></div>
   <div id="collectionCount" style="display:none"></div>
   <div id="gallery" style="display:none"></div>
 
-  <!-- Badge-modal (må finnes, men skjules) -->
+  <!-- Badge-modal -->
   <div id="badgeModal" class="modal" aria-hidden="true" style="display:none;">
     <div class="modal-content">
       <img class="badge-img" src="" alt="Merke">
@@ -37,9 +42,7 @@
       <button class="close-btn">Lukk</button>
     </div>
   </div>
-</head>
 
-<body>
 
   <!-- ============================ -->
   <!--            KART             -->
@@ -48,66 +51,44 @@
   <div id="map" aria-label="Kart"></div>
 
   <div class="map-controls">
-    <button id="btnCenter"  title="Sentrer">⌖</button>
+    <button id="btnCenter" title="Sentrer">⌖</button>
     <button id="btnExitMap" title="Lukk kart" aria-label="Lukk kart">✕</button>
   </div>
 
-<!-- ============================ -->
-  <!--            PaceCard         -->
-  <!-- ============================ -->øæææ
-  
-<div id="placeCard" aria-hidden="true">
-  <div class="pc-body">
 
-    <div class="pc-main">
-      <img id="pcImage" class="pc-img" src="" alt="">
-      <div class="pc-text">
-        <h2 id="pcTitle"></h2>
-        <div id="pcMeta" class="pc-meta"></div>
-        <p id="pcDesc" class="pc-desc"></p>
+  <!-- ============================ -->
+  <!--         PLACE CARD          -->
+  <!-- ============================ -->
+
+  <div id="placeCard" aria-hidden="true">
+    <div class="pc-body">
+
+      <div class="pc-main">
+        <img id="pcImage" class="pc-img" src="" alt="">
+        <div class="pc-text">
+          <h2 id="pcTitle"></h2>
+          <div id="pcMeta" class="pc-meta"></div>
+          <p id="pcDesc" class="pc-desc"></p>
+        </div>
       </div>
-    </div>
 
-    <div id="pcPeople" class="pc-people"></div>
+      <div id="pcPeople" class="pc-people"></div>
 
-    <div class="pc-actions">
-      <button id="pcInfo"   class="secondary">Mer info</button>
-      <button id="pcQuiz"   class="primary">Ta quiz</button>
-      <button id="pcUnlock" class="primary">Lås opp</button>
-      <button id="pcRoute"  class="ghost">Rute</button>
-      <button id="pcClose"  class="ghost">✕</button>
-    </div>
+      <div class="pc-actions">
+        <button id="pcInfo"   class="secondary">Mer info</button>
+        <button id="pcQuiz"   class="primary">Ta quiz</button>
+        <button id="pcUnlock" class="primary">Lås opp</button>
+        <button id="pcRoute"  class="ghost">Rute</button>
+        <button id="pcClose"  class="ghost">✕</button>
+      </div>
 
-  </div>
-</div>
-  
-
-    <!-- Bilde av stedet -->
-    <img id="pcImage" class="pc-img" src="" alt="">
-
-    <!-- Tittel, kategori, radius -->
-    <h2 id="pcTitle"></h2>
-    <div id="pcMeta" class="pc-meta"></div>
-
-    <!-- Beskrivelse -->
-    <p id="pcDesc" class="pc-desc"></p>
-
-    <!-- Personer tilknyttet stedet -->
-    <div id="pcPeople" class="pc-people"></div>
-
-    <!-- Knapper -->
-    <div class="pc-actions">
-      <button id="pcInfo"   class="secondary">Mer info</button>
-      <button id="pcQuiz"   class="primary">Ta quiz</button>
-      <button id="pcUnlock" class="primary">Lås opp</button>
-      <button id="pcRoute"  class="ghost">Rute</button>
-      <button id="pcClose"  class="ghost">✕</button>
     </div>
   </div>
-</div>
+
 
   <!-- Toast -->
   <div id="toast" role="status" aria-live="polite"></div>
+
 
   <!-- ============================ -->
   <!--           HEADER             -->
@@ -129,6 +110,7 @@
     </div>
   </header>
 
+
   <!-- ============================ -->
   <!--             MAIN             -->
   <!-- ============================ -->
@@ -138,7 +120,6 @@
     <!-- MINI-PROFIL -->
     <section id="miniProfile" class="panel mini-profile">
       <div class="info">
-
         <div class="profile-top">
           <h3 id="miniName">Utforsker #182</h3>
           <a href="profile.html" class="arrow-link" title="Gå til profilen din">→</a>
@@ -149,9 +130,9 @@
           <span id="linkBadges" class="linkish">0 merker</span> ·
           <span id="linkQuiz"   class="linkish">0 quizzer</span>
         </p>
-
       </div>
     </section>
+
 
     <!-- NÆROMRÅDE -->
     <section class="panel">
@@ -163,6 +144,7 @@
       <div id="status" class="muted">Henter posisjon…</div>
       <div id="nearbyList" class="cards"></div>
     </section>
+
 
     <!-- RUTER -->
     <section class="panel">
@@ -194,6 +176,7 @@
       </div>
     </section>
 
+
     <!-- Se flere i nærheten -->
     <div id="sheetNearby" class="sheet" aria-hidden="true">
       <div class="sheet-head">
@@ -205,6 +188,7 @@
     </div>
 
   </main>
+
 
   <!-- ============================ -->
   <!--      SERVICE WORKER         -->
@@ -218,24 +202,16 @@
     }
   </script>
 
+
   <!-- ============================ -->
-  <!--  RIKTIG SKRIPT-REKKEFØLGE   -->
+  <!--       RIKTIG JS-REKKEFØLGE  -->
   <!-- ============================ -->
 
-  <!-- Popup-system -->
   <script src="popup-utils.js"></script>
-
-  <!-- Leaflet JS -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
           crossorigin=""></script>
-
-  <!-- Routing Machine -->
   <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script>
-
-  <!-- App JS (må sist!) -->
   <script src="app.js"></script>
-
-  <!-- Ruter (kan være defer) -->
   <script src="routes.js" defer></script>
 
   <div class="app-frame"></div>
