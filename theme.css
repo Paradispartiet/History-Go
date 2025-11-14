@@ -58,6 +58,61 @@ body{
 .muted{color:var(--muted)}
 
 /* ===================================================== */
+/* 2) Kart & kartmodus – STABIL VERSJON                 */
+/* ===================================================== */
+
+/* Kartet ligger fullskjerm bak alt innholdet */
+#map {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  background: #000; /* trygg bakgrunn når Leaflet laster */
+}
+
+/* Innholdet ligger OVER kartet */
+header,
+main {
+  position: relative;
+  z-index: 2;
+}
+
+/* Kartknappene nederst til høyre */
+.map-controls {
+  position: fixed;
+  right: 12px;
+  bottom: 12px;
+  z-index: 12;
+  display: grid;
+  gap: 8px;
+}
+.map-controls button {
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: 1px solid var(--panel-border);
+  background: rgba(20,30,45,.9);
+  color: #fff;
+  box-shadow: var(--shadow);
+}
+
+/* ==============================
+   FULLSKJERM KARTMODUS (Se kart)
+   ============================== */
+
+body.map-only header,
+body.map-only main {
+  display: none !important;
+}
+
+body.map-only #map {
+  z-index: 10;
+}
+
+body.map-only .map-controls {
+  z-index: 20 !important;
+}
+
+/* ===================================================== */
 /* 3) Topplinje, main & toast                            */
 /* ===================================================== */
 header{
@@ -97,12 +152,11 @@ header{
 .toggle{ display:flex; gap:6px; align-items:center; font-size:.9rem }
 .toggle input{ accent-color: var(--primary) }
 
-/* Mer luft under kartet før panelene */
 main {
   position: relative;
   z-index: 20;
-  margin-top: 0;        /* ikke negativ lenger */
-  padding-top: 65px;    /* ← øk dette tallet for mer luft */
+  margin-top: 0;
+  padding-top: 140px;   /* mer plass før "Steder i nærheten" */
 }
 
 #toast{
