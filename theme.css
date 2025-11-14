@@ -57,60 +57,6 @@ body{
 }
 .muted{color:var(--muted)}
 
-
-/* ===================================================== */
-/* 2) Kart & kartmodus                                   */
-/* ===================================================== */
-#map {
-  position: fixed;
-  inset: 0;
-  z-index: 1; /* ← var 0, nå synlig */
-  background: #000; /* trygg bakgrunn */
-}
-
-/* Hovedinnhold over kartet */
-main, header {
-  position: relative;
-  z-index: 2;
-}
-
-/* Kartmodus – viser bare kartet */
-body.map-only header,
-body.map-only main {
-  display: none !important;
-}
-
-body.map-only #map {
-  z-index: 10; /* Kart øverst i kartmodus */
-}
-
-/* Kartkontroller */
-.map-controls {
-  position: fixed;
-  right: 12px;
-  bottom: 12px;
-  z-index: 12;
-  display: grid;
-  gap: 8px;
-}
-.map-controls button {
-  width: 44px;
-  height: 44px;
-  border-radius: 999px;
-  border: 1px solid var(--panel-border);
-  background: rgba(20,30,45,.9);
-  color: #fff;
-  box-shadow: var(--shadow);
-}
-
-/* Kartmodus – modaler skal fortsatt vises */
-body.map-only #quizModal,
-body.map-mode #quizModal {
-  display: flex !important;
-  z-index: 9999 !important;
-}
-
-
 /* ===================================================== */
 /* 3) Topplinje, main & toast                            */
 /* ===================================================== */
