@@ -8,6 +8,7 @@ window.showPersonPopup = function(person) {
   const cardImg = person.image || `bilder/kort/people/${person.id}.PNG`;
   const wiki    = person.wiki || "";
   const works   = person.works || [];
+  const popupDesc = person.popupDesc || "";   // ← LEGG TIL: trygg fallback
 
   const placeMatches = PLACES.filter(p => p.people?.includes(person.id));
 
@@ -17,18 +18,14 @@ window.showPersonPopup = function(person) {
   el.innerHTML = `
     <div class="hg-popup-inner">
 
-      <!-- Close -->
       <button class="hg-popup-close">✕</button>
 
-      <!-- Face -->
       <img src="${face}" class="hg-popup-face">
 
       <h2 class="hg-popup-name">${person.name}</h2>
 
-      <!-- Kortbilde nederst til høyre -->
       <img src="${cardImg}" class="hg-popup-cardimg">
 
-      <!-- Verk -->
       <div class="hg-section">
         <h3>Verk</h3>
         ${
@@ -39,32 +36,30 @@ window.showPersonPopup = function(person) {
             : `<p class="hg-muted">Ingen registrerte verk.</p>`
         }
 
-        <!-- ENKEL NY QUIZ-KNAPP -->
         <button class="hg-quiz-btn" data-quiz="${person.id}">
           Ta quiz
         </button>
       </div>
 
-      <!-- Wiki -->
       <div class="hg-section">
         <h3>Om personen</h3>
         <p class="hg-wiki">${wiki}</p>
+
+        ${popupDesc 
+          ? `<p class="hg-popupdesc">${popupDesc}</p>` 
+          : ""}
       </div>
 
-      <!-- Steder -->
       <div class="hg-section">
         <h3>Steder</h3>
         ${
           placeMatches.length
             ? `<div class="hg-places">
-                 ${placeMatches
-                   .map(
-                     p => `
-                     <div class="hg-place" data-place="${p.id}">
-                       📍 ${p.name}
-                     </div>`
-                   )
-                   .join("")}
+                 ${placeMatches.map(p => `
+                   <div class="hg-place" data-place="${p.id}">
+                     📍 ${p.name}
+                   </div>
+                 `).join("")}
                </div>`
             : `<p class="hg-muted">Ingen stedstilknytning.</p>`
         }
@@ -73,10 +68,8 @@ window.showPersonPopup = function(person) {
     </div>
   `;
 
-  // Lukk
   el.querySelector(".hg-popup-close").onclick = () => el.remove();
 
-  // Klikk på steder → åpne steds-popup
   el.querySelectorAll("[data-place]").forEach(btn => {
     btn.onclick = () => {
       const place = PLACES.find(p => p.id === btn.dataset.place);
@@ -105,7 +98,6 @@ window.showPlacePopup = function(place) {
   card.innerHTML = `
     <div class="hg-popup-inner">
 
-      <!-- Hovedbilde -->
       <img src="${fullImg}" class="hg-popup-img" alt="${place.name}">
 
       <h3 class="hg-popup-title">${place.name}</h3>
@@ -113,12 +105,14 @@ window.showPlacePopup = function(place) {
 
       <p class="hg-popup-desc">${place.desc || ""}</p>
 
-      <!-- ENKEL NY QUIZ-KNAPP -->
+      ${place.popupDesc 
+        ? `<p class="hg-popup-popupdesc">${place.popupDesc}</p>` 
+        : ""}
+
       <button class="hg-quiz-btn" data-quiz="${place.id}">
         Ta quiz
       </button>
 
-      <!-- Personer -->
       ${
         peopleHere.length
           ? `<div class="hg-popup-subtitle">Personer</div>
@@ -132,10 +126,8 @@ window.showPlacePopup = function(place) {
           : ""
       }
 
-      <!-- Mini-kort nederst -->
       <img src="${thumbImg}" class="hg-popup-cardthumb">
 
-      <!-- Koordinater -->
       <div class="hg-popup-locations">
         <div class="loc-chip">
           📍 ${place.lat.toFixed(5)}, ${place.lon.toFixed(5)}
@@ -147,7 +139,6 @@ window.showPlacePopup = function(place) {
 
   document.body.appendChild(card);
 
-  // Klikk på person → åpne person-popup
   card.querySelectorAll(".hg-popup-face").forEach(el => {
     el.onclick = () => {
       const pr = PEOPLE.find(p => p.id === el.dataset.person);
@@ -155,13 +146,11 @@ window.showPlacePopup = function(place) {
     };
   });
 
-  // Klikk utenfor → lukk
   setTimeout(() => card.classList.add("visible"), 10);
   card.onclick = e => {
     if (e.target.classList.contains("hg-popup")) card.remove();
   };
 };
-
 
 
 // ============================================================
