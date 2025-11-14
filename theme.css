@@ -926,6 +926,12 @@ button.quiz-done.blink {
   justify-content: center;
   align-items: center;
   z-index: 99999;
+  animation: hgFadeIn .25s ease;
+}
+
+@keyframes hgFadeIn {
+  from { opacity: 0; transform: scale(.96); }
+  to   { opacity: 1; transform: scale(1); }
 }
 
 .hg-popup-inner {
@@ -940,16 +946,34 @@ button.quiz-done.blink {
   box-shadow: 0 0 35px rgba(0,0,0,0.6);
 }
 
-/* Close */
+/* ---------------------------------- */
+/* Close button */
+/* ---------------------------------- */
 .hg-popup-close {
   position: absolute;
-  top: 12px; right: 12px;
-  width: 36px; height: 36px;
+  top: 12px;
+  right: 12px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   border: 1px solid rgba(255,255,255,0.2);
   background: rgba(255,255,255,0.1);
   color: #fff;
   font-size: 1.2rem;
+  cursor: pointer;
+}
+
+/* ---------------------------------- */
+/* Top elements */
+/* ---------------------------------- */
+
+.hg-popup-name,
+.hg-popup-title {
+  text-align: center;
+  font-size: 1.35rem;
+  font-weight: 600;
+  margin: 6px 0 12px;
+  color: #fff;
 }
 
 /* Face image */
@@ -962,7 +986,15 @@ button.quiz-done.blink {
   margin: 0 auto 12px;
 }
 
-/* Kortbilde (flyter i hjørnet) */
+/* Place main image */
+.hg-popup-img {
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  object-fit: cover;
+}
+
+/* Kortbilde nederst til høyre */
 .hg-popup-cardimg {
   position: absolute;
   bottom: 24px;
@@ -975,10 +1007,24 @@ button.quiz-done.blink {
   border: 2px solid rgba(255,255,255,0.3);
 }
 
-/* Section titles */
+/* Thumbnail card for places */
+.hg-popup-cardthumb {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  border-radius: 8px;
+  margin: 16px auto 0;
+  display: block;
+}
+
+/* ---------------------------------- */
+/* Sections */
+/* ---------------------------------- */
+
 .hg-section {
   margin-top: 20px;
 }
+
 .hg-section h3 {
   margin: 0 0 6px;
   font-size: 1.05rem;
@@ -1002,7 +1048,9 @@ button.quiz-done.blink {
   border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
-/* Steder personen finnes */
+/* ---------------------------------- */
+/* Places list */
+/* ---------------------------------- */
 .hg-places {
   display: flex;
   flex-direction: column;
@@ -1022,6 +1070,27 @@ button.quiz-done.blink {
 .hg-muted {
   color: #999;
   font-size: 0.9rem;
+}
+
+/* ---------------------------------- */
+/* Quiz button inside popup */
+/* ---------------------------------- */
+
+.hg-quiz-btn {
+  background: #FFD600;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-top: 10px;
+  cursor: pointer;
+  color: #000;
+  width: 100%;
+}
+
+.hg-quiz-btn:hover {
+  background: #ffe45c;
 }
 
 /* ===================================================== */
