@@ -508,32 +508,6 @@ button{ cursor:pointer; border:none }
 }
 
 /* ===================================================== */
-/* 7) Place Overlay                                      */
-/* ===================================================== */
-.place-overlay{
-  position:fixed; inset:0; z-index:14; background:rgba(0,0,0,.55);
-  display:flex; align-items:flex-end; justify-content:center;
-}
-.place-overlay .place-overlay-content{
-  width:min(960px, 96vw); max-height:82vh;
-  background:var(--panel);
-  border:1px solid var(--panel-border);
-  border-radius:16px 16px 0 0;
-  box-shadow:var(--shadow);
-  display:grid; grid-template-columns: 1.2fr .8fr; gap:16px;
-  padding:16px; overflow:auto;
-}
-.close-overlay{
-  position:absolute; top:12px; right:12px;
-  width:44px; height:44px; border-radius:999px;
-  border:1px solid var(--panel-border);
-  background:rgba(255,255,255,.08); color:#fff; font-size:1.4rem;
-}
-.place-overlay .left p{ line-height:1.5 }
-.place-overlay .right .card{ margin-bottom:10px }
-
-
-/* ===================================================== */
 /* 8) Sheets (bunnark) – forbedret og oversiktlig        */
 /* ===================================================== */
 .sheet {
