@@ -249,38 +249,31 @@ button{ cursor:pointer; border:none }
 .badge.naeringsliv .i{ background: #ff8800; }      /* Næringsliv & industri */
 
 /* ===================================================== */
-/* PLACE CARD – lysere, bilde til venstre                */
+/* PLACE CARD – LAYOUT                                    */
 /* ===================================================== */
 
+/* Hele kortet (sheet) */
 #placeCard {
   position: fixed;
+  bottom: 0;
   left: 0;
   right: 0;
-  bottom: 0;
-  z-index: 5000;
-  background: rgba(22,32,46,0.92);   /* LYSERE panel */
-  color: var(--text);
-  border-top: 1px solid rgba(255,255,255,0.10);
-  border-radius: 18px 18px 0 0;
-  backdrop-filter: blur(12px);
-  box-shadow: 0 -4px 20px rgba(0,0,0,0.45);
-
-  transform: translateY(100%);
-  transition: transform 0.25s ease-out;
-}
-
-#placeCard[aria-hidden="false"] {
+  z-index: 50;
+  background: rgba(13,27,42,0.96);
+  backdrop-filter: blur(6px);
+  border-radius: 20px 20px 0 0;
+  padding: 18px;
   transform: translateY(0);
+  transition: transform 0.25s ease;
 }
 
-.pc-body {
-  padding: 16px 18px 22px;
+#placeCard[aria-hidden="true"] {
+  transform: translateY(110%);
 }
-
 
 
 /* ===================================================== */
-/* Layout: bilde venstre – tekst høyre                    */
+/* Innhold: bilde venstre – tekst høyre                   */
 /* ===================================================== */
 
 .pc-main {
@@ -290,6 +283,7 @@ button{ cursor:pointer; border:none }
   margin-bottom: 14px;
 }
 
+/* Riktig, endelig pc-img */
 .pc-img {
   width: 95px;
   height: 95px;
@@ -310,114 +304,6 @@ button{ cursor:pointer; border:none }
 
 #pcTitle {
   margin: 0;
-  font-size: 1.22rem;
-  font-weight: 700;
-  color: #fff;
-}
-
-#pcMeta {
-  margin-top: 3px;
-  margin-bottom: 8px;
-  font-size: 0.90rem;
-  color: var(--text-dim);
-}
-
-#pcDesc {
-  margin: 0;
-  font-size: 0.95rem;
-  line-height: 1.45;
-  color: #e4e9f0;
-}
-
-/* ===================================================== */
-/* Personer                                               */
-/* ===================================================== */
-
-.pc-people {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin: 14px 0;
-}
-
-.pc-people img {
-  width: 54px;
-  height: 54px;
-  border-radius: 50%;
-  border: 2px solid rgba(255,255,255,0.30);
-  object-fit: cover;
-  cursor: pointer;
-  transition: transform 0.15s ease;
-}
-
-.pc-people img:hover {
-  transform: scale(1.08);
-}
-
-/* ===================================================== */
-/* Knapper                                                */
-/* ===================================================== */
-
-.pc-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 8px;
-}
-
-#pcInfo {
-  background: rgba(255,255,255,0.14);
-  border: 1px solid rgba(255,255,255,0.22);
-  color: #fff;
-  padding: 8px 14px;
-  border-radius: 10px;
-  font-weight: 600;
-}
-
-#pcQuiz {
-  background: var(--primary);
-  color: #fff;
-  padding: 8px 16px;
-  border-radius: 10px;
-  font-weight: 600;
-}
-
-#pcUnlock {
-  background: #f6c800;
-  color: #000;
-  padding: 8px 16px;
-  border-radius: 10px;
-  font-weight: 600;
-}
-
-#pcRoute,
-#pcClose {
-  background: transparent;
-  border: 1px solid rgba(255,255,255,0.20);
-  color: #fff;
-  padding: 8px 14px;
-  border-radius: 10px;
-}
-
-/* ===================================================== */
-/* Bilde                                                  */
-/* ===================================================== */
-
-.pc-img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  border-radius: 12px;
-  margin-bottom: 14px;
-  border: 1px solid rgba(255,255,255,0.12);
-}
-
-/* ===================================================== */
-/* Tittel / meta / beskrivelse                           */
-/* ===================================================== */
-
-#pcTitle {
-  margin: 0;
   font-size: 1.3rem;
   font-weight: 700;
   color: #fff;
@@ -427,25 +313,36 @@ button{ cursor:pointer; border:none }
   margin-top: 4px;
   margin-bottom: 10px;
   font-size: 0.92rem;
-  color: var(--muted);
+  color: var(--text-dim);
 }
 
 #pcDesc {
   margin: 0 0 14px 0;
-  color: var(--text);
   font-size: 1rem;
   line-height: 1.45;
+  color: var(--text);
 }
 
+
 /* ===================================================== */
-/* Personer                                               */
+/* Personer tilknyttet stedet                             */
 /* ===================================================== */
 
 .pc-people {
   display: flex;
-  gap: 10px;
   flex-wrap: wrap;
-  margin-bottom: 16px;
+  gap: 10px;
+  margin: 12px 0 16px 0;
+}
+
+.pc-people button {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .pc-people img {
@@ -454,7 +351,6 @@ button{ cursor:pointer; border:none }
   border-radius: 50%;
   border: 2px solid rgba(255,255,255,0.25);
   object-fit: cover;
-  cursor: pointer;
   transition: transform 0.15s ease;
 }
 
@@ -462,8 +358,16 @@ button{ cursor:pointer; border:none }
   transform: scale(1.08);
 }
 
+.pc-people span {
+  margin-top: 6px;
+  font-size: 0.8rem;
+  color: var(--text);
+  text-align: center;
+}
+
+
 /* ===================================================== */
-/* Knapper                                                 */
+/* Knapper nederst                                         */
 /* ===================================================== */
 
 .pc-actions {
@@ -473,6 +377,7 @@ button{ cursor:pointer; border:none }
   margin-top: 8px;
 }
 
+/* Info-knapp */
 #pcInfo {
   background: rgba(255,255,255,0.12);
   border: 1px solid rgba(255,255,255,0.18);
@@ -482,22 +387,25 @@ button{ cursor:pointer; border:none }
   font-weight: 600;
 }
 
+/* Quiz-knapp */
 #pcQuiz {
   background: var(--primary);
   color: #fff;
-  font-weight: 600;
   border-radius: 10px;
   padding: 8px 16px;
+  font-weight: 600;
 }
 
+/* Lås opp */
 #pcUnlock {
   background: #f6c800;
   color: #000;
-  font-weight: 600;
   border-radius: 10px;
   padding: 8px 16px;
+  font-weight: 600;
 }
 
+/* Rute og lukk */
 #pcRoute,
 #pcClose {
   background: transparent;
