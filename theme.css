@@ -1732,24 +1732,3 @@ button.primary.small:hover { opacity: .9; }
   color: #fff;
   box-shadow: var(--shadow);
 }
-
-/* ================================
-   FULLSKJERM KARTMODUS (Se kart)
-   ================================ */
-body.map-only #map {
-  position: fixed;
-  inset: 0;
-  height: 100vh !important;
-  width: 100vw !important;
-  border-radius: 0 !important;
-  z-index: 30;
-}
-
-body.map-only main,
-body.map-only header {
-  display: none !important;
-}
-
-body.map-only .map-controls {
-  z-index: 40 !important;
-}
