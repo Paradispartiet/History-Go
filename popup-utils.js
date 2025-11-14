@@ -41,12 +41,15 @@ window.showPersonPopup = function(person) {
                </ul>`
             : `<p class="hg-muted">Ingen registrerte verk.</p>`
         }
-        ${person.quizId ? `
-  <button class="hg-quiz-btn" data-quiz="${person.quizId}">
-    Ta quiz
-  </button>
-` : ""}
-      </div>
+        
+        ${
+  QUIZZES.some(q => q.placeId === person.placeId)
+    ? `<button class="hg-quiz-btn" data-quiz="${QUIZZES.find(q => q.placeId === person.placeId).id}">
+         Ta quiz
+       </button>`
+    : ""
+}
+</div>
 
       <!-- Wiki -->
       <div class="hg-section">
