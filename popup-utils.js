@@ -117,13 +117,13 @@ window.showPlacePopup = function(place) {
       <!-- Beskrivelse -->
       <p class="hg-popup-desc">${place.desc || ""}</p>
 
-      ${
-        place.quizId
-          ? `<button class="hg-quiz-btn" data-quiz="${place.quizId}">
-               Ta quiz
-             </button>`
-          : ""
-      }
+        ${
+  QUIZZES.some(q => q.placeId === place.id)
+    ? `<button class="hg-quiz-btn" data-quiz="${QUIZZES.find(q => q.placeId === place.id).id}">
+         Ta quiz
+       </button>`
+    : ""
+}
 
       <!-- Personer på stedet -->
       ${
