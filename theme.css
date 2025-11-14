@@ -97,9 +97,12 @@ header{
 .toggle{ display:flex; gap:6px; align-items:center; font-size:.9rem }
 .toggle input{ accent-color: var(--primary) }
 
-main{
-  position:relative; z-index:5;
-  padding: 20px 24px 80px;   /* mer luft til sidene og bunnen */
+/* Mer luft under kartet før panelene */
+main {
+  position: relative;
+  z-index: 20;
+  margin-top: 0;        /* ikke negativ lenger */
+  padding-top: 65px;    /* ← øk dette tallet for mer luft */
 }
 
 #toast{
