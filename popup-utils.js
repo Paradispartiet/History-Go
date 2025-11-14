@@ -1,19 +1,16 @@
 // ============================================================
-//  UNIVERSAL PERSON INFO POPUP
+//  UNIVERSAL PERSON INFO POPUP (REN NY VERSJON)
 // ============================================================
 window.showPersonPopup = function(person) {
   if (!person) return;
 
-  // Finn ansikt + kortbilde
-  const face = `bilder/people/${person.id}_face.PNG`;
+  const face    = `bilder/people/${person.id}_face.PNG`;
   const cardImg = person.image || `bilder/kort/people/${person.id}.PNG`;
+  const wiki    = person.wiki || "";
+  const works   = person.works || [];
 
-  // Wiki / verk / steder
-  const wiki = person.wiki || "";
-  const works = person.works || [];
   const placeMatches = PLACES.filter(p => p.people?.includes(person.id));
 
-  // Lag popupen
   const el = document.createElement("div");
   el.className = "hg-popup";
 
@@ -23,7 +20,7 @@ window.showPersonPopup = function(person) {
       <!-- Close -->
       <button class="hg-popup-close">✕</button>
 
-      <!-- Top: face -->
+      <!-- Face -->
       <img src="${face}" class="hg-popup-face">
 
       <h2 class="hg-popup-name">${person.name}</h2>
@@ -31,25 +28,22 @@ window.showPersonPopup = function(person) {
       <!-- Kortbilde nederst til høyre -->
       <img src="${cardImg}" class="hg-popup-cardimg">
 
-      <!-- Verk-listen -->
+      <!-- Verk -->
       <div class="hg-section">
         <h3>Verk</h3>
         ${
           works.length
             ? `<ul class="hg-works">
-                ${works.map(w => `<li>${w}</li>`).join("")}
+                 ${works.map(w => `<li>${w}</li>`).join("")}
                </ul>`
             : `<p class="hg-muted">Ingen registrerte verk.</p>`
         }
-        
-        ${
-  QUIZZES.some(q => q.placeId === person.placeId)
-    ? `<button class="hg-quiz-btn" data-quiz="${QUIZZES.find(q => q.placeId === person.placeId).id}">
-         Ta quiz
-       </button>`
-    : ""
-}
-</div>
+
+        <!-- ENKEL NY QUIZ-KNAPP -->
+        <button class="hg-quiz-btn" data-quiz="${person.id}">
+          Ta quiz
+        </button>
+      </div>
 
       <!-- Wiki -->
       <div class="hg-section">
@@ -57,20 +51,20 @@ window.showPersonPopup = function(person) {
         <p class="hg-wiki">${wiki}</p>
       </div>
 
-      <!-- Steder personen finnes -->
+      <!-- Steder -->
       <div class="hg-section">
         <h3>Steder</h3>
         ${
           placeMatches.length
             ? `<div class="hg-places">
-                ${placeMatches
-                  .map(
-                    p => `
-                  <div class="hg-place" data-place="${p.id}">
-                    📍 ${p.name}
-                  </div>`
-                  )
-                  .join("")}
+                 ${placeMatches
+                   .map(
+                     p => `
+                     <div class="hg-place" data-place="${p.id}">
+                       📍 ${p.name}
+                     </div>`
+                   )
+                   .join("")}
                </div>`
             : `<p class="hg-muted">Ingen stedstilknytning.</p>`
         }
@@ -79,10 +73,10 @@ window.showPersonPopup = function(person) {
     </div>
   `;
 
-  // Lukking
+  // Lukk
   el.querySelector(".hg-popup-close").onclick = () => el.remove();
 
-  // Klikk på steder → åpner steds-popup
+  // Klikk på steder → åpne steds-popup
   el.querySelectorAll("[data-place]").forEach(btn => {
     btn.onclick = () => {
       const place = PLACES.find(p => p.id === btn.dataset.place);
@@ -92,15 +86,15 @@ window.showPersonPopup = function(person) {
   });
 
   document.body.appendChild(el);
-}
+};
 
 // ============================================================
-// UNIVERSAL STEDS-POPUP (info-popup, ikke reward)
+//  UNIVERSAL STEDS-POPUP (REN NY VERSJON)
 // ============================================================
 window.showPlacePopup = function(place) {
   if (!place) return;
 
-  const fullImg = place.image || `bilder/kort/places/${place.id}.PNG`;
+  const fullImg  = place.image || `bilder/kort/places/${place.id}.PNG`;
   const thumbImg = `bilder/kort/places/${place.id}.PNG`;
 
   const peopleHere = PEOPLE.filter(p => p.placeId === place.id);
@@ -117,37 +111,35 @@ window.showPlacePopup = function(place) {
       <h3 class="hg-popup-title">${place.name}</h3>
       <p class="hg-popup-cat">${place.category || ""}</p>
 
-      <!-- Beskrivelse -->
       <p class="hg-popup-desc">${place.desc || ""}</p>
 
-        ${
-  QUIZZES.some(q => q.placeId === place.id)
-    ? `<button class="hg-quiz-btn" data-quiz="${QUIZZES.find(q => q.placeId === place.id).id}">
-         Ta quiz
-       </button>`
-    : ""
-}
+      <!-- ENKEL NY QUIZ-KNAPP -->
+      <button class="hg-quiz-btn" data-quiz="${place.id}">
+        Ta quiz
+      </button>
 
-      <!-- Personer på stedet -->
+      <!-- Personer -->
       ${
         peopleHere.length
-        ? `<div class="hg-popup-subtitle">Personer</div>
-           <div class="hg-popup-people">
-             ${peopleHere.map(p => `
-               <div class="hg-popup-face" data-person="${p.id}">
-                 <img src="bilder/people/${p.id}_face.PNG">
-               </div>
-             `).join("")}
-           </div>`
-        : ""
+          ? `<div class="hg-popup-subtitle">Personer</div>
+             <div class="hg-popup-people">
+               ${peopleHere.map(p => `
+                 <div class="hg-popup-face" data-person="${p.id}">
+                   <img src="bilder/people/${p.id}_face.PNG">
+                 </div>
+               `).join("")}
+             </div>`
+          : ""
       }
 
-      <!-- Mini-kort nederst høyre -->
+      <!-- Mini-kort nederst -->
       <img src="${thumbImg}" class="hg-popup-cardthumb">
 
-      <!-- Kartmarkør nederst -->
+      <!-- Koordinater -->
       <div class="hg-popup-locations">
-        <div class="loc-chip">📍 ${place.lat.toFixed(5)}, ${place.lon.toFixed(5)}</div>
+        <div class="loc-chip">
+          📍 ${place.lat.toFixed(5)}, ${place.lon.toFixed(5)}
+        </div>
       </div>
 
     </div>
@@ -158,16 +150,26 @@ window.showPlacePopup = function(place) {
   // Klikk på person → åpne person-popup
   card.querySelectorAll(".hg-popup-face").forEach(el => {
     el.onclick = () => {
-      const id = el.dataset.person;
-      const pr = PEOPLE.find(p => p.id === id);
+      const pr = PEOPLE.find(p => p.id === el.dataset.person);
       showPersonPopup(pr);
     };
   });
 
-  setTimeout(() => card.classList.add("visible"), 10);
-
   // Klikk utenfor → lukk
+  setTimeout(() => card.classList.add("visible"), 10);
   card.onclick = e => {
     if (e.target.classList.contains("hg-popup")) card.remove();
   };
 };
+
+
+
+// ============================================================
+//  GLOBAL QUIZ-KNAPP HANDLER (MÅ VÆRE MED)
+// ============================================================
+document.addEventListener("click", e => {
+  const btn = e.target.closest(".hg-quiz-btn");
+  if (!btn) return;
+  const targetId = btn.dataset.quiz;
+  if (targetId) startQuiz(targetId);
+});
