@@ -1394,7 +1394,7 @@ rewardStyle.textContent = `
   transform: translate(-50%, -50%) scale(0.9);
   opacity: 0;
   transition: all 0.35s ease;
-  z-index: 9999;
+  z-index: 999999;
 }
 .reward-popup.visible {
   transform: translate(-50%, -50%) scale(1);
