@@ -246,7 +246,7 @@ button{ cursor:pointer; border:none }
 .badge.naeringsliv .i{ background: #ff8800; }      /* Næringsliv & industri */
 
 /* ===================================================== */
-/* UPDATED PLACE CARD – History Go                       */
+/* PLACE CARD – lysere, bilde til venstre                */
 /* ===================================================== */
 
 #placeCard {
@@ -255,15 +255,15 @@ button{ cursor:pointer; border:none }
   right: 0;
   bottom: 0;
   z-index: 5000;
-  background: var(--panel);
+  background: rgba(22,32,46,0.92);   /* LYSERE panel */
   color: var(--text);
-  border-top: 1px solid var(--panel-border);
+  border-top: 1px solid rgba(255,255,255,0.10);
   border-radius: 18px 18px 0 0;
+  backdrop-filter: blur(12px);
   box-shadow: 0 -4px 20px rgba(0,0,0,0.45);
-  backdrop-filter: blur(10px);
 
   transform: translateY(100%);
-  transition: transform 0.28s ease-out;
+  transition: transform 0.25s ease-out;
 }
 
 #placeCard[aria-hidden="false"] {
@@ -271,7 +271,128 @@ button{ cursor:pointer; border:none }
 }
 
 .pc-body {
-  padding: 18px 20px 24px;
+  padding: 16px 18px 22px;
+}
+
+
+/* ===================================================== */
+/* Layout: bilde venstre – tekst høyre                    */
+/* ===================================================== */
+
+.pc-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.pc-img {
+  width: 95px;              /* Mindre bilde */
+  height: 95px;
+  border-radius: 12px;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 1px solid rgba(255,255,255,0.15);
+}
+
+.pc-text {
+  flex: 1;
+}
+
+
+/* ===================================================== */
+/* Tekst                                                  */
+/* ===================================================== */
+
+#pcTitle {
+  margin: 0;
+  font-size: 1.22rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+#pcMeta {
+  margin-top: 3px;
+  margin-bottom: 8px;
+  font-size: 0.90rem;
+  color: var(--text-dim);
+}
+
+#pcDesc {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.45;
+  color: #e4e9f0;
+}
+
+/* ===================================================== */
+/* Personer                                               */
+/* ===================================================== */
+
+.pc-people {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 14px 0;
+}
+
+.pc-people img {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.30);
+  object-fit: cover;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.pc-people img:hover {
+  transform: scale(1.08);
+}
+
+/* ===================================================== */
+/* Knapper                                                */
+/* ===================================================== */
+
+.pc-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+#pcInfo {
+  background: rgba(255,255,255,0.14);
+  border: 1px solid rgba(255,255,255,0.22);
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+#pcQuiz {
+  background: var(--primary);
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+#pcUnlock {
+  background: #f6c800;
+  color: #000;
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+#pcRoute,
+#pcClose {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.20);
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 10px;
 }
 
 /* ===================================================== */
