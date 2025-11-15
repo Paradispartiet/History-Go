@@ -796,10 +796,12 @@ async function addCompletedQuizAndMaybePoint(categoryDisplay, quizId) {
     }
   }
 
-  saveMerits();
+    saveMerits();
   updateMeritLevel(catLabel, merits[catLabel].points);
   showToast(`🏅 +1 poeng i ${catLabel}!`);
   window.dispatchEvent(new Event("updateProfile"));
+  // 🔔 Oppdater "Steder i nærheten" etter perfekt quiz
+  window.dispatchEvent(new Event("updateNearby"));
 }
 
 // ==============================
