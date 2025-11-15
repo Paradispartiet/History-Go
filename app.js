@@ -544,17 +544,49 @@ let currentPos = null;
 function renderNearbyPlaces() {
   if (!el.list) return;
 
-  const sorted = PLACES
-    .map(p => ({
-      ...p,
-      _d: currentPos ? Math.round(distMeters(currentPos, { lat: p.lat, lon: p.lon })) : null
-    }))
-    .sort((a, b) => (a._d ?? 1e12) - (b._d ?? 1e12));
+  // Hvis vi ikke har posisjon ennå – vis en liten melding
+  if (!currentPos) {
+    el.list.innerHTML = `<p class="muted">Venter på posisjon…</p>`;
+    return;
+  }
 
-  el.list.innerHTML = sorted
-    .slice(0, NEARBY_LIMIT)
-    .map(renderPlaceCard)
-    .join("");
+  // Les status fra localStorage
+  const visitedLS    = JSON.parse(localStorage.getItem("visited_places") || "{}");
+  const quizProgress = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
+
+  const items = PLACES
+    .map(p => {
+      const d = Math.round(
+        distMeters(currentPos, { lat: p.lat, lon: p.lon })
+      );
+      return { ...p, _d: d };
+    })
+    .filter(p => {
+      // 1) Radius – testmodus overstyrer radius (viser innenfor alle p.r)
+      if (!el.test?.checked) {
+        const radius = p.r || 150;
+        if (p._d > radius) return false;
+      }
+
+      // 2) Ikke vis steder som allerede er besøkt/åpnet
+      if (visitedLS[p.id]) return false;
+
+      // 3) Ikke vis steder der quizen er fullført perfekt
+      const catId = catIdFromDisplay(p.category || "vitenskap");
+      const completed = quizProgress[catId]?.completed || [];
+      if (completed.includes(p.id)) return false;
+
+      return true;
+    })
+    .sort((a, b) => a._d - b._d)
+    .slice(0, NEARBY_LIMIT);
+
+  if (!items.length) {
+    el.list.innerHTML = `<p class="muted">Ingen steder i nærheten akkurat nå.</p>`;
+    return;
+  }
+
+  el.list.innerHTML = items.map(renderPlaceCard).join("");
 }
 
 function renderPlaceCard(p) {
