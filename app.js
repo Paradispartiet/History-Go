@@ -940,18 +940,19 @@ function requestLocation() {
   if (el.status) el.status.textContent = "Henter posisjon…";
 
   navigator.geolocation.getCurrentPosition(
-    g => {
-      currentPos = { lat: g.coords.latitude, lon: g.coords.longitude };
-      if (el.status) el.status.textContent = "Posisjon funnet.";
-      setUser(currentPos.lat, currentPos.lon);
-      renderNearbyPlaces();
-    },
-    _ => {
-      if (el.status) el.status.textContent = "Kunne ikke hente posisjon.";
-      renderNearbyPlaces();
-    },
-    { enableHighAccuracy: true, timeout: 8000, maximumAge: 10000 }
-  );
+  g => {
+    currentPos = { lat: g.coords.latitude, lon: g.coords.longitude };
+    if (el.status) el.status.textContent = "Posisjon funnet.";
+    setUser(currentPos.lat, currentPos.lon);
+    window.dispatchEvent(new Event("updateNearby"));
+  },
+  _ => {
+    if (el.status) el.status.textContent = "Kunne ikke hente posisjon.";
+    // Vi prøver likevel å tegne noe basert på ev. gammel posisjon
+    window.dispatchEvent(new Event("updateNearby"));
+  },
+  { enableHighAccuracy: true, timeout: 8000, maximumAge: 10000 }
+);
 }
 
 
