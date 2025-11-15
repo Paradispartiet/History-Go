@@ -597,6 +597,11 @@ function renderNearbyPlaces() {
   el.list.innerHTML = items.map(renderPlaceCard).join("");
 }
 
+// Når steder/quiz/posisjon endres → oppdater nærområde
+window.addEventListener("updateNearby", () => {
+  renderNearbyPlaces();
+});
+
 function renderPlaceCard(p) {
   const dist =
     p._d == null
