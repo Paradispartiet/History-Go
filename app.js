@@ -1063,7 +1063,6 @@ async function boot() {
   }
 
   await ensureBadgesLoaded();
-  wire();
   requestLocation();
   renderCollection();
   renderGallery();
