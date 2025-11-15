@@ -917,20 +917,18 @@ async function handleBadgeClick(badgeEl) {
 // ==============================
 // 10. INITIALISERING OG BOOT
 // ==============================
-function wire() {
-  // Testmodus-bryter
-  el.test?.addEventListener("change", e => {
-    if (e.target.checked) {
-      currentPos = { lat: START.lat, lon: START.lon };
-      if (el.status) el.status.textContent = "Testmodus: Oslo sentrum";
-      setUser(currentPos.lat, currentPos.lon);
-      renderNearbyPlaces();
-      showToast("Testmodus PÅ");
-    } else {
-      showToast("Testmodus AV");
-      requestLocation();
-    }
-  });
+el.test?.addEventListener("change", e => {
+  if (e.target.checked) {
+    currentPos = { lat: START.lat, lon: START.lon };
+    if (el.status) el.status.textContent = "Testmodus: Oslo sentrum";
+    setUser(currentPos.lat, currentPos.lon);
+    window.dispatchEvent(new Event("updateNearby"));
+    showToast("Testmodus PÅ");
+  } else {
+    showToast("Testmodus AV");
+    requestLocation();
+  }
+});
 }
 
 function requestLocation() {
