@@ -40,6 +40,9 @@ const userProgress    = JSON.parse(localStorage.getItem("historygo_progress") ||
 function saveVisited() {
   localStorage.setItem("visited_places", JSON.stringify(visited));
   renderCollection();
+
+  // 🔔 Oppdater "Steder i nærheten" når besøkte steder endres
+  window.dispatchEvent(new Event("updateNearby"));
 }
 
 function savePeople() {
