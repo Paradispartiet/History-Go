@@ -1070,24 +1070,36 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 // ==============================
-// 12. KARTMODUS
+// 12. KARTMODUS – NY, STABIL, IPAD-SIKKER
 // ==============================
 function enterMapMode() {
   document.body.classList.add("map-only");
 
-  // Lukk overlay hvis det var åpent
+  // Lukk overlay (placeCard)
   closePlaceOverlay();
 
+  // Skjul UI-knapper uten kart
   if (el.btnSeeMap)  el.btnSeeMap.style.display  = "none";
   if (el.btnExitMap) el.btnExitMap.style.display = "block";
 
+  // Skjul header + main fullstendig
   const main   = document.querySelector("main");
   const header = document.querySelector("header");
   if (main)   main.style.display   = "none";
   if (header) header.style.display = "none";
 
+  // Kartet må ligge helt øverst
   const mapEl = document.getElementById("map");
-  if (mapEl) mapEl.style.zIndex = "10";   // Kart øverst
+  if (mapEl) {
+    mapEl.style.zIndex = "10";
+    mapEl.style.position = "fixed";
+    mapEl.style.inset = "0";
+    mapEl.style.width = "100%";
+    mapEl.style.height = "100%";
+  }
+
+  // Toast må ligge foran kartet
+  if (el.toast) el.toast.style.zIndex = "99999";
 
   showToast("Kartmodus");
 }
@@ -1095,27 +1107,38 @@ function enterMapMode() {
 function exitMapMode() {
   document.body.classList.remove("map-only");
 
-  // Lukk overlay hvis det var åpent
+  // Lukk overlay (placeCard)
   closePlaceOverlay();
 
+  // Vis UI-knapper igjen
   if (el.btnSeeMap)  el.btnSeeMap.style.display  = "block";
   if (el.btnExitMap) el.btnExitMap.style.display = "none";
 
+  // Vis header + main igjen
   const main   = document.querySelector("main");
   const header = document.querySelector("header");
   if (main)   main.style.display   = "";
   if (header) header.style.display = "";
 
+  // Kart tilbake i normal stacking
   const mapEl = document.getElementById("map");
-  if (mapEl) mapEl.style.zIndex = "1";    // Kart tilbake bak innhold
+  if (mapEl) {
+    mapEl.style.zIndex = "1";
+    mapEl.style.position = "fixed"; // fortsatt fullscreen under innhold
+    mapEl.style.inset = "0";
+    mapEl.style.width = "100%";
+    mapEl.style.height = "100%";
+  }
+
+  // Toast tilbake i normal modus
+  if (el.toast) el.toast.style.zIndex = "";
 
   showToast("Tilbake til oversikt");
 }
 
+// Lytter er identisk
 el.btnSeeMap?.addEventListener("click", enterMapMode);
 el.btnExitMap?.addEventListener("click", exitMapMode);
-
-
 
 
 
