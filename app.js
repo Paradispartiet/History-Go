@@ -32,7 +32,7 @@ let BADGES  = [];
 
 const visited         = JSON.parse(localStorage.getItem("visited_places") || "{}");
 const peopleCollected = JSON.parse(localStorage.getItem("people_collected") || "{}");
-const merits          = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
+const merits          = JSON.parse(localStorage.getItem("merits_by_category") || {});
 
 // progress for “+1 poeng per 3 riktige” (reservert)
 const userProgress    = JSON.parse(localStorage.getItem("historygo_progress") || "{}");
@@ -84,10 +84,10 @@ const el = {
   sheetNear:     document.getElementById("sheetNearby"),
   sheetNearBody: document.getElementById("sheetNearbyBody"),
 
-  // 🔥 disse manglet nå:
-  collectionGrid: document.getElementById("collectionGrid"),
+  // disse var viktige for samling/galleri:
+  collectionGrid:  document.getElementById("collectionGrid"),
   collectionCount: document.getElementById("collectionCount"),
-  gallery:        document.getElementById("gallery"),
+  gallery:         document.getElementById("gallery"),
 
   // Place Card (sheet)
   pc:       document.getElementById("placeCard"),
@@ -102,6 +102,7 @@ const el = {
   pcRoute:  document.getElementById("pcRoute"),
   pcClose:  document.getElementById("pcClose")
 };
+
 
 // ==============================
 // 3. KATEGORIFUNKSJONER
@@ -271,6 +272,32 @@ function initMap() {
 }
 
 /* ---------------------------------------------
+   PEOPLE → PLACES-linking (kun kobling, ingen markører)
+--------------------------------------------- */
+function linkPeopleToPlaces() {
+  if (!PLACES.length || !PEOPLE.length) return;
+
+  PEOPLE.forEach(person => {
+    let linkedPlaces = [];
+
+    if (Array.isArray(person.places) && person.places.length > 0) {
+      linkedPlaces = PLACES.filter(p => person.places.includes(p.id));
+    } else if (person.placeId) {
+      const single = PLACES.find(p => p.id === person.placeId);
+      if (single) linkedPlaces.push(single);
+    }
+
+    if (!linkedPlaces.length) return;
+
+    linkedPlaces.forEach(lp => {
+      lp.people = lp.people || [];
+      lp.people.push(person);
+    });
+  });
+}
+
+
+/* ---------------------------------------------
    RUTE (OSRM + fallback)
 --------------------------------------------- */
 function showRouteTo(place) {
@@ -367,51 +394,6 @@ function drawPlaceMarkers() {
   });
 }
 
-/* ---------------------------------------------
-   STABIL POSISJONSKODER (NY!)
---------------------------------------------- */
-function requestLocation() {
-  if (!navigator.geolocation) {
-    if (el.status) el.status.textContent = "Geolokasjon ikke støttet.";
-    currentPos = { lat: START.lat, lon: START.lon };
-    setUser(currentPos.lat, currentPos.lon);
-    window.dispatchEvent(new Event("updateNearby"));
-    return;
-  }
-
-  if (el.status) el.status.textContent = "Henter posisjon…";
-
-  navigator.geolocation.getCurrentPosition(
-    g => {
-      currentPos = { lat: g.coords.latitude, lon: g.coords.longitude };
-      if (el.status) el.status.textContent = "Posisjon funnet.";
-      setUser(currentPos.lat, currentPos.lon);
-      window.dispatchEvent(new Event("updateNearby"));
-    },
-
-    err => {
-      navigator.geolocation.getCurrentPosition(
-        g2 => {
-          currentPos = { lat: g2.coords.latitude, lon: g2.coords.longitude };
-          if (el.status) el.status.textContent = "Posisjon funnet (fallback).";
-          setUser(currentPos.lat, currentPos.lon);
-          window.dispatchEvent(new Event("updateNearby"));
-        },
-
-        err2 => {
-          currentPos = { lat: START.lat, lon: START.lon };
-          if (el.status) el.status.textContent = "Bruker Oslo sentrum (fallback).";
-          setUser(currentPos.lat, currentPos.lon);
-          window.dispatchEvent(new Event("updateNearby"));
-        },
-
-        { enableHighAccuracy: false, timeout: 5000, maximumAge: 20000 }
-      );
-    },
-
-    { enableHighAccuracy: true, timeout: 8000, maximumAge: 5000 }
-  );
-}
 
 // ==============================
 // 6. STED- OG PERSONKORT
@@ -578,6 +560,7 @@ el.pcClose?.addEventListener("click", () => {
   el.pc.setAttribute("aria-hidden", "true");
 });
 
+
 // ==============================
 // 7. LISTEVISNINGER – NY, REN, STABIL
 // ==============================
@@ -708,6 +691,53 @@ function renderPlaceCard(p) {
 ---------------------------------------------------------- */
 window.addEventListener("updateNearby", renderNearbyPlaces);
 
+/* ----------------------------------------------------------
+   SAMLING – små badges av besøkte steder
+---------------------------------------------------------- */
+function renderCollection() {
+  const grid = el.collectionGrid;
+  if (!grid) return;
+
+  const items = PLACES.filter(p => visited[p.id]);
+
+  if (el.collectionCount) {
+    el.collectionCount.textContent = items.length;
+  }
+
+  const first = items.slice(0, 18);
+  grid.innerHTML = first
+    .map(
+      p => `
+    <span class="badge ${catClass(p.category)}" title="${p.name}">
+      <span class="i" style="background:${catColor(p.category)}"></span> ${p.name}
+    </span>`
+    )
+    .join("");
+}
+
+/* ----------------------------------------------------------
+   GALLERI – personer du har samlet
+---------------------------------------------------------- */
+function renderGallery() {
+  if (!el.gallery) return;
+
+  const collectedIds = Object.keys(peopleCollected).filter(
+    id => peopleCollected[id]
+  );
+  const collectedPeople = PEOPLE.filter(p => collectedIds.includes(p.id));
+
+  el.gallery.innerHTML = collectedPeople
+    .map(p => {
+      const imgPath = p.image || `bilder/kort/people/${p.id}.PNG`;
+      const cat = tagToCat(p.tags);
+      return `
+        <div class="person-card" data-quiz="${p.id}">
+          <img src="${imgPath}" alt="${p.name}" class="person-thumb">
+          <div class="person-label" style="color:${catColor(cat)}">${p.name}</div>
+        </div>`;
+    })
+    .join("");
+}
 
 
 // ==============================
@@ -790,13 +820,14 @@ async function addCompletedQuizAndMaybePoint(categoryDisplay, quizId) {
     }
   }
 
-    saveMerits();
+  saveMerits();
   updateMeritLevel(catLabel, merits[catLabel].points);
   showToast(`🏅 +1 poeng i ${catLabel}!`);
   window.dispatchEvent(new Event("updateProfile"));
   // 🔔 Oppdater "Steder i nærheten" etter perfekt quiz
   window.dispatchEvent(new Event("updateNearby"));
 }
+
 
 // ==============================
 // 9. HENDELSER (CLICK-DELEGATION) OG SHEETS
@@ -814,13 +845,13 @@ document.addEventListener("click", e => {
   const target = e.target;
 
   // Åpne sted fra kort (data-open)
-const openId = target.getAttribute?.("data-open");
-if (openId) {
-  const p = PLACES.find(x => x.id === openId);
-  if (p) {
-    openPlaceCard(p);   // tilbake til det vanlige stedspanelet
+  const openId = target.getAttribute?.("data-open");
+  if (openId) {
+    const p = PLACES.find(x => x.id === openId);
+    if (p) {
+      openPlaceCard(p);
+    }
   }
-}
 
   // "Mer info" (Google)
   const infoName = target.getAttribute?.("data-info");
@@ -908,6 +939,7 @@ async function handleBadgeClick(badgeEl) {
   }
 }
 
+
 // ==============================
 // 10. INITIALISERING OG BOOT
 // ==============================
@@ -923,6 +955,30 @@ el.test?.addEventListener("change", e => {
     requestLocation();
   }
 });
+
+function requestLocation() {
+  if (!navigator.geolocation) {
+    if (el.status) el.status.textContent = "Geolokasjon støttes ikke.";
+    renderNearbyPlaces();
+    return;
+  }
+  if (el.status) el.status.textContent = "Henter posisjon…";
+
+  navigator.geolocation.getCurrentPosition(
+    g => {
+      currentPos = { lat: g.coords.latitude, lon: g.coords.longitude };
+      if (el.status) el.status.textContent = "Posisjon funnet.";
+      setUser(currentPos.lat, currentPos.lon);
+      window.dispatchEvent(new Event("updateNearby"));
+    },
+    _ => {
+      if (el.status) el.status.textContent = "Kunne ikke hente posisjon.";
+      // Vi prøver likevel å tegne noe basert på ev. gammel posisjon
+      window.dispatchEvent(new Event("updateNearby"));
+    },
+    { enableHighAccuracy: true, timeout: 8000, maximumAge: 10000 }
+  );
+}
 
 
 // ==============================
@@ -999,7 +1055,7 @@ function showQuizHistory() {
 // MINI-PROFIL — linkene
 // ==============================
 function wireMiniProfileLinks() {
-  // 🔥 Korrekt: bruk enterMapMode()
+  // Kart-link → kartmodus
   document.getElementById("linkPlaces")?.addEventListener("click", enterMapMode);
 
   document.getElementById("linkBadges")?.addEventListener("click", () => {
@@ -1046,36 +1102,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 // ==============================
-// 12. KARTMODUS – NY, STABIL, IPAD-SIKKER
+// 12. KARTMODUS
 // ==============================
 function enterMapMode() {
   document.body.classList.add("map-only");
 
-  // Lukk overlay (placeCard)
-  closePlaceOverlay();
+  // Lukk overlay hvis det var åpent
+  if (typeof closePlaceOverlay === "function") {
+    closePlaceOverlay();
+  }
 
-  // Skjul UI-knapper uten kart
   if (el.btnSeeMap)  el.btnSeeMap.style.display  = "none";
   if (el.btnExitMap) el.btnExitMap.style.display = "block";
 
-  // Skjul header + main fullstendig
   const main   = document.querySelector("main");
   const header = document.querySelector("header");
   if (main)   main.style.display   = "none";
   if (header) header.style.display = "none";
 
-  // Kartet må ligge helt øverst
   const mapEl = document.getElementById("map");
-  if (mapEl) {
-    mapEl.style.zIndex = "10";
-    mapEl.style.position = "fixed";
-    mapEl.style.inset = "0";
-    mapEl.style.width = "100%";
-    mapEl.style.height = "100%";
-  }
-
-  // Toast må ligge foran kartet
-  if (el.toast) el.toast.style.zIndex = "99999";
+  if (mapEl) mapEl.style.zIndex = "10";   // Kart øverst
 
   showToast("Kartmodus");
 }
@@ -1083,36 +1129,25 @@ function enterMapMode() {
 function exitMapMode() {
   document.body.classList.remove("map-only");
 
-  // Lukk overlay (placeCard)
-  closePlaceOverlay();
+  // Lukk overlay hvis det var åpent
+  if (typeof closePlaceOverlay === "function") {
+    closePlaceOverlay();
+  }
 
-  // Vis UI-knapper igjen
   if (el.btnSeeMap)  el.btnSeeMap.style.display  = "block";
   if (el.btnExitMap) el.btnExitMap.style.display = "none";
 
-  // Vis header + main igjen
   const main   = document.querySelector("main");
   const header = document.querySelector("header");
   if (main)   main.style.display   = "";
   if (header) header.style.display = "";
 
-  // Kart tilbake i normal stacking
   const mapEl = document.getElementById("map");
-  if (mapEl) {
-    mapEl.style.zIndex = "1";
-    mapEl.style.position = "fixed"; // fortsatt fullscreen under innhold
-    mapEl.style.inset = "0";
-    mapEl.style.width = "100%";
-    mapEl.style.height = "100%";
-  }
-
-  // Toast tilbake i normal modus
-  if (el.toast) el.toast.style.zIndex = "";
+  if (mapEl) mapEl.style.zIndex = "1";    // Kart tilbake bak innhold
 
   showToast("Tilbake til oversikt");
 }
 
-// Lytter er identisk
 el.btnSeeMap?.addEventListener("click", enterMapMode);
 el.btnExitMap?.addEventListener("click", exitMapMode);
 
@@ -1257,7 +1292,7 @@ async function startQuiz(targetId) {
           peopleCollected[targetId] = true;
           savePeople();
 
-          // 🔥 VIKTIG: sørger for at profilsiden oppdaterer seg live
+          // Oppdater profilsiden live
           window.dispatchEvent(new Event("updateProfile"));
 
           showRewardPerson(person);
@@ -1357,11 +1392,8 @@ function runQuizFlow({ title = "Quiz", questions = [], onEnd = () => {} }) {
 }
 
 
-
-
 // ==============================
 // 14. QUIZ-REWARD POPUPS
-// (Små, auto-close, IKKE info-popup)
 // ==============================
 
 // PERSON – reward-popup etter fullført personquiz
@@ -1375,7 +1407,7 @@ function showRewardPerson(person) {
   card.innerHTML = `
     <div class="popup-inner" 
          style="width:290px;max-width:85vw;background:rgba(15,15,20,0.95);
-                color:#fff;border-radius:14px;padding:20px;text-align:center;
+                color:#fff;border-radius:14px;padding:20px;textalign:center;
                 box-shadow:0 0 25px rgba(0,0,0,0.7);display:flex;
                 flex-direction:column;align-items:center;animation:fadeIn .35s ease;">
       
@@ -1399,7 +1431,6 @@ function showRewardPerson(person) {
   setTimeout(() => card.classList.add("visible"), 10);
   setTimeout(() => card.remove(), 4200);
 }
-
 
 
 // PLACE – reward-popup etter fullført stedsquiz
