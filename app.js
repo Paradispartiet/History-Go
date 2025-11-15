@@ -561,58 +561,7 @@ el.pcClose?.addEventListener("click", () => {
 });
 
 
-// ==============================
-// 7. LISTEVISNINGER – NY, REN, STABIL
-// ==============================
-
-function renderNearbyPlaces() {
-  if (!el.list) return;
-
-  // Ingen posisjon ennå
-  if (!currentPos) {
-    el.list.innerHTML = `<p class="muted">Venter på posisjon…</p>`;
-    return;
-  }
-
-  const visitedLS    = JSON.parse(localStorage.getItem("visited_places") || "{}");
-  const quizProgress = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
-
-  const items = PLACES
-    .map(p => {
-      const dist = Math.round(distMeters(currentPos, { lat: p.lat, lon: p.lon }));
-      return { ...p, _d: dist };
-    })
-    .filter(p => {
-      // 1) Radius (testmodus viser alt innenfor faktisk radius)
-      if (!el.test?.checked) {
-        const radius = p.r || 150;
-        if (p._d > radius) return false;
-      }
-
-      // 2) Steder som allerede er låst opp → bort
-      if (visitedLS[p.id]) return false;
-
-      // 3) Steder der quizen er fullført perfekt → bort
-      const catId = catIdFromDisplay(p.category || "vitenskap");
-      const completed = quizProgress[catId]?.completed || [];
-      if (completed.includes(p.id)) return false;
-
-      return true;
-    })
-    .sort((a, b) => a._d - b._d)
-    .slice(0, NEARBY_LIMIT);
-
-  if (!items.length) {
-    el.list.innerHTML = `<p class="muted">Ingen steder i nærheten akkurat nå.</p>`;
-    return;
-  }
-
-  el.list.innerHTML = items.map(renderPlaceCard).join("");
-}
-
-/* ----------------------------------------------------------
-   STØRRE LISTE – "Se flere i nærheten"
----------------------------------------------------------- */
+ree
 function buildSeeMoreNearby() {
   if (!el.sheetNearBody) return;
 
