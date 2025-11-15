@@ -929,7 +929,6 @@ el.test?.addEventListener("change", e => {
     requestLocation();
   }
 });
-}
 
 function requestLocation() {
   if (!navigator.geolocation) {
