@@ -630,10 +630,9 @@ function renderNearbyPlaces() {
     return;
   }
 
-  const visitedLS = JSON.parse(localStorage.getItem("visited_places") || "{}");
+  const visitedLS    = JSON.parse(localStorage.getItem("visited_places") || "{}");
   const quizProgress = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
 
-  // Lag distanse for alle steder
   const sorted = PLACES
     .map(p => ({
       ...p,
@@ -647,7 +646,7 @@ function renderNearbyPlaces() {
       return true;
     })
     .sort((a, b) => a._d - b._d)
-    .slice(0, 5); // ← alltid 5 nærmeste
+    .slice(0, 5);
 
   if (!sorted.length) {
     el.list.innerHTML = `<p class="muted">Ingen steder i nærheten akkurat nå.</p>`;
@@ -656,8 +655,6 @@ function renderNearbyPlaces() {
 
   el.list.innerHTML = sorted.map(renderPlaceCard).join("");
 }
-
-window.addEventListener("updateNearby", renderNearbyPlaces);
 
 function buildSeeMoreNearby() {
   if (!el.sheetNearBody) return;
@@ -676,11 +673,8 @@ function buildSeeMoreNearby() {
   });
 
   const filtered = base.filter(p => {
-
-    // Fjern steder som er besøkt
     if (visitedLS[p.id]) return false;
 
-    // Fjern steder som er perfekt fullført i quiz
     const catId = catIdFromDisplay(p.category || "vitenskap");
     const completed = quizProgress[catId]?.completed || [];
     if (completed.includes(p.id)) return false;
@@ -688,18 +682,19 @@ function buildSeeMoreNearby() {
     return true;
   });
 
+  // ALT etter de 5 nærmeste
   const items = filtered
     .sort((a, b) => a._d - b._d)
-    .slice(5, 5 + 24); // ← hopp over de 5 nærmeste, vis neste 24
+    .slice(5);
 
   if (!items.length) {
-    el.sheetNearBody.innerHTML =
-      `<p class="muted">Ingen flere steder akkurat nå.</p>`;
+    el.sheetNearBody.innerHTML = `<p class="muted">Ingen flere steder akkurat nå.</p>`;
     return;
   }
 
   el.sheetNearBody.innerHTML = items.map(renderPlaceCard).join("");
 }
+
 /* ----------------------------------------------------------
    HTML for ett sted i liste
 ---------------------------------------------------------- */
