@@ -162,7 +162,32 @@ window.showPlacePopup = function(place) {
   };
 };
 
+window.openPlaceCardByPerson = function(person) {
+  if (!person) return;
 
+  // Finn sted eller bruk fallback-posisjon
+  const place =
+    PLACES.find(x => x.id === person.placeId) || {
+      id: "personloc",
+      name: person.name,
+      category: tagToCat(person.tags),
+      r: person.r || 150,
+      desc: person.desc || "",
+      lat: person.lat,
+      lon: person.lon
+    };
+
+  // Vis popup
+  window.showPlaceCard(place);
+
+  // Quiz-knapp inne i stedet skal egentlig vise personquiz
+  setTimeout(() => {
+    const btn = document.querySelector(`button[data-quiz="${place.id}"]`);
+    if (btn) {
+      btn.onclick = () => startQuiz(person.id);
+    }
+  }, 50);
+};
 
 // ============================================================
 //  GLOBAL QUIZ-KNAPP HANDLER (MÅ VÆRE MED)
@@ -246,3 +271,4 @@ window.showPlaceCard = function(place) {
     }
   };
 };
+
