@@ -549,20 +549,23 @@ function openPlaceCard(place) {
     el.pcQuiz.onclick = () => startQuiz(place.id);
   }
 
-  // Lås opp-sted
+  // Manuell "Lås opp" – nyttig for testing
   if (el.pcUnlock) {
     el.pcUnlock.textContent = "Lås opp";
     el.pcUnlock.disabled = false;
+
     el.pcUnlock.onclick = () => {
       if (visited[place.id]) {
         return showToast("Allerede låst opp");
       }
 
+      // Merk stedet som besøkt
       visited[place.id] = true;
       saveVisited();
       drawPlaceMarkers();
       pulseMarker(place.lat, place.lon);
 
+      // Gi 1 poeng i kategori
       const cat = place.category;
       if (cat && cat.trim()) {
         merits[cat] = merits[cat] || { points: 0, level: "Nybegynner" };
@@ -572,7 +575,10 @@ function openPlaceCard(place) {
       }
 
       showToast(`Låst opp: ${place.name} ✅`);
+
+      // Oppdater profil og nærområde
       window.dispatchEvent(new Event("updateProfile"));
+      window.dispatchEvent(new Event("updateNearby"));
     };
   }
 
@@ -581,6 +587,9 @@ function openPlaceCard(place) {
     el.pcRoute.onclick = () => showRouteTo(place);
   }
 
+  // Oppdater “i nærheten” når kortet åpnes
+  window.dispatchEvent(new Event("updateNearby"));
+  
   // Til slutt: vis kortet
   el.pc.setAttribute("aria-hidden", "false");
 }
