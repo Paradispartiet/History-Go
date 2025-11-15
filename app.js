@@ -654,18 +654,44 @@ function renderCollection() {
 
 function buildSeeMoreNearby() {
   if (!el.sheetNearBody) return;
+  if (!currentPos) {
+    el.sheetNearBody.innerHTML = `<p class="muted">Venter på posisjon…</p>`;
+    return;
+  }
 
-  const sorted = PLACES
-    .map(p => ({
-      ...p,
-      _d: currentPos ? Math.round(distMeters(currentPos, { lat: p.lat, lon: p.lon })) : null
-    }))
-    .sort((a, b) => (a._d ?? 1e12) - (b._d ?? 1e12));
+  const visitedLS    = JSON.parse(localStorage.getItem("visited_places") || "{}");
+  const quizProgress = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
 
-  el.sheetNearBody.innerHTML = sorted
-    .slice(NEARBY_LIMIT, NEARBY_LIMIT + 24)
-    .map(renderPlaceCard)
-    .join("");
+  const items = PLACES
+    .map(p => {
+      const d = Math.round(
+        distMeters(currentPos, { lat: p.lat, lon: p.lon })
+      );
+      return { ...p, _d: d };
+    })
+    .filter(p => {
+      if (!el.test?.checked) {
+        const radius = p.r || 150;
+        if (p._d > radius) return false;
+      }
+      if (visitedLS[p.id]) return false;
+
+      const catId = catIdFromDisplay(p.category || "vitenskap");
+      const completed = quizProgress[catId]?.completed || [];
+      if (completed.includes(p.id)) return false;
+
+      return true;
+    })
+    .sort((a, b) => a._d - b._d)
+    // de første NEARBY_LIMIT er allerede vist i hovedlista
+    .slice(NEARBY_LIMIT, NEARBY_LIMIT + 24);
+
+  if (!items.length) {
+    el.sheetNearBody.innerHTML = `<p class="muted">Ingen flere steder i nærheten akkurat nå.</p>`;
+    return;
+  }
+
+  el.sheetNearBody.innerHTML = items.map(renderPlaceCard).join("");
 }
 
 function renderGallery() {
