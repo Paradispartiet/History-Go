@@ -84,7 +84,12 @@ const el = {
   sheetNear:     document.getElementById("sheetNearby"),
   sheetNearBody: document.getElementById("sheetNearbyBody"),
 
-    // Place Card (sheet)
+  // 🔥 disse manglet nå:
+  collectionGrid: document.getElementById("collectionGrid"),
+  collectionCount: document.getElementById("collectionCount"),
+  gallery:        document.getElementById("gallery"),
+
+  // Place Card (sheet)
   pc:       document.getElementById("placeCard"),
   pcImage:  document.getElementById("pcImage"),
   pcTitle:  document.getElementById("pcTitle"),
