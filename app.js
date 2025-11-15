@@ -1066,8 +1066,9 @@ async function boot() {
 
   await ensureBadgesLoaded();
   requestLocation();
-  renderCollection();
-  renderGallery();
+enableLivePositionUpdates();  // ← legg til her
+renderCollection();
+renderGallery();
 }
 
 document.addEventListener("DOMContentLoaded", () => {
