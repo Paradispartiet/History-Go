@@ -195,12 +195,17 @@ function distMeters(a, b) {
 
 
 // ==============================
-// 5. BRUKERPOSISJON OG KART
+// 5. BRUKERPOSISJON OG KART — REN, MODERNE OG STABIL
 // ==============================
+
 let MAP, userMarker, userPulse, routeLine, routeControl, placeLayer;
 let mapReady = false;
 let dataReady = false;
+let currentPos = null;
 
+/* ---------------------------------------------
+   SETT BRUKER (markør + puls)
+--------------------------------------------- */
 function setUser(lat, lon) {
   if (!MAP) return;
   const pos = [lat, lon];
@@ -228,6 +233,9 @@ function setUser(lat, lon) {
   }
 }
 
+/* ---------------------------------------------
+   INIT KART (Leaflet)
+--------------------------------------------- */
 function initMap() {
   if (!el.map) return;
 
@@ -235,6 +243,7 @@ function initMap() {
     [START.lat, START.lon],
     START.zoom
   );
+
   placeLayer = L.layerGroup().addTo(MAP);
 
   L.tileLayer(
@@ -250,7 +259,6 @@ function initMap() {
     mapReady = true;
     if (dataReady) maybeDrawMarkers();
 
-    // Kartet dekker hele skjermen
     const mapEl = document.getElementById("map");
     if (mapEl) {
       mapEl.style.position = "fixed";
@@ -262,35 +270,16 @@ function initMap() {
   });
 }
 
-// PEOPLE → PLACES-linking (kun kobling, ingen markører)
-function linkPeopleToPlaces() {
-  if (!PLACES.length || !PEOPLE.length) return;
-
-  PEOPLE.forEach(person => {
-    let linkedPlaces = [];
-
-    if (Array.isArray(person.places) && person.places.length > 0) {
-      linkedPlaces = PLACES.filter(p => person.places.includes(p.id));
-    } else if (person.placeId) {
-      const single = PLACES.find(p => p.id === person.placeId);
-      if (single) linkedPlaces.push(single);
-    }
-
-    if (!linkedPlaces.length) return;
-
-    linkedPlaces.forEach(lp => {
-      lp.people = lp.people || [];
-      lp.people.push(person);
-    });
-  });
-}
-
+/* ---------------------------------------------
+   RUTE (OSRM + fallback)
+--------------------------------------------- */
 function showRouteTo(place) {
   if (!MAP || !place) return;
 
   const from = currentPos
     ? L.latLng(currentPos.lat, currentPos.lon)
     : L.latLng(START.lat, START.lon);
+
   const to = L.latLng(place.lat, place.lon);
 
   if (routeLine) {
@@ -326,11 +315,15 @@ function showRouteTo(place) {
       weight: 5,
       opacity: 1
     }).addTo(MAP);
+
     MAP.fitBounds(routeLine.getBounds(), { padding: [40, 40] });
     showToast("Vis linje (ingen rutetjeneste)");
   }
 }
 
+/* ---------------------------------------------
+   TEGN MARKØRER
+--------------------------------------------- */
 function maybeDrawMarkers() {
   if (mapReady && dataReady) {
     drawPlaceMarkers();
@@ -370,13 +363,55 @@ function drawPlaceMarkers() {
       direction: "top"
     });
 
-    mk.on("click", () => {
-  // Utforskersiden skal bruke place card
-  openPlaceCard(p);
-});
+    mk.on("click", () => openPlaceCard(p));
   });
 }
 
+/* ---------------------------------------------
+   STABIL POSISJONSKODER (NY!)
+--------------------------------------------- */
+function requestLocation() {
+  if (!navigator.geolocation) {
+    if (el.status) el.status.textContent = "Geolokasjon ikke støttet.";
+    currentPos = { lat: START.lat, lon: START.lon };
+    setUser(currentPos.lat, currentPos.lon);
+    window.dispatchEvent(new Event("updateNearby"));
+    return;
+  }
+
+  if (el.status) el.status.textContent = "Henter posisjon…";
+
+  navigator.geolocation.getCurrentPosition(
+    g => {
+      currentPos = { lat: g.coords.latitude, lon: g.coords.longitude };
+      if (el.status) el.status.textContent = "Posisjon funnet.";
+      setUser(currentPos.lat, currentPos.lon);
+      window.dispatchEvent(new Event("updateNearby"));
+    },
+
+    err => {
+      navigator.geolocation.getCurrentPosition(
+        g2 => {
+          currentPos = { lat: g2.coords.latitude, lon: g2.coords.longitude };
+          if (el.status) el.status.textContent = "Posisjon funnet (fallback).";
+          setUser(currentPos.lat, currentPos.lon);
+          window.dispatchEvent(new Event("updateNearby"));
+        },
+
+        err2 => {
+          currentPos = { lat: START.lat, lon: START.lon };
+          if (el.status) el.status.textContent = "Bruker Oslo sentrum (fallback).";
+          setUser(currentPos.lat, currentPos.lon);
+          window.dispatchEvent(new Event("updateNearby"));
+        },
+
+        { enableHighAccuracy: false, timeout: 5000, maximumAge: 20000 }
+      );
+    },
+
+    { enableHighAccuracy: true, timeout: 8000, maximumAge: 5000 }
+  );
+}
 
 // ==============================
 // 6. STED- OG PERSONKORT
