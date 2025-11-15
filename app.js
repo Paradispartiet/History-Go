@@ -395,6 +395,59 @@ function drawPlaceMarkers() {
 }
 
 
+
+// ==============================
+//   POSISJON: GET + LIVE WATCH
+// ==============================
+
+// ENKEL FØRSTEGANGS-POSISJON
+function requestLocation() {
+  if (!navigator.geolocation) {
+    if (el.status) el.status.textContent = "Geolokasjon støttes ikke.";
+    window.dispatchEvent(new Event("updateNearby"));
+    return;
+  }
+
+  if (el.status) el.status.textContent = "Henter posisjon…";
+
+  navigator.geolocation.getCurrentPosition(
+    g => {
+      currentPos = { lat: g.coords.latitude, lon: g.coords.longitude };
+      if (el.status) el.status.textContent = "Posisjon funnet.";
+      setUser(currentPos.lat, currentPos.lon);
+      window.dispatchEvent(new Event("updateNearby"));
+    },
+    _ => {
+      if (el.status) el.status.textContent = "Kunne ikke hente posisjon.";
+      window.dispatchEvent(new Event("updateNearby"));
+    },
+    { enableHighAccuracy: true, timeout: 8000, maximumAge: 10000 }
+  );
+}
+
+// LIVE-POSISJON
+function enableLivePositionUpdates() {
+  if (!navigator.geolocation) return;
+
+  navigator.geolocation.watchPosition(
+    g => {
+      currentPos = {
+        lat: g.coords.latitude,
+        lon: g.coords.longitude
+      };
+      setUser(currentPos.lat, currentPos.lon);
+      window.dispatchEvent(new Event("updateNearby"));
+    },
+    _ => {},
+    {
+      enableHighAccuracy: true,
+      maximumAge: 5000,
+      timeout: 8000
+    }
+  );
+}
+
+
 // ==============================
 // 6. STED- OG PERSONKORT
 // ==============================
