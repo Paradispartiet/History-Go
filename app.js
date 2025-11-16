@@ -320,16 +320,26 @@ function showRouteTo(place) {
   }
 }
 
+function maybeDrawMarkers() {
+  if (mapReady && dataReady) {
+    drawPlaceMarkers();
+  }
+}
+
+function lighten(hex, amount = 0.35) {
+  const c = hex.replace("#", "");
+  const num = parseInt(c, 16);
+  let r = Math.min(255, (num >> 16) + 255 * amount);
+  let g = Math.min(255, ((num >> 8) & 0x00ff) + 255 * amount);
+  let b = Math.min(255, (num & 0x0000ff) + 255 * amount);
+  return `rgb(${r},${g},${b})`;
+}
+
 function drawPlaceMarkers() {
   if (!MAP || !PLACES.length || !placeLayer) return;
   placeLayer.clearLayers();
 
-  // PROFILMODUS → vis kun besøkte steder
-  const inProfile = document.body.classList.contains("profile-page");
-
   PLACES.forEach(p => {
-    if (inProfile && !visited[p.id]) return; // ← Hopp over ikke-besøkte steder
-
     const isVisited = !!visited[p.id];
     const fill = isVisited
       ? lighten(catColor(p.category), 0.35)
@@ -350,13 +360,7 @@ function drawPlaceMarkers() {
     });
 
     mk.on("click", () => {
-      // PROFILSIDE -> åpne info-popup
-      // FORSIDE -> åpne place card
-      if (inProfile) {
-        showPlacePopup(p);
-      } else {
-        openPlaceCard(p);
-      }
+      openPlaceCard(p);   // ← 100 % riktig popup
     });
   });
 }
@@ -1113,4 +1117,3 @@ function runQuizFlow({ title = "Quiz", questions = [], onEnd = () => {} }) {
 
   step();
 }
-
