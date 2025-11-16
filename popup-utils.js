@@ -245,7 +245,7 @@ window.openPlaceCardByPerson = function(person) {
       image: person.image
     };
 
-  showPlaceCard(place);
+  openPlaceCard(place);
 };
 
 
