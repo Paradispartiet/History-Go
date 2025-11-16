@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Min profil | History Go</title>
 
+  <!-- Stil -->
   <link rel="stylesheet" href="theme.css">
 
   <!-- Leaflet CSS -->
@@ -14,6 +15,7 @@
   <link rel="stylesheet"
         href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css" />
 
+  <!-- html2canvas (sharing) -->
   <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 
   <!-- Popup-system -->
@@ -22,9 +24,7 @@
 
 <body class="profile-page">
 
-  <!-- ============================= -->
-  <!-- ⭐ KARTET BAK ALT (ALLTID PÅ) -->
-  <!-- ============================= -->
+  <!-- ============ KARTET (alltid bak alt) ============ -->
   <div id="map" aria-label="Kart"></div>
 
   <div class="map-controls">
@@ -32,10 +32,9 @@
     <button id="btnExitMap" title="Lukk kart">✕</button>
   </div>
 
-  <!-- Toast -->
   <div id="toast"></div>
 
-  <!-- Badge-modal -->
+  <!-- ================== BADGE MODAL ================== -->
   <div id="badgeModal" class="modal" aria-hidden="true" style="display:none;">
     <div class="modal-content">
       <img class="badge-img" src="" alt="Merke">
@@ -48,9 +47,9 @@
     </div>
   </div>
 
-  <!-- HEADER -->
+  <!-- ===================== HEADER ===================== -->
   <header class="site-header">
-    <a href="index.html" class="back-link" aria-label="Til forsiden">←</a>
+    <a href="index.html" class="back-link">←</a>
     <div class="brand">
       <img src="bilder/logo_historygo.PNG" class="brand-logo">
       <span class="brand-name">Min profil</span>
@@ -61,9 +60,7 @@
     </div>
   </header>
 
-  <!-- ===================== -->
-  <!-- INNHOLD (PANELS)      -->
-  <!-- ===================== -->
+  <!-- ===================== INNHOLD ===================== -->
   <main id="profileMain">
 
     <!-- PROFILKORT -->
@@ -117,22 +114,18 @@
   </main>
 
 
-  <!-- Leaflet -->
+  <!-- ========================= -->
+  <!-- JS (kun lastet ÉN gang) -->
+  <!-- ========================= -->
+
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
   <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script>
 
-  <!-- App-motor -->
   <script src="app.js"></script>
   <script src="routes.js" defer></script>
-
-  <!-- Profilmotor -->
   <script src="profile.js"></script>
 
-  
-  <!-- ============================= -->
-  <!-- KARTMODUS PÅ PROFILSIDE       -->
-  <!-- (samme som index)             -->
-  <!-- ============================= -->
+  <!-- Kartmodus -->
   <script>
     document.getElementById("btnSeeMap")?.addEventListener("click", () => {
       document.body.classList.add("map-only");
@@ -140,16 +133,12 @@
     document.getElementById("btnExitMap")?.addEventListener("click", () => {
       document.body.classList.remove("map-only");
     });
+
+    window.addEventListener("DOMContentLoaded", () => {
+      if (window.initMap) initMap();
+      if (window.drawPlaceMarkers) drawPlaceMarkers();
+    });
   </script>
 
-<script>
-  // Når profilsiden er ferdig lastet → tegn markører hvis app.js er lastet
-  window.addEventListener("DOMContentLoaded", () => {
-    if (window.drawPlaceMarkers) {
-      drawPlaceMarkers();
-    }
-  });
-</script>
-  
 </body>
 </html>
