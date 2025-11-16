@@ -61,49 +61,57 @@ body{
 /* 2) Kart & kartmodus – STABIL VERSJON                 */
 /* ===================================================== */
 
-/* Kartet ligger fullskjerm bak alt innholdet */
+/* Kartet ligger fullskjerm under alt */
 #map {
   position: fixed;
   inset: 0;
   z-index: 1;
-  background: #000; /* trygg bakgrunn når Leaflet laster */
+  background: #000;
 }
 
-/* Innholdet ligger OVER kartet */
-header,
+/* HEADER SKAL LIGGE OVER OG VÆRE KLIKKBAR */
+header {
+  position: relative;
+  z-index: 10;
+  pointer-events: auto;
+}
+
+/* MAIN skal IKKE blokkere kartet visuelt eller klikkmessig */
 main {
   position: relative;
-  z-index: 2;
+  z-index: 2;          /* viktig: lav, ikke over */
+  pointer-events: none; /* slipper gjennom */
 }
 
 /* ---------------------------------------------------------
-   KARTET SKAL VÆRE KLIKBART BAK ALT INNHOLD
-   men paneler, knapper, popup, placeCard osv. skal fungere.
+   ALT som skal være klikkbart i main må få pointer-events:auto
    --------------------------------------------------------- */
-
-/* Gjør kartet interaktivt under hele appen */
-main {
-  pointer-events: none;
-}
-
-/* Kun elementer som skal brukes skal ta imot klikk */
-header,
 .panel,
-button,
-input,
-.map-controls,
-.sheet,
-#placeCard,
-.hg-popup,
-.profile-card,
 .profile-section,
 .place-card,
 .avatar-card,
 .person-card,
-#badgeModal,
-.profile-modal,
-.quiz-modal {
+.profile-card,
+#collectionGrid,
+#peopleGrid,
+#merits,
+#timelineSection,
+#actions {
+  position: relative;
+  z-index: 20;
   pointer-events: auto;
+}
+
+/* Popups og placeCard → ALLTID øverst */
+.hg-popup,
+#placeCard,
+.sheet,
+.quiz-modal,
+.profile-modal,
+#badgeModal {
+  position: fixed;
+  pointer-events: auto;
+  z-index: 10000;
 }
 
 /* Kartknappene nederst til høyre */
@@ -111,7 +119,8 @@ input,
   position: fixed;
   right: 12px;
   bottom: 12px;
-  z-index: 12;
+  z-index: 999;
+  pointer-events: auto;
   display: grid;
   gap: 8px;
 }
@@ -125,22 +134,6 @@ input,
   box-shadow: var(--shadow);
 }
 
-/* ==============================
-   FULLSKJERM KARTMODUS (Se kart)
-   ============================== */
-
-body.map-only header,
-body.map-only main {
-  display: none !important;
-}
-
-body.map-only #map {
-  z-index: 10;
-}
-
-body.map-only .map-controls {
-  z-index: 20 !important;
-}
 /* ===================================================== */
 /* 3) Topplinje, main & toast                            */
 /* ===================================================== */
