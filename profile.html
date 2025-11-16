@@ -128,6 +128,7 @@
   <!-- Profilmotor -->
   <script src="profile.js"></script>
 
+  
   <!-- ============================= -->
   <!-- KARTMODUS PÅ PROFILSIDE       -->
   <!-- (samme som index)             -->
@@ -141,5 +142,14 @@
     });
   </script>
 
+<script>
+  // Når profilsiden er ferdig lastet → tegn markører hvis app.js er lastet
+  window.addEventListener("DOMContentLoaded", () => {
+    if (window.drawPlaceMarkers) {
+      drawPlaceMarkers();
+    }
+  });
+</script>
+  
 </body>
 </html>
