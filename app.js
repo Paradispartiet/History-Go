@@ -375,68 +375,6 @@ function drawPlaceMarkers() {
 }
 
 
-// ==============================
-// 6. STED- OG PERSONKORT
-// ==============================
-let currentPlace = null;
-
-function googleUrl(name) {
-  const q = encodeURIComponent(`site:no.wikipedia.org ${name} Oslo`);
-  return `https://www.google.com/search?q=${q}`;
-}
-
-// Liten visuell effekt når et sted låses opp
-function pulseMarker(lat, lon) {
-  if (!MAP) return;
-  const pulse = L.circle([lat, lon], {
-    radius: 30,
-    color: "#ffd700",
-    weight: 2,
-    opacity: 0.9,
-    fillColor: "#ffd700",
-    fillOpacity: 0.3
-  }).addTo(MAP);
-  setTimeout(() => MAP.removeLayer(pulse), 1000);
-}
-
-function openPlaceCard(p) {
-  if (!el.pc) return;
-
-  currentPlace = p;
-  el.pcTitle.textContent = p.name;
-  el.pcMeta.textContent = `${p.category} • radius ${p.r || 120} m`;
-  el.pcDesc.textContent = p.desc || "";
-  el.pc.setAttribute("aria-hidden", "false");
-
-  el.pcUnlock.textContent = "Lås opp";
-  el.pcUnlock.disabled = false;
-
-  el.pcUnlock.onclick = () => {
-    if (visited[p.id]) {
-      showToast("Allerede låst opp");
-      return;
-    }
-
-    visited[p.id] = true;
-    saveVisited();
-    drawPlaceMarkers();
-    pulseMarker(p.lat, p.lon);
-
-    const cat = p.category;
-    if (cat && cat.trim()) {
-      merits[cat] = merits[cat] || { points: 0, level: "Nybegynner" };
-      merits[cat].points += 1;
-      saveMerits();
-      updateMeritLevel(cat, merits[cat].points);
-    }
-
-    showToast(`Låst opp: ${p.name} ✅`);
-    window.dispatchEvent(new Event("updateProfile"));
-  };
-
-  el.pcRoute.onclick = () => showRouteTo(p);
-  showPlaceOverlay(p);
-}
 
 // ==============================
 // 7. LISTEVISNINGER
