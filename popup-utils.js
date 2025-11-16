@@ -169,9 +169,9 @@ window.showPlacePopup = function(place) {
 
 
 // ============================================================
-// PLACE CARD (REN POPUP – ERSTATTET GAMMELT SHEET)
+// PLACE CARD – POPUP (MATCHER APPENS "openPlaceCard")
 // ============================================================
-window.showPlaceCard = function(place) {
+window.openPlaceCard = function(place) {
   if (!place) return;
 
   const img = place.cardImage || place.image || `bilder/kort/places/${place.id}.PNG`;
@@ -180,16 +180,18 @@ window.showPlaceCard = function(place) {
     .map(p => typeof p === "string" ? PEOPLE.find(x => x.id === p) : p)
     .filter(Boolean);
 
-  const htmlPeople = peopleHere.length
-    ? `
-      <div class="pcp-people">
-        ${peopleHere.map(p => `
-          <div class="pcp-person" data-person="${p.id}">
-            <img src="bilder/people/${p.id}_face.PNG">
-            <span>${p.name}</span>
-          </div>`).join("")}
-      </div>`
-    : `<p class="hg-muted">Ingen personer knyttet til dette stedet.</p>`;
+  const htmlPeople =
+    peopleHere.length
+      ? `
+        <div class="pcp-people">
+          ${peopleHere.map(p => `
+            <div class="pcp-person" data-person="${p.id}">
+              <img src="bilder/people/${p.id}_face.PNG">
+              <span>${p.name}</span>
+            </div>
+          `).join("")}
+        </div>`
+      : `<p class="hg-muted">Ingen personer knyttet til dette stedet.</p>`;
 
   const html = `
       <img src="${img}" class="pcp-img">
@@ -211,10 +213,10 @@ window.showPlaceCard = function(place) {
   makePopup(html, "placecard-popup");
 
   // Klikk → person-popup
-  currentPopup.querySelectorAll("[data-person]").forEach(el => {
+  currentPopup.querySelectorAll(".pcp-person").forEach(el => {
     el.onclick = () => {
-      const person = PEOPLE.find(p => p.id === el.dataset.person);
-      showPersonPopup(person);
+      const p = PEOPLE.find(x => x.id === el.dataset.person);
+      showPersonPopup(p);
     };
   });
 
