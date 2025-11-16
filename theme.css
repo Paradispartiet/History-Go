@@ -76,6 +76,36 @@ main {
   z-index: 2;
 }
 
+/* ---------------------------------------------------------
+   KARTET SKAL VÆRE KLIKBART BAK ALT INNHOLD
+   men paneler, knapper, popup, placeCard osv. skal fungere.
+   --------------------------------------------------------- */
+
+/* Gjør kartet interaktivt under hele appen */
+main {
+  pointer-events: none;
+}
+
+/* Kun elementer som skal brukes skal ta imot klikk */
+header,
+.panel,
+button,
+input,
+.map-controls,
+.sheet,
+#placeCard,
+.hg-popup,
+.profile-card,
+.profile-section,
+.place-card,
+.avatar-card,
+.person-card,
+#badgeModal,
+.profile-modal,
+.quiz-modal {
+  pointer-events: auto;
+}
+
 /* Kartknappene nederst til høyre */
 .map-controls {
   position: fixed;
@@ -111,7 +141,6 @@ body.map-only #map {
 body.map-only .map-controls {
   z-index: 20 !important;
 }
-
 /* ===================================================== */
 /* 3) Topplinje, main & toast                            */
 /* ===================================================== */
