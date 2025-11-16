@@ -133,10 +133,14 @@
     document.getElementById("btnExitMap")?.addEventListener("click", () => {
       document.body.classList.remove("map-only");
     });
+  </script>
 
-    window.addEventListener("DOMContentLoaded", () => {
-      if (window.initMap) initMap();
-      if (window.drawPlaceMarkers) drawPlaceMarkers();
+  <!-- Tegn kart-markører når alt er ferdig lastet -->
+  <script>
+    window.addEventListener("load", () => {
+      if (window.map && window.drawPlaceMarkers) {
+        drawPlaceMarkers();
+      }
     });
   </script>
 
