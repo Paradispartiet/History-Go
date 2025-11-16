@@ -272,17 +272,14 @@ window.showRewardPlace = function(place) {
   const img = place.image || `bilder/kort/places/${place.id}.PNG`;
 
   makePopup(`
-      <div class="reward-header">
+      <div class="reward-center">
         <img src="${img}" class="reward-img">
+        <h2 class="reward-title">Nytt sted!</h2>
+        <p class="reward-sub">${place.name}</p>
+        <button class="reward-ok" data-close-popup>Fortsett</button>
       </div>
-
-      <h2 class="reward-title">Nytt sted!</h2>
-      <p class="reward-sub">${place.name}</p>
-
-      <button class="reward-ok" data-close-popup>Fortsett</button>
   `, "reward-popup");
 };
-
 
 window.showRewardPerson = function(person) {
   if (!person) return;
@@ -290,17 +287,14 @@ window.showRewardPerson = function(person) {
   const face = `bilder/people/${person.id}_face.PNG`;
 
   makePopup(`
-      <div class="reward-header">
+      <div class="reward-center">
         <img src="${face}" class="reward-img">
+        <h2 class="reward-title">Ny person!</h2>
+        <p class="reward-sub">${person.name}</p>
+        <button class="reward-ok" data-close-popup>Fortsett</button>
       </div>
-
-      <h2 class="reward-title">Ny person!</h2>
-      <p class="reward-sub">${person.name}</p>
-
-      <button class="reward-ok" data-close-popup>Fortsett</button>
   `, "reward-popup");
 };
-
 
 // ============================================================
 // ESC = LUKK
