@@ -248,7 +248,6 @@ window.openPlaceCardByPerson = function(person) {
   openPlaceCard(place);
 };
 
-
 // ============================================================
 // REWARD-POPUPS
 // ============================================================
