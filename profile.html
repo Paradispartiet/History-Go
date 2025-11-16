@@ -5,49 +5,65 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Min profil | History Go</title>
 
-  <!-- Stil -->
   <link rel="stylesheet" href="theme.css">
 
-  <!-- Verktøy (for deling/eksport av profilkort) -->
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        crossorigin="" />
+  <link rel="stylesheet"
+        href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css" />
+
   <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 
-  <!-- Popup-systemet (MÅ ligge før profile.js) -->
+  <!-- Popup-system -->
   <script src="popup-utils.js"></script>
 </head>
 
 <body class="profile-page">
 
+  <!-- ============================= -->
+  <!-- ⭐ KARTET BAK ALT (ALLTID PÅ) -->
+  <!-- ============================= -->
+  <div id="map" aria-label="Kart"></div>
+
+  <div class="map-controls">
+    <button id="btnCenter" title="Sentrer">⌖</button>
+    <button id="btnExitMap" title="Lukk kart">✕</button>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast"></div>
+
   <!-- Badge-modal -->
   <div id="badgeModal" class="modal" aria-hidden="true" style="display:none;">
     <div class="modal-content">
-      
       <img class="badge-img" src="" alt="Merke">
       <h3 class="badge-title"></h3>
       <p class="badge-level"></p>
-
-      <div class="badge-progress">
-        <div class="badge-progress-bar"></div>
-      </div>
-
+      <div class="badge-progress"><div class="badge-progress-bar"></div></div>
       <p class="badge-progress-text"></p>
       <ul class="badge-quizzes"></ul>
-
       <button class="close-badge close-btn">Lukk</button>
     </div>
   </div>
-
-  <!-- Ramme rundt appen -->
-  <div class="app-frame" aria-hidden="true"></div>
 
   <!-- HEADER -->
   <header class="site-header">
     <a href="index.html" class="back-link" aria-label="Til forsiden">←</a>
     <div class="brand">
-      <img src="bilder/logo_historygo.PNG" alt="History Go" class="brand-logo">
+      <img src="bilder/logo_historygo.PNG" class="brand-logo">
       <span class="brand-name">Min profil</span>
+    </div>
+
+    <div class="actions">
+      <button id="btnSeeMap" class="secondary">Se kart</button>
     </div>
   </header>
 
+  <!-- ===================== -->
+  <!-- INNHOLD (PANELS)      -->
+  <!-- ===================== -->
   <main id="profileMain">
 
     <!-- PROFILKORT -->
@@ -100,10 +116,30 @@
 
   </main>
 
-  <!-- Toast -->
-  <div id="toast"></div>
 
-  <!-- JavaScript -->
+  <!-- Leaflet -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script>
+
+  <!-- App-motor -->
+  <script src="app.js"></script>
+  <script src="routes.js" defer></script>
+
+  <!-- Profilmotor -->
   <script src="profile.js"></script>
+
+  <!-- ============================= -->
+  <!-- KARTMODUS PÅ PROFILSIDE       -->
+  <!-- (samme som index)             -->
+  <!-- ============================= -->
+  <script>
+    document.getElementById("btnSeeMap")?.addEventListener("click", () => {
+      document.body.classList.add("map-only");
+    });
+    document.getElementById("btnExitMap")?.addEventListener("click", () => {
+      document.body.classList.remove("map-only");
+    });
+  </script>
+
 </body>
 </html>
