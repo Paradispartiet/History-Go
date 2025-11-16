@@ -361,7 +361,7 @@ function drawPlaceMarkers() {
     });
 
     mk.on("click", () => {
-      showPlacePopup(p);   // ← 100 % riktig popup
+      openPlaceCard(p);   // ← 100 % riktig popup
     });
   });
 }
