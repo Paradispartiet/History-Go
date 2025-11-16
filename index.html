@@ -23,12 +23,10 @@
 
 <body>
 
-  <!-- STATUS (viktig for geolokasjon, brukes av app.js, skjult) -->
+  <!-- STATUS (for geolokasjon) -->
   <div id="status" style="display:none"></div>
 
-  <!-- ========================================================= -->
-  <!-- USYNLIGE DATA-CONTAINERE (MÅ LIGGE I BODY, IKKE I HEAD)    -->
-  <!-- ========================================================= -->
+  <!-- USYNLIGE DATA-CONTAINERE -->
   <div id="collectionGrid" style="display:none"></div>
   <div id="collectionCount" style="display:none"></div>
   <div id="gallery" style="display:none"></div>
@@ -46,11 +44,7 @@
     </div>
   </div>
 
-
-  <!-- ============================ -->
-  <!--            KART             -->
-  <!-- ============================ -->
-
+  <!-- KART -->
   <div id="map" aria-label="Kart"></div>
 
   <div class="map-controls">
@@ -58,11 +52,7 @@
     <button id="btnExitMap" title="Lukk kart" aria-label="Lukk kart">✕</button>
   </div>
 
-
-  <!-- ============================ -->
-  <!--         PLACE CARD          -->
-  <!-- ============================ -->
-
+  <!-- PLACE CARD -->
   <div id="placeCard" aria-hidden="true">
     <div class="pc-body">
 
@@ -88,15 +78,10 @@
     </div>
   </div>
 
-
   <!-- Toast -->
   <div id="toast" role="status" aria-live="polite"></div>
 
-
-  <!-- ============================ -->
-  <!--           HEADER             -->
-  <!-- ============================ -->
-
+  <!-- HEADER -->
   <header class="site-header">
     <div class="brand">
       <img src="bilder/logo_historygo.PNG" alt="History Go logo" class="brand-logo">
@@ -105,7 +90,6 @@
 
     <div class="actions">
       <button id="btnSeeMap" class="secondary">Se kart</button>
-
       <label class="toggle">
         <input id="testToggle" type="checkbox" />
         <span>Testmodus</span>
@@ -113,11 +97,7 @@
     </div>
   </header>
 
-
-  <!-- ============================ -->
-  <!--             MAIN             -->
-  <!-- ============================ -->
-
+  <!-- MAIN -->
   <main>
 
     <!-- MINI-PROFIL -->
@@ -125,7 +105,7 @@
       <div class="info">
         <div class="profile-top">
           <h3 id="miniName">Utforsker #182</h3>
-          <a href="profile.html" class="arrow-link" title="Gå til profilen din">→</a>
+          <a href="profile.html" class="arrow-link">→</a>
         </div>
 
         <p id="miniStats" class="muted">
@@ -135,7 +115,6 @@
         </p>
       </div>
     </section>
-
 
     <!-- NÆROMRÅDE -->
     <section class="panel">
@@ -148,39 +127,28 @@
       <div id="nearbyList" class="cards"></div>
     </section>
 
-
     <!-- RUTER -->
     <section class="panel">
       <h2>Utforsk ruter</h2>
       <p class="muted">Følg tematiske ruter gjennom byens historie, kunst og vitenskap.</p>
 
       <div class="route-buttons" style="margin-top:12px;display:flex;flex-wrap:wrap;gap:10px;">
-
-        <button class="primary"
-          onclick="loadRoutes().then(()=>focusRouteOnMap('vitenskapsruten'))">
+        <button class="primary" onclick="loadRoutes().then(()=>focusRouteOnMap('vitenskapsruten'))">
           🧠 Vitenskapsruten
         </button>
-
-        <button class="primary"
-          onclick="loadRoutes().then(()=>focusRouteOnMap('kunstruten_sentrum'))">
+        <button class="primary" onclick="loadRoutes().then(()=>focusRouteOnMap('kunstruten_sentrum'))">
           🎨 Kunstruten
         </button>
-
-        <button class="primary"
-          onclick="loadRoutes().then(()=>focusRouteOnMap('skulpturruten_vigeland'))">
+        <button class="primary" onclick="loadRoutes().then(()=>focusRouteOnMap('skulpturruten_vigeland'))">
           🗿 Skulpturruten
         </button>
-
-        <button class="primary"
-          onclick="loadRoutes().then(()=>focusRouteOnMap('industrieruten_sentrum'))">
+        <button class="primary" onclick="loadRoutes().then(()=>focusRouteOnMap('industrieruten_sentrum'))">
           🏭 Industrieruten
         </button>
-
       </div>
     </section>
 
-
-    <!-- Se flere i nærheten -->
+    <!-- Flere i nærheten (sheet) -->
     <div id="sheetNearby" class="sheet" aria-hidden="true">
       <div class="sheet-head">
         <h3>Se flere i nærheten</h3>
@@ -192,11 +160,7 @@
 
   </main>
 
-
-  <!-- ============================ -->
-  <!--      SERVICE WORKER         -->
-  <!-- ============================ -->
-
+  <!-- SERVICE WORKER -->
   <script>
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => {
@@ -205,19 +169,12 @@
     }
   </script>
 
-
-  <!-- ============================ -->
-  <!--       RIKTIG JS-REKKEFØLGE  -->
-  <!-- ============================ -->
-
+  <!-- JS-REKKEFØLGE -->
   <script src="popup-utils.js"></script>
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-          crossorigin=""></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
   <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script>
   <script src="app.js"></script>
   <script src="routes.js" defer></script>
-
-  <div class="app-frame"></div>
 
 </body>
 </html>
