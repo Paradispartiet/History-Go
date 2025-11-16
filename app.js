@@ -568,8 +568,8 @@ async function addCompletedQuizAndMaybePoint(categoryDisplay, quizId) {
   window.dispatchEvent(new Event("updateProfile"));
 }
 
-
-// ==============================// 9. HENDELSER (CLICK-DELEGATION) OG SHEETS
+// ==============================
+// 9. HENDELSER (CLICK-DELEGATION) OG SHEETS
 // ==============================
 function openSheet(sheet) {
   sheet?.setAttribute("aria-hidden", "false");
@@ -578,7 +578,7 @@ function closeSheet(sheet) {
   sheet?.setAttribute("aria-hidden", "true");
 }
 
-// Felles click-delegation for steder, info, quiz og merker
+// Felles click-delegation for steder, info, quiz, merker
 document.addEventListener("click", e => {
   const target = e.target;
 
@@ -587,7 +587,7 @@ document.addEventListener("click", e => {
   if (openId) {
     const p = PLACES.find(x => x.id === openId);
     if (p) openPlaceCard(p);
-    return; // ← viktig, stopper videre bubbling
+    return;
   }
 
   // Mer info (Google)
@@ -600,7 +600,7 @@ document.addEventListener("click", e => {
     return;
   }
 
-  // Quiz (person eller sted)
+  // Quiz
   const quizId = target.getAttribute?.("data-quiz");
   if (quizId) {
     startQuiz(quizId);
