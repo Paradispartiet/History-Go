@@ -155,7 +155,6 @@ window.showPlacePopup = function(place) {
 window.openPlaceCard = function(place) {
   if (!place) return;
 
-  // VI BRUKER DET EKSISTERENDE HTML-PANELET I index.html
   const card      = document.getElementById("placeCard");
   const imgEl     = document.getElementById("pcImage");
   const titleEl   = document.getElementById("pcTitle");
@@ -169,71 +168,74 @@ window.openPlaceCard = function(place) {
 
   if (!card) return;
 
-  // --- fyll data ---
-  if (imgEl) imgEl.src = place.cardImage || place.image || "";
+  if (imgEl)   imgEl.src = place.cardImage || place.image || "";
   if (titleEl) titleEl.textContent = place.name;
-  if (metaEl)  metaEl.textContent  = `${place.category} • radius ${place.r || 150} m`;
+  if (metaEl)  metaEl.textContent  = `${place.category || ""} • radius ${place.r || 150} m`;
   if (descEl)  descEl.textContent  = place.desc || "";
 
-  // --- personer ---
-  const persons = PEOPLE.filter(
-    p =>
-      (Array.isArray(p.places) && p.places.includes(place.id)) ||
-      p.placeId === place.id
-  );
+  // PERSONER
+  if (peopleEl) {
+    const persons = PEOPLE.filter(
+      p =>
+        (Array.isArray(p.places) && p.places.includes(place.id)) ||
+        p.placeId === place.id
+    );
 
-  peopleEl.innerHTML = persons
-    .map(p => `
-      <button class="pc-person" data-person="${p.id}">
-        <img src="bilder/people/${p.id}_face.PNG">
-        <span>${p.name}</span>
-      </button>
-    `)
-    .join("");
+    peopleEl.innerHTML = persons
+      .map(p => `
+        <button class="pc-person" data-person="${p.id}">
+          <img src="bilder/people/${p.id}_face.PNG">
+          <span>${p.name}</span>
+        </button>
+      `)
+      .join("");
 
-  peopleEl.querySelectorAll("[data-person]").forEach(btn => {
-    btn.onclick = () => {
-      const pr = PEOPLE.find(p => p.id === btn.dataset.person);
-      showPersonPopup(pr);
+    peopleEl.querySelectorAll("[data-person]").forEach(btn => {
+      btn.onclick = () => {
+        const pr = PEOPLE.find(p => p.id === btn.dataset.person);
+        showPersonPopup(pr);
+      };
+    });
+  }
+
+  if (btnInfo)   btnInfo.onclick   = () => showPlacePopup(place);
+  if (btnQuiz)   btnQuiz.onclick   = () => startQuiz(place.id);
+  if (btnRoute)  btnRoute.onclick  = () => showRouteTo(place);
+
+  if (btnUnlock) {
+    btnUnlock.onclick = () => {
+      if (visited[place.id]) {
+        showToast("Allerede låst opp");
+        return;
+      }
+
+      visited[place.id] = true;
+      saveVisited();
+      drawPlaceMarkers();
+      if (typeof pulseMarker === "function") {
+        pulseMarker(place.lat, place.lon);
+      }
+
+      const cat = place.category;
+      if (cat) {
+        merits[cat] = merits[cat] || { points: 0, level: "Nybegynner" };
+        merits[cat].points++;
+        saveMerits();
+        updateMeritLevel(cat, merits[cat].points);
+      }
+
+      showToast(`Låst opp: ${place.name} ✅`);
+      window.dispatchEvent(new Event("updateProfile"));
     };
-  });
+  }
 
-  // --- Mer info → åpne info-popup ---
-  btnInfo.onclick = () => showPlacePopup(place);
-
-  // --- Quiz ---
-  btnQuiz.onclick = () => startQuiz(place.id);
-
-  // --- Rute ---
-  btnRoute.onclick = () => showRouteTo(place);
-
-  // --- Lås opp ---
-  btnUnlock.onclick = () => {
-    if (visited[place.id]) {
-      showToast("Allerede låst opp");
-      return;
-    }
-
-    visited[place.id] = true;
-    saveVisited();
-    drawPlaceMarkers();
-    pulseMarker(place.lat, place.lon);
-
-    const cat = place.category;
-    if (cat) {
-      merits[cat] = merits[cat] || { points: 0, level: "Nybegynner" };
-      merits[cat].points++;
-      saveMerits();
-      updateMeritLevel(cat, merits[cat].points);
-    }
-
-    showToast(`Låst opp: ${place.name} ✅`);
-    window.dispatchEvent(new Event("updateProfile"));
-  };
-
-  // --- vis selve panelet ---
   card.setAttribute("aria-hidden", "false");
 };
+
+
+
+
+
 
 // ============================================================
 // ÅPNE placeCard FRA PERSON (kart-modus)
