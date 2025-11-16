@@ -577,8 +577,7 @@ async function addCompletedQuizAndMaybePoint(categoryDisplay, quizId) {
 }
 
 
-// ==============================
-// 9. HENDELSER (CLICK-DELEGATION) OG SHEETS
+// ==============================// 9. HENDELSER (CLICK-DELEGATION) OG SHEETS
 // ==============================
 function openSheet(sheet) {
   sheet?.setAttribute("aria-hidden", "false");
@@ -595,10 +594,8 @@ document.addEventListener("click", e => {
   const openId = target.getAttribute?.("data-open");
   if (openId) {
     const p = PLACES.find(x => x.id === openId);
-    if (p) {
-      closePlaceOverlay();
-      showPlaceOverlay(p);
-    }
+    if (p) openPlaceCard(p);
+    return; // ← viktig, stopper videre bubbling
   }
 
   // Mer info (Google)
@@ -608,21 +605,25 @@ document.addEventListener("click", e => {
       `https://www.google.com/search?q=${decodeURIComponent(infoName)} Oslo`,
       "_blank"
     );
+    return;
   }
 
   // Quiz (person eller sted)
   const quizId = target.getAttribute?.("data-quiz");
   if (quizId) {
     startQuiz(quizId);
+    return;
   }
 
-  // Badge-klikk (profilmerker)
+  // Badge-klikk
   const badgeEl = target.closest?.("[data-badge-id]");
   if (badgeEl) {
     handleBadgeClick(badgeEl);
+    return;
   }
 });
 
+// Sheets med data-close
 document.querySelectorAll("[data-close]").forEach(btn => {
   btn.addEventListener("click", () => {
     const sel = btn.getAttribute("data-close");
@@ -630,10 +631,12 @@ document.querySelectorAll("[data-close]").forEach(btn => {
   });
 });
 
+// “Se mer i nærheten”
 el.seeMore?.addEventListener("click", () => {
   buildSeeMoreNearby();
   openSheet(el.sheetNear);
 });
+
 
 async function handleBadgeClick(badgeEl) {
   const badgeId = badgeEl.getAttribute("data-badge-id");
