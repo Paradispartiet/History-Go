@@ -180,92 +180,209 @@ window.showPlacePopup = function(place) {
   });
 };
 
-
 // ============================================================
-// PLACE CARD POPUP – DEN ENESTE KORT-VERSJONEN
+// PLACE CARD – BUNNPANEL (IDENTISK MED GAMMELT PANEL)
 // ============================================================
-window.showPlaceCard = function(place) {
+window.openPlaceCard = function(place) {
   if (!place) return;
 
-  const imgPath = place.image || `bilder/kort/places/${place.id}.PNG`;
-  const cat = place.category || "";
-  const desc = place.desc || "";
-  const radius = place.r || 120;
+  const card      = document.getElementById("placeCard");
+  const imgEl     = document.getElementById("pcImage");
+  const titleEl   = document.getElementById("pcTitle");
+  const metaEl    = document.getElementById("pcMeta");
+  const descEl    = document.getElementById("pcDesc");
+  const peopleEl  = document.getElementById("pcPeople");
+  const btnInfo   = document.getElementById("pcInfo");
+  const btnQuiz   = document.getElementById("pcQuiz");
+  const btnUnlock = document.getElementById("pcUnlock");
+  const btnRoute  = document.getElementById("pcRoute");
 
-  const people = (place.people || [])
-    .map(p => typeof p === "string" ? PEOPLE.find(x => x.id === p) : p)
-    .filter(Boolean);
+  if (!card || !titleEl || !metaEl || !descEl) return;
 
-  const htmlPeople = people.length
-    ? people.map(p => `
-        <button class="person-chip" data-person="${p.id}">
+  // Grunninfo
+  card.dataset.cat = place.category || "";
+
+  if (imgEl) {
+    imgEl.src = place.cardImage || place.image || "";
+    imgEl.alt = place.name || "";
+  }
+
+  titleEl.textContent = place.name || "";
+  metaEl.textContent  = `${place.category || ""} • radius ${place.r || 150} m`;
+  descEl.textContent  = place.desc || "";
+
+  // Personer tilknyttet stedet
+  if (peopleEl) {
+    let persons = [];
+
+    if (typeof getPersonsByPlace === "function") {
+      persons = getPersonsByPlace(place.id);
+    } else if (typeof PEOPLE !== "undefined") {
+      persons = PEOPLE.filter(
+        p =>
+          (Array.isArray(p.places) && p.places.includes(place.id)) ||
+          p.placeId === place.id
+      );
+    }
+
+    if (persons.length) {
+      peopleEl.innerHTML = persons
+        .map(
+          p => `
+        <button class="pc-person" data-person="${p.id}">
           <img src="bilder/people/${p.id}_face.PNG" alt="${p.name}">
           <span>${p.name}</span>
-        </button>
-      `).join("")
-    : `<p class="muted">Ingen personer registrert her.</p>`;
+        </button>`
+        )
+        .join("");
+    } else {
+      peopleEl.innerHTML = "";
+    }
 
-  const html = `
-      <img src="${imgPath}" class="placecard-img" alt="${place.name}">
-      <h2 class="placecard-title">${place.name}</h2>
-      <p class="placecard-meta">${cat} • radius ${radius} m</p>
+    peopleEl.querySelectorAll("[data-person]").forEach(btn => {
+      btn.onclick = () => {
+        const id = btn.dataset.person;
+        const person = typeof PEOPLE !== "undefined"
+          ? PEOPLE.find(p => p.id === id)
+          : null;
+        if (person && typeof showPersonPopup === "function") {
+          showPersonPopup(person);
+        }
+      };
+    });
+  }
 
-      <p class="placecard-desc">${desc}</p>
-
-      <div class="placecard-people">
-        ${htmlPeople}
-      </div>
-
-      <div class="placecard-actions">
-        <button class="primary hg-quiz-btn" data-quiz="${place.id}">Ta quiz</button>
-        <button class="ghost" data-route="${place.id}">Rute</button>
-        <button class="ghost" data-info="${encodeURIComponent(place.name)}">Mer info</button>
-      </div>
-  `;
-
-  makePopup(html, "placecard-popup");
-
-  // Person → person-popup
-  currentPopup.querySelectorAll("[data-person]").forEach(btn => {
-    btn.onclick = () => {
-      const p = PEOPLE.find(x => x.id === btn.dataset.person);
-      showPersonPopup(p);
+  // Mer info → stor stedspopup eller Google
+  if (btnInfo) {
+    btnInfo.onclick = () => {
+      if (typeof showPlacePopup === "function") {
+        showPlacePopup(place);
+      } else {
+        const q = encodeURIComponent(`${place.name} Oslo`);
+        window.open(`https://www.google.com/search?q=${q}`, "_blank");
+      }
     };
-  });
+  }
+
+  // Ta quiz om stedet
+  if (btnQuiz) {
+    btnQuiz.onclick = () => {
+      if (typeof startQuiz === "function") {
+        startQuiz(place.id);
+      }
+    };
+  }
+
+  // Lås opp stedet (bruker globale visited/merits fra app.js)
+  if (btnUnlock) {
+    btnUnlock.disabled = false;
+    btnUnlock.textContent = "Lås opp";
+
+    btnUnlock.onclick = () => {
+      try {
+        if (typeof visited === "object" && visited[place.id]) {
+          if (typeof showToast === "function") {
+            showToast("Allerede låst opp");
+          }
+          return;
+        }
+
+        // Marker som besøkt
+        if (typeof visited === "object") {
+          visited[place.id] = true;
+          if (typeof saveVisited === "function") saveVisited();
+        }
+
+        // Tegn markører + puls
+        if (typeof drawPlaceMarkers === "function") drawPlaceMarkers();
+        if (typeof pulseMarker === "function") {
+          pulseMarker(place.lat, place.lon);
+        }
+
+        // Poeng i kategori
+        const cat = place.category;
+        if (cat && typeof merits === "object") {
+          merits[cat] = merits[cat] || { points: 0, level: "Nybegynner" };
+          merits[cat].points += 1;
+          if (typeof saveMerits === "function") saveMerits();
+          if (typeof updateMeritLevel === "function") {
+            updateMeritLevel(cat, merits[cat].points);
+          }
+        }
+
+        if (typeof showToast === "function") {
+          showToast(`Låst opp: ${place.name} ✅`);
+        }
+        if (typeof window.dispatchEvent === "function") {
+          window.dispatchEvent(new Event("updateProfile"));
+        }
+      } catch (err) {
+        console.error("Feil ved låsing av sted:", err);
+      }
+    };
+  }
 
   // Rute
-  const routeBtn = currentPopup.querySelector(`[data-route="${place.id}"]`);
-  if (routeBtn && typeof showRouteTo === "function") {
-    routeBtn.onclick = () => showRouteTo(place);
+  if (btnRoute) {
+    btnRoute.onclick = () => {
+      if (typeof showRouteTo === "function") {
+        showRouteTo(place);
+      }
+    };
   }
+
+  // Vis placeCard-panelet nederst
+  card.setAttribute("aria-hidden", "false");
 };
 
 
 // ============================================================
-// ÅPNE KORT FRA PERSON
+// ÅPNE KORT FRA PERSON (SAMME SOM FØR, BARE FLYTTET HIT)
 // ============================================================
 window.openPlaceCardByPerson = function(person) {
   if (!person) return;
 
-  const place =
-    PLACES.find(x => x.id === person.placeId) || {
-      id: "personloc",
+  let place = null;
+
+  if (person.placeId && typeof PLACES !== "undefined") {
+    place = PLACES.find(p => p.id === person.placeId) || null;
+  }
+
+  if (!place && typeof PLACES !== "undefined" && Array.isArray(person.places)) {
+    place = PLACES.find(p => person.places.includes(p.id)) || null;
+  }
+
+  if (!place) {
+    // Lag midlertidig “sted” direkte på personen
+    place = {
+      id: person.id,
       name: person.name,
-      category: (person.tags ? tagToCat(person.tags[0]) : ""),
+      category: person.tags ? tagToCat(person.tags) : "",
       r: person.r || 150,
       desc: person.desc || "",
       lat: person.lat,
-      lon: person.lon
+      lon: person.lon,
+      image: person.image
     };
+  }
 
-  showPlaceCard(place);
-
-  // Koble quiz til personen etter render
-  setTimeout(() => {
-    const btn = currentPopup.querySelector(`[data-quiz="${place.id}"]`);
-    if (btn) btn.onclick = () => startQuiz(person.id);
-  }, 50);
+  window.openPlaceCard(place);
 };
+
+
+// ============================================================
+// LUKKEKNAPP PÅ PLACE CARD
+// ============================================================
+document.addEventListener("DOMContentLoaded", () => {
+  const card    = document.getElementById("placeCard");
+  const btnClose = document.getElementById("pcClose");
+  if (card && btnClose) {
+    btnClose.addEventListener("click", () => {
+      card.setAttribute("aria-hidden", "true");
+    });
+  }
+});
+
 
 
 // ============================================================
