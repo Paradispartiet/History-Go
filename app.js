@@ -369,8 +369,7 @@ function drawPlaceMarkers() {
     });
 
     mk.on("click", () => {
-      closePlaceOverlay();
-      showPlaceOverlay(p);
+      showPlacePopup(p);   // ← 100 % riktig popup
     });
   });
 }
