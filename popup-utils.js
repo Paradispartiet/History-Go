@@ -1,11 +1,9 @@
 // ============================================================
-// HISTORY GO – POPUP-UTILS v20
+// HISTORY GO – POPUP-UTILS v21
 // Felles motor for ALLE popups (person, sted, placeCard, reward)
 // ============================================================
 
-// Holder referanse til aktiv popup
 let currentPopup = null;
-
 
 // ============================================================
 // 1. LUKK POPUP
@@ -17,12 +15,10 @@ function closePopup() {
   }
 }
 
-
 // ============================================================
 // 2. GENERELL POPUP-GENERATOR
 // ============================================================
 function makePopup(html, extraClass = "") {
-  // Fjern eventuell tidligere popup
   closePopup();
 
   const el = document.createElement("div");
@@ -35,14 +31,10 @@ function makePopup(html, extraClass = "") {
     </div>
   `;
 
-  // Lukk via ✕
   el.addEventListener("click", e => {
-    if (e.target.closest("[data-close-popup]")) {
-      closePopup();
-    }
+    if (e.target.closest("[data-close-popup]")) closePopup();
   });
 
-  // Lukk via mørk bakgrunn
   el.addEventListener("click", e => {
     if (e.target === el) closePopup();
   });
@@ -52,9 +44,8 @@ function makePopup(html, extraClass = "") {
   requestAnimationFrame(() => el.classList.add("visible"));
 }
 
-
 // ============================================================
-// PERSON-POPUP
+// PERSON-POPUP  (profil + kart + info)
 // ============================================================
 window.showPersonPopup = function(person) {
   if (!person) return;
@@ -70,9 +61,7 @@ window.showPersonPopup = function(person) {
 
   const html = `
       <img src="${face}" class="hg-popup-face">
-
       <h2 class="hg-popup-name">${person.name}</h2>
-
       <img src="${cardImg}" class="hg-popup-cardimg">
 
       <div class="hg-section">
@@ -82,10 +71,7 @@ window.showPersonPopup = function(person) {
             ? `<ul class="hg-works">${works.map(w => `<li>${w}</li>`).join("")}</ul>`
             : `<p class="hg-muted">Ingen registrerte verk.</p>`
         }
-
-        <button class="hg-quiz-btn" data-quiz="${person.id}">
-          Ta quiz
-        </button>
+        <button class="hg-quiz-btn" data-quiz="${person.id}">Ta quiz</button>
       </div>
 
       <div class="hg-section">
@@ -98,10 +84,9 @@ window.showPersonPopup = function(person) {
         ${
           placeMatches.length
             ? `<div class="hg-places">
-                ${placeMatches.map(p => `
-                  <div class="hg-place" data-place="${p.id}">
-                    📍 ${p.name}
-                  </div>`).join("")}
+                ${placeMatches.map(pl => `
+                  <div class="hg-place" data-place="${pl.id}">📍 ${pl.name}</div>
+                `).join("")}
               </div>`
             : `<p class="hg-muted">Ingen stedstilknytning.</p>`
         }
@@ -110,19 +95,17 @@ window.showPersonPopup = function(person) {
 
   makePopup(html, "person-popup");
 
-  // Klikk på sted → åpne steds-popup
   currentPopup.querySelectorAll("[data-place]").forEach(btn => {
     btn.onclick = () => {
-      const p = PLACES.find(x => x.id === btn.dataset.place);
+      const place = PLACES.find(x => x.id === btn.dataset.place);
       closePopup();
-      showPlacePopup(p);
+      showPlacePopup(place); // NOT placeCard – bare info-popup
     };
   });
 };
 
-
 // ============================================================
-// STEDS-POPUP
+// STEDS-POPUP  (REN INFO-POPUP, IKKE placeCard)
 // ============================================================
 window.showPlacePopup = function(place) {
   if (!place) return;
@@ -133,24 +116,21 @@ window.showPlacePopup = function(place) {
 
   const html = `
       <img src="${img}" class="hg-popup-img">
-
       <h3 class="hg-popup-title">${place.name}</h3>
       <p class="hg-popup-cat">${place.category || ""}</p>
-
       <p class="hg-popup-desc">${place.desc || ""}</p>
 
-      <button class="hg-quiz-btn" data-quiz="${place.id}">
-        Ta quiz
-      </button>
+      <button class="hg-quiz-btn" data-quiz="${place.id}">Ta quiz</button>
 
       ${
         peopleHere.length
           ? `<div class="hg-popup-subtitle">Personer</div>
              <div class="hg-popup-people">
-               ${peopleHere.map(p => `
-                 <div class="hg-popup-face" data-person="${p.id}">
-                   <img src="bilder/people/${p.id}_face.PNG">
-                 </div>`).join("")}
+               ${peopleHere.map(pr => `
+                 <div class="hg-popup-face" data-person="${pr.id}">
+                   <img src="bilder/people/${pr.id}_face.PNG">
+                 </div>
+               `).join("")}
              </div>`
           : ""
       }
@@ -158,7 +138,6 @@ window.showPlacePopup = function(place) {
 
   makePopup(html, "place-popup");
 
-  // Klikk → person-popup
   currentPopup.querySelectorAll("[data-person]").forEach(el => {
     el.onclick = () => {
       const pr = PEOPLE.find(p => p.id === el.dataset.person);
@@ -167,89 +146,123 @@ window.showPlacePopup = function(place) {
   });
 };
 
-
 // ============================================================
-// PLACE CARD – POPUP (MATCHER APPENS "openPlaceCard")
+// PLACE CARD – VISUAL / ACTION PANEL
+// Brukes kun:
+//  ✔ kart (marker-klikk)
+//  ✔ “Åpne” i se-nærmeste
 // ============================================================
 window.openPlaceCard = function(place) {
   if (!place) return;
 
-  const img = place.cardImage || place.image || `bilder/kort/places/${place.id}.PNG`;
+  // VI BRUKER DET EKSISTERENDE HTML-PANELET I index.html
+  const card      = document.getElementById("placeCard");
+  const imgEl     = document.getElementById("pcImage");
+  const titleEl   = document.getElementById("pcTitle");
+  const metaEl    = document.getElementById("pcMeta");
+  const descEl    = document.getElementById("pcDesc");
+  const peopleEl  = document.getElementById("pcPeople");
+  const btnInfo   = document.getElementById("pcInfo");
+  const btnQuiz   = document.getElementById("pcQuiz");
+  const btnUnlock = document.getElementById("pcUnlock");
+  const btnRoute  = document.getElementById("pcRoute");
 
-  const peopleHere = (place.people || [])
-    .map(p => typeof p === "string" ? PEOPLE.find(x => x.id === p) : p)
-    .filter(Boolean);
+  if (!card) return;
 
-  const htmlPeople =
-    peopleHere.length
-      ? `
-        <div class="pcp-people">
-          ${peopleHere.map(p => `
-            <div class="pcp-person" data-person="${p.id}">
-              <img src="bilder/people/${p.id}_face.PNG">
-              <span>${p.name}</span>
-            </div>
-          `).join("")}
-        </div>`
-      : `<p class="hg-muted">Ingen personer knyttet til dette stedet.</p>`;
+  // --- fyll data ---
+  if (imgEl) imgEl.src = place.cardImage || place.image || "";
+  if (titleEl) titleEl.textContent = place.name;
+  if (metaEl)  metaEl.textContent  = `${place.category} • radius ${place.r || 150} m`;
+  if (descEl)  descEl.textContent  = place.desc || "";
 
-  const html = `
-      <img src="${img}" class="pcp-img">
+  // --- personer ---
+  const persons = PEOPLE.filter(
+    p =>
+      (Array.isArray(p.places) && p.places.includes(place.id)) ||
+      p.placeId === place.id
+  );
 
-      <h2 class="pcp-title">${place.name}</h2>
-      <p class="pcp-meta">${place.category} • radius ${place.r || 150} m</p>
+  peopleEl.innerHTML = persons
+    .map(p => `
+      <button class="pc-person" data-person="${p.id}">
+        <img src="bilder/people/${p.id}_face.PNG">
+        <span>${p.name}</span>
+      </button>
+    `)
+    .join("");
 
-      <p class="pcp-desc">${place.desc}</p>
-
-      ${htmlPeople}
-
-      <div class="pcp-actions">
-        <button class="hg-quiz-btn" data-quiz="${place.id}">Ta quiz</button>
-        <button class="ghost" data-route="${place.id}">Rute</button>
-        <button class="ghost" data-info="${encodeURIComponent(place.name)}">Mer info</button>
-      </div>
-  `;
-
-  makePopup(html, "placecard-popup");
-
-  // Klikk → person-popup
-  currentPopup.querySelectorAll(".pcp-person").forEach(el => {
-    el.onclick = () => {
-      const p = PEOPLE.find(x => x.id === el.dataset.person);
-      showPersonPopup(p);
+  peopleEl.querySelectorAll("[data-person]").forEach(btn => {
+    btn.onclick = () => {
+      const pr = PEOPLE.find(p => p.id === btn.dataset.person);
+      showPersonPopup(pr);
     };
   });
 
-  // Rute
-  const routeBtn = currentPopup.querySelector(`[data-route="${place.id}"]`);
-  if (routeBtn) routeBtn.onclick = () => showRouteTo(place);
+  // --- Mer info → åpne info-popup ---
+  btnInfo.onclick = () => showPlacePopup(place);
+
+  // --- Quiz ---
+  btnQuiz.onclick = () => startQuiz(place.id);
+
+  // --- Rute ---
+  btnRoute.onclick = () => showRouteTo(place);
+
+  // --- Lås opp ---
+  btnUnlock.onclick = () => {
+    if (visited[place.id]) {
+      showToast("Allerede låst opp");
+      return;
+    }
+
+    visited[place.id] = true;
+    saveVisited();
+    drawPlaceMarkers();
+    pulseMarker(place.lat, place.lon);
+
+    const cat = place.category;
+    if (cat) {
+      merits[cat] = merits[cat] || { points: 0, level: "Nybegynner" };
+      merits[cat].points++;
+      saveMerits();
+      updateMeritLevel(cat, merits[cat].points);
+    }
+
+    showToast(`Låst opp: ${place.name} ✅`);
+    window.dispatchEvent(new Event("updateProfile"));
+  };
+
+  // --- vis selve panelet ---
+  card.setAttribute("aria-hidden", "false");
 };
 
-
 // ============================================================
-// ÅPNE KORT FRA PERSON
+// ÅPNE placeCard FRA PERSON (kart-modus)
 // ============================================================
 window.openPlaceCardByPerson = function(person) {
   if (!person) return;
 
-  const place =
+  let place =
     PLACES.find(p => p.id === person.placeId) ||
-    {
+    PLACES.find(p => Array.isArray(person.places) && person.places.includes(p.id));
+
+  if (!place) {
+    place = {
       id: person.id,
       name: person.name,
-      category: person.tags ? tagToCat(person.tags) : "",
-      r: person.r || 150,
+      category: tagToCat(person.tags || []),
       desc: person.desc || "",
+      r: person.r || 150,
       lat: person.lat,
       lon: person.lon,
-      image: person.image
+      cardImage: person.image
     };
+  }
 
   openPlaceCard(place);
 };
 
 // ============================================================
-// REWARD-POPUPS
+// REWARDS, BADGES (SAMME SOM FØR)
 // ============================================================
 window.showRewardPlace = function(place) {
   if (!place) return;
@@ -284,33 +297,6 @@ window.showRewardPerson = function(person) {
 
       <button class="reward-ok" data-close-popup>Fortsett</button>
   `, "reward-popup");
-};
-
-
-// ============================================================
-// BADGE-POPUP
-// ============================================================
-window.showBadgePopup = function(badge) {
-  if (!badge) return;
-
-  makePopup(`
-      <div class="badge-header">
-        <img src="${badge.icon}" class="badge-icon">
-      </div>
-
-      <h2 class="badge-title">${badge.title}</h2>
-      <p class="badge-level">${badge.level}</p>
-
-      <p class="badge-desc">${badge.desc}</p>
-
-      ${
-        badge.progress
-          ? `<div class="badge-progress">${badge.progress}</div>`
-          : ""
-      }
-
-      <button class="badge-ok" data-close-popup>OK</button>
-  `, "badge-popup");
 };
 
 
