@@ -90,14 +90,6 @@ const el = {
 
   gallery: document.getElementById("gallery"),
 
-  // Place Card (sheet)
-  pc:       document.getElementById("placeCard"),
-  pcTitle:  document.getElementById("pcTitle"),
-  pcMeta:   document.getElementById("pcMeta"),
-  pcDesc:   document.getElementById("pcDesc"),
-  pcUnlock: document.getElementById("pcUnlock"),
-  pcRoute:  document.getElementById("pcRoute"),
-  pcClose:  document.getElementById("pcClose")
 };
 
 
