@@ -739,19 +739,6 @@ function renderPlaceCard(p) {
   `;
 }
 
-/* ----------------------------------------------------------
-   EVENT: Når posisjon/visited/quiz endrer seg
----------------------------------------------------------- */
-window.addEventListener("updateNearby", renderNearbyPlaces);
-
-// 🔥 Oppdater også “Se flere”-sheetet automatisk
-window.addEventListener("updateNearby", () => {
-  if (el.sheetNear && el.sheetNear.getAttribute("aria-hidden") === "false") {
-    buildSeeMoreNearby();
-  }
-});
-
-
 
 /* ----------------------------------------------------------
    SAMLING – små badges av besøkte steder
