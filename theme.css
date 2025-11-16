@@ -810,6 +810,11 @@ button.quiz-done.blink {
   animation: hgFadeIn .25s ease;
 }
 
+/* Ensure reward-popup is above everything except quiz close interactions */
+.hg-popup.reward-popup {
+  z-index: 10060 !important;
+}
+
 @keyframes hgFadeIn {
   from { opacity: 0; transform: scale(.96); }
   to   { opacity: 1; transform: scale(1); }
