@@ -438,33 +438,6 @@ function openPlaceCard(p) {
   showPlaceOverlay(p);
 }
 
-function openPlaceCardByPerson(person) {
-  const place =
-    PLACES.find(x => x.id === person.placeId) || {
-      id: "personloc",
-      name: person.name,
-      category: tagToCat(person.tags),
-      r: person.r || 150,
-      desc: person.desc || "",
-      lat: person.lat,
-      lon: person.lon
-    };
-
-  openPlaceCard(place);
-
-  if (!el.pcUnlock) return;
-  el.pcUnlock.textContent = "Ta quiz";
-  el.pcUnlock.disabled = false;
-  el.pcUnlock.onclick = () => startQuiz(person.id);
-}
-
-el.pcClose?.addEventListener("click", () => {
-  if (!el.pc) return;
-  el.pc.setAttribute("aria-hidden", "true");
-  el.pcUnlock.textContent = "Lås opp";
-});
-
-
 // ==============================
 // 7. LISTEVISNINGER
 // ==============================
