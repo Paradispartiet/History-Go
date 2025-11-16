@@ -622,6 +622,9 @@ el.pcClose?.addEventListener("click", () => {
   el.pc.setAttribute("aria-hidden", "true");
 });
 
+/* ============================================
+   NÆROMRÅDE – 5 nærmeste uoppdagede steder
+============================================ */
 function renderNearbyPlaces() {
   if (!el.list) return;
 
@@ -630,7 +633,7 @@ function renderNearbyPlaces() {
     return;
   }
 
-  const visitedLS    = JSON.parse(localStorage.getItem("visited_places") || "{}");
+  const visitedLS = visited;
   const quizProgress = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
 
   const sorted = PLACES
@@ -640,22 +643,28 @@ function renderNearbyPlaces() {
     }))
     .filter(p => {
       if (visitedLS[p.id]) return false;
+
       const catId = catIdFromDisplay(p.category || "vitenskap");
-      const completed = quizProgress[catId]?.completed || [];
-      if (completed.includes(p.id)) return false;
+      const done = quizProgress[catId]?.completed || [];
+      if (done.includes(p.id)) return false;
+
       return true;
     })
     .sort((a, b) => a._d - b._d)
     .slice(0, 5);
 
   if (!sorted.length) {
-    el.list.innerHTML = `<p class="muted">Ingen steder i nærheten akkurat nå.</p>`;
+    el.list.innerHTML = `<p class="muted">Ingen uoppdagede steder i nærheten.</p>`;
     return;
   }
 
   el.list.innerHTML = sorted.map(renderPlaceCard).join("");
 }
 
+
+/* ============================================
+   SE FLERE – ALLE uoppdagede steder sortert
+============================================ */
 function buildSeeMoreNearby() {
   if (!el.sheetNearBody) return;
 
@@ -664,36 +673,44 @@ function buildSeeMoreNearby() {
     return;
   }
 
-  const visitedLS    = JSON.parse(localStorage.getItem("visited_places") || "{}");
+  const visitedLS = visited;
   const quizProgress = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
 
-  const base = PLACES.map(p => {
-    const d = Math.round(distMeters(currentPos, { lat: p.lat, lon: p.lon }));
-    return { ...p, _d: d };
-  });
+  const items = PLACES
+    .map(p => ({
+      ...p,
+      _d: Math.round(distMeters(currentPos, { lat: p.lat, lon: p.lon }))
+    }))
+    .filter(p => {
+      if (visitedLS[p.id]) return false;
 
-  const filtered = base.filter(p => {
-    if (visitedLS[p.id]) return false;
+      const catId = catIdFromDisplay(p.category || "vitenskap");
+      const done = quizProgress[catId]?.completed || [];
+      if (done.includes(p.id)) return false;
 
-    const catId = catIdFromDisplay(p.category || "vitenskap");
-    const completed = quizProgress[catId]?.completed || [];
-    if (completed.includes(p.id)) return false;
-
-    return true;
-  });
-
-  // ALT etter de 5 nærmeste
-  const items = filtered
-    .sort((a, b) => a._d - b._d)
-    .slice(5);
+      return true;
+    })
+    .sort((a, b) => a._d - b._d);
 
   if (!items.length) {
-    el.sheetNearBody.innerHTML = `<p class="muted">Ingen flere steder akkurat nå.</p>`;
+    el.sheetNearBody.innerHTML = `<p class="muted">Ingen flere uoppdagede steder.</p>`;
     return;
   }
 
   el.sheetNearBody.innerHTML = items.map(renderPlaceCard).join("");
 }
+
+
+/* ============================================
+   EVENT – oppdater begge automatisk
+============================================ */
+window.addEventListener("updateNearby", () => {
+  renderNearbyPlaces();
+
+  if (el.sheetNear && el.sheetNear.getAttribute("aria-hidden") === "false") {
+    buildSeeMoreNearby();
+  }
+});
 
 /* ----------------------------------------------------------
    HTML for ett sted i liste
