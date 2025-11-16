@@ -58,10 +58,10 @@ body{
 .muted{color:var(--muted)}
 
 /* ===================================================== */
-/* 2) Kart & kartmodus – STABIL VERSJON                 */
+/* 2) Kart & kartmodus – STABIL OG UNIVERSELL           */
 /* ===================================================== */
 
-/* Kartet ligger fullskjerm under alt */
+/* Kartet ligger alltid fullskjerm under alt innhold */
 #map {
   position: fixed;
   inset: 0;
@@ -69,22 +69,22 @@ body{
   background: #000;
 }
 
-/* HEADER SKAL LIGGE OVER OG VÆRE KLIKKBAR */
+/* HEADER skal ligge over kartet og være klikkbar */
 header {
   position: relative;
   z-index: 10;
   pointer-events: auto;
 }
 
-/* MAIN skal IKKE blokkere kartet visuelt eller klikkmessig */
+/* MAIN skal vises som vanlig, men slippe gjennom klikk */
 main {
   position: relative;
-  z-index: 2;          /* viktig: lav, ikke over */
-  pointer-events: none; /* slipper gjennom */
+  z-index: 2;
+  pointer-events: none;
 }
 
 /* ---------------------------------------------------------
-   ALT som skal være klikkbart i main må få pointer-events:auto
+   ALT som faktisk skal være klikkbart inne i MAIN
    --------------------------------------------------------- */
 .panel,
 .profile-section,
@@ -96,13 +96,19 @@ main {
 #peopleGrid,
 #merits,
 #timelineSection,
-#actions {
+#actions,
+button,
+input,
+label,
+select {
   position: relative;
   z-index: 20;
   pointer-events: auto;
 }
 
-/* Popups og placeCard → ALLTID øverst */
+/* ---------------------------------------------------------
+   POPUPS, SHEETS, QUIZ, PLACE CARD → ALLTID OVERALT
+   --------------------------------------------------------- */
 .hg-popup,
 #placeCard,
 .sheet,
@@ -114,12 +120,14 @@ main {
   z-index: 10000;
 }
 
-/* Kartknappene nederst til høyre */
+/* ---------------------------------------------------------
+   Kartknappene nederst til høyre skal alltid fungere
+   --------------------------------------------------------- */
 .map-controls {
   position: fixed;
   right: 12px;
   bottom: 12px;
-  z-index: 999;
+  z-index: 2000;
   pointer-events: auto;
   display: grid;
   gap: 8px;
@@ -133,7 +141,6 @@ main {
   color: #fff;
   box-shadow: var(--shadow);
 }
-
 /* ===================================================== */
 /* 3) Topplinje, main & toast                            */
 /* ===================================================== */
