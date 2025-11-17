@@ -73,7 +73,6 @@ body{
 header {
   position: relative;
   z-index: 10;
-  pointer-events: auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -81,33 +80,10 @@ header {
   background: linear-gradient(180deg, rgba(10,25,41,.95), rgba(10,25,41,.65) 70%, transparent);
 }
 
+/* MAIN skal bare være et vanlig klikkbart lag */
 main {
   position: relative;
   z-index: 2;
-  pointer-events: auto; /* ← FIX */
-}
-
-/* ---------------------------------------------------------
-   ALT som faktisk skal være klikkbart inne i MAIN
-   --------------------------------------------------------- */
-.panel,
-.profile-section,
-.place-card,
-.avatar-card,
-.person-card,
-.profile-card,
-#collectionGrid,
-#peopleGrid,
-#merits,
-#timelineSection,
-#actions,
-button,
-input,
-label,
-select {
-  position: relative;
-  z-index: 20;
-  pointer-events: auto;
 }
 
 /* ---------------------------------------------------------
@@ -132,10 +108,10 @@ select {
   right: 12px;
   bottom: 12px;
   z-index: 2000;
-  pointer-events: auto;
   display: grid;
   gap: 8px;
 }
+
 .map-controls button {
   width: 44px;
   height: 44px;
@@ -145,6 +121,10 @@ select {
   color: #fff;
   box-shadow: var(--shadow);
 }
+
+
+
+
 /* ===================================================== */
 /* 3) Topplinje, main & toast                            */
 /* ===================================================== */
