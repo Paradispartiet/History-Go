@@ -71,6 +71,17 @@
     </div>
   </header>
 
+<!-- FLYTENDE VENSTREKOLONNE – SE NÆRMESTE -->
+<div id="nearbyListContainer">
+  <h2 class="nearby-title">
+    Steder i nærheten
+    <button id="btnSeeMoreNearby" class="chip ghost">Se flere</button>
+  </h2>
+
+  <div id="status" class="muted">Henter posisjon…</div>
+  <div id="nearbyList"></div>
+</div>
+  
   <!-- MAIN -->
   <main>
 
@@ -88,17 +99,6 @@
           <span id="linkQuiz"   class="linkish">0 quizzer</span>
         </p>
       </div>
-    </section>
-
-    <!-- NÆROMRÅDE -->
-    <section class="panel">
-      <h2>
-        Steder i nærheten
-        <button id="btnSeeMoreNearby" class="chip ghost">Se flere i nærheten</button>
-      </h2>
-
-      <div id="status" class="muted">Henter posisjon…</div>
-      <div id="nearbyList" class="cards"></div>
     </section>
 
     <!-- RUTER -->
