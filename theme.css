@@ -247,42 +247,47 @@ main {
    VENSTRE - PANEL FOR "STEDER I NÆRHETEN" (35% bredde)
    ============================================================ */
 
+/* ============================================================
+   VENSTRE PANELET – 35% BREDDE, HØYDE TIL 20% FRA BUNNEN
+   Viser 5 steder uten scrolling i kartet
+   ============================================================ */
+
 #nearbyListContainer {
   position: absolute;
-  top: 120px;                 /* fin posisjon under header */
-  left: 20px;                 /* luft mot kanten */
-  width: 35vw;                /* 35 % av skjermen */
-  max-width: 420px;           /* ikke bredere enn dette */
-  z-index: 5;
+  top: 120px;             /* juster her hvis du vil */
+  left: 20px;
+
+  width: 35vw;
+  max-width: 420px;
+
+  /* Høyde: hele skjermen minus 20% nederst */
+  height: calc(100vh - 120px - 20vh);
+
+  overflow-y: auto;       /* La kun INNHOLDET scrolle */
+  padding: 14px 16px;
 
   background: var(--panel);
   border: 1px solid var(--panel-border);
   border-radius: var(--radius);
-  padding: 14px 16px;
   box-shadow: var(--shadow);
-
   backdrop-filter: blur(4px);
+
+  z-index: 5;
+}
+
+/* Gjør det lettere å vise 5 steder kompakt */
+.nearby-item {
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.nearby-item:last-child {
+  border-bottom: none;
 }
 
 /* Sørge for at main-innholdet ikke dytter panelet */
 main {
   padding-top: 0 !important;
   margin-top: 0 !important;
-}
-
-/* Hvert sted i listen */
-.nearby-item {
-  display: grid;
-  grid-template-columns: 46px 1fr auto;
-  align-items: center;
-  gap: 12px;
-
-  padding: 8px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-}
-
-.nearby-item:last-child {
-  border-bottom: none;
 }
 
 /* Thumbnail (mindre!) */
