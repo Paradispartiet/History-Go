@@ -115,28 +115,6 @@
   <!-- Leaflet (kun for kartbakgrunn, ingen routing) -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 
-  <!-- LITE KARTSYSTEM (kun bakgrunn på profilsiden) -->
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      // Init kart
-      if (typeof L !== "undefined") {
-        const mapEl = document.getElementById("map");
-        const MAP = L.map(mapEl, { zoomControl: false })
-          .setView([59.9139, 10.7522], 13);
-
-        L.tileLayer(
-          "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
-          { subdomains: "abcd", maxZoom: 19 }
-        ).addTo(MAP);
-
-        // Sentrer-knapp
-        document.getElementById("btnCenter")?.addEventListener("click", () => {
-          MAP.setView([59.9139, 10.7522], 13);
-        });
-      }
-    });
-  </script>
-
   <!-- Profilmotor (kjører KUN på denne siden) -->
   <script src="profile.js"></script>
 
