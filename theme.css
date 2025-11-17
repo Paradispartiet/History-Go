@@ -82,6 +82,14 @@ header {
   background: linear-gradient(180deg, rgba(10,25,41,.95), rgba(10,25,41,.65) 70%, transparent);
 }
 
+#nearbyListContainer {
+  position: fixed;
+  top: 120px;
+  left: 12px;
+  width: 300px;   /* eller auto */
+  z-index: 15;
+}
+
 /* MAIN skal bare være et vanlig klikkbart lag */
 main {
   position: relative;
@@ -97,6 +105,8 @@ main {
 .panel {
   overflow: visible !important;
 }
+
+
 /* ---------------------------------------------------------
    KUN EKTE OVERLAYS SKAL HENGE OVER ALT
    --------------------------------------------------------- */
@@ -108,7 +118,7 @@ main {
   inset: 0;
   pointer-events: auto;
   z-index: 10000;
-}y
+}
 
 /* ---------------------------------------------------------
    Kartknappene nederst til høyre skal alltid fungere
