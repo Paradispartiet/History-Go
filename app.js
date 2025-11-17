@@ -828,9 +828,11 @@ async function boot() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  boot();
-  initMiniProfile();
-  wireMiniProfileLinks();
+  if (!IS_PROFILE) {
+    boot();
+    initMiniProfile();
+    wireMiniProfileLinks();
+  }
 });
 
 
