@@ -592,10 +592,13 @@ document.addEventListener("click", e => {
   // Åpne sted fra kort (data-open)
   const openId = target.getAttribute?.("data-open");
   if (openId) {
-    const p = PLACES.find(x => x.id === openId);
-    if (p) openPlaceCard(p);
-    return;
+  const p = PLACES.find(x => x.id === openId);
+  if (p) {
+    addVisitedPlace(p.id);
+    openPlaceCard(p);
   }
+  return;
+}
 
   // Mer info (Google)
   const infoName = target.getAttribute?.("data-info");
