@@ -23,7 +23,6 @@
 
 <body>
 
-
   <!-- USYNLIGE DATA-CONTAINERE -->
   <div id="collectionGrid" style="display:none"></div>
   <div id="collectionCount" style="display:none"></div>
@@ -69,17 +68,17 @@
     </div>
   </header>
 
-<!-- FLYTENDE VENSTREKOLONNE – SE NÆRMESTE -->
-<div id="nearbyListContainer">
-  <h2 class="nearby-title">
-    Steder i nærheten
-    <button id="btnSeeMoreNearby" class="chip ghost">Se flere</button>
-  </h2>
+  <!-- FLYTENDE VENSTREKOLONNE – SE NÆRMESTE -->
+  <div id="nearbyListContainer">
+    <h2 class="nearby-title">
+      Steder i nærheten
+      <button id="btnSeeMoreNearby" class="chip ghost">Se flere</button>
+    </h2>
 
-  <div id="status" class="muted">Henter posisjon…</div>
-  <div id="nearbyList"></div>
-</div>
-  
+    <div id="status" class="muted">Henter posisjon…</div>
+    <div id="nearbyList"></div>
+  </div>
+
   <!-- MAIN -->
   <main>
 
@@ -133,31 +132,31 @@
   </main>
 
   <!-- PLACE CARD (fast nederst i appen) -->
-<div id="placeCard" aria-hidden="true">
-  <div class="pc-body">
+  <div id="placeCard" aria-hidden="true">
+    <div class="pc-body">
 
-    <div class="pc-main">
-      <img id="pcImage" class="pc-img" src="" alt="">
-      <div class="pc-text">
-        <h2 id="pcTitle"></h2>
-        <div id="pcMeta" class="pc-meta"></div>
-        <p id="pcDesc" class="pc-desc"></p>
+      <div class="pc-main">
+        <img id="pcImage" class="pc-img" src="" alt="">
+        <div class="pc-text">
+          <h2 id="pcTitle"></h2>
+          <div id="pcMeta" class="pc-meta"></div>
+          <p id="pcDesc" class="pc-desc"></p>
+        </div>
       </div>
+
+      <div id="pcPeople" class="pc-people"></div>
+
+      <div class="pc-actions">
+        <button id="pcInfo"   class="secondary">Mer info</button>
+        <button id="pcQuiz"   class="primary">Ta quiz</button>
+        <button id="pcUnlock" class="primary">Lås opp</button>
+        <button id="pcRoute"  class="ghost">Rute</button>
+        <button id="pcClose"  class="ghost"
+                onclick="document.getElementById('placeCard').setAttribute('aria-hidden','true')">✕</button>
+      </div>
+
     </div>
-
-    <div id="pcPeople" class="pc-people"></div>
-
-    <div class="pc-actions">
-      <button id="pcInfo"   class="secondary">Mer info</button>
-      <button id="pcQuiz"   class="primary">Ta quiz</button>
-      <button id="pcUnlock" class="primary">Lås opp</button>
-      <button id="pcRoute"  class="ghost">Rute</button>
-      <button id="pcClose"  class="ghost"
-              onclick="document.getElementById('placeCard').setAttribute('aria-hidden','true')">✕</button>
-    </div>
-
   </div>
-</div>
 
   <!-- SERVICE WORKER -->
   <script>
