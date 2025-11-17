@@ -7,18 +7,16 @@
 
   <link rel="stylesheet" href="theme.css">
 
-  <!-- Leaflet CSS -->
+  <!-- Leaflet CSS (bakgrunnskart) -->
   <link rel="stylesheet"
         href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         crossorigin="" />
-  <link rel="stylesheet"
-        href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css" />
 </head>
 
 <body class="profile-page">
 
   <!-- ============================= -->
-  <!-- ⭐ KARTET BAK ALT (ALLTID PÅ) -->
+  <!-- ⭐ KARTET BAK ALT (ALLTID SYNlig) -->
   <!-- ============================= -->
   <div id="map" aria-label="Kart"></div>
 
@@ -57,7 +55,7 @@
   </header>
 
   <!-- ===================== -->
-  <!-- INNHOLD (PANELS)      -->
+  <!-- INNHOLD               -->
   <!-- ===================== -->
   <main id="profileMain">
 
@@ -112,32 +110,17 @@
   </main>
 
 
-  <!-- Leaflet (kun for kartbakgrunn, ingen routing) -->
+  <!-- ============================= -->
+  <!-- SCRIPTS                       -->
+  <!-- ============================= -->
+
+  <!-- Leaflet for bakgrunnskart (IKKE routing, IKKE GPS) -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 
-  <!-- LITE KARTSYSTEM (kun bakgrunn på profilsiden) -->
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      // Init kart
-      if (typeof L !== "undefined") {
-        const mapEl = document.getElementById("map");
-        const MAP = L.map(mapEl, { zoomControl: false })
-          .setView([59.9139, 10.7522], 13);
+  <!-- App.js → trengs for kart og popup-logikk -->
+  <script src="app.js"></script>
 
-        L.tileLayer(
-          "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
-          { subdomains: "abcd", maxZoom: 19 }
-        ).addTo(MAP);
-
-        // Sentrer-knapp
-        document.getElementById("btnCenter")?.addEventListener("click", () => {
-          MAP.setView([59.9139, 10.7522], 13);
-        });
-      }
-    });
-  </script>
-
-  <!-- Profilmotor (kjører KUN på denne siden) -->
+  <!-- Profilmotor (viser data) -->
   <script src="profile.js"></script>
 
   <!-- Kart-modus på profilsiden -->
