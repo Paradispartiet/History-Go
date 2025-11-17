@@ -41,6 +41,13 @@ function saveVisited() {
   renderCollection();
 }
 
+// MARKER STED SOM BESØKT (KRITISK FOR PROFILSIDEN)
+function addVisitedPlace(id) {
+  visited[id] = true;                         // Oppdater i RAM
+  localStorage.setItem("visited_places", JSON.stringify(visited)); // Lagre til LS
+  window.dispatchEvent(new Event("updateProfile")); // Oppdater profilsiden
+}
+
 function savePeople() {
   localStorage.setItem("people_collected", JSON.stringify(peopleCollected));
   renderGallery();
