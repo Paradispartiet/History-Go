@@ -240,23 +240,74 @@ main {
 .card .row.between{ justify-content:space-between }
 
 
-/* ==== Små kategori-merker i “Se i nærheten” ==== */
+/* ============================================
+   SE NÆRMESTE – kompakt venstrestilt liste
+   ============================================ */
+
+#nearbyListContainer {
+  padding-top: 12px;
+}
+
+/* Hvert sted i listen */
 .nearby-item {
-  position: relative;
-  display: flex;
+  display: grid;
+  grid-template-columns: 46px 1fr auto;
   align-items: center;
   gap: 12px;
-  padding: 10px 0;
+
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
 }
 
+.nearby-item:last-child {
+  border-bottom: none;
+}
+
+/* Thumbnail (mindre!) */
+.nearby-thumb {
+  width: 46px;
+  height: 46px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.12);
+}
+
+/* Tekst venstrestilt */
+.nearby-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Navn */
+.nearby-name {
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 2px;
+}
+
+/* Avstand */
+.nearby-dist {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* Kategori-merke (liten rund ikon) */
 .nearby-badge {
-  width: 28px;        /* ← før var den full størrelse — nå liten */
-  height: 28px;
+  width: 26px;
+  height: 26px;
   object-fit: contain;
-  flex-shrink: 0;
   opacity: 0.95;
+  margin-right: 4px;
 }
 
+/* Åpne-knappen */
+.nearby-item button {
+  padding: 6px 10px;
+  font-size: 0.85rem;
+  border-radius: 8px;
+}
 
 
 /* ===================================================== */
