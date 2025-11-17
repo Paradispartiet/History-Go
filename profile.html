@@ -11,8 +11,6 @@
   <link rel="stylesheet"
         href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         crossorigin="" />
-  <link rel="stylesheet"
-        href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css" />
 </head>
 
 <body class="profile-page">
@@ -61,7 +59,6 @@
   <!-- ===================== -->
   <main id="profileMain">
 
-    <!-- PROFILKORT -->
     <section class="profile-section" id="profileCard">
       <h2 id="profileName">Utforsker #182</h2>
       <div class="stats">
@@ -71,25 +68,21 @@
       </div>
     </section>
 
-    <!-- MERKER -->
     <section class="profile-section">
       <h2>Mine merker</h2>
       <div id="merits"></div>
     </section>
 
-    <!-- PERSONER -->
     <section class="profile-section">
       <h2>Personer du har låst opp</h2>
       <div id="peopleGrid"></div>
     </section>
 
-    <!-- STEDER -->
     <section class="profile-section">
       <h2>Steder du har besøkt</h2>
       <div id="collectionGrid"></div>
     </section>
 
-    <!-- TIDSLINJE -->
     <section class="profile-section" id="timelineSection">
       <h2>Tidslinje</h2>
 
@@ -102,7 +95,6 @@
       <div id="timelineBody" class="timeline-body"></div>
     </section>
 
-    <!-- HANDLINGER -->
     <section class="profile-section" id="actions">
       <button id="editProfileBtn" class="btn">Endre profil</button>
       <button id="exportProfileBtn" class="btn">Del profilkort</button>
@@ -112,13 +104,104 @@
   </main>
 
 
-  <!-- Leaflet (kun for kartbakgrunn, ingen routing) -->
+  <!-- ===================== -->
+  <!-- LEAFLET BIBLIOTEK     -->
+  <!-- ===================== -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 
-  <!-- Profilmotor (kjører KUN på denne siden) -->
+
+  <!-- ============================= -->
+  <!-- ⭐ ISOLERT KARTMOTOR (KUN BESØKTE STEDER) -->
+  <!-- ============================= -->
+  <script>
+  let MAP, placeLayer, PLACES = [], PEOPLE = [], visited = {};
+
+  document.addEventListener("DOMContentLoaded", async () => {
+
+    PLACES  = await fetch("places.json").then(r => r.json());
+    PEOPLE  = await fetch("people.json").then(r => r.json());
+    visited = JSON.parse(localStorage.getItem("visited_places") || "{}");
+
+    MAP = L.map("map", {
+      zoomControl: false,
+      attributionControl: false
+    }).setView([59.9139, 10.7522], 13);
+
+    L.tileLayer(
+      "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
+      { subdomains: "abcd", maxZoom: 19 }
+    ).addTo(MAP);
+
+    placeLayer = L.layerGroup().addTo(MAP);
+
+    drawMarkers();
+
+    document.getElementById("btnCenter")?.addEventListener("click", () => {
+      MAP.setView([59.9139, 10.7522], 13);
+    });
+  });
+
+  function catColor(cat="") {
+    const c = cat.toLowerCase();
+    if (c.includes("historie")) return "#344B80";
+    if (c.includes("vitenskap")) return "#9b59b6";
+    if (c.includes("kunst")) return "#ffb703";
+    if (c.includes("musikk")) return "#ff66cc";
+    if (c.includes("litteratur")) return "#f6c800";
+    if (c.includes("natur")) return "#4caf50";
+    if (c.includes("sport")) return "#2a9d8f";
+    if (c.includes("by")) return "#e63946";
+    if (c.includes("politikk")) return "#c77dff";
+    if (c.includes("naering")) return "#ff8800";
+    if (c.includes("populaer")) return "#ffb703";
+    if (c.includes("subkultur")) return "#ff66cc";
+    return "#9b59b6";
+  }
+
+  function lighten(hex, amount = 0.35) {
+    const c = hex.replace("#", "");
+    const num = parseInt(c, 16);
+    let r = Math.min(255, (num >> 16) + 255*amount);
+    let g = Math.min(255, ((num >> 8)&255) + 255*amount);
+    let b = Math.min(255, (num & 255) + 255*amount);
+    return `rgb(${r},${g},${b})`;
+  }
+
+  // ⭐ NY FUNKSJON: KUN BESØKTE STEDER
+  function drawMarkers() {
+    placeLayer.clearLayers();
+
+    const visitedPlaces = PLACES.filter(p => visited[p.id]);
+
+    visitedPlaces.forEach(p => {
+      const fill = lighten(catColor(p.category), 0.35);
+      const border = "#ffd700"; // Gull for besøkt
+
+      const mk = L.circleMarker([p.lat, p.lon], {
+        radius: 9,
+        color: border,
+        weight: 2,
+        fillColor: fill,
+        fillOpacity: 1
+      }).addTo(placeLayer);
+
+      mk.bindTooltip(p.name, { direction: "top" });
+
+      mk.on("click", () => {
+        if (window.showPlacePopup)
+          window.showPlacePopup(p);
+      });
+    });
+  }
+  </script>
+
+
+  <!-- ===================== -->
+  <!-- PROFILMOTOR          -->
+  <!-- ===================== -->
   <script src="profile.js"></script>
 
-  <!-- Kart-modus på profilsiden -->
+  <!-- Kart-modus -->
   <script>
     document.getElementById("btnSeeMap")?.addEventListener("click", () => {
       document.body.classList.add("map-only");
