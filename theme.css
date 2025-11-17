@@ -162,6 +162,9 @@ main {
 
 
 
+
+
+
 /* ===================================================== */
 /* 3) Topplinje, main & toast                            */
 /* ===================================================== */
@@ -235,6 +238,24 @@ main {
 .card .meta{ color:var(--muted); font-size:.9rem; margin:2px 0 4px }
 .card .row{ display:flex; gap:8px; align-items:center }
 .card .row.between{ justify-content:space-between }
+
+
+/* ==== Små kategori-merker i “Se i nærheten” ==== */
+.nearby-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+}
+
+.nearby-badge {
+  width: 28px;        /* ← før var den full størrelse — nå liten */
+  height: 28px;
+  object-fit: contain;
+  flex-shrink: 0;
+  opacity: 0.95;
+}
 
 
 
