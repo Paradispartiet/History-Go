@@ -635,3 +635,489 @@ button.quiz-done.blink {
 }
 
 
+/* ===================================================== */
+/* 11) Merker / Badge-kort – kompakt, fargerik og interaktiv */
+/* ===================================================== */
+
+.merkesamling-title {
+  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  font-weight: 600;
+  font-size: 1.3rem;
+  color: var(--yellow);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  letter-spacing: 0.3px;
+  margin-bottom: 0.8rem;
+}
+
+/* === MERKER I GRID === */
+#merits {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 22px;
+  justify-items: center;
+  margin-top: 20px;
+}
+
+.badge-mini {
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+.badge-mini:hover {
+  transform: scale(1.05);
+}
+
+.badge-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.badge-mini-icon {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  box-shadow: 0 0 10px rgba(0,0,0,0.25);
+}
+
+.badge-medal {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  font-size: 2rem;
+  transform: rotate(5deg);
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.5));
+  user-select: none;
+}
+
+/* === Responsivt – én rad på små skjermer === */
+@media (max-width: 520px) {
+  #merits {
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+    gap: 16px;
+  }
+  .badge-mini-icon {
+    width: 90px;
+    height: 90px;
+  }
+  .badge-medal {
+    font-size: 1.6rem;
+    top: -8px;
+    right: -8px;
+  }
+}
+
+
+/* ===================================================== */
+/* 12) Effekter & media                                  */
+/* ===================================================== */
+@media (max-width:760px){
+}
+
+.icon:hover,
+.sheet-close:hover,
+#quizClose:hover,
+#pcClose:hover,
+#btnExitMap:hover{
+  filter:brightness(1.1);
+}
+
+
+/* ===================================================== */
+/* REWARD POPUP – HISTORY GO v22 (for makePopup-systemet) */
+/* ===================================================== */
+
+.hg-popup.reward-popup .hg-popup-inner {
+  position: relative;
+  width: min(360px, 90vw);
+  max-height: 85vh;
+  overflow-y: auto;
+
+  background: rgba(20, 25, 35, 0.96);
+  border-radius: 16px;
+  padding: 28px 22px 26px 22px;
+  text-align: center;
+  box-shadow: 0 0 40px rgba(0,0,0,0.6);
+
+  animation: rewardIn .25s ease-out;
+}
+
+/* Bilde på toppen */
+.hg-popup.reward-popup .reward-img {
+  width: 90px;
+  height: 90px;
+  border-radius: 12px;
+  object-fit: cover;
+  margin: 0 auto 14px auto;
+  border: 2px solid rgba(255,255,255,0.25);
+}
+
+/* Overskrift */
+.hg-popup.reward-popup .reward-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 4px 0 6px;
+  color: #f6c800;
+}
+
+/* Undertittel */
+.hg-popup.reward-popup .reward-sub {
+  font-size: 1rem;
+  color: #fff;
+  margin-bottom: 18px;
+  font-weight: 500;
+}
+
+/* OK-knapp */
+.hg-popup.reward-popup .reward-ok {
+  background: #f6c800;
+  color: #000;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  transition: background .2s ease;
+}
+
+.hg-popup.reward-popup .reward-ok:hover {
+  background: #ffe15a;
+}
+
+/* Clean entry animasjon */
+@keyframes rewardIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* 13b. Person-galleri (rundt ikon + navn + klikk) */
+#gallery{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px 12px;
+  align-items:flex-start;
+}
+
+.person-card{
+  display:inline-flex;
+  flex-direction:column;
+  align-items:center;
+  cursor:pointer;
+  margin:6px 4px;
+  transition:transform .25s ease, opacity .25s ease;
+}
+
+.person-card:hover{ transform:scale(1.08); opacity:.92; }
+
+.person-thumb{
+  width:72px; height:72px;
+  border-radius:50%;
+  object-fit:cover;
+  background:#111;
+  border:2px solid rgba(255,255,255,.2);
+  box-shadow:0 0 6px rgba(0,0,0,.4);
+  margin-bottom:6px;
+}
+
+.person-label{
+  font-size:.8rem;
+  text-align:center;
+  line-height:1.2;
+  color:#fff;          /* tekstfarge – kategori-farge settes inline */
+  max-width:92px;      /* bryt lange navn pent */
+  white-space:normal;
+}
+
+
+
+/* ============================================================
+   UNIVERSAL PERSON/PLACE POPUP – HISTORY GO
+   ============================================================ */
+
+.hg-popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  animation: hgFadeIn .25s ease;
+}
+
+/* Ensure reward-popup is above everything except quiz close interactions */
+.hg-popup.reward-popup {
+  z-index: 10060 !important;
+}
+
+@keyframes hgFadeIn {
+  from { opacity: 0; transform: scale(.96); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.hg-popup-inner {
+  position: relative;
+  width: min(420px, 90vw);
+  max-height: 90vh;
+  overflow-y: auto;
+  background: rgba(15,15,20,0.95);
+  border-radius: 16px;
+  padding: 24px;
+  color: #fff;
+  box-shadow: 0 0 35px rgba(0,0,0,0.6);
+}
+
+/* ---------------------------------- */
+/* Close button */
+/* ---------------------------------- */
+.hg-popup-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+/* ---------------------------------- */
+/* Top elements */
+/* ---------------------------------- */
+
+.hg-popup-name,
+.hg-popup-title {
+  text-align: center;
+  font-size: 1.35rem;
+  font-weight: 600;
+  margin: 6px 0 12px;
+  color: #fff;
+}
+
+/* Face image */
+.hg-popup-face {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 12px;
+  display: block;
+  margin: 0 auto 12px;
+}
+
+/* Place main image */
+.hg-popup-img {
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  object-fit: cover;
+}
+
+/* Kortbilde nederst til høyre */
+.hg-popup-cardimg {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 8px;
+  opacity: .9;
+  border: 2px solid rgba(255,255,255,0.3);
+}
+
+/* Thumbnail card for places */
+.hg-popup-cardthumb {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  border-radius: 8px;
+  margin: 16px auto 0;
+  display: block;
+}
+
+/* ---------------------------------- */
+/* Sections */
+/* ---------------------------------- */
+
+.hg-section {
+  margin-top: 20px;
+}
+
+.hg-section h3 {
+  margin: 0 0 6px;
+  font-size: 1.05rem;
+  color: #f6c800;
+}
+
+/* Wiki text – sekundær */
+.hg-wiki {
+  line-height: 1.45;
+  color: #bbb;          /* mykere og tydelig sekundær */
+  font-size: 0.92rem;   /* litt mindre enn primærtekst */
+  margin-top: 4px;
+}
+
+/* Verk-listen */
+.hg-works {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.hg-works li {
+  padding: 4px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+/* Primær beskrivelse (popupDesc) */
+.hg-popupdesc {
+  line-height: 1.55;
+  color: #fff;         
+  margin: 12px 0 0;
+  font-size: 1rem;
+  font-weight: 400;
+}
+/* ---------------------------------- */
+/* Places list */
+/* ---------------------------------- */
+.hg-places {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.hg-place {
+  padding: 6px 10px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background .2s;
+}
+.hg-place:hover {
+  background: rgba(255,255,255,0.12);
+}
+
+.hg-muted {
+  color: #999;
+  font-size: 0.9rem;
+}
+
+/* ---------------------------------- */
+/* Quiz button inside popup */
+/* ---------------------------------- */
+
+.hg-quiz-btn {
+  background: #FFD600;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-top: 10px;
+  cursor: pointer;
+  color: #000;
+  width: 100%;
+}
+
+.hg-quiz-btn:hover {
+  background: #ffe45c;
+}
+
+/* ===================================================== */
+/* 16) Ruter-seksjon – Utforsk tematiske ruter           */
+/* ===================================================== */
+.route-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.route-buttons button {
+  flex: 1 1 140px;
+  min-width: 140px;
+  text-align: center;
+  background: var(--primary);
+  color: #fff;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-weight: 600;
+  border: none;
+  box-shadow: 0 0 8px rgba(0,0,0,.3);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.route-buttons button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 12px rgba(255,255,255,.15);
+}
+
+.route-buttons button:active {
+  transform: scale(0.97);
+  box-shadow: 0 0 6px rgba(0,0,0,.25);
+}
+
+/* ===================================================== */
+/* NY MINI-PROFIL – HISTORY GO ELEGANT PANEL              */
+/* ===================================================== */
+.mini-profile {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(25,25,30,.95), rgba(10,15,25,.95));
+  border-left: 4px solid #f6c800;
+  border-radius: 12px;
+  padding: 16px 18px;
+  margin-bottom: 26px;
+  box-shadow: 0 0 18px rgba(246,200,0,.05), inset 0 0 6px rgba(255,255,255,.04);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.mini-profile:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 22px rgba(246,200,0,.15), inset 0 0 10px rgba(255,255,255,.06);
+}
+
+.profile-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+.profile-top h3 {
+  margin: 0;
+  font-size: 1.15rem;
+  letter-spacing: .2px;
+  color: #fff;
+}
+
+.arrow-link {
+  color: #f6c800;
+  font-size: 1.35rem;
+  text-decoration: none;
+  transition: transform .2s ease;
+}
+.arrow-link:hover { transform: translateX(3px); }
+
+.mini-profile .muted {
+  color: var(--muted);
+  font-size: .92rem;
+  margin: 0;
+  line-height: 1.4;
+}
+.mini-profile .linkish {
+  color: #f6c800;
+  text-decoration: none;
+  font-weight: 500;
+}
+.mini-profile .linkish:hover { text-decoration: underline; }
+
+
