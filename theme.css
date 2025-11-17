@@ -31,7 +31,7 @@
   --text: #e6eef9;
   --muted: #9bb0c9;
   --primary: #1976d2;
-  --ok: #2ecc71;
+  --ok: #2ecc
   --warn: #ffb703;
 
   --hist: #1976d2;
@@ -243,9 +243,31 @@ main {
 /* ============================================
    SE NÆRMESTE – kompakt venstrestilt liste
    ============================================ */
+/* ============================================================
+   VENSTRE - PANEL FOR "STEDER I NÆRHETEN" (35% bredde)
+   ============================================================ */
 
 #nearbyListContainer {
-  padding-top: 12px;
+  position: absolute;
+  top: 120px;                 /* fin posisjon under header */
+  left: 20px;                 /* luft mot kanten */
+  width: 35vw;                /* 35 % av skjermen */
+  max-width: 420px;           /* ikke bredere enn dette */
+  z-index: 5;
+
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  box-shadow: var(--shadow);
+
+  backdrop-filter: blur(4px);
+}
+
+/* Sørge for at main-innholdet ikke dytter panelet */
+main {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
 }
 
 /* Hvert sted i listen */
