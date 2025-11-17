@@ -81,11 +81,10 @@ header {
   background: linear-gradient(180deg, rgba(10,25,41,.95), rgba(10,25,41,.65) 70%, transparent);
 }
 
-/* MAIN skal vises som vanlig, men slippe gjennom klikk */
 main {
   position: relative;
   z-index: 2;
-  pointer-events: none;
+  pointer-events: auto; /* ← FIX */
 }
 
 /* ---------------------------------------------------------
