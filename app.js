@@ -90,7 +90,7 @@ const el = {
   gallery: document.getElementById("gallery"),
 
 };
-
+const IS_PROFILE = document.body.classList.contains("profile-page");
 
 // ==============================
 // 3. KATEGORIFUNKSJONER
