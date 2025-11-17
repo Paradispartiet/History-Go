@@ -197,6 +197,19 @@ main {
   font-size:1.2rem;            /* litt større overskrifter */
 }
 
+.side-panel {
+  position: fixed;
+  top: 120px;      /* eller ditt valg */
+  left: 12px;
+  width: 300px;
+  z-index: 20;
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  box-shadow: var(--shadow);
+}
+
 .cards{ display:grid; gap:10px }
 .card{
   background: rgba(255,255,255,.02);
