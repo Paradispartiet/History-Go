@@ -12,6 +12,7 @@
 // 8.  MERKER, NIVÅER OG FREMGANG
 // 9.  HENDELSER (click-delegation) OG SHEETS
 // 10. INITIALISERING OG BOOT
+// 11. STED-OVERLAY (tekst + personer)
 // 12. KARTMODUS
 // 13. QUIZ – DYNAMISK LASTER, MODAL & SCORE
 // 14. PERSON- OG STED-POPUP
@@ -998,59 +999,43 @@ async function startQuiz(targetId) {
     title: person ? person.name : place.name,
     questions: formatted,
     onEnd: (correct, total) => {
-  const perfect = correct === total;
+      const perfect = correct === total;
 
-  if (perfect) {
-    addCompletedQuizAndMaybePoint(displayCat, targetId);
-    markQuizAsDone(targetId);
+      if (perfect) {
+        addCompletedQuizAndMaybePoint(displayCat, targetId);
+        markQuizAsDone(targetId);
 
-    // --- REWARD FØRST ---
-    if (person) {
-      showRewardPerson(person);
-    } else if (place) {
-      showRewardPlace(place);
-    }
+        if (person) {
+          peopleCollected[targetId] = true;
+          savePeople();
+          showPersonPopup(person);
+          document
+            .getElementById("gallery")
+            ?.scrollIntoView({ behavior: "smooth" });
+        } else if (place) {
+          // Vis kort hvis stedet er besøkt eller testmodus
+          const visitedPlaces = visited;
+          if (visitedPlaces[place.id] || el.test?.checked) {
+            showPlacePopup(place);
+            pulseMarker(place.lat, place.lon);
+          }
+        }
 
-    // --- LAGRING ---
-    if (person) {
-      peopleCollected[targetId] = true;
-      savePeople();
-    }
+        showToast(
+          `Perfekt! ${total}/${total} riktige 🎯 Du fikk poeng og kort!`
+        );
+        window.dispatchEvent(new Event("updateProfile"));
+      } else {
+        showToast(
+          `Fullført: ${correct}/${total} – prøv igjen for full score.`
+        );
+      }
 
-    // --- PULSE MARKØR (kun sted) ---
-    if (place) {
-      const visitedPlaces = visited;
-      if (visitedPlaces[place.id] || el.test?.checked) {
-        pulseMarker(place.lat, place.lon);
+      if (person && person.placeId) {
+        const plc = PLACES.find(p => p.id === person.placeId);
+        if (plc) pulseMarker(plc.lat, plc.lon);
       }
     }
-
-    // --- ÅPNE POPUP ETTER REWARD ---
-    setTimeout(() => {
-      if (person) {
-        showPersonPopup(person);
-        document
-          .getElementById("gallery")
-          ?.scrollIntoView({ behavior: "smooth" });
-      } else if (place) {
-        showPlacePopup(place);
-      }
-    }, 300);
-
-    // --- STATUS ---
-    showToast(`Perfekt! ${total}/${total} riktige 🎯 Du fikk poeng og kort!`);
-    window.dispatchEvent(new Event("updateProfile"));
-
-  } else {
-    showToast(`Fullført: ${correct}/${total} – prøv igjen for full score.`);
-  }
-
-  // --- PULSE STED FRA PERSON ---
-  if (person && person.placeId) {
-    const plc = PLACES.find(p => p.id === person.placeId);
-    if (plc) pulseMarker(plc.lat, plc.lon);
-  }
-}
   });
 }
 
@@ -1117,3 +1102,4 @@ function runQuizFlow({ title = "Quiz", questions = [], onEnd = () => {} }) {
 
   step();
 }
+
