@@ -334,3 +334,84 @@ document.addEventListener("DOMContentLoaded", () => {
     renderTimeline();
   });
 });
+
+// ============================================================
+// KART PÅ PROFILSIDEN – KUN BESØKTE STEDER
+// ============================================================
+
+let PROFILE_MAP = null;
+let PROFILE_LAYER = null;
+
+window.addEventListener("DOMContentLoaded", setupProfileMap);
+window.addEventListener("updateProfile", updateProfileMarkers);
+
+function setupProfileMap() {
+  if (typeof L === "undefined") return;
+
+  if (!PROFILE_MAP) {
+    PROFILE_MAP = L.map("map", {
+      zoomControl: false,
+      attributionControl: false
+    }).setView([59.9139, 10.7522], 13);
+
+    L.tileLayer(
+      "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
+      { subdomains: "abcd", maxZoom: 19 }
+    ).addTo(PROFILE_MAP);
+
+    PROFILE_LAYER = L.layerGroup().addTo(PROFILE_MAP);
+  }
+
+  updateProfileMarkers();
+}
+
+function updateProfileMarkers() {
+  if (!PROFILE_LAYER || !PLACES.length) return;
+
+  const visited = ls("visited_places", {});
+  PROFILE_LAYER.clearLayers();
+
+  PLACES.filter(p => visited[p.id]).forEach(p => {
+    const mk = L.circleMarker([p.lat, p.lon], {
+      radius: 9,
+      color: "#ffd700",
+      weight: 2,
+      fillColor: lighten(catColor(p.category), 0.35),
+      fillOpacity: 1
+    }).addTo(PROFILE_LAYER);
+
+    mk.bindTooltip(p.name, { direction: "top" });
+
+    mk.on("click", () => {
+      if (window.showPlacePopup)
+        window.showPlacePopup(p);
+    });
+  });
+}
+
+// ---------- FARGE / LIGHTEN ----------
+function catColor(cat="") {
+  const c = cat.toLowerCase();
+  if (c.includes("historie")) return "#344B80";
+  if (c.includes("vitenskap")) return "#9b59b6";
+  if (c.includes("kunst")) return "#ffb703";
+  if (c.includes("musikk")) return "#ff66cc";
+  if (c.includes("litteratur")) return "#f6c800";
+  if (c.includes("natur")) return "#4caf50";
+  if (c.includes("sport")) return "#2a9d8f";
+  if (c.includes("by")) return "#e63946";
+  if (c.includes("politikk")) return "#c77dff";
+  if (c.includes("naering")) return "#ff8800";
+  if (c.includes("populaer")) return "#ffb703";
+  if (c.includes("subkultur")) return "#ff66cc";
+  return "#9b59b6";
+}
+
+function lighten(hex, amount = 0.35) {
+  const c = hex.replace("#", "");
+  const num = parseInt(c, 16);
+  let r = Math.min(255, (num >> 16) + 255*amount);
+  let g = Math.min(255, ((num >> 8)&255) + 255*amount);
+  let b = Math.min(255, (num & 255) + 255*amount);
+  return `rgb(${r},${g},${b})`;
+}
