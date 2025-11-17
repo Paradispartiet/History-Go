@@ -41,13 +41,6 @@ function saveVisited() {
   renderCollection();
 }
 
-// MARKER STED SOM BESØKT (KRITISK FOR PROFILSIDEN)
-function addVisitedPlace(id) {
-  visited[id] = true;                         // Oppdater i RAM
-  localStorage.setItem("visited_places", JSON.stringify(visited)); // Lagre til LS
-  window.dispatchEvent(new Event("updateProfile")); // Oppdater profilsiden
-}
-
 function savePeople() {
   localStorage.setItem("people_collected", JSON.stringify(peopleCollected));
   renderGallery();
@@ -367,9 +360,8 @@ function drawPlaceMarkers() {
     });
 
     mk.on("click", () => {
-  addVisitedPlace(p.id);
-  openPlaceCard(p);
-});
+      openPlaceCard(p);   // ← 100 % riktig popup
+    });
   });
 }
 
@@ -592,13 +584,10 @@ document.addEventListener("click", e => {
   // Åpne sted fra kort (data-open)
   const openId = target.getAttribute?.("data-open");
   if (openId) {
-  const p = PLACES.find(x => x.id === openId);
-  if (p) {
-    addVisitedPlace(p.id);
-    openPlaceCard(p);
+    const p = PLACES.find(x => x.id === openId);
+    if (p) openPlaceCard(p);
+    return;
   }
-  return;
-}
 
   // Mer info (Google)
   const infoName = target.getAttribute?.("data-info");
