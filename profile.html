@@ -13,11 +13,6 @@
         crossorigin="" />
   <link rel="stylesheet"
         href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css" />
-
-  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
-
-  <!-- Popup-system -->
-  <script src="popup-utils.js"></script>
 </head>
 
 <body class="profile-page">
@@ -117,21 +112,35 @@
   </main>
 
 
-  <!-- Leaflet -->
+  <!-- Leaflet (kun for kartbakgrunn, ingen routing) -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
-  <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script>
 
-  <!-- App-motor -->
-  <script src="app.js"></script>
-  <script src="routes.js" defer></script>
+  <!-- LITE KARTSYSTEM (kun bakgrunn på profilsiden) -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Init kart
+      if (typeof L !== "undefined") {
+        const mapEl = document.getElementById("map");
+        const MAP = L.map(mapEl, { zoomControl: false })
+          .setView([59.9139, 10.7522], 13);
 
-  <!-- Profilmotor -->
+        L.tileLayer(
+          "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
+          { subdomains: "abcd", maxZoom: 19 }
+        ).addTo(MAP);
+
+        // Sentrer-knapp
+        document.getElementById("btnCenter")?.addEventListener("click", () => {
+          MAP.setView([59.9139, 10.7522], 13);
+        });
+      }
+    });
+  </script>
+
+  <!-- Profilmotor (kjører KUN på denne siden) -->
   <script src="profile.js"></script>
 
-  <!-- ============================= -->
-  <!-- KARTMODUS PÅ PROFILSIDE       -->
-  <!-- (samme som index)             -->
-  <!-- ============================= -->
+  <!-- Kart-modus på profilsiden -->
   <script>
     document.getElementById("btnSeeMap")?.addEventListener("click", () => {
       document.body.classList.add("map-only");
