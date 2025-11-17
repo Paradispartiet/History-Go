@@ -86,17 +86,22 @@ main {
   z-index: 2;
 }
 
+.panel {
+  position: relative;
+  z-index: 5;
+}
 /* ---------------------------------------------------------
-   POPUPS, SHEETS, QUIZ, PLACE CARD → ALLTID OVERALT
+   KUN EKTE OVERLAYS SKAL HENGE OVER ALT
    --------------------------------------------------------- */
 .hg-popup,
 .quiz-modal,
 #badgeModal,
 .profile-modal {
   position: fixed;
+  inset: 0;
   pointer-events: auto;
   z-index: 10000;
-}
+}y
 
 /* ---------------------------------------------------------
    Kartknappene nederst til høyre skal alltid fungere
