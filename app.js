@@ -838,20 +838,7 @@ el.btnExitMap?.addEventListener("click", exitMapMode);
 // ==============================
 // 13. QUIZ – DYNAMISK LASTER, MODAL & SCORE
 // ==============================
-const QUIZ_FILE_MAP = {
-  kunst:        "quiz_kunst.json",
-  sport:        "quiz_sport.json",
-  politikk:     "quiz_politikk.json",
-  populaerkultur:"quiz_populaerkultur.json",
-  musikk:       "quiz_musikk.json",
-  subkultur:    "quiz_subkultur.json",
-  vitenskap:    "quiz_vitenskap.json",
-  natur:        "quiz_natur.json",
-  litteratur:   "quiz_litteratur.json",
-  by:           "quiz_by.json",
-  historie:     "quiz_historie.json",
-  naeringsliv:  "quiz_naeringsliv.json"
-};
+
 
 async function loadQuizForCategory(categoryId) {
   const file = QUIZ_FILE_MAP[categoryId];
