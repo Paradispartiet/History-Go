@@ -230,6 +230,7 @@ L.tileLayer(
     attribution: '&copy; OpenStreetMap'
   }
 ).addTo(MAP);
+  
   MAP.whenReady(() => {
     mapReady = true;
     if (dataReady) maybeDrawMarkers();
