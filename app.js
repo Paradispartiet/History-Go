@@ -397,25 +397,20 @@ function renderPlaceCard(p) {
       : `${(p._d / 1000).toFixed(1)} km`;
 
   return `
-    <div class="nearby-item">
-      
-      <!-- BILDE -->
-      <img class="nearby-thumb" src="${p.cardImage || p.image}" alt="${p.name}">
-      
-      <!-- NAVN + AVSTAND -->
-      <div class="nearby-info">
-        <div class="nearby-name">${p.name}</div>
-        <div class="nearby-dist">${dist}</div>
-      </div>
-
-      <!-- KATEGORI-BADGE -->
-      <img class="nearby-badge" src="bilder/merker/${catClass(p.category)}.PNG" alt="${p.category}">
-
-      <!-- KNAPP -->
-      <button class="ghost small" data-open="${p.id}">Åpne</button>
-
+  <div class="nearby-item" data-open="${p.id}">
+    
+    <div class="nearby-row">
+      <img class="nearby-img" src="${p.cardImage || p.image}" alt="">
+      <div class="nearby-name">${p.name}</div>
     </div>
-  `;
+
+    <div class="nearby-row">
+      <img class="nearby-badge" src="bilder/badges/${p.category}.PNG" alt="">
+      <div class="nearby-dist">${dist}</div>
+    </div>
+
+  </div>
+`;
 }
 
 function renderPersonCardInline(pr) {
