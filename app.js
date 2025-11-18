@@ -795,6 +795,94 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+// =====================================================
+// FELLES BADGE-CLICK FUNKSJON (BRUKES FRA BEGGE SIDER)
+// =====================================================
+async function handleBadgeClick(badgeEl) {
+  const badgeId = badgeEl.getAttribute("data-badge-id");
+  const modal   = document.getElementById("badgeModal");
+  if (!badgeId || !modal) return;
+
+  await ensureBadgesLoaded();
+  const badge = BADGES.find(b => b.id === badgeId);
+  if (!badge) return;
+
+  // --- HENT POENG OG NIVÅ ---
+  const localMerits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
+  const info = localMerits[badge.name] || localMerits[badge.id] || {
+    level: "Nybegynner",
+    points: 0
+  };
+
+  // --- FYLL MODAL-HEADER ---
+  modal.querySelector(".badge-img").src = badge.image;
+  modal.querySelector(".badge-title").textContent = badge.name;
+  modal.querySelector(".badge-level").textContent = info.level;
+  modal.querySelector(".badge-progress-text").textContent = `${info.points} poeng`;
+
+  // --- PROGRESS BAR ---
+  const max = badge.tiers.at(-1).threshold || 1;
+  modal.querySelector(".badge-progress-bar").style.width =
+    `${Math.min(100, (info.points / max) * 100)}%`;
+
+  // --- QUIZLISTE ---
+  const quizList = modal.querySelector(".badge-quizzes");
+  quizList.innerHTML = "<li class='muted'>Laster…</li>";
+
+  const quizProgress = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
+  const completed    = quizProgress[badge.id]?.completed || [];
+
+  if (!completed.length) {
+    quizList.innerHTML = "<li class='muted'>Ingen fullførte quizzer i denne kategorien.</li>";
+  } else {
+    const file = QUIZ_FILE_MAP[badge.id];
+    if (!file) {
+      quizList.innerHTML = "<li class='muted'>Fant ikke quiz-fil.</li>";
+    } else {
+      fetch(file)
+        .then(r => r.json())
+        .then(data => {
+          const arr = Array.isArray(data) ? data : [];
+
+          const qs = completed
+            .map(id => arr.find(q => q.personId === id || q.placeId === id))
+            .filter(Boolean)
+            .reverse();
+
+          if (!qs.length) {
+            quizList.innerHTML = "<li class='muted'>Ingen spørsmål funnet.</li>";
+            return;
+          }
+
+          quizList.innerHTML = qs
+            .map(q => `
+              <li class="badge-quiz-item">
+                <strong>${q.question}</strong>
+                <span class="muted">Riktig svar: ${q.answer}</span>
+              </li>
+            `)
+            .join("");
+        })
+        .catch(() => {
+          quizList.innerHTML = "<li class='muted'>Feil ved lasting.</li>";
+        });
+    }
+  }
+
+  // --- VIS MODAL ---
+  modal.style.display = "flex";
+  modal.setAttribute("aria-hidden", "false");
+
+  modal.querySelector(".close-btn").onclick = () => {
+    modal.style.display = "none";
+    modal.setAttribute("aria-hidden", "true");
+  };
+}
+
+// GJØR TILGJENGELIG GLOBALT
+window.handleBadgeClick = handleBadgeClick;
+
+
 
 // ==============================
 // 12. KARTMODUS
