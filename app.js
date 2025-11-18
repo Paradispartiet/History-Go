@@ -419,18 +419,20 @@ function renderPersonCardInline(pr) {
     pr._d < 1000 ? `${pr._d} m` : `${(pr._d / 1000).toFixed(1)} km`;
 
   return `
-    <article class="card">
-      <div>
-        <div class="name">${pr.name}</div>
-        <div class="meta">${cat}</div>
-        <p class="desc">${pr.desc || ""}</p>
-      </div>
-      <div class="row between">
-        <div class="dist">${dist}</div>
-        <button class="primary" data-quiz="${pr.id}">Ta quiz</button>
-      </div>
-    </article>`;
-}
+  <div class="nearby-item" data-open="${p.id}">
+    
+    <div class="nearby-row">
+      <img class="nearby-img" src="${p.cardImage || p.image}" alt="${p.name}">
+      <div class="nearby-name">${p.name}</div>
+    </div>
+
+    <div class="nearby-row">
+      <img class="nearby-badge" src="bilder/badges/${p.category}.PNG" alt="${p.category}">
+      <div class="nearby-dist">${dist}</div>
+    </div>
+
+  </div>
+`;
 
 function renderCollection() {
   const grid = el.collectionGrid;
@@ -582,7 +584,7 @@ document.addEventListener("click", e => {
   const target = e.target;
 
   // Åpne sted fra kort (data-open)
-  const openId = target.getAttribute?.("data-open");
+  const openId = target.closest("[data-open]")?.getAttribute("data-open");
   if (openId) {
     const p = PLACES.find(x => x.id === openId);
     if (p) openPlaceCard(p);
