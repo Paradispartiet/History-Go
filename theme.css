@@ -268,17 +268,27 @@ main {
   z-index: 5;
 }
 
-/* Gjør det lettere å vise 5 steder kompakt */
+/* --- NÆRMESTE-PANELET (NY 2-RADERS STIL) ---------------------- */
+
+/* Hele elementet */
 .nearby-item {
   padding: 10px 0;
   border-bottom: 1px solid rgba(255,255,255,0.08);
+  cursor: pointer;
 }
 .nearby-item:last-child {
   border-bottom: none;
 }
 
-/* Thumbnail (mindre!) */
-.nearby-thumb {
+/* Radene */
+.nearby-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* 1) Bilde på rad 1 */
+.nearby-img {
   width: 46px;
   height: 46px;
   object-fit: cover;
@@ -286,41 +296,26 @@ main {
   border: 1px solid rgba(255,255,255,0.12);
 }
 
-/* Tekst venstrestilt */
-.nearby-info {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
 /* Navn */
 .nearby-name {
   font-size: 0.98rem;
   font-weight: 600;
   color: #fff;
-  margin-bottom: 2px;
+}
+
+/* Badge på rad 2 (liten, rund) */
+.nearby-badge {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+  border-radius: 50%;
+  opacity: 0.95;
 }
 
 /* Avstand */
 .nearby-dist {
   font-size: 0.85rem;
   color: var(--muted);
-}
-
-/* Kategori-merke (liten rund ikon) */
-.nearby-badge {
-  width: 26px;
-  height: 26px;
-  object-fit: contain;
-  opacity: 0.95;
-  margin-right: 4px;
-}
-
-/* Åpne-knappen */
-.nearby-item button {
-  padding: 6px 10px;
-  font-size: 0.85rem;
-  border-radius: 8px;
 }
 
 
