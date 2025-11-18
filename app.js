@@ -224,10 +224,10 @@ function initMap() {
   placeLayer = L.layerGroup().addTo(MAP);
 
 L.tileLayer(
-  "https://tile.openstreetmap.fr/hot/{z}/{x}/{y}.png",
+  "https://stamen-tiles.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}.png",
   {
     maxZoom: 20,
-    attribution: '&copy; OpenStreetMap'
+    attribution: "&copy; Stamen & OSM"
   }
 ).addTo(MAP);
   
