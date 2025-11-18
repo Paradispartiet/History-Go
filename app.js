@@ -394,12 +394,15 @@ function renderPlaceCard(p) {
 
   return `
   <div class="nearby-item" data-open="${p.id}">
+    
     <img class="nearby-thumb" src="${p.cardImage || p.image}">
-    <div class="nearby-mid">
-      <div class="nearby-name">${p.name}</div>
-    </div>
+    
+    <span class="nearby-name">${p.name}</span>
+
+    <span class="nearby-dist">${dist}</span>
+
     <img class="nearby-badge" src="bilder/merker/${catClass(p.category)}.PNG">
-    <div class="nearby-dist">${dist}</div>
+
   </div>
 `;
 }
