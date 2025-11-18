@@ -224,8 +224,12 @@ function initMap() {
   placeLayer = L.layerGroup().addTo(MAP);
 
 L.tileLayer(
-  "https://tiles.ourmaps.dev/tiles/dark/{z}/{x}/{y}.png",
-  { maxZoom: 19 }
+  "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png",
+  {
+    maxZoom: 19,
+    subdomains: "abcd",
+    attribution: "&copy; CARTO"
+  }
 ).addTo(MAP);
   
   MAP.whenReady(() => {
