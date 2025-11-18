@@ -142,8 +142,10 @@ function closeAllRoutes() {
   }
 }
 
+
 // ------------------------------
 // Eksporter funksjoner til global scope
 // ------------------------------
 window.showRouteOverlay = showRouteOverlay;
 window.loadRoutes = loadRoutes;
+window.closeAllRoutes = closeAllRoutes;
