@@ -405,7 +405,7 @@ function renderPlaceCard(p) {
     </div>
 
     <div class="nearby-row">
-      <img class="nearby-badge" src="bilder/badges/${p.category}.PNG" alt="">
+      <img class="nearby-badge" src="bilder/merker/${catClass(p.category)}.PNG" alt="">
       <div class="nearby-dist">${dist}</div>
     </div>
 
@@ -427,7 +427,7 @@ function renderPersonCardInline(pr) {
     </div>
 
     <div class="nearby-row">
-      <img class="nearby-badge" src="bilder/badges/${p.category}.PNG" alt="${p.category}">
+      <img class="nearby-badge" src="bilder/merker/${cat}.PNG">
       <div class="nearby-dist">${dist}</div>
     </div>
 
