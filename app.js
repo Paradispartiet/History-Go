@@ -77,9 +77,6 @@ const el = {
 
   list:       document.getElementById("nearbyList"),
   nearPeople: document.getElementById("nearbyPeople"),
-  seeMore:    document.getElementById("btnSeeMoreNearby"),
-  sheetNear:  document.getElementById("sheetNearby"),
-  sheetNearBody: document.getElementById("sheetNearbyBody"),
 
   collectionGrid:      document.getElementById("collectionGrid"),
   collectionCount:     document.getElementById("collectionCount"),
@@ -456,22 +453,6 @@ function renderCollection() {
     .join("");
 }
 
-function buildSeeMoreNearby() {
-  if (!el.sheetNearBody) return;
-
-  const sorted = PLACES
-    .map(p => ({
-      ...p,
-      _d: currentPos ? Math.round(distMeters(currentPos, { lat: p.lat, lon: p.lon })) : null
-    }))
-    .sort((a, b) => (a._d ?? 1e12) - (b._d ?? 1e12));
-
-  el.sheetNearBody.innerHTML = sorted
-    .slice(NEARBY_LIMIT, NEARBY_LIMIT + 24)
-    .map(renderPlaceCard)
-    .join("");
-}
-
 function renderGallery() {
   if (!el.gallery) return;
   const collectedIds = Object.keys(peopleCollected).filter(id => peopleCollected[id]);
@@ -627,11 +608,6 @@ document.querySelectorAll("[data-close]").forEach(btn => {
   });
 });
 
-// “Se mer i nærheten”
-el.seeMore?.addEventListener("click", () => {
-  buildSeeMoreNearby();
-  openSheet(el.sheetNear);
-});
 
 
 async function handleBadgeClick(badgeEl) {
