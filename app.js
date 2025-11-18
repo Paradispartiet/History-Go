@@ -224,13 +224,12 @@ function initMap() {
   placeLayer = L.layerGroup().addTo(MAP);
 
   L.tileLayer(
-    "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
-    {
-      attribution: '&copy; <a href="https://carto.com/attributions">CARTO</a>',
-      subdomains: "abcd",
-      maxZoom: 19
-    }
-  ).addTo(MAP);
+  "https://tiles.stadiamaps.com/tiles/outdoors/{z}/{x}/{y}{r}.png",
+  {
+    maxZoom: 20,
+    attribution: '&copy; Stadia Maps & OSM'
+  }
+).addTo(MAP);
 
   MAP.whenReady(() => {
     mapReady = true;
