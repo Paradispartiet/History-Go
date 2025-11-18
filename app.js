@@ -224,11 +224,11 @@ function initMap() {
   placeLayer = L.layerGroup().addTo(MAP);
 
 L.tileLayer(
-  "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png",
+  "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png",
   {
-    maxZoom: 19,
+    attribution: "&copy; CARTO",
     subdomains: "abcd",
-    attribution: "&copy; CARTO"
+    maxZoom: 19
   }
 ).addTo(MAP);
   
