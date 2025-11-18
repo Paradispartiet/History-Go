@@ -1191,14 +1191,15 @@ button.quiz-done.blink {
   box-shadow: 0 0 6px rgba(0,0,0,.25);
 }
 
-/* Plasser rute-panelet rett under nærmeste-panelet */
+/* RUTE-PANELET SKAL VÆRE FULL BREDDE */
 main > section.panel:nth-of-type(2) {
   position: absolute;
-  top: 520px;     /* ← eksakt høyde basert på bildet */
-  left: 20px;
-  width: 35vw;
-  max-width: 420px;
-  z-index: 5;
+  top: 520px;      /* justér 10–20px etter behov */
+  left: 0;
+  right: 0;
+  width: 100%;
+  max-width: none;
+  z-index: 4;
 }
 
 /* ===================================================== */
