@@ -223,14 +223,13 @@ function initMap() {
   );
   placeLayer = L.layerGroup().addTo(MAP);
 
-  L.tileLayer(
-  "https://tiles.stadiamaps.com/tiles/outdoors/{z}/{x}/{y}{r}.png",
+L.tileLayer(
+  "https://tile.openstreetmap.fr/hot/{z}/{x}/{y}.png",
   {
     maxZoom: 20,
-    attribution: '&copy; Stadia Maps & OSM'
+    attribution: '&copy; OpenStreetMap'
   }
 ).addTo(MAP);
-
   MAP.whenReady(() => {
     mapReady = true;
     if (dataReady) maybeDrawMarkers();
