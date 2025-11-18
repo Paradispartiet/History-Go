@@ -3,6 +3,23 @@
 // Felles motor for ALLE popups (person, sted, placeCard, reward)
 // ============================================================
 
+
+// QUIZ-FILKART (fallback i profil.html)
+window.QUIZ_FILE_MAP = window.QUIZ_FILE_MAP || {
+  kunst:        "quiz_kunst.json",
+  sport:        "quiz_sport.json",
+  politikk:     "quiz_politikk.json",
+  populaerkultur:"quiz_populaerkultur.json",
+  musikk:       "quiz_musikk.json",
+  subkultur:    "quiz_subkultur.json",
+  vitenskap:    "quiz_vitenskap.json",
+  natur:        "quiz_natur.json",
+  litteratur:   "quiz_litteratur.json",
+  by:           "quiz_by.json",
+  historie:     "quiz_historie.json",
+  naeringsliv:  "quiz_naeringsliv.json"
+};
+
 let currentPopup = null;
 
 // ============================================================
