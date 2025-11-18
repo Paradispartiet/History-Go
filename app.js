@@ -583,13 +583,15 @@ function closeSheet(sheet) {
 document.addEventListener("click", e => {
   const target = e.target;
 
+  
   // Åpne sted fra kort (data-open)
-  const openId = target.closest("[data-open]")?.getAttribute("data-open");
-  if (openId) {
-    const p = PLACES.find(x => x.id === openId);
-    if (p) openPlaceCard(p);
-    return;
-  }
+  const container = target.closest?.("[data-open]");
+if (container) {
+  const openId = container.getAttribute("data-open");
+  const p = PLACES.find(x => x.id === openId);
+  if (p) openPlaceCard(p);
+  return;
+}
 
   // Mer info (Google)
   const infoName = target.getAttribute?.("data-info");
