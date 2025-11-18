@@ -679,6 +679,10 @@ async function handleBadgeClick(badgeEl) {
   const catKey       = badge.id;
   const completed    = quizProgress[catKey]?.completed || [];
 
+// Sett teller: hvor mange spørsmål ble tatt i kategorien?
+const countEl = modal.querySelector(".badge-quiz-count");
+if (countEl) countEl.textContent = `${completed.length} spørsmål fullført`;
+  
   if (!completed.length) {
     quizListEl.innerHTML = "<li class='muted'>Ingen fullførte quizzer i denne kategorien.</li>";
   } else {
