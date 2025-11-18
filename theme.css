@@ -1204,6 +1204,29 @@ main > section.panel:nth-of-type(2) {
   z-index: 4;          /* over kartet, under popups */
 }
 
+.routes-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Rød chip-knapp */
+.close-route-chip {
+  background: rgba(255, 50, 50, 0.25);
+  border: 1px solid rgba(255, 50, 50, 0.45);
+  color: #ff4c4c;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+}
+
+.close-route-chip:hover {
+  background: rgba(255, 50, 50, 0.35);
+  border-color: rgba(255, 50, 50, 0.65);
+}
 /* ===================================================== */
 /* NY MINI-PROFIL – HISTORY GO ELEGANT PANEL              */
 /* ===================================================== */
