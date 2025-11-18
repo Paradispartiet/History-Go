@@ -92,16 +92,11 @@ async function renderMerits() {
       </div>`;
   }).join("");
 
-  // Klikk → modal
-  box.querySelectorAll(".badge-mini").forEach(el => {
-    el.addEventListener("click", () => {
-      const id = el.dataset.badgeId;
-      const badge = BADGES.find(b => b.id === id);
-      handleBadgeClick(el);
-    });
+ box.querySelectorAll(".badge-mini").forEach(el => {
+  el.addEventListener("click", () => {
+    handleBadgeClick(el);
   });
-}
-
+});
 
 
 // ------------------------------------------------------------
