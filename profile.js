@@ -103,53 +103,6 @@ async function renderMerits() {
 }
 
 
-function openBadgeModal(badge) {
-  const modal = document.getElementById("badgeModal");
-  if (!modal || !badge) return;
-
-  const merits = ls("merits_by_category", {});
-  const info = merits[badge.name] || merits[badge.id] || { level:"Nybegynner", points:0 };
-
-  modal.querySelector(".badge-img").src = badge.image;
-  modal.querySelector(".badge-title").textContent = badge.name;
-  modal.querySelector(".badge-level").textContent = info.level;
-  modal.querySelector(".badge-progress-text").textContent = `${info.points} poeng`;
-
-  // Progressbar
-  const bar = modal.querySelector(".badge-progress-bar");
-  const max = badge.tiers[badge.tiers.length - 1].threshold;
-  bar.style.width = `${Math.min(100, (info.points / max) * 100)}%`;
-
-  // Quizer (vises bare liste)
-  const list = modal.querySelector(".badge-quizzes");
-  list.innerHTML = "";
-
-  const progress = ls("quiz_progress", {});
-  const completed = [];
-  for (const cat of Object.keys(progress)) {
-    progress[cat].completed?.forEach(q => completed.push(q));
-  }
-  list.innerHTML = completed.length
-    ? completed.map(id => `<li>${id}</li>`).join("")
-    : "<li>Ingen quiz fullført ennå</li>";
-
-  modal.style.display = "flex";
-  modal.setAttribute("aria-hidden", "false");
-
-  modal.onclick = e => {
-    if (e.target.id === "badgeModal") closeBadgeModal();
-  };
-
-  modal.querySelector(".close-btn").onclick = closeBadgeModal;
-}
-
-function closeBadgeModal() {
-  const m = document.getElementById("badgeModal");
-  if (!m) return;
-  m.style.display = "none";
-  m.setAttribute("aria-hidden", "true");
-}
-
 
 // ------------------------------------------------------------
 // PERSONER
