@@ -280,44 +280,41 @@ main {
   border-bottom: none;
 }
 
-/* Radene */
 .nearby-row {
   display: flex;
   align-items: center;
   gap: 10px;
+  margin-bottom: 6px;
 }
 
-/* 1) Bilde på rad 1 */
+.nearby-row:last-child {
+  margin-bottom: 0;
+}
+
 .nearby-img {
-  width: 46px;
-  height: 46px;
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
   object-fit: cover;
-  border-radius: 6px;
-  border: 1px solid rgba(255,255,255,0.12);
 }
 
-/* Navn */
+.nearby-badge {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+}
+
 .nearby-name {
-  font-size: 0.98rem;
+  font-size: 1rem;
   font-weight: 600;
   color: #fff;
 }
 
-/* Badge på rad 2 (liten, rund) */
-.nearby-badge {
-  width: 26px;
-  height: 26px;
-  object-fit: contain;
-  border-radius: 50%;
-  opacity: 0.95;
-}
-
-/* Avstand */
 .nearby-dist {
-  font-size: 0.85rem;
-  color: var(--muted);
+  margin-left: auto;
+  font-size: 0.9rem;
+  color: var(--text-dim);
 }
-
 
 /* ===================================================== */
 /* 5) Knapper & chips/badges                             */
