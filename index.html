@@ -29,18 +29,26 @@
   <div id="gallery" style="display:none"></div>
 
   <!-- Badge-modal -->
-  <div id="badgeModal" class="modal" aria-hidden="true" style="display:none;">
-    <div class="modal-content">
-      <img class="badge-img" src="" alt="Merke">
-      <h3 class="badge-title"></h3>
-      <p class="badge-level"></p>
-      <div class="badge-progress"><div class="badge-progress-bar"></div></div>
-      <p class="badge-progress-text"></p>
-      <ul class="badge-quizzes"></ul>
-      <button class="close-btn">Lukk</button>
-    </div>
-  </div>
+<div id="badgeModal" class="modal" aria-hidden="true" style="display:none;">
+  <div class="modal-content">
+    <img class="badge-img" src="" alt="Merke">
+    <h3 class="badge-title"></h3>
+    <p class="badge-level"></p>
 
+    <div class="badge-progress">
+      <div class="badge-progress-bar"></div>
+    </div>
+
+    <p class="badge-progress-text"></p>
+
+    <!-- ⭐ NY LINJE: ANTALL QUIZZER I DENNE KAT. -->
+    <p class="badge-quiz-count muted"></p>
+
+    <ul class="badge-quizzes"></ul>
+
+    <button class="close-btn">Lukk</button>
+  </div>
+</div>
   <!-- KART -->
   <div id="map" aria-label="Kart"></div>
 
