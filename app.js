@@ -668,6 +668,57 @@ async function handleBadgeClick(badgeEl) {
     barEl.style.width = `${pct}%`;
   }
 
+  // ----------------------------------------------------
+  //  FULLFØRTE QUIZ-SPØRSMÅL FOR DENNE KATEGORIEN
+  // ----------------------------------------------------
+
+  const quizListEl = modal.querySelector(".badge-quizzes");
+  quizListEl.innerHTML = "<li class='muted'>Laster spørsmål…</li>";
+
+  const quizProgress = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
+  const catKey       = badge.id;
+  const completed    = quizProgress[catKey]?.completed || [];
+
+  if (!completed.length) {
+    quizListEl.innerHTML = "<li class='muted'>Ingen fullførte quizzer i denne kategorien.</li>";
+  } else {
+    const file = QUIZ_FILE_MAP[catKey];
+
+    if (!file) {
+      quizListEl.innerHTML = "<li class='muted'>Fant ikke quiz-fil.</li>";
+    } else {
+      fetch(file)
+        .then(r => r.json())
+        .then(data => {
+          const arr = Array.isArray(data) ? data : [];
+
+          const qs = completed
+            .map(id => arr.find(q =>
+              q.personId === id || q.placeId === id
+            ))
+            .filter(Boolean)
+            .reverse();   // ← nyeste quiz øverst
+
+          if (!qs.length) {
+            quizListEl.innerHTML = "<li class='muted'>Ingen spørsmål funnet.</li>";
+            return;
+          }
+
+          quizListEl.innerHTML = qs
+            .map(q => `
+              <li class="badge-quiz-item">
+                <strong>${q.question}</strong>
+                <span class="muted">Riktig svar: ${q.answer}</span>
+              </li>
+            `)
+            .join("");
+        })
+        .catch(() => {
+          quizListEl.innerHTML = "<li class='muted'>Kunne ikke laste quiz-data.</li>";
+        });
+    }
+  }
+
   modal.style.display = "flex";
   modal.setAttribute("aria-hidden", "false");
 
