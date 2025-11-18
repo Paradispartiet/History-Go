@@ -4,7 +4,7 @@
 // =====================================================
 
 const V = 'hg-v18.2.1.1.293';
-const CORE = [r
+const CORE = [
   'index.html',
   'profile.html',
   'theme.css',
