@@ -97,7 +97,7 @@ async function renderMerits() {
     el.addEventListener("click", () => {
       const id = el.dataset.badgeId;
       const badge = BADGES.find(b => b.id === id);
-      openBadgeModal(badge);
+      handleBadgeClick(el);
     });
   });
 }
