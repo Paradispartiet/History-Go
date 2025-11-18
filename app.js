@@ -224,10 +224,11 @@ function initMap() {
   placeLayer = L.layerGroup().addTo(MAP);
 
 L.tileLayer(
-  "https://stamen-tiles.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}.png",
+  "https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}.png",
   {
-    maxZoom: 20,
-    attribution: "&copy; Stamen & OSM"
+    maxZoom: 19,
+    subdomains: "abcd",
+    attribution: "&copy; CARTO"
   }
 ).addTo(MAP);
   
