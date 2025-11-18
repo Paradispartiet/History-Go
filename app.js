@@ -433,6 +433,7 @@ function renderPersonCardInline(pr) {
 
   </div>
 `;
+}
 
 function renderCollection() {
   const grid = el.collectionGrid;
