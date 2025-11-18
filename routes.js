@@ -127,6 +127,21 @@ function focusRouteOnMap(routeId) {
   closeRouteOverlay();
 }
 
+function closeAllRoutes() {
+
+  // 1) Fjern tematisk rute
+  if (window.routeControl) {
+    try { MAP.removeControl(window.routeControl); } catch(e) {}
+    window.routeControl = null;
+  }
+
+  // 2) Fjern navigasjonsrute fra app.js
+  if (window.navLine) {
+    try { MAP.removeLayer(window.navLine); } catch(e) {}
+    window.navLine = null;
+  }
+}
+
 // ------------------------------
 // Eksporter funksjoner til global scope
 // ------------------------------
