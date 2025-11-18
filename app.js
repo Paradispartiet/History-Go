@@ -831,8 +831,13 @@ document.addEventListener("DOMContentLoaded", () => {
   boot();
   initMiniProfile();
   wireMiniProfileLinks();
-});
 
+  // Lukk rute-knapp
+  const btnCloseRoute = document.getElementById("btnCloseRoute");
+  if (btnCloseRoute) {
+    btnCloseRoute.addEventListener("click", () => closeAllRoutes());
+  }
+});
 
 
 // ==============================
