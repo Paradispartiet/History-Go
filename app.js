@@ -380,7 +380,6 @@ function renderNearbyPlaces() {
     .sort((a, b) => (a._d ?? 1e12) - (b._d ?? 1e12));
 
   el.list.innerHTML = sorted
-    .slice(0, NEARBY_LIMIT)
     .map(renderPlaceCard)
     .join("");
 }
