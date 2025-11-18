@@ -381,7 +381,7 @@ button{ cursor:pointer; border:none }
 /* Hele kortet (sheet) */
 #placeCard {
   position: fixed;
-  bottom: 0;
+  bottom: calc(env(safe-area-inset-bottom) + 10px);
   left: 0;
   right: 0;
   z-index: 50;
