@@ -392,19 +392,20 @@ function renderPlaceCard(p) {
       ? `${p._d} m`
       : `${(p._d / 1000).toFixed(1)} km`;
 
+  const img = p.cardImage || p.image; // ← rent og tydelig
+
   return `
-  <div class="nearby-item" data-open="${p.id}">
-    
-    <img class="nearby-thumb" src="${p.cardImage || p.image}">
-    
-    <span class="nearby-name">${p.name}</span>
+    <div class="nearby-item" data-open="${p.id}">
+      
+      <img class="nearby-thumb" src="${img}" alt="${p.name}">
+      
+      <span class="nearby-name">${p.name}</span>
 
-    <span class="nearby-dist">${dist}</span>
+      <span class="nearby-dist">${dist}</span>
 
-    <img class="nearby-badge" src="bilder/merker/${catClass(p.category)}.PNG">
-
-  </div>
-`;
+      <img class="nearby-badge" src="bilder/merker/${catClass(p.category)}.PNG" alt="">
+    </div>
+  `;
 }
 
 function renderPersonCardInline(pr) {
@@ -412,16 +413,21 @@ function renderPersonCardInline(pr) {
   const dist =
     pr._d < 1000 ? `${pr._d} m` : `${(pr._d / 1000).toFixed(1)} km`;
 
+  const img = pr.imageCard || pr.image; // ← viktig
+
   return `
-    <article class="card">
-      <div>
+    <article class="card person-inline-card">
+      <img src="${img}" alt="${pr.name}" class="inline-thumb">
+
+      <div class="inline-info">
         <div class="name">${pr.name}</div>
         <div class="meta">${cat}</div>
         <p class="desc">${pr.desc || ""}</p>
-      </div>
-      <div class="row between">
-        <div class="dist">${dist}</div>
-        <button class="primary" data-quiz="${pr.id}">Ta quiz</button>
+
+        <div class="row between">
+          <div class="dist">${dist}</div>
+          <button class="primary" data-quiz="${pr.id}">Ta quiz</button>
+        </div>
       </div>
     </article>`;
 }
