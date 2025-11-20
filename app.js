@@ -452,7 +452,7 @@ function renderGallery() {
 
   el.gallery.innerHTML = collectedPeople
     .map(p => {
-      const imgPath = p.image || `bilder/kort/people/${p.id}.PNG`;
+      const imgPath = p.imageCard || p.image;
       const cat = tagToCat(p.tags);
       return `
         <div class="person-card" data-quiz="${p.id}">
