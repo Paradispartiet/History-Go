@@ -1,6 +1,7 @@
 // ============================================================
-// HISTORY GO – POPUP-UTILS v21
-// Felles motor for ALLE popups (person, sted, placeCard, reward)
+// HISTORY GO – POPUP-UTILS (ENDLIG VERISON)
+// Bruker KUN filbaner fra JSON: image, imageCard, cardImage
+// Ingen fallback, ingen automatikk, ingen _face-filnavn
 // ============================================================
 
 let currentPopup = null;
@@ -45,17 +46,21 @@ function makePopup(html, extraClass = "") {
 }
 
 // ============================================================
-// PERSON-POPUP  (profil + kart + info)
+// 3. PERSON-POPUP
 // ============================================================
 window.showPersonPopup = function(person) {
   if (!person) return;
 
   const face    = person.image;      // portrett
-  const cardImg = person.imageCard;  // kortbilde  const works   = person.works || [];
+  const cardImg = person.imageCard;  // kortbilde
+  const works   = person.works || [];
   const wiki    = person.wiki || "";
 
+  // Finn steder knyttet til personen
   const placeMatches = PLACES.filter(
-    p => p.people?.includes(person.id)
+    p =>
+      (Array.isArray(p.people) && p.people.includes(person.id)) ||
+      p.placeId === person.id
   );
 
   const html = `
@@ -98,18 +103,18 @@ window.showPersonPopup = function(person) {
     btn.onclick = () => {
       const place = PLACES.find(x => x.id === btn.dataset.place);
       closePopup();
-      showPlacePopup(place); // NOT placeCard – bare info-popup
+      showPlacePopup(place);
     };
   });
 };
 
 // ============================================================
-// STEDS-POPUP  (REN INFO-POPUP, IKKE placeCard)
+// 4. STEDS-POPUP
 // ============================================================
 window.showPlacePopup = function(place) {
   if (!place) return;
 
-  const img = place.image || `bilder/kort/places/${place.id}.PNG`;
+  const img = place.image || place.cardImage || "";
 
   const peopleHere = PEOPLE.filter(p => p.placeId === place.id);
 
@@ -127,7 +132,7 @@ window.showPlacePopup = function(place) {
              <div class="hg-popup-people">
                ${peopleHere.map(pr => `
                  <div class="hg-popup-face" data-person="${pr.id}">
-                   <img src="bilder/people/${pr.id}_face.PNG">
+                   <img src="${pr.imageCard}">
                  </div>
                `).join("")}
              </div>`
@@ -146,10 +151,7 @@ window.showPlacePopup = function(place) {
 };
 
 // ============================================================
-// PLACE CARD – VISUAL / ACTION PANEL
-// Brukes kun:
-//  ✔ kart (marker-klikk)
-//  ✔ “Åpne” i se-nærmeste
+// 5. PLACE CARD (det store kortpanelet)
 // ============================================================
 window.openPlaceCard = function(place) {
   if (!place) return;
@@ -172,7 +174,7 @@ window.openPlaceCard = function(place) {
   if (metaEl)  metaEl.textContent  = `${place.category || ""} • radius ${place.r || 150} m`;
   if (descEl)  descEl.textContent  = place.desc || "";
 
-  // PERSONER
+  // Personer knyttet til stedet
   if (peopleEl) {
     const persons = PEOPLE.filter(
       p =>
@@ -183,7 +185,7 @@ window.openPlaceCard = function(place) {
     peopleEl.innerHTML = persons
       .map(p => `
         <button class="pc-person" data-person="${p.id}">
-          <img src="bilder/people/${p.id}_face.PNG">
+          <img src="${p.imageCard}">
           <span>${p.name}</span>
         </button>
       `)
@@ -231,21 +233,19 @@ window.openPlaceCard = function(place) {
   card.setAttribute("aria-hidden", "false");
 };
 
-
-
-
-
-
 // ============================================================
-// ÅPNE placeCard FRA PERSON (kart-modus)
+// 6. ÅPNE placeCard FRA PERSON (kart-modus)
 // ============================================================
 window.openPlaceCardByPerson = function(person) {
   if (!person) return;
 
   let place =
     PLACES.find(p => p.id === person.placeId) ||
-    PLACES.find(p => Array.isArray(person.places) && person.places.includes(p.id));
+    PLACES.find(
+      p => Array.isArray(person.places) && person.places.includes(p.id)
+    );
 
+  // Hvis person ikke har et registrert sted → generer et "midlertidig"
   if (!place) {
     place = {
       id: person.id,
@@ -255,7 +255,7 @@ window.openPlaceCardByPerson = function(person) {
       r: person.r || 150,
       lat: person.lat,
       lon: person.lon,
-      cardImage: person.image
+      cardImage: person.imageCard
     };
   }
 
@@ -263,12 +263,12 @@ window.openPlaceCardByPerson = function(person) {
 };
 
 // ============================================================
-// REWARDS, BADGES (SAMME SOM FØR)
+// 7. REWARDS
 // ============================================================
 window.showRewardPlace = function(place) {
   if (!place) return;
 
-  const img = place.image || `bilder/kort/places/${place.id}.PNG`;
+  const img = place.image || place.cardImage || "";
 
   makePopup(`
       <div class="reward-center">
@@ -283,7 +283,7 @@ window.showRewardPlace = function(place) {
 window.showRewardPerson = function(person) {
   if (!person) return;
 
-  const face = `bilder/people/${person.id}_face.PNG`;
+  const face = person.imageCard; // reward viser kortbildet
 
   makePopup(`
       <div class="reward-center">
@@ -296,7 +296,7 @@ window.showRewardPerson = function(person) {
 };
 
 // ============================================================
-// ESC = LUKK
+// 8. ESC = LUKK
 // ============================================================
 document.addEventListener("keydown", e => {
   if (e.key === "Escape") closePopup();
