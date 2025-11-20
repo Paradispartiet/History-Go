@@ -50,9 +50,8 @@ function makePopup(html, extraClass = "") {
 window.showPersonPopup = function(person) {
   if (!person) return;
 
-  const face    = `bilder/people/${person.id}_face.PNG`;
-  const cardImg = person.image || `bilder/kort/people/${person.id}.PNG`;
-  const works   = person.works || [];
+  const face    = person.image;      // portrett
+  const cardImg = person.imageCard;  // kortbilde  const works   = person.works || [];
   const wiki    = person.wiki || "";
 
   const placeMatches = PLACES.filter(
