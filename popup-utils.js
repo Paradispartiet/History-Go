@@ -114,7 +114,8 @@ window.showPersonPopup = function(person) {
 window.showPlacePopup = function(place) {
   if (!place) return;
 
-  const img = place.image || place.cardImage || "";
+  // RIKTIG: kun stedsbilde
+  const img = place.image || "";
 
   const peopleHere = PEOPLE.filter(p => p.placeId === place.id);
 
@@ -169,7 +170,7 @@ window.openPlaceCard = function(place) {
 
   if (!card) return;
 
-  if (imgEl)   imgEl.src = place.cardImage || place.image || "";
+  if (imgEl)   imgEl.src = place.image || "";
   if (titleEl) titleEl.textContent = place.name;
   if (metaEl)  metaEl.textContent  = `${place.category || ""} • radius ${place.r || 150} m`;
   if (descEl)  descEl.textContent  = place.desc || "";
