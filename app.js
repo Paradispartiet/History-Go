@@ -392,7 +392,7 @@ function renderPlaceCard(p) {
       ? `${p._d} m`
       : `${(p._d / 1000).toFixed(1)} km`;
 
-  const img = p.cardImage || p.image; // ← rent og tydelig
+  const img = p.image; 
 
   return `
     <div class="nearby-item" data-open="${p.id}">
