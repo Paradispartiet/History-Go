@@ -184,13 +184,13 @@ window.openPlaceCard = function(place) {
     );
 
     peopleEl.innerHTML = persons
-      .map(p => `
-        <button class="pc-person" data-person="${p.id}">
-          <img src="${p.imageCard}">
-          <span>${p.name}</span>
-        </button>
-      `)
-      .join("");
+  .map(p => `
+    <button class="pc-person" data-person="${p.id}">
+      <img src="${p.image}">
+      <span>${p.name}</span>
+    </button>
+  `)
+  .join("");
 
     peopleEl.querySelectorAll("[data-person]").forEach(btn => {
       btn.onclick = () => {
