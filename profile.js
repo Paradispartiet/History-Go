@@ -371,6 +371,7 @@ Promise.all([
   renderPeopleCollection();
   renderPlacesCollection();
   renderTimeline();
+  renderCollectionCards();
 });
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -384,6 +385,7 @@ document.addEventListener("DOMContentLoaded", () => {
     renderPeopleCollection();
     renderPlacesCollection();
     renderTimeline();
+    renderCollectionCards();
   });
 });
 
