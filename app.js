@@ -851,6 +851,13 @@ el.btnExitMap?.addEventListener("click", exitMapMode);
 // ==============================
 // 13. QUIZ – DYNAMISK LASTER, MODAL & SCORE
 // ==============================
+
+function saveQuizHistory(entry) {
+  const hist = JSON.parse(localStorage.getItem("quiz_history") || "[]");
+  hist.push(entry);
+  localStorage.setItem("quiz_history", JSON.stringify(hist));
+}
+
 const QUIZ_FILE_MAP = {
   kunst:        "quiz_kunst.json",
   sport:        "quiz_sport.json",
@@ -983,6 +990,23 @@ async function startQuiz(targetId) {
     addCompletedQuizAndMaybePoint(displayCat, targetId);
     markQuizAsDone(targetId);
 
+const when = new Date().toISOString();
+const quizItem = questions.map(q => ({
+  question: q.text,
+  answer: q.choices[q.answerIndex]
+}));
+
+const entry = {
+  id: targetId,
+  categoryId: categoryId,
+  name: person ? person.name : place.name,
+  image: person ? person.imageCard : place.cardImage,
+  date: when,
+  correctAnswers: quizItem
+};
+
+saveQuizHistory(entry);
+    
     // --- REWARD FØRST ---
     if (person) {
       showRewardPerson(person);
