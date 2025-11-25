@@ -168,19 +168,18 @@ function renderPeopleCollection() {
 
   grid.innerHTML = peopleUnlocked.map(p => `
     <div class="avatar-card" data-person="${p.id}">
-      <img src="bilder/people/${p.id}_face.PNG" class="avatar-img">
+      <img src="bilder/people/${p.image}" class="avatar-img">
       <div class="avatar-name">${p.name}</div>
     </div>
   `).join("");
 
   grid.querySelectorAll(".avatar-card").forEach(el => {
-  el.onclick = () => {
-    const pr = PEOPLE.find(p => p.id === el.dataset.person);
-    window.showPersonPopup(pr);
-  };
-});
+    el.onclick = () => {
+      const pr = PEOPLE.find(p => p.id === el.dataset.person);
+      window.showPersonPopup(pr);
+    };
+  });
 }
-
 
 // ------------------------------------------------------------
 // STEDER
