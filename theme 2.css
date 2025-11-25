@@ -1,0 +1,1239 @@
+/* =====================================================
+   HISTORY GO – THEME.CSS (REN OG STABIL VERSJON)
+   -----------------------------------------------------
+   INNHOLDSFORTEGNELSE
+   -----------------------------------------------------
+   1) Variabler & grunnstil
+   2) Kart & kartmodus (kartlag, main, overlays)
+   3) Topplinje, main & toast
+   4) Paneler, kort, rutenett
+   5) Knapper, chips & badges
+   6) Place Card – layout, tekst, personer, knapper
+   7) Sheets (bunnark: "Se flere i nærheten")
+   8) Modal (quiz) – overlay & innhold
+   9) Quiz-stiler, progresjon & animasjoner
+   10) Merker / badge-kort (grid & responsivitet)
+   11) Effekter & media (hover, små justeringer)
+   12) Reward-popup (belønningsmodal)
+   13) Person-galleri (personkort m/runde bilder)
+   14) Universal person/place-popup (hg-popup)
+   15) Ruter-seksjon – tematiske ruter-knapper
+   16) Ny mini-profil – History Go-panel
+   ===================================================== */
+
+/* ===================================================== */
+/* 1) Variabler & grunnstil                            */
+/* ===================================================== */
+:root{
+  --bg: #0a1929;
+  --panel: rgba(13,27,42,.86);
+  --panel-border: rgba(255,255,255,.08);
+  --text: #e6eef9;
+  --muted: #9bb0c9;
+  --primary: #1976d2;
+  --ok: #2ecc
+  --warn: #ffb703;
+
+  --hist: #1976d2;
+  --kult: #e63946;
+  --sport: #2a9d8f;
+  --natur: #4caf50;
+  --urban: #ffb703;
+  --viten: #9b59b6;
+
+  --radius: 12px;
+  --shadow: 0 10px 24px rgba(0,0,0,.35);
+}
+
+*{box-sizing:border-box}
+html,body{
+  min-height:100%;
+}
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 1.05rem;        /* ca 5% større tekst */
+  line-height: 1.55;
+}
+.muted{color:var(--muted)}
+
+/* ===================================================== */
+/* 2) Kart & kartmodus – STABIL OG UNIVERSELL           */
+/* ===================================================== */
+
+/* Kartet ligger alltid fullskjerm under alt innhold */
+#map {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  background: #000;
+}
+
+/* HEADER skal ligge over kartet og være klikkbar */
+header {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 14px;
+  background: linear-gradient(180deg, rgba(10,25,41,.95), rgba(10,25,41,.65) 70%, transparent);
+}
+
+
+/* MAIN skal bare være et vanlig klikkbart lag */
+main {
+  position: relative;
+  z-index: 2;
+  overflow: visible;
+}
+
+.panel {
+  position: relative;
+  overflow: visible;
+}
+
+
+/* ---------------------------------------------------------
+   KUN EKTE OVERLAYS SKAL HENGE OVER ALT
+   --------------------------------------------------------- */
+.hg-popup,
+.quiz-modal,
+#badgeModal,
+.profile-modal {
+  position: fixed;
+  inset: 0;
+  pointer-events: auto;
+  z-index: 10000;
+}
+
+/* ---------------------------------------------------------
+   Kartknappene nederst til høyre skal alltid fungere
+   --------------------------------------------------------- */
+.map-controls {
+  position: fixed;
+  right: 12px;
+  bottom: 12px;
+  z-index: 2000;
+  display: grid;
+  gap: 8px;
+}
+
+.map-controls button {
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: 1px solid var(--panel-border);
+  background: rgba(20,30,45,.9);
+  color: #fff;
+  box-shadow: var(--shadow);
+}
+
+
+
+
+
+
+
+/* ===================================================== */
+/* 3) Topplinje, main & toast                            */
+/* ===================================================== */
+
+/* === Brand med ikon i headeren === */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  font-size: 1.3rem;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.brand-logo {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+  border-radius: 6px;
+  background: rgba(255,255,255,0.1);
+  padding: 3px;
+}
+
+.brand-name {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-weight: 700;
+  color: #f6c800; /* gul History Go-tone */
+}
+
+.actions{ display:flex; gap:10px; align-items:center }
+.toggle{ display:flex; gap:6px; align-items:center; font-size:.9rem }
+.toggle input{ accent-color: var(--primary) }
+
+
+#toast{
+  position:fixed; top:14px; left:50%; transform:translateX(-50%);
+  background: rgba(0,0,0,.72); color:#fff;
+  padding:8px 14px; border-radius:999px; font-weight:700;
+  display:none; z-index:15;
+}
+
+
+/* ===================================================== */
+/* 4) Paneler, kort, rutenett                            */
+/* ===================================================== */
+.panel{
+  background: var(--panel);
+  border:1px solid var(--panel-border);
+  border-radius: var(--radius);
+  padding:16px 18px;           /* litt mer innrykk */
+  margin:16px 0;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(2px);
+}
+.panel h2{
+  display:flex; align-items:center; justify-content:space-between;
+  margin:6px 2px 12px;
+  font-size:1.2rem;            /* litt større overskrifter */
+}
+
+.cards{ display:grid; gap:10px }
+.card{
+  background: rgba(255,255,255,.02);
+  border:1px solid var(--panel-border);
+  border-radius: var(--radius);
+  padding:14px 16px;           /* mer luft i kort */
+}
+.card .name{ font-weight:700 }
+.card .meta{ color:var(--muted); font-size:.9rem; margin:2px 0 4px }
+.card .row{ display:flex; gap:8px; align-items:center }
+.card .row.between{ justify-content:space-between }
+
+
+/* ============================================================
+   VENSTRE PANELET – 35% BREDDE, HØYDE TIL 20% FRA BUNNEN
+   Viser 5 steder uten scrolling i kartet
+   ============================================================ */
+
+#nearbyListContainer {
+  position: absolute;
+  top: 200px;             /* juster her hvis du vil */
+  left: 20px;
+
+  width: 35vw;
+  max-width: 420px;
+
+  /* Høyde: hele skjermen minus 20% nederst */
+  height: 650px;
+
+  overflow-y: auto;       /* La kun INNHOLDET scrolle */
+  padding: 14px 16px;
+
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(4px);
+
+  z-index: 5;
+}
+
+/* Gjør det lettere å vise 5 steder kompakt */
+.nearby-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.nearby-item:last-child {
+  border-bottom: none;
+}
+
+.nearby-name {
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: #fff;
+  flex: 1;                  /* ← Viktig: presser badge + dist til høyre */
+  white-space: nowrap;      /* ← Ingen linebreak */
+  overflow: hidden;
+  text-overflow: ellipsis;  /* ← Korter hvis navnet blir for langt */
+}
+
+.nearby-dist {
+  font-size: 0.85rem;
+  color: var(--muted);
+  white-space: nowrap;      /* ← aldri gå ned på ny linje */
+}
+
+/* Thumbnail (mindre!) */
+.nearby-thumb {
+  width: 46px;
+  height: 46px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.12);
+}
+
+/* Tekst venstrestilt */
+.nearby-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Kategori-merke (liten rund ikon) */
+.nearby-badge {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+  opacity: 0.95;
+  margin-right: 4px;
+}
+
+/* Sikrer at HELE raden er klikkbar */
+.nearby-thumb,
+.nearby-name,
+.nearby-badge,
+.nearby-dist {
+  pointer-events: none;
+}
+
+
+/* ===================================================== */
+/* 5) Knapper & chips/badges                             */
+/* ===================================================== */
+button{ cursor:pointer; border:none }
+.primary{
+  background: var(--primary); color:#fff;
+  padding:10px 14px; border-radius:10px; font-weight:600;
+}
+.secondary{
+  background: rgba(255,255,255,.08); color:#fff;
+  padding:10px 14px; border-radius:10px;
+  border:1px solid var(--panel-border);
+}
+.ghost{
+  background: transparent; color:#fff;
+  padding:8px 12px; border-radius:999px;
+  border:1px solid var(--panel-border);
+}
+.icon{
+  width:44px; height:44px; border-radius:999px;
+  background: rgba(255,255,255,.08); color:#fff;
+  border:1px solid var(--panel-border);
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.2rem;
+}
+
+.chips{ display:flex; flex-wrap:wrap; gap:8px }
+.badge{
+  display:inline-flex; align-items:center; gap:8px;
+  padding:6px 10px; border-radius:999px;
+  border:1px solid var(--panel-border);
+  background: rgba(255,255,255,.02);
+  font-size:.92rem;
+}
+.badge .i{
+  width:22px; height:22px; border-radius:999px;
+  display:inline-block; border:2px solid rgba(0,0,0,.55);
+}
+.badge.kunst .i{ background: var(--kult); }        /* Kunst & kultur */
+.badge.by .i{ background: var(--urban); }          /* By & arkitektur */
+.badge.sport .i{ background: var(--sport); }       /* Sport & lek */
+.badge.natur .i{ background: var(--natur); }       /* Natur & miljø */
+.badge.vitenskap .i{ background: var(--viten); }   /* Vitenskap & filosofi */
+.badge.politikk .i{ background: #c77dff; }         /* Politikk & samfunn */
+.badge.litteratur .i{ background: #f6c800; }       /* Litteratur & poesi */
+.badge.populaerkultur .i{ background: #ffb703; }   /* Populærkultur */
+.badge.subkultur .i{ background: #ff66cc; }        /* Subkultur */
+.badge.musikk .i{ background: #ff66cc; }           /* Musikk & scenekunst */
+.badge.naeringsliv .i{ background: #ff8800; }      /* Næringsliv & industri */
+
+/* ===================================================== */
+/* PLACE CARD – LAYOUT                                    */
+/* ===================================================== */
+
+/* Hele kortet (sheet) */
+#placeCard {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background: rgba(13,27,42,0.96);
+  backdrop-filter: blur(6px);
+  border-radius: 20px 20px 0 0;
+  padding: 18px;
+  transform: translateY(0);
+  transition: transform 0.25s ease;
+}
+
+#placeCard[aria-hidden="true"] {
+  transform: translateY(110%);
+}
+
+
+/* ===================================================== */
+/* Innhold: bilde venstre – tekst høyre                   */
+/* ===================================================== */
+
+.pc-main {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+/* Riktig, endelig pc-img */
+.pc-img {
+  width: 95px;
+  height: 95px;
+  border-radius: 12px;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 1px solid rgba(255,255,255,0.15);
+}
+
+.pc-text {
+  flex: 1;
+}
+
+
+/* ===================================================== */
+/* Tekst                                                  */
+/* ===================================================== */
+
+#pcTitle {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+#pcMeta {
+  margin-top: 4px;
+  margin-bottom: 10px;
+  font-size: 0.92rem;
+  color: var(--text-dim);
+}
+
+#pcDesc {
+  margin: 0 0 14px 0;
+  font-size: 1rem;
+  line-height: 1.45;
+  color: var(--text);
+}
+
+
+/* ===================================================== */
+/* Personer tilknyttet stedet                             */
+/* ===================================================== */
+
+.pc-people {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 12px 0 16px 0;
+}
+
+.pc-people button {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pc-people img {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.25);
+  object-fit: cover;
+  transition: transform 0.15s ease;
+}
+
+.pc-people img:hover {
+  transform: scale(1.08);
+}
+
+.pc-people span {
+  margin-top: 6px;
+  font-size: 0.8rem;
+  color: var(--text);
+  text-align: center;
+}
+
+
+/* ===================================================== */
+/* Knapper nederst                                         */
+/* ===================================================== */
+
+.pc-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+/* Info-knapp */
+#pcInfo {
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.18);
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+/* Quiz-knapp */
+#pcQuiz {
+  background: var(--primary);
+  color: #fff;
+  border-radius: 10px;
+  padding: 8px 16px;
+  font-weight: 600;
+}
+
+/* Lås opp */
+#pcUnlock {
+  background: #f6c800;
+  color: #000;
+  border-radius: 10px;
+  padding: 8px 16px;
+  font-weight: 600;
+}
+
+/* Rute og lukk */
+#pcRoute,
+#pcClose {
+  background: transparent;
+  border: 1px solid var(--panel-border);
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 10px;
+}
+
+/* ===================================================== */
+/* 8) Sheets (bunnark) – forbedret og oversiktlig        */
+/* ===================================================== */
+.sheet {
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  z-index: 13;
+  background: rgba(13, 27, 42, 0.95);
+  border: 1px solid var(--panel-border);
+  border-radius: 16px 16px 0 0;
+  box-shadow: var(--shadow);
+  transform: translateY(100%);
+  transition: transform .22s ease, opacity .2s ease;
+}
+.sheet[aria-hidden="false"] { transform: none; }
+
+.sheet-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 18px;
+  background: rgba(255,255,255,0.05);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  border-radius: 16px 16px 0 0;
+}
+
+.sheet-body {
+  padding: 14px 16px 20px;
+  display: grid; gap: 12px;
+  overflow-y: auto; max-height: 70vh;
+}
+
+/* Kortene i "Se flere i nærheten" */
+.sheet-body .card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 10px;
+  padding: 14px;
+  transition: background .2s ease, transform .2s ease;
+}
+.sheet-body .card:hover {
+  background: rgba(255,255,255,0.08);
+  transform: translateY(-2px);
+}
+.sheet-body .name { font-weight: 700; font-size: 1rem; color:#fff; }
+.sheet-body .meta { color: #a9b7c7; font-size: .9rem; margin-bottom: 6px; }
+.sheet-body .desc { color: #d0d8e4; font-size: .92rem; line-height: 1.45; }
+
+.sheet-close {
+  width: 44px; height: 44px; border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.1);
+  color: #fff; font-size: 1.4rem;
+}
+
+
+/* ===================================================== */
+/* 9) Modal (quiz)                                       */
+/* ===================================================== */
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 10050;              /* Sørger for at modalen ligger over alt */
+  display: none;
+  background: rgba(0,0,0,.55);
+  pointer-events: auto;        /* Sikrer klikk på knapper */
+}
+
+.modal[aria-hidden="false"] {
+  display: block;
+}
+
+.modal .modal-body {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: min(680px, 92vw);
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  padding: 14px;
+  z-index: 10051;              /* Sørger for at X-knappen er klikkbar */
+}
+
+.modal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+#quizClose {
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: 1px solid var(--panel-border);
+  background: rgba(255,255,255,.08);
+  color: #fff;
+  font-size: 1.4rem;
+  z-index: 10052;              /* Helt øverst, alltid klikkbar */
+}
+
+
+/* ===================================================== */
+/* 10) Quiz-stiler                                       */
+/* ===================================================== */
+#quizProgress { color: var(--muted); margin-bottom: 6px; }
+#quizQuestion { margin: 8px 0 10px; font-weight: 700; }
+
+.quiz-choices {
+  display: grid;
+  gap: 8px;
+}
+
+.quiz-choices button {
+  text-align: left;
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--panel-border);
+  background: rgba(255,255,255,.03);
+  color: #fff;
+  transition: background .2s ease, border-color .2s ease;
+}
+
+.quiz-choices button.correct {
+  border-color: #1b7a4a;
+  background: rgba(27,122,74,.18);
+}
+
+.quiz-choices button.wrong {
+  border-color: #7a1f25;
+  background: rgba(122,31,37,.18);
+}
+
+.quiz-feedback {
+  min-height: 1.2em;
+  font-weight: 700;
+}
+
+
+/* ===================================================== */
+/* 10b) Quiz-progress-bar                                */
+/* ===================================================== */
+.quiz-progress {
+  width: 100%;
+  height: 6px;
+  background: rgba(255,255,255,.1);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.quiz-progress .bar {
+  height: 100%;
+  width: 0%;
+  background: var(--primary);
+  transition: width .4s ease;
+}
+
+
+/* ===================================================== */
+/* 10c) Quiz-fade effekt ved avslutning                  */
+/* ===================================================== */
+#quizModal.fade-out .modal-body {
+  animation: quizFadeOut 0.45s ease forwards;
+}
+
+@keyframes quizFadeOut {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -40%) scale(0.95);
+  }
+}
+
+
+/* ===================================================== */
+/* 10d) QUIZ – KNAPPER OG ANIMASJON VED PERFEKT SCORE    */
+/* ===================================================== */
+
+/* Fast stil for tidligere fullført quiz */
+button.quiz-done {
+  background: rgba(255,215,0,0.12);
+  border: 1px solid rgba(255,215,0,0.5);
+  color: #ffd700;
+  cursor: default;
+  font-weight: 600;
+  position: relative;
+  padding-left: 1.6em;
+}
+
+/* Liten medalje foran teksten */
+button.quiz-done::before {
+  content: "🏅";
+  position: absolute;
+  left: 0.6em;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1em;
+}
+
+/* Kort gullglød første gang man klarer alt riktig */
+@keyframes quizGlow {
+  0%   { box-shadow: 0 0 0px 0 rgba(255,215,0,0); }
+  40%  { box-shadow: 0 0 16px 6px rgba(255,215,0,0.8); }
+  100% { box-shadow: 0 0 0px 0 rgba(255,215,0,0); }
+}
+
+button.quiz-done.blink {
+  animation: quizGlow 1.2s ease-out;
+}
+
+
+/* ===================================================== */
+/* 11) Merker / Badge-kort – kompakt, fargerik og interaktiv */
+/* ===================================================== */
+
+.merkesamling-title {
+  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  font-weight: 600;
+  font-size: 1.3rem;
+  color: var(--yellow);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  letter-spacing: 0.3px;
+  margin-bottom: 0.8rem;
+}
+
+/* === MERKER I GRID === */
+#merits {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 22px;
+  justify-items: center;
+  margin-top: 20px;
+}
+
+.badge-mini {
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+.badge-mini:hover {
+  transform: scale(1.05);
+}
+
+.badge-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.badge-mini-icon {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  box-shadow: 0 0 10px rgba(0,0,0,0.25);
+}
+
+.badge-medal {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  font-size: 2rem;
+  transform: rotate(5deg);
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.5));
+  user-select: none;
+}
+
+/* === Responsivt – én rad på små skjermer === */
+@media (max-width: 520px) {
+  #merits {
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+    gap: 16px;
+  }
+  .badge-mini-icon {
+    width: 90px;
+    height: 90px;
+  }
+  .badge-medal {
+    font-size: 1.6rem;
+    top: -8px;
+    right: -8px;
+  }
+}
+
+
+/* ===================================================== */
+/* 12) Effekter & media                                  */
+/* ===================================================== */
+@media (max-width:760px){
+}
+
+.icon:hover,
+.sheet-close:hover,
+#quizClose:hover,
+#pcClose:hover,
+#btnExitMap:hover{
+  filter:brightness(1.1);
+}
+
+
+/* ===================================================== */
+/* REWARD POPUP – HISTORY GO v22 (for makePopup-systemet) */
+/* ===================================================== */
+
+.hg-popup.reward-popup .hg-popup-inner {
+  position: relative;
+  width: min(360px, 90vw);
+  max-height: 85vh;
+  overflow-y: auto;
+
+  background: rgba(20, 25, 35, 0.96);
+  border-radius: 16px;
+  padding: 28px 22px 26px 22px;
+  text-align: center;
+  box-shadow: 0 0 40px rgba(0,0,0,0.6);
+
+  animation: rewardIn .25s ease-out;
+}
+
+/* Bilde på toppen */
+.hg-popup.reward-popup .reward-img {
+  width: 90px;
+  height: 90px;
+  border-radius: 12px;
+  object-fit: cover;
+  margin: 0 auto 14px auto;
+  border: 2px solid rgba(255,255,255,0.25);
+}
+
+/* Overskrift */
+.hg-popup.reward-popup .reward-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 4px 0 6px;
+  color: #f6c800;
+}
+
+/* Undertittel */
+.hg-popup.reward-popup .reward-sub {
+  font-size: 1rem;
+  color: #fff;
+  margin-bottom: 18px;
+  font-weight: 500;
+}
+
+/* OK-knapp */
+.hg-popup.reward-popup .reward-ok {
+  background: #f6c800;
+  color: #000;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  transition: background .2s ease;
+}
+
+.hg-popup.reward-popup .reward-ok:hover {
+  background: #ffe15a;
+}
+
+/* Clean entry animasjon */
+@keyframes rewardIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* 13b. Person-galleri (rundt ikon + navn + klikk) */
+#gallery{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px 12px;
+  align-items:flex-start;
+}
+
+.person-card{
+  display:inline-flex;
+  flex-direction:column;
+  align-items:center;
+  cursor:pointer;
+  margin:6px 4px;
+  transition:transform .25s ease, opacity .25s ease;
+}
+
+.person-card:hover{ transform:scale(1.08); opacity:.92; }
+
+.person-thumb{
+  width:72px; height:72px;
+  border-radius:50%;
+  object-fit:cover;
+  background:#111;
+  border:2px solid rgba(255,255,255,.2);
+  box-shadow:0 0 6px rgba(0,0,0,.4);
+  margin-bottom:6px;
+}
+
+.person-label{
+  font-size:.8rem;
+  text-align:center;
+  line-height:1.2;
+  color:#fff;          /* tekstfarge – kategori-farge settes inline */
+  max-width:92px;      /* bryt lange navn pent */
+  white-space:normal;
+}
+
+
+
+/* ============================================================
+   UNIVERSAL PERSON/PLACE POPUP – HISTORY GO
+   ============================================================ */
+
+.hg-popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  animation: hgFadeIn .25s ease;
+}
+
+/* Ensure reward-popup is above everything except quiz close interactions */
+.hg-popup.reward-popup {
+  z-index: 10060 !important;
+}
+
+@keyframes hgFadeIn {
+  from { opacity: 0; transform: scale(.96); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.hg-popup-inner {
+  position: relative;
+  width: min(420px, 90vw);
+  max-height: 90vh;
+  overflow-y: auto;
+  background: rgba(15,15,20,0.95);
+  border-radius: 16px;
+  padding: 24px;
+  color: #fff;
+  box-shadow: 0 0 35px rgba(0,0,0,0.6);
+}
+
+/* ---------------------------------- */
+/* Close button */
+/* ---------------------------------- */
+.hg-popup-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+/* ---------------------------------- */
+/* Top elements */
+/* ---------------------------------- */
+
+.hg-popup-name,
+.hg-popup-title {
+  text-align: center;
+  font-size: 1.35rem;
+  font-weight: 600;
+  margin: 6px 0 12px;
+  color: #fff;
+}
+
+/* Face image */
+.hg-popup-face {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 12px;
+  display: block;
+  margin: 0 auto 12px;
+}
+
+/* Place main image */
+.hg-popup-img {
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  object-fit: cover;
+}
+
+/* Kortbilde nederst til høyre */
+.hg-popup-cardimg {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 8px;
+  opacity: .9;
+  border: 2px solid rgba(255,255,255,0.3);
+}
+
+/* Thumbnail card for places */
+.hg-popup-cardthumb {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  border-radius: 8px;
+  margin: 16px auto 0;
+  display: block;
+}
+
+/* ---------------------------------- */
+/* Sections */
+/* ---------------------------------- */
+
+.hg-section {
+  margin-top: 20px;
+}
+
+.hg-section h3 {
+  margin: 0 0 6px;
+  font-size: 1.05rem;
+  color: #f6c800;
+}
+
+/* Wiki text – sekundær */
+.hg-wiki {
+  line-height: 1.45;
+  color: #bbb;          /* mykere og tydelig sekundær */
+  font-size: 0.92rem;   /* litt mindre enn primærtekst */
+  margin-top: 4px;
+}
+
+/* Verk-listen */
+.hg-works {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.hg-works li {
+  padding: 4px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+/* Primær beskrivelse (popupDesc) */
+.hg-popupdesc {
+  line-height: 1.55;
+  color: #fff;         
+  margin: 12px 0 0;
+  font-size: 1rem;
+  font-weight: 400;
+}
+/* ---------------------------------- */
+/* Places list */
+/* ---------------------------------- */
+.hg-places {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.hg-place {
+  padding: 6px 10px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background .2s;
+}
+.hg-place:hover {
+  background: rgba(255,255,255,0.12);
+}
+
+.hg-muted {
+  color: #999;
+  font-size: 0.9rem;
+}
+
+/* ---------------------------------- */
+/* Quiz button inside popup */
+/* ---------------------------------- */
+
+.hg-quiz-btn {
+  background: #FFD600;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-top: 10px;
+  cursor: pointer;
+  color: #000;
+  width: 100%;
+}
+
+.hg-quiz-btn:hover {
+  background: #ffe45c;
+}
+
+/* ===================================================== */
+/* 16) Ruter-seksjon – Utforsk tematiske ruter           */
+/* ===================================================== */
+.route-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.route-buttons button {
+  flex: 1 1 140px;
+  min-width: 140px;
+  text-align: center;
+  background: var(--primary);
+  color: #fff;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-weight: 600;
+  border: none;
+  box-shadow: 0 0 8px rgba(0,0,0,.3);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.route-buttons button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 12px rgba(255,255,255,.15);
+}
+
+.route-buttons button:active {
+  transform: scale(0.97);
+  box-shadow: 0 0 6px rgba(0,0,0,.25);
+}
+
+/* Rute-panelet – full bredde STRIPET panel under nærmeste-panelet */
+main > section.panel:nth-of-type(2) {
+  position: absolute;
+  top: 780px;          /* juster 10–20px opp/ned etter behov */
+  left: 0;
+  right: 0;
+
+  width: 100%;         /* full bredde */
+  max-width: none;     /* ikke låst til 35vw */
+
+  z-index: 4;          /* over kartet, under popups */
+}
+
+/* ===================================================== */
+/* NY MINI-PROFIL – HISTORY GO ELEGANT PANEL              */
+/* ===================================================== */
+.mini-profile {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(25,25,30,.95), rgba(10,15,25,.95));
+  border-left: 4px solid #f6c800;
+  border-radius: 12px;
+  padding: 10px 14px;  /* lavere */
+  margin-bottom: 26px;
+  box-shadow: 0 0 18px rgba(246,200,0,.05), inset 0 0 6px rgba(255,255,255,.04);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.mini-profile:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 22px rgba(246,200,0,.15), inset 0 0 10px rgba(255,255,255,.06);
+}
+
+.profile-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+.profile-top h3 {
+  margin: 0;
+  font-size: 1.15rem;
+  letter-spacing: .2px;
+  color: #fff;
+}
+
+.arrow-link {
+  color: #f6c800;
+  font-size: 1.35rem;
+  text-decoration: none;
+  transition: transform .2s ease;
+}
+.arrow-link:hover { transform: translateX(3px); }
+
+.mini-profile .muted {
+  color: var(--muted);
+  font-size: .92rem;
+  margin: 0;
+  line-height: 1.4;
+}
+.mini-profile .linkish {
+  color: #f6c800;
+  text-decoration: none;
+  font-weight: 500;
+}
+.mini-profile .linkish:hover { text-decoration: underline; }
+
