@@ -266,34 +266,80 @@ window.openPlaceCardByPerson = function(person) {
 // ============================================================
 // 7. REWARDS
 // ============================================================
+function launchConfetti() {
+  const duration = 900;
+  const end = Date.now() + duration;
+
+  (function frame() {
+    const timeLeft = end - Date.now();
+    if (timeLeft <= 0) return;
+
+    const count = 12;
+
+    for (let i = 0; i < count; i++) {
+      const particle = document.createElement("div");
+      particle.className = "confetti-particle";
+
+      const colors = ["#f6c800", "#ff66cc", "#ffb703", "#4caf50", "#c77dff"];
+      particle.style.backgroundColor = colors[Math.floor(Math.random()*colors.length)];
+
+      particle.style.left = Math.random() * 100 + "vw";
+      particle.style.animationDuration = 0.7 + Math.random() * 0.6 + "s";
+
+      document.body.appendChild(particle);
+      setTimeout(() => particle.remove(), 1000);
+    }
+
+    requestAnimationFrame(frame);
+  })();
+}
+
 window.showRewardPlace = function(place) {
   if (!place) return;
 
-  const img = place.image || place.cardImage || "";
+  const card = place.cardImage || place.image || `bilder/kort/places/${place.id}.PNG`;
 
   makePopup(`
       <div class="reward-center">
-        <img src="${img}" class="reward-img">
-        <h2 class="reward-title">Nytt sted!</h2>
-        <p class="reward-sub">${place.name}</p>
+        <h2 class="reward-title">🎉 Gratulerer!</h2>
+        <p class="reward-sub">Du har samlet kortet</p>
+
+        <img id="rewardCardImg" src="${card}" class="reward-card-img">
+
         <button class="reward-ok" data-close-popup>Fortsett</button>
       </div>
   `, "reward-popup");
+
+  launchConfetti();
+
+  requestAnimationFrame(() => {
+    const img = document.getElementById("rewardCardImg");
+    if (img) img.classList.add("visible");
+  });
 };
 
 window.showRewardPerson = function(person) {
   if (!person) return;
 
-  const face = person.imageCard; // reward viser kortbildet
+  const card = person.cardImage || person.image || `bilder/kort/people/${person.id}.PNG`;
 
   makePopup(`
       <div class="reward-center">
-        <img src="${face}" class="reward-img">
-        <h2 class="reward-title">Ny person!</h2>
-        <p class="reward-sub">${person.name}</p>
+        <h2 class="reward-title">🎉 Gratulerer!</h2>
+        <p class="reward-sub">Du har samlet kortet</p>
+
+        <img id="rewardCardImg" src="${card}" class="reward-card-img">
+
         <button class="reward-ok" data-close-popup>Fortsett</button>
       </div>
   `, "reward-popup");
+
+  launchConfetti();
+
+  requestAnimationFrame(() => {
+    const img = document.getElementById("rewardCardImg");
+    if (img) img.classList.add("visible");
+  });
 };
 
 // ============================================================
