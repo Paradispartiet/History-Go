@@ -182,6 +182,51 @@ button.primary.small:hover { opacity: .9; }
   transform: scale(1.05);
 }
 
+
+/* ======================================
+   SAMLEDE KORT – VISNINGSBOKS
+   ====================================== */
+
+.collection-cards-body {
+  display: flex;
+  gap: 22px;
+  overflow-x: auto;
+  padding: 10px 0 4px 0;
+  scroll-snap-type: x mandatory;
+}
+
+.collection-card {
+  flex: 0 0 auto;
+  width: 200px;
+  scroll-snap-align: start;
+  text-align: center;
+}
+
+.collection-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 14px;
+  border: 3px solid #f6c800;
+  object-fit: cover;
+  background: #000;
+  transition: transform .2s ease;
+}
+
+.collection-card:hover img {
+  transform: scale(1.04);
+}
+
+.collection-card-name {
+  margin-top: 6px;
+  font-size: .9rem;
+  color: #fff;
+}
+
+.collection-card-year {
+  font-size: .8rem;
+  color: #ccc;
+}
+
 /* QUIZ-HISTORIKK MODAL */
 .quiz-modal {
   position: fixed;
