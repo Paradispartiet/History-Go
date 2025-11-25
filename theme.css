@@ -354,8 +354,10 @@ button{ cursor:pointer; border:none }
 .badge.musikk .i{ background: #ff66cc; }           /* Musikk & scenekunst */
 .badge.naeringsliv .i{ background: #ff8800; }      /* Næringsliv & industri */
 
+
+
 /* ===================================================== */
-/* PLACE CARD – LAYOUT                                    */
+/* PLACE CARD – LAYOUT (OPPDATERT FOR STØRRE KORT)       */
 /* ===================================================== */
 
 /* Hele kortet (sheet) */
@@ -367,14 +369,63 @@ button{ cursor:pointer; border:none }
   z-index: 50;
   background: rgba(13,27,42,0.96);
   backdrop-filter: blur(6px);
-  border-radius: 20px 20px 0 0;
-  padding: 18px;
+
+  /* Større kort */
+  border-radius: 26px 26px 0 0;
+  padding: 26px;              /* mer luft */
+  max-height: 78vh;           /* mer plass til innhold */
+  overflow-y: auto;           /* scroll hvis veldig mye tekst */
+
   transform: translateY(0);
   transition: transform 0.25s ease;
 }
 
 #placeCard[aria-hidden="true"] {
   transform: translateY(110%);
+}
+
+/* ===================================================== */
+/* INNHOLD                                               */
+/* ===================================================== */
+
+/* Større bilde */
+#placeCard img {
+  width: 100%;
+  border-radius: 18px;        /* litt større radius matcher større kort */
+  margin-bottom: 18px;
+}
+
+/* Tittel */
+#placeCard .place-title {
+  font-size: 1.8rem;          /* større */
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+/* Kategori */
+#placeCard .place-category {
+  font-size: 1.3rem;          /* større */
+  opacity: 0.9;
+  margin-bottom: 10px;
+}
+
+/* Beskrivelse */
+#placeCard .place-description {
+  font-size: 1.28rem;         /* større og bedre på iPad */
+  line-height: 1.55;
+  margin-bottom: 20px;
+}
+
+/* Personliste – større bilder + bedre klikkflate */
+#placeCard .pc-person img {
+  width: 58px;                /* større */
+  height: 58px;
+  border-radius: 50%;
+}
+
+/* Person-navn */
+#placeCard .pc-person span {
+  font-size: 1.15rem;
 }
 
 
