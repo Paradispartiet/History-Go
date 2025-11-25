@@ -269,6 +269,58 @@ function renderTimeline() {
 }
 
 
+function renderCollectionCards() {
+  const body = document.getElementById("collectionCardsBody");
+  if (!body) return;
+
+  const visited = ls("visited_places", {});
+  const collected = ls("people_collected", {});
+
+  const items = [
+    ...PLACES.filter(p => visited[p.id]).map(p => ({
+      type: "place",
+      id: p.id,
+      name: p.name,
+      year: Number(p.year) || 0,
+      image: p.cardImage || p.image || `bilder/kort/places/${p.id}.PNG`
+    })),
+
+    ...PEOPLE.filter(p => collected[p.id]).map(p => ({
+      type: "person",
+      id: p.id,
+      name: p.name,
+      year: Number(p.year) || 0,
+      image: p.cardImage || p.image || `bilder/kort/people/${p.id}.PNG`
+    }))
+  ];
+
+  if (!items.length) {
+    body.innerHTML = `<div class="muted">Ingen kort låst opp ennå.</div>`;
+    return;
+  }
+
+  body.innerHTML = items
+    .map(x => `
+      <div class="collection-card" data-id="${x.id}">
+        <img src="${x.image}" alt="${x.name}">
+        <div class="collection-card-name">${x.name}</div>
+        <div class="collection-card-year">${x.year || ""}</div>
+      </div>
+    `)
+    .join("");
+
+  body.querySelectorAll(".collection-card").forEach(el => {
+    el.onclick = () => {
+      const id = el.dataset.id;
+      const pr = PEOPLE.find(p => p.id === id);
+      if (pr) return window.showPersonPopup(pr);
+
+      const pl = PLACES.find(p => p.id === id);
+      if (pl) return window.showPlacePopup(pl);
+    };
+  });
+}
+
 // ------------------------------------------------------------
 // EDIT-PROFILMODAL
 // ------------------------------------------------------------
