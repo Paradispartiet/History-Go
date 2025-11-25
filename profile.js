@@ -107,6 +107,7 @@ function openBadgeModal(badge) {
   const modal = document.getElementById("badgeModal");
   if (!modal || !badge) return;
 
+  // --- MERITS INFO (samme som før) ---
   const merits = ls("merits_by_category", {});
   const info = merits[badge.name] || merits[badge.id] || { level:"Nybegynner", points:0 };
 
@@ -120,18 +121,36 @@ function openBadgeModal(badge) {
   const max = badge.tiers[badge.tiers.length - 1].threshold;
   bar.style.width = `${Math.min(100, (info.points / max) * 100)}%`;
 
-  // Quizer (vises bare liste)
-  const list = modal.querySelector(".badge-quizzes");
-  list.innerHTML = "";
+  // --- KUN VISNING: quiz_history ---
+  const history = JSON.parse(localStorage.getItem("quiz_history") || "[]");
+  const catId = badge.id.toLowerCase();
 
-  const progress = ls("quiz_progress", {});
-  const completed = [];
-  for (const cat of Object.keys(progress)) {
-    progress[cat].completed?.forEach(q => completed.push(q));
+  const items = history.filter(h =>
+    (h.categoryId || "").toLowerCase() === catId
+  );
+
+  const list = modal.querySelector(".badge-quizzes");
+
+  if (!items.length) {
+    list.innerHTML = "<li>Ingen quiz fullført i denne kategorien ennå.</li>";
+  } else {
+    list.innerHTML = items
+      .map(h => `
+        <li class="badge-quiz-item">
+          <img class="badge-quiz-img" src="${h.image}">
+          <div class="badge-quiz-info">
+            <strong>${h.name}</strong><br>
+            <span>${new Date(h.date).toLocaleDateString("no-NO")}</span>
+            <ul class="badge-quiz-answers">
+              ${h.correctAnswers
+                .map(a => `<li>✔ ${a.answer}</li>`)
+                .join("")}
+            </ul>
+          </div>
+        </li>
+      `)
+      .join("");
   }
-  list.innerHTML = completed.length
-    ? completed.map(id => `<li>${id}</li>`).join("")
-    : "<li>Ingen quiz fullført ennå</li>";
 
   modal.style.display = "flex";
   modal.setAttribute("aria-hidden", "false");
@@ -139,7 +158,6 @@ function openBadgeModal(badge) {
   modal.onclick = e => {
     if (e.target.id === "badgeModal") closeBadgeModal();
   };
-
   modal.querySelector(".close-btn").onclick = closeBadgeModal;
 }
 
