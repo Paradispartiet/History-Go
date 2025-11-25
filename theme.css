@@ -355,27 +355,29 @@ button{ cursor:pointer; border:none }
 .badge.naeringsliv .i{ background: #ff8800; }      /* Næringsliv & industri */
 
 
-
 /* ===================================================== */
-/* PLACE CARD – LAYOUT (OPPDATERT FOR STØRRE KORT)       */
+/* PLACE CARD – STABIL, iPAD-OPTIMALISERT                 */
 /* ===================================================== */
 
-/* Hele kortet (sheet) */
+/* Hele kortet */
 #placeCard {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
+
   z-index: 50;
   background: rgba(13,27,42,0.96);
   backdrop-filter: blur(6px);
 
-  /* Større kort */
   border-radius: 26px 26px 0 0;
-  padding: 26px;              /* mer luft */
-  max-height: 78vh;           /* mer plass til innhold */
-  overflow-y: auto;           /* scroll hvis veldig mye tekst */
+  padding: 26px;
 
+  max-height: 78vh;
+  overflow-y: auto;
+
+  max-width: 100%;        /* hindrer at kortet blir bredere enn skjermen */
+  overflow-x: hidden;
   transform: translateY(0);
   transition: transform 0.25s ease;
 }
@@ -384,112 +386,92 @@ button{ cursor:pointer; border:none }
   transform: translateY(110%);
 }
 
+/* Hindrer at noe inni kortet presser ut bredden */
+#placeCard * {
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+
 /* ===================================================== */
-/* INNHOLD                                               */
+/* BILDER                                                 */
 /* ===================================================== */
 
-/* Større bilde */
 #placeCard img {
   width: 100%;
-  border-radius: 18px;        /* litt større radius matcher større kort */
+  max-width: 100%;
+  height: auto;
+  border-radius: 18px;
   margin-bottom: 18px;
 }
 
-/* Tittel */
-#placeCard .place-title {
-  font-size: 1.8rem;          /* større */
-  font-weight: 600;
-  margin-bottom: 6px;
-}
-
-/* Kategori */
-#placeCard .place-category {
-  font-size: 1.3rem;          /* større */
-  opacity: 0.9;
-  margin-bottom: 10px;
-}
-
-/* Beskrivelse */
-#placeCard .place-description {
-  font-size: 1.28rem;         /* større og bedre på iPad */
-  line-height: 1.55;
-  margin-bottom: 20px;
-}
-
-/* Personliste – større bilder + bedre klikkflate */
-#placeCard .pc-person img {
-  width: 58px;                /* større */
-  height: 58px;
-  border-radius: 50%;
-}
-
-/* Person-navn */
-#placeCard .pc-person span {
-  font-size: 1.15rem;
-}
-
-
-/* ===================================================== */
-/* Innhold: bilde venstre – tekst høyre                   */
-/* ===================================================== */
-
+/* PC-main rad: bilde til venstre, tekst til høyre */
 .pc-main {
   display: flex;
+  flex-direction: row;
   align-items: flex-start;
   gap: 14px;
-  margin-bottom: 14px;
+
+  width: 100%;
+  max-width: 100%;
 }
 
-/* Riktig, endelig pc-img */
+/* Det lille hovedbildet til venstre */
 .pc-img {
-  width: 95px;
-  height: 95px;
+  width: 120px !important;
+  height: 120px !important;
   border-radius: 12px;
   object-fit: cover;
   flex-shrink: 0;
   border: 1px solid rgba(255,255,255,0.15);
 }
 
+/* Tekstkolonnen */
 .pc-text {
   flex: 1;
+  min-width: 0; /* viktig! hindrer at den presser layouten ut */
 }
 
 
 /* ===================================================== */
-/* Tekst                                                  */
+/* TEKST                                                  */
 /* ===================================================== */
 
 #pcTitle {
   margin: 0;
-  font-size: 1.3rem;
+  font-size: 1.55rem;
   font-weight: 700;
   color: #fff;
 }
 
 #pcMeta {
   margin-top: 4px;
-  margin-bottom: 10px;
-  font-size: 0.92rem;
+  margin-bottom: 12px;
+  font-size: 1rem;
   color: var(--text-dim);
 }
 
 #pcDesc {
-  margin: 0 0 14px 0;
-  font-size: 1rem;
-  line-height: 1.45;
+  margin: 0 0 18px 0;
+  font-size: 1.14rem;
+  line-height: 1.52;
   color: var(--text);
 }
 
 
 /* ===================================================== */
-/* Personer tilknyttet stedet                             */
+/* PERSONER TILKNYTTET STEDET                             */
 /* ===================================================== */
 
 .pc-people {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  margin: 12px 0 16px 0;
+  gap: 12px;
+  margin: 12px 0 20px 0;
+
+  width: 100%;
+  max-width: 100%;
 }
 
 .pc-people button {
@@ -503,8 +485,8 @@ button{ cursor:pointer; border:none }
 }
 
 .pc-people img {
-  width: 54px;
-  height: 54px;
+  width: 58px;
+  height: 58px;
   border-radius: 50%;
   border: 2px solid rgba(255,255,255,0.25);
   object-fit: cover;
@@ -517,14 +499,14 @@ button{ cursor:pointer; border:none }
 
 .pc-people span {
   margin-top: 6px;
-  font-size: 0.8rem;
+  font-size: 0.92rem;
   color: var(--text);
   text-align: center;
 }
 
 
 /* ===================================================== */
-/* Knapper nederst                                         */
+/* HANDLING-KNAPPER                                      */
 /* ===================================================== */
 
 .pc-actions {
@@ -532,6 +514,9 @@ button{ cursor:pointer; border:none }
   flex-wrap: wrap;
   gap: 10px;
   margin-top: 8px;
+
+  width: 100%;
+  max-width: 100%;
 }
 
 /* Info-knapp */
@@ -539,7 +524,7 @@ button{ cursor:pointer; border:none }
   background: rgba(255,255,255,0.12);
   border: 1px solid rgba(255,255,255,0.18);
   color: #fff;
-  padding: 8px 14px;
+  padding: 10px 16px;
   border-radius: 10px;
   font-weight: 600;
 }
@@ -549,7 +534,7 @@ button{ cursor:pointer; border:none }
   background: var(--primary);
   color: #fff;
   border-radius: 10px;
-  padding: 8px 16px;
+  padding: 10px 18px;
   font-weight: 600;
 }
 
@@ -558,7 +543,7 @@ button{ cursor:pointer; border:none }
   background: #f6c800;
   color: #000;
   border-radius: 10px;
-  padding: 8px 16px;
+  padding: 10px 18px;
   font-weight: 600;
 }
 
@@ -568,7 +553,7 @@ button{ cursor:pointer; border:none }
   background: transparent;
   border: 1px solid var(--panel-border);
   color: #fff;
-  padding: 8px 14px;
+  padding: 10px 16px;
   border-radius: 10px;
 }
 
