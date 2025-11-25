@@ -904,6 +904,31 @@ button.quiz-done.blink {
   }
 }
 
+
+/* ===================================================== */
+/* HISTORISK KORT I REWARD-POPUP (2:1, fade + zoom)      */
+/* ===================================================== */
+
+.hg-popup.reward-popup .reward-card-img {
+  width: 92%;
+  max-width: 440px;
+  border-radius: 16px;
+  border: 3px solid #f6c800;
+  display: block;
+  margin: 14px auto 22px auto;
+  background: #000;
+
+  opacity: 0;
+  transform: scale(0.88);
+  transition: opacity .45s ease-out, transform .45s cubic-bezier(.22, .68, 0, 1.4);
+}
+
+.hg-popup.reward-popup .reward-card-img.visible {
+  opacity: 1 !important;
+  transform: scale(1) !important;
+}
+
+
 /* 13b. Person-galleri (rundt ikon + navn + klikk) */
 #gallery{
   display:flex;
