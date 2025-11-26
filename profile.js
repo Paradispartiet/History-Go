@@ -240,19 +240,27 @@ function renderTimeline() {
   const txt  = document.getElementById("timelineProgressText");
   if (!body) return;
 
-  const visited = ls("visited_places", {});
+  const visited   = ls("visited_places", {});
   const collected = ls("people_collected", {});
 
+  // TIMELINE = KUN BILDE (ikke kort)
   const items = [
-  ...PLACES.filter(p => visited[p.id]).map(p => ({
-    type:"place", id:p.id, name:p.name, year:Number(p.year)||0,
-    image: p.imageCard || p.cardImage || p.image || `bilder/kort/places/${p.id}.PNG`
-  })),
-  ...PEOPLE.filter(p => collected[p.id]).map(p => ({
-    type:"person", id:p.id, name:p.name, year:Number(p.year)||0,
-    image: p.imageCard || p.cardImage || p.image || `bilder/kort/people/${p.id}.PNG`
-  })),
-].sort((a,b)=>a.year - b.year);
+    ...PLACES.filter(p => visited[p.id]).map(p => ({
+      type:"place",
+      id:p.id,
+      name:p.name,
+      year:Number(p.year)||0,
+      image: p.image || `bilder/places/${p.id}.PNG`
+    })),
+
+    ...PEOPLE.filter(p => collected[p.id]).map(p => ({
+      type:"person",
+      id:p.id,
+      name:p.name,
+      year:Number(p.year)||0,
+      image: p.image || `bilder/people/${p.id}.PNG`
+    }))
+  ].sort((a,b)=>a.year - b.year);
 
   const count = items.length;
   if (count === 0) {
@@ -273,18 +281,17 @@ function renderTimeline() {
   if (txt) txt.textContent = `Du har låst opp ${count} kort`;
 
   body.querySelectorAll(".timeline-card").forEach(el => {
-  el.onclick = () => {
-    const id = el.dataset.id;
+    el.onclick = () => {
+      const id = el.dataset.id;
 
-    const pr = PEOPLE.find(p => p.id === id);
-    if (pr) return window.showPersonPopup(pr);
+      const pr = PEOPLE.find(p => p.id === id);
+      if (pr) return window.showPersonPopup(pr);
 
-    const pl = PLACES.find(p => p.id === id);
-    if (pl) return window.showPlacePopup(pl);
-  };
-});
+      const pl = PLACES.find(p => p.id === id);
+      if (pl) return window.showPlacePopup(pl);
+    };
+  });
 }
-
 
 function renderCollectionCards() {
   const body = document.getElementById("collectionCardsBody");
@@ -294,6 +301,7 @@ function renderCollectionCards() {
   const collected = ls("people_collected", {});
 
   const items = [
+    // Steder: cardImage
     ...PLACES.filter(p => visited[p.id]).map(p => ({
       type: "place",
       id: p.id,
@@ -302,12 +310,13 @@ function renderCollectionCards() {
       image: p.cardImage || p.image || `bilder/kort/places/${p.id}.PNG`
     })),
 
+    // Personer: imageCard
     ...PEOPLE.filter(p => collected[p.id]).map(p => ({
       type: "person",
       id: p.id,
       name: p.name,
       year: Number(p.year) || 0,
-      image: p.cardImage || p.image || `bilder/kort/people/${p.id}.PNG`
+      image: p.imageCard || p.image || `bilder/kort/people/${p.id}.PNG`
     }))
   ];
 
