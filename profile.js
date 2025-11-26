@@ -309,25 +309,28 @@ function renderCollectionCards() {
   const visited = ls("visited_places", {});
   const collected = ls("people_collected", {});
 
-  const items = [
-    // Steder: cardImage
-    ...PLACES.filter(p => visited[p.id]).map(p => ({
-      type: "place",
+  // Steder skal ALDRI bruke image – kun cardImage
+  const placeCards = PLACES
+    .filter(p => visited[p.id])
+    .map(p => ({
       id: p.id,
       name: p.name,
       year: Number(p.year) || 0,
-      image: p.cardImage || p.image || `bilder/kort/places/${p.id}.PNG`
-    })),
+      image: p.cardImage   // ← alltid denne!
+    }));
 
-    // Personer: imageCard
-    ...PEOPLE.filter(p => collected[p.id]).map(p => ({
-      type: "person",
+  // Personer skal ALDRI bruke image – kun imageCard
+  const personCards = PEOPLE
+    .filter(p => collected[p.id])
+    .map(p => ({
       id: p.id,
       name: p.name,
       year: Number(p.year) || 0,
-      image: p.imageCard || p.image || `bilder/kort/people/${p.id}.PNG`
-    }))
-  ];
+      image: p.imageCard   // ← alltid denne!
+    }));
+
+  // Kombiner og sorter etter år
+  const items = [...placeCards, ...personCards].sort((a,b) => a.year - b.year);
 
   if (!items.length) {
     body.innerHTML = `<div class="muted">Ingen kort låst opp ennå.</div>`;
@@ -344,6 +347,7 @@ function renderCollectionCards() {
     `)
     .join("");
 
+  // Klikk: åpne popup
   body.querySelectorAll(".collection-card").forEach(el => {
     el.onclick = () => {
       const id = el.dataset.id;
