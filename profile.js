@@ -107,7 +107,7 @@ function openBadgeModal(badge) {
   const modal = document.getElementById("badgeModal");
   if (!modal || !badge) return;
 
-  // --- MERITS INFO (samme som før) ---
+  // --- MERITS INFO ---
   const merits = ls("merits_by_category", {});
   const info = merits[badge.name] || merits[badge.id] || { level:"Nybegynner", points:0 };
 
@@ -121,13 +121,10 @@ function openBadgeModal(badge) {
   const max = badge.tiers[badge.tiers.length - 1].threshold;
   bar.style.width = `${Math.min(100, (info.points / max) * 100)}%`;
 
-  // --- KUN VISNING: quiz_history ---
+  // --- QUIZ-HISTORIKK ---
   const history = JSON.parse(localStorage.getItem("quiz_history") || "[]");
   const catId = badge.id.toLowerCase();
-
-  const items = history.filter(h =>
-    (h.categoryId || "").toLowerCase() === catId
-  );
+  const items = history.filter(h => (h.categoryId || "").toLowerCase() === catId);
 
   const list = modal.querySelector(".badge-quizzes");
 
@@ -135,37 +132,32 @@ function openBadgeModal(badge) {
     list.innerHTML = "<li>Ingen quiz fullført i denne kategorien ennå.</li>";
   } else {
     list.innerHTML = items
-  .map(h => {
-    const date = new Date(h.date).toLocaleDateString("no-NO");
-    const score = `${h.correctAnswers.length}/${h.correctAnswers.length}`;
+      .map(h => {
+        const date = new Date(h.date).toLocaleDateString("no-NO");
+        const score = `${h.correctAnswers.length}/${h.correctAnswers.length}`;
 
-    return `
-      <li class="badge-quiz-item">
-        <img class="badge-quiz-img" src="${h.image}">
-        <div class="badge-quiz-info">
-          <strong>${h.name}</strong><br>
-          <span>${date}</span><br>
-          <span class="badge-quiz-score">Score: ${score}</span>
+        return `
+          <li class="badge-quiz-item">
+            <img class="badge-quiz-img" src="${h.image}">
+            <div class="badge-quiz-info">
+              <strong>${h.name}</strong><br>
+              <span>${date}</span><br>
+              <span class="badge-quiz-score">Score: ${score}</span>
 
-          <ul class="badge-quiz-answers">
-            ${h.correctAnswers
-              .map(a => `
-                <li class="badge-quiz-q">
-                  <strong>${a.question}</strong><br>
-                  ✔ ${a.answer}
-                </li>
-              `)
-              .join("")}
-          </ul>
-        </div>
-      </li>
-    `;
-  })
-  .join("");
-</ul>
-          </div>
-        </li>
-      `)
+              <ul class="badge-quiz-answers">
+                ${h.correctAnswers
+                  .map(a => `
+                    <li class="badge-quiz-q">
+                      <strong>${a.question}</strong><br>
+                      ✔ ${a.answer}
+                    </li>
+                  `)
+                  .join("")}
+              </ul>
+            </div>
+          </li>
+        `;
+      })
       .join("");
   }
 
