@@ -58,10 +58,10 @@ window.showPersonPopup = function(person) {
 
   // Finn steder knyttet til personen
   const placeMatches = PLACES.filter(
-    p =>
-      (Array.isArray(p.people) && p.people.includes(person.id)) ||
-      p.placeId === person.id
-  );
+  p =>
+    person.placeId === p.id ||
+    (Array.isArray(person.places) && person.places.includes(p.id))
+);
 
   const html = `
       <img src="${face}" class="hg-popup-face">
