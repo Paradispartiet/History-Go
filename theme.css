@@ -187,13 +187,22 @@ main {
   gap: 10px;
 }
 
-/* Search box */
+/* Search box – History Go mørk stil */
 #globalSearch {
   flex: 1;
   padding: 6px 10px;
   border-radius: 8px;
-  border: 1px solid #ccc;
-  background: #fff;
+
+  background: rgba(255,255,255,0.12);         /* mørkt og i stil med panelene */
+  border: 1px solid rgba(255,255,255,0.22);   /* samme svake hvite kant som paneler */
+  color: #fff;                                /* hvit tekst som resten av appen */
+  font-size: 0.95rem;
+
+  backdrop-filter: blur(3px);                 /* samme subtile blur som History Go-panelene */
+}
+
+#globalSearch::placeholder {
+  color: rgba(255,255,255,0.55);              /* identisk med muted hvit tekst */
 }
 
 /* Search result overlay */
