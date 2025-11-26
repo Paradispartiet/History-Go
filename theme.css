@@ -174,10 +174,17 @@ main {
 
 
 #toast{
-  position:fixed; top:14px; left:50%; transform:translateX(-50%);
-  background: rgba(0,0,0,.72); color:#fff;
-  padding:8px 14px; border-radius:999px; font-weight:700;
-  display:none; z-index:15;
+  position:fixed;
+  top:14px;
+  left:50%;
+  transform:translateX(-50%);
+  background: rgba(0,0,0,.72);
+  color:#fff;
+  padding:8px 14px;
+  border-radius:999px;
+  font-weight:700;
+  display:none;
+  z-index:20000; /* ← FIX */
 }
 
 /* Top actions layout */
