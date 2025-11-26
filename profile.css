@@ -451,68 +451,48 @@ button.primary.small:hover { opacity: .9; }
 /* === Badge-modal === */
 #badgeModal {
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  inset: 0;
+  background: rgba(0,0,0,0.65);     /* mørkere bakgrunn */
+  backdrop-filter: blur(4px);
+  z-index: 999;
+  display: none;
+  justify-content: center;
+  align-items: center;
 }
 
-.modal-content {
-  background: var(--panel);
+/* === Modal-boks (større + scroll) === */
+#badgeModal .modal-content {
+  background: rgba(20,20,20,0.92);  /* litt mørkere panel */
   border: 1px solid var(--panel-border);
-  border-radius: 14px;
-  padding: 20px;
-  text-align: center;
-  width: 85vw;
-  max-width: 420px;
+  border-radius: 16px;
+  width: 92vw;
+  max-width: 540px;                 /* større */
+  max-height: 85vh;                 /* ikke hele skjermen */
+  overflow-y: auto;                 /* scroll */
+  overscroll-behavior: contain;     /* perfekt for iPad */
+  padding: 0;                       /* sticky header krever 0 padding */
+  box-shadow: 0 0 25px rgba(0,0,0,0.5);
   color: var(--text);
-  box-shadow: 0 0 25px rgba(0,0,0,0.4);
+  position: relative;
 }
-.badge-img {
-  width: 72px;
-  height: 72px;
-  border-radius: 12px;
-  margin-bottom: 8px;
-  border: 2px solid var(--panel-border);
+
+/* === Sticky Header === */
+.badge-modal-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(20,20,20,0.96);
+  backdrop-filter: blur(10px);
+  padding: 22px 20px 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  text-align: center;
 }
-.badge-title {
-  background: var(--accent);
-  color: #000;
-  display: inline-block;
-  padding: 4px 10px;
-  border-radius: 8px;
-  margin: 6px 0;
-  font-weight: 600;
-}
-.badge-level {
-  color: var(--text-dim);
-  margin-bottom: 10px;
-}
-.badge-progress {
-  background: rgba(255,255,255,0.1);
-  height: 6px;
-  border-radius: 6px;
-  overflow: hidden;
-  margin: 4px 0 8px;
-}
-.badge-progress-bar {
-  height: 100%;
-  width: 0;
-  background: var(--accent);
-  transition: width .4s ease;
-}
-.badge-progress-text {
-  font-size: .85em;
-  color: var(--text-dim);
-  margin-bottom: 8px;
-}
-.badge-quizzes {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 8px 0;
-  font-size: .9em;
-  color: var(--text-dim);
-}
+
+/* Lukk knapp */
 .close-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
   background: var(--accent);
   color: #000;
   border: none;
@@ -521,17 +501,72 @@ button.primary.small:hover { opacity: .9; }
   font-weight: 600;
 }
 
+/* Badge header-elementer */
+.badge-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  border: 2px solid var(--panel-border);
+}
 
-/* === Quiz-historikk i badge-modal === */
+.badge-title {
+  background: var(--accent);
+  color: #000;
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 8px;
+  margin: 8px 0;
+  font-weight: 600;
+  font-size: 1.1em;
+}
+
+.badge-level {
+  color: var(--text-dim);
+  margin-bottom: 6px;
+}
+
+.badge-progress {
+  background: rgba(255,255,255,0.12);
+  height: 6px;
+  border-radius: 6px;
+  overflow: hidden;
+  margin: 4px 0 10px;
+}
+
+.badge-progress-bar {
+  height: 100%;
+  background: var(--accent);
+  transition: width .4s ease;
+}
+
+.badge-progress-text {
+  font-size: 0.85em;
+  color: var(--text-dim);
+  margin-top: 6px;
+}
+
+/* === Innhold (scroll) === */
+.badge-modal-body {
+  padding: 20px 22px 26px;
+}
+
+/* === Quiz-historikk === */
+.badge-quizzes {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
 .badge-quiz-item {
   display: flex;
   gap: 12px;
-  margin-bottom: 14px;
+  margin-bottom: 18px;
 }
 
 .badge-quiz-img {
-  width: 60px;
-  height: 60px;
+  width: 58px;
+  height: 58px;
   border-radius: 8px;
   object-fit: cover;
   flex-shrink: 0;
@@ -550,21 +585,27 @@ button.primary.small:hover { opacity: .9; }
 }
 
 .badge-quiz-info span {
-  font-size: 0.8em;
+  font-size: 0.82em;
   color: var(--text-dim);
 }
 
+/* Spørsmål + svar */
 .badge-quiz-answers {
   list-style: none;
   padding-left: 0;
-  margin: 6px 0 0 0;
+  margin: 8px 0 0 0;
 }
 
 .badge-quiz-answers li {
-  color: #a7f59d;
   font-size: 0.82em;
-  margin: 2px 0;
+  margin: 4px 0;
+  line-height: 1.35;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  color: #a7f59d; /* grønne svar */
 }
+
+
 
 /* ============================
    PERSONER – AVATAR GRID
