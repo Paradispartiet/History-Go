@@ -32,18 +32,34 @@
   <!-- Toast -->
   <div id="toast"></div>
 
-  <!-- Badge-modal -->
-  <div id="badgeModal" class="modal" aria-hidden="true" style="display:none;">
-    <div class="modal-content">
+<!-- ========================================================= -->
+<!-- BADGE MODAL – NY STOR VERSJON MED STICKY HEADER           -->
+<!-- ========================================================= -->
+<div id="badgeModal" class="modal" aria-hidden="true" style="display:none;">
+  <div class="modal-content">
+
+    <!-- STICKY HEADER -->
+    <div class="badge-modal-header">
+      <button class="close-btn">✕</button>
+
       <img class="badge-img" src="" alt="Merke">
-      <h3 class="badge-title"></h3>
-      <p class="badge-level"></p>
-      <div class="badge-progress"><div class="badge-progress-bar"></div></div>
-      <p class="badge-progress-text"></p>
-      <ul class="badge-quizzes"></ul>
-      <button class="close-badge close-btn">Lukk</button>
+      <h2 class="badge-title"></h2>
+
+      <div class="badge-level"></div>
+      <div class="badge-progress-text"></div>
+
+      <div class="badge-progress">
+        <div class="badge-progress-bar"></div>
+      </div>
     </div>
+
+    <!-- INNHOLD SOM SCROLLER -->
+    <div class="badge-modal-body">
+      <ul class="badge-quizzes"></ul>
+    </div>
+
   </div>
+</div>
 
   <!-- HEADER -->
   <header class="site-header">
