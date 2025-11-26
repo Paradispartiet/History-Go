@@ -244,15 +244,15 @@ function renderTimeline() {
   const collected = ls("people_collected", {});
 
   const items = [
-    ...PLACES.filter(p => visited[p.id]).map(p => ({
-      type:"place", id:p.id, name:p.name, year:Number(p.year)||0,
-      image:p.image || `bilder/kort/places/${p.id}.PNG`
-    })),
-    ...PEOPLE.filter(p => collected[p.id]).map(p => ({
-      type:"person", id:p.id, name:p.name, year:Number(p.year)||0,
-      image:p.image || `bilder/kort/people/${p.id}.PNG`
-    })),
-  ].sort((a,b)=>a.year - b.year);
+  ...PLACES.filter(p => visited[p.id]).map(p => ({
+    type:"place", id:p.id, name:p.name, year:Number(p.year)||0,
+    image: p.imageCard || p.cardImage || p.image || `bilder/kort/places/${p.id}.PNG`
+  })),
+  ...PEOPLE.filter(p => collected[p.id]).map(p => ({
+    type:"person", id:p.id, name:p.name, year:Number(p.year)||0,
+    image: p.imageCard || p.cardImage || p.image || `bilder/kort/people/${p.id}.PNG`
+  })),
+].sort((a,b)=>a.year - b.year);
 
   const count = items.length;
   if (count === 0) {
