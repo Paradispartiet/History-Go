@@ -135,21 +135,33 @@ function openBadgeModal(badge) {
     list.innerHTML = "<li>Ingen quiz fullført i denne kategorien ennå.</li>";
   } else {
     list.innerHTML = items
-      .map(h => `
-        <li class="badge-quiz-item">
-          <img class="badge-quiz-img" src="${h.image}">
-          <div class="badge-quiz-info">
-            <strong>${h.name}</strong><br>
-            <span>${new Date(h.date).toLocaleDateString("no-NO")}</span>
-            <ul class="badge-quiz-answers">
-  ${h.correctAnswers
-    .map(a => `
-      <li class="badge-quiz-q">
-        <strong>${a.question}</strong><br>
-        ✔ ${a.answer}
+  .map(h => {
+    const date = new Date(h.date).toLocaleDateString("no-NO");
+    const score = `${h.correctAnswers.length}/${h.correctAnswers.length}`;
+
+    return `
+      <li class="badge-quiz-item">
+        <img class="badge-quiz-img" src="${h.image}">
+        <div class="badge-quiz-info">
+          <strong>${h.name}</strong><br>
+          <span>${date}</span><br>
+          <span class="badge-quiz-score">Score: ${score}</span>
+
+          <ul class="badge-quiz-answers">
+            ${h.correctAnswers
+              .map(a => `
+                <li class="badge-quiz-q">
+                  <strong>${a.question}</strong><br>
+                  ✔ ${a.answer}
+                </li>
+              `)
+              .join("")}
+          </ul>
+        </div>
       </li>
-    `)
-    .join("")}
+    `;
+  })
+  .join("");
 </ul>
           </div>
         </li>
