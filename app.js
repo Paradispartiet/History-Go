@@ -991,7 +991,7 @@ async function startQuiz(targetId) {
     markQuizAsDone(targetId);
 
 const when = new Date().toISOString();
-const quizItem = questions.map(q => ({
+const quizItem = formatted.map(q => ({
   question: q.text,
   answer: q.choices[q.answerIndex]
 }));
