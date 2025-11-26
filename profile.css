@@ -521,6 +521,51 @@ button.primary.small:hover { opacity: .9; }
   font-weight: 600;
 }
 
+
+/* === Quiz-historikk i badge-modal === */
+.badge-quiz-item {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.badge-quiz-img {
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 2px solid var(--panel-border);
+}
+
+.badge-quiz-info {
+  flex: 1;
+  color: var(--text);
+  text-align: left;
+}
+
+.badge-quiz-info strong {
+  font-size: 0.95em;
+  color: var(--text);
+}
+
+.badge-quiz-info span {
+  font-size: 0.8em;
+  color: var(--text-dim);
+}
+
+.badge-quiz-answers {
+  list-style: none;
+  padding-left: 0;
+  margin: 6px 0 0 0;
+}
+
+.badge-quiz-answers li {
+  color: #a7f59d;
+  font-size: 0.82em;
+  margin: 2px 0;
+}
+
 /* ============================
    PERSONER – AVATAR GRID
    ============================ */
