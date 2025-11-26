@@ -195,7 +195,7 @@ function renderPeopleCollection() {
 
   grid.innerHTML = peopleUnlocked.map(p => `
     <div class="avatar-card" data-person="${p.id}">
-      <img src="bilder/people/${p.image}" class="avatar-img">
+      <img src="${p.image}" class="avatar-img">
       <div class="avatar-name">${p.name}</div>
     </div>
   `).join("");
