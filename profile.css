@@ -460,17 +460,16 @@ button.primary.small:hover { opacity: .9; }
   align-items: center;
 }
 
-/* === Modal-boks (større + scroll) === */
-#badgeModal .modal-content {
-  background: rgba(20,20,20,0.92);  /* litt mørkere panel */
+#badgeModal .modal-inner {
+  background: rgba(20,20,20,0.92);
   border: 1px solid var(--panel-border);
   border-radius: 16px;
   width: 92vw;
-  max-width: 540px;                 /* større */
-  max-height: 85vh;                 /* ikke hele skjermen */
-  overflow-y: auto;                 /* scroll */
-  overscroll-behavior: contain;     /* perfekt for iPad */
-  padding: 0;                       /* sticky header krever 0 padding */
+  max-width: 540px;
+  max-height: 85vh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 0;
   box-shadow: 0 0 25px rgba(0,0,0,0.5);
   color: var(--text);
   position: relative;
