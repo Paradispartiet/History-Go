@@ -142,10 +142,15 @@ function openBadgeModal(badge) {
             <strong>${h.name}</strong><br>
             <span>${new Date(h.date).toLocaleDateString("no-NO")}</span>
             <ul class="badge-quiz-answers">
-              ${h.correctAnswers
-                .map(a => `<li>✔ ${a.answer}</li>`)
-                .join("")}
-            </ul>
+  ${h.correctAnswers
+    .map(a => `
+      <li class="badge-quiz-q">
+        <strong>${a.question}</strong><br>
+        ✔ ${a.answer}
+      </li>
+    `)
+    .join("")}
+</ul>
           </div>
         </li>
       `)
