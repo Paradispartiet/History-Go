@@ -785,6 +785,8 @@ function initMiniProfile() {
   st.textContent = `${visitedCount} steder · ${badgeCount} merker · ${quizCount} quizzer`;
 }
 
+window.addEventListener("updateProfile", initMiniProfile);
+
 function showQuizHistory() {
   const progress = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
   const allCompleted = Object.entries(progress).flatMap(([cat, val]) =>
