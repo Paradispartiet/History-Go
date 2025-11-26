@@ -1175,7 +1175,7 @@ function globalSearch(query) {
   );
 
   // --- NÆR MEG (når kartet er aktivt) ---
-  if (window.mapIsActive && window.userLat && window.userLon) {
+if (window.userLat && window.userLon) {
     places = [...places].sort((a, b) => {
       const da = dist(window.userLat, window.userLon, a.lat, a.lon);
       const db = dist(window.userLat, window.userLon, b.lat, b.lon);
@@ -1222,7 +1222,7 @@ function renderSearchResults({ people, places, categories }, query = "") {
 
   // --- NÆR DEG (når kart er aktivt) ---
   let nearList = "";
-  if (window.mapIsActive && window.userLat && window.userLon) {
+if (window.userLat && window.userLon) {
     const near = places.slice(0, 3); // 3 nærmeste
     nearList = `
       <div class="search-section">
