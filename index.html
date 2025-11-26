@@ -49,42 +49,45 @@
     <button id="btnExitMap" title="Lukk kart" aria-label="Lukk kart">✕</button>
   </div>
 
-  <!-- Toast -->
-  <div id="toast" role="status" aria-live="polite"></div>
+<!-- HEADER -->
+<header class="site-header">
 
-  <!-- HEADER -->
-  <header class="site-header">
-    <div class="brand">
-      <img src="bilder/logo_historygo.PNG" alt="History Go logo" class="brand-logo">
-      <span class="brand-name">History Go</span>
-    </div>
-
-<div class="top-actions">
-  <button id="toggleMap">Se kart</button>
-  <input id="globalSearch" placeholder="Søk…" autocomplete="off">
-</div>
-
-<div id="searchResults"></div>
-    
-    <div class="actions">
-      <button id="btnSeeMap" class="secondary">Se kart</button>
-      <label class="toggle">
-        <input id="testToggle" type="checkbox" />
-        <span>Testmodus</span>
-      </label>
-    </div>
-  </header>
-
-  <!-- FLYTENDE VENSTREKOLONNE – SE NÆRMESTE -->
-  <div id="nearbyListContainer">
-    <h2 class="nearby-title">
-      Steder i nærheten
-      <button id="btnSeeMoreNearby" class="chip ghost">Se flere</button>
-    </h2>
-
-    <div id="status" class="muted">Henter posisjon…</div>
-    <div id="nearbyList"></div>
+  <!-- Logo og navn -->
+  <div class="brand">
+    <img src="bilder/logo_historygo.PNG" alt="History Go logo" class="brand-logo">
+    <span class="brand-name">History Go</span>
   </div>
+
+  <!-- ACTIONS + SØK -->
+  <div class="top-actions">
+    <button id="toggleMap">Se kart</button>
+    <input id="globalSearch" placeholder="Søk…" autocomplete="off">
+  </div>
+
+  <!-- SØKERESULTATER (overlay under headeren) -->
+  <div id="searchResults"></div>
+
+  <!-- Eksisterende høyre actions -->
+  <div class="actions">
+    <button id="btnSeeMap" class="secondary">Se kart</button>
+    <label class="toggle">
+      <input id="testToggle" type="checkbox" />
+      <span>Testmodus</span>
+    </label>
+  </div>
+
+</header>
+
+<!-- FLYTENDE VENSTREKOLONNE – SE NÆRMESTE -->
+<div id="nearbyListContainer">
+  <h2 class="nearby-title">
+    Steder i nærheten
+    <button id="btnSeeMoreNearby" class="chip ghost">Se flere</button>
+  </h2>
+
+  <div id="status" class="muted">Henter posisjon…</div>
+  <div id="nearbyList"></div>
+</div>
 
   <!-- MAIN -->
   <main>
