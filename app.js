@@ -92,6 +92,21 @@ const el = {
 // ==============================
 // 3. KATEGORIFUNKSJONER
 // ==============================
+
+// Kategoriliste (brukes i søk, badges, visning, scroll)
+const CATEGORY_LIST = [
+  { id: "historie",        name: "Historie" },
+  { id: "vitenskap",       name: "Vitenskap & filosofi" },
+  { id: "kunst",           name: "Kunst & kultur" },
+  { id: "musikk",          name: "Musikk & scenekunst" },
+  { id: "natur",           name: "Natur & miljø" },
+  { id: "sport",           name: "Sport & lek" },
+  { id: "by",              name: "By & arkitektur" },
+  { id: "politikk",        name: "Politikk & samfunn" },
+  { id: "populaerkultur",  name: "Populærkultur" },
+  { id: "subkultur",       name: "Subkultur" }
+];
+
 function norm(s = "") {
   return String(s)
     .toLowerCase()
