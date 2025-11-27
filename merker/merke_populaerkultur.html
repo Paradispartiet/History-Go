@@ -76,14 +76,12 @@
       <p>
         Populærkultur er sirkulasjonen av symboler, fortellinger og uttrykk som når massene.
         Det inkluderer film, TV, spill, internettkultur, kjendiser, humor, reklame, ikonografi
-        og memetiske mønstre. 
+        og memetiske mønstre.
       </p>
       <p>
         I History Go viser dette feltet hvordan byens steder og personer blir knutepunkt i
         samtidens kollektive fantasi.
       </p>
-
-      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 2. NORMATIV DIMENSJON -->
@@ -100,8 +98,6 @@
       <p>
         Normen er at popkultur er «lett» – noe som gjør dens makt ekstra sterk.
       </p>
-
-      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 3. DOXA -->
@@ -112,8 +108,6 @@
         Doxa skjuler at populærkultur former identitet, politiske stemninger, normer og
         verdensforståelse. Underholdning er en av samtidens mest effektive måter å påvirke på.
       </p>
-
-      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 4. METODISK DIMENSJON -->
@@ -127,8 +121,6 @@
         <li>studier av massepsykologi</li>
         <li>sjanger- og formatforståelse</li>
       </ul>
-
-      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 5. MATERIELL DIMENSJON -->
@@ -141,8 +133,6 @@
         <li>produksjonsselskaper og streamingleverandører</li>
         <li>spillmotorer, kameraer, lydutstyr</li>
       </ul>
-
-      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 6. SOSIAL DIMENSJON -->
@@ -158,8 +148,6 @@
         Popkultur er en sosial infrastruktur som organiserer oppmerksomhet, identitet og
         tilhørighet.
       </p>
-
-      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 7. GEOGRAFISK DIMENSJON -->
@@ -172,8 +160,6 @@
       <p>
         I History Go kobles dette til Oslos kulturelle topografi.
       </p>
-
-      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 8. TEMPORAL DIMENSJON -->
@@ -188,8 +174,6 @@
       <p>
         Popkultur forandrer seg raskt — og følger med i samtidens skiftende psykologi.
       </p>
-
-      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 9. BLINDSONER -->
@@ -202,8 +186,6 @@
         <li>symboler som former identitet</li>
         <li>usynlig arbeid bak kulturproduksjon</li>
       </ul>
-
-      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 10. KJERNEBEGREPER -->
@@ -218,8 +200,6 @@
         <li>Medier</li>
         <li>Trend</li>
       </ul>
-
-      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 11. BIDRAG -->
@@ -236,38 +216,9 @@
         POPULÆRKULTUR-merket gjør byen lesbar som et arkiv av symboler, ikoner og
         kollektiv fantasi.
       </p>
-
-      <div class="knowledge-slot"></div>
     </section>
 
   </main>
-
-  <!-- ★ KNOWLEDGE SYSTEM KOBLING -->
-  <script src="knowledge.js"></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const CATEGORY = "populaerkultur";
-
-      const learned = getKnowledgeForCategory(CATEGORY);
-
-      Object.entries(learned).forEach(([dimension, items]) => {
-        const section = document.getElementById(dimension);
-        if (!section) return;
-
-        const slot = section.querySelector(".knowledge-slot");
-        if (!slot) return;
-
-        slot.innerHTML = `
-          <h3>Dine lærepunkter:</h3>
-          <ul class="knowledge-list">
-            ${items
-              .map(k => `<li><strong>${k.topic}:</strong> ${k.text}</li>`)
-              .join("")}
-          </ul>
-        `;
-      });
-    });
-  </script>
 
 </body>
 </html>
