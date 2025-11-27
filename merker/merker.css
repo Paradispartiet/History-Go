@@ -1,0 +1,231 @@
+/* ===================================================================
+   HISTORY GO – MERKESIDER
+   Gjelder alle filer i /merker/
+   =================================================================== */
+
+/* -----------------------------
+   Global font & reset
+-------------------------------- */
+body {
+  margin: 0;
+  padding: 0;
+  background: #0d1b2a;
+  color: #fff;
+  font-family: system-ui, Arial, sans-serif;
+}
+
+/* -----------------------------
+   Toppnavigasjon
+-------------------------------- */
+.hg-topnav {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  background: #0b1621;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.hg-logo-nav {
+  height: 40px;
+  width: auto;
+}
+
+/* Dropdown -------------------------------------------------------- */
+.nav-dropdown {
+  position: relative;
+  margin-left: auto;
+}
+
+.nav-dropbtn {
+  background: #1b263b;
+  color: #fff;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.nav-dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  margin-top: 8px;
+  background: #1b263b;
+  border-radius: 8px;
+  padding: 6px 0;
+  box-shadow: 0 0 12px rgba(0,0,0,0.45);
+  z-index: 20;
+}
+
+.nav-dropdown-content a {
+  display: block;
+  padding: 10px 18px;
+  color: #fff;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.nav-dropdown-content a:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+.nav-dropdown-content a.active {
+  background: rgba(255,255,255,0.18);
+  font-weight: 600;
+}
+
+.nav-dropdown:hover .nav-dropdown-content {
+  display: block;
+}
+
+/* ===================================================================
+   HEADER på merkene
+   =================================================================== */
+
+.merke-header {
+  text-align: center;
+  padding: 40px 20px 30px;
+}
+
+.merke-header h1 {
+  margin: 14px 0 6px;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.merke-ingress {
+  max-width: 650px;
+  margin: 0 auto;
+  font-size: 16px;
+  opacity: 0.9;
+}
+
+/* Tilbake til merker */
+.tilbake-knapp {
+  display: inline-block;
+  margin-bottom: 18px;
+  color: #fff;
+  text-decoration: none;
+  opacity: 0.7;
+}
+.tilbake-knapp:hover {
+  opacity: 1;
+}
+
+/* Merkeikon + logo */
+.logo-container img {
+  width: 75px;
+  opacity: 0.9;
+}
+
+.merke-ikon-container img {
+  width: 100px;
+  margin-top: 10px;
+}
+
+/* ===================================================================
+   INNHOLD – Seksjoner
+   =================================================================== */
+
+.merke-main {
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.merke-blokk {
+  background: rgba(255,255,255,0.05);
+  padding: 22px 20px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.merke-blokk h2 {
+  margin-top: 0;
+  font-size: 22px;
+}
+
+.merke-blokk ul {
+  margin: 10px 0 0 0;
+  padding-left: 22px;
+}
+
+.merke-sitat {
+  font-style: italic;
+  opacity: 0.8;
+}
+
+/* Knowledge-slot (automatisk utfylling, men skjult hvis tom) */
+.knowledge-slot {
+  margin-top: 12px;
+  padding: 14px;
+  border-left: 3px solid #4da3ff;
+  background: rgba(255,255,255,0.04);
+  border-radius: 8px;
+  display: none;
+}
+
+.knowledge-slot.active {
+  display: block;
+}
+
+/* ===================================================================
+   MERKE-OVERSIKT (merker.html)
+   =================================================================== */
+
+.merke-oversikt-side .merke-header {
+  padding-top: 30px;
+}
+
+.merke-grid {
+  display: grid;
+  gap: 20px;
+  padding: 30px 20px 60px;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+.merke-kort {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255,255,255,0.05);
+  padding: 18px;
+  border-radius: 12px;
+  text-decoration: none;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.08);
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+
+.merke-kort img {
+  width: 70px;
+  height: auto;
+  margin-bottom: 12px;
+}
+
+.merke-kort span {
+  font-size: 15px;
+  text-align: center;
+}
+
+.merke-kort:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
+
+/* ===================================================================
+   RESPONSIVT
+   =================================================================== */
+
+@media (max-width: 500px) {
+  .merke-header h1 {
+    font-size: 22px;
+  }
+  .merke-ikon-container img {
+    width: 80px;
+  }
+}
