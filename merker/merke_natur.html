@@ -84,8 +84,6 @@
         I History Go knytter dette merket steder og personer til naturkunnskap, økologiske endringer
         og menneskets forhold til miljøet.
       </p>
-
-      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 2. NORMATIV DIMENSJON -->
@@ -101,8 +99,6 @@
       <p>
         Normen er at naturens grenser er reelle — og at mennesket må forstå dem.
       </p>
-
-      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 3. DOXA -->
@@ -113,8 +109,6 @@
         Doxa antar at naturen er en ressurs, stabil og tilgjengelig. Dette skjuler naturens egen
         agens og konsekvensene av forstyrrelser i økologiske systemer.
       </p>
-
-      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 4. METODISK DIMENSJON -->
@@ -127,8 +121,6 @@
         <li>feltstudier og observasjon</li>
         <li>klimamodellering</li>
       </ul>
-
-      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 5. MATERIELL DIMENSJON -->
@@ -141,8 +133,6 @@
         <li>klimadata og økologiske modeller</li>
         <li>biologiske prøver og feltmålinger</li>
       </ul>
-
-      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 6. SOSIAL DIMENSJON -->
@@ -158,8 +148,6 @@
       <p>
         Naturkunnskap er sosialt produsert og politisk strukturert.
       </p>
-
-      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 7. GEOGRAFISK DIMENSJON -->
@@ -172,8 +160,6 @@
         I History Go kobles byens natur til historiske endringer, grønne strukturer og økologiske
         spor i byrommet.
       </p>
-
-      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 8. TEMPORAL DIMENSJON -->
@@ -188,8 +174,6 @@
       <p>
         Natur er også historisk — den endrer seg, regenereres eller bryter sammen over tid.
       </p>
-
-      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 9. BLINDSONER -->
@@ -202,8 +186,6 @@
         <li>økologisk kollaps før den registreres</li>
         <li>marginaliserte natursystemer</li>
       </ul>
-
-      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 10. KJERNEBEGREPER -->
@@ -218,8 +200,6 @@
         <li>Forstyrrelse</li>
         <li>Biomakt</li>
       </ul>
-
-      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 11. BIDRAG -->
@@ -236,38 +216,9 @@
         NATUR & MILJØ-merket viser at byen ikke står utenfor naturen, men inngår i større økologiske
         sammenhenger.
       </p>
-
-      <div class="knowledge-slot"></div>
     </section>
 
   </main>
-
-  <!-- ★ KNOWLEDGE SYSTEM KOBLING -->
-  <script src="knowledge.js"></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const CATEGORY = "natur";
-
-      const learned = getKnowledgeForCategory(CATEGORY);
-
-      Object.entries(learned).forEach(([dimension, items]) => {
-        const section = document.getElementById(dimension);
-        if (!section) return;
-
-        const slot = section.querySelector(".knowledge-slot");
-        if (!slot) return;
-
-        slot.innerHTML = `
-          <h3>Dine lærepunkter:</h3>
-          <ul class="knowledge-list">
-            ${items
-              .map(k => `<li><strong>${k.topic}:</strong> ${k.text}</li>`)
-              .join("")}
-          </ul>
-        `;
-      });
-    });
-  </script>
 
 </body>
 </html>
