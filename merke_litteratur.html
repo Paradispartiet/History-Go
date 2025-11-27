@@ -14,8 +14,8 @@
   <nav class="hg-topnav">
 
     <!-- Logo -->
-    <a href="index.html" class="nav-logo">
-      <img src="bilder/ui/historygo_logo.PNG" class="hg-logo-nav" alt="History Go logo">
+    <a href="../index.html" class="nav-logo">
+      <img src="../bilder/ui/historygo_logo.PNG" class="hg-logo-nav" alt="History Go logo">
     </a>
 
     <!-- Dropdown -->
@@ -45,16 +45,16 @@
   <header class="merke-header">
 
     <!-- Tilbakeknapp -->
-    <a href="merker.html" class="tilbake-knapp">← Tilbake til merker</a>
+    <a href="../merker.html" class="tilbake-knapp">← Tilbake til merker</a>
 
     <!-- Logo -->
     <div class="logo-container">
-      <img src="bilder/ui/historygo_logo.PNG" alt="History Go logo" class="hg-logo">
+      <img src="../bilder/ui/historygo_logo.PNG" alt="History Go logo" class="hg-logo">
     </div>
 
     <!-- Merke-ikon -->
     <div class="merke-ikon-container">
-      <img src="bilder/merker/litteratur.PNG" alt="Merke: Litteratur" class="merke-ikon">
+      <img src="../bilder/merker/litteratur.PNG" alt="Merke: Litteratur" class="merke-ikon">
     </div>
 
     <h1>LITTERATUR – full teoretisk beskrivelse</h1>
@@ -81,8 +81,6 @@
         I History Go viser litteratur-merket hvordan Oslo har vært en by for forfattere,
         tidsskrifter, forlag, teater, bibliotek og litterære miljøer.
       </p>
-
-      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 2. NORMATIV DIMENSJON -->
@@ -99,8 +97,6 @@
       <p>
         Normen er ofte at «litteratur er kunst og kultur», men feltet er mer komplekst enn det.
       </p>
-
-      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 3. DOXA -->
@@ -111,8 +107,6 @@
         Doxa skjuler at litteratur er politisk, sosial, identitetsskapende og at den
         former verdensforståelse. Hva som kalles «god litteratur» er et maktspørsmål.
       </p>
-
-      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 4. METODISK DIMENSJON -->
@@ -125,8 +119,6 @@
         <li>fortellerteori</li>
         <li>språkpolitikk og kanondannelse</li>
       </ul>
-
-      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 5. MATERIELL DIMENSJON -->
@@ -139,8 +131,6 @@
         <li>scener, saler, lesesaler og arkiver</li>
         <li>skrivebord, manuskript, maskinskrifter</li>
       </ul>
-
-      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 6. SOSIAL DIMENSJON -->
@@ -155,8 +145,6 @@
       <p>
         Litteratur er et sosialt system av produksjon, distribusjon og tolkning.
       </p>
-
-      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 7. GEOGRAFISK DIMENSJON -->
@@ -169,8 +157,6 @@
       <p>
         I History Go gjør vi dette synlig — Oslo som en litterær by.
       </p>
-
-      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 8. TEMPORAL DIMENSJON -->
@@ -185,8 +171,6 @@
       <p>
         Litteratur er alltid historisk — nye stemmer endrer hva som regnes som viktig.
       </p>
-
-      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 9. BLINDSONER -->
@@ -198,8 +182,6 @@
         <li>kulturelle hierarkier</li>
         <li>den tause litteraturen (dagbøker, brev, muntlig tradisjon)</li>
       </ul>
-
-      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 10. KJERNEBEGREPER -->
@@ -214,8 +196,6 @@
         <li>Perspektiv</li>
         <li>Tolkning</li>
       </ul>
-
-      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 11. BIDRAG -->
@@ -231,39 +211,9 @@
       <p>
         LITTERATUR-merket gjør det mulig å lese byen som tekst — et nett av stemmer, konflikter og fortellinger.
       </p>
-
-      <div class="knowledge-slot"></div>
     </section>
 
   </main>
-
-
-  <!-- ★ KNOWLEDGE SYSTEM KOBLING -->
-  <script src="knowledge.js"></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const CATEGORY = "litteratur";
-
-      const learned = getKnowledgeForCategory(CATEGORY);
-
-      Object.entries(learned).forEach(([dimension, items]) => {
-        const section = document.getElementById(dimension);
-        if (!section) return;
-
-        const slot = section.querySelector(".knowledge-slot");
-        if (!slot) return;
-
-        slot.innerHTML = `
-          <h3>Dine lærepunkter:</h3>
-          <ul class="knowledge-list">
-            ${items
-              .map(k => `<li><strong>${k.topic}:</strong> ${k.text}</li>`)
-              .join("")}
-          </ul>
-        `;
-      });
-    });
-  </script>
 
 </body>
 </html>
