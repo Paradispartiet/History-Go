@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <title>History Go – Kunnskap: NÆRINGSLIV</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Dine læringspunkter innen merket NÆRINGSLIV i History Go.">
+  <link rel="stylesheet" href="../merker/merker.css">
+</head>
+
+<body class="merke-side merke-naeringsliv knowledge-page">
+
+  <!-- ★ GLOBAL TOPPNAV MED DROPDOWN -->
+  <nav class="hg-topnav">
+
+    <a href="../index.html" class="nav-logo">
+      <img src="../bilder/ui/historygo_logo.PNG" class="hg-logo-nav" alt="History Go logo">
+    </a>
+
+    <div class="nav-dropdown">
+      <button class="nav-dropbtn">Merker ▼</button>
+      <div class="nav-dropdown-content">
+
+        <a href="../merkers/merke_historie.html">Historie</a>
+        <a href="../merkers/merke_vitenskap.html">Vitenskap</a>
+        <a href="../merkers/merke_kunst.html">Kunst & Kultur</a>
+        <a href="../merkers/merke_natur.html">Natur & Miljø</a>
+        <a href="../merkers/merke_musikk.html">Musikk</a>
+        <a href="../merkers/merke_populaerkultur.html">Populærkultur</a>
+        <a href="../merkers/merke_subkultur.html">Subkultur</a>
+        <a href="../merkers/merke_sport.html">Sport</a>
+        <a href="../merkers/merke_by.html">By & Arkitektur</a>
+        <a href="../merkers/merke_politikk.html">Politikk & Samfunn</a>
+        <a href="../merkers/merke_naeringsliv.html" class="active">Næringsliv</a>
+        <a href="../merkers/merke_litteratur.html">Litteratur</a>
+
+      </div>
+    </div>
+
+  </nav>
+
+  <!-- ★ HEADER -->
+  <header class="merke-header">
+
+    <a href="../merkers/merke_naeringsliv.html" class="tilbake-knapp">
+      ← Til merket Næringsliv
+    </a>
+
+    <div class="logo-container">
+      <img src="../bilder/ui/historygo_logo.PNG" alt="History Go logo" class="hg-logo">
+    </div>
+
+    <div class="merke-ikon-container">
+      <img src="../bilder/merker/naeringsliv.PNG" alt="Merke: Næringsliv" class="merke-ikon">
+    </div>
+
+    <h1>Kunnskap – NÆRINGSLIV</h1>
+
+    <p class="merke-ingress">
+      Her samles alle læringspunkter du har låst opp innen <strong>NÆRINGSLIV</strong>:
+      industri, handel, arbeid, økonomi, markeder, innovasjon og byens materielle strømmer.
+    </p>
+
+  </header>
+
+  <!-- ★ INNHOLD -->
+  <main class="merke-main">
+
+    <section class="merke-blokk">
+      <h2>Dine kunnskapspunkter</h2>
+
+      <p>
+        Næringsliv viser hvordan økonomiske krefter former byens infrastruktur, arbeidsliv, innovasjon
+        og historiske utvikling.  
+        Her grupperes alle læringspunktene dine etter dimensjon.
+      </p>
+
+      <div id="knowledgeContainer" class="knowledge-container"></div>
+    </section>
+
+  </main>
+
+  <!-- ★ KNOWLEDGE SYSTEM -->
+  <script src="knowledge.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const CATEGORY = "naeringsliv";
+      const container = document.getElementById("knowledgeContainer");
+      if (!container) return;
+      container.innerHTML = renderKnowledgeSection(CATEGORY);
+    });
+  </script>
+
+</body>
+</html>
