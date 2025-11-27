@@ -824,6 +824,22 @@ function initMiniProfile() {
   }
 }
 
+/* -------------------------------------
+   3) Siste kunnskap
+-------------------------------------- */
+const K = JSON.parse(localStorage.getItem("knowledge_points") || "[]");
+const boxK = document.getElementById("miniKnowledge");
+if (K.length) {
+  const last = K[K.length - 1];
+  document.getElementById("miniKnowledgeTopic").textContent = last.topic;
+  document.getElementById("miniKnowledgeCat").textContent =
+    last.category.charAt(0).toUpperCase() + last.category.slice(1);
+
+  boxK.style.display = "flex";
+} else {
+  boxK.style.display = "none";
+}
+
 window.addEventListener("updateProfile", initMiniProfile);
 
 function showQuizHistory() {
