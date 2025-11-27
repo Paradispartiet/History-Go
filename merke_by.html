@@ -57,7 +57,7 @@
       <img src="bilder/merker/by.PNG" alt="Merke: By & Arkitektur" class="merke-ikon">
     </div>
 
-    <h1>BY & ARKITEKTUR – full teoretisk beskrivelse</h1>
+    <h1>BY & ARKITEKTUR – full teoretisk beskrivelse</hh1>
 
     <p class="merke-ingress">
       Dette er den interne teoriteksten for merket <strong>BY & ARKITEKTUR</strong> i History Go.
@@ -85,6 +85,8 @@
         I History Go viser dette merket hvordan steder i Oslo former bevegelser, historier,
         identitet og sosialt liv.
       </p>
+
+      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 2. NORMATIV DIMENSJON -->
@@ -101,6 +103,8 @@
       <p>
         Normen er at rom er «planlagt slik det bør være».
       </p>
+
+      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 3. DOXA -->
@@ -111,6 +115,8 @@
         Doxa skjuler byens rolle som maktstruktur. Arkitektur styrer kroppslig atferd, tilgang
         til rom, kontroll, ekskludering, sosial organisering og identitetsdannelse.
       </p>
+
+      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 4. METODISK DIMENSJON -->
@@ -123,6 +129,8 @@
         <li>urban etnografi</li>
         <li>materialstudier</li>
       </ul>
+
+      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 5. MATERIELL DIMENSJON -->
@@ -135,6 +143,8 @@
         <li>bygg, trapper, fasader, plasser</li>
         <li>ledninger, rør, kloakk, kabler</li>
       </ul>
+
+      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 6. SOSIAL DIMENSJON -->
@@ -150,6 +160,8 @@
       <p>
         Byen speiler samfunnets hierarkier, konflikter og idealer.
       </p>
+
+      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 7. GEOGRAFISK DIMENSJON -->
@@ -162,6 +174,8 @@
       <p>
         I History Go viser dette hvorfor Oslo ser ut som den gjør.
       </p>
+
+      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 8. TEMPORAL DIMENSJON -->
@@ -176,6 +190,8 @@
       <p>
         Byens rom endres alltid – gjennom tid, politikk, økonomi og befolkning.
       </p>
+
+      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 9. BLINDSONER -->
@@ -188,6 +204,8 @@
         <li>marginaliserte grupper</li>
         <li>planleggingens makt over liv</li>
       </ul>
+
+      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 10. KJERNEBEGREPER -->
@@ -202,6 +220,8 @@
         <li>Materialitet</li>
         <li>Sosioteknisk form</li>
       </ul>
+
+      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 11. BIDRAG -->
@@ -218,9 +238,38 @@
         BY & ARKITEKTUR-merket gjør det mulig å lese byen som et system av rom,
         muligheter og makt.
       </p>
+
+      <div class="knowledge-slot"></div>
     </section>
 
   </main>
+
+  <!-- KOBLING TIL KNOWLEDGE SYSTEM -->
+  <script src="knowledge.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const CATEGORY = "by";
+
+      const learned = getKnowledgeForCategory(CATEGORY);
+
+      Object.entries(learned).forEach(([dimension, items]) => {
+        const section = document.getElementById(dimension);
+        if (!section) return;
+
+        const slot = section.querySelector(".knowledge-slot");
+        if (!slot) return;
+
+        slot.innerHTML = `
+          <h3>Dine lærepunkter:</h3>
+          <ul class="knowledge-list">
+            ${items
+              .map(k => `<li><strong>${k.topic}:</strong> ${k.text}</li>`)
+              .join("")}
+          </ul>
+        `;
+      });
+    });
+  </script>
 
 </body>
 </html>
