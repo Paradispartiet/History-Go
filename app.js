@@ -1098,9 +1098,13 @@ async function startQuiz(targetId) {
     markQuizAsDone(targetId);
 
 const when = new Date().toISOString();
-const quizItem = formatted.map(q => ({
-  question: q.text,
-  answer: q.choices[q.answerIndex]
+const quizItem = questions.map(q => ({
+  question: q.question,
+  answer: q.answer,
+  knowledge: q.knowledge,
+  topic: q.topic,
+  dimension: q.dimension,
+  trivia: q.trivia
 }));
 
 const entry = {
