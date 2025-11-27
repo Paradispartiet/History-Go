@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <title>History Go – Kunnskap: HISTORIE</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Dine læringspunkter innen merket HISTORIE i History Go.">
+  <link rel="stylesheet" href="../merker/merker.css">
+</head>
+
+<body class="merke-side merke-historie knowledge-page">
+
+  <!-- ★ GLOBAL TOPPNAV MED DROPDOWN -->
+  <nav class="hg-topnav">
+
+    <!-- Logo -->
+    <a href="../index.html" class="nav-logo">
+      <img src="../bilder/ui/historygo_logo.PNG" class="hg-logo-nav" alt="History Go logo">
+    </a>
+
+    <div class="nav-dropdown">
+      <button class="nav-dropbtn">Merker ▼</button>
+      <div class="nav-dropdown-content">
+
+        <a href="../merker/merke_historie.html" class="active">Historie</a>
+        <a href="../merkers/merke_vitenskap.html">Vitenskap</a>
+        <a href="../merkers/merke_kunst.html">Kunst & Kultur</a>
+        <a href="../merkers/merke_natur.html">Natur & Miljø</a>
+        <a href="../merkers/merke_musikk.html">Musikk</a>
+        <a href="../merkers/merke_populaerkultur.html">Populærkultur</a>
+        <a href="../merkers/merke_subkultur.html">Subkultur</a>
+        <a href="../merkers/merke_sport.html">Sport</a>
+        <a href="../merkers/merke_by.html">By & Arkitektur</a>
+        <a href="../merkers/merke_politikk.html">Politikk & Samfunn</a>
+        <a href="../merkers/merke_naeringsliv.html">Næringsliv</a>
+        <a href="../merkers/merke_litteratur.html">Litteratur</a>
+
+      </div>
+    </div>
+
+  </nav>
+
+  <!-- ★ HEADER -->
+  <header class="merke-header">
+
+    <a href="../merker/merke_historie.html" class="tilbake-knapp">
+      ← Til merket Historie
+    </a>
+
+    <div class="logo-container">
+      <img src="../bilder/ui/historygo_logo.PNG" alt="History Go logo" class="hg-logo">
+    </div>
+
+    <div class="merke-ikon-container">
+      <img src="../bilder/merker/historie.PNG" alt="Merke: Historie" class="merke-ikon">
+    </div>
+
+    <h1>Kunnskap – HISTORIE</h1>
+
+    <p class="merke-ingress">
+      Her finner du alle kunnskapspunkter du har lært innen <strong>HISTORIE</strong>.
+      Punktene låses opp når du svarer riktig på quiz-spørsmål. Dette bygger ditt eget arkiv over
+      fortidens hendelser, skift, personer, steder og strukturer.
+    </p>
+
+  </header>
+
+  <!-- ★ INNHOLD -->
+  <main class="merke-main">
+
+    <section class="merke-blokk">
+      <h2>Dine kunnskapspunkter</h2>
+
+      <p>
+        Historiefeltet handler om hendelser, brudd, kontinuiteter, makt, kriser,
+        modernisering, kulturstrømmer og samfunnets langsomme – og raske – endringer.
+        Alle læringspunktene vises her, gruppert etter fagdimensjon.
+      </p>
+
+      <div id="knowledgeContainer" class="knowledge-container"></div>
+    </section>
+
+  </main>
+
+  <!-- ★ KNOWLEDGE SYSTEM -->
+  <script src="knowledge.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const CATEGORY = "historie";
+      const container = document.getElementById("knowledgeContainer");
+      if (!container) return;
+      container.innerHTML = renderKnowledgeSection(CATEGORY);
+    });
+  </script>
+
+</body>
+</html>
