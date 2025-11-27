@@ -85,6 +85,8 @@
         I History Go betyr dette at personer og steder i VITENSKAP-merket viser hvordan vår forståelse
         av natur, teknologi og menneske formes gjennom eksperimenter, institusjoner og konsensus.
       </p>
+
+      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 2. NORMATIV DIMENSJON -->
@@ -103,6 +105,8 @@
       <p>
         Normen er at verden kan forklares gjennom modeller som er universelle og stabile.
       </p>
+
+      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 3. DOXA -->
@@ -114,6 +118,8 @@
         Dette skjuler hvordan rammer, metoder og teknologier skaper rammen for hva som kan måles og
         hvordan det blir tolket.
       </p>
+
+      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 4. METODISK DIMENSJON -->
@@ -133,6 +139,8 @@
       <p>
         Metodene definerer hva som blir ansett som «bevis».
       </p>
+
+      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 5. MATERIELL DIMENSJON -->
@@ -151,6 +159,8 @@
       <p>
         Disse elementene gjør vitenskap mulig – og setter grenser for hva som kan observeres.
       </p>
+
+      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 6. SOSIAL DIMENSJON -->
@@ -169,6 +179,8 @@
       <p>
         Sannhet er et resultat av samarbeid, konflikter, konsensus og institusjonell makt.
       </p>
+
+      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 7. GEOGRAFISK DIMENSJON -->
@@ -181,6 +193,8 @@
       <p>
         I History Go gjør vitenskapsstedene byen til et levende kart over kunnskapsproduksjon.
       </p>
+
+      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 8. TEMPORAL DIMENSJON -->
@@ -198,6 +212,8 @@
       <p>
         Vitenskapens historie er en serie av konflikter, overgangspunkter og radikale nytolkninger.
       </p>
+
+      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 9. BLINDSONER -->
@@ -211,6 +227,8 @@
         <li>institusjonell makt og politikk i forskningen</li>
         <li>verdier skjult som nøytral metode</li>
       </ul>
+
+      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 10. KJERNEBEGREPER -->
@@ -227,6 +245,8 @@
         <li>Presisjon</li>
         <li>Paradigme</li>
       </ul>
+
+      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 11. BIDRAG -->
@@ -243,9 +263,38 @@
         VITENSKAP-merket gjør byen til et kart over hvordan verden er målt, forklart og transformert
         gjennom institusjoner, personer og instrumenter.
       </p>
+
+      <div class="knowledge-slot"></div>
     </section>
 
   </main>
+
+  <!-- ★ KNOWLEDGE SYSTEM KOBLING -->
+  <script src="knowledge.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const CATEGORY = "vitenskap";
+
+      const learned = getKnowledgeForCategory(CATEGORY);
+
+      Object.entries(learned).forEach(([dimension, items]) => {
+        const section = document.getElementById(dimension);
+        if (!section) return;
+
+        const slot = section.querySelector(".knowledge-slot");
+        if (!slot) return;
+
+        slot.innerHTML = `
+          <h3>Dine lærepunkter:</h3>
+          <ul class="knowledge-list">
+            ${items
+              .map(k => `<li><strong>${k.topic}:</strong> ${k.text}</li>`)
+              .join("")}
+          </ul>
+        `;
+      });
+    });
+  </script>
 
 </body>
 </html>
