@@ -22,7 +22,6 @@
     <div class="nav-dropdown">
       <button class="nav-dropbtn">Merker ▼</button>
       <div class="nav-dropdown-content">
-
         <a href="merke_historie.html">Historie</a>
         <a href="merke_vitenskap.html">Vitenskap</a>
         <a href="merke_kunst.html" class="active">Kunst & Kultur</a>
@@ -35,19 +34,16 @@
         <a href="merke_politikk.html">Politikk & Samfunn</a>
         <a href="merke_naeringsliv.html">Næringsliv</a>
         <a href="merke_litteratur.html">Litteratur</a>
-
       </div>
     </div>
 
   </nav>
 
-  <!-- ★ HEADER MED LOGO, MERKE OG TILBAKE-KNAPP -->
+  <!-- ★ HEADER -->
   <header class="merke-header">
 
     <!-- Tilbakeknapp -->
-    <a href="../merker.html" class="tilbake-knapp">
-      ← Tilbake til merker
-    </a>
+    <a href="../merker.html" class="tilbake-knapp">← Tilbake til merker</a>
 
     <!-- Logo -->
     <div class="logo-container">
@@ -84,8 +80,6 @@
         I History Go viser dette merket hvordan steder og personer skaper symboler som preger byens
         identitet og kulturhistorie.
       </p>
-
-      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 2. NORMATIV DIMENSJON -->
@@ -103,8 +97,6 @@
       <p>
         Normen er at kunst “skal bety noe” og delta i samfunnets selvforståelse.
       </p>
-
-      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 3. DOXA -->
@@ -115,8 +107,6 @@
         Doxa antar at kunst primært handler om følelser, estetikk eller personlig visjon. Dette
         skjuler kunstens rolle som normprodusent, økonomisk system, politisk aktør og maktstruktur.
       </p>
-
-      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 4. METODISK DIMENSJON -->
@@ -130,8 +120,6 @@
         <li>kritikk og kuratering</li>
         <li>iscenesettelse og performativitet</li>
       </ul>
-
-      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 5. MATERIELL DIMENSJON -->
@@ -144,8 +132,6 @@
         <li>arkiver, manus, filmruller, opptak</li>
         <li>digital kunst og medieteknologier</li>
       </ul>
-
-      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 6. SOSIAL DIMENSJON -->
@@ -161,8 +147,6 @@
       <p>
         Kunst & kultur er sosialt produsert og sirkulerer gjennom nettverk og institusjoner.
       </p>
-
-      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 7. GEOGRAFISK DIMENSJON -->
@@ -175,8 +159,6 @@
       <p>
         I History Go viser dette hvordan byen legemliggjør kulturelle spor.
       </p>
-
-      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 8. TEMPORAL DIMENSJON -->
@@ -191,8 +173,6 @@
       <p>
         Kunstens betydning endrer seg med tidens tolkninger.
       </p>
-
-      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 9. BLINDSONER -->
@@ -205,8 +185,6 @@
         <li>det kommersielle bak “autonomien”</li>
         <li>usynlig arbeid bak kunstproduksjon</li>
       </ul>
-
-      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 10. KJERNEBEGREPER -->
@@ -221,8 +199,6 @@
         <li>Ambivalens</li>
         <li>Brudd</li>
       </ul>
-
-      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 11. BIDRAG -->
@@ -239,39 +215,9 @@
         KUNST & KULTUR-merket gjør det mulig å lese byen som et kulturelt kart — fullt av uttrykk,
         symboler og estetiske spor.
       </p>
-
-      <div class="knowledge-slot"></div>
     </section>
 
   </main>
-
-
-  <!-- ★ KNOWLEDGE SYSTEM KOBLING -->
-  <script src="knowledge.js"></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const CATEGORY = "kunst";
-
-      const learned = getKnowledgeForCategory(CATEGORY);
-
-      Object.entries(learned).forEach(([dimension, items]) => {
-        const section = document.getElementById(dimension);
-        if (!section) return;
-
-        const slot = section.querySelector(".knowledge-slot");
-        if (!slot) return;
-
-        slot.innerHTML = `
-          <h3>Dine lærepunkter:</h3>
-          <ul class="knowledge-list">
-            ${items
-              .map(k => `<li><strong>${k.topic}:</strong> ${k.text}</li>`)
-              .join("")}
-          </ul>
-        `;
-      });
-    });
-  </script>
 
 </body>
 </html>
