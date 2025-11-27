@@ -361,6 +361,48 @@ function renderCollectionCards() {
 }
 
 // ------------------------------------------------------------
+// SISTE KUNNSKAP
+// ------------------------------------------------------------
+function renderLatestKnowledge() {
+  const box = document.getElementById("latestKnowledgeBox");
+  const elTopic = document.getElementById("lkTopic");
+  const elCat = document.getElementById("lkCategory");
+  if (!box || !elTopic || !elCat) return;
+
+  // Hent kunnskapsuniverset
+  const uni = JSON.parse(localStorage.getItem("knowledge_universe") || "{}");
+  const flat = [];
+
+  // Flate ut universet → liste
+  for (const cat of Object.keys(uni)) {
+    for (const dim of Object.keys(uni[cat])) {
+      uni[cat][dim].forEach(k => {
+        flat.push({
+          category: cat,
+          dimension: dim,
+          topic: k.topic,
+          text: k.text
+        });
+      });
+    }
+  }
+
+  if (!flat.length) {
+    box.style.display = "none";
+    return;
+  }
+
+  // Siste element = sist lagret kunnskap
+  const last = flat[flat.length - 1];
+
+  elTopic.textContent = last.topic;
+  elCat.textContent = 
+    last.category.charAt(0).toUpperCase() + last.category.slice(1);
+
+  box.style.display = "block";
+}
+
+// ------------------------------------------------------------
 // EDIT-PROFILMODAL
 // ------------------------------------------------------------
 function openProfileModal() {
@@ -411,6 +453,7 @@ Promise.all([
   renderPlacesCollection();
   renderTimeline();
   renderCollectionCards();
+  renderLatestKnowledge();
 });
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -425,6 +468,7 @@ document.addEventListener("DOMContentLoaded", () => {
     renderPlacesCollection();
     renderTimeline();
     renderCollectionCards();
+    renderLatestKnowledge();
   });
 });
 
