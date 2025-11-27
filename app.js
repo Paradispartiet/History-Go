@@ -824,22 +824,6 @@ function initMiniProfile() {
   }
 }
 
-/* -------------------------------------
-   3) Siste kunnskap
--------------------------------------- */
-const K = JSON.parse(localStorage.getItem("knowledge_points") || "[]");
-const boxK = document.getElementById("miniKnowledge");
-if (K.length) {
-  const last = K[K.length - 1];
-  document.getElementById("miniKnowledgeTopic").textContent = last.topic;
-  document.getElementById("miniKnowledgeCat").textContent =
-    last.category.charAt(0).toUpperCase() + last.category.slice(1);
-
-  boxK.style.display = "flex";
-} else {
-  boxK.style.display = "none";
-}
-
 window.addEventListener("updateProfile", initMiniProfile);
 
 function showQuizHistory() {
@@ -1128,31 +1112,7 @@ const entry = {
   correctAnswers: quizItem
 };
 
-    saveQuizHistory(entry);
-
-// ==============================
-// KUNNSKAPSSYSTEM – LAGRE SOM DU LÆRER
-// ==============================
-if (Array.isArray(entry.correctAnswers)) {
-  entry.correctAnswers.forEach(q => {
-    // Merk: vi sjekker kun hvis spørsmålene faktisk inneholder knowledge-felter.
-    if (q.dimension && q.topic && q.knowledge) {
-
-      const knowledgeEntry = {
-        id: `${entry.id}_${q.topic.replace(/\s+/g, "_")}`.toLowerCase(),
-        category: entry.categoryId,
-        dimension: q.dimension,
-        topic: q.topic,
-        text: q.knowledge,
-        date: new Date().toISOString()
-      };
-
-      if (typeof saveKnowledgePoint === "function") {
-        saveKnowledgePoint(knowledgeEntry);
-      }
-    }
-  });
-}
+saveQuizHistory(entry);
     
     // --- REWARD FØRST ---
     if (person) {
