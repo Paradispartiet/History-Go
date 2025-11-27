@@ -82,6 +82,8 @@
         I History Go viser subkultur-merket hva slags miljøer som har vokst fram rundt steder i byen,
         og hvordan de har påvirket lokal kultur og identitet.
       </p>
+
+      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 2. NORMATIV DIMENSJON -->
@@ -98,6 +100,8 @@
       <p>
         Normen er at en subkultur skal være annerledes – og avvise mainstreamens normer.
       </p>
+
+      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 3. DOXA -->
@@ -108,6 +112,8 @@
         Doxa skjuler subkulturenes rolle i å drive kulturelle og estetiske skifter, og hvordan
         mainstream henter inspirasjon fra disse miljøene.
       </p>
+
+      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 4. METODISK DIMENSJON -->
@@ -120,6 +126,8 @@
         <li>scenehistorie</li>
         <li>samhandling og praksis</li>
       </ul>
+
+      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 5. MATERIELL DIMENSJON -->
@@ -132,6 +140,8 @@
         <li>industrihaller, klubber, undergrunnsrom</li>
         <li>fanziner, klistremerker, flyers</li>
       </ul>
+
+      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 6. SOSIAL DIMENSJON -->
@@ -147,6 +157,8 @@
       <p>
         Subkulturer er sosiale økosystemer som skaper nye måter å leve på.
       </p>
+
+      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 7. GEOGRAFISK DIMENSJON -->
@@ -159,6 +171,8 @@
       <p>
         I History Go viser dette hvilke steder i byen som har vært “laboratorier” for nye uttrykk.
       </p>
+
+      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 8. TEMPORAL DIMENSJON -->
@@ -173,6 +187,8 @@
       <p>
         Subkulturer endrer seg over tid – og mainstream endrer seg med dem.
       </p>
+
+      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 9. BLINDSONER -->
@@ -185,6 +201,8 @@
         <li>usynliggjorte grupper</li>
         <li>scenehierarkier</li>
       </ul>
+
+      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 10. KJERNEBEGREPER -->
@@ -199,6 +217,8 @@
         <li>Fellesskap</li>
         <li>Risiko</li>
       </ul>
+
+      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 11. BIDRAG -->
@@ -215,9 +235,38 @@
         SUBKULTUR-merket viser at byen består av skjulte rom der nye estetiske og sosiale praksiser
         blir født.
       </p>
+
+      <div class="knowledge-slot"></div>
     </section>
 
   </main>
+
+  <!-- ★ KNOWLEDGE SYSTEM KOBLING -->
+  <script src="knowledge.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const CATEGORY = "subkultur";
+
+      const learned = getKnowledgeForCategory(CATEGORY);
+
+      Object.entries(learned).forEach(([dimension, items]) => {
+        const section = document.getElementById(dimension);
+        if (!section) return;
+
+        const slot = section.querySelector(".knowledge-slot");
+        if (!slot) return;
+
+        slot.innerHTML = `
+          <h3>Dine lærepunkter:</h3>
+          <ul class="knowledge-list">
+            ${items
+              .map(k => `<li><strong>${k.topic}:</strong> ${k.text}</li>`)
+              .join("")}
+          </ul>
+        `;
+      });
+    });
+  </script>
 
 </body>
 </html>
