@@ -18,16 +18,8 @@ function saveKnowledgeUniverse(obj) {
 // 1) LAGRE KUNNSKAPSPUNKT
 // ------------------------------------------------------------
 function saveKnowledgePoint(entry) {
-  /*
-    entry skal ha denne strukturen:
-    {
-      id: "deichman_q1",
-      category: "by",
-      dimension: "historisk",
-      topic: "Arkivsystem",
-      text: "Deichman viser hvordan arkiver reflekterer maktstrukturer."
-    }
-  */
+  // Sikkerhetssjekk (unngår krasj hvis noe mangler)
+  if (!entry || !entry.category || !entry.dimension || !entry.id) return;
 
   const uni = getKnowledgeUniverse();
 
@@ -67,7 +59,7 @@ function getKnowledgeForCategory(categoryId) {
 }
 
 // ------------------------------------------------------------
-// 3) RENDRING AV KUNNSKAPSSEKSJON (kan kobles inn senere)
+// 3) RENDRING AV KUNNSKAPSSEKSJON
 // ------------------------------------------------------------
 function renderKnowledgeSection(categoryId) {
   const data = getKnowledgeForCategory(categoryId);
@@ -75,16 +67,13 @@ function renderKnowledgeSection(categoryId) {
     return `<div class="muted">Ingen kunnskap lagret ennå.</div>`;
   }
 
-  // Lag strukturert liste
   return Object.entries(data)
     .map(([dimension, items]) => `
       <div class="knowledge-block">
         <h3>${capitalize(dimension)}</h3>
         <ul>
           ${items
-            .map(
-              k => `<li><strong>${k.topic}:</strong> ${k.text}</li>`
-            )
+            .map(k => `<li><strong>${k.topic}:</strong> ${k.text}</li>`)
             .join("")}
         </ul>
       </div>
@@ -94,5 +83,7 @@ function renderKnowledgeSection(categoryId) {
 
 // Liten hjelp
 function capitalize(str) {
+  if (!str) return "";
+  str = str.toString();
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
