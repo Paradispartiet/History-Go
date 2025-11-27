@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <title>History Go – Din kunnskapsprofil</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="knowledge.css">
+</head>
+
+<body class="knowledge-page">
+
+  <header class="knowledge-header">
+    <a class="back-link" href="profile.html">← Tilbake til profil</a>
+
+    <img src="bilder/ui/historygo_logo.PNG" class="knowledge-logo">
+
+    <h1>Din kunnskapsprofil</h1>
+    <p>All kunnskapen du har låst opp gjennom quiz – sortert etter felt og dimensjon.</p>
+  </header>
+
+  <!-- FILTER -->
+  <section class="knowledge-filters">
+    <select id="filterCategory">
+      <option value="">Alle felt</option>
+    </select>
+
+    <select id="filterDimension">
+      <option value="">Alle dimensjoner</option>
+    </select>
+  </section>
+
+  <main id="knowledgeContainer"></main>
+
+  <script src="knowledge.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const box   = document.getElementById("knowledgeContainer");
+      const catF  = document.getElementById("filterCategory");
+      const dimF  = document.getElementById("filterDimension");
+
+      const data = loadKnowledgePoints();
+
+      if (!data.length) {
+        box.innerHTML = `<div class="empty-note">Ingen kunnskap låst opp ennå.</div>`;
+        return;
+      }
+
+      // --- Fyll ut kategori-filteret ---
+      const cats = [...new Set(data.map(k => k.category))];
+      cats.forEach(c => {
+        const o = document.createElement("option");
+        o.value = c;
+        o.textContent = c.charAt(0).toUpperCase() + c.slice(1);
+        catF.appendChild(o);
+      });
+
+      // --- Fyll ut dimensjons-filteret ---
+      const dims = [...new Set(data.map(k => k.dimension))];
+      dims.forEach(d => {
+        const o = document.createElement("option");
+        o.value = d;
+        o.textContent = d;
+        dimF.appendChild(o);
+      });
+
+      // Hoved render-funksjon
+      function render() {
+        const catSel = catF.value;
+        const dimSel = dimF.value;
+
+        const filtered = data.filter(k =>
+          (catSel ? k.category === catSel : true) &&
+          (dimSel ? k.dimension === dimSel : true)
+        );
+
+        if (!filtered.length) {
+          box.innerHTML = `<div class="empty-note">Ingen treff.</div>`;
+          return;
+        }
+
+        const grouped = {};
+        filtered.forEach(k => {
+          grouped[k.category] = grouped[k.category] || {};
+          grouped[k.category][k.dimension] = grouped[k.category][k.dimension] || [];
+          grouped[k.category][k.dimension].push(k);
+        });
+
+        let html = "";
+
+        for (const cat of Object.keys(grouped)) {
+          html += `<section class="know-cat-block"><h2>${cat}</h2>`;
+
+          const dimObj = grouped[cat];
+          for (const dim of Object.keys(dimObj)) {
+            html += `<div class="dimension-title">${dim}</div>`;
+
+            dimObj[dim].forEach(item => {
+              html += `
+                <div class="knowledge-item">
+                  <div class="knowledge-topic">${item.topic}</div>
+                  <div class="knowledge-text">${item.text}</div>
+                </div>`;
+            });
+          }
+
+          html += `</section>`;
+        }
+
+        box.innerHTML = html;
+      }
+
+      // Koble filter
+      catF.onchange = render;
+      dimF.onchange = render;
+
+      render();
+    });
+  </script>
+
+</body>
+</html>
