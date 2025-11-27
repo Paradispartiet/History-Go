@@ -1115,12 +1115,17 @@ const entry = {
 saveQuizHistory(entry);
 
 // ==============================
-// KUNNSKAPSSYSTEM – LAGRE SOM DU LÆRER
+// ==============================
+// KUNNSKAP & TRIVIA – LAGRE SOM DU LÆRER
 // ==============================
 if (typeof saveKnowledgePoint === "function" && Array.isArray(entry.correctAnswers)) {
-  entry.correctAnswers.forEach(q => {
-    if (q.dimension && q.topic && q.knowledge) {
 
+  entry.correctAnswers.forEach(q => {
+
+    // -----------------------------
+    // 1) KUNNSKAP (dimension + topic + knowledge)
+    // -----------------------------
+    if (q.dimension && q.topic && q.knowledge) {
       saveKnowledgePoint({
         id: `${entry.id}_${q.topic.replace(/\s+/g, "_")}`.toLowerCase(),
         category: entry.categoryId,
@@ -1128,8 +1133,19 @@ if (typeof saveKnowledgePoint === "function" && Array.isArray(entry.correctAnswe
         topic: q.topic,
         text: q.knowledge
       });
-
     }
+
+    // -----------------------------
+    // 2) TRIVIA (kan komme i tillegg, uavhengig av knowledge)
+    // -----------------------------
+    if (q.trivia && typeof saveTriviaPoint === "function") {
+      saveTriviaPoint({
+        id: entry.id,        // trivia knyttes til sted/person, ikke quiz-id
+        category: entry.categoryId,
+        trivia: q.trivia
+      });
+    }
+
   });
 }
     
