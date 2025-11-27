@@ -1113,6 +1113,31 @@ const entry = {
 };
 
 saveQuizHistory(entry);
+
+saveQuizHistory(entry);
+
+// ==============================
+// KUNNSKAPSSYSTEM – LAGRE SOM DU LÆRER
+// ==============================
+if (Array.isArray(entry.correctAnswers)) {
+  entry.correctAnswers.forEach(q => {
+    if (q.dimension && q.topic && q.knowledge) {
+
+      const knowledgeEntry = {
+        id: `${entry.id}_${q.topic.replace(/\s+/g, "_")}`.toLowerCase(),
+        category: entry.categoryId,
+        dimension: q.dimension,
+        topic: q.topic,
+        text: q.knowledge,
+        date: new Date().toISOString()
+      };
+
+      if (typeof saveKnowledgePoint === "function") {
+        saveKnowledgePoint(knowledgeEntry);
+      }
+    }
+  });
+}
     
     // --- REWARD FØRST ---
     if (person) {
