@@ -84,6 +84,8 @@
         I History Go handler HISTORIE-merket om hvordan byen selv blir et arkiv – hvor hvert sted
         og hver person bærer lag av betydning.
       </p>
+
+      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 2. NORMATIV DIMENSJON -->
@@ -101,6 +103,8 @@
       <p>
         Normen er at hva vi husker – og hvordan – har politiske og etiske konsekvenser.
       </p>
+
+      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 3. DOXA -->
@@ -111,6 +115,8 @@
         Doxa antar at fortiden er stabil, entydig og objektiv. Dette skjuler at historie alltid er
         tolket, redigert, filtrert og formet av makt.
       </p>
+
+      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 4. METODISK DIMENSJON -->
@@ -125,6 +131,8 @@
         <li>utvalg og eksklusjon</li>
         <li>teknologier som foto, kart og digitale arkiv</li>
       </ul>
+
+      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 5. MATERIELL DIMENSJON -->
@@ -138,6 +146,8 @@
         <li>kart, tegninger og fotografier</li>
         <li>gjenstander og rester</li>
       </ul>
+
+      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 6. SOSIAL DIMENSJON -->
@@ -147,6 +157,8 @@
         Historie formes av institusjoner, fagmiljøer, nasjonale prosjekter, tradisjon og offentlig
         kultur. Fortiden er ikke bare noe som har skjedd, men noe som forvaltes.
       </p>
+
+      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 7. GEOGRAFISK DIMENSJON -->
@@ -156,6 +168,8 @@
         Historie er stedbundet. Steder bærer lag, minner og konflikter. Byen fungerer som et konkret
         arkiv – et rom hvor fortidens strukturer fortsatt finnes fysisk.
       </p>
+
+      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 8. TEMPORAL DIMENSJON -->
@@ -172,6 +186,8 @@
       <p>
         Historien endrer seg når nye generasjoner tolker materialet på nytt.
       </p>
+
+      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 9. BLINDSONER -->
@@ -184,6 +200,8 @@
         <li>maktens stillhet</li>
         <li>det digitale mørket – data som aldri ble arkivert</li>
       </ul>
+
+      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 10. KJERNEBEGREPER -->
@@ -199,6 +217,8 @@
         <li>Materialitet</li>
         <li>Minnets politikk</li>
       </ul>
+
+      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 11. BIDRAG -->
@@ -214,9 +234,38 @@
       <p>
         HISTORIE-merket gjør byen lesbar som et levende arkiv, der hvert sted bærer lag av fortid.
       </p>
+
+      <div class="knowledge-slot"></div>
     </section>
 
   </main>
+
+  <!-- ★ KNOWLEDGE SYSTEM KOBLING -->
+  <script src="knowledge.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const CATEGORY = "historie";
+
+      const learned = getKnowledgeForCategory(CATEGORY);
+
+      Object.entries(learned).forEach(([dimension, items]) => {
+        const section = document.getElementById(dimension);
+        if (!section) return;
+
+        const slot = section.querySelector(".knowledge-slot");
+        if (!slot) return;
+
+        slot.innerHTML = `
+          <h3>Dine lærepunkter:</h3>
+          <ul class="knowledge-list">
+            ${items
+              .map(k => `<li><strong>${k.topic}:</strong> ${k.text}</li>`)
+              .join("")}
+          </ul>
+        `;
+      });
+    });
+  </script>
 
 </body>
 </html>
