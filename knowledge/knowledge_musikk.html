@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <title>History Go – Kunnskap: MUSIKK</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Dine læringspunkter innen merket MUSIKK i History Go.">
+  <link rel="stylesheet" href="../merker/merker.css">
+</head>
+
+<body class="merke-side merke-musikk knowledge-page">
+
+  <!-- ★ GLOBAL TOPPNAV MED DROPDOWN -->
+  <nav class="hg-topnav">
+
+    <!-- Logo -->
+    <a href="../index.html" class="nav-logo">
+      <img src="../bilder/ui/historygo_logo.PNG" class="hg-logo-nav" alt="History Go logo">
+    </a>
+
+    <div class="nav-dropdown">
+      <button class="nav-dropbtn">Merker ▼</button>
+      <div class="nav-dropdown-content">
+
+        <a href="../merker/merke_historie.html">Historie</a>
+        <a href="../merker/merke_vitenskap.html">Vitenskap</a>
+        <a href="../merker/merke_kunst.html">Kunst & Kultur</a>
+        <a href="../merker/merke_natur.html">Natur & Miljø</a>
+        <a href="../merker/merke_musikk.html" class="active">Musikk</a>
+        <a href="../merker/merke_populaerkultur.html">Populærkultur</a>
+        <a href="../merker/merke_subkultur.html">Subkultur</a>
+        <a href="../merker/merke_sport.html">Sport</a>
+        <a href="../merker/merke_by.html">By & Arkitektur</a>
+        <a href="../merker/merke_politikk.html">Politikk & Samfunn</a>
+        <a href="../merker/merke_naeringsliv.html">Næringsliv</a>
+        <a href="../merker/merke_litteratur.html">Litteratur</a>
+
+      </div>
+    </div>
+
+  </nav>
+
+  <!-- ★ HEADER -->
+  <header class="merke-header">
+
+    <!-- Tilbake -->
+    <a href="../merker/merke_musikk.html" class="tilbake-knapp">
+      ← Til merket Musikk
+    </a>
+
+    <!-- Logo -->
+    <div class="logo-container">
+      <img src="../bilder/ui/historygo_logo.PNG" alt="History Go logo" class="hg-logo">
+    </div>
+
+    <!-- Merke-ikon -->
+    <div class="merke-ikon-container">
+      <img src="../bilder/merker/musikk.PNG" alt="Merke: Musikk" class="merke-ikon">
+    </div>
+
+    <h1>Kunnskap – MUSIKK</h1>
+
+    <p class="merke-ingress">
+      Her finner du alle kunnskapspunkter du har lært innen <strong>MUSIKK</strong>.
+      Punktene låses opp når du svarer riktig på quiz-spørsmål og bygger ditt eget musikkarkiv:
+      steder, sjangre, scener, artister, historiske øyeblikk, institusjoner og lydens infrastruktur.
+    </p>
+
+  </header>
+
+  <!-- ★ INNHOLD -->
+  <main class="merke-main">
+
+    <section class="merke-blokk">
+      <h2>Dine kunnskapspunkter</h2>
+
+      <p>
+        Musikkfeltet handler om scener, tradisjoner, sjangre, teknologi, rytme, kultur,
+        minne og fellesskap. Når du utforsker flere personer og steder vil nye punkter dukke opp her,
+        sortert etter faglige dimensjoner.
+      </p>
+
+      <div id="knowledgeContainer" class="knowledge-container"></div>
+    </section>
+
+  </main>
+
+  <!-- ★ KNOWLEDGE SYSTEM -->
+  <script src="knowledge.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const CATEGORY = "musikk";
+      const container = document.getElementById("knowledgeContainer");
+      if (!container) return;
+
+      container.innerHTML = renderKnowledgeSection(CATEGORY);
+    });
+  </script>
+
+</body>
+</html>
