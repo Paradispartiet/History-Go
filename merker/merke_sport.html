@@ -14,8 +14,8 @@
   <nav class="hg-topnav">
 
     <!-- Logo -->
-    <a href="index.html" class="nav-logo">
-      <img src="bilder/ui/historygo_logo.PNG" class="hg-logo-nav" alt="History Go logo">
+    <a href="../index.html" class="nav-logo">
+      <img src="../bilder/ui/historygo_logo.PNG" class="hg-logo-nav" alt="History Go logo">
     </a>
 
     <!-- Dropdown -->
@@ -44,17 +44,14 @@
   <!-- ★ HEADER -->
   <header class="merke-header">
 
-    <!-- Tilbakeknapp -->
-    <a href="merker.html" class="tilbake-knapp">← Tilbake til merker</a>
+    <a href="../merker.html" class="tilbake-knapp">← Tilbake til merker</a>
 
-    <!-- Logo -->
     <div class="logo-container">
-      <img src="bilder/ui/historygo_logo.PNG" alt="History Go logo" class="hg-logo">
+      <img src="../bilder/ui/historygo_logo.PNG" alt="History Go logo" class="hg-logo">
     </div>
 
-    <!-- Merke-ikon -->
     <div class="merke-ikon-container">
-      <img src="bilder/merker/sport.PNG" alt="Merke: Sport" class="merke-ikon">
+      <img src="../bilder/merker/sport.PNG" alt="Merke: Sport" class="merke-ikon">
     </div>
 
     <h1>SPORT – full teoretisk beskrivelse</h1>
@@ -69,7 +66,6 @@
   <!-- ★ INNHOLD -->
   <main class="merke-main">
 
-    <!-- 1. FELT -->
     <section class="merke-blokk" id="felt">
       <h2>1. Felt</h2>
       <p>
@@ -81,11 +77,8 @@
         I History Go viser dette merket hvordan idretten har formet steder, personer og byens
         kollektive hukommelse.
       </p>
-
-      <div class="knowledge-slot"></div>
     </section>
 
-    <!-- 2. NORMATIV DIMENSJON -->
     <section class="merke-blokk" id="normativ">
       <h2>2. Normativ dimensjon</h2>
       <p>Sportfeltet bygger på idealer som:</p>
@@ -100,11 +93,8 @@
       <p>
         Sport blir oppfattet som ærlig konkurranse – blottet for politikk.
       </p>
-
-      <div class="knowledge-slot"></div>
     </section>
 
-    <!-- 3. DOXA -->
     <section class="merke-blokk" id="doxa">
       <h2>3. Doxa</h2>
       <p class="merke-sitat">«Sport er spill.»</p>
@@ -112,11 +102,8 @@
         Doxa ignorerer hvordan sport også er politikk, økonomi, kroppspress, nasjonsbygging,
         mediemakt og institusjonell kontroll.
       </p>
-
-      <div class="knowledge-slot"></div>
     </section>
 
-    <!-- 4. METODISK DIMENSJON -->
     <section class="merke-blokk" id="metode">
       <h2>4. Metodisk dimensjon</h2>
       <ul>
@@ -126,11 +113,8 @@
         <li>observasjon av kamp og konkurranse</li>
         <li>lagsdynamikk og ledelse</li>
       </ul>
-
-      <div class="knowledge-slot"></div>
     </section>
 
-    <!-- 5. MATERIELL DIMENSJON -->
     <section class="merke-blokk" id="materiell">
       <h2>5. Materiell dimensjon</h2>
       <p>Sport er materielt basert på:</p>
@@ -140,11 +124,8 @@
         <li>treningsteknologi</li>
         <li>felleskapets rom (klubbhus, haller, parker)</li>
       </ul>
-
-      <div class="knowledge-slot"></div>
     </section>
 
-    <!-- 6. SOSIAL DIMENSJON -->
     <section class="merke-blokk" id="sosial">
       <h2>6. Sosial dimensjon</h2>
       <ul>
@@ -157,11 +138,8 @@
       <p>
         Sport skaper sterke sosiale bånd og emosjonelle fellesskap.
       </p>
-
-      <div class="knowledge-slot"></div>
     </section>
 
-    <!-- 7. GEOGRAFISK DIMENSJON -->
     <section class="merke-blokk" id="geografisk">
       <h2>7. Geografisk / romlig dimensjon</h2>
       <p>
@@ -171,11 +149,8 @@
       <p>
         I History Go vises dette gjennom idrettsarener, klubbhistorier og steder der helter ble skapt.
       </p>
-
-      <div class="knowledge-slot"></div>
     </section>
 
-    <!-- 8. TEMPORAL DIMENSJON -->
     <section class="merke-blokk" id="temporal">
       <h2>8. Temporal / historisk dimensjon</h2>
       <ul>
@@ -187,11 +162,8 @@
       <p>
         Sportens historie er full av skifter som former samtidens praksis.
       </p>
-
-      <div class="knowledge-slot"></div>
     </section>
 
-    <!-- 9. BLINDSONER -->
     <section class="merke-blokk" id="blindsoner">
       <h2>9. Blindsoner</h2>
       <ul>
@@ -201,11 +173,8 @@
         <li>politisk instrumentalisering</li>
         <li>usynlig arbeid bak prestasjon</li>
       </ul>
-
-      <div class="knowledge-slot"></div>
     </section>
 
-    <!-- 10. KJERNEBEGREPER -->
     <section class="merke-blokk" id="begreper">
       <h2>10. Kjernebegreper</h2>
       <ul>
@@ -217,11 +186,8 @@
         <li>Fellesskap</li>
         <li>Symbolikk</li>
       </ul>
-
-      <div class="knowledge-slot"></div>
     </section>
 
-    <!-- 11. BIDRAG -->
     <section class="merke-blokk" id="bidrag">
       <h2>11. Bidrag fra steder og personer</h2>
       <ul>
@@ -234,38 +200,9 @@
       <p>
         SPORT-merket gjør det mulig å forstå byen gjennom sine idrettsøyeblikk og kollektive myter.
       </p>
-
-      <div class="knowledge-slot"></div>
     </section>
 
   </main>
-
-  <!-- ★ KNOWLEDGE SYSTEM KOBLING -->
-  <script src="knowledge.js"></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const CATEGORY = "sport";
-
-      const learned = getKnowledgeForCategory(CATEGORY);
-
-      Object.entries(learned).forEach(([dimension, items]) => {
-        const section = document.getElementById(dimension);
-        if (!section) return;
-
-        const slot = section.querySelector(".knowledge-slot");
-        if (!slot) return;
-
-        slot.innerHTML = `
-          <h3>Dine lærepunkter:</h3>
-          <ul class="knowledge-list">
-            ${items
-              .map(k => `<li><strong>${k.topic}:</strong> ${k.text}</li>`)
-              .join("")}
-          </ul>
-        `;
-      });
-    });
-  </script>
 
 </body>
 </html>
