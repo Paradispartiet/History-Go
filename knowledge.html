@@ -41,75 +41,85 @@
       const catF  = document.getElementById("filterCategory");
       const dimF  = document.getElementById("filterDimension");
 
-      const data = loadKnowledgePoints();
+      // Hent universet vårt
+      const uni = getKnowledgeUniverse();
 
-      if (!data.length) {
+      if (!uni || Object.keys(uni).length === 0) {
         box.innerHTML = `<div class="empty-note">Ingen kunnskap låst opp ennå.</div>`;
         return;
       }
 
-      // --- Fyll ut kategori-filteret ---
-      const cats = [...new Set(data.map(k => k.category))];
-      cats.forEach(c => {
+      // --- Fyll kategori-filteret ---
+      Object.keys(uni).forEach(cat => {
         const o = document.createElement("option");
-        o.value = c;
-        o.textContent = c.charAt(0).toUpperCase() + c.slice(1);
+        o.value = cat;
+        o.textContent = cat.charAt(0).toUpperCase() + cat.slice(1);
         catF.appendChild(o);
       });
 
-      // --- Fyll ut dimensjons-filteret ---
-      const dims = [...new Set(data.map(k => k.dimension))];
-      dims.forEach(d => {
+      // --- Fyll dimensjons-filteret ---
+      const allDims = new Set();
+      Object.values(uni).forEach(dimObj => {
+        Object.keys(dimObj).forEach(d => allDims.add(d));
+      });
+
+      [...allDims].forEach(dim => {
         const o = document.createElement("option");
-        o.value = d;
-        o.textContent = d;
+        o.value = dim;
+        o.textContent = dim.charAt(0).toUpperCase() + dim.slice(1);
         dimF.appendChild(o);
       });
 
-      // Hoved render-funksjon
+      // Hoved renderer
       function render() {
         const catSel = catF.value;
         const dimSel = dimF.value;
 
-        const filtered = data.filter(k =>
-          (catSel ? k.category === catSel : true) &&
-          (dimSel ? k.dimension === dimSel : true)
-        );
-
-        if (!filtered.length) {
-          box.innerHTML = `<div class="empty-note">Ingen treff.</div>`;
-          return;
-        }
-
-        const grouped = {};
-        filtered.forEach(k => {
-          grouped[k.category] = grouped[k.category] || {};
-          grouped[k.category][k.dimension] = grouped[k.category][k.dimension] || [];
-          grouped[k.category][k.dimension].push(k);
-        });
-
         let html = "";
 
-        for (const cat of Object.keys(grouped)) {
-          html += `<section class="know-cat-block"><h2>${cat}</h2>`;
+        // Gå gjennom alle kategorier
+        for (const [cat, dimObj] of Object.entries(uni)) {
 
-          const dimObj = grouped[cat];
-          for (const dim of Object.keys(dimObj)) {
-            html += `<div class="dimension-title">${dim}</div>`;
+          // Hopper over kategorier som ikke matcher filter
+          if (catSel && catSel !== cat) continue;
 
-            dimObj[dim].forEach(item => {
-              html += `
-                <div class="knowledge-item">
-                  <div class="knowledge-topic">${item.topic}</div>
-                  <div class="knowledge-text">${item.text}</div>
-                </div>`;
-            });
+          let catBlock = "";
+          let hasContent = false;
+
+          // Gå gjennom alle dimensjoner i kategorien
+          for (const [dim, items] of Object.entries(dimObj)) {
+
+            // Hopper over dimensjoner som ikke matcher filter
+            if (dimSel && dimSel !== dim) continue;
+
+            if (!items || !items.length) continue;
+
+            hasContent = true;
+
+            catBlock += `
+              <div class="dimension-title">${dim}</div>
+              ${items
+                .map(item => `
+                  <div class="knowledge-item">
+                    <div class="knowledge-topic">${item.topic}</div>
+                    <div class="knowledge-text">${item.text}</div>
+                  </div>
+                `)
+                .join("")}
+            `;
           }
 
-          html += `</section>`;
+          if (hasContent) {
+            html += `
+              <section class="know-cat-block">
+                <h2>${cat}</h2>
+                ${catBlock}
+              </section>
+            `;
+          }
         }
 
-        box.innerHTML = html;
+        box.innerHTML = html || `<div class="empty-note">Ingen treff.</div>`;
       }
 
       // Koble filter
