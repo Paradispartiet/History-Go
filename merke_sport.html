@@ -81,6 +81,8 @@
         I History Go viser dette merket hvordan idretten har formet steder, personer og byens
         kollektive hukommelse.
       </p>
+
+      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 2. NORMATIV DIMENSJON -->
@@ -98,6 +100,8 @@
       <p>
         Sport blir oppfattet som ærlig konkurranse – blottet for politikk.
       </p>
+
+      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 3. DOXA -->
@@ -108,6 +112,8 @@
         Doxa ignorerer hvordan sport også er politikk, økonomi, kroppspress, nasjonsbygging,
         mediemakt og institusjonell kontroll.
       </p>
+
+      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 4. METODISK DIMENSJON -->
@@ -120,6 +126,8 @@
         <li>observasjon av kamp og konkurranse</li>
         <li>lagsdynamikk og ledelse</li>
       </ul>
+
+      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 5. MATERIELL DIMENSJON -->
@@ -132,6 +140,8 @@
         <li>treningsteknologi</li>
         <li>felleskapets rom (klubbhus, haller, parker)</li>
       </ul>
+
+      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 6. SOSIAL DIMENSJON -->
@@ -147,6 +157,8 @@
       <p>
         Sport skaper sterke sosiale bånd og emosjonelle fellesskap.
       </p>
+
+      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 7. GEOGRAFISK DIMENSJON -->
@@ -159,6 +171,8 @@
       <p>
         I History Go vises dette gjennom idrettsarener, klubbhistorier og steder der helter ble skapt.
       </p>
+
+      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 8. TEMPORAL DIMENSJON -->
@@ -173,6 +187,8 @@
       <p>
         Sportens historie er full av skifter som former samtidens praksis.
       </p>
+
+      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 9. BLINDSONER -->
@@ -185,6 +201,8 @@
         <li>politisk instrumentalisering</li>
         <li>usynlig arbeid bak prestasjon</li>
       </ul>
+
+      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 10. KJERNEBEGREPER -->
@@ -199,6 +217,8 @@
         <li>Fellesskap</li>
         <li>Symbolikk</li>
       </ul>
+
+      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 11. BIDRAG -->
@@ -214,9 +234,38 @@
       <p>
         SPORT-merket gjør det mulig å forstå byen gjennom sine idrettsøyeblikk og kollektive myter.
       </p>
+
+      <div class="knowledge-slot"></div>
     </section>
 
   </main>
+
+  <!-- ★ KNOWLEDGE SYSTEM KOBLING -->
+  <script src="knowledge.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const CATEGORY = "sport";
+
+      const learned = getKnowledgeForCategory(CATEGORY);
+
+      Object.entries(learned).forEach(([dimension, items]) => {
+        const section = document.getElementById(dimension);
+        if (!section) return;
+
+        const slot = section.querySelector(".knowledge-slot");
+        if (!slot) return;
+
+        slot.innerHTML = `
+          <h3>Dine lærepunkter:</h3>
+          <ul class="knowledge-list">
+            ${items
+              .map(k => `<li><strong>${k.topic}:</strong> ${k.text}</li>`)
+              .join("")}
+          </ul>
+        `;
+      });
+    });
+  </script>
 
 </body>
 </html>
