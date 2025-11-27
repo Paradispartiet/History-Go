@@ -81,6 +81,8 @@
         I History Go viser musikkfeltet hvordan byen er fylt av musikalske knutepunkter og historiske
         spor etter sjangere, artister, konserter og scener.
       </p>
+
+      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 2. NORMATIV DIMENSJON -->
@@ -97,6 +99,8 @@
       <p>
         Normen er at musikk «betyr noe» — at den uttrykker noe sant om individ og kultur.
       </p>
+
+      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 3. DOXA -->
@@ -107,6 +111,8 @@
         Doxa antar at musikk handler om smak og følelser. Dette skjuler musikkens rolle i
         identitetsbygging, sosial kontroll, teknologi, økonomi og nasjonal symbolikk.
       </p>
+
+      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 4. METODISK DIMENSJON -->
@@ -120,6 +126,8 @@
         <li>musikkhistorisk plassering</li>
         <li>estetisk kritikk</li>
       </ul>
+
+      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 5. MATERIELL DIMENSJON -->
@@ -132,6 +140,8 @@
         <li>noter, arkiv, lydfiler og medier</li>
         <li>akustikk, rom og teknologi</li>
       </ul>
+
+      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 6. SOSIAL DIMENSJON -->
@@ -147,6 +157,8 @@
       <p>
         Musikk er sosialt organisert — og skaper tilhørighet, identitet og kollektive erfaringer.
       </p>
+
+      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 7. GEOGRAFISK DIMENSJON -->
@@ -159,6 +171,8 @@
       <p>
         I History Go viser dette hvordan byen er gjennomsyret av musikkhistoriske steder.
       </p>
+
+      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 8. TEMPORAL DIMENSJON -->
@@ -173,6 +187,8 @@
       <p>
         Musikken endrer seg i tråd med teknologi, samfunn, migrasjon og kulturelle strømninger.
       </p>
+
+      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 9. BLINDSONER -->
@@ -185,6 +201,8 @@
         <li>marginaliserte sjangere</li>
         <li>musikalske hierarkier (finkultur vs subkultur)</li>
       </ul>
+
+      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 10. KJERNEBEGREPER -->
@@ -199,6 +217,8 @@
         <li>Teknologi</li>
         <li>Kode</li>
       </ul>
+
+      <div class="knowledge-slot"></div>
     </section>
 
     <!-- 11. BIDRAG -->
@@ -214,9 +234,38 @@
       <p>
         MUSIKK-merket gjør byen lesbar som et lydlandskap — fylt med scener, historier og rytmer.
       </p>
+
+      <div class="knowledge-slot"></div>
     </section>
 
   </main>
+
+  <!-- ★ KNOWLEDGE SYSTEM KOBLING -->
+  <script src="knowledge.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const CATEGORY = "musikk";
+
+      const learned = getKnowledgeForCategory(CATEGORY);
+
+      Object.entries(learned).forEach(([dimension, items]) => {
+        const section = document.getElementById(dimension);
+        if (!section) return;
+
+        const slot = section.querySelector(".knowledge-slot");
+        if (!slot) return;
+
+        slot.innerHTML = `
+          <h3>Dine lærepunkter:</h3>
+          <ul class="knowledge-list">
+            ${items
+              .map(k => `<li><strong>${k.topic}:</strong> ${k.text}</li>`)
+              .join("")}
+          </ul>
+        `;
+      });
+    });
+  </script>
 
 </body>
 </html>
