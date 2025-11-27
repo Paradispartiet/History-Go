@@ -76,68 +76,68 @@
   <!-- ===================== -->
   <!-- INNHOLD (PANELS)      -->
   <!-- ===================== -->
-  <main id="profileMain">
+<main id="profileMain">
 
-    <section class="profile-section" id="profileCard">
-      <h2 id="profileName">Utforsker #182</h2>
-      <div class="stats">
-        <div><span id="statVisited">0</span><br><small>Besøkt</small></div>
-        <div><span id="statQuizzes">0</span><br><small>Quiz fullført</small></div>
-        <div><span id="statStreak">0</span><br><small>Streak</small></div>
-      </div>
-    </section>
+  <section class="profile-section" id="profileCard">
+    <h2 id="profileName">Utforsker #182</h2>
+    <div class="stats">
+      <div><span id="statVisited">0</span><br><small>Besøkt</small></div>
+      <div><span id="statQuizzes">0</span><br><small>Quiz fullført</small></div>
+      <div><span id="statStreak">0</span><br><small>Streak</small></div>
+    </div>
+  </section>
 
-    <section class="profile-section">
-      <h2>Mine merker</h2>
-      <div id="merits"></div>
-    </section>
+  <section class="profile-section">
+    <h2>Mine merker</h2>
+    <div id="merits"></div>
+  </section>
 
-    <section class="profile-section">
-      <h2>Personer du har låst opp</h2>
-      <div id="peopleGrid"></div>
-    </section>
+  <section class="profile-section">
+    <h2>Personer du har låst opp</h2>
+    <div id="peopleGrid"></div>
+  </section>
 
-    <section class="profile-section">
-      <h2>Steder du har besøkt</h2>
-      <div id="collectionGrid"></div>
-    </section>
+  <section class="profile-section">
+    <h2>Steder du har besøkt</h2>
+    <div id="collectionGrid"></div>
+  </section>
 
-    <section class="profile-section" id="timelineSection">
-      <h2>Tidslinje</h2>
+  <section class="profile-section" id="timelineSection">
+    <h2>Tidslinje</h2>
+    <div id="timelineProgressText" class="timeline-progress-text"></div>
+    <div class="timeline-progress">
+      <div id="timelineProgressBar" class="timeline-progress-bar"></div>
+    </div>
+    <div id="timelineBody" class="timeline-body"></div>
+  </section>
 
-      <div id="timelineProgressText" class="timeline-progress-text"></div>
+  <section class="profile-section" id="collectionCardsSection">
+    <h2>Kortsamling</h2>
+    <div id="collectionCardsBody" class="collection-cards-body"></div>
+  </section>
 
-      <div class="timeline-progress">
-        <div id="timelineProgressBar" class="timeline-progress-bar"></div>
-      </div>
+  <!-- ===================== -->
+  <!-- SISTE KUNNSKAP         -->
+  <!-- ===================== -->
+  <section class="profile-section" id="latestKnowledgeSection">
+    <h2>Siste kunnskap</h2>
 
-      <div id="timelineBody" class="timeline-body"></div>
-    </section>
+    <div id="latestKnowledgeBox" class="latest-knowledge-box" style="display:none;">
+      <div class="lk-topic" id="lkTopic"></div>
+      <div class="lk-category" id="lkCategory"></div>
+    </div>
+  </section>
 
-<section class="profile-section" id="collectionCardsSection">
-  <h2>Kortsamling</h2>
-  <div id="collectionCardsBody" class="collection-cards-body"></div>
-</section>
-    
-    <section class="profile-section" id="actions">
-      <button id="editProfileBtn" class="btn">Endre profil</button>
-      <button id="exportProfileBtn" class="btn">Del profilkort</button>
-      <button id="resetProfileBtn" class="btn danger">Nullstill fremgang</button>
-    </section>
+  <!-- ===================== -->
+  <!-- ACTIONS                -->
+  <!-- ===================== -->
+  <section class="profile-section" id="actions">
+    <button id="editProfileBtn" class="btn">Endre profil</button>
+    <button id="exportProfileBtn" class="btn">Del profilkort</button>
+    <button id="resetProfileBtn" class="btn danger">Nullstill fremgang</button>
+  </section>
 
-<!-- ===================== -->
-<!-- SISTE KUNNSKAP         -->
-<!-- ===================== -->
-<section class="profile-section" id="latestKnowledgeSection">
-  <h2>Siste kunnskap</h2>
-
-  <div id="latestKnowledgeBox" class="latest-knowledge-box" style="display:none;">
-    <div class="lk-topic" id="lkTopic"></div>
-    <div class="lk-category" id="lkCategory"></div>
-  </div>
-</section>
-    
-  </main>
+</main>
 
 
   <!-- ===================== -->
