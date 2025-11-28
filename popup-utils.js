@@ -60,11 +60,17 @@ function hasCompletedQuiz(targetId) {
 }
 
 // Hent kunnskapsblokker for en bestemt kategori + mål (person/sted)
+// Leser direkte fra localStorage: knowledge_universe
 function getInlineKnowledgeFor(categoryId, targetId) {
   if (!categoryId || !targetId) return null;
-  if (typeof getKnowledgeUniverse !== "function") return null;
 
-  const uni = getKnowledgeUniverse();
+  let uni;
+  try {
+    uni = JSON.parse(localStorage.getItem("knowledge_universe") || "{}");
+  } catch {
+    return null;
+  }
+
   const cat = uni[categoryId];
   if (!cat) return null;
 
@@ -73,12 +79,13 @@ function getInlineKnowledgeFor(categoryId, targetId) {
 
   Object.entries(cat).forEach(([dimension, items]) => {
     if (!Array.isArray(items)) return;
-    const filtered = items.filter(
-      k =>
-        k.id &&
-        typeof k.id === "string" &&
-        k.id.startsWith(prefix)
+
+    const filtered = items.filter(k =>
+      k.id &&
+      typeof k.id === "string" &&
+      k.id.toLowerCase().startsWith(prefix)
     );
+
     if (filtered.length) {
       out[dimension] = filtered;
     }
