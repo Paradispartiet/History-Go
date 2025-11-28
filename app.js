@@ -1080,10 +1080,11 @@ async function startQuiz(targetId) {
   }
 
   const formatted = questions.map(q => ({
+    ...q,   // behold ALT originalt (knowledge, trivia osv)
     text: q.question,
     choices: q.options || [],
     answerIndex: (q.options || []).findIndex(o => o === q.answer)
-  }));
+}));
 
   openQuiz();
 
