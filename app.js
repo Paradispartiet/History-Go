@@ -1099,7 +1099,7 @@ async function startQuiz(targetId) {
     markQuizAsDone(targetId);
 
 const when = new Date().toISOString();
-const quizItem = questions.map(q => ({
+const quizItem = formatted.map(q => ({
   question: q.question,
   answer: q.answer,
   knowledge: q.knowledge,
