@@ -70,7 +70,7 @@ function makePopup(html, popupClass = "hg-popup") {
    ============================================================ */
 function showPersonPopup(person) {
   const face = `bilder/people/${person.image}`;
-  const cardImg = `bilder/cards/${person.imageCard}`;
+const img = `bilder/cards/${place.cardImage || place.imageCard}`;
   const wiki = person.longDesc || "Ingen ytterligere informasjon tilgjengelig.";
   const completed = hasCompletedQuiz(person.id);
 
