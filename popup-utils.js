@@ -1,136 +1,309 @@
-/* ======================================================================
-   POPUP SYSTEM – History Go
-   FULL INTEGRERT VERSJON
-   – Alt gammelt (placeCard + personCard-sheet)
-   – Alt nytt (knowledge + trivia + reward-popups)
-   – 100% kompatibel med app.js, JSON og iPad Safari
-======================================================================== */
-
-/* ============================================================== */
-/*  GLOBALT POPUP-HÅNDTERING                                       */
-/* ============================================================== */
+// ============================================================
+// HISTORY GO – POPUP-UTILS (ENDLIG VERISON)
+// Bruker KUN filbaner fra JSON: image, imageCard, cardImage
+// Ingen fallback, ingen automatikk, ingen _face-filnavn
+// ============================================================
 
 let currentPopup = null;
 
+// ============================================================
+// 1. LUKK POPUP
+// ============================================================
 function closePopup() {
   if (currentPopup) {
-    currentPopup.classList.remove("open");
-    setTimeout(() => currentPopup.remove(), 180);
+    currentPopup.remove();
+    currentPopup = null;
   }
 }
 
-/* ============================================================== */
-/*  HELPEFUNKSJONER                                                */
-/* ============================================================== */
-
-function hasCompletedQuiz(id) {
-  const hist = JSON.parse(localStorage.getItem("quiz_history") || "[]");
-  return hist.some(h => h.id === id);
-}
-
-function getKnowledgeBlocks(category) {
-  if (!window.getKnowledgeUniverse) return null;
-  const uni = getKnowledgeUniverse();
-  return uni[category] || null;
-}
-
-function getTriviaList(category) {
-  if (!window.getTriviaUniverse) return [];
-  const uni = getTriviaUniverse();
-  const block = uni[category] || {};
-  const out = [];
-  for (const dim of Object.keys(block)) {
-    block[dim].forEach(t => out.push(t));
-  }
-  return out;
-}
-
-function makePopup(html, cls = "hg-popup") {
+// ============================================================
+// 2. GENERELL POPUP-GENERATOR
+// ============================================================
+function makePopup(html, extraClass = "") {
   closePopup();
 
-  const div = document.createElement("div");
-  div.className = cls;
-  div.innerHTML = html;
+  const el = document.createElement("div");
+  el.className = `hg-popup ${extraClass}`;
 
-  div.addEventListener("click", e => {
-    if (e.target.dataset.closePopup !== undefined) closePopup();
-  });
-
-  document.body.appendChild(div);
-  currentPopup = div;
-
-  requestAnimationFrame(() => div.classList.add("open"));
-}
-
-/* ======================================================================
-   PERSON POPUP (bottom-sheet versjonen)
-======================================================================== */
-
-window.showPersonPopup = function(person) {
-  const face = `bilder/people/${person.image}`;
-  const card = `bilder/cards/${person.imageCard}`;
-  const completed = hasCompletedQuiz(person.id);
-
-  const know = completed ? getKnowledgeBlocks(person.category) : null;
-  const trivia = completed ? getTriviaList(person.category) : [];
-
-  // Building the person sheet UI
-  const html = `
-    <div class="hg-popup-header">
-      <span class="hg-close" data-close-popup>×</span>
+  el.innerHTML = `
+    <div class="hg-popup-inner">
+      <button class="hg-popup-close" data-close-popup>✕</button>
+      ${html}
     </div>
-
-    <img src="${face}" class="hg-popup-face">
-    <h2 class="hg-popup-name">${person.name}</h2>
-    <img src="${card}" class="hg-popup-cardimg">
-
-    <div class="hg-section">
-      <h3>Om personen</h3>
-      <p>${person.longDesc || ""}</p>
-    </div>
-
-    ${
-      person.places && person.places.length
-        ? `<div class="hg-section">
-             <h3>Steder</h3>
-             <ul>${person.places.map(p => `<li>${p}</li>`).join("")}</ul>
-           </div>`
-        : ""
-    }
-
-    <div class="hg-section">
-      <button class="hg-quiz-btn" data-quiz="${person.id}">
-        Ta quiz
-      </button>
-    </div>
-
-    ${
-      completed
-        ? `
-        <div class="hg-section">
-          <h3>Kunnskap</h3>
-          ${Object.entries(know)
-            .map(([dim, items]) =>
-              `<strong>${dim}</strong><ul>${items
-                .map(i => `<li>${i.topic}: ${i.text}</li>`)
-                .join("")}</ul>`
-            )
-            .join("")}
-        </div>
-
-        <div class="hg-section">
-          <h3>Funfacts</h3>
-          <ul>${trivia.map(t => `<li>${t}</li>`).join("")}</ul>
-        </div>
-      `
-        : ""
-    }
   `;
 
-  makePopup(html);
+  el.addEventListener("click", e => {
+    if (e.target.closest("[data-close-popup]")) closePopup();
+  });
+
+  el.addEventListener("click", e => {
+    if (e.target === el) closePopup();
+  });
+
+  document.body.appendChild(el);
+  currentPopup = el;
+  requestAnimationFrame(() => el.classList.add("visible"));
+}
+
+// ------------------------------------------------------------
+// 2b. HJELPERE FOR QUIZ / KUNNSKAP / TRIVIA
+// ------------------------------------------------------------
+
+// Sjekk om en quiz for person/sted er fullført
+function hasCompletedQuiz(targetId) {
+  try {
+    const hist = JSON.parse(localStorage.getItem("quiz_history") || "[]");
+    return hist.some(h => h.id === targetId);
+  } catch {
+    return false;
+  }
+}
+
+// Hent kunnskapsblokker for en bestemt kategori + mål (person/sted)
+function getInlineKnowledgeFor(categoryId, targetId) {
+  if (!categoryId || !targetId) return null;
+  if (typeof getKnowledgeUniverse !== "function") return null;
+
+  const uni = getKnowledgeUniverse();
+  const cat = uni[categoryId];
+  if (!cat) return null;
+
+  const out = {};
+  const prefix = (targetId + "_").toLowerCase();
+
+  Object.entries(cat).forEach(([dimension, items]) => {
+    if (!Array.isArray(items)) return;
+    const filtered = items.filter(
+      k =>
+        k.id &&
+        typeof k.id === "string" &&
+        k.id.startsWith(prefix)
+    );
+    if (filtered.length) {
+      out[dimension] = filtered;
+    }
+  });
+
+  return Object.keys(out).length ? out : null;
+}
+
+// Hent trivia-liste for en bestemt kategori + mål (person/sted)
+function getInlineTriviaFor(categoryId, targetId) {
+  if (!categoryId || !targetId) return [];
+  // Enten via getTriviaUniverse eller getTriviaForCategory
+  if (typeof getTriviaUniverse !== "function" && typeof getTriviaForCategory !== "function") {
+    return [];
+  }
+
+  let data = null;
+  if (typeof getTriviaForCategory === "function") {
+    data = getTriviaForCategory(categoryId);
+  } else if (typeof getTriviaUniverse === "function") {
+    const uni = getTriviaUniverse();
+    data = uni[categoryId] || {};
+  }
+
+  if (!data || typeof data !== "object") return [];
+  const list = data[targetId] || [];
+  return Array.isArray(list) ? list : [];
+}
+
+// ============================================================
+// 3. PERSON-POPUP
+// ============================================================
+window.showPersonPopup = function(person) {
+  if (!person) return;
+
+  const face    = person.image;      // portrett
+  const cardImg = person.imageCard;  // kortbilde
+  const works   = person.works || [];
+  const wiki    = person.wiki || "";
+
+  const categoryId =
+    person.category ||
+    (Array.isArray(person.tags) && person.tags.length ? person.tags[0] : null);
+
+  const completed = hasCompletedQuiz(person.id);
+  const knowledgeBlocks =
+    completed && categoryId ? getInlineKnowledgeFor(categoryId, person.id) : null;
+  const triviaList =
+    completed && categoryId ? getInlineTriviaFor(categoryId, person.id) : [];
+
+  // Finn steder knyttet til personen
+  const placeMatches = PLACES.filter(
+    p =>
+      person.placeId === p.id ||
+      (Array.isArray(person.places) && person.places.includes(p.id))
+  );
+
+  const html = `
+      <img src="${face}" class="hg-popup-face">
+      <h2 class="hg-popup-name">${person.name}</h2>
+      <img src="${cardImg}" class="hg-popup-cardimg">
+
+      <div class="hg-section">
+        <h3>Verk</h3>
+        ${
+          works.length
+            ? `<ul class="hg-works">${works.map(w => `<li>${w}</li>`).join("")}</ul>`
+            : `<p class="hg-muted">Ingen registrerte verk.</p>`
+        }
+        <button class="hg-quiz-btn" data-quiz="${person.id}">Ta quiz</button>
+      </div>
+
+      <div class="hg-section">
+        <h3>Om personen</h3>
+        <p class="hg-wiki">${wiki}</p>
+      </div>
+
+      <div class="hg-section">
+        <h3>Steder</h3>
+        ${
+          placeMatches.length
+            ? `<div class="hg-places">
+                ${placeMatches
+                  .map(pl => `<div class="hg-place" data-place="${pl.id}">📍 ${pl.name}</div>`)
+                  .join("")}
+              </div>`
+            : `<p class="hg-muted">Ingen stedstilknytning.</p>`
+        }
+      </div>
+
+      ${
+        completed && (knowledgeBlocks || triviaList.length)
+          ? `
+      <div class="hg-section">
+        <h3>Kunnskap</h3>
+        ${
+          knowledgeBlocks
+            ? Object.entries(knowledgeBlocks)
+                .map(
+                  ([dim, items]) => `
+                  <strong>${dim}</strong>
+                  <ul>
+                    ${items
+                      .map(i => `<li><strong>${i.topic}:</strong> ${i.text}</li>`)
+                      .join("")}
+                  </ul>
+                `
+                )
+                .join("")
+            : `<p class="hg-muted">Ingen kunnskap registrert ennå.</p>`
+        }
+      </div>
+
+      <div class="hg-section">
+        <h3>Funfacts</h3>
+        ${
+          triviaList.length
+            ? `<ul>${triviaList.map(t => `<li>${t}</li>`).join("")}</ul>`
+            : `<p class="hg-muted">Ingen funfacts ennå.</p>`
+        }
+      </div>
+          `
+          : ""
+      }
+  `;
+
+  makePopup(html, "person-popup");
+
+  currentPopup.querySelectorAll("[data-place]").forEach(btn => {
+    btn.onclick = () => {
+      const place = PLACES.find(x => x.id === btn.dataset.place);
+      closePopup();
+      showPlacePopup(place);
+    };
+  });
 };
 
+// ============================================================
+// 4. STEDS-POPUP
+// ============================================================
+window.showPlacePopup = function(place) {
+  if (!place) return;
 
+  // RIKTIG: kun stedsbilde
+  const img = place.image || "";
+
+  const peopleHere = PEOPLE.filter(p => p.placeId === place.id);
+
+  const categoryId = place.category || null;
+  const completed = hasCompletedQuiz(place.id);
+  const knowledgeBlocks =
+    completed && categoryId ? getInlineKnowledgeFor(categoryId, place.id) : null;
+  const triviaList =
+    completed && categoryId ? getInlineTriviaFor(categoryId, place.id) : [];
+
+  const html = `
+      <img src="${img}" class="hg-popup-img">
+      <h3 class="hg-popup-title">${place.name}</h3>
+      <p class="hg-popup-cat">${place.category || ""}</p>
+      <p class="hg-popup-desc">${place.desc || ""}</p>
+
+      <button class="hg-quiz-btn" data-quiz="${place.id}">Ta quiz</button>
+
+      ${
+        peopleHere.length
+          ? `<div class="hg-popup-subtitle">Personer</div>
+             <div class="hg-popup-people">
+               ${peopleHere
+                 .map(
+                   pr => `
+                 <div class="hg-popup-face" data-person="${pr.id}">
+                   <img src="${pr.imageCard}">
+                 </div>
+               `
+                 )
+                 .join("")}
+             </div>`
+          : ""
+      }
+
+      ${
+        completed && (knowledgeBlocks || triviaList.length)
+          ? `
+      <div class="hg-section">
+        <h3>Kunnskap</h3>
+        ${
+          knowledgeBlocks
+            ? Object.entries(knowledgeBlocks)
+                .map(
+                  ([dim, items]) => `
+                  <strong>${dim}</strong>
+                  <ul>
+                    ${items
+                      .map(i => `<li><strong>${i.topic}:</strong> ${i.text}</li>`)
+                      .join("")}
+                  </ul>
+                `
+                )
+                .join("")
+            : `<p class="hg-muted">Ingen kunnskap registrert ennå.</p>`
+        }
+      </div>
+
+      <div class="hg-section">
+        <h3>Funfacts</h3>
+        ${
+          triviaList.length
+            ? `<ul>${triviaList.map(t => `<li>${t}</li>`).join("")}</ul>`
+            : `<p class="hg-muted">Ingen funfacts ennå.</p>`
+        }
+      </div>
+          `
+          : ""
+      }
+  `;
+
+  makePopup(html, "place-popup");
+
+  currentPopup.querySelectorAll("[data-person]").forEach(el => {
+    el.onclick = () => {
+      const pr = PEOPLE.find(p => p.id === el.dataset.person);
+      showPersonPopup(pr);
+    };
+  });
+};
 
 // ============================================================
 // 5. PLACE CARD (det store kortpanelet)
@@ -165,13 +338,13 @@ window.openPlaceCard = function(place) {
     );
 
     peopleEl.innerHTML = persons
-  .map(p => `
-    <button class="pc-person" data-person="${p.id}">
-      <img src="${p.image}">
-      <span>${p.name}</span>
-    </button>
-  `)
-  .join("");
+      .map(p => `
+        <button class="pc-person" data-person="${p.id}">
+          <img src="${p.image}" class="pc-person-img">
+          <span>${p.name}</span>
+        </button>
+      `)
+      .join("");
 
     peopleEl.querySelectorAll("[data-person]").forEach(btn => {
       btn.onclick = () => {
@@ -244,94 +417,192 @@ window.openPlaceCardByPerson = function(person) {
   openPlaceCard(place);
 };
 
-/* ======================================================================
-   REWARD POPUPS (person + sted)
-======================================================================== */
+// ============================================================
+// 7. REWARD-POPUPS + KONFETTI
+// ============================================================
+function launchConfetti() {
+  const duration = 900;
+  const end = Date.now() + duration;
 
-window.showRewardPerson = function(person, entry) {
-  const card = `bilder/cards/${person.imageCard}`;
-  const know = getKnowledgeBlocks(entry.categoryId);
-  const trivia = getTriviaList(entry.categoryId);
+  (function frame() {
+    const timeLeft = end - Date.now();
+    if (timeLeft <= 0) return;
 
-  const html = `
-    <div class="reward-popup">
-      <h2>Gratulerer!</h2>
-      <p>Du har fullført quizzen om ${person.name}</p>
+    const count = 12;
 
-      <img src="${card}" class="reward-card">
+    for (let i = 0; i < count; i++) {
+      const particle = document.createElement("div");
+      particle.className = "confetti-particle";
 
-      ${
-        know
-          ? `
-      <div class="reward-section">
-        <h3>Ny kunnskap</h3>
-        ${Object.entries(know)
-          .map(([dim, items]) =>
-            `<strong>${dim}</strong><ul>${items
-              .map(i => `<li>${i.topic}: ${i.text}</li>`)
-              .join("")}</ul>`
-          )
-          .join("")}
-      </div>`
-          : ""
-      }
+      const colors = ["#f6c800", "#ff66cc", "#ffb703", "#4caf50", "#c77dff"];
+      particle.style.backgroundColor =
+        colors[Math.floor(Math.random() * colors.length)];
 
-      ${
-        trivia.length
-          ? `<div class="reward-section">
-               <h3>Funfacts</h3>
-               <ul>${trivia.map(t => `<li>${t}</li>`).join("")}</ul>
-             </div>`
-          : ""
-      }
+      particle.style.left = Math.random() * 100 + "vw";
+      particle.style.animationDuration =
+        0.7 + Math.random() * 0.6 + "s";
 
-      <button data-close-popup>Fortsett</button>
-    </div>
-  `;
+      document.body.appendChild(particle);
+      setTimeout(() => particle.remove(), 1000);
+    }
 
-  makePopup(html, "reward-container");
+    requestAnimationFrame(frame);
+  })();
+}
+
+window.showRewardPlace = function(place) {
+  if (!place) return;
+
+  const card =
+    place.cardImage || place.image || `bilder/kort/places/${place.id}.PNG`;
+
+  const categoryId = place.category || null;
+  const knowledgeBlocks =
+    categoryId ? getInlineKnowledgeFor(categoryId, place.id) : null;
+  const triviaList =
+    categoryId ? getInlineTriviaFor(categoryId, place.id) : [];
+
+  makePopup(
+    `
+      <div class="reward-center">
+        <h2 class="reward-title">🎉 Gratulerer!</h2>
+        <p class="reward-sub">Du har samlet kortet</p>
+
+        <img id="rewardCardImg" src="${card}" class="reward-card-img">
+
+        ${
+          knowledgeBlocks || triviaList.length
+            ? `
+        <div class="hg-section">
+          <h3>Kunnskap</h3>
+          ${
+            knowledgeBlocks
+              ? Object.entries(knowledgeBlocks)
+                  .map(
+                    ([dim, items]) => `
+                    <strong>${dim}</strong>
+                    <ul>
+                      ${items
+                        .map(
+                          i =>
+                            `<li><strong>${i.topic}:</strong> ${i.text}</li>`
+                        )
+                        .join("")}
+                    </ul>
+                  `
+                  )
+                  .join("")
+              : `<p class="hg-muted">Ingen kunnskap registrert ennå.</p>`
+          }
+        </div>
+
+        <div class="hg-section">
+          <h3>Funfacts</h3>
+          ${
+            triviaList.length
+              ? `<ul>${triviaList
+                .map(t => `<li>${t}</li>`)
+                .join("")}</ul>`
+              : `<p class="hg-muted">Ingen funfacts ennå.</p>`
+          }
+        </div>
+            `
+            : ""
+        }
+
+        <button class="reward-ok" data-close-popup>Fortsett</button>
+      </div>
+  `,
+    "reward-popup"
+  );
+
+  launchConfetti();
+
+  requestAnimationFrame(() => {
+    const img = document.getElementById("rewardCardImg");
+    if (img) img.classList.add("visible");
+  });
 };
 
-window.showRewardPlace = function(place, entry) {
-  const card = `bilder/cards/${place.cardImage || place.imageCard}`;
-  const know = getKnowledgeBlocks(entry.categoryId);
-  const trivia = getTriviaList(entry.categoryId);
+window.showRewardPerson = function(person) {
+  if (!person) return;
 
-  const html = `
-    <div class="reward-popup">
-      <h2>Gratulerer!</h2>
-      <p>Du har fullført quizzen om ${place.name}</p>
+  const card =
+    person.cardImage || person.image || `bilder/kort/people/${person.id}.PNG`;
 
-      <img src="${card}" class="reward-card">
+  const categoryId =
+    person.category ||
+    (Array.isArray(person.tags) && person.tags.length ? person.tags[0] : null);
+  const knowledgeBlocks =
+    categoryId ? getInlineKnowledgeFor(categoryId, person.id) : null;
+  const triviaList =
+    categoryId ? getInlineTriviaFor(categoryId, person.id) : [];
 
-      ${
-        know
-          ? `
-      <div class="reward-section">
-        <h3>Ny kunnskap</h3>
-        ${Object.entries(know)
-          .map(([dim, items]) =>
-            `<strong>${dim}</strong><ul>${items
-              .map(i => `<li>${i.topic}: ${i.text}</li>`)
-              .join("")}</ul>`
-          )
-          .join("")}
-      </div>`
-          : ""
-      }
+  makePopup(
+    `
+      <div class="reward-center">
+        <h2 class="reward-title">🎉 Gratulerer!</h2>
+        <p class="reward-sub">Du har samlet kortet</p>
 
-      ${
-        trivia.length
-          ? `<div class="reward-section">
-               <h3>Funfacts</h3>
-               <ul>${trivia.map(t => `<li>${t}</li>`).join("")}</ul>
-             </div>`
-          : ""
-      }
+        <img id="rewardCardImg" src="${card}" class="reward-card-img">
 
-      <button data-close-popup>Fortsett</button>
-    </div>
-  `;
+        ${
+          knowledgeBlocks || triviaList.length
+            ? `
+        <div class="hg-section">
+          <h3>Kunnskap</h3>
+          ${
+            knowledgeBlocks
+              ? Object.entries(knowledgeBlocks)
+                  .map(
+                    ([dim, items]) => `
+                    <strong>${dim}</strong>
+                    <ul>
+                      ${items
+                        .map(
+                          i =>
+                            `<li><strong>${i.topic}:</strong> ${i.text}</li>`
+                        )
+                        .join("")}
+                    </ul>
+                  `
+                  )
+                  .join("")
+              : `<p class="hg-muted">Ingen kunnskap registrert ennå.</p>`
+          }
+        </div>
 
-  makePopup(html, "reward-container");
+        <div class="hg-section">
+          <h3>Funfacts</h3>
+          ${
+            triviaList.length
+              ? `<ul>${triviaList
+                .map(t => `<li>${t}</li>`)
+                .join("")}</ul>`
+              : `<p class="hg-muted">Ingen funfacts ennå.</p>`
+          }
+        </div>
+            `
+            : ""
+        }
+
+        <button class="reward-ok" data-close-popup>Fortsett</button>
+      </div>
+  `,
+    "reward-popup"
+  );
+
+  launchConfetti();
+
+  requestAnimationFrame(() => {
+    const img = document.getElementById("rewardCardImg");
+    if (img) img.classList.add("visible");
+  });
 };
+
+// ============================================================
+// 8. ESC = LUKK
+// ============================================================
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape") closePopup();
+});
