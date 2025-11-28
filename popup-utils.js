@@ -223,7 +223,7 @@ function showRewardPerson(person, entry) {
       <div class="reward-header">Gratulerer!</div>
       <div class="reward-sub">Du har fullført quizzen for ${person.name}</div>
 
-      <img src="bilder/cards/${person.imageCard}" class="reward-card">
+<img src="bilder/cards/${place.cardImage || place.imageCard}" class="reward-card">
 
       ${k ? `
         <div class="reward-section">
