@@ -95,24 +95,24 @@ function getInlineKnowledgeFor(categoryId, targetId) {
 }
 
 // Hent trivia-liste for en bestemt kategori + mål (person/sted)
+// Leser direkte fra localStorage: trivia_universe
 function getInlineTriviaFor(categoryId, targetId) {
   if (!categoryId || !targetId) return [];
-  // Enten via getTriviaUniverse eller getTriviaForCategory
-  if (typeof getTriviaUniverse !== "function" && typeof getTriviaForCategory !== "function") {
+
+  let uni;
+  try {
+    uni = JSON.parse(localStorage.getItem("trivia_universe") || "{}");
+  } catch {
     return [];
   }
 
-  let data = null;
-  if (typeof getTriviaForCategory === "function") {
-    data = getTriviaForCategory(categoryId);
-  } else if (typeof getTriviaUniverse === "function") {
-    const uni = getTriviaUniverse();
-    data = uni[categoryId] || {};
-  }
+  const cat = uni[categoryId];
+  if (!cat || typeof cat !== "object") return [];
 
-  if (!data || typeof data !== "object") return [];
-  const list = data[targetId] || [];
-  return Array.isArray(list) ? list : [];
+  const list = cat[targetId] || [];
+  if (Array.isArray(list)) return list;
+  if (typeof list === "string") return [list];
+  return [];
 }
 
 // ============================================================
