@@ -1,16 +1,12 @@
 /* ============================================================
-   POPUP SYSTEM — History Go
-   Person- og steds-popups + reward-popups
-   Nå oppgradert med:
-   ✔ Knowledge (etter fullført quiz)
-   ✔ Trivia (etter fullført quiz)
-   ✔ Integrert i reward-popupen
-   Ingen spoilers før quiz.
+   POPUP SYSTEM — History Go (Ren og komplett versjon A+)
    ============================================================ */
 
 let currentPopup = null;
 
-// Close popup
+/* ------------------------------------------------------------
+   Close popup
+------------------------------------------------------------ */
 function closePopup() {
   if (currentPopup) {
     currentPopup.classList.remove("open");
@@ -18,45 +14,46 @@ function closePopup() {
   }
 }
 
-// ============================================================
-// QUIZ STATUS + KNOWLEDGE/TRIVIA HELPERS
-// ============================================================
+/* ------------------------------------------------------------
+   Utility functions
+------------------------------------------------------------ */
 
-// Har spilleren fullført quizen for dette targetId?
-function hasCompletedQuiz(targetId) {
+function hasCompletedQuiz(id) {
   const hist = JSON.parse(localStorage.getItem("quiz_history") || "[]");
-  return hist.some(h => h.id === targetId);
+  return hist.some(h => h.id === id);
 }
 
-// Hent kunnskapsblokk for kategori
 function getKnowledgeBlocks(category) {
-  const uni = getKnowledgeUniverse ? getKnowledgeUniverse() : {};
+  if (!getKnowledgeUniverse) return null;
+  const uni = getKnowledgeUniverse();
   return uni[category] || null;
 }
 
-// Hent trivia-liste for kategori
 function getTriviaList(category) {
-  const uni = getTriviaUniverse ? getTriviaUniverse() : {};
-  const block = uni[category] || {};
+  if (!getTriviaUniverse) return [];
+  const uni = getTriviaUniverse();
+  const set = uni[category] || {};
   const out = [];
-  for (const id of Object.keys(block)) {
-    block[id].forEach(t => out.push(t));
+  for (const dim of Object.keys(set)) {
+    set[dim].forEach(t => out.push(t));
   }
   return out;
 }
 
-/* ============================================================
-   RENDER POPUP BASE
-   ============================================================ */
-function makePopup(html, popupClass = "hg-popup") {
+/* ------------------------------------------------------------
+   Render Wrapper
+------------------------------------------------------------ */
+function makePopup(html, cls = "hg-popup") {
   closePopup();
 
   const div = document.createElement("div");
-  div.className = popupClass;
+  div.className = cls;
   div.innerHTML = html;
 
   div.addEventListener("click", e => {
-    if (e.target.dataset.closePopup !== undefined) closePopup();
+    if (e.target.dataset.closePopup !== undefined) {
+      closePopup();
+    }
   });
 
   document.body.appendChild(div);
@@ -67,20 +64,21 @@ function makePopup(html, popupClass = "hg-popup") {
 
 /* ============================================================
    PERSON POPUP
-   ============================================================ */
+============================================================ */
 function showPersonPopup(person) {
-  const face = `bilder/people/${person.image}`;
-const img = `bilder/cards/${place.cardImage || place.imageCard}`;
+  const faceImg = `bilder/people/${person.image}`;
+  const cardImg = `bilder/cards/${person.imageCard}`;
   const wiki = person.longDesc || "Ingen ytterligere informasjon tilgjengelig.";
   const completed = hasCompletedQuiz(person.id);
 
   const html = `
     <div class="hg-popup-header">
-      <span data-close-popup class="hg-close">×</span>
+      <span class="hg-close" data-close-popup>×</span>
     </div>
 
-    <img src="${face}" class="hg-popup-face">
+    <img src="${faceImg}" class="hg-popup-face">
     <h2 class="hg-popup-name">${person.name}</h2>
+
     <img src="${cardImg}" class="hg-popup-cardimg">
 
     <div class="hg-section">
@@ -88,7 +86,24 @@ const img = `bilder/cards/${place.cardImage || place.imageCard}`;
       <p class="hg-wiki">${wiki}</p>
     </div>
 
-    ${completed ? `
+    ${
+      person.places && person.places.length
+        ? `<div class="hg-section">
+             <h3>Steder</h3>
+             <ul class="hg-place-list">
+               ${person.places.map(p => `<li>${p}</li>`).join("")}
+             </ul>
+           </div>`
+        : ""
+    }
+
+    <div class="hg-section">
+      <button class="hg-quiz-btn" data-quiz="${person.id}">Ta quiz</button>
+    </div>
+
+    ${
+      completed
+        ? `
       <div class="hg-section">
         <h3>Kunnskap</h3>
         <div id="popupKnowledge"></div>
@@ -98,66 +113,70 @@ const img = `bilder/cards/${place.cardImage || place.imageCard}`;
         <h3>Funfacts</h3>
         <div id="popupTrivia"></div>
       </div>
-    ` : ""}
-
-    <div class="hg-section">
-      <h3>Steder</h3>
-      <ul class="hg-place-list">
-        ${(person.places || []).map(p => `<li>${p}</li>`).join("")}
-      </ul>
-    </div>
-
-    <div class="hg-section">
-      <button class="hg-quiz-btn" data-quiz="${person.id}">
-        Ta quiz
-      </button>
-    </div>
+    `
+        : ""
+    }
   `;
 
-  makePopup(html, "hg-popup");
+  makePopup(html);
 
-  // Fyll kunnskap / trivia hvis fullført quiz
+  // Knowledge + trivia rendering
   if (completed) {
     const k = getKnowledgeBlocks(person.category);
     const t = getTriviaList(person.category);
 
-    if (k) {
-      const box = currentPopup.querySelector("#popupKnowledge");
-      if (box) {
-        box.innerHTML = Object.entries(k).map(([dim, items]) => `
+    const kBox = currentPopup.querySelector("#popupKnowledge");
+    if (k && kBox) {
+      kBox.innerHTML = Object.entries(k)
+        .map(([dim, items]) => `
           <strong>${dim}</strong>
           <ul>${items.map(i => `<li>${i.topic}: ${i.text}</li>`).join("")}</ul>
-        `).join("");
-      }
+        `)
+        .join("");
     }
 
-    if (t.length) {
-      const box = currentPopup.querySelector("#popupTrivia");
-      if (box) {
-        box.innerHTML = `<ul>${t.map(x => `<li>${x}</li>`).join("")}</ul>`;
-      }
+    const tBox = currentPopup.querySelector("#popupTrivia");
+    if (t && t.length && tBox) {
+      tBox.innerHTML = `<ul>${t.map(x => `<li>${x}</li>`).join("")}</ul>`;
     }
   }
 }
 
 /* ============================================================
    PLACE POPUP
-   ============================================================ */
+============================================================ */
 function showPlacePopup(place) {
-  const img = `bilder/places/${place.image}`;
+  const cardImg = `bilder/cards/${place.cardImage || place.imageCard}`;
   const completed = hasCompletedQuiz(place.id);
 
   const html = `
     <div class="hg-popup-header">
-      <span data-close-popup class="hg-close">×</span>
+      <span class="hg-close" data-close-popup>×</span>
     </div>
 
-    <img src="${img}" class="hg-popup-img">
-    <h3 class="hg-popup-title">${place.name}</h3>
+    <img src="${cardImg}" class="hg-popup-img">
+
+    <h2 class="hg-popup-title">${place.name}</h2>
     <p class="hg-popup-cat">${place.category || ""}</p>
     <p class="hg-popup-desc">${place.desc || ""}</p>
 
-    ${completed ? `
+    <div class="hg-section">
+      <button class="hg-quiz-btn" data-quiz="${place.id}">Ta quiz</button>
+    </div>
+
+    ${
+      place.people && place.people.length
+        ? `
+      <div class="hg-section">
+        <h3>Personer</h3>
+        <ul>${place.people.map(p => `<li>${p}</li>`).join("")}</ul>
+      </div>`
+        : ""
+    }
+
+    ${
+      completed
+        ? `
       <div class="hg-section">
         <h3>Kunnskap</h3>
         <div id="popupKnowledge"></div>
@@ -167,82 +186,79 @@ function showPlacePopup(place) {
         <h3>Funfacts</h3>
         <div id="popupTrivia"></div>
       </div>
-    ` : ""}
-
-    <div class="hg-section">
-      <button class="hg-quiz-btn" data-quiz="${place.id}">
-        Ta quiz
-      </button>
-    </div>
-
-    ${
-      place.people && place.people.length
-        ? `<div class="hg-section">
-             <h3>Personer</h3>
-             <ul>${place.people.map(p => `<li>${p}</li>`).join("")}</ul>
-           </div>`
+    `
         : ""
     }
   `;
 
-  makePopup(html, "hg-popup");
+  makePopup(html);
 
-  // Fyll kunnskap / trivia hvis fullført
+  // Knowledge + trivia rendering
   if (completed) {
     const k = getKnowledgeBlocks(place.category);
     const t = getTriviaList(place.category);
 
-    if (k) {
-      const box = currentPopup.querySelector("#popupKnowledge");
-      if (box) {
-        box.innerHTML = Object.entries(k).map(([dim, items]) => `
+    const kBox = currentPopup.querySelector("#popupKnowledge");
+    if (k && kBox) {
+      kBox.innerHTML = Object.entries(k)
+        .map(([dim, items]) => `
           <strong>${dim}</strong>
           <ul>${items.map(i => `<li>${i.topic}: ${i.text}</li>`).join("")}</ul>
-        `).join("");
-      }
+        `)
+        .join("");
     }
 
-    if (t.length) {
-      const box = currentPopup.querySelector("#popupTrivia");
-      if (box) {
-        box.innerHTML = `<ul>${t.map(x => `<li>${x}</li>`).join("")}</ul>`;
-      }
+    const tBox = currentPopup.querySelector("#popupTrivia");
+    if (t && t.length && tBox) {
+      tBox.innerHTML = `<ul>${t.map(x => `<li>${x}</li>`).join("")}</ul>`;
     }
   }
 }
 
 /* ============================================================
-   REWARD POPUPS — Nå med KUNNSKAP & TRIVIA
-   ============================================================ */
+   REWARD POPUPS
+============================================================ */
+
 function showRewardPerson(person, entry) {
+  const cardImg = `bilder/cards/${person.imageCard}`;
   const k = getKnowledgeBlocks(entry.categoryId);
   const t = getTriviaList(entry.categoryId);
 
   const html = `
-    <div class="hg-popup reward-popup">
+    <div class="reward-popup">
       <div class="reward-header">Gratulerer!</div>
-      <div class="reward-sub">Du har fullført quizzen for ${person.name}</div>
+      <div class="reward-sub">Du har fullført quizzen om ${person.name}</div>
 
-<img src="bilder/cards/${place.cardImage || place.imageCard}" class="reward-card">
+      <img src="${cardImg}" class="reward-card">
 
-      ${k ? `
-        <div class="reward-section">
-          <h3>Ny kunnskap</h3>
-          ${Object.entries(k).map(([dim, items]) =>
-            `<strong>${dim}</strong>
-             <ul>${items.map(i => `<li>${i.topic}: ${i.text}</li>`).join("")}</ul>`
-          ).join("")}
-        </div>
-      ` : ""}
+      ${
+        k
+          ? `
+      <div class="reward-section">
+        <h3>Ny kunnskap</h3>
+        ${Object.entries(k)
+          .map(([dim, items]) => `
+            <strong>${dim}</strong>
+            <ul>
+              ${items.map(i => `<li>${i.topic}: ${i.text}</li>`).join("")}
+            </ul>
+          `)
+          .join("")}
+      </div>`
+          : ""
+      }
 
-      ${t.length ? `
-        <div class="reward-section">
-          <h3>Funfacts</h3>
-          <ul>${t.map(x => `<li>${x}</li>`).join("")}</ul>
-        </div>
-      ` : ""}
+      ${
+        t && t.length
+          ? `
+      <div class="reward-section">
+        <h3>Funfacts</h3>
+        <ul>${t.map(x => `<li>${x}</li>`).join("")}</ul>
+      </div>`
+          : ""
+      }
 
-      <button class="reward-ok" data-close-popup>Fortsett</button>
+      <button data-close-popup class="reward-ok">Fortsett</button>
     </div>
   `;
 
@@ -250,34 +266,45 @@ function showRewardPerson(person, entry) {
 }
 
 function showRewardPlace(place, entry) {
+  const cardImg = `bilder/cards/${place.cardImage || place.imageCard}`;
   const k = getKnowledgeBlocks(entry.categoryId);
   const t = getTriviaList(entry.categoryId);
 
   const html = `
-    <div class="hg-popup reward-popup">
+    <div class="reward-popup">
       <div class="reward-header">Gratulerer!</div>
-      <div class="reward-sub">Du har fullført quizzen for ${place.name}</div>
+      <div class="reward-sub">Du har fullført quizzen om ${place.name}</div>
 
-      <img src="bilder/cards/${place.cardImage}" class="reward-card">
+      <img src="${cardImg}" class="reward-card">
 
-      ${k ? `
-        <div class="reward-section">
-          <h3>Ny kunnskap</h3>
-          ${Object.entries(k).map(([dim, items]) =>
-            `<strong>${dim}</strong>
-             <ul>${items.map(i => `<li>${i.topic}: ${i.text}</li>`).join("")}</ul>`
-          ).join("")}
-        </div>
-      ` : ""}
+      ${
+        k
+          ? `
+      <div class="reward-section">
+        <h3>Ny kunnskap</h3>
+        ${Object.entries(k)
+          .map(([dim, items]) => `
+            <strong>${dim}</strong>
+            <ul>
+              ${items.map(i => `<li>${i.topic}: ${i.text}</li>`).join("")}
+            </ul>
+          `)
+          .join("")}
+      </div>`
+          : ""
+      }
 
-      ${t.length ? `
-        <div class="reward-section">
-          <h3>Funfacts</h3>
-          <ul>${t.map(x => `<li>${x}</li>`).join("")}</ul>
-        </div>
-      ` : ""}
+      ${
+        t && t.length
+          ? `
+      <div class="reward-section">
+        <h3>Funfacts</h3>
+        <ul>${t.map(x => `<li>${x}</li>`).join("")}</ul>
+      </div>`
+          : ""
+      }
 
-      <button class="reward-ok" data-close-popup>Fortsett</button>
+      <button data-close-popup class="reward-ok">Fortsett</button>
     </div>
   `;
 
