@@ -130,111 +130,118 @@ window.showPersonPopup = function(person) {
   makePopup(html);
 };
 
-/* ======================================================================
-   PLACE CARD – DET GAMLE “placeCard-sheetet” (din originale)
-======================================================================== */
 
+
+// ============================================================
+// 5. PLACE CARD (det store kortpanelet)
+// ============================================================
 window.openPlaceCard = function(place) {
-  const sheet = document.getElementById("placeCard");
-  if (!sheet) return;
+  if (!place) return;
 
-  // Fyll inn kortdata
-  document.getElementById("pcTitle").textContent = place.name;
-  document.getElementById("pcMeta").textContent = place.category || "";
-  document.getElementById("pcDesc").textContent = place.desc || "";
-  document.getElementById("pcImage").src =
-    `bilder/cards/${place.cardImage || place.imageCard}`;
+  const card      = document.getElementById("placeCard");
+  const imgEl     = document.getElementById("pcImage");
+  const titleEl   = document.getElementById("pcTitle");
+  const metaEl    = document.getElementById("pcMeta");
+  const descEl    = document.getElementById("pcDesc");
+  const peopleEl  = document.getElementById("pcPeople");
+  const btnInfo   = document.getElementById("pcInfo");
+  const btnQuiz   = document.getElementById("pcQuiz");
+  const btnUnlock = document.getElementById("pcUnlock");
+  const btnRoute  = document.getElementById("pcRoute");
+
+  if (!card) return;
+
+  if (imgEl)   imgEl.src = place.image || "";
+  if (titleEl) titleEl.textContent = place.name;
+  if (metaEl)  metaEl.textContent  = `${place.category || ""} • radius ${place.r || 150} m`;
+  if (descEl)  descEl.textContent  = place.desc || "";
 
   // Personer knyttet til stedet
-  const peopleBox = document.getElementById("pcPeople");
-  if (peopleBox) {
-    if (place.people && place.people.length) {
-      peopleBox.innerHTML = place.people
-        .map(id => `<li>${id}</li>`)
-        .join("");
-    } else {
-      peopleBox.innerHTML = "";
-    }
+  if (peopleEl) {
+    const persons = PEOPLE.filter(
+      p =>
+        (Array.isArray(p.places) && p.places.includes(place.id)) ||
+        p.placeId === place.id
+    );
+
+    peopleEl.innerHTML = persons
+  .map(p => `
+    <button class="pc-person" data-person="${p.id}">
+      <img src="${p.image}">
+      <span>${p.name}</span>
+    </button>
+  `)
+  .join("");
+
+    peopleEl.querySelectorAll("[data-person]").forEach(btn => {
+      btn.onclick = () => {
+        const pr = PEOPLE.find(p => p.id === btn.dataset.person);
+        showPersonPopup(pr);
+      };
+    });
   }
 
-  // Quiz-knapp
-  const quizBtn = document.getElementById("pcQuiz");
-  quizBtn.setAttribute("data-quiz", place.id);
+  if (btnInfo)   btnInfo.onclick   = () => showPlacePopup(place);
+  if (btnQuiz)   btnQuiz.onclick   = () => startQuiz(place.id);
+  if (btnRoute)  btnRoute.onclick  = () => showRouteTo(place);
 
-  // Unlock-knapp
-  const unlockBtn = document.getElementById("pcUnlock");
-  unlockBtn.onclick = () => {
-    const visited = JSON.parse(localStorage.getItem("visited_places") || "[]");
-    if (!visited.includes(place.id)) {
-      visited.push(place.id);
-      localStorage.setItem("visited_places", JSON.stringify(visited));
+  if (btnUnlock) {
+    btnUnlock.onclick = () => {
+      if (visited[place.id]) {
+        showToast("Allerede låst opp");
+        return;
+      }
+
+      visited[place.id] = true;
+      saveVisited();
+      drawPlaceMarkers();
+      if (typeof pulseMarker === "function") {
+        pulseMarker(place.lat, place.lon);
+      }
+
+      const cat = place.category;
+      if (cat) {
+        merits[cat] = merits[cat] || { points: 0, level: "Nybegynner" };
+        merits[cat].points++;
+        saveMerits();
+        updateMeritLevel(cat, merits[cat].points);
+      }
+
+      showToast(`Låst opp: ${place.name} ✅`);
       window.dispatchEvent(new Event("updateProfile"));
-    }
-    sheet.setAttribute("aria-hidden", "true");
-  };
+    };
+  }
 
-  // Vis sheet
-  sheet.setAttribute("aria-hidden", "false");
+  card.setAttribute("aria-hidden", "false");
 };
 
-/* ======================================================================
-   PLACE POPUP (full popup-versjon – for reward eller “info” i sheet)
-======================================================================== */
+// ============================================================
+// 6. ÅPNE placeCard FRA PERSON (kart-modus)
+// ============================================================
+window.openPlaceCardByPerson = function(person) {
+  if (!person) return;
 
-window.showPlacePopup = function(place) {
-  const card = `bilder/cards/${place.cardImage || place.imageCard}`;
-  const completed = hasCompletedQuiz(place.id);
+  let place =
+    PLACES.find(p => p.id === person.placeId) ||
+    PLACES.find(
+      p => Array.isArray(person.places) && person.places.includes(p.id)
+    );
 
-  const know = completed ? getKnowledgeBlocks(place.category) : null;
-  const trivia = completed ? getTriviaList(place.category) : [];
+  // Hvis person ikke har et registrert sted → generer et "midlertidig"
+  if (!place) {
+    place = {
+      id: person.id,
+      name: person.name,
+      category: tagToCat(person.tags || []),
+      desc: person.desc || "",
+      r: person.r || 150,
+      lat: person.lat,
+      lon: person.lon,
+      cardImage: person.imageCard
+    };
+  }
 
-  const html = `
-    <div class="hg-popup-header">
-      <span data-close-popup class="hg-close">×</span>
-    </div>
-
-    <img src="${card}" class="hg-popup-img">
-    <h2 class="hg-popup-title">${place.name}</h2>
-    <p class="hg-popup-cat">${place.category}</p>
-    <p class="hg-popup-desc">${place.desc}</p>
-
-    <button class="hg-quiz-btn" data-quiz="${place.id}">
-      Ta quiz
-    </button>
-
-    ${
-      place.people && place.people.length
-        ? `<div class="hg-section">
-             <h3>Personer</h3>
-             <ul>${place.people.map(p => `<li>${p}</li>`).join("")}</ul>
-           </div>`
-        : ""
-    }
-
-    ${
-      completed
-        ? `
-      <div class="hg-section">
-        <h3>Kunnskap</h3>
-        ${Object.entries(know)
-          .map(([dim, items]) =>
-            `<strong>${dim}</strong><ul>${items
-              .map(i => `<li>${i.topic}: ${i.text}</li>`)
-              .join("")}</ul>`
-          )
-          .join("")}
-      </div>
-
-      <div class="hg-section">
-        <h3>Funfacts</h3>
-        <ul>${trivia.map(t => `<li>${t}</li>`).join("")}</ul>
-      </div>
-      `
-        : ""
-    }
-  `;
-
-  makePopup(html);
+  openPlaceCard(place);
 };
 
 /* ======================================================================
