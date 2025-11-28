@@ -6,7 +6,7 @@
    - Null cache-låsing
 ============================================================ */
 
-const CACHE_VERSION = "HG-FULL-v3";
+const CACHE_VERSION = "HG-FULL-v3.0.3.1.001";
 const STATIC_CACHE = `historygo-${CACHE_VERSION}`;
 
 // ------------------------------------------------------------
