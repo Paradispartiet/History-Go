@@ -31,8 +31,12 @@
   --text: #e6eef9;
   --muted: #9bb0c9;
   --primary: #1976d2;
-  --ok: #2ecc
+  --ok: #2ecc;
   --warn: #ffb703;
+  --frame-left: 320px;
+  --frame-header: 120px;
+  --frame-bottom-routes: 110px;
+  --frame-bottom-card: 220px;
 
   --hist: #1976d2;
   --kult: #e63946;
@@ -293,32 +297,19 @@ main {
 .card .row.between{ justify-content:space-between }
 
 
-/* ============================================================
-   VENSTRE PANELET – 35% BREDDE, HØYDE TIL 20% FRA BUNNEN
-   Viser 5 steder uten scrolling i kartet
-   ============================================================ */
-
+/* === HESTESKO-RAMME RUNDT KARTET ===================== /
+/ VENSTRE KANT: “Se nærmeste”-panelet */
 #nearbyListContainer {
-  position: absolute;
-  top: 200px;             /* juster her hvis du vil */
-  left: 20px;
+position: fixed;
+top: var(--frame-header);
+bottom: 0;
+left: 0;
 
-  width: 35vw;
-  max-width: 420px;
+width: var(--frame-left);
+max-width: none;
 
-  /* Høyde: hele skjermen minus 20% nederst */
-  height: 650px;
-
-  overflow-y: auto;       /* La kun INNHOLDET scrolle */
-  padding: 14px 16px;
-
-  background: var(--panel);
-  border: 1px solid var(--panel-border);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  backdrop-filter: blur(4px);
-
-  z-index: 5;
+margin: 0;
+border-radius: 0;
 }
 
 /* Gjør det lettere å vise 5 steder kompakt */
@@ -439,26 +430,12 @@ button{ cursor:pointer; border:none }
 /* PLACE CARD – LAYOUT                                    */
 /* ===================================================== */
 
-/* Hele kortet (sheet) */
-/* ===================================================== */
-/* PLACE CARD – FORBEDRET, STØRRE, RYDDIG (NIVÅ 2)       */
-/* ===================================================== */
-
-/* Hele kortet (sheet) */
+/* NEDERST TIL HØYRE: placeCard rett over rute-panelet */
 #placeCard {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 50;
-  background: rgba(13,27,42,0.96);
-  backdrop-filter: blur(8px);
-  border-radius: 22px 22px 0 0;
-  padding: 24px 22px 28px;
-  transform: translateY(0);
-  transition: transform 0.25s ease;
-  max-height: 360px;          /* ← NYTT: større, men ikke gigantisk */
-  overflow-y: auto;
+left: var(--frame-left);
+right: 0;
+bottom: var(--frame-bottom-routes);
+border-radius: 0;
 }
 
 #placeCard[aria-hidden="true"] {
@@ -1303,20 +1280,15 @@ main > section.panel:nth-of-type(2) {
   z-index: 4;          /* over kartet, under popups */
 }
 
-/* ===================================================== */
-/* RUTE-PANEL – HISTORY GO PREMIUM PANEL                 */
-/* ===================================================== */
-
+/* NEDERST TIL HØYRE: rute-panel */
 .rute-panel {
-  background: linear-gradient(180deg, #1a1c22, #0f1116);
-  border-left: 4px solid #f6c800;
-  border-radius: 14px;
-  padding: 16px 16px 20px;
-  margin-bottom: 28px;
+position: fixed;
+left: var(--frame-left);
+right: 0;
+bottom: 0;
 
-  box-shadow:
-    0 0 18px rgba(246,200,0,.08),
-    inset 0 0 8px rgba(255,255,255,.03);
+margin: 0;
+border-radius: 0;
 }
 
 .rute-panel h2 {
@@ -1329,19 +1301,15 @@ main > section.panel:nth-of-type(2) {
   margin-bottom: 12px;
 }
 
-/* ===================================================== */
-/* NY MINI-PROFIL – HISTORY GO ELEGANT PANEL              */
-/* ===================================================== */
+/* TOPPKANT TIL HØYRE: mini-profil */
 .mini-profile {
-  position: relative;
-  overflow: hidden;
-  background: linear-gradient(180deg, rgba(25,25,30,.95), rgba(10,15,25,.95));
-  border-left: 4px solid #f6c800;
-  border-radius: 12px;
-  padding: 10px 14px;  /* lavere */
-  margin-bottom: 26px;
-  box-shadow: 0 0 18px rgba(246,200,0,.05), inset 0 0 6px rgba(255,255,255,.04);
-  transition: transform .25s ease, box-shadow .25s ease;
+position: fixed;
+top: var(--frame-header);
+left: var(--frame-left);
+right: 0;
+
+margin: 0;
+border-radius: 0;
 }
 .mini-profile:hover {
   transform: translateY(-2px);
