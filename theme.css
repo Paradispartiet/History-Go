@@ -25,22 +25,39 @@
 /* 1) Variabler & grunnstil                            */
 /* ===================================================== */
 :root{
+  /* Basis-tema */
   --bg: #0a1929;
   --panel: rgba(13,27,42,.86);
   --panel-border: rgba(255,255,255,.08);
   --text: #e6eef9;
   --muted: #9bb0c9;
   --primary: #1976d2;
-  --ok: #2ecc
+  --ok: #2ecc71;              /* "OK"-grønn – FIX: gyldig hex + ; */
   --warn: #ffb703;
 
-  --hist: #1976d2;
-  --kult: #e63946;
-  --sport: #2a9d8f;
-  --natur: #4caf50;
-  --urban: #ffb703;
-  --viten: #9b59b6;
+  /* Kategorifarger (fra badges.json) */
+  --cat-historie:       #344B80;
+  --cat-vitenskap:      #9b59b6;
+  --cat-kunst:          #ffb703;
+  --cat-by:             #e63946;
+  --cat-musikk:         #ff66cc;
+  --cat-litteratur:     #f6c800;
+  --cat-natur:          #4caf50;
+  --cat-sport:          #2a9d8f;
+  --cat-politikk:       #c77dff;
+  --cat-naeringsliv:    #ff8800;
+  --cat-populaerkultur: #ffb703;
+  --cat-subkultur:      #ff66cc;
 
+  /* Alias som matcher eksisterende CSS (.badge.*) */
+  --hist:  var(--cat-historie);   /* brukes evt. senere hvis du vil */
+  --kult:  var(--cat-kunst);      /* .badge.kunst */
+  --sport: var(--cat-sport);      /* .badge.sport */
+  --natur: var(--cat-natur);      /* .badge.natur */
+  --urban: var(--cat-by);         /* .badge.by */
+  --viten: var(--cat-vitenskap);  /* .badge.vitenskap */
+
+  /* Diverse UI-ting */
   --radius: 12px;
   --shadow: 0 10px 24px rgba(0,0,0,.35);
 }
