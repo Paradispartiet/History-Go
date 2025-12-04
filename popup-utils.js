@@ -342,7 +342,8 @@ window.openPlaceCard = function(place) {
   const btnQuiz   = document.getElementById("pcQuiz");
   const btnUnlock = document.getElementById("pcUnlock");
   const btnRoute  = document.getElementById("pcRoute");
-
+  const btnNote   = document.getElementById("pcNote");   // 🔹 NY
+  
   if (!card) return;
 
   if (imgEl)   imgEl.src = place.image || "";
