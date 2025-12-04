@@ -1569,3 +1569,39 @@ document.addEventListener("keydown", e => {
   }
 });
 
+function exportHistoryGoData() {
+  // 1. Knowledge-universet (alt fra knowledge-systemet)
+  let knowledge = {};
+  try {
+    if (typeof getKnowledgeUniverse === "function") {
+      knowledge = getKnowledgeUniverse();
+    } else {
+      knowledge = JSON.parse(
+        localStorage.getItem("knowledge_universe") || "{}"
+      );
+    }
+  } catch (e) {
+    console.warn("Kunne ikke lese knowledge_universe", e);
+    knowledge = {};
+  }
+
+  // 2. Notater (fra userNotes i minnet)
+  const notes = Array.isArray(userNotes) ? userNotes : [];
+
+  // 3. Person-dialoger
+  const dialogs = Array.isArray(personDialogs) ? personDialogs : [];
+
+  const payload = {
+    user_id: localStorage.getItem("user_id") || "local_user",
+    source: "historygo",
+    exported_at: new Date().toISOString(),
+    knowledge_universe: knowledge,
+    notes,
+    dialogs
+  };
+
+  const json = JSON.stringify(payload, null, 2);
+  console.log("HistoryGo → AHA export:\n", json);
+  return json;
+}
+
