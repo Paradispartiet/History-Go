@@ -176,6 +176,20 @@ window.showPersonPopup = function(person) {
         }
       </div>
 
+      <!-- NY SEKSJON: Samtale & notat -->
+      <div class="hg-section">
+        <h3>Samtale & notat</h3>
+        <div class="hg-actions-row">
+          <button class="hg-ghost-btn" data-chat-person="${person.id}">
+            💬 Snakk med ${person.name}
+          </button>
+          <button class="hg-ghost-btn" data-note-person="${person.id}">
+            📝 Notat
+          </button>
+        </div>
+      </div>
+      <!-- SLUTT NY SEKSJON -->
+
       ${
         completed && (knowledgeBlocks || triviaList.length)
           ? `
