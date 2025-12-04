@@ -620,6 +620,27 @@ document.addEventListener("click", e => {
     return;
   }
 
+// --- SNakk med person ---
+  const chatPersonId = target.getAttribute?.("data-chat-person");
+  if (chatPersonId) {
+    const person = PEOPLE.find(p => p.id === chatPersonId);
+    if (person) {
+      handlePersonChat(person);
+    }
+    return;
+  }
+
+  // --- Notat om person ---
+  const notePersonId = target.getAttribute?.("data-note-person");
+  if (notePersonId) {
+    const person = PEOPLE.find(p => p.id === notePersonId);
+    if (person) {
+      handlePersonNote(person);
+    }
+    return;
+  }
+
+  
   // Quiz
   const quizId = target.getAttribute?.("data-quiz");
   if (quizId) {
