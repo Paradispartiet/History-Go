@@ -790,20 +790,24 @@ function handlePersonNote(person) {
   );
   if (!noteText) return;
 
-  personNotes.push({
+  userNotes.push({
     id: "note_" + Date.now(),
+    userId: "local",              // senere: ekte bruker-id
+    source: "historygo",
+    type: "person",
     personId: person.id,
+    placeId: null,
     categoryId: (person.tags && person.tags[0]) || null,
     title: `Notat om ${person.name}`,
     text: noteText,
+    feeling: null,                // plass til følelser/valens senere
     createdAt: new Date().toISOString(),
     visibility: "private"
   });
-  savePersonNotes();
+  saveUserNotes();
 
   showToast(`Notat om ${person.name} lagret 📝`);
 }
-
 // ==============================
 // 10. INITIALISERING OG BOOT
 // ==============================
