@@ -156,12 +156,6 @@ window.showPersonPopup = function(person) {
             : `<p class="hg-muted">Ingen registrerte verk.</p>`
         }
         <button class="hg-quiz-btn" data-quiz="${person.id}">Ta quiz</button>
-        <button class="hg-chat-btn" data-chat-person="${person.id}">
-          Snakk med personen
-        </button>
-        <button class="hg-note-btn" data-note-person="${person.id}">
-          📝 Notat
-        </button>
       </div>
 
       <div class="hg-section">
