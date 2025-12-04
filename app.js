@@ -33,8 +33,25 @@ const visited         = JSON.parse(localStorage.getItem("visited_places") || "{}
 const peopleCollected = JSON.parse(localStorage.getItem("people_collected") || "{}");
 const merits          = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
 
+// Dialoger og notater med personer (History Go – V1)
+const personDialogs = JSON.parse(
+  localStorage.getItem("hg_person_dialogs_v1") || "[]"
+);
+const personNotes = JSON.parse(
+  localStorage.getItem("hg_person_notes_v1") || "[]"
+);
+
+function savePersonDialogs() {
+  localStorage.setItem("hg_person_dialogs_v1", JSON.stringify(personDialogs));
+}
+function savePersonNotes() {
+  localStorage.setItem("hg_person_notes_v1", JSON.stringify(personNotes));
+}
+
 // progress for “+1 poeng per 3 riktige” (reservert)
 const userProgress    = JSON.parse(localStorage.getItem("historygo_progress") || "{}");
+
+
 
 function saveVisited() {
   localStorage.setItem("visited_places", JSON.stringify(visited));
