@@ -38,10 +38,15 @@ function saveTriviaPoint(entry) {
     list.push(entry.trivia);
   }
 
-  saveTriviaUniverse(uni);
+    saveTriviaUniverse(uni);
   
   // Live-oppdatering i profil
   window.dispatchEvent(new Event("updateProfile"));
+
+  // Sync til AHA hvis tilgjengelig
+  if (typeof window.syncHistoryGoToAHA === "function") {
+    window.syncHistoryGoToAHA();
+  }
 }
 
 // ------------------------------------------------------------
