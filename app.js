@@ -1570,7 +1570,6 @@ document.addEventListener("keydown", e => {
 });
 
 function exportHistoryGoData() {
-  // 1. Knowledge-universet (alt fra knowledge-systemet)
   let knowledge = {};
   try {
     if (typeof getKnowledgeUniverse === "function") {
@@ -1585,10 +1584,7 @@ function exportHistoryGoData() {
     knowledge = {};
   }
 
-  // 2. Notater (fra userNotes i minnet)
-  const notes = Array.isArray(userNotes) ? userNotes : [];
-
-  // 3. Person-dialoger
+  const notes   = Array.isArray(userNotes) ? userNotes : [];
   const dialogs = Array.isArray(personDialogs) ? personDialogs : [];
 
   const payload = {
@@ -1597,11 +1593,10 @@ function exportHistoryGoData() {
     exported_at: new Date().toISOString(),
     knowledge_universe: knowledge,
     notes,
-    dialogs
+    dialogs,
   };
 
   const json = JSON.stringify(payload, null, 2);
   console.log("HistoryGo → AHA export:\n", json);
   return json;
 }
-
