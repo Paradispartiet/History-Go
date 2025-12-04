@@ -44,12 +44,16 @@ function saveKnowledgePoint(entry) {
     });
   }
 
-  saveKnowledgeUniverse(uni);
+    saveKnowledgeUniverse(uni);
 
   // Trigger oppdatering av profil (fast regel 101)
   window.dispatchEvent(new Event("updateProfile"));
-}
 
+  // Sync til AHA hvis funksjonen finnes (History Go + AHA samme origin)
+  if (typeof window.syncHistoryGoToAHA === "function") {
+    window.syncHistoryGoToAHA();
+  }
+}
 // ------------------------------------------------------------
 // 2) HENTE KUNNSKAP FOR ET MERKE
 // ------------------------------------------------------------
