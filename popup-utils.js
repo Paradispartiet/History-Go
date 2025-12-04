@@ -376,10 +376,14 @@ window.openPlaceCard = function(place) {
     });
   }
 
-  if (btnInfo)   btnInfo.onclick   = () => showPlacePopup(place);
+    if (btnInfo)   btnInfo.onclick   = () => showPlacePopup(place);
   if (btnQuiz)   btnQuiz.onclick   = () => startQuiz(place.id);
   if (btnRoute)  btnRoute.onclick  = () => showRouteTo(place);
 
+  if (btnNote && typeof handlePlaceNote === "function") {
+    btnNote.onclick = () => handlePlaceNote(place);      // 🔹 NY
+  }
+  
   if (btnUnlock) {
     btnUnlock.onclick = () => {
       if (visited[place.id]) {
