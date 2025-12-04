@@ -808,6 +808,30 @@ function handlePersonNote(person) {
 
   showToast(`Notat om ${person.name} lagret 📝`);
 }
+
+function handlePlaceNote(place) {
+  const noteText = window.prompt(
+    `Notat om ${place.name}.\n\nSkriv én setning eller tanke du vil ta vare på:`
+  );
+  if (!noteText) return;
+
+  userNotes.push({
+    id: "note_" + Date.now(),
+    userId: "local",
+    source: "historygo",
+    type: "place",
+    personId: null,
+    placeId: place.id,
+    categoryId: place.category || null,
+    title: `Notat om ${place.name}`,
+    text: noteText,
+    feeling: null,
+    createdAt: new Date().toISOString(),
+    visibility: "private"
+  });
+  saveUserNotes();
+  showToast(`Notat om ${place.name} lagret 📝`);
+}
 // ==============================
 // 10. INITIALISERING OG BOOT
 // ==============================
