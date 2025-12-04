@@ -445,7 +445,7 @@ function renderPersonCardInline(pr) {
   const dist =
     pr._d < 1000 ? `${pr._d} m` : `${(pr._d / 1000).toFixed(1)} km`;
 
-  const img = pr.imageCard || pr.image; // ← viktig
+  const img = pr.imageCard || pr.image;
 
   return `
     <article class="card person-inline-card">
@@ -458,17 +458,11 @@ function renderPersonCardInline(pr) {
 
         <div class="row between">
           <div class="dist">${dist}</div>
-
-          <div class="person-actions">
-            <button class="ghost" data-chat-person="${pr.id}">💬 Snakk</button>
-            <button class="ghost" data-note-person="${pr.id}">📝 Notat</button>
-            <button class="primary" data-quiz="${pr.id}">Ta quiz</button>
-          </div>
+          <button class="primary" data-quiz="${pr.id}">Ta quiz</button>
         </div>
       </div>
     </article>`;
 }
-
 function renderCollection() {
   const grid = el.collectionGrid;
   if (!grid) return;
