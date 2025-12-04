@@ -12,7 +12,7 @@
     <header style="margin-bottom:1rem;">
       <a href="profile.html" style="color:var(--muted); text-decoration:none;">← Tilbake til profilen</a>
       <h1>Mine notater</h1>
-  <p class="muted">
+<p class="muted">
   Her ser du notater du har skrevet i History Go – om personer, steder og andre ting du vil huske.
 </p>
     </header>
@@ -22,18 +22,18 @@
     </section>
   </main>
 
-  <script>
+   <script>
     function loadNotes() {
       const root = document.getElementById("notesRoot");
       let notes = [];
       try {
-        const raw = localStorage.getItem("hg_person_notes_v1");
+        const raw = localStorage.getItem("hg_user_notes_v1");
         notes = raw ? JSON.parse(raw) : [];
       } catch (e) {
         console.warn("Kunne ikke lese notater", e);
       }
 
-      if (!notes || !notes.length) {
+      if (!Array.isArray(notes) || !notes.length) {
         root.innerHTML = "<p class='muted'>Du har ingen notater ennå.</p>";
         return;
       }
@@ -41,32 +41,52 @@
       // sortér nyeste først
       notes.sort((a, b) => (b.createdAt || "").localeCompare(a.createdAt || ""));
 
-      // prøv å hente personnavn fra people.json
-      fetch("people.json")
-        .then(r => r.json())
-        .then(people => {
-          const map = {};
-          (people || []).forEach(p => { map[p.id] = p.name; });
-          renderNotes(root, notes, map);
+      // hent både personer og steder, slik at vi kan vise kontekst
+      Promise.all([
+        fetch("people.json").then(r => r.json()).catch(() => []),
+        fetch("places.json").then(r => r.json()).catch(() => [])
+      ])
+        .then(([people, places]) => {
+          const peopleMap = {};
+          (people || []).forEach(p => { if (p && p.id) peopleMap[p.id] = p.name; });
+
+          const placesMap = {};
+          (places || []).forEach(pl => { if (pl && pl.id) placesMap[pl.id] = pl.name; });
+
+          renderNotes(root, notes, peopleMap, placesMap);
         })
         .catch(() => {
-          renderNotes(root, notes, {});
+          renderNotes(root, notes, {}, {});
         });
     }
 
-    function renderNotes(root, notes, peopleMap) {
+    function renderNotes(root, notes, peopleMap, placesMap) {
       const cards = notes.map(n => {
-        const name = peopleMap[n.personId] || "Ukjent person";
+        const personName = n.personId ? (peopleMap[n.personId] || "Ukjent person") : null;
+        const placeName = n.placeId ? (placesMap[n.placeId] || "Ukjent sted") : null;
+        const contextName = personName || placeName || "Notat";
+
         const date = n.createdAt ? new Date(n.createdAt).toLocaleString("no-NO") : "";
-        const catLabel = n.categoryId ? n.categoryId.toUpperCase() : "";
+        const typeLabelRaw =
+          n.type || (n.personId ? "person" : (n.placeId ? "place" : "note"));
+        const typeLabel = typeLabelRaw ? String(typeLabelRaw).toUpperCase() : "";
+        const catLabel = n.categoryId ? String(n.categoryId).toUpperCase() : "";
+        const feelingLabel = n.feeling ? String(n.feeling) : "";
+
+        const metaParts = [];
+        if (contextName) metaParts.push(contextName);
+        if (catLabel) metaParts.push(catLabel);
+        if (typeLabel) metaParts.push(typeLabel);
+        if (feelingLabel) metaParts.push(feelingLabel);
+        if (date) metaParts.push(date);
 
         return `
           <article class="card">
             <div class="row between">
               <div>
-                <div class="name">${n.title || ("Notat om " + name)}</div>
+                <div class="name">${escapeHtml(n.title || contextName)}</div>
                 <div class="meta">
-                  ${name}${catLabel ? " · " + catLabel : ""} · ${date}
+                  ${escapeHtml(metaParts.join(" · "))}
                 </div>
               </div>
             </div>
