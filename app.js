@@ -33,19 +33,24 @@ const visited         = JSON.parse(localStorage.getItem("visited_places") || "{}
 const peopleCollected = JSON.parse(localStorage.getItem("people_collected") || "{}");
 const merits          = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
 
-// Dialoger og notater med personer (History Go – V1)
+// Dialoger og notater (History Go – V1)
+
+// Samtaler med personer (kan få egen visning senere)
 const personDialogs = JSON.parse(
   localStorage.getItem("hg_person_dialogs_v1") || "[]"
 );
-const personNotes = JSON.parse(
-  localStorage.getItem("hg_person_notes_v1") || "[]"
+
+// Felles notat-lager for alt brukeren skriver
+// (person-notater, stedsnotater, frie notater, senere også AHA/Echo)
+const userNotes = JSON.parse(
+  localStorage.getItem("hg_user_notes_v1") || "[]"
 );
 
 function savePersonDialogs() {
   localStorage.setItem("hg_person_dialogs_v1", JSON.stringify(personDialogs));
 }
-function savePersonNotes() {
-  localStorage.setItem("hg_person_notes_v1", JSON.stringify(personNotes));
+function saveUserNotes() {
+  localStorage.setItem("hg_user_notes_v1", JSON.stringify(userNotes));
 }
 
 // progress for “+1 poeng per 3 riktige” (reservert)
