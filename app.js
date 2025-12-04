@@ -46,11 +46,69 @@ const userNotes = JSON.parse(
   localStorage.getItem("hg_user_notes_v1") || "[]"
 );
 
+// ------------------------------------------------------------
+// EKSPORT TIL AHA – DELT LOCALSTORAGE-BUFFER
+// ------------------------------------------------------------
+function exportHistoryGoData() {
+  // 1. Knowledge-universet
+  let knowledge = {};
+  try {
+    if (typeof getKnowledgeUniverse === "function") {
+      // Foretrukket – bruker knowledge.js
+      knowledge = getKnowledgeUniverse();
+    } else {
+      // Fallback – les direkte fra localStorage
+      knowledge = JSON.parse(
+        localStorage.getItem("knowledge_universe") || "{}"
+      );
+    }
+  } catch (e) {
+    console.warn("Kunne ikke lese knowledge_universe", e);
+  }
+
+  // 2. Notater
+  const notes = Array.isArray(userNotes) ? userNotes : [];
+
+  // 3. Person-dialoger
+  const dialogs = Array.isArray(personDialogs) ? personDialogs : [];
+
+  const payload = {
+    user_id: localStorage.getItem("user_id") || "local_user",
+    source: "historygo",
+    exported_at: new Date().toISOString(),
+    knowledge_universe: knowledge,
+    notes,
+    dialogs
+  };
+
+  const json = JSON.stringify(payload, null, 2);
+  console.log("HistoryGo → AHA export oppdatert i localStorage.");
+  // NB: nøkkel deler origin med AHA (samme GitHub-bruker)
+  localStorage.setItem("aha_import_payload_v1", json);
+  return json;
+}
+
+// Praktisk wrapper – trygg mot feil
+function syncHistoryGoToAHA() {
+  try {
+    exportHistoryGoData();
+  } catch (e) {
+    console.warn("Klarte ikke å synce til AHA:", e);
+  }
+}
+
 function savePersonDialogs() {
   localStorage.setItem("hg_person_dialogs_v1", JSON.stringify(personDialogs));
+  if (typeof syncHistoryGoToAHA === "function") {
+    syncHistoryGoToAHA();
+  }
 }
+
 function saveUserNotes() {
   localStorage.setItem("hg_user_notes_v1", JSON.stringify(userNotes));
+  if (typeof syncHistoryGoToAHA === "function") {
+    syncHistoryGoToAHA();
+  }
 }
 
 // progress for “+1 poeng per 3 riktige” (reservert)
