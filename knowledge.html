@@ -14,17 +14,18 @@
   <header class="knowledge-header">
     <a class="back-link" href="profile.html">← Tilbake til profil</a>
 
-    <img src="bilder/ui/historygo_logo.PNG" class="knowledge-logo">
+    <img src="bilder/ui/historygo_logo.PNG" class="knowledge-logo" alt="History Go logo">
 
     <h1>Din kunnskapsprofil</h1>
     <p>All kunnskapen du har låst opp gjennom quiz – sortert etter felt og dimensjon.</p>
   </header>
 
-<section class="know-block">
-  <h2>Dine begreper</h2>
-  <div id="conceptCloud"></div>
-</section>
-  
+  <!-- DINE BEGREPER -->
+  <section class="know-block">
+    <h2>Dine begreper</h2>
+    <div id="conceptCloud"></div>
+  </section>
+
   <!-- FILTER -->
   <section class="knowledge-filters">
     <select id="filterCategory">
@@ -36,12 +37,10 @@
     </select>
   </section>
 
+  <!-- LISTE OVER KUNNSKAPSPUNKTER -->
   <main id="knowledgeContainer"></main>
 
   <script src="knowledge.js"></script>
-  <script src="js/hgInsights.js"></script
-  
-   <script src="knowledge.js"></script>
   <script src="js/hgInsights.js"></script>
 
   <script>
