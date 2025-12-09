@@ -1289,6 +1289,26 @@ const entry = {
 
 saveQuizHistory(entry);
 
+// ───────────────────────────────
+// HGInsights – logg begreper fra riktige svar
+// ───────────────────────────────
+if (window.HGInsights && Array.isArray(entry.correctAnswers)) {
+  const userId = "anon"; // evt. bytt til din egen user-id hvis du har
+
+  entry.correctAnswers.forEach(q => {
+    HGInsights.logCorrectQuizAnswer(userId, {
+      id: `${entry.id}_${(q.topic || "").replace(/\s+/g, "_")}`.toLowerCase(),
+      categoryId: entry.categoryId,
+      personId: person ? person.id : null,
+      placeId: place ? place.id : null,
+      topic: q.topic
+      // senere kan du legge til q.core_concepts hvis du vil
+    });
+  });
+}
+
+    
+
 // ==============================
 // ==============================
 // KUNNSKAP & TRIVIA – LAGRE SOM DU LÆRER
