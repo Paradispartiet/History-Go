@@ -20,6 +20,11 @@
     <p>All kunnskapen du har låst opp gjennom quiz – sortert etter felt og dimensjon.</p>
   </header>
 
+<section class="know-block">
+  <h2>Dine begreper</h2>
+  <div id="conceptCloud"></div>
+</section>
+  
   <!-- FILTER -->
   <section class="knowledge-filters">
     <select id="filterCategory">
@@ -36,6 +41,9 @@
   <script src="knowledge.js"></script>
   <script src="js/hgInsights.js"></script
   
+   <script src="knowledge.js"></script>
+  <script src="js/hgInsights.js"></script>
+
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const box   = document.getElementById("knowledgeContainer");
@@ -71,28 +79,20 @@
         dimF.appendChild(o);
       });
 
-      // Hoved renderer
       function render() {
         const catSel = catF.value;
         const dimSel = dimF.value;
 
         let html = "";
 
-        // Gå gjennom alle kategorier
         for (const [cat, dimObj] of Object.entries(uni)) {
-
-          // Hopper over kategorier som ikke matcher filter
           if (catSel && catSel !== cat) continue;
 
           let catBlock = "";
           let hasContent = false;
 
-          // Gå gjennom alle dimensjoner i kategorien
           for (const [dim, items] of Object.entries(dimObj)) {
-
-            // Hopper over dimensjoner som ikke matcher filter
             if (dimSel && dimSel !== dim) continue;
-
             if (!items || !items.length) continue;
 
             hasContent = true;
@@ -123,7 +123,6 @@
         box.innerHTML = html || `<div class="empty-note">Ingen treff.</div>`;
       }
 
-      // Koble filter
       catF.onchange = render;
       dimF.onchange = render;
 
@@ -131,5 +130,34 @@
     });
   </script>
 
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      if (!window.HGInsights) return;
+
+      const userId = (window.getCurrentUserId && getCurrentUserId()) || "anon";
+      const concepts = HGInsights.getUserConcepts(userId);
+
+      const box = document.getElementById("conceptCloud");
+      if (!concepts.length) {
+        box.innerHTML = "<p>Ingen begreper registrert ennå. Prøv noen quizer!</p>";
+        return;
+      }
+
+      box.innerHTML = `
+        <div class="hg-concept-cloud">
+          ${concepts
+            .slice(0, 50)
+            .map(
+              (c) => `
+            <span class="hg-concept-pill" title="Brukt ${c.count} ganger">
+              ${c.label}
+            </span>
+          `
+            )
+            .join("")}
+        </div>
+      `;
+    });
+  </script>
 </body>
 </html>
