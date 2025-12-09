@@ -184,7 +184,6 @@
 
     <!-- 8. TEMPORAL DIMENSJON -->
     <section class="merke-blokk" id="temporal">
-
       <h2>8. Temporal / historisk dimensjon</h2>
       <ul>
         <li>paradigmeskifter og brudd</li>
@@ -241,9 +240,9 @@
       </p>
     </section>
 
-    <!-- 6. KJERNEEMNER UNDER VITENSKAP -->
+    <!-- 12. KJERNEEMNER UNDER VITENSKAP -->
     <section class="merke-blokk" id="emner-vitenskap">
-      <h2>6. Kjerneemner under VITENSKAP</h2>
+      <h2>12. Kjerneemner under VITENSKAP</h2>
       <p class="merke-ingress">
         Her samler vi kjernemner fra emnefilen <code>emner_vitenskap.json</code> – de små
         «studieplanene» i vitenskapsmerket. Etter hvert kan disse kobles til ruter, steder og quiz.
@@ -253,8 +252,134 @@
         <p class="muted">Laster emner …</p>
       </div>
     </section>
-    
+
   </main>
 
+  <!-- EMNELOADER + RENDERING AV VITENSKAPS-EMNER -->
+  <script src="../emnerLoader.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+      const box = document.getElementById("emneListeVitenskap");
+      if (!box) return;
+
+      if (!window.Emner || typeof window.Emner.loadForSubject !== "function") {
+        console.warn("Emner-loader er ikke tilgjengelig på denne siden.");
+        box.innerHTML = '<p class="muted">Emne-systemet er ikke aktivert ennå.</p>';
+        return;
+      }
+
+      try {
+        const emner = await window.Emner.loadForSubject("vitenskap");
+
+        if (!Array.isArray(emner) || emner.length === 0) {
+          box.innerHTML = '<p class="muted">Ingen emner registrert ennå for vitenskap.</p>';
+          return;
+        }
+
+        box.innerHTML = emner
+          .filter((e) => (e.status || "core") !== "hidden")
+          .map((emne) => {
+            const title = emne.short_label || emne.title || emne.emne_id || "Uten tittel";
+            const desc  = emne.description || emne.ingress || "";
+
+            const dims    = Array.isArray(emne.dimensions)    ? emne.dimensions    : [];
+            const core    = Array.isArray(emne.core_concepts) ? emne.core_concepts : [];
+            const terms   = Array.isArray(emne.key_terms)     ? emne.key_terms     : [];
+            const blind   = Array.isArray(emne.blindspots)    ? emne.blindspots    : [];
+            const methods = Array.isArray(emne.methods)       ? emne.methods       : [];
+
+            return `
+              <article class="merke-emne-kort">
+                <header class="merke-emne-header">
+                  <div>
+                    <h3>${title}</h3>
+                    ${desc ? `<p class="merke-emne-desc">${desc}</p>` : ""}
+                  </div>
+                  <div class="merke-emne-meta">
+                    ${emne.emne_id ? `<span class="tag">ID: ${emne.emne_id}</span>` : ""}
+                    <span class="tag tag-status">${emne.status || "core"}</span>
+                  </div>
+                </header>
+
+                ${
+                  dims.length
+                    ? `
+                      <div class="merke-emne-seksjon">
+                        <h4>Dimensjoner</h4>
+                        <ul>
+                          ${dims.map((d) => `<li>${d}</li>`).join("")}
+                        </ul>
+                      </div>
+                    `
+                    : ""
+                }
+
+                ${
+                  core.length
+                    ? `
+                      <div class="merke-emne-seksjon">
+                        <h4>Kjernebegreper</h4>
+                        <div class="merke-emne-chips">
+                          ${core.map((c) => `<span class="chip">${c}</span>`).join("")}
+                        </div>
+                      </div>
+                    `
+                    : ""
+                }
+
+                ${
+                  terms.length
+                    ? `
+                      <div class="merke-emne-seksjon">
+                        <h4>Nøkkelord</h4>
+                        <div class="merke-emne-chips">
+                          ${terms
+                            .slice(0, 24)
+                            .map((t) => `<span class="chip chip-quiet">${t}</span>`)
+                            .join("")}
+                        </div>
+                      </div>
+                    `
+                    : ""
+                }
+
+                ${
+                  blind.length
+                    ? `
+                      <div class="merke-emne-seksjon">
+                        <h4>Blindsoner å se etter</h4>
+                        <ul>
+                          ${blind.map((b) => `<li>${b}</li>`).join("")}
+                        </ul>
+                      </div>
+                    `
+                    : ""
+                }
+
+                ${
+                  methods.length
+                    ? `
+                      <div class="merke-emne-seksjon">
+                        <h4>Mulige analysegrep</h4>
+                        <ul>
+                          ${methods
+                            .slice(0, 6)
+                            .map((m) => `<li>${m}</li>`)
+                            .join("")}
+                        </ul>
+                      </div>
+                    `
+                    : ""
+                }
+              </article>
+            `;
+          })
+          .join("");
+      } catch (e) {
+        console.error("Feil ved lasting av vitenskaps-emner", e);
+        box.innerHTML = '<p class="muted">Kunne ikke laste emner akkurat nå.</p>';
+      }
+    });
+  </script>
 </body>
 </html>
