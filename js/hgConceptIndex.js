@@ -1,108 +1,251 @@
 // hgConceptIndex.js
-window.HGConceptIndex = (function () {
+// Bygger et globalt begrepskart fra emner + quizer
 
-  const map = new Map(); // key -> conceptNode
+(function (global) {
+  "use strict";
 
-  function ensureConcept(key) {
-    const norm = key.toLowerCase().trim();
-    if (!norm) return null;
-    let c = map.get(norm);
-    if (!c) {
-      c = {
-        key: norm,
-        fields: new Set(),
-        emner: new Set(),
-        persons: new Set(),
-        places: new Set(),
-        knowledgeIds: new Set(),
-        quizIds: new Set(),
-        dimensions: new Set(),
-        analysis_axes: new Set()
+  // ── Normalisering av begreps-tekst ─────────────────────────────
+
+  function normalizeConcept(raw) {
+    if (!raw) return "";
+    let t = String(raw).toLowerCase().trim();
+
+    // fjern hermetegn og «» osv i kantene
+    t = t
+      .replace(/^[\s.,;:!?()[\]"'«»]+/, "")
+      .replace(/[\s.,;:!?()[\]"'«»]+$/, "");
+
+    // slå sammen flere mellomrom
+    t = t.replace(/\s+/g, " ");
+
+    if (t.length < 2) return "";
+    return t;
+  }
+
+  // ── Hjelper: legg til ett begrep i map ─────────────────────────
+
+  function addConcept(map, rawKey, payload) {
+    const key = normalizeConcept(rawKey);
+    if (!key) return;
+
+    let entry = map.get(key);
+    if (!entry) {
+      entry = {
+        key,                 // normalisert nøkkel
+        labels: new Set(),   // ulike skrivemåter / synonymer
+        total_weight: 0,
+        sources: []          // { kind, weight, ...meta }
       };
-      map.set(norm, c);
+      map.set(key, entry);
     }
-    return c;
-  }
 
-  function addFromFieldProfile(fieldId, profile) {
-    (profile.coreConcepts || []).forEach(k => {
-      const c = ensureConcept(k);
-      if (!c) return;
-      c.fields.add(fieldId);
+    if (payload && payload.label) {
+      entry.labels.add(normalizeConcept(payload.label));
+    } else {
+      entry.labels.add(key);
+    }
+
+    const w = payload && typeof payload.weight === "number"
+      ? payload.weight
+      : 1;
+
+    entry.total_weight += w;
+    entry.sources.push({
+      kind: payload.kind || "unknown",
+      weight: w,
+      subject_id: payload.subject_id || null,
+      area_id: payload.area_id || null,
+      area_label: payload.area_label || null,
+      emne_id: payload.emne_id || null,
+      title: payload.title || null,
+      categoryId: payload.categoryId || null,
+      quiz_id: payload.quiz_id || null,
+      personId: payload.personId || null,
+      placeId: payload.placeId || null,
+      field: payload.field || null // f.eks "core_concept", "keyword", "topic"
     });
   }
 
-  function addFromEmne(emne) {
-    (emne.core_concepts || []).forEach(k => {
-      const c = ensureConcept(k);
-      if (!c) return;
-      c.emner.add(emne.emne_id);
-      (emne.dimensions || []).forEach(d => c.dimensions.add(d));
-      (emne.analysis_axes || []).forEach(a => c.analysis_axes.add(a));
+  // ── Indexer emner_* (emner_historie, emner_vitenskap ...) ──────
+  //
+  // emnerArray: array fra f.eks emner_vitenskap.json
+
+  function indexEmner(emnerArray, subjectId, map) {
+    if (!Array.isArray(emnerArray)) return;
+
+    emnerArray.forEach((emne) => {
+      if (!emne) return;
+      const basePayload = {
+        kind: "emne",
+        subject_id: emne.subject_id || subjectId || null,
+        area_id: emne.area_id || null,
+        area_label: emne.area_label || null,
+        emne_id: emne.emne_id || null,
+        title: emne.title || emne.short_label || null
+      };
+
+      // core_concepts = kjerne-begreper (tyngst vekt)
+      (emne.core_concepts || []).forEach((c) => {
+        addConcept(map, c, {
+          ...basePayload,
+          field: "core_concept",
+          weight: 5
+        });
+      });
+
+      // key_terms: viktige arbeidsbegreper
+      (emne.key_terms || []).forEach((c) => {
+        addConcept(map, c, {
+          ...basePayload,
+          field: "key_term",
+          weight: 3
+        });
+      });
+
+      // keywords: temaord
+      (emne.keywords || []).forEach((c) => {
+        addConcept(map, c, {
+          ...basePayload,
+          field: "keyword",
+          weight: 2
+        });
+      });
+
+      // dimensions: faglige dimensjoner
+      (emne.dimensions || []).forEach((c) => {
+        addConcept(map, c, {
+          ...basePayload,
+          field: "dimension",
+          weight: 1.5
+        });
+      });
     });
   }
 
-  function addFromKnowledge(kp) {
-    (kp.concepts || []).forEach(k => {
-      const c = ensureConcept(k);
-      if (!c) return;
-      c.knowledgeIds.add(kp.id);
-      if (kp.merkeId) c.fields.add(kp.merkeId);
-      if (kp.emneId) c.emner.add(kp.emneId);
-      if (kp.personId) c.persons.add(kp.personId);
-      if (kp.placeId) c.places.add(kp.placeId);
+  // ── Indexer quiz_* (quiz_historie, quiz_kunst, quiz_vitenskap) ─
+
+  function indexQuizzes(quizArray, categoryId, map) {
+    if (!Array.isArray(quizArray)) return;
+
+    quizArray.forEach((q) => {
+      if (!q) return;
+      const basePayload = {
+        kind: "quiz",
+        categoryId: q.categoryId || categoryId || null,
+        quiz_id: q.id || null,
+        personId: q.personId || null,
+        placeId: q.placeId || null,
+        title: q.question || null
+      };
+
+      // topic fra quiz = mini-begrep / underemne
+      if (q.topic) {
+        addConcept(map, q.topic, {
+          ...basePayload,
+          field: "topic",
+          weight: 3
+        });
+      }
+
+      // dimension fra quiz (f.eks "kilder", "maktkamp")
+      if (q.dimension) {
+        addConcept(map, q.dimension, {
+          ...basePayload,
+          field: "dimension",
+          weight: 2
+        });
+      }
+
+      // kunnskapstekst kan ha ett eller flere begreper,
+      // men vi lar det vente til senere hvis du vil ha automatisk ekstraksjon.
+      // (Vi kan koble på AHA.extractConcepts her senere.)
+      /*
+      if (q.knowledge) {
+        const concepts = extractConcepts(q.knowledge); // TODO: kobles på hvis du vil
+        concepts.slice(0, 10).forEach((c) => {
+          addConcept(map, c.key, {
+            ...basePayload,
+            field: "knowledge",
+            weight: 1 + (c.count || 0) * 0.5
+          });
+        });
+      }
+      */
+
+      // Selve riktig svar kan også brukes som et begrep
+      if (q.answer) {
+        addConcept(map, q.answer, {
+          ...basePayload,
+          field: "answer",
+          weight: 1.2
+        });
+      }
     });
   }
 
-  function addFromQuiz(q) {
-    (q.core_concepts || []).forEach(k => {
-      const c = ensureConcept(k);
-      if (!c) return;
-      c.quizIds.add(q.id);
-      if (q.categoryId) c.fields.add(q.categoryId);
-      if (q.emneId) c.emner.add(q.emneId);
-      if (q.personId) c.persons.add(q.personId);
-      if (q.placeId) c.places.add(q.placeId);
+  // ── Bygg globalt begrepskart ────────────────────────────────────
+  //
+  // sources = {
+  //   emnerBySubject: {
+  //     historie: EMNER_HISTORIE,
+  //     vitenskap: EMNER_VITENSKAP,
+  //     ...
+  //   },
+  //   quizzesByCategory: {
+  //     historie: QUIZ_HISTORIE,
+  //     vitenskap: QUIZ_VITENSKAP,
+  //     kunst: QUIZ_KUNST
+  //   }
+  // }
+
+  function buildGlobalConceptIndex(sources) {
+    const map = new Map();
+    const s = sources || {};
+
+    const emnerBySubject = s.emnerBySubject || {};
+    Object.keys(emnerBySubject).forEach((subjectId) => {
+      indexEmner(emnerBySubject[subjectId], subjectId, map);
     });
+
+    const quizzesByCategory = s.quizzesByCategory || {};
+    Object.keys(quizzesByCategory).forEach((catId) => {
+      indexQuizzes(quizzesByCategory[catId], catId, map);
+    });
+
+    // konverter Set -> Array før vi eksporterer
+    const indexArray = Array.from(map.values())
+      .map((e) => ({
+        key: e.key,
+        labels: Array.from(e.labels),
+        total_weight: e.total_weight,
+        sources: e.sources
+      }))
+      .sort((a, b) => b.total_weight - a.total_weight);
+
+    return indexArray;
   }
 
-  // Kalles etter at universet er lastet
-  function buildIndex({ fieldProfiles, emner, knowledgePieces, quizzes }) {
-    map.clear();
-    Object.entries(fieldProfiles || {}).forEach(([id, prof]) =>
-      addFromFieldProfile(id, prof)
-    );
-    (emner || []).forEach(addFromEmne);
-    (knowledgePieces || []).forEach(addFromKnowledge);
-    (quizzes || []).forEach(addFromQuiz);
+  // ── Oppslag: finn info om ett begrep ───────────────────────────
+
+  function getConceptSummary(conceptIndex, rawKey) {
+    if (!Array.isArray(conceptIndex)) return null;
+    const key = normalizeConcept(rawKey);
+    if (!key) return null;
+
+    return conceptIndex.find((c) => c.key === key) || null;
   }
 
-  function getConcept(key) {
-    const norm = key.toLowerCase().trim();
-    const c = map.get(norm);
-    if (!c) return null;
+  // ── Public API ─────────────────────────────────────────────────
 
-    // returner med arrays, ikke Sets
-    return {
-      key: c.key,
-      fields: Array.from(c.fields),
-      emner: Array.from(c.emner),
-      persons: Array.from(c.persons),
-      places: Array.from(c.places),
-      knowledgeIds: Array.from(c.knowledgeIds),
-      quizIds: Array.from(c.quizIds),
-      dimensions: Array.from(c.dimensions),
-      analysis_axes: Array.from(c.analysis_axes)
-    };
-  }
-
-  function listAllConcepts() {
-    return Array.from(map.values()).map(c => getConcept(c.key));
-  }
-
-  return {
-    buildIndex,
-    getConcept,
-    listAllConcepts
+  const HGConceptIndex = {
+    buildGlobalConceptIndex,
+    getConceptSummary,
+    normalizeConcept
   };
-})();
+
+  if (typeof module !== "undefined" && module.exports) {
+    module.exports = HGConceptIndex;
+  } else {
+    global.HGConceptIndex = HGConceptIndex;
+  }
+})(this);
