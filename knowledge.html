@@ -26,9 +26,8 @@
     <div id="conceptCloud"></div>
   </section>
 
-<section id="emneDekningSection" class="emne-dekning"></section>åiyy
-  
-
+  <!-- EMNE-DEKNING -->
+  <section id="emneDekningSection" class="emne-dekning"></section>
 
   <!-- FILTER -->
   <section class="knowledge-filters">
@@ -47,13 +46,13 @@
   <script src="knowledge.js"></script>
   <script src="js/hgInsights.js"></script>
 
+  <!-- 1) Kunnskapsliste + filter -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const box   = document.getElementById("knowledgeContainer");
       const catF  = document.getElementById("filterCategory");
       const dimF  = document.getElementById("filterDimension");
 
-      // Hent universet vårt
       const uni = getKnowledgeUniverse();
 
       if (!uni || Object.keys(uni).length === 0) {
@@ -61,7 +60,7 @@
         return;
       }
 
-      // --- Fyll kategori-filteret ---
+      // Fyll kategori-filteret
       Object.keys(uni).forEach(cat => {
         const o = document.createElement("option");
         o.value = cat;
@@ -69,7 +68,7 @@
         catF.appendChild(o);
       });
 
-      // --- Fyll dimensjons-filteret ---
+      // Fyll dimensjons-filteret
       const allDims = new Set();
       Object.values(uni).forEach(dimObj => {
         Object.keys(dimObj).forEach(d => allDims.add(d));
@@ -128,16 +127,17 @@
 
       catF.onchange = render;
       dimF.onchange = render;
-
       render();
     });
   </script>
 
+  <!-- 2) Begrepssky -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       if (!window.HGInsights) return;
 
-      const userId = (window.getCurrentUserId && getCurrentUserId()) || "anon";
+      const userId =
+        (window.getCurrentUserId && getCurrentUserId()) || "anon";
       const concepts = HGInsights.getUserConcepts(userId);
 
       const box = document.getElementById("conceptCloud");
@@ -161,33 +161,73 @@
         </div>
       `;
     });
-
-    
-Promise.all([
-  fetch("emner/emner_vitenskap.json").then(r => r.json())
-]).then(([emnerVit]) => {
-  const concepts = (window.HGInsights && HGInsights.getUserConcepts("anon")) || [];
-  const result = computeEmneDekning(concepts, emnerVit);
-
-  const box = document.getElementById("emneDekningSection");
-  box.innerHTML = `
-    <h2>Emne-dekning</h2>
-    <ul class="emne-list">
-      ${result
-        .map(r => `
-          <li class="emne-item">
-            <strong>${r.title}</strong>
-            <div class="bar-bg">
-              <div class="bar" style="width:${r.percent}%"></div>
-            </div>
-            <small>${r.percent}% dekket (${r.matchCount}/${r.total})</small>
-          </li>
-        `)
-        .join("")}
-    </ul>
-  `;
-});
-
   </script>
+
+  <!-- 3) Emne-dekning (vitenskap) -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const box = document.getElementById("emneDekningSection");
+      if (!box) return;
+
+      if (!window.HGInsights || !window.computeEmneDekning) {
+        box.innerHTML = "<p class='muted'>Emne-dekning er ikke tilgjengelig ennå.</p>";
+        return;
+      }
+
+      const userId =
+        (window.getCurrentUserId && getCurrentUserId()) || "anon";
+      const concepts = HGInsights.getUserConcepts(userId, {
+        categoryId: "vitenskap"   // vi ser bare på vitenskaps-quizer her
+      });
+
+      if (!concepts.length) {
+        box.innerHTML = "<p class='muted'>Ta noen vitenskapsquizer for å se emner her.</p>";
+        return;
+      }
+
+      fetch("emner/emner_vitenskap.json")
+        .then(r => r.json())
+        .then(emnerVit => {
+          const result = computeEmneDekning(concepts, emnerVit);
+
+          box.innerHTML = `
+            <h2>Emne-dekning (Vitenskap)</h2>
+            <ul class="emne-list">
+              ${result
+                .map(r => `
+                  <li class="emne-item">
+                    <div class="emne-header">
+                      <strong>${r.title}</strong>
+                      <small>${r.percent}% dekket (${r.matchCount}/${r.total})</small>
+                    </div>
+                    <div class="bar-bg">
+                      <div class="bar" style="width:${r.percent}%;"></div>
+                    </div>
+                    ${
+                      r.total === 0
+                        ? `<small class="muted">Ingen kjernebegreper definert for dette emnet.</small>`
+                        : r.missing.length
+                          ? `
+                            <details class="emne-missing">
+                              <summary>Mangler ${r.missing.length} kjernebegreper</summary>
+                              <ul>
+                                ${r.missing.map(m => `<li>${m}</li>`).join("")}
+                              </ul>
+                            </details>
+                          `
+                          : `<small class="emne-complete">✔ Du dekker alle kjernebegrepene i dette emnet</small>`
+                    }
+                  </li>
+                `)
+                .join("")}
+            </ul>
+          `;
+        })
+        .catch(() => {
+          box.innerHTML = "<p class='muted'>Kunne ikke laste emner akkurat nå.</p>";
+        });
+    });
+  </script>
+
 </body>
 </html>
