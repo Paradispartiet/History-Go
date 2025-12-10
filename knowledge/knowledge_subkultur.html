@@ -5,6 +5,8 @@
   <title>History Go – Kunnskap: SUBKULTUR</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Dine læringspunkter innen merket SUBKULTUR i History Go.">
+
+  <!-- Gjenbruker merke-stilen -->
   <link rel="stylesheet" href="../merker/merker.css">
 </head>
 
@@ -18,22 +20,23 @@
       <img src="../bilder/ui/historygo_logo.PNG" class="hg-logo-nav" alt="History Go logo">
     </a>
 
+    <!-- Dropdown -->
     <div class="nav-dropdown">
       <button class="nav-dropbtn">Merker ▼</button>
       <div class="nav-dropdown-content">
 
-        <a href="../merkers/merke_historie.html">Historie</a>
-        <a href="../merkers/merke_vitenskap.html">Vitenskap</a>
-        <a href="../merkers/merke_kunst.html">Kunst & Kultur</a>
-        <a href="../merkers/merke_natur.html">Natur & Miljø</a>
-        <a href="../merkers/merke_musikk.html">Musikk</a>
-        <a href="../merkers/merke_populaerkultur.html">Populærkultur</a>
-        <a href="../merkers/merke_subkultur.html" class="active">Subkultur</a>
-        <a href="../merkers/merke_sport.html">Sport</a>
-        <a href="../merkers/merke_by.html">By & Arkitektur</a>
-        <a href="../merkers/merke_politikk.html">Politikk & Samfunn</a>
-        <a href="../merkers/merke_naeringsliv.html">Næringsliv</a>
-        <a href="../merkers/merke_litteratur.html">Litteratur</a>
+        <a href="../merker/merke_historie.html">Historie</a>
+        <a href="../merker/merke_vitenskap.html">Vitenskap</a>
+        <a href="../merker/merke_kunst.html">Kunst & Kultur</a>
+        <a href="../merker/merke_natur.html">Natur & Miljø</a>
+        <a href="../merker/merke_musikk.html">Musikk</a>
+        <a href="../merker/merke_populaerkultur.html">Populærkultur</a>
+        <a href="../merker/merke_subkultur.html" class="active">Subkultur</a>
+        <a href="../merker/merke_sport.html">Sport</a>
+        <a href="../merker/merke_by.html">By & Arkitektur</a>
+        <a href="../merker/merke_politikk.html">Politikk & Samfunn</a>
+        <a href="../merker/merke_naeringsliv.html">Næringsliv</a>
+        <a href="../merker/merke_litteratur.html">Litteratur</a>
 
       </div>
     </div>
@@ -81,12 +84,18 @@
       </p>
 
       <div id="knowledgeContainer" class="knowledge-container"></div>
+
+      <p class="muted" style="margin-top:16px;">
+        Vil du se alt du har lært på tvers av alle merker?
+        <a href="../knowledge.html">Åpne din samlede kunnskapsprofil</a>.
+      </p>
     </section>
 
   </main>
 
   <!-- ★ KNOWLEDGE SYSTEM -->
-  <script src="knowledge.js"></script>
+  <!-- Husk: knowledge.js ligger i rotmappa -->
+  <script src="../knowledge.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const CATEGORY = "subkultur";
