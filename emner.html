@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <title>History Go – Emner & pensum</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="knowledge.css">
+
+  <style>
+    .emner-page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    .emner-header {
+      margin-bottom: 20px;
+    }
+
+    .emner-header h1 {
+      margin: 8px 0 4px;
+    }
+
+    .emner-layout {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    .emner-sidebar {
+      background: rgba(0,0,0,0.25);
+      border-radius: 10px;
+      padding: 12px;
+    }
+
+    .emner-sidebar h2 {
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+    }
+
+    .emne-subject-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .emne-subject-item + .emne-subject-item {
+      margin-top: 6px;
+    }
+
+    .emne-subject-btn {
+      width: 100%;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      text-align: left;
+      padding: 8px 10px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255,255,255,0.04);
+    }
+
+    .emne-subject-btn small {
+      opacity: 0.8;
+      font-size: 0.75rem;
+    }
+
+    .emne-subject-btn.active {
+      background: rgba(255,255,255,0.12);
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.08);
+    }
+
+    .emner-main h2 {
+      margin-top: 0;
+      margin-bottom: 6px;
+    }
+
+    .emner-main .muted {
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .emne-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .emne-item {
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: rgba(0,0,0,0.3);
+    }
+
+    .emne-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+
+    .emne-header strong {
+      font-size: 0.95rem;
+    }
+
+    .emne-header small {
+      font-size: 0.8rem;
+      opacity: 0.9;
+    }
+
+    .bar-bg {
+      width: 100%;
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      overflow: hidden;
+      margin: 4px 0 4px;
+    }
+
+    .bar-bg .bar {
+      height: 100%;
+      border-radius: 999px;
+      background: var(--primary, #1976d2);
+      width: 0%;
+    }
+
+    .emne-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .emne-meta small {
+      font-size: 0.75rem;
+      opacity: 0.85;
+    }
+
+    .emne-complete {
+      color: var(--ok, #2ecc71);
+    }
+
+    @media (max-width: 800px) {
+      .emner-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body class="knowledge-page">
+  <div class="emner-page">
+
+    <header class="emner-header">
+      <a class="back-link" href="profile.html">← Tilbake til profil</a>
+
+      <img src="bilder/ui/historygo_logo.PNG" class="knowledge-logo" alt="History Go logo">
+
+      <h1>Dine emner & pensum</h1>
+      <p>
+        Her ser du hvordan det du har lært gjennom quiz henger sammen med <strong>emnene</strong>
+        (pensum-linjene) i History Go. Hvert emne består av kjernebegreper – vi måler hvor mange
+        av dem du allerede har vært innom.
+      </p>
+    </header>
+
+    <section class="emner-layout">
+
+      <!-- VENSTRE: fag / felt -->
+      <aside class="emner-sidebar">
+        <h2>Fagfelt</h2>
+        <p class="muted" style="font-size:0.8rem; margin-bottom:8px;">
+          Velg et felt for å se emnene du dekker der.
+        </p>
+        <ul id="emneSubjectList" class="emne-subject-list"></ul>
+      </aside>
+
+      <!-- HØYRE: emner i valgt felt -->
+      <section class="emner-main">
+        <h2 id="emneSubjectTitle">Velg et felt</h2>
+        <span id="emneSubjectDesc" class="muted" style="font-size:0.85rem;">
+          Du får se emner og hvor stor del av kjernebegrepene du har dekket gjennom dine quizer.
+        </span>
+
+        <ul id="emneList" class="emne-list" style="margin-top:12px;"></ul>
+      </section>
+
+    </section>
+  </div>
+
+  <!-- Motorer -->
+  <script src="knowledge.js"></script>
+  <script src="js/hgInsights.js"></script>
+  <script src="emnerLoader.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+      const elSubjects = document.getElementById("emneSubjectList");
+      const elList     = document.getElementById("emneList");
+      const elTitle    = document.getElementById("emneSubjectTitle");
+      const elDesc     = document.getElementById("emneSubjectDesc");
+
+      if (!window.Emner || !window.HGInsights || !window.computeEmneDekning) {
+        elTitle.textContent = "Emne-systemet er ikke klart ennå";
+        elDesc.textContent  = "Kunne ikke koble til emner, begreper eller dekningsmotoren.";
+        return;
+      }
+
+      const userId =
+        (window.getCurrentUserId && getCurrentUserId()) || "anon";
+      const concepts = HGInsights.getUserConcepts(userId) || [];
+
+      if (!concepts.length) {
+        elTitle.textContent = "Ingen emne-dekning ennå";
+        elDesc.textContent  = "Ta noen quizer først, så kan vi vise hvordan du dekker emnene i hvert felt.";
+        elList.innerHTML    = "";
+        return;
+      }
+
+      // Felt vi støtter nå
+      const SUBJECTS = [
+        { id: "vitenskap",      label: "Vitenskap & filosofi" },
+        { id: "psykologi",      label: "Psykologi" },
+        { id: "historie",       label: "Historie" },
+        { id: "by",             label: "By & arkitektur" },
+        { id: "kunst",          label: "Kunst & kultur" },
+        { id: "musikk",         label: "Musikk & scenekunst" },
+        { id: "litteratur",     label: "Litteratur" },
+        { id: "natur",          label: "Natur & miljø" },
+        { id: "naeringsliv",    label: "Næringsliv" },
+        { id: "sport",          label: "Sport & lek" },
+        { id: "politikk",       label: "Politikk & samfunn" },
+        { id: "populaerkultur", label: "Populærkultur" },
+        { id: "subkultur",      label: "Subkultur" }
+      ];
+
+      const emneDekningBySubject = {};
+      const subjectStats = {};
+
+      // Last emner og beregn dekning per felt
+      for (const s of SUBJECTS) {
+        const emner = await Emner.loadForSubject(s.id);
+        if (!emner || !emner.length) continue;
+
+        const dekning = computeEmneDekning(concepts, emner)
+          .filter(r => r.total > 0);
+
+        if (!dekning.length) continue;
+
+        emneDekningBySubject[s.id] = dekning;
+
+        const sumPercent = dekning.reduce((acc, r) => acc + r.percent, 0);
+        const avgPercent = Math.round(sumPercent / dekning.length);
+
+        subjectStats[s.id] = {
+          count: dekning.length,
+          avgPercent
+        };
+      }
+
+      const availableSubjects = SUBJECTS.filter(s => emneDekningBySubject[s.id]);
+
+      if (!availableSubjects.length) {
+        elTitle.textContent = "Ingen emne-dekning å vise ennå";
+        elDesc.textContent  = "Du har begreper, men vi finner ikke emner med definerte kjernebegreper i de feltene du har vært mest aktiv.";
+        elList.innerHTML    = "";
+        return;
+      }
+
+      // Bygg venstremeny
+      elSubjects.innerHTML = availableSubjects
+        .map(s => {
+          const stats = subjectStats[s.id] || { count: 0, avgPercent: 0 };
+          return `
+            <li class="emne-subject-item">
+              <button class="emne-subject-btn" data-subject="${s.id}">
+                <span>${s.label}</span>
+                <small>${stats.avgPercent}% • ${stats.count} emner</small>
+              </button>
+            </li>
+          `;
+        })
+        .join("");
+
+      function renderSubject(subjectId) {
+        const subject = SUBJECTS.find(s => s.id === subjectId);
+        const dekning = emneDekningBySubject[subjectId] || [];
+
+        // marker aktiv knapp
+        elSubjects.querySelectorAll(".emne-subject-btn").forEach(btn => {
+          btn.classList.toggle("active", btn.dataset.subject === subjectId);
+        });
+
+        elTitle.textContent = subject ? subject.label : "Emner";
+        elDesc.textContent  =
+          "Hvert emne består av kjernebegreper. Vi viser hvor mange av dem du har dekket gjennom quizer.";
+
+        if (!dekning.length) {
+          elList.innerHTML = `<li class="emne-item"><small class="muted">Ingen emner med kjernebegreper i dette feltet ennå.</small></li>`;
+          return;
+        }
+
+        elList.innerHTML = dekning
+          .map(r => {
+            const complete = r.total > 0 && r.matchCount === r.total;
+            return `
+              <li class="emne-item">
+                <div class="emne-header">
+                  <strong>${r.title}</strong>
+                  <small>${r.percent}% (${r.matchCount}/${r.total})</small>
+                </div>
+                <div class="bar-bg">
+                  <div class="bar" style="width:${r.percent}%;"></div>
+                </div>
+                <div class="emne-meta">
+                  <small>
+                    ${complete
+                      ? `<span class="emne-complete">✔ Du dekker alle kjernebegrepene i dette emnet</span>`
+                      : `Mangler ${Math.max(0, (r.total - r.matchCount))} kjernebegreper`}
+                  </small>
+                </div>
+              </li>
+            `;
+          })
+          .join("");
+      }
+
+      // Klikk-håndtering
+      elSubjects.querySelectorAll(".emne-subject-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          renderSubject(btn.dataset.subject);
+        });
+      });
+
+      // Velg første felt automatisk
+      renderSubject(availableSubjects[0].id);
+    });
+  </script>
+</body>
+</html>
