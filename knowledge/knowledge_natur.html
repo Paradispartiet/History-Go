@@ -21,18 +21,18 @@
       <button class="nav-dropbtn">Merker ▼</button>
       <div class="nav-dropdown-content">
 
-        <a href="../merkers/merke_historie.html">Historie</a>
-        <a href="../merkers/merke_vitenskap.html">Vitenskap</a>
-        <a href="../merkers/merke_kunst.html">Kunst & Kultur</a>
-        <a href="../merkers/merke_natur.html" class="active">Natur & Miljø</a>
-        <a href="../merkers/merke_musikk.html">Musikk</a>
-        <a href="../merkers/merke_populaerkultur.html">Populærkultur</a>
-        <a href="../merkers/merke_subkultur.html">Subkultur</a>
-        <a href="../merkers/merke_sport.html">Sport</a>
-        <a href="../merkers/merke_by.html">By & Arkitektur</a>
-        <a href="../merkers/merke_politikk.html">Politikk & Samfunn</a>
-        <a href="../merkers/merke_naeringsliv.html">Næringsliv</a>
-        <a href="../merkers/merke_litteratur.html">Litteratur</a>
+        <a href="../merker/merke_historie.html">Historie</a>
+        <a href="../merker/merke_vitenskap.html">Vitenskap</a>
+        <a href="../merker/merke_kunst.html">Kunst & Kultur</a>
+        <a href="../merker/merke_natur.html" class="active">Natur & Miljø</a>
+        <a href="../merker/merke_musikk.html">Musikk</a>
+        <a href="../merker/merke_populaerkultur.html">Populærkultur</a>
+        <a href="../merker/merke_subkultur.html">Subkultur</a>
+        <a href="../merker/merke_sport.html">Sport</a>
+        <a href="../merker/merke_by.html">By & Arkitektur</a>
+        <a href="../merker/merke_politikk.html">Politikk & Samfunn</a>
+        <a href="../merker/merke_naeringsliv.html">Næringsliv</a>
+        <a href="../merker/merke_litteratur.html">Litteratur</a>
 
       </div>
     </div>
@@ -42,7 +42,7 @@
   <!-- ★ HEADER -->
   <header class="merke-header">
 
-    <a href="../merkers/merke_natur.html" class="tilbake-knapp">
+    <a href="../merker/merke_natur.html" class="tilbake-knapp">
       ← Til merket Natur & Miljø
     </a>
 
@@ -51,7 +51,7 @@
     </div>
 
     <div class="merke-ikon-container">
-      <img src="../bilder/merkers/natur.PNG" alt="Merke: Natur & Miljø" class="merke-ikon">
+      <img src="../bilder/merker/natur.PNG" alt="Merke: Natur & Miljø" class="merke-ikon">
     </div>
 
     <h1>Kunnskap – NATUR & MILJØ</h1>
@@ -76,12 +76,18 @@
       </p>
 
       <div id="knowledgeContainer" class="knowledge-container"></div>
+
+      <p class="muted" style="margin-top:16px;">
+        Vil du se alt du har lært på tvers av alle merker?
+        <a href="../knowledge.html">Åpne din samlede kunnskapsprofil</a>.
+      </p>
     </section>
 
   </main>
 
   <!-- ★ KNOWLEDGE SYSTEM -->
-  <script src="knowledge.js"></script>
+  <!-- Husk: knowledge.js ligger i rotmappa -->
+  <script src="../knowledge.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const CATEGORY = "natur";
