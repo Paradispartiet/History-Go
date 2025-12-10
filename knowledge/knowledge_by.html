@@ -73,6 +73,7 @@
   <!-- ★ INNHOLD -->
   <main class="merke-main">
 
+    <!-- 1. Dine kunnskapspunkter -->
     <section class="merke-blokk">
       <h2>Dine kunnskapspunkter</h2>
       <p>
@@ -90,20 +91,106 @@
       </p>
     </section>
 
+    <!-- 2. Emne-dekning for BY & ARKITEKTUR -->
+    <section class="merke-blokk">
+      <h2>Dekning av by-emner</h2>
+      <p class="merke-ingress">
+        Her ser du hvordan begrepene dine dekker de definerte emnene innen <strong>By & arkitektur</strong>:
+        romlig orden, infrastruktur, offentlige rom, bydelsforskjeller, gentrifisering og ruiner/tomrom.
+      </p>
+      <div id="emneDekningSection" class="emne-dekning"></div>
+    </section>
+
   </main>
 
   <!-- ★ KNOWLEDGE SYSTEM KOBLING -->
-  <!-- knowledge.js ligger i rotmappa -->
   <script src="../knowledge.js"></script>
+  <script src="../js/hgInsights.js"></script>
+  <script src="../js/emnerLoader.js"></script>
+
+  <!-- 1) Kunnskapspunkter for kategori "by" -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const CATEGORY = "by"; // matcher entry.category i saveKnowledgePoint
       const container = document.getElementById("knowledgeContainer");
       if (!container) return;
 
-      // Bruker helperen fra knowledge.js
       const html = renderKnowledgeSection(CATEGORY);
       container.innerHTML = html;
+    });
+  </script>
+
+  <!-- 2) Emne-dekning for BY via Emner + HGInsights -->
+  <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+      const box = document.getElementById("emneDekningSection");
+      if (!box) return;
+
+      if (!window.HGInsights || !window.computeEmneDekning || !window.Emner) {
+        box.innerHTML = "<p class='muted'>Emne-dekning er ikke tilgjengelig ennå.</p>";
+        return;
+      }
+
+      const userId =
+        (window.getCurrentUserId && getCurrentUserId()) || "anon";
+
+      // Bare by-/arkitekturbegreper
+      const concepts = HGInsights.getUserConcepts(userId, {
+        categoryId: "by"
+      });
+
+      if (!concepts.length) {
+        box.innerHTML =
+          "<p class='muted'>Ta noen by- og arkitekturquizer for å se emnene dine her.</p>";
+        return;
+      }
+
+      try {
+        const emnerBy = await Emner.loadForSubject("by");
+        const result = computeEmneDekning(concepts, emnerBy);
+
+        if (!result.length) {
+          box.innerHTML =
+            "<p class='muted'>Ingen by-emner er definert ennå.</p>";
+          return;
+        }
+
+        box.innerHTML = `
+          <ul class="emne-list">
+            ${result
+              .map(r => `
+                <li class="emne-item">
+                  <div class="emne-header">
+                    <strong>${r.title}</strong>
+                    <small>${r.percent}% dekket (${r.matchCount}/${r.total})</small>
+                  </div>
+                  <div class="bar-bg">
+                    <div class="bar" style="width:${r.percent}%;"></div>
+                  </div>
+                  ${
+                    r.total === 0
+                      ? `<small class="muted">Ingen kjernebegreper definert for dette emnet.</small>`
+                      : r.missing.length
+                        ? `
+                          <details class="emne-missing">
+                            <summary>Mangler ${r.missing.length} kjernebegreper</summary>
+                            <ul>
+                              ${r.missing.map(m => `<li>${m}</li>`).join("")}
+                            </ul>
+                          </details>
+                        `
+                        : `<small class="emne-complete">✔ Du dekker alle kjernebegrepene i dette emnet</small>`
+                  }
+                </li>
+              `)
+              .join("")}
+          </ul>
+        `;
+      } catch (e) {
+        console.warn("Feil ved lasting av by-emner", e);
+        box.innerHTML =
+          "<p class='muted'>Kunne ikke laste by-emner akkurat nå.</p>";
+      }
     });
   </script>
 
