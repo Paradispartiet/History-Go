@@ -5,6 +5,8 @@
   <title>History Go – Kunnskap: VITENSKAP</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Dine læringspunkter innen merket VITENSKAP i History Go.">
+
+  <!-- Gjenbruker samme stil som merkene -->
   <link rel="stylesheet" href="../merker/merker.css">
 </head>
 
@@ -13,10 +15,12 @@
   <!-- ★ GLOBAL TOPPNAV MED DROPDOWN -->
   <nav class="hg-topnav">
 
+    <!-- Logo -->
     <a href="../index.html" class="nav-logo">
       <img src="../bilder/ui/historygo_logo.PNG" class="hg-logo-nav" alt="History Go logo">
     </a>
 
+    <!-- Dropdown -->
     <div class="nav-dropdown">
       <button class="nav-dropbtn">Merker ▼</button>
       <div class="nav-dropdown-content">
@@ -39,7 +43,7 @@
 
   </nav>
 
-  <!-- ★ HEADER -->
+  <!-- ★ HEADER – KUNNSKAPSVERSJON -->
   <header class="merke-header">
 
     <a href="../merker/merke_vitenskap.html" class="tilbake-knapp">
@@ -58,8 +62,8 @@
 
     <p class="merke-ingress">
       Her vises alle læringspunkter du har låst opp innen <strong>VITENSKAP</strong>.
-      Dette er feltet der måling, modeller, eksperimenter og institusjonell sannhet skaper
-      rammen for hvordan verden forstås.
+      Hvert punkt kommer fra en quiz du har tatt – og er organisert etter dimensjon,
+      slik at du gradvis bygger ditt eget lille vitenskapsarkiv.
     </p>
 
   </header>
@@ -71,24 +75,32 @@
       <h2>Dine kunnskapspunkter</h2>
 
       <p>
-        Vitenskap handler om hvordan sannhet produseres: gjennom hypoteser, teknologi, måleinstrumenter,
-        systematiske metoder og institusjoner.  
-        Her gruppes alle dine læringspunkter etter dimensjon.
+        Vitenskap handler om hvordan sannhet produseres: hypoteser, målinger, modeller,
+        teknologi, institusjoner og metoder.  
+        Under ser du alle vitenskaps-punktene dine, gruppert etter dimensjon.
       </p>
 
       <div id="knowledgeContainer" class="knowledge-container"></div>
+
+      <p class="muted" style="margin-top:16px;">
+        Vil du se alt du har lært på tvers av alle merker?
+        <a href="../knowledge.html">Åpne din samlede kunnskapsprofil</a>.
+      </p>
     </section>
 
   </main>
 
   <!-- ★ KNOWLEDGE SYSTEM -->
-  <script src="knowledge.js"></script>
+  <!-- Husk: knowledge.js ligger i rotmappa -->
+  <script src="../knowledge.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      const CATEGORY = "vitenskap";
+      const CATEGORY = "vitenskap";  // matcher entry.category i saveKnowledgePoint
       const container = document.getElementById("knowledgeContainer");
       if (!container) return;
-      container.innerHTML = renderKnowledgeSection(CATEGORY);
+
+      const html = renderKnowledgeSection(CATEGORY);
+      container.innerHTML = html;
     });
   </script>
 
