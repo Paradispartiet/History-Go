@@ -139,3 +139,43 @@ function capitalize(str) {
   str = str.toString();
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
+
+// ================================
+// EMNE-DEKNING (History GO)
+// ================================
+//
+// Tar brukers begreper fra HGInsights + emnefil
+// og gir: { emne_id, title, matchCount, total, percent, missing }
+function computeEmneDekning(userConcepts, emner) {
+  const userKeys = new Set(userConcepts.map(c => c.label.toLowerCase()));
+
+  return emner.map(emne => {
+    const core = emne.core_concepts || [];
+
+    const total = core.length;
+    let match = 0;
+    const missing = [];
+
+    core.forEach(c => {
+      const key = c.toLowerCase();
+      if (userKeys.has(key)) {
+        match++;
+      } else {
+        missing.push(c);
+      }
+    });
+
+    const percent = total === 0 ? 0 : Math.round((match / total) * 100);
+
+    return {
+      emne_id: emne.emne_id,
+      title: emne.title,
+      matchCount: match,
+      total,
+      percent,
+      missing
+    };
+  });
+}
+
+window.computeEmneDekning = computeEmneDekning;oo
