@@ -65,22 +65,51 @@ function getKnowledgeForCategory(categoryId) {
 // ------------------------------------------------------------
 // LAG KUNNSKAPSPUNKT NÅR QUIZ SVARES RIKTIG
 // ------------------------------------------------------------
-function saveKnowledgeFromQuiz(quizItem) {
-  if (!quizItem || !quizItem.id) return;
+// ------------------------------------------------------------
+// LAG KUNNSKAPSPUNKT NÅR QUIZ SVARES RIKTIG
+// ------------------------------------------------------------
+function saveKnowledgeFromQuiz(quizItem, context = {}) {
+  if (!quizItem) return;
+
+  // Vi tillater at quizItem mangler id, da kan vi bruke context.id
+  const baseId = quizItem.id || context.id;
+  if (!baseId) return;
+
+  const category =
+    quizItem.categoryId ||
+    context.categoryId ||
+    "ukjent";
+
+  const dimension =
+    quizItem.dimension ||
+    context.dimension ||
+    "generelt";
+
+  const topic =
+    quizItem.topic ||
+    quizItem.question ||
+    context.topic ||
+    "Lært gjennom quiz";
+
+  // Vi prøver først 'knowledge' (History Go-stil), så 'explanation', så 'answer'
+  const text =
+    quizItem.knowledge ||
+    quizItem.explanation ||
+    quizItem.answer ||
+    "Ingen forklaring registrert.";
 
   const entry = {
-    id: "quiz_" + quizItem.id,
-    category: quizItem.categoryId || "ukjent",
-    dimension: quizItem.dimension || "generelt",
-    topic: quizItem.question || quizItem.topic || "Lært gjennom quiz",
-    text: quizItem.explanation || quizItem.answer || "Ingen forklaring registrert."
+    id: "quiz_" + baseId,
+    category,
+    dimension,
+    topic,
+    text
   };
 
-  saveKnowledgePoint(entry); // eksisterende funksjon
+  saveKnowledgePoint(entry);
 }
 
 window.saveKnowledgeFromQuiz = saveKnowledgeFromQuiz;
-
 // ------------------------------------------------------------
 // 3) RENDRING AV KUNNSKAPSSEKSJON
 // ------------------------------------------------------------
