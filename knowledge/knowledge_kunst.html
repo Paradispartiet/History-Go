@@ -21,18 +21,18 @@
       <button class="nav-dropbtn">Merker ▼</button>
       <div class="nav-dropdown-content">
 
-        <a href="../merkers/merke_historie.html">Historie</a>
-        <a href="../merkers/merke_vitenskap.html">Vitenskap</a>
-        <a href="../merkers/merke_kunst.html" class="active">Kunst & Kultur</a>
-        <a href="../merkers/merke_natur.html">Natur & Miljø</a>
-        <a href="../merkers/merke_musikk.html">Musikk</a>
-        <a href="../merkers/merke_populaerkultur.html">Populærkultur</a>
-        <a href="../merkers/merke_subkultur.html">Subkultur</a>
-        <a href="../merkers/merke_sport.html">Sport</a>
-        <a href="../merkers/merke_by.html">By & Arkitektur</a>
-        <a href="../merkers/merke_politikk.html">Politikk & Samfunn</a>
-        <a href="../merkers/merke_naeringsliv.html">Næringsliv</a>
-        <a href="../merkers/merke_litteratur.html">Litteratur</a>
+        <a href="../merker/merke_historie.html">Historie</a>
+        <a href="../merker/merke_vitenskap.html">Vitenskap</a>
+        <a href="../merker/merke_kunst.html" class="active">Kunst & Kultur</a>
+        <a href="../merker/merke_natur.html">Natur & Miljø</a>
+        <a href="../merker/merke_musikk.html">Musikk</a>
+        <a href="../merker/merke_populaerkultur.html">Populærkultur</a>
+        <a href="../merker/merke_subkultur.html">Subkultur</a>
+        <a href="../merker/merke_sport.html">Sport</a>
+        <a href="../merker/merke_by.html">By & Arkitektur</a>
+        <a href="../merker/merke_politikk.html">Politikk & Samfunn</a>
+        <a href="../merker/merke_naeringsliv.html">Næringsliv</a>
+        <a href="../merker/merke_litteratur.html">Litteratur</a>
 
       </div>
     </div>
@@ -42,7 +42,7 @@
   <!-- ★ HEADER -->
   <header class="merke-header">
 
-    <a href="../merkers/merke_kunst.html" class="tilbake-knapp">
+    <a href="../merker/merke_kunst.html" class="tilbake-knapp">
       ← Til merket Kunst & Kultur
     </a>
 
@@ -71,22 +71,28 @@
 
       <p>
         Kunst & Kultur viser hvordan estetikk, praksiser, scener, materialitet og institusjoner
-        former byens kulturelle landskap.  
+        former byens kulturelle landskap.
         Her finner du alle læringspunktene dine sortert etter dimensjon.
       </p>
 
       <div id="knowledgeContainer" class="knowledge-container"></div>
+
+      <p class="muted" style="margin-top:16px;">
+        Vil du se alt du har lært på tvers av alle merker?
+        <a href="../knowledge.html">Åpne din samlede kunnskapsprofil</a>.
+      </p>
     </section>
 
   </main>
 
   <!-- ★ KNOWLEDGE SYSTEM -->
-  <script src="knowledge.js"></script>
+  <script src="../knowledge.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const CATEGORY = "kunst";
       const container = document.getElementById("knowledgeContainer");
       if (!container) return;
+
       container.innerHTML = renderKnowledgeSection(CATEGORY);
     });
   </script>
