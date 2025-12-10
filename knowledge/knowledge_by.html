@@ -32,7 +32,7 @@
         <a href="../merker/merke_populaerkultur.html">Populærkultur</a>
         <a href="../merker/merke_subkultur.html">Subkultur</a>
         <a href="../merker/merke_sport.html">Sport</a>
-        <a href="../merker/merke_by.html">By & Arkitektur</a>
+        <a href="../merker/merke_by.html" class="active">By & Arkitektur</a>
         <a href="../merker/merke_politikk.html">Politikk & Samfunn</a>
         <a href="../merker/merke_naeringsliv.html">Næringsliv</a>
         <a href="../merker/merke_litteratur.html">Litteratur</a>
@@ -83,13 +83,18 @@
 
       <!-- Her fylles inn dynamisk innhold fra knowledge.js -->
       <div id="knowledgeContainer" class="knowledge-container"></div>
+
+      <p class="muted" style="margin-top:16px;">
+        Vil du se alt du har lært på tvers av alle merker?
+        <a href="../knowledge.html">Åpne din samlede kunnskapsprofil</a>.
+      </p>
     </section>
 
   </main>
 
   <!-- ★ KNOWLEDGE SYSTEM KOBLING -->
-  <!-- Forutsetter at knowledge.js ligger i samme mappe: /knowledge/knowledge.js -->
-  <script src="knowledge.js"></script>
+  <!-- knowledge.js ligger i rotmappa -->
+  <script src="../knowledge.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const CATEGORY = "by"; // matcher entry.category i saveKnowledgePoint
