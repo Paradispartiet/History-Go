@@ -178,4 +178,4 @@ function computeEmneDekning(userConcepts, emner) {
   });
 }
 
-window.computeEmneDekning = computeEmneDekning;oo
+window.computeEmneDekning = computeEmneDekning;
