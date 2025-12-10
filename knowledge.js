@@ -63,6 +63,25 @@ function getKnowledgeForCategory(categoryId) {
 }
 
 // ------------------------------------------------------------
+// LAG KUNNSKAPSPUNKT NÅR QUIZ SVARES RIKTIG
+// ------------------------------------------------------------
+function saveKnowledgeFromQuiz(quizItem) {
+  if (!quizItem || !quizItem.id) return;
+
+  const entry = {
+    id: "quiz_" + quizItem.id,
+    category: quizItem.categoryId || "ukjent",
+    dimension: quizItem.dimension || "generelt",
+    topic: quizItem.question || quizItem.topic || "Lært gjennom quiz",
+    text: quizItem.explanation || quizItem.answer || "Ingen forklaring registrert."
+  };
+
+  saveKnowledgePoint(entry); // eksisterende funksjon
+}
+
+window.saveKnowledgeFromQuiz = saveKnowledgeFromQuiz;
+
+// ------------------------------------------------------------
 // 3) RENDRING AV KUNNSKAPSSEKSJON
 // ------------------------------------------------------------
 function renderKnowledgeSection(categoryId) {
