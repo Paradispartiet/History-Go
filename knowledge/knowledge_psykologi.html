@@ -5,7 +5,10 @@
   <title>History Go – Kunnskap: PSYKOLOGI</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Dine læringspunkter innen merket PSYKOLOGI i History Go.">
+
+  <!-- Merke-stil + gjenbruk av knowledge.css for emne-dekning -->
   <link rel="stylesheet" href="../merker/merker.css">
+  <link rel="stylesheet" href="../knowledge.css">
 </head>
 
 <body class="merke-side merke-psykologi knowledge-page">
@@ -20,7 +23,6 @@
     <div class="nav-dropdown">
       <button class="nav-dropbtn">Merker ▼</button>
       <div class="nav-dropdown-content">
-
         <a href="../merker/merke_historie.html">Historie</a>
         <a href="../merker/merke_vitenskap.html">Vitenskap</a>
         <a href="../merker/merke_kunst.html">Kunst & Kultur</a>
@@ -34,7 +36,6 @@
         <a href="../merker/merke_naeringsliv.html">Næringsliv</a>
         <a href="../merker/merke_litteratur.html">Litteratur</a>
         <a href="../merker/merke_psykologi.html" class="active">Psykologi</a>
-
       </div>
     </div>
 
@@ -68,6 +69,18 @@
   <!-- ★ INNHOLD -->
   <main class="merke-main">
 
+    <!-- EMNE-DEKNING (PSYKOLOGI) -->
+    <section class="merke-blokk">
+      <h2>Dekning av psykologi-emner</h2>
+      <p>
+        Under ser du hvordan dine begreper dekker kjerneemner i psykologi.
+        Emnene kommer fra den interne emnefila for <strong>psykologi</strong>
+        (grunnbegreper, klinisk psykologi, sosial/kulturell psykologi osv.).
+      </p>
+      <div id="emneDekningPsy" class="emne-dekning"></div>
+    </section>
+
+    <!-- DINE KUNNSKAPSPUNKTER -->
     <section class="merke-blokk">
       <h2>Dine kunnskapspunkter</h2>
 
@@ -86,14 +99,96 @@
 
   </main>
 
-  <!-- ★ KNOWLEDGE SYSTEM -->
+  <!-- ★ KNOWLEDGE SYSTEM + EMNER + INSIGHTS -->
   <script src="knowledge.js"></script>
+  <script src="../js/hgInsights.js"></script>
+  <script src="../js/emnerLoader.js"></script>
+
+  <!-- 1) Kunnskapspunkter for kategori = psykologi -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const CATEGORY = "psykologi";
       const container = document.getElementById("knowledgeContainer");
       if (!container) return;
       container.innerHTML = renderKnowledgeSection(CATEGORY);
+    });
+  </script>
+
+  <!-- 2) Emne-dekning for psykologi -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const box = document.getElementById("emneDekningPsy");
+      if (!box) return;
+
+      if (!window.HGInsights || !window.computeEmneDekning || !window.Emner) {
+        box.innerHTML = "<p class='muted'>Emne-dekning er ikke tilgjengelig ennå.</p>";
+        return;
+      }
+
+      const userId =
+        (window.getCurrentUserId && getCurrentUserId()) || "anon";
+
+      // Hent brukerens begreper innen kategori "psykologi"
+      const concepts = HGInsights.getUserConcepts(userId, {
+        categoryId: "psykologi"
+      });
+
+      if (!concepts.length) {
+        box.innerHTML =
+          "<p class='muted'>Ta noen psykologi-quizer for å se hvilke emner du dekker.</p>";
+        return;
+      }
+
+      // Hent emner for psykologi via Emner-loaderen
+      Emner.loadForSubject("psykologi")
+        .then((emnerPsy) => {
+          if (!emnerPsy || !emnerPsy.length) {
+            box.innerHTML =
+              "<p class='muted'>Ingen emner er definert for psykologi ennå.</p>";
+            return;
+          }
+
+          const result = computeEmneDekning(concepts, emnerPsy);
+
+          box.innerHTML = `
+            <ul class="emne-list">
+              ${result
+                .map(
+                  (r) => `
+                  <li class="emne-item">
+                    <div class="emne-header">
+                      <strong>${r.title}</strong>
+                      <small>${r.percent}% dekket (${r.matchCount}/${r.total})</small>
+                    </div>
+                    <div class="bar-bg">
+                      <div class="bar" style="width:${r.percent}%;"></div>
+                    </div>
+                    ${
+                      r.total === 0
+                        ? `<small class="muted">Ingen kjernebegreper definert for dette emnet.</small>`
+                        : r.missing.length
+                        ? `
+                          <details class="emne-missing">
+                            <summary>Mangler ${r.missing.length} kjernebegreper</summary>
+                            <ul>
+                              ${r.missing.map((m) => `<li>${m}</li>`).join("")}
+                            </ul>
+                          </details>
+                        `
+                        : `<small class="emne-complete">✔ Du dekker alle kjernebegrepene i dette emnet</small>`
+                    }
+                  </li>
+                `
+                )
+                .join("")}
+            </ul>
+          `;
+        })
+        .catch((err) => {
+          console.warn("Feil ved lasting av psykologi-emner", err);
+          box.innerHTML =
+            "<p class='muted'>Kunne ikke laste psykologi-emner akkurat nå.</p>";
+        });
     });
   </script>
 
