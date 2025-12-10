@@ -26,6 +26,10 @@
     <div id="conceptCloud"></div>
   </section>
 
+<section id="emneDekningSection" class="emne-dekning"></section>åiyy
+  
+
+
   <!-- FILTER -->
   <section class="knowledge-filters">
     <select id="filterCategory">
@@ -157,6 +161,33 @@
         </div>
       `;
     });
+
+    
+Promise.all([
+  fetch("emner/emner_vitenskap.json").then(r => r.json())
+]).then(([emnerVit]) => {
+  const concepts = (window.HGInsights && HGInsights.getUserConcepts("anon")) || [];
+  const result = computeEmneDekning(concepts, emnerVit);
+
+  const box = document.getElementById("emneDekningSection");
+  box.innerHTML = `
+    <h2>Emne-dekning</h2>
+    <ul class="emne-list">
+      ${result
+        .map(r => `
+          <li class="emne-item">
+            <strong>${r.title}</strong>
+            <div class="bar-bg">
+              <div class="bar" style="width:${r.percent}%"></div>
+            </div>
+            <small>${r.percent}% dekket (${r.matchCount}/${r.total})</small>
+          </li>
+        `)
+        .join("")}
+    </ul>
+  `;
+});
+
   </script>
 </body>
 </html>
