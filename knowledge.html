@@ -43,8 +43,9 @@
   <!-- LISTE OVER KUNNSKAPSPUNKTER -->
   <main id="knowledgeContainer"></main>
 
-  <script src="knowledge.js"></script>
+    <script src="knowledge.js"></script>
   <script src="js/hgInsights.js"></script>
+  <script src="emnerLoader.js"></script> <!-- NY: felles loader for emner -->
 
   <!-- 1) Kunnskapsliste + filter -->
   <script>
@@ -163,37 +164,65 @@
     });
   </script>
 
-  <!-- 3) Emne-dekning (vitenskap) -->
+  <!-- 3) Emne-dekning – nå via EmnerLoader, flere felt -->
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
+    document.addEventListener("DOMContentLoaded", async () => {
       const box = document.getElementById("emneDekningSection");
       if (!box) return;
 
-      if (!window.HGInsights || !window.computeEmneDekning) {
+      if (
+        !window.HGInsights ||
+        !window.computeEmneDekning ||
+        !window.Emner
+      ) {
         box.innerHTML = "<p class='muted'>Emne-dekning er ikke tilgjengelig ennå.</p>";
         return;
       }
 
       const userId =
         (window.getCurrentUserId && getCurrentUserId()) || "anon";
-      const concepts = HGInsights.getUserConcepts(userId, {
-        categoryId: "vitenskap"   // vi ser bare på vitenskaps-quizer her
-      });
+      const concepts =
+        HGInsights.getUserConcepts(userId) || [];
 
       if (!concepts.length) {
-        box.innerHTML = "<p class='muted'>Ta noen vitenskapsquizer for å se emner her.</p>";
+        box.innerHTML = "<p class='muted'>Ta noen quizer for å se emne-dekning her.</p>";
         return;
       }
 
-      fetch("emner/emner_vitenskap.json")
-        .then(r => r.json())
-        .then(emnerVit => {
-          const result = computeEmneDekning(concepts, emnerVit);
+      // Hvilke felt vi vil måle emne-dekning på
+      const SUBJECTS = [
+        "vitenskap",
+        "psykologi",
+        "subkultur",
+        "historie",
+        "by",
+        "kunst",
+        "musikk",
+        "natur",
+        "litteratur",
+        "naeringsliv",
+        "sport",
+        "politikk",
+        "populaerkultur"
+      ];
 
-          box.innerHTML = `
-            <h2>Emne-dekning (Vitenskap)</h2>
+      let html = `<h2>Emne-dekning</h2>`;
+
+      for (const subjectId of SUBJECTS) {
+        const emner = await Emner.loadForSubject(subjectId);
+        if (!emner || !emner.length) continue;
+
+        const result = computeEmneDekning(concepts, emner);
+        const nonEmpty = result.filter(r => r.total > 0);
+        if (!nonEmpty.length) continue;
+
+        const label = subjectId.charAt(0).toUpperCase() + subjectId.slice(1);
+
+        html += `
+          <section class="emne-dekning-blokk">
+            <h3>${label}</h3>
             <ul class="emne-list">
-              ${result
+              ${nonEmpty
                 .map(r => `
                   <li class="emne-item">
                     <div class="emne-header">
@@ -203,29 +232,19 @@
                     <div class="bar-bg">
                       <div class="bar" style="width:${r.percent}%;"></div>
                     </div>
-                    ${
-                      r.total === 0
-                        ? `<small class="muted">Ingen kjernebegreper definert for dette emnet.</small>`
-                        : r.missing.length
-                          ? `
-                            <details class="emne-missing">
-                              <summary>Mangler ${r.missing.length} kjernebegreper</summary>
-                              <ul>
-                                ${r.missing.map(m => `<li>${m}</li>`).join("")}
-                              </ul>
-                            </details>
-                          `
-                          : `<small class="emne-complete">✔ Du dekker alle kjernebegrepene i dette emnet</small>`
-                    }
                   </li>
                 `)
                 .join("")}
             </ul>
-          `;
-        })
-        .catch(() => {
-          box.innerHTML = "<p class='muted'>Kunne ikke laste emner akkurat nå.</p>";
-        });
+          </section>
+        `;
+      }
+
+      if (!html.includes("emne-item")) {
+        html += `<p class="muted">Ingen emne-dekning å vise ennå. Ta flere quizer for å dekke emner i dybden.</p>`;
+      }
+
+      box.innerHTML = html;
     });
   </script>
 
