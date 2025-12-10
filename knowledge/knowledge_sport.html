@@ -30,7 +30,7 @@
         <a href="../merker/merke_musikk.html">Musikk</a>
         <a href="../merker/merke_populaerkultur.html">Populærkultur</a>
         <a href="../merker/merke_subkultur.html">Subkultur</a>
-        <a href="../merker/merke_sport.html">Sport</a>
+        <a href="../merker/merke_sport.html" class="active">Sport</a>
         <a href="../merker/merke_by.html">By & Arkitektur</a>
         <a href="../merker/merke_politikk.html">Politikk & Samfunn</a>
         <a href="../merker/merke_naeringsliv.html">Næringsliv</a>
@@ -76,17 +76,23 @@
       <h2>Dine kunnskapspunkter</h2>
       <p>
         Sportfeltet handler om kropp, teknikk, disiplin, fellesskap, konkurranse og historiske
-        øyeblikk. Når du tar flere quizer i SPORT merket vil nye punkter dukke opp her – sortert
+        øyeblikk. Når du tar flere quizer i SPORT-merket vil nye punkter dukke opp her – sortert
         etter dimensjoner som <em>historisk</em>, <em>materiell</em>, <em>sosial</em> osv.
       </p>
 
       <div id="knowledgeContainer" class="knowledge-container"></div>
+
+      <p class="muted" style="margin-top:16px;">
+        Vil du se alt du har lært på tvers av alle merker?
+        <a href="../knowledge.html">Åpne din samlede kunnskapsprofil</a>.
+      </p>
     </section>
 
   </main>
 
   <!-- ★ KNOWLEDGE SYSTEM -->
-  <script src="knowledge.js"></script>
+  <!-- Husk: knowledge.js ligger i rotmappa -->
+  <script src="../knowledge.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const CATEGORY = "sport";
