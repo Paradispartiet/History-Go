@@ -35,7 +35,7 @@
   --ok: #2ecc71;              /* "OK"-grønn – FIX: gyldig hex + ; */
   --warn: #ffb703;
 
-  /* Kategorifarger (fra badges.json) */
+    /* Kategorifarger (fra badges.json) */
   --cat-historie:       #344B80;
   --cat-vitenskap:      #9b59b6;
   --cat-kunst:          #ffb703;
@@ -48,15 +48,16 @@
   --cat-naeringsliv:    #ff8800;
   --cat-populaerkultur: #ffb703;
   --cat-subkultur:      #ff66cc;
+  --cat-psykologi:      #ff7aa2; /* NY – velg gjerne en annen farge hvis du vil */
 
   /* Alias som matcher eksisterende CSS (.badge.*) */
-  --hist:  var(--cat-historie);   /* brukes evt. senere hvis du vil */
-  --kult:  var(--cat-kunst);      /* .badge.kunst */
-  --sport: var(--cat-sport);      /* .badge.sport */
-  --natur: var(--cat-natur);      /* .badge.natur */
-  --urban: var(--cat-by);         /* .badge.by */
-  --viten: var(--cat-vitenskap);  /* .badge.vitenskap */
-
+  --hist:   var(--cat-historie);    /* .badge.historie */
+  --kult:   var(--cat-kunst);       /* .badge.kunst */
+  --sport:  var(--cat-sport);       /* .badge.sport */
+  --natur:  var(--cat-natur);       /* .badge.natur */
+  --urban:  var(--cat-by);          /* .badge.by */
+  --viten:  var(--cat-vitenskap);   /* .badge.vitenskap */
+  --psyko:  var(--cat-psykologi);   /* .badge.psykologi – hvis du lager den */
   /* Diverse UI-ting */
   --radius: 12px;
   --shadow: 0 10px 24px rgba(0,0,0,.35);
