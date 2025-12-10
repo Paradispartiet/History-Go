@@ -1310,28 +1310,34 @@ if (window.HGInsights && Array.isArray(entry.correctAnswers)) {
     
 
 // ==============================
-// ==============================
 // KUNNSKAP & TRIVIA – LAGRE SOM DU LÆRER
 // ==============================
-if (typeof saveKnowledgePoint === "function" && Array.isArray(entry.correctAnswers)) {
+if (typeof saveKnowledgeFromQuiz === "function" && Array.isArray(entry.correctAnswers)) {
 
   entry.correctAnswers.forEach(q => {
 
     // -----------------------------
-    // 1) KUNNSKAP (dimension + topic + knowledge)
+    // 1) KUNNSKAP (bruk helper i knowledge.js)
     // -----------------------------
-    if (q.dimension && q.topic && q.knowledge) {
-      saveKnowledgePoint({
-        id: `${entry.id}_${q.topic.replace(/\s+/g, "_")}`.toLowerCase(),
-        category: entry.categoryId,
+    saveKnowledgeFromQuiz(
+      {
+        // vi gir helperen det den trenger
+        id: `${entry.id}_${(q.topic || q.question || "").replace(/\s+/g, "_")}`.toLowerCase(),
+        categoryId: entry.categoryId,
         dimension: q.dimension,
         topic: q.topic,
-        text: q.knowledge
-      });
-    }
+        question: q.question,
+        knowledge: q.knowledge,
+        answer: q.answer
+      },
+      {
+        // ekstra kontekst, i tilfelle vi vil bruke det senere
+        categoryId: entry.categoryId
+      }
+    );
 
     // -----------------------------
-    // 2) TRIVIA (kan komme i tillegg, uavhengig av knowledge)
+    // 2) TRIVIA (som før)
     // -----------------------------
     if (q.trivia && typeof saveTriviaPoint === "function") {
       saveTriviaPoint({
