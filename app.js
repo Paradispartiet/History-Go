@@ -184,7 +184,10 @@ const CATEGORY_LIST = [
   { id: "by",              name: "By & arkitektur" },
   { id: "politikk",        name: "Politikk & samfunn" },
   { id: "populaerkultur",  name: "Populærkultur" },
-  { id: "subkultur",       name: "Subkultur" }
+  { id: "subkultur",       name: "Subkultur" },
+  { id: "litteratur",      name: "Litteratur" },        // ← NY
+  { id: "naeringsliv",     name: "Næringsliv" },        // ← NY
+  { id: "psykologi",       name: "Psykologi" }          // ← NY
 ];
 
 function norm(s = "") {
@@ -211,6 +214,7 @@ function catColor(cat = "") {
   if (c.includes("naering") || c.includes("industri") || c.includes("arbeid")) return "#ff8800";
   if (c.includes("populaer") || c.includes("pop")) return "#ffb703";
   if (c.includes("subkultur") || c.includes("urban")) return "#ff66cc";
+  if (c.includes("psykologi") || c.includes("mental") || c.includes("sinn")) return "#ff7aa2"; // ← NY, velg farge du liker
   return "#9b59b6"; // fallback
 }
 
@@ -229,6 +233,7 @@ function catClass(cat = "") {
   if (c.includes("naering") || c.includes("industri") || c.includes("arbeid")) return "naeringsliv";
   if (c.includes("populaer") || c.includes("pop")) return "populaerkultur";
   if (c.includes("subkultur") || c.includes("urban")) return "subkultur";
+  if (c.includes("psykologi") || c.includes("mental") || c.includes("sinn")) return "psykologi"; // ← NY
   return "vitenskap";
 }
 
@@ -248,6 +253,7 @@ function tagToCat(tags = []) {
   if (t.includes("by") || t.includes("arkitektur")) return "by";
   if (t.includes("politikk") || t.includes("samfunn")) return "politikk";
   if (t.includes("naering") || t.includes("industri") || t.includes("arbeid")) return "naeringsliv";
+  if (t.includes("psykologi") || t.includes("mental") || t.includes("sinn") || t.includes("klinisk")) return "psykologi"; // ← NY
 
   return "vitenskap";
 }
