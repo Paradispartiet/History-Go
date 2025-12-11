@@ -25,33 +25,34 @@
     }
   }
 
-  // Kalles når bruker har svart riktig på et quiz-spørsmål
-  // quizItem: { id?, categoryId, personId, placeId, topic, core_concepts? }
-  function logCorrectQuizAnswer(userId, quizItem) {
-    const u = userId || "anon";
+// Kalles når bruker har svart riktig på et quiz-spørsmål
+// quizItem: { id?, categoryId, personId, placeId, topic, core_concepts? }
+function logCorrectQuizAnswer(userId, quizItem) {
+  const u = userId || "anon";
 
-    const concepts =
-      (quizItem.core_concepts && quizItem.core_concepts.length
-        ? quizItem.core_concepts
-        : (quizItem.topic ? [quizItem.topic] : []))
+  // ❗ Kun core_concepts regnes som begreper.
+  // topic brukes IKKE lenger som fallback.
+  const concepts = Array.isArray(quizItem.core_concepts)
+    ? quizItem.core_concepts
         .map(c => String(c || "").trim())
-        .filter(Boolean);
+        .filter(Boolean)
+    : [];
 
-    const evt = {
-      userId: u,
-      ts: Date.now(),
-      type: "quiz_correct",
-      quizId: quizItem.id || null,
-      categoryId: quizItem.categoryId || null,
-      personId: quizItem.personId || null,
-      placeId: quizItem.placeId || null,
-      concepts
-    };
+  const evt = {
+    userId: u,
+    ts: Date.now(),
+    type: "quiz_correct",
+    quizId: quizItem.id || null,
+    categoryId: quizItem.categoryId || null,
+    personId: quizItem.personId || null,
+    placeId: quizItem.placeId || null,
+    concepts
+  };
 
-    const events = loadEvents();
-    events.push(evt);
-    saveEvents(events);
-  }
+  const events = loadEvents();
+  events.push(evt);
+  saveEvents(events);
+}
 
   // Hent begreper for en bruker
   function getUserConcepts(userId, options = {}) {
