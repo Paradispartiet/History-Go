@@ -43,9 +43,10 @@
   <!-- LISTE OVER KUNNSKAPSPUNKTER -->
   <main id="knowledgeContainer"></main>
 
-    <script src="knowledge.js"></script>
+  <script src="knowledge.js"></script>
   <script src="js/hgInsights.js"></script>
-  <script src="emnerLoader.js"></script> <!-- NY: felles loader for emner -->
+  <!-- VIKTIG ENDRING: lå i rot før, nå i /js -->
+  <script src="js/emnerLoader.js"></script>
 
   <!-- 1) Kunnskapsliste + filter -->
   <script>
@@ -164,7 +165,7 @@
     });
   </script>
 
-  <!-- 3) Emne-dekning – nå via EmnerLoader, flere felt -->
+  <!-- 3) Emne-dekning – via EmnerLoader, flere felt -->
   <script>
     document.addEventListener("DOMContentLoaded", async () => {
       const box = document.getElementById("emneDekningSection");
