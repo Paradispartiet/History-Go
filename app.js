@@ -1302,16 +1302,19 @@ if (window.HGInsights && Array.isArray(entry.correctAnswers)) {
   const userId = "anon"; // evt. bytt til din egen user-id hvis du har
 
   entry.correctAnswers.forEach(q => {
-    HGInsights.logCorrectQuizAnswer(userId, {
-      id: `${entry.id}_${(q.topic || "").replace(/\s+/g, "_")}`.toLowerCase(),
-      categoryId: entry.categoryId,
-      personId: person ? person.id : null,
-      placeId: place ? place.id : null,
-      topic: q.topic
-      // senere kan du legge til q.core_concepts hvis du vil
-    });
+  HGInsights.logCorrectQuizAnswer(userId, {
+    id: `${entry.id}_${(q.topic || "").replace(/\s+/g, "_")}`.toLowerCase(),
+    categoryId: entry.categoryId,
+    personId: person ? person.id : null,
+    placeId: place ? place.id : null,
+
+    // topic er fortsatt med som "tekstlig tittel" …
+    topic: q.topic,
+
+    // … men det er KUN core_concepts som teller som begreper
+    core_concepts: Array.isArray(q.core_concepts) ? q.core_concepts : []
   });
-}
+});
 
     
 
