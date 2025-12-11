@@ -5,87 +5,268 @@
   <title>History Go – Din kunnskapsprofil</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <!-- Global stil + kunnskapsstil -->
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="knowledge.css">
 </head>
 
 <body class="knowledge-page">
 
+  <!-- ★ HEADER / TOPP -->
   <header class="knowledge-header">
     <a class="back-link" href="profile.html">← Tilbake til profil</a>
 
     <img src="bilder/ui/historygo_logo.PNG" class="knowledge-logo" alt="History Go logo">
 
     <h1>Din kunnskapsprofil</h1>
-    <p>All kunnskapen du har låst opp gjennom quiz – sortert etter felt og dimensjon.</p>
+    <p>
+      All kunnskapen du har låst opp gjennom quizer og steder – samlet på ett sted.
+      Her ser du både begreper, kunnskapspunkter, emne-dekning og hvor du er sterkest / svakest.
+    </p>
   </header>
 
-  <!-- DINE BEGREPER -->
+  <!-- ★ OVERSIKT: NØKKELTALL / DASHBOARD -->
+  <section class="know-block">
+    <h2>Oversikt</h2>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-label">Kunnskapspunkter</div>
+        <div class="stat-value" id="statTotalPoints">–</div>
+        <div class="stat-detail" id="statTotalPointsDetail"></div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-label">Felt (merker)</div>
+        <div class="stat-value" id="statCategories">–</div>
+        <div class="stat-detail">Aktive kunnskapsfelt du har vært innom.</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-label">Dimensjoner</div>
+        <div class="stat-value" id="statDimensions">–</div>
+        <div class="stat-detail">Typer perspektiver: historisk, sosialt, materiell, politikk, osv.</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-label">Sterkeste felt</div>
+        <div class="stat-value" id="statTopCategory">–</div>
+        <div class="stat-detail" id="statTopCategoryDetail"></div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-label">Sterkeste dimensjon</div>
+        <div class="stat-value" id="statTopDimension">–</div>
+        <div class="stat-detail" id="statTopDimensionDetail"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ★ DINE BEGREPER -->
   <section class="know-block">
     <h2>Dine begreper</h2>
+    <p class="muted">
+      Dette er de mest brukte begrepene dine på tvers av alle merker. De sier noe om hvilke
+      faglige språk du faktisk bruker når du lærer.
+    </p>
     <div id="conceptCloud"></div>
   </section>
 
-  <!-- EMNE-DEKNING -->
-  <section id="emneDekningSection" class="emne-dekning"></section>
+  <!-- ★ EMNE-DEKNING + FORSLAG (AHA-lignende booster) -->
+  <section class="know-block">
+    <h2>Emne-dekning på tvers av felt</h2>
 
-  <!-- FILTER -->
-  <section class="knowledge-filters">
-    <select id="filterCategory">
-      <option value="">Alle felt</option>
-    </select>
+    <p class="muted">
+      Her ser du hvordan begrepene dine dekker definerte faglige emner i History Go
+      (for eksempel <em>Industriby 1900</em>, <em>Makt & institusjoner</em>, <em>Musikk som sosial energi</em>, osv.).
+    </p>
 
-    <select id="filterDimension">
-      <option value="">Alle dimensjoner</option>
-    </select>
+    <div id="emneDekningSection" class="emne-dekning"></div>
+
+    <div id="emneSuggestions" class="emne-suggestions"></div>
   </section>
 
-  <!-- LISTE OVER KUNNSKAPSPUNKTER -->
+  <!-- ★ FILTER FOR DETALJVISNING -->
+  <section class="knowledge-filters">
+    <h2>Utforsk kunnskapspunktene dine</h2>
+    <p class="muted">
+      Filtrer etter felt/merke og faglig dimensjon for å se konkrete tekstlige kunnskapspunkter.
+    </p>
+
+    <div class="knowledge-filters-row">
+      <label>
+        Felt:
+        <select id="filterCategory">
+          <option value="">Alle felt</option>
+        </select>
+      </label>
+
+      <label>
+        Dimensjon:
+        <select id="filterDimension">
+          <option value="">Alle dimensjoner</option>
+        </select>
+      </label>
+    </div>
+  </section>
+
+  <!-- ★ LISTE OVER KUNNSKAPSPUNKTER -->
   <main id="knowledgeContainer"></main>
 
+  <!-- ★ SCRIPT-KJEDE -->
   <script src="knowledge.js"></script>
   <script src="js/hgInsights.js"></script>
-  <!-- VIKTIG ENDRING: lå i rot før, nå i /js -->
   <script src="js/emnerLoader.js"></script>
 
-  <!-- 1) Kunnskapsliste + filter -->
+  <!-- 1) GLOBAL KONSTANT – FELT-LABELS (kan brukes flere steder) -->
+  <script>
+    window.HG_CATEGORY_LABELS = {
+      historie:       "Historie",
+      vitenskap:      "Vitenskap",
+      kunst:          "Kunst & Kultur",
+      natur:          "Natur & Miljø",
+      musikk:         "Musikk",
+      populaerkultur: "Populærkultur",
+      subkultur:      "Subkultur",
+      sport:          "Sport",
+      by:             "By & Arkitektur",
+      politikk:       "Politikk & Samfunn",
+      naeringsliv:    "Næringsliv",
+      litteratur:     "Litteratur",
+      psykologi:      "Psykologi"
+    };
+  </script>
+
+  <!-- 2) KUNNSKAPSLISTE + FILTER + OVERSIKTSSTATS (motorbruk på knowledgeUniverse) -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      const box   = document.getElementById("knowledgeContainer");
-      const catF  = document.getElementById("filterCategory");
-      const dimF  = document.getElementById("filterDimension");
+      const box          = document.getElementById("knowledgeContainer");
+      const catFilter    = document.getElementById("filterCategory");
+      const dimFilter    = document.getElementById("filterDimension");
 
-      const uni = getKnowledgeUniverse();
+      const statTotal    = document.getElementById("statTotalPoints");
+      const statTotalDet = document.getElementById("statTotalPointsDetail");
+      const statCats     = document.getElementById("statCategories");
+      const statDims     = document.getElementById("statDimensions");
+      const statTopCat   = document.getElementById("statTopCategory");
+      const statTopCatD  = document.getElementById("statTopCategoryDetail");
+      const statTopDim   = document.getElementById("statTopDimension");
+      const statTopDimD  = document.getElementById("statTopDimensionDetail");
+
+      const LABELS = window.HG_CATEGORY_LABELS || {};
+
+      const uni = (typeof getKnowledgeUniverse === "function")
+        ? getKnowledgeUniverse()
+        : null;
 
       if (!uni || Object.keys(uni).length === 0) {
-        box.innerHTML = `<div class="empty-note">Ingen kunnskap låst opp ennå.</div>`;
+        // Ingen data – nullstill stats og liste
+        if (statTotal)    statTotal.textContent    = "0";
+        if (statCats)     statCats.textContent     = "0";
+        if (statDims)     statDims.textContent     = "0";
+        if (statTopCat)   statTopCat.textContent   = "–";
+        if (statTopDim)   statTopDim.textContent   = "–";
+        if (box) {
+          box.innerHTML = `<div class="empty-note">Ingen kunnskap låst opp ennå. Ta noen quizer for å fylle denne siden.</div>`;
+        }
         return;
       }
 
-      // Fyll kategori-filteret
+      // ── 2a) Beregn stats fra knowledge-universet ──────────────────────
+      let totalPoints = 0;
+      const categoryCounts = {};
+      const dimensionCounts = {};
+
+      for (const [cat, dimObj] of Object.entries(uni)) {
+        categoryCounts[cat] = categoryCounts[cat] || 0;
+
+        for (const [dim, items] of Object.entries(dimObj)) {
+          if (!items || !items.length) continue;
+          const len = items.length;
+
+          totalPoints += len;
+          categoryCounts[cat] += len;
+          dimensionCounts[dim] = (dimensionCounts[dim] || 0) + len;
+        }
+      }
+
+      const numCategories = Object.keys(categoryCounts).length;
+      const numDimensions = Object.keys(dimensionCounts).length;
+
+      function topEntry(map) {
+        let bestKey = null;
+        let bestVal = 0;
+        for (const [k, v] of Object.entries(map)) {
+          if (v > bestVal) {
+            bestVal = v;
+            bestKey = k;
+          }
+        }
+        return { key: bestKey, value: bestVal };
+      }
+
+      const topCat = topEntry(categoryCounts);
+      const topDim = topEntry(dimensionCounts);
+
+      function prettyCategoryLabel(id) {
+        if (!id) return "–";
+        return LABELS[id] || (id.charAt(0).toUpperCase() + id.slice(1));
+      }
+
+      function prettyDimLabel(dim) {
+        if (!dim) return "–";
+        return dim.charAt(0).toUpperCase() + dim.slice(1);
+      }
+
+      if (statTotal) {
+        statTotal.textContent = totalPoints;
+      }
+      if (statTotalDet) {
+        statTotalDet.textContent = `Fordelt på ${numCategories} felt og ${numDimensions} dimensjoner.`;
+      }
+      if (statCats)  statCats.textContent  = numCategories;
+      if (statDims)  statDims.textContent  = numDimensions;
+
+      if (statTopCat) {
+        statTopCat.textContent = prettyCategoryLabel(topCat.key);
+      }
+      if (statTopCatD && topCat.key) {
+        statTopCatD.textContent = `${topCat.value} kunnskapspunkter innen ${prettyCategoryLabel(topCat.key)}.`;
+      }
+
+      if (statTopDim) {
+        statTopDim.textContent = prettyDimLabel(topDim.key);
+      }
+      if (statTopDimD && topDim.key) {
+        statTopDimD.textContent = `${topDim.value} kunnskapspunkter med denne dimensjonen.`;
+      }
+
+      // ── 2b) Fyll filtere ──────────────────────────────────────────────
+      // Kategori-filter
       Object.keys(uni).forEach(cat => {
         const o = document.createElement("option");
         o.value = cat;
-        o.textContent = cat.charAt(0).toUpperCase() + cat.slice(1);
-        catF.appendChild(o);
+        o.textContent = prettyCategoryLabel(cat);
+        catFilter.appendChild(o);
       });
 
-      // Fyll dimensjons-filteret
+      // Dimensjons-filter
       const allDims = new Set();
       Object.values(uni).forEach(dimObj => {
         Object.keys(dimObj).forEach(d => allDims.add(d));
       });
 
-      [...allDims].forEach(dim => {
+      [...allDims].sort().forEach(dim => {
         const o = document.createElement("option");
         o.value = dim;
-        o.textContent = dim.charAt(0).toUpperCase() + dim.slice(1);
-        dimF.appendChild(o);
+        o.textContent = prettyDimLabel(dim);
+        dimFilter.appendChild(o);
       });
 
-      function render() {
-        const catSel = catF.value;
-        const dimSel = dimF.value;
+      // ── 2c) Renderer for kunnskapspunkter ─────────────────────────────
+      function renderList() {
+        const catSel = catFilter.value;
+        const dimSel = dimFilter.value;
 
         let html = "";
 
@@ -102,13 +283,13 @@
             hasContent = true;
 
             catBlock += `
-              <div class="dimension-title">${dim}</div>
+              <div class="dimension-title">${prettyDimLabel(dim)}</div>
               ${items
                 .map(item => `
-                  <div class="knowledge-item">
-                    <div class="knowledge-topic">${item.topic}</div>
-                    <div class="knowledge-text">${item.text}</div>
-                  </div>
+                  <article class="knowledge-item">
+                    <div class="knowledge-topic">${item.topic || ""}</div>
+                    <div class="knowledge-text">${item.text || ""}</div>
+                  </article>
                 `)
                 .join("")}
             `;
@@ -117,58 +298,74 @@
           if (hasContent) {
             html += `
               <section class="know-cat-block">
-                <h2>${cat}</h2>
+                <h2>${prettyCategoryLabel(cat)}</h2>
                 ${catBlock}
               </section>
             `;
           }
         }
 
-        box.innerHTML = html || `<div class="empty-note">Ingen treff.</div>`;
+        box.innerHTML = html || `<div class="empty-note">Ingen treff med disse filtrene.</div>`;
       }
 
-      catF.onchange = render;
-      dimF.onchange = render;
-      render();
+      catFilter.onchange = renderList;
+      dimFilter.onchange = renderList;
+      renderList();
     });
   </script>
 
-  <!-- 2) Begrepssky -->
+  <!-- 3) BEGREPS-SKY (bruker HGInsights) -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       if (!window.HGInsights) return;
 
       const userId =
         (window.getCurrentUserId && getCurrentUserId()) || "anon";
-      const concepts = HGInsights.getUserConcepts(userId);
 
+      const concepts = HGInsights.getUserConcepts(userId) || [];
       const box = document.getElementById("conceptCloud");
+
       if (!concepts.length) {
-        box.innerHTML = "<p>Ingen begreper registrert ennå. Prøv noen quizer!</p>";
+        box.innerHTML = "<p class='muted'>Ingen begreper registrert ennå. Ta noen quizer og lås opp begreper.</p>";
         return;
+      }
+
+      // Sorter etter count, høyest først, og ta f.eks. topp 60
+      const sorted = [...concepts].sort((a, b) => (b.count || 0) - (a.count || 0));
+      const top = sorted.slice(0, 60);
+
+      // Enkel skala for “størrelse”: jo flere ganger brukt, jo større class
+      function sizeClass(c) {
+        const n = c.count || 1;
+        if (n > 30) return "size-xl";
+        if (n > 15) return "size-lg";
+        if (n > 7)  return "size-md";
+        if (n > 3)  return "size-sm";
+        return "size-xs";
       }
 
       box.innerHTML = `
         <div class="hg-concept-cloud">
-          ${concepts
-            .slice(0, 50)
-            .map(
-              (c) => `
-            <span class="hg-concept-pill" title="Brukt ${c.count} ganger">
-              ${c.label}
-            </span>
-          `
-            )
+          ${top
+            .map(c => `
+              <span
+                class="hg-concept-pill ${sizeClass(c)}"
+                title="Brukt ${c.count} ganger"
+              >
+                ${c.label}
+              </span>
+            `)
             .join("")}
         </div>
       `;
     });
   </script>
 
-  <!-- 3) Emne-dekning – via EmnerLoader, flere felt -->
+  <!-- 4) EMNE-DEKNING + “BOOSTERE” (motorutvidelse via Emner + computeEmneDekning) -->
   <script>
     document.addEventListener("DOMContentLoaded", async () => {
-      const box = document.getElementById("emneDekningSection");
+      const box   = document.getElementById("emneDekningSection");
+      const sugg  = document.getElementById("emneSuggestions");
       if (!box) return;
 
       if (
@@ -182,15 +379,15 @@
 
       const userId =
         (window.getCurrentUserId && getCurrentUserId()) || "anon";
+
       const concepts =
         HGInsights.getUserConcepts(userId) || [];
 
       if (!concepts.length) {
-        box.innerHTML = "<p class='muted'>Ta noen quizer for å se emne-dekning her.</p>";
+        box.innerHTML = "<p class='muted'>Ta noen quizer for å se emne-dekningen din her.</p>";
         return;
       }
 
-      // Hvilke felt vi vil måle emne-dekning på
       const SUBJECTS = [
         "vitenskap",
         "psykologi",
@@ -207,7 +404,9 @@
         "populaerkultur"
       ];
 
-      let html = `<h2>Emne-dekning</h2>`;
+      const LABELS = window.HG_CATEGORY_LABELS || {};
+      let html = "";
+      const suggestions = [];
 
       for (const subjectId of SUBJECTS) {
         const emner = await Emner.loadForSubject(subjectId);
@@ -217,24 +416,39 @@
         const nonEmpty = result.filter(r => r.total > 0);
         if (!nonEmpty.length) continue;
 
-        const label = subjectId.charAt(0).toUpperCase() + subjectId.slice(1);
+        const label = LABELS[subjectId] ||
+          (subjectId.charAt(0).toUpperCase() + subjectId.slice(1));
 
         html += `
           <section class="emne-dekning-blokk">
             <h3>${label}</h3>
             <ul class="emne-list">
               ${nonEmpty
-                .map(r => `
-                  <li class="emne-item">
-                    <div class="emne-header">
-                      <strong>${r.title}</strong>
-                      <small>${r.percent}% dekket (${r.matchCount}/${r.total})</small>
-                    </div>
-                    <div class="bar-bg">
-                      <div class="bar" style="width:${r.percent}%;"></div>
-                    </div>
-                  </li>
-                `)
+                .map(r => {
+                  const missingCount = r.missing ? r.missing.length : (r.total - r.matchCount);
+                  // Saml emner som har noe dekning, men ikke fullført – til “boostere”
+                  if (r.percent > 0 && r.percent < 100 && missingCount > 0) {
+                    suggestions.push({
+                      subjectId,
+                      subjectLabel: label,
+                      title: r.title,
+                      percent: r.percent,
+                      missingCount
+                    });
+                  }
+
+                  return `
+                    <li class="emne-item">
+                      <div class="emne-header">
+                        <strong>${r.title}</strong>
+                        <small>${r.percent}% dekket (${r.matchCount}/${r.total})</small>
+                      </div>
+                      <div class="bar-bg">
+                        <div class="bar" style="width:${r.percent}%;"></div>
+                      </div>
+                    </li>
+                  `;
+                })
                 .join("")}
             </ul>
           </section>
@@ -246,6 +460,49 @@
       }
 
       box.innerHTML = html;
+
+      // ── Lag små “AHA-boostere” basert på emner der du nesten er i mål ──
+      if (sugg) {
+        if (!suggestions.length) {
+          sugg.innerHTML = `
+            <p class="muted">
+              Du har ikke delvis dekkede emner ennå – enten har du dekket svært få begreper,
+              eller så er det veldig tidlig i læringsløpet.
+            </p>
+          `;
+        } else {
+          // Sorter: høyest prosent først, så færrest manglende begreper
+          suggestions.sort((a, b) => {
+            if (b.percent !== a.percent) return b.percent - a.percent;
+            return a.missingCount - b.missingCount;
+          });
+
+          const topBoosts = suggestions.slice(0, 5);
+
+          sugg.innerHTML = `
+            <div class="emne-suggestions-inner">
+              <h3>Hvor du nesten er i mål</h3>
+              <p class="muted">
+                Disse emnene er allerede delvis dekket. Noen få nye begreper / quizer kan
+                gjøre at du “lukker” hele emnet.
+              </p>
+              <ul class="emne-suggestion-list">
+                ${topBoosts
+                  .map(b => `
+                    <li class="emne-suggestion-item">
+                      <strong>${b.title}</strong>
+                      <span class="emne-suggestion-meta">
+                        i ${b.subjectLabel} – ${b.percent}% dekket,
+                        mangler ${b.missingCount} kjernebegrep(er).
+                      </span>
+                    </li>
+                  `)
+                  .join("")}
+              </ul>
+            </div>
+          `;
+        }
+      }
     });
   </script>
 
