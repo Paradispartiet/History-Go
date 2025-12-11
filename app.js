@@ -1661,35 +1661,3 @@ document.addEventListener("keydown", e => {
     document.getElementById("globalSearch").value = "";
   }
 });
-
-function exportHistoryGoData() {
-  let knowledge = {};
-  try {
-    if (typeof getKnowledgeUniverse === "function") {
-      knowledge = getKnowledgeUniverse();
-    } else {
-      knowledge = JSON.parse(
-        localStorage.getItem("knowledge_universe") || "{}"
-      );
-    }
-  } catch (e) {
-    console.warn("Kunne ikke lese knowledge_universe", e);
-    knowledge = {};
-  }
-
-  const notes   = Array.isArray(userNotes) ? userNotes : [];
-  const dialogs = Array.isArray(personDialogs) ? personDialogs : [];
-
-  const payload = {
-    user_id: localStorage.getItem("user_id") || "local_user",
-    source: "historygo",
-    exported_at: new Date().toISOString(),
-    knowledge_universe: knowledge,
-    notes,
-    dialogs,
-  };
-
-  const json = JSON.stringify(payload, null, 2);
-  console.log("HistoryGo → AHA export:\n", json);
-  return json;
-}
