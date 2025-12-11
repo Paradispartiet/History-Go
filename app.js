@@ -1315,7 +1315,7 @@ if (window.HGInsights && Array.isArray(entry.correctAnswers)) {
     core_concepts: Array.isArray(q.core_concepts) ? q.core_concepts : []
   });
 });
-
+}
     
 
 // ==============================
