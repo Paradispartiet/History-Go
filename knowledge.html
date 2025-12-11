@@ -506,5 +506,14 @@
     });
   </script>
 
+  <script src="/js/fagkartLoader.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", async () => {
+    const fields = await Fagkart.listFields();
+    console.log(fields);
+  });
+</script>
+</body>
+
 </body>
 </html>
