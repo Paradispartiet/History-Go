@@ -683,6 +683,7 @@ MAP.on("click", "places-hit", (e) => {
   if (p) openPlaceCard(p);
 });
 
+}
 
 // ==============================
 // 7. LISTEVISNINGER
