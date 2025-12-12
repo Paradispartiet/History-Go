@@ -90,3 +90,10 @@ export async function getPersonEnriched(personId, subjectId) {
   const overlay = (overlays || []).find(o => o.personId === personId) || null;
   return mergeDeep(base, overlay ? { ...overlay, id: base.id } : null);
 }
+
+// ---- TAGS: normalisering (legacy → canonical) ----
+export function normalizeTags(rawTags, tagsRegistry) {
+  const list = Array.isArray(rawTags) ? rawTags : [];
+  const legacyMap = (tagsRegistry && tagsRegistry.legacy_map) || {};
+  return list.map(t => legacyMap[t] || t).filter(Boolean);
+}
