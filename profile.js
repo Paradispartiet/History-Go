@@ -439,6 +439,28 @@ function renderLatestTrivia() {
   box.style.display = "block";
 }
 
+function renderAhaSummary() {
+  const box = document.getElementById("ahaSummary");
+  const a = document.getElementById("ahaTopConcept");
+  const b = document.getElementById("ahaTopMeta");
+  if (!box || !a || !b) return;
+
+  const notes = ls("hg_user_notes_v1", []);
+  const dialogs = ls("hg_person_dialogs_v1", []);
+  const lastNote = notes.length ? notes[notes.length - 1] : null;
+  const lastDlg  = dialogs.length ? dialogs[dialogs.length - 1] : null;
+
+  if (!lastNote && !lastDlg) {
+    box.style.display = "none";
+    return;
+  }
+
+  a.textContent = lastNote ? `Siste notat: ${lastNote.title || "Notat"}` : "Siste dialog";
+  b.textContent = lastNote ? (lastNote.text || "").slice(0, 90) : (lastDlg.text || "").slice(0, 90);
+
+  box.style.display = "block";
+}
+
 // ------------------------------------------------------------
 // EDIT-PROFILMODAL
 // ------------------------------------------------------------
@@ -492,6 +514,7 @@ Promise.all([
   renderCollectionCards();
   renderLatestKnowledge();
   renderLatestTrivia();
+  renderAhaSummary();
 });
 document.addEventListener("DOMContentLoaded", () => {
   const editBtn = document.getElementById("editProfileBtn");
