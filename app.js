@@ -322,21 +322,22 @@ function setUser(lat, lon) {
     userPulse.setLatLng(pos);
   }
 }
+
+
 function initMap() {
   if (!el.map) return;
 
-  // MapLibre GL map (WebGL / vektor)
   MAP = new maplibregl.Map({
     container: "map",
     style: "https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json",
-    center: [START.lon, START.lat], // NB: [lon, lat]
+    center: [START.lon, START.lat], // [lon, lat]
     zoom: START.zoom,
     pitch: 0,
     bearing: 0,
     antialias: true
   });
 
-  // Zoom-knapper
+  // Zoom-kontroller nederst til høyre
   MAP.addControl(
     new maplibregl.NavigationControl({ showCompass: false }),
     "bottom-right"
@@ -344,11 +345,33 @@ function initMap() {
 
   MAP.on("load", () => {
     mapReady = true;
-    if (dataReady) maybeDrawMarkers();
 
-    // Glow + labels
+    // Glow + tydelige labels
     applyGlowRoads();
     applyBetterLabels();
+
+    // Tegn places når data er klare
+    if (dataReady) maybeDrawMarkers();
+
+    // Viktig hvis kartet har vært skjult/overlappet av paneler
+    MAP.resize();
+  });
+}
+
+// Kartet dekker hele skjermen (valgfritt – CSS-en din gjør dette allerede)
+  const mapEl = document.getElementById("map");
+  if (mapEl) {
+    mapEl.style.position = "fixed";
+    mapEl.style.inset = "0";
+    mapEl.style.width = "100%";
+    mapEl.style.height = "100%";
+    mapEl.style.zIndex = "1";
+  }
+
+  MAP.resize();
+});
+
+    
   });
 }
 
