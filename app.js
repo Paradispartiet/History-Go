@@ -29,6 +29,14 @@ let PLACES  = [];
 let PEOPLE  = [];
 let BADGES  = [];
 
+let TAGS_REGISTRY = null;
+
+function normalizeTags(rawTags, tagsRegistry) {
+  const list = Array.isArray(rawTags) ? rawTags : [];
+  const legacyMap = (tagsRegistry && tagsRegistry.legacy_map) || {};
+  return list.map(t => legacyMap[t] || t).filter(Boolean);
+}
+
 const visited         = JSON.parse(localStorage.getItem("visited_places") || "{}");
 const peopleCollected = JSON.parse(localStorage.getItem("people_collected") || "{}");
 const merits          = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
