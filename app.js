@@ -322,29 +322,103 @@ function setUser(lat, lon) {
     userPulse.setLatLng(pos);
   }
 }
-
 function initMap() {
   if (!el.map) return;
 
-  MAP = L.map("map", { zoomControl: false }).setView(
-    [START.lat, START.lon],
-    START.zoom
+  // MapLibre GL map (WebGL / vektor)
+  MAP = new maplibregl.Map({
+    container: "map",
+    style: "https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json",
+    center: [START.lon, START.lat], // NB: [lon, lat]
+    zoom: START.zoom,
+    pitch: 0,
+    bearing: 0,
+    antialias: true
+  });
+
+  // Zoom-knapper
+  MAP.addControl(
+    new maplibregl.NavigationControl({ showCompass: false }),
+    "bottom-right"
   );
-  placeLayer = L.layerGroup().addTo(MAP);
 
-  // --- PANE for labels (over alt, men ikke klikkbar) ---
-  MAP.createPane("labels");
-  MAP.getPane("labels").style.zIndex = 650;
-  MAP.getPane("labels").style.pointerEvents = "none";
-
-L.tileLayer(
-  "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png",
-  { attribution:"&copy; CARTO", subdomains:"abcd", maxZoom:19 }
-).addTo(MAP);
-  
-  MAP.whenReady(() => {
+  MAP.on("load", () => {
     mapReady = true;
     if (dataReady) maybeDrawMarkers();
+
+    // Glow + labels
+    applyGlowRoads();
+    applyBetterLabels();
+  });
+}
+
+function applyGlowRoads() {
+  const style = MAP.getStyle();
+  const layers = (style && style.layers) || [];
+  const firstSymbol = layers.find(l => l.type === "symbol");
+  const beforeId = firstSymbol ? firstSymbol.id : undefined;
+
+  // Finn noen road-lag (CARTO har flere)
+  const roadLayers = layers
+    .filter(l => l.type === "line" && /road|street|highway/i.test(l.id))
+    .slice(0, 8);
+
+  roadLayers.forEach((rl, i) => {
+    const glowId = `hg-road-glow-${i}`;
+    if (MAP.getLayer(glowId)) return;
+
+    MAP.addLayer(
+      {
+        id: glowId,
+        type: "line",
+        source: rl.source,
+        "source-layer": rl["source-layer"],
+        filter: rl.filter,
+        layout: rl.layout,
+        paint: {
+          "line-color": "rgba(255,255,255,0.38)",
+          "line-width": [
+            "interpolate",
+            ["linear"],
+            ["zoom"],
+            10, 1.2,
+            13, 2.0,
+            16, 4.6,
+            18, 8.2
+          ],
+          "line-blur": [
+            "interpolate",
+            ["linear"],
+            ["zoom"],
+            10, 0.7,
+            14, 1.3,
+            18, 2.2
+          ],
+          "line-opacity": 0.92
+        }
+      },
+      beforeId
+    );
+  });
+}
+
+function applyBetterLabels() {
+  const style = MAP.getStyle();
+  const layers = (style && style.layers) || [];
+
+  layers.forEach(l => {
+    if (l.type !== "symbol") return;
+    if (!/label|place|road/i.test(l.id)) return;
+
+    try {
+      MAP.setPaintProperty(l.id, "text-halo-color", "rgba(0,0,0,0.85)");
+      MAP.setPaintProperty(l.id, "text-halo-width", 1.25);
+      MAP.setPaintProperty(l.id, "text-color", "rgba(255,255,255,0.96)");
+    } catch (e) {
+      // noen symbol-lag har ikke text-* (f.eks. icons-only) – ignorer
+    }
+  });
+}
 
     // Kartet dekker hele skjermen
     const mapEl = document.getElementById("map");
