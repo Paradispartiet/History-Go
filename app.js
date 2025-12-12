@@ -1506,7 +1506,7 @@ function globalSearch(query) {
     p.name.toLowerCase().includes(q) ||
     (p.desc && p.desc.toLowerCase().includes(q)) ||
     (p.year && String(p.year).includes(q)) ||
-    (p.tags && p.tags.some(t => t.toLowerCase().includes(q)))
+(p.tags && normalizeTags(p.tags, TAGS_REGISTRY).some(t => String(t).toLowerCase().includes(q)))
   );
 
   // --- STEDER ---
@@ -1515,7 +1515,7 @@ function globalSearch(query) {
     (s.desc && s.desc.toLowerCase().includes(q)) ||
     (s.type && s.type.toLowerCase().includes(q)) ||
     (s.year && String(s.year).includes(q)) ||
-    (s.tags && s.tags.some(t => t.toLowerCase().includes(q)))
+(s.tags && normalizeTags(s.tags, TAGS_REGISTRY).some(t => String(t).toLowerCase().includes(q)))
   );
 
   // --- NÆR MEG (når kartet er aktivt) ---
