@@ -493,10 +493,14 @@ Promise.all([
   renderLatestKnowledge();
   renderLatestTrivia();
 });
-
 document.addEventListener("DOMContentLoaded", () => {
   const editBtn = document.getElementById("editProfileBtn");
   if (editBtn) editBtn.onclick = openProfileModal;
+
+  // ✅ AHA-knapp
+  document.getElementById("btnOpenAHA")?.addEventListener("click", () => {
+    window.open("aha/index.html", "_blank");
+  });
 
   // Sync etter quiz (app.js)
   window.addEventListener("updateProfile", () => {
