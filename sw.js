@@ -3,7 +3,7 @@
    Versjon: HG-FULL-v3.0.3.1.002
 ============================================================ */
 
-const CACHE_VERSION = "HG-FULL-v3.0.4.1.006";
+const CACHE_VERSION = "HG-FULL-v3.0.4.1.007";
 const STATIC_CACHE = `historygo-${CACHE_VERSION}`;
 
 /* ------------------------------------------------------------
