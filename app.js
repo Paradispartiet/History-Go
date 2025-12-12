@@ -358,22 +358,6 @@ function initMap() {
   });
 }
 
-// Kartet dekker hele skjermen (valgfritt – CSS-en din gjør dette allerede)
-  const mapEl = document.getElementById("map");
-  if (mapEl) {
-    mapEl.style.position = "fixed";
-    mapEl.style.inset = "0";
-    mapEl.style.width = "100%";
-    mapEl.style.height = "100%";
-    mapEl.style.zIndex = "1";
-  }
-
-  MAP.resize();
-});
-
-    
-  });
-}
 
 function applyGlowRoads() {
   const style = MAP.getStyle();
@@ -443,17 +427,6 @@ function applyBetterLabels() {
   });
 }
 
-    // Kartet dekker hele skjermen
-    const mapEl = document.getElementById("map");
-    if (mapEl) {
-      mapEl.style.position = "fixed";
-      mapEl.style.inset = "0";
-      mapEl.style.width = "100%";
-      mapEl.style.height = "100%";
-      mapEl.style.zIndex = "1";
-    }
-  });
-}
 
 // PEOPLE → PLACES-linking (kun kobling, ingen markører)
 function linkPeopleToPlaces() {
