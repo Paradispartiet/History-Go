@@ -1,27 +1,31 @@
 {
-  "tag.byrom": {
-    "label": "Byrom",
-    "type": "ui",
-    "aliases": ["urban space", "public space"],
-    "description": "Steder brukt som rom for sosialt liv, kontroll og ritualer."
-  },
+  "version": 1,
+  "updatedAt": "2025-12-12",
+  "tags": [
+    { "id": "subject.historie", "label": "Historie", "type": "subject" },
+    { "id": "subject.vitenskap", "label": "Vitenskap", "type": "subject" },
+    { "id": "subject.litteratur", "label": "Litteratur", "type": "subject" },
+    { "id": "subject.musikk", "label": "Musikk", "type": "subject" },
+    { "id": "subject.sport", "label": "Sport", "type": "subject" },
+    { "id": "subject.by", "label": "By", "type": "subject" },
 
-  "tag.gentrifisering": {
-    "label": "Gentrifisering",
-    "type": "theme",
-    "aliases": ["byfornyelse (klasse)", "upscaling"],
-    "maps_to_concepts": ["gentrifisering"]
-  },
+    { "id": "tag.byrom", "label": "Byrom", "type": "place-type", "synonyms": ["offentlig rom"], "parents": ["tag.byutvikling"] },
+    { "id": "tag.knutepunkt", "label": "Knutepunkt", "type": "place-type", "synonyms": ["møtepunkt", "hub"], "parents": ["tag.byutvikling"] },
+    { "id": "tag.byutvikling", "label": "Byutvikling", "type": "theme", "synonyms": ["urban utvikling"], "parents": [] },
 
-  "tag.klasse": {
-    "label": "Klasse",
-    "type": "theme",
-    "maps_to_concepts": ["sosial ulikhet", "symbolsk kapital"]
-  },
+    { "id": "tag.gentrifisering", "label": "Gentrifisering", "type": "concept", "synonyms": ["kaféifisering", "byfornyelse (konflikt)"], "parents": ["tag.byutvikling"] },
+    { "id": "tag.klasse", "label": "Klasse", "type": "concept", "synonyms": ["sosial klasse"], "parents": ["tag.ulikhet"] },
+    { "id": "tag.ulikhet", "label": "Ulikhet", "type": "concept", "synonyms": ["sosial ulikhet"], "parents": [] },
+    { "id": "tag.konflikt", "label": "Konflikt", "type": "theme", "synonyms": ["interessekonflikt"], "parents": [] },
+    { "id": "tag.beboerperspektiv", "label": "Beboerperspektiv", "type": "method", "synonyms": ["lokalkunnskap"], "parents": [] }
+  ],
 
-  "src.oslo_kommune_plan_2019": {
-    "label": "Oslo kommune – plan 2019",
-    "type": "source",
-    "url": "https://…"
+  "legacy_map": {
+    "historie": "subject.historie",
+    "vitenskap": "subject.vitenskap",
+    "litteratur": "subject.litteratur",
+    "musikk": "subject.musikk",
+    "sport": "subject.sport",
+    "by": "subject.by"
   }
 }
