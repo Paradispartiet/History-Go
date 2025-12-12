@@ -292,34 +292,55 @@ function distMeters(a, b) {
 // ==============================
 // 5. BRUKERPOSISJON OG KART
 // ==============================
-let MAP, userMarker, userPulse, routeLine, routeControl, placeLayer;
+let MAP;                 // MapLibre map
+let userMarker = null;   // MapLibre Marker (DOM)
+let userPos = null;      // {lat, lon}
 let mapReady = false;
 let dataReady = false;
 
 function setUser(lat, lon) {
   if (!MAP) return;
-  const pos = [lat, lon];
 
+  userPos = { lat, lon };
+
+  // Lag DOM-element (dot + pulse)
   if (!userMarker) {
-    userMarker = L.circleMarker(pos, {
-      radius: 8,
-      weight: 2,
-      color: "#fff",
-      fillColor: "#1976d2",
-      fillOpacity: 1
-    }).addTo(MAP).bindPopup("Du er her");
+    const wrap = document.createElement("div");
+    wrap.style.position = "relative";
+    wrap.style.width = "18px";
+    wrap.style.height = "18px";
 
-    userPulse = L.circle(pos, {
-      radius: 25,
-      color: "#00e676",
-      weight: 1,
-      opacity: 0.6,
-      fillColor: "#00e676",
-      fillOpacity: 0.12
-    }).addTo(MAP);
+    const pulse = document.createElement("div");
+    pulse.style.position = "absolute";
+    pulse.style.left = "50%";
+    pulse.style.top = "50%";
+    pulse.style.width = "18px";
+    pulse.style.height = "18px";
+    pulse.style.transform = "translate(-50%, -50%)";
+    pulse.style.borderRadius = "999px";
+    pulse.style.background = "rgba(0,230,118,0.20)";
+    pulse.style.boxShadow = "0 0 0 1px rgba(0,230,118,0.35)";
+    pulse.style.animation = "hgPulse 1.6s ease-out infinite";
+
+    const dot = document.createElement("div");
+    dot.style.position = "absolute";
+    dot.style.left = "50%";
+    dot.style.top = "50%";
+    dot.style.width = "12px";
+    dot.style.height = "12px";
+    dot.style.transform = "translate(-50%, -50%)";
+    dot.style.borderRadius = "999px";
+    dot.style.background = "#1976d2";
+    dot.style.boxShadow = "0 0 0 2px rgba(255,255,255,0.95), 0 0 14px rgba(25,118,210,0.35)";
+
+    wrap.appendChild(pulse);
+    wrap.appendChild(dot);
+
+    userMarker = new maplibregl.Marker({ element: wrap, anchor: "center" })
+      .setLngLat([lon, lat])
+      .addTo(MAP);
   } else {
-    userMarker.setLatLng(pos);
-    userPulse.setLatLng(pos);
+    userMarker.setLngLat([lon, lat]);
   }
 }
 
