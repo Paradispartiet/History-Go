@@ -1457,21 +1457,3 @@ main > section.panel:nth-of-type(2) {
   overflow-y: auto;     /* aktiverer scroll */
   padding-right: 6px;   /* litt plass for scrollbaren */
 }
-
-/* Leaflet tiles: mer lesbarhet + litt glow */
-#map .leaflet-tile {
-  filter:
-    brightness(1.12)
-    contrast(1.38)
-    saturate(1.08)
-    drop-shadow(0 0 2px rgba(255,255,255,.16))
-    drop-shadow(0 0 7px rgba(255,255,255,.10));
-}
-
-/* Labels-pane: ekstra punch på tekst */
-#map .leaflet-pane[style*="z-index: 650"] .leaflet-tile {
-  filter:
-    brightness(1.25)
-    contrast(1.55)
-    drop-shadow(0 0 2px rgba(255,255,255,.22));
-}
