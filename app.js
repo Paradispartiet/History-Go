@@ -404,7 +404,7 @@ function applyGlowRoads() {
         filter: rl.filter,
         layout: rl.layout,
         paint: {
-          "line-color": "rgba(255,255,255,0.38)",
+          "line-color": "rgba(255,255,255,0.22)",
           "line-width": [
             "interpolate",
             ["linear"],
@@ -422,7 +422,7 @@ function applyGlowRoads() {
             14, 1.3,
             18, 2.2
           ],
-          "line-opacity": 0.92
+          "line-opacity": 0.55
         }
       },
       beforeId
@@ -619,13 +619,13 @@ MAP.addLayer({
   source: "places",
   paint: {
     "circle-radius": [
-      "interpolate", ["linear"], ["zoom"],
-      10, 10,
-      12, 12,
-      14, 14,
-      16, 18,
-      18, 24
-    ],
+  "interpolate", ["linear"], ["zoom"],
+  10, ["+", 1.4, ["*", 0.40, ["get", "visited"]]],
+  12, ["+", 1.9, ["*", 0.55, ["get", "visited"]]],
+  14, ["+", 3.2, ["*", 0.75, ["get", "visited"]]],
+  16, ["+", 6.2, ["*", 1.05, ["get", "visited"]]],
+  18, ["+", 10.2, ["*", 1.25, ["get", "visited"]]]
+],
     "circle-color": "rgba(255,255,255,0)",   // helt usynlig
     "circle-stroke-width": 0,
     "circle-opacity": 0
@@ -639,13 +639,13 @@ MAP.addLayer({
     type: "circle",
     source: "places",
     paint: {
-   "circle-radius": [
+"circle-radius": [
   "interpolate", ["linear"], ["zoom"],
-  10, ["+", 1.3, ["*", 0.35, ["get", "visited"]]],
-  12, ["+", 1.9, ["*", 0.45, ["get", "visited"]]],
-  14, ["+", 3.1, ["*", 0.60, ["get", "visited"]]],
-  16, ["+", 5.8, ["*", 0.85, ["get", "visited"]]],
-  18, ["+", 9.8, ["*", 1.10, ["get", "visited"]]]
+  10, ["+", 0.9, ["*", 0.25, ["get", "visited"]]],
+  12, ["+", 1.3, ["*", 0.35, ["get", "visited"]]],
+  14, ["+", 2.4, ["*", 0.55, ["get", "visited"]]],
+  16, ["+", 5.6, ["*", 0.95, ["get", "visited"]]],
+  18, ["+", 10.8, ["*", 1.35, ["get", "visited"]]]
 ],
       "circle-color": ["get", "fill"],
       "circle-stroke-color": ["get", "border"],
