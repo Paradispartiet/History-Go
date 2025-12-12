@@ -1302,17 +1302,12 @@ saveQuizHistory(entry);
 if (window.HGInsights && Array.isArray(entry.correctAnswers)) {
   const userId = "anon"; // evt. bytt til din egen user-id hvis du har
 
-  entry.correctAnswers.forEach(q => {
+  entry.correctAnswers.forEach((q, i) => {
   HGInsights.logCorrectQuizAnswer(userId, {
-    id: `${entry.id}_${(q.topic || "").replace(/\s+/g, "_")}`.toLowerCase(),
+    id: `${entry.id}_q${i+1}`,
     categoryId: entry.categoryId,
     personId: person ? person.id : null,
     placeId: place ? place.id : null,
-
-    // topic er fortsatt med som "tekstlig tittel" …
-    topic: q.topic,
-
-    // … men det er KUN core_concepts som teller som begreper
     core_concepts: Array.isArray(q.core_concepts) ? q.core_concepts : []
   });
 });
