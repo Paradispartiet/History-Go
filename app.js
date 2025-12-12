@@ -472,51 +472,82 @@ function linkPeopleToPlaces() {
   });
 }
 
-function showRouteTo(place) {
+async function showRouteTo(place) {
   if (!MAP || !place) return;
 
-  const from = currentPos
-    ? L.latLng(currentPos.lat, currentPos.lon)
-    : L.latLng(START.lat, START.lon);
-  const to = L.latLng(place.lat, place.lon);
+  // from = userPos (fra setUser) eller START
+  const from = userPos
+    ? [userPos.lon, userPos.lat]
+    : [START.lon, START.lat];
 
-  if (routeLine) {
-    MAP.removeLayer(routeLine);
-    routeLine = null;
-  }
+  const to = [place.lon, place.lat];
+
+  // Fjern gammel rute
+  if (MAP.getLayer("hg-route")) MAP.removeLayer("hg-route");
+  if (MAP.getSource("hg-route")) MAP.removeSource("hg-route");
 
   try {
-    if (!L.Routing) throw new Error("no LRM");
-    if (routeControl) {
-      MAP.removeControl(routeControl);
-      routeControl = null;
-    }
+    const url =
+      `https://routing.openstreetmap.de/routed-foot/route/v1/foot/` +
+      `${from[0]},${from[1]};${to[0]},${to[1]}` +
+      `?overview=full&geometries=geojson`;
 
-    routeControl = L.Routing.control({
-      waypoints: [from, to],
-      router: L.Routing.osrmv1({
-        serviceUrl: "https://routing.openstreetmap.de/routed-foot/route/v1",
-        profile: "foot"
-      }),
-      addWaypoints: false,
-      draggableWaypoints: false,
-      fitSelectedRoutes: true,
-      show: false,
-      lineOptions: { styles: [{ color: "#cfe8ff", opacity: 1, weight: 6 }] },
-      createMarker: () => null
-    }).addTo(MAP);
+    const res = await fetch(url);
+    if (!res.ok) throw new Error("route http " + res.status);
+    const json = await res.json();
+
+    const coords = json?.routes?.[0]?.geometry?.coordinates;
+    if (!coords || !coords.length) throw new Error("no geometry");
+
+    MAP.addSource("hg-route", {
+      type: "geojson",
+      data: { type: "Feature", geometry: { type: "LineString", coordinates: coords } }
+    });
+
+    MAP.addLayer({
+      id: "hg-route",
+      type: "line",
+      source: "hg-route",
+      paint: {
+        "line-color": "#cfe8ff",
+        "line-width": ["interpolate", ["linear"], ["zoom"], 10, 3, 14, 5, 18, 8],
+        "line-opacity": 1
+      }
+    });
+
+    // zoom til ruten
+    const b = coords.reduce(
+      (bb, c) => bb.extend(c),
+      new maplibregl.LngLatBounds(coords[0], coords[0])
+    );
+    MAP.fitBounds(b, { padding: 40 });
 
     showToast("Rute lagt.");
   } catch (e) {
-    routeLine = L.polyline([from, to], {
-      color: "#cfe8ff",
-      weight: 5,
-      opacity: 1
-    }).addTo(MAP);
-    MAP.fitBounds(routeLine.getBounds(), { padding: [40, 40] });
+    // fallback: rett linje
+    MAP.addSource("hg-route", {
+      type: "geojson",
+      data: { type: "Feature", geometry: { type: "LineString", coordinates: [from, to] } }
+    });
+
+    MAP.addLayer({
+      id: "hg-route",
+      type: "line",
+      source: "hg-route",
+      paint: {
+        "line-color": "#cfe8ff",
+        "line-width": ["interpolate", ["linear"], ["zoom"], 10, 3, 14, 5, 18, 8],
+        "line-opacity": 1
+      }
+    });
+
+    const b = new maplibregl.LngLatBounds(from, from).extend(to);
+    MAP.fitBounds(b, { padding: 40 });
+
     showToast("Vis linje (ingen rutetjeneste)");
   }
 }
+
 
 function maybeDrawMarkers() {
   if (mapReady && dataReady) {
@@ -534,35 +565,100 @@ function lighten(hex, amount = 0.35) {
 }
 
 function drawPlaceMarkers() {
-  if (!MAP || !PLACES.length || !placeLayer) return;
-  placeLayer.clearLayers();
+  if (!MAP || !PLACES.length) return;
 
-  PLACES.forEach(p => {
-    const isVisited = !!visited[p.id];
-    const fill = isVisited
-      ? lighten(catColor(p.category), 0.35)
-      : catColor(p.category);
-    const border = isVisited ? "#ffd700" : "#fff";
+  const fc = {
+    type: "FeatureCollection",
+    features: PLACES
+      .filter(p => p && typeof p.lat === "number" && typeof p.lon === "number")
+      .map(p => {
+        const isVisited = !!visited[p.id];
+        const base = catColor(p.category);
+        const fill = isVisited ? lighten(base, 0.35) : base;
+        const border = isVisited ? "#ffd700" : "#ffffff";
 
-    const mk = L.circleMarker([p.lat, p.lon], {
-      radius: isVisited ? 9 : 8,
-      color: border,
-      weight: 2,
-      fillColor: fill,
-      fillOpacity: 1
-    }).addTo(placeLayer);
+        return {
+          type: "Feature",
+          properties: {
+            id: p.id,
+            name: p.name || "",
+            visited: isVisited ? 1 : 0,
+            fill,
+            border
+          },
+          geometry: { type: "Point", coordinates: [p.lon, p.lat] }
+        };
+      })
+  };
 
-    mk.bindTooltip(isVisited ? `✅ ${p.name}` : p.name, {
-      permanent: false,
-      direction: "top"
-    });
+  // Oppdater hvis finnes
+  if (MAP.getSource("places")) {
+    MAP.getSource("places").setData(fc);
+    return;
+  }
 
-    mk.on("click", () => {
-      openPlaceCard(p);   // ← 100 % riktig popup
-    });
+  // Første gang: legg source + layers + handlers
+  MAP.addSource("places", { type: "geojson", data: fc });
+
+  // Mild glow bak
+  MAP.addLayer({
+    id: "places-glow",
+    type: "circle",
+    source: "places",
+    paint: {
+      "circle-radius": ["interpolate", ["linear"], ["zoom"], 10, 1.0, 12, 1.4, 14, 2.6, 16, 5.5, 18, 10.0],
+      "circle-color": "rgba(255,255,255,0.18)",
+      "circle-blur": 0.9
+    }
+  });
+
+  // Prikkene (✅ bitte små på lav zoom)
+  MAP.addLayer({
+    id: "places",
+    type: "circle",
+    source: "places",
+    paint: {
+      "circle-radius": [
+        "interpolate", ["linear"], ["zoom"],
+        10, ["+", 1.0, ["*", 0.35, ["get", "visited"]]],
+        12, ["+", 1.4, ["*", 0.45, ["get", "visited"]]],
+        14, ["+", 2.6, ["*", 0.60, ["get", "visited"]]],
+        16, ["+", 5.2, ["*", 0.85, ["get", "visited"]]],
+        18, ["+", 9.0, ["*", 1.10, ["get", "visited"]]]
+      ],
+      "circle-color": ["get", "fill"],
+      "circle-stroke-color": ["get", "border"],
+      "circle-stroke-width": 1.6,
+      "circle-opacity": 1
+    }
+  });
+
+  // Tooltip on hover (erstatter bindTooltip)
+  const tip = new maplibregl.Popup({ closeButton: false, closeOnClick: false, offset: 10 });
+
+  MAP.on("mouseenter", "places", (e) => {
+    MAP.getCanvas().style.cursor = "pointer";
+    const f = e.features && e.features[0];
+    if (!f) return;
+    const name = f.properties.name || "";
+    const v = String(f.properties.visited) === "1";
+    tip.setLngLat(e.lngLat).setHTML(v ? `✅ ${name}` : name).addTo(MAP);
+  });
+
+  MAP.on("mouseleave", "places", () => {
+    MAP.getCanvas().style.cursor = "";
+    tip.remove();
+  });
+
+  // Click → åpne ditt eksisterende place-card
+  MAP.on("click", "places", (e) => {
+    const f = e.features && e.features[0];
+    if (!f) return;
+    const id = f.properties.id;
+    const p = PLACES.find(x => x.id === id);
+    if (p) openPlaceCard(p);
   });
 }
-
 
 
 // ==============================
