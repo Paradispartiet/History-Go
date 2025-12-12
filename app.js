@@ -332,14 +332,32 @@ function initMap() {
   );
   placeLayer = L.layerGroup().addTo(MAP);
 
-L.tileLayer(
-  "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png",
-  {
-    attribution: "&copy; CARTO",
-    subdomains: "abcd",
-    maxZoom: 19
-  }
-).addTo(MAP);
+  // --- PANE for labels (over alt, men ikke klikkbar) ---
+  MAP.createPane("labels");
+  MAP.getPane("labels").style.zIndex = 650;
+  MAP.getPane("labels").style.pointerEvents = "none";
+
+  // --- BASE: mørk uten labels (gir bedre kontrast i kartet) ---
+  L.tileLayer(
+    "https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png",
+    {
+      attribution: "&copy; CARTO",
+      subdomains: "abcd",
+      maxZoom: 19
+    }
+  ).addTo(MAP);
+
+  // --- LABELS: kun labels oppå (gatenavn blir lesbare igjen) ---
+  L.tileLayer(
+    "https://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}.png",
+    {
+      attribution: "&copy; CARTO",
+      subdomains: "abcd",
+      maxZoom: 19,
+      pane: "labels",
+      opacity: 0.95
+    }
+  ).addTo(MAP);
   
   MAP.whenReady(() => {
     mapReady = true;
