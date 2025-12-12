@@ -728,9 +728,9 @@
   }
 
   
-  // ── Hovedfunksjon: bygg meta-profil for en bruker ───────
+    // ── Hovedfunksjon: bygg meta-profil for en bruker ───────
 
-    function buildUserMetaProfile(chamber, subjectId) {
+  function buildUserMetaProfile(chamber, subjectId) {
     if (!IE) {
       return null;
     }
@@ -740,11 +740,7 @@
 
     for (const themeId of themes) {
       const stats = IE.computeTopicStats(chamber, subjectId, themeId);
-      const insights = IE.getInsightsForTopic(
-        chamber,
-        subjectId,
-        themeId
-      );
+      const insights = IE.getInsightsForTopic(chamber, subjectId, themeId);
       const semCounts = IE.computeSemanticCounts(insights);
 
       topicProfiles.push({
@@ -755,16 +751,10 @@
     }
 
     const globalProfile = computeGlobalSemanticProfile(topicProfiles);
-    const patterns = detectCrossTopicPatterns(
-      topicProfiles,
-      globalProfile
-    );
+    const patterns = detectCrossTopicPatterns(topicProfiles, globalProfile);
 
-        // Berik innsikter med lifecycle-status
-    const enrichedInsights = enrichInsightsWithLifecycle(
-      chamber,
-      subjectId
-    );
+    // Berik innsikter med lifecycle-status
+    const enrichedInsights = enrichInsightsWithLifecycle(chamber, subjectId);
 
     // Globalt begrepskart, semiotikk og fagprofil
     const conceptIndex = buildConceptIndex(enrichedInsights);
@@ -779,10 +769,12 @@
       patterns,
       insights: enrichedInsights, // innsikter med lifecycle-status
       concepts: conceptIndex,     // global begrepsindeks
-      buildAcademicProfile,           // 🔹 ny
-      buildAcademicProfileFromConcepts, // (valgfri, men nyttig)
-     };
-    }
+      academic: academicProfile,  // (nyttig å ha ferdig beregnet)
+      buildAcademicProfile,            // 🔹 valgfri: eksponer builder
+      buildAcademicProfileFromConcepts // 🔹 valgfri: eksponer builder
+    };
+  } // ✅ VIKTIG: denne manglet hos deg
+
   // ── Public API for meta-motoren ─────────────────────────
 
   const MetaInsightsEngine = {
@@ -791,11 +783,13 @@
     detectCrossTopicPatterns,
     enrichInsightsWithLifecycle,
     computeInsightLifecycle,
+
     buildConceptIndex,
     buildConceptIndexForTheme,
-     // 🔹 nye begrepsverktøy
+
+    // 🔹 begrepsverktøy
     posFilterConcepts,
-    extractMultiwordCon,
+    extractMultiwordConcepts
   };
 
   if (typeof module !== "undefined" && module.exports) {
