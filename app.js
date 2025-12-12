@@ -612,20 +612,41 @@ function drawPlaceMarkers() {
     }
   });
 
+// Usynlig "treffflate" (stor radius, 0 opacity)
+MAP.addLayer({
+  id: "places-hit",
+  type: "circle",
+  source: "places",
+  paint: {
+    "circle-radius": [
+      "interpolate", ["linear"], ["zoom"],
+      10, 10,
+      12, 12,
+      14, 14,
+      16, 18,
+      18, 24
+    ],
+    "circle-color": "rgba(255,255,255,0)",   // helt usynlig
+    "circle-stroke-width": 0,
+    "circle-opacity": 0
+  }
+});
+
+  
   // Prikkene (✅ bitte små på lav zoom)
   MAP.addLayer({
     id: "places",
     type: "circle",
     source: "places",
     paint: {
-      "circle-radius": [
-        "interpolate", ["linear"], ["zoom"],
-        10, ["+", 1.0, ["*", 0.35, ["get", "visited"]]],
-        12, ["+", 1.4, ["*", 0.45, ["get", "visited"]]],
-        14, ["+", 2.6, ["*", 0.60, ["get", "visited"]]],
-        16, ["+", 5.2, ["*", 0.85, ["get", "visited"]]],
-        18, ["+", 9.0, ["*", 1.10, ["get", "visited"]]]
-      ],
+   "circle-radius": [
+  "interpolate", ["linear"], ["zoom"],
+  10, ["+", 1.3, ["*", 0.35, ["get", "visited"]]],
+  12, ["+", 1.9, ["*", 0.45, ["get", "visited"]]],
+  14, ["+", 3.1, ["*", 0.60, ["get", "visited"]]],
+  16, ["+", 5.8, ["*", 0.85, ["get", "visited"]]],
+  18, ["+", 9.8, ["*", 1.10, ["get", "visited"]]]
+],
       "circle-color": ["get", "fill"],
       "circle-stroke-color": ["get", "border"],
       "circle-stroke-width": 1.6,
@@ -636,29 +657,31 @@ function drawPlaceMarkers() {
   // Tooltip on hover (erstatter bindTooltip)
   const tip = new maplibregl.Popup({ closeButton: false, closeOnClick: false, offset: 10 });
 
-  MAP.on("mouseenter", "places", (e) => {
-    MAP.getCanvas().style.cursor = "pointer";
-    const f = e.features && e.features[0];
-    if (!f) return;
-    const name = f.properties.name || "";
-    const v = String(f.properties.visited) === "1";
-    tip.setLngLat(e.lngLat).setHTML(v ? `✅ ${name}` : name).addTo(MAP);
-  });
+MAP.on("mouseenter", "places-hit", (e) => {
+  MAP.getCanvas().style.cursor = "pointer";
+  const f = e.features && e.features[0];
+  if (!f) return;
 
-  MAP.on("mouseleave", "places", () => {
-    MAP.getCanvas().style.cursor = "";
-    tip.remove();
-  });
+  const name = f.properties.name || "";
+  const v = String(f.properties.visited) === "1";
 
-  // Click → åpne ditt eksisterende place-card
-  MAP.on("click", "places", (e) => {
-    const f = e.features && e.features[0];
-    if (!f) return;
-    const id = f.properties.id;
-    const p = PLACES.find(x => x.id === id);
-    if (p) openPlaceCard(p);
-  });
-}
+  tip.setLngLat(e.lngLat).setHTML(v ? `✅ ${name}` : name).addTo(MAP);
+});
+
+MAP.on("mouseleave", "places-hit", () => {
+  MAP.getCanvas().style.cursor = "";
+  tip.remove();
+});
+
+// Click → åpne ditt eksisterende place-card
+MAP.on("click", "places-hit", (e) => {
+  const f = e.features && e.features[0];
+  if (!f) return;
+
+  const id = f.properties.id;
+  const p = PLACES.find(x => x.id === id);
+  if (p) openPlaceCard(p);
+});
 
 
 // ==============================
