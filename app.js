@@ -1279,9 +1279,10 @@ const quizItem = formatted.map(q => ({
   question: q.question,
   answer: q.answer,
   knowledge: q.knowledge,
-  topic: q.topic,
+  topic: q.topic,            // ok å beholde som UI/overskrift
   dimension: q.dimension,
-  trivia: q.trivia
+  trivia: q.trivia,
+  core_concepts: Array.isArray(q.core_concepts) ? q.core_concepts : []
 }));
 
 const entry = {
