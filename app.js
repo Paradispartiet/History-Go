@@ -1071,12 +1071,15 @@ async function boot() {
   initMap();
 
   try {
-    const [places, people] = await Promise.all([
-      fetch("places.json", { cache: "no-store" }).then(r => r.json()),
-      fetch("people.json", { cache: "no-store" }).then(r => r.json())
-    ]);
-    PLACES = places;
-    PEOPLE = people;
+    const [places, people, tags] = await Promise.all([
+  fetch("places.json", { cache: "no-store" }).then(r => r.json()),
+  fetch("people.json", { cache: "no-store" }).then(r => r.json()),
+  fetch("tags.json",   { cache: "no-store" }).then(r => r.json()).catch(() => null)
+]);
+
+PLACES = places;
+PEOPLE = people;
+TAGS_REGISTRY = tags;
     linkPeopleToPlaces();
     dataReady = true;
     maybeDrawMarkers();
