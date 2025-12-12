@@ -782,7 +782,7 @@
       buildAcademicProfile,           // 🔹 ny
       buildAcademicProfileFromConcepts, // (valgfri, men nyttig)
      };
-
+    }
   // ── Public API for meta-motoren ─────────────────────────
 
   const MetaInsightsEngine = {
