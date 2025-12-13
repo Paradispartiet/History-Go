@@ -649,10 +649,11 @@ function drawPlaceMarkers() {
     return;
   }
 
-  // Første gang: legg source + layers + handlers
-  MAP.addSource("places", { type: "geojson", data: fc });
+// Første gang: legg source + layers + handlers
+MAP.addSource("places", { type: "geojson", data: fc });
 
-  // Mild glow bak
+// Mild glow bak
+if (!MAP.getLayer("places-glow")) {
   MAP.addLayer({
     id: "places-glow",
     type: "circle",
@@ -663,92 +664,124 @@ function drawPlaceMarkers() {
       "circle-blur": 0.9
     }
   });
+}
 
 // Usynlig "treffflate" (stor radius, 0 opacity)
-MAP.addLayer({
-  id: "places-hit",
-  type: "circle",
-  source: "places",
-  paint: {
- "circle-radius": [
-  "interpolate", ["linear"], ["zoom"],
-  10, 10,
-  12, 12,
-  14, 14,
-  16, 18,
-  18, 24
-],
-    "circle-color": "rgba(255,255,255,0)",   // helt usynlig
-    "circle-stroke-width": 0,
-    "circle-opacity": 0
-  }
-});
+if (!MAP.getLayer("places-hit")) {
+  MAP.addLayer({
+    id: "places-hit",
+    type: "circle",
+    source: "places",
+    paint: {
+      "circle-radius": [
+        "interpolate", ["linear"], ["zoom"],
+        10, 10,
+        12, 12,
+        14, 14,
+        16, 18,
+        18, 24
+      ],
+      "circle-color": "rgba(255,255,255,0)",
+      "circle-stroke-width": 0,
+      "circle-opacity": 0
+    }
+  });
+}
 
-  
-  // Prikkene (✅ bitte små på lav zoom)
+// Prikkene (synlige)
+if (!MAP.getLayer("places")) {
   MAP.addLayer({
     id: "places",
     type: "circle",
     source: "places",
     paint: {
-"circle-radius": [
-  "interpolate", ["linear"], ["zoom"],
-  10, ["+", 1.8, ["*", 0.35, ["get", "visited"]]],
-  12, ["+", 2.6, ["*", 0.45, ["get", "visited"]]],
-  14, ["+", 4.2, ["*", 0.60, ["get", "visited"]]],
-  16, ["+", 7.2, ["*", 0.95, ["get", "visited"]]],
-  18, ["+", 12.0, ["*", 1.30, ["get", "visited"]]]
-],
+      "circle-radius": [
+        "interpolate", ["linear"], ["zoom"],
+        10, ["+", 1.8, ["*", 0.35, ["get", "visited"]]],
+        12, ["+", 2.6, ["*", 0.45, ["get", "visited"]]],
+        14, ["+", 4.2, ["*", 0.60, ["get", "visited"]]],
+        16, ["+", 7.2, ["*", 0.95, ["get", "visited"]]],
+        18, ["+", 12.0, ["*", 1.30, ["get", "visited"]]]
+      ],
       "circle-color": ["get", "fill"],
       "circle-stroke-color": ["get", "border"],
       "circle-stroke-width": 1.6,
       "circle-opacity": 1
     }
   });
-
-  MAP.addLayer({
-  id: "places-label",
-  type: "symbol",
-  source: "places",
-  layout: {
-    "text-field": ["get", "name"],
-    "text-font": ["Open Sans Regular", "Arial Unicode MS Regular"],
-    "text-size": ["interpolate", ["linear"], ["zoom"], 10, 11, 14, 13, 18, 16],
-    "text-offset": [0, 1.15],         // under prikken
-    "text-anchor": "top",
-    "text-allow-overlap": false,
-    "symbol-sort-key": ["get", "visited"] // besøkte over andre
-  },
-  paint: {
-    "text-color": "rgba(255,255,255,0.95)",
-    "text-halo-color": "rgba(0,0,0,0.85)", // “skygge”
-    "text-halo-width": 1.4,
-    "text-halo-blur": 0.6,
-    "text-opacity": ["interpolate", ["linear"], ["zoom"], 10, 0.0, 12, 0.6, 14, 1.0]
-  }
-});
-
-// Ingen tooltip – bare cursor feedback
-MAP.on("mouseenter", "places-hit", () => {
-  MAP.getCanvas().style.cursor = "pointer";
-});
-
-MAP.on("mouseleave", "places-hit", () => {
-  MAP.getCanvas().style.cursor = "";
-});
-
-// Click → åpne ditt eksisterende place-card
-MAP.on("click", "places-hit", (e) => {
-  const f = e.features && e.features[0];
-  if (!f) return;
-
-  const id = f.properties.id;
-  const p = PLACES.find(x => x.id === id);
-  if (p) openPlaceCard(p);
-});
-
 }
 
+// TV-tekst: baklag (skyggeboks)
+if (!MAP.getLayer("places-label-bg")) {
+  MAP.addLayer({
+    id: "places-label-bg",
+    type: "symbol",
+    source: "places",
+    layout: {
+      "text-field": ["get", "name"],
+      "text-font": ["Open Sans Semibold", "Arial Unicode MS Regular"],
+      "text-size": ["interpolate", ["linear"], ["zoom"], 10, 12, 14, 14, 18, 18],
+      "text-offset": [0, 1.25],
+      "text-anchor": "top",
+      "text-allow-overlap": false,
+      "text-ignore-placement": false
+    },
+    paint: {
+      "text-color": "rgba(0,0,0,0.01)",
+      "text-halo-color": "rgba(0,0,0,0.70)",
+      "text-halo-width": 6.0,
+      "text-halo-blur": 0.8,
+      "text-opacity": ["interpolate", ["linear"], ["zoom"], 10, 0.0, 12, 0.65, 14, 1.0]
+    }
+  });
+}
+
+// TV-tekst: frontlag (hvit tekst)
+if (!MAP.getLayer("places-label")) {
+  MAP.addLayer({
+    id: "places-label",
+    type: "symbol",
+    source: "places",
+    layout: {
+      "text-field": ["get", "name"],
+      "text-font": ["Open Sans Semibold", "Arial Unicode MS Regular"],
+      "text-size": ["interpolate", ["linear"], ["zoom"], 10, 12, 14, 14, 18, 18],
+      "text-offset": [0, 1.25],
+      "text-anchor": "top",
+      "text-allow-overlap": false,
+      "text-ignore-placement": false
+    },
+    paint: {
+      "text-color": "rgba(255,255,255,0.98)",
+      "text-halo-color": "rgba(0,0,0,0.92)",
+      "text-halo-width": 1.8,
+      "text-halo-blur": 0.6,
+      "text-opacity": ["interpolate", ["linear"], ["zoom"], 10, 0.0, 12, 0.65, 14, 1.0]
+    }
+  });
+}
+
+// Cursor feedback (bind kun én gang)
+if (!MAP.__hgPlacesCursorBound) {
+  MAP.on("mouseenter", "places-hit", () => { MAP.getCanvas().style.cursor = "pointer"; });
+  MAP.on("mouseleave", "places-hit", () => { MAP.getCanvas().style.cursor = ""; });
+  MAP.__hgPlacesCursorBound = true;
+}
+
+// Click handler (bind kun én gang)
+if (!MAP.__hgPlacesClickBound) {
+  MAP.on("click", "places-hit", (e) => {
+    const f = e.features && e.features[0];
+    if (!f) return;
+
+    const id = f.properties.id;
+    const p = PLACES.find(x => x.id === id);
+    if (p) openPlaceCard(p);
+  });
+  MAP.__hgPlacesClickBound = true;
+}
+
+  
 // ==============================
 // 7. LISTEVISNINGER
 // ==============================
