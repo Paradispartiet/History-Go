@@ -691,13 +691,13 @@ MAP.addLayer({
     type: "circle",
     source: "places",
     paint: {
-"circle-radius": [
+""circle-radius": [
   "interpolate", ["linear"], ["zoom"],
-  10, ["+", 0.9, ["*", 0.25, ["get", "visited"]]],
-  12, ["+", 1.3, ["*", 0.35, ["get", "visited"]]],
-  14, ["+", 2.4, ["*", 0.55, ["get", "visited"]]],
-  16, ["+", 5.6, ["*", 0.95, ["get", "visited"]]],
-  18, ["+", 10.8, ["*", 1.35, ["get", "visited"]]]
+  10, ["+", 1.8, ["*", 0.35, ["get", "visited"]]],
+  12, ["+", 2.6, ["*", 0.45, ["get", "visited"]]],
+  14, ["+", 4.2, ["*", 0.60, ["get", "visited"]]],
+  16, ["+", 7.2, ["*", 0.95, ["get", "visited"]]],
+  18, ["+", 12.0, ["*", 1.30, ["get", "visited"]]]
 ],
       "circle-color": ["get", "fill"],
       "circle-stroke-color": ["get", "border"],
@@ -706,23 +706,35 @@ MAP.addLayer({
     }
   });
 
-  // Tooltip on hover (erstatter bindTooltip)
-  const tip = new maplibregl.Popup({ closeButton: false, closeOnClick: false, offset: 10 });
+  MAP.addLayer({
+  id: "places-label",
+  type: "symbol",
+  source: "places",
+  layout: {
+    "text-field": ["get", "name"],
+    "text-font": ["Open Sans Regular", "Arial Unicode MS Regular"],
+    "text-size": ["interpolate", ["linear"], ["zoom"], 10, 11, 14, 13, 18, 16],
+    "text-offset": [0, 1.15],         // under prikken
+    "text-anchor": "top",
+    "text-allow-overlap": false,
+    "symbol-sort-key": ["get", "visited"] // besøkte over andre
+  },
+  paint: {
+    "text-color": "rgba(255,255,255,0.95)",
+    "text-halo-color": "rgba(0,0,0,0.85)", // “skygge”
+    "text-halo-width": 1.4,
+    "text-halo-blur": 0.6,
+    "text-opacity": ["interpolate", ["linear"], ["zoom"], 10, 0.0, 12, 0.6, 14, 1.0]
+  }
+});
 
-MAP.on("mouseenter", "places-hit", (e) => {
+// Ingen tooltip – bare cursor feedback
+MAP.on("mouseenter", "places-hit", () => {
   MAP.getCanvas().style.cursor = "pointer";
-  const f = e.features && e.features[0];
-  if (!f) return;
-
-  const name = f.properties.name || "";
-  const v = String(f.properties.visited) === "1";
-
-  tip.setLngLat(e.lngLat).setHTML(v ? `✅ ${name}` : name).addTo(MAP);
 });
 
 MAP.on("mouseleave", "places-hit", () => {
   MAP.getCanvas().style.cursor = "";
-  tip.remove();
 });
 
 // Click → åpne ditt eksisterende place-card
