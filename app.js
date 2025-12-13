@@ -691,7 +691,7 @@ MAP.addLayer({
     type: "circle",
     source: "places",
     paint: {
-""circle-radius": [
+"circle-radius": [
   "interpolate", ["linear"], ["zoom"],
   10, ["+", 1.8, ["*", 0.35, ["get", "visited"]]],
   12, ["+", 2.6, ["*", 0.45, ["get", "visited"]]],
