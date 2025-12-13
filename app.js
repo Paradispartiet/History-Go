@@ -1395,6 +1395,8 @@ function enterMapMode() {
   const mapEl = document.getElementById("map");
   if (mapEl) mapEl.style.zIndex = "10";
 
+  if (MAP && typeof MAP.resize === "function") MAP.resize();  // ✅ viktig
+
   showToast("Kartmodus");
 }
 
@@ -1411,12 +1413,17 @@ function exitMapMode() {
   const mapEl = document.getElementById("map");
   if (mapEl) mapEl.style.zIndex = "1";
 
+  if (MAP && typeof MAP.resize === "function") MAP.resize();  // ✅ viktig
+
   showToast("Tilbake til oversikt");
 }
 
 el.btnSeeMap?.addEventListener("click", enterMapMode);
 el.btnExitMap?.addEventListener("click", exitMapMode);
 
+window.addEventListener("resize", () => {
+  if (MAP && typeof MAP.resize === "function") MAP.resize();
+});
 
 // ==============================
 // 13. QUIZ – DYNAMISK LASTER, MODAL & SCORE
