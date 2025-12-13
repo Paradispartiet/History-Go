@@ -82,11 +82,19 @@ body{
 /* ===================================================== */
 
 /* Kartet ligger alltid fullskjerm under alt innhold */
-#map {
+#map{
   position: fixed;
-  inset: 0;
+  left: 0; top: 0;
+  width: 100vw;
+  height: 100vh;
   z-index: 1;
   background: #000;
+  overflow: hidden;
+}
+
+/* Hindrer 1px-gaps (canvas skal være block) */
+#map .maplibregl-canvas{
+  display: block;
 }
 
 /* HEADER skal ligge over kartet og være klikkbar */
