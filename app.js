@@ -367,9 +367,8 @@ style: "https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json",
   MAP.on("load", () => {
     mapReady = true;
 
-    // Glow + tydelige labels
-    applyGlowRoads();
-    applyBetterLabels();
+applyGlowRoads();
+applyDarkColorfulLook();
 
     // Tegn places når data er klare
     if (dataReady) maybeDrawMarkers();
@@ -445,6 +444,59 @@ function applyBetterLabels() {
     } catch (e) {
       // noen symbol-lag har ikke text-* (f.eks. icons-only) – ignorer
     }
+  });
+}
+
+function applyDarkColorfulLook() {
+  if (!MAP) return;
+
+  const style = MAP.getStyle();
+  const layers = (style && style.layers) || [];
+
+  // Demp road-glow-lagene vi la inn selv
+  layers.forEach(l => {
+    if (!l.id || !l.id.startsWith("hg-road-glow-")) return;
+    try { MAP.setPaintProperty(l.id, "line-opacity", 0.35); } catch(e) {}
+    try { MAP.setPaintProperty(l.id, "line-color", "rgba(255,255,255,0.14)"); } catch(e) {}
+  });
+
+  // Mørkt slør som beholder fargene under (Voyager blir “kveld”)
+  if (!MAP.getSource("hg-dim")) {
+    MAP.addSource("hg-dim", {
+      type: "geojson",
+      data: {
+        type: "Feature",
+        geometry: {
+          type: "Polygon",
+          coordinates: [[
+            [-180, -85], [180, -85], [180, 85], [-180, 85], [-180, -85]
+          ]]
+        }
+      }
+    });
+
+    const firstSymbol = layers.find(l => l.type === "symbol");
+    const beforeId = firstSymbol ? firstSymbol.id : undefined;
+
+    MAP.addLayer({
+      id: "hg-dim",
+      type: "fill",
+      source: "hg-dim",
+      paint: { "fill-color": "rgba(0,0,0,0.26)", "fill-opacity": 1 }
+    }, beforeId);
+  }
+
+  // Labels: hvit tekst + mørk halo (lesbar på mørkt kart)
+  layers.forEach(l => {
+    if (l.type !== "symbol") return;
+    if (!/label|place|road|poi/i.test(l.id)) return;
+
+    try {
+      MAP.setPaintProperty(l.id, "text-color", "rgba(255,255,255,0.96)");
+      MAP.setPaintProperty(l.id, "text-halo-color", "rgba(0,0,0,0.85)");
+      MAP.setPaintProperty(l.id, "text-halo-width", 1.35);
+      MAP.setPaintProperty(l.id, "text-halo-blur", 0.4);
+    } catch (e) {}
   });
 }
 
@@ -618,13 +670,13 @@ MAP.addLayer({
   type: "circle",
   source: "places",
   paint: {
-    "circle-radius": [
+ "circle-radius": [
   "interpolate", ["linear"], ["zoom"],
-  10, ["+", 1.4, ["*", 0.40, ["get", "visited"]]],
-  12, ["+", 1.9, ["*", 0.55, ["get", "visited"]]],
-  14, ["+", 3.2, ["*", 0.75, ["get", "visited"]]],
-  16, ["+", 6.2, ["*", 1.05, ["get", "visited"]]],
-  18, ["+", 10.2, ["*", 1.25, ["get", "visited"]]]
+  10, 10,
+  12, 12,
+  14, 14,
+  16, 18,
+  18, 24
 ],
     "circle-color": "rgba(255,255,255,0)",   // helt usynlig
     "circle-stroke-width": 0,
