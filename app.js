@@ -780,7 +780,7 @@ if (!MAP.__hgPlacesClickBound) {
   });
   MAP.__hgPlacesClickBound = true;
 }
-
+}
   
 // ==============================
 // 7. LISTEVISNINGER
