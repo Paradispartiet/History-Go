@@ -1238,7 +1238,9 @@ function requestLocation() {
     renderNearbyPlaces();
     return;
   }
+
   if (el.status) el.status.textContent = "Henter posisjon…";
+
   navigator.geolocation.getCurrentPosition(
     g => {
       currentPos = { lat: g.coords.latitude, lon: g.coords.longitude };
@@ -1246,14 +1248,21 @@ function requestLocation() {
       setUser(currentPos.lat, currentPos.lon);
       renderNearbyPlaces();
     },
-    _ => {
-      if (el.status) el.status.textContent = "Kunne ikke hente posisjon.";
-      renderNearbyPlaces();
+    err => {
+      console.warn("Geolocation error:", err);
+      const msg =
+        err.code === 1 ? "Posisjon blokkert (tillat i Safari)." :
+        err.code === 2 ? "Kunne ikke finne posisjon." :
+        err.code === 3 ? "Posisjon timeout." :
+        "Pisisjon-feil.";
+
+      if (el.status) el.status.textContent = msg;
+      showToast(msg);
+      renderNearbyPlaces(); // viser lista uten avstand hvis currentPos=null
     },
-    { enableHighAccuracy: true, timeout: 8000, maximumAge: 10000 }
+    { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
   );
 }
-
 // MINI-PROFIL + quiz-historikk på forsiden
 function initMiniProfile() {
   const nm = document.getElementById("miniName");
