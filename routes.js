@@ -175,7 +175,19 @@ async function openRoutesSheet() {
     return;
   }
 
-  const sorted = getNearbyRoutesSorted(pos, (typeof visited !== "undefined" ? visited : null));
+  const titleEl = sheet.querySelector(".sheet-head h3");
+  if (titleEl) titleEl.textContent = "Nærmeste ruter";
+
+  if (!pos) {
+    body.innerHTML = `<div class="hg-muted">Fant ikke posisjon ennå.</div>`;
+    sheet.classList.add("open");
+    return;
+  }
+
+  const sorted = getNearbyRoutesSorted(
+    pos,
+    (typeof visited !== "undefined" ? visited : null)
+  );
 
   body.innerHTML = sorted.length
     ? sorted.map(renderRouteRow).join("")
