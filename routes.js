@@ -27,13 +27,15 @@ const HG_NAV_LINE = "hg-nav-route-line";
 async function loadRoutes() {
   if (routesLoaded) return ROUTES;
   try {
-    ROUTES = await fetch("routes.json", { cache: "no-store" }).then(r => r.json());
+    const data = await fetch("routes.json", { cache: "no-store" }).then(r => r.json());
+    ROUTES.length = 0;
+    ROUTES.push(...(Array.isArray(data) ? data : []));
     routesLoaded = true;
     console.log("Ruter lastet:", ROUTES.length);
     return ROUTES;
   } catch (err) {
     console.warn("Kunne ikke laste ruter", err);
-    ROUTES = [];
+    ROUTES.length = 0;
     routesLoaded = true;
     return ROUTES;
   }
