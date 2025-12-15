@@ -40,6 +40,76 @@ function distKm(aLat, aLon, bLat, bLon) {
   return 2 * R * Math.asin(Math.sqrt(x));
 }
 
+// Haversine i meter
+function distanceMeters(lat1, lon1, lat2, lon2) {
+  const R = 6371000;
+  const toRad = d => (d * Math.PI) / 180;
+
+  const dLat = toRad(lat2 - lat1);
+  const dLon = toRad(lon2 - lon1);
+  const a1 = toRad(lat1);
+  const a2 = toRad(lat2);
+
+  const x =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos(a1) * Math.cos(a2) * Math.sin(dLon / 2) ** 2;
+
+  return 2 * R * Math.asin(Math.sqrt(x));
+}
+
+/**
+ * route: { id,name,category,desc,stops:[{placeId,title,info}] }
+ * userPos: {lat, lon}
+ * visited: object map { [placeId]: true/false } (valgfri)
+ *
+ * return:
+ * { distM, stopIndex, placeId, stopTitle, place }
+ */
+function computeNearestStop(route, userPos, visited = null) {
+  if (!route?.stops?.length || !userPos) return null;
+
+  // bygg kandidatliste
+  const candidates = route.stops
+    .map((s, idx) => {
+      const place = PLACES.find(p => p.id === s.placeId);
+      if (!place) return null;
+
+      const distM = Math.round(
+        distanceMeters(userPos.lat, userPos.lon, place.lat, place.lon)
+      );
+
+      const isVisited = visited ? !!visited[s.placeId] : false;
+
+      return {
+        idx,
+        distM,
+        placeId: s.placeId,
+        stopTitle: s.title || place.name || "",
+        place,
+        isVisited
+      };
+    })
+    .filter(Boolean);
+
+  if (!candidates.length) return null;
+
+  // Bonusregel: nærmeste UBESØKTE først, ellers nærmeste uansett
+  const pool = candidates.some(c => !c.isVisited)
+    ? candidates.filter(c => !c.isVisited)
+    : candidates;
+
+  pool.sort((a, b) => a.distM - b.distM);
+
+  const best = pool[0];
+  return {
+    distM: best.distM,
+    stopIndex: best.idx,
+    placeId: best.placeId,
+    stopTitle: best.stopTitle,
+    place: best.place
+  };
+}
+
 function getUserLatLonFallback() {
   // app(127).js bruker userPos {lat, lon}. Hvis ikke, prøv window.userLat/userLon, ellers START.
   if (window.userPos && typeof window.userPos.lat === "number" && typeof window.userPos.lon === "number") {
