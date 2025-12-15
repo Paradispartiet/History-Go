@@ -1,28 +1,103 @@
 // =====================================================
-// ROUTES.JS – visning av tematiske ruter i History Go
+// ROUTES.JS – tematiske ruter (MapLibre) + “Nærmeste ruter”
+// Krever:
+//  - global MAP (maplibregl.Map) fra app.js/app(127).js
+//  - global PLACES array
+//  - showToast(), openPlaceCard(), catColor()
+//  - sheet: #sheetNearby + #sheetNearbyBody
 // =====================================================
 
 let ROUTES = [];
+let routesLoaded = false;
 
-// ------------------------------
-// Laster rutene fra JSON
-// ------------------------------
+// MapLibre layer/source ids for temaruter
+const HG_ROUTE_SRC = "hg-thematic-route";
+const HG_ROUTE_GLOW = "hg-thematic-route-glow";
+const HG_ROUTE_LINE = "hg-thematic-route-line";
+const HG_ROUTE_STOPS = "hg-thematic-route-stops";
+
 async function loadRoutes() {
+  if (routesLoaded) return;
   try {
     ROUTES = await fetch("routes.json", { cache: "no-store" }).then(r => r.json());
+    routesLoaded = true;
     console.log("Ruter lastet:", ROUTES.length);
   } catch (err) {
     console.warn("Kunne ikke laste ruter", err);
+    ROUTES = [];
+    routesLoaded = true;
   }
 }
 
-// ------------------------------
-// Viser rutebeskrivelsen som overlay
-// ------------------------------
-async function showRouteOverlay(routeId) {
-  if (!ROUTES.length) await loadRoutes();
+// ---------- utils ----------
+function distKm(aLat, aLon, bLat, bLon) {
+  const R = 6371;
+  const dLat = (bLat - aLat) * Math.PI / 180;
+  const dLon = (bLon - aLon) * Math.PI / 180;
+  const lat1 = aLat * Math.PI / 180;
+  const lat2 = bLat * Math.PI / 180;
+  const x = Math.sin(dLat/2)**2 + Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLon/2)**2;
+  return 2 * R * Math.asin(Math.sqrt(x));
+}
+
+function getUserLatLonFallback() {
+  // app(127).js bruker userPos {lat, lon}. Hvis ikke, prøv window.userLat/userLon, ellers START.
+  if (window.userPos && typeof window.userPos.lat === "number" && typeof window.userPos.lon === "number") {
+    return { lat: window.userPos.lat, lon: window.userPos.lon };
+  }
+  if (typeof window.userLat === "number" && typeof window.userLon === "number") {
+    return { lat: window.userLat, lon: window.userLon };
+  }
+  if (window.START && typeof START.lat === "number" && typeof START.lon === "number") {
+    return { lat: START.lat, lon: START.lon };
+  }
+  return null;
+}
+
+function routeStopsWithPlaces(route) {
+  const stops = (route?.stops || []).map((s, idx) => {
+    const plc = (window.PLACES || []).find(p => p.id === s.placeId);
+    return plc ? { ...s, _idx: idx, _place: plc } : null;
+  }).filter(Boolean);
+  return stops;
+}
+
+// return { km, stopIndex, stopTitle, placeId }
+function nearestStopToUser(route, userLat, userLon) {
+  const stops = routeStopsWithPlaces(route);
+  if (!stops.length) return null;
+
+  let best = null;
+  for (const s of stops) {
+    const p = s._place;
+    const km = distKm(userLat, userLon, p.lat, p.lon);
+    if (!best || km < best.km) {
+      best = { km, stopIndex: s._idx, stopTitle: s.title || p.name || "", placeId: s.placeId };
+    }
+  }
+  return best;
+}
+
+function formatKm(km) {
+  if (km == null || !isFinite(km)) return "";
+  if (km < 1) return `${Math.round(km * 1000)} m`;
+  return `${km.toFixed(km < 10 ? 1 : 0)} km`;
+}
+
+// ---------- UI: route overlay ----------
+async function showRouteOverlay(routeId, startIndex = null) {
+  await loadRoutes();
   const route = ROUTES.find(r => r.id === routeId);
-  if (!route) return showToast("Fant ikke ruten.");
+  if (!route) return showToast?.("Fant ikke ruten.");
+
+  const ovOld = document.getElementById("routeOverlay");
+  if (ovOld) ovOld.remove();
+
+  const stops = routeStopsWithPlaces(route);
+
+  const user = getUserLatLonFallback();
+  const near = user ? nearestStopToUser(route, user.lat, user.lon) : null;
+  const suggested = (startIndex == null && near) ? near.stopIndex : startIndex;
 
   const overlay = document.createElement("div");
   overlay.id = "routeOverlay";
@@ -35,117 +110,210 @@ async function showRouteOverlay(routeId) {
         <h2>${route.name}</h2>
         <p class="muted">${route.category || ""}</p>
         <p>${route.desc || ""}</p>
+
         <div style="margin-top:12px;display:flex;flex-wrap:wrap;gap:8px;">
-          <button class="primary" onclick="focusRouteOnMap('${route.id}')">Se på kart</button>
+          <button class="primary" onclick="focusRouteOnMap('${route.id}', ${suggested ?? 0})">
+            Vis rute på kart
+          </button>
+          ${near ? `
+            <button class="ghost" onclick="focusRouteOnMap('${route.id}', ${near.stopIndex})">
+              Start nærmest (${formatKm(near.km)})
+            </button>` : ""
+          }
         </div>
+
+        ${near ? `<p class="muted" style="margin-top:10px;">Nærmeste stopp: <strong>${near.stopTitle}</strong> (${formatKm(near.km)})</p>` : ""}
       </div>
+
       <div class="right">
-        ${route.stops.map(stop => `
-          <div class="card" style="margin-bottom:8px;">
-            <strong>${stop.title}</strong><br>
-            <p>${stop.info}</p>
-            <button class="ghost" onclick="openPlaceById('${stop.placeId}')">Åpne sted</button>
-          </div>`).join("")}
+        ${stops.map(s => {
+          const p = s._place;
+          return `
+            <div class="card" style="margin-bottom:8px;">
+              <strong>${s.title || p.name}</strong><br>
+              <p>${s.info || ""}</p>
+              <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                <button class="ghost" onclick="openPlaceById('${s.placeId}')">Åpne sted</button>
+                <button class="secondary" onclick="focusRouteOnMap('${route.id}', ${s._idx})">Start her</button>
+              </div>
+            </div>`;
+        }).join("")}
       </div>
-    </div>`;
+    </div>
+  `;
 
   document.body.appendChild(overlay);
   overlay.addEventListener("click", e => {
-    if (e.target.id === "routeOverlay") closeRouteOverlay();
+    if (e.target && e.target.id === "routeOverlay") closeRouteOverlay();
   });
 }
 
-// ------------------------------
-// Lukker overlay
-// ------------------------------
 function closeRouteOverlay() {
   const ov = document.getElementById("routeOverlay");
   if (ov) ov.remove();
 }
 
-// ------------------------------
-// Åpner sted direkte fra rute
-// ------------------------------
 function openPlaceById(id) {
-  const p = PLACES.find(x => x.id === id);
-  if (p) openPlaceCard(p);
+  const p = (window.PLACES || []).find(x => x.id === id);
+  if (p) window.openPlaceCard?.(p);
   closeRouteOverlay();
 }
 
-// ------------------------------
-// Tegner rute på kartet – fotrute med kategoriens farge
-// ------------------------------
-function focusRouteOnMap(routeId) {
+// ---------- Map: draw elegant thematic route ----------
+function clearThematicRoute() {
+  if (!window.MAP || typeof MAP.getLayer !== "function") return;
+
+  [HG_ROUTE_STOPS, HG_ROUTE_LINE, HG_ROUTE_GLOW].forEach(id => {
+    if (MAP.getLayer(id)) MAP.removeLayer(id);
+  });
+  if (MAP.getSource(HG_ROUTE_SRC)) MAP.removeSource(HG_ROUTE_SRC);
+}
+
+function focusRouteOnMap(routeId, startIndex = 0) {
   const route = ROUTES.find(r => r.id === routeId);
-  if (!route || !MAP) return;
+  if (!route || !window.MAP) return;
 
-  // Finn fargen ut fra kategori (samme logikk som i app.js)
-  const color = typeof catColor === "function" ? catColor(route.category || "") : "#9b59b6";
+  const stops = routeStopsWithPlaces(route);
+  if (!stops.length) return showToast?.("Ingen gyldige stopp funnet.");
 
-  // Hent koordinater fra steder
-  const coords = route.stops
-    .map(s => {
-      const plc = PLACES.find(p => p.id === s.placeId);
-      return plc ? [plc.lat, plc.lon] : null;
+  // Start kan være “hvilket stopp som helst”
+  const start = Math.max(0, Math.min(Number(startIndex) || 0, stops.length - 1));
+  const ordered = stops.slice(start);
+
+  const coords = ordered.map(s => [s._place.lon, s._place.lat]); // MapLibre: [lon,lat]
+  if (coords.length < 2) {
+    // hvis bare ett punkt, fly
+    MAP.flyTo({ center: coords[0], zoom: Math.max(MAP.getZoom(), 15) });
+    showToast?.("Kun ett stopp å vise.");
+    return;
+  }
+
+  // Farge fra kategori (samme som steder)
+  const color = (typeof window.catColor === "function")
+    ? window.catColor(route.category || "")
+    : "#f6c800";
+
+  clearThematicRoute();
+
+  // GeoJSON: line + stop points
+  const geo = {
+    type: "FeatureCollection",
+    features: [
+      { type: "Feature", properties: { kind: "line" }, geometry: { type: "LineString", coordinates: coords } },
+      ...ordered.map((s, i) => ({
+        type: "Feature",
+        properties: { kind: "stop", idx: i, title: s.title || s._place.name || "" },
+        geometry: { type: "Point", coordinates: [s._place.lon, s._place.lat] }
+      }))
+    ]
+  };
+
+  MAP.addSource(HG_ROUTE_SRC, { type: "geojson", data: geo });
+
+  // Glow
+  MAP.addLayer({
+    id: HG_ROUTE_GLOW,
+    type: "line",
+    source: HG_ROUTE_SRC,
+    filter: ["==", ["get", "kind"], "line"],
+    paint: {
+      "line-color": "rgba(255,255,255,0.22)",
+      "line-width": ["interpolate", ["linear"], ["zoom"], 11, 5, 14, 8, 17, 14],
+      "line-blur": ["interpolate", ["linear"], ["zoom"], 11, 2, 15, 3.5, 17, 4.5],
+      "line-opacity": 0.85
+    }
+  });
+
+  // Core line (category color)
+  MAP.addLayer({
+    id: HG_ROUTE_LINE,
+    type: "line",
+    source: HG_ROUTE_SRC,
+    filter: ["==", ["get", "kind"], "line"],
+    paint: {
+      "line-color": color,
+      "line-width": ["interpolate", ["linear"], ["zoom"], 11, 2.4, 14, 4.2, 17, 7.0],
+      "line-opacity": 0.95
+    }
+  });
+
+  // Stops (small, neat)
+  MAP.addLayer({
+    id: HG_ROUTE_STOPS,
+    type: "circle",
+    source: HG_ROUTE_SRC,
+    filter: ["==", ["get", "kind"], "stop"],
+    paint: {
+      "circle-radius": ["interpolate", ["linear"], ["zoom"], 11, 3.2, 14, 4.4, 17, 6.2],
+      "circle-color": "#111",
+      "circle-stroke-color": "rgba(255,255,255,0.9)",
+      "circle-stroke-width": 1.4,
+      "circle-opacity": 0.95
+    }
+  });
+
+  // Fit bounds
+  const bounds = coords.reduce(
+    (bb, c) => bb.extend(c),
+    new maplibregl.LngLatBounds(coords[0], coords[0])
+  );
+  MAP.fitBounds(bounds, { padding: 50 });
+
+  showToast?.("Viser temarute.");
+}
+
+// ---------- “Near me” list in your existing sheet ----------
+async function openRoutesSheet() {
+  await loadRoutes();
+
+  const sheet = document.getElementById("sheetNearby");
+  const body = document.getElementById("sheetNearbyBody");
+  if (!sheet || !body) return showToast?.("Mangler sheetNearby.");
+
+  const user = getUserLatLonFallback();
+  if (!user) return showToast?.("Fant ikke posisjon.");
+
+  // sort by nearest stop
+  const items = ROUTES
+    .map(r => {
+      const near = nearestStopToUser(r, user.lat, user.lon);
+      return near ? { route: r, near } : null;
     })
-    .filter(Boolean);
+    .filter(Boolean)
+    .sort((a, b) => a.near.km - b.near.km);
 
-  if (!coords.length) return showToast("Ingen gyldige stopp funnet.");
+  if (!items.length) {
+    body.innerHTML = `<p class="muted">Ingen ruter funnet.</p>`;
+  } else {
+    body.innerHTML = items.slice(0, 40).map(({ route, near }) => {
+      const cat = route.category || "";
+      return `
+        <div class="hg-place" style="display:flex;justify-content:space-between;gap:10px;align-items:center;">
+          <div style="min-width:0;">
+            <div style="font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
+              ${route.name}
+            </div>
+            <div class="hg-muted" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
+              ${cat} · start nærmest: ${near.stopTitle} · ${formatKm(near.km)}
+            </div>
+          </div>
 
-  // Fjern tidligere rute hvis den finnes
-  if (window.routeControl) {
-    try { MAP.removeControl(window.routeControl); } catch(e) {}
-    window.routeControl = null;
+          <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end;">
+            <button class="ghost" onclick="showRouteOverlay('${route.id}', ${near.stopIndex})">Info</button>
+            <button class="primary" onclick="focusRouteOnMap('${route.id}', ${near.stopIndex})">Vis</button>
+          </div>
+        </div>
+      `;
+    }).join("");
   }
 
-  try {
-    // 🥾 Bruk Leaflet Routing Machine for fotrute
-    window.routeControl = L.Routing.control({
-      waypoints: coords.map(c => L.latLng(c[0], c[1])),
-      router: L.Routing.osrmv1({
-        serviceUrl: "https://routing.openstreetmap.de/routed-foot/route/v1",
-        profile: "foot"
-      }),
-      addWaypoints: false,
-      draggableWaypoints: false,
-      fitSelectedRoutes: true,
-      show: false,
-      lineOptions: {
-        styles: [{ color, weight: 5, opacity: 0.9 }]
-      },
-      createMarker: () => null
-    }).addTo(MAP);
-
-    showToast(`🥾 Fotrute: ${route.name}`);
-  } catch (e) {
-    console.warn("Fotrute-feil:", e);
-    showToast("Kunne ikke hente fotrute – viser rett linje.");
-    const line = L.polyline(coords, { color, weight: 4 }).addTo(MAP);
-    MAP.fitBounds(line.getBounds(), { padding: [60, 60] });
-  }
-
-  closeRouteOverlay();
+  sheet.setAttribute("aria-hidden", "false");
 }
 
-function closeAllRoutes() {
-
-  // 1) Fjern tematisk rute
-  if (window.routeControl) {
-    try { MAP.removeControl(window.routeControl); } catch(e) {}
-    window.routeControl = null;
-  }
-
-  // 2) Fjern navigasjonsrute fra app.js
-  if (window.navLine) {
-    try { MAP.removeLayer(window.navLine); } catch(e) {}
-    window.navLine = null;
-  }
-}
-
-
-// ------------------------------
-// Eksporter funksjoner til global scope
-// ------------------------------
-window.showRouteOverlay = showRouteOverlay;
+// ---------- expose globals (so app.js can call it without imports) ----------
 window.loadRoutes = loadRoutes;
-window.closeAllRoutes = closeAllRoutes;
+window.showRouteOverlay = showRouteOverlay;
+window.closeRouteOverlay = closeRouteOverlay;
+window.focusRouteOnMap = focusRouteOnMap;
+window.openRoutesSheet = openRoutesSheet;
+window.clearThematicRoute = clearThematicRoute;
