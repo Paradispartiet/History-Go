@@ -208,6 +208,83 @@ function focusRouteOnMap(routeId, startIndex = 0) {
   const sliced = places.slice(Math.max(0, startIndex));
   const coords = sliced.map(p => [p.lon, p.lat]);
 
+async function showRouteTo(place) {
+  if (!MAP || !place) return;
+
+  // from = userPos (fra setUser) eller START
+  const from = userPos
+    ? [userPos.lon, userPos.lat]
+    : [START.lon, START.lat];
+
+  const to = [place.lon, place.lat];
+
+  // Fjern gammel rute
+  if (MAP.getLayer("hg-route")) MAP.removeLayer("hg-route");
+  if (MAP.getSource("hg-route")) MAP.removeSource("hg-route");
+
+  try {
+    const url =
+      `https://routing.openstreetmap.de/routed-foot/route/v1/foot/` +
+      `${from[0]},${from[1]};${to[0]},${to[1]}` +
+      `?overview=full&geometries=geojson`;
+
+    const res = await fetch(url);
+    if (!res.ok) throw new Error("route http " + res.status);
+    const json = await res.json();
+
+    const coords = json?.routes?.[0]?.geometry?.coordinates;
+    if (!coords || !coords.length) throw new Error("no geometry");
+
+    MAP.addSource("hg-route", {
+      type: "geojson",
+      data: { type: "Feature", geometry: { type: "LineString", coordinates: coords } }
+    });
+
+    MAP.addLayer({
+      id: "hg-route",
+      type: "line",
+      source: "hg-route",
+      paint: {
+        "line-color": "#cfe8ff",
+        "line-width": ["interpolate", ["linear"], ["zoom"], 10, 3, 14, 5, 18, 8],
+        "line-opacity": 1
+      }
+    });
+
+    // zoom til ruten
+    const b = coords.reduce(
+      (bb, c) => bb.extend(c),
+      new maplibregl.LngLatBounds(coords[0], coords[0])
+    );
+    MAP.fitBounds(b, { padding: 40 });
+
+    showToast("Rute lagt.");
+  } catch (e) {
+    // fallback: rett linje
+    MAP.addSource("hg-route", {
+      type: "geojson",
+      data: { type: "Feature", geometry: { type: "LineString", coordinates: [from, to] } }
+    });
+
+    MAP.addLayer({
+      id: "hg-route",
+      type: "line",
+      source: "hg-route",
+      paint: {
+        "line-color": "#cfe8ff",
+        "line-width": ["interpolate", ["linear"], ["zoom"], 10, 3, 14, 5, 18, 8],
+        "line-opacity": 1
+      }
+    });
+
+    const b = new maplibregl.LngLatBounds(from, from).extend(to);
+    MAP.fitBounds(b, { padding: 40 });
+
+    showToast("Vis linje (ingen rutetjeneste)");
+  }
+}
+
+  
   // Bygg GeoJSON
   const geo = {
     type: "FeatureCollection",
