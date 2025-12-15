@@ -448,6 +448,7 @@ async function showRouteToPlace(place) {
   }
 }
 
+
 // ---------- expose globals ----------
 window.ROUTES = ROUTES; // OBS: dette peker på initial array; ROUTES fylles senere
 window.loadRoutes = loadRoutes;
