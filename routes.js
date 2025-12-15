@@ -310,6 +310,94 @@ async function openRoutesSheet() {
   sheet.setAttribute("aria-hidden", "false");
 }
 
+// ==============================
+// NÆRMESTE STOPP (for "Nærmeste ruter")
+// ==============================
+
+// Haversine i meter
+function distanceMeters(aLat, aLon, bLat, bLon) {
+  const R = 6371000;
+  const toRad = d => (d * Math.PI) / 180;
+
+  const dLat = toRad(bLat - aLat);
+  const dLon = toRad(bLon - aLon);
+  const lat1 = toRad(aLat);
+  const lat2 = toRad(bLat);
+
+  const x =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLon / 2) ** 2;
+
+  return 2 * R * Math.asin(Math.sqrt(x));
+}
+
+/**
+ * route: { stops:[{placeId,...}] }
+ * userPos: {lat, lon}
+ * returns: { distM, stopIndex, place, placeId }
+ */
+function computeNearestStop(route, userPos) {
+  if (!route?.stops?.length || !userPos) return null;
+
+  let best = null;
+
+  route.stops.forEach((s, idx) => {
+    const plc = PLACES.find(p => p.id === s.placeId);
+    if (!plc) return;
+
+    const d = distanceMeters(userPos.lat, userPos.lon, plc.lat, plc.lon);
+
+    if (!best || d < best.distM) {
+      best = { distM: d, stopIndex: idx, place: plc, placeId: plc.id };
+    }
+  });
+
+  return best;
+}
+
+/**
+ * Returnerer ruter sortert etter nærmeste stopp.
+ * Legger på:
+ *  _nearestDistM, _nearestStopIndex, _nearestStopPlaceId, _nearestStopName
+ */
+function getNearbyRoutesSorted(userPos) {
+  if (!Array.isArray(ROUTES) || !ROUTES.length) return [];
+
+  return ROUTES
+    .map(r => {
+      const n = computeNearestStop(r, userPos);
+      return {
+        ...r,
+        _nearestDistM: n ? Math.round(n.distM) : null,
+        _nearestStopIndex: n ? n.stopIndex : null,
+        _nearestStopPlaceId: n ? n.placeId : null,
+        _nearestStopName: n?.place?.name || ""
+      };
+    })
+    .sort((a, b) => (a._nearestDistM ?? 1e12) - (b._nearestDistM ?? 1e12));
+}
+
+// Formatering (samme stil som places-lista di)
+function formatDist(m) {
+  if (m == null) return "";
+  return m < 1000 ? `${m} m` : `${(m / 1000).toFixed(1)} km`;
+}
+
+function startRouteAtNearest(routeId, userPos) {
+  const route = ROUTES.find(r => r.id === routeId);
+  if (!route) return;
+
+  const n = computeNearestStop(route, userPos);
+  if (!n) return showToast("Fant ikke nærmeste stopp.");
+
+  // Lagre på route-objektet (enkelt, null ekstra datastruktur)
+  route._startIndex = n.stopIndex;
+  route._startPlaceId = n.placeId;
+
+  // Åpne overlay som før, men du kan nå vise “Starter ved …”
+  showRouteOverlay(routeId);
+}
+
 // ---------- expose globals (so app.js can call it without imports) ----------
 window.loadRoutes = loadRoutes;
 window.showRouteOverlay = showRouteOverlay;
