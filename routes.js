@@ -78,6 +78,12 @@ function getUserPos() {
     : (typeof userPos !== "undefined" && userPos ? userPos : null);
 }
 
+if (!pos) {
+  body.innerHTML = `<div class="hg-muted">Fant ikke posisjon ennå.</div>`;
+  sheet.classList.add("open");
+  return;
+}
+P
 // ---------- nearest-stop logic ----------
 // route: { stops:[{placeId,title,info}] }
 // return: { distM, stopIndex, placeId, stopTitle, place, isVisited }
