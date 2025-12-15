@@ -650,6 +650,10 @@ function drawPlaceMarkers() {
   }
 
 // Første gang: legg source + layers + handlers
+if (!MAP.isStyleLoaded()) {
+  MAP.once("load", () => drawPlaceMarkers());
+  return;
+}
 MAP.addSource("places", { type: "geojson", data: fc });
 
 // Mild glow bak
