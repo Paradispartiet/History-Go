@@ -781,11 +781,98 @@ if (!MAP.__hgPlacesClickBound) {
   MAP.__hgPlacesClickBound = true;
 }
 }
-  
+
+
+
 // ==============================
 // 7. LISTEVISNINGER
-// ==============================
+// =============================
+
 let currentPos = null;
+
+
+function distMeters(a, b) {
+  // hvis du allerede har en distMeters, ikke legg inn denne
+  const R = 6371000;
+  const toRad = d => d * Math.PI / 180;
+  const dLat = toRad(b.lat - a.lat);
+  const dLon = toRad(b.lon - a.lon);
+  const lat1 = toRad(a.lat);
+  const lat2 = toRad(b.lat);
+  const x =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLon / 2) ** 2;
+  return 2 * R * Math.asin(Math.sqrt(x));
+}
+
+// Finn nærmeste stopp i en rute (bonus: prioriter ubesøkt)
+function nearestStopForRoute(route) {
+  if (!currentPos || !route?.stops?.length) return null;
+
+  const stops = route.stops
+    .map((s, idx) => {
+      const plc = PLACES.find(p => p.id === s.placeId);
+      if (!plc) return null;
+
+      const d = Math.round(distMeters(currentPos, { lat: plc.lat, lon: plc.lon }));
+      const isVisited = !!visited?.[plc.id];   // bruker visited du allerede har
+      return { idx, place: plc, placeId: plc.id, d, isVisited, title: s.title || plc.name };
+    })
+    .filter(Boolean);
+
+  if (!stops.length) return null;
+
+  // først: nærmeste ubesøkte, ellers nærmeste uansett
+  const unvisited = stops.filter(x => !x.isVisited);
+  const pool = unvisited.length ? unvisited : stops;
+  pool.sort((a, b) => a.d - b.d);
+
+  return pool[0];
+}
+
+function fmtDist(m) {
+  if (m == null) return "";
+  return m < 1000 ? `${m} m` : `${(m/1000).toFixed(1)} km`;
+}
+
+function renderRouteRow(r) {
+  // r._nearStop: { idx, placeId, title, d }
+  const near = r._nearStop;
+  const dist = near ? fmtDist(near.d) : "";
+  const stopTitle = near ? near.title : "";
+  const cat = r.category || "";
+
+  return `
+    <div class="hg-place">
+      <div class="hg-place-top">
+        <strong>${r.name}</strong>
+        <span class="hg-muted">${cat}</span>
+      </div>
+      <div class="hg-muted" style="margin-top:4px;">
+        📍 ${dist} til nærmeste stopp: ${stopTitle}
+      </div>
+      <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;">
+        <button class="chip ghost" onclick="showRouteOverlay('${r.id}', ${near ? near.idx : 0})">Info</button>
+        <button class="chip" onclick="focusRouteOnMap('${r.id}', ${near ? near.idx : 0})">Vis</button>
+      </div>
+    </div>
+  `;
+}
+
+function renderNearbyRoutes() {
+  if (!el.list) return;
+
+  const sorted = ROUTES
+    .map(r => {
+      const ns = nearestStopForRoute(r);
+      return { ...r, _nearStop: ns, _d: ns ? ns.d : null };
+    })
+    .sort((a, b) => (a._d ?? 1e12) - (b._d ?? 1e12));
+
+  el.list.innerHTML = sorted
+    .map(renderRouteRow)
+    .join("");
+}
 
 function renderNearbyPlaces() {
   if (!el.list) return;
