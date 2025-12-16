@@ -389,7 +389,10 @@ window.openPlaceCard = function(place) {
     }
   };
 
-  if (btnRoute) btnRoute.onclick = () => showRouteTo(place);
+if (btnRoute) btnRoute.onclick = () => {
+  if (typeof showRouteTo === "function") showRouteTo(place);
+  else if (typeof showToast === "function") showToast("Rute-funksjon ikke lastet");
+};
 
   if (btnNote && typeof handlePlaceNote === "function") {
     btnNote.onclick = () => handlePlaceNote(place);
