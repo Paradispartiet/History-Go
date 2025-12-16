@@ -173,146 +173,144 @@
   }
 
   function drawPlaceMarkers() {
-    if (!MAP || !PLACES.length) return;
+  if (!MAP || !PLACES.length) return;
 
-    const features = [];
+  const features = [];
+  for (const p of PLACES) {
+    const lat = Number(p?.lat);
+    const lon = Number(p?.lon);
+    if (!Number.isFinite(lat) || !Number.isFinite(lon)) continue;
 
-    for (const p of PLACES) {
-      const lat = getLat(p);
-      const lon = getLon(p);
-      if (!Number.isFinite(lat) || !Number.isFinite(lon)) continue;
+    const isVisited = !!visited[p.id];
+    const base = catColor(p.category);
+    const fill = isVisited ? lighten(base, 0.25) : base;
+    const border = isVisited ? "#ffd700" : "#111111";
 
-      const isVisited = !!visited[p.id];
-      const base = catColor(p.category);
-      const fill = isVisited ? lighten(base, 0.25) : base;
-      const border = isVisited ? "#ffd700" : "#111111";
-
-      features.push({
-        type: "Feature",
-        properties: {
-          id: p.id,
-          name: p.name || "",
-          visited: isVisited ? 1 : 0,
-          fill,
-          border
-        },
-        geometry: { type: "Point", coordinates: [lon, lat] }
-      });
-    }
-
-    const fc = { type: "FeatureCollection", features };
-
-    // Oppdater hvis source finnes
-    const src = MAP.getSource("places");
-    if (src) {
-      src.setData(fc);
-      // sikre at markers ligger øverst (kan aldri “forsvinne” bak labels)
-      forcePlacesOnTop();
-      return;
-    }
-
-    if (!MAP.isStyleLoaded()) {
-      MAP.once("load", () => drawPlaceMarkers());
-      return;
-    }
-
-    MAP.addSource("places", { type: "geojson", data: fc });
-
-    // Glow bak (mild, men synlig)
-    MAP.addLayer({
-      id: "places-glow",
-      type: "circle",
-      source: "places",
-      paint: {
-        "circle-radius": ["interpolate", ["linear"], ["zoom"], 10, 2, 12, 3, 14, 5, 16, 9, 18, 14],
-        "circle-color": "rgba(0,0,0,0.12)",
-        "circle-blur": 0.8
-      }
+    features.push({
+      type: "Feature",
+      properties: { id: p.id, name: p.name || "", visited: isVisited ? 1 : 0, fill, border },
+      geometry: { type: "Point", coordinates: [lon, lat] }
     });
+  }
 
-    // Trefferflate (usynlig)
-    MAP.addLayer({
-      id: "places-hit",
-      type: "circle",
-      source: "places",
-      paint: {
-        "circle-radius": ["interpolate", ["linear"], ["zoom"], 10, 10, 12, 12, 14, 14, 16, 18, 18, 24],
-        "circle-color": "rgba(0,0,0,0)",
-        "circle-opacity": 0
-      }
-    });
+  const fc = { type: "FeatureCollection", features };
 
-    // Synlige prikker
-    MAP.addLayer({
-      id: "places",
-      type: "circle",
-      source: "places",
-      paint: {
-        "circle-radius": [
-          "interpolate", ["linear"], ["zoom"],
-          10, ["+", 3.2, ["*", 0.6, ["get", "visited"]]],
-          12, ["+", 4.2, ["*", 0.8, ["get", "visited"]]],
-          14, ["+", 6.0, ["*", 1.1, ["get", "visited"]]],
-          16, ["+", 9.0, ["*", 1.4, ["get", "visited"]]],
-          18, ["+", 13.0, ["*", 1.7, ["get", "visited"]]]
-        ],
-        "circle-color": ["get", "fill"],
-        "circle-stroke-color": ["get", "border"],
-        "circle-stroke-width": 1.8,
-        "circle-opacity": 1
-      }
-    });
+  const SRC = "hg-places";
+  const L_GLOW = "hg-places-glow";
+  const L_HIT  = "hg-places-hit";
+  const L_DOTS = "hg-places";
+  const L_LAB  = "hg-places-label";
 
-    // Labels (enkel, lesbar)
-    MAP.addLayer({
-      id: "places-label",
-      type: "symbol",
-      source: "places",
-      layout: {
-        "text-field": ["get", "name"],
-        "text-font": ["Open Sans Semibold", "Arial Unicode MS Regular"],
-        "text-size": ["interpolate", ["linear"], ["zoom"], 11, 12, 14, 13, 18, 16],
-        "text-offset": [0, 1.2],
-        "text-anchor": "top",
-        "text-allow-overlap": false,
-        "text-ignore-placement": false
-      },
-      paint: {
-        "text-color": "rgba(20,20,20,0.92)",
-        "text-halo-color": "rgba(255,255,255,0.95)",
-        "text-halo-width": 1.4,
-        "text-halo-blur": 0.25,
-        "text-opacity": ["interpolate", ["linear"], ["zoom"], 10, 0.0, 12, 0.55, 14, 1.0]
-      }
-    });
+  // Hvis style ikke er ferdig, vent
+  if (!MAP.isStyleLoaded()) {
+    MAP.once("load", () => drawPlaceMarkers());
+    return;
+  }
 
-    // Cursor + click (bind én gang)
-    if (!MAP.__hgPlacesCursorBound) {
-      MAP.on("mouseenter", "places-hit", () => { MAP.getCanvas().style.cursor = "pointer"; });
-      MAP.on("mouseleave", "places-hit", () => { MAP.getCanvas().style.cursor = ""; });
-      MAP.__hgPlacesCursorBound = true;
-    }
-
-    if (!MAP.__hgPlacesClickBound) {
-      MAP.on("click", "places-hit", (e) => {
-        const f = e.features && e.features[0];
-        if (!f) return;
-        const id = f.properties && f.properties.id;
-        if (id) onPlaceClick(id);
-      });
-      MAP.__hgPlacesClickBound = true;
-    }
-
+  // Hvis source finnes: bare oppdater data
+  const src = MAP.getSource(SRC);
+  if (src) {
+    src.setData(fc);
     forcePlacesOnTop();
+    return;
   }
 
-  function forcePlacesOnTop() {
-    if (!MAP) return;
-    ["places-glow", "places", "places-hit", "places-label"].forEach(id => {
-      if (MAP.getLayer(id)) MAP.moveLayer(id);
+  // --- CLEAN SLATE (i tilfelle halv-lagde layers fra før) ---
+  [L_LAB, L_DOTS, L_HIT, L_GLOW].forEach(id => { if (MAP.getLayer(id)) MAP.removeLayer(id); });
+  if (MAP.getSource(SRC)) MAP.removeSource(SRC);
+
+  // --- Add source + layers ---
+  MAP.addSource(SRC, { type: "geojson", data: fc });
+
+  MAP.addLayer({
+    id: L_GLOW,
+    type: "circle",
+    source: SRC,
+    paint: {
+      "circle-radius": ["interpolate", ["linear"], ["zoom"], 10, 2, 12, 3, 14, 5, 16, 9, 18, 14],
+      "circle-color": "rgba(0,0,0,0.12)",
+      "circle-blur": 0.8
+    }
+  });
+
+  MAP.addLayer({
+    id: L_HIT,
+    type: "circle",
+    source: SRC,
+    paint: {
+      "circle-radius": ["interpolate", ["linear"], ["zoom"], 10, 10, 12, 12, 14, 14, 16, 18, 18, 24],
+      "circle-color": "rgba(0,0,0,0)",
+      "circle-opacity": 0
+    }
+  });
+
+  MAP.addLayer({
+    id: L_DOTS,
+    type: "circle",
+    source: SRC,
+    paint: {
+      "circle-radius": [
+        "interpolate", ["linear"], ["zoom"],
+        10, ["+", 3.2, ["*", 0.6, ["get", "visited"]]],
+        12, ["+", 4.2, ["*", 0.8, ["get", "visited"]]],
+        14, ["+", 6.0, ["*", 1.1, ["get", "visited"]]],
+        16, ["+", 9.0, ["*", 1.4, ["get", "visited"]]],
+        18, ["+", 13.0, ["*", 1.7, ["get", "visited"]]]
+      ],
+      "circle-color": ["get", "fill"],
+      "circle-stroke-color": ["get", "border"],
+      "circle-stroke-width": 1.8,
+      "circle-opacity": 1
+    }
+  });
+
+  MAP.addLayer({
+    id: L_LAB,
+    type: "symbol",
+    source: SRC,
+    layout: {
+      "text-field": ["get", "name"],
+      "text-font": ["Open Sans Semibold", "Arial Unicode MS Regular"],
+      "text-size": ["interpolate", ["linear"], ["zoom"], 11, 12, 14, 13, 18, 16],
+      "text-offset": [0, 1.2],
+      "text-anchor": "top",
+      "text-allow-overlap": false,
+      "text-ignore-placement": false
+    },
+    paint: {
+      "text-color": "rgba(20,20,20,0.92)",
+      "text-halo-color": "rgba(255,255,255,0.95)",
+      "text-halo-width": 1.4,
+      "text-halo-blur": 0.25,
+      "text-opacity": ["interpolate", ["linear"], ["zoom"], 10, 0.0, 12, 0.55, 14, 1.0]
+    }
+  });
+
+  // Bind cursor/click én gang (merk: ny layer-id!)
+  if (!MAP.__hgPlacesCursorBound) {
+    MAP.on("mouseenter", L_HIT, () => { MAP.getCanvas().style.cursor = "pointer"; });
+    MAP.on("mouseleave", L_HIT, () => { MAP.getCanvas().style.cursor = ""; });
+    MAP.__hgPlacesCursorBound = true;
+  }
+  if (!MAP.__hgPlacesClickBound) {
+    MAP.on("click", L_HIT, (e) => {
+      const f = e.features && e.features[0];
+      const id = f && f.properties && f.properties.id;
+      if (id) onPlaceClick(id);
     });
+    MAP.__hgPlacesClickBound = true;
   }
 
+  forcePlacesOnTop();
+}
+
+function forcePlacesOnTop() {
+  if (!MAP) return;
+  ["hg-places-glow", "hg-places", "hg-places-hit", "hg-places-label"].forEach(id => {
+    if (MAP.getLayer(id)) MAP.moveLayer(id);
+  });
+}
+  
   // --- expose --------------------------------------------------
 
   window.HGMap = {
