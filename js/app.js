@@ -763,6 +763,11 @@ function requestLocation() {
   navigator.geolocation.getCurrentPosition(
     g => {
       currentPos = { lat: g.coords.latitude, lon: g.coords.longitude };
+
+      // ✅ gjør globalSearch("nær meg") mulig
+      window.userLat = currentPos.lat;
+      window.userLon = currentPos.lon;
+
       if (el.status) el.status.textContent = "Posisjon funnet.";
       setUser(currentPos.lat, currentPos.lon);
       renderNearbyPlaces();
@@ -777,11 +782,19 @@ function requestLocation() {
 
       if (el.status) el.status.textContent = msg;
       showToast(msg);
+
+      // (valgfritt) nullstill globals når vi ikke har posisjon
+      window.userLat = null;
+      window.userLon = null;
+
       renderNearbyPlaces(); // viser lista uten avstand hvis currentPos=null
     },
     { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
   );
 }
+
+
+
 // MINI-PROFIL + quiz-historikk på forsiden
 function initMiniProfile() {
   const nm = document.getElementById("miniName");
