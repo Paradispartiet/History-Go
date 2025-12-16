@@ -43,9 +43,8 @@
 
       // hent både personer og steder, slik at vi kan vise kontekst
       Promise.all([
-        fetch("people.json").then(r => r.json()).catch(() => []),
-        fetch("places.json").then(r => r.json()).catch(() => [])
-      ])
+        fetch("/data/people.json", { cache: "no-store" }).then(r => r.json()).catch(() => []),
+        fetch("/data/places.json", { cache: "no-store" }).then(r => r.json()).catch(() => [])    ])
         .then(([people, places]) => {
           const peopleMap = {};
           (people || []).forEach(p => { if (p && p.id) peopleMap[p.id] = p.name; });
