@@ -938,6 +938,21 @@ async function boot() {
 
     linkPeopleToPlaces();
 
+    // ====== FEED MAP MODULE (må til etter flytting til map.js) ======
+if (window.HGMap) {
+  HGMap.setPlaces(PLACES);
+  HGMap.setVisited(visited || {});
+  HGMap.setCatColor(catColor);
+
+  HGMap.setOnPlaceClick((id) => {
+    const p = PLACES.find(x => x.id === id);
+    if (p) openPlaceCard(p);
+  });
+
+  HGMap.setDataReady(true);
+  HGMap.maybeDrawMarkers();
+}
+
     // ✅ INIT QUIZ-MODUL (ETTER at PLACES/PEOPLE er lastet)
     if (window.HGQuiz) {
       HGQuiz.init({
