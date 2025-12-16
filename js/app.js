@@ -741,7 +741,7 @@ function wire() {
     if (e.target.checked) {
       currentPos = { lat: START.lat, lon: START.lon };
       if (el.status) el.status.textContent = "Testmodus: Oslo sentrum";
-      setUser(currentPos.lat, currentPos.lon);
+      if (window.HGMap) HGMap.setUser(currentPos.lat, currentPos.lon);
       renderNearbyPlaces();
       showToast("Testmodus PÅ");
     } else {
