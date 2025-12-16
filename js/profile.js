@@ -501,27 +501,30 @@ function openProfileModal() {
 // ------------------------------------------------------------
 // INIT
 // ------------------------------------------------------------
-Promise.all([
-  fetch("data/people.json")
-fetch("data/places.json")
-fetch("data/badges.json")
-  
-]).then(() => {
-  renderProfileCard();
-  renderMerits();
-  renderPeopleCollection();
-  renderPlacesCollection();
-  renderTimeline();
-  renderCollectionCards();
-  renderLatestKnowledge();
-  renderLatestTrivia();
-  renderAhaSummary();
-});
 document.addEventListener("DOMContentLoaded", () => {
-  const editBtn = document.getElementById("editProfileBtn");
-  if (editBtn) editBtn.onclick = openProfileModal;
+  // 1) LAST DATA
+  Promise.all([
+    fetch("data/people.json").then(r => r.json()).then(d => (PEOPLE = d)),
+    fetch("data/places.json").then(r => r.json()).then(d => (PLACES = d)),
+    fetch("data/badges.json").then(r => r.json()).then(d => (BADGES = d))
+  ]).then(() => {
+    // 2) RENDER
+    renderProfileCard();
+    renderMerits();
+    renderPeopleCollection();
+    renderPlacesCollection();
+    renderTimeline();
+    renderCollectionCards();
+    renderLatestKnowledge();
+    renderLatestTrivia();
+    renderAhaSummary();
 
-  // ✅ AHA-knapp
+    setupProfileMap();
+  });
+
+  // UI
+  document.getElementById("editProfileBtn")?.addEventListener("click", openProfileModal);
+
   document.getElementById("btnOpenAHA")?.addEventListener("click", () => {
     window.open("aha/index.html", "_blank");
   });
@@ -536,6 +539,8 @@ document.addEventListener("DOMContentLoaded", () => {
     renderCollectionCards();
     renderLatestKnowledge();
     renderLatestTrivia();
+    renderAhaSummary();
+    updateProfileMarkers();
   });
 });
 
