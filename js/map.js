@@ -107,37 +107,40 @@
     if (typeof fn === "function") onPlaceClick = fn;
   }
 
-  function setUser(lat, lon, { fly = false } = {}) {
-    if (typeof lat !== "number" || typeof lon !== "number") return;
-    window.userLat = lat;
-    window.userLon = lon;
+function setUser(lat, lon, { fly = false } = {}) {
+  if (typeof lat !== "number" || typeof lon !== "number") return;
 
-    if (!MAP) return;
+  window.userLat = lat;
+  window.userLon = lon;
+  window.currentPos = { lat, lon }; // ← DEN ENE LINJA
 
-    const ll = [lon, lat];
+  if (!MAP) return;
 
-    if (!userMarker) {
-      const dot = document.createElement("div");
-      dot.className = "hg-user-dot";
-      dot.style.width = "14px";
-      dot.style.height = "14px";
-      dot.style.borderRadius = "50%";
-      dot.style.background = "rgba(255,255,255,0.92)";
-      dot.style.boxShadow = "0 0 12px rgba(255,255,255,0.35)";
-      dot.style.border = "2px solid rgba(0,0,0,0.35)";
+  const ll = [lon, lat];
 
-      userMarker = new maplibregl.Marker({ element: dot, anchor: "center" })
-        .setLngLat(ll)
-        .addTo(MAP);
-    } else {
-      userMarker.setLngLat(ll);
-    }
+  if (!userMarker) {
+    const dot = document.createElement("div");
+    dot.className = "hg-user-dot";
+    dot.style.width = "14px";
+    dot.style.height = "14px";
+    dot.style.borderRadius = "50%";
+    dot.style.background = "rgba(255,255,255,0.92)";
+    dot.style.boxShadow = "0 0 12px rgba(255,255,255,0.35)";
+    dot.style.border = "2px solid rgba(0,0,0,0.35)";
 
-    if (fly) {
-      MAP.flyTo({ center: ll, zoom: Math.max(MAP.getZoom() || 13, 15), speed: 1.2 });
-    }
+    userMarker = new maplibregl.Marker({ element: dot, anchor: "center" })
+      .setLngLat(ll)
+      .addTo(MAP);
+  } else {
+    userMarker.setLngLat(ll);
   }
 
+  if (fly) {
+    MAP.flyTo({ center: ll, zoom: Math.max(MAP.getZoom() || 13, 15), speed: 1.2 });
+  }
+}
+
+  
   function maybeDrawMarkers() {
     if (mapReady && dataReady) drawPlaceMarkers();
   }
