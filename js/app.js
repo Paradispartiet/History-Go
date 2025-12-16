@@ -537,13 +537,17 @@ document.addEventListener("click", e => {
 
   
   // Quiz
-  const quizId = target.getAttribute?.("data-quiz");
-  if (quizId) {
-    startQuiz(quizId);
-    return;
+ const quizId = target.getAttribute?.("data-quiz");
+if (quizId) {
+  if (window.HGQuiz && typeof HGQuiz.startQuiz === "function") {
+    HGQuiz.startQuiz(quizId);
+  } else {
+    showToast("Quiz-modul ikke lastet");
   }
-
-// --- SØKERESULTAT: STED ---
+  return;
+}
+  
+  // --- SØKERESULTAT: STED ---
 const placeId = target.closest?.(".search-item")?.getAttribute("data-place");
 if (placeId) {
   const p = PLACES.find(x => x.id === placeId);
