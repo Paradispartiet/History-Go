@@ -1314,21 +1314,34 @@ function wireMiniProfileLinks() {
 
 // BOOT
 async function boot() {
-  initMap();
+  window.HGMap?.initMap({ containerId: "map", start: START });
 
   try {
     const [places, people, tags] = await Promise.all([
-  fetch("places.json", { cache: "no-store" }).then(r => r.json()),
-  fetch("people.json", { cache: "no-store" }).then(r => r.json()),
-  fetch("tags.json",   { cache: "no-store" }).then(r => r.json()).catch(() => null)
-]);
+      fetch("places.json", { cache: "no-store" }).then(r => r.json()),
+      fetch("people.json", { cache: "no-store" }).then(r => r.json()),
+      fetch("tags.json",   { cache: "no-store" }).then(r => r.json()).catch(() => null)
+    ]);
 
-PLACES = places;
-PEOPLE = people;
-TAGS_REGISTRY = tags;
+    PLACES = places;
+    PEOPLE = people;
+    TAGS_REGISTRY = tags;
+
     linkPeopleToPlaces();
-    dataReady = true;
-    maybeDrawMarkers();
+
+    // ✅ Gi kartmodulen data + callbacks (ETTER data er lastet)
+    if (window.HGMap) {
+      HGMap.setPlaces(PLACES);
+      HGMap.setVisited(visited);
+      HGMap.setCatColor(catColor);
+      HGMap.setOnPlaceClick((id) => {
+        const p = PLACES.find(x => x.id === id);
+        if (p) openPlaceCard(p);
+      });
+      HGMap.setDataReady(true);
+      HGMap.maybeDrawMarkers();
+    }
+
   } catch (e) {
     console.error("Feil ved lasting av data:", e);
     showToast("Kunne ikke laste steder/personer");
@@ -1365,7 +1378,7 @@ function enterMapMode() {
   const mapEl = document.getElementById("map");
   if (mapEl) mapEl.style.zIndex = "10";
 
-  if (MAP && typeof MAP.resize === "function") MAP.resize();  // ✅ viktig
+if (window.HGMap) HGMap.resize();
 
   showToast("Kartmodus");
 }
