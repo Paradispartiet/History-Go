@@ -18,13 +18,32 @@
   let userMarker = null;
 
   function lighten(hex, amount = 0.35) {
-    const c = String(hex || "#000000").replace("#", "");
-    const num = parseInt(c, 16);
-    let r = Math.min(255, (num >> 16) + 255 * amount);
-    let g = Math.min(255, ((num >> 8) & 0x00ff) + 255 * amount);
-    let b = Math.min(255, (num & 0x0000ff) + 255 * amount);
-    return `rgb(${r},${g},${b})`;
+  let c = String(hex || "#000000").trim();
+
+  // fjern #
+  if (c.startsWith("#")) c = c.slice(1);
+
+  // støtt #fff → #ffffff
+  if (c.length === 3) {
+    c = c.split("").map(ch => ch + ch).join("");
   }
+
+  // fallback ved rar input
+  if (c.length !== 6) c = "000000";
+
+  const num = parseInt(c, 16);
+  if (Number.isNaN(num)) return "rgb(255,255,255)";
+
+  let r = (num >> 16) & 0xff;
+  let g = (num >> 8) & 0xff;
+  let b = num & 0xff;
+
+  r = Math.min(255, Math.round(r + 255 * amount));
+  g = Math.min(255, Math.round(g + 255 * amount));
+  b = Math.min(255, Math.round(b + 255 * amount));
+
+  return `rgb(${r},${g},${b})`;
+}
 
   function initMap({ containerId = "map", start = START } = {}) {
     START = start || START;
