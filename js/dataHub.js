@@ -1,10 +1,37 @@
 // js/dataHub.js
-// Laster base places/people + subject-overlays og merger til "enriched" objekter
+// DataHub v2 — robust loader for History GO
+// - bruker ABSOLUTTE paths (/data/...) så det funker fra alle sider
+// - enkel cache i minnet (unngår re-fetch)
+// - base + overlays merge => enriched
+// - små helpers for emner/fagkart/quizzes (valgfritt)
 
-async function fetchJSON(url) {
-  const res = await fetch(url);
-  if (!res.ok) throw new Error(`Fetch failed ${res.status} for ${url}`);
-  return res.json();
+const DEFAULTS = {
+  DATA_BASE: "/data",
+  EMNER_BASE: "/emner"
+};
+
+const _cache = new Map();
+
+/** Fetch JSON med cache og bedre feilmeldinger */
+async function fetchJSON(url, { cache = "default", bust = false } = {}) {
+  const key = `${url}::${cache}`;
+  if (!bust && _cache.has(key)) return _cache.get(key);
+
+  const p = (async () => {
+    const res = await fetch(url, { cache });
+    if (!res.ok) throw new Error(`Fetch failed ${res.status} for ${url}`);
+    return res.json();
+  })();
+
+  _cache.set(key, p);
+  return p;
+}
+
+function clearCache(prefix = "") {
+  if (!prefix) return _cache.clear();
+  for (const k of _cache.keys()) {
+    if (k.startsWith(prefix)) _cache.delete(k);
+  }
 }
 
 function indexBy(arr, key) {
@@ -18,10 +45,6 @@ function indexBy(arr, key) {
 
 function mergeDeep(base, extra) {
   if (!extra) return base;
-  // enkel, “forutsigbar” merge:
-  // - primitive i extra overskriver base
-  // - arrays concatenates (unik)
-  // - objects merges
   const out = { ...(base || {}) };
 
   for (const [k, v] of Object.entries(extra)) {
@@ -32,10 +55,22 @@ function mergeDeep(base, extra) {
     if (Array.isArray(v)) {
       const a = Array.isArray(prev) ? prev : [];
       const merged = [...a, ...v].filter(Boolean);
-      out[k] = Array.from(new Set(merged.map(x => JSON.stringify(x))))
-        .map(s => JSON.parse(s));
+
+      // unik — støtter både primitives og objekter
+      const uniq = [];
+      const seen = new Set();
+      for (const item of merged) {
+        const sig = (item && typeof item === "object") ? JSON.stringify(item) : String(item);
+        if (!seen.has(sig)) {
+          seen.add(sig);
+          uniq.push(item);
+        }
+      }
+      out[k] = uniq;
+
     } else if (typeof v === "object") {
       out[k] = mergeDeep(prev && typeof prev === "object" ? prev : {}, v);
+
     } else {
       out[k] = v;
     }
@@ -43,57 +78,163 @@ function mergeDeep(base, extra) {
   return out;
 }
 
-export async function loadTags() {
-  return fetchJSON("../data/tags.json");
+// ───────────────────────────────
+// Paths (tilpasser seg din mappestruktur)
+// ───────────────────────────────
+
+function pData(path) {
+  return `${DEFAULTS.DATA_BASE}/${path}`.replace(/\/+/g, "/");
+}
+function pEmner(path) {
+  return `${DEFAULTS.EMNER_BASE}/${path}`.replace(/\/+/g, "/");
 }
 
-export async function loadPlacesBase() {
-  return fetchJSON("../data/places.json");
+// ───────────────────────────────
+// Base data
+// ───────────────────────────────
+
+export async function loadTags(opts = {}) {
+  // /data/tags.json
+  return fetchJSON(pData("tags.json"), opts);
 }
 
-export async function loadPeopleBase() {
-  return fetchJSON("../data/people.json");
+export async function loadPlacesBase(opts = {}) {
+  // /data/places.json
+  return fetchJSON(pData("places.json"), opts);
 }
 
-export async function loadPlaceOverlays(subjectId) {
-  return fetchJSON(`../data/overlays/${subjectId}/places_${subjectId}.json`);
+export async function loadPeopleBase(opts = {}) {
+  // /data/people.json
+  return fetchJSON(pData("people.json"), opts);
 }
 
-export async function loadPeopleOverlays(subjectId) {
-  return fetchJSON(`../data/overlays/${subjectId}/people_${subjectId}.json`);
+export async function loadBadges(opts = {}) {
+  // /data/badges.json
+  return fetchJSON(pData("badges.json"), opts);
 }
 
-export async function getPlaceEnriched(placeId, subjectId) {
+export async function loadRoutes(opts = {}) {
+  // /data/routes.json
+  return fetchJSON(pData("routes.json"), opts);
+}
+
+// ───────────────────────────────
+// Overlays
+// /data/overlays/<subjectId>/places_<subjectId>.json
+// /data/overlays/<subjectId>/people_<subjectId>.json
+// ───────────────────────────────
+
+export async function loadPlaceOverlays(subjectId, opts = {}) {
+  if (!subjectId) return [];
+  return fetchJSON(pData(`overlays/${subjectId}/places_${subjectId}.json`), opts)
+    .catch(() => []);
+}
+
+export async function loadPeopleOverlays(subjectId, opts = {}) {
+  if (!subjectId) return [];
+  return fetchJSON(pData(`overlays/${subjectId}/people_${subjectId}.json`), opts)
+    .catch(() => []);
+}
+
+// ───────────────────────────────
+// Enriched getters
+// ───────────────────────────────
+
+export async function getPlaceEnriched(placeId, subjectId, opts = {}) {
   const [places, overlays] = await Promise.all([
-    loadPlacesBase(),
-    loadPlaceOverlays(subjectId)
+    loadPlacesBase(opts),
+    loadPlaceOverlays(subjectId, opts)
   ]);
 
-  const base = places.find(p => p.id === placeId) || null;
+  const base = (places || []).find(p => p.id === placeId) || null;
   if (!base) return null;
 
   const overlay = (overlays || []).find(o => o.placeId === placeId) || null;
-
-  // legg overlay på base, men behold base.id osv.
   return mergeDeep(base, overlay ? { ...overlay, id: base.id } : null);
 }
 
-export async function getPersonEnriched(personId, subjectId) {
+export async function getPersonEnriched(personId, subjectId, opts = {}) {
   const [people, overlays] = await Promise.all([
-    loadPeopleBase(),
-    loadPeopleOverlays(subjectId)
+    loadPeopleBase(opts),
+    loadPeopleOverlays(subjectId, opts)
   ]);
 
-  const base = people.find(p => p.id === personId) || null;
+  const base = (people || []).find(p => p.id === personId) || null;
   if (!base) return null;
 
   const overlay = (overlays || []).find(o => o.personId === personId) || null;
   return mergeDeep(base, overlay ? { ...overlay, id: base.id } : null);
 }
 
-// ---- TAGS: normalisering (legacy → canonical) ----
+/**
+ * Batch-enrich (ofte nyttig): gir maps for rask lookup i UI
+ */
+export async function loadEnrichedAll(subjectId, opts = {}) {
+  const [places, people, placeOv, peopleOv] = await Promise.all([
+    loadPlacesBase(opts),
+    loadPeopleBase(opts),
+    loadPlaceOverlays(subjectId, opts),
+    loadPeopleOverlays(subjectId, opts)
+  ]);
+
+  const pOvBy = indexBy(placeOv || [], "placeId");
+  const peOvBy = indexBy(peopleOv || [], "personId");
+
+  const enrichedPlaces = (places || []).map(p => mergeDeep(p, pOvBy.get(p.id) ? { ...pOvBy.get(p.id), id: p.id } : null));
+  const enrichedPeople = (people || []).map(p => mergeDeep(p, peOvBy.get(p.id) ? { ...peOvBy.get(p.id), id: p.id } : null));
+
+  return {
+    enrichedPlaces,
+    enrichedPeople,
+    enrichedPlacesById: indexBy(enrichedPlaces, "id"),
+    enrichedPeopleById: indexBy(enrichedPeople, "id")
+  };
+}
+
+// ───────────────────────────────
+// Emner / fagkart (du har dette i /emner)
+// ───────────────────────────────
+
+export async function loadEmner(themeId, opts = {}) {
+  // /emner/emner_<themeId>.json
+  if (!themeId) return [];
+  return fetchJSON(pEmner(`emner_${themeId}.json`), opts).catch(() => []);
+}
+
+export async function loadFagkart(opts = {}) {
+  // /emner/fagkart.json
+  return fetchJSON(pEmner("fagkart.json"), opts).catch(() => null);
+}
+
+export async function loadFagkartMap(opts = {}) {
+  // /emner/fagkart_map.json
+  return fetchJSON(pEmner("fagkart_map.json"), opts).catch(() => null);
+}
+
+// ───────────────────────────────
+// Quiz (du har /data/quiz/quiz_*.json)
+// ───────────────────────────────
+
+export async function loadQuizCategory(categoryId, opts = {}) {
+  if (!categoryId) return [];
+  return fetchJSON(pData(`quiz/quiz_${categoryId}.json`), opts).catch(() => []);
+}
+
+// ───────────────────────────────
+// TAGS: normalisering (legacy → canonical)
+// ───────────────────────────────
+
 export function normalizeTags(rawTags, tagsRegistry) {
   const list = Array.isArray(rawTags) ? rawTags : [];
   const legacyMap = (tagsRegistry && tagsRegistry.legacy_map) || {};
   return list.map(t => legacyMap[t] || t).filter(Boolean);
 }
+
+// ───────────────────────────────
+// Debug / vedlikehold
+// ───────────────────────────────
+
+export const DataHub = {
+  fetchJSON,
+  clearCache
+};
