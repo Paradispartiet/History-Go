@@ -419,7 +419,7 @@ function pulseBadge(cat) {
 async function ensureBadgesLoaded() {
   if (BADGES && BADGES.length) return;
   try {
-    BADGES = await fetch("badges.json", { cache: "no-store" }).then(r => r.json());
+BADGES = await fetch("/data/badges.json", { cache: "no-store" }).then(r => r.json());
   } catch {
     BADGES = [];
   }
@@ -905,10 +905,9 @@ async function boot() {
 
   try {
     const [places, people, tags] = await Promise.all([
-      fetch("places.json", { cache: "no-store" }).then(r => r.json()),
-      fetch("people.json", { cache: "no-store" }).then(r => r.json()),
-      fetch("tags.json",   { cache: "no-store" }).then(r => r.json()).catch(() => null)
-    ]);
+      fetch("/data/places.json", { cache: "no-store" }).then(r => r.json()),
+      fetch("/data/people.json", { cache: "no-store" }).then(r => r.json()),
+      fetch("/data/tags.json",   { cache: "no-store" }).then(r => r.json()).catch(() => null)    ]);
 
     PLACES = places;
     PEOPLE = people;
