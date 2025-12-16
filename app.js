@@ -127,6 +127,12 @@ const userProgress    = JSON.parse(localStorage.getItem("historygo_progress") ||
 function saveVisited() {
   localStorage.setItem("visited_places", JSON.stringify(visited));
   renderCollection();
+
+  // Oppdater kartprikker når visited endrer seg
+  if (window.HGMap) {
+    HGMap.setVisited(visited);
+    HGMap.refreshMarkers();
+  }
 }
 
 function savePeople() {
