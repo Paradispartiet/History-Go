@@ -153,25 +153,33 @@
     const fc = {
       type: "FeatureCollection",
       features: PLACES
-        .filter(p => p && typeof p.lat === "number" && typeof p.lon === "number")
-        .map(p => {
-          const isVisited = !!visited[p.id];
-          const base = catColor(p.category);
-          const fill = isVisited ? lighten(base, 0.35) : base;
-          const border = isVisited ? "#ffd700" : "#ffffff";
+  .filter(p => {
+    if (!p) return false;
+    const lat = Number(p.lat);
+    const lon = Number(p.lon);
+    return Number.isFinite(lat) && Number.isFinite(lon);
+  })
+  .map(p => {
+    const lat = Number(p.lat);
+    const lon = Number(p.lon);
 
-          return {
-            type: "Feature",
-            properties: {
-              id: p.id,
-              name: p.name || "",
-              visited: isVisited ? 1 : 0,
-              fill,
-              border
-            },
-            geometry: { type: "Point", coordinates: [p.lon, p.lat] }
-          };
-        })
+    const isVisited = !!visited[p.id];
+    const base = catColor(p.category);
+    const fill = isVisited ? lighten(base, 0.35) : base;
+    const border = isVisited ? "#ffd700" : "#ffffff";
+
+    return {
+      type: "Feature",
+      properties: {
+        id: p.id,
+        name: p.name || "",
+        visited: isVisited ? 1 : 0,
+        fill,
+        border
+      },
+      geometry: { type: "Point", coordinates: [lon, lat] }
+    };
+  })
     };
 
     // Oppdater hvis finnes
