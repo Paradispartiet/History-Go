@@ -46,19 +46,19 @@
   }
 
   const QUIZ_FILE_MAP = {
-    kunst: "quiz_kunst.json",
-    sport: "quiz_sport.json",
-    politikk: "quiz_politikk.json",
-    populaerkultur: "quiz_populaerkultur.json",
-    musikk: "quiz_musikk.json",
-    subkultur: "quiz_subkultur.json",
-    vitenskap: "quiz_vitenskap.json",
-    natur: "quiz_natur.json",
-    litteratur: "quiz_litteratur.json",
-    by: "quiz_by.json",
-    historie: "quiz_historie.json",
-    naeringsliv: "quiz_naeringsliv.json"
-  };
+  kunst: "/data/quiz/quiz_kunst.json",
+  sport: "/data/quiz/quiz_sport.json",
+  politikk: "/data/quiz/quiz_politikk.json",
+  populaerkultur: "/data/quiz/quiz_populaerkultur.json",
+  musikk: "/data/quiz/quiz_musikk.json",
+  subkultur: "/data/quiz/quiz_subkultur.json",
+  vitenskap: "/data/quiz/quiz_vitenskap.json",
+  natur: "/data/quiz/quiz_natur.json",
+  litteratur: "/data/quiz/quiz_litteratur.json",
+  by: "/data/quiz/quiz_by.json",
+  historie: "/data/quiz/quiz_historie.json",
+  naeringsliv: "/data/quiz/quiz_naeringsliv.json"
+};
 
   async function loadQuizForCategory(categoryId) {
     const file = QUIZ_FILE_MAP[categoryId];
