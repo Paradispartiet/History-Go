@@ -769,7 +769,7 @@ function requestLocation() {
       window.userLon = currentPos.lon;
 
       if (el.status) el.status.textContent = "Posisjon funnet.";
-      setUser(currentPos.lat, currentPos.lon);
+      if (window.HGMap) HGMap.setUser(currentPos.lat, currentPos.lon);
       renderNearbyPlaces();
     },
     err => {
