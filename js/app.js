@@ -901,20 +901,26 @@ function wireMiniProfileLinks() {
 
 // BOOT
 async function boot() {
-  window.HGMap?.initMap({ containerId: "map", start: START });
+  // Init map + eksponer global MAP (routes.js forventer MAP)
+  const map = window.HGMap?.initMap({ containerId: "map", start: START });
+  if (map) window.MAP = map;
+
+  // Eksponer START globalt (routes.js bruker START som fallback)
+  window.START = START;
 
   try {
     const [places, people, tags] = await Promise.all([
       fetch("/data/places.json", { cache: "no-store" }).then(r => r.json()),
       fetch("/data/people.json", { cache: "no-store" }).then(r => r.json()),
-      fetch("/data/tags.json",   { cache: "no-store" }).then(r => r.json()).catch(() => null)    ]);
+      fetch("/data/tags.json",   { cache: "no-store" }).then(r => r.json()).catch(() => null)
+    ]);
 
     PLACES = places;
     PEOPLE = people;
     TAGS_REGISTRY = tags;
 
     linkPeopleToPlaces();
-
+    // ... resten som før
     // ✅ Gi kartmodulen data + callbacks (ETTER data er lastet)
     if (window.HGMap) {
       HGMap.setPlaces(PLACES);
