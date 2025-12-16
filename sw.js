@@ -1,174 +1,163 @@
 /* ============================================================
-   HISTORY GO – SERVICE WORKER (FULL)
-   Versjon: HG-FULL-v3.0.3.1.003
+   HISTORY GO – SERVICE WORKER (FULL) – AFTER FOLDER REFACTOR
+   - /js/*, /css/*, /data/*
+   - Robust precache: skipper filer som mangler (ingen "alt dør")
 ============================================================ */
 
-const CACHE_VERSION = "HG-FULL-v3.0.4.1.021";
-const STATIC_CACHE = `historygo-${CACHE_VERSION}`;
+const CACHE_VERSION = "HG-FULL-v3.0.4.1.022"; // <- bump når du endrer paths
+const STATIC_CACHE  = `historygo-${CACHE_VERSION}`;
 
 /* ------------------------------------------------------------
    FILER SOM SKAL CACHES (HTML + CSS + JS + JSON + UI)
+   NB: bruk ABSOLUTTE paths (leading "/") for stabilitet
 ------------------------------------------------------------ */
 
 const STATIC_ASSETS = [
-
   // Rot-HTML
-  "index.html",
-  "profile.html",
-  "knowledge.html",
-  "merker.html",
+  "/index.html",
+  "/profile.html",
+  "/knowledge.html",
+  "/merker.html",
+  "/notater.html",
+  "/emner.html",
 
   // CSS
-  "theme.css",
-  "profile.css",
-  "knowledge.css",
-  "merker/merker.css",
+  "/css/theme.css",
+  "/css/profile.css",
+  "/css/knowledge.css",
+  "/merker/merker.css",
 
-  // JS (rot)
-  "app.js",
-  "popup-utils.js",
-  "knowledge.js",
-  "knowledge_component.js",
-  "profile.js",
-  "trivia.js",
-  "quizzes.js",
-  "routes.js",
+  // JS
+  "/js/app.js",
+  "/js/map.js",
+  "/js/routes.js",
+  "/js/quizzes.js",
+  "/js/popup-utils.js",
+  "/js/profile.js",
+  "/js/trivia.js",
+  "/js/knowledge.js",
+  "/js/knowledge_component.js",
+
+  // (valgfritt – ta med hvis de finnes og brukes)
+  "/js/dataHub.js",
+  "/js/emnerLoader.js",
+  "/js/fagkartLoader.js",
+  "/js/hgInsights.js",
+  "/js/hgConceptIndex.js",
+  "/js/emneDekning.js",
 
   // JSON data
-  "badges.json",
-  "people.json",
-  "people_litteratur.json",
-  "people_vitenskap.json",
-  "places.json",
-  "places2.json",
-  "routes.json",
+  "/data/badges.json",
+  "/data/people.json",
+  "/data/places.json",
+  "/data/routes.json",
+  "/data/tags.json",
 
-  // Quiz JSON
-  "quiz_by.json",
-  "quiz_historie.json",
-  "quiz_kunst.json",
-  "quiz_litteratur.json",
-  "quiz_musikk.json",
-  "quiz_naeringsliv.json",
-  "quiz_natur.json",
-  "quiz_politikk.json",
-  "quiz_populaerkultur.json",
-  "quiz_sport.json",
-  "quiz_subkultur.json",
-  "quiz_vitenskap.json",
+  // (valgfritt – hvis de faktisk finnes hos deg)
+  "/data/people_litteratur.json",
+  "/data/people_vitenskap.json",
+  "/data/places2.json",
+
+  // Quiz JSON (mappa di heter "quiz")
+  "/data/quiz/quiz_by.json",
+  "/data/quiz/quiz_historie.json",
+  "/data/quiz/quiz_kunst.json",
+  "/data/quiz/quiz_litteratur.json",
+  "/data/quiz/quiz_musikk.json",
+  "/data/quiz/quiz_naeringsliv.json",
+  "/data/quiz/quiz_natur.json",
+  "/data/quiz/quiz_politikk.json",
+  "/data/quiz/quiz_populaerkultur.json",
+  "/data/quiz/quiz_sport.json",
+  "/data/quiz/quiz_subkultur.json",
+  "/data/quiz/quiz_vitenskap.json",
 
   // Knowledge-sider
-  "knowledge/knowledge_by.html",
-  "knowledge/knowledge_historie.html",
-  "knowledge/knowledge_kunst.html",
-  "knowledge/knowledge_litteratur.html",
-  "knowledge/knowledge_musikk.html",
-  "knowledge/knowledge_naeringsliv.html",
-  "knowledge/knowledge_natur.html",
-  "knowledge/knowledge_politikk.html",
-  "knowledge/knowledge_populaerkultur.html",
-  "knowledge/knowledge_sport.html",
-  "knowledge/knowledge_subkultur.html",
-  "knowledge/knowledge_vitenskap.html",
+  "/knowledge/knowledge_by.html",
+  "/knowledge/knowledge_historie.html",
+  "/knowledge/knowledge_kunst.html",
+  "/knowledge/knowledge_litteratur.html",
+  "/knowledge/knowledge_musikk.html",
+  "/knowledge/knowledge_naeringsliv.html",
+  "/knowledge/knowledge_natur.html",
+  "/knowledge/knowledge_politikk.html",
+  "/knowledge/knowledge_populaerkultur.html",
+  "/knowledge/knowledge_sport.html",
+  "/knowledge/knowledge_subkultur.html",
+  "/knowledge/knowledge_vitenskap.html",
 
   // Merke-sider
-  "merker/merke_by.html",
-  "merker/merke_historie.html",
-  "merker/merke_kunst.html",
-  "merker/merke_litteratur.html",
-  "merker/merke_musikk.html",
-  "merker/merke_naeringsliv.html",
-  "merker/merke_natur.html",
-  "merker/merke_politikk.html",
-  "merker/merke_populaerkultur.html",
-  "merker/merke_sport.html",
-  "merker/merke_subkultur.html",
-  "merker/merke_vitenskap.html",
+  "/merker/merke_by.html",
+  "/merker/merke_historie.html",
+  "/merker/merke_kunst.html",
+  "/merker/merke_litteratur.html",
+  "/merker/merke_musikk.html",
+  "/merker/merke_naeringsliv.html",
+  "/merker/merke_natur.html",
+  "/merker/merke_politikk.html",
+  "/merker/merke_populaerkultur.html",
+  "/merker/merke_sport.html",
+  "/merker/merke_subkultur.html",
+  "/merker/merke_vitenskap.html",
 
   // UI-bilder
-  "bilder/ui/historygo_logo.PNG",
-  "bilder/ui/marker.PNG",
-  "bilder/ui/badge_default.PNG"
+  "/bilder/ui/historygo_logo.PNG",
+  "/bilder/ui/marker.PNG",
+  "/bilder/ui/badge_default.PNG"
 ];
 
 /* ------------------------------------------------------------
-   INSTALL
+   INSTALL – precache (robust)
 ------------------------------------------------------------ */
-self.addEventListener("install", event => {
-  event.waitUntil(
-    caches.open(STATIC_CACHE).then(cache => cache.addAll(STATIC_ASSETS))
-  );
-  self.skipWaiting();
+self.addEventListener("install", (event) => {
+  event.waitUntil((async () => {
+    const cache = await caches.open(STATIC_CACHE);
+
+    // cache hver fil separat, så en 404 ikke ødelegger install
+    await Promise.all(
+      STATIC_ASSETS.map(async (url) => {
+        try {
+          const res = await fetch(url, { cache: "no-store" });
+          if (!res || !res.ok) return;
+          await cache.put(url, res.clone());
+        } catch {
+          // ignorer nettfeil / manglende fil
+        }
+      })
+    );
+
+    await self.skipWaiting();
+  })());
 });
 
 /* ------------------------------------------------------------
    ACTIVATE – fjern gammel cache
 ------------------------------------------------------------ */
-self.addEventListener("activate", event => {
-  event.waitUntil(
-    caches.keys().then(keys =>
-      Promise.all(
-        keys
-          .filter(k => k.startsWith("historygo-") && k !== STATIC_CACHE)
-          .map(k => caches.delete(k))
-      )
-    )
-  );
-  self.clients.claim();
+self.addEventListener("activate", (event) => {
+  event.waitUntil((async () => {
+    const keys = await caches.keys();
+    await Promise.all(
+      keys
+        .filter(k => k.startsWith("historygo-") && k !== STATIC_CACHE)
+        .map(k => caches.delete(k))
+    );
+    await self.clients.claim();
+  })());
 });
 
 /* ------------------------------------------------------------
    FETCH – SMART STRATEGI
+   - JS/JSON: Network-first (cache fallback)
+   - HTML/CSS/Images: Cache-first (network fallback)
 ------------------------------------------------------------ */
-self.addEventListener("fetch", event => {
+self.addEventListener("fetch", (event) => {
   const req = event.request;
+  if (req.method !== "GET") return;
 
-  // 🎯 1) JS + JSON → NETWORK FIRST (cache fallback)
-  if (req.url.endsWith(".js") || req.url.endsWith(".json")) {
-    event.respondWith(
-      fetch(req)
-        .then(res => {
-          const copy = res.clone();
-          caches.open(STATIC_CACHE).then(c => c.put(req, copy));
-          return res;
-        })
-        .catch(() => caches.match(req))
-    );
-    return;
-  }
+  const url = new URL(req.url);
 
-  // 🎯 2) HTML + CSS → CACHE FIRST (deretter nett)
-  if (req.url.endsWith(".html") || req.url.endsWith(".css")) {
-    event.respondWith(
-      caches.match(req).then(cacheRes => {
-        if (cacheRes) return cacheRes;
-        return fetch(req).then(netRes => {
-          const copy = netRes.clone();
-          caches.open(STATIC_CACHE).then(c => c.put(req, copy));
-          return netRes;
-        });
-      })
-    );
-    return;
-  }
+  // Bare håndter samme origin (unngå tredjeparts CDN-problemer)
+  if (url.origin !== self.location.origin) return;
 
-  // 🎯 3) Bilder → CACHE FIRST
-  if (req.url.match(/\.(png|jpg|jpeg|gif|svg|webp)$/i)) {
-    event.respondWith(
-      caches.match(req).then(cacheRes => {
-        if (cacheRes) return cacheRes;
-        return fetch(req).then(netRes => {
-          const copy = netRes.clone();
-          caches.open(STATIC_CACHE).then(c => c.put(req, copy));
-          return netRes;
-        });
-      })
-    );
-    return;
-  }
-
-  // 🎯 4) Alt annet – fallback-strategi
-  event.respondWith(
-    fetch(req).catch(() => caches.match(req))
-  );
-});
+  // 1) JS + JSON → NETWORK FIRST
+  if (url.pathname.endsWith(".js") ||
