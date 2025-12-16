@@ -342,8 +342,8 @@ window.openPlaceCard = function(place) {
   const btnQuiz   = document.getElementById("pcQuiz");
   const btnUnlock = document.getElementById("pcUnlock");
   const btnRoute  = document.getElementById("pcRoute");
-  const btnNote   = document.getElementById("pcNote");   // 🔹 NY
-  
+  const btnNote   = document.getElementById("pcNote");
+
   if (!card) return;
 
   if (imgEl)   imgEl.src = place.image || "";
@@ -351,7 +351,6 @@ window.openPlaceCard = function(place) {
   if (metaEl)  metaEl.textContent  = `${place.category || ""} • radius ${place.r || 150} m`;
   if (descEl)  descEl.textContent  = place.desc || "";
 
-  // Personer knyttet til stedet
   if (peopleEl) {
     const persons = PEOPLE.filter(
       p =>
@@ -376,14 +375,26 @@ window.openPlaceCard = function(place) {
     });
   }
 
-    if (btnInfo)   btnInfo.onclick   = () => showPlacePopup(place);
-  if (btnQuiz)   btnQuiz.onclick   = () => startQuiz(place.id);
-  if (btnRoute)  btnRoute.onclick  = () => showRouteTo(place);
+  if (btnInfo) btnInfo.onclick = () => showPlacePopup(place);
+
+  // ✅ QUIZ: bruk HGQuiz (ny modul)
+  if (btnQuiz) btnQuiz.onclick = () => {
+    if (window.HGQuiz && typeof HGQuiz.startQuiz === "function") {
+      HGQuiz.startQuiz(place.id);
+    } else if (typeof startQuiz === "function") {
+      // fallback hvis du fortsatt har startQuiz globalt under migrering
+      startQuiz(place.id);
+    } else {
+      showToast("Quiz-modul ikke lastet");
+    }
+  };
+
+  if (btnRoute) btnRoute.onclick = () => showRouteTo(place);
 
   if (btnNote && typeof handlePlaceNote === "function") {
-    btnNote.onclick = () => handlePlaceNote(place);      // 🔹 NY
+    btnNote.onclick = () => handlePlaceNote(place);
   }
-  
+
   if (btnUnlock) {
     btnUnlock.onclick = () => {
       if (visited[place.id]) {
@@ -393,7 +404,16 @@ window.openPlaceCard = function(place) {
 
       visited[place.id] = true;
       saveVisited();
-      drawPlaceMarkers();
+
+      // ✅ MARKØRER: bruk HGMap (ny modul)
+      if (window.HGMap) {
+        HGMap.setVisited(visited);
+        HGMap.refreshMarkers();
+      } else if (typeof drawPlaceMarkers === "function") {
+        // fallback under migrering
+        drawPlaceMarkers();
+      }
+
       if (typeof pulseMarker === "function") {
         pulseMarker(place.lat, place.lon);
       }
