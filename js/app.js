@@ -922,7 +922,10 @@ function wireMiniProfileLinks() {
 async function boot() {
   // Init map + eksponer global MAP (routes.js forventer MAP)
   const map = window.HGMap?.initMap({ containerId: "map", start: START });
-  if (map) window.MAP = map;
+if (map) {
+  MAP = map;        // ← viktig: lokal variabel i app.js
+  window.MAP = map; // ← viktig: global for routes.js
+}
 
   // Eksponer START globalt (routes.js bruker START som fallback)
   window.START = START;
