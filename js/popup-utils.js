@@ -203,7 +203,7 @@ window.showPersonPopup = function(person) {
                   <strong>${dim}</strong>
                   <ul>
                     ${items
-                      .map(i => `<li><strong>${i.topic}:</strong> ${i.text}</li>`)
+                .map(i => `<li><strong>${i.topic}:</strong> ${i.text || i.knowledge || ""}</li>`)
                       .join("")}
                   </ul>
                 `
