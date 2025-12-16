@@ -75,7 +75,7 @@ function getInlineKnowledgeFor(categoryId, targetId) {
   if (!cat) return null;
 
   const out = {};
-  const prefix = (targetId + "_").toLowerCase();
+const prefix = ("quiz_" + targetId + "_").toLowerCase();
 
   Object.entries(cat).forEach(([dimension, items]) => {
     if (!Array.isArray(items)) return;
