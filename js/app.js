@@ -419,7 +419,7 @@ function pulseBadge(cat) {
 async function ensureBadgesLoaded() {
   if (BADGES && BADGES.length) return;
   try {
-BADGES = await fetch("/data/badges.json", { cache: "no-store" }).then(r => r.json());
+BADGES = await fetch("data/badges.json", { cache: "no-store" }).then(r => r.json());
   } catch {
     BADGES = [];
   }
