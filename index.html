@@ -9,7 +9,7 @@
   <link rel="manifest" href="manifest.json">
 
   <!-- Stil -->
-  <link rel="stylesheet" href="theme.css">
+<link rel="stylesheet" href="/css/theme.css">
 
 <!-- MapLibre GL (vektor-kart / WebGL) -->
 <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5.14.0/dist/maplibre-gl.css">
@@ -51,7 +51,7 @@
 
   <!-- Logo og navn -->
   <div class="brand">
-    <img src="bilder/logo_historygo.PNG" alt="History Go logo" class="brand-logo">
+<img src="/bilder/logo_historygo.PNG" alt="History Go logo" class="brand-logo">
     <span class="brand-name">History Go</span>
   </div>
 
@@ -155,18 +155,30 @@
   <script>
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => {
-        navigator.serviceWorker.register("./sw.js").catch(()=>{});
+navigator.serviceWorker.register("/sw.js")
       });
     }
   </script>
 
-  <!-- JS-REKKEFØLGE -->
-  <script src="popup-utils.js"></script>
-  <script src="knowledge.js"></script>
-  <script src="trivia.js"></script>
-  <script src="js/hgInsights.js"></script>
-  <script src="app.js"></script>
-  <script src="routes.js" defer></script>
+
+  <!-- JS-REKKEFØLGE (globals først, app sist) -->
+  <script src="/js/popup-utils.js"></script>
+  <script src="/js/knowledge.js"></script>
+  <script src="/js/knowledge_component.js"></script>
+
+  <script src="/js/trivia.js"></script>
+  <script src="/js/hgInsights.js"></script>
+
+  <!-- DataHub før app -->
+  <script src="/js/dataHub.js"></script>
+
+  <!-- Moduler som eksponerer window.HGMap / window.HGQuiz osv -->
+  <script src="/js/map.js"></script>
+  <script src="/js/quizzes.js"></script>
+  <script src="/js/routes.js"></script>
+
+  <!-- App entrypoint sist -->
+  <script src="/js/app.js"></script>
 
 </body>
 </html>
