@@ -502,9 +502,9 @@ function launchConfetti() {
 window.showRewardPlace = function(place) {
   if (!place) return;
 
-  const card =
-    place.cardImage || place.image || `bilder/kort/places/${place.id}.PNG`;
-
+  const BASE = document.querySelector("base")?.href || "";
+const card =
+  place.cardImage || place.image || `${BASE}bilder/kort/places/${place.id}.PNG`;
   const categoryId = place.category || null;
   const knowledgeBlocks =
     categoryId ? getInlineKnowledgeFor(categoryId, place.id) : null;
@@ -576,9 +576,9 @@ window.showRewardPlace = function(place) {
 window.showRewardPerson = function(person) {
   if (!person) return;
 
-  const card =
-    person.cardImage || person.image || `bilder/kort/people/${person.id}.PNG`;
-
+  const BASE = document.querySelector("base")?.href || "";
+const card =
+  person.cardImage || person.image || `${BASE}bilder/kort/people/${person.id}.PNG`;
   const categoryId =
     person.category ||
     (Array.isArray(person.tags) && person.tags.length ? person.tags[0] : null);
