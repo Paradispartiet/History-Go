@@ -1,6 +1,4 @@
-// map.js — History GO (MapLibre + place layers)
-// Flyttet ut fra app.js (seksjon 5)
-
+// map.js — History GO (MapLibre + place layers) — CLEAN v1
 (function () {
   "use strict";
 
@@ -17,42 +15,64 @@
 
   let userMarker = null;
 
-  function lighten(hex, amount = 0.35) {
-  let c = String(hex || "#000000").trim();
+  // --- helpers -------------------------------------------------
 
-  // fjern #
-  if (c.startsWith("#")) c = c.slice(1);
-
-  // støtt #fff → #ffffff
-  if (c.length === 3) {
-    c = c.split("").map(ch => ch + ch).join("");
+  function num(v) {
+    const n = Number(v);
+    return Number.isFinite(n) ? n : null;
   }
 
-  // fallback ved rar input
-  if (c.length !== 6) c = "000000";
+  function getLat(p) {
+    // støtt flere feltnavn uten å knekke
+    if (!p) return null;
+    if (p.lat != null) return num(p.lat);
+    if (p.latitude != null) return num(p.latitude);
+    if (Array.isArray(p.coords)) return num(p.coords[1]);
+    return null;
+  }
 
-  const num = parseInt(c, 16);
-  if (Number.isNaN(num)) return "rgb(255,255,255)";
+  function getLon(p) {
+    if (!p) return null;
+    if (p.lon != null) return num(p.lon);
+    if (p.lng != null) return num(p.lng);
+    if (p.longitude != null) return num(p.longitude);
+    if (Array.isArray(p.coords)) return num(p.coords[0]);
+    return null;
+  }
 
-  let r = (num >> 16) & 0xff;
-  let g = (num >> 8) & 0xff;
-  let b = num & 0xff;
+  function lighten(hex, amount = 0.25) {
+    let c = String(hex || "#000000").trim();
+    if (c.startsWith("#")) c = c.slice(1);
+    if (c.length === 3) c = c.split("").map(ch => ch + ch).join("");
+    if (c.length !== 6) c = "000000";
 
-  r = Math.min(255, Math.round(r + 255 * amount));
-  g = Math.min(255, Math.round(g + 255 * amount));
-  b = Math.min(255, Math.round(b + 255 * amount));
+    const numv = parseInt(c, 16);
+    if (Number.isNaN(numv)) return "rgb(255,255,255)";
 
-  return `rgb(${r},${g},${b})`;
-}
+    let r = (numv >> 16) & 0xff;
+    let g = (numv >> 8) & 0xff;
+    let b = numv & 0xff;
+
+    r = Math.min(255, Math.round(r + 255 * amount));
+    g = Math.min(255, Math.round(g + 255 * amount));
+    b = Math.min(255, Math.round(b + 255 * amount));
+
+    return `rgb(${r},${g},${b})`;
+  }
+
+  // --- init ----------------------------------------------------
 
   function initMap({ containerId = "map", start = START } = {}) {
     START = start || START;
     const el = document.getElementById(containerId);
     if (!el) return null;
 
+    // Lys, tydelig, detaljert – perfekte labels
+    const STYLE_URL = "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json";
+
     MAP = new maplibregl.Map({
       container: containerId,
-      style: "https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json",
+      style: STYLE_URL,
       center: [START.lon, START.lat],
       zoom: START.zoom,
       pitch: 0,
@@ -60,7 +80,6 @@
       antialias: true
     });
 
-    // Zoom-kontroller nederst til høyre
     MAP.addControl(
       new maplibregl.NavigationControl({ showCompass: false }),
       "bottom-right"
@@ -68,10 +87,6 @@
 
     MAP.on("load", () => {
       mapReady = true;
-
-      applyGlowRoads();
-      applyDarkColorfulLook();
-
       if (dataReady) maybeDrawMarkers();
       MAP.resize();
     });
@@ -87,12 +102,16 @@
     return MAP;
   }
 
+  // --- setters -------------------------------------------------
+
   function setDataReady(v) {
     dataReady = !!v;
   }
 
-  function setPlaces(arr) {
-    PLACES = Array.isArray(arr) ? arr : [];
+  function setPlaces(input) {
+    // tåler både array og {places:[...]}
+    const arr = Array.isArray(input) ? input : (Array.isArray(input?.places) ? input.places : []);
+    PLACES = arr;
   }
 
   function setVisited(obj) {
@@ -107,91 +126,91 @@
     if (typeof fn === "function") onPlaceClick = fn;
   }
 
-function setUser(lat, lon, { fly = false } = {}) {
-  if (typeof lat !== "number" || typeof lon !== "number") return;
+  // --- user position ------------------------------------------
 
-  window.userLat = lat;
-  window.userLon = lon;
-  window.currentPos = { lat, lon }; // ← DEN ENE LINJA
+  function setUser(lat, lon, { fly = false } = {}) {
+    if (typeof lat !== "number" || typeof lon !== "number") return;
 
-  if (!MAP) return;
+    // Standardiser pos for hele appen (routes.js / nearby / etc.)
+    window.userLat = lat;
+    window.userLon = lon;
+    window.currentPos = { lat, lon };
 
-  const ll = [lon, lat];
+    if (!MAP) return;
 
-  if (!userMarker) {
-    const dot = document.createElement("div");
-    dot.className = "hg-user-dot";
-    dot.style.width = "14px";
-    dot.style.height = "14px";
-    dot.style.borderRadius = "50%";
-    dot.style.background = "rgba(255,255,255,0.92)";
-    dot.style.boxShadow = "0 0 12px rgba(255,255,255,0.35)";
-    dot.style.border = "2px solid rgba(0,0,0,0.35)";
+    const ll = [lon, lat];
 
-    userMarker = new maplibregl.Marker({ element: dot, anchor: "center" })
-      .setLngLat(ll)
-      .addTo(MAP);
-  } else {
-    userMarker.setLngLat(ll);
+    if (!userMarker) {
+      const dot = document.createElement("div");
+      dot.className = "hg-user-dot";
+      dot.style.width = "14px";
+      dot.style.height = "14px";
+      dot.style.borderRadius = "50%";
+      dot.style.background = "rgba(0,0,0,0.85)";
+      dot.style.border = "2px solid rgba(255,255,255,0.95)";
+      dot.style.boxShadow = "0 0 10px rgba(0,0,0,0.35)";
+
+      userMarker = new maplibregl.Marker({ element: dot, anchor: "center" })
+        .setLngLat(ll)
+        .addTo(MAP);
+    } else {
+      userMarker.setLngLat(ll);
+    }
+
+    if (fly) {
+      MAP.flyTo({ center: ll, zoom: Math.max(MAP.getZoom() || 13, 15), speed: 1.2 });
+    }
   }
 
-  if (fly) {
-    MAP.flyTo({ center: ll, zoom: Math.max(MAP.getZoom() || 13, 15), speed: 1.2 });
-  }
-}
+  // --- drawing -------------------------------------------------
 
-  
   function maybeDrawMarkers() {
     if (mapReady && dataReady) drawPlaceMarkers();
   }
 
   function refreshMarkers() {
-    // Kall denne når "visited" endrer seg
     drawPlaceMarkers();
   }
 
   function drawPlaceMarkers() {
     if (!MAP || !PLACES.length) return;
 
-    const fc = {
-      type: "FeatureCollection",
-      features: PLACES
-  .filter(p => {
-    if (!p) return false;
-    const lat = Number(p.lat);
-    const lon = Number(p.lon);
-    return Number.isFinite(lat) && Number.isFinite(lon);
-  })
-  .map(p => {
-    const lat = Number(p.lat);
-    const lon = Number(p.lon);
+    const features = [];
 
-    const isVisited = !!visited[p.id];
-    const base = catColor(p.category);
-    const fill = isVisited ? lighten(base, 0.35) : base;
-    const border = isVisited ? "#ffd700" : "#ffffff";
+    for (const p of PLACES) {
+      const lat = getLat(p);
+      const lon = getLon(p);
+      if (!Number.isFinite(lat) || !Number.isFinite(lon)) continue;
 
-    return {
-      type: "Feature",
-      properties: {
-        id: p.id,
-        name: p.name || "",
-        visited: isVisited ? 1 : 0,
-        fill,
-        border
-      },
-      geometry: { type: "Point", coordinates: [lon, lat] }
-    };
-  })
-    };
+      const isVisited = !!visited[p.id];
+      const base = catColor(p.category);
+      const fill = isVisited ? lighten(base, 0.25) : base;
+      const border = isVisited ? "#ffd700" : "#111111";
 
-    // Oppdater hvis finnes
-    if (MAP.getSource("places")) {
-      MAP.getSource("places").setData(fc);
+      features.push({
+        type: "Feature",
+        properties: {
+          id: p.id,
+          name: p.name || "",
+          visited: isVisited ? 1 : 0,
+          fill,
+          border
+        },
+        geometry: { type: "Point", coordinates: [lon, lat] }
+      });
+    }
+
+    const fc = { type: "FeatureCollection", features };
+
+    // Oppdater hvis source finnes
+    const src = MAP.getSource("places");
+    if (src) {
+      src.setData(fc);
+      // sikre at markers ligger øverst (kan aldri “forsvinne” bak labels)
+      forcePlacesOnTop();
       return;
     }
 
-    // Første gang: legg source + layers + handlers
     if (!MAP.isStyleLoaded()) {
       MAP.once("load", () => drawPlaceMarkers());
       return;
@@ -199,123 +218,81 @@ function setUser(lat, lon, { fly = false } = {}) {
 
     MAP.addSource("places", { type: "geojson", data: fc });
 
-    // Mild glow bak
-    if (!MAP.getLayer("places-glow")) {
-      MAP.addLayer({
-        id: "places-glow",
-        type: "circle",
-        source: "places",
-        paint: {
-          "circle-radius": ["interpolate", ["linear"], ["zoom"], 10, 1.0, 12, 1.4, 14, 2.6, 16, 5.5, 18, 10.0],
-          "circle-color": "rgba(255,255,255,0.18)",
-          "circle-blur": 0.9
-        }
-      });
-    }
+    // Glow bak (mild, men synlig)
+    MAP.addLayer({
+      id: "places-glow",
+      type: "circle",
+      source: "places",
+      paint: {
+        "circle-radius": ["interpolate", ["linear"], ["zoom"], 10, 2, 12, 3, 14, 5, 16, 9, 18, 14],
+        "circle-color": "rgba(0,0,0,0.12)",
+        "circle-blur": 0.8
+      }
+    });
 
-    // Usynlig "treffflate" (stor radius, 0 opacity)
-    if (!MAP.getLayer("places-hit")) {
-      MAP.addLayer({
-        id: "places-hit",
-        type: "circle",
-        source: "places",
-        paint: {
-          "circle-radius": [
-            "interpolate", ["linear"], ["zoom"],
-            10, 10,
-            12, 12,
-            14, 14,
-            16, 18,
-            18, 24
-          ],
-          "circle-color": "rgba(255,255,255,0)",
-          "circle-stroke-width": 0,
-          "circle-opacity": 0
-        }
-      });
-    }
+    // Trefferflate (usynlig)
+    MAP.addLayer({
+      id: "places-hit",
+      type: "circle",
+      source: "places",
+      paint: {
+        "circle-radius": ["interpolate", ["linear"], ["zoom"], 10, 10, 12, 12, 14, 14, 16, 18, 18, 24],
+        "circle-color": "rgba(0,0,0,0)",
+        "circle-opacity": 0
+      }
+    });
 
-    // Prikkene (synlige)
-    if (!MAP.getLayer("places")) {
-      MAP.addLayer({
-        id: "places",
-        type: "circle",
-        source: "places",
-        paint: {
-          "circle-radius": [
-            "interpolate", ["linear"], ["zoom"],
-            10, ["+", 1.8, ["*", 0.35, ["get", "visited"]]],
-            12, ["+", 2.6, ["*", 0.45, ["get", "visited"]]],
-            14, ["+", 4.2, ["*", 0.60, ["get", "visited"]]],
-            16, ["+", 7.2, ["*", 0.95, ["get", "visited"]]],
-            18, ["+", 12.0, ["*", 1.30, ["get", "visited"]]]
-          ],
-          "circle-color": ["get", "fill"],
-          "circle-stroke-color": ["get", "border"],
-          "circle-stroke-width": 1.6,
-          "circle-opacity": 1
-        }
-      });
-    }
+    // Synlige prikker
+    MAP.addLayer({
+      id: "places",
+      type: "circle",
+      source: "places",
+      paint: {
+        "circle-radius": [
+          "interpolate", ["linear"], ["zoom"],
+          10, ["+", 3.2, ["*", 0.6, ["get", "visited"]]],
+          12, ["+", 4.2, ["*", 0.8, ["get", "visited"]]],
+          14, ["+", 6.0, ["*", 1.1, ["get", "visited"]]],
+          16, ["+", 9.0, ["*", 1.4, ["get", "visited"]]],
+          18, ["+", 13.0, ["*", 1.7, ["get", "visited"]]]
+        ],
+        "circle-color": ["get", "fill"],
+        "circle-stroke-color": ["get", "border"],
+        "circle-stroke-width": 1.8,
+        "circle-opacity": 1
+      }
+    });
 
-    // TV-tekst: baklag (skyggeboks)
-    if (!MAP.getLayer("places-label-bg")) {
-      MAP.addLayer({
-        id: "places-label-bg",
-        type: "symbol",
-        source: "places",
-        layout: {
-          "text-field": ["get", "name"],
-          "text-font": ["Open Sans Semibold", "Arial Unicode MS Regular"],
-          "text-size": ["interpolate", ["linear"], ["zoom"], 10, 12, 14, 14, 18, 18],
-          "text-offset": [0, 1.25],
-          "text-anchor": "top",
-          "text-allow-overlap": false,
-          "text-ignore-placement": false
-        },
-        paint: {
-          "text-color": "rgba(0,0,0,0.01)",
-          "text-halo-color": "rgba(0,0,0,0.70)",
-          "text-halo-width": 6.0,
-          "text-halo-blur": 0.8,
-          "text-opacity": ["interpolate", ["linear"], ["zoom"], 10, 0.0, 12, 0.65, 14, 1.0]
-        }
-      });
-    }
+    // Labels (enkel, lesbar)
+    MAP.addLayer({
+      id: "places-label",
+      type: "symbol",
+      source: "places",
+      layout: {
+        "text-field": ["get", "name"],
+        "text-font": ["Open Sans Semibold", "Arial Unicode MS Regular"],
+        "text-size": ["interpolate", ["linear"], ["zoom"], 11, 12, 14, 13, 18, 16],
+        "text-offset": [0, 1.2],
+        "text-anchor": "top",
+        "text-allow-overlap": false,
+        "text-ignore-placement": false
+      },
+      paint: {
+        "text-color": "rgba(20,20,20,0.92)",
+        "text-halo-color": "rgba(255,255,255,0.95)",
+        "text-halo-width": 1.4,
+        "text-halo-blur": 0.25,
+        "text-opacity": ["interpolate", ["linear"], ["zoom"], 10, 0.0, 12, 0.55, 14, 1.0]
+      }
+    });
 
-    // TV-tekst: frontlag (hvit tekst)
-    if (!MAP.getLayer("places-label")) {
-      MAP.addLayer({
-        id: "places-label",
-        type: "symbol",
-        source: "places",
-        layout: {
-          "text-field": ["get", "name"],
-          "text-font": ["Open Sans Semibold", "Arial Unicode MS Regular"],
-          "text-size": ["interpolate", ["linear"], ["zoom"], 10, 12, 14, 14, 18, 18],
-          "text-offset": [0, 1.25],
-          "text-anchor": "top",
-          "text-allow-overlap": false,
-          "text-ignore-placement": false
-        },
-        paint: {
-          "text-color": "rgba(255,255,255,0.98)",
-          "text-halo-color": "rgba(0,0,0,0.92)",
-          "text-halo-width": 1.8,
-          "text-halo-blur": 0.6,
-          "text-opacity": ["interpolate", ["linear"], ["zoom"], 10, 0.0, 12, 0.65, 14, 1.0]
-        }
-      });
-    }
-
-    // Cursor feedback (bind kun én gang)
+    // Cursor + click (bind én gang)
     if (!MAP.__hgPlacesCursorBound) {
       MAP.on("mouseenter", "places-hit", () => { MAP.getCanvas().style.cursor = "pointer"; });
       MAP.on("mouseleave", "places-hit", () => { MAP.getCanvas().style.cursor = ""; });
       MAP.__hgPlacesCursorBound = true;
     }
 
-    // Click handler (bind kun én gang)
     if (!MAP.__hgPlacesClickBound) {
       MAP.on("click", "places-hit", (e) => {
         const f = e.features && e.features[0];
@@ -325,114 +302,19 @@ function setUser(lat, lon, { fly = false } = {}) {
       });
       MAP.__hgPlacesClickBound = true;
     }
+
+    forcePlacesOnTop();
   }
 
-  function applyGlowRoads() {
+  function forcePlacesOnTop() {
     if (!MAP) return;
-    const style = MAP.getStyle();
-    const layers = (style && style.layers) || [];
-    const firstSymbol = layers.find(l => l.type === "symbol");
-    const beforeId = firstSymbol ? firstSymbol.id : undefined;
-
-    const roadLayers = layers
-      .filter(l => l.type === "line" && /road|street|highway/i.test(l.id))
-      .slice(0, 8);
-
-    roadLayers.forEach((rl, i) => {
-      const glowId = `hg-road-glow-${i}`;
-      if (MAP.getLayer(glowId)) return;
-
-      MAP.addLayer(
-        {
-          id: glowId,
-          type: "line",
-          source: rl.source,
-          "source-layer": rl["source-layer"],
-          filter: rl.filter,
-          layout: rl.layout,
-          paint: {
-            "line-color": "rgba(255,255,255,0.22)",
-            "line-width": [
-              "interpolate",
-              ["linear"],
-              ["zoom"],
-              10, 1.2,
-              13, 2.0,
-              16, 4.6,
-              18, 8.2
-            ],
-            "line-blur": [
-              "interpolate",
-              ["linear"],
-              ["zoom"],
-              10, 0.7,
-              14, 1.3,
-              18, 2.2
-            ],
-            "line-opacity": 0.55
-          }
-        },
-        beforeId
-      );
+    ["places-glow", "places", "places-hit", "places-label"].forEach(id => {
+      if (MAP.getLayer(id)) MAP.moveLayer(id);
     });
   }
 
-  function applyDarkColorfulLook() {
-    if (!MAP) return;
+  // --- expose --------------------------------------------------
 
-    const style = MAP.getStyle();
-    const layers = (style && style.layers) || [];
-
-    // Dim bakgrunn med et semi-transparent lag (beholder farger)
-    if (!MAP.getSource("hg-dim")) {
-      MAP.addSource("hg-dim", {
-        type: "geojson",
-        data: {
-          type: "FeatureCollection",
-          features: [
-            {
-              type: "Feature",
-              geometry: {
-                type: "Polygon",
-                coordinates: [[
-                  [-180, -85],
-                  [ 180, -85],
-                  [ 180,  85],
-                  [-180,  85],
-                  [-180, -85]
-                ]]
-              }
-            }
-          ]
-        }
-      });
-
-      const firstSymbol = layers.find(l => l.type === "symbol");
-      const beforeId = firstSymbol ? firstSymbol.id : undefined;
-
-      MAP.addLayer({
-        id: "hg-dim",
-        type: "fill",
-        source: "hg-dim",
-        paint: { "fill-color": "rgba(0,0,0,0.26)", "fill-opacity": 1 }
-      }, beforeId);
-    }
-
-    // Labels: hvit tekst + mørk halo
-    layers.forEach(l => {
-      if (l.type !== "symbol") return;
-      if (!/label|place|road|poi/i.test(l.id)) return;
-
-      try {
-        MAP.setPaintProperty(l.id, "text-color", "rgba(255,255,255,0.96)");
-        MAP.setPaintProperty(l.id, "text-halo-color", "rgba(0,0,0,0.85)");
-        MAP.setPaintProperty(l.id, "text-halo-width", 1.35);
-        MAP.setPaintProperty(l.id, "text-halo-blur", 0.4);
-      } catch (e) {}
-    });
-  }
-
-  // Expose API
   window.HGMap = {
     initMap,
     getMap,
