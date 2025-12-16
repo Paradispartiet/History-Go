@@ -924,7 +924,44 @@ async function boot() {
     TAGS_REGISTRY = tags;
 
     linkPeopleToPlaces();
-    // ... resten som før
+
+    // ✅ INIT QUIZ-MODUL (ETTER at PLACES/PEOPLE er lastet)
+    if (window.HGQuiz) {
+      HGQuiz.init({
+        getPersonById: id => PEOPLE.find(p => p.id === id),
+        getPlaceById:  id => PLACES.find(p => p.id === id),
+
+        getVisited: () => visited,
+        isTestMode: () => !!el.test?.checked,
+
+        showToast,
+
+        // category helpers
+        tagToCat,
+        catIdFromDisplay,
+
+        // rewards / progression / UI hooks
+        addCompletedQuizAndMaybePoint,
+
+        showRewardPerson,
+        showRewardPlace,
+        showPersonPopup,
+        showPlacePopup,
+
+        // optional / safe wrappers
+        pulseMarker: (lat, lon) => {
+          if (typeof window.pulseMarker === "function") window.pulseMarker(lat, lon);
+        },
+        savePeopleCollected: (personId) => {
+          peopleCollected[personId] = true;
+          savePeople();
+        },
+        dispatchProfileUpdate: () => window.dispatchEvent(new Event("updateProfile"))
+      });
+
+      HGQuiz.wire();
+    }
+
     // ✅ Gi kartmodulen data + callbacks (ETTER data er lastet)
     if (window.HGMap) {
       HGMap.setPlaces(PLACES);
