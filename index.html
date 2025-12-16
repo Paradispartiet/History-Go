@@ -152,33 +152,34 @@
   </div>
 
   <!-- SERVICE WORKER -->
-  <script>
-    if ("serviceWorker" in navigator) {
-      window.addEventListener("load", () => {
-navigator.serviceWorker.register("/sw.js")
-      });
-    }
-  </script>
+<script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      const base = location.pathname.replace(/\/[^\/]*$/, "/"); // mappen du står i
+      navigator.serviceWorker.register(base + "sw.js");
+    });
+  }
+</script>
 
 
   <!-- JS-REKKEFØLGE (globals først, app sist) -->
-  <script src="/js/popup-utils.js"></script>
-  <script src="/js/knowledge.js"></script>
-  <script src="/js/knowledge_component.js"></script>
+<script src="js/popup-utils.js"></script>
+<script src="js/knowledge.js"></script>
+<script src="js/knowledge_component.js"></script>
 
-  <script src="/js/trivia.js"></script>
-  <script src="/js/hgInsights.js"></script>
+<script src="js/trivia.js"></script>
+<script src="js/hgInsights.js"></script>
 
-  <!-- DataHub før app -->
-  <script src="/js/dataHub.js"></script>
+<!-- DataHub før app -->
+<script src="js/dataHub.js"></script>
 
-  <!-- Moduler som eksponerer window.HGMap / window.HGQuiz osv -->
-  <script src="/js/map.js"></script>
-  <script src="/js/quizzes.js"></script>
-  <script src="/js/routes.js"></script>
+<!-- Moduler som eksponerer window.HGMap / window.HGQuiz osv -->
+<script src="js/map.js"></script>
+<script src="js/quizzes.js"></script>
+<script src="js/routes.js"></script>
 
-  <!-- App entrypoint sist -->
-  <script src="/js/app.js"></script>
+<!-- App entrypoint sist -->
+<script src="js/app.js"></script>
 
 </body>
 </html>
