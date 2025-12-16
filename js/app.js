@@ -25,6 +25,8 @@ const START            = { lat: 59.9139, lon: 10.7522, zoom: 13 };
 const NEARBY_LIMIT     = 5;
 const QUIZ_FEEDBACK_MS = 650;
 
+let MAP = null; // ← brukes av enter/exitMapMode + resize
+
 let PLACES  = [];
 let PEOPLE  = [];
 let BADGES  = [];
