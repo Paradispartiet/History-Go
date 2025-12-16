@@ -169,20 +169,15 @@ async function openRoutesSheet() {
 
   const pos = getUserPos();
   const sheet = document.getElementById("sheetNearby");
-  const body = document.getElementById("sheetNearbyBody");
+  const body  = document.getElementById("sheetNearbyBody");
   if (!sheet || !body) {
     console.warn("Mangler sheetNearby/sheetNearbyBody i DOM");
     return;
   }
 
+  // Sett tittel ETTER at sheet finnes
   const titleEl = sheet.querySelector(".sheet-head h3");
   if (titleEl) titleEl.textContent = "Nærmeste ruter";
-
-  if (!pos) {
-    body.innerHTML = `<div class="hg-muted">Fant ikke posisjon ennå.</div>`;
-    sheet.classList.add("open");
-    return;
-  }
 
   const sorted = getNearbyRoutesSorted(
     pos,
