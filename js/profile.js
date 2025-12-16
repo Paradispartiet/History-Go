@@ -502,9 +502,9 @@ function openProfileModal() {
 // INIT
 // ------------------------------------------------------------
 Promise.all([
-  fetch("people.json").then(r=>r.json()).then(d=>PEOPLE=d),
-  fetch("places.json").then(r=>r.json()).then(d=>PLACES=d),
-  fetch("badges.json").then(r=>r.json()).then(d=>BADGES=d)
+  fetch("/data/people.json").then(r => r.json()).then(d => PEOPLE = d),
+  fetch("/data/places.json").then(r => r.json()).then(d => PLACES = d),
+  fetch("/data/badges.json").then(r => r.json()).then(d => BADGES = d)
 ]).then(() => {
   renderProfileCard();
   renderMerits();
