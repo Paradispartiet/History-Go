@@ -1,240 +1,218 @@
 // js/dataHub.js
-// DataHub v2 — robust loader for History GO
-// - bruker ABSOLUTTE paths (/data/...) så det funker fra alle sider
-// - enkel cache i minnet (unngår re-fetch)
-// - base + overlays merge => enriched
-// - små helpers for emner/fagkart/quizzes (valgfritt)
+// DataHub v2 (NO MODULES) — robust loader for History GO
+// Bruk: DataHub.loadPlaces(), DataHub.getPlaceEnriched(...)
 
-const DEFAULTS = {
-  DATA_BASE: "/data",
-  EMNER_BASE: "/emner"
-};
+(function () {
+  "use strict";
 
-const _cache = new Map();
-
-/** Fetch JSON med cache og bedre feilmeldinger */
-async function fetchJSON(url, { cache = "default", bust = false } = {}) {
-  const key = `${url}::${cache}`;
-  if (!bust && _cache.has(key)) return _cache.get(key);
-
-  const p = (async () => {
-    const res = await fetch(url, { cache });
-    if (!res.ok) throw new Error(`Fetch failed ${res.status} for ${url}`);
-    return res.json();
-  })();
-
-  _cache.set(key, p);
-  return p;
-}
-
-function clearCache(prefix = "") {
-  if (!prefix) return _cache.clear();
-  for (const k of _cache.keys()) {
-    if (k.startsWith(prefix)) _cache.delete(k);
-  }
-}
-
-function indexBy(arr, key) {
-  const m = new Map();
-  (arr || []).forEach(x => {
-    const k = x && x[key];
-    if (k) m.set(k, x);
-  });
-  return m;
-}
-
-function mergeDeep(base, extra) {
-  if (!extra) return base;
-  const out = { ...(base || {}) };
-
-  for (const [k, v] of Object.entries(extra)) {
-    if (v == null) continue;
-
-    const prev = out[k];
-
-    if (Array.isArray(v)) {
-      const a = Array.isArray(prev) ? prev : [];
-      const merged = [...a, ...v].filter(Boolean);
-
-      // unik — støtter både primitives og objekter
-      const uniq = [];
-      const seen = new Set();
-      for (const item of merged) {
-        const sig = (item && typeof item === "object") ? JSON.stringify(item) : String(item);
-        if (!seen.has(sig)) {
-          seen.add(sig);
-          uniq.push(item);
-        }
-      }
-      out[k] = uniq;
-
-    } else if (typeof v === "object") {
-      out[k] = mergeDeep(prev && typeof prev === "object" ? prev : {}, v);
-
-    } else {
-      out[k] = v;
-    }
-  }
-  return out;
-}
-
-// ───────────────────────────────
-// Paths (tilpasser seg din mappestruktur)
-// ───────────────────────────────
-
-function pData(path) {
-  return `${DEFAULTS.DATA_BASE}/${path}`.replace(/\/+/g, "/");
-}
-function pEmner(path) {
-  return `${DEFAULTS.EMNER_BASE}/${path}`.replace(/\/+/g, "/");
-}
-
-// ───────────────────────────────
-// Base data
-// ───────────────────────────────
-
-export async function loadTags(opts = {}) {
-  // /data/tags.json
-  return fetchJSON(pData("tags.json"), opts);
-}
-
-export async function loadPlacesBase(opts = {}) {
-  // /data/places.json
-  return fetchJSON(pData("places.json"), opts);
-}
-
-export async function loadPeopleBase(opts = {}) {
-  // /data/people.json
-  return fetchJSON(pData("people.json"), opts);
-}
-
-export async function loadBadges(opts = {}) {
-  // /data/badges.json
-  return fetchJSON(pData("badges.json"), opts);
-}
-
-export async function loadRoutes(opts = {}) {
-  // /data/routes.json
-  return fetchJSON(pData("routes.json"), opts);
-}
-
-// ───────────────────────────────
-// Overlays
-// /data/overlays/<subjectId>/places_<subjectId>.json
-// /data/overlays/<subjectId>/people_<subjectId>.json
-// ───────────────────────────────
-
-export async function loadPlaceOverlays(subjectId, opts = {}) {
-  if (!subjectId) return [];
-  return fetchJSON(pData(`overlays/${subjectId}/places_${subjectId}.json`), opts)
-    .catch(() => []);
-}
-
-export async function loadPeopleOverlays(subjectId, opts = {}) {
-  if (!subjectId) return [];
-  return fetchJSON(pData(`overlays/${subjectId}/people_${subjectId}.json`), opts)
-    .catch(() => []);
-}
-
-// ───────────────────────────────
-// Enriched getters
-// ───────────────────────────────
-
-export async function getPlaceEnriched(placeId, subjectId, opts = {}) {
-  const [places, overlays] = await Promise.all([
-    loadPlacesBase(opts),
-    loadPlaceOverlays(subjectId, opts)
-  ]);
-
-  const base = (places || []).find(p => p.id === placeId) || null;
-  if (!base) return null;
-
-  const overlay = (overlays || []).find(o => o.placeId === placeId) || null;
-  return mergeDeep(base, overlay ? { ...overlay, id: base.id } : null);
-}
-
-export async function getPersonEnriched(personId, subjectId, opts = {}) {
-  const [people, overlays] = await Promise.all([
-    loadPeopleBase(opts),
-    loadPeopleOverlays(subjectId, opts)
-  ]);
-
-  const base = (people || []).find(p => p.id === personId) || null;
-  if (!base) return null;
-
-  const overlay = (overlays || []).find(o => o.personId === personId) || null;
-  return mergeDeep(base, overlay ? { ...overlay, id: base.id } : null);
-}
-
-/**
- * Batch-enrich (ofte nyttig): gir maps for rask lookup i UI
- */
-export async function loadEnrichedAll(subjectId, opts = {}) {
-  const [places, people, placeOv, peopleOv] = await Promise.all([
-    loadPlacesBase(opts),
-    loadPeopleBase(opts),
-    loadPlaceOverlays(subjectId, opts),
-    loadPeopleOverlays(subjectId, opts)
-  ]);
-
-  const pOvBy = indexBy(placeOv || [], "placeId");
-  const peOvBy = indexBy(peopleOv || [], "personId");
-
-  const enrichedPlaces = (places || []).map(p => mergeDeep(p, pOvBy.get(p.id) ? { ...pOvBy.get(p.id), id: p.id } : null));
-  const enrichedPeople = (people || []).map(p => mergeDeep(p, peOvBy.get(p.id) ? { ...peOvBy.get(p.id), id: p.id } : null));
-
-  return {
-    enrichedPlaces,
-    enrichedPeople,
-    enrichedPlacesById: indexBy(enrichedPlaces, "id"),
-    enrichedPeopleById: indexBy(enrichedPeople, "id")
+  const DEFAULTS = {
+    DATA_BASE: "/data",
+    EMNER_BASE: "/emner"
   };
-}
 
-// ───────────────────────────────
-// Emner / fagkart (du har dette i /emner)
-// ───────────────────────────────
+  const _cache = new Map();
 
-export async function loadEmner(themeId, opts = {}) {
-  // /emner/emner_<themeId>.json
-  if (!themeId) return [];
-  return fetchJSON(pEmner(`emner_${themeId}.json`), opts).catch(() => []);
-}
+  function pData(path) {
+    return `${DEFAULTS.DATA_BASE}/${path}`.replace(/\/+/g, "/");
+  }
+  function pEmner(path) {
+    return `${DEFAULTS.EMNER_BASE}/${path}`.replace(/\/+/g, "/");
+  }
 
-export async function loadFagkart(opts = {}) {
-  // /emner/fagkart.json
-  return fetchJSON(pEmner("fagkart.json"), opts).catch(() => null);
-}
+  async function fetchJSON(url, { cache = "default", bust = false } = {}) {
+    const key = `${url}::${cache}`;
+    if (!bust && _cache.has(key)) return _cache.get(key);
 
-export async function loadFagkartMap(opts = {}) {
-  // /emner/fagkart_map.json
-  return fetchJSON(pEmner("fagkart_map.json"), opts).catch(() => null);
-}
+    const p = (async () => {
+      const res = await fetch(url, { cache });
+      if (!res.ok) throw new Error(`Fetch failed ${res.status} for ${url}`);
+      return res.json();
+    })();
 
-// ───────────────────────────────
-// Quiz (du har /data/quiz/quiz_*.json)
-// ───────────────────────────────
+    _cache.set(key, p);
+    return p;
+  }
 
-export async function loadQuizCategory(categoryId, opts = {}) {
-  if (!categoryId) return [];
-  return fetchJSON(pData(`quiz/quiz_${categoryId}.json`), opts).catch(() => []);
-}
+  function clearCache(prefix = "") {
+    if (!prefix) return _cache.clear();
+    for (const k of _cache.keys()) if (k.startsWith(prefix)) _cache.delete(k);
+  }
 
-// ───────────────────────────────
-// TAGS: normalisering (legacy → canonical)
-// ───────────────────────────────
+  function indexBy(arr, key) {
+    const m = new Map();
+    (arr || []).forEach(x => {
+      const k = x && x[key];
+      if (k) m.set(k, x);
+    });
+    return m;
+  }
 
-export function normalizeTags(rawTags, tagsRegistry) {
-  const list = Array.isArray(rawTags) ? rawTags : [];
-  const legacyMap = (tagsRegistry && tagsRegistry.legacy_map) || {};
-  return list.map(t => legacyMap[t] || t).filter(Boolean);
-}
+  function mergeDeep(base, extra) {
+    if (!extra) return base;
+    const out = { ...(base || {}) };
 
-// ───────────────────────────────
-// Debug / vedlikehold
-// ───────────────────────────────
+    for (const [k, v] of Object.entries(extra)) {
+      if (v == null) continue;
 
-export const DataHub = {
-  fetchJSON,
-  clearCache
-};
+      const prev = out[k];
+
+      if (Array.isArray(v)) {
+        const a = Array.isArray(prev) ? prev : [];
+        const merged = [...a, ...v].filter(Boolean);
+        const uniq = [];
+        const seen = new Set();
+
+        for (const item of merged) {
+          const sig = (item && typeof item === "object") ? JSON.stringify(item) : String(item);
+          if (!seen.has(sig)) {
+            seen.add(sig);
+            uniq.push(item);
+          }
+        }
+        out[k] = uniq;
+
+      } else if (typeof v === "object") {
+        out[k] = mergeDeep(prev && typeof prev === "object" ? prev : {}, v);
+
+      } else {
+        out[k] = v;
+      }
+    }
+    return out;
+  }
+
+  // Base loaders
+  function loadTags(opts = {}) {
+    return fetchJSON(pData("tags.json"), opts);
+  }
+  function loadPlacesBase(opts = {}) {
+    return fetchJSON(pData("places.json"), opts);
+  }
+  function loadPeopleBase(opts = {}) {
+    return fetchJSON(pData("people.json"), opts);
+  }
+  function loadBadges(opts = {}) {
+    return fetchJSON(pData("badges.json"), opts);
+  }
+  function loadRoutes(opts = {}) {
+    return fetchJSON(pData("routes.json"), opts);
+  }
+
+  // Overlays
+  function loadPlaceOverlays(subjectId, opts = {}) {
+    if (!subjectId) return Promise.resolve([]);
+    return fetchJSON(pData(`overlays/${subjectId}/places_${subjectId}.json`), opts).catch(() => []);
+  }
+  function loadPeopleOverlays(subjectId, opts = {}) {
+    if (!subjectId) return Promise.resolve([]);
+    return fetchJSON(pData(`overlays/${subjectId}/people_${subjectId}.json`), opts).catch(() => []);
+  }
+
+  // Enriched
+  async function getPlaceEnriched(placeId, subjectId, opts = {}) {
+    const [places, overlays] = await Promise.all([
+      loadPlacesBase(opts),
+      loadPlaceOverlays(subjectId, opts)
+    ]);
+    const base = (places || []).find(p => p.id === placeId) || null;
+    if (!base) return null;
+    const overlay = (overlays || []).find(o => o.placeId === placeId) || null;
+    return mergeDeep(base, overlay ? { ...overlay, id: base.id } : null);
+  }
+
+  async function getPersonEnriched(personId, subjectId, opts = {}) {
+    const [people, overlays] = await Promise.all([
+      loadPeopleBase(opts),
+      loadPeopleOverlays(subjectId, opts)
+    ]);
+    const base = (people || []).find(p => p.id === personId) || null;
+    if (!base) return null;
+    const overlay = (overlays || []).find(o => o.personId === personId) || null;
+    return mergeDeep(base, overlay ? { ...overlay, id: base.id } : null);
+  }
+
+  async function loadEnrichedAll(subjectId, opts = {}) {
+    const [places, people, placeOv, peopleOv] = await Promise.all([
+      loadPlacesBase(opts),
+      loadPeopleBase(opts),
+      loadPlaceOverlays(subjectId, opts),
+      loadPeopleOverlays(subjectId, opts)
+    ]);
+
+    const pOvBy = indexBy(placeOv || [], "placeId");
+    const peOvBy = indexBy(peopleOv || [], "personId");
+
+    const enrichedPlaces = (places || []).map(p =>
+      mergeDeep(p, pOvBy.get(p.id) ? { ...pOvBy.get(p.id), id: p.id } : null)
+    );
+    const enrichedPeople = (people || []).map(p =>
+      mergeDeep(p, peOvBy.get(p.id) ? { ...peOvBy.get(p.id), id: p.id } : null)
+    );
+
+    return {
+      enrichedPlaces,
+      enrichedPeople,
+      enrichedPlacesById: indexBy(enrichedPlaces, "id"),
+      enrichedPeopleById: indexBy(enrichedPeople, "id")
+    };
+  }
+
+  // Emner/fagkart
+  function loadEmner(themeId, opts = {}) {
+    if (!themeId) return Promise.resolve([]);
+    return fetchJSON(pEmner(`emner_${themeId}.json`), opts).catch(() => []);
+  }
+  function loadFagkart(opts = {}) {
+    return fetchJSON(pEmner("fagkart.json"), opts).catch(() => null);
+  }
+  function loadFagkartMap(opts = {}) {
+    return fetchJSON(pEmner("fagkart_map.json"), opts).catch(() => null);
+  }
+
+  // Quiz: /data/quiz/quiz_<categoryId>.json
+  function loadQuizCategory(categoryId, opts = {}) {
+    if (!categoryId) return Promise.resolve([]);
+    return fetchJSON(pData(`quiz/quiz_${categoryId}.json`), opts).catch(() => []);
+  }
+
+  function normalizeTags(rawTags, tagsRegistry) {
+    const list = Array.isArray(rawTags) ? rawTags : [];
+    const legacyMap = (tagsRegistry && tagsRegistry.legacy_map) || {};
+    return list.map(t => legacyMap[t] || t).filter(Boolean);
+  }
+
+  window.DataHub = {
+    // core
+    fetchJSON,
+    clearCache,
+
+    // base
+    loadTags,
+    loadPlacesBase,
+    loadPeopleBase,
+    loadBadges,
+    loadRoutes,
+
+    // overlays/enriched
+    loadPlaceOverlays,
+    loadPeopleOverlays,
+    getPlaceEnriched,
+    getPersonEnriched,
+    loadEnrichedAll,
+
+    // emner
+    loadEmner,
+    loadFagkart,
+    loadFagkartMap,
+
+    // quiz
+    loadQuizCategory,
+
+    // tags
+    normalizeTags,
+
+    // utils (om du trenger)
+    mergeDeep,
+    indexBy
+  };
+})();
