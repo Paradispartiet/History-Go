@@ -348,13 +348,22 @@
   }
 
   function wire() {
-    document.addEventListener("click", (e) => {
-      const btn = e.target.closest("[data-quiz]");
-      if (!btn) return;
-      const id = btn.dataset.quiz;
-      if (id) startQuiz(id);
-    });
-  }
+  document.addEventListener("click", (e) => {
+    const btn = e.target.closest("[data-quiz]");
+    if (!btn) return;
+
+    const quizId = btn.dataset.quiz;
+    if (!quizId) return;
+
+    if (window.HGQuiz && typeof HGQuiz.startQuiz === "function") {
+      HGQuiz.startQuiz(quizId);
+    } else if (typeof showToast === "function") {
+      showToast("Quiz-modul ikke lastet");
+    } else {
+      alert("Quiz-modul ikke lastet");
+    }
+  });
+}
 
   window.HGQuiz = { init, wire, startQuiz };
 })();
