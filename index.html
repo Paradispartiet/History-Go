@@ -125,9 +125,10 @@
 
   <!-- PLACE CARD (fast nederst i appen) -->
   <div id="placeCard" aria-hidden="true">
-    
-    <div class="pc-body">
+  <div class="pc-body">
 
+    <!-- SCROLL-DEL (midten) -->
+    <div class="pc-scroll">
       <div class="pc-main">
         <img id="pcImage" class="pc-img" src="" alt="">
         <div class="pc-text">
@@ -136,6 +137,30 @@
           <p id="pcDesc" class="pc-desc"></p>
         </div>
       </div>
+
+      <div id="pcPeople" class="pc-people"></div>
+    </div>
+
+    <!-- FAST BUNN -->
+    <div class="pc-footer">
+      <div class="pc-actions">
+        <button id="pcInfo"   class="secondary">Mer info</button>
+        <button id="pcQuiz"   class="primary">Ta quiz</button>
+        <button id="pcUnlock" class="primary">Lås opp</button>
+        <button id="pcRoute"  class="ghost">Rute</button>
+        <button id="pcNote" class="ghost">📝 Notat</button>
+        <button id="pcClose"  class="ghost"
+                onclick="document.getElementById('placeCard').setAttribute('aria-hidden','true')">✕</button>
+      </div>
+
+      <!-- FLYTT miniProfile HIT (klipp fra der den ligger nå) -->
+      <section id="miniProfile" class="panel mini-profile">
+        ...
+      </section>
+    </div>
+
+  </div>
+</div>
 
           <div class="pc-actions">
         <button id="pcInfo"   class="secondary">Mer info</button>
