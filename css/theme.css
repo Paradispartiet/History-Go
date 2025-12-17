@@ -727,6 +727,51 @@ button{ cursor:pointer; border:none }
   bottom: var(--pc-height);
 }
 
+/* Tving people-stripen synlig (over sticky/gradient) */
+#placeCard #pcPeople{
+  position: relative;
+  z-index: 2;
+
+  min-height: 92px;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 12px;
+  align-items: center;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+
+  padding: 10px 6px;
+  margin: 10px 0 12px 0;
+
+  border-top: 1px solid rgba(255,255,255,.10);
+  border-bottom: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.03); /* gjør stripen synlig */
+}
+
+/* Person-chip */
+#placeCard .pc-person{
+  flex: 0 0 auto;
+}
+
+/* Fine runde bilder + fallback hvis bilde ikke laster */
+#placeCard .pc-person-img{
+  width: 64px !important;
+  height: 64px !important;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.30);
+  object-fit: cover;
+  background: rgba(255,255,255,.08);
+  display: block;
+}
+
+/* Navn må være synlig uansett theme-vars */
+#placeCard .pc-person span{
+  color: #fff !important;
+  opacity: .92;
+}
+
 /* ===================================================== */
 /* 8) Sheets (bunnark) – forbedret og oversiktlig        */
 /* ===================================================== */
