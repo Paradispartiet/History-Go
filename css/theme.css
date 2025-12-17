@@ -465,43 +465,140 @@ button{ cursor:pointer; border:none }
 /* PLACE CARD – LAYOUT                                    */
 /* ===================================================== */
 
-/* Hele kortet (sheet) */
-/* ===================================================== */
-/* PLACE CARD – FORBEDRET, STØRRE, RYDDIG (NIVÅ 2)       */
-/* ===================================================== */
+/* ===== PlaceCard = elegant bottom sheet ===== */
 
 :root{
-  --pc-height: 35vh;
+  --pc-height: 35vh;             /* du ønsket 35% */
+  --pc-radius: 18px;
+  --pc-pad: 12px;
+  --pc-gap: 10px;
 }
 
-/* PlaceCard fast i bunnen, helt tett */
 #placeCard{
   position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;                 /* ← helt til bunn */
-
-  width: 100%;
+  left: 0; right: 0; bottom: 0;
   height: var(--pc-height);
-
+  width: 100%;
   z-index: 9999;
 
-  /* ← dette fikser “gjennomsiktig” */
   background: var(--panel-bg, #111);
+  border-top-left-radius: var(--pc-radius);
+  border-top-right-radius: var(--pc-radius);
 
+  /* liten “elegant” kant */
+  box-shadow: 0 -10px 30px rgba(0,0,0,.35);
+  border-top: 1px solid rgba(255,255,255,.06);
+
+  overflow: hidden; /* body får scroll */
+}
+
+/* drag-handle / toppstripe (kun visuell) */
+#placeCard::before{
+  content:"";
+  display:block;
+  width: 44px;
+  height: 5px;
+  border-radius: 999px;
+  margin: 8px auto 0;
+  background: rgba(255,255,255,.20);
+}
+
+/* Scrollområde */
+#placeCard .pc-body{
+  height: calc(100% - 20px); /* plass til handle */
   overflow: auto;
   -webkit-overflow-scrolling: touch;
-
-  border-top-left-radius: 18px;
-  border-top-right-radius: 18px;
+  padding: var(--pc-pad);
+  padding-bottom: calc(var(--pc-pad) + env(safe-area-inset-bottom));
 }
 
-/* så kartet ikke havner bak */
-#map,
-#mapContainer,
-main{
-  padding-bottom: var(--pc-height);
+/* Hovedområdet: bilde + tekst, tett og rent */
+#placeCard .pc-main{
+  display: grid;
+  grid-template-columns: 92px 1fr;
+  gap: var(--pc-gap);
+  align-items: start;
 }
+
+#placeCard .pc-img{
+  width: 92px;
+  height: 92px;
+  object-fit: cover;
+  border-radius: 14px;
+  background: rgba(255,255,255,.06);
+}
+
+/* Tittel + meta */
+#placeCard #pcTitle{
+  margin: 0;
+  line-height: 1.1;
+  font-size: 18px;
+}
+
+#placeCard .pc-meta{
+  margin-top: 4px;
+  font-size: 12px;
+  opacity: .85;
+}
+
+#placeCard .pc-body{
+  transition: opacity 120ms ease;
+}
+#placeCard.is-loading .pc-body{
+  opacity: .25;
+}
+
+#placeCard .pc-desc{
+  margin-top: 8px;
+  font-size: 14px;
+  opacity: .92;
+}
+
+/* Folk-liste kan være “chips” / stram */
+#placeCard .pc-people{
+  margin-top: 10px;
+}
+
+/* Actions: sticky nederst inni panelet */
+#placeCard .pc-actions{
+  position: sticky;
+  bottom: 0;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding-top: 10px;
+
+  background: linear-gradient(to top,
+    var(--panel-bg, #111) 70%,
+    rgba(17,17,17,0) 100%);
+}
+
+/* knapper litt mer “premium” */
+#placeCard .pc-actions button{
+  border-radius: 999px;
+  padding: 10px 12px;
+}
+
+/* MINI-PROFIL inni placecard: dempet og integrert */
+#placeCard #miniProfile{
+  margin-top: 12px;
+  border-radius: 16px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.06);
+}
+
+/* Sikre at mini-profile ikke prøver å være fixed */
+#miniProfile.mini-profile{
+  position: static !important;
+}
+
+/* Kartet stopper før placecard (så trykk fungerer) */
+#map, #mapContainer{
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  bottom: var(--pc-height);
+}
+
 
 /* ===================================================== */
 /* Innhold: bilde venstre – tekst høyre                   */
