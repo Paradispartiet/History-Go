@@ -1,1 +1,17 @@
+/* ===================================================== */
+/* effects.css – små globale effekter                     */
+/* ===================================================== */
 
+.icon:hover,
+.sheet-close:hover,
+#quizClose:hover,
+#pcClose:hover,
+#btnExitMap:hover{
+  filter:brightness(1.1);
+}
+
+@keyframes hgPulse{
+  0%   { transform: translate(-50%, -50%) scale(0.7); opacity: .55; }
+  70%  { transform: translate(-50%, -50%) scale(2.2); opacity: .10; }
+  100% { transform: translate(-50%, -50%) scale(2.4); opacity: 0; }
+}
