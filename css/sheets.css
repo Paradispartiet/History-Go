@@ -1,0 +1,52 @@
+/* ===================================================== */
+/* 8) Sheets (bunnark) – forbedret og oversiktlig        */
+/* ===================================================== */
+.sheet {
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  z-index: 13;
+  background: rgba(13, 27, 42, 0.95);
+  border: 1px solid var(--panel-border);
+  border-radius: 16px 16px 0 0;
+  box-shadow: var(--shadow);
+  transform: translateY(100%);
+  transition: transform .22s ease, opacity .2s ease;
+}
+.sheet[aria-hidden="false"] { transform: none; }
+
+.sheet-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 18px;
+  background: rgba(255,255,255,0.05);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  border-radius: 16px 16px 0 0;
+}
+
+.sheet-body {
+  padding: 14px 16px 20px;
+  display: grid; gap: 12px;
+  overflow-y: auto; max-height: 70vh;
+}
+
+/* Kortene i "Se flere i nærheten" */
+.sheet-body .card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 10px;
+  padding: 14px;
+  transition: background .2s ease, transform .2s ease;
+}
+.sheet-body .card:hover {
+  background: rgba(255,255,255,0.08);
+  transform: translateY(-2px);
+}
+.sheet-body .name { font-weight: 700; font-size: 1rem; color:#fff; }
+.sheet-body .meta { color: #a9b7c7; font-size: .9rem; margin-bottom: 6px; }
+.sheet-body .desc { color: #d0d8e4; font-size: .92rem; line-height: 1.45; }
+
+.sheet-close {
+  width: 44px; height: 44px; border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.1);
+  color: #fff; font-size: 1.4rem;
+}t
