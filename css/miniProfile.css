@@ -88,3 +88,11 @@
   object-fit: cover;
   border-radius: 4px;
 }
+
+.pulse-mini { animation: miniProfilePulse .45s ease; }
+
+@keyframes miniProfilePulse {
+  0%   { transform: scale(1); opacity: .8; }
+  40%  { transform: scale(1.10); opacity: 1; }
+  100% { transform: scale(1); opacity: .8; }
+}
