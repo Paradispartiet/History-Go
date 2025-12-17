@@ -1,0 +1,239 @@
+/* ===================================================== */
+/* PLACE CARD – (EGEN FIL) placecard.css                  */
+/* ===================================================== */
+
+:root{
+  --pc-height: 35vh;
+  --pc-radius: 18px;
+  --pc-pad: 12px;
+  --pc-gap: 14px;
+
+  --pc-img: 160px;
+  --pc-title: 1.55rem;
+  --pc-meta: 1rem;
+  --pc-desc: 1.05rem;
+
+  --pc-person-img: 64px;
+}
+
+/* Bottom sheet */
+#placeCard{
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  height: var(--pc-height);
+  width: 100%;
+  z-index: 9999;
+
+  background: var(--panel-bg, #121212);
+  border-top-left-radius: var(--pc-radius);
+  border-top-right-radius: var(--pc-radius);
+  border-top: 1px solid rgba(255,255,255,.06);
+  box-shadow: 0 -12px 34px rgba(0,0,0,.40);
+  overflow: hidden;
+}
+
+/* Handle */
+#placeCard::before{
+  content:"";
+  display:block;
+  width: 44px;
+  height: 5px;
+  border-radius: 999px;
+  margin: 8px auto 0;
+  background: rgba(255,255,255,.20);
+}
+
+/* Body: må kunne scrolle hvis innhold blir for høyt */
+#placeCard .pc-body{
+  height: calc(100% - 18px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+
+  padding: var(--pc-pad);
+  padding-bottom: calc(var(--pc-pad) + env(safe-area-inset-bottom));
+}
+
+/* Main */
+#placeCard .pc-main{
+  display: grid;
+  grid-template-columns: var(--pc-img) 1fr;
+  gap: var(--pc-gap);
+  align-items: start;
+  margin-bottom: 12px;
+}
+
+#placeCard .pc-img{
+  width: var(--pc-img);
+  height: var(--pc-img);
+  border-radius: 16px;
+  object-fit: cover;
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(255,255,255,.06);
+}
+
+#placeCard #pcTitle{
+  margin: 0;
+  font-size: var(--pc-title);
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.2;
+}
+
+#placeCard #pcMeta{
+  margin-top: 6px;
+  margin-bottom: 12px;
+  font-size: var(--pc-meta);
+  color: var(--text-dim);
+}
+
+/* Fast preview + … */
+#placeCard #pcDesc{
+  margin: 0 0 10px 0;
+  font-size: var(--pc-desc);
+  line-height: 1.48;
+  color: var(--text);
+
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* People: horisontal scroll */
+#placeCard #pcPeople{
+  min-height: 92px;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 12px;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+
+  padding: 10px 6px;
+  margin: 10px 0 12px 0;
+
+  border-top: 1px solid rgba(255,255,255,.10);
+  border-bottom: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.03);
+}
+
+#placeCard #pcPeople .pc-person{
+  flex: 0 0 auto;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+#placeCard #pcPeople .pc-person-img{
+  width: var(--pc-person-img);
+  height: var(--pc-person-img);
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.30);
+  object-fit: cover;
+  background: rgba(255,255,255,.08);
+  display: block;
+  transition: transform 0.15s ease;
+}
+
+#placeCard #pcPeople .pc-person-img:hover{
+  transform: scale(1.08);
+}
+
+#placeCard #pcPeople .pc-person span{
+  font-size: 0.85rem;
+  color: #fff;
+  opacity: .92;
+  white-space: nowrap;
+}
+
+/* Actions */
+#placeCard .pc-actions{
+  position: sticky;
+  bottom: 0;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+
+  margin-top: 10px;
+  padding-top: 10px;
+  padding-bottom: 6px;
+
+  background: linear-gradient(to top,
+    var(--panel-bg, #121212) 72%,
+    rgba(18,18,18,0) 100%);
+}
+
+#placeCard .pc-actions button{
+  font-size: 1rem;
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+#placeCard #pcInfo{
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.18);
+  color: #fff;
+}
+
+#placeCard #pcQuiz{
+  background: var(--primary);
+  color: #000;
+}
+
+#placeCard #pcUnlock{
+  background: #f6c800;
+  color: #000;
+}
+
+#placeCard #pcRoute,
+#placeCard #pcClose,
+#placeCard #pcNote{
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: #fff;
+}
+
+/* MiniProfile in card */
+#placeCard #miniProfile{
+  margin-top: 12px;
+  border-radius: 16px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.06);
+  position: static !important;
+}
+
+/* Smooth switching */
+#placeCard .pc-main,
+#placeCard #pcPeople,
+#placeCard #pcDesc{
+  transition: opacity 120ms ease, transform 120ms ease;
+}
+
+#placeCard.is-switching .pc-main,
+#placeCard.is-switching #pcPeople,
+#placeCard.is-switching #pcDesc{
+  opacity: .25;
+  transform: translateY(2px);
+}
+
+/* Map stops above placecard */
+#map, #mapContainer{
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  bottom: var(--pc-height);
+}
