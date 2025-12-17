@@ -25,3 +25,54 @@
 .card .meta{ color:var(--muted); font-size:.9rem; margin:2px 0 4px }
 .card .row{ display:flex; gap:8px; align-items:center }
 .card .row.between{ justify-content:space-between }
+
+/* ===================================================== */
+/* 5) Knapper & chips/badges                             */
+/* ===================================================== */
+button{ cursor:pointer; border:none }
+.primary{
+  background: var(--primary); color:#fff;
+  padding:10px 14px; border-radius:10px; font-weight:600;
+}
+.secondary{
+  background: rgba(255,255,255,.08); color:#fff;
+  padding:10px 14px; border-radius:10px;
+  border:1px solid var(--panel-border);
+}
+.ghost{
+  background: transparent; color:#fff;
+  padding:8px 12px; border-radius:999px;
+  border:1px solid var(--panel-border);
+}
+.icon{
+  width:44px; height:44px; border-radius:999px;
+  background: rgba(255,255,255,.08); color:#fff;
+  border:1px solid var(--panel-border);
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.2rem;
+}
+
+.chips{ display:flex; flex-wrap:wrap; gap:8px }
+.badge{
+  display:inline-flex; align-items:center; gap:8px;
+  padding:6px 10px; border-radius:999px;
+  border:1px solid var(--panel-border);
+  background: rgba(255,255,255,.02);
+  font-size:.92rem;
+}
+.badge .i{
+  width:22px; height:22px; border-radius:999px;
+  display:inline-block; border:2px solid rgba(0,0,0,.55);
+}
+.badge.kunst .i{ background: var(--kult); }        /* Kunst & kultur */
+.badge.by .i{ background: var(--urban); }          /* By & arkitektur */
+.badge.sport .i{ background: var(--sport); }       /* Sport & lek */
+.badge.natur .i{ background: var(--natur); }       /* Natur & miljø */
+.badge.vitenskap .i{ background: var(--viten); }   /* Vitenskap & filosofi */
+.badge.politikk .i{ background: #c77dff; }         /* Politikk & samfunn */
+.badge.litteratur .i{ background: #f6c800; }       /* Litteratur & poesi */
+.badge.populaerkultur .i{ background: #ffb703; }   /* Populærkultur */
+.badge.subkultur .i{ background: #ff66cc; }        /* Subkultur */
+.badge.musikk .i{ background: #ff66cc; }           /* Musikk & scenekunst */
+.badge.naeringsliv .i{ background: #ff8800; }      /* Næringsliv & industri */
+
