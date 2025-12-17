@@ -346,6 +346,9 @@ window.openPlaceCard = function(place) {
 
   if (!card) return;
 
+      // Smooth “skifte sted”
+  card.classList.add("is-switching");
+
   if (imgEl)   imgEl.src = place.image || "";
   if (titleEl) titleEl.textContent = place.name;
   if (metaEl)  metaEl.textContent  = `${place.category || ""} • radius ${place.r || 150} m`;
@@ -434,6 +437,10 @@ if (btnRoute) btnRoute.onclick = () => {
     };
   }
 
+    requestAnimationFrame(() => {
+    card.classList.remove("is-switching");
+  });
+  
   card.setAttribute("aria-hidden", "false");
 };
 
