@@ -270,3 +270,45 @@
   top: 0; left: 0; right: 0;
   bottom: var(--pc-height);
 }
+
+
+/* pc-body blir et “kolonne-layout” */
+#placeCard .pc-body{
+  height: calc(100% - 18px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* scroll skjer i .pc-scroll */
+}
+
+/* Midten scroller */
+#placeCard .pc-scroll{
+  flex: 1 1 auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  padding: var(--pc-pad);
+  padding-bottom: 10px; /* litt luft før footer */
+}
+
+/* Bunn er fast (alltid synlig) */
+#placeCard .pc-footer{
+  flex: 0 0 auto;
+  padding: 0 var(--pc-pad) calc(var(--pc-pad) + env(safe-area-inset-bottom));
+  background: var(--panel-bg, #121212);
+  border-top: 1px solid rgba(255,255,255,.06);
+}
+
+/* Actions: ikke sticky lenger (footer er fast) */
+#placeCard .pc-actions{
+  position: static;
+  margin-top: 0;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background: transparent;
+}
+
+/* MiniProfile nederst: ingen ekstra spacing som stjeler plass */
+#placeCard #miniProfile{
+  margin-top: 10px;
+  margin-bottom: 0;
+}
