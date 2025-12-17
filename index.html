@@ -5,16 +5,18 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <title>History Go</title>
 
+  <!-- Manifest -->
   <link rel="manifest" href="manifest.json">
 
   <!-- MapLibre CSS -->
   <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5.14.0/dist/maplibre-gl.css">
 
-  <!-- App CSS -->
+  <!-- CSS -->
   <link rel="stylesheet" href="css/theme.css">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/components.css">
+
   <link rel="stylesheet" href="css/search.css">
   <link rel="stylesheet" href="css/nearby.css">
   <link rel="stylesheet" href="css/miniProfile.css">
@@ -24,17 +26,19 @@
   <link rel="stylesheet" href="css/popups.css">
   <link rel="stylesheet" href="css/overlay.css">
   <link rel="stylesheet" href="css/effects.css">
+
   <link rel="stylesheet" href="css/map.css">
   <link rel="stylesheet" href="css/placeCard.css">
+
   <link rel="stylesheet" href="css/sheets.css">
 
-  <!-- MapLibre JS (KUN ÉN GANG) -->
+  <!-- MapLibre JS (kun én gang) -->
   <script src="https://unpkg.com/maplibre-gl@5.14.0/dist/maplibre-gl.js"></script>
 </head>
-  
+
 <body>
 
-  <!-- Toast-melding -->
+  <!-- Toast -->
   <div id="toast"></div>
 
   <!-- USYNLIGE DATA-CONTAINERE -->
@@ -65,6 +69,7 @@
 
   <!-- HEADER -->
   <header class="site-header">
+
     <div class="brand">
       <img src="bilder/logo_historygo.PNG" alt="History Go logo" class="brand-logo">
       <span class="brand-name">History Go</span>
@@ -74,6 +79,7 @@
       <input id="globalSearch" placeholder="Søk…" autocomplete="off">
     </div>
 
+    <!-- SØKERESULTATER -->
     <div id="searchResults"></div>
 
     <div class="actions">
@@ -83,9 +89,10 @@
         <span>Testmodus</span>
       </label>
     </div>
+
   </header>
 
-  <!-- VENSTRELISTE -->
+  <!-- VENSTREKOLONNE – NÆRMEG -->
   <div id="nearbyListContainer">
     <h2 class="nearby-title">
       Steder i nærheten
@@ -97,6 +104,7 @@
     <div id="nearbyList"></div>
   </div>
 
+  <!-- MAIN -->
   <main>
     <!-- Flere i nærheten (sheet) -->
     <div id="sheetNearby" class="sheet" aria-hidden="true">
@@ -104,6 +112,7 @@
         <h3>Se flere i nærheten</h3>
         <button class="sheet-close" data-close="#sheetNearby">✕</button>
       </div>
+
       <div id="sheetNearbyBody" class="sheet-body"></div>
     </div>
   </main>
@@ -139,6 +148,7 @@
             onclick="document.getElementById('placeCard').setAttribute('aria-hidden','true')">✕</button>
         </div>
 
+        <!-- MINI-PROFIL -->
         <section id="miniProfile" class="panel mini-profile">
           <div class="info">
             <div class="profile-top">
@@ -181,10 +191,13 @@
   <script src="js/knowledge_component.js"></script>
   <script src="js/trivia.js"></script>
   <script src="js/hgInsights.js"></script>
+
   <script src="js/dataHub.js"></script>
+
   <script src="js/map.js"></script>
   <script src="js/quizzes.js"></script>
   <script src="js/routes.js"></script>
+
   <script src="js/app.js"></script>
 
 </body>
