@@ -1,0 +1,162 @@
+/* ===================================================== */
+/* 9) Modal (quiz)                                       */
+/* ===================================================== */
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 10050;              /* Sørger for at modalen ligger over alt */
+  display: none;
+  background: rgba(0,0,0,.55);
+  pointer-events: auto;        /* Sikrer klikk på knapper */
+}
+
+.modal[aria-hidden="false"] {
+  display: block;
+}
+
+.modal .modal-body {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: min(680px, 92vw);
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  padding: 14px;
+  z-index: 10051;              /* Sørger for at X-knappen er klikkbar */
+}
+
+.modal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+#quizClose {
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: 1px solid var(--panel-border);
+  background: rgba(255,255,255,.08);
+  color: #fff;
+  font-size: 1.4rem;
+  z-index: 10052;              /* Helt øverst, alltid klikkbar */
+}
+
+
+/* ===================================================== */
+/* 10) Quiz-stiler                                       */
+/* ===================================================== */
+#quizProgress { color: var(--muted); margin-bottom: 6px; }
+#quizQuestion { margin: 8px 0 10px; font-weight: 700; }
+
+.quiz-choices {
+  display: grid;
+  gap: 8px;
+}
+
+.quiz-choices button {
+  text-align: left;
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--panel-border);
+  background: rgba(255,255,255,.03);
+  color: #fff;
+  transition: background .2s ease, border-color .2s ease;
+}
+
+.quiz-choices button.correct {
+  border-color: #1b7a4a;
+  background: rgba(27,122,74,.18);
+}
+
+.quiz-choices button.wrong {
+  border-color: #7a1f25;
+  background: rgba(122,31,37,.18);
+}
+
+.quiz-feedback {
+  min-height: 1.2em;
+  font-weight: 700;
+}
+
+
+/* ===================================================== */
+/* 10b) Quiz-progress-bar                                */
+/* ===================================================== */
+.quiz-progress {
+  width: 100%;
+  height: 6px;
+  background: rgba(255,255,255,.1);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.quiz-progress .bar {
+  height: 100%;
+  width: 0%;
+  background: var(--primary);
+  transition: width .4s ease;
+}
+
+
+/* ===================================================== */
+/* 10c) Quiz-fade effekt ved avslutning                  */
+/* ===================================================== */
+#quizModal.fade-out .modal-body {
+  animation: quizFadeOut 0.45s ease forwards;
+}
+
+@keyframes quizFadeOut {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -40%) scale(0.95);
+  }
+}
+
+
+/* ===================================================== */
+/* 10d) QUIZ – KNAPPER OG ANIMASJON VED PERFEKT SCORE    */
+/* ===================================================== */
+
+/* Fast stil for tidligere fullført quiz */
+button.quiz-done {
+  background: rgba(255,215,0,0.12);
+  border: 1px solid rgba(255,215,0,0.5);
+  color: #ffd700;
+  cursor: default;
+  font-weight: 600;
+  position: relative;
+  padding-left: 1.6em;
+}
+
+/* Liten medalje foran teksten */
+button.quiz-done::before {
+  content: "🏅";
+  position: absolute;
+  left: 0.6em;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1em;
+}
+
+/* Kort gullglød første gang man klarer alt riktig */
+@keyframes quizGlow {
+  0%   { box-shadow: 0 0 0px 0 rgba(255,215,0,0); }
+  40%  { box-shadow: 0 0 16px 6px rgba(255,215,0,0.8); }
+  100% { box-shadow: 0 0 0px 0 rgba(255,215,0,0); }
+}
+
+button.quiz-done.blink {
+  animation: quizGlow 1.2s ease-out;
+}
