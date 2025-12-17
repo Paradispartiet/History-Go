@@ -1212,32 +1212,7 @@ document.getElementById("globalSearch").addEventListener("input", e => {
   renderSearchResults(results, value);
 });
 
-document.getElementById("searchResults").addEventListener("click", e => {
-  const i = e.target;
 
-  if (i.dataset.person) {
-    openPersonCard(i.dataset.person);
-    showSearchBox(false);
-    document.getElementById("globalSearch").value = "";
-    return;
-  }
-
-  if (i.dataset.place) {
-    openPlaceCard(i.dataset.place);
-    showSearchBox(false);
-    document.getElementById("globalSearch").value = "";
-    return;
-  }
-
-  if (i.dataset.category) {
-    const catId = i.dataset.category;
-    const el = document.querySelector(`[data-category-block="${catId}"]`);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
-    showSearchBox(false);
-    document.getElementById("globalSearch").value = "";
-    return;
-  }
-});
 
 // Skjul når man klikker utenfor
 document.addEventListener("click", e => {
