@@ -1,0 +1,47 @@
+/* ===================================================== */
+/* map.css – KART + KARTKONTROLLER                        */
+/* ===================================================== */
+
+/* Kartet: bruk top/left/right/bottom (ikke 100vh) */
+#map{
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;        /* placeCard.css kan overstyre denne til --pc-height */
+  z-index: 1;
+  background: #000;
+  overflow: hidden;
+}
+
+/* Hindrer 1px-gaps */
+#map .maplibregl-canvas{
+  display: block;
+}
+
+/* Kartknapper: alltid klikkbare (over placeCard) */
+.map-controls{
+  position: fixed;
+  right: 12px;
+
+  /* ligger over placecard-høyden */
+  bottom: calc(var(--pc-height, 0px) + 12px);
+
+  /* må være > #placeCard (9999) */
+  z-index: 10050;
+
+  display: grid;
+  gap: 8px;
+  pointer-events: auto;
+}
+
+.map-controls button{
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: 1px solid var(--panel-border);
+  background: rgba(20,30,45,.9);
+  color: #fff;
+  box-shadow: var(--shadow);
+  pointer-events: auto;
+}
