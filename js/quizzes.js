@@ -68,23 +68,23 @@
   };
 
   async function loadQuizForCategory(categoryId) {
-    const cat = normalizeId(categoryId);             // ✅ viktig
-    const file = QUIZ_FILE_MAP[cat];
-    if (!file) return [];
+  const cat = normalizeId(categoryId);
+  const file = QUIZ_FILE_MAP[cat];
+  if (!file) return [];
 
-    try {
-      const response = await fetch(file, { cache: "no-store" });
-      if (!response.ok) return [];
-      const data = await response.json();
+  try {
+    const response = await fetch(file, { cache: "no-store" });
+    if (!response.ok) return [];
+    const data = await response.json();
 
-      // (valgfritt men trygt) filtrer på categoryId i filen også
-      return Array.isArray(data)
-        ? data.filter(q => normalizeId(q.categoryId) === cat)
-        : [];
-    } catch {
-      return [];
-    }
+    // ROBUST:
+    // - ikke krev q.categoryId (mange av dine quiz-items mangler den)
+    // - men hvis den finnes, la mismatch være ok (fila er fasiten)
+    return Array.isArray(data) ? data : [];
+  } catch {
+    return [];
   }
+}
 
   // ───────────────────────────────
   // UI
