@@ -1,0 +1,27 @@
+/* Paneler, kort, rutenett */
+.panel{
+  background: var(--panel);
+  border:1px solid var(--panel-border);
+  border-radius: var(--radius);
+  padding:16px 18px;
+  margin:16px 0;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(2px);
+}
+.panel h2{
+  display:flex; align-items:center; justify-content:space-between;
+  margin:6px 2px 12px;
+  font-size:1.2rem;
+}
+
+.cards{ display:grid; gap:10px }
+.card{
+  background: rgba(255,255,255,.02);
+  border:1px solid var(--panel-border);
+  border-radius: var(--radius);
+  padding:14px 16px;
+}
+.card .name{ font-weight:700 }
+.card .meta{ color:var(--muted); font-size:.9rem; margin:2px 0 4px }
+.card .row{ display:flex; gap:8px; align-items:center }
+.card .row.between{ justify-content:space-between }
