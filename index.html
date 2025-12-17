@@ -5,43 +5,37 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <title>History Go</title>
 
-  <!-- Manifest -->
   <link rel="manifest" href="manifest.json">
 
-<!-- MapLibre CSS først -->
-<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5.14.0/dist/maplibre-gl.css">
+  <!-- MapLibre CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5.14.0/dist/maplibre-gl.css">
 
-<!-- Theme vars først -->
-<link rel="stylesheet" href="css/theme.css">
+  <!-- App CSS -->
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/search.css">
+  <link rel="stylesheet" href="css/nearby.css">
+  <link rel="stylesheet" href="css/miniProfile.css">
+  <link rel="stylesheet" href="css/profile.css">
+  <link rel="stylesheet" href="css/merits.css">
+  <link rel="stylesheet" href="css/quiz.css">
+  <link rel="stylesheet" href="css/popups.css">
+  <link rel="stylesheet" href="css/overlay.css">
+  <link rel="stylesheet" href="css/effects.css">
+  <link rel="stylesheet" href="css/map.css">
+  <link rel="stylesheet" href="css/placeCard.css">
+  <link rel="stylesheet" href="css/sheets.css">
 
-<!-- Base + layout + komponenter -->
-<link rel="stylesheet" href="css/base.css">
-<link rel="stylesheet" href="css/layout.css">
-<link rel="stylesheet" href="css/components.css">
-
-<!-- Feature-filer -->
-<link rel="stylesheet" href="css/search.css">
-<link rel="stylesheet" href="css/nearby.css">
-<link rel="stylesheet" href="css/miniProfile.css">
-<link rel="stylesheet" href="css/profile.css">
-<link rel="stylesheet" href="css/merits.css">
-<link rel="stylesheet" href="css/quiz.css">
-<link rel="stylesheet" href="css/popups.css">
-<link rel="stylesheet" href="css/overlay.css">
-<link rel="stylesheet" href="css/effects.css">
-
-<!-- Kart + PlaceCard sist (de “vinner” layout/z-index) -->
-<link rel="stylesheet" href="css/map.css">
-<link rel="stylesheet" href="css/placeCard.css">
-
-<!-- Sheets bare hvis du faktisk bruker sheets -->
-<link rel="stylesheet" href="css/sheets.css">
-
-<!-- MapLibre JS -->
-<script src="https://unpkg.com/maplibre-gl@5.14.0/dist/maplibre-gl.js"></script>
+  <!-- MapLibre JS (KUN ÉN GANG) -->
+  <script src="https://unpkg.com/maplibre-gl@5.14.0/dist/maplibre-gl.js"></script>
+</head>
+  
+<body>
 
   <!-- Toast-melding -->
-<div id="toast"></div>
+  <div id="toast"></div>
 
   <!-- USYNLIGE DATA-CONTAINERE -->
   <div id="collectionGrid" style="display:none"></div>
@@ -69,167 +63,129 @@
     <button id="btnExitMap" title="Lukk kart" aria-label="Lukk kart">✕</button>
   </div>
 
-<!-- HEADER -->
-<header class="site-header">
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="brand">
+      <img src="bilder/logo_historygo.PNG" alt="History Go logo" class="brand-logo">
+      <span class="brand-name">History Go</span>
+    </div>
 
-  <!-- Logo og navn -->
-  <div class="brand">
-<img src="/bilder/logo_historygo.PNG" alt="History Go logo" class="brand-logo">
-    <span class="brand-name">History Go</span>
+    <div class="top-actions">
+      <input id="globalSearch" placeholder="Søk…" autocomplete="off">
+    </div>
+
+    <div id="searchResults"></div>
+
+    <div class="actions">
+      <button id="btnSeeMap" class="secondary">Se kart</button>
+      <label class="toggle">
+        <input id="testToggle" type="checkbox" />
+        <span>Testmodus</span>
+      </label>
+    </div>
+  </header>
+
+  <!-- VENSTRELISTE -->
+  <div id="nearbyListContainer">
+    <h2 class="nearby-title">
+      Steder i nærheten
+      <button id="btnSeeMoreNearby" class="chip ghost">Se flere</button>
+      <button class="chip ghost" onclick="openRoutesSheet()">Ruter</button>
+    </h2>
+
+    <div id="status" class="muted">Henter posisjon…</div>
+    <div id="nearbyList"></div>
   </div>
 
-<!-- ACTIONS + SØK -->
-<div class="top-actions">
-  <input id="globalSearch" placeholder="Søk…" autocomplete="off">
-</div>
-  <!-- SØKERESULTATER (overlay under headeren) -->
-  <div id="searchResults"></div>
-
-  <!-- Eksisterende høyre actions -->
-  <div class="actions">
-    <button id="btnSeeMap" class="secondary">Se kart</button>
-    <label class="toggle">
-      <input id="testToggle" type="checkbox" />
-      <span>Testmodus</span>
-    </label>
-  </div>
-
-</header>
-
-<!-- FLYTENDE VENSTREKOLONNE – SE NÆRMESTE -->
-<div id="nearbyListContainer">
-<h2 class="nearby-title">
-  Steder i nærheten
-  <button id="btnSeeMoreNearby" class="chip ghost">Se flere</button>
-  <button class="chip ghost" onclick="openRoutesSheet()">Ruter</button>
-</h2>
-
-  <div id="status" class="muted">Henter posisjon…</div>
-  <div id="nearbyList"></div>
-</div>
-
-  <!-- MAIN -->
   <main>
-   
     <!-- Flere i nærheten (sheet) -->
     <div id="sheetNearby" class="sheet" aria-hidden="true">
       <div class="sheet-head">
         <h3>Se flere i nærheten</h3>
         <button class="sheet-close" data-close="#sheetNearby">✕</button>
       </div>
-
       <div id="sheetNearbyBody" class="sheet-body"></div>
     </div>
-
   </main>
 
-  <!-- PLACE CARD (fast nederst i appen) -->
+  <!-- PLACE CARD -->
   <div id="placeCard" aria-hidden="true">
-  <div class="pc-body">
+    <div class="pc-body">
 
-    <!-- SCROLL-DEL (midten) -->
-    <div class="pc-scroll">
-      <div class="pc-main">
-        <img id="pcImage" class="pc-img" src="" alt="">
-        <div class="pc-text">
-          <h2 id="pcTitle"></h2>
-          <div id="pcMeta" class="pc-meta"></div>
-          <p id="pcDesc" class="pc-desc"></p>
-        </div>
-      </div>
-
-      <div id="pcPeople" class="pc-people"></div>
-    </div>
-
-    <!-- FAST BUNN -->
-      </div> <!-- /pc-scroll -->
-
-    <div class="pc-footer">
-
-      <div class="pc-actions">
-        <button id="pcInfo"   class="secondary">Mer info</button>
-        <button id="pcQuiz"   class="primary">Ta quiz</button>
-        <button id="pcUnlock" class="primary">Lås opp</button>
-        <button id="pcRoute"  class="ghost">Rute</button>
-        <button id="pcNote"   class="ghost">📝 Notat</button>
-        <button id="pcClose"  class="ghost"
-          onclick="document.getElementById('placeCard').setAttribute('aria-hidden','true')">✕</button>
-      </div>
-
-      <!-- MINI-PROFIL (flyttet hit) -->
-      <section id="miniProfile" class="panel mini-profile">
-        <div class="info">
-          <div class="profile-top">
-            <h3 id="miniName">Utforsker #182</h3>
-            <a href="profile.html" class="arrow-link">→</a>
-          </div>
-
-          <p id="miniStats" class="muted">
-            <span id="linkPlaces" class="linkish">0 steder</span> ·
-            <span id="linkBadges" class="linkish">0 merker</span> ·
-            <span id="linkQuiz"   class="linkish">0 quizzer</span>
-          </p>
-
-          <div id="miniBadges" class="profile-badges"></div>
-
-          <div id="miniLastQuiz" class="profile-last-quiz" style="display:none;">
-            <img id="miniLastQuizImg" src="">
-            <span id="miniLastQuizName"></span>
+      <!-- SCROLL-DEL -->
+      <div class="pc-scroll">
+        <div class="pc-main">
+          <img id="pcImage" class="pc-img" src="" alt="">
+          <div class="pc-text">
+            <h2 id="pcTitle"></h2>
+            <div id="pcMeta" class="pc-meta"></div>
+            <p id="pcDesc" class="pc-desc"></p>
           </div>
         </div>
-      </section>
 
-    </div> <!-- /pc-footer -->
-
-  </div> <!-- /pc-body -->
-</div>   <!-- /placeCard -->
-  
-          <div class="pc-actions">
-        <button id="pcInfo"   class="secondary">Mer info</button>
-        <button id="pcQuiz"   class="primary">Ta quiz</button>
-        <button id="pcUnlock" class="primary">Lås opp</button>
-        <button id="pcRoute"  class="ghost">Rute</button>
-        <button id="pcNote" class="ghost">📝 Notat</button>
-        <button id="pcClose"  class="ghost"
-                onclick="document.getElementById('placeCard').setAttribute('aria-hidden','true')">✕</button>
+        <div id="pcPeople" class="pc-people"></div>
       </div>
 
-      
+      <!-- FAST BUNN -->
+      <div class="pc-footer">
+
+        <div class="pc-actions">
+          <button id="pcInfo"   class="secondary">Mer info</button>
+          <button id="pcQuiz"   class="primary">Ta quiz</button>
+          <button id="pcUnlock" class="primary">Lås opp</button>
+          <button id="pcRoute"  class="ghost">Rute</button>
+          <button id="pcNote"   class="ghost">📝 Notat</button>
+          <button id="pcClose"  class="ghost"
+            onclick="document.getElementById('placeCard').setAttribute('aria-hidden','true')">✕</button>
+        </div>
+
+        <section id="miniProfile" class="panel mini-profile">
+          <div class="info">
+            <div class="profile-top">
+              <h3 id="miniName">Utforsker #182</h3>
+              <a href="profile.html" class="arrow-link">→</a>
+            </div>
+
+            <p id="miniStats" class="muted">
+              <span id="linkPlaces" class="linkish">0 steder</span> ·
+              <span id="linkBadges" class="linkish">0 merker</span> ·
+              <span id="linkQuiz"   class="linkish">0 quizzer</span>
+            </p>
+
+            <div id="miniBadges" class="profile-badges"></div>
+
+            <div id="miniLastQuiz" class="profile-last-quiz" style="display:none;">
+              <img id="miniLastQuizImg" src="">
+              <span id="miniLastQuizName"></span>
+            </div>
+          </div>
+        </section>
+
+      </div>
     </div>
   </div>
 
   <!-- SERVICE WORKER -->
-<script>
-  if ("serviceWorker" in navigator) {
-    window.addEventListener("load", () => {
-      const base = location.pathname.replace(/\/[^\/]*$/, "/"); // mappen du står i
-      navigator.serviceWorker.register(base + "sw.js");
-    });
-  }
-</script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        const base = location.pathname.replace(/\/[^\/]*$/, "/");
+        navigator.serviceWorker.register(base + "sw.js");
+      });
+    }
+  </script>
 
-
-  <!-- JS-REKKEFØLGE (globals først, app sist) -->
-<script src="js/popup-utils.js"></script>
-<script src="js/knowledge.js"></script>
-<script src="js/knowledge_component.js"></script>
-
-<script src="js/trivia.js"></script>
-<script src="js/hgInsights.js"></script>
-
-<!-- DataHub før app -->
-<script src="js/dataHub.js"></script>
-
-<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.css">
-<script src="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.js"></script>
-
-<!-- Moduler som eksponerer window.HGMap / window.HGQuiz osv -->
-<script src="js/map.js"></script>
-<script src="js/quizzes.js"></script>
-<script src="js/routes.js"></script>
-
-<!-- App entrypoint sist -->
-<script src="js/app.js"></script>
+  <!-- JS -->
+  <script src="js/popup-utils.js"></script>
+  <script src="js/knowledge.js"></script>
+  <script src="js/knowledge_component.js"></script>
+  <script src="js/trivia.js"></script>
+  <script src="js/hgInsights.js"></script>
+  <script src="js/dataHub.js"></script>
+  <script src="js/map.js"></script>
+  <script src="js/quizzes.js"></script>
+  <script src="js/routes.js"></script>
+  <script src="js/app.js"></script>
 
 </body>
 </html>
