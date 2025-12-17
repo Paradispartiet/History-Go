@@ -37,6 +37,13 @@
   let QUIZ_FEEDBACK_MS = 700;
 
   // ───────────────────────────────
+  // Helpers
+  // ───────────────────────────────
+  function normalizeId(x) {
+    return String(x || "").trim().toLowerCase();
+  }
+
+  // ───────────────────────────────
   // Storage
   // ───────────────────────────────
   function saveQuizHistory(entry) {
@@ -46,29 +53,33 @@
   }
 
   const QUIZ_FILE_MAP = {
-  kunst: "data/quiz/quiz_kunst.json",
-  sport: "data/quiz/quiz_sport.json",
-  politikk: "data/quiz/quiz_politikk.json",
-  populaerkultur: "data/quiz/quiz_populaerkultur.json",
-  musikk: "data/quiz/quiz_musikk.json",
-  subkultur: "data/quiz/quiz_subkultur.json",
-  vitenskap: "data/quiz/quiz_vitenskap.json",
-  natur: "data/quiz/quiz_natur.json",
-  litteratur: "data/quiz/quiz_litteratur.json",
-  by: "data/quiz/quiz_by.json",
-  historie: "data/quiz/quiz_historie.json",
-  naeringsliv: "data/quiz/quiz_naeringsliv.json"
-};
-  
+    kunst: "data/quiz/quiz_kunst.json",
+    sport: "data/quiz/quiz_sport.json",
+    politikk: "data/quiz/quiz_politikk.json",
+    populaerkultur: "data/quiz/quiz_populaerkultur.json",
+    musikk: "data/quiz/quiz_musikk.json",
+    subkultur: "data/quiz/quiz_subkultur.json",
+    vitenskap: "data/quiz/quiz_vitenskap.json",
+    natur: "data/quiz/quiz_natur.json",
+    litteratur: "data/quiz/quiz_litteratur.json",
+    by: "data/quiz/quiz_by.json",
+    historie: "data/quiz/quiz_historie.json",
+    naeringsliv: "data/quiz/quiz_naeringsliv.json"
+  };
+
   async function loadQuizForCategory(categoryId) {
-    const file = QUIZ_FILE_MAP[categoryId];
+    const cat = normalizeId(categoryId);             // ✅ viktig
+    const file = QUIZ_FILE_MAP[cat];
     if (!file) return [];
+
     try {
       const response = await fetch(file, { cache: "no-store" });
       if (!response.ok) return [];
       const data = await response.json();
+
+      // (valgfritt men trygt) filtrer på categoryId i filen også
       return Array.isArray(data)
-        ? data.filter(q => (q.categoryId || "").toLowerCase() === String(categoryId).toLowerCase())
+        ? data.filter(q => normalizeId(q.categoryId) === cat)
         : [];
     } catch {
       return [];
@@ -107,6 +118,8 @@
     modal.addEventListener("click", e => {
       if (e.target.id === "quizModal") closeQuiz();
     });
+
+    // (OK å ha denne, men den vil trigge også andre steder. Funker greit.)
     document.addEventListener("keydown", e => {
       if (e.key === "Escape") closeQuiz();
     });
@@ -167,10 +180,13 @@
 
     // Hent quizdata
     const displayCat = person ? API.tagToCat(person.tags) : (place.category || "vitenskap");
-    const categoryId = API.catIdFromDisplay(displayCat);
+    const categoryId = normalizeId(API.catIdFromDisplay(displayCat)); // ✅ viktig
 
     const items = await loadQuizForCategory(categoryId);
-    const questions = items.filter(q => q.personId === targetId || q.placeId === targetId);
+
+    // ✅ robust matching (case/whitespace-safe)
+    const tid = String(targetId);
+    const questions = items.filter(q => String(q.personId || "") === tid || String(q.placeId || "") === tid);
 
     if (!questions.length) {
       API.showToast("Ingen quiz tilgjengelig her ennå");
@@ -290,6 +306,7 @@
 
   function runQuizFlow({ title = "Quiz", questions = [], onEnd = () => {} }) {
     ensureQuizUI();
+
     const qs = {
       title: document.getElementById("quizTitle"),
       q: document.getElementById("quizQuestion"),
@@ -347,23 +364,18 @@
     if (typeof opts.quizFeedbackMs === "number") QUIZ_FEEDBACK_MS = opts.quizFeedbackMs;
   }
 
+  // ✅ Klikk-delegation: KALL startQuiz DIREKTE (ikke HGQuiz→HGQuiz)
   function wire() {
-  document.addEventListener("click", (e) => {
-    const btn = e.target.closest("[data-quiz]");
-    if (!btn) return;
+    document.addEventListener("click", (e) => {
+      const btn = e.target.closest("[data-quiz]");
+      if (!btn) return;
 
-    const quizId = btn.dataset.quiz;
-    if (!quizId) return;
+      const quizId = btn.dataset.quiz;
+      if (!quizId) return;
 
-    if (window.HGQuiz && typeof HGQuiz.startQuiz === "function") {
-      HGQuiz.startQuiz(quizId);
-    } else if (typeof showToast === "function") {
-      showToast("Quiz-modul ikke lastet");
-    } else {
-      alert("Quiz-modul ikke lastet");
-    }
-  });
-}
+      startQuiz(quizId);
+    });
+  }
 
   window.HGQuiz = { init, wire, startQuiz };
 })();
