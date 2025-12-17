@@ -360,7 +360,7 @@ const categoryId = normalizeId(API.catIdFromDisplay(displayCat) || displayCat);
     step();
   }
 
-  // ───────────────────────────────
+   // ───────────────────────────────
   // Public API
   // ───────────────────────────────
   function init(opts = {}) {
@@ -368,18 +368,5 @@ const categoryId = normalizeId(API.catIdFromDisplay(displayCat) || displayCat);
     if (typeof opts.quizFeedbackMs === "number") QUIZ_FEEDBACK_MS = opts.quizFeedbackMs;
   }
 
-  // ✅ Klikk-delegation: KALL startQuiz DIREKTE (ikke HGQuiz→HGQuiz)
-  function wire() {
-    document.addEventListener("click", (e) => {
-      const btn = e.target.closest("[data-quiz]");
-      if (!btn) return;
-
-      const quizId = btn.dataset.quiz;
-      if (!quizId) return;
-
-      startQuiz(quizId);
-    });
-  }
-
-  window.HGQuiz = { init, wire, startQuiz };
+  window.HGQuiz = { init, startQuiz };
 })();
