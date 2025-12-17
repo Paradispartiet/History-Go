@@ -583,6 +583,21 @@ button{ cursor:pointer; border:none }
   bottom: var(--pc-height);
 }
 
+
+/* Smooth “sted skifter” */
+#placeCard .pc-main,
+#placeCard #pcPeople,
+#placeCard .pc-desc{
+  transition: opacity 120ms ease, transform 120ms ease;
+}
+
+#placeCard.is-switching .pc-main,
+#placeCard.is-switching #pcPeople,
+#placeCard.is-switching .pc-desc{
+  opacity: .25;
+  transform: translateY(2px);
+}
+
 /* ===================================================== */
 /* Innhold: bilde venstre – tekst høyre                   */
 /* ===================================================== */
@@ -1487,3 +1502,5 @@ button.quiz-done.blink {
   70%  { transform: translate(-50%, -50%) scale(2.2); opacity: .10; }
   100% { transform: translate(-50%, -50%) scale(2.4); opacity: 0; }
 }
+
+
