@@ -179,9 +179,13 @@
     }
 
     // Hent quizdata
-    const displayCat = person ? API.tagToCat(person.tags) : (place.category || "vitenskap");
-    const categoryId = normalizeId(API.catIdFromDisplay(displayCat)); // ✅ viktig
+    // displayCat = det som vises/lagres for poeng (kan være "Kunst & kultur" osv)
+const displayCat = person
+  ? (API.tagToCat(person.tags) || "vitenskap")
+  : (place?.category || API.tagToCat(place?.tags) || "vitenskap");
 
+// categoryId = filnøkkel (MÅ være "kunst", "historie", ...)
+const categoryId = normalizeId(API.catIdFromDisplay(displayCat) || displayCat);
     const items = await loadQuizForCategory(categoryId);
 
     // ✅ robust matching (case/whitespace-safe)
