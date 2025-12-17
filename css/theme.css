@@ -470,25 +470,33 @@ button{ cursor:pointer; border:none }
 /* PLACE CARD – FORBEDRET, STØRRE, RYDDIG (NIVÅ 2)       */
 /* ===================================================== */
 
-/* Hele kortet (sheet) */
-#placeCard {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 50;
-  background: rgba(13,27,42,0.96);
-  backdrop-filter: blur(8px);
-  border-radius: 22px 22px 0 0;
-  padding: 24px 22px 28px;
-  transform: translateY(0);
-  transition: transform 0.25s ease;
-  max-height: 360px;          /* ← NYTT: større, men ikke gigantisk */
-  overflow-y: auto;
+:root{
+  --pc-height: 35vh;
 }
 
-#placeCard[aria-hidden="true"] {
-  transform: translateY(120%);
+/* PlaceCard fast i bunnen, alltid 35% */
+#placeCard{
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  width: 100%;
+  height: calc(var(--pc-height) + env(safe-area-inset-bottom));
+
+  z-index: 9999;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+
+  border-top-left-radius: 18px;
+  border-top-right-radius: 18px;
+}
+
+/* Gi kart/innhold plass så det ikke havner bak */
+#map,
+#mapContainer,
+main{
+  padding-bottom: calc(var(--pc-height) + env(safe-area-inset-bottom));
 }
 
 /* ===================================================== */
