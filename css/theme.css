@@ -512,7 +512,10 @@ button{ cursor:pointer; border:none }
 /* Scroll-området inni panelet */
 #placeCard .pc-body{
   height: calc(100% - 18px); /* plass til handle */
-  overflow: hidden;
+  #placeCard .pc-body{
+  overflow-y: auto;
+  overflow-x: hidden;
+}
   -webkit-overflow-scrolling: touch;
 
   padding: var(--pc-pad);
