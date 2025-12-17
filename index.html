@@ -8,17 +8,37 @@
   <!-- Manifest -->
   <link rel="manifest" href="manifest.json">
 
-<!-- MapLibre GL (vektor-kart / WebGL) -->
+<!-- MapLibre CSS først -->
 <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5.14.0/dist/maplibre-gl.css">
 
-<!-- App CSS -->
+<!-- Theme vars først -->
 <link rel="stylesheet" href="css/theme.css">
+
+<!-- Base + layout + komponenter -->
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/components.css">
+
+<!-- Feature-filer -->
+<link rel="stylesheet" href="css/search.css">
+<link rel="stylesheet" href="css/nearby.css">
+<link rel="stylesheet" href="css/miniProfile.css">
+<link rel="stylesheet" href="css/profile.css">
+<link rel="stylesheet" href="css/merits.css">
+<link rel="stylesheet" href="css/quiz.css">
+<link rel="stylesheet" href="css/popups.css">
+<link rel="stylesheet" href="css/overlay.css">
+<link rel="stylesheet" href="css/effects.css">
+
+<!-- Kart + PlaceCard sist (de “vinner” layout/z-index) -->
 <link rel="stylesheet" href="css/map.css">
 <link rel="stylesheet" href="css/placeCard.css">
-  
+
+<!-- Sheets bare hvis du faktisk bruker sheets -->
+<link rel="stylesheet" href="css/sheets.css">
+
 <!-- MapLibre JS -->
 <script src="https://unpkg.com/maplibre-gl@5.14.0/dist/maplibre-gl.js"></script>
-</head>
 
   <!-- Toast-melding -->
 <div id="toast"></div>
