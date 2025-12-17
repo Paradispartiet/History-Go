@@ -474,17 +474,21 @@ button{ cursor:pointer; border:none }
   --pc-height: 35vh;
 }
 
-/* PlaceCard fast i bunnen, alltid 35% */
+/* PlaceCard fast i bunnen, helt tett */
 #placeCard{
   position: fixed;
   left: 0;
   right: 0;
-  bottom: 0;
+  bottom: 0;                 /* ← helt til bunn */
 
   width: 100%;
-  height: calc(var(--pc-height) + env(safe-area-inset-bottom));
+  height: var(--pc-height);
 
   z-index: 9999;
+
+  /* ← dette fikser “gjennomsiktig” */
+  background: var(--panel-bg, #111);
+
   overflow: auto;
   -webkit-overflow-scrolling: touch;
 
@@ -492,11 +496,11 @@ button{ cursor:pointer; border:none }
   border-top-right-radius: 18px;
 }
 
-/* Gi kart/innhold plass så det ikke havner bak */
+/* så kartet ikke havner bak */
 #map,
 #mapContainer,
 main{
-  padding-bottom: calc(var(--pc-height) + env(safe-area-inset-bottom));
+  padding-bottom: var(--pc-height);
 }
 
 /* ===================================================== */
