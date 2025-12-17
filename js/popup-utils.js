@@ -364,7 +364,7 @@ window.openPlaceCard = function(place) {
     peopleEl.innerHTML = persons
       .map(p => `
         <button class="pc-person" data-person="${p.id}">
-          <img src="${p.image}" class="pc-person-img">
+<img src="${p.image}" class="pc-person-img" alt="">
           <span>${p.name}</span>
         </button>
       `)
