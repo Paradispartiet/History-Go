@@ -179,27 +179,9 @@
     }
 
     // Hent quizdata
-    // ✅ Bruk første tag som kategori (mest robust hos deg nå)
-const primaryTag = (tags) => {
-  const arr = Array.isArray(tags) ? tags : [];
-  return arr.length ? String(arr[0]) : "";
-};
+    const displayCat = person ? API.tagToCat(person.tags) : (place.category || "vitenskap");
+    const categoryId = normalizeId(API.catIdFromDisplay(displayCat)); // ✅ viktig
 
-// ─────────────────────────────────────────
-// KATEGORI: bruk eksisterende data
-// 1) tags[0] (primærkategori)
-// 2) fallback: tagToCat
-// ─────────────────────────────────────────
-const firstTag = (tags) =>
-  Array.isArray(tags) && tags.length ? String(tags[0]) : "";
-
-const displayCat = person
-  ? (firstTag(person.tags) || API.tagToCat(person.tags) || "vitenskap")
-  : (place?.category || firstTag(place?.tags) || API.tagToCat(place?.tags) || "vitenskap");
-
-// Fil-nøkkel = kategorien (kunst, vitenskap, litteratur, …)
-const categoryId = normalizeId(displayCat);
-    
     const items = await loadQuizForCategory(categoryId);
 
     // ✅ robust matching (case/whitespace-safe)
