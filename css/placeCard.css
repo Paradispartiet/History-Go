@@ -1,22 +1,27 @@
 /* ===================================================== */
-/* PLACE CARD – (EGEN FIL) placecard.css                  */
+/* placeCard.css – EGEN FIL (REN, UTEN DUPLIKATER)        */
 /* ===================================================== */
 
 :root{
-  --pc-height: 35vh;
+  --pc-height: 30vh;       /* fast 35% */
   --pc-radius: 18px;
   --pc-pad: 12px;
   --pc-gap: 14px;
 
+  /* Størrelser */
   --pc-img: 160px;
   --pc-title: 1.55rem;
   --pc-meta: 1rem;
   --pc-desc: 1.05rem;
 
+  /* People */
   --pc-person-img: 64px;
 }
 
-/* Bottom sheet */
+/* ===================================================== */
+/* PlaceCard: ekte bottom sheet                           */
+/* ===================================================== */
+
 #placeCard{
   position: fixed;
   left: 0; right: 0; bottom: 0;
@@ -29,10 +34,11 @@
   border-top-right-radius: var(--pc-radius);
   border-top: 1px solid rgba(255,255,255,.06);
   box-shadow: 0 -12px 34px rgba(0,0,0,.40);
-  overflow: hidden;
+
+  overflow: hidden; /* .pc-body håndterer scroll */
 }
 
-/* Handle */
+/* Visuell “handle” */
 #placeCard::before{
   content:"";
   display:block;
@@ -43,9 +49,9 @@
   background: rgba(255,255,255,.20);
 }
 
-/* Body: må kunne scrolle hvis innhold blir for høyt */
+/* Scroll-området inni panelet */
 #placeCard .pc-body{
-  height: calc(100% - 18px);
+  height: calc(100% - 18px); /* plass til handle */
   overflow-y: auto;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
@@ -54,7 +60,10 @@
   padding-bottom: calc(var(--pc-pad) + env(safe-area-inset-bottom));
 }
 
-/* Main */
+/* ===================================================== */
+/* Innhold: bilde venstre – tekst høyre                   */
+/* ===================================================== */
+
 #placeCard .pc-main{
   display: grid;
   grid-template-columns: var(--pc-img) 1fr;
@@ -68,10 +77,14 @@
   height: var(--pc-img);
   border-radius: 16px;
   object-fit: cover;
+  flex-shrink: 0;
   border: 1px solid rgba(255,255,255,0.18);
   background: rgba(255,255,255,.06);
 }
 
+#placeCard .pc-text{ flex: 1; }
+
+/* Tekst */
 #placeCard #pcTitle{
   margin: 0;
   font-size: var(--pc-title);
@@ -87,7 +100,7 @@
   color: var(--text-dim);
 }
 
-/* Fast preview + … */
+/* Fast uttrykk + … (full tekst i popup via “Mer info”) */
 #placeCard #pcDesc{
   margin: 0 0 10px 0;
   font-size: var(--pc-desc);
@@ -100,17 +113,20 @@
   overflow: hidden;
 }
 
-/* People: horisontal scroll */
+/* ===================================================== */
+/* Personer: horisontal scroll + fine runde bilder        */
+/* ===================================================== */
+
 #placeCard #pcPeople{
-  min-height: 92px;
-  flex-shrink: 0;
   position: relative;
   z-index: 2;
+  flex-shrink: 0;
 
+  min-height: 92px;
   display: flex;
   flex-wrap: nowrap;
-  align-items: center;
   gap: 12px;
+  align-items: center;
 
   overflow-x: auto;
   overflow-y: hidden;
@@ -124,8 +140,10 @@
   background: rgba(255,255,255,.03);
 }
 
+/* JS lager <button class="pc-person"> */
 #placeCard #pcPeople .pc-person{
   flex: 0 0 auto;
+
   background: transparent;
   border: none;
   padding: 0;
@@ -137,6 +155,7 @@
   gap: 6px;
 }
 
+/* Fine runde bilder */
 #placeCard #pcPeople .pc-person-img{
   width: var(--pc-person-img);
   height: var(--pc-person-img);
@@ -156,10 +175,14 @@
   font-size: 0.85rem;
   color: #fff;
   opacity: .92;
+  text-align: center;
   white-space: nowrap;
 }
 
-/* Actions */
+/* ===================================================== */
+/* Knapper                                                */
+/* ===================================================== */
+
 #placeCard .pc-actions{
   position: sticky;
   bottom: 0;
@@ -184,6 +207,7 @@
   font-weight: 600;
 }
 
+/* Knapper (scoped) */
 #placeCard #pcInfo{
   background: rgba(255,255,255,0.12);
   border: 1px solid rgba(255,255,255,0.18);
@@ -208,7 +232,10 @@
   color: #fff;
 }
 
-/* MiniProfile in card */
+/* ===================================================== */
+/* Mini-profil inni placecard                             */
+/* ===================================================== */
+
 #placeCard #miniProfile{
   margin-top: 12px;
   border-radius: 16px;
@@ -217,7 +244,10 @@
   position: static !important;
 }
 
-/* Smooth switching */
+/* ===================================================== */
+/* Smooth “sted skifter”                                  */
+/* ===================================================== */
+
 #placeCard .pc-main,
 #placeCard #pcPeople,
 #placeCard #pcDesc{
@@ -231,7 +261,10 @@
   transform: translateY(2px);
 }
 
-/* Map stops above placecard */
+/* ===================================================== */
+/* Kartet må stoppe før panelet                           */
+/* ===================================================== */
+
 #map, #mapContainer{
   position: fixed;
   top: 0; left: 0; right: 0;
