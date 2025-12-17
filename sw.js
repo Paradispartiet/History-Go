@@ -9,59 +9,73 @@ const STATIC_CACHE = `historygo-${CACHE_VERSION}`;
 // Viktig: bruk ABSOLUTTE paths når du har mapper (/css, /js, /data)
 const STATIC_ASSETS = [
   // HTML
-  "/",
-  "/index.html",
-  "/profile.html",
-  "/knowledge.html",
-  "/notater.html",
+  "",
+  "index.html",
+  "profile.html",
+  "knowledge.html",
+  "notater.html",
 
-  // CSS
-  "/css/theme.css",
-  "/css/profile.css",
-  "/css/knowledge.css",
-  "/css/style.css",
+  // CSS (split)
+  "css/theme.css",
+  "css/base.css",
+  "css/layout.css",
+  "css/components.css",
+  "css/search.css",
+  "css/nearby.css",
+  "css/miniProfile.css",
+  "css/profile.css",
+  "css/merits.css",
+  "css/quiz.css",
+  "css/popups.css",
+  "css/overlay.css",
+  "css/effects.css",
+  "css/map.css",
+  "css/placeCard.css",
+  "css/sheets.css", // bare hvis du bruker sheets
 
   // Merker
-  "/merker/merker.html",
-  "/css/merker.css",
+  "merker/merker.html",
+  "css/merker.css",
 
   // JS
-  "/js/app.js",
-  "/js/map.js",
-  "/js/quizzes.js",
-  "/js/popup-utils.js",
-  "/js/profile.js",
-  "/js/knowledge.js",
-  "/js/trivia.js",
-  "/js/hgInsights.js",
-  "/js/emnerLoader.js",
-  "/js/routes.js",
+  "js/popup-utils.js",
+  "js/knowledge.js",
+  "js/knowledge_component.js",
+  "js/trivia.js",
+  "js/hgInsights.js",
+  "js/emnerLoader.js",
+  "js/dataHub.js",
+  "js/map.js",
+  "js/quizzes.js",
+  "js/routes.js",
+  "js/app.js",
 
   // Data
-  "/data/places.json",
-  "/data/people.json",
-  "/data/tags.json",
-  "/data/badges.json",
-  "/data/routes.json",
+  "data/places.json",
+  "data/people.json",
+  "data/tags.json",
+  "data/badges.json",
+  "data/routes.json",
 
   // Quiz-data
-  "/data/quiz/quiz_by.json",
-  "/data/quiz/quiz_historie.json",
-  "/data/quiz/quiz_kunst.json",
-  "/data/quiz/quiz_litteratur.json",
-  "/data/quiz/quiz_musikk.json",
-  "/data/quiz/quiz_naeringsliv.json",
-  "/data/quiz/quiz_natur.json",
-  "/data/quiz/quiz_politikk.json",
-  "/data/quiz/quiz_populaerkultur.json",
-  "/data/quiz/quiz_sport.json",
-  "/data/quiz/quiz_subkultur.json",
-  "/data/quiz/quiz_vitenskap.json",
+  "data/quiz/quiz_by.json",
+  "data/quiz/quiz_historie.json",
+  "data/quiz/quiz_kunst.json",
+  "data/quiz/quiz_litteratur.json",
+  "data/quiz/quiz_musikk.json",
+  "data/quiz/quiz_naeringsliv.json",
+  "data/quiz/quiz_natur.json",
+  "data/quiz/quiz_politikk.json",
+  "data/quiz/quiz_populaerkultur.json",
+  "data/quiz/quiz_sport.json",
+  "data/quiz/quiz_subkultur.json",
+  "data/quiz/quiz_vitenskap.json",
 
-  // UI-bilder (juster hvis du har flyttet disse)
-  "/bilder/ui/historygo_logo.PNG",
-  "/bilder/ui/marker.PNG",
-  "/bilder/ui/badge_default.PNG"
+  // UI-bilder
+  "bilder/ui/historygo_logo.PNG",
+  "bilder/ui/marker.PNG",
+  "bilder/ui/badge_default.PNG",
+  "bilder/logo_historygo.PNG"
 ];
 
 // Helper: add assets uten at hele install feiler hvis én fil mangler
