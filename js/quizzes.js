@@ -19,7 +19,7 @@
 
     // rewards / progression / UI hooks
     addCompletedQuizAndMaybePoint: (displayCat, targetId) => {},
-    markQuizAsDoneExternal: (targetId) => {}, // optional hvis du vil håndtere knapper i app
+    markQuizAsDoneExternal: null,
     showRewardPerson: (person) => {},
     showRewardPlace: (place) => {},
     showPersonPopup: (person) => {},
