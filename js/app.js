@@ -941,7 +941,11 @@ if (map) {
     PEOPLE = people;
     TAGS_REGISTRY = tags;
 
-    linkPeopleToPlaces();
+if (typeof linkPeopleToPlaces === "function") {
+  linkPeopleToPlaces();
+} else {
+  console.warn("linkPeopleToPlaces() mangler – hopper over linking");
+}
 
 
     // ✅ INIT QUIZ-MODUL (ETTER at PLACES/PEOPLE er lastet)
