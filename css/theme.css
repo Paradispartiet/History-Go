@@ -512,7 +512,7 @@ button{ cursor:pointer; border:none }
 /* Scroll-området inni panelet */
 #placeCard .pc-body{
   height: calc(100% - 18px); /* plass til handle */
-  overflow: auto;
+  overflow: hidden;
   -webkit-overflow-scrolling: touch;
 
   padding: var(--pc-pad);
@@ -576,8 +576,8 @@ button{ cursor:pointer; border:none }
 /* Personer: horisontal scroll + fine runde bilder        */
 /* ===================================================== */
 
-#placeCard #pcPeople,
-#placeCard .pc-people{
+#placeCard #pcPeople{
+  min-height: 92px;
   display: flex;
   flex-wrap: nowrap;
   gap: 12px;
@@ -585,14 +585,17 @@ button{ cursor:pointer; border:none }
 
   overflow-x: auto;
   overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
 
+  padding: 10px 6px;
   margin: 10px 0 12px 0;
-  padding: 8px 2px;
 
-  border-top: 1px solid rgba(255,255,255,.06);
-  border-bottom: 1px solid rgba(255,255,255,.06);
+  border-top: 1px solid rgba(255,255,255,.08);
+  border-bottom: 1px solid rgba(255,255,255,.08);
+
+  background: rgba(255,255,255,.02); /* <-- gjør stripen synlig */
 }
+
+
 
 /* JS lager <button class="pc-person"> */
 #placeCard .pc-person{
@@ -626,7 +629,8 @@ button{ cursor:pointer; border:none }
 
 #placeCard .pc-person span{
   font-size: 0.85rem;
-  color: var(--text);
+  color: #fff;          /* <-- bytt fra var(--text) */
+  opacity: .92;
   text-align: center;
   white-space: nowrap;
 }
