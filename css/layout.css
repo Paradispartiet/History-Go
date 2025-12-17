@@ -20,3 +20,40 @@ main {
   position: relative;
   overflow: visible;
 }
+
+/* Brand med ikon i headeren */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  font-size: 1.3rem;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.brand-logo {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+  border-radius: 6px;
+  background: rgba(255,255,255,0.1);
+  padding: 3px;
+}
+
+.brand-name {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-weight: 700;
+  color: #f6c800;
+}
+
+.actions{ display:flex; gap:10px; align-items:center }
+.toggle{ display:flex; gap:6px; align-items:center; font-size:.9rem }
+.toggle input{ accent-color: var(--primary) }
+
+.top-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
