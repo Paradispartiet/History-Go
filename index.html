@@ -87,29 +87,6 @@
 
   <!-- MAIN -->
   <main>
-
-    <!-- MINI-PROFIL -->
-    <section id="miniProfile" class="panel mini-profile">
-      <div class="info">
-        <div class="profile-top">
-          <h3 id="miniName">Utforsker #182</h3>
-          <a href="profile.html" class="arrow-link">→</a>
-        </div>
-
-        <p id="miniStats" class="muted">
-          <span id="linkPlaces" class="linkish">0 steder</span> ·
-          <span id="linkBadges" class="linkish">0 merker</span> ·
-          <span id="linkQuiz"   class="linkish">0 quizzer</span>
-        </p>
-        
-        <div id="miniBadges" class="profile-badges"></div>
-        <div id="miniLastQuiz" class="profile-last-quiz" style="display:none;">
-  <img id="miniLastQuizImg" src="">
-  <span id="miniLastQuizName"></span>
-</div>
-      </div>
-    </section>
-
    
     <!-- Flere i nærheten (sheet) -->
     <div id="sheetNearby" class="sheet" aria-hidden="true">
@@ -125,6 +102,7 @@
 
   <!-- PLACE CARD (fast nederst i appen) -->
   <div id="placeCard" aria-hidden="true">
+    
     <div class="pc-body">
 
       <div class="pc-main">
@@ -136,9 +114,7 @@
         </div>
       </div>
 
-      <div id="pcPeople" class="pc-people"></div>
-
-      <div class="pc-actions">
+          <div class="pc-actions">
         <button id="pcInfo"   class="secondary">Mer info</button>
         <button id="pcQuiz"   class="primary">Ta quiz</button>
         <button id="pcUnlock" class="primary">Lås opp</button>
@@ -147,6 +123,29 @@
         <button id="pcClose"  class="ghost"
                 onclick="document.getElementById('placeCard').setAttribute('aria-hidden','true')">✕</button>
       </div>
+
+      <!-- MINI-PROFIL (flyttet hit) -->
+      <section id="miniProfile" class="panel mini-profile">
+        <div class="info">
+          <div class="profile-top">
+            <h3 id="miniName">Utforsker #182</h3>
+            <a href="profile.html" class="arrow-link">→</a>
+          </div>
+
+          <p id="miniStats" class="muted">
+            <span id="linkPlaces" class="linkish">0 steder</span> ·
+            <span id="linkBadges" class="linkish">0 merker</span> ·
+            <span id="linkQuiz"   class="linkish">0 quizzer</span>
+          </p>
+
+          <div id="miniBadges" class="profile-badges"></div>
+
+          <div id="miniLastQuiz" class="profile-last-quiz" style="display:none;">
+            <img id="miniLastQuizImg" src="">
+            <span id="miniLastQuizName"></span>
+          </div>
+        </div>
+      </section>
 
     </div>
   </div>
