@@ -539,7 +539,10 @@ document.addEventListener("click", e => {
 
   
   // Quiz
- const quizId = target.getAttribute?.("data-quiz");
+ // Quiz (delegation - må bruke closest)
+const quizBtn = target.closest?.("[data-quiz]");
+const quizId = quizBtn?.dataset?.quiz;
+
 if (quizId) {
   if (window.HGQuiz && typeof HGQuiz.startQuiz === "function") {
     HGQuiz.startQuiz(quizId);
