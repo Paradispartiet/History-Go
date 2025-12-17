@@ -985,7 +985,6 @@ if (typeof linkPeopleToPlaces === "function") {
         dispatchProfileUpdate: () => window.dispatchEvent(new Event("updateProfile"))
       });
 
-      HGQuiz.wire();
     }
 
     // ✅ Gi kartmodulen data + callbacks (ETTER data er lastet)
