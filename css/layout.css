@@ -1,13 +1,10 @@
 /* layout.css – header/main/panel */
 
 header{
-  position: relative;
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 16px 14px;
-
+  background: var(--panel-bg, #121212) !important; /* helt flat */
+  backdrop-filter: none;                            /* hvis du har blur et sted */
+  border-bottom: 1px solid rgba(255,255,255,.06);   /* pen avslutning */
+}
   /* sort/samme som placecard */
   background: linear-gradient(
     180deg,
