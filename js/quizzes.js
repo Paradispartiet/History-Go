@@ -335,10 +335,27 @@ function markQuizProgress(categoryId, targetId) {
     const person = API.getPersonById(targetId);
     const place = API.getPlaceById(targetId);
 
-    if (!person && !place) {
-      API.showToast("Fant verken person eller sted");
-      return;
+    if (!questions.length) {
+  const totalLoaded = _all?.length || 0;
+  const keys = _byTarget ? _byTarget.size : 0;
+
+  // prøv å finne “nesten-match” (trim/case) for å avsløre whitespace/case-feil
+  const t0 = String(targetId || "");
+  const t1 = t0.trim().toLowerCase();
+
+  let near = 0;
+  if (_byTarget && _byTarget.size) {
+    for (const k of _byTarget.keys()) {
+      if (String(k).trim().toLowerCase() === t1) { near = 1; break; }
     }
+  }
+
+  API.showToast(
+    `Ingen quiz: ${t0} · lastet=${totalLoaded} · targets=${keys}` +
+    (near ? " · (ID matcher etter trim/lower → du har whitespace/case-feil i key)" : "")
+  );
+  return;
+}
 
    // Gate: krever besøkt (robust for person: placeId ELLER places[])
 if (!API.isTestMode()) {
