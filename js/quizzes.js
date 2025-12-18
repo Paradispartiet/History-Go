@@ -330,6 +330,7 @@ function markQuizProgress(categoryId, targetId) {
   // Public: start quiz
   // ───────────────────────────────
   QuizEngine.start = async function (targetId) {
+      try {
     await ensureLoaded();
 
     const person = API.getPersonById(targetId);
@@ -375,8 +376,8 @@ if (!API.isTestMode()) {
   }
 }
     
-    const tid = String(targetId);
-    const questions = _byTarget.get(tid) || [];
+    const tid = String(targetId || "").trim();
+const questions = (_byTarget && _byTarget.get(tid)) || [];
 
     if (!questions.length) {
       API.showToast("Ingen quiz tilgjengelig her ennå");
@@ -439,7 +440,11 @@ if (!API.isTestMode()) {
     }
   }
 });
-  };
+
+           } catch (e) {
+    API.showToast("Quiz-feil: noe krasjet i quizzes.js");
+  }
+};
 
   QuizEngine.init = function (opts = {}) {
     API = { ...API, ...(opts || {}) };
