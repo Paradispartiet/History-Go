@@ -1018,7 +1018,9 @@ document.addEventListener("DOMContentLoaded", () => {
   wireMiniProfileLinks();
 });
 
-
+if (window.DomainHealthReport) {
+  DomainHealthReport.run({ toast: true });
+}
 
 // ==============================
 // 12. KARTMODUS
