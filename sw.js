@@ -3,7 +3,7 @@
    Version: HG-FULL-v3.0.6
 ============================================================ */
 
-const CACHE_VERSION = "HG-FULL-v3.0.044";
+const CACHE_VERSION = "HG-FULL-v3.0.045";
 const STATIC_CACHE = `historygo-${CACHE_VERSION}`;
 
 // Viktig: bruk ABSOLUTTE paths når du har mapper (/css, /js, /data)
