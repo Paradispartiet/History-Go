@@ -77,18 +77,23 @@
   try {
     const response = await fetch(file, { cache: "no-store" });
     if (!response.ok) return [];
+
     const data = await response.json();
 
-    // ROBUST:
-    // - ikke krev q.categoryId (mange av dine quiz-items mangler den)
-    // - men hvis den finnes, la mismatch være ok (fila er fasiten)
+    // Filtrer robust: støtt både ID og visningsnavn i q.categoryId
     return Array.isArray(data)
-  ? data.filter(q => {
-      const raw = q?.categoryId || "";
-      const mapped = API.catIdFromDisplay ? API.catIdFromDisplay(raw) : raw;
-      return normalizeId(mapped) === cat;
-    })
-  : [];
+      ? data.filter(q => {
+          const raw = q?.categoryId || "";
+          const mapped =
+            typeof API.catIdFromDisplay === "function"
+              ? API.catIdFromDisplay(raw)
+              : raw;
+          return normalizeId(mapped) === cat;
+        })
+      : [];
+  } catch (e) {
+    console.warn("Quiz fetch/parse feil:", file, e);
+    return [];
   }
 }
 
