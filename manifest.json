@@ -6,15 +6,46 @@
     "boot": ["js/app.js"]
   },
   "modules": [
-    { "id": "app", "path": "js/app.js", "owns": ["initApp", "bindGlobalEvents"] },
-    { "id": "map", "path": "js/map.js", "owns": ["initMap", "flyToPlace", "highlightPlace"] },
-    { "id": "routes", "path": "js/routes.js", "owns": ["renderRoute", "clearRoute"] },
-    { "id": "quiz", "path": "js/quizzes.js", "owns": ["QuizEngine.start", "QuizEngine.finish"] }
+    { "id": "popup-utils", "path": "js/popup-utils.js", "owns": ["showPersonPopup", "showPlacePopup", "openPlaceCard"] },
+    { "id": "knowledge", "path": "js/knowledge.js", "owns": ["saveKnowledgeFromQuiz"] },
+    { "id": "trivia", "path": "js/trivia.js", "owns": ["saveTriviaPoint"] },
+    { "id": "hgInsights", "path": "js/hgInsights.js", "owns": ["HGInsights"] },
+
+    { "id": "dataHub", "path": "js/dataHub.js", "owns": ["DataHub"] },
+    { "id": "map", "path": "js/map.js", "owns": ["HGMap.initMap", "HGMap.setPlaces", "HGMap.refreshMarkers"] },
+    { "id": "routes", "path": "js/routes.js", "owns": ["showRouteTo"] },
+
+    { "id": "quiz", "path": "js/quizzes.js", "owns": ["QuizEngine.start", "QuizEngine.init"] }
   ],
   "data": [
     "data/places.json",
     "data/people.json",
     "data/tags.json",
     "data/badges.json"
+  ],
+  "packages": [
+    {
+      "id": "quiz",
+      "manifest": "data/quiz/manifest.json",
+      "expects": [
+        "data/quiz/quiz_kunst.json",
+        "data/quiz/quiz_by.json",
+        "data/quiz/quiz_historie.json",
+        "data/quiz/quiz_vitenskap.json",
+        "data/quiz/quiz_litteratur.json",
+        "data/quiz/quiz_musikk.json",
+        "data/quiz/quiz_natur.json",
+        "data/quiz/quiz_politikk.json",
+        "data/quiz/quiz_sport.json",
+        "data/quiz/quiz_subkultur.json",
+        "data/quiz/quiz_populaerkultur.json",
+        "data/quiz/quiz_naeringsliv.json"
+      ]
+    },
+    {
+      "id": "pensum",
+      "manifest": "data/pensum/manifest.json",
+      "expects": []
+    }
   ]
 }
