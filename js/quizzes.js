@@ -80,10 +80,8 @@
 }
 
   function targetKey(q) {
-    const pid = norm(q?.personId);
-    const plc = norm(q?.placeId);
-    return pid || plc || "";
-  }
+  return String(q.personId || q.placeId || "").trim();
+}
 
   function indexQuestion(q) {
     const key = targetKey(q);
