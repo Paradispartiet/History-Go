@@ -129,31 +129,46 @@
   // Status helpers
   // -----------------------------
   function readMapStatus() {
-    // Din app bruker MapLibre (map.js), men du har litt Leaflet-sjekk i gammel konsoll.
-    // Her gjør vi en “best effort” uten å anta for mye:
-    const hasMapEl = !!document.getElementById("map");
-    const hasMapLibre = !!window.maplibregl;
-    const hasMapObj = !!window.map;
-    const hasInit = typeof window.map?.initMap === "function" || typeof window.initMap === "function";
+  const inst = window.MAP || window.HGMap?.MAP || null;
 
-    return {
-      "#map-element": hasMapEl,
-      "maplibregl": hasMapLibre,
-      "window.map": hasMapObj,
-      "initMap function": hasInit
-    };
-  }
+  let center = null, zoom = null, active = false;
+  try {
+    if (inst && typeof inst.getCenter === "function") {
+      const c = inst.getCenter();
+      center = [Number(c.lat.toFixed(5)), Number(c.lng.toFixed(5))];
+      zoom = inst.getZoom();
+      active = true;
+    }
+  } catch {}
+
+  return {
+    "#map-element": !!document.getElementById("map"),
+    maplibrePresent: typeof window.maplibregl !== "undefined",
+    hasHGMap: !!window.HGMap,
+    hasMAP: !!window.MAP,
+    active,
+    center,
+    zoom
+  };
+}
 
   function readDataStatus() {
-    // Du bruker dataHub/HG.data i flere deler.
-    const d = window.HG?.data || {};
-    return {
-      places: d.places?.length || 0,
-      people: d.people?.length || 0,
-      badges: d.badges?.length || 0,
-      routes: d.routes?.length || 0
-    };
-  }
+  const d = window.HG?.data || null;
+
+  // fallback: prøv DataHub hvis den er global
+  const hub = window.DataHub || window.dataHub || null;
+  const hd = (hub && typeof hub.getData === "function") ? hub.getData() : null;
+
+  const src = d || hd || {};
+
+  return {
+    source: d ? "HG.data" : (hd ? "DataHub.getData()" : "none"),
+    places: src.places?.length || 0,
+    people: src.people?.length || 0,
+    badges: src.badges?.length || 0,
+    routes: src.routes?.length || 0
+  };
+}
 
   function readStorageStatus() {
     let bytes = 0, keys = [];
@@ -168,9 +183,13 @@
   }
 
   function checkRoutes() {
-    const routes = window.HG?.data?.routes || [];
-    const places = new Set((window.HG?.data?.places || []).map(p => p.id));
-    const rep = routes.map(r => {
+  const d = window.HG?.data || null;
+  const hub = window.DataHub || window.dataHub || null;
+  const hd = (hub && typeof hub.getData === "function") ? hub.getData() : null;
+  const src = d || hd || {};
+
+  const routes = src.routes || [];
+  const places = new Set((src.places || []).map(p => p.id));    const rep = routes.map(r => {
       const stops = (r.stops || []).map(s => s.placeId);
       const missing = stops.filter(id => !places.has(id));
       return { id: r.id || r.name, name: r.name, stops: stops.length, missing };
