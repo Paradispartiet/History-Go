@@ -2,32 +2,32 @@
 // === HISTORY GO – DEV CONSOLE LOADER ========================
 // ============================================================
 //
-// Laster kun konsollverktøy (terminal, devConsole, verify)
-// dersom URL inneholder ?dev eller localStorage.devMode === "true"
+// Laster kun konsollverktøy dersom URL inneholder ?dev
+// eller localStorage.devMode === "true"
 // ============================================================
 
 (function() {
   const params = new URLSearchParams(location.search);
   const devMode = params.has("dev") || localStorage.getItem("devMode") === "true";
 
-  if (!devMode) return; // ikke last for vanlige brukere
+  if (!devMode) return;
 
   console.log("🧩 DEV MODE aktivert – laster utviklerverktøy...");
 
   const scripts = [
     "js/console/verify.js",
-    "js/console/devConsole.js",
-    "js/console/terminal.js"
+    "js/console/diagnosticConsole.js"
   ];
 
   scripts.forEach(src => {
     const s = document.createElement("script");
     s.src = src;
     s.defer = true;
+    s.onload = () => console.log("✅ Loaded:", src);
+    s.onerror = () => console.warn("❌ Failed to load:", src);
     document.head.appendChild(s);
   });
 
-  // Vis tydelig dev-indikator på skjermen
   const badge = document.createElement("div");
   badge.textContent = "DEV MODE";
   Object.assign(badge.style, {
