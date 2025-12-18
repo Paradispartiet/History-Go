@@ -1,27 +1,28 @@
 // ============================================================
 // === HISTORY GO – VERIFY PANEL (modulstatus) ================
 // ============================================================
-//
-//  Viser et lite panel nederst som bekrefter at alle moduler
-//  (core, app, map, routes, ui, quiz, profile) er lastet.
-//
-//  Farger:
-//    🟢 = modul funnet
-//    🔴 = mangler
+//  Viser et lite panel nederst som bekrefter at moduler finnes.
+//  Viktig: bruk window.* for å unngå ReferenceError.
 // ============================================================
 
-(function() {
+(function () {
   const modules = [
-    { name: "core",     check: () => typeof boot === "function" },
-    { name: "app",      check: () => typeof app?.initApp === "function" },
-    { name: "map",      check: () => typeof map?.initMap === "function" },
-    { name: "routes",   check: () => typeof Routes?.initRoutes === "function" },
-    { name: "ui",       check: () => typeof ui?.initUI === "function" },
-    { name: "quiz",     check: () => typeof quiz?.startQuiz === "function" },
-    { name: "profile",  check: () => typeof Profile?.initProfilePage === "function" }
+    { name: "core",    check: () => typeof window.boot === "function" },
+
+    // Hvis du ikke har window.app (du har sannsynligvis ikke), så blir dette rød – men det krasjer ikke.
+    { name: "app",     check: () => typeof window.app?.initApp === "function" },
+
+    // Du har map.js som IIFE – ofte eksponerer den ikke window.map.
+    // Hvis du faktisk eksponerer map på window, blir den grønn.
+    { name: "map",     check: () => typeof window.map?.initMap === "function" },
+
+    // Tilpass disse til dine faktiske globals:
+    { name: "routes",  check: () => typeof window.Routes?.initRoutes === "function" },
+    { name: "quiz",    check: () => typeof window.QuizEngine?.start === "function" || typeof window.quiz?.startQuiz === "function" },
+    { name: "profile", check: () => typeof window.Profile?.initProfilePage === "function" },
+    { name: "ui",      check: () => typeof window.ui?.initUI === "function" }
   ];
 
-  // Opprett panelet
   const panel = document.createElement("div");
   panel.id = "verifyPanel";
   Object.assign(panel.style, {
@@ -51,11 +52,12 @@
   panel.appendChild(list);
   document.body.appendChild(panel);
 
-  // Oppdater status
   function updateStatus() {
     list.innerHTML = "";
-    modules.forEach(m => {
-      const ok = !!m.check();
+    modules.forEach((m) => {
+      let ok = false;
+      try { ok = !!m.check(); } catch { ok = false; }
+
       const row = document.createElement("div");
       row.innerHTML = `${ok ? "🟢" : "🔴"} <span style="opacity:.9">${m.name}</span>`;
       row.style.marginBottom = "2px";
@@ -63,7 +65,6 @@
     });
   }
 
-  // Oppdater ved DOMReady og med jevne mellomrom
   document.addEventListener("DOMContentLoaded", updateStatus);
   setInterval(updateStatus, 3000);
 
