@@ -1,21 +1,39 @@
 /* ============================================================
-   HISTORY GO – SERVICE WORKER (paths fixed for /css /js /data)
-   Version: HG-FULL-v3.0.6
+   HISTORY GO – SERVICE WORKER (GitHub Pages / subfolder-safe)
+   Version: HG-FULL-v3.0.057
 ============================================================ */
 
-const CACHE_VERSION = "HG-FULL-v3.0.056;
+const CACHE_VERSION = "HG-FULL-v3.0.057";
 const STATIC_CACHE = `historygo-${CACHE_VERSION}`;
 
-// Viktig: bruk ABSOLUTTE paths når du har mapper (/css, /js, /data)
+// Scope path (viktig på GitHub Pages: /History-Go/)
+const SCOPE_PATH = new URL(self.registration.scope).pathname; // f.eks. "/History-Go/"
+
+// Lager en URL som alltid peker riktig innenfor scope
+function toScopedUrl(path) {
+  // absolute URL
+  if (/^https?:\/\//i.test(path)) return path;
+
+  // hvis du sender inn "" eller "./" -> scope root
+  if (!path || path === "./") return SCOPE_PATH;
+
+  // allerede absolute path
+  if (path.startsWith("/")) return path;
+
+  // normal relative -> scope + relative
+  return SCOPE_PATH + path;
+}
+
+// ---------- STATIC ASSETS ----------
 const STATIC_ASSETS = [
-  // HTML
-  "",
+  // HTML (innen scope)
+  "", // scope root
   "index.html",
   "profile.html",
   "knowledge.html",
   "notater.html",
 
-  // CSS (split)
+  // CSS
   "css/theme.css",
   "css/base.css",
   "css/layout.css",
@@ -31,13 +49,16 @@ const STATIC_ASSETS = [
   "css/effects.css",
   "css/map.css",
   "css/placeCard.css",
-  "css/sheets.css", // bare hvis du bruker sheets
+  "css/sheets.css",
 
   // Merker
   "merker/merker.html",
   "css/merker.css",
 
-  // JS
+  // Console CSS
+  "js/console/console.css",
+
+  // JS (core)
   "js/popup-utils.js",
   "js/knowledge.js",
   "js/knowledge_component.js",
@@ -45,6 +66,19 @@ const STATIC_ASSETS = [
   "js/hgInsights.js",
   "js/emnerLoader.js",
   "js/dataHub.js",
+
+  // Registry + health report
+  "js/domainRegistry.js",
+  "js/domainHealthReport.js",
+
+  // Console JS
+  "js/console/init.js",
+  "js/console/verify.js",
+  "js/console/diagnosticConsole.js",
+  "js/console/devConsole.js",
+  // "js/console/terminal.js", // kun hvis den faktisk finnes
+
+  // Resten
   "js/map.js",
   "js/quizzes.js",
   "js/routes.js",
@@ -57,7 +91,8 @@ const STATIC_ASSETS = [
   "data/badges.json",
   "data/routes.json",
 
-  // Quiz-data
+  // Quiz-data (du kan evt. bytte til manifest senere)
+  "data/quiz/manifest.json",
   "data/quiz/quiz_by.json",
   "data/quiz/quiz_historie.json",
   "data/quiz/quiz_kunst.json",
@@ -76,22 +111,23 @@ const STATIC_ASSETS = [
   "bilder/ui/marker.PNG",
   "bilder/ui/badge_default.PNG",
   "bilder/logo_historygo.PNG"
-];
+].map(toScopedUrl);
 
-// Helper: add assets uten at hele install feiler hvis én fil mangler
+// Helper: precache uten at install feiler på én manglende fil
 async function safePrecache(cache, urls) {
-  const results = await Promise.allSettled(
+  await Promise.allSettled(
     urls.map(async (url) => {
       try {
-        await cache.add(url);
+        // cache: "reload" hjelper litt mot “stuck” assets i noen miljø
+        await cache.add(new Request(url, { cache: "reload" }));
       } catch (e) {
-        // Ikke fail install – bare hopp over den fila
+        // ignorer (install skal ikke feile)
       }
     })
   );
-  return results;
 }
 
+// Install
 self.addEventListener("install", (event) => {
   event.waitUntil(
     (async () => {
@@ -102,6 +138,7 @@ self.addEventListener("install", (event) => {
   );
 });
 
+// Activate
 self.addEventListener("activate", (event) => {
   event.waitUntil(
     (async () => {
@@ -116,49 +153,60 @@ self.addEventListener("activate", (event) => {
   );
 });
 
-// Fetch-strategi:
-// - HTML: network-first (så du slipper “låst” gammel app)
-// - Static (css/js/json/images): cache-first
+// Fetch
 self.addEventListener("fetch", (event) => {
   const req = event.request;
   const url = new URL(req.url);
 
-  // bare håndter same-origin
+  // same-origin only
   if (url.origin !== self.location.origin) return;
 
+  const accept = req.headers.get("accept") || "";
   const isHTML =
     req.mode === "navigate" ||
-    (req.headers.get("accept") || "").includes("text/html");
+    accept.includes("text/html");
 
+  // HTML: network-first, fallback cache
   if (isHTML) {
     event.respondWith(
       (async () => {
+        const cache = await caches.open(STATIC_CACHE);
+
+        // Cache key uten querystring (så /?dev=1 matcher /)
+        const key = new Request(url.pathname, { method: "GET" });
+
         try {
           const fresh = await fetch(req);
-          const cache = await caches.open(STATIC_CACHE);
-          cache.put(req, fresh.clone());
+          cache.put(key, fresh.clone());
           return fresh;
         } catch {
-          const cached = await caches.match(req);
-          return cached || caches.match("/index.html");
+          // prøv først eksakt path uten query
+          const cached = await cache.match(key, { ignoreSearch: true });
+          if (cached) return cached;
+
+          // fallback: index.html i scope
+          const indexUrl = toScopedUrl("index.html");
+          return (await cache.match(indexUrl)) || new Response("Offline", { status: 503 });
         }
       })()
     );
     return;
   }
 
+  // Static: cache-first
   event.respondWith(
     (async () => {
-      const cached = await caches.match(req);
+      const cache = await caches.open(STATIC_CACHE);
+
+      const cached = await cache.match(req, { ignoreSearch: true });
       if (cached) return cached;
 
       try {
         const fresh = await fetch(req);
-        const cache = await caches.open(STATIC_CACHE);
         cache.put(req, fresh.clone());
         return fresh;
       } catch {
-        return cached || new Response("", { status: 504 });
+        return new Response("", { status: 504 });
       }
     })()
   );
