@@ -962,10 +962,6 @@ if (typeof linkPeopleToPlaces === "function") {
 
         showToast,
 
-        // category helpers
-        tagToCat,
-        catIdFromDisplay,
-
         // rewards / progression / UI hooks
         addCompletedQuizAndMaybePoint,
 
