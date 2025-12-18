@@ -7,6 +7,20 @@
 (function () {
   "use strict";
 
+  // ✅ Base-path fra hvor quizzes.js faktisk lastes fra
+  function scriptBase() {
+    try {
+      const src = document.currentScript && document.currentScript.src;
+      if (!src) return "";
+      return src.split("/js/")[0] + "/";
+    } catch {
+      return "";
+    }
+  }
+
+  const BASE = scriptBase(); // f.eks. ".../History-Go/"
+  const QUIZ_MANIFEST_URL = BASE + "data/quiz/manifest.json";
+
   const QuizEngine = {};
 
   // ───────────────────────────────
