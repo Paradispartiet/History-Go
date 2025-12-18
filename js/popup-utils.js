@@ -591,15 +591,17 @@ window.showRewardPerson = function(person) {
   if (!person) return;
 
   const BASE = document.querySelector("base")?.href || "";
-const card =
-  person.cardImage || person.image || `${BASE}bilder/kort/people/${person.id}.PNG`;
+  const card =
+    person.cardImage || person.image || `${BASE}bilder/kort/people/${person.id}.PNG`;
 
-const categoryId = getLastQuizCategoryId(person.id);
+  const categoryId = getLastQuizCategoryId(person.id);
 
-const knowledgeBlocks =
-  categoryId ? getInlineKnowledgeFor(categoryId, person.id) : null;
-const triviaList =
-  categoryId ? getInlineTriviaFor(categoryId, person.id) : [];
+  const knowledgeBlocks =
+    categoryId ? getInlineKnowledgeFor(categoryId, person.id) : null;
+  const triviaList =
+    categoryId ? getInlineTriviaFor(categoryId, person.id) : [];
+
+  makePopup(
     `
       <div class="reward-center">
         <h2 class="reward-title">🎉 Gratulerer!</h2>
@@ -620,10 +622,7 @@ const triviaList =
                     <strong>${dim}</strong>
                     <ul>
                       ${items
-                        .map(
-                          i =>
-                            `<li><strong>${i.topic}:</strong> ${i.text}</li>`
-                        )
+                        .map(i => `<li><strong>${i.topic}:</strong> ${i.text}</li>`)
                         .join("")}
                     </ul>
                   `
@@ -637,9 +636,7 @@ const triviaList =
           <h3>Funfacts</h3>
           ${
             triviaList.length
-              ? `<ul>${triviaList
-                .map(t => `<li>${t}</li>`)
-                .join("")}</ul>`
+              ? `<ul>${triviaList.map(t => `<li>${t}</li>`).join("")}</ul>`
               : `<p class="hg-muted">Ingen funfacts ennå.</p>`
           }
         </div>
@@ -649,7 +646,7 @@ const triviaList =
 
         <button class="reward-ok" data-close-popup>Fortsett</button>
       </div>
-  `,
+    `,
     "reward-popup"
   );
 
