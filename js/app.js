@@ -539,18 +539,18 @@ document.addEventListener("click", e => {
 
   
   // Quiz
- // Quiz (delegation - må bruke closest)
-const quizBtn = target.closest?.("[data-quiz]");
-const quizId = quizBtn?.dataset?.quiz;
+  // Quiz (robust på iPad/Safari)
+  const quizEl = target.closest?.("[data-quiz]");
+  const quizId = quizEl?.getAttribute?.("data-quiz");
 
-if (quizId) {
-  if (window.HGQuiz && typeof HGQuiz.startQuiz === "function") {
-    HGQuiz.startQuiz(quizId);
-  } else {
-    showToast("Quiz-modul ikke lastet");
+  if (quizId) {
+    if (window.HGQuiz?.startQuiz) {
+      HGQuiz.startQuiz(quizId);
+    } else {
+      showToast("Quiz-modul ikke lastet");
+    }
+    return;
   }
-  return;
-}
   
   // --- SØKERESULTAT: STED ---
 const placeId = target.closest?.(".search-item")?.getAttribute("data-place");
