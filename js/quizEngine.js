@@ -1,0 +1,352 @@
+// js/quizEngine.js — NYTT QUIZ SYSTEM (ID-basert, manifest-basert, knowledge-ready)
+(function () {
+  "use strict";
+
+  const QuizEngine = {};
+  let API = {
+    // data
+    getPersonById: (id) => null,
+    getPlaceById: (id) => null,
+
+    // gate
+    getVisited: () => ({}),
+    isTestMode: () => false,
+
+    // ui
+    showToast: (msg) => console.log(msg),
+
+    // progression + hooks
+    addCompletedQuizAndMaybePoint: (categoryId, targetId) => {},
+    markQuizAsDoneExternal: null,
+
+    // rewards
+    showRewardPerson: (person) => {},
+    showRewardPlace: (place) => {},
+    showPersonPopup: (person) => {},
+    showPlacePopup: (place) => {},
+    pulseMarker: (lat, lon) => {},
+    savePeopleCollected: (personId) => {},
+    dispatchProfileUpdate: () => window.dispatchEvent(new Event("updateProfile")),
+
+    // knowledge hooks (valgfritt)
+    saveKnowledgeFromQuiz: null,
+    saveTriviaPoint: null
+  };
+
+  let QUIZ_FEEDBACK_MS = 700;
+
+  // ───────────────────────────────
+  // State: index + cache
+  // ───────────────────────────────
+  let _loaded = false;
+  let _loading = null;
+
+  const _byTarget = new Map(); // targetId -> questions[]
+  const _all = [];
+
+  function norm(x) {
+    return String(x || "").trim();
+  }
+
+  function targetKey(q) {
+    const pid = norm(q?.personId);
+    const plc = norm(q?.placeId);
+    return pid || plc || "";
+  }
+
+  function indexQuestion(q) {
+    const key = targetKey(q);
+    if (!key) return;
+    if (!_byTarget.has(key)) _byTarget.set(key, []);
+    _byTarget.get(key).push(q);
+  }
+
+  async function fetchJson(url) {
+    const r = await fetch(url, { cache: "no-store" });
+    if (!r.ok) throw new Error(`${r.status} ${url}`);
+    return await r.json();
+  }
+
+  async function loadManifest() {
+    // 1) forsøk manifest
+    try {
+      const m = await fetchJson("/data/quiz/manifest.json");
+      if (m && Array.isArray(m.files) && m.files.length) return m.files;
+    } catch {}
+
+    // 2) fallback hvis du ikke vil bruke manifest (kan fjernes senere)
+    return [
+      "/data/quiz/quiz_kunst.json",
+      "/data/quiz/quiz_historie.json",
+      "/data/quiz/quiz_vitenskap.json"
+    ];
+  }
+
+  async function ensureLoaded() {
+    if (_loaded) return;
+    if (_loading) return _loading;
+
+    _loading = (async () => {
+      const files = await loadManifest();
+
+      const lists = await Promise.all(
+        files.map(async (f) => {
+          try {
+            const data = await fetchJson(f);
+            return Array.isArray(data) ? data : [];
+          } catch (e) {
+            console.warn("[QuizEngine] could not load", f, e);
+            return [];
+          }
+        })
+      );
+
+      const flat = lists.flat();
+      flat.forEach(q => {
+        _all.push(q);
+        indexQuestion(q);
+      });
+
+      _loaded = true;
+      console.log("[QuizEngine] loaded questions:", _all.length, "targets:", _byTarget.size);
+    })();
+
+    return _loading;
+  }
+
+  // ───────────────────────────────
+  // UI
+  // ───────────────────────────────
+  let _escWired = false;
+
+  function ensureQuizUI() {
+    if (document.getElementById("quizModal")) return;
+
+    const m = document.createElement("div");
+    m.id = "quizModal";
+    m.className = "modal";
+    m.innerHTML = `
+      <div class="modal-body">
+        <div class="modal-head">
+          <strong id="quizTitle">Quiz</strong>
+          <button class="ghost" id="quizClose">Lukk</button>
+        </div>
+        <div class="quiz-progress"><div class="bar"></div></div>
+        <div class="sheet-body">
+          <div id="quizQuestion" style="margin:6px 0 10px;font-weight:600"></div>
+          <div id="quizChoices" class="quiz-choices"></div>
+          <div style="display:flex;justify-content:space-between;margin-top:8px;">
+            <span id="quizFeedback" class="quiz-feedback"></span>
+            <small id="quizProgress" class="muted"></small>
+          </div>
+        </div>
+      </div>`;
+    document.body.appendChild(m);
+
+    const modal = document.getElementById("quizModal");
+    modal.querySelector("#quizClose").onclick = closeQuiz;
+    modal.addEventListener("click", (e) => {
+      if (e.target && e.target.id === "quizModal") closeQuiz();
+    });
+
+    if (!_escWired) {
+      _escWired = true;
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeQuiz();
+      });
+    }
+  }
+
+  function openQuiz() {
+    ensureQuizUI();
+    const modal = document.getElementById("quizModal");
+    modal.style.display = "flex";
+    modal.classList.remove("fade-out");
+  }
+
+  function closeQuiz() {
+    const modal = document.getElementById("quizModal");
+    if (!modal) return;
+    modal.classList.add("fade-out");
+    setTimeout(() => modal.remove(), 450);
+  }
+
+  function markQuizAsDone(targetId) {
+    const quizBtns = document.querySelectorAll(`[data-quiz="${targetId}"]`);
+    quizBtns.forEach(btn => {
+      const firstTime = !btn.classList.contains("quiz-done");
+      btn.classList.add("quiz-done");
+      btn.innerHTML = "✔️ Tatt (kan gjentas)";
+      if (firstTime) {
+        btn.classList.add("blink");
+        setTimeout(() => btn.classList.remove("blink"), 1200);
+      }
+    });
+  }
+
+  function runQuizFlow({ title, questions, onEnd }) {
+    ensureQuizUI();
+
+    const qs = {
+      title: document.getElementById("quizTitle"),
+      q: document.getElementById("quizQuestion"),
+      choices: document.getElementById("quizChoices"),
+      progress: document.getElementById("quizProgress"),
+      feedback: document.getElementById("quizFeedback")
+    };
+    qs.title.textContent = title || "Quiz";
+
+    let i = 0;
+    let correct = 0;
+
+    function step() {
+      const q = questions[i];
+      qs.q.textContent = q.question || q.text || "";
+      qs.choices.innerHTML = (q.options || q.choices || [])
+        .map((opt, idx) => `<button data-idx="${idx}">${opt}</button>`)
+        .join("");
+
+      qs.progress.textContent = `${i + 1}/${questions.length}`;
+      qs.feedback.textContent = "";
+
+      const bar = document.querySelector(".quiz-progress .bar");
+      if (bar) bar.style.width = `${((i + 1) / questions.length) * 100}%`;
+
+      const answerIndex =
+        typeof q.answerIndex === "number"
+          ? q.answerIndex
+          : (q.options || []).findIndex(o => o === q.answer);
+
+      qs.choices.querySelectorAll("button").forEach(btn => {
+        btn.onclick = () => {
+          const ok = Number(btn.dataset.idx) === answerIndex;
+          btn.classList.add(ok ? "correct" : "wrong");
+          qs.feedback.textContent = ok ? "Riktig ✅" : "Feil ❌";
+          if (ok) correct++;
+
+          qs.choices.querySelectorAll("button").forEach(b => (b.disabled = true));
+
+          setTimeout(() => {
+            i++;
+            if (i < questions.length) step();
+            else {
+              closeQuiz();
+              onEnd(correct, questions.length);
+            }
+          }, QUIZ_FEEDBACK_MS);
+        };
+      });
+    }
+
+    step();
+  }
+
+  // ───────────────────────────────
+  // Public: start quiz
+  // ───────────────────────────────
+  QuizEngine.start = async function (targetId) {
+    await ensureLoaded();
+
+    const person = API.getPersonById(targetId);
+    const place  = API.getPlaceById(targetId);
+
+    if (!person && !place) {
+      API.showToast("Fant verken person eller sted");
+      return;
+    }
+
+    // gate: krever besøkt (samme logikk som før)
+    if (!API.isTestMode()) {
+      const visited = API.getVisited();
+
+      if (place && !visited[place.id]) {
+        API.showToast("📍 Du må besøke stedet først for å ta denne quizen.");
+        return;
+      }
+      if (person && person.placeId && !visited[person.placeId]) {
+        API.showToast("📍 Du må besøke stedet først for å ta denne quizen.");
+        return;
+      }
+    }
+
+    const tid = String(targetId);
+    const qs = _byTarget.get(tid) || [];
+
+    if (!qs.length) {
+      API.showToast("Ingen quiz tilgjengelig her ennå");
+      return;
+    }
+
+    // kategori tas fra spørsmål (ikke tags)
+    const categoryId = String(qs[0].categoryId || "vitenskap").trim();
+
+    openQuiz();
+
+    runQuizFlow({
+      title: person ? person.name : (place ? place.name : "Quiz"),
+      questions: qs,
+      onEnd: (correct, total) => {
+        const perfect = correct === total;
+
+        if (perfect) {
+          API.addCompletedQuizAndMaybePoint(categoryId, targetId);
+
+          if (typeof API.markQuizAsDoneExternal === "function") API.markQuizAsDoneExternal(targetId);
+          else markQuizAsDone(targetId);
+
+          // Knowledge events per riktig svar (knowledge-ready)
+          if (typeof API.saveKnowledgeFromQuiz === "function") {
+            qs.forEach(q => {
+              API.saveKnowledgeFromQuiz(
+                {
+                  id: `${tid}_${(q.topic || q.question || "").replace(/\s+/g, "_")}`.toLowerCase(),
+                  categoryId,
+                  dimension: q.dimension,
+                  topic: q.topic,
+                  question: q.question,
+                  knowledge: q.knowledge,
+                  answer: q.answer,
+                  core_concepts: Array.isArray(q.core_concepts) ? q.core_concepts : []
+                },
+                { categoryId, targetId: tid }
+              );
+            });
+          }
+
+          if (typeof API.saveTriviaPoint === "function") {
+            qs.forEach(q => {
+              if (q.trivia) API.saveTriviaPoint({ id: tid, category: categoryId, trivia: q.trivia });
+            });
+          }
+
+          if (person) API.savePeopleCollected(tid);
+
+          if (person) API.showRewardPerson(person);
+          else if (place) API.showRewardPlace(place);
+
+          setTimeout(() => {
+            if (person) API.showPersonPopup(person);
+            else if (place) API.showPlacePopup(place);
+          }, 300);
+
+          API.showToast(`Perfekt! ${total}/${total} 🎯`);
+          API.dispatchProfileUpdate();
+        } else {
+          API.showToast(`Fullført: ${correct}/${total} – prøv igjen for full score.`);
+        }
+
+        if (person && person.placeId) {
+          const plc = API.getPlaceById(person.placeId);
+          if (plc) API.pulseMarker(plc.lat, plc.lon);
+        }
+      }
+    });
+  };
+
+  QuizEngine.init = function (opts = {}) {
+    API = { ...API, ...(opts || {}) };
+    if (typeof opts.quizFeedbackMs === "number") QUIZ_FEEDBACK_MS = opts.quizFeedbackMs;
+  };
+
+  window.QuizEngine = QuizEngine;
+})();
