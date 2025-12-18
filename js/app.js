@@ -951,37 +951,42 @@ if (typeof linkPeopleToPlaces === "function") {
 }
 
 
-    // ✅ INIT QUIZ-MODUL (ETTER at PLACES/PEOPLE er lastet)
-    if (window.HGQuiz) {
-      HGQuiz.init({
-        getPersonById: id => PEOPLE.find(p => p.id === id),
-        getPlaceById:  id => PLACES.find(p => p.id === id),
+   // ✅ INIT QUIZ-MODUL (ETTER at PLACES/PEOPLE er lastet)
+if (window.QuizEngine) {
+  QuizEngine.init({
+    getPersonById: id => PEOPLE.find(p => p.id === id),
+    getPlaceById:  id => PLACES.find(p => p.id === id),
 
-        getVisited: () => visited,
-        isTestMode: () => !!el.test?.checked,
+    getVisited: () => visited,
+    isTestMode: () => !!el.test?.checked,
 
-        showToast,
+    showToast,
 
-        // rewards / progression / UI hooks
-        addCompletedQuizAndMaybePoint,
+    // progression / rewards
+    addCompletedQuizAndMaybePoint,
 
-        showRewardPerson,
-        showRewardPlace,
-        showPersonPopup,
-        showPlacePopup,
+    showRewardPerson,
+    showRewardPlace,
+    showPersonPopup,
+    showPlacePopup,
 
-        // optional / safe wrappers
-        pulseMarker: (lat, lon) => {
-          if (typeof window.pulseMarker === "function") window.pulseMarker(lat, lon);
-        },
-        savePeopleCollected: (personId) => {
-          peopleCollected[personId] = true;
-          savePeople();
-        },
-        dispatchProfileUpdate: () => window.dispatchEvent(new Event("updateProfile"))
-      });
+    // wrappers
+    pulseMarker: (lat, lon) => {
+      if (typeof window.pulseMarker === "function") window.pulseMarker(lat, lon);
+    },
+    savePeopleCollected: (personId) => {
+      peopleCollected[personId] = true;
+      savePeople();
+    },
+    dispatchProfileUpdate: () => window.dispatchEvent(new Event("updateProfile")),
 
-    }
+    // ✅ hooks (kun ved riktige svar)
+    saveKnowledgeFromQuiz: window.saveKnowledgeFromQuiz || null,
+    saveTriviaPoint: window.saveTriviaPoint || null
+  });
+} else {
+  console.warn("QuizEngine ikke lastet");
+}
 
     // ✅ Gi kartmodulen data + callbacks (ETTER data er lastet)
     if (window.HGMap) {
