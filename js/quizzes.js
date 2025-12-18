@@ -283,6 +283,35 @@
     step();
   }
 
+
+function saveQuizHistory(entry) {
+  try {
+    const hist = JSON.parse(localStorage.getItem("quiz_history") || "[]");
+    hist.push(entry);
+    localStorage.setItem("quiz_history", JSON.stringify(hist));
+  } catch (e) {
+    console.warn("[QuizEngine] could not save quiz_history", e);
+  }
+}
+
+function markQuizProgress(categoryId, targetId) {
+  try {
+    const prog = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
+    const cat = String(categoryId || "ukjent");
+    const tid = String(targetId || "");
+
+    prog[cat] = prog[cat] || { completed: [] };
+    prog[cat].completed = Array.isArray(prog[cat].completed) ? prog[cat].completed : [];
+
+    if (!prog[cat].completed.includes(tid)) prog[cat].completed.push(tid);
+
+    localStorage.setItem("quiz_progress", JSON.stringify(prog));
+  } catch (e) {
+    console.warn("[QuizEngine] could not save quiz_progress", e);
+  }
+}
+
+  
   // ───────────────────────────────
   // Public: start quiz
   // ───────────────────────────────
@@ -322,44 +351,59 @@
     openQuiz();
 
     runQuizFlow({
-      title: person ? person.name : (place ? place.name : "Quiz"),
-      targetId: tid,
-      questions,
-      onEnd: (correct, total) => {
-        const perfect = correct === total;
+  title: person ? person.name : (place ? place.name : "Quiz"),
+  targetId: tid,
+  questions,
+  onEnd: (correct, total) => {
+    const perfect = correct === total;
 
-        // Progression + rewards kun ved perfekt (du kan endre senere)
-        if (perfect) {
-          const categoryId = String(questions[0].categoryId || "vitenskap").trim();
+    if (perfect) {
+      const categoryId = String(questions[0]?.categoryId || "vitenskap").trim();
 
-          API.addCompletedQuizAndMaybePoint(categoryId, tid);
-
-          if (typeof API.markQuizAsDoneExternal === "function") API.markQuizAsDoneExternal(tid);
-          else markQuizAsDone(tid);
-
-          if (person) API.savePeopleCollected(tid);
-
-          if (person) API.showRewardPerson(person);
-          else if (place) API.showRewardPlace(place);
-
-          setTimeout(() => {
-            if (person) API.showPersonPopup(person);
-            else if (place) API.showPlacePopup(place);
-          }, 300);
-
-          API.showToast(`Perfekt! ${total}/${total} 🎯`);
-          API.dispatchProfileUpdate();
-        } else {
-          API.showToast(`Fullført: ${correct}/${total} – prøv igjen for full score.`);
-        }
-
-        // Pulse sted fra person
-        if (person && person.placeId) {
-          const plc = API.getPlaceById(person.placeId);
-          if (plc) API.pulseMarker(plc.lat, plc.lon);
-        }
+      // ✅ skriv quiz_history (brukes av popup-utils) KUN ved perfekt
+      if (typeof saveQuizHistory === "function") {
+        saveQuizHistory({
+          id: tid,
+          categoryId,
+          name: person ? person.name : (place ? place.name : "Quiz"),
+          date: new Date().toISOString(),
+          correctCount: correct,
+          total
+        });
       }
-    });
+
+      // ✅ oppdater quiz_progress (brukes av showQuizHistory)
+      if (typeof markQuizProgress === "function") {
+        markQuizProgress(categoryId, tid);
+      }
+
+      API.addCompletedQuizAndMaybePoint(categoryId, tid);
+
+      if (typeof API.markQuizAsDoneExternal === "function") API.markQuizAsDoneExternal(tid);
+      else markQuizAsDone(tid);
+
+      if (person) API.savePeopleCollected(tid);
+
+      if (person) API.showRewardPerson(person);
+      else if (place) API.showRewardPlace(place);
+
+      setTimeout(() => {
+        if (person) API.showPersonPopup(person);
+        else if (place) API.showPlacePopup(place);
+      }, 300);
+
+      API.showToast(`Perfekt! ${total}/${total} 🎯`);
+      API.dispatchProfileUpdate();
+    } else {
+      API.showToast(`Fullført: ${correct}/${total} – prøv igjen for full score.`);
+    }
+
+    if (person && person.placeId) {
+      const plc = API.getPlaceById(person.placeId);
+      if (plc) API.pulseMarker(plc.lat, plc.lon);
+    }
+  }
+});
   };
 
   QuizEngine.init = function (opts = {}) {
