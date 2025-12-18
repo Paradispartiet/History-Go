@@ -340,20 +340,41 @@ function markQuizProgress(categoryId, targetId) {
       return;
     }
 
-    // Gate: krever besøkt (samme logikk som før)
-    if (!API.isTestMode()) {
-      const visited = API.getVisited();
+   // Gate: krever besøkt (robust for person: placeId ELLER places[])
+if (!API.isTestMode()) {
+  const visited = API.getVisited() || {};
 
-      if (place && !visited[place.id]) {
-        API.showToast("📍 Du må besøke stedet først for å ta denne quizen.");
-        return;
-      }
-      if (person && person.placeId && !visited[person.placeId]) {
-        API.showToast("📍 Du må besøke stedet først for å ta denne quizen.");
+  // Sted: må være besøkt
+  if (place && !visited[String(place.id).trim()]) {
+    API.showToast("📍 Du må trykke Lås opp før du kan ta denne quizen.");
+    return;
+  }
+
+  // Person: ok hvis ett av personens steder er besøkt
+  if (person) {
+    const candidates = [];
+
+    if (person.placeId) candidates.push(String(person.placeId).trim());
+
+    if (Array.isArray(person.places)) {
+      person.places.forEach(x => {
+        const id = String(x || "").trim();
+        if (id) candidates.push(id);
+      });
+    }
+
+    // Hvis personen faktisk har stedkobling, krev at minst ett er besøkt.
+    // Hvis ikke: ikke blokker person-quiz (ellers mister du alle person-quizer pga data-rot).
+    if (candidates.length) {
+      const ok = candidates.some(id => !!visited[id]);
+      if (!ok) {
+        API.showToast("📍 Du må trykke Lås opp på et av personens steder før du kan ta denne quizen.");
         return;
       }
     }
-
+  }
+}
+    
     const tid = String(targetId);
     const questions = _byTarget.get(tid) || [];
 
