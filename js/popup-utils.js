@@ -380,17 +380,14 @@ window.openPlaceCard = function(place) {
 
   if (btnInfo) btnInfo.onclick = () => showPlacePopup(place);
 
-  // ✅ QUIZ: bruk HGQuiz (ny modul)
-  if (btnQuiz) btnQuiz.onclick = () => {
-    if (window.HGQuiz && typeof HGQuiz.startQuiz === "function") {
-      HGQuiz.startQuiz(place.id);
-    } else if (typeof startQuiz === "function") {
-      // fallback hvis du fortsatt har startQuiz globalt under migrering
-      startQuiz(place.id);
-    } else {
-      showToast("Quiz-modul ikke lastet");
-    }
-  };
+// ✅ QUIZ: bruk QuizEngine (ny motor)
+if (btnQuiz) btnQuiz.onclick = () => {
+  if (window.QuizEngine && typeof QuizEngine.start === "function") {
+    QuizEngine.start(place.id);
+  } else {
+    showToast("Quiz-modul ikke lastet");
+  }
+};
 
 if (btnRoute) btnRoute.onclick = () => {
   if (typeof showRouteTo === "function") showRouteTo(place);
