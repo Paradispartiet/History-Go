@@ -6,21 +6,26 @@
 // ============================================================
 
 (function () {
-  const modules = [
-    { name: "core",    check: () => typeof window.boot === "function" },
+    const modules = [
+    // Core/system
+    { name: "dev",     check: () => true },
+    { name: "API",     check: () => typeof window.API?.showToast === "function" },
 
-    // Hvis du ikke har window.app (du har sannsynligvis ikke), så blir dette rød – men det krasjer ikke.
-    { name: "app",     check: () => typeof window.app?.initApp === "function" },
+    // Data / hub
+    { name: "DataHub", check: () => !!(window.DataHub || window.dataHub) },
+    { name: "HG",      check: () => !!window.HG },
 
-    // Du har map.js som IIFE – ofte eksponerer den ikke window.map.
-    // Hvis du faktisk eksponerer map på window, blir den grønn.
-    { name: "map",     check: () => typeof window.map?.initMap === "function" },
+    // Map (din app)
+    { name: "HGMap",   check: () => !!window.HGMap },
+    { name: "MAP",     check: () => !!window.MAP },
+    { name: "maplibre",check: () => typeof window.maplibregl !== "undefined" },
 
-    // Tilpass disse til dine faktiske globals:
-    { name: "routes",  check: () => typeof window.Routes?.initRoutes === "function" },
-    { name: "quiz",    check: () => typeof window.QuizEngine?.start === "function" || typeof window.quiz?.startQuiz === "function" },
-    { name: "profile", check: () => typeof window.Profile?.initProfilePage === "function" },
-    { name: "ui",      check: () => typeof window.ui?.initUI === "function" }
+    // Quiz
+    { name: "QuizEngine", check: () => typeof window.QuizEngine?.start === "function" },
+
+    // Domener (nytt)
+    { name: "DomainRegistry",     check: () => typeof window.DomainRegistry?.resolve === "function" },
+    { name: "DomainHealthReport", check: () => typeof window.DomainHealthReport?.run === "function" }
   ];
 
   const panel = document.createElement("div");
