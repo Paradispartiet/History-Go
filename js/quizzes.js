@@ -93,7 +93,7 @@
   async function loadManifest() {
     // Manifest uten / foran (slik du ba om)
     try {
-      const m = await fetchJson("data/quiz/manifest.json");
+      const m = await fetchJson(QUIZ_MANIFEST_URL);
       if (m && Array.isArray(m.files) && m.files.length) return m.files;
     } catch (e) {
       console.warn("[QuizEngine] manifest missing or invalid:", e);
