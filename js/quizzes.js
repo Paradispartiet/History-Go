@@ -7,20 +7,24 @@
 (function () {
   "use strict";
 
-  // ✅ Base-path fra hvor quizzes.js faktisk lastes fra
-  function scriptBase() {
-    try {
-      const src = document.currentScript && document.currentScript.src;
-      if (!src) return "";
-      return src.split("/js/")[0] + "/";
-    } catch {
-      return "";
-    }
-  }
+function absUrl(path) {
+  return new URL(String(path || ""), document.baseURI).toString();
+}
 
-  const BASE = scriptBase(); // f.eks. ".../History-Go/"
-  const QUIZ_MANIFEST_URL = BASE + "data/quiz/manifest.json";
+async function fetchJson(path) {
+  const url = absUrl(path);
+  const r = await fetch(url, { cache: "no-store" });
+  if (!r.ok) throw new Error(`${r.status} ${url}`);
+  return await r.json();
+}
 
+const QUIZ_MANIFEST_PATH = "quiz/manifest.json";
+
+async function loadManifest() {
+  const m = await fetchJson(QUIZ_MANIFEST_PATH);
+  if (m && Array.isArray(m.files) && m.files.length) return m.files;
+  throw new Error("quiz/manifest.json mangler files[]");
+}
   const QuizEngine = {};
 
   // ───────────────────────────────
@@ -123,8 +127,7 @@
       const lists = await Promise.all(
   files.map(async (f) => {
     try {
-      const url = f.startsWith("http") ? f : BASE + f;
-      const data = await fetchJson(url);
+      const data = await fetchJson(f);
       return Array.isArray(data) ? data : [];
     } catch (e) {
       console.warn("[QuizEngine] could not load", f, e);
