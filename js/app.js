@@ -56,6 +56,18 @@ const userNotes = JSON.parse(
   localStorage.getItem("hg_user_notes_v1") || "[]"
 );
 
+
+function safeInit(name, fn) {
+  try {
+    fn();
+    if (window.HGConsole?.ok) window.HGConsole.ok(name);
+  } catch (e) {
+    console.error(`[${name}]`, e);
+    if (window.HGConsole?.fail) window.HGConsole.fail(name, e);
+    // hvis du ikke har fail/ok-metoder, gjør i det minste:
+    window.__HG_LAST_ERROR__ = { name, message: String(e), stack: e?.stack };
+  }
+}
 // ------------------------------------------------------------
 // EKSPORT TIL AHA – DELT LOCALSTORAGE-BUFFER
 // ------------------------------------------------------------
