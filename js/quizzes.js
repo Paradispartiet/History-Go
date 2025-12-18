@@ -1,8 +1,11 @@
-// quizzes.js — History GO Quiz module
+// quizzes.js — History GO Quiz module (ROBUST: match på personId/placeId)
+// - Laster ALLE quizfiler én gang (cached)
+// - Finner spørsmål ved targetId (personId/placeId)
+// - categoryId tas fra spørsmålet (ikke fra tags)
+// - Ingen wire() her (app.js håndterer klikk)
+
 (function () {
   "use strict";
-
-  console.log("quizzes.js LOADED");
 
   // ───────────────────────────────
   // Avhengigheter (injiseres fra app.js)
@@ -12,16 +15,14 @@
     getPlaceById: (id) => null,
     getVisited: () => ({}),
     isTestMode: () => false,
-
     showToast: (msg) => console.log(msg),
 
-    // category helpers (injiseres fra app.js)
-    tagToCat: (tags) => "vitenskap",
+    // helpers (valgfritt)
     catIdFromDisplay: (displayCat) => (displayCat || "vitenskap"),
 
     // rewards / progression / UI hooks
     addCompletedQuizAndMaybePoint: (displayCat, targetId) => {},
-    markQuizAsDoneExternal: null, // <-- VIKTIG: null som default
+    markQuizAsDoneExternal: null, // null default (så fallback kan kjøre)
     showRewardPerson: (person) => {},
     showRewardPlace: (place) => {},
     showPersonPopup: (person) => {},
@@ -38,9 +39,6 @@
 
   let QUIZ_FEEDBACK_MS = 700;
 
-  // ───────────────────────────────
-  // Helpers
-  // ───────────────────────────────
   function normalizeId(x) {
     return String(x || "").trim().toLowerCase();
   }
@@ -55,33 +53,31 @@
   }
 
   // ───────────────────────────────
-  // Quiz files
+  // Quiz files (oppdater hvis du endrer struktur)
   // ───────────────────────────────
-  const QUIZ_FILE_MAP = {
-    kunst: "data/quiz/quiz_kunst.json",
-    sport: "data/quiz/quiz_sport.json",
-    politikk: "data/quiz/quiz_politikk.json",
-    populaerkultur: "data/quiz/quiz_populaerkultur.json",
-    musikk: "data/quiz/quiz_musikk.json",
-    subkultur: "data/quiz/quiz_subkultur.json",
-    vitenskap: "data/quiz/quiz_vitenskap.json",
-    natur: "data/quiz/quiz_natur.json",
-    litteratur: "data/quiz/quiz_litteratur.json",
-    by: "data/quiz/quiz_by.json",
-    historie: "data/quiz/quiz_historie.json",
-    naeringsliv: "data/quiz/quiz_naeringsliv.json"
-  };
+  const QUIZ_FILES = [
+    "data/quiz/quiz_kunst.json",
+    "data/quiz/quiz_sport.json",
+    "data/quiz/quiz_politikk.json",
+    "data/quiz/quiz_populaerkultur.json",
+    "data/quiz/quiz_musikk.json",
+    "data/quiz/quiz_subkultur.json",
+    "data/quiz/quiz_vitenskap.json",
+    "data/quiz/quiz_natur.json",
+    "data/quiz/quiz_litteratur.json",
+    "data/quiz/quiz_by.json",
+    "data/quiz/quiz_historie.json",
+    "data/quiz/quiz_naeringsliv.json"
+  ];
 
-  // Cache all quizzes (lastes bare én gang)
+  // Cache alle quiz-spørsmål
   let _allQuizCache = null;
 
   async function loadAllQuizzes() {
     if (_allQuizCache) return _allQuizCache;
 
-    const files = Object.values(QUIZ_FILE_MAP);
-
     const all = await Promise.all(
-      files.map(async (file) => {
+      QUIZ_FILES.map(async (file) => {
         try {
           const r = await fetch(file, { cache: "no-store" });
           if (!r.ok) return [];
@@ -128,13 +124,13 @@
 
     const modal = document.getElementById("quizModal");
     modal.querySelector("#quizClose").onclick = closeQuiz;
-    modal.addEventListener("click", e => {
-      if (e.target.id === "quizModal") closeQuiz();
+    modal.addEventListener("click", (e) => {
+      if (e.target && e.target.id === "quizModal") closeQuiz();
     });
 
     if (!_escWired) {
       _escWired = true;
-      document.addEventListener("keydown", e => {
+      document.addEventListener("keydown", (e) => {
         if (e.key === "Escape") closeQuiz();
       });
     }
@@ -193,10 +189,11 @@
       }
     }
 
-    // Hent alle quizzer (cached), finn kun de som matcher targetId
+    // 1) Last alle spørsmål (cached)
     const all = await loadAllQuizzes();
-    const tid = String(targetId);
 
+    // 2) Finn spørsmål ved targetId (personId/placeId)
+    const tid = String(targetId);
     const questionsRaw = all.filter(q =>
       String(q.personId || "") === tid ||
       String(q.placeId  || "") === tid
@@ -207,15 +204,16 @@
       return;
     }
 
-    // Kategori tas fra quiz-spørsmål (ikke fra tags)
+    // 3) category fra spørsmål (ikke fra tags)
     const rawCat = questionsRaw[0].categoryId || "vitenskap";
-    const displayCat = rawCat;
+    const displayCat = rawCat; // brukes for poeng/UI
     const categoryId = normalizeId(
       (typeof API.catIdFromDisplay === "function" ? API.catIdFromDisplay(rawCat) : rawCat) || rawCat
     );
 
+    // 4) Formatter til UI
     const formatted = questionsRaw.map(q => ({
-      ...q, // behold ALT originalt
+      ...q,
       text: q.question,
       choices: q.options || [],
       answerIndex: (q.options || []).findIndex(o => o === q.answer)
@@ -232,7 +230,7 @@
         if (perfect) {
           API.addCompletedQuizAndMaybePoint(displayCat, targetId);
 
-          // Markér knapp (enten her, eller via app-hook)
+          // Markér knapp
           if (typeof API.markQuizAsDoneExternal === "function") API.markQuizAsDoneExternal(targetId);
           else markQuizAsDone(targetId);
 
@@ -249,7 +247,7 @@
 
           const entry = {
             id: targetId,
-            categoryId,
+            categoryId, // ren id (kunst/historie/...)
             name: person ? person.name : place.name,
             image: person ? person.imageCard : place.cardImage,
             date: when,
@@ -258,12 +256,10 @@
 
           saveQuizHistory(entry);
 
-          // Insights (valgfritt hook)
           if (typeof API.logCorrectQuizAnswer === "function") {
             API.logCorrectQuizAnswer(entry, person, place);
           }
 
-          // Knowledge + trivia (valgfritt)
           if (typeof API.saveKnowledgeFromQuiz === "function" && Array.isArray(entry.correctAnswers)) {
             entry.correctAnswers.forEach(q => {
               API.saveKnowledgeFromQuiz(
@@ -289,14 +285,11 @@
             });
           }
 
-          // Reward først
           if (person) API.showRewardPerson(person);
           else if (place) API.showRewardPlace(place);
 
-          // Lagring: person collected
           if (person) API.savePeopleCollected(targetId);
 
-          // Pulse markør (kun sted)
           if (place) {
             const visitedPlaces = API.getVisited();
             if (visitedPlaces[place.id] || API.isTestMode()) {
@@ -304,7 +297,6 @@
             }
           }
 
-          // Åpne popup etter reward
           setTimeout(() => {
             if (person) API.showPersonPopup(person);
             else if (place) API.showPlacePopup(place);
@@ -385,6 +377,5 @@
     if (typeof opts.quizFeedbackMs === "number") QUIZ_FEEDBACK_MS = opts.quizFeedbackMs;
   }
 
-  console.log("HGQuiz export", { hasInit: typeof init, hasStart: typeof startQuiz });
   window.HGQuiz = { init, startQuiz };
 })();
