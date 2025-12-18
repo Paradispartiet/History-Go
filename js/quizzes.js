@@ -80,10 +80,42 @@
     // ROBUST:
     // - ikke krev q.categoryId (mange av dine quiz-items mangler den)
     // - men hvis den finnes, la mismatch være ok (fila er fasiten)
-    return Array.isArray(data) ? data : [];
-  } catch {
-    return [];
+    return Array.isArray(data)
+  ? data.filter(q => {
+      const raw = q?.categoryId || "";
+      const mapped = API.catIdFromDisplay ? API.catIdFromDisplay(raw) : raw;
+      return normalizeId(mapped) === cat;
+    })
+  : [];
   }
+}
+
+  // ───────────────────────────────
+// QUIZ INDEX (targetId -> spørsmål[])
+// ───────────────────────────────
+let _quizIndexBuilt = false;
+const _quizByTargetId = new Map();
+
+function _pushToIndex(q) {
+  const pid = q && q.personId ? String(q.personId) : "";
+  const plc = q && q.placeId  ? String(q.placeId)  : "";
+  const key = pid || plc;
+  if (!key) return;
+
+  if (!_quizByTargetId.has(key)) _quizByTargetId.set(key, []);
+  _quizByTargetId.get(key).push(q);
+}
+
+async function ensureQuizIndex() {
+  if (_quizIndexBuilt) return;
+  _quizIndexBuilt = true;
+
+  const cats = Object.keys(QUIZ_FILE_MAP);
+
+  // last alle filer (kan ta litt, men skjer kun første gang)
+  const all = await Promise.all(cats.map(c => loadQuizForCategory(c)));
+
+  all.flat().forEach(q => _pushToIndex(q));
 }
 
   // ───────────────────────────────
