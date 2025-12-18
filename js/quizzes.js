@@ -68,8 +68,16 @@
   const _all = [];
 
   function norm(x) {
-    return String(x || "").trim();
+  // Eneste tillatte "normalisering": eksplisitt DomainRegistry
+  // (alias -> canonical, ellers FEIL)
+  try {
+    return DomainRegistry.resolve(x);
+  } catch (e) {
+    console.error(e);
+    if (window.API && API.showToast) API.showToast(String(e.message || e));
+    throw e; // fail fast – ikke fallback til feil kategori
   }
+}
 
   function targetKey(q) {
     const pid = norm(q?.personId);
