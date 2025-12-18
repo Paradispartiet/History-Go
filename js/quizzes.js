@@ -2,6 +2,8 @@
 (function () {
   "use strict";
 
+  console.log("quizzes.js LOADED");
+  
   // ───────────────────────────────
   // Avhengigheter (injiseres fra app.js)
   // ───────────────────────────────
