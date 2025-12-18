@@ -1,8 +1,17 @@
-// js/quizEngine.js — NYTT QUIZ SYSTEM (ID-basert, manifest-basert, knowledge-ready)
+// js/quizEngine.js — NYTT QUIZ SYSTEM (ID-basert + manifest + knowledge/trivia per RIKTIG svar)
+// - Ingen tagToCat / kategori-gjetting
+// - Finner quiz via personId/placeId
+// - Leser quiz-filer fra data/quiz/manifest.json (uten / foran)
+// - Lagrer knowledge + trivia KUN når brukeren svarer riktig på et spørsmål
+
 (function () {
   "use strict";
 
   const QuizEngine = {};
+
+  // ───────────────────────────────
+  // API (injiseres fra app.js)
+  // ───────────────────────────────
   let API = {
     // data
     getPersonById: (id) => null,
@@ -68,17 +77,19 @@
   }
 
   async function loadManifest() {
-    // 1) forsøk manifest
+    // Manifest uten / foran (slik du ba om)
     try {
-      const m = await fetchJson("/data/quiz/manifest.json");
+      const m = await fetchJson("data/quiz/manifest.json");
       if (m && Array.isArray(m.files) && m.files.length) return m.files;
-    } catch {}
+    } catch (e) {
+      console.warn("[QuizEngine] manifest missing or invalid:", e);
+    }
 
-    // 2) fallback hvis du ikke vil bruke manifest (kan fjernes senere)
+    // Fallback (kan fjernes når manifest alltid finnes)
     return [
-      "/data/quiz/quiz_kunst.json",
-      "/data/quiz/quiz_historie.json",
-      "/data/quiz/quiz_vitenskap.json"
+      "data/quiz/quiz_kunst.json",
+      "data/quiz/quiz_historie.json",
+      "data/quiz/quiz_vitenskap.json"
     ];
   }
 
@@ -102,7 +113,7 @@
       );
 
       const flat = lists.flat();
-      flat.forEach(q => {
+      flat.forEach((q) => {
         _all.push(q);
         indexQuestion(q);
       });
@@ -173,7 +184,7 @@
 
   function markQuizAsDone(targetId) {
     const quizBtns = document.querySelectorAll(`[data-quiz="${targetId}"]`);
-    quizBtns.forEach(btn => {
+    quizBtns.forEach((btn) => {
       const firstTime = !btn.classList.contains("quiz-done");
       btn.classList.add("quiz-done");
       btn.innerHTML = "✔️ Tatt (kan gjentas)";
@@ -184,7 +195,7 @@
     });
   }
 
-  function runQuizFlow({ title, questions, onEnd }) {
+  function runQuizFlow({ title, targetId, questions, onEnd }) {
     ensureQuizUI();
 
     const qs = {
@@ -201,8 +212,15 @@
 
     function step() {
       const q = questions[i];
+
+      const options = q.options || q.choices || [];
+      const answerIndex =
+        typeof q.answerIndex === "number"
+          ? q.answerIndex
+          : options.findIndex((o) => o === q.answer);
+
       qs.q.textContent = q.question || q.text || "";
-      qs.choices.innerHTML = (q.options || q.choices || [])
+      qs.choices.innerHTML = options
         .map((opt, idx) => `<button data-idx="${idx}">${opt}</button>`)
         .join("");
 
@@ -212,19 +230,43 @@
       const bar = document.querySelector(".quiz-progress .bar");
       if (bar) bar.style.width = `${((i + 1) / questions.length) * 100}%`;
 
-      const answerIndex =
-        typeof q.answerIndex === "number"
-          ? q.answerIndex
-          : (q.options || []).findIndex(o => o === q.answer);
-
-      qs.choices.querySelectorAll("button").forEach(btn => {
+      qs.choices.querySelectorAll("button").forEach((btn) => {
         btn.onclick = () => {
           const ok = Number(btn.dataset.idx) === answerIndex;
+
           btn.classList.add(ok ? "correct" : "wrong");
           qs.feedback.textContent = ok ? "Riktig ✅" : "Feil ❌";
           if (ok) correct++;
 
-          qs.choices.querySelectorAll("button").forEach(b => (b.disabled = true));
+          // ✅ KUN ved RIKTIG: knowledge-event
+          if (ok && typeof API.saveKnowledgeFromQuiz === "function") {
+            const tid = String(targetId || "");
+            API.saveKnowledgeFromQuiz(
+              {
+                id: `${tid}_${(q.topic || q.question || "").replace(/\s+/g, "_")}`.toLowerCase(),
+                categoryId: String(q.categoryId || "vitenskap"),
+                dimension: q.dimension,
+                topic: q.topic,
+                question: q.question,
+                knowledge: q.knowledge,
+                answer: q.answer,
+                core_concepts: Array.isArray(q.core_concepts) ? q.core_concepts : []
+              },
+              { categoryId: String(q.categoryId || "vitenskap"), targetId: tid }
+            );
+          }
+
+          // ✅ KUN ved RIKTIG: trivia-point
+          if (ok && q.trivia && typeof API.saveTriviaPoint === "function") {
+            API.saveTriviaPoint({
+              id: String(targetId || ""),
+              category: String(q.categoryId || "vitenskap"),
+              trivia: q.trivia,
+              question: q.question
+            });
+          }
+
+          qs.choices.querySelectorAll("button").forEach((b) => (b.disabled = true));
 
           setTimeout(() => {
             i++;
@@ -248,14 +290,14 @@
     await ensureLoaded();
 
     const person = API.getPersonById(targetId);
-    const place  = API.getPlaceById(targetId);
+    const place = API.getPlaceById(targetId);
 
     if (!person && !place) {
       API.showToast("Fant verken person eller sted");
       return;
     }
 
-    // gate: krever besøkt (samme logikk som før)
+    // Gate: krever besøkt (samme logikk som før)
     if (!API.isTestMode()) {
       const visited = API.getVisited();
 
@@ -270,54 +312,30 @@
     }
 
     const tid = String(targetId);
-    const qs = _byTarget.get(tid) || [];
+    const questions = _byTarget.get(tid) || [];
 
-    if (!qs.length) {
+    if (!questions.length) {
       API.showToast("Ingen quiz tilgjengelig her ennå");
       return;
     }
-
-    // kategori tas fra spørsmål (ikke tags)
-    const categoryId = String(qs[0].categoryId || "vitenskap").trim();
 
     openQuiz();
 
     runQuizFlow({
       title: person ? person.name : (place ? place.name : "Quiz"),
-      questions: qs,
+      targetId: tid,
+      questions,
       onEnd: (correct, total) => {
         const perfect = correct === total;
 
+        // Progression + rewards kun ved perfekt (du kan endre senere)
         if (perfect) {
-          API.addCompletedQuizAndMaybePoint(categoryId, targetId);
+          const categoryId = String(questions[0].categoryId || "vitenskap").trim();
 
-          if (typeof API.markQuizAsDoneExternal === "function") API.markQuizAsDoneExternal(targetId);
-          else markQuizAsDone(targetId);
+          API.addCompletedQuizAndMaybePoint(categoryId, tid);
 
-          // Knowledge events per riktig svar (knowledge-ready)
-          if (typeof API.saveKnowledgeFromQuiz === "function") {
-            qs.forEach(q => {
-              API.saveKnowledgeFromQuiz(
-                {
-                  id: `${tid}_${(q.topic || q.question || "").replace(/\s+/g, "_")}`.toLowerCase(),
-                  categoryId,
-                  dimension: q.dimension,
-                  topic: q.topic,
-                  question: q.question,
-                  knowledge: q.knowledge,
-                  answer: q.answer,
-                  core_concepts: Array.isArray(q.core_concepts) ? q.core_concepts : []
-                },
-                { categoryId, targetId: tid }
-              );
-            });
-          }
-
-          if (typeof API.saveTriviaPoint === "function") {
-            qs.forEach(q => {
-              if (q.trivia) API.saveTriviaPoint({ id: tid, category: categoryId, trivia: q.trivia });
-            });
-          }
+          if (typeof API.markQuizAsDoneExternal === "function") API.markQuizAsDoneExternal(tid);
+          else markQuizAsDone(tid);
 
           if (person) API.savePeopleCollected(tid);
 
@@ -335,6 +353,7 @@
           API.showToast(`Fullført: ${correct}/${total} – prøv igjen for full score.`);
         }
 
+        // Pulse sted fra person
         if (person && person.placeId) {
           const plc = API.getPlaceById(person.placeId);
           if (plc) API.pulseMarker(plc.lat, plc.lon);
