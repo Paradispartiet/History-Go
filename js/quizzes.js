@@ -3,7 +3,7 @@
   "use strict";
 
   console.log("quizzes.js LOADED");
-  
+
   // ───────────────────────────────
   // Avhengigheter (injiseres fra app.js)
   // ───────────────────────────────
@@ -15,13 +15,13 @@
 
     showToast: (msg) => console.log(msg),
 
-    // category helpers
+    // category helpers (injiseres fra app.js)
     tagToCat: (tags) => "vitenskap",
     catIdFromDisplay: (displayCat) => (displayCat || "vitenskap"),
 
     // rewards / progression / UI hooks
     addCompletedQuizAndMaybePoint: (displayCat, targetId) => {},
-    markQuizAsDoneExternal: null,
+    markQuizAsDoneExternal: null, // <-- VIKTIG: null som default
     showRewardPerson: (person) => {},
     showRewardPlace: (place) => {},
     showPersonPopup: (person) => {},
@@ -54,6 +54,9 @@
     localStorage.setItem("quiz_history", JSON.stringify(hist));
   }
 
+  // ───────────────────────────────
+  // Quiz files
+  // ───────────────────────────────
   const QUIZ_FILE_MAP = {
     kunst: "data/quiz/quiz_kunst.json",
     sport: "data/quiz/quiz_sport.json",
@@ -69,56 +72,36 @@
     naeringsliv: "data/quiz/quiz_naeringsliv.json"
   };
 
+  // Cache all quizzes (lastes bare én gang)
+  let _allQuizCache = null;
+
   async function loadAllQuizzes() {
-  const files = Object.values(QUIZ_FILE_MAP);
+    if (_allQuizCache) return _allQuizCache;
 
-  const all = await Promise.all(
-    files.map(async (file) => {
-      try {
-        const r = await fetch(file, { cache: "no-store" });
-        if (!r.ok) return [];
-        const data = await r.json();
-        return Array.isArray(data) ? data : [];
-      } catch {
-        return [];
-      }
-    })
-  );
+    const files = Object.values(QUIZ_FILE_MAP);
 
-  return all.flat();
-}
+    const all = await Promise.all(
+      files.map(async (file) => {
+        try {
+          const r = await fetch(file, { cache: "no-store" });
+          if (!r.ok) return [];
+          const data = await r.json();
+          return Array.isArray(data) ? data : [];
+        } catch {
+          return [];
+        }
+      })
+    );
 
-  // ───────────────────────────────
-// QUIZ INDEX (targetId -> spørsmål[])
-// ───────────────────────────────
-let _quizIndexBuilt = false;
-const _quizByTargetId = new Map();
-
-function _pushToIndex(q) {
-  const pid = q && q.personId ? String(q.personId) : "";
-  const plc = q && q.placeId  ? String(q.placeId)  : "";
-  const key = pid || plc;
-  if (!key) return;
-
-  if (!_quizByTargetId.has(key)) _quizByTargetId.set(key, []);
-  _quizByTargetId.get(key).push(q);
-}
-
-async function ensureQuizIndex() {
-  if (_quizIndexBuilt) return;
-  _quizIndexBuilt = true;
-
-  const cats = Object.keys(QUIZ_FILE_MAP);
-
-  // last alle filer (kan ta litt, men skjer kun første gang)
-  const all = await Promise.all(cats.map(c => loadQuizForCategory(c)));
-
-  all.flat().forEach(q => _pushToIndex(q));
-}
+    _allQuizCache = all.flat();
+    return _allQuizCache;
+  }
 
   // ───────────────────────────────
   // UI
   // ───────────────────────────────
+  let _escWired = false;
+
   function ensureQuizUI() {
     if (document.getElementById("quizModal")) return;
 
@@ -149,10 +132,12 @@ async function ensureQuizIndex() {
       if (e.target.id === "quizModal") closeQuiz();
     });
 
-    // (OK å ha denne, men den vil trigge også andre steder. Funker greit.)
-    document.addEventListener("keydown", e => {
-      if (e.key === "Escape") closeQuiz();
-    });
+    if (!_escWired) {
+      _escWired = true;
+      document.addEventListener("keydown", e => {
+        if (e.key === "Escape") closeQuiz();
+      });
+    }
   }
 
   function openQuiz() {
@@ -208,27 +193,28 @@ async function ensureQuizIndex() {
       }
     }
 
-    // Hent quizdata
-    // displayCat = det som vises/lagres for poeng (kan være "Kunst & kultur" osv)
-const displayCat = person
-  ? (API.tagToCat(person.tags) || "vitenskap")
-  : (place?.category || API.tagToCat(place?.tags) || "vitenskap");
-
-// categoryId = filnøkkel ("kunst", "historie", ...)
-const categoryId = normalizeId(
-  (typeof API.catIdFromDisplay === "function" ? API.catIdFromDisplay(displayCat) : displayCat) || displayCat
-);
-
-const items = await loadQuizForCategory(categoryId);    // ✅ robust matching (case/whitespace-safe)
+    // Hent alle quizzer (cached), finn kun de som matcher targetId
+    const all = await loadAllQuizzes();
     const tid = String(targetId);
-    const questions = items.filter(q => String(q.personId || "") === tid || String(q.placeId || "") === tid);
 
-    if (!questions.length) {
+    const questionsRaw = all.filter(q =>
+      String(q.personId || "") === tid ||
+      String(q.placeId  || "") === tid
+    );
+
+    if (!questionsRaw.length) {
       API.showToast("Ingen quiz tilgjengelig her ennå");
       return;
     }
 
-    const formatted = questions.map(q => ({
+    // Kategori tas fra quiz-spørsmål (ikke fra tags)
+    const rawCat = questionsRaw[0].categoryId || "vitenskap";
+    const displayCat = rawCat;
+    const categoryId = normalizeId(
+      (typeof API.catIdFromDisplay === "function" ? API.catIdFromDisplay(rawCat) : rawCat) || rawCat
+    );
+
+    const formatted = questionsRaw.map(q => ({
       ...q, // behold ALT originalt
       text: q.question,
       choices: q.options || [],
@@ -391,7 +377,7 @@ const items = await loadQuizForCategory(categoryId);    // ✅ robust matching (
     step();
   }
 
-   // ───────────────────────────────
+  // ───────────────────────────────
   // Public API
   // ───────────────────────────────
   function init(opts = {}) {
@@ -400,5 +386,5 @@ const items = await loadQuizForCategory(categoryId);    // ✅ robust matching (
   }
 
   console.log("HGQuiz export", { hasInit: typeof init, hasStart: typeof startQuiz });
-window.HGQuiz = { init, startQuiz };
-})();})();
+  window.HGQuiz = { init, startQuiz };
+})();
