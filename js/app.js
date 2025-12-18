@@ -220,7 +220,7 @@ function catColor(cat = "") {
   const c = norm(cat);
   if (c.includes("historie") || c.includes("fortid") || c.includes("middelalder") || c.includes("arkeologi")) return "#344B80";   // Historie – dyp blå
   if (c.includes("vitenskap") || c.includes("filosofi")) return "#9b59b6";
-  if (c.includes("kunst") || c.includes("kultur")) return "#ffb703";
+  if (t.includes("kunst")) return "kunst";
   if (c.includes("musikk") || c.includes("scene")) return "#ff66cc";
   if (c.includes("litteratur") || c.includes("poesi")) return "#f6c800";
   if (c.includes("natur") || c.includes("miljoe")) return "#4caf50";
@@ -230,7 +230,7 @@ function catColor(cat = "") {
   if (c.includes("naering") || c.includes("industri") || c.includes("arbeid")) return "#ff8800";
   if (c.includes("populaer") || c.includes("pop")) return "#ffb703";
   if (c.includes("subkultur") || c.includes("urban")) return "#ff66cc";
-  if (c.includes("psykologi") || c.includes("mental") || c.includes("sinn")) return "#ff7aa2"; // ← NY, velg farge du liker
+  if (t.includes("psykologi") || t.includes("mental") || t.includes("sinn") || t.includes("klinisk")) return "vitenskap";
   return "#9b59b6"; // fallback
 }
 
