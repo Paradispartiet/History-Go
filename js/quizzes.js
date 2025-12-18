@@ -69,32 +69,23 @@
     naeringsliv: "data/quiz/quiz_naeringsliv.json"
   };
 
-  async function loadQuizForCategory(categoryId) {
-  const cat = normalizeId(categoryId);
-  const file = QUIZ_FILE_MAP[cat];
-  if (!file) return [];
+  async function loadAllQuizzes() {
+  const files = Object.values(QUIZ_FILE_MAP);
 
-  try {
-    const response = await fetch(file, { cache: "no-store" });
-    if (!response.ok) return [];
+  const all = await Promise.all(
+    files.map(async (file) => {
+      try {
+        const r = await fetch(file, { cache: "no-store" });
+        if (!r.ok) return [];
+        const data = await r.json();
+        return Array.isArray(data) ? data : [];
+      } catch {
+        return [];
+      }
+    })
+  );
 
-    const data = await response.json();
-
-    // Filtrer robust: støtt både ID og visningsnavn i q.categoryId
-    return Array.isArray(data)
-      ? data.filter(q => {
-          const raw = q?.categoryId || "";
-          const mapped =
-            typeof API.catIdFromDisplay === "function"
-              ? API.catIdFromDisplay(raw)
-              : raw;
-          return normalizeId(mapped) === cat;
-        })
-      : [];
-  } catch (e) {
-    console.warn("Quiz fetch/parse feil:", file, e);
-    return [];
-  }
+  return all.flat();
 }
 
   // ───────────────────────────────
