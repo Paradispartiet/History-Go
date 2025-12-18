@@ -408,6 +408,6 @@ const items = await loadQuizForCategory(categoryId);    // ✅ robust matching (
     if (typeof opts.quizFeedbackMs === "number") QUIZ_FEEDBACK_MS = opts.quizFeedbackMs;
   }
 
-  window.HGQuiz = { init, startQuiz };
-  console.log("HGQuiz export about to happen", { hasInit: typeof init, hasStart: typeof startQuiz });
-})();
+  console.log("HGQuiz export", { hasInit: typeof init, hasStart: typeof startQuiz });
+window.HGQuiz = { init, startQuiz };
+})();})();
