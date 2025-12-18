@@ -59,6 +59,16 @@ function hasCompletedQuiz(targetId) {
   }
 }
 
+function getLastQuizCategoryId(targetId) {
+  try {
+    const hist = JSON.parse(localStorage.getItem("quiz_history") || "[]");
+    const last = [...hist].reverse().find(h => String(h.id) === String(targetId));
+    return last?.categoryId || null;
+  } catch {
+    return null;
+  }
+}
+
 // Hent kunnskapsblokker for en bestemt kategori + mål (person/sted)
 // Leser direkte fra localStorage: knowledge_universe
 function getInlineKnowledgeFor(categoryId, targetId) {
@@ -509,11 +519,11 @@ window.showRewardPlace = function(place) {
   const BASE = document.querySelector("base")?.href || "";
 const card =
   place.cardImage || place.image || `${BASE}bilder/kort/places/${place.id}.PNG`;
-  const categoryId = place.category || null;
-  const knowledgeBlocks =
-    categoryId ? getInlineKnowledgeFor(categoryId, place.id) : null;
-  const triviaList =
-    categoryId ? getInlineTriviaFor(categoryId, place.id) : [];
+  const categoryId = getLastQuizCategoryId(place.id);
+const knowledgeBlocks =
+  categoryId ? getInlineKnowledgeFor(categoryId, place.id) : null;
+const triviaList =
+  categoryId ? getInlineTriviaFor(categoryId, place.id) : [];
 
   makePopup(
     `
@@ -583,15 +593,13 @@ window.showRewardPerson = function(person) {
   const BASE = document.querySelector("base")?.href || "";
 const card =
   person.cardImage || person.image || `${BASE}bilder/kort/people/${person.id}.PNG`;
-  const categoryId =
-    person.category ||
-    (Array.isArray(person.tags) && person.tags.length ? person.tags[0] : null);
-  const knowledgeBlocks =
-    categoryId ? getInlineKnowledgeFor(categoryId, person.id) : null;
-  const triviaList =
-    categoryId ? getInlineTriviaFor(categoryId, person.id) : [];
 
-  makePopup(
+const categoryId = getLastQuizCategoryId(person.id);
+
+const knowledgeBlocks =
+  categoryId ? getInlineKnowledgeFor(categoryId, person.id) : null;
+const triviaList =
+  categoryId ? getInlineTriviaFor(categoryId, person.id) : [];
     `
       <div class="reward-center">
         <h2 class="reward-title">🎉 Gratulerer!</h2>
@@ -653,9 +661,11 @@ const card =
   });
 };
 
+
+
 // ============================================================
 // 8. ESC = LUKK
 // ============================================================
 document.addEventListener("keydown", e => {
-  if (e.key === "Escape") closePopup();
+  if (e.key === "Escape" && currentPopup) closePopup();
 });
