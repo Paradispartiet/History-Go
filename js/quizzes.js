@@ -121,16 +121,17 @@
       const files = await loadManifest();
 
       const lists = await Promise.all(
-        files.map(async (f) => {
-          try {
-            const data = await fetchJson(f);
-            return Array.isArray(data) ? data : [];
-          } catch (e) {
-            console.warn("[QuizEngine] could not load", f, e);
-            return [];
-          }
-        })
-      );
+  files.map(async (f) => {
+    try {
+      const url = f.startsWith("http") ? f : BASE + f;
+      const data = await fetchJson(url);
+      return Array.isArray(data) ? data : [];
+    } catch (e) {
+      console.warn("[QuizEngine] could not load", f, e);
+      return [];
+    }
+  })
+);
 
       const flat = lists.flat();
       flat.forEach((q) => {
