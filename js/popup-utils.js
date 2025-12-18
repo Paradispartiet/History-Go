@@ -617,17 +617,12 @@ window.showRewardPerson = function(person) {
           ${
             knowledgeBlocks
               ? Object.entries(knowledgeBlocks)
-                  .map(
-                    ([dim, items]) => `
+                  .map(([dim, items]) => `
                     <strong>${dim}</strong>
                     <ul>
-                      ${items
-                        .map(i => `<li><strong>${i.topic}:</strong> ${i.text}</li>`)
-                        .join("")}
+                      ${items.map(i => `<li><strong>${i.topic}:</strong> ${i.text}</li>`).join("")}
                     </ul>
-                  `
-                  )
-                  .join("")
+                  `).join("")
               : `<p class="hg-muted">Ingen kunnskap registrert ennå.</p>`
           }
         </div>
