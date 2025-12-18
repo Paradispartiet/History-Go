@@ -544,13 +544,12 @@ document.addEventListener("click", e => {
   const quizId = quizEl?.getAttribute?.("data-quiz");
 
   if (quizId) {
-    if (window.HGQuiz?.startQuiz) {
-      HGQuiz.startQuiz(quizId);
-    } else {
-      showToast("Quiz-modul ikke lastet");
-    }
-    return;
+  if (window.QuizEngine?.start) {
+    QuizEngine.start(quizId);
+  } else {
+    showToast("Quiz-modul ikke lastet");
   }
+}
   
   // --- SØKERESULTAT: STED ---
 const placeId = target.closest?.(".search-item")?.getAttribute("data-place");
