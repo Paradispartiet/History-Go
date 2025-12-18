@@ -1,0 +1,20 @@
+{
+  "project": "History GO",
+  "version": "1",
+  "entry": {
+    "html": "index.html",
+    "boot": ["js/app.js"]
+  },
+  "modules": [
+    { "id": "app", "path": "js/app.js", "owns": ["initApp", "bindGlobalEvents"] },
+    { "id": "map", "path": "js/map.js", "owns": ["initMap", "flyToPlace", "highlightPlace"] },
+    { "id": "routes", "path": "js/routes.js", "owns": ["renderRoute", "clearRoute"] },
+    { "id": "quiz", "path": "js/quizzes.js", "owns": ["QuizEngine.start", "QuizEngine.finish"] }
+  ],
+  "data": [
+    "data/places.json",
+    "data/people.json",
+    "data/tags.json",
+    "data/badges.json"
+  ]
+}
