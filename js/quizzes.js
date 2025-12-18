@@ -1,8 +1,6 @@
-// quizzes.js — History GO Quiz module (ROBUST: match på personId/placeId)
+// quizzes.js — History GO Quiz module (robust, kategori + fallback)
 (function () {
   "use strict";
-
-  console.log("quizzes.js LOADED (ROBUST)");
 
   // ───────────────────────────────
   // Avhengigheter (injiseres fra app.js)
@@ -14,12 +12,13 @@
     isTestMode: () => false,
     showToast: (msg) => console.log(msg),
 
-    // (valgfritt) brukes bare for normalisering av display-cat → id
+    // category helpers
+    tagToCat: (tags) => "vitenskap",
     catIdFromDisplay: (displayCat) => (displayCat || "vitenskap"),
 
     // rewards / progression / UI hooks
     addCompletedQuizAndMaybePoint: (displayCat, targetId) => {},
-    markQuizAsDoneExternal: null, // ✅ MÅ være null som default
+    markQuizAsDoneExternal: null, // ✅ viktig: null, så fallback brukes
     showRewardPerson: (person) => {},
     showRewardPlace: (place) => {},
     showPersonPopup: (person) => {},
@@ -28,7 +27,7 @@
     savePeopleCollected: (personId) => {},
     dispatchProfileUpdate: () => window.dispatchEvent(new Event("updateProfile")),
 
-    // (valgfritt)
+    // optional
     logCorrectQuizAnswer: null,
     saveKnowledgeFromQuiz: null,
     saveTriviaPoint: null
@@ -50,49 +49,40 @@
   }
 
   // ───────────────────────────────
-  // Quiz files (oppdater kun hvis du flytter filer)
+  // Filkartlegging (kategorier som faktisk finnes som filer)
   // ───────────────────────────────
-  const QUIZ_FILES = [
-    "data/quiz/quiz_kunst.json",
-    "data/quiz/quiz_sport.json",
-    "data/quiz/quiz_politikk.json",
-    "data/quiz/quiz_populaerkultur.json",
-    "data/quiz/quiz_musikk.json",
-    "data/quiz/quiz_subkultur.json",
-    "data/quiz/quiz_vitenskap.json",
-    "data/quiz/quiz_natur.json",
-    "data/quiz/quiz_litteratur.json",
-    "data/quiz/quiz_by.json",
-    "data/quiz/quiz_historie.json",
-    "data/quiz/quiz_naeringsliv.json"
-  ];
+  const QUIZ_FILE_MAP = {
+    kunst: "data/quiz/quiz_kunst.json",
+    sport: "data/quiz/quiz_sport.json",
+    politikk: "data/quiz/quiz_politikk.json",
+    populaerkultur: "data/quiz/quiz_populaerkultur.json",
+    musikk: "data/quiz/quiz_musikk.json",
+    subkultur: "data/quiz/quiz_subkultur.json",
+    vitenskap: "data/quiz/quiz_vitenskap.json",
+    natur: "data/quiz/quiz_natur.json",
+    litteratur: "data/quiz/quiz_litteratur.json",
+    by: "data/quiz/quiz_by.json",
+    historie: "data/quiz/quiz_historie.json",
+    naeringsliv: "data/quiz/quiz_naeringsliv.json"
+  };
 
-  // Cache alle quiz-spørsmål (lastes kun én gang)
-  let _allQuizCache = null;
+  async function loadQuizForCategory(categoryId) {
+    const cat = normalizeId(categoryId);
 
-  async function loadAllQuizzes() {
-    if (_allQuizCache) return _allQuizCache;
+    // ✅ fallback: hvis ukjent kategori (f.eks. "psykologi"), bruk vitenskap
+    const safeCat = QUIZ_FILE_MAP[cat] ? cat : "vitenskap";
+    const file = QUIZ_FILE_MAP[safeCat];
 
-    const all = await Promise.all(
-      QUIZ_FILES.map(async (file) => {
-        try {
-          const r = await fetch(file, { cache: "no-store" });
-          if (!r.ok) {
-            console.warn("[HGQuiz] fetch fail", file, r.status);
-            return [];
-          }
-          const data = await r.json();
-          return Array.isArray(data) ? data : [];
-        } catch (e) {
-          console.warn("[HGQuiz] fetch/parse error", file, e);
-          return [];
-        }
-      })
-    );
+    try {
+      const r = await fetch(file, { cache: "no-store" });
+      if (!r.ok) return [];
+      const data = await r.json();
 
-    _allQuizCache = all.flat();
-    console.log("[HGQuiz] loaded total questions:", _allQuizCache.length);
-    return _allQuizCache;
+      // ✅ Robust: ikke filtrer på q.categoryId her — fila er allerede valgt
+      return Array.isArray(data) ? data : [];
+    } catch {
+      return [];
+    }
   }
 
   // ───────────────────────────────
@@ -126,13 +116,13 @@
 
     const modal = document.getElementById("quizModal");
     modal.querySelector("#quizClose").onclick = closeQuiz;
-    modal.addEventListener("click", (e) => {
+    modal.addEventListener("click", e => {
       if (e.target && e.target.id === "quizModal") closeQuiz();
     });
 
     if (!_escWired) {
       _escWired = true;
-      document.addEventListener("keydown", (e) => {
+      document.addEventListener("keydown", e => {
         if (e.key === "Escape") closeQuiz();
       });
     }
@@ -191,29 +181,29 @@
       }
     }
 
-    const all = await loadAllQuizzes();
-    const tid = String(targetId);
+    // Kategori bestemmer fil (som før), men robust
+    const displayCat = person
+      ? (API.tagToCat(person.tags) || "vitenskap")
+      : (place?.category || API.tagToCat(place?.tags) || "vitenskap");
 
-    const questionsRaw = all.filter(q =>
-      String(q.personId || "") === tid ||
-      String(q.placeId  || "") === tid
+    const categoryId = normalizeId(
+      (typeof API.catIdFromDisplay === "function" ? API.catIdFromDisplay(displayCat) : displayCat) || displayCat
     );
 
-    console.log("[HGQuiz] startQuiz", { targetId: tid, found: questionsRaw.length });
+    const items = await loadQuizForCategory(categoryId);
 
-    if (!questionsRaw.length) {
+    // Finn spørsmål for targetId
+    const tid = String(targetId);
+    const questions = items.filter(q =>
+      String(q.personId || "") === tid || String(q.placeId || "") === tid
+    );
+
+    if (!questions.length) {
       API.showToast("Ingen quiz tilgjengelig her ennå");
       return;
     }
 
-    // kategori tas fra spørsmålet
-    const rawCat = questionsRaw[0].categoryId || "vitenskap";
-    const displayCat = rawCat;
-    const categoryId = normalizeId(
-      (typeof API.catIdFromDisplay === "function" ? API.catIdFromDisplay(rawCat) : rawCat) || rawCat
-    );
-
-    const formatted = questionsRaw.map(q => ({
+    const formatted = questions.map(q => ({
       ...q,
       text: q.question,
       choices: q.options || [],
