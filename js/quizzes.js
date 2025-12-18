@@ -218,11 +218,12 @@ const displayCat = person
   ? (API.tagToCat(person.tags) || "vitenskap")
   : (place?.category || API.tagToCat(place?.tags) || "vitenskap");
 
-// categoryId = filnøkkel (MÅ være "kunst", "historie", ...)
-const categoryId = normalizeId(API.catIdFromDisplay(displayCat) || displayCat);
-    const items = await loadQuizForCategory(categoryId);
+// categoryId = filnøkkel ("kunst", "historie", ...)
+const categoryId = normalizeId(
+  (typeof API.catIdFromDisplay === "function" ? API.catIdFromDisplay(displayCat) : displayCat) || displayCat
+);
 
-    // ✅ robust matching (case/whitespace-safe)
+const items = await loadQuizForCategory(categoryId);    // ✅ robust matching (case/whitespace-safe)
     const tid = String(targetId);
     const questions = items.filter(q => String(q.personId || "") === tid || String(q.placeId || "") === tid);
 
@@ -403,4 +404,5 @@ const categoryId = normalizeId(API.catIdFromDisplay(displayCat) || displayCat);
   }
 
   window.HGQuiz = { init, startQuiz };
+  console.log("HGQuiz export about to happen", { hasInit: typeof init, hasStart: typeof startQuiz });
 })();
