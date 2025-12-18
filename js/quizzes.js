@@ -1,52 +1,48 @@
-// js/quizEngine.js — NYTT QUIZ SYSTEM (ID-basert + manifest + knowledge/trivia per RIKTIG svar)
-// - Ingen tagToCat / kategori-gjetting
-// - Finner quiz via personId/placeId
-// - Leser quiz-filer fra data/quiz/manifest.json (uten / foran)
-// - Lagrer knowledge + trivia KUN når brukeren svarer riktig på et spørsmål
+// js/quizzes.js — QuizEngine (manifest + ID-basert + knowledge/trivia kun ved riktig)
+// Leser: data/quiz/manifest.json
+// Forventer manifest.files[] med paths som "data/quiz/quiz_*.json"
 
 (function () {
   "use strict";
 
-function absUrl(path) {
-  return new URL(String(path || ""), document.baseURI).toString();
-}
+  // ---------- URL helpers ----------
+  function absUrl(path) {
+    return new URL(String(path || ""), document.baseURI).toString();
+  }
 
-async function fetchJson(path) {
-  const url = absUrl(path);
-  const r = await fetch(url, { cache: "no-store" });
-  if (!r.ok) throw new Error(`${r.status} ${url}`);
-  return await r.json();
-}
+  async function fetchJson(path) {
+    const url = absUrl(path);
+    const r = await fetch(url, { cache: "no-store" });
+    if (!r.ok) throw new Error(`${r.status} ${url}`);
+    return await r.json();
+  }
 
-const QUIZ_MANIFEST_PATH = "quiz/manifest.json";
+  const QUIZ_MANIFEST_PATH = "data/quiz/manifest.json";
 
-async function loadManifest() {
-  const m = await fetchJson(QUIZ_MANIFEST_PATH);
-  if (m && Array.isArray(m.files) && m.files.length) return m.files;
-  throw new Error("quiz/manifest.json mangler files[]");
-}
+  async function loadManifestFiles() {
+    const m = await fetchJson(QUIZ_MANIFEST_PATH);
+    if (!m || !Array.isArray(m.files) || !m.files.length) {
+      throw new Error("data/quiz/manifest.json mangler files[]");
+    }
+    return m.files;
+  }
+
+  // ---------- Engine ----------
   const QuizEngine = {};
 
-  // ───────────────────────────────
   // API (injiseres fra app.js)
-  // ───────────────────────────────
   let API = {
-    // data
     getPersonById: (id) => null,
     getPlaceById: (id) => null,
 
-    // gate
     getVisited: () => ({}),
     isTestMode: () => false,
 
-    // ui
     showToast: (msg) => console.log(msg),
 
-    // progression + hooks
     addCompletedQuizAndMaybePoint: (categoryId, targetId) => {},
     markQuizAsDoneExternal: null,
 
-    // rewards
     showRewardPerson: (person) => {},
     showRewardPlace: (place) => {},
     showPersonPopup: (person) => {},
@@ -55,37 +51,22 @@ async function loadManifest() {
     savePeopleCollected: (personId) => {},
     dispatchProfileUpdate: () => window.dispatchEvent(new Event("updateProfile")),
 
-    // knowledge hooks (valgfritt)
     saveKnowledgeFromQuiz: null,
     saveTriviaPoint: null
   };
 
   let QUIZ_FEEDBACK_MS = 700;
 
-  // ───────────────────────────────
-  // State: index + cache
-  // ───────────────────────────────
+  // State
   let _loaded = false;
   let _loading = null;
 
   const _byTarget = new Map(); // targetId -> questions[]
   const _all = [];
 
-  function norm(x) {
-  // Eneste tillatte "normalisering": eksplisitt DomainRegistry
-  // (alias -> canonical, ellers FEIL)
-  try {
-    return DomainRegistry.resolve(x);
-  } catch (e) {
-    console.error(e);
-    if (window.API && API.showToast) API.showToast(String(e.message || e));
-    throw e; // fail fast – ikke fallback til feil kategori
-  }
-}
-
   function targetKey(q) {
-  return String(q.personId || q.placeId || "").trim();
-}
+    return String(q?.personId || q?.placeId || "").trim();
+  }
 
   function indexQuestion(q) {
     const key = targetKey(q);
@@ -94,47 +75,25 @@ async function loadManifest() {
     _byTarget.get(key).push(q);
   }
 
-  async function fetchJson(url) {
-    const r = await fetch(url, { cache: "no-store" });
-    if (!r.ok) throw new Error(`${r.status} ${url}`);
-    return await r.json();
-  }
-
-  async function loadManifest() {
-    // Manifest uten / foran (slik du ba om)
-    try {
-      const m = await fetchJson(QUIZ_MANIFEST_URL);
-      if (m && Array.isArray(m.files) && m.files.length) return m.files;
-    } catch (e) {
-      console.warn("[QuizEngine] manifest missing or invalid:", e);
-    }
-
-    // Fallback (kan fjernes når manifest alltid finnes)
-    return [
-      "data/quiz/quiz_kunst.json",
-      "data/quiz/quiz_historie.json",
-      "data/quiz/quiz_vitenskap.json"
-    ];
-  }
-
   async function ensureLoaded() {
     if (_loaded) return;
     if (_loading) return _loading;
 
     _loading = (async () => {
-      const files = await loadManifest();
+      const files = await loadManifestFiles();
 
       const lists = await Promise.all(
-  files.map(async (f) => {
-    try {
-      const data = await fetchJson(f);
-      return Array.isArray(data) ? data : [];
-    } catch (e) {
-      console.warn("[QuizEngine] could not load", f, e);
-      return [];
-    }
-  })
-);
+        files.map(async (f) => {
+          try {
+            // manifest kan være "data/quiz/..." (relativt) eller full url
+            const data = await fetchJson(f);
+            return Array.isArray(data) ? data : [];
+          } catch (e) {
+            console.warn("[QuizEngine] could not load", f, e);
+            return [];
+          }
+        })
+      );
 
       const flat = lists.flat();
       flat.forEach((q) => {
@@ -149,9 +108,7 @@ async function loadManifest() {
     return _loading;
   }
 
-  // ───────────────────────────────
-  // UI
-  // ───────────────────────────────
+  // ---------- UI ----------
   let _escWired = false;
 
   function ensureQuizUI() {
@@ -219,6 +176,33 @@ async function loadManifest() {
     });
   }
 
+  function saveQuizHistory(entry) {
+    try {
+      const hist = JSON.parse(localStorage.getItem("quiz_history") || "[]");
+      hist.push(entry);
+      localStorage.setItem("quiz_history", JSON.stringify(hist));
+    } catch (e) {
+      console.warn("[QuizEngine] could not save quiz_history", e);
+    }
+  }
+
+  function markQuizProgress(categoryId, targetId) {
+    try {
+      const prog = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
+      const cat = String(categoryId || "ukjent");
+      const tid = String(targetId || "");
+
+      prog[cat] = prog[cat] || { completed: [] };
+      prog[cat].completed = Array.isArray(prog[cat].completed) ? prog[cat].completed : [];
+
+      if (!prog[cat].completed.includes(tid)) prog[cat].completed.push(tid);
+
+      localStorage.setItem("quiz_progress", JSON.stringify(prog));
+    } catch (e) {
+      console.warn("[QuizEngine] could not save quiz_progress", e);
+    }
+  }
+
   function runQuizFlow({ title, targetId, questions, onEnd }) {
     ensureQuizUI();
 
@@ -268,7 +252,7 @@ async function loadManifest() {
             API.saveKnowledgeFromQuiz(
               {
                 id: `${tid}_${(q.topic || q.question || "").replace(/\s+/g, "_")}`.toLowerCase(),
-                categoryId: String(q.categoryId || "vitenskap"),
+                categoryId: String(q.categoryId || "vitenskap").trim(),
                 dimension: q.dimension,
                 topic: q.topic,
                 question: q.question,
@@ -276,7 +260,7 @@ async function loadManifest() {
                 answer: q.answer,
                 core_concepts: Array.isArray(q.core_concepts) ? q.core_concepts : []
               },
-              { categoryId: String(q.categoryId || "vitenskap"), targetId: tid }
+              { categoryId: String(q.categoryId || "vitenskap").trim(), targetId: tid }
             );
           }
 
@@ -284,7 +268,7 @@ async function loadManifest() {
           if (ok && q.trivia && typeof API.saveTriviaPoint === "function") {
             API.saveTriviaPoint({
               id: String(targetId || ""),
-              category: String(q.categoryId || "vitenskap"),
+              category: String(q.categoryId || "vitenskap").trim(),
               trivia: q.trivia,
               question: q.question
             });
@@ -307,154 +291,111 @@ async function loadManifest() {
     step();
   }
 
-
-function saveQuizHistory(entry) {
-  try {
-    const hist = JSON.parse(localStorage.getItem("quiz_history") || "[]");
-    hist.push(entry);
-    localStorage.setItem("quiz_history", JSON.stringify(hist));
-  } catch (e) {
-    console.warn("[QuizEngine] could not save quiz_history", e);
-  }
-}
-
-function markQuizProgress(categoryId, targetId) {
-  try {
-    const prog = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
-    const cat = String(categoryId || "ukjent");
-    const tid = String(targetId || "");
-
-    prog[cat] = prog[cat] || { completed: [] };
-    prog[cat].completed = Array.isArray(prog[cat].completed) ? prog[cat].completed : [];
-
-    if (!prog[cat].completed.includes(tid)) prog[cat].completed.push(tid);
-
-    localStorage.setItem("quiz_progress", JSON.stringify(prog));
-  } catch (e) {
-    console.warn("[QuizEngine] could not save quiz_progress", e);
-  }
-}
-
-  
-  // ───────────────────────────────
-  // Public: start quiz
-  // ───────────────────────────────
+  // ---------- Public: start ----------
   QuizEngine.start = async function (targetId) {
-      try {
-    await ensureLoaded();
+    try {
+      await ensureLoaded();
 
-    const person = API.getPersonById(targetId);
-    const place = API.getPlaceById(targetId);
+      const person = API.getPersonById(targetId);
+      const place = API.getPlaceById(targetId);
 
-    if (!person && !place) {
-      API.showToast("Fant verken person eller sted");
-      return;
-    }
-
-   // Gate: krever besøkt (robust for person: placeId ELLER places[])
-if (!API.isTestMode()) {
-  const visited = API.getVisited() || {};
-
-  // Sted: må være besøkt
-  if (place && !visited[String(place.id).trim()]) {
-    API.showToast("📍 Du må trykke Lås opp før du kan ta denne quizen.");
-    return;
-  }
-
-  // Person: ok hvis ett av personens steder er besøkt
-  if (person) {
-    const candidates = [];
-
-    if (person.placeId) candidates.push(String(person.placeId).trim());
-
-    if (Array.isArray(person.places)) {
-      person.places.forEach(x => {
-        const id = String(x || "").trim();
-        if (id) candidates.push(id);
-      });
-    }
-
-    // Hvis personen faktisk har stedkobling, krev at minst ett er besøkt.
-    // Hvis ikke: ikke blokker person-quiz (ellers mister du alle person-quizer pga data-rot).
-    if (candidates.length) {
-      const ok = candidates.some(id => !!visited[id]);
-      if (!ok) {
-        API.showToast("📍 Du må trykke Lås opp på et av personens steder før du kan ta denne quizen.");
+      if (!person && !place) {
+        API.showToast("Fant verken person eller sted");
         return;
       }
-    }
-  }
-}
-    
-    const tid = String(targetId || "").trim();
-const questions = (_byTarget && _byTarget.get(tid)) || [];
 
-    if (!questions.length) {
-      API.showToast("Ingen quiz tilgjengelig her ennå");
-      return;
-    }
+      // Gate: krever besøkt
+      if (!API.isTestMode()) {
+        const visited = API.getVisited() || {};
 
-    openQuiz();
+        if (place && !visited[String(place.id).trim()]) {
+          API.showToast("📍 Du må trykke Lås opp før du kan ta denne quizen.");
+          return;
+        }
 
-    runQuizFlow({
-  title: person ? person.name : (place ? place.name : "Quiz"),
-  targetId: tid,
-  questions,
-  onEnd: (correct, total) => {
-    const perfect = correct === total;
-
-    if (perfect) {
-      const categoryId = String(questions[0]?.categoryId || "vitenskap").trim();
-
-      // ✅ skriv quiz_history (brukes av popup-utils) KUN ved perfekt
-      if (typeof saveQuizHistory === "function") {
-        saveQuizHistory({
-          id: tid,
-          categoryId,
-          name: person ? person.name : (place ? place.name : "Quiz"),
-          date: new Date().toISOString(),
-          correctCount: correct,
-          total
-        });
+        if (person) {
+          const candidates = [];
+          if (person.placeId) candidates.push(String(person.placeId).trim());
+          if (Array.isArray(person.places)) {
+            person.places.forEach((x) => {
+              const id = String(x || "").trim();
+              if (id) candidates.push(id);
+            });
+          }
+          if (candidates.length) {
+            const ok = candidates.some((id) => !!visited[id]);
+            if (!ok) {
+              API.showToast("📍 Du må trykke Lås opp på et av personens steder før du kan ta denne quizen.");
+              return;
+            }
+          }
+        }
       }
 
-      // ✅ oppdater quiz_progress (brukes av showQuizHistory)
-      if (typeof markQuizProgress === "function") {
-        markQuizProgress(categoryId, tid);
+      const tid = String(targetId || "").trim();
+      const questions = (_byTarget && _byTarget.get(tid)) || [];
+
+      if (!questions.length) {
+        API.showToast("Ingen quiz tilgjengelig her ennå");
+        return;
       }
 
-      API.addCompletedQuizAndMaybePoint(categoryId, tid);
+      openQuiz();
 
-      if (typeof API.markQuizAsDoneExternal === "function") API.markQuizAsDoneExternal(tid);
-      else markQuizAsDone(tid);
+      runQuizFlow({
+        title: person ? person.name : (place ? place.name : "Quiz"),
+        targetId: tid,
+        questions,
+        onEnd: (correct, total) => {
+          const perfect = correct === total;
 
-      if (person) API.savePeopleCollected(tid);
+          if (perfect) {
+            const categoryId = String(questions[0]?.categoryId || "vitenskap").trim();
 
-      if (person) API.showRewardPerson(person);
-      else if (place) API.showRewardPlace(place);
+            saveQuizHistory({
+              id: tid,
+              categoryId,
+              name: person ? person.name : (place ? place.name : "Quiz"),
+              date: new Date().toISOString(),
+              correctCount: correct,
+              total
+            });
 
-      setTimeout(() => {
-        if (person) API.showPersonPopup(person);
-        else if (place) API.showPlacePopup(place);
-      }, 300);
+            markQuizProgress(categoryId, tid);
 
-      API.showToast(`Perfekt! ${total}/${total} 🎯`);
-      API.dispatchProfileUpdate();
-    } else {
-      API.showToast(`Fullført: ${correct}/${total} – prøv igjen for full score.`);
+            API.addCompletedQuizAndMaybePoint(categoryId, tid);
+
+            if (typeof API.markQuizAsDoneExternal === "function") API.markQuizAsDoneExternal(tid);
+            else markQuizAsDone(tid);
+
+            if (person) API.savePeopleCollected(tid);
+
+            if (person) API.showRewardPerson(person);
+            else if (place) API.showRewardPlace(place);
+
+            setTimeout(() => {
+              if (person) API.showPersonPopup(person);
+              else if (place) API.showPlacePopup(place);
+            }, 300);
+
+            API.showToast(`Perfekt! ${total}/${total} 🎯`);
+            API.dispatchProfileUpdate();
+          } else {
+            API.showToast(`Fullført: ${correct}/${total} – prøv igjen for full score.`);
+          }
+
+          if (person && person.placeId) {
+            const plc = API.getPlaceById(person.placeId);
+            if (plc) API.pulseMarker(plc.lat, plc.lon);
+          }
+        }
+      });
+
+    } catch (e) {
+      console.warn("[QuizEngine] start crashed:", e);
+      API.showToast("Quiz-feil: noe krasjet i quizzes.js");
     }
-
-    if (person && person.placeId) {
-      const plc = API.getPlaceById(person.placeId);
-      if (plc) API.pulseMarker(plc.lat, plc.lon);
-    }
-  }
-});
-
-           } catch (e) {
-    API.showToast("Quiz-feil: noe krasjet i quizzes.js");
-  }
-};
+  };
 
   QuizEngine.init = function (opts = {}) {
     API = { ...API, ...(opts || {}) };
