@@ -1013,9 +1013,11 @@ if (window.QuizEngine) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  boot();
-  initMiniProfile();
-  wireMiniProfileLinks();
+  try { boot(); } catch (e) { console.error("[boot]", e); }
+
+  try { initMiniProfile(); } catch (e) { console.error("[initMiniProfile]", e); }
+
+  try { wireMiniProfileLinks(); } catch (e) { console.error("[wireMiniProfileLinks]", e); }
 });
 
 if (window.DomainHealthReport) {
