@@ -1,9 +1,9 @@
 /* ============================================================
    HISTORY GO – SERVICE WORKER (paths fixed for /css /js /data)
-   Version: HG-FULL-v3.0.5
+   Version: HG-FULL-v3.0.6
 ============================================================ */
 
-const CACHE_VERSION = "HG-FULL-v3.0.040";
+const CACHE_VERSION = "HG-FULL-v3.0.041";
 const STATIC_CACHE = `historygo-${CACHE_VERSION}`;
 
 // Viktig: bruk ABSOLUTTE paths når du har mapper (/css, /js, /data)
