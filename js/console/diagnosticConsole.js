@@ -1,12 +1,11 @@
 // js/console/diagnosticConsole.js
 // =============================================================
-// HISTORY GO — DIAGNOSTIC CONSOLE (v4.2, iPad-friendly, nyttig)
+// HISTORY GO — DIAGNOSTIC CONSOLE (v4.3)
 //  • Åpne/lukk:  DEV-knapp (🩺) når ?dev=1 eller localStorage.devMode="true"
 //  • Viser: status, events, ruter, localStorage, JS-feil
 //  • Kommandoer + knapper: status, health, domains, errors, routes check, storage check
 //  • Eval (valgfritt): skriv JS og trykk Enter (Shift+Enter for ny linje)
-//  • Modulstatus-panel (🧩) med ok/warn/idle/fail
-//  • NYTT: Geo-hook som gjør "posisjon blokkert" = 🟡 AVVENTER, ikke 🔴 FEIL
+//  • Modulstatus-panel (🧩) med ok/warn/idle/fail — KUN I DEV
 // =============================================================
 (() => {
   if (window.HGConsole) return;
@@ -21,11 +20,17 @@
   };
   const kb = (n) => `${(n / 1024).toFixed(1)} KB`;
 
-  // Dev mode gate (samme idé som init.js)
+  // Dev mode gate
   const isDev =
     window.location.search.includes("dev=1") ||
     window.location.search.includes("dev") ||
     localStorage.getItem("devMode") === "true";
+
+  // Hard cleanup: ALDRI vis modulstatus/FAB uten dev
+  if (!isDev) {
+    try { document.getElementById("hgModuleStatus")?.remove(); } catch {}
+    try { document.getElementById("hgStatusFab")?.remove(); } catch {}
+  }
 
   // -----------------------------
   // UI
@@ -65,7 +70,7 @@
     eventsLog: [],
     jsErrors: [],
     moduleStatus: {},   // { [name]: { status, detail, time } }
-    statusPanel: null   // DOM element
+    statusPanel: null   // DOM element (hgModuleStatus)
   };
 
   function print(line, cls = "log") {
@@ -94,166 +99,162 @@
 
   const normalizeStatus = (s) => (STATUS_META[s] ? s : "fail");
 
- function ensureStatusPanel() {
-  // Hard rule: Modulstatus skal KUN finnes i dev-mode
-  if (!isDev) {
-    try { document.getElementById("hgModuleStatus")?.remove(); } catch {}
-    try { document.getElementById("hgStatusFab")?.remove(); } catch {}
-    state.statusPanel = null;
-    return;
-  }
+  function ensureStatusPanel() {
+    // KUN DEV
+    if (!isDev) {
+      try { document.getElementById("hgModuleStatus")?.remove(); } catch {}
+      try { document.getElementById("hgStatusFab")?.remove(); } catch {}
+      state.statusPanel = null;
+      return;
+    }
 
-  // Ikke bygg på nytt hvis den allerede finnes
-  if (state.statusPanel && document.getElementById("hgModuleStatus")) return;
+    // Hvis finnes allerede i DOM, bruk den
+    const existing = document.getElementById("hgModuleStatus");
+    if (existing) {
+      state.statusPanel = existing;
+      return;
+    }
 
-  // Hvis DOM finnes men state mangler (hot reload / dobbel init), koble opp igjen
-  const existing = document.getElementById("hgModuleStatus");
-  if (existing) {
-    state.statusPanel = existing;
-    return;
-  }
-
-  const panel = document.createElement("section");
-  panel.id = "hgModuleStatus";
-  panel.style.cssText = `
-    position: fixed;
-    right: 12px;
-    bottom: 12px;
-    z-index: 999999;
-    background: rgba(10,20,35,.88);
-    border: 1px solid rgba(255,255,255,.12);
-    border-radius: 12px;
-    padding: 10px 12px;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-    font-size: 14px;
-    color: #e6eef9;
-    min-width: 210px;
-    max-width: 320px;
-    box-shadow: 0 10px 30px rgba(0,0,0,.35);
-  `;
-
-  panel.innerHTML = `
-    <div id="hgStatusHead" style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
-      <div id="hgStatusTitle" style="font-weight:700;">🧩 Modulstatus</div>
-
-      <div style="display:flex; align-items:center; gap:6px;">
-        <button id="hgStatusToggle" type="button" style="
-          background: rgba(255,255,255,.10);
-          border: 1px solid rgba(255,255,255,.12);
-          color: #e6eef9;
-          width: 28px;
-          height: 28px;
-          border-radius: 9px;
-          font-size: 14px;
-          line-height: 1;
-          cursor: pointer;
-        " aria-label="Minimer">▾</button>
-      </div>
-    </div>
-
-    <div id="hgStatusList" style="margin-top:8px; display:flex; flex-direction:column; gap:6px;"></div>
-  `;
-
-  // --- FAB (egen knapp når panelet er minimert) ---
-  let fab = document.getElementById("hgStatusFab");
-  if (!fab) {
-    fab = document.createElement("button");
-    fab.id = "hgStatusFab";
-    fab.type = "button";
-    fab.textContent = "🧩";
-    fab.setAttribute("aria-label", "Vis modulstatus");
-    fab.style.cssText = `
+    const panel = document.createElement("section");
+    panel.id = "hgModuleStatus";
+    panel.style.cssText = `
       position: fixed;
       right: 12px;
       bottom: 12px;
       z-index: 999999;
-      width: 44px;
-      height: 44px;
-      border-radius: 14px;
-      font-size: 18px;
-      cursor: pointer;
       background: rgba(10,20,35,.88);
       border: 1px solid rgba(255,255,255,.12);
+      border-radius: 12px;
+      padding: 10px 12px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 14px;
       color: #e6eef9;
+      min-width: 210px;
+      max-width: 320px;
       box-shadow: 0 10px 30px rgba(0,0,0,.35);
-      display: none;
     `;
-    document.body.appendChild(fab);
-  }
 
-  const btn = panel.querySelector("#hgStatusToggle");
-  const list = panel.querySelector("#hgStatusList");
-  const title = panel.querySelector("#hgStatusTitle");
-  const head = panel.querySelector("#hgStatusHead");
+    panel.innerHTML = `
+      <div id="hgStatusHead" style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+        <div id="hgStatusTitle" style="font-weight:700;">🧩 Modulstatus</div>
+        <div style="display:flex; align-items:center; gap:6px;">
+          <button id="hgStatusToggle" type="button" style="
+            background: rgba(255,255,255,.10);
+            border: 1px solid rgba(255,255,255,.12);
+            color: #e6eef9;
+            width: 28px;
+            height: 28px;
+            border-radius: 9px;
+            font-size: 14px;
+            line-height: 1;
+            cursor: pointer;
+          " aria-label="Minimer">▾</button>
+        </div>
+      </div>
 
-  function setCollapsed(collapsed) {
-    panel.dataset.collapsed = collapsed ? "1" : "0";
-    localStorage.setItem("hg_modstatus_collapsed", collapsed ? "1" : "0");
+      <div id="hgStatusList" style="margin-top:8px; display:flex; flex-direction:column; gap:6px;"></div>
+    `;
 
-    if (collapsed) {
-      // Skjul hele panelet, vis kun FAB
-      panel.style.display = "none";
-      fab.style.display = "block";
-      fab.style.pointerEvents = "auto";
-    } else {
-      // Vis panelet, skjul FAB
-      panel.style.display = "block";
-      fab.style.display = "none";
-
-      // Sørg for at innhold er synlig når panelet er åpent
-      title.style.display = "";
-      list.style.display = "flex";
-
-      // Knapp tilbake til liten toggle
-      btn.textContent = "▾";
-      btn.setAttribute("aria-label", "Minimer");
+    // FAB (minimert knapp)
+    let fab = document.getElementById("hgStatusFab");
+    if (!fab) {
+      fab = document.createElement("button");
+      fab.id = "hgStatusFab";
+      fab.type = "button";
+      fab.textContent = "🧩";
+      fab.setAttribute("aria-label", "Vis modulstatus");
+      fab.style.cssText = `
+        position: fixed;
+        right: 12px;
+        bottom: 12px;
+        z-index: 999999;
+        width: 44px;
+        height: 44px;
+        border-radius: 14px;
+        font-size: 18px;
+        cursor: pointer;
+        background: rgba(10,20,35,.88);
+        border: 1px solid rgba(255,255,255,.12);
+        color: #e6eef9;
+        box-shadow: 0 10px 30px rgba(0,0,0,.35);
+        display: none;
+      `;
+      document.body.appendChild(fab);
     }
-  }
 
-  function toggleCollapsed() {
-    const collapsed = panel.dataset.collapsed === "1";
-    setCollapsed(!collapsed);
-  }
+    const btn = panel.querySelector("#hgStatusToggle");
+    const list = panel.querySelector("#hgStatusList");
+    const title = panel.querySelector("#hgStatusTitle");
+    const head = panel.querySelector("#hgStatusHead");
 
-  // restore state (default = minimert hvis ikke lagret)
-  const savedRaw = localStorage.getItem("hg_modstatus_collapsed");
-  const saved = savedRaw == null ? true : (savedRaw === "1");
-  setCollapsed(saved);
+    function setCollapsed(collapsed) {
+      panel.dataset.collapsed = collapsed ? "1" : "0";
+      localStorage.setItem("hg_modstatus_collapsed", collapsed ? "1" : "0");
 
-  // Header/tittel klikkbar (ikke bare knappen)
-  if (head) {
-    head.style.cursor = "pointer";
-    head.onclick = (e) => {
-      if (e.target && e.target.id === "hgStatusToggle") return;
-      toggleCollapsed();
-    };
-  }
+      if (collapsed) {
+        // EKTE minimer: bort med boksen
+        panel.style.display = "none";
+        fab.style.display = "block";
+        fab.style.pointerEvents = "auto";
+      } else {
+        fab.style.display = "none";
+        panel.style.display = "block";
+        if (title) title.style.display = "";
+        if (list) list.style.display = "flex";
+        if (btn) {
+          btn.textContent = "▾";
+          btn.setAttribute("aria-label", "Minimer");
+        }
+      }
+    }
 
-  if (title) {
-    title.style.cursor = "pointer";
-    title.onclick = (e) => {
+    function toggleCollapsed() {
+      const collapsed = panel.dataset.collapsed === "1";
+      setCollapsed(!collapsed);
+    }
+
+    // restore state (default = minimert)
+    const savedRaw = localStorage.getItem("hg_modstatus_collapsed");
+    const saved = savedRaw == null ? true : (savedRaw === "1");
+    setCollapsed(saved);
+
+    // Header/tittel klikkbar (ikke bare knappen)
+    if (head) {
+      head.style.cursor = "pointer";
+      head.onclick = (e) => {
+        if (e.target && e.target.id === "hgStatusToggle") return;
+        toggleCollapsed();
+      };
+    }
+
+    if (title) {
+      title.style.cursor = "pointer";
+      title.onclick = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        toggleCollapsed();
+      };
+    }
+
+    // ▾ toggler også
+    if (btn) {
+      btn.onclick = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        toggleCollapsed();
+      };
+    }
+
+    // FAB åpner
+    fab.onclick = (e) => {
       e.preventDefault();
       e.stopPropagation();
-      toggleCollapsed();
+      setCollapsed(false);
     };
+
+    document.body.appendChild(panel);
+    state.statusPanel = panel;
   }
-
-  // Knappen (▾) → minimer/åpne
-  btn.onclick = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    toggleCollapsed();
-  };
-
-  // FAB → åpne
-  fab.onclick = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setCollapsed(false);
-  };
-
-  document.body.appendChild(panel);
-  state.statusPanel = panel;
 
   function renderStatusPanel() {
     if (!isDev) return;
@@ -261,6 +262,8 @@
     if (!state.statusPanel) return;
 
     const box = state.statusPanel.querySelector("#hgStatusList");
+    if (!box) return;
+
     const entries = Object.entries(state.moduleStatus);
 
     if (!entries.length) {
@@ -349,13 +352,12 @@
   }
 
   // -----------------------------
-  // Geo status hook (NEW)
+  // Geo status hook
   // -----------------------------
   function hookGeoStatus() {
     if (!isDev) return;
 
     // Baseline: inntil geo er avklart skal disse ikke stå som FEIL.
-    // (Du kan fjerne dette hvis andre moduler setter status senere.)
     if (!state.moduleStatus.API) api.warn("API", "Avventer posisjon");
     if (!state.moduleStatus.HG) api.warn("HG", "Avventer posisjon");
     if (!state.moduleStatus.DomainRegistry) api.warn("DomainRegistry", "Avventer posisjon");
@@ -422,8 +424,6 @@
 
   function readDataStatus() {
     const d = window.HG?.data || null;
-
-    // fallback: prøv DataHub hvis den er global
     const hub = window.DataHub || window.dataHub || null;
     const hd = (hub && typeof hub.getData === "function") ? hub.getData() : null;
 
@@ -544,7 +544,7 @@
     },
 
     modulstatus: () => {
-      window.HGConsole?.showStatus();
+      api.showStatus();
       print("Modulstatus åpnet (🧩).", "cmd");
     },
 
@@ -553,7 +553,7 @@
     },
 
     hide() {
-      HGConsole.hide();
+      api.hide();
     }
   };
 
@@ -578,7 +578,7 @@
       return;
     }
 
-    // Fallback: eval (best effort)
+    // Fallback: eval
     try {
       const res = eval(raw);
       if (res instanceof Promise) {
@@ -605,7 +605,6 @@
       vis ? api.hide() : api.show();
     },
 
-    // vanlig logging
     log(msg, type = "log") { print(String(msg), type); },
     run: runCommand,
 
@@ -621,12 +620,21 @@
     fail(name, detail = "") { api.set(name, "fail", detail); },
 
     showStatus() {
+      if (!isDev) return;
       ensureStatusPanel();
+      const fab = document.getElementById("hgStatusFab");
+      if (fab) fab.style.display = "none";
       if (state.statusPanel) state.statusPanel.style.display = "block";
+      localStorage.setItem("hg_modstatus_collapsed", "0");
       renderStatusPanel();
     },
+
     hideStatus() {
+      if (!isDev) return;
+      const fab = document.getElementById("hgStatusFab");
+      if (fab) fab.style.display = "block";
       if (state.statusPanel) state.statusPanel.style.display = "none";
+      localStorage.setItem("hg_modstatus_collapsed", "1");
     }
   };
 
@@ -655,13 +663,15 @@
 
   hookEvents();
   hookErrors();
-  hookGeoStatus(); // ✅ NEW
+  hookGeoStatus();
 
-  // Auto-create status panel in dev mode (hidden until it has data)
-  ensureStatusPanel();
-  renderStatusPanel();
+  // Auto-create status panel ONLY in dev
+  if (isDev) {
+    ensureStatusPanel();
+    renderStatusPanel();
+  }
 
-  print("History Go Diagnostic Console · v4.2. Skriv \"help\" eller bruk knappene.", "cmd");
+  print("History Go Diagnostic Console · v4.3. Skriv \"help\" eller bruk knappene.", "cmd");
 
   // iPad friendly toggle button in dev mode
   if (isDev) {
