@@ -95,12 +95,26 @@
   const normalizeStatus = (s) => (STATUS_META[s] ? s : "fail");
 
  function ensureStatusPanel() {
-  if (!isDev) return; // kun i dev-mode
-  if (state.statusPanel) return;
+  // Hard rule: Modulstatus skal KUN finnes i dev-mode
+  if (!isDev) {
+    try { document.getElementById("hgModuleStatus")?.remove(); } catch {}
+    try { document.getElementById("hgStatusFab")?.remove(); } catch {}
+    state.statusPanel = null;
+    return;
+  }
+
+  // Ikke bygg på nytt hvis den allerede finnes
+  if (state.statusPanel && document.getElementById("hgModuleStatus")) return;
+
+  // Hvis DOM finnes men state mangler (hot reload / dobbel init), koble opp igjen
+  const existing = document.getElementById("hgModuleStatus");
+  if (existing) {
+    state.statusPanel = existing;
+    return;
+  }
 
   const panel = document.createElement("section");
   panel.id = "hgModuleStatus";
-
   panel.style.cssText = `
     position: fixed;
     right: 12px;
@@ -168,110 +182,78 @@
   }
 
   const btn = panel.querySelector("#hgStatusToggle");
-const list = panel.querySelector("#hgStatusList");
-const title = panel.querySelector("#hgStatusTitle");
-const head = panel.querySelector("#hgStatusHead");
+  const list = panel.querySelector("#hgStatusList");
+  const title = panel.querySelector("#hgStatusTitle");
+  const head = panel.querySelector("#hgStatusHead");
 
-// --- FAB (minimert knapp) ---
-let fab = document.getElementById("hgStatusFab");
-if (!fab) {
-  fab = document.createElement("button");
-  fab.id = "hgStatusFab";
-  fab.type = "button";
-  fab.textContent = "🧩";
-  fab.setAttribute("aria-label", "Vis modulstatus");
-  fab.style.cssText = `
-    position: fixed;
-    right: 12px;
-    bottom: 12px;
-    z-index: 999999;
-    width: 44px;
-    height: 44px;
-    border-radius: 14px;
-    font-size: 18px;
-    cursor: pointer;
-    background: rgba(10,20,35,.88);
-    border: 1px solid rgba(255,255,255,.12);
-    color: #e6eef9;
-    box-shadow: 0 10px 30px rgba(0,0,0,.35);
-    display: none;
-  `;
-  document.body.appendChild(fab);
-}
+  function setCollapsed(collapsed) {
+    panel.dataset.collapsed = collapsed ? "1" : "0";
+    localStorage.setItem("hg_modstatus_collapsed", collapsed ? "1" : "0");
 
-function setCollapsed(collapsed) {
-  panel.dataset.collapsed = collapsed ? "1" : "0";
-  localStorage.setItem("hg_modstatus_collapsed", collapsed ? "1" : "0");
+    if (collapsed) {
+      // Skjul hele panelet, vis kun FAB
+      panel.style.display = "none";
+      fab.style.display = "block";
+      fab.style.pointerEvents = "auto";
+    } else {
+      // Vis panelet, skjul FAB
+      panel.style.display = "block";
+      fab.style.display = "none";
 
-  if (collapsed) {
-    // Skjul hele panelet, vis kun FAB
-    panel.style.display = "none";
-    fab.style.display = "block";
-    fab.style.pointerEvents = "auto";
+      // Sørg for at innhold er synlig når panelet er åpent
+      title.style.display = "";
+      list.style.display = "flex";
 
-  } else {
-    // Vis panelet, skjul FAB
-    panel.style.display = "block";
-    fab.style.display = "none";
-
-    // sørg for at innhold er synlig når panelet er åpent
-    title.style.display = "";
-    list.style.display = "flex";
-
-    // knapp tilbake til liten toggle
-    btn.textContent = "▾";
-    btn.setAttribute("aria-label", "Minimer");
+      // Knapp tilbake til liten toggle
+      btn.textContent = "▾";
+      btn.setAttribute("aria-label", "Minimer");
+    }
   }
-}
 
-// restore state (default = ÅPEN hvis ikke lagret)
-const savedRaw = localStorage.getItem("hg_modstatus_collapsed");
-const saved = savedRaw == null ? true : (savedRaw === "1");
-setCollapsed(saved);
+  function toggleCollapsed() {
+    const collapsed = panel.dataset.collapsed === "1";
+    setCollapsed(!collapsed);
+  }
 
-function toggleCollapsed() {
-  const collapsed = panel.dataset.collapsed === "1";
-  setCollapsed(!collapsed);
-}
+  // restore state (default = minimert hvis ikke lagret)
+  const savedRaw = localStorage.getItem("hg_modstatus_collapsed");
+  const saved = savedRaw == null ? true : (savedRaw === "1");
+  setCollapsed(saved);
 
-// Gjør header klikkbar (ikke bare knappen)
-if (head) {
-  head.style.cursor = "pointer";
-  head.onclick = (e) => {
-    // hvis man klikker på knappen, la knappen styre selv
-    if (e.target && e.target.id === "hgStatusToggle") return;
+  // Header/tittel klikkbar (ikke bare knappen)
+  if (head) {
+    head.style.cursor = "pointer";
+    head.onclick = (e) => {
+      if (e.target && e.target.id === "hgStatusToggle") return;
+      toggleCollapsed();
+    };
+  }
+
+  if (title) {
+    title.style.cursor = "pointer";
+    title.onclick = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      toggleCollapsed();
+    };
+  }
+
+  // Knappen (▾) → minimer/åpne
+  btn.onclick = (e) => {
     e.preventDefault();
     e.stopPropagation();
     toggleCollapsed();
   };
-}
 
-// Gjør tittel klikkbar (valgfritt, men nice)
-if (title) {
-  title.style.cursor = "pointer";
-  title.onclick = (e) => {
+  // FAB → åpne
+  fab.onclick = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    toggleCollapsed();
+    setCollapsed(false);
   };
-}
 
-// Knappen (▾) toggler også
-btn.onclick = (e) => {
-  e.preventDefault();
-  e.stopPropagation();
-  toggleCollapsed();
-};
-
-// Klikk på FAB → åpne
-fab.onclick = (e) => {
-  e.preventDefault();
-  e.stopPropagation();
-  setCollapsed(false);
-};
-
-document.body.appendChild(panel);
-state.statusPanel = panel;
+  document.body.appendChild(panel);
+  state.statusPanel = panel;
 
   function renderStatusPanel() {
     if (!isDev) return;
