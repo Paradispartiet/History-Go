@@ -11,7 +11,7 @@
   // Hvis appen kjører på:
   // https://paradispartiet.github.io/History-Go/index.html
   // så blir APP_BASE_PATH = "/History-Go/"
-  const APP_BASE_PATH = new URL("./", window.location.href).pathname;
+  const APP_BASE_PATH = location.pathname.replace(/[^/]+$/, "")
 
   const DEFAULTS = {
     // ALDRI bruk "/data" på GitHub Pages subfolder — det peker til domenet root.
