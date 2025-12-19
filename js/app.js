@@ -768,9 +768,16 @@ function wire() {
 }
 
 function requestLocation() {
+  // ✅ global “miljøstatus” som health-checks kan bruke
+  window.HG_ENV = window.HG_ENV || {};
+  window.HG_ENV.geo = "unknown"; // unknown | granted | blocked
+
   if (!navigator.geolocation) {
+    window.HG_ENV.geo = "blocked";
     if (el.status) el.status.textContent = "Geolokasjon støttes ikke.";
     renderNearbyPlaces();
+    // ✅ signal til resten av appen
+    window.dispatchEvent(new CustomEvent("hg:geo", { detail: { status: "blocked", reason: "unsupported" } }));
     return;
   }
 
@@ -780,9 +787,11 @@ function requestLocation() {
     g => {
       currentPos = { lat: g.coords.latitude, lon: g.coords.longitude };
 
-      // ✅ gjør globalSearch("nær meg") mulig
       window.userLat = currentPos.lat;
       window.userLon = currentPos.lon;
+
+      window.HG_ENV.geo = "granted"; // ✅
+      window.dispatchEvent(new CustomEvent("hg:geo", { detail: { status: "granted", lat: currentPos.lat, lon: currentPos.lon } }));
 
       if (el.status) el.status.textContent = "Posisjon funnet.";
       if (window.HGMap) HGMap.setUser(currentPos.lat, currentPos.lon);
@@ -790,26 +799,27 @@ function requestLocation() {
     },
     err => {
       console.warn("Geolocation error:", err);
+
+      window.HG_ENV.geo = "blocked"; // ✅
+      window.dispatchEvent(new CustomEvent("hg:geo", { detail: { status: "blocked", reason: err?.code, message: err?.message } }));
+
       const msg =
         err.code === 1 ? "Posisjon blokkert (tillat i Safari)." :
         err.code === 2 ? "Kunne ikke finne posisjon." :
         err.code === 3 ? "Posisjon timeout." :
-        "Pisisjon-feil.";
+        "Posisjon-feil.";
 
       if (el.status) el.status.textContent = msg;
       showToast(msg);
 
-      // (valgfritt) nullstill globals når vi ikke har posisjon
       window.userLat = null;
       window.userLon = null;
 
-      renderNearbyPlaces(); // viser lista uten avstand hvis currentPos=null
+      renderNearbyPlaces();
     },
     { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
   );
 }
-
-
 
 // MINI-PROFIL + quiz-historikk på forsiden
 function initMiniProfile() {
