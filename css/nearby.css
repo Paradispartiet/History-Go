@@ -9,25 +9,31 @@
    ============================================================ */
 
 :root{
-  --hg-header-h: 62px;        /* JS kan overstyre */
-  --hg-placecard-h: 220px;    /* JS kan overstyre */
-  --hg-leftpanel-w: 340px;    /* juster */
-  --hg-frame-bg: rgba(10,20,35,.92);
-  --hg-frame-bd: rgba(255,255,255,.10);
+  --hg-header-h: 62px;                 /* JS kan overstyre */
+  --hg-header-gap: 10px;               /* ← skyv venstrepanelet litt ned */
+
+  --hg-placecard-h: var(--pc-height);  /* ← viktig: matcher placeCard (41vh) */
+
+  --hg-leftpanel-w: 340px;
+
+  /* Samme “sort” som panelene */
+  --hg-frame-bg: var(--panel-bg, #121212);
 }
 
 #nearbyListContainer.leftpanel{
   position: fixed;
   left: 0;
-  top: var(--hg-header-h);
+
+  top: calc(var(--hg-header-h) + var(--hg-header-gap));
   bottom: var(--hg-placecard-h);
+
   width: var(--hg-leftpanel-w);
   z-index: 20;
 
   background: var(--hg-frame-bg);
-  border-right: 1px solid var(--hg-frame-bd);
 
-  /* “glir sammen” med header + placeCard */
+  /* LINJELØST */
+  border-right: 0;
   border-radius: 0;
   box-shadow: none;
   backdrop-filter: none;
@@ -47,7 +53,7 @@
   gap: 10px;
 
   padding: 10px 12px;
-  border-bottom: 1px solid var(--hg-frame-bd);
+  border-bottom: 0; /* ← linjeløst */
 }
 
 #nearbyListContainer .leftpanel-title{
