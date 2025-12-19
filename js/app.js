@@ -1021,8 +1021,8 @@ if (window.QuizEngine) {
   function setTargetId(id) {
     const tid = (id == null ? "" : String(id)).trim();
     if (!tid) return;
-    btn.setAttribute("data-quiz", tid);
-    if (card) card.dataset.currentId = tid;
+btn.setAttribute("data-quiz", tid);
+// IKKE skriv til card.dataset her (gir loop med MutationObserver)
   }
 
   // Wrap openPlaceCard(place|id)
@@ -1045,18 +1045,6 @@ if (window.QuizEngine) {
     window.openPlaceCardByPerson.__hgWrapped = true;
   }
 
-  // Fallback: hvis PlaceCard selv setter en data-* id på kortet, snap den
-  if (card && !card.__hgObserver) {
-    const obs = new MutationObserver(() => {
-      const tid =
-        card.dataset.currentId ||
-        card.getAttribute("data-current-id") ||
-        card.getAttribute("data-target-id");
-      if (tid) setTargetId(tid);
-    });
-    obs.observe(card, { attributes: true });
-    card.__hgObserver = obs;
-  }
 
   // Direkte klikk på pcQuiz (stopper bubbling så vi ikke dobbelt-starter via document-click)
   btn.addEventListener("click", (e) => {
