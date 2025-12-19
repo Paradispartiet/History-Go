@@ -145,30 +145,63 @@
   const title = panel.querySelector("#hgStatusTitle");
 
   function setCollapsed(collapsed) {
-    if (collapsed) {
-      // liten "chip" som ikke blokkerer UI
-      panel.dataset.collapsed = "1";
-      list.style.display = "none";
-      panel.style.minWidth = "0";
-      panel.style.maxWidth = "none";
-      panel.style.width = "44px";
-      panel.style.padding = "8px";
-      title.textContent = "🧩";
-      btn.textContent = "▸";
-      btn.setAttribute("aria-label", "Vis");
-    } else {
-      panel.dataset.collapsed = "0";
-      list.style.display = "flex";
-      panel.style.width = "";
-      panel.style.padding = "10px 12px";
-      panel.style.minWidth = "210px";
-      panel.style.maxWidth = "320px";
-      title.textContent = "🧩 Modulstatus";
-      btn.textContent = "▾";
-      btn.setAttribute("aria-label", "Minimer");
-    }
-    localStorage.setItem("hg_modstatus_collapsed", collapsed ? "1" : "0");
+  if (collapsed) {
+    panel.dataset.collapsed = "1";
+
+    // Skjul alt bortsett fra knappen
+    list.style.display = "none";
+    title.style.display = "none";
+
+    // Gjør panel til "ingen boks", bare holder for knappen
+    panel.style.background = "transparent";
+    panel.style.border = "0";
+    panel.style.boxShadow = "none";
+    panel.style.padding = "0";
+    panel.style.minWidth = "0";
+    panel.style.maxWidth = "none";
+    panel.style.width = "auto";
+
+    // Knappen blir selve chippen
+    btn.textContent = "🧩";
+    btn.setAttribute("aria-label", "Vis modulstatus");
+    btn.style.width = "42px";
+    btn.style.height = "42px";
+    btn.style.borderRadius = "14px";
+    btn.style.fontSize = "18px";
+    btn.style.background = "rgba(10,20,35,.88)";
+    btn.style.border = "1px solid rgba(255,255,255,.12)";
+    btn.style.boxShadow = "0 10px 30px rgba(0,0,0,.35)";
+
+  } else {
+    panel.dataset.collapsed = "0";
+
+    // Vis alt igjen
+    title.style.display = "";
+    list.style.display = "flex";
+
+    // Panel tilbake
+    panel.style.background = "rgba(10,20,35,.88)";
+    panel.style.border = "1px solid rgba(255,255,255,.12)";
+    panel.style.boxShadow = "0 10px 30px rgba(0,0,0,.35)";
+    panel.style.padding = "10px 12px";
+    panel.style.minWidth = "210px";
+    panel.style.maxWidth = "320px";
+    panel.style.width = "";
+
+    // Knapp tilbake til liten toggle
+    btn.textContent = "▾";
+    btn.setAttribute("aria-label", "Minimer modulstatus");
+    btn.style.width = "28px";
+    btn.style.height = "28px";
+    btn.style.borderRadius = "9px";
+    btn.style.fontSize = "14px";
+    btn.style.background = "rgba(255,255,255,.10)";
+    btn.style.border = "1px solid rgba(255,255,255,.12)";
+    btn.style.boxShadow = "none";
   }
+
+  localStorage.setItem("hg_modstatus_collapsed", collapsed ? "1" : "0");
+}
 
   // restore state
   const saved = localStorage.getItem("hg_modstatus_collapsed") === "1";
