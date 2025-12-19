@@ -140,76 +140,78 @@
     <div id="hgStatusList" style="margin-top:8px; display:flex; flex-direction:column; gap:6px;"></div>
   `;
 
+  // --- FAB (egen knapp når panelet er minimert) ---
+  let fab = document.getElementById("hgStatusFab");
+  if (!fab) {
+    fab = document.createElement("button");
+    fab.id = "hgStatusFab";
+    fab.type = "button";
+    fab.textContent = "🧩";
+    fab.setAttribute("aria-label", "Vis modulstatus");
+    fab.style.cssText = `
+      position: fixed;
+      right: 12px;
+      bottom: 12px;
+      z-index: 999999;
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      font-size: 18px;
+      cursor: pointer;
+      background: rgba(10,20,35,.88);
+      border: 1px solid rgba(255,255,255,.12);
+      color: #e6eef9;
+      box-shadow: 0 10px 30px rgba(0,0,0,.35);
+      display: none;
+    `;
+    document.body.appendChild(fab);
+  }
+
   const btn = panel.querySelector("#hgStatusToggle");
   const list = panel.querySelector("#hgStatusList");
   const title = panel.querySelector("#hgStatusTitle");
 
   function setCollapsed(collapsed) {
-  if (collapsed) {
-    panel.dataset.collapsed = "1";
+    panel.dataset.collapsed = collapsed ? "1" : "0";
+    localStorage.setItem("hg_modstatus_collapsed", collapsed ? "1" : "0");
 
-    // Skjul alt bortsett fra knappen
-    list.style.display = "none";
-    title.style.display = "none";
+    if (collapsed) {
+      // Skjul hele panelet, vis kun FAB
+      panel.style.display = "none";
+      fab.style.display = "block";
+      fab.style.pointerEvents = "auto";
+    } else {
+      // Vis panelet, skjul FAB
+      panel.style.display = "block";
+      fab.style.display = "none";
 
-    // Gjør panel til "ingen boks", bare holder for knappen
-    panel.style.background = "transparent";
-    panel.style.border = "0";
-    panel.style.boxShadow = "none";
-    panel.style.padding = "0";
-    panel.style.minWidth = "0";
-    panel.style.maxWidth = "none";
-    panel.style.width = "auto";
+      // sørg for at innhold er synlig når panelet er åpent
+      title.style.display = "";
+      list.style.display = "flex";
 
-    // Knappen blir selve chippen
-    btn.textContent = "🧩";
-    btn.setAttribute("aria-label", "Vis modulstatus");
-    btn.style.width = "42px";
-    btn.style.height = "42px";
-    btn.style.borderRadius = "14px";
-    btn.style.fontSize = "18px";
-    btn.style.background = "rgba(10,20,35,.88)";
-    btn.style.border = "1px solid rgba(255,255,255,.12)";
-    btn.style.boxShadow = "0 10px 30px rgba(0,0,0,.35)";
-
-  } else {
-    panel.dataset.collapsed = "0";
-
-    // Vis alt igjen
-    title.style.display = "";
-    list.style.display = "flex";
-
-    // Panel tilbake
-    panel.style.background = "rgba(10,20,35,.88)";
-    panel.style.border = "1px solid rgba(255,255,255,.12)";
-    panel.style.boxShadow = "0 10px 30px rgba(0,0,0,.35)";
-    panel.style.padding = "10px 12px";
-    panel.style.minWidth = "210px";
-    panel.style.maxWidth = "320px";
-    panel.style.width = "";
-
-    // Knapp tilbake til liten toggle
-    btn.textContent = "▾";
-    btn.setAttribute("aria-label", "Minimer modulstatus");
-    btn.style.width = "28px";
-    btn.style.height = "28px";
-    btn.style.borderRadius = "9px";
-    btn.style.fontSize = "14px";
-    btn.style.background = "rgba(255,255,255,.10)";
-    btn.style.border = "1px solid rgba(255,255,255,.12)";
-    btn.style.boxShadow = "none";
+      // knapp tilbake til liten toggle
+      btn.textContent = "▾";
+      btn.setAttribute("aria-label", "Minimer");
+    }
   }
 
-  localStorage.setItem("hg_modstatus_collapsed", collapsed ? "1" : "0");
-}
-
-  // restore state
-  const saved = localStorage.getItem("hg_modstatus_collapsed") === "1";
+  // restore state (default = minimert hvis ikke lagret)
+  const savedRaw = localStorage.getItem("hg_modstatus_collapsed");
+  const saved = savedRaw == null ? true : (savedRaw === "1");
   setCollapsed(saved);
 
-  btn.onclick = () => {
-    const collapsed = panel.dataset.collapsed === "1";
-    setCollapsed(!collapsed);
+  // Klikk på toggle i panelet → minimer
+  btn.onclick = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setCollapsed(true);
+  };
+
+  // Klikk på FAB → åpne
+  fab.onclick = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setCollapsed(false);
   };
 
   document.body.appendChild(panel);
