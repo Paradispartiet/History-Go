@@ -1131,6 +1131,7 @@ document.addEventListener("DOMContentLoaded", () => {
   safeRun("boot", boot);
   safeRun("initMiniProfile", initMiniProfile);
   safeRun("wireMiniProfileLinks", wireMiniProfileLinks);
+  safeRun("initLeftPanel", initLeftPanel);
 });
 
 function safeRun(label, fn) {
