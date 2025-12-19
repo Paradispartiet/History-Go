@@ -168,55 +168,85 @@
   }
 
   const btn = panel.querySelector("#hgStatusToggle");
-  const list = panel.querySelector("#hgStatusList");
-  const title = panel.querySelector("#hgStatusTitle");
-  const head = panel.querySelector("#hgStatusHead");
+const list = panel.querySelector("#hgStatusList");
+const title = panel.querySelector("#hgStatusTitle");
+const head = panel.querySelector("#hgStatusHead");
 
-   
-  function setCollapsed(collapsed) {
-    panel.dataset.collapsed = collapsed ? "1" : "0";
-    localStorage.setItem("hg_modstatus_collapsed", collapsed ? "1" : "0");
+// --- FAB (minimert knapp) ---
+let fab = document.getElementById("hgStatusFab");
+if (!fab) {
+  fab = document.createElement("button");
+  fab.id = "hgStatusFab";
+  fab.type = "button";
+  fab.textContent = "🧩";
+  fab.setAttribute("aria-label", "Vis modulstatus");
+  fab.style.cssText = `
+    position: fixed;
+    right: 12px;
+    bottom: 12px;
+    z-index: 999999;
+    width: 44px;
+    height: 44px;
+    border-radius: 14px;
+    font-size: 18px;
+    cursor: pointer;
+    background: rgba(10,20,35,.88);
+    border: 1px solid rgba(255,255,255,.12);
+    color: #e6eef9;
+    box-shadow: 0 10px 30px rgba(0,0,0,.35);
+    display: none;
+  `;
+  document.body.appendChild(fab);
+}
 
-    if (collapsed) {
-      // Skjul hele panelet, vis kun FAB
-      panel.style.display = "none";
-      fab.style.display = "block";
-      fab.style.pointerEvents = "auto";
-    } else {
-      // Vis panelet, skjul FAB
-      panel.style.display = "block";
-      fab.style.display = "none";
+function setCollapsed(collapsed) {
+  panel.dataset.collapsed = collapsed ? "1" : "0";
+  localStorage.setItem("hg_modstatus_collapsed", collapsed ? "1" : "0");
 
-      // sørg for at innhold er synlig når panelet er åpent
-      title.style.display = "";
-      list.style.display = "flex";
+  if (collapsed) {
+    // Skjul hele panelet, vis kun FAB
+    panel.style.display = "none";
+    fab.style.display = "block";
+    fab.style.pointerEvents = "auto";
 
-      // knapp tilbake til liten toggle
-      btn.textContent = "▾";
-      btn.setAttribute("aria-label", "Minimer");
-    }
+  } else {
+    // Vis panelet, skjul FAB
+    panel.style.display = "block";
+    fab.style.display = "none";
+
+    // sørg for at innhold er synlig når panelet er åpent
+    title.style.display = "";
+    list.style.display = "flex";
+
+    // knapp tilbake til liten toggle
+    btn.textContent = "▾";
+    btn.setAttribute("aria-label", "Minimer");
   }
+}
 
-  // restore state (default = minimert hvis ikke lagret)
-  const savedRaw = localStorage.getItem("hg_modstatus_collapsed");
-  const saved = savedRaw == null ? true : (savedRaw === "1");
-  setCollapsed(saved);
+// restore state (default = ÅPEN hvis ikke lagret)
+const savedRaw = localStorage.getItem("hg_modstatus_collapsed");
+const saved = savedRaw == null ? true : (savedRaw === "1");
+setCollapsed(saved);
 
 function toggleCollapsed() {
   const collapsed = panel.dataset.collapsed === "1";
   setCollapsed(!collapsed);
 }
 
-// Gjør header/tittel klikkbar (det er dette du mener)
+// Gjør header klikkbar (ikke bare knappen)
 if (head) {
   head.style.cursor = "pointer";
   head.onclick = (e) => {
     // hvis man klikker på knappen, la knappen styre selv
     if (e.target && e.target.id === "hgStatusToggle") return;
+    e.preventDefault();
+    e.stopPropagation();
     toggleCollapsed();
   };
 }
 
+// Gjør tittel klikkbar (valgfritt, men nice)
 if (title) {
   title.style.cursor = "pointer";
   title.onclick = (e) => {
@@ -233,16 +263,15 @@ btn.onclick = (e) => {
   toggleCollapsed();
 };
 
-  // Klikk på FAB → åpne
-  fab.onclick = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setCollapsed(false);
-  };
+// Klikk på FAB → åpne
+fab.onclick = (e) => {
+  e.preventDefault();
+  e.stopPropagation();
+  setCollapsed(false);
+};
 
-  document.body.appendChild(panel);
-  state.statusPanel = panel;
-}
+document.body.appendChild(panel);
+state.statusPanel = panel;
 
   function renderStatusPanel() {
     if (!isDev) return;
