@@ -1,11 +1,12 @@
 // js/console/diagnosticConsole.js
 // =============================================================
-// HISTORY GO — DIAGNOSTIC CONSOLE (v4.1, iPad-friendly, nyttig)
+// HISTORY GO — DIAGNOSTIC CONSOLE (v4.2, iPad-friendly, nyttig)
 //  • Åpne/lukk:  DEV-knapp (🩺) når ?dev=1 eller localStorage.devMode="true"
 //  • Viser: status, events, ruter, localStorage, JS-feil
 //  • Kommandoer + knapper: status, health, domains, errors, routes check, storage check
 //  • Eval (valgfritt): skriv JS og trykk Enter (Shift+Enter for ny linje)
-//  • NYTT: Modulstatus-panel (🧩) med ok/warn/idle/fail
+//  • Modulstatus-panel (🧩) med ok/warn/idle/fail
+//  • NYTT: Geo-hook som gjør "posisjon blokkert" = 🟡 AVVENTER, ikke 🔴 FEIL
 // =============================================================
 (() => {
   if (window.HGConsole) return;
@@ -223,6 +224,51 @@
         stack: r?.stack || null
       });
       if (state.jsErrors.length > 200) state.jsErrors.shift();
+    });
+  }
+
+  // -----------------------------
+  // Geo status hook (NEW)
+  // -----------------------------
+  function hookGeoStatus() {
+    if (!isDev) return;
+
+    // Baseline: inntil geo er avklart skal disse ikke stå som FEIL.
+    // (Du kan fjerne dette hvis andre moduler setter status senere.)
+    if (!state.moduleStatus.API) api.warn("API", "Avventer posisjon");
+    if (!state.moduleStatus.HG) api.warn("HG", "Avventer posisjon");
+    if (!state.moduleStatus.DomainRegistry) api.warn("DomainRegistry", "Avventer posisjon");
+
+    window.addEventListener("hg:geo", (e) => {
+      const d = e?.detail || {};
+      const st = d.status;
+
+      if (st === "granted") {
+        api.ok("API", "Geo OK");
+        api.ok("HG", "Geo OK");
+        api.ok("DomainRegistry", "Geo OK");
+        return;
+      }
+
+      if (st === "blocked") {
+        const reason =
+          d.reason === "unsupported" ? "Geo ikke støttet" :
+          d.reason === 1 ? "Blokkert i Safari" :
+          d.reason === 2 ? "Fant ikke posisjon" :
+          d.reason === 3 ? "Timeout" :
+          (d.message || "Geo blokkert");
+
+        api.warn("API", reason);
+        api.warn("HG", reason);
+        api.warn("DomainRegistry", reason);
+        return;
+      }
+
+      if (st === "unknown") {
+        api.warn("API", "Henter posisjon…");
+        api.warn("HG", "Henter posisjon…");
+        api.warn("DomainRegistry", "Henter posisjon…");
+      }
     });
   }
 
@@ -488,12 +534,13 @@
 
   hookEvents();
   hookErrors();
+  hookGeoStatus(); // ✅ NEW
 
   // Auto-create status panel in dev mode (hidden until it has data)
   ensureStatusPanel();
   renderStatusPanel();
 
-  print("History Go Diagnostic Console · v4.1. Skriv \"help\" eller bruk knappene.", "cmd");
+  print("History Go Diagnostic Console · v4.2. Skriv \"help\" eller bruk knappene.", "cmd");
 
   // iPad friendly toggle button in dev mode
   if (isDev) {
