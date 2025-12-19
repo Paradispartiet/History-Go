@@ -1009,6 +1009,70 @@ if (window.QuizEngine) {
   console.warn("QuizEngine ikke lastet");
 }
 
+// ✅ PlaceCard "Ta quiz" bridge
+// pcQuiz-knappen i index.html har ingen data-quiz, så den blir ikke fanget av global click-delegation.
+// Vi setter data-quiz automatisk når et sted/person åpnes i PlaceCard.
+(function installPlaceCardQuizBridge() {
+  const btn = document.getElementById("pcQuiz");
+  const card = document.getElementById("placeCard");
+  if (!btn || btn.__hgWired) return;
+  btn.__hgWired = true;
+
+  function setTargetId(id) {
+    const tid = (id == null ? "" : String(id)).trim();
+    if (!tid) return;
+    btn.setAttribute("data-quiz", tid);
+    if (card) card.dataset.currentId = tid;
+  }
+
+  // Wrap openPlaceCard(place|id)
+  if (typeof window.openPlaceCard === "function" && !window.openPlaceCard.__hgWrapped) {
+    const orig = window.openPlaceCard;
+    window.openPlaceCard = function (place) {
+      try { setTargetId(place && place.id ? place.id : place); } catch {}
+      return orig.apply(this, arguments);
+    };
+    window.openPlaceCard.__hgWrapped = true;
+  }
+
+  // Wrap openPlaceCardByPerson(person|id)
+  if (typeof window.openPlaceCardByPerson === "function" && !window.openPlaceCardByPerson.__hgWrapped) {
+    const orig = window.openPlaceCardByPerson;
+    window.openPlaceCardByPerson = function (person) {
+      try { setTargetId(person && person.id ? person.id : person); } catch {}
+      return orig.apply(this, arguments);
+    };
+    window.openPlaceCardByPerson.__hgWrapped = true;
+  }
+
+  // Fallback: hvis PlaceCard selv setter en data-* id på kortet, snap den
+  if (card && !card.__hgObserver) {
+    const obs = new MutationObserver(() => {
+      const tid =
+        card.dataset.currentId ||
+        card.getAttribute("data-current-id") ||
+        card.getAttribute("data-target-id");
+      if (tid) setTargetId(tid);
+    });
+    obs.observe(card, { attributes: true });
+    card.__hgObserver = obs;
+  }
+
+  // Direkte klikk på pcQuiz (stopper bubbling så vi ikke dobbelt-starter via document-click)
+  btn.addEventListener("click", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    const tid = btn.getAttribute("data-quiz") || card?.dataset?.currentId || "";
+    if (!tid) return showToast("Mangler aktivt sted/person for quiz");
+    if (!window.QuizEngine?.start) return showToast("QuizEngine ikke lastet");
+    QuizEngine.start(tid);
+  });
+
+  console.log("[Quiz] PlaceCard bridge installed ✅");
+})();
+
+    
     // ✅ Gi kartmodulen data + callbacks (ETTER data er lastet)
     if (window.HGMap) {
       HGMap.setPlaces(PLACES);
