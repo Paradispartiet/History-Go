@@ -810,17 +810,18 @@ function syncLeftPanelFrame() {
   const headerH = Math.round(header?.getBoundingClientRect().height || 62);
 
   // Header kan fortsatt måles i px (det er riktig)
-document.documentElement.style.setProperty("--hg-header-h", headerH + "px");
+  document.documentElement.style.setProperty("--hg-header-h", headerH + "px");
 
-// PlaceCard: bruk CSS-variabelen (41vh) så venstrepanelet matcher eksakt
-const pcHeightVar = getComputedStyle(document.documentElement)
-  .getPropertyValue("--pc-height")
-  .trim();
+  // PlaceCard: bruk CSS-variabelen (--pc-height) så venstrepanelet matcher eksakt
+  const pcHeightVar = getComputedStyle(document.documentElement)
+    .getPropertyValue("--pc-height")
+    .trim();
 
-document.documentElement.style.setProperty(
-  "--hg-placecard-h",
-  pcHeightVar || "41vh"
-);
+  document.documentElement.style.setProperty(
+    "--hg-placecard-h",
+    pcHeightVar || "41vh"
+  );
+}
 
 function renderLeftBadges() {
   const box = document.getElementById("leftBadgesList");
