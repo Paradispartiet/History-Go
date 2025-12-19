@@ -765,14 +765,6 @@ function wire() {
       requestLocation();
     }
   });
-
-  // ✅ Safari-sikker: be om posisjon på brukertrykk
-  const btn = document.querySelector("#nearbyBtn, #btnNearby, [data-action='nearby']");
-  if (btn) {
-    btn.addEventListener("click", () => requestLocation());
-  } else {
-    console.warn("Fant ingen nearby-knapp å binde requestLocation() til");
-  }
 }
 
 function requestLocation() {
@@ -784,83 +776,48 @@ function requestLocation() {
     window.HG_ENV.geo = "blocked";
     if (el.status) el.status.textContent = "Geolokasjon støttes ikke.";
     renderNearbyPlaces();
-    window.dispatchEvent(
-      new CustomEvent("hg:geo", { detail: { status: "blocked", reason: "unsupported" } })
-    );
+    // ✅ signal til resten av appen
+    window.dispatchEvent(new CustomEvent("hg:geo", { detail: { status: "blocked", reason: "unsupported" } }));
     return;
   }
 
   if (el.status) el.status.textContent = "Henter posisjon…";
 
-  const HI = { enableHighAccuracy: true,  timeout: 15000, maximumAge: 0 };
-  const LO = { enableHighAccuracy: false, timeout: 12000, maximumAge: 60000 };
-
-  const onSuccess = (g, meta = {}) => {
-    currentPos = { lat: g.coords.latitude, lon: g.coords.longitude };
-
-    window.userLat = currentPos.lat;
-    window.userLon = currentPos.lon;
-
-    window.HG_ENV.geo = "granted";
-    window.dispatchEvent(
-      new CustomEvent("hg:geo", {
-        detail: {
-          status: "granted",
-          lat: currentPos.lat,
-          lon: currentPos.lon,
-          accuracy: g.coords.accuracy,
-          ...meta
-        }
-      })
-    );
-
-    if (el.status) el.status.textContent = "Posisjon funnet.";
-    if (window.HGMap) HGMap.setUser(currentPos.lat, currentPos.lon);
-    renderNearbyPlaces();
-  };
-
-  const onFinalError = (err) => {
-    console.warn("Geolocation error:", err);
-
-    window.HG_ENV.geo = "blocked";
-    window.dispatchEvent(
-      new CustomEvent("hg:geo", {
-        detail: { status: "blocked", reason: err?.code, message: err?.message }
-      })
-    );
-
-    const msg =
-      err?.code === 1 ? "Posisjon blokkert (tillat i Safari)." :
-      err?.code === 2 ? "Kunne ikke finne posisjon." :
-      err?.code === 3 ? "Posisjon timeout." :
-      "Posisjon-feil.";
-
-    if (el.status) el.status.textContent = msg;
-    showToast(msg);
-
-    window.userLat = null;
-    window.userLon = null;
-
-    renderNearbyPlaces();
-  };
-
   navigator.geolocation.getCurrentPosition(
-    g => onSuccess(g),
-    err => {
-      // iOS Safari: hi-accuracy feiler ofte med UNAVAILABLE/TIMEOUT.
-      // Prøv én gang med lavere krav før vi gir opp.
-      if (err?.code === 2 || err?.code === 3) {
-        if (el.status) el.status.textContent = "Prøver enklere posisjon…";
-        navigator.geolocation.getCurrentPosition(
-          g2 => onSuccess(g2, { fallback: true }),
-          err2 => onFinalError(err2),
-          LO
-        );
-        return;
-      }
-      onFinalError(err);
+    g => {
+      currentPos = { lat: g.coords.latitude, lon: g.coords.longitude };
+
+      window.userLat = currentPos.lat;
+      window.userLon = currentPos.lon;
+
+      window.HG_ENV.geo = "granted"; // ✅
+      window.dispatchEvent(new CustomEvent("hg:geo", { detail: { status: "granted", lat: currentPos.lat, lon: currentPos.lon } }));
+
+      if (el.status) el.status.textContent = "Posisjon funnet.";
+      if (window.HGMap) HGMap.setUser(currentPos.lat, currentPos.lon);
+      renderNearbyPlaces();
     },
-    HI
+    err => {
+      console.warn("Geolocation error:", err);
+
+      window.HG_ENV.geo = "blocked"; // ✅
+      window.dispatchEvent(new CustomEvent("hg:geo", { detail: { status: "blocked", reason: err?.code, message: err?.message } }));
+
+      const msg =
+        err.code === 1 ? "Posisjon blokkert (tillat i Safari)." :
+        err.code === 2 ? "Kunne ikke finne posisjon." :
+        err.code === 3 ? "Posisjon timeout." :
+        "Posisjon-feil.";
+
+      if (el.status) el.status.textContent = msg;
+      showToast(msg);
+
+      window.userLat = null;
+      window.userLon = null;
+
+      renderNearbyPlaces();
+    },
+    { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
   );
 }
 
@@ -1072,21 +1029,22 @@ if (window.QuizEngine) {
 
   await ensureBadgesLoaded();
   wire();
+  requestLocation();
   renderCollection();
   renderGallery();
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  boot().catch(e => console.error("[boot async]", e));
+  try { boot(); } catch (e) { console.error("[boot]", e); }
 
   try { initMiniProfile(); } catch (e) { console.error("[initMiniProfile]", e); }
-  try { wireMiniProfileLinks(); } catch (e) { console.error("[wireMiniProfileLinks]", e); }
 
-  // ✅ Kjør health-report når geo-status faktisk oppdateres
-  window.addEventListener("hg:geo", () => {
-    if (window.DomainHealthReport) DomainHealthReport.run({ toast: true });
-  });
+  try { wireMiniProfileLinks(); } catch (e) { console.error("[wireMiniProfileLinks]", e); }
 });
+
+if (window.DomainHealthReport) {
+  DomainHealthReport.run({ toast: true });
+}
 
 // ==============================
 // 12. KARTMODUS
