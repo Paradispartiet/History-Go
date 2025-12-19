@@ -1038,12 +1038,15 @@ if (window.QuizEngine) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  try { boot(); } catch (e) { console.error("[boot]", e); }
-
-  try { initMiniProfile(); } catch (e) { console.error("[initMiniProfile]", e); }
-
-  try { wireMiniProfileLinks(); } catch (e) { console.error("[wireMiniProfileLinks]", e); }
+  safeRun("boot", boot);
+  safeRun("initMiniProfile", initMiniProfile);
+  safeRun("wireMiniProfileLinks", wireMiniProfileLinks);
 });
+
+function safeRun(label, fn) {
+  try { fn(); }
+  catch (e) { console.error(`[${label}]`, e); }
+}
 
 
 
