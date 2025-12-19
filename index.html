@@ -86,30 +86,46 @@
 
   </header>
 
-  <!-- VENSTREKOLONNE – NÆRMEG -->
-  <div id="nearbyListContainer">
-    <h2 class="nearby-title">
-      Steder i nærheten
-      <button id="btnSeeMoreNearby" class="chip ghost">Se flere</button>
-      <button class="chip ghost" onclick="openRoutesSheet()">Ruter</button>
-    </h2>
+  <!-- VENSTRE RAMMEPANEL -->
+<div id="nearbyListContainer" class="leftpanel">
 
-    <div id="status" class="muted">Henter posisjon…</div>
-    <div id="nearbyList"></div>
+  <div class="leftpanel-head">
+    <div class="leftpanel-title">Utforsk</div>
+
+    <select id="leftPanelMode" class="leftpanel-select" aria-label="Velg visning">
+      <option value="nearby" selected>Nærmeste</option>
+      <option value="routes">Ruter</option>
+      <option value="badges">Merker</option>
+    </select>
   </div>
 
-  <!-- MAIN -->
-  <main>
-    <!-- Flere i nærheten (sheet) -->
-    <div id="sheetNearby" class="sheet" aria-hidden="true">
-      <div class="sheet-head">
-        <h3>Se flere i nærheten</h3>
-        <button class="sheet-close" data-close="#sheetNearby">✕</button>
-      </div>
+  <div class="leftpanel-body">
 
-      <div id="sheetNearbyBody" class="sheet-body"></div>
-    </div>
-  </main>
+    <!-- 1) Nærmeste -->
+    <section id="panelNearby" class="leftpanel-view">
+      <div id="status" class="muted">Henter posisjon…</div>
+      <div id="nearbyList"></div>
+
+      <div class="leftpanel-footer">
+        <button id="btnSeeMoreNearby" class="chip ghost">Se flere</button>
+      </div>
+    </section>
+
+    <!-- 2) Ruter -->
+    <section id="panelRoutes" class="leftpanel-view" style="display:none;">
+      <div class="leftpanel-hint muted">Velg en rute, eller åpne rutearket.</div>
+      <button class="chip ghost" onclick="openRoutesSheet()">Åpne ruter</button>
+      <div id="leftRoutesList" class="leftpanel-list"></div>
+    </section>
+
+    <!-- 3) Merker -->
+    <section id="panelBadges" class="leftpanel-view" style="display:none;">
+      <div class="leftpanel-hint muted">Velg en kategori.</div>
+      <div id="leftBadgesList" class="leftpanel-list"></div>
+    </section>
+
+  </div>
+</div>
 
   <!-- PLACE CARD -->
   <div id="placeCard" aria-hidden="true">
