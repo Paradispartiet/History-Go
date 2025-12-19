@@ -1,10 +1,11 @@
 // js/console/diagnosticConsole.js
 // =============================================================
-// HISTORY GO — DIAGNOSTIC CONSOLE (v4.0, iPad-friendly, nyttig)
+// HISTORY GO — DIAGNOSTIC CONSOLE (v4.1, iPad-friendly, nyttig)
 //  • Åpne/lukk:  DEV-knapp (🩺) når ?dev=1 eller localStorage.devMode="true"
 //  • Viser: status, events, ruter, localStorage, JS-feil
 //  • Kommandoer + knapper: status, health, domains, errors, routes check, storage check
 //  • Eval (valgfritt): skriv JS og trykk Enter (Shift+Enter for ny linje)
+//  • NYTT: Modulstatus-panel (🧩) med ok/warn/idle/fail
 // =============================================================
 (() => {
   if (window.HGConsole) return;
@@ -61,7 +62,9 @@
     el: null,
     out: null,
     eventsLog: [],
-    jsErrors: []
+    jsErrors: [],
+    moduleStatus: {},   // { [name]: { status, detail, time } }
+    statusPanel: null   // DOM element
   };
 
   function print(line, cls = "log") {
@@ -76,6 +79,104 @@
   function printBlock(title, obj, cls = "log") {
     print(`<strong>${title}</strong>`, cls);
     print(`<pre>${safeJSON(obj)}</pre>`, cls);
+  }
+
+  // -----------------------------
+  // Module status (ok/warn/idle/fail) — panel
+  // -----------------------------
+  const STATUS_META = {
+    ok:   { dot: "🟢", cls: "ok",   label: "OK" },
+    warn: { dot: "🟡", cls: "warn", label: "AVVENTER" },
+    idle: { dot: "⚫", cls: "idle", label: "VALGFRI" },
+    fail: { dot: "🔴", cls: "fail", label: "FEIL" }
+  };
+
+  const normalizeStatus = (s) => (STATUS_META[s] ? s : "fail");
+
+  function ensureStatusPanel() {
+    if (!isDev) return; // kun i dev-mode
+    if (state.statusPanel) return;
+
+    const panel = document.createElement("section");
+    panel.id = "hgModuleStatus";
+    panel.style.cssText = `
+      position: fixed;
+      right: 12px;
+      bottom: 12px;
+      z-index: 999999;
+      background: rgba(10,20,35,.88);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 12px;
+      padding: 10px 12px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 14px;
+      color: #e6eef9;
+      min-width: 210px;
+      max-width: 320px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.35);
+    `;
+    panel.innerHTML = `
+      <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+        <div style="font-weight:700;">🧩 Modulstatus</div>
+        <button id="hgStatusHide" style="
+          background: transparent; border: 0; color: #9bb0c9; font-size: 16px; line-height: 1;
+        " aria-label="Hide">×</button>
+      </div>
+      <div id="hgStatusList" style="margin-top:8px; display:flex; flex-direction:column; gap:6px;"></div>
+    `;
+
+    panel.querySelector("#hgStatusHide").onclick = () => {
+      panel.style.display = "none";
+    };
+
+    document.body.appendChild(panel);
+    state.statusPanel = panel;
+  }
+
+  function renderStatusPanel() {
+    if (!isDev) return;
+    ensureStatusPanel();
+    if (!state.statusPanel) return;
+
+    const box = state.statusPanel.querySelector("#hgStatusList");
+    const entries = Object.entries(state.moduleStatus);
+
+    if (!entries.length) {
+      box.innerHTML = `<div style="color:#9bb0c9;">Ingen moduler rapportert ennå.</div>`;
+      return;
+    }
+
+    const rank = { fail: 0, warn: 1, idle: 2, ok: 3 };
+
+    const rows = entries
+      .sort((a, b) => {
+        const sa = normalizeStatus(a[1].status);
+        const sb = normalizeStatus(b[1].status);
+        if (rank[sa] !== rank[sb]) return rank[sa] - rank[sb];
+        return a[0].localeCompare(b[0]);
+      })
+      .map(([name, v]) => {
+        const st = normalizeStatus(v.status);
+        const meta = STATUS_META[st];
+        const detail = v.detail ? String(v.detail) : "";
+        const detailHtml = detail
+          ? `<div style="color:#9bb0c9; font-size:12px; line-height:1.2; margin-left:22px;">${detail.replace(/</g, "&lt;")}</div>`
+          : "";
+
+        return `
+          <div>
+            <div style="display:flex; align-items:center; gap:8px;">
+              <span style="width:18px;">${meta.dot}</span>
+              <span style="flex:1;">${name}</span>
+              <span style="color:#9bb0c9; font-size:12px;">${meta.label}</span>
+            </div>
+            ${detailHtml}
+          </div>
+        `;
+      })
+      .join("");
+
+    box.innerHTML = rows;
   }
 
   // -----------------------------
@@ -129,46 +230,46 @@
   // Status helpers
   // -----------------------------
   function readMapStatus() {
-  const inst = window.MAP || window.HGMap?.MAP || null;
+    const inst = window.MAP || window.HGMap?.MAP || null;
 
-  let center = null, zoom = null, active = false;
-  try {
-    if (inst && typeof inst.getCenter === "function") {
-      const c = inst.getCenter();
-      center = [Number(c.lat.toFixed(5)), Number(c.lng.toFixed(5))];
-      zoom = inst.getZoom();
-      active = true;
-    }
-  } catch {}
+    let center = null, zoom = null, active = false;
+    try {
+      if (inst && typeof inst.getCenter === "function") {
+        const c = inst.getCenter();
+        center = [Number(c.lat.toFixed(5)), Number(c.lng.toFixed(5))];
+        zoom = inst.getZoom();
+        active = true;
+      }
+    } catch {}
 
-  return {
-    "#map-element": !!document.getElementById("map"),
-    maplibrePresent: typeof window.maplibregl !== "undefined",
-    hasHGMap: !!window.HGMap,
-    hasMAP: !!window.MAP,
-    active,
-    center,
-    zoom
-  };
-}
+    return {
+      "#map-element": !!document.getElementById("map"),
+      maplibrePresent: typeof window.maplibregl !== "undefined",
+      hasHGMap: !!window.HGMap,
+      hasMAP: !!window.MAP,
+      active,
+      center,
+      zoom
+    };
+  }
 
   function readDataStatus() {
-  const d = window.HG?.data || null;
+    const d = window.HG?.data || null;
 
-  // fallback: prøv DataHub hvis den er global
-  const hub = window.DataHub || window.dataHub || null;
-  const hd = (hub && typeof hub.getData === "function") ? hub.getData() : null;
+    // fallback: prøv DataHub hvis den er global
+    const hub = window.DataHub || window.dataHub || null;
+    const hd = (hub && typeof hub.getData === "function") ? hub.getData() : null;
 
-  const src = d || hd || {};
+    const src = d || hd || {};
 
-  return {
-    source: d ? "HG.data" : (hd ? "DataHub.getData()" : "none"),
-    places: src.places?.length || 0,
-    people: src.people?.length || 0,
-    badges: src.badges?.length || 0,
-    routes: src.routes?.length || 0
-  };
-}
+    return {
+      source: d ? "HG.data" : (hd ? "DataHub.getData()" : "none"),
+      places: src.places?.length || 0,
+      people: src.people?.length || 0,
+      badges: src.badges?.length || 0,
+      routes: src.routes?.length || 0
+    };
+  }
 
   function readStorageStatus() {
     let bytes = 0, keys = [];
@@ -183,17 +284,20 @@
   }
 
   function checkRoutes() {
-  const d = window.HG?.data || null;
-  const hub = window.DataHub || window.dataHub || null;
-  const hd = (hub && typeof hub.getData === "function") ? hub.getData() : null;
-  const src = d || hd || {};
+    const d = window.HG?.data || null;
+    const hub = window.DataHub || window.dataHub || null;
+    const hd = (hub && typeof hub.getData === "function") ? hub.getData() : null;
+    const src = d || hd || {};
 
-  const routes = src.routes || [];
-  const places = new Set((src.places || []).map(p => p.id));    const rep = routes.map(r => {
+    const routes = src.routes || [];
+    const places = new Set((src.places || []).map(p => p.id));
+
+    const rep = routes.map(r => {
       const stops = (r.stops || []).map(s => s.placeId);
       const missing = stops.filter(id => !places.has(id));
       return { id: r.id || r.name, name: r.name, stops: stops.length, missing };
     });
+
     return {
       total: routes.length,
       problems: rep.filter(x => x.missing.length),
@@ -214,6 +318,7 @@
         errors: "JS-feil / promise-feil",
         health: "kjør DomainHealthReport (hvis lastet)",
         domains: "vis DomainRegistry (hvis lastet)",
+        modulstatus: "vis modulstatus-panelet (🧩)",
         "clear log": "tøm konsollvisning",
         hide: "skjul konsollen",
         "JS eval": "skriv JS og trykk Enter (read-only anbefalt)"
@@ -271,6 +376,11 @@
       printBlock("Aliases", DomainRegistry.aliasMap(), "cmd");
     },
 
+    modulstatus: () => {
+      window.HGConsole?.showStatus();
+      print("Modulstatus åpnet (🧩).", "cmd");
+    },
+
     "clear log"() {
       if (state.out) state.out.innerHTML = "";
     },
@@ -306,7 +416,7 @@
       const res = eval(raw);
       if (res instanceof Promise) {
         res.then(v => printBlock("Eval-resultat (Promise)", v, "cmd"))
-           .catch(e => print(`❌ Eval-feil: ${e?.message || e}`, "error"));
+          .catch(e => print(`❌ Eval-feil: ${e?.message || e}`, "error"));
       } else if (typeof res === "object") {
         printBlock("Eval-resultat", res, "cmd");
       } else {
@@ -327,9 +437,32 @@
       const vis = state.el.style.display !== "none";
       vis ? api.hide() : api.show();
     },
+
+    // vanlig logging
     log(msg, type = "log") { print(String(msg), type); },
-    run: runCommand
+    run: runCommand,
+
+    // ---- Modulstatus API ----
+    set(moduleName, status, detail = "") {
+      const st = normalizeStatus(status);
+      state.moduleStatus[moduleName] = { status: st, detail, time: Date.now() };
+      renderStatusPanel();
+    },
+    ok(name, detail = "")   { api.set(name, "ok", detail); },
+    warn(name, detail = "") { api.set(name, "warn", detail); },
+    idle(name, detail = "") { api.set(name, "idle", detail); },
+    fail(name, detail = "") { api.set(name, "fail", detail); },
+
+    showStatus() {
+      ensureStatusPanel();
+      if (state.statusPanel) state.statusPanel.style.display = "block";
+      renderStatusPanel();
+    },
+    hideStatus() {
+      if (state.statusPanel) state.statusPanel.style.display = "none";
+    }
   };
+
   window.HGConsole = api;
 
   // -----------------------------
@@ -356,7 +489,11 @@
   hookEvents();
   hookErrors();
 
-  print("History Go Diagnostic Console · v4.0. Skriv \"help\" eller bruk knappene.", "cmd");
+  // Auto-create status panel in dev mode (hidden until it has data)
+  ensureStatusPanel();
+  renderStatusPanel();
+
+  print("History Go Diagnostic Console · v4.1. Skriv \"help\" eller bruk knappene.", "cmd");
 
   // iPad friendly toggle button in dev mode
   if (isDev) {
@@ -366,5 +503,11 @@
     btn.className = "hg-console-btn";
     btn.onclick = () => api.toggle();
     document.body.appendChild(btn);
+
+    // optional: quick-open modulstatus on long-press (iOS)
+    btn.addEventListener("contextmenu", (e) => {
+      e.preventDefault();
+      api.showStatus();
+    });
   }
 })();
