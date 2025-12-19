@@ -1042,16 +1042,16 @@ if (window.QuizEngine) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  try { boot(); } catch (e) { console.error("[boot]", e); }
+  boot().catch(e => console.error("[boot async]", e));
 
   try { initMiniProfile(); } catch (e) { console.error("[initMiniProfile]", e); }
-
   try { wireMiniProfileLinks(); } catch (e) { console.error("[wireMiniProfileLinks]", e); }
-});
 
-if (window.DomainHealthReport) {
-  DomainHealthReport.run({ toast: true });
-}
+  // ✅ Kjør health-report når geo-status faktisk oppdateres
+  window.addEventListener("hg:geo", () => {
+    if (window.DomainHealthReport) DomainHealthReport.run({ toast: true });
+  });
+});
 
 // ==============================
 // 12. KARTMODUS
