@@ -808,19 +808,19 @@ function syncLeftPanelFrame() {
   if (!pc) return;
 
   const headerH = Math.round(header?.getBoundingClientRect().height || 62);
-
-  // Header kan fortsatt måles i px (det er riktig)
   document.documentElement.style.setProperty("--hg-header-h", headerH + "px");
 
-  // PlaceCard: bruk CSS-variabelen (--pc-height) så venstrepanelet matcher eksakt
-  const pcHeightVar = getComputedStyle(document.documentElement)
-    .getPropertyValue("--pc-height")
-    .trim();
+  // ✅ Eksakt: hvor mye plass placeCard faktisk tar fra bunnen
+  const rect = pc.getBoundingClientRect();
 
-  document.documentElement.style.setProperty(
-    "--hg-placecard-h",
-    pcHeightVar || "41vh"
-  );
+  // bottomOffset = avstand fra bunnen av viewport til toppen av placeCard
+  // (dette matcher selv om du har ekstra bunnpanel/knapper)
+  let bottomOffset = Math.round(window.innerHeight - rect.top);
+
+  // fallback hvis placeCard midlertidig måles rart
+  if (!isFinite(bottomOffset) || bottomOffset < 80) bottomOffset = 220;
+
+  document.documentElement.style.setProperty("--hg-placecard-h", bottomOffset + "px");
 }
 
 function renderLeftBadges() {
