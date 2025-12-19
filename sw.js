@@ -76,6 +76,7 @@ const STATIC_ASSETS = [
   "js/console/verify.js",
   "js/console/diagnosticConsole.js",
   "js/console/devConsole.js",
+   "js/console/legacyExtensions.js",
   // "js/console/terminal.js", // kun hvis den faktisk finnes
 
   // Resten
