@@ -809,12 +809,18 @@ function syncLeftPanelFrame() {
 
   const headerH = Math.round(header?.getBoundingClientRect().height || 62);
 
-  let pcH = Math.round(pc.getBoundingClientRect().height || 0);
-  if (pcH < 80) pcH = 220;
+  // Header kan fortsatt måles i px (det er riktig)
+document.documentElement.style.setProperty("--hg-header-h", headerH + "px");
 
-  document.documentElement.style.setProperty("--hg-header-h", headerH + "px");
-  document.documentElement.style.setProperty("--hg-placecard-h", pcH + "px");
-}
+// PlaceCard: bruk CSS-variabelen (41vh) så venstrepanelet matcher eksakt
+const pcHeightVar = getComputedStyle(document.documentElement)
+  .getPropertyValue("--pc-height")
+  .trim();
+
+document.documentElement.style.setProperty(
+  "--hg-placecard-h",
+  pcHeightVar || "41vh"
+);
 
 function renderLeftBadges() {
   const box = document.getElementById("leftBadgesList");
