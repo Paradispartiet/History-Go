@@ -94,45 +94,94 @@
 
   const normalizeStatus = (s) => (STATUS_META[s] ? s : "fail");
 
-  function ensureStatusPanel() {
-    if (!isDev) return; // kun i dev-mode
-    if (state.statusPanel) return;
+ function ensureStatusPanel() {
+  if (!isDev) return; // kun i dev-mode
+  if (state.statusPanel) return;
 
-    const panel = document.createElement("section");
-    panel.id = "hgModuleStatus";
-    panel.style.cssText = `
-      position: fixed;
-      right: 12px;
-      bottom: 12px;
-      z-index: 999999;
-      background: rgba(10,20,35,.88);
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: 12px;
-      padding: 10px 12px;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      font-size: 14px;
-      color: #e6eef9;
-      min-width: 210px;
-      max-width: 320px;
-      box-shadow: 0 10px 30px rgba(0,0,0,.35);
-    `;
-    panel.innerHTML = `
-      <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
-        <div style="font-weight:700;">🧩 Modulstatus</div>
-        <button id="hgStatusHide" style="
-          background: transparent; border: 0; color: #9bb0c9; font-size: 16px; line-height: 1;
-        " aria-label="Hide">×</button>
+  const panel = document.createElement("section");
+  panel.id = "hgModuleStatus";
+
+  panel.style.cssText = `
+    position: fixed;
+    right: 12px;
+    bottom: 12px;
+    z-index: 999999;
+    background: rgba(10,20,35,.88);
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 12px;
+    padding: 10px 12px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 14px;
+    color: #e6eef9;
+    min-width: 210px;
+    max-width: 320px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.35);
+  `;
+
+  panel.innerHTML = `
+    <div id="hgStatusHead" style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+      <div id="hgStatusTitle" style="font-weight:700;">🧩 Modulstatus</div>
+
+      <div style="display:flex; align-items:center; gap:6px;">
+        <button id="hgStatusToggle" type="button" style="
+          background: rgba(255,255,255,.10);
+          border: 1px solid rgba(255,255,255,.12);
+          color: #e6eef9;
+          width: 28px;
+          height: 28px;
+          border-radius: 9px;
+          font-size: 14px;
+          line-height: 1;
+          cursor: pointer;
+        " aria-label="Minimer">▾</button>
       </div>
-      <div id="hgStatusList" style="margin-top:8px; display:flex; flex-direction:column; gap:6px;"></div>
-    `;
+    </div>
 
-    panel.querySelector("#hgStatusHide").onclick = () => {
-      panel.style.display = "none";
-    };
+    <div id="hgStatusList" style="margin-top:8px; display:flex; flex-direction:column; gap:6px;"></div>
+  `;
 
-    document.body.appendChild(panel);
-    state.statusPanel = panel;
+  const btn = panel.querySelector("#hgStatusToggle");
+  const list = panel.querySelector("#hgStatusList");
+  const title = panel.querySelector("#hgStatusTitle");
+
+  function setCollapsed(collapsed) {
+    if (collapsed) {
+      // liten "chip" som ikke blokkerer UI
+      panel.dataset.collapsed = "1";
+      list.style.display = "none";
+      panel.style.minWidth = "0";
+      panel.style.maxWidth = "none";
+      panel.style.width = "44px";
+      panel.style.padding = "8px";
+      title.textContent = "🧩";
+      btn.textContent = "▸";
+      btn.setAttribute("aria-label", "Vis");
+    } else {
+      panel.dataset.collapsed = "0";
+      list.style.display = "flex";
+      panel.style.width = "";
+      panel.style.padding = "10px 12px";
+      panel.style.minWidth = "210px";
+      panel.style.maxWidth = "320px";
+      title.textContent = "🧩 Modulstatus";
+      btn.textContent = "▾";
+      btn.setAttribute("aria-label", "Minimer");
+    }
+    localStorage.setItem("hg_modstatus_collapsed", collapsed ? "1" : "0");
   }
+
+  // restore state
+  const saved = localStorage.getItem("hg_modstatus_collapsed") === "1";
+  setCollapsed(saved);
+
+  btn.onclick = () => {
+    const collapsed = panel.dataset.collapsed === "1";
+    setCollapsed(!collapsed);
+  };
+
+  document.body.appendChild(panel);
+  state.statusPanel = panel;
+}
 
   function renderStatusPanel() {
     if (!isDev) return;
