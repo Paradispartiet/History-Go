@@ -765,6 +765,14 @@ function wire() {
       requestLocation();
     }
   });
+
+  // ✅ Safari-sikker: be om posisjon på brukertrykk
+  const btn = document.querySelector("#nearbyBtn, #btnNearby, [data-action='nearby']");
+  if (btn) {
+    btn.addEventListener("click", () => requestLocation());
+  } else {
+    console.warn("Fant ingen nearby-knapp å binde requestLocation() til");
+  }
 }
 
 function requestLocation() {
