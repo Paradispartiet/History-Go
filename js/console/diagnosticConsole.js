@@ -202,12 +202,36 @@
   const saved = savedRaw == null ? true : (savedRaw === "1");
   setCollapsed(saved);
 
-  // Klikk på toggle i panelet → minimer
-  btn.onclick = (e) => {
+function toggleCollapsed() {
+  const collapsed = panel.dataset.collapsed === "1";
+  setCollapsed(!collapsed);
+}
+
+// Gjør header/tittel klikkbar (det er dette du mener)
+if (head) {
+  head.style.cursor = "pointer";
+  head.onclick = (e) => {
+    // hvis man klikker på knappen, la knappen styre selv
+    if (e.target && e.target.id === "hgStatusToggle") return;
+    toggleCollapsed();
+  };
+}
+
+if (title) {
+  title.style.cursor = "pointer";
+  title.onclick = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    setCollapsed(true);
+    toggleCollapsed();
   };
+}
+
+// Knappen (▾) toggler også
+btn.onclick = (e) => {
+  e.preventDefault();
+  e.stopPropagation();
+  toggleCollapsed();
+};
 
   // Klikk på FAB → åpne
   fab.onclick = (e) => {
