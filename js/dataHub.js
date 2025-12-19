@@ -11,13 +11,34 @@
   // Hvis appen kjører på:
   // https://paradispartiet.github.io/History-Go/index.html
   // så blir APP_BASE_PATH = "/History-Go/"
-  const APP_BASE_PATH = location.pathname.replace(/[^/]+$/, "")
+// 🔒 100 % GitHub Pages + SW-safe base path
+const APP_BASE_PATH = (function () {
+  const base = document.querySelector("base")?.getAttribute("href");
+  if (base) return base.endsWith("/") ? base : base + "/";
+  return location.origin + location.pathname.replace(/[^/]+$/, "");
+})();
 
-  const DEFAULTS = {
-    // ALDRI bruk "/data" på GitHub Pages subfolder — det peker til domenet root.
-    DATA_BASE: APP_BASE_PATH + "data",
-    EMNER_BASE: APP_BASE_PATH + "emner"
-  };
+const DATA_BASE = APP_BASE_PATH + "data";
+const EMNER_BASE = APP_BASE_PATH + "emner";
+
+  // 🔒 SW/GitHub Pages-safe base: alltid prosjekt-root (…/History-Go/)
+const PROJECT_BASE = (function () {
+  // Hvis du har <base href="/History-Go/"> i <head>, brukes den (best)
+  const b = document.querySelector("base")?.getAttribute("href");
+  if (b) return b.endsWith("/") ? b : (b + "/");
+
+  // Ellers: finn prosjekt-roten ved å kutte på "/js/" hvis vi står i js-path
+  const p = location.pathname;
+  if (p.includes("/js/")) return p.split("/js/")[0] + "/";
+
+  // Fallback: mappa der HTML ligger (index.html, profile.html osv)
+  return p.replace(/[^/]+$/, "");
+})();
+
+const DEFAULTS = {
+  DATA_BASE: (PROJECT_BASE + "data").replace(/\/+/g, "/"),
+  EMNER_BASE: (PROJECT_BASE + "emner").replace(/\/+/g, "/")
+};
 
   const _cache = new Map();
 
