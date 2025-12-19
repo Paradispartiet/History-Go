@@ -748,6 +748,96 @@ function handlePlaceNote(place) {
   saveUserNotes();
   showToast(`Notat om ${place.name} lagret 📝`);
 }
+
+
+// ==============================
+// 9.x VENSTRE PANEL – DROPDOWN + RAMME
+// (må ligge før wire/boot, og init kjøres i DOMContentLoaded)
+// ==============================
+
+function initLeftPanel() {
+  const sel = document.getElementById("leftPanelMode");
+  const vNearby = document.getElementById("panelNearby");
+  const vRoutes  = document.getElementById("panelRoutes");
+  const vBadges  = document.getElementById("panelBadges");
+
+  if (!sel || !vNearby || !vRoutes || !vBadges) return;
+
+  function show(mode) {
+    vNearby.style.display = mode === "nearby" ? "" : "none";
+    vRoutes.style.display  = mode === "routes" ? "" : "none";
+    vBadges.style.display  = mode === "badges" ? "" : "none";
+    try { localStorage.setItem("hg_leftpanel_mode_v1", mode); } catch {}
+  }
+
+  // restore mode
+  const saved = localStorage.getItem("hg_leftpanel_mode_v1") || "nearby";
+  sel.value = saved;
+  show(saved);
+
+  sel.addEventListener("change", () => show(sel.value));
+
+  renderLeftBadges();
+  syncLeftPanelFrame();
+
+  window.addEventListener("resize", syncLeftPanelFrame);
+
+  // resync når placeCard endrer høyde (åpne/lukke/innhold)
+  const pc = document.getElementById("placeCard");
+  if (pc && "ResizeObserver" in window) {
+    const ro = new ResizeObserver(() => syncLeftPanelFrame());
+    ro.observe(pc);
+  } else {
+    // fallback: mild polling (billig)
+    let last = 0;
+    setInterval(() => {
+      const el = document.getElementById("placeCard");
+      if (!el) return;
+      const h = Math.round(el.getBoundingClientRect().height || 0);
+      if (Math.abs(h - last) > 6) {
+        last = h;
+        syncLeftPanelFrame();
+      }
+    }, 500);
+  }
+}
+
+function syncLeftPanelFrame() {
+  const header = document.querySelector("header") || document.querySelector(".site-header");
+  const pc = document.getElementById("placeCard");
+  if (!pc) return;
+
+  const headerH = Math.round(header?.getBoundingClientRect().height || 62);
+
+  let pcH = Math.round(pc.getBoundingClientRect().height || 0);
+  if (pcH < 80) pcH = 220;
+
+  document.documentElement.style.setProperty("--hg-header-h", headerH + "px");
+  document.documentElement.style.setProperty("--hg-placecard-h", pcH + "px");
+}
+
+function renderLeftBadges() {
+  const box = document.getElementById("leftBadgesList");
+  if (!box) return;
+
+  if (!Array.isArray(CATEGORY_LIST) || !CATEGORY_LIST.length) {
+    box.innerHTML = `<div style="color:#9bb0c9;">Ingen kategorier lastet.</div>`;
+    return;
+  }
+
+  box.innerHTML = CATEGORY_LIST.map(c => {
+    const img = `bilder/merker/${c.id}.PNG`;
+    return `
+      <button class="chip ghost" data-badge-id="${c.id}" style="justify-content:flex-start; width:100%;">
+        <img src="${img}" alt="" style="width:18px; height:18px; margin-right:8px; border-radius:4px;">
+        ${c.name}
+      </button>
+    `;
+  }).join("");
+
+  // (valgfritt) klikk-håndtering kan legges i wire() via delegation senere
+}
+
 // ==============================
 // 10. INITIALISERING OG BOOT
 // ==============================
