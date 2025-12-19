@@ -170,7 +170,9 @@
   const btn = panel.querySelector("#hgStatusToggle");
   const list = panel.querySelector("#hgStatusList");
   const title = panel.querySelector("#hgStatusTitle");
+  const head = panel.querySelector("#hgStatusHead");
 
+   
   function setCollapsed(collapsed) {
     panel.dataset.collapsed = collapsed ? "1" : "0";
     localStorage.setItem("hg_modstatus_collapsed", collapsed ? "1" : "0");
