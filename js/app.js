@@ -1029,7 +1029,6 @@ if (window.QuizEngine) {
 
   await ensureBadgesLoaded();
   wire();
-  requestLocation();
   renderCollection();
   renderGallery();
 }
