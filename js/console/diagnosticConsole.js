@@ -100,161 +100,165 @@
   const normalizeStatus = (s) => (STATUS_META[s] ? s : "fail");
 
   function ensureStatusPanel() {
-    // KUN DEV
-    if (!isDev) {
-      try { document.getElementById("hgModuleStatus")?.remove(); } catch {}
-      try { document.getElementById("hgStatusFab")?.remove(); } catch {}
-      state.statusPanel = null;
-      return;
-    }
+  // Hard rule: Modulstatus skal KUN finnes i dev-mode
+  if (!isDev) {
+    try { document.getElementById("hgModuleStatus")?.remove(); } catch {}
+    try { document.getElementById("hgStatusChip")?.remove(); } catch {}
+    state.statusPanel = null;
+    return;
+  }
 
-    // Hvis finnes allerede i DOM, bruk den
-    const existing = document.getElementById("hgModuleStatus");
-    if (existing) {
-      state.statusPanel = existing;
-      return;
-    }
+  // Hvis vi allerede har bygget den og den finnes i DOM → ferdig
+  if (state.statusPanel && document.getElementById("hgModuleStatus")) return;
 
-    const panel = document.createElement("section");
-    panel.id = "hgModuleStatus";
-    panel.style.cssText = `
+  // Hvis DOM finnes men state mangler (dobbel init / hot reload) → koble opp igjen
+  const existingPanel = document.getElementById("hgModuleStatus");
+  if (existingPanel) {
+    state.statusPanel = existingPanel;
+    return;
+  }
+
+  // -----------------------------
+  // CHIP (den eneste synlige default)
+  // -----------------------------
+  let chip = document.getElementById("hgStatusChip");
+  if (!chip) {
+    chip = document.createElement("button");
+    chip.id = "hgStatusChip";
+    chip.type = "button";
+    chip.textContent = "🧩";
+    chip.setAttribute("aria-label", "Vis modulstatus");
+    chip.style.cssText = `
       position: fixed;
       right: 12px;
       bottom: 12px;
       z-index: 999999;
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      font-size: 18px;
+      cursor: pointer;
       background: rgba(10,20,35,.88);
       border: 1px solid rgba(255,255,255,.12);
-      border-radius: 12px;
-      padding: 10px 12px;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      font-size: 14px;
       color: #e6eef9;
-      min-width: 210px;
-      max-width: 320px;
       box-shadow: 0 10px 30px rgba(0,0,0,.35);
+      display: block;
     `;
+    document.body.appendChild(chip);
+  }
 
-    panel.innerHTML = `
-      <div id="hgStatusHead" style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
-        <div id="hgStatusTitle" style="font-weight:700;">🧩 Modulstatus</div>
-        <div style="display:flex; align-items:center; gap:6px;">
-          <button id="hgStatusToggle" type="button" style="
-            background: rgba(255,255,255,.10);
-            border: 1px solid rgba(255,255,255,.12);
-            color: #e6eef9;
-            width: 28px;
-            height: 28px;
-            border-radius: 9px;
-            font-size: 14px;
-            line-height: 1;
-            cursor: pointer;
-          " aria-label="Minimer">▾</button>
-        </div>
+  // -----------------------------
+  // PANEL (skjult til chip-klikk)
+  // -----------------------------
+  const panel = document.createElement("section");
+  panel.id = "hgModuleStatus";
+  panel.style.cssText = `
+    position: fixed;
+    right: 12px;
+    bottom: 12px;
+    z-index: 999999;
+    background: rgba(10,20,35,.88);
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 12px;
+    padding: 10px 12px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 14px;
+    color: #e6eef9;
+    min-width: 210px;
+    max-width: 320px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.35);
+    display: none; /* <-- default: ALDRI synlig ved load */
+  `;
+
+  panel.innerHTML = `
+    <div id="hgStatusHead" style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+      <div id="hgStatusTitle" style="font-weight:700;">🧩 Modulstatus</div>
+
+      <div style="display:flex; align-items:center; gap:6px;">
+        <button id="hgStatusToggle" type="button" style="
+          background: rgba(255,255,255,.10);
+          border: 1px solid rgba(255,255,255,.12);
+          color: #e6eef9;
+          width: 28px;
+          height: 28px;
+          border-radius: 9px;
+          font-size: 14px;
+          line-height: 1;
+          cursor: pointer;
+        " aria-label="Skjul">✕</button>
       </div>
+    </div>
 
-      <div id="hgStatusList" style="margin-top:8px; display:flex; flex-direction:column; gap:6px;"></div>
-    `;
+    <div id="hgStatusList" style="margin-top:8px; display:flex; flex-direction:column; gap:6px;"></div>
+  `;
 
-    // FAB (minimert knapp)
-    let fab = document.getElementById("hgStatusFab");
-    if (!fab) {
-      fab = document.createElement("button");
-      fab.id = "hgStatusFab";
-      fab.type = "button";
-      fab.textContent = "🧩";
-      fab.setAttribute("aria-label", "Vis modulstatus");
-      fab.style.cssText = `
-        position: fixed;
-        right: 12px;
-        bottom: 12px;
-        z-index: 999999;
-        width: 44px;
-        height: 44px;
-        border-radius: 14px;
-        font-size: 18px;
-        cursor: pointer;
-        background: rgba(10,20,35,.88);
-        border: 1px solid rgba(255,255,255,.12);
-        color: #e6eef9;
-        box-shadow: 0 10px 30px rgba(0,0,0,.35);
-        display: none;
-      `;
-      document.body.appendChild(fab);
+  const btn = panel.querySelector("#hgStatusToggle");
+  const head = panel.querySelector("#hgStatusHead");
+  const title = panel.querySelector("#hgStatusTitle");
+
+  function setOpen(open) {
+    panel.dataset.open = open ? "1" : "0";
+    localStorage.setItem("hg_modstatus_open", open ? "1" : "0");
+
+    if (open) {
+      // åpne panel, skjul chip
+      panel.style.display = "block";
+      chip.style.display = "none";
+      chip.style.pointerEvents = "none";
+    } else {
+      // lukk panel, vis chip
+      panel.style.display = "none";
+      chip.style.display = "block";
+      chip.style.pointerEvents = "auto";
     }
+  }
 
-    const btn = panel.querySelector("#hgStatusToggle");
-    const list = panel.querySelector("#hgStatusList");
-    const title = panel.querySelector("#hgStatusTitle");
-    const head = panel.querySelector("#hgStatusHead");
+  function toggleOpen() {
+    const open = panel.dataset.open === "1";
+    setOpen(!open);
+  }
 
-    function setCollapsed(collapsed) {
-      panel.dataset.collapsed = collapsed ? "1" : "0";
-      localStorage.setItem("hg_modstatus_collapsed", collapsed ? "1" : "0");
+  // DEFAULT: alltid chip (med mindre du eksplisitt har valgt å holde den åpen før)
+  const savedRaw = localStorage.getItem("hg_modstatus_open");
+  const savedOpen = savedRaw === "1";  // alt annet = lukket
+  setOpen(savedOpen);
 
-      if (collapsed) {
-        // EKTE minimer: bort med boksen
-        panel.style.display = "none";
-        fab.style.display = "block";
-        fab.style.pointerEvents = "auto";
-      } else {
-        fab.style.display = "none";
-        panel.style.display = "block";
-        if (title) title.style.display = "";
-        if (list) list.style.display = "flex";
-        if (btn) {
-          btn.textContent = "▾";
-          btn.setAttribute("aria-label", "Minimer");
-        }
-      }
-    }
+  // CHIP → åpne
+  chip.onclick = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setOpen(true);
+  };
 
-    function toggleCollapsed() {
-      const collapsed = panel.dataset.collapsed === "1";
-      setCollapsed(!collapsed);
-    }
+  // X-knapp → lukk
+  btn.onclick = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setOpen(false);
+  };
 
-    // restore state (default = minimert)
-    const savedRaw = localStorage.getItem("hg_modstatus_collapsed");
-    const saved = savedRaw == null ? true : (savedRaw === "1");
-    setCollapsed(saved);
+  // Header/tittel → toggle (lett på iPad)
+  if (head) {
+    head.style.cursor = "pointer";
+    head.onclick = (e) => {
+      // ikke dobbel-håndter hvis man klikker direkte på knappen
+      if (e.target && e.target.id === "hgStatusToggle") return;
+      toggleOpen();
+    };
+  }
 
-    // Header/tittel klikkbar (ikke bare knappen)
-    if (head) {
-      head.style.cursor = "pointer";
-      head.onclick = (e) => {
-        if (e.target && e.target.id === "hgStatusToggle") return;
-        toggleCollapsed();
-      };
-    }
-
-    if (title) {
-      title.style.cursor = "pointer";
-      title.onclick = (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        toggleCollapsed();
-      };
-    }
-
-    // ▾ toggler også
-    if (btn) {
-      btn.onclick = (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        toggleCollapsed();
-      };
-    }
-
-    // FAB åpner
-    fab.onclick = (e) => {
+  if (title) {
+    title.style.cursor = "pointer";
+    title.onclick = (e) => {
       e.preventDefault();
       e.stopPropagation();
-      setCollapsed(false);
+      toggleOpen();
     };
-
-    document.body.appendChild(panel);
-    state.statusPanel = panel;
   }
+
+  document.body.appendChild(panel);
+  state.statusPanel = panel;
+}
 
   function renderStatusPanel() {
     if (!isDev) return;
