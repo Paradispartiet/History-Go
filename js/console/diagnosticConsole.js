@@ -87,40 +87,36 @@
     print(`<pre>${safeJSON(obj)}</pre>`, cls);
   }
 
-  // -----------------------------
-  // Module status (ok/warn/idle/fail) — panel
-  // -----------------------------
-  const STATUS_META = {
-    ok:   { dot: "🟢", cls: "ok",   label: "OK" },
-    warn: { dot: "🟡", cls: "warn", label: "AVVENTER" },
-    idle: { dot: "⚫", cls: "idle", label: "VALGFRI" },
-    fail: { dot: "🔴", cls: "fail", label: "FEIL" }
-  };
+// -----------------------------
+// Module status (ok/warn/idle/fail) — CHIP + panel (KUN DEV)
+// -----------------------------
+const STATUS_META = {
+  ok:   { dot: "🟢", cls: "ok",   label: "OK" },
+  warn: { dot: "🟡", cls: "warn", label: "AVVENTER" },
+  idle: { dot: "⚫", cls: "idle", label: "VALGFRI" },
+  fail: { dot: "🔴", cls: "fail", label: "FEIL" }
+};
 
-  const normalizeStatus = (s) => (STATUS_META[s] ? s : "fail");
+const normalizeStatus = (s) => (STATUS_META[s] ? s : "fail");
 
-  function ensureStatusPanel() {
-  // Hard rule: Modulstatus skal KUN finnes i dev-mode
+function ensureStatusPanel() {
+  // KUN DEV: ellers skal ingenting eksistere
   if (!isDev) {
     try { document.getElementById("hgModuleStatus")?.remove(); } catch {}
     try { document.getElementById("hgStatusChip")?.remove(); } catch {}
+    try { document.getElementById("hgStatusFab")?.remove(); } catch {} // gammel id, bare i tilfelle
     state.statusPanel = null;
     return;
   }
 
-  // Hvis vi allerede har bygget den og den finnes i DOM → ferdig
-  if (state.statusPanel && document.getElementById("hgModuleStatus")) return;
-
-  // Hvis DOM finnes men state mangler (dobbel init / hot reload) → koble opp igjen
-  const existingPanel = document.getElementById("hgModuleStatus");
-  if (existingPanel) {
-    state.statusPanel = existingPanel;
+  // Hvis panelet allerede finnes, bruk det
+  const existing = document.getElementById("hgModuleStatus");
+  if (existing) {
+    state.statusPanel = existing;
     return;
   }
 
-  // -----------------------------
-  // CHIP (den eneste synlige default)
-  // -----------------------------
+  // CHIP (alltid synlig default i dev)
   let chip = document.getElementById("hgStatusChip");
   if (!chip) {
     chip = document.createElement("button");
@@ -147,9 +143,7 @@
     document.body.appendChild(chip);
   }
 
-  // -----------------------------
-  // PANEL (skjult til chip-klikk)
-  // -----------------------------
+  // PANEL (starter skjult)
   const panel = document.createElement("section");
   panel.id = "hgModuleStatus";
   panel.style.cssText = `
@@ -167,146 +161,109 @@
     min-width: 210px;
     max-width: 320px;
     box-shadow: 0 10px 30px rgba(0,0,0,.35);
-    display: none; /* <-- default: ALDRI synlig ved load */
+    display: none;
   `;
 
   panel.innerHTML = `
     <div id="hgStatusHead" style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
       <div id="hgStatusTitle" style="font-weight:700;">🧩 Modulstatus</div>
-
-      <div style="display:flex; align-items:center; gap:6px;">
-        <button id="hgStatusToggle" type="button" style="
-          background: rgba(255,255,255,.10);
-          border: 1px solid rgba(255,255,255,.12);
-          color: #e6eef9;
-          width: 28px;
-          height: 28px;
-          border-radius: 9px;
-          font-size: 14px;
-          line-height: 1;
-          cursor: pointer;
-        " aria-label="Skjul">✕</button>
-      </div>
+      <button id="hgStatusClose" type="button" style="
+        background: rgba(255,255,255,.10);
+        border: 1px solid rgba(255,255,255,.12);
+        color: #e6eef9;
+        width: 28px;
+        height: 28px;
+        border-radius: 9px;
+        font-size: 14px;
+        line-height: 1;
+        cursor: pointer;
+      " aria-label="Lukk">✕</button>
     </div>
-
     <div id="hgStatusList" style="margin-top:8px; display:flex; flex-direction:column; gap:6px;"></div>
   `;
 
-  const btn = panel.querySelector("#hgStatusToggle");
+  const closeBtn = panel.querySelector("#hgStatusClose");
   const head = panel.querySelector("#hgStatusHead");
-  const title = panel.querySelector("#hgStatusTitle");
 
   function setOpen(open) {
-    panel.dataset.open = open ? "1" : "0";
     localStorage.setItem("hg_modstatus_open", open ? "1" : "0");
-
-    if (open) {
-      // åpne panel, skjul chip
-      panel.style.display = "block";
-      chip.style.display = "none";
-      chip.style.pointerEvents = "none";
-    } else {
-      // lukk panel, vis chip
-      panel.style.display = "none";
-      chip.style.display = "block";
-      chip.style.pointerEvents = "auto";
-    }
+    panel.style.display = open ? "block" : "none";
+    chip.style.display = open ? "none" : "block";
+    chip.style.pointerEvents = open ? "none" : "auto";
   }
 
-  function toggleOpen() {
-    const open = panel.dataset.open === "1";
-    setOpen(!open);
-  }
+  // default = chip (lukket) med mindre du eksplisitt har åpnet før
+  setOpen(localStorage.getItem("hg_modstatus_open") === "1");
 
-  // DEFAULT: alltid chip (med mindre du eksplisitt har valgt å holde den åpen før)
-  const savedRaw = localStorage.getItem("hg_modstatus_open");
-  const savedOpen = savedRaw === "1";  // alt annet = lukket
-  setOpen(savedOpen);
-
-  // CHIP → åpne
   chip.onclick = (e) => {
     e.preventDefault();
     e.stopPropagation();
     setOpen(true);
+    renderStatusPanel();
   };
 
-  // X-knapp → lukk
-  btn.onclick = (e) => {
+  closeBtn.onclick = (e) => {
     e.preventDefault();
     e.stopPropagation();
     setOpen(false);
   };
 
-  // Header/tittel → toggle (lett på iPad)
-  if (head) {
-    head.style.cursor = "pointer";
-    head.onclick = (e) => {
-      // ikke dobbel-håndter hvis man klikker direkte på knappen
-      if (e.target && e.target.id === "hgStatusToggle") return;
-      toggleOpen();
-    };
-  }
-
-  if (title) {
-    title.style.cursor = "pointer";
-    title.onclick = (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      toggleOpen();
-    };
-  }
+  // iPad: trykk på header for å lukke
+  head.style.cursor = "pointer";
+  head.onclick = (e) => {
+    if (e.target && e.target.id === "hgStatusClose") return;
+    setOpen(false);
+  };
 
   document.body.appendChild(panel);
   state.statusPanel = panel;
 }
 
-  function renderStatusPanel() {
-    if (!isDev) return;
-    ensureStatusPanel();
-    if (!state.statusPanel) return;
+function renderStatusPanel() {
+  if (!isDev) return;
+  ensureStatusPanel();
+  if (!state.statusPanel) return;
 
-    const box = state.statusPanel.querySelector("#hgStatusList");
-    if (!box) return;
+  const box = state.statusPanel.querySelector("#hgStatusList");
+  if (!box) return;
 
-    const entries = Object.entries(state.moduleStatus);
+  const entries = Object.entries(state.moduleStatus);
 
-    if (!entries.length) {
-      box.innerHTML = `<div style="color:#9bb0c9;">Ingen moduler rapportert ennå.</div>`;
-      return;
-    }
-
-    const rank = { fail: 0, warn: 1, idle: 2, ok: 3 };
-
-    const rows = entries
-      .sort((a, b) => {
-        const sa = normalizeStatus(a[1].status);
-        const sb = normalizeStatus(b[1].status);
-        if (rank[sa] !== rank[sb]) return rank[sa] - rank[sb];
-        return a[0].localeCompare(b[0]);
-      })
-      .map(([name, v]) => {
-        const st = normalizeStatus(v.status);
-        const meta = STATUS_META[st];
-        const detail = v.detail ? String(v.detail) : "";
-        const detailHtml = detail
-          ? `<div style="color:#9bb0c9; font-size:12px; line-height:1.2; margin-left:22px;">${detail.replace(/</g, "&lt;")}</div>`
-          : "";
-
-        return `
-          <div>
-            <div style="display:flex; align-items:center; gap:8px;">
-              <span style="width:18px;">${meta.dot}</span>
-              <span style="flex:1;">${name}</span>
-              <span style="color:#9bb0c9; font-size:12px;">${meta.label}</span>
-            </div>
-            ${detailHtml}
-          </div>
-        `;
-      })
-      .join("");
-
-    box.innerHTML = rows;
+  if (!entries.length) {
+    box.innerHTML = `<div style="color:#9bb0c9;">Ingen moduler rapportert ennå.</div>`;
+    return;
   }
+
+  const rank = { fail: 0, warn: 1, idle: 2, ok: 3 };
+
+  box.innerHTML = entries
+    .sort((a, b) => {
+      const sa = normalizeStatus(a[1].status);
+      const sb = normalizeStatus(b[1].status);
+      if (rank[sa] !== rank[sb]) return rank[sa] - rank[sb];
+      return a[0].localeCompare(b[0]);
+    })
+    .map(([name, v]) => {
+      const st = normalizeStatus(v.status);
+      const meta = STATUS_META[st];
+      const detail = v.detail ? String(v.detail) : "";
+      const detailHtml = detail
+        ? `<div style="color:#9bb0c9; font-size:12px; line-height:1.2; margin-left:22px;">${detail.replace(/</g, "&lt;")}</div>`
+        : "";
+
+      return `
+        <div>
+          <div style="display:flex; align-items:center; gap:8px;">
+            <span style="width:18px;">${meta.dot}</span>
+            <span style="flex:1;">${name}</span>
+            <span style="color:#9bb0c9; font-size:12px;">${meta.label}</span>
+          </div>
+          ${detailHtml}
+        </div>
+      `;
+    })
+    .join("");
+}
 
   // -----------------------------
   // Event tracking (read-only)
@@ -671,9 +628,8 @@
 
   // Auto-create status panel ONLY in dev
   if (isDev) {
-    ensureStatusPanel();
-    renderStatusPanel();
-  }
+  ensureStatusPanel(); // lager chip
+}
 
   print("History Go Diagnostic Console · v4.3. Skriv \"help\" eller bruk knappene.", "cmd");
 
