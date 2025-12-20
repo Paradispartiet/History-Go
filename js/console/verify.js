@@ -1,190 +1,162 @@
+// js/console/verify.js
 // ============================================================
-// === HISTORY GO – VERIFY PANEL (modulstatus) ================
-// ============================================================
-//  DEV-ONLY: viser modulstatus som en CHIP (🧩)
-//   - Default: kun chip synlig
-//   - Klikk chip -> åpner panel
-//   - Klikk ✕ -> lukker panel (tilbake til chip)
-//  Viktig: bruker window.* for å unngå ReferenceError.
+// HISTORY GO – VERIFY PANEL (modulstatus)  → CHIP i dev-mode
+//  - KUN aktiv når ?dev=1 / ?dev / localStorage.devMode="true"
+//  - Default: minimert chip (🧩)
+//  - Trykk chip for å åpne/lukke liste
 // ============================================================
 
 (function () {
-  // --- DEV gate (samme logikk som resten av dev-tools) ---
+  // Dev gate
   const isDev =
     window.location.search.includes("dev=1") ||
     window.location.search.includes("dev") ||
     localStorage.getItem("devMode") === "true";
 
-  // Hard rule: ikke-dev => fjern evt rester og stopp
+  // Hard rule: ALDRI vis uten dev
   if (!isDev) {
     try { document.getElementById("verifyPanel")?.remove(); } catch {}
     try { document.getElementById("verifyChip")?.remove(); } catch {}
     return;
   }
 
-  // Unngå dobbel init (hot reload / dobbel script-load)
-  if (document.getElementById("verifyPanel") || document.getElementById("verifyChip")) {
-    return;
-  }
+  // Unngå dobbel init
+  if (window.HG_VERIFY_PANEL) return;
 
   const modules = [
-    // Core/system
     { name: "dev",     check: () => true },
     { name: "API",     check: () => typeof window.API?.showToast === "function" },
 
-    // Data / hub
     { name: "DataHub", check: () => !!(window.DataHub || window.dataHub) },
     { name: "HG",      check: () => !!window.HG },
 
-    // Map (din app)
-    { name: "HGMap",    check: () => !!window.HGMap },
-    { name: "MAP",      check: () => !!window.MAP },
-    { name: "maplibre", check: () => typeof window.maplibregl !== "undefined" },
+    { name: "HGMap",   check: () => !!window.HGMap },
+    { name: "MAP",     check: () => !!window.MAP },
+    { name: "maplibre",check: () => typeof window.maplibregl !== "undefined" },
 
-    // Quiz
     { name: "QuizEngine", check: () => typeof window.QuizEngine?.start === "function" },
 
-    // Domener
     { name: "DomainRegistry",     check: () => typeof window.DomainRegistry?.resolve === "function" },
     { name: "DomainHealthReport", check: () => typeof window.DomainHealthReport?.run === "function" }
   ];
 
-  // --------------------------
-  // CHIP (FAB)
-  // --------------------------
+  // Cleanup gammel boks hvis den finnes
+  try { document.getElementById("verifyPanel")?.remove(); } catch {}
+  try { document.getElementById("verifyChip")?.remove(); } catch {}
+
+  // ---- UI: CHIP ----
   const chip = document.createElement("button");
   chip.id = "verifyChip";
   chip.type = "button";
   chip.textContent = "🧩";
-  chip.title = "Modulstatus (dev)";
-  chip.setAttribute("aria-label", "Åpne modulstatus");
+  chip.setAttribute("aria-label", "Vis modulstatus");
   chip.style.cssText = `
     position: fixed;
     right: 12px;
     bottom: 12px;
     z-index: 999999;
-    width: 42px;
-    height: 42px;
+    width: 44px;
+    height: 44px;
     border-radius: 14px;
     font-size: 18px;
-    line-height: 1;
     cursor: pointer;
     background: rgba(10,25,41,.92);
     border: 1px solid rgba(255,255,255,.12);
-    color: #e6eef9;
+    color: #fff;
     box-shadow: 0 10px 30px rgba(0,0,0,.35);
     backdrop-filter: blur(6px);
   `;
 
-  // --------------------------
-  // PANEL
-  // --------------------------
+  // ---- UI: PANEL (skjult som default) ----
   const panel = document.createElement("div");
   panel.id = "verifyPanel";
-  Object.assign(panel.style, {
-    position: "fixed",
-    bottom: "12px",
-    right: "12px",
-    background: "rgba(10,25,41,.92)",
-    border: "1px solid rgba(255,255,255,.12)",
-    borderRadius: "12px",
-    padding: "10px 12px",
-    fontFamily: "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace",
-    fontSize: "13px",
-    color: "#fff",
-    zIndex: 999999,
-    boxShadow: "0 10px 30px rgba(0,0,0,.35)",
-    backdropFilter: "blur(6px)",
-    maxWidth: "280px",
-    display: "none" // ✅ default: skjult (kun chip vises)
-  });
-
-  const head = document.createElement("div");
-  head.style.cssText = "display:flex;align-items:center;gap:10px;margin-bottom:6px;";
-
-  const title = document.createElement("div");
-  title.textContent = "🧩 Modulstatus:";
-  title.style.cssText = "font-weight:700;flex:1;";
-
-  const close = document.createElement("button");
-  close.type = "button";
-  close.textContent = "✕";
-  close.setAttribute("aria-label", "Lukk modulstatus");
-  close.style.cssText = `
-    width: 28px;
-    height: 28px;
-    border-radius: 9px;
-    cursor: pointer;
-    background: rgba(255,255,255,.08);
+  panel.style.cssText = `
+    position: fixed;
+    right: 12px;
+    bottom: 12px;
+    z-index: 999999;
+    background: rgba(10,25,41,.92);
     border: 1px solid rgba(255,255,255,.12);
-    color: #e6eef9;
-    font-size: 14px;
-    line-height: 1;
+    border-radius: 12px;
+    padding: 10px 12px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 13px;
+    color: #fff;
+    box-shadow: 0 10px 30px rgba(0,0,0,.35);
+    backdrop-filter: blur(6px);
+    max-width: 260px;
+    display: none;
   `;
 
-  head.appendChild(title);
-  head.appendChild(close);
-  panel.appendChild(head);
+  panel.innerHTML = `
+    <div style="display:flex;align-items:center;gap:10px;justify-content:space-between;">
+      <div style="font-weight:700;">🧩 Modulstatus</div>
+      <button id="verifyClose" type="button" style="
+        background: rgba(255,255,255,.10);
+        border: 1px solid rgba(255,255,255,.12);
+        color: #fff;
+        width: 28px;
+        height: 28px;
+        border-radius: 9px;
+        font-size: 14px;
+        line-height: 1;
+        cursor: pointer;
+      " aria-label="Lukk">✕</button>
+    </div>
+    <div id="verifyList" style="margin-top:8px;display:flex;flex-direction:column;gap:6px;"></div>
+  `;
 
-  const list = document.createElement("div");
-  panel.appendChild(list);
+  const list = panel.querySelector("#verifyList");
+  const closeBtn = panel.querySelector("#verifyClose");
 
-  document.body.appendChild(chip);
-  document.body.appendChild(panel);
-
-  // --------------------------
-  // Status update
-  // --------------------------
   function updateStatus() {
+    if (!list) return;
     list.innerHTML = "";
-    modules.forEach((m) => {
+
+    for (const m of modules) {
       let ok = false;
       try { ok = !!m.check(); } catch { ok = false; }
 
       const row = document.createElement("div");
-      row.style.cssText = "margin-bottom:2px; display:flex; align-items:center; gap:8px;";
-      row.innerHTML = `
-        <span style="width:18px">${ok ? "🟢" : "🔴"}</span>
-        <span style="opacity:.92">${m.name}</span>
-      `;
+      row.innerHTML = `${ok ? "🟢" : "🔴"} <span style="opacity:.92">${m.name}</span>`;
       list.appendChild(row);
-    });
+    }
   }
 
-  // Kjør uansett (også hvis script lastes etter DOMContentLoaded)
-  updateStatus();
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", updateStatus);
-  }
-
-  // Oppdater jevnlig (spiller ingen rolle om panelet er åpent/lukket)
-  setInterval(updateStatus, 3000);
-
-  // --------------------------
-  // Toggle UI
-  // --------------------------
   function openPanel() {
-    chip.style.display = "none";
-    panel.style.display = "block";
     updateStatus();
+    panel.style.display = "block";
+    chip.style.display = "none";
+    localStorage.setItem("hg_verify_open", "1");
   }
 
   function closePanel() {
     panel.style.display = "none";
     chip.style.display = "block";
+    localStorage.setItem("hg_verify_open", "0");
   }
 
-  chip.onclick = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    openPanel();
-  };
+  chip.onclick = (e) => { e.preventDefault(); e.stopPropagation(); openPanel(); };
+  closeBtn.onclick = (e) => { e.preventDefault(); e.stopPropagation(); closePanel(); };
 
-  close.onclick = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    closePanel();
-  };
+  // Auto refresh mens åpen (slipper å spamme når den er chip)
+  let timer = null;
+  function startTimer() {
+    if (timer) return;
+    timer = setInterval(() => {
+      if (panel.style.display === "block") updateStatus();
+    }, 3000);
+  }
 
-  console.log("🔍 Verify-chip aktivert (js/console/verify.js) ✅");
+  document.body.appendChild(chip);
+  document.body.appendChild(panel);
+  startTimer();
+
+  // Restore state: default = chip (lukket)
+  const saved = localStorage.getItem("hg_verify_open") === "1";
+  if (saved) openPanel(); else closePanel();
+
+  window.HG_VERIFY_PANEL = { open: openPanel, close: closePanel, update: updateStatus };
+
+  console.log("🔍 Verify-chip aktivert (kun dev) ✅");
 })();
