@@ -263,7 +263,7 @@
       if (!box) return;
 
       if (!window.Emner || typeof window.Emner.loadForSubject !== "function") {
-        console.warn("Emner-loader er ikke tilgjengelig på denne siden.");
+        if (window.DEBUG) console.warn("Emner-loader er ikke tilgjengelig på denne siden.");
         box.innerHTML = '<p class="muted">Emne-systemet er ikke aktivert ennå.</p>';
         return;
       }
