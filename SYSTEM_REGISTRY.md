@@ -1,124 +1,193 @@
-# History GO – SYSTEM REGISTRY (LOCKED v1)
+# 🧭 History GO – SYSTEM REGISTRY (LOCKED v2)
 
 Dette dokumentet er fasit for filstruktur, ansvar og eierskap.
-Ingen “normalisering” eller gjetting er tillatt: domener = filnavn.
+Ingen “normalisering” eller gjetting er tillatt: **domener = filnavn**.
+Hvis id ikke matcher → **FAIL FAST**.
 
 Domener (canonical ids):
 by, historie, kunst, litteratur, musikk, naeringsliv, natur, politikk,
-popkultur, psykologi, sport, subkultur, vitenskap
+popkultur, psykologi, sport, subkultur, vitenskap  [oai_citation:0‡DomainRegistry.js](sediment://file_000000008360720ab3a478d5d1c0d42c)
 
 ---
 
 ## 1) Entry points
 
-- Root: `index.html` (History GO)
-- AHA: `AHA/index.html`
-- App bootstrap: `js/app.js`
-- Service worker: `sw.js`
+- Root: `index.html` (History GO)  [oai_citation:1‡index.html](sediment://file_00000000d58c720c8a39ec5ab4986634)
+- Profile: `profile.html`  [oai_citation:2‡profile.html](sediment://file_000000000a4c71f4a7f3a78b04dc4e35)
+- Knowledge: `knowledge.html`  [oai_citation:3‡knowledge.html](sediment://file_0000000053c4720abca21077bd0e053d)
+- Notater: `notater.html`  [oai_citation:4‡app.js](sediment://file_00000000dc98720ca7dc44e6d53963bd)
+- Emner: `emner.html`  [oai_citation:5‡knowledge.html](sediment://file_0000000053c4720abca21077bd0e053d)
+- AHA: `AHA/index.html`  [oai_citation:6‡index AHA.html](sediment://file_000000000ccc71f4a2b2d89bdd9ac09f)
+- App bootstrap: `js/app.js` (ingen `core.js` i denne versjonen)  [oai_citation:7‡app.js](sediment://file_00000000dc98720ca7dc44e6d53963bd)
+- Service worker: `sw.js`  [oai_citation:8‡sw.js](sediment://file_00000000b114720aa19a322a09c81c5a)
+- PWA manifest: `manifest.json`  [oai_citation:9‡app.js](sediment://file_00000000dc98720ca7dc44e6d53963bd)
 
 ---
 
-## 2) Kjerne (JS)
+## 2) Kjerne (JS) — ansvar og eierskap
 
-### js/app.js
-Rolle: Orchestrator / bootstrap.
+### `js/app.js`
+Rolle: **Orchestrator / bootstrap** (nåværende “core”).
 Eier:
 - init av app
 - event-binding
 - kobling mellom kart/data/quiz/profil
+- lagring av brukerinteraksjon (notater + dialoger)
+- eksportbuffer til AHA (`aha_import_payload_v1`)  [oai_citation:10‡app.js](sediment://file_00000000dc98720ca7dc44e6d53963bd)
 
-### js/dataHub.js
-Rolle: Datasentral + caching.
+---
+
+### `js/dataHub.js`
+Rolle: **Datasentral + caching + enrichment**.
 Eier:
-- lasting av JSON fra `/data/*`
-- (evt) loading av overlays/pensum/quiz via manifest/loader
+- lasting av JSON og bygging av cache/indekser
+- (evt) lasting av overlays/pensum/quiz via manifest/loader (der det er implementert) 
 
 Regel:
-- Ingen andre filer fetcher `/data/*.json` direkte hvis dataHub tilbyr det.
+- Ingen andre filer fetcher `/data/*.json` direkte **hvis dataHub tilbyr det**.
 
-### js/map.js
-Rolle: Kartmotor.
+**Bevisst unntak (dokumentert):**
+- `notater.html` fetcher `data/people.json` og `data/places.json` direkte for å mappe id→navn.  [oai_citation:11‡app.js](sediment://file_00000000dc98720ca7dc44e6d53963bd)
+
+---
+
+### `js/map.js`
+Rolle: **Kartmotor (HGMap)**.
 Eier:
-- initMap
-- markers + click → UI
+- init av MapLibre-kart
+- markers + visited-state
+- click → callback til UI/app (ikke egen app-state) 
 
-### js/routes.js
-Rolle: Ruter.
+---
+
+### `js/routes.js`
+Rolle: **Ruter**.
 Eier:
-- render/tegn ruter
-- aktiv rute state (ikke global app state)
+- route rendering/aktivering
+- aktiv rute-state lokalt for route-modus (ikke global app-state)  [oai_citation:12‡notater.html](sediment://file_000000009dcc71f4949d419964ee2ff4)
 
-### js/quizzes.js
-Rolle: Quizmotor.
+---
+
+### `js/quizzes.js`
+Rolle: **Quizmotor (QuizEngine)**.
 Eier:
 - laste quiz-manifest + riktige quiz-filer
 - starte/avslutte quiz
-- levere resultater til hgInsights/profile
+- belønning/hooks på riktige svar (insights/knowledge/trivia) 
 
-### js/profile.js
-Rolle: Brukerprofil/progresjon.
-Eier:
-- progresjon, badges, visited
-- localStorage state
-
-### js/hgInsights.js
-Rolle: Innsiktsmotor (HG).
-Eier:
-- registrere læring/konsepter
-- stats per domene/emne
-
-### js/hgConceptIndex.js
-Rolle: Begrepsindeks.
-Eier:
-- indeks over konsepter og koblinger
-
-### js/knowledge.js
-Rolle: Kunnskapsvisning (HG).
-Eier:
-- rendring av “knowledge” flater/tekst
-
-### js/knowledge_component.js
-Rolle: UI-komponent for knowledge.
-
-### js/popup-utils.js
-Rolle: Popup/UI-hjelpere.
 Regel:
-- ingen forretningslogikk
+- QuizEngine skal være eneste stedet som “binder” quizflyt til belønning-kall (via API/hooks).
 
-### js/trivia.js
-Rolle: Trivia/mikroinnhold.
+---
 
-### js/emnerLoader.js
-Rolle: Leser emne-filer fra `/emner/*` og gjør dem tilgjengelig for UI/merker/AHA.
+### `js/profile.js`
+Rolle: **Profil og visning av progresjon**.
 Eier:
-- loadEmnerForDomain(domainId)
+- rendring av profilside (stats, merits, badges, steder/personer, timeline)
+- leser localStorage som sannhet
+- reagerer på `updateProfile` (live oppdatering)   [oai_citation:13‡profile.html](sediment://file_000000000a4c71f4a7f3a78b04dc4e35)
 
-### js/fagkartLoader.js
-Rolle: Leser fagkart-struktur fra `/emner/fagkart*.json`.
+---
 
-### js/emneDekning.js
-Rolle: Dekningslogikk (hva brukeren “har dekket” i pensum).
+### `js/hgInsights.js`
+Rolle: **Innsiktsmotor (HG)**.
 Eier:
-- computeCoverage(domainId, userState, emner)
+- registrere læring/konsepter som events
+- **kun `core_concepts` regnes som begreper** (topic er ikke fallback)
+- lagrer i `hg_insights_events_v1` 
+
+---
+
+### `js/hgConceptIndex.js`
+Rolle: **Begrepsindeks**.
+Eier:
+- indeks over konsepter og koblinger (for navigasjon/struktur/matching)  [oai_citation:14‡hgConceptIndex.js](sediment://file_00000000d8dc720a803a3abcc3810e08)
+
+---
+
+### `js/knowledge.js`
+Rolle: **Knowledge-universe + lagring + AHA-sync**.
+Eier:
+- `knowledge_universe` (localStorage)
+- `saveKnowledgeFromQuiz(...)`
+- dispatch `updateProfile`
+- kaller `syncHistoryGoToAHA()` når tilgjengelig  [oai_citation:15‡knowledge.js](sediment://file_00000000c480720abb3c061dd390cb31)
+
+---
+
+### `js/trivia.js`
+Rolle: **Trivia-universe + lagring + AHA-sync**.
+Eier:
+- `trivia_universe` (localStorage)
+- `saveTriviaPoint(...)`
+- dispatch `updateProfile`
+- kaller `syncHistoryGoToAHA()` når tilgjengelig  [oai_citation:16‡knowledge.js](sediment://file_00000000c480720abb3c061dd390cb31)
+
+---
+
+### `js/popup-utils.js`
+Rolle: **Popup/UI-hjelpere + PlaceCard**.
+Regel:
+- ingen “global forretningslogikk”
+- lov å gjøre gating/visningsregler (f.eks. “vis kun etter fullført quiz”)
+
+Eier:
+- person-popup / place-popup
+- PlaceCard-UI og knapper (quiz/chat/notat)
+- inline visning av knowledge/trivia når quiz er fullført (gating via `quiz_history`)  [oai_citation:17‡popup-utils.js](sediment://file_00000000077c71f4abe46f365249f2d5)
+
+---
+
+### `js/knowledge_component.js`
+Rolle: **UI-komponent for knowledge** (renderer knowledge-lister/komponenter i HG-sider).  [oai_citation:18‡knowledge_component.js](sediment://file_0000000020d4720a9c775d5489494dae)
+
+---
+
+### `js/DomainRegistry.js`
+Rolle: **Domene-fasit + alias + fail-fast**.
+Eier:
+- canonical domain ids + alias
+- filkonvensjon-helper (`file(kind, domainId)`)
+- STOPP ved ukjent domene (ingen normalisering)  [oai_citation:19‡DomainRegistry.js](sediment://file_000000008360720ab3a478d5d1c0d42c)
+
+---
+
+### `js/domainHealthReport.js`
+Rolle: **Helsesjekk for domener (filer/manifest)**.
+Eier:
+- verifisere at domener har forventede filer (emner/quiz/merke + manifest best effort)
+- dev-verktøy (toast/log)  [oai_citation:20‡domainHealthReport.js](sediment://file_00000000e7f471f4aedee10968b3595c)
+
+---
+
+### `js/quiz-audit.js`
+Rolle: **Quiz-integritetssjekk**.
+Eier:
+- lese `data/quiz/manifest.json`
+- laste quizfiler
+- validere at `personId/placeId` finnes i PEOPLE/PLACES  [oai_citation:21‡quiz-audit.js](sediment://file_00000000fa54720aabdb60556e9c8681)
 
 ---
 
 ## 3) Data (core)
 
-### /data (statisk)
-- data/people.json
-- data/places.json
-- data/routes.json
-- data/tags.json
-- data/badges.json
-- data/people_baseskjema.json
-- data/places_baseskjema.json
+### `/data` (statisk)
+- `data/people.json`
+- `data/places.json`
+- `data/routes.json`
+- `data/tags.json`
+- `data/badges.json`
+- (evt) base-skjema-filer hvis de brukes i repoet (holdes stabile)
 
-### /data/overlays/by
-- (tematiske overlays for “by”)
+Regel:
+- steder/personer/quiz må bruke id-er som matcher koblinger (placeId/personId osv.).
+- endrer du id → kjør QuizAudit etterpå.  [oai_citation:22‡quiz-audit.js](sediment://file_00000000fa54720aabdb60556e9c8681)
 
-### /data/pensum
-- (pensumfiler / struktur)
+### `/data/overlays/<domain>`
+- tematiske overlays per domene (hvis aktivert via DataHub). 
+
+### `/data/pensum` og/eller `/emner`
+- pensumstruktur og emner brukes av `emner.html` og AHA-matching.  [oai_citation:23‡knowledge.html](sediment://file_0000000053c4720abca21077bd0e053d)  [oai_citation:24‡ahaEmneMatcher.js](sediment://file_000000004a78720ab78a7929271e8b15)
 
 ---
 
@@ -126,24 +195,11 @@ Eier:
 
 Folder: `data/quiz/`
 
-Filer:
-- quiz_by.json
-- quiz_historie.json
-- quiz_kunst.json
-- quiz_litteratur.json
-- quiz_musikk.json
-- quiz_naeringsliv.json
-- quiz_natur.json
-- quiz_politikk.json
-- quiz_populaerkultur.json
-- quiz_psykologi.json
-- quiz_sport.json
-- quiz_subkultur.json
-- quiz_vitenskap.json
-- manifest.json   <-- autoritativ liste, brukes av quizzes.js
+- `manifest.json`  ← autoritativ liste, brukes av QuizEngine/Audit   [oai_citation:25‡quiz-audit.js](sediment://file_00000000fa54720aabdb60556e9c8681)
+- quizfiler per domene (filnavn styrt av DomainRegistry + manifest)  [oai_citation:26‡DomainRegistry.js](sediment://file_000000008360720ab3a478d5d1c0d42c)
 
 Regel:
-- Ingen quiz skal lastes uten at den finnes i manifest.json
+- Ingen quiz skal lastes uten at den finnes i `data/quiz/manifest.json`. 
 - Ingen mapping/normalisering av domenenavn er lov.
 
 ---
@@ -153,27 +209,14 @@ Regel:
 Folder: `/emner/`
 
 Emner per domene:
-- emner_by.json
-- emner_historie.json
-- emner_kunst.json
-- emner_litteratur.json
-- emner_musikk.json
-- emner_naeringsliv.json
-- emner_natur.json
-- emner_politikk.json
-- emner_popkultur.json
-- emner_psykologi.json
-- emner_sport.json
-- emner_subkultur.json
-- emner_vitenskap.json
+- `emner_<domainId>.json` (domainId må være canonical)  [oai_citation:27‡domainHealthReport.js](sediment://file_00000000e7f471f4aedee10968b3595c)
 
 Fagkart:
-- fagkart.json
-- fagkart_map.json
+- `fagkart*.json` (hvis i bruk) – lastes av fagkart-loader via DataHub/Emner-sider.  [oai_citation:28‡knowledge.html](sediment://file_0000000053c4720abca21077bd0e053d)
 
 Regel:
-- emner_* filnavn er canonical domain id.
-- popkultur (emner) og populaerkultur (quiz) er IKKE samme id uten eksplisitt mapping.
+- `emner_*` filnavn er canonical domain id.
+- Konflikter som `popkultur` vs `populaerkultur` skal håndteres eksplisitt via DomainRegistry alias (ikke “normalisering”).  [oai_citation:29‡DomainRegistry.js](sediment://file_000000008360720ab3a478d5d1c0d42c)
 
 ---
 
@@ -181,63 +224,39 @@ Regel:
 
 Folder: `/merker/`
 
-- merker.html (oversikt)
-- merker.css
-- merke_by.html
-- merke_historie.html
-- merke_kunst.html
-- merke_litteratur.html
-- merke_musikk.html
-- merke_naeringsliv.html
-- merke_natur.html
-- merke_politikk.html
-- merke_populaerkultur.html
-- merke_psykologi.html
-- merke_sport.html
-- merke_subkultur.html
-- merke_vitenskap.html
+- `merker.html` (oversikt)
+- `merker.css`
+- `merke_<domainId>.html` (eller alias-løsning via DomainRegistry)
 
 Regel:
-- Merkesider renderer; de eier ikke logikk.
-- De bruker emnerLoader/fagkartLoader + stats fra hgInsights/profile.
+- merkesider renderer; de eier ikke systemlogikk.
+- de viser emner/knowledge via dedikerte moduler (f.eks. `knowledge_component.js`).  [oai_citation:30‡knowledge_component.js](sediment://file_0000000020d4720a9c775d5489494dae)
 
 ---
 
 ## 7) CSS
 
 Folder: `/css/`
-- base.css
-- components.css
-- effects.css
-- knowledge.css
-- layout.css
-- map.css
-- merits.css
-- miniProfile.css
-- nearby.css
-- overlay.css
-- placeCard.css
-- popups.css
-- profile.css
-- quiz.css
-- search.css
-- sheets.css
-- theme.css
+- base + components + effekter + modaler/sheets + map + quiz + profile + theme osv.
+(holdes modulært; ingen inline-farger i JS hvis theme tokens finnes)
 
 ---
 
 ## 8) AHA (egen app)
 
 Folder: `/AHA/`
-- index.html
-- ahaChat.js
-- insightsChamber.js
-- metaInsightsEngine.js
-- ahaEmneMatcher.js
-- ahaFieldProfiles.js
-- aha-chat.css
-- package.json
-- sw.js
+- `index.html`  [oai_citation:31‡index AHA.html](sediment://file_000000000ccc71f4a2b2d89bdd9ac09f)
+- `ahaChat.js`  [oai_citation:32‡ahaChat.js](sediment://file_00000000d53471f4a786fc85c56feb22)
+- `insightsChamber.js`  [oai_citation:33‡routes.js](sediment://file_00000000a990720aa80f64b91ee6b751)
+- `metaInsightsEngine.js`  [oai_citation:34‡metaInsightsEngine.js](sediment://file_00000000487871f48023ad7d767e6096)
+- `ahaEmneMatcher.js`  [oai_citation:35‡ahaEmneMatcher.js](sediment://file_000000004a78720ab78a7929271e8b15)
+- `ahaFieldProfiles.js`  [oai_citation:36‡ahaFieldProfiles.js](sediment://file_0000000086bc720a91836afbff47490e)
+- `aha-chat.css`
+- `sw.js` (AHA-scope)
+
+Kontrakt HG → AHA:
+- HG skriver `aha_import_payload_v1` (localStorage)
+- AHA importerer på brukerhandling (“Importer History Go”)  [oai_citation:37‡app.js](sediment://file_00000000dc98720ca7dc44e6d53963bd)  [oai_citation:38‡index AHA.html](sediment://file_000000000ccc71f4a2b2d89bdd9ac09f)
 
 ---
 
@@ -247,8 +266,15 @@ Canonical id = filnavnssuffiks.
 
 Hvis id ikke matcher:
 - FAIL FAST (log error + stopp)
-- aldri “fallback” til annen kategori
+- aldri fallback til annen kategori
 
-Eksempel på konflikt som må håndteres eksplisitt:
-- emner_popkultur.json  vs  quiz_populaerkultur.json  vs  merke_populaerkultur.html
-Dette krever ETT eksplisitt mapping-objekt (ikke normalisering).
+Konflikter håndteres kun via **ett eksplisitt mapping/alias** i DomainRegistry:
+- eksempel: `popkultur` vs `populaerkultur` (må være eksplisitt alias, ikke heuristikk)  [oai_citation:39‡DomainRegistry.js](sediment://file_000000008360720ab3a478d5d1c0d42c)
+
+---
+
+## 10) Validering før merge (standard)
+- Kjør: `DomainHealthReport.run({ toast: true })`  [oai_citation:40‡domainHealthReport.js](sediment://file_00000000e7f471f4aedee10968b3595c)
+- Kjør: `QuizAudit.run()`  [oai_citation:41‡quiz-audit.js](sediment://file_00000000fa54720aabdb60556e9c8681)
+- Minimum manual test:
+  - start quiz → riktig svar → knowledge/trivia lagres → `updateProfile` trigges  [oai_citation:42‡knowledge.js](sediment://file_00000000c480720abb3c061dd390cb31)  [oai_citation:43‡knowledge.js](sediment://file_00000000c480720abb3c061dd390cb31)
