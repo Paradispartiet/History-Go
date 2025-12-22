@@ -312,3 +312,48 @@
   margin-top: 10px;
   margin-bottom: 0;
 }
+
+/* --- FIX: pcPeople / personlinjer skal ikke være grå --- */
+#pcPeople,
+.pc-people {
+  background: var(--panel-bg, #121212);
+}
+
+/* Selve raden (hvis den har egen bg) */
+#pcPeople > *,
+.pc-people > * {
+  background: transparent !important;
+}
+
+/* Avatar: sort “disk” bak runde bilder */
+#pcPeople img,
+.pc-people img {
+  background: #000;
+}
+
+/* Hvis du har en wrapper rundt avataren (vanlig mønster) */
+#pcPeople .avatar,
+#pcPeople .person-avatar,
+#pcPeople .pc-avatar,
+.pc-people .avatar,
+.pc-people .person-avatar,
+.pc-people .pc-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: #000;
+}
+
+/* Bildet inni wrapper (hvis brukt) */
+#pcPeople .avatar img,
+#pcPeople .person-avatar img,
+#pcPeople .pc-avatar img,
+.pc-people .avatar img,
+.pc-people .person-avatar img,
+.pc-people .pc-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
