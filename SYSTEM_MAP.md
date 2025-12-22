@@ -6,78 +6,77 @@ Dette dokumentet er fasit for **hva som skjer**, **hvordan det skjer**, og **hvo
 ## 1) Entry points (sider) og hva de eier
 
 ### `index.html` (Hovedapp)
-**Eier:** kart, utforsk, placeCard, quiz-start, unlock, ruter, person/sted-popups, samtale + notat triggers.  
-**Runtime-kjerne:** `js/app.js` orkestrerer og kobler moduler.  [oai_citation:0‡index.html](sediment://file_00000000d58c720c8a39ec5ab4986634)  [oai_citation:1‡app 2.js](sediment://file_00000000ac28720a8b2ae16855897363)
+**Eier:** kart, utforsk, placeCard, quiz-start, unlock, ruter, person/sted-popups, samtale + notat-triggere.  
+**Runtime-kjerne:** `js/app.js` orkestrerer og kobler moduler.
 
 ### `profile.html` (Profil)
-**Eier:** profil-statistikk, merker/badges + modal, people-grid, visited-grid, timeline, “Siste kunnskap/funfacts”, og AHA-knapp.  [oai_citation:2‡profile.html](sediment://file_000000000a4c71f4a7f3a78b04dc4e35)  
-Kjører: `js/knowledge.js`, `js/trivia.js`, `js/profile.js`.  [oai_citation:3‡profile.html](sediment://file_000000000a4c71f4a7f3a78b04dc4e35)
+**Eier:** profil-statistikk, merker/badges + modal, people-grid, visited-grid, timeline, “Siste kunnskap/funfacts”, og AHA-knapp.  
+Kjører typisk: `js/knowledge.js`, `js/trivia.js`, `js/profile.js` (+ popup/utils).
 
 ### `knowledge.html` (Kunnskapsbibliotek)
-**Eier:** lesing/oversikt over all lagret knowledge (fra `knowledge_universe`). 
+**Eier:** lesing/oversikt over all lagret knowledge (fra `knowledge_universe`) + emne/coverage-visning der det er aktivt.
 
 ### `notater.html` (Notatbok)
-**Eier:** render av alle notater fra `hg_user_notes_v1`.  [oai_citation:4‡notater.html](sediment://file_00000000b92871f486bfea98ba1d799e)  
-**Viktig:** denne siden fetcher `people.json` og `places.json` direkte (ikke via DataHub).  [oai_citation:5‡notater.html](sediment://file_00000000b92871f486bfea98ba1d799e)
+**Eier:** render av alle notater fra `hg_user_notes_v1`.  
+**Viktig:** siden fetcher `people.json` og `places.json` direkte (ikke via DataHub).
 
 ### `emner.html` (Emner / pensum)
-**Eier:** emne-dekning per fagfelt basert på brukerens begreper (fra HGInsights) + emner fra EmnerLoader + `computeEmneDekning`.  [oai_citation:6‡emner.html](sediment://file_00000000b95c71f48436d6be7b142056)
+**Eier:** emne-dekning per fagfelt basert på brukerens begreper (fra HGInsights) + emner fra EmnerLoader + `computeEmneDekning`.
 
 ### `AHA/index.html` (AHA)
-**Eier:** import av HG-data (leser `aha_import_payload_v1`) og visning av innsiktskammer / chat.  [oai_citation:7‡index AHA.html](sediment://file_000000000ccc71f4a2b2d89bdd9ac09f)  [oai_citation:8‡ahaChat.js](sediment://file_00000000d53471f4a786fc85c56feb22)  [oai_citation:9‡routes.js](sediment://file_00000000a990720aa80f64b91ee6b751)
+**Eier:** import av HG-data (leser `aha_import_payload_v1`) og visning av innsiktskammer / chat + meta.
 
 ---
 
 ## 2) Moduloversikt (ansvar og “hvorfor”)
 
-### `js/app.js` — Orchestrator (den nye “core”)
-**Hva:** init, event-binding, progresjon, localStorage-kontrakter, samtale/notat-handlers, og eksportbuffer til AHA.  [oai_citation:10‡app 2.js](sediment://file_00000000ac28720a8b2ae16855897363)  
+### `js/app.js` — Orchestrator (nåværende “core”)
+**Hva:** init, event-binding, progresjon, localStorage-kontrakter, samtale/notat-handlers, og eksportbuffer til AHA.  
 **Hvorfor:** ett sted å forstå “hva skjer når brukeren gjør X”.
 
 ### `js/dataHub.js` — Datasentral
-**Hva:** laster JSON innen scope, bygger cache, “enriched” datasett og loader pakker (quiz manifest, overlays, emner/pensum hvis aktivert).  [oai_citation:11‡dataHub.js](sediment://file_00000000de44720aa99eb6770a66cc59)  
+**Hva:** laster JSON innen scope, bygger cache, “enriched” datasett og loader pakker (quiz-kategorier, overlays, emner/fagkart der det er i bruk).  
 **Hvorfor:** team-sikkert: færre fetch-spredninger og mer deterministisk dataflyt.
 
 ### `js/map.js` — HGMap (MapLibre)
-**Hva:** init kart, marker-lag, visited-state, click-callbacks (kaller tilbake til app/UI), og refreshMarkers.  [oai_citation:12‡map.js](sediment://file_000000005484720ab51b8ffa260b88e3)  
+**Hva:** init kart, marker-lag, visited-state, click-callbacks (kaller tilbake til app/UI), og `refreshMarkers`.  
 **Hvorfor:** kartlogikk isolert fra progresjon.
 
 ### `js/quizzes.js` — QuizEngine
-**Hva:** starter quiz for targetId (place/person), bruker manifest for å finne riktige quizfiler, “gating” (krever at sted er visited før quiz), og sender rewards.  [oai_citation:13‡quizzes.js](sediment://file_000000000ffc720aa6b5415f4b14ce5a)  
-**Hvorfor:** quiz er “motoren” som produserer progresjon + knowledge/trivia-signaler.
-
-**Viktig designregel i koden:** knowledge/trivia belønning trigges på **riktige svar** via API-hooks.  [oai_citation:14‡quizzes.js](sediment://file_000000000ffc720aa6b5415f4b14ce5a)
+**Hva:** starter quiz for targetId (place/person), bruker manifest for å finne riktige quizfiler, gating (krever state), og sender rewards via hooks.  
+**Hvorfor:** quiz er “motoren” som produserer progresjon + knowledge/trivia + insights.  
+**Designregel:** knowledge/trivia belønnes på **riktige svar** via hooks.
 
 ### `js/knowledge.js` — Knowledge universe + AHA-sync
-**Hva:** lagrer/leser `knowledge_universe`, tilbyr “saveKnowledgeFromQuiz”, og trigget UI-sync via `updateProfile`.  [oai_citation:15‡knowledge.js](sediment://file_00000000c480720abb3c061dd390cb31)  
+**Hva:** lagrer/leser `knowledge_universe`, tilbyr `saveKnowledgeFromQuiz`, og trigger UI-sync via `updateProfile`.  
 **Hvorfor:** knowledge er varig, gjenbrukbart “innholdslag” som vokser av learning events.
 
 ### `js/trivia.js` — Trivia universe + AHA-sync
-**Hva:** lagrer/leser `trivia_universe`, tilbyr `saveTriviaPoint`, og trigget UI-sync via `updateProfile`.  [oai_citation:16‡trivia.js](sediment://file_0000000094e0720aa9de1d7ca663169b)  
-**Hvorfor:** trivia er mikro-belønning/mikrolæring (hold flyt).
+**Hva:** lagrer/leser `trivia_universe`, og trigger UI-sync via `updateProfile`.  
+**Hvorfor:** trivia er mikro-belønning/mikrolæring (holder flyt).
 
 ### `js/popup-utils.js` — UI/Popups + placeCard
-**Hva:** `showPersonPopup`, `showPlacePopup`, `openPlaceCard` + reward-popups. Leser inline knowledge/trivia fra localStorage, men **viser det bare hvis quiz er fullført**.  [oai_citation:17‡popup-utils.js](sediment://file_00000000077c71f4abe46f365249f2d5)  
-**Hvorfor:** “kunnskap låses opp av læring” (først quiz → så kunnskap/funfacts i kort/popup).
+**Hva:** `showPersonPopup`, `showPlacePopup`, `openPlaceCard` + reward-popups. Leser inline knowledge/trivia fra localStorage, men **viser det kun hvis quiz er fullført**.  
+**Hvorfor:** “læring låser opp innhold” (først quiz → så kunnskap/funfacts).
 
 ### `js/hgInsights.js` — Begrepsspor (quiz_correct → concepts)
-**Hva:** logger events i `hg_insights_events_v1`. Kun `core_concepts` teller; `topic` er ikke fallback.   
-**Hvorfor:** gir et robust “concept count”-grunnlag for emner/pensum og AHA-profil.
+**Hva:** logger events i `hg_insights_events_v1`. Kun `core_concepts` teller; `topic` er ikke fallback.  
+**Hvorfor:** gir robust begrepsgrunnlag for emner/pensum og AHA-profil.
 
 ### `js/hgConceptIndex.js` — Konseptindeks
-**Hva:** indeks/struktur som lar deg mappe begreper videre (brukes av AHA/innsiktslaget).  [oai_citation:18‡hgConceptIndex.js](sediment://file_00000000d8dc720a803a3abcc3810e08)  
-**Hvorfor:** gjør “begreper” om til navigerbar struktur (ikke bare en logg).
+**Hva:** indeks/struktur som lar deg mappe begreper videre (brukes av innsiktslaget/AHA).  
+**Hvorfor:** gjør begreper navigerbare (ikke bare en logg).
 
 ### `js/routes.js` — Ruter
-**Hva:** rutevisning/aktivering (“show route to …”), koblet til kart og placeCard flow.  [oai_citation:19‡notater.html](sediment://file_000000009dcc71f4949d419964ee2ff4)  
+**Hva:** rutevisning/aktivering (“show route to …”), koblet til kart og placeCard flow.  
 **Hvorfor:** ruter er egen oppdagelsesmodus (tematisk guiding).
 
 ### `js/profile.js` — Profilmotor
-**Hva:** bygger profil-UI (stats, merits, personer, steder, tidslinje), leser knowledge/trivia “latest”, og eksponerer AHA-knappen fra profilen.   [oai_citation:20‡profile.html](sediment://file_000000000a4c71f4a7f3a78b04dc4e35)  
+**Hva:** bygger profil-UI (stats, merits, personer, steder, tidslinje), leser knowledge/trivia “latest”, og eksponerer AHA-knappen fra profilen.  
 **Hvorfor:** profil er “sannhetens speil”: render av lagret progresjon.
 
-### `AHA/ahaChat.js` + `AHA/insightsChamber.js`
-**Hva:** AHA sin import + lagring/visning av kammer (insikter, topics, stats) og chat.  [oai_citation:21‡ahaChat.js](sediment://file_00000000d53471f4a786fc85c56feb22)  [oai_citation:22‡routes.js](sediment://file_00000000a990720aa80f64b91ee6b751)  
+### `AHA/ahaChat.js` + `AHA/insightsChamber.js` (+ meta)
+**Hva:** AHA-import + lagring/visning av kammer (insikter, topics, stats) og chat + meta-analyse.  
 **Hvorfor:** HG produserer erfaring; AHA produserer abstraksjon og “meta”.
 
 ---
@@ -85,20 +84,20 @@ Kjører: `js/knowledge.js`, `js/trivia.js`, `js/profile.js`.  [oai_citation:3‡
 ## 3) Runtime: hva som skjer (detaljert flyt)
 
 ### 3.1 Oppstart (uten core.js)
-1) `index.html` laster moduler (app er hovedstart).  [oai_citation:23‡index.html](sediment://file_00000000d58c720c8a39ec5ab4986634)  
-2) `app.js` initierer systemet (leser data/progresjon, binder UI-events).  [oai_citation:24‡app 2.js](sediment://file_00000000ac28720a8b2ae16855897363)  
-3) `DataHub` brukes for lasting/caching av JSON og pakker.  [oai_citation:25‡dataHub.js](sediment://file_00000000de44720aa99eb6770a66cc59)  
-4) `HGMap.initMap(...)` opprettes og får `setPlaces` + `setVisited`.  [oai_citation:26‡map.js](sediment://file_000000005484720ab51b8ffa260b88e3)  
-5) `QuizEngine.init(...)` settes opp med API-hooks (knowledge/trivia/insights/rewards).  [oai_citation:27‡quizzes.js](sediment://file_000000000ffc720aa6b5415f4b14ce5a)
+1) `index.html` laster moduler (app er hovedstart).
+2) `app.js` initierer systemet (leser data/progresjon, binder UI-events).
+3) `DataHub` brukes for lasting/caching av data.
+4) `HGMap.initMap(...)` opprettes og får `setPlaces` + `setVisited`.
+5) `QuizEngine.init(...)` settes opp med hooks (knowledge/trivia/insights/rewards).
 
 **Hvorfor:** deterministisk “data først → UI etterpå”.
 
 ---
 
 ### 3.2 Utforsk → placeCard → quiz
-- Bruker trykker et sted (kart/panel) → `openPlaceCard(place)` rendrer kort + knapper.  [oai_citation:28‡popup-utils.js](sediment://file_00000000077c71f4abe46f365249f2d5)  
-- Klikk “Ta quiz” → `QuizEngine.start(place.id)` (ny motor).  [oai_citation:29‡popup-utils.js](sediment://file_00000000077c71f4abe46f365249f2d5)  [oai_citation:30‡quizzes.js](sediment://file_000000000ffc720aa6b5415f4b14ce5a)  
-- QuizEngine henter quiz via manifest (`data/quiz/manifest.json`) og laster riktig quizfil.  [oai_citation:31‡quizzes.js](sediment://file_000000000ffc720aa6b5415f4b14ce5a)  [oai_citation:32‡manifest.json](sediment://file_00000000bff8720a884b645df495c814)
+- Bruker trykker et sted (kart/panel) → `openPlaceCard(place)` rendrer kort + knapper.
+- Klikk “Ta quiz” → `QuizEngine.start(place.id)`.
+- QuizEngine bruker `data/quiz/manifest.json` / kategori-loading for å hente riktig quizinnhold.
 
 **Hvorfor:** quizer er modulære per fagfelt og kan caches/offline.
 
@@ -106,48 +105,48 @@ Kjører: `js/knowledge.js`, `js/trivia.js`, `js/profile.js`.  [oai_citation:3‡
 
 ### 3.3 Riktig svar → belønning → knowledge/trivia → innsikt
 Ved riktig svar:
-- `HGInsights.logCorrectQuizAnswer(userId, quizItem)` logger begreper (kun `core_concepts`).   
-- `knowledge.saveKnowledgeFromQuiz(...)` legger inn kunnskapsblokk i `knowledge_universe`.  [oai_citation:33‡knowledge.js](sediment://file_00000000c480720abb3c061dd390cb31)  
-- `trivia.saveTriviaPoint(...)` legger inn funfact i `trivia_universe`.  [oai_citation:34‡trivia.js](sediment://file_0000000094e0720aa9de1d7ca663169b)  
-- UI sync: `window.dispatchEvent(new Event("updateProfile"))` gjør at mini-profil/profil/labels kan oppdatere.  [oai_citation:35‡knowledge.js](sediment://file_00000000c480720abb3c061dd390cb31)  [oai_citation:36‡trivia.js](sediment://file_0000000094e0720aa9de1d7ca663169b)
+- `HGInsights.logCorrectQuizAnswer(userId, quizItem)` logger begreper (kun `core_concepts`).
+- `saveKnowledgeFromQuiz(...)` legger inn kunnskap i `knowledge_universe`.
+- trivia legges inn i `trivia_universe`.
+- UI sync: `window.dispatchEvent(new Event("updateProfile"))`.
 
-**Hvorfor:** du får et stabilt læringsspor (insights) + varig innhold (knowledge) + “spark” (trivia).
+**Hvorfor:** stabilt læringsspor (insights) + varig innhold (knowledge) + “spark” (trivia).
 
 ---
 
 ### 3.4 Visning av knowledge/trivia (låst bak fullført quiz)
-Popups/PlaceCard viser inline knowledge/trivia kun hvis `hasCompletedQuiz(targetId)` er true.  [oai_citation:37‡popup-utils.js](sediment://file_00000000077c71f4abe46f365249f2d5)  
-Den matcher items på id-prefix: `quiz_<targetId>_...` inne i `knowledge_universe`.  [oai_citation:38‡popup-utils.js](sediment://file_00000000077c71f4abe46f365249f2d5)
+Popups/PlaceCard viser inline knowledge/trivia kun hvis quiz er fullført (gating).  
+Matcher items på id-prefix: `quiz_<targetId>_...` i `knowledge_universe`.
 
-**Hvorfor:** “læring først, innhold etterpå” (hindrer at alt blir gratis scrolletekst).
+**Hvorfor:** “læring først, innhold etterpå”.
 
 ---
 
 ### 3.5 Samtale + notater (HG → AHA)
 I person-popup finnes knapper:
-- `data-chat-person="<person.id>"` (snakk)
-- `data-note-person="<person.id>"` (notat)  [oai_citation:39‡popup-utils.js](sediment://file_00000000077c71f4abe46f365249f2d5)
+- `data-chat-person="<person.id>"`
+- `data-note-person="<person.id>"`
 
 `app.js` håndterer lagring til:
 - `hg_person_dialogs_v1`
 - `hg_user_notes_v1`
-og oppdaterer AHA-importbuffer (`aha_import_payload_v1`).  [oai_citation:40‡app 2.js](sediment://file_00000000ac28720a8b2ae16855897363)
+og oppdaterer AHA-importbuffer (`aha_import_payload_v1`).
 
-**Hvorfor:** chat/notater er “tekstlig kunnskap” som AHA kan gjøre til innsikt.
+**Hvorfor:** chat/notater er tekstlig materiale AHA kan gjøre til innsikt.
 
 ---
 
 ### 3.6 Profil (leser state og rendrer)
-`profile.html` viser alle panelene og modalen for badges, og kaller `profile.js` som rendrer fra localStorage.  [oai_citation:41‡profile.html](sediment://file_000000000a4c71f4a7f3a78b04dc4e35)   
-Den viser også “Siste kunnskap” og “Siste funfacts” basert på universene.  [oai_citation:42‡profile.html](sediment://file_000000000a4c71f4a7f3a78b04dc4e35)
+`profile.html` rendrer fra localStorage via `profile.js`.  
+Viser også “Siste kunnskap” og “Siste funfacts”.
 
 ---
 
 ### 3.7 Emner/pensum (HGInsights → computeEmneDekning)
 `emner.html`:
-- henter user concepts via `HGInsights.getUserConcepts(userId)`  [oai_citation:43‡emner.html](sediment://file_00000000b95c71f48436d6be7b142056)   
-- laster emner via `Emner.loadForSubject(subjectId)` (emnerLoader)  [oai_citation:44‡emner.html](sediment://file_00000000b95c71f48436d6be7b142056)  
-- beregner dekning med `computeEmneDekning(concepts, emner)`  [oai_citation:45‡emner.html](sediment://file_00000000b95c71f48436d6be7b142056)
+- henter user concepts via `HGInsights.getUserConcepts(userId)`
+- laster emner via Emner-loader
+- beregner dekning med `computeEmneDekning(concepts, emner)`
 
 **Hvorfor:** “hva du har lært” knyttes til pensumlinjer (målbar progresjon).
 
@@ -158,7 +157,7 @@ Service worker cacher:
 - sider (index/profile/knowledge/notater)
 - CSS/JS
 - data (places/people/tags/badges/routes + quiz-manifest og quiz-filer)
-og bruker **network-first for HTML** og **cache-first for statics**.  [oai_citation:46‡sw.js](sediment://file_00000000b114720aa19a322a09c81c5a)
+Strategi: **network-first for HTML**, **cache-first for statics**.
 
 **Hvorfor:** iPad + bybruk krever robust offline og rask last.
 
@@ -167,32 +166,274 @@ og bruker **network-first for HTML** og **cache-first for statics**.  [oai_citat
 ## 4) State-kontrakt (localStorage keys)
 
 **Progresjon/kjerne:**
-- `visited` / `visited_places` (avhenger av hvilken struktur app.js bruker)
+- `visited` / `visited_places` (avhenger av struktur i app)
 - `merits_by_category`
-- `quiz_progress` og/eller `quiz_history` (popup-utils sjekker `quiz_history`)  [oai_citation:47‡popup-utils.js](sediment://file_00000000077c71f4abe46f365249f2d5)
+- `quiz_progress` og/eller `quiz_history` (popup-utils sjekker `quiz_history`)
 
 **Knowledge/Trivia:**
-- `knowledge_universe`  [oai_citation:48‡knowledge.js](sediment://file_00000000c480720abb3c061dd390cb31)
-- `trivia_universe`  [oai_citation:49‡trivia.js](sediment://file_0000000094e0720aa9de1d7ca663169b)
+- `knowledge_universe`
+- `trivia_universe`
 
 **Innsikt/begrep:**
-- `hg_insights_events_v1` 
+- `hg_insights_events_v1`
 
 **Samtaler og notater:**
-- `hg_person_dialogs_v1`  [oai_citation:50‡app 2.js](sediment://file_00000000ac28720a8b2ae16855897363)
-- `hg_user_notes_v1`  [oai_citation:51‡notater.html](sediment://file_00000000b92871f486bfea98ba1d799e)
+- `hg_person_dialogs_v1`
+- `hg_user_notes_v1`
 
 **AHA bro:**
-- `aha_import_payload_v1` (HG skriver; AHA leser ved import)  [oai_citation:52‡app 2.js](sediment://file_00000000ac28720a8b2ae16855897363)  [oai_citation:53‡index AHA.html](sediment://file_000000000ccc71f4a2b2d89bdd9ac09f)
+- `aha_import_payload_v1` (HG skriver; AHA leser ved import)
 
 ---
 
 ## 5) Team-regler (for å unngå rot)
-
-1) Ikke endre localStorage keys uten migrering + oppdatert SYSTEM_MAP.
+1) Ikke endre localStorage-keys uten migrering + oppdatert SYSTEM_MAP.
 2) Ikke bypass QuizEngine-hooks: rewards/knowledge/trivia/insights må trigges samme sted.
-3) DataHub er “datasentral”; unngå direkte fetch i nye sider (notater.html gjør det nå).  [oai_citation:54‡notater.html](sediment://file_00000000b92871f486bfea98ba1d799e)
-4) Popup-utils viser knowledge/trivia kun ved fullført quiz – ikke fjern uten å være bevisst på designregelen.  [oai_citation:55‡popup-utils.js](sediment://file_00000000077c71f4abe46f365249f2d5)
-5) Service worker: endringer i filnavn krever oppdatering av STATIC_ASSETS og CACHE_VERSION.  [oai_citation:56‡sw.js](sediment://file_00000000b114720aa19a322a09c81c5a)
+3) DataHub er datasentral; unngå direkte fetch i nye sider (notater.html er dokumentert unntak).
+4) Popup-utils gating (“vis kun etter fullført quiz”) er en designregel.
+5) Service worker: endringer i filnavn krever oppdatering av cache-liste og cache-versjon.
 
 ---
+
+# 🔌 API INDEX (STRICT) — Public exports (History GO + AHA)
+Dette er **ikke** en liste over alle interne funksjoner.
+Dette er kun det som faktisk eksponeres globalt (public surface).
+
+---
+
+## History GO
+
+### js/app.js
+Eksporterer globals:
+- `window.__HG_LAST_ERROR__`
+- `window.HG_ENV` (objekt)
+  - `HG_ENV.geo` settes til `"unknown" | "granted" | "blocked"`
+- `window.userLat`
+- `window.userLon`
+- `window.MAP`
+- `window.START`
+
+Eksporterer funksjon:
+- `window.pulseMarker(id)`
+
+---
+
+### js/dataHub.js
+Eksporterer:
+- `window.DataHub` (objekt)
+
+Public metoder/properties på `DataHub`:
+- `fetchJSON`
+- `clearCache`
+- `loadTags`
+- `loadPlacesBase`
+- `loadPeopleBase`
+- `loadBadges`
+- `loadRoutes`
+- `loadPlaceOverlays`
+- `loadPeopleOverlays`
+- `getPlaceEnriched`
+- `getPersonEnriched`
+- `loadEnrichedAll`
+- `loadEmner`
+- `loadFagkart`
+- `loadFagkartMap`
+- `loadQuizCategory`
+- `normalizeTags`
+- `mergeDeep`
+- `indexBy`
+- `APP_BASE_PATH`
+- `DEFAULTS`
+
+---
+
+### js/map.js
+Eksporterer globals:
+- `window.userLat`
+- `window.userLon`
+- `window.currentPos`
+- `window.HGMap` (objekt)
+
+Public metoder på `HGMap`:
+- `initMap`
+- `getMap`
+- `resize`
+- `setDataReady`
+- `setPlaces`
+- `setVisited`
+- `setCatColor`
+- `setOnPlaceClick`
+- `setUser`
+- `maybeDrawMarkers`
+- `refreshMarkers`
+
+---
+
+### js/routes.js
+Eksporterer globals:
+- `window.ROUTES`
+- `window.loadRoutes`
+- `window.openRoutesSheet`
+- `window.showRouteOverlay`
+- `window.closeRouteOverlay`
+- `window.focusRouteOnMap`
+- `window.clearThematicRoute`
+- `window.computeNearestStop`
+- `window.getNearbyRoutesSorted`
+- `window.showRouteToPlace`
+
+---
+
+### js/quizzes.js
+Eksporterer:
+- `window.QuizEngine` (objekt)
+
+Public metoder på `QuizEngine`:
+- `init`
+- `start`
+
+---
+
+### js/popup-utils.js
+Eksporterer globals (funksjoner):
+- `window.showPersonPopup`
+- `window.showPlacePopup`
+- `window.openPlaceCard`
+- `window.openPlaceCardByPerson`
+- `window.showRewardPlace`
+- `window.showRewardPerson`
+
+---
+
+### js/knowledge.js
+Eksporterer globals (funksjoner):
+- `window.syncHistoryGoToAHA`
+- `window.saveKnowledgeFromQuiz`
+- `window.computeEmneDekning`
+
+---
+
+### js/trivia.js
+Eksporterer globals (funksjon):
+- `window.syncHistoryGoToAHA`
+
+---
+
+### js/hgInsights.js
+Eksporterer:
+- `window.HGInsights` (objekt)
+
+Public metoder på `HGInsights`:
+- `logCorrectQuizAnswer`
+- `getUserConcepts`
+- `clearAll`
+
+---
+
+### js/hgConceptIndex.js
+Eksporterer:
+- `window.HGConceptIndex` (objekt)
+
+Public metoder på `HGConceptIndex`:
+- `buildGlobalConceptIndex`
+- `getConceptSummary`
+
+---
+
+### js/DomainRegistry.js
+Eksporterer:
+- `window.DomainRegistry` (objekt)
+
+Public metoder på `DomainRegistry`:
+- `resolve`
+- `list`
+- `aliasMap`
+- `file`
+
+---
+
+### js/domainHealthReport.js
+Eksporterer:
+- `window.DomainHealthReport` (objekt)
+
+Public metoder:
+- `run`
+
+---
+
+### js/quiz-audit.js
+Eksporterer:
+- `window.QuizAudit` (objekt)
+
+Public metoder:
+- `run`
+
+---
+
+## AHA (egen app)
+
+### AHA/insightsChamber.js
+Eksporterer:
+- `window.InsightsEngine` (objekt)
+
+Public metoder på `InsightsEngine`:
+- `createEmptyChamber`
+- `createSignalFromMessage`
+- `addSignalToChamber`
+- `splitIntoSentences`
+- `getInsightsForTopic`
+- `computeTopicStats`
+- `computeSemanticCounts`
+- `computeDimensionsSummary`
+- `createPathSteps`
+- `createConceptPathForConcept`
+- `createSynthesisText`
+- `createArticleDraft`
+- `computeTopicsOverview`
+- `createNarrativeForTopic`
+- `extractConcepts`
+- `mergeConcepts`
+- `getConceptsForTheme`
+
+---
+
+### AHA/metaInsightsEngine.js
+Eksporterer:
+- `window.MetaInsightsEngine` (objekt)
+
+Public metoder på `MetaInsightsEngine`:
+- `buildUserMetaProfile`
+- `computeGlobalSemanticProfile`
+- `detectCrossTopicPatterns`
+- `enrichInsightsWithLifecycle`
+- `computeInsightLifecycle`
+- `buildConceptIndex`
+- `buildConceptIndexForTheme`
+- `posFilterConcepts`
+- `extractMultiwordConcepts`
+
+---
+
+### AHA/ahaFieldProfiles.js
+Eksporterer:
+- `window.HG_FIELD_PROFILES` (objekt)
+
+Public keys i `HG_FIELD_PROFILES`:
+- `historie`
+- `vitenskap`
+- `kunst`
+- `natur`
+- `musikk`
+- `populaerkultur`
+- `subkultur`
+- `sport`
+- `by`
+- `politikk`
+- `naeringsliv`
+- `litteratur`
+
+---
+
+### AHA/ahaEmneMatcher.js
+Eksporterer (global funksjon):
+- `matchEmneForText(subjectId, text)`
