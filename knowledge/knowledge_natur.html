@@ -181,9 +181,8 @@
           </ul>
         `;
       } catch (e) {
-        console.warn("Feil ved lasting av natur-emner", e);
-        box.innerHTML =
-          "<p class='muted'>Kunne ikke laste natur-emner akkurat nå.</p>";
+        if (DEBUG) console.warn("Feil ved lasting av natur-emner", e);
+         box.innerHTML = "<p class='muted'>Kunne ikke laste natur-emner akkurat nå.</p>";
       }
     });
   </script>
