@@ -1918,6 +1918,7 @@ async function callAHAAgentForCurrentTopic() {
 
   const API_BASE = ""; // samme origin
   try {
+    ahaDebug(state, "AHA-AI request payload (state)");
     const res = await fetch(API_BASE + "/api/aha-agent", {
       method: "POST",
       headers: {
@@ -2032,10 +2033,10 @@ function setupEmneUI() {
           });
         });
     } catch (err) {
-      console.warn("Feil ved lasting av emner for", fieldId, err);
-      listEl.innerHTML =
-        '<div class="emne-list-error">Feil ved lasting av emner for dette feltet.</div>';
-    }
+  if (DEBUG) console.warn("Feil ved lasting av emner for", fieldId, err);
+  listEl.innerHTML =
+    '<div class="emne-list-error">Feil ved lasting av emner for dette feltet.</div>';
+}
   }
 
   // Sett opp felt-knapper
@@ -2174,11 +2175,15 @@ function setupUI() {
               );
             }
           } catch (e) {
-            console.warn("Klarte ikke å koble emne til innsikt:", e);
-            log(
-              "   (Teknisk feil ved kobling av emne til innsikt – se console.)"
-            );
-          }
+  if (DEBUG) console.warn("Klarte ikke å koble emne til innsikt:", e);
+
+  // Hvis DEBUG=false bør du også endre teksten litt,
+  // siden du ikke vil peke folk til console i prod:
+  log("   (Teknisk feil ved kobling av emne til innsikt.)");
+
+  // evt. kun i debug:
+  if (DEBUG) log("   (Teknisk feil ved kobling av emne til innsikt – se console.)");
+}
         } else {
           log(
             "→ Fant ikke noe tydelig emne for " +
