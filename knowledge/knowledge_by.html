@@ -187,11 +187,12 @@
               .join("")}
           </ul>
         `;
+        
       } catch (e) {
-        console.warn("Feil ved lasting av by-emner", e);
-        box.innerHTML =
-          "<p class='muted'>Kunne ikke laste by-emner akkurat nå.</p>";
-      }
+  if (DEBUG) console.warn("Feil ved lasting av by-emner", e);
+  box.innerHTML = "<p class='muted'>Kunne ikke laste by-emner akkurat nå.</p>";
+}
+      
     });
   </script>
 
