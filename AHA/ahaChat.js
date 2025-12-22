@@ -1,11 +1,18 @@
 // ahaChat.js
 // Kobler AHA InsightsEngine til en enkel chat-side
 
+// ==============================
+// 0. KONFIG / DEBUG
+// ==============================
+const DEBUG = false;
+
 const SUBJECT_ID = "sub_laring";
 const STORAGE_KEY = "aha_insight_chamber_v1";
 
 // Enkel debug-hjelper som skriver JSON til debug-tekstfeltet i UI
 function ahaDebug(obj, label) {
+  if (!DEBUG) return; // ✅ no-op i prod
+
   try {
     const el = document.getElementById("aha-debug-output");
     if (!el) return;
