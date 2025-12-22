@@ -1,18 +1,14 @@
 /* ============================================================
-   VENSTRE PANELET – 35% BREDDE, HØYDE TIL 20% FRA BUNNEN
-   Viser 5 steder uten scrolling i kartet
-   ============================================================ */
-
-/* ============================================================
-   VENSTRE PANEL – FAST RAMME (v1)
-   Låst mellom topplinje og placeCard
+   VENSTRE PANEL – FAST RAMME (v2, stabil)
+   Låst mellom header og placeCard
    ============================================================ */
 
 :root{
   --hg-header-h: 62px;                 /* JS kan overstyre */
-  --hg-header-gap: 10px;               /* ← skyv venstrepanelet litt ned */
+  --hg-header-gap: 10px;               /* liten luft under header */
 
-  --hg-placecard-h: var(--pc-height);  /* ← viktig: matcher placeCard (41vh) */
+  /* viktig: fallback hvis --pc-height ikke finnes */
+  --hg-placecard-h: var(--pc-height, 41vh);
 
   --hg-leftpanel-w: 340px;
 
@@ -24,31 +20,30 @@
   position: fixed;
   left: 0;
 
-  /* bruk header-gap faktisk */
+  /* ✅ faktisk bruk gap */
   top: calc(var(--hg-header-h) + var(--hg-header-gap));
 
-  /* ✅ alltid helt ned */
-  bottom: 0;
+  /* ✅ låst til toppen av placeCard */
+  bottom: var(--hg-placecard-h);
 
   width: var(--hg-leftpanel-w);
   z-index: 20;
 
   background: var(--hg-frame-bg);
 
+  /* linjeløst */
   border-right: 0;
   border-radius: 0;
   box-shadow: none;
   backdrop-filter: none;
 
-  /* ✅ reserver plass til placeCard, så vi aldri ser “kart-gap” */
-  box-sizing: border-box;
-  padding-bottom: 0;
-
+  padding: 0;
   overflow: hidden;
 
   display: flex;
   flex-direction: column;
 }
+
 /* Topprad i panelet (tittel + dropdown) */
 #nearbyListContainer .leftpanel-head{
   display: flex;
@@ -57,7 +52,7 @@
   gap: 10px;
 
   padding: 10px 12px;
-  border-bottom: 0; /* ← linjeløst */
+  border-bottom: 0;
 }
 
 #nearbyListContainer .leftpanel-title{
@@ -74,23 +69,21 @@
   font-size: 13px;
 }
 
-/* Scroll-området */
+/* Scroll-området (selve lista skal scrolle) */
 #nearbyListContainer .leftpanel-body{
   flex: 1;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   padding: 10px 12px;
-
-  /* ✅ her skal “plass til placeCard” ligge */
-  padding-bottom: calc(var(--hg-placecard-h) + env(safe-area-inset-bottom, 0px));
 }
 
 /* Deaktiver gammel nearby-title hvis den finnes */
 #nearbyListContainer .nearby-title{
   display: none !important;
 }
-/* Gjør det lettere å vise 5 steder kompakt */
-.nearby-item {
+
+/* Rader */
+.nearby-item{
   display: flex;
   align-items: center;
   gap: 10px;
@@ -99,28 +92,29 @@
   border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 
-.nearby-item:last-child {
+.nearby-item:last-child{
   border-bottom: none;
 }
 
-.nearby-name {
+.nearby-name{
   font-size: 0.98rem;
   font-weight: 600;
   color: #fff;
-  flex: 1;                  /* ← Viktig: presser badge + dist til høyre */
-  white-space: nowrap;      /* ← Ingen linebreak */
+  flex: 1;
+
+  white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;  /* ← Korter hvis navnet blir for langt */
+  text-overflow: ellipsis;
 }
 
-.nearby-dist {
+.nearby-dist{
   font-size: 0.85rem;
   color: var(--muted);
-  white-space: nowrap;      /* ← aldri gå ned på ny linje */
+  white-space: nowrap;
 }
 
-/* Thumbnail (mindre!) */
-.nearby-thumb {
+/* Thumbnail */
+.nearby-thumb{
   width: 46px;
   height: 46px;
   object-fit: cover;
@@ -128,15 +122,8 @@
   border: 1px solid rgba(255,255,255,0.12);
 }
 
-/* Tekst venstrestilt */
-.nearby-info {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-/* Kategori-merke (liten rund ikon) */
-.nearby-badge {
+/* Kategori-merke */
+.nearby-badge{
   width: 26px;
   height: 26px;
   object-fit: contain;
@@ -148,6 +135,6 @@
 .nearby-thumb,
 .nearby-name,
 .nearby-badge,
-.nearby-dist {
+.nearby-dist{
   pointer-events: none;
 }
