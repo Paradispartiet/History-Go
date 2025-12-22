@@ -262,7 +262,12 @@
 
           btn.classList.add(ok ? "correct" : "wrong");
           qs.feedback.textContent = ok ? "Riktig ✅" : "Feil ❌";
-          if (ok) correct++;
+          if (ok) {
+            correct++;
+            const qText = q.question || q.text || "";
+            const chosen = options[Number(btn.dataset.idx)] ?? "";
+            correctAnswers.push({ question: qText, answer: chosen });
+          }
 
           // ✅ KUN ved RIKTIG: knowledge-event
           if (ok && typeof API.saveKnowledgeFromQuiz === "function") {
