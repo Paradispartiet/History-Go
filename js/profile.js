@@ -133,33 +133,41 @@ function openBadgeModal(badge) {
   } else {
     list.innerHTML = items
       .map(h => {
-        const date = new Date(h.date).toLocaleDateString("no-NO");
-        const score = `${h.correctAnswers.length}/${h.correctAnswers.length}`;
+                const date = h.date ? new Date(h.date).toLocaleDateString("no-NO") : "";
 
-        return `
-          <li class="badge-quiz-item">
-            <img class="badge-quiz-img" src="${h.image}">
-            <div class="badge-quiz-info">
-              <strong>${h.name}</strong><br>
-              <span>${date}</span><br>
-              <span class="badge-quiz-score">Score: ${score}</span>
+        const ca = Array.isArray(h.correctAnswers) ? h.correctAnswers : [];
+        const correct = Number.isFinite(h.correctCount) ? h.correctCount : ca.length;
+        const total = Number.isFinite(h.total) ? h.total : (ca.length || correct);
+        const score = `${correct}/${total}`;
 
+        const imgHtml = h.image ? `<img class="badge-quiz-img" src="${h.image}">` : "";
+
+        const answersHtml = ca.length
+          ? `
               <ul class="badge-quiz-answers">
-                ${h.correctAnswers
+                ${ca
                   .map(a => `
                     <li class="badge-quiz-q">
-                      <strong>${a.question}</strong><br>
-                      ✔ ${a.answer}
+                      <strong>${a.question || ""}</strong><br>
+                      ✔ ${a.answer || ""}
                     </li>
                   `)
                   .join("")}
               </ul>
+            `
+          : `<div class="badge-quiz-muted">Ingen detaljer lagret for denne quizen.</div>`;
+
+        return `
+          <li class="badge-quiz-item">
+            ${imgHtml}
+            <div class="badge-quiz-info">
+              <strong>${h.name || "Quiz"}</strong><br>
+              ${date ? `<span>${date}</span><br>` : ""}
+              <span class="badge-quiz-score">Score: ${score}</span>
+              ${answersHtml}
             </div>
           </li>
         `;
-      })
-      .join("");
-  }
 
   modal.style.display = "flex";
   modal.setAttribute("aria-hidden", "false");
