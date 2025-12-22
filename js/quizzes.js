@@ -177,14 +177,31 @@
   }
 
   function saveQuizHistory(entry) {
-    try {
-      const hist = JSON.parse(localStorage.getItem("quiz_history") || "[]");
-      hist.push(entry);
-      localStorage.setItem("quiz_history", JSON.stringify(hist));
-    } catch (e) {
-      console.warn("[QuizEngine] could not save quiz_history", e);
-    }
+  try {
+    // --- STRICT VALIDATION (no normalization) ---
+    if (!entry || typeof entry !== "object") throw new Error("entry missing");
+    if (!entry.categoryId) throw new Error("categoryId missing");
+    if (!entry.targetId) throw new Error("targetId missing");
+    if (!entry.name) throw new Error("name missing");
+    if (!entry.date) throw new Error("date missing");
+
+    if (!Number.isFinite(entry.correctCount)) throw new Error("correctCount missing/invalid");
+    if (!Number.isFinite(entry.total)) throw new Error("total missing/invalid");
+
+    if (!Array.isArray(entry.correctAnswers)) throw new Error("correctAnswers missing (must be array)");
+
+    // (optional) sanity:
+    // if (entry.correctAnswers.length !== entry.correctCount) throw new Error("correctAnswers length != correctCount");
+
+    const hist = JSON.parse(localStorage.getItem("quiz_history") || "[]");
+    const arr = Array.isArray(hist) ? hist : [];
+
+    arr.push(entry);
+    localStorage.setItem("quiz_history", JSON.stringify(arr));
+  } catch (e) {
+    if (window.DEBUG) console.warn("[QuizEngine] saveQuizHistory rejected entry", e, entry);
   }
+}
 
   function markQuizProgress(categoryId, targetId) {
     try {
@@ -392,7 +409,7 @@
       });
 
     } catch (e) {
-      console.warn("[QuizEngine] start crashed:", e);
+      if (window.DEBUG) console.warn("[QuizEngine] start crashed:", e);
       API.showToast("Quiz-feil: noe krasjet i quizzes.js");
     }
   };
