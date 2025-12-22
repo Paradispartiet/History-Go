@@ -42,7 +42,7 @@
 
   /* ✅ reserver plass til placeCard, så vi aldri ser “kart-gap” */
   box-sizing: border-box;
-  padding-bottom: calc(var(--hg-placecard-h) + env(safe-area-inset-bottom, 0px));
+  padding-bottom: 0;
 
   overflow: hidden;
 
@@ -78,7 +78,11 @@
 #nearbyListContainer .leftpanel-body{
   flex: 1;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   padding: 10px 12px;
+
+  /* ✅ her skal “plass til placeCard” ligge */
+  padding-bottom: calc(var(--hg-placecard-h) + env(safe-area-inset-bottom, 0px));
 }
 
 /* Deaktiver gammel nearby-title hvis den finnes */
