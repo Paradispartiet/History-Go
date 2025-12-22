@@ -121,82 +121,45 @@ function openBadgeModal(badge) {
   const max = badge.tiers[badge.tiers.length - 1].threshold;
   bar.style.width = `${Math.min(100, (info.points / max) * 100)}%`;
 
-    // --- QUIZ-HISTORIKK (robust + bakoverkompatibel) ---
-  const rawHistory = (() => {
-    try { return JSON.parse(localStorage.getItem("quiz_history") || "[]"); }
-    catch { return []; }
-  })();
-
-  const history = Array.isArray(rawHistory) ? rawHistory : [];
-  const catId = String(badge.id || "").toLowerCase();
-
-  const items = history
-    .filter(h => String(h?.categoryId || h?.category || "").toLowerCase() === catId)
-    .map(h => {
-      const correctAnswers = Array.isArray(h.correctAnswers) ? h.correctAnswers : [];
-
-      const correctCount =
-        Number.isFinite(h.correctCount) ? h.correctCount : correctAnswers.length;
-
-      const total =
-        Number.isFinite(h.total) ? h.total :
-        Number.isFinite(h.totalQuestions) ? h.totalQuestions :
-        (correctAnswers.length || correctCount);
-
-      const dateStr = (() => {
-        const d = h.date ? new Date(h.date) : null;
-        return d && !isNaN(d.getTime()) ? d.toLocaleDateString("no-NO") : "";
-      })();
-
-      return {
-        name: String(h.name || "Quiz"),
-        image: h.image || h.img || "",
-        dateStr,
-        correctCount,
-        total,
-        correctAnswers
-      };
-    });
+  // --- QUIZ-HISTORIKK ---
+  const history = JSON.parse(localStorage.getItem("quiz_history") || "[]");
+  const catId = badge.id.toLowerCase();
+  const items = history.filter(h => (h.categoryId || "").toLowerCase() === catId);
 
   const list = modal.querySelector(".badge-quizzes");
 
   if (!items.length) {
     list.innerHTML = "<li>Ingen quiz fullført i denne kategorien ennå.</li>";
   } else {
-    list.innerHTML = items.map(h => {
-      const score = `${h.correctCount}/${h.total || h.correctCount}`;
+    list.innerHTML = items
+      .map(h => {
+        const date = new Date(h.date).toLocaleDateString("no-NO");
+        const score = `${h.correctAnswers.length}/${h.correctAnswers.length}`;
 
-      const imgHtml = h.image
-        ? `<img class="badge-quiz-img" src="${h.image}" alt="">`
-        : "";
+        return `
+          <li class="badge-quiz-item">
+            <img class="badge-quiz-img" src="${h.image}">
+            <div class="badge-quiz-info">
+              <strong>${h.name}</strong><br>
+              <span>${date}</span><br>
+              <span class="badge-quiz-score">Score: ${score}</span>
 
-      const answersHtml = h.correctAnswers.length
-        ? `
-          <ul class="badge-quiz-answers">
-            ${h.correctAnswers.map(a => `
-              <li class="badge-quiz-q">
-                <strong>${a.question || ""}</strong><br>
-                ✔ ${a.answer || ""}
-              </li>
-            `).join("")}
-          </ul>
-        `
-        : `<div class="badge-quiz-muted">Ingen detaljerte svar lagret (viser kun score).</div>`;
-
-      return `
-        <li class="badge-quiz-item">
-          ${imgHtml}
-          <div class="badge-quiz-info">
-            <strong>${h.name}</strong><br>
-            ${h.dateStr ? `<span>${h.dateStr}</span><br>` : ""}
-            <span class="badge-quiz-score">Score: ${score}</span>
-            ${answersHtml}
-          </div>
-        </li>
-      `;
-    }).join("");
+              <ul class="badge-quiz-answers">
+                ${h.correctAnswers
+                  .map(a => `
+                    <li class="badge-quiz-q">
+                      <strong>${a.question}</strong><br>
+                      ✔ ${a.answer}
+                    </li>
+                  `)
+                  .join("")}
+              </ul>
+            </div>
+          </li>
+        `;
+      })
+      .join("");
   }
-  
 
   modal.style.display = "flex";
   modal.setAttribute("aria-hidden", "false");
