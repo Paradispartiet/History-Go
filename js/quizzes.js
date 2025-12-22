@@ -89,7 +89,7 @@
             const data = await fetchJson(f);
             return Array.isArray(data) ? data : [];
           } catch (e) {
-            console.warn("[QuizEngine] could not load", f, e);
+            if (window.DEBUG) console.warn("[QuizEngine] could not load", f, e);
             return [];
           }
         })
