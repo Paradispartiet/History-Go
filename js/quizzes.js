@@ -376,12 +376,14 @@
             const categoryId = String(questions[0]?.categoryId || "vitenskap").trim();
 
             saveQuizHistory({
-              id: tid,
+              id: tid,         // behold (bakoverkompat)
+              targetId: tid,   // legg til (tydelig kontrakt)
               categoryId,
               name: person ? person.name : (place ? place.name : "Quiz"),
               date: new Date().toISOString(),
               correctCount: correct,
-              total
+              total,
+              correctAnswers: Array.isArray(correctAnswers) ? correctAnswers : []
             });
 
             markQuizProgress(categoryId, tid);
