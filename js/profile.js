@@ -123,8 +123,10 @@ function openBadgeModal(badge) {
 
   // --- QUIZ-HISTORIKK ---
   const history = JSON.parse(localStorage.getItem("quiz_history") || "[]");
-  const catId = badge.id.toLowerCase();
-  const items = history.filter(h => (h.categoryId || "").toLowerCase() === catId);
+  const catId = String(badge.id || "").toLowerCase();
+  const items = (Array.isArray(history) ? history : []).filter(
+    h => String(h?.categoryId || "").toLowerCase() === catId
+  );
 
   const list = modal.querySelector(".badge-quizzes");
 
@@ -133,7 +135,7 @@ function openBadgeModal(badge) {
   } else {
     list.innerHTML = items
       .map(h => {
-                const date = h.date ? new Date(h.date).toLocaleDateString("no-NO") : "";
+        const date = h.date ? new Date(h.date).toLocaleDateString("no-NO") : "";
 
         const ca = Array.isArray(h.correctAnswers) ? h.correctAnswers : [];
         const correct = Number.isFinite(h.correctCount) ? h.correctCount : ca.length;
@@ -168,7 +170,11 @@ function openBadgeModal(badge) {
             </div>
           </li>
         `;
+      })
+      .join("");
+  }
 
+  // åpne modal (MÅ være etter map/join)
   modal.style.display = "flex";
   modal.setAttribute("aria-hidden", "false");
 
