@@ -91,7 +91,7 @@ function exportHistoryGoData() {
       );
     }
   } catch (e) {
-    console.warn("Kunne ikke lese knowledge_universe", e);
+if (DEBUG) console.warn("Kunne ikke lese knowledge_universe", e);
   }
 
   // 2. Notater
