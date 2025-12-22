@@ -177,54 +177,14 @@
   }
 
   function saveQuizHistory(entry) {
-  function safeParseArray(key) {
     try {
-      const v = JSON.parse(localStorage.getItem(key) || "[]");
-      return Array.isArray(v) ? v : [];
+      const hist = JSON.parse(localStorage.getItem("quiz_history") || "[]");
+      hist.push(entry);
+      localStorage.setItem("quiz_history", JSON.stringify(hist));
     } catch (e) {
-      if (window.DEBUG) console.warn("[QuizEngine] safeParseArray failed:", key, e);
-      return [];
+      console.warn("[QuizEngine] could not save quiz_history", e);
     }
   }
-
-  function normalizeHistoryEntry(h) {
-    const out = { ...(h || {}) };
-
-    out.schema = out.schema || 2;
-
-    out.categoryId = String(out.categoryId || out.category || "");
-    out.targetId = String(out.targetId || out.id || out.placeId || out.personId || "");
-    out.name = String(out.name || "Quiz");
-
-    out.date = out.date || out.at || new Date().toISOString();
-
-    out.correctAnswers = Array.isArray(out.correctAnswers) ? out.correctAnswers : [];
-
-    const correct =
-      Number.isFinite(out.correctCount) ? out.correctCount : out.correctAnswers.length;
-
-    const total =
-      Number.isFinite(out.total) ? out.total :
-      Number.isFinite(out.totalQuestions) ? out.totalQuestions :
-      (out.correctAnswers.length || correct);
-
-    out.correctCount = correct;
-    out.total = total;
-
-    out.image = out.image || out.img || "";
-
-    return out;
-  }
-
-  try {
-    const hist = safeParseArray("quiz_history").map(normalizeHistoryEntry);
-    const clean = normalizeHistoryEntry(entry);
-    hist.push(clean);
-    localStorage.setItem("quiz_history", JSON.stringify(hist));
-  } catch (e) {
-    if (window.DEBUG) console.warn("[QuizEngine] could not save quiz_history", e);
-  }
-}
 
   function markQuizProgress(categoryId, targetId) {
     try {
@@ -239,7 +199,7 @@
 
       localStorage.setItem("quiz_progress", JSON.stringify(prog));
     } catch (e) {
-      if (window.DEBUG) console.warn("[QuizEngine] could not save quiz_progress", e);
+      console.warn("[QuizEngine] could not save quiz_progress", e);
     }
   }
 
