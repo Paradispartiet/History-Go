@@ -181,7 +181,8 @@
     try {
       const v = JSON.parse(localStorage.getItem(key) || "[]");
       return Array.isArray(v) ? v : [];
-    } catch {
+    } catch (e) {
+      if (window.DEBUG) console.warn("[QuizEngine] safeParseArray failed:", key, e);
       return [];
     }
   }
@@ -189,21 +190,16 @@
   function normalizeHistoryEntry(h) {
     const out = { ...(h || {}) };
 
-    // ---- schema marker (for framtidig migrering) ----
     out.schema = out.schema || 2;
 
-    // ---- id / category ----
     out.categoryId = String(out.categoryId || out.category || "");
     out.targetId = String(out.targetId || out.id || out.placeId || out.personId || "");
     out.name = String(out.name || "Quiz");
 
-    // ---- timestamp ----
     out.date = out.date || out.at || new Date().toISOString();
 
-    // ---- answers (valgfritt) ----
     out.correctAnswers = Array.isArray(out.correctAnswers) ? out.correctAnswers : [];
 
-    // ---- score (primær sannhet) ----
     const correct =
       Number.isFinite(out.correctCount) ? out.correctCount : out.correctAnswers.length;
 
@@ -215,25 +211,18 @@
     out.correctCount = correct;
     out.total = total;
 
-    // ---- image (valgfritt) ----
     out.image = out.image || out.img || "";
 
-    // ---- rydd bort potensielt tunge / rare felter uten å ødelegge ----
-    // (Ingen hard-delete her, men du kan velge å trimme senere.)
     return out;
   }
 
   try {
-    // 1) last historikk og migrer/normaliser eksisterende entries
     const hist = safeParseArray("quiz_history").map(normalizeHistoryEntry);
-
-    // 2) normaliser ny entry og push
     const clean = normalizeHistoryEntry(entry);
     hist.push(clean);
-
     localStorage.setItem("quiz_history", JSON.stringify(hist));
   } catch (e) {
-    console.warn("[QuizEngine] could not save quiz_history", e);
+    if (window.DEBUG) console.warn("[QuizEngine] could not save quiz_history", e);
   }
 }
 
@@ -250,7 +239,7 @@
 
       localStorage.setItem("quiz_progress", JSON.stringify(prog));
     } catch (e) {
-      console.warn("[QuizEngine] could not save quiz_progress", e);
+      if (window.DEBUG) console.warn("[QuizEngine] could not save quiz_progress", e);
     }
   }
 
