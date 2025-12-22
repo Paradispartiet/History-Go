@@ -304,7 +304,7 @@
             if (i < questions.length) step();
             else {
               closeQuiz();
-              onEnd(correct, questions.length);
+              onEnd(correct, questions.length, correctAnswers);
             }
           }, QUIZ_FEEDBACK_MS);
         };
