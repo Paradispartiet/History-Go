@@ -110,7 +110,7 @@ function exportHistoryGoData() {
   };
 
   const json = JSON.stringify(payload, null, 2);
-  console.log("HistoryGo → AHA export oppdatert i localStorage.");
+if (DEBUG) console.log("HistoryGo → AHA export oppdatert i localStorage.");
   // NB: nøkkel deler origin med AHA (samme GitHub-bruker)
   localStorage.setItem("aha_import_payload_v1", json);
   return json;
