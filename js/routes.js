@@ -36,10 +36,10 @@ async function loadRoutes() {
     if (Array.isArray(data)) ROUTES.push(...data);
 
     routesLoaded = true;
-    console.log("Ruter lastet:", ROUTES.length);
+     if (DEBUG) console.log("Ruter laster:", ROUTES.length);
     return ROUTES;
   } catch (err) {
-    console.warn("Kunne ikke laste ruter", err);
+     if (DEBUG) console.warn("Kunne ikke laste ruter", err);
     ROUTES.length = 0;
     routesLoaded = true;
     return ROUTES;
