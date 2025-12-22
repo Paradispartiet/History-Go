@@ -369,7 +369,7 @@
         title: person ? person.name : (place ? place.name : "Quiz"),
         targetId: tid,
         questions,
-        onEnd: (correct, total) => {
+        onEnd: (correct, total, correctAnswers) => {
           const perfect = correct === total;
 
           if (perfect) {
