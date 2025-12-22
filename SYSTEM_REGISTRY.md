@@ -236,11 +236,93 @@ Regel:
 
 ## 7) CSS
 
+### 7.1 `/css/` (komplett liste)
 Folder: `/css/`
-- base + components + effekter + modaler/sheets + map + quiz + profile + theme osv.
-(holdes modulært; ingen inline-farger i JS hvis theme tokens finnes)
+
+- `theme.css`
+- `base.css`
+- `layout.css`
+- `components.css`
+- `effects.css`
+- `knowledge.css`
+- `map.css`
+- `merits.css`
+- `miniProfile.css`
+- `nearby.css`
+- `overlay.css`
+- `placeCard.css`
+- `popups.css`
+- `profile.css`
+- `quiz.css`
+- `search.css`
+- `sheets.css`
+
+Regel:
+- Ingen nye CSS-filer legges inn uten at denne lista oppdateres (LOCKED).
 
 ---
+
+### 7.2 CSS lastet per entrypoint (autoritative HTML-headere)
+
+#### `index.html` (hovedapp)
+Laster:
+- `/css/theme.css`
+- `/css/base.css`
+- `/css/layout.css`
+- `/css/components.css`
+- `/css/effects.css`
+- `/css/map.css`
+- `/css/nearby.css`
+- `/css/search.css`
+- `/css/sheets.css`
+- `/css/overlay.css`
+- `/css/placeCard.css`
+- `/css/popups.css`
+- `/css/quiz.css`
+- `/css/merits.css`
+- `/css/miniProfile.css`
+- **(DEV)** `js/console/console.css` *(ikke i /css/, men lastes her)*
+
+#### `profile.html` (profil)
+Laster:
+- `/css/theme.css`
+- `/css/base.css`
+- `/css/layout.css`
+- `/css/components.css`
+- `/css/miniProfile.css`
+- `/css/merits.css`
+- `/css/popups.css`
+- `/css/overlay.css`
+- `/css/effects.css`
+- `/css/profile.css`
+
+#### `knowledge.html` (kunnskap)
+Laster:
+- `/css/theme.css`
+- `/css/base.css`
+- `/css/layout.css`
+- `/css/components.css`
+- `/css/knowledge.css`
+
+#### `notater.html` (notater)
+Laster:
+- `/css/theme.css`
+- `/css/base.css`
+- `/css/layout.css`
+- `/css/components.css`
+- `/css/effects.css`
+
+#### `emner.html` (emner/pensum)
+Laster:
+- `/css/theme.css`
+- `/css/base.css`
+- `/css/layout.css`
+- `/css/components.css`
+- `/css/effects.css`
+- (evt) `knowledge.css` hvis emner-siden viser knowledge-komponenter
+
+Regel:
+- Hvis en side endrer CSS-lasterekkefølge eller legger til/fjerner CSS, skal denne seksjonen oppdateres (LOCKED).
 
 ## 8) AHA (egen app)
 
