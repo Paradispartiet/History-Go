@@ -2,6 +2,9 @@
 // Felles loader for fagkart.json (fagfelt → families → subfields)
 
 window.Fagkart = (function () {
+  // DEBUG følger global bryter hvis den finnes (window.DEBUG), ellers false
+  const DEBUG = !!window.DEBUG;
+
   // Juster stien hvis du legger fagkart.json et annet sted
   const FAGKART_URL = "/emner/fagkart.json";
 
@@ -18,7 +21,7 @@ window.Fagkart = (function () {
     loadingPromise = fetch(FAGKART_URL)
       .then((res) => {
         if (!res.ok) {
-          console.warn("Kunne ikke laste fagkart:", res.status, res.statusText);
+          if (DEBUG) console.warn("Kunne ikke laste fagkart:", res.status, res.statusText);
           return {};
         }
         return res.json();
@@ -28,7 +31,7 @@ window.Fagkart = (function () {
         return cache;
       })
       .catch((err) => {
-        console.warn("Feil ved henting av fagkart:", err);
+        if (DEBUG) console.warn("Feil ved henting av fagkart:", err);
         cache = {};
         return cache;
       })
