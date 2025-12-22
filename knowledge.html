@@ -16,6 +16,12 @@
 
 <body class="knowledge-page">
 
+  <!-- ★ GLOBAL DEBUG (stille prod) -->
+  <script>
+    // Sett true kun når du feilsøker
+    window.DEBUG = false;
+  </script>
+
   <!-- ★ HEADER / TOPP -->
   <header class="knowledge-header">
     <a class="back-link" href="profile.html">← Tilbake til profil</a>
@@ -76,7 +82,7 @@
     <div id="conceptCloud"></div>
   </section>
 
-  <!-- ★ EMNE-DEKNING + FORSLAG (AHA-lignende booster) -->
+  <!-- ★ EMNE-DEKNING + FORSLAG -->
   <section class="know-block">
     <h2>Emne-dekning på tvers av felt</h2>
 
@@ -86,7 +92,6 @@
     </p>
 
     <div id="emneDekningSection" class="emne-dekning"></div>
-
     <div id="emneSuggestions" class="emne-suggestions"></div>
   </section>
 
@@ -121,8 +126,9 @@
   <script src="js/knowledge.js"></script>
   <script src="js/hgInsights.js"></script>
   <script src="js/emnerLoader.js"></script>
+  <script src="js/fagkartLoader.js"></script>
 
-  <!-- 1) GLOBAL KONSTANT – FELT-LABELS (kan brukes flere steder) -->
+  <!-- 1) GLOBAL KONSTANT – FELT-LABELS -->
   <script>
     window.HG_CATEGORY_LABELS = {
       historie:       "Historie",
@@ -141,7 +147,7 @@
     };
   </script>
 
-  <!-- 2) KUNNSKAPSLISTE + FILTER + OVERSIKTSSTATS (motorbruk på knowledgeUniverse) -->
+  <!-- 2) KUNNSKAPSLISTE + FILTER + OVERSIKTSSTATS -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const box          = document.getElementById("knowledgeContainer");
@@ -164,19 +170,18 @@
         : null;
 
       if (!uni || Object.keys(uni).length === 0) {
-        // Ingen data – nullstill stats og liste
-        if (statTotal)    statTotal.textContent    = "0";
-        if (statCats)     statCats.textContent     = "0";
-        if (statDims)     statDims.textContent     = "0";
-        if (statTopCat)   statTopCat.textContent   = "–";
-        if (statTopDim)   statTopDim.textContent   = "–";
+        if (statTotal)  statTotal.textContent = "0";
+        if (statCats)   statCats.textContent  = "0";
+        if (statDims)   statDims.textContent  = "0";
+        if (statTopCat) statTopCat.textContent = "–";
+        if (statTopDim) statTopDim.textContent = "–";
         if (box) {
           box.innerHTML = `<div class="empty-note">Ingen kunnskap låst opp ennå. Ta noen quizer for å fylle denne siden.</div>`;
         }
         return;
       }
 
-      // ── 2a) Beregn stats fra knowledge-universet ──────────────────────
+      // ── stats ──────────────────────────────
       let totalPoints = 0;
       const categoryCounts = {};
       const dimensionCounts = {};
@@ -216,37 +221,23 @@
         if (!id) return "–";
         return LABELS[id] || (id.charAt(0).toUpperCase() + id.slice(1));
       }
-
       function prettyDimLabel(dim) {
         if (!dim) return "–";
         return dim.charAt(0).toUpperCase() + dim.slice(1);
       }
 
-      if (statTotal) {
-        statTotal.textContent = totalPoints;
-      }
-      if (statTotalDet) {
-        statTotalDet.textContent = `Fordelt på ${numCategories} felt og ${numDimensions} dimensjoner.`;
-      }
-      if (statCats)  statCats.textContent  = numCategories;
-      if (statDims)  statDims.textContent  = numDimensions;
+      if (statTotal) statTotal.textContent = totalPoints;
+      if (statTotalDet) statTotalDet.textContent = `Fordelt på ${numCategories} felt og ${numDimensions} dimensjoner.`;
+      if (statCats) statCats.textContent = numCategories;
+      if (statDims) statDims.textContent = numDimensions;
 
-      if (statTopCat) {
-        statTopCat.textContent = prettyCategoryLabel(topCat.key);
-      }
-      if (statTopCatD && topCat.key) {
-        statTopCatD.textContent = `${topCat.value} kunnskapspunkter innen ${prettyCategoryLabel(topCat.key)}.`;
-      }
+      if (statTopCat) statTopCat.textContent = prettyCategoryLabel(topCat.key);
+      if (statTopCatD && topCat.key) statTopCatD.textContent = `${topCat.value} kunnskapspunkter innen ${prettyCategoryLabel(topCat.key)}.`;
 
-      if (statTopDim) {
-        statTopDim.textContent = prettyDimLabel(topDim.key);
-      }
-      if (statTopDimD && topDim.key) {
-        statTopDimD.textContent = `${topDim.value} kunnskapspunkter med denne dimensjonen.`;
-      }
+      if (statTopDim) statTopDim.textContent = prettyDimLabel(topDim.key);
+      if (statTopDimD && topDim.key) statTopDimD.textContent = `${topDim.value} kunnskapspunkter med denne dimensjonen.`;
 
-      // ── 2b) Fyll filtere ──────────────────────────────────────────────
-      // Kategori-filter
+      // ── filtere ────────────────────────────
       Object.keys(uni).forEach(cat => {
         const o = document.createElement("option");
         o.value = cat;
@@ -254,7 +245,6 @@
         catFilter.appendChild(o);
       });
 
-      // Dimensjons-filter
       const allDims = new Set();
       Object.values(uni).forEach(dimObj => {
         Object.keys(dimObj).forEach(d => allDims.add(d));
@@ -267,7 +257,7 @@
         dimFilter.appendChild(o);
       });
 
-      // ── 2c) Renderer for kunnskapspunkter ─────────────────────────────
+      // ── render ─────────────────────────────
       function renderList() {
         const catSel = catFilter.value;
         const dimSel = dimFilter.value;
@@ -288,14 +278,12 @@
 
             catBlock += `
               <div class="dimension-title">${prettyDimLabel(dim)}</div>
-              ${items
-                .map(item => `
-                  <article class="knowledge-item">
-                    <div class="knowledge-topic">${item.topic || ""}</div>
-                    <div class="knowledge-text">${item.text || ""}</div>
-                  </article>
-                `)
-                .join("")}
+              ${items.map(item => `
+                <article class="knowledge-item">
+                  <div class="knowledge-topic">${item.topic || ""}</div>
+                  <div class="knowledge-text">${item.text || ""}</div>
+                </article>
+              `).join("")}
             `;
           }
 
@@ -318,14 +306,12 @@
     });
   </script>
 
-  <!-- 3) BEGREPS-SKY (bruker HGInsights) -->
+  <!-- 3) BEGREPS-SKY -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       if (!window.HGInsights) return;
 
-      const userId =
-        (window.getCurrentUserId && getCurrentUserId()) || "anon";
-
+      const userId = (window.getCurrentUserId && getCurrentUserId()) || "anon";
       const concepts = HGInsights.getUserConcepts(userId) || [];
       const box = document.getElementById("conceptCloud");
 
@@ -334,11 +320,9 @@
         return;
       }
 
-      // Sorter etter count, høyest først, og ta f.eks. topp 60
       const sorted = [...concepts].sort((a, b) => (b.count || 0) - (a.count || 0));
       const top = sorted.slice(0, 60);
 
-      // Enkel skala for “størrelse”: jo flere ganger brukt, jo større class
       function sizeClass(c) {
         const n = c.count || 1;
         if (n > 30) return "size-xl";
@@ -350,42 +334,30 @@
 
       box.innerHTML = `
         <div class="hg-concept-cloud">
-          ${top
-            .map(c => `
-              <span
-                class="hg-concept-pill ${sizeClass(c)}"
-                title="Brukt ${c.count} ganger"
-              >
-                ${c.label}
-              </span>
-            `)
-            .join("")}
+          ${top.map(c => `
+            <span class="hg-concept-pill ${sizeClass(c)}" title="Brukt ${c.count} ganger">
+              ${c.label}
+            </span>
+          `).join("")}
         </div>
       `;
     });
   </script>
 
-  <!-- 4) EMNE-DEKNING + “BOOSTERE” (motorutvidelse via Emner + computeEmneDekning) -->
+  <!-- 4) EMNE-DEKNING + “BOOSTERE” -->
   <script>
     document.addEventListener("DOMContentLoaded", async () => {
-      const box   = document.getElementById("emneDekningSection");
-      const sugg  = document.getElementById("emneSuggestions");
+      const box  = document.getElementById("emneDekningSection");
+      const sugg = document.getElementById("emneSuggestions");
       if (!box) return;
 
-      if (
-        !window.HGInsights ||
-        !window.computeEmneDekning ||
-        !window.Emner
-      ) {
+      if (!window.HGInsights || !window.computeEmneDekning || !window.Emner) {
         box.innerHTML = "<p class='muted'>Emne-dekning er ikke tilgjengelig ennå.</p>";
         return;
       }
 
-      const userId =
-        (window.getCurrentUserId && getCurrentUserId()) || "anon";
-
-      const concepts =
-        HGInsights.getUserConcepts(userId) || [];
+      const userId = (window.getCurrentUserId && getCurrentUserId()) || "anon";
+      const concepts = HGInsights.getUserConcepts(userId) || [];
 
       if (!concepts.length) {
         box.innerHTML = "<p class='muted'>Ta noen quizer for å se emne-dekningen din her.</p>";
@@ -420,40 +392,36 @@
         const nonEmpty = result.filter(r => r.total > 0);
         if (!nonEmpty.length) continue;
 
-        const label = LABELS[subjectId] ||
-          (subjectId.charAt(0).toUpperCase() + subjectId.slice(1));
+        const label = LABELS[subjectId] || (subjectId.charAt(0).toUpperCase() + subjectId.slice(1));
 
         html += `
           <section class="emne-dekning-blokk">
             <h3>${label}</h3>
             <ul class="emne-list">
-              ${nonEmpty
-                .map(r => {
-                  const missingCount = r.missing ? r.missing.length : (r.total - r.matchCount);
-                  // Saml emner som har noe dekning, men ikke fullført – til “boostere”
-                  if (r.percent > 0 && r.percent < 100 && missingCount > 0) {
-                    suggestions.push({
-                      subjectId,
-                      subjectLabel: label,
-                      title: r.title,
-                      percent: r.percent,
-                      missingCount
-                    });
-                  }
+              ${nonEmpty.map(r => {
+                const missingCount = r.missing ? r.missing.length : (r.total - r.matchCount);
+                if (r.percent > 0 && r.percent < 100 && missingCount > 0) {
+                  suggestions.push({
+                    subjectId,
+                    subjectLabel: label,
+                    title: r.title,
+                    percent: r.percent,
+                    missingCount
+                  });
+                }
 
-                  return `
-                    <li class="emne-item">
-                      <div class="emne-header">
-                        <strong>${r.title}</strong>
-                        <small>${r.percent}% dekket (${r.matchCount}/${r.total})</small>
-                      </div>
-                      <div class="bar-bg">
-                        <div class="bar" style="width:${r.percent}%;"></div>
-                      </div>
-                    </li>
-                  `;
-                })
-                .join("")}
+                return `
+                  <li class="emne-item">
+                    <div class="emne-header">
+                      <strong>${r.title}</strong>
+                      <small>${r.percent}% dekket (${r.matchCount}/${r.total})</small>
+                    </div>
+                    <div class="bar-bg">
+                      <div class="bar" style="width:${r.percent}%;"></div>
+                    </div>
+                  </li>
+                `;
+              }).join("")}
             </ul>
           </section>
         `;
@@ -465,7 +433,6 @@
 
       box.innerHTML = html;
 
-      // ── Lag små “AHA-boostere” basert på emner der du nesten er i mål ──
       if (sugg) {
         if (!suggestions.length) {
           sugg.innerHTML = `
@@ -475,7 +442,6 @@
             </p>
           `;
         } else {
-          // Sorter: høyest prosent først, så færrest manglende begreper
           suggestions.sort((a, b) => {
             if (b.percent !== a.percent) return b.percent - a.percent;
             return a.missingCount - b.missingCount;
@@ -491,17 +457,15 @@
                 gjøre at du “lukker” hele emnet.
               </p>
               <ul class="emne-suggestion-list">
-                ${topBoosts
-                  .map(b => `
-                    <li class="emne-suggestion-item">
-                      <strong>${b.title}</strong>
-                      <span class="emne-suggestion-meta">
-                        i ${b.subjectLabel} – ${b.percent}% dekket,
-                        mangler ${b.missingCount} kjernebegrep(er).
-                      </span>
-                    </li>
-                  `)
-                  .join("")}
+                ${topBoosts.map(b => `
+                  <li class="emne-suggestion-item">
+                    <strong>${b.title}</strong>
+                    <span class="emne-suggestion-meta">
+                      i ${b.subjectLabel} – ${b.percent}% dekket,
+                      mangler ${b.missingCount} kjernebegrep(er).
+                    </span>
+                  </li>
+                `).join("")}
               </ul>
             </div>
           `;
@@ -510,14 +474,15 @@
     });
   </script>
 
-  <script src="/js/fagkartLoader.js"></script>
-<script>
-  document.addEventListener("DOMContentLoaded", async () => {
-    const fields = await Fagkart.listFields();
-    console.log(fields);
-  });
-</script>
-</body>
+  <!-- 5) DEBUG TEST (kun hvis window.DEBUG=true) -->
+  <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+      if (!window.DEBUG) return;
+      if (!window.Fagkart?.listFields) return;
+      const fields = await Fagkart.listFields();
+      console.log(fields);
+    });
+  </script>
 
 </body>
 </html>
