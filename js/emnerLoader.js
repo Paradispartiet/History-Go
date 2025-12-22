@@ -2,6 +2,9 @@
 // Felles, enkel loader for emne-filer (History Go / AHA)
 
 window.Emner = (function () {
+  // DEBUG følger global bryter hvis den finnes (window.DEBUG), ellers false
+  const DEBUG = !!window.DEBUG;
+
   // Kart over alle emne-filer per fagfelt / merke-id
   const EMNER_INDEX = {
     historie:       "/emner/emner_historie.json",
@@ -25,26 +28,24 @@ window.Emner = (function () {
   async function loadForSubject(subjectId) {
     const url = EMNER_INDEX[subjectId];
     if (!url) {
-      console.warn("Ingen emne-fil definert for subjectId:", subjectId);
+      if (DEBUG) console.warn("Ingen emne-fil definert for subjectId:", subjectId);
       return [];
     }
 
     // Returner fra cache hvis vi allerede har lastet
-    if (cache[subjectId]) {
-      return cache[subjectId];
-    }
+    if (cache[subjectId]) return cache[subjectId];
 
     try {
       const res = await fetch(url);
       if (!res.ok) {
-        console.warn("Kunne ikke laste emner for", subjectId, res.status);
+        if (DEBUG) console.warn("Kunne ikke laste emner for", subjectId, res.status);
         return [];
       }
       const data = await res.json();
-      cache[subjectId] = data;
-      return data;
+      cache[subjectId] = Array.isArray(data) ? data : [];
+      return cache[subjectId];
     } catch (e) {
-      console.warn("Feil ved lasting av emner for", subjectId, e);
+      if (DEBUG) console.warn("Feil ved lasting av emner for", subjectId, e);
       return [];
     }
   }
