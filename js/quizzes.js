@@ -234,6 +234,7 @@
 
     let i = 0;
     let correct = 0;
+    let correctAnswers = []; // <-- NY: brukes til badge-modal
 
     function step() {
       const q = questions[i];
