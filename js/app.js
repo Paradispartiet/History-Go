@@ -1071,7 +1071,7 @@ if (map) {
 if (typeof linkPeopleToPlaces === "function") {
   linkPeopleToPlaces();
 } else {
-  console.warn("linkPeopleToPlaces() mangler – hopper over linking");
+  if (DEBUG) console.warn("linkPeopleToPlaces() mangler – hopper over linking");
 }
 
 
@@ -1109,7 +1109,7 @@ if (window.QuizEngine) {
     saveTriviaPoint: window.saveTriviaPoint || null
   });
 } else {
-  console.warn("QuizEngine ikke lastet");
+if (DEBUG) console.warn("QuizEngine ikke lastet");
 }
 
 
@@ -1129,7 +1129,8 @@ if (window.QuizEngine) {
     }
 
   } catch (e) {
-    console.error("Feil ved lasting av data:", e);
+console.error("Feil ved lasting av data:", e);
+  if (DEBUG) console.error("[DEBUG] fetch/data-payload feilet", e?.stack || e);
     showToast("Kunne ikke laste steder/personer");
   }
 
@@ -1149,7 +1150,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function safeRun(label, fn) {
   try { fn(); }
-  catch (e) { console.error(`[${label}]`, e); }
+  catch (e) {
+    console.error(`[${label}]`, e);
+    if (DEBUG) window.__HG_LAST_ERROR__ = { label, message: String(e), stack: e?.stack };
+  }
 }
 
 
