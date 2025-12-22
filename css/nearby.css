@@ -24,27 +24,31 @@
   position: fixed;
   left: 0;
 
-  top: var(--hg-header-h);
-  bottom: var(--hg-placecard-h);
+  /* bruk header-gap faktisk */
+  top: calc(var(--hg-header-h) + var(--hg-header-gap));
+
+  /* ✅ alltid helt ned */
+  bottom: 0;
 
   width: var(--hg-leftpanel-w);
   z-index: 20;
 
   background: var(--hg-frame-bg);
 
-  /* LINJELØST */
   border-right: 0;
   border-radius: 0;
   box-shadow: none;
   backdrop-filter: none;
 
-  padding: 0;
+  /* ✅ reserver plass til placeCard, så vi aldri ser “kart-gap” */
+  box-sizing: border-box;
+  padding-bottom: calc(var(--hg-placecard-h) + env(safe-area-inset-bottom, 0px));
+
   overflow: hidden;
 
   display: flex;
   flex-direction: column;
 }
-
 /* Topprad i panelet (tittel + dropdown) */
 #nearbyListContainer .leftpanel-head{
   display: flex;
