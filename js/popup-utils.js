@@ -353,6 +353,7 @@ window.openPlaceCard = function(place) {
   const btnUnlock = document.getElementById("pcUnlock");
   const btnRoute  = document.getElementById("pcRoute");
   const btnNote   = document.getElementById("pcNote");
+  const btnObs    = document.getElementById("pcObserve");
 
   if (!card) return;
 
@@ -408,6 +409,28 @@ if (btnRoute) btnRoute.onclick = () => {
     btnNote.onclick = () => handlePlaceNote(place);
   }
 
+  if (btnObs) {
+    btnObs.onclick = () => {
+      if (!window.HGObservations || typeof window.HGObservations.start !== "function") {
+        showToast("Observasjoner er ikke lastet");
+        return;
+      }
+
+      const subjectId = String(place.categoryId || place.category || place.subject_id || "by").trim();
+
+      window.HGObservations.start({
+        target: {
+          targetId: String(place.id || "").trim(),
+          targetType: "place",
+          subject_id: subjectId,
+          categoryId: subjectId,
+          title: place.name
+        },
+        lensId: "lens_by_brukere" // må finnes i observations_by.json
+      });
+    };
+  }
+  
   if (btnUnlock) {
     btnUnlock.onclick = () => {
       if (visited[place.id]) {
