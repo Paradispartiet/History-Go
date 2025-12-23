@@ -15,19 +15,9 @@
   <link rel="stylesheet" href="css/knowledge.css" />
 
   <style>
-    .emner-page {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 16px;
-    }
-
-    .emner-header {
-      margin-bottom: 20px;
-    }
-
-    .emner-header h1 {
-      margin: 8px 0 4px;
-    }
+    .emner-page { max-width: 1100px; margin: 0 auto; padding: 16px; }
+    .emner-header { margin-bottom: 20px; }
+    .emner-header h1 { margin: 8px 0 4px; }
 
     .emner-layout {
       display: grid;
@@ -42,20 +32,10 @@
       padding: 12px;
     }
 
-    .emner-sidebar h2 {
-      font-size: 1.1rem;
-      margin-bottom: 8px;
-    }
+    .emner-sidebar h2 { font-size: 1.1rem; margin-bottom: 8px; }
 
-    .emne-subject-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .emne-subject-item + .emne-subject-item {
-      margin-top: 6px;
-    }
+    .emne-subject-list { list-style: none; padding: 0; margin: 0; }
+    .emne-subject-item + .emne-subject-item { margin-top: 6px; }
 
     .emne-subject-btn {
       width: 100%;
@@ -72,25 +52,14 @@
       background: rgba(255,255,255,0.04);
     }
 
-    .emne-subject-btn small {
-      opacity: 0.8;
-      font-size: 0.75rem;
-    }
-
+    .emne-subject-btn small { opacity: 0.8; font-size: 0.75rem; }
     .emne-subject-btn.active {
       background: rgba(255,255,255,0.12);
       box-shadow: 0 0 0 1px rgba(255,255,255,0.08);
     }
 
-    .emner-main h2 {
-      margin-top: 0;
-      margin-bottom: 6px;
-    }
-
-    .emner-main .muted {
-      margin-bottom: 10px;
-      display: block;
-    }
+    .emner-main h2 { margin-top: 0; margin-bottom: 6px; }
+    .emner-main .muted { margin-bottom: 10px; display: block; }
 
     .emne-list {
       list-style: none;
@@ -115,14 +84,8 @@
       margin-bottom: 4px;
     }
 
-    .emne-header strong {
-      font-size: 0.95rem;
-    }
-
-    .emne-header small {
-      font-size: 0.8rem;
-      opacity: 0.9;
-    }
+    .emne-header strong { font-size: 0.95rem; }
+    .emne-header small { font-size: 0.8rem; opacity: 0.9; }
 
     .bar-bg {
       width: 100%;
@@ -140,35 +103,15 @@
       width: 0%;
     }
 
-    .emne-meta {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 8px;
-    }
+    .emne-meta { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+    .emne-meta small { font-size: 0.75rem; opacity: 0.85; }
+    .emne-complete { color: var(--ok, #2ecc71); }
 
-    .emne-meta small {
-      font-size: 0.75rem;
-      opacity: 0.85;
-    }
-
-    .emne-complete {
-      color: var(--ok, #2ecc71);
-    }
-
-    /* Courses panel spans full width under the two columns */
-    #coursesPanel {
-      grid-column: 1 / -1;
-      margin-top: 14px;
-    }
+    #coursesPanel { grid-column: 1 / -1; margin-top: 14px; }
 
     @media (max-width: 800px) {
-      .emner-layout {
-        grid-template-columns: 1fr;
-      }
-      #coursesPanel {
-        grid-column: auto;
-      }
+      .emner-layout { grid-template-columns: 1fr; }
+      #coursesPanel { grid-column: auto; }
     }
   </style>
 </head>
@@ -177,9 +120,7 @@
   <div class="emner-page">
     <header class="emner-header">
       <a class="back-link" href="profile.html">← Tilbake til profil</a>
-
       <img src="bilder/ui/historygo_logo.PNG" class="knowledge-logo" alt="History Go logo" />
-
       <h1>Dine emner & pensum</h1>
       <p>
         Her ser du hvordan det du har lært gjennom quiz henger sammen med <strong>emnene</strong>
@@ -189,7 +130,6 @@
     </header>
 
     <section class="emner-layout">
-      <!-- VENSTRE: fag / felt -->
       <aside class="emner-sidebar">
         <h2>Fagfelt</h2>
         <p class="muted" style="font-size:0.8rem; margin-bottom:8px;">
@@ -198,17 +138,14 @@
         <ul id="emneSubjectList" class="emne-subject-list"></ul>
       </aside>
 
-      <!-- HØYRE: emner i valgt felt -->
       <section class="emner-main">
         <h2 id="emneSubjectTitle">Velg et felt</h2>
         <span id="emneSubjectDesc" class="muted" style="font-size:0.85rem;">
           Du får se emner og hvor stor del av kjernebegrepene du har dekket gjennom dine quizer.
         </span>
-
         <ul id="emneList" class="emne-list" style="margin-top:12px;"></ul>
       </section>
 
-      <!-- KURS -->
       <section id="coursesPanel" class="panel">
         <h2>Kurs</h2>
         <div id="coursesStatus" class="muted"></div>
@@ -224,18 +161,23 @@
   <script src="js/emnerLoader.js"></script>
 
   <script>
-    // ------------------------------------------------------------
-    // KURS: solid panel som bruker window.HGCourses.compute()
-    // ------------------------------------------------------------
+    function dlog(...a) { if (window.DEBUG) console.log("[emner.html]", ...a); }
+    function dwarn(...a) { if (window.DEBUG) console.warn("[emner.html]", ...a); }
+
     async function renderCoursesPanel(subjectId) {
       const panel = document.getElementById("coursesPanel");
       const st = document.getElementById("coursesStatus");
       const ls = document.getElementById("coursesList");
-
       if (!panel || !st || !ls) return;
 
       if (!window.HGCourses || typeof window.HGCourses.compute !== "function") {
         st.textContent = "Kursmotor ikke koblet (HGCourses.compute mangler).";
+        ls.innerHTML = "";
+        return;
+      }
+
+      if (!window.Emner || typeof window.Emner.loadForSubject !== "function") {
+        st.textContent = "Kursmotor: Emner.loadForSubject mangler.";
         ls.innerHTML = "";
         return;
       }
@@ -245,30 +187,27 @@
         ls.innerHTML = "";
 
         const emnerAll = await window.Emner.loadForSubject(subjectId);
+        const res = await window.HGCourses.compute({ subjectId, emnerAll });
 
-        const res = await window.HGCourses.compute({
-          subjectId,
-          emnerAll
-        });
-
-        const course = res.course;
-        const diploma = res.diploma;
+        const course = res.course || {};
+        const diploma = res.diploma || {};
 
         st.innerHTML = `
-          Progresjon: <strong>${course.percent}%</strong>
-          · Moduler: <strong>${course.done}/${course.total}</strong>
+          Progresjon: <strong>${course.percent ?? 0}%</strong>
+          · Moduler: <strong>${course.done ?? 0}/${course.total ?? 0}</strong>
           ${diploma.eligible ? ` · <strong>🎓 Diplom klar!</strong>` : ""}
           <span class="muted" style="display:block;margin-top:6px;">
-            Læringslogg: ${res.learning.logCount} events · Emne-hits: ${res.learning.emneHitsCount}
+            Læringslogg: ${res.learning?.logCount ?? 0} events · Emne-hits: ${res.learning?.emneHitsCount ?? 0}
           </span>
         `;
 
-        if (!course.modules || !course.modules.length) {
+        const modules = Array.isArray(course.modules) ? course.modules : [];
+        if (!modules.length) {
           ls.innerHTML = `<div class="muted">Ingen moduler definert i pensum for "${subjectId}".</div>`;
           return;
         }
 
-        ls.innerHTML = course.modules.map(m => {
+        ls.innerHTML = modules.map(m => {
           const em = m.stats?.emner || {};
           const c = m.stats?.concepts || {};
           const detail = Array.isArray(em.detail) ? em.detail : [];
@@ -276,6 +215,10 @@
           const emnerLine = `${em.coveredCount || 0}/${em.requiredCount || 0}`;
           const directLine = `${em.directHitCount || 0}`;
           const conceptsLine = `${c.hit || 0}/${c.requiredCount || 0} (${c.percent || 0}%)`;
+
+          const rulePass = m.rule?.passPercent ?? 70;
+          const ruleConceptMin = m.rule?.conceptMinPct ?? 35;
+          const ruleMinPerfect = m.rule?.minPerfectQuizzes ?? 1;
 
           return `
             <div class="panel" style="padding:10px;margin:10px 0;">
@@ -292,9 +235,9 @@
               </div>
 
               <div class="muted" style="margin-top:8px;">
-                Regel: emner ≥ ${m.rule?.passPercent ?? 70}% (eller 🎯 direct)
-                · konsepter ≥ ${m.rule?.conceptMinPct ?? 35}%
-                · perfekte quizzer ≥ ${m.rule?.minPerfectQuizzes ?? 1}
+                Regel: emner ≥ ${rulePass}% (eller 🎯 direct)
+                · konsepter ≥ ${ruleConceptMin}%
+                · perfekte quizzer ≥ ${ruleMinPerfect}
               </div>
 
               <div style="margin-top:8px;">
@@ -315,7 +258,7 @@
                 </ul>
               </details>
 
-              ${(Array.isArray(c.missing) && c.missing.length) ? `
+              ${Array.isArray(c.missing) && c.missing.length ? `
                 <details style="margin-top:8px;">
                   <summary>Manglende konsepter</summary>
                   <div class="muted" style="margin-top:6px;">${c.missing.join(", ")}</div>
@@ -324,24 +267,19 @@
             </div>
           `;
         }).join("");
-
       } catch (e) {
-        if (window.DEBUG) console.warn("[emner.html] HGCourses.compute failed", e);
+        dwarn("HGCourses.compute failed", e);
         st.textContent = "Klarte ikke å beregne kurs akkurat nå (se console med DEBUG).";
         ls.innerHTML = "";
       }
     }
 
-    // ------------------------------------------------------------
-    // MAIN
-    // ------------------------------------------------------------
     document.addEventListener("DOMContentLoaded", async () => {
       const elSubjects = document.getElementById("emneSubjectList");
       const elList     = document.getElementById("emneList");
       const elTitle    = document.getElementById("emneSubjectTitle");
       const elDesc     = document.getElementById("emneSubjectDesc");
 
-      // Hard requirements for emner-siden
       if (!window.Emner || !window.HGInsights || !window.computeEmneDekning) {
         elTitle.textContent = "Emne-systemet er ikke klart ennå";
         elDesc.textContent  = "Kunne ikke koble til emner, begreper eller dekningsmotoren.";
@@ -350,13 +288,11 @@
 
       const userId = (window.getCurrentUserId && window.getCurrentUserId()) || "anon";
 
-      // 1) concepts: foretrekk learning log (ny motor), fallback til HGInsights
       const concepts =
         (window.getUserConceptsFromLearningLog && window.getUserConceptsFromLearningLog()) ||
         (window.HGInsights && window.HGInsights.getUserConcepts(userId)) ||
         [];
 
-      // 2) emneHits: direkte emne-treff fra quizlogg (hvis finnes)
       const emneHits =
         (window.getUserEmneHitsFromLearningLog && window.getUserEmneHitsFromLearningLog()) ||
         new Set();
@@ -387,8 +323,8 @@
       const emneDekningBySubject = {};
       const subjectStats = {};
 
-      for (const subj of SUBJECTS) {
-        const emner = await window.Emner.loadForSubject(subj.id);
+      for (const s of SUBJECTS) {
+        const emner = await window.Emner.loadForSubject(s.id);
         if (!Array.isArray(emner) || !emner.length) continue;
 
         const dekning = (window.computeEmneDekningV2
@@ -398,15 +334,10 @@
 
         if (!dekning.length) continue;
 
-        emneDekningBySubject[subj.id] = dekning;
+        emneDekningBySubject[s.id] = dekning;
 
         const sumPercent = dekning.reduce((acc, r) => acc + (Number(r.percent) || 0), 0);
-        const avgPercent = Math.round(sumPercent / dekning.length);
-
-        subjectStats[subj.id] = {
-          count: dekning.length,
-          avgPercent
-        };
+        subjectStats[s.id] = { count: dekning.length, avgPercent: Math.round(sumPercent / dekning.length) };
       }
 
       const availableSubjects = SUBJECTS.filter(s => emneDekningBySubject[s.id]);
@@ -418,21 +349,19 @@
         return;
       }
 
-      elSubjects.innerHTML = availableSubjects
-        .map(s => {
-          const stats = subjectStats[s.id] || { count: 0, avgPercent: 0 };
-          return `
-            <li class="emne-subject-item">
-              <button class="emne-subject-btn" data-subject="${s.id}">
-                <span>${s.label}</span>
-                <small>${stats.avgPercent}% • ${stats.count} emner</small>
-              </button>
-            </li>
-          `;
-        })
-        .join("");
+      elSubjects.innerHTML = availableSubjects.map(s => {
+        const stats = subjectStats[s.id] || { count: 0, avgPercent: 0 };
+        return `
+          <li class="emne-subject-item">
+            <button class="emne-subject-btn" data-subject="${s.id}">
+              <span>${s.label}</span>
+              <small>${stats.avgPercent}% • ${stats.count} emner</small>
+            </button>
+          </li>
+        `;
+      }).join("");
 
-      async function renderSubject(subjectId) {
+      function renderSubject(subjectId) {
         const subject = SUBJECTS.find(s => s.id === subjectId);
         const dekning = emneDekningBySubject[subjectId] || [];
 
@@ -441,53 +370,44 @@
         });
 
         elTitle.textContent = subject ? subject.label : "Emner";
-        elDesc.textContent =
-          "Hvert emne består av kjernebegreper. Vi viser hvor mange av dem du har dekket gjennom quizer.";
+        elDesc.textContent  = "Hvert emne består av kjernebegreper. Vi viser hvor mange av dem du har dekket gjennom quizer.";
 
         if (!dekning.length) {
           elList.innerHTML = `<li class="emne-item"><small class="muted">Ingen emner med kjernebegreper i dette feltet ennå.</small></li>`;
         } else {
-          elList.innerHTML = dekning
-            .map(r => {
-              const total = Number(r.total) || 0;
-              const matchCount = Number(r.matchCount) || 0;
-              const percent = Number(r.percent) || 0;
+          elList.innerHTML = dekning.map(r => {
+            const total = Number(r.total) || 0;
+            const matchCount = Number(r.matchCount) || 0;
+            const percent = Number(r.percent) || 0;
+            const complete = total > 0 && matchCount === total;
 
-              const complete = total > 0 && matchCount === total;
-
-              return `
-                <li class="emne-item">
-                  <div class="emne-header">
-                    <strong>${r.title || "Emne"}</strong>
-                    <small>${percent}% (${matchCount}/${total})</small>
-                  </div>
-                  <div class="bar-bg">
-                    <div class="bar" style="width:${percent}%;"></div>
-                  </div>
-                  <div class="emne-meta">
-                    <small>
-                      ${complete
-                        ? `<span class="emne-complete">✔ Du dekker alle kjernebegrepene i dette emnet</span>`
-                        : `Mangler ${Math.max(0, (total - matchCount))} kjernebegreper`}
-                    </small>
-                  </div>
-                </li>
-              `;
-            })
-            .join("");
+            return `
+              <li class="emne-item">
+                <div class="emne-header">
+                  <strong>${r.title || "Emne"}</strong>
+                  <small>${percent}% (${matchCount}/${total})</small>
+                </div>
+                <div class="bar-bg"><div class="bar" style="width:${percent}%;"></div></div>
+                <div class="emne-meta">
+                  <small>
+                    ${complete
+                      ? `<span class="emne-complete">✔ Du dekker alle kjernebegrepene i dette emnet</span>`
+                      : `Mangler ${Math.max(0, (total - matchCount))} kjernebegreper`}
+                  </small>
+                </div>
+              </li>
+            `;
+          }).join("");
         }
 
-        // Kurs-panel (alltid)
-        await renderCoursesPanel(subjectId);
+        // Kurs-panel (alltid, for valgt fag)
+        renderCoursesPanel(subjectId);
       }
 
       elSubjects.querySelectorAll(".emne-subject-btn").forEach(btn => {
-        btn.addEventListener("click", () => {
-          renderSubject(btn.dataset.subject);
-        });
+        btn.addEventListener("click", () => renderSubject(btn.dataset.subject));
       });
 
-      // Start: første tilgjengelige (du ba om "by" tidligere – men vi auto velger første som faktisk har dekning)
       renderSubject(availableSubjects[0].id);
     });
   </script>
