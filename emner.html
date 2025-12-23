@@ -15,12 +15,7 @@
   <link rel="stylesheet" href="css/knowledge.css" />
 
   <style>
-    .emner-page {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 16px;
-    }
-
+    .emner-page { max-width: 1100px; margin: 0 auto; padding: 16px; }
     .emner-header { margin-bottom: 20px; }
     .emner-header h1 { margin: 8px 0 4px; }
 
@@ -31,16 +26,8 @@
       align-items: flex-start;
     }
 
-    .emner-sidebar {
-      background: rgba(0,0,0,0.25);
-      border-radius: 10px;
-      padding: 12px;
-    }
-
-    .emner-sidebar h2 {
-      font-size: 1.1rem;
-      margin-bottom: 8px;
-    }
+    .emner-sidebar { background: rgba(0,0,0,0.25); border-radius: 10px; padding: 12px; }
+    .emner-sidebar h2 { font-size: 1.1rem; margin-bottom: 8px; }
 
     .emne-subject-list { list-style: none; padding: 0; margin: 0; }
     .emne-subject-item + .emne-subject-item { margin-top: 6px; }
@@ -59,12 +46,7 @@
       align-items: center;
       background: rgba(255,255,255,0.04);
     }
-
-    .emne-subject-btn small {
-      opacity: 0.8;
-      font-size: 0.75rem;
-    }
-
+    .emne-subject-btn small { opacity: 0.8; font-size: 0.75rem; }
     .emne-subject-btn.active {
       background: rgba(255,255,255,0.12);
       box-shadow: 0 0 0 1px rgba(255,255,255,0.08);
@@ -82,11 +64,7 @@
       gap: 10px;
     }
 
-    .emne-item {
-      padding: 10px 12px;
-      border-radius: 10px;
-      background: rgba(0,0,0,0.3);
-    }
+    .emne-item { padding: 10px 12px; border-radius: 10px; background: rgba(0,0,0,0.3); }
 
     .emne-header {
       display: flex;
@@ -95,7 +73,6 @@
       gap: 8px;
       margin-bottom: 4px;
     }
-
     .emne-header strong { font-size: 0.95rem; }
     .emne-header small { font-size: 0.8rem; opacity: 0.9; }
 
@@ -107,7 +84,6 @@
       overflow: hidden;
       margin: 4px 0 4px;
     }
-
     .bar-bg .bar {
       height: 100%;
       border-radius: 999px;
@@ -121,13 +97,12 @@
       align-items: baseline;
       gap: 8px;
     }
-
     .emne-meta small { font-size: 0.75rem; opacity: 0.85; }
+
     .emne-complete { color: var(--ok, #2ecc71); }
 
     /* Courses panel spans full width under the two columns */
     #coursesPanel { grid-column: 1 / -1; margin-top: 14px; }
-
     @media (max-width: 800px) {
       .emner-layout { grid-template-columns: 1fr; }
       #coursesPanel { grid-column: auto; }
@@ -139,7 +114,6 @@
   <div class="emner-page">
     <header class="emner-header">
       <a class="back-link" href="profile.html">← Tilbake til profil</a>
-
       <img src="bilder/ui/historygo_logo.PNG" class="knowledge-logo" alt="History Go logo" />
 
       <h1>Dine emner & pensum</h1>
@@ -179,11 +153,11 @@
     </section>
   </div>
 
-  <!-- Motorer -->
+  <!-- Motorer (rekkefølge: knowledge -> hgInsights (valgfritt) -> emnerLoader -> courses) -->
   <script src="js/knowledge.js"></script>
-  <script src="js/courses.js"></script>
   <script src="js/hgInsights.js"></script>
   <script src="js/emnerLoader.js"></script>
+  <script src="js/courses.js"></script>
 
   <script>
     document.addEventListener("DOMContentLoaded", async () => {
@@ -193,43 +167,40 @@
       const elDesc     = document.getElementById("emneSubjectDesc");
 
       // Hard requirements
-      if (!window.Emner || !window.computeEmneDekning) {
+      if (!window.Emner || !window.computeEmneDekningV2) {
         elTitle.textContent = "Emne-systemet er ikke klart ennå";
         elDesc.textContent  = "Kunne ikke koble til emner eller dekningsmotoren.";
         return;
       }
 
-      function s(x) { return String(x ?? "").trim(); }
-
       const userId = (window.getCurrentUserId && window.getCurrentUserId()) || "anon";
 
-      // concepts: foretrekk learning log, fallback til HGInsights
+      // 1) concepts: foretrekk learning log, fallback til HGInsights hvis du har det
       const concepts =
         (window.getUserConceptsFromLearningLog && window.getUserConceptsFromLearningLog()) ||
         (window.HGInsights && window.HGInsights.getUserConcepts && window.HGInsights.getUserConcepts(userId)) ||
         [];
 
-      // emneHits: direkte emne-treff (fra learning log hvis du har det)
+      // 2) emneHits: direkte emne-treff fra learning log
       const emneHits =
         (window.getUserEmneHitsFromLearningLog && window.getUserEmneHitsFromLearningLog()) ||
         new Set();
 
-      if (!Array.isArray(concepts) || !concepts.length) {
+      if (!concepts.length) {
         elTitle.textContent = "Ingen emne-dekning ennå";
         elDesc.textContent  = "Ta noen quizer først, så kan vi vise hvordan du dekker emnene i hvert felt.";
         elList.innerHTML    = "";
-        // kurs-panelet
-        document.getElementById("coursesStatus").textContent = "Ingen læringsdata ennå.";
+        document.getElementById("coursesStatus").textContent = "";
         document.getElementById("coursesList").innerHTML = "";
         return;
       }
 
-      // Felt (By først i lista)
+      // Felt vi støtter nå
       const SUBJECTS = [
-        { id: "by",             label: "By & arkitektur" },
-        { id: "historie",       label: "Historie" },
         { id: "vitenskap",      label: "Vitenskap & filosofi" },
         { id: "psykologi",      label: "Psykologi" },
+        { id: "historie",       label: "Historie" },
+        { id: "by",             label: "By & arkitektur" },
         { id: "kunst",          label: "Kunst & kultur" },
         { id: "musikk",         label: "Musikk & scenekunst" },
         { id: "litteratur",     label: "Litteratur" },
@@ -246,67 +217,52 @@
 
       // Last emner og beregn dekning per felt
       for (const subj of SUBJECTS) {
-        let emner = [];
-        try {
-          emner = await window.Emner.loadForSubject(subj.id);
-        } catch (e) {
-          if (window.DEBUG) console.warn("[emner.html] loadForSubject failed:", subj.id, e);
-          continue;
-        }
-
+        const emner = await window.Emner.loadForSubject(subj.id);
         if (!Array.isArray(emner) || !emner.length) continue;
 
-        const dekning = (window.computeEmneDekningV2
-          ? window.computeEmneDekningV2(concepts, emner, { emneHits })
-          : window.computeEmneDekning(concepts, emner)
-        ).filter(r => r && (Number(r.total) || 0) > 0);
+        const dekning = window.computeEmneDekningV2(concepts, emner, { emneHits })
+          .filter(r => r && r.total > 0);
 
         if (!dekning.length) continue;
 
         emneDekningBySubject[subj.id] = dekning;
 
         const sumPercent = dekning.reduce((acc, r) => acc + (Number(r.percent) || 0), 0);
-        const avgPercent = dekning.length ? Math.round(sumPercent / dekning.length) : 0;
+        const avgPercent = Math.round(sumPercent / dekning.length);
 
-        subjectStats[subj.id] = {
-          count: dekning.length,
-          avgPercent
-        };
+        subjectStats[subj.id] = { count: dekning.length, avgPercent };
       }
 
-      const availableSubjects = SUBJECTS.filter(x => emneDekningBySubject[x.id]);
+      const availableSubjects = SUBJECTS.filter(s => emneDekningBySubject[s.id]);
 
       if (!availableSubjects.length) {
         elTitle.textContent = "Ingen emne-dekning å vise ennå";
-        elDesc.textContent  = "Du har begreper, men vi finner ikke emner med definerte kjernebegreper i feltene.";
+        elDesc.textContent  = "Du har begreper, men vi finner ikke emner med definerte kjernebegreper i feltene dine.";
         elList.innerHTML    = "";
-        document.getElementById("coursesStatus").textContent = "Ingen kursdata ennå.";
+        document.getElementById("coursesStatus").textContent = "";
         document.getElementById("coursesList").innerHTML = "";
         return;
       }
 
       // Bygg venstremeny
-      elSubjects.innerHTML = availableSubjects.map(x => {
-        const stats = subjectStats[x.id] || { count: 0, avgPercent: 0 };
-        return `
-          <li class="emne-subject-item">
-            <button class="emne-subject-btn" data-subject="${x.id}">
-              <span>${x.label}</span>
-              <small>${stats.avgPercent}% • ${stats.count} emner</small>
-            </button>
-          </li>
-        `;
-      }).join("");
+      elSubjects.innerHTML = availableSubjects
+        .map(s => {
+          const stats = subjectStats[s.id] || { count: 0, avgPercent: 0 };
+          return `
+            <li class="emne-subject-item">
+              <button class="emne-subject-btn" data-subject="${s.id}">
+                <span>${s.label}</span>
+                <small>${stats.avgPercent}% • ${stats.count} emner</small>
+              </button>
+            </li>
+          `;
+        })
+        .join("");
 
-      // ------------------------------------------------------------
-      // KURS: koble mot window.HGCourses.compute (learning log + pensum)
-      // ------------------------------------------------------------
       async function renderCoursesPanel(subjectId) {
-        const panel = document.getElementById("coursesPanel");
         const st = document.getElementById("coursesStatus");
         const ls = document.getElementById("coursesList");
-
-        if (!panel || !st || !ls) return;
+        if (!st || !ls) return;
 
         if (!window.HGCourses || typeof window.HGCourses.compute !== "function") {
           st.textContent = "Kursmotor ikke koblet (HGCourses.compute mangler).";
@@ -320,24 +276,21 @@
 
           const emnerAll = await window.Emner.loadForSubject(subjectId);
 
-          const res = await window.HGCourses.compute({
-            subjectId: s(subjectId),
-            emnerAll: Array.isArray(emnerAll) ? emnerAll : []
-          });
+          const res = await window.HGCourses.compute({ subjectId, emnerAll });
 
-          const course = res.course || { percent: 0, done: 0, total: 0, modules: [] };
-          const diploma = res.diploma || { eligible: false };
+          const course = res.course;
+          const diploma = res.diploma;
 
           st.innerHTML = `
-            Progresjon: <strong>${course.percent || 0}%</strong>
-            · Moduler: <strong>${course.done || 0}/${course.total || 0}</strong>
+            Progresjon: <strong>${course.percent}%</strong>
+            · Moduler: <strong>${course.done}/${course.total}</strong>
             ${diploma.eligible ? ` · <strong>🎓 Diplom klar!</strong>` : ""}
             <span class="muted" style="display:block;margin-top:6px;">
-              Læringslogg: ${res.learning?.logCount || 0} events · Emne-hits: ${res.learning?.emneHitsCount || 0}
+              Læringslogg: ${res.learning.logCount} events · Emne-hits: ${res.learning.emneHitsCount}
             </span>
           `;
 
-          if (!Array.isArray(course.modules) || !course.modules.length) {
+          if (!course.modules || !course.modules.length) {
             ls.innerHTML = `<div class="muted">Ingen moduler definert i pensum for "${subjectId}".</div>`;
             return;
           }
@@ -401,15 +354,13 @@
 
         } catch (e) {
           if (window.DEBUG) console.warn("[emner.html] HGCourses.compute failed", e);
-          const st = document.getElementById("coursesStatus");
-          const ls = document.getElementById("coursesList");
-          if (st) st.textContent = "Klarte ikke å beregne kurs akkurat nå (se console med DEBUG).";
-          if (ls) ls.innerHTML = "";
+          st.textContent = "Klarte ikke å beregne kurs akkurat nå (se console med DEBUG).";
+          ls.innerHTML = "";
         }
       }
 
       function renderSubject(subjectId) {
-        const subject = SUBJECTS.find(x => x.id === subjectId);
+        const subject = SUBJECTS.find(s => s.id === subjectId);
         const dekning = emneDekningBySubject[subjectId] || [];
 
         // marker aktiv knapp
@@ -450,7 +401,7 @@
           }).join("");
         }
 
-        // Kurs-panelet
+        // Kurs-panelet følger valgt fagfelt
         renderCoursesPanel(subjectId);
       }
 
@@ -459,9 +410,8 @@
         btn.addEventListener("click", () => renderSubject(btn.dataset.subject));
       });
 
-      // Start: By hvis tilgjengelig, ellers første tilgjengelige
-      const startId = availableSubjects.some(x => x.id === "by") ? "by" : availableSubjects[0].id;
-      renderSubject(startId);
+      // Velg første felt automatisk
+      renderSubject(availableSubjects[0].id);
     });
   </script>
 </body>
