@@ -2,6 +2,13 @@
 // HISTORY GO – POPUP-UTILS (ENDLIG VERISON)
 // Bruker KUN filbaner fra JSON: image, imageCard, cardImage
 // Ingen fallback, ingen automatikk, ingen _face-filnavn
+//
+// + OBSERVASJONER:
+// - Leser fra hg_learning_log_v1 (type:"observation")
+// - Viser siste 10 i person- og steds-popup
+// - Trigger Observations fra placeCard via #pcObserve (hvis finnes)
+//
+// NB: STRICT: ingen normalisering utover trim.
 // ============================================================
 
 let currentPopup = null;
@@ -85,7 +92,7 @@ function getInlineKnowledgeFor(categoryId, targetId) {
   if (!cat) return null;
 
   const out = {};
-const prefix = ("quiz_" + targetId + "_").toLowerCase();
+  const prefix = ("quiz_" + targetId + "_").toLowerCase();
 
   Object.entries(cat).forEach(([dimension, items]) => {
     if (!Array.isArray(items)) return;
@@ -125,6 +132,54 @@ function getInlineTriviaFor(categoryId, targetId) {
   return [];
 }
 
+// ------------------------------------------------------------
+// 2c. OBSERVASJONER (hg_learning_log_v1)
+// ------------------------------------------------------------
+function getObservationsForTarget(targetId, targetType) {
+  try {
+    const log = JSON.parse(localStorage.getItem("hg_learning_log_v1") || "[]");
+    if (!Array.isArray(log)) return [];
+    const tid = String(targetId || "").trim();
+    const ttype = String(targetType || "").trim();
+
+    return log
+      .filter(e =>
+        e &&
+        e.type === "observation" &&
+        String(e.targetId || "").trim() === tid &&
+        String(e.targetType || "").trim() === ttype
+      )
+      .sort((a, b) => (Number(b.ts) || 0) - (Number(a.ts) || 0));
+  } catch {
+    return [];
+  }
+}
+
+function renderObsList(obs) {
+  if (!obs || !obs.length) return `<p class="hg-muted">Ingen observasjoner ennå.</p>`;
+
+  return `
+    <ul style="margin:0;padding-left:18px;">
+      ${obs.slice(0, 10).map(o => {
+        const lens = String(o.lens_id || "").trim() || "linse";
+        const selected = Array.isArray(o.selected) ? o.selected : [];
+        const note = String(o.note || "").trim();
+        const when = o.ts ? new Date(o.ts).toLocaleString("no-NO") : "";
+        return `
+          <li style="margin:6px 0;">
+            <strong>${lens}</strong>
+            <div class="hg-muted" style="margin-top:2px;">
+              ${selected.length ? selected.join(" · ") : "—"}
+              ${when ? ` · ${when}` : ""}
+            </div>
+            ${note ? `<div style="margin-top:4px;">📝 ${note}</div>` : ""}
+          </li>
+        `;
+      }).join("")}
+    </ul>
+  `;
+}
+
 // ============================================================
 // 3. PERSON-POPUP
 // ============================================================
@@ -153,53 +208,7 @@ window.showPersonPopup = function(person) {
       (Array.isArray(person.places) && person.places.includes(p.id))
   );
 
-  // ------------------------------------------------------------
-  // OBSERVASJONER (les fra hg_learning_log_v1)
-  // ------------------------------------------------------------
-  function getObservationsForTarget(targetId, targetType) {
-    try {
-      const log = JSON.parse(localStorage.getItem("hg_learning_log_v1") || "[]");
-      if (!Array.isArray(log)) return [];
-      const tid = String(targetId || "").trim();
-      const ttype = String(targetType || "").trim();
-      return log
-        .filter(e =>
-          e &&
-          e.type === "observation" &&
-          String(e.targetId || "").trim() === tid &&
-          String(e.targetType || "").trim() === ttype
-        )
-        .sort((a, b) => (Number(b.ts) || 0) - (Number(a.ts) || 0));
-    } catch {
-      return [];
-    }
-  }
-
-  function renderObsList(obs) {
-    if (!obs.length) return `<p class="hg-muted">Ingen observasjoner ennå.</p>`;
-
-    return `
-      <ul>
-        ${obs.slice(0, 10).map(o => {
-          const lens = String(o.lens_id || "").trim() || "linse";
-          const selected = Array.isArray(o.selected) ? o.selected : [];
-          const note = String(o.note || "").trim();
-          const when = o.ts ? new Date(o.ts).toLocaleString("no-NO") : "";
-          return `
-            <li style="margin:6px 0;">
-              <strong>${lens}</strong>
-              <div class="hg-muted" style="margin-top:2px;">
-                ${selected.length ? selected.join(" · ") : "—"}
-                ${when ? ` · ${when}` : ""}
-              </div>
-              ${note ? `<div style="margin-top:4px;">📝 ${note}</div>` : ""}
-            </li>
-          `;
-        }).join("")}
-      </ul>
-    `;
-  }
-
+  // OBSERVASJONER (person)
   const observations = getObservationsForTarget(person.id, "person");
   const obsHtml = renderObsList(observations);
 
@@ -236,6 +245,7 @@ window.showPersonPopup = function(person) {
         }
       </div>
 
+      <!-- Samtale & notat -->
       <div class="hg-section">
         <h3>Samtale & notat</h3>
         <div class="hg-actions-row">
@@ -248,6 +258,7 @@ window.showPersonPopup = function(person) {
         </div>
       </div>
 
+      <!-- Observasjoner -->
       <div class="hg-section">
         <h3>Observasjoner</h3>
         ${obsHtml}
@@ -297,6 +308,7 @@ window.showPersonPopup = function(person) {
     };
   });
 };
+
 // ============================================================
 // 4. STEDS-POPUP
 // ============================================================
@@ -315,53 +327,7 @@ window.showPlacePopup = function(place) {
   const triviaList =
     completed && categoryId ? getInlineTriviaFor(categoryId, place.id) : [];
 
-  // ------------------------------------------------------------
-  // OBSERVASJONER (les fra hg_learning_log_v1)
-  // ------------------------------------------------------------
-  function getObservationsForTarget(targetId, targetType) {
-    try {
-      const log = JSON.parse(localStorage.getItem("hg_learning_log_v1") || "[]");
-      if (!Array.isArray(log)) return [];
-      const tid = String(targetId || "").trim();
-      const ttype = String(targetType || "").trim();
-      return log
-        .filter(e =>
-          e &&
-          e.type === "observation" &&
-          String(e.targetId || "").trim() === tid &&
-          String(e.targetType || "").trim() === ttype
-        )
-        .sort((a, b) => (Number(b.ts) || 0) - (Number(a.ts) || 0));
-    } catch {
-      return [];
-    }
-  }
-
-  function renderObsList(obs) {
-    if (!obs.length) return `<p class="hg-muted">Ingen observasjoner ennå.</p>`;
-
-    return `
-      <ul>
-        ${obs.slice(0, 10).map(o => {
-          const lens = String(o.lens_id || "").trim() || "linse";
-          const selected = Array.isArray(o.selected) ? o.selected : [];
-          const note = String(o.note || "").trim();
-          const when = o.ts ? new Date(o.ts).toLocaleString("no-NO") : "";
-          return `
-            <li style="margin:6px 0;">
-              <strong>${lens}</strong>
-              <div class="hg-muted" style="margin-top:2px;">
-                ${selected.length ? selected.join(" · ") : "—"}
-                ${when ? ` · ${when}` : ""}
-              </div>
-              ${note ? `<div style="margin-top:4px;">📝 ${note}</div>` : ""}
-            </li>
-          `;
-        }).join("")}
-      </ul>
-    `;
-  }
-
+  // OBSERVASJONER (place)
   const observations = getObservationsForTarget(place.id, "place");
   const obsHtml = renderObsList(observations);
 
@@ -377,11 +343,15 @@ window.showPlacePopup = function(place) {
         peopleHere.length
           ? `<div class="hg-popup-subtitle">Personer</div>
              <div class="hg-popup-people">
-               ${peopleHere.map(pr => `
+               ${peopleHere
+                 .map(
+                   pr => `
                  <div class="hg-popup-face" data-person="${pr.id}">
                    <img src="${pr.imageCard}">
                  </div>
-               `).join("")}
+               `
+                 )
+                 .join("")}
              </div>`
           : ""
       }
@@ -393,12 +363,18 @@ window.showPlacePopup = function(place) {
         <h3>Kunnskap</h3>
         ${
           knowledgeBlocks
-            ? Object.entries(knowledgeBlocks).map(([dim, items]) => `
+            ? Object.entries(knowledgeBlocks)
+                .map(
+                  ([dim, items]) => `
                   <strong>${dim}</strong>
                   <ul>
-                    ${items.map(i => `<li><strong>${i.topic}:</strong> ${i.text}</li>`).join("")}
+                    ${items
+                      .map(i => `<li><strong>${i.topic}:</strong> ${i.text}</li>`)
+                      .join("")}
                   </ul>
-                `).join("")
+                `
+                )
+                .join("")
             : `<p class="hg-muted">Ingen kunnskap registrert ennå.</p>`
         }
       </div>
@@ -452,7 +428,7 @@ window.openPlaceCard = function(place) {
 
   if (!card) return;
 
-      // Smooth “skifte sted”
+  // Smooth “skifte sted”
   card.classList.add("is-switching");
 
   if (imgEl)   imgEl.src = place.image || "";
@@ -470,7 +446,7 @@ window.openPlaceCard = function(place) {
     peopleEl.innerHTML = persons
       .map(p => `
         <button class="pc-person" data-person="${p.id}">
-<img src="${p.image}" class="pc-person-img" alt="">
+          <img src="${p.image}" class="pc-person-img" alt="">
           <span>${p.name}</span>
         </button>
       `)
@@ -486,24 +462,25 @@ window.openPlaceCard = function(place) {
 
   if (btnInfo) btnInfo.onclick = () => showPlacePopup(place);
 
-// ✅ QUIZ: bruk QuizEngine (ny motor)
-if (btnQuiz) btnQuiz.onclick = () => {
-  if (window.QuizEngine && typeof QuizEngine.start === "function") {
-    QuizEngine.start(place.id);
-  } else {
-    showToast("Quiz-modul ikke lastet");
-  }
-};
+  // ✅ QUIZ: bruk QuizEngine (ny motor)
+  if (btnQuiz) btnQuiz.onclick = () => {
+    if (window.QuizEngine && typeof QuizEngine.start === "function") {
+      QuizEngine.start(place.id);
+    } else {
+      showToast("Quiz-modul ikke lastet");
+    }
+  };
 
-if (btnRoute) btnRoute.onclick = () => {
-  if (typeof showRouteTo === "function") showRouteTo(place);
-  else if (typeof showToast === "function") showToast("Rute-funksjon ikke lastet");
-};
+  if (btnRoute) btnRoute.onclick = () => {
+    if (typeof showRouteTo === "function") showRouteTo(place);
+    else if (typeof showToast === "function") showToast("Rute-funksjon ikke lastet");
+  };
 
   if (btnNote && typeof handlePlaceNote === "function") {
     btnNote.onclick = () => handlePlaceNote(place);
   }
 
+  // ✅ OBS: trigger HGObservations.start (hvis knappen finnes)
   if (btnObs) {
     btnObs.onclick = () => {
       if (!window.HGObservations || typeof window.HGObservations.start !== "function") {
@@ -521,11 +498,12 @@ if (btnRoute) btnRoute.onclick = () => {
           categoryId: subjectId,
           title: place.name
         },
-        lensId: "lens_by_brukere" // må finnes i observations_by.json
+        // OBS: må finnes i data/observations/observations_by.json
+        lensId: "by_brukere_hvem"
       });
     };
   }
-  
+
   if (btnUnlock) {
     btnUnlock.onclick = () => {
       if (visited[place.id]) {
@@ -562,10 +540,10 @@ if (btnRoute) btnRoute.onclick = () => {
     };
   }
 
-    requestAnimationFrame(() => {
+  requestAnimationFrame(() => {
     card.classList.remove("is-switching");
   });
-  
+
   card.setAttribute("aria-hidden", "false");
 };
 
@@ -635,13 +613,14 @@ window.showRewardPlace = function(place) {
   if (!place) return;
 
   const BASE = document.querySelector("base")?.href || "";
-const card =
-  place.cardImage || place.image || `${BASE}bilder/kort/places/${place.id}.PNG`;
+  const card =
+    place.cardImage || place.image || `${BASE}bilder/kort/places/${place.id}.PNG`;
+
   const categoryId = getLastQuizCategoryId(place.id);
-const knowledgeBlocks =
-  categoryId ? getInlineKnowledgeFor(categoryId, place.id) : null;
-const triviaList =
-  categoryId ? getInlineTriviaFor(categoryId, place.id) : [];
+  const knowledgeBlocks =
+    categoryId ? getInlineKnowledgeFor(categoryId, place.id) : null;
+  const triviaList =
+    categoryId ? getInlineTriviaFor(categoryId, place.id) : [];
 
   makePopup(
     `
@@ -770,8 +749,6 @@ window.showRewardPerson = function(person) {
     if (img) img.classList.add("visible");
   });
 };
-
-
 
 // ============================================================
 // 8. ESC = LUKK
