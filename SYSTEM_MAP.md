@@ -437,3 +437,26 @@ Public keys i `HG_FIELD_PROFILES`:
 ### AHA/ahaEmneMatcher.js
 Eksporterer (global funksjon):
 - `matchEmneForText(subjectId, text)`
+
+
+---
+
+# ➕ LEGG TIL I `SYSTEM_MAP.md`
+*(legg til nederst – ikke flytt eksisterende piler)*
+
+```md
+---
+
+## Observations & Pensum – systemflyt (utvidelse)
+
+Quiz ─┐
+      ├──> hg_learning_log_v1 ────────────────┐
+Observation ──────────────────────────────────┤
+                                                ├──> Courses / Pensum (HGCourses)
+Knowledge ─────────────────────────────────────┘
+
+Observation ──> Place Popup (visning)
+Observation ──> Person Popup (visning)
+
+Notes ───────────────┐
+                      └──> Profil / AHA / refleksjon
