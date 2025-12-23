@@ -61,42 +61,71 @@ function renderProfileCard() {
 
 
 // ------------------------------------------------------------
-// MERKER – GRID + MODAL
+// MERKER – GRID + MODAL (STRICT)
 // ------------------------------------------------------------
 async function renderMerits() {
   const box = document.getElementById("merits");
   if (!box) return;
 
   const merits = ls("merits_by_category", {});
-  const cats = Object.keys(merits);
+  const keys = Object.keys(merits);
 
-  box.innerHTML = cats.map(cat => {
-    const merit = merits[cat];
-    const badge = BADGES.find(b =>
-      cat.toLowerCase().includes(b.id) ||
-      b.name.toLowerCase().includes(cat.toLowerCase())
-    );
-    if (!badge) return "";
+  // STRICT: vi prøver først badge.id som key (canonical).
+  // Backward-compat: hvis noen gamle keys er badge.name, støtter vi det også – men uten "includes".
+  function getBadgeForMeritKey(key) {
+    const k = String(key || "").trim();
+    if (!k) return null;
 
-    const levelIndex = badge.tiers.findIndex(t => t.label === merit.level);
-    const medal = levelIndex === 0 ? "🥉" :
-                  levelIndex === 1 ? "🥈" :
-                  levelIndex === 2 ? "🥇" : "🏆";
+    // 1) canonical: id
+    let b = BADGES.find(x => String(x.id || "").trim() === k);
+    if (b) return b;
 
-    return `
-      <div class="badge-mini" data-badge-id="${badge.id}">
-        <div class="badge-wrapper">
-          <img src="${badge.image}" class="badge-mini-icon" alt="${badge.name}">
-          <span class="badge-medal">${medal}</span>
-        </div>
-      </div>`;
-  }).join("");
+    // 2) backward: name exact match
+    b = BADGES.find(x => String(x.name || "").trim() === k);
+    if (b) return b;
+
+    return null;
+  }
+
+  box.innerHTML = keys
+    .map((k) => {
+      const badge = getBadgeForMeritKey(k);
+      if (!badge) {
+        if (window.DEBUG) console.warn("[profile] renderMerits: no badge for merit key:", k);
+        return "";
+      }
+
+      const merit = merits[k] || {};
+      const level = String(merit.level || "Nybegynner").trim();
+
+      const levelIndex = Array.isArray(badge.tiers)
+        ? badge.tiers.findIndex(t => String(t.label || "").trim() === level)
+        : -1;
+
+      const medal =
+        levelIndex === 0 ? "🥉" :
+        levelIndex === 1 ? "🥈" :
+        levelIndex === 2 ? "🥇" : "🏆";
+
+      return `
+        <div class="badge-mini" data-badge-id="${badge.id}">
+          <div class="badge-wrapper">
+            <img src="${badge.image}" class="badge-mini-icon" alt="${badge.name}">
+            <span class="badge-medal">${medal}</span>
+          </div>
+        </div>`;
+    })
+    .join("");
 
   // Klikk → modal
   box.querySelectorAll(".badge-mini").forEach(el => {
     el.addEventListener("click", () => {
-      const id = el.dataset.badgeId;
-      const badge = BADGES.find(b => b.id === id);
+      const id = String(el.dataset.badgeId || "").trim();
+      const badge = BADGES.find(b => String(b.id || "").trim() === id);
+      if (!badge) {
+        if (window.DEBUG) console.warn("[profile] click badge: not found", id);
+        return;
+      }
       openBadgeModal(badge);
     });
   });
@@ -107,79 +136,82 @@ function openBadgeModal(badge) {
   const modal = document.getElementById("badgeModal");
   if (!modal || !badge) return;
 
-  // --- MERITS INFO ---
+  // --- MERITS INFO (canonical key = badge.id) ---
   const merits = ls("merits_by_category", {});
-  const info = merits[badge.name] || merits[badge.id] || { level:"Nybegynner", points:0 };
+  const info =
+    merits[String(badge.id || "").trim()] ||
+    merits[String(badge.name || "").trim()] ||
+    { level: "Nybegynner", points: 0 };
 
   modal.querySelector(".badge-img").src = badge.image;
   modal.querySelector(".badge-title").textContent = badge.name;
-  modal.querySelector(".badge-level").textContent = info.level;
-  modal.querySelector(".badge-progress-text").textContent = `${info.points} poeng`;
+  modal.querySelector(".badge-level").textContent = info.level || "Nybegynner";
+  modal.querySelector(".badge-progress-text").textContent = `${Number(info.points || 0)} poeng`;
 
   // Progressbar
   const bar = modal.querySelector(".badge-progress-bar");
-  const max = badge.tiers[badge.tiers.length - 1].threshold;
-  bar.style.width = `${Math.min(100, (info.points / max) * 100)}%`;
+  const tiers = Array.isArray(badge.tiers) ? badge.tiers : [];
+  const max = tiers.length ? Number(tiers[tiers.length - 1].threshold || 1) : 1;
+  bar.style.width = `${Math.min(100, (Number(info.points || 0) / Math.max(1, max)) * 100)}%`;
 
-  // --- QUIZ-HISTORIKK ---
-  const history = JSON.parse(localStorage.getItem("quiz_history") || "[]");
-  const catId = String(badge.id || "").toLowerCase();
-  const items = (Array.isArray(history) ? history : []).filter(
-    h => String(h?.categoryId || "").toLowerCase() === catId
-  );
+  // --- QUIZ-HISTORIKK (STRICT) ---
+  const historyRaw = JSON.parse(localStorage.getItem("quiz_history") || "[]");
+  const history = Array.isArray(historyRaw) ? historyRaw : [];
+
+  const catId = String(badge.id || "").trim();
+
+  // STRICT compare: trim only (ingen lower/normalize)
+  const items = history.filter(h => String(h?.categoryId || "").trim() === catId);
 
   const list = modal.querySelector(".badge-quizzes");
+  if (!list) return;
 
   if (!items.length) {
     list.innerHTML = "<li>Ingen quiz fullført i denne kategorien ennå.</li>";
   } else {
-    list.innerHTML = items
-      .map(h => {
-        const date = h.date ? new Date(h.date).toLocaleDateString("no-NO") : "";
+    list.innerHTML = items.map(h => {
+      const date = h.date ? new Date(h.date).toLocaleDateString("no-NO") : "";
 
-        const ca = Array.isArray(h.correctAnswers) ? h.correctAnswers : [];
-        const correct = Number.isFinite(h.correctCount) ? h.correctCount : ca.length;
-        const total = Number.isFinite(h.total) ? h.total : (ca.length || correct);
-        const score = `${correct}/${total}`;
+      const ca = Array.isArray(h.correctAnswers) ? h.correctAnswers : [];
+      const correct = Number.isFinite(h.correctCount) ? h.correctCount : ca.length;
+      const total = Number.isFinite(h.total) ? h.total : (correct || ca.length || 0);
+      const score = `${correct}/${total || correct}`;
 
-        const imgHtml = h.image ? `<img class="badge-quiz-img" src="${h.image}">` : "";
+      const imgHtml = h.image ? `<img class="badge-quiz-img" src="${h.image}">` : "";
 
-        const answersHtml = ca.length
-          ? `
-              <ul class="badge-quiz-answers">
-                ${ca
-                  .map(a => `
-                    <li class="badge-quiz-q">
-                      <strong>${a.question || ""}</strong><br>
-                      ✔ ${a.answer || ""}
-                    </li>
-                  `)
-                  .join("")}
-              </ul>
-            `
-          : `<div class="badge-quiz-muted">Ingen detaljer lagret for denne quizen.</div>`;
+      const answersHtml = ca.length
+        ? `
+          <ul class="badge-quiz-answers">
+            ${ca.map(a => `
+              <li class="badge-quiz-q">
+                <strong>${a?.question || ""}</strong><br>
+                ✔ ${a?.answer || ""}
+              </li>
+            `).join("")}
+          </ul>
+        `
+        : `<div class="badge-quiz-muted">Ingen svar-detaljer lagret for denne quizen.</div>`;
 
-        return `
-          <li class="badge-quiz-item">
-            ${imgHtml}
-            <div class="badge-quiz-info">
-              <strong>${h.name || "Quiz"}</strong><br>
-              ${date ? `<span>${date}</span><br>` : ""}
-              <span class="badge-quiz-score">Score: ${score}</span>
-              ${answersHtml}
-            </div>
-          </li>
-        `;
-      })
-      .join("");
+      return `
+        <li class="badge-quiz-item">
+          ${imgHtml}
+          <div class="badge-quiz-info">
+            <strong>${h.name || "Quiz"}</strong><br>
+            ${date ? `<span>${date}</span><br>` : ""}
+            <span class="badge-quiz-score">Score: ${score}</span>
+            ${answersHtml}
+          </div>
+        </li>
+      `;
+    }).join("");
   }
 
-  // åpne modal (MÅ være etter map/join)
+  // åpne modal
   modal.style.display = "flex";
   modal.setAttribute("aria-hidden", "false");
 
   modal.onclick = e => {
-    if (e.target.id === "badgeModal") closeBadgeModal();
+    if (e.target && e.target.id === "badgeModal") closeBadgeModal();
   };
   modal.querySelector(".close-btn").onclick = closeBadgeModal;
 }
