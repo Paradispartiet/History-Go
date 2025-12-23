@@ -220,6 +220,82 @@
     }
   }
 
+  // ============================================================
+// QUIZ STORAGE (strict schema + optional learning log)
+// ============================================================
+
+const QUIZ_HISTORY_KEY = "quiz_history";
+const HG_LEARNING_LOG_KEY = "hg_learning_log_v1";
+const QUIZ_HISTORY_SCHEMA = 2;
+const HG_LEARNING_SCHEMA = 1;
+
+function dlog(...args)  { if (window.DEBUG) console.log("[QuizEngine]", ...args); }
+function dwarn(...args) { if (window.DEBUG) console.warn("[QuizEngine]", ...args); }
+
+function safeParse(key, fallback) {
+  try {
+    const v = JSON.parse(localStorage.getItem(key) || "null");
+    return v == null ? fallback : v;
+  } catch (e) {
+    dwarn("bad json in", key, e);
+    return fallback;
+  }
+}
+
+function safeWrite(key, value) {
+  try {
+    localStorage.setItem(key, JSON.stringify(value));
+    return true;
+  } catch (e) {
+    dwarn("write failed", key, e);
+    return false;
+  }
+}
+
+function s(x) { return String(x ?? "").trim(); }
+function arr(x) { return Array.isArray(x) ? x : []; }
+
+function appendToArrayKey(key, item) {
+  const cur = safeParse(key, []);
+  const list = Array.isArray(cur) ? cur : [];
+  list.push(item);
+  safeWrite(key, list);
+}
+
+// Strict + complete (badge-modal relies on this)
+function saveQuizHistory(entry) {
+  try {
+    if (!entry || typeof entry !== "object") throw new Error("entry missing");
+    if (!s(entry.categoryId)) throw new Error("categoryId missing");
+    if (!s(entry.targetId)) throw new Error("targetId missing");
+    if (!s(entry.name)) throw new Error("name missing");
+    if (!s(entry.date)) throw new Error("date missing");
+    if (!Number.isFinite(entry.correctCount)) throw new Error("correctCount invalid");
+    if (!Number.isFinite(entry.total)) throw new Error("total invalid");
+    if (!Array.isArray(entry.correctAnswers)) throw new Error("correctAnswers must be array");
+
+    appendToArrayKey(QUIZ_HISTORY_KEY, entry);
+    return true;
+  } catch (e) {
+    dwarn("saveQuizHistory rejected:", e, entry);
+    return false;
+  }
+}
+
+// New system: append-only learning log (for kurs/diplom later)
+function appendLearningEvent(evt) {
+  try {
+    if (!evt || typeof evt !== "object") throw new Error("evt missing");
+    if (!s(evt.categoryId)) throw new Error("categoryId missing");
+    if (!s(evt.targetId)) throw new Error("targetId missing");
+    appendToArrayKey(HG_LEARNING_LOG_KEY, evt);
+    return true;
+  } catch (e) {
+    dwarn("appendLearningEvent rejected:", e, evt);
+    return false;
+  }
+}
+  
   function runQuizFlow({ title, targetId, questions, onEnd }) {
     ensureQuizUI();
 
@@ -234,8 +310,13 @@
 
     let i = 0;
     let correct = 0;
-    let correctAnswers = []; // <-- NY: brukes til badge-modal
 
+  // til badge-modal og læringslogg:
+    let correctAnswers = [];
+    let conceptsCorrect = [];
+    let emnerTouched = [];
+    
+    
     function step() {
       const q = questions[i];
 
@@ -263,30 +344,35 @@
           btn.classList.add(ok ? "correct" : "wrong");
           qs.feedback.textContent = ok ? "Riktig ✅" : "Feil ❌";
           if (ok) {
-            correct++;
-            const qText = q.question || q.text || "";
-            const chosen = options[Number(btn.dataset.idx)] ?? "";
+           correct++;
+          const qText = q.question || q.text || "";
+          const chosen = options[Number(btn.dataset.idx)] ?? "";
             correctAnswers.push({ question: qText, answer: chosen });
-          }
 
-          // ✅ KUN ved RIKTIG: knowledge-event
-          if (ok && typeof API.saveKnowledgeFromQuiz === "function") {
-            const tid = String(targetId || "");
-            API.saveKnowledgeFromQuiz(
-              {
-                id: `${tid}_${(q.topic || q.question || "").replace(/\s+/g, "_")}`.toLowerCase(),
-                categoryId: String(q.categoryId || "vitenskap").trim(),
-                dimension: q.dimension,
-                topic: q.topic,
-                question: q.question,
-                knowledge: q.knowledge,
-                answer: q.answer,
-                core_concepts: Array.isArray(q.core_concepts) ? q.core_concepts : []
-              },
-              { categoryId: String(q.categoryId || "vitenskap").trim(), targetId: tid }
-            );
-          }
+      // ✅ KUN ved RIKTIG: knowledge-event
+        if (typeof API.saveKnowledgeFromQuiz === "function") {
+          const tid = String(targetId || "");
+          const categoryId = String(q.categoryId || "vitenskap").trim();
 
+          API.saveKnowledgeFromQuiz(
+      {
+            id: `${tid}_${(q.topic || q.question || "").replace(/\s+/g, "_")}`.toLowerCase(),
+            categoryId,
+            dimension: q.dimension,
+            topic: q.topic,
+            question: q.question,
+            knowledge: q.knowledge,
+
+        // fasit + hva brukeren valgte (samme når ok, men robust hvis du senere lagrer alt)
+            answer: q.answer,
+            chosenAnswer: chosen,
+
+            core_concepts: Array.isArray(q.core_concepts) ? q.core_concepts : []
+          },
+          { categoryId, targetId: tid }
+        );
+      }
+    }
           // ✅ KUN ved RIKTIG: trivia-point
           if (ok && q.trivia && typeof API.saveTriviaPoint === "function") {
             API.saveTriviaPoint({
@@ -304,8 +390,12 @@
             if (i < questions.length) step();
             else {
               closeQuiz();
-              onEnd(correct, questions.length, correctAnswers);
-            }
+              onEnd(correct, questions.length, {
+                correctAnswers,
+                conceptsCorrect,
+                emnerTouched
+              });
+              
           }, QUIZ_FEEDBACK_MS);
         };
       });
