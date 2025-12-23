@@ -222,9 +222,20 @@
 
       const userId =
         (window.getCurrentUserId && getCurrentUserId()) || "anon";
-      const concepts = HGInsights.getUserConcepts(userId) || [];
+      const userId = (window.getCurrentUserId && getCurrentUserId()) || "anon";
 
-      if (!concepts.length) {
+    // 1) concepts: foretrekk learning log (ny motor), fallback til HGInsights
+      const concepts =
+        (window.getUserConceptsFromLearningLog && getUserConceptsFromLearningLog()) ||
+        (window.HGInsights && HGInsights.getUserConcepts(userId)) ||
+        [];
+
+      // 2) emneHits: direkte emne-treff fra quizlogg (hvis finnes)
+      const emneHits =
+        (window.getUserEmneHitsFromLearningLog && getUserEmneHitsFromLearningLog()) ||
+        new Set();
+
+       if (!concepts.length) {
         elTitle.textContent = "Ingen emne-dekning ennå";
         elDesc.textContent  = "Ta noen quizer først, så kan vi vise hvordan du dekker emnene i hvert felt.";
         elList.innerHTML    = "";
@@ -256,8 +267,10 @@
         const emner = await Emner.loadForSubject(s.id);
         if (!emner || !emner.length) continue;
 
-        const dekning = computeEmneDekning(concepts, emner)
-          .filter(r => r.total > 0);
+        const dekning = (window.computeEmneDekningV2
+          ? computeEmneDekningV2(concepts, emner, { emneHits })
+          : computeEmneDekning(concepts, emner)
+        ).filter(r => r.total > 0);
 
         if (!dekning.length) continue;
 
