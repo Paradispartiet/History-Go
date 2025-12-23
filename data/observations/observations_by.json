@@ -1,0 +1,62 @@
+{
+  "schema": 1,
+  "subject_id": "by",
+  "label": "By – observasjonslinser",
+  "lenses": [
+    {
+      "lens_id": "by_brukere_hvem",
+      "title": "Hvem bruker dette stedet mest?",
+      "prompt": "Velg ett eller flere ord som passer.",
+      "type": "multi_select",
+      "options": [
+        { "id": "barnefamilier", "label": "Barnefamilier" },
+        { "id": "unge_voksne", "label": "Unge voksne" },
+        { "id": "eldre", "label": "Eldre" },
+        { "id": "turister", "label": "Turister" },
+        { "id": "pendlere", "label": "Pendlere" },
+        { "id": "kreative", "label": "Kreative" },
+        { "id": "ressurssterke", "label": "Økonomisk ressurssterke" },
+        { "id": "marginaliserte", "label": "Økonomisk marginaliserte" },
+        { "id": "blandet", "label": "Blandet" }
+      ],
+      "tags": ["tag.by", "tag.offentlighet", "tag.sosial_geografi"]
+    },
+
+    {
+      "lens_id": "by_stemning",
+      "title": "Stemning / atmosfære",
+      "prompt": "Hva kjenner du her? Velg ord.",
+      "type": "multi_select",
+      "options": [
+        { "id": "trygt", "label": "Trygt" },
+        { "id": "utrygt", "label": "Utrygt" },
+        { "id": "stress", "label": "Stress" },
+        { "id": "ro", "label": "Ro" },
+        { "id": "trangt", "label": "Trangt" },
+        { "id": "aapent", "label": "Åpent" },
+        { "id": "kommersiell", "label": "Kommersiell" },
+        { "id": "lokalt", "label": "Lokalt" },
+        { "id": "turistifisert", "label": "Turistifisert" }
+      ],
+      "tags": ["tag.byrom", "tag.atmosfaere"]
+    },
+
+    {
+      "lens_id": "by_makt_ulikhet",
+      "title": "Ulikhet og makt i byrommet",
+      "prompt": "Hvilke spor ser du? (flere valg mulig)",
+      "type": "multi_select",
+      "options": [
+        { "id": "vakthold", "label": "Vakthold / kontroll" },
+        { "id": "kamera", "label": "Kamera / overvåkning" },
+        { "id": "priser", "label": "Høye priser / ekskludering" },
+        { "id": "hjemloeshet", "label": "Synlig hjemløshet" },
+        { "id": "rus", "label": "Synlig rus / utsatthet" },
+        { "id": "privatisering", "label": "Privatisert offentlighet" },
+        { "id": "gentrifisering", "label": "Tegn på gentrifisering" },
+        { "id": "tilgjengelighet", "label": "Tilgjengelighet / universell utforming" }
+      ],
+      "tags": ["tag.ulikhet", "tag.makt", "tag.byutvikling"]
+    }
+  ]
+}
