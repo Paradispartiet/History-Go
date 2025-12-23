@@ -179,3 +179,105 @@ function computeEmneDekning(userConcepts, emner) {
 }
 
 window.computeEmneDekning = computeEmneDekning;
+
+// ============================================================
+// LEARNING LOG (hg_learning_log_v1) → brukes av emner/kurs/diplom
+// ============================================================
+
+function getLearningLog() {
+  try {
+    const v = JSON.parse(localStorage.getItem("hg_learning_log_v1") || "[]");
+    return Array.isArray(v) ? v : [];
+  } catch {
+    return [];
+  }
+}
+
+// Returnerer concepts i samme “shape” som HGInsights gir (label + count)
+function getUserConceptsFromLearningLog() {
+  const log = getLearningLog();
+  const counts = new Map();
+
+  for (const evt of log) {
+    const arr = Array.isArray(evt?.concepts) ? evt.concepts : [];
+    for (const c of arr) {
+      const key = String(c ?? "").trim();
+      if (!key) continue;
+      counts.set(key, (counts.get(key) || 0) + 1);
+    }
+  }
+
+  return Array.from(counts.entries())
+    .map(([label, count]) => ({ label, count }))
+    .sort((a, b) => (b.count || 0) - (a.count || 0));
+}
+
+function getUserEmneHitsFromLearningLog() {
+  const log = getLearningLog();
+  const hits = new Set();
+
+  for (const evt of log) {
+    const arr = Array.isArray(evt?.related_emner) ? evt.related_emner : [];
+    for (const id of arr) {
+      const eid = String(id ?? "").trim();
+      if (eid) hits.add(eid);
+    }
+  }
+
+  return hits;
+}
+
+// ============================================================
+// Emne-dekning V2:
+// - Hvis emne_id er “truffet” direkte i learning log → directHit=true
+// - Ellers fall back til concept-match (som før)
+// ============================================================
+
+function computeEmneDekningV2(userConcepts, emner, opts = {}) {
+  const emneHits = opts?.emneHits instanceof Set ? opts.emneHits : new Set();
+  const userKeys = new Set(
+    (Array.isArray(userConcepts) ? userConcepts : [])
+      .map(c => String(c?.label ?? "").trim().toLowerCase())
+      .filter(Boolean)
+  );
+
+  return (Array.isArray(emner) ? emner : []).map(emne => {
+    const emneId = String(emne?.emne_id ?? "").trim();
+    const core = Array.isArray(emne?.core_concepts) ? emne.core_concepts : [];
+
+    const total = core.length;
+    let match = 0;
+    const missing = [];
+
+    // DIRECT HIT: hvis quiz har sagt “du traff dette emnet”
+    const directHit = !!(emneId && emneHits.has(emneId));
+
+    if (directHit) {
+      // vi lar dette telle som full dekning av emnet
+      match = total;
+    } else {
+      core.forEach(c => {
+        const key = String(c ?? "").toLowerCase();
+        if (userKeys.has(key)) match++;
+        else missing.push(c);
+      });
+    }
+
+    const percent = total === 0 ? 0 : Math.round((match / total) * 100);
+
+    return {
+      emne_id: emneId,
+      title: emne?.title,
+      matchCount: match,
+      total,
+      percent,
+      missing,
+      directHit
+    };
+  });
+}
+
+window.getLearningLog = getLearningLog;
+window.getUserConceptsFromLearningLog = getUserConceptsFromLearningLog;
+window.getUserEmneHitsFromLearningLog = getUserEmneHitsFromLearningLog;
+window.computeEmneDekningV2 = computeEmneDekningV2;
