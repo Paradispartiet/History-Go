@@ -128,77 +128,56 @@ function getInlineTriviaFor(categoryId, targetId) {
 // ============================================================
 // 3. PERSON-POPUP
 // ============================================================
-window.showPersonPopup = function(person) {
-  if (!person) return;
+window.showPlacePopup = async function(place) {
+  if (!place) return;
 
-  const face    = person.image;      // portrett
-  const cardImg = person.imageCard;  // kortbilde
-  const works   = person.works || [];
-  const wiki    = person.wiki || "";
+  // RIKTIG: kun stedsbilde
+  const img = place.image || "";
 
-  const categoryId =
-    person.category ||
-    (Array.isArray(person.tags) && person.tags.length ? person.tags[0] : null);
+  const peopleHere = PEOPLE.filter(p => p.placeId === place.id);
 
-  const completed = hasCompletedQuiz(person.id);
+  const categoryId = place.category || null;
+  const completed = hasCompletedQuiz(place.id);
   const knowledgeBlocks =
-    completed && categoryId ? getInlineKnowledgeFor(categoryId, person.id) : null;
+    completed && categoryId ? getInlineKnowledgeFor(categoryId, place.id) : null;
   const triviaList =
-    completed && categoryId ? getInlineTriviaFor(categoryId, person.id) : [];
+    completed && categoryId ? getInlineTriviaFor(categoryId, place.id) : [];
 
-  // Finn steder knyttet til personen
-  const placeMatches = PLACES.filter(
-    p =>
-      person.placeId === p.id ||
-      (Array.isArray(person.places) && person.places.includes(p.id))
-  );
+  // ------------------------------------------------------------
+  // OBSERVASJONER (fra hg_learning_log_v1 + observations_<subject>.json)
+  // ------------------------------------------------------------
+  const obsHtml =
+    (window.HGObsView && categoryId)
+      ? await window.HGObsView.renderInline({
+          subjectId: categoryId,
+          targetId: String(place.id || "").trim(),
+          targetType: "place",
+          title: place.name
+        })
+      : "";
 
   const html = `
-      <img src="${face}" class="hg-popup-face">
-      <h2 class="hg-popup-name">${person.name}</h2>
-      <img src="${cardImg}" class="hg-popup-cardimg">
+      <img src="${img}" class="hg-popup-img">
+      <h3 class="hg-popup-title">${place.name}</h3>
+      <p class="hg-popup-cat">${place.category || ""}</p>
+      <p class="hg-popup-desc">${place.desc || ""}</p>
 
-            <div class="hg-section">
-        <h3>Verk</h3>
-        ${
-          works.length
-            ? `<ul class="hg-works">${works.map(w => `<li>${w}</li>`).join("")}</ul>`
-            : `<p class="hg-muted">Ingen registrerte verk.</p>`
-        }
-        <button class="hg-quiz-btn" data-quiz="${person.id}">Ta quiz</button>
-      </div>
+      <button class="hg-quiz-btn" data-quiz="${place.id}">Ta quiz</button>
 
-      <div class="hg-section">
-        <h3>Om personen</h3>
-        <p class="hg-wiki">${wiki}</p>
-      </div>
-
-      <div class="hg-section">
-        <h3>Steder</h3>
-        ${
-          placeMatches.length
-            ? `<div class="hg-places">
-                ${placeMatches
-                  .map(pl => `<div class="hg-place" data-place="${pl.id}">📍 ${pl.name}</div>`)
-                  .join("")}
-              </div>`
-            : `<p class="hg-muted">Ingen stedstilknytning.</p>`
-        }
-      </div>
-
-      <!-- NY SEKSJON: Samtale & notat -->
-      <div class="hg-section">
-        <h3>Samtale & notat</h3>
-        <div class="hg-actions-row">
-          <button class="hg-ghost-btn" data-chat-person="${person.id}">
-            💬 Snakk med ${person.name}
-          </button>
-          <button class="hg-ghost-btn" data-note-person="${person.id}">
-            📝 Notat
-          </button>
-        </div>
-      </div>
-      <!-- SLUTT NY SEKSJON -->
+      ${
+        peopleHere.length
+          ? `<div class="hg-popup-subtitle">Personer</div>
+             <div class="hg-popup-people">
+               ${peopleHere
+                 .map(pr => `
+                 <div class="hg-popup-face" data-person="${pr.id}">
+                   <img src="${pr.imageCard}">
+                 </div>
+               `)
+                 .join("")}
+             </div>`
+          : ""
+      }
 
       ${
         completed && (knowledgeBlocks || triviaList.length)
@@ -208,17 +187,12 @@ window.showPersonPopup = function(person) {
         ${
           knowledgeBlocks
             ? Object.entries(knowledgeBlocks)
-                .map(
-                  ([dim, items]) => `
+                .map(([dim, items]) => `
                   <strong>${dim}</strong>
                   <ul>
-                    ${items
-                .map(i => `<li><strong>${i.topic}:</strong> ${i.text || i.knowledge || ""}</li>`)
-                      .join("")}
+                    ${items.map(i => `<li><strong>${i.topic}:</strong> ${i.text}</li>`).join("")}
                   </ul>
-                `
-                )
-                .join("")
+                `).join("")
             : `<p class="hg-muted">Ingen kunnskap registrert ennå.</p>`
         }
       </div>
@@ -234,15 +208,20 @@ window.showPersonPopup = function(person) {
           `
           : ""
       }
+
+      <!-- OBSERVASJONER -->
+      <div class="hg-section">
+        <h3>Observasjoner</h3>
+        ${obsHtml || `<p class="hg-muted">Ingen observasjoner ennå.</p>`}
+      </div>
   `;
 
-  makePopup(html, "person-popup");
+  makePopup(html, "place-popup");
 
-  currentPopup.querySelectorAll("[data-place]").forEach(btn => {
-    btn.onclick = () => {
-      const place = PLACES.find(x => x.id === btn.dataset.place);
-      closePopup();
-      showPlacePopup(place);
+  currentPopup.querySelectorAll("[data-person]").forEach(el => {
+    el.onclick = () => {
+      const pr = PEOPLE.find(p => p.id === el.dataset.person);
+      showPersonPopup(pr);
     };
   });
 };
@@ -265,6 +244,56 @@ window.showPlacePopup = function(place) {
   const triviaList =
     completed && categoryId ? getInlineTriviaFor(categoryId, place.id) : [];
 
+  // ------------------------------------------------------------
+  // OBSERVASJONER (les fra hg_learning_log_v1)
+  // ------------------------------------------------------------
+  function getObservationsForTarget(targetId, targetType) {
+    try {
+      const log = JSON.parse(localStorage.getItem("hg_learning_log_v1") || "[]");
+      if (!Array.isArray(log)) return [];
+      const tid = String(targetId || "").trim();
+      const ttype = String(targetType || "").trim();
+      return log
+        .filter(e =>
+          e &&
+          e.type === "observation" &&
+          String(e.targetId || "").trim() === tid &&
+          String(e.targetType || "").trim() === ttype
+        )
+        .sort((a, b) => (Number(b.ts) || 0) - (Number(a.ts) || 0));
+    } catch {
+      return [];
+    }
+  }
+
+  function renderObsList(obs) {
+    if (!obs.length) return `<p class="hg-muted">Ingen observasjoner ennå.</p>`;
+
+    return `
+      <ul>
+        ${obs.slice(0, 10).map(o => {
+          const lens = String(o.lens_id || "").trim() || "linse";
+          const selected = Array.isArray(o.selected) ? o.selected : [];
+          const note = String(o.note || "").trim();
+          const when = o.ts ? new Date(o.ts).toLocaleString("no-NO") : "";
+          return `
+            <li style="margin:6px 0;">
+              <strong>${lens}</strong>
+              <div class="hg-muted" style="margin-top:2px;">
+                ${selected.length ? selected.join(" · ") : "—"}
+                ${when ? ` · ${when}` : ""}
+              </div>
+              ${note ? `<div style="margin-top:4px;">📝 ${note}</div>` : ""}
+            </li>
+          `;
+        }).join("")}
+      </ul>
+    `;
+  }
+
+  const observations = getObservationsForTarget(place.id, "place");
+  const obsHtml = renderObsList(observations);
+
   const html = `
       <img src="${img}" class="hg-popup-img">
       <h3 class="hg-popup-title">${place.name}</h3>
@@ -277,15 +306,11 @@ window.showPlacePopup = function(place) {
         peopleHere.length
           ? `<div class="hg-popup-subtitle">Personer</div>
              <div class="hg-popup-people">
-               ${peopleHere
-                 .map(
-                   pr => `
+               ${peopleHere.map(pr => `
                  <div class="hg-popup-face" data-person="${pr.id}">
                    <img src="${pr.imageCard}">
                  </div>
-               `
-                 )
-                 .join("")}
+               `).join("")}
              </div>`
           : ""
       }
@@ -297,18 +322,12 @@ window.showPlacePopup = function(place) {
         <h3>Kunnskap</h3>
         ${
           knowledgeBlocks
-            ? Object.entries(knowledgeBlocks)
-                .map(
-                  ([dim, items]) => `
+            ? Object.entries(knowledgeBlocks).map(([dim, items]) => `
                   <strong>${dim}</strong>
                   <ul>
-                    ${items
-                      .map(i => `<li><strong>${i.topic}:</strong> ${i.text}</li>`)
-                      .join("")}
+                    ${items.map(i => `<li><strong>${i.topic}:</strong> ${i.text}</li>`).join("")}
                   </ul>
-                `
-                )
-                .join("")
+                `).join("")
             : `<p class="hg-muted">Ingen kunnskap registrert ennå.</p>`
         }
       </div>
@@ -324,6 +343,11 @@ window.showPlacePopup = function(place) {
           `
           : ""
       }
+
+      <div class="hg-section">
+        <h3>Observasjoner</h3>
+        ${obsHtml}
+      </div>
   `;
 
   makePopup(html, "place-popup");
