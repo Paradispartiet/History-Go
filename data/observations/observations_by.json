@@ -18,8 +18,7 @@
         { "id": "ressurssterke", "label": "Økonomisk ressurssterke" },
         { "id": "marginaliserte", "label": "Økonomisk marginaliserte" },
         { "id": "blandet", "label": "Blandet" }
-      ],
-      "tags": ["tag.by", "tag.offentlighet", "tag.sosial_geografi"]
+      ]
     },
 
     {
@@ -27,6 +26,9 @@
       "title": "Stemning / atmosfære",
       "prompt": "Hva kjenner du her? Velg ord.",
       "type": "multi_select",
+      "allow_note": true,
+      "note_label": "Kort observasjon (valgfritt)",
+      "note_max_len": 280,
       "options": [
         { "id": "trygt", "label": "Trygt" },
         { "id": "utrygt", "label": "Utrygt" },
@@ -37,8 +39,7 @@
         { "id": "kommersiell", "label": "Kommersiell" },
         { "id": "lokalt", "label": "Lokalt" },
         { "id": "turistifisert", "label": "Turistifisert" }
-      ],
-      "tags": ["tag.byrom", "tag.atmosfaere"]
+      ]
     },
 
     {
@@ -55,23 +56,7 @@
         { "id": "privatisering", "label": "Privatisert offentlighet" },
         { "id": "gentrifisering", "label": "Tegn på gentrifisering" },
         { "id": "tilgjengelighet", "label": "Tilgjengelighet / universell utforming" }
-      ],
-      "tags": ["tag.ulikhet", "tag.makt", "tag.byutvikling"]
-    },
-
-    {
-  "lens_id": "by_stemning",
-  "title": "Stemning / atmosfære",
-  "prompt": "Hva kjenner du her? Velg ord.",
-  "type": "multi_select",
-  "allow_note": true,
-  "note_label": "Kort observasjon (valgfritt)",
-  "note_max_len": 280,
-  "options": [
-    { "id": "trygt", "label": "Trygt" },
-    { "id": "utrygt", "label": "Utrygt" }
-  ]
-}
-
+      ]
+    }
   ]
 }
