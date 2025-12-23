@@ -360,3 +360,35 @@ Konflikter håndteres kun via **ett eksplisitt mapping/alias** i DomainRegistry:
 - Kjør: `QuizAudit.run()`  [oai_citation:41‡quiz-audit.js](sediment://file_00000000fa54720aabdb60556e9c8681)
 - Minimum manual test:
   - start quiz → riktig svar → knowledge/trivia lagres → `updateProfile` trigges  [oai_citation:42‡knowledge.js](sediment://file_00000000c480720abb3c061dd390cb31)  [oai_citation:43‡knowledge.js](sediment://file_00000000c480720abb3c061dd390cb31)
+ 
+
+
+---
+
+## Observations (HGObservations)
+
+**Status:** Aktiv  
+**Type:** Brukerobservasjoner / feltarbeid  
+**Lagring:** `localStorage → hg_learning_log_v1`
+
+### Formål
+Observations gir brukeren mulighet til å registrere **egne tolkninger og inntrykk**
+av steder og personer, som et supplement til quiz-basert kunnskap.
+
+Dette er **empirisk, situert data** – ikke verifisert fakta.
+
+### Dataskjema (learning log event)
+```json
+{
+  "schema": 1,
+  "type": "observation",
+  "ts": 1730000000000,
+  "subject_id": "by",
+  "categoryId": "by",
+  "targetType": "place | person",
+  "targetId": "place_id | person_id",
+  "lens_id": "by_brukere_hvem",
+  "selected": ["barnefamilier", "pendlere"],
+  "note": "Valgfri tekst"
+}
+
