@@ -26,7 +26,7 @@ function closePopup() {
 // ============================================================
 // 2. GENERELL POPUP-GENERATOR
 // ============================================================
-function makePopup(html, extraClass = "") {
+function makePopup(html, extraClass = "", onClose = null) {
   closePopup();
 
   const el = document.createElement("div");
@@ -39,12 +39,28 @@ function makePopup(html, extraClass = "") {
     </div>
   `;
 
+  let _closed = false;
+
+  function finishClose() {
+    if (_closed) return;
+    _closed = true;
+
+    // fjern popup (samme som closePopup, men lokalt)
+    if (el && el.parentNode) el.parentNode.removeChild(el);
+    if (currentPopup === el) currentPopup = null;
+
+    // kjør callback ETTER at popup faktisk er borte
+    if (typeof onClose === "function") {
+      try { onClose(); } catch (e) { if (window.DEBUG) console.warn("[makePopup] onClose failed", e); }
+    }
+  }
+
   el.addEventListener("click", e => {
-    if (e.target.closest("[data-close-popup]")) closePopup();
+    if (e.target.closest("[data-close-popup]")) finishClose();
   });
 
   el.addEventListener("click", e => {
-    if (e.target === el) closePopup();
+    if (e.target === el) finishClose();
   });
 
   document.body.appendChild(el);
@@ -638,20 +654,12 @@ window.showRewardPlace = function(place) {
           ${
             knowledgeBlocks
               ? Object.entries(knowledgeBlocks)
-                  .map(
-                    ([dim, items]) => `
+                  .map(([dim, items]) => `
                     <strong>${dim}</strong>
                     <ul>
-                      ${items
-                        .map(
-                          i =>
-                            `<li><strong>${i.topic}:</strong> ${i.text}</li>`
-                        )
-                        .join("")}
+                      ${items.map(i => `<li><strong>${i.topic}:</strong> ${i.text}</li>`).join("")}
                     </ul>
-                  `
-                  )
-                  .join("")
+                  `).join("")
               : `<p class="hg-muted">Ingen kunnskap registrert ennå.</p>`
           }
         </div>
@@ -660,9 +668,7 @@ window.showRewardPlace = function(place) {
           <h3>Funfacts</h3>
           ${
             triviaList.length
-              ? `<ul>${triviaList
-                .map(t => `<li>${t}</li>`)
-                .join("")}</ul>`
+              ? `<ul>${triviaList.map(t => `<li>${t}</li>`).join("")}</ul>`
               : `<p class="hg-muted">Ingen funfacts ennå.</p>`
           }
         </div>
@@ -672,8 +678,14 @@ window.showRewardPlace = function(place) {
 
         <button class="reward-ok" data-close-popup>Fortsett</button>
       </div>
-  `,
-    "reward-popup"
+    `,
+    "reward-popup",
+    () => {
+      // ÅPNE NESTE POPUP ETTER "FORTSETT"
+      if (typeof window.showPlacePopup === "function") {
+        window.showPlacePopup(place);
+      }
+    }
   );
 
   launchConfetti();
@@ -692,7 +704,6 @@ window.showRewardPerson = function(person) {
     person.cardImage || person.image || `${BASE}bilder/kort/people/${person.id}.PNG`;
 
   const categoryId = getLastQuizCategoryId(person.id);
-
   const knowledgeBlocks =
     categoryId ? getInlineKnowledgeFor(categoryId, person.id) : null;
   const triviaList =
@@ -739,7 +750,13 @@ window.showRewardPerson = function(person) {
         <button class="reward-ok" data-close-popup>Fortsett</button>
       </div>
     `,
-    "reward-popup"
+    "reward-popup",
+    () => {
+      // ÅPNE NESTE POPUP ETTER "FORTSETT"
+      if (typeof window.showPersonPopup === "function") {
+        window.showPersonPopup(person);
+      }
+    }
   );
 
   launchConfetti();
