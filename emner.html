@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="no">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>History Go – Emner & pensum</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<link rel="stylesheet" href="css/theme.css">
-<link rel="stylesheet" href="css/base.css">
-<link rel="stylesheet" href="css/layout.css">
-<link rel="stylesheet" href="css/components.css">
+  <!-- Core styles -->
+  <link rel="stylesheet" href="css/theme.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
 
-<!-- Side-spesifikk -->
-<link rel="stylesheet" href="css/knowledge.css">
+  <!-- Page-specific -->
+  <link rel="stylesheet" href="css/knowledge.css" />
+
   <style>
     .emner-page {
       max-width: 1100px;
@@ -154,9 +156,18 @@
       color: var(--ok, #2ecc71);
     }
 
+    /* Courses panel spans full width under the two columns */
+    #coursesPanel {
+      grid-column: 1 / -1;
+      margin-top: 14px;
+    }
+
     @media (max-width: 800px) {
       .emner-layout {
         grid-template-columns: 1fr;
+      }
+      #coursesPanel {
+        grid-column: auto;
       }
     }
   </style>
@@ -164,11 +175,10 @@
 
 <body class="knowledge-page">
   <div class="emner-page">
-
     <header class="emner-header">
       <a class="back-link" href="profile.html">← Tilbake til profil</a>
 
-      <img src="bilder/ui/historygo_logo.PNG" class="knowledge-logo" alt="History Go logo">
+      <img src="bilder/ui/historygo_logo.PNG" class="knowledge-logo" alt="History Go logo" />
 
       <h1>Dine emner & pensum</h1>
       <p>
@@ -179,7 +189,6 @@
     </header>
 
     <section class="emner-layout">
-
       <!-- VENSTRE: fag / felt -->
       <aside class="emner-sidebar">
         <h2>Fagfelt</h2>
@@ -199,13 +208,20 @@
         <ul id="emneList" class="emne-list" style="margin-top:12px;"></ul>
       </section>
 
+      <!-- KURS (valgfritt panel, kobles mot courses.js om du har det) -->
+      <section id="coursesPanel" class="panel">
+        <h2>Kurs</h2>
+        <div id="coursesStatus" class="muted"></div>
+        <div id="coursesList"></div>
+      </section>
     </section>
   </div>
 
   <!-- Motorer -->
-  <script src="knowledge.js"></script>
+  <script src="js/knowledge.js"></script>
+  <script src="js/courses.js"></script>
   <script src="js/hgInsights.js"></script>
-  <script src="emnerLoader.js"></script>
+  <script src="js/emnerLoader.js"></script>
 
   <script>
     document.addEventListener("DOMContentLoaded", async () => {
@@ -214,28 +230,27 @@
       const elTitle    = document.getElementById("emneSubjectTitle");
       const elDesc     = document.getElementById("emneSubjectDesc");
 
+      // Hard requirements for emner-siden
       if (!window.Emner || !window.HGInsights || !window.computeEmneDekning) {
         elTitle.textContent = "Emne-systemet er ikke klart ennå";
         elDesc.textContent  = "Kunne ikke koble til emner, begreper eller dekningsmotoren.";
         return;
       }
 
-      const userId =
-        (window.getCurrentUserId && getCurrentUserId()) || "anon";
-      const userId = (window.getCurrentUserId && getCurrentUserId()) || "anon";
+      const userId = (window.getCurrentUserId && window.getCurrentUserId()) || "anon";
 
-    // 1) concepts: foretrekk learning log (ny motor), fallback til HGInsights
+      // 1) concepts: foretrekk learning log (ny motor), fallback til HGInsights
       const concepts =
-        (window.getUserConceptsFromLearningLog && getUserConceptsFromLearningLog()) ||
-        (window.HGInsights && HGInsights.getUserConcepts(userId)) ||
+        (window.getUserConceptsFromLearningLog && window.getUserConceptsFromLearningLog()) ||
+        (window.HGInsights && window.HGInsights.getUserConcepts(userId)) ||
         [];
 
       // 2) emneHits: direkte emne-treff fra quizlogg (hvis finnes)
       const emneHits =
-        (window.getUserEmneHitsFromLearningLog && getUserEmneHitsFromLearningLog()) ||
+        (window.getUserEmneHitsFromLearningLog && window.getUserEmneHitsFromLearningLog()) ||
         new Set();
 
-       if (!concepts.length) {
+      if (!concepts.length) {
         elTitle.textContent = "Ingen emne-dekning ennå";
         elDesc.textContent  = "Ta noen quizer først, så kan vi vise hvordan du dekker emnene i hvert felt.";
         elList.innerHTML    = "";
@@ -264,19 +279,19 @@
 
       // Last emner og beregn dekning per felt
       for (const s of SUBJECTS) {
-        const emner = await Emner.loadForSubject(s.id);
-        if (!emner || !emner.length) continue;
+        const emner = await window.Emner.loadForSubject(s.id);
+        if (!Array.isArray(emner) || !emner.length) continue;
 
         const dekning = (window.computeEmneDekningV2
-          ? computeEmneDekningV2(concepts, emner, { emneHits })
-          : computeEmneDekning(concepts, emner)
-        ).filter(r => r.total > 0);
+          ? window.computeEmneDekningV2(concepts, emner, { emneHits })
+          : window.computeEmneDekning(concepts, emner)
+        ).filter(r => r && r.total > 0);
 
         if (!dekning.length) continue;
 
         emneDekningBySubject[s.id] = dekning;
 
-        const sumPercent = dekning.reduce((acc, r) => acc + r.percent, 0);
+        const sumPercent = dekning.reduce((acc, r) => acc + (Number(r.percent) || 0), 0);
         const avgPercent = Math.round(sumPercent / dekning.length);
 
         subjectStats[s.id] = {
@@ -329,27 +344,55 @@
 
         elList.innerHTML = dekning
           .map(r => {
-            const complete = r.total > 0 && r.matchCount === r.total;
+            const total = Number(r.total) || 0;
+            const matchCount = Number(r.matchCount) || 0;
+            const percent = Number(r.percent) || 0;
+
+            const complete = total > 0 && matchCount === total;
+
             return `
               <li class="emne-item">
                 <div class="emne-header">
-                  <strong>${r.title}</strong>
-                  <small>${r.percent}% (${r.matchCount}/${r.total})</small>
+                  <strong>${r.title || "Emne"}</strong>
+                  <small>${percent}% (${matchCount}/${total})</small>
                 </div>
                 <div class="bar-bg">
-                  <div class="bar" style="width:${r.percent}%;"></div>
+                  <div class="bar" style="width:${percent}%;"></div>
                 </div>
                 <div class="emne-meta">
                   <small>
                     ${complete
                       ? `<span class="emne-complete">✔ Du dekker alle kjernebegrepene i dette emnet</span>`
-                      : `Mangler ${Math.max(0, (r.total - r.matchCount))} kjernebegreper`}
+                      : `Mangler ${Math.max(0, (total - matchCount))} kjernebegreper`}
                   </small>
                 </div>
               </li>
             `;
           })
           .join("");
+
+        // Optional: courses rendering if you have it
+        if (typeof window.renderCourses === "function") {
+          try {
+            window.renderCourses({
+              subjectId,
+              concepts,
+              emneHits,
+              userId
+            });
+          } catch (e) {
+            // silent by default (no spam); you can toggle DEBUG in your system
+            if (window.DEBUG) console.warn("[emner.html] renderCourses failed", e);
+          }
+        } else {
+          // if courses.js not present, keep panel minimal
+          const st = document.getElementById("coursesStatus");
+          const ls = document.getElementById("coursesList");
+          if (st && ls) {
+            st.textContent = "Kursmotor ikke koblet (renderCourses() mangler).";
+            ls.innerHTML = "";
+          }
+        }
       }
 
       // Klikk-håndtering
