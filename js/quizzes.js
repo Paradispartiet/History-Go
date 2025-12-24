@@ -530,11 +530,6 @@
             if (person) API.showRewardPerson(person);
             else if (place) API.showRewardPlace(place);
 
-            setTimeout(() => {
-              if (person) API.showPersonPopup(person);
-              else if (place) API.showPlacePopup(place);
-            }, 300);
-
             API.showToast(`Perfekt! ${total}/${total} 🎯`);
             API.dispatchProfileUpdate();
           } else {
