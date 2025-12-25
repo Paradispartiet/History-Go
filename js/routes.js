@@ -442,3 +442,9 @@ window.clearThematicRoute = clearThematicRoute;
 
 window.computeNearestStop = computeNearestStop;
 window.getNearbyRoutesSorted = getNearbyRoutesSorted;
+
+document.addEventListener("DOMContentLoaded", () => {
+  try { initLeftRoutesPanel(); } catch (e) { console.warn("[initLeftRoutesPanel]", e); }
+});
+
+console.log("routes.js end", typeof window.showRouteToPlace);
