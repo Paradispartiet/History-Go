@@ -1,31 +1,44 @@
 /* ============================================================
    LEFT PANEL (nearby/routes/badges) – stabil flex-layout
    Matcher HTML-strukturen i index.html
+   FIXER:
+   - Ingen “mellomrom” mot topplinja (top = --hg-header-h, gap=0)
+   - Hele panelet minimerbart (skjuler .leftpanel-body)
+   - Robust på iPad/Safari (min-height:0 på flex children)
    ============================================================ */
 
 :root{
-  --hg-header-h: 62px;   /* kan JS overstyre */
-  --hg-header-gap: 0px;  /* ← fjern mellomrommet */
+  --hg-header-h: 62px;              /* kan JS overstyre */
+  --hg-header-gap: 0px;             /* IKKE bruk luft her */
   --hg-placecard-h: var(--pc-height, 41vh);
   --hg-leftpanel-w: 340px;
   --hg-frame-bg: var(--panel-bg, #121212);
 }
+
 /* Container: låst mellom header og placeCard */
 #nearbyListContainer{
   position: fixed;
   left: 0;
-  top: var(--hg-header-h);          /* ← i kant med topplinja */
+  top: calc(var(--hg-header-h) + var(--hg-header-gap)); /* i kant */
   bottom: var(--hg-placecard-h);
+
   width: var(--hg-leftpanel-w);
   z-index: 20;
+
   background: var(--hg-frame-bg);
+
   border-right: 0;
   border-radius: 0;
   box-shadow: none;
   backdrop-filter: none;
+
   display: flex;
   flex-direction: column;
+
   overflow: hidden;
+
+  /* Viktig: ingen margin som kan gi “mellomrom” */
+  margin: 0;
 }
 
 /* Header-rad */
@@ -36,13 +49,22 @@
   gap: 10px;
 
   padding: 10px 12px;
+
+  /* Klikkbar stripe */
+  cursor: pointer;
+
+  /* Unngå at noe flytter den */
+  margin: 0;
 }
 
+/* Titel */
 #nearbyListContainer .leftpanel-title{
   font-weight: 700;
   color: #e6eef9;
+  white-space: nowrap;
 }
 
+/* Select */
 #nearbyListContainer .leftpanel-select{
   background: rgba(255,255,255,.08);
   border: 1px solid rgba(255,255,255,.12);
@@ -55,7 +77,7 @@
 /* Body må kunne krympe (Safari/flex-fix) */
 #nearbyListContainer .leftpanel-body{
   flex: 1;
-  min-height: 0; /* ← kritisk for iPad */
+  min-height: 0;               /* kritisk for iPad */
   display: flex;
   flex-direction: column;
 }
@@ -63,7 +85,7 @@
 /* Hver view (nearby/routes/badges) */
 #nearbyListContainer .leftpanel-view{
   flex: 1;
-  min-height: 0; /* ← kritisk */
+  min-height: 0;               /* kritisk */
   display: flex;
   flex-direction: column;
   padding: 10px 12px;
@@ -71,25 +93,34 @@
 
 /* Status øverst */
 #panelNearby #status{
-  margin-bottom: 8px;
+  margin: 0 0 8px 0;           /* ingen topp-mellomrom */
 }
 
 /* Selve lista: fyll resten, scroll her */
 #nearbyList{
   flex: 1;
-  min-height: 0; /* ← kritisk */
+  min-height: 0;               /* kritisk */
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 }
 
-/* Footer låst nederst i view */
+/* Venstre-lister (ruter/merker) – samme scrolladferd */
+#leftRoutesList,
+#leftBadgesList{
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Footer låst nederst i view (om du bruker den) */
 #nearbyListContainer .leftpanel-footer{
   padding-top: 10px;
 }
 
-/* Skjul evt. gammel title hvis den eksisterer i legacy markup */
+/* Skjul evt. gammel title hvis legacy markup finnes */
 #nearbyListContainer .nearby-title{
-  display: none;
+  display: none !important;
 }
 
 /* ============================================================
@@ -161,7 +192,39 @@
 }
 
 /* ============================================================
-   NEARBY – HELE PANELET MINIMERBART (passer din struktur)
+   Ruter-listen (venstre panel) – enkel, ryddig
+   (matcher markup fra routes.js: .left-route-item)
+   ============================================================ */
+
+.left-route-item{
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.left-route-item:last-child{
+  border-bottom: none;
+}
+
+.left-route-title{
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.left-route-meta{
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-size: 0.85rem;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+/* ============================================================
+   NEARBY – HELE PANELET MINIMERBART
    ============================================================ */
 
 /* Toggle-knapp (settes inn av JS) */
@@ -174,8 +237,12 @@
   padding: 6px 10px;
   font-weight: 600;
   font-size: 0.9rem;
+  line-height: 1;
 }
-.nearby-toggle-btn:active{ transform: scale(0.98); }
+
+.nearby-toggle-btn:active{
+  transform: scale(0.98);
+}
 
 /* Når minimert: skjul ALT under head */
 #nearbyListContainer.is-collapsed .leftpanel-body{
@@ -184,16 +251,11 @@
 
 /* Når minimert: lås høyde til head */
 #nearbyListContainer.is-collapsed{
-  bottom: auto !important;          /* ← viktig: ellers strekkes den ned */
+  bottom: auto !important;     /* viktig: ellers strekkes den ned */
   height: auto !important;
 }
 
 /* Head litt strammere når minimert */
 #nearbyListContainer.is-collapsed .leftpanel-head{
   padding-bottom: 10px;
-}
-
-/* Gjør head “stripe”-aktig og klikkbar */
-#nearbyListContainer .leftpanel-head{
-  cursor: pointer;
 }
