@@ -574,6 +574,7 @@ document.addEventListener("click", e => {
   } else {
     showToast("Quiz-modul ikke lastet");
   }
+  return;
 }
   
   // --- SØKERESULTAT: STED ---
