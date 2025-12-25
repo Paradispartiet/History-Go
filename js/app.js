@@ -1371,63 +1371,66 @@ document.addEventListener("keydown", e => {
 });
 
 // ============================================================
-// NEARBY PANEL – MINIMERBART
+// NEARBY – HELE PANELET MINIMERBART (matcher .leftpanel-head)
 // ============================================================
-(function initNearbyMinimize() {
-  function $(sel, root=document) { return root.querySelector(sel); }
-
-  function findHeader(container) {
-    // prøv noen sannsynlige header-klasser
-    return (
-      $(".leftpanel-header", container) ||
-      $(".nearby-header", container) ||
-      container.querySelector("header") ||
-      container
-    );
-  }
-
-  function setCollapsed(container, collapsed) {
-    container.classList.toggle("is-collapsed", !!collapsed);
-    try { localStorage.setItem("hg_nearby_collapsed", collapsed ? "1" : "0"); } catch {}
-  }
-
-  function getSavedCollapsed() {
+(function initNearbyCollapseWholePanel() {
+  function getSaved(){
     try { return localStorage.getItem("hg_nearby_collapsed") === "1"; } catch { return false; }
+  }
+  function save(val){
+    try { localStorage.setItem("hg_nearby_collapsed", val ? "1" : "0"); } catch {}
+  }
+
+  function setBtn(btn, collapsed){
+    const chev = btn.querySelector(".chev");
+    const label = btn.querySelector(".label");
+    if (chev) chev.textContent = collapsed ? "▸" : "▾";
+    if (label) label.textContent = collapsed ? "Vis" : "Minimer";
   }
 
   document.addEventListener("DOMContentLoaded", () => {
     const container = document.getElementById("nearbyListContainer");
     if (!container) return;
 
-    const header = findHeader(container);
+    const head = container.querySelector(".leftpanel-head");
+    if (!head) return;
 
-    // Ikke lag dobbel knapp
-    if (header.querySelector(".nearby-toggle-btn")) {
-      setCollapsed(container, getSavedCollapsed());
-      return;
+    // Lag knapp hvis den ikke finnes
+    let btn = head.querySelector(".nearby-toggle-btn");
+    if (!btn){
+      btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "nearby-toggle-btn";
+      btn.innerHTML = `<span class="chev">▾</span> <span class="label">Minimer</span>`;
+      head.appendChild(btn);
     }
 
-    // Lag knapp
-    const btn = document.createElement("button");
-    btn.type = "button";
-    btn.className = "nearby-toggle-btn";
-    btn.textContent = "Minimer";
-
-    // Sørg for at header kan “holde” knapp til høyre
-    header.style.display = header.style.display || "flex";
-    header.style.alignItems = header.style.alignItems || "center";
-    header.style.gap = header.style.gap || "10px";
-
-    header.appendChild(btn);
-
     // Restore state
-    setCollapsed(container, getSavedCollapsed());
-    btn.textContent = container.classList.contains("is-collapsed") ? "Vis" : "Minimer";
+    const startCollapsed = getSaved();
+    container.classList.toggle("is-collapsed", startCollapsed);
+    setBtn(btn, startCollapsed);
 
-    btn.addEventListener("click", () => {
-      const nowCollapsed = !container.classList.contains("is-collapsed");
-      setCollapsed(container, nowCollapsed);
-      btn.textContent = nowCollapsed ? "Vis" : "Minimer";
+    function toggle(){
+      const next = !container.classList.contains("is-collapsed");
+      container.classList.toggle("is-collapsed", next);
+      save(next);
+      setBtn(btn, next);
+    }
+
+    // Klikk på knapp
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      toggle();
+    });
+
+    // Klikk på hele head (men ikke når du klikker select)
+    head.addEventListener("click", (e) => {
+      const t = e.target;
+      if (!t) return;
+      if (t.closest("select")) return;
+      if (t.closest("button")) return;
+      toggle();
     });
   });
 })();
