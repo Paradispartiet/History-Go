@@ -323,7 +323,7 @@ function distMeters(a, b) {
 function renderNearbyPlaces() {
   if (!el.list) return;
 
-  const pos = (typeof getPos === "function") ? getPos() : null;
+  const pos = (typeof window.getPos === "function") ? window.getPos() : null;
 
   const sorted = PLACES
     .map(p => ({
