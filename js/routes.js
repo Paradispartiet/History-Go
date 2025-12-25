@@ -375,7 +375,7 @@ function showRouteOverlay(routeId, startIndex = 0) {
   // const sel = document.getElementById("leftPanelMode");
   // if (sel) { sel.value = "routes"; sel.dispatchEvent(new Event("change")); }
 }
-ffunction closeRouteOverlay() {}
+function closeRouteOverlay() {}
 
 // -----------------------------------------------------
 // Compat: popup-utils forventer showRouteTo(place)
