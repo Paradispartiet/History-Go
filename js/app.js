@@ -866,16 +866,31 @@ function renderLeftBadges() {
 // ==============================
 function wire() {
   // Testmodus-bryter
-  el.test?.addEventListener("change", e => {
-    if (e.target.checked) {
-      setPos(START.lat, START.lon); // ✅ én sannhet
+  el.test?.addEventListener("change", (e) => {
+    const on = !!e.target.checked;
+
+    if (on) {
+      // ✅ bruk globale fra pos.js
+      window.setPos?.(START.lat, START.lon, null);
+
       if (el.status) el.status.textContent = "Testmodus: Oslo sentrum";
       showToast("Testmodus PÅ");
+
+      // (valgfritt) marker miljøstatus tydelig
+      window.HG_ENV = window.HG_ENV || {};
+      window.HG_ENV.geo = "test";
     } else {
       showToast("Testmodus AV");
-      clearPos("unknown");          // ✅ unngå “sticky Oslo”
+
+      // ✅ rydd state (ikke la Oslo henge igjen)
+      window.clearPos?.("test_off");
+
+      // start ekte geo igjen
       requestLocation();
     }
+
+    // sørg for at nearby oppdaterer uansett
+    if (typeof window.renderNearbyPlaces === "function") window.renderNearbyPlaces();
   });
 }
 
