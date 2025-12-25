@@ -867,7 +867,7 @@ function wire() {
   });
 }
 
-ffunction requestLocation() {
+function requestLocation() {
   // ✅ global “miljøstatus” som health-checks kan bruke
   window.HG_ENV = window.HG_ENV || {};
   window.HG_ENV.geo = "unknown"; // unknown | granted | blocked
