@@ -29,7 +29,7 @@ async function loadRoutes() {
   if (routesLoaded) return ROUTES;
 
   try {
-    const data = await fetch("/data/routes.json", { cache: "no-store" }).then(r => r.json());
+    const data = await fetch("data/routes.json", { cache: "no-store" }).then(r => r.json());
 
     // Behold samme array-referanse (best)
     ROUTES.length = 0;
