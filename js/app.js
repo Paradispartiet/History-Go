@@ -1369,3 +1369,65 @@ document.addEventListener("keydown", e => {
     document.getElementById("globalSearch").value = "";
   }
 });
+
+// ============================================================
+// NEARBY PANEL – MINIMERBART
+// ============================================================
+(function initNearbyMinimize() {
+  function $(sel, root=document) { return root.querySelector(sel); }
+
+  function findHeader(container) {
+    // prøv noen sannsynlige header-klasser
+    return (
+      $(".leftpanel-header", container) ||
+      $(".nearby-header", container) ||
+      container.querySelector("header") ||
+      container
+    );
+  }
+
+  function setCollapsed(container, collapsed) {
+    container.classList.toggle("is-collapsed", !!collapsed);
+    try { localStorage.setItem("hg_nearby_collapsed", collapsed ? "1" : "0"); } catch {}
+  }
+
+  function getSavedCollapsed() {
+    try { return localStorage.getItem("hg_nearby_collapsed") === "1"; } catch { return false; }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const container = document.getElementById("nearbyListContainer");
+    if (!container) return;
+
+    const header = findHeader(container);
+
+    // Ikke lag dobbel knapp
+    if (header.querySelector(".nearby-toggle-btn")) {
+      setCollapsed(container, getSavedCollapsed());
+      return;
+    }
+
+    // Lag knapp
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "nearby-toggle-btn";
+    btn.textContent = "Minimer";
+
+    // Sørg for at header kan “holde” knapp til høyre
+    header.style.display = header.style.display || "flex";
+    header.style.alignItems = header.style.alignItems || "center";
+    header.style.gap = header.style.gap || "10px";
+
+    header.appendChild(btn);
+
+    // Restore state
+    setCollapsed(container, getSavedCollapsed());
+    btn.textContent = container.classList.contains("is-collapsed") ? "Vis" : "Minimer";
+
+    btn.addEventListener("click", () => {
+      const nowCollapsed = !container.classList.contains("is-collapsed");
+      setCollapsed(container, nowCollapsed);
+      btn.textContent = nowCollapsed ? "Vis" : "Minimer";
+    });
+  });
+})();
