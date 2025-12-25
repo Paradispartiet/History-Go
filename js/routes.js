@@ -371,8 +371,16 @@ function showRouteOverlay(routeId, startIndex = 0) {
 }
 function closeRouteOverlay() {}
 
+// -----------------------------------------------------
+// Compat: popup-utils forventer showRouteTo(place)
+// -----------------------------------------------------
 window.showRouteTo = function(place){
-  return window.showRouteToPlace ? window.showRouteToPlace(place) : null;
+  if (typeof window.showRouteToPlace === "function") {
+    return window.showRouteToPlace(place);
+  }
+  if (typeof window.showToast === "function") {
+    window.showToast("Rute-funksjon ikke lastet (showRouteToPlace mangler)");
+  }
 };
 
 // ---------- expose globals ----------
