@@ -1244,9 +1244,9 @@ function globalSearch(query) {
   );
 
   // --- NÆR MEG (når kartet er aktivt) ---
-const pos = window.getPos?.();
+const pos = (typeof window.getPos === "function") ? window.getPos() : null;
 if (pos) {
-  places = [...places].sort((a, b) => {
+  places = places.slice().sort((a, b) => {
     const da = dist(pos.lat, pos.lon, a.lat, a.lon);
     const db = dist(pos.lat, pos.lon, b.lat, b.lon);
     return da - db;
