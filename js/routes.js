@@ -20,7 +20,7 @@ console.log("routes.js start");
 // -------------------- Config --------------------
 const HG_ORS = {
   baseUrl: "https://api.openrouteservice.org",
-  apiKey: "PUTT_ORS_KEY_HER",     // <-- SETT INN DIN NØKKEL
+  apiKey: apiKey: "eyJvcmciOiI1YjNjZTM1OTc4NTExMTAwMDFjZjYyNDgiLCJpZCI6Ijg1NjAxMzZmNDg0ZDQ0NzM4OTFlMWU1ODJjMjE5NzZlIiwiaCI6Im11cm11cjY0In0=",
   profile: "foot-walking"
 };
 
