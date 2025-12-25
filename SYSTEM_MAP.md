@@ -249,10 +249,13 @@ Public metoder/properties på `DataHub`:
 
 ### js/map.js
 Eksporterer globals:
-- `window.userLat`
-- `window.userLon`
-- `window.currentPos`
-- `window.HGMap` (objekt)
+- window.HG_POS (autorativ posisjon: {status, lat, lon, ts})
+- window.HGMap  (kart / markører)
+
+Kompat (legacy, kan fases ut):
+- window.userLat
+- window.userLon
+- window.currentPos
 
 Public metoder på `HGMap`:
 - `initMap`
