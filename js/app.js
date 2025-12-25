@@ -1201,16 +1201,25 @@ window.addEventListener("resize", () => {
 // ==============================
 
 function dist(aLat, aLon, bLat, bLon) {
-  const R = 6371;
-  const dLat = (bLat - aLat) * Math.PI/180;
-  const dLon = (bLon - aLon) * Math.PI/180;
-  const lat1 = aLat * Math.PI/180;
-  const lat2 = bLat * Math.PI/180;
+  const R = 6371e3; // meter
+  const toRad = d => d * Math.PI / 180;
 
-  const x = Math.sin(dLat/2)**2 +
-            Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLon/2)**2;
+  const lat1 = Number(aLat), lon1 = Number(aLon);
+  const lat2 = Number(bLat), lon2 = Number(bLon);
+  if (![lat1, lon1, lat2, lon2].every(Number.isFinite)) return Infinity;
 
-  return 2 * R * Math.asin(Math.sqrt(x));
+  const dLat = toRad(lat2 - lat1);
+  const dLon = toRad(lon2 - lon1);
+
+  const la1 = toRad(lat1);
+  const la2 = toRad(lat2);
+
+  const x =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos(la1) * Math.cos(la2) *
+    Math.sin(dLon / 2) ** 2;
+
+  return R * 2 * Math.atan2(Math.sqrt(x), Math.sqrt(1 - x));
 }
 
 function globalSearch(query) {
