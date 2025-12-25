@@ -11,6 +11,8 @@
 //  - sheet: #sheetNearby + #sheetNearbyBody
 // =====================================================
 
+console.log("routes.js start");
+
 let ROUTES = [];
 let routesLoaded = false;
 
@@ -388,3 +390,6 @@ window.getNearbyRoutesSorted = getNearbyRoutesSorted;
 document.addEventListener("DOMContentLoaded", () => {
   try { initLeftRoutesPanel(); } catch (e) { console.warn("[initLeftRoutesPanel]", e); }
 });
+
+
+console.log("routes.js end", typeof window.showRouteToPlace);
