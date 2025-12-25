@@ -488,9 +488,20 @@ window.openPlaceCard = function(place) {
   };
 
   if (btnRoute) btnRoute.onclick = () => {
-    if (typeof showRouteTo === "function") showRouteTo(place);
-    else if (typeof showToast === "function") showToast("Rute-funksjon ikke lastet");
-  };
+  // 1) Foretrukket: ekte gangrute pos -> sted
+  if (typeof window.showNavRouteToPlace === "function") {
+    return window.showNavRouteToPlace(place);
+  }
+
+  // 2) Fallback: gammel compat
+  if (typeof window.showRouteTo === "function") {
+    return window.showRouteTo(place);
+  }
+
+  if (typeof window.showToast === "function") {
+    window.showToast("Rute-funksjon ikke lastet");
+  }
+};
 
   if (btnNote && typeof handlePlaceNote === "function") {
     btnNote.onclick = () => handlePlaceNote(place);
