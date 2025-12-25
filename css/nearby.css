@@ -93,14 +93,17 @@
 }
 
 /* ============================================================
-   Nearby items
+   Nearby items – navn + dist under (2 linjer)
    ============================================================ */
 
 .nearby-item{
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  display: grid;
+  grid-template-columns: 46px 1fr auto; /* thumb | tekst | badge */
+  grid-template-rows: auto auto;        /* navn | dist */
+  column-gap: 10px;
+  row-gap: 2px;
 
+  align-items: center;
   padding: 10px 0;
   border-bottom: 1px solid rgba(255,255,255,0.08);
 }
@@ -110,6 +113,8 @@
 }
 
 .nearby-thumb{
+  grid-column: 1;
+  grid-row: 1 / span 2;
   width: 46px;
   height: 46px;
   object-fit: cover;
@@ -118,10 +123,11 @@
 }
 
 .nearby-name{
+  grid-column: 2;
+  grid-row: 1;
   font-size: 0.98rem;
   font-weight: 600;
   color: #fff;
-  flex: 1;
 
   white-space: nowrap;
   overflow: hidden;
@@ -129,12 +135,16 @@
 }
 
 .nearby-dist{
+  grid-column: 2;
+  grid-row: 2;
   font-size: 0.85rem;
   color: var(--muted);
   white-space: nowrap;
 }
 
 .nearby-badge{
+  grid-column: 3;
+  grid-row: 1 / span 2;
   width: 26px;
   height: 26px;
   object-fit: contain;
@@ -142,7 +152,7 @@
   margin-right: 4px;
 }
 
-/* Hele raden klikkbar (du bruker data-open på .nearby-item) */
+/* Hele raden klikkbar (behold) */
 .nearby-thumb,
 .nearby-name,
 .nearby-badge,
