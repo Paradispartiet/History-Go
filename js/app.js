@@ -866,6 +866,50 @@ function wire() {
   });
 }
 
+// =====================================================
+// POSISJON – ÉN SANNHET (HG_POS) + API for resten av appen
+// =====================================================
+window.HG_POS = window.HG_POS || { lat: null, lon: null, ts: 0, acc: null };
+
+window.getPos = function () {
+  const p = window.HG_POS;
+  if (p && Number.isFinite(p.lat) && Number.isFinite(p.lon)) return { lat: p.lat, lon: p.lon };
+  return null;
+};
+
+window.setPos = function (lat, lon, acc) {
+  window.HG_POS.lat = lat;
+  window.HG_POS.lon = lon;
+  window.HG_POS.acc = acc ?? null;
+  window.HG_POS.ts  = Date.now();
+
+  // legacy kompat (routes.js fallback)
+  window.userLat = lat;
+  window.userLon = lon;
+
+  // legacy kompat (noen steder bruker currentPos)
+  window.currentPos = { lat, lon };
+
+  // oppdater kart
+  if (window.HGMap && typeof HGMap.setUser === "function") {
+    HGMap.setUser(lat, lon);
+  }
+};
+
+window.clearPos = function (reason) {
+  window.HG_POS.lat = null;
+  window.HG_POS.lon = null;
+  window.HG_POS.acc = null;
+  window.HG_POS.ts  = Date.now();
+
+  window.userLat = null;
+  window.userLon = null;
+  window.currentPos = null;
+
+  if (window.DEBUG) console.warn("[geo] cleared:", reason);
+};
+
+
 function requestLocation() {
   window.HG_ENV = window.HG_ENV || {};
   window.HG_ENV.geo = "unknown";
@@ -884,25 +928,38 @@ function requestLocation() {
   if (el.status) el.status.textContent = "Henter posisjon…";
 
   navigator.geolocation.getCurrentPosition(
-    g => {
-      setPos(g.coords.latitude, g.coords.longitude);
-      window.HG_ENV.geo = "granted";
-      window.dispatchEvent(new CustomEvent("hg:geo", { detail: { status: "granted", lat: window.HG_POS.lat, lon: window.HG_POS.lon } }));
-      if (el.status) el.status.textContent = "Posisjon funnet.";
-    },
-    err => {
-      window.HG_ENV.geo = "blocked";
-      clearPos(err?.code || "blocked");
-      const msg =
-        err.code === 1 ? "Posisjon blokkert (tillat i Safari)." :
-        err.code === 2 ? "Kunne ikke finne posisjon." :
-        err.code === 3 ? "Posisjon timeout." :
-        "Posisjon-feil.";
-      if (el.status) el.status.textContent = msg;
-      showToast(msg);
-    },
-    { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
-  );
+  g => {
+    // ✅ ÉN sannhet
+    setPos(g.coords.latitude, g.coords.longitude, g.coords.accuracy);
+
+    window.HG_ENV.geo = "granted";
+    window.dispatchEvent(new CustomEvent("hg:geo", {
+      detail: { status: "granted", lat: HG_POS.lat, lon: HG_POS.lon, acc: HG_POS.acc }
+    }));
+
+    if (el.status) el.status.textContent = "Posisjon funnet.";
+    renderNearbyPlaces();
+  },
+  err => {
+    window.HG_ENV.geo = "blocked";
+    clearPos(err?.code || "blocked");
+
+    window.dispatchEvent(new CustomEvent("hg:geo", {
+      detail: { status: "blocked", reason: err?.code, message: err?.message }
+    }));
+
+    const msg =
+      err.code === 1 ? "Posisjon blokkert (tillat i Safari)." :
+      err.code === 2 ? "Kunne ikke finne posisjon." :
+      err.code === 3 ? "Posisjon timeout." :
+      "Posisjon-feil.";
+
+    if (el.status) el.status.textContent = msg;
+    showToast(msg);
+    renderNearbyPlaces();
+  },
+  { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
+);
 }
 
 
