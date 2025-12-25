@@ -376,14 +376,53 @@ function showRouteOverlay(routeId, startIndex = 0) {
   }
 }
 
-function closeRouteOverlay() {
-  // hvis du vil: clearThematicRoute();
-  // clearThematicRoute();
-}
+function closeRouteOverlay() {}
 
 // -----------------------------------------------------
-// Compat: popup-utils forventer showRouteTo(place)
+// HGRoutes – offentlig API
 // -----------------------------------------------------
+window.HGRoutes = {
+  load: loadRoutes,
+
+  init() {
+    try { loadRoutes(); } catch (e) { console.warn("[HGRoutes.load]", e); }
+    try { initLeftRoutesPanel(); } catch (e) { console.warn("[HGRoutes.initLeftRoutesPanel]", e); }
+  },
+
+  showRoute(routeId, startIndex = 0) {
+    try { showRouteOverlay(routeId, startIndex); }
+    catch (e) { console.warn("[HGRoutes.showRoute]", e); }
+  },
+
+  showToPlace(place) {
+    if (!place) return;
+
+    const direct =
+      place.routeId || place.route_id || place.route || place.routeRef || null;
+    if (direct) return showRouteOverlay(direct, 0);
+
+    const pid = place.id;
+    if (pid && Array.isArray(ROUTES) && ROUTES.length) {
+      const r = ROUTES.find(rt => Array.isArray(rt.stops) && rt.stops.some(s => s.placeId === pid));
+      if (r) {
+        const idx = r.stops.findIndex(s => s.placeId === pid);
+        return showRouteOverlay(r.id, Math.max(0, idx));
+      }
+    }
+
+    if (typeof window.showToast === "function") window.showToast("Fant ingen rute for dette stedet.");
+  },
+
+  clear() {
+    try { clearThematicRoute(); } catch (e) {}
+  }
+};
+
+// -----------------------------------------------------
+// Compat (midlertidig for popup-utils)
+// -----------------------------------------------------
+window.showRouteToPlace = (place) => window.HGRoutes.showToPlace(place);
+
 window.showRouteTo = function(place) {
   if (typeof window.showRouteToPlace === "function") {
     return window.showRouteToPlace(place);
@@ -393,55 +432,8 @@ window.showRouteTo = function(place) {
   }
 };
 
-// ---------- expose globals ----------
-window.ROUTES = ROUTES;
-window.loadRoutes = loadRoutes;
-
-window.showRouteOverlay = showRouteOverlay;
-window.closeRouteOverlay = closeRouteOverlay;
-
-window.showRouteToPlace = function(place) {
-  if (!place) {
-    if (typeof window.showToast === "function") window.showToast("Ingen sted-data.");
-    return;
-  }
-
-  // direkte routeId om du har det senere
-  const directRouteId =
-    place.routeId ||
-    place.route_id ||
-    place.route ||
-    place.routeRef ||
-    null;
-
-  if (directRouteId) return showRouteOverlay(directRouteId, 0);
-
-  // finn rute som inneholder place.id
-  const pid = place.id;
-  if (pid && Array.isArray(ROUTES) && ROUTES.length) {
-    const r = ROUTES.find(rt => Array.isArray(rt.stops) && rt.stops.some(s => s.placeId === pid));
-    if (r) {
-      const idx = r.stops.findIndex(s => s.placeId === pid);
-      return showRouteOverlay(r.id, Math.max(0, idx));
-    }
-  }
-
-  if (typeof window.showToast === "function") {
-    window.showToast("Fant ingen rute som inkluderer dette stedet.");
-  }
-};
-
-window.focusRouteOnMap = focusRouteOnMap;
-window.clearThematicRoute = clearThematicRoute;
-
-window.computeNearestStop = computeNearestStop;
-window.getNearbyRoutesSorted = getNearbyRoutesSorted;
-
 document.addEventListener("DOMContentLoaded", () => {
-  // sørg for at ROUTES er lastet tidlig
-  loadRoutes();
-
-  try { initLeftRoutesPanel(); } catch (e) { console.warn("[initLeftRoutesPanel]", e); }
+  window.HGRoutes.init();
 });
 
 console.log("routes.js end", typeof window.showRouteToPlace);
