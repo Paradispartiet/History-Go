@@ -352,13 +352,28 @@ function focusRouteOnMap(routeId, startIndex = 0) {
   if (typeof window.showToast === "function") window.showToast("Rute vist på kartet");
 }
 
-// Minimal overlay (beholdt)
 function showRouteOverlay(routeId, startIndex = 0) {
   const r = ROUTES.find(x => x.id === routeId);
-  if (!r) return;
-  if (typeof window.showToast === "function") {
-    window.showToast(`${r.name} (${r.stops?.length || 0} stopp)`);
+  if (!r) {
+    if (typeof window.showToast === "function") window.showToast("Fant ikke rute.");
+    return;
   }
+
+  // ✅ Vis ruten på kartet (linje + stopp)
+  if (typeof window.focusRouteOnMap === "function") {
+    window.focusRouteOnMap(routeId, startIndex);
+  } else {
+    console.warn("[routes] focusRouteOnMap mangler");
+  }
+
+  // (valgfritt) liten toast
+  if (typeof window.showToast === "function") {
+    window.showToast(`${r.name || "Rute"} (${r.stops?.length || 0} stopp)`);
+  }
+
+  // (valgfritt) åpne routes-panelet hvis du vil
+  // const sel = document.getElementById("leftPanelMode");
+  // if (sel) { sel.value = "routes"; sel.dispatchEvent(new Event("change")); }
 }
 function closeRouteOverlay() {}
 
