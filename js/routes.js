@@ -56,38 +56,38 @@
     return `${(m / 1000).toFixed(1)} km`;
   }
 
-  // Tåler mange globale pos-format
-  function getUserPos() {
-    // 1) currentPos / userPos
-    const p =
-      (typeof window.currentPos !== "undefined" && window.currentPos) ? window.currentPos :
-      (typeof window.userPos !== "undefined" && window.userPos) ? window.userPos :
-      null;
+function getUserPos() {
+  // 1) currentPos / userPos (både window.* og evt. lokale globals)
+  const p =
+    (typeof window.currentPos !== "undefined" && window.currentPos) ? window.currentPos :
+    (typeof currentPos !== "undefined" && currentPos) ? currentPos :
+    (typeof window.userPos !== "undefined" && window.userPos) ? window.userPos :
+    (typeof userPos !== "undefined" && userPos) ? userPos :
+    null;
 
-    if (p) {
-      // mulig: {lat, lon} / {lat, lng} / {latitude, longitude}
-      const lat = (typeof p.lat === "number") ? p.lat :
-                  (typeof p.latitude === "number") ? p.latitude : null;
+  if (p) {
+    const lat = (typeof p.lat === "number") ? p.lat :
+                (typeof p.latitude === "number") ? p.latitude : null;
 
-      const lon = (typeof p.lon === "number") ? p.lon :
-                  (typeof p.lng === "number") ? p.lng :
-                  (typeof p.longitude === "number") ? p.longitude : null;
+    const lon = (typeof p.lon === "number") ? p.lon :
+                (typeof p.lng === "number") ? p.lng :
+                (typeof p.longitude === "number") ? p.longitude : null;
 
-      if (typeof lat === "number" && typeof lon === "number") return { lat, lon };
-    }
-
-    // 2) userLat/userLon (du har brukt dette andre steder)
-    if (typeof window.userLat === "number" && typeof window.userLon === "number") {
-      return { lat: window.userLat, lon: window.userLon };
-    }
-
-    // 3) userLat/userLng
-    if (typeof window.userLat === "number" && typeof window.userLng === "number") {
-      return { lat: window.userLat, lon: window.userLng };
-    }
-
-    return null;
+    if (typeof lat === "number" && typeof lon === "number") return { lat, lon };
   }
+
+  // 2) userLat/userLon
+  if (typeof window.userLat === "number" && typeof window.userLon === "number") {
+    return { lat: window.userLat, lon: window.userLon };
+  }
+
+  // 3) userLat/userLng
+  if (typeof window.userLat === "number" && typeof window.userLng === "number") {
+    return { lat: window.userLat, lon: window.userLng };
+  }
+
+  return null;
+}
 
   function getPlacesArray() {
     return Array.isArray(window.PLACES) ? window.PLACES : [];
