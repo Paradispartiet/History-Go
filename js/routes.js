@@ -352,6 +352,9 @@ function focusRouteOnMap(routeId, startIndex = 0) {
   if (typeof window.showToast === "function") window.showToast("Rute vist på kartet");
 }
 
+// -----------------------------------------------------
+// Overlay (rutevisning)
+// -----------------------------------------------------
 function showRouteOverlay(routeId, startIndex = 0) {
   const r = ROUTES.find(x => x.id === routeId);
   if (!r) {
@@ -359,23 +362,24 @@ function showRouteOverlay(routeId, startIndex = 0) {
     return;
   }
 
-  // ✅ Vis ruten på kartet (linje + stopp)
-  if (typeof window.focusRouteOnMap === "function") {
-    window.focusRouteOnMap(routeId, startIndex);
-  } else {
-    console.warn("[routes] focusRouteOnMap mangler");
+  // Vis ruten på kartet (linje + stopp)
+  try {
+    if (typeof window.focusRouteOnMap === "function") {
+      window.focusRouteOnMap(routeId, startIndex);
+    }
+  } catch (e) {
+    console.warn("[showRouteOverlay] focusRouteOnMap failed", e);
   }
 
-  // (valgfritt) liten toast
   if (typeof window.showToast === "function") {
     window.showToast(`${r.name || "Rute"} (${r.stops?.length || 0} stopp)`);
   }
-
-  // (valgfritt) åpne routes-panelet hvis du vil
-  // const sel = document.getElementById("leftPanelMode");
-  // if (sel) { sel.value = "routes"; sel.dispatchEvent(new Event("change")); }
 }
-function closeRouteOverlay() {}
+
+function closeRouteOverlay() {
+  // hvis du vil: clearThematicRoute();
+  // clearThematicRoute();
+}
 
 // -----------------------------------------------------
 // Compat: popup-utils forventer showRouteTo(place)
