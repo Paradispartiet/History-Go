@@ -371,6 +371,10 @@ function showRouteOverlay(routeId, startIndex = 0) {
 }
 function closeRouteOverlay() {}
 
+window.showRouteTo = function(place){
+  return window.showRouteToPlace ? window.showRouteToPlace(place) : null;
+};
+
 // ---------- expose globals ----------
 window.ROUTES = ROUTES;
 window.loadRoutes = loadRoutes;
