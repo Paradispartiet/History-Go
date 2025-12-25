@@ -375,13 +375,12 @@ function showRouteOverlay(routeId, startIndex = 0) {
   // const sel = document.getElementById("leftPanelMode");
   // if (sel) { sel.value = "routes"; sel.dispatchEvent(new Event("change")); }
 }
-function closeRouteOverlay() {}
+ffunction closeRouteOverlay() {}
 
 // -----------------------------------------------------
 // Compat: popup-utils forventer showRouteTo(place)
 // -----------------------------------------------------
-
-window.showRouteTo = function(place){
+window.showRouteTo = function(place) {
   if (typeof window.showRouteToPlace === "function") {
     return window.showRouteToPlace(place);
   }
@@ -394,22 +393,16 @@ window.showRouteTo = function(place){
 window.ROUTES = ROUTES;
 window.loadRoutes = loadRoutes;
 
-// sørg for at ROUTES er lastet tidlig (slik at showRouteToPlace kan finne ruter)
-document.addEventListener("DOMContentLoaded", () => {
-  loadRoutes();
-});
-
 window.showRouteOverlay = showRouteOverlay;
 window.closeRouteOverlay = closeRouteOverlay;
 
 window.showRouteToPlace = function(place) {
-  // 0) Sikring
   if (!place) {
     if (typeof window.showToast === "function") window.showToast("Ingen sted-data.");
     return;
   }
 
-  // 1) Har stedet en direkte route-id? (hvis du senere legger det inn)
+  // direkte routeId om du har det senere
   const directRouteId =
     place.routeId ||
     place.route_id ||
@@ -417,11 +410,9 @@ window.showRouteToPlace = function(place) {
     place.routeRef ||
     null;
 
-  if (directRouteId) {
-    return showRouteOverlay(directRouteId, 0);
-  }
+  if (directRouteId) return showRouteOverlay(directRouteId, 0);
 
-  // 2) Finn første rute som inneholder dette place.id
+  // finn rute som inneholder place.id
   const pid = place.id;
   if (pid && Array.isArray(ROUTES) && ROUTES.length) {
     const r = ROUTES.find(rt => Array.isArray(rt.stops) && rt.stops.some(s => s.placeId === pid));
@@ -431,7 +422,6 @@ window.showRouteToPlace = function(place) {
     }
   }
 
-  // 3) Fallback: toast
   if (typeof window.showToast === "function") {
     window.showToast("Fant ingen rute som inkluderer dette stedet.");
   }
@@ -444,6 +434,9 @@ window.computeNearestStop = computeNearestStop;
 window.getNearbyRoutesSorted = getNearbyRoutesSorted;
 
 document.addEventListener("DOMContentLoaded", () => {
+  // sørg for at ROUTES er lastet tidlig
+  loadRoutes();
+
   try { initLeftRoutesPanel(); } catch (e) { console.warn("[initLeftRoutesPanel]", e); }
 });
 
