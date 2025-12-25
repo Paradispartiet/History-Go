@@ -4,36 +4,27 @@
    ============================================================ */
 
 :root{
-  --hg-header-h: 62px;                 /* JS kan overstyre */
-  --hg-header-gap: 10px;
-
-  /* matcher placeCard. fallback hvis --pc-height ikke finnes */
+  --hg-header-h: 62px;   /* kan JS overstyre */
+  --hg-header-gap: 0px;  /* ← fjern mellomrommet */
   --hg-placecard-h: var(--pc-height, 41vh);
-
   --hg-leftpanel-w: 340px;
   --hg-frame-bg: var(--panel-bg, #121212);
 }
-
 /* Container: låst mellom header og placeCard */
 #nearbyListContainer{
   position: fixed;
   left: 0;
-  top: calc(var(--hg-header-h) + var(--hg-header-gap));
+  top: var(--hg-header-h);          /* ← i kant med topplinja */
   bottom: var(--hg-placecard-h);
-
   width: var(--hg-leftpanel-w);
   z-index: 20;
-
   background: var(--hg-frame-bg);
-
   border-right: 0;
   border-radius: 0;
   box-shadow: none;
   backdrop-filter: none;
-
   display: flex;
   flex-direction: column;
-
   overflow: hidden;
 }
 
@@ -160,8 +151,7 @@
 }
 
 /* ============================================================
-   NEARBY – MINIMERBART PANEL
-   Legg nederst i css/nearby.css
+   NEARBY – HELE PANELET MINIMERBART (passer din struktur)
    ============================================================ */
 
 /* Toggle-knapp (settes inn av JS) */
@@ -175,27 +165,25 @@
   font-weight: 600;
   font-size: 0.9rem;
 }
+.nearby-toggle-btn:active{ transform: scale(0.98); }
 
-.nearby-toggle-btn:active{
-  transform: scale(0.98);
-}
-
-/* Når container er minimert */
-#nearbyListContainer.is-collapsed .nearby-list,
-#nearbyListContainer.is-collapsed .nearby-items,
-#nearbyListContainer.is-collapsed .nearby-body,
-#nearbyListContainer.is-collapsed .leftpanel-body,
-#nearbyListContainer.is-collapsed .list{
+/* Når minimert: skjul ALT under head */
+#nearbyListContainer.is-collapsed .leftpanel-body{
   display: none !important;
 }
 
-/* Gi containeren en “kompakt” høyde når den er minimert */
+/* Når minimert: lås høyde til head */
 #nearbyListContainer.is-collapsed{
+  bottom: auto !important;          /* ← viktig: ellers strekkes den ned */
   height: auto !important;
 }
 
-/* Valgfritt: litt strammere topp */
-#nearbyListContainer.is-collapsed .leftpanel-header,
-#nearbyListContainer.is-collapsed .nearby-header{
+/* Head litt strammere når minimert */
+#nearbyListContainer.is-collapsed .leftpanel-head{
   padding-bottom: 10px;
+}
+
+/* Gjør head “stripe”-aktig og klikkbar */
+#nearbyListContainer .leftpanel-head{
+  cursor: pointer;
 }
