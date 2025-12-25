@@ -1283,9 +1283,11 @@ function renderSearchResults({ people, places, categories }, query = "") {
 
   // --- NÆR DEG (når kart er aktivt) ---
   let nearList = "";
-if (window.userLat && window.userLon) {
-    const near = places.slice(0, 3); // 3 nærmeste
-    nearList = `
+const pos = window.getPos?.();
+if (pos) {
+  const near = places.slice(0, 3);
+  ...
+}    nearList = `
       <div class="search-section">
         <h3>Nær deg</h3>
         ${near.map(s => `
