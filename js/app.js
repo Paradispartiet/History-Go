@@ -1235,13 +1235,14 @@ function globalSearch(query) {
   );
 
   // --- NÆR MEG (når kartet er aktivt) ---
-if (window.userLat && window.userLon) {
-    places = [...places].sort((a, b) => {
-      const da = dist(window.userLat, window.userLon, a.lat, a.lon);
-      const db = dist(window.userLat, window.userLon, b.lat, b.lon);
-      return da - db; // nærmest først
-    });
-  }
+const pos = window.getPos?.();
+if (pos) {
+  places = [...places].sort((a, b) => {
+    const da = dist(pos.lat, pos.lon, a.lat, a.lon);
+    const db = dist(pos.lat, pos.lon, b.lat, b.lon);
+    return da - db;
+  });
+}
 
   // --- KATEGORIER ---
   const categories = CATEGORY_LIST.filter(c =>
