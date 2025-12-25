@@ -1295,21 +1295,23 @@ function renderSearchResults({ people, places, categories }, query = "") {
 
   // --- NÆR DEG (når kart er aktivt) ---
   let nearList = "";
-const pos = window.getPos?.();
+
+const pos = (typeof window.getPos === "function") ? window.getPos() : null;
+
 if (pos) {
   const near = places.slice(0, 3);
-  ...
-}    nearList = `
-      <div class="search-section">
-        <h3>Nær deg</h3>
-        ${near.map(s => `
-          <div class="search-item" data-place="${s.id}">
-            ${badge(s.category)}${s.name}
-          </div>
-        `).join("")}
-      </div>
-    `;
-  }
+
+  nearList = `
+    <div class="search-section">
+      <h3>Nær deg</h3>
+      ${near.map(s => `
+        <div class="search-item" data-place="${s.id}">
+          ${badge(s.category)}${s.name}
+        </div>
+      `).join("")}
+    </div>
+  `;
+}
 
   box.innerHTML = `
     ${nearList}
