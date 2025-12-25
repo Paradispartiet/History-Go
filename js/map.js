@@ -108,38 +108,37 @@
 
   // ---- user ----
   function setUser(lat, lon, { fly = false } = {}) {
-    lat = num(lat); lon = num(lon);
-    if (lat == null || lon == null) return;
+  lat = num(lat); lon = num(lon);
+  if (lat == null || lon == null) return;
+  if (!MAP) return;
 
-    window.userLat = lat;
-    window.userLon = lon;
-    window.currentPos = { lat, lon };
+  const ll = [lon, lat];
 
-    if (!MAP) return;
+  if (!userMarker) {
+    const dot = document.createElement("div");
+    dot.className = "hg-user-dot";
+    dot.style.width = "14px";
+    dot.style.height = "14px";
+    dot.style.borderRadius = "50%";
+    dot.style.background = "rgba(0,0,0,0.85)";
+    dot.style.border = "2px solid rgba(255,255,255,0.95)";
+    dot.style.boxShadow = "0 0 10px rgba(0,0,0,0.35)";
 
-    const ll = [lon, lat];
-
-    if (!userMarker) {
-      const dot = document.createElement("div");
-      dot.className = "hg-user-dot";
-      dot.style.width = "14px";
-      dot.style.height = "14px";
-      dot.style.borderRadius = "50%";
-      dot.style.background = "rgba(0,0,0,0.85)";
-      dot.style.border = "2px solid rgba(255,255,255,0.95)";
-      dot.style.boxShadow = "0 0 10px rgba(0,0,0,0.35)";
-
-      userMarker = new maplibregl.Marker({ element: dot, anchor: "center" })
-        .setLngLat(ll)
-        .addTo(MAP);
-    } else {
-      userMarker.setLngLat(ll);
-    }
-
-    if (fly) {
-      MAP.flyTo({ center: ll, zoom: Math.max(MAP.getZoom() || 13, 15), speed: 1.2 });
-    }
+    userMarker = new maplibregl.Marker({ element: dot, anchor: "center" })
+      .setLngLat(ll)
+      .addTo(MAP);
+  } else {
+    userMarker.setLngLat(ll);
   }
+
+  if (fly) {
+    MAP.flyTo({
+      center: ll,
+      zoom: Math.max(MAP.getZoom() || 13, 15),
+      speed: 1.2
+    });
+  }
+}
 
   // ---- markers ----
   const SRC = "hg-places";
