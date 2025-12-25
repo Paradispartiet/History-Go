@@ -927,20 +927,28 @@ function requestLocation() {
 
   if (el.status) el.status.textContent = "Henter posisjon…";
 
-  navigator.geolocation.getCurrentPosition(
+navigator.geolocation.getCurrentPosition(
   g => {
     // ✅ ÉN sannhet
     setPos(g.coords.latitude, g.coords.longitude, g.coords.accuracy);
 
     window.HG_ENV.geo = "granted";
     window.dispatchEvent(new CustomEvent("hg:geo", {
-      detail: { status: "granted", lat: HG_POS.lat, lon: HG_POS.lon, acc: HG_POS.acc }
+      detail: {
+        status: "granted",
+        lat: window.HG_POS.lat,
+        lon: window.HG_POS.lon,
+        acc: window.HG_POS.acc
+      }
     }));
 
     if (el.status) el.status.textContent = "Posisjon funnet.";
     renderNearbyPlaces();
   },
   err => {
+    // ✅ riktig sted
+    console.log("[geo] ERROR", { code: err?.code, message: err?.message, err });
+
     window.HG_ENV.geo = "blocked";
     clearPos(err?.code || "blocked");
 
@@ -955,7 +963,7 @@ function requestLocation() {
       "Posisjon-feil.";
 
     if (el.status) el.status.textContent = msg;
-    showToast(msg);
+    if (typeof showToast === "function") showToast(msg);
     renderNearbyPlaces();
   },
   { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
