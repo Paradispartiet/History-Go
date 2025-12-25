@@ -1284,11 +1284,14 @@ function renderSearchResults({ people, places, categories }, query = "") {
   const placesStarts = places.filter(s => s.name.toLowerCase().startsWith(q)).slice(0, 5);
   const catStarts    = categories.filter(c => c.name.toLowerCase().startsWith(q)).slice(0, 5);
 
-  const suggestions = [
-    ...catStarts.map(c => `<div class="search-item" data-category="${c.id}">${badge(c.id)}${c.name}</div>`),
-    ...peopleStarts.map(p => `<div class="search-item" data-person="${p.id}">${badge(p.category)}${p.name}</div>`),
-    ...placesStarts.map(s => `<div class="search-item" data-place="${s.id}">${badge(s.category)}${s.name}</div>`)
-  ].join("");
+  const suggestions =
+  catStarts
+    .map(c => `<div class="search-item" data-category="${c.id}">${badge(c.id)}${c.name}</div>`)
+    .concat(
+      peopleStarts.map(p => `<div class="search-item" data-person="${p.id}">${badge(p.category)}${p.name}</div>`),
+      placesStarts.map(s => `<div class="search-item" data-place="${s.id}">${badge(s.category)}${s.name}</div>`)
+    )
+    .join("");
 
   // --- NÆR DEG (når kart er aktivt) ---
   let nearList = "";
