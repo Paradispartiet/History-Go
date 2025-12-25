@@ -320,21 +320,19 @@ function distMeters(a, b) {
 // ==============================
 // 7. LISTEVISNINGER
 // ==============================
-let currentPos = null;
-
 function renderNearbyPlaces() {
   if (!el.list) return;
+
+  const pos = getPos(); // ✅ alltid fersk
 
   const sorted = PLACES
     .map(p => ({
       ...p,
-      _d: currentPos ? Math.round(distMeters(currentPos, { lat: p.lat, lon: p.lon })) : null
+      _d: pos ? Math.round(distMeters(pos, { lat: p.lat, lon: p.lon })) : null
     }))
     .sort((a, b) => (a._d ?? 1e12) - (b._d ?? 1e12));
 
-  el.list.innerHTML = sorted
-    .map(renderPlaceCard)
-    .join("");
+  el.list.innerHTML = sorted.map(renderPlaceCard).join("");
 }
 
 function renderPlaceCard(p) {
