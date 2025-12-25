@@ -868,19 +868,17 @@ function wire() {
 }
 
 function requestLocation() {
-  // ✅ global “miljøstatus” som health-checks kan bruke
   window.HG_ENV = window.HG_ENV || {};
-  window.HG_ENV.geo = "unknown"; // unknown | granted | blocked
+  window.HG_ENV.geo = "unknown";
+
+  // ✅ vis steder med “–” avstand mens vi venter på GPS
+  renderNearbyPlaces();
 
   if (!navigator.geolocation) {
     window.HG_ENV.geo = "blocked";
     clearPos("unsupported");
     if (el.status) el.status.textContent = "Geolokasjon støttes ikke.";
-
-    // ✅ signal til resten av appen
-    window.dispatchEvent(
-      new CustomEvent("hg:geo", { detail: { status: "blocked", reason: "unsupported" } })
-    );
+    window.dispatchEvent(new CustomEvent("hg:geo", { detail: { status: "blocked", reason: "unsupported" } }));
     return;
   }
 
@@ -888,52 +886,27 @@ function requestLocation() {
 
   navigator.geolocation.getCurrentPosition(
     g => {
-      // ✅ ÉN sannhet
       setPos(g.coords.latitude, g.coords.longitude);
-
       window.HG_ENV.geo = "granted";
-      window.dispatchEvent(
-        new CustomEvent("hg:geo", {
-          detail: {
-            status: "granted",
-            lat: window.HG_POS.lat,
-            lon: window.HG_POS.lon
-          }
-        })
-      );
-
+      window.dispatchEvent(new CustomEvent("hg:geo", { detail: { status: "granted", lat: window.HG_POS.lat, lon: window.HG_POS.lon } }));
       if (el.status) el.status.textContent = "Posisjon funnet.";
-      // NB: Ikke renderNearbyPlaces() her – setPos() gjør det allerede
     },
     err => {
-      if (DEBUG) console.warn("Geolocation error:", err);
-
       window.HG_ENV.geo = "blocked";
       clearPos(err?.code || "blocked");
-
-      window.dispatchEvent(
-        new CustomEvent("hg:geo", {
-          detail: {
-            status: "blocked",
-            reason: err?.code,
-            message: err?.message
-          }
-        })
-      );
-
       const msg =
         err.code === 1 ? "Posisjon blokkert (tillat i Safari)." :
         err.code === 2 ? "Kunne ikke finne posisjon." :
         err.code === 3 ? "Posisjon timeout." :
         "Posisjon-feil.";
-
       if (el.status) el.status.textContent = msg;
       showToast(msg);
-      // NB: Ikke renderNearbyPlaces() her – clearPos() gjør det allerede
     },
     { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
   );
 }
+
+
 // MINI-PROFIL + quiz-historikk på forsiden
 function initMiniProfile() {
   const nm = document.getElementById("miniName");
