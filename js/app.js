@@ -870,17 +870,20 @@ function wire() {
   });
 }
 
-function requestLocation() {
+ffunction requestLocation() {
   // ✅ global “miljøstatus” som health-checks kan bruke
   window.HG_ENV = window.HG_ENV || {};
   window.HG_ENV.geo = "unknown"; // unknown | granted | blocked
 
   if (!navigator.geolocation) {
     window.HG_ENV.geo = "blocked";
+    clearPos("unsupported");
     if (el.status) el.status.textContent = "Geolokasjon støttes ikke.";
-    renderNearbyPlaces();
+
     // ✅ signal til resten av appen
-    window.dispatchEvent(new CustomEvent("hg:geo", { detail: { status: "blocked", reason: "unsupported" } }));
+    window.dispatchEvent(
+      new CustomEvent("hg:geo", { detail: { status: "blocked", reason: "unsupported" } })
+    );
     return;
   }
 
@@ -888,24 +891,38 @@ function requestLocation() {
 
   navigator.geolocation.getCurrentPosition(
     g => {
-      currentPos = { lat: g.coords.latitude, lon: g.coords.longitude };
-      window.currentPos = currentPos;
+      // ✅ ÉN sannhet
+      setPos(g.coords.latitude, g.coords.longitude);
 
-      window.userLat = currentPos.lat;
-      window.userLon = currentPos.lon;
-
-      window.HG_ENV.geo = "granted"; // ✅
-      window.dispatchEvent(new CustomEvent("hg:geo", { detail: { status: "granted", lat: currentPos.lat, lon: currentPos.lon } }));
+      window.HG_ENV.geo = "granted";
+      window.dispatchEvent(
+        new CustomEvent("hg:geo", {
+          detail: {
+            status: "granted",
+            lat: window.HG_POS.lat,
+            lon: window.HG_POS.lon
+          }
+        })
+      );
 
       if (el.status) el.status.textContent = "Posisjon funnet.";
-      if (window.HGMap) HGMap.setUser(currentPos.lat, currentPos.lon);
-      renderNearbyPlaces();
+      // NB: Ikke renderNearbyPlaces() her – setPos() gjør det allerede
     },
     err => {
       if (DEBUG) console.warn("Geolocation error:", err);
 
-      window.HG_ENV.geo = "blocked"; // ✅
-      window.dispatchEvent(new CustomEvent("hg:geo", { detail: { status: "blocked", reason: err?.code, message: err?.message } }));
+      window.HG_ENV.geo = "blocked";
+      clearPos(err?.code || "blocked");
+
+      window.dispatchEvent(
+        new CustomEvent("hg:geo", {
+          detail: {
+            status: "blocked",
+            reason: err?.code,
+            message: err?.message
+          }
+        })
+      );
 
       const msg =
         err.code === 1 ? "Posisjon blokkert (tillat i Safari)." :
@@ -915,18 +932,11 @@ function requestLocation() {
 
       if (el.status) el.status.textContent = msg;
       showToast(msg);
-
-      window.userLat = null;
-      window.userLon = null;
-
-      window.currentPos = null;
-      
-      renderNearbyPlaces();
+      // NB: Ikke renderNearbyPlaces() her – clearPos() gjør det allerede
     },
     { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
   );
 }
-
 // MINI-PROFIL + quiz-historikk på forsiden
 function initMiniProfile() {
   const nm = document.getElementById("miniName");
