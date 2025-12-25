@@ -914,60 +914,13 @@ function requestLocation() {
   window.HG_ENV = window.HG_ENV || {};
   window.HG_ENV.geo = "unknown";
 
-  // ✅ vis steder med “–” avstand mens vi venter på GPS
-  renderNearbyPlaces();
+  // vis steder med "–" mens vi venter
+  if (typeof renderNearbyPlaces === "function") renderNearbyPlaces();
 
-  if (!navigator.geolocation) {
-    window.HG_ENV.geo = "blocked";
-    clearPos("unsupported");
-    if (el.status) el.status.textContent = "Geolokasjon støttes ikke.";
-    window.dispatchEvent(new CustomEvent("hg:geo", { detail: { status: "blocked", reason: "unsupported" } }));
-    return;
-  }
+  // pro: delegér alt til pos.js
+  if (window.HGPos?.request) return window.HGPos.request();
 
-  if (el.status) el.status.textContent = "Henter posisjon…";
-
-navigator.geolocation.getCurrentPosition(
-  g => {
-    // ✅ ÉN sannhet
-    setPos(g.coords.latitude, g.coords.longitude, g.coords.accuracy);
-
-    window.HG_ENV.geo = "granted";
-    window.dispatchEvent(new CustomEvent("hg:geo", {
-      detail: {
-        status: "granted",
-        lat: window.HG_POS.lat,
-        lon: window.HG_POS.lon,
-        acc: window.HG_POS.acc
-      }
-    }));
-
-    if (el.status) el.status.textContent = "Posisjon funnet.";
-    renderNearbyPlaces();
-  },
-  err => {
-    // ✅ riktig sted
-    console.log("[geo] ERROR", { code: err?.code, message: err?.message, err });
-
-    window.HG_ENV.geo = "blocked";
-    clearPos(err?.code || "blocked");
-
-    window.dispatchEvent(new CustomEvent("hg:geo", {
-      detail: { status: "blocked", reason: err?.code, message: err?.message }
-    }));
-
-    const msg =
-      err.code === 1 ? "Posisjon blokkert (tillat i Safari)." :
-      err.code === 2 ? "Kunne ikke finne posisjon." :
-      err.code === 3 ? "Posisjon timeout." :
-      "Posisjon-feil.";
-
-    if (el.status) el.status.textContent = msg;
-    if (typeof showToast === "function") showToast(msg);
-    renderNearbyPlaces();
-  },
-  { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
-);
+  console.warn("[geo] HGPos.request mangler (pos.js ikke lastet?)");
 }
 
 
