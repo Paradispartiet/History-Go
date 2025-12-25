@@ -889,6 +889,7 @@ function requestLocation() {
   navigator.geolocation.getCurrentPosition(
     g => {
       currentPos = { lat: g.coords.latitude, lon: g.coords.longitude };
+      window.currentPos = currentPos;
 
       window.userLat = currentPos.lat;
       window.userLon = currentPos.lon;
@@ -918,6 +919,8 @@ function requestLocation() {
       window.userLat = null;
       window.userLon = null;
 
+      window.currentPos = null;
+      
       renderNearbyPlaces();
     },
     { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
