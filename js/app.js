@@ -525,7 +525,9 @@ document.addEventListener("click", e => {
   const target = e.target;
 
   // Åpne sted fra kort (data-open)
-  const openId = target.getAttribute?.("data-open");
+  const openEl = target.closest?.("[data-open]");
+  const openId = openEl?.getAttribute("data-open");
+if (openId) { ... }
   if (openId) {
     const p = PLACES.find(x => x.id === openId);
     if (p) openPlaceCard(p);
@@ -536,9 +538,9 @@ document.addEventListener("click", e => {
   const infoName = target.getAttribute?.("data-info");
   if (infoName) {
     window.open(
-      `https://www.google.com/search?q=${decodeURIComponent(infoName)} Oslo`,
+      `https://www.google.com/search?q=${encodeURIComponent(infoName + " Oslo")}`,
       "_blank"
-    );
+  );
     return;
   }
 
