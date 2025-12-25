@@ -882,45 +882,7 @@ function wire() {
 // =====================================================
 // POSISJON – ÉN SANNHET (HG_POS) + API for resten av appen
 // =====================================================
-window.HG_POS = window.HG_POS || { lat: null, lon: null, ts: 0, acc: null };
 
-window.getPos = function () {
-  const p = window.HG_POS;
-  if (p && Number.isFinite(p.lat) && Number.isFinite(p.lon)) return { lat: p.lat, lon: p.lon };
-  return null;
-};
-
-window.setPos = function (lat, lon, acc) {
-  window.HG_POS.lat = lat;
-  window.HG_POS.lon = lon;
-  window.HG_POS.acc = acc ?? null;
-  window.HG_POS.ts  = Date.now();
-
-  // legacy kompat (routes.js fallback)
-  window.userLat = lat;
-  window.userLon = lon;
-
-  // legacy kompat (noen steder bruker currentPos)
-  window.currentPos = { lat, lon };
-
-  // oppdater kart
-  if (window.HGMap && typeof HGMap.setUser === "function") {
-    HGMap.setUser(lat, lon);
-  }
-};
-
-window.clearPos = function (reason) {
-  window.HG_POS.lat = null;
-  window.HG_POS.lon = null;
-  window.HG_POS.acc = null;
-  window.HG_POS.ts  = Date.now();
-
-  window.userLat = null;
-  window.userLon = null;
-  window.currentPos = null;
-
-  if (window.DEBUG) console.warn("[geo] cleared:", reason);
-};
 
 
 function requestLocation() {
