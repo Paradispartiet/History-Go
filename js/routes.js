@@ -365,6 +365,8 @@ function closeRouteOverlay() {}
 // -----------------------------------------------------
 // Compat: popup-utils forventer showRouteTo(place)
 // -----------------------------------------------------
+window.showRouteToPlace = showRouteToPlace;
+
 window.showRouteTo = function(place){
   if (typeof window.showRouteToPlace === "function") {
     return window.showRouteToPlace(place);
