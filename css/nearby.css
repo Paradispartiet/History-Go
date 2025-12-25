@@ -158,3 +158,44 @@
 .nearby-dist{
   pointer-events: none;
 }
+
+/* ============================================================
+   NEARBY – MINIMERBART PANEL
+   Legg nederst i css/nearby.css
+   ============================================================ */
+
+/* Toggle-knapp (settes inn av JS) */
+.nearby-toggle-btn{
+  margin-left: auto;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: #fff;
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.nearby-toggle-btn:active{
+  transform: scale(0.98);
+}
+
+/* Når container er minimert */
+#nearbyListContainer.is-collapsed .nearby-list,
+#nearbyListContainer.is-collapsed .nearby-items,
+#nearbyListContainer.is-collapsed .nearby-body,
+#nearbyListContainer.is-collapsed .leftpanel-body,
+#nearbyListContainer.is-collapsed .list{
+  display: none !important;
+}
+
+/* Gi containeren en “kompakt” høyde når den er minimert */
+#nearbyListContainer.is-collapsed{
+  height: auto !important;
+}
+
+/* Valgfritt: litt strammere topp */
+#nearbyListContainer.is-collapsed .leftpanel-header,
+#nearbyListContainer.is-collapsed .nearby-header{
+  padding-bottom: 10px;
+}
