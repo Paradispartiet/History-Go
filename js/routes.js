@@ -73,27 +73,16 @@ function formatDist(m) {
 
 // Tåler flere pos-format (currentPos/userPos/userLat+userLon)
 function getUserPos() {
-  // 1) currentPos / userPos (global lexical)
-  const p =
-    (typeof currentPos !== "undefined" && currentPos) ? currentPos :
-    (typeof userPos !== "undefined" && userPos) ? userPos :
-    null;
-
-  if (p) {
-    const lat = (typeof p.lat === "number") ? p.lat :
-                (typeof p.latitude === "number") ? p.latitude : null;
-    const lon = (typeof p.lon === "number") ? p.lon :
-                (typeof p.lng === "number") ? p.lng :
-                (typeof p.longitude === "number") ? p.longitude : null;
-    if (typeof lat === "number" && typeof lon === "number") return { lat, lon };
+  // ✅ Ny standard: én sannhet (HG_POS via getPos)
+  if (typeof getPos === "function") {
+    const p = getPos();
+    if (p && typeof p.lat === "number" && typeof p.lon === "number") return p;
   }
 
-  // 2) userLat/userLon
+  // (fallback) eldre globals hvis noe er lastet i feil rekkefølge
   if (typeof window.userLat === "number" && typeof window.userLon === "number") {
     return { lat: window.userLat, lon: window.userLon };
   }
-
-  // 3) userLat/userLng
   if (typeof window.userLat === "number" && typeof window.userLng === "number") {
     return { lat: window.userLat, lon: window.userLng };
   }
