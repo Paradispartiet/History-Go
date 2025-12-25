@@ -12,16 +12,22 @@
   background: #000; /* svart bakgrunn om tiles ikke laster */
 }
 
-/* Sørg for at UI ligger over kartet */
 .profile-page .site-header,
 .profile-page #profileMain,
 .profile-page .map-controls,
-#toast,
 #badgeModal{
   position: relative;
   z-index: 2;
 }
 
+/* Toast skal aldri påvirke layout */
+#toast{
+  position: fixed;
+  top: calc(env(safe-area-inset-top) + 14px);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20000;
+}
 /* Kartknapper over */
 .map-controls{
   position: fixed;
@@ -311,34 +317,7 @@ button.primary.small:hover { opacity: .9; }
 }
 
 
-/* ================================
-   PROFIL-KART (Leaflet) – ALLTID BAK ALT
-   ================================ */
-.profile-page #map{
-  position: fixed;
-  inset: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 0;
-  background: #000; /* “sort kart” hvis tiles ikke lastes */
-}
 
-/* Alt UI over kartet */
-.profile-page .site-header,
-.profile-page #profileMain,
-.profile-page .map-controls,
-.profile-page #toast{
-  position: relative;
-  z-index: 2;
-}
-
-/* Kartkontroller over kartet */
-.profile-page .map-controls{
-  position: fixed;
-  top: 72px;
-  right: 12px;
-  z-index: 3;
-}
 
 /* ===================================================== */
 /* 17) PROFILSIDE – KORT, GRID OG LISTE                  */
