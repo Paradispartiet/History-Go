@@ -323,7 +323,7 @@ function distMeters(a, b) {
 function renderNearbyPlaces() {
   if (!el.list) return;
 
-  const pos = getPos(); // ✅ alltid fersk
+  const pos = (typeof getPos === "function") ? getPos() : null;
 
   const sorted = PLACES
     .map(p => ({
@@ -334,7 +334,6 @@ function renderNearbyPlaces() {
 
   el.list.innerHTML = sorted.map(renderPlaceCard).join("");
 }
-
 function renderPlaceCard(p) {
   const dist =
     p._d == null
