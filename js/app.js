@@ -858,13 +858,12 @@ function wire() {
   // Testmodus-bryter
   el.test?.addEventListener("change", e => {
     if (e.target.checked) {
-      currentPos = { lat: START.lat, lon: START.lon };
+      setPos(START.lat, START.lon); // ✅ én sannhet
       if (el.status) el.status.textContent = "Testmodus: Oslo sentrum";
-      if (window.HGMap) HGMap.setUser(currentPos.lat, currentPos.lon);
-      renderNearbyPlaces();
       showToast("Testmodus PÅ");
     } else {
       showToast("Testmodus AV");
+      clearPos("unknown");          // ✅ unngå “sticky Oslo”
       requestLocation();
     }
   });
