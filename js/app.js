@@ -389,6 +389,44 @@ window.setPlaceCardCollapsed = function (collapsed) {
   pc.classList.toggle("is-collapsed", !!collapsed);
 };
 
+// =====================================================
+// PLACE CARD – collapse/expand/toggle (global API)
+// =====================================================
+window.setPlaceCardCollapsed = function (collapsed) {
+  document.body.classList.toggle("pc-collapsed", !!collapsed);
+};
+
+window.collapsePlaceCard = function () {
+  window.setPlaceCardCollapsed(true);
+};
+
+window.expandPlaceCard = function () {
+  window.setPlaceCardCollapsed(false);
+};
+
+window.togglePlaceCard = function () {
+  window.setPlaceCardCollapsed(!document.body.classList.contains("pc-collapsed"));
+};
+
+// Klikk på “handle-stripen” (øverste ~26px av placeCard) toggler
+document.addEventListener("click", (e) => {
+  const pc = document.getElementById("placeCard");
+  if (!pc) return;
+
+  // bare hvis du faktisk klikker på placeCard
+  const inside = e.target.closest?.("#placeCard");
+  if (!inside) return;
+
+  const r = pc.getBoundingClientRect();
+  const y = e.clientY - r.top;
+
+  // handle-område (juster ved behov)
+  if (y >= 0 && y <= 26) {
+    e.preventDefault();
+    window.togglePlaceCard();
+  }
+});
+
 function renderPersonCardInline(pr) {
   const cat = tagToCat(pr.tags);
   const dist =
