@@ -16,6 +16,10 @@
 
   /* People */
   --pc-person-img: 64px;
+
+  --panel-bg: #000;          /* ✅ ÉN sannhet: helt sort */
+  --panel-border: transparent; /* valgfritt */
+
 }
 
 /* ===================================================== */
@@ -29,28 +33,23 @@
   width: 100%;
   z-index: 9999;
 
-  background: var(--panel-bg, #121212);
+  background: #000;                 /* helt sort */
   border-top-left-radius: var(--pc-radius);
   border-top-right-radius: var(--pc-radius);
-  border-top: 1px solid rgba(255,255,255,.06);
+  border-top: 0;                    /* fjern lys kant */
   box-shadow: 0 -12px 34px rgba(0,0,0,.40);
 
-  overflow: hidden; /* .pc-body håndterer scroll */
+  overflow: hidden;
 }
 
-/* Visuell “handle” */
 #placeCard::before{
   content:"";
-  display:block;
-  width: 44px;
-  height: 5px;
-  border-radius: 999px;
-  margin: 8px auto 0;
-  background: rgba(255,255,255,.20);
+  display:none;                     /* fjern “handle” */
 }
 
 /* Scroll-området inni panelet */
 #placeCard .pc-body{
+  background: var(--panel-bg, #000);
   height: calc(100% - 18px); /* plass til handle */
   overflow-y: auto;
   overflow-x: hidden;
@@ -78,8 +77,8 @@
   border-radius: 16px;
   object-fit: cover;
   flex-shrink: 0;
-  border: 1px solid rgba(255,255,255,0.18);
-  background: rgba(255,255,255,.06);
+  border: 0;
+  background: 000;
 }
 
 #placeCard .pc-text{ flex: 1; }
@@ -161,9 +160,9 @@
   width: var(--pc-person-img);
   height: var(--pc-person-img);
   border-radius: 50%;
-  border: 2px solid rgba(255,255,255,0.30);
+  border: 0;
   object-fit: cover;
-  background: rgba(255,255,255,.08);
+  background: #000;
   display: block;
   transition: transform 0.15s ease;
 }
@@ -317,7 +316,7 @@
 /* --- FIX: pcPeople / personlinjer skal ikke være grå --- */
 #pcPeople,
 .pc-people {
-  background: var(--panel-bg, #121212);
+  background: #000;
 }
 
 /* Selve raden (hvis den har egen bg) */
