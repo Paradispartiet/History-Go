@@ -357,3 +357,30 @@
   object-fit: cover;
   display: block;
 }
+
+:root{
+  --pc-collapsed-h: 26px; /* kun handle-stripen */
+}
+
+/* Minimeringsmodus */
+#placeCard.is-collapsed{
+  height: var(--pc-collapsed-h);
+}
+
+/* Skjul innholdet når minimert */
+#placeCard.is-collapsed .pc-body,
+#placeCard.is-collapsed .pc-scroll,
+#placeCard.is-collapsed .pc-footer{
+  display: none !important;
+}
+
+/* Handle skal fortsatt synes */
+#placeCard.is-collapsed::before{
+  margin: 10px auto 0;
+}
+
+/* Kartet skal gå helt til bunn når placeCard er minimert */
+body.pc-collapsed #map,
+body.pc-collapsed #mapContainer{
+  bottom: var(--pc-collapsed-h);
+}
