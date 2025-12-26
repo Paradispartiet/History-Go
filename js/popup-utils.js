@@ -426,34 +426,47 @@ window.showPlacePopup = function(place) {
 // ------------------------------------------------------------
 // NextUp bar (placeCard) — HG-only, trygg og kompakt
 // ------------------------------------------------------------
-function renderNextUpBarForPlaceCard(place) {
+function renderNextUpBarForPlaceCard(place, ctx = {}) {
   if (!place) return "";
 
-  // Quiz-status (du har allerede quiz_history)
-  const completed = hasCompletedQuiz(place.id);
+  const completedQuiz = hasCompletedQuiz(place.id);
 
-  // Enkel distanse hvis den finnes på place-objektet (noen av dine steder har _d)
-  const hasDist = typeof place._d === "number";
-  const distTxt = !hasDist
-    ? ""
-    : (place._d < 1000 ? `${place._d} m` : `${(place._d / 1000).toFixed(1)} km`);
+  // visited kommer fra ctx (så vi slipper å anta global)
+  const isVisited = !!(ctx.visited && ctx.visited[place.id]);
 
-  const nowLine = hasDist
-    ? `Du er ${distTxt} unna`
-    : `Du ser stedkortet`;
+  // peopleCount kommer fra ctx (du har persons-lista i openPlaceCard)
+  const peopleCount = Number(ctx.peopleCount || 0);
 
-  // Neste: prioriter quiz hvis ikke tatt, ellers foreslå unlock hvis ikke besøkt
-  const nextLabel = completed ? "Åpne mer info" : "Ta 2-min quiz";
-  const nextAction = completed ? "info" : "quiz";
+  const hasObs = !!(window.HGObservations && typeof window.HGObservations.start === "function");
+  const hasRoute =
+    (typeof window.showNavRouteToPlace === "function") ||
+    (typeof window.showRouteTo === "function");
 
-  // Fordi: bruk kategori + ev. observations count
-  const obsCount = getObservationsForTarget(place.id, "place").length;
-  const becauseBits = [];
-  if (place.category) becauseBits.push(place.category);
-  if (obsCount) becauseBits.push(`${obsCount} observasjoner`);
-  const becauseLine = becauseBits.length
-    ? becauseBits.join(" • ")
-    : "Et sted du kan utforske";
+  const r = place.r || 150;
+  const cat = place.category || "";
+
+  // NÅ
+  const nowLine = (typeof place._d === "number")
+    ? `Du er ${place._d < 1000 ? `${place._d} m` : `${(place._d / 1000).toFixed(1)} km`} unna`
+    : `Radius her er ${r} m`;
+
+  // NESTE (prioritet)
+  let nextAction = "info";
+  let nextLabel = "Mer info";
+
+  if (!completedQuiz) { nextAction = "quiz"; nextLabel = "Ta quiz (2 min)"; }
+  else if (!isVisited) { nextAction = "unlock"; nextLabel = "Lås opp stedet"; }
+  else if (hasObs) { nextAction = "observe"; nextLabel = "Legg til observasjon"; }
+  else if (hasRoute) { nextAction = "route"; nextLabel = "Vis rute hit"; }
+
+  // FORDI (nyttig status)
+  const because = [];
+  if (cat) because.push(cat);
+  because.push(completedQuiz ? "quiz fullført" : "quiz ikke tatt");
+  because.push(isVisited ? "låst opp" : "ikke låst opp");
+  if (peopleCount) because.push(`${peopleCount} personer her`);
+
+  const becauseLine = because.join(" • ");
 
   return `
     <div class="hg-nextup" id="pcNextUp">
