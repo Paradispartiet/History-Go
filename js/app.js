@@ -867,7 +867,7 @@ function renderLeftBadges() {
 // 10. INITIALISERING OG BOOT
 // ==============================
 function wire() {
-  // Testmodus-bryter
+  // Testmodus
   el.test?.addEventListener("change", (e) => {
     const on = !!e.target.checked;
 
@@ -887,12 +887,13 @@ function wire() {
     window.renderNearbyPlaces?.();
   });
 
-  // ✅ Sikteknapp
-  el.btnCenter && (el.btnCenter.onclick = () => {
+  // Sikteknapp (center)
+  el.btnCenter?.addEventListener("click", () => {
     const pos = window.getPos?.();
 
-    if (pos && window.MAP?.flyTo) {
-      window.MAP.flyTo({ center: [pos.lon, pos.lat], zoom: 16 });
+    const map = window.MAP || window.HGMap?.getMap?.(); // fallback hvis du har getter
+    if (pos && map?.flyTo) {
+      map.flyTo({ center: [pos.lon, pos.lat], zoom: 16 });
       showToast("Sentrerer på deg");
       return;
     }
@@ -901,7 +902,6 @@ function wire() {
     requestLocation();
   });
 }
-
 
 // =====================================================
 // POSISJON – ÉN SANNHET (HG_POS) + API for resten av appen
