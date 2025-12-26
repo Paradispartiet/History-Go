@@ -368,6 +368,8 @@ function renderPlaceCard(p) {
   `;
 }
 
+window.renderNearbyPlaces = renderNearbyPlaces;
+
 function renderPersonCardInline(pr) {
   const cat = tagToCat(pr.tags);
   const dist =
