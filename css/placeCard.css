@@ -364,7 +364,7 @@
 
 /* Minimeringsmodus */
 #placeCard.is-collapsed{
-  height: var(--pc-collapsed-h);
+  height: var(--pc-collapsed-h) !important;
 }
 
 /* Skjul innholdet når minimert */
@@ -383,14 +383,4 @@
 body.pc-collapsed #map,
 body.pc-collapsed #mapContainer{
   bottom: var(--pc-collapsed-h);
-}
-
-#placeCard.is-collapsed{
-  height: 34px;
-}
-
-#placeCard.is-collapsed .pc-body,
-#placeCard.is-collapsed .pc-scroll,
-#placeCard.is-collapsed .pc-footer{
-  display: none;
 }
