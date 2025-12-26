@@ -24,6 +24,12 @@ const HG_ORS = {
   profile: "foot-walking"
 };
 
+// Eksponer ORS-config globalt (navRoutes.js / popup-utils forventer dette)
+window.HG_ORS = window.HG_ORS || {};
+window.HG_ORS.baseUrl = HG_ORS.baseUrl;
+window.HG_ORS.apiKey  = HG_ORS.apiKey;
+window.HG_ORS.profile = HG_ORS.profile;
+
 // -------------------- State --------------------
 let ROUTES = [];
 let routesLoaded = false;
