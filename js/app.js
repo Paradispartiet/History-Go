@@ -992,19 +992,17 @@ function renderLeftBadges() {
 }
 
 
-// Åpne placeCard igjen ved klikk på den minimerte stripen
+// Toggle placeCard ved klikk på bunnstripen
 function wirePlaceCardCollapseTapToExpand() {
   const pc = document.getElementById("placeCard");
   if (!pc) return;
 
   pc.addEventListener("click", (e) => {
-    // bare når den faktisk er minimert
-    if (!pc.classList.contains("is-collapsed")) return;
-
     const t = e.target;
     if (t && (t.closest("button") || t.closest("a"))) return;
 
-    window.setPlaceCardCollapsed?.(false);
+    const collapsed = pc.classList.contains("is-collapsed");
+    window.setPlaceCardCollapsed?.(!collapsed); // ✅ toggle
   });
 }
 
