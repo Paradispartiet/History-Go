@@ -991,9 +991,23 @@ function renderLeftBadges() {
   // (valgfritt) klikk-håndtering kan legges i wire() via delegation senere
 }
 
-// ==============================
-// 10. INITIALISERING OG BOOT
-// ==============================
+
+// Åpne placeCard igjen ved klikk på den minimerte stripen
+function wirePlaceCardCollapseTapToExpand() {
+  const pc = document.getElementById("placeCard");
+  if (!pc) return;
+
+  pc.addEventListener("click", (e) => {
+    // bare når den faktisk er minimert
+    if (!pc.classList.contains("is-collapsed")) return;
+
+    const t = e.target;
+    if (t && (t.closest("button") || t.closest("a"))) return;
+
+    window.setPlaceCardCollapsed?.(false);
+  });
+}
+
 // ==============================
 // 10. INITIALISERING OG BOOT
 // ==============================
@@ -1024,7 +1038,11 @@ function wire() {
   el.btnCenter?.addEventListener("click", () => {
     const pos = (typeof window.getPos === "function") ? window.getPos() : null;
 
-    const map = window.MAP || window.HGMap?.getMap?.() || window.HGMap?.map || null;
+    const map =
+      window.MAP ||
+      window.HGMap?.getMap?.() ||
+      window.HGMap?.map ||
+      null;
 
     if (pos && map?.flyTo) {
       map.flyTo({ center: [pos.lon, pos.lat], zoom: 16 });
@@ -1035,6 +1053,9 @@ function wire() {
     showToast(pos ? "Kart ikke klart ennå…" : "Henter posisjon…");
     requestLocation();
   });
+
+  // ✅ gjør placeCard-klikk aktivt (tap stripen → expand)
+  wirePlaceCardCollapseTapToExpand();
 }
 
 // =====================================================
