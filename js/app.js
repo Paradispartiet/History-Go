@@ -382,11 +382,20 @@ function renderPlaceCard(p) {
 
 window.renderNearbyPlaces = renderNearbyPlaces;
 
-window.setPlaceCardCollapsed = function (collapsed) {
-  const pc = document.getElementById("placeCard");
-  if (!pc) return;
+window.setNearbyCollapsed = function (collapsed) {
+  const container = document.getElementById("nearbyListContainer");
+  if (!container) return;
 
-  pc.classList.toggle("is-collapsed", !!collapsed);
+  container.classList.toggle("is-collapsed", !!collapsed);
+  try { localStorage.setItem("hg_nearby_collapsed", collapsed ? "1" : "0"); } catch {}
+
+  const btn = container.querySelector(".leftpanel-head .nearby-toggle-btn");
+  if (btn) {
+    const chev = btn.querySelector(".chev");
+    const label = btn.querySelector(".label");
+    if (chev) chev.textContent = collapsed ? "▸" : "▾";
+    if (label) label.textContent = collapsed ? "Vis" : "Minimer";
+  }
 };
 
 // =====================================================
