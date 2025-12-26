@@ -878,6 +878,9 @@ function renderLeftBadges() {
 // ==============================
 // 10. INITIALISERING OG BOOT
 // ==============================
+// ==============================
+// 10. INITIALISERING OG BOOT
+// ==============================
 function wire() {
   // Testmodus
   el.test?.addEventListener("change", (e) => {
@@ -885,6 +888,7 @@ function wire() {
 
     if (on) {
       window.setPos?.(START.lat, START.lon, null);
+
       if (el.status) el.status.textContent = "Testmodus: Oslo sentrum";
       showToast("Testmodus PÅ");
 
@@ -896,21 +900,23 @@ function wire() {
       requestLocation();
     }
 
+    // NB: krever at du har window.renderNearbyPlaces = renderNearbyPlaces;
     window.renderNearbyPlaces?.();
   });
 
   // Sikteknapp (center)
   el.btnCenter?.addEventListener("click", () => {
-    const pos = window.getPos?.();
+    const pos = (typeof window.getPos === "function") ? window.getPos() : null;
 
-    const map = window.MAP || window.HGMap?.getMap?.(); // fallback hvis du har getter
+    const map = window.MAP || window.HGMap?.getMap?.() || window.HGMap?.map || null;
+
     if (pos && map?.flyTo) {
       map.flyTo({ center: [pos.lon, pos.lat], zoom: 16 });
       showToast("Sentrerer på deg");
       return;
     }
 
-    showToast("Henter posisjon…");
+    showToast(pos ? "Kart ikke klart ennå…" : "Henter posisjon…");
     requestLocation();
   });
 }
