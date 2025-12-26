@@ -239,8 +239,8 @@
 #placeCard #miniProfile{
   margin-top: 12px;
   border-radius: 16px;
-  background: rgba(255,255,255,.04);
-  border: 1px solid rgba(255,255,255,.06);
+  background: #000;  /* ✅ helt sort */
+  border: 0;         /* ✅ ingen grå “kort”-ramme */
   position: static !important;
 }
 
@@ -294,7 +294,7 @@
 #placeCard .pc-footer{
   flex: 0 0 auto;
   padding: 0 var(--pc-pad) calc(var(--pc-pad) + env(safe-area-inset-bottom));
-  background: var(--panel-bg, #121212);
+  background: var(--panel-bg, #000);
   border-top: 1px solid rgba(255,255,255,.06);
 }
 
