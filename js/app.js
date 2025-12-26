@@ -402,6 +402,10 @@ window.setNearbyCollapsed = function (collapsed) {
 // PLACE CARD – collapse/expand/toggle (global API)
 // =====================================================
 window.setPlaceCardCollapsed = function (collapsed) {
+  const pc = document.getElementById("placeCard");
+  if (!pc) return;
+
+  pc.classList.toggle("is-collapsed", !!collapsed);
   document.body.classList.toggle("pc-collapsed", !!collapsed);
 };
 
