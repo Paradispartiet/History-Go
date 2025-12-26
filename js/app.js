@@ -354,7 +354,7 @@ function renderNearbyPlaces() {
     }))
     .sort((a, b) => (a._d ?? 1e12) - (b._d ?? 1e12));
 
-  el.list.innerHTML = sorted.slice(0, NEARBY_LIMIT).map(renderPlaceCard).join("");
+  el.list.innerHTML = sorted.map(renderPlaceCard).join("");
 }
 function renderPlaceCard(p) {
   const dist =
@@ -382,6 +382,13 @@ function renderPlaceCard(p) {
 
 window.renderNearbyPlaces = renderNearbyPlaces;
 
+window.setPlaceCardCollapsed = function (collapsed) {
+  const pc = document.getElementById("placeCard");
+  if (!pc) return;
+
+  pc.classList.toggle("is-collapsed", !!collapsed);
+};
+
 function renderPersonCardInline(pr) {
   const cat = tagToCat(pr.tags);
   const dist =
@@ -405,6 +412,8 @@ function renderPersonCardInline(pr) {
       </div>
     </article>`;
 }
+
+
 function renderCollection() {
   const grid = el.collectionGrid;
   if (!grid) return;
