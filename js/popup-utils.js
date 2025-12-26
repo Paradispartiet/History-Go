@@ -512,9 +512,18 @@ window.openPlaceCard = function(place) {
   if (metaEl)  metaEl.textContent  = `${place.category || ""} • radius ${place.r || 150} m`;
   if (descEl)  descEl.textContent  = place.desc || "";
 
-    // NextUp (Nå / Neste / Fordi) – inni placeCard
+  const persons = PEOPLE.filter(
+    p =>
+      (Array.isArray(p.places) && p.places.includes(place.id)) ||
+      p.placeId === place.id
+  );
+  
+     // NextUp (Nå / Neste / Fordi) – inni placeCard
   if (nextUpMount) {
-    nextUpMount.innerHTML = renderNextUpBarForPlaceCard(place);
+    nextUpMount.innerHTML = renderNextUpBarForPlaceCard(place, {
+      visited,
+      peopleCount: persons.length
+    });
 
     const btn = nextUpMount.querySelector("[data-nextup]");
     if (btn) {
