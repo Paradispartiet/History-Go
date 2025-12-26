@@ -1,9 +1,13 @@
-// ==============================
-// HG POS — én sannhet + pro flow
-// ==============================
+// js/pos.js — History GO posisjon (én sannhet)
+// Eksponerer: window.HGPos.request(), window.getPos(), window.setPos(), window.clearPos()
+// Sender events: "hg:geo" { status: requesting|granted|blocked|unsupported }
+
 (function () {
+  "use strict";
+
+  // ÉN state (ikke lag flere varianter)
   const HG_POS = (window.HG_POS = window.HG_POS || {
-    status: "unknown",   // unknown | prompt | granted | denied | unavailable
+    status: "unknown", // unknown|requesting|granted|blocked|unsupported|test
     lat: null,
     lon: null,
     acc: null,
@@ -12,146 +16,105 @@
     lastError: null
   });
 
-  let watchId = null;
+  function emit(detail) {
+    try {
+      window.dispatchEvent(new CustomEvent("hg:geo", { detail }));
+    } catch {}
+  }
+
+  function getPos() {
+    if (Number.isFinite(HG_POS.lat) && Number.isFinite(HG_POS.lon)) {
+      return { lat: HG_POS.lat, lon: HG_POS.lon, acc: HG_POS.acc, ts: HG_POS.ts };
+    }
+    return null;
+  }
 
   function setPos(lat, lon, acc) {
-    lat = Number(lat); lon = Number(lon);
-    if (!Number.isFinite(lat) || !Number.isFinite(lon)) return false;
-
-    HG_POS.lat = lat;
-    HG_POS.lon = lon;
-    HG_POS.acc = Number.isFinite(Number(acc)) ? Number(acc) : null;
-    HG_POS.ts = Date.now();
     HG_POS.status = "granted";
+    HG_POS.lat = Number(lat);
+    HG_POS.lon = Number(lon);
+    HG_POS.acc = acc ?? null;
+    HG_POS.ts = Date.now();
     HG_POS.reason = null;
     HG_POS.lastError = null;
 
-    // legacy compat (midlertidig)
-    window.userLat = lat;
-    window.userLon = lon;
-    window.currentPos = { lat, lon };
+    // legacy kompat
+    window.userLat = HG_POS.lat;
+    window.userLon = HG_POS.lon;
+    window.currentPos = { lat: HG_POS.lat, lon: HG_POS.lon };
+
+    // event
+    emit({ status: "granted", lat: HG_POS.lat, lon: HG_POS.lon, acc: HG_POS.acc, ts: HG_POS.ts });
 
     // kart
-    if (window.HGMap?.setUser) window.HGMap.setUser(lat, lon);
+    if (window.HGMap?.setUser) window.HGMap.setUser(HG_POS.lat, HG_POS.lon);
 
     // UI
     if (typeof window.renderNearbyPlaces === "function") window.renderNearbyPlaces();
-
-    // event
-    window.dispatchEvent(new CustomEvent("hg:geo", { detail: { status: "granted", lat, lon, acc: HG_POS.acc } }));
-
-    // lagre last known good (pro)
-    try {
-      localStorage.setItem("hg_last_pos_v1", JSON.stringify({ lat, lon, acc: HG_POS.acc, ts: HG_POS.ts }));
-    } catch {}
-    return true;
   }
 
-  function clearPos(reason = "denied", err = null) {
-    HG_POS.status = (reason === "denied" ? "denied" : "unavailable");
-    HG_POS.reason = String(reason || "unavailable");
-    HG_POS.lastError = err ? { code: err.code, message: err.message } : null;
+  function clearPos(reason) {
+    HG_POS.status = reason === "unsupported" ? "unsupported" : "blocked";
     HG_POS.lat = null;
     HG_POS.lon = null;
     HG_POS.acc = null;
     HG_POS.ts = Date.now();
+    HG_POS.reason = reason ?? "blocked";
 
     window.userLat = null;
     window.userLon = null;
     window.currentPos = null;
 
+    emit({ status: HG_POS.status, reason: HG_POS.reason, ts: HG_POS.ts });
+
     if (typeof window.renderNearbyPlaces === "function") window.renderNearbyPlaces();
-    window.dispatchEvent(new CustomEvent("hg:geo", { detail: { status: HG_POS.status, reason: HG_POS.reason, error: HG_POS.lastError } }));
   }
 
-  function hasPos() {
-    return Number.isFinite(HG_POS.lat) && Number.isFinite(HG_POS.lon);
-  }
-
-  function getPos() {
-    return hasPos() ? { lat: HG_POS.lat, lon: HG_POS.lon, acc: HG_POS.acc } : null;
-  }
-
-  async function checkPermissionState() {
-    // Permissions API finnes ikke alltid (Safari)
-    if (!navigator.permissions?.query) return "unknown";
-    try {
-      const p = await navigator.permissions.query({ name: "geolocation" });
-      return p.state; // granted | denied | prompt
-    } catch {
-      return "unknown";
-    }
-  }
-
-  async function requestLocation() {
+  function request(opts = {}) {
     if (!navigator.geolocation) {
-      HG_POS.status = "unavailable";
       clearPos("unsupported");
-      return;
+      return Promise.resolve(null);
     }
 
-    // pro: sjekk permission state
-    const st = await checkPermissionState();
-    if (st === "denied") {
-      HG_POS.status = "denied";
-      clearPos("denied");
-      return;
-    }
-    if (st === "prompt") HG_POS.status = "prompt";
+    HG_POS.status = "requesting";
+    HG_POS.reason = null;
+    HG_POS.lastError = null;
+    emit({ status: "requesting" });
 
-    // alltid vis nearby med “–” mens vi venter
-    if (typeof window.renderNearbyPlaces === "function") window.renderNearbyPlaces();
+    const options = {
+      enableHighAccuracy: true,
+      timeout: 15000,
+      maximumAge: 10000,
+      ...opts
+    };
 
-    // kick: getCurrentPosition (for å trigge prompt)
-    navigator.geolocation.getCurrentPosition(
-      (g) => setPos(g.coords.latitude, g.coords.longitude, g.coords.accuracy),
-      (err) => {
-        // code 1 = denied
-        if (err?.code === 1) clearPos("denied", err);
-        else clearPos("unavailable", err);
-      },
-      { enableHighAccuracy: true, timeout: 12000, maximumAge: 10000 }
-    );
-
-    // pro: stabil tracking
-    if (watchId != null) navigator.geolocation.clearWatch(watchId);
-    watchId = navigator.geolocation.watchPosition(
-      (g) => setPos(g.coords.latitude, g.coords.longitude, g.coords.accuracy),
-      (err) => {
-        if (err?.code === 1) clearPos("denied", err);
-        else clearPos("unavailable", err);
-      },
-      { enableHighAccuracy: true, timeout: 20000, maximumAge: 5000 }
-    );
+    return new Promise((resolve) => {
+      navigator.geolocation.getCurrentPosition(
+        (g) => {
+          setPos(g.coords.latitude, g.coords.longitude, g.coords.accuracy);
+          resolve(getPos());
+        },
+        (err) => {
+          HG_POS.lastError = { code: err?.code, message: err?.message };
+          clearPos(err?.code || "blocked");
+          resolve(null);
+        },
+        options
+      );
+    });
   }
 
-  function stopLocation() {
-    if (watchId != null && navigator.geolocation?.clearWatch) {
-      navigator.geolocation.clearWatch(watchId);
-    }
-    watchId = null;
-  }
+  // API
+  window.HGPos = {
+    request,
+    getPos,
+    setPos,
+    clearPos,
+    state: () => ({ ...HG_POS })
+  };
 
-  // pro fallback: last known good
-  try {
-    const raw = localStorage.getItem("hg_last_pos_v1");
-    if (raw) {
-      const p = JSON.parse(raw);
-      if (p && Number.isFinite(p.lat) && Number.isFinite(p.lon)) {
-        // Ikke sett status=granted, bare bruk som “hint” hvis du vil
-        // setPos(p.lat, p.lon, p.acc);
-        HG_POS.lastKnown = p;
-      }
-    }
-  } catch {}
-
+  // små alias (så resten av appen din slipper å endres)
+  window.getPos = getPos;
   window.setPos = setPos;
   window.clearPos = clearPos;
-  window.hasPos = hasPos;
-  window.getPos = getPos;
-
-  window.HGPos = {
-    request: requestLocation,
-    stop: stopLocation
-  };
 })();
