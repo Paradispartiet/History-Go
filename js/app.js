@@ -202,6 +202,18 @@ const el = {
 
 };
 
+// ==============================
+// GEO STATUS UI (lytter på pos.js / hg:geo)
+// ==============================
+window.addEventListener("hg:geo", (e) => {
+  const st = e.detail?.status;
+  if (!el.status) return;
+
+  if (st === "requesting") el.status.textContent = "Henter posisjon…";
+  else if (st === "granted") el.status.textContent = "Posisjon funnet.";
+  else if (st === "blocked") el.status.textContent = "Posisjon blokkert.";
+  else if (st === "unsupported") el.status.textContent = "Geolokasjon støttes ikke.";
+});
 
 // ==============================
 // 3. KATEGORIFUNKSJONER
