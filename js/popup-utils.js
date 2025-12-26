@@ -499,6 +499,32 @@ window.openPlaceCard = function(place) {
   if (metaEl)  metaEl.textContent  = `${place.category || ""} • radius ${place.r || 150} m`;
   if (descEl)  descEl.textContent  = place.desc || "";
 
+    // NextUp (Nå / Neste / Fordi) – inni placeCard
+  if (nextUpMount) {
+    nextUpMount.innerHTML = renderNextUpBarForPlaceCard(place);
+
+    const btn = nextUpMount.querySelector("[data-nextup]");
+    if (btn) {
+      btn.onclick = () => {
+        const a = btn.dataset.nextup;
+
+        if (a === "quiz") {
+          if (window.QuizEngine && typeof QuizEngine.start === "function") {
+            QuizEngine.start(place.id);
+          } else {
+            showToast("Quiz-modul ikke lastet");
+          }
+          return;
+        }
+
+        if (a === "info") {
+          showPlacePopup(place);
+          return;
+        }
+      };
+    }
+  }
+
   if (peopleEl) {
     const persons = PEOPLE.filter(
       p =>
