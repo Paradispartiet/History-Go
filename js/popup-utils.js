@@ -480,6 +480,7 @@ window.openPlaceCard = function(place) {
   const titleEl   = document.getElementById("pcTitle");
   const metaEl    = document.getElementById("pcMeta");
   const descEl    = document.getElementById("pcDesc");
+  const nextUpMount = document.getElementById("pcNextUpMount");
   const peopleEl  = document.getElementById("pcPeople");
   const btnInfo   = document.getElementById("pcInfo");
   const btnQuiz   = document.getElementById("pcQuiz");
