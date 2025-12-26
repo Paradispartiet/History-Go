@@ -525,14 +525,14 @@ document.addEventListener("click", e => {
   const target = e.target;
 
   // Åpne sted fra kort (data-open)
-  const openEl = target.closest?.("[data-open]");
-  const openId = openEl?.getAttribute("data-open");
-if (openId) { ... }
-  if (openId) {
-    const p = PLACES.find(x => x.id === openId);
-    if (p) openPlaceCard(p);
-    return;
-  }
+const openEl = target.closest?.("[data-open]");
+const openId = openEl?.getAttribute("data-open");
+
+if (openId) {
+  const p = PLACES.find(x => x.id === openId);
+  if (p) openPlaceCard(p);
+  return;
+}
   
   // Mer info (Google)
   const infoName = target.getAttribute?.("data-info");
