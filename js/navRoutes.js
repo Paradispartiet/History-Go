@@ -8,12 +8,13 @@
   "use strict";
 
   // --- konfig ---
-  const ORS = {
+  function getORS() {
+  return {
     baseUrl: "https://api.openrouteservice.org",
-    // NB: apiKey må være ren streng. Ikke "apiKey: apiKey:" (det er en syntax-feil).
-    apiKey: (window.HG_ORS && window.HG_ORS.apiKey) || "",
-    profile: (window.HG_ORS && window.HG_ORS.profile) || "foot-walking"
+    apiKey: window.HG_ORS?.apiKey || "",
+    profile: window.HG_ORS?.profile || "foot-walking"
   };
+}
 
   // MapLibre ids
   const NAV_SRC = "hg-nav-route";
@@ -36,7 +37,9 @@
   }
 
   async function fetchRouteGeoJSON(from, to) {
-    if (!ORS.apiKey) throw new Error("ORS apiKey mangler (window.HG_ORS.apiKey)");
+  const ORS = getORS();
+
+  if (!ORS.apiKey) throw new Error("ORS apiKey mangler");
 
     const url = `${ORS.baseUrl}/v2/directions/${encodeURIComponent(ORS.profile)}/geojson`;
     const body = {
