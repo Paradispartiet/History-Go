@@ -423,6 +423,52 @@ window.showPlacePopup = function(place) {
   });
 };
 
+// ------------------------------------------------------------
+// NextUp bar (placeCard) — HG-only, trygg og kompakt
+// ------------------------------------------------------------
+function renderNextUpBarForPlaceCard(place) {
+  if (!place) return "";
+
+  // Quiz-status (du har allerede quiz_history)
+  const completed = hasCompletedQuiz(place.id);
+
+  // Enkel distanse hvis den finnes på place-objektet (noen av dine steder har _d)
+  const hasDist = typeof place._d === "number";
+  const distTxt = !hasDist
+    ? ""
+    : (place._d < 1000 ? `${place._d} m` : `${(place._d / 1000).toFixed(1)} km`);
+
+  const nowLine = hasDist
+    ? `Du er ${distTxt} unna`
+    : `Du ser stedkortet`;
+
+  // Neste: prioriter quiz hvis ikke tatt, ellers foreslå unlock hvis ikke besøkt
+  const nextLabel = completed ? "Åpne mer info" : "Ta 2-min quiz";
+  const nextAction = completed ? "info" : "quiz";
+
+  // Fordi: bruk kategori + ev. observations count
+  const obsCount = getObservationsForTarget(place.id, "place").length;
+  const becauseBits = [];
+  if (place.category) becauseBits.push(place.category);
+  if (obsCount) becauseBits.push(`${obsCount} observasjoner`);
+  const becauseLine = becauseBits.length
+    ? becauseBits.join(" • ")
+    : "Et sted du kan utforske";
+
+  return `
+    <div class="hg-nextup" id="pcNextUp">
+      <div class="hg-nextup-lines">
+        <div class="hg-nextup-now"><b>Nå:</b> ${nowLine}</div>
+        <div class="hg-nextup-next">
+          <b>Neste:</b>
+          <button class="hg-nextup-btn" data-nextup="${nextAction}">${nextLabel}</button>
+        </div>
+        <div class="hg-nextup-because"><b>Fordi:</b> ${becauseLine}</div>
+      </div>
+    </div>
+  `;
+}
+
 // ============================================================
 // 5. PLACE CARD (det store kortpanelet)
 // ============================================================
