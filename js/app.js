@@ -1219,6 +1219,9 @@ document.addEventListener("DOMContentLoaded", () => {
   safeRun("initMiniProfile", initMiniProfile);
   safeRun("wireMiniProfileLinks", wireMiniProfileLinks);
   safeRun("initLeftPanel", initLeftPanel);
+
+  // ✅ NY: init av minimering på placeCard
+  safeRun("initPlaceCardCollapse", initPlaceCardCollapse);
 });
 
 function safeRun(label, fn) {
