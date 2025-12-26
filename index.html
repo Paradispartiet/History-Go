@@ -194,9 +194,26 @@
     }
   </script>
 
+
+  
   <!-- MapLibre JS: MÅ før map.js -->
 <script src="https://unpkg.com/maplibre-gl@5.14.0/dist/maplibre-gl.js"></script>
 
+<script>
+  window.addEventListener("error", (e) => {
+    console.log("[GLOBAL ERROR]", {
+      message: e.message,
+      filename: e.filename,
+      lineno: e.lineno,
+      colno: e.colno
+    });
+  });
+
+  window.addEventListener("unhandledrejection", (e) => {
+    console.log("[UNHANDLED REJECTION]", e.reason);
+  });
+
+</script>
 
 <!-- Dine moduler -->
 <script src="js/popup-utils.js"></script>
