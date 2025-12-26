@@ -785,6 +785,62 @@ function handlePlaceNote(place) {
 // (må ligge før wire/boot, og init kjøres i DOMContentLoaded)
 // ==============================
 
+function getPlaceCardEl() {
+  return document.getElementById("placeCard");
+}
+
+function isPlaceCardCollapsed() {
+  return !!getPlaceCardEl()?.classList.contains("is-collapsed");
+}
+
+function collapsePlaceCard() {
+  const pc = getPlaceCardEl();
+  if (!pc) return;
+  pc.classList.add("is-collapsed");
+  document.body.classList.add("pc-collapsed");
+  try { localStorage.setItem("hg_placecard_collapsed_v1", "1"); } catch {}
+  if (window.HGMap?.resize) HGMap.resize();
+  if (window.MAP?.resize) window.MAP.resize();
+}
+
+function expandPlaceCard() {
+  const pc = getPlaceCardEl();
+  if (!pc) return;
+  pc.classList.remove("is-collapsed");
+  document.body.classList.remove("pc-collapsed");
+  try { localStorage.setItem("hg_placecard_collapsed_v1", "0"); } catch {}
+  if (window.HGMap?.resize) HGMap.resize();
+  if (window.MAP?.resize) window.MAP.resize();
+}
+
+function togglePlaceCard() {
+  if (isPlaceCardCollapsed()) expandPlaceCard();
+  else collapsePlaceCard();
+}
+
+function initPlaceCardCollapse() {
+  const pc = getPlaceCardEl();
+  if (!pc) return;
+
+  // restore
+  const saved = (() => {
+    try { return localStorage.getItem("hg_placecard_collapsed_v1") === "1"; }
+    catch { return false; }
+  })();
+  if (saved) collapsePlaceCard();
+
+  // Klikk på handle-stripen (øverst i placeCard) toggler
+  pc.addEventListener("click", (e) => {
+    // Bare toggle når du klikker helt øverst (handle-området)
+    const rect = pc.getBoundingClientRect();
+    const y = e.clientY - rect.top;
+    if (y <= 32) {
+      e.preventDefault();
+      togglePlaceCard();
+    }
+  });
+}
+
 function initLeftPanel() {
   const sel = document.getElementById("leftPanelMode");
   const vNearby = document.getElementById("panelNearby");
