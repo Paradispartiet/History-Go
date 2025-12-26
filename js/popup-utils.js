@@ -547,13 +547,63 @@ window.openPlaceCard = function(place) {
     }
   }
 
-  if (peopleEl) {
-    const persons = PEOPLE.filter(
-      p =>
-        (Array.isArray(p.places) && p.places.includes(place.id)) ||
-        p.placeId === place.id
-    );
+    if (descEl)  descEl.textContent  = place.desc || "";
 
+  // --- PERSONER (må defineres før NextUp) ---
+  const persons = PEOPLE.filter(
+    p =>
+      (Array.isArray(p.places) && p.places.includes(place.id)) ||
+      p.placeId === place.id
+  );
+
+  // --- NextUp (Nå / Neste / Fordi) – inni placeCard ---
+  if (nextUpMount) {
+    nextUpMount.innerHTML = renderNextUpBarForPlaceCard(place, {
+      visited,
+      peopleCount: persons.length
+    });
+
+    const btn = nextUpMount.querySelector("[data-nextup]");
+    if (btn) {
+      btn.onclick = () => {
+        const a = btn.dataset.nextup;
+
+        if (a === "quiz") {
+          if (window.QuizEngine && typeof QuizEngine.start === "function") {
+            QuizEngine.start(place.id);
+          } else {
+            showToast("Quiz-modul ikke lastet");
+          }
+          return;
+        }
+
+        if (a === "unlock") {
+          if (btnUnlock && typeof btnUnlock.onclick === "function") return btnUnlock.onclick();
+          showToast("Lås opp-knapp mangler");
+          return;
+        }
+
+        if (a === "observe") {
+          if (btnObs && typeof btnObs.onclick === "function") return btnObs.onclick();
+          showToast("Observasjon ikke tilgjengelig");
+          return;
+        }
+
+        if (a === "route") {
+          if (typeof window.showNavRouteToPlace === "function") return window.showNavRouteToPlace(place);
+          if (typeof window.showRouteTo === "function") return window.showRouteTo(place);
+          showToast("Rute-funksjon ikke lastet");
+          return;
+        }
+
+        // fallback
+        showPlacePopup(place);
+      };
+    }
+  }
+
+  // --- Render personer i placeCard ---
+  if (peopleEl) {
     peopleEl.innerHTML = persons
       .map(p => `
         <button class="pc-person" data-person="${p.id}">
