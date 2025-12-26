@@ -1481,6 +1481,23 @@ document.addEventListener("keydown", e => {
     if (label) label.textContent = collapsed ? "Vis" : "Minimer";
   }
 
+// ✅ API: kan kalles fra app.js (Se kart osv.)
+window.setNearbyCollapsed = function (collapsed) {
+  const container = document.getElementById("nearbyListContainer");
+  if (!container) return;
+
+  container.classList.toggle("is-collapsed", !!collapsed);
+  try { localStorage.setItem("hg_nearby_collapsed", collapsed ? "1" : "0"); } catch {}
+
+  const btn = container.querySelector(".leftpanel-head .nearby-toggle-btn");
+  if (btn) {
+    const chev = btn.querySelector(".chev");
+    const label = btn.querySelector(".label");
+    if (chev) chev.textContent = collapsed ? "▸" : "▾";
+    if (label) label.textContent = collapsed ? "Vis" : "Minimer";
+  }
+};
+  
   document.addEventListener("DOMContentLoaded", () => {
     const container = document.getElementById("nearbyListContainer");
     if (!container) return;
@@ -1510,6 +1527,8 @@ document.addEventListener("keydown", e => {
       setBtn(btn, next);
     }
 
+
+    
     // Klikk på knapp
     btn.addEventListener("click", (e) => {
       e.preventDefault();
