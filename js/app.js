@@ -872,29 +872,36 @@ function wire() {
     const on = !!e.target.checked;
 
     if (on) {
-      // ✅ bruk globale fra pos.js
       window.setPos?.(START.lat, START.lon, null);
-
       if (el.status) el.status.textContent = "Testmodus: Oslo sentrum";
       showToast("Testmodus PÅ");
 
-      // (valgfritt) marker miljøstatus tydelig
       window.HG_ENV = window.HG_ENV || {};
       window.HG_ENV.geo = "test";
     } else {
       showToast("Testmodus AV");
-
-      // ✅ rydd state (ikke la Oslo henge igjen)
       window.clearPos?.("test_off");
-
-      // start ekte geo igjen
       requestLocation();
     }
 
-    // sørg for at nearby oppdaterer uansett
-    if (typeof window.renderNearbyPlaces === "function") window.renderNearbyPlaces();
+    window.renderNearbyPlaces?.();
+  });
+
+  // ✅ Sikteknapp
+  el.btnCenter && (el.btnCenter.onclick = () => {
+    const pos = window.getPos?.();
+
+    if (pos && window.MAP?.flyTo) {
+      window.MAP.flyTo({ center: [pos.lon, pos.lat], zoom: 16 });
+      showToast("Sentrerer på deg");
+      return;
+    }
+
+    showToast("Henter posisjon…");
+    requestLocation();
   });
 }
+
 
 // =====================================================
 // POSISJON – ÉN SANNHET (HG_POS) + API for resten av appen
