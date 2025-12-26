@@ -356,6 +356,45 @@ function renderNearbyPlaces() {
 
   el.list.innerHTML = sorted.map(renderPlaceCard).join("");
 }
+
+// ------------------------------
+// NEXT UP BAR (HG-only, trygg)
+// ------------------------------
+function renderNextUpBarForPlace(p) {
+  const hasDist = typeof p?._d === "number";
+  const distTxt = !hasDist ? "" : (p._d < 1000 ? `${p._d} m` : `${(p._d / 1000).toFixed(1)} km`);
+
+  // "Nå" – konkret status
+  const nowLine = hasDist
+    ? `Du er ${distTxt} unna`
+    : `Se stedet på kartet`;
+
+  // "Neste" – én konkret handling (uten å anta at du har quiz for placeId)
+  // Hvis du senere har en place-quiz, kan du bytte til: data-quiz="place:${p.id}" eller lign.
+  const nextBtn = `
+    <button class="hg-nextup-btn" data-open="${p.id}">
+      Åpne stedkort
+    </button>
+  `;
+
+  // "Fordi" – enkel forklaring basert på kategori
+  const cat = (p.category || "").toString();
+  const becauseLine = cat ? `Matcher kategorien: ${cat}` : `Matcher noe du kan utforske`;
+
+  return `
+    <div class="hg-nextup">
+      <div class="hg-nextup-lines">
+        <div class="hg-nextup-now"><b>Nå:</b> ${nowLine}</div>
+        <div class="hg-nextup-next"><b>Neste:</b> ${nextBtn}</div>
+        <div class="hg-nextup-because"><b>Fordi:</b> ${becauseLine}</div>
+      </div>
+    </div>
+  `;
+}
+
+// ------------------------------
+// PLACE CARD (med NextUp-rad)
+// ------------------------------
 function renderPlaceCard(p) {
   const dist =
     p._d == null
@@ -364,7 +403,9 @@ function renderPlaceCard(p) {
       ? `${p._d} m`
       : `${(p._d / 1000).toFixed(1)} km`;
 
-  const img = p.image; 
+  const img = p.image;
+
+  const nextUp = renderNextUpBarForPlace(p);
 
   return `
     <div class="nearby-item" data-open="${p.id}">
@@ -376,6 +417,8 @@ function renderPlaceCard(p) {
       <span class="nearby-dist">${dist}</span>
 
       <img class="nearby-badge" src="bilder/merker/${catClass(p.category)}.PNG" alt="">
+
+      ${nextUp}
     </div>
   `;
 }
