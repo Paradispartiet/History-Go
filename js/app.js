@@ -1238,37 +1238,41 @@ function safeRun(label, fn) {
 // 12. KARTMODUS
 // ==============================
 function enterMapMode() {
-  document.body.classList.add("map-only");
-  if (el.btnSeeMap) el.btnSeeMap.style.display = "none";
+  document.body.classList.add("map-only"); // kan beholdes hvis du bruker den til noe visuelt
+
+  // ✅ IKKE skjul header/main lenger
+  if (el.btnSeeMap)  el.btnSeeMap.style.display = "none";
   if (el.btnExitMap) el.btnExitMap.style.display = "block";
 
-  const main = document.querySelector("main");
-  const header = document.querySelector("header");
-  if (main) main.style.display = "none";
-  if (header) header.style.display = "none";
+  // ✅ bare minimer
+  collapsePlaceCard();
+  setNearbyCollapsed(true);
 
+  // kart opp
   const mapEl = document.getElementById("map");
   if (mapEl) mapEl.style.zIndex = "10";
 
-if (window.HGMap) HGMap.resize();
+  if (window.HGMap?.resize) HGMap.resize();
+  if (window.MAP?.resize) window.MAP.resize();
 
   showToast("Kartmodus");
 }
 
 function exitMapMode() {
   document.body.classList.remove("map-only");
-  if (el.btnSeeMap) el.btnSeeMap.style.display = "block";
+
+  if (el.btnSeeMap)  el.btnSeeMap.style.display = "block";
   if (el.btnExitMap) el.btnExitMap.style.display = "none";
 
-  const main = document.querySelector("main");
-  const header = document.querySelector("header");
-  if (main) main.style.display = "";
-  if (header) header.style.display = "";
+  // ✅ tilbake til normal: vis placecard igjen hvis du vil
+  expandPlaceCard();
+  setNearbyCollapsed(false);
 
   const mapEl = document.getElementById("map");
   if (mapEl) mapEl.style.zIndex = "1";
 
-  if (MAP && typeof MAP.resize === "function") MAP.resize();  // ✅ viktig
+  if (window.HGMap?.resize) HGMap.resize();
+  if (window.MAP?.resize) window.MAP.resize();
 
   showToast("Tilbake til oversikt");
 }
