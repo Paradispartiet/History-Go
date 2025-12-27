@@ -549,7 +549,7 @@ window.openPlaceCard = function(place) {
 
     if (descEl)  descEl.textContent  = place.desc || "";
 
-  // --- PERSONER (må defineres før NextUp) ---
+    // --- PERSONER (definer én gang) ---
   const persons = PEOPLE.filter(
     p =>
       (Array.isArray(p.places) && p.places.includes(place.id)) ||
@@ -600,6 +600,25 @@ window.openPlaceCard = function(place) {
         showPlacePopup(place);
       };
     }
+  }
+
+  // --- Render personer i placeCard ---
+  if (peopleEl) {
+    peopleEl.innerHTML = persons
+      .map(p => `
+        <button class="pc-person" data-person="${p.id}">
+          <img src="${p.image}" class="pc-person-img" alt="">
+          <span>${p.name}</span>
+        </button>
+      `)
+      .join("");
+
+    peopleEl.querySelectorAll("[data-person]").forEach(btn => {
+      btn.onclick = () => {
+        const pr = PEOPLE.find(p => p.id === btn.dataset.person);
+        showPersonPopup(pr);
+      };
+    });
   }
 
   // --- Render personer i placeCard ---
