@@ -175,3 +175,145 @@ Bruk en lokal webserver (anbefalt):
 4) Ikke fjern gating (knowledge/trivia vises kun etter fullført quiz) uten bevisst produktvalg.
 
 ---
+
+# Struktur i History GO
+
+Dette dokumentet beskriver **hvordan History GO allerede er bygget**, og hvordan strukturene skal brukes riktig og konsekvent.
+
+Målet er **ikke** å innføre nye lag eller ontologier, men å bruke det som finnes på en klar og stabil måte.
+
+---
+
+## Grunnprinsipp
+
+Vi stopper “videre”-impulsen.
+
+I stedet for å legge på nye nivåer (world / track / theme osv.), tar vi utgangspunkt i **strukturene som allerede finnes**, og bruker dem riktig:
+
+- merker
+- emner
+- fagkart
+- pensum
+- begreper (`core_concepts`)
+- instanser (steder/personer)
+
+Dette er tilstrekkelig for både spill, navigasjon og kunnskapsmotor.
+
+---
+
+## 1. Hva systemet faktisk består av
+
+### A) Merker / Badges
+**Rolle:** UI, progresjon og identitet
+
+- Brukes til nivåer, belønning og visuell inngang
+- Fungerer som grove kategorier “på toppen”
+- Kan brukes som linse i AHA (field profiles)
+- Skal **ikke** være sannheten om fag eller kunnskap
+
+Merker er et **spill- og UI-lag**.
+
+---
+
+### B) Emner (`emne_id`, `emner_*.json`)
+**Rolle:** pensumblokker / kunnskapsmoduler
+
+- Dette er pensumkartet i praksis
+- Hver emne-blokk inneholder:
+  - beskrivelse
+  - keywords
+  - dimensions
+  - `core_concepts`
+- Dette er det **viktigste strukturlaget** i systemet
+
+Emner er der kunnskap **forklares og struktureres**.
+
+---
+
+### C) Fagkart (`fagkart.json`, `fagkart_map.json`)
+**Rolle:** navigasjon og relasjoner mellom emner
+
+- Viser hvordan emner henger sammen
+- Kan være hierarkisk eller nettverksbasert
+- Brukes til progresjon, anbefalinger og oversikt
+
+Fagkartet er **kartet over pensum**, ikke selve pensumet.
+
+---
+
+### D) Pensum
+**Rolle:** samlet læringsinnhold
+
+- I praksis: emner + deres struktur
+- Kan senere utvides med tekster, kilder, referanser
+- Pensum er **en effekt av emner**, ikke et eget datasett
+
+---
+
+### E) Begreper (`core_concepts`)
+**Rolle:** motor og matching
+
+- Dette er de minste, atomære enhetene i systemet
+- AHA matcher, teller og kobler på disse
+- Brukes på tvers av emner, steder og personer
+
+`core_concepts` er **maskinens språk**, ikke UI-tekst.
+
+---
+
+### F) Instanser (places / people + overlays)
+**Rolle:** verden spillet viser
+
+- Konkrete steder, personer, hendelser
+- Vises i kart og kort
+- Kan kobles til emner og begreper via overlays
+
+Instanser er **inngangen til kunnskap i verden**.
+
+---
+
+## 2. Helheten (det som faktisk finnes)
+
+Systemet består allerede av disse lagene:
+
+Merke
+→ Emne
+→ Begrep
+→ Instans
+
+Med:
+- **fagkart** som kartet mellom emner
+- **pensum** som summen av emnene
+
+👉 Det er nok.  
+Ingen nye lag er nødvendig.
+
+---
+
+## 3. Viktig konklusjon
+
+Rot oppstår når:
+- merker brukes som fag eller pensum
+- emner brukes som kategorier
+- begreper blandes med keywords/tags
+- instanser prøver å “eie” struktur
+
+Stabilitet oppstår når:
+- merker er UI/progresjon
+- emner er pensumblokker
+- begreper er motor
+- instanser er verden
+- fagkart er navigasjon
+
+---
+
+## 4. Kort regel (kan brukes som huskeregel)
+
+> **Merker viser vei.  
+> Emner forklarer.  
+> Begreper matcher.  
+> Instanser viser verden.  
+> Fagkart binder det sammen.**
+
+Dette er den strukturen History GO allerede har – og den skal brukes, ikke erstattes.
+
