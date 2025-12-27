@@ -483,9 +483,9 @@ function renderNextUpBarForPlaceCard(place, ctx = {}) {
 }
 
 // ============================================================
-// 5. PLACE CARD (det store kortpanelet)
+// 5. PLACE CARD (det store kortpanelet) — REN SAMLET VERSJON
 // ============================================================
-window.openPlaceCard = function(place) {
+window.openPlaceCard = function (place) {
   if (!place) return;
 
   const card      = document.getElementById("placeCard");
@@ -493,8 +493,8 @@ window.openPlaceCard = function(place) {
   const titleEl   = document.getElementById("pcTitle");
   const metaEl    = document.getElementById("pcMeta");
   const descEl    = document.getElementById("pcDesc");
-  const nextUpMount = document.getElementById("pcNextUpMount");
   const peopleEl  = document.getElementById("pcPeople");
+
   const btnInfo   = document.getElementById("pcInfo");
   const btnQuiz   = document.getElementById("pcQuiz");
   const btnUnlock = document.getElementById("pcUnlock");
@@ -502,104 +502,26 @@ window.openPlaceCard = function(place) {
   const btnNote   = document.getElementById("pcNote");
   const btnObs    = document.getElementById("pcObserve");
 
+  // Mount for NextUp (må finnes i HTML)
+  const nextUpMount = document.getElementById("pcNextUpMount");
+
   if (!card) return;
 
   // Smooth “skifte sted”
   card.classList.add("is-switching");
 
+  // Basic content
   if (imgEl)   imgEl.src = place.image || "";
-  if (titleEl) titleEl.textContent = place.name;
+  if (titleEl) titleEl.textContent = place.name || "";
   if (metaEl)  metaEl.textContent  = `${place.category || ""} • radius ${place.r || 150} m`;
   if (descEl)  descEl.textContent  = place.desc || "";
 
-  const persons = PEOPLE.filter(
+  // --- PERSONER (defineres ÉN gang) ---
+  const persons = (window.PEOPLE || []).filter(
     p =>
       (Array.isArray(p.places) && p.places.includes(place.id)) ||
       p.placeId === place.id
   );
-  
-     // NextUp (Nå / Neste / Fordi) – inni placeCard
-  if (nextUpMount) {
-    nextUpMount.innerHTML = renderNextUpBarForPlaceCard(place, {
-      visited,
-      peopleCount: persons.length
-    });
-
-    const btn = nextUpMount.querySelector("[data-nextup]");
-    if (btn) {
-      btn.onclick = () => {
-        const a = btn.dataset.nextup;
-
-        if (a === "quiz") {
-          if (window.QuizEngine && typeof QuizEngine.start === "function") {
-            QuizEngine.start(place.id);
-          } else {
-            showToast("Quiz-modul ikke lastet");
-          }
-          return;
-        }
-
-        if (a === "info") {
-          showPlacePopup(place);
-          return;
-        }
-      };
-    }
-  }
-
-
-    // --- PERSONER (definer én gang) ---
-  const persons = PEOPLE.filter(
-    p =>
-      (Array.isArray(p.places) && p.places.includes(place.id)) ||
-      p.placeId === place.id
-  );
-
-  // --- NextUp (Nå / Neste / Fordi) – inni placeCard ---
-  if (nextUpMount) {
-    nextUpMount.innerHTML = renderNextUpBarForPlaceCard(place, {
-      visited,
-      peopleCount: persons.length
-    });
-
-    const btn = nextUpMount.querySelector("[data-nextup]");
-    if (btn) {
-      btn.onclick = () => {
-        const a = btn.dataset.nextup;
-
-        if (a === "quiz") {
-          if (window.QuizEngine && typeof QuizEngine.start === "function") {
-            QuizEngine.start(place.id);
-          } else {
-            showToast("Quiz-modul ikke lastet");
-          }
-          return;
-        }
-
-        if (a === "unlock") {
-          if (btnUnlock && typeof btnUnlock.onclick === "function") return btnUnlock.onclick();
-          showToast("Lås opp-knapp mangler");
-          return;
-        }
-
-        if (a === "observe") {
-          if (btnObs && typeof btnObs.onclick === "function") return btnObs.onclick();
-          showToast("Observasjon ikke tilgjengelig");
-          return;
-        }
-
-        if (a === "route") {
-          if (typeof window.showNavRouteToPlace === "function") return window.showNavRouteToPlace(place);
-          if (typeof window.showRouteTo === "function") return window.showRouteTo(place);
-          showToast("Rute-funksjon ikke lastet");
-          return;
-        }
-
-        // fallback
-        showPlacePopup(place);
-      };
-    }
-  }
 
   // --- Render personer i placeCard ---
   if (peopleEl) {
@@ -614,67 +536,51 @@ window.openPlaceCard = function(place) {
 
     peopleEl.querySelectorAll("[data-person]").forEach(btn => {
       btn.onclick = () => {
-        const pr = PEOPLE.find(p => p.id === btn.dataset.person);
-        showPersonPopup(pr);
+        const pr = (window.PEOPLE || []).find(x => x.id === btn.dataset.person);
+        if (pr) window.showPersonPopup?.(pr);
       };
     });
   }
 
-  // --- Render personer i placeCard ---
-  if (peopleEl) {
-    peopleEl.innerHTML = persons
-      .map(p => `
-        <button class="pc-person" data-person="${p.id}">
-          <img src="${p.image}" class="pc-person-img" alt="">
-          <span>${p.name}</span>
-        </button>
-      `)
-      .join("");
+  // --- Mer info ---
+  if (btnInfo) btnInfo.onclick = () => window.showPlacePopup?.(place);
 
-    peopleEl.querySelectorAll("[data-person]").forEach(btn => {
-      btn.onclick = () => {
-        const pr = PEOPLE.find(p => p.id === btn.dataset.person);
-        showPersonPopup(pr);
-      };
-    });
+  // --- Quiz (ny motor) ---
+  if (btnQuiz) {
+    btnQuiz.onclick = () => {
+      if (window.QuizEngine && typeof window.QuizEngine.start === "function") {
+        window.QuizEngine.start(place.id);
+      } else {
+        window.showToast?.("Quiz-modul ikke lastet");
+      }
+    };
   }
 
-  if (btnInfo) btnInfo.onclick = () => showPlacePopup(place);
-
-  // ✅ QUIZ: bruk QuizEngine (ny motor)
-  if (btnQuiz) btnQuiz.onclick = () => {
-    if (window.QuizEngine && typeof QuizEngine.start === "function") {
-      QuizEngine.start(place.id);
-    } else {
-      showToast("Quiz-modul ikke lastet");
-    }
-  };
-
-  if (btnRoute) btnRoute.onclick = () => {
-  // 1) Foretrukket: ekte gangrute pos -> sted
-  if (typeof window.showNavRouteToPlace === "function") {
-    return window.showNavRouteToPlace(place);
+  // --- Rute ---
+  if (btnRoute) {
+    btnRoute.onclick = () => {
+      // 1) Foretrukket: ekte gangrute pos -> sted
+      if (typeof window.showNavRouteToPlace === "function") {
+        return window.showNavRouteToPlace(place);
+      }
+      // 2) Fallback: gammel compat
+      if (typeof window.showRouteTo === "function") {
+        return window.showRouteTo(place);
+      }
+      window.showToast?.("Rute-funksjon ikke lastet");
+    };
   }
 
-  // 2) Fallback: gammel compat
-  if (typeof window.showRouteTo === "function") {
-    return window.showRouteTo(place);
+  // --- Notat ---
+  if (btnNote && typeof window.handlePlaceNote === "function") {
+    btnNote.onclick = () => window.handlePlaceNote(place);
   }
 
-  if (typeof window.showToast === "function") {
-    window.showToast("Rute-funksjon ikke lastet");
-  }
-};
-
-  if (btnNote && typeof handlePlaceNote === "function") {
-    btnNote.onclick = () => handlePlaceNote(place);
-  }
-
-  // ✅ OBS: trigger HGObservations.start (hvis knappen finnes)
+  // --- Observasjon ---
   if (btnObs) {
     btnObs.onclick = () => {
       if (!window.HGObservations || typeof window.HGObservations.start !== "function") {
-        showToast("Observasjoner er ikke lastet");
+        window.showToast?.("Observasjoner er ikke lastet");
         return;
       }
 
@@ -688,55 +594,82 @@ window.openPlaceCard = function(place) {
           categoryId: subjectId,
           title: place.name
         },
-        // OBS: må finnes i data/observations/observations_by.json
         lensId: "by_brukere_hvem"
       });
     };
   }
 
+  // --- Lås opp ---
   if (btnUnlock) {
     btnUnlock.onclick = () => {
-      if (visited[place.id]) {
-        showToast("Allerede låst opp");
+      if (window.visited && window.visited[place.id]) {
+        window.showToast?.("Allerede låst opp");
         return;
       }
 
-      visited[place.id] = true;
-      saveVisited();
+      // visited
+      window.visited = window.visited || {};
+      window.visited[place.id] = true;
+      if (typeof window.saveVisited === "function") window.saveVisited();
 
-      // ✅ MARKØRER: bruk HGMap (ny modul)
+      // markers
       if (window.HGMap) {
-        HGMap.setVisited(visited);
-        HGMap.refreshMarkers();
-      } else if (typeof drawPlaceMarkers === "function") {
-        // fallback under migrering
-        drawPlaceMarkers();
+        window.HGMap.setVisited(window.visited);
+        window.HGMap.refreshMarkers();
+      } else if (typeof window.drawPlaceMarkers === "function") {
+        window.drawPlaceMarkers();
       }
 
-      if (typeof pulseMarker === "function") {
-        pulseMarker(place.lat, place.lon);
+      if (typeof window.pulseMarker === "function") {
+        window.pulseMarker(place.lat, place.lon);
       }
 
+      // merits
       const cat = place.category;
       if (cat) {
-        merits[cat] = merits[cat] || { points: 0, level: "Nybegynner" };
-        merits[cat].points++;
-        saveMerits();
-        updateMeritLevel(cat, merits[cat].points);
+        window.merits = window.merits || {};
+        window.merits[cat] = window.merits[cat] || { points: 0, level: "Nybegynner" };
+        window.merits[cat].points++;
+        if (typeof window.saveMerits === "function") window.saveMerits();
+        if (typeof window.updateMeritLevel === "function") window.updateMeritLevel(cat, window.merits[cat].points);
       }
 
-      showToast(`Låst opp: ${place.name} ✅`);
+      window.showToast?.(`Låst opp: ${place.name} ✅`);
       window.dispatchEvent(new Event("updateProfile"));
     };
   }
 
+  // --- NextUp (Nå / Neste / Fordi) ---
+  if (nextUpMount && typeof window.renderNextUpBarForPlaceCard === "function") {
+    nextUpMount.innerHTML = window.renderNextUpBarForPlaceCard(place, {
+      visited: window.visited || {},
+      peopleCount: persons.length
+    });
+
+    const btn = nextUpMount.querySelector("[data-nextup]");
+    if (btn) {
+      btn.onclick = () => {
+        const a = btn.dataset.nextup;
+
+        if (a === "quiz")    return btnQuiz?.onclick?.();
+        if (a === "unlock")  return btnUnlock?.onclick?.();
+        if (a === "observe") return btnObs?.onclick?.();
+        if (a === "route")   return btnRoute?.onclick?.();
+        if (a === "info")    return btnInfo?.onclick?.();
+
+        // fallback
+        return btnInfo?.onclick?.();
+      };
+    }
+  }
+
+  // ferdig: fjern switching
   requestAnimationFrame(() => {
     card.classList.remove("is-switching");
   });
 
   card.setAttribute("aria-hidden", "false");
 };
-
 // ============================================================
 // 6. ÅPNE placeCard FRA PERSON (kart-modus)
 // ============================================================
