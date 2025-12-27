@@ -215,7 +215,7 @@ const DEFAULTS = {
   const patch = ov ? { ...ov, id: p.id } : {};
   const merged = mergeDeep(p, patch);
 
-  const o = toOntologyV1(merged);
+const o = toOntologyV1({ ...merged, discipline_id: subjectId });
   return attachOntologyToInstance(merged, o);
 });
 
