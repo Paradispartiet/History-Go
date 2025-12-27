@@ -50,29 +50,32 @@ window.Fagkart = (function () {
 
   // Liste over alle fagfelt (som array)
   async function listFields() {
-    const all = await loadAll();
-    return Object.values(all);
-  }
-
+  const all = await loadAll();
+  return Object.entries(all)
+    .filter(([k, v]) => k !== "_meta" && v && typeof v === "object" && Array.isArray(v.families))
+    .map(([, v]) => v);
+}
+  
   // Sync/bruk senere: f.eks. hente alle subfields som flat liste
   async function listAllSubfields() {
     const all = await loadAll();
     const out = [];
 
     Object.entries(all).forEach(([fieldId, field]) => {
-      (field.families || []).forEach((fam) => {
-        (fam.subfields || []).forEach((sf) => {
-          out.push({
-            fieldId,
-            fieldLabel: field.label,
-            familyId: fam.id,
-            familyLabel: fam.label,
-            subfieldId: sf.id,
-            subfieldLabel: sf.label
-          });
-        });
+  if (fieldId === "_meta") return;
+  (field.families || []).forEach((fam) => {
+    (fam.subfields || []).forEach((sf) => {
+      out.push({
+        fieldId,
+        fieldLabel: field.label,
+        familyId: fam.id,
+        familyLabel: fam.label,
+        subfieldId: sf.id,
+        subfieldLabel: sf.label
       });
     });
+  });
+});
 
     return out;
   }
