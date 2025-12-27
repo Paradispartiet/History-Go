@@ -547,7 +547,6 @@ window.openPlaceCard = function(place) {
     }
   }
 
-    if (descEl)  descEl.textContent  = place.desc || "";
 
     // --- PERSONER (definer én gang) ---
   const persons = PEOPLE.filter(
