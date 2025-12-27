@@ -148,6 +148,35 @@ function getInlineTriviaFor(categoryId, targetId) {
   return [];
 }
 
+// ============================================================
+// HELPER: Unlock-gate (reell unlock innenfor radius)
+// - TEST_MODE: bypass
+// - Live: krever getPos() + distMeters()
+// ============================================================
+function canUnlockPlaceNow(place) {
+  const r = Number(place?.r || 150);
+
+  // Testmodus: alltid lov
+  if (window.TEST_MODE) {
+    return { ok: true, d: null, r };
+  }
+
+  const pos = (typeof window.getPos === "function") ? window.getPos() : null;
+  if (!pos || typeof window.distMeters !== "function") {
+    // Hvis vi ikke har pos/distanse-funksjon: ikke lås opp (reell)
+    return { ok: false, d: null, r, reason: "no_pos" };
+  }
+
+  const d = window.distMeters(pos, { lat: place.lat, lon: place.lon });
+  return { ok: d <= r, d, r };
+}
+
+function fmtDist(m) {
+  if (m == null || !isFinite(m)) return "";
+  if (m < 1000) return `${Math.round(m)} m`;
+  return `${(m / 1000).toFixed(1)} km`;
+}
+
 // ------------------------------------------------------------
 // 2c. OBSERVASJONER (hg_learning_log_v1)
 // ------------------------------------------------------------
