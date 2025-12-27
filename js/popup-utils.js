@@ -554,7 +554,7 @@ window.openPlaceCard = function (place) {
     }
   } catch {}
 
-   // --- PERSONER (robust: støtter både PEOPLE og window.PEOPLE) ---
+  // --- PERSONER (robust: støtter både PEOPLE og window.PEOPLE) ---
   const PEOPLE_LIST =
     (typeof PEOPLE !== "undefined" && Array.isArray(PEOPLE)) ? PEOPLE :
     (Array.isArray(window.PEOPLE) ? window.PEOPLE : []);
@@ -635,41 +635,66 @@ window.openPlaceCard = function (place) {
     };
   }
 
-  // --- UNLOCK GATE: oppdater knapp basert på posisjon ---
+  // --- UNLOCK GATE: oppdater knapp basert på posisjon (stabil, ingen blinking) ---
   let _unlockTimer = null;
+  let _lastUnlockText = null;
+  let _lastUnlockDisabled = null;
+
+  function setUnlockUI(disabled, text) {
+    if (!btnUnlock) return;
+
+    // Ikke skriv til DOM hvis det ikke endrer seg (hindrer "blink")
+    if (_lastUnlockDisabled === disabled && _lastUnlockText === text) return;
+
+    _lastUnlockDisabled = disabled;
+    _lastUnlockText = text;
+
+    btnUnlock.disabled = disabled;
+    btnUnlock.textContent = text;
+  }
 
   function updateUnlockUI() {
     if (!btnUnlock) return;
 
     const isUnlocked = !!(window.visited && window.visited[place.id]);
+
+    // 1) Allerede låst opp: alltid stabilt
     if (isUnlocked) {
-      btnUnlock.disabled = true;
-      btnUnlock.textContent = "Låst opp ✅";
+      setUnlockUI(true, "Låst opp ✅");
       return;
     }
 
+    // 2) TEST_MODE: aldri "gå nærmere" — bare la knappen være aktiv
+    if (window.TEST_MODE) {
+      setUnlockUI(false, "Lås opp (test)");
+      return;
+    }
+
+    // 3) Live gate
     const gate = canUnlockPlaceNow(place);
 
     if (!gate.ok) {
-      btnUnlock.disabled = true;
-
       if (gate.reason === "no_pos") {
-        btnUnlock.textContent = "Aktiver posisjon";
-      } else if (gate.d != null) {
-        const left = Math.max(0, Math.ceil(gate.d - gate.r));
-        btnUnlock.textContent = `Gå nærmere (${left} m)`;
-      } else {
-        btnUnlock.textContent = "Gå nærmere";
+        setUnlockUI(true, "Aktiver posisjon");
+        return;
       }
+
+      if (gate.d != null) {
+        const left = Math.max(0, Math.ceil(gate.d - gate.r));
+        setUnlockUI(true, `Gå nærmere (${left} m)`);
+        return;
+      }
+
+      setUnlockUI(true, "Gå nærmere");
       return;
     }
 
-    btnUnlock.disabled = false;
-    btnUnlock.textContent = window.TEST_MODE ? "Lås opp (test)" : "Lås opp";
+    // Innenfor radius
+    setUnlockUI(false, "Lås opp");
   }
 
   updateUnlockUI();
-  _unlockTimer = setInterval(updateUnlockUI, 1200);
+  _unlockTimer = window.TEST_MODE ? null : setInterval(updateUnlockUI, 1200);
 
   // --- Lås opp (REELL: gate-check også i onclick) ---
   if (btnUnlock) {
@@ -762,6 +787,8 @@ window.openPlaceCard = function (place) {
 
   card.setAttribute("aria-hidden", "false");
 };
+
+
 
 // ============================================================
 // 6. ÅPNE placeCard FRA PERSON (kart-modus)
