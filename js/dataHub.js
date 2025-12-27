@@ -201,16 +201,23 @@ const DEFAULTS = {
     const peOvBy = indexBy(peopleOv || [], "personId");
 
     const enrichedPlaces = (places || []).map(p => {
-      const ov = pOvBy.get(p.id);
-      const patch = ov ? { ...ov, id: p.id } : {}; // ✅ ikke null
-      return mergeDeep(p, patch);
-    });
+  const ov = pOvBy.get(p.id);
+  const patch = ov ? { ...ov, id: p.id } : {};
+  const merged = mergeDeep(p, patch);
+
+  // 👇 HG Ontology (trygt, runtime-only)
+  const o = toOntologyV1(merged);
+  return attachOntologyToInstance(merged, o);
+});
 
     const enrichedPeople = (people || []).map(p => {
-      const ov = peOvBy.get(p.id);
-      const patch = ov ? { ...ov, id: p.id } : {}; // ✅ ikke null
-      return mergeDeep(p, patch);
-    });
+  const ov = peOvBy.get(p.id);
+  const patch = ov ? { ...ov, id: p.id } : {};
+  const merged = mergeDeep(p, patch);
+
+  const o = toOntologyV1(merged);
+  return attachOntologyToInstance(merged, o);
+});
 
     return {
       enrichedPlaces,
@@ -290,3 +297,60 @@ const DEFAULTS = {
     DEFAULTS
   };
 })();
+
+
+// ----------------------------
+// HG Ontology adapter (runtime only)
+// ----------------------------
+function toOntologyV1(item) {
+  if (!item) return {};
+
+  const module_id =
+    item.module_id ||
+    item.emne_id ||
+    item.id ||
+    null;
+
+  const discipline_id =
+    item.discipline_id ||
+    item.subject_id ||
+    null;
+
+  const field_id =
+    item.field_id ||
+    item.themeId ||
+    item.badge_id ||
+    item.category ||
+    null;
+
+  const concepts =
+    item.concepts ||
+    item.core_concepts ||
+    [];
+
+  const domain_id =
+    item.domain_id ||
+    item.domain ||
+    null;
+
+  return { module_id, field_id, discipline_id, domain_id, concepts };
+}
+
+function attachOntologyToInstance(instance, o) {
+  if (!instance || !o) return instance;
+
+  const out = { ...instance };
+
+  out.field_ids = uniq([...(out.field_ids || []), ...(o.field_id ? [o.field_id] : [])]);
+  out.discipline_ids = uniq([...(out.discipline_ids || []), ...(o.discipline_id ? [o.discipline_id] : [])]);
+  out.module_ids = uniq([...(out.module_ids || []), ...(o.module_id ? [o.module_id] : [])]);
+  out.concepts = uniq([...(out.concepts || []), ...(o.concepts || [])]);
+
+  return out;
+}
+
+function uniq(arr) {
+  return Array.from(new Set((arr || []).filter(Boolean)));
+}
+
+
