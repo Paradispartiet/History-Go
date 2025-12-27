@@ -1,6 +1,7 @@
 // js/dataHub.js
-// DataHub v2.1 (NO MODULES) — robust loader for History GO (GitHub Pages / subfolder-safe)
+// DataHub v2.2 (NO MODULES) — robust loader for History GO (GitHub Pages / subfolder-safe)
 // Bruk: DataHub.loadPlacesBase(), DataHub.loadEnrichedAll(...), DataHub.getPlaceEnriched(...)
+// + HG Ontology meta (safe): instance.hg.{field_ids,discipline_ids,module_ids,domain_ids,concepts}
 
 (function () {
   "use strict";
@@ -11,39 +12,40 @@
   // Hvis appen kjører på:
   // https://paradispartiet.github.io/History-Go/index.html
   // så blir APP_BASE_PATH = "/History-Go/"
-// 🔒 100 % GitHub Pages + SW-safe base path
-const APP_BASE_PATH = (function () {
-  const base = document.querySelector("base")?.getAttribute("href");
-  if (base) return base.endsWith("/") ? base : base + "/";
-  return location.origin + location.pathname.replace(/[^/]+$/, "");
-})();
 
-const DATA_BASE = APP_BASE_PATH + "data";
-const EMNER_BASE = APP_BASE_PATH + "emner";
+  // 🔒 100 % GitHub Pages + SW-safe base path
+  const APP_BASE_PATH = (function () {
+    const base = document.querySelector("base")?.getAttribute("href");
+    if (base) return base.endsWith("/") ? base : base + "/";
+    return location.origin + location.pathname.replace(/[^/]+$/, "");
+  })();
+
+  const DATA_BASE = APP_BASE_PATH + "data";
+  const EMNER_BASE = APP_BASE_PATH + "emner";
 
   // 🔒 SW/GitHub Pages-safe base: alltid prosjekt-root (…/History-Go/)
-const PROJECT_BASE = (function () {
-  // Hvis du har <base href="/History-Go/"> i <head>, brukes den (best)
-  const b = document.querySelector("base")?.getAttribute("href");
-  if (b) return b.endsWith("/") ? b : (b + "/");
+  const PROJECT_BASE = (function () {
+    // Hvis du har <base href="/History-Go/"> i <head>, brukes den (best)
+    const b = document.querySelector("base")?.getAttribute("href");
+    if (b) return b.endsWith("/") ? b : (b + "/");
 
-  // Ellers: finn prosjekt-roten ved å kutte på "/js/" hvis vi står i js-path
-  const p = location.pathname;
-  if (p.includes("/js/")) return p.split("/js/")[0] + "/";
+    // Ellers: finn prosjekt-roten ved å kutte på "/js/" hvis vi står i js-path
+    const p = location.pathname;
+    if (p.includes("/js/")) return p.split("/js/")[0] + "/";
 
-  // Fallback: mappa der HTML ligger (index.html, profile.html osv)
-  return p.replace(/[^/]+$/, "");
-})();
+    // Fallback: mappa der HTML ligger (index.html, profile.html osv)
+    return p.replace(/[^/]+$/, "");
+  })();
 
-const DEFAULTS = {
-  DATA_BASE: (PROJECT_BASE + "data").replace(/\/+/g, "/"),
-  EMNER_BASE: (PROJECT_BASE + "emner").replace(/\/+/g, "/")
-};
+  const DEFAULTS = {
+    DATA_BASE: (PROJECT_BASE + "data").replace(/\/+?/g, "/"),
+    EMNER_BASE: (PROJECT_BASE + "emner").replace(/\/+?/g, "/")
+  };
 
   const _cache = new Map();
 
   function joinPath(base, path) {
-    return `${base}/${path}`.replace(/\/+/g, "/");
+    return `${base}/${path}`.replace(/\/+?/g, "/");
   }
 
   function pData(path) {
@@ -83,6 +85,53 @@ const DEFAULTS = {
   }
 
   // ----------------------------
+  // HG Ontology (safe runtime meta)
+  // - Ingen "magi" i top-level felter
+  // - Alt legges under instance.hg
+  // - discipline_id settes eksplisitt fra subjectId
+  // ----------------------------
+  function uniq(arr) {
+    return Array.from(new Set((arr || []).filter(Boolean)));
+  }
+
+  function buildHGMeta(instance, subjectId) {
+    const src = instance || {};
+    const forced = String(subjectId || "").trim() || null;
+
+    // ✅ Stabilt: discipline_id (og field_id) styres av subjectId når vi loader subject-overlays
+    const discipline_id = forced;
+    const field_id = forced;
+
+    const concepts = Array.isArray(src.core_concepts)
+      ? src.core_concepts
+      : Array.isArray(src.concepts)
+      ? src.concepts
+      : [];
+
+    // module_id/domain_id lar vi være opt-in (kun hvis det finnes i data)
+    const module_id = src.module_id || src.emne_id || null;
+    const domain_id = src.domain_id || src.domain || null;
+
+    return { field_id, discipline_id, module_id, domain_id, concepts };
+  }
+
+  function attachHGMeta(instance, meta) {
+    if (!instance) return instance;
+    const out = { ...instance };
+    const m = meta || {};
+
+    out.hg = out.hg && typeof out.hg === "object" ? { ...out.hg } : {};
+
+    out.hg.field_ids = uniq([...(out.hg.field_ids || []), ...(m.field_id ? [m.field_id] : [])]);
+    out.hg.discipline_ids = uniq([...(out.hg.discipline_ids || []), ...(m.discipline_id ? [m.discipline_id] : [])]);
+    out.hg.module_ids = uniq([...(out.hg.module_ids || []), ...(m.module_id ? [m.module_id] : [])]);
+    out.hg.domain_ids = uniq([...(out.hg.domain_ids || []), ...(m.domain_id ? [m.domain_id] : [])]);
+    out.hg.concepts = uniq([...(out.hg.concepts || []), ...(m.concepts || [])]);
+
+    return out;
+  }
+
+  // ----------------------------
   // Deep merge (robust)
   // ----------------------------
   function mergeDeep(base, extra) {
@@ -100,7 +149,7 @@ const DEFAULTS = {
         const a = Array.isArray(prev) ? prev : [];
         const merged = [...a, ...v].filter(Boolean);
 
-        const uniq = [];
+        const uniqArr = [];
         const seen = new Set();
 
         for (const item of merged) {
@@ -110,10 +159,10 @@ const DEFAULTS = {
               : String(item);
           if (!seen.has(sig)) {
             seen.add(sig);
-            uniq.push(item);
+            uniqArr.push(item);
           }
         }
-        out[k] = uniq;
+        out[k] = uniqArr;
 
       } else if (typeof v === "object") {
         out[k] = mergeDeep(prev && typeof prev === "object" ? prev : {}, v);
@@ -159,7 +208,7 @@ const DEFAULTS = {
   }
 
   // ----------------------------
-  // Enriched (fix: aldri null inn i mergeDeep)
+  // Enriched (fix: aldri null inn i mergeDeep) + hg meta
   // ----------------------------
   async function getPlaceEnriched(placeId, subjectId, opts = {}) {
     const [places, overlays] = await Promise.all([
@@ -172,7 +221,8 @@ const DEFAULTS = {
 
     const overlay = (overlays || []).find(o => o.placeId === placeId) || null;
     const patch = overlay ? { ...overlay, id: base.id } : {}; // ✅ ikke null
-    return mergeDeep(base, patch);
+    const merged = mergeDeep(base, patch);
+    return attachHGMeta(merged, buildHGMeta(merged, subjectId));
   }
 
   async function getPersonEnriched(personId, subjectId, opts = {}) {
@@ -186,7 +236,8 @@ const DEFAULTS = {
 
     const overlay = (overlays || []).find(o => o.personId === personId) || null;
     const patch = overlay ? { ...overlay, id: base.id } : {}; // ✅ ikke null
-    return mergeDeep(base, patch);
+    const merged = mergeDeep(base, patch);
+    return attachHGMeta(merged, buildHGMeta(merged, subjectId));
   }
 
   async function loadEnrichedAll(subjectId, opts = {}) {
@@ -201,23 +252,18 @@ const DEFAULTS = {
     const peOvBy = indexBy(peopleOv || [], "personId");
 
     const enrichedPlaces = (places || []).map(p => {
-  const ov = pOvBy.get(p.id);
-  const patch = ov ? { ...ov, id: p.id } : {};
-  const merged = mergeDeep(p, patch);
-
-  // 👇 HG Ontology (trygt, runtime-only)
-  const o = toOntologyV1(merged);
-  return attachOntologyToInstance(merged, o);
-});
+      const ov = pOvBy.get(p.id);
+      const patch = ov ? { ...ov, id: p.id } : {}; // ✅ ikke null
+      const merged = mergeDeep(p, patch);
+      return attachHGMeta(merged, buildHGMeta(merged, subjectId));
+    });
 
     const enrichedPeople = (people || []).map(p => {
-  const ov = peOvBy.get(p.id);
-  const patch = ov ? { ...ov, id: p.id } : {};
-  const merged = mergeDeep(p, patch);
-
-const o = toOntologyV1({ ...merged, discipline_id: subjectId });
-  return attachOntologyToInstance(merged, o);
-});
+      const ov = peOvBy.get(p.id);
+      const patch = ov ? { ...ov, id: p.id } : {}; // ✅ ikke null
+      const merged = mergeDeep(p, patch);
+      return attachHGMeta(merged, buildHGMeta(merged, subjectId));
+    });
 
     return {
       enrichedPlaces,
@@ -292,65 +338,16 @@ const o = toOntologyV1({ ...merged, discipline_id: subjectId });
     mergeDeep,
     indexBy,
 
+    // hg meta (debug/UI)
+    buildHGMeta,
+    attachHGMeta,
+
     // debug/info (praktisk)
     APP_BASE_PATH,
-    DEFAULTS
+    DEFAULTS,
+
+    // legacy (no harm, sometimes handy)
+    DATA_BASE,
+    EMNER_BASE
   };
 })();
-
-
-// ----------------------------
-// HG Ontology adapter (runtime only)
-// ----------------------------
-function toOntologyV1(item) {
-  if (!item) return {};
-
-  const module_id =
-    item.module_id ||
-    item.emne_id ||
-    item.id ||
-    null;
-
-  const discipline_id =
-    item.discipline_id ||
-    item.subject_id ||
-    null;
-
-  const field_id =
-    item.field_id ||
-    item.themeId ||
-    item.badge_id ||
-    item.category ||
-    null;
-
-  const concepts =
-    item.concepts ||
-    item.core_concepts ||
-    [];
-
-  const domain_id =
-    item.domain_id ||
-    item.domain ||
-    null;
-
-  return { module_id, field_id, discipline_id, domain_id, concepts };
-}
-
-function attachOntologyToInstance(instance, o) {
-  if (!instance || !o) return instance;
-
-  const out = { ...instance };
-
-  out.field_ids = uniq([...(out.field_ids || []), ...(o.field_id ? [o.field_id] : [])]);
-  out.discipline_ids = uniq([...(out.discipline_ids || []), ...(o.discipline_id ? [o.discipline_id] : [])]);
-  out.module_ids = uniq([...(out.module_ids || []), ...(o.module_id ? [o.module_id] : [])]);
-  out.concepts = uniq([...(out.concepts || []), ...(o.concepts || [])]);
-
-  return out;
-}
-
-function uniq(arr) {
-  return Array.from(new Set((arr || []).filter(Boolean)));
-}
-
-
