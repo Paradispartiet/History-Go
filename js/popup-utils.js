@@ -530,6 +530,7 @@ window.openPlaceCard = function (place) {
   const btnRoute  = document.getElementById("pcRoute");
   const btnNote   = document.getElementById("pcNote");
   const btnObs    = document.getElementById("pcObserve");
+  const btnClose  = document.getElementById("pcClose");
 
   // Mount for NextUp (må finnes i HTML)
   const nextUpMount = document.getElementById("pcNextUpMount");
@@ -544,6 +545,14 @@ window.openPlaceCard = function (place) {
   if (titleEl) titleEl.textContent = place.name || "";
   if (metaEl)  metaEl.textContent  = `${place.category || ""} • radius ${place.r || 150} m`;
   if (descEl)  descEl.textContent  = place.desc || "";
+
+  // (valgfritt men nyttig): beregn avstand live for NextUp hvis mulig
+  try {
+    const pos = (typeof window.getPos === "function") ? window.getPos() : null;
+    if (pos && typeof window.distMeters === "function" && place.lat != null && place.lon != null) {
+      place._d = window.distMeters(pos, { lat: place.lat, lon: place.lon });
+    }
+  } catch {}
 
   // --- PERSONER (defineres ÉN gang) ---
   const persons = (window.PEOPLE || []).filter(
@@ -588,14 +597,8 @@ window.openPlaceCard = function (place) {
   // --- Rute ---
   if (btnRoute) {
     btnRoute.onclick = () => {
-      // 1) Foretrukket: ekte gangrute pos -> sted
-      if (typeof window.showNavRouteToPlace === "function") {
-        return window.showNavRouteToPlace(place);
-      }
-      // 2) Fallback: gammel compat
-      if (typeof window.showRouteTo === "function") {
-        return window.showRouteTo(place);
-      }
+      if (typeof window.showNavRouteToPlace === "function") return window.showNavRouteToPlace(place);
+      if (typeof window.showRouteTo === "function") return window.showRouteTo(place);
       window.showToast?.("Rute-funksjon ikke lastet");
     };
   }
@@ -628,11 +631,59 @@ window.openPlaceCard = function (place) {
     };
   }
 
-  // --- Lås opp ---
+  // --- UNLOCK GATE: oppdater knapp basert på posisjon ---
+  let _unlockTimer = null;
+
+  function updateUnlockUI() {
+    if (!btnUnlock) return;
+
+    const isUnlocked = !!(window.visited && window.visited[place.id]);
+    if (isUnlocked) {
+      btnUnlock.disabled = true;
+      btnUnlock.textContent = "Låst opp ✅";
+      return;
+    }
+
+    const gate = canUnlockPlaceNow(place);
+
+    if (!gate.ok) {
+      btnUnlock.disabled = true;
+
+      if (gate.reason === "no_pos") {
+        btnUnlock.textContent = "Aktiver posisjon";
+      } else if (gate.d != null) {
+        const left = Math.max(0, Math.ceil(gate.d - gate.r));
+        btnUnlock.textContent = `Gå nærmere (${left} m)`;
+      } else {
+        btnUnlock.textContent = "Gå nærmere";
+      }
+      return;
+    }
+
+    btnUnlock.disabled = false;
+    btnUnlock.textContent = window.TEST_MODE ? "Lås opp (test)" : "Lås opp";
+  }
+
+  updateUnlockUI();
+  _unlockTimer = setInterval(updateUnlockUI, 1200);
+
+  // --- Lås opp (REELL: gate-check også i onclick) ---
   if (btnUnlock) {
     btnUnlock.onclick = () => {
       if (window.visited && window.visited[place.id]) {
         window.showToast?.("Allerede låst opp");
+        return;
+      }
+
+      // Reell sperre (bypass i TEST_MODE)
+      const gate = canUnlockPlaceNow(place);
+      if (!gate.ok) {
+        if (gate.reason === "no_pos") {
+          window.showToast?.("Aktiver posisjon for å låse opp");
+          return;
+        }
+        const left = gate.d != null ? Math.max(0, Math.ceil(gate.d - gate.r)) : null;
+        window.showToast?.(left != null ? `Gå nærmere: ${left} m igjen` : "Gå nærmere for å låse opp");
         return;
       }
 
@@ -665,6 +716,18 @@ window.openPlaceCard = function (place) {
 
       window.showToast?.(`Låst opp: ${place.name} ✅`);
       window.dispatchEvent(new Event("updateProfile"));
+
+      // oppdater UI umiddelbart
+      updateUnlockUI();
+    };
+  }
+
+  // --- Stop interval når du lukker kortet ---
+  if (btnClose) {
+    const prev = btnClose.onclick;
+    btnClose.onclick = (e) => {
+      if (_unlockTimer) { clearInterval(_unlockTimer); _unlockTimer = null; }
+      if (typeof prev === "function") prev.call(btnClose, e);
     };
   }
 
@@ -679,26 +742,23 @@ window.openPlaceCard = function (place) {
     if (btn) {
       btn.onclick = () => {
         const a = btn.dataset.nextup;
-
         if (a === "quiz")    return btnQuiz?.onclick?.();
         if (a === "unlock")  return btnUnlock?.onclick?.();
         if (a === "observe") return btnObs?.onclick?.();
         if (a === "route")   return btnRoute?.onclick?.();
         if (a === "info")    return btnInfo?.onclick?.();
-
-        // fallback
         return btnInfo?.onclick?.();
       };
     }
   }
 
-  // ferdig: fjern switching
   requestAnimationFrame(() => {
     card.classList.remove("is-switching");
   });
 
   card.setAttribute("aria-hidden", "false");
 };
+
 // ============================================================
 // 6. ÅPNE placeCard FRA PERSON (kart-modus)
 // ============================================================
