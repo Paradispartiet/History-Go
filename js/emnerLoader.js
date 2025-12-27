@@ -2,6 +2,21 @@
 // Felles, enkel loader for emne-filer (History GO / AHA)
 // + Helpers for learning_goals + checkpoints (related_goals)
 
+/**
+ * HISTORY GO – STRUKTURKONTRAKT (LÅST)
+ *
+ * Systemets navigasjon og læringsflyt følger:
+ *   Merke → Gren/type → Temaområde → Emne (mikro) → Quiz → Instanser
+ *
+ * - Merke = inngang/kategori/badge (grov paraply)
+ * - Gren/type = orientering ("hva slags typer finnes her?")
+ * - Temaområde = problemfelt (ofte area_id/area_label)
+ * - Emne = konkrete pensumblokker (mikro) med core_concepts
+ * - Quiz kobles alltid til emne_id (aldri direkte til merke/gren)
+ *
+ * Viktig: Ikke vis mikro-emner direkte under Merke i UI.
+ */
+
 window.Emner = (function () {
   const DEBUG = !!window.DEBUG;
 
