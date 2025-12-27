@@ -317,3 +317,183 @@ Stabilitet oppstår når:
 
 Dette er den strukturen History GO allerede har – og den skal brukes, ikke erstattes.
 
+
+# History GO – Struktur og hierarki
+
+Dette dokumentet beskriver **hvordan innhold i History GO er strukturert**, og hvordan de ulike nivåene skal forstås og brukes.
+
+Målet er:
+- menneskelig orientering
+- tydelig progresjon
+- gjenbruk av eksisterende data
+- ingen nye systemlag
+
+---
+
+## Grunnidé
+
+History GO organiserer verden slik mennesker naturlig forstår den:
+
+> **Fra grove verdener → via typer og praksiser → til konkrete problemstillinger.**
+
+Systemet er bygget for å unngå å hoppe direkte fra paraply til detalj.
+
+---
+
+## Det ferdige hierarkiet
+
+Dette er den strukturen History GO nå bruker konsekvent:
+
+Merke
+→ Gren
+→ Undergren
+→ Emne
+→ Quiz
+→ Instanser
+
+Alle nivåene finnes allerede i systemet.  
+Det nye er at de **brukes eksplisitt og konsekvent**.
+
+---
+
+## 1. Merke (paraply / verden)
+
+**Rolle:** inngang, identitet og progresjon
+
+Eksempler:
+- Sport
+- Historie
+- Samfunn
+- Kunst
+- Natur
+- Subkultur
+
+Merker er:
+- grove
+- bevisst brede
+- ment som startpunkt, ikke struktur
+
+---
+
+## 2. Gren (type / hovedretning)
+
+**Rolle:** menneskelig sortering av hva slags ting som finnes innen et merke
+
+Eksempler:
+- Sport → Ballsport, Vintersport, Friidrett
+- Historie → Politisk historie, Sosial historie, Kulturhistorie
+- Kunst → Musikk, Arkitektur, Visuell kunst
+
+Grener:
+- gir oversikt
+- gjør valg mulig
+- er ikke detaljerte
+
+Teknisk:
+- dette er **første nivå i fagkartet** (`families`)
+
+---
+
+## 3. Undergren (konkret praksis / delretning)
+
+**Rolle:** samle beslektede emner før detaljnivå
+
+Eksempler:
+- Ballsport → Fotball
+- Politisk historie → Demokrati
+- Musikk → Rock
+
+Undergrener:
+- gir kontekst
+- er tydeligere enn grener
+- men fortsatt ikke mikro-nivå
+
+Teknisk:
+- dette er **andre nivå i fagkartet** (`subfields`)
+
+---
+
+## 4. Emne (mikro / konkret problemstilling)
+
+**Rolle:** pensum og forklaring
+
+Eksempler:
+- «Fotball og lokal identitet»
+- «Industriby og arbeiderliv rundt 1900»
+- «Demokrati i Norge etter 1945»
+
+Emner:
+- er detaljerte
+- er ment å studeres
+- skal aldri stå direkte under merke
+
+Teknisk:
+- `emne_id`
+- `core_concepts`
+- pensuminnhold
+
+---
+
+## 5. Quiz
+
+**Rolle:** teste forståelse av emner
+
+- Quiz er alltid knyttet til ett eller flere emner
+- Quiz tester innhold, ikke kategorier
+
+---
+
+## 6. Instanser (verden)
+
+**Rolle:** fysisk og narrativ forankring
+
+Eksempler:
+- steder
+- personer
+- hendelser
+
+Instanser:
+- vises i kartet
+- kobles til emner
+- arver kontekst via gren og undergren
+
+---
+
+## Hvordan dette er bygget (viktig)
+
+History GO bruker **ingen ny ontologi** og **ingen nye datasett**.
+
+Strukturen bygger på:
+- eksisterende merker (badges)
+- eksisterende fagkart (`families → subfields`)
+- eksisterende emner
+- eksisterende quiz-mapping
+
+Det som er nytt, er **hvordan strukturen brukes i UI og navigasjon**.
+
+---
+
+## Viktige prinsipper
+
+- Merker er innganger, ikke detaljer
+- Emner er mikro-nivå, ikke oversikt
+- Fagkartet er hierarkiet
+- Brukeren skal alltid møte:
+  1. oversikt
+  2. valg
+  3. detaljer
+
+---
+
+## Kort huskeregel
+
+> **Merker er verdener.  
+> Grener er kart.  
+> Undergrener gir retning.  
+> Emner er pensum.  
+> Quiz tester.  
+> Instanser viser verden.**
+
+---
+
+Dette dokumentet beskriver den **endelige strukturen** for History GO.
