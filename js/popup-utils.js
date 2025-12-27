@@ -554,8 +554,12 @@ window.openPlaceCard = function (place) {
     }
   } catch {}
 
-  // --- PERSONER (defineres ÉN gang) ---
-  const persons = (window.PEOPLE || []).filter(
+   // --- PERSONER (robust: støtter både PEOPLE og window.PEOPLE) ---
+  const PEOPLE_LIST =
+    (typeof PEOPLE !== "undefined" && Array.isArray(PEOPLE)) ? PEOPLE :
+    (Array.isArray(window.PEOPLE) ? window.PEOPLE : []);
+
+  const persons = PEOPLE_LIST.filter(
     p =>
       (Array.isArray(p.places) && p.places.includes(place.id)) ||
       p.placeId === place.id
@@ -574,7 +578,7 @@ window.openPlaceCard = function (place) {
 
     peopleEl.querySelectorAll("[data-person]").forEach(btn => {
       btn.onclick = () => {
-        const pr = (window.PEOPLE || []).find(x => x.id === btn.dataset.person);
+        const pr = PEOPLE_LIST.find(x => x.id === btn.dataset.person);
         if (pr) window.showPersonPopup?.(pr);
       };
     });
