@@ -111,13 +111,18 @@
 
   <!-- 1) Kunnskapsliste -->
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const CATEGORY = "sport";
-      const container = document.getElementById("knowledgeContainer");
-      if (!container) return;
+    document.addEventListener("DOMContentLoaded", async () => {
+  const CATEGORY = "sport";
+  const container = document.getElementById("knowledgeContainer");
+  if (!container) return;
 
-      container.innerHTML = renderKnowledgeSection(CATEGORY);
-    });
+  if (window.renderKnowledgeSectionAsync) {
+    container.innerHTML = "<p class='muted'>Laster…</p>";
+    container.innerHTML = await renderKnowledgeSectionAsync(CATEGORY);
+  } else {
+    container.innerHTML = renderKnowledgeSection(CATEGORY);
+  }
+});
   </script>
 
   <!-- 2) Emne-dekning for SPORT -->
