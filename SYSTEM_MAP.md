@@ -1,3 +1,11 @@
+SYSTEM MAP (UPDATED 2025-12-28)
+===============================
+
+NOTE
+----
+Denne fila er oppdatert uten å slette noe av originalteksten.
+Originalinnholdet står fortsatt her, og nye avklaringer er lagt til som egne seksjoner.
+
 # 🧭 HISTORY GO — SYSTEM MAP (nyeste)
 Dette dokumentet er fasit for **hva som skjer**, **hvordan det skjer**, og **hvorfor** – på tvers av History GO + AHA.
 
@@ -463,3 +471,26 @@ Observation ──> Person Popup (visning)
 
 Notes ───────────────┐
                       └──> Profil / AHA / refleksjon
+
+UPPDATERINGER / KLARGJØRINGER (2025-12)
+-------------------------------------
+Kjerneflyt (oppdatert)
+- Merker (badge/categoryId) → Fagkart → Emner → Quiz/Observasjon/Notat → `hg_learning_log_v1` → Courses → Knowledge UI / PlaceCard / Popups.
+
+Hvor ontologi ligger nå
+- Begreps- og nivåmodellen (ontologi) brukes som *designspesifikasjon*, men i drift representeres den av:
+  - Fagkart: stabile faglige akser/områder
+  - Emner: konkrete læringsenheter med core_concepts + mål/checkpoints (der dette finnes)
+  - Pensum/Courses: moduler og fullføringsregler (progresjon)
+
+
+- `structure_*.json` er tatt helt ut av runtime. Hvis eldre tekst refererer til "structure", regnes det nå som DEPRECATED/historisk.
+- Ontologi som *modell* er fortsatt relevant, men implementasjonen i runtime skjer via: Merker → Fagkart → Emner → Evidens (learning log) → Courses → UI.
+- `Courses` er progresjonsmotor (tolkningslag) og skal ikke introdusere ny fagstruktur; den bruker emner + learning log + pensum-filer for å beregne modulstatus/diplom.
+- Knowledge-visningen er nå flat (ingen structure) og kan i tillegg vise kursprogresjon via `HGCourseUI`/`HGCourses.compute`.
+
+
+Praktisk konsekvens
+- Hvis kart-/UI-dokumentasjonen nevner "kapitler"/"branches" fra structure, erstatt mentalt med:
+  - Fagkart-noder (for gruppering) og/eller
+  - Course-moduler (for progresjon).
