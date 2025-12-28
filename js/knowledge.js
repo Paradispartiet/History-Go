@@ -277,6 +277,151 @@ function computeEmneDekningV2(userConcepts, emner, opts = {}) {
   });
 }
 
+// ============================================================
+// COURSES UI (Kursprogresjon på merkeside) — ingen structure
+// Krever: js/courses.js (window.HGCourses) + js/dataHub.js (window.DataHub)
+// Pensum: data/pensum_<categoryId>.json (HGCourses loader)   [oai_citation:1‡courses (1).js](sediment://file_00000000f7f87246a06754803fe6f458)
+// ============================================================
+
+(function () {
+  "use strict";
+
+  function esc(s) {
+    return String(s ?? "")
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;");
+  }
+
+  function pctBar(p) {
+    const v = Math.max(0, Math.min(100, Number(p) || 0));
+    return `
+      <div style="margin-top:8px;">
+        <div style="height:10px;border-radius:999px;background:rgba(255,255,255,0.10);overflow:hidden;">
+          <div style="height:10px;width:${v}%;background:rgba(255,255,255,0.55);"></div>
+        </div>
+      </div>
+    `;
+  }
+
+  function renderCourseBoxSkeleton(categoryId) {
+    return `
+      <div class="knowledge-block" id="hgCourseBox" data-course-for="${esc(categoryId)}">
+        <h3>Kursprogresjon</h3>
+        <div class="muted">Laster kurs…</div>
+      </div>
+    `;
+  }
+
+  function renderCourseBoxReady(res) {
+    const course = res?.course;
+    const diploma = res?.diploma;
+    const top = (res?.learning?.topConcepts || []).slice(0, 8);
+
+    const done = course?.done || 0;
+    const total = course?.total || 0;
+    const percent = course?.percent || 0;
+
+    const dipTxt = diploma?.eligible
+      ? `🎓 Diplom klart (${diploma.done}/${diploma.total})`
+      : `Diplom: ${diploma?.done || 0}/${diploma?.total || 0}`;
+
+    const modules = Array.isArray(course?.modules) ? course.modules : [];
+
+    return `
+      <div class="knowledge-block" id="hgCourseBox" data-course-for="${esc(res.subjectId)}">
+        <h3>Kursprogresjon</h3>
+
+        <div><strong>${done}/${total}</strong> moduler fullført • <strong>${percent}%</strong></div>
+        ${pctBar(percent)}
+        <div class="muted" style="margin-top:6px;">${esc(dipTxt)}</div>
+
+        ${
+          top.length
+            ? `
+          <div style="margin-top:10px;">
+            <div class="muted"><strong>Topp begreper</strong></div>
+            <div style="margin-top:6px; display:flex; flex-wrap:wrap; gap:8px;">
+              ${top.map(x => `<span style="padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.08);">${esc(x.label)} <span class="muted">(${x.count})</span></span>`).join("")}
+            </div>
+          </div>
+            `
+            : ""
+        }
+
+        ${
+          modules.length
+            ? `
+          <div style="margin-top:12px;">
+            <div class="muted"><strong>Moduler</strong></div>
+            <div style="margin-top:8px; display:flex; flex-direction:column; gap:10px;">
+              ${modules.map(m => {
+                const name = m?.title || m?.id || "Modul";
+                const ok = !!m?.completed;
+                const em = m?.stats?.emner?.percent ?? 0;
+                const co = m?.stats?.concepts?.percent ?? 0;
+                const pq = m?.stats?.perfectQuizzesInCategory ?? 0;
+
+                return `
+                  <div style="padding:10px 12px;border-radius:14px;background:rgba(255,255,255,0.06);">
+                    <div style="display:flex;justify-content:space-between;gap:10px;">
+                      <div><strong>${esc(name)}</strong></div>
+                      <div>${ok ? "✅" : "⏳"}</div>
+                    </div>
+                    <div class="muted" style="margin-top:6px;">
+                      Emner: ${Math.round(em)}% • Konsepter: ${Math.round(co)}% • Perfect quiz: ${pq}
+                    </div>
+                  </div>
+                `;
+              }).join("")}
+            </div>
+          </div>
+            `
+            : `<div class="muted" style="margin-top:10px;">Ingen moduler definert i pensumfilen.</div>`
+        }
+      </div>
+    `;
+  }
+
+  async function fillCourseBox(categoryId) {
+    const box = document.querySelector(`#hgCourseBox[data-course-for="${CSS.escape(categoryId)}"]`);
+    if (!box) return;
+
+    // Krav: courses + DataHub
+    if (!window.HGCourses || typeof window.HGCourses.compute !== "function") {
+      box.innerHTML = `<h3>Kursprogresjon</h3><div class="muted">courses.js er ikke lastet.</div>`;
+      return;
+    }
+    if (!window.DataHub || typeof window.DataHub.loadEmner !== "function") {
+      box.innerHTML = `<h3>Kursprogresjon</h3><div class="muted">DataHub.loadEmner mangler.</div>`;
+      return;
+    }
+
+    try {
+      const emnerAll = await window.DataHub.loadEmner(categoryId);
+      const res = await window.HGCourses.compute({ subjectId: categoryId, emnerAll });
+      box.outerHTML = renderCourseBoxReady(res);
+    } catch (e) {
+      box.innerHTML = `<h3>Kursprogresjon</h3><div class="muted">Kunne ikke laste kurs/pensum.</div>`;
+      if (window.DEBUG) console.warn("[HGCourseUI]", e);
+    }
+  }
+
+  // Expose
+  window.HGCourseUI = {
+    // kalles fra knowledge_component etter render
+    init(categoryId) {
+      // hvis boksen ikke finnes i HTML ennå: ikke gjør noe
+      fillCourseBox(String(categoryId || "").trim());
+    },
+
+    // helper hvis du vil bruke den i HTML-renderen:
+    mountHtml(categoryId) {
+      return renderCourseBoxSkeleton(String(categoryId || "").trim());
+    }
+  };
+})();
+
 window.getLearningLog = getLearningLog;
 window.getUserConceptsFromLearningLog = getUserConceptsFromLearningLog;
 window.getUserEmneHitsFromLearningLog = getUserEmneHitsFromLearningLog;
