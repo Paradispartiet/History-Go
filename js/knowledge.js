@@ -99,7 +99,7 @@ function saveKnowledgeFromQuiz(quizItem, context = {}) {
     "Ingen forklaring registrert.";
 
   const entry = {
-    id: "quiz_" + baseId + "_k1",
+    id: "quiz_" + baseId,
     category,
     dimension,
     topic,
@@ -113,36 +113,60 @@ window.saveKnowledgeFromQuiz = saveKnowledgeFromQuiz;
 // ------------------------------------------------------------
 // 3) RENDRING AV KUNNSKAPSSEKSJON
 // ------------------------------------------------------------
+// ------------------------------------------------------------
+// 3) RENDRING AV KUNNSKAPSSEKSJON (KURS + EMNER + KNOWLEDGE)
+// ------------------------------------------------------------
 function renderKnowledgeSection(categoryId) {
-  const data = getKnowledgeForCategory(categoryId);
+  const cid = String(categoryId || "").trim();
 
-  // ✅ alltid mount kurs-boksen først (selv om du ikke har knowledge ennå)
+  // 1) Kursboks alltid først (skeleton), fylles async av HGCourseUI.init()
   let html = "";
   if (window.HGCourseUI && typeof window.HGCourseUI.mountHtml === "function") {
-    html += window.HGCourseUI.mountHtml(categoryId);
+    html += window.HGCourseUI.mountHtml(cid);
   }
 
-  // Deretter: knowledge
+  // 2) Emner (accordion) – placeholder (fylles async etter DOMContentLoaded)
+  html += `
+    <div class="knowledge-block" id="hgEmnerBox" data-emner-for="${cid}">
+      <h3>Emner</h3>
+      <div class="muted">Laster emner…</div>
+    </div>
+  `;
+
+  // 3) Knowledge-universe (det du har låst opp)
+  const data = getKnowledgeForCategory(cid);
+
   if (!data || Object.keys(data).length === 0) {
-    html += `<div class="muted">Ingen kunnskap lagret ennå.</div>`;
+    html += `
+      <div class="knowledge-block">
+        <h3>Kunnskap</h3>
+        <div class="muted">Ingen kunnskap lagret ennå.</div>
+      </div>
+    `;
     return html;
   }
 
-  html += Object.entries(data)
-    .map(([dimension, items]) => `
-      <div class="knowledge-block">
-        <h3>${capitalize(dimension)}</h3>
-        <ul>
-          ${items
-            .map(k => `<li><strong>${k.topic}:</strong> ${k.text}</li>`)
-            .join("")}
-        </ul>
-      </div>
-    `)
-    .join("");
+  html += `
+    <div class="knowledge-block">
+      <h3>Kunnskap</h3>
+      ${Object.entries(data)
+        .map(([dimension, items]) => `
+          <div class="knowledge-subblock">
+            <h4 style="margin:10px 0 6px 0;">${capitalize(dimension)}</h4>
+            <ul style="margin:0;padding-left:18px;">
+              ${items
+                .map(k => `<li><strong>${k.topic}:</strong> ${k.text}</li>`)
+                .join("")}
+            </ul>
+          </div>
+        `)
+        .join("")}
+    </div>
+  `;
 
   return html;
 }
+
 // Liten hjelp
 function capitalize(str) {
   if (!str) return "";
@@ -436,3 +460,135 @@ window.getLearningLog = getLearningLog;
 window.getUserConceptsFromLearningLog = getUserConceptsFromLearningLog;
 window.getUserEmneHitsFromLearningLog = getUserEmneHitsFromLearningLog;
 window.computeEmneDekningV2 = computeEmneDekningV2;
+
+
+// ------------------------------------------------------------
+// EMNER UI (async fyll) – bruker DataHub.loadEmner(categoryId)
+// ------------------------------------------------------------
+(function () {
+  "use strict";
+
+  function esc(s) {
+    return String(s ?? "")
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;");
+  }
+
+  function safeCssEscape(x) {
+    try {
+      return CSS && typeof CSS.escape === "function" ? CSS.escape(x) : x;
+    } catch {
+      return x;
+    }
+  }
+
+  function renderEmneAccordion(emne) {
+    const title = emne?.title || emne?.short_label || emne?.emne_id || "Emne";
+    const desc  = String(emne?.description || "").trim();
+
+    const goals = Array.isArray(emne?.goals) ? emne.goals : [];
+    const cps   = Array.isArray(emne?.checkpoints) ? emne.checkpoints : [];
+
+    const core  = Array.isArray(emne?.core_concepts) ? emne.core_concepts : [];
+    const keys  = Array.isArray(emne?.keywords) ? emne.keywords : [];
+    const dims  = Array.isArray(emne?.dimensions) ? emne.dimensions : [];
+
+    const chips = [...core.slice(0, 6), ...keys.slice(0, 4)].slice(0, 10);
+
+    return `
+      <details class="hg-emne" style="padding:10px 12px;border-radius:14px;background:rgba(255,255,255,0.06);">
+        <summary style="cursor:pointer; display:flex; justify-content:space-between; gap:10px; align-items:center;">
+          <span><strong>${esc(title)}</strong></span>
+          <span class="muted">${esc(emne?.level || "")}</span>
+        </summary>
+
+        ${
+          chips.length
+            ? `<div style="margin-top:10px; display:flex; flex-wrap:wrap; gap:8px;">
+                 ${chips.map(x => `<span style="padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.08);">${esc(x)}</span>`).join("")}
+               </div>`
+            : ""
+        }
+
+        ${
+          desc
+            ? `<div style="margin-top:10px; line-height:1.5;">${esc(desc)}</div>`
+            : `<div class="muted" style="margin-top:10px;">Ingen emnebeskrivelse.</div>`
+        }
+
+        ${
+          goals.length
+            ? `<div style="margin-top:12px;">
+                 <div class="muted"><strong>Kursmål</strong></div>
+                 <ul style="margin:6px 0 0 0; padding-left:18px;">
+                   ${goals.map(g => `<li>${esc(g)}</li>`).join("")}
+                 </ul>
+               </div>`
+            : ""
+        }
+
+        ${
+          cps.length
+            ? `<div style="margin-top:12px;">
+                 <div class="muted"><strong>Milepæler</strong></div>
+                 <ul style="margin:6px 0 0 0; padding-left:18px;">
+                   ${cps.map(c => `<li>${esc(c)}</li>`).join("")}
+                 </ul>
+               </div>`
+            : ""
+        }
+
+        ${
+          dims.length
+            ? `<div style="margin-top:12px;">
+                 <div class="muted"><strong>Dimensjoner</strong></div>
+                 <div style="margin-top:6px; display:flex; flex-wrap:wrap; gap:8px;">
+                   ${dims.map(d => `<span style="padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.08);">${esc(d)}</span>`).join("")}
+                 </div>
+               </div>`
+            : ""
+        }
+      </details>
+    `;
+  }
+
+  async function fillEmnerBox(categoryId) {
+    const cid = String(categoryId || "").trim();
+    const box = document.querySelector(`#hgEmnerBox[data-emner-for="${safeCssEscape(cid)}"]`);
+    if (!box) return;
+
+    if (!window.DataHub || typeof window.DataHub.loadEmner !== "function") {
+      box.innerHTML = `<h3>Emner</h3><div class="muted">DataHub.loadEmner mangler.</div>`;
+      return;
+    }
+
+    try {
+      const emnerAll = await window.DataHub.loadEmner(cid);
+      const emner = Array.isArray(emnerAll) ? emnerAll : [];
+
+      if (!emner.length) {
+        box.innerHTML = `<h3>Emner</h3><div class="muted">Ingen emner funnet for ${esc(cid)}.</div>`;
+        return;
+      }
+
+      box.innerHTML = `
+        <h3>Emner</h3>
+        <div style="margin-top:10px; display:flex; flex-direction:column; gap:10px;">
+          ${emner.map(renderEmneAccordion).join("")}
+        </div>
+      `;
+    } catch (e) {
+      box.innerHTML = `<h3>Emner</h3><div class="muted">Kunne ikke laste emner.</div>`;
+      if (window.DEBUG) console.warn("[EmnerBox]", e);
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    // knowledge_component setter <body class="merke-XYZ">
+    const cls = [...document.body.classList].find(c => c.startsWith("merke-"));
+    if (!cls) return;
+    const categoryId = cls.replace("merke-", "");
+    fillEmnerBox(categoryId);
+  });
+})();
