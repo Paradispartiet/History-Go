@@ -36,14 +36,11 @@ function saveKnowledgePoint(entry) {
   const list = uni[entry.category][entry.dimension];
 
   // Ikke legg til duplikater
-    if (!list.some(k => k.id === entry.id)) {
+  if (!list.some(k => k.id === entry.id)) {
     list.push({
       id: entry.id,
       topic: entry.topic,
-      text: entry.text,
-
-      // ✅ nytt: gjør grouping mulig senere
-      emne_id: entry.emne_id || null
+      text: entry.text
     });
   }
 
@@ -107,9 +104,6 @@ function saveKnowledgeFromQuiz(quizItem, context = {}) {
     dimension,
     topic,
     text
-
-     // ✅ nytt
-    emne_id: quizItem.emne_id || context.emne_id || null
   };
 
   saveKnowledgePoint(entry);
@@ -145,174 +139,6 @@ function capitalize(str) {
   str = str.toString();
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
-
-// ============================================================
-// 3B) RENDRING MED GRENER (Merke → Gren/type → Area → Dimensjon)
-// Krever: data/pensum/structure_<categoryId>.json
-// Bruker: window.Emner.loadForSubject(categoryId)
-// Fallback: gammel renderKnowledgeSection()
-// ============================================================
-
-(async function () {
-  const _structureCache = {};
-
-  async function loadStructure(categoryId) {
-    if (_structureCache[categoryId]) return _structureCache[categoryId];
-
-    const url = `/pensum/structure_${categoryId}.json`;
-    try {
-      const r = await fetch(url, { cache: "no-store" });
-      if (!r.ok) throw new Error(String(r.status));
-      const data = await r.json();
-      _structureCache[categoryId] = data;
-      return data;
-    } catch {
-      _structureCache[categoryId] = null;
-      return null;
-    }
-  }
-
-  function indexEmnerById(emner = []) {
-    const m = new Map();
-    for (const e of emner) {
-      if (e && e.emne_id) m.set(e.emne_id, e);
-    }
-    return m;
-  }
-
-  function groupKnowledgeByEmne(dataByDim) {
-    // input: { dimension: [ {id, topic, text, emne_id?} ] }
-    // output: Map<emne_id|null, { dimension -> items[] }>
-    const byEmne = new Map();
-    for (const [dim, items] of Object.entries(dataByDim || {})) {
-      for (const it of (items || [])) {
-        const emneId = it?.emne_id || null;
-        if (!byEmne.has(emneId)) byEmne.set(emneId, {});
-        const bucket = byEmne.get(emneId);
-        if (!bucket[dim]) bucket[dim] = [];
-        bucket[dim].push(it);
-      }
-    }
-    return byEmne;
-  }
-
-  function esc(s) {
-    return String(s ?? "")
-      .replaceAll("&", "&amp;")
-      .replaceAll("<", "&lt;")
-      .replaceAll(">", "&gt;");
-  }
-
-  function capitalize(str) {
-    if (!str) return "";
-    str = String(str);
-    return str.charAt(0).toUpperCase() + str.slice(1);
-  }
-
-  async function renderKnowledgeSectionAsync(categoryId) {
-    const data = getKnowledgeForCategory(categoryId);
-    if (!data || Object.keys(data).length === 0) {
-      return `<div class="muted">Ingen kunnskap lagret ennå.</div>`;
-    }
-
-    // Last struktur (grener) – hvis ikke finnes, fall tilbake
-    const structure = await loadStructure(categoryId);
-    if (!structure || !Array.isArray(structure.branches)) {
-      // fallback til gammel flat render
-      return renderKnowledgeSection(categoryId);
-    }
-
-    // Last emner for å mappe emne_id → area_id/area_label
-    if (!window.Emner || typeof window.Emner.loadForSubject !== "function") {
-      return renderKnowledgeSection(categoryId);
-    }
-
-    const emnerAll = await window.Emner.loadForSubject(categoryId);
-    const emneById = indexEmnerById(emnerAll);
-
-    // group knowledge items per emne_id
-    const byEmne = groupKnowledgeByEmne(data);
-
-    // helper: map area_id → label fra emnefila (dersom finnes)
-    function getAreaLabel(areaId) {
-      // finn første emne med denne area_id
-      const hit = (emnerAll || []).find(e => e && e.area_id === areaId);
-      return hit?.area_label || areaId;
-    }
-
-    // Render
-    let html = "";
-
-    for (const branch of structure.branches) {
-      const branchLabel = branch.label || branch.id;
-      const areaIds = Array.isArray(branch.area_ids) ? branch.area_ids : [];
-      if (!areaIds.length) continue;
-
-      // Finn emner som hører til disse area_ids
-      const emneIdsInBranch = (emnerAll || [])
-        .filter(e => areaIds.includes(e.area_id))
-        .map(e => e.emne_id);
-
-      // Finn om det finnes knowledge under disse emnene
-      const hasAny = emneIdsInBranch.some(id => byEmne.has(id));
-      if (!hasAny) continue; // skjul tom gren
-
-      html += `<div class="knowledge-block">
-        <h3>${esc(branchLabel)}</h3>
-      `;
-
-      // area-nivå
-      for (const areaId of areaIds) {
-        const areaLabel = getAreaLabel(areaId);
-
-        // emner under area
-        const emneIds = (emnerAll || [])
-          .filter(e => e && e.area_id === areaId)
-          .map(e => e.emne_id);
-
-        const areaHasAny = emneIds.some(id => byEmne.has(id));
-        if (!areaHasAny) continue;
-
-        html += `<div class="knowledge-subblock">
-          <h4>${esc(areaLabel)}</h4>
-        `;
-
-        // dimensjon-nivå (gjenbruker eksisterende storage: category → dimension)
-        // men filtrerer kun items med emne_id som ligger i area
-        const dimToItems = {};
-        for (const emneId of emneIds) {
-          const dims = byEmne.get(emneId);
-          if (!dims) continue;
-          for (const [dim, items] of Object.entries(dims)) {
-            if (!dimToItems[dim]) dimToItems[dim] = [];
-            dimToItems[dim].push(...items);
-          }
-        }
-
-        // Render per dimensjon
-        for (const [dim, items] of Object.entries(dimToItems)) {
-          html += `<div class="knowledge-mini">
-            <div class="muted" style="margin-top:6px;"><strong>${esc(capitalize(dim))}</strong></div>
-            <ul>
-              ${items.map(k => `<li><strong>${esc(k.topic)}:</strong> ${esc(k.text)}</li>`).join("")}
-            </ul>
-          </div>`;
-        }
-
-        html += `</div>`; // knowledge-subblock
-      }
-
-      html += `</div>`; // knowledge-block
-    }
-
-    // Hvis alt ble filtrert bort (f.eks. gamle entries uten emne_id), fallback:
-    if (!html.trim()) return renderKnowledgeSection(categoryId);
-
-    return html;
-  }
-
-  window.renderKnowledgeSectionAsync = renderKnowledgeSectionAsync;
-})();
 
 // ================================
 // EMNE-DEKNING (History GO)
