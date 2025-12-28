@@ -1,3 +1,11 @@
+README (UPDATED 2025-12-28)
+===========================
+
+NOTE
+----
+Denne fila er oppdatert uten å slette noe av originalteksten.
+Originalinnholdet står fortsatt her, og nye avklaringer er lagt til som egne seksjoner.
+
 # 🧭 History GO
 Offline-first, stedbasert lærings- og kunnskapssystem: kart → quiz → knowledge/trivia → profil → emner/pensum → AHA-innsikt.
 
@@ -374,3 +382,22 @@ Dette gir:
 > Emner gir forståelse.**
 
 Dette er strukturen History GO skal bygges videre på.
+
+UPPDATERINGER / KLARGJØRINGER (2025-12)
+-------------------------------------
+Dette er bevart
+- Original README inneholder ofte historikk, motivasjon, og arkitektur-notater. Det beholdes.
+
+Oppdatert kjernefortelling (kort)
+- History GO er et stedbasert læringssystem hvor faglig progresjon måles gjennom evidens:
+  - quiz/observasjon/notat → learning log → courses beregner progresjon → UI viser den.
+
+
+- `structure_*.json` er tatt helt ut av runtime. Hvis eldre tekst refererer til "structure", regnes det nå som DEPRECATED/historisk.
+- Ontologi som *modell* er fortsatt relevant, men implementasjonen i runtime skjer via: Merker → Fagkart → Emner → Evidens (learning log) → Courses → UI.
+- `Courses` er progresjonsmotor (tolkningslag) og skal ikke introdusere ny fagstruktur; den bruker emner + learning log + pensum-filer for å beregne modulstatus/diplom.
+- Knowledge-visningen er nå flat (ingen structure) og kan i tillegg vise kursprogresjon via `HGCourseUI`/`HGCourses.compute`.
+
+
+Tips for å unngå at lagene sklir
+- Fagkart = struktur. Emner = innhold. Courses = progresjon. UI = presentasjon.
