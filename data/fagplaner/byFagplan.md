@@ -175,3 +175,224 @@ Byen er ikke bare noe vi bor i.
 Den er noe vi **kan forstå, stille spørsmål ved og ta del i**.
 
 ---
+
+
+Bra. Da gjør vi dette grunnleggende og komplett, uten akademisk pynt.
+
+Nedenfor er alle sentrale spekter ved BYLIV – forstått som hvordan byen faktisk leves i åpne og delte rom.
+Dette er ment som fasit-lista du kan bruke til:
+	•	fagplan
+	•	emneutvikling
+	•	observasjoner
+	•	quiz
+	•	stedskategorisering
+
+⸻
+
+BYLIV – hele spekteret
+
+1. Bevegelse
+
+Hvordan folk forflytter seg i byen.
+	•	Gåing
+	•	Sykling
+	•	Kollektivbruk
+	•	Kryssing
+	•	Gjennomfart
+	•	Tempo (raskt / sakte)
+	•	Flyt vs friksjon
+	•	Barriere vs forbindelse
+
+⸻
+
+2. Opphold
+
+Hvor og hvordan folk stopper opp.
+	•	Sitteplasser
+	•	Ståplasser
+	•	Venting
+	•	Pause
+	•	Henge rundt
+	•	Sol/skygge-opphold
+	•	Uformelle oppholdssoner
+
+⸻
+
+3. Møte og samhandling
+
+Hvordan mennesker møter hverandre.
+	•	Tilfeldige møter
+	•	Planlagte møter
+	•	Sosiale knutepunkt
+	•	Småprat
+	•	Observasjon av andre
+	•	Publikum og deltakelse
+
+⸻
+
+4. Bruk av offentlig rom
+
+Hva rom faktisk brukes til.
+	•	Gjennomgang
+	•	Lek
+	•	Hvile
+	•	Handel
+	•	Servering
+	•	Arrangement
+	•	Demonstrasjon
+	•	Feiring
+
+⸻
+
+5. Gateliv
+
+Livet langs og i gater.
+	•	Fortau
+	•	Uteservering
+	•	Butikkfasader
+	•	Vindusutstilling
+	•	Gatehandel
+	•	Trafikkblanding
+	•	Kantsoner (fasade–gate)
+
+⸻
+
+6. Parker og grøntliv
+
+Det sosiale livet i grønne rom.
+	•	Piknik
+	•	Trening
+	•	Lek
+	•	Ro og stillhet
+	•	Sosial samling
+	•	Sesongbruk
+	•	Uformell aktivitet
+
+⸻
+
+7. Torg og plasser
+
+Byens åpne samlingsrom.
+	•	Markeder
+	•	Arrangementer
+	•	Opphold
+	•	Symbolbruk
+	•	Seremonier
+	•	Demonstrasjoner
+
+⸻
+
+8. Tidsrytmer
+
+Når byen lever.
+	•	Morgenliv
+	•	Arbeidstid
+	•	Kveldsbruk
+	•	Natteliv
+	•	Ukedag vs helg
+	•	Sesonger
+	•	Midlertidige topper
+
+⸻
+
+9. Sosial miks
+
+Hvem som er til stede samtidig.
+	•	Alder
+	•	Kjønn
+	•	Klasse
+	•	Kultur
+	•	Turister vs lokale
+	•	Inkludering / ekskludering
+
+⸻
+
+10. Synlighet og usynlighet
+
+Hvem som synes – og hvem som ikke gjør det.
+	•	Marginaliserte grupper
+	•	Hjemløse
+	•	Ungdom
+	•	Eldre
+	•	Overvåkning
+	•	Trygghet / utrygghet
+
+⸻
+
+11. Uformell bruk
+
+Når rom brukes annerledes enn planlagt.
+	•	Sitte på trapper
+	•	Skate
+	•	Gatekunst
+	•	Midlertidige møtesteder
+	•	Improvisert bruk
+
+⸻
+
+12. Stemning og sanselighet
+
+Hvordan byen oppleves.
+	•	Lyd
+	•	Lys
+	•	Lukt
+	•	Tetthet
+	•	Åpenhet
+	•	Energi
+	•	Stress / ro
+
+⸻
+
+13. Regler og brudd
+
+Forholdet mellom orden og frihet.
+	•	Skilting
+	•	Forbud
+	•	Toleranse
+	•	Polititilstedeværelse
+	•	Brudd på normer
+	•	Uformelle regler
+
+⸻
+
+14. Konflikt i hverdagen
+
+Små og store friksjoner.
+	•	Fotgjenger vs syklist
+	•	Støy
+	•	Trengsel
+	•	Forskjellig bruk av samme rom
+	•	Territorialitet
+
+⸻
+
+15. Midlertidighet
+
+Byliv som ikke er permanent.
+	•	Festivaler
+	•	Pop-up-tiltak
+	•	Sesongmarkeder
+	•	Midlertidige installasjoner
+	•	Aktivitetsdager
+
+⸻
+
+Kort definisjon (kan brukes i fagplanen)
+
+Byliv er summen av hvordan mennesker beveger seg, møtes, oppholder seg og bruker byens åpne rom over tid.
+
+⸻
+
+Viktig avgrensning (låses)
+
+Byliv handler ikke primært om:
+	•	eierskap
+	•	bolig
+	•	arkitektonisk teori
+	•	planprosesser
+
+Det handler om:
+👉 det observerbare livet i byen, her og nå
+
+⸻
+
