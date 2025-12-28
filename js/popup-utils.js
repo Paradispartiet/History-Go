@@ -630,7 +630,7 @@ window.openPlaceCard = function (place) {
           categoryId: subjectId,
           title: place.name
         },
-        lensId: "by_brukere_hvem"
+        lensId: "by_byliv"
       });
     };
   }
