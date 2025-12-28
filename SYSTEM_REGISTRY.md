@@ -1,3 +1,11 @@
+SYSTEM REGISTRY (UPDATED 2025-12-28)
+====================================
+
+NOTE
+----
+Denne fila er oppdatert uten å slette noe av originalteksten.
+Originalinnholdet står fortsatt her, og nye avklaringer er lagt til som egne seksjoner.
+
 # 🧭 History GO – SYSTEM REGISTRY (LOCKED v2)
 
 Dette dokumentet er fasit for filstruktur, ansvar og eierskap.
@@ -392,3 +400,23 @@ Dette er **empirisk, situert data** – ikke verifisert fakta.
   "note": "Valgfri tekst"
 }
 
+UPPDATERINGER / KLARGJØRINGER (2025-12)
+-------------------------------------
+Roller (oppdatert, uten å fjerne gamle beskrivelser)
+- Merker: toppnivå-fagfelt/kategori.
+- Fagkart: faglig struktur (analyse-/feltkart). Ingen progresjonslogikk.
+- Emner: pensum/innhold (én sannhet).
+- Quiz/Observasjon/Notat: evidensgeneratorer.
+- Learning log (`hg_learning_log_v1`): sannhetskilde for brukerens evidens.
+- Courses (`HGCourses`): beregner progresjon, modulstatus og diplom (tolker evidens).
+- Knowledge (`knowledge_universe` + UI): viser lagret kunnskap + kursstatus.
+
+
+- `structure_*.json` er tatt helt ut av runtime. Hvis eldre tekst refererer til "structure", regnes det nå som DEPRECATED/historisk.
+- Ontologi som *modell* er fortsatt relevant, men implementasjonen i runtime skjer via: Merker → Fagkart → Emner → Evidens (learning log) → Courses → UI.
+- `Courses` er progresjonsmotor (tolkningslag) og skal ikke introdusere ny fagstruktur; den bruker emner + learning log + pensum-filer for å beregne modulstatus/diplom.
+- Knowledge-visningen er nå flat (ingen structure) og kan i tillegg vise kursprogresjon via `HGCourseUI`/`HGCourses.compute`.
+
+
+Deprecations
+- Structure: fjernet fra runtime. Referanser i originaltekst er historiske.
