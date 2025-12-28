@@ -115,11 +115,20 @@ window.saveKnowledgeFromQuiz = saveKnowledgeFromQuiz;
 // ------------------------------------------------------------
 function renderKnowledgeSection(categoryId) {
   const data = getKnowledgeForCategory(categoryId);
-  if (!data || Object.keys(data).length === 0) {
-    return `<div class="muted">Ingen kunnskap lagret ennå.</div>`;
+
+  // ✅ alltid mount kurs-boksen først (selv om du ikke har knowledge ennå)
+  let html = "";
+  if (window.HGCourseUI && typeof window.HGCourseUI.mountHtml === "function") {
+    html += window.HGCourseUI.mountHtml(categoryId);
   }
 
-  return Object.entries(data)
+  // Deretter: knowledge
+  if (!data || Object.keys(data).length === 0) {
+    html += `<div class="muted">Ingen kunnskap lagret ennå.</div>`;
+    return html;
+  }
+
+  html += Object.entries(data)
     .map(([dimension, items]) => `
       <div class="knowledge-block">
         <h3>${capitalize(dimension)}</h3>
@@ -131,8 +140,9 @@ function renderKnowledgeSection(categoryId) {
       </div>
     `)
     .join("");
-}
 
+  return html;
+}
 // Liten hjelp
 function capitalize(str) {
   if (!str) return "";
