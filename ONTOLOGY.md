@@ -1,3 +1,11 @@
+ONTOLOGY (UPDATED 2025-12-28)
+=============================
+
+NOTE
+----
+Denne fila er oppdatert uten å slette noe av originalteksten.
+Originalinnholdet står fortsatt her, og nye avklaringer er lagt til som egne seksjoner.
+
 # HG Knowledge Ontology v1
 
 **Status:** aktiv  
@@ -139,3 +147,19 @@ instance.hg = {
   domain_ids: string[],
   concepts: string[]
 }
+
+UPPDATERINGER / KLARGJØRINGER (2025-12)
+-------------------------------------
+Hvordan ONTOLOGY.md forholder seg til dagens system
+- Ontologi-dokumentet er fortsatt relevant som nivå-/begrepsmodell.
+- Det du tidligere la i "ontology-runtime" er nå realisert gjennom:
+  - Fagkart (struktur),
+  - Emner (læringsenheter),
+  - Courses/pensum (mål/fullføring),
+  - Learning log (evidens).
+
+
+- `structure_*.json` er tatt helt ut av runtime. Hvis eldre tekst refererer til "structure", regnes det nå som DEPRECATED/historisk.
+- Ontologi som *modell* er fortsatt relevant, men implementasjonen i runtime skjer via: Merker → Fagkart → Emner → Evidens (learning log) → Courses → UI.
+- `Courses` er progresjonsmotor (tolkningslag) og skal ikke introdusere ny fagstruktur; den bruker emner + learning log + pensum-filer for å beregne modulstatus/diplom.
+- Knowledge-visningen er nå flat (ingen structure) og kan i tillegg vise kursprogresjon via `HGCourseUI`/`HGCourses.compute`.
