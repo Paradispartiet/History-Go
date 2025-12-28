@@ -99,7 +99,7 @@ function saveKnowledgeFromQuiz(quizItem, context = {}) {
     "Ingen forklaring registrert.";
 
   const entry = {
-    id: "quiz_" + baseId,
+    id: "quiz_" + baseId + "_k1",
     category,
     dimension,
     topic,
