@@ -16,14 +16,21 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const categoryId = cls.replace("merke-", "");
 
-  // ERSTATT hele try-blokken med dette:
-try {
-  if (typeof renderKnowledgeSection === "function") {
-    container.innerHTML = renderKnowledgeSection(categoryId);
-    return;
+  try {
+    if (typeof renderKnowledgeSection === "function") {
+      container.innerHTML = renderKnowledgeSection(categoryId);
+
+      // ✅ NYTT: fyll kurs-boks (async) hvis den finnes
+      if (window.HGCourseUI && typeof window.HGCourseUI.init === "function") {
+        window.HGCourseUI.init(categoryId);
+      }
+
+      return;
+    }
+
+    container.innerHTML = `<div class="muted">Knowledge-systemet er ikke lastet.</div>`;
+  } catch (e) {
+    console.warn("[knowledge_component] render failed", e);
+    container.innerHTML = `<div class="muted">Kunne ikke rendere knowledge.</div>`;
   }
-  container.innerHTML = `<div class="muted">Knowledge-systemet er ikke lastet.</div>`;
-} catch (e) {
-  console.warn("[knowledge_component] render failed", e);
-  container.innerHTML = `<div class="muted">Kunne ikke rendere knowledge.</div>`;
-}
+});
