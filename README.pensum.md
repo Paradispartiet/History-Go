@@ -1,3 +1,11 @@
+README PENSUM (UPDATED 2025-12-28)
+==================================
+
+NOTE
+----
+Denne fila er oppdatert uten å slette noe av originalteksten.
+Originalinnholdet står fortsatt her, og nye avklaringer er lagt til som egne seksjoner.
+
 # History GO – Kunnskaps- og pensumarkitektur
 
 Dette dokumentet beskriver **hvordan innhold, læring og progresjon er strukturert i History GO**, og hva de ulike filene og nivåene faktisk betyr.  
@@ -174,3 +182,21 @@ Denne arkitekturen er:
 
 **Dette dokumentet er normativt.**  
 Hvis noe bryter med dette, er det en feil i implementasjon – ikke i modellen.
+
+UPPDATERINGER / KLARGJØRINGER (2025-12)
+-------------------------------------
+Hva som er nytt siden eldre versjoner
+- Emnefilene er styrket som "én sannhet".
+- Progresjon skal forstås faglig: emnedekning + begrepsdekning + quiz-kvalitet, ikke bare poeng.
+- Courses/pensum-filer brukes til å definere *moduler* og *krav* for diplom.
+
+
+- `structure_*.json` er tatt helt ut av runtime. Hvis eldre tekst refererer til "structure", regnes det nå som DEPRECATED/historisk.
+- Ontologi som *modell* er fortsatt relevant, men implementasjonen i runtime skjer via: Merker → Fagkart → Emner → Evidens (learning log) → Courses → UI.
+- `Courses` er progresjonsmotor (tolkningslag) og skal ikke introdusere ny fagstruktur; den bruker emner + learning log + pensum-filer for å beregne modulstatus/diplom.
+- Knowledge-visningen er nå flat (ingen structure) og kan i tillegg vise kursprogresjon via `HGCourseUI`/`HGCourses.compute`.
+
+
+Hvordan du kobler alt sammen
+- Emner peker "nedover" til quiz via `related_emner`/`core_concepts`-logikk.
+- Courses peker "oppover" ved å oppsummere (modul/diplom) per merke og (eventuelt) per fagkart-node.
