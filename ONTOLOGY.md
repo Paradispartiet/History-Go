@@ -1,11 +1,6 @@
 ONTOLOGY (UPDATED 2025-12-28)
 =============================
 
-NOTE
-----
-Denne fila er oppdatert uten å slette noe av originalteksten.
-Originalinnholdet står fortsatt her, og nye avklaringer er lagt til som egne seksjoner.
-
 # HG Knowledge Ontology v1
 
 **Status:** aktiv  
