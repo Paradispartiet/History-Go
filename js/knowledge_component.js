@@ -1,204 +1,131 @@
-/* ======================================================================
-   KNOWLEDGE COMPONENT
-   Viser kunnskap fra knowledge.js på merkesider
-   (KURS + CHIPS + EMNER + KUNNSKAP)
-   ====================================================================== */
+// knowledge_component.js — Knowledge page component (stable)
+// ------------------------------------------------------------
+// Mounts:
+//  - #hgChipsMount (chips navigation/filter)
+//  - #hgEmnerMount (emner list in <details> cards with data-* for chips filtering)
+//
+// Requires (optional but supported):
+//  - window.DataHub.loadEmner(categoryId)  -> emner array (recommended)
+//  - window.HGChips.init({categoryId, fagkartUrl})
+(function () {
+  "use strict";
 
-document.addEventListener("DOMContentLoaded", async () => {
-  const container = document.getElementById("knowledgeComponent");
-  if (!container) return;
-
-  const body = document.body;
-  const cls = [...body.classList].find(c => c.startsWith("merke-"));
-  if (!cls) {
-    container.innerHTML = `<div class="muted">Fant ikke kategori.</div>`;
-    return;
+  function norm(s) { return String(s || "").trim(); }
+  function esc(s) {
+    return String(s || "")
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;");
   }
 
-  const categoryId = cls.replace("merke-", "");
+  function guessCategoryId() {
+    const b = document.body;
+    const fromData = b ? norm(b.getAttribute("data-category")) : "";
+    if (fromData) return fromData;
 
-  try {
-    if (typeof renderKnowledgeSection !== "function") {
-      container.innerHTML = `<div class="muted">Knowledge-systemet er ikke lastet.</div>`;
-      return;
-    }
+    const fn = (location.pathname.split("/").pop() || "").toLowerCase();
+    const m = fn.match(/knowledge[_-]([a-z0-9_]+)\.html$/);
+    if (m && m[1]) return m[1];
 
-    // 1) Render skeleton (kurs + chips + emner + kunnskap)
-    container.innerHTML = renderKnowledgeSection(categoryId);
-
-    // 2) Kurs (async fill)
-    if (window.HGCourseUI && typeof window.HGCourseUI.init === "function") {
-      try { await window.HGCourseUI.init(categoryId); } catch (e) { console.warn("[HGCourseUI.init]", e); }
-    }
-
-    // 3) Chips (async fill) — mount: #hgChipsMount
-    const chipsMount = document.getElementById("hgChipsMount");
-    if (chipsMount) {
-      if (window.HGChips && typeof window.HGChips.init === "function") {
-        try {
-          await window.HGChips.init({
-            categoryId,
-            mountId: "hgChipsMount"
-          });
-        } catch (e) {
-          console.warn("[HGChips.init]", e);
-          chipsMount.innerHTML = `<div class="muted">Kunne ikke laste chips.</div>`;
-        }
-      } else {
-        chipsMount.innerHTML = `<div class="muted">Chips-modul ikke lastet.</div>`;
-      }
-    }
-
-    // 4) Emner (async fill) — mount: #hgEmnerMount
-const emnerMount = document.getElementById("hgEmnerMount");
-if (emnerMount) {
-  try {
-    // ✅ RIKTIG: din loader eksponerer loadForSubject()
-    if (!window.Emner || typeof window.Emner.loadForSubject !== "function") {
-      emnerMount.innerHTML = `<div class="muted">Emner-loader er ikke lastet.</div>`;
-      return;
-    }
-
-    // Hent emner for faget (categoryId = subject_id)
-    const emner = await window.Emner.loadForSubject(categoryId);
-
-    if (!Array.isArray(emner) || !emner.length) {
-      emnerMount.innerHTML = `<div class="muted">Ingen emner registrert ennå.</div>`;
-      return;
-    }
-
-    // (valgfritt) dekning/progresjon hvis du har computeEmneDekning
-    let coverage = null;
-    if (typeof window.computeEmneDekning === "function") {
-      try {
-        coverage = window.computeEmneDekning(categoryId);
-      } catch (e) {
-        console.warn("[computeEmneDekning]", e);
-        coverage = null;
-      }
-    }
-
-    // Gruppér på temaområde (area_id/area_label) hvis de finnes
-    const groups = new Map();
-    for (const e of emner) {
-      const areaId = String(e?.area_id || "").trim() || "tema";
-      const areaLabel = String(e?.area_label || "").trim() || "Temaområder";
-      const key = areaId + "||" + areaLabel;
-      if (!groups.has(key)) groups.set(key, { areaId, areaLabel, items: [] });
-      groups.get(key).items.push(e);
-    }
-
-    const groupList = [...groups.values()].sort((a, b) =>
-      a.areaLabel.localeCompare(b.areaLabel, "no")
-    );
-
-    groupList.forEach(g => {
-      g.items.sort((a, b) => {
-        const ta = String(a?.title || a?.name || a?.emne_id || "");
-        const tb = String(b?.title || b?.name || b?.emne_id || "");
-        return ta.localeCompare(tb, "no");
-      });
-    });
-
-    // Render: temaområde -> emner (accordion)
-    emnerMount.innerHTML = `
-      <div class="hg-emner">
-        ${groupList
-          .map(g => `
-            <details class="hg-area" data-area="${escapeHtml(g.areaId)}">
-              <summary>
-                <span class="hg-area-title">${escapeHtml(g.areaLabel)}</span>
-                <span class="hg-area-count">${g.items.length}</span>
-              </summary>
-
-              <div class="hg-area-items">
-                ${g.items
-                  .map(emne => {
-                    const emneId = String(emne?.emne_id || emne?.id || "").trim();
-                    const title = emne?.title || emne?.name || emneId || "Uten tittel";
-                    const short = emne?.short_label || emne?.short || "";
-                    const desc = emne?.description || "";
-
-                    // pill fra dekning (hvis den finnes)
-                    let pill = "";
-                    if (coverage && emneId && coverage[emneId]) {
-                      const c = coverage[emneId];
-                      const pct = (c.pct != null)
-                        ? `${Math.round(c.pct)}%`
-                        : (c.score != null ? String(c.score) : "");
-                      if (pct) pill = `<span class="hg-pill">${escapeHtml(pct)}</span>`;
-                    }
-
-                    // core_concepts som “chips”
-                    const concepts = Array.isArray(emne?.core_concepts) ? emne.core_concepts : [];
-                    const chipsHtml = concepts.length
-                      ? `<div class="hg-chips-row">
-                           ${concepts.slice(0, 10).map(c => `<span class="hg-chip">${escapeHtml(c)}</span>`).join("")}
-                         </div>`
-                      : ``;
-
-                    return `
-                      <details class="hg-emne" data-emne="${escapeHtml(emneId)}">
-                        <summary>
-                          <span class="hg-emne-title">${escapeHtml(title)}</span>
-                          ${short ? `<span class="hg-emne-short">${escapeHtml(short)}</span>` : ``}
-                          ${pill}
-                        </summary>
-
-                        ${desc ? `<div class="hg-emne-desc">${escapeHtml(desc)}</div>` : ``}
-                        ${chipsHtml}
-
-                        <div class="hg-emne-actions">
-                          ${emneId ? `<button type="button" class="hg-btn" data-emne-open="${escapeHtml(emneId)}">Åpne</button>` : ``}
-                          ${emneId ? `<button type="button" class="hg-btn primary" data-emne-quiz="${escapeHtml(emneId)}">Ta quiz</button>` : ``}
-                        </div>
-                      </details>
-                    `;
-                  })
-                  .join("")}
-              </div>
-            </details>
-          `)
-          .join("")}
-      </div>
-    `;
-
-    // Wire "Åpne"
-    emnerMount.querySelectorAll("[data-emne-open]").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const emneId = btn.getAttribute("data-emne-open");
-        if (typeof window.openEmne === "function") return window.openEmne(emneId, categoryId);
-        window.showToast?.(`Emne: ${emneId}`);
-      });
-    });
-
-    // Wire "Ta quiz" (emne-quiz hvis du har det)
-    emnerMount.querySelectorAll("[data-emne-quiz]").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const emneId = btn.getAttribute("data-emne-quiz");
-
-        if (window.QuizEngine) {
-          if (typeof window.QuizEngine.startEmne === "function") {
-            return window.QuizEngine.startEmne(emneId, categoryId);
-          }
-        }
-
-        window.showToast?.("Quiz for emne er ikke koblet ennå.");
-      });
-    });
-
-  } catch (e) {
-    console.warn("[emner fill]", e);
-    emnerMount.innerHTML = `<div class="muted">Kunne ikke laste emner.</div>`;
+    return norm(window.SUBJECT_ID || window.categoryId || "");
   }
-}
 
-// Minimal HTML-escape for descriptions
-function escapeHtml(s) {
-  return String(s || "")
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
-}
+  function guessFagkartUrl(categoryId) {
+    const b = document.body;
+    const fromData = b ? norm(b.getAttribute("data-fagkart")) : "";
+    if (fromData) return fromData;
+
+    if (norm(window.FAGKART_URL)) return norm(window.FAGKART_URL);
+
+    if (categoryId === "by") return "data/fagkart_by_oslo_FIXED.json";
+    return `data/fagkart_${categoryId}.json`;
+  }
+
+  function splitList(v) {
+    if (Array.isArray(v)) return v.map(norm).filter(Boolean);
+    if (typeof v === "string") return v.split(",").map(norm).filter(Boolean);
+    return [];
+  }
+
+  function emneToDom(emne) {
+    const id = norm(emne.id || emne.emne_id || emne.slug);
+    const title = norm(emne.title || emne.name || id);
+
+    const hookId = norm(emne.hook_id || emne.topic_hook_id || emne.hookId);
+
+    const concepts = [
+      ...splitList(emne.concepts),
+      ...splitList(emne.core_concepts),
+      ...splitList(emne.keywords),
+    ].filter(Boolean);
+
+    const thinkers =
+      (emne.canon && Array.isArray(emne.canon.thinkers) ? emne.canon.thinkers : [])
+        .map(t => norm(t.id || t.name))
+        .filter(Boolean);
+
+    const short = norm(emne.short || emne.ingress || emne.summary);
+    const long = norm(emne.description || emne.text || emne.body);
+
+    return { id, title, hookId, concepts, thinkers, short, long };
+  }
+
+  function renderEmner(emner) {
+    const mount = document.getElementById("hgEmnerMount");
+    if (!mount) return;
+
+    const list = (Array.isArray(emner) ? emner : (emner && Array.isArray(emner.emner) ? emner.emner : []))
+      .map(emneToDom)
+      .filter(e => e.id && e.title);
+
+    mount.innerHTML = list.map(e => `
+      <details class="hg-emne"
+        data-emne="${esc(e.id)}"
+        data-hook="${esc(e.hookId)}"
+        data-concepts="${esc(e.concepts.join(", "))}"
+        data-thinkers="${esc(e.thinkers.join(", "))}">
+        <summary class="hg-emne-summary">
+          <span class="hg-emne-title">${esc(e.title)}</span>
+          ${e.hookId ? `<span class="hg-emne-hook">${esc(e.hookId)}</span>` : ""}
+        </summary>
+        ${e.short ? `<div class="hg-emne-ingress">${esc(e.short)}</div>` : ""}
+        ${e.long ? `<div class="hg-emne-body">${esc(e.long)}</div>` : ""}
+      </details>
+    `).join("\n");
+  }
+
+  async function loadEmner(categoryId) {
+    if (window.DataHub && typeof window.DataHub.loadEmner === "function") {
+      return await window.DataHub.loadEmner(categoryId);
+    }
+
+    const url = `data/emner/emner_${categoryId}.json`;
+    const r = await fetch(url, { cache: "no-store" });
+    if (!r.ok) throw new Error(r.status + " " + url);
+    return await r.json();
+  }
+
+  async function boot() {
+    const categoryId = guessCategoryId();
+    if (!categoryId) return;
+
+    let emner = [];
+    try { emner = await loadEmner(categoryId); } catch (e) {
+      if (window.DEBUG) console.warn("[knowledge_component] emner load failed", e);
+    }
+    renderEmner(emner);
+
+    if (window.HGChips && typeof window.HGChips.init === "function") {
+      const fagkartUrl = guessFagkartUrl(categoryId);
+      try { await window.HGChips.init({ categoryId, fagkartUrl, mountId: "hgChipsMount" }); }
+      catch (e) {
+        if (window.DEBUG) console.warn("[knowledge_component] chips init failed", e);
+      }
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    try { boot(); } catch (e) { console.error("[knowledge_component] boot", e); }
+  });
+})();
