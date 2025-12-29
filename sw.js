@@ -3,7 +3,7 @@
    Version: HG-FULL-v3.0.057
 ============================================================ */
 
-const CACHE_VERSION = "HG-FULL-v3.0.199";
+const CACHE_VERSION = "HG-FULL-v3.0.200";
 const STATIC_CACHE = `historygo-${CACHE_VERSION}`;
 
 // Scope path (viktig på GitHub Pages: /History-Go/)
@@ -60,6 +60,7 @@ const STATIC_ASSETS = [
 
   // JS (core)
   "js/popup-utils.js",
+  "/js/hgchips.js",
   "js/knowledge.js",
   "js/knowledge_component.js",
   "js/trivia.js",
