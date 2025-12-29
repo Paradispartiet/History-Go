@@ -110,30 +110,35 @@ function saveKnowledgeFromQuiz(quizItem, context = {}) {
 }
 
 window.saveKnowledgeFromQuiz = saveKnowledgeFromQuiz;
-// ------------------------------------------------------------
-// 3) RENDRING AV KUNNSKAPSSEKSJON
-// ------------------------------------------------------------
-// ------------------------------------------------------------
-// 3) RENDRING AV KUNNSKAPSSEKSJON (KURS + EMNER + KNOWLEDGE)
+// 3) RENDRING AV KUNNSKAPSSEKSJON (KURS + CHIPS + EMNER + KNOWLEDGE)
 // ------------------------------------------------------------
 function renderKnowledgeSection(categoryId) {
   const cid = String(categoryId || "").trim();
 
-  // 1) Kursboks alltid først (skeleton), fylles async av HGCourseUI.init()
   let html = "";
+
+  // 1) Kursboks alltid først (skeleton), fylles async av HGCourseUI.init()
   if (window.HGCourseUI && typeof window.HGCourseUI.mountHtml === "function") {
     html += window.HGCourseUI.mountHtml(cid);
   }
 
-  // 2) Emner (accordion) – placeholder (fylles async etter DOMContentLoaded)
+  // 2) CHIPS (navigasjon / samling) — mount her, fylles async av HGChips.init()
   html += `
-    <div class="knowledge-block" id="hgEmnerBox" data-emner-for="${cid}">
-      <h3>Emner</h3>
-      <div class="muted">Laster emner…</div>
+    <div class="knowledge-block" id="hgChipsBox" data-chips-for="${cid}">
+      <h3>Chips</h3>
+      <div id="hgChipsMount" class="muted">Laster chips…</div>
     </div>
   `;
 
-  // 3) Knowledge-universe (det du har låst opp)
+  // 3) Emner (accordion) – placeholder (fylles async etter DOMContentLoaded)
+  html += `
+    <div class="knowledge-block" id="hgEmnerBox" data-emner-for="${cid}">
+      <h3>Emner</h3>
+      <div id="hgEmnerMount" class="muted">Laster emner…</div>
+    </div>
+  `;
+
+  // 4) Knowledge-universe (det du har låst opp)
   const data = getKnowledgeForCategory(cid);
 
   if (!data || Object.keys(data).length === 0) {
@@ -173,6 +178,7 @@ function capitalize(str) {
   str = str.toString();
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
+
 
 // ================================
 // EMNE-DEKNING (History GO)
