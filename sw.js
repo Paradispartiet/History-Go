@@ -60,7 +60,7 @@ const STATIC_ASSETS = [
 
   // JS (core)
   "js/popup-utils.js",
-  "/js/hgchips.js",
+  "js/hgchips.js",
   "js/knowledge.js",
   "js/knowledge_component.js",
   "js/trivia.js",
