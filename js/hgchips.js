@@ -54,19 +54,35 @@
   };
 
   function applyEmneFilters() {
-    const root = document.getElementById("hgEmnerMount");
-    if (!root) return;
+  // ✅ riktig mount-id (matcher markup: id="hgEmnerMount")
+  const root = document.getElementById("hgEmnerMount");
+  if (!root) return;
 
-    const items = root.querySelectorAll("[data-emne]");
-    items.forEach(el => {
-    const emneId = el.getAttribute("data-emne") || "";
-      let ok = true;
-      if (state.hookId) ok = ok && hook === state.hookId;
-      if (state.concept) ok = ok && concepts.includes(state.concept.toLowerCase());
+  const items = root.querySelectorAll("[data-emne]");
+  items.forEach(el => {
+    // ✅ hent per-emne metadata fra DOM
+    const hookAttr = (el.getAttribute("data-hook") || "").trim();
+    const conceptsAttr = (el.getAttribute("data-concepts") || "").toLowerCase();
 
-      el.style.display = ok ? "" : "none";
-    });
-  }
+    // hvis du har flere hooks i ett felt, støtt f.eks. "a,b,c"
+    const hookList = hookAttr
+      .split(",")
+      .map(s => s.trim())
+      .filter(Boolean);
+
+    let ok = true;
+
+    if (state.hookId) {
+      ok = ok && (hookAttr === state.hookId || hookList.includes(state.hookId));
+    }
+
+    if (state.concept) {
+      ok = ok && conceptsAttr.includes(state.concept.toLowerCase());
+    }
+
+    el.style.display = ok ? "" : "none";
+  });
+}
 
   function clearFilters() {
     state.hookId = null;
