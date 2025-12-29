@@ -1,276 +1,362 @@
-// js/hg-chips.js — CHIPS (samling + filter) for Knowledge-sidene
+// hgchips.js — HGChips (chips for Knowledge pages)
+// ------------------------------------------------------------
+// Purpose: quick navigation + collecting through chips (hooks, concepts, thinkers)
+// Sources (merged):
+//  - Fagkart topic_hooks (+ canon thinkers)
+//  - Emner (concepts / thinkers / hook ids)
+//  - Local unlocked knowledge (knowledge_universe) + quiz_history (optional)
+// No hard coupling to "courses" UI.
+//
+// Requires:
+//  - A mount element: #hgChipsMount (or opts.mountId)
+//  - Emne cards in DOM with: [data-emne], optional [data-hook], [data-concepts], [data-thinkers]
+//
+// Public API: window.HGChips.init({ categoryId, fagkartUrl?, emnerUrl?, mountId? })
 (function () {
   "use strict";
 
-  const STORE_KEY = "hg_collection_v1";
+  const DEFAULT_MOUNT_ID = "hgChipsMount";
 
-  function esc(s) {
-    return String(s ?? "")
-      .replaceAll("&", "&amp;")
-      .replaceAll("<", "&lt;")
-      .replaceAll(">", "&gt;");
+  function norm(s) {
+    return String(s || "").trim();
+  }
+  function normLc(s) {
+    return norm(s).toLowerCase();
+  }
+  function uniqBy(arr, keyFn) {
+    const seen = new Set();
+    const out = [];
+    for (const x of arr || []) {
+      const k = keyFn(x);
+      if (!k || seen.has(k)) continue;
+      seen.add(k);
+      out.push(x);
+    }
+    return out;
   }
 
-  function safeParse(key, fallback) {
+  function safeJsonParse(raw, fallback) {
     try {
-      const v = JSON.parse(localStorage.getItem(key));
-      return v ?? fallback;
+      const v = JSON.parse(raw);
+      return v == null ? fallback : v;
     } catch {
       return fallback;
     }
   }
 
-  function save(key, val) {
-    localStorage.setItem(key, JSON.stringify(val));
-  }
+  function getUnlockedConceptIds(categoryId) {
+    const unlocked = new Set();
 
-  function getCollection() {
-    const c = safeParse(STORE_KEY, null);
-    return c && typeof c === "object"
-      ? c
-      : { thinkers: [], concepts: [], hooks: [], emner: [], places: [], people: [] };
-  }
-
-  function addUnique(list, item) {
-    const id = String(item?.id ?? item ?? "").trim();
-    if (!id) return list;
-    if (list.some(x => String(x?.id ?? x ?? "") === id)) return list;
-    return [...list, item];
-  }
-
-  function addToCollection(type, item) {
-    const c = getCollection();
-    if (!c[type]) c[type] = [];
-    c[type] = addUnique(c[type], item);
-    save(STORE_KEY, c);
-    window.showToast?.("Lagt til i samling ✅");
-    window.dispatchEvent(new Event("hg_collection_updated"));
-  }
-
-  // ---- filters ----
-  const state = {
-    hookId: null,
-    concept: null
-  };
-
-  function applyEmneFilters() {
-  // ✅ riktig mount-id (matcher markup: id="hgEmnerMount")
-  const root = document.getElementById("hgEmnerMount");
-  if (!root) return;
-
-  const items = root.querySelectorAll("[data-emne]");
-  items.forEach(el => {
-    // ✅ hent per-emne metadata fra DOM
-    const hookAttr = (el.getAttribute("data-hook") || "").trim();
-    const conceptsAttr = (el.getAttribute("data-concepts") || "").toLowerCase();
-
-    // hvis du har flere hooks i ett felt, støtt f.eks. "a,b,c"
-    const hookList = hookAttr
-      .split(",")
-      .map(s => s.trim())
-      .filter(Boolean);
-
-    let ok = true;
-
-    if (state.hookId) {
-      ok = ok && (hookAttr === state.hookId || hookList.includes(state.hookId));
+    // knowledge_universe: { [categoryId]: { dimension: [{id, topic, text}] } }
+    const uni = safeJsonParse(localStorage.getItem("knowledge_universe") || "null", null);
+    const cat = uni && typeof uni === "object" ? uni[categoryId] : null;
+    if (cat && typeof cat === "object") {
+      for (const items of Object.values(cat)) {
+        if (!Array.isArray(items)) continue;
+        for (const k of items) {
+          if (k && typeof k.id === "string") unlocked.add(k.id);
+          if (k && typeof k.topic === "string") unlocked.add("topic:" + normLc(k.topic));
+        }
+      }
     }
 
-    if (state.concept) {
-      ok = ok && conceptsAttr.includes(state.concept.toLowerCase());
+    // quiz_history: accept optional fields if present (non-breaking)
+    const hist = safeJsonParse(localStorage.getItem("quiz_history") || "[]", []);
+    if (Array.isArray(hist)) {
+      for (const h of hist) {
+        if (!h) continue;
+        const list = Array.isArray(h.unlocked_concepts)
+          ? h.unlocked_concepts
+          : (Array.isArray(h.concepts) ? h.concepts : []);
+        for (const c of list) {
+          const t = normLc(c);
+          if (t) unlocked.add("topic:" + t);
+        }
+      }
     }
 
-    el.style.display = ok ? "" : "none";
-  });
-}
-
-  function clearFilters() {
-    state.hookId = null;
-    state.concept = null;
-    applyEmneFilters();
-
-    document.querySelectorAll(".hg-chip.is-on").forEach(x => x.classList.remove("is-on"));
+    return unlocked;
   }
 
-  // ---- data fetch ----
   async function fetchJson(url) {
     const r = await fetch(url, { cache: "no-store" });
-    if (!r.ok) throw new Error(`${r.status} ${url}`);
+    if (!r.ok) throw new Error(r.status + " " + url);
     return await r.json();
   }
 
-  function extractThinkersFromFagkart(fagkart, categoryId) {
-    const cats = Array.isArray(fagkart?.categories) ? fagkart.categories : [];
-    const cat = cats.find(x => String(x?.id ?? "").trim() === String(categoryId ?? "").trim());
-    const hooks = Array.isArray(cat?.topic_hooks) ? cat.topic_hooks : [];
+  function splitCsv(str) {
+    const s = norm(str);
+    if (!s) return [];
+    return s.split(",").map(x => norm(x)).filter(Boolean);
+  }
 
-    const out = [];
-    for (const h of hooks) {
-      const thinkers = Array.isArray(h?.canon?.thinkers) ? h.canon.thinkers : [];
-      for (const t of thinkers) {
-        if (!t?.id) continue;
-        out.push({
-          id: String(t.id).trim(),
-          name: t.name || t.id,
-          why: t.why || "",
-          hook_id: String(h?.id ?? "").trim()
-        });
+  function collectFromEmner(emner) {
+    const concepts = [];
+    const thinkers = [];
+    const hooks = [];
+
+    for (const e of emner || []) {
+      if (!e) continue;
+
+      const hookId = norm(e.hook_id || e.topic_hook_id || e.hookId);
+      if (hookId) hooks.push({ id: hookId, title: hookId });
+
+      const c1 = Array.isArray(e.concepts) ? e.concepts : [];
+      const c2 = Array.isArray(e.core_concepts) ? e.core_concepts : [];
+      const c3 = Array.isArray(e.keywords) ? e.keywords : [];
+      const cAll = [...c1, ...c2, ...c3].map(norm).filter(Boolean);
+      for (const c of cAll) concepts.push({ id: "topic:" + normLc(c), title: c });
+
+      const tList =
+        (e.canon && Array.isArray(e.canon.thinkers) ? e.canon.thinkers : []) ||
+        (Array.isArray(e.thinkers) ? e.thinkers : []);
+      if (Array.isArray(tList)) {
+        for (const t of tList) {
+          if (!t) continue;
+          const id = norm(t.id || t.slug || t.name);
+          const name = norm(t.name || t.title || t.id);
+          if (id || name) thinkers.push({ id: id || normLc(name), title: name });
+        }
       }
     }
-    return out;
+
+    return {
+      concepts: uniqBy(concepts, x => x.id),
+      thinkers: uniqBy(thinkers, x => x.id),
+      hooks: uniqBy(hooks, x => x.id),
+    };
   }
 
-  function buildConceptChipsFromEmner(emnerAll, limit = 32) {
-    const counts = new Map();
+  function collectFromFagkart(fagkart, categoryId) {
+    const cat = (fagkart?.categories || []).find(c => norm(c.id) === norm(categoryId));
+    if (!cat) return { hooks: [], thinkersByHook: new Map(), thinkers: [] };
 
-    (Array.isArray(emnerAll) ? emnerAll : []).forEach(e => {
-      const core = Array.isArray(e?.core_concepts) ? e.core_concepts : [];
-      const keys = Array.isArray(e?.keywords) ? e.keywords : [];
-      [...core, ...keys].forEach(x => {
-        const k = String(x ?? "").trim();
-        if (!k) return;
-        counts.set(k, (counts.get(k) || 0) + 1);
-      });
+    const hooks = [];
+    const thinkers = [];
+    const thinkersByHook = new Map();
+
+    for (const h of (cat.topic_hooks || [])) {
+      if (!h) continue;
+      const id = norm(h.id);
+      const title = norm(h.title) || id;
+      if (!id) continue;
+
+      hooks.push({ id, title });
+
+      const tList = h?.canon?.thinkers;
+      if (Array.isArray(tList)) {
+        const local = [];
+        for (const t of tList) {
+          if (!t) continue;
+          const tid = norm(t.id || t.slug || t.name);
+          const tname = norm(t.name || t.title || t.id);
+          if (!tid && !tname) continue;
+          const obj = { id: tid || normLc(tname), title: tname };
+          local.push(obj);
+          thinkers.push(obj);
+        }
+        thinkersByHook.set(id, uniqBy(local, x => x.id));
+      }
+    }
+
+    return {
+      hooks: uniqBy(hooks, x => x.id),
+      thinkersByHook,
+      thinkers: uniqBy(thinkers, x => x.id),
+    };
+  }
+
+  function renderChip(chip, unlockedSet, activeKey) {
+    const key = chip.kind + ":" + chip.id;
+    const isActive = activeKey === key;
+    const unlocked =
+      unlockedSet && (unlockedSet.has(chip.id) || unlockedSet.has("topic:" + normLc(chip.title)));
+    const cls = [
+      "hg-chip",
+      "hg-chip-" + chip.kind,
+      unlocked ? "is-unlocked" : "",
+      isActive ? "is-active" : ""
+    ].filter(Boolean).join(" ");
+
+    return `<button class="${cls}" type="button"
+      data-chip-kind="${chip.kind}"
+      data-chip-id="${chip.id}"
+      data-chip-title="${chip.title.replaceAll('"', "&quot;")}">${chip.title}</button>`;
+  }
+
+  function applyEmneFilters(root, state) {
+    if (!root) return;
+
+    const emnes = root.querySelectorAll("[data-emne]");
+    emnes.forEach(el => {
+      const hook = normLc(el.getAttribute("data-hook"));
+      const concepts = normLc(el.getAttribute("data-concepts"));
+      const thinkers = normLc(el.getAttribute("data-thinkers"));
+
+      let ok = true;
+
+      if (state.hookId) {
+        ok = ok && hook.split(",").map(s => normLc(s)).includes(normLc(state.hookId));
+      }
+      if (state.concept) {
+        ok = ok && concepts.includes(normLc(state.concept));
+      }
+      if (state.thinkerId) {
+        ok = ok && thinkers.split(",").map(s => normLc(s)).includes(normLc(state.thinkerId));
+      }
+
+      el.style.display = ok ? "" : "none";
     });
-
-    return Array.from(counts.entries())
-      .map(([label, count]) => ({ label, count }))
-      .sort((a, b) => b.count - a.count)
-      .slice(0, limit);
   }
 
-  function renderChip(label, attrs = "") {
-    return `<button type="button" class="hg-chip" ${attrs}>${esc(label)}</button>`;
-  }
+  function renderUI(mount, data, unlockedSet, state) {
+    if (!mount) return;
 
-  function renderChipsUI({ hooks, thinkers, concepts }) {
-    const hookRow = hooks.length
-      ? hooks.map(h => renderChip(h.title, `data-chip-hook="${esc(h.id)}"`)).join("")
-      : `<span class="muted">Ingen hooks.</span>`;
+    const parts = [];
 
-    const thinkerRow = thinkers.length
-      ? thinkers.map(t => renderChip(t.name, `data-chip-thinker="${esc(t.id)}" title="${esc(t.why)}"`)).join("")
-      : `<span class="muted">Ingen tenkere.</span>`;
-
-    const conceptRow = concepts.length
-      ? concepts.map(c => renderChip(`${c.label} (${c.count})`, `data-chip-concept="${esc(c.label)}"`)).join("")
-      : `<span class="muted">Ingen begreper.</span>`;
-
-    return `
-      <div class="knowledge-block" id="hgChipsBox">
-        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;">
-          <h3 style="margin:0;">Chips</h3>
-          <button type="button" class="hg-chip" data-chip-clear>Nullstill</button>
+    const any = state.hookId || state.concept || state.thinkerId;
+    parts.push(`
+      <div class="hg-chips-bar">
+        <div class="hg-chips-left">
+          <span class="hg-chips-title">Chips</span>
+          <span class="hg-chips-hint">Trykk for å filtrere emner</span>
         </div>
-
-        <div class="muted" style="margin-top:8px;">Topic hooks</div>
-        <div class="hg-chiprow">${hookRow}</div>
-
-        <div class="muted" style="margin-top:10px;">Tenkere</div>
-        <div class="hg-chiprow">${thinkerRow}</div>
-
-        <div class="muted" style="margin-top:10px;">Begreper</div>
-        <div class="hg-chiprow">${conceptRow}</div>
-
-        <div class="muted" style="margin-top:10px;">
-          Klikk chips for å filtrere emner og/eller legge til i samling.
+        <div class="hg-chips-right">
+          <button class="hg-chip-clear" type="button" data-chip-clear ${any ? "" : "disabled"}>Nullstill</button>
         </div>
       </div>
-    `;
+    `);
+
+    if (data.hooks?.length) {
+      parts.push(`
+        <div class="hg-chip-section">
+          <div class="hg-chip-section-title">Topic hooks</div>
+          <div class="hg-chip-row">
+            ${data.hooks.map(h => renderChip({kind:"hook", id:h.id, title:h.title}, unlockedSet, state._activeKey)).join("")}
+          </div>
+        </div>
+      `);
+    }
+
+    if (data.concepts?.length) {
+      const list = data.concepts.slice(0, 60);
+      parts.push(`
+        <div class="hg-chip-section">
+          <div class="hg-chip-section-title">Begreper</div>
+          <div class="hg-chip-row">
+            ${list.map(c => renderChip({kind:"concept", id:c.id, title:c.title}, unlockedSet, state._activeKey)).join("")}
+          </div>
+        </div>
+      `);
+    }
+
+    if (data.thinkers?.length) {
+      const list = data.thinkers.slice(0, 48);
+      parts.push(`
+        <div class="hg-chip-section">
+          <div class="hg-chip-section-title">Tenkere</div>
+          <div class="hg-chip-row">
+            ${list.map(t => renderChip({kind:"thinker", id:t.id, title:t.title}, unlockedSet, state._activeKey)).join("")}
+          </div>
+        </div>
+      `);
+    }
+
+    mount.innerHTML = parts.join("\n");
   }
 
-  function wireChips({ hooksById, thinkersById }) {
-    const box = document.getElementById("hgChipsBox");
-    if (!box) return;
+  function wireUI(mount, root, data, unlockedSet, state) {
+    if (!mount) return;
 
-    box.querySelector("[data-chip-clear]")?.addEventListener("click", () => clearFilters());
-
-    box.querySelectorAll("[data-chip-hook]").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const id = btn.getAttribute("data-chip-hook");
-        const on = state.hookId === id;
-        state.hookId = on ? null : id;
-
-        btn.classList.toggle("is-on", !on);
-        applyEmneFilters();
-
-        const h = hooksById.get(id);
-        if (h) addToCollection("hooks", { id: h.id, title: h.title });
-      });
-    });
-
-    box.querySelectorAll("[data-chip-concept]").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const label = btn.getAttribute("data-chip-concept");
-        const on = state.concept === label;
-        state.concept = on ? null : label;
-
-        btn.classList.toggle("is-on", !on);
-        applyEmneFilters();
-
-        addToCollection("concepts", { id: label, title: label });
-      });
-    });
-
-    box.querySelectorAll("[data-chip-thinker]").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const id = btn.getAttribute("data-chip-thinker");
-        const t = thinkersById.get(id);
-        if (t) addToCollection("thinkers", { id: t.id, name: t.name, why: t.why });
-      });
-    });
-  }
-
-  // Public API
-  window.HGChips = {
-    // categoryId: "byliv" etc
-    // fagkartUrl: path til fagkart_by_oslo_FIXED.json (eller tilsvarende)
-    async init({ categoryId, fagkartUrl }) {
-      const cid = String(categoryId || "").trim();
-      const mount = document.getElementById("hgChipsMount");
-      if (!mount) return;
-
-      // emner (for concepts + filtering)
-      let emnerAll = [];
-      try {
-        if (window.DataHub && typeof window.DataHub.loadEmner === "function") {
-          emnerAll = await window.DataHub.loadEmner(cid);
-        }
-      } catch {}
-
-      // fagkart (for hooks + canon thinkers)
-      let fagkart = null;
-      if (fagkartUrl) {
-        try { fagkart = await fetchJson(fagkartUrl); } catch {}
+    mount.onclick = (e) => {
+      const clearBtn = e.target.closest("[data-chip-clear]");
+      if (clearBtn) {
+        state.hookId = "";
+        state.concept = "";
+        state.thinkerId = "";
+        state._activeKey = "";
+        renderUI(mount, data, unlockedSet, state);
+        applyEmneFilters(root, state);
+        return;
       }
 
-      // hooks
-      const cat = Array.isArray(fagkart?.categories)
-        ? fagkart.categories.find(x => String(x?.id ?? "") === cid)
-        : null;
+      const btn = e.target.closest("[data-chip-kind]");
+      if (!btn) return;
 
-      const hooks = Array.isArray(cat?.topic_hooks) ? cat.topic_hooks.map(h => ({
-        id: String(h?.id ?? "").trim(),
-        title: h?.title || h?.id
-      })).filter(x => x.id) : [];
+      const kind = btn.getAttribute("data-chip-kind");
+      const id = btn.getAttribute("data-chip-id");
+      const title = btn.getAttribute("data-chip-title") || "";
 
-      // thinkers (dedup)
-      const thinkersRaw = fagkart ? extractThinkersFromFagkart(fagkart, cid) : [];
-      const thinkersMap = new Map();
-      thinkersRaw.forEach(t => { if (t?.id && !thinkersMap.has(t.id)) thinkersMap.set(t.id, t); });
+      const key = kind + ":" + id;
+      const isSame = state._activeKey === key;
 
-      const concepts = buildConceptChipsFromEmner(emnerAll, 36);
+      if (kind === "hook") {
+        state.hookId = isSame ? "" : id;
+        state.concept = "";
+        state.thinkerId = "";
+      } else if (kind === "concept") {
+        state.concept = isSame ? "" : title;
+        state.hookId = "";
+        state.thinkerId = "";
+      } else if (kind === "thinker") {
+        state.thinkerId = isSame ? "" : id;
+        state.hookId = "";
+        state.concept = "";
+      }
 
-      // render
-      mount.innerHTML = renderChipsUI({
-        hooks,
-        thinkers: Array.from(thinkersMap.values()),
-        concepts
-      });
+      state._activeKey = isSame ? "" : key;
 
-      // wire
-      const hooksById = new Map(hooks.map(h => [h.id, h]));
-      wireChips({ hooksById, thinkersById: thinkersMap });
+      renderUI(mount, data, unlockedSet, state);
+      applyEmneFilters(root, state);
+    };
+  }
+
+  async function init(opts) {
+    const categoryId = norm(opts?.categoryId);
+    if (!categoryId) return;
+
+    const mountId = norm(opts?.mountId) || DEFAULT_MOUNT_ID;
+    const mount = document.getElementById(mountId);
+    if (!mount) return;
+
+    const root = document.getElementById("hgEmnerMount") || document;
+
+    let fagkart = null;
+    const fagkartUrl = norm(opts?.fagkartUrl) || norm(window.FAGKART_URL);
+    if (fagkartUrl) {
+      try { fagkart = await fetchJson(fagkartUrl); } catch (e) {
+        if (window.DEBUG) console.warn("[HGChips] fagkart load failed", e);
+      }
     }
-  };
+
+    let emner = [];
+    try {
+      if (window.DataHub && typeof window.DataHub.loadEmner === "function") {
+        emner = await window.DataHub.loadEmner(categoryId);
+      } else if (opts?.emnerUrl) {
+        emner = await fetchJson(opts.emnerUrl);
+      }
+    } catch (e) {
+      if (window.DEBUG) console.warn("[HGChips] emner load failed", e);
+    }
+
+    const list = Array.isArray(emner) ? emner : (Array.isArray(emner?.emner) ? emner.emner : []);
+    const fromEmner = collectFromEmner(list);
+    const fromFagkart = collectFromFagkart(fagkart, categoryId);
+
+    const hooks = uniqBy([...(fromFagkart.hooks || []), ...(fromEmner.hooks || [])], x => x.id);
+    const concepts = fromEmner.concepts || [];
+    const thinkers = uniqBy([...(fromFagkart.thinkers || []), ...(fromEmner.thinkers || [])], x => x.id);
+
+    const unlockedSet = getUnlockedConceptIds(categoryId);
+
+    const data = { hooks, concepts, thinkers };
+    const state = { hookId: "", concept: "", thinkerId: "", _activeKey: "" };
+
+    renderUI(mount, data, unlockedSet, state);
+    wireUI(mount, root, data, unlockedSet, state);
+  }
+
+  window.HGChips = window.HGChips || {};
+  window.HGChips.init = init;
 })();
