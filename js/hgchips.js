@@ -59,9 +59,7 @@
 
     const items = root.querySelectorAll("[data-emne]");
     items.forEach(el => {
-      const hook = el.getAttribute("data-hook") || "";
-      const concepts = (el.getAttribute("data-concepts") || "").toLowerCase();
-
+    const emneId = el.getAttribute("data-emne") || "";
       let ok = true;
       if (state.hookId) ok = ok && hook === state.hookId;
       if (state.concept) ok = ok && concepts.includes(state.concept.toLowerCase());
