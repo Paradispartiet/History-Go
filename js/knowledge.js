@@ -490,74 +490,88 @@ window.computeEmneDekningV2 = computeEmneDekningV2;
   }
 
   function renderEmneAccordion(emne) {
-    const title = emne?.title || emne?.short_label || emne?.emne_id || "Emne";
-    const desc  = String(emne?.description || "").trim();
+  const title = emne?.title || emne?.short_label || emne?.emne_id || "Emne";
+  const desc  = String(emne?.description || "").trim();
 
-    const goals = Array.isArray(emne?.goals) ? emne.goals : [];
-    const cps   = Array.isArray(emne?.checkpoints) ? emne.checkpoints : [];
+  // Støtt begge: learning_goals (ny) og goals (kompat)
+  const goals =
+    Array.isArray(emne?.learning_goals) ? emne.learning_goals :
+    Array.isArray(emne?.goals) ? emne.goals :
+    [];
 
-    const core  = Array.isArray(emne?.core_concepts) ? emne.core_concepts : [];
-    const keys  = Array.isArray(emne?.keywords) ? emne.keywords : [];
-    const dims  = Array.isArray(emne?.dimensions) ? emne.dimensions : [];
+  const cps = Array.isArray(emne?.checkpoints) ? emne.checkpoints : [];
 
-    const chips = [...core.slice(0, 6), ...keys.slice(0, 4)].slice(0, 10);
+  const core = Array.isArray(emne?.core_concepts) ? emne.core_concepts : [];
+  const keys = Array.isArray(emne?.keywords) ? emne.keywords : [];
+  const dims = Array.isArray(emne?.dimensions) ? emne.dimensions : [];
 
-    return `
-      <details class="hg-emne" style="padding:10px 12px;border-radius:14px;background:rgba(255,255,255,0.06);">
-        <summary style="cursor:pointer; display:flex; justify-content:space-between; gap:10px; align-items:center;">
-          <span><strong>${esc(title)}</strong></span>
-          <span class="muted">${esc(emne?.level || "")}</span>
-        </summary>
+  const chips = [...core.slice(0, 6), ...keys.slice(0, 4)].slice(0, 10);
 
-        ${
-          chips.length
-            ? `<div style="margin-top:10px; display:flex; flex-wrap:wrap; gap:8px;">
-                 ${chips.map(x => `<span style="padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.08);">${esc(x)}</span>`).join("")}
-               </div>`
-            : ""
-        }
+  const levelTxt = String(emne?.level || "").trim();
 
-        ${
-          desc
-            ? `<div style="margin-top:10px; line-height:1.5;">${esc(desc)}</div>`
-            : `<div class="muted" style="margin-top:10px;">Ingen emnebeskrivelse.</div>`
-        }
+  // Hjelpere: mål/checkpoints kan være string ELLER objekt
+  const goalLine = (g) => {
+    if (typeof g === "string") return g;
+    if (g && typeof g === "object") return g.title || g.text || g.goal || g.label || g.id || g.goal_id || "";
+    return "";
+  };
 
-        ${
-          goals.length
-            ? `<div style="margin-top:12px;">
-                 <div class="muted"><strong>Kursmål</strong></div>
-                 <ul style="margin:6px 0 0 0; padding-left:18px;">
-                   ${goals.map(g => `<li>${esc(g)}</li>`).join("")}
-                 </ul>
-               </div>`
-            : ""
-        }
+  const cpLine = (c) => {
+    if (typeof c === "string") return c;
+    if (c && typeof c === "object") return c.title || c.text || c.label || c.cp_id || c.id || "";
+    return "";
+  };
 
-        ${
-          cps.length
-            ? `<div style="margin-top:12px;">
-                 <div class="muted"><strong>Milepæler</strong></div>
-                 <ul style="margin:6px 0 0 0; padding-left:18px;">
-                   ${cps.map(c => `<li>${esc(c)}</li>`).join("")}
-                 </ul>
-               </div>`
-            : ""
-        }
+  const goalItems = goals.map(goalLine).map(s => String(s||"").trim()).filter(Boolean);
+  const cpItems   = cps.map(cpLine).map(s => String(s||"").trim()).filter(Boolean);
 
-        ${
-          dims.length
-            ? `<div style="margin-top:12px;">
-                 <div class="muted"><strong>Dimensjoner</strong></div>
-                 <div style="margin-top:6px; display:flex; flex-wrap:wrap; gap:8px;">
-                   ${dims.map(d => `<span style="padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.08);">${esc(d)}</span>`).join("")}
-                 </div>
-               </div>`
-            : ""
-        }
-      </details>
-    `;
-  }
+  return `
+    <details class="hg-emne">
+      <summary class="hg-emne-summary">
+        <span class="hg-emne-title"><strong>${esc(title)}</strong></span>
+        ${levelTxt ? `<span class="muted">${esc(levelTxt)}</span>` : ``}
+      </summary>
+
+      ${chips.length ? `
+        <div class="hg-chips-row">
+          ${chips.map(x => `<span class="hg-chip">${esc(x)}</span>`).join("")}
+        </div>
+      ` : ``}
+
+      ${desc
+        ? `<div class="hg-emne-desc">${esc(desc)}</div>`
+        : `<div class="muted" style="margin-top:10px;">Ingen emnebeskrivelse.</div>`
+      }
+
+      ${goalItems.length ? `
+        <div style="margin-top:12px;">
+          <div class="muted"><strong>Kursmål</strong></div>
+          <ul style="margin:6px 0 0 0; padding-left:18px;">
+            ${goalItems.map(t => `<li>${esc(t)}</li>`).join("")}
+          </ul>
+        </div>
+      ` : ``}
+
+      ${cpItems.length ? `
+        <div style="margin-top:12px;">
+          <div class="muted"><strong>Milepæler</strong></div>
+          <ul style="margin:6px 0 0 0; padding-left:18px;">
+            ${cpItems.map(t => `<li>${esc(t)}</li>`).join("")}
+          </ul>
+        </div>
+      ` : ``}
+
+      ${dims.length ? `
+        <div style="margin-top:12px;">
+          <div class="muted"><strong>Dimensjoner</strong></div>
+          <div class="hg-chips-row">
+            ${dims.map(d => `<span class="hg-chip">${esc(d)}</span>`).join("")}
+          </div>
+        </div>
+      ` : ``}
+    </details>
+  `;
+}
 
   async function fillEmnerBox(categoryId) {
     const cid = String(categoryId || "").trim();
