@@ -1010,27 +1010,25 @@ function wirePlaceCardCollapseTapToExpand() {
 // 10. INITIALISERING OG BOOT
 // ==============================
 function wire() {
-  // Testmodus (toggle)
+  // Testmodus
   el.test?.addEventListener("change", (e) => {
     const on = !!e.target.checked;
 
-    // ✅ ÉN global sannhet + persist
-    window.TEST_MODE = on;
-    try { localStorage.setItem("HG_TEST_MODE", on ? "1" : "0"); } catch {}
-
     if (on) {
+      window.setPos?.(START.lat, START.lon, null);
+
       if (el.status) el.status.textContent = "Testmodus: Oslo sentrum";
       showToast("Testmodus PÅ");
+
       window.HG_ENV = window.HG_ENV || {};
       window.HG_ENV.geo = "test";
     } else {
-      if (el.status) el.status.textContent = "";
       showToast("Testmodus AV");
       window.clearPos?.("test_off");
       requestLocation();
     }
 
-    // Oppdater lister
+    // NB: krever at du har window.renderNearbyPlaces = renderNearbyPlaces;
     window.renderNearbyPlaces?.();
   });
 
@@ -1054,7 +1052,7 @@ function wire() {
     requestLocation();
   });
 
-  // placeCard tap-strip
+  // ✅ gjør placeCard-klikk aktivt (tap stripen → expand)
   wirePlaceCardCollapseTapToExpand();
 }
 
@@ -1201,17 +1199,12 @@ function wireMiniProfileLinks() {
 
 // BOOT
 async function boot() {
-  // ✅ Testmodus (må settes tidlig i kjørerrekken)
-  window.TEST_MODE = localStorage.getItem("HG_TEST_MODE") === "1";
-  const testEl = document.getElementById("testToggle");
-  if (testEl) testEl.checked = window.TEST_MODE;
-
   // Init map + eksponer global MAP (routes.js forventer MAP)
   const map = window.HGMap?.initMap({ containerId: "map", start: START });
-  if (map) {
-    MAP = map;        // ← viktig: lokal variabel i app.js
-    window.MAP = map; // ← viktig: global for routes.js
-  }
+if (map) {
+  MAP = map;        // ← viktig: lokal variabel i app.js
+  window.MAP = map; // ← viktig: global for routes.js
+}
 
   // Eksponer START globalt (routes.js bruker START som fallback)
   window.START = START;
@@ -1227,52 +1220,53 @@ async function boot() {
     PEOPLE = people;
     TAGS_REGISTRY = tags;
 
-    // ✅ behold linking
-    if (typeof linkPeopleToPlaces === "function") {
-      linkPeopleToPlaces();
-    } else {
-      if (DEBUG) console.warn("linkPeopleToPlaces() mangler – hopper over linking");
-    }
+if (typeof linkPeopleToPlaces === "function") {
+  linkPeopleToPlaces();
+} else {
+  if (DEBUG) console.warn("linkPeopleToPlaces() mangler – hopper over linking");
+}
 
-    // ✅ INIT QUIZ-MODUL (ETTER at PLACES/PEOPLE er lastet)
-    if (window.QuizEngine) {
-      QuizEngine.init({
-        getPersonById: id => PEOPLE.find(p => p.id === id),
-        getPlaceById:  id => PLACES.find(p => p.id === id),
 
-        getVisited: () => visited,
+   // ✅ INIT QUIZ-MODUL (ETTER at PLACES/PEOPLE er lastet)
+if (window.QuizEngine) {
+  QuizEngine.init({
+    getPersonById: id => PEOPLE.find(p => p.id === id),
+    getPlaceById:  id => PLACES.find(p => p.id === id),
 
-        // ✅ tryggere enn el.test (og matcher resten av testmodus-opplegget)
-        isTestMode: () => !!window.TEST_MODE,
+    getVisited: () => visited,
+    isTestMode: () => !!el.test?.checked,
 
-        showToast,
+    showToast,
 
-        // progression / rewards
-        addCompletedQuizAndMaybePoint,
+    // progression / rewards
+    addCompletedQuizAndMaybePoint,
 
-        showRewardPerson,
-        showRewardPlace,
-        showPersonPopup,
-        showPlacePopup,
+    showRewardPerson,
+    showRewardPlace,
+    showPersonPopup,
+    showPlacePopup,
 
-        // wrappers
-        pulseMarker: (lat, lon) => {
-          if (typeof window.pulseMarker === "function") window.pulseMarker(lat, lon);
-        },
-        savePeopleCollected: (personId) => {
-          peopleCollected[personId] = true;
-          savePeople();
-        },
-        dispatchProfileUpdate: () => window.dispatchEvent(new Event("updateProfile")),
+    // wrappers
+    pulseMarker: (lat, lon) => {
+      if (typeof window.pulseMarker === "function") window.pulseMarker(lat, lon);
+    },
+    savePeopleCollected: (personId) => {
+      peopleCollected[personId] = true;
+      savePeople();
+    },
+    dispatchProfileUpdate: () => window.dispatchEvent(new Event("updateProfile")),
 
-        // ✅ hooks (kun ved riktige svar)
-        saveKnowledgeFromQuiz: window.saveKnowledgeFromQuiz || null,
-        saveTriviaPoint: window.saveTriviaPoint || null
-      });
-    } else {
-      if (DEBUG) console.warn("QuizEngine ikke lastet");
-    }
+    // ✅ hooks (kun ved riktige svar)
+    saveKnowledgeFromQuiz: window.saveKnowledgeFromQuiz || null,
+    saveTriviaPoint: window.saveTriviaPoint || null
+  });
+} else {
+if (DEBUG) console.warn("QuizEngine ikke lastet");
+}
 
+
+
+    
     // ✅ Gi kartmodulen data + callbacks (ETTER data er lastet)
     if (window.HGMap) {
       HGMap.setPlaces(PLACES);
@@ -1286,21 +1280,18 @@ async function boot() {
       HGMap.maybeDrawMarkers();
     }
 
-    // ✅ Resten (må være inni try etter data/map)
-    await ensureBadgesLoaded();
-    wire();
-    requestLocation();
-    renderCollection();
-    renderGallery();
-
   } catch (e) {
-    console.error("Feil ved lasting av data:", e);
-    showToast?.("Kunne ikke laste steder/personer");
+console.error("Feil ved lasting av data:", e);
+  if (DEBUG) console.error("[DEBUG] fetch/data-payload feilet", e?.stack || e);
+    showToast("Kunne ikke laste steder/personer");
   }
+
+  await ensureBadgesLoaded();
+  wire();
+  requestLocation();
+  renderCollection();
+  renderGallery();
 }
-
-
-  
 
 document.addEventListener("DOMContentLoaded", () => {
   safeRun("boot", boot);
