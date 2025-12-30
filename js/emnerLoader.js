@@ -57,7 +57,8 @@ window.Emner = (function () {
     if (cache[sid]) return cache[sid];
 
     try {
-      const res = await fetch(url, { cache: "no-store" });
+      const abs = new URL(url, document.baseURI).toString();
+      const res = await fetch(abs, { cache: "no-store" });
       if (!res.ok) {
         if (DEBUG) console.warn("[Emner] Kunne ikke laste emner for", sid, res.status, url);
         cache[sid] = [];
