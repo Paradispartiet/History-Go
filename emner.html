@@ -379,33 +379,34 @@
             const matchCount = Number(r.matchCount) || 0;
             const percent = Number(r.percent) || 0;
             const complete = total > 0 && matchCount === total;
-
-            if (window.DEBUG) console.log("dekning row", r);
+            
             return `
-              <li class="emne-item">
-                <div class="emne-header">
-                  <strong>${r.title || "Emne"}</strong>
-                  <small>${percent}% (${matchCount}/${total})</small>
-                </div>
-                <div class="bar-bg">
-                  <div class="bar" style="width:${percent}%;"></div>
-                </div>
-                <div class="emne-meta">
-                  <small>
-                    ${complete
-                      ? `<span class="emne-complete">✔ Du dekker alle kjernebegrepene i dette emnet</span>`
-                      : `Mangler ${Math.max(0, (total - matchCount))} kjernebegreper`}
-                  </small>
+  <li class="emne-item">
+    <div class="emne-header">
+      <strong>${r.title || "Emne"}</strong>
+      <small>${percent}% (${matchCount}/${total})</small>
+    </div>
 
-                  <small>
-                    <a class="back-link"
-                       href="merker/${subjectId}/emne.html?id=${encodeURIComponent(r.emne_id || r.id || "")}">
-                      Åpne emneportal →
-                    </a>
-                  </small>
-                </div>
-              </li>
-            `;
+    <div class="bar-bg">
+      <div class="bar" style="width:${percent}%;"></div>
+    </div>
+
+    <div class="emne-meta">
+      <small>
+        ${complete
+          ? `<span class="emne-complete">✔ Du dekker alle kjernebegrepene i dette emnet</span>`
+          : `Mangler ${Math.max(0, (total - matchCount))} kjernebegreper`}
+      </small>
+
+      <small>
+        <a class="back-link"
+           href="merker/${subjectId}/emne.html?id=${encodeURIComponent(r.emne_id || r.id || "")}">
+          Åpne emneportal →
+        </a>
+      </small>
+    </div>
+  </li>
+`;
 
         // Kurs-panelet følger valgt fagfelt
         renderCoursesPanel(subjectId);
