@@ -358,29 +358,34 @@
   }
 
 
-// --- intern state: husk siste init-opts for refresh ---
-let _lastOpts = null;
 
-async function refresh() {
-  if (!_lastOpts) return;
-  try { await init(_lastOpts); } catch (e) {
-    if (window.DEBUG) console.warn("[HGChips] refresh failed", e);
+  // --- intern state: husk siste init-opts for refresh ---
+  let _lastOpts = null;
+
+  // Re-init med sist kjente opts (brukes når unlocks oppdateres)
+  async function refresh() {
+    if (!_lastOpts) return;
+    try {
+      await init(_lastOpts);
+    } catch (e) {
+      if (window.DEBUG) console.warn("[HGChips] refresh failed", e);
+    }
   }
-}
 
-// Public API (erstatt gammel HGChips.init = init)
-window.HGChips = window.HGChips || {};
-window.HGChips.init = async function (opts) {
-  if (opts) _lastOpts = opts;      // ikke null-still ved tomt kall
-  return init(opts || _lastOpts);  // bruk sist kjente
-};
-window.HGChips.refresh = refresh;
+  // Public API
+  window.HGChips = window.HGChips || {};
 
-// Wire unlock-event kun én gang
-if (!window.__HGCHIPS_UNLOCKS_WIRED__) {
-  window.__HGCHIPS_UNLOCKS_WIRED__ = true;
-  window.addEventListener("hg:unlocks", () => window.HGChips.refresh?.());
-}
-  
+  // init kan kalles med opts (første gang) eller uten (senere). Vi beholder sist kjente.
+  window.HGChips.init = async function (opts) {
+    if (opts) _lastOpts = opts;
+    return init(opts || _lastOpts);
+  };
 
+  window.HGChips.refresh = refresh;
+
+  // Re-render chips når unlocks oppdateres (quiz -> HGUnlocks.recordFromQuiz -> event)
+  if (!window.__HGCHIPS_UNLOCKS_WIRED__) {
+    window.__HGCHIPS_UNLOCKS_WIRED__ = true;
+    window.addEventListener("hg:unlocks", () => window.HGChips.refresh?.());
+  }
 })();
