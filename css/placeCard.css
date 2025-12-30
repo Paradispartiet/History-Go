@@ -314,6 +314,10 @@
   padding: 0 var(--pc-pad) calc(var(--pc-pad) + env(safe-area-inset-bottom));
   background: var(--panel-bg, #000);
   border-top: 1px solid rgba(255,255,255,.06);
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 /* Actions: ikke sticky lenger (footer er fast) */
@@ -325,12 +329,23 @@
   background: transparent;
 }
 
-/* MiniProfile nederst: ingen ekstra spacing som stjeler plass */
-#placeCard #miniProfile{
-  margin-top: 10px;
-  margin-bottom: 0;
+/* MiniProfile venstre, NextUp høyre (alltid side om side) */
+#placeCard .pc-footer-split{
+  display: grid;
+  grid-template-columns: clamp(240px, 36vw, 320px) 1fr;
+  gap: 12px;
+  align-items: start;
+  width: 100%;
 }
 
+#placeCard .pc-nextup-right{
+  min-width: 0;
+}
+
+#placeCard #miniProfile{
+  margin: 0;        /* fjern dobbel margin-regel */
+  width: 100%;
+}
 /* --- FIX: pcPeople / personlinjer skal ikke være grå --- */
 #pcPeople,
 .pc-people {
