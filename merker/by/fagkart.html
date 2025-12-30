@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <title>History Go – BY & ARKITEKTUR (fagkart)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Fagkart og emner for merket BY & ARKITEKTUR.">
+  <link rel="stylesheet" href="../merker.css">
+</head>
+
+<body class="merke-side merke-by merke-fagkart">
+
+  <nav class="hg-topnav">
+    <a href="../../index.html" class="nav-logo">
+      <img src="../../bilder/ui/historygo_logo.PNG" class="hg-logo-nav" alt="History Go logo">
+    </a>
+
+    <div class="nav-dropdown">
+      <button class="nav-dropbtn">Merker ▼</button>
+      <div class="nav-dropdown-content">
+        <a href="../merke_historie.html">Historie</a>
+        <a href="../merke_vitenskap.html">Vitenskap</a>
+        <a href="../merke_kunst.html">Kunst & Kultur</a>
+        <a href="../merke_natur.html">Natur & Miljø</a>
+        <a href="../merke_musikk.html">Musikk</a>
+        <a href="../merke_populaerkultur.html">Populærkultur</a>
+        <a href="../merke_subkultur.html">Subkultur</a>
+        <a href="../merke_sport.html">Sport</a>
+        <a href="index.html" class="active">By & Arkitektur</a>
+        <a href="../merke_naringsliv.html">Næringsliv</a>
+        <a href="../merke_litteratur.html">Litteratur</a>
+        <a href="../merke_filosofi.html">Filosofi</a>
+      </div>
+    </div>
+
+    <a href="../merker.html" class="nav-link">Alle merker</a>
+  </nav>
+
+
+  <header class="merke-header">
+    <h1>Fagkart — BY & ARKITEKTUR</h1>
+    <p class="merke-ingress">
+      Velg et emne for å gå nedover i faget. Hvert emne har egen underside.
+    </p>
+    <div class="merke-actions">
+      <a href="index.html" class="hg-btn">← Til merket</a>
+      <a href="teori.html" class="hg-btn">Les teori →</a>
+    </div>
+  </header>
+
+  <main class="merke-main">
+
+    <section class="merke-blokk" id="emner">
+      <h2>Emner</h2>
+      <p class="hg-muted">
+        Listen rendres fra <code>emner_by.json</code>. (Hvis ingenting vises: sjekk sti i scriptet nederst.)
+      </p>
+
+      <div id="emneListeBy" class="hg-emneliste">
+        <p class="hg-muted">Laster emner…</p>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    // ========= KONFIG =========
+    // Standard: emner ligger i /emner/ på rotnivå (relativt fra /merker/by/)
+    // Hvis dine emner ligger et annet sted, endre denne én linjen:
+    const EMNER_PATH = "../../emner/emner_by.json";
+
+    // ========= HELPERS =========
+    function esc(s) {
+      return String(s ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    async function fetchJson(path) {
+      const url = new URL(path, document.baseURI).toString();
+      const r = await fetch(url, { cache: "no-store" });
+      if (!r.ok) throw new Error(`${r.status} ${url}`);
+      return await r.json();
+    }
+
+    function normalizeEmner(data) {
+      if (Array.isArray(data)) return data;
+      if (Array.isArray(data?.emner)) return data.emner;
+      if (Array.isArray(data?.items)) return data.items;
+      return [];
+    }
+
+    function renderEmner(list, mount) {
+      if (!list.length) {
+        mount.innerHTML = `<p class="hg-muted">Ingen emner funnet (tom fil eller feil format).</p>`;
+        return;
+      }
+
+      const html = `
+        <ul class="hg-emner">
+          ${
+            list.map(e => {
+              const title = esc(e.title || e.name || e.short_label || e.emne_id || "Uten tittel");
+              const desc  = esc(e.description || "");
+              const label = esc(e.short_label || "");
+              const id    = esc(e.emne_id || e.id || "");
+
+              const href = `emne.html?id=${encodeURIComponent(id)}`;
+
+              return `
+                <li class="hg-emne">
+                  <a class="hg-emne-link" href="${href}" data-emne="${id}">
+                    <div class="hg-emne-title">${title}</div>
+                    ${label ? `<div class="hg-emne-label">${label}</div>` : ``}
+                    ${desc  ? `<div class="hg-emne-desc">${desc}</div>` : ``}
+                  </a>
+                </li>
+              `;
+            }).join("")
+          }
+        </ul>
+      `;
+
+      mount.innerHTML = html;
+    }
+
+    document.addEventListener("DOMContentLoaded", async () => {
+      const mount = document.getElementById("emneListeBy");
+      if (!mount) return;
+
+      try {
+        const data = await fetchJson(EMNER_PATH);
+        const emner = normalizeEmner(data);
+        renderEmner(emner, mount);
+      } catch (e) {
+        console.error("[by/fagkart] emner load failed", e);
+        mount.innerHTML = `
+          <p class="hg-muted">Klarte ikke laste emner.</p>
+          <p class="hg-muted">Sjekk at filen finnes og at <code>EMNER_PATH</code> er riktig:</p>
+          <p class="hg-muted"><code>${esc(EMNER_PATH)}</code></p>
+        `;
+      }
+    });
+  </script>
+
+</body>
+</html>
