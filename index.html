@@ -124,26 +124,25 @@
 </div>
 
   <!-- PLACE CARD -->
-  <div id="placeCard" aria-hidden="true">
-    <div class="pc-body">
+<div id="placeCard" aria-hidden="true">
+  <div class="pc-body">
 
-      <!-- SCROLL-DEL -->
-      <div class="pc-scroll">
-        <div class="pc-main">
-          <img id="pcImage" class="pc-img" src="" alt="">
-          <div class="pc-text">
-            <h2 id="pcTitle"></h2>
-            <div id="pcMeta" class="pc-meta"></div>
-            <p id="pcDesc" class="pc-desc"></p>
-            <div id="pcNextUpMount"></div>
-          </div>
+    <!-- INNHOLD (IKKE SCROLL) -->
+    <div class="pc-scroll">
+      <div class="pc-main">
+        <img id="pcImage" class="pc-img" src="" alt="">
+        <div class="pc-text">
+          <h2 id="pcTitle"></h2>
+          <div id="pcMeta" class="pc-meta"></div>
+          <p id="pcDesc" class="pc-desc"></p>
         </div>
-
-        <div id="pcPeople" class="pc-people"></div>
       </div>
 
-      <!-- FAST BUNN -->
-      <div class="pc-footer">
+      <div id="pcPeople" class="pc-people"></div>
+    </div>
+
+    <!-- FAST BUNN -->
+    <div class="pc-footer">
 
       <div class="pc-actions">
         <button id="pcInfo"    class="secondary">Mer info</button>
@@ -152,13 +151,16 @@
         <button id="pcRoute"   class="ghost">Rute</button>
 
         <button id="pcObserve" class="ghost">👁️ Observasjon</button>
-
         <button id="pcNote"    class="ghost">📝 Notat</button>
-        <button id="pcClose"   class="ghost"
+
+        <button id="pcClose" class="ghost"
           onclick="document.getElementById('placeCard').setAttribute('aria-hidden','true')">✕</button>
       </div>
 
-        <!-- MINI-PROFIL -->
+      <!-- NY: footer-splitt (UNDER actions) -->
+      <div class="pc-footer-split">
+
+        <!-- VENSTRE: MINI-PROFIL -->
         <section id="miniProfile" class="panel mini-profile">
           <div class="info">
             <div class="profile-top">
@@ -169,7 +171,7 @@
             <p id="miniStats" class="muted">
               <span id="linkPlaces" class="linkish">0 steder</span> ·
               <span id="linkBadges" class="linkish">0 merker</span> ·
-              <span id="linkQuiz"   class="linkish">0 quizzer</span>
+              <span id="linkQuiz" class="linkish">0 quizzer</span>
             </p>
 
             <div id="miniBadges" class="profile-badges"></div>
@@ -181,10 +183,14 @@
           </div>
         </section>
 
+        <!-- HØYRE: FØRST / NESTE / FORDI -->
+        <div id="pcNextUpMount" class="pc-nextup-right"></div>
+
       </div>
     </div>
-  </div>
 
+  </div>
+</div>
   <!-- SERVICE WORKER -->
   <script>
     if ("serviceWorker" in navigator) {
