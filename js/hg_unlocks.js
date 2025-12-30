@@ -33,8 +33,11 @@
   }
 
   function uniqPush(arr, values) {
-    const set = new Set(arr || []);
-    asArr(values).forEach(v => set.add(v));
+    const set = new Set(Array.isArray(arr) ? arr : []);
+    asArr(values).forEach((v) => {
+      const s = String(v || "").trim();
+      if (s) set.add(s);
+    });
     return Array.from(set);
   }
 
@@ -43,10 +46,12 @@
     return String(s || "").trim();
   }
 
+  // recordFromQuiz({ quizId, categoryId, item, targetId })
   function recordFromQuiz({ quizId, categoryId, item, targetId }) {
     const db = load();
+
     const qid = normId(quizId || targetId || item?.quiz_id || item?.id || "unknown");
-    const cat = normId(categoryId || item?.categoryId || item?.category_id || "");
+    const cat = normId(categoryId || item?.categoryId || item?.category_id || item?.category || "");
 
     db.byQuiz = db.byQuiz || {};
     db.byQuiz[qid] = db.byQuiz[qid] || {
@@ -73,6 +78,7 @@
       item?.hook ||
       item?.hooks ||
       item?.emne_hook ||
+      item?.topicHook ||
       "";
 
     const concepts =
@@ -85,6 +91,7 @@
       item?.thinkers ||
       item?.canon_thinkers ||
       item?.canon?.thinkers ||
+      item?.canonThinkers ||
       "";
 
     const knowledgeIds =
@@ -104,6 +111,7 @@
       item?.emneId ||
       item?.emne_ids ||
       item?.related_emner ||
+      item?.relatedEmner ||
       [];
 
     // ---- merge (unik) ----
