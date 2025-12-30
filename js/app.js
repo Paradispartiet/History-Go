@@ -1204,11 +1204,17 @@ function wireMiniProfileLinks() {
 
 // BOOT
 async function boot() {
+  // ✅ Testmodus (må settes tidlig i kjørerrekken)
+  window.TEST_MODE = localStorage.getItem("HG_TEST_MODE") === "1";
+  const testEl = document.getElementById("testToggle");
+  if (testEl) testEl.checked = window.TEST_MODE;
+
   // Init map + eksponer global MAP (routes.js forventer MAP)
   const map = window.HGMap?.initMap({ containerId: "map", start: START });
-if (map) {
-  MAP = map;        // ← viktig: lokal variabel i app.js
-  window.MAP = map; // ← viktig: global for routes.js
+  if (map) {
+    MAP = map;        // ← viktig: lokal variabel i app.js
+    window.MAP = map; // ← viktig: global for routes.js
+  }
 }
 
   // Eksponer START globalt (routes.js bruker START som fallback)
