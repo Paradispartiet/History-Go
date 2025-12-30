@@ -395,7 +395,7 @@ if (ok) {
                 API.saveKnowledgeFromQuiz(
                   {
                     id: `${tid}_${(q.topic || q.question || "").replace(/\s+/g, "_")}`.toLowerCase(),
-                    categoryId: categoryId || "vitenskap",
+                    categoryId: categoryId || "by",
                     dimension: q.dimension,
                     topic: q.topic,
                     question: q.question,
@@ -407,7 +407,7 @@ if (ok) {
 
                     core_concepts: Array.isArray(q.core_concepts) ? q.core_concepts : []
                   },
-                  { categoryId: categoryId || "vitenskap", targetId: tid }
+                  { categoryId: categoryId || "by", targetId: tid }
                 );
               } catch (e) {
                 dwarn("saveKnowledgeFromQuiz failed", e);
