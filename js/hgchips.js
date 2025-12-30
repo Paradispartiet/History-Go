@@ -357,6 +357,30 @@
     wireUI(mount, root, data, unlockedSet, state);
   }
 
-  window.HGChips = window.HGChips || {};
-  window.HGChips.init = init;
+
+// --- intern state: husk siste init-opts for refresh ---
+let _lastOpts = null;
+
+async function refresh() {
+  if (!_lastOpts) return;
+  try { await init(_lastOpts); } catch (e) {
+    if (window.DEBUG) console.warn("[HGChips] refresh failed", e);
+  }
+}
+
+// Public API (erstatt gammel HGChips.init = init)
+window.HGChips = window.HGChips || {};
+window.HGChips.init = async function (opts) {
+  if (opts) _lastOpts = opts;      // ikke null-still ved tomt kall
+  return init(opts || _lastOpts);  // bruk sist kjente
+};
+window.HGChips.refresh = refresh;
+
+// Wire unlock-event kun én gang
+if (!window.__HGCHIPS_UNLOCKS_WIRED__) {
+  window.__HGCHIPS_UNLOCKS_WIRED__ = true;
+  window.addEventListener("hg:unlocks", () => window.HGChips.refresh?.());
+}
+  
+
 })();
