@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <title>History Go – Emne (BY)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Emne-underside for BY & ARKITEKTUR.">
+  <link rel="stylesheet" href="../merker.css">
+</head>
+
+<body class="merke-side merke-by merke-emne">
+
+  <nav class="hg-topnav">
+    <a href="../../index.html" class="nav-logo">
+      <img src="../../bilder/ui/historygo_logo.PNG" class="hg-logo-nav" alt="History Go logo">
+    </a>
+
+    <div class="nav-dropdown">
+      <button class="nav-dropbtn">Merker ▼</button>
+      <div class="nav-dropdown-content">
+        <a href="../merke_historie.html">Historie</a>
+        <a href="../merke_vitenskap.html">Vitenskap</a>
+        <a href="../merke_kunst.html">Kunst & Kultur</a>
+        <a href="../merke_natur.html">Natur & Miljø</a>
+        <a href="../merke_musikk.html">Musikk</a>
+        <a href="../merke_populaerkultur.html">Populærkultur</a>
+        <a href="../merke_subkultur.html">Subkultur</a>
+        <a href="../merke_sport.html">Sport</a>
+        <a href="index.html" class="active">By & Arkitektur</a>
+        <a href="../merke_naringsliv.html">Næringsliv</a>
+        <a href="../merke_litteratur.html">Litteratur</a>
+        <a href="../merke_filosofi.html">Filosofi</a>
+      </div>
+    </div>
+
+    <a href="../merker.html" class="nav-link">Alle merker</a>
+  </nav>
+
+
+  <header class="merke-header">
+    <h1 id="emneTitle">Emne</h1>
+    <p class="merke-ingress" id="emneIngress">Laster…</p>
+
+    <div class="merke-actions">
+      <a href="fagkart.html" class="hg-btn">← Til fagkart</a>
+      <a href="index.html" class="hg-btn">Til merket</a>
+      <a href="teori.html" class="hg-btn">Teori</a>
+    </div>
+  </header>
+
+  <main class="merke-main">
+
+    <section class="merke-blokk" id="emneBody">
+      <p class="hg-muted">Laster emne…</p>
+    </section>
+
+  </main>
+
+  <script>
+    // ========= KONFIG =========
+    const EMNER_PATH = "../../emner/emner_by.json";
+
+    // ========= HELPERS =========
+    function esc(s) {
+      return String(s ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function qparam(name) {
+      const u = new URL(window.location.href);
+      return u.searchParams.get(name);
+    }
+
+    async function fetchJson(path) {
+      const url = new URL(path, document.baseURI).toString();
+      const r = await fetch(url, { cache: "no-store" });
+      if (!r.ok) throw new Error(`${r.status} ${url}`);
+      return await r.json();
+    }
+
+    function normalizeEmner(data) {
+      if (Array.isArray(data)) return data;
+      if (Array.isArray(data?.emner)) return data.emner;
+      if (Array.isArray(data?.items)) return data.items;
+      return [];
+    }
+
+    function asList(arr) {
+      return Array.isArray(arr) ? arr : [];
+    }
+
+    function renderEmne(e) {
+      const titleEl = document.getElementById("emneTitle");
+      const ingressEl = document.getElementById("emneIngress");
+      const bodyEl = document.getElementById("emneBody");
+
+      const title = esc(e.title || e.name || e.short_label || e.emne_id || "Emne");
+      const desc  = esc(e.description || "");
+
+      titleEl.textContent = title;
+      ingressEl.textContent = e.short_label ? String(e.short_label) : (e.emne_id ? String(e.emne_id) : " ");
+
+      const keywords = asList(e.keywords).map(esc);
+      const core = asList(e.core_concepts).map(esc);
+      const dims = asList(e.dimensions).map(esc);
+      const related = asList(e.related_emner).map(x => String(x || "")).filter(Boolean);
+
+      const relatedHtml = related.length
+        ? `<ul class="hg-related">
+            ${
+              related.map(id => {
+                const href = `emne.html?id=${encodeURIComponent(id)}`;
+                return `<li><a href="${href}">${esc(id)}</a></li>`;
+              }).join("")
+            }
+           </ul>`
+        : `<p class="hg-muted">Ingen relaterte emner registrert.</p>`;
+
+      bodyEl.innerHTML = `
+        ${
+          desc ? `<p>${desc}</p>` : `<p class="hg-muted">Ingen beskrivelse.</p>`
+        }
+
+        <hr>
+
+        <h2>Kjernebegreper</h2>
+        ${
+          core.length
+            ? `<ul>${core.map(x => `<li>${x}</li>`).join("")}</ul>`
+            : `<p class="hg-muted">Ingen kjernebegreper registrert.</p>`
+        }
+
+        <h2>Dimensjoner</h2>
+        ${
+          dims.length
+            ? `<ul>${dims.map(x => `<li>${x}</li>`).join("")}</ul>`
+            : `<p class="hg-muted">Ingen dimensjoner registrert.</p>`
+        }
+
+        <h2>Nøkkelord</h2>
+        ${
+          keywords.length
+            ? `<ul>${keywords.map(x => `<li>${x}</li>`).join("")}</ul>`
+            : `<p class="hg-muted">Ingen nøkkelord registrert.</p>`
+        }
+
+        <hr>
+
+        <h2>Relaterte emner</h2>
+        ${relatedHtml}
+
+        <hr>
+
+        <h2>Videre</h2>
+        <p class="hg-muted">
+          Neste kobling er å vise steder, personer og quiz knyttet til emnet.
+          (Når du vil: vi kobler denne siden til History GO runtime-filtering.)
+        </p>
+      `;
+    }
+
+    document.addEventListener("DOMContentLoaded", async () => {
+      const emneId = qparam("id");
+      const bodyEl = document.getElementById("emneBody");
+      const ingressEl = document.getElementById("emneIngress");
+
+      if (!emneId) {
+        document.getElementById("emneTitle").textContent = "Emne";
+        ingressEl.textContent = "Mangler ?id=";
+        bodyEl.innerHTML = `<p class="hg-muted">URL må ha <code>?id=...</code> (emne_id).</p>`;
+        return;
+      }
+
+      try {
+        const data = await fetchJson(EMNER_PATH);
+        const emner = normalizeEmner(data);
+
+        const hit = emner.find(x =>
+          String(x?.emne_id || x?.id || "").trim() === String(emneId).trim()
+        );
+
+        if (!hit) {
+          document.getElementById("emneTitle").textContent = "Emne ikke funnet";
+          ingressEl.textContent = String(emneId);
+          bodyEl.innerHTML = `
+            <p class="hg-muted">Fant ikke emne i <code>emner_by.json</code>.</p>
+            <p class="hg-muted">Sjekk at <code>?id</code> matcher <code>emne_id</code>.</p>
+            <p class="hg-muted"><a href="fagkart.html">← Tilbake til fagkart</a></p>
+          `;
+          return;
+        }
+
+        renderEmne(hit);
+      } catch (e) {
+        console.error("[by/emne] load failed", e);
+        bodyEl.innerHTML = `
+          <p class="hg-muted">Klarte ikke laste emner.</p>
+          <p class="hg-muted">Sjekk at <code>EMNER_PATH</code> er riktig:</p>
+          <p class="hg-muted"><code>${esc(EMNER_PATH)}</code></p>
+        `;
+      }
+    });
+  </script>
+
+</body>
+</html>
