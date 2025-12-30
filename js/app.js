@@ -1010,30 +1010,27 @@ function wirePlaceCardCollapseTapToExpand() {
 // 10. INITIALISERING OG BOOT
 // ==============================
 function wire() {
-  // Testmodus
-    el.test?.addEventListener("change", (e) => {
-  const on = e.target.checked;
-window.TEST_MODE = on;                      // ✅ dette er hovedfiksen
-localStorage.setItem("HG_TEST_MODE", on ? "1" : "0"); // ✅ valgfritt: husk over reload
+  // Testmodus (toggle)
+  el.test?.addEventListener("change", (e) => {
+    const on = !!e.target.checked;
 
-  if (el.status) {
-    el.status.textContent = on
-      ? "Testmodus: Oslo sentrum"
-      : "Testmodus av";
-  }
+    // ✅ ÉN global sannhet + persist
+    window.TEST_MODE = on;
+    try { localStorage.setItem("HG_TEST_MODE", on ? "1" : "0"); } catch {}
 
-  showToast(on ? "Testmodus PÅ" : "Testmodus AV");
-});
-
+    if (on) {
+      if (el.status) el.status.textContent = "Testmodus: Oslo sentrum";
+      showToast("Testmodus PÅ");
       window.HG_ENV = window.HG_ENV || {};
       window.HG_ENV.geo = "test";
     } else {
+      if (el.status) el.status.textContent = "";
       showToast("Testmodus AV");
       window.clearPos?.("test_off");
       requestLocation();
     }
 
-    // NB: krever at du har window.renderNearbyPlaces = renderNearbyPlaces;
+    // Oppdater lister
     window.renderNearbyPlaces?.();
   });
 
@@ -1057,7 +1054,7 @@ localStorage.setItem("HG_TEST_MODE", on ? "1" : "0"); // ✅ valgfritt: husk ove
     requestLocation();
   });
 
-  // ✅ gjør placeCard-klikk aktivt (tap stripen → expand)
+  // placeCard tap-strip
   wirePlaceCardCollapseTapToExpand();
 }
 
@@ -1215,7 +1212,6 @@ async function boot() {
     MAP = map;        // ← viktig: lokal variabel i app.js
     window.MAP = map; // ← viktig: global for routes.js
   }
-}
 
   // Eksponer START globalt (routes.js bruker START som fallback)
   window.START = START;
@@ -1231,11 +1227,13 @@ async function boot() {
     PEOPLE = people;
     TAGS_REGISTRY = tags;
 
-if (typeof linkPeopleToPlaces === "function") {
-  linkPeopleToPlaces();
-} else {
-  if (DEBUG) console.warn("linkPeopleToPlaces() mangler – hopper over linking");
-}
+    // ✅ behold linking
+    if (typeof linkPeopleToPlaces === "function") {
+      linkPeopleToPlaces();
+    } else {
+      if (DEBUG) console.warn("linkPeopleToPlaces() mangler – hopper over linking");
+    }
+
 
 
    // ✅ INIT QUIZ-MODUL (ETTER at PLACES/PEOPLE er lastet)
@@ -1291,11 +1289,12 @@ if (DEBUG) console.warn("QuizEngine ikke lastet");
       HGMap.maybeDrawMarkers();
     }
 
-  } catch (e) {
-console.error("Feil ved lasting av data:", e);
-  if (DEBUG) console.error("[DEBUG] fetch/data-payload feilet", e?.stack || e);
-    showToast("Kunne ikke laste steder/personer");
+} catch (e) {
+    console.error("Feil ved lasting av data:", e);
+    showToast?.("Kunne ikke laste steder/personer");
   }
+}
+
 
   await ensureBadgesLoaded();
   wire();
