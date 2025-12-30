@@ -1,0 +1,350 @@
+/* =========================================================
+   HISTORY GO — KNOWLEDGE.CSS
+   Ren, komplett og vedlikeholdbar stil for knowledge/profil-sider
+   ========================================================= */
+
+/* -----------------------------
+   1) Base / side-ramme
+----------------------------- */
+
+:root{
+  --kg-bg: #0b0f16;
+  --kg-panel: rgba(255,255,255,0.04);
+  --kg-panel-2: rgba(255,255,255,0.06);
+  --kg-border: rgba(255,255,255,0.10);
+  --kg-border-soft: rgba(255,255,255,0.07);
+  --kg-text: rgba(255,255,255,0.92);
+  --kg-muted: rgba(255,255,255,0.70);
+  --kg-dim: rgba(255,255,255,0.55);
+  --kg-accent: #f6c800;
+
+  --kg-radius: 16px;
+  --kg-radius-sm: 12px;
+
+  --kg-pad: 16px;
+  --kg-pad-lg: 22px;
+
+  --kg-max: 1100px;
+}
+
+html, body{
+  height: 100%;
+}
+
+body{
+  margin: 0;
+  background: radial-gradient(1200px 700px at 20% -20%, rgba(246,200,0,0.12), transparent 55%),
+              radial-gradient(1200px 700px at 80% 0%, rgba(52,125,255,0.10), transparent 55%),
+              var(--kg-bg);
+  color: var(--kg-text);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+a{
+  color: inherit;
+  text-decoration: none;
+}
+
+a:active{
+  transform: scale(0.99);
+}
+
+img{
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Container (støtter både .container, main, og evt wrapper-klasser) */
+.container,
+main,
+.knowledge-wrap{
+  max-width: var(--kg-max);
+  margin: 0 auto;
+  padding: 0 var(--kg-pad);
+}
+
+/* -----------------------------
+   2) Header / hero
+----------------------------- */
+
+.knowledge-header{
+  padding: 22px var(--kg-pad) 14px;
+}
+
+.knowledge-header .top-row{
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.knowledge-logo{
+  width: 120px;
+  opacity: 0.95;
+}
+
+.back-link{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 999px;
+  background: var(--kg-panel);
+  border: 1px solid var(--kg-border-soft);
+  color: var(--kg-accent);
+  font-size: 0.98rem;
+  line-height: 1;
+}
+
+.knowledge-hero{
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 22px;
+  align-items: start;
+  padding: 10px 0 12px;
+  border-bottom: 1px solid var(--kg-border-soft);
+}
+
+.knowledge-hero h1{
+  margin: 0 0 8px;
+  font-size: 2.05rem;
+  letter-spacing: -0.02em;
+}
+
+.knowledge-hero .lead{
+  margin: 0;
+  color: var(--kg-muted);
+  line-height: 1.45;
+}
+
+@media (max-width: 900px){
+  .knowledge-hero{
+    grid-template-columns: 1fr;
+  }
+}
+
+/* -----------------------------
+   3) Filter-rad (sticky)
+----------------------------- */
+
+.knowledge-filters{
+  position: sticky;
+  top: 0;
+  z-index: 20;
+
+  max-width: var(--kg-max);
+  margin: 0 auto;
+
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+
+  padding: 12px var(--kg-pad);
+
+  background: rgba(11,15,22,0.72);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  border-bottom: 1px solid var(--kg-border-soft);
+}
+
+.knowledge-filters label{
+  color: var(--kg-dim);
+  font-size: 0.92rem;
+}
+
+.knowledge-filters select{
+  padding: 10px 12px;
+  background: var(--kg-panel-2);
+  color: var(--kg-text);
+  border: 1px solid var(--kg-border);
+  border-radius: 12px;
+  outline: none;
+}
+
+.knowledge-filters select:focus{
+  border-color: rgba(246,200,0,0.55);
+}
+
+@media (max-width: 520px){
+  .knowledge-filters{
+    justify-content: flex-start;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* -----------------------------
+   4) Seksjoner / panels
+----------------------------- */
+
+.section{
+  margin: 20px 0;
+}
+
+.section h2{
+  margin: 0 0 10px;
+  font-size: 1.05rem;
+  letter-spacing: -0.01em;
+}
+
+.panel{
+  background: var(--kg-panel);
+  border: 1px solid var(--kg-border-soft);
+  border-radius: var(--kg-radius);
+  padding: var(--kg-pad);
+}
+
+/* Kategori-blokk (du bruker .know-cat-block) */
+.know-cat-block{
+  margin: 18px 0;
+  padding: var(--kg-pad);
+  background: var(--kg-panel);
+  border: 1px solid var(--kg-border-soft);
+  border-left: 4px solid rgba(246,200,0,0.55);
+  border-radius: var(--kg-radius);
+}
+
+.know-cat-block h2{
+  margin: 0 0 10px;
+}
+
+.dimension-title{
+  margin: 16px 0 8px;
+  font-size: 1.0rem;
+  color: var(--kg-text);
+  opacity: 0.95;
+}
+
+/* -----------------------------
+   5) Knowledge-items (kort)
+----------------------------- */
+
+.knowledge-item{
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--kg-border-soft);
+  border-radius: 14px;
+  padding: 12px 12px;
+  margin: 10px 0;
+}
+
+.knowledge-topic{
+  font-weight: 750;
+  letter-spacing: -0.01em;
+  margin: 0 0 6px;
+}
+
+.knowledge-text{
+  margin: 0;
+  color: var(--kg-muted);
+  line-height: 1.5;
+  font-size: 0.96rem;
+}
+
+/* Liten “meta” / smålinjer */
+.kg-meta{
+  margin-top: 8px;
+  color: var(--kg-dim);
+  font-size: 0.86rem;
+}
+
+/* -----------------------------
+   6) Chips / tags
+----------------------------- */
+
+.hg-chips-row{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.hg-chip{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 7px 11px;
+  border-radius: 999px;
+
+  font-size: 0.92rem;
+  line-height: 1;
+
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.14);
+  color: var(--kg-text);
+
+  white-space: nowrap;
+}
+
+.hg-chip .dot{
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(246,200,0,0.85);
+}
+
+.hg-chip:active{
+  transform: scale(0.985);
+}
+
+/* -----------------------------
+   7) Empty-state
+----------------------------- */
+
+.empty-note{
+  margin: 22px 0;
+  padding: 16px 14px;
+  border-radius: var(--kg-radius);
+  background: rgba(255,255,255,0.03);
+  border: 1px dashed rgba(255,255,255,0.16);
+  color: var(--kg-muted);
+  line-height: 1.45;
+}
+
+.empty-note strong{
+  color: var(--kg-text);
+}
+
+/* -----------------------------
+   8) Små forbedringer / typografi
+----------------------------- */
+
+hr{
+  border: 0;
+  height: 1px;
+  background: rgba(255,255,255,0.08);
+  margin: 18px 0;
+}
+
+.small{
+  font-size: 0.92rem;
+  color: var(--kg-dim);
+}
+
+.accent{
+  color: var(--kg-accent);
+}
+
+/* -----------------------------
+   9) Responsiv finpuss
+----------------------------- */
+
+@media (max-width: 520px){
+  .knowledge-header{
+    padding: 18px var(--kg-pad) 12px;
+  }
+
+  .knowledge-hero h1{
+    font-size: 1.75rem;
+  }
+
+  .knowledge-logo{
+    width: 110px;
+  }
+}
