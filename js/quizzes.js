@@ -367,6 +367,8 @@ if (ok) {
     });
   }
 
+  const quizId = s(q.quiz_id || q.quizId || tid);
+  
   // ✅ HGUnlocks (kun ved riktig)
   if (window.HGUnlocks && typeof window.HGUnlocks.recordFromQuiz === "function") {
     try {
