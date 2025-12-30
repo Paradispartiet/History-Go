@@ -1011,14 +1011,20 @@ function wirePlaceCardCollapseTapToExpand() {
 // ==============================
 function wire() {
   // Testmodus
-  el.test?.addEventListener("change", (e) => {
-    const on = !!e.target.checked;
+    el.test?.addEventListener("change", (e) => {
+  const on = e.target.checked;
 
-    if (on) {
-      window.setPos?.(START.lat, START.lon, null);
+  // ✅ ÉN global sannhet
+  window.TEST_MODE = on;
 
-      if (el.status) el.status.textContent = "Testmodus: Oslo sentrum";
-      showToast("Testmodus PÅ");
+  if (el.status) {
+    el.status.textContent = on
+      ? "Testmodus: Oslo sentrum"
+      : "Testmodus av";
+  }
+
+  showToast(on ? "Testmodus PÅ" : "Testmodus AV");
+});
 
       window.HG_ENV = window.HG_ENV || {};
       window.HG_ENV.geo = "test";
