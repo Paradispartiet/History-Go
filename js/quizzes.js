@@ -337,35 +337,50 @@
           qs.feedback.textContent = ok ? "Riktig ✅" : "Feil ❌";
 
           const tid = s(targetId);
-          const categoryId = s(q.categoryId || "");
+          const categoryId = s(q.categoryId || q.category_id || q.category || "");
 
           // --- KUN ved RIKTIG: registrer alt (knowledge/trivia/insight/meta) ---
-          if (ok) {
-            correct++;
+if (ok) {
+  correct++;
 
-            const qText = q.question || q.text || "";
-            const chosen = options[chosenIdx] ?? "";
-            correctAnswers.push({ question: qText, answer: chosen });
+  const qText = q.question || q.text || "";
+  const chosen = options[chosenIdx] ?? "";
+  correctAnswers.push({ question: qText, answer: chosen });
 
-            // meta: concepts
-            if (Array.isArray(q.core_concepts)) {
-              q.core_concepts.forEach((c) => {
-                const cc = s(c);
-                if (cc) conceptsCorrect.push(cc);
-              });
-            }
+  // meta: concepts
+  if (Array.isArray(q.core_concepts)) {
+    q.core_concepts.forEach((c) => {
+      const cc = s(c);
+      if (cc) conceptsCorrect.push(cc);
+    });
+  }
 
-            // meta: emner (hvis quizdata har det)
-            if (q.emne_id) {
-              const eid = s(q.emne_id);
-              if (eid) emnerTouched.push(eid);
-            }
-            if (Array.isArray(q.related_emner)) {
-              q.related_emner.forEach((x) => {
-                const eid = s(x);
-                if (eid) emnerTouched.push(eid);
-              });
-            }
+  // meta: emner
+  if (q.emne_id) {
+    const eid = s(q.emne_id);
+    if (eid) emnerTouched.push(eid);
+  }
+  if (Array.isArray(q.related_emner)) {
+    q.related_emner.forEach((x) => {
+      const eid = s(x);
+      if (eid) emnerTouched.push(eid);
+    });
+  }
+
+  // ✅ HGUnlocks (kun ved riktig)
+  if (window.HGUnlocks && typeof window.HGUnlocks.recordFromQuiz === "function") {
+    try {
+      window.HGUnlocks.recordFromQuiz({
+        quizId: tid,                 // eller q.quiz_id hvis du har
+        categoryId: categoryId || "by",
+        item: q,                     // q inneholder core_concepts/emne_id/etc
+        targetId: tid
+      });
+    } catch (e) {
+      dwarn("HGUnlocks.recordFromQuiz failed", e);
+    }
+  }
+
 
             // HGInsights hook (valgfritt, hvis app injiserer)
             if (typeof API.logCorrectQuizAnswer === "function") {
