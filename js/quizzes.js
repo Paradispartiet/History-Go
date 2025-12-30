@@ -367,21 +367,25 @@ if (ok) {
     });
   }
 
-  const quizId = s(q.quiz_id || q.quizId || tid);
-  
-  // ✅ HGUnlocks (kun ved riktig)
-  if (window.HGUnlocks && typeof window.HGUnlocks.recordFromQuiz === "function") {
-    try {
-      window.HGUnlocks.recordFromQuiz({
-        quizId: tid,                 // eller q.quiz_id hvis du har
-        categoryId: categoryId || "by",
-        item: q,                     // q inneholder core_concepts/emne_id/etc
-        targetId: tid
-      });
-    } catch (e) {
-      dwarn("HGUnlocks.recordFromQuiz failed", e);
-    }
+  // --- categoryId (robust, men enkel) ---
+const categoryId = s(q.categoryId || q.category_id || q.category || "") || "by";
+
+// --- quizId (bruk quiz_id hvis finnes, ellers targetId) ---
+const quizId = s(q.quiz_id || q.quizId || tid);
+
+// ✅ HGUnlocks (kun ved riktig)
+if (window.HGUnlocks && typeof window.HGUnlocks.recordFromQuiz === "function") {
+  try {
+    window.HGUnlocks.recordFromQuiz({
+      quizId: quizId,          // <-- VIKTIG: bruk quizId, ikke tid hardkodet
+      categoryId: categoryId,  // <-- konsekvent
+      item: q,
+      targetId: tid
+    });
+  } catch (e) {
+    dwarn("HGUnlocks.recordFromQuiz failed", e);
   }
+}
 
 
             // HGInsights hook (valgfritt, hvis app injiserer)
