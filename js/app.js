@@ -1234,48 +1234,45 @@ async function boot() {
       if (DEBUG) console.warn("linkPeopleToPlaces() mangler – hopper over linking");
     }
 
+    // ✅ INIT QUIZ-MODUL (ETTER at PLACES/PEOPLE er lastet)
+    if (window.QuizEngine) {
+      QuizEngine.init({
+        getPersonById: id => PEOPLE.find(p => p.id === id),
+        getPlaceById:  id => PLACES.find(p => p.id === id),
 
+        getVisited: () => visited,
 
-   // ✅ INIT QUIZ-MODUL (ETTER at PLACES/PEOPLE er lastet)
-if (window.QuizEngine) {
-  QuizEngine.init({
-    getPersonById: id => PEOPLE.find(p => p.id === id),
-    getPlaceById:  id => PLACES.find(p => p.id === id),
+        // ✅ tryggere enn el.test (og matcher resten av testmodus-opplegget)
+        isTestMode: () => !!window.TEST_MODE,
 
-    getVisited: () => visited,
-    isTestMode: () => !!el.test?.checked,
+        showToast,
 
-    showToast,
+        // progression / rewards
+        addCompletedQuizAndMaybePoint,
 
-    // progression / rewards
-    addCompletedQuizAndMaybePoint,
+        showRewardPerson,
+        showRewardPlace,
+        showPersonPopup,
+        showPlacePopup,
 
-    showRewardPerson,
-    showRewardPlace,
-    showPersonPopup,
-    showPlacePopup,
+        // wrappers
+        pulseMarker: (lat, lon) => {
+          if (typeof window.pulseMarker === "function") window.pulseMarker(lat, lon);
+        },
+        savePeopleCollected: (personId) => {
+          peopleCollected[personId] = true;
+          savePeople();
+        },
+        dispatchProfileUpdate: () => window.dispatchEvent(new Event("updateProfile")),
 
-    // wrappers
-    pulseMarker: (lat, lon) => {
-      if (typeof window.pulseMarker === "function") window.pulseMarker(lat, lon);
-    },
-    savePeopleCollected: (personId) => {
-      peopleCollected[personId] = true;
-      savePeople();
-    },
-    dispatchProfileUpdate: () => window.dispatchEvent(new Event("updateProfile")),
+        // ✅ hooks (kun ved riktige svar)
+        saveKnowledgeFromQuiz: window.saveKnowledgeFromQuiz || null,
+        saveTriviaPoint: window.saveTriviaPoint || null
+      });
+    } else {
+      if (DEBUG) console.warn("QuizEngine ikke lastet");
+    }
 
-    // ✅ hooks (kun ved riktige svar)
-    saveKnowledgeFromQuiz: window.saveKnowledgeFromQuiz || null,
-    saveTriviaPoint: window.saveTriviaPoint || null
-  });
-} else {
-if (DEBUG) console.warn("QuizEngine ikke lastet");
-}
-
-
-
-    
     // ✅ Gi kartmodulen data + callbacks (ETTER data er lastet)
     if (window.HGMap) {
       HGMap.setPlaces(PLACES);
@@ -1289,19 +1286,21 @@ if (DEBUG) console.warn("QuizEngine ikke lastet");
       HGMap.maybeDrawMarkers();
     }
 
-} catch (e) {
+    // ✅ Resten (må være inni try etter data/map)
+    await ensureBadgesLoaded();
+    wire();
+    requestLocation();
+    renderCollection();
+    renderGallery();
+
+  } catch (e) {
     console.error("Feil ved lasting av data:", e);
     showToast?.("Kunne ikke laste steder/personer");
   }
 }
 
 
-  await ensureBadgesLoaded();
-  wire();
-  requestLocation();
-  renderCollection();
-  renderGallery();
-}
+  
 
 document.addEventListener("DOMContentLoaded", () => {
   safeRun("boot", boot);
