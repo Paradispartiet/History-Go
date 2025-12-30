@@ -419,7 +419,7 @@ if (ok) {
               try {
                 API.saveTriviaPoint({
                   id: tid,
-                  category: categoryId || "vitenskap",
+                  category: categoryId || "by",
                   trivia: q.trivia,
                   question: q.question
                 });
@@ -505,7 +505,7 @@ if (ok) {
           const perfect = correct === total;
 
           if (perfect) {
-            const categoryId = s(questions[0]?.categoryId || "vitenskap");
+            const categoryId = s(questions[0]?.categoryId || "by");
             const ca = Array.isArray(meta?.correctAnswers) ? meta.correctAnswers : [];
 
             // 1) badge-modal kontrakt (STRICT)
