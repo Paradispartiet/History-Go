@@ -1013,9 +1013,8 @@ function wire() {
   // Testmodus
     el.test?.addEventListener("change", (e) => {
   const on = e.target.checked;
-
-  // ✅ ÉN global sannhet
-  window.TEST_MODE = on;
+window.TEST_MODE = on;                      // ✅ dette er hovedfiksen
+localStorage.setItem("HG_TEST_MODE", on ? "1" : "0"); // ✅ valgfritt: husk over reload
 
   if (el.status) {
     el.status.textContent = on
