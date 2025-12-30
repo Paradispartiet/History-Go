@@ -45,18 +45,6 @@
   display:none;                     /* fjern “handle” */
 }
 
-/* Scroll-området inni panelet */
-#placeCard .pc-body{
-  background: var(--panel-bg, #000);
-  height: calc(100% - 18px); /* plass til handle */
-  overflow-y: auto;
-  overflow-x: hidden;
-  -webkit-overflow-scrolling: touch;
-
-  padding: var(--pc-pad);
-  padding-bottom: calc(var(--pc-pad) + env(safe-area-inset-bottom));
-}
-
 /* ===================================================== */
 /* Innhold: bilde venstre – tekst høyre                   */
 /* ===================================================== */
@@ -316,13 +304,10 @@
 /* Midten scroller */
 #placeCard .pc-scroll{
   flex: 1 1 auto;
-  overflow-y: auto;
-  overflow-x: hidden;
-  -webkit-overflow-scrolling: touch;
+  overflow: hidden;          /* ✅ ingen scroll */
   padding: var(--pc-pad);
-  padding-bottom: 10px; /* litt luft før footer */
+  padding-bottom: 10px;
 }
-
 /* Bunn er fast (alltid synlig) */
 #placeCard .pc-footer{
   flex: 0 0 auto;
