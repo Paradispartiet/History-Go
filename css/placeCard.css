@@ -1,0 +1,420 @@
+/* ===================================================== */
+/* placeCard.css – EGEN FIL (REN, UTEN DUPLIKATER)        */
+/* ===================================================== */
+
+:root{
+  --pc-height: 41vh;       /* fast 35% */
+  --pc-radius: 0px;
+  --pc-pad: 12px;
+  --pc-gap: 14px;
+
+  /* Størrelser */
+  --pc-img: 170px;
+  --pc-title: 1.55rem;
+  --pc-meta: 1rem;
+  --pc-desc: 1.05rem;
+
+  /* People */
+  --pc-person-img: 64px;
+
+  --panel-bg: #000;          /* ✅ ÉN sannhet: helt sort */
+  --panel-border: transparent; /* valgfritt */
+
+}
+
+/* ===================================================== */
+/* PlaceCard: ekte bottom sheet                           */
+/* ===================================================== */
+
+#placeCard{
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  height: var(--pc-height);
+  width: 100%;
+  z-index: 9999;
+
+  background: #000;                 /* helt sort */
+  border-top: 0;                    /* fjern lys kant */
+  box-shadow: 0 -12px 34px rgba(0,0,0,.40);
+
+  overflow: hidden;
+}
+
+#placeCard::before{
+  content:"";
+  display:none;                     /* fjern “handle” */
+}
+
+/* ===================================================== */
+/* Innhold: bilde venstre – tekst høyre                   */
+/* ===================================================== */
+
+#placeCard .pc-main{
+  display: grid;
+  grid-template-columns: var(--pc-img) 1fr;
+  gap: var(--pc-gap);
+  align-items: start;
+  margin-bottom: 12px;
+}
+
+#placeCard .pc-img{
+  width: var(--pc-img);
+  height: var(--pc-img);
+  border-radius: 16px;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 0;
+  background: 000;
+}
+
+#placeCard .pc-text{ flex: 1; }
+
+/* Tekst */
+#placeCard #pcTitle{
+  margin: 0;
+  font-size: var(--pc-title);
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.2;
+}
+
+#placeCard #pcMeta{
+  margin-top: 6px;
+  margin-bottom: 12px;
+  font-size: var(--pc-meta);
+  color: var(--text-dim);
+}
+
+/* Fast uttrykk + … (full tekst i popup via “Mer info”) */
+#placeCard #pcDesc{
+  margin: 0 0 10px 0;
+  font-size: var(--pc-desc);
+  line-height: 1.48;
+  color: var(--text);
+
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ===================================================== */
+/* Personer: horisontal scroll + fine runde bilder        */
+/* ===================================================== */
+
+#placeCard #pcPeople{
+  position: relative;
+  z-index: 2;
+  flex-shrink: 0;
+
+  min-height: 92px;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 12px;
+  align-items: center;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+
+  padding: 10px 6px;
+  margin: 10px 0 12px 0;
+
+  border-top: 0;
+  border-bottom: 0;
+  
+  background: #000;  /* ← bytt denne */
+}
+
+/* JS lager <button class="pc-person"> */
+#placeCard #pcPeople .pc-person{
+  flex: 0 0 auto;
+
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Fine runde bilder */
+#placeCard #pcPeople .pc-person-img{
+  width: var(--pc-person-img);
+  height: var(--pc-person-img);
+  border-radius: 50%;
+  border: 0;
+  object-fit: cover;
+  background: #000;
+  display: block;
+  transition: transform 0.15s ease;
+}
+
+#placeCard #pcPeople .pc-person-img:hover{
+  transform: scale(1.08);
+}
+
+#placeCard #pcPeople .pc-person span{
+  font-size: 0.85rem;
+  color: #fff;
+  opacity: .92;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* ===================================================== */
+/* NextUp bar (inne i placeCard)                          */
+/* ===================================================== */
+
+#placeCard .hg-nextup{
+  margin: 10px 0 12px 0;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+#placeCard .hg-nextup-lines > div{
+  font-size: 0.95rem;
+  line-height: 1.25;
+  margin: 6px 0;
+  color: rgba(255,255,255,0.92);
+}
+
+#placeCard .hg-nextup-lines b{
+  color: #fff;
+}
+
+#placeCard .hg-nextup-btn{
+  display: inline-block;
+  margin-left: 8px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* ===================================================== */
+/* Knapper                                                */
+/* ===================================================== */
+
+#placeCard .pc-actions{
+  position: sticky;
+  bottom: 0;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+
+  margin-top: 10px;
+  padding-top: 10px;
+  padding-bottom: 6px;
+
+  background: linear-gradient(to top,
+  var(--panel-bg, #000) 72%,
+  rgba(0,0,0,0) 100%);
+}
+
+#placeCard .pc-actions button{
+  font-size: 1rem;
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+/* Knapper (scoped) */
+#placeCard #pcInfo{
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.18);
+  color: #fff;
+}
+
+#placeCard #pcQuiz{
+  background: var(--primary);
+  color: #000;
+}
+
+#placeCard #pcUnlock{
+  background: #f6c800;
+  color: #000;
+}
+
+#placeCard #pcRoute,
+#placeCard #pcClose,
+#placeCard #pcNote{
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: #fff;
+}
+
+/* ===================================================== */
+/* Mini-profil inni placecard                             */
+/* ===================================================== */
+
+#placeCard #miniProfile{
+  margin-top: 12px;
+  border-radius: 16px;
+  background: #000;  /* ✅ helt sort */
+  border: 0;         /* ✅ ingen grå “kort”-ramme */
+  position: static !important;
+}
+
+/* ===================================================== */
+/* Smooth “sted skifter”                                  */
+/* ===================================================== */
+
+#placeCard .pc-main,
+#placeCard #pcPeople,
+#placeCard #pcDesc{
+  transition: opacity 120ms ease, transform 120ms ease;
+}
+
+#placeCard.is-switching .pc-main,
+#placeCard.is-switching #pcPeople,
+#placeCard.is-switching #pcDesc{
+  opacity: .25;
+  transform: translateY(2px);
+}
+
+/* ===================================================== */
+/* Kartet må stoppe før panelet                           */
+/* ===================================================== */
+
+#map, #mapContainer{
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  bottom: var(--pc-height);
+}
+
+
+/* pc-body blir et “kolonne-layout” */
+#placeCard .pc-body{
+  height: calc(100% - 18px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* scroll skjer i .pc-scroll */
+}
+
+/* Midten scroller */
+#placeCard .pc-scroll{
+  flex: 1 1 auto;
+  overflow: hidden;          /* ✅ ingen scroll */
+  padding: var(--pc-pad);
+  padding-bottom: 10px;
+}
+/* Bunn er fast (alltid synlig) */
+#placeCard .pc-footer{
+  flex: 0 0 auto;
+  padding: 0 var(--pc-pad) calc(var(--pc-pad) + env(safe-area-inset-bottom));
+  background: var(--panel-bg, #000);
+  border-top: 1px solid rgba(255,255,255,.06);
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Actions: ikke sticky lenger (footer er fast) */
+#placeCard .pc-actions{
+  position: static;
+  margin-top: 0;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background: transparent;
+}
+
+/* MiniProfile venstre, NextUp høyre (alltid side om side) */
+#placeCard .pc-footer-split{
+  display: grid;
+  grid-template-columns: clamp(240px, 36vw, 320px) 1fr;
+  gap: 12px;
+  align-items: start;
+  width: 100%;
+}
+
+#placeCard .pc-nextup-right{
+  min-width: 0;
+}
+
+#placeCard #miniProfile{
+  margin: 0;        /* fjern dobbel margin-regel */
+  width: 100%;
+}
+/* --- FIX: pcPeople / personlinjer skal ikke være grå --- */
+#pcPeople,
+.pc-people {
+  background: #000;
+}
+
+/* Selve raden (hvis den har egen bg) */
+#pcPeople > *,
+.pc-people > * {
+  background: transparent !important;
+}
+
+/* Avatar: sort “disk” bak runde bilder */
+#pcPeople img,
+.pc-people img {
+  background: #000;
+}
+
+/* Hvis du har en wrapper rundt avataren (vanlig mønster) */
+#pcPeople .avatar,
+#pcPeople .person-avatar,
+#pcPeople .pc-avatar,
+.pc-people .avatar,
+.pc-people .person-avatar,
+.pc-people .pc-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: #000;
+}
+
+/* Bildet inni wrapper (hvis brukt) */
+#pcPeople .avatar img,
+#pcPeople .person-avatar img,
+#pcPeople .pc-avatar img,
+.pc-people .avatar img,
+.pc-people .person-avatar img,
+.pc-people .pc-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+:root{
+  --pc-collapsed-h: 26px; /* kun handle-stripen */
+}
+
+/* Minimeringsmodus */
+#placeCard.is-collapsed{
+  height: var(--pc-collapsed-h) !important;
+}
+
+/* Skjul innholdet når minimert */
+#placeCard.is-collapsed .pc-body,
+#placeCard.is-collapsed .pc-scroll,
+#placeCard.is-collapsed .pc-footer{
+  display: none !important;
+}
+
+/* Handle skal fortsatt synes */
+#placeCard.is-collapsed::before{
+  margin: 10px auto 0;
+}
+
+/* Kartet skal gå helt til bunn når placeCard er minimert */
+body.pc-collapsed #map,
+body.pc-collapsed #mapContainer{
+  bottom: var(--pc-collapsed-h);
+}
+
