@@ -663,8 +663,9 @@ window.openPlaceCard = async function (place) {
   const btnObs    = document.getElementById("pcObserve");
   const btnClose  = document.getElementById("pcClose");
 
-  // Mount for NextUp (må finnes i HTML)
-  const nextUpMount = document.getElementById("pcNextUpMount");
+    // Mount for MiniProfile Next (TriNext + Fordi)
+    const nextUpMount =
+    document.getElementById("mpNextUp");
   
   if (!card) return;
 
