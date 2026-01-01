@@ -158,37 +158,40 @@
       </div>
 
       <!-- NY: footer-splitt (UNDER actions) -->
-      <div class="pc-footer-split">
+      <!-- NY: footer-splitt (UNDER actions) -->
+<div class="pc-footer-split">
 
-        <!-- VENSTRE: MINI-PROFIL -->
-        <section id="miniProfile" class="panel mini-profile">
-          <div class="info">
-            <div class="profile-top">
-              <h3 id="miniName">Utforsker #182</h3>
-              <a href="profile.html" class="arrow-link">→</a>
-            </div>
+  <!-- ROW: mini-profil (venstre) + nextup (høyre) -->
+  <div class="mp-row">
 
-            <p id="miniStats" class="muted">
-              <span id="linkPlaces" class="linkish">0 steder</span> ·
-              <span id="linkBadges" class="linkish">0 merker</span> ·
-              <span id="linkQuiz" class="linkish">0 quizzer</span>
+    <!-- VENSTRE: MINI-PROFIL (klikkbar hel boks → profile.html) -->
+    <a id="miniProfile" class="panel mini-profile mini-profile--link" href="profile.html">
+      <div class="info">
+        <div class="profile-top">
+          <h3 id="miniName">Utforsker #182</h3>
+          <!-- Pila er overflødig nå (kan slettes) -->
+        </div>
 
-              <span id="mpNextUp"></span>
-            </p>
+        <p id="miniStats" class="muted">
+          <span id="linkPlaces" class="linkish">0 steder</span> ·
+          <span id="linkBadges" class="linkish">0 merker</span> ·
+          <span id="linkQuiz" class="linkish">0 quizzer</span>
+        </p>
 
-            <div id="miniBadges" class="profile-badges"></div>
+        <div id="miniBadges" class="profile-badges"></div>
 
-            <div id="miniLastQuiz" class="profile-last-quiz" style="display:none;">
-              <img id="miniLastQuizImg" src="">
-              <span id="miniLastQuizName"></span>
-            </div>
-          </div>
-        </section>
-
-        <!-- HØYRE: Gå / Fortsett / Forstå / Fordi (miniProfile-side) -->
-        <div id="mpNextUp" class="pc-nextup-right"></div>
+        <div id="miniLastQuiz" class="profile-last-quiz" style="display:none;">
+          <img id="miniLastQuizImg" src="">
+          <span id="miniLastQuizName"></span>
+        </div>
       </div>
-    </div>
+    </a>
+
+    <!-- HØYRE: NextUp (ÉN eneste mpNextUp i hele dokumentet) -->
+    <div id="mpNextUp" class="pc-nextup-right"></div>
+
+  </div>
+</div>
 
   </div>
 </div>
