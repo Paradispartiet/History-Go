@@ -1048,26 +1048,31 @@ function wirePlaceCardCollapseTapToExpand() {
 function wire() {
   // Testmodus
   el.test?.addEventListener("change", (e) => {
-  const on = !!e.target.checked;
+    const on = !!e.target.checked;
 
-  window.TEST_MODE = on; // ✅ DEN ENE VIKTIGE LINJEN
+    window.TEST_MODE = on;
+    localStorage.setItem("HG_TEST_MODE", on ? "1" : "0");
 
-  if (on) {
-    window.setPos?.(START.lat, START.lon, null);
+    if (on) {
+      window.setPos?.(START.lat, START.lon, null);
 
-    if (el.status) el.status.textContent = "Testmodus: Oslo sentrum";
-    showToast("Testmodus PÅ");
+      if (el.status) el.status.textContent = "Testmodus: Oslo sentrum";
+      showToast("Testmodus PÅ");
 
-    window.HG_ENV = window.HG_ENV || {};
-    window.HG_ENV.geo = "test";
-  } else {
-    showToast("Testmodus AV");
-    window.clearPos?.("test_off");
-    requestLocation();
-  }
+      window.HG_ENV = window.HG_ENV || {};
+      window.HG_ENV.geo = "test";
 
-  window.renderNearbyPlaces?.();
-});
+      // ✅ dette gjør at steder/personer faktisk havner i profilen
+      applyTestModeUnlockAll();
+
+    } else {
+      showToast("Testmodus AV");
+      window.clearPos?.("test_off");
+      requestLocation();
+    }
+
+    window.renderNearbyPlaces?.();
+  });
 
   // Sikteknapp (center)
   el.btnCenter?.addEventListener("click", () => {
@@ -1350,7 +1355,10 @@ if (typeof linkPeopleToPlaces === "function") {
   if (DEBUG) console.warn("linkPeopleToPlaces() mangler – hopper over linking");
 }
 
-/* ✅ TESTMODE: fyll profilen (steder + personer) etter linking */
+// ✅ TESTMODE (ved reload): sync + fyll profilen
+window.TEST_MODE = localStorage.getItem("HG_TEST_MODE") === "1";
+if (el.test) el.test.checked = window.TEST_MODE;
+
 if (window.TEST_MODE) {
   applyTestModeUnlockAll();
 }
