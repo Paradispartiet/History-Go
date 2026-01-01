@@ -1,4 +1,3 @@
-
 # PlaceCard · NextUp · TriNext  
 **History GO – kunnskapsnavigasjon i byrom**
 
@@ -42,7 +41,7 @@ Disse:
 
 ## UI-oppsett
 
-### 1. NextUp (eksisterende)
+### 1) NextUp (eksisterende)
 NextUp er **handlingslaget** i PlaceCard.
 
 Den viser:
@@ -57,7 +56,7 @@ Dette laget er:
 
 ---
 
-### 2. TriNext (nytt)
+### 2) TriNext (nytt)
 TriNext er **kunnskapsnavigasjonen**.
 
 Den består av tre diskrete linjer:
@@ -82,16 +81,12 @@ TriNext er en **invitasjon**, ikke en handling.
 - Fallback tillatt (f.eks. nærmeste sted)
 - Ender alltid i et **sted**
 
----
-
 ### 📖 Fortsett historien
 Vises **kun hvis**:
 - stedet/personen er del av en eksplisitt definert story
 - det finnes et faktisk “neste kapittel”
 
 Ingen story → ingen visning.
-
----
 
 ### 🧠 Forstå mer
 Vises **kun hvis**:
@@ -139,8 +134,67 @@ Alt er eksplisitt definert i data.
 
 ---
 
-### NextUp-klikk
-NextUp bruker nå:
+## NextUp-klikk (robust)
+
+NextUp bruker nå `querySelectorAll` slik at flere knapper kan fungere samtidig:
 
 ```js
-querySelectorAll("[data-nextup]")
+nextUpMount.querySelectorAll("[data-nextup]").forEach(btn => {
+  btn.onclick = () => {
+    const a = btn.dataset.nextup;
+    if (a === "quiz")    return btnQuiz?.onclick?.();
+    if (a === "unlock")  return btnUnlock?.onclick?.();
+    if (a === "observe") return btnObs?.onclick?.();
+    if (a === "route")   return btnRoute?.onclick?.();
+    if (a === "info")    return btnInfo?.onclick?.();
+    return btnInfo?.onclick?.();
+  };
+});
+
+TriNext-klikk (data-tri)
+
+TriNext bruker data-tri og kolliderer ikke med NextUp.
+
+Tre handlinger:
+	•	goto → åpner nytt sted i placeCard
+	•	story → åpner neste beat (sted) i story
+	•	emne → åpner emneside: knowledge_by.html#<emne_id>
+
+⸻
+
+Hvorfor dette er bygget slik
+	•	Unngår “enda et system”
+	•	Unngår AI-gjetting
+	•	Unngår overforklaring i UI
+	•	Skiller tydelig mellom:
+	•	handling (🧭)
+	•	fortelling (📖)
+	•	forståelse (🧠)
+
+Systemet vet også når det skal tie.
+
+⸻
+
+Hva dette muliggjør videre
+
+Uten å endre strukturen kan man senere legge til:
+	•	kontrast-navigasjon (samme begrep, annet uttrykk)
+	•	personlige spor (rom / historie / begrep)
+	•	fagkart-visualisering basert på faktisk bruk
+	•	redaksjonell kuratering uten nye UI-flater
+
+⸻
+
+Kort oppsummert
+
+PlaceCard er nå:
+	•	et sted å handle
+	•	et sted å forstå
+	•	et sted å fortsette
+
+Uten å bli:
+	•	masete
+	•	prediktivt
+	•	sosialt støy
+
+Dette er et epistemisk grensesnitt mellom by, historie og teori.
