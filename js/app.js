@@ -1061,31 +1061,36 @@ function wirePlaceCardCollapseTapToExpand() {
 function wire() {
   // Testmodus
   el.test?.addEventListener("change", (e) => {
-    const on = !!e.target.checked;
+  const on = !!e.target.checked;
 
-    window.TEST_MODE = on;
-    localStorage.setItem("HG_TEST_MODE", on ? "1" : "0");
+  window.TEST_MODE = on;
+  localStorage.setItem("HG_TEST_MODE", on ? "1" : "0");
 
-    if (on) {
-      window.setPos?.(START.lat, START.lon, null);
+  const btnUA = document.getElementById("btnUnlockAll");
+  if (btnUA) btnUA.style.display = on ? "inline-flex" : "none";
 
-      if (el.status) el.status.textContent = "Testmodus: Oslo sentrum";
-      showToast("Testmodus PÅ");
+  if (on) {
+    window.setPos?.(START.lat, START.lon, null);
+    if (el.status) el.status.textContent = "Testmodus: Oslo sentrum";
+    showToast("Testmodus PÅ");
+    window.HG_ENV = window.HG_ENV || {};
+    window.HG_ENV.geo = "test";
+  } else {
+    showToast("Testmodus AV");
+    window.clearPos?.("test_off");
+    requestLocation();
+  }
 
-      window.HG_ENV = window.HG_ENV || {};
-      window.HG_ENV.geo = "test";
+  window.renderNearbyPlaces?.();
+}); // ✅ HER (rett under denne linja)
 
-      // ✅ dette gjør at steder/personer faktisk havner i profilen
-      applyTestModeUnlockAll();
+// ✅ LIM INN DETTE HER:
+document.getElementById("btnUnlockAll")?.addEventListener("click", () => {
+  if (!window.TEST_MODE) return;
+  applyTestModeUnlockAll();
+  showToast("Alt låst opp");
+});
 
-    } else {
-      showToast("Testmodus AV");
-      window.clearPos?.("test_off");
-      requestLocation();
-    }
-
-    window.renderNearbyPlaces?.();
-  });
 
   // Sikteknapp (center)
   el.btnCenter?.addEventListener("click", () => {
