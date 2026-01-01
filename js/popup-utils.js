@@ -614,29 +614,9 @@ function renderNextUpBarForPlaceCard(place, ctx = {}) {
   // peopleCount kommer fra ctx (du har persons-lista i openPlaceCard)
   const peopleCount = Number(ctx.peopleCount || 0);
 
-  const hasObs = !!(window.HGObservations && typeof window.HGObservations.start === "function");
-  const hasRoute =
-    (typeof window.showNavRouteToPlace === "function") ||
-    (typeof window.showRouteTo === "function");
-
-  const r = place.r || 150;
   const cat = place.category || "";
 
-  // NÅ
-  const nowLine = (typeof place._d === "number")
-    ? `Du er ${place._d < 1000 ? `${place._d} m` : `${(place._d / 1000).toFixed(1)} km`} unna`
-    : `Radius her er ${r} m`;
-
-  // NESTE (prioritet)
-  let nextAction = "info";
-  let nextLabel = "Mer info";
-
-  if (!completedQuiz) { nextAction = "quiz"; nextLabel = "Ta quiz (2 min)"; }
-  else if (!isVisited) { nextAction = "unlock"; nextLabel = "Lås opp stedet"; }
-  else if (hasObs) { nextAction = "observe"; nextLabel = "Legg til observasjon"; }
-  else if (hasRoute) { nextAction = "route"; nextLabel = "Vis rute hit"; }
-
-    // FORDI (nyttig status)
+  // FORDI (nyttig status)
   const because = [];
   if (cat) because.push(cat);
   because.push(completedQuiz ? "quiz fullført" : "quiz ikke tatt");
@@ -648,13 +628,6 @@ function renderNextUpBarForPlaceCard(place, ctx = {}) {
   return `
     <div class="hg-nextup" id="pcNextUp">
       <div class="hg-nextup-lines">
-
-        <div class="hg-nextup-now"><b>Nå:</b> ${nowLine}</div>
-
-        <div class="hg-nextup-next">
-          <b>Neste:</b>
-          <button class="hg-nextup-btn" data-nextup="${nextAction}">${nextLabel}</button>
-        </div>
 
         <div class="hg-nextup-tri" id="pcTriNext">
           <div class="hg-nextup-tri-row"><b>🧭 Gå videre:</b> <span class="hg-muted">—</span></div>
@@ -918,80 +891,6 @@ window.openPlaceCard = async function (place) {
     };
   }
 
-    // --- NextUp (Nå / Neste / Fordi) ---
-  if (nextUpMount && typeof window.renderNextUpBarForPlaceCard === "function") {
-    nextUpMount.innerHTML = window.renderNextUpBarForPlaceCard(place, {
-      visited: window.visited || {},
-      peopleCount: persons.length
-    });
-
-    nextUpMount.querySelectorAll("[data-nextup]").forEach(btn => {
-      btn.onclick = () => {
-        const a = btn.dataset.nextup;
-        if (a === "quiz")    return btnQuiz?.onclick?.();
-        if (a === "unlock")  return btnUnlock?.onclick?.();
-        if (a === "observe") return btnObs?.onclick?.();
-        if (a === "route")   return btnRoute?.onclick?.();
-        if (a === "info")    return btnInfo?.onclick?.();
-        return btnInfo?.onclick?.();
-      };
-    });
-  }
-
-  // --- TriNext: Gå videre / Fortsett historien / Forstå mer ---
-  try {
-  if (nextUpMount) {
-    const triBox = nextUpMount.querySelector("#pcTriNext");
-    if (triBox) {
-      const nearbyPlaces = Array.isArray(window.NEARBY_PLACES) ? window.NEARBY_PLACES : [];
-
-      const tri = (window.HGNavigator && typeof window.HGNavigator.buildForPlace === "function")
-        ? await window.HGNavigator.buildForPlace(place, { nearbyPlaces, personsHere: persons })
-        : null;
-
-        if (tri) {
-          triBox.children[0].innerHTML = tri.spatial
-            ? `<b>🧭 Gå videre:</b> <button class="hg-nextup-btn" data-tri="goto" data-place="${tri.spatial.place_id}">${tri.spatial.label}</button>`
-            : `<b>🧭 Gå videre:</b> <span class="hg-muted">—</span>`;
-
-          triBox.children[1].innerHTML = tri.narrative
-            ? `<b>📖 Fortsett historien:</b> <button class="hg-nextup-btn" data-tri="story" data-story="${tri.narrative.story_id}" data-nextplace="${tri.narrative.next_place_id}">${tri.narrative.label}</button>`
-            : `<b>📖 Fortsett historien:</b> <span class="hg-muted">—</span>`;
-
-          triBox.children[2].innerHTML = tri.concept
-            ? `<b>🧠 Forstå mer:</b> <button class="hg-nextup-btn" data-tri="emne" data-emne="${tri.concept.emne_id}">${tri.concept.label}</button>`
-            : `<b>🧠 Forstå mer:</b> <span class="hg-muted">—</span>`;
-
-          triBox.querySelectorAll("[data-tri]").forEach(btn => {
-            btn.onclick = () => {
-              const t = btn.dataset.tri;
-
-              if (t === "goto") {
-                const id = btn.dataset.place;
-                const pl = (window.PLACES || []).find(x => String(x.id) === String(id));
-                if (pl) return window.openPlaceCard?.(pl);
-                return window.showToast?.("Fant ikke stedet");
-              }
-
-              if (t === "story") {
-                const nextId = btn.dataset.nextplace;
-                const pl = (window.PLACES || []).find(x => String(x.id) === String(nextId));
-                if (pl) return window.openPlaceCard?.(pl);
-                return window.showToast?.("Fant ikke neste kapittel-sted");
-              }
-
-              if (t === "emne") {
-                const emneId = btn.dataset.emne;
-                window.location.href = `knowledge_by.html#${encodeURIComponent(emneId)}`;
-              }
-            };
-          });
-        }
-      }
-    }
-  } catch (e) {
-    console.warn("[TriNext]", e);
-  }
   
   requestAnimationFrame(() => {
     card.classList.remove("is-switching");
@@ -999,8 +898,6 @@ window.openPlaceCard = async function (place) {
 
   card.setAttribute("aria-hidden", "false");
 };
-
-
 
 
 // ============================================================
