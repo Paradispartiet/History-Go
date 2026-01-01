@@ -1154,24 +1154,31 @@ window.addEventListener("hg:mpNextUp", (e) => {
   const concept = tri.concept || null;
 
   mount.innerHTML = `
-    <button class="mp-nextup-link" data-mp="goto" ${spatial ? `data-place="${hgEscAttr(spatial.place_id)}"` : "disabled"}>
+  <div class="mp-nextup-line">
+    <button class="mp-nextup-link" data-mp="goto"
+      ${spatial ? `data-place="${hgEscAttr(spatial.place_id)}"` : "disabled"}>
       🧭 ${spatial ? hgEsc(spatial.label) : "—"}
     </button>
+  </div>
 
-    <span class="sep">•</span>
-
-    <button class="mp-nextup-link" data-mp="story" ${narrative ? `data-nextplace="${hgEscAttr(narrative.next_place_id)}"` : "disabled"}>
+  <div class="mp-nextup-line">
+    <button class="mp-nextup-link" data-mp="story"
+      ${narrative ? `data-nextplace="${hgEscAttr(narrative.next_place_id)}"` : "disabled"}>
       📖 ${narrative ? hgEsc(narrative.label) : "—"}
     </button>
+  </div>
 
-    <span class="sep">•</span>
-
-    <button class="mp-nextup-link" data-mp="emne" ${concept ? `data-emne="${hgEscAttr(concept.emne_id)}"` : "disabled"}>
+  <div class="mp-nextup-line">
+    <button class="mp-nextup-link" data-mp="emne"
+      ${concept ? `data-emne="${hgEscAttr(concept.emne_id)}"` : "disabled"}>
       🧠 ${concept ? hgEsc(concept.label) : "—"}
     </button>
+  </div>
 
-    ${becauseLine ? `<span class="sep">•</span><span><b>Fordi:</b> ${hgEsc(becauseLine)}</span>` : ""}
-  `;
+  <div class="mp-nextup-because">
+    ${becauseLine ? `<b>Fordi:</b> ${hgEsc(becauseLine)}` : ""}
+  </div>
+`;
 
     mount.querySelectorAll("[data-mp]").forEach((btn) => {
     btn.onclick = () => {
