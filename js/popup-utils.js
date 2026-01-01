@@ -452,6 +452,154 @@ window.showPlacePopup = function(place) {
   });
 };
 
+
+// ============================================================
+// HGNavigator (BY) — 3 dimensjoner: gå / historie / forstå
+// Bruker: emner_by.json, emnekart_by.json, fagkart_by_oslo.json, quiz_by.json
+// ============================================================
+const HGNavigator = (() => {
+  const cache = {
+    by: {
+      loaded: false,
+      fagkart: null,
+      emnekart: null,
+      emner: [],
+      quiz: [],
+      stories: []   // optional
+    }
+  };
+
+  async function loadJSON(path) {
+    const r = await fetch(path, { cache: "no-store" });
+    if (!r.ok) throw new Error(`${r.status} ${path}`);
+    return await r.json();
+  }
+
+  async function ensureByLoaded() {
+    if (cache.by.loaded) return;
+
+    // tilpass paths til din struktur:
+    cache.by.fagkart  = await loadJSON("data/fagkart_by_oslo.json");
+    cache.by.emnekart = await loadJSON("data/emnekart_by.json");
+    cache.by.emner    = await loadJSON("data/emner_by.json");
+    cache.by.quiz     = await loadJSON("data/quiz_by.json");
+
+    // optional: stories (hvis fil finnes)
+    try {
+      cache.by.stories = await loadJSON("data/stories_by.json");
+    } catch {
+      cache.by.stories = [];
+    }
+
+    cache.by.loaded = true;
+  }
+
+  function uniq(arr) { return [...new Set((arr || []).filter(Boolean).map(String))]; }
+
+  // -------------------------
+  // 🧭 Romlig neste (sted)
+  // -------------------------
+  function pickSpatialNext(place, ctx = {}) {
+    // “romlig neste” er alltid sted.
+    // Vi bruker: nearby (hvis du har) ellers null.
+    const nearby = Array.isArray(ctx.nearbyPlaces) ? ctx.nearbyPlaces : [];
+    const next = nearby.find(p => p && p.id && String(p.id) !== String(place.id)) || null;
+
+    if (!next) return null;
+    return {
+      type: "spatial",
+      place_id: next.id,
+      label: next.name || next.id,
+      why: "I nærheten"
+    };
+  }
+
+  // -------------------------
+  // 📖 Narrativ neste (story beat)
+  // -------------------------
+  function pickNarrativeNext(place, byData) {
+    const stories = byData.stories || [];
+    if (!stories.length) return null;
+
+    const placeId = String(place.id);
+
+    // Finn story-beat hvor place_id matcher, og ta next_place_id
+    for (const st of stories) {
+      const beats = Array.isArray(st.beats) ? st.beats : [];
+      const beat = beats.find(b => String(b.place_id || "") === placeId);
+      if (beat && beat.next_place_id) {
+        return {
+          type: "narrative",
+          story_id: st.id,
+          label: st.title || "Fortsett historien",
+          next_place_id: String(beat.next_place_id),
+          why: "Neste kapittel"
+        };
+      }
+    }
+    return null; // ingen story => ikke vis
+  }
+
+  // -------------------------
+  // 🧠 Begrepsmessig neste (emne fra fagkart)
+  // Logikk (uten gjetting):
+  // - samle core_concepts fra relevante quiz-spørsmål (personer knyttet til stedet)
+  // - match mot emner_by.core_concepts
+  // -------------------------
+  function pickConceptNext(place, personsHere, byData) {
+    const emner = byData.emner || [];
+    const quiz  = byData.quiz || [];
+
+    // 1) finn quiz-items for personer her (quiz_by har personId + core_concepts + emne_id)  [oai_citation:5‡quiz_by.json](sediment://file_00000000b6d07243b2aa58bfca7023d1)
+    const personIds = new Set((personsHere || []).map(p => String(p.id)));
+    const relatedQuiz = quiz.filter(q => q && q.personId && personIds.has(String(q.personId)));
+
+    // 2) samle concepts fra quiz (kurert i data)
+    const concepts = uniq(relatedQuiz.flatMap(q => Array.isArray(q.core_concepts) ? q.core_concepts : []));
+
+    if (!concepts.length) return null; // ingen concepts => ikke vis
+
+    // 3) score emner_by på overlap i core_concepts  [oai_citation:6‡emner_by.json](sediment://file_00000000cf3c7243990459177610100e)
+    let best = null;
+    let bestScore = 0;
+
+    for (const e of emner) {
+      const eConcepts = Array.isArray(e.core_concepts) ? e.core_concepts.map(String) : [];
+      let overlap = 0;
+      for (const c of concepts) if (eConcepts.includes(c)) overlap++;
+      if (overlap > bestScore) { bestScore = overlap; best = e; }
+    }
+
+    if (!best || bestScore < 2) return null; // terskel: “må faktisk bære resonnement”
+
+    return {
+      type: "concept",
+      emne_id: best.emne_id,
+      label: best.title || "Forstå mer",
+      why: `Begreper ×${bestScore}`
+    };
+  }
+
+  // -------------------------
+  // Public API
+  // -------------------------
+  async function buildForPlace(place, ctx = {}) {
+    await ensureByLoaded();
+
+    const byData = cache.by;
+
+    const spatial = pickSpatialNext(place, ctx);
+
+    const narrative = pickNarrativeNext(place, byData);
+
+    const concept = pickConceptNext(place, ctx.personsHere || [], byData);
+
+    return { spatial, narrative, concept };
+  }
+
+  return { buildForPlace, ensureByLoaded };
+})();
+
 // ------------------------------------------------------------
 // NextUp bar (placeCard) — HG-only, trygg og kompakt
 // ------------------------------------------------------------
@@ -488,7 +636,7 @@ function renderNextUpBarForPlaceCard(place, ctx = {}) {
   else if (hasObs) { nextAction = "observe"; nextLabel = "Legg til observasjon"; }
   else if (hasRoute) { nextAction = "route"; nextLabel = "Vis rute hit"; }
 
-  // FORDI (nyttig status)
+    // FORDI (nyttig status)
   const because = [];
   if (cat) because.push(cat);
   because.push(completedQuiz ? "quiz fullført" : "quiz ikke tatt");
@@ -500,12 +648,22 @@ function renderNextUpBarForPlaceCard(place, ctx = {}) {
   return `
     <div class="hg-nextup" id="pcNextUp">
       <div class="hg-nextup-lines">
+
         <div class="hg-nextup-now"><b>Nå:</b> ${nowLine}</div>
+
         <div class="hg-nextup-next">
           <b>Neste:</b>
           <button class="hg-nextup-btn" data-nextup="${nextAction}">${nextLabel}</button>
         </div>
+
+        <div class="hg-nextup-tri" id="pcTriNext">
+          <div class="hg-nextup-tri-row"><b>🧭 Gå videre:</b> <span class="hg-muted">—</span></div>
+          <div class="hg-nextup-tri-row"><b>📖 Fortsett historien:</b> <span class="hg-muted">—</span></div>
+          <div class="hg-nextup-tri-row"><b>🧠 Forstå mer:</b> <span class="hg-muted">—</span></div>
+        </div>
+
         <div class="hg-nextup-because"><b>Fordi:</b> ${becauseLine}</div>
+
       </div>
     </div>
   `;
@@ -514,7 +672,7 @@ function renderNextUpBarForPlaceCard(place, ctx = {}) {
 // ============================================================
 // 5. PLACE CARD (det store kortpanelet) — REN SAMLET VERSJON
 // ============================================================
-window.openPlaceCard = function (place) {
+window.openPlaceCard = async function (place) {
   if (!place) return;
 
   const card      = document.getElementById("placeCard");
@@ -534,7 +692,7 @@ window.openPlaceCard = function (place) {
 
   // Mount for NextUp (må finnes i HTML)
   const nextUpMount = document.getElementById("pcNextUpMount");
-
+  
   if (!card) return;
 
   // Smooth “skifte sted”
@@ -760,15 +918,14 @@ window.openPlaceCard = function (place) {
     };
   }
 
-  // --- NextUp (Nå / Neste / Fordi) ---
+    // --- NextUp (Nå / Neste / Fordi) ---
   if (nextUpMount && typeof window.renderNextUpBarForPlaceCard === "function") {
     nextUpMount.innerHTML = window.renderNextUpBarForPlaceCard(place, {
       visited: window.visited || {},
       peopleCount: persons.length
     });
 
-    const btn = nextUpMount.querySelector("[data-nextup]");
-    if (btn) {
+    nextUpMount.querySelectorAll("[data-nextup]").forEach(btn => {
       btn.onclick = () => {
         const a = btn.dataset.nextup;
         if (a === "quiz")    return btnQuiz?.onclick?.();
@@ -778,15 +935,71 @@ window.openPlaceCard = function (place) {
         if (a === "info")    return btnInfo?.onclick?.();
         return btnInfo?.onclick?.();
       };
-    }
+    });
   }
 
+  // --- TriNext: Gå videre / Fortsett historien / Forstå mer ---
+  try {
+    if (nextUpMount) {
+      const triBox = nextUpMount.querySelector("#pcTriNext");
+      if (triBox) {
+        const nearbyPlaces = Array.isArray(window.NEARBY_PLACES) ? window.NEARBY_PLACES : [];
+
+        const tri = (window.HGNavigator && typeof window.HGNavigator.buildForPlace === "function")
+          ? await window.HGNavigator.buildForPlace(place, { nearbyPlaces, personsHere: persons })
+          : null;
+
+        if (tri) {
+          triBox.children[0].innerHTML = tri.spatial
+            ? `<b>🧭 Gå videre:</b> <button class="hg-nextup-btn" data-tri="goto" data-place="${tri.spatial.place_id}">${tri.spatial.label}</button>`
+            : `<b>🧭 Gå videre:</b> <span class="hg-muted">—</span>`;
+
+          triBox.children[1].innerHTML = tri.narrative
+            ? `<b>📖 Fortsett historien:</b> <button class="hg-nextup-btn" data-tri="story" data-story="${tri.narrative.story_id}" data-nextplace="${tri.narrative.next_place_id}">${tri.narrative.label}</button>`
+            : `<b>📖 Fortsett historien:</b> <span class="hg-muted">—</span>`;
+
+          triBox.children[2].innerHTML = tri.concept
+            ? `<b>🧠 Forstå mer:</b> <button class="hg-nextup-btn" data-tri="emne" data-emne="${tri.concept.emne_id}">${tri.concept.label}</button>`
+            : `<b>🧠 Forstå mer:</b> <span class="hg-muted">—</span>`;
+
+          triBox.querySelectorAll("[data-tri]").forEach(btn => {
+            btn.onclick = () => {
+              const t = btn.dataset.tri;
+
+              if (t === "goto") {
+                const id = btn.dataset.place;
+                const pl = (window.PLACES || []).find(x => String(x.id) === String(id));
+                if (pl) return window.openPlaceCard?.(pl);
+                return window.showToast?.("Fant ikke stedet");
+              }
+
+              if (t === "story") {
+                const nextId = btn.dataset.nextplace;
+                const pl = (window.PLACES || []).find(x => String(x.id) === String(nextId));
+                if (pl) return window.openPlaceCard?.(pl);
+                return window.showToast?.("Fant ikke neste kapittel-sted");
+              }
+
+              if (t === "emne") {
+                const emneId = btn.dataset.emne;
+                window.location.href = `knowledge_by.html#${encodeURIComponent(emneId)}`;
+              }
+            };
+          });
+        }
+      }
+    }
+  } catch (e) {
+    console.warn("[TriNext]", e);
+  }
+  
   requestAnimationFrame(() => {
     card.classList.remove("is-switching");
   });
 
   card.setAttribute("aria-hidden", "false");
 };
+
 
 
 
