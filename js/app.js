@@ -1139,6 +1139,44 @@ function initMiniProfile() {
   }
 }
 
+function initMiniProfile() {
+  ...
+}
+
+// ✅ LIM INN DETTE HER (linje 1141)
+window.addEventListener("hg:mpNextUp", (e) => {
+  const mount = document.getElementById("mpNextUp");
+  if (!mount) return;
+
+  const tri = e.detail?.tri || {};
+  const becauseLine = e.detail?.becauseLine || "";
+
+  const s = tri.spatial?.label || "—";
+  const n = tri.narrative?.label || "—";
+  const c = tri.concept?.label || "—";
+
+  mount.innerHTML = `
+    <span><b>🧭</b> ${hgEsc(s)}</span>
+    <span class="sep">•</span>
+    <span><b>📖</b> ${hgEsc(n)}</span>
+    <span class="sep">•</span>
+    <span><b>🧠</b> ${hgEsc(c)}</span>
+    ${becauseLine ? `<span class="sep">•</span><span><b>Fordi:</b> ${hgEsc(becauseLine)}</span>` : ""}
+  `;
+});
+
+function hgEsc(s){
+  return String(s ?? "")
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+}
+
+// (denne linja skal stå der den står fra før)
+window.addEventListener("updateProfile", initMiniProfile);
+
 window.addEventListener("updateProfile", initMiniProfile);
 
 function showQuizHistory() {
