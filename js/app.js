@@ -1139,9 +1139,6 @@ function initMiniProfile() {
   }
 }
 
-function initMiniProfile() {
-  ...
-}
 
 // ✅ LIM INN DETTE HER (linje 1141)
 window.addEventListener("hg:mpNextUp", (e) => {
