@@ -1,80 +1,105 @@
 /* ===================================================== */
-/* NY MINI-PROFIL – HISTORY GO ELEGANT PANEL              */
+/* MINI-PROFIL + NEXTUP – HISTORY GO (SIDE-BY-SIDE)       */
 /* ===================================================== */
-.mini-profile {
+
+/* Row-wrapper: mini-profil og nextUp ved siden av hverandre */
+.mp-row{
+  display:flex;
+  align-items:stretch;
+  gap:10px;
+  margin-bottom: 26px;
+}
+
+/* Mini-profil som klikkbart kort (bruk <a> eller div med onclick) */
+.mini-profile{
   position: relative;
   overflow: hidden;
   background: linear-gradient(180deg, rgba(25,25,30,.95), rgba(10,15,25,.95));
   border-left: 4px solid #f6c800;
   border-radius: 12px;
-  padding: 10px 14px;  /* lavere */
-  margin-bottom: 26px;
+  padding: 10px 14px;
   box-shadow: 0 0 18px rgba(246,200,0,.05), inset 0 0 6px rgba(255,255,255,.04);
   transition: transform .25s ease, box-shadow .25s ease;
+  flex: 1 1 0;
+  min-width: 0;
 }
-.mini-profile:hover {
+
+.mini-profile:hover{
   transform: translateY(-2px);
   box-shadow: 0 0 22px rgba(246,200,0,.15), inset 0 0 10px rgba(255,255,255,.06);
 }
 
-.profile-top {
-  display: flex;
+/* Hvis du wrapper mini-profilen i <a href="profile.html"> */
+.mini-profile--link{
+  display:block;
+  text-decoration:none;
+  color: inherit;
+  cursor:pointer;
+}
+
+/* Topplinje */
+.profile-top{
+  display:flex;
   justify-content: space-between;
-  align-items: center;
+  align-items:center;
   margin-bottom: 4px;
 }
-.profile-top h3 {
+
+.profile-top h3{
   margin: 0;
   font-size: 1.15rem;
   letter-spacing: .2px;
   color: #fff;
 }
 
-.arrow-link {
-  color: #f6c800;
-  font-size: 1.35rem;
-  text-decoration: none;
-  transition: transform .2s ease;
-}
-.arrow-link:hover { transform: translateX(3px); }
+/* Pila er overflødig nå */
+.arrow-link{ display:none !important; }
 
-.mini-profile .muted {
+.mini-profile .muted{
   color: var(--muted);
   font-size: .92rem;
   margin: 0;
   line-height: 1.4;
 }
 
-/* miniStats blir en flex-rad så mpNextUp kan ligge til høyre på SAMME linje */
+/* miniStats: vanlig tekstlinje igjen (ikke flex for nextUp) */
 #miniStats{
-  display:flex;
-  align-items:center;
-  gap:10px;
+  display:block;
 }
 
-
-.mini-profile .linkish {
+/* Link-ish */
+.mini-profile .linkish{
   color: #f6c800;
   text-decoration: none;
   font-weight: 500;
 }
-.mini-profile .linkish:hover { text-decoration: underline; }
+.mini-profile .linkish:hover{ text-decoration: underline; }
 
 /* ===================================================== */
-/* MP NEXTUP (høyre side) – 1 linje, klikkbar, ingen høydeøkning */
+/* NEXTUP – egen liten boks ved siden av mini-profil      */
 /* ===================================================== */
 
 #mpNextUp{
-  /* layout */
-  display: flex;
-  align-items: center;
+  position: relative;
+  overflow: hidden;
+
+  background: linear-gradient(180deg, rgba(25,25,30,.92), rgba(10,15,25,.92));
+  border-left: 4px solid rgba(246,200,0,.55);
+  border-radius: 12px;
+  padding: 10px 12px;
+
+  box-shadow: 0 0 18px rgba(246,200,0,.03), inset 0 0 6px rgba(255,255,255,.035);
+  transition: transform .25s ease, box-shadow .25s ease;
+
+  display:flex;
+  align-items:center;
   gap: 6px;
 
-  /* ikke skyv hele nextup til høyre (det flytter pila feil) */
-  margin-left: 0;
-
-  /* tekstreglene dine */
+  /* størrelse: egen boks, ikke for bred */
+  flex: 0 1 48%;
   max-width: 55%;
+  min-width: 0;
+
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -84,19 +109,9 @@
   opacity: .95;
 }
 
-/* ✅ Pila til venstre (bytt selector hvis pila har annet navn) */
-#mpNextUp .mp-nextup-arrow{
-  order: -1;
-  flex: 0 0 auto;
-}
-
-/* ✅ Selve innholdet (knapper/tekst) tar resten */
-#mpNextUp .mp-nextup-inner{
-  flex: 1 1 auto;
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+#mpNextUp:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 0 22px rgba(246,200,0,.10), inset 0 0 10px rgba(255,255,255,.05);
 }
 
 #mpNextUp .sep{
@@ -116,16 +131,16 @@
 }
 
 /* ===================================================== */
-/* MINI-PROFIL – TILLEGG: BADGES + SISTE QUIZ            */
+/* MINI-PROFIL – BADGES + SISTE QUIZ                      */
 /* ===================================================== */
 
-.profile-badges {
-  display: flex;
+.profile-badges{
+  display:flex;
   gap: 6px;
   margin: 8px 0;
 }
 
-.profile-badges img {
+.profile-badges img{
   width: 26px;
   height: 26px;
   object-fit: contain;
@@ -133,29 +148,30 @@
   filter: drop-shadow(0 0 4px rgba(0,0,0,.4));
 }
 
-.profile-last-quiz {
+.profile-last-quiz{
   background: rgba(255,255,255,.06);
   border-radius: 10px;
   padding: 8px 10px;
   color: #fff;
   font-size: .9rem;
-  display: flex;
-  align-items: center;
+  display:flex;
+  align-items:center;
   gap: 8px;
   margin-top: 6px;
   border-left: 3px solid #f6c800;
 }
 
-.profile-last-quiz img {
+.profile-last-quiz img{
   width: 28px;
   height: 28px;
   object-fit: cover;
   border-radius: 4px;
 }
 
-.pulse-mini { animation: miniProfilePulse .45s ease; }
+/* liten pulse animasjon */
+.pulse-mini{ animation: miniProfilePulse .45s ease; }
 
-@keyframes miniProfilePulse {
+@keyframes miniProfilePulse{
   0%   { transform: scale(1); opacity: .8; }
   40%  { transform: scale(1.10); opacity: 1; }
   100% { transform: scale(1); opacity: .8; }
