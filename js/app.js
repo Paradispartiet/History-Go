@@ -1435,7 +1435,7 @@ if (window.QuizEngine) {
     savePeople();
     window.dispatchEvent(new Event("updateProfile"));
   }
-},,
+},
 
     showRewardPerson,
     showRewardPlace,
