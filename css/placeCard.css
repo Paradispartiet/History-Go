@@ -57,33 +57,18 @@
   margin-bottom: 12px;
 }
 
+#placeCard img#pcImage,
 #placeCard .pc-img{
-  display: block;
-  width: var(--pc-img);      /* eller --pc-img-w hvis du bruker rektangel */
-  height: var(--pc-img);     /* eller --pc-img-h hvis du bruker rektangel */
-  max-width: none;
-  max-height: none;
-
-  border-radius: 16px;
-  object-fit: cover;         /* ✅ viktig: samme utsnitt, aldri “strekk” */
-  object-position: center;
-
-  flex-shrink: 0;
-  border: 0;
-  background: #000;
-}
-
-  /* HARD OVERRIDE: vinn mot globale img-regler */
-#placeCard img#pcImage{
-  width: var(--pc-img) !important;
-  height: var(--pc-img) !important;
+  width: var(--pc-img-w) !important;
+  height: var(--pc-img-h) !important;
   max-width: none !important;
   max-height: none !important;
-
+  border-radius: 16px;
   object-fit: cover !important;
-  object-position: center !important;
-
-  display: block !important;
+  object-position: center;
+  display: block;
+  flex-shrink: 0;
+  background: #000;
 }
   
 #placeCard .pc-text{ flex: 1; }
