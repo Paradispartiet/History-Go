@@ -75,6 +75,19 @@
   background: #000;
 }
 
+  /* HARD OVERRIDE: vinn mot globale img-regler */
+#placeCard img#pcImage{
+  width: var(--pc-img) !important;
+  height: var(--pc-img) !important;
+  max-width: none !important;
+  max-height: none !important;
+
+  object-fit: cover !important;
+  object-position: center !important;
+
+  display: block !important;
+}
+  
 #placeCard .pc-text{ flex: 1; }
 
 /* Tekst */
