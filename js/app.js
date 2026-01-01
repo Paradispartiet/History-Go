@@ -1403,7 +1403,10 @@ if (window.QuizEngine) {
       peopleCollected[personId] = true;
       savePeople();
     },
-    dispatchProfileUpdate: () => window.dispatchEvent(new Event("updateProfile")),
+    saveVisitedFromQuiz: (placeId) => {
+      saveVisitedFromQuiz(placeId);
+    },
+      dispatchProfileUpdate: () => window.dispatchEvent(new Event("updateProfile")),
 
     // ✅ hooks (kun ved riktige svar)
     saveKnowledgeFromQuiz: window.saveKnowledgeFromQuiz || null,
