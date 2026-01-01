@@ -160,6 +160,42 @@ function savePeople() {
   renderGallery();
 }
 
+function applyTestModeUnlockAll() {
+  // Må ha data først
+  if (!Array.isArray(PLACES) || !PLACES.length) return;
+
+  let changedVisited = false;
+  let changedPeople  = false;
+
+  // 1) Alle steder -> visited
+  for (const p of PLACES) {
+    const id = String(p?.id ?? "");
+    if (!id) continue;
+    if (!visited[id]) {
+      visited[id] = true;
+      changedVisited = true;
+    }
+  }
+
+  // 2) Alle personer -> collected
+  if (Array.isArray(PEOPLE) && PEOPLE.length) {
+    for (const person of PEOPLE) {
+      const id = String(person?.id ?? "");
+      if (!id) continue;
+      if (!peopleCollected[id]) {
+        peopleCollected[id] = true;
+        changedPeople = true;
+      }
+    }
+  }
+
+  if (changedVisited) saveVisited();
+  if (changedPeople)  savePeople();
+
+  // Oppdater mini-profil osv.
+  window.dispatchEvent(new Event("updateProfile"));
+}
+
 function saveMerits() {
   localStorage.setItem("merits_by_category", JSON.stringify(merits));
 }
