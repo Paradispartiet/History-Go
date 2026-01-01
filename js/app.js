@@ -1151,18 +1151,57 @@ window.addEventListener("hg:mpNextUp", (e) => {
   const tri = e.detail?.tri || {};
   const becauseLine = e.detail?.becauseLine || "";
 
-  const s = tri.spatial?.label || "—";
-  const n = tri.narrative?.label || "—";
-  const c = tri.concept?.label || "—";
+  const spatial = tri.spatial || null;
+  const narrative = tri.narrative || null;
+  const concept = tri.concept || null;
 
   mount.innerHTML = `
-    <span><b>🧭</b> ${hgEsc(s)}</span>
+    <button class="mp-nextup-link" data-mp="goto" ${spatial ? `data-place="${hgEscAttr(spatial.place_id)}"` : "disabled"}>
+      🧭 ${spatial ? hgEsc(spatial.label) : "—"}
+    </button>
+
     <span class="sep">•</span>
-    <span><b>📖</b> ${hgEsc(n)}</span>
+
+    <button class="mp-nextup-link" data-mp="story" ${narrative ? `data-nextplace="${hgEscAttr(narrative.next_place_id)}"` : "disabled"}>
+      📖 ${narrative ? hgEsc(narrative.label) : "—"}
+    </button>
+
     <span class="sep">•</span>
-    <span><b>🧠</b> ${hgEsc(c)}</span>
+
+    <button class="mp-nextup-link" data-mp="emne" ${concept ? `data-emne="${hgEscAttr(concept.emne_id)}"` : "disabled"}>
+      🧠 ${concept ? hgEsc(concept.label) : "—"}
+    </button>
+
     ${becauseLine ? `<span class="sep">•</span><span><b>Fordi:</b> ${hgEsc(becauseLine)}</span>` : ""}
   `;
+
+    mount.querySelectorAll("[data-mp]").forEach((btn) => {
+    btn.onclick = () => {
+      const t = btn.dataset.mp;
+
+      if (t === "goto") {
+        const id = btn.dataset.place;
+        if (!id) return;
+        const pl = (window.PLACES || []).find(x => String(x.id) === String(id));
+        if (pl) return window.openPlaceCard?.(pl);
+        return window.showToast?.("Fant ikke stedet");
+      }
+
+      if (t === "story") {
+        const nextId = btn.dataset.nextplace;
+        if (!nextId) return;
+        const pl = (window.PLACES || []).find(x => String(x.id) === String(nextId));
+        if (pl) return window.openPlaceCard?.(pl);
+        return window.showToast?.("Fant ikke neste kapittel-sted");
+      }
+
+      if (t === "emne") {
+        const emneId = btn.dataset.emne;
+        if (!emneId) return;
+        window.location.href = `knowledge_by.html#${encodeURIComponent(emneId)}`;
+      }
+    };
+  });
 });
 
 function hgEsc(s){
@@ -1174,8 +1213,9 @@ function hgEsc(s){
     .replaceAll("'","&#039;");
 }
 
-// (denne linja skal stå der den står fra før)
-window.addEventListener("updateProfile", initMiniProfile);
+function hgEscAttr(s){
+  return hgEsc(s).replaceAll("\n", " ").trim();
+}
 
 window.addEventListener("updateProfile", initMiniProfile);
 
