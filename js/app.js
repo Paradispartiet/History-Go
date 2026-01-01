@@ -1012,25 +1012,26 @@ function wirePlaceCardCollapseTapToExpand() {
 function wire() {
   // Testmodus
   el.test?.addEventListener("change", (e) => {
-    const on = !!e.target.checked;
+  const on = !!e.target.checked;
 
-    if (on) {
-      window.setPos?.(START.lat, START.lon, null);
+  window.TEST_MODE = on; // ✅ DEN ENE VIKTIGE LINJEN
 
-      if (el.status) el.status.textContent = "Testmodus: Oslo sentrum";
-      showToast("Testmodus PÅ");
+  if (on) {
+    window.setPos?.(START.lat, START.lon, null);
 
-      window.HG_ENV = window.HG_ENV || {};
-      window.HG_ENV.geo = "test";
-    } else {
-      showToast("Testmodus AV");
-      window.clearPos?.("test_off");
-      requestLocation();
-    }
+    if (el.status) el.status.textContent = "Testmodus: Oslo sentrum";
+    showToast("Testmodus PÅ");
 
-    // NB: krever at du har window.renderNearbyPlaces = renderNearbyPlaces;
-    window.renderNearbyPlaces?.();
-  });
+    window.HG_ENV = window.HG_ENV || {};
+    window.HG_ENV.geo = "test";
+  } else {
+    showToast("Testmodus AV");
+    window.clearPos?.("test_off");
+    requestLocation();
+  }
+
+  window.renderNearbyPlaces?.();
+});
 
   // Sikteknapp (center)
   el.btnCenter?.addEventListener("click", () => {
