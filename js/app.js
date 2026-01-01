@@ -1350,6 +1350,10 @@ if (typeof linkPeopleToPlaces === "function") {
   if (DEBUG) console.warn("linkPeopleToPlaces() mangler – hopper over linking");
 }
 
+/* ✅ TESTMODE: fyll profilen (steder + personer) etter linking */
+if (window.TEST_MODE) {
+  applyTestModeUnlockAll();
+}
 
    // ✅ INIT QUIZ-MODUL (ETTER at PLACES/PEOPLE er lastet)
 if (window.QuizEngine) {
