@@ -1405,7 +1405,37 @@ if (window.QuizEngine) {
     showToast,
 
     // progression / rewards
-    addCompletedQuizAndMaybePoint,
+    addCompletedQuizAndMaybePoint: (...args) => {
+  // 1) kjør eksisterende progresjon (den fungerer allerede siden du har "3 quiz fullført")
+  addCompletedQuizAndMaybePoint(...args);
+
+  // 2) prøv å finne en ID i args som matcher et sted eller en person
+  let foundId = null;
+  for (const a of args) {
+    if (a == null) continue;
+    const s = String(a);
+    if (!s) continue;
+
+    // match sted først
+    if (PLACES?.some(p => String(p.id) === s)) { foundId = s; break; }
+    // ellers match person
+    if (PEOPLE?.some(p => String(p.id) === s)) { foundId = s; break; }
+  }
+
+  if (!foundId) return;
+
+  // 3) unlock sted/person basert på ID
+  if (PLACES?.some(p => String(p.id) === foundId)) {
+    saveVisitedFromQuiz(foundId);
+    return;
+  }
+
+  if (PEOPLE?.some(p => String(p.id) === foundId)) {
+    peopleCollected[foundId] = true;
+    savePeople();
+    window.dispatchEvent(new Event("updateProfile"));
+  }
+},,
 
     showRewardPerson,
     showRewardPlace,
