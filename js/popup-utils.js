@@ -600,47 +600,7 @@ const HGNavigator = (() => {
   return { buildForPlace, ensureByLoaded };
 })();
 
-// ------------------------------------------------------------
-// NextUp bar (placeCard) — HG-only, trygg og kompakt
-// ------------------------------------------------------------
-function renderNextUpBarForPlaceCard(place, ctx = {}) {
-  if (!place) return "";
 
-  const completedQuiz = hasCompletedQuiz(place.id);
-
-  // visited kommer fra ctx (så vi slipper å anta global)
-  const isVisited = !!(ctx.visited && ctx.visited[place.id]);
-
-  // peopleCount kommer fra ctx (du har persons-lista i openPlaceCard)
-  const peopleCount = Number(ctx.peopleCount || 0);
-
-  const cat = place.category || "";
-
-  // FORDI (nyttig status)
-  const because = [];
-  if (cat) because.push(cat);
-  because.push(completedQuiz ? "quiz fullført" : "quiz ikke tatt");
-  because.push(isVisited ? "låst opp" : "ikke låst opp");
-  if (peopleCount) because.push(`${peopleCount} personer her`);
-
-  const becauseLine = because.join(" • ");
-
-  return `
-    <div class="hg-nextup" id="pcNextUp">
-      <div class="hg-nextup-lines">
-
-        <div class="hg-nextup-tri" id="pcTriNext">
-          <div class="hg-nextup-tri-row"><b>🧭 Gå videre:</b> <span class="hg-muted">—</span></div>
-          <div class="hg-nextup-tri-row"><b>📖 Fortsett historien:</b> <span class="hg-muted">—</span></div>
-          <div class="hg-nextup-tri-row"><b>🧠 Forstå mer:</b> <span class="hg-muted">—</span></div>
-        </div>
-
-        <div class="hg-nextup-because"><b>Fordi:</b> ${becauseLine}</div>
-
-      </div>
-    </div>
-  `;
-}
 
 // ============================================================
 // 5. PLACE CARD (det store kortpanelet) — REN SAMLET VERSJON
@@ -662,10 +622,6 @@ window.openPlaceCard = async function (place) {
   const btnNote   = document.getElementById("pcNote");
   const btnObs    = document.getElementById("pcObserve");
   const btnClose  = document.getElementById("pcClose");
-
-    // Mount for MiniProfile Next (TriNext + Fordi)
-    const nextUpMount =
-    document.getElementById("mpNextUp");
   
   if (!card) return;
 
