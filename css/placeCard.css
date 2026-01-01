@@ -9,7 +9,9 @@
   --pc-gap: 14px;
 
   /* Størrelser */
-  --pc-img: 180px;
+  :root{
+  --pc-img-w: 200px;
+  --pc-img-h: 150px;
   --pc-title: 1.55rem;
   --pc-meta: 1rem;
   --pc-desc: 1.05rem;
@@ -58,13 +60,13 @@
 }
 
 #placeCard .pc-img{
-  width: var(--pc-img);
-  height: var(--pc-img);
+  width: var(--pc-img-w);
+  height: var(--pc-img-h);
   border-radius: 16px;
   object-fit: cover;
   flex-shrink: 0;
   border: 0;
-  background: 000;
+  background: #000;
 }
 
 #placeCard .pc-text{ flex: 1; }
