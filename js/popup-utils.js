@@ -940,14 +940,14 @@ window.openPlaceCard = async function (place) {
 
   // --- TriNext: Gå videre / Fortsett historien / Forstå mer ---
   try {
-    if (nextUpMount) {
-      const triBox = nextUpMount.querySelector("#pcTriNext");
-      if (triBox) {
-        const nearbyPlaces = Array.isArray(window.NEARBY_PLACES) ? window.NEARBY_PLACES : [];
+  if (nextUpMount) {
+    const triBox = nextUpMount.querySelector("#pcTriNext");
+    if (triBox) {
+      const nearbyPlaces = Array.isArray(window.NEARBY_PLACES) ? window.NEARBY_PLACES : [];
 
-        const tri = (window.HGNavigator && typeof window.HGNavigator.buildForPlace === "function")
-          ? await window.HGNavigator.buildForPlace(place, { nearbyPlaces, personsHere: persons })
-          : null;
+      const tri = (window.HGNavigator && typeof window.HGNavigator.buildForPlace === "function")
+        ? await window.HGNavigator.buildForPlace(place, { nearbyPlaces, personsHere: persons })
+        : null;
 
         if (tri) {
           triBox.children[0].innerHTML = tri.spatial
