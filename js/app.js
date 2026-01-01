@@ -1261,16 +1261,21 @@ function showQuizHistory() {
 }
 
 function wireMiniProfileLinks() {
-  document.getElementById("linkPlaces")?.addEventListener("click", () => {
+  document.getElementById("linkPlaces")?.addEventListener("click", (e) => {
+    e.preventDefault(); e.stopPropagation();
     enterMapMode();
     showToast("Viser steder på kartet");
   });
 
-  document.getElementById("linkBadges")?.addEventListener("click", () => {
+  document.getElementById("linkBadges")?.addEventListener("click", (e) => {
+    e.preventDefault(); e.stopPropagation();
     window.location.href = "profile.html#userBadgesGrid";
   });
 
-  document.getElementById("linkQuiz")?.addEventListener("click", showQuizHistory);
+  document.getElementById("linkQuiz")?.addEventListener("click", (e) => {
+    e.preventDefault(); e.stopPropagation();
+    showQuizHistory();
+  });
 }
 
 // BOOT
