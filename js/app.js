@@ -1345,7 +1345,18 @@ function wireMiniProfileLinks() {
 }
 
 // BOOT
+// BOOT
 async function boot() {
+  // ✅ Testmodus (må settes tidlig i kjørerrekken)
+  window.TEST_MODE = localStorage.getItem("HG_TEST_MODE") === "1";
+  const testEl = document.getElementById("testToggle");
+  if (testEl) testEl.checked = window.TEST_MODE;
+
+  // ✅ "Unlock all"-knapp: riktig synlighet ved reload
+  const btnUA = document.getElementById("btnUnlockAll");
+  if (btnUA) btnUA.style.display = window.TEST_MODE ? "inline-flex" : "none";
+
+  // Init map + ...
   // Init map + eksponer global MAP (routes.js forventer MAP)
   const map = window.HGMap?.initMap({ containerId: "map", start: START });
 if (map) {
