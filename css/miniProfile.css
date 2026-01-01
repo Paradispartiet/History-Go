@@ -65,14 +65,38 @@
 /* ===================================================== */
 
 #mpNextUp{
-  margin-left:auto;
-  max-width:55%;
+  /* layout */
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  /* ikke skyv hele nextup til høyre (det flytter pila feil) */
+  margin-left: 0;
+
+  /* tekstreglene dine */
+  max-width: 55%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+
   font-size: 12px;
   line-height: 1;
   opacity: .95;
+}
+
+/* ✅ Pila til venstre (bytt selector hvis pila har annet navn) */
+#mpNextUp .mp-nextup-arrow{
+  order: -1;
+  flex: 0 0 auto;
+}
+
+/* ✅ Selve innholdet (knapper/tekst) tar resten */
+#mpNextUp .mp-nextup-inner{
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 #mpNextUp .sep{
