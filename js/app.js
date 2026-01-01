@@ -148,11 +148,12 @@ function saveVisited() {
   localStorage.setItem("visited_places", JSON.stringify(visited));
   renderCollection();
 
-  // Oppdater kartprikker når visited endrer seg
   if (window.HGMap) {
     HGMap.setVisited(visited);
     HGMap.refreshMarkers();
   }
+
+  window.dispatchEvent(new Event("updateProfile")); // ✅ VIKTIG
 }
 
 // ✅ Unlock sted via quiz (brukes av QuizEngine)
