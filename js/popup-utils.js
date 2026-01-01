@@ -696,6 +696,32 @@ window.openPlaceCard = async function (place) {
       p.placeId === place.id
   );
 
+// --- MiniProfile: send TriNext + Fordi ---
+try {
+  const completedQuiz = hasCompletedQuiz(place.id);
+  const isVisited = !!(window.visited && window.visited[place.id]);
+  const cat = place.category || "";
+
+  const because = [];
+  if (cat) because.push(cat);
+  because.push(completedQuiz ? "quiz fullført" : "quiz ikke tatt");
+  because.push(isVisited ? "låst opp" : "ikke låst opp");
+  if (persons.length) because.push(`${persons.length} personer her`);
+  const becauseLine = because.join(" • ");
+
+  const nearbyPlaces = Array.isArray(window.NEARBY_PLACES) ? window.NEARBY_PLACES : [];
+
+  const tri = (window.HGNavigator && typeof window.HGNavigator.buildForPlace === "function")
+    ? await window.HGNavigator.buildForPlace(place, { nearbyPlaces, personsHere: persons })
+    : null;
+
+  window.dispatchEvent(new CustomEvent("hg:mpNextUp", {
+    detail: { tri, becauseLine }
+  }));
+} catch (e) {
+  console.warn("[mpNextUp]", e);
+}
+  
   // --- Render personer i placeCard ---
   if (peopleEl) {
     peopleEl.innerHTML = persons
