@@ -155,6 +155,19 @@ function saveVisited() {
   }
 }
 
+// ✅ Unlock sted via quiz (brukes av QuizEngine)
+function saveVisitedFromQuiz(placeId) {
+  const id = String(placeId ?? "");
+  if (!id) return;
+
+  if (!visited[id]) {
+    visited[id] = true;
+    saveVisited();
+    window.dispatchEvent(new Event("updateProfile"));
+    window.renderNearbyPlaces?.();
+  }
+}
+
 function savePeople() {
   localStorage.setItem("people_collected", JSON.stringify(peopleCollected));
   renderGallery();
