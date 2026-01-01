@@ -179,11 +179,108 @@
   border-radius: 4px;
 }
 
-/* liten pulse animasjon */
-.pulse-mini{ animation: miniProfilePulse .45s ease; }
 
-@keyframes miniProfilePulse{
+/* ===================================================== */
+/* NY MINI-PROFIL – HISTORY GO ELEGANT PANEL              */
+/* ===================================================== */
+.mini-profile {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(25,25,30,.95), rgba(10,15,25,.95));
+  border-left: 4px solid #f6c800;
+  border-radius: 12px;
+  padding: 10px 14px;  /* lavere */
+  margin-bottom: 26px;
+  box-shadow: 0 0 18px rgba(246,200,0,.05), inset 0 0 6px rgba(255,255,255,.04);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.mini-profile:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 22px rgba(246,200,0,.15), inset 0 0 10px rgba(255,255,255,.06);
+}
+
+.profile-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+.profile-top h3 {
+  margin: 0;
+  font-size: 1.15rem;
+  letter-spacing: .2px;
+  color: #fff;
+}
+
+.arrow-link {
+  color: #f6c800;
+  font-size: 1.35rem;
+  text-decoration: none;
+  transition: transform .2s ease;
+}
+.arrow-link:hover { transform: translateX(3px); }
+
+.mini-profile .muted {
+  color: var(--muted);
+  font-size: .92rem;
+  margin: 0;
+  line-height: 1.4;
+}
+.mini-profile .linkish {
+  color: #f6c800;
+  text-decoration: none;
+  font-weight: 500;
+}
+.mini-profile .linkish:hover { text-decoration: underline; }
+
+/* ===================================================== */
+/* MINI-PROFIL – TILLEGG: BADGES + SISTE QUIZ            */
+/* ===================================================== */
+
+.profile-badges {
+  display: flex;
+  gap: 6px;
+  margin: 8px 0;
+}
+
+.profile-badges img {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+  border-radius: 4px;
+  filter: drop-shadow(0 0 4px rgba(0,0,0,.4));
+}
+
+.profile-last-quiz {
+  background: rgba(255,255,255,.06);
+  border-radius: 10px;
+  padding: 8px 10px;
+  color: #fff;
+  font-size: .9rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+  border-left: 3px solid #f6c800;
+}
+
+.profile-last-quiz img {
+  width: 28px;
+  height: 28px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+/* Pulse ved oppdatering */
+.pulse-mini {
+  animation: miniProfilePulse .45s ease;
+}
+
+@keyframes miniProfilePulse {
   0%   { transform: scale(1); opacity: .8; }
   40%  { transform: scale(1.10); opacity: 1; }
   100% { transform: scale(1); opacity: .8; }
 }
+
+
+
