@@ -155,39 +155,52 @@ function saveVisited() {
   }
 }
 
+function saveVisitedFromQuiz(placeId) {
+  const id = String(placeId ?? "");
+  if (!id) return;
+  if (!visited[id]) {
+    visited[id] = true;
+    saveVisited();
+    window.dispatchEvent(new Event("updateProfile"));
+  }
+}
+
+
+
 function savePeople() {
   localStorage.setItem("people_collected", JSON.stringify(peopleCollected));
   renderGallery();
 }
 
-function applyTestModeUnlockAll() {
-  // Må ha data først
-  if (!Array.isArray(PLACES) || !PLACES.length) return;
+function unlockFromQuizId(rawId) {
+  const id = String(rawId ?? "");
+  if (!id) return false;
 
-  let changedVisited = false;
-  let changedPeople  = false;
-
-  // 1) Alle steder -> visited
-  for (const p of PLACES) {
-    const id = String(p?.id ?? "");
-    if (!id) continue;
+  // sted?
+  const pl = (window.PLACES || []).find(x => String(x.id) === id);
+  if (pl) {
     if (!visited[id]) {
       visited[id] = true;
-      changedVisited = true;
+      saveVisited();
+      window.dispatchEvent(new Event("updateProfile"));
+      window.renderNearbyPlaces?.();
     }
+    return true;
   }
 
-  // 2) Alle personer -> collected
-  if (Array.isArray(PEOPLE) && PEOPLE.length) {
-    for (const person of PEOPLE) {
-      const id = String(person?.id ?? "");
-      if (!id) continue;
-      if (!peopleCollected[id]) {
-        peopleCollected[id] = true;
-        changedPeople = true;
-      }
+  // person?
+  const pe = (window.PEOPLE || []).find(x => String(x.id) === id);
+  if (pe) {
+    if (!peopleCollected[id]) {
+      peopleCollected[id] = true;
+      savePeople();
+      window.dispatchEvent(new Event("updateProfile"));
     }
+    return true;
   }
+
+  return false;
+}
 
   if (changedVisited) saveVisited();
   if (changedPeople)  savePeople();
