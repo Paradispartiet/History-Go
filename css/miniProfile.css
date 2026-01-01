@@ -52,6 +52,35 @@
 .mini-profile .linkish:hover { text-decoration: underline; }
 
 /* ===================================================== */
+/* MP NEXTUP (høyre side) – 1 linje, klikkbar, ingen høydeøkning */
+/* ===================================================== */
+
+#mpNextUp{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 12px;
+  line-height: 1;
+  opacity: .95;
+}
+
+#mpNextUp .sep{
+  opacity: .6;
+  padding: 0 6px;
+}
+
+#mpNextUp .mp-nextup-link{
+  all: unset;
+  cursor: pointer;
+}
+
+#mpNextUp .mp-nextup-link[disabled]{
+  cursor: default;
+  opacity: .7;
+  pointer-events: none;
+}
+
+/* ===================================================== */
 /* MINI-PROFIL – TILLEGG: BADGES + SISTE QUIZ            */
 /* ===================================================== */
 
