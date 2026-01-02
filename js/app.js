@@ -1341,14 +1341,14 @@ function wireMiniProfileLinks() {
 // BOOT
 // BOOT
 async function boot() {
-  // ✅ Testmodus (må settes tidlig i kjørerrekken)
-  window.TEST_MODE = localStorage.getItem("HG_TEST_MODE") === "1";
-  const testEl = document.getElementById("testToggle");
-  if (testEl) testEl.checked = window.TEST_MODE;
+    // ✅ OpenModus (betalingsmodus) – må settes tidlig
+  window.OPEN_MODE = localStorage.getItem("HG_OPEN_MODE") === "1";
+  const openEl = document.getElementById("openToggle");
+  if (openEl) openEl.checked = window.OPEN_MODE;
 
-  // ✅ "Unlock all"-knapp: riktig synlighet ved reload
+  // ✅ "Åpne alt"-knapp: riktig synlighet ved reload
   const btnUA = document.getElementById("btnUnlockAll");
-  if (btnUA) btnUA.style.display = window.TEST_MODE ? "inline-flex" : "none";
+  if (btnUA) btnUA.style.display = window.OPEN_MODE ? "inline-flex" : "none";
 
   // Init map + ...
   // Init map + eksponer global MAP (routes.js forventer MAP)
