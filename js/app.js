@@ -242,7 +242,7 @@ const el = {
   btnSeeMap:  document.getElementById("btnSeeMap"),
   btnExitMap: document.getElementById("btnExitMap"),
   btnCenter:  document.getElementById("btnCenter"),
-  test:       document.getElementById("testToggle"),
+  open:       document.getElementById("openToggle"),
 
   list:       document.getElementById("nearbyList"),
   nearPeople: document.getElementById("nearbyPeople"),
@@ -1080,7 +1080,7 @@ function wire() {
 
 // ✅ LIM INN DETTE HER:
 document.getElementById("btnUnlockAll")?.addEventListener("click", () => {
-  if (!window.TEST_MODE) return;
+  if (!window.OPEN_MODE) return;
   applyTestModeUnlockAll();
   showToast("Alt låst opp");
 });
