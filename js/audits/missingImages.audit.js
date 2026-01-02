@@ -315,80 +315,85 @@
   // Download (iOS/Safari robust)
   // -------------------------------
   function downloadJSON(filename, rows) {
-    const safeName = String(filename || "export.json").trim() || "export.json";
-    const json = JSON.stringify(rows || [], null, 2);
+  const safeName = String(filename || "export.json").trim() || "export.json";
+  const json = JSON.stringify(rows || [], null, 2);
 
-    const blob = new Blob([json], { type: "application/json;charset=utf-8" });
-    const url = URL.createObjectURL(blob);
+  const blob = new Blob([json], { type: "application/json;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
 
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = safeName;
-    a.rel = "noopener";
-    a.style.display = "none";
-    document.body.appendChild(a);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = safeName;
+  a.rel = "noopener";
+  a.style.display = "none";
+  document.body.appendChild(a);
 
-    try { a.click(); } catch {}
-    a.remove();
+  try { a.click(); } catch {}
+  a.remove();
 
-    // iOS fallback: åpne json i ny fane (Share → Save to Files)
-    setTimeout(() => { try { global.open(url, "_blank"); } catch {} }, 250);
+  // Ikke revoké for tidlig (iOS kan være treg)
+  setTimeout(() => { try { URL.revokeObjectURL(url); } catch {} }, 60000);
 
-    // ikke revoké for tidlig
-    setTimeout(() => { try { URL.revokeObjectURL(url); } catch {} }, 60000);
+  return rows || [];
+}
 
-    return rows || [];
+  function requireAuditResult() {
+  if (!__lastAuditResult || !__lastAuditResult.people || !__lastAuditResult.places) {
+    throw new Error("[HGImageRolesAudit] Kjør run() først: HGImageRolesAudit.run({ people: PEOPLE, places: PLACES })");
   }
+}
 
-  function ensureAuditResult() {
-    if (__lastAuditResult && __lastAuditResult.people && __lastAuditResult.places) return;
-    const people = global.PEOPLE || [];
-    const places = global.PLACES || [];
-    __lastAuditResult = run({ people, places, maxTableRows: DEFAULT_MAX_TABLE_ROWS });
+ // -------------------------------
+// PUBLIC API
+// -------------------------------
+function run({ people = [], places = [], maxTableRows = DEFAULT_MAX_TABLE_ROWS } = {}) {
+  const peopleAudit = auditPeople(people);
+  const placesAudit = auditPlaces(places);
+
+  __lastAuditResult = { people: peopleAudit, places: placesAudit };
+
+  renderPeopleReport(peopleAudit, maxTableRows);
+  renderPlacesReport(placesAudit, maxTableRows);
+
+  return __lastAuditResult;
+}
+
+// Krev at run() er kjørt – ingen auto-run (hindrer "for kort"/feil datasett)
+function requireAuditResult() {
+  if (!__lastAuditResult || !__lastAuditResult.people || !__lastAuditResult.places) {
+    throw new Error(
+      "[HGImageRolesAudit] Kjør først: HGImageRolesAudit.run({ people: PEOPLE, places: PLACES })"
+    );
   }
+}
 
-  // -------------------------------
-  // PUBLIC API
-  // -------------------------------
-  function run({ people = [], places = [], maxTableRows = DEFAULT_MAX_TABLE_ROWS } = {}) {
-    const peopleAudit = auditPeople(people);
-    const placesAudit = auditPlaces(places);
+global.HGImageRolesAudit = {
+  run,
+  last() { return __lastAuditResult; },
 
-    __lastAuditResult = { people: peopleAudit, places: placesAudit };
+  // PEOPLE downloads
+  downloadPeopleMissingImage(filename = "people_missing_image.json") {
+    requireAuditResult();
+    return downloadJSON(filename, __lastAuditResult.people.missingImage || []);
+  },
+  downloadPeopleMissingCard(filename = "people_missing_cardImage.json") {
+    requireAuditResult();
+    return downloadJSON(filename, __lastAuditResult.people.missingCard || []);
+  },
 
-    renderPeopleReport(peopleAudit, maxTableRows);
-    renderPlacesReport(placesAudit, maxTableRows);
-
-    return __lastAuditResult;
+  // PLACES downloads
+  downloadPlacesMissingImage(filename = "places_missing_image.json") {
+    requireAuditResult();
+    return downloadJSON(filename, __lastAuditResult.places.missingImage || []);
+  },
+  downloadPlacesMissingCard(filename = "places_missing_cardImage.json") {
+    requireAuditResult();
+    return downloadJSON(filename, __lastAuditResult.places.missingCard || []);
+  },
+  downloadPlacesMissingPopup(filename = "places_missing_popupImage.json") {
+    requireAuditResult();
+    return downloadJSON(filename, __lastAuditResult.places.missingPopup || []);
   }
-
-  global.HGImageRolesAudit = {
-    run,
-    last() { return __lastAuditResult; },
-
-    // PEOPLE downloads
-    downloadPeopleMissingImage(filename = "people_missing_image.json") {
-      ensureAuditResult();
-      return downloadJSON(filename, __lastAuditResult?.people?.missingImage || []);
-    },
-    downloadPeopleMissingCard(filename = "people_missing_cardImage.json") {
-      ensureAuditResult();
-      return downloadJSON(filename, __lastAuditResult?.people?.missingCard || []);
-    },
-
-    // PLACES downloads
-    downloadPlacesMissingImage(filename = "places_missing_image.json") {
-      ensureAuditResult();
-      return downloadJSON(filename, __lastAuditResult?.places?.missingImage || []);
-    },
-    downloadPlacesMissingCard(filename = "places_missing_cardImage.json") {
-      ensureAuditResult();
-      return downloadJSON(filename, __lastAuditResult?.places?.missingCard || []);
-    },
-    downloadPlacesMissingPopup(filename = "places_missing_popupImage.json") {
-      ensureAuditResult();
-      return downloadJSON(filename, __lastAuditResult?.places?.missingPopup || []);
-    }
-  };
+};
 
 })(window);
