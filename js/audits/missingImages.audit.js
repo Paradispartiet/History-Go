@@ -1,86 +1,164 @@
-// js/audits/missingImages.audit.js
-// ==================================
-// HG Audit: Missing images (People & Places)
-// Bruk: HGAuditMissingImages.run({ people, places })
-// ==================================
+// js/audits/imageRoles.audit.js
+// =====================================================
+// History GO – Image Roles Audit
+// -----------------------------------------------------
+// Sjekker bilde-ROLLER, ikke bare "har bilde"
+// Roller:
+//  - image       : sted / kontekst / kart / popup
+//  - cardImage   : samlekort / History GO-kort
+//  - popupImage  : valgfri spesialvisning
+//
+// Bruk i console:
+//   HGImageRolesAudit.run({ people: PEOPLE, places: PLACES })
+//
+// Design:
+//  - Ingen magi
+//  - Ingen auto-gjetting
+//  - Rollebasert sannhet
+// =====================================================
 
 (function (global) {
   "use strict";
 
-  function pick(obj, keys) {
-    for (const k of keys) {
-      const v = obj?.[k];
-      if (typeof v === "string" && v.trim()) return v.trim();
-    }
-    return "";
+  function norm(v) {
+    return typeof v === "string" && v.trim() ? v.trim() : "";
   }
 
-  function isMissing(url) {
-    if (!url) return true;
-    const u = String(url).trim().toLowerCase();
-    return (
-      u === "null" ||
-      u === "undefined" ||
-      u === "#" ||
-      u === "none" ||
-      u.includes("placeholder") ||
-      u.includes("default")
-    );
+  // -------------------------------
+  // PEOPLE AUDIT
+  // -------------------------------
+  function auditPeople(people) {
+    const rows = (people || []).map(p => {
+      const image     = norm(p.image);
+      const cardImage = norm(p.cardImage || p.imageCard);
+
+      return {
+        id: p.id,
+        name: p.name,
+        category: p.category,
+        year: p.year,
+
+        image,
+        cardImage,
+
+        missingImage: !image,
+        missingCard: !cardImage
+      };
+    });
+
+    return {
+      all: rows,
+      missingImage: rows.filter(x => x.missingImage),
+      missingCard: rows.filter(x => x.missingCard)
+    };
   }
 
-  function run({ people = [], places = [] } = {}) {
-    const peopleMissing = (people || [])
-      .map(p => {
-        const img = pick(p, ["cardImage", "imageCard", "image", "img", "photo"]);
-        return {
-          id: p?.id,
-          name: p?.name,
-          category: p?.category,
-          year: p?.year,
-          image: img || "",
-          missing: isMissing(img)
-        };
-      })
-      .filter(x => x.missing);
+  // -------------------------------
+  // PLACES AUDIT
+  // -------------------------------
+  function auditPlaces(places) {
+    const rows = (places || []).map(s => {
+      const image      = norm(s.image);
+      const cardImage  = norm(s.cardImage || s.imageCard);
+      const popupImage = norm(s.popupImage);
 
-    const placesMissing = (places || [])
-      .map(s => {
-        const img = pick(s, ["cardImage", "imageCard", "image", "img", "photo"]);
-        return {
-          id: s?.id,
-          name: s?.name,
-          category: s?.category,
-          type: s?.type,
-          year: s?.year,
-          image: img || "",
-          missing: isMissing(img)
-        };
-      })
-      .filter(x => x.missing);
+      return {
+        id: s.id,
+        name: s.name,
+        category: s.category,
+        year: s.year,
 
+        image,
+        cardImage,
+        popupImage,
+
+        missingImage: !image,
+        missingCard: !cardImage,
+        missingPopup: !popupImage
+      };
+    });
+
+    return {
+      all: rows,
+      missingImage: rows.filter(x => x.missingImage),
+      missingCard: rows.filter(x => x.missingCard),
+      missingPopup: rows.filter(x => x.missingPopup)
+    };
+  }
+
+  // -------------------------------
+  // CONSOLE RENDERING
+  // -------------------------------
+  function renderPeopleReport(p) {
     console.groupCollapsed(
-      `%c[HG] Missing images — people:${peopleMissing.length} places:${placesMissing.length}`,
-      "color:#f39c12;font-weight:700"
+      `%c[HG] PEOPLE image audit — image:${p.missingImage.length} card:${p.missingCard.length}`,
+      "color:#3498db;font-weight:700"
     );
 
-    if (peopleMissing.length) {
-      console.log("[HG] People missing images");
-      console.table(peopleMissing);
-    } else {
-      console.log("[HG] People: ingen mangler");
+    if (p.missingImage.length) {
+      console.log("❌ Mangler image (person):");
+      console.table(p.missingImage.map(x => ({
+        id: x.id,
+        name: x.name,
+        category: x.category
+      })));
     }
 
-    if (placesMissing.length) {
-      console.log("[HG] Places missing images");
-      console.table(placesMissing);
-    } else {
-      console.log("[HG] Places: ingen mangler");
+    if (p.missingCard.length) {
+      console.log("🎴 Mangler cardImage (person-kort):");
+      console.table(p.missingCard.map(x => ({
+        id: x.id,
+        name: x.name,
+        category: x.category
+      })));
     }
 
     console.groupEnd();
-
-    return { peopleMissing, placesMissing };
   }
 
-  global.HGAuditMissingImages = { run };
+  function renderPlacesReport(p) {
+    console.groupCollapsed(
+      `%c[HG] PLACES image audit — image:${p.missingImage.length} card:${p.missingCard.length}`,
+      "color:#e67e22;font-weight:700"
+    );
+
+    if (p.missingImage.length) {
+      console.log("❌ Mangler image (sted):");
+      console.table(p.missingImage.map(x => ({
+        id: x.id,
+        name: x.name,
+        category: x.category
+      })));
+    }
+
+    if (p.missingCard.length) {
+      console.log("🎴 Mangler cardImage (sted-kort):");
+      console.table(p.missingCard.map(x => ({
+        id: x.id,
+        name: x.name,
+        category: x.category
+      })));
+    }
+
+    console.groupEnd();
+  }
+
+  // -------------------------------
+  // PUBLIC API
+  // -------------------------------
+  function run({ people = [], places = [] } = {}) {
+    const peopleAudit = auditPeople(people);
+    const placesAudit = auditPlaces(places);
+
+    renderPeopleReport(peopleAudit);
+    renderPlacesReport(placesAudit);
+
+    return {
+      people: peopleAudit,
+      places: placesAudit
+    };
+  }
+
+  global.HGImageRolesAudit = { run };
+
 })(window);
