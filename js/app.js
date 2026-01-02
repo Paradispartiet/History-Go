@@ -1394,7 +1394,7 @@ if (window.QuizEngine) {
     getPlaceById:  id => PLACES.find(p => p.id === id),
 
     getVisited: () => visited,
-    isTestMode: () => !!el.test?.checked,
+    isTestMode: () => !!window.OPEN_MODE,
 
     showToast,
 
