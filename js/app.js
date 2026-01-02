@@ -1390,14 +1390,6 @@ if (typeof linkPeopleToPlaces === "function") {
   if (DEBUG) console.warn("linkPeopleToPlaces() mangler – hopper over linking");
 }
 
-// ✅ TESTMODE (ved reload): sync + fyll profilen
-window.TEST_MODE = localStorage.getItem("HG_TEST_MODE") === "1";
-if (el.test) el.test.checked = window.TEST_MODE;
-
-if (window.TEST_MODE) {
-  applyTestModeUnlockAll();
-}
-
    // ✅ INIT QUIZ-MODUL (ETTER at PLACES/PEOPLE er lastet)
 if (window.QuizEngine) {
   QuizEngine.init({
