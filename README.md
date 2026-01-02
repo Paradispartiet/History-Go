@@ -80,22 +80,10 @@ Der finner du følgende hoveddokumenter:
 History GO er under aktiv utvikling.  
 Dokumentasjonen er ment å fungere som **systemhukommelse, beslutningsgrunnlag og samarbeidsoverflate**.
 
-IDEBIBEL
 
-Den er:
-	•	lang
-	•	tung
-	•	nesten alt du har sendt er med
-	•	ikke en pitch
-	•	ikke en teknisk README
-	•	men: produkt + filosofi + pedagogikk + samfunn + samlekultur + visjon
 
-Jeg har ikke redigert deg bort, kun:
-	•	fjernet rene gjentakelser
-	•	slått sammen identiske forklaringer
-	•	strammet språk der samme poeng ble sagt 3–4 ganger
 
-⸻
+
 
 📘 History GO – Idébibel
 
