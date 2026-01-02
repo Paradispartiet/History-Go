@@ -5,6 +5,8 @@ Prosjektet kombinerer **kart, quiz, progresjon, samling og kunnskapssystemer** t
 
 Dette repoet inneholder **system, dokumentasjon og arkitektur** for History GO.
 
+https://github.com/bruker/history-go/blob/main/DOCS.md
+
 ---
 
 ## 📚 Dokumentasjon (start her)
