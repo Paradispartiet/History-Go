@@ -38,6 +38,11 @@ let BADGES  = [];
 
 let TAGS_REGISTRY = null;
 
+// ✅ LEGG DENNE LINJA RETT HER
+if (window.HGAuditMissingImages) {
+  HGAuditMissingImages.run({ people: PEOPLE, places: PLACES });
+}
+
 function normalizeTags(rawTags, tagsRegistry) {
   const list = Array.isArray(rawTags) ? rawTags : [];
   const legacyMap = (tagsRegistry && tagsRegistry.legacy_map) || {};
