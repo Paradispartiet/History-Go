@@ -1,24 +1,22 @@
 // js/audits/imageRoles.audit.js
 // =====================================================
-// History GO – Image Roles Audit + Safe Download
+// History GO – Image Roles Audit + Robust Resolve + Download
 // -----------------------------------------------------
-// Sjekker bilde-ROLLER (ikke bare "har bilde").
+// Mål:
+// 1) Rollebasert: image / cardImage / popupImage
+// 2) Robust: finner bilder selv om de ligger i andre felter
+// 3) Beholder console groups + tables (men trimmer for iPad)
+// 4) Kan laste ned full liste (JSON) uten å kopiere fra console
 //
-// Roller:
-//  - image       : sted/person bilde (kontekst/popup/kort i app)
-//  - cardImage   : samlekort / History GO-kort
-//  - popupImage  : valgfri spesialvisning (places)
-//
-// Konsollbruk:
+// Bruk:
 //   HGImageRolesAudit.run({ people: PEOPLE, places: PLACES })
 //   HGImageRolesAudit.downloadPlacesMissingCard()
-//   HGImageRolesAudit.downloadPeopleMissingImage("people_missing_image.json")
+//   HGImageRolesAudit.downloadPlacesMissingImage()
+//   HGImageRolesAudit.downloadPeopleMissingImage()
 //
-// Designvalg (bevisst):
-//  - Beholder console rendering (group + table) slik du har nå
-//  - Men: tabeller TRIMMES automatisk hvis de er enorme (for å unngå crash)
-//    → full liste får du alltid via download/export
-//  - Download er iOS/Safari-robust: revoker sent + fallback open
+// Viktig:
+// - "missing*" betyr: vi fant ikke noe bilde for den rollen,
+//   selv etter fallback-søk (kjente felter + scan + images[]).
 // =====================================================
 
 (function (global) {
@@ -26,12 +24,146 @@
 
   // ---- internal state ----
   let __lastAuditResult = null;
-
-  // Trim store tabeller for å unngå at nettleseren dør
   const DEFAULT_MAX_TABLE_ROWS = 40;
 
+  // -------------------------------
+  // Helpers
+  // -------------------------------
   function norm(v) {
     return typeof v === "string" && v.trim() ? v.trim() : "";
+  }
+
+  function looksLikeImageUrl(v) {
+    if (typeof v !== "string") return false;
+    const s = v.trim().toLowerCase();
+    if (!s) return false;
+    return (
+      s.startsWith("http://") ||
+      s.startsWith("https://") ||
+      s.startsWith("data:image/") ||
+      s.includes("/img/") ||
+      s.includes("/images/") ||
+      s.includes("/bilder/") ||
+      s.endsWith(".jpg") ||
+      s.endsWith(".jpeg") ||
+      s.endsWith(".png") ||
+      s.endsWith(".webp") ||
+      s.endsWith(".gif") ||
+      s.includes(".jpg?") ||
+      s.includes(".png?") ||
+      s.includes(".webp?") ||
+      s.includes(".jpeg?")
+    );
+  }
+
+  function firstString(arr) {
+    if (!Array.isArray(arr)) return "";
+    for (const v of arr) {
+      const s = norm(v);
+      if (s) return s;
+    }
+    return "";
+  }
+
+  // Plukk fra kjente feltnavn (prioritet)
+  function pick(obj, keys) {
+    if (!obj || typeof obj !== "object") return "";
+    for (const k of keys) {
+      const v = obj[k];
+      const s = norm(v);
+      if (s) return s;
+    }
+    return "";
+  }
+
+  // Robust scan: finn første string-felt som ser ut som et bilde
+  function scanForImage(obj) {
+    if (!obj || typeof obj !== "object") return "";
+    for (const [k, v] of Object.entries(obj)) {
+      if (typeof v === "string" && looksLikeImageUrl(v)) return v.trim();
+      // images: [ ... ]
+      if (Array.isArray(v)) {
+        const s = firstString(v);
+        if (looksLikeImageUrl(s)) return s.trim();
+      }
+    }
+    return "";
+  }
+
+  // Rolle-resolver:
+  // 1) prøv spesifikke felter for rollen
+  // 2) prøv "generelle" bildefelter
+  // 3) prøv images[] (vanlig pattern)
+  // 4) scan alt
+  function resolveRole(obj, role) {
+    if (!obj || typeof obj !== "object") return "";
+
+    // Rolle-spesifikke kandidater (prioritet)
+    const ROLE_KEYS = {
+      image: [
+        "image",
+        "photo",
+        "photoUrl",
+        "img",
+        "imgUrl",
+        "imageUrl",
+        "cover",
+        "coverImage",
+        "hero",
+        "headerImage",
+        "banner",
+        "thumbnail",
+        "thumb"
+      ],
+      card: [
+        "cardImage",
+        "imageCard",
+        "card",
+        "cardImg",
+        "cardImgUrl",
+        "card_url",
+        "card_url",
+        "card_image",
+        "card_image_url"
+      ],
+      popup: [
+        "popupImage",
+        "popupImg",
+        "popupPhoto",
+        "popupUrl",
+        "detailImage",
+        "detailImg",
+        "detailPhoto"
+      ]
+    };
+
+    // 1) Rolle-felt
+    const byRole = pick(obj, ROLE_KEYS[role] || []);
+    if (byRole) return byRole;
+
+    // 2) Generelle bildefelter som kan brukes som fallback
+    const generic = pick(obj, [
+      "image",
+      "photo",
+      "img",
+      "thumbnail",
+      "thumb",
+      "cover",
+      "hero",
+      "banner"
+    ]);
+    if (generic) return generic;
+
+    // 3) images[] / photos[] osv.
+    const listCandidate =
+      firstString(obj.images) ||
+      firstString(obj.photos) ||
+      firstString(obj.pictures) ||
+      firstString(obj.gallery);
+    if (looksLikeImageUrl(listCandidate)) return listCandidate.trim();
+
+    // 4) Scan alle felt
+    return scanForImage(obj);
   }
 
   // -------------------------------
@@ -39,8 +171,8 @@
   // -------------------------------
   function auditPeople(people) {
     const rows = (people || []).map((p) => {
-      const image = norm(p.image);
-      const cardImage = norm(p.cardImage || p.imageCard);
+      const image = norm(resolveRole(p, "image"));
+      const cardImage = norm(resolveRole(p, "card"));
 
       return {
         id: p.id,
@@ -52,14 +184,14 @@
         cardImage,
 
         missingImage: !image,
-        missingCard: !cardImage,
+        missingCard: !cardImage
       };
     });
 
     return {
       all: rows,
       missingImage: rows.filter((x) => x.missingImage),
-      missingCard: rows.filter((x) => x.missingCard),
+      missingCard: rows.filter((x) => x.missingCard)
     };
   }
 
@@ -68,9 +200,9 @@
   // -------------------------------
   function auditPlaces(places) {
     const rows = (places || []).map((s) => {
-      const image = norm(s.image);
-      const cardImage = norm(s.cardImage || s.imageCard);
-      const popupImage = norm(s.popupImage);
+      const image = norm(resolveRole(s, "image"));
+      const cardImage = norm(resolveRole(s, "card"));
+      const popupImage = norm(resolveRole(s, "popup"));
 
       return {
         id: s.id,
@@ -84,7 +216,7 @@
 
         missingImage: !image,
         missingCard: !cardImage,
-        missingPopup: !popupImage,
+        missingPopup: !popupImage
       };
     });
 
@@ -92,12 +224,12 @@
       all: rows,
       missingImage: rows.filter((x) => x.missingImage),
       missingCard: rows.filter((x) => x.missingCard),
-      missingPopup: rows.filter((x) => x.missingPopup),
+      missingPopup: rows.filter((x) => x.missingPopup)
     };
   }
 
   // -------------------------------
-  // SAFE TABLE RENDER (anti-crash)
+  // Console tables (trim for iPad)
   // -------------------------------
   function tableTrim(rows, maxRows) {
     const n = Math.max(0, Number(maxRows || 0) || 0);
@@ -107,17 +239,12 @@
     return rows.slice(0, n);
   }
 
-  function logTrimNotice(label, total, maxRows) {
+  function logTrimNotice(total, maxRows) {
     if (total > maxRows) {
-      console.log(
-        `↳ viser bare ${maxRows} av ${total} (for å unngå crash). Bruk download/export for full liste.`
-      );
+      console.log(`↳ viser bare ${maxRows} av ${total}. Last ned for full liste.`);
     }
   }
 
-  // -------------------------------
-  // CONSOLE RENDERING (beholder stilen din)
-  // -------------------------------
   function renderPeopleReport(p, maxRows) {
     console.groupCollapsed(
       `%c[HG] PEOPLE image audit — image:${p.missingImage.length} card:${p.missingCard.length}`,
@@ -126,31 +253,25 @@
 
     if (p.missingImage.length) {
       console.log("❌ Mangler image (person):");
-      const view = tableTrim(
-        p.missingImage.map((x) => ({
-          id: x.id,
-          name: x.name,
-          category: x.category,
-        })),
-        maxRows
+      console.table(
+        tableTrim(
+          p.missingImage.map((x) => ({ id: x.id, name: x.name, category: x.category })),
+          maxRows
+        )
       );
-      console.table(view);
-      logTrimNotice("people.missingImage", p.missingImage.length, maxRows);
+      logTrimNotice(p.missingImage.length, maxRows);
       console.log("Download:", "HGImageRolesAudit.downloadPeopleMissingImage()");
     }
 
     if (p.missingCard.length) {
       console.log("🎴 Mangler cardImage (person-kort):");
-      const view = tableTrim(
-        p.missingCard.map((x) => ({
-          id: x.id,
-          name: x.name,
-          category: x.category,
-        })),
-        maxRows
+      console.table(
+        tableTrim(
+          p.missingCard.map((x) => ({ id: x.id, name: x.name, category: x.category })),
+          maxRows
+        )
       );
-      console.table(view);
-      logTrimNotice("people.missingCard", p.missingCard.length, maxRows);
+      logTrimNotice(p.missingCard.length, maxRows);
       console.log("Download:", "HGImageRolesAudit.downloadPeopleMissingCard()");
     }
 
@@ -165,31 +286,25 @@
 
     if (p.missingImage.length) {
       console.log("❌ Mangler image (sted):");
-      const view = tableTrim(
-        p.missingImage.map((x) => ({
-          id: x.id,
-          name: x.name,
-          category: x.category,
-        })),
-        maxRows
+      console.table(
+        tableTrim(
+          p.missingImage.map((x) => ({ id: x.id, name: x.name, category: x.category })),
+          maxRows
+        )
       );
-      console.table(view);
-      logTrimNotice("places.missingImage", p.missingImage.length, maxRows);
+      logTrimNotice(p.missingImage.length, maxRows);
       console.log("Download:", "HGImageRolesAudit.downloadPlacesMissingImage()");
     }
 
     if (p.missingCard.length) {
       console.log("🎴 Mangler cardImage (sted-kort):");
-      const view = tableTrim(
-        p.missingCard.map((x) => ({
-          id: x.id,
-          name: x.name,
-          category: x.category,
-        })),
-        maxRows
+      console.table(
+        tableTrim(
+          p.missingCard.map((x) => ({ id: x.id, name: x.name, category: x.category })),
+          maxRows
+        )
       );
-      console.table(view);
-      logTrimNotice("places.missingCard", p.missingCard.length, maxRows);
+      logTrimNotice(p.missingCard.length, maxRows);
       console.log("Download:", "HGImageRolesAudit.downloadPlacesMissingCard()");
     }
 
@@ -197,7 +312,7 @@
   }
 
   // -------------------------------
-  // DOWNLOAD (iOS/Safari-robust)
+  // Download (iOS/Safari robust)
   // -------------------------------
   function downloadJSON(filename, rows) {
     const safeName = String(filename || "export.json").trim() || "export.json";
@@ -206,7 +321,6 @@
     const blob = new Blob([json], { type: "application/json;charset=utf-8" });
     const url = URL.createObjectURL(blob);
 
-    // Best-effort: trigger download
     const a = document.createElement("a");
     a.href = url;
     a.download = safeName;
@@ -214,44 +328,22 @@
     a.style.display = "none";
     document.body.appendChild(a);
 
-    // iOS/Safari kan vise dialog men ikke lagre → fallback open
-    try {
-      a.click();
-    } catch (e) {
-      // ignore
-    }
+    try { a.click(); } catch {}
     a.remove();
 
-    // Fallback: åpne JSON i ny fane (iOS lar deg ofte "Del → Lagre i filer")
-    setTimeout(() => {
-      try {
-        global.open(url, "_blank");
-      } catch (e) {
-        // ignore
-      }
-    }, 250);
+    // iOS fallback: åpne json i ny fane (Share → Save to Files)
+    setTimeout(() => { try { global.open(url, "_blank"); } catch {} }, 250);
 
-    // Ikke revoké for tidlig (iOS kan bruke tid)
-    setTimeout(() => {
-      try {
-        URL.revokeObjectURL(url);
-      } catch (e) {
-        // ignore
-      }
-    }, 60000);
+    // ikke revoké for tidlig
+    setTimeout(() => { try { URL.revokeObjectURL(url); } catch {} }, 60000);
 
     return rows || [];
   }
 
-  // Hvis du trykker download før run() → auto-run med globale arrays
   function ensureAuditResult() {
     if (__lastAuditResult && __lastAuditResult.people && __lastAuditResult.places) return;
-
     const people = global.PEOPLE || [];
     const places = global.PLACES || [];
-
-    // Hvis disse ikke finnes globalt, så er det umulig å auto-run fra konsoll.
-    // (Da må du enten kjøre run({people,places}) med lokale refs, eller eksponere dem på window.)
     __lastAuditResult = run({ people, places, maxTableRows: DEFAULT_MAX_TABLE_ROWS });
   }
 
@@ -272,36 +364,31 @@
 
   global.HGImageRolesAudit = {
     run,
+    last() { return __lastAuditResult; },
 
-    // Quick access (hvis du vil bruke data uten å printe)
-    last() {
-      return __lastAuditResult;
-    },
-
-    // -------- DOWNLOAD HELPERS --------
+    // PEOPLE downloads
     downloadPeopleMissingImage(filename = "people_missing_image.json") {
       ensureAuditResult();
       return downloadJSON(filename, __lastAuditResult?.people?.missingImage || []);
     },
-
     downloadPeopleMissingCard(filename = "people_missing_cardImage.json") {
       ensureAuditResult();
       return downloadJSON(filename, __lastAuditResult?.people?.missingCard || []);
     },
 
+    // PLACES downloads
     downloadPlacesMissingImage(filename = "places_missing_image.json") {
       ensureAuditResult();
       return downloadJSON(filename, __lastAuditResult?.places?.missingImage || []);
     },
-
     downloadPlacesMissingCard(filename = "places_missing_cardImage.json") {
       ensureAuditResult();
       return downloadJSON(filename, __lastAuditResult?.places?.missingCard || []);
     },
-
     downloadPlacesMissingPopup(filename = "places_missing_popupImage.json") {
       ensureAuditResult();
       return downloadJSON(filename, __lastAuditResult?.places?.missingPopup || []);
-    },
+    }
   };
+
 })(window);
