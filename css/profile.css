@@ -1,0 +1,1044 @@
+/* ============================================================
+   === START PROFIL & MERKER – HISTORY GO v18+ ===============
+   ============================================================ */
+
+/* === PROFIL: KART BAK ALT === */
+#map{
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  background: #000; /* svart bakgrunn om tiles ikke laster */
+}
+
+.profile-page .site-header,
+.profile-page #profileMain,
+.profile-page .map-controls,
+#badgeModal{
+  position: relative;
+  z-index: 2;
+}
+
+/* Toast skal aldri påvirke layout */
+#toast{
+  position: fixed;
+  top: calc(env(safe-area-inset-top) + 14px);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20000;
+}
+/* Kartknapper over */
+.map-controls{
+  position: fixed;
+  top: 74px;      /* justér om du vil */
+  right: 12px;
+  z-index: 3;
+}
+
+/* PROFILKORT */
+.profile-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: rgba(25,25,30,0.9);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-left: 5px solid #f6c800;
+  border-radius: 10px;
+  padding: 14px 18px;
+  margin: 10px 12px 18px;
+  color: #fff;
+  box-shadow: 0 0 20px rgba(0,0,0,0.25);
+}
+.profile-right { flex: 1; margin-left: 14px; }
+.profile-right h2 { margin: 0; font-size: 1.2em; }
+.profile-sub { color: #ccc; font-size: 0.9em; margin: 3px 0; }
+.profile-stats { font-size: 0.85em; color: #bbb; }
+
+/* Ny pen “Endre”-knapp */
+#editProfileBtn {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.12);
+  padding: 6px 12px;
+  border-radius: 8px;
+  color: #f6c800;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background .2s ease, transform .15s ease;
+}
+
+#editProfileBtn:hover {
+  background: rgba(255,255,255,0.12);
+  transform: translateY(-1px);
+}
+
+/* PROFILMODAL */
+.profile-modal {
+  position: fixed;
+  inset: 0;
+  display: none; /* ← denne må være NONE i stedet for flex */
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,.7);
+  z-index: 9999;
+}
+.profile-modal-inner {
+  background: rgba(25,25,30,.95);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 10px;
+  padding: 20px 24px;
+  color: #fff;
+  max-width: 300px; width: 80%;
+  text-align: center;
+}
+.profile-modal-inner input {
+  width: 100%;
+  margin: 6px 0 12px;
+  padding: 8px;
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 6px;
+  background: rgba(255,255,255,.05);
+  color: #fff;
+}
+.profile-modal-inner button {
+  margin-top: 10px;
+  background: #f6c800;
+  border: none;
+  color: #000;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* DELING / PLAKAT */
+button.primary.small {
+  font-size: .9em;
+  padding: 6px 12px;
+  border-radius: 6px;
+  background: #f6c800;
+  border: none;
+  color: #000;
+  cursor: pointer;
+  transition: opacity .25s;
+}
+button.primary.small:hover { opacity: .9; }
+
+.profile-poster {
+  width: 400px; height: 600px;
+  position: relative;
+  background: #111; color: #fff;
+  font-family: system-ui, sans-serif;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 0 25px rgba(0,0,0,.6);
+}
+.poster-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(circle at 70% 30%, rgba(246,200,0,.15), transparent 70%),
+    radial-gradient(circle at 20% 80%, rgba(255,255,255,.1), transparent 70%),
+    #0a0a0a;
+}
+.poster-content {
+  text-align: center;
+  padding: 60px 20px;
+  position: relative;
+  z-index: 2;
+}
+.poster-logo {
+  position: absolute; bottom: 25px;
+  width: 100%;
+  text-align: center;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #f6c800;
+  opacity: .9;
+}
+
+
+/* --- HISTORIEKORT TIDSLINJE (profilvisning) --- */
+#timelineSection {
+  margin-top: 32px;
+  padding-top: 12px;
+}
+.timeline-progress {
+  width: 100%;
+  height: 6px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 8px 0 4px 0;
+}
+.timeline-progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #f6c800, #ffb703);
+  transition: width 0.4s ease;
+}
+.timeline-progress-text {
+  font-size: 0.85em;
+  margin-bottom: 10px;
+  text-align: right;
+}
+.timeline-body {
+  display: flex;
+  overflow-x: auto;
+  gap: 30px;
+  padding: 10px 0 16px 0;
+  scroll-snap-type: x mandatory;
+  align-items: flex-start;
+}
+.timeline-card {
+  flex: 0 0 auto;
+  width: 140px;
+  text-align: center;
+  scroll-snap-align: center;
+}
+.timeline-card img {
+  width: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+  border: 2px solid #f6c800;
+  margin-bottom: 6px;
+  transition: transform 0.2s ease;
+}
+.timeline-name {
+  font-size: 0.9em;
+  font-weight: 500;
+}
+.timeline-year {
+  font-size: 0.8em;
+  color: #ccc;
+}
+.timeline-card:hover img {
+  transform: scale(1.05);
+}
+
+
+/* ======================================
+   SAMLEDE KORT – VISNINGSBOKS
+   ====================================== */
+
+.collection-cards-body {
+  display: flex;
+  gap: 22px;
+  overflow-x: auto;
+  padding: 10px 0 4px 0;
+  scroll-snap-type: x mandatory;
+}
+
+.collection-card {
+  flex: 0 0 auto;
+  width: 200px;
+  scroll-snap-align: start;
+  text-align: center;
+}
+
+.collection-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 14px;
+  border: 3px solid #f6c800;
+  object-fit: cover;
+  background: #000;
+  transition: transform .2s ease;
+}
+
+.collection-card:hover img {
+  transform: scale(1.04);
+}
+
+.collection-card-name {
+  margin-top: 6px;
+  font-size: .9rem;
+  color: #fff;
+}
+
+.collection-card-year {
+  font-size: .8rem;
+  color: #ccc;
+}
+
+
+
+
+/* ===================================================== */
+/* HEADER – PROFILVERSJON                                */
+/* ===================================================== */
+.profile-page .site-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  padding: 14px 18px;
+  background: linear-gradient(180deg, rgba(10,25,41,.95), rgba(10,25,41,.65) 70%, transparent);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.back-link {
+  text-decoration: none;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #fff;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  padding: 4px 10px;
+  transition: background .2s ease;
+}
+.back-link:hover {
+  background: rgba(255,255,255,0.15);
+}
+
+/* Samme logo og brand-stil som forsiden */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  font-size: 1.3rem;
+  color: #fff;
+  letter-spacing: 0.3px;
+}
+.brand-logo {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  border-radius: 6px;
+  background: rgba(255,255,255,0.1);
+  padding: 3px;
+}
+.brand-name {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-weight: 700;
+  color: #f6c800;
+}
+
+
+
+
+/* ===================================================== */
+/* 17) PROFILSIDE – KORT, GRID OG LISTE                  */
+/* ===================================================== */
+
+.profile-section {
+  margin: 22px auto;
+  padding: 14px 16px;
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  max-width: 640px;
+}
+
+.profile-section h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: var(--accent);
+}
+
+/* Profilkortet med statistikk */
+#profileCard {
+  text-align: center;
+  padding-top: 20px;
+}
+
+#profileName {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+#profileCard .stats {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+}
+
+#profileCard .stats div {
+  text-align: center;
+}
+
+#profileCard .stats span {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+#profileCard small {
+  color: var(--text-dim);
+  font-size: 0.8rem;
+}
+
+/* Grid for merker og personer */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 10px;
+}
+
+.grid img,
+.grid .badge-icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--panel-border);
+}
+
+/* Liste for steder og tidslinje */
+.list,
+.timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.list li,
+.timeline li {
+  padding: 8px 0;
+  border-bottom: 1px solid var(--panel-border);
+}
+
+.list li:last-child,
+.timeline li:last-child {
+  border-bottom: none;
+}
+
+.muted {
+  color: var(--text-dim);
+  font-size: 0.9rem;
+}
+
+/* Knapper */
+#actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn {
+  background: var(--accent);
+  color: #000;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn:hover {
+  background: #ffea70;
+}
+
+.btn.danger {
+  background: #c23;
+  color: #fff;
+}
+
+.btn.danger:hover {
+  background: #e33;
+}
+
+/* ===================================================== */
+/* 17nn) STEDER PÅ PROFILSIDEN – SAMME STIL SOM KARTKORT  */
+/* ===================================================== */
+.place-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+  transition: background .2s ease, transform .2s ease;
+  cursor: pointer;
+}
+
+.place-card:hover {
+  background: rgba(255,255,255,0.07);
+  transform: translateY(-2px);
+}
+
+.place-card .name {
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: #fff;
+  margin-bottom: 2px;
+}
+
+.place-card .meta {
+  font-size: 0.88rem;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.place-card .desc {
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: #d0d8e4;
+}
+
+
+/* === Badge-modal === */
+#badgeModal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);     /* mørkere bakgrunn */
+  backdrop-filter: blur(4px);
+  z-index: 999;
+  justify-content: center;
+  align-items: center;
+}
+
+#badgeModal .modal-inner {
+  background: rgba(20,20,20,0.92);
+  border: 1px solid var(--panel-border);
+  border-radius: 16px;
+  width: 92vw;
+  max-width: 540px;
+  max-height: 85vh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 0;
+  box-shadow: 0 0 25px rgba(0,0,0,0.5);
+  color: var(--text);
+  position: relative;
+}
+
+/* === Sticky Header === */
+.badge-modal-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(20,20,20,0.96);
+  backdrop-filter: blur(10px);
+  padding: 22px 20px 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  text-align: center;
+}
+
+/* Lukk knapp */
+.close-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: var(--accent);
+  color: #000;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 14px;
+  font-weight: 600;
+}
+
+.close-btn:hover {
+  opacity: 0.9;
+}
+
+.close-btn:active {
+  transform: scale(0.96);
+  transition: transform 0.05s;
+}
+
+/* Badge header-elementer */
+.badge-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  border: 2px solid var(--panel-border);
+}
+
+.badge-title {
+  background: var(--accent);
+  color: #000;
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 8px;
+  margin: 8px 0;
+  font-weight: 600;
+  font-size: 1.1em;
+}
+
+.badge-level {
+  color: var(--text-dim);
+  margin-bottom: 6px;
+}
+
+.badge-progress {
+  background: rgba(255,255,255,0.12);
+  height: 6px;
+  border-radius: 6px;
+  overflow: hidden;
+  margin: 4px 0 10px;
+}
+
+.badge-progress-bar {
+  height: 100%;
+  background: var(--accent);
+  transition: width .4s ease;
+}
+
+.badge-progress-text {
+  font-size: 0.85em;
+  color: var(--text-dim);
+  margin-top: 6px;
+}
+
+/* === Innhold (scroll) === */
+.badge-modal-body {
+  padding: 20px 22px 26px;
+}
+
+/* === Quiz-historikk === */
+.badge-quizzes {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.badge-quiz-item {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.badge-quiz-img {
+  width: 58px;
+  height: 58px;
+  border-radius: 8px;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 2px solid var(--panel-border);
+}
+
+.badge-quiz-info {
+  flex: 1;
+  color: var(--text);
+  text-align: left;
+}
+
+.badge-quiz-info strong {
+  font-size: 0.95em;
+  color: var(--text);
+}
+
+.badge-quiz-info span {
+  font-size: 0.82em;
+  color: var(--text-dim);
+}
+
+/* Spørsmål + svar */
+.badge-quiz-answers {
+  list-style: none;
+  padding-left: 0;
+  margin: 8px 0 0 0;
+}
+
+.badge-quiz-answers li {
+  font-size: 0.82em;
+  margin: 4px 0;
+  line-height: 1.35;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  color: #a7f59d; /* grønne svar */
+}
+
+
+
+/* ============================
+   PERSONER – AVATAR GRID
+   ============================ */
+
+#peopleGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(75px, 1fr));
+  gap: 14px;
+  padding-top: 10px;
+}
+
+.avatar-card {
+  text-align: center;
+  cursor: pointer;
+}
+
+.avatar-img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--panel-border);
+  background: #111;
+  margin-bottom: 6px;
+}
+
+.avatar-name {
+  font-size: 0.8rem;
+  color: var(--text);
+  line-height: 1.25;
+}
+
+.face-img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--panel-border);
+  background: #111;
+}
+
+.profile-subaction {
+  margin-top: 6px;
+}
+
+.link-small {
+  font-size: 14px;
+  opacity: 0.75;
+  text-decoration: none;
+  color: #fff;
+}
+
+.link-small:hover {
+  opacity: 1;
+}
+
+
+.latest-trivia-box {
+  margin-top: 12px;
+  padding: 12px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 10px;
+}
+
+.lt-topic {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.lt-category {
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+#userPlacesGrid,
+#userPlacesList,
+#collectionGrid {
+  max-height: 55vh;
+  overflow-y: auto;
+  padding-right: 6px;
+}
+
+
+/* =====================================================
+   MAP-ONLY MODUS (profil)
+   - "Se kart" legger til body.map-only
+   - Vi skjuler panelene og viser kart-knappene
+   ===================================================== */
+
+body.profile-page #map{
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+}
+
+/* Paneler + header over kartet i normal modus */
+body.profile-page .site-header,
+body.profile-page #profileMain{
+  position: relative;
+  z-index: 2;
+}
+
+/* Kartkontroller: skjult normalt */
+body.profile-page .map-controls{
+  position: fixed;
+  top: 72px;
+  right: 12px;
+  z-index: 5;
+  display: none;
+  gap: 8px;
+}
+
+/* Kartkontroller-knapper */
+body.profile-page .map-controls button{
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(0,0,0,0.35);
+  color: #fff;
+  font-size: 1.2rem;
+}
+
+/* MAP-ONLY: skjul innhold, vis kartkontroller */
+body.profile-page.map-only .site-header{
+  display: none;
+}
+
+body.profile-page.map-only #profileMain{
+  display: none;
+}
+
+body.profile-page.map-only .map-controls{
+  display: flex;
+}
+
+#userPlacesGrid,
+#userPlacesList,
+#collectionGrid { ... }
+
+/* =====================================================
+   SIGNATUR / IDENTITET (profilens “begrepsfelt” + faser)
+   ===================================================== */
+
+.identity-line{
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.2px;
+}
+#identitySubLine{
+  margin-top: 6px;
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.72);
+}
+
+.field-block{
+  margin-top: 12px;
+  padding: 12px;
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 12px;
+  background: rgba(255,255,255,0.04);
+}
+
+.field-title{
+  font-size: 0.95rem;
+  font-weight: 650;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+
+/* chips */
+.concept-cloud{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.concept-chip{
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(0,0,0,0.22);
+  color: #fff;
+  border-radius: 999px;
+  padding: 7px 10px;
+  font-size: 0.9rem;
+  line-height: 1;
+  cursor: pointer;
+  user-select: none;
+  transition: transform .12s ease, background .18s ease, border-color .18s ease;
+}
+.concept-chip:hover{
+  transform: translateY(-1px);
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.22);
+}
+.concept-chip .w{
+  opacity: 0.75;
+  font-size: 0.82em;
+  margin-left: 6px;
+}
+
+/* matches panel */
+.concept-matches{
+  margin-top: 10px;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 12px;
+  background: rgba(0,0,0,0.22);
+  overflow: hidden;
+}
+
+.concept-matches-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 10px;
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.04);
+}
+
+.concept-matches-title{
+  font-weight: 800;
+}
+
+.concept-matches-close{
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(0,0,0,0.18);
+  color: #fff;
+  border-radius: 10px;
+  padding: 6px 9px;
+  cursor: pointer;
+}
+
+.concept-matches-body{
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+  padding: 12px;
+}
+
+@media (max-width: 900px){
+  .concept-matches-body{ grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px){
+  .concept-matches-body{ grid-template-columns: 1fr; }
+}
+
+.concept-matches-coltitle{
+  font-weight: 750;
+  margin-bottom: 8px;
+  opacity: 0.9;
+}
+
+.concept-matches-list{
+  display:flex;
+  flex-direction:column;
+  gap: 8px;
+}
+
+.match-item{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap: 10px;
+  padding: 10px 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.03);
+}
+
+.match-item .meta{
+  opacity: 0.72;
+  font-size: 0.85rem;
+  margin-top: 3px;
+}
+
+.match-open{
+  white-space: nowrap;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.06);
+  color: #fff;
+  border-radius: 10px;
+  padding: 7px 10px;
+  cursor: pointer;
+}
+
+.match-quiz{
+  display:flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.quiz-card{
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(0,0,0,0.18);
+  border-radius: 12px;
+  padding: 10px 12px;
+}
+
+.quiz-card-title{
+  font-weight: 750;
+  margin-bottom: 4px;
+}
+
+.quiz-card-meta{
+  font-size: 0.9rem;
+  opacity: 0.78;
+}
+
+.quiz-card-row{
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.quiz-pill{
+  font-size: 0.85rem;
+  opacity: 0.85;
+  padding: 5px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.05);
+  white-space: nowrap;
+}
+
+.quiz-open{
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(0,0,0,0.22);
+  color: #fff;
+  border-radius: 10px;
+  padding: 7px 10px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.quiz-open:hover{
+  background: rgba(255,255,255,0.08);
+}
+
+.concept-matches-footer{
+  padding: 10px 12px;
+  border-top: 1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.02);
+}
+
+/* phases */
+.phase-list{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.phase-item{
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(0,0,0,0.18);
+}
+
+.phase-title{
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.phase-tags{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.phase-tag{
+  font-size: 0.85rem;
+  opacity: 0.85;
+  padding: 5px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.05);
+}
+
+/* social */
+.social-box{
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px dashed rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.03);
+}
