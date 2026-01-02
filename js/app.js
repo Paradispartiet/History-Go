@@ -1390,6 +1390,14 @@ if (typeof linkPeopleToPlaces === "function") {
   if (DEBUG) console.warn("linkPeopleToPlaces() mangler – hopper over linking");
 }
 
+// ✅ TESTMODE (ved reload): sync toggle + flag (INGEN auto-unlock)
+window.TEST_MODE = localStorage.getItem("HG_TEST_MODE") === "1";
+if (el.test) el.test.checked = window.TEST_MODE;
+
+// ✅ vis/skjul Unlock All-knappen basert på testmodus
+const btnUA = document.getElementById("btnUnlockAll");
+if (btnUA) btnUA.style.display = window.TEST_MODE ? "inline-flex" : "none";
+    
    // ✅ INIT QUIZ-MODUL (ETTER at PLACES/PEOPLE er lastet)
 if (window.QuizEngine) {
   QuizEngine.init({
