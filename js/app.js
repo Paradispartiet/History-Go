@@ -1377,15 +1377,6 @@ if (typeof linkPeopleToPlaces === "function") {
 } else {
   if (DEBUG) console.warn("linkPeopleToPlaces() mangler – hopper over linking");
 }
-
- // ✅ OPEN_MODE (ved reload): sync toggle + flag (INGEN auto-unlock)
-  window.OPEN_MODE = localStorage.getItem("HG_OPEN_MODE") === "1";
-  const openEl = document.getElementById("openToggle");
-    if (openEl) openEl.checked = window.OPEN_MODE;
-
- // ✅ vis/skjul Åpne alt-knappen basert på openmodus
-  const btnUA = document.getElementById("btnUnlockAll");
-    if (btnUA) btnUA.style.display = window.OPEN_MODE ? "inline-flex" : "none";    
    
 // ✅ INIT QUIZ-MODUL (ETTER at PLACES/PEOPLE er lastet)
 if (window.QuizEngine) {
