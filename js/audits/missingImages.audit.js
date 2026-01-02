@@ -1,62 +1,56 @@
 // js/audits/missingImages.audit.js
 // =====================================================
-// History GO – Missing Images Audit (WORKING VERSION)
+// History GO – Missing Images Audit (SAY WHAT'S MISSING)
 // -----------------------------------------------------
 // Mål:
-//  - Finn manglende bilder uten at nettleseren kræsjer
-//  - Samme datasett i console og nedlasting (ingen mismatch)
-//  - Ingen "await" (HG DevTools eval støtter ikke det)
-//  - iOS-first export: Share → “Lagre i Filer”, fallback data:URL
-//
-// Bruk i HG DevTools console:
-//   HGImageRolesAudit.run({ people: PEOPLE, places: PLACES })
-//   HGImageRolesAudit.downloadAll()
-//   HGImageRolesAudit.downloadMissingAny()
-//   HGImageRolesAudit.downloadPlacesAll()
-//   HGImageRolesAudit.downloadPeopleAll()
-//   HGImageRolesAudit.downloadPlacesMissingImage()
-//   HGImageRolesAudit.downloadPlacesMissingCard()
-//   HGImageRolesAudit.downloadPlacesMissingPopup()
+//  - Si hvilke personer/steder mangler bilder (og hvilke typer)
+//  - Støtter mange feltnavn (rådata + typiske HG-varianter)
+//  - Returnerer FULL liste (console viser bare første N)
+//  - Kan laste ned full JSON (iOS Share → “Lagre i Filer”)
+//  - Ingen await (HG DevTools eval)
 // =====================================================
 
 (function (global) {
   "use strict";
 
   // -------------------------------
-  // State
+  // Settings
   // -------------------------------
-  var __lastAuditResult = null;
   var DEFAULT_MAX_TABLE_ROWS = 40;
+  var __last = null;
 
   // -------------------------------
-  // Helpers
+  // Small helpers
   // -------------------------------
   function norm(v) {
     return typeof v === "string" && v.trim() ? v.trim() : "";
   }
 
-  // Finn beste kandidat for en rolle uten å "gjette" for mye.
-  // (Du kan utvide keys senere – dette er robust nok nå.)
   function pick(obj, keys) {
     if (!obj || typeof obj !== "object") return "";
     for (var i = 0; i < keys.length; i++) {
       var k = keys[i];
       var v = obj[k];
 
-      if (typeof v === "string" && norm(v)) return norm(v);
+      if (typeof v === "string") {
+        v = norm(v);
+        if (v) return v;
+      }
 
-      // godta {url|src|href}
-      if (v && typeof v === "object") {
+      // accept { url | src | href }
+      if (v && typeof v === "object" && !Array.isArray(v)) {
         var u = norm(v.url) || norm(v.src) || norm(v.href);
         if (u) return u;
       }
 
-      // godta arrays av strings / objects
+      // accept array of strings/objects
       if (Array.isArray(v)) {
         for (var j = 0; j < v.length; j++) {
           var it = v[j];
-          if (typeof it === "string" && norm(it)) return norm(it);
-          if (it && typeof it === "object") {
+          if (typeof it === "string") {
+            var s = norm(it);
+            if (s) return s;
+          } else if (it && typeof it === "object") {
             var uu = norm(it.url) || norm(it.src) || norm(it.href);
             if (uu) return uu;
           }
@@ -66,37 +60,7 @@
     return "";
   }
 
-  // Rolle-resolver: eksakt rolle først, ellers fallback til generelle felt.
-  function resolveImageRole(obj, role) {
-    if (!obj || typeof obj !== "object") return "";
-
-    var ROLE_KEYS = {
-      image: [
-        "image", "imageUrl", "img", "imgUrl",
-        "photo", "photoUrl",
-        "thumbnail", "thumb",
-        "cover", "coverImage",
-        "hero", "headerImage", "banner"
-      ],
-      card: [
-        "cardImage", "imageCard", "card", "cardImg", "cardImgUrl",
-        "card_url", "card_image", "card_image_url"
-      ],
-      popup: [
-        "popupImage", "popupImg", "popupPhoto", "popupUrl",
-        "detailImage", "detailImg", "detailPhoto"
-      ]
-    };
-
-    // 1) rollefelt
-    var byRole = pick(obj, ROLE_KEYS[role] || []);
-    if (byRole) return byRole;
-
-    // 2) fallback: generelle felter (kun hvis rollen ikke finnes)
-    return pick(obj, ROLE_KEYS.image);
-  }
-
-  function sliceForTable(rows, maxRows) {
+  function truncateForConsole(rows, maxRows) {
     var n = Number(maxRows || 0) || 0;
     if (!n) return rows;
     if (!Array.isArray(rows)) return rows;
@@ -104,19 +68,61 @@
     return rows.slice(0, n);
   }
 
-  function logTrimNotice(total, maxRows) {
-    if ((Number(maxRows || 0) || 0) > 0 && total > maxRows) {
-      console.log("↳ viser " + maxRows + "/" + total + ". Bruk download for full liste.");
-    }
+  function logTrim(total, maxRows) {
+    var n = Number(maxRows || 0) || 0;
+    if (n && total > n) console.log("↳ viser bare " + n + " av " + total + ". Last ned for full liste.");
   }
 
   // -------------------------------
-  // Audit builders
+  // Image role resolvers
+  // (Her støtter vi mange feltnavn for å treffe din virkelighet.)
   // -------------------------------
-  function auditPeople(people) {
+  var KEYS_IMAGE = [
+    "image", "img", "photo", "picture", "cover", "hero",
+    "imageUrl", "imgUrl", "photoUrl", "pictureUrl", "coverUrl",
+    "thumbnail", "thumb", "thumbUrl", "thumbnailUrl",
+    "images", "photos"
+  ];
+
+  var KEYS_CARD = [
+    "cardImage", "imageCard", "image_card", "card_image",
+    "cardImg", "cardPhoto",
+    "cardImageUrl", "cardImgUrl",
+    "card", "card_url", "cardUrl",
+    "cardImages"
+  ];
+
+  var KEYS_POPUP = [
+    "popupImage", "popupImg", "popupPhoto",
+    "popupImageUrl", "popupUrl",
+    "detailImage", "detailImg", "detailPhoto",
+    "modalImage", "modalImg",
+    "popup"
+  ];
+
+  function resolveAllRoles(obj) {
+    // Finn hva som faktisk finnes
+    var image = pick(obj, KEYS_IMAGE);
+    var card  = pick(obj, KEYS_CARD);
+    var popup = pick(obj, KEYS_POPUP);
+
+    // Hvis card/popup mangler, IKKE fallback automatisk til image.
+    // Du vil vite hva som mangler, ikke få “alt OK”.
+    return {
+      image: image,
+      cardImage: card,
+      popupImage: popup
+    };
+  }
+
+  // -------------------------------
+  // Builders
+  // -------------------------------
+  function buildPeopleRows(people) {
     var rows = (people || []).map(function (p) {
-      var image = norm(resolveImageRole(p, "image"));
-      var cardImage = norm(resolveImageRole(p, "card"));
+      var r = resolveAllRoles(p);
+      var hasImage = !!norm(r.image);
+      var hasCard  = !!norm(r.cardImage);
 
       return {
         id: p && p.id,
@@ -124,12 +130,12 @@
         category: p && p.category,
         year: p && p.year,
 
-        image: image,
-        cardImage: cardImage,
+        image: norm(r.image),
+        cardImage: norm(r.cardImage),
 
-        missingImage: !image,
-        missingCard: !cardImage,
-        missingAny: (!image || !cardImage)
+        missingImage: !hasImage,
+        missingCard: !hasCard,
+        missingAny: (!hasImage || !hasCard)
       };
     });
 
@@ -141,11 +147,12 @@
     };
   }
 
-  function auditPlaces(places) {
+  function buildPlacesRows(places) {
     var rows = (places || []).map(function (s) {
-      var image = norm(resolveImageRole(s, "image"));
-      var cardImage = norm(resolveImageRole(s, "card"));
-      var popupImage = norm(resolveImageRole(s, "popup"));
+      var r = resolveAllRoles(s);
+      var hasImage = !!norm(r.image);
+      var hasCard  = !!norm(r.cardImage);
+      var hasPopup = !!norm(r.popupImage);
 
       return {
         id: s && s.id,
@@ -153,14 +160,14 @@
         category: s && s.category,
         year: s && s.year,
 
-        image: image,
-        cardImage: cardImage,
-        popupImage: popupImage,
+        image: norm(r.image),
+        cardImage: norm(r.cardImage),
+        popupImage: norm(r.popupImage),
 
-        missingImage: !image,
-        missingCard: !cardImage,
-        missingPopup: !popupImage,
-        missingAny: (!image || !cardImage || !popupImage)
+        missingImage: !hasImage,
+        missingCard: !hasCard,
+        missingPopup: !hasPopup,
+        missingAny: (!hasImage || !hasCard || !hasPopup)
       };
     });
 
@@ -174,102 +181,90 @@
   }
 
   // -------------------------------
-  // Console rendering (iPad-safe)
+  // Console report
   // -------------------------------
-  function renderPeopleReport(p, maxRows) {
+  function reportPeople(p, maxRows) {
     console.groupCollapsed(
-      "%c[HG] PEOPLE images — missing image:" + p.missingImage.length + " card:" + p.missingCard.length,
+      "%c[HG] PEOPLE missing — image:" + p.missingImage.length + " card:" + p.missingCard.length,
       "color:#3498db;font-weight:700"
     );
 
     if (p.missingImage.length) {
       console.log("❌ Mangler image (person):");
-      console.table(sliceForTable(p.missingImage.map(function (x) {
+      console.table(truncateForConsole(p.missingImage.map(function (x) {
         return { id: x.id, name: x.name, category: x.category };
       }), maxRows));
-      logTrimNotice(p.missingImage.length, maxRows);
-      console.log("Download:", "HGImageRolesAudit.downloadPeopleMissingImage()");
+      logTrim(p.missingImage.length, maxRows);
     }
 
     if (p.missingCard.length) {
       console.log("🎴 Mangler cardImage (person-kort):");
-      console.table(sliceForTable(p.missingCard.map(function (x) {
+      console.table(truncateForConsole(p.missingCard.map(function (x) {
         return { id: x.id, name: x.name, category: x.category };
       }), maxRows));
-      logTrimNotice(p.missingCard.length, maxRows);
-      console.log("Download:", "HGImageRolesAudit.downloadPeopleMissingCard()");
+      logTrim(p.missingCard.length, maxRows);
     }
 
+    console.log("Full eksport:", "HGMissingImages.downloadPeopleAll()");
     console.groupEnd();
   }
 
-  function renderPlacesReport(p, maxRows) {
+  function reportPlaces(p, maxRows) {
     console.groupCollapsed(
-      "%c[HG] PLACES images — missing image:" + p.missingImage.length +
-        " card:" + p.missingCard.length +
-        " popup:" + p.missingPopup.length,
+      "%c[HG] PLACES missing — image:" + p.missingImage.length + " card:" + p.missingCard.length + " popup:" + p.missingPopup.length,
       "color:#e67e22;font-weight:700"
     );
 
     if (p.missingImage.length) {
       console.log("❌ Mangler image (sted):");
-      console.table(sliceForTable(p.missingImage.map(function (x) {
+      console.table(truncateForConsole(p.missingImage.map(function (x) {
         return { id: x.id, name: x.name, category: x.category };
       }), maxRows));
-      logTrimNotice(p.missingImage.length, maxRows);
-      console.log("Download:", "HGImageRolesAudit.downloadPlacesMissingImage()");
+      logTrim(p.missingImage.length, maxRows);
     }
 
     if (p.missingCard.length) {
       console.log("🎴 Mangler cardImage (sted-kort):");
-      console.table(sliceForTable(p.missingCard.map(function (x) {
+      console.table(truncateForConsole(p.missingCard.map(function (x) {
         return { id: x.id, name: x.name, category: x.category };
       }), maxRows));
-      logTrimNotice(p.missingCard.length, maxRows);
-      console.log("Download:", "HGImageRolesAudit.downloadPlacesMissingCard()");
+      logTrim(p.missingCard.length, maxRows);
     }
 
     if (p.missingPopup.length) {
       console.log("🪟 Mangler popupImage (sted):");
-      console.table(sliceForTable(p.missingPopup.map(function (x) {
+      console.table(truncateForConsole(p.missingPopup.map(function (x) {
         return { id: x.id, name: x.name, category: x.category };
       }), maxRows));
-      logTrimNotice(p.missingPopup.length, maxRows);
-      console.log("Download:", "HGImageRolesAudit.downloadPlacesMissingPopup()");
+      logTrim(p.missingPopup.length, maxRows);
     }
 
+    console.log("Full eksport:", "HGMissingImages.downloadPlacesAll()");
     console.groupEnd();
   }
 
   // -------------------------------
-  // Export (iOS-first)
+  // iOS-first download
   // -------------------------------
   function downloadJSON(filename, data) {
-    var safeName = String(filename || "export.json").trim() || "export.json";
+    var name = String(filename || "export.json").trim() || "export.json";
     var json = JSON.stringify(data || [], null, 2);
 
-    // iOS Share sheet først (gir “Lagre i Filer”)
+    // Share sheet (iOS/iPadOS)
     try {
       if (global.navigator && typeof global.navigator.share === "function") {
-        var file = new File([json], safeName, { type: "application/json;charset=utf-8" });
-
-        // canShare finnes ikke alltid – så vi tar begge veier
+        var file = new File([json], name, { type: "application/json;charset=utf-8" });
         if (!global.navigator.canShare || global.navigator.canShare({ files: [file] })) {
-          // Viktig: ikke await (HG console)
-          global.navigator.share({ title: safeName, files: [file] })
-            .catch(function () { /* fallthrough til fallback under */ });
+          global.navigator.share({ title: name, files: [file] }).catch(function () {});
           return data || [];
         }
       }
-    } catch (e) {
-      // fallthrough
-    }
+    } catch (e) {}
 
-    // Fallback: data URL (stabil i Safari)
-    var href = "data:application/json;charset=utf-8," + encodeURIComponent(json);
+    // Fallback: data URL
     var a = document.createElement("a");
-    a.href = href;
-    a.download = safeName;
+    a.href = "data:application/json;charset=utf-8," + encodeURIComponent(json);
+    a.download = name;
     a.rel = "noopener";
     a.style.display = "none";
     document.body.appendChild(a);
@@ -279,14 +274,13 @@
     return data || [];
   }
 
-  function requireAuditResult() {
-    if (!__lastAuditResult || !__lastAuditResult.people || !__lastAuditResult.places) {
-      throw new Error("[HGImageRolesAudit] Kjør først: HGImageRolesAudit.run({ people: PEOPLE, places: PLACES })");
-    }
+  function requireLast() {
+    if (!__last) throw new Error("Kjør først: HGMissingImages.run({ people: PEOPLE, places: PLACES })");
+    return __last;
   }
 
   // -------------------------------
-  // PUBLIC API  (beholder navnet du allerede bruker i appen)
+  // PUBLIC API (ENKELT NAVN)
   // -------------------------------
   function run(opts) {
     opts = opts || {};
@@ -294,67 +288,64 @@
     var places = opts.places || [];
     var maxTableRows = ("maxTableRows" in opts) ? opts.maxTableRows : DEFAULT_MAX_TABLE_ROWS;
 
-    var peopleAudit = auditPeople(people);
-    var placesAudit = auditPlaces(places);
+    var peopleAudit = buildPeopleRows(people);
+    var placesAudit = buildPlacesRows(places);
 
-    __lastAuditResult = {
-      people: peopleAudit,
-      places: placesAudit
-    };
+    __last = { people: peopleAudit, places: placesAudit };
 
-    renderPeopleReport(peopleAudit, maxTableRows);
-    renderPlacesReport(placesAudit, maxTableRows);
+    reportPeople(peopleAudit, maxTableRows);
+    reportPlaces(placesAudit, maxTableRows);
 
-    return __lastAuditResult;
+    return __last;
   }
 
-  global.HGImageRolesAudit = {
+  global.HGMissingImages = {
     run: run,
-    last: function () { return __lastAuditResult; },
+    last: function () { return __last; },
 
-    // ---- FULL ----
+    // full statuslister
     downloadAll: function (filename) {
-      requireAuditResult();
-      return downloadJSON(filename || "image_audit_all.json", __lastAuditResult);
+      requireLast();
+      return downloadJSON(filename || "missing_images_full.json", __last);
     },
     downloadMissingAny: function (filename) {
-      requireAuditResult();
-      return downloadJSON(filename || "image_audit_missing_any.json", {
-        people: __lastAuditResult.people.missingAny || [],
-        places: __lastAuditResult.places.missingAny || []
+      requireLast();
+      return downloadJSON(filename || "missing_images_missing_any.json", {
+        people: __last.people.missingAny,
+        places: __last.places.missingAny
       });
     },
+
+    // ALL per type
     downloadPeopleAll: function (filename) {
-      requireAuditResult();
-      return downloadJSON(filename || "people_image_audit_all.json", __lastAuditResult.people.all || []);
+      requireLast();
+      return downloadJSON(filename || "people_images_all.json", __last.people.all);
     },
     downloadPlacesAll: function (filename) {
-      requireAuditResult();
-      return downloadJSON(filename || "places_image_audit_all.json", __lastAuditResult.places.all || []);
+      requireLast();
+      return downloadJSON(filename || "places_images_all.json", __last.places.all);
     },
 
-    // ---- PEOPLE missing ----
+    // missing per type
     downloadPeopleMissingImage: function (filename) {
-      requireAuditResult();
-      return downloadJSON(filename || "people_missing_image.json", __lastAuditResult.people.missingImage || []);
+      requireLast();
+      return downloadJSON(filename || "people_missing_image.json", __last.people.missingImage);
     },
     downloadPeopleMissingCard: function (filename) {
-      requireAuditResult();
-      return downloadJSON(filename || "people_missing_cardImage.json", __lastAuditResult.people.missingCard || []);
+      requireLast();
+      return downloadJSON(filename || "people_missing_cardImage.json", __last.people.missingCard);
     },
-
-    // ---- PLACES missing ----
     downloadPlacesMissingImage: function (filename) {
-      requireAuditResult();
-      return downloadJSON(filename || "places_missing_image.json", __lastAuditResult.places.missingImage || []);
+      requireLast();
+      return downloadJSON(filename || "places_missing_image.json", __last.places.missingImage);
     },
     downloadPlacesMissingCard: function (filename) {
-      requireAuditResult();
-      return downloadJSON(filename || "places_missing_cardImage.json", __lastAuditResult.places.missingCard || []);
+      requireLast();
+      return downloadJSON(filename || "places_missing_cardImage.json", __last.places.missingCard);
     },
     downloadPlacesMissingPopup: function (filename) {
-      requireAuditResult();
-      return downloadJSON(filename || "places_missing_popupImage.json", __lastAuditResult.places.missingPopup || []);
+      requireLast();
+      return downloadJSON(filename || "places_missing_popupImage.json", __last.places.missingPopup);
     }
   };
 
