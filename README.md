@@ -300,43 +300,275 @@ Kortene gir:
 
 ⸻
 
-10. Samfunnsverdi
 
-History GO skaper verdi på flere nivåer:
-	•	Læring i bevegelse – bedre hukommelse + folkehelse
-	•	Kulturformidling – små historier løftes frem
-	•	Inkludering – alle kan spille
-	•	Turisme – spillbar byguide
-	•	Samlekultur – minner du kan ta med hjem
+
 
 ⸻
 
-11. Mål og ambisjon
+History GO
 
-Kort sikt
-	•	50–100 steder i Oslo sentrum
-	•	Første diplomer
-	•	Første kortserier
-
-Lang sikt
-	•	Hele Oslo
-	•	Partnerskap med museer og festivaler
-	•	Sesongbaserte events
-	•	Global ekspansjon:
-Roma, Paris, London …
+Status, funksjonslag og videre plan
 
 ⸻
 
-12. Visjon
+1. Systemets nåværende kjerne (implementert)
 
-History GO skal gjøre kunnskap:
-	•	like samlende som sport
-	•	like engasjerende som spill
+1.1 Kart og stedslag
+	•	Kartbasert visning av steder (MapLibre / OSM)
+	•	Steder har:
+	•	stabil ID
+	•	koordinater
+	•	metadata (navn, type, år, tags)
+	•	Steder kan være:
+	•	låst
+	•	besøkt
+	•	ulåst
+	•	Visning er konsekvent ID-basert (ingen runtime-normalisering)
 
-Hver gate blir en quiz
-Hver statue blir en fortelling
-Hver park blir en opplevelse
+⸻
 
-History GO er ikke bare en app.
-Det er en ny kulturteknologi.
+1.2 Check-in
+	•	Check-in via:
+	•	GPS-nærhet
+	•	QR-kode (støtte lagt til i logikk)
+	•	Check-in er:
+	•	en eksplisitt handling
+	•	grunnlag for videre handling (quiz, observe)
+	•	Check-in i seg selv gir ingen progresjon
+
+⸻
+
+1.3 Quiz-motor (QuizEngine)
+	•	Fullt ID-basert quiz-system
+	•	Quiz:
+	•	3–5 spørsmål
+	•	alltid multiple choice
+	•	kan tas flere ganger
+	•	Quiz-resultat:
+	•	registreres kun ved korrekt svar
+	•	genererer evidens
+	•	topic brukes kun til visning (UI)
+	•	Begreper / emner kommer kun fra eksplisitte felt
+
+⸻
+
+1.4 Evidenslogg
+	•	Alle relevante handlinger logges som evidens:
+	•	bestått quiz
+	•	tilknyttede IDs (quiz, sted, person, emne)
+	•	Evidens er:
+	•	append-only
+	•	deterministisk
+	•	etterprøvbar
+	•	UI leser evidens, men eier den ikke
+
+⸻
+
+1.5 HGUnlocks
+	•	Unlock-system basert på eksplisitte regler
+	•	Ingen normalisering
+	•	Ingen gjetting
+	•	Samme unlock kan ikke trigges flere ganger
+	•	Unlock skjer:
+	•	kun ved korrekt handling
+	•	aldri ved visning eller init
+
+⸻
+
+1.6 Progresjon (Courses / pensum)
+	•	Progresjon beregnes i eget tolkningslag
+	•	Courses:
+	•	leser evidens
+	•	tolker bredde, dybde og konsistens
+	•	Quiz gir ikke nivå direkte
+	•	Nivå (Amatør → Student → Doktor → Professor) gis via:
+	•	aggregert evidens
+	•	eksplisitte terskler
+
+⸻
+
+1.7 Profil
+	•	Profil viser:
+	•	besøkte steder
+	•	beståtte quiz’er
+	•	kategorimerker
+	•	diplomer
+	•	Profil er:
+	•	visning
+	•	ikke kilde for sannhet
+	•	Profil kan rebuildes fra evidens
+
+⸻
+
+1.8 Test Mode
+	•	Fullt isolert testmodus
+	•	Skriver aldri:
+	•	unlocks
+	•	progresjon
+	•	rewards
+	•	Brukes til:
+	•	UI-testing
+	•	quiz-testing
+	•	flyt-simulering
+
+⸻
+
+1.9 NextUp
+	•	NextUp foreslår neste handling basert på:
+	•	evidens
+	•	posisjon
+	•	tilgjengelige handlinger
+	•	NextUp:
+	•	tar ingen beslutninger
+	•	skriver ingen state
+	•	Kun veiledning
+
+⸻
+
+2. Kunnskaps- og begrepslag (implementert / delvis)
+
+2.1 Ontologi
+	•	Eksplisitt ontologi definert i dokumentasjon
+	•	Skille mellom:
+	•	handling
+	•	evidens
+	•	kunnskap
+	•	visning
+	•	structure_*.json fjernet fra runtime
+
+⸻
+
+2.2 Kategorier og emner
+	•	Quiz kan være koblet til:
+	•	én eller flere kategorier
+	•	ett eller flere emner
+	•	Emner brukes til:
+	•	pensumkart
+	•	progresjonsanalyse
+	•	UI bruker kun ferdig tolket resultat
+
+⸻
+
+3. Samle- og belønningslag (implementert / påbegynt)
+
+3.1 Merker
+	•	Stedsmerker
+	•	Karakterkort (personer)
+	•	Kategorimerker
+	•	Alle merker er:
+	•	earned
+	•	ikke kjøpt
+	•	koblet til evidens
+
+⸻
+
+3.2 Diplomer
+	•	Digitale diplomer:
+	•	Amatør
+	•	Student
+	•	Doktor
+	•	Professor
+	•	Diplomer gis kun via courses
+	•	UI viser diplomstatus, men eier ikke logikken
+
+⸻
+
+4. Innsikts- og refleksjonslag (påbegynt)
+
+4.1 AHA / Insight layer
+	•	Innsiktsmotor integrert i History GO
+	•	Leser:
+	•	evidens
+	•	emner
+	•	progresjon
+	•	Genererer:
+	•	mønstre
+	•	styrker / svakheter
+	•	forslag (ikke unlocks)
+
+⸻
+
+5. Planlagte funksjonslag (definert, ikke ferdig)
+
+5.1 Samlekort (History GO Cards)
+	•	Digitale kort (NFT):
+	•	unike IDs
+	•	kan gi tilgang til bonusinnhold
+	•	Fysiske kort:
+	•	QR-kode
+	•	kobling til digital identitet
+	•	Kort er:
+	•	sekundært lag
+	•	ikke nødvendig for kjerneprogresjon
+
+⸻
+
+5.2 Life GO (personlig historie)
+	•	Private ruter:
+	•	familie
+	•	venner
+	•	grupper
+	•	Egne hendelser og minner
+	•	Samme tekniske motor som History GO
+	•	Skilt fra offentlig kunnskapslag
+
+⸻
+
+5.3 Sosialt lag (kontrollert)
+	•	Valgfri synlighet
+	•	Sammenligning av profiler
+	•	Ingen feed
+	•	Ingen likes
+	•	Fokus på:
+	•	kunnskap
+	•	progresjon
+	•	felles ruter
+
+⸻
+
+5.4 Events og sesonger
+	•	Midlertidige ruter
+	•	Begrensede quiz’er
+	•	Sesongbaserte diplomer
+	•	Fysiske og digitale belønninger
+
+⸻
+
+6. Skaleringsplan
+
+6.1 Geografisk
+	•	Pilot: Oslo sentrum
+	•	Utvidelse:
+	•	hele Oslo
+	•	andre norske byer
+	•	internasjonalt (by-for-by)
+
+⸻
+
+6.2 Institusjoner
+	•	Museer
+	•	Skoler
+	•	Festivaler
+	•	Kommuner
+	•	Historielag
+
+⸻
+
+7. Status i dag (kort)
+	•	Kjernearkitektur: på plass
+	•	Progresjon: deterministisk
+	•	Quiz-motor: stabil
+	•	Unlocks: kontrollert
+	•	Dokumentasjon: under konsolidering
+	•	Innhold: under kontinuerlig utvidelse
+
+⸻
+
+8. Prinsipper som ikke skal brytes
+	•	UI eier aldri sannhet
+	•	Kunnskap kommer aldri fra tekst alene
+	•	Progresjon er alltid tolket, ikke direkte
+	•	Test og produksjon er isolert
+	•	Ingen “magiske” unlocks
+
 
