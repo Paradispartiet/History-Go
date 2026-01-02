@@ -385,6 +385,17 @@ global.HGImageRolesAudit = {
   run,
   last() { return __lastAuditResult; },
 
+// FULL status downloads (alle rows)
+async downloadPeopleAll(filename = "people_image_audit_all.json") {
+  requireAuditResult();
+  return await downloadJSON(filename, __lastAuditResult.people.all || []);
+},
+
+async downloadPlacesAll(filename = "places_image_audit_all.json") {
+  requireAuditResult();
+  return await downloadJSON(filename, __lastAuditResult.places.all || []);
+},
+  
  // PEOPLE downloads
 async downloadPeopleMissingImage(filename = "people_missing_image.json") {
   requireAuditResult();
