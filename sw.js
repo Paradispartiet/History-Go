@@ -67,6 +67,7 @@ const STATIC_ASSETS = [
   "js/hgInsights.js",
   "js/emnerLoader.js",
   "js/dataHub.js",
+  "js/audits/imageRoles.audit.js",
 
   // Registry + health report
   "js/domainRegistry.js",
