@@ -311,18 +311,41 @@
     console.groupEnd();
   }
 
-  // -------------------------------
-  // Download (iOS/Safari robust)
-  // -------------------------------
-  function downloadJSON(filename, rows) {
+// -------------------------------
+// Export (iOS-first: Share → “Lagre i Filer”)
+// -------------------------------
+async function downloadJSON(filename, rows) {
   const safeName = String(filename || "export.json").trim() || "export.json";
   const json = JSON.stringify(rows || [], null, 2);
 
-  const blob = new Blob([json], { type: "application/json;charset=utf-8" });
-  const url = URL.createObjectURL(blob);
+  // ✅ iOS / iPadOS: Share sheet (gir “Lagre i Filer”)
+  try {
+    if (global.navigator && typeof global.navigator.share === "function") {
+      const blob = new Blob([json], { type: "application/json;charset=utf-8" });
+
+      // File er ikke garantert i alle Safari-versjoner
+      const file =
+        (typeof File === "function")
+          ? new File([blob], safeName, { type: "application/json;charset=utf-8" })
+          : blob;
+
+      if (!global.navigator.canShare || global.navigator.canShare({ files: [file] })) {
+        await global.navigator.share({
+          title: safeName,
+          files: [file]
+        });
+        return rows || [];
+      }
+    }
+  } catch (e) {
+    // fallthrough til fallback
+  }
+
+  // Fallback: data-URL (mindre blob-trøbbel i Safari)
+  const href = "data:application/json;charset=utf-8," + encodeURIComponent(json);
 
   const a = document.createElement("a");
-  a.href = url;
+  a.href = href;
   a.download = safeName;
   a.rel = "noopener";
   a.style.display = "none";
@@ -331,16 +354,7 @@
   try { a.click(); } catch {}
   a.remove();
 
-  // Ikke revoké for tidlig (iOS kan være treg)
-  setTimeout(() => { try { URL.revokeObjectURL(url); } catch {} }, 60000);
-
   return rows || [];
-}
-
-  function requireAuditResult() {
-  if (!__lastAuditResult || !__lastAuditResult.people || !__lastAuditResult.places) {
-    throw new Error("[HGImageRolesAudit] Kjør run() først: HGImageRolesAudit.run({ people: PEOPLE, places: PLACES })");
-  }
 }
 
  // -------------------------------
@@ -371,29 +385,29 @@ global.HGImageRolesAudit = {
   run,
   last() { return __lastAuditResult; },
 
-  // PEOPLE downloads
-  downloadPeopleMissingImage(filename = "people_missing_image.json") {
-    requireAuditResult();
-    return downloadJSON(filename, __lastAuditResult.people.missingImage || []);
-  },
-  downloadPeopleMissingCard(filename = "people_missing_cardImage.json") {
-    requireAuditResult();
-    return downloadJSON(filename, __lastAuditResult.people.missingCard || []);
-  },
+ // PEOPLE downloads
+async downloadPeopleMissingImage(filename = "people_missing_image.json") {
+  requireAuditResult();
+  return await downloadJSON(filename, __lastAuditResult.people.missingImage || []);
+},
+async downloadPeopleMissingCard(filename = "people_missing_cardImage.json") {
+  requireAuditResult();
+  return await downloadJSON(filename, __lastAuditResult.people.missingCard || []);
+},
 
-  // PLACES downloads
-  downloadPlacesMissingImage(filename = "places_missing_image.json") {
-    requireAuditResult();
-    return downloadJSON(filename, __lastAuditResult.places.missingImage || []);
-  },
-  downloadPlacesMissingCard(filename = "places_missing_cardImage.json") {
-    requireAuditResult();
-    return downloadJSON(filename, __lastAuditResult.places.missingCard || []);
-  },
-  downloadPlacesMissingPopup(filename = "places_missing_popupImage.json") {
-    requireAuditResult();
-    return downloadJSON(filename, __lastAuditResult.places.missingPopup || []);
-  }
+// PLACES downloads
+async downloadPlacesMissingImage(filename = "places_missing_image.json") {
+  requireAuditResult();
+  return await downloadJSON(filename, __lastAuditResult.places.missingImage || []);
+},
+async downloadPlacesMissingCard(filename = "places_missing_cardImage.json") {
+  requireAuditResult();
+  return await downloadJSON(filename, __lastAuditResult.places.missingCard || []);
+},
+async downloadPlacesMissingPopup(filename = "places_missing_popupImage.json") {
+  requireAuditResult();
+  return await downloadJSON(filename, __lastAuditResult.places.missingPopup || []);
+}
 };
 
 })(window);
