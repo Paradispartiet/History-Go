@@ -1066,12 +1066,12 @@ function wirePlaceCardCollapseTapToExpand() {
 // ==============================
 function wire() {
   // Testmodus
-  el.test?.addEventListener("change", (e) => {
+  el.open?.addEventListener("change", (e) => {
   const on = !!e.target.checked;
 
-  window.TEST_MODE = on;
-  localStorage.setItem("HG_TEST_MODE", on ? "1" : "0");
-
+  window.OPEN_MODE = on;
+  localStorage.setItem("HG_OPEN_MODE", on ? "1" : "0");
+  
   const btnUA = document.getElementById("btnUnlockAll");
   if (btnUA) btnUA.style.display = on ? "inline-flex" : "none";
 
