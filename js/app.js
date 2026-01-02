@@ -1075,18 +1075,6 @@ function wire() {
   const btnUA = document.getElementById("btnUnlockAll");
   if (btnUA) btnUA.style.display = on ? "inline-flex" : "none";
 
-  if (on) {
-    window.setPos?.(START.lat, START.lon, null);
-    if (el.status) el.status.textContent = "Testmodus: Oslo sentrum";
-    showToast("Testmodus PÅ");
-    window.HG_ENV = window.HG_ENV || {};
-    window.HG_ENV.geo = "test";
-  } else {
-    showToast("Testmodus AV");
-    window.clearPos?.("test_off");
-    requestLocation();
-  }
-
   window.renderNearbyPlaces?.();
 }); // ✅ HER (rett under denne linja)
 
