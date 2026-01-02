@@ -20,6 +20,24 @@
 (function (global) {
   "use strict";
 
+  let __lastAuditResult = null;
+
+  function downloadJSON(filename, rows) {
+    const json = JSON.stringify(rows, null, 2);
+    const blob = new Blob([json], { type: "application/json;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+    return rows;
+  }
+  
   function norm(v) {
     return typeof v === "string" && v.trim() ? v.trim() : "";
   }
@@ -147,18 +165,57 @@
   // PUBLIC API
   // -------------------------------
   function run({ people = [], places = [] } = {}) {
-    const peopleAudit = auditPeople(people);
-    const placesAudit = auditPlaces(places);
+  const peopleAudit = auditPeople(people);
+  const placesAudit = auditPlaces(places);
 
-    renderPeopleReport(peopleAudit);
-    renderPlacesReport(placesAudit);
+  // ✅ LEGG INN DENNE LINJA
+  __lastAuditResult = { people: peopleAudit, places: placesAudit };
 
-    return {
-      people: peopleAudit,
-      places: placesAudit
-    };
+  renderPeopleReport(peopleAudit);
+  renderPlacesReport(placesAudit);
+
+  return __lastAuditResult;
+}
+
+  global.HGImageRolesAudit = {
+  run,
+
+  // -------- DOWNLOAD HELPERS --------
+
+  downloadPeopleMissingImage(filename = "people_missing_image.json") {
+    return downloadJSON(
+      filename,
+      __lastAuditResult?.people?.missingImage || []
+    );
+  },
+
+  downloadPeopleMissingCard(filename = "people_missing_cardImage.json") {
+    return downloadJSON(
+      filename,
+      __lastAuditResult?.people?.missingCard || []
+    );
+  },
+
+  downloadPlacesMissingImage(filename = "places_missing_image.json") {
+    return downloadJSON(
+      filename,
+      __lastAuditResult?.places?.missingImage || []
+    );
+  },
+
+  downloadPlacesMissingCard(filename = "places_missing_cardImage.json") {
+    return downloadJSON(
+      filename,
+      __lastAuditResult?.places?.missingCard || []
+    );
+  },
+
+  downloadPlacesMissingPopup(filename = "places_missing_popupImage.json") {
+    return downloadJSON(
+      filename,
+      __lastAuditResult?.places?.missingPopup || []
+    );
   }
-
-  global.HGImageRolesAudit = { run };
+};
 
 })(window);
