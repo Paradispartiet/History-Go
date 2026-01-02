@@ -1217,21 +1217,21 @@ window.addEventListener("hg:mpNextUp", (e) => {
   <div class="mp-nextup-line">
     <button class="mp-nextup-link" data-mp="goto"
       ${spatial ? `data-place="${hgEscAttr(spatial.place_id)}"` : "disabled"}>
-      🧭 ${spatial ? hgEsc(spatial.label) : "—"}
+      🧭 <b>Neste Sted:</b> ${spatial ? hgEsc(spatial.label) : "—"}
     </button>
   </div>
 
   <div class="mp-nextup-line">
     <button class="mp-nextup-link" data-mp="story"
       ${narrative ? `data-nextplace="${hgEscAttr(narrative.next_place_id)}"` : "disabled"}>
-      📖 ${narrative ? hgEsc(narrative.label) : "—"}
+      📖 <b>Neste Scene:</b> ${narrative ? hgEsc(narrative.label) : "—"}
     </button>
   </div>
 
   <div class="mp-nextup-line">
     <button class="mp-nextup-link" data-mp="emne"
       ${concept ? `data-emne="${hgEscAttr(concept.emne_id)}"` : "disabled"}>
-      🧠 ${concept ? hgEsc(concept.label) : "—"}
+      🧠 <b>Forstå:</b> ${concept ? hgEsc(concept.label) : "—"}
     </button>
   </div>
 
