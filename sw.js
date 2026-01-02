@@ -176,7 +176,11 @@ self.addEventListener("fetch", (event) => {
         const cache = await caches.open(STATIC_CACHE);
 
         // Cache key uten querystring (så /?dev=1 matcher /)
-        const key = new Request(url.pathname, { method: "GET" });
+        const path = url.pathname.endsWith("/")
+           ? url.pathname + "index.html"
+           : url.pathname;
+
+        const key = new Request(path, { method: "GET" });
 
         try {
           const fresh = await fetch(req);
