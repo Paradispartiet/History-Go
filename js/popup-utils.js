@@ -140,6 +140,18 @@ function makePopup(html, extraClass = "", onClose = null) {
 
   let _closed = false;
 
+  // klikkbare personer fra Vunderkamre
+  currentPopup.querySelectorAll("[data-person]").forEach(btn => {
+    btn.onclick = () => {
+      const pid = String(btn.dataset.person || "").trim();
+      const pr = (Array.isArray(window.PEOPLE) ? window.PEOPLE : []).find(x => String(x.id).trim() === pid);
+      if (pr) {
+        closePopup();
+        window.showPersonPopup(pr);
+      }
+    };
+  });
+  
   function finishClose() {
     if (_closed) return;
     _closed = true;
@@ -797,6 +809,11 @@ try {
 } catch (e) {
   console.warn("[mpNextUp]", e);
 }
+
+  // VUNDERKAMRE (vises over personlista)
+  const chambersHtml = (typeof wonderChambersForPlace === "function")
+    ? wonderChambersForPlace(place)
+    : "";
   
   // --- Render personer i placeCard ---
   if (peopleEl) {
