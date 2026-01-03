@@ -166,8 +166,8 @@ function buildWonderChamberHtml({ title, rels }) {
   const list = _arr(rels);
 
   return `
-    <div class="hg-section">
-      <h3>${title}</h3>
+  <div class="hg-section">
+    ${title ? `<h3>${title}</h3>` : ``}
       ${
         list.length
           ? `<ul style="margin:0;padding-left:18px;">${list.map(renderRelationRow).join("")}</ul>`
@@ -179,12 +179,12 @@ function buildWonderChamberHtml({ title, rels }) {
 
 function wonderChambersForPlace(place) {
   const rels = getRelations().filter(r => relMatchesPlace(r, place?.id));
-  return buildWonderChamberHtml({ title: "Vunderkamre", rels });
+  return buildWonderChamberHtml({ title: "", rels });
 }
 
 function wonderChambersForPerson(person) {
   const rels = getRelations().filter(r => relMatchesPerson(r, person?.id));
-  return buildWonderChamberHtml({ title: "Vunderkamre", rels });
+  return buildWonderChamberHtml({ title: "", rels });
 }
 
 
