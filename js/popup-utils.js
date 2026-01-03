@@ -356,6 +356,11 @@ window.showPersonPopup = function(person) {
   const observations = getObservationsForTarget(person.id, "person");
   const obsHtml = renderObsList(observations);
 
+    // VUNDERKAMRE
+  const chambersHtml = (typeof wonderChambersForPerson === "function")
+    ? wonderChambersForPerson(person)
+    : "";
+  
   const html = `
       <img src="${face}" class="hg-popup-face">
       <h2 class="hg-popup-name">${person.name}</h2>
@@ -375,7 +380,7 @@ window.showPersonPopup = function(person) {
         <h3>Om personen</h3>
         <p class="hg-wiki">${wiki}</p>
       </div>
-
+  ${chambersHtml}
       <div class="hg-section">
         <h3>Steder</h3>
         ${
