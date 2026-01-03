@@ -366,7 +366,12 @@ window.showPersonPopup = function(person) {
   const cardImg = person.imageCard;  // kortbilde
   const works   = person.works || [];
   const wiki    = person.wiki || "";
-
+  const kind = String(person.kind || "").trim();
+  const kindLabel =
+  kind === "ikon" ? "Ikon" :
+  kind === "institusjonsbærer" ? "Institusjonsbærer" :
+  kind === "kontekst" ? "Kontekst" : "";
+  
   const categoryId =
     person.category ||
     (Array.isArray(person.tags) && person.tags.length ? person.tags[0] : null);
