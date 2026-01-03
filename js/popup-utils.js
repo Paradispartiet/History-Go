@@ -455,7 +455,9 @@ window.showPlacePopup = function(place) {
   const img = place.image || "";
 
   const peopleHere = PEOPLE.filter(p => p.placeId === place.id);
-
+    // UNDERKAMRE (RELATIONS)
+  const chambersHtml = renderPlaceChambers(place);
+  
   const categoryId = place.category || null;
   const completed = hasCompletedQuiz(place.id);
   const knowledgeBlocks =
@@ -472,6 +474,8 @@ window.showPlacePopup = function(place) {
       <h3 class="hg-popup-title">${place.name}</h3>
       <p class="hg-popup-cat">${place.category || ""}</p>
       <p class="hg-popup-desc">${place.desc || ""}</p>
+    
+      ${chambersHtml}
 
       <button class="hg-quiz-btn" data-quiz="${place.id}">Ta quiz</button>
 
@@ -535,10 +539,14 @@ window.showPlacePopup = function(place) {
 
   makePopup(html, "place-popup");
 
-  currentPopup.querySelectorAll("[data-person]").forEach(el => {
+    currentPopup.querySelectorAll("[data-person]").forEach(el => {
     el.onclick = () => {
-      const pr = PEOPLE.find(p => p.id === el.dataset.person);
-      showPersonPopup(pr);
+      const id = String(el.dataset.person || "").trim();
+      const pr =
+        (Array.isArray(PEOPLE) ? PEOPLE.find(p => p.id === id) : null) ||
+        (Array.isArray(window.PEOPLE) ? window.PEOPLE.find(p => p.id === id) : null);
+
+      if (pr) window.showPersonPopup?.(pr);
     };
   });
 };
