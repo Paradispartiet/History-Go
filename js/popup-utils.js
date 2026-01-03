@@ -14,6 +14,97 @@
 let currentPopup = null;
 
 // ============================================================
+// RELATIONS helpers (people ↔ places)
+// ============================================================
+function getAllRelationsSafe() {
+  // støtter både global RELATIONS og window.RELATIONS
+  const arr =
+    (typeof RELATIONS !== "undefined" && Array.isArray(RELATIONS)) ? RELATIONS :
+    (Array.isArray(window.RELATIONS) ? window.RELATIONS : []);
+  return arr;
+}
+
+function getRelationsForPlace(placeId) {
+  const pid = String(placeId || "").trim();
+  if (!pid) return [];
+  return getAllRelationsSafe().filter(r => String(r.place || "").trim() === pid);
+}
+
+function groupByType(list) {
+  const out = Object.create(null);
+  (list || []).forEach(r => {
+    const t = String(r.type || "").trim() || "ukjent";
+    (out[t] = out[t] || []).push(r);
+  });
+  return out;
+}
+
+function getPersonById(pid) {
+  const id = String(pid || "").trim();
+  if (!id) return null;
+
+  // PEOPLE er allerede global i denne fila
+  if (Array.isArray(PEOPLE)) {
+    const hit = PEOPLE.find(p => String(p.id || "").trim() === id);
+    if (hit) return hit;
+  }
+  if (Array.isArray(window.PEOPLE)) {
+    return window.PEOPLE.find(p => String(p.id || "").trim() === id) || null;
+  }
+  return null;
+}
+
+function renderPlaceChambers(place) {
+  const rels = getRelationsForPlace(place?.id);
+  if (!rels.length) return "";
+
+  const byType = groupByType(rels);
+
+  // Underkammer-definisjon (UI-gruppering, ikke datastruktur)
+  const chambers = [
+    { title: "Eierskap og drift", types: ["eier_daglig_leder", "eier", "daglig_leder", "styremedlem"] },
+    { title: "Arbeidsplass",      types: ["jobbet_her", "drev_stedet"] },
+    { title: "Ringvirkninger",    types: ["bygde_videre_på"] }
+  ];
+
+  const htmlParts = chambers.map(ch => {
+    const rows = ch.types.flatMap(t => byType[t] || []);
+    if (!rows.length) return "";
+
+    const items = rows.map(r => {
+      const person = getPersonById(r.person);
+      if (!person) return "";
+
+      const role = String(r.role || "").trim();
+      const period = String(r.period || "").trim();
+      const meta = [role, period].filter(Boolean).join(" · ");
+
+      return `
+        <li class="hg-rel-item">
+          <button class="hg-rel-link" data-person="${person.id}">
+            ${person.name}
+          </button>
+          ${meta ? `<span class="hg-rel-meta"> — ${meta}</span>` : ``}
+        </li>
+      `;
+    }).join("");
+
+    if (!items.trim()) return "";
+
+    return `
+      <div class="hg-section hg-rel-chamber">
+        <h3>${ch.title}</h3>
+        <ul class="hg-rel-list">
+          ${items}
+        </ul>
+      </div>
+    `;
+  }).join("");
+
+  return htmlParts.trim();
+}
+
+// ============================================================
 // 1. LUKK POPUP
 // ============================================================
 function closePopup() {
