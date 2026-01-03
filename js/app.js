@@ -39,11 +39,6 @@ let RELATIONS = [];
 
 let TAGS_REGISTRY = null;
 
-// ✅ LEGG DENNE LINJA RETT HER
-if (window.HGAuditMissingImages) {
-  HGAuditMissingImages.run({ people: PEOPLE, places: PLACES });
-}
-
 function normalizeTags(rawTags, tagsRegistry) {
   const list = Array.isArray(rawTags) ? rawTags : [];
   const legacyMap = (tagsRegistry && tagsRegistry.legacy_map) || {};
@@ -1372,13 +1367,24 @@ if (map) {
 
     PLACES = places;
     PEOPLE = people;
-    TAGS_REGISTRY = tags;
 
-if (typeof linkPeopleToPlaces === "function") {
-  linkPeopleToPlaces();
-} else {
-  if (DEBUG) console.warn("linkPeopleToPlaces() mangler – hopper over linking");
-}
+      window.PLACES = PLACES;
+      window.PEOPLE = PEOPLE;
+
+      RELATIONS = Array.isArray(relations) ? relations : [];
+      window.RELATIONS = RELATIONS;
+
+      TAGS_REGISTRY = tags || {};
+
+    if (window.HGAuditMissingImages) {
+      HGAuditMissingImages.run({ people: PEOPLE, places: PLACES });
+    }
+
+    if (typeof linkPeopleToPlaces === "function") {
+      linkPeopleToPlaces();   
+  } else {
+    if (DEBUG) console.warn("linkPeopleToPlaces() mangler – hopper over linking");
+  }
    
 // ✅ INIT QUIZ-MODUL (ETTER at PLACES/PEOPLE er lastet)
 if (window.QuizEngine) {
