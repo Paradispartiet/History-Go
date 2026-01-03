@@ -481,17 +481,21 @@ window.showPlacePopup = function(place) {
   // OBSERVASJONER (place)
   const observations = getObservationsForTarget(place.id, "place");
   const obsHtml = renderObsList(observations);
-
+    // VUNDERKAMRE
+  const chambersHtml = (typeof wonderChambersForPlace === "function")
+    ? wonderChambersForPlace(place)
+    : "";
+  
   const html = `
       <img src="${img}" class="hg-popup-img">
       <h3 class="hg-popup-title">${place.name}</h3>
       <p class="hg-popup-cat">${place.category || ""}</p>
       <p class="hg-popup-desc">${place.desc || ""}</p>
-    
-      ${chambersHtml}
 
       <button class="hg-quiz-btn" data-quiz="${place.id}">Ta quiz</button>
 
+      ${chambersHtml}
+    
       ${
         peopleHere.length
           ? `<div class="hg-popup-subtitle">Personer</div>
