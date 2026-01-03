@@ -563,7 +563,7 @@ window.showPlacePopup = function(place) {
   // RIKTIG: kun stedsbilde
   const img = place.image || "";
 
-  const peopleHere = PEOPLE.filter(p => p.placeId === place.id);
+  const peopleHere = getPeopleForPlace(place.id);
   
   const categoryId = place.category || null;
   const completed = hasCompletedQuiz(place.id);
