@@ -70,6 +70,63 @@ function relMatchesPerson(r, personId) {
   return false;
 }
 
+// ============================================================
+// RELATIONS → lookup helpers (erstatter placeId-logikk)
+// STRICT: kun trim.
+// ============================================================
+
+function getPeopleForPlace(placeId) {
+  const pid = _s(placeId);
+  if (!pid) return [];
+
+  const rels = getRelations().filter(r => relMatchesPlace(r, pid));
+
+  const ids = [];
+  rels.forEach(r => {
+    // hent person-id fra flere varianter
+    const personId =
+      _s(r?.personId || r?.person_id || r?.person) ||
+      (_s(r?.fromType || r?.from_type) === "person" ? _s(r?.fromId || r?.from_id) : "") ||
+      (_s(r?.toType   || r?.to_type)   === "person" ? _s(r?.toId   || r?.to_id)   : "");
+
+    if (personId) ids.push(personId);
+  });
+
+  // de-dupe, behold bare personer som finnes
+  const uniq = [...new Set(ids)];
+  const peopleArr = Array.isArray(window.PEOPLE) ? window.PEOPLE : (Array.isArray(PEOPLE) ? PEOPLE : []);
+  const out = uniq.map(id => peopleArr.find(p => _s(p?.id) === id)).filter(Boolean);
+
+  // stabil sortering
+  out.sort((a, b) => _s(a.name).localeCompare(_s(b.name), "no"));
+  return out;
+}
+
+function getPlacesForPerson(personId) {
+  const pid = _s(personId);
+  if (!pid) return [];
+
+  const rels = getRelations().filter(r => relMatchesPerson(r, pid));
+
+  const ids = [];
+  rels.forEach(r => {
+    // hent place-id fra flere varianter
+    const placeId =
+      _s(r?.placeId || r?.place_id || r?.place) ||
+      (_s(r?.fromType || r?.from_type) === "place" ? _s(r?.fromId || r?.from_id) : "") ||
+      (_s(r?.toType   || r?.to_type)   === "place" ? _s(r?.toId   || r?.to_id)   : "");
+
+    if (placeId) ids.push(placeId);
+  });
+
+  const uniq = [...new Set(ids)];
+  const placesArr = Array.isArray(window.PLACES) ? window.PLACES : (Array.isArray(PLACES) ? PLACES : []);
+  const out = uniq.map(id => placesArr.find(s => _s(s?.id) === id)).filter(Boolean);
+
+  out.sort((a, b) => _s(a.name).localeCompare(_s(b.name), "no"));
+  return out;
+}
+
 function renderRelationRow(r) {
   const type  = _s(r?.type || r?.rel || r?.kind) || "kobling";
   const why   = _s(r?.why || r?.reason || r?.desc || r?.note);
