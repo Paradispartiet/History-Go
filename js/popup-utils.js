@@ -1086,11 +1086,8 @@ try {
 window.openPlaceCardByPerson = function(person) {
   if (!person) return;
 
-  let place =
-    PLACES.find(p => p.id === person.placeId) ||
-    PLACES.find(
-      p => Array.isArray(person.places) && person.places.includes(p.id)
-    );
+  const relPlaces = getPlacesForPerson(person.id);
+let place = relPlaces.length ? relPlaces[0] : null;
 
   // Hvis person ikke har et registrert sted → generer et "midlertidig"
   if (!place) {
