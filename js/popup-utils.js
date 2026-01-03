@@ -480,8 +480,6 @@ window.showPlacePopup = function(place) {
   const img = place.image || "";
 
   const peopleHere = PEOPLE.filter(p => p.placeId === place.id);
-    // UNDERKAMRE (RELATIONS)
-  const chambersHtml = renderPlaceChambers(place);
   
   const categoryId = place.category || null;
   const completed = hasCompletedQuiz(place.id);
