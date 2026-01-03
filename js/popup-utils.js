@@ -72,11 +72,31 @@ function relMatchesPerson(r, personId) {
 
 function renderRelationRow(r) {
   const type  = _s(r?.type || r?.rel || r?.kind) || "kobling";
-  const label = _s(r?.label || r?.title || r?.name);
   const why   = _s(r?.why || r?.reason || r?.desc || r?.note);
   const src   = _s(r?.source || r?.src);
 
-  const head = label ? `${type}: <strong>${label}</strong>` : `<strong>${type}</strong>`;
+  // prøv å finne person-id i flere schema-varianter
+  const pid =
+    _s(r?.personId || r?.person_id || r?.person) ||
+    (_s(r?.fromType || r?.from_type) === "person" ? _s(r?.fromId || r?.from_id) : "") ||
+    (_s(r?.toType   || r?.to_type)   === "person" ? _s(r?.toId   || r?.to_id)   : "");
+
+  const person =
+    pid && Array.isArray(window.PEOPLE)
+      ? window.PEOPLE.find(p => _s(p.id) === pid)
+      : null;
+
+  // fallback til label/title/name hvis vi ikke finner person
+  const label = person ? person.name : _s(r?.label || r?.title || r?.name);
+
+  const head = label
+    ? `${type}: ${
+        person
+          ? `<button class="hg-rel-link" data-person="${person.id}"><strong>${label}</strong></button>`
+          : `<strong>${label}</strong>`
+      }`
+    : `<strong>${type}</strong>`;
+
   const tail = [
     why ? `<div class="hg-muted" style="margin-top:4px;">${why}</div>` : "",
     src ? `<div class="hg-muted" style="margin-top:4px;">Kilde: ${src}</div>` : ""
