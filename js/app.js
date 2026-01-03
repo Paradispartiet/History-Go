@@ -35,6 +35,7 @@ let MAP = null; // ← brukes av enter/exitMapMode + resize
 let PLACES  = [];
 let PEOPLE  = [];
 let BADGES  = [];
+let RELATIONS = [];
 
 let TAGS_REGISTRY = null;
 
