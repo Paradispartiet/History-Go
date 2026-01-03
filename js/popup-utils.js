@@ -13,96 +13,104 @@
 
 let currentPopup = null;
 
+
 // ============================================================
-// RELATIONS helpers (people ↔ places)
+// 0b. VUNDERKAMRE (RELATIONS → UI)
+// Støtter flere schemas uten å være skjør.
 // ============================================================
-function getAllRelationsSafe() {
-  // støtter både global RELATIONS og window.RELATIONS
-  const arr =
-    (typeof RELATIONS !== "undefined" && Array.isArray(RELATIONS)) ? RELATIONS :
-    (Array.isArray(window.RELATIONS) ? window.RELATIONS : []);
-  return arr;
+
+function _arr(x) { return Array.isArray(x) ? x : []; }
+function _s(x) { return String(x ?? "").trim(); }
+
+function getRelations() {
+  return Array.isArray(window.RELATIONS) ? window.RELATIONS : [];
 }
 
-function getRelationsForPlace(placeId) {
-  const pid = String(placeId || "").trim();
-  if (!pid) return [];
-  return getAllRelationsSafe().filter(r => String(r.place || "").trim() === pid);
+// "Matcher" place på flere måter:
+// - r.placeId / r.place_id / r.place
+// - r.fromType/place + fromId
+// - r.toType/place + toId
+function relMatchesPlace(r, placeId) {
+  const pid = _s(placeId);
+  if (!pid) return false;
+
+  const direct = _s(r?.placeId || r?.place_id || r?.place);
+  if (direct && direct === pid) return true;
+
+  const fromT = _s(r?.fromType || r?.from_type);
+  const toT   = _s(r?.toType || r?.to_type);
+  const fromI = _s(r?.fromId || r?.from_id);
+  const toI   = _s(r?.toId || r?.to_id);
+
+  if (fromT === "place" && fromI === pid) return true;
+  if (toT   === "place" && toI   === pid) return true;
+
+  return false;
 }
 
-function groupByType(list) {
-  const out = Object.create(null);
-  (list || []).forEach(r => {
-    const t = String(r.type || "").trim() || "ukjent";
-    (out[t] = out[t] || []).push(r);
-  });
-  return out;
+// Matcher person på flere måter:
+// - r.personId / r.person_id / r.person
+// - r.fromType/person + fromId
+// - r.toType/person + toId
+function relMatchesPerson(r, personId) {
+  const pid = _s(personId);
+  if (!pid) return false;
+
+  const direct = _s(r?.personId || r?.person_id || r?.person);
+  if (direct && direct === pid) return true;
+
+  const fromT = _s(r?.fromType || r?.from_type);
+  const toT   = _s(r?.toType || r?.to_type);
+  const fromI = _s(r?.fromId || r?.from_id);
+  const toI   = _s(r?.toId || r?.to_id);
+
+  if (fromT === "person" && fromI === pid) return true;
+  if (toT   === "person" && toI   === pid) return true;
+
+  return false;
 }
 
-function getPersonById(pid) {
-  const id = String(pid || "").trim();
-  if (!id) return null;
+function renderRelationRow(r) {
+  const type  = _s(r?.type || r?.rel || r?.kind) || "kobling";
+  const label = _s(r?.label || r?.title || r?.name);
+  const why   = _s(r?.why || r?.reason || r?.desc || r?.note);
+  const src   = _s(r?.source || r?.src);
 
-  // PEOPLE er allerede global i denne fila
-  if (Array.isArray(PEOPLE)) {
-    const hit = PEOPLE.find(p => String(p.id || "").trim() === id);
-    if (hit) return hit;
-  }
-  if (Array.isArray(window.PEOPLE)) {
-    return window.PEOPLE.find(p => String(p.id || "").trim() === id) || null;
-  }
-  return null;
+  const head = label ? `${type}: <strong>${label}</strong>` : `<strong>${type}</strong>`;
+  const tail = [
+    why ? `<div class="hg-muted" style="margin-top:4px;">${why}</div>` : "",
+    src ? `<div class="hg-muted" style="margin-top:4px;">Kilde: ${src}</div>` : ""
+  ].filter(Boolean).join("");
+
+  return `<li style="margin:8px 0;">${head}${tail}</li>`;
 }
 
-function renderPlaceChambers(place) {
-  const rels = getRelationsForPlace(place?.id);
-  if (!rels.length) return "";
+function buildWonderChamberHtml({ title, rels }) {
+  const list = _arr(rels);
 
-  const byType = groupByType(rels);
-
-  // Underkammer-definisjon (UI-gruppering, ikke datastruktur)
-  const chambers = [
-    { title: "Eierskap og drift", types: ["eier_daglig_leder", "eier", "daglig_leder", "styremedlem"] },
-    { title: "Arbeidsplass",      types: ["jobbet_her", "drev_stedet"] },
-    { title: "Ringvirkninger",    types: ["bygde_videre_på"] }
-  ];
-
-  const htmlParts = chambers.map(ch => {
-    const rows = ch.types.flatMap(t => byType[t] || []);
-    if (!rows.length) return "";
-
-    const items = rows.map(r => {
-      const person = getPersonById(r.person);
-      if (!person) return "";
-
-      const role = String(r.role || "").trim();
-      const period = String(r.period || "").trim();
-      const meta = [role, period].filter(Boolean).join(" · ");
-
-      return `
-        <li class="hg-rel-item">
-          <button class="hg-rel-link" data-person="${person.id}">
-            ${person.name}
-          </button>
-          ${meta ? `<span class="hg-rel-meta"> — ${meta}</span>` : ``}
-        </li>
-      `;
-    }).join("");
-
-    if (!items.trim()) return "";
-
-    return `
-      <div class="hg-section hg-rel-chamber">
-        <h3>${ch.title}</h3>
-        <ul class="hg-rel-list">
-          ${items}
-        </ul>
-      </div>
-    `;
-  }).join("");
-
-  return htmlParts.trim();
+  return `
+    <div class="hg-section">
+      <h3>${title}</h3>
+      ${
+        list.length
+          ? `<ul style="margin:0;padding-left:18px;">${list.map(renderRelationRow).join("")}</ul>`
+          : `<p class="hg-muted">Ingen relasjoner registrert ennå.</p>`
+      }
+    </div>
+  `;
 }
+
+function wonderChambersForPlace(place) {
+  const rels = getRelations().filter(r => relMatchesPlace(r, place?.id));
+  return buildWonderChamberHtml({ title: "Vunderkamre", rels });
+}
+
+function wonderChambersForPerson(person) {
+  const rels = getRelations().filter(r => relMatchesPerson(r, person?.id));
+  return buildWonderChamberHtml({ title: "Vunderkamre", rels });
+}
+
+
 
 // ============================================================
 // 1. LUKK POPUP
