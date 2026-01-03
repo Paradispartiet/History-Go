@@ -815,14 +815,16 @@ try {
   
   // --- Render personer i placeCard ---
   if (peopleEl) {
-    peopleEl.innerHTML = persons
-      .map(p => `
-        <button class="pc-person" data-person="${p.id}">
-          <img src="${p.image}" class="pc-person-img" alt="">
-          <span>${p.name}</span>
-        </button>
-      `)
-      .join("");
+    peopleEl.innerHTML =
+  (chambersHtml || "") +
+  persons
+    .map(p => `
+      <button class="pc-person" data-person="${p.id}">
+        <img src="${p.image}" class="pc-person-img" alt="">
+        <span>${p.name}</span>
+      </button>
+    `)
+    .join("");
 
     peopleEl.querySelectorAll("[data-person]").forEach(btn => {
       btn.onclick = () => {
