@@ -1358,7 +1358,7 @@ if (map) {
   window.START = START;
 
   try {
-    const [places, people, tags, relations] = await Promise.all([
+    const [places, people, relations, tags] = await Promise.all([
     fetch("data/places.json", { cache: "no-store" }).then(r => r.json()),
     fetch("data/people.json", { cache: "no-store" }).then(r => r.json()),
     fetch("data/relations.json", { cache: "no-store" }).then(r => r.json()).catch(() => []),
