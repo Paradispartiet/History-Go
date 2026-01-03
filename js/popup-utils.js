@@ -586,7 +586,6 @@ window.showPlacePopup = function(place) {
 
   makePopup(html, "place-popup");
 
-    currentPopup.querySelectorAll(".hg-rel-link[data-person]").forEach(el => {
     el.onclick = () => {
       const id = String(el.dataset.person || "").trim();
       const pr =
