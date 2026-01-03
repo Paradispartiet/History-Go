@@ -1366,25 +1366,39 @@ if (map) {
   ]);
 
     PLACES = places;
-    PEOPLE = people;
+PEOPLE = people;
 
-      window.PLACES = PLACES;
-      window.PEOPLE = PEOPLE;
+window.PLACES = PLACES;
+window.PEOPLE = PEOPLE;
 
-      RELATIONS = Array.isArray(relations) ? relations : [];
-      window.RELATIONS = RELATIONS;
+RELATIONS = Array.isArray(relations) ? relations : [];
+window.RELATIONS = RELATIONS;
 
-      TAGS_REGISTRY = tags || {};
+// ✅ RELATIONS-indekser (runtime)
+window.REL_BY_PLACE = Object.create(null);
+window.REL_BY_PERSON = Object.create(null);
 
-    if (window.HGAuditMissingImages) {
-      HGAuditMissingImages.run({ people: PEOPLE, places: PLACES });
-    }
+for (const r of (window.RELATIONS || [])) {
+  const place = String(r.place || "").trim();
+  const person = String(r.person || "").trim();
 
-    if (typeof linkPeopleToPlaces === "function") {
-      linkPeopleToPlaces();   
-  } else {
-    if (DEBUG) console.warn("linkPeopleToPlaces() mangler – hopper over linking");
-  }
+  if (place) (window.REL_BY_PLACE[place] ||= []).push(r);
+  if (person) (window.REL_BY_PERSON[person] ||= []).push(r);
+}
+
+TAGS_REGISTRY = tags || {};
+
+if (window.HGAuditMissingImages) {
+  HGAuditMissingImages.run({ people: PEOPLE, places: PLACES });
+}
+
+if (typeof linkPeopleToPlaces === "function") {
+  linkPeopleToPlaces();
+} else {
+  if (DEBUG) console.warn("linkPeopleToPlaces() mangler – hopper over linking");
+}
+
+    
    
 // ✅ INIT QUIZ-MODUL (ETTER at PLACES/PEOPLE er lastet)
 if (window.QuizEngine) {
