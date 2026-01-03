@@ -141,7 +141,7 @@ function makePopup(html, extraClass = "", onClose = null) {
   let _closed = false;
 
   // klikkbare personer fra Vunderkamre
-  currentPopup.querySelectorAll("[data-person]").forEach(btn => {
+  el.querySelectorAll("[data-person]").forEach(btn => {
     btn.onclick = () => {
       const pid = String(btn.dataset.person || "").trim();
       const pr = (Array.isArray(window.PEOPLE) ? window.PEOPLE : []).find(x => String(x.id).trim() === pid);
