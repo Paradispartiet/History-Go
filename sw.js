@@ -1,9 +1,9 @@
 /* ============================================================
    HISTORY GO – SERVICE WORKER (GitHub Pages / subfolder-safe)
-   Version: HG-FULL-v3.0.057
+   Version: HG-FULL-v3.0.058
 ============================================================ */
 
-const CACHE_VERSION = "HG-FULL-v3.0.270";
+const CACHE_VERSION = "HG-FULL-v3.0.271";
 const STATIC_CACHE = `historygo-${CACHE_VERSION}`;
 
 // Scope path (viktig på GitHub Pages: /History-Go/)
