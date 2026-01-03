@@ -440,11 +440,7 @@ window.showPersonPopup = function(person) {
     completed && categoryId ? getInlineTriviaFor(categoryId, person.id) : [];
 
   // Finn steder knyttet til personen
-  const placeMatches = PLACES.filter(
-    p =>
-      person.placeId === p.id ||
-      (Array.isArray(person.places) && person.places.includes(p.id))
-  );
+  const placeMatches = getPlacesForPerson(person.id);
 
   // OBSERVASJONER (person)
   const observations = getObservationsForTarget(person.id, "person");
@@ -647,6 +643,7 @@ window.showPlacePopup = function(place) {
         ${obsHtml}
       </div>
   `;
+  makePopup(html, "place-popup");
 };
 
 
