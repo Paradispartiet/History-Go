@@ -844,11 +844,7 @@ window.openPlaceCard = async function (place) {
     (typeof PEOPLE !== "undefined" && Array.isArray(PEOPLE)) ? PEOPLE :
     (Array.isArray(window.PEOPLE) ? window.PEOPLE : []);
 
-  const persons = PEOPLE_LIST.filter(
-    p =>
-      (Array.isArray(p.places) && p.places.includes(place.id)) ||
-      p.placeId === place.id
-  );
+  const persons = getPeopleForPlace(place.id);
 
 // --- MiniProfile: send TriNext + Fordi ---
 try {
