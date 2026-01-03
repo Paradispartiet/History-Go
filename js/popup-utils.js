@@ -559,7 +559,13 @@ window.showPlacePopup = function(place) {
   // RIKTIG: kun stedsbilde
   const img = place.image || "";
 
-  const peopleHere = getPeopleForPlace(place.id);
+  const rels = window.REL_BY_PLACE?.[place.id] || [];
+
+const peopleHere = rels
+  .map(r => r.person)
+  .filter(Boolean)
+  .map(pid => window.PEOPLE.find(p => p.id === pid))
+  .filter(Boolean);
   
   const categoryId = place.category || null;
   const completed = hasCompletedQuiz(place.id);
