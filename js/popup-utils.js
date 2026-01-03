@@ -399,19 +399,21 @@ window.showPersonPopup = function(person) {
     : "";
   
   const html = `
-      <img src="${face}" class="hg-popup-face">
-      <h2 class="hg-popup-name">${person.name}</h2>
-      <img src="${cardImg}" class="hg-popup-cardimg">
+    <img src="${face}" class="hg-popup-face">
+    <h2 class="hg-popup-name">${person.name}</h2>
+    ${kindLabel ? `<p class="hg-popup-cat">${kindLabel}</p>` : ``}
+    <img src="${cardImg}" class="hg-popup-cardimg">
 
       <div class="hg-section">
         <h3>Verk</h3>
-        ${
-          works.length
-            ? `<ul class="hg-works">${works.map(w => `<li>${w}</li>`).join("")}</ul>`
-            : `<p class="hg-muted">Ingen registrerte verk.</p>`
+      ${
+      works.length
+        ? `<ul class="hg-works">${works.map(w => `<li>${w}</li>`).join("")}</ul>`
+        : `<p class="hg-muted">Ingen registrerte verk.</p>`
         }
         <button class="hg-quiz-btn" data-quiz="${person.id}">Ta quiz</button>
-      </div>
+    </div>
+
 
       <div class="hg-section">
         <h3>Om personen</h3>
