@@ -552,14 +552,17 @@ window.showPlacePopup = function(place) {
 
   makePopup(html, "place-popup");
 
-    currentPopup.querySelectorAll("[data-person]").forEach(el => {
+    currentPopup.querySelectorAll(".hg-rel-link[data-person]").forEach(el => {
     el.onclick = () => {
       const id = String(el.dataset.person || "").trim();
       const pr =
         (Array.isArray(PEOPLE) ? PEOPLE.find(p => p.id === id) : null) ||
         (Array.isArray(window.PEOPLE) ? window.PEOPLE.find(p => p.id === id) : null);
 
-      if (pr) window.showPersonPopup?.(pr);
+      if (pr) {
+  closePopup();
+  window.showPersonPopup?.(pr);
+}
     };
   });
 };
