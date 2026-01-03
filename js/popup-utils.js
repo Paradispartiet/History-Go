@@ -583,21 +583,6 @@ window.showPlacePopup = function(place) {
         ${obsHtml}
       </div>
   `;
-
-  makePopup(html, "place-popup");
-
-    el.onclick = () => {
-      const id = String(el.dataset.person || "").trim();
-      const pr =
-        (Array.isArray(PEOPLE) ? PEOPLE.find(p => p.id === id) : null) ||
-        (Array.isArray(window.PEOPLE) ? window.PEOPLE.find(p => p.id === id) : null);
-
-      if (pr) {
-  closePopup();
-  window.showPersonPopup?.(pr);
-}
-    };
-  });
 };
 
 
