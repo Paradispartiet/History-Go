@@ -9,13 +9,21 @@
   },
 
   "natur": {
-    /* NATUR-kategorier (grovt nivå, matcher fagkart_natur_oslo categories[]) */
+    /* FAGPLAN-kategorier (grovt nivå, matcher fagplan_natur categories[]) */
     "natur_okologi":           { "family_id": "biologi", "subfield_id": "okologi" },
     "natur_flora":             { "family_id": "biologi", "subfield_id": "botanikk" },
     "natur_fauna":             { "family_id": "biologi", "subfield_id": "zoologi" },
     "natur_geologi_terreng":   { "family_id": "geologi", "subfield_id": "jord_geologi" },
     "natur_vann_og_vaer":      { "family_id": "geologi", "subfield_id": "naturfarer" },
     "natur_naturforvaltning":  { "family_id": "miljo_barekraft", "subfield_id": "natur_by" },
+
+    /* FAGKART-alias (dypt fagkart bruker disse id-ene i categories[].id) */
+    "okologi":           { "family_id": "biologi", "subfield_id": "okologi" },
+    "flora":             { "family_id": "biologi", "subfield_id": "botanikk" },
+    "fauna":             { "family_id": "biologi", "subfield_id": "zoologi" },
+    "geologi_terreng":   { "family_id": "geologi", "subfield_id": "jord_geologi" },
+    "vann_og_vaer":      { "family_id": "geologi", "subfield_id": "naturfarer" },
+    "naturforvaltning":  { "family_id": "miljo_barekraft", "subfield_id": "natur_by" },
 
     /* BIOLOGI-subfields (fint nivå, for emner/quiz som vil være mer presise) */
     "bio_botanikk":            { "family_id": "biologi", "subfield_id": "botanikk" },
