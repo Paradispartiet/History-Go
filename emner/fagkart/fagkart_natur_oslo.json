@@ -1,0 +1,339 @@
+{
+  "subject_id": "natur",
+  "subject_title": "Natur",
+  "scope": "oslo",
+  "type": "fagkart",
+  "version": "1.0.0",
+  "updated_at": "2026-01-04",
+  "principles": {
+    "locked_categories": true,
+    "dev_happens_through": [
+      "emner",
+      "kurs",
+      "steder",
+      "quiz",
+      "observasjoner"
+    ],
+    "no_new_main_categories": true,
+    "style": [
+      "folkelig inngang",
+      "faglig presis dybde",
+      "bygget for stedlig utforskning"
+    ]
+  },
+  "categories": [
+    {
+      "id": "okologi",
+      "title": "Økologi",
+      "tagline": "Samspill, mønstre, system",
+      "definition": "Økologi handler om samspill mellom organismer og miljø, og mønstre på tvers av skala: individ, populasjon, samfunn og økosystem.",
+      "topic_hooks": [
+        { "id": "okologi_habitat_nisje", "title": "Habitat og nisjer" },
+        { "id": "okologi_populasjon", "title": "Populasjon og dynamikk" },
+        { "id": "okologi_samfunn", "title": "Arter sammen (samfunn)" },
+        { "id": "okologi_trofiske_nettverk", "title": "Næringskjeder og nettverk" },
+        { "id": "okologi_okosystem", "title": "Økosystemer og kretsløp" },
+        { "id": "okologi_kantsoner", "title": "Kantsoner og mosaikk" },
+        { "id": "okologi_mikroklima", "title": "Mikroklima i byen" }
+      ],
+      "focus": [
+        "habitat og nisjer",
+        "populasjoner",
+        "samspill og konkurranse",
+        "energi- og stoffkretsløp",
+        "kantsoner og mikroklima"
+      ],
+      "oslo": {
+        "places": [
+          "Sognsvann og nærområder",
+          "Akerselva (kantsoner)",
+          "Bygdøy (kyst/skog/park-mosaikk)",
+          "Ekebergskrenten (tørrbakker/variasjon)",
+          "Østensjøvannet (våtmark)",
+          "Tøyenparken (park-økologi)"
+        ],
+        "events": [
+          "vårtrekk og hekkesesong",
+          "algeoppblomstring (varierende år)",
+          "flomtopper i elveløp (regnperioder)"
+        ],
+        "actors": [
+          "arter (som aktører i systemet)",
+          "Oslo kommune (skjøtsel)",
+          "friluftsbrukere",
+          "naturvern- og dugnadsgrupper"
+        ],
+        "conflicts": [
+          "slitasje vs bevaring",
+          "skjøtsel (klipp/rydding) vs biologisk mangfold",
+          "tilrettelegging (stier/lys) vs habitat"
+        ],
+        "questions": [
+          "Hva er habitatet her (lys, fukt, jord, skjul)?",
+          "Hvilke arter dominerer – og hva sier det om stedet?",
+          "Hvor går vannet når det regner – og hva endrer det?",
+          "Hva skjer i kantsonene (overganger) sammenlignet med 'midt i'?"
+        ]
+      },
+      "canon": { "thinkers": [] }
+    },
+
+    {
+      "id": "flora",
+      "title": "Flora",
+      "tagline": "Planter i byen",
+      "definition": "Flora handler om planter: kjennetegn, livssyklus, tilpasning og hvor de trives – i parker, skogholt, kantsoner og sprekker i asfalten.",
+      "topic_hooks": [
+        { "id": "flora_kjennetegn", "title": "Kjennetegn og artskunnskap" },
+        { "id": "flora_livssyklus", "title": "Livssyklus og strategi" },
+        { "id": "flora_sesong_fenologi", "title": "Sesong og fenologi" },
+        { "id": "flora_habitat", "title": "Habitat (lys, fukt, jord)" },
+        { "id": "flora_trar_busker", "title": "Trær og busker" },
+        { "id": "flora_vaarblomster", "title": "Vårblomster og skogbunn" },
+        { "id": "flora_fremmede_arter", "title": "Fremmede arter" }
+      ],
+      "focus": [
+        "artsmerking",
+        "sesongtegn",
+        "habitat (lys/fukt/jord)",
+        "trær, busker og urter",
+        "fremmede arter"
+      ],
+      "oslo": {
+        "places": [
+          "Botanisk hage (Tøyen)",
+          "Frognerparken",
+          "Sofienbergparken",
+          "Tøyenparken",
+          "Ekeberg (variasjon i vegetasjon)",
+          "Bygdøy (park/skog/kyst)"
+        ],
+        "events": [
+          "vårblomstring",
+          "løvsprett",
+          "høstfarger"
+        ],
+        "actors": [
+          "parkforvaltning/skjøtsel",
+          "botaniske miljøer",
+          "pollinatorer (som samspillspartner)"
+        ],
+        "conflicts": [
+          "pryd vs økologi",
+          "slått/klipp vs blomstring",
+          "invasive arter vs fri etablering"
+        ],
+        "questions": [
+          "Hva sier plantene om jord, lys og fukt?",
+          "Hvilke arter er 'park-klassikere' vs ville arter?",
+          "Hva blomstrer akkurat nå – og hvorfor akkurat nå?"
+        ]
+      },
+      "canon": { "thinkers": [] }
+    },
+
+    {
+      "id": "fauna",
+      "title": "Fauna",
+      "tagline": "Dyr, fugl og små liv",
+      "definition": "Fauna handler om dyr i byen: kjennetegn, adferd, spor og hvordan arter bruker urbane naturrom.",
+      "topic_hooks": [
+        { "id": "fauna_kjennetegn", "title": "Kjennetegn og artskunnskap" },
+        { "id": "fauna_spor_lyd", "title": "Spor, lyder og tegn" },
+        { "id": "fauna_adferd", "title": "Adferd og rytmer" },
+        { "id": "fauna_fugl", "title": "Fugl (by, park, vann)" },
+        { "id": "fauna_insekter_pollinatorer", "title": "Insekter og pollinatorer" },
+        { "id": "fauna_pattedyr", "title": "Pattedyr (små og store)" },
+        { "id": "fauna_nattliv", "title": "Nattliv i byen" }
+      ],
+      "focus": [
+        "observasjon",
+        "spor og tegn",
+        "adferd og rytmer",
+        "fugl, insekter og pattedyr",
+        "natt vs dag"
+      ],
+      "oslo": {
+        "places": [
+          "Østensjøvannet (fugl)",
+          "Sognsvann (fugl/pattedyr)",
+          "Akerselva (fisk/fugl/kantsone)",
+          "Byparker (pollinatorer)",
+          "Bygdøy (mosaikk og fauna)"
+        ],
+        "events": [
+          "hekkesesong",
+          "trekkperioder",
+          "insektsesong (vår–høst)"
+        ],
+        "actors": [
+          "arter (fugl, insekter, pattedyr)",
+          "menneskelig forstyrrelse (hund, lys, støy)",
+          "forvaltning (tilrettelegging/skjøtsel)"
+        ],
+        "conflicts": [
+          "fôring vs økologi",
+          "hundeløping vs hekkende fugl",
+          "lysforurensning vs nattarter"
+        ],
+        "questions": [
+          "Hvem lever her – og hvordan kan du se det (spor/lyd)?",
+          "Hva endres gjennom døgnet (dag/natt)?",
+          "Hvordan bruker artene kanter, trær, vann og skjul?"
+        ]
+      },
+      "canon": { "thinkers": [] }
+    },
+
+    {
+      "id": "geologi_terreng",
+      "title": "Geologi og terreng",
+      "tagline": "Grunn, form, tid",
+      "definition": "Geologi og terreng handler om berggrunn, løsmasser, høyder og formasjoner – og hvordan dette styrer vann, vegetasjon, utsikt og ferdsel.",
+      "topic_hooks": [
+        { "id": "geo_berggrunn", "title": "Berggrunn og stein" },
+        { "id": "geo_losmasser", "title": "Løsmasser og jord" },
+        { "id": "geo_istid", "title": "Is, avsetninger og tid" },
+        { "id": "geo_topografi", "title": "Topografi og utsikt" },
+        { "id": "geo_skred_erosjon", "title": "Erosjon, ras og bevegelse" }
+      ],
+      "focus": [
+        "berggrunn og stein",
+        "jord og løsmasser",
+        "istid og avsetninger",
+        "topografi og utsikt",
+        "erosjon og bevegelse"
+      ],
+      "oslo": {
+        "places": [
+          "Ekeberg (terreng/utsikt)",
+          "Grefsenåsen (utsikt/terreng)",
+          "Sognsvann-området (morenelandskap)",
+          "Bydaler og bekkedrag (erosjon/avrenning)"
+        ],
+        "events": [
+          "frost/tining (vinter–vår)",
+          "kraftig regn (erosjon/avrenning)"
+        ],
+        "actors": [
+          "vann (som formkraft)",
+          "menneskelig inngrep (sprengning/fylling)",
+          "vegetasjon (stabilisering)"
+        ],
+        "conflicts": [
+          "inngrep i terreng vs naturpreg",
+          "stibygging vs erosjon",
+          "sikringsarbeid vs villhet"
+        ],
+        "questions": [
+          "Hva er terrenget laget av – og hvordan merkes det på vegetasjonen?",
+          "Hvor er det tørt/vått – og hvorfor akkurat der?",
+          "Hva forklarer høyder, rygger og daler her?"
+        ]
+      },
+      "canon": { "thinkers": [] }
+    },
+
+    {
+      "id": "vann_og_vaer",
+      "title": "Vann og vær",
+      "tagline": "Flyt, nedbør, mikroklima",
+      "definition": "Vann og vær handler om nedbør, infiltrasjon, avrenning, bekker og våtmark – og hvordan dette skaper mikroklima og livsrom i byen.",
+      "topic_hooks": [
+        { "id": "vann_avrenning_infiltrasjon", "title": "Avrenning og infiltrasjon" },
+        { "id": "vann_bekker_elver", "title": "Bekker, elver og vannveier" },
+        { "id": "vann_dammer_vatmark", "title": "Dammer og våtmark" },
+        { "id": "vaer_mikroklima", "title": "Mikroklima (skygge, vind, varme)" },
+        { "id": "vaer_sesong", "title": "Sesong (snø, is, tørke)" }
+      ],
+      "focus": [
+        "vannveier",
+        "infiltrasjon og avrenning",
+        "våtmark",
+        "mikroklima",
+        "sesong"
+      ],
+      "oslo": {
+        "places": [
+          "Akerselva",
+          "Alnaelva (der synlig)",
+          "Østensjøvannet",
+          "Sognsvann",
+          "parker med dammer/bekker"
+        ],
+        "events": [
+          "regnperioder og overvann",
+          "islegging og snøsmelting"
+        ],
+        "actors": [
+          "vann (overvann som 'aktør')",
+          "kommunal overvanns-/bekkeforvaltning",
+          "vegetasjon og jord (infiltrasjon)"
+        ],
+        "conflicts": [
+          "overvann og flomfare",
+          "lukking vs åpning av bekker",
+          "tilrettelegging langs vassdrag vs sårbar natur"
+        ],
+        "questions": [
+          "Hvor havner vannet når det regner?",
+          "Er dette et vått eller tørt sted – og hva skaper det?",
+          "Hvilke arter følger vannet?"
+        ]
+      },
+      "canon": { "thinkers": [] }
+    },
+
+    {
+      "id": "naturforvaltning",
+      "title": "Naturforvaltning",
+      "tagline": "Vern, skjøtsel, kompromiss",
+      "definition": "Naturforvaltning handler om vern, skjøtsel, artsmangfold, fremmede arter og kompromisser mellom bruk og bevaring.",
+      "topic_hooks": [
+        { "id": "forv_vern_sarbar", "title": "Vern og sårbar natur" },
+        { "id": "forv_skotsel", "title": "Skjøtsel (klipp, slått, rydding)" },
+        { "id": "forv_fremmede_arter", "title": "Fremmede arter" },
+        { "id": "forv_bruk_press", "title": "Brukstrykk og slitasje" },
+        { "id": "forv_restaurering", "title": "Restaurering og tiltak" }
+      ],
+      "focus": [
+        "vern",
+        "skjøtsel",
+        "arts- og habitatvern",
+        "fremmede arter",
+        "brukstrykk og tiltak"
+      ],
+      "oslo": {
+        "places": [
+          "Østensjøvannet (vern/tilrettelegging)",
+          "markanære utfartsområder",
+          "byparker med slåtteenger (der de finnes)"
+        ],
+        "events": [
+          "slått/rydding (sesong)",
+          "kampanjer mot fremmede arter (varierende)"
+        ],
+        "actors": [
+          "Oslo kommune",
+          "frivillige/dugnad",
+          "brukere (turgåere, hund)",
+          "naturvernorganisasjoner"
+        ],
+        "conflicts": [
+          "bruk vs bevaring",
+          "estetikk/ryddighet vs økologisk verdi",
+          "tilrettelegging vs sårbarhet"
+        ],
+        "questions": [
+          "Hva er målet her: ryddig park eller rik natur?",
+          "Hvilke arter/habitater er sårbare på dette stedet?",
+          "Hva er tiltaket – og hva er bivirkningen?"
+        ]
+      },
+      "canon": { "thinkers": [] }
+    }
+  ],
+  "meta": {
+    "thinker_fields": ["id", "name", "role", "why", "tier", "works"]
+  }
+}
