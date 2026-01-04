@@ -414,6 +414,31 @@ function renderObsList(obs) {
 }
 
 // ============================================================
+// 2c. FLORA-POPUP
+// ============================================================
+window.showFloraPopup = function (flora) {
+  if (!flora) return;
+
+  const img =
+    flora.imageCard || flora.image || flora.img || "";
+
+  const title = String(flora.name || "").trim() || "Plante";
+  const desc  = String(flora.desc || flora.description || "").trim();
+
+  makePopup(
+    `
+      <div class="hg-flora-popup">
+        ${img ? `<img src="${img}" class="hg-flora-img">` : ``}
+        <h2 class="hg-popup-name">${title}</h2>
+        ${desc ? `<p class="hg-popup-desc">${desc}</p>` : `<p class="hg-muted">Ingen beskrivelse ennå.</p>`}
+        <button class="reward-ok" data-close-popup>Lukk</button>
+      </div>
+    `,
+    "flora-popup"
+  );
+};
+
+// ============================================================
 // 3. PERSON-POPUP
 // ============================================================
 window.showPersonPopup = function(person) {
@@ -945,14 +970,14 @@ try {
       };
     });
 
-    // flora click (foreløpig bare toast)
+    // flora click (åpne infokort)
     peopleEl.querySelectorAll("[data-flora]").forEach(btn => {
       btn.onclick = () => {
         const a = FLORA_LIST.find(x => String(x?.id || "").trim() === String(btn.dataset.flora || "").trim());
-        if (a && typeof window.showToast === "function") window.showToast(a.name || "Plante");
-      };
-    });
-  }
+        if (a && typeof window.showFloraPopup === "function") window.showFloraPopup(a);
+        };
+       });
+      }
 
   // --- Mer info ---
   if (btnInfo) btnInfo.onclick = () => window.showPlacePopup?.(place);
