@@ -849,6 +849,31 @@ window.openPlaceCard = async function (place) {
 
   const persons = getPeopleForPlace(place.id);
 
+  // --- FLORA (place.flora = ["flora_id", ...]) ---
+  let FLORA_LIST =
+    (typeof FLORA !== "undefined" && Array.isArray(FLORA)) ? FLORA :
+    (Array.isArray(window.FLORA) ? window.FLORA : []);
+
+  // Hvis flora ikke er lastet globalt ennå: last fra fil én gang og cache på window.FLORA
+  if (!FLORA_LIST.length) {
+    try {
+      const url = new URL("data/nature/flora.json", document.baseURI).toString();
+      const r = await fetch(url, { cache: "no-store" });
+      if (r.ok) {
+        const arr = await r.json();
+        if (Array.isArray(arr)) {
+          window.FLORA = arr;
+          FLORA_LIST = arr;
+        }
+      }
+    } catch {}
+  }
+
+  const floraIds = Array.isArray(place.flora) ? place.flora : [];
+  const floraHere = floraIds
+    .map(id => FLORA_LIST.find(a => String(a?.id || "").trim() === String(id || "").trim()))
+    .filter(Boolean);
+  
 // --- MiniProfile: send TriNext + Fordi ---
 try {
   const completedQuiz = hasCompletedQuiz(place.id);
@@ -880,23 +905,51 @@ try {
     ? wonderChambersForPlace(place)
     : "";
   
-  // --- Render personer i placeCard ---
+  // --- Render personer + flora (flora = kun bilder) i placeCard ---
   if (peopleEl) {
-    peopleEl.innerHTML =
-  (chambersHtml || "") +
-  persons
-    .map(p => `
-      <button class="pc-person" data-person="${p.id}">
-        <img src="${p.image}" class="pc-person-img" alt="">
-        <span>${p.name}</span>
-      </button>
-    `)
-    .join("");
+    const peopleHtml =
+      (chambersHtml || "") +
+      persons
+        .map(p => `
+          <button class="pc-person" data-person="${p.id}">
+            <img src="${p.image}" class="pc-person-img" alt="">
+            <span>${p.name}</span>
+          </button>
+        `)
+        .join("");
 
+    const floraHtml =
+      floraHere.length
+        ? `
+          <div class="pc-flora-row">
+            ${floraHere.map(a => {
+              const img = a.imageCard || a.image || a.img || "";
+              if (!img) return ""; // kun bilder => ingen img, ingen visning
+              return `
+                <button class="pc-flora" data-flora="${a.id}" aria-label="${a.name || ""}">
+                  <img src="${img}" class="pc-person-img" alt="">
+                </button>
+              `;
+            }).join("")}
+          </div>
+        `
+        : "";
+
+    peopleEl.innerHTML = peopleHtml + floraHtml;
+
+    // people click (som før)
     peopleEl.querySelectorAll("[data-person]").forEach(btn => {
       btn.onclick = () => {
         const pr = PEOPLE_LIST.find(x => x.id === btn.dataset.person);
         if (pr) window.showPersonPopup?.(pr);
+      };
+    });
+
+    // flora click (foreløpig bare toast)
+    peopleEl.querySelectorAll("[data-flora]").forEach(btn => {
+      btn.onclick = () => {
+        const a = FLORA_LIST.find(x => String(x?.id || "").trim() === String(btn.dataset.flora || "").trim());
+        if (a && typeof window.showToast === "function") window.showToast(a.name || "Plante");
       };
     });
   }
