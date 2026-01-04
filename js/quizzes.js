@@ -387,6 +387,14 @@ if (window.HGUnlocks && typeof window.HGUnlocks.recordFromQuiz === "function") {
   }
 }
 
+// 🌿 Nature unlocks (flora/fauna) — kun ved korrekt quiz
+if (window.HGNatureUnlocks && typeof window.HGNatureUnlocks.recordFromQuiz === "function") {
+  try {
+    window.HGNatureUnlocks.recordFromQuiz({ quizId: quizId });
+  } catch (e) {
+    console.error("[HGNatureUnlocks] recordFromQuiz failed", e);
+  }
+}
 
             // HGInsights hook (valgfritt, hvis app injiserer)
             if (typeof API.logCorrectQuizAnswer === "function") {
