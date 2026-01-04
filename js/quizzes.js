@@ -390,7 +390,10 @@ if (window.HGUnlocks && typeof window.HGUnlocks.recordFromQuiz === "function") {
 // 🌿 Nature unlocks (flora/fauna) — kun ved korrekt quiz
 if (window.HGNatureUnlocks && typeof window.HGNatureUnlocks.recordFromQuiz === "function") {
   try {
-    window.HGNatureUnlocks.recordFromQuiz({ quizId: quizId });
+    window.HGNatureUnlocks.recordFromQuiz({
+  quizId: quizId,
+  placeId: tid
+});
   } catch (e) {
     console.error("[HGNatureUnlocks] recordFromQuiz failed", e);
   }
