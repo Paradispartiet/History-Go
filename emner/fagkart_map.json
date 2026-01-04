@@ -1,6 +1,6 @@
 {
   "by": {
-    "by_rom":        { "family_id": "urbanisme", "subfield_id": "byplanlegging" },
+    "by_rom":         { "family_id": "urbanisme", "subfield_id": "byplanlegging" },
     "by_infra":       { "family_id": "urbanisme", "subfield_id": "infrastruktur_mobilitet" },
     "by_offentlig":   { "family_id": "urbanisme", "subfield_id": "offentlige_rom" },
     "by_segregering": { "family_id": "samfunn_geografi", "subfield_id": "segregering_ulikhet" },
@@ -9,14 +9,19 @@
   },
 
   "natur": {
-    "bio_plantebiologi":             { "family_id": "biologi", "subfield_id": "botanikk" },
-    "bio_dyrebiologi":               { "family_id": "biologi", "subfield_id": "zoologi" },
-    "bio_systematikk_biodiversitet": { "family_id": "biologi", "subfield_id": "systematikk_biodiversitet" },
-    "bio_celle_molekyl":             { "family_id": "biologi", "subfield_id": "celle_molekyl" },
-    "bio_genetikk_genomikk":         { "family_id": "biologi", "subfield_id": "genetikk_genomikk" },
-    "bio_mikrobiologi":              { "family_id": "biologi", "subfield_id": "mikrobiologi" },
-    "bio_fysiologi":                 { "family_id": "biologi", "subfield_id": "fysiologi" },
-    "bio_evolusjon":                 { "family_id": "biologi", "subfield_id": "evolusjon" },
-    "bio_okologi_miljo":             { "family_id": "biologi", "subfield_id": "okologi" }
+    /* NATUR-kategorier (grovt nivå, matcher fagkart_natur_oslo categories[]) */
+    "natur_okologi":           { "family_id": "biologi", "subfield_id": "okologi" },
+    "natur_flora":             { "family_id": "biologi", "subfield_id": "botanikk" },
+    "natur_fauna":             { "family_id": "biologi", "subfield_id": "zoologi" },
+    "natur_geologi_terreng":   { "family_id": "geologi", "subfield_id": "jord_geologi" },
+    "natur_vann_og_vaer":      { "family_id": "geologi", "subfield_id": "naturfarer" },
+    "natur_naturforvaltning":  { "family_id": "miljo_barekraft", "subfield_id": "natur_by" },
+
+    /* BIOLOGI-subfields (fint nivå, for emner/quiz som vil være mer presise) */
+    "bio_botanikk":            { "family_id": "biologi", "subfield_id": "botanikk" },
+    "bio_zoologi":             { "family_id": "biologi", "subfield_id": "zoologi" },
+    "bio_okologi":             { "family_id": "biologi", "subfield_id": "okologi" },
+    "bio_evolusjonsbiologi":   { "family_id": "biologi", "subfield_id": "evolusjonsbiologi" },
+    "bio_mikrobiologi":        { "family_id": "biologi", "subfield_id": "mikrobiologi" }
   }
 }
