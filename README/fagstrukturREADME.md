@@ -147,6 +147,8 @@ Eksempel:
   "bio_okologi": { "family_id": "biologi", "subfield_id": "okologi" }
 }
 
+
+
 Dette sikrer at:
 	•	emner havner riktig faglig
 	•	samme faglogikk kan brukes på tvers av UI, quiz og dekning
@@ -227,3 +229,6 @@ Status
 	•	NATUR kan bygges konsekvent fra start
 
 Dette dokumentet er referansen for videre faglig utvikling i History GO.
+
+
+
