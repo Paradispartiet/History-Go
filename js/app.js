@@ -610,24 +610,12 @@ async function addCompletedQuizAndMaybePoint(categoryDisplay, quizId) {
   localStorage.setItem("quiz_progress", JSON.stringify(progress));
 
   const catLabel = categoryDisplay;
-  merits[catLabel] = merits[catLabel] || { level: "Nybegynner", points: 0 };
+  merits[catLabel] = merits[catLabel] || { points: 0 };
   merits[catLabel].points += 1;
 
-  await ensureBadgesLoaded();
-  const badge = BADGES.find(
-    b =>
-      catLabel.toLowerCase().includes(b.id) ||
-      b.name.toLowerCase().includes(catLabel.toLowerCase())
-  );
-  if (badge) {
-    for (let i = badge.tiers.length - 1; i >= 0; i--) {
-      const tier = badge.tiers[i];
-      if (merits[catLabel].points >= tier.threshold) {
-        merits[catLabel].level = tier.label;
-        break;
-      }
-    }
-  }
+// Optional: fjern gammel lagret level hvis den finnes (rydder støy)
+  if ("level" in merits[catLabel]) delete merits[catLabel].level;
+
 
   saveMerits();
   updateMeritLevel(catLabel, merits[catLabel].points);
