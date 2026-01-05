@@ -577,36 +577,6 @@ BADGES = await fetch("data/badges.json", { cache: "no-store" }).then(r => r.json
   }
 }
 
-(function migrateMeritsOnce() {
-  if (localStorage.getItem("merits_migrated_v1") === "1") return;
-
-  const raw = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
-  const cleaned = {};
-
-  for (const [key, val] of Object.entries(raw)) {
-    const points = Number(val?.points || 0);
-    if (!Number.isFinite(points) || points <= 0) continue;
-
-    // hvis key allerede er id → behold
-    if (BADGES.some(b => b.id === key)) {
-      cleaned[key] = { points };
-      continue;
-    }
-
-    // hvis key matcher badge.name → flytt til id
-    const badge = BADGES.find(b => b.name === key);
-    if (badge) {
-      cleaned[badge.id] = {
-        points: (cleaned[badge.id]?.points || 0) + points
-      };
-    }
-  }
-
-  localStorage.setItem("merits_by_category", JSON.stringify(cleaned));
-  localStorage.setItem("merits_migrated_v1", "1");
-})();
-
-
 // Oppdater nivå ved ny poengsum
 async function updateMeritLevel(cat, newPoints) {
   await ensureBadgesLoaded();
