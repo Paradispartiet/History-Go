@@ -793,10 +793,10 @@ async function handleBadgeClick(badgeEl) {
   if (!badge) return;
 
   const localMerits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
-  const info =
-    localMerits[String(badge.id || "").trim()] ||
-    localMerits[String(badge.name || "").trim()] ||
-    { points: 0 };
+const info =
+  localMerits[String(badge.id || "").trim()] ||
+  { points: 0 };
+
 
   const points = Number(info.points || 0);
   const { label } = deriveTierFromPoints(badge, points);
