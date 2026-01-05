@@ -104,10 +104,6 @@ async function renderMerits() {
     let b = BADGES.find(x => String(x.id || "").trim() === k);
     if (b) return b;
 
-    // 2) backward: name exact match
-    b = BADGES.find(x => String(x.name || "").trim() === k);
-    if (b) return b;
-
     return null;
   }
 
