@@ -180,10 +180,9 @@ function openBadgeModal(badge) {
   const bar = modal.querySelector(".badge-progress-bar");
   const tiers = Array.isArray(badge.tiers) ? badge.tiers : [];
   const max = tiers.length ? Number(tiers[tiers.length - 1].threshold || 1) : 1;
-
-  bar.style.width = `${Math.min(100, (points / Math.max(1, max)) * 100)}%`;
-
-}
+  if (bar) {
+    bar.style.width = `${Math.min(100, (points / Math.max(1, max)) * 100)}%`;
+  }
 
   // --- QUIZ-HISTORIKK (STRICT) ---
   const historyRaw = JSON.parse(localStorage.getItem("quiz_history") || "[]");
@@ -244,14 +243,9 @@ function openBadgeModal(badge) {
   modal.onclick = e => {
     if (e.target && e.target.id === "badgeModal") closeBadgeModal();
   };
-  modal.querySelector(".close-btn").onclick = closeBadgeModal;
-}
 
-function closeBadgeModal() {
-  const m = document.getElementById("badgeModal");
-  if (!m) return;
-  m.style.display = "none";
-  m.setAttribute("aria-hidden", "true");
+  const closeBtn = modal.querySelector(".close-btn");
+  if (closeBtn) closeBtn.onclick = closeBadgeModal;
 }
 
 
