@@ -63,6 +63,30 @@ function renderProfileCard() {
 // ------------------------------------------------------------
 // MERKER – GRID + MODAL (STRICT)
 // ------------------------------------------------------------
+
+function deriveTierFromPoints(badge, points) {
+  const tiers = Array.isArray(badge?.tiers) ? badge.tiers : [];
+  const p = Number(points || 0);
+
+  if (!tiers.length) return { tierIndex: -1, label: "Nybegynner" };
+
+  let tierIndex = 0;
+  let label = String(tiers[0].label || "Nybegynner").trim() || "Nybegynner";
+
+  for (let i = 0; i < tiers.length; i++) {
+    const t = tiers[i];
+    const thr = Number(t.threshold || 0);
+    if (p >= thr) {
+      tierIndex = i;
+      label = String(t.label || "").trim() || label;
+    }
+  }
+
+  return { tierIndex, label };
+}
+
+
+
 async function renderMerits() {
   const box = document.getElementById("merits");
   if (!box) return;
@@ -96,24 +120,27 @@ async function renderMerits() {
       }
 
       const merit = merits[k] || {};
-      const level = String(merit.level || "Nybegynner").trim();
+      const points = Number(merit.points || 0);
 
-      const levelIndex = Array.isArray(badge.tiers)
-        ? badge.tiers.findIndex(t => String(t.label || "").trim() === level)
-        : -1;
+      // Sannhet: beregn nivå fra poeng + badge.tiers.threshold (ikke fra lagret level-tekst)
+      const { tierIndex, label } = deriveTierFromPoints(badge, points);
 
       const medal =
-        levelIndex === 0 ? "🥉" :
-        levelIndex === 1 ? "🥈" :
-        levelIndex === 2 ? "🥇" : "🏆";
+        tierIndex === 0 ? "🥉" :
+        tierIndex === 1 ? "🥈" :
+        tierIndex === 2 ? "🥇" :
+        tierIndex >= 3 ? "🏆" : "";
+
 
       return `
-        <div class="badge-mini" data-badge-id="${badge.id}">
-          <div class="badge-wrapper">
-            <img src="${badge.image}" class="badge-mini-icon" alt="${badge.name}">
-            <span class="badge-medal">${medal}</span>
-          </div>
-        </div>`;
+  <div class="badge-mini" data-badge-id="${badge.id}">
+    <div class="badge-wrapper">
+      <img src="${badge.image}" class="badge-mini-icon" alt="${badge.name}">
+      <span class="badge-medal">${medal}</span>
+    </div>
+    <div class="badge-mini-level">${label}</div>
+  </div>`;
+
     })
     .join("");
 
@@ -143,16 +170,24 @@ function openBadgeModal(badge) {
     merits[String(badge.name || "").trim()] ||
     { level: "Nybegynner", points: 0 };
 
+  const points = Number(info.points || 0);
+  const { label } = deriveTierFromPoints(badge, points);
+
   modal.querySelector(".badge-img").src = badge.image;
   modal.querySelector(".badge-title").textContent = badge.name;
-  modal.querySelector(".badge-level").textContent = info.level || "Nybegynner";
-  modal.querySelector(".badge-progress-text").textContent = `${Number(info.points || 0)} poeng`;
+
+  // Vis nivå fra tiers (kanonisk), ikke lagret tekst
+  modal.querySelector(".badge-level").textContent = label || "Nybegynner";
+  modal.querySelector(".badge-progress-text").textContent = `${points} poeng`;
 
   // Progressbar
   const bar = modal.querySelector(".badge-progress-bar");
   const tiers = Array.isArray(badge.tiers) ? badge.tiers : [];
   const max = tiers.length ? Number(tiers[tiers.length - 1].threshold || 1) : 1;
-  bar.style.width = `${Math.min(100, (Number(info.points || 0) / Math.max(1, max)) * 100)}%`;
+
+  bar.style.width = `${Math.min(100, (points / Math.max(1, max)) * 100)}%`;
+
+}
 
   // --- QUIZ-HISTORIKK (STRICT) ---
   const historyRaw = JSON.parse(localStorage.getItem("quiz_history") || "[]");
