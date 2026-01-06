@@ -1,0 +1,49 @@
+# README – Emner, emnekart og emne_pack
+
+Denne filen beskriver **hvordan kunnskap er strukturert** i systemet, og **hva som er hva**.  
+Dette er **arkitektur**, ikke bare dataformat.
+
+---
+
+## 🎯 MÅL MED SYSTEMET
+
+- Få med **mange arter / grupper**
+- **Ingen meningsløse duplikater**
+- Samme art kan dukke opp i **flere kontekster**, uten å kopieres
+- Systemet skal være **utvidbart**, ikke et skjørt JSON-helvete
+
+---
+
+## 🧱 GRUNNPRINSIPP (ABSOLUTT)
+
+> **Én biologisk entitet = én ID. Alltid.**
+
+- En art / gruppe eksisterer **kun én gang**
+- Den kopieres **aldri**
+- Alt annet er **kontekst**, ikke nye objekter
+
+Dette gjelder:
+- planter
+- dyr
+- insekter
+- samlegrupper
+
+---
+
+## 🧠 KJERNEBEGREPER
+
+### 1️⃣ EMNE (den biologiske entiteten)
+
+Dette er **grunnsteinen** i hele systemet.
+
+Et emne er:
+- én art **eller**
+- én bevisst samlegruppe (f.eks. “Humler”, “Villbier”)
+
+Eksempel:
+```json
+{
+  "id": "emne_fauna_humle",
+  "title": "Humle",
+  "latin": "Bombus spp."
+}
