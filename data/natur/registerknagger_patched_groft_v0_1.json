@@ -1,0 +1,1192 @@
+{
+  "meta": {
+    "id": "register_knagger_v0_2",
+    "name": "Register – faste knagger",
+    "version": "0.2",
+    "desc": "Kontrollert vokabular for å knytte places, ruter og emner (flora/fauna/historie) sammen uten fritekstkaos. v0.2 utvider natur med fenologi/økologi/kjennetegn/quiz-hooks og Oslo-knagger."
+  },
+  "historie": {
+    "tema": [
+      {
+        "id": "hist_tema_industri",
+        "label": "Industri"
+      },
+      {
+        "id": "hist_tema_energi_vannkraft",
+        "label": "Energi og vannkraft"
+      },
+      {
+        "id": "hist_tema_arbeid",
+        "label": "Arbeid og arbeidsliv"
+      },
+      {
+        "id": "hist_tema_byutvikling",
+        "label": "Byutvikling"
+      },
+      {
+        "id": "hist_tema_infrastruktur",
+        "label": "Infrastruktur"
+      },
+      {
+        "id": "hist_tema_transport",
+        "label": "Transport"
+      },
+      {
+        "id": "hist_tema_vannforvaltning",
+        "label": "Vannforvaltning"
+      },
+      {
+        "id": "hist_tema_miljohistorie",
+        "label": "Miljøhistorie"
+      },
+      {
+        "id": "hist_tema_bolig",
+        "label": "Bolig og bosetting"
+      },
+      {
+        "id": "hist_tema_helse",
+        "label": "Helse og velferd"
+      },
+      {
+        "id": "hist_tema_utdanning",
+        "label": "Utdanning"
+      },
+      {
+        "id": "hist_tema_kulturhistorie",
+        "label": "Kulturhistorie"
+      },
+      {
+        "id": "hist_tema_kunst_kultur",
+        "label": "Kunst og kultur"
+      },
+      {
+        "id": "hist_tema_religion",
+        "label": "Religion og livssyn"
+      },
+      {
+        "id": "hist_tema_politikk",
+        "label": "Politikk og samfunn"
+      },
+      {
+        "id": "hist_tema_krig_okku",
+        "label": "Krig og okkupasjon"
+      },
+      {
+        "id": "hist_tema_minner_monument",
+        "label": "Minne og monument"
+      },
+      {
+        "id": "hist_tema_landbruk",
+        "label": "Landbruk og matproduksjon"
+      },
+      {
+        "id": "hist_tema_handverk",
+        "label": "Håndverk"
+      },
+      {
+        "id": "hist_tema_naturressurser",
+        "label": "Naturressurser"
+      },
+      {
+        "id": "hist_tema_teknologi",
+        "label": "Teknologi"
+      },
+      {
+        "id": "hist_tema_vitenskap",
+        "label": "Vitenskap"
+      },
+      {
+        "id": "hist_tema_sosiale_bevegelser",
+        "label": "Sosiale bevegelser"
+      },
+      {
+        "id": "hist_tema_migrasjon",
+        "label": "Migrasjon"
+      },
+      {
+        "id": "hist_tema_handelsliv",
+        "label": "Handel og næringsliv"
+      },
+      {
+        "id": "hist_tema_arkitektur",
+        "label": "Arkitektur"
+      },
+      {
+        "id": "hist_tema_byrom_offentlighet",
+        "label": "Byrom og offentlighet"
+      },
+      {
+        "id": "hist_tema_forvaltning",
+        "label": "Forvaltning og planlegging"
+      },
+      {
+        "id": "hist_tema_kriminalitet",
+        "label": "Kriminalitet og rett"
+      },
+      {
+        "id": "hist_tema_idrett_fritid",
+        "label": "Idrett og fritid"
+      }
+    ],
+    "periode": [
+      {
+        "id": "hist_periode_forhistorie",
+        "label": "Forhistorie",
+        "short": "Forhistorie",
+        "sort": 0
+      },
+      {
+        "id": "hist_periode_vikingtid",
+        "label": "Vikingtid",
+        "short": "Vikingtid",
+        "sort": 1
+      },
+      {
+        "id": "hist_periode_middelalder",
+        "label": "Middelalder",
+        "short": "Middelalder",
+        "sort": 2
+      },
+      {
+        "id": "hist_periode_1537_1660",
+        "label": "1537–1660 (reformasjonstid/unionstid)",
+        "short": "1537–1660",
+        "sort": 3
+      },
+      {
+        "id": "hist_periode_1660_1814",
+        "label": "1660–1814",
+        "short": "1660–1814",
+        "sort": 4
+      },
+      {
+        "id": "hist_periode_1814_1850",
+        "label": "1814–1850",
+        "short": "1814–1850",
+        "sort": 5
+      },
+      {
+        "id": "hist_periode_1850_1900",
+        "label": "1850–1900",
+        "short": "1850–1900",
+        "sort": 6
+      },
+      {
+        "id": "hist_periode_1900_1918",
+        "label": "1900–1918",
+        "short": "1900–1918",
+        "sort": 7
+      },
+      {
+        "id": "hist_periode_1918_1940",
+        "label": "1918–1940",
+        "short": "1918–1940",
+        "sort": 8
+      },
+      {
+        "id": "hist_periode_1940_1945",
+        "label": "1940–1945",
+        "short": "1940–1945",
+        "sort": 9
+      },
+      {
+        "id": "hist_periode_1945_1965",
+        "label": "1945–1965",
+        "short": "1945–1965",
+        "sort": 10
+      },
+      {
+        "id": "hist_periode_1965_1980",
+        "label": "1965–1980",
+        "short": "1965–1980",
+        "sort": 11
+      },
+      {
+        "id": "hist_periode_1980_2000",
+        "label": "1980–2000",
+        "short": "1980–2000",
+        "sort": 12
+      },
+      {
+        "id": "hist_periode_2000_2010",
+        "label": "2000–2010",
+        "short": "2000–2010",
+        "sort": 13
+      },
+      {
+        "id": "hist_periode_2010_2020",
+        "label": "2010–2020",
+        "short": "2010–2020",
+        "sort": 14
+      },
+      {
+        "id": "hist_periode_2020_na",
+        "label": "2020–nå",
+        "short": "2020–nå",
+        "sort": 15
+      }
+    ],
+    "type": [
+      {
+        "id": "hist_type_foss",
+        "label": "Foss"
+      },
+      {
+        "id": "hist_type_dam",
+        "label": "Dam"
+      },
+      {
+        "id": "hist_type_molle",
+        "label": "Mølle"
+      },
+      {
+        "id": "hist_type_kraftverk",
+        "label": "Kraftverk"
+      },
+      {
+        "id": "hist_type_fabrikk",
+        "label": "Fabrikk"
+      },
+      {
+        "id": "hist_type_industriomrade",
+        "label": "Industriområde"
+      },
+      {
+        "id": "hist_type_verksted",
+        "label": "Verksted"
+      },
+      {
+        "id": "hist_type_bro",
+        "label": "Bro"
+      },
+      {
+        "id": "hist_type_tunnel",
+        "label": "Tunnel"
+      },
+      {
+        "id": "hist_type_vei",
+        "label": "Vei/trase"
+      },
+      {
+        "id": "hist_type_jernbane",
+        "label": "Jernbane"
+      },
+      {
+        "id": "hist_type_stasjon",
+        "label": "Stasjon/holdeplass"
+      },
+      {
+        "id": "hist_type_havn",
+        "label": "Havn/kaianlegg"
+      },
+      {
+        "id": "hist_type_brygge",
+        "label": "Brygge"
+      },
+      {
+        "id": "hist_type_elvelop",
+        "label": "Elveløp/bekkeløp"
+      },
+      {
+        "id": "hist_type_omforming",
+        "label": "Byomforming"
+      },
+      {
+        "id": "hist_type_parkhistorie",
+        "label": "Parkhistorie"
+      },
+      {
+        "id": "hist_type_gard",
+        "label": "Gård"
+      },
+      {
+        "id": "hist_type_bydelssentrum",
+        "label": "Bydelssentrum"
+      },
+      {
+        "id": "hist_type_torg_plass",
+        "label": "Torg/plass"
+      },
+      {
+        "id": "hist_type_bebyggelse",
+        "label": "Bebyggelse"
+      },
+      {
+        "id": "hist_type_boligomrade",
+        "label": "Boligområde"
+      },
+      {
+        "id": "hist_type_institusjon",
+        "label": "Institusjon"
+      },
+      {
+        "id": "hist_type_skole",
+        "label": "Skole/utdanning"
+      },
+      {
+        "id": "hist_type_sykehus",
+        "label": "Sykehus/helse"
+      },
+      {
+        "id": "hist_type_kirke",
+        "label": "Kirke/hellig sted"
+      },
+      {
+        "id": "hist_type_kirkegard",
+        "label": "Kirkegård"
+      },
+      {
+        "id": "hist_type_museum",
+        "label": "Museum"
+      },
+      {
+        "id": "hist_type_teater_scene",
+        "label": "Teater/scene"
+      },
+      {
+        "id": "hist_type_idrettsanlegg",
+        "label": "Idrettsanlegg"
+      },
+      {
+        "id": "hist_type_monument",
+        "label": "Monument/minnesmerke"
+      },
+      {
+        "id": "hist_type_forsvarsanlegg",
+        "label": "Forsvarsanlegg"
+      },
+      {
+        "id": "hist_type_forvaltningsbygg",
+        "label": "Forvaltningsbygg"
+      },
+      {
+        "id": "hist_type_bibliotek",
+        "label": "Bibliotek"
+      },
+      {
+        "id": "hist_type_marked",
+        "label": "Marked/handel"
+      },
+      {
+        "id": "hist_type_kulturmiljo",
+        "label": "Kulturmiljø (område)"
+      },
+      {
+        "id": "hist_type_kulturminne",
+        "label": "Kulturminne (punkt)"
+      }
+    ],
+    "nokkelfraser": [
+      {
+        "id": "hist_hook_vannkraft",
+        "label": "Vannkraft"
+      },
+      {
+        "id": "hist_hook_industrialisering",
+        "label": "Industrialisering"
+      },
+      {
+        "id": "hist_hook_arbeiderhistorie",
+        "label": "Arbeiderhistorie"
+      },
+      {
+        "id": "hist_hook_tekstil",
+        "label": "Tekstil"
+      },
+      {
+        "id": "hist_hook_mollehistorie",
+        "label": "Møllehistorie"
+      },
+      {
+        "id": "hist_hook_transformasjon",
+        "label": "Transformasjon/byomforming"
+      },
+      {
+        "id": "hist_hook_regulering",
+        "label": "Regulering (vann/plan)"
+      },
+      {
+        "id": "hist_hook_elvepark",
+        "label": "Elvepark/miljøpark"
+      },
+      {
+        "id": "hist_hook_kollektiv",
+        "label": "Kollektivhistorie"
+      },
+      {
+        "id": "hist_hook_boligbygging",
+        "label": "Boligbygging"
+      },
+      {
+        "id": "hist_hook_fattigdom",
+        "label": "Fattigdom og sosialhistorie"
+      },
+      {
+        "id": "hist_hook_okku",
+        "label": "Okkupasjon"
+      },
+      {
+        "id": "hist_hook_migrasjon",
+        "label": "Migrasjon"
+      },
+      {
+        "id": "hist_hook_bybrann",
+        "label": "Bybrann"
+      },
+      {
+        "id": "hist_hook_vannforsyning",
+        "label": "Vannforsyning"
+      },
+      {
+        "id": "hist_hook_kloakk_avlop",
+        "label": "Kloakk/avløp"
+      },
+      {
+        "id": "hist_hook_vern",
+        "label": "Vern/antikvarisk"
+      }
+    ],
+    "kilder": [
+      {
+        "id": "hist_kilde_lokalhistoriewiki",
+        "label": "lokalhistoriewiki.no"
+      },
+      {
+        "id": "hist_kilde_oslokommune",
+        "label": "Oslo kommune (temasider/kart/planer)"
+      },
+      {
+        "id": "hist_kilde_kulturminnedata",
+        "label": "Kulturminnedata / kulturminnesøk"
+      },
+      {
+        "id": "hist_kilde_wikipedia",
+        "label": "Wikipedia (sekundærkilde)"
+      },
+      {
+        "id": "hist_kilde_museer",
+        "label": "Museer/Institusjoner (nettsider)"
+      },
+      {
+        "id": "hist_kilde_arkiv",
+        "label": "Arkiv (digitale kilder)"
+      },
+      {
+        "id": "hist_kilde_bymiljoetaten",
+        "label": "Bymiljøetaten (datasett/forvaltning)"
+      },
+      {
+        "id": "hist_kilde_planinnsyn",
+        "label": "Planinnsyn (PBE temakart)"
+      },
+      {
+        "id": "hist_kilde_friluftslivsomr",
+        "label": "Friluftslivsområder (datasett)"
+      },
+      {
+        "id": "hist_kilde_rapport",
+        "label": "Rapporter (NIVA, Miljødirektoratet, etc.)"
+      }
+    ]
+  },
+  "natur": {
+    "biotop": [
+      {
+        "id": "nat_biotop_elvekant",
+        "label": "Elvekant"
+      },
+      {
+        "id": "nat_biotop_bekkekant",
+        "label": "Bekkekant"
+      },
+      {
+        "id": "nat_biotop_grontdrag",
+        "label": "Grøntdrag"
+      },
+      {
+        "id": "nat_biotop_kratt",
+        "label": "Kratt"
+      },
+      {
+        "id": "nat_biotop_busksjikt",
+        "label": "Busksjikt"
+      },
+      {
+        "id": "nat_biotop_lovskog",
+        "label": "Løvskog"
+      },
+      {
+        "id": "nat_biotop_blandingsskog",
+        "label": "Blandingsskog"
+      },
+      {
+        "id": "nat_biotop_barskog",
+        "label": "Barskog"
+      },
+      {
+        "id": "nat_biotop_sumpskog",
+        "label": "Sumpskog"
+      },
+      {
+        "id": "nat_biotop_vatmark",
+        "label": "Våtmark"
+      },
+      {
+        "id": "nat_biotop_groft",
+        "label": "Grøft/renne"
+      },
+      {
+        "id": "nat_biotop_park",
+        "label": "Park"
+      },
+      {
+        "id": "nat_biotop_parkeng",
+        "label": "Parkeng"
+      },
+      {
+        "id": "nat_biotop_eng",
+        "label": "Eng"
+      },
+      {
+        "id": "nat_biotop_blomstereng",
+        "label": "Blomstereng"
+      },
+      {
+        "id": "nat_biotop_hage",
+        "label": "Hage"
+      },
+      {
+        "id": "nat_biotop_takgront",
+        "label": "Tak/bygning (grønt tak)"
+      },
+      {
+        "id": "nat_biotop_allmenning",
+        "label": "Allmenning/friområde"
+      },
+      {
+        "id": "nat_biotop_lekeplasskant",
+        "label": "Lekeplasskant"
+      },
+      {
+        "id": "nat_biotop_veikant",
+        "label": "Veikant"
+      },
+      {
+        "id": "nat_biotop_trafikkare",
+        "label": "Trafikkåre-kant"
+      },
+      {
+        "id": "nat_biotop_jernbaneomrade",
+        "label": "Jernbaneområde"
+      },
+      {
+        "id": "nat_biotop_jernbaneskraning",
+        "label": "Jernbaneskråning"
+      },
+      {
+        "id": "nat_biotop_byggomrade",
+        "label": "Byggeområde/anlegg"
+      },
+      {
+        "id": "nat_biotop_brakkmark",
+        "label": "Brakkmark"
+      },
+      {
+        "id": "nat_biotop_forstyrret_apen",
+        "label": "Åpen forstyrret mark"
+      },
+      {
+        "id": "nat_biotop_torrbakke",
+        "label": "Tørrbakke"
+      },
+      {
+        "id": "nat_biotop_varmeskraning",
+        "label": "Varme skråninger"
+      },
+      {
+        "id": "nat_biotop_berg",
+        "label": "Berg/bergknaus"
+      },
+      {
+        "id": "nat_biotop_mur",
+        "label": "Mur/steinstruktur"
+      },
+      {
+        "id": "nat_biotop_sprekker",
+        "label": "Sprekker i berg/mur"
+      },
+      {
+        "id": "nat_biotop_strandkant",
+        "label": "Strandkant"
+      },
+      {
+        "id": "nat_biotop_sand",
+        "label": "Sand"
+      },
+      {
+        "id": "nat_biotop_grus",
+        "label": "Grus"
+      },
+      {
+        "id": "nat_biotop_ruderat",
+        "label": "Ruderalmark (rubb og rask)"
+      },
+      {
+        "id": "nat_biotop_by",
+        "label": "By (generelt)"
+      },
+      {
+        "id": "nat_biotop_urbant_gront",
+        "label": "Urbane grønne områder"
+      },
+      {
+        "id": "nat_biotop_kantsoner",
+        "label": "Kantsoner"
+      },
+      {
+        "id": "nat_biotop_randsoner",
+        "label": "Randsoner"
+      },
+      {
+        "id": "nat_biotop_skogkant",
+        "label": "Skogkant"
+      },
+      {
+        "id": "nat_biotop_markakant",
+        "label": "Markakant"
+      },
+      {
+        "id": "nat_biotop_fuktig_kratt",
+        "label": "Fuktig kratt"
+      },
+      {
+        "id": "nat_biotop_forvillet_kratt",
+        "label": "Forvillet kratt"
+      },
+      {
+        "id": "nat_biotop_skrenter",
+        "label": "Skrenter"
+      },
+      {
+        "id": "nat_biotop_hei",
+        "label": "Hei"
+      },
+      {
+        "id": "nat_biotop_boligomrader",
+        "label": "Boligområder"
+      }
+    ],
+    "jord": [
+      {
+        "id": "nat_jord_svaert_naeringsfattig",
+        "label": "Svært næringsfattig"
+      },
+      {
+        "id": "nat_jord_naeringsfattig",
+        "label": "Næringsfattig"
+      },
+      {
+        "id": "nat_jord_skrinn",
+        "label": "Skrinn"
+      },
+      {
+        "id": "nat_jord_moderat",
+        "label": "Moderat"
+      },
+      {
+        "id": "nat_jord_naeringsrik",
+        "label": "Næringsrik"
+      },
+      {
+        "id": "nat_jord_kalkrik",
+        "label": "Kalkrik"
+      },
+      {
+        "id": "nat_jord_sand",
+        "label": "Sand"
+      },
+      {
+        "id": "nat_jord_grus",
+        "label": "Grus"
+      },
+      {
+        "id": "nat_jord_leire",
+        "label": "Leire"
+      },
+      {
+        "id": "nat_jord_torv",
+        "label": "Torv"
+      },
+      {
+        "id": "nat_jord_vat",
+        "label": "Våt"
+      },
+      {
+        "id": "nat_jord_fuktig",
+        "label": "Fuktig"
+      },
+      {
+        "id": "nat_jord_variert",
+        "label": "Variert"
+      },
+      {
+        "id": "nat_jord_forstyrret",
+        "label": "Forstyrret (oppgravd/omrørt)"
+      },
+      {
+        "id": "nat_jord_kompost",
+        "label": "Kompost/hagejord"
+      }
+    ],
+    "lys": [
+      {
+        "id": "nat_lys_sol",
+        "label": "Sol"
+      },
+      {
+        "id": "nat_lys_halvskygge",
+        "label": "Halvskygge"
+      },
+      {
+        "id": "nat_lys_skygge",
+        "label": "Skygge"
+      }
+    ],
+    "fukt": [
+      {
+        "id": "nat_fukt_torr",
+        "label": "Tørr"
+      },
+      {
+        "id": "nat_fukt_moderat",
+        "label": "Moderat"
+      },
+      {
+        "id": "nat_fukt_torr_moderat",
+        "label": "Tørr til moderat"
+      },
+      {
+        "id": "nat_fukt_fuktig",
+        "label": "Fuktig"
+      },
+      {
+        "id": "nat_fukt_vat",
+        "label": "Våt"
+      }
+    ],
+    "bykontekst": [
+      {
+        "id": "nat_by_parker",
+        "label": "Parker"
+      },
+      {
+        "id": "nat_by_hager",
+        "label": "Hager"
+      },
+      {
+        "id": "nat_by_tak",
+        "label": "Tak"
+      },
+      {
+        "id": "nat_by_urbant_gront",
+        "label": "Urbane grønne områder"
+      },
+      {
+        "id": "nat_by_elvepark",
+        "label": "Elvepark / grøntdrag"
+      },
+      {
+        "id": "nat_by_veikanter",
+        "label": "Veikanter"
+      },
+      {
+        "id": "nat_by_byggomrader",
+        "label": "Byggeområder / anlegg"
+      },
+      {
+        "id": "nat_by_jernbaneomrader",
+        "label": "Jernbaneområder"
+      },
+      {
+        "id": "nat_by_trafikkarer",
+        "label": "Trafikkårer"
+      },
+      {
+        "id": "nat_by_industriomrade",
+        "label": "Industriområder"
+      },
+      {
+        "id": "nat_by_knauser",
+        "label": "Bergknauser / skrenter"
+      },
+      {
+        "id": "nat_by_vatmarksparker",
+        "label": "Våtmarksparker"
+      },
+      {
+        "id": "nat_by_bekkedrag",
+        "label": "Bekkedrag"
+      },
+      {
+        "id": "nat_by_kirkegard",
+        "label": "Kirkegårder"
+      },
+      {
+        "id": "nat_by_idrettsanlegg_kanter",
+        "label": "Idrettsanlegg – kanter"
+      },
+      {
+        "id": "nat_by_borettslag",
+        "label": "Borettslag"
+      },
+      {
+        "id": "nat_by_busker_krattfelt",
+        "label": "Buskfelt / krattfelt"
+      },
+      {
+        "id": "nat_by_eldre_hager",
+        "label": "Eldre hager"
+      },
+      {
+        "id": "nat_by_eldre_beplantning",
+        "label": "Eldre beplantning"
+      },
+      {
+        "id": "nat_by_hekk",
+        "label": "Hekker"
+      },
+      {
+        "id": "nat_by_hagekratt",
+        "label": "Hagekratt"
+      },
+      {
+        "id": "nat_by_marka",
+        "label": "Marka"
+      },
+      {
+        "id": "nat_by_markakant",
+        "label": "Markakant"
+      },
+      {
+        "id": "nat_by_markakoller",
+        "label": "Markakoller"
+      },
+      {
+        "id": "nat_by_randsoner",
+        "label": "Randsoner"
+      },
+      {
+        "id": "nat_by_skraninger",
+        "label": "Skråninger"
+      },
+      {
+        "id": "nat_by_varme_skraninger",
+        "label": "Varme skråninger"
+      },
+      {
+        "id": "nat_by_vatmark",
+        "label": "Våtmark"
+      },
+      {
+        "id": "nat_by_vatmarkskanter",
+        "label": "Våtmarkskanter"
+      }
+    ],
+    "maaneder": [
+      {
+        "id": "nat_mnd_januar",
+        "label": "januar",
+        "sort": 1
+      },
+      {
+        "id": "nat_mnd_februar",
+        "label": "februar",
+        "sort": 2
+      },
+      {
+        "id": "nat_mnd_mars",
+        "label": "mars",
+        "sort": 3
+      },
+      {
+        "id": "nat_mnd_april",
+        "label": "april",
+        "sort": 4
+      },
+      {
+        "id": "nat_mnd_mai",
+        "label": "mai",
+        "sort": 5
+      },
+      {
+        "id": "nat_mnd_juni",
+        "label": "juni",
+        "sort": 6
+      },
+      {
+        "id": "nat_mnd_juli",
+        "label": "juli",
+        "sort": 7
+      },
+      {
+        "id": "nat_mnd_august",
+        "label": "august",
+        "sort": 8
+      },
+      {
+        "id": "nat_mnd_september",
+        "label": "september",
+        "sort": 9
+      },
+      {
+        "id": "nat_mnd_oktober",
+        "label": "oktober",
+        "sort": 10
+      },
+      {
+        "id": "nat_mnd_november",
+        "label": "november",
+        "sort": 11
+      },
+      {
+        "id": "nat_mnd_desember",
+        "label": "desember",
+        "sort": 12
+      }
+    ],
+    "fenologi_strategi": [
+      {
+        "id": "nat_strat_forstyrrelsesart",
+        "label": "Forstyrrelsesart (rask kolonisering)"
+      },
+      {
+        "id": "nat_strat_veikanttepper",
+        "label": "Danner tepper/bestand i kantsoner"
+      },
+      {
+        "id": "nat_strat_nektar_pollen",
+        "label": "Nektar- og pollenressurs"
+      },
+      {
+        "id": "nat_strat_baerfrukt",
+        "label": "Bær-/fruktbærer (mat for fugl/dyr)"
+      },
+      {
+        "id": "nat_strat_vintergronn",
+        "label": "Vintergrønn (helårsstruktur)"
+      },
+      {
+        "id": "nat_strat_tuebygger",
+        "label": "Tuebrygger/tuedanner"
+      },
+      {
+        "id": "nat_strat_sosial_insekt",
+        "label": "Sosialt insekt (koloni/samfunn)"
+      },
+      {
+        "id": "nat_strat_pollinator",
+        "label": "Pollinator (systematisk)"
+      },
+      {
+        "id": "nat_strat_rovdyr_smady r",
+        "label": "Rovdyr på smådyr/insekter"
+      },
+      {
+        "id": "nat_strat_nedbryter",
+        "label": "Nedbryter/omsetter organisk materiale"
+      },
+      {
+        "id": "nat_strat_symbiose_bladlus",
+        "label": "Samspill med bladlus (honningdugg)"
+      }
+    ],
+    "okologi_rolle": [
+      {
+        "id": "nat_rolle_pollinator",
+        "label": "Pollinator"
+      },
+      {
+        "id": "nat_rolle_pollinator_noe",
+        "label": "Pollinator (noe)"
+      },
+      {
+        "id": "nat_rolle_rovdyr_smainsekter",
+        "label": "Rovdyr på småinsekter"
+      },
+      {
+        "id": "nat_rolle_topp_smårovdyr",
+        "label": "Topp-«smårovdyr» i habitatet"
+      },
+      {
+        "id": "nat_rolle_nedbryting_omsetning",
+        "label": "Nedbryting/omsetning"
+      },
+      {
+        "id": "nat_rolle_forstyrrelsesart",
+        "label": "Forstyrrelsesart"
+      },
+      {
+        "id": "nat_rolle_mat_for_fugl",
+        "label": "Mat for fugl/dyr"
+      },
+      {
+        "id": "nat_rolle_struktur_skjul",
+        "label": "Skaper struktur/skjul"
+      }
+    ],
+    "okologi_samspill": [
+      {
+        "id": "nat_samspill_bladlus_honningdugg",
+        "label": "Bladlus (honningdugg)"
+      },
+      {
+        "id": "nat_samspill_nedfallsfrukt",
+        "label": "Nedfallsfrukt"
+      },
+      {
+        "id": "nat_samspill_elvekant",
+        "label": "Elvekant"
+      },
+      {
+        "id": "nat_samspill_veikant",
+        "label": "Veikant"
+      },
+      {
+        "id": "nat_samspill_skogbunn",
+        "label": "Skogbunn"
+      },
+      {
+        "id": "nat_samspill_mennesker_konflikt",
+        "label": "Mennesker (konflikt)"
+      },
+      {
+        "id": "nat_samspill_skogokosystem",
+        "label": "Skogøkosystem"
+      },
+      {
+        "id": "nat_samspill_apen_mark",
+        "label": "Åpen mark"
+      }
+    ],
+    "kjennetegn": [
+      {
+        "id": "nat_kjennetegn_stripet_gul_svart",
+        "label": "Gul/svart striping"
+      },
+      {
+        "id": "nat_kjennetegn_rask_flyging",
+        "label": "Rask og direkte flyging"
+      },
+      {
+        "id": "nat_kjennetegn_store_tuer",
+        "label": "Store tuer"
+      },
+      {
+        "id": "nat_kjennetegn_tydelige_stier",
+        "label": "Tydelige stier"
+      },
+      {
+        "id": "nat_kjennetegn_finflikete_blader",
+        "label": "Finflikete blader"
+      },
+      {
+        "id": "nat_kjennetegn_hvite_kronblad_gul_kurv",
+        "label": "Hvite kronblad + gul kurv"
+      },
+      {
+        "id": "nat_kjennetegn_pels_pa_bryst",
+        "label": "Pels på bryst (typisk bie/humle)"
+      },
+      {
+        "id": "nat_kjennetegn_pollenbukser",
+        "label": "Pollenbukser"
+      }
+    ],
+    "quiz_hooks": [
+      {
+        "id": "nat_hook_gjenkjenning",
+        "label": "gjenkjenning"
+      },
+      {
+        "id": "nat_hook_forveksling",
+        "label": "forveksling"
+      },
+      {
+        "id": "nat_hook_habitat",
+        "label": "habitat"
+      },
+      {
+        "id": "nat_hook_bykontekst",
+        "label": "bykontekst"
+      },
+      {
+        "id": "nat_hook_sesong",
+        "label": "sesong"
+      },
+      {
+        "id": "nat_hook_samlegruppe",
+        "label": "samlegruppe"
+      },
+      {
+        "id": "nat_hook_okologi_rolle",
+        "label": "økologi/rolle"
+      }
+    ],
+    "oslo_observert_typisk": [
+      {
+        "id": "nat_oslo_indre_by_kanter",
+        "label": "indre by-kanter"
+      },
+      {
+        "id": "nat_oslo_trafikkarer",
+        "label": "trafikkårer"
+      },
+      {
+        "id": "nat_oslo_groruddalen",
+        "label": "Groruddalen"
+      },
+      {
+        "id": "nat_oslo_nordmarka",
+        "label": "Nordmarka"
+      },
+      {
+        "id": "nat_oslo_ostmarka",
+        "label": "Østmarka"
+      },
+      {
+        "id": "nat_oslo_akerselva",
+        "label": "Akerselva"
+      },
+      {
+        "id": "nat_oslo_alna",
+        "label": "Alna"
+      },
+      {
+        "id": "nat_oslo_sorvendte_kanter",
+        "label": "sørvendte kanter"
+      },
+      {
+        "id": "nat_oslo_bykanter",
+        "label": "bykanter"
+      }
+    ]
+  },
+  "kobling": {
+    "for_places": {
+      "historieprofil": {
+        "tema": "historie.tema",
+        "periode": "historie.periode",
+        "type": "historie.type",
+        "nokkelfraser": "historie.nokkelfraser",
+        "kilder": "historie.kilder"
+      },
+      "naturprofil": {
+        "habitat.biotop": "natur.biotop",
+        "habitat.jord": "natur.jord",
+        "habitat.lys": "natur.lys",
+        "habitat.fukt": "natur.fukt",
+        "bykontekst.typiske_steder": "natur.bykontekst"
+      }
+    }
+  }
+}
