@@ -1,25 +1,155 @@
 {
-  "place_id": "nrk_marienlyst",
-  "version": 1,
-  "summary": {
-    "one_liner": "Produksjonsmaskin for norsk offentlighet – fra nyhet til underholdning.",
-    "focus": ["media", "format", "offentlighet", "populaerkultur"],
-    "tone": ["urban", "institusjon", "maskin"]
+  "id": "wk_nrk_formatlogikk_01",
+  "type": "pivot",
+  "title": "Formatlogikken tar over",
+  "one_liner": "Når format blir viktigere enn innhold, endres offentligheten.",
+  "status": "draft",
+  "confidence": "medium",
+
+  "time": {
+    "year": 1990,
+    "period": "1980-1999",
+    "date": null,
+    "time_span": "1990s"
   },
-  "facts": [
+
+  "place_scope": {
+    "anchors": ["nrk_marienlyst"],
+    "nearby_places": [],
+    "area_hint": "Marienlyst / Majorstuen"
+  },
+
+  "content": {
+    "lede": "Kort lede som setter scenen.",
+    "story": [
+      "Avsnitt 1: kontekst og situasjon.",
+      "Avsnitt 2: hva skjer konkret.",
+      "Avsnitt 3: hvorfor det betyr noe."
+    ],
+    "what_to_notice": [
+      "Hvilke fortellerformer går igjen?",
+      "Hvilke konflikter blir til ‘underholdning’?"
+    ],
+    "why_it_matters": [
+      "Skaper felles referanser raskere.",
+      "Forandrer språk, tempo og hva som teller som ‘viktig’."
+    ],
+    "counterpoints": [
+      "Alternative tolkninger, kritikk, usikkerhet."
+    ],
+    "quotes": [
+      {
+        "text": "Kort sitat (max kort).",
+        "who": "Navn / rolle",
+        "year": 1997,
+        "source_ref": "src_01"
+      }
+    ]
+  },
+
+  "structured": {
+    "facts": [
+      { "label": "Programtype", "value": "Direktesendt underholdning" }
+    ],
+    "actors": [
+      { "ref_type": "institution", "ref_id": "nrk", "role": "produsent" }
+    ],
+    "concepts": [
+      { "term": "medielogikk", "note": "format, tempo, dramaturgi" }
+    ],
+    "mechanisms": [
+      "Ritualisering (faste sendetider).",
+      "Kjendisforsterkning (gjentatt eksponering).",
+      "Konkurranselogikk (ratings/oppmerksomhet)."
+    ],
+    "style": {
+      "aesthetic": ["studioestetikk", "grafikk", "catchphrases"],
+      "tone": ["ironisk", "folkelig", "direkte"]
+    }
+  },
+
+  "impact": {
+    "ringvirkninger": [
+      "Nye sjangre blir normalisert.",
+      "Nye kjendiser og roller oppstår."
+    ],
+    "policy_politics": [
+      "Reguleringer, debatter, politiske reaksjoner (hvis relevant)."
+    ],
+    "cultural_memory": [
+      "Hva folk husker / refererer til i ettertid."
+    ],
+    "downstream_links": [
+      { "kind": "leads_to", "entry_id": "wk_nrk_kjendisokosystem_01" }
+    ]
+  },
+
+  "serendipity": {
+    "chance": [
+      "Tilfeldigheter, feil, tilfeldige møter, små valg som fikk stor effekt."
+    ],
+    "myths": [
+      "Rykter, myter, vandrehistorier – markér usikkerhet."
+    ]
+  },
+
+  "pop": {
+    "brands_products": [
+      {
+        "brand": "Tine",
+        "kind": "sponsor/produktplassering",
+        "note": "Eksempel på kommersialisert kulturflate"
+      }
+    ],
+    "popularized_things": [
+      "Catchphrases, memer, jingler, ikoniske rekvisitter."
+    ],
+    "fandom": [
+      "Hvem elsker/hater dette, communities, diskusjoner."
+    ],
+    "media_moments": [
+      "Direktesendte øyeblikk, skandaler, presseoppslag."
+    ]
+  },
+
+  "artifacts": [
     {
-      "id": "wkfact_nrk_opened_1933",
-      "label": "Etablering/oppstart (år)",
-      "value": "1933",
-      "confidence": "high",
-      "sources": []
+      "id": "wk_artifact_nrk_rekvisitt_01",
+      "kind": "object",
+      "title": "Ikonisk rekvisitt / kostyme",
+      "desc": "Kort beskrivelse.",
+      "where": "studio / lager / utstilling",
+      "image_ref": null,
+      "tags": ["rekvisitt", "tv"],
+      "knagger": ["medieikon"]
     }
   ],
-  "entries": [],
-  "index": {
-    "types": ["event", "artifact", "story", "pivot", "style_shift", "brand", "place_myth", "media_moment"],
-    "periods": ["1900-1939", "1940-1949", "1950-1979", "1980-1999", "2000-2014", "2015-"],
-    "tags": ["tv", "radio", "studio"],
-    "knagger": ["mediemaskin", "formatlogikk", "offentlighet"]
+
+  "safety": {
+    "sensitive": false,
+    "notes": "Bruk hvis det er reelle personvern-/påstandsrisker."
+  },
+
+  "classification": {
+    "tags": ["tv", "underholdning", "offentlighet"],
+    "knagger": ["formatlogikk", "mediemaskin", "populaer_offentlighet"],
+    "moods": ["intens", "ironisk"],
+    "audience": ["alle", "nerd", "lokalhistorie"]
+  },
+
+  "sources": [
+    {
+      "id": "src_01",
+      "label": "Kilde (tittel/URL/bok)",
+      "type": "web|book|archive|news|interview",
+      "year": 1997,
+      "credibility": "high"
+    }
+  ],
+
+  "ui": {
+    "card_hint": "Vis som ‘Vendepunkt’ med 1-liner + 2 bullets.",
+    "priority": 80,
+    "spoiler_level": 0
   }
 }
