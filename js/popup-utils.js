@@ -15,8 +15,8 @@ let currentPopup = null;
 
 
 // ============================================================
-// 0b. VUNDERKAMRE (RELATIONS → UI)
-// Støtter flere schemas uten å være skjør.
+// 0b. RELATIONS → UI (TILKNYTNING)
+// Formelle relasjoner: jobb, rolle, virke, institusjon
 // ============================================================
 
 function _arr(x) { return Array.isArray(x) ? x : []; }
@@ -26,7 +26,7 @@ function getRelations() {
   return Array.isArray(window.RELATIONS) ? window.RELATIONS : [];
 }
 
-// "Matcher" place på flere måter:
+// "yMatcher" place på flere måter:
 // - r.placeId / r.place_id / r.place
 // - r.fromType/place + fromId
 // - r.toType/place + toId
@@ -177,12 +177,12 @@ function buildWonderChamberHtml({ title, rels }) {
   `;
 }
 
-function wonderChambersForPlace(place) {
+function relationsForPlace(place) {
   const rels = getRelations().filter(r => relMatchesPlace(r, place?.id));
   return buildWonderChamberHtml({ title: "", rels });
 }
 
-function wonderChambersForPerson(person) {
+function relationsForPerson(person) {
   const rels = getRelations().filter(r => relMatchesPerson(r, person?.id));
   return buildWonderChamberHtml({ title: "", rels });
 }
