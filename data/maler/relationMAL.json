@@ -1,0 +1,51 @@
+// A) Person ↔ Place (vanligst)
+
+{
+  "id": "rel_0001",
+  "type": "worked_at",
+  "from": { "ref_type": "person", "ref_id": "person_x" },
+  "to":   { "ref_type": "place",  "ref_id": "nrk_marienlyst" },
+
+  "role": "programleder",
+  "time": { "from_year": 1998, "to_year": 2005, "year": null },
+
+  "desc": "Jobbet som programleder i perioden.",
+  "confidence": "medium",
+  "sources": ["src_01"],
+
+  "ui": { "label": "Jobbet her", "priority": 50 }
+}
+
+// B) Person ↔ Person
+
+{
+  "id": "rel_0102",
+  "type": "collaborated_with",
+  "from": { "ref_type": "person", "ref_id": "person_a" },
+  "to":   { "ref_type": "person", "ref_id": "person_b" },
+
+  "role": "kollega",
+  "time": { "from_year": 2012, "to_year": 2016, "year": null },
+
+  "desc": "Samarbeidet i produksjoner / miljø.",
+  "confidence": "low",
+  "sources": [],
+  "ui": { "label": "Samarbeid", "priority": 30 }
+}
+
+// C) Place ↔ Place (valgfritt, men nyttig)
+
+{
+  "id": "rel_2001",
+  "type": "located_near",
+  "from": { "ref_type": "place", "ref_id": "oslo_s" },
+  "to":   { "ref_type": "place", "ref_id": "bjørvika" },
+
+  "role": null,
+  "time": { "from_year": null, "to_year": null, "year": null },
+
+  "desc": "Nærhet/områdekobling.",
+  "confidence": "high",
+  "sources": [],
+  "ui": { "label": "I nærheten", "priority": 10 }
+}
