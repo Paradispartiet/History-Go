@@ -1393,15 +1393,16 @@ if (map) {
   window.START = START;
 
   try {
-    const [places, people, relations, tags] = await Promise.all([
-    fetch("data/places.json", { cache: "no-store" }).then(r => r.json()),
-    fetch("data/people.json", { cache: "no-store" }).then(r => r.json()),
-    fetch("data/relations.json", { cache: "no-store" }).then(r => r.json()).catch(() => []),
-    fetch("data/tags.json",   { cache: "no-store" }).then(r => r.json()).catch(() => null)
-  ]);
+    const [places, people, relations, wonderkammer, tags] = await Promise.all([
+      fetch("data/places.json", { cache: "no-store" }).then(r => r.json()),
+      fetch("data/people.json", { cache: "no-store" }).then(r => r.json()),
+      fetch("data/relations.json", { cache: "no-store" }).then(r => r.json()).catch(() => []),
+      fetch("data/wonderkammer.json", { cache: "no-store" }).then(r => r.json()).catch(() => null),
+      fetch("data/tags.json", { cache: "no-store" }).then(r => r.json()).catch(() => null)
+    ]);
 
-    PLACES = places;
-PEOPLE = people;
+  PLACES = places;
+  PEOPLE = people;
 
 window.PLACES = PLACES;
 window.PEOPLE = PEOPLE;
