@@ -1422,6 +1422,33 @@ for (const r of (window.RELATIONS || [])) {
   if (person) (window.REL_BY_PERSON[person] ||= []).push(r);
 }
 
+// ✅ WONDERKAMMER (connections) – separat fra relations
+window.WONDERKAMMER = (wonderkammer && typeof wonderkammer === "object") ? wonderkammer : null;
+
+// Runtime-indekser: WK_BY_PLACE / WK_BY_PERSON
+window.WK_BY_PLACE = Object.create(null);
+window.WK_BY_PERSON = Object.create(null);
+
+if (window.WONDERKAMMER) {
+  // Støtter både:
+  //  A) { places:[{ place:"id", chambers:[] }], people:[{ person:"id", chambers:[] }] }
+  //  B) { places:[{ place_id:"id", chambers:[] }], people:[{ person_id:"id", chambers:[] }] }
+  const wkPlaces = Array.isArray(window.WONDERKAMMER.places) ? window.WONDERKAMMER.places : [];
+  const wkPeople = Array.isArray(window.WONDERKAMMER.people) ? window.WONDERKAMMER.people : [];
+
+  for (const row of wkPlaces) {
+    const pid = String(row?.place || row?.place_id || "").trim();
+    if (!pid) continue;
+    window.WK_BY_PLACE[pid] = Array.isArray(row?.chambers) ? row.chambers : [];
+  }
+
+  for (const row of wkPeople) {
+    const per = String(row?.person || row?.person_id || "").trim();
+    if (!per) continue;
+    window.WK_BY_PERSON[per] = Array.isArray(row?.chambers) ? row.chambers : [];
+  }
+}
+    
 TAGS_REGISTRY = tags || {};
 
 if (window.HGAuditMissingImages) {
