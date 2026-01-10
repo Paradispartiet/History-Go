@@ -1223,6 +1223,7 @@ window.addEventListener("hg:mpNextUp", (e) => {
 
   const spatial = tri.spatial || null;
   const narrative = tri.narrative || null;
+  const concept = tri.concept || null;
   const wk = tri.wk || null; // ✅ Wonderkammer NextUp (valgfri)
 
   mount.innerHTML = `
@@ -1496,6 +1497,26 @@ function getEpoke(domain, epokeId) {
   return null;
 }
 
+// ✅ Epoker: hvilke domener/merker som har epoke-fil
+// Nøkkelen (domain) må matche det du bruker ellers: "film", "tv", "sport", osv.
+const EPOKER_FILES = {
+  historie:       "data/epoker_historie.json",
+  vitenskap:      "data/epoker_vitenskap.json",
+  kunst:          "data/epoker_kunst.json",
+  by:             "data/epoker_by.json",
+  musikk:         "data/epoker_musikk.json",
+  litteratur:     "data/epoker_litteratur.json",
+  natur:          "data/epoker_natur.json",
+  sport:          "data/epoker_sport.json",
+  politikk:       "data/epoker_politikk.json",
+  naeringsliv:    "data/epoker_naeringsliv.json",
+  populaerkultur: "data/epoker_populaerkultur.json",
+  subkultur:      "data/epoker_subkultur.json",
+  film_tv:        "data/epoker_film_tv.json",
+  teater:         "data/epoker_teater.json",
+  media:          "data/epoker_media.json",
+  psykologi:      "data/epoker_psykologi.json",
+};
 
 async function boot() {
     // ✅ OpenModus (betalingsmodus) – må settes tidlig
@@ -1520,18 +1541,12 @@ if (map) {
 
   try {
     const [places, people, relations, wonderkammer, tags] = await Promise.all([
-      fetch("data/places.json", { cache: "no-store" }).then(r => r.json()),
-      fetch("data/people.json", { cache: "no-store" }).then(r => r.json()),
-      fetch("data/relations.json", { cache: "no-store" }).then(r => r.json()).catch(() => []),
-      fetch("data/wonderkammer.json", { cache: "no-store" }).then(r => r.json()).catch(() => null),
-      fetch("data/tags.json", { cache: "no-store" }).then(r => r.json()).catch(() => null),
-
-      // Epoker (failsafe)
-      fetch("data/epoker_film.json",  { cache: "no-store" }).then(r => r.json()).catch(() => []),
-      fetch("data/epoker_TV.json",    { cache: "no-store" }).then(r => r.json()).catch(() => []),
-      fetch("data/epoker_sport.json", { cache: "no-store" }).then(r => r.json()).catch(() => [])
-
-    ]);
+  fetch("data/places.json", { cache: "no-store" }).then(r => r.json()),
+  fetch("data/people.json", { cache: "no-store" }).then(r => r.json()),
+  fetch("data/relations.json", { cache: "no-store" }).then(r => r.json()).catch(() => []),
+  fetch("data/wonderkammer.json", { cache: "no-store" }).then(r => r.json()).catch(() => null),
+  fetch("data/tags.json", { cache: "no-store" }).then(r => r.json()).catch(() => null),
+]);
 
   PLACES = places;
   PEOPLE = people;
@@ -1554,21 +1569,33 @@ for (const r of (window.RELATIONS || [])) {
   if (person) (window.REL_BY_PERSON[person] ||= []).push(r);
 }
 
-    // ✅ EPOKER (runtime)
-window.EPOKER = {
-  film: Array.isArray(epokerFilm) ? epokerFilm : [],
-  tv: Array.isArray(epokerTV) ? epokerTV : [],
-  sport: Array.isArray(epokerSport) ? epokerSport : []
-};
+// ✅ EPOKER (runtime) – last alle epoker per merke/domain via registry
+let epokerByDomain = {};
+try {
+  const pairs = await Promise.all(
+    Object.entries(EPOKER_FILES).map(async ([domain, url]) => {
+      const data = await fetch(url, { cache: "no-store" })
+        .then(r => r.json())
+        .catch(() => []);
+      return [domain, Array.isArray(data) ? data : []];
+    })
+  );
+  epokerByDomain = Object.fromEntries(pairs);
+} catch (e) {
+  console.warn("[epoker] fetch feilet:", e);
+  epokerByDomain = {};
+}
+
+window.EPOKER = epokerByDomain;
 
 try {
   window.EPOKER_INDEX = buildEpokerRuntimeIndex(window.EPOKER);
   window.getEpoke = getEpoke; // eksponer helper (valgfritt)
 } catch (e) {
   console.warn("[epoker] buildEpokerRuntimeIndex feilet:", e);
-  window.EPOKER_INDEX = { byId: Object.create(null), byDomain: Object.create(null), all: [] };
+  window.EPOKER_INDEX = { byKey: Object.create(null), byDomain: Object.create(null), all: [] };
 }
-
+    
 // ✅ WONDERKAMMER (connections) – separat fra relations
 window.WONDERKAMMER = (wonderkammer && typeof wonderkammer === "object") ? wonderkammer : null;
 
