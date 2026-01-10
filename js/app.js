@@ -1096,13 +1096,12 @@ function wire() {
   if (btnUA) btnUA.style.display = on ? "inline-flex" : "none";
 
   window.renderNearbyPlaces?.();
-}); // ✅ HER (rett under denne linja)
+}); 
 
-// ✅ LIM INN DETTE HER:
-document.getElementById("btnUnlockAll")?.addEventListener("click", () => {
+  document.getElementById("btnUnlockAll")?.addEventListener("click", () => {
   if (!window.OPEN_MODE) return;
-  applyTestModeUnlockAll();
-  showToast("Alt låst opp");
+  applyOpenModeUnlockAll();
+  showToast("Alt åpnet");
 });
 
 
