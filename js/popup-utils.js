@@ -15,89 +15,127 @@ let currentPopup = null;
 
 
 // ============================================================
-// 0b. RELATIONS → UI (TILKNYTNING)
+// 0b. RELATIONS → UI (TILKNYTNING) + RUNTIME INDEX
 // Formelle relasjoner: jobb, rolle, virke, institusjon
+// SOLID: bygger runtime-index (byPlace/byPerson) fra window.RELATIONS
+// STRICT: kun trim. Ingen normalisering utover det.
 // ============================================================
 
 function _arr(x) { return Array.isArray(x) ? x : []; }
 function _s(x) { return String(x ?? "").trim(); }
 
-function getRelations() {
+function getRelationsRaw() {
   return Array.isArray(window.RELATIONS) ? window.RELATIONS : [];
 }
 
-// "yMatcher" place på flere måter:
-// - r.placeId / r.place_id / r.place
-// - r.fromType/place + fromId
-// - r.toType/place + toId
-function relMatchesPlace(r, placeId) {
-  const pid = _s(placeId);
-  if (!pid) return false;
+/**
+ * Runtime index:
+ * window.HG_REL_INDEX = {
+ *   _srcRef, _srcLen,
+ *   byPlace: { [placeId]: [rel, ...] },
+ *   byPerson:{ [personId]: [rel, ...] }
+ * }
+ */
+function ensureRelationsIndex() {
+  const rels = getRelationsRaw();
+  const idx = window.HG_REL_INDEX;
 
-  const direct = _s(r?.placeId || r?.place_id || r?.place);
-  if (direct && direct === pid) return true;
+  // Hvis samme array-ref + samme lengde: anta uendret (billig).
+  if (idx && idx._srcRef === rels && idx._srcLen === rels.length) return idx;
 
-  const fromT = _s(r?.fromType || r?.from_type);
-  const toT   = _s(r?.toType || r?.to_type);
-  const fromI = _s(r?.fromId || r?.from_id);
-  const toI   = _s(r?.toId || r?.to_id);
+  const byPlace = Object.create(null);
+  const byPerson = Object.create(null);
 
-  if (fromT === "place" && fromI === pid) return true;
-  if (toT   === "place" && toI   === pid) return true;
+  // små hjelpere
+  const push = (map, key, rel) => {
+    if (!key) return;
+    (map[key] || (map[key] = [])).push(rel);
+  };
 
-  return false;
+  const getPlaceIdFromRel = (r) => {
+    const direct = _s(r?.placeId || r?.place_id || r?.place);
+    if (direct) return direct;
+
+    const fromT = _s(r?.fromType || r?.from_type);
+    const toT   = _s(r?.toType   || r?.to_type);
+    const fromI = _s(r?.fromId   || r?.from_id);
+    const toI   = _s(r?.toId     || r?.to_id);
+
+    if (fromT === "place" && fromI) return fromI;
+    if (toT   === "place" && toI)   return toI;
+    return "";
+  };
+
+  const getPersonIdFromRel = (r) => {
+    const direct = _s(r?.personId || r?.person_id || r?.person);
+    if (direct) return direct;
+
+    const fromT = _s(r?.fromType || r?.from_type);
+    const toT   = _s(r?.toType   || r?.to_type);
+    const fromI = _s(r?.fromId   || r?.from_id);
+    const toI   = _s(r?.toId     || r?.to_id);
+
+    if (fromT === "person" && fromI) return fromI;
+    if (toT   === "person" && toI)   return toI;
+    return "";
+  };
+
+  rels.forEach(r => {
+    const pid = getPlaceIdFromRel(r);
+    const pe  = getPersonIdFromRel(r);
+    if (pid) push(byPlace, pid, r);
+    if (pe)  push(byPerson, pe, r);
+  });
+
+  const out = { _srcRef: rels, _srcLen: rels.length, byPlace, byPerson };
+  window.HG_REL_INDEX = out;
+  return out;
 }
 
-// Matcher person på flere måter:
-// - r.personId / r.person_id / r.person
-// - r.fromType/person + fromId
-// - r.toType/person + toId
-function relMatchesPerson(r, personId) {
+function getRelationsForPlace(placeId) {
+  const pid = _s(placeId);
+  if (!pid) return [];
+  const idx = ensureRelationsIndex();
+  return _arr(idx.byPlace[pid]);
+}
+
+function getRelationsForPerson(personId) {
   const pid = _s(personId);
-  if (!pid) return false;
-
-  const direct = _s(r?.personId || r?.person_id || r?.person);
-  if (direct && direct === pid) return true;
-
-  const fromT = _s(r?.fromType || r?.from_type);
-  const toT   = _s(r?.toType || r?.to_type);
-  const fromI = _s(r?.fromId || r?.from_id);
-  const toI   = _s(r?.toId || r?.to_id);
-
-  if (fromT === "person" && fromI === pid) return true;
-  if (toT   === "person" && toI   === pid) return true;
-
-  return false;
+  if (!pid) return [];
+  const idx = ensureRelationsIndex();
+  return _arr(idx.byPerson[pid]);
 }
 
 // ============================================================
-// RELATIONS → lookup helpers (erstatter placeId-logikk)
-// STRICT: kun trim.
+// RELATIONS → lookup helpers (ID→obj)
 // ============================================================
 
 function getPeopleForPlace(placeId) {
   const pid = _s(placeId);
   if (!pid) return [];
 
-  const rels = getRelations().filter(r => relMatchesPlace(r, pid));
+  const rels = getRelationsForPlace(pid);
 
-  const ids = [];
-  rels.forEach(r => {
-    // hent person-id fra flere varianter
-    const personId =
-      _s(r?.personId || r?.person_id || r?.person) ||
-      (_s(r?.fromType || r?.from_type) === "person" ? _s(r?.fromId || r?.from_id) : "") ||
-      (_s(r?.toType   || r?.to_type)   === "person" ? _s(r?.toId   || r?.to_id)   : "");
+  const ids = rels
+    .map(r => {
+      const direct = _s(r?.personId || r?.person_id || r?.person);
+      if (direct) return direct;
 
-    if (personId) ids.push(personId);
-  });
+      const fromT = _s(r?.fromType || r?.from_type);
+      const toT   = _s(r?.toType   || r?.to_type);
+      const fromI = _s(r?.fromId   || r?.from_id);
+      const toI   = _s(r?.toId     || r?.to_id);
 
-  // de-dupe, behold bare personer som finnes
+      if (fromT === "person" && fromI) return fromI;
+      if (toT   === "person" && toI)   return toI;
+      return "";
+    })
+    .filter(Boolean);
+
   const uniq = [...new Set(ids)];
   const peopleArr = Array.isArray(window.PEOPLE) ? window.PEOPLE : (Array.isArray(PEOPLE) ? PEOPLE : []);
   const out = uniq.map(id => peopleArr.find(p => _s(p?.id) === id)).filter(Boolean);
 
-  // stabil sortering
   out.sort((a, b) => _s(a.name).localeCompare(_s(b.name), "no"));
   return out;
 }
@@ -106,18 +144,23 @@ function getPlacesForPerson(personId) {
   const pid = _s(personId);
   if (!pid) return [];
 
-  const rels = getRelations().filter(r => relMatchesPerson(r, pid));
+  const rels = getRelationsForPerson(pid);
 
-  const ids = [];
-  rels.forEach(r => {
-    // hent place-id fra flere varianter
-    const placeId =
-      _s(r?.placeId || r?.place_id || r?.place) ||
-      (_s(r?.fromType || r?.from_type) === "place" ? _s(r?.fromId || r?.from_id) : "") ||
-      (_s(r?.toType   || r?.to_type)   === "place" ? _s(r?.toId   || r?.to_id)   : "");
+  const ids = rels
+    .map(r => {
+      const direct = _s(r?.placeId || r?.place_id || r?.place);
+      if (direct) return direct;
 
-    if (placeId) ids.push(placeId);
-  });
+      const fromT = _s(r?.fromType || r?.from_type);
+      const toT   = _s(r?.toType   || r?.to_type);
+      const fromI = _s(r?.fromId   || r?.from_id);
+      const toI   = _s(r?.toId     || r?.to_id);
+
+      if (fromT === "place" && fromI) return fromI;
+      if (toT   === "place" && toI)   return toI;
+      return "";
+    })
+    .filter(Boolean);
 
   const uniq = [...new Set(ids)];
   const placesArr = Array.isArray(window.PLACES) ? window.PLACES : (Array.isArray(PLACES) ? PLACES : []);
@@ -126,6 +169,10 @@ function getPlacesForPerson(personId) {
   out.sort((a, b) => _s(a.name).localeCompare(_s(b.name), "no"));
   return out;
 }
+
+// ============================================================
+// RELATIONS → render (TILKNYTNING)
+// ============================================================
 
 function renderRelationRow(r) {
   const type  = _s(r?.type || r?.rel || r?.kind) || "kobling";
@@ -143,7 +190,6 @@ function renderRelationRow(r) {
       ? window.PEOPLE.find(p => _s(p.id) === pid)
       : null;
 
-  // fallback til label/title/name hvis vi ikke finner person
   const label = person ? person.name : _s(r?.label || r?.title || r?.name);
 
   const head = label
@@ -177,13 +223,14 @@ function buildWonderChamberHtml({ title, rels }) {
   `;
 }
 
-function relationsForPlace(place) {
-  const rels = getRelations().filter(r => relMatchesPlace(r, place?.id));
+// ✅ behold disse navnene: de brukes allerede i UI (placeCard/personPopup)
+function wonderChambersForPlace(place) {
+  const rels = getRelationsForPlace(place?.id);
   return buildWonderChamberHtml({ title: "", rels });
 }
 
-function relationsForPerson(person) {
-  const rels = getRelations().filter(r => relMatchesPerson(r, person?.id));
+function wonderChambersForPerson(person) {
+  const rels = getRelationsForPerson(person?.id);
   return buildWonderChamberHtml({ title: "", rels });
 }
 
