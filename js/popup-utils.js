@@ -80,12 +80,33 @@ function ensureRelationsIndex() {
     return "";
   };
 
+const getPersonIdsFromRel = (r) => {
+  const out = [];
+
+  // legacy / direkte felt
+  const direct = _s(r?.personId || r?.person_id || r?.person);
+  if (direct) out.push(direct);
+
+  const fromT = _s(r?.fromType || r?.from_type);
+  const toT   = _s(r?.toType   || r?.to_type);
+  const fromI = _s(r?.fromId   || r?.from_id);
+  const toI   = _s(r?.toId     || r?.to_id);
+
+  if (fromT === "person" && fromI) out.push(fromI);
+  if (toT   === "person" && toI)   out.push(toI);
+
+  // uniq + fjern tom
+  return [...new Set(out.filter(Boolean))];
+};
+  
   rels.forEach(r => {
-    const pid = getPlaceIdFromRel(r);
-    const pe  = getPersonIdFromRel(r);
-    if (pid) push(byPlace, pid, r);
-    if (pe)  push(byPerson, pe, r);
-  });
+  const pid = getPlaceIdFromRel(r);
+  if (pid) push(byPlace, pid, r);
+
+  // ✅ indexer relasjonen på ALLE personer den berører (person↔person støttes)
+  const persons = getPersonIdsFromRel(r);
+  persons.forEach(pe => push(byPerson, pe, r));
+});
 
   const out = { _srcRef: rels, _srcLen: rels.length, byPlace, byPerson };
   window.HG_REL_INDEX = out;
