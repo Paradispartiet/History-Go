@@ -1385,6 +1385,11 @@ function epN(x) {
   const v = Number(x);
   return Number.isFinite(v) ? v : null;
 }
+function epKey(domain, id) {
+  const d = epS(domain);
+  const i = epS(id);
+  return d && i ? `${d}:${i}` : "";
+}
 
 // Støtter flere schema-varianter uten å kreve kanonisk format:
 // - id / epoke_id
@@ -1392,36 +1397,46 @@ function epN(x) {
 // - end_year / end / to
 function buildEpokerRuntimeIndex(epokerByDomain) {
   const idx = {
-    byId: Object.create(null),        // global lookup: id -> epoke (med domain)
+    byKey: Object.create(null),       // "domain:id" -> epoke
     byDomain: Object.create(null),    // domain -> { list, byId, byStart }
     all: []                           // flat liste (med domain)
   };
 
   const input = epokerByDomain && typeof epokerByDomain === "object" ? epokerByDomain : {};
-  for (const [domain, rawList] of Object.entries(input)) {
-    const list = _arr(rawList);
+
+  for (const [domainRaw, rawList] of Object.entries(input)) {
+    const domain = epS(domainRaw);
+    if (!domain) continue;
+
+    const list = epArr(rawList);
 
     const dom = {
       list: [],
-      byId: Object.create(null),
+      byId: Object.create(null),      // id -> epoke (innen domain)
       byStart: []
     };
 
     for (const e of list) {
-      const id = _s(e?.id || e?.epoke_id);
+      const id = epS(e?.id || e?.epoke_id);
       if (!id) continue;
 
       const start =
-        _n(e?.start_year) ?? _n(e?.start) ?? _n(e?.from) ?? null;
+        epN(e?.start_year) ?? epN(e?.start) ?? epN(e?.from) ?? null;
 
       const end =
-        _n(e?.end_year) ?? _n(e?.end) ?? _n(e?.to) ?? null;
+        epN(e?.end_year) ?? epN(e?.end) ?? epN(e?.to) ?? null;
 
       const ep = { ...(e || {}), id, domain, start_year: start, end_year: end };
 
       dom.list.push(ep);
       dom.byId[id] = ep;
-      idx.byId[id] = ep;
+
+      const k = epKey(domain, id);
+      if (k) {
+        // Unngå silent overwrite hvis du vil: legg en DEBUG-warn her
+        idx.byKey[k] = ep;
+      }
+
       idx.all.push(ep);
     }
 
@@ -1439,14 +1454,22 @@ function buildEpokerRuntimeIndex(epokerByDomain) {
   return idx;
 }
 
-// Små helpers (valgfritt, men praktisk)
+// Små helpers
 function getEpoke(domain, epokeId) {
-  const d = _s(domain);
-  const id = _s(epokeId);
+  const d = epS(domain);
+  const id = epS(epokeId);
   if (!id) return null;
 
-  if (d && window.EPOKER_INDEX?.byDomain?.[d]?.byId?.[id]) return window.EPOKER_INDEX.byDomain[d].byId[id];
-  return window.EPOKER_INDEX?.byId?.[id] || null;
+  // 1) Strict: domain + id
+  const k = epKey(d, id);
+  if (k && window.EPOKER_INDEX?.byKey?.[k]) return window.EPOKER_INDEX.byKey[k];
+
+  // 2) Fallback: hvis domain finnes, slå opp i domain-index
+  if (d && window.EPOKER_INDEX?.byDomain?.[d]?.byId?.[id]) {
+    return window.EPOKER_INDEX.byDomain[d].byId[id];
+  }
+
+  return null;
 }
 
 
