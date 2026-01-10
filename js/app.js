@@ -1370,6 +1370,80 @@ async function loadNature() {
 
 // BOOT
 
+// ============================================================
+// Epoker – runtime index (robust, ikke skjør)
+// ============================================================
+
+function _arr(x) { return Array.isArray(x) ? x : []; }
+function _s(x) { return String(x ?? "").trim(); }
+function _n(x) {
+  const v = Number(x);
+  return Number.isFinite(v) ? v : null;
+}
+
+// Støtter flere schema-varianter uten å kreve kanonisk format:
+// - id / epoke_id
+// - start_year / start / from
+// - end_year / end / to
+function buildEpokerRuntimeIndex(epokerByDomain) {
+  const idx = {
+    byId: Object.create(null),        // global lookup: id -> epoke (med domain)
+    byDomain: Object.create(null),    // domain -> { list, byId, byStart }
+    all: []                           // flat liste (med domain)
+  };
+
+  const input = epokerByDomain && typeof epokerByDomain === "object" ? epokerByDomain : {};
+  for (const [domain, rawList] of Object.entries(input)) {
+    const list = _arr(rawList);
+
+    const dom = {
+      list: [],
+      byId: Object.create(null),
+      byStart: []
+    };
+
+    for (const e of list) {
+      const id = _s(e?.id || e?.epoke_id);
+      if (!id) continue;
+
+      const start =
+        _n(e?.start_year) ?? _n(e?.start) ?? _n(e?.from) ?? null;
+
+      const end =
+        _n(e?.end_year) ?? _n(e?.end) ?? _n(e?.to) ?? null;
+
+      const ep = { ...(e || {}), id, domain, start_year: start, end_year: end };
+
+      dom.list.push(ep);
+      dom.byId[id] = ep;
+      idx.byId[id] = ep;
+      idx.all.push(ep);
+    }
+
+    dom.byStart = dom.list
+      .slice()
+      .sort((a, b) => {
+        const A = a.start_year ?? 999999;
+        const B = b.start_year ?? 999999;
+        return A - B;
+      });
+
+    idx.byDomain[domain] = dom;
+  }
+
+  return idx;
+}
+
+// Små helpers (valgfritt, men praktisk)
+function getEpoke(domain, epokeId) {
+  const d = _s(domain);
+  const id = _s(epokeId);
+  if (!id) return null;
+
+  if (d && window.EPOKER_INDEX?.byDomain?.[d]?.byId?.[id]) return window.EPOKER_INDEX.byDomain[d].byId[id];
+  return window.EPOKER_INDEX?.byId?.[id] || null;
+}
+
 
 async function boot() {
     // ✅ OpenModus (betalingsmodus) – må settes tidlig
@@ -1398,7 +1472,13 @@ if (map) {
       fetch("data/people.json", { cache: "no-store" }).then(r => r.json()),
       fetch("data/relations.json", { cache: "no-store" }).then(r => r.json()).catch(() => []),
       fetch("data/wonderkammer.json", { cache: "no-store" }).then(r => r.json()).catch(() => null),
-      fetch("data/tags.json", { cache: "no-store" }).then(r => r.json()).catch(() => null)
+      fetch("data/tags.json", { cache: "no-store" }).then(r => r.json()).catch(() => null),
+
+      // Epoker (failsafe)
+      fetch("data/epoker_film.json",  { cache: "no-store" }).then(r => r.json()).catch(() => []),
+      fetch("data/epoker_TV.json",    { cache: "no-store" }).then(r => r.json()).catch(() => []),
+      fetch("data/epoker_sport.json", { cache: "no-store" }).then(r => r.json()).catch(() => [])
+
     ]);
 
   PLACES = places;
@@ -1420,6 +1500,21 @@ for (const r of (window.RELATIONS || [])) {
 
   if (place) (window.REL_BY_PLACE[place] ||= []).push(r);
   if (person) (window.REL_BY_PERSON[person] ||= []).push(r);
+}
+
+    // ✅ EPOKER (runtime)
+window.EPOKER = {
+  film: Array.isArray(epokerFilm) ? epokerFilm : [],
+  tv: Array.isArray(epokerTV) ? epokerTV : [],
+  sport: Array.isArray(epokerSport) ? epokerSport : []
+};
+
+try {
+  window.EPOKER_INDEX = buildEpokerRuntimeIndex(window.EPOKER);
+  window.getEpoke = getEpoke; // eksponer helper (valgfritt)
+} catch (e) {
+  console.warn("[epoker] buildEpokerRuntimeIndex feilet:", e);
+  window.EPOKER_INDEX = { byId: Object.create(null), byDomain: Object.create(null), all: [] };
 }
 
 // ✅ WONDERKAMMER (connections) – separat fra relations
