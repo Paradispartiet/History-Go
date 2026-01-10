@@ -1213,7 +1213,7 @@ function initMiniProfile() {
 }
 
 
-// ✅ LIM INN DETTE HER (linje 1141)
+
 window.addEventListener("hg:mpNextUp", (e) => {
   const mount = document.getElementById("mpNextUp");
   if (!mount) return;
@@ -1223,13 +1223,20 @@ window.addEventListener("hg:mpNextUp", (e) => {
 
   const spatial = tri.spatial || null;
   const narrative = tri.narrative || null;
-  const concept = tri.concept || null;
+  const wk = tri.wk || null; // ✅ Wonderkammer NextUp (valgfri)
 
   mount.innerHTML = `
   <div class="mp-nextup-line">
     <button class="mp-nextup-link" data-mp="goto"
       ${spatial ? `data-place="${hgEscAttr(spatial.place_id)}"` : "disabled"}>
       🧭 <b>Neste Sted:</b> ${spatial ? hgEsc(spatial.label) : "—"}
+    </button>
+  </div>
+
+  <div class="mp-nextup-line">
+    <button class="mp-nextup-link" data-mp="wk"
+      ${wk ? `data-wk="${hgEscAttr(wk.entry_id)}" title="${hgEscAttr(wk.because || "")}"` : "disabled"}>
+      🗃️ <b>Wonderkammer:</b> ${wk ? hgEsc(wk.label) : "—"}
     </button>
   </div>
 
