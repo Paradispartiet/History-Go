@@ -174,38 +174,90 @@ function getPlacesForPerson(personId) {
 // RELATIONS → render (TILKNYTNING)
 // ============================================================
 
+function findPersonById(id) {
+  const pid = _s(id);
+  if (!pid) return null;
+  const arr = Array.isArray(window.PEOPLE) ? window.PEOPLE : [];
+  return arr.find(p => _s(p.id) === pid) || null;
+}
+
+function getPersonIdFromSide(r, side /* "from" | "to" */) {
+  const t = _s(r?.[side + "Type"] || r?.[side + "_type"]);
+  const id = _s(r?.[side + "Id"] || r?.[side + "_id"]);
+  return t === "person" ? id : "";
+}
+
 function renderRelationRow(r) {
   const type  = _s(r?.type || r?.rel || r?.kind) || "kobling";
   const why   = _s(r?.why || r?.reason || r?.desc || r?.note);
   const src   = _s(r?.source || r?.src);
 
-  // prøv å finne person-id i flere schema-varianter
-  const pid =
-    _s(r?.personId || r?.person_id || r?.person) ||
-    (_s(r?.fromType || r?.from_type) === "person" ? _s(r?.fromId || r?.from_id) : "") ||
-    (_s(r?.toType   || r?.to_type)   === "person" ? _s(r?.toId   || r?.to_id)   : "");
+  // 1) Støtt person↔person edges (slekt/mentor/etc)
+  const fromPid = getPersonIdFromSide(r, "from");
+  const toPid   = getPersonIdFromSide(r, "to");
 
-  const person =
-    pid && Array.isArray(window.PEOPLE)
-      ? window.PEOPLE.find(p => _s(p.id) === pid)
-      : null;
+  const fromP = fromPid ? findPersonById(fromPid) : null;
+  const toP   = toPid ? findPersonById(toPid) : null;
 
-  const label = person ? person.name : _s(r?.label || r?.title || r?.name);
+  const mkPersonBtn = (p, fallbackId) => {
+    const id = _s(p?.id || fallbackId);
+    const name = _s(p?.name) || id;
+    return id
+      ? `<button class="hg-rel-link" data-person="${hgEscAttr(id)}"><strong>${hgEsc(name)}</strong></button>`
+      : `<strong>${hgEsc(name)}</strong>`;
+  };
 
-  const head = label
-    ? `${type}: ${
-        person
-          ? `<button class="hg-rel-link" data-person="${person.id}"><strong>${label}</strong></button>`
-          : `<strong>${label}</strong>`
-      }`
-    : `<strong>${type}</strong>`;
+  let head = "";
+
+  // Edge-format hvis begge ender er personer
+  if (fromPid && toPid) {
+    const left  = mkPersonBtn(fromP, fromPid);
+    const right = mkPersonBtn(toP, toPid);
+    head = `${left} <span class="hg-muted">—</span> <strong>${hgEsc(type)}</strong> <span class="hg-muted">→</span> ${right}`;
+  } else {
+    // 2) Fallback: finn én person via personId / from/to
+    const pid =
+      _s(r?.personId || r?.person_id || r?.person) ||
+      fromPid || toPid;
+
+    const person = pid ? findPersonById(pid) : null;
+    const label = person ? person.name : _s(r?.label || r?.title || r?.name);
+
+    head = label
+      ? `${hgEsc(type)}: ${
+          person
+            ? `<button class="hg-rel-link" data-person="${hgEscAttr(person.id)}"><strong>${hgEsc(label)}</strong></button>`
+            : `<strong>${hgEsc(label)}</strong>`
+        }`
+      : `<strong>${hgEsc(type)}</strong>`;
+  }
 
   const tail = [
-    why ? `<div class="hg-muted" style="margin-top:4px;">${why}</div>` : "",
-    src ? `<div class="hg-muted" style="margin-top:4px;">Kilde: ${src}</div>` : ""
+    why ? `<div class="hg-muted" style="margin-top:4px;">${hgEsc(why)}</div>` : "",
+    src ? `<div class="hg-muted" style="margin-top:4px;">Kilde: ${hgEsc(src)}</div>` : ""
   ].filter(Boolean).join("");
 
   return `<li style="margin:8px 0;">${head}${tail}</li>`;
+}
+
+function isAutoMigratedRel(r) {
+  const id = _s(r?.id);
+  if (id.startsWith("mig_")) return true;
+
+  const type = _s(r?.type || r?.rel || r?.kind).toLowerCase();
+  const why  = _s(r?.why || r?.reason || r?.desc || r?.note);
+  const src  = _s(r?.source || r?.src);
+  const label = _s(r?.label || r?.title || r?.name);
+
+  // "tilknytning" uten ekstra info = bare kobling (dupliserer people.json)
+  if (type === "tilknytning" && !why && !src && !label) return true;
+
+  return false;
+}
+
+function filterCuratedRels(rels) {
+  const list = _arr(rels);
+  return list.filter(r => !isAutoMigratedRel(r));
 }
 
 function buildWonderChamberHtml({ title, rels }) {
@@ -226,12 +278,17 @@ function buildWonderChamberHtml({ title, rels }) {
 // ✅ behold disse navnene: de brukes allerede i UI (placeCard/personPopup)
 function wonderChambersForPlace(place) {
   const rels = getRelationsForPlace(place?.id);
-  return buildWonderChamberHtml({ title: "", rels });
+
+  // ✅ PlaceCard: vis bare "kuraterte" relasjoner (ikke migrert tilknytning)
+  const curated = filterCuratedRels(rels);
+
+  return buildWonderChamberHtml({ title: "", rels: curated });
 }
 
 function wonderChambersForPerson(person) {
   const rels = getRelationsForPerson(person?.id);
-  return buildWonderChamberHtml({ title: "", rels });
+  const curated = filterCuratedRels(rels);
+  return buildWonderChamberHtml({ title: "", rels: curated });
 }
 
 
