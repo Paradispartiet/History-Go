@@ -175,7 +175,7 @@ function savePeople() {
   renderGallery();
 }
 
-function applyTestModeUnlockAll() {
+function applyOpenModeUnlockAll() {
   // Må ha data først
   if (!Array.isArray(PLACES) || !PLACES.length) return;
 
@@ -184,7 +184,7 @@ function applyTestModeUnlockAll() {
 
   // 1) Alle steder -> visited
   for (const p of PLACES) {
-    const id = String(p?.id ?? "");
+    const id = String(p?.id ?? "").trim();
     if (!id) continue;
     if (!visited[id]) {
       visited[id] = true;
@@ -195,7 +195,7 @@ function applyTestModeUnlockAll() {
   // 2) Alle personer -> collected
   if (Array.isArray(PEOPLE) && PEOPLE.length) {
     for (const person of PEOPLE) {
-      const id = String(person?.id ?? "");
+      const id = String(person?.id ?? "").trim();
       if (!id) continue;
       if (!peopleCollected[id]) {
         peopleCollected[id] = true;
@@ -204,8 +204,14 @@ function applyTestModeUnlockAll() {
     }
   }
 
-  if (changedVisited) saveVisited();
-  if (changedPeople)  savePeople();
+  // 3) Persist + refresh UI (kun hvis endret)
+  if (changedVisited && typeof saveVisited === "function") saveVisited();
+  if (changedPeople  && typeof savePeople  === "function") savePeople();
+
+  // Refresh “nær deg”-liste / galleri / små UI-ting (robust)
+  try { window.renderNearbyPlaces?.(); } catch {}
+  try { window.renderPeopleGallery?.(); } catch {}
+}
 
   // Oppdater mini-profil osv.
   window.dispatchEvent(new Event("updateProfile"));
