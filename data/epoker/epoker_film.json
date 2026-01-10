@@ -1,0 +1,460 @@
+{
+  "version": 1,
+  "domain_id": "film_tv",
+  "domain_label": "Film og TV",
+  "epoke_system": {
+    "id": "film_vitenskap_v1",
+    "label": "Film – vitenskapelige epoker (utvidet)",
+    "notes": [
+      "Makroepoker (teknologi/industri/fortellingsregimer) + parallelle strømninger/bevegelser.",
+      "År er omtrentlige og kan justeres per land/region ved behov."
+    ]
+  },
+  "macro_epoker": [
+    {
+      "id": "film_proto_pre1895",
+      "label": "Protofilm / før-film",
+      "year_start": null,
+      "year_end": 1894,
+      "definition": "Optiske leketøy, fotografi og eksperimenter som leder fram til filmmediet.",
+      "markers": [
+        "optiske leker",
+        "fotografi",
+        "bevegelse før film"
+      ],
+      "tags": [
+        "protofilm",
+        "forhistorie",
+        "optikk"
+      ],
+      "knagger": [
+        "mediets_opphav",
+        "teknologisk_forhistorie"
+      ]
+    },
+    {
+      "id": "film_attraksjon_1895_1907",
+      "label": "Attraksjonsfilm / tidlig film",
+      "year_start": 1895,
+      "year_end": 1907,
+      "definition": "Film som teknisk kuriositet og publikumsattraksjon; korte klipp uten stabil narrativ kontinuitet.",
+      "markers": [
+        "tivoli-kino",
+        "korte klipp",
+        "sensasjon/visning"
+      ],
+      "tags": [
+        "tidlig_film",
+        "attraksjonsfilm",
+        "kino"
+      ],
+      "knagger": [
+        "film_som_attraksjon",
+        "kino_tivoli"
+      ]
+    },
+    {
+      "id": "film_narrativ_etablering_1907_1915",
+      "label": "Narrativ etablering",
+      "year_start": 1907,
+      "year_end": 1915,
+      "definition": "Film grammatikk etableres: kontinuitetsklipp, parallellhandling og mer kompleks fortelling.",
+      "markers": [
+        "kontinuitetsklipp",
+        "parallellhandling",
+        "regi/iscenesettelse"
+      ],
+      "tags": [
+        "filmgrammatikk",
+        "klipping",
+        "fortelling"
+      ],
+      "knagger": [
+        "fortellende_film",
+        "kontinuitetssystem"
+      ]
+    },
+    {
+      "id": "film_stumfilm_modenhet_1915_1927",
+      "label": "Klassisk stumfilm / stumfilmens modenhet",
+      "year_start": 1915,
+      "year_end": 1927,
+      "definition": "Stumfilm når formmessig modenhet: sjangre krystalliseres, visuell fortelling og stjernestatus.",
+      "markers": [
+        "sjangre",
+        "visuell sofistikasjon",
+        "stjerner"
+      ],
+      "tags": [
+        "stumfilm",
+        "klassisk",
+        "sjangre"
+      ],
+      "knagger": [
+        "stumfilm_gullalder",
+        "visuell_fortelling"
+      ]
+    },
+    {
+      "id": "film_lydsjokk_1927_1933",
+      "label": "Lydsjokket / overgang til lyd",
+      "year_start": 1927,
+      "year_end": 1933,
+      "definition": "Teknologisk brudd som endrer spillestil, klipp og produksjon; mange former og karrierer omkalfatres.",
+      "markers": [
+        "tidlig lyd",
+        "statisk kamera",
+        "teaterpreg"
+      ],
+      "tags": [
+        "lydfilm",
+        "overgang",
+        "teknologi"
+      ],
+      "knagger": [
+        "lydrevolusjon",
+        "teknologisk_brudd"
+      ]
+    },
+    {
+      "id": "film_studiosystem_1930_1945",
+      "label": "Studioalderen / klassisk Hollywood",
+      "year_start": 1930,
+      "year_end": 1945,
+      "definition": "Industriepoke: vertikal integrasjon, sjangerlogikk og stjernesystem; film som masseproduksjon.",
+      "markers": [
+        "studio-system",
+        "sjangerlogikk",
+        "stjernesystem"
+      ],
+      "tags": [
+        "hollywood",
+        "studio",
+        "sjanger"
+      ],
+      "knagger": [
+        "studioindustri",
+        "sjangerfabrikk"
+      ]
+    },
+    {
+      "id": "film_etterkrigsrealisme_1945_1955",
+      "label": "Etterkrigsrealisme",
+      "year_start": 1945,
+      "year_end": 1955,
+      "definition": "Realisme og location-opptak blir ideal; sosial virkelighet og hverdagsliv trer fram (f.eks. neorealisme).",
+      "markers": [
+        "location shooting",
+        "sosial realisme",
+        "neorealisme"
+      ],
+      "tags": [
+        "realisme",
+        "etterkrig",
+        "verdensfilm"
+      ],
+      "knagger": [
+        "virkelighetsfilm",
+        "location_realitet"
+      ]
+    },
+    {
+      "id": "film_modernistisk_brudd_1955_1965",
+      "label": "Modernistisk brudd / kunstfilm-bølge",
+      "year_start": 1955,
+      "year_end": 1965,
+      "definition": "Fortellingskonvensjoner brytes; film blir selvrefleksiv, eksperimentell og auteur-drevet (nybølger).",
+      "markers": [
+        "nybølger",
+        "autør",
+        "selvrefleksivitet"
+      ],
+      "tags": [
+        "kunstfilm",
+        "nybolge",
+        "auteur"
+      ],
+      "knagger": [
+        "film_refleksjon",
+        "autorteori"
+      ]
+    },
+    {
+      "id": "film_new_hollywood_1967_1980",
+      "label": "New Hollywood / auteur-æra",
+      "year_start": 1967,
+      "year_end": 1980,
+      "definition": "Regissørstyrt og tematisk dristig film; antihelter, politiske undertoner og formeksperiment i mainstream.",
+      "markers": [
+        "antihelt",
+        "regissørstyrt",
+        "politisk/personlig"
+      ],
+      "tags": [
+        "new_hollywood",
+        "auteur",
+        "70_tallet"
+      ],
+      "knagger": [
+        "regissor_makt",
+        "mainstream_eksperiment"
+      ]
+    },
+    {
+      "id": "film_blockbuster_overgang_1975_1985",
+      "label": "Blockbuster-overgangen",
+      "year_start": 1975,
+      "year_end": 1985,
+      "definition": "Paradigmeskifte: eventfilm, franchise-tenkning og massiv markedsføring (sommerfilm) blir motoren.",
+      "markers": [
+        "eventfilm",
+        "franchise",
+        "markedsføring"
+      ],
+      "tags": [
+        "blockbuster",
+        "franchise",
+        "eventfilm"
+      ],
+      "knagger": [
+        "storfilm_okonomi",
+        "premierekultur"
+      ]
+    },
+    {
+      "id": "film_vhs_hjemmekino_1980_1995",
+      "label": "VHS / hjemmekino-epoken",
+      "year_start": 1980,
+      "year_end": 1995,
+      "definition": "Hjemmevisning endrer konsum og økonomi; sjangerfilm, kult og videomarked blomstrer.",
+      "markers": [
+        "VHS",
+        "videobutikker",
+        "kultfilm"
+      ],
+      "tags": [
+        "hjemmekino",
+        "vhs",
+        "kult"
+      ],
+      "knagger": [
+        "film_hjemme",
+        "kult_kanon"
+      ]
+    },
+    {
+      "id": "film_digital_revolusjon_1995_2010",
+      "label": "Digital revolusjon",
+      "year_start": 1995,
+      "year_end": 2010,
+      "definition": "Digital klipp og CGI transformerer estetikk og produksjon; indie-boom og nye produksjonsformer.",
+      "markers": [
+        "CGI",
+        "digital klipp",
+        "indie"
+      ],
+      "tags": [
+        "digital",
+        "cgi",
+        "indie"
+      ],
+      "knagger": [
+        "digital_estetikk",
+        "produksjonsdemokrati"
+      ]
+    },
+    {
+      "id": "film_globalisering_2000_2010",
+      "label": "Globalisert filmøkonomi",
+      "year_start": 2000,
+      "year_end": 2010,
+      "definition": "Transnasjonal finansiering og festivaløkonomi; verdensfilm og co-produksjoner blir mer sentralt.",
+      "markers": [
+        "co-produksjon",
+        "festivaløkonomi",
+        "transnasjonal"
+      ],
+      "tags": [
+        "globalisering",
+        "festival",
+        "verdensfilm"
+      ],
+      "knagger": [
+        "transnasjonal_film",
+        "festivalmaskin"
+      ]
+    },
+    {
+      "id": "film_streaming_2010_",
+      "label": "Streaming-epoken",
+      "year_start": 2010,
+      "year_end": null,
+      "definition": "Plattformer dominerer distribusjon; serier og film glir sammen; algoritmisk kuratering påvirker smak og produksjon.",
+      "markers": [
+        "plattformmakt",
+        "serier=prestige",
+        "algoritmer"
+      ],
+      "tags": [
+        "streaming",
+        "plattform",
+        "serier"
+      ],
+      "knagger": [
+        "plattformkultur",
+        "algoritmisk_offentlighet"
+      ]
+    },
+    {
+      "id": "film_post_kino_algoritmisk_2016_",
+      "label": "Post-kino / algoritmisk IP-epoke (omstridt)",
+      "year_start": 2016,
+      "year_end": null,
+      "definition": "IP og data blir førende: franchise-univers, gjenkjennbarhet og optimalisering; faglig omstridt og pågående.",
+      "markers": [
+        "IP>verk",
+        "universbygging",
+        "data-drevet utvikling"
+      ],
+      "tags": [
+        "ip",
+        "franchise_univers",
+        "data"
+      ],
+      "knagger": [
+        "ip_okosystem",
+        "dataestetikk"
+      ]
+    }
+  ],
+  "parallelle_stromninger": [
+    {
+      "id": "strom_tysk_ekspresjonisme",
+      "label": "Tysk ekspresjonisme",
+      "year_start": 1919,
+      "year_end": 1926,
+      "definition": "Stilstrømning med forvrengte rom, kontrastlys og psykologisk scenografi.",
+      "tags": [
+        "ekspresjonisme",
+        "stumfilm",
+        "stil"
+      ],
+      "knagger": [
+        "skyggeestetikk",
+        "scenografi_som_psyke"
+      ]
+    },
+    {
+      "id": "strom_sovjet_montasje",
+      "label": "Sovjetisk montasjefilm",
+      "year_start": 1924,
+      "year_end": 1932,
+      "definition": "Montasje som politisk og emosjonell motor; klipp som idé og rytme.",
+      "tags": [
+        "montasje",
+        "stumfilm",
+        "politisk_film"
+      ],
+      "knagger": [
+        "klipp_som_argument",
+        "montasjeestetikk"
+      ]
+    },
+    {
+      "id": "strom_italiensk_neorealisme",
+      "label": "Italiensk neorealisme",
+      "year_start": 1943,
+      "year_end": 1952,
+      "definition": "Location, ikke-skuespillere og sosial realisme i etterkrigstidens Italia.",
+      "tags": [
+        "neorealisme",
+        "realisme",
+        "etterkrig"
+      ],
+      "knagger": [
+        "virkelighetsfilm",
+        "sosial_realisme"
+      ]
+    },
+    {
+      "id": "strom_fransk_nybolge",
+      "label": "Fransk nybølge",
+      "year_start": 1958,
+      "year_end": 1967,
+      "definition": "Formeksperiment, fri kamera, brudd med studio og konvensjoner; auteur-kultur.",
+      "tags": [
+        "nybolge",
+        "auteur",
+        "modernisme"
+      ],
+      "knagger": [
+        "fri_form",
+        "auteur_kultur"
+      ]
+    },
+    {
+      "id": "strom_film_noir",
+      "label": "Film noir",
+      "year_start": 1941,
+      "year_end": 1958,
+      "definition": "Mørk urban stil: fatalisme, hardkokt krim, kontrastlys og moralambivalens.",
+      "tags": [
+        "noir",
+        "krim",
+        "urban"
+      ],
+      "knagger": [
+        "noir_stemning",
+        "moralgratt"
+      ]
+    },
+    {
+      "id": "strom_dogme_95",
+      "label": "Dogme 95",
+      "year_start": 1995,
+      "year_end": 2005,
+      "definition": "Manifest-basert realisme; håndholdt, naturlig lys, avvisning av kunstig produksjon.",
+      "tags": [
+        "dogme95",
+        "manifest",
+        "realisme"
+      ],
+      "knagger": [
+        "manifestfilm",
+        "rå_realitet"
+      ]
+    },
+    {
+      "id": "strom_slow_cinema",
+      "label": "Slow cinema",
+      "year_start": 2000,
+      "year_end": null,
+      "definition": "Langsomt tempo, lange tagninger og kontemplativ form; ofte festivalorientert.",
+      "tags": [
+        "slow_cinema",
+        "lange_tagninger",
+        "kunstfilm"
+      ],
+      "knagger": [
+        "tidsopplevelse",
+        "kontemplasjon"
+      ]
+    },
+    {
+      "id": "strom_animasjon_digital_1990_",
+      "label": "Digital animasjon / CGI-animasjon",
+      "year_start": 1995,
+      "year_end": null,
+      "definition": "CGI-animasjon blir industristandard; nye estetiske og økonomiske modeller for animasjon.",
+      "tags": [
+        "animasjon",
+        "cgi",
+        "familiefilm"
+      ],
+      "knagger": [
+        "animasjonsindustri",
+        "cgi_estetikk"
+      ]
+    }
+  ]
+}
