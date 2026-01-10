@@ -1379,9 +1379,9 @@ async function loadNature() {
 // Epoker – runtime index (robust, ikke skjør)
 // ============================================================
 
-function _arr(x) { return Array.isArray(x) ? x : []; }
-function _s(x) { return String(x ?? "").trim(); }
-function _n(x) {
+function epArr(x) { return Array.isArray(x) ? x : []; }
+function epS(x) { return String(x ?? "").trim(); }
+function epN(x) {
   const v = Number(x);
   return Number.isFinite(v) ? v : null;
 }
