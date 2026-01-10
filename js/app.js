@@ -211,7 +211,6 @@ function applyOpenModeUnlockAll() {
   // Refresh “nær deg”-liste / galleri / små UI-ting (robust)
   try { window.renderNearbyPlaces?.(); } catch {}
   try { window.renderPeopleGallery?.(); } catch {}
-}
 
   // Oppdater mini-profil osv.
   window.dispatchEvent(new Event("updateProfile"));
