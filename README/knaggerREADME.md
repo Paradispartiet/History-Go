@@ -253,3 +253,12 @@ Alt videre arbeid skal bygges direkte på dette rammeverket.
 ---
 
 SLUTT
+
+
+Canonical regel
+	•	badge_refs på et sted = hvilke merker/undemerker stedet teller på (gamification/progresjon).
+	•	tags = folkelige søkeord/etiketter (mange, frie).
+	•	knagger = dine kuraterte “hooks”/konsepter (færre, mer presise).
+	•	relations.json = “har jobbet ved / knyttet til” (person↔place, place↔place, person↔person).
+	•	wonderkammer = egne “entries”/artefakter/story/pivot osv. (ikke relasjoner).
+
