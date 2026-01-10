@@ -1,402 +1,458 @@
 {
-  "version": 1,
+  "version": 2,
   "badges": [
- [
-  {
-    "id": "historie",
-    "name": "Historie",
-    "icon": "🏰",
-    "color": "#344B80",
-    "image": "bilder/merker/historie.PNG",
-    "description": "For dem som leter bakover for å forstå fremtiden. Historie er ikke fortid – det er minnets geografi.",
-    "tiers": [
-      { "label": "Vandrer", "threshold": 10 },
-      { "label": "Tidsvitne", "threshold": 25 },
-      { "label": "Kronikør", "threshold": 55 },
-      { "label": "Orakel", "threshold": 150 }
-    ],
-    "subcategories": [
-      {
-        "id": "historie_tidsperioder",
-        "name": "Tidsperioder",
-        "items": [
-          "forhistorie",
-          "middelalder",
-          "tidlig_moderne_tid",
-          "attenhundretallet",
-          "nittenhundretallet",
-          "andre_verdenskrig",
-          "etterkrigstiden",
-          "samtidshistorie"
-        ]
-      },
-      {
-        "id": "historie_byhistorie",
-        "name": "Byhistorie og urban utvikling",
-        "items": [
-          "byvekst",
-          "byplanlegging",
-          "infrastrukturhistorie",
-          "bydels_og_nabolagshistorie",
-          "riving_og_gentrifisering"
-        ]
-      },
-      {
-        "id": "historie_bygg_og_anlegg",
-        "name": "Bygg, anlegg og institusjoner",
-        "items": [
-          "offentlige_bygg",
-          "industri_og_fabrikker",
-          "havne_og_transportanlegg",
-          "militaere_anlegg",
-          "monumenter_og_minnesteder"
-        ]
-      },
-      {
-        "id": "historie_arbeidsliv",
-        "name": "Arbeidsliv og samfunnsliv",
-        "items": [
-          "arbeiderbevegelsen",
-          "hverdagsliv",
-          "yrkesmiljoer",
-          "streiker_og_konflikter",
-          "sosiale_klasser"
-        ]
-      },
-      {
-        "id": "historie_krig_og_konflikt",
-        "name": "Krig, okkupasjon og konflikt",
-        "items": [
-          "okkupasjonen_1940_45",
-          "motstandsarbeid",
-          "krigsminner",
-          "etterkrigsoppgjor",
-          "kald_krig"
-        ]
-      },
-      {
-        "id": "historie_migrasjon",
-        "name": "Migrasjon og minoritetshistorie",
-        "items": [
-          "innvandring",
-          "arbeidsmigrasjon",
-          "minoriteter",
-          "religionshistorie",
-          "integrasjon_og_segregasjon"
-        ]
-      },
-      {
-        "id": "historie_teknologi",
-        "name": "Vitenskap, teknologi og modernitet",
-        "items": [
-          "industrialisering",
-          "elektrisitet_og_energi",
-          "transporthistorie",
-          "medisin_og_folkehelse",
-          "digital_historie"
-        ]
-      },
-      {
-        "id": "historie_politisk_historie",
-        "name": "Politisk historie",
-        "items": [
-          "statsbygging",
-          "demokratisering",
-          "folkelige_bevegelser",
-          "maktens_steder",
-          "politiske_vendepunkter"
-        ]
-      },
-      {
-        "id": "historie_kriminalitet",
-        "name": "Ulykker, branner og kriminalhistorie",
-        "items": [
-          "bybranner",
-          "katastrofer",
-          "kriminalsaker",
-          "politi_og_justishistorie",
-          "historiske_myter"
-        ]
-      },
-      {
-        "id": "historie_kulturminner",
-        "name": "Kulturminner og bevaring",
-        "items": [
-          "vern_og_bevaring",
-          "antikvarisk_historie",
-          "gjenbruk_av_bygg",
-          "arkitektoniske_stilskifter",
-          "minnepolitikk"
-        ]
-      },
-      {
-        "id": "historie_kilder",
-        "name": "Kilder og historiearbeid",
-        "items": [
-          "arkiv",
-          "museer",
-          "lokalhistorie",
-          "historieforskning",
-          "historieformidling"
-        ]
-      }
-    ]
-  },
+    {
+      "id": "historie",
+      "name": "Historie",
+      "icon": "🏰",
+      "color": "#344B80",
+      "image": "bilder/merker/historie.PNG",
+      "description": "For dem som leter bakover for å forstå fremtiden. Historie er ikke fortid – det er minnets geografi.",
+      "tiers": [
+        { "label": "Vandrer", "threshold": 10 },
+        { "label": "Tidsvitne", "threshold": 25 },
+        { "label": "Kronikør", "threshold": 55 },
+        { "label": "Orakel", "threshold": 150 }
+      ],
+      "sub": [
+        "forhistorie",
+        "middelalder",
+        "tidlig_modernetid",
+        "attenhundretallet",
+        "nittenhundre_1900_1945",
+        "etterkrigstid",
+        "samtidshistorie",
+        "byhistorie",
+        "industrihistorie",
+        "krigshistorie",
+        "sosialhistorie",
+        "kulturminner_og_bevaring",
+        "krim_ulykker_og_branner",
+        "migrasjon_og_minoritetshistorie"
+      ]
+    },
 
-  {
-    "id": "politikk",
-    "name": "Politikk & samfunn",
-    "icon": "🏛️",
-    "color": "#c77dff",
-    "image": "bilder/merker/politikk.PNG",
-    "description": "For den som bryr seg om strukturene bak ordene. Politikk er kunsten å bygge det usynlige fellesskapet.",
-    "tiers": [
-      { "label": "Borger", "threshold": 10 },
-      { "label": "Taler", "threshold": 35 },
-      { "label": "Strateg", "threshold": 70 },
-      { "label": "Visjonær leder", "threshold": 150 }
-    ],
-    "subcategories": [
-      {
-        "id": "politikk_styringsnivaa",
-        "name": "Styringsnivåer",
-        "items": [
-          "kongen_og_monarkiet",
-          "stortinget",
-          "regjeringen",
-          "fylke",
-          "kommune"
-        ]
-      },
-      {
-        "id": "politikk_demokrati",
-        "name": "Demokrati og styreform",
-        "items": [
-          "valg",
-          "partipolitikk",
-          "representasjon",
-          "rettsstat",
-          "maktfordeling"
-        ]
-      },
-      {
-        "id": "politikk_institusjoner",
-        "name": "Offentlige institusjoner",
-        "items": [
-          "domstoler",
-          "politi",
-          "forvaltning",
-          "offentlig_tilsyn",
-          "statlige_etater"
-        ]
-      },
-      {
-        "id": "politikk_sivilsamfunn",
-        "name": "Det sivile liv",
-        "items": [
-          "frivillige_organisasjoner",
-          "interesseorganisasjoner",
-          "fagforeninger",
-          "aktivisme",
-          "grasrotbevegelser"
-        ]
-      },
-      {
-        "id": "politikk_religion",
-        "name": "Religion og livssyn",
-        "items": [
-          "statskirke",
-          "trossamfunn",
-          "sekularisering",
-          "livssynsmangfold",
-          "religion_i_offentligheten"
-        ]
-      },
-      {
-        "id": "politikk_medborgerskap",
-        "name": "Medborgerskap og rettigheter",
-        "items": [
-          "ytringsfrihet",
-          "likestilling",
-          "menneskerettigheter",
-          "minoritetspolitikk",
-          "inkludering"
-        ]
-      },
-      {
-        "id": "politikk_offentlighet",
-        "name": "Offentlighet og samfunnsdebatt",
-        "items": [
-          "offentlig_samtale",
-          "protester_og_demonstrasjoner",
-          "medienes_rolle",
-          "politisk_symbolikk",
-          "nasjonale_ritualer"
-        ]
-      }
-    ]
-  },
-   
-    {
-      "id": "kunst",
-      "label": "Kunst",
-      "sub": [
-        "maleri",
-        "skulptur",
-        "samtidskunst",
-        "grafikk",
-        "fotokunst",
-        "installasjonskunst"
-      ]
-    },
-    {
-      "id": "arkitektur",
-      "label": "Arkitektur",
-      "sub": [
-        "klassisk_arkitektur",
-        "modernisme",
-        "funksjonalisme",
-        "postmodernisme",
-        "samtidsarkitektur",
-        "byplanlegging"
-      ]
-    },
-    {
-      "id": "natur",
-      "label": "Natur",
-      "sub": [
-        "urbannatur",
-        "skog",
-        "vann_og_vassdrag",
-        "parklandskap",
-        "biologisk_mangfold",
-        "geologi"
-      ]
-    },
     {
       "id": "vitenskap",
-      "label": "Vitenskap",
+      "name": "Vitenskap & filosofi",
+      "icon": "🔬",
+      "color": "#9b59b6",
+      "image": "bilder/merker/vitenskap.PNG",
+      "description": "For dem som søker forståelse – fra små eksperimenter til de store spørsmålene. Kunnskap er ikke et mål, men en bevegelse mot klarhet.",
+      "tiers": [
+        { "label": "Student", "threshold": 10 },
+        { "label": "Tenker", "threshold": 30 },
+        { "label": "Forsker", "threshold": 60 },
+        { "label": "Visdomsbærer", "threshold": 150 }
+      ],
       "sub": [
         "naturvitenskap",
         "teknologi",
         "medisin",
-        "forskning",
-        "vitenskapshistorie"
+        "matematikk",
+        "psykologi_og_hjerne",
+        "forskning_og_metode",
+        "vitenskapshistorie",
+        "idehistorie_og_filosofi"
       ]
     },
+
     {
-      "id": "filosofi",
-      "label": "Filosofi",
+      "id": "kunst",
+      "name": "Kunst & kultur",
+      "icon": "🎨",
+      "color": "#ffb703",
+      "image": "bilder/merker/kunst.PNG",
+      "description": "For blikket som ser mening i former og farger. Kunstens språk er ikke ord – det er forbindelsen mellom menneske og uttrykk.",
+      "tiers": [
+        { "label": "Interessert", "threshold": 10 },
+        { "label": "Entusiast", "threshold": 25 },
+        { "label": "Kunstner", "threshold": 50 },
+        { "label": "Mesterverk", "threshold": 150 }
+      ],
       "sub": [
-        "etikk",
-        "eksistensialisme",
-        "politisk_filosofi",
-        "erkjennelsesteori",
-        "idehistorie"
+        "maleri",
+        "skulptur",
+        "tegning_og_grafikk",
+        "fotokunst",
+        "samtidskunst",
+        "street_art",
+        "kunsthistorie",
+        "design_og_form"
       ]
     },
+
     {
-      "id": "psykologi",
-      "label": "Psykologi",
+      "id": "by",
+      "name": "By & arkitektur",
+      "icon": "🏗️",
+      "color": "#e63946",
+      "image": "bilder/merker/by.PNG",
+      "description": "For den som forstår byens rytme – hvordan rom, struktur og mennesker former hverandre. Arkitektur er frosset musikk.",
+      "tiers": [
+        { "label": "Byvandrer", "threshold": 10 },
+        { "label": "Planlegger", "threshold": 30 },
+        { "label": "Arkitekt", "threshold": 60 },
+        { "label": "Visjonær", "threshold": 150 }
+      ],
       "sub": [
-        "sosialpsykologi",
-        "klinisk_psykologi",
-        "utviklingspsykologi",
-        "kognitiv_psykologi",
-        "psykologihistorie"
+        "klassisk_arkitektur",
+        "modernisme",
+        "funksjonalisme",
+        "brutalisme",
+        "postmodernisme",
+        "samtidsarkitektur",
+        "byplanlegging",
+        "infrastruktur",
+        "monumenter_og_landemerker",
+        "bolig_og_bomiljo"
       ]
     },
-    {
-      "id": "litteratur",
-      "label": "Litteratur",
-      "sub": [
-        "skjonnlitteratur",
-        "sakprosa",
-        "poesi",
-        "drama",
-        "dokumentarlitteratur"
-      ]
-    },
+
     {
       "id": "musikk",
-      "label": "Musikk",
+      "name": "Musikk & scenekunst",
+      "icon": "🎵",
+      "color": "#ff66cc",
+      "image": "bilder/merker/musikk.PNG",
+      "description": "For dem som hører verden som rytme. Musikk er ikke bare lyd – det er tiden som puster.",
+      "tiers": [
+        { "label": "Publikum", "threshold": 10 },
+        { "label": "Utøver", "threshold": 25 },
+        { "label": "Virtuos", "threshold": 55 },
+        { "label": "Legende", "threshold": 150 }
+      ],
       "sub": [
         "klassisk",
         "jazz",
         "pop",
         "rock",
         "elektronisk",
-        "samtidsmusikk"
+        "hiphop",
+        "samtidsmusikk",
+        "konsertsteder",
+        "scenekunst_og_show"
       ]
     },
+
     {
-      "id": "scenekunst",
-      "label": "Scenekunst",
+      "id": "litteratur",
+      "name": "Litteratur & poesi",
+      "icon": "📚",
+      "color": "#f6c800",
+      "image": "bilder/merker/litteratur.PNG",
+      "description": "For dem som lever i språket. Ord er ikke bare tegn, men dører til erkjennelse.",
+      "tiers": [
+        { "label": "Leser", "threshold": 10 },
+        { "label": "Fortolker", "threshold": 30 },
+        { "label": "Forfatter", "threshold": 60 },
+        { "label": "Litterær mester", "threshold": 150 }
+      ],
       "sub": [
-        "teater",
-        "samtidsdrama",
-        "revy",
-        "performance",
-        "impro_og_humor"
+        "skjonnlitteratur",
+        "sakprosa",
+        "poesi",
+        "drama",
+        "krim",
+        "barn_og_ungdom",
+        "klassikere",
+        "forfattere_og_litteratursteder"
       ]
     },
+
     {
-      "id": "film_tv",
-      "label": "Film og TV",
+      "id": "natur",
+      "name": "Natur & miljø",
+      "icon": "🌿",
+      "color": "#4caf50",
+      "image": "bilder/merker/natur.PNG",
+      "description": "For den som forstår at naturen ikke er et sted, men en relasjon. Å verne er å lytte.",
+      "tiers": [
+        { "label": "Vandrer", "threshold": 10 },
+        { "label": "Naturvenn", "threshold": 25 },
+        { "label": "Oppdager", "threshold": 50 },
+        { "label": "Jordens vokter", "threshold": 150 }
+      ],
       "sub": [
-        "film",
-        "tv_serier",
-        "dokumentarfilm",
-        "norsk_filmkanon",
-        "filmhistorie",
-        "kino"
+        "urbannatur",
+        "skog",
+        "vann_og_vassdrag",
+        "park_og_hage",
+        "biologisk_mangfold",
+        "geologi",
+        "insekter_og_smadyr",
+        "fugler"
       ]
     },
+
     {
-      "id": "media",
-      "label": "Media",
+      "id": "sport",
+      "name": "Sport & lek",
+      "icon": "⚽",
+      "color": "#2a9d8f",
+      "image": "bilder/merker/sport.PNG",
+      "description": "For kroppen som tenker i bevegelse. Lek er kulturens første språk – og dens siste frihet.",
+      "tiers": [
+        { "label": "Amatør", "threshold": 10 },
+        { "label": "Utøver", "threshold": 30 },
+        { "label": "Profesjonell", "threshold": 60 },
+        { "label": "Mester", "threshold": 150 }
+      ],
       "sub": [
-        "aviser",
-        "tv_kanaler",
-        "radio",
-        "nettmedier",
-        "sosiale_medier",
-        "journalistikk"
+        "fotball",
+        "hockey",
+        "friidrett",
+        "vintersport",
+        "kampsport",
+        "sykling",
+        "idrettsarenaer",
+        "olympiske_spor"
       ]
     },
+
+    {
+      "id": "politikk",
+      "name": "Politikk & samfunn",
+      "icon": "🏛️",
+      "color": "#c77dff",
+      "image": "bilder/merker/politikk.PNG",
+      "description": "For den som bryr seg om strukturene bak ordene. Politikk er kunsten å bygge det usynlige fellesskapet.",
+      "tiers": [
+        { "label": "Borger", "threshold": 10 },
+        { "label": "Taler", "threshold": 35 },
+        { "label": "Strateg", "threshold": 70 },
+        { "label": "Visjonær leder", "threshold": 150 }
+      ],
+      "sub": [
+        "storting_og_regjering",
+        "kommune_og_byraad",
+        "fylke_og_region",
+        "rettsstat_og_domstoler",
+        "politi_og_beredskap",
+        "interesseorganisasjoner",
+        "arbeiderbevegelse",
+        "aktivisme_og_protest",
+        "religion_og_livssyn_i_samfunn",
+        "velferd_og_institusjoner"
+      ]
+    },
+
+    {
+      "id": "naeringsliv",
+      "name": "Næringsliv & industri",
+      "icon": "🏭",
+      "color": "#ff8800",
+      "image": "bilder/merker/naeringsliv.PNG",
+      "description": "For dem som ser verdien i arbeidets historie – fra fabrikkpiper til gründere som forandret byen.",
+      "tiers": [
+        { "label": "Arbeider", "threshold": 10 },
+        { "label": "Gründer", "threshold": 30 },
+        { "label": "Industribygger", "threshold": 60 },
+        { "label": "Pioner", "threshold": 150 }
+      ],
+      "sub": [
+        "industri",
+        "handel_og_markeder",
+        "bank_og_finans",
+        "shipping_og_havn",
+        "teknologi_og_startups",
+        "mat_og_servering",
+        "butikkhistorie_og_kjeder",
+        "arbeidsliv_og_fag"
+      ]
+    },
+
     {
       "id": "populaerkultur",
-      "label": "Populærkultur",
+      "name": "Populærkultur",
+      "icon": "🎬",
+      "color": "#ffb703",
+      "image": "bilder/merker/populaerkultur.PNG",
+      "description": "For dem som forstår samtiden – hvem vi siterer, ser og følger. Popkultur er vår tids folkeeventyr.",
+      "tiers": [
+        { "label": "Publikum", "threshold": 5 },
+        { "label": "Fan", "threshold": 20 },
+        { "label": "Skaper", "threshold": 45 },
+        { "label": "Legende", "threshold": 150 }
+      ],
       "sub": [
         "dataspill",
         "e_sport",
         "fandom",
         "tegneserier",
         "manga_anime",
-        "rollespill_og_brettspill"
+        "rollespill_og_brettspill",
+        "cosplay_og_conventions",
+        "memes_og_virale_fenomener"
       ]
     },
+
     {
-      "id": "sport",
-      "label": "Sport",
+      "id": "subkultur",
+      "name": "Subkultur",
+      "icon": "🕶️",
+      "color": "#ff66cc",
+      "image": "bilder/merker/subkultur2.PNG",
+      "description": "For dem som lever i mellomrommet – der nye uttrykk fødes. Subkultur er fremtidens første språk.",
+      "tiers": [
+        { "label": "Figur", "threshold": 10 },
+        { "label": "Gatesmart", "threshold": 25 },
+        { "label": "Kultikon", "threshold": 100 },
+        { "label": "Underground-legende", "threshold": 150 }
+      ],
       "sub": [
-        "fotball",
-        "hockey",
-        "friidrett",
-        "vintersport",
-        "olympisk_historie"
+        "punk",
+        "hiphop",
+        "rave_og_klubbkultur",
+        "skate",
+        "graffiti",
+        "underground_scener",
+        "alternativ_mote",
+        "motkulturhistorie"
       ]
     },
-   
+
     {
-      "id": "naeringsliv",
-      "label": "Næringsliv",
+      "id": "film",
+      "name": "Film",
+      "icon": "🎞️",
+      "color": "#6c757d",
+      "image": "bilder/merker/film.PNG",
+      "description": "For dem som ser verden som scener, klipp og fortelling. Film er både drøm og dokument.",
+      "tiers": [
+        { "label": "Seer", "threshold": 10 },
+        { "label": "Kjenner", "threshold": 30 },
+        { "label": "Kurator", "threshold": 60 },
+        { "label": "Filmikon", "threshold": 150 }
+      ],
       "sub": [
-        "industri",
-        "handel",
-        "teknologi_og_startups",
-        "medieokonomi",
-        "arbeidsliv"
+        "spillefilm",
+        "kortfilm",
+        "dokumentarfilm",
+        "norsk_film",
+        "klassikere",
+        "filmfestivaler",
+        "filmproduksjon",
+        "filmlocations"
+      ]
+    },
+
+    {
+      "id": "tv",
+      "name": "TV",
+      "icon": "📺",
+      "color": "#00b4d8",
+      "image": "bilder/merker/tv.PNG",
+      "description": "For dem som følger serier, direktesendinger og de store felles øyeblikkene. TV er samtidens bålplass.",
+      "tiers": [
+        { "label": "Seer", "threshold": 10 },
+        { "label": "Serieglad", "threshold": 30 },
+        { "label": "Formatkjenner", "threshold": 60 },
+        { "label": "TV-legende", "threshold": 150 }
+      ],
+      "sub": [
+        "tv_serier",
+        "nyheter",
+        "underholdning",
+        "reality",
+        "dokumentar",
+        "sport_pa_tv",
+        "barne_tv",
+        "tv_produksjon"
+      ]
+    },
+
+    {
+      "id": "teater",
+      "name": "Teater",
+      "icon": "🎭",
+      "color": "#b5179e",
+      "image": "bilder/merker/teater.PNG",
+      "description": "For dem som liker live-øyeblikket: latter, drama, musikaler og nærkontakt med scenen.",
+      "tiers": [
+        { "label": "Publikum", "threshold": 10 },
+        { "label": "Kjenner", "threshold": 30 },
+        { "label": "Teatergjenger", "threshold": 60 },
+        { "label": "Sceneguru", "threshold": 150 }
+      ],
+      "sub": [
+        "drama",
+        "musikaler",
+        "revy",
+        "standup_og_humor",
+        "impro",
+        "barneteater"
+      ]
+    },
+
+    {
+      "id": "media",
+      "name": "Media",
+      "icon": "🗞️",
+      "color": "#ff595e",
+      "image": "bilder/merker/media.PNG",
+      "description": "For dem som ser hvordan historier blir til overskrifter, klikk og fellesskap. Media er offentlighetens motor.",
+      "tiers": [
+        { "label": "Leser", "threshold": 10 },
+        { "label": "Følger", "threshold": 30 },
+        { "label": "Redaktørblikk", "threshold": 60 },
+        { "label": "Offentlighetsmester", "threshold": 150 }
+      ],
+      "sub": [
+        "aviser",
+        "nettaviser",
+        "radio",
+        "tv_kanaler",
+        "journalistikk",
+        "tabloid",
+        "sosiale_medier",
+        "mediehus_og_redaksjoner"
+      ]
+    },
+
+    {
+      "id": "filosofi",
+      "name": "Filosofi",
+      "icon": "🧠",
+      "color": "#8338ec",
+      "image": "bilder/merker/filosofi.PNG",
+      "description": "For dem som liker å tenke langsomt og skarpt. Filosofi er kartet over spørsmålene.",
+      "tiers": [
+        { "label": "Spørrer", "threshold": 10 },
+        { "label": "Tenker", "threshold": 30 },
+        { "label": "Resonnør", "threshold": 60 },
+        { "label": "Idémester", "threshold": 150 }
+      ],
+      "sub": [
+        "etikk",
+        "eksistens",
+        "politisk_filosofi",
+        "erkjennelse",
+        "logikk",
+        "idehistorie"
+      ]
+    },
+
+    {
+      "id": "psykologi",
+      "name": "Psykologi",
+      "icon": "🧩",
+      "color": "#06d6a0",
+      "image": "bilder/merker/psykologi.PNG",
+      "description": "For dem som vil forstå mennesker – vaner, følelser, grupper og indre liv.",
+      "tiers": [
+        { "label": "Observer", "threshold": 10 },
+        { "label": "Forstår", "threshold": 30 },
+        { "label": "Analytiker", "threshold": 60 },
+        { "label": "Sinnskjenner", "threshold": 150 }
+      ],
+      "sub": [
+        "kognitiv_psykologi",
+        "sosialpsykologi",
+        "utviklingspsykologi",
+        "mental_helse",
+        "personlighet",
+        "psykologihistorie"
       ]
     }
   ]
