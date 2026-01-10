@@ -1,0 +1,69 @@
+Her er den kanoniske regelen (og praktisk opplegg) for at ett sted kan gi XP til flere merker uten dobbelt-kaos — og uten at du må kopiere data mellom filer.
+
+1) Hovedregel: ett sted = én primærkategori + flere “badge_refs”
+	•	place.category = én primær (brukes til “hvilket kartlag / hovedfilter / default badge”)
+	•	place.badge_refs = liste over merker/undermerker som stedet også tilhører (for XP, filtrering og visning)
+
+Dette gjør at NRK kan være:
+	•	category: "media" (primær)
+	•	badge_refs: ["tv","populaerkultur","politikk","film"] (sekundære – hvis du vil)
+
+2) Undermerker = bare IDs (ingen dobbelt data)
+	•	badge.sub er bare en liste med canonical under-IDer.
+	•	Et sted kan referere til undermerker direkte i badge_refs:
+	•	f.eks. "badge_refs": ["media","tv","tv_serier","tabloid","populaerkultur","fandom"]
+	•	Du slipper å “mappe” tags/knagger om til merker i runtime hvis du ikke vil.
+
+3) Hvordan XP beregnes uten å doble
+
+Én sjekk-in / unlock kan gi poeng til flere merker, men med caps:
+
+Anbefalt:
+	•	+1 til category (primær)
+	•	+1 til maks 2 ekstra fra badge_refs (de 2 første, eller de som matcher aktivitet/quiz)
+	•	(Valgfritt) badge_refs_priority kan styre rekkefølgen
+
+Dette hindrer at ett sted plutselig gir +1 til 12 merker.
+
+4) Canonical ID-regel (for å unngå kaos)
+	•	place.category må være topp-merke id (f.eks. "media", "tv", "film", "historie")
+	•	place.badge_refs kan inneholde:
+	•	topp-merker (f.eks. "media")
+	•	undermerker (f.eks. "tabloid", "tv_serier")
+	•	Ingen fritekst her. Kun ids som finnes i badges.json (topp eller sub).
+
+5) Visning i UI (uten “wonderkammer = relations”-rot)
+
+På placecard:
+	•	Vis category som “Hovedmerke”
+	•	Vis “Også relevant for:” = badge_refs (som chips)
+	•	Relations / tilknytning er separat (folk↔sted osv), og skal ikke blandes inn her.
+
+6) Minimal sted-mal som følger reglene
+
+(Dette er bare strukturen – ikke “masse kode”, bare et datapunkt du kan bruke som fasit.)
+
+
+{
+  "id": "nrk_marienlyst",
+  "name": "NRK Marienlyst",
+  "lat": 59.9323,
+  "lon": 10.7182,
+  "r": 200,
+  "category": "media",
+  "desc": "Nasjonalt medieknutepunkt: TV, radio og redaksjoner.",
+  "tags": ["tv", "radio", "studio", "redaksjon"],
+  "knagger": ["mediemaskin", "offentlighet", "formatlogikk"],
+  "badge_refs": ["tv", "populaerkultur", "politikk", "tabloid"]
+}
+
+7) Hvor “wonderkammer” passer inn i dette (kort)
+
+Wonderkammer-entries (stories/artifacts/pivots) kan:
+	•	være egne entries med place_scope.anchors: ["nrk_marienlyst"]
+	•	og de kan ha classification.tags/knagger + evt classification.badge_refs
+Men: stedet i seg selv trenger bare badge_refs for å “tilhøre flere merker”.
+
+⸻
+
+Hvis du svarer 2, lager jeg en helt konkret “sjekkliste” du kan bruke når du legger inn et nytt sted: hvilke felt du må fylle, og hvordan du velger category + badge_refs uten å tenke for mye.
