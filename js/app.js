@@ -1271,6 +1271,23 @@ window.addEventListener("hg:mpNextUp", (e) => {
         return window.showToast?.("Fant ikke stedet");
       }
 
+      if (t === "wk") {
+        const id = btn.dataset.wk;
+        if (!id) return;
+
+        // Åpne Wonderkammer-entry
+        if (window.Wonderkammer && typeof window.Wonderkammer.openEntry === "function") {
+          window.Wonderkammer.openEntry(id);
+        } else if (typeof window.openWonderkammerEntry === "function") {
+          window.openWonderkammerEntry(id);
+        } else {
+          console.warn("[mpNextUp] No Wonderkammer open handler found for", id);
+          window.showToast?.("Fant ikke Wonderkammer-visning");
+        }
+        return;
+      }
+
+      
       if (t === "story") {
         const nextId = btn.dataset.nextplace;
         if (!nextId) return;
