@@ -1619,6 +1619,8 @@ if (window.WONDERKAMMER) {
     const per = String(row?.person || row?.person_id || "").trim();
     if (!per) continue;
     window.WK_BY_PERSON[per] = Array.isArray(row?.chambers) ? row.chambers : [];
+    window.WK_PLACE_DOC = window.WK_PLACE_DOC || Object.create(null);
+    window.WK_PLACE_DOC[pid] = row;
   }
 }
     
