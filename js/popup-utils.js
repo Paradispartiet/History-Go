@@ -771,6 +771,32 @@ function renderWonderkammerSection(chambers, title = "Wonderkammer") {
   `;
 }
 
+function renderWonderkammerDossier(doc) {
+  if (!doc || typeof doc !== "object") return "";
+
+  const one = String(doc?.summary?.one_liner || "").trim();
+
+  const facts = Array.isArray(doc?.facts) ? doc.facts : [];
+  const factsTop = facts.slice(0, 4);
+
+  const factHtml = factsTop.length
+    ? `<ul class="hg-rel-list" style="margin:0;padding-left:0;list-style:none;">
+        ${factsTop.map(f => {
+          const label = String(f?.label || "").trim();
+          const val = String(f?.value || "").trim();
+          if (!label && !val) return "";
+          return `<li style="margin:8px 0;"><strong>${wkEsc(label || "Fakta")}</strong>: ${wkEsc(val)}</li>`;
+        }).join("")}
+      </ul>`
+    : `<p class="hg-muted">Ingen fakta ennå.</p>`;
+
+  return `
+    <div class="hg-section">
+      ${one ? `<p style="margin:0 0 10px;">${wkEsc(one)}</p>` : ""}
+      ${factHtml}
+    </div>
+  `;
+}
 
 window.showPlacePopup = function(place) {
   if (!place) return;
