@@ -972,6 +972,22 @@ window.openPlaceCard = async function (place) {
   const btnNote   = document.getElementById("pcNote");
   const btnObs    = document.getElementById("pcObserve");
   const btnClose  = document.getElementById("pcClose");
+
+// --- pc-actions: ikonmodus (mobilvennlig) ---
+const setPcIcon = (btn, icon, label) => {
+  if (!btn) return;
+  btn.textContent = icon;
+  btn.setAttribute("aria-label", label);
+  btn.title = label;
+  btn.classList.add("pc-iconbtn");
+};
+
+setPcIcon(btnInfo,  "ℹ️", "Mer info");
+setPcIcon(btnQuiz,  "🧠", "Quiz");
+setPcIcon(btnRoute, "🧭", "Rute");
+setPcIcon(btnObs,   "👁️", "Observasjon");
+setPcIcon(btnNote,  "📝", "Notat");
+setPcIcon(btnClose, "✕",  "Lukk");
   
   if (!card) return;
 
