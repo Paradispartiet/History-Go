@@ -353,6 +353,22 @@ function makePopup(html, extraClass = "", onClose = null) {
       }
     };
   });
+
+  // klikkbare Wonderkammer-entries
+el.querySelectorAll("[data-wk]").forEach(btn => {
+  btn.onclick = () => {
+    const id = String(btn.dataset.wk || "").trim();
+    if (!id) return;
+
+    if (window.Wonderkammer && typeof window.Wonderkammer.openEntry === "function") {
+      window.Wonderkammer.openEntry(id);
+    } else if (typeof window.openWonderkammerEntry === "function") {
+      window.openWonderkammerEntry(id);
+    } else {
+      console.warn("[WK] No open handler for entry", id);
+    }
+  };
+});
   
   function finishClose() {
     if (_closed) return;
