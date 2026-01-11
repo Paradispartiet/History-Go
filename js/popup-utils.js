@@ -981,8 +981,21 @@ const setPcIcon = (btn, icon, label) => {
 };
 
 setPcIcon(btnInfo,  "ℹ️", "Mer info");
-setPcIcon(btnQuiz,  "🧠", "Quiz");
-setPcIcon(btnRoute, "🧭", "Rute");
+  
+if (btnQuiz) {
+  btnQuiz.textContent = "Quiz";
+  btnQuiz.setAttribute("aria-label", "Quiz");
+  btnQuiz.title = "Quiz";
+  btnQuiz.classList.remove("pc-iconbtn");
+}
+
+if (btnRoute) {
+  btnRoute.textContent = "Rute";
+  btnRoute.setAttribute("aria-label", "Rute");
+  btnRoute.title = "Rute";
+  btnRoute.classList.remove("pc-iconbtn");
+}
+  
 setPcIcon(btnObs,   "👁️", "Observasjon");
 setPcIcon(btnNote,  "📝", "Notat");
 setPcIcon(btnClose, "✕",  "Lukk");
