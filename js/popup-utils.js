@@ -711,11 +711,9 @@ window.showPlacePopup = function(place) {
 
   const rels = window.REL_BY_PLACE?.[place.id] || [];
 
-const peopleHere = rels
-  .map(r => r.person)
-  .filter(Boolean)
-  .map(pid => window.PEOPLE.find(p => p.id === pid))
-  .filter(Boolean);
+const peopleHere = (typeof getPeopleForPlace === "function")
+  ? getPeopleForPlace(place.id)
+  : [];
   
   const categoryId = place.category || null;
   const completed = hasCompletedQuiz(place.id);
