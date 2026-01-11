@@ -296,16 +296,6 @@
   transform: translateY(2px);
 }
 
-/* ===================================================== */
-/* Kartet må stoppe før panelet                           */
-/* ===================================================== */
-
-#map, #mapContainer{
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  bottom: var(--pc-height);
-}
-
 
 /* pc-body blir et “kolonne-layout” */
 #placeCard .pc-body{
@@ -409,12 +399,6 @@
 /* Handle skal fortsatt synes */
 #placeCard.is-collapsed::before{
   margin: 10px auto 0;
-}
-
-/* Kartet skal gå helt til bunn når placeCard er minimert */
-body.pc-collapsed #map,
-body.pc-collapsed #mapContainer{
-  bottom: var(--pc-collapsed-h);
 }
 
 /* =========================
