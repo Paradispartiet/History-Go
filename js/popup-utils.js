@@ -839,6 +839,7 @@ const peopleHere = (typeof getPeopleForPlace === "function")
 
       <button class="hg-quiz-btn" data-quiz="${place.id}">Ta quiz</button>
 
+      ${wkDocHtml}
       ${wkHtml}
       ${chambersHtml}
     
