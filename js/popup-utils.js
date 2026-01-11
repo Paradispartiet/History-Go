@@ -1050,23 +1050,20 @@ try {
   console.warn("[mpNextUp]", e);
 }
 
-  // VUNDERKAMRE (vises over personlista)
-  const chambersHtml = (typeof wonderChambersForPlace === "function")
-    ? wonderChambersForPlace(place)
-    : "";
+ 
+  
   
   // --- Render personer + flora (flora = kun bilder) i placeCard ---
   if (peopleEl) {
     const peopleHtml =
-      (chambersHtml || "") +
-      persons
-        .map(p => `
-          <button class="pc-person" data-person="${p.id}">
-            <img src="${p.image}" class="pc-person-img" alt="">
-            <span>${p.name}</span>
-          </button>
-        `)
-        .join("");
+  persons
+    .map(p => `
+      <button class="pc-person" data-person="${p.id}">
+        <img src="${p.image}" class="pc-person-img" alt="">
+        <span>${p.name}</span>
+      </button>
+    `)
+    .join("");
 
     const floraHtml =
       floraHere.length
