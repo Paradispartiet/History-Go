@@ -616,6 +616,9 @@ window.showPersonPopup = function(person) {
   const chambersHtml = (typeof wonderChambersForPerson === "function")
     ? wonderChambersForPerson(person)
     : "";
+
+  const wkChambers = window.WK_BY_PLACE?.[place.id] || [];
+  const wkHtml = renderWonderkammerSection(wkChambers, "Wonderkammer");
   
   const html = `
     <img src="${face}" class="hg-popup-face">
@@ -631,6 +634,7 @@ window.showPersonPopup = function(person) {
         : `<p class="hg-muted">Ingen registrerte verk.</p>`
         }
         <button class="hg-quiz-btn" data-quiz="${person.id}">Ta quiz</button>
+        
     </div>
 
 
