@@ -700,9 +700,58 @@ window.showPersonPopup = function(person) {
   });
 };
 
+
 // ============================================================
 // 4. STEDS-POPUP
 // ============================================================
+function wkEsc(s){
+  return String(s ?? "")
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+}
+
+function renderWonderkammerSection(chambers, title = "Wonderkammer") {
+  const list = Array.isArray(chambers) ? chambers : [];
+  if (!list.length) {
+    return `
+      <div class="hg-section">
+        <h3>${wkEsc(title)}</h3>
+        <p class="hg-muted">Ingen Wonderkammer-koblinger ennå.</p>
+      </div>
+    `;
+  }
+
+  // Støtter både string-id og obj-varianter
+  const rows = list.map((c) => {
+    const id = String(c?.id ?? c?.entry_id ?? c ?? "").trim();
+    if (!id) return "";
+
+    const label =
+      String(c?.title ?? c?.label ?? c?.name ?? id).trim();
+
+    return `
+      <li style="margin:8px 0;">
+        <button class="hg-rel-link" data-wk="${wkEsc(id)}">
+          <strong>${wkEsc(label)}</strong>
+        </button>
+      </li>
+    `;
+  }).join("");
+
+  return `
+    <div class="hg-section">
+      <h3>${wkEsc(title)}</h3>
+      <ul class="hg-rel-list" style="margin:0;padding-left:0;list-style:none;">
+        ${rows || `<li><p class="hg-muted">Ingen Wonderkammer-koblinger ennå.</p></li>`}
+      </ul>
+    </div>
+  `;
+}
+
+
 window.showPlacePopup = function(place) {
   if (!place) return;
 
