@@ -798,6 +798,9 @@ const peopleHere = (typeof getPeopleForPlace === "function")
   const chambersHtml = (typeof wonderChambersForPlace === "function")
     ? wonderChambersForPlace(place)
     : "";
+
+  const wkChambers = window.WK_BY_PERSON?.[person.id] || [];
+  const wkHtml = renderWonderkammerSection(wkChambers, "Wonderkammer");
   
   const html = `
       <img src="${img}" class="hg-popup-img">
