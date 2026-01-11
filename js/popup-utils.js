@@ -289,7 +289,7 @@ function buildWonderChamberHtml({ title, rels }) {
     ${title ? `<h3>${title}</h3>` : ``}
       ${
         list.length
-          ? `<ul style="margin:0;padding-left:18px;">${list.map(renderRelationRow).join("")}</ul>`
+          ? `<ul class="hg-rel-list" style="margin:0;padding-left:0;list-style:none;">${list.map(renderRelationRow).join("")}</ul>`
           : `<p class="hg-muted">Ingen relasjoner registrert ennå.</p>`
       }
     </div>
