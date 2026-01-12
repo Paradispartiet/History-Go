@@ -171,41 +171,38 @@
       <div id="pcPeople" class="pc-people"></div>
     </div>
 
+    
     <!-- FAST BUNN -->
     <div class="pc-footer">
-      <!-- NY: footer-splitt (UNDER actions) -->
-<div class="pc-footer-split">
+      
+<!-- Footer stack: miniProfile over NextUp (full bredde) -->
+<div class="pc-footer-stack">
 
-  <!-- ROW: mini-profil (venstre) + nextup (høyre) -->
-  <div class="mp-row">
-
-    <!-- VENSTRE: MINI-PROFIL (klikkbar hel boks → profile.html) -->
-    <a id="miniProfile" class="panel mini-profile mini-profile--link" href="profile.html">
-      <div class="info">
-        <div class="profile-top">
-          <h3 id="miniName">Utforsker #182</h3>
-          <!-- Pila er overflødig nå (kan slettes) -->
-        </div>
-
-        <p id="miniStats" class="muted">
-          <span id="linkPlaces" class="linkish">0 steder</span> ·
-          <span id="linkBadges" class="linkish">0 merker</span> ·
-          <span id="linkQuiz" class="linkish">0 quizzer</span>
-        </p>
-
-        <div id="miniBadges" class="profile-badges"></div>
-
-        <div id="miniLastQuiz" class="profile-last-quiz" style="display:none;">
-          <img id="miniLastQuizImg" src="">
-          <span id="miniLastQuizName"></span>
-        </div>
+  <a id="miniProfile" class="panel mini-profile mini-profile--link" href="profile.html">
+    <div class="info">
+      <div class="profile-top">
+        <h3 id="miniName">Utforsker #182</h3>
       </div>
-    </a>
 
-    <!-- HØYRE: NextUp (ÉN eneste mpNextUp i hele dokumentet) -->
-    <div id="mpNextUp" class="pc-nextup-right"></div>
+      <p id="miniStats" class="muted">
+        <span id="linkPlaces" class="linkish">0 steder</span> ·
+        <span id="linkBadges" class="linkish">0 merker</span> ·
+        <span id="linkQuiz" class="linkish">0 quizzer</span>
+      </p>
 
-  </div>
+      <div id="miniBadges" class="profile-badges"></div>
+
+      <div id="miniLastQuiz" class="profile-last-quiz" style="display:none;">
+        <img id="miniLastQuizImg" src="">
+        <span id="miniLastQuizName"></span>
+      </div>
+    </div>
+  </a>
+
+  <!-- NextUp under miniProfile -->
+  <div id="mpNextUp" class="pc-nextup"></div>
+
+</div>
 
 <div class="pc-actions">
         <button id="pcInfo"    class="secondary">Mer info</button>
