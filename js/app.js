@@ -455,17 +455,12 @@ function renderPlaceCard(p) {
 
 window.renderNearbyPlaces = renderNearbyPlaces;
 
-window.setNearbyCollapsed = function (collapsed) {
+// ✅ API: bruk denne fra "Se kart" osv. for å skjule/vis hele panelet
+window.setNearbyCollapsed = function (hidden) {
   const container = document.getElementById("nearbyListContainer");
   if (!container) return;
 
-  const btn = container.querySelector(".leftpanel-head .nearby-toggle-btn");
-  if (btn) {
-    const chev = btn.querySelector(".chev");
-    const label = btn.querySelector(".label");
-    if (chev) chev.textContent = collapsed ? "▸" : "▾";
-    if (label) label.textContent = collapsed ? "Vis" : "Minimer";
-  }
+  container.classList.toggle("is-hidden", !!hidden);
 };
 
 // =====================================================
