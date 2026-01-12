@@ -1,18 +1,10 @@
-/* layout.css – header/main/panel */
+/* layout.css – kun struktur for ikke-app-sider
+   Appen (body.hg-app) styles i theme.css (scopet).
+*/
 
-header{
-  position: relative;
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 16px 14px;
-
-  /* sort/samme som placecard */
-  background: var(--panel-bg, #121212);
-border-bottom: 1px solid rgba(255,255,255,.06);
-}
-
+/* =========================
+   Global base layout
+   ========================= */
 main {
   position: relative;
   z-index: 2;
@@ -24,38 +16,69 @@ main {
   overflow: visible;
 }
 
-/* Brand med ikon i headeren */
-.brand {
+/* =========================
+   Header / brand (IKKE app)
+   ========================= */
+body:not(.hg-app) header{
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 14px;
+
+  background: var(--panel-bg, #121212);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+
+/* Brand med ikon i headeren (IKKE app) */
+body:not(.hg-app) .brand{
   display: flex;
   align-items: center;
   gap: 10px;
   font-weight: 800;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   color: #fff;
   text-transform: uppercase;
   letter-spacing: 0.3px;
+  white-space: nowrap;
 }
 
-.brand-logo {
-  width: 34px;
-  height: 34px;
+body:not(.hg-app) .brand-logo{
+  width: 30px;
+  height: 30px;
   object-fit: contain;
   border-radius: 6px;
   background: rgba(255,255,255,0.1);
   padding: 3px;
 }
 
-.brand-name {
+body:not(.hg-app) .brand-name{
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   font-weight: 700;
   color: #f6c800;
+  white-space: nowrap;
 }
 
-.actions{ display:flex; gap:10px; align-items:center }
-.toggle{ display:flex; gap:6px; align-items:center; font-size:.9rem }
-.toggle input{ accent-color: var(--primary) }
+/* Actions (IKKE app) */
+body:not(.hg-app) .actions{
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
 
-.top-actions {
+body:not(.hg-app) .toggle{
+  display:flex;
+  gap:6px;
+  align-items:center;
+  font-size:.9rem;
+}
+
+body:not(.hg-app) .toggle input{
+  accent-color: var(--primary);
+}
+
+body:not(.hg-app) .top-actions{
   display: flex;
   align-items: center;
   gap: 10px;
