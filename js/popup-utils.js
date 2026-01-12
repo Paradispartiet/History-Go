@@ -616,12 +616,6 @@ window.showPersonPopup = function(person) {
   const chambersHtml = (typeof wonderChambersForPerson === "function")
     ? wonderChambersForPerson(person)
     : "";
-
-  const wkDoc = window.WK_PLACE_DOC?.[place.id] || null;
-  const wkDocHtml = wkDoc ? renderWonderkammerDossier(wkDoc) : "";
-
-  const wkChambers = window.WK_BY_PLACE?.[place.id] || [];
-  const wkHtml = renderWonderkammerSection(wkChambers, "Wonderkammer");
   
   const html = `
     <img src="${face}" class="hg-popup-face">
