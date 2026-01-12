@@ -296,25 +296,16 @@
 }
 
 
-/* pc-body blir et “kolonne-layout” */
+/* pc-body: alt innhold i én fast sheet (ingen intern scroll) */
 #placeCard .pc-body{
   height: calc(100% - 18px);
   display: flex;
   flex-direction: column;
-  overflow: hidden; /* scroll skjer i .pc-scroll */
-}
+  overflow: hidden;
 
-/* Midten scroller */
-#placeCard .pc-scroll{
-  flex: 1 1 auto;
-  overflow: hidden;          /* ✅ ingen scroll */
+  /* flyttet hit fra .pc-scroll */
   padding: var(--pc-pad);
   padding-bottom: 10px;
-
-  /* ✅ tving innhold til å ligge under hverandre */
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
 }
 
 /* ✅ rekkefølge: miniProfile først, NextUp under */
@@ -328,7 +319,14 @@
   padding: 0 var(--pc-pad) calc(var(--pc-pad) + env(safe-area-inset-bottom));
   background: var(--panel-bg, #000);
   border-top: 1px solid rgba(255,255,255,.06);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
+
+#placeCard #miniProfile{ order: 1; }
+#placeCard .hg-nextup{ order: 2; }
+#placeCard .pc-actions{ order: 3; }
 
 /* Actions: bunnlinje (thin) */
 #placeCard .pc-actions{
