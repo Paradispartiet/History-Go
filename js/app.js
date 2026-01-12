@@ -459,9 +459,6 @@ window.setNearbyCollapsed = function (collapsed) {
   const container = document.getElementById("nearbyListContainer");
   if (!container) return;
 
-  container.classList.toggle("is-collapsed", !!collapsed);
-  try { localStorage.setItem("hg_nearby_collapsed", collapsed ? "1" : "0"); } catch {}
-
   const btn = container.querySelector(".leftpanel-head .nearby-toggle-btn");
   if (btn) {
     const chev = btn.querySelector(".chev");
@@ -2061,9 +2058,6 @@ document.addEventListener("keydown", e => {
 window.setNearbyCollapsed = function (collapsed) {
   const container = document.getElementById("nearbyListContainer");
   if (!container) return;
-
-  container.classList.toggle("is-collapsed", !!collapsed);
-  try { localStorage.setItem("hg_nearby_collapsed", collapsed ? "1" : "0"); } catch {}
 
   const btn = container.querySelector(".leftpanel-head .nearby-toggle-btn");
   if (btn) {
