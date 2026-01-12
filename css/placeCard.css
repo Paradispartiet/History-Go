@@ -174,34 +174,47 @@
 /* ===================================================== */
 
 #placeCard .hg-nextup{
-  margin: 6px 0 8px 0;
-  padding: 6px 10px;
+  /* ✅ full bredde, under miniProfile */
+  width: 100%;
+  max-width: none;
+  flex: 0 0 100%;
+  grid-column: 1 / -1;
+  box-sizing: border-box;
+
+  margin: 6px 0 0 0;
+  padding: 8px 10px;
   border-radius: 10px;
 
-  /* flat/tynn */
+  /* ✅ flat */
   background: rgba(255,255,255,0.03);
   border: 1px solid rgba(255,255,255,0.07);
   box-shadow: none;
 }
 
+/* ✅ 2 “linjer” (2 rader) med 2 kolonner */
+#placeCard .hg-nextup-lines{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px 10px;
+}
+
 #placeCard .hg-nextup-lines > div{
-  margin: 2px 0;
+  margin: 0;
   font-size: 0.85rem;
   line-height: 1.15;
   color: rgba(255,255,255,0.92);
 
-  /* pen avkorting */
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-/* ✅ NextUp: kun 2 linjer */
-#placeCard .hg-nextup-lines > div:nth-child(n+3){
-  display: none;
+/* ✅ "Fordi: ..." (siste linje) skal være full bredde */
+#placeCard .hg-nextup-lines > div:last-child{
+  grid-column: 1 / -1;
 }
 
-/* ✅ fjern “knapp” i NextUp (flat) */
+/* ✅ ingen knapp i NextUp */
 #placeCard .hg-nextup-btn{
   display: none;
 }
@@ -241,22 +254,23 @@
 /* ===================================================== */
 
 #placeCard #miniProfile{
+  /* ✅ full bredde, egen rad */
+  width: 100%;
+  max-width: none;
+  flex: 0 0 100%;
+  grid-column: 1 / -1;
+  box-sizing: border-box;
+
   margin-top: 8px;
-  padding: 6px 10px;
   border-radius: 10px;
 
-  /* flat/tynn */
+  /* ✅ flat */
   background: rgba(255,255,255,0.03);
   border: 1px solid rgba(255,255,255,0.07);
   box-shadow: none;
 
-  /* typografi */
-  font-size: 0.85rem;
-  line-height: 1.15;
-
-  /* ✅ hold den “to-linjers” ved å klippe høyde */
-  max-height: 2.6em;
-  overflow: hidden;
+  padding: 8px 10px;
+  position: static !important;
 }
 
 /* stram bort default margins inni */
@@ -369,11 +383,6 @@
   padding: 0;
 }
 
-/* MiniProfile nederst: ingen ekstra spacing som stjeler plass */
-#placeCard #miniProfile{
-  margin-top: 10px;
-  margin-bottom: 0;
-}
 
 /* --- FIX: pcPeople / personlinjer skal ikke være grå --- */
 #pcPeople,
