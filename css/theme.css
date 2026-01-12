@@ -147,6 +147,18 @@ body.hg-app .brand-name{
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   font-weight: 700;
   color: #f6c800; /* gul History Go-tone */
+  white-space: nowrap;   /* ✅ ekstra failsafe */
+  line-height: 1;        /* ✅ strammer høyden */
+}
+
+/* ✅ hvis markupen har <br> mellom HISTORY og GO */
+body.hg-app .brand-name br{
+  display: none;
+}
+
+/* ✅ hvis markupen har spans/divs inni som kan være block */
+body.hg-app .brand-name *{
+  display: inline;
 }
 
 body.hg-app .actions{ display:flex; gap:10px; align-items:center }
