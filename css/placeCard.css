@@ -295,6 +295,13 @@
   padding-bottom: 0;
   background: transparent;
 
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+
+  padding-bottom: 8px; /* gir litt luft før safe-area padding i footer */
+  
   display: flex;
   flex-wrap: nowrap;         /* ✅ én linje */
   align-items: center;
@@ -302,6 +309,8 @@
   gap: 8px;
   border-top: 1px solid rgba(255,255,255,0.08);
 }
+
+#placeCard .pc-actions::-webkit-scrollbar{ display:none; }
 
 /* Icon-only knapper i bunnlinja */
 #pcObserve, #pcNote, #pcClose{
@@ -321,6 +330,23 @@
 #pcObserve, #pcNote, #pcClose{
   background: rgba(255,255,255,0.05);
   border: 1px solid rgba(255,255,255,0.14);
+}
+
+/* Kompakt bunnlinje for alle knapper i pc-actions */
+#placeCard .pc-actions button{
+  height: 34px;
+  padding: 0 12px;
+  font-size: 14px;
+  border-radius: 999px;
+  line-height: 1;
+}
+
+/* Ikonknapper skal fortsatt være smale */
+#placeCard .pc-actions #pcObserve,
+#placeCard .pc-actions #pcNote,
+#placeCard .pc-actions #pcClose{
+  width: 34px;
+  padding: 0;
 }
 
 /* MiniProfile nederst: ingen ekstra spacing som stjeler plass */
