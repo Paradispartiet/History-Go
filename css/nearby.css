@@ -16,7 +16,8 @@
   position: fixed;
   left: 0;
   top: calc(var(--hg-header-h) + var(--hg-header-gap));
-  bottom: var(--hg-placecard-h);
+  bottom: 0;
+  padding-bottom: env(safe-area-inset-bottom);
   width: var(--hg-leftpanel-w);
   z-index: 20;
 
