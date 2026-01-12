@@ -15,10 +15,12 @@
 #nearbyListContainer{
   position: fixed;
   left: 0;
+  right: 0; /* NY */
   top: calc(var(--hg-header-h) + var(--hg-header-gap));
-  bottom: 0;
+  bottom: auto; /* ENDRET */
+  height: 128px; /* NY */
   padding-bottom: env(safe-area-inset-bottom);
-  width: var(--hg-leftpanel-w);
+  width: auto; /* ENDRET */
   z-index: 20;
 
   background: var(--hg-frame-bg);
