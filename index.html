@@ -97,10 +97,26 @@
   <div class="leftpanel-head">
     <div class="leftpanel-title">Utforsk</div>
 
-    <select id="leftPanelMode" class="leftpanel-select" aria-label="Velg visning">
+        <div class="nearby-row1">
+      <div class="nearby-tabs" role="tablist" aria-label="Utforsk">
+        <button class="nearby-tab is-active" data-leftmode="nearby" type="button">Nærmeste</button>
+        <button class="nearby-tab" data-leftmode="routes" type="button">Ruter</button>
+        <button class="nearby-tab" data-leftmode="badges" type="button">Merker</button>
+        <button class="nearby-tab" data-leftmode="people" type="button">People</button>
+      </div>
+
+      <div class="nearby-searchwrap">
+        <input id="nearbySearch" class="nearby-search" type="search" placeholder="Søk…" autocomplete="off">
+        <span id="geoStatus" class="geo-status geo-unknown" title="Posisjonstatus">…</span>
+      </div>
+    </div>
+
+    <!-- behold select i DOM skjult for bakoverkomp (JS kan fortsatt bruke den om du vil) -->
+    <select id="leftPanelMode" class="leftpanel-select" aria-label="Velg visning" style="display:none">
       <option value="nearby" selected>Nærmeste</option>
       <option value="routes">Ruter</option>
       <option value="badges">Merker</option>
+      <option value="people">People</option>
     </select>
   </div>
 
@@ -108,8 +124,12 @@
 
     <!-- 1) Nærmeste -->
     <section id="panelNearby" class="leftpanel-view">
-      <div id="status" class="muted">Henter posisjon…</div>
-      <div id="nearbyList"></div>
+      <!-- status beholdes for logging/feilsøk, men skjules visuelt -->
+      <div id="status" class="muted" style="display:none">Henter posisjon…</div>
+
+      <div class="nearby-row2">
+        <div id="nearbyList" class="nearby-strip"></div>
+      </div>
     </section>
 
     <!-- 2) Ruter -->
@@ -125,6 +145,11 @@
       <div id="leftBadgesList" class="leftpanel-list"></div>
     </section>
 
+      <!-- 4) People -->
+    <section id="panelPeople" class="leftpanel-view" style="display:none;">
+      <div class="leftpanel-hint muted">People (kommer).</div>
+      <div id="leftPeopleList" class="leftpanel-list"></div>
+    </section>
   </div>
 </div>
 
