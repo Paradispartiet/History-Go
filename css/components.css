@@ -26,6 +26,47 @@
 .card .row{ display:flex; gap:8px; align-items:center }
 .card .row.between{ justify-content:space-between }
 
+
+/* ===================================================== */
+/* Person-galleri (rundt ikon + navn + klikk)            */
+/* ===================================================== */
+#gallery{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px 12px;
+  align-items:flex-start;
+}
+
+.person-card{
+  display:inline-flex;
+  flex-direction:column;
+  align-items:center;
+  cursor:pointer;
+  margin:6px 4px;
+  transition:transform .25s ease, opacity .25s ease;
+}
+
+.person-card:hover{ transform:scale(1.08); opacity:.92; }
+
+.person-thumb{
+  width:72px; height:72px;
+  border-radius:50%;
+  object-fit:cover;
+  background:#111;
+  border:2px solid rgba(255,255,255,.2);
+  box-shadow:0 0 6px rgba(0,0,0,.4);
+  margin-bottom:6px;
+}
+
+.person-label{
+  font-size:.8rem;
+  text-align:center;
+  line-height:1.2;
+  color:#fff;
+  max-width:92px;
+  white-space:normal;
+}
+
 /* ===================================================== */
 /* 5) Knapper & chips/badges                             */
 /* ===================================================== */
