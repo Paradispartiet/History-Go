@@ -95,7 +95,9 @@ body.hg-app header{
   z-index: 10;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
+  gap: 10px;
+  flex-wrap: nowrap;
   padding: 5px 9px;
   background: linear-gradient(180deg, rgba(10,25,41,.95), rgba(10,25,41,.65) 70%, transparent);
 }
@@ -132,6 +134,8 @@ body.hg-app .brand{
   text-transform: uppercase;
   letter-spacing: 0.3px;
   white-space: nowrap;   /* ✅ hindrer HISTORY / GO på to linjer */
+  flex: 0 0 auto;
+  min-width: max-content;
 }
 
 body.hg-app .brand-logo{
@@ -188,9 +192,9 @@ body.hg-app .toggle input{ accent-color: var(--primary) }
 }
 
 /* Search box – History Go mørk stil */
-#globalSearch {
-  flex: 0 1 clamp(170px, 38vw, 240px);
-  width: clamp(170px, 38vw, 240px);
+ #globalSearch {
+  flex: 0 1 320px;
+  width: min(320px, 42vw);
   max-width: 240px;
 
   padding: 5px 10px;   /* litt strammere */
