@@ -39,6 +39,7 @@
   --primary: #1976d2;
   --ok: #2ecc71;              /* "OK"-grønn – FIX: gyldig hex + ; */
   --warn: #ffb703;
+  --yellow: #f6c800;
 
     /* Kategorifarger (fra badges.json) */
   --cat-historie:       #344B80;
@@ -69,15 +70,20 @@
 }
 
 body.hg-app *{box-sizing:border-box}
-body.hg-app{
-  min-height:100%;
+
+body.hg-app, 
+body.hg-app *{
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
+
 body.hg-app{
   margin:0;
+  min-height:100%;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
   background: var(--bg);
   color: var(--text);
-  font-size: 1.05rem;        /* ca 5% større tekst */
+  font-size: 1rem;        /* <- viktig */
   line-height: 1.55;
 }
 body.hg-app .muted{color:var(--muted)}
