@@ -263,12 +263,21 @@ const el = {
 // ==============================
 window.addEventListener("hg:geo", (e) => {
   const st = e.detail?.status;
-  if (!el.status) return;
+  const icon = document.getElementById("geoStatus");
+  if (!icon) return;
 
-  if (st === "requesting") el.status.textContent = "Henter posisjon…";
-  else if (st === "granted") el.status.textContent = "Posisjon funnet.";
-  else if (st === "blocked") el.status.textContent = "Posisjon blokkert.";
-  else if (st === "unsupported") el.status.textContent = "Geolokasjon støttes ikke.";
+  icon.classList.remove("geo-ok","geo-bad","geo-unknown");
+
+  if (st === "granted" || st === "test") {
+    icon.classList.add("geo-ok");
+    icon.textContent = "✅";
+  } else if (st === "blocked" || st === "unsupported") {
+    icon.classList.add("geo-bad");
+    icon.textContent = "⛔";
+  } else {
+    icon.classList.add("geo-unknown");
+    icon.textContent = "…";
+  }
 });
 
 // ==============================
@@ -410,8 +419,16 @@ function renderNearbyPlaces() {
     }))
     .sort((a, b) => (a._d ?? 1e12) - (b._d ?? 1e12));
 
-  el.list.innerHTML = sorted.map(renderPlaceCard).join("");
-}
+  const q = (window.HG_NEARBY_QUERY || "").trim().toLowerCase();
+  const filtered = q
+    ? sorted.filter(p => String(p.name || "").toLowerCase().includes(q))
+    : sorted;
+
+  el.list.innerHTML = filtered.map(renderPlaceCard).join("");
+  }
+
+
+
 function renderPlaceCard(p) {
   const dist =
     p._d == null
