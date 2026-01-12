@@ -310,7 +310,18 @@
   overflow: hidden;          /* ✅ ingen scroll */
   padding: var(--pc-pad);
   padding-bottom: 10px;
+
+  /* ✅ tving innhold til å ligge under hverandre */
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
+
+/* ✅ rekkefølge: miniProfile først, NextUp under */
+#placeCard #miniProfile{ order: 1; }
+#placeCard .hg-nextup{ order: 2; }
+
+
 /* Bunn er fast (alltid synlig) */
 #placeCard .pc-footer{
   flex: 0 0 auto;
