@@ -1074,7 +1074,9 @@ window.openPlaceCard = async function (place) {
   const btnObs    = document.getElementById("pcObserve");
   const btnClose  = document.getElementById("pcClose");
 
-// --- pc-actions: ikonmodus (mobilvennlig) ---
+// --- pc-actions: ikonmodus (kun på smale skjermer) ---
+const isNarrow = window.matchMedia && window.matchMedia("(max-width: 520px)").matches;
+
 const setPcIcon = (btn, icon, label) => {
   if (!btn) return;
   btn.textContent = icon;
@@ -1083,25 +1085,30 @@ const setPcIcon = (btn, icon, label) => {
   btn.classList.add("pc-iconbtn");
 };
 
-setPcIcon(btnInfo,  "ℹ️", "Mer info");
-  
-if (btnQuiz) {
-  btnQuiz.textContent = "Quiz";
-  btnQuiz.setAttribute("aria-label", "Quiz");
-  btnQuiz.title = "Quiz";
-  btnQuiz.classList.remove("pc-iconbtn");
-}
+const setPcText = (btn, text) => {
+  if (!btn) return;
+  btn.textContent = text;
+  btn.setAttribute("aria-label", text);
+  btn.title = text;
+  btn.classList.remove("pc-iconbtn");
+};
 
-if (btnRoute) {
-  btnRoute.textContent = "Rute";
-  btnRoute.setAttribute("aria-label", "Rute");
-  btnRoute.title = "Rute";
-  btnRoute.classList.remove("pc-iconbtn");
+if (isNarrow) {
+  setPcIcon(btnInfo,  "ℹ️", "Mer info");
+  setPcText(btnQuiz,  "Quiz");
+  setPcText(btnRoute, "Rute");
+  setPcIcon(btnObs,   "👁️", "Observasjon");
+  setPcIcon(btnNote,  "📝", "Notat");
+  setPcIcon(btnClose, "✕",  "Lukk");
+} else {
+  setPcText(btnInfo,  "Mer info");
+  setPcText(btnQuiz,  "Ta quiz");
+  // btnUnlock settes lenger nede av unlock-UI – la den være
+  setPcText(btnRoute, "Rute");
+  setPcText(btnObs,   "Observasjon");
+  setPcText(btnNote,  "Notat");
+  setPcText(btnClose, "Lukk");
 }
-  
-setPcIcon(btnObs,   "👁️", "Observasjon");
-setPcIcon(btnNote,  "📝", "Notat");
-setPcIcon(btnClose, "✕",  "Lukk");
   
   if (!card) return;
 
