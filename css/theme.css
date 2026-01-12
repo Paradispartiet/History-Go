@@ -96,7 +96,7 @@ body.hg-app header{
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 14px;
+  padding: 5px 9px;
   background: linear-gradient(180deg, rgba(10,25,41,.95), rgba(10,25,41,.65) 70%, transparent);
 }
 
@@ -124,21 +124,23 @@ body.hg-app .panel{
 body.hg-app .brand{
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;              /* var 10px */
   font-weight: 800;
-  font-size: 1.3rem;
+  font-size: 1.05rem;    /* var 1.3rem */
+  line-height: 1;        /* strammer høyden */
   color: #fff;
   text-transform: uppercase;
   letter-spacing: 0.3px;
+  white-space: nowrap;   /* ✅ hindrer HISTORY / GO på to linjer */
 }
 
 body.hg-app .brand-logo{
-  width: 34px;
-  height: 34px;
+  width: 22px;          /* var 34px */
+  height: 22px;         /* var 34px */
   object-fit: contain;
   border-radius: 6px;
   background: rgba(255,255,255,0.1);
-  padding: 3px;
+  padding: 2px;         /* var 3px */
 }
 
 body.hg-app .brand-name{
@@ -175,10 +177,13 @@ body.hg-app .toggle input{ accent-color: var(--primary) }
 
 /* Search box – History Go mørk stil */
 #globalSearch {
-  flex: 1;
-  padding: 6px 10px;
-  border-radius: 8px;
+  flex: 0 1 clamp(170px, 38vw, 240px);
+  width: clamp(170px, 38vw, 240px);
+  max-width: 240px;
 
+  padding: 5px 10px;   /* litt strammere */
+  border-radius: 8px;
+  
   background: rgba(255,255,255,0.12);         /* mørkt og i stil med panelene */
   border: 1px solid rgba(255,255,255,0.22);   /* samme svake hvite kant som paneler */
   color: #fff;                                /* hvit tekst som resten av appen */
@@ -194,7 +199,7 @@ body.hg-app .toggle input{ accent-color: var(--primary) }
 /* Search results – mørk History Go stil */
 #searchResults {
   position: absolute;
-  top: 70px;
+  top: calc(100% + 6px);
   left: 0;
   right: 0;
 
