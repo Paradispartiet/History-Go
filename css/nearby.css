@@ -183,3 +183,157 @@
   cursor: pointer;
 }
 
+/* ============================================================
+   NY: RAD 1 (tabs + søk + geo-status)
+   ============================================================ */
+
+#nearbyListContainer .leftpanel-head{
+  /* beholder din stabile head, men lar row1 fylle */
+  align-items: center;
+}
+
+.nearby-row1{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  width:100%;
+}
+
+.nearby-tabs{
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+  flex: 1 1 auto;
+}
+.nearby-tabs::-webkit-scrollbar{ display:none; }
+
+.nearby-tab{
+  white-space:nowrap;
+  padding:8px 10px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,0.14);
+  background:rgba(255,255,255,0.06);
+  color:inherit;
+  font-weight:600;
+  font-size: 0.85rem;
+}
+.nearby-tab.is-active{
+  background:rgba(255,255,255,0.14);
+  border-color:rgba(255,255,255,0.22);
+}
+
+.nearby-searchwrap{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  flex:0 0 auto;
+}
+.nearby-search{
+  width: 150px;
+  max-width: 42vw;
+  padding:8px 10px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,0.14);
+  background:rgba(255,255,255,0.06);
+  color:inherit;
+  font-size: 0.9rem;
+}
+
+.geo-status{ font-size:14px; line-height:1; opacity:0.95; }
+.geo-status.geo-ok{ color:#3cff7a; }
+.geo-status.geo-bad{ color:#ff4b4b; }
+.geo-status.geo-unknown{ color:#ffcc00; }
+
+/* ============================================================
+   NY: RAD 2 (horisontal scroll med kort)
+   ============================================================ */
+
+.nearby-row2{
+  padding-top: 10px;
+}
+
+/* OVERRID: #nearbyList var vertikal i base-CSS – nå er den horisontal */
+#nearbyList.nearby-strip{
+  flex: 0 0 auto;
+  min-height: 0;
+  overflow-y: hidden !important;
+
+  display:flex;
+  gap:10px;
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+  scroll-snap-type:x mandatory;
+  padding-bottom: 6px;
+}
+#nearbyList.nearby-strip::-webkit-scrollbar{ display:none; }
+
+/* Hvert item blir et “kort” */
+#nearbyList.nearby-strip .nearby-item{
+  flex: 0 0 auto;
+  width: 240px;
+  scroll-snap-align: start;
+
+  display:flex;
+  gap:12px;
+  align-items:center;
+
+  padding: 10px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.05);
+}
+
+/* Thumb-wrap for badge overlay (krever markup-endring i JS) */
+#nearbyList.nearby-strip .nearby-thumbWrap{
+  position:relative;
+  width:56px;
+  height:56px;
+  border-radius:14px;
+  overflow:hidden;
+  flex:0 0 auto;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+}
+#nearbyList.nearby-strip .nearby-thumb{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  border:0; /* base-CSS hadde border på thumb */
+}
+#nearbyList.nearby-strip .nearby-badge{
+  position:absolute;
+  right:6px;
+  top:6px;
+  width:20px;
+  height:20px;
+  border-radius:50%;
+  background: rgba(0,0,0,0.35);
+  object-fit:contain;
+}
+
+/* Tekst: navn + dist under */
+#nearbyList.nearby-strip .nearby-text{
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+}
+#nearbyList.nearby-strip .nearby-name{
+  font-size: 0.9rem;
+  font-weight:700;
+  color:#fff;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+#nearbyList.nearby-strip .nearby-dist{
+  font-size: 0.72rem;
+  color: var(--muted);
+  white-space:nowrap;
+}
+
+
