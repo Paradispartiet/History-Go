@@ -1097,7 +1097,7 @@ function renderLeftBadges() {
     window.HG_NEARBY_QUERY = (e.target.value || "").trim().toLowerCase();
 
     // be pos.js om å rerendre om den har en funksjon
-    if (typeof window.HG_RENDER_NEARBY === "function") window.HG_RENDER_NEARBY();
+    window.renderNearbyPlaces?.();
   });
 })();
 
