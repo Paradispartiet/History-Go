@@ -2040,9 +2040,6 @@ document.addEventListener("keydown", e => {
 // NEARBY – HELE PANELET MINIMERBART (matcher .leftpanel-head)
 // ============================================================
 (function initNearbyCollapseWholePanel() {
-  function getSaved(){
-    try { return localStorage.getItem("hg_nearby_collapsed") === "1"; } catch { return false; }
-  }
   function save(val){
     try { localStorage.setItem("hg_nearby_collapsed", val ? "1" : "0"); } catch {}
   }
