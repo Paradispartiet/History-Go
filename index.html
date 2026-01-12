@@ -289,7 +289,123 @@
 <script src="js/quizzes.js"></script>
 <script src="js/quiz-audit.js"></script>
 <!-- app.js før routes (eier HG_POS/getPos) -->
+
+  
 <script src="js/app.js"></script>
+
+  
+<script>
+/* =========================
+   Nearby UI wiring (tabs/search/status)
+   ========================= */
+(function () {
+  // --- tabs: styrer eksisterende select og trigger app.js sin change-handler ---
+  function bindTabs() {
+    const sel = document.getElementById("leftPanelMode");
+    if (!sel) return;
+
+    document.querySelectorAll(".nearby-tab").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const mode = btn.getAttribute("data-leftmode") || "nearby";
+        sel.value = mode;
+        sel.dispatchEvent(new Event("change", { bubbles: true }));
+
+        document.querySelectorAll(".nearby-tab").forEach(b => {
+          b.classList.toggle("is-active", b === btn);
+        });
+      });
+    });
+  }
+
+  // --- geo status: lytt på pos.js sitt hg:geo-event ---
+  function setGeo(status) {
+    const el = document.getElementById("geoStatus");
+    if (!el) return;
+
+    el.classList.remove("geo-ok","geo-bad","geo-unknown");
+
+    if (status === "granted" || status === "test") {
+      el.classList.add("geo-ok"); el.textContent = "✅";
+    } else if (status === "blocked" || status === "unsupported") {
+      el.classList.add("geo-bad"); el.textContent = "⛔";
+    } else {
+      el.classList.add("geo-unknown"); el.textContent = "…";
+    }
+  }
+
+  window.addEventListener("hg:geo", (e) => {
+    const st = e?.detail?.status || "unknown";
+    setGeo(st);
+  });
+
+  // --- search: lagrer query og ber om rerender ---
+  window.HG_NEARBY_QUERY = window.HG_NEARBY_QUERY || "";
+  function bindSearch() {
+    const inp = document.getElementById("nearbySearch");
+    if (!inp) return;
+    inp.addEventListener("input", () => {
+      window.HG_NEARBY_QUERY = (inp.value || "").trim().toLowerCase();
+      if (typeof window.renderNearbyPlaces === "function") window.renderNearbyPlaces();
+    });
+  }
+
+  // --- post-prosess etter render: filtrer + badge oppå thumb + sikre horisontal strip ---
+  function patchRenderNearbyPlaces() {
+    if (typeof window.renderNearbyPlaces !== "function") return;
+    if (window.__hg_orig_renderNearbyPlaces) return;
+
+    window.__hg_orig_renderNearbyPlaces = window.renderNearbyPlaces;
+    window.renderNearbyPlaces = function () {
+      window.__hg_orig_renderNearbyPlaces();
+
+      const list = document.getElementById("nearbyList");
+      if (!list) return;
+      list.classList.add("nearby-strip");
+
+      // 1) badge oppå bildet: wrap thumb+badge hvis de finnes
+      list.querySelectorAll(".nearby-item").forEach(item => {
+        const thumb = item.querySelector(".nearby-thumb");
+        const badge = item.querySelector(".nearby-badge");
+        if (!thumb) return;
+
+        // hvis allerede wrapped
+        if (thumb.parentElement && thumb.parentElement.classList.contains("nearby-thumbWrap")) return;
+
+        // wrap bare hvis vi har badge ELLER du vil alltid wrap (for jevn layout)
+        const wrap = document.createElement("div");
+        wrap.className = "nearby-thumbWrap";
+
+        // plasser wrap der thumb ligger
+        thumb.parentElement.insertBefore(wrap, thumb);
+        wrap.appendChild(thumb);
+        if (badge) wrap.appendChild(badge);
+      });
+
+      // 2) filter (søker på synlig tekst)
+      const q = (window.HG_NEARBY_QUERY || "");
+      if (!q) {
+        list.querySelectorAll(".nearby-item").forEach(item => item.style.display = "");
+        return;
+      }
+
+      list.querySelectorAll(".nearby-item").forEach(item => {
+        const txt = (item.innerText || "").toLowerCase();
+        item.style.display = txt.includes(q) ? "" : "none";
+      });
+    };
+  }
+
+  // init
+  bindTabs();
+  bindSearch();
+  patchRenderNearbyPlaces();
+
+  // set initial geo icon hvis state allerede finnes
+  if (window.HG_POS && window.HG_POS.status) setGeo(window.HG_POS.status);
+})();
+</script>
+
+
 <script src="js/routes.js"></script>
 </body>
 </html>
