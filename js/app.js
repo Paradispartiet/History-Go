@@ -1065,6 +1065,42 @@ function renderLeftBadges() {
   // (valgfritt) klikk-håndtering kan legges i wire() via delegation senere
 }
 
+// === LEFTPANEL TABS (Rad 1) ===
+(function bindLeftPanelTabs(){
+  const sel = document.getElementById("leftPanelMode");
+  if (!sel) return;
+
+  document.querySelectorAll(".nearby-tab").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const mode = btn.getAttribute("data-leftmode") || "nearby";
+      sel.value = mode;
+
+      // trigger eksisterende change-logikk
+      sel.dispatchEvent(new Event("change", { bubbles: true }));
+
+      // aktiv-state visuelt
+      document.querySelectorAll(".nearby-tab").forEach(b => {
+        b.classList.toggle("is-active", b === btn);
+      });
+    });
+  });
+})();
+
+// === SEARCH (Rad 1) – lagrer query og ber om rerender ===
+(function bindNearbySearch(){
+  const inp = document.getElementById("nearbySearch");
+  if (!inp) return;
+
+  window.HG_NEARBY_QUERY = window.HG_NEARBY_QUERY || "";
+
+  inp.addEventListener("input", (e) => {
+    window.HG_NEARBY_QUERY = (e.target.value || "").trim().toLowerCase();
+
+    // be pos.js om å rerendre om den har en funksjon
+    if (typeof window.HG_RENDER_NEARBY === "function") window.HG_RENDER_NEARBY();
+  });
+})();
+
 
 // Toggle placeCard ved klikk på bunnstripen
 function wirePlaceCardCollapseTapToExpand() {
