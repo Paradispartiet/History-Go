@@ -7,7 +7,7 @@
   --hg-header-h: 62px;   /* kan JS overstyre */
   --hg-header-gap: 0px;  /* i kant med topplinja */
   --hg-placecard-h: var(--pc-height, 41vh);
-  --hg-leftpanel-w: 340px;
+  --hg-leftpanel-w: 180px;
   --hg-frame-bg: var(--panel-bg, #121212);
 }
 
@@ -106,10 +106,10 @@
 
 .nearby-item{
   display: grid;
-  grid-template-columns: 46px 1fr auto; /* thumb | tekst | badge */
-  grid-template-rows: auto auto;        /* navn | dist */
-  column-gap: 5px;
-  row-gap: 2px;
+  grid-template-columns: 46px 22px 1fr auto; /* thumb | badge | navn | dist */
+  grid-template-rows: auto;                  /* én linje */
+  column-gap: 8px;
+  row-gap: 0;
 
   align-items: center;
   padding: 10px 0;
@@ -130,7 +130,7 @@
 .nearby-name{
   grid-column: 2;
   grid-row: 1;
-  font-size: 0.98rem;
+  font-size: 0.85rem;
   font-weight: 600;
   color: #fff;
 
@@ -142,7 +142,7 @@
 .nearby-dist{
   grid-column: 2;
   grid-row: 2;
-  font-size: 0.85rem;
+  font-size: 0.72rem;
   color: var(--muted);
   white-space: nowrap;
 }
