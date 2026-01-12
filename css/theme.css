@@ -108,18 +108,6 @@ body.hg-app .panel{
 }
 
 
-/* ---------------------------------------------------------
-   KUN EKTE OVERLAYS SKAL HENGE OVER ALT
-   --------------------------------------------------------- */
-body.hg-app .hg-popup,
-  body.hg-app .quiz-modal,
-  body.hg-app #badgeModal,
-  body.hg-app .profile-modal{
-  position: fixed;
-  inset: 0;
-  pointer-events: auto;
-  z-index: 10000;
-}
 
 
 /* ===================================================== */
@@ -779,48 +767,7 @@ body.hg-app #btnExitMap:hover{
 
 
 
-/* ============================================================
-   UNIVERSAL PERSON/PLACE POPUP – HISTORY GO
-   ============================================================ */
 
-.hg-popup {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.65);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 10000;
-  animation: hgFadeIn .25s ease;
-}
-
-/* Ensure reward-popup is above everything except quiz close interactions */
-.hg-popup.reward-popup {
-  z-index: 10060 !important;
-}
-
-@keyframes hgFadeIn {
-  from { opacity: 0; transform: scale(.96); }
-  to   { opacity: 1; transform: scale(1); }
-}
-
-.hg-popup-inner {
-  position: relative;
-  width: min(420px, 90vw);
-  max-height: 90vh;
-  overflow-y: auto;
-  background: rgba(15,15,20,0.95);
-  border-radius: 16px;
-  padding: 24px;
-  color: #fff;
-  box-shadow: 0 0 35px rgba(0,0,0,0.6);
-}
-
-/* Wider layout for person- and place-popups */
-.hg-popup.person-popup .hg-popup-inner,
-.hg-popup.place-popup .hg-popup-inner {
-  width: min(560px, 92vw);
-}
 
 /* ---------------------------------- */
 /* Close button */
