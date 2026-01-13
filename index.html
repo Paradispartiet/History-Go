@@ -78,7 +78,9 @@
 
     <div class="actions">
   <button id="btnSeeMap" class="secondary">Se kart</button>
-
+  
+  <span id="geoStatus" class="geo-status geo-unknown" title="Posisjonstatus">…</span>
+      
   <button id="btnUnlockAll" class="secondary" style="display:none;">
     Unlock All
   </button>
@@ -107,7 +109,6 @@
 
       <div class="nearby-searchwrap">
         <input id="nearbySearch" class="nearby-search" type="search" placeholder="Søk…" autocomplete="off">
-        <span id="geoStatus" class="geo-status geo-unknown" title="Posisjonstatus">…</span>
       </div>
     </div>
 
@@ -322,7 +323,7 @@
     el.classList.remove("geo-ok","geo-bad","geo-unknown");
 
     if (status === "granted" || status === "test") {
-      el.classList.add("geo-ok"); el.textContent = "✅";
+      el.classList.add("geo-ok"); el.textContent = "📍";
     } else if (status === "blocked" || status === "unsupported") {
       el.classList.add("geo-bad"); el.textContent = "⛔";
     } else {
