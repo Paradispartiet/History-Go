@@ -88,6 +88,28 @@ body.hg-app{
 }
 body.hg-app .muted{color:var(--muted)}
 
+/* ===================================================== */
+/* Stor logo bak topp-panelene (over kartet, under UI)   */
+/* ===================================================== */
+body.hg-app::before{
+  content:"";
+  position: fixed;
+  left: 6px;
+  top: calc(env(safe-area-inset-top) + 2px);
+
+  width: 170px;
+  height: 170px;
+
+  background-image: url("bilder/logo_historygo.PNG"); /* <-- BYTT til ny logo-fil */
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: top left;
+
+  opacity: 0.18;              /* juster 0.10–0.25 */
+  pointer-events: none;
+
+  z-index: 5;                 /* kartet under, panelene over */
+}
 
 /* HEADER skal ligge over kartet og være klikkbar */
 body.hg-app header{
@@ -145,6 +167,7 @@ body.hg-app .brand-logo{
   border-radius: 6px;
   background: rgba(255,255,255,0.1);
   padding: 2px;         /* var 3px */
+  body.hg-app .brand-logo{ display:none; }
 }
 
 body.hg-app .brand-name{
