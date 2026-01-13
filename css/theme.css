@@ -240,6 +240,9 @@ body.hg-app .toggle input{ accent-color: var(--primary) }
 
 /* Enkeltresultater */
 .search-item {
+  position: relative;   /* ✅ gjør at .sr-badge posisjoneres inni denne */
+  padding-right: 34px;  
+   
   padding: 8px 4px;
   border-bottom: 1px solid rgba(255,255,255,0.08);
   color: #fff;                           /* hvit tekst */
