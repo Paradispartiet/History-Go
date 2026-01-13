@@ -169,6 +169,17 @@ body.hg-app .actions{ display:flex; gap:10px; align-items:center }
 body.hg-app .toggle{ display:flex; gap:6px; align-items:center; font-size:.9rem }
 body.hg-app .toggle input{ accent-color: var(--primary) }
 
+/* Header actions: gjør Se kart + Unlock All mindre (kun i topplinja) */
+body.hg-app header .actions{
+  gap: 6px;
+}
+
+body.hg-app header .actions > button.secondary{
+  height: 32px;
+  line-height: 32px;
+  padding: 0 10px;
+  font-size: 0.85rem;
+}
 
 #toast{
   position:fixed;
