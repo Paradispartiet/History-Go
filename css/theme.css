@@ -98,7 +98,7 @@ body.hg-app header{
   justify-content: flex-start;
   gap: 10px;
   flex-wrap: nowrap;
-  padding: 2px 7px;
+  padding: 2px 5px;
   background: linear-gradient(180deg, rgba(10,25,41,.95), rgba(10,25,41,.65) 70%, transparent);
 }
 
@@ -193,17 +193,15 @@ body.hg-app .toggle input{ accent-color: var(--primary) }
 
 /* Search box – History Go mørk stil */
  #globalSearch {
-  flex: 0 1 320px;
-  width: min(320px, 42vw);
-  max-width: 240px;
+  flex: 0 1 clamp(160px, 26vw, 240px);
 
-  padding: 3px 6px;   /* litt strammere */
-  border-radius: 8px;
+  padding: 2px 6px;   /* litt strammere */
+  border-radius: 6px;
   
   background: rgba(255,255,255,0.12);         /* mørkt og i stil med panelene */
   border: 1px solid rgba(255,255,255,0.22);   /* samme svake hvite kant som paneler */
   color: #fff;                                /* hvit tekst som resten av appen */
-  font-size: 0.95rem;
+  font-size: 0.85rem;
 
   backdrop-filter: blur(3px);                 /* samme subtile blur som History Go-panelene */
 }
