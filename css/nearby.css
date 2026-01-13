@@ -18,8 +18,8 @@
   right: 0; /* NY */
   top: calc(var(--hg-header-h) + var(--hg-header-gap));
   bottom: auto; /* ENDRET */
-  height: 128px; /* NY */
-  padding-bottom: env(safe-area-inset-bottom);
+  height: 104px; /* NY */
+  padding-bottom: 0;
   width: auto; /* ENDRET */
   z-index: 20;
 
@@ -48,6 +48,7 @@
 #nearbyListContainer .leftpanel-title{
   font-weight: 700;
   color: #e6eef9;
+  display: none;
 }
 
 /* Select */
@@ -245,7 +246,7 @@
    ============================================================ */
 
 .nearby-row2{
-  padding-top: 2pxy;
+  padding-top: 2px;
 }
 
 /* OVERRID: #nearbyList var vertikal i base-CSS – nå er den horisontal */
@@ -260,22 +261,22 @@
   -webkit-overflow-scrolling:touch;
   scrollbar-width:none;
   scroll-snap-type:x mandatory;
-  padding-bottom: 6px;
+  padding-bottom: 2px;
 }
 #nearbyList.nearby-strip::-webkit-scrollbar{ display:none; }
 
 /* Hvert item blir et “kort” */
 #nearbyList.nearby-strip .nearby-item{
   flex: 0 0 auto;
-  width: 240px;
+  width: 160px;
   scroll-snap-align: start;
 
   display:flex;
-  gap:9px;
+  gap: 5px;
   align-items:center;
 
-  padding: 8px;
-  border-radius: 12px;
+  padding: 4px;
+  border-radius: 8px;
   border: 1px solid rgba(255,255,255,0.10);
   background: rgba(255,255,255,0.05);
 }
@@ -283,9 +284,9 @@
 /* Thumb-wrap for badge overlay (krever markup-endring i JS) */
 #nearbyList.nearby-strip .nearby-thumbWrap{
   position:relative;
-  width:48px;
-  height:48px;
-  border-radius:12px;
+  width:36px;
+  height:36px;
+  border-radius:8px;
   overflow:hidden;
   flex:0 0 auto;
   background: rgba(255,255,255,0.06);
