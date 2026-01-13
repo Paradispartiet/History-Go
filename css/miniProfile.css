@@ -89,11 +89,12 @@
   box-shadow: 0 0 18px rgba(246,200,0,.03), inset 0 0 6px rgba(255,255,255,.035);
   transition: transform .25s ease, box-shadow .25s ease;
 
-  display:flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 6px;
-
+  /* ✅ maks 2 tekstlinjer totalt */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  
   font-size: 12px;
   line-height: 1.1;
   opacity: .95;
@@ -104,22 +105,30 @@
   box-shadow: 0 0 22px rgba(246,200,0,.10), inset 0 0 10px rgba(255,255,255,.05);
 }
 
-/* hver rad = én linje med ellipsis */
-#mpNextUp .mp-nextup-line,
+/* ✅ gjør alle items inline, så de kan flyte i bredden */
+.mp-nextup-line,
 #mpNextUp .mp-nextup-because{
-  width: 100%;
-  min-width: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  display: inline;
+  width: auto;
+  white-space: normal;
+  overflow: visible;
+}
+
+/* små separatorer mellom items */
+#mpNextUp .mp-nextup-line::after{
+  content: " · ";
+  opacity: .65;
+}
+#mpNextUp .mp-nextup-line:last-child::after{
+  content: "";
 }
 
 /* knapp tar hele linja */
 #mpNextUp .mp-nextup-link{
   all: unset;
   cursor: pointer;
-  display: block;
-  width: 100%;
+  display: inline;
+  width: auto;
 }
 
 #mpNextUp .mp-nextup-link[disabled]{
