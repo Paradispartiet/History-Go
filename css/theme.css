@@ -98,7 +98,7 @@ body.hg-app header{
   justify-content: flex-start;
   gap: 10px;
   flex-wrap: nowrap;
-  padding: 5px 9px;
+  padding: 2px 7px;
   background: linear-gradient(180deg, rgba(10,25,41,.95), rgba(10,25,41,.65) 70%, transparent);
 }
 
@@ -139,8 +139,8 @@ body.hg-app .brand{
 }
 
 body.hg-app .brand-logo{
-  width: 22px;          /* var 34px */
-  height: 22px;         /* var 34px */
+  width: 34px;          /* var 34px */
+  height: 34px;         /* var 34px */
   object-fit: contain;
   border-radius: 6px;
   background: rgba(255,255,255,0.1);
@@ -188,7 +188,7 @@ body.hg-app .toggle input{ accent-color: var(--primary) }
 .top-actions {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 6px;
 }
 
 /* Search box – History Go mørk stil */
@@ -197,7 +197,7 @@ body.hg-app .toggle input{ accent-color: var(--primary) }
   width: min(320px, 42vw);
   max-width: 240px;
 
-  padding: 5px 10px;   /* litt strammere */
+  padding: 3px 6px;   /* litt strammere */
   border-radius: 8px;
   
   background: rgba(255,255,255,0.12);         /* mørkt og i stil med panelene */
@@ -252,14 +252,21 @@ body.hg-app .toggle input{ accent-color: var(--primary) }
   color: #fff;
 }
 
+
 /* Badge-ikon */
-.sr-badge {
+.sr-badge{
   width: 22px;
   height: 22px;
   object-fit: contain;
-  margin-right: 8px;
+
+  position: absolute;
+  top: 8px;t
+  right: 8px;
+
+  margin-right: 0;      /* ikke relevant når den er absolutt */
+  vertical-align: initial;
   opacity: 0.95;
-  vertical-align: middle;
+  pointer-events: none; /* hvis du vil at klikk går til kortet */
 }
 
 /* ===================================================== */
