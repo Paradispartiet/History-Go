@@ -183,18 +183,21 @@
 .nearby-row1{
   display:flex;
   align-items:center;
-  gap:10px;
+  gap:6px;
   width:100%;
+  flex-wrap: nowrap;
 }
 
 .nearby-tabs{
   display:flex;
-  gap:8px;
+  gap:6px;
   overflow-x:auto;
   -webkit-overflow-scrolling:touch;
   scrollbar-width:none;
   flex: 1 1 auto;
+  min-width: 0;              /* ✅ gjør at tabs kan krympe */
 }
+
 .nearby-tabs::-webkit-scrollbar{ display:none; }
 
 .nearby-tab{
@@ -216,18 +219,20 @@
 .nearby-searchwrap{
   display:flex;
   align-items:center;
-  gap:8px;
+  gap:6px;
   flex:0 0 auto;
+  margin-left: auto;         /* ✅ holder søk på høyre side */
 }
+
 .nearby-search{
-  width: 100px;
-  max-width: 30vw;
-  padding:2px 4px;
+  width: 130px;
+  max-width: 38vw;
+  padding:6px 9px;
   border-radius:999px;
   border:1px solid rgba(255,255,255,0.14);
   background:rgba(255,255,255,0.06);
   color:inherit;
-  font-size:0.85rem;
+  font-size: 0.85rem;
 }
 
 .geo-status{ font-size:14px; line-height:1; opacity:0.95; }
