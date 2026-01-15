@@ -230,17 +230,29 @@
 .nearby-tab{
   white-space:nowrap;
   padding:3px 6px;
-  
+
   border-radius:999px;
-  border:1px solid rgba(255,255,255,0.14);
-  background:rgba(255,255,255,0.06);
-  color:inherit;
+  border: 0;                 /* ✅ ingen strek */
+  background: rgba(255,255,255,0.08);
+  color: inherit;
+
   font-weight:600;
   font-size: 0.80rem;
+
+  outline: none;             /* ✅ ingen focus-strek */
+  box-shadow: none;          /* ✅ ingen “ring” */
 }
+
 .nearby-tab.is-active{
-  background:rgba(255,255,255,0.14);
-  border-color:rgba(255,255,255,0.22);
+  background: rgba(255,255,255,0.18);
+  border: 0;                 /* bare for å være helt sikker */
+}
+
+/* hvis Safari/UA legger på noe focus-stæsj */
+.nearby-tab:focus,
+.nearby-tab:focus-visible{
+  outline: none;
+  box-shadow: none;
 }
 
 .nearby-searchwrap{
