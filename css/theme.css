@@ -95,12 +95,11 @@ body.hg-app::before{
   content:"";
   position: fixed;
 
-  /* Flyttet til nedre høyre på KARTET */
-  right: 10px;
-  left: auto;
-
-  bottom: calc(env(safe-area-inset-bottom) + 140px);
-  top: auto;
+  left: 50%;
+  top: 50%;
+  right: auto;
+  bottom: auto;
+  transform: translate(-50%, -50%);
 
   width: 170px;
   height: 170px;
@@ -108,12 +107,11 @@ body.hg-app::before{
   background-image: url("../bilder/logo_historygo.PNG");
   background-repeat: no-repeat;
   background-size: contain;
-  background-position: bottom right;
+  background-position: center;
 
   opacity: 0.18;
   pointer-events: none;
-
-  z-index: 5; /* kartet under, UI over */
+  z-index: 5;
 }
 
 /* ===================================================== */
