@@ -1299,9 +1299,6 @@ window.addEventListener("hg:mpNextUp", (e) => {
     </button>
   </div>
 
-  <div class="mp-nextup-because">
-    ${becauseLine ? `<b>Fordi:</b> ${hgEsc(becauseLine)}` : ""}
-  </div>
 `;
 
     mount.querySelectorAll("[data-mp]").forEach((btn) => {
