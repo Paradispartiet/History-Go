@@ -158,22 +158,23 @@ body.hg-app header.site-header{
   overflow: visible;
 }
 
-/* Stor logo som watermark i header (bak UI) */
-.hg-brand.hg-brand-wm{
-  position: absolute;
+body.hg-app header.site-header::before{
+  content:"";
+  position:absolute;
   left: 10px;
   top: calc(env(safe-area-inset-top) + 4px);
 
-  width: 110px;   /* større */
-  height: 110px;
+  width: 60px;
+  height: 60px;
 
-  object-fit: contain;
-  opacity: 0.35;  /* watermark-følelse */
-  pointer-events: none;
+  background: url("../bilder/logo_historygo.PNG") no-repeat;
+  background-size: contain;
+  background-position: left top;
 
-  z-index: 0;     /* bak alt i header */
+  opacity: 0.95;   /* ✅ tydelig */
+  pointer-events:none;
+  z-index: 0;
   filter: none;
-  -webkit-filter: none;
 }
 
 /* Alt annet i header over logoen */
