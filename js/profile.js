@@ -603,6 +603,7 @@ document.addEventListener("DOMContentLoaded", () => {
     renderCollectionCards();
     renderLatestKnowledge();
     renderLatestTrivia();
+    renderNextWhy();
     renderAhaSummary();
 
     setupProfileMap();
@@ -625,6 +626,7 @@ document.addEventListener("DOMContentLoaded", () => {
     renderCollectionCards();
     renderLatestKnowledge();
     renderLatestTrivia();
+    renderNextWhy();
     renderAhaSummary();
     updateProfileMarkers();
   });
