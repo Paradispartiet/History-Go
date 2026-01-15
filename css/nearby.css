@@ -44,6 +44,35 @@
   padding: 2px 4px;
 }
 
+/* Watermark-logo inni nearby-området (så den synes på svart strip) */
+#nearbyListContainer{
+  position: relative;
+}
+
+#nearbyListContainer::before{
+  content:"";
+  position:absolute;
+  left: 6px;
+  top: 6px;
+
+  width: 170px;
+  height: 90px;
+
+  background-image: url("../bilder/logo_historygo.PNG");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: left top;
+
+  opacity: 0.10;
+  pointer-events:none;
+  z-index: 0;
+}
+
+#nearbyListContainer > *{
+  position: relative;
+  z-index: 1;
+}
+
 /* Title */
 #nearbyListContainer .leftpanel-title{
   font-weight: 700;
