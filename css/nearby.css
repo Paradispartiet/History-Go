@@ -31,10 +31,12 @@
 
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  overflow: visible;   /* så watermark kan stikke opp */
 }
 
 #nearbyListContainer.is-hidden{ display:none; }
+
+#nearbyListContainer .leftpanel-body{ overflow: hidden; }
 
 /* Head */
 #nearbyListContainer .leftpanel-head{
@@ -44,23 +46,26 @@
   padding: 2px 4px;
 }
 
-/* Watermark-logo inni nearby-området */
+/* Watermark-logo inni nearby-området (HØYRE) */
 #nearbyListContainer::before{
   content:"";
   position:absolute;
 
-  left: 20px;   /* ikke så langt til venstre */
-  top: 6px;
+  right: 14px;
+  left: auto;
 
-  width: 200px; /* litt større */
+  /* LØFTER watermark opp så toppen ligger i topplinja */
+  top: calc(-1 * (var(--hg-header-h, 44px) + var(--hg-header-gap, 0px)) + 2px);
+
+  width: 200px;
   height: 110px;
 
   background-image: url("../bilder/logo_historygo.PNG");
   background-repeat: no-repeat;
   background-size: contain;
-  background-position: left top;
+  background-position: right top;
 
-  opacity: 0.18; /* tydeligere */
+  opacity: 0.18;
   pointer-events:none;
   z-index: 0;
 }
@@ -217,38 +222,50 @@
 
 .nearby-tabs{
   display:flex;
-  gap:3px;
+  gap:14px;
   overflow-x:auto;
   -webkit-overflow-scrolling:touch;
   scrollbar-width:none;
+
   flex: 1 1 auto;
-  min-width: 0;              /* ✅ gjør at tabs kan krympe */
+  min-width: 0;
+
+  padding: 0;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
 }
 
 .nearby-tabs::-webkit-scrollbar{ display:none; }
 
 .nearby-tab{
+  -webkit-appearance: none;
+  appearance: none;
+
   white-space:nowrap;
-  padding:3px 6px;
+  padding: 0;
 
-  border-radius:999px;
-  border: 0;                 /* ✅ ingen strek */
-  background: rgba(255,255,255,0.08);
-  color: inherit;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
 
-  font-weight:600;
-  font-size: 0.80rem;
+  color: rgba(255,255,255,0.78);
+  font-weight: 700;
+  font-size: 0.95rem;
+  line-height: 1;
 
-  outline: none;             /* ✅ ingen focus-strek */
-  box-shadow: none;          /* ✅ ingen “ring” */
+  outline: none;
 }
 
 .nearby-tab.is-active{
-  background: rgba(255,255,255,0.18);
-  border: 0;                 /* bare for å være helt sikker */
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  text-decoration-thickness: 2px;
 }
 
-/* hvis Safari/UA legger på noe focus-stæsj */
+/* ingen focus-ring */
 .nearby-tab:focus,
 .nearby-tab:focus-visible{
   outline: none;
