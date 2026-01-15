@@ -46,35 +46,6 @@
   padding: 2px 4px;
 }
 
-/* Watermark-logo inni nearby-området (HØYRE) */
-#nearbyListContainer::before{
-  content:"";
-  position:absolute;
-
-  right: 14px;
-  left: auto;
-
-  /* LØFTER watermark opp så toppen ligger i topplinja */
-  top: calc(-1 * (var(--hg-header-h, 44px) + var(--hg-header-gap, 0px)) + 2px);
-
-  width: 200px;
-  height: 110px;
-
-  background-image: url("../bilder/logo_historygo.PNG");
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: left top;
-
-  opacity: 0.80;
-  pointer-events:none;
-  z-index: 0;
-}
-
-#nearbyListContainer > *{
-  position: relative;
-  z-index: 1;
-}
-
 /* Title */
 #nearbyListContainer .leftpanel-title{
   font-weight: 700;
