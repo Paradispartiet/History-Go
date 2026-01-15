@@ -131,9 +131,10 @@ body.hg-app header.site-header{
   padding: 2px 5px;
 
   background: #000;
+  overflow: visible;
+
   border-bottom: 1px solid rgba(255,255,255,.08);
 }
-
 /* ===================================================== */
 /* MAIN: normalt klikkbart lag under header               */
 /* ===================================================== */
@@ -150,6 +151,20 @@ body.hg-app .panel{
 /* ===================================================== */
 /* 3) Topplinje, main & toast                            */
 /* ===================================================== */
+
+/* Stor logo i header (kan henge ned over nearby) */
+.hg-brand{
+  width: 160px;
+  height: 70px;
+  object-fit: contain;
+  display: block;
+
+  margin-top: -4px;
+  margin-bottom: -18px;  /* henger ned */
+
+  opacity: 0.95;
+  pointer-events: none;
+}
 
 /* === Brand med ikon i headeren === */
 body.hg-app .brand{
