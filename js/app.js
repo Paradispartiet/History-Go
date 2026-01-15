@@ -1265,6 +1265,12 @@ window.addEventListener("hg:mpNextUp", (e) => {
   const tri = e.detail?.tri || {};
   const becauseLine = e.detail?.becauseLine || "";
 
+// Persistér "Fordi" til profilsiden
+try {
+  localStorage.setItem("hg_nextup_because", String(becauseLine || ""));
+  localStorage.setItem("hg_nextup_tri", JSON.stringify(tri || {}));
+} catch {}
+  
   const spatial = tri.spatial || null;
   const narrative = tri.narrative || null;
   const concept = tri.concept || null;
