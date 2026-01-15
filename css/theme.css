@@ -308,20 +308,27 @@ body.hg-app header .actions > button.secondary{
 }
 
 
-/* Badge-ikon */
+/* Badge-ikon (fast oppe til venstre i appen) */
 .sr-badge{
   width: 45px;
   height: 45px;
   object-fit: contain;
 
-  position: absolute;
-  top: 8px;
-  right: 8px;
+  position: fixed;
+  left: 8px;
+  right: auto;
+  top: calc(env(safe-area-inset-top) + 8px);
 
-  margin-right: 0;      /* ikke relevant når den er absolutt */
+  margin-right: 0;
   vertical-align: initial;
   opacity: 0.95;
-  pointer-events: none; /* hvis du vil at klikk går til kortet */
+  pointer-events: none;
+
+  z-index: 999; /* over UI */
+  filter: none;
+  -webkit-filter: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
 }
 
 /* ===================================================== */
