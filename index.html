@@ -61,36 +61,34 @@
     <button id="btnExitMap" title="Lukk kart" aria-label="Lukk kart">✕</button>
   </div>
 
-  <!-- HEADER -->
-  <header class="site-header">
+<!-- HEADER -->
+<header class="site-header">
 
-    <div class="brand brand-icononly">
-      <img class="brand-logo" src="bilder/logo_historygo.PNG" alt="History GO">
-    </div>
+  <div class="brand brand-icononly">
+    <img class="brand-logo" src="bilder/logo_historygo.PNG" alt="History GO">
+  </div>
 
-    <div class="top-actions">
-      <input id="globalSearch" placeholder="Søk…" autocomplete="off">
-    </div>
+  <div class="top-actions">
+    <button id="btnSeeMap" class="secondary" type="button">Se kart</button>
 
-    <!-- SØKERESULTATER -->
-    <div id="searchResults"></div>
+    <input id="globalSearch" type="search" placeholder="Søk…" autocomplete="off">
 
-    <div class="actions">
-  <button id="btnSeeMap" class="secondary">Se kart</button>
-  
-  <span id="geoStatus" class="geo-status geo-unknown" title="Posisjonstatus">…</span>
-      
-  <button id="btnUnlockAll" class="secondary" style="display:none;">
-    Unlock All
-  </button>
+    <span id="geoStatus" class="geo-status geo-unknown" title="Posisjonstatus">…</span>
 
-  <label class="toggle">
-    <input id="openToggle" type="checkbox" />
-    <span>OpenModus</span>
-  </label>
-</div>
+    <button id="btnUnlockAll" class="secondary" style="display:none;" type="button">
+      Unlock All
+    </button>
 
-  </header>
+    <label class="toggle">
+      <input id="openToggle" type="checkbox" />
+      <span>OpenModus</span>
+    </label>
+  </div>
+
+  <!-- SØKERESULTATER (ligger fortsatt i headeren, men kan styles til å droppe ned) -->
+  <div id="searchResults"></div>
+
+</header>
 
   <!-- VENSTRE RAMMEPANEL -->
 <div id="nearbyListContainer" class="leftpanel">
