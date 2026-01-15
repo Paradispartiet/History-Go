@@ -152,36 +152,20 @@ body.hg-app .panel{
 /* 3) Topplinje, main & toast                            */
 /* ===================================================== */
 
-/* Header må være anker for absolutt logo */
-body.hg-app header.site-header{
-  position: fixed;
-  overflow: visible;
+/* Stor logo i header (kan henge ned over nearby) */
+.hg-brand{
+  width: 160px;
+  height: 70px;
+  object-fit: contain;
+  display: block;
+
+  margin-top: -4px;
+  margin-bottom: -18px;  /* henger ned */
+
+  opacity: 0.95;
+  pointer-events: none;
 }
 
-body.hg-app header.site-header::before{
-  content:"";
-  position:absolute;
-  left: 10px;
-  top: calc(env(safe-area-inset-top) + 4px);
-
-  width: 60px;
-  height: 60px;
-
-  background: url("../bilder/logo_historygo.PNG") no-repeat;
-  background-size: contain;
-  background-position: left top;
-
-  opacity: 0.95;   /* ✅ tydelig */
-  pointer-events:none;
-  z-index: 0;
-  filter: none;
-}
-
-/* Alt annet i header over logoen */
-body.hg-app header.site-header .top-actions{
-  position: relative;
-  z-index: 2;
-}
 /* === Brand med ikon i headeren === */
 body.hg-app .brand{
   display: flex;
@@ -827,5 +811,4 @@ body.hg-app #btnExitMap:hover{
   70%  { transform: translate(-50%, -50%) scale(2.2); opacity: .10; }
   100% { transform: translate(-50%, -50%) scale(2.4); opacity: 0; }
 }
-
 
