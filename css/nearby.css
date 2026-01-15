@@ -98,7 +98,7 @@
   min-height: 0;
   display: flex;
   flex-direction: column;
-  padding: 4px 8px;
+  padding: 0px 8px;
 }
 
 /* Status øverst */
@@ -108,8 +108,17 @@
 #nearbyList{
   flex: 1;
   min-height: 0;
-  overflow-y: auto;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
   -webkit-overflow-scrolling: touch;
+
+  padding: 0;
+  margin: 0;
+
+  display: flex;         /* fyller høyden */
+  align-items: stretch;  /* går i bunn */
 }
 
 /* Skjul gammel legacy-title hvis den finnes */
@@ -283,9 +292,9 @@
    ============================================================ */
 
 .nearby-row2{
-  padding-top: 2px;
+  padding-top: 0;
+  padding-bottom: 0;
 }
-
 /* OVERRID: #nearbyList var vertikal i base-CSS – nå er den horisontal */
 #nearbyList.nearby-strip{
   flex: 0 0 auto;
