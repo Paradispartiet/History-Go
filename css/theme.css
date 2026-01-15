@@ -113,8 +113,12 @@ body.hg-app::before{
 
 /* HEADER skal ligge over kartet og være klikkbar */
 body.hg-app header{
-  position: relative;
-  z-index: 10;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -122,9 +126,9 @@ body.hg-app header{
   flex-wrap: nowrap;
   padding: 2px 5px;
 
-  background: #000;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
+  background: rgba(0,0,0,0.82);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 
   border-bottom: 1px solid rgba(255,255,255,.08);
 }
