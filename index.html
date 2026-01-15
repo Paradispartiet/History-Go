@@ -106,11 +106,6 @@
         <button class="nearby-tab" data-leftmode="people" type="button">People</button>
       </div>
 
-      <div class="nearby-searchwrap">
-        <input id="nearbySearch" class="nearby-search" type="search" placeholder="Søk…" autocomplete="off">
-      </div>
-    </div>
-
     <!-- behold select i DOM skjult for bakoverkomp (JS kan fortsatt bruke den om du vil) -->
     <select id="leftPanelMode" class="leftpanel-select" aria-label="Velg visning" style="display:none">
       <option value="nearby" selected>Nærmeste</option>
@@ -335,16 +330,6 @@
     setGeo(st);
   });
 
-  // --- search: lagrer query og ber om rerender ---
-  window.HG_NEARBY_QUERY = window.HG_NEARBY_QUERY || "";
-  function bindSearch() {
-    const inp = document.getElementById("nearbySearch");
-    if (!inp) return;
-    inp.addEventListener("input", () => {
-      window.HG_NEARBY_QUERY = (inp.value || "").trim().toLowerCase();
-      if (typeof window.renderNearbyPlaces === "function") window.renderNearbyPlaces();
-    });
-  }
 
   // --- post-prosess etter render: filtrer + badge oppå thumb + sikre horisontal strip ---
   function patchRenderNearbyPlaces() {
@@ -377,24 +362,11 @@
         wrap.appendChild(thumb);
         if (badge) wrap.appendChild(badge);
       });
-
-      // 2) filter (søker på synlig tekst)
-      const q = (window.HG_NEARBY_QUERY || "");
-      if (!q) {
-        list.querySelectorAll(".nearby-item").forEach(item => item.style.display = "");
-        return;
-      }
-
-      list.querySelectorAll(".nearby-item").forEach(item => {
-        const txt = (item.innerText || "").toLowerCase();
-        item.style.display = txt.includes(q) ? "" : "none";
-      });
     };
   }
 
   // init
   bindTabs();
-  bindSearch();
   patchRenderNearbyPlaces();
 
   // set initial geo icon hvis state allerede finnes
