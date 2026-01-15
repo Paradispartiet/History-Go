@@ -510,6 +510,21 @@ function renderLatestTrivia() {
   box.style.display = "block";
 }
 
+function renderNextWhy() {
+  const sec = document.getElementById("nextWhySection");
+  const txt = document.getElementById("nextWhyText");
+  if (!sec || !txt) return;
+
+  const because = String(localStorage.getItem("hg_nextup_because") || "").trim();
+  if (!because) {
+    sec.style.display = "none";
+    return;
+  }
+
+  txt.textContent = `Fordi: ${because}`;
+  sec.style.display = "block";
+}
+
 function renderAhaSummary() {
   const box = document.getElementById("ahaSummary");
   const a = document.getElementById("ahaTopConcept");
