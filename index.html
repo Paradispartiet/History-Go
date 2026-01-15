@@ -32,8 +32,6 @@
 
 <body class="hg-app">
 
-  <img class="sr-badge" src="bilder/logo_historygo.PNG" alt="">
-
   <!-- Toast -->
   <div id="toast"></div>
 
@@ -67,19 +65,19 @@
 <header class="site-header">
 
   <div class="top-actions">
-    <button id="btnSeeMap" class="secondary" type="button">Se kart</button>
+    <button id="btnSeeMap" class="secondary" type="button">Kartmodus</button>
 
     <input id="globalSearch" type="search" placeholder="Søk…" autocomplete="off">
 
     <span id="geoStatus" class="geo-status geo-unknown" title="Posisjonstatus">…</span>
 
     <button id="btnUnlockAll" class="secondary" style="display:none;" type="button">
-      Unlock All
+      UnlockAll
     </button>
 
     <label class="toggle">
       <input id="openToggle" type="checkbox" />
-      <span>OpenModus</span>
+      <span></span>
     </label>
   </div>
 
@@ -96,10 +94,10 @@
 
     <div class="nearby-row1">
       <div class="nearby-tabs" role="tablist" aria-label="Utforsk">
-        <button class="nearby-tab is-active" data-leftmode="nearby" type="button">Nærmeste</button>
+        <button class="nearby-tab is-active" data-leftmode="nearby" type="button">Steder</button>
         <button class="nearby-tab" data-leftmode="routes" type="button">Ruter</button>
         <button class="nearby-tab" data-leftmode="badges" type="button">Merker</button>
-        <button class="nearby-tab" data-leftmode="people" type="button">People</button>
+        <button class="nearby-tab" data-leftmode="people" type="button">Folk</button>
       </div>
 
       <!-- behold select i DOM skjult for bakoverkomp (JS kan fortsatt bruke den om du vil) -->
