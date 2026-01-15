@@ -44,22 +44,23 @@
   padding: 2px 4px;
 }
 
+/* Watermark-logo inni nearby-området */
 #nearbyListContainer::before{
   content:"";
   position:absolute;
-  right: 6px;
-  left: auto;
+
+  left: 20px;   /* ikke så langt til venstre */
   top: 6px;
 
-  width: 170px;
-  height: 90px;
+  width: 200px; /* litt større */
+  height: 110px;
 
   background-image: url("../bilder/logo_historygo.PNG");
   background-repeat: no-repeat;
   background-size: contain;
-  background-position: right top;
+  background-position: left top;
 
-  opacity: 0.10;
+  opacity: 0.18; /* tydeligere */
   pointer-events:none;
   z-index: 0;
 }
