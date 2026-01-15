@@ -96,8 +96,10 @@ body.hg-app::before{
   position: fixed;
 
   left: 10px;
-  top: calc(env(safe-area-inset-top) + var(--hg-header-h, 44px) + 8px);
-
+  right: auto;
+  top: auto;
+  bottom: calc(env(safe-area-inset-bottom) + 10px);
+   
   width: 120px;
   height: 120px;
 
@@ -110,6 +112,11 @@ body.hg-app::before{
   pointer-events: none;
 
   z-index: 5;                 /* kartet under, UI over */
+}
+
+/* Skjul kart-watermark når placeCard er ÅPEN */
+body.hg-app:has(#placeCard[aria-hidden="false"])::before{
+  opacity: 0;
 }
 
 /* ===================================================== */
