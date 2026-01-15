@@ -153,17 +153,22 @@ body.hg-app .panel{
 /* ===================================================== */
 
 /* Stor logo i header (kan henge ned over nearby) */
+/* Logo i header: fast plassert oppe til venstre */
 .hg-brand{
-  width: 160px;
-  height: 70px;
+  position: absolute;
+  left: 2px;  /* nesten helt til venstre */
+  top: calc(env(safe-area-inset-top) + 10px); /* litt ned */
+
+  width: 60px;
+  height: 60px;
+
   object-fit: contain;
   display: block;
 
-  margin-top: -4px;
-  margin-bottom: -18px;  /* henger ned */
-
+  margin: 0;            /* viktig: fjerner “heng ned”-hack */
   opacity: 0.95;
   pointer-events: none;
+  z-index: 21;          /* over header-bakgrunn */
 }
 
 /* === Brand med ikon i headeren === */
