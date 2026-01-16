@@ -208,45 +208,25 @@
   flex-wrap: nowrap;
 }
 
-.nearby-tabs{
-  display:flex;
-  gap:14px;
-  overflow-x:auto;
-  -webkit-overflow-scrolling:touch;
-  scrollbar-width:none;
-
-  flex: 1 1 auto;
-  min-width: 0;
-
-  padding: 0;
-  background: transparent;
-  border: 0;
-  box-shadow: none;
-
-  margin-left: auto;      /* ✅ skyver til høyre */
-  justify-content: flex-end;
-}
-
-.nearby-tabs::-webkit-scrollbar{ display:none; }
-
-
-/* ===================================== */
-/* Nearby tabs: kun tekst + farger        */
-/* ===================================== */
+/* ========================= */
+/* Nearby tabs (tekst + farge) */
+/* ========================= */
 
 .nearby-tab{
   -webkit-appearance: none;
   appearance: none;
 
-  white-space:nowrap;
+  white-space: nowrap;
   padding: 0;
 
   border: 0;
   border-radius: 0;
-  background: transparent;
   box-shadow: none;
 
-  color: rgba(255,255,255,0.78);
+  /* Base: litt “glass”, ingen streker */
+  background: rgba(255,255,255,0.06);
+  color: rgba(255,255,255,0.92);
+
   font-weight: 700;
   font-size: 0.95rem;
   line-height: 1;
@@ -254,72 +234,46 @@
   outline: none;
 }
 
+/* Active: tekst + litt mer solid bakgrunn */
 .nearby-tab.is-active{
   color: #fff;
   text-decoration: underline;
   text-underline-offset: 6px;
   text-decoration-thickness: 2px;
+
+  background: rgba(255,255,255,0.14);
 }
 
-/* ingen focus-ring */
-.nearby-tab:focus,
-.nearby-tab:focus-visible{
-  outline: none;
-  box-shadow: none;
-}
-
-/* ===================================== */
-/* Nearby tabs: farger (blå/grønn/gul/rød) */
-/* ===================================== */
-
-/* Base: litt “glass”, ingen streker */
-.nearby-tab{
-  border: 0;
-  box-shadow: none;
-  background: rgba(255,255,255,0.06);
-  color: rgba(255,255,255,0.92);
-}
-
-/* 🔴 Steder (samme vibe som Ta quiz) */
+/* Farger per tab */
 .nearby-tab[data-leftmode="nearby"]{
   background: rgba(0,122,255,0.18);
   color: rgba(210,232,255,0.98);
 }
-
-/* 🔵 Folk */
+.nearby-tab[data-leftmode="routes"]{
+  background: rgba(48,176,199,0.18); /* turkis (så Natur kan eie grønn) */
+  color: rgba(210,250,255,0.98);
+}
+.nearby-tab[data-leftmode="badges"]{
+  background: rgba(255,204,0,0.18);
+  color: rgba(255,245,210,0.98);
+}
+.nearby-tab[data-leftmode="nature"]{
+  background: rgba(52,199,89,0.18);  /* grønn */
+  color: rgba(220,255,230,0.98);
+}
 .nearby-tab[data-leftmode="people"]{
   background: rgba(255,59,48,0.18);
   color: rgba(255,220,220,0.98);
 }
 
-/* 🟩 Natur (grønn) */
-.nearby-tab[data-leftmode="nature"]{ background: rgba(52,199,89,0.18); }
-.nearby-tab.is-active[data-leftmode="nature"]{ background: rgba(52,199,89,0.38); }
-
-/* 🟢 Ruter */
-.nearby-tab[data-leftmode="routes"]{
-  background: rgba(52,199,89,0.18);
-  color: rgba(220,255,230,0.98);
-}
-
-/* 🟡 Merker */
-.nearby-tab[data-leftmode="badges"]{
-  background: rgba(255,204,0,0.18);
-  color: rgba(255,245,210,0.98);
-}
-
-
-/* Active: mer solid */
-.nearby-tab.is-active{
-  background: rgba(255,255,255,0.14);
-}
-
+/* Active: mer solid per farge */
 .nearby-tab.is-active[data-leftmode="nearby"]{ background: rgba(0,122,255,0.38); }
-.nearby-tab.is-active[data-leftmode="routes"]{ background: rgba(52,199,89,0.38); }
+.nearby-tab.is-active[data-leftmode="routes"]{ background: rgba(48,176,199,0.38); }
 .nearby-tab.is-active[data-leftmode="badges"]{ background: rgba(255,204,0,0.38); }
+.nearby-tab.is-active[data-leftmode="nature"]{ background: rgba(52,199,89,0.38); }
 .nearby-tab.is-active[data-leftmode="people"]{ background: rgba(255,59,48,0.38); }
 
-/* Ingen focus-ring i Safari */
+/* Ingen focus-ring */
 .nearby-tab:focus,
 .nearby-tab:focus-visible{
   outline: none;
