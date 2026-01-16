@@ -345,9 +345,11 @@
    ============================================================ */
 
 .nearby-row2{
+  margin-top: auto;      /* ✅ skyver kort-raden helt ned */
   padding-top: 0;
-  padding-bottom: 0;
+  padding-bottom: 6px;   /* litt luft mot bunnen (juster 0–10px) */
 }
+
 /* OVERRID: #nearbyList var vertikal i base-CSS – nå er den horisontal */
 #nearbyList.nearby-strip{
   flex: 0 0 auto;
@@ -355,6 +357,7 @@
   overflow-y: hidden !important;
 
   display:flex;
+  align-items: flex-end; /* ✅ kortene ligger på bunnen av strip-høyden */
   gap:10px;
   overflow-x:auto;
   -webkit-overflow-scrolling:touch;
