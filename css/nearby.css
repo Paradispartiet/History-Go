@@ -229,6 +229,7 @@
 
 .nearby-tabs::-webkit-scrollbar{ display:none; }
 
+
 /* ===================================== */
 /* Nearby tabs: kun tekst + farger        */
 /* ===================================== */
@@ -239,9 +240,9 @@
 
   white-space: nowrap;
   padding: 0;
+  margin: 0;
 
   border: 0;
-  border-radius: 0;
   background: transparent;
   box-shadow: none;
 
@@ -255,15 +256,16 @@
 }
 
 /* Farger (inaktiv) */
-.nearby-tab[data-leftmode="nearby"]{  color: rgba(0,122,255,0.95); }   /* blå */
-.nearby-tab[data-leftmode="routes"]{  color: rgba(52,199,89,0.95); }   /* grønn */
-.nearby-tab[data-leftmode="badges"]{  color: rgba(255,204,0,0.95); }   /* gul */
-.nearby-tab[data-leftmode="nature"]{  color: rgba(52,199,89,0.95); }   /* grønn (Natur) */
-.nearby-tab[data-leftmode="people"]{  color: rgba(255,59,48,0.95); }   /* rød */
+.nearby-tab[data-leftmode="nearby"]{  color: rgba(0,122,255,0.98); }   /* blå */
+.nearby-tab[data-leftmode="routes"]{  color: rgba(52,199,89,0.98); }   /* grønn */
+.nearby-tab[data-leftmode="badges"]{  color: rgba(255,204,0,0.98); }   /* gul */
+.nearby-tab[data-leftmode="people"]{  color: rgba(255,59,48,0.98); }   /* rød */
+.nearby-tab[data-leftmode="nature"]{  color: rgba(52,199,89,0.98); }   /* grønn (Natur) */
 
-/* Aktiv: mer tydelig + underline */
+/* Aktiv */
 .nearby-tab.is-active{
   opacity: 1;
+  color: #fff; /* aktiv blir “hvit”, men underline viser fortsatt farge via tekst over om du vil */
   text-decoration: underline;
   text-underline-offset: 6px;
   text-decoration-thickness: 2px;
