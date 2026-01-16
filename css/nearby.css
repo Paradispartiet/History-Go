@@ -308,26 +308,39 @@
    NY: RAD 2 (horisontal scroll med kort)
    ============================================================ */
 
+/* ============================================================
+   RAD 2: fast høyde + horisontal scroll
+   ============================================================ */
+
 .nearby-row2{
-  margin-top: auto;      /* ✅ skyver kort-raden helt ned */
-  padding-top: 0;
-  padding-bottom: 6px;   /* litt luft mot bunnen (juster 0–10px) */
+  /* IKKE margin-top:auto (det skaper “tomt hav”) */
+  margin-top: 0;
+
+  /* Fast høyde som matcher kortene */
+  height: 64px;
+
+  padding: 0 8px 6px;
+  display: flex;
+  align-items: flex-end;
 }
 
-/* OVERRID: #nearbyList var vertikal i base-CSS – nå er den horisontal */
+/* Horisontal strip fyller hele row2 */
 #nearbyList.nearby-strip{
-  flex: 0 0 auto;
-  min-height: 0;
-  overflow-y: hidden !important;
+  height: 100%;
+  width: 100%;
 
-  display:flex;
-  align-items: flex-end; /* ✅ kortene ligger på bunnen av strip-høyden */
-  gap:10px;
-  overflow-x:auto;
-  -webkit-overflow-scrolling:touch;
-  scrollbar-width:none;
-  scroll-snap-type:x mandatory;
-  padding-bottom: 2px;
+  display: flex;
+  align-items: center;   /* ikke flex-end */
+  gap: 10px;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+
+  /* litt “luft” så ikke siste kort klippes */
+  padding: 0 2px;
 }
 #nearbyList.nearby-strip::-webkit-scrollbar{ display:none; }
 
