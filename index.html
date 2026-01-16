@@ -308,12 +308,32 @@
     const sel = document.getElementById("leftPanelMode");
     if (!sel) return;
 
+function showPanel(mode){
+  const ids = ["panelNearby","panelRoutes","panelBadges","panelNature","panelPeople"];
+  ids.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = "none";
+  });
+
+  const map = {
+    nearby: "panelNearby",
+    routes: "panelRoutes",
+    badges: "panelBadges",
+    nature: "panelNature",
+    people: "panelPeople"
+  };
+
+  const target = document.getElementById(map[mode] || "panelNearby");
+  if (target) target.style.display = "";
+}rt
+    
     document.querySelectorAll(".nearby-tab").forEach(btn => {
       btn.addEventListener("click", () => {
         const mode = btn.getAttribute("data-leftmode") || "nearby";
         sel.value = mode;
         sel.dispatchEvent(new Event("change", { bubbles: true }));
-
+        showPanel(mode);
+        
         document.querySelectorAll(".nearby-tab").forEach(b => {
           b.classList.toggle("is-active", b === btn);
         });
@@ -334,7 +354,7 @@
       el.classList.add("geo-bad"); el.textContent = "⛔";
     } else {
       el.classList.add("geo-unknown"); el.textContent = "…";
-    }
+    }t
   }
 
   window.addEventListener("hg:geo", (e) => {
@@ -387,6 +407,7 @@ function patchRenderNearbyPlaces() {
 }
 
   // init
+  showPanel(sel.value || "nearby");
   bindTabs();
   patchRenderNearbyPlaces();
 
