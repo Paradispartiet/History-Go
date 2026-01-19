@@ -50,6 +50,329 @@ H) Metastruktur (arkitektur/visjon)
 
 
 
+Forstått. Her er **kun History Go**, og **alle pågående oppgaver**, strukturert **dypt**, teknisk og praktisk – slik systemet faktisk er bygget og brukes nå.
+Ingen strategi-prat, ingen EchoNet, ingen fremtidssnakk. Bare arbeid.
+
+---
+
+# HISTORY GO – FULL OPPGAVEOVERSIKT (DYPT)
+
+---
+
+## A. **Datagrunnlag (kritisk ryggrad)**
+
+### A1. Steder (`places.json` + relaterte filer)
+
+**Status:** Delvis komplett, voksende
+
+**Oppgaver**
+
+* Fullføre alle bydeler med:
+
+  * konsekvent `id`
+  * korrekt `category` (kun gyldige HG-kategorier)
+  * riktige koordinater og radius
+* Rydde:
+
+  * gamle kategorier / feil navn
+  * duplikater
+* Sikre:
+
+  * at steder kan ha **flere merker samtidig**
+  * at dette gjenspeiles i UI (flerfarget kant)
+
+**Åpne problemer**
+
+* Ulik struktur på eldre vs nye steder
+* Noen steder mangler kortbilde eller har feil filnavn
+
+---
+
+### A2. Personer (`people.json`)
+
+**Status:** Stabil struktur, men ufullstendig innhold
+
+**Oppgaver**
+
+* Fullføre:
+
+  * `imageCard` og `cardImage` (konsekvent bruk)
+  * relasjoner (steder ↔ personer)
+* Koble personer tydelig til:
+
+  * bydel
+  * fag / emne
+* Kontrollere:
+
+  * årstall
+  * skrivefeil (absolutt nulltoleranse)
+
+---
+
+### A3. Natur / fauna / flora (nye datasett)
+
+**Status:** Aktiv utvidelse
+
+**Oppgaver**
+
+* Ferdigstille samlegrupper:
+
+  * insekter
+  * planter
+  * trær
+* Sikre:
+
+  * lik struktur i alle emner
+  * riktig `habitat`, `fenologi`, `økologi`
+* Avklare:
+
+  * hva som gir quiz
+  * hva som kun er kunnskapskort
+
+---
+
+## B. **Kort-systemet (visuelt og semantisk)**
+
+### B1. Kortmal (standard)
+
+**Status:** Definert, men må håndheves konsekvent
+
+**Krav (fast)**
+
+* 2:1-format
+* Ingen beskjæring
+* Hvit innside
+* Transparent / mørk bakgrunn utenfor
+* Riktig merke øverst venstre
+* History Go-logo nederst høyre
+* PNG, korrekt filnavn (`.PNG`)
+
+**Oppgaver**
+
+* Ettergå ALLE eksisterende kort:
+
+  * finne avvik
+  * erstatte feil
+* Lage én intern “fasit” for kort (mentalt allerede gjort – må følges slavisk)
+
+---
+
+### B2. Forside/bakside-logikk
+
+**Oppgaver**
+
+* Forside = bilde + identitet
+* Bakside =:
+
+  * tekst
+  * relasjoner
+  * merker
+* Sikre at:
+
+  * relasjoner kan vises via bildeklikk
+  * samme relasjon ikke vises dobbelt
+
+---
+
+## C. **Merke- og progresjonssystem**
+
+### C1. Merker (øverste nivå)
+
+**Status:** Aktiv, men uferdig kobling
+
+**Oppgaver**
+
+* Sikre at:
+
+  * alle merker er definert
+  * alle har farge
+  * alle brukes faktisk
+* Merker skal:
+
+  * knyttes til steder
+  * knyttes til personer
+  * vises på kort
+  * vises på profilsiden
+
+---
+
+### C2. Nivåer
+
+**Fast struktur**
+
+* Bronse
+* Sølv
+* Gull
+* Pokal
+
+**Oppgaver**
+
+* Tydeliggjøre:
+
+  * når man går fra nivå til nivå
+  * hva som utløser pokal
+* Implementere:
+
+  * tydelig visuell forskjell
+  * popup / feedback (uten støy)
+
+---
+
+## D. **Quiz-systemet**
+
+### D1. Quiz-data
+
+**Status:** Fungerende, men ujevnt
+
+**Oppgaver**
+
+* Rydde quizfiler:
+
+  * én struktur
+  * én standard
+* Sikre:
+
+  * at alle quizzer gir progresjon
+  * at riktige svar lagres korrekt
+* Avklare:
+
+  * når quiz låses opp
+  * når quiz repeteres
+
+---
+
+### D2. Quiz → profil
+
+**Oppgaver**
+
+* Sikre at:
+
+  * `saveQuizHistory()` alltid trigges korrekt
+  * `window.dispatchEvent("updateProfile")` alltid fyres
+* Ettergå:
+
+  * hvor progresjon ikke oppdateres live
+
+---
+
+## E. **Profilside (brukerens sentrum)**
+
+### E1. Samlet oversikt
+
+**Status:** Fungerer, men blir for tung
+
+**Oppgaver**
+
+* Legge scroll der det mangler
+* Skille tydelig:
+
+  * steder
+  * personer
+  * merker
+  * kunnskap
+* Rydde:
+
+  * for lange lister
+  * overlappende elementer
+
+---
+
+### E2. Live-oppdatering
+
+**Oppgaver**
+
+* Sikre at:
+
+  * alle endringer i progresjon oppdaterer profilen umiddelbart
+  * ingen skjulte cache-feil
+
+---
+
+## F. **PlaceCard (bottom sheet)**
+
+### F1. Struktur
+
+**Status:** Nær ferdig
+
+**Oppgaver**
+
+* Finjustere:
+
+  * høyde
+  * spacing
+* Sikre:
+
+  * at relasjoner vises riktig
+  * at bilder er primær inngang til utforskning
+
+---
+
+### F2. Relasjoner via bilde
+
+**Oppgaver**
+
+* Implementere:
+
+  * klikk på bilde → relaterte personer/steder
+* Unngå:
+
+  * teksttunge løsninger
+
+---
+
+## G. **Navigasjon og flyt**
+
+### G1. Kart ↔ kort ↔ profil
+
+**Oppgaver**
+
+* Sikre intuitiv flyt:
+
+  * kart → kort
+  * kort → relasjoner
+  * relasjoner → profil
+* Ingen døde klikk
+* Ingen “hva gjør jeg nå”-øyeblikk
+
+---
+
+## H. **Feilsikring og disiplin**
+
+### H1. Konsistensregler (må håndheves)
+
+* Ingen nye kategorier uten definisjon
+* Ingen nye kort uten korrekt mal
+* Ingen nye data uten å rette kilden
+* Ingen quick-fixes
+
+---
+
+## I. **Rydding (teknisk gjeld)**
+
+**Oppgaver**
+
+* Fjerne:
+
+  * gammel kode
+  * ubrukt struktur
+  * halvt implementerte ideer
+* Ettergå:
+
+  * app.js (lukkede klammer, kommentarer)
+  * CSS-duplikater
+
+---
+
+
+
+
+
+
+
+
+
+
+
 //________________//
 
 
@@ -91,8 +414,7 @@ IDEER
 
 6) Badges / merker / samling
 	•	Badges som progresjonsmotor på tvers av moduler (steder, ruter, flora/fauna, brands).
-	•	Badge-ikon på kort/bilder (du ville ha det oppe i høyre hjørne).
-	•	“Nylig låst opp”-feed på profilen.
+	•	
 
 7) Profil som “Facebookside for kunnskap”
 	•	Profilen skal reflektere:
