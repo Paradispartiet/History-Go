@@ -125,37 +125,46 @@
 #nearbyListContainer .nearby-title{ display: none; }
 
 /* ============================================================
-   Nearby items – navn + dist under (2 linjer)
+   Nearby items – LISTEVISNING (ikke strip)
+   Navn + dist under (2 linjer)
+   Gjelder KUN når #nearbyList IKKE har .nearby-strip
    ============================================================ */
 
-.nearby-item{
+#nearbyList:not(.nearby-strip) .nearby-item{
   display: grid;
-  grid-template-columns: 46px 22px 1fr auto; /* thumb | badge | navn | dist */
-  grid-template-rows: auto;                  /* én linje */
-  column-gap: 5px;
-  row-gap: 0;
+  grid-template-columns: 44px 1fr;
+  grid-template-rows: auto auto;
+  column-gap: 10px;
+  row-gap: 2px;
 
   align-items: center;
-  padding: 10px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-}
-.nearby-item:last-child{ border-bottom: none; }
 
-.nearby-thumb{
+  padding: 8px 10px;
+  border-radius: 14px;
+
+  border: 0;
+  background: rgba(255,255,255,0.04);
+}
+
+#nearbyList:not(.nearby-strip) .nearby-thumb{
   grid-column: 1;
   grid-row: 1 / span 2;
-  width: 46px;
-  height: 46px;
+
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
   object-fit: cover;
-  border-radius: 6px;
-  border: 1px solid rgba(255,255,255,0.12);
+  display: block;
+
+  border: 0;
 }
 
-.nearby-name{
-  grid-column: 3;
+#nearbyList:not(.nearby-strip) .nearby-name{
+  grid-column: 2;
   grid-row: 1;
-  font-size: 0.85rem;
-  font-weight: 600;
+
+  font-size: 1.0rem;
+  font-weight: 800;
   color: #fff;
 
   white-space: nowrap;
@@ -163,33 +172,40 @@
   text-overflow: ellipsis;
 }
 
-.nearby-dist{
-  grid-column: 4;
+#nearbyList:not(.nearby-strip) .nearby-dist{
+  grid-column: 2;
   grid-row: 2;
-  font-size: 0.72rem;
-  color: var(--muted);
+
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.72);
   white-space: nowrap;
 }
 
-.nearby-badge{
-  grid-column: 2;
-  grid-row: 1;
-  width: 28px;
-  height: 28px;
+#nearbyList:not(.nearby-strip) .nearby-badge{
+  grid-column: 1;
+  grid-row: 1 / span 2;
+
+  position: relative;
+  justify-self: end;
+  align-self: start;
+
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  margin-right: 2px;
+
+  border-radius: 50%;
   object-fit: contain;
-  opacity: 0.95;
-  margin-right: 4px;
+  background: rgba(0,0,0,0.35);
 }
 
-/* Hele raden klikkbar (du bruker data-open på .nearby-item) */
-.nearby-thumb,
-.nearby-name,
-.nearby-badge,
-.nearby-dist{
+/* I listevisning vil vi at klikk går til item */
+#nearbyList:not(.nearby-strip) .nearby-thumb,
+#nearbyList:not(.nearby-strip) .nearby-name,
+#nearbyList:not(.nearby-strip) .nearby-badge,
+#nearbyList:not(.nearby-strip) .nearby-dist{
   pointer-events: none;
 }
-
-
 
 /* ============================================================
    NY: RAD 1 (tabs + søk + geo-status)
