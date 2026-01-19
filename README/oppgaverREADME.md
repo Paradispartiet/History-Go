@@ -523,7 +523,7 @@ IDEER
 21) Drift, vedlikehold og verktøy
 	•	Missing images-verktøy: “hvilke steder/personer mangler hvilke bilder” (og det må være enkelt og pålitelig).
 	•	CSS-struktur: unngå “lapp nederst”-kaos; samle riktig sted, unngå theme-overstyring som gjør at ting “ikke skjer”.
-	•	Stabil state: unngå at testmodus/quiz gjør at alt blir “unlocka” ved retur til forsiden.
+	•	
 
 22) Monetisering / forretningsretning (som vi har nevnt)
 	•	Abonnement/årlig pris (eksempel: 99/år) og også månedlig (30 kr/mnd ble nevnt).
@@ -537,3 +537,105 @@ IDEER
 	•	Presis betalingsmodell (hva er gratis vs låst, preview, osv).
 	•	Moderasjon/kuratering (særlig for brand- og mapping-data).
 	•	Sosial deling (hva deles, hvem ser hva, feed-format).
+
+
+
+....
+
+
+
+
+# HISTORY GO – FAKTISKE, IKKE-IMPLEMENTERTE IDEER / UTVIDELSER DU HAR NEVNT
+
+## 1. **Groundhopping / stadion-utvidelse**
+
+**Hva du har sagt**
+
+* Utvide History Go med **alle fotballstadioner**
+* Gjøre appen til en **go-to app for groundhoppere**
+* Samme system, nytt domene
+
+**Status**
+
+* ❌ Ikke implementert
+* ✅ Kun idé / konsept
+* 🟡 Nevnt flere ganger, aldri forkastet
+
+---
+
+
+---
+
+## 3. **Flere merker på samme sted (full utnyttelse)**
+
+**Hva du har sagt**
+
+* Ett sted kan ha **flere merker**
+* Kantfargen skal bli **flerfarget**
+* Merker skal være like viktige som kategori
+
+**Status**
+
+* 🟡 Delvis implementert teknisk
+* ❌ Ikke fullt realisert visuelt / semantisk
+* ❌ Ikke brukt systematisk i data
+
+Dette er en **utvidelse**, ikke bare finpuss.
+
+---
+
+
+---
+
+
+---
+
+## 6. **Samlede steder-lister med egen UX**
+
+**Hva du har sagt**
+
+* Profilsiden får for lange lister
+* Trenger **egen scroll / struktur**
+* Samlinger må håndteres bedre
+
+**Status**
+
+* ❌ Ikke løst fullt ut
+* 🟡 Kun delvis justert
+* Dette er eksplisitt nevnt som **noe som mangler**
+
+---
+
+## 7. **Natur som fullverdig spor (ikke bare tillegg)**
+
+**Hva du har sagt**
+
+* Insekter, maur, bier, trær osv.
+* Eget datasett
+* Samme alvor som historie
+
+**Status**
+
+* 🟡 Data bygges nå
+* ❌ Ikke ferdig integrert i progresjon / merker
+* ❌ Ikke tydelig egen “naturlinje” i appen
+
+Dette er fortsatt en **pågående idéutvidelse**, ikke ferdig funksjon.
+
+---
+
+## 8. **History Go som “treningsarena” for noe større**
+
+**Hva du har sagt**
+
+* History Go er ikke bare et spill
+* Det trener et større system (AHA / EchoNet)
+* Men må stå på egne ben
+
+**Status**
+
+* ❌ Ikke implementert som eksplisitt lag
+* 🟡 Kun konseptuelt til stede
+* Dette er en **idé om rolle**, ikke kode
+
+
