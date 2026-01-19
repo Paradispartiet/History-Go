@@ -205,3 +205,71 @@
   40%  { transform: scale(1.10); opacity: 1; }
   100% { transform: scale(1); opacity: .8; }
 }
+
+/* =====================================================
+   MINI-PROFIL I TOPPLINJE – kun brukernavn + merker
+   (override når miniProfile flyttes inn i header)
+   ===================================================== */
+
+.site-header .top-actions #miniProfile,
+header .top-actions #miniProfile{
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 4px 10px;
+  border-radius: 999px;
+
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.10);
+
+  box-shadow: none;
+  transform: none;
+
+  border-left: 0;  /* nuller ut den gule venstrekanten fra kortet */
+  text-decoration: none;
+  color: #fff;
+}
+
+/* Ikke hover-løft i topplinje */
+.site-header .top-actions #miniProfile:hover,
+header .top-actions #miniProfile:hover{
+  transform: none;
+  box-shadow: none;
+}
+
+/* Vis bare navn + merker */
+.site-header .top-actions #miniProfile #linkPlaces,
+.site-header .top-actions #miniProfile #linkQuiz,
+header .top-actions #miniProfile #linkPlaces,
+header .top-actions #miniProfile #linkQuiz{
+  display: none !important;
+}
+
+/* Fjern " · " uten å endre HTML: font-size 0 på miniStats */
+.site-header .top-actions #miniProfile #miniStats,
+header .top-actions #miniProfile #miniStats{
+  font-size: 0;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* Skru på igjen font på badges-linken */
+.site-header .top-actions #miniProfile #linkBadges,
+header .top-actions #miniProfile #linkBadges{
+  font-size: 13px;
+  font-weight: 800;
+  color: #fff;
+}
+
+/* Kompakt navn */
+.site-header .top-actions #miniProfile #miniName,
+header .top-actions #miniProfile #miniName{
+  font-size: 13px;
+  font-weight: 800;
+  max-width: 28vw;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
