@@ -105,20 +105,20 @@
 #panelNearby #status{ margin-bottom: 8px; }
 
 /* Nærmeste-lista scroller */
+/* Nærmeste-lista: standard (uten strip) skal IKKE være horisontal */
 #nearbyList{
   flex: 1;
   min-height: 0;
 
-  overflow-x: auto;
-  overflow-y: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
 
   -webkit-overflow-scrolling: touch;
 
   padding: 0;
   margin: 0;
 
-  display: flex;         /* fyller høyden */
-  align-items: stretch;  /* går i bunn */
+  display: block;
 }
 
 /* Skjul gammel legacy-title hvis den finnes */
