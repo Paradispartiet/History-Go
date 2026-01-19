@@ -273,3 +273,20 @@ header .top-actions #miniProfile #miniName{
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+/* Topline: la badges alltid synes, navnet kuttes først */
+.site-header .top-actions #miniProfile,
+header .top-actions #miniProfile{
+  max-width: 48vw;
+}
+
+.site-header .top-actions #miniProfile #miniName,
+header .top-actions #miniProfile #miniName{
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.site-header .top-actions #miniProfile #linkBadges,
+header .top-actions #miniProfile #linkBadges{
+  flex: 0 0 auto;
+}
