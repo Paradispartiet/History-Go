@@ -67,6 +67,28 @@
   <img class="hg-brand" src="bilder/logo_historygo.PNG" alt="History GO">
   
   <div class="top-actions">
+
+  <a id="miniProfile" class="panel mini-profile mini-profile--link" href="profile.html">
+    <div class="info">
+      <div class="profile-top">
+        <h3 id="miniName">Utforsker #182</h3>
+      </div>
+
+      <p id="miniStats" class="muted">
+        <span id="linkPlaces" class="linkish">0 steder</span> ·
+        <span id="linkBadges" class="linkish">0 merker</span> ·
+        <span id="linkQuiz" class="linkish">0 quizzer</span>
+      </p>
+
+      <div id="miniBadges" class="profile-badges"></div>
+
+      <div id="miniLastQuiz" class="profile-last-quiz" style="display:none;">
+        <img id="miniLastQuizImg" src="">
+        <span id="miniLastQuizName"></span>
+      </div>
+    </div>
+  </a>
+    
     <button id="btnSeeMap" class="secondary" type="button">Kartmodus</button>
 
     <input id="globalSearch" type="search" placeholder="Søk…" autocomplete="off">
@@ -181,26 +203,7 @@
 <!-- Footer stack: miniProfile over NextUp (full bredde) -->
 <div class="pc-footer-stack">
 
-  <a id="miniProfile" class="panel mini-profile mini-profile--link" href="profile.html">
-    <div class="info">
-      <div class="profile-top">
-        <h3 id="miniName">Utforsker #182</h3>
-      </div>
 
-      <p id="miniStats" class="muted">
-        <span id="linkPlaces" class="linkish">0 steder</span> ·
-        <span id="linkBadges" class="linkish">0 merker</span> ·
-        <span id="linkQuiz" class="linkish">0 quizzer</span>
-      </p>
-
-      <div id="miniBadges" class="profile-badges"></div>
-
-      <div id="miniLastQuiz" class="profile-last-quiz" style="display:none;">
-        <img id="miniLastQuizImg" src="">
-        <span id="miniLastQuizName"></span>
-      </div>
-    </div>
-  </a>
 
   <!-- NextUp under miniProfile -->
   <div id="mpNextUp" class="pc-nextup"></div>
