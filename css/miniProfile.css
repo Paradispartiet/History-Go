@@ -290,3 +290,17 @@ header .top-actions #miniProfile #miniName{
 header .top-actions #miniProfile #linkBadges{
   flex: 0 0 auto;
 }
+
+/* Topline: badge-ikon foran badge-count */
+.site-header .top-actions #miniProfile #linkBadges::before,
+header .top-actions #miniProfile #linkBadges::before{
+  content: "";
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-right: 6px;
+  vertical-align: -2px;
+
+  /* BYTT URL til din faktiske ikonfil */
+  background: url("assets/icons/badge.png") center / contain no-repeat;
+}
