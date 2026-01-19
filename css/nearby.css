@@ -1,0 +1,501 @@
+/* ============================================================
+   LEFT PANEL (nearby/routes/badges) – stabil flex-layout
+   Matcher HTML-strukturen i index.html
+
+   RYDDIG VERSJON (uten duplikater)
+   - Beholder alt fra originalfila
+   - Fix: Nearby row 2-bilder fyller alltid kortet (cover + top)
+   - Fix: Legacy-tittel skjules kun i listevisning, ikke i strip
+   ============================================================ */
+
+:root{
+  --hg-header-h: 30px;   /* kan JS overstyre */
+  --hg-header-gap: 0px;  /* i kant med topplinja */
+  --hg-placecard-h: var(--pc-height, 41vh);
+  --hg-leftpanel-w: 180px;
+  --hg-frame-bg: var(--panel-bg, #121212);
+}
+
+/* ============================================================
+   CONTAINER
+   ============================================================ */
+
+#nearbyListContainer{
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: var(--hg-header-h, 44px);
+  bottom: auto;
+
+  height: 92px;
+  width: auto;
+  padding-bottom: 0;
+
+  z-index: 19;
+
+  background: var(--hg-frame-bg);
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+
+  display: flex;
+  flex-direction: column;
+  overflow: visible;   /* så watermark kan stikke opp */
+}
+
+#nearbyListContainer.is-hidden{ display:none; }
+
+/* Head */
+#nearbyListContainer .leftpanel-head{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  gap: 10px;
+  padding: 2px 4px;
+  width: 100%;
+
+  position: relative;
+  z-index: 3;
+}
+
+/* Body må kunne krympe (Safari/flex-fix) */
+#nearbyListContainer .leftpanel-body{
+  flex: 1;
+  min-height: 0; /* kritisk på iPad */
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+}
+
+/* Hver view */
+#nearbyListContainer .leftpanel-view{
+  flex: 1;
+  min-height: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 0px 8px;
+}
+
+/* Title */
+#nearbyListContainer .leftpanel-title{
+  font-weight: 700;
+  color: #e6eef9;
+  display: none;
+}
+
+/* Select (legacy – skjult i DOM i HTML) */
+#nearbyListContainer .leftpanel-select{
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.12);
+  color: #e6eef9;
+  border-radius: 10px;
+  padding: 6px 8px;
+  font-size: 13px;
+}
+
+/* Toggle-knapp (settes inn av JS) */
+.nearby-toggle-btn{
+  margin-left: auto;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: #fff;
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+.nearby-toggle-btn:active{ transform: scale(0.98); }
+
+/* Status øverst */
+#panelNearby #status{ margin-bottom: 8px; }
+
+/* ============================================================
+   NEARBY LIST (base)
+   ============================================================ */
+
+/* Standard liste (uten strip) skal IKKE være horisontal */
+#nearbyList{
+  flex: 1;
+  min-height: 0;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+
+  padding: 0;
+  margin: 0;
+
+  display: block;
+}
+
+/* Skjul gammel legacy-title KUN i listevisning */
+#nearbyList:not(.nearby-strip) .nearby-title{ display: none; }
+
+/* ============================================================
+   Nearby items – LISTEVISNING (ikke strip)
+   Navn + dist under (2 linjer)
+   Gjelder KUN når #nearbyList IKKE har .nearby-strip
+   ============================================================ */
+
+#nearbyList:not(.nearby-strip) .nearby-item{
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  grid-template-rows: auto auto;
+  column-gap: 10px;
+  row-gap: 2px;
+
+  align-items: center;
+
+  padding: 8px 10px;
+  border-radius: 14px;
+
+  border: 0;
+  background: rgba(255,255,255,0.04);
+}
+
+#nearbyList:not(.nearby-strip) .nearby-thumb{
+  grid-column: 1;
+  grid-row: 1 / span 2;
+
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  object-fit: cover;
+  display: block;
+
+  border: 0;
+}
+
+#nearbyList:not(.nearby-strip) .nearby-name{
+  grid-column: 2;
+  grid-row: 1;
+
+  font-size: 1.0rem;
+  font-weight: 800;
+  color: #fff;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#nearbyList:not(.nearby-strip) .nearby-dist{
+  grid-column: 2;
+  grid-row: 2;
+
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.72);
+  white-space: nowrap;
+}
+
+#nearbyList:not(.nearby-strip) .nearby-badge{
+  grid-column: 1;
+  grid-row: 1 / span 2;
+
+  position: relative;
+  justify-self: end;
+  align-self: start;
+
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  margin-right: 2px;
+
+  border-radius: 50%;
+  object-fit: contain;
+  background: rgba(0,0,0,0.35);
+}
+
+/* I listevisning vil vi at klikk går til item */
+#nearbyList:not(.nearby-strip) .nearby-thumb,
+#nearbyList:not(.nearby-strip) .nearby-name,
+#nearbyList:not(.nearby-strip) .nearby-badge,
+#nearbyList:not(.nearby-strip) .nearby-dist{
+  pointer-events: none;
+}
+
+/* ============================================================
+   RAD 1 (tabs + søk + geo-status)
+   ============================================================ */
+
+.nearby-row1{
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  flex-wrap: nowrap;
+}
+
+/* Tabs som små buttons */
+.nearby-tabs{
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* Tabs helt til høyre i head */
+#nearbyListContainer .nearby-tabs{
+  margin-left: auto;
+  justify-content: flex-end;
+}
+
+/* pill button */
+.nearby-tab{
+  -webkit-appearance:none;
+  appearance:none;
+
+  padding: 4px 8px;
+  border-radius: 999px;
+
+  border: 0;
+  background: rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.92);
+
+  font-weight: 800;
+  font-size: 0.78rem;
+  line-height: 1;
+
+  box-shadow: none;
+  outline: none;
+}
+
+/* Active: litt “trykket inn” */
+.nearby-tab.is-active{
+  transform: translateY(0.5px);
+  box-shadow: none;
+}
+
+/* Farger per tab (bakgrunn = farge) */
+.nearby-tab[data-leftmode="nearby"]{ background: rgba(0,122,255,0.40); }  /* blå */
+.nearby-tab[data-leftmode="routes"]{ background: rgba(52,199,89,0.40); }  /* grønn */
+.nearby-tab[data-leftmode="badges"]{ background: rgba(255,204,0,0.40); color: rgba(0,0,0,0.85);} /* gul */
+.nearby-tab[data-leftmode="people"]{ background: rgba(255,59,48,0.40); }  /* rød */
+.nearby-tab[data-leftmode="nature"]{ background: rgba(48,176,199,0.40); } /* turkis */
+
+/* Active: mer solid */
+.nearby-tab.is-active[data-leftmode="nearby"]{ background: rgba(0,122,255,0.70); }
+.nearby-tab.is-active[data-leftmode="routes"]{ background: rgba(52,199,89,0.70); }
+.nearby-tab.is-active[data-leftmode="badges"]{ background: rgba(255,204,0,0.75); color: rgba(0,0,0,0.92); }
+.nearby-tab.is-active[data-leftmode="people"]{ background: rgba(255,59,48,0.70); }
+.nearby-tab.is-active[data-leftmode="nature"]{ background: rgba(48,176,199,0.70); }
+
+/* Ingen focus-ring */
+.nearby-tab:focus,
+.nearby-tab:focus-visible{
+  outline: none;
+  box-shadow: none;
+}
+
+.nearby-searchwrap{
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 0 0 auto;
+  margin-left: auto; /* holder søk på høyre side */
+}
+
+.nearby-search{
+  width: 130px;
+  max-width: 38vw;
+  padding: 6px 9px;
+
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.06);
+
+  color: inherit;
+  font-size: 0.85rem;
+}
+
+.geo-status{ font-size:14px; line-height:1; opacity:0.95; }
+.geo-status.geo-ok{ color:#3cff7a; }
+.geo-status.geo-bad{ color:#ff4b4b; }
+.geo-status.geo-unknown{ color:#ffcc00; }
+
+/* ============================================================
+   RAD 2 (horisontal scroll med kort)
+   ============================================================ */
+
+.nearby-row2{
+  margin-top: 0;        /* IKKE margin-top:auto */
+  height: 84px;         /* fast høyde som matcher kortene */
+
+  padding: 0 8px 6px;
+  display: flex;
+  align-items: flex-end;
+}
+
+/* Horisontal strip fyller hele row2 */
+#nearbyList.nearby-strip{
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+
+  padding: 0 2px; /* litt “luft” så ikke siste kort klippes */
+}
+#nearbyList.nearby-strip::-webkit-scrollbar{ display:none; }
+
+/* Kortet: større “hero”-kort */
+#nearbyList.nearby-strip .nearby-item{
+  flex: 0 0 auto;
+  width: 180px;
+  height: 84px;
+
+  scroll-snap-align: start;
+
+  position: relative;
+  padding: 0;
+
+  border: 0;
+  border-radius: 14px;
+  background: transparent;
+  overflow: hidden;
+}
+
+/* Bildet fyller HELE kortet (FIX: cover + top) */
+#nearbyList.nearby-strip .nearby-thumbWrap{
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+
+  width: 100%;
+  height: 100%;
+  border-radius: 14px;
+  overflow: hidden;
+
+  padding: 0;
+  background: transparent;
+}
+
+#nearbyList.nearby-strip .nearby-thumb{
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;          /* <-- viktig */
+  object-position: top center;/* <-- starter fra toppen */
+
+  display: block;
+  border: 0;
+  border-radius: 0;
+}
+
+/* Lesbarhet: mørkt slør over bildet (bak tekst) */
+#nearbyList.nearby-strip .nearby-item::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.82),
+    rgba(0,0,0,0.35),
+    rgba(0,0,0,0.0)
+  );
+}
+
+/* Badge oppå bildet (liten, tydelig) */
+#nearbyList.nearby-strip .nearby-badge{
+  position: absolute;
+  right: 8px;
+  top: 8px;
+
+  width: 22px;
+  height: 22px;
+
+  z-index: 3;
+
+  border-radius: 50%;
+  background: rgba(0,0,0,0.35);
+  object-fit: contain;
+}
+
+/* Tekst OVER bildet (nede) – hvis du har .nearby-text wrapper */
+#nearbyList.nearby-strip .nearby-text{
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  z-index: 2;
+
+  padding: 8px 10px 7px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+
+  pointer-events: none;
+}
+
+#nearbyList.nearby-strip .nearby-text .nearby-name{
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #fff;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.05;
+}
+
+#nearbyList.nearby-strip .nearby-text .nearby-dist{
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.78);
+  white-space: nowrap;
+  line-height: 1.05;
+}
+
+/* Fallback hvis navn/dist IKKE ligger inni .nearby-text (direkte barn) */
+#nearbyList.nearby-strip .nearby-item > .nearby-name{
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: 22px;
+
+  z-index: 2;
+
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #fff;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.05;
+
+  pointer-events: none;
+}
+
+#nearbyList.nearby-strip .nearby-item > .nearby-dist{
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: 7px;
+
+  z-index: 2;
+
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.78);
+  white-space: nowrap;
+  line-height: 1.05;
+
+  pointer-events: none;
+}
