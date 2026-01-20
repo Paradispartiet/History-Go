@@ -68,26 +68,31 @@
   
   <div class="top-actions">
 
-  <a id="miniProfile" class="panel mini-profile mini-profile--link" href="profile.html">
-    <div class="info">
-      <div class="profile-top">
-        <h3 id="miniName">Utforsker #182</h3>
-      </div>
+<a id="miniProfile" class="miniProfileTop" href="profile.html" aria-label="Profil">
+  <!-- Kun dette skal synes i topplinja -->
+  <span id="miniName" class="mpt-name">Utforsker #182</span>
 
-      <p id="miniStats" class="muted">
-        <span id="linkPlaces" class="linkish">0 steder</span> ·
-        <span id="linkBadges" class="linkish">0 merker</span> ·
-        <span id="linkQuiz" class="linkish">0 quizzer</span>
-      </p>
+  <span class="mpt-badges" aria-label="Merker">
+    <span class="mpt-badgeIcon" aria-hidden="true"></span>
+    <!-- behold id=linkBadges så eksisterende JS fortsatt treffer -->
+    <span id="linkBadges" class="mpt-count">0</span>
+  </span>
 
-      <div id="miniBadges" class="profile-badges"></div>
+  <!-- ALT under her beholdes for ikke å miste ting, men skjules i topplinja -->
+  <div class="mp-extra" aria-hidden="true">
+    <p id="miniStats" class="muted">
+      <span id="linkPlaces" class="linkish">0 steder</span>
+      <span id="linkQuiz" class="linkish">0 quizzer</span>
+    </p>
 
-      <div id="miniLastQuiz" class="profile-last-quiz" style="display:none;">
-        <img id="miniLastQuizImg" src="">
-        <span id="miniLastQuizName"></span>
-      </div>
+    <div id="miniBadges" class="profile-badges"></div>
+
+    <div id="miniLastQuiz" class="profile-last-quiz" style="display:none;">
+      <img id="miniLastQuizImg" src="">
+      <span id="miniLastQuizName"></span>
     </div>
-  </a>
+  </div>
+</a>
     
     <button id="btnSeeMap" class="secondary" type="button">Kartmodus</button>
 
@@ -304,43 +309,62 @@
   
 <script src="js/app.js"></script>
 
-  
+  <script>
+  // Tving linkBadges til å være kun tall (app.js kan skrive "12 merker")
+  (function(){
+    const el = document.getElementById("linkBadges");
+    if(!el) return;
+
+    function normalize(){
+      const txt = (el.textContent || "").trim();
+      const m = txt.match(/\d+/);
+      el.textContent = m ? m[0] : "0";
+    }
+
+    // run now + hold it stable hvis app.js endrer igjen
+    normalize();
+    const obs = new MutationObserver(normalize);
+    obs.observe(el, { childList:true, characterData:true, subtree:true });
+  })();
+</script>
+
 <script>
 /* =========================
    Nearby UI wiring (tabs/search/status)
    ========================= */
 (function () {
-  // --- tabs: styrer eksisterende select og trigger app.js sin change-handler ---
+
+  const sel = document.getElementById("leftPanelMode");
+
+  function showPanel(mode){
+    const ids = ["panelNearby","panelRoutes","panelBadges","panelNature","panelPeople"];
+    ids.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.style.display = "none";
+    });
+
+    const map = {
+      nearby: "panelNearby",
+      routes: "panelRoutes",
+      badges: "panelBadges",
+      nature: "panelNature",
+      people: "panelPeople"
+    };
+
+    const target = document.getElementById(map[mode] || "panelNearby");
+    if (target) target.style.display = "";
+  }
+
   function bindTabs() {
-    const sel = document.getElementById("leftPanelMode");
     if (!sel) return;
 
-function showPanel(mode){
-  const ids = ["panelNearby","panelRoutes","panelBadges","panelNature","panelPeople"];
-  ids.forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.style.display = "none";
-  });
-
-  const map = {
-    nearby: "panelNearby",
-    routes: "panelRoutes",
-    badges: "panelBadges",
-    nature: "panelNature",
-    people: "panelPeople"
-  };
-
-  const target = document.getElementById(map[mode] || "panelNearby");
-  if (target) target.style.display = "";
-}rt
-    
     document.querySelectorAll(".nearby-tab").forEach(btn => {
       btn.addEventListener("click", () => {
         const mode = btn.getAttribute("data-leftmode") || "nearby";
         sel.value = mode;
         sel.dispatchEvent(new Event("change", { bubbles: true }));
         showPanel(mode);
-        
+
         document.querySelectorAll(".nearby-tab").forEach(b => {
           b.classList.toggle("is-active", b === btn);
         });
@@ -348,7 +372,6 @@ function showPanel(mode){
     });
   }
 
-  // --- geo status: lytt på pos.js sitt hg:geo-event ---
   function setGeo(status) {
     const el = document.getElementById("geoStatus");
     if (!el) return;
@@ -361,7 +384,7 @@ function showPanel(mode){
       el.classList.add("geo-bad"); el.textContent = "⛔";
     } else {
       el.classList.add("geo-unknown"); el.textContent = "…";
-    }t
+    }
   }
 
   window.addEventListener("hg:geo", (e) => {
@@ -369,56 +392,52 @@ function showPanel(mode){
     setGeo(st);
   });
 
+  // post-prosess etter render
+  function patchRenderNearbyPlaces() {
+    if (typeof window.renderNearbyPlaces !== "function") return;
+    if (window.__hg_orig_renderNearbyPlaces) return;
 
- // --- post-prosess etter render: badge oppå thumb + sikre horisontal strip + navn over dist ---
-function patchRenderNearbyPlaces() {
-  if (typeof window.renderNearbyPlaces !== "function") return;
-  if (window.__hg_orig_renderNearbyPlaces) return;
+    window.__hg_orig_renderNearbyPlaces = window.renderNearbyPlaces;
+    window.renderNearbyPlaces = function () {
+      window.__hg_orig_renderNearbyPlaces();
 
-  window.__hg_orig_renderNearbyPlaces = window.renderNearbyPlaces;
-  window.renderNearbyPlaces = function () {
-    window.__hg_orig_renderNearbyPlaces();
+      const list = document.getElementById("nearbyList");
+      if (!list) return;
+      list.classList.add("nearby-strip");
 
-    const list = document.getElementById("nearbyList");
-    if (!list) return;
-    list.classList.add("nearby-strip");
+      list.querySelectorAll(".nearby-item").forEach(item => {
+        const thumb = item.querySelector(".nearby-thumb");
+        const badge = item.querySelector(".nearby-badge");
 
-    list.querySelectorAll(".nearby-item").forEach(item => {
-      // 1) badge oppå bildet: wrap thumb+badge hvis de finnes
-      const thumb = item.querySelector(".nearby-thumb");
-      const badge = item.querySelector(".nearby-badge");
+        if (thumb && !(thumb.parentElement && thumb.parentElement.classList.contains("nearby-thumbWrap"))) {
+          const wrap = document.createElement("div");
+          wrap.className = "nearby-thumbWrap";
 
-      if (thumb && !(thumb.parentElement && thumb.parentElement.classList.contains("nearby-thumbWrap"))) {
-        const wrap = document.createElement("div");
-        wrap.className = "nearby-thumbWrap";
+          thumb.parentElement.insertBefore(wrap, thumb);
+          wrap.appendChild(thumb);
+          if (badge) wrap.appendChild(badge);
+        }
 
-        thumb.parentElement.insertBefore(wrap, thumb);
-        wrap.appendChild(thumb);
-        if (badge) wrap.appendChild(badge);
-      }
+        const name = item.querySelector(".nearby-name");
+        const dist = item.querySelector(".nearby-dist");
 
-      // 2) navn + dist i en tekst-kolonne (2 linjer ved siden av bildet)
-      const name = item.querySelector(".nearby-name");
-      const dist = item.querySelector(".nearby-dist");
+        if (name && dist && !(name.parentElement && name.parentElement.classList.contains("nearby-text"))) {
+          const tw = document.createElement("div");
+          tw.className = "nearby-text";
 
-      if (name && dist && !(name.parentElement && name.parentElement.classList.contains("nearby-text"))) {
-        const tw = document.createElement("div");
-        tw.className = "nearby-text";
-
-        name.parentElement.insertBefore(tw, name);
-        tw.appendChild(name);
-        tw.appendChild(dist);
-      }
-    });
-  };
-}
+          name.parentElement.insertBefore(tw, name);
+          tw.appendChild(name);
+          tw.appendChild(dist);
+        }
+      });
+    };
+  }
 
   // init
-  showPanel(sel.value || "nearby");
+  if (sel) showPanel(sel.value || "nearby");
   bindTabs();
   patchRenderNearbyPlaces();
 
-  // set initial geo icon hvis state allerede finnes
   if (window.HG_POS && window.HG_POS.status) setGeo(window.HG_POS.status);
 })();
 </script>
