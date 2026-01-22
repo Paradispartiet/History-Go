@@ -592,79 +592,7 @@ button.quiz-done.blink {
 }
 
 
-/* ===================================================== */
-/* 11) Merker / Badge-kort – kompakt, fargerik og interaktiv */
-/* ===================================================== */
 
-.merkesamling-title {
-  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-  font-weight: 600;
-  font-size: 1.3rem;
-  color: var(--yellow);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  letter-spacing: 0.3px;
-  margin-bottom: 0.8rem;
-}
-
-/* === MERKER I GRID === */
-#merits {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 22px;
-  justify-items: center;
-  margin-top: 20px;
-}
-
-.badge-mini {
-  cursor: pointer;
-  transition: transform 0.15s ease;
-}
-.badge-mini:hover {
-  transform: scale(1.05);
-}
-
-.badge-wrapper {
-  position: relative;
-  display: inline-block;
-}
-
-.badge-mini-icon {
-  width: 110px;
-  height: 110px;
-  border-radius: 50%;
-  object-fit: cover;
-  display: block;
-  box-shadow: 0 0 10px rgba(0,0,0,0.25);
-}
-
-.badge-medal {
-  position: absolute;
-  top: -10px;
-  right: -10px;
-  font-size: 2rem;
-  transform: rotate(5deg);
-  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.5));
-  user-select: none;
-}
-
-/* === Responsivt – én rad på små skjermer === */
-@media (max-width: 520px) {
-  #merits {
-    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
-    gap: 16px;
-  }
-  .badge-mini-icon {
-    width: 90px;
-    height: 90px;
-  }
-  .badge-medal {
-    font-size: 1.6rem;
-    top: -8px;
-    right: -8px;
-  }
-}
 
 
 /* ===================================================== */
