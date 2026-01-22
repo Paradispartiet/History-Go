@@ -1,75 +1,146 @@
-#toast{
-  position:fixed;
-  top:14px;
-  left:50%;
-  transform:translateX(-50%);
-  background: rgba(0,0,0,.72);
-  color:#fff;
-  padding:8px 14px;
-  border-radius:999px;
-  font-weight:700;
-  display:none;
-  z-index:20000;
-}
+/* ============================================================
+   search.css — History GO (mørk panel-stil, ryddig)
+   Eier: #globalSearch + #searchResults + search items + sr-badge
+   ============================================================ */
 
-/* Search box */
-#globalSearch {
-  flex: 1;
-  padding: 6px 10px;
+/* ---------- Search input ---------- */
+#globalSearch{
+  flex: 0 1 clamp(140px, 22vw, 220px);
+
+  height: 32px;
+  padding: 0 10px;
   border-radius: 8px;
-  background: rgba(255,255,255,0.12);
-  border: 1px solid rgba(255,255,255,0.22);
+
+  background: rgba(255,255,255,0.08);
+  border: 1px solid var(--panel-border, rgba(255,255,255,0.18));
   color: #fff;
-  font-size: 0.95rem;
+
+  font-size: 0.85rem;
+  line-height: 1;
+  outline: none;
+
   backdrop-filter: blur(3px);
 }
 
-#globalSearch::placeholder {
-  color: rgba(255,255,255,0.55);
+#globalSearch::placeholder{
+  color: var(--muted, rgba(255,255,255,0.55));
 }
 
-/* Search results */
-#searchResults {
+#globalSearch:focus{
+  border-color: rgba(255,255,255,0.22);
+  box-shadow: 0 0 0 2px rgba(255,255,255,0.08);
+}
+
+/* ---------- Results panel (dropdown) ----------
+   #searchResults ligger i <header class="site-header"> i index.html
+   Header er position:fixed, så absolute her blir stabilt.
+*/
+#searchResults{
   position: absolute;
-  top: 70px;
-  left: 0;
-  right: 0;
+  top: calc(100% + 6px);
+  right: 8px;
+  left: auto;
 
-  background: rgba(13,27,42,0.96);
-  backdrop-filter: blur(8px);
-  border-bottom: 1px solid rgba(255,255,255,0.12);
-
-  color: #fff;
+  width: min(520px, 92vw);
   max-height: 60vh;
   overflow-y: auto;
-  padding: 8px 14px;
+
+  background: var(--panel, rgba(13,27,42,0.96));
+  border: 1px solid var(--panel-border, rgba(255,255,255,0.12));
+  border-radius: var(--radius, 16px);
+  box-shadow: var(--shadow, 0 12px 30px rgba(0,0,0,.35));
+
+  color: #fff;
+  padding: 12px 14px;
+
   z-index: 200;
-  display: none;
+  display: none; /* JS styrer dette */
+  backdrop-filter: blur(2px);
 }
 
-.search-section h3 {
-  color: rgba(255,255,255,0.75);
-  margin: 6px 0 4px;
-  font-weight: 600;
+/* Hvis du vil kunne toggles med class også */
+#searchResults.is-open{ display:block; }
+
+/* ---------- Sections ---------- */
+.search-section + .search-section{
+  margin-top: 10px;
 }
 
-.search-item {
-  padding: 8px 4px;
+.search-section h3{
+  margin: 6px 2px 8px;
+  padding-left: 6px;
+  color: var(--muted, rgba(255,255,255,0.65));
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+/* ---------- Result item ---------- */
+.search-item{
+  position: relative; /* for sr-badge */
+  padding: 10px 12px;
+  padding-right: 38px; /* plass til sr-badge */
   border-bottom: 1px solid rgba(255,255,255,0.08);
-  color: #fff;
+  border-radius: 10px;
+
   cursor: pointer;
+  user-select: none;
 }
 
-.search-item:hover {
+.search-item:hover{
+  background: rgba(255,255,255,0.02);
+}
+
+.search-item:active{
   background: rgba(255,255,255,0.06);
-  color: #fff;
 }
 
-.sr-badge {
+.search-item:last-child{
+  border-bottom: 0;
+}
+
+/* Typisk innhold i item: la tekst få litt luft */
+.search-item .title,
+.search-item .name{
+  font-weight: 800;
+  letter-spacing: 0.1px;
+}
+
+.search-item .meta,
+.search-item .sub,
+.search-item .desc{
+  color: var(--muted, rgba(255,255,255,0.62));
+  font-size: 0.85rem;
+  margin-top: 2px;
+}
+
+/* ---------- Badge-ikon i søkeresultat (topp høyre) ---------- */
+.sr-badge{
+  position: absolute;
+  top: 8px;
+  right: 10px;
+
   width: 22px;
   height: 22px;
+
   object-fit: contain;
-  margin-right: 8px;
   opacity: 0.95;
-  vertical-align: middle;
+  pointer-events: none;
+}
+
+/* ---------- Responsive: små skjermer ---------- */
+@media (max-width: 420px){
+  #globalSearch{
+    flex: 0 1 clamp(120px, 44vw, 200px);
+  }
+
+  #searchResults{
+    right: 6px;
+    width: min(520px, 96vw);
+    padding: 10px 12px;
+  }
+
+  .search-item{
+    padding: 10px 10px;
+    padding-right: 36px;
+  }
 }
