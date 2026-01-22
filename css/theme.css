@@ -133,14 +133,15 @@ body.hg-app header.site-header{
   display: flex;
   align-items: center;
   justify-content: flex-start;
+
   gap: 10px;
-  flex-wrap: nowrap;
-  padding: 2px 5px;
+  flex-wrap: nowrap;                 /* ✅ aldri under logo */
+  padding: 2px 8px;
+  padding-left: 76px;                /* ✅ reserver plass til logo (60px + luft) */
 
   background: #000;
-  overflow: visible;
+  overflow: hidden;                  /* hindrer rare wraps/overflow */
 }
-
 
 /* ===================================================== */
 /* MAIN: normalt klikkbart lag under header               */
@@ -268,66 +269,82 @@ body.hg-app header .actions > button.secondary{
   margin-left:auto;
 }
 
-/* Search box – History Go mørk stil */
- #globalSearch {
-  flex: 0 1 clamp(160px, 26vw, 240px);
+/* Search box – History Go mørk stil (forbedret) */
+#globalSearch{
+  flex: 0 1 clamp(140px, 22vw, 220px);
 
-  padding: 0px 6px;   /* litt strammere */
-  border-radius: 6px;
+  height: 32px;
+  padding: 0 10px;
+  border-radius: 8px;
 
-  background: rgba(255,255,255,0.12);         /* mørkt og i stil med panelene */
-  border: 1px solid rgba(255,255,255,0.22);   /* samme svake hvite kant som paneler */
-  color: #fff;                                /* hvit tekst som resten av appen */
+  background: rgba(255,255,255,0.08);
+  border: 1px solid var(--panel-border);
+  color: #fff;
   font-size: 0.85rem;
 
-  backdrop-filter: blur(3px);                 /* samme subtile blur som History Go-panelene */
+  outline: none;
+  backdrop-filter: blur(3px);
 }
 
-#globalSearch::placeholder {
-  color: rgba(255,255,255,0.55);              /* identisk med muted hvit tekst */
+/* Bedre fokus (viktig på mobil/iPad) */
+#globalSearch:focus{
+  border-color: rgba(255,255,255,0.22);
+  box-shadow: 0 0 0 2px rgba(255,255,255,0.08);
 }
 
-/* Search results – mørk History Go stil */
-#searchResults {
+#globalSearch::placeholder{
+  color: var(--muted);
+}
+
+
+/* Search results – samme panelstil som resten av appen */
+#searchResults{
   position: absolute;
   top: calc(100% + 6px);
-  left: 0;
-  right: 0;
 
-  background: rgba(13,27,42,0.96);      /* mørkt panel */
-  backdrop-filter: blur(8px);           /* samme som resten av appen */
-  border-bottom: 1px solid rgba(255,255,255,0.12);
-
-  color: #fff;                           /* hvit tekst */
+  /* dropdown: pen og konsistent */
+  right: 8px;
+  width: min(520px, 92vw);
   max-height: 60vh;
   overflow-y: auto;
-  padding: 8px 14px;
+
+  background: var(--panel);                 /* ✅ matcher .panel */
+  border: 1px solid var(--panel-border);    /* ✅ matcher .panel */
+  border-radius: var(--radius);             /* ✅ matcher .panel */
+  box-shadow: var(--shadow);                /* ✅ matcher .panel */
+  backdrop-filter: blur(2px);               /* ✅ matcher .panel */
+
+  color: #fff;
+  padding: 12px 14px;                       /* ✅ mer luft */
   z-index: 200;
   display: none;
 }
 
-/* Seksjonstitler */
-.search-section h3 {
-  color: rgba(255,255,255,0.75);         /* muted hvit */
-  margin: 6px 0 4px;
-  font-weight: 600;
+/* Seksjonstitler: litt innrykk og “muted” */
+.search-section h3{
+  margin: 6px 2px 8px;
+  padding-left: 6px;                        /* ✅ ikke helt til venstre */
+  color: var(--muted);
+  font-weight: 700;
+  font-size: .9rem;
 }
 
-/* Enkeltresultater */
-.search-item {
-  position: relative;   /* ✅ gjør at .sr-badge posisjoneres inni denne */
-  padding-right: 34px;  
-   
-  padding: 8px 4px;
+/* Enkeltresultater: mer innrykk + “card”-følelse */
+.search-item{
+  position: relative;
+  padding: 10px 12px;                       /* ✅ teksten inn fra venstre */
+  padding-right: 34px;                      /* beholder plass til sr-badge */
   border-bottom: 1px solid rgba(255,255,255,0.08);
-  color: #fff;                           /* hvit tekst */
+  border-radius: 10px;                      /* liten runding */
   cursor: pointer;
 }
 
-/* Hover-effekt */
-.search-item:hover {
-  background: rgba(255,255,255,0.06);    /* subtil highlight */
-  color: #fff;
+/* Hover-effekt: samme som appens subtile kort */
+.search-item:hover{
+  background: rgba(255,255,255,.02);        /* ✅ matcher .card */
+}
+.search-item:last-child{
+  border-bottom: 0;
 }
 
 
