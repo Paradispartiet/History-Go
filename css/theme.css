@@ -259,14 +259,40 @@ body.hg-app header .actions > button.secondary{
   z-index:20000; /* ← FIX */
 }
 
-/* Top actions layout */
-.top-actions {
+/* Top-actions: låst til høyre, aldri wrap, aldri “hopper” */
+.top-actions{
   display: flex;
   align-items: center;
-  gap: 6px;
-  margin-left:auto;
+  justify-content: flex-end;
+
+  gap: 8px;
+  margin-left: auto;
+
+  flex: 0 0 auto;        /* ✅ ikke stretch */
+  flex-wrap: nowrap;     /* ✅ aldri ned på ny linje */
+  white-space: nowrap;
 }
 
+/* Stabil bredde: geo-status endrer innhold (…/📍/⛔) men skal ikke flytte noe */
+#geoStatus{
+  width: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Ikonknapper har fast bredde allerede, men lås uansett */
+.iconbtn{
+  flex: 0 0 auto;
+}
+
+/* MiniProfile: ikke la navnet skyve på resten */
+#miniProfile{
+  max-width: 170px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 
 /* ===================================================== */
 /* 8) Sheets (bunnark) – forbedret og oversiktlig        */
