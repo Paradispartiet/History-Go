@@ -20,7 +20,18 @@
 // ============================================================
 
 (function() {
+  "use strict";
+
+  const qs = new URLSearchParams(window.location.search);
+  const isDev =
+    qs.has("dev_1") ||
+    qs.get("dev_1") === "1" ||
+    localStorage.getItem("devMode") === "true";
+
+  if (!isDev) return;
+
   let consoleOpen = false;
+
   let consoleEl, inputEl, outputEl;
   const logKey = "app_log";
 
