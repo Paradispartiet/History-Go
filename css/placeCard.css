@@ -171,55 +171,7 @@
   white-space: nowrap;
 }
 
-/* ===================================================== */
-/* NextUp bar (inne i placeCard)                          */
-/* ===================================================== */
 
-#placeCard .hg-nextup{
-  /* ✅ full bredde, under miniProfile */
-  width: 100%;
-  max-width: none;
-  flex: 0 0 100%;
-  grid-column: 1 / -1;
-  box-sizing: border-box;
-
-  margin: 6px 0 0 0;
-  padding: 6px 8px;
-  border-radius: 8px;
-
-  /* ✅ flat */
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.07);
-  box-shadow: none;
-}
-
-/* ✅ 2 “linjer” (2 rader) med 2 kolonner */
-#placeCard .hg-nextup-lines{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4px 10px;
-}
-
-#placeCard .hg-nextup-lines > div{
-  margin: 0;
-  font-size: 0.82rem;
-  line-height: 1.12;
-  color: rgba(255,255,255,0.92);
-
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-/* ✅ "Fordi: ..." (siste linje) skal være full bredde */
-#placeCard .hg-nextup-lines > div:last-child{
-  grid-column: 1 / -1;
-}
-
-/* ✅ ingen knapp i NextUp */
-#placeCard .hg-nextup-btn{
-  display: none;
-}
 
 /* ===================================================== */
 /* Knapper                                                */
@@ -325,12 +277,15 @@
 #placeCard .hg-nextup{ order: 2; }
 
 
-/* Bunn er fast (alltid synlig) */
 #placeCard .pc-footer{
   flex: 0 0 auto;
   padding: 0 var(--pc-pad) calc(var(--pc-pad) + env(safe-area-inset-bottom));
   background: var(--panel-bg, #000);
   border-top: 1px solid rgba(255,255,255,.06);
+
+  display: flex;              /* ✅ stack i footer */
+  flex-direction: column;
+  gap: 8px;
 }
 
 /* Actions: bunnlinje (thin) */
@@ -357,6 +312,20 @@
 }
 
 #placeCard .pc-actions::-webkit-scrollbar{ display:none; }
+
+/* Mini-wonderkammer / NextUp – helt nederst */
+#placeCard #mpNextUp.pc-nextup--bottom{
+  width: 100%;
+  box-sizing: border-box;
+
+  margin: 0;
+  padding: 6px 8px;
+  border-radius: 10px;
+
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
 
 /* Icon-only knapper i bunnlinja */
 #pcObserve, #pcNote, #pcClose{
@@ -461,6 +430,8 @@
 #placeCard.is-collapsed::before{
   margin: 10px auto 0;
 }
+
+
 
 /* =========================
    FLORA – vakker “samling”
