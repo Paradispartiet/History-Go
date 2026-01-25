@@ -288,27 +288,26 @@
   gap: 8px;
 }
 
-/* Actions: bunnlinje (thin) */
+/* Actions: bunnlinje (thin) – SENTRERT */
 #placeCard .pc-actions{
-  position: static;          /* footer er allerede fast nederst */
+  position: static;
   margin-top: 5px;
   padding-top: 6px;
-  padding-bottom: 0;
+  padding-bottom: 4px;
+
   background: transparent;
+  border-top: 1px solid rgba(255,255,255,0.08);
 
   overflow-x: auto;
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
 
-  padding-bottom: 4px; /* gir litt luft før safe-area padding i footer */
-  
   display: flex;
-  flex-wrap: nowrap;         /* ✅ én linje */
+  flex-wrap: nowrap;
   align-items: center;
-  justify-content: flex-end; /* ikonene ligger pent til høyre */
-  gap: 6px;
-  border-top: 1px solid rgba(255,255,255,0.08);
+  justify-content: center;   /* ✅ SENTER */
+  gap: 8px;
 }
 
 #placeCard .pc-actions::-webkit-scrollbar{ display:none; }
