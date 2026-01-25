@@ -289,7 +289,7 @@
 }
 
 /* =====================================================
-   PlaceCard actions – 2 rader, sentrert, ikon-only (ID-sikkert)
+   PlaceCard actions – ÉN RAD, sentrert, ikon-only (ID-sikkert)
    ===================================================== */
 
 #placeCard .pc-actions{
@@ -298,41 +298,23 @@
   border-top: 1px solid rgba(255,255,255,0.08);
 
   display: flex;
-  flex-direction: column;      /* ✅ 2 rader */
-  align-items: center;         /* ✅ sentrert */
-  justify-content: center;
+  flex-direction: row;      /* ✅ én rad */
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;  /* ✅ sentrert */
   gap: 10px;
 
   background: transparent;
-}
 
-/* Rad 1: store knapper – sentrert */
-#placeCard .pc-actions-main{
-  display: flex;
-  align-items: center;
-  justify-content: center;     /* ✅ sentrert */
-  gap: 10px;
-  flex-wrap: nowrap;
-}
-
-/* Rad 2: små/ikoner – sentrert, kan scrolle hvis trangt */
-#placeCard .pc-actions-mini{
-  display: flex;
-  align-items: center;
-  justify-content: center;     /* ✅ sentrert */
-  gap: 10px;
-
-  max-width: 100%;
   overflow-x: auto;
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
-  padding: 0 6px;
 }
-#placeCard .pc-actions-mini::-webkit-scrollbar{ display:none; }
+#placeCard .pc-actions::-webkit-scrollbar{ display:none; }
 
-/* Størrelser: rad 1 */
-#placeCard .pc-actions-main button{
+/* Knappestørrelser (tekstknapper) */
+#placeCard .pc-actions button{
   height: 32px;
   padding: 0 12px;
   font-size: 13px;
@@ -340,17 +322,7 @@
   line-height: 1;
 }
 
-/* Rad 2: default små knapper (hvis noen fortsatt har tekst) */
-#placeCard .pc-actions-mini button{
-  height: 30px;
-  padding: 0 10px;
-  font-size: 12px;
-  border-radius: 999px;
-  line-height: 1;
-  flex: 0 0 auto;
-}
-
-/* ===== ID-sikker ikon-only (uansett hva JS skriver inni) ===== */
+/* Ikon-only (uansett hva JS skriver inni) */
 #placeCard #pcRoute,
 #placeCard #pcObserve,
 #placeCard #pcNote,
@@ -364,26 +336,20 @@
   align-items: center;
   justify-content: center;
 
-  /* ✅ skjul ALL tekst som evt settes av JS */
-  font-size: 0 !important;
+  font-size: 0 !important;   /* ✅ skjul tekst */
   line-height: 0 !important;
   overflow: hidden;
   white-space: nowrap;
 }
 
-/* Tegn ikonene via CSS (så de alltid er riktige) */
+/* Ikoner */
 #placeCard #pcRoute::before   { content:"🗺️"; font-size:16px; line-height:1; }
 #placeCard #pcObserve::before { content:"👁️"; font-size:16px; line-height:1; }
 #placeCard #pcNote::before    { content:"📝"; font-size:16px; line-height:1; }
 #placeCard #pcClose::before   { content:"✕";  font-size:16px; line-height:1; }
 
-/* Brand-logo i rad 2 skal ikke påvirke sentrering */
-#placeCard .pc-actions-mini .brand{
-  flex: 0 0 auto;
-}
-
-#placeCard .pc-actions::-webkit-scrollbar{ display:none; }
-
+/* Brand */
+#placeCard .pc-actions .brand{ flex: 0 0 auto; }
 /* Mini-wonderkammer / NextUp – helt nederst */
 #placeCard #mpNextUp.pc-nextup--bottom{
   width: 100%;
