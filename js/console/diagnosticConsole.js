@@ -20,16 +20,21 @@
   };
   const kb = (n) => `${(n / 1024).toFixed(1)} KB`;
 
-  // Dev mode gate
+   // Dev gate: kun når ?dev_1 (eller localStorage.devMode="true")
+  const qs = new URLSearchParams(window.location.search);
   const isDev =
-    window.location.search.includes("dev=1") ||
-    window.location.search.includes("dev") ||
+    qs.has("dev_1") ||
+    qs.get("dev_1") === "1" ||
     localStorage.getItem("devMode") === "true";
 
-  // Hard cleanup: ALDRI vis modulstatus/FAB uten dev
+  // Hard cleanup + STOPP helt uten dev
   if (!isDev) {
     try { document.getElementById("hgModuleStatus")?.remove(); } catch {}
+    try { document.getElementById("hgStatusChip")?.remove(); } catch {}
     try { document.getElementById("hgStatusFab")?.remove(); } catch {}
+    try { document.getElementById("devConsole")?.remove(); } catch {}
+    try { document.querySelectorAll(".hg-console-btn").forEach(b => b.remove()); } catch {}
+    return; // ✅ viktig: ikke bygg UI, ikke hook events
   }
 
   // -----------------------------
