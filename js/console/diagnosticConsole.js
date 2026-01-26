@@ -22,11 +22,8 @@
 
    // Dev gate: kun når ?dev_1 (eller localStorage.devMode="true")
   const qs = new URLSearchParams(window.location.search);
-  const isDev =
-    qs.has("dev_1") ||
-    qs.get("dev_1") === "1" ||
-    localStorage.getItem("devMode") === "true";
-
+const isDev = qs.has("dev_1") || qs.get("dev_1") === "1";
+  
   // Hard cleanup + STOPP helt uten dev
   if (!isDev) {
     try { document.getElementById("hgModuleStatus")?.remove(); } catch {}
