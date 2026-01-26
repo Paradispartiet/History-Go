@@ -146,16 +146,19 @@
 /* ===================================================== */
 
 #placeCard #pcPeople{
-  display: none;          /* skjult til man klikker rundingen */
+  display: none;          /* faktisk skjult */
   margin-top: 10px;
 
-  display: flex;
-  flex-wrap: wrap;        /* pen liste, ikke scroll */
+  flex-wrap: wrap;
   gap: 12px;
   align-items: flex-start;
 
   padding: 8px 4px;
   background: transparent;
+}
+
+#placeCard #pcPeople.is-open{
+  display: flex;
 }
 
 /* JS lager <button class="pc-person"> */
