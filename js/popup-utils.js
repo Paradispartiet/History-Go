@@ -1192,14 +1192,16 @@ try {
   
 // --- PEOPLE LIST ---
 if (peopleEl) {
-  const peopleHtml = persons
-    .map(p => `
-      <button class="pc-person" data-person="${p.id}">
-        <img src="${p.image}" class="pc-person-img" alt="">
-        <span>${p.name}</span>
-      </button>
-    `)
-    .join("");
+  const restPersons = Array.isArray(persons) ? persons.slice(1) : [];
+
+const peopleHtml = restPersons
+  .map(p => `
+    <button class="pc-person" data-person="${p.id}">
+      <img src="${p.image}" class="pc-person-img" alt="">
+      <span>${p.name}</span>
+    </button>
+  `)
+  .join("");
 
   peopleEl.innerHTML = peopleHtml;
 
