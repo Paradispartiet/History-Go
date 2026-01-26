@@ -689,7 +689,6 @@ document.addEventListener("click", e => {
     );
     return;
   }
-});
 
 // --- SNakk med person ---
   const chatPersonId = target.getAttribute?.("data-chat-person");
