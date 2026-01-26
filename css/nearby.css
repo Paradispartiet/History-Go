@@ -9,16 +9,17 @@
    ============================================================ */
 
 :root{
-  --hg-header-h: 30px;   /* kan JS overstyre */
-  --hg-header-gap: 0px;  /* i kant med topplinja */
-  --hg-placecard-h: var(--pc-height, 41vh);
+  /* Topplinje */
+  --hg-header-h: 30px;       /* kan JS overstyre */
+  --hg-header-gap: 0px;
+
+  /* Nearby (eier vertikal layout) */
+  --hg-nearby-h: 116px;      /* EKSAKT høyde på #nearbyListContainer */
+  --hg-nearby-drop: 0px;     /* evt. senking i utforsk-modus */
+
+  /* Sidepanel / ramme */
   --hg-leftpanel-w: 180px;
   --hg-frame-bg: var(--panel-bg, #121212);
-
-  /* Utforsk-modus tuning (kart mer i bakgrunnen) */
-  
-  --hg-nearby-drop: 0px;    /* ingen senking – flush mot topplinja */
-  --hg-nearby-h: 116px;      /* 20% lavere enn 116px */
 }
 
 /* ============================================================
@@ -30,7 +31,7 @@
   left: 0;
   right: 0;
   /* Ligger i kant med topplinja (under header) */
-  top: calc(var(--hg-header-h, 44px) + var(--hg-header-gap, 0px));
+  top: calc(var(--hg-header-h) + var(--hg-header-gap));
   bottom: auto;
 
   height: var(--hg-nearby-h, 92px);
