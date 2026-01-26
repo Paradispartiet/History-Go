@@ -1058,8 +1058,6 @@ window.openPlaceCard = async function (place) {
   const titleEl   = document.getElementById("pcTitle");
   const metaEl    = document.getElementById("pcMeta");
   const descEl    = document.getElementById("pcDesc");
-  const peopleEl  = document.getElementById("pcPeople");
-
   const peopleIcon = document.getElementById("pcPeopleIcon");
   const natureIcon = document.getElementById("pcNatureIcon");
   const badgesIcon = document.getElementById("pcBadgesIcon");
@@ -1067,7 +1065,7 @@ window.openPlaceCard = async function (place) {
   const peopleEl = document.getElementById("pcPeopleList");
   const natureEl = document.getElementById("pcNatureList");
   const badgesEl = document.getElementById("pcBadgesList");
-
+  
   const btnInfo   = document.getElementById("pcInfo");
   const btnQuiz   = document.getElementById("pcQuiz");
   const btnUnlock = document.getElementById("pcUnlock");
