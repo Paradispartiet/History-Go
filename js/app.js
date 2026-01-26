@@ -651,6 +651,14 @@ function closeSheet(sheet) {
 document.addEventListener("click", e => {
   const target = e.target;
 
+    // --- PlaceCard: toggle people-list ---
+  const pcPeople = target.closest?.("#pcPeople");
+  if (pcPeople) {
+    pcPeople.classList.toggle("is-open");
+    e.preventDefault();
+    return;
+  }
+
   // Åpne sted fra kort (data-open)
 const openEl = target.closest?.("[data-open]");
 const openId = openEl?.getAttribute("data-open");
