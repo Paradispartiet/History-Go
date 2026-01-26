@@ -267,13 +267,13 @@
 /* ===================================================== */
 
 #placeCard .pc-main,
-#placeCard #pcPeople,
+#placeCard #pcPeopleList,
 #placeCard #pcDesc{
   transition: opacity 120ms ease, transform 120ms ease;
 }
 
 #placeCard.is-switching .pc-main,
-#placeCard.is-switching #pcPeople,
+#placeCard.is-switching #pcPeopleList,
 #placeCard.is-switching #pcDesc{
   opacity: .25;
   transform: translateY(2px);
@@ -321,10 +321,12 @@
 /* Overlay-container for lister (popper opp) */
 #placeCard .pc-lists{
   position: absolute;
-  left: 12px;
-  right: 12px;
-  top: 118px;          /* juster om nødvendig */
-  z-index: 60;
+  right: 12px;        /* ✅ popper ut ved ikon-kolonnen */
+  top: 64px;          /* ✅ juster én gang om nødvendig */
+  z-index: 80;
+  width: min(340px, 92vw);
+
+  pointer-events: none; /* ✅ bare klikkbar når en liste er åpen */
 }
 
 /* Selve lista når den er åpen */
@@ -333,6 +335,28 @@
   border-radius: 14px;
   padding: 10px;
   box-shadow: 0 14px 40px rgba(0,0,0,.45);
+
+  pointer-events: auto;     /* ✅ nå kan du trykke inni */
+  display: flex;            /* ✅ hvis du ikke allerede setter display et annet sted */
+  gap: 12px;
+}
+
+#placeCard #pcPeopleList.is-open{
+  flex-wrap: nowrap;     /* ✅ en rad */
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+#placeCard .pc-icons{
+  position: absolute;
+  top: 12px;        /* juster hvis du vil */
+  right: 12px;      /* ← dette låser dem til høyre */
+  z-index: 90;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 /* =====================================================
