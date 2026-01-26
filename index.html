@@ -185,20 +185,22 @@
 <div id="placeCard" aria-hidden="true">
   <div class="pc-body">
 
-    <!-- INNHOLD (IKKE SCROLL) -->
-    <div class="pc-scroll">
-      <div class="pc-main">
-        <img id="pcImage" class="pc-img" src="" alt="">
-        <div class="pc-text">
-          <h2 id="pcTitle"></h2>
-          <div id="pcMeta" class="pc-meta"></div>
-          <p id="pcDesc" class="pc-desc"></p>
-        </div>
-      </div>
+<div class="pc-main">
+  <img id="pcImage" class="pc-img" src="" alt="">
 
-      <div id="pcPeople" class="pc-people"></div>
-    </div>
+  <!-- NY: ikon-wrapper -->
+  <div class="pc-icons">
+    <div id="pcPeopleIcon" class="pc-round" data-toggle="people"></div>
+    <div id="pcNatureIcon" class="pc-round" data-toggle="nature"></div>
+    <div id="pcBadgesIcon" class="pc-round" data-toggle="badges"></div>
+  </div>
 
+  <div class="pc-text">
+    <h2 id="pcTitle"></h2>
+    <div id="pcMeta" class="pc-meta"></div>
+    <p id="pcDesc" class="pc-desc"></p>
+  </div>
+</div>
     
 <!-- FAST BUNN -->
 <div class="pc-footer">
