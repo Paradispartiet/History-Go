@@ -342,10 +342,13 @@
 }
 
 #placeCard #pcPeopleList.is-open{
-  flex-wrap: nowrap;     /* ✅ en rad */
+  flex-wrap: nowrap;
   overflow-x: auto;
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
+
+  flex-direction: row-reverse; /* ✅ starter ved høyre kant (ved rundingen) */
+  justify-content: flex-start;
 }
 
 #placeCard .pc-icons{
