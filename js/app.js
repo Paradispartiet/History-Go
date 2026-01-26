@@ -647,37 +647,49 @@ function closeSheet(sheet) {
   sheet?.setAttribute("aria-hidden", "true");
 }
 
-// Felles click-delegation for steder, info, quiz, merker
 document.addEventListener("click", e => {
   const target = e.target;
 
-    // --- PlaceCard: toggle people-list ---
-  const pcPeople = target.closest?.("#pcPeople");
-  if (pcPeople) {
-    pcPeople.classList.toggle("is-open");
+  // --- PlaceCard: toggle icon lists (people / nature / badges) ---
+  const toggleBtn = target.closest?.("[data-toggle]");
+  if (toggleBtn) {
+    const type = toggleBtn.dataset.toggle;
+
+    const map = {
+      people: "pcPeopleList",
+      nature: "pcNatureList",
+      badges: "pcBadgesList"
+    };
+
+    const listId = map[type];
+    if (listId) {
+      document.getElementById(listId)?.classList.toggle("is-open");
+    }
+
     e.preventDefault();
     return;
   }
 
-  // Åpne sted fra kort (data-open)
-const openEl = target.closest?.("[data-open]");
-const openId = openEl?.getAttribute("data-open");
+  // --- Åpne sted fra kort (data-open) ---
+  const openEl = target.closest?.("[data-open]");
+  const openId = openEl?.getAttribute("data-open");
 
-if (openId) {
-  const p = PLACES.find(x => x.id === openId);
-  if (p) openPlaceCard(p);
-  return;
-}
-  
-  // Mer info (Google)
+  if (openId) {
+    const p = PLACES.find(x => x.id === openId);
+    if (p) openPlaceCard(p);
+    return;
+  }
+
+  // --- Mer info (Google) ---
   const infoName = target.getAttribute?.("data-info");
   if (infoName) {
     window.open(
       `https://www.google.com/search?q=${encodeURIComponent(infoName + " Oslo")}`,
       "_blank"
-  );
+    );
     return;
   }
+});
 
 // --- SNakk med person ---
   const chatPersonId = target.getAttribute?.("data-chat-person");
