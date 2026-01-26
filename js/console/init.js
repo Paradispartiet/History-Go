@@ -1,5 +1,9 @@
 // js/console/hgConsole.js
 (function () {
+  const qs = new URLSearchParams(window.location.search);
+  const isDev = qs.has("dev_1") || qs.get("dev_1") === "1";
+  if (!isDev) return;
+  
   if (window.HG_DEVTOOLS) return;
 
   const state = {
