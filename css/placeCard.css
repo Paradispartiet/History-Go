@@ -146,27 +146,16 @@
 /* ===================================================== */
 
 #placeCard #pcPeople{
-  position: relative;
-  z-index: 2;
-  flex-shrink: 0;
+  display: none;          /* skjult til man klikker rundingen */
+  margin-top: 10px;
 
-  min-height: 0;          /* was 92px: fjern “tom luft” */
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;        /* pen liste, ikke scroll */
   gap: 12px;
-  align-items: center;
+  align-items: flex-start;
 
-  overflow-x: auto;
-  overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
-
-  padding: 6px 6px;       /* was 10px 6px: strammere */
-  margin: 4px 0 8px 0;    /* was 10px 0 12px 0: mindre luft */
-
-  border-top: 0;
-  border-bottom: 0;
-
-  background: #000;  /* ← bytt denne */
+  padding: 8px 4px;
+  background: transparent;
 }
 
 /* JS lager <button class="pc-person"> */
