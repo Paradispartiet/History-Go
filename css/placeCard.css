@@ -318,6 +318,23 @@
   gap: 1px;
 }
 
+/* Overlay-container for lister (popper opp) */
+#placeCard .pc-lists{
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  top: 118px;          /* juster om nødvendig */
+  z-index: 60;
+}
+
+/* Selve lista når den er åpen */
+#placeCard .pc-list.is-open{
+  background: rgba(0,0,0,.92);
+  border-radius: 14px;
+  padding: 10px;
+  box-shadow: 0 14px 40px rgba(0,0,0,.45);
+}
+
 /* =====================================================
    PlaceCard actions – ÉN RAD, sentrert, ikon-only (ID-sikkert)
    ===================================================== */
