@@ -1263,9 +1263,68 @@ if (natureIcon) {
 
 
 // --- BADGES LIST (foreløpig tom) ---
-if (badgesEl) badgesEl.innerHTML = "";
-if (badgesIcon) badgesIcon.innerHTML = "";
-  // --- Mer info ---
+// --- BADGES LIST + BADGES ICON ---
+if (badgesEl) {
+  // Robust: støtter badges fra RELATIONS (REL_BY_PLACE), og fra place-felter/tags
+  const BADGES_LIST =
+    (typeof BADGES !== "undefined" && Array.isArray(BADGES)) ? BADGES :
+    (Array.isArray(window.BADGES) ? window.BADGES : []);
+
+  const rels = (window.REL_BY_PLACE && window.REL_BY_PLACE[place.id]) ? window.REL_BY_PLACE[place.id] : [];
+
+  // 1) samle badge-id'er fra relasjoner + place
+  let badgeIds = [];
+
+  // a) RELATIONS → badge/merke-felt (flere mulige navn, så vi er kompatible)
+  for (const r of rels) {
+    const id =
+      r?.badge || r?.badge_id || r?.badgeId ||
+      r?.merke || r?.merke_id || r?.merkeId;
+    if (id) badgeIds.push(String(id).trim());
+  }
+
+  // b) place → eksplisitte felt (hvis de finnes)
+  const placeArrays = [
+    place.badges, place.badgeIds, place.merker, place.merkeIds
+  ];
+  for (const arr of placeArrays) {
+    if (Array.isArray(arr)) badgeIds.push(...arr.map(x => String(x).trim()));
+  }
+
+  // c) fallback: category/tags, men kun hvis de matcher faktiske badge-id'er
+  const allBadgeIds = new Set(BADGES_LIST.map(b => String(b.id).trim()));
+  if (place.category && allBadgeIds.has(String(place.category).trim())) badgeIds.push(String(place.category).trim());
+  if (Array.isArray(place.tags)) {
+    for (const t of place.tags) {
+      const id = String(t).trim();
+      if (allBadgeIds.has(id)) badgeIds.push(id);
+    }
+  }
+
+  // dedupe
+  badgeIds = [...new Set(badgeIds)];
+
+  // 2) slå opp og render
+  const badges = badgeIds
+    .map(id => BADGES_LIST.find(b => String(b.id).trim() === String(id).trim()))
+    .filter(Boolean);
+
+  badgesEl.innerHTML = badges.map(b => `
+    <button class="pc-badge" data-badge="${b.id}">
+      <img src="${b.image || b.icon || ""}" class="pc-person-img" alt="">
+      <span>${b.name || b.title || b.id}</span>
+    </button>
+  `).join("");
+
+  // 3) ikon-preview (første badge med bilde)
+  if (badgesIcon) {
+    const b0 = badges.find(b => (b.image || b.icon));
+    const img = b0 ? (b0.image || b0.icon || "") : "";
+    badgesIcon.innerHTML = img ? `<img src="${img}" class="pc-person-img" alt="">` : "";
+  }
+
+  
+}  // --- Mer info ---
   if (btnInfo) btnInfo.onclick = () => window.showPlacePopup?.(place);
 
   // --- Quiz (ny motor) ---
