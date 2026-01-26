@@ -1060,6 +1060,14 @@ window.openPlaceCard = async function (place) {
   const descEl    = document.getElementById("pcDesc");
   const peopleEl  = document.getElementById("pcPeople");
 
+  const peopleIcon = document.getElementById("pcPeopleIcon");
+  const natureIcon = document.getElementById("pcNatureIcon");
+  const badgesIcon = document.getElementById("pcBadgesIcon");
+
+  const peopleEl = document.getElementById("pcPeopleList");
+  const natureEl = document.getElementById("pcNatureList");
+  const badgesEl = document.getElementById("pcBadgesList");
+
   const btnInfo   = document.getElementById("pcInfo");
   const btnQuiz   = document.getElementById("pcQuiz");
   const btnUnlock = document.getElementById("pcUnlock");
@@ -1184,10 +1192,9 @@ try {
  
   
   
-  // --- Render personer + flora (flora = kun bilder) i placeCard ---
-  if (peopleEl) {
-    const peopleHtml =
-  persons
+// --- PEOPLE LIST ---
+if (peopleEl) {
+  const peopleHtml = persons
     .map(p => `
       <button class="pc-person" data-person="${p.id}">
         <img src="${p.image}" class="pc-person-img" alt="">
@@ -1196,42 +1203,68 @@ try {
     `)
     .join("");
 
-    const floraHtml =
-      floraHere.length
-        ? `
-          <div class="pc-flora-row">
-            ${floraHere.map(a => {
-              const img = a.imageCard || a.image || a.img || "";
-              if (!img) return ""; // kun bilder => ingen img, ingen visning
-              return `
-                <button class="pc-flora" data-flora="${a.id}" aria-label="${a.name || ""}">
-                  <img src="${img}" class="pc-person-img" alt="">
-                </button>
-              `;
-            }).join("")}
-          </div>
-        `
-        : "";
+  peopleEl.innerHTML = peopleHtml;
 
-    peopleEl.innerHTML = peopleHtml + floraHtml;
+  // people click (som før)
+  peopleEl.querySelectorAll("[data-person]").forEach(btn => {
+    btn.onclick = () => {
+      const pr = PEOPLE_LIST.find(x => x.id === btn.dataset.person);
+      if (pr) window.showPersonPopup?.(pr);
+    };
+  });
+}
 
-    // people click (som før)
-    peopleEl.querySelectorAll("[data-person]").forEach(btn => {
-      btn.onclick = () => {
-        const pr = PEOPLE_LIST.find(x => x.id === btn.dataset.person);
-        if (pr) window.showPersonPopup?.(pr);
-      };
-    });
+// people icon preview (første person)
+if (peopleIcon) {
+  const p0 = persons?.[0];
+  peopleIcon.innerHTML = p0?.image
+    ? `<img src="${p0.image}" class="pc-person-img" alt="">`
+    : "";
+}
 
-    // flora click (åpne infokort)
-    peopleEl.querySelectorAll("[data-flora]").forEach(btn => {
-      btn.onclick = () => {
-        const a = FLORA_LIST.find(x => String(x?.id || "").trim() === String(btn.dataset.flora || "").trim());
-        if (a && typeof window.showFloraPopup === "function") window.showFloraPopup(a);
-        };
-       });
-      }
 
+// --- NATURE LIST (flora) ---
+if (natureEl) {
+  const floraHtml = floraHere.length
+    ? `
+      <div class="pc-flora-row">
+        ${floraHere.map(a => {
+          const img = a.imageCard || a.image || a.img || "";
+          if (!img) return "";
+          return `
+            <button class="pc-flora" data-flora="${a.id}" aria-label="${a.name || ""}">
+              <img src="${img}" class="pc-person-img" alt="">
+            </button>
+          `;
+        }).join("")}
+      </div>
+    `
+    : "";
+
+  natureEl.innerHTML = floraHtml;
+
+  // flora click (åpne infokort)
+  natureEl.querySelectorAll("[data-flora]").forEach(btn => {
+    btn.onclick = () => {
+      const a = FLORA_LIST.find(x => String(x?.id || "").trim() === String(btn.dataset.flora || "").trim());
+      if (a && typeof window.showFloraPopup === "function") window.showFloraPopup(a);
+    };
+  });
+}
+
+// nature icon preview (første flora med bilde)
+if (natureIcon) {
+  const f0 = floraHere.find(a => (a.imageCard || a.image || a.img));
+  const img = f0 ? (f0.imageCard || f0.image || f0.img || "") : "";
+  natureIcon.innerHTML = img
+    ? `<img src="${img}" class="pc-person-img" alt="">`
+    : "";
+}
+
+
+// --- BADGES LIST (foreløpig tom) ---
+if (badgesEl) badgesEl.innerHTML = "";
+if (badgesIcon) badgesIcon.innerHTML = "";
   // --- Mer info ---
   if (btnInfo) btnInfo.onclick = () => window.showPlacePopup?.(place);
 
