@@ -204,7 +204,7 @@ function renderCivicationInbox() {
     btnOK.style.display = "";
     btnOK.onclick = () => {
       renderCivication();
-      renderCivicationInbox();
+      window.renderCivicationInbox?.()
       window.dispatchEvent(new Event("updateProfile"));
     };
     return;
