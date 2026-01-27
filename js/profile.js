@@ -838,7 +838,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     PEOPLE = Array.isArray(people) ? people : [];
     PLACES = Array.isArray(places) ? places : [];
-    BADGES = Array.isArray(badges) ? badges : [];
+    BADGES = Array.isArray(badges?.badges) ? badges.badges : [];
     window.BADGES = BADGES;
     
     // 2) RENDER
