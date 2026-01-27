@@ -89,7 +89,7 @@
 <main id="profileMain">
 
   <section class="profile-section" id="profileCard">
-    <h2 id="profileName">Utforsker #182</h2>
+    <h2 id="profileName">(Navn)</h2>
     <div class="stats">
       <div><span id="statVisited">0</span><br><small>Besøkt</small></div>
       <div><span id="statQuizzes">0</span><br><small>Quiz fullført</small></div>
@@ -97,6 +97,25 @@
     </div>
   </section>
 
+  <section class="profile-section" id="civicationSection">
+    <h2>🏛️ Civication</h2>
+
+    <p class="muted">
+      Jobbrollen din er knyttet til merker (kategorier). Du får tilbud, tar rollen, og må vedlikeholde den med relevante quizzer og besøk.
+    </p>
+
+    <div class="latest-knowledge-box" id="civicationCard">
+      <div class="lk-topic" id="civiRoleTitle">Rolle: —</div>
+      <div class="lk-category" id="civiRoleDetails">Status: —</div>
+    </div>
+
+    <div class="profile-subaction" style="display:flex; gap:10px; flex-wrap:wrap;">
+      <button id="btnCiviOpen" class="btn">Åpne Civication</button>
+      <button id="btnCiviRanking" class="btn" disabled>Ranking (kommer)</button>
+      <button id="btnCiviWorld" class="btn" disabled>Min verden (kommer)</button>
+    </div>
+  </section>
+  
   <section class="profile-section">
     <h2>Mine merker</h2>
     <div id="merits"></div>
