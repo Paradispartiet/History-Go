@@ -1474,13 +1474,13 @@ if (badgesEl) {
       }
 
       // merits
-      const cat = place.category;
-      if (cat) {
+      const badgeId = String(place.badgeId || place.categoryId || "").trim();
+       if (badgeId) {
         window.merits = window.merits || {};
-        window.merits[cat] = window.merits[cat] || { points: 0, level: "Nybegynner" };
-        window.merits[cat].points++;
-        if (typeof window.saveMerits === "function") window.saveMerits();
-        if (typeof window.updateMeritLevel === "function") window.updateMeritLevel(cat, window.merits[cat].points);
+        window.merits[badgeId] = window.merits[badgeId] || { points: 0 };
+        window.merits[badgeId].points++;
+       if (typeof window.saveMerits === "function") window.saveMerits();
+       if (typeof window.updateMeritLevel === "function") window.updateMeritLevel(badgeId, window.merits[badgeId].points);
       }
 
       window.showToast?.(`Låst opp: ${place.name} ✅`);
