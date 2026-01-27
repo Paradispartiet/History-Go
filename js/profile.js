@@ -885,29 +885,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
-  // UI
-  document.getElementById("editProfileBtn")?.addEventListener("click", openProfileModal);
-
-  document.getElementById("btnOpenAHA")?.addEventListener("click", () => {
-    window.open("aha/index.html", "_blank");
-  });
-
-  // Sync etter quiz (app.js)
-  window.addEventListener("updateProfile", () => {
-    renderProfileCard();
-    renderMerits();
-    renderPeopleCollection();
-    renderPlacesCollection();
-    renderTimeline();
-    renderCollectionCards();
-    renderLatestKnowledge();
-    renderLatestTrivia();
-    renderNextWhy();
-    renderAhaSummary();
-    updateProfileMarkers();
-  });
-});
-
 
 // ============================================================
 // KART PÅ PROFILSIDEN – KUN BESØKTE STEDER
