@@ -740,20 +740,30 @@ function openProfileModal() {
 // ------------------------------------------------------------
 // INIT
 // ------------------------------------------------------------
-document.addEventListener("DOMContentLoaded", () => {
-  // 1) LAST DATA
-  Promise.all([
-    fetch("data/people.json").then(r => r.json()).then(d => (PEOPLE = d)),
-    fetch("data/places.json").then(r => r.json()).then(d => (PLACES = d)),
-    fetch("data/badges.json").then(r => r.json()).then(d => (BADGES = d))
-  ]).then(() => {
-    // 2) RENDER
+document.addEventListener("DOMContentLoaded", async () => {
+  try {
+    // 1) LAST DATA (parallelt)
+    const [people, places, badges] = await Promise.all([
+      fetch("data/people.json").then(r => r.json()),
+      fetch("data/places.json").then(r => r.json()),
+      fetch("data/badges.json").then(r => r.json())
+    ]);
+
+    PEOPLE = people;
+    PLACES = places;
+    BADGES = badges;
+
+    // 2) RENDER (først statisk, så Civication-puls + inbox)
     renderProfileCard();
     renderCivication();
+
+    await window.HG_CiviEngine?.onAppOpen?.();
+    renderCivicationInbox();
+
     wireCivicationActions();
     wireCivicationButtons();
     renderMerits();
-    
+
     renderPeopleCollection();
     renderPlacesCollection();
     renderTimeline();
@@ -764,7 +774,10 @@ document.addEventListener("DOMContentLoaded", () => {
     renderAhaSummary();
 
     setupProfileMap();
-  });
+  } catch (err) {
+    console.error("Profile init failed:", err);
+  }
+});
 
   // UI
   document.getElementById("editProfileBtn")?.addEventListener("click", openProfileModal);
