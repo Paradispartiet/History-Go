@@ -59,6 +59,98 @@ function renderProfileCard() {
   document.getElementById("statStreak").textContent = streak;
 }
 
+// ------------------------------------------------------------
+// CIVICATION – rolle/jobber (V1: bygger på merits + tiers)
+// ------------------------------------------------------------
+function renderCivication() {
+  const sec = document.getElementById("civicationSection");
+  if (!sec) return;
+
+  const title = document.getElementById("civiRoleTitle");
+  const details = document.getElementById("civiRoleDetails");
+  if (!title || !details) return;
+
+  const merits = ls("merits_by_category", {});
+  const keys = Object.keys(merits);
+
+  if (!Array.isArray(BADGES) || !BADGES.length || !keys.length) {
+    title.textContent = "Rolle: —";
+    details.textContent = "Status: Ingen rolle ennå (ta quiz for å få tilbud).";
+    return;
+  }
+
+  // quiz_history brukes til “vedlikehold”
+  const historyRaw = JSON.parse(localStorage.getItem("quiz_history") || "[]");
+  const history = Array.isArray(historyRaw) ? historyRaw : [];
+
+  // Finn “beste” rolle: høyest tierIndex på tvers av merker (kategoriId = badge.id)
+  let best = null;
+
+  for (const k of keys) {
+    const catId = String(k || "").trim();
+    if (!catId) continue;
+
+    const badge = BADGES.find(b => String(b?.id || "").trim() === catId);
+    if (!badge) continue;
+
+    const points = Number(merits[k]?.points || 0);
+    const { tierIndex, label } = deriveTierFromPoints(badge, points);
+
+    // siste aktivitet i denne kategorien (fra quiz_history)
+    const last = history
+      .filter(h => String(h?.categoryId || "").trim() === catId)
+      .map(h => h?.date ? new Date(h.date).getTime() : 0)
+      .reduce((mx, t) => Math.max(mx, t), 0);
+
+    const item = {
+      catId,
+      badgeName: String(badge.name || "").trim() || catId,
+      roleLabel: String(label || "").trim() || "Nybegynner",
+      tierIndex: Number.isFinite(tierIndex) ? tierIndex : -1,
+      points,
+      lastQuizAt: last
+    };
+
+    if (!best) best = item;
+    else {
+      // Primært: tierIndex. Sekundært: points.
+      if (item.tierIndex > best.tierIndex) best = item;
+      else if (item.tierIndex === best.tierIndex && item.points > best.points) best = item;
+    }
+  }
+
+  if (!best) {
+    title.textContent = "Rolle: —";
+    details.textContent = "Status: Ingen rolle ennå (ta quiz for å få tilbud).";
+    return;
+  }
+
+  // Vedlikehold-regel (V1): du må ha tatt en quiz i rollen siste 7 dager
+  const now = Date.now();
+  const days7 = 7 * 24 * 60 * 60 * 1000;
+
+  const ok = best.lastQuizAt && (now - best.lastQuizAt) <= days7;
+
+  title.textContent = `Rolle: ${best.roleLabel} (${best.badgeName})`;
+
+  const lastTxt = best.lastQuizAt
+    ? new Date(best.lastQuizAt).toLocaleDateString("no-NO")
+    : "aldri";
+
+  details.textContent =
+    `Status: ${ok ? "Aktiv ✅" : "Trenger vedlikehold ⚠️"} · ` +
+    `Sist relevant quiz: ${lastTxt} · ` +
+    `${best.points} poeng`;
+}
+
+function wireCivicationButtons() {
+  document.getElementById("btnCiviOpen")?.addEventListener("click", () => {
+    // V1: bare scroll til merker + “role”-tankegang.
+    // Senere: egen Civication-side / overlay.
+    const sec = document.getElementById("civicationSection");
+    sec?.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+}
 
 // ------------------------------------------------------------
 // MERKER – GRID + MODAL (STRICT)
@@ -596,7 +688,10 @@ document.addEventListener("DOMContentLoaded", () => {
   ]).then(() => {
     // 2) RENDER
     renderProfileCard();
+    renderCivication();
+    wireCivicationButtons();
     renderMerits();
+    
     renderPeopleCollection();
     renderPlacesCollection();
     renderTimeline();
@@ -632,6 +727,11 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+window.addEventListener("updateProfile", () => {
+  renderProfileCard();
+  renderCivication();
+  renderMerits();
+});
 // ============================================================
 // KART PÅ PROFILSIDEN – KUN BESØKTE STEDER
 // ============================================================
