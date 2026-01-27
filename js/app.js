@@ -591,6 +591,60 @@ BADGES = await fetch("data/badges.json", { cache: "no-store" }).then(r => r.json
   }
 }
 
+
+// ------------------------------------------------------------
+// CIVICATION: Jobbtilbud (offers) lagres i localStorage
+// ------------------------------------------------------------
+function hgGetJobOffers() {
+  try {
+    const raw = JSON.parse(localStorage.getItem("hg_job_offers_v1") || "[]");
+    return Array.isArray(raw) ? raw : [];
+  } catch {
+    return [];
+  }
+}
+
+function hgSetJobOffers(arr) {
+  try {
+    localStorage.setItem("hg_job_offers_v1", JSON.stringify(arr || []));
+  } catch {}
+}
+
+function hgPushJobOffer(badge, tier, newPoints) {
+  if (!badge || !tier) return;
+
+  const badgeId = String(badge.id || "").trim();
+  const badgeName = String(badge.name || "").trim();
+  const title = String(tier.label || "").trim();
+  const thr = Number(tier.threshold);
+
+  if (!badgeId || !title || !Number.isFinite(thr)) return;
+
+  const offerKey = `${badgeId}:${thr}`;
+  const offers = hgGetJobOffers();
+
+  // Ikke lag samme tilbud flere ganger
+  if (offers.some(o => o && o.offer_key === offerKey)) return;
+
+  const now = new Date();
+  const expires = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000); // 7 dager
+
+  offers.unshift({
+    offer_key: offerKey,
+    career_id: badgeId,
+    career_name: badgeName,
+    title,
+    threshold: thr,
+    points_at_offer: Number(newPoints || 0),
+    status: "pending",         // pending | accepted | declined | expired
+    created_iso: now.toISOString(),
+    expires_iso: expires.toISOString()
+  });
+
+  hgSetJobOffers(offers);
+}
+
+
 // Oppdater "stilling" ved ny poengsum (tiers = karrierestige)
 async function updateMeritLevel(cat, oldPoints, newPoints) {
   await ensureBadgesLoaded();
@@ -616,22 +670,34 @@ async function updateMeritLevel(cat, oldPoints, newPoints) {
   showToast(`💼 Ny stilling i ${badge.name}: ${newTitle}!`);
   pulseBadge(badge.name);
 
-  // 2) Lagre "aktiv stilling" (V1: kun én aktiv)
-  //    (kan senere utvides med vedlikehold/temperatur)
-  const pos = {
-    career_id: String(badge.id || ""),
-    career_name: String(badge.name || ""),
-    title: newTitle,
-    points: Number(newPoints || 0),
-    tier_index: Number(next.tierIndex || 0),
-    achieved_at: new Date().toISOString()
-  };
-
+    // 2) Lag jobbtilbud (offers) – aktiv rolle settes først ved "Aksepter" på profilen
   try {
-    localStorage.setItem("hg_active_position_v1", JSON.stringify(pos));
-    localStorage.setItem("hg_last_position_change_v1", pos.achieved_at);
+    const offers = JSON.parse(localStorage.getItem("hg_job_offers_v1") || "[]");
+    const list = Array.isArray(offers) ? offers : [];
+
+    const thr = Number(next.threshold);
+    const offerKey = `${badge.id}:${thr}`;
+
+    // Ikke dupliser samme tilbud
+    if (!list.some(o => o && o.offer_key === offerKey)) {
+      const now = new Date();
+      const expires = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
+
+      list.unshift({
+        offer_key: offerKey,
+        career_id: String(badge.id || ""),
+        career_name: String(badge.name || ""),
+        title: newTitle,
+        threshold: thr,
+        points_at_offer: Number(newPoints || 0),
+        status: "pending",
+        created_iso: now.toISOString(),
+        expires_iso: expires.toISOString()
+      });
+
+      localStorage.setItem("hg_job_offers_v1", JSON.stringify(list));
+    }
   } catch {}
-}
 
 // Poengsystem – +1 poeng per fullført quiz
 async function addCompletedQuizAndMaybePoint(categoryDisplay, quizId) {
