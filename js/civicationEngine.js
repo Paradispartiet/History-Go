@@ -85,13 +85,21 @@
   }
 
   class CivicationEventEngine {
-    constructor(opts = {}) {
-      this.packBasePath = opts.packBasePath || "data/civication"; // default mappe
-      this.maxInbox = Number.isFinite(opts.maxInbox) ? opts.maxInbox : 1; // ingen backlog i v0.1
-      this.pulseLimitPerDay = 3; // konseptuelt, men vi håndhever via slots
-      this.packsCache = new Map(); // role_key -> pack json
-    }
+  constructor(opts = {}) {
+    this.packBasePath = opts.packBasePath || "data/civication"; // default mappe
+    this.maxInbox = Number.isFinite(opts.maxInbox) ? opts.maxInbox : 1; // ingen backlog i v0.1
+    this.pulseLimitPerDay = 3; // konseptuelt, men vi håndhever via slots
+    this.packsCache = new Map(); // packFile -> pack json
 
+    // Mapping: badge-id (career_id) -> civic pack-fil
+    this.packMap = opts.packMap || {
+      naeringsliv: "naeringslivCivic.json",
+      media: "mediaCivic.json",
+      by: "byCivic.json"
+    };
+  }
+}
+     
     // -------- state --------
     getState() {
       const s = lsGet(LS_STATE, null);
