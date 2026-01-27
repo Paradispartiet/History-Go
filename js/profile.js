@@ -137,6 +137,89 @@ function renderCivication() {
     details.textContent = "Status: Ingen aktiv jobb (ta quiz for å få jobbtilbud).";
   }
 
+function renderCivicationInbox() {
+  const box = document.getElementById("civiInboxBox");
+  const subj = document.getElementById("civiMailSubject");
+  const text = document.getElementById("civiMailText");
+  const fb = document.getElementById("civiMailFeedback");
+
+  const btnA = document.getElementById("civiChoiceA");
+  const btnB = document.getElementById("civiChoiceB");
+  const btnC = document.getElementById("civiChoiceC");
+  const btnOK = document.getElementById("civiChoiceOK");
+
+  if (!box || !subj || !text || !btnA || !btnB || !btnC || !btnOK || !fb) return;
+
+  const pending = window.HG_CiviEngine?.getPendingEvent?.();
+  if (!pending || !pending.event) {
+    box.style.display = "none";
+    return;
+  }
+
+  box.style.display = "";
+  const ev = pending.event;
+
+  subj.textContent = `📬 ${ev.subject || "—"}`;
+  text.textContent = Array.isArray(ev.situation) ? ev.situation.join(" ") : (ev.situation || "—");
+
+  // reset UI
+  fb.style.display = "none";
+  btnOK.style.display = "none";
+  btnA.style.display = "none";
+  btnB.style.display = "none";
+  btnC.style.display = "none";
+
+  const choices = Array.isArray(ev.choices) ? ev.choices : [];
+
+  function bindChoice(btn, choiceId, label) {
+    btn.textContent = label;
+    btn.style.display = "";
+    btn.onclick = () => {
+      const res = window.HG_CiviEngine?.answer?.(ev.id, choiceId);
+      if (!res || !res.ok) return;
+
+      fb.textContent = res.feedback || "—";
+      fb.style.display = "";
+
+      // skjul valg, vis OK
+      btnA.style.display = "none";
+      btnB.style.display = "none";
+      btnC.style.display = "none";
+
+      btnOK.style.display = "";
+      btnOK.onclick = () => {
+        // etter OK: refresh (kan ha en ny “pending” hvis fired-event ble enqueued)
+        renderCivication();
+        renderCivicationInbox();
+        window.dispatchEvent(new Event("updateProfile"));
+      };
+    };
+  }
+
+  if (!choices.length) {
+    // info-mail (fired/nav) uten valg
+    fb.textContent = ev.feedback || "—";
+    fb.style.display = "";
+
+    btnOK.style.display = "";
+    btnOK.onclick = () => {
+      renderCivication();
+      renderCivicationInbox();
+      window.dispatchEvent(new Event("updateProfile"));
+    };
+    return;
+  }
+
+  // A/B/C
+  const cA = choices.find(c => c?.id === "A");
+  const cB = choices.find(c => c?.id === "B");
+  const cC = choices.find(c => c?.id === "C");
+
+  if (cA) bindChoice(btnA, "A", cA.label || "A");
+  if (cB) bindChoice(btnB, "B", cB.label || "B");
+  if (cC) bindChoice(btnC, "C", cC.label || "C");
+}
+  
   // ------------------------------------------------------------
   // 2) JOBBTILBUD (pending)
   // ------------------------------------------------------------
