@@ -1932,6 +1932,7 @@ console.error("Feil ved lasting av data:", e);
 
 document.addEventListener("DOMContentLoaded", () => {
   safeRun("boot", boot);
+  safeRun("civicationPulse", () => window.HG_CiviEngine?.onAppOpen?.());
   safeRun("initMiniProfile", initMiniProfile);
   safeRun("wireMiniProfileLinks", wireMiniProfileLinks);
   safeRun("initLeftPanel", initLeftPanel);
