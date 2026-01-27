@@ -203,7 +203,6 @@ function renderCivication() {
       if (item.tierIndex > best.tierIndex) best = item;
       else if (item.tierIndex === best.tierIndex && item.points > best.points) best = item;
     }
-  }
 
   if (!best) {
     meritLn.textContent = "Merit: —";
