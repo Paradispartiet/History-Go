@@ -1,3 +1,117 @@
+Nydelig, 
+
+Konseptet er at når man får de gode jobbene så må man endre strategi, da blir spørsmålene mer tekniske og du må faktisk vise hva du kan
+
+Men dårlig jobber er du dørt til å beholde for alltid om du ikke er smart og bytter
+
+
+
+Ja. Dette er akkurat riktig nivå-twisten.
+Og den gir Civication en indre dramaturgi som er mye sterkere enn “vanskeligere = bedre”.
+
+La oss bare låse forståelsen, ikke lage regler.
+
+⸻
+
+Kjernen du nettopp definerte (veldig viktig)
+
+Civication er ikke lineær progresjon.
+Det er strategisk mobilitet.
+
+To fundamentalt ulike spillfaser
+
+🟢 Dårlige jobber (bullshit-roller)
+	•	Spillet er:
+	•	kynisk
+	•	indirekte
+	•	språk- og prosessbasert
+	•	Du belønnes for:
+	•	å være uklar
+	•	å utsette
+	•	å forsvinne
+	•	Fellen:
+	•	Du kan bli komfortabel
+	•	Det er lett å overleve
+	•	Vanskelig å komme seg videre hvis du ikke aktivt skifter strategi
+
+👉 Disse jobbene er designet for å vare evig hvis spilleren ikke er våken.
+
+⸻
+
+🔵 Gode jobber (reelle posisjoner)
+	•	Spillet skifter karakter:
+	•	mer teknisk
+	•	mer presist
+	•	mindre rom for bullshit
+	•	Spørsmålene blir:
+	•	faglige vurderinger
+	•	reelle avveiinger
+	•	konsekvensanalyser
+	•	Du belønnes for:
+	•	kompetanse
+	•	sammenheng
+	•	konsistens
+
+👉 Her hjelper det ikke å være vag.
+Her blir gamle strategier direkte farlige.
+
+⸻
+
+Det geniale paradokset
+
+Å være flink for tidlig er dumt.
+Å være smart for sent er umulig.
+
+Spilleren må:
+	•	tåle å være i bullshit-jobber
+	•	lære systemet
+	•	bytte før de blir fanget
+
+Dette er ekstremt realistisk – og ekstremt uvanlig i spill.
+
+⸻
+
+Hva dette gjør med spilleropplevelsen
+	•	Spilleren lærer:
+	•	at kompetanse er situasjonell
+	•	at dyktighet kan være en ulempe i feil struktur
+	•	Spilleren får ekte øyeblikk av:
+	•	“Åh faen, jeg spilte riktig i feil jobb”
+	•	“Jeg burde ha byttet tidligere”
+
+Det er voksen spilldesign.
+
+⸻
+
+Viktig: Dette krever ingen nye systemer
+
+Alt du beskriver:
+	•	ligger allerede implisitt i:
+	•	mail-designet
+	•	rolleforskjellene
+	•	jobbbytte via thresholds
+
+Det eneste som endres fremover er:
+	•	innholdets karakter
+	•	ikke motoren
+
+⸻
+
+Naturlig neste retning (uten å låse noe)
+
+Når du vil:
+	•	kan vi lage én “god jobb” (f.eks. Forsker / Arkitekt / Økonom)
+	•	og bevisst gjøre den:
+	•	mindre morsom
+	•	mer krevende
+	•	mer avslørende
+
+Eller:
+	•	la dette stå litt
+	•	for dette er en av de viktigste avgjørelsene dere har tatt
+
+Si bare hva du vil gjøre videre.
+
 
 
 Hvordan vi tenker fra nå av (uten å kode det fast)
