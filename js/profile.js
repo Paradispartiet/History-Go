@@ -825,21 +825,22 @@ function openProfileModal() {
 // ------------------------------------------------------------
 document.addEventListener("DOMContentLoaded", async () => {
   try {
-    // 1) LAST DATA (parallelt) – via DataHub (ikke rå fetch)
+    // 1) LAST DATA via DataHub (ikke direkte fetch her)
     const [people, places, badges] = await Promise.all([
-      DataHub.loadPeopleBase(),
-      DataHub.loadPlacesBase(),
-      DataHub.loadBadges()
+      window.DataHub?.loadPeopleBase?.(),
+      window.DataHub?.loadPlacesBase?.(),
+      window.DataHub?.loadBadges?.()
     ]);
 
-    PEOPLE = people;
-    PLACES = places;
-    BADGES = badges;
+    PEOPLE = Array.isArray(people) ? people : [];
+    PLACES = Array.isArray(places) ? places : [];
+    BADGES = Array.isArray(badges) ? badges : [];
 
     // 2) RENDER
     renderProfileCard();
     renderCivication();
 
+    // 3) Civication pulse + inbox
     await window.HG_CiviEngine?.onAppOpen?.();
     renderCivicationInbox();
 
@@ -857,6 +858,28 @@ document.addEventListener("DOMContentLoaded", async () => {
     renderAhaSummary();
 
     setupProfileMap();
+
+    // UI
+    document.getElementById("editProfileBtn")?.addEventListener("click", openProfileModal);
+    document.getElementById("btnOpenAHA")?.addEventListener("click", () => window.open("aha/index.html", "_blank"));
+
+    // Sync etter quiz / endringer
+    window.addEventListener("updateProfile", () => {
+      renderProfileCard();
+      renderCivication();
+      renderCivicationInbox();
+
+      renderMerits();
+      renderPeopleCollection();
+      renderPlacesCollection();
+      renderTimeline();
+      renderCollectionCards();
+      renderLatestKnowledge();
+      renderLatestTrivia();
+      renderNextWhy();
+      renderAhaSummary();
+      updateProfileMarkers();
+    });
   } catch (err) {
     console.error("Profile init failed:", err);
   }
