@@ -219,6 +219,8 @@ function renderCivicationInbox() {
   if (cB) bindChoice(btnB, "B", cB.label || "B");
   if (cC) bindChoice(btnC, "C", cC.label || "C");
 }
+
+  window.renderCivicationInbox = renderCivicationInbox;
   
   // ------------------------------------------------------------
   // 2) JOBBTILBUD (pending)
