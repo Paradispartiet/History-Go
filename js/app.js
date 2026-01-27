@@ -699,6 +699,9 @@ async function updateMeritLevel(cat, oldPoints, newPoints) {
     }
   } catch {}
 
+}
+
+  
 // Poengsystem – +1 poeng per fullført quiz
 async function addCompletedQuizAndMaybePoint(categoryDisplay, quizId) {
   const categoryId = catIdFromDisplay(categoryDisplay);
