@@ -139,6 +139,84 @@ function renderCivication() {
 }
 
   
+
+
+  // ------------------------------------------------------------
+  // 2) JOBBTILBUD (pending)
+  // ------------------------------------------------------------
+  const offer = getLatestPendingOffer();
+  if (!offer) {
+    oBox.style.display = "none";
+  } else {
+    oBox.style.display = "";
+    oTitle.textContent = `Jobbtilbud: ${offer.title}`;
+    const expTxt = offer.expires_iso ? new Date(offer.expires_iso).toLocaleDateString("no-NO") : "—";
+    oMeta.textContent =
+      `${offer.career_name || offer.career_id || ""} · ` +
+      `Terskel: ${offer.threshold} · Utløper: ${expTxt}`;
+  }
+
+  // ------------------------------------------------------------
+  // 3) "BESTE ROLLE" (auto fra merits + tiers) – beholdes!
+  //    (Dette er merit/karriereprofil, ikke nødvendigvis aktiv jobb)
+  // ------------------------------------------------------------
+  if (!meritLn) return;
+
+  const merits = ls("merits_by_category", {});
+  const keys = Object.keys(merits || {});
+  if (!Array.isArray(BADGES) || !BADGES.length || !keys.length) {
+    meritLn.textContent = "Merit: —";
+    return;
+  }
+
+  // quiz_history brukes her kun for "sist relevant quiz"-dato (ikke tvang)
+  const historyRaw = JSON.parse(localStorage.getItem("quiz_history") || "[]");
+  const history = Array.isArray(historyRaw) ? historyRaw : [];
+
+  let best = null;
+
+  for (const k of keys) {
+    const catId = String(k || "").trim();
+    if (!catId) continue;
+
+    const badge = BADGES.find(b => String(b?.id || "").trim() === catId);
+    if (!badge) continue;
+
+    const points = Number(merits[k]?.points || 0);
+    const { tierIndex, label } = deriveTierFromPoints(badge, points);
+
+    const last = history
+      .filter(h => String(h?.categoryId || "").trim() === catId)
+      .map(h => h?.date ? new Date(h.date).getTime() : 0)
+      .reduce((mx, t) => Math.max(mx, t), 0);
+
+    const item = {
+      badgeName: String(badge.name || "").trim() || catId,
+      roleLabel: String(label || "").trim() || "Nybegynner",
+      tierIndex: Number.isFinite(tierIndex) ? tierIndex : -1,
+      points,
+      lastQuizAt: last
+    };
+
+    if (!best) best = item;
+    else {
+      if (item.tierIndex > best.tierIndex) best = item;
+      else if (item.tierIndex === best.tierIndex && item.points > best.points) best = item;
+    }
+  }
+
+  if (!best) {
+    meritLn.textContent = "Merit: —";
+    return;
+  }
+
+  const lastTxt = best.lastQuizAt
+    ? new Date(best.lastQuizAt).toLocaleDateString("no-NO")
+    : "aldri";
+
+  meritLn.textContent = `Merit: ${best.roleLabel} (${best.badgeName}) · ${best.points} poeng · Sist: ${lastTxt}`;
+}
+
 function renderCivicationInbox() {
   const box = document.getElementById("civiInboxBox");
   const subj = document.getElementById("civiMailSubject");
@@ -218,85 +296,6 @@ function renderCivicationInbox() {
 }
 
 window.renderCivicationInbox = renderCivicationInbox;  
-
-
-  // ------------------------------------------------------------
-  // 2) JOBBTILBUD (pending)
-  // ------------------------------------------------------------
-  const offer = getLatestPendingOffer();
-  if (!offer) {
-    oBox.style.display = "none";
-  } else {
-    oBox.style.display = "";
-    oTitle.textContent = `Jobbtilbud: ${offer.title}`;
-    const expTxt = offer.expires_iso ? new Date(offer.expires_iso).toLocaleDateString("no-NO") : "—";
-    oMeta.textContent =
-      `${offer.career_name || offer.career_id || ""} · ` +
-      `Terskel: ${offer.threshold} · Utløper: ${expTxt}`;
-  }
-
-  // ------------------------------------------------------------
-  // 3) "BESTE ROLLE" (auto fra merits + tiers) – beholdes!
-  //    (Dette er merit/karriereprofil, ikke nødvendigvis aktiv jobb)
-  // ------------------------------------------------------------
-  if (!meritLn) return;
-
-  const merits = ls("merits_by_category", {});
-  const keys = Object.keys(merits || {});
-  if (!Array.isArray(BADGES) || !BADGES.length || !keys.length) {
-    meritLn.textContent = "Merit: —";
-    return;
-  }
-
-  // quiz_history brukes her kun for "sist relevant quiz"-dato (ikke tvang)
-  const historyRaw = JSON.parse(localStorage.getItem("quiz_history") || "[]");
-  const history = Array.isArray(historyRaw) ? historyRaw : [];
-
-  let best = null;
-
-  for (const k of keys) {
-    const catId = String(k || "").trim();
-    if (!catId) continue;
-
-    const badge = BADGES.find(b => String(b?.id || "").trim() === catId);
-    if (!badge) continue;
-
-    const points = Number(merits[k]?.points || 0);
-    const { tierIndex, label } = deriveTierFromPoints(badge, points);
-
-    const last = history
-      .filter(h => String(h?.categoryId || "").trim() === catId)
-      .map(h => h?.date ? new Date(h.date).getTime() : 0)
-      .reduce((mx, t) => Math.max(mx, t), 0);
-
-    const item = {
-      badgeName: String(badge.name || "").trim() || catId,
-      roleLabel: String(label || "").trim() || "Nybegynner",
-      tierIndex: Number.isFinite(tierIndex) ? tierIndex : -1,
-      points,
-      lastQuizAt: last
-    };
-
-    if (!best) best = item;
-    else {
-      if (item.tierIndex > best.tierIndex) best = item;
-      else if (item.tierIndex === best.tierIndex && item.points > best.points) best = item;
-    }
-  }
-
-  if (!best) {
-    meritLn.textContent = "Merit: —";
-    return;
-  }
-
-  const lastTxt = best.lastQuizAt
-    ? new Date(best.lastQuizAt).toLocaleDateString("no-NO")
-    : "aldri";
-
-  meritLn.textContent = `Merit: ${best.roleLabel} (${best.badgeName}) · ${best.points} poeng · Sist: ${lastTxt}`;
-}
-}
-
 
 // ------------------------------------------------------------
 // MERKER – GRID + MODAL (STRICT)
