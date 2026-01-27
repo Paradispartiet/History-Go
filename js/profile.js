@@ -750,6 +750,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // 2) RENDER
     renderProfileCard();
     renderCivication();
+    wireCivicationActions();
     wireCivicationButtons();
     renderMerits();
     
@@ -788,11 +789,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-window.addEventListener("updateProfile", () => {
-  renderProfileCard();
-  renderCivication();
-  renderMerits();
-});
+
 // ============================================================
 // KART PÅ PROFILSIDEN – KUN BESØKTE STEDER
 // ============================================================
