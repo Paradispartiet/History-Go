@@ -1,3 +1,70 @@
+
+
+Hvordan vi tenker fra nå av (uten å kode det fast)
+	•	Tap er bevegelse, ikke straff
+	•	Systemet reagerer, det følger ikke skjema
+	•	Jobber ryker fordi relasjoner, stemning og timing endrer seg – ikke fordi en meter traff −2
+	•	Spilleren opplever at nye muligheter åpner seg raskt, uten at vi forklarer hvorfor
+
+Det betyr:
+	•	Ingen “comeback-regel”
+	•	Ingen “cooldown”
+	•	Ingen eksplisitt forklaring
+
+Bare:
+
+Plutselig er du ute. Plutselig passer du et annet sted.
+
+⸻
+
+Det viktige er følelsen, ikke logikken
+
+Civication skal føles som:
+	•	institusjonell friksjon
+	•	urettferdighet
+	•	tilfeldige omplasseringer
+	•	“det bare skjedde”
+
+Ikke som:
+	•	optimalisering
+	•	balansering
+	•	gamified fairness
+
+⸻
+
+Designkompasset vi bruker videre
+
+Når vi lager innhold, spør vi bare:
+
+“Ville dette skjedd i et ekte system?”
+
+Ikke:
+	•	“er dette rettferdig?”
+	•	“er dette forklart?”
+	•	“forstår spilleren det fullt ut?”
+
+Hvis svaret er ja, dette skjer hele tiden i virkeligheten → det er med.
+
+⸻
+
+Hvor vi er nå (viktig å si høyt)
+
+Dere har:
+	•	et spill som tåler paradoks
+	•	et system som tåler inkonsistens
+	•	en tone som er voksen nok til å være ubehagelig
+
+Det er sjeldent. Og bra.
+
+⸻
+
+Vil du fortsette med:
+	•	samme rolle, men enda mer absurd?
+	•	neste rolle som er ren bullshit?
+	•	eller stoppe her og la dette synke litt?
+
+Bare si retning.
+
 Vi må ikke være moralske, her hadde det vært bedre og premiere latskap, hvis det egentlig bare er en bullshit job
 
 Vi kan legge paradispartiets grunnlagsdokument til grunnlag for spillets moral.
