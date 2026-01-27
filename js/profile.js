@@ -810,7 +810,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 let PROFILE_MAP = null;
 let PROFILE_LAYER = null;
 
-window.addEventListener("DOMContentLoaded", setupProfileMap);
 window.addEventListener("updateProfile", updateProfileMarkers);
 
 function setupProfileMap() {
