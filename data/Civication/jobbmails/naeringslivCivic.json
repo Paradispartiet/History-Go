@@ -1,7 +1,127 @@
 {
-  "role": "mellomleder",
+  "role": "naeringsliv
   "version": "v0.1",
   "mails": [
+
+{
+  "id": "arbeider_001",
+  "stage": "stable",
+  "subject": "Kan du ta en ekstra oppgave?",
+  "situation": [
+    "Det er litt mer å gjøre enn vanlig.",
+    "Ingen har egentlig oversikt.",
+    "Du blir spurt fordi du er tilgjengelig."
+  ],
+  "choices": [
+    { "id": "A", "label": "Si ja", "effect": 0, "feedback": "Du gjør jobben. Ingen legger merke til det." },
+    { "id": "B", "label": "Si du er opptatt", "effect": 0, "feedback": "Noen andre tar den." }
+  ]
+},
+
+{
+  "id": "arbeider_002",
+  "stage": "stable",
+  "subject": "Det mangler folk i dag",
+  "situation": [
+    "To kolleger er borte.",
+    "Oppgavene må fortsatt gjøres.",
+    "Ingen har gitt klare beskjeder."
+  ],
+  "choices": [
+    { "id": "A", "label": "Jobb litt ekstra", "effect": 0, "feedback": "Du får det unna. Ingen nevner det." },
+    { "id": "B", "label": "Gjør bare ditt", "effect": 0, "feedback": "Det går akkurat." }
+  ]
+},
+
+    {
+  "id": "arbeider_003",
+  "stage": "stable",
+  "subject": "Små forbedringer",
+  "situation": [
+    "Du ser en raskere måte å gjøre jobben på.",
+    "Ingen har spurt om innspill."
+  ],
+  "choices": [
+    { "id": "A", "label": "Foreslå endringen", "effect": -1, "feedback": "Det blir litt stille etterpå." },
+    { "id": "B", "label": "Gjør som før", "effect": 1, "feedback": "Det er forutsigbart." }
+  ]
+},
+
+
+
+
+    
+
+    
+
+
+
+
+{
+  "id": "fagarbeider_001",
+  "stage": "stable_warning",
+  "subject": "Dette burde vært gjort annerledes",
+  "situation": [
+    "Du ser en bedre måte å gjøre ting på.",
+    "Ingen har spurt deg.",
+    "Du vet at forslag kan slå begge veier."
+  ],
+  "choices": [
+    { "id": "A", "label": "Si ifra", "effect": -1, "feedback": "Det skaper diskusjon." },
+    { "id": "B", "label": "Gjør som før", "effect": 1, "feedback": "Det er trygt. Kanskje for trygt." },
+    { "id": "C", "label": "Fiks det stille", "effect": 0, "feedback": "Det fungerer. Ingen vet hvorfor." }
+  ]
+},
+
+{
+  "id": "fagarbeider_002",
+  "stage": "stable_warning",
+  "subject": "Hvem bestemmer egentlig?",
+  "situation": [
+    "To ledere gir ulike beskjeder.",
+    "Begge forventer at du følger deres."
+  ],
+  "choices": [
+    { "id": "A", "label": "Velg én og gjør jobben", "effect": -1, "feedback": "Den andre blir misfornøyd." },
+    { "id": "B", "label": "Be dem avklare", "effect": 1, "feedback": "Det tar tid, men ansvaret flyttes." },
+    { "id": "C", "label": "Gjør ingenting ennå", "effect": 0, "feedback": "Ingen sier noe. Foreløpig." }
+  ]
+},
+
+{
+  "id": "fagarbeider_003",
+  "stage": "stable_warning",
+  "subject": "Dette er ikke optimalt",
+  "situation": [
+    "En løsning fungerer, men er dårlig.",
+    "Du vet det finnes en bedre."
+  ],
+  "choices": [
+    { "id": "A", "label": "Ta det opp i møte", "effect": -1, "feedback": "Diskusjonen blir større enn saken." },
+    { "id": "B", "label": "La det være", "effect": 1, "feedback": "Det er ikke ditt ansvar." },
+    { "id": "C", "label": "Forbedre det diskret", "effect": 0, "feedback": "Resultatet blir bedre. Ingen spør hvorfor." }
+  ]
+},
+
+    {
+  "id": "fagarbeider_004",
+  "stage": "warning",
+  "subject": "Du virker negativ",
+  "situation": [
+    "Noen opplever at du stiller for mange spørsmål.",
+    "Det blir nevnt i forbifarten."
+  ],
+  "choices": [
+    { "id": "A", "label": "Forklare deg", "effect": -1, "feedback": "Det blir notert." },
+    { "id": "B", "label": "Tone det ned", "effect": 1, "feedback": "Stemningen roer seg." },
+    { "id": "C", "label": "Ignorere kommentaren", "effect": 0, "feedback": "Det forsvinner. Kanskje." }
+  ]
+},
+
+
+    
+
+    
     {
       "id": "mellomleder_001",
       "stage": "stable",
