@@ -341,7 +341,7 @@ function catClass(cat = "") {
   if (c.includes("sport") || c.includes("idrett") || c.includes("lek")) return "sport";
   if (c.includes("by") || c.includes("arkitektur")) return "by";
   if (c.includes("politikk") || c.includes("samfunn")) return "politikk";
-  if (c.includes("naering") || c.includes("industri") || c.includes("arbeid")) return "naeringsliv";
+  if (c.includes("naering") || c.includes("industri") || c.includes("arbeid")) return "naering";
   if (c.includes("populaer") || c.includes("pop")) return "populaerkultur";
   if (c.includes("subkultur") || c.includes("urban")) return "subkultur";
   if (c.includes("psykologi") || c.includes("mental") || c.includes("sinn")) return "psykologi"; // ← NY
