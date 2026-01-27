@@ -742,18 +742,18 @@ function openProfileModal() {
 // ------------------------------------------------------------
 document.addEventListener("DOMContentLoaded", async () => {
   try {
-    // 1) LAST DATA (parallelt)
+    // 1) LAST DATA (parallelt) – via DataHub (ikke rå fetch)
     const [people, places, badges] = await Promise.all([
-      fetch("data/people.json").then(r => r.json()),
-      fetch("data/places.json").then(r => r.json()),
-      fetch("data/badges.json").then(r => r.json())
+      DataHub.loadPeopleBase(),
+      DataHub.loadPlacesBase(),
+      DataHub.loadBadges()
     ]);
 
     PEOPLE = people;
     PLACES = places;
     BADGES = badges;
 
-    // 2) RENDER (først statisk, så Civication-puls + inbox)
+    // 2) RENDER
     renderProfileCard();
     renderCivication();
 
