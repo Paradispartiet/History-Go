@@ -3,7 +3,7 @@
    Version: HG-FULL-v3.0.400
 ============================================================ */
 
-const CACHE_VERSION = "HG-FULL-v3.0.413";
+const CACHE_VERSION = "HG-FULL-v3.0.414";
 const STATIC_CACHE = `historygo-${CACHE_VERSION}`;
 
 // Scope path (viktig på GitHub Pages: /History-Go/)
