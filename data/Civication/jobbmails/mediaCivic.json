@@ -1,6 +1,6 @@
 {
   "role": "journalist",
-  "version": "v0.1",
+  "version": "v0.2",
   "mails": [
     {
       "id": "journalist_001",
@@ -14,21 +14,21 @@
       "choices": [
         {
           "id": "A",
-          "label": "Spiss den litt, men hold deg innenfor",
-          "effect": 0,
-          "feedback": "Ingressen funker. Ingen reaksjoner."
+          "label": "Spiss den mer enn du liker (men uten å lyve)",
+          "effect": 1,
+          "feedback": "Saken får moment. Ingen tar deg på det."
         },
         {
           "id": "B",
-          "label": "Stå på originalen",
-          "effect": 1,
-          "feedback": "Saken står støtt, men mister litt trykk."
+          "label": "Hold originalen",
+          "effect": 0,
+          "feedback": "Teksten står støtt, men drukner litt i strømmen."
         },
         {
           "id": "C",
           "label": "Be om mer tid og en ekstra gjennomlesning",
-          "effect": 0,
-          "feedback": "Det tar litt lenger tid, men teksten blir ryddig."
+          "effect": -1,
+          "feedback": "Du mister timing. Det blir stille rundt saken."
         }
       ]
     },
@@ -45,19 +45,19 @@
           "id": "A",
           "label": "Lytt og juster minimalt",
           "effect": 0,
-          "feedback": "Kilden er fornøyd. Ingen endringer av betydning."
+          "feedback": "Kilden er fornøyd. Det var stort sett luft."
         },
         {
           "id": "B",
           "label": "Avslå – saken er ferdig",
           "effect": 1,
-          "feedback": "Redaksjonen setter pris på tydelige grenser."
+          "feedback": "Redaksjonen liker tydelige grenser."
         },
         {
           "id": "C",
-          "label": "Slå av telefonen og lever",
+          "label": "La det ringe ut",
           "effect": -1,
-          "feedback": "Dette skaper litt irritasjon i etterkant."
+          "feedback": "Dette huskes av noen. Du aner ikke hvem."
         }
       ]
     },
@@ -72,21 +72,21 @@
       "choices": [
         {
           "id": "A",
-          "label": "Publiser nå",
-          "effect": -1,
-          "feedback": "Saken går ut, men noen stiller spørsmål."
+          "label": "Publiser nå (uten å nevne mangelen)",
+          "effect": 1,
+          "feedback": "Du får førstesaken. Det blir litt støy, men den går over."
         },
         {
           "id": "B",
           "label": "Vent og dobbeltsjekk",
-          "effect": 1,
-          "feedback": "Du mister førstesaken, men beholder troverdighet."
+          "effect": -1,
+          "feedback": "Du mister førstesaken. Det føles riktig, men det hjelper ikke."
         },
         {
           "id": "C",
           "label": "Publiser, men med forbehold",
           "effect": 0,
-          "feedback": "Leserne er litt forvirret."
+          "feedback": "Leserne skjønner ikke helt hva du mener."
         }
       ]
     },
@@ -102,21 +102,21 @@
       "choices": [
         {
           "id": "A",
-          "label": "Ta kritikken på alvor",
+          "label": "Nikk, beklag kort, og lov mindre friksjon",
           "effect": 1,
-          "feedback": "Dette var nødvendig. Forventningene er klare."
+          "feedback": "Samtalen blir kort. Det var visst det de ville."
         },
         {
           "id": "B",
           "label": "Forsvar deg – det er mye press",
           "effect": 0,
-          "feedback": "Samtalen stopper der."
+          "feedback": "De forstår. Men de noterer."
         },
         {
           "id": "C",
-          "label": "Ignorer og gå videre",
+          "label": "Ta prinsippkampen",
           "effect": -1,
-          "feedback": "Dette ble lagt merke til."
+          "feedback": "Det blir ‘en greie’. Du merker det med en gang."
         }
       ]
     },
@@ -131,21 +131,21 @@
       "choices": [
         {
           "id": "A",
-          "label": "Si ja for å roe situasjonen",
-          "effect": -1,
-          "feedback": "Dette kan bli et problem senere."
+          "label": "Gi dem litt, bare for å få ro",
+          "effect": 1,
+          "feedback": "Klagen forsvinner. Ingen spør hva som skjedde."
         },
         {
           "id": "B",
           "label": "Avslå og stå på prinsippene",
-          "effect": 1,
-          "feedback": "Redaksjonen støtter avgjørelsen."
+          "effect": 0,
+          "feedback": "Du har rett. Men du får også en sak på bordet."
         },
         {
           "id": "C",
           "label": "Be redaktør ta det",
           "effect": 0,
-          "feedback": "Saken eskaleres."
+          "feedback": "Saken sendes videre. Du er litt mer usynlig."
         }
       ]
     },
@@ -160,21 +160,21 @@
       "choices": [
         {
           "id": "A",
-          "label": "Rett stille",
-          "effect": 0,
-          "feedback": "Noen merker endringen."
+          "label": "Rett stille (uten å markere)",
+          "effect": 1,
+          "feedback": "Det blir ikke en nyhet. Det er overraskende effektivt."
         },
         {
           "id": "B",
           "label": "Legg ut rettelse",
-          "effect": 1,
-          "feedback": "Dette håndteres ryddig."
+          "effect": 0,
+          "feedback": "Det er ryddig. Og synlig."
         },
         {
           "id": "C",
           "label": "Ignorer – det er bagatell",
           "effect": -1,
-          "feedback": "Dette skaper irritasjon."
+          "feedback": "Akkurat nok til at folk blir sure."
         }
       ]
     },
