@@ -60,6 +60,156 @@ function renderProfileCard() {
 }
 
 // ------------------------------------------------------------
+// CIVICATION – Offers + aktiv rolle (1 slot)
+// ------------------------------------------------------------
+function getJobOffers() {
+  try {
+    const raw = JSON.parse(localStorage.getItem("hg_job_offers_v1") || "[]");
+    return Array.isArray(raw) ? raw : [];
+  } catch {
+    return [];
+  }
+}
+
+function setJobOffers(arr) {
+  try {
+    localStorage.setItem("hg_job_offers_v1", JSON.stringify(arr || []));
+  } catch {}
+}
+
+function getActivePosition() {
+  try {
+    return JSON.parse(localStorage.getItem("hg_active_position_v1") || "null");
+  } catch {
+    return null;
+  }
+}
+
+function setActivePosition(pos) {
+  try {
+    localStorage.setItem("hg_active_position_v1", JSON.stringify(pos));
+  } catch {}
+}
+
+function getLatestPendingOffer() {
+  const offers = getJobOffers();
+  const now = Date.now();
+
+  for (const o of offers) {
+    if (!o || o.status !== "pending") continue;
+
+    const exp = o.expires_iso ? new Date(o.expires_iso).getTime() : 0;
+    if (exp && exp < now) {
+      o.status = "expired";
+      continue;
+    }
+    return o;
+  }
+
+  // hvis vi endret noe til expired, skriv tilbake
+  setJobOffers(offers);
+  return null;
+}
+
+function renderCivication() {
+  const aTitle = document.getElementById("civiActiveTitle");
+  const aMeta  = document.getElementById("civiActiveMeta");
+
+  const oBox   = document.getElementById("civiOfferBox");
+  const oTitle = document.getElementById("civiOfferTitle");
+  const oMeta  = document.getElementById("civiOfferMeta");
+
+  if (!aTitle || !aMeta || !oBox || !oTitle || !oMeta) return;
+
+  // Aktiv rolle
+  const active = getActivePosition();
+  if (active && active.title) {
+    aTitle.textContent = `Aktiv rolle: ${active.title}`;
+    const cn = active.career_name || active.career_id || "";
+    const dt = active.achieved_at ? new Date(active.achieved_at).toLocaleDateString("no-NO") : "";
+    aMeta.textContent = `Felt: ${cn || "—"}${dt ? " · Satt: " + dt : ""}`;
+  } else {
+    aTitle.textContent = "Aktiv rolle: —";
+    aMeta.textContent = "Status: Ingen aktiv rolle (få et jobbtilbud ved å nå en terskel).";
+  }
+
+  // Jobbtilbud (pending)
+  const offer = getLatestPendingOffer();
+  if (!offer) {
+    oBox.style.display = "none";
+    return;
+  }
+
+  oBox.style.display = "";
+  oTitle.textContent = `Jobbtilbud: ${offer.title}`;
+  const expTxt = offer.expires_iso ? new Date(offer.expires_iso).toLocaleDateString("no-NO") : "—";
+  oMeta.textContent = `${offer.career_name || offer.career_id || ""} · Terskel: ${offer.threshold} · Utløper: ${expTxt}`;
+}
+
+function wireCivicationActions() {
+  const acceptBtn = document.getElementById("btnCiviAccept");
+  const declineBtn = document.getElementById("btnCiviDecline");
+  if (!acceptBtn || !declineBtn) return;
+
+  acceptBtn.addEventListener("click", () => {
+    const offers = getJobOffers();
+    const offer = getLatestPendingOffer();
+    if (!offer) return;
+
+    // Sett ny aktiv rolle (1 slot). Poeng/statistikk røres ikke.
+    const nowIso = new Date().toISOString();
+    const newActive = {
+      career_id: offer.career_id,
+      career_name: offer.career_name,
+      title: offer.title,
+      threshold: offer.threshold,
+      accepted_from_offer: offer.offer_key,
+      achieved_at: nowIso
+    };
+
+    // (valgfritt) historikk – bare som logg, ikke nødvendig
+    try {
+      const histRaw = JSON.parse(localStorage.getItem("hg_job_history_v1") || "[]");
+      const hist = Array.isArray(histRaw) ? histRaw : [];
+      const prev = getActivePosition();
+      if (prev && prev.title) {
+        hist.unshift({ ...prev, ended_at: nowIso, end_reason: "switched" });
+        localStorage.setItem("hg_job_history_v1", JSON.stringify(hist));
+      }
+    } catch {}
+
+    setActivePosition(newActive);
+
+    // Marker tilbud som accepted
+    const idx = offers.findIndex(x => x && x.offer_key === offer.offer_key);
+    if (idx >= 0) {
+      offers[idx].status = "accepted";
+      offers[idx].accepted_iso = nowIso;
+      setJobOffers(offers);
+    }
+
+    // refresh
+    renderCivication();
+    window.dispatchEvent(new Event("updateProfile"));
+  });
+
+  declineBtn.addEventListener("click", () => {
+    const offers = getJobOffers();
+    const offer = getLatestPendingOffer();
+    if (!offer) return;
+
+    const idx = offers.findIndex(x => x && x.offer_key === offer.offer_key);
+    if (idx >= 0) {
+      offers[idx].status = "declined";
+      offers[idx].declined_iso = new Date().toISOString();
+      setJobOffers(offers);
+    }
+
+    renderCivication();
+  });
+}
+
+// ------------------------------------------------------------
 // CIVICATION – rolle/jobber (V1: bygger på merits + tiers)
 // ------------------------------------------------------------
 function renderCivication() {
