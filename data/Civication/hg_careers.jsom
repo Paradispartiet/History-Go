@@ -1,0 +1,1301 @@
+{
+  "schema": "hg_careers_from_badges_v1",
+  "version": 1,
+  "source": {
+    "file": "badges (19).json",
+    "version": 2
+  },
+  "rules": {
+    "career_id_source": "badge.id",
+    "position_source": "badge.tiers[]",
+    "active_position_limit": 1,
+    "offer": {
+      "cooldown_days": 7,
+      "expiry_days": 7
+    },
+    "maintenance": {
+      "temperature_start": 60,
+      "danger_threshold": 30,
+      "loss_threshold": 10,
+      "decay_points_per_week": 5,
+      "gain": {
+        "relevant_place_visit": 10,
+        "relevant_quiz_completed": 5,
+        "combo_same_day_bonus": 8
+      }
+    },
+    "relevance": {
+      "mode": "badge_match",
+      "place_mapping": "place.badge_ids (or place.tags -> badge.id mapping)",
+      "quiz_mapping": "quiz.badge_id (or quiz.tags -> badge.id mapping)"
+    }
+  },
+  "careers": [
+    {
+      "career_id": "historie",
+      "name": "Historie",
+      "icon": "🏰",
+      "color": "#344B80",
+      "image": "bilder/merker/historie.PNG",
+      "description": "For dem som leter bakover for å forstå fremtiden. Historie er ikke fortid – det er minnets geografi.",
+      "sub": [
+        "forhistorie",
+        "middelalder",
+        "tidlig_modernetid",
+        "attenhundretallet",
+        "nittenhundre_1900_1945",
+        "etterkrigstid",
+        "samtidshistorie",
+        "byhistorie",
+        "industrihistorie",
+        "krigshistorie",
+        "sosialhistorie",
+        "kulturminner_og_bevaring",
+        "krim_ulykker_og_branner",
+        "migrasjon_og_minoritetshistorie"
+      ],
+      "positions": [
+        {
+          "id": "historie_005_studentassistent",
+          "title": "Studentassistent",
+          "threshold": 5,
+          "summary": ""
+        },
+        {
+          "id": "historie_010_praktikant",
+          "title": "Praktikant",
+          "threshold": 10,
+          "summary": ""
+        },
+        {
+          "id": "historie_015_prosjektmedarbeider",
+          "title": "Prosjektmedarbeider",
+          "threshold": 15,
+          "summary": ""
+        },
+        {
+          "id": "historie_020_arkivmedarbeider",
+          "title": "Arkivmedarbeider",
+          "threshold": 20,
+          "summary": ""
+        },
+        {
+          "id": "historie_025_saksbehandler",
+          "title": "Saksbehandler",
+          "threshold": 25,
+          "summary": ""
+        },
+        {
+          "id": "historie_035_forstekonsulent",
+          "title": "Førstekonsulent",
+          "threshold": 35,
+          "summary": ""
+        },
+        {
+          "id": "historie_050_raadgiver",
+          "title": "Rådgiver",
+          "threshold": 50,
+          "summary": ""
+        },
+        {
+          "id": "historie_070_seniorraadgiver",
+          "title": "Seniorrådgiver",
+          "threshold": 70,
+          "summary": ""
+        },
+        {
+          "id": "historie_095_arkivar",
+          "title": "Arkivar",
+          "threshold": 95,
+          "summary": ""
+        },
+        {
+          "id": "historie_125_spesialraadgiver",
+          "title": "Spesialrådgiver",
+          "threshold": 125,
+          "summary": ""
+        },
+        {
+          "id": "historie_160_konservator",
+          "title": "Konservator",
+          "threshold": 160,
+          "summary": ""
+        },
+        {
+          "id": "historie_200_kurator",
+          "title": "Kurator",
+          "threshold": 200,
+          "summary": ""
+        },
+        {
+          "id": "historie_245_senior_konservator",
+          "title": "Senior konservator",
+          "threshold": 245,
+          "summary": ""
+        },
+        {
+          "id": "historie_295_senior_kurator",
+          "title": "Senior kurator",
+          "threshold": 295,
+          "summary": ""
+        },
+        {
+          "id": "historie_350_forsker",
+          "title": "Forsker",
+          "threshold": 350,
+          "summary": ""
+        },
+        {
+          "id": "historie_410_seniorforsker",
+          "title": "Seniorforsker",
+          "threshold": 410,
+          "summary": ""
+        },
+        {
+          "id": "historie_480_seksjonsleder",
+          "title": "Seksjonsleder",
+          "threshold": 480,
+          "summary": ""
+        },
+        {
+          "id": "historie_560_avdelingsleder",
+          "title": "Avdelingsleder",
+          "threshold": 560,
+          "summary": ""
+        },
+        {
+          "id": "historie_650_avdelingsdirektoer",
+          "title": "Avdelingsdirektør",
+          "threshold": 650,
+          "summary": ""
+        },
+        {
+          "id": "historie_750_direktoer",
+          "title": "Direktør",
+          "threshold": 750,
+          "summary": ""
+        }
+      ]
+    },
+    {
+      "career_id": "vitenskap",
+      "name": "Vitenskap & filosofi",
+      "icon": "🔬",
+      "color": "#9b59b6",
+      "image": "bilder/merker/vitenskap.PNG",
+      "description": "For dem som søker forståelse – fra små eksperimenter til de store spørsmålene. Kunnskap er ikke et mål, men en bevegelse mot klarhet.",
+      "sub": [
+        "naturvitenskap",
+        "teknologi",
+        "medisin",
+        "matematikk",
+        "psykologi_og_hjerne",
+        "forskning_og_metode",
+        "vitenskapshistorie",
+        "idehistorie_og_filosofi"
+      ],
+      "positions": [
+        {
+          "id": "vitenskap_005_studentassistent",
+          "title": "Studentassistent",
+          "threshold": 5,
+          "summary": ""
+        },
+        {
+          "id": "vitenskap_010_vitenskapelig_assistent",
+          "title": "Vitenskapelig assistent",
+          "threshold": 10,
+          "summary": ""
+        },
+        {
+          "id": "vitenskap_015_forskningsassistent",
+          "title": "Forskningsassistent",
+          "threshold": 15,
+          "summary": ""
+        },
+        {
+          "id": "vitenskap_020_laboratorieassistent",
+          "title": "Laboratorieassistent",
+          "threshold": 20,
+          "summary": ""
+        },
+        {
+          "id": "vitenskap_030_stipendiat_phd",
+          "title": "Stipendiat (PhD)",
+          "threshold": 30,
+          "summary": ""
+        },
+        {
+          "id": "vitenskap_045_postdoktor",
+          "title": "Postdoktor",
+          "threshold": 45,
+          "summary": ""
+        },
+        {
+          "id": "vitenskap_060_forsker",
+          "title": "Forsker",
+          "threshold": 60,
+          "summary": ""
+        },
+        {
+          "id": "vitenskap_080_seniorforsker",
+          "title": "Seniorforsker",
+          "threshold": 80,
+          "summary": ""
+        },
+        {
+          "id": "vitenskap_105_foersteamanuensis",
+          "title": "Førsteamanuensis",
+          "threshold": 105,
+          "summary": ""
+        },
+        {
+          "id": "vitenskap_135_professor",
+          "title": "Professor",
+          "threshold": 135,
+          "summary": ""
+        },
+        {
+          "id": "vitenskap_170_forskningsleder",
+          "title": "Forskningsleder",
+          "threshold": 170,
+          "summary": ""
+        },
+        {
+          "id": "vitenskap_220_instituttleder",
+          "title": "Instituttleder",
+          "threshold": 220,
+          "summary": ""
+        },
+        {
+          "id": "vitenskap_300_dekan",
+          "title": "Dekan",
+          "threshold": 300,
+          "summary": ""
+        }
+      ]
+    },
+    {
+      "career_id": "kunst",
+      "name": "Kunst & kultur",
+      "icon": "🎨",
+      "color": "#ffb703",
+      "image": "bilder/merker/kunst.PNG",
+      "description": "For blikket som ser mening i former og farger. Kunstens språk er ikke ord – det er forbindelsen mellom menneske og uttrykk.",
+      "sub": [
+        "maleri",
+        "skulptur",
+        "tegning_og_grafikk",
+        "fotokunst",
+        "samtidskunst",
+        "street_art",
+        "kunsthistorie",
+        "design_og_form"
+      ],
+      "positions": [
+        {
+          "id": "kunst_005_vertskap_museum_galleri",
+          "title": "Vertskap (museum/galleri)",
+          "threshold": 5,
+          "summary": ""
+        },
+        {
+          "id": "kunst_010_gallerimedarbeider",
+          "title": "Gallerimedarbeider",
+          "threshold": 10,
+          "summary": ""
+        },
+        {
+          "id": "kunst_015_formidler",
+          "title": "Formidler",
+          "threshold": 15,
+          "summary": ""
+        },
+        {
+          "id": "kunst_020_produksjonsassistent",
+          "title": "Produksjonsassistent",
+          "threshold": 20,
+          "summary": ""
+        },
+        {
+          "id": "kunst_030_utstillingskoordinator",
+          "title": "Utstillingskoordinator",
+          "threshold": 30,
+          "summary": ""
+        },
+        {
+          "id": "kunst_040_kuratorassistent",
+          "title": "Kuratorassistent",
+          "threshold": 40,
+          "summary": ""
+        },
+        {
+          "id": "kunst_055_kurator",
+          "title": "Kurator",
+          "threshold": 55,
+          "summary": ""
+        },
+        {
+          "id": "kunst_080_senior_kurator",
+          "title": "Senior kurator",
+          "threshold": 80,
+          "summary": ""
+        },
+        {
+          "id": "kunst_110_konservator",
+          "title": "Konservator",
+          "threshold": 110,
+          "summary": ""
+        },
+        {
+          "id": "kunst_145_senior_konservator",
+          "title": "Senior konservator",
+          "threshold": 145,
+          "summary": ""
+        },
+        {
+          "id": "kunst_185_gallerist",
+          "title": "Gallerist",
+          "threshold": 185,
+          "summary": ""
+        },
+        {
+          "id": "kunst_230_utstillingsprodusent",
+          "title": "Utstillingsprodusent",
+          "threshold": 230,
+          "summary": ""
+        },
+        {
+          "id": "kunst_280_kunstnerisk_leder",
+          "title": "Kunstnerisk leder",
+          "threshold": 280,
+          "summary": ""
+        },
+        {
+          "id": "kunst_350_museumsdirektoer",
+          "title": "Museumsdirektør",
+          "threshold": 350,
+          "summary": ""
+        }
+      ]
+    },
+    {
+      "career_id": "by",
+      "name": "By & arkitektur",
+      "icon": "🏙️",
+      "color": "#16a085",
+      "image": "bilder/merker/by.PNG",
+      "description": "For dem som leser gater og bygninger som tekst. Byen er en maskin for liv – og en drøm i stein.",
+      "sub": [
+        "arkitektur",
+        "byplanlegging",
+        "bolig_og_nabolag",
+        "parker_og_byrom",
+        "transport_og_infrastruktur",
+        "monumenter_og_statuer",
+        "bygninger_og_landemerker",
+        "oslo_i_endring"
+      ],
+      "positions": [
+        {
+          "id": "by_005_praktikant",
+          "title": "Praktikant",
+          "threshold": 5,
+          "summary": ""
+        },
+        {
+          "id": "by_010_byvandrer",
+          "title": "Byvandrer",
+          "threshold": 10,
+          "summary": ""
+        },
+        {
+          "id": "by_020_planassistent",
+          "title": "Planassistent",
+          "threshold": 20,
+          "summary": ""
+        },
+        {
+          "id": "by_035_junior_planlegger",
+          "title": "Junior planlegger",
+          "threshold": 35,
+          "summary": ""
+        },
+        {
+          "id": "by_055_byutvikler",
+          "title": "Byutvikler",
+          "threshold": 55,
+          "summary": ""
+        },
+        {
+          "id": "by_080_arkitekt",
+          "title": "Arkitekt",
+          "threshold": 80,
+          "summary": ""
+        },
+        {
+          "id": "by_110_seniorarkitekt",
+          "title": "Seniorarkitekt",
+          "threshold": 110,
+          "summary": ""
+        },
+        {
+          "id": "by_150_byplanlegger",
+          "title": "Byplanlegger",
+          "threshold": 150,
+          "summary": ""
+        },
+        {
+          "id": "by_200_senior_byplanlegger",
+          "title": "Senior byplanlegger",
+          "threshold": 200,
+          "summary": ""
+        },
+        {
+          "id": "by_260_prosjektleder",
+          "title": "Prosjektleder",
+          "threshold": 260,
+          "summary": ""
+        },
+        {
+          "id": "by_340_seksjonsleder",
+          "title": "Seksjonsleder",
+          "threshold": 340,
+          "summary": ""
+        },
+        {
+          "id": "by_450_byraadgiver",
+          "title": "Byrådgiver",
+          "threshold": 450,
+          "summary": ""
+        },
+        {
+          "id": "by_600_bydirektoer",
+          "title": "Bydirektør",
+          "threshold": 600,
+          "summary": ""
+        }
+      ]
+    },
+    {
+      "career_id": "musikk",
+      "name": "Musikk",
+      "icon": "🎵",
+      "color": "#ff66cc",
+      "image": "bilder/merker/musikk.PNG",
+      "description": "For dem som hører verden som rytme. Musikk er ikke bare lyd – det er tiden som puster.",
+      "sub": [
+        "klassisk",
+        "rock",
+        "pop",
+        "jazz",
+        "hiphop",
+        "elektronika",
+        "folkemusikk",
+        "kor",
+        "konserter_og_scener",
+        "plateselskaper_og_studio"
+      ],
+      "positions": [
+        {
+          "id": "musikk_005_publikum_deltaker",
+          "title": "Publikum / deltaker",
+          "threshold": 5,
+          "summary": ""
+        },
+        {
+          "id": "musikk_010_sceneassistent",
+          "title": "Sceneassistent",
+          "threshold": 10,
+          "summary": ""
+        },
+        {
+          "id": "musikk_015_produksjonsassistent",
+          "title": "Produksjonsassistent",
+          "threshold": 15,
+          "summary": ""
+        },
+        {
+          "id": "musikk_025_tekniker_lys_lyd",
+          "title": "Tekniker (lys/lyd)",
+          "threshold": 25,
+          "summary": ""
+        },
+        {
+          "id": "musikk_040_tourmanager",
+          "title": "Tourmanager",
+          "threshold": 40,
+          "summary": ""
+        },
+        {
+          "id": "musikk_060_musiker",
+          "title": "Musiker",
+          "threshold": 60,
+          "summary": ""
+        },
+        {
+          "id": "musikk_085_bandmedlem",
+          "title": "Bandmedlem",
+          "threshold": 85,
+          "summary": ""
+        },
+        {
+          "id": "musikk_115_laadskriver",
+          "title": "Låtskriver",
+          "threshold": 115,
+          "summary": ""
+        },
+        {
+          "id": "musikk_150_produsent",
+          "title": "Produsent",
+          "threshold": 150,
+          "summary": ""
+        },
+        {
+          "id": "musikk_200_artist",
+          "title": "Artist",
+          "threshold": 200,
+          "summary": ""
+        },
+        {
+          "id": "musikk_275_kunstnerisk_leder",
+          "title": "Kunstnerisk leder",
+          "threshold": 275,
+          "summary": ""
+        }
+      ]
+    },
+    {
+      "career_id": "litteratur",
+      "name": "Litteratur",
+      "icon": "📚",
+      "color": "#8d6e63",
+      "image": "bilder/merker/litteratur.PNG",
+      "description": "For dem som lever i setninger. Litteratur er verdens indre motor – en by av stemmer.",
+      "sub": [
+        "norsk_litteratur",
+        "verdenslitteratur",
+        "poesi",
+        "romaner",
+        "drama",
+        "sakprosa",
+        "filosofi_og_essay",
+        "forfatterliv",
+        "bokhandlere_og_bibliotek",
+        "litteraere_steder"
+      ],
+      "positions": [
+        {
+          "id": "litteratur_005_leser",
+          "title": "Leser",
+          "threshold": 5,
+          "summary": ""
+        },
+        {
+          "id": "litteratur_010_bokassistent",
+          "title": "Bokassistent",
+          "threshold": 10,
+          "summary": ""
+        },
+        {
+          "id": "litteratur_020_bibliotekassistent",
+          "title": "Bibliotekassistent",
+          "threshold": 20,
+          "summary": ""
+        },
+        {
+          "id": "litteratur_035_formidler",
+          "title": "Formidler",
+          "threshold": 35,
+          "summary": ""
+        },
+        {
+          "id": "litteratur_055_anmelder",
+          "title": "Anmelder",
+          "threshold": 55,
+          "summary": ""
+        },
+        {
+          "id": "litteratur_080_redaktoer",
+          "title": "Redaktør",
+          "threshold": 80,
+          "summary": ""
+        },
+        {
+          "id": "litteratur_110_forfatter",
+          "title": "Forfatter",
+          "threshold": 110,
+          "summary": ""
+        },
+        {
+          "id": "litteratur_150_seniorredaktoer",
+          "title": "Seniorredaktør",
+          "threshold": 150,
+          "summary": ""
+        },
+        {
+          "id": "litteratur_200_forlagssjef",
+          "title": "Forlagssjef",
+          "threshold": 200,
+          "summary": ""
+        }
+      ]
+    },
+    {
+      "career_id": "natur",
+      "name": "Natur",
+      "icon": "🌿",
+      "color": "#2ecc71",
+      "image": "bilder/merker/natur.PNG",
+      "description": "For dem som legger merke til alt som kryper, blomstrer og flyr. Naturen er byen under byen.",
+      "sub": [
+        "flora",
+        "fauna",
+        "okologi",
+        "sopp_og_lav",
+        "fugler",
+        "insekter",
+        "pattedyr",
+        "grontomrader",
+        "vann_og_vatmarker"
+      ],
+      "positions": [
+        {
+          "id": "natur_005_observatoer",
+          "title": "Observatør",
+          "threshold": 5,
+          "summary": ""
+        },
+        {
+          "id": "natur_010_feltassistent",
+          "title": "Feltassistent",
+          "threshold": 10,
+          "summary": ""
+        },
+        {
+          "id": "natur_020_naturguide",
+          "title": "Naturguide",
+          "threshold": 20,
+          "summary": ""
+        },
+        {
+          "id": "natur_035_junior_okolog",
+          "title": "Junior økolog",
+          "threshold": 35,
+          "summary": ""
+        },
+        {
+          "id": "natur_055_okolog",
+          "title": "Økolog",
+          "threshold": 55,
+          "summary": ""
+        },
+        {
+          "id": "natur_080_biolog",
+          "title": "Biolog",
+          "threshold": 80,
+          "summary": ""
+        },
+        {
+          "id": "natur_110_seniorbiolog",
+          "title": "Seniorbiolog",
+          "threshold": 110,
+          "summary": ""
+        },
+        {
+          "id": "natur_150_forsker",
+          "title": "Forsker",
+          "threshold": 150,
+          "summary": ""
+        },
+        {
+          "id": "natur_200_seniorforsker",
+          "title": "Seniorforsker",
+          "threshold": 200,
+          "summary": ""
+        }
+      ]
+    },
+    {
+      "career_id": "sport",
+      "name": "Sport",
+      "icon": "🏅",
+      "color": "#e74c3c",
+      "image": "bilder/merker/sport.PNG",
+      "description": "For dem som elsker konkurranse og bevegelse. Sport er ritual, fellesskap og kroppens historie.",
+      "sub": [
+        "fotball",
+        "ski",
+        "skoyter",
+        "friidrett",
+        "kamplag",
+        "idrettslag_og_arenaer",
+        "ol_og_idrettshistorie",
+        "supporterkultur"
+      ],
+      "positions": [
+        {
+          "id": "sport_005_supporter",
+          "title": "Supporter",
+          "threshold": 5,
+          "summary": ""
+        },
+        {
+          "id": "sport_010_frivillig",
+          "title": "Frivillig",
+          "threshold": 10,
+          "summary": ""
+        },
+        {
+          "id": "sport_020_lagassistent",
+          "title": "Lagassistent",
+          "threshold": 20,
+          "summary": ""
+        },
+        {
+          "id": "sport_035_trenerassistent",
+          "title": "Trenerassistent",
+          "threshold": 35,
+          "summary": ""
+        },
+        {
+          "id": "sport_055_trener",
+          "title": "Trener",
+          "threshold": 55,
+          "summary": ""
+        },
+        {
+          "id": "sport_080_hovedtrener",
+          "title": "Hovedtrener",
+          "threshold": 80,
+          "summary": ""
+        },
+        {
+          "id": "sport_110_sportslig_leder",
+          "title": "Sportslig leder",
+          "threshold": 110,
+          "summary": ""
+        },
+        {
+          "id": "sport_150_direktoer",
+          "title": "Direktør",
+          "threshold": 150,
+          "summary": ""
+        }
+      ]
+    },
+    {
+      "career_id": "politikk",
+      "name": "Politikk",
+      "icon": "🏛️",
+      "color": "#2c3e50",
+      "image": "bilder/merker/politikk.PNG",
+      "description": "For dem som bryr seg om makt, rettferdighet og styring. Politikk er byens nervesystem.",
+      "sub": [
+        "demokrati",
+        "valg_og_partier",
+        "styresett_og_institusjoner",
+        "lokalpolitikk",
+        "rett_og_lov",
+        "aktivisme_og_protester",
+        "internasjonal_politikk",
+        "offentlig_forvaltning"
+      ],
+      "positions": [
+        {
+          "id": "politikk_005_engasjert_borger",
+          "title": "Engasjert borger",
+          "threshold": 5,
+          "summary": ""
+        },
+        {
+          "id": "politikk_010_frivillig_kampanje",
+          "title": "Frivillig (kampanje)",
+          "threshold": 10,
+          "summary": ""
+        },
+        {
+          "id": "politikk_020_lokal_aktivist",
+          "title": "Lokal aktivist",
+          "threshold": 20,
+          "summary": ""
+        },
+        {
+          "id": "politikk_035_partimedarbeider",
+          "title": "Partimedarbeider",
+          "threshold": 35,
+          "summary": ""
+        },
+        {
+          "id": "politikk_055_politisk_raadgiver",
+          "title": "Politisk rådgiver",
+          "threshold": 55,
+          "summary": ""
+        },
+        {
+          "id": "politikk_080_kommunestyrerepresentant",
+          "title": "Kommunestyrerepresentant",
+          "threshold": 80,
+          "summary": ""
+        },
+        {
+          "id": "politikk_110_byradssekretaer",
+          "title": "Byrådssekretær",
+          "threshold": 110,
+          "summary": ""
+        },
+        {
+          "id": "politikk_150_byrad",
+          "title": "Byråd",
+          "threshold": 150,
+          "summary": ""
+        },
+        {
+          "id": "politikk_200_statssekretaer",
+          "title": "Statssekretær",
+          "threshold": 200,
+          "summary": ""
+        }
+      ]
+    },
+    {
+      "career_id": "naeringsliv",
+      "name": "Næringsliv",
+      "icon": "🏢",
+      "color": "#f39c12",
+      "image": "bilder/merker/naeringsliv.PNG",
+      "description": "For dem som følger penger, arbeid og institusjoner. Næringsliv er en kulturform – ikke bare et regnskap.",
+      "sub": [
+        "bedrifter_og_industri",
+        "handel_og_service",
+        "finans",
+        "innovasjon",
+        "arbeidsliv",
+        "bedriftshistorie",
+        "entreprenorskap",
+        "startups"
+      ],
+      "positions": [
+        {
+          "id": "naeringsliv_005_praktikant",
+          "title": "Praktikant",
+          "threshold": 5,
+          "summary": ""
+        },
+        {
+          "id": "naeringsliv_010_assistent",
+          "title": "Assistent",
+          "threshold": 10,
+          "summary": ""
+        },
+        {
+          "id": "naeringsliv_020_koordinator",
+          "title": "Koordinator",
+          "threshold": 20,
+          "summary": ""
+        },
+        {
+          "id": "naeringsliv_035_juniorradgiver",
+          "title": "Juniorrådgiver",
+          "threshold": 35,
+          "summary": ""
+        },
+        {
+          "id": "naeringsliv_055_radgiver",
+          "title": "Rådgiver",
+          "threshold": 55,
+          "summary": ""
+        },
+        {
+          "id": "naeringsliv_080_seniorradgiver",
+          "title": "Seniorrådgiver",
+          "threshold": 80,
+          "summary": ""
+        },
+        {
+          "id": "naeringsliv_110_prosjektleder",
+          "title": "Prosjektleder",
+          "threshold": 110,
+          "summary": ""
+        },
+        {
+          "id": "naeringsliv_150_avdelingsleder",
+          "title": "Avdelingsleder",
+          "threshold": 150,
+          "summary": ""
+        },
+        {
+          "id": "naeringsliv_200_direktoer",
+          "title": "Direktør",
+          "threshold": 200,
+          "summary": ""
+        }
+      ]
+    },
+    {
+      "career_id": "populaerkultur",
+      "name": "Populærkultur",
+      "icon": "⭐",
+      "color": "#f1c40f",
+      "image": "bilder/merker/populaerkultur.PNG",
+      "description": "For dem som leser samtiden i ikoner, kjendiser og massemedier. Popkultur er en moderne mytologi.",
+      "sub": [
+        "kjendiser",
+        "mote_og_trender",
+        "tv_og_streaming",
+        "spill_og_gaming",
+        "memer_og_internettkultur",
+        "reklame_og_merker",
+        "ungdomskultur"
+      ],
+      "positions": [
+        {
+          "id": "populaerkultur_005_observatoer",
+          "title": "Observatør",
+          "threshold": 5,
+          "summary": ""
+        },
+        {
+          "id": "populaerkultur_010_fan",
+          "title": "Fan",
+          "threshold": 10,
+          "summary": ""
+        },
+        {
+          "id": "populaerkultur_020_skribent",
+          "title": "Skribent",
+          "threshold": 20,
+          "summary": ""
+        },
+        {
+          "id": "populaerkultur_035_anmelder",
+          "title": "Anmelder",
+          "threshold": 35,
+          "summary": ""
+        },
+        {
+          "id": "populaerkultur_055_redaktoer",
+          "title": "Redaktør",
+          "threshold": 55,
+          "summary": ""
+        },
+        {
+          "id": "populaerkultur_080_kurator",
+          "title": "Kurator",
+          "threshold": 80,
+          "summary": ""
+        },
+        {
+          "id": "populaerkultur_110_seniorredaktoer",
+          "title": "Seniorredaktør",
+          "threshold": 110,
+          "summary": ""
+        }
+      ]
+    },
+    {
+      "career_id": "subkultur",
+      "name": "Subkultur",
+      "icon": "🖤",
+      "color": "#111111",
+      "image": "bilder/merker/subkultur.PNG",
+      "description": "For dem som finner strømninger under overflaten. Subkultur er byens hemmelige språk.",
+      "sub": [
+        "punk",
+        "metal",
+        "goth",
+        "rave",
+        "graffiti_og_street",
+        "queer_kultur",
+        "alternativ_mote",
+        "undergrunnsscener"
+      ],
+      "positions": [
+        {
+          "id": "subkultur_005_deltaker",
+          "title": "Deltaker",
+          "threshold": 5,
+          "summary": ""
+        },
+        {
+          "id": "subkultur_010_scenehjelper",
+          "title": "Scenehjelper",
+          "threshold": 10,
+          "summary": ""
+        },
+        {
+          "id": "subkultur_020_arrangoer",
+          "title": "Arrangør",
+          "threshold": 20,
+          "summary": ""
+        },
+        {
+          "id": "subkultur_035_ildsjel",
+          "title": "Ildsjel",
+          "threshold": 35,
+          "summary": ""
+        },
+        {
+          "id": "subkultur_055_kurator",
+          "title": "Kurator",
+          "threshold": 55,
+          "summary": ""
+        },
+        {
+          "id": "subkultur_080_sceneleder",
+          "title": "Sceneleder",
+          "threshold": 80,
+          "summary": ""
+        }
+      ]
+    },
+    {
+      "career_id": "film_tv",
+      "name": "Film & TV",
+      "icon": "🎬",
+      "color": "#7f8c8d",
+      "image": "bilder/merker/film_tv.PNG",
+      "description": "For dem som ser verden som scener. Film og TV er samtidens forteller-maskin.",
+      "sub": [
+        "filmhistorie",
+        "tvhistorie",
+        "regi",
+        "manus",
+        "foto_og_klipp",
+        "skuespill",
+        "produksjon",
+        "kino_og_visning"
+      ],
+      "positions": [
+        {
+          "id": "film_tv_005_statist",
+          "title": "Statist",
+          "threshold": 5,
+          "summary": ""
+        },
+        {
+          "id": "film_tv_010_produksjonsassistent",
+          "title": "Produksjonsassistent",
+          "threshold": 10,
+          "summary": ""
+        },
+        {
+          "id": "film_tv_020_klipperassistent",
+          "title": "Klipperassistent",
+          "threshold": 20,
+          "summary": ""
+        },
+        {
+          "id": "film_tv_035_fotograf",
+          "title": "Fotograf",
+          "threshold": 35,
+          "summary": ""
+        },
+        {
+          "id": "film_tv_055_regissoer",
+          "title": "Regissør",
+          "threshold": 55,
+          "summary": ""
+        },
+        {
+          "id": "film_tv_080_produsent",
+          "title": "Produsent",
+          "threshold": 80,
+          "summary": ""
+        },
+        {
+          "id": "film_tv_110_showrunner",
+          "title": "Showrunner",
+          "threshold": 110,
+          "summary": ""
+        }
+      ]
+    },
+    {
+      "career_id": "teater",
+      "name": "Teater",
+      "icon": "🎭",
+      "color": "#c0392b",
+      "image": "bilder/merker/teater.PNG",
+      "description": "For dem som lever i øyeblikket og rommet. Teater er språk, kropp og scene – her og nå.",
+      "sub": [
+        "teaterhistorie",
+        "scenekunst",
+        "skuespill",
+        "regi",
+        "scenografi",
+        "kostyme",
+        "lys_og_lyd",
+        "institusjoner_og_scener"
+      ],
+      "positions": [
+        {
+          "id": "teater_005_deltaker",
+          "title": "Deltaker",
+          "threshold": 5,
+          "summary": ""
+        },
+        {
+          "id": "teater_010_sceneassistent",
+          "title": "Sceneassistent",
+          "threshold": 10,
+          "summary": ""
+        },
+        {
+          "id": "teater_020_tekniker",
+          "title": "Tekniker",
+          "threshold": 20,
+          "summary": ""
+        },
+        {
+          "id": "teater_035_skuespiller",
+          "title": "Skuespiller",
+          "threshold": 35,
+          "summary": ""
+        },
+        {
+          "id": "teater_055_regissoer",
+          "title": "Regissør",
+          "threshold": 55,
+          "summary": ""
+        },
+        {
+          "id": "teater_080_produsent",
+          "title": "Produsent",
+          "threshold": 80,
+          "summary": ""
+        },
+        {
+          "id": "teater_110_teatersjef",
+          "title": "Teatersjef",
+          "threshold": 110,
+          "summary": ""
+        }
+      ]
+    },
+    {
+      "career_id": "media",
+      "name": "Media",
+      "icon": "📰",
+      "color": "#3498db",
+      "image": "bilder/merker/media.PNG",
+      "description": "For dem som følger ordets og bildets makt. Media er infrastrukturen for offentlighet.",
+      "sub": [
+        "journalistikk",
+        "kringkasting",
+        "nyhetsmedier",
+        "format_og_sjangre",
+        "offentlighet",
+        "redaksjon",
+        "pressetikk",
+        "mediehistorie"
+      ],
+      "positions": [
+        {
+          "id": "media_005_praktikant",
+          "title": "Praktikant",
+          "threshold": 5,
+          "summary": ""
+        },
+        {
+          "id": "media_010_reporter",
+          "title": "Reporter",
+          "threshold": 10,
+          "summary": ""
+        },
+        {
+          "id": "media_020_journalist",
+          "title": "Journalist",
+          "threshold": 20,
+          "summary": ""
+        },
+        {
+          "id": "media_035_redaksjonssekretaer",
+          "title": "Redaksjonssekretær",
+          "threshold": 35,
+          "summary": ""
+        },
+        {
+          "id": "media_055_redaktoer",
+          "title": "Redaktør",
+          "threshold": 55,
+          "summary": ""
+        },
+        {
+          "id": "media_080_sjefredaktoer",
+          "title": "Sjefredaktør",
+          "threshold": 80,
+          "summary": ""
+        },
+        {
+          "id": "media_110_programdirektoer",
+          "title": "Programdirektør",
+          "threshold": 110,
+          "summary": ""
+        }
+      ]
+    },
+    {
+      "career_id": "psykologi",
+      "name": "Psykologi",
+      "icon": "🧠",
+      "color": "#00bcd4",
+      "image": "bilder/merker/psykologi.PNG",
+      "description": "For dem som vil forstå mennesket innenfra. Psykologi er møtet mellom erfaring, hjerne og samfunn.",
+      "sub": [
+        "psykologi_og_hjerne",
+        "utviklingspsykologi",
+        "sosialpsykologi",
+        "psykisk_helse",
+        "terapi_og_behandling",
+        "metode_og_forskning",
+        "arbeidspsykologi",
+        "kognisjon"
+      ],
+      "positions": [
+        {
+          "id": "psykologi_005_observatoer",
+          "title": "Observatør",
+          "threshold": 5,
+          "summary": ""
+        },
+        {
+          "id": "psykologi_010_assistent",
+          "title": "Assistent",
+          "threshold": 10,
+          "summary": ""
+        },
+        {
+          "id": "psykologi_020_student",
+          "title": "Student",
+          "threshold": 20,
+          "summary": ""
+        },
+        {
+          "id": "psykologi_035_raadgiver",
+          "title": "Rådgiver",
+          "threshold": 35,
+          "summary": ""
+        },
+        {
+          "id": "psykologi_055_psykolog",
+          "title": "Psykolog",
+          "threshold": 55,
+          "summary": ""
+        },
+        {
+          "id": "psykologi_080_spesialist",
+          "title": "Spesialist",
+          "threshold": 80,
+          "summary": ""
+        },
+        {
+          "id": "psykologi_110_seniorpsykolog",
+          "title": "Seniorpsykolog",
+          "threshold": 110,
+          "summary": ""
+        }
+      ]
+    }
+  ]
+}
