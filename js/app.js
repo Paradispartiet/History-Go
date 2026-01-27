@@ -714,11 +714,13 @@ async function addCompletedQuizAndMaybePoint(categoryDisplay, quizId) {
   progress[categoryId].completed.push(quizId);
   localStorage.setItem("quiz_progress", JSON.stringify(progress));
 
-  const catLabel = categoryDisplay;
-  merits[catLabel] = merits[catLabel] || { points: 0 };
-  const oldPoints = Number(merits[catLabel].points || 0);
-  merits[catLabel].points += 1;
+  const badgeId = String(badge.id || "").trim();
+if (!badgeId) return;
 
+merits[badgeId] = merits[badgeId] || { points: 0 };
+const oldPoints = Number(merits[badgeId].points || 0);
+merits[badgeId].points += 1;
+  
 // Optional: fjern gammel lagret level hvis den finnes (rydder støy)
   if ("level" in merits[catLabel]) delete merits[catLabel].level;
 
