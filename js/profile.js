@@ -844,7 +844,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // 3) Civication pulse + inbox
     await window.HG_CiviEngine?.onAppOpen?.();
-    renderCivicationInbox();
+    window.renderCivicationInbox?.();
 
     wireCivicationActions();
     wireCivicationButtons();
@@ -869,7 +869,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     window.addEventListener("updateProfile", () => {
       renderProfileCard();
       renderCivication();
-      renderCivicationInbox();
+      window.renderCivicationInbox?.();
 
       renderMerits();
       renderPeopleCollection();
