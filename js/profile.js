@@ -136,7 +136,6 @@ function renderCivication() {
     title.textContent = "Rolle: —";
     details.textContent = "Status: Ingen aktiv jobb (ta quiz for å få jobbtilbud).";
   }
-}
 
   
 
