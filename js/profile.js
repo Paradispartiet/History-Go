@@ -164,7 +164,6 @@ function renderCivicationInbox() {
   subj.textContent = `📬 ${ev.subject || "—"}`;
   text.textContent = Array.isArray(ev.situation) ? ev.situation.join(" ") : (ev.situation || "—");
 
-  // reset UI
   fb.style.display = "none";
   btnOK.style.display = "none";
   btnA.style.display = "none";
@@ -183,14 +182,12 @@ function renderCivicationInbox() {
       fb.textContent = res.feedback || "—";
       fb.style.display = "";
 
-      // skjul valg, vis OK
       btnA.style.display = "none";
       btnB.style.display = "none";
       btnC.style.display = "none";
 
       btnOK.style.display = "";
       btnOK.onclick = () => {
-        // etter OK: refresh (kan ha en ny “pending” hvis fired-event ble enqueued)
         renderCivication();
         window.renderCivicationInbox?.();
         window.dispatchEvent(new Event("updateProfile"));
@@ -199,7 +196,6 @@ function renderCivicationInbox() {
   }
 
   if (!choices.length) {
-    // info-mail (fired/nav) uten valg
     fb.textContent = ev.feedback || "—";
     fb.style.display = "";
 
@@ -212,7 +208,6 @@ function renderCivicationInbox() {
     return;
   }
 
-  // A/B/C
   const cA = choices.find(c => c?.id === "A");
   const cB = choices.find(c => c?.id === "B");
   const cC = choices.find(c => c?.id === "C");
@@ -222,8 +217,9 @@ function renderCivicationInbox() {
   if (cC) bindChoice(btnC, "C", cC.label || "C");
 }
 
-  window.renderCivicationInbox = renderCivicationInbox;
-  
+window.renderCivicationInbox = renderCivicationInbox;  
+
+
   // ------------------------------------------------------------
   // 2) JOBBTILBUD (pending)
   // ------------------------------------------------------------
