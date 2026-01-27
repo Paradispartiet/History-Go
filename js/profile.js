@@ -112,128 +112,63 @@ function getLatestPendingOffer() {
 }
 
 function renderCivication() {
-  const aTitle = document.getElementById("civiActiveTitle");
-  const aMeta  = document.getElementById("civiActiveMeta");
+  // --- DOM ---
+  const title   = document.getElementById("civiRoleTitle");
+  const details = document.getElementById("civiRoleDetails");
+  const meritLn = document.getElementById("civiMeritLine");
 
   const oBox   = document.getElementById("civiOfferBox");
   const oTitle = document.getElementById("civiOfferTitle");
   const oMeta  = document.getElementById("civiOfferMeta");
 
-  if (!aTitle || !aMeta || !oBox || !oTitle || !oMeta) return;
+  if (!title || !details || !oBox || !oTitle || !oMeta) return;
 
-  // Aktiv rolle
+  // ------------------------------------------------------------
+  // 1) AKTIV JOBB (akseptert offer) – dette er "rollen din"
+  // ------------------------------------------------------------
   const active = getActivePosition();
   if (active && active.title) {
-    aTitle.textContent = `Aktiv rolle: ${active.title}`;
-    const cn = active.career_name || active.career_id || "";
+    title.textContent = `Rolle: ${active.title}`;
+    const cn = active.career_name || active.career_id || "—";
     const dt = active.achieved_at ? new Date(active.achieved_at).toLocaleDateString("no-NO") : "";
-    aMeta.textContent = `Felt: ${cn || "—"}${dt ? " · Satt: " + dt : ""}`;
+    details.textContent = `Status: Aktiv · Felt: ${cn}${dt ? " · Satt: " + dt : ""}`;
   } else {
-    aTitle.textContent = "Aktiv rolle: —";
-    aMeta.textContent = "Status: Ingen aktiv rolle (få et jobbtilbud ved å nå en terskel).";
+    title.textContent = "Rolle: —";
+    details.textContent = "Status: Ingen aktiv jobb (ta quiz for å få jobbtilbud).";
   }
 
-  // Jobbtilbud (pending)
+  // ------------------------------------------------------------
+  // 2) JOBBTILBUD (pending)
+  // ------------------------------------------------------------
   const offer = getLatestPendingOffer();
   if (!offer) {
     oBox.style.display = "none";
-    return;
+  } else {
+    oBox.style.display = "";
+    oTitle.textContent = `Jobbtilbud: ${offer.title}`;
+    const expTxt = offer.expires_iso ? new Date(offer.expires_iso).toLocaleDateString("no-NO") : "—";
+    oMeta.textContent =
+      `${offer.career_name || offer.career_id || ""} · ` +
+      `Terskel: ${offer.threshold} · Utløper: ${expTxt}`;
   }
 
-  oBox.style.display = "";
-  oTitle.textContent = `Jobbtilbud: ${offer.title}`;
-  const expTxt = offer.expires_iso ? new Date(offer.expires_iso).toLocaleDateString("no-NO") : "—";
-  oMeta.textContent = `${offer.career_name || offer.career_id || ""} · Terskel: ${offer.threshold} · Utløper: ${expTxt}`;
-}
-
-function wireCivicationActions() {
-  const acceptBtn = document.getElementById("btnCiviAccept");
-  const declineBtn = document.getElementById("btnCiviDecline");
-  if (!acceptBtn || !declineBtn) return;
-
-  acceptBtn.addEventListener("click", () => {
-    const offers = getJobOffers();
-    const offer = getLatestPendingOffer();
-    if (!offer) return;
-
-    // Sett ny aktiv rolle (1 slot). Poeng/statistikk røres ikke.
-    const nowIso = new Date().toISOString();
-    const newActive = {
-      career_id: offer.career_id,
-      career_name: offer.career_name,
-      title: offer.title,
-      threshold: offer.threshold,
-      accepted_from_offer: offer.offer_key,
-      achieved_at: nowIso
-    };
-
-    // (valgfritt) historikk – bare som logg, ikke nødvendig
-    try {
-      const histRaw = JSON.parse(localStorage.getItem("hg_job_history_v1") || "[]");
-      const hist = Array.isArray(histRaw) ? histRaw : [];
-      const prev = getActivePosition();
-      if (prev && prev.title) {
-        hist.unshift({ ...prev, ended_at: nowIso, end_reason: "switched" });
-        localStorage.setItem("hg_job_history_v1", JSON.stringify(hist));
-      }
-    } catch {}
-
-    setActivePosition(newActive);
-
-    // Marker tilbud som accepted
-    const idx = offers.findIndex(x => x && x.offer_key === offer.offer_key);
-    if (idx >= 0) {
-      offers[idx].status = "accepted";
-      offers[idx].accepted_iso = nowIso;
-      setJobOffers(offers);
-    }
-
-    // refresh
-    renderCivication();
-    window.dispatchEvent(new Event("updateProfile"));
-  });
-
-  declineBtn.addEventListener("click", () => {
-    const offers = getJobOffers();
-    const offer = getLatestPendingOffer();
-    if (!offer) return;
-
-    const idx = offers.findIndex(x => x && x.offer_key === offer.offer_key);
-    if (idx >= 0) {
-      offers[idx].status = "declined";
-      offers[idx].declined_iso = new Date().toISOString();
-      setJobOffers(offers);
-    }
-
-    renderCivication();
-  });
-}
-
-// ------------------------------------------------------------
-// CIVICATION – rolle/jobber (V1: bygger på merits + tiers)
-// ------------------------------------------------------------
-function renderCivication() {
-  const sec = document.getElementById("civicationSection");
-  if (!sec) return;
-
-  const title = document.getElementById("civiRoleTitle");
-  const details = document.getElementById("civiRoleDetails");
-  if (!title || !details) return;
+  // ------------------------------------------------------------
+  // 3) "BESTE ROLLE" (auto fra merits + tiers) – beholdes!
+  //    (Dette er merit/karriereprofil, ikke nødvendigvis aktiv jobb)
+  // ------------------------------------------------------------
+  if (!meritLn) return;
 
   const merits = ls("merits_by_category", {});
-  const keys = Object.keys(merits);
-
+  const keys = Object.keys(merits || {});
   if (!Array.isArray(BADGES) || !BADGES.length || !keys.length) {
-    title.textContent = "Rolle: —";
-    details.textContent = "Status: Ingen rolle ennå (ta quiz for å få tilbud).";
+    meritLn.textContent = "Merit: —";
     return;
   }
 
-  // quiz_history brukes til “vedlikehold”
+  // quiz_history brukes her kun for "sist relevant quiz"-dato (ikke tvang)
   const historyRaw = JSON.parse(localStorage.getItem("quiz_history") || "[]");
   const history = Array.isArray(historyRaw) ? historyRaw : [];
 
-  // Finn “beste” rolle: høyest tierIndex på tvers av merker (kategoriId = badge.id)
   let best = null;
 
   for (const k of keys) {
@@ -246,14 +181,12 @@ function renderCivication() {
     const points = Number(merits[k]?.points || 0);
     const { tierIndex, label } = deriveTierFromPoints(badge, points);
 
-    // siste aktivitet i denne kategorien (fra quiz_history)
     const last = history
       .filter(h => String(h?.categoryId || "").trim() === catId)
       .map(h => h?.date ? new Date(h.date).getTime() : 0)
       .reduce((mx, t) => Math.max(mx, t), 0);
 
     const item = {
-      catId,
       badgeName: String(badge.name || "").trim() || catId,
       roleLabel: String(label || "").trim() || "Nybegynner",
       tierIndex: Number.isFinite(tierIndex) ? tierIndex : -1,
@@ -263,43 +196,21 @@ function renderCivication() {
 
     if (!best) best = item;
     else {
-      // Primært: tierIndex. Sekundært: points.
       if (item.tierIndex > best.tierIndex) best = item;
       else if (item.tierIndex === best.tierIndex && item.points > best.points) best = item;
     }
   }
 
   if (!best) {
-    title.textContent = "Rolle: —";
-    details.textContent = "Status: Ingen rolle ennå (ta quiz for å få tilbud).";
+    meritLn.textContent = "Merit: —";
     return;
   }
-
-  // Vedlikehold-regel (V1): du må ha tatt en quiz i rollen siste 7 dager
-  const now = Date.now();
-  const days7 = 7 * 24 * 60 * 60 * 1000;
-
-  const ok = best.lastQuizAt && (now - best.lastQuizAt) <= days7;
-
-  title.textContent = `Rolle: ${best.roleLabel} (${best.badgeName})`;
 
   const lastTxt = best.lastQuizAt
     ? new Date(best.lastQuizAt).toLocaleDateString("no-NO")
     : "aldri";
 
-  details.textContent =
-    `Status: ${ok ? "Aktiv ✅" : "Trenger vedlikehold ⚠️"} · ` +
-    `Sist relevant quiz: ${lastTxt} · ` +
-    `${best.points} poeng`;
-}
-
-function wireCivicationButtons() {
-  document.getElementById("btnCiviOpen")?.addEventListener("click", () => {
-    // V1: bare scroll til merker + “role”-tankegang.
-    // Senere: egen Civication-side / overlay.
-    const sec = document.getElementById("civicationSection");
-    sec?.scrollIntoView({ behavior: "smooth", block: "start" });
-  });
+  meritLn.textContent = `Merit: ${best.roleLabel} (${best.badgeName}) · ${best.points} poeng · Sist: ${lastTxt}`;
 }
 
 // ------------------------------------------------------------
