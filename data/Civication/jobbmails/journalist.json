@@ -1,0 +1,206 @@
+{
+  "role": "journalist",
+  "version": "v0.1",
+  "mails": [
+    {
+      "id": "journalist_001",
+      "stage": "stable",
+      "subject": "Liten justering i ingressen?",
+      "situation": [
+        "En redigerer foreslår å gjøre ingressen litt spissere.",
+        "«Det selger bedre», sier hen.",
+        "Du er ikke helt komfortabel, men det er ikke direkte feil."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Spiss den litt, men hold deg innenfor",
+          "effect": 0,
+          "feedback": "Ingressen funker. Ingen reaksjoner."
+        },
+        {
+          "id": "B",
+          "label": "Stå på originalen",
+          "effect": 1,
+          "feedback": "Saken står støtt, men mister litt trykk."
+        },
+        {
+          "id": "C",
+          "label": "Be om mer tid og en ekstra gjennomlesning",
+          "effect": 0,
+          "feedback": "Det tar litt lenger tid, men teksten blir ryddig."
+        }
+      ]
+    },
+    {
+      "id": "journalist_002",
+      "stage": "stable",
+      "subject": "Kilde som ringer for tredje gang",
+      "situation": [
+        "En kilde vil «bare presisere en ting til».",
+        "Det er småting. Mye følelser."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Lytt og juster minimalt",
+          "effect": 0,
+          "feedback": "Kilden er fornøyd. Ingen endringer av betydning."
+        },
+        {
+          "id": "B",
+          "label": "Avslå – saken er ferdig",
+          "effect": 1,
+          "feedback": "Redaksjonen setter pris på tydelige grenser."
+        },
+        {
+          "id": "C",
+          "label": "Slå av telefonen og lever",
+          "effect": -1,
+          "feedback": "Dette skaper litt irritasjon i etterkant."
+        }
+      ]
+    },
+    {
+      "id": "journalist_003",
+      "stage": "stable_warning",
+      "subject": "Rask publisering vs dobbeltsjekk",
+      "situation": [
+        "En konkurrent er på vei ut med samme sak.",
+        "Du mangler én bekreftelse."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Publiser nå",
+          "effect": -1,
+          "feedback": "Saken går ut, men noen stiller spørsmål."
+        },
+        {
+          "id": "B",
+          "label": "Vent og dobbeltsjekk",
+          "effect": 1,
+          "feedback": "Du mister førstesaken, men beholder troverdighet."
+        },
+        {
+          "id": "C",
+          "label": "Publiser, men med forbehold",
+          "effect": 0,
+          "feedback": "Leserne er litt forvirret."
+        }
+      ]
+    },
+    {
+      "id": "journalist_004",
+      "stage": "warning",
+      "is_warning_mail": true,
+      "subject": "Dette må vi snakke om",
+      "situation": [
+        "Redaksjonen har merket et mønster.",
+        "Flere små valg har skapt støy rundt arbeidet ditt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta kritikken på alvor",
+          "effect": 1,
+          "feedback": "Dette var nødvendig. Forventningene er klare."
+        },
+        {
+          "id": "B",
+          "label": "Forsvar deg – det er mye press",
+          "effect": 0,
+          "feedback": "Samtalen stopper der."
+        },
+        {
+          "id": "C",
+          "label": "Ignorer og gå videre",
+          "effect": -1,
+          "feedback": "Dette ble lagt merke til."
+        }
+      ]
+    },
+    {
+      "id": "journalist_005",
+      "stage": "warning",
+      "subject": "Sitatsjekk etter publisering",
+      "situation": [
+        "En kilde krever sitatsjekk etter at saken er ute.",
+        "Hen truer med å klage."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Si ja for å roe situasjonen",
+          "effect": -1,
+          "feedback": "Dette kan bli et problem senere."
+        },
+        {
+          "id": "B",
+          "label": "Avslå og stå på prinsippene",
+          "effect": 1,
+          "feedback": "Redaksjonen støtter avgjørelsen."
+        },
+        {
+          "id": "C",
+          "label": "Be redaktør ta det",
+          "effect": 0,
+          "feedback": "Saken eskaleres."
+        }
+      ]
+    },
+    {
+      "id": "journalist_006",
+      "stage": "warning_danger",
+      "subject": "Feil som kunne vært unngått",
+      "situation": [
+        "En unøyaktighet blir fanget opp av lesere.",
+        "Den er liten, men unødvendig."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Rett stille",
+          "effect": 0,
+          "feedback": "Noen merker endringen."
+        },
+        {
+          "id": "B",
+          "label": "Legg ut rettelse",
+          "effect": 1,
+          "feedback": "Dette håndteres ryddig."
+        },
+        {
+          "id": "C",
+          "label": "Ignorer – det er bagatell",
+          "effect": -1,
+          "feedback": "Dette skaper irritasjon."
+        }
+      ]
+    },
+    {
+      "id": "journalist_007",
+      "stage": "fired",
+      "subject": "Vi avslutter samarbeidet",
+      "situation": [
+        "Tilliten er brukt opp.",
+        "Dette er ikke én stor feil, men mange små."
+      ],
+      "choices": [],
+      "effect": "job_lost",
+      "feedback": "Du blir tatt av dekning med umiddelbar virkning."
+    },
+    {
+      "id": "nav_001",
+      "stage": "unemployed",
+      "source": "NAV",
+      "subject": "Din sak er registrert",
+      "situation": [
+        "Vi mangler fortsatt dokumentasjon.",
+        "Du hører fra oss."
+      ],
+      "choices": [],
+      "feedback": "Bare virkelighet."
+    }
+  ]
+}
