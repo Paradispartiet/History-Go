@@ -1,0 +1,390 @@
+
+Greit. Her er en sammenhengende README-tekst som samler alt vi har sagt i denne tråden, uten hype, uten nye ideer, og uten å trekke inn noe som ikke allerede er sagt.
+Dette er ment som et konseptuelt design-dokument, ikke markedsføring.
+
+⸻
+
+README — Civication / Rollespill-laget i History GO
+
+1. Overordnet idé
+
+Civication er ikke et eget fysisk spill, men et metasystem bygget på dataene som allerede produseres i History GO.
+
+History GO fungerer som:
+	•	en datagenerator (steder, besøk, ruter, quiz, unlocks, merker)
+	•	et personlig utforskningslag
+
+Civication-laget fungerer som:
+	•	et rollespill
+	•	et manager-system (i retning Football Manager)
+	•	en langsiktig endgame-struktur for identitet, status og konkurranse
+
+Det bygges uten kart, animasjoner, NPC-AI eller sanntidsverden.
+
+⸻
+
+2. Grunnpremiss
+
+Alt brukeren gjør i den fysiske verden:
+	•	besøker steder
+	•	tar quiz
+	•	låser opp innhold
+	•	samler merker
+
+→ tolkes som handlinger i et samfunnssystem.
+
+Spillet handler ikke om å styre en figur, men om å:
+	•	bli noe
+	•	få en posisjon
+	•	beholde den
+	•	konkurrere med andre om samme posisjoner
+
+⸻
+
+3. Spillform: manager / rollespill (ikke “klassisk spill”)
+
+Systemet er nærmere:
+	•	Football Manager
+	•	tekstbaserte strategier
+	•	rollebårne simuleringer
+
+enn:
+	•	Civilization med kart
+	•	Sims med figurer
+	•	RPG med 3D-verden
+
+Det dyre i spillutvikling (grafikk, animasjon, AI) unngås bevisst.
+
+⸻
+
+4. Roller og jobber (kjernefunksjon)
+
+4.1 Jobb som posisjon
+	•	Alle brukere kan få en rolle / arbeidstittel
+	•	Rollen er:
+	•	personlig
+	•	basert på faktisk aktivitet
+	•	synlig i profilen
+	•	Rollen må vedlikeholdes for å beholdes
+
+Eksempler:
+	•	Byhistoriker
+	•	Naturforsker
+	•	Kurator
+	•	Medieprodusent
+	•	Arkitekturkritiker
+	•	Samferdselsplanlegger
+	•	Filosof
+	•	Litterær flanør
+	•	Industridetektiv
+	•	Kartograf
+
+⸻
+
+4.2 Hvordan roller tildeles
+
+Roller tildeles automatisk basert på:
+	•	besøkte steder
+	•	gjennomførte quiz
+	•	tilknyttede tags / tema
+
+Systemet bygger en feltprofil for brukeren:
+	•	hvert besøk og hver quiz gir poeng til ett eller flere felt
+	•	når et felt passerer terskler → jobbtilbud trigges
+
+Eksempel:
+	•	Media-steder + media-quiz → mediefelt
+	•	Natur-steder + natur-quiz → naturfelt
+
+⸻
+
+4.3 Jobbtilbud
+
+Når terskler nås:
+	•	brukeren mottar et jobbtilbud
+	•	tilbudet kan aksepteres eller ignoreres
+	•	når det aksepteres:
+	•	blir rollen aktiv
+	•	vises i profilen
+	•	får vedlikeholdsregler
+
+Dette er ment å føles som en drømmejobb:
+noe du faktisk har jobbet deg frem til gjennom utforskning.
+
+⸻
+
+5. Vedlikehold og forsvar av rollen
+
+5.1 Temperatur / vedlikeholdsscore
+
+Hver rolle har en intern score (f.eks. 0–100):
+	•	starter på et stabilt nivå
+	•	synker over tid hvis du ikke er aktiv
+	•	øker ved relevante handlinger
+
+Relevante handlinger:
+	•	besøk på steder med riktig felt
+	•	gjennomføring av relevante quiz
+	•	kombinasjoner (besøk + quiz samme felt)
+
+⸻
+
+5.2 Risiko og tap
+	•	Hvis scoren synker under et nivå:
+	•	rollen settes i fare
+	•	Hvis den synker videre:
+	•	rollen mistes
+	•	eller settes på pause
+
+Dette skaper:
+	•	spenning
+	•	kontinuitet
+	•	reell verdi i å holde rollen
+
+⸻
+
+6. Konkurranse og ranking
+	•	Roller kan være:
+	•	ubegrensede
+	•	eller ha begrensede plasser (senere)
+	•	Flere brukere kan konkurrere om samme type rolle
+	•	Ranking kan være:
+	•	lokal
+	•	sesongbasert
+	•	feltspesifikk
+
+Konkurransen er indirekte:
+	•	du vinner ikke ved å trykke raskere
+	•	du vinner ved å leve rollen bedre
+
+⸻
+
+7. Sosiale utvidelser (senere lag)
+
+Dette systemet åpner for:
+	•	at venner kan “bo” i hverandres verdener
+	•	rådgivning, rivalisering, samarbeid
+	•	konkurranse mellom verdener eller profiler
+
+Dette er ikke nødvendig for første versjon, men kompatibelt med strukturen.
+
+⸻
+
+8. Narrativt lag (valgfritt, senere)
+
+Et narrativt lag kan legges oppå:
+	•	korte tekstbaserte scener
+	•	historiske kontekster
+	•	rollebaserte valg
+
+Inspirert av:
+	•	klassiske adventure-spill
+	•	men uten grafikk og filmatiske krav
+
+Dette kan:
+	•	påvirke rolle
+	•	påvirke status
+	•	skape personlig historie
+
+Dette er eksplisitt sekundært og kan komme langt senere.
+
+⸻
+
+9. Hvorfor dette er mulig å bygge nå
+
+Dette systemet:
+	•	bruker eksisterende HG-data
+	•	krever ikke nye UI-paradigmer
+	•	kan bygges tekst- og regelbasert
+	•	kan starte ekstremt enkelt
+
+Det er:
+	•	billigere enn et fysisk spill
+	•	hovedsakelig systemdesign
+	•	svært skalerbart
+
+⸻
+
+10. Designprinsipper (viktig)
+	•	Alt bygges uten kart og figurer
+	•	Alt må fungere som tekst + tall først
+	•	UI er sekundært
+	•	History GO forblir hovedopplevelsen
+	•	Civication-laget er et endgame-lag, ikke en ny app
+
+⸻
+
+11. Konklusjon
+
+Civication er:
+	•	ikke et separat spill
+	•	ikke en distraksjon fra History GO
+	•	men en måte å gi langvarig mening til alt brukeren allerede gjør
+
+History GO:
+	•	samler verden
+
+Civication:
+	•	gir verden konsekvens
+
+⸻
+
+Hvis du vil, kan neste dokument være:
+	•	en konkret datastruktur (JSON-skisse for roller, terskler og vedlikehold)
+	•	eller en minimal “første jobb” definert ferdig, klar til implementering
+
+Men dette dokumentet er ment å stå som helhetlig konseptgrunnlag.
+
+
+
+
+....
+
+
+
+
+Her er en kort, egen README som bevisst beskriver den dyre fremtidsvisjonen – tydelig adskilt fra det som bygges nå. Dette er north star, ikke roadmap.
+
+⸻
+
+README — Civication: Fullverdig samfunnssimulering (Fremtidsvisjon)
+
+Status
+
+Ikke under utvikling.
+Dette dokumentet beskriver en langsiktig, kapitaltung visjon for History GO-universet – et spill- og simulasjonslag som først er aktuelt når plattformen, datamengden og brukerbasen er moden.
+
+Estimert kostnad hvis realisert som fullverdig spill:
+300–600 millioner NOK (AAA-skala).
+
+⸻
+
+1. Visjon
+
+Civication er en full samfunnssimulering der:
+	•	ekte steder, personer og institusjoner
+	•	virkelig utforskning og læring
+	•	og menneskelige ambisjoner og konflikter
+
+smelter sammen i ett spillunivers.
+
+Det er:
+	•	Civilization (makro)
+	•	Sims/RPG (mikro)
+	•	narrativt rollespill (mening)
+
+bygget på reelle data, ikke fiktive kart.
+
+⸻
+
+2. Grunnidé
+
+History GO produserer:
+	•	kunnskap
+	•	samlinger
+	•	relasjoner
+	•	kulturell og institusjonell kapital
+
+Civication bruker dette til å:
+	•	simulere samfunn
+	•	la spillere styre verdener
+	•	la ideer, institusjoner og kulturer konkurrere
+
+Spilleren bygger ikke bare byer –
+de bygger sivilisasjoner av kunnskap, symboler og makt.
+
+⸻
+
+3. Spillform (fullversjon)
+
+3.1 Verdenssimulering
+	•	Kart, regioner, byer
+	•	Ressurser: kunnskap, kultur, teknologi, natur, legitimitet
+	•	Institusjoner: universiteter, medier, verksteder, museer, styring
+
+3.2 Rolle- og livssimulering
+	•	Spilleren inntar roller (professor, politiker, kunstner, forsker)
+	•	Roller påvirker verdenen
+	•	Roller konkurrerer om samme posisjoner
+
+3.3 Narrativt lag
+	•	Historiske epoker og scenarier
+	•	Dialog, valg og konsekvenser
+	•	Personlige historier inne i makrosystemet
+
+⸻
+
+4. Flerspiller og konkurranse
+	•	Spillere styrer egne verdener
+	•	Verdener kan:
+	•	konkurrere
+	•	samarbeide
+	•	smelte sammen i føderasjoner
+	•	Global ranking basert på:
+	•	samfunnets kvalitet
+	•	institusjonell styrke
+	•	kulturell og vitenskapelig innflytelse
+
+Dette er Civilization-ranking, men basert på menneskelig innhold, ikke bare optimalisering.
+
+⸻
+
+5. Hvorfor dette er dyrt
+
+Denne visjonen krever:
+	•	avansert simulering
+	•	AI-systemer
+	•	narrativ design i stor skala
+	•	tung frontend (kart, UI, visualisering)
+	•	langvarig innholdsproduksjon
+
+Det er:
+	•	mange fagdisipliner
+	•	mange utviklere
+	•	mange år
+
+Dette er AAA-utvikling, ikke indie.
+
+⸻
+
+6. Hvorfor det likevel er realistisk (på sikt)
+
+Fordi:
+	•	grunn-dataene allerede bygges i History GO
+	•	progresjon er ekte og personlig
+	•	systemet kan bygges lag for lag
+	•	Civication kan vokse ut av en eksisterende plattform
+
+History GO er grunnfjellet.
+Civication er katedralen.
+
+⸻
+
+7. Viktig avgrensning
+
+Denne visjonen:
+	•	skal ikke styre dagens utvikling
+	•	skal ikke påvirke nåværende scope
+	•	skal kun fungere som langsiktig retning
+
+All nåværende utvikling fokuserer på:
+	•	utforskning
+	•	samling
+	•	roller og manager-systemer
+	•	tekst- og regelbasert spill
+
+⸻
+
+8. Kort oppsummert
+	•	Dette er endgame på absolutt toppnivå
+	•	Dette er dyrt, komplekst og langsiktig
+	•	Dette er ikke nødvendig for at History GO skal lykkes
+	•	Men det forklarer hvor langt systemet kan strekke seg
+
+⸻
+
+Hvis du vil, kan neste steg være:
+	•	å skrive én setning som beskriver denne visjonen (pitch-nivå)
+	•	eller å lage et diagram som viser forholdet mellom HG nå → Civication senere
+
+Denne README-en er ment å ligge i en /vision/-mappe og ikke røres på lenge.
