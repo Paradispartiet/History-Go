@@ -204,18 +204,18 @@
     }
 
     // -------- pack loading --------
-    async loadPack(role_key) {
-      if (!role_key) return null;
-      if (this.packsCache.has(role_key)) return this.packsCache.get(role_key);
+    async loadPack(packFile) {
+  if (!packFile) return null;
+  if (this.packsCache.has(packFile)) return this.packsCache.get(packFile);
 
-      const url = `${this.packBasePath}/${role_key}.json`;
-      const res = await fetch(url);
-      if (!res.ok) return null;
+  const url = `${this.packBasePath}/${packFile}`;
+  const res = await fetch(url);
+  if (!res.ok) return null;
 
-      const pack = await res.json();
-      this.packsCache.set(role_key, pack);
-      return pack;
-    }
+  const pack = await res.json();
+  this.packsCache.set(packFile, pack);
+  return pack;
+}
 
     // -------- event selection --------
     pickEventFromPack(pack, state) {
@@ -299,7 +299,8 @@
       }
 
       // 4) Har jobb => velg fra pack
-      const pack = await this.loadPack(role_key);
+      const packFile = this.packMap[String(active?.career_id || "").trim()] || `${role_key}.json`;
+      const pack = await this.loadPack(packFile);
       const chosen = this.pickEventFromPack(pack, state);
       if (!chosen) {
         // ingen passende event igjen => bare bruk pulse uten mail (stille dag)
