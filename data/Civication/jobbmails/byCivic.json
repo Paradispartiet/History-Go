@@ -1,0 +1,212 @@
+{
+  "role": "byplanlegger",
+  "version": "v0.2",
+  "mails": [
+    {
+      "id": "byplanlegger_001",
+      "stage": "stable",
+      "subject": "Mindre justering i reguleringsplanen",
+      "situation": [
+        "En utbygger ber om å flytte byggehøyden én etasje opp.",
+        "«Det synes knapt», sier de.",
+        "Du aner at dette kan bli en presedens, men ingen vil si det høyt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Godkjenn – endringen er marginal",
+          "effect": 1,
+          "feedback": "Saken glir videre. Du blir ikke nevnt."
+        },
+        {
+          "id": "B",
+          "label": "Avslå – planen er planen",
+          "effect": 0,
+          "feedback": "Du får flere e-poster enn du ønsker."
+        },
+        {
+          "id": "C",
+          "label": "Be om ny visualisering",
+          "effect": -1,
+          "feedback": "Prosessen stopper. Folk spør hvorfor."
+        }
+      ]
+    },
+    {
+      "id": "byplanlegger_002",
+      "stage": "stable",
+      "subject": "Benker eller trær?",
+      "situation": [
+        "Budsjettet holder kun til én ting på et nytt torg.",
+        "Diskusjonen er uforholdsmessig stor.",
+        "Alle vil at du «tar en beslutning»."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velg benker – konkret og raskt",
+          "effect": 1,
+          "feedback": "Noe skjer. Det er rart hvor mye det teller."
+        },
+        {
+          "id": "B",
+          "label": "Velg trær – det ser bedre ut i presentasjoner",
+          "effect": 0,
+          "feedback": "Folk liker ideen, men det tar tid."
+        },
+        {
+          "id": "C",
+          "label": "Utsett – sett det på neste agenda",
+          "effect": 1,
+          "feedback": "Saken blir borte i en stund. Alle virker lettet."
+        }
+      ]
+    },
+    {
+      "id": "byplanlegger_003",
+      "stage": "stable_warning",
+      "subject": "Høring med lavt oppmøte",
+      "situation": [
+        "Kun tre innspill kom inn i høringsrunden.",
+        "Prosjektet haster.",
+        "Ingen har tid til å “skape engasjement”."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gå videre – prosessen er formelt riktig",
+          "effect": 1,
+          "feedback": "Fremdrift. Ingen takker deg, men ingen stopper deg."
+        },
+        {
+          "id": "B",
+          "label": "Utvid høringen",
+          "effect": 0,
+          "feedback": "Det kommer litt mer innspill. Og mer arbeid."
+        },
+        {
+          "id": "C",
+          "label": "Kontakt lokale aktører direkte",
+          "effect": -1,
+          "feedback": "Du får svar. Og dermed også ansvar."
+        }
+      ]
+    },
+    {
+      "id": "byplanlegger_004",
+      "stage": "warning",
+      "is_warning_mail": true,
+      "subject": "Spørsmål rundt prosess",
+      "situation": [
+        "Noen antyder at avgjørelser tas for raskt.",
+        "Det er ikke formelt, men det surrer.",
+        "Navnet ditt nevnes i forbifarten."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Noter innspillene og gå videre",
+          "effect": 1,
+          "feedback": "Det roer seg. Merkelig nok."
+        },
+        {
+          "id": "B",
+          "label": "Forklar prosessen grundig",
+          "effect": 0,
+          "feedback": "Det blir stille. Men ikke på en god måte."
+        },
+        {
+          "id": "C",
+          "label": "Ta initiativ til en gjennomgang",
+          "effect": -1,
+          "feedback": "Du får eierskap til et problem du ikke trengte."
+        }
+      ]
+    },
+    {
+      "id": "byplanlegger_005",
+      "stage": "warning",
+      "subject": "Midlertidig dispensasjon",
+      "situation": [
+        "En aktør ber om unntak «bare denne gangen».",
+        "Alle er enige om at det er dumt, men ingen vil være stoppekloss.",
+        "Du kjenner igjen mønsteret."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gi dispensasjon",
+          "effect": 1,
+          "feedback": "Saken løses. Det blir aldri snakket om igjen (foreløpig)."
+        },
+        {
+          "id": "B",
+          "label": "Avslå",
+          "effect": 0,
+          "feedback": "Dette blir en sak. Det er sjelden verdt det."
+        },
+        {
+          "id": "C",
+          "label": "Send saken videre",
+          "effect": 1,
+          "feedback": "Ansvar fordeles. Du puster igjen."
+        }
+      ]
+    },
+    {
+      "id": "byplanlegger_006",
+      "stage": "warning_danger",
+      "subject": "Mangelfull dokumentasjon",
+      "situation": [
+        "Et vedlegg mangler i en eldre beslutning.",
+        "Feilen er liten.",
+        "Men små feil har en tendens til å bli store, når noen trenger en syndebukk."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "La det ligge",
+          "effect": 1,
+          "feedback": "Ingen reagerer. Det er nesten provoserende."
+        },
+        {
+          "id": "B",
+          "label": "Ettersend uten oppstyr",
+          "effect": 0,
+          "feedback": "Noen legger merke til endringen."
+        },
+        {
+          "id": "C",
+          "label": "Rett og loggfør formelt",
+          "effect": -1,
+          "feedback": "Du lager et spor. Spor kan brukes mot deg."
+        }
+      ]
+    },
+    {
+      "id": "byplanlegger_007",
+      "stage": "fired",
+      "subject": "Omplassering",
+      "situation": [
+        "Du er blitt for synlig.",
+        "Det har stoppet opp rundt deg noen ganger for mye.",
+        "Noen må flyttes."
+      ],
+      "choices": [],
+      "effect": "job_lost",
+      "feedback": "Du tas av prosjektporteføljen."
+    },
+    {
+      "id": "nav_001",
+      "stage": "unemployed",
+      "source": "NAV",
+      "subject": "Din sak er registrert",
+      "situation": [
+        "Vi mangler fortsatt dokumentasjon.",
+        "Du hører fra oss."
+      ],
+      "choices": [],
+      "feedback": "Bare virkelighet."
+    }
+  ]
+}
