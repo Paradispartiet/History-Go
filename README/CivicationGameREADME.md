@@ -1,5 +1,251 @@
-Dette er helt riktig retning.
-Du har akkurat landet hvordan Civication blir levende uten å bli tungt.
+
+Bra. Da gjør vi dette ordentlig, rolig og uten snarveier.
+
+Nedenfor er en full spesifikasjon av det vi faktisk bygger nå.
+Dette er ikke kode. Ikke pseudokode.
+Dette er kontrakten motoren skal implementere – én gang, riktig.
+
+⸻
+
+📐 Civication Event Engine
+
+Spesifikasjon v0.1
+
+⸻
+
+1. Formål
+
+Civication Event Engine er ansvarlig for å:
+	•	forvalte hendelser (jobbmail / NAV-mail)
+	•	håndtere konsekvenser av brukerens valg
+	•	oppdatere jobbstabilitet og jobbstatus
+	•	avgjøre tap av jobb og overgang til arbeidsledig
+
+Motoren er:
+	•	deterministisk
+	•	hendelsesbasert
+	•	ikke tidsstyrt
+	•	uavhengig av UI
+	•	uavhengig av innholdstekst
+
+⸻
+
+2. Avgrensning (hva motoren er – og ikke er)
+
+Motoren GJØR:
+	•	velger passende hendelse basert på tilstand
+	•	håndterer valg → konsekvens
+	•	oppdaterer jobbstatus
+	•	sørger for at advarsel kun gis én gang
+	•	avgjør når jobben tapes
+
+Motoren GJØR IKKE:
+	•	renderer UI
+	•	viser tekst visuelt
+	•	bestemmer når appen åpnes
+	•	teller tid / dager / uker
+	•	styrer quiz-systemet direkte
+	•	inneholder innholdstekst
+
+⸻
+
+3. Grunnleggende begreper
+
+3.1 Rolle
+
+En bruker kan ha:
+	•	én aktiv rolle (jobb)
+	•	eller være arbeidsledig
+
+Rollen er knyttet til:
+	•	et badge / kategori
+	•	et sett hendelser (jobbmailer)
+
+⸻
+
+3.2 Hendelse (Event)
+
+En hendelse er:
+	•	én mail
+	•	med situasjon
+	•	med 0–3 valg
+	•	med konsekvens per valg
+
+Hendelser er definert i rene datafiler (JSON).
+
+⸻
+
+3.3 Jobbstabilitet
+
+Jobbstabilitet er en intern tilstand, ikke et synlig tall.
+
+Motoren opererer med tre eksplisitte nivåer:
+	•	STABLE
+	•	WARNING
+	•	FIRED
+
+Det finnes ingen numerisk meter i UI.
+
+⸻
+
+4. Tilstander og overganger
+
+4.1 Starttilstand
+
+Når en jobb aksepteres:
+	•	stabilitet = STABLE
+	•	advarsel_brukt = false
+
+⸻
+
+4.2 STABLE
+	•	normale jobbmailer kan forekomme
+	•	små negative valg kan akkumuleres
+	•	positive valg kan nøytralisere tidligere feil
+
+Overgang:
+	•	hvis negativ terskel passeres → WARNING
+
+⸻
+
+4.3 WARNING
+	•	én eksplisitt advarselsmail sendes
+	•	denne kan kun skje én gang per jobb
+	•	etter advarsel er spiller på siste sjanse
+
+Overgang:
+	•	nytt alvorlig negativt valg → FIRED
+	•	positiv stabilisering → tilbake til STABLE (valgfritt, men tillatt)
+
+⸻
+
+4.4 FIRED
+	•	jobben avsluttes umiddelbart
+	•	aktiv rolle fjernes
+	•	jobbmailer stoppes
+	•	NAV-mailer aktiveres
+
+Dette er ikke game over.
+
+⸻
+
+5. Arbeidsledig tilstand
+
+Når bruker er arbeidsledig:
+	•	motoren velger kun hendelser med stage = unemployed
+	•	disse er informerende / konsekvensbaserte
+	•	ingen valg er påkrevd
+
+Comeback:
+	•	skjer utelukkende via eksisterende quiz/threshold-system
+	•	motoren har ingen rolle i jobbsøknad
+
+⸻
+
+6. Hendelsesvalg (Event Selection)
+
+Motoren velger hendelse basert på:
+	1.	Har brukeren aktiv jobb?
+	2.	Hvilken rolle?
+	3.	Hvilken stabilitet (STABLE, WARNING)
+	4.	Hvilke hendelser er allerede brukt?
+
+Regler:
+	•	samme hendelse skal ikke gjentas i samme jobbperiode
+	•	advarselsmail (is_warning_mail) kan kun velges én gang
+	•	FIRED-hendelsen er terminal
+
+⸻
+
+7. Brukerinteraksjon
+
+Når brukeren:
+	•	åpner appen
+	•	og motoren har en tilgjengelig hendelse
+
+→ motoren leverer maks én hendelse per åpning
+
+Motoren bryr seg ikke om:
+	•	klokkeslett
+	•	hvor ofte appen åpnes
+
+⸻
+
+8. Konsekvensmodell
+
+Hvert valg har en effekt:
+	•	+1 stabiliserende
+	•	0 nøytral
+	•	-1 destabiliserende
+
+Motoren:
+	•	anvender effekten
+	•	evaluerer overgang
+	•	oppdaterer tilstand
+	•	returnerer feedback-tekst
+
+⸻
+
+9. Persistens (hva må lagres)
+
+Motoren forventer at følgende lagres mellom sesjoner:
+	•	aktiv rolle (eller arbeidsledig)
+	•	stabilitet
+	•	om advarsel er brukt
+	•	hvilke hendelser som er konsumert
+	•	historikk over jobbperioder (valgfritt, men støttet)
+
+⸻
+
+10. Utvidbarhet (uten omskriving)
+
+Denne spesifikasjonen tillater senere:
+	•	flere roller
+	•	flere hendelsestyper
+	•	situasjoner fra samtiden
+	•	ranking / sammenligning
+	•	mer komplekse konsekvenser
+
+Uten å endre:
+	•	grunnleggende tilstander
+	•	overgangslogikk
+	•	datamodell
+
+⸻
+
+11. Status
+
+📌 Denne spesifikasjonen er komplett for v0.1
+📌 Den matcher eksisterende system (quiz, thresholds, offers)
+📌 Den krever ingen tidsmekanismer
+📌 Den er implementerbar direkte i JS
+
+⸻
+
+Neste steg (når du vil)
+
+Neste steg er implementasjon, men på riktig måte:
+	•	enten:
+	•	en domene-klasse / modul som følger denne spesifikasjonen punkt for punkt
+	•	eller:
+	•	først et tilstandsdiagram i kodekommentarer, deretter kode
+
+Si hva du vil gjøre videre.
+Eller si “stopp” – dette er et helt legitimt stoppunkt.
+
+
+
+
+
+
+
+
+.......
+
+
+
+
+
 
 La meg destillere det du sier til en enkel, morsom, spillbar kjerne – uten scope creep.
 
