@@ -591,24 +591,46 @@ BADGES = await fetch("data/badges.json", { cache: "no-store" }).then(r => r.json
   }
 }
 
-// Oppdater nivå ved ny poengsum
-async function updateMeritLevel(cat, newPoints) {
+// Oppdater "stilling" ved ny poengsum (tiers = karrierestige)
+async function updateMeritLevel(cat, oldPoints, newPoints) {
   await ensureBadgesLoaded();
+
+  const catNorm = String(cat || "").toLowerCase();
   const badge = BADGES.find(
     b =>
-      cat.toLowerCase().includes(b.id) ||
-      b.name.toLowerCase().includes(cat.toLowerCase())
+      catNorm.includes(String(b.id || "").toLowerCase()) ||
+      String(b.name || "").toLowerCase().includes(catNorm)
   );
-  if (!badge) return;
+  if (!badge || !Array.isArray(badge.tiers) || !badge.tiers.length) return;
 
-  for (let i = badge.tiers.length - 1; i >= 0; i--) {
-    const tier = badge.tiers[i];
-    if (newPoints === tier.threshold) {
-      showToast(`🏅 Nytt nivå i ${cat}: ${tier.label}!`);
-      pulseBadge(cat);
-      break;
-    }
-  }
+  const prev = deriveTierFromPoints(badge, Number(oldPoints || 0));
+  const next = deriveTierFromPoints(badge, Number(newPoints || 0));
+
+  // Bare gjør noe hvis du faktisk rykker opp i "stilling"
+  if ((next.tierIndex ?? 0) <= (prev.tierIndex ?? 0)) return;
+
+  // tiers.label er nå stillingstittel
+  const newTitle = String(next.label || "").trim() || "Ny stilling";
+
+  // 1) UI feedback
+  showToast(`💼 Ny stilling i ${badge.name}: ${newTitle}!`);
+  pulseBadge(badge.name);
+
+  // 2) Lagre "aktiv stilling" (V1: kun én aktiv)
+  //    (kan senere utvides med vedlikehold/temperatur)
+  const pos = {
+    career_id: String(badge.id || ""),
+    career_name: String(badge.name || ""),
+    title: newTitle,
+    points: Number(newPoints || 0),
+    tier_index: Number(next.tierIndex || 0),
+    achieved_at: new Date().toISOString()
+  };
+
+  try {
+    localStorage.setItem("hg_active_position_v1", JSON.stringify(pos));
+    localStorage.setItem("hg_last_position_change_v1", pos.achieved_at);
+  } catch {}
 }
 
 // Poengsystem – +1 poeng per fullført quiz
@@ -625,6 +647,7 @@ async function addCompletedQuizAndMaybePoint(categoryDisplay, quizId) {
 
   const catLabel = categoryDisplay;
   merits[catLabel] = merits[catLabel] || { points: 0 };
+  const oldPoints = Number(merits[catLabel].points || 0);
   merits[catLabel].points += 1;
 
 // Optional: fjern gammel lagret level hvis den finnes (rydder støy)
@@ -632,7 +655,8 @@ async function addCompletedQuizAndMaybePoint(categoryDisplay, quizId) {
 
 
   saveMerits();
-  updateMeritLevel(catLabel, merits[catLabel].points);
+    const newPoints = Number(merits[catLabel].points || 0);
+  updateMeritLevel(catLabel, oldPoints, newPoints);
   showToast(`🏅 +1 poeng i ${catLabel}!`);
   window.dispatchEvent(new Event("updateProfile"));
 }
@@ -1233,7 +1257,40 @@ function initMiniProfile() {
   nm.style.color = color;
   st.textContent = `${visitedCount} steder · ${badgeCount} merker · ${quizCount} quizzer`;
 
+  /* -------------------------------------
+     0.5) Aktiv stilling (fra karriere/merker)
+  ------------------------------------- */
+  let pos = null;
+  try {
+    pos = JSON.parse(localStorage.getItem("hg_active_position_v1") || "null");
+  } catch {}
 
+  // Lag/oppdater en egen linje under miniStats uten å være avhengig av HTML-endringer
+  let posEl = document.getElementById("miniPositionLine");
+  if (!posEl) {
+    posEl = document.createElement("div");
+    posEl.id = "miniPositionLine";
+    posEl.className = "mini-position-line";
+    // minimal styling (kan flyttes til CSS senere)
+    posEl.style.fontSize = "12px";
+    posEl.style.opacity = "0.92";
+    posEl.style.marginTop = "2px";
+    posEl.style.whiteSpace = "nowrap";
+    posEl.style.overflow = "hidden";
+    posEl.style.textOverflow = "ellipsis";
+
+    // sett inn rett etter stats-linja
+    st.insertAdjacentElement("afterend", posEl);
+  }
+
+  if (pos && pos.title) {
+    const careerName = pos.career_name || pos.career_id || "Karriere";
+    posEl.textContent = `💼 ${pos.title} · ${careerName}`;
+    posEl.style.display = "";
+  } else {
+    posEl.style.display = "none";
+  }
+  
   /* -------------------------------------
      1) Siste tre merker (ikon-rad)
   ------------------------------------- */
