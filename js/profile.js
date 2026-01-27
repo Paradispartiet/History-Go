@@ -190,7 +190,7 @@ function renderCivicationInbox() {
       btnOK.onclick = () => {
         // etter OK: refresh (kan ha en ny “pending” hvis fired-event ble enqueued)
         renderCivication();
-        window.renderCivicationInbox?.()
+        window.renderCivicationInbox?.();
         window.dispatchEvent(new Event("updateProfile"));
       };
     };
@@ -204,7 +204,7 @@ function renderCivicationInbox() {
     btnOK.style.display = "";
     btnOK.onclick = () => {
       renderCivication();
-      window.renderCivicationInbox?.()
+      window.renderCivicationInbox?.();
       window.dispatchEvent(new Event("updateProfile"));
     };
     return;
