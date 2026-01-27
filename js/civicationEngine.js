@@ -1,5 +1,3 @@
-Du skrev denne også så knakk du...
-
 /* ============================================================
    Civication Event Engine v0.1
    - Ingen UI
