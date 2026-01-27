@@ -97,36 +97,49 @@
     </div>
   </section>
 
-  <section class="profile-section" id="civicationSection">
-    <h2>🏛️ Civication</h2>
+<section class="profile-section" id="civicationSection">
+  <h2>🏛️ Civication</h2>
 
-    <p class="muted">
-      Jobbrollen din er knyttet til merker (kategorier). Du får tilbud, tar rollen, og må vedlikeholde den med relevante quizzer og besøk.
-    </p>
+  <p class="muted">
+    Jobbrollen din er knyttet til merker (kategorier). Du får tilbud, tar rollen, og må vedlikeholde den med relevante quizzer og besøk.
+  </p>
 
-    <div class="latest-knowledge-box" id="civicationCard">
-      <div class="lk-topic" id="civiRoleTitle">Rolle: —</div>
-      <div class="lk-category" id="civiRoleDetails">Status: —</div>
-      <div class="lk-category" id="civiMeritLine">Merit: —</div>
-    </div>
-
-<div class="latest-knowledge-box" id="civiOfferBox" style="margin-top:10px; display:none;">
-  <div class="lk-topic" id="civiOfferTitle">Jobbtilbud: —</div>
-  <div class="lk-category" id="civiOfferMeta">—</div>
-
-  <div class="profile-subaction" style="display:flex; gap:10px; margin-top:10px;">
-    <button id="btnCiviAccept" class="btn">Aksepter</button>
-    <button id="btnCiviDecline" class="btn secondary">Ikke nå</button>
+  <div class="latest-knowledge-box" id="civicationCard">
+    <div class="lk-topic" id="civiRoleTitle">Rolle: —</div>
+    <div class="lk-category" id="civiRoleDetails">Status: —</div>
+    <div class="lk-category" id="civiMeritLine">Merit: —</div>
   </div>
-</div>
-    
-    <div class="profile-subaction" style="display:flex; gap:10px; flex-wrap:wrap;">
-      <button id="btnCiviOpen" class="btn">Åpne Civication</button>
-      <button id="btnCiviRanking" class="btn" disabled>Ranking (kommer)</button>
-      <button id="btnCiviWorld" class="btn" disabled>Min verden (kommer)</button>
+
+  <div class="latest-knowledge-box" id="civiOfferBox" style="margin-top:10px; display:none;">
+    <div class="lk-topic" id="civiOfferTitle">Jobbtilbud: —</div>
+    <div class="lk-category" id="civiOfferMeta">—</div>
+
+    <div class="profile-subaction" style="display:flex; gap:10px; margin-top:10px;">
+      <button id="btnCiviAccept" class="btn">Aksepter</button>
+      <button id="btnCiviDecline" class="btn secondary">Ikke nå</button>
     </div>
-  </section>
-  
+  </div>
+
+  <div class="latest-knowledge-box" id="civiInboxBox" style="margin-top:10px; display:none;">
+    <div class="lk-topic" id="civiMailSubject">📬 —</div>
+    <div class="lk-category" id="civiMailText">—</div>
+
+    <div class="profile-subaction" id="civiMailChoices" style="display:flex; flex-direction:column; gap:8px; margin-top:10px;">
+      <button id="civiChoiceA" class="btn" style="display:none;"></button>
+      <button id="civiChoiceB" class="btn" style="display:none;"></button>
+      <button id="civiChoiceC" class="btn" style="display:none;"></button>
+      <button id="civiChoiceOK" class="btn" style="display:none;">OK</button>
+    </div>
+
+    <div class="lk-category" id="civiMailFeedback" style="margin-top:10px; display:none;"></div>
+  </div>
+
+  <div class="profile-subaction" style="display:flex; gap:10px; flex-wrap:wrap;">
+    <button id="btnCiviOpen" class="btn">Åpne Civication</button>
+    <button id="btnCiviRanking" class="btn" disabled>Ranking (kommer)</button>
+    <button id="btnCiviWorld" class="btn" disabled>Min verden (kommer)</button>
+  </div>
+</section>
   <section class="profile-section">
     <h2>Mine merker</h2>
     <div id="merits"></div>
