@@ -136,7 +136,9 @@ function renderCivication() {
     title.textContent = "Rolle: —";
     details.textContent = "Status: Ingen aktiv jobb (ta quiz for å få jobbtilbud).";
   }
+}
 
+  
 function renderCivicationInbox() {
   const box = document.getElementById("civiInboxBox");
   const subj = document.getElementById("civiMailSubject");
