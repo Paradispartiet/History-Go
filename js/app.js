@@ -297,7 +297,7 @@ const CATEGORY_LIST = [
   { id: "populaerkultur",  name: "Populærkultur" },
   { id: "subkultur",       name: "Subkultur" },
   { id: "litteratur",      name: "Litteratur" },        // ← NY
-  { id: "naeringsliv",     name: "Næringsliv" },        // ← NY
+  { id: "naering",         name: "Næringsliv" },        // ← NY
   { id: "psykologi",       name: "Psykologi" }          // ← NY
 ];
 
@@ -363,7 +363,7 @@ function tagToCat(tags = []) {
   if (t.includes("sport") || t.includes("idrett") || t.includes("lek")) return "sport";
   if (t.includes("by") || t.includes("arkitektur")) return "by";
   if (t.includes("politikk") || t.includes("samfunn")) return "politikk";
-  if (t.includes("naering") || t.includes("industri") || t.includes("arbeid")) return "naeringsliv";
+  if (t.includes("naering") || t.includes("industri") || t.includes("arbeid")) return "naering";
   if (t.includes("psykologi") || t.includes("mental") || t.includes("sinn") || t.includes("klinisk")) return "psykologi"; // ← NY
 
   return "vitenskap";
@@ -650,12 +650,8 @@ function hgPushJobOffer(badge, tier, newPoints) {
 async function updateMeritLevel(cat, oldPoints, newPoints) {
   await ensureBadgesLoaded();
 
-  const catNorm = String(cat || "").toLowerCase();
-  const badge = BADGES.find(
-    b =>
-      catNorm.includes(String(b.id || "").toLowerCase()) ||
-      String(b.name || "").toLowerCase().includes(catNorm)
-  );
+  const catId = String(cat || "").trim();
+  const badge = BADGES.find(b => String(b?.id || "").trim() === catId);
   if (!badge || !Array.isArray(badge.tiers) || !badge.tiers.length) return;
 
   const prev = deriveTierFromPoints(badge, Number(oldPoints || 0));
@@ -715,23 +711,25 @@ async function addCompletedQuizAndMaybePoint(categoryDisplay, quizId) {
   progress[categoryId].completed.push(quizId);
   localStorage.setItem("quiz_progress", JSON.stringify(progress));
 
-  const badgeId = String(badge.id || "").trim();
-if (!badgeId) return;
+    const badgeId = String(categoryId || "").trim();
+  if (!badgeId) return;
 
-merits[badgeId] = merits[badgeId] || { points: 0 };
-const oldPoints = Number(merits[badgeId].points || 0);
-merits[badgeId].points += 1;
-  
-// Optional: fjern gammel lagret level hvis den finnes (rydder støy)
-  if ("level" in merits[catLabel]) delete merits[catLabel].level;
+  window.merits = window.merits || {};
+  window.merits[badgeId] = window.merits[badgeId] || { points: 0 };
 
+  const oldPoints = Number(window.merits[badgeId].points || 0);
+  window.merits[badgeId].points += 1;
 
-  saveMerits();
-    const newPoints = Number(merits[catLabel].points || 0);
-  updateMeritLevel(catLabel, oldPoints, newPoints);
-  showToast(`🏅 +1 poeng i ${catLabel}!`);
-  window.dispatchEvent(new Event("updateProfile"));
-}
+  // Optional: fjern gammel lagret level hvis den finnes (rydder støy)
+  if ("level" in window.merits[badgeId]) delete window.merits[badgeId].level;
+
+  if (typeof window.saveMerits === "function") window.saveMerits();
+
+  const newPoints = Number(window.merits[badgeId].points || 0);
+  updateMeritLevel(badgeId, oldPoints, newPoints);
+
+  showToast(`🏅 +1 poeng i ${badgeId}!`);
+  window.dispatchEvent(new Event("updateProfile"));}
 
 // ==============================
 // 9. HENDELSER (CLICK-DELEGATION) OG SHEETS
