@@ -297,6 +297,8 @@ function renderCivicationInbox() {
 
   meritLn.textContent = `Merit: ${best.roleLabel} (${best.badgeName}) · ${best.points} poeng · Sist: ${lastTxt}`;
 }
+}
+
 
 // ------------------------------------------------------------
 // MERKER – GRID + MODAL (STRICT)
