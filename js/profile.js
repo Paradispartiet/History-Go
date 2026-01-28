@@ -743,20 +743,27 @@ function renderLatestTrivia() {
 
   if (!box || !elTopic || !elCat) return;
 
-  const uni = (typeof window.getTriviaUniverse === "function")
-  ? window.getTriviaUniverse()
-  : {};
+  let uni = {};
+
+  try {
+    // Robust: les direkte fra storage (sann kilde)
+    uni = JSON.parse(localStorage.getItem("trivia_universe") || "{}");
+  } catch {
+    uni = {};
+  }
+
   const flat = [];
 
-  // Flate ut universet → liste
-  for (const cat of Object.keys(uni)) {
-    for (const id of Object.keys(uni[cat] || {})) {
-      (uni[cat][id] || []).forEach(t => {
-        flat.push({
-          category: cat,
-          id: id,
-          trivia: t
-        });
+  for (const category of Object.keys(uni)) {
+    const byId = uni[category];
+    if (!byId || typeof byId !== "object") continue;
+
+    for (const id of Object.keys(byId)) {
+      const list = byId[id];
+      if (!Array.isArray(list)) continue;
+
+      list.forEach(t => {
+        flat.push({ category, text: t });
       });
     }
   }
@@ -766,15 +773,15 @@ function renderLatestTrivia() {
     return;
   }
 
-  // Siste trivia-element (sist lagret)
   const last = flat[flat.length - 1];
 
-  elTopic.textContent = last.trivia;
-  elCat.textContent = last.category.charAt(0).toUpperCase() + last.category.slice(1);
+  elTopic.textContent = last.text;
+  elCat.textContent = last.category;
 
   box.style.display = "block";
-}
 
+  
+}
 function renderNextWhy() {
   const sec = document.getElementById("nextWhySection");
   const txt = document.getElementById("nextWhyText");
