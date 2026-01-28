@@ -1062,6 +1062,8 @@ window.openPlaceCard = async function (place) {
   const natureIcon = document.getElementById("pcNatureIcon");
   const badgesIcon = document.getElementById("pcBadgesIcon");
 
+  const iconsWrap = card ? card.querySelector(".pc-icons") : null;
+
   const peopleEl = document.getElementById("pcPeopleList");
   const natureEl = document.getElementById("pcNatureList");
   const badgesEl = document.getElementById("pcBadgesList");
@@ -1073,6 +1075,55 @@ window.openPlaceCard = async function (place) {
   const btnNote   = document.getElementById("pcNote");
   const btnObs    = document.getElementById("pcObserve");
   const btnClose  = document.getElementById("pcClose");
+
+    // ------------------------------------------------------------
+  // FIX: Ikke la ikon-klikk boble opp og lukke/kollapse placeCard
+  // + Toggle lister uten å påvirke kortet
+  // (bindes kun én gang)
+  // ------------------------------------------------------------
+  if (!card.dataset.pcIconsBound) {
+    card.dataset.pcIconsBound = "1";
+
+    const closeAllLists = () => {
+      peopleEl?.classList.remove("is-open");
+      natureEl?.classList.remove("is-open");
+      badgesEl?.classList.remove("is-open");
+    };
+
+
+    iconsWrap?.addEventListener("click", (e) => {
+      e.stopPropagation();
+     });
+    
+    peopleIcon?.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();           // ⬅️ dette stopper “placeCard lukker seg”
+      const open = !peopleEl?.classList.contains("is-open");
+      closeAllLists();
+      if (open) peopleEl?.classList.add("is-open");
+    });
+
+    natureIcon?.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const open = !natureEl?.classList.contains("is-open");
+      closeAllLists();
+      if (open) natureEl?.classList.add("is-open");
+    });
+
+    badgesIcon?.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const open = !badgesEl?.classList.contains("is-open");
+      closeAllLists();
+      if (open) badgesEl?.classList.add("is-open");
+    });
+
+    // Valgfritt men smart: klikk inni listene skal heller ikke lukke kortet
+    peopleEl?.addEventListener("click", (e) => e.stopPropagation());
+    natureEl?.addEventListener("click", (e) => e.stopPropagation());
+    badgesEl?.addEventListener("click", (e) => e.stopPropagation());
+  }
 
 // --- pc-actions: ikonmodus (kun på smale skjermer) ---
 const isNarrow = window.matchMedia && window.matchMedia("(max-width: 520px)").matches;
