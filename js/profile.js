@@ -44,14 +44,20 @@ function ls(name, fallback = {}) {
 function renderProfileCard() {
   const visited = ls("visited_places", {});
   const quizProgress = ls("quiz_progress", {});
+  const quizHistory  = ls("quiz_history", []);
   const streak = Number(localStorage.getItem("user_streak") || 0);
 
   const userName = localStorage.getItem("user_name") || "Utforsker #182";
 
   const visitedCount = Object.keys(visited).length;
-  const quizCount = Object.values(quizProgress)
-    .map(v => Array.isArray(v.completed) ? v.completed.length : 0)
-    .reduce((a,b)=>a+b, 0);
+  
+  const countFromHistory = Array.isArray(quizHistory) ? quizHistory.length : 0;
+
+  const countFromProgress = Object.values(quizProgress || {})
+  .map(v => Array.isArray(v?.completed) ? v.completed.length : 0)
+  .reduce((a,b)=>a+b, 0);
+
+  const quizCount = Math.max(countFromHistory, countFromProgress);
 
   document.getElementById("profileName").textContent = userName;
   document.getElementById("statVisited").textContent = visitedCount;
