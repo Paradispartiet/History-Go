@@ -608,20 +608,24 @@
 }
 
 
-/* Skjul root-badge i placeCard (uansett wrapper) */
+/* Skjul root-badge i placeCard */
 #placeCard .pc-scroll .pc-badges,
 #placeCard .pc-scroll #pcBadges,
 #placeCard .pc-scroll #pcBadge{
   display: none;
 }
-/* =========================
-   Skjul globalt badge-bilde i placeCard
-   (badge skal kun vises i rundingen)
-   ========================= */
 
-#placeCard img.hg-app,
-#placeCard .hg-app img,
-#placeCard img[src*="badge"]{
-  display: none;
+/* Badge preview-ikon */
+#placeCard #pcBadgesIcon{
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+#placeCard #pcBadgesIcon img{
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
