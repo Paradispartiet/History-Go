@@ -147,7 +147,13 @@
 
     showToast: (msg) => console.log(msg),
 
-    addCompletedQuizAndMaybePoint: (categoryId, targetId) => {},
+    addCompletedQuizAndMaybePoint: (categoryId, targetId) => {
+     if (window.API?.addCompletedQuizAndMaybePoint) {
+    window.API.addCompletedQuizAndMaybePoint(categoryId, targetId);
+     } else {
+    console.warn("API.addCompletedQuizAndMaybePoint mangler");
+    }
+   },
     markQuizAsDoneExternal: null,
 
     showRewardPerson: (person) => {},
