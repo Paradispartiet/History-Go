@@ -297,7 +297,7 @@ const CATEGORY_LIST = [
   { id: "populaerkultur",  name: "Populærkultur" },
   { id: "subkultur",       name: "Subkultur" },
   { id: "litteratur",      name: "Litteratur" },        // ← NY
-  { id: "naering",         name: "Næringsliv" },        // ← NY
+  { id: "naeringsliv",     name: "Næringsliv" },        // ← NY
   { id: "psykologi",       name: "Psykologi" }          // ← NY
 ];
 
@@ -322,7 +322,7 @@ function catColor(cat = "") {
   if (c.includes("sport") || c.includes("idrett") || c.includes("lek")) return "#2a9d8f";
   if (c.includes("by") || c.includes("arkitektur")) return "#e63946";
   if (c.includes("politikk") || c.includes("samfunn")) return "#c77dff";
-  if (c.includes("naering") || c.includes("industri") || c.includes("arbeid")) return "#ff8800";
+  if (c.includes("naeringsliv") || c.includes("industri") || c.includes("naring")|| c.includes("arbeid")) return "#ff8800";
   if (c.includes("populaer") || c.includes("pop")) return "#ffb703";
   if (c.includes("subkultur") || c.includes("urban")) return "#ff66cc";
   if (c.includes("psykologi") || c.includes("mental") || c.includes("sinn")) return "#ff7aa2"; // ← NY, velg farge du liker
@@ -341,7 +341,7 @@ function catClass(cat = "") {
   if (c.includes("sport") || c.includes("idrett") || c.includes("lek")) return "sport";
   if (c.includes("by") || c.includes("arkitektur")) return "by";
   if (c.includes("politikk") || c.includes("samfunn")) return "politikk";
-  if (c.includes("naering") || c.includes("industri") || c.includes("arbeid")) return "naering";
+  if (c.includes("naeringsliv") || c.includes("industri") || c.includes("naering") || c.includes("arbeid")) return "naeringsliv";
   if (c.includes("populaer") || c.includes("pop")) return "populaerkultur";
   if (c.includes("subkultur") || c.includes("urban")) return "subkultur";
   if (c.includes("psykologi") || c.includes("mental") || c.includes("sinn")) return "psykologi"; // ← NY
@@ -363,7 +363,7 @@ function tagToCat(tags = []) {
   if (t.includes("sport") || t.includes("idrett") || t.includes("lek")) return "sport";
   if (t.includes("by") || t.includes("arkitektur")) return "by";
   if (t.includes("politikk") || t.includes("samfunn")) return "politikk";
-  if (t.includes("naering") || t.includes("industri") || t.includes("arbeid")) return "naering";
+  if (t.includes("naeringsliv") || t.includes("industri") || t.includes("naering")|| t.includes("arbeid")) return "naeringsliv";
   if (t.includes("psykologi") || t.includes("mental") || t.includes("sinn") || t.includes("klinisk")) return "psykologi"; // ← NY
 
   return "vitenskap";
