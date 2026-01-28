@@ -74,7 +74,7 @@ function getJobOffers() {
 function setJobOffers(arr) {
   try {
     localStorage.setItem("hg_job_offers_v1", JSON.stringify(arr || []));
-  } catch {}
+  } catch (e) {}
 }
 
 function getActivePosition() {
