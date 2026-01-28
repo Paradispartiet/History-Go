@@ -1,36 +1,52 @@
 {
-  "role": "journalist",
-  "aliases": ["media"],
-  "version": "v0.2",
-
+  "role": "media",
+  "aliases": [
+    "journalist",
+    "media"
+  ],
+  "version": "v0.2b",
   "tag_rules": {
     "max_tags_per_choice": 2,
     "memory_window": 12
   },
-
   "tracks": [
     {
-      "id": "process_loyal",
-      "title": "Prosess-lojal",
-      "tag_weights": { "process": 2, "legitimacy": 2, "avoidance": 1 }
+      "id": "click_chaser",
+      "title": "Klikkjeger",
+      "tag_weights": {
+        "shortcut": 2,
+        "opportunism": 2,
+        "visibility": 2
+      }
     },
     {
-      "id": "shortcut_operator",
-      "title": "Snarvei-operatør",
-      "tag_weights": { "shortcut": 2, "opportunism": 1, "risk": 1 }
+      "id": "process_jurist",
+      "title": "Prosess-jurist",
+      "tag_weights": {
+        "process": 2,
+        "legitimacy": 2,
+        "avoidance": 2
+      }
     },
     {
-      "id": "low_visibility",
-      "title": "Lav synlighet",
-      "tag_weights": { "avoidance": 2, "laziness": 2 }
+      "id": "investigative_graver",
+      "title": "Graver",
+      "tag_weights": {
+        "craft": 2,
+        "risk": 2,
+        "process": 1
+      }
     },
     {
-      "id": "craft_silent",
-      "title": "Stille fag",
-      "tag_weights": { "craft": 2, "process": 1, "avoidance": 1 }
+      "id": "relationship_pleaser",
+      "title": "Relasjonspleier",
+      "tag_weights": {
+        "avoidance": 2,
+        "legitimacy": 1,
+        "opportunism": 2
+      }
     }
   ],
-
   "mails": [
     {
       "id": "journalist_001",
@@ -41,36 +57,58 @@
         "«Det selger bedre», sier hen.",
         "Du er ikke helt komfortabel, men det er ikke direkte feil."
       ],
-      "mail_tags": ["journalist", "tekst", "vinkling"],
+      "mail_tags": [
+        "journalist",
+        "tekst",
+        "vinkling"
+      ],
       "gating": {
-        "prefer_tags": ["craft", "process", "legitimacy"],
-        "avoid_tags": ["laziness"]
+        "prefer_tags": [
+          "craft",
+          "process",
+          "legitimacy"
+        ],
+        "avoid_tags": [
+          "laziness"
+        ],
+        "prefer_tracks": [
+          "click_chaser",
+          "process_jurist"
+        ]
       },
       "choices": [
         {
           "id": "A",
           "label": "Spiss den mer enn du liker (men uten å lyve)",
           "effect": 1,
-          "tags": ["shortcut", "opportunism"],
+          "tags": [
+            "shortcut",
+            "visibility"
+          ],
           "feedback": "Saken får moment. Ingen tar deg på det."
         },
         {
           "id": "B",
           "label": "Hold originalen",
           "effect": 0,
-          "tags": ["craft", "legitimacy"],
+          "tags": [
+            "craft",
+            "legitimacy"
+          ],
           "feedback": "Teksten står støtt, men drukner litt i strømmen."
         },
         {
           "id": "C",
           "label": "Be om mer tid og en ekstra gjennomlesning",
           "effect": -1,
-          "tags": ["process", "avoidance"],
+          "tags": [
+            "process",
+            "avoidance"
+          ],
           "feedback": "Du mister timing. Det blir stille rundt saken."
         }
       ]
     },
-
     {
       "id": "journalist_002",
       "stage": "stable",
@@ -79,36 +117,57 @@
         "En kilde vil «bare presisere en ting til».",
         "Det er småting. Mye følelser."
       ],
-      "mail_tags": ["journalist", "kilde", "relasjon"],
+      "mail_tags": [
+        "journalist",
+        "kilde",
+        "relasjon"
+      ],
       "gating": {
-        "prefer_tags": ["legitimacy", "avoidance", "process"],
-        "avoid_tags": ["risk"]
+        "prefer_tags": [
+          "legitimacy",
+          "avoidance",
+          "process"
+        ],
+        "avoid_tags": [
+          "risk"
+        ],
+        "prefer_tracks": [
+          "relationship_pleaser"
+        ]
       },
       "choices": [
         {
           "id": "A",
           "label": "Lytt og juster minimalt",
           "effect": 0,
-          "tags": ["process", "craft"],
+          "tags": [
+            "process",
+            "craft"
+          ],
           "feedback": "Kilden er fornøyd. Det var stort sett luft."
         },
         {
           "id": "B",
           "label": "Avslå – saken er ferdig",
           "effect": 1,
-          "tags": ["legitimacy", "risk"],
+          "tags": [
+            "legitimacy",
+            "risk"
+          ],
           "feedback": "Redaksjonen liker tydelige grenser."
         },
         {
           "id": "C",
           "label": "La det ringe ut",
           "effect": -1,
-          "tags": ["avoidance", "laziness"],
+          "tags": [
+            "avoidance",
+            "laziness"
+          ],
           "feedback": "Dette huskes av noen. Du aner ikke hvem."
         }
       ]
     },
-
     {
       "id": "journalist_003",
       "stage": "stable_warning",
@@ -117,36 +176,57 @@
         "En konkurrent er på vei ut med samme sak.",
         "Du mangler én bekreftelse."
       ],
-      "mail_tags": ["journalist", "tempo", "verifisering"],
+      "mail_tags": [
+        "journalist",
+        "tempo",
+        "verifisering"
+      ],
       "gating": {
-        "prefer_tags": ["shortcut", "process"],
-        "avoid_tags": ["laziness"]
+        "prefer_tags": [
+          "shortcut",
+          "process"
+        ],
+        "avoid_tags": [
+          "laziness"
+        ],
+        "prefer_tracks": [
+          "click_chaser",
+          "investigative_graver"
+        ]
       },
       "choices": [
         {
           "id": "A",
           "label": "Publiser nå (uten å nevne mangelen)",
           "effect": 1,
-          "tags": ["shortcut", "opportunism"],
+          "tags": [
+            "shortcut",
+            "visibility"
+          ],
           "feedback": "Du får førstesaken. Det blir litt støy, men den går over."
         },
         {
           "id": "B",
           "label": "Vent og dobbeltsjekk",
           "effect": -1,
-          "tags": ["process", "craft"],
+          "tags": [
+            "process",
+            "craft"
+          ],
           "feedback": "Du mister førstesaken. Det føles riktig, men det hjelper ikke."
         },
         {
           "id": "C",
           "label": "Publiser, men med forbehold",
           "effect": 0,
-          "tags": ["legitimacy", "avoidance"],
+          "tags": [
+            "legitimacy",
+            "avoidance"
+          ],
           "feedback": "Leserne skjønner ikke helt hva du mener."
         }
       ]
     },
-
     {
       "id": "journalist_004",
       "stage": "warning",
@@ -156,36 +236,58 @@
         "Redaksjonen har merket et mønster.",
         "Flere små valg har skapt støy rundt arbeidet ditt."
       ],
-      "mail_tags": ["journalist", "advarsel", "redaksjon"],
+      "mail_tags": [
+        "journalist",
+        "advarsel",
+        "redaksjon"
+      ],
       "gating": {
-        "prefer_tags": ["avoidance", "legitimacy", "process"],
-        "avoid_tags": ["risk"]
+        "prefer_tags": [
+          "avoidance",
+          "legitimacy",
+          "process"
+        ],
+        "avoid_tags": [
+          "risk"
+        ],
+        "prefer_tracks": [
+          "process_jurist",
+          "relationship_pleaser"
+        ]
       },
       "choices": [
         {
           "id": "A",
           "label": "Nikk, beklag kort, og lov mindre friksjon",
           "effect": 1,
-          "tags": ["avoidance", "legitimacy"],
+          "tags": [
+            "avoidance",
+            "legitimacy"
+          ],
           "feedback": "Samtalen blir kort. Det var visst det de ville."
         },
         {
           "id": "B",
           "label": "Forsvar deg – det er mye press",
           "effect": 0,
-          "tags": ["legitimacy", "risk"],
+          "tags": [
+            "legitimacy",
+            "risk"
+          ],
           "feedback": "De forstår. Men de noterer."
         },
         {
           "id": "C",
           "label": "Ta prinsippkampen",
           "effect": -1,
-          "tags": ["risk", "visibility"],
+          "tags": [
+            "risk",
+            "visibility"
+          ],
           "feedback": "Det blir ‘en greie’. Du merker det med en gang."
         }
       ]
     },
-
     {
       "id": "journalist_005",
       "stage": "warning",
@@ -194,36 +296,57 @@
         "En kilde krever sitatsjekk etter at saken er ute.",
         "Hen truer med å klage."
       ],
-      "mail_tags": ["journalist", "kilde", "prinsipp"],
+      "mail_tags": [
+        "journalist",
+        "kilde",
+        "prinsipp"
+      ],
       "gating": {
-        "prefer_tags": ["legitimacy", "process", "avoidance"],
-        "avoid_tags": ["shortcut"]
+        "prefer_tags": [
+          "legitimacy",
+          "process",
+          "avoidance"
+        ],
+        "avoid_tags": [
+          "shortcut"
+        ],
+        "prefer_tracks": [
+          "process_jurist"
+        ]
       },
       "choices": [
         {
           "id": "A",
           "label": "Gi dem litt, bare for å få ro",
           "effect": 1,
-          "tags": ["avoidance", "opportunism"],
+          "tags": [
+            "avoidance",
+            "opportunism"
+          ],
           "feedback": "Klagen forsvinner. Ingen spør hva som skjedde."
         },
         {
           "id": "B",
           "label": "Avslå og stå på prinsippene",
           "effect": 0,
-          "tags": ["risk", "legitimacy"],
+          "tags": [
+            "risk",
+            "legitimacy"
+          ],
           "feedback": "Du har rett. Men du får også en sak på bordet."
         },
         {
           "id": "C",
           "label": "Be redaktør ta det",
           "effect": 0,
-          "tags": ["avoidance", "legitimacy"],
+          "tags": [
+            "avoidance",
+            "legitimacy"
+          ],
           "feedback": "Saken sendes videre. Du er litt mer usynlig."
         }
       ]
     },
-
     {
       "id": "journalist_006",
       "stage": "warning_danger",
@@ -232,36 +355,58 @@
         "En unøyaktighet blir fanget opp av lesere.",
         "Den er liten, men unødvendig."
       ],
-      "mail_tags": ["journalist", "feil", "rettelse"],
+      "mail_tags": [
+        "journalist",
+        "feil",
+        "rettelse"
+      ],
       "gating": {
-        "prefer_tags": ["process", "craft", "avoidance"],
-        "avoid_tags": ["opportunism"]
+        "prefer_tags": [
+          "process",
+          "craft",
+          "avoidance"
+        ],
+        "avoid_tags": [
+          "opportunism"
+        ],
+        "prefer_tracks": [
+          "investigative_graver",
+          "process_jurist"
+        ]
       },
       "choices": [
         {
           "id": "A",
           "label": "Rett stille (uten å markere)",
           "effect": 1,
-          "tags": ["avoidance", "process"],
+          "tags": [
+            "avoidance",
+            "process"
+          ],
           "feedback": "Det blir ikke en nyhet. Det er overraskende effektivt."
         },
         {
           "id": "B",
           "label": "Legg ut rettelse",
           "effect": 0,
-          "tags": ["legitimacy", "risk"],
+          "tags": [
+            "legitimacy",
+            "risk"
+          ],
           "feedback": "Det er ryddig. Og synlig."
         },
         {
           "id": "C",
           "label": "Ignorer – det er bagatell",
           "effect": -1,
-          "tags": ["laziness", "avoidance"],
+          "tags": [
+            "laziness",
+            "avoidance"
+          ],
           "feedback": "Akkurat nok til at folk blir sure."
         }
       ]
     },
-
     {
       "id": "journalist_007",
       "stage": "fired",
@@ -270,12 +415,13 @@
         "Tilliten er brukt opp.",
         "Dette er ikke én stor feil, men mange små."
       ],
-      "mail_tags": ["fired"],
+      "mail_tags": [
+        "fired"
+      ],
       "choices": [],
       "effect": "job_lost",
       "feedback": "Du blir tatt av dekning med umiddelbar virkning."
     },
-
     {
       "id": "nav_001",
       "stage": "unemployed",
@@ -285,7 +431,9 @@
         "Vi mangler fortsatt dokumentasjon.",
         "Du hører fra oss."
       ],
-      "mail_tags": ["unemployed"],
+      "mail_tags": [
+        "unemployed"
+      ],
       "choices": [],
       "feedback": "Bare virkelighet."
     }
