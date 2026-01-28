@@ -608,16 +608,9 @@
 }
 
 
-/* =========================
-   Skjul badge-lista i placeCard
-   (vi bruker kun preview-ikonet i rundingen)
-   ========================= */
-
-#placeCard #pcBadgesList{
-  display: none !important;
-}
-
-/* failsafe: hvis noen badges havner et annet sted */
-#placeCard .pc-badge{
-  display: none !important;
+/* Skjul root-badge i placeCard (uansett wrapper) */
+#placeCard .pc-scroll .pc-badges,
+#placeCard .pc-scroll #pcBadges,
+#placeCard .pc-scroll #pcBadge{
+  display: none;
 }
