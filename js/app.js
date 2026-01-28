@@ -49,6 +49,7 @@ const visited         = JSON.parse(localStorage.getItem("visited_places") || "{}
 const peopleCollected = JSON.parse(localStorage.getItem("people_collected") || "{}");
 const merits          = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
 
+window.merits = merits;
 // Dialoger og notater (History Go – V1)
 
 // Samtaler med personer (kan få egen visning senere)
@@ -219,6 +220,8 @@ function applyOpenModeUnlockAll() {
 function saveMerits() {
   localStorage.setItem("merits_by_category", JSON.stringify(merits));
 }
+
+window.saveMerits = saveMerits;
 
 function showToast(msg, ms = 2000) {
   const t = el.toast;
@@ -711,7 +714,7 @@ async function addCompletedQuizAndMaybePoint(categoryDisplay, quizId) {
   progress[categoryId].completed.push(quizId);
   localStorage.setItem("quiz_progress", JSON.stringify(progress));
 
-    const badgeId = String(categoryId || "").trim();
+  const badgeId = String(categoryId || "").trim();
   if (!badgeId) return;
 
   window.merits = window.merits || {};
