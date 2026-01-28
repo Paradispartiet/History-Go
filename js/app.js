@@ -1831,7 +1831,10 @@ if (typeof linkPeopleToPlaces === "function") {
 }
 
 await loadNature();
-   
+
+window.API = window.API || {};
+window.API.addCompletedQuizAndMaybePoint = (...args) => addCompletedQuizAndMaybePoint(...args);
+    
 // ✅ INIT QUIZ-MODUL (ETTER at PLACES/PEOPLE er lastet)
 if (window.QuizEngine) {
   QuizEngine.init({
