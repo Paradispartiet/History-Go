@@ -93,11 +93,11 @@
 
     // Mapping: badge-id (career_id) -> civic pack-fil
     this.packMap = opts.packMap || {
-      naeringsliv: "naeringslivCivic.json",
-      media: "mediaCivic.json",
-      by: "byCivic.json"
-    };
-  }
+     naering: "naeringslivCivic.json",
+     naeringsliv: "naeringslivCivic.json",
+     media: "mediaCivic.json",
+     by: "byCivic.json"
+  };  }
      
     // -------- state --------
     getState() {
