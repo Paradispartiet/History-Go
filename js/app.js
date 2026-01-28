@@ -373,8 +373,10 @@ function tagToCat(tags = []) {
 }
 
 // Bridge for visningsnavn
-const categoryId = (catIdFromDisplay(categoryDisplay) === "naering") ? "naeringsliv" : catIdFromDisplay(categoryDisplay);
-  return tagToCat(name);
+function catIdFromDisplay(name = "") {
+  // Canonical: naeringsliv
+  const id = tagToCat(name);
+  return id === "naering" ? "naeringsliv" : id;
 }
 
 
