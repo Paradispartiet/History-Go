@@ -1,9 +1,4 @@
-Ja 😄 — nå er du på det stedet hvor spillet får identitet, ikke bare mekanikk.
 
-Det du beskriver er helt riktig neste nivå, og det fine er:
-👉 du trenger ikke endre motoren, bare hvordan den brukes.
-
-Kort og konkret:
 
 ⸻
 
