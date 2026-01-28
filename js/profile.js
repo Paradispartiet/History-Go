@@ -202,6 +202,7 @@ function renderCivication() {
       if (item.tierIndex > best.tierIndex) best = item;
       else if (item.tierIndex === best.tierIndex && item.points > best.points) best = item;
     }
+  } // ✅ LUKK for (const k of keys)
 
   if (!best) {
     meritLn.textContent = "Merit: —";
@@ -213,8 +214,10 @@ function renderCivication() {
     : "aldri";
 
   meritLn.textContent = `Merit: ${best.roleLabel} (${best.badgeName}) · ${best.points} poeng · Sist: ${lastTxt}`;
-}
+} // ✅ LUKK function renderCivication()
 
+
+  
 function renderCivicationInbox() {
   const box = document.getElementById("civiInboxBox");
   const subj = document.getElementById("civiMailSubject");
