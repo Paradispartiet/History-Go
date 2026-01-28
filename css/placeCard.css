@@ -614,3 +614,14 @@
 #placeCard .pc-scroll #pcBadge{
   display: none;
 }
+/* =========================
+   Skjul globalt badge-bilde i placeCard
+   (badge skal kun vises i rundingen)
+   ========================= */
+
+#placeCard img.hg-app,
+#placeCard .hg-app img,
+#placeCard img[src*="badge"]{
+  display: none;
+}
+
