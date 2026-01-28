@@ -373,7 +373,7 @@ function tagToCat(tags = []) {
 }
 
 // Bridge for visningsnavn
-function catIdFromDisplay(name = "") {
+const categoryId = (catIdFromDisplay(categoryDisplay) === "naering") ? "naeringsliv" : catIdFromDisplay(categoryDisplay);
   return tagToCat(name);
 }
 
@@ -705,17 +705,17 @@ async function updateMeritLevel(cat, oldPoints, newPoints) {
 // Poengsystem – +1 poeng per fullført quiz
 async function addCompletedQuizAndMaybePoint(categoryDisplay, quizId) {
   const categoryId = catIdFromDisplay(categoryDisplay);
+  const canonicalCategoryId =
+  categoryId === "naering" ? "naeringsliv" : categoryId;
   const progress = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
-  progress[categoryId] = progress[categoryId] || { completed: [] };
+  progress[canonicalCategoryId] = progress[canonicalCategoryId] || { completed: [] };
 
-  // Hindre dobbel poeng for samme quiz
-  if (progress[categoryId].completed.includes(quizId)) return;
+if (progress[canonicalCategoryId].completed.includes(quizId)) return;
 
-  progress[categoryId].completed.push(quizId);
-  localStorage.setItem("quiz_progress", JSON.stringify(progress));
+progress[canonicalCategoryId].completed.push(quizId);
+localStorage.setItem("quiz_progress", JSON.stringify(progress));
 
-  const badgeId = String(categoryId || "").trim();
-  if (!badgeId) return;
+const badgeId = canonicalCategoryId;  if (!badgeId) return;
 
   window.merits = window.merits || {};
   window.merits[badgeId] = window.merits[badgeId] || { points: 0 };
