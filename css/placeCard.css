@@ -606,4 +606,18 @@
   opacity:0.92;
   line-height:1.35;
 }
- 
+
+
+/* =========================
+   Skjul badge-lista i placeCard
+   (vi bruker kun preview-ikonet i rundingen)
+   ========================= */
+
+#placeCard #pcBadgesList{
+  display: none !important;
+}
+
+/* failsafe: hvis noen badges havner et annet sted */
+#placeCard .pc-badge{
+  display: none !important;
+}
