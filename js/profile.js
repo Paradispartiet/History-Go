@@ -268,7 +268,7 @@ function renderCivicationInbox() {
       btnOK.style.display = "";
       btnOK.onclick = () => {
         renderCivication();
-        window.renderCivicationInbox.();
+        window.renderCivicationInbox();
         window.dispatchEvent(new Event("updateProfile"));
       };
     };
