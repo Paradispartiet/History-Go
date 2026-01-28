@@ -61,8 +61,6 @@
 }
 
 #placeCard .pc-icons{
-  grid-column: 2;
-  grid-row: 1;
 
   display: flex;
   flex-direction: column;
@@ -323,23 +321,33 @@
   gap: 10px;
 }
 
-/* People-popout: ankre til ikonkolonnen (samme top som people-ikonet) */
-#placeCard #pcPeopleList{
-  display: none; /* skjult som default */
+/* Gjør listene til "pc-list" så fellesregelen faktisk gjelder */
+#placeCard #pcPeopleList,
+#placeCard #pcBadgesList{
+  /* markerer at dette er popout-lister */
 }
 
+/* =====================================================
+   PEOPLE – horisontal scroll popout fra people-runding
+   ===================================================== */
+
+#placeCard #pcPeopleList{
+  display: none;
+}
+
+/* Åpen liste */
 #placeCard #pcPeopleList.is-open{
   display: flex;
   position: absolute;
 
-  /* samme høyde som første ikon (people) */
+  /* forankret til placeCard (IKKE layout-flyt) */
   top: 12px;
-
-  /* legg den til venstre for ikonkolonnen */
   right: calc(12px + var(--pc-person-img, 48px) + 10px);
 
   z-index: 100;
 
+  /* ⬅️ HORISONTAL SCROLL */
+  flex-direction: row;
   flex-wrap: nowrap;
   gap: 10px;
 
@@ -347,20 +355,14 @@
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
 
-  background: rgba(0,0,0,.92);
-  border-radius: 14px;
   padding: 8px 10px;
-  box-shadow: 0 14px 40px rgba(0,0,0,.45);
 
   pointer-events: auto;
-
-  /* start ved høyre kant (nær ikon) og vokse mot venstre */
-  flex-direction: row-reverse;
-  justify-content: flex-start;
 }
 
-/* Generell styling når en liste er åpen (kan brukes av nature/badges senere) */
-#placeCard .pc-list.is-open{
+/* Felles “chrome” for åpne lister */
+#placeCard #pcPeopleList.is-open,
+#placeCard #pcBadgesList.is-open{
   background: rgba(0,0,0,.92);
   border-radius: 14px;
   box-shadow: 0 14px 40px rgba(0,0,0,.45);
