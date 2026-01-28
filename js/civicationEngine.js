@@ -98,7 +98,6 @@
       by: "byCivic.json"
     };
   }
-}
      
     // -------- state --------
     getState() {
