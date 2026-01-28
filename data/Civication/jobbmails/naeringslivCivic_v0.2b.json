@@ -1,0 +1,832 @@
+{
+  "role": "naeringsliv",
+  "aliases": [
+    "naering"
+  ],
+  "version": "v0.2b",
+  "tag_rules": {
+    "max_tags_per_choice": 2,
+    "memory_window": 12
+  },
+  "tracks": [
+    {
+      "id": "bullshit_survivor",
+      "title": "Bullshit-overlever",
+      "tag_weights": {
+        "avoidance": 2,
+        "laziness": 2,
+        "legitimacy": 1
+      }
+    },
+    {
+      "id": "process_pusher",
+      "title": "Prosess-pusher",
+      "tag_weights": {
+        "process": 2,
+        "legitimacy": 2,
+        "avoidance": 1
+      }
+    },
+    {
+      "id": "shortcut_hustler",
+      "title": "Snarvei-hustler",
+      "tag_weights": {
+        "shortcut": 2,
+        "opportunism": 2,
+        "visibility": 2
+      }
+    },
+    {
+      "id": "craft_fixer",
+      "title": "Fikser",
+      "tag_weights": {
+        "craft": 2,
+        "process": 1,
+        "risk": 2
+      }
+    }
+  ],
+  "mails": [
+    {
+      "id": "arbeider_001",
+      "stage": "stable",
+      "subject": "Kan du ta en ekstra oppgave?",
+      "situation": [
+        "Det er litt mer å gjøre enn vanlig.",
+        "Ingen har egentlig oversikt.",
+        "Du blir spurt fordi du er tilgjengelig."
+      ],
+      "mail_tags": [
+        "arbeider",
+        "drift"
+      ],
+      "gating": {
+        "prefer_tags": [
+          "process",
+          "avoidance",
+          "laziness"
+        ],
+        "avoid_tags": [
+          "risk"
+        ],
+        "prefer_tracks": [
+          "bullshit_survivor",
+          "process_pusher"
+        ]
+      },
+      "choices": [
+        {
+          "id": "A",
+          "label": "Si ja",
+          "effect": 0,
+          "tags": [
+            "process"
+          ],
+          "feedback": "Du gjør jobben. Ingen legger merke til det."
+        },
+        {
+          "id": "B",
+          "label": "Si du er opptatt",
+          "effect": 0,
+          "tags": [
+            "avoidance",
+            "laziness"
+          ],
+          "feedback": "Noen andre tar den."
+        }
+      ]
+    },
+    {
+      "id": "arbeider_002",
+      "stage": "stable",
+      "subject": "Det mangler folk i dag",
+      "situation": [
+        "To kolleger er borte.",
+        "Oppgavene må fortsatt gjøres.",
+        "Ingen har gitt klare beskjeder."
+      ],
+      "mail_tags": [
+        "arbeider",
+        "kapasitet"
+      ],
+      "gating": {
+        "prefer_tags": [
+          "process",
+          "avoidance"
+        ],
+        "avoid_tags": [
+          "visibility"
+        ],
+        "prefer_tracks": [
+          "bullshit_survivor",
+          "process_pusher"
+        ]
+      },
+      "choices": [
+        {
+          "id": "A",
+          "label": "Jobb litt ekstra",
+          "effect": 0,
+          "tags": [
+            "process",
+            "craft"
+          ],
+          "feedback": "Du får det unna. Ingen nevner det."
+        },
+        {
+          "id": "B",
+          "label": "Gjør bare ditt",
+          "effect": 0,
+          "tags": [
+            "laziness",
+            "avoidance"
+          ],
+          "feedback": "Det går akkurat."
+        }
+      ]
+    },
+    {
+      "id": "arbeider_003",
+      "stage": "stable",
+      "subject": "Små forbedringer",
+      "situation": [
+        "Du ser en raskere måte å gjøre jobben på.",
+        "Ingen har spurt om innspill."
+      ],
+      "mail_tags": [
+        "arbeider",
+        "forbedring"
+      ],
+      "gating": {
+        "prefer_tags": [
+          "craft",
+          "risk",
+          "visibility"
+        ],
+        "avoid_tags": [
+          "avoidance"
+        ],
+        "prefer_tracks": [
+          "bullshit_survivor",
+          "process_pusher"
+        ]
+      },
+      "choices": [
+        {
+          "id": "A",
+          "label": "Foreslå endringen",
+          "effect": -1,
+          "tags": [
+            "risk",
+            "visibility"
+          ],
+          "feedback": "Det blir litt stille etterpå."
+        },
+        {
+          "id": "B",
+          "label": "Gjør som før",
+          "effect": 1,
+          "tags": [
+            "process",
+            "avoidance"
+          ],
+          "feedback": "Det er forutsigbart."
+        }
+      ]
+    },
+    {
+      "id": "fagarbeider_001",
+      "stage": "stable_warning",
+      "subject": "Dette burde vært gjort annerledes",
+      "situation": [
+        "Du ser en bedre måte å gjøre ting på.",
+        "Ingen har spurt deg.",
+        "Du vet at forslag kan slå begge veier."
+      ],
+      "mail_tags": [
+        "fagarbeider",
+        "kvalitet"
+      ],
+      "gating": {
+        "prefer_tags": [
+          "craft",
+          "process"
+        ],
+        "avoid_tags": [
+          "shortcut"
+        ],
+        "prefer_tracks": [
+          "craft_fixer",
+          "process_pusher"
+        ]
+      },
+      "choices": [
+        {
+          "id": "A",
+          "label": "Si ifra",
+          "effect": -1,
+          "tags": [
+            "risk",
+            "visibility"
+          ],
+          "feedback": "Det skaper diskusjon."
+        },
+        {
+          "id": "B",
+          "label": "Gjør som før",
+          "effect": 1,
+          "tags": [
+            "process",
+            "avoidance"
+          ],
+          "feedback": "Det er trygt. Kanskje for trygt."
+        },
+        {
+          "id": "C",
+          "label": "Fiks det stille",
+          "effect": 0,
+          "tags": [
+            "craft",
+            "avoidance"
+          ],
+          "feedback": "Det fungerer. Ingen vet hvorfor."
+        }
+      ]
+    },
+    {
+      "id": "fagarbeider_002",
+      "stage": "stable_warning",
+      "subject": "Hvem bestemmer egentlig?",
+      "situation": [
+        "To ledere gir ulike beskjeder.",
+        "Begge forventer at du følger deres."
+      ],
+      "mail_tags": [
+        "fagarbeider",
+        "mandat"
+      ],
+      "gating": {
+        "prefer_tags": [
+          "legitimacy",
+          "process"
+        ],
+        "avoid_tags": [
+          "risk"
+        ],
+        "prefer_tracks": [
+          "craft_fixer",
+          "process_pusher"
+        ]
+      },
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velg én og gjør jobben",
+          "effect": -1,
+          "tags": [
+            "shortcut",
+            "risk"
+          ],
+          "feedback": "Den andre blir misfornøyd."
+        },
+        {
+          "id": "B",
+          "label": "Be dem avklare",
+          "effect": 1,
+          "tags": [
+            "process",
+            "legitimacy"
+          ],
+          "feedback": "Det tar tid, men ansvaret flyttes."
+        },
+        {
+          "id": "C",
+          "label": "Gjør ingenting ennå",
+          "effect": 0,
+          "tags": [
+            "avoidance"
+          ],
+          "feedback": "Ingen sier noe. Foreløpig."
+        }
+      ]
+    },
+    {
+      "id": "fagarbeider_003",
+      "stage": "stable_warning",
+      "subject": "Dette er ikke optimalt",
+      "situation": [
+        "En løsning fungerer, men er dårlig.",
+        "Du vet det finnes en bedre."
+      ],
+      "mail_tags": [
+        "fagarbeider",
+        "forbedring"
+      ],
+      "gating": {
+        "prefer_tags": [
+          "craft",
+          "shortcut"
+        ],
+        "avoid_tags": [
+          "laziness"
+        ],
+        "prefer_tracks": [
+          "craft_fixer",
+          "process_pusher"
+        ]
+      },
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta det opp i møte",
+          "effect": -1,
+          "tags": [
+            "visibility",
+            "risk"
+          ],
+          "feedback": "Diskusjonen blir større enn saken."
+        },
+        {
+          "id": "B",
+          "label": "La det være",
+          "effect": 1,
+          "tags": [
+            "avoidance",
+            "process"
+          ],
+          "feedback": "Det er ikke ditt ansvar."
+        },
+        {
+          "id": "C",
+          "label": "Forbedre det diskret",
+          "effect": 0,
+          "tags": [
+            "craft",
+            "avoidance"
+          ],
+          "feedback": "Resultatet blir bedre. Ingen spør hvorfor."
+        }
+      ]
+    },
+    {
+      "id": "fagarbeider_004",
+      "stage": "warning",
+      "subject": "Du virker negativ",
+      "situation": [
+        "Noen opplever at du stiller for mange spørsmål.",
+        "Det blir nevnt i forbifarten."
+      ],
+      "mail_tags": [
+        "fagarbeider",
+        "friksjon"
+      ],
+      "gating": {
+        "prefer_tags": [
+          "visibility",
+          "risk"
+        ],
+        "avoid_tags": [
+          "legitimacy"
+        ],
+        "prefer_tracks": [
+          "craft_fixer",
+          "process_pusher"
+        ]
+      },
+      "choices": [
+        {
+          "id": "A",
+          "label": "Forklare deg",
+          "effect": -1,
+          "tags": [
+            "visibility",
+            "risk"
+          ],
+          "feedback": "Det blir notert."
+        },
+        {
+          "id": "B",
+          "label": "Tone det ned",
+          "effect": 1,
+          "tags": [
+            "avoidance",
+            "legitimacy"
+          ],
+          "feedback": "Stemningen roer seg."
+        },
+        {
+          "id": "C",
+          "label": "Ignorere kommentaren",
+          "effect": 0,
+          "tags": [
+            "avoidance"
+          ],
+          "feedback": "Det forsvinner. Kanskje."
+        }
+      ]
+    },
+    {
+      "id": "mellomleder_001",
+      "stage": "stable",
+      "subject": "Kan du ta et raskt møte?",
+      "situation": [
+        "En sak haster.",
+        "Alle vil at noen «tar tak».",
+        "Du merker at «ta tak» betyr «sette det i kalenderen»."
+      ],
+      "mail_tags": [
+        "mellomleder",
+        "koordinering"
+      ],
+      "gating": {
+        "prefer_tags": [
+          "process",
+          "legitimacy",
+          "avoidance"
+        ],
+        "avoid_tags": [
+          "risk"
+        ],
+        "prefer_tracks": [
+          "process_pusher",
+          "bullshit_survivor",
+          "shortcut_hustler"
+        ]
+      },
+      "choices": [
+        {
+          "id": "A",
+          "label": "Kall inn til møte",
+          "effect": 1,
+          "tags": [
+            "process",
+            "legitimacy"
+          ],
+          "feedback": "Ting settes i gang. Ingen vet hva som skjer, men det skjer."
+        },
+        {
+          "id": "B",
+          "label": "Be om skriftlig oppsummering",
+          "effect": 0,
+          "tags": [
+            "process"
+          ],
+          "feedback": "Du får en lang e-post. Det hjelper ikke, men det finnes."
+        },
+        {
+          "id": "C",
+          "label": "Si du ser på det",
+          "effect": 1,
+          "tags": [
+            "avoidance",
+            "legitimacy"
+          ],
+          "feedback": "Dette noteres. Det er utrolig hvor langt det holder."
+        }
+      ]
+    },
+    {
+      "id": "mellomleder_002",
+      "stage": "stable",
+      "subject": "Hvem eier egentlig denne saken?",
+      "situation": [
+        "En oppgave har falt mellom to stoler.",
+        "Begge peker på hverandre.",
+        "Du får en e-post med CC-kjede på 14 personer."
+      ],
+      "mail_tags": [
+        "mellomleder",
+        "ansvar"
+      ],
+      "gating": {
+        "prefer_tags": [
+          "avoidance",
+          "process",
+          "legitimacy"
+        ],
+        "avoid_tags": [
+          "craft"
+        ],
+        "prefer_tracks": [
+          "process_pusher",
+          "bullshit_survivor",
+          "shortcut_hustler"
+        ]
+      },
+      "choices": [
+        {
+          "id": "A",
+          "label": "Be dem avklare seg imellom",
+          "effect": 1,
+          "tags": [
+            "avoidance",
+            "legitimacy"
+          ],
+          "feedback": "Du gjør ingenting. Likevel blir du oppfattet som ryddig."
+        },
+        {
+          "id": "B",
+          "label": "Ta saken midlertidig",
+          "effect": -1,
+          "tags": [
+            "risk"
+          ],
+          "feedback": "Nå er det plutselig din sak. Det var dumt."
+        },
+        {
+          "id": "C",
+          "label": "Eskalere oppover",
+          "effect": 1,
+          "tags": [
+            "legitimacy",
+            "avoidance"
+          ],
+          "feedback": "Noen over deg får det. Du får fred."
+        }
+      ]
+    },
+    {
+      "id": "mellomleder_003",
+      "stage": "stable_warning",
+      "subject": "Dette ser ikke bra ut",
+      "situation": [
+        "Tallene peker feil vei.",
+        "Ingen vil presentere dem.",
+        "Noen foreslår at du «tar narrativet»."
+      ],
+      "mail_tags": [
+        "mellomleder",
+        "narrativ"
+      ],
+      "gating": {
+        "prefer_tags": [
+          "process",
+          "avoidance"
+        ],
+        "avoid_tags": [
+          "risk"
+        ],
+        "prefer_tracks": [
+          "process_pusher",
+          "bullshit_survivor",
+          "shortcut_hustler"
+        ]
+      },
+      "choices": [
+        {
+          "id": "A",
+          "label": "Be om mer data",
+          "effect": 1,
+          "tags": [
+            "process",
+            "avoidance"
+          ],
+          "feedback": "Dette må analyseres nærmere. Du kjøper tid."
+        },
+        {
+          "id": "B",
+          "label": "Formidle bekymring forsiktig",
+          "effect": 0,
+          "tags": [
+            "legitimacy"
+          ],
+          "feedback": "Tonen noteres. Utfallet er uklart."
+        },
+        {
+          "id": "C",
+          "label": "Vent til neste rapport",
+          "effect": 1,
+          "tags": [
+            "avoidance"
+          ],
+          "feedback": "Det går over i en ny syklus. Alle later som det er normalt."
+        }
+      ]
+    },
+    {
+      "id": "mellomleder_004",
+      "stage": "warning",
+      "is_warning_mail": true,
+      "subject": "Utydelige ansvarsforhold",
+      "situation": [
+        "Noen opplever at ting stopper opp.",
+        "Navnet ditt nevnes.",
+        "Du får følelsen av at dette handler om å plassere skyld – ikke å fikse."
+      ],
+      "mail_tags": [
+        "mellomleder",
+        "advarsel"
+      ],
+      "gating": {
+        "prefer_tags": [
+          "process",
+          "legitimacy",
+          "avoidance"
+        ],
+        "avoid_tags": [
+          "risk"
+        ],
+        "prefer_tracks": [
+          "process_pusher",
+          "bullshit_survivor",
+          "shortcut_hustler"
+        ]
+      },
+      "choices": [
+        {
+          "id": "A",
+          "label": "Initiere en prosess for avklaring",
+          "effect": 1,
+          "tags": [
+            "process",
+            "legitimacy"
+          ],
+          "feedback": "Dette settes på agendaen. Det føles som kontroll."
+        },
+        {
+          "id": "B",
+          "label": "Forklare kompleksiteten",
+          "effect": 0,
+          "tags": [
+            "legitimacy"
+          ],
+          "feedback": "De nikker. Du aner ikke om det hjelper."
+        },
+        {
+          "id": "C",
+          "label": "Foreslå tydelige roller og eierskap",
+          "effect": -1,
+          "tags": [
+            "risk",
+            "visibility"
+          ],
+          "feedback": "Du skaper forventninger om leveranse. Det er farlig."
+        }
+      ]
+    },
+    {
+      "id": "mellomleder_005",
+      "stage": "warning",
+      "subject": "Leveranse uteblir",
+      "situation": [
+        "En frist er passert.",
+        "Noen over deg spør hva som skjer.",
+        "Du vet at sannheten er en dårlig strategi."
+      ],
+      "mail_tags": [
+        "mellomleder",
+        "leveranse"
+      ],
+      "gating": {
+        "prefer_tags": [
+          "avoidance",
+          "legitimacy",
+          "process"
+        ],
+        "avoid_tags": [
+          "risk"
+        ],
+        "prefer_tracks": [
+          "process_pusher",
+          "bullshit_survivor",
+          "shortcut_hustler"
+        ]
+      },
+      "choices": [
+        {
+          "id": "A",
+          "label": "Forklar avhengigheter",
+          "effect": 1,
+          "tags": [
+            "process",
+            "legitimacy"
+          ],
+          "feedback": "Dette tas til etterretning. Ingen kan motbevise deg."
+        },
+        {
+          "id": "B",
+          "label": "Pek på ressursmangel",
+          "effect": 0,
+          "tags": [
+            "legitimacy"
+          ],
+          "feedback": "Det blir en diskusjon. Ikke din favoritt."
+        },
+        {
+          "id": "C",
+          "label": "Love oppfølging",
+          "effect": 1,
+          "tags": [
+            "avoidance",
+            "legitimacy"
+          ],
+          "feedback": "Du kjøper en dag. Kanskje en uke."
+        }
+      ]
+    },
+    {
+      "id": "mellomleder_006",
+      "stage": "warning_danger",
+      "subject": "Hvem tok denne beslutningen?",
+      "situation": [
+        "Noe gikk galt.",
+        "Alle ser oppover – og til siden.",
+        "Noen formulerer spørsmålet slik at det må ha et navn."
+      ],
+      "mail_tags": [
+        "mellomleder",
+        "krise"
+      ],
+      "gating": {
+        "prefer_tags": [
+          "avoidance",
+          "process",
+          "legitimacy"
+        ],
+        "avoid_tags": [
+          "risk"
+        ],
+        "prefer_tracks": [
+          "process_pusher",
+          "bullshit_survivor",
+          "shortcut_hustler"
+        ]
+      },
+      "choices": [
+        {
+          "id": "A",
+          "label": "Si beslutningen var kollektiv",
+          "effect": 1,
+          "tags": [
+            "legitimacy",
+            "avoidance"
+          ],
+          "feedback": "Felles vurdering. Alle kan late som de var der."
+        },
+        {
+          "id": "B",
+          "label": "Si den fulgte prosess",
+          "effect": 1,
+          "tags": [
+            "process",
+            "legitimacy"
+          ],
+          "feedback": "Prosessen gjennomgås. Det betyr ingenting og alt."
+        },
+        {
+          "id": "C",
+          "label": "Ta ansvar",
+          "effect": -2,
+          "tags": [
+            "risk",
+            "visibility"
+          ],
+          "feedback": "Takk. Nå er det plutselig veldig klart."
+        }
+      ]
+    },
+    {
+      "id": "mellomleder_007",
+      "stage": "fired",
+      "subject": "Omorganisering",
+      "situation": [
+        "Strukturen endres.",
+        "Rollen din bortfaller.",
+        "Det sies at dette ikke er personlig."
+      ],
+      "mail_tags": [
+        "fired"
+      ],
+      "choices": [],
+      "effect": "job_lost",
+      "feedback": "Vi takker for innsatsen.",
+      "gating": {
+        "prefer_tracks": [
+          "process_pusher",
+          "bullshit_survivor",
+          "shortcut_hustler"
+        ]
+      }
+    },
+    {
+      "id": "nav_001",
+      "stage": "unemployed",
+      "source": "NAV",
+      "subject": "Din sak er registrert",
+      "situation": [
+        "Vi mangler fortsatt dokumentasjon.",
+        "Du hører fra oss."
+      ],
+      "mail_tags": [
+        "unemployed"
+      ],
+      "choices": [],
+      "feedback": "Bare virkelighet.",
+      "gating": {
+        "prefer_tracks": [
+          "bullshit_survivor"
+        ]
+      }
+    }
+  ]
+}
