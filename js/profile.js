@@ -743,13 +743,15 @@ function renderLatestTrivia() {
 
   if (!box || !elTopic || !elCat) return;
 
-  const uni = getTriviaUniverse ? getTriviaUniverse() : {};
+  const uni = (typeof window.getTriviaUniverse === "function")
+  ? window.getTriviaUniverse()
+  : {};
   const flat = [];
 
   // Flate ut universet → liste
   for (const cat of Object.keys(uni)) {
-    for (const id of Object.keys(uni[cat])) {
-      uni[cat][id].forEach(t => {
+    for (const id of Object.keys(uni[cat] || {})) {
+      (uni[cat][id] || []).forEach(t => {
         flat.push({
           category: cat,
           id: id,
