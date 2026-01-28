@@ -1,6 +1,52 @@
 {
-  "role": "byplanlegger",
-  "version": "v0.2",
+  "role": "by",
+  "aliases": [
+    "byplanlegger",
+    "byplanlegging"
+  ],
+  "version": "v0.2b",
+  "tag_rules": {
+    "max_tags_per_choice": 2,
+    "memory_window": 12
+  },
+  "tracks": [
+    {
+      "id": "developer_friendly",
+      "title": "Utbygger-venn",
+      "tag_weights": {
+        "shortcut": 2,
+        "opportunism": 2,
+        "avoidance": 1
+      }
+    },
+    {
+      "id": "process_guard",
+      "title": "Prosess-vokter",
+      "tag_weights": {
+        "process": 2,
+        "legitimacy": 2,
+        "avoidance": 1
+      }
+    },
+    {
+      "id": "urban_steward",
+      "title": "Byforvalter",
+      "tag_weights": {
+        "craft": 2,
+        "risk": 2,
+        "process": 1
+      }
+    },
+    {
+      "id": "conflict_avoider",
+      "title": "Konfliktsky",
+      "tag_weights": {
+        "avoidance": 2,
+        "process": 1,
+        "legitimacy": 1
+      }
+    }
+  ],
   "mails": [
     {
       "id": "byplanlegger_001",
@@ -16,21 +62,52 @@
           "id": "A",
           "label": "Godkjenn – endringen er marginal",
           "effect": 1,
-          "feedback": "Saken glir videre. Du blir ikke nevnt."
+          "feedback": "Saken glir videre. Du blir ikke nevnt.",
+          "tags": [
+            "shortcut",
+            "opportunism"
+          ]
         },
         {
           "id": "B",
           "label": "Avslå – planen er planen",
           "effect": 0,
-          "feedback": "Du får flere e-poster enn du ønsker."
+          "feedback": "Du får flere e-poster enn du ønsker.",
+          "tags": [
+            "process",
+            "legitimacy"
+          ]
         },
         {
           "id": "C",
           "label": "Be om ny visualisering",
           "effect": -1,
-          "feedback": "Prosessen stopper. Folk spør hvorfor."
+          "feedback": "Prosessen stopper. Folk spør hvorfor.",
+          "tags": [
+            "process",
+            "avoidance"
+          ]
         }
-      ]
+      ],
+      "mail_tags": [
+        "byplanlegger",
+        "reguleringsplan",
+        "utbygger"
+      ],
+      "gating": {
+        "prefer_tracks": [
+          "developer_friendly",
+          "process_guard"
+        ],
+        "prefer_tags": [
+          "shortcut",
+          "process",
+          "legitimacy"
+        ],
+        "avoid_tags": [
+          "risk"
+        ]
+      }
     },
     {
       "id": "byplanlegger_002",
@@ -46,21 +123,53 @@
           "id": "A",
           "label": "Velg benker – konkret og raskt",
           "effect": 1,
-          "feedback": "Noe skjer. Det er rart hvor mye det teller."
+          "feedback": "Noe skjer. Det er rart hvor mye det teller.",
+          "tags": [
+            "shortcut",
+            "process"
+          ]
         },
         {
           "id": "B",
           "label": "Velg trær – det ser bedre ut i presentasjoner",
           "effect": 0,
-          "feedback": "Folk liker ideen, men det tar tid."
+          "feedback": "Folk liker ideen, men det tar tid.",
+          "tags": [
+            "visibility",
+            "opportunism"
+          ]
         },
         {
           "id": "C",
           "label": "Utsett – sett det på neste agenda",
           "effect": 1,
-          "feedback": "Saken blir borte i en stund. Alle virker lettet."
+          "feedback": "Saken blir borte i en stund. Alle virker lettet.",
+          "tags": [
+            "avoidance",
+            "process"
+          ]
         }
-      ]
+      ],
+      "mail_tags": [
+        "byplanlegger",
+        "torg",
+        "prioritering"
+      ],
+      "gating": {
+        "prefer_tracks": [
+          "conflict_avoider",
+          "developer_friendly",
+          "urban_steward"
+        ],
+        "prefer_tags": [
+          "shortcut",
+          "avoidance",
+          "craft"
+        ],
+        "avoid_tags": [
+          "risk"
+        ]
+      }
     },
     {
       "id": "byplanlegger_003",
@@ -76,21 +185,53 @@
           "id": "A",
           "label": "Gå videre – prosessen er formelt riktig",
           "effect": 1,
-          "feedback": "Fremdrift. Ingen takker deg, men ingen stopper deg."
+          "feedback": "Fremdrift. Ingen takker deg, men ingen stopper deg.",
+          "tags": [
+            "process",
+            "avoidance"
+          ]
         },
         {
           "id": "B",
           "label": "Utvid høringen",
           "effect": 0,
-          "feedback": "Det kommer litt mer innspill. Og mer arbeid."
+          "feedback": "Det kommer litt mer innspill. Og mer arbeid.",
+          "tags": [
+            "process",
+            "craft"
+          ]
         },
         {
           "id": "C",
           "label": "Kontakt lokale aktører direkte",
           "effect": -1,
-          "feedback": "Du får svar. Og dermed også ansvar."
+          "feedback": "Du får svar. Og dermed også ansvar.",
+          "tags": [
+            "risk",
+            "visibility"
+          ]
         }
-      ]
+      ],
+      "mail_tags": [
+        "byplanlegger",
+        "horing",
+        "fremdrift"
+      ],
+      "gating": {
+        "prefer_tracks": [
+          "process_guard",
+          "urban_steward",
+          "developer_friendly"
+        ],
+        "prefer_tags": [
+          "process",
+          "legitimacy",
+          "risk"
+        ],
+        "avoid_tags": [
+          "laziness"
+        ]
+      }
     },
     {
       "id": "byplanlegger_004",
@@ -107,21 +248,52 @@
           "id": "A",
           "label": "Noter innspillene og gå videre",
           "effect": 1,
-          "feedback": "Det roer seg. Merkelig nok."
+          "feedback": "Det roer seg. Merkelig nok.",
+          "tags": [
+            "avoidance",
+            "legitimacy"
+          ]
         },
         {
           "id": "B",
           "label": "Forklar prosessen grundig",
           "effect": 0,
-          "feedback": "Det blir stille. Men ikke på en god måte."
+          "feedback": "Det blir stille. Men ikke på en god måte.",
+          "tags": [
+            "legitimacy",
+            "visibility"
+          ]
         },
         {
           "id": "C",
           "label": "Ta initiativ til en gjennomgang",
           "effect": -1,
-          "feedback": "Du får eierskap til et problem du ikke trengte."
+          "feedback": "Du får eierskap til et problem du ikke trengte.",
+          "tags": [
+            "risk",
+            "process"
+          ]
         }
-      ]
+      ],
+      "mail_tags": [
+        "byplanlegger",
+        "prosess",
+        "advarsel"
+      ],
+      "gating": {
+        "prefer_tracks": [
+          "conflict_avoider",
+          "process_guard"
+        ],
+        "prefer_tags": [
+          "avoidance",
+          "legitimacy",
+          "process"
+        ],
+        "avoid_tags": [
+          "shortcut"
+        ]
+      }
     },
     {
       "id": "byplanlegger_005",
@@ -137,21 +309,53 @@
           "id": "A",
           "label": "Gi dispensasjon",
           "effect": 1,
-          "feedback": "Saken løses. Det blir aldri snakket om igjen (foreløpig)."
+          "feedback": "Saken løses. Det blir aldri snakket om igjen (foreløpig).",
+          "tags": [
+            "shortcut",
+            "opportunism"
+          ]
         },
         {
           "id": "B",
           "label": "Avslå",
           "effect": 0,
-          "feedback": "Dette blir en sak. Det er sjelden verdt det."
+          "feedback": "Dette blir en sak. Det er sjelden verdt det.",
+          "tags": [
+            "risk",
+            "legitimacy"
+          ]
         },
         {
           "id": "C",
           "label": "Send saken videre",
           "effect": 1,
-          "feedback": "Ansvar fordeles. Du puster igjen."
+          "feedback": "Ansvar fordeles. Du puster igjen.",
+          "tags": [
+            "avoidance",
+            "legitimacy"
+          ]
         }
-      ]
+      ],
+      "mail_tags": [
+        "byplanlegger",
+        "dispensasjon",
+        "unntak"
+      ],
+      "gating": {
+        "prefer_tracks": [
+          "developer_friendly",
+          "conflict_avoider",
+          "process_guard"
+        ],
+        "prefer_tags": [
+          "shortcut",
+          "avoidance",
+          "legitimacy"
+        ],
+        "avoid_tags": [
+          "craft"
+        ]
+      }
     },
     {
       "id": "byplanlegger_006",
@@ -167,21 +371,53 @@
           "id": "A",
           "label": "La det ligge",
           "effect": 1,
-          "feedback": "Ingen reagerer. Det er nesten provoserende."
+          "feedback": "Ingen reagerer. Det er nesten provoserende.",
+          "tags": [
+            "avoidance",
+            "laziness"
+          ]
         },
         {
           "id": "B",
           "label": "Ettersend uten oppstyr",
           "effect": 0,
-          "feedback": "Noen legger merke til endringen."
+          "feedback": "Noen legger merke til endringen.",
+          "tags": [
+            "process",
+            "avoidance"
+          ]
         },
         {
           "id": "C",
           "label": "Rett og loggfør formelt",
           "effect": -1,
-          "feedback": "Du lager et spor. Spor kan brukes mot deg."
+          "feedback": "Du lager et spor. Spor kan brukes mot deg.",
+          "tags": [
+            "process",
+            "risk"
+          ]
         }
-      ]
+      ],
+      "mail_tags": [
+        "byplanlegger",
+        "dokumentasjon",
+        "spor"
+      ],
+      "gating": {
+        "prefer_tracks": [
+          "conflict_avoider",
+          "process_guard",
+          "urban_steward"
+        ],
+        "prefer_tags": [
+          "avoidance",
+          "process",
+          "risk"
+        ],
+        "avoid_tags": [
+          "opportunism"
+        ]
+      }
     },
     {
       "id": "byplanlegger_007",
@@ -194,7 +430,20 @@
       ],
       "choices": [],
       "effect": "job_lost",
-      "feedback": "Du tas av prosjektporteføljen."
+      "feedback": "Du tas av prosjektporteføljen.",
+      "mail_tags": [
+        "fired"
+      ],
+      "gating": {
+        "prefer_tracks": [
+          "developer_friendly",
+          "process_guard",
+          "urban_steward",
+          "conflict_avoider"
+        ],
+        "prefer_tags": [],
+        "avoid_tags": []
+      }
     },
     {
       "id": "nav_001",
@@ -206,7 +455,15 @@
         "Du hører fra oss."
       ],
       "choices": [],
-      "feedback": "Bare virkelighet."
+      "feedback": "Bare virkelighet.",
+      "mail_tags": [
+        "unemployed"
+      ],
+      "gating": {
+        "prefer_tracks": [],
+        "prefer_tags": [],
+        "avoid_tags": []
+      }
     }
   ]
 }
