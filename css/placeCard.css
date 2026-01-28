@@ -95,15 +95,6 @@
   object-fit: cover;
 }
 
-/* Thumbnails i people-popout skal matche rundingene */
-#placeCard #pcPeopleList .pc-person-img{
-  width: var(--pc-person-img, 48px);
-  height: var(--pc-person-img, 48px);
-  border-radius: 50%;
-  object-fit: cover;
-  display: block;
-}
-
 
 #placeCard img#pcImage,
 #placeCard .pc-img{
@@ -374,6 +365,54 @@
   border-radius: 14px;
   box-shadow: 0 14px 40px rgba(0,0,0,.45);
 }
+
+
+/* =========================
+   POP-OUT FRA BADGE-IKON
+   ========================= */
+
+#placeCard #pcBadgesList{
+  display: none; /* skjult som default */
+}
+
+#placeCard #pcBadgesList.is-open{
+  display: flex;
+  position: absolute;
+
+  /* 3. ikon i kolonnen (0=people, 1=nature, 2=badges) */
+  top: calc(12px + (2 * (var(--pc-person-img, 48px) + 10px)));
+
+  right: calc(12px + var(--pc-person-img, 48px) + 10px);
+  z-index: 100;
+
+  flex-wrap: nowrap;
+  gap: 10px;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+
+  background: rgba(0,0,0,.92);
+  border-radius: 14px;
+  padding: 8px 10px;
+  box-shadow: 0 14px 40px rgba(0,0,0,.45);
+
+  pointer-events: auto;
+
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+}
+
+#placeCard #pcBadgesList .pc-badge img{
+  width: var(--pc-person-img, 48px);
+  height: var(--pc-person-img, 48px);
+  border-radius: 50%;
+  object-fit: contain;
+  background: #000;
+  border: 1px solid rgba(255,255,255,0.15);
+  display: block;
+}
+
 
 /* =====================================================
    PlaceCard actions – ÉN RAD, sentrert, ikon-only (ID-sikkert)
