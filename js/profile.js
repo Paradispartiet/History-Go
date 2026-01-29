@@ -117,7 +117,7 @@ function getLatestPendingOffer() {
     }
 
     // funnet gyldig pending offer
-    if (dirty) setJobOffers(offers);
+    if (dirty) setJobOffers(offers); // skriv tilbake hvis vi markerte noe expired på veien
     return o;
   }
 
@@ -126,34 +126,32 @@ function getLatestPendingOffer() {
   return null;
 }
 
-
 function acceptOfferById(offerId) {
   const offers = getJobOffers();
-  const offer = offers.find(o => o && o.id === offerId);
-  if (!offer || offer.status !== "pending") return null;
+  const o = offers.find(x => x && x.id === offerId);
+  if (!o || o.status !== "pending") return null;
 
-  offer.status = "accepted";
+  o.status = "accepted";
   setJobOffers(offers);
 
-  // Aktiv jobb = offer -> hg_active_position_v1
+  // Sett aktiv jobb
   setActivePosition({
-    career_id: offer.career_id,
-    career_name: offer.career_name,
-    title: offer.title,
+    career_id: o.career_id,
+    career_name: o.career_name,
+    title: o.title,
     achieved_at: new Date().toISOString(),
-    // role_key lar motoren finne riktig pack (valgfritt, men bra)
-    role_key: offer.career_id
+    role_key: o.career_id // viktig for Civication-packMap
   });
 
-  return offer;
+  return o;
 }
 
 function declineOfferById(offerId) {
   const offers = getJobOffers();
-  const offer = offers.find(o => o && o.id === offerId);
-  if (!offer || offer.status !== "pending") return false;
+  const o = offers.find(x => x && x.id === offerId);
+  if (!o || o.status !== "pending") return false;
 
-  offer.status = "declined";
+  o.status = "declined";
   setJobOffers(offers);
   return true;
 }
