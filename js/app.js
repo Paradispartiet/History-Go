@@ -939,7 +939,7 @@ const info =
   const textEl  = modal.querySelector(".badge-progress-text");
   const barEl   = modal.querySelector(".badge-progress-bar");
 
-  if (imgEl)   imgEl.src = badge.image;
+  if (imgEl)  imgEl.src = (badge.image || badge.icon || badge.img || badge.imageCard || "");
   if (titleEl) titleEl.textContent = badge.name;
 
   // Kanonisk: vis nivå ut fra tiers+points (ikke lagret level-tekst)
