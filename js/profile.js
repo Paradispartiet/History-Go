@@ -345,38 +345,36 @@ async function renderMerits() {
   // STRICT: vi prøver først badge.id som key (canonical).
   // Backward-compat: hvis noen gamle keys er badge.name, støtter vi det også – men uten "includes".
   function getBadgeForMeritKey(key) {
-    const k = String(key || "").trim();
-    if (!k) return null;
+  const k = String(key || "").trim();
+  if (!k) return null;
 
-    // 1) canonical: id
-    let b = BADGES.find(x => String(x.id || "").trim() === k);
-    if (b) return b;
+  // 1) canonical: id (strict)
+  let b = BADGES.find(x => String(x?.id || "").trim() === k);
+  if (b) return b;
 
-    return null;
-  }
+  // 2) strict fallback: name (no includes)
+  b = BADGES.find(x => String(x?.name || "").trim() === k);
+  if (b) return b;
 
+  // 3) strict fallback: noen datasett bruker categoryId/key
+  b = BADGES.find(x =>
+    String(x?.categoryId || "").trim() === k ||
+    String(x?.key || "").trim() === k
+  );
+  if (b) return b;
+
+  // 4) strict fallback: prøv prefiks (hvis du noen gang har lagret sånn)
+  b = BADGES.find(x => String(x?.id || "").trim() === `badge_${k}`);
+  if (b) return b;
+
+  return null;
+}
   box.innerHTML = keys
     .map((k) => {
-      const badge = getBadgeForMeritKey(k);
+const badge = getBadgeForMeritKey(k);
 if (!badge) {
   if (window.DEBUG) console.warn("[profile] renderMerits: no badge for merit key:", k);
-
-  // FALLBACK: vis "ukjent" merit i grid så profilen ikke blir tom
-  const merit = merits[k] || {};
-  const points = Number(merit.points || 0);
-
-  return `
-    <div class="badge-mini badge-mini-missing" data-missing-merit="${_esc(k)}">
-      <div class="badge-wrapper">
-        <div class="badge-mini-icon"
-             style="display:flex;align-items:center;justify-content:center;border-radius:12px;border:1px solid rgba(255,255,255,.15);background:rgba(0,0,0,.25);">
-          🏷️
-        </div>
-      </div>
-      <div class="badge-mini-level">${_esc(k)}</div>
-      <div class="badge-mini-level" style="opacity:.8">${points} poeng</div>
-    </div>
-  `;
+  return ""; // ikke render “ukjent”-kort (ingen 🏷️)
 }
 
       const merit = merits[k] || {};
