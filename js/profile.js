@@ -888,14 +888,17 @@ document.addEventListener("DOMContentLoaded", async () => {
   try {
     // 1) LAST DATA via DataHub (ikke direkte fetch her)
     const [people, places, badges] = await Promise.all([
-      window.DataHub?.loadPeople?.(),
-      window.DataHub?.loadPlaces?.(),
-      window.DataHub?.loadBadges?.()
-    ]);
+  (window.DataHub?.loadPeopleBase?.() || window.DataHub?.loadPeople?.()),
+  (window.DataHub?.loadPlacesBase?.() || window.DataHub?.loadPlaces?.()),
+  window.DataHub?.loadBadges?.()
+]);
 
     PEOPLE = Array.isArray(people) ? people : [];
     PLACES = Array.isArray(places) ? places : [];
-    BADGES = Array.isArray(badges?.badges) ? badges.badges : [];
+    BADGES = Array.isArray(badges?.badges) ? badges.badges : (Array.isArray(badges) ? badges : []);
+
+    window.PEOPLE = PEOPLE;
+    window.PLACES = PLACES;
     window.BADGES = BADGES;
 
     const safeCall = (name, fn) => {
