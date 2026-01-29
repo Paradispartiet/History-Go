@@ -117,17 +117,12 @@ function getLatestPendingOffer() {
     }
 
     // funnet gyldig pending offer
-    if (dirty) setJobOffers(offers); // skriv tilbake hvis vi markerte noe expired på veien
+    if (dirty) setJobOffers(offers);
     return o;
   }
 
   // ingen gyldig pending offer
   if (dirty) setJobOffers(offers);
-  return null;
-}
-
-  // hvis vi endret noe til expired, skriv tilbake
-  setJobOffers(offers);
   return null;
 }
 
