@@ -20,25 +20,6 @@ function _esc(s){ return String(s ?? "").replace(/[&<>"']/g, ch => ({
   "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"
 }[ch]));}
 
-
-// === PROFILE DOM ALIASES ===
-(function(){
-  const alias = {
-    profilePeople: "peopleGrid",
-    profilePlaces: "collectionGrid",
-    profileKnowledge: "latestKnowledgeBox",
-    profileTrivia: "latestTriviaBox",
-    profileMap: "map"
-  };
-
-  Object.entries(alias).forEach(([wanted, existing]) => {
-    if (!document.getElementById(wanted)) {
-      const el = document.getElementById(existing);
-      if (el) el.id = wanted;
-    }
-  });
-})();
-
 // Sørg for at globale popup-funksjoner finnes i app.js
 window.showPersonPopup = window.showPersonPopup || (() => {});
 window.showPlacePopup  = window.showPlacePopup  || (() => {});
