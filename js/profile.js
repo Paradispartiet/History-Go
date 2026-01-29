@@ -698,26 +698,33 @@ function renderCollectionCards() {
 // SISTE KUNNSKAP
 // ------------------------------------------------------------
 function renderLatestKnowledge() {
-  const box = document.getElementById("latestKnowledgeBox");
   const elTopic = document.getElementById("lkTopic");
-  const elCat = document.getElementById("lkCategory");
-  if (!box || !elTopic || !elCat) return;
+  const elCat   = document.getElementById("lkCategory");
+  const elText  = document.getElementById("lkText");
+  if (!elTopic || !elCat || !elText) return;
 
-  // Hent kunnskapsuniverset
-  const uni = JSON.parse(localStorage.getItem("knowledge_universe") || "{}");
+  // Fallback hvis wrapperen (latestKnowledgeBox) ikke finnes i DOM
+  const box =
+    document.getElementById("latestKnowledgeBox") ||
+    document.getElementById("profileKnowledge") ||
+    elTopic.closest(".profile-card, .profile-section, .hg-card, .card") ||
+    elTopic.parentElement;
+
+  if (!box) return;
+
+  // Hent knowledge-univers – fallback til localStorage hvis funksjonen ikke gir noe
+  let uni = (typeof window.getKnowledgeUniverse === "function") ? window.getKnowledgeUniverse() : null;
+  if (!uni || !Object.keys(uni).length) {
+    try { uni = JSON.parse(localStorage.getItem("knowledge_universe") || "{}"); }
+    catch { uni = {}; }
+  }
+
   const flat = [];
-
-  // Flate ut universet → liste
-  for (const cat of Object.keys(uni)) {
-    for (const dim of Object.keys(uni[cat])) {
-      uni[cat][dim].forEach(k => {
-        flat.push({
-          category: cat,
-          dimension: dim,
-          topic: k.topic,
-          text: k.text
-        });
-      });
+  for (const cat of Object.keys(uni || {})) {
+    const dims = uni[cat] || {};
+    for (const dim of Object.keys(dims)) {
+      const arr = dims[dim] || [];
+      arr.forEach(k => flat.push({ category: cat, dimension: dim, item: k }));
     }
   }
 
@@ -726,44 +733,44 @@ function renderLatestKnowledge() {
     return;
   }
 
-  // Siste element = sist lagret kunnskap
   const last = flat[flat.length - 1];
+  const item = last.item || {};
 
-  elTopic.textContent = last.topic;
-  elCat.textContent = 
-    last.category.charAt(0).toUpperCase() + last.category.slice(1);
+  elTopic.textContent = item.topic || item.question || "Kunnskap";
+  elCat.textContent = (last.category || "").charAt(0).toUpperCase() + (last.category || "").slice(1);
+  elText.textContent = item.text || item.knowledge || "";
 
   box.style.display = "block";
 }
 
 function renderLatestTrivia() {
-  const box = document.getElementById("latestTriviaBox");
   const elTopic = document.getElementById("ltTopic");
-  const elCat = document.getElementById("ltCategory");
+  const elCat   = document.getElementById("ltCategory");
+  if (!elTopic || !elCat) return;
 
-  if (!box || !elTopic || !elCat) return;
+  // Fallback hvis wrapperen (latestTriviaBox) ikke finnes i DOM
+  const box =
+    document.getElementById("latestTriviaBox") ||
+    document.getElementById("profileTrivia") ||
+    elTopic.closest(".profile-card, .profile-section, .hg-card, .card") ||
+    elTopic.parentElement;
 
-  let uni = {};
+  if (!box) return;
 
-  try {
-    // Robust: les direkte fra storage (sann kilde)
-    uni = JSON.parse(localStorage.getItem("trivia_universe") || "{}");
-  } catch {
-    uni = {};
+  // Hent trivia-univers – fallback til localStorage hvis funksjonen ikke gir noe
+  let uni = (typeof window.getTriviaUniverse === "function") ? window.getTriviaUniverse() : null;
+  if (!uni || !Object.keys(uni).length) {
+    try { uni = JSON.parse(localStorage.getItem("trivia_universe") || "{}"); }
+    catch { uni = {}; }
   }
 
   const flat = [];
-
-  for (const category of Object.keys(uni)) {
-    const byId = uni[category];
-    if (!byId || typeof byId !== "object") continue;
-
-    for (const id of Object.keys(byId)) {
-      const list = byId[id];
-      if (!Array.isArray(list)) continue;
-
-      list.forEach(t => {
-        flat.push({ category, text: t });
+  for (const cat of Object.keys(uni || {})) {
+    const bucket = uni[cat] || {};
+    for (const id of Object.keys(bucket)) {
+      const arr = bucket[id] || [];
+      arr.forEach(t => {
+        flat.push({ category: cat, id, trivia: t });
       });
     }
   }
@@ -774,14 +781,13 @@ function renderLatestTrivia() {
   }
 
   const last = flat[flat.length - 1];
-
-  elTopic.textContent = last.text;
-  elCat.textContent = last.category;
+  elTopic.textContent = String(last.trivia || "").trim();
+  elCat.textContent = (last.category || "").charAt(0).toUpperCase() + (last.category || "").slice(1);
 
   box.style.display = "block";
-
-  
 }
+  
+
 function renderNextWhy() {
   const sec = document.getElementById("nextWhySection");
   const txt = document.getElementById("nextWhyText");
@@ -872,56 +878,73 @@ document.addEventListener("DOMContentLoaded", async () => {
     PLACES = Array.isArray(places) ? places : [];
     BADGES = Array.isArray(badges?.badges) ? badges.badges : [];
     window.BADGES = BADGES;
+
+const safeCall = (name, fn) => {
+  try {
+    if (typeof fn !== "function") return;
+    fn();
+  } catch (e) {
+    console.warn(`[profile] ${name} crashed`, e);
+  }
+};
     
-    // 2) RENDER
-    renderProfileCard();
-    renderCivication();
+safeCall("renderProfileCard", renderProfileCard);
+safeCall("renderCivication", renderCivication);
 
-    // 3) Civication pulse + inbox
-    await window.HG_CiviEngine?.onAppOpen?.();
-    window.renderCivicationInbox?.();
+await window.HG_CiviEngine?.onAppOpen?.();
+safeCall("renderCivicationInbox", window.renderCivicationInbox);
 
-    window.wireCivicationActions?.();
-    window.wireCivicationButtons?.();
-    renderMerits();
+safeCall("wireCivicationActions", window.wireCivicationActions);
+safeCall("wireCivicationButtons", window.wireCivicationButtons);
 
-    renderPeopleCollection();
-    renderPlacesCollection();
-    renderTimeline();
-    renderCollectionCards();
-    renderLatestKnowledge();
-    renderLatestTrivia();
-    renderNextWhy();
-    renderAhaSummary();
+safeCall("renderMerits", renderMerits);
+safeCall("renderPeopleCollection", renderPeopleCollection);
+safeCall("renderPlacesCollection", renderPlacesCollection);
+safeCall("renderTimeline", renderTimeline);
+safeCall("renderCollectionCards", renderCollectionCards);
+safeCall("renderLatestKnowledge", renderLatestKnowledge);
+safeCall("renderLatestTrivia", renderLatestTrivia);
+safeCall("renderNextWhy", renderNextWhy);
+safeCall("renderAhaSummary", renderAhaSummary);
+safeCall("setupProfileMap", setupProfileMap);
 
-    setupProfileMap();
-
+    
     // UI
     document.getElementById("editProfileBtn")?.addEventListener("click", openProfileModal);
     document.getElementById("btnOpenAHA")?.addEventListener("click", () => window.open("aha/index.html", "_blank"));
 
+    // failsafe: en render skal aldri stoppe alt
+    const safeCall = (name, fn) => {
+      try {
+        if (typeof fn !== "function") return;
+        fn();
+      } catch (e) {
+        console.warn(`[profile] ${name} crashed`, e);
+      }
+    };
+
     // Sync etter quiz / endringer
     window.addEventListener("updateProfile", () => {
-      renderProfileCard();
-      renderCivication();
-      window.renderCivicationInbox?.();
+      safeCall("renderProfileCard", renderProfileCard);
+      safeCall("renderCivication", renderCivication);
+      safeCall("renderCivicationInbox", window.renderCivicationInbox);
 
-      renderMerits();
-      renderPeopleCollection();
-      renderPlacesCollection();
-      renderTimeline();
-      renderCollectionCards();
-      renderLatestKnowledge();
-      renderLatestTrivia();
-      renderNextWhy();
-      renderAhaSummary();
-      updateProfileMarkers();
+      safeCall("renderMerits", renderMerits);
+      safeCall("renderPeopleCollection", renderPeopleCollection);
+      safeCall("renderPlacesCollection", renderPlacesCollection);
+      safeCall("renderTimeline", renderTimeline);
+      safeCall("renderCollectionCards", renderCollectionCards);
+      safeCall("renderLatestKnowledge", renderLatestKnowledge);
+      safeCall("renderLatestTrivia", renderLatestTrivia);
+      safeCall("renderNextWhy", renderNextWhy);
+      safeCall("renderAhaSummary", renderAhaSummary);
+
+      safeCall("updateProfileMarkers", updateProfileMarkers);
     });
   } catch (err) {
     console.error("Profile init failed:", err);
   }
 });
-
 
 // ============================================================
 // KART PÅ PROFILSIDEN – KUN BESØKTE STEDER
