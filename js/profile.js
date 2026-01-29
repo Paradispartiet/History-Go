@@ -395,7 +395,7 @@ if (!badge) {
       return `
   <div class="badge-mini" data-badge-id="${badge.id}">
     <div class="badge-wrapper">
-      <img src="${badge.image}" class="badge-mini-icon" alt="${badge.name}">
+      <img src="${badge.image || badge.icon || badge.img || badge.imageCard || ""}" class="badge-mini-icon" alt="${badge.name}">
       <span class="badge-medal">${medal}</span>
     </div>
     <div class="badge-mini-level">${label}</div>
@@ -433,7 +433,7 @@ function openBadgeModal(badge) {
   const points = Number(info.points || 0);
   const { label } = deriveTierFromPoints(badge, points);
 
-  modal.querySelector(".badge-img").src = badge.image;
+  modal.querySelector(".badge-img").src = (badge.image || badge.icon || badge.img || badge.imageCard || "");
   modal.querySelector(".badge-title").textContent = badge.name;
 
   // Vis nivå fra tiers (kanonisk), ikke lagret tekst
