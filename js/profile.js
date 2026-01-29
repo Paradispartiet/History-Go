@@ -121,6 +121,56 @@ function getLatestPendingOffer() {
   return null;
 }
 
+// ------------------------------------------------------------
+// CIVICATION – wiring: Aksepter / Ikke nå (jobboffer)
+// Plassering: rett etter getLatestPendingOffer(), før renderCivication()
+// ------------------------------------------------------------
+function wireCivicationActions() {
+  const btnAccept  = document.getElementById("btnCiviAccept");
+  const btnDecline = document.getElementById("btnCiviDecline");
+  if (!btnAccept || !btnDecline) return;
+
+  btnAccept.onclick = async () => {
+    const offer = getLatestPendingOffer();
+    if (!offer) return;
+
+    // marker offer
+    const offers = getJobOffers();
+    const idx = offers.findIndex(o => o && o.id === offer.id);
+    if (idx >= 0) offers[idx] = { ...offers[idx], status: "accepted", accepted_at: new Date().toISOString() };
+    setJobOffers(offers);
+
+    // sett aktiv jobb (rollen din)
+    setActivePosition({
+      career_id: offer.career_id,                 // forvent "naeringsliv"
+      career_name: offer.career_name,
+      title: offer.title,
+      threshold: offer.threshold ?? null,
+      achieved_at: new Date().toISOString()
+    });
+
+    // oppdater UI + trigge motor (som nå har aktiv jobb)
+    renderCivication();
+    await window.HG_CiviEngine?.onAppOpen?.();    // lager evt mail i inbox
+    window.renderCivicationInbox?.();
+    window.dispatchEvent(new Event("updateProfile"));
+  };
+
+  btnDecline.onclick = () => {
+    const offer = getLatestPendingOffer();
+    if (!offer) return;
+
+    const offers = getJobOffers();
+    const idx = offers.findIndex(o => o && o.id === offer.id);
+    if (idx >= 0) offers[idx] = { ...offers[idx], status: "declined", declined_at: new Date().toISOString() };
+    setJobOffers(offers);
+
+    renderCivication();
+    window.renderCivicationInbox?.();
+    window.dispatchEvent(new Event("updateProfile"));
+  };
+}
+
 function renderCivication() {
   // --- DOM ---
   const title   = document.getElementById("civiRoleTitle");
@@ -163,6 +213,31 @@ function renderCivication() {
     oMeta.textContent =
       `${offer.career_name || offer.career_id || ""} · ` +
       `Terskel: ${offer.threshold} · Utløper: ${expTxt}`;
+
+        // Wire buttons (Aksepter / Ikke nå)
+    const btnAccept = document.getElementById("btnCiviAccept");
+    const btnDecline = document.getElementById("btnCiviDecline");
+
+    if (btnAccept) {
+      btnAccept.onclick = async () => {
+        const accepted = acceptOfferById(offer.id);
+        if (!accepted) return;
+
+        // Synk motor + kjør en puls så inbox kan komme
+        await window.HG_CiviEngine?.onAppOpen?.();
+
+        renderCivication();
+        window.renderCivicationInbox?.();
+        window.dispatchEvent(new Event("updateProfile"));
+      };
+    }
+
+    if (btnDecline) {
+      btnDecline.onclick = () => {
+        declineOfferById(offer.id);
+        renderCivication();
+      };
+    }
   }
 
   // ------------------------------------------------------------
