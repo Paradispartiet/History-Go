@@ -913,16 +913,6 @@ safeCall("setupProfileMap", setupProfileMap);
     document.getElementById("editProfileBtn")?.addEventListener("click", openProfileModal);
     document.getElementById("btnOpenAHA")?.addEventListener("click", () => window.open("aha/index.html", "_blank"));
 
-    // failsafe: en render skal aldri stoppe alt
-    const safeCall = (name, fn) => {
-      try {
-        if (typeof fn !== "function") return;
-        fn();
-      } catch (e) {
-        console.warn(`[profile] ${name} crashed`, e);
-      }
-    };
-
     // Sync etter quiz / endringer
     window.addEventListener("updateProfile", () => {
       safeCall("renderProfileCard", renderProfileCard);
