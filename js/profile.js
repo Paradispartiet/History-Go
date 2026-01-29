@@ -911,8 +911,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   try {
     // 1) LAST DATA via DataHub (ikke direkte fetch her)
     const [people, places, badges] = await Promise.all([
-      window.DataHub?.loadPeopleBase?.(),
-      window.DataHub?.loadPlacesBase?.(),
+      window.DataHub?.loadPeople?.(),
+      window.DataHub?.loadPlaces?.(),
       window.DataHub?.loadBadges?.()
     ]);
 
@@ -921,14 +921,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     BADGES = Array.isArray(badges?.badges) ? badges.badges : [];
     window.BADGES = BADGES;
 
-const safeCall = (name, fn) => {
-  try {
-    if (typeof fn !== "function") return;
-    fn();
-  } catch (e) {
-    console.warn(`[profile] ${name} crashed`, e);
-  }
-};
+    const safeCall = (name, fn) => {
+      try {
+        if (typeof fn !== "function") return;
+        fn();
+      } catch (e) {
+        console.warn(`[profile] ${name} crashed`, e);
+      }
+    };
     
 safeCall("renderProfileCard", renderProfileCard);
 safeCall("renderCivication", renderCivication);
