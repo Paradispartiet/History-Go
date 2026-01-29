@@ -531,7 +531,8 @@ if (q.trivia && saveTrivia) {
           const perfect = correct === total;
 
           if (perfect) {
-            const categoryId = s(questions[0]?.categoryId || "by");
+            const categoryId =
+            s(questions[0]?.categoryId || questions[0]?.category_id || questions[0]?.category || "") || "by";
             const ca = Array.isArray(meta?.correctAnswers) ? meta.correctAnswers : [];
 
             // 1) badge-modal kontrakt (STRICT)
