@@ -861,6 +861,10 @@ function openProfileModal() {
   };
 }
 
+// Globale datasett på profilsiden (profile.html laster ikke app.js)
+let PEOPLE = [];
+let PLACES = [];
+let BADGES = [];
 
 // ------------------------------------------------------------
 // INIT
