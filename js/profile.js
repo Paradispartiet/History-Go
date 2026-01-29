@@ -16,6 +16,10 @@
 //
 // ============================================================
 
+function _esc(s){ return String(s ?? "").replace(/[&<>"']/g, ch => ({
+  "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"
+}[ch]));}
+
 
 // === PROFILE DOM ALIASES ===
 (function(){
@@ -373,10 +377,26 @@ async function renderMerits() {
   box.innerHTML = keys
     .map((k) => {
       const badge = getBadgeForMeritKey(k);
-      if (!badge) {
-        if (window.DEBUG) console.warn("[profile] renderMerits: no badge for merit key:", k);
-        return "";
-      }
+if (!badge) {
+  if (window.DEBUG) console.warn("[profile] renderMerits: no badge for merit key:", k);
+
+  // FALLBACK: vis "ukjent" merit i grid så profilen ikke blir tom
+  const merit = merits[k] || {};
+  const points = Number(merit.points || 0);
+
+  return `
+    <div class="badge-mini badge-mini-missing" data-missing-merit="${_esc(k)}">
+      <div class="badge-wrapper">
+        <div class="badge-mini-icon"
+             style="display:flex;align-items:center;justify-content:center;border-radius:12px;border:1px solid rgba(255,255,255,.15);background:rgba(0,0,0,.25);">
+          🏷️
+        </div>
+      </div>
+      <div class="badge-mini-level">${_esc(k)}</div>
+      <div class="badge-mini-level" style="opacity:.8">${points} poeng</div>
+    </div>
+  `;
+}
 
       const merit = merits[k] || {};
       const points = Number(merit.points || 0);
@@ -521,23 +541,33 @@ function renderPeopleCollection() {
 
   const collected = ls("people_collected", {});
 
-  const peopleUnlocked = PEOPLE.filter(p => collected[p.id]);
+  const ids = Object.keys(collected || {}).filter(id => !!collected[id]);
+
+const peopleUnlocked = ids
+  .map(id => PEOPLE.find(p => String(p.id).trim() === String(id).trim()) || ({
+    id,
+    name: id,
+    image: ""
+  }));
   if (!peopleUnlocked.length) {
     grid.innerHTML = `<div class="muted">Ingen personer låst opp ennå.</div>`;
     return;
   }
 
   grid.innerHTML = peopleUnlocked.map(p => `
-    <div class="avatar-card" data-person="${p.id}">
-      <img src="${p.image}" class="avatar-img">
-      <div class="avatar-name">${p.name}</div>
-    </div>
-  `).join("");
+  <div class="avatar-card" data-person="${p.id}">
+    ${p.image
+      ? `<img src="${p.image}" class="avatar-img">`
+      : `<div class="avatar-img" style="display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.15);border-radius:999px;">👤</div>`
+    }
+    <div class="avatar-name">${p.name}</div>
+  </div>
+`).join("");
 
   grid.querySelectorAll(".avatar-card").forEach(el => {
     el.onclick = () => {
       const pr = PEOPLE.find(p => p.id === el.dataset.person);
-      window.showPersonPopup(pr);
+       if (pr) window.showPersonPopup(pr);
     };
   });
 }
@@ -550,8 +580,16 @@ function renderPlacesCollection() {
   if (!grid) return;
 
   const visited = ls("visited_places", {});
-  const places = PLACES.filter(p => visited[p.id]);
+  const ids = Object.keys(visited || {}).filter(id => !!visited[id]);
 
+  const places = ids
+  .map(id => PLACES.find(p => String(p.id).trim() === String(id).trim()) || ({
+    id,
+    name: id,
+    category: "",
+    year: "",
+    desc: ""
+  }));
   if (!places.length) {
     grid.innerHTML = `<div class="muted">Ingen steder besøkt ennå.</div>`;
     return;
@@ -568,7 +606,7 @@ function renderPlacesCollection() {
   grid.querySelectorAll(".place-card").forEach(el => {
   el.onclick = () => {
     const pl = PLACES.find(p => p.id === el.dataset.place);
-    window.showPlacePopup(pl);
+    if (pl) window.showPlacePopup(pl);
   };
 });
 }
