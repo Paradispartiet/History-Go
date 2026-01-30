@@ -410,69 +410,72 @@ function runQuizFlow({ title, targetId, questions, onEnd }) {
             }
           }
 
-          // ------------------------------------------------------------
-          // HOOKS (kun ved riktig): insights + knowledge + trivia
-          // ------------------------------------------------------------
+         const canTag = !!categoryId;
 
-          // HGInsights hook (valgfritt)
-          if (typeof API?.logCorrectQuizAnswer === "function") {
-            try { API.logCorrectQuizAnswer(tid, q); }
-            catch (e) { dwarn("logCorrectQuizAnswer failed", e); }
-          }
+if (!canTag && window.DEBUG) {
+  console.warn("[quiz] ok answer but missing categoryId; skipping knowledge/trivia hooks", q);
+}
 
-          // knowledge hook (robust: API.* eller window.*)
-          // STRICT: ingen "by"-fallback her
-          const saveKnowledge =
-            (typeof API?.saveKnowledgeFromQuiz === "function")
-              ? API.saveKnowledgeFromQuiz
-              : (typeof window.saveKnowledgeFromQuiz === "function")
-                ? window.saveKnowledgeFromQuiz
-                : null;
+if (canTag) {
+  // ------------------------------------------------------------
+  // HOOKS (kun ved riktig): insights + knowledge + trivia
+  // ------------------------------------------------------------
 
-          if (saveKnowledge && q.knowledge) {
-            try {
-              saveKnowledge(
-                {
-                  id: `${tid}_${(q.topic || q.question || "").replace(/\s+/g, "_")}`.toLowerCase(),
-                  categoryId: categoryId || "",
-                  dimension: q.dimension,
-                  topic: q.topic,
-                  question: q.question,
-                  knowledge: q.knowledge,
-                  answer: q.answer,
-                  chosenAnswer: chosenAnswer,
-                  core_concepts: Array.isArray(q.core_concepts) ? q.core_concepts : []
-                },
-                { categoryId: categoryId || "", targetId: tid }
-              );
-            } catch (e) {
-              dwarn("saveKnowledgeFromQuiz failed", e);
-            }
-          }
+  // HGInsights hook (valgfritt)
+  if (typeof API?.logCorrectQuizAnswer === "function") {
+    try { API.logCorrectQuizAnswer(tid, q); }
+    catch (e) { dwarn("logCorrectQuizAnswer failed", e); }
+  }
 
-          // trivia hook (robust: API.* eller window.*)
-          // STRICT: ingen "by"-fallback her
-          const saveTrivia =
-            (typeof API?.saveTriviaPoint === "function")
-              ? API.saveTriviaPoint
-              : (typeof window.saveTriviaPoint === "function")
-                ? window.saveTriviaPoint
-                : null;
+  const saveKnowledge =
+    (typeof API?.saveKnowledgeFromQuiz === "function")
+      ? API.saveKnowledgeFromQuiz
+      : (typeof window.saveKnowledgeFromQuiz === "function")
+        ? window.saveKnowledgeFromQuiz
+        : null;
 
-          if (saveTrivia && q.trivia) {
-            try {
-              saveTrivia({
-                id: tid,
-                category: categoryId || "",
-                trivia: q.trivia,
-                question: q.question
-              });
-            } catch (e) {
-              dwarn("saveTriviaPoint failed", e);
-            }
-          }
-        }
+  if (saveKnowledge && q.knowledge) {
+    try {
+      saveKnowledge(
+        {
+          id: `${tid}_${(q.topic || q.question || "").replace(/\s+/g, "_")}`.toLowerCase(),
+          categoryId,
+          dimension: q.dimension,
+          topic: q.topic,
+          question: q.question,
+          knowledge: q.knowledge,
+          answer: q.answer,
+          chosenAnswer: chosenAnswer,
+          core_concepts: Array.isArray(q.core_concepts) ? q.core_concepts : []
+        },
+        { categoryId, targetId: tid }
+      );
+    } catch (e) {
+      dwarn("saveKnowledgeFromQuiz failed", e);
+    }
+  }
 
+  const saveTrivia =
+    (typeof API?.saveTriviaPoint === "function")
+      ? API.saveTriviaPoint
+      : (typeof window.saveTriviaPoint === "function")
+        ? window.saveTriviaPoint
+        : null;
+
+  if (saveTrivia && q.trivia) {
+    try {
+      saveTrivia({
+        id: tid,
+        category: categoryId,
+        trivia: q.trivia,
+        question: q.question
+      });
+    } catch (e) {
+      dwarn("saveTriviaPoint failed", e);
+    }
+  }
+}
+          
         // disable
         qs.choices.querySelectorAll("button").forEach((b) => (b.disabled = true));
 
