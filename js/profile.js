@@ -620,7 +620,12 @@ function openBadgeModal(badge) {
   if (closeBtn) closeBtn.onclick = closeBadgeModal;
 }
 
-
+function closeBadgeModal() {
+  const modal = document.getElementById("badgeModal");
+  if (!modal) return;
+  modal.style.display = "none";
+  modal.setAttribute("aria-hidden", "true");
+}
 // ------------------------------------------------------------
 // PERSONER
 // ------------------------------------------------------------
