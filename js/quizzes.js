@@ -599,6 +599,19 @@ if (perfect) {
             markQuizProgress(categoryId, tid);
             API.addCompletedQuizAndMaybePoint(categoryId, tid);
 
+            // 3.5) merits_by_category (profile.html bruker denne til badge-grid)
+            try {
+            const merits = safeParse("merits_by_category", {});
+            const key = s(categoryId);
+             if (key) {
+            merits[key] = merits[key] || { points: 0 };
+            merits[key].points = Number(merits[key].points || 0) + 1;
+            safeWrite("merits_by_category", merits);
+              }
+            } catch (e) {
+            dwarn("could not save merits_by_category", e);
+            }
+  
             // 4) UI “done”
             if (typeof API.markQuizAsDoneExternal === "function") API.markQuizAsDoneExternal(tid);
             else markQuizAsDone(tid);
