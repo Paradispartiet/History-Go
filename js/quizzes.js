@@ -284,131 +284,153 @@
     });
   }
 
-  // ============================================================
-  // RUN FLOW (LOCKED CONTRACT)
-  // onEnd(correct, total, meta)
-  // meta = { correctAnswers, conceptsCorrect, emnerTouched }
-  // ============================================================
-  function runQuizFlow({ title, targetId, questions, onEnd }) {
-    ensureQuizUI();
+// ============================================================
+// RUN FLOW (LOCKED CONTRACT)
+// onEnd(correct, total, meta)
+// meta = { correctAnswers, conceptsCorrect, emnerTouched }
+// ============================================================
+function runQuizFlow({ title, targetId, questions, onEnd }) {
+  ensureQuizUI();
 
-    const qs = {
-      title: document.getElementById("quizTitle"),
-      q: document.getElementById("quizQuestion"),
-      choices: document.getElementById("quizChoices"),
-      progress: document.getElementById("quizProgress"),
-      feedback: document.getElementById("quizFeedback")
-    };
-    qs.title.textContent = title || "Quiz";
+  const qs = {
+    title: document.getElementById("quizTitle"),
+    q: document.getElementById("quizQuestion"),
+    choices: document.getElementById("quizChoices"),
+    progress: document.getElementById("quizProgress"),
+    feedback: document.getElementById("quizFeedback")
+  };
+  qs.title.textContent = title || "Quiz";
 
-    let i = 0;
-    let correct = 0;
+  let i = 0;
+  let correct = 0;
 
-    const correctAnswers = [];   // [{question, answer}]
-    const conceptsCorrect = [];  // string[]
-    const emnerTouched = [];     // string[]
+  const correctAnswers = [];   // [{question, answer, chosenAnswer}]
+  const conceptsCorrect = [];  // string[]
+  const emnerTouched = [];     // string[]
 
-    function step() {
-      const q = questions[i];
+  // ✅ categoryId beregnes ÉN gang per quiz-run (strict: ingen "by" fallback her)
+  const categoryId = s(
+    questions?.[0]?.categoryId ||
+    questions?.[0]?.category_id ||
+    questions?.[0]?.category ||
+    ""
+  );
 
-      const options = arr(q.options || q.choices);
-      const answerIndex =
-        typeof q.answerIndex === "number"
-          ? q.answerIndex
-          : options.findIndex((o) => o === q.answer);
+  if (!categoryId && window.DEBUG) {
+    console.warn("[quiz] missing categoryId on quiz questions", questions?.[0]);
+  }
 
-      qs.q.textContent = q.question || q.text || "";
-      qs.choices.innerHTML = options
-        .map((opt, idx) => `<button data-idx="${idx}">${opt}</button>`)
-        .join("");
+  function step() {
+    const q = questions[i];
 
-      qs.progress.textContent = `${i + 1}/${questions.length}`;
-      qs.feedback.textContent = "";
+    const options = arr(q.options || q.choices);
+    const answerIndex =
+      typeof q.answerIndex === "number"
+        ? q.answerIndex
+        : options.findIndex((o) => o === q.answer);
 
-      const bar = document.querySelector(".quiz-progress .bar");
-      if (bar) bar.style.width = `${((i + 1) / questions.length) * 100}%`;
+    qs.q.textContent = q.question || q.text || "";
+    qs.choices.innerHTML = options
+      .map((opt, idx) => `<button data-idx="${idx}">${opt}</button>`)
+      .join("");
 
-      qs.choices.querySelectorAll("button").forEach((btn) => {
-        btn.onclick = () => {
-          const chosenIdx = Number(btn.dataset.idx);
-          const ok = chosenIdx === answerIndex;
+    qs.progress.textContent = `${i + 1}/${questions.length}`;
+    qs.feedback.textContent = "";
 
-          btn.classList.add(ok ? "correct" : "wrong");
-          qs.feedback.textContent = ok ? "Riktig ✅" : "Feil ❌";
+    const bar = document.querySelector(".quiz-progress .bar");
+    if (bar) bar.style.width = `${((i + 1) / questions.length) * 100}%`;
 
-          const tid = s(targetId);
-          const categoryId = s(q.categoryId || q.category_id || q.category || "");
+    qs.choices.querySelectorAll("button").forEach((btn) => {
+      btn.onclick = () => {
+        const chosenIdx = Number(btn.dataset.idx);
+        const ok = chosenIdx === answerIndex;
 
-          // --- KUN ved RIKTIG: registrer alt (knowledge/trivia/insight/meta) ---
-if (ok) {
-  correct++;
+        btn.classList.add(ok ? "correct" : "wrong");
+        qs.feedback.textContent = ok ? "Riktig ✅" : "Feil ❌";
 
-  const qText = q.question || q.text || "";
-  const chosen = options[chosenIdx] ?? "";
-  correctAnswers.push({ question: qText, answer: chosen });
+        const tid = s(targetId);
 
-  // meta: concepts
-  if (Array.isArray(q.core_concepts)) {
-    q.core_concepts.forEach((c) => {
-      const cc = s(c);
-      if (cc) conceptsCorrect.push(cc);
+        // --- KUN ved RIKTIG: registrer alt (knowledge/trivia/insight/meta) ---
+        if (ok) {
+          correct++;
+
+          const qText = q.question || q.text || "";
+          const chosenAnswer = options[chosenIdx] ?? "";
+          const correctAnswer = options[answerIndex] ?? (q.answer ?? "");
+
+          correctAnswers.push({ question: qText, answer: correctAnswer, chosenAnswer });
+
+          // meta: concepts
+          if (Array.isArray(q.core_concepts)) {
+            q.core_concepts.forEach((c) => {
+              const cc = s(c);
+              if (cc) conceptsCorrect.push(cc);
+            });
+          }
+
+          // meta: emner
+          if (q.emne_id) {
+            const eid = s(q.emne_id);
+            if (eid) emnerTouched.push(eid);
+          }
+          if (Array.isArray(q.related_emner)) {
+            q.related_emner.forEach((x) => {
+              const eid = s(x);
+              if (eid) emnerTouched.push(eid);
+            });
+          }
+
+          // --- quizId (bruk quiz_id hvis finnes, ellers targetId) ---
+          const quizId = s(q.quiz_id || q.quizId || tid);
+
+          // ✅ HGUnlocks (kun ved riktig)
+          if (window.HGUnlocks && typeof window.HGUnlocks.recordFromQuiz === "function") {
+            try {
+              window.HGUnlocks.recordFromQuiz({
+                quizId,
+                categoryId,     // kan være "" hvis data mangler – da bør unlocks håndtere/ignorere
+                item: q,
+                targetId: tid
+              });
+            } catch (e) {
+              dwarn("HGUnlocks.recordFromQuiz failed", e);
+            }
+          }
+
+          // 🌿 Nature unlocks (flora/fauna) — kun ved korrekt quiz
+          if (window.HGNatureUnlocks && typeof window.HGNatureUnlocks.recordFromQuiz === "function") {
+            try {
+              window.HGNatureUnlocks.recordFromQuiz({
+                quizId,
+                placeId: tid
+              });
+            } catch (e) {
+              console.error("[HGNatureUnlocks] recordFromQuiz failed", e);
+            }
+          }
+
+          // (resten av riktig-svar hooks: insights/knowledge/trivia osv)
+          // -> bruk categoryId som beregnet over (ikke lag en ny const categoryId her)
+        }
+
+        // disable
+        qs.choices.querySelectorAll("button").forEach((b) => (b.disabled = true));
+
+        setTimeout(() => {
+          i++;
+          if (i < questions.length) step();
+          else {
+            closeQuiz();
+            const meta = { correctAnswers, conceptsCorrect, emnerTouched };
+            try { onEnd(correct, questions.length, meta); }
+            catch (e) { dwarn("onEnd crashed", e); }
+          }
+        }, QUIZ_FEEDBACK_MS);
+      };
     });
   }
 
-  // meta: emner
-  if (q.emne_id) {
-    const eid = s(q.emne_id);
-    if (eid) emnerTouched.push(eid);
-  }
-  if (Array.isArray(q.related_emner)) {
-    q.related_emner.forEach((x) => {
-      const eid = s(x);
-      if (eid) emnerTouched.push(eid);
-    });
-  }
-
-  // --- categoryId (robust, men enkel) ---
-const categoryId = s(
-  questions[0]?.categoryId ||
-  questions[0]?.category_id ||
-  questions[0]?.category ||
-  ""
-);
-
-if (!categoryId) {
-  if (window.DEBUG) console.warn("[quiz] missing categoryId on quiz questions", questions[0]);
-  // enten return;  (ikke gi merits/logg kategori)
-  // eller sett en eksplisitt “ukjent” som du faktisk har badge for
-  // const categoryId = "ukjent";
-}
-
-// --- quizId (bruk quiz_id hvis finnes, ellers targetId) ---
-const quizId = s(q.quiz_id || q.quizId || tid);
-
-// ✅ HGUnlocks (kun ved riktig)
-if (window.HGUnlocks && typeof window.HGUnlocks.recordFromQuiz === "function") {
-  try {
-    window.HGUnlocks.recordFromQuiz({
-      quizId: quizId,          // <-- VIKTIG: bruk quizId, ikke tid hardkodet
-      categoryId: categoryId,  // <-- konsekvent
-      item: q,
-      targetId: tid
-    });
-  } catch (e) {
-    dwarn("HGUnlocks.recordFromQuiz failed", e);
-  }
-}
-
-// 🌿 Nature unlocks (flora/fauna) — kun ved korrekt quiz
-if (window.HGNatureUnlocks && typeof window.HGNatureUnlocks.recordFromQuiz === "function") {
-  try {
-    window.HGNatureUnlocks.recordFromQuiz({
-  quizId: quizId,
-  placeId: tid
-});
-  } catch (e) {
-    console.error("[HGNatureUnlocks] recordFromQuiz failed", e);
-  }
+  step();
 }
 
 // HGInsights hook (valgfritt, hvis app injiserer)
