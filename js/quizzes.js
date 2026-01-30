@@ -564,11 +564,22 @@ if (q.trivia && saveTrivia) {
         onEnd: (correct, total, meta) => {
           const perfect = correct === total;
 
-          if (perfect) {
-            const categoryId =
-            s(questions[0]?.categoryId || questions[0]?.category_id || questions[0]?.category || "") || "by";
-            const ca = Array.isArray(meta?.correctAnswers) ? meta.correctAnswers : [];
+if (perfect) {
+  const categoryId = s(
+    questions[0]?.categoryId ||
+    questions[0]?.category_id ||
+    questions[0]?.category ||
+    ""
+  );
 
+  if (!categoryId) {
+    if (window.DEBUG) console.warn("[quiz] perfect but missing categoryId; not awarding points", questions[0]);
+    API.showToast("Perfekt, men mangler kategori på quiz-data (ingen poeng gitt).");
+    API.dispatchProfileUpdate();
+    return;
+  }
+
+  const ca = Array.isArray(meta?.correctAnswers) ? meta.correctAnswers : [];
             // 1) badge-modal kontrakt (STRICT)
             saveQuizHistory({
               schema: QUIZ_HISTORY_SCHEMA,
