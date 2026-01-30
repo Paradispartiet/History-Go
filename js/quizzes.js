@@ -476,6 +476,8 @@ if (canTag) {
   }
 }
           
+}
+          
         // disable
         qs.choices.querySelectorAll("button").forEach((b) => (b.disabled = true));
 
