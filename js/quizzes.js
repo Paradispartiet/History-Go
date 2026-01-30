@@ -368,7 +368,19 @@ if (ok) {
   }
 
   // --- categoryId (robust, men enkel) ---
-const categoryId = s(q.categoryId || q.category_id || q.category || "") || "by";
+const categoryId = s(
+  questions[0]?.categoryId ||
+  questions[0]?.category_id ||
+  questions[0]?.category ||
+  ""
+);
+
+if (!categoryId) {
+  if (window.DEBUG) console.warn("[quiz] missing categoryId on quiz questions", questions[0]);
+  // enten return;  (ikke gi merits/logg kategori)
+  // eller sett en eksplisitt “ukjent” som du faktisk har badge for
+  // const categoryId = "ukjent";
+}
 
 // --- quizId (bruk quiz_id hvis finnes, ellers targetId) ---
 const quizId = s(q.quiz_id || q.quizId || tid);
