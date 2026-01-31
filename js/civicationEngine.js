@@ -84,6 +84,43 @@
     lsSet(LS_JOB_HISTORY, arr);
   }
 
+function weekKey(d = new Date()) {
+  // ISO-uke-ish nok for spill: år + ukeNr
+  const date = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+  const dayNum = date.getUTCDay() || 7; // 1..7 (man..søn)
+  date.setUTCDate(date.getUTCDate() + 4 - dayNum);
+  const yearStart = new Date(Date.UTC(date.getUTCFullYear(), 0, 1));
+  const weekNo = Math.ceil((((date - yearStart) / 86400000) + 1) / 7);
+  return `${date.getUTCFullYear()}-W${String(weekNo).padStart(2,"0")}`;
+}
+
+function tickPCIncomeWeekly() {
+  const wallet = getPCWallet();
+  const active = getActivePosition();
+  const now = new Date();
+
+  // Ingen jobb → ingen lønn, men oppdater sist-uke så ikke “spretter”
+  if (!active || !active.year_salary) {
+    wallet.last_tick_iso = new Date().toISOString();
+    savePCWallet(wallet);
+    return;
+  }
+
+  const lastIso = wallet.last_tick_iso;
+  const lastWeek = lastIso ? weekKey(new Date(lastIso)) : null;
+  const thisWeek = weekKey(now);
+
+  // Samme uke → allerede betalt
+  if (lastWeek === thisWeek) return;
+
+  // Betal 1 uke (cap)
+  const weekly = Math.floor(active.year_salary / 52);
+  wallet.balance += weekly;
+
+  wallet.last_tick_iso = now.toISOString();
+  savePCWallet(wallet);
+}
+   
   class CivicationEventEngine {
   constructor(opts = {}) {
     this.packBasePath = opts.packBasePath || "data/civication"; // default mappe
