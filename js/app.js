@@ -687,7 +687,7 @@ function maybeCreateJobOfferFromMerits(badgeId, oldPoints, newPoints) {
   if (newP <= oldP) return null;
 
   // --- finn badge + tiers ---
-  const badge = Array.isArray(window.BADGES)
+  const badge = Array.isArray(BADGES) ? BADGES.find(...) : null;
     ? window.BADGES.find(b => String(b?.id || "").trim() === bId)
     : null;
 
