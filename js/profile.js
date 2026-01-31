@@ -72,6 +72,93 @@ function renderProfileCard() {
 // ------------------------------------------------------------
 // CIVICATION – Offers + aktiv rolle (1 slot)
 // ------------------------------------------------------------
+
+// ------------------------------------------------------------
+// PC (ParadiseCoin) – enkel wallet + lønnstikk (in-game)
+// ------------------------------------------------------------
+const LS_PC_WALLET = "hg_pc_wallet_v1";
+
+function getPCWallet() {
+  try {
+    const w = JSON.parse(localStorage.getItem(LS_PC_WALLET) || "null");
+    if (w && typeof w === "object") {
+      return {
+        balance: Number(w.balance || 0),
+        last_tick_iso: String(w.last_tick_iso || "")
+      };
+    }
+  } catch {}
+  return { balance: 0, last_tick_iso: "" };
+}
+
+function setPCWallet(w) {
+  try {
+    localStorage.setItem(LS_PC_WALLET, JSON.stringify(w));
+  } catch {}
+}
+
+function daysBetweenISO(aIso, bIso) {
+  const a = aIso ? new Date(aIso) : null;
+  const b = bIso ? new Date(bIso) : null;
+  if (!a || !b || isNaN(a) || isNaN(b)) return 0;
+  const ms = b.getTime() - a.getTime();
+  return Math.floor(ms / (24 * 60 * 60 * 1000));
+}
+
+// finner year_salary fra BADGES tiers basert på aktiv jobb (career_id + title)
+function getActiveYearSalary() {
+  const active = getActivePosition();
+  if (!active || !active.career_id || !active.title) return 0;
+
+  const badgeId = String(active.career_id || "").trim();
+  const title = String(active.title || "").trim();
+
+  const badge = Array.isArray(BADGES) ? BADGES.find(b => String(b?.id || "").trim() === badgeId) : null;
+  if (!badge || !Array.isArray(badge.tiers)) return 0;
+
+  const tier = badge.tiers.find(t => String(t?.label || "").trim() === title);
+  return Number(tier?.year_salary || 0);
+}
+
+// tikker PC basert på year_salary/365, én gang per dag (catch-up hvis flere dager)
+function tickPCIncome() {
+  const active = getActivePosition();
+  if (!active) return getPCWallet(); // arbeidsledig => ingen lønn
+
+  const yearSalary = getActiveYearSalary();
+  if (!yearSalary) return getPCWallet();
+
+  const w = getPCWallet();
+  const nowIso = new Date().toISOString();
+
+  // init: sett last_tick til nå uten å gi retro-lønn første gang
+  if (!w.last_tick_iso) {
+    const next = { ...w, last_tick_iso: nowIso };
+    setPCWallet(next);
+    return next;
+  }
+
+  const days = daysBetweenISO(w.last_tick_iso, nowIso);
+  if (days <= 0) return w;
+
+  const daily = yearSalary / 365;
+  const earned = daily * days;
+
+  const next = {
+    balance: Number(w.balance || 0) + earned,
+    last_tick_iso: nowIso
+  };
+
+  setPCWallet(next);
+  return next;
+}
+
+function formatPC(n) {
+  // enkel visning, rund til nærmeste helt
+  const v = Math.round(Number(n || 0));
+  return `${v.toLocaleString("no-NO")} PC`;
+}
+
 function getJobOffers() {
   try {
     const raw = JSON.parse(localStorage.getItem("hg_job_offers_v1") || "[]");
@@ -1025,6 +1112,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     
 safeCall("renderProfileCard", renderProfileCard);
 safeCall("renderCivication", renderCivication);
+tickPCIncome();
 
 await window.HG_CiviEngine?.onAppOpen?.();
 safeCall("renderCivicationInbox", window.renderCivicationInbox);
