@@ -1,0 +1,240 @@
+{
+  "kind": "civication_lifestyles",
+  "version": 1,
+  "updated_at": "2026-01-31",
+  "principles": {
+    "identity_is_path_dependency": true,
+    "tags_on_choices_not_player": true,
+    "no_moral_scores": true,
+    "hyperrealism_week_is_year": true,
+    "lifestyle_is_curiosity_layer": true
+  },
+
+  "axes": [
+    {
+      "id": "livsform",
+      "title": "Livsform",
+      "focus": ["rytmer og vaner", "hverdagsvalg", "bruk av byen", "møteplasser"],
+      "from_fagkart": "livsform"
+    },
+    {
+      "id": "smak_koder",
+      "title": "Smak & koder",
+      "focus": ["koder og normer", "tilhørighet og forskjell", "klassifisering", "iscenesettelse"],
+      "from_fagkart": "smak_koder"
+    },
+    {
+      "id": "symboler_brands",
+      "title": "Symboler & brands",
+      "focus": ["logoer", "typografi", "ikonografi", "brand-estetikk"],
+      "from_fagkart": "symboler_brands"
+    },
+    {
+      "id": "subkulturer",
+      "title": "Subkulturer & scener",
+      "focus": ["kollektive stiler", "scene-steder", "koder og tegn", "tilhørighet"],
+      "from_fagkart": "subkulturer"
+    },
+    {
+      "id": "by_bolig_nabolag",
+      "title": "Bolig & nabolag",
+      "focus": ["boligformer", "tilhørighet", "ulikhet", "gentrifisering"],
+      "from_fagplan": "by_bolig_nabolag"
+    }
+  ],
+
+  "tags": {
+    "choice_tags": [
+      "shortcut",
+      "opportunism",
+      "visibility",
+      "process",
+      "legitimacy",
+      "avoidance",
+      "craft",
+      "risk",
+      "delay",
+      "order",
+      "chaos",
+      "community",
+      "status",
+      "minimalism",
+      "ornament",
+      "durability",
+      "luxury",
+      "local",
+      "chain",
+      "nightlife",
+      "family",
+      "mobility",
+      "frugality",
+      "spendthrift"
+    ],
+    "notes": "Disse taggene er det mail-valgene gir. Motoren teller frekvens og prioriterer innhold som matcher."
+  },
+
+  "lifestyles": [
+    {
+      "id": "hipster",
+      "label": "Hipster",
+      "short": "Kuratert hverdag, små steder, symboler og smakskoder.",
+      "signals": {
+        "livsform": ["tredje_steder", "markeder", "kaffe", "gåing"],
+        "smak_koder": ["kult/kleint-sensitiv", "autentisk vs kjede", "retro"],
+        "symboler_brands": ["logoer som ironi", "designsignaturer"],
+        "subkulturer": ["scene-noder", "små venues"]
+      },
+      "affinity": {
+        "choice_tags": ["craft", "visibility", "local", "community", "nightlife"],
+        "avoid_tags": ["order"]
+      },
+      "economy_profile": {
+        "risk": "medium",
+        "spend_style": "selective",
+        "budget_pressure": "medium_high"
+      },
+      "unlock_hints": {
+        "badges": ["kunst", "musikk", "subkultur", "litteratur"],
+        "neighborhood_themes": ["tredje_steder", "scene", "butikkspråk"]
+      }
+    },
+
+    {
+      "id": "technocrat",
+      "label": "Teknokrat",
+      "short": "System, prosess, optimalisering – og gadgets.",
+      "signals": {
+        "livsform": ["rutiner", "effektivitet", "datafisering"],
+        "smak_koder": ["renhet", "standard", "funksjon"],
+        "symboler_brands": ["tech-merker", "UI/formatgjenkjenning"],
+        "subkulturer": ["profesjonsmiljøer"]
+      },
+      "affinity": {
+        "choice_tags": ["process", "legitimacy", "order", "durability"],
+        "avoid_tags": ["chaos"]
+      },
+      "economy_profile": {
+        "risk": "low",
+        "spend_style": "planned",
+        "budget_pressure": "medium"
+      },
+      "unlock_hints": {
+        "badges": ["vitenskap", "by", "naeringsliv", "media"],
+        "neighborhood_themes": ["kontor", "infrastruktur", "formatstil"]
+      }
+    },
+
+    {
+      "id": "hippie",
+      "label": "Hippie",
+      "short": "Natur, fellesskap, myk økonomi – lav status, høy frihet.",
+      "signals": {
+        "livsform": ["langsomme rytmer", "kollektivt", "ute"],
+        "smak_koder": ["anti-status", "komfort", "gjenbruk"],
+        "symboler_brands": ["få merker", "anti-brand"],
+        "subkulturer": ["alternativscener"]
+      },
+      "affinity": {
+        "choice_tags": ["community", "avoidance", "frugality"],
+        "avoid_tags": ["status", "luxury"]
+      },
+      "economy_profile": {
+        "risk": "medium",
+        "spend_style": "low",
+        "budget_pressure": "low_medium"
+      },
+      "unlock_hints": {
+        "badges": ["natur", "kunst", "subkultur"],
+        "neighborhood_themes": ["parker", "markeder", "kollektiver"]
+      }
+    },
+
+    {
+      "id": "family_person",
+      "label": "Familiemann",
+      "short": "Stabilitet, nabolag, hverdag – og dyrt over tid.",
+      "signals": {
+        "livsform": ["dagrytme", "helg", "logistikk", "tredje_steder (familie)"],
+        "smak_koder": ["passer inn", "trygt", "praktisk"],
+        "symboler_brands": ["kvalitetssignaler", "standardmerker"],
+        "subkulturer": ["lav"]
+      },
+      "affinity": {
+        "choice_tags": ["process", "legitimacy", "family", "durability", "order"],
+        "avoid_tags": ["nightlife"]
+      },
+      "economy_profile": {
+        "risk": "low",
+        "spend_style": "steady",
+        "budget_pressure": "high"
+      },
+      "unlock_hints": {
+        "badges": ["by", "naeringsliv", "politikk"],
+        "neighborhood_themes": ["skole", "park", "nærbutikk", "boligtypologi"]
+      }
+    },
+
+    {
+      "id": "hustler",
+      "label": "Klikkjeger / Hustler",
+      "short": "Synlighet, shortcuts, opportunisme – rask cash, høy fallrisiko.",
+      "signals": {
+        "livsform": ["tempo", "jaging", "svingninger"],
+        "smak_koder": ["statusjakt", "trender"],
+        "symboler_brands": ["merker som trofeer"],
+        "subkulturer": ["natt/scene-noder"]
+      },
+      "affinity": {
+        "choice_tags": ["shortcut", "opportunism", "visibility", "spendthrift", "risk"],
+        "avoid_tags": ["process"]
+      },
+      "economy_profile": {
+        "risk": "high",
+        "spend_style": "flashy",
+        "budget_pressure": "high"
+      },
+      "unlock_hints": {
+        "badges": ["media", "populaerkultur", "naeringsliv", "subkultur"],
+        "neighborhood_themes": ["utesteder", "retail", "ikonografi"]
+      }
+    },
+
+    {
+      "id": "bureaucrat",
+      "label": "Prosess-menneske",
+      "short": "Byråkrati, legitimitet, unngåelse – trygg, men kvelende.",
+      "signals": {
+        "livsform": ["rutiner", "kontortid", "møter"],
+        "smak_koder": ["riktig", "korrekt", "passer inn"],
+        "symboler_brands": ["institusjonsspråk", "skilt/wayfinding"],
+        "subkulturer": ["lav"]
+      },
+      "affinity": {
+        "choice_tags": ["process", "legitimacy", "avoidance", "order", "delay"],
+        "avoid_tags": ["risk"]
+      },
+      "economy_profile": {
+        "risk": "low",
+        "spend_style": "predictable",
+        "budget_pressure": "medium"
+      },
+      "unlock_hints": {
+        "badges": ["politikk", "by", "historie", "vitenskap"],
+        "neighborhood_themes": ["administrasjon", "plan", "institusjoner"]
+      }
+    }
+  ],
+
+  "stamps": {
+    "how_it_shows_on_profile": {
+      "primary_stamp": "lifestyle_id_with_highest_weight",
+      "secondary_stamps": "top_2_optional",
+      "note": "Stemplene er 'kuriositet' og inngang til stilhistorie, ikke moral."
+    },
+    "weighting_rule": {
+      "window": "rolling_90_choices",
+      "decay": 0.985,
+      "tie_break": "most_recent_choice_tag_match"
+    }
+  }
+}
