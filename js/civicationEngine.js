@@ -377,6 +377,11 @@ function tickPCIncomeWeekly() {
 
       if (Array.isArray(ev.choices) && ev.choices.length) {
         const choice = ev.choices.find(c => c && c.id === choiceId);
+               // ---- v0.2: send choice-tags til Lifestyle ledger (path dependency)
+      try {
+        const tags = Array.isArray(choice?.tags) ? choice.tags : [];
+        if (tags.length) window.HG_Lifestyle?.addTags?.(tags, "civication_choice");
+      } catch {}
         if (!choice) return { ok: false, reason: "bad_choice" };
         effect = Number(choice.effect || 0);
         feedback = String(choice.feedback || "");
