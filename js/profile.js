@@ -475,6 +475,8 @@ function renderCivicationInbox() {
 
   const choices = Array.isArray(ev.choices) ? ev.choices : [];
 
+  window.renderCivicationCommercial?.();
+  
   function bindChoice(btn, choiceId, label) {
     btn.textContent = label;
     btn.style.display = "";
@@ -521,6 +523,138 @@ function renderCivicationInbox() {
 }
 
 window.renderCivicationInbox = renderCivicationInbox;  
+
+async function renderCivicationCommercial() {
+  const box = document.getElementById("civiShopBox");
+  const elBal = document.getElementById("civiPCBalance");
+  const elMeta = document.getElementById("civiPCMeta");
+  const elTags = document.getElementById("civiStyleCounts");
+  const elList = document.getElementById("civiPackList");
+
+  if (!box || !elBal || !elMeta || !elTags || !elList) return;
+
+  const shop = window.HG_CiviShop;
+  if (!shop || typeof shop.getWallet !== "function" || typeof shop.getInv !== "function") {
+    box.style.display = "none";
+    return;
+  }
+
+  box.style.display = "";
+
+  // ---- wallet ----
+  const w = shop.getWallet();
+  const bal = Number(w?.balance || 0);
+  elBal.textContent = `PC: ${bal}`;
+
+  const last = w?.last_tick_iso ? new Date(w.last_tick_iso).toLocaleString("no-NO") : "—";
+  elMeta.textContent = `Sist lønn-tick: ${last}`;
+
+  // ---- tags count (fra inventory) ----
+  const inv = shop.getInv();
+  const tags = inv?.style_tags || {};
+  const entries = Object.entries(tags).map(([k, v]) => [String(k), Number(v || 0)]);
+  entries.sort((a, b) => b[1] - a[1]);
+
+  if (!entries.length) {
+    elTags.textContent = "—";
+  } else {
+    // “tag ×N, tag ×N …”
+    elTags.textContent = entries
+      .slice(0, 16)
+      .map(([k, v]) => `${k} ×${v}`)
+      .join(" · ");
+  }
+
+  // ---- packs list (stores → packs) ----
+  elList.innerHTML = "";
+
+  const catalogs = await shop.getCatalogs();
+  const stores = Array.isArray(catalogs?.stores) ? catalogs.stores : [];
+  const packs = Array.isArray(catalogs?.packs) ? catalogs.packs : [];
+
+  // index packs
+  const packById = new Map(packs.map(p => [String(p?.id || ""), p]));
+
+  // bygg “butikk → packs”
+  for (const s of stores) {
+    const storeId = String(s?.id || "").trim();
+    const storeName = String(s?.name || storeId || "").trim();
+    const packIds = Array.isArray(s?.packs) ? s.packs : [];
+    if (!storeId || !packIds.length) continue;
+
+    const header = document.createElement("div");
+    header.className = "lk-category";
+    header.style.marginTop = "8px";
+    header.style.opacity = ".95";
+    header.textContent = `🏬 ${storeName}`;
+    elList.appendChild(header);
+
+    for (const pid of packIds) {
+      const packId = String(pid || "").trim();
+      const p = packById.get(packId);
+      if (!p) continue;
+
+      const price = Number(p?.price_pc || 0);
+      const owned = !!inv?.packs?.[packId];
+
+      const row = document.createElement("div");
+      row.style.display = "flex";
+      row.style.gap = "10px";
+      row.style.alignItems = "center";
+      row.style.justifyContent = "space-between";
+
+      const left = document.createElement("div");
+      left.style.display = "flex";
+      left.style.flexDirection = "column";
+
+      const title = document.createElement("div");
+      title.className = "lk-topic";
+      title.style.fontSize = "14px";
+      title.textContent = p.title || packId;
+
+      const meta = document.createElement("div");
+      meta.className = "lk-category";
+      meta.style.opacity = ".85";
+      meta.textContent = owned ? "Eid ✅" : `Pris: ${price} PC`;
+
+      left.appendChild(title);
+      left.appendChild(meta);
+
+      const btn = document.createElement("button");
+      btn.className = owned ? "btn secondary" : "btn";
+      btn.textContent = owned ? "Kjøpt" : "Kjøp";
+      btn.disabled = owned;
+
+      btn.onclick = async () => {
+        const res = await shop.buyPack(packId, storeId);
+        if (!res?.ok) {
+          // enkel feedback uten toast-avhengighet
+          btn.textContent = res?.reason === "insufficient_funds" ? "For lite PC" : "Feil";
+          setTimeout(() => renderCivicationCommercial(), 500);
+          return;
+        }
+        renderCivicationCommercial();
+        window.dispatchEvent(new Event("updateProfile"));
+      };
+
+      row.appendChild(left);
+      row.appendChild(btn);
+      elList.appendChild(row);
+    }
+  }
+
+  // fallback hvis ingen butikker/packs
+  if (!elList.children.length) {
+    const empty = document.createElement("div");
+    empty.className = "lk-category";
+    empty.style.opacity = ".85";
+    empty.textContent = "Ingen packs funnet (sjekk stores.json / commercial_packs.json).";
+    elList.appendChild(empty);
+  }
+}
+
+window.renderCivicationCommercial = renderCivicationCommercial;
+
 
 // ------------------------------------------------------------
 // MERKER – GRID + MODAL (STRICT)
