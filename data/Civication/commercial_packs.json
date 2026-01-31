@@ -1,0 +1,139 @@
+{
+  "kind": "civication_commercial_packs",
+  "version": 1,
+  "currency": "PC",
+  "price_bands": [
+    { "id": "budget", "label": "Budjsett" },
+    { "id": "mid", "label": "Middels" },
+    { "id": "premium", "label": "Premium" },
+    { "id": "luxury", "label": "Luksus" }
+  ],
+
+  "packs": [
+    {
+      "id": "streetwear_basic",
+      "title": "Streetwear – basic",
+      "category": "clothing",
+      "store_id": "street_shop_generic",
+      "lifestyle_tags": ["hipster", "hustler", "family_person"],
+      "price_band": "budget",
+      "price_pc": 1200,
+
+      "contents": [
+        { "kind": "brand_pack", "group": "streetwear_basic", "count": 6 }
+      ],
+
+      "gating": {
+        "requires_badges_any": ["subkultur", "populaerkultur", "musikk"],
+        "requires_neighborhood_any": [],
+        "prefer_lifestyles": ["hipster", "hustler"]
+      },
+
+      "effects": {
+        "style_tags_gain": ["street", "logo", "casual"]
+      }
+    },
+
+    {
+      "id": "workwear_durable",
+      "title": "Workwear – slitesterk",
+      "category": "clothing",
+      "store_id": "work_shop_generic",
+      "lifestyle_tags": ["bureaucrat", "family_person", "technocrat"],
+      "price_band": "mid",
+      "price_pc": 2800,
+
+      "contents": [
+        { "kind": "brand_pack", "group": "workwear", "count": 6 }
+      ],
+
+      "gating": {
+        "requires_badges_any": ["naeringsliv", "by"],
+        "requires_neighborhood_any": [],
+        "prefer_lifestyles": ["family_person", "bureaucrat"]
+      },
+
+      "effects": {
+        "style_tags_gain": ["work", "durability", "minimal"]
+      }
+    },
+
+    {
+      "id": "hi_fi_enthusiast",
+      "title": "Stereo – hi-fi entusiast",
+      "category": "tech",
+      "store_id": "hifi_shop_generic",
+      "lifestyle_tags": ["technocrat", "hipster"],
+      "price_band": "premium",
+      "price_pc": 9500,
+
+      "contents": [
+        { "kind": "brand_pack", "group": "hifi_classics", "count": 4 }
+      ],
+
+      "gating": {
+        "requires_badges_any": ["musikk", "vitenskap"],
+        "requires_neighborhood_any": [],
+        "prefer_lifestyles": ["technocrat"]
+      },
+
+      "effects": {
+        "style_tags_gain": ["audiophile", "tech", "craft"]
+      }
+    },
+
+    {
+      "id": "car_brand_classic",
+      "title": "Bil – klassikerpakke",
+      "category": "car",
+      "store_id": "car_dealer_generic",
+      "lifestyle_tags": ["hustler", "family_person", "technocrat"],
+      "price_band": "luxury",
+      "price_pc": 42000,
+
+      "contents": [
+        { "kind": "brand_pack", "group": "car_classics", "count": 3 }
+      ],
+
+      "gating": {
+        "requires_badges_any": ["naeringsliv", "by"],
+        "requires_neighborhood_any": ["bilforhandler_distrikt"],
+        "prefer_lifestyles": ["family_person", "hustler"]
+      },
+
+      "effects": {
+        "style_tags_gain": ["mobility", "status"]
+      }
+    },
+
+    {
+      "id": "housing_starter",
+      "title": "Bolig – startpakke",
+      "category": "housing",
+      "store_id": "housing_market",
+      "lifestyle_tags": ["family_person", "hipster", "bureaucrat"],
+      "price_band": "mid",
+      "price_pc": 15000,
+
+      "contents": [
+        { "kind": "housing_right", "tier": "starter", "count": 1 }
+      ],
+
+      "gating": {
+        "requires_badges_any": ["by"],
+        "requires_neighborhood_any": ["nabolag_basic_unlocked"],
+        "prefer_lifestyles": ["family_person", "bureaucrat"]
+      },
+
+      "effects": {
+        "style_tags_gain": ["home", "stability"]
+      }
+    }
+  ],
+
+  "notes": {
+    "lifestyle_tags": "Brukes til å prioritere hvilke pakker som dukker opp.",
+    "prefer_lifestyles": "Ikke hard lås – bare vekting.",
+    "requires_neighborhood_any": "For bil/bolig: du må ha besøkt/låst opp nabolag/forhandler."
+  }
+}
