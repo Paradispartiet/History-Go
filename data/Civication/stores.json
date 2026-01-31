@@ -1,0 +1,68 @@
+{
+  "kind": "civication_stores",
+  "version": 1,
+  "currency": "PC",
+
+  "stores": [
+    {
+      "id": "street_shop_generic",
+      "name": "Gatebutikken",
+      "type": "clothing",
+      "blurb": "Trygge valg. Mye logo. Litt sjel.",
+      "offers_pack_ids": ["streetwear_basic"],
+      "gating": {
+        "requires_any_badges": ["subkultur", "populaerkultur", "musikk"],
+        "requires_any_neighborhoods": []
+      }
+    },
+    {
+      "id": "work_shop_generic",
+      "name": "Arbeidsklær & Verktøy",
+      "type": "clothing",
+      "blurb": "Alt som tåler regn, kaffe og mellomlederblikk.",
+      "offers_pack_ids": ["workwear_durable"],
+      "gating": {
+        "requires_any_badges": ["naeringsliv", "by"],
+        "requires_any_neighborhoods": []
+      }
+    },
+    {
+      "id": "hifi_shop_generic",
+      "name": "Hi-Fi & Lyd",
+      "type": "tech",
+      "blurb": "Du hører forskjell. (Du kommer til å si at du gjør det.)",
+      "offers_pack_ids": ["hi_fi_enthusiast"],
+      "gating": {
+        "requires_any_badges": ["musikk", "vitenskap"],
+        "requires_any_neighborhoods": []
+      }
+    },
+    {
+      "id": "car_dealer_generic",
+      "name": "Bilforhandler",
+      "type": "car",
+      "blurb": "Du trenger den ikke. Men du kommer til å ville ha den.",
+      "offers_pack_ids": ["car_brand_classic"],
+      "gating": {
+        "requires_any_badges": ["naeringsliv", "by"],
+        "requires_any_neighborhoods": ["bilforhandler_distrikt"]
+      }
+    },
+    {
+      "id": "housing_market",
+      "name": "Boligmarkedet",
+      "type": "housing",
+      "blurb": "Markedet er rolig i dag. (Neida.)",
+      "offers_pack_ids": ["housing_starter"],
+      "gating": {
+        "requires_any_badges": ["by"],
+        "requires_any_neighborhoods": ["nabolag_basic_unlocked"]
+      }
+    }
+  ],
+
+  "notes": {
+    "offers_pack_ids": "Må matche pack.id i data/commercial_packs.json",
+    "gating": "Hard lås for om butikken i det hele tatt vises."
+  }
+}
