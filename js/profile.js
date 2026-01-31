@@ -565,6 +565,37 @@ async function renderCivicationCommercial() {
       .join(" · ");
   }
 
+
+  function renderStyleStamp(inventory = {}) {
+  const el = document.getElementById("civiStyleStamp");
+  if (!el) return;
+
+  const counts = {};
+  Object.values(inventory).forEach(item => {
+    (item.style_tags || []).forEach(t => {
+      counts[t] = (counts[t] || 0) + 1;
+    });
+  });
+
+  const sorted = Object.entries(counts)
+    .sort((a, b) => b[1] - a[1]);
+
+  if (!sorted.length) {
+    el.textContent = "Stil: —";
+    return;
+  }
+
+  const top = sorted[0];
+  const second = sorted[1];
+
+  // Hybrid hvis tett
+  if (second && second[1] >= top[1] * 0.8) {
+    el.textContent = `Stil: ${top[0]} + ${second[0]}`;
+  } else {
+    el.textContent = `Stil: ${top[0]}`;
+  }
+}
+  
   // ---- packs list (stores → packs) ----
   elList.innerHTML = "";
 
