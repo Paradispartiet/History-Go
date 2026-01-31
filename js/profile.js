@@ -412,7 +412,7 @@ function renderCivication() {
   } // ✅ LUKK for (const k of keys)
 
   if (!best) {
-    meritLn.textContent = "Merit: —";
+    meritLn.textContent = `Merit: ${best.roleLabel} (${best.badgeName}) · ${best.points} poeng · Sist: ${lastTxt} · PC: ${formatPC(getPCWallet().balance)}`;
     return;
   }
 
