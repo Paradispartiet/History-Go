@@ -1955,8 +1955,16 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function safeRun(label, fn) {
-  try { fn(); }
-  catch (e) {
+  try {
+    const out = fn();
+    // ✅ hvis fn er async / returnerer Promise
+    if (out && typeof out.then === "function") {
+      out.catch((e) => {
+        console.error(`[${label}]`, e);
+        if (DEBUG) window.__HG_LAST_ERROR__ = { label, message: String(e), stack: e?.stack };
+      });
+    }
+  } catch (e) {
     console.error(`[${label}]`, e);
     if (DEBUG) window.__HG_LAST_ERROR__ = { label, message: String(e), stack: e?.stack };
   }
