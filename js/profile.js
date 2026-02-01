@@ -482,10 +482,14 @@ async function renderCivicationCommercial() {
   const elMeta= document.getElementById("civiShopHint");
   const elTags= document.getElementById("civiStyleCounts");
   const elList= document.getElementById("civiShopPacks");
-  if (!box || !elBal || !elHint || !elTags || !elList) return;
+  if (!box || !elBal || !elMeta || !elTags || !elList) return;
 
   const shop = window.HG_CiviShop;
-  if (!shop || typeof shop.getWallet !== "function" || typeof shop.getCatalogs !== "function") {
+  const hasCatalog = (typeof shop?.getCatalogs === "function" || typeof shop?.getPacks === "function");
+  if (!shop || typeof shop.getWallet !== "function" || !hasCatalog) {
+    box.style.display = "none";
+    return;
+  }
     box.style.display = "none";
     return;
   }
@@ -498,7 +502,7 @@ async function renderCivicationCommercial() {
   elBal.textContent = String(Math.round(bal));
 
   const last = w?.last_tick_iso ? new Date(w.last_tick_iso).toLocaleString("no-NO") : "—";
-  elHint.textContent = `Sist lønn-tick: ${last}`;
+  elMeta.textContent = `Sist lønn-tick: ${last}`;
 
   // Inventory (valgfritt)
   let inv = null;
