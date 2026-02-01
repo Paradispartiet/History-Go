@@ -167,15 +167,18 @@ function saveVisitedFromQuiz(placeId) {
   }
 
   return wasVisited;
+
 }
-// ✅ Unlock sted via quiz (brukes av QuizEngine)
 function saveVisitedFromQuiz(placeId) {
   const id = String(placeId ?? "").trim();
   if (!id) return;
 
-  // ✅ alltid sett + alltid skriv (idempotent)
+  // ✅ alltid sett + alltid skriv (uten å være avhengig av saveVisited())
   visited[id] = true;
-  saveVisited();
+
+  try {
+    localStorage.setItem("visited_places", JSON.stringify(visited));
+  } catch {}
 
   window.dispatchEvent(new Event("updateProfile"));
   window.renderNearbyPlaces?.();
