@@ -1779,6 +1779,11 @@ await loadNature();
   
 window.API = window.API || {};
 window.API.addCompletedQuizAndMaybePoint = (...args) => addCompletedQuizAndMaybePoint(...args);
+window.API.saveVisitedFromQuiz   = (placeId)  => window.saveVisitedFromQuiz?.(placeId);
+window.API.savePeopleCollected   = (personId)=> window.savePeopleCollected?.(personId);
+window.API.showRewardPlace       = (pl)       => window.showRewardPlace?.(pl);
+window.API.showRewardPerson      = (pe)       => window.showRewardPerson?.(pe);
+
     
 // ✅ INIT QUIZ-MODUL (ETTER at PLACES/PEOPLE er lastet)
 if (window.QuizEngine) {
