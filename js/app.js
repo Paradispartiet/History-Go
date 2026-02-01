@@ -1768,6 +1768,7 @@ if (typeof linkPeopleToPlaces === "function") {
 
 await loadNature();
 
+  
 window.API = window.API || {};
 window.API.addCompletedQuizAndMaybePoint = (...args) => addCompletedQuizAndMaybePoint(...args);
     
@@ -1783,60 +1784,41 @@ if (window.QuizEngine) {
     showToast,
 
 addCompletedQuizAndMaybePoint: (...args) => {
-  // 1) kjør eksisterende progresjon
+  // ✅ debug: sjekk i console etter en quiz
+  window.__HG_LAST_QUIZ_ARGS = args;
+
+  // 1) eksisterende progresjon
   addCompletedQuizAndMaybePoint(...args);
 
-  // 2) signatur hos deg: [categoryId, targetId]
+  // 2) signatur: [categoryId, targetId]
   const foundId = (typeof args?.[1] === "string") ? args[1].trim() : "";
   if (!foundId) return;
 
-  // 3) STED: unlock + reward kun ved ny unlock
-  if (PLACES?.some(p => String(p.id) === foundId)) {
-    const wasVisited = !!visited[String(foundId)];
+  // 3) STED
+  const pl = (window.PLACES || []).find(p => String(p.id) === foundId);
+  if (pl) {
+    const v = JSON.parse(localStorage.getItem("visited_places") || "{}");
+    const wasVisited = !!v[String(foundId)];
+
     saveVisitedFromQuiz(foundId);
 
-    if (!wasVisited) {
-      try {
-        const pl = PLACES.find(p => String(p.id) === foundId);
-        if (pl && typeof showRewardPlace === "function") showRewardPlace(pl);
-      } catch {}
+    if (!wasVisited && typeof showRewardPlace === "function") {
+      showRewardPlace(pl);
     }
     return;
   }
 
-  // 4) PERSON: unlock + reward kun ved ny unlock
-  if (PEOPLE?.some(p => String(p.id) === foundId)) {
-    const wasCollected = !!peopleCollected[String(foundId)];
+  // 4) PERSON
+  const pe = (window.PEOPLE || []).find(p => String(p.id) === foundId);
+  if (pe) {
+    const pc = JSON.parse(localStorage.getItem("people_collected") || "{}");
+    const wasCollected = !!pc[String(foundId)];
 
     peopleCollected[String(foundId)] = true;
     savePeople();
 
-    if (!wasCollected) {
-      try {
-        const pe = PEOPLE.find(p => String(p.id) === foundId);
-        if (pe && typeof showRewardPerson === "function") showRewardPerson(pe);
-      } catch {}
-    }
-
-    window.dispatchEvent(new Event("updateProfile"));
-    return;
-  }
-},
-
-  // 4) PERSON: unlock + reward kun ved ny unlock
-  if (PEOPLE?.some(p => String(p.id) === foundId)) {
-    const wasCollected = !!peopleCollected[String(foundId)];
-
-    peopleCollected[String(foundId)] = true;
-    savePeople();
-
-    if (!wasCollected) {
-      try {
-        if (typeof showRewardPerson === "function") {
-          const pe = PEOPLE.find(p => String(p.id) === String(foundId));
-          if (pe) showRewardPerson(pe);
-        }
-      } catch {}
+    if (!wasCollected && typeof showRewardPerson === "function") {
+      showRewardPerson(pe);
     }
 
     window.dispatchEvent(new Event("updateProfile"));
