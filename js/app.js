@@ -160,15 +160,15 @@ function saveVisited() {
 
 // ✅ Unlock sted via quiz (brukes av QuizEngine)
 function saveVisitedFromQuiz(placeId) {
-  const id = String(placeId ?? "");
+  const id = String(placeId ?? "").trim();
   if (!id) return;
 
-  if (!visited[id]) {
-    visited[id] = true;
-    saveVisited();
-    window.dispatchEvent(new Event("updateProfile"));
-    window.renderNearbyPlaces?.();
-  }
+  // ✅ alltid sett + alltid skriv (idempotent)
+  visited[id] = true;
+  saveVisited();
+
+  window.dispatchEvent(new Event("updateProfile"));
+  window.renderNearbyPlaces?.();
 }
 
 function savePeople() {
