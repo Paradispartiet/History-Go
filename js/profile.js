@@ -407,15 +407,19 @@ function renderCivicationInbox() {
 
   if (!box || !subj || !text || !btnA || !btnB || !btnC || !btnOK || !fb) return;
 
-  const pending = window.HG_CiviEngine?.getPendingEvent?.();
-  if (!pending || !pending.event) {
-    box.style.display = "none";
-    return;
-  }
+  const engine = window.HG_CiviEngine;
+const pending = (engine && typeof engine.getPendingEvent === "function")
+  ? engine.getPendingEvent()
+  : null;
 
-  box.style.display = "";
-  const ev = pending.event;
+const ev = pending?.event || null;
 
+if (!ev) {
+  box.style.display = "none";
+  return;
+}
+
+box.style.display = "";
   subj.textContent = `📬 ${ev.subject || "—"}`;
   text.textContent = Array.isArray(ev.situation) ? ev.situation.join(" ") : (ev.situation || "—");
 
