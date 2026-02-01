@@ -1782,17 +1782,23 @@ if (window.QuizEngine) {
 
     showToast,
 
-    // progression / rewards
-    addCompletedQuizAndMaybePoint: (...args) => {
-  // 1) kjør eksisterende progresjon (den fungerer allerede siden du har "3 quiz fullført")
+// progression / rewards
+addCompletedQuizAndMaybePoint: (...args) => {
+  // 1) kjør eksisterende progresjon
   addCompletedQuizAndMaybePoint(...args);
 
-  // 2) prøv å finne en ID i args som matcher et sted eller en person
+  // 2) finn ID (støtter både string og objekt {id/targetId})
   let foundId = null;
-  for (const a of args) {
+
+  for (const a of (args || [])) {
     if (a == null) continue;
-    const s = String(a);
-    if (!s) continue;
+
+    const s =
+      (a && typeof a === "object" && (a.targetId || a.id))
+        ? String(a.targetId || a.id)
+        : String(a);
+
+    if (!s || s === "[object Object]") continue;
 
     // match sted først
     if (PLACES?.some(p => String(p.id) === s)) { foundId = s; break; }
@@ -1800,40 +1806,44 @@ if (window.QuizEngine) {
     if (PEOPLE?.some(p => String(p.id) === s)) { foundId = s; break; }
   }
 
+  if (!foundId) return;
+
+  // 3) unlock + reward: STED
   if (PLACES?.some(p => String(p.id) === foundId)) {
-  const wasVisited = !!visited[String(foundId)];
-  saveVisitedFromQuiz(foundId);
+    const wasVisited = !!visited[String(foundId)];
+    saveVisitedFromQuiz(foundId);
 
-  if (!wasVisited) {
-    try {
-      if (typeof showRewardPlace === "function") {
-        const pl = PLACES.find(p => String(p.id) === String(foundId));
-        if (pl) showRewardPlace(pl);
-      }
-    } catch {}
+    if (!wasVisited) {
+      try {
+        if (typeof showRewardPlace === "function") {
+          const pl = PLACES.find(p => String(p.id) === String(foundId));
+          if (pl) showRewardPlace(pl);
+        }
+      } catch {}
+    }
+
+    return;
   }
 
-  return;
-}
+  // 4) unlock + reward: PERSON
+  if (PEOPLE?.some(p => String(p.id) === foundId)) {
+    const wasCollected = !!peopleCollected[String(foundId)];
 
-if (PEOPLE?.some(p => String(p.id) === foundId)) {
-  const wasCollected = !!peopleCollected[String(foundId)];
+    peopleCollected[String(foundId)] = true;
+    savePeople();
 
-  peopleCollected[String(foundId)] = true;
-  savePeople();
+    if (!wasCollected) {
+      try {
+        if (typeof showRewardPerson === "function") {
+          const pe = PEOPLE.find(p => String(p.id) === String(foundId));
+          if (pe) showRewardPerson(pe);
+        }
+      } catch {}
+    }
 
-  if (!wasCollected) {
-    try {
-      if (typeof showRewardPerson === "function") {
-        const pe = PEOPLE.find(p => String(p.id) === String(foundId));
-        if (pe) showRewardPerson(pe);
-      }
-    } catch {}
+    window.dispatchEvent(new Event("updateProfile"));
+    return;
   }
-
-  window.dispatchEvent(new Event("updateProfile"));
-  return;
-}
 },
 
     showRewardPerson,
