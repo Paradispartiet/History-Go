@@ -1784,6 +1784,10 @@ if (window.QuizEngine) {
 
 // progression / rewards
 addCompletedQuizAndMaybePoint: (...args) => {
+  // ✅ DEBUG: gjør det mulig å sjekke i console etterpå
+  window.__HG_LAST_QUIZ_ARGS = args;
+  if (window.DEBUG_QUIZ_ARGS) console.log("[HG quiz complete args]", args);
+
   // 1) kjør eksisterende progresjon
   addCompletedQuizAndMaybePoint(...args);
 
@@ -1800,15 +1804,13 @@ addCompletedQuizAndMaybePoint: (...args) => {
 
     if (!s || s === "[object Object]") continue;
 
-    // match sted først
     if (PLACES?.some(p => String(p.id) === s)) { foundId = s; break; }
-    // ellers match person
     if (PEOPLE?.some(p => String(p.id) === s)) { foundId = s; break; }
   }
 
   if (!foundId) return;
 
-  // 3) unlock + reward: STED
+  // 3) STED: unlock + reward kun ved ny unlock
   if (PLACES?.some(p => String(p.id) === foundId)) {
     const wasVisited = !!visited[String(foundId)];
     saveVisitedFromQuiz(foundId);
@@ -1821,11 +1823,10 @@ addCompletedQuizAndMaybePoint: (...args) => {
         }
       } catch {}
     }
-
     return;
   }
 
-  // 4) unlock + reward: PERSON
+  // 4) PERSON: unlock + reward kun ved ny unlock
   if (PEOPLE?.some(p => String(p.id) === foundId)) {
     const wasCollected = !!peopleCollected[String(foundId)];
 
