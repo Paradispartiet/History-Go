@@ -146,18 +146,28 @@ const userProgress    = JSON.parse(localStorage.getItem("historygo_progress") ||
 
 
 
-function saveVisited() {
-  localStorage.setItem("visited_places", JSON.stringify(visited));
-  renderCollection();
+// ✅ Unlock sted via quiz (robust selv om LS og minne er ute av sync)
+function saveVisitedFromQuiz(placeId) {
+  const id = String(placeId ?? "").trim();
+  if (!id) return;
 
-  if (window.HGMap) {
-    HGMap.setVisited(visited);
-    HGMap.refreshMarkers();
+  // sync inn alt fra LS inn i memory-cachen, så vi aldri mister noe
+  const ls = JSON.parse(localStorage.getItem("visited_places") || "{}");
+  Object.assign(visited, ls);
+
+  const wasVisited = !!visited[id];
+
+  // alltid sett true + persist via saveVisited()
+  visited[id] = true;
+  saveVisited(); // skriver visited -> LS + oppdaterer UI + updateProfile
+
+  // bare “ekstra” UI-push når det faktisk var ny unlock
+  if (!wasVisited) {
+    try { window.renderNearbyPlaces?.(); } catch {}
   }
 
-  window.dispatchEvent(new Event("updateProfile")); // ✅ VIKTIG
+  return wasVisited;
 }
-
 // ✅ Unlock sted via quiz (brukes av QuizEngine)
 function saveVisitedFromQuiz(placeId) {
   const id = String(placeId ?? "").trim();
