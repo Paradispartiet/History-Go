@@ -1800,19 +1800,40 @@ if (window.QuizEngine) {
     if (PEOPLE?.some(p => String(p.id) === s)) { foundId = s; break; }
   }
 
-  if (!foundId) return;
-
-  // 3) unlock sted/person basert på ID
   if (PLACES?.some(p => String(p.id) === foundId)) {
-    saveVisitedFromQuiz(foundId);
-    return;
+  const wasVisited = !!visited[String(foundId)];
+  saveVisitedFromQuiz(foundId);
+
+  if (!wasVisited) {
+    try {
+      if (typeof showRewardPlace === "function") {
+        const pl = PLACES.find(p => String(p.id) === String(foundId));
+        if (pl) showRewardPlace(pl);
+      }
+    } catch {}
   }
 
-  if (PEOPLE?.some(p => String(p.id) === foundId)) {
-    peopleCollected[foundId] = true;
-    savePeople();
-    window.dispatchEvent(new Event("updateProfile"));
+  return;
+}
+
+if (PEOPLE?.some(p => String(p.id) === foundId)) {
+  const wasCollected = !!peopleCollected[String(foundId)];
+
+  peopleCollected[String(foundId)] = true;
+  savePeople();
+
+  if (!wasCollected) {
+    try {
+      if (typeof showRewardPerson === "function") {
+        const pe = PEOPLE.find(p => String(p.id) === String(foundId));
+        if (pe) showRewardPerson(pe);
+      }
+    } catch {}
   }
+
+  window.dispatchEvent(new Event("updateProfile"));
+  return;
+}
 },
 
     showRewardPerson,
