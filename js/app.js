@@ -177,6 +177,8 @@ function saveVisitedFromQuiz(placeId) {
   return wasVisited;
 }
 
+window.saveVisitedFromQuiz = saveVisitedFromQuiz;
+
 function savePeople() {
   localStorage.setItem("people_collected", JSON.stringify(peopleCollected));
   renderGallery();
@@ -1818,7 +1820,7 @@ addCompletedQuizAndMaybePoint: (...args) => {
 // 3) PLACE unlock + reward (kun ved ny unlock)
 if (PLACES?.some(p => String(p.id) === String(foundId))) {
   const wasVisited = !!JSON.parse(localStorage.getItem("visited_places") || "{}")[String(foundId)];
-  saveVisitedFromQuiz(foundId);
+  window.saveVisitedFromQuiz(foundId);
 
   if (!wasVisited) {
     try {
