@@ -597,234 +597,76 @@ BADGES = Array.isArray(data?.badges) ? data.badges : [];
   }
 }
 
+const LS_JOB_OFFERS = "hg_job_offers_v1";
+const LS_ACTIVE_JOB = "hg_active_position_v1";
 
-// ------------------------------------------------------------
-// CIVICATION: Jobbtilbud (offers) lagres i localStorage
-// ------------------------------------------------------------
-function hgGetJobOffers() {
-  try {
-    const raw = JSON.parse(localStorage.getItem("hg_job_offers_v1") || "[]");
-    return Array.isArray(raw) ? raw : [];
-  } catch {
-    return [];
-  }
-}
-
-function hgSetJobOffers(arr) {
-  try {
-    localStorage.setItem("hg_job_offers_v1", JSON.stringify(arr || []));
-  } catch {}
-}
-
-function hgPushJobOffer(badge, tier, newPoints) {
-  if (!badge || !tier) return;
+function maybeCreateJobOfferFromMerits(badge, oldPoints, newPoints) {
+  if (!badge || !Array.isArray(badge.tiers)) return null;
 
   const badgeId = String(badge.id || "").trim();
-  const badgeName = String(badge.name || "").trim();
-  const title = String(tier.label || "").trim();
-  const thr = Number(tier.threshold);
-
-  if (!badgeId || !title || !Number.isFinite(thr)) return;
-
-  const offerKey = `${badgeId}:${thr}`;
-  const offers = hgGetJobOffers();
-
-  // Ikke lag samme tilbud flere ganger
-  if (offers.some(o => o && o.offer_key === offerKey)) return;
-
-  const now = new Date();
-  const expires = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000); // 7 dager
-
-  offers.unshift({
-    offer_key: offerKey,
-    career_id: badgeId,
-    career_name: badgeName,
-    title,
-    threshold: thr,
-    points_at_offer: Number(newPoints || 0),
-    status: "pending",         // pending | accepted | declined | expired
-    created_iso: now.toISOString(),
-    expires_iso: expires.toISOString()
-  });
-
-  hgSetJobOffers(offers);
-}
-
-
-// Wrapper: ny signatur (badge, nextTier, newPoints) -> gammel signatur (badgeId, oldPoints, newPoints)
-async function maybeCreateJobOfferFromMerits(badge, nextTier, newPoints) {
-  const badgeId = String(badge?.id || "").trim();
   if (!badgeId) return null;
 
-  // Vi trenger oldPoints for din gamle funksjon.
-  // Hent fra merits_by_category (samme kilde som resten av appen)
-  const merits = (() => {
-    try { return JSON.parse(localStorage.getItem("merits_by_category") || "{}"); }
-    catch { return {}; }
-  })();
-
-  const oldPoints = Number(merits?.[badgeId]?.points || 0);
-  // NB: her vil oldPoints typisk allerede være "newPoints" hvis du kaller etter at du har økt poeng.
-  // Derfor: bruk prev fra updateMeritLevel isteden hvis du har det tilgjengelig.
-  // Men siden du allerede har prev i updateMeritLevel: vi løser det i steg 3 under.
-
-  return maybeCreateJobOfferFromMerits_OLD(badgeId, oldPoints, newPoints);
-}
-
-// Gi nytt navn til din eksisterende funksjon:
-function maybeCreateJobOfferFromMerits_OLD(badgeId, oldPoints, newPoints) {
-  // ... lim inn hele din eksisterende funksjon her uendret ...
-}
-
-function maybeCreateJobOfferFromMerits(badgeId, oldPoints, newPoints) {
-  const LS_OFFERS = "hg_job_offers_v1";
-  const LS_ACTIVE = "hg_active_position_v1";
-
-  const bId = String(badgeId || "").trim();
-  const oldP = Number(oldPoints || 0);
-  const newP = Number(newPoints || 0);
-  if (!bId || !Number.isFinite(oldP) || !Number.isFinite(newP)) return null;
-  if (newP <= oldP) return null;
-
-  // --- finn badge + tiers ---
-  const badge = Array.isArray(BADGES) ? BADGES.find(...) : null;
-    ? window.BADGES.find(b => String(b?.id || "").trim() === bId)
-    : null;
-
-  const tiers = Array.isArray(badge?.tiers) ? badge.tiers : [];
-  if (!tiers.length) return null;
-
-  // --- finn hvilke tiers du akkurat passerte (kan være flere) ---
-  // vi tilbyr den HØYESTE tier-en du krysset i dette steget
+  // Finn høyeste tier du akkurat krysset
   let crossed = null;
-  for (const t of tiers) {
-    const thr = Number(t?.threshold || 0);
-    if (!Number.isFinite(thr) || thr <= 0) continue;
-
-    if (oldP < thr && newP >= thr) {
-      crossed = t; // behold siste -> høyeste i rekkefølgen
-    }
+  for (const tier of badge.tiers) {
+    const thr = Number(tier?.threshold || 0);
+    if (!Number.isFinite(thr)) continue;
+    if (oldPoints < thr && newPoints >= thr) crossed = tier;
   }
+
   if (!crossed) return null;
 
   const title = String(crossed.label || "").trim();
   const threshold = Number(crossed.threshold || 0);
+  if (!title || !threshold) return null;
 
-  if (!title || !Number.isFinite(threshold) || threshold <= 0) return null;
-
-  // --- ikke tilby hvis du allerede er i akkurat den jobben ---
+  // Ikke tilby hvis allerede aktiv i samme jobb
   let active = null;
   try {
-    active = JSON.parse(localStorage.getItem(LS_ACTIVE) || "null");
+    active = JSON.parse(localStorage.getItem(LS_ACTIVE_JOB) || "null");
   } catch {}
-  const activeCareer = String(active?.career_id || "").trim();
-  const activeTitle  = String(active?.title || "").trim();
-  if (activeCareer === bId && activeTitle === title) return null;
 
-  // --- last offers ---
+  if (
+    active &&
+    active.career_id === badgeId &&
+    active.title === title
+  ) {
+    return null;
+  }
+
+  // Last eksisterende offers
   let offers = [];
   try {
-    const raw = JSON.parse(localStorage.getItem(LS_OFFERS) || "[]");
-    offers = Array.isArray(raw) ? raw : [];
+    offers = JSON.parse(localStorage.getItem(LS_JOB_OFFERS) || "[]");
+    if (!Array.isArray(offers)) offers = [];
   } catch {
     offers = [];
   }
 
-  // --- dedupe: samme badge + samme title skal aldri tilbys igjen ---
-  const offerId = `offer:${bId}:${title}`; // stabil id
-  const existing = offers.find(o => o && o.id === offerId);
-  if (existing) return null;
+  // Dedupe: samme badge + threshold tilbys kun én gang
+  const offerId = `offer:${badgeId}:${threshold}`;
+  if (offers.some(o => o?.id === offerId)) return null;
 
-  // --- lag offer ---
   const now = new Date();
-  const exp = new Date(now.getTime() + 3 * 24 * 60 * 60 * 1000); // 3 dager
+  const expires = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
 
   const offer = {
     id: offerId,
-    status: "pending",                 // pending | accepted | declined | expired
+    status: "pending",
     created_iso: now.toISOString(),
-    expires_iso: exp.toISOString(),
-
-    career_id: bId,                    // f.eks "naeringsliv"
-    career_name: String(badge?.name || bId),
-    title: title,                      // tier label
-    threshold: threshold
+    expires_iso: expires.toISOString(),
+    career_id: badgeId,
+    career_name: badge.name,
+    title,
+    threshold
   };
 
   offers.unshift(offer);
+  if (offers.length > 50) offers.length = 50;
 
-  // liten cap så LS ikke svulmer
-  if (offers.length > 50) offers = offers.slice(0, 50);
-
-  try {
-    localStorage.setItem(LS_OFFERS, JSON.stringify(offers));
-  } catch {}
-
+  localStorage.setItem(LS_JOB_OFFERS, JSON.stringify(offers));
   return offer;
 }
-
-
-
-
-// Oppdater "stilling" ved ny poengsum (tiers = karrierestige)
-async function updateMeritLevel(cat, oldPoints, newPoints) {
-  await ensureBadgesLoaded();
-
-  const catId = String(cat || "").trim();
-  const badge = BADGES.find(b => String(b?.id || "").trim() === catId);
-  if (!badge || !Array.isArray(badge.tiers) || !badge.tiers.length) return;
-
-  const prev = deriveTierFromPoints(badge, Number(oldPoints || 0));
-  const next = deriveTierFromPoints(badge, Number(newPoints || 0));
-
-  // Bare gjør noe hvis du faktisk rykker opp i "stilling"
-  if ((next.tierIndex ?? 0) <= (prev.tierIndex ?? 0)) return;
-
-  // tiers.label er nå stillingstittel
-  const newTitle = String(next.label || "").trim() || "Ny stilling";
-
-  // 1) UI feedback
-  showToast(`💼 Ny stilling i ${badge.name}: ${newTitle}!`);
-  pulseBadge(badge.name);
-
-// 2) Lag jobbtilbud (offers) – aktiv rolle settes først ved "Aksepter" på profilen
-await maybeCreateJobOfferFromMerits_OLD(badge.id, oldPoints, newPoints);
-
-}
-
-  
-// Poengsystem – +1 poeng per fullført quiz
-async function addCompletedQuizAndMaybePoint(categoryDisplay, quizId) {
-  const categoryId = catIdFromDisplay(categoryDisplay);
-  const canonicalCategoryId =
-  categoryId === "naering" ? "naeringsliv" : categoryId;
-  const progress = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
-  progress[canonicalCategoryId] = progress[canonicalCategoryId] || { completed: [] };
-
-if (progress[canonicalCategoryId].completed.includes(quizId)) return;
-
-progress[canonicalCategoryId].completed.push(quizId);
-localStorage.setItem("quiz_progress", JSON.stringify(progress));
-
-const badgeId = canonicalCategoryId;  if (!badgeId) return;
-
-  window.merits = window.merits || {};
-  window.merits[badgeId] = window.merits[badgeId] || { points: 0 };
-
-  const oldPoints = Number(window.merits[badgeId].points || 0);
-  window.merits[badgeId].points += 1;
-
-  // Optional: fjern gammel lagret level hvis den finnes (rydder støy)
-  if ("level" in window.merits[badgeId]) delete window.merits[badgeId].level;
-
-  if (typeof window.saveMerits === "function") window.saveMerits();
-
-  const newPoints = Number(window.merits[badgeId].points || 0);
-  updateMeritLevel(badgeId, oldPoints, newPoints);
-
-  showToast(`🏅 +1 poeng i ${badgeId}!`);
-  window.dispatchEvent(new Event("updateProfile"));}
-
 // ==============================
 // 9. HENDELSER (CLICK-DELEGATION) OG SHEETS
 // ==============================
