@@ -277,72 +277,65 @@ function renderCivication() {
 
   if (!title || !details || !oBox || !oTitle || !oMeta) return;
 
-  // ------------------------------------------------------------
-  // 1) AKTIV JOBB (akseptert offer) – dette er "rollen din"
-  // ------------------------------------------------------------
+  // 1) AKTIV JOBB
   const active = getActivePosition();
   if (active && active.title) {
     title.textContent = `Rolle: ${active.title}`;
     const cn = active.career_name || active.career_id || "—";
-    const dt = active.achieved_at ? new Date(active.achieved_at).toLocaleDateString("no-NO") : "";
+    const dt = active.achieved_at
+      ? new Date(active.achieved_at).toLocaleDateString("no-NO")
+      : "";
     details.textContent = `Status: Aktiv · Felt: ${cn}${dt ? " · Satt: " + dt : ""}`;
   } else {
     title.textContent = "Rolle: —";
-    details.textContent = "Status: Ingen aktiv jobb (ta quiz for å få 
-
-      
-    
-// ------------------------------------------------------------
-// 2) JOBBTILBUD (pending)
-// ------------------------------------------------------------
-const offer = getLatestPendingOffer();
-if (!offer) {
-  oBox.style.display = "none";
-} else {
-  oBox.style.display = "";
-  oTitle.textContent = `Jobbtilbud: ${offer.title}`;
-
-  const expTxt = offer.expires_iso
-    ? new Date(offer.expires_iso).toLocaleDateString("no-NO")
-    : "—";
-
-  oMeta.textContent =
-    `${offer.career_name || offer.career_id || ""} · ` +
-    `Terskel: ${offer.threshold} · Utløper: ${expTxt}`;
-
-  // Wire buttons (Aksepter / Ikke nå)
-  const btnAccept = document.getElementById("btnCiviAccept");
-  const btnDecline = document.getElementById("btnCiviDecline");
-
-  if (btnAccept) {
-    btnAccept.onclick = async () => {
-      const accepted = acceptOfferById(offer.id);
-      if (!accepted) return;
-
-      await window.HG_CiviEngine?.onAppOpen?.();
-
-      renderCivication();
-      window.renderCivicationInbox?.();
-      window.dispatchEvent(new Event("updateProfile"));
-    };
+    details.textContent = "Status: Ingen aktiv jobb (ta quiz for å få jobbtilbud)";
   }
 
-  if (btnDecline) {
-    btnDecline.onclick = () => {
-      const ok = declineOfferById(offer.id);
-      if (!ok) return;
+  // 2) JOBBTILBUD (pending)
+  const offer = getLatestPendingOffer();
+  if (!offer) {
+    oBox.style.display = "none";
+  } else {
+    oBox.style.display = "";
+    oTitle.textContent = `Jobbtilbud: ${offer.title}`;
 
-      renderCivication();
-      window.renderCivicationInbox?.();
-      window.dispatchEvent(new Event("updateProfile"));
-    };
+    const expTxt = offer.expires_iso
+      ? new Date(offer.expires_iso).toLocaleDateString("no-NO")
+      : "—";
+
+    oMeta.textContent =
+      `${offer.career_name || offer.career_id || ""} · ` +
+      `Terskel: ${offer.threshold} · Utløper: ${expTxt}`;
+
+    const btnAccept  = document.getElementById("btnCiviAccept");
+    const btnDecline = document.getElementById("btnCiviDecline");
+
+    if (btnAccept) {
+      btnAccept.onclick = async () => {
+        const accepted = acceptOfferById(offer.id);
+        if (!accepted) return;
+
+        await window.HG_CiviEngine?.onAppOpen?.();
+
+        renderCivication();
+        window.renderCivicationInbox?.();
+        window.dispatchEvent(new Event("updateProfile"));
+      };
+    }
+
+    if (btnDecline) {
+      btnDecline.onclick = () => {
+        const ok = declineOfferById(offer.id);
+        if (!ok) return;
+
+        renderCivication();
+        window.renderCivicationInbox?.();
+        window.dispatchEvent(new Event("updateProfile"));
+      };
+    }
   }
-}
 
-  // ------------------------------------------------------------
-  // 3) "BESTE ROLLE" (auto fra merits + tiers) – beholdes!
-  //    (Dette er merit/karriereprofil, ikke nødvendigvis aktiv jobb)
-  // ------------------------------------------------------------
+  // 3) “BESTE ROLLE” fra merits + tiers
   if (!meritLn) return;
 
   const merits = ls("merits_by_category", {});
@@ -352,7 +345,6 @@ if (!offer) {
     return;
   }
 
-  // quiz_history brukes her kun for "sist relevant quiz"-dato (ikke tvang)
   const historyRaw = JSON.parse(localStorage.getItem("quiz_history") || "[]");
   const history = Array.isArray(historyRaw) ? historyRaw : [];
 
@@ -386,10 +378,10 @@ if (!offer) {
       if (item.tierIndex > best.tierIndex) best = item;
       else if (item.tierIndex === best.tierIndex && item.points > best.points) best = item;
     }
-  } // ✅ LUKK for (const k of keys)
+  }
 
   if (!best) {
-    meritLn.textContent = `Merit: ${best.roleLabel} (${best.badgeName}) · ${best.points} poeng · Sist: ${lastTxt} · PC: ${formatPC(getPCWallet().balance)}`;
+    meritLn.textContent = "Merit: —";
     return;
   }
 
@@ -485,99 +477,62 @@ function renderCivicationInbox() {
 window.renderCivicationInbox = renderCivicationInbox;  
 
 async function renderCivicationCommercial() {
-  const box = document.getElementById("civiShopBox");
-  const elBal = document.getElementById("civiPCBalance");
-  const elMeta = document.getElementById("civiPCMeta");
+  const box   = document.getElementById("civiShopBox");
+  const elBal = document.getElementById("civiPcBalance");
+  const elHint = document.getElementById("civiShopHint");
   const elTags = document.getElementById("civiStyleCounts");
-  const elList = document.getElementById("civiPackList");
+  const elList = document.getElementById("civiShopPacks");
 
-  if (!box || !elBal || !elMeta || !elTags || !elList) return;
+  if (!box || !elBal || !elHint || !elTags || !elList) return;
 
   const shop = window.HG_CiviShop;
-  if (!shop || typeof shop.getWallet !== "function" || typeof shop.getInv !== "function") {
+  if (!shop || typeof shop.getWallet !== "function" || typeof shop.getCatalogs !== "function") {
     box.style.display = "none";
     return;
   }
 
   box.style.display = "";
 
-  // ---- wallet ----
+  // Wallet
   const w = shop.getWallet();
   const bal = Number(w?.balance || 0);
-  elBal.textContent = `PC: ${bal}`;
+  elBal.textContent = String(Math.round(bal));
 
   const last = w?.last_tick_iso ? new Date(w.last_tick_iso).toLocaleString("no-NO") : "—";
-  elMeta.textContent = `Sist lønn-tick: ${last}`;
+  elHint.textContent = `Sist lønn-tick: ${last}`;
 
-  // ---- tags count (fra inventory.items) ----
-const inv = getPCInventory(); // ÉN kilde
-const tagCounts = {};
+  // Inventory (valgfritt)
+  let inv = null;
+  try {
+    inv = (typeof shop.getInv === "function") ? shop.getInv() : null;
+  } catch {}
+  inv = inv && typeof inv === "object" ? inv : {};
+  const items = Array.isArray(inv.items) ? inv.items : [];
+  const ownedPacks = inv.packs && typeof inv.packs === "object" ? inv.packs : {};
 
-(inv.items || []).forEach(item => {
-  (item.style_tags || []).forEach(tag => {
-    const k = String(tag || "").trim();
-    if (!k) return;
-    tagCounts[k] = (tagCounts[k] || 0) + 1;
-  });
-});
-
-const entries = Object.entries(tagCounts).sort((a,b) => b[1] - a[1]);
-
-elTags.textContent = entries.length
-  ? entries.slice(0, 16).map(([k,v]) => `${k} ×${v}`).join(" · ")
-  : "—";
-  if (!entries.length) {
-    elTags.textContent = "—";
-  } else {
-    // “tag ×N, tag ×N …”
-    elTags.textContent = entries
-      .slice(0, 16)
-      .map(([k, v]) => `${k} ×${v}`)
-      .join(" · ");
+  // Stil-tags count
+  const tagCounts = {};
+  for (const it of items) {
+    const tags = Array.isArray(it?.style_tags) ? it.style_tags : [];
+    for (const t of tags) {
+      const k = String(t || "").trim();
+      if (!k) continue;
+      tagCounts[k] = (tagCounts[k] || 0) + 1;
+    }
   }
+  const entries = Object.entries(tagCounts).sort((a,b) => b[1] - a[1]);
+  elTags.textContent = entries.length
+    ? entries.slice(0, 16).map(([k,v]) => `${k} ×${v}`).join(" · ")
+    : "—";
 
-
-  function renderStyleStamp(inventory = {}) {
-  const el = document.getElementById("civiStyleStamp");
-  if (!el) return;
-
-  const counts = {};
-  Object.values(inventory).forEach(item => {
-    (item.style_tags || []).forEach(t => {
-      counts[t] = (counts[t] || 0) + 1;
-    });
-  });
-
-  const sorted = Object.entries(counts)
-    .sort((a, b) => b[1] - a[1]);
-
-  if (!sorted.length) {
-    el.textContent = "Stil: —";
-    return;
-  }
-
-  const top = sorted[0];
-  const second = sorted[1];
-
-  // Hybrid hvis tett
-  if (second && second[1] >= top[1] * 0.8) {
-    el.textContent = `Stil: ${top[0]} + ${second[0]}`;
-  } else {
-    el.textContent = `Stil: ${top[0]}`;
-  }
-}
-  
-  // ---- packs list (stores → packs) ----
+  // Packs
   elList.innerHTML = "";
 
   const catalogs = await shop.getCatalogs();
   const stores = Array.isArray(catalogs?.stores) ? catalogs.stores : [];
-  const packs = Array.isArray(catalogs?.packs) ? catalogs.packs : [];
-
-  // index packs
+  const packs  = Array.isArray(catalogs?.packs) ? catalogs.packs : [];
   const packById = new Map(packs.map(p => [String(p?.id || ""), p]));
 
-  // bygg “butikk → packs”
   for (const s of stores) {
     const storeId = String(s?.id || "").trim();
     const storeName = String(s?.name || storeId || "").trim();
@@ -587,7 +542,6 @@ elTags.textContent = entries.length
     const header = document.createElement("div");
     header.className = "lk-category";
     header.style.marginTop = "8px";
-    header.style.opacity = ".95";
     header.textContent = `🏬 ${storeName}`;
     elList.appendChild(header);
 
@@ -597,7 +551,7 @@ elTags.textContent = entries.length
       if (!p) continue;
 
       const price = Number(p?.price_pc || 0);
-      const owned = !!inv?.packs?.[packId];
+      const owned = !!ownedPacks?.[packId];
 
       const row = document.createElement("div");
       row.style.display = "flex";
@@ -609,18 +563,18 @@ elTags.textContent = entries.length
       left.style.display = "flex";
       left.style.flexDirection = "column";
 
-      const title = document.createElement("div");
-      title.className = "lk-topic";
-      title.style.fontSize = "14px";
-      title.textContent = p.title || packId;
+      const t1 = document.createElement("div");
+      t1.className = "lk-topic";
+      t1.style.fontSize = "14px";
+      t1.textContent = p.title || packId;
 
-      const meta = document.createElement("div");
-      meta.className = "lk-category";
-      meta.style.opacity = ".85";
-      meta.textContent = owned ? "Eid ✅" : `Pris: ${price} PC`;
+      const t2 = document.createElement("div");
+      t2.className = "lk-category";
+      t2.style.opacity = ".85";
+      t2.textContent = owned ? "Eid ✅" : `Pris: ${price} PC`;
 
-      left.appendChild(title);
-      left.appendChild(meta);
+      left.appendChild(t1);
+      left.appendChild(t2);
 
       const btn = document.createElement("button");
       btn.className = owned ? "btn secondary" : "btn";
@@ -628,11 +582,11 @@ elTags.textContent = entries.length
       btn.disabled = owned;
 
       btn.onclick = async () => {
+        if (typeof shop.buyPack !== "function") return;
         const res = await shop.buyPack(packId, storeId);
         if (!res?.ok) {
-          // enkel feedback uten toast-avhengighet
           btn.textContent = res?.reason === "insufficient_funds" ? "For lite PC" : "Feil";
-          setTimeout(() => renderCivicationCommercial(), 500);
+          setTimeout(() => renderCivicationCommercial(), 600);
           return;
         }
         renderCivicationCommercial();
@@ -645,18 +599,16 @@ elTags.textContent = entries.length
     }
   }
 
-  // fallback hvis ingen butikker/packs
   if (!elList.children.length) {
     const empty = document.createElement("div");
     empty.className = "lk-category";
     empty.style.opacity = ".85";
-    empty.textContent = "Ingen packs funnet (sjekk stores.json / commercial_packs.json).";
+    empty.textContent = "Ingen packs funnet.";
     elList.appendChild(empty);
   }
 }
 
 window.renderCivicationCommercial = renderCivicationCommercial;
-
 
 // ------------------------------------------------------------
 // MERKER – GRID + MODAL (STRICT)
