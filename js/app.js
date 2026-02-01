@@ -49,6 +49,21 @@ const visited         = JSON.parse(localStorage.getItem("visited_places") || "{}
 const peopleCollected = JSON.parse(localStorage.getItem("people_collected") || "{}");
 const merits          = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
 
+function saveVisited() {
+  localStorage.setItem("visited_places", JSON.stringify(visited));
+
+  // oppdater samling + kart (samme oppførsel som stabil)
+  try { window.renderCollection?.(); } catch {}
+
+  if (window.HGMap) {
+    try { HGMap.setVisited(visited); } catch {}
+    try { HGMap.refreshMarkers(); } catch {}
+  }
+
+  window.dispatchEvent(new Event("updateProfile")); // ✅ viktig
+}
+window.saveVisited = saveVisited; // (valgfritt, men nyttig for debug)
+
 window.merits = merits;
 // Dialoger og notater (History Go – V1)
 
@@ -150,15 +165,16 @@ function saveVisitedFromQuiz(placeId) {
   const id = String(placeId ?? "").trim();
   if (!id) return;
 
-  // ✅ alltid sett + alltid skriv (uten å være avhengig av saveVisited())
+  const wasVisited = !!visited[id];
   visited[id] = true;
 
-  try {
-    localStorage.setItem("visited_places", JSON.stringify(visited));
-  } catch {}
+  // Bruk samme persist/oppdateringsløp som stabil
+  saveVisited();
 
-  window.dispatchEvent(new Event("updateProfile"));
-  window.renderNearbyPlaces?.();
+  // lite ekstra UI-push
+  try { window.renderNearbyPlaces?.(); } catch {}
+
+  return wasVisited;
 }
 
 function savePeople() {
