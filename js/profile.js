@@ -481,6 +481,173 @@ box.style.display = "";
 window.renderCivicationInbox = renderCivicationInbox;  
 
 
+async function renderCivicationCommercial() {
+  const box    = document.getElementById("civiShopBox");
+  const elBal  = document.getElementById("civiPcBalance");
+  const elMeta = document.getElementById("civiShopHint");
+  const elTags = document.getElementById("civiStyleCounts");
+  const elList = document.getElementById("civiShopPacks");
+  if (!box || !elBal || !elMeta || !elTags || !elList) return;
+
+  const shop = window.HG_CiviShop;
+
+  const hasCatalog = (
+    typeof shop?.getCatalogs === "function" ||
+    typeof shop?.getPacks === "function"
+  );
+
+  if (!shop || typeof shop.getWallet !== "function" || !hasCatalog) {
+    box.style.display = "none";
+    return;
+  }
+
+  box.style.display = "";
+
+  // Wallet
+  const w = shop.getWallet?.() || {};
+  const bal = Number(w?.balance ?? w?.pc ?? 0);
+  elBal.textContent = String(Math.round(bal));
+
+  const last = w?.last_tick_iso ? new Date(w.last_tick_iso).toLocaleString("no-NO") : "—";
+  elMeta.textContent = `Sist lønn-tick: ${last}`;
+
+  // Inventory (valgfritt)
+  let inv = {};
+  try {
+    inv = (typeof shop.getInv === "function") ? (shop.getInv() || {}) : {};
+  } catch {}
+  const items = Array.isArray(inv.items) ? inv.items : [];
+  const ownedPacks = (inv.packs && typeof inv.packs === "object") ? inv.packs : {};
+
+  // Stil-tags count (støtter både inv.style_counts og inv.items[].style_tags)
+  const tagCounts = {};
+
+  if (inv.style_counts && typeof inv.style_counts === "object") {
+    for (const [k, v] of Object.entries(inv.style_counts)) {
+      const kk = String(k || "").trim();
+      if (!kk) continue;
+      tagCounts[kk] = Number(v || 0);
+    }
+  }
+
+  for (const it of items) {
+    const tags = Array.isArray(it?.style_tags) ? it.style_tags : [];
+    for (const t of tags) {
+      const k = String(t || "").trim();
+      if (!k) continue;
+      tagCounts[k] = (tagCounts[k] || 0) + 1;
+    }
+  }
+
+  const entries = Object.entries(tagCounts).sort((a, b) => b[1] - a[1]);
+  elTags.textContent = entries.length
+    ? entries.slice(0, 16).map(([k, v]) => `${k} ×${v}`).join(" · ")
+    : "—";
+
+  // Packs
+  elList.innerHTML = "";
+
+  // Hent katalog (tåler både getCatalogs og getPacks)
+  let catalogs = null;
+  if (typeof shop.getCatalogs === "function") {
+    catalogs = await shop.getCatalogs();
+  } else {
+    const packsArr = await shop.getPacks();
+    catalogs = {
+      stores: [{ id: "default", name: "Butikk", packs: (packsArr || []).map(p => p.id) }],
+      packs: packsArr || []
+    };
+  }
+
+  const stores = Array.isArray(catalogs?.stores) ? catalogs.stores : [];
+  const packs  = Array.isArray(catalogs?.packs) ? catalogs.packs : [];
+  const packById = new Map(packs.map(p => [String(p?.id || ""), p]));
+
+  for (const s of stores) {
+    const storeId = String(s?.id || "").trim();
+    const storeName = String(s?.name || storeId || "").trim();
+    const packIds = Array.isArray(s?.packs) ? s.packs : [];
+    if (!storeId || !packIds.length) continue;
+
+    const header = document.createElement("div");
+    header.className = "lk-category";
+    header.style.marginTop = "8px";
+    header.textContent = `🏬 ${storeName}`;
+    elList.appendChild(header);
+
+    for (const pid of packIds) {
+      const packId = String(pid || "").trim();
+      const p = packById.get(packId);
+      if (!p) continue;
+
+      const price = Number(p?.price_pc || 0);
+      const owned = !!ownedPacks?.[packId];
+
+      const row = document.createElement("div");
+      row.style.display = "flex";
+      row.style.gap = "10px";
+      row.style.alignItems = "center";
+      row.style.justifyContent = "space-between";
+
+      const left = document.createElement("div");
+      left.style.display = "flex";
+      left.style.flexDirection = "column";
+
+      const t1 = document.createElement("div");
+      t1.className = "lk-topic";
+      t1.style.fontSize = "14px";
+      t1.textContent = p.title || packId;
+
+      const t2 = document.createElement("div");
+      t2.className = "lk-category";
+      t2.style.opacity = ".85";
+      t2.textContent = owned ? "Eid ✅" : `Pris: ${price} PC`;
+
+      left.appendChild(t1);
+      left.appendChild(t2);
+
+      const btn = document.createElement("button");
+      btn.className = owned ? "btn secondary" : "btn";
+      btn.textContent = owned ? "Kjøpt" : "Kjøp";
+      btn.disabled = owned;
+
+      btn.onclick = async () => {
+        if (typeof shop.buyPack !== "function") return;
+
+        // Tåler både buyPack(packId) og buyPack(packId, storeId)
+        const res = (shop.buyPack.length >= 2)
+          ? await shop.buyPack(packId, storeId)
+          : await shop.buyPack(packId);
+
+        if (!res?.ok) {
+          const r = String(res?.reason || "");
+          btn.textContent = (r === "insufficient_funds" || r === "NOT_ENOUGH_PC") ? "For lite PC" : "Feil";
+          setTimeout(() => renderCivicationCommercial(), 600);
+          return;
+        }
+
+        await renderCivicationCommercial();
+        window.dispatchEvent(new Event("updateProfile"));
+      };
+
+      row.appendChild(left);
+      row.appendChild(btn);
+      elList.appendChild(row);
+    }
+  }
+
+  if (!elList.children.length) {
+    const empty = document.createElement("div");
+    empty.className = "lk-category";
+    empty.style.opacity = ".85";
+    empty.textContent = "Ingen packs funnet.";
+    elList.appendChild(empty);
+  }
+}
+
+window.renderCivicationCommercial = renderCivicationCommercial;
+
+
 // ------------------------------------------------------------
 // MERKER – GRID + MODAL (STRICT)
 // ------------------------------------------------------------
