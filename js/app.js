@@ -1794,6 +1794,10 @@ if (window.QuizEngine) {
     getVisited: () => visited,
     isTestMode: () => !!window.OPEN_MODE,
 
+    showRewardPerson: window.showRewardPerson,
+    showRewardPlace:  window.showRewardPlace,
+    saveVisitedFromQuiz: window.API?.saveVisitedFromQuiz,
+    
     showToast,
 
 
