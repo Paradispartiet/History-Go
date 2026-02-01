@@ -479,10 +479,9 @@ window.renderCivicationInbox = renderCivicationInbox;
 async function renderCivicationCommercial() {
   const box   = document.getElementById("civiShopBox");
   const elBal = document.getElementById("civiPcBalance");
-  const elHint = document.getElementById("civiShopHint");
-  const elTags = document.getElementById("civiStyleCounts");
-  const elList = document.getElementById("civiShopPacks");
-
+  const elMeta= document.getElementById("civiShopHint");
+  const elTags= document.getElementById("civiStyleCounts");
+  const elList= document.getElementById("civiShopPacks");
   if (!box || !elBal || !elHint || !elTags || !elList) return;
 
   const shop = window.HG_CiviShop;
@@ -1235,6 +1234,7 @@ safeCall("renderLatestTrivia", renderLatestTrivia);
 safeCall("renderNextWhy", renderNextWhy);
 safeCall("renderAhaSummary", renderAhaSummary);
 safeCall("setupProfileMap", setupProfileMap);
+safeCall("renderCivicationCommercial", renderCivicationCommercial);
 
     
     // UI
@@ -1246,6 +1246,7 @@ safeCall("setupProfileMap", setupProfileMap);
       safeCall("renderProfileCard", renderProfileCard);
       safeCall("renderCivication", renderCivication);
       safeCall("renderCivicationInbox", window.renderCivicationInbox);
+      safeCall("renderCivicationCommercial", renderCivicationCommercial);
 
       safeCall("renderMerits", renderMerits);
       safeCall("renderPeopleCollection", renderPeopleCollection);
