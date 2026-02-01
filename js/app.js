@@ -1787,6 +1787,8 @@ if (window.QuizEngine) {
     
 // progression / rewards
 addCompletedQuizAndMaybePoint: (...args) => {
+  window.__HG_LAST_QUIZ_ARGS = args;
+
   // 1) behold eksisterende progresjon (quiz_history etc)
   addCompletedQuizAndMaybePoint(...args);
 
