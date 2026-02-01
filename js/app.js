@@ -1782,32 +1782,12 @@ if (window.QuizEngine) {
 
     showToast,
 
-// progression / rewards
 addCompletedQuizAndMaybePoint: (...args) => {
-  // ✅ DEBUG: gjør det mulig å sjekke i console etterpå
-  window.__HG_LAST_QUIZ_ARGS = args;
-  if (window.DEBUG_QUIZ_ARGS) console.log("[HG quiz complete args]", args);
-
   // 1) kjør eksisterende progresjon
   addCompletedQuizAndMaybePoint(...args);
 
-  // 2) finn ID (støtter både string og objekt {id/targetId})
-  let foundId = null;
-
-  for (const a of (args || [])) {
-    if (a == null) continue;
-
-    const s =
-      (a && typeof a === "object" && (a.targetId || a.id))
-        ? String(a.targetId || a.id)
-        : String(a);
-
-    if (!s || s === "[object Object]") continue;
-
-    if (PLACES?.some(p => String(p.id) === s)) { foundId = s; break; }
-    if (PEOPLE?.some(p => String(p.id) === s)) { foundId = s; break; }
-  }
-
+  // 2) signatur hos deg: [categoryId, targetId]
+  const foundId = (typeof args?.[1] === "string") ? args[1].trim() : "";
   if (!foundId) return;
 
   // 3) STED: unlock + reward kun ved ny unlock
@@ -1817,14 +1797,31 @@ addCompletedQuizAndMaybePoint: (...args) => {
 
     if (!wasVisited) {
       try {
-        if (typeof showRewardPlace === "function") {
-          const pl = PLACES.find(p => String(p.id) === String(foundId));
-          if (pl) showRewardPlace(pl);
-        }
+        const pl = PLACES.find(p => String(p.id) === foundId);
+        if (pl && typeof showRewardPlace === "function") showRewardPlace(pl);
       } catch {}
     }
     return;
   }
+
+  // 4) PERSON: unlock + reward kun ved ny unlock
+  if (PEOPLE?.some(p => String(p.id) === foundId)) {
+    const wasCollected = !!peopleCollected[String(foundId)];
+
+    peopleCollected[String(foundId)] = true;
+    savePeople();
+
+    if (!wasCollected) {
+      try {
+        const pe = PEOPLE.find(p => String(p.id) === foundId);
+        if (pe && typeof showRewardPerson === "function") showRewardPerson(pe);
+      } catch {}
+    }
+
+    window.dispatchEvent(new Event("updateProfile"));
+    return;
+  }
+},
 
   // 4) PERSON: unlock + reward kun ved ny unlock
   if (PEOPLE?.some(p => String(p.id) === foundId)) {
