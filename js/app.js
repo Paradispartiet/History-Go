@@ -1799,22 +1799,23 @@ addCompletedQuizAndMaybePoint: (...args) => {
 
   if (!foundId) return;
 
-  // 3) PLACE unlock + reward (kun ved ny unlock)
-  if (PLACES?.some(p => String(p.id) === String(foundId))) {
-    const wasVisited = !!visited[String(foundId)];
-    saveVisitedFromQuiz(foundId);
+// 3) PLACE unlock + reward (kun ved ny unlock)
+if (PLACES?.some(p => String(p.id) === String(foundId))) {
+  const wasVisited = !!JSON.parse(localStorage.getItem("visited_places") || "{}")[String(foundId)];
+  saveVisitedFromQuiz(foundId);
 
-    if (!wasVisited) {
-      try {
-        if (typeof showRewardPlace === "function") {
-          const pl = PLACES.find(p => String(p.id) === String(foundId));
-          if (pl) showRewardPlace(pl);
-        }
-      } catch {}
-    }
-    return;
+  if (!wasVisited) {
+    try {
+      if (typeof showRewardPlace === "function") {
+        const pl = PLACES.find(p => String(p.id) === String(foundId));
+        if (pl) showRewardPlace(pl);
+      }
+    } catch {}
   }
+  return;
+}
 
+  
   // 4) PERSON unlock + reward (kun ved ny unlock)
   if (PEOPLE?.some(p => String(p.id) === String(foundId))) {
     const wasCollected = !!peopleCollected[String(foundId)];
