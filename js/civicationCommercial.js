@@ -1,91 +1,111 @@
-// js/civicationCommercial.js
-// Minimal shop/wallet layer for Civication (V1)
-// Safe-by-default: if no catalogs, shows empty shop.
+/* ============================================================
+   Civication Commercial (Shop) – minimal runtime
+   - Gir window.HG_CiviShop med getInv(), getPacks(), buyPack()
+   - Lagrer inventory i localStorage
+   ============================================================ */
 
 (function () {
-  const LS_WALLET = "hg_pc_wallet_v1";
-  const LS_INV    = "hg_pc_inventory_v1";
-  const LS_CATALOGS = "hg_pc_catalogs_v1";
+  const LS_INV = "hg_pc_inventory_v1";
+  const LS_WALLET = "hg_pc_wallet_v1"; // fallback hvis du ikke har wallet-funksjoner
 
-  function readJSON(key, fallback) {
-    try {
-      const raw = localStorage.getItem(key);
-      if (raw == null) return fallback;
-      const v = JSON.parse(raw);
-      return (v && typeof v === "object") ? v : fallback;
-    } catch {
-      return fallback;
-    }
-  }
-  function writeJSON(key, obj) {
-    try { localStorage.setItem(key, JSON.stringify(obj)); } catch {}
-  }
+  const readJSON = (k, fallback) => {
+    try { return JSON.parse(localStorage.getItem(k) || ""); } catch { return fallback; }
+  };
+  const writeJSON = (k, v) => localStorage.setItem(k, JSON.stringify(v));
 
   function getWallet() {
-    const w = readJSON(LS_WALLET, null) || {};
-    if (!Number.isFinite(Number(w.balance))) w.balance = 0;
-    if (!w.last_tick_iso) w.last_tick_iso = null;
-    return w;
+    // Hvis du allerede har globale wallet-funksjoner i profile.js / app.js, bruk dem.
+    if (typeof window.getPCWallet === "function") return Number(window.getPCWallet() || 0);
+    const w = readJSON(LS_WALLET, { pc: 0 });
+    return Number(w.pc || 0);
   }
-
-  function setWallet(w) {
+  function setWallet(pc) {
+    if (typeof window.setPCWallet === "function") return window.setPCWallet(pc);
+    const w = readJSON(LS_WALLET, { pc: 0 });
+    w.pc = Number(pc || 0);
     writeJSON(LS_WALLET, w);
   }
 
   function getInv() {
-    const inv = readJSON(LS_INV, null) || {};
-    if (!Array.isArray(inv.items)) inv.items = [];
-    if (!inv.packs || typeof inv.packs !== "object") inv.packs = {};
-    return inv;
+    const inv = readJSON(LS_INV, null);
+    if (inv && typeof inv === "object") return inv;
+    const fresh = { packs: {}, style_counts: {} };
+    writeJSON(LS_INV, fresh);
+    return fresh;
   }
 
-  function setInv(inv) {
+  function saveInv(inv) {
     writeJSON(LS_INV, inv);
   }
 
-  async function getCatalogs() {
-    // 1) prefer local catalogs if present
-    const cached = readJSON(LS_CATALOGS, null);
-    if (cached && (Array.isArray(cached.stores) || Array.isArray(cached.packs))) {
-      return {
-        stores: Array.isArray(cached.stores) ? cached.stores : [],
-        packs: Array.isArray(cached.packs) ? cached.packs : []
-      };
-    }
+  // Packs kan ligge hvor som helst – denne prøver et par vanlige paths.
+  async function tryLoadPacks() {
+    const paths = [
+      "data/civication_packs.json",
+      "data/commercial_packs.json",
+      "data/packs.json"
+    ];
 
-    // 2) fallback: empty shop
-    return { stores: [], packs: [] };
+    for (const p of paths) {
+      try {
+        if (window.DataHub?.fetchJSON) {
+          const j = await window.DataHub.fetchJSON(p);
+          if (Array.isArray(j)) return j;
+          if (j && Array.isArray(j.packs)) return j.packs;
+        } else {
+          const r = await fetch(p, { cache: "no-store" });
+          if (!r.ok) continue;
+          const j = await r.json();
+          if (Array.isArray(j)) return j;
+          if (j && Array.isArray(j.packs)) return j.packs;
+        }
+      } catch {}
+    }
+    return [];
   }
 
-  async function buyPack(packId, storeId) {
-    const catalogs = await getCatalogs();
-    const packs = Array.isArray(catalogs.packs) ? catalogs.packs : [];
-    const pack = packs.find(p => String(p?.id || "") === String(packId || ""));
-    if (!pack) return { ok: false, reason: "unknown_pack" };
+  let _packsPromise = null;
+  function getPacks() {
+    if (!_packsPromise) _packsPromise = tryLoadPacks();
+    return _packsPromise;
+  }
 
-    const price = Number(pack.price_pc || 0);
-    if (!Number.isFinite(price) || price < 0) return { ok: false, reason: "bad_price" };
+  async function buyPack(packId) {
+    const packs = await getPacks();
+    const pack = packs.find(p => String(p.id) === String(packId));
+    if (!pack) return { ok: false, reason: "PACK_NOT_FOUND" };
+
+    const price = Number(pack.price_pc ?? pack.price ?? 0);
+    const bal = getWallet();
+    if (bal < price) return { ok: false, reason: "NOT_ENOUGH_PC", bal, price };
 
     const inv = getInv();
-    if (inv.packs && inv.packs[packId]) return { ok: true, already: true };
+    const key = String(pack.id);
 
-    const w = getWallet();
-    if (Number(w.balance || 0) < price) return { ok: false, reason: "insufficient_funds" };
+    if (!inv.packs) inv.packs = {};
+    if (!inv.style_counts) inv.style_counts = {};
 
-    w.balance = Number(w.balance || 0) - price;
-    setWallet(w);
+    // mark pack owned
+    inv.packs[key] = true;
 
-    inv.packs[packId] = { bought_iso: new Date().toISOString(), store_id: storeId || null };
-    setInv(inv);
+    // style counts (valgfritt) – hvis pack har styles/tags
+    const styles = Array.isArray(pack.styles) ? pack.styles : (Array.isArray(pack.tags) ? pack.tags : []);
+    for (const s of styles) {
+      const st = String(s);
+      if (!st) continue;
+      inv.style_counts[st] = (Number(inv.style_counts[st] || 0) + 1);
+    }
 
-    return { ok: true };
+    setWallet(bal - price);
+    saveInv(inv);
+
+    window.dispatchEvent(new Event("updateProfile"));
+    return { ok: true, packId: key, newBalance: getWallet() };
   }
 
-  // Expose global API expected by profile.js
   window.HG_CiviShop = {
-    getWallet,
     getInv,
-    getCatalogs,
+    getPacks,
     buyPack
   };
 })();
