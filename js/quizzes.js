@@ -617,9 +617,14 @@ if (perfect) {
             else markQuizAsDone(tid);
 
             // 5) unlocks + reward
-            if (person) API.savePeopleCollected(tid);
-            if (person) API.showRewardPerson(person);
-            else if (place) API.showRewardPlace(place);
+            if (person) {
+            API.savePeopleCollected(tid);
+             API.showRewardPerson(person);
+            } else if (place) {
+                // ✅ dette var manglende linje
+            if (typeof API.saveVisitedFromQuiz === "function") API.saveVisitedFromQuiz(tid);
+            API.showRewardPlace(place);
+            }
 
             API.showToast(`Perfekt! ${total}/${total} 🎯`);
             API.dispatchProfileUpdate();
