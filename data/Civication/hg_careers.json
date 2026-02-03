@@ -1,0 +1,125 @@
+{
+  "schema": "civication_careers_rules_v1",
+  "version": 1,
+
+  "global_rules": {
+    "salary": {
+      "period": "weekly",
+      "source": "badge_tier",
+      "rounding": "nearest"
+    },
+    "employment": {
+      "max_active_jobs": 1,
+      "offer_expiry_days": 7,
+      "offer_cooldown_days": 7
+    },
+    "unemployment": {
+      "nav_after_weeks": 2,
+      "nav_weekly_pc": 3
+    }
+  },
+
+  "careers": [
+    {
+      "career_id": "naeringsliv",
+
+      "economy": {
+        "salary_by_tier": {
+          "1": 7,
+          "2": 11,
+          "3": 16
+        },
+        "weekly_expenses": {
+          "base": 2,
+          "risk_modifier": 1.2
+        },
+        "risk": {
+          "volatility": 0.4,
+          "layoff_chance_per_week": 0.05
+        }
+      },
+
+      "world_logic": {
+        "maintenance": {
+          "min_quiz_per_weeks": 2
+        },
+        "strikes": {
+          "on_missed_maintenance": 1,
+          "max_strikes": 2,
+          "consequence": "fired"
+        },
+        "fired_to": "nav"
+      },
+
+      "diegetic_text": {
+        "offer": [
+          "En bedrift har lagt merke til deg.",
+          "De trenger noen som kan levere, ikke bare mene."
+        ],
+        "maintenance_warning": [
+          "Det murres internt.",
+          "Tallene er ikke der de burde være."
+        ],
+        "fired": [
+          "Kontrakten avsluttes med umiddelbar virkning.",
+          "Adgangskortet ditt slutter å virke."
+        ],
+        "nav": [
+          "Du blir kalt inn til NAV.",
+          "Det er kø. Ingen ser deg i øynene."
+        ]
+      }
+    },
+
+    {
+      "career_id": "media",
+
+      "economy": {
+        "salary_by_tier": {
+          "1": 6,
+          "2": 9,
+          "3": 13
+        },
+        "weekly_expenses": {
+          "base": 1,
+          "risk_modifier": 1.1
+        },
+        "risk": {
+          "volatility": 0.6,
+          "layoff_chance_per_week": 0.08
+        }
+      },
+
+      "world_logic": {
+        "maintenance": {
+          "min_quiz_per_weeks": 1
+        },
+        "strikes": {
+          "on_missed_maintenance": 1,
+          "max_strikes": 2,
+          "consequence": "fired"
+        },
+        "fired_to": "nav"
+      },
+
+      "diegetic_text": {
+        "offer": [
+          "Redaksjonen trenger friske blikk.",
+          "Deadline er alltid i går."
+        ],
+        "maintenance_warning": [
+          "Sakene dine blir ikke prioritert.",
+          "Noen andre tar plassen din."
+        ],
+        "fired": [
+          "Navnet ditt fjernes fra byline.",
+          "Det var ikke personlig."
+        ],
+        "nav": [
+          "Du fyller ut skjemaet.",
+          "Ingen spør hva du mente å skrive."
+        ]
+      }
+    }
+  ]
+}
