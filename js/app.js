@@ -746,9 +746,38 @@ function closeSheet(sheet) {
   sheet?.setAttribute("aria-hidden", "true");
 }
 
+
 document.addEventListener("click", e => {
   const target = e.target;
 
+  const acceptId = target.getAttribute?.("data-accept-offer");
+  if (acceptId) {
+    let offers = JSON.parse(localStorage.getItem("hg_job_offers_v1") || "[]");
+    const offer = offers.find(o => o.id === acceptId);
+    if (!offer) return;
+
+    localStorage.setItem("hg_active_position_v1", JSON.stringify({
+      career_id: offer.career_id,
+      career_name: offer.career_name,
+      title: offer.title,
+      accepted_iso: new Date().toISOString()
+    }));
+
+    localStorage.setItem(
+      "hg_job_offers_v1",
+      JSON.stringify(offers.filter(o => o.id !== acceptId))
+    );
+
+    showToast(`💼 Ny stilling: ${offer.title}`);
+    window.dispatchEvent(new Event("updateProfile"));
+    window.renderCivicationInbox?.();
+    return;
+  }
+
+  // resten av klikk-logikken
+});
+
+  
   // --- PlaceCard: toggle icon lists (people / nature / badges) ---
   const toggleBtn = target.closest?.("[data-toggle]");
   if (toggleBtn) {
