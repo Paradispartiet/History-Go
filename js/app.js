@@ -1803,33 +1803,29 @@ if (window.QuizEngine) {
     
 // progression / rewards
 addCompletedQuizAndMaybePoint: (...args) => {
-  
   window.__HG_LAST_QUIZ_ARGS = args;
 
-  // ⛔ IKKE bruk addCompletedQuizAndMaybePoint her (shadowing)
-  // ✅ bruk originalen via API
-  const _origAdd = window.API?.addCompletedQuizAndMaybePoint;
+  const _origAdd = addCompletedQuizAndMaybePoint;
 
-  // targetId kommer normalt som args[1]
   let foundId = (typeof args?.[1] === "string") ? args[1].trim() : "";
 
-  // fallback: scan args hvis args[1] ikke er string
   if (!foundId) {
     for (const a of args) {
       if (a == null) continue;
       const s = String(a).trim();
       if (!s) continue;
-
       if (PLACES?.some(p => String(p.id) === s)) { foundId = s; break; }
       if (PEOPLE?.some(p => String(p.id) === s)) { foundId = s; break; }
     }
   }
 
-  // hvis vi ikke finner id → bare kjør original
   if (!foundId) {
     _origAdd?.(...args);
     return;
   }
+
+  // … resten av reward/unlock …
+},
 
   // PLACE unlock + reward
   if (PLACES?.some(p => String(p.id) === String(foundId))) {
