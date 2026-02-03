@@ -1799,7 +1799,10 @@ if (window.QuizEngine) {
     
     showToast,
 
-
+    showRewardPerson: window.showRewardPerson,
+    showRewardPlace:  window.showRewardPlace,
+    showPersonPopup:  window.showPersonPopup,
+    showPlacePopup:   window.showPlacePopup,
     
 // progression / rewards
 addCompletedQuizAndMaybePoint: (...args) => {
