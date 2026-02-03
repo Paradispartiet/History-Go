@@ -1941,6 +1941,11 @@ console.error("Feil ved lasting av data:", e);
 
 document.addEventListener("DOMContentLoaded", () => {
   safeRun("boot", boot);
+    safeRun("civicationPulse", async () => {
+    await window.HG_CiviEngine?.onAppOpen?.();
+    window.renderCivicationInbox?.();
+    window.dispatchEvent(new Event("updateProfile"));
+  });
   safeRun("civicationPulse", () => window.HG_CiviEngine?.onAppOpen?.());
   safeRun("initMiniProfile", initMiniProfile);
   safeRun("wireMiniProfileLinks", wireMiniProfileLinks);
