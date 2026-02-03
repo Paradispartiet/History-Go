@@ -219,10 +219,31 @@ function applyOpenModeUnlockAll() {
 
 function saveMerits() {
   localStorage.setItem("merits_by_category", JSON.stringify(merits));
+
+  // 🏪 Civication Store: sjekk om nye merits gir jobbtilbud
+  for (const [cat, info] of Object.entries(merits)) {
+    const badge = BADGES?.find(b => b.id === cat);
+    if (!badge) continue;
+
+    const oldPoints = info._oldPoints || 0;
+    const newPoints = info.points || 0;
+
+    if (typeof window.maybeCreateJobOfferFromMerits === "function") {
+      const offer = window.maybeCreateJobOfferFromMerits(
+        badge,
+        oldPoints,
+        newPoints
+      );
+      if (offer) {
+        showToast?.("📩 Nytt jobbtilbud mottatt");
+      }
+    }
+
+    info._oldPoints = newPoints;
+  }
 }
 
 window.saveMerits = saveMerits;
-
 function showToast(msg, ms = 2000) {
   const t = el.toast;
   if (!t) return;
