@@ -219,22 +219,9 @@ function applyOpenModeUnlockAll() {
 
 function saveMerits() {
   localStorage.setItem("merits_by_category", JSON.stringify(merits));
-
-  for (const [cat, info] of Object.entries(merits)) {
-    const badge = BADGES.find(b => b.id === cat);
-    if (!badge) continue;
-
-    const oldPoints = info._oldPoints || 0;
-    const newPoints = info.points || 0;
-
-    const offer = maybeCreateJobOfferFromMerits(badge, oldPoints, newPoints);
-    if (offer) {
-      showToast(`📩 Jobbtilbud mottatt`);
-    }
-
-    info._oldPoints = newPoints;
-  }
 }
+
+window.saveMerits = saveMerits;
 
 function showToast(msg, ms = 2000) {
   const t = el.toast;
