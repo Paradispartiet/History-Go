@@ -1796,7 +1796,6 @@ if (window.QuizEngine) {
 
     showRewardPerson: window.showRewardPerson,
     showRewardPlace:  window.showRewardPlace,
-    saveVisitedFromQuiz: window.API?.saveVisitedFromQuiz,
     
     showToast,
 
