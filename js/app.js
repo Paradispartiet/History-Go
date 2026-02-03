@@ -1833,9 +1833,9 @@ if (PLACES?.some(p => String(p.id) === String(foundId))) {
 
   if (!wasVisited) {
     try {
-      if (typeof showRewardPlace === "function") {
-        const pl = PLACES.find(p => String(p.id) === String(foundId));
-        if (pl) showRewardPlace(pl);
+      if (typeof window.showRewardPlace === "function") {
+       const pl = PLACES.find(p => String(p.id) === String(foundId));
+       if (pl) window.showRewardPlace(pl);
       }
     } catch {}
   }
@@ -1852,9 +1852,9 @@ if (PLACES?.some(p => String(p.id) === String(foundId))) {
 
     if (!wasCollected) {
       try {
-        if (typeof showRewardPerson === "function") {
-          const pe = PEOPLE.find(p => String(p.id) === String(foundId));
-          if (pe) showRewardPerson(pe);
+        if (typeof window.showRewardPerson === "function") {
+         const pe = PEOPLE.find(p => String(p.id) === String(foundId));
+         if (pe) window.showRewardPerson(pe);
         }
       } catch {}
     }
