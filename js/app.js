@@ -1391,7 +1391,8 @@ function initMiniProfile() {
   nm.textContent = name;
   nm.style.color = color;
   st.textContent = `${visitedCount} steder · ${badgeCount} merker · ${quizCount} quizzer`;
-
+  window.renderCivicationInbox?.();
+  
   /* -------------------------------------
      0.5) Aktiv stilling (fra karriere/merker)
   ------------------------------------- */
