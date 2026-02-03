@@ -1801,12 +1801,12 @@ if (window.QuizEngine) {
     showPersonPopup:  window.showPersonPopup,
     showPlacePopup:   window.showPlacePopup,
     
-// progression / rewards
-addCompletedQuizAndMaybePoint: (...args) => {
+// progression / rewardsaddCompletedQuizAndMaybePoint: (...args) => {
   window.__HG_LAST_QUIZ_ARGS = args;
 
-  // ✅ kall originalen TIL SLUTT (timing-fix)
-  const _origAdd = addCompletedQuizAndMaybePoint;
+  // ⛔ IKKE bruk addCompletedQuizAndMaybePoint her (shadowing)
+  // ✅ bruk originalen via API
+  const _origAdd = window.API?.addCompletedQuizAndMaybePoint;
 
   // targetId kommer normalt som args[1]
   let foundId = (typeof args?.[1] === "string") ? args[1].trim() : "";
@@ -1823,77 +1823,47 @@ addCompletedQuizAndMaybePoint: (...args) => {
     }
   }
 
-  // Hvis vi ikke finner ID → bare kjør original progresjon
+  // hvis vi ikke finner id → bare kjør original
   if (!foundId) {
-    _origAdd(...args);
+    _origAdd?.(...args);
     return;
   }
 
-  // PLACE unlock + reward (kun ved ny unlock)
+  // PLACE unlock + reward
   if (PLACES?.some(p => String(p.id) === String(foundId))) {
     const wasVisited =
       !!JSON.parse(localStorage.getItem("visited_places") || "{}")[String(foundId)];
 
     window.saveVisitedFromQuiz(foundId);
 
-    if (!wasVisited) {
-      try {
-        if (typeof window.showRewardPlace === "function") {
-          const pl = PLACES.find(p => String(p.id) === String(foundId));
-          if (pl) window.showRewardPlace(pl);
-        }
-      } catch {}
+    if (!wasVisited && typeof window.showRewardPlace === "function") {
+      const pl = PLACES.find(p => String(p.id) === String(foundId));
+      if (pl) window.showRewardPlace(pl);
     }
 
-    _origAdd(...args);
+    _origAdd?.(...args);
     return;
   }
 
-  // PERSON unlock + reward (kun ved ny unlock)
+  // PERSON unlock + reward
   if (PEOPLE?.some(p => String(p.id) === String(foundId))) {
     const wasCollected = !!peopleCollected[String(foundId)];
 
     peopleCollected[String(foundId)] = true;
     savePeople();
 
-    if (!wasCollected) {
-      try {
-        if (typeof window.showRewardPerson === "function") {
-          const pe = PEOPLE.find(p => String(p.id) === String(foundId));
-          if (pe) window.showRewardPerson(pe);
-        }
-      } catch {}
+    if (!wasCollected && typeof window.showRewardPerson === "function") {
+      const pe = PEOPLE.find(p => String(p.id) === String(foundId));
+      if (pe) window.showRewardPerson(pe);
     }
 
     window.dispatchEvent(new Event("updateProfile"));
-
-    _origAdd(...args);
+    _origAdd?.(...args);
     return;
   }
 
-  // fallback: bare original progresjon
-  _origAdd(...args);
-},
-  
-  // 4) PERSON unlock + reward (kun ved ny unlock)
-  if (PEOPLE?.some(p => String(p.id) === String(foundId))) {
-    const wasCollected = !!peopleCollected[String(foundId)];
-
-    peopleCollected[String(foundId)] = true;
-    savePeople();
-
-    if (!wasCollected) {
-      try {
-        if (typeof window.showRewardPerson === "function") {
-         const pe = PEOPLE.find(p => String(p.id) === String(foundId));
-         if (pe) window.showRewardPerson(pe);
-        }
-      } catch {}
-    }
-
-    window.dispatchEvent(new Event("updateProfile"));
-    return;
-  }
+  // fallback
+  _origAdd?.(...args);
 },
 
     // wrappers
