@@ -1794,9 +1794,6 @@ if (window.QuizEngine) {
     getVisited: () => visited,
     isTestMode: () => !!window.OPEN_MODE,
 
-    showRewardPerson: window.showRewardPerson,
-    showRewardPlace:  window.showRewardPlace,
-    
     showToast,
 
     showRewardPerson: window.showRewardPerson,
