@@ -1801,7 +1801,9 @@ if (window.QuizEngine) {
     showPersonPopup:  window.showPersonPopup,
     showPlacePopup:   window.showPlacePopup,
     
-// progression / rewardsaddCompletedQuizAndMaybePoint: (...args) => {
+// progression / rewards
+addCompletedQuizAndMaybePoint: (...args) => {
+  
   window.__HG_LAST_QUIZ_ARGS = args;
 
   // ⛔ IKKE bruk addCompletedQuizAndMaybePoint her (shadowing)
