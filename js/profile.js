@@ -67,6 +67,8 @@ function renderProfileCard() {
   document.getElementById("statVisited").textContent = visitedCount;
   document.getElementById("statQuizzes").textContent = quizCount;
   document.getElementById("statStreak").textContent = streak;
+
+  renderPC();
 }
 
 // ------------------------------------------------------------
