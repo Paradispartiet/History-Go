@@ -1800,91 +1800,87 @@ if (window.QuizEngine) {
     showRewardPlace:  window.showRewardPlace,
     showPersonPopup:  window.showPersonPopup,
     showPlacePopup:   window.showPlacePopup,
-    
-// progression / rewards
-addCompletedQuizAndMaybePoint: (...args) => {
-  window.__HG_LAST_QUIZ_ARGS = args;
 
-  const _origAdd = addCompletedQuizAndMaybePoint;
+    // ----------------------------
+    // progression / rewards
+    // ----------------------------
+    addCompletedQuizAndMaybePoint: (() => {
+      const origAdd = addCompletedQuizAndMaybePoint; // ← fang originalen ÉN gang
 
-  let foundId = (typeof args?.[1] === "string") ? args[1].trim() : "";
+      return (...args) => {
+        window.__HG_LAST_QUIZ_ARGS = args;
 
-  if (!foundId) {
-    for (const a of args) {
-      if (a == null) continue;
-      const s = String(a).trim();
-      if (!s) continue;
-      if (PLACES?.some(p => String(p.id) === s)) { foundId = s; break; }
-      if (PEOPLE?.some(p => String(p.id) === s)) { foundId = s; break; }
-    }
-  }
+        let foundId = (typeof args?.[1] === "string") ? args[1].trim() : "";
 
-  if (!foundId) {
-    _origAdd?.(...args);
-    return;
-  }
+        if (!foundId) {
+          for (const a of args) {
+            if (a == null) continue;
+            const s = String(a).trim();
+            if (!s) continue;
+            if (PLACES?.some(p => String(p.id) === s)) { foundId = s; break; }
+            if (PEOPLE?.some(p => String(p.id) === s)) { foundId = s; break; }
+          }
+        }
 
-  // … resten av reward/unlock …
-},
+        // PLACE unlock + reward
+        if (foundId && PLACES?.some(p => String(p.id) === foundId)) {
+          const wasVisited =
+            !!JSON.parse(localStorage.getItem("visited_places") || "{}")[foundId];
 
-  // PLACE unlock + reward
-  if (PLACES?.some(p => String(p.id) === String(foundId))) {
-    const wasVisited =
-      !!JSON.parse(localStorage.getItem("visited_places") || "{}")[String(foundId)];
+          window.saveVisitedFromQuiz(foundId);
 
-    window.saveVisitedFromQuiz(foundId);
+          if (!wasVisited && typeof window.showRewardPlace === "function") {
+            const pl = PLACES.find(p => String(p.id) === foundId);
+            if (pl) window.showRewardPlace(pl);
+          }
+        }
 
-    if (!wasVisited && typeof window.showRewardPlace === "function") {
-      const pl = PLACES.find(p => String(p.id) === String(foundId));
-      if (pl) window.showRewardPlace(pl);
-    }
+        // PERSON unlock + reward
+        if (foundId && PEOPLE?.some(p => String(p.id) === foundId)) {
+          const wasCollected = !!peopleCollected[foundId];
 
-    _origAdd?.(...args);
-    return;
-  }
+          peopleCollected[foundId] = true;
+          savePeople();
 
-  // PERSON unlock + reward
-  if (PEOPLE?.some(p => String(p.id) === String(foundId))) {
-    const wasCollected = !!peopleCollected[String(foundId)];
+          if (!wasCollected && typeof window.showRewardPerson === "function") {
+            const pe = PEOPLE.find(p => String(p.id) === foundId);
+            if (pe) window.showRewardPerson(pe);
+          }
 
-    peopleCollected[String(foundId)] = true;
-    savePeople();
+          window.dispatchEvent(new Event("updateProfile"));
+        }
 
-    if (!wasCollected && typeof window.showRewardPerson === "function") {
-      const pe = PEOPLE.find(p => String(p.id) === String(foundId));
-      if (pe) window.showRewardPerson(pe);
-    }
+        // alltid til slutt
+        return origAdd?.(...args);
+      };
+    })(),
 
-    window.dispatchEvent(new Event("updateProfile"));
-    _origAdd?.(...args);
-    return;
-  }
-
-  // fallback
-  _origAdd?.(...args);
-},
-
+    // ----------------------------
     // wrappers
+    // ----------------------------
     pulseMarker: (lat, lon) => {
       if (typeof window.pulseMarker === "function") window.pulseMarker(lat, lon);
     },
+
     savePeopleCollected: (personId) => {
       peopleCollected[personId] = true;
       savePeople();
     },
+
     saveVisitedFromQuiz: (placeId) => {
       saveVisitedFromQuiz(placeId);
     },
-      dispatchProfileUpdate: () => window.dispatchEvent(new Event("updateProfile")),
 
-    // ✅ hooks (kun ved riktige svar)
+    dispatchProfileUpdate: () =>
+      window.dispatchEvent(new Event("updateProfile")),
+
+    // hooks
     saveKnowledgeFromQuiz: window.saveKnowledgeFromQuiz || null,
     saveTriviaPoint: window.saveTriviaPoint || null
   });
 } else {
-if (DEBUG) console.warn("QuizEngine ikke lastet");
+  if (DEBUG) console.warn("QuizEngine ikke lastet");
 }
-
 
 
     
