@@ -219,9 +219,22 @@ function applyOpenModeUnlockAll() {
 
 function saveMerits() {
   localStorage.setItem("merits_by_category", JSON.stringify(merits));
-}
 
-window.saveMerits = saveMerits;
+  for (const [cat, info] of Object.entries(merits)) {
+    const badge = BADGES.find(b => b.id === cat);
+    if (!badge) continue;
+
+    const oldPoints = info._oldPoints || 0;
+    const newPoints = info.points || 0;
+
+    const offer = maybeCreateJobOfferFromMerits(badge, oldPoints, newPoints);
+    if (offer) {
+      showToast(`📩 Jobbtilbud mottatt`);
+    }
+
+    info._oldPoints = newPoints;
+  }
+}
 
 function showToast(msg, ms = 2000) {
   const t = el.toast;
@@ -749,6 +762,30 @@ function closeSheet(sheet) {
 document.addEventListener("click", e => {
   const target = e.target;
 
+  const acceptId = target.getAttribute?.("data-accept-offer");
+if (acceptId) {
+  let offers = JSON.parse(localStorage.getItem("hg_job_offers_v1") || "[]");
+  const offer = offers.find(o => o.id === acceptId);
+  if (!offer) return;
+
+  const active = {
+    career_id: offer.career_id,
+    career_name: offer.career_name,
+    title: offer.title,
+    accepted_iso: new Date().toISOString()
+  };
+
+  localStorage.setItem("hg_active_position_v1", JSON.stringify(active));
+
+  offers = offers.filter(o => o.id !== acceptId);
+  localStorage.setItem("hg_job_offers_v1", JSON.stringify(offers));
+
+  showToast(`💼 Ny stilling: ${offer.title}`);
+  window.dispatchEvent(new Event("updateProfile"));
+  window.renderCivicationInbox?.();
+  return;
+}
+  
   // --- PlaceCard: toggle icon lists (people / nature / badges) ---
   const toggleBtn = target.closest?.("[data-toggle]");
   if (toggleBtn) {
@@ -1310,6 +1347,29 @@ function requestLocation() {
   console.warn("[geo] HGPos.request mangler (pos.js ikke lastet?)");
 }
 
+
+window.renderCivicationInbox = function () {
+  const box = document.getElementById("civicationInbox");
+  if (!box) return;
+
+  let offers = [];
+  try {
+    offers = JSON.parse(localStorage.getItem("hg_job_offers_v1") || "[]");
+  } catch {}
+
+  if (!offers.length) {
+    box.innerHTML = `<div class="muted">Ingen nye meldinger</div>`;
+    return;
+  }
+
+  box.innerHTML = offers.map(o => `
+    <div class="civi-mail">
+      <div class="civi-title">${o.title}</div>
+      <div class="civi-meta">${o.career_name}</div>
+      <button class="primary" data-accept-offer="${o.id}">Aksepter</button>
+    </div>
+  `).join("");
+};
 
 // MINI-PROFIL + quiz-historikk på forsiden
 function initMiniProfile() {
