@@ -1805,10 +1805,10 @@ if (window.QuizEngine) {
 addCompletedQuizAndMaybePoint: (...args) => {
   window.__HG_LAST_QUIZ_ARGS = args;
 
-  // 1) behold eksisterende progresjon (quiz_history etc)
-  addCompletedQuizAndMaybePoint(...args);
+  // ✅ kall originalen TIL SLUTT (timing-fix)
+  const _origAdd = addCompletedQuizAndMaybePoint;
 
-  // 2) targetId kommer normalt som args[1] (f.eks. ["naering","oslo_gassverk"])
+  // 1) targetId kommer normalt som args[1]
   let foundId = (typeof args?.[1] === "string") ? args[1].trim() : "";
 
   // fallback: scan args hvis args[1] ikke er en string
@@ -1823,23 +1823,57 @@ addCompletedQuizAndMaybePoint: (...args) => {
     }
   }
 
-  if (!foundId) return;
-
-// 3) PLACE unlock + reward (kun ved ny unlock)
-if (PLACES?.some(p => String(p.id) === String(foundId))) {
-  const wasVisited = !!JSON.parse(localStorage.getItem("visited_places") || "{}")[String(foundId)];
-  window.saveVisitedFromQuiz(foundId);
-
-  if (!wasVisited) {
-    try {
-      if (typeof window.showRewardPlace === "function") {
-       const pl = PLACES.find(p => String(p.id) === String(foundId));
-       if (pl) window.showRewardPlace(pl);
-      }
-    } catch {}
+  // Hvis vi ikke finner ID → bare kjør original progresjon
+  if (!foundId) {
+    _origAdd(...args);
+    return;
   }
-  return;
-}
+
+  // 2) PLACE unlock + reward (kun ved ny unlock)
+  if (PLACES?.some(p => String(p.id) === String(foundId))) {
+    const wasVisited =
+      !!JSON.parse(localStorage.getItem("visited_places") || "{}")[String(foundId)];
+
+    window.saveVisitedFromQuiz(foundId);
+
+    if (!wasVisited) {
+      try {
+        if (typeof window.showRewardPlace === "function") {
+          const pl = PLACES.find(p => String(p.id) === String(foundId));
+          if (pl) window.showRewardPlace(pl);
+        }
+      } catch {}
+    }
+
+    _origAdd(...args); // ✅ til slutt
+    return;
+  }
+
+  // 3) PERSON unlock + reward (kun ved ny unlock)
+  if (PEOPLE?.some(p => String(p.id) === String(foundId))) {
+    const wasCollected = !!peopleCollected[String(foundId)];
+
+    peopleCollected[String(foundId)] = true;
+    savePeople();
+
+    if (!wasCollected) {
+      try {
+        if (typeof window.showRewardPerson === "function") {
+          const pe = PEOPLE.find(p => String(p.id) === String(foundId));
+          if (pe) window.showRewardPerson(pe);
+        }
+      } catch {}
+    }
+
+    window.dispatchEvent(new Event("updateProfile"));
+
+    _origAdd(...args); // ✅ til slutt
+    return;
+  }
+
+  // fallback: bare original progresjon
+  _origAdd(...args);
+},
 
   
   // 4) PERSON unlock + reward (kun ved ny unlock)
