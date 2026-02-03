@@ -1864,11 +1864,6 @@ if (PLACES?.some(p => String(p.id) === String(foundId))) {
   }
 },
 
-    showRewardPerson,
-    showRewardPlace,
-    showPersonPopup,
-    showPlacePopup,
-
     // wrappers
     pulseMarker: (lat, lon) => {
       if (typeof window.pulseMarker === "function") window.pulseMarker(lat, lon);
