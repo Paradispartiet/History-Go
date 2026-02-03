@@ -261,7 +261,7 @@ function renderCivication() {
     oBox.style.display = "none";
   } else {
     oBox.style.display = "";
-    oTitle.textContent = `Jobbtilbud: ${offer.title}`;
+    oTitle.textContent = `🧾 Jobbtilbud`;
     const expTxt = offer.expires_iso ? new Date(offer.expires_iso).toLocaleDateString("no-NO") : "—";
     oMeta.textContent =
       `${offer.career_name || offer.career_id || ""} · ` +
