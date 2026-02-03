@@ -309,3 +309,15 @@
   vertical-align: -2px;
   background: url("assets/icons/badge.png") center / contain no-repeat;
 }
+
+/* MiniProfile – Civication-rolle (forside) */
+.miniProfileTop {
+  min-width: 0; /* KRITISK for flex-truncation */
+}
+
+.miniProfileTop .mpt-name,
+.miniProfileTop .mpt-role {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
