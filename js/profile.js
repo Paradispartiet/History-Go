@@ -224,6 +224,28 @@ function wireCivicationActions() {
   };
 }
 
+// ------------------------------------------------------------
+// CIVICATION – Lønn koblet mot Badges + Career Rules
+// ------------------------------------------------------------
+function getWeeklySalaryFromBadges(careerId, points) {
+  if (!Array.isArray(window.BADGES) || !Array.isArray(window.CIVI_CAREER_RULES)) {
+    return null;
+  }
+
+  const badge = window.BADGES.find(b => b.id === careerId);
+  if (!badge) return null;
+
+  const { tierIndex } = deriveTierFromPoints(badge, points);
+  if (!Number.isFinite(tierIndex)) return null;
+
+  const rules = window.CIVI_CAREER_RULES.find(c => c.career_id === careerId);
+  if (!rules || !rules.economy?.salary_by_tier) return null;
+
+  // tierIndex er 0-basert → +1
+  return rules.economy.salary_by_tier[String(tierIndex + 1)] ?? null;
+}
+
+
 function renderCivication() {
   // --- DOM ---
   const title   = document.getElementById("civiRoleTitle");
@@ -256,15 +278,14 @@ function renderCivication() {
 const salaryLn = document.getElementById("civiSalaryLine");
 
 if (salaryLn && active && active.career_id) {
-  const career = (Array.isArray(window.HG_CAREERS) ? window.HG_CAREERS : [])
-    .find(c => c.id === active.career_id);
+  const merits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
+  const points = Number(merits[active.career_id]?.points || 0);
 
-  if (career && Number.isFinite(career.annual_salary)) {
-    const weekly = Math.round(career.annual_salary / 52);
-    salaryLn.textContent = `Lønn: ${weekly} PC / uke`;
-  } else {
-    salaryLn.textContent = "Lønn: —";
-  }
+  const weekly = getWeeklySalaryFromBadges(active.career_id, points);
+
+  salaryLn.textContent = Number.isFinite(weekly)
+    ? `Lønn: ${weekly} PC / uke`
+    : "Lønn: —";
 }
 
 
