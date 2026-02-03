@@ -89,6 +89,25 @@ function renderPC() {
 }
 
 // ------------------------------------------------------------
+// CIVICATION – Career rules (lønn, world logic)
+// ------------------------------------------------------------
+async function ensureCiviCareerRulesLoaded() {
+  if (Array.isArray(window.CIVI_CAREER_RULES)) return;
+
+  try {
+    const data = await fetch("data/civication_careers_rules_v1.json", {
+      cache: "no-store"
+    }).then(r => r.json());
+
+    window.CIVI_CAREER_RULES = Array.isArray(data?.careers)
+      ? data.careers
+      : [];
+  } catch {
+    window.CIVI_CAREER_RULES = [];
+  }
+}
+
+// ------------------------------------------------------------
 // CIVICATION – Offers + aktiv rolle (1 slot)
 // ------------------------------------------------------------
 function getJobOffers() {
@@ -246,7 +265,10 @@ function getWeeklySalaryFromBadges(careerId, points) {
 }
 
 
-function renderCivication() {
+async function renderCivication() {
+
+  await ensureCiviCareerRulesLoaded();
+
   // --- DOM ---
   const title   = document.getElementById("civiRoleTitle");
   const details = document.getElementById("civiRoleDetails");
