@@ -250,7 +250,22 @@ function renderCivication() {
     details.textContent = "Status: Ingen aktiv jobb (ta quiz for å få jobbtilbud).";
   }
 
-  
+  // ------------------------------------------------------------
+// LØNN (riktig modell: career → annual_salary / 52)
+// ------------------------------------------------------------
+const salaryLn = document.getElementById("civiSalaryLine");
+
+if (salaryLn && active && active.career_id) {
+  const career = (Array.isArray(window.HG_CAREERS) ? window.HG_CAREERS : [])
+    .find(c => c.id === active.career_id);
+
+  if (career && Number.isFinite(career.annual_salary)) {
+    const weekly = Math.round(career.annual_salary / 52);
+    salaryLn.textContent = `Lønn: ${weekly} PC / uke`;
+  } else {
+    salaryLn.textContent = "Lønn: —";
+  }
+}
 
 
   // ------------------------------------------------------------
@@ -287,7 +302,7 @@ function renderCivication() {
 
     if (btnDecline) {
       btnDecline.onclick = () => {
-        declineOfferById(offer.id);
+        declineOfferById(offer.offer_key);
         renderCivication();
       };
     }
