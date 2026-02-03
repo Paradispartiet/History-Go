@@ -321,3 +321,19 @@
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+
+/* FIX: Civication-rolle i toppheader (forside) */
+.site-header .top-actions #miniProfile {
+  min-width: 0;           /* KRITISK */
+}
+
+.site-header .top-actions #miniProfile .profile-top {
+  min-width: 0;
+  overflow: hidden;
+}
+
+.site-header .top-actions #miniProfile .profile-top * {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
