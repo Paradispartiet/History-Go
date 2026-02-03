@@ -70,6 +70,23 @@ function renderProfileCard() {
 }
 
 // ------------------------------------------------------------
+// PARADISECOIN (PC) – PROFIL
+// ------------------------------------------------------------
+function renderPC() {
+  const el = document.getElementById("pcValue");
+  if (!el) return;
+
+  const pc =
+    (typeof window.getPCWallet === "function")
+      ? Number(window.getPCWallet() || 0)
+      : Number(
+          JSON.parse(localStorage.getItem("hg_pc_wallet_v1") || "{}").pc || 0
+        );
+
+  el.textContent = pc;
+}
+
+// ------------------------------------------------------------
 // CIVICATION – Offers + aktiv rolle (1 slot)
 // ------------------------------------------------------------
 function getJobOffers() {
