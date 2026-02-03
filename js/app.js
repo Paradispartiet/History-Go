@@ -1808,10 +1808,10 @@ addCompletedQuizAndMaybePoint: (...args) => {
   // ✅ kall originalen TIL SLUTT (timing-fix)
   const _origAdd = addCompletedQuizAndMaybePoint;
 
-  // 1) targetId kommer normalt som args[1]
+  // targetId kommer normalt som args[1]
   let foundId = (typeof args?.[1] === "string") ? args[1].trim() : "";
 
-  // fallback: scan args hvis args[1] ikke er en string
+  // fallback: scan args hvis args[1] ikke er string
   if (!foundId) {
     for (const a of args) {
       if (a == null) continue;
@@ -1829,7 +1829,7 @@ addCompletedQuizAndMaybePoint: (...args) => {
     return;
   }
 
-  // 2) PLACE unlock + reward (kun ved ny unlock)
+  // PLACE unlock + reward (kun ved ny unlock)
   if (PLACES?.some(p => String(p.id) === String(foundId))) {
     const wasVisited =
       !!JSON.parse(localStorage.getItem("visited_places") || "{}")[String(foundId)];
@@ -1845,11 +1845,11 @@ addCompletedQuizAndMaybePoint: (...args) => {
       } catch {}
     }
 
-    _origAdd(...args); // ✅ til slutt
+    _origAdd(...args);
     return;
   }
 
-  // 3) PERSON unlock + reward (kun ved ny unlock)
+  // PERSON unlock + reward (kun ved ny unlock)
   if (PEOPLE?.some(p => String(p.id) === String(foundId))) {
     const wasCollected = !!peopleCollected[String(foundId)];
 
@@ -1867,14 +1867,13 @@ addCompletedQuizAndMaybePoint: (...args) => {
 
     window.dispatchEvent(new Event("updateProfile"));
 
-    _origAdd(...args); // ✅ til slutt
+    _origAdd(...args);
     return;
   }
 
   // fallback: bare original progresjon
   _origAdd(...args);
 },
-
   
   // 4) PERSON unlock + reward (kun ved ny unlock)
   if (PEOPLE?.some(p => String(p.id) === String(foundId))) {
