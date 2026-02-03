@@ -145,29 +145,28 @@ function getLatestPendingOffer() {
   return null;
 }
 
-function acceptOfferById(offerId) {
+function acceptOfferById(offerKey) {
   const offers = getJobOffers();
-  const o = offers.find(x => x && x.id === offerId);
+  const o = offers.find(x => x && x.offer_key === offerKey);
   if (!o || o.status !== "pending") return null;
 
   o.status = "accepted";
   setJobOffers(offers);
 
-  // Sett aktiv jobb
   setActivePosition({
     career_id: o.career_id,
     career_name: o.career_name,
     title: o.title,
     achieved_at: new Date().toISOString(),
-    role_key: o.career_id // viktig for Civication-packMap
+    role_key: o.career_id
   });
 
   return o;
 }
 
-function declineOfferById(offerId) {
+function declineOfferById(offerKey) {
   const offers = getJobOffers();
-  const o = offers.find(x => x && x.id === offerId);
+  const o = offers.find(x => x && x.offer_key === offerKey);
   if (!o || o.status !== "pending") return false;
 
   o.status = "declined";
@@ -274,7 +273,7 @@ function renderCivication() {
 
     if (btnAccept) {
       btnAccept.onclick = async () => {
-        const accepted = acceptOfferById(offer.id);
+        const accepted = acceptOfferById(offer.offer_key);
         if (!accepted) return;
 
         // Synk motor + kjør en puls så inbox kan komme
