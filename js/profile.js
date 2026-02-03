@@ -1025,6 +1025,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     
 safeCall("renderProfileCard", renderProfileCard);
 safeCall("renderCivication", renderCivication);
+safeCall("renderPC", renderPC);
 
 await window.HG_CiviEngine?.onAppOpen?.();
 safeCall("renderCivicationInbox", window.renderCivicationInbox);
@@ -1051,6 +1052,7 @@ safeCall("setupProfileMap", setupProfileMap);
     // Sync etter quiz / endringer
     window.addEventListener("updateProfile", () => {
       safeCall("renderProfileCard", renderProfileCard);
+      safeCall("renderPC", renderPC);
       safeCall("renderCivication", renderCivication);
       safeCall("renderCivicationInbox", window.renderCivicationInbox);
 
