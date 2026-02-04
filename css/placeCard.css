@@ -30,13 +30,16 @@
 
 #placeCard{
   position: fixed;
-  left: 0; right: 0; bottom: 0;
-  top: calc(var(--hg-header-h, 44px) + var(--hg-header-gap, 0px) + var(--hg-nearby-h, 122px));
+  left: 0;
+  right: 0;
+  bottom: 0;
   width: 100%;
   z-index: 9999;
 
-  background: #000;                 /* helt sort */
-  border-top: 0;                    /* fjern lys kant */
+  height: var(--pc-height);
+
+  background: #000;
+  border-top: 0;
   box-shadow: 0 -12px 34px rgba(0,0,0,.40);
 
   overflow: hidden;
