@@ -277,6 +277,7 @@
   display: flex;
   flex-direction: column;
   overflow: hidden; /* scroll skjer i .pc-scroll */
+  position: relative;
 }
 
 /* Midten scroller */
@@ -297,7 +298,9 @@
 #placeCard #miniProfile{ order: 1; }
 #placeCard .hg-nextup{ order: 2; }
 
-
+#placeCard .pc-body{
+  padding-bottom: 84px;
+}
 #placeCard .pc-footer{
   flex: 0 0 auto;
  padding: 0 var(--pc-pad) calc(2px + env(safe-area-inset-bottom));
@@ -307,6 +310,11 @@
   display: flex;              /* ✅ stack i footer */
   flex-direction: column;
   gap: 1px;
+
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 /* =========================
