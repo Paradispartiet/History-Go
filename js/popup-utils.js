@@ -822,8 +822,10 @@ const peopleHere = (typeof getPeopleForPlace === "function")
     ? wonderChambersForPlace(place)
     : "";
 
-  const wkChambers = window.WK_BY_PERSON?.[person.id] || [];
-  const wkHtml = renderWonderkammerSection(wkChambers, "Wonderkammer");
+  const wkChambers = window.WK_BY_PLACE?.[place.id] || [];
+  const wkHtml = wkChambers.length
+  ? renderWonderkammerSection(wkChambers, "Wonderkammer")
+  : "";
   
   const html = `
       <img src="${img}" class="hg-popup-img">
@@ -833,7 +835,7 @@ const peopleHere = (typeof getPeopleForPlace === "function")
 
       <button class="hg-quiz-btn" data-quiz="${place.id}">Ta quiz</button>
 
-      ${wkDocHtml}
+      ${typeof wkDocHtml === "string" ? wkDocHtml : ""}
       ${wkHtml}
       ${chambersHtml}
     
