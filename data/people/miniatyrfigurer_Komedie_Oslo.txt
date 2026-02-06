@@ -283,3 +283,135 @@ module figur(){
 }
 
 figur();
+
+// ==========================================
+// Are Kalvø – stilisert standup-miniatyr
+// Seriekompatibel med de to første
+// Printklar (ca. 75 mm), solid volum
+// ==========================================
+
+$fn = 72;
+
+// --------------------
+// Baseparametre
+// --------------------
+BASE_H = 4;
+BASE_R = 18;
+
+// --------------------
+// Base
+// --------------------
+module base(){
+  cylinder(h=BASE_H, r=BASE_R);
+}
+
+// --------------------
+// Ben + sko
+// --------------------
+module legs(){
+  translate([-4.0, 0, BASE_H+0.2]) cylinder(h=14, r=3.1);
+  translate([ 4.0, 0, BASE_H+0.2]) cylinder(h=14, r=3.1);
+
+  translate([-4.0, 2.6, BASE_H+0.2]) scale([1.2,1.6,0.6]) sphere(r=3.3);
+  translate([ 4.0, 2.6, BASE_H+0.2]) scale([1.2,1.6,0.6]) sphere(r=3.3);
+}
+
+// --------------------
+// Overkropp (skjorte / casual)
+// --------------------
+module torso(){
+  translate([0,0,BASE_H+19])
+    scale([0.95,0.75,1.55]) sphere(r=12);
+
+  // Skjortekrage (enkelt relieff)
+  translate([0,7.8,BASE_H+28])
+    scale([0.9,0.2,0.5]) sphere(r=10);
+}
+
+// --------------------
+// Hode – smalt, karakteristisk smil
+// --------------------
+module head(){
+  // Hodeskalle
+  translate([0,0,BASE_H+43])
+    scale([0.96,0.92,1.05]) sphere(r=13);
+
+  // Kort, tett hår (Are Kalvø-look)
+  translate([0,-1,BASE_H+50])
+    scale([0.9,0.85,0.55]) sphere(r=10);
+
+  // Øyne – litt smale, smilende
+  translate([-4.3,10.6,BASE_H+44])
+    scale([1.05,0.55,0.45]) sphere(r=2.0);
+  translate([ 4.3,10.6,BASE_H+44])
+    scale([1.05,0.55,0.45]) sphere(r=2.0);
+
+  // Nese – smal
+  translate([0,12.1,BASE_H+41.8])
+    scale([0.38,0.9,0.4]) sphere(r=3.0);
+
+  // Smil – bred, tydelig (viktig trekk)
+  translate([0,11.2,BASE_H+38.2])
+    rotate([90,0,0]) cylinder(h=1.4, r=5.2);
+
+  // Kinn – markert latterpreg
+  translate([-6.0,6.2,BASE_H+42])
+    scale([0.6,0.4,0.3]) sphere(r=6);
+  translate([ 6.0,6.2,BASE_H+42])
+    scale([0.6,0.4,0.3]) sphere(r=6);
+
+  // Øyenbryn – lett skrå, ironisk uttrykk
+  translate([-4.2,11.8,BASE_H+46])
+    rotate([0,0,8])
+      scale([1.5,0.25,0.25]) cube([2,2,2], center=true);
+  translate([ 4.2,11.8,BASE_H+46])
+    rotate([0,0,-8])
+      scale([1.5,0.25,0.25]) cube([2,2,2], center=true);
+}
+
+// --------------------
+// Armer
+// --------------------
+module arm_left(){
+  // Avslappet arm
+  translate([-10.2, 0, BASE_H+30])
+    rotate([0,0,20]) cylinder(h=22, r=2.2);
+
+  translate([-15.6, 6.0, BASE_H+44])
+    scale([0.9,1.2,0.9]) sphere(r=2.5);
+}
+
+module arm_right_with_mic(){
+  translate([10.2,-1.0,BASE_H+30])
+    rotate([0,0,-50]) cylinder(h=20, r=2.2);
+
+  translate([16.8, 6.6, BASE_H+42])
+    rotate([0,0,-12]) cylinder(h=14, r=2.1);
+
+  // Hånd
+  translate([18.8, 9.4, BASE_H+52])
+    scale([1.0,1.2,1.0]) sphere(r=2.7);
+
+  // Mikrofon
+  translate([19.0, 9.0, BASE_H+47])
+    rotate([90,0,0]) cylinder(h=10.2, r=2.0);
+
+  translate([19.0, 9.0, BASE_H+58.2])
+    sphere(r=3.0);
+}
+
+// --------------------
+// Samlet figur
+// --------------------
+module figur(){
+  union(){
+    base();
+    legs();
+    torso();
+    arm_left();
+    arm_right_with_mic();
+    head();
+  }
+}
+
+figur();
