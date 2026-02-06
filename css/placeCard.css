@@ -224,34 +224,8 @@
   color: #fff;
 }
 
-/* ===================================================== */
-/* Mini-profil inni placecard                             */
-/* ===================================================== */
-
-#placeCard #miniProfile{
-  /* ✅ full bredde, egen rad */
-  width: 100%;
-  max-width: none;
-  flex: 0 0 100%;
-  grid-column: 1 / -1;
-  box-sizing: border-box;
-
-  margin-top: 4px;
-  border-radius: 7px;
-
-  /* ✅ flat */
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.07);
-  box-shadow: none;
-
-  padding: 5px 7px;
-  position: static !important;
-}
-
-/* stram bort default margins inni */
-#placeCard #miniProfile *{
-  margin: 0;
-}
+#placeCard #pcClose{
+  display: none;
 
 /* ===================================================== */
 /* Smooth “sted skifter”                                  */
