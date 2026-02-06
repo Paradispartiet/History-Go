@@ -58,7 +58,7 @@
 #placeCard .pc-main{
   display: grid;
   grid-template-columns: var(--pc-img-w) auto;
-  grid-template-rows: auto auto;
+  grid-template-rows: auto auto auto; /* ⬅️ viktig */
   column-gap: var(--pc-gap);
   row-gap: 6px;
   align-items: start;
@@ -73,10 +73,15 @@
   justify-self: end; /* lås til høyre i kolonnen */
 }
 
-.pc-icons{
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+#placeCard .pc-icons{
+  grid-column: 2;
+  grid-row: 2;
+  position: static; /* ⬅️ opphev absolute-regel senere i fila */
+}
+
+#placeCard #pcImage{
+  grid-column: 1 / -1;
+  grid-row: 3;
 }
 
 .pc-round{
@@ -114,7 +119,7 @@
 
 #placeCard .pc-text{
   grid-column: 1 / -1;
-  grid-row: 2;
+  grid-row: 1;
 }
 
 /* Tekst */
