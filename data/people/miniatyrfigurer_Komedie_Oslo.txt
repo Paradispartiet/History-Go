@@ -27,13 +27,68 @@ module torso(){
 }
 
 // --------------------
-// Hode
+// Hode med ansiktstrekk
 // --------------------
 module head(){
-    translate([0,0,40])
-        sphere(r=13);
-}
+    union(){
 
+        // Hovedskalle
+        translate([0,0,42])
+            scale([1.0,0.95,1.05])
+                sphere(r=13);
+
+        // Kinnben (subtile)
+        translate([-6,6,41])
+            scale([0.6,0.4,0.3])
+                sphere(r=6);
+
+        translate([6,6,41])
+            scale([0.6,0.4,0.3])
+                sphere(r=6);
+
+        // Nese (kort, avrundet)
+        translate([0,12,40])
+            scale([0.45,0.9,0.4])
+                sphere(r=3.2);
+
+        // Smil / munn (myk bue)
+        translate([0,11,37])
+            rotate([90,0,0])
+                cylinder(h=1.2, r=4.5);
+
+        // Øyne (mandelform – lett løft)
+        translate([-4.5,10.5,43])
+            scale([1.1,0.6,0.5])
+                sphere(r=2.1);
+
+        translate([4.5,10.5,43])
+            scale([1.1,0.6,0.5])
+                sphere(r=2.1);
+
+        // Øyenbryn (karaktertrekk)
+        translate([-4.5,11.8,45])
+            scale([1.6,0.3,0.3])
+                cube([2,2,2], center=true);
+
+        translate([4.5,11.8,45])
+            scale([1.6,0.3,0.3])
+                cube([2,2,2], center=true);
+
+        // Hår – volumøst, kort, urolig
+        translate([0,0,48])
+            scale([1.15,1.1,0.9])
+                sphere(r=11);
+
+        translate([-6,-2,49])
+            sphere(r=6);
+
+        translate([6,-1,49])
+            sphere(r=5.5);
+
+        translate([0,-6,48])
+            sphere(r=5.5);
+    }
+}
 // --------------------
 // Briller
 // --------------------
@@ -97,4 +152,134 @@ module figur(){
 }
 
 // --------------------
+figur();
+
+
+
+// ==========================================
+// Dagfinn Lyngbø – stilisert standup-miniatyr
+// Printklar (ca. 75 mm), solid volum
+// ==========================================
+
+$fn = 72;
+
+// --------------------
+// Baseparametre
+// --------------------
+H_TOTAL = 75;
+BASE_H  = 4;
+BASE_R  = 18;
+
+// --------------------
+// Byggesteiner
+// --------------------
+module base(){
+  cylinder(h=BASE_H, r=BASE_R);
+}
+
+module legs(){
+  // Bukseben – litt brede for print
+  translate([-4.2, 0, BASE_H+0.2]) cylinder(h=14, r=3.2);
+  translate([ 4.2, 0, BASE_H+0.2]) cylinder(h=14, r=3.2);
+
+  // Sko
+  translate([-4.2, 2.8, BASE_H+0.2]) scale([1.2,1.6,0.6]) sphere(r=3.4);
+  translate([ 4.2, 2.8, BASE_H+0.2]) scale([1.2,1.6,0.6]) sphere(r=3.4);
+}
+
+module torso(){
+  // Skjorte/bryst (overdel)
+  translate([0,0,BASE_H+19])
+    scale([1.0,0.78,1.55]) sphere(r=12);
+
+  // Vest (frontpanel) – gir “dress/vest”-silhuett
+  translate([0,7.2,BASE_H+20])
+    scale([0.75,0.18,1.15]) sphere(r=14);
+
+  // Slips (enkel, robust)
+  translate([0,9.2,BASE_H+26])
+    rotate([90,0,0]) cylinder(h=1.8, r=2.0);
+  translate([0,9.2,BASE_H+22])
+    rotate([90,0,0]) cylinder(h=1.8, r=1.5);
+}
+
+module head(){
+  // Hode – litt stort (samme serie som første)
+  translate([0,0,BASE_H+43])
+    scale([1.02,0.96,1.05]) sphere(r=13);
+
+  // Skallet topp (bald) – subtil kuppel
+  translate([0,-1,BASE_H+50])
+    scale([0.95,0.9,0.75]) sphere(r=10);
+
+  // Øyne (mandel-ish, løftet ytre hjørne)
+  translate([-4.5,10.8,BASE_H+44])
+    scale([1.15,0.65,0.55]) sphere(r=2.1);
+  translate([ 4.5,10.8,BASE_H+44])
+    scale([1.15,0.65,0.55]) sphere(r=2.1);
+
+  // Nese (kort, avrundet)
+  translate([0,12.2,BASE_H+41.5])
+    scale([0.42,0.95,0.45]) sphere(r=3.1);
+
+  // Munn / “Dagfinn-ansikt” (litt presset, komisk)
+  translate([0,11.2,BASE_H+38.5])
+    rotate([90,0,0]) cylinder(h=1.3, r=4.2);
+
+  // Kinn (subtilt)
+  translate([-6.2,6.5,BASE_H+42])
+    scale([0.55,0.38,0.28]) sphere(r=6);
+  translate([ 6.2,6.5,BASE_H+42])
+    scale([0.55,0.38,0.28]) sphere(r=6);
+
+  // Øyenbryn – lett overrasket uttrykk
+  translate([-4.5,12.0,BASE_H+46])
+    scale([1.6,0.28,0.25]) cube([2,2,2], center=true);
+  translate([ 4.5,12.0,BASE_H+46])
+    scale([1.6,0.28,0.25]) cube([2,2,2], center=true);
+}
+
+module arm_left(){
+  // Venstre arm – nede/avslappet
+  translate([-10.5, 0, BASE_H+30])
+    rotate([0,0,18]) cylinder(h=22, r=2.25);
+
+  // Hånd
+  translate([-16.2, 6.2, BASE_H+44])
+    scale([0.9,1.2,0.9]) sphere(r=2.6);
+}
+
+module arm_right_with_mic(){
+  // Høyre arm – opp mot mikrofon (klassisk standup)
+  translate([10.5,-1.0,BASE_H+30])
+    rotate([0,0,-55]) cylinder(h=20, r=2.25);
+
+  // Underarm – litt knekk
+  translate([17.2, 6.8, BASE_H+42])
+    rotate([0,0,-15]) cylinder(h=14, r=2.15);
+
+  // Hånd som holder mic
+  translate([19.5, 9.8, BASE_H+52])
+    scale([1.0,1.2,1.0]) sphere(r=2.8);
+
+  // Mikrofon
+  translate([19.8, 9.3, BASE_H+47])
+    rotate([90,0,0]) cylinder(h=10.5, r=2.05);
+
+  // Mic-hode
+  translate([19.8, 9.3, BASE_H+58.5])
+    sphere(r=3.1);
+}
+
+module figur(){
+  union(){
+    base();
+    legs();
+    torso();
+    arm_left();
+    arm_right_with_mic();
+    head();
+  }
+}
+
 figur();
