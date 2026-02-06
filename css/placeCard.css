@@ -67,15 +67,24 @@
 #placeCard .pc-text{
   grid-column: 1 / -1;
   grid-row: 1;
+
+  padding-right: 6px;
+  padding-left: 2px;
+
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text",
+               "Inter", "Segoe UI", Roboto, system-ui, sans-serif;
+  letter-spacing: 0.1px;
 }
 
 /* Tekst */
 #placeCard #pcTitle{
   margin: 0;
   font-size: var(--pc-title);
-  font-weight: 700;
   color: #fff;
   line-height: 1.2;
+
+  font-weight: 650;
+  letter-spacing: -0.2px;
 }
 
 #placeCard #pcMeta{
@@ -96,6 +105,9 @@
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+
+  font-weight: 400;
+  letter-spacing: 0.15px;
 }
 
 #placeCard .pc-icons{
