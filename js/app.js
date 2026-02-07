@@ -1759,9 +1759,28 @@ const EPOKER_FILES = {
   populaerkultur: "data/epoker_populaerkultur.json",
   subkultur:      "data/epoker_subkultur.json",
   film_tv:        "data/epoker_film_tv.json",
-  teater:         "data/epoker_teater.json",
+  scenekunst:     "data/epoker_scenekunst.json",
   media:          "data/epoker_media.json",
   psykologi:      "data/epoker_psykologi.json",
+};
+
+const PEOPLE_FILES = {
+  historie:       "data/people/people_historie.json",
+  vitenskap:      "data/people/people_vitenskap.json",
+  kunst:          "data/people/people_kunst.json",
+  by:             "data/people/people_by.json",
+  musikk:         "data/people/people_musikk.json",
+  litteratur:     "data/people/people_litteratur.json",
+  natur:          "data/people/people_natur.json",
+  sport:          "data/people/people_sport.json",
+  politikk:       "data/people/people_politikk.json",
+  naeringsliv:    "data/people/people_naeringsliv.json",
+  populaerkultur: "data/people/people_populaerkultur.json",
+  subkultur:      "data/people/people_subkultur.json",
+  film_tv:        "data/people/people_film_tv.json",
+  scenekunst:     "data/people/people_scenekunst.json",
+  media:          "data/people/people_media.json",
+  psykologi:      "data/people/people_psykologi.json"
 };
 
 async function boot() {
@@ -1774,6 +1793,10 @@ async function boot() {
   const btnUA = document.getElementById("btnUnlockAll");
   if (btnUA) btnUA.style.display = window.OPEN_MODE ? "inline-flex" : "none";
 
+
+  // Eksponer START globalt (routes.js bruker START som fallback)
+window.START = START;
+
   // Init map + ...
   // Init map + eksponer global MAP (routes.js forventer MAP)
   const map = window.HGMap?.initMap({ containerId: "map", start: START });
@@ -1782,8 +1805,6 @@ if (map) {
   window.MAP = map; // ← viktig: global for routes.js
 }
 
-// Eksponer START globalt (routes.js bruker START som fallback)
-window.START = START;
 
 // ==============================
 // LAST BASISDATA (uten PEOPLE)
@@ -1911,7 +1932,7 @@ if (window.WONDERKAMMER) {
     if (!per) continue;
     window.WK_BY_PERSON[per] = Array.isArray(row?.chambers) ? row.chambers : [];
     window.WK_PLACE_DOC = window.WK_PLACE_DOC || Object.create(null);
-    window.WK_PLACE_DOC[pid] = row;
+    window.WK_PERSON_DOC[per] = row;
   }
 }
     
