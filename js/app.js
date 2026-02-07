@@ -1782,32 +1782,76 @@ if (map) {
   window.MAP = map; // ← viktig: global for routes.js
 }
 
-  // Eksponer START globalt (routes.js bruker START som fallback)
-  window.START = START;
+// Eksponer START globalt (routes.js bruker START som fallback)
+window.START = START;
 
-  try {
-    const [places, people, relations, wonderkammer, tags] = await Promise.all([
-  fetch("data/places.json", { cache: "no-store" }).then(r => r.json()),
-  fetch("data/people.json", { cache: "no-store" }).then(r => r.json()),
-  fetch("data/relations.json", { cache: "no-store" }).then(r => r.json()).catch(() => []),
-  fetch("data/wonderkammer.json", { cache: "no-store" }).then(r => r.json()).catch(() => null),
-  fetch("data/tags.json", { cache: "no-store" }).then(r => r.json()).catch(() => null),
-]);
+// ==============================
+// LAST BASISDATA (uten PEOPLE)
+// ==============================
+let places, relations, wonderkammer, tags;
 
-  PLACES = places;
-  PEOPLE = people;
+try {
+  [
+    places,
+    relations,
+    wonderkammer,
+    tags
+  ] = await Promise.all([
+    fetch("data/places.json", { cache: "no-store" }).then(r => r.json()),
+    fetch("data/relations.json", { cache: "no-store" }).then(r => r.json()).catch(() => []),
+    fetch("data/wonderkammer.json", { cache: "no-store" }).then(r => r.json()).catch(() => null),
+    fetch("data/tags.json", { cache: "no-store" }).then(r => r.json()).catch(() => null)
+  ]);
+} catch (e) {
+  console.warn("[boot] base data feilet:", e);
+  places = [];
+  relations = [];
+  wonderkammer = null;
+  tags = null;
+}
+
+// ==============================
+// PEOPLE – last fra flere filer
+// ==============================
+let peopleAll = [];
+
+try {
+  const peoplePairs = await Promise.all(
+    Object.entries(PEOPLE_FILES).map(async ([domain, url]) => {
+      const data = await fetch(url, { cache: "no-store" })
+        .then(r => r.json())
+        .catch(() => []);
+
+      return Array.isArray(data)
+        ? data.map(p => ({ ...p, __source: domain }))
+        : [];
+    })
+  );
+
+  peopleAll = peoplePairs.flat();
+} catch (e) {
+  console.warn("[people] multi-load feilet:", e);
+  peopleAll = [];
+}
+
+// ==============================
+// SETT RUNTIME-VARIABLER
+// ==============================
+PLACES = Array.isArray(places) ? places : [];
+PEOPLE = peopleAll;
+RELATIONS = Array.isArray(relations) ? relations : [];
 
 window.PLACES = PLACES;
 window.PEOPLE = PEOPLE;
-
-RELATIONS = Array.isArray(relations) ? relations : [];
 window.RELATIONS = RELATIONS;
 
-// ✅ RELATIONS-indekser (runtime)
+// ==============================
+// RELATIONS – runtime-indekser
+// ==============================
 window.REL_BY_PLACE = Object.create(null);
 window.REL_BY_PERSON = Object.create(null);
 
-for (const r of (window.RELATIONS || [])) {
+for (const r of window.RELATIONS) {
   const place = String(r.place || "").trim();
   const person = String(r.person || "").trim();
 
