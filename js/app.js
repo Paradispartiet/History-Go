@@ -1223,7 +1223,7 @@ function wirePlaceCardCollapseTapToExpand() {
     if (t && (t.closest("button") || t.closest("a"))) return;
 
     const collapsed = pc.classList.contains("is-collapsed");
-    window.setPlaceCardCollapsed?.(!collapsed); // ✅ toggle
+    togglePlaceCard();
   });
 }
 
