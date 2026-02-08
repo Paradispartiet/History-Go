@@ -430,9 +430,7 @@ function renderNearbyPlaces() {
     : sorted;
 
   el.list.innerHTML = filtered.map(renderPlaceCard).join("");
-  }
-
-
+}
 
 function renderPlaceCard(p) {
   const dist =
