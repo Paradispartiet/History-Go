@@ -1888,12 +1888,16 @@ if (window.WONDERKAMMER) {
   }
 
   for (const row of wkPeople) {
-    const per = String(row?.person || row?.person_id || "").trim();
-    if (!per) continue;
-    window.WK_BY_PERSON[per] = Array.isArray(row?.chambers) ? row.chambers : [];
-    window.WK_PLACE_DOC = window.WK_PLACE_DOC || Object.create(null);
-    window.WK_PERSON_DOC[per] = row;
-  }
+  const per = String(row?.person || row?.person_id || "").trim();
+  if (!per) continue;
+
+  window.WK_BY_PERSON[per] = Array.isArray(row?.chambers) ? row.chambers : [];
+
+  window.WK_PLACE_DOC  = window.WK_PLACE_DOC  || Object.create(null);
+  window.WK_PERSON_DOC = window.WK_PERSON_DOC || Object.create(null);
+
+  window.WK_PERSON_DOC[per] = row;
+}
 }
     
 TAGS_REGISTRY = tags || {};
