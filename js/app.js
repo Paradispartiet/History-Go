@@ -2014,7 +2014,8 @@ wire();
 requestLocation();
 renderCollection();
 renderGallery();
-
+}
+  
 document.addEventListener("DOMContentLoaded", () => {
   safeRun("boot", boot);
 
