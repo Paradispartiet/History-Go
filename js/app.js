@@ -1996,31 +1996,24 @@ try {
 
 
     
-    // ✅ Gi kartmodulen data + callbacks (ETTER data er lastet)
-    if (window.HGMap) {
-      HGMap.setPlaces(PLACES);
-      HGMap.setVisited(visited);
-      HGMap.setCatColor(catColor);
-      HGMap.setOnPlaceClick((id) => {
-        const p = PLACES.find(x => x.id === id);
-        if (p) openPlaceCard(p);
-      });
-      HGMap.setDataReady(true);
-      HGMap.maybeDrawMarkers();
-    }
-
-  } catch (e) {
-console.error("Feil ved lasting av data:", e);
-  if (DEBUG) console.error("[DEBUG] fetch/data-payload feilet", e?.stack || e);
-    showToast("Kunne ikke laste steder/personer");
-  }
-
-  await ensureBadgesLoaded();
-  wire();
-  requestLocation();
-  renderCollection();
-  renderGallery();
+// ✅ Gi kartmodulen data + callbacks (ETTER data er lastet)
+if (window.HGMap) {
+  HGMap.setPlaces(PLACES);
+  HGMap.setVisited(visited);
+  HGMap.setCatColor(catColor);
+  HGMap.setOnPlaceClick((id) => {
+    const p = PLACES.find(x => x.id === id);
+    if (p) openPlaceCard(p);
+  });
+  HGMap.setDataReady(true);
+  HGMap.maybeDrawMarkers();
 }
+
+await ensureBadgesLoaded();
+wire();
+requestLocation();
+renderCollection();
+renderGallery();
 
 document.addEventListener("DOMContentLoaded", () => {
   safeRun("boot", boot);
