@@ -1912,79 +1912,87 @@ if (typeof linkPeopleToPlaces === "function") {
   if (DEBUG) console.warn("linkPeopleToPlaces() mangler – hopper over linking");
 }
 
-await loadNature();
+try {
+  await loadNature();
 
-window.API = window.API || {};
-window.API.addCompletedQuizAndMaybePoint = (...args) => addCompletedQuizAndMaybePoint(...args);
-    
-// ✅ INIT QUIZ-MODUL (ETTER at PLACES/PEOPLE er lastet)
-if (window.QuizEngine) {
-  QuizEngine.init({
-    getPersonById: id => PEOPLE.find(p => p.id === id),
-    getPlaceById:  id => PLACES.find(p => p.id === id),
+  window.API = window.API || {};
+  window.API.addCompletedQuizAndMaybePoint = (...args) =>
+    addCompletedQuizAndMaybePoint(...args);
 
-    getVisited: () => visited,
-    isTestMode: () => !!window.OPEN_MODE,
+  // ✅ INIT QUIZ-MODUL (ETTER at PLACES/PEOPLE er lastet)
+  if (window.QuizEngine) {
+    QuizEngine.init({
+      getPersonById: id => PEOPLE.find(p => p.id === id),
+      getPlaceById:  id => PLACES.find(p => p.id === id),
 
-    showToast,
+      getVisited: () => visited,
+      isTestMode: () => !!window.OPEN_MODE,
 
-    // progression / rewards
-    addCompletedQuizAndMaybePoint: (...args) => {
-  // 1) kjør eksisterende progresjon (den fungerer allerede siden du har "3 quiz fullført")
-  addCompletedQuizAndMaybePoint(...args);
+      showToast,
 
-  // 2) prøv å finne en ID i args som matcher et sted eller en person
-  let foundId = null;
-  for (const a of args) {
-    if (a == null) continue;
-    const s = String(a);
-    if (!s) continue;
+      // progression / rewards
+      addCompletedQuizAndMaybePoint: (...args) => {
+        // 1) kjør eksisterende progresjon
+        addCompletedQuizAndMaybePoint(...args);
 
-    // match sted først
-    if (PLACES?.some(p => String(p.id) === s)) { foundId = s; break; }
-    // ellers match person
-    if (PEOPLE?.some(p => String(p.id) === s)) { foundId = s; break; }
+        // 2) finn sted/person-ID i args
+        let foundId = null;
+        for (const a of args) {
+          if (a == null) continue;
+          const s = String(a);
+          if (!s) continue;
+
+          if (PLACES?.some(p => String(p.id) === s)) { foundId = s; break; }
+          if (PEOPLE?.some(p => String(p.id) === s)) { foundId = s; break; }
+        }
+
+        if (!foundId) return;
+
+        // 3) unlock basert på ID
+        if (PLACES?.some(p => String(p.id) === foundId)) {
+          saveVisitedFromQuiz(foundId);
+          return;
+        }
+
+        if (PEOPLE?.some(p => String(p.id) === foundId)) {
+          peopleCollected[foundId] = true;
+          savePeople();
+          window.dispatchEvent(new Event("updateProfile"));
+        }
+      },
+
+      showRewardPerson,
+      showRewardPlace,
+      showPersonPopup,
+      showPlacePopup,
+
+      // wrappers
+      pulseMarker: (lat, lon) => {
+        if (typeof window.pulseMarker === "function") {
+          window.pulseMarker(lat, lon);
+        }
+      },
+      savePeopleCollected: (personId) => {
+        peopleCollected[personId] = true;
+        savePeople();
+      },
+      saveVisitedFromQuiz: (placeId) => {
+        saveVisitedFromQuiz(placeId);
+      },
+      dispatchProfileUpdate: () =>
+        window.dispatchEvent(new Event("updateProfile")),
+
+      // ✅ hooks (kun ved riktige svar)
+      saveKnowledgeFromQuiz: window.saveKnowledgeFromQuiz || null,
+      saveTriviaPoint: window.saveTriviaPoint || null
+    });
+  } else {
+    if (DEBUG) console.warn("QuizEngine ikke lastet");
   }
 
-  if (!foundId) return;
-
-  // 3) unlock sted/person basert på ID
-  if (PLACES?.some(p => String(p.id) === foundId)) {
-    saveVisitedFromQuiz(foundId);
-    return;
-  }
-
-  if (PEOPLE?.some(p => String(p.id) === foundId)) {
-    peopleCollected[foundId] = true;
-    savePeople();
-    window.dispatchEvent(new Event("updateProfile"));
-  }
-},
-
-    showRewardPerson,
-    showRewardPlace,
-    showPersonPopup,
-    showPlacePopup,
-
-    // wrappers
-    pulseMarker: (lat, lon) => {
-      if (typeof window.pulseMarker === "function") window.pulseMarker(lat, lon);
-    },
-    savePeopleCollected: (personId) => {
-      peopleCollected[personId] = true;
-      savePeople();
-    },
-    saveVisitedFromQuiz: (placeId) => {
-      saveVisitedFromQuiz(placeId);
-    },
-      dispatchProfileUpdate: () => window.dispatchEvent(new Event("updateProfile")),
-
-    // ✅ hooks (kun ved riktige svar)
-    saveKnowledgeFromQuiz: window.saveKnowledgeFromQuiz || null,
-    saveTriviaPoint: window.saveTriviaPoint || null
-  });
-} else {
-if (DEBUG) console.warn("QuizEngine ikke lastet");
+} catch (e) {
+  console.error("Feil ved loadNature / quiz-init:", e);
+  if (DEBUG && e?.stack) console.error(e.stack);
 }
 
 
