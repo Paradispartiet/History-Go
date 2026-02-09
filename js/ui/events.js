@@ -94,3 +94,86 @@ if (acceptId) {
     }
     return;
   }
+
+
+  // Quiz
+  // Quiz (robust på iPad/Safari)
+  const quizEl = target.closest?.("[data-quiz]");
+  const quizId = quizEl?.getAttribute?.("data-quiz");
+
+  if (quizId) {
+  if (window.QuizEngine?.start) {
+    QuizEngine.start(quizId);
+  } else {
+    showToast("Quiz-modul ikke lastet");
+  }
+  return;
+}
+
+  // --- SØKERESULTAT: STED ---
+const placeId = target.closest?.(".search-item")?.getAttribute("data-place");
+if (placeId) {
+  const p = PLACES.find(x => x.id === placeId);
+  if (p) {
+    // lukk søkeresultater
+    document.getElementById("searchResults").style.display = "none";
+    // åpne popup/kort
+    openPlaceCard(p);
+    // zoom kart
+    if (p.lat && p.lon) focusMap(p.lat, p.lon);
+  }
+  return;
+}
+
+// --- SØKERESULTAT: PERSON ---
+const personId = target.closest?.(".search-item")?.getAttribute("data-person");
+if (personId) {
+  const pe = PEOPLE.find(x => x.id === personId);
+  if (pe) {
+    document.getElementById("searchResults").style.display = "none";
+    showPersonPopup(pe);
+
+    // zoom til sted personen hører til (hvis finnes)
+    if (pe.placeId) {
+      const plc = PLACES.find(p => p.id === pe.placeId);
+      if (plc) focusMap(plc.lat, plc.lon);
+    }
+  }
+  return;
+}
+
+// --- SØKERESULTAT: MERKE ---
+const badgeId = target.closest?.(".search-item")?.getAttribute("data-badge");
+if (badgeId) {
+  // lukk søket
+  document.getElementById("searchResults").style.display = "none";
+
+  // finn badge i datasettet
+  const badgeEl = document.querySelector(`[data-badge-id="${badgeId}"]`);
+
+  // bruk samme funksjon som vanlig
+  if (badgeEl) {
+    handleBadgeClick(badgeEl);
+  }
+
+  return;
+}
+
+  
+  // Badge-klikk
+  const badgeEl = target.closest?.("[data-badge-id]");
+  if (badgeEl) {
+    handleBadgeClick(badgeEl);
+    return;
+  }
+});
+
+// Sheets med data-close
+document.querySelectorAll("[data-close]").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const sel = btn.getAttribute("data-close");
+    document.querySelector(sel)?.setAttribute("aria-hidden", "true");
+  });
+});
+
+
