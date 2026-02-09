@@ -280,7 +280,7 @@
 
 <!-- Dine moduler -->
 <script src="js/popup-utils.js"></script>
-<script src="/js/hgchips.js" defer></script>
+<script src="js/hgchips.js" defer></script>
 <script src="js/knowledge.js"></script>
 <script src="js/knowledge_component.js"></script>
 <script src="js/trivia.js"></script>
@@ -289,7 +289,7 @@
 
 <script src="js/domainRegistry.js"></script>
 <script src="js/domainHealthReport.js"></script>
-  
+
 <script src="js/console/init.js"></script>
 <script src="js/console/verify.js"></script>
 <script src="js/console/diagnosticConsole.js"></script>
@@ -301,18 +301,37 @@
 <script src="js/observations.js"></script>
 <script src="js/observationsView.js"></script>
 
+<!-- CORE (ingen DOM-avhengighet) -->
+<script src="js/core/core.js"></script>
+<script src="js/core/categories.js"></script>
+<script src="js/core/geo.js"></script>
+
+<!-- GEO / MAP -->
 <script src="js/pos.js"></script>
 <script src="js/map.js"></script>
 
 <script src="js/ors-config.js"></script>
 <script src="js/navRoutes.js"></script>
-  
+
 <script src="js/hg_unlocks.js"></script>
 <script src="js/quizzes.js"></script>
 <script src="js/quiz-audit.js"></script>
-<!-- app.js før routes (eier HG_POS/getPos) -->
 
-  
+<!-- UI – DOM + interaksjon -->
+<script src="js/ui/dom.js"></script>
+<script src="js/ui/toast.js"></script>
+<script src="js/ui/events.js"></script>
+<script src="js/ui/interactions.js"></script>
+<script src="js/ui/lists.js"></script>
+<script src="js/ui/left-panel.js"></script>
+<script src="js/ui/badges.js"></script>
+<script src="js/ui/badge-modal.js"></script>
+<script src="js/ui/mini-profile.js"></script>
+
+<!-- BOOT (samler init) -->
+<script src="js/boot.js"></script>
+
+<!-- app.js sist -->
 <script src="js/app.js"></script>
 
   <script>
