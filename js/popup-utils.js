@@ -1769,3 +1769,17 @@ window.showRewardPerson = function(person) {
 document.addEventListener("keydown", e => {
   if (e.key === "Escape" && currentPopup) closePopup();
 });
+
+
+function hgEsc(s){
+  return String(s ?? "")
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+}
+
+function hgEscAttr(s){
+  return hgEsc(s).replaceAll("\n", " ").trim();
+}
