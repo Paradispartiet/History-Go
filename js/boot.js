@@ -1,4 +1,6 @@
-export async function bootApp() {
+// boot.js
+
+async function bootApp() {
   await loadBaseData();
   await loadPeople();
   await loadEpoker();
@@ -8,6 +10,9 @@ export async function bootApp() {
   initUI();
   initQuizzes();
 }
+
+// eksponer globalt
+window.bootApp = bootApp;
 
 
 function requestLocation() {
