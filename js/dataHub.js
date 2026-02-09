@@ -236,6 +236,19 @@ const DEFAULTS = {
     return fetchJSON(pEmner("fagkart_map.json"), opts).catch(() => null);
   }
 
+
+  async function loadNature() {
+  try {
+    const r1 = await fetch("data/nature/flora.json", { cache: "no-store" });
+    window.FLORA = r1.ok ? await r1.json() : [];
+  } catch { window.FLORA = []; }
+
+  try {
+    const r2 = await fetch("data/nature/fauna.json", { cache: "no-store" });
+    window.FAUNA = r2.ok ? await r2.json() : [];
+  } catch { window.FAUNA = []; }
+}
+  
   // ----------------------------
   // Quiz: /data/quiz/quiz_<categoryId>.json
   // ----------------------------
@@ -290,3 +303,5 @@ const DEFAULTS = {
     DEFAULTS
   };
 })();
+
+
