@@ -1,496 +1,218 @@
-SYSTEM MAP (UPDATED 2025-12-28)
-===============================
+# SYSTEM MAP – History Go
 
-NOTE
-----
-Denne fila er oppdatert uten å slette noe av originalteksten.
-Originalinnholdet står fortsatt her, og nye avklaringer er lagt til som egne seksjoner.
-
-# 🧭 HISTORY GO — SYSTEM MAP (nyeste)
-Dette dokumentet er fasit for **hva som skjer**, **hvordan det skjer**, og **hvorfor** – på tvers av History GO + AHA.
+Dette dokumentet beskriver den faktiske arkitekturen i History Go per nå.
+Det er en operativ oversikt over filer, ansvar og eierskap.
 
 ---
 
-## 1) Entry points (sider) og hva de eier
+## OVERORDNET ARKITEKTUR
 
-### `index.html` (Hovedapp)
-**Eier:** kart, utforsk, placeCard, quiz-start, unlock, ruter, person/sted-popups, samtale + notat-triggere.  
-**Runtime-kjerne:** `js/app.js` orkestrerer og kobler moduler.
+History Go er delt i tydelige lag:
 
-### `profile.html` (Profil)
-**Eier:** profil-statistikk, merker/badges + modal, people-grid, visited-grid, timeline, “Siste kunnskap/funfacts”, og AHA-knapp.  
-Kjører typisk: `js/knowledge.js`, `js/trivia.js`, `js/profile.js` (+ popup/utils).
-
-### `knowledge.html` (Kunnskapsbibliotek)
-**Eier:** lesing/oversikt over all lagret knowledge (fra `knowledge_universe`) + emne/coverage-visning der det er aktivt.
-
-### `notater.html` (Notatbok)
-**Eier:** render av alle notater fra `hg_user_notes_v1`.  
-**Viktig:** siden fetcher `people.json` og `places.json` direkte (ikke via DataHub).
-
-### `emner.html` (Emner / pensum)
-**Eier:** emne-dekning per fagfelt basert på brukerens begreper (fra HGInsights) + emner fra EmnerLoader + `computeEmneDekning`.
-
-### `AHA/index.html` (AHA)
-**Eier:** import av HG-data (leser `aha_import_payload_v1`) og visning av innsiktskammer / chat + meta.
+- Core (logikk og regler, ingen DOM)
+- Data / Knowledge
+- Geo / Map
+- UI (DOM og interaksjon)
+- Civication (karriere, merker, jobber)
+- Boot (lasting og init)
+- App shell (kobler alt)
 
 ---
 
-## 2) Moduloversikt (ansvar og “hvorfor”)
+## 1. CORE (ingen DOM, ingen UI)
 
-### `js/app.js` — Orchestrator (nåværende “core”)
-**Hva:** init, event-binding, progresjon, localStorage-kontrakter, samtale/notat-handlers, og eksportbuffer til AHA.  
-**Hvorfor:** ett sted å forstå “hva skjer når brukeren gjør X”.
+**Ansvar**
+- Konstanter
+- Kategorier
+- Avstand/geo-beregning
+- Små hjelpefunksjoner
 
-### `js/dataHub.js` — Datasentral
-**Hva:** laster JSON innen scope, bygger cache, “enriched” datasett og loader pakker (quiz-kategorier, overlays, emner/fagkart der det er i bruk).  
-**Hvorfor:** team-sikkert: færre fetch-spredninger og mer deterministisk dataflyt.
+**Filer**
 
-### `js/map.js` — HGMap (MapLibre)
-**Hva:** init kart, marker-lag, visited-state, click-callbacks (kaller tilbake til app/UI), og `refreshMarkers`.  
-**Hvorfor:** kartlogikk isolert fra progresjon.
+js/core/core.js
+js/core/categories.js
+js/core/geo.js
 
-### `js/quizzes.js` — QuizEngine
-**Hva:** starter quiz for targetId (place/person), bruker manifest for å finne riktige quizfiler, gating (krever state), og sender rewards via hooks.  
-**Hvorfor:** quiz er “motoren” som produserer progresjon + knowledge/trivia + insights.  
-**Designregel:** knowledge/trivia belønnes på **riktige svar** via hooks.
-
-### `js/knowledge.js` — Knowledge universe + AHA-sync
-**Hva:** lagrer/leser `knowledge_universe`, tilbyr `saveKnowledgeFromQuiz`, og trigger UI-sync via `updateProfile`.  
-**Hvorfor:** knowledge er varig, gjenbrukbart “innholdslag” som vokser av learning events.
-
-### `js/trivia.js` — Trivia universe + AHA-sync
-**Hva:** lagrer/leser `trivia_universe`, og trigger UI-sync via `updateProfile`.  
-**Hvorfor:** trivia er mikro-belønning/mikrolæring (holder flyt).
-
-### `js/popup-utils.js` — UI/Popups + placeCard
-**Hva:** `showPersonPopup`, `showPlacePopup`, `openPlaceCard` + reward-popups. Leser inline knowledge/trivia fra localStorage, men **viser det kun hvis quiz er fullført**.  
-**Hvorfor:** “læring låser opp innhold” (først quiz → så kunnskap/funfacts).
-
-### `js/hgInsights.js` — Begrepsspor (quiz_correct → concepts)
-**Hva:** logger events i `hg_insights_events_v1`. Kun `core_concepts` teller; `topic` er ikke fallback.  
-**Hvorfor:** gir robust begrepsgrunnlag for emner/pensum og AHA-profil.
-
-### `js/hgConceptIndex.js` — Konseptindeks
-**Hva:** indeks/struktur som lar deg mappe begreper videre (brukes av innsiktslaget/AHA).  
-**Hvorfor:** gjør begreper navigerbare (ikke bare en logg).
-
-### `js/routes.js` — Ruter
-**Hva:** rutevisning/aktivering (“show route to …”), koblet til kart og placeCard flow.  
-**Hvorfor:** ruter er egen oppdagelsesmodus (tematisk guiding).
-
-### `js/profile.js` — Profilmotor
-**Hva:** bygger profil-UI (stats, merits, personer, steder, tidslinje), leser knowledge/trivia “latest”, og eksponerer AHA-knappen fra profilen.  
-**Hvorfor:** profil er “sannhetens speil”: render av lagret progresjon.
-
-### `AHA/ahaChat.js` + `AHA/insightsChamber.js` (+ meta)
-**Hva:** AHA-import + lagring/visning av kammer (insikter, topics, stats) og chat + meta-analyse.  
-**Hvorfor:** HG produserer erfaring; AHA produserer abstraksjon og “meta”.
+**Eier**
+- START
+- PLACES / PEOPLE / BADGES / RELATIONS (runtime)
+- CATEGORY_LIST
+- catColor / catClass / tagToCat
+- distMeters
 
 ---
 
-## 3) Runtime: hva som skjer (detaljert flyt)
+## 2. DATA / KNOWLEDGE
 
-### 3.1 Oppstart (uten core.js)
-1) `index.html` laster moduler (app er hovedstart).
-2) `app.js` initierer systemet (leser data/progresjon, binder UI-events).
-3) `DataHub` brukes for lasting/caching av data.
-4) `HGMap.initMap(...)` opprettes og får `setPlaces` + `setVisited`.
-5) `QuizEngine.init(...)` settes opp med hooks (knowledge/trivia/insights/rewards).
+**Ansvar**
+- Knowledge-univers
+- AHA-integrasjon
+- Notater og dialoger
+- Export/sync
 
-**Hvorfor:** deterministisk “data først → UI etterpå”.
+**Filer**
 
----
+js/dataHub.js
+js/knowledge.js
+js/knowledge_component.js
+js/trivia.js
 
-### 3.2 Utforsk → placeCard → quiz
-- Bruker trykker et sted (kart/panel) → `openPlaceCard(place)` rendrer kort + knapper.
-- Klikk “Ta quiz” → `QuizEngine.start(place.id)`.
-- QuizEngine bruker `data/quiz/manifest.json` / kategori-loading for å hente riktig quizinnhold.
-
-**Hvorfor:** quizer er modulære per fagfelt og kan caches/offline.
-
----
-
-### 3.3 Riktig svar → belønning → knowledge/trivia → innsikt
-Ved riktig svar:
-- `HGInsights.logCorrectQuizAnswer(userId, quizItem)` logger begreper (kun `core_concepts`).
-- `saveKnowledgeFromQuiz(...)` legger inn kunnskap i `knowledge_universe`.
-- trivia legges inn i `trivia_universe`.
-- UI sync: `window.dispatchEvent(new Event("updateProfile"))`.
-
-**Hvorfor:** stabilt læringsspor (insights) + varig innhold (knowledge) + “spark” (trivia).
+**Eier**
+- userNotes
+- personDialogs
+- exportHistoryGoData
+- syncHistoryGoToAHA
+- saveKnowledgeFromQuiz
 
 ---
 
-### 3.4 Visning av knowledge/trivia (låst bak fullført quiz)
-Popups/PlaceCard viser inline knowledge/trivia kun hvis quiz er fullført (gating).  
-Matcher items på id-prefix: `quiz_<targetId>_...` i `knowledge_universe`.
+## 3. GEO / MAP
 
-**Hvorfor:** “læring først, innhold etterpå”.
+**Ansvar**
+- Posisjon
+- Kart
+- Markører
+- Ruter
 
----
+**Filer**
 
-### 3.5 Samtale + notater (HG → AHA)
-I person-popup finnes knapper:
-- `data-chat-person="<person.id>"`
-- `data-note-person="<person.id>"`
+js/pos.js
+js/map.js
+js/navRoutes.js
+js/ors-config.js
 
-`app.js` håndterer lagring til:
-- `hg_person_dialogs_v1`
-- `hg_user_notes_v1`
-og oppdaterer AHA-importbuffer (`aha_import_payload_v1`).
 
-**Hvorfor:** chat/notater er tekstlig materiale AHA kan gjøre til innsikt.
 
----
-
-### 3.6 Profil (leser state og rendrer)
-`profile.html` rendrer fra localStorage via `profile.js`.  
-Viser også “Siste kunnskap” og “Siste funfacts”.
+**Eier**
+- HGPos
+- HGMap
+- MAP (runtime)
+- getPos / focusMap / pulseMarker
 
 ---
 
-### 3.7 Emner/pensum (HGInsights → computeEmneDekning)
-`emner.html`:
-- henter user concepts via `HGInsights.getUserConcepts(userId)`
-- laster emner via Emner-loader
-- beregner dekning med `computeEmneDekning(concepts, emner)`
+## 4. UI – DOM OG VISNING
 
-**Hvorfor:** “hva du har lært” knyttes til pensumlinjer (målbar progresjon).
+### 4.1 DOM-cache
 
----
-
-### 3.8 Offline-first
-Service worker cacher:
-- sider (index/profile/knowledge/notater)
-- CSS/JS
-- data (places/people/tags/badges/routes + quiz-manifest og quiz-filer)
-Strategi: **network-first for HTML**, **cache-first for statics**.
-
-**Hvorfor:** iPad + bybruk krever robust offline og rask last.
+js/ui/dom.js
+Eier: `el`
 
 ---
 
-## 4) State-kontrakt (localStorage keys)
+### 4.2 Feedback / UX
+js/ui/toast.js
 
-**Progresjon/kjerne:**
-- `visited` / `visited_places` (avhenger av struktur i app)
-- `merits_by_category`
-- `quiz_progress` og/eller `quiz_history` (popup-utils sjekker `quiz_history`)
-
-**Knowledge/Trivia:**
-- `knowledge_universe`
-- `trivia_universe`
-
-**Innsikt/begrep:**
-- `hg_insights_events_v1`
-
-**Samtaler og notater:**
-- `hg_person_dialogs_v1`
-- `hg_user_notes_v1`
-
-**AHA bro:**
-- `aha_import_payload_v1` (HG skriver; AHA leser ved import)
+Eier: `showToast`
 
 ---
 
-## 5) Team-regler (for å unngå rot)
-1) Ikke endre localStorage-keys uten migrering + oppdatert SYSTEM_MAP.
-2) Ikke bypass QuizEngine-hooks: rewards/knowledge/trivia/insights må trigges samme sted.
-3) DataHub er datasentral; unngå direkte fetch i nye sider (notater.html er dokumentert unntak).
-4) Popup-utils gating (“vis kun etter fullført quiz”) er en designregel.
-5) Service worker: endringer i filnavn krever oppdatering av cache-liste og cache-versjon.
+### 4.3 Lister og visninger
+js/ui/lists.js
+
+Eier:
+- renderNearbyPlaces
+- renderCollection
+- renderGallery
 
 ---
 
-# 🔌 API INDEX (STRICT) — Public exports (History GO + AHA)
-Dette er **ikke** en liste over alle interne funksjoner.
-Dette er kun det som faktisk eksponeres globalt (public surface).
+### 4.4 Hendelser og interaksjon
+js/ui/events.js
+js/ui/interactions.js
+
+Eier:
+- global click-delegation
+- quiz-start
+- søk-resultater
+- badge-routing
 
 ---
 
-## History GO
+### 4.5 Venstre panel + PlaceCard
+js/ui/left-panel.js
 
-### js/app.js
-Eksporterer globals:
-- `window.__HG_LAST_ERROR__`
-- `window.HG_ENV` (objekt)
-  - `HG_ENV.geo` settes til `"unknown" | "granted" | "blocked"`
-- `window.userLat`
-- `window.userLon`
-- `window.MAP`
-- `window.START`
-
-Eksporterer funksjon:
-- `window.pulseMarker(id)`
+Eier:
+- collapsePlaceCard / expandPlaceCard
+- initLeftPanel
+- enterMapMode / exitMapMode
 
 ---
 
-### js/dataHub.js
-Eksporterer:
-- `window.DataHub` (objekt)
+### 4.6 Badges og modal
+js/ui/badges.js
+js/ui/badge-modal.js
 
-Public metoder/properties på `DataHub`:
-- `fetchJSON`
-- `clearCache`
-- `loadTags`
-- `loadPlacesBase`
-- `loadPeopleBase`
-- `loadBadges`
-- `loadRoutes`
-- `loadPlaceOverlays`
-- `loadPeopleOverlays`
-- `getPlaceEnriched`
-- `getPersonEnriched`
-- `loadEnrichedAll`
-- `loadEmner`
-- `loadFagkart`
-- `loadFagkartMap`
-- `loadQuizCategory`
-- `normalizeTags`
-- `mergeDeep`
-- `indexBy`
-- `APP_BASE_PATH`
-- `DEFAULTS`
+Eier:
+- ensureBadgesLoaded
+- deriveTierFromPoints
+- handleBadgeClick
 
 ---
 
-### js/map.js
-Eksporterer globals:
-- window.HG_POS (autorativ posisjon: {status, lat, lon, ts})
-- window.HGMap  (kart / markører)
+### 4.7 Mini-profil
+js/ui/mini-profile.js
 
-Kompat (legacy, kan fases ut):
-- window.userLat
-- window.userLon
-- window.currentPos
-
-Public metoder på `HGMap`:
-- `initMap`
-- `getMap`
-- `resize`
-- `setDataReady`
-- `setPlaces`
-- `setVisited`
-- `setCatColor`
-- `setOnPlaceClick`
-- `setUser`
-- `maybeDrawMarkers`
-- `refreshMarkers`
+Eier:
+- initMiniProfile
+- quiz-historikk
+- Civication inbox-visning
 
 ---
 
-### js/routes.js
-Eksporterer globals:
-- `window.ROUTES`
-- `window.loadRoutes`
-- `window.openRoutesSheet`
-- `window.showRouteOverlay`
-- `window.closeRouteOverlay`
-- `window.focusRouteOnMap`
-- `window.clearThematicRoute`
-- `window.computeNearestStop`
-- `window.getNearbyRoutesSorted`
-- `window.showRouteToPlace`
+## 5. CIVICATION
+
+**Ansvar**
+- Poeng
+- Merker
+- Jobbtilbud
+- Aktiv stilling
+
+**Filer**
+js/merits-and-jobs.js
+js/tiersCivi.js
+js/Civication inbox.js
+
+**Eier**
+- addCompletedQuizAndMaybePoint
+- updateMeritLevel
+- hg_job_offers_v1
+- hg_active_position_v1
 
 ---
 
-### js/quizzes.js
-Eksporterer:
-- `window.QuizEngine` (objekt)
+## 6. BOOT
 
-Public metoder på `QuizEngine`:
-- `init`
-- `start`
+**Ansvar**
+- Laste data
+- Bygge runtime-indekser
+- Init QuizEngine
+- Init map
+- Init epoker
 
----
+**Fil**
+js/boot.js
 
-### js/popup-utils.js
-Eksporterer globals (funksjoner):
-- `window.showPersonPopup`
-- `window.showPlacePopup`
-- `window.openPlaceCard`
-- `window.openPlaceCardByPerson`
-- `window.showRewardPlace`
-- `window.showRewardPerson`
-
----
-
-### js/knowledge.js
-Eksporterer globals (funksjoner):
-- `window.syncHistoryGoToAHA`
-- `window.saveKnowledgeFromQuiz`
-- `window.computeEmneDekning`
+**Eier**
+- boot()
+- PEOPLE_FILES
+- EPOKER_FILES
+- buildEpokerRuntimeIndex
 
 ---
 
-### js/trivia.js
-Eksporterer globals (funksjon):
-- `window.syncHistoryGoToAHA`
+## 7. APP SHELL
+
+**Ansvar**
+- DOMContentLoaded
+- safeRun
+- Sammenkobling av systemet
+
+**Fil**
+js/app.js
 
 ---
 
-### js/hgInsights.js
-Eksporterer:
-- `window.HGInsights` (objekt)
-
-Public metoder på `HGInsights`:
-- `logCorrectQuizAnswer`
-- `getUserConcepts`
-- `clearAll`
-
----
-
-### js/hgConceptIndex.js
-Eksporterer:
-- `window.HGConceptIndex` (objekt)
-
-Public metoder på `HGConceptIndex`:
-- `buildGlobalConceptIndex`
-- `getConceptSummary`
-
----
-
-### js/DomainRegistry.js
-Eksporterer:
-- `window.DomainRegistry` (objekt)
-
-Public metoder på `DomainRegistry`:
-- `resolve`
-- `list`
-- `aliasMap`
-- `file`
-
----
-
-### js/domainHealthReport.js
-Eksporterer:
-- `window.DomainHealthReport` (objekt)
-
-Public metoder:
-- `run`
-
----
-
-### js/quiz-audit.js
-Eksporterer:
-- `window.QuizAudit` (objekt)
-
-Public metoder:
-- `run`
-
----
-
-## AHA (egen app)
-
-### AHA/insightsChamber.js
-Eksporterer:
-- `window.InsightsEngine` (objekt)
-
-Public metoder på `InsightsEngine`:
-- `createEmptyChamber`
-- `createSignalFromMessage`
-- `addSignalToChamber`
-- `splitIntoSentences`
-- `getInsightsForTopic`
-- `computeTopicStats`
-- `computeSemanticCounts`
-- `computeDimensionsSummary`
-- `createPathSteps`
-- `createConceptPathForConcept`
-- `createSynthesisText`
-- `createArticleDraft`
-- `computeTopicsOverview`
-- `createNarrativeForTopic`
-- `extractConcepts`
-- `mergeConcepts`
-- `getConceptsForTheme`
-
----
-
-### AHA/metaInsightsEngine.js
-Eksporterer:
-- `window.MetaInsightsEngine` (objekt)
-
-Public metoder på `MetaInsightsEngine`:
-- `buildUserMetaProfile`
-- `computeGlobalSemanticProfile`
-- `detectCrossTopicPatterns`
-- `enrichInsightsWithLifecycle`
-- `computeInsightLifecycle`
-- `buildConceptIndex`
-- `buildConceptIndexForTheme`
-- `posFilterConcepts`
-- `extractMultiwordConcepts`
-
----
-
-### AHA/ahaFieldProfiles.js
-Eksporterer:
-- `window.HG_FIELD_PROFILES` (objekt)
-
-Public keys i `HG_FIELD_PROFILES`:
-- `historie`
-- `vitenskap`
-- `kunst`
-- `natur`
-- `musikk`
-- `populaerkultur`
-- `subkultur`
-- `sport`
-- `by`
-- `politikk`
-- `naeringsliv`
-- `litteratur`
-
----
-
-### AHA/ahaEmneMatcher.js
-Eksporterer (global funksjon):
-- `matchEmneForText(subjectId, text)`
-
-
----
-
-# ➕ LEGG TIL I `SYSTEM_MAP.md`
-*(legg til nederst – ikke flytt eksisterende piler)*
-
-```md
----
-
-## Observations & Pensum – systemflyt (utvidelse)
-
-Quiz ─┐
-      ├──> hg_learning_log_v1 ────────────────┐
-Observation ──────────────────────────────────┤
-                                                ├──> Courses / Pensum (HGCourses)
-Knowledge ─────────────────────────────────────┘
-
-Observation ──> Place Popup (visning)
-Observation ──> Person Popup (visning)
-
-Notes ───────────────┐
-                      └──> Profil / AHA / refleksjon
-
-UPPDATERINGER / KLARGJØRINGER (2025-12)
--------------------------------------
-Kjerneflyt (oppdatert)
-- Merker (badge/categoryId) → Fagkart → Emner → Quiz/Observasjon/Notat → `hg_learning_log_v1` → Courses → Knowledge UI / PlaceCard / Popups.
-
-Hvor ontologi ligger nå
-- Begreps- og nivåmodellen (ontologi) brukes som *designspesifikasjon*, men i drift representeres den av:
-  - Fagkart: stabile faglige akser/områder
-  - Emner: konkrete læringsenheter med core_concepts + mål/checkpoints (der dette finnes)
-  - Pensum/Courses: moduler og fullføringsregler (progresjon)
-
-
-- `structure_*.json` er tatt helt ut av runtime. Hvis eldre tekst refererer til "structure", regnes det nå som DEPRECATED/historisk.
-- Ontologi som *modell* er fortsatt relevant, men implementasjonen i runtime skjer via: Merker → Fagkart → Emner → Evidens (learning log) → Courses → UI.
-- `Courses` er progresjonsmotor (tolkningslag) og skal ikke introdusere ny fagstruktur; den bruker emner + learning log + pensum-filer for å beregne modulstatus/diplom.
-- Knowledge-visningen er nå flat (ingen structure) og kan i tillegg vise kursprogresjon via `HGCourseUI`/`HGCourses.compute`.
-
-
-Praktisk konsekvens
-- Hvis kart-/UI-dokumentasjonen nevner "kapitler"/"branches" fra structure, erstatt mentalt med:
-  - Fagkart-noder (for gruppering) og/eller
-  - Course-moduler (for progresjon).
+## SLUTT
+Dette dokumentet er normativt.
+Avvik fra dette skal enten refaktoreres eller dokumenteres eksplisitt.
