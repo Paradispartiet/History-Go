@@ -74,36 +74,7 @@ async function updateMeritLevel(cat, oldPoints, newPoints) {
   showToast(`💼 Ny stilling i ${badge.name}: ${newTitle}!`);
   pulseBadge(badge.name);
 
-    // 2) Lag jobbtilbud (offers) – aktiv rolle settes først ved "Aksepter" på profilen
-  try {
-    const offers = JSON.parse(localStorage.getItem("hg_job_offers_v1") || "[]");
-    const list = Array.isArray(offers) ? offers : [];
 
-    const thr = Number(next.threshold);
-    const offerKey = `${badge.id}:${thr}`;
-
-    // Ikke dupliser samme tilbud
-    if (!list.some(o => o && o.offer_key === offerKey)) {
-      const now = new Date();
-      const expires = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
-
-      list.unshift({
-        offer_key: offerKey,
-        career_id: String(badge.id || ""),
-        career_name: String(badge.name || ""),
-        title: newTitle,
-        threshold: thr,
-        points_at_offer: Number(newPoints || 0),
-        status: "pending",
-        created_iso: now.toISOString(),
-        expires_iso: expires.toISOString()
-      });
-
-      localStorage.setItem("hg_job_offers_v1", JSON.stringify(list));
-    }
-  } catch {}
-
-}
 
   
 // Poengsystem – +1 poeng per fullført quiz
