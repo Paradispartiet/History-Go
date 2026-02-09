@@ -1,3 +1,25 @@
+// state/persistence.js
+
+function savePersonDialogs() {
+  localStorage.setItem(
+    "hg_person_dialogs_v1",
+    JSON.stringify(personDialogs)
+  );
+  if (typeof syncHistoryGoToAHA === "function") {
+    syncHistoryGoToAHA();
+  }
+}
+
+function saveUserNotes() {
+  localStorage.setItem(
+    "hg_user_notes_v1",
+    JSON.stringify(userNotes)
+  );
+  if (typeof syncHistoryGoToAHA === "function") {
+    syncHistoryGoToAHA();
+  }
+}
+
 // progress for “+1 poeng per 3 riktige”
 const userProgress = JSON.parse(
   localStorage.getItem("historygo_progress") || "{}"
