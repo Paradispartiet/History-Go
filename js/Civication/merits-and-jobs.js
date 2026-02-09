@@ -137,3 +137,11 @@ const badgeId = canonicalCategoryId;  if (!badgeId) return;
 
   showToast(`🏅 +1 poeng i ${badgeId}!`);
   window.dispatchEvent(new Event("updateProfile"));}
+
+
+window.hgGetJobOffers = hgGetJobOffers;
+window.hgSetJobOffers = hgSetJobOffers;
+window.hgPushJobOffer = hgPushJobOffer;
+
+window.updateMeritLevel = updateMeritLevel;
+window.addCompletedQuizAndMaybePoint = addCompletedQuizAndMaybePoint;
