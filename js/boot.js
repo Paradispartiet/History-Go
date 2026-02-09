@@ -2,10 +2,6 @@
 
 
 
-// eksponer globalt
-window.bootApp = bootApp;
-
-
 function requestLocation() {
   window.HG_ENV = window.HG_ENV || {};
   window.HG_ENV.geo = "unknown";
