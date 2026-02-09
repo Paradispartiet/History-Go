@@ -256,3 +256,6 @@ function wireMiniProfileLinks() {
     showQuizHistory();
   });
 }
+
+window.initMiniProfile = initMiniProfile;
+window.wireMiniProfileLinks = wireMiniProfileLinks;
