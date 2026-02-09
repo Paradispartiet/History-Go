@@ -68,3 +68,51 @@ function handlePlaceNote(place) {
   saveUserNotes();
   showToast(`Notat om ${place.name} lagret 📝`);
 }
+
+
+// ==============================
+// 12. KARTMODUS
+// ==============================
+function enterMapMode() {
+  document.body.classList.add("map-only"); // kan beholdes hvis du bruker den visuelt
+
+  if (el.btnSeeMap)  el.btnSeeMap.style.display = "none";
+  if (el.btnExitMap) el.btnExitMap.style.display = "block";
+
+  // ✅ bare minimer (ingen hide av hele UI)
+  window.setPlaceCardCollapsed?.(true);
+  window.setNearbyCollapsed?.(true);
+
+  const mapEl = document.getElementById("map");
+  if (mapEl) mapEl.style.zIndex = "10";
+
+  window.HGMap?.resize?.();
+  window.MAP?.resize?.();
+
+  showToast("Kartmodus");
+}
+
+function exitMapMode() {
+  document.body.classList.remove("map-only");
+
+  if (el.btnSeeMap)  el.btnSeeMap.style.display = "block";
+  if (el.btnExitMap) el.btnExitMap.style.display = "none";
+
+  window.setPlaceCardCollapsed?.(false);
+  window.setNearbyCollapsed?.(false);
+
+  const mapEl = document.getElementById("map");
+  if (mapEl) mapEl.style.zIndex = "1";
+
+  window.HGMap?.resize?.();
+  window.MAP?.resize?.();
+
+  showToast("Tilbake til oversikt");
+}
+
+el.btnSeeMap?.addEventListener("click", enterMapMode);
+el.btnExitMap?.addEventListener("click", exitMapMode);
+
+window.addEventListener("resize", () => {
+  window.MAP?.resize?.();
+});
