@@ -97,3 +97,100 @@ function initMiniProfile() {
 }
 
 
+
+window.addEventListener("hg:mpNextUp", (e) => {
+  const mount = document.getElementById("mpNextUp");
+  if (!mount) return;
+
+  const tri = e.detail?.tri || {};
+  const becauseLine = e.detail?.becauseLine || "";
+
+// Persistér "Fordi" til profilsiden
+try {
+  localStorage.setItem("hg_nextup_because", String(becauseLine || ""));
+  localStorage.setItem("hg_nextup_tri", JSON.stringify(tri || {}));
+} catch {}
+  
+  const spatial = tri.spatial || null;
+  const narrative = tri.narrative || null;
+  const concept = tri.concept || null;
+  const wk = tri.wk || null; // ✅ Wonderkammer NextUp (valgfri)
+
+  mount.innerHTML = `
+  <div class="mp-nextup-line">
+    <button class="mp-nextup-link" data-mp="goto"
+      ${spatial ? `data-place="${hgEscAttr(spatial.place_id)}"` : "disabled"}>
+      🧭 <b>Neste Sted:</b> ${spatial ? hgEsc(spatial.label) : "—"}
+    </button>
+  </div>
+
+  <div class="mp-nextup-line">
+    <button class="mp-nextup-link" data-mp="wk"
+      ${wk ? `data-wk="${hgEscAttr(wk.entry_id)}" title="${hgEscAttr(wk.because || "")}"` : "disabled"}>
+      🗃️ <b>Wonderkammer:</b> ${wk ? hgEsc(wk.label) : "—"}
+    </button>
+  </div>
+
+  <div class="mp-nextup-line">
+    <button class="mp-nextup-link" data-mp="story"
+      ${narrative ? `data-nextplace="${hgEscAttr(narrative.next_place_id)}"` : "disabled"}>
+      📖 <b>Neste Scene:</b> ${narrative ? hgEsc(narrative.label) : "—"}
+    </button>
+  </div>
+
+  <div class="mp-nextup-line">
+    <button class="mp-nextup-link" data-mp="emne"
+      ${concept ? `data-emne="${hgEscAttr(concept.emne_id)}"` : "disabled"}>
+      🧠 <b>Forstå:</b> ${concept ? hgEsc(concept.label) : "—"}
+    </button>
+  </div>
+
+`;
+
+    mount.querySelectorAll("[data-mp]").forEach((btn) => {
+    btn.onclick = () => {
+      const t = btn.dataset.mp;
+
+      if (t === "goto") {
+        const id = btn.dataset.place;
+        if (!id) return;
+        const pl = (window.PLACES || []).find(x => String(x.id) === String(id));
+        if (pl) return window.openPlaceCard?.(pl);
+        return window.showToast?.("Fant ikke stedet");
+      }
+
+      if (t === "wk") {
+        const id = btn.dataset.wk;
+        if (!id) return;
+
+        // Åpne Wonderkammer-entry
+        if (window.Wonderkammer && typeof window.Wonderkammer.openEntry === "function") {
+          window.Wonderkammer.openEntry(id);
+        } else if (typeof window.openWonderkammerEntry === "function") {
+          window.openWonderkammerEntry(id);
+        } else {
+          console.warn("[mpNextUp] No Wonderkammer open handler found for", id);
+          window.showToast?.("Fant ikke Wonderkammer-visning");
+        }
+        return;
+      }
+
+      
+      if (t === "story") {
+        const nextId = btn.dataset.nextplace;
+        if (!nextId) return;
+        const pl = (window.PLACES || []).find(x => String(x.id) === String(nextId));
+        if (pl) return window.openPlaceCard?.(pl);
+        return window.showToast?.("Fant ikke neste kapittel-sted");
+      }
+
+      if (t === "emne") {
+        const emneId = btn.dataset.emne;
+        if (!emneId) return;
+        window.location.href = `knowledge_by.html#${encodeURIComponent(emneId)}`;
+      }
+    };
+  });
+});
+
+
