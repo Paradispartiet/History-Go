@@ -1,5 +1,5 @@
 // ==============================
-// 4. GEO OG AVSTANDSBEREGNING
+// GEO – AVSTAND / BEREGNING
 // ==============================
 function distMeters(a, b) {
   const aLat = Number(a?.lat);
@@ -23,3 +23,6 @@ function distMeters(a, b) {
 
   return R * 2 * Math.atan2(Math.sqrt(x), Math.sqrt(1 - x));
 }
+
+// global eksponering (samme mønster som resten)
+window.distMeters = distMeters;
