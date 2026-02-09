@@ -278,9 +278,12 @@
 
 </script>
 
-<!-- Dine moduler -->
+<!-- ======================================================
+     EKSTERNE / STØTTE
+====================================================== -->
 <script src="js/popup-utils.js"></script>
 <script src="js/hgchips.js" defer></script>
+
 <script src="js/knowledge.js"></script>
 <script src="js/knowledge_component.js"></script>
 <script src="js/trivia.js"></script>
@@ -290,6 +293,9 @@
 <script src="js/domainRegistry.js"></script>
 <script src="js/domainHealthReport.js"></script>
 
+<!-- ======================================================
+     DEV / CONSOLE
+====================================================== -->
 <script src="js/console/init.js"></script>
 <script src="js/console/verify.js"></script>
 <script src="js/console/diagnosticConsole.js"></script>
@@ -298,44 +304,70 @@
 
 <script src="js/audits/missingImages.audit.js"></script>
 
+<!-- ======================================================
+     OBSERVATIONS
+====================================================== -->
 <script src="js/observations.js"></script>
 <script src="js/observationsView.js"></script>
 
-<!-- CORE (ingen DOM-avhengighet) -->
-<script src="js/core/core.js"></script>
+<!-- ======================================================
+     CORE (ingen DOM, ingen side-effekter)
+====================================================== -->
+<script src="js/core/state.js"></script>
+<script src="js/core/persistence.js"></script>
+<script src="js/core/openmode.js"></script>
+
 <script src="js/core/categories.js"></script>
+<script src="js/core/badges.js"></script>
+<script src="js/core/tiersCivi.js"></script>
+
 <script src="js/core/geo.js"></script>
 
-<!-- GEO / MAP -->
+<!-- ======================================================
+     GEO / MAP
+====================================================== -->
 <script src="js/pos.js"></script>
 <script src="js/map.js"></script>
 
 <script src="js/ors-config.js"></script>
 <script src="js/navRoutes.js"></script>
 
+<!-- ======================================================
+     GAME / PROGRESSION
+====================================================== -->
 <script src="js/hg_unlocks.js"></script>
 <script src="js/quizzes.js"></script>
 <script src="js/quiz-audit.js"></script>
 
-<!-- UI – DOM + interaksjon -->
+<!-- ======================================================
+     UI – DOM + INTERAKSJON
+====================================================== -->
 <script src="js/ui/dom.js"></script>
 <script src="js/ui/toast.js"></script>
+
 <script src="js/ui/events.js"></script>
 <script src="js/ui/interactions.js"></script>
 <script src="js/ui/lists.js"></script>
+
 <script src="js/ui/left-panel.js"></script>
 <script src="js/ui/badges.js"></script>
 <script src="js/ui/badge-modal.js"></script>
 <script src="js/ui/mini-profile.js"></script>
+<script src="js/ui/civication-inbox.js"></script>
 
-<!-- BOOT (samler init) -->
+<!-- ======================================================
+     BOOT (kobler alt)
+====================================================== -->
 <script src="js/boot.js"></script>
 
-<!-- app.js sist -->
+<!-- ======================================================
+     APP – SIST, ALLTID
+====================================================== -->
 <script src="js/app.js"></script>
 
+  
   <script>
-  // Tving linkBadges til å være kun tall (app.js kan skrive "12 merker")
+    // Tving linkBadges til å være kun tall (app.js kan skrive "12 merker")
   (function(){
     const el = document.getElementById("linkBadges");
     if(!el) return;
