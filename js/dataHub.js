@@ -305,3 +305,21 @@ const DEFAULTS = {
 })();
 
 
+const PEOPLE_FILES = {
+  historie:       "data/people/people_historie.json",
+  vitenskap:      "data/people/people_vitenskap.json",
+  kunst:          "data/people/people_kunst.json",
+  by:             "data/people/people_by.json",
+  musikk:         "data/people/people_musikk.json",
+  litteratur:     "data/people/people_litteratur.json",
+  natur:          "data/people/people_natur.json",
+  sport:          "data/people/people_sport.json",
+  politikk:       "data/people/people_politikk.json",
+  naeringsliv:    "data/people/people_naeringsliv.json",
+  populaerkultur: "data/people/people_populaerkultur.json",
+  subkultur:      "data/people/people_subkultur.json",
+  film_tv:        "data/people/people_film_tv.json",
+  scenekunst:     "data/people/people_scenekunst.json",
+  media:          "data/people/people_media.json",
+  psykologi:      "data/people/people_psykologi.json"
+};
