@@ -73,13 +73,14 @@ function handlePlaceNote(place) {
 // ==============================
 // 12. KARTMODUS
 // ==============================
+// interactions.js
+
 function enterMapMode() {
-  document.body.classList.add("map-only"); // kan beholdes hvis du bruker den visuelt
+  document.body.classList.add("map-only");
 
   if (el.btnSeeMap)  el.btnSeeMap.style.display = "none";
   if (el.btnExitMap) el.btnExitMap.style.display = "block";
 
-  // ✅ bare minimer (ingen hide av hele UI)
   window.setPlaceCardCollapsed?.(true);
   window.setNearbyCollapsed?.(true);
 
@@ -110,9 +111,17 @@ function exitMapMode() {
   showToast("Tilbake til oversikt");
 }
 
-el.btnSeeMap?.addEventListener("click", enterMapMode);
-el.btnExitMap?.addEventListener("click", exitMapMode);
+// eksponer hvis andre trenger det
+window.enterMapMode = enterMapMode;
+window.exitMapMode  = exitMapMode;
 
-window.addEventListener("resize", () => {
-  window.MAP?.resize?.();
-});
+function wireMapMode() {
+  el.btnSeeMap?.addEventListener("click", enterMapMode);
+  el.btnExitMap?.addEventListener("click", exitMapMode);
+
+  window.addEventListener("resize", () => {
+    window.MAP?.resize?.();
+  });
+}
+
+window.wireMapMode = wireMapMode;
