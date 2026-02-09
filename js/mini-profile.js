@@ -194,3 +194,65 @@ try {
 });
 
 
+window.addEventListener("updateProfile", initMiniProfile);
+
+function showQuizHistory() {
+  const progress = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
+  const allCompleted = Object.entries(progress).flatMap(([cat, val]) =>
+    (val.completed || []).map(id => ({ category: cat, id }))
+  );
+
+  if (!allCompleted.length) {
+    showToast("Du har ingen fullførte quizzer ennå.");
+    return;
+  }
+
+  const recent = allCompleted.slice(-8).reverse();
+  const list = recent
+    .map(item => {
+      const person = PEOPLE.find(p => p.id === item.id);
+      const place = PLACES.find(p => p.id === item.id);
+      const name = person?.name || place?.name || item.id;
+      const cat = item.category || "–";
+      return `<li><strong>${name}</strong><br><span class="muted">${cat}</span></li>`;
+    })
+    .join("");
+
+  const html = `
+    <div class="quiz-modal" id="quizHistoryModal">
+      <div class="quiz-modal-inner">
+        <button class="quiz-close" id="closeQuizHistory">✕</button>
+        <h2>Fullførte quizzer</h2>
+        <ul class="quiz-history-list">${list}</ul>
+      </div>
+    </div>`;
+
+  document.body.insertAdjacentHTML("beforeend", html);
+
+  const modal = document.getElementById("quizHistoryModal");
+  document.getElementById("closeQuizHistory").onclick = () => modal.remove();
+  modal.addEventListener("click", e => {
+    if (e.target.id === "quizHistoryModal") modal.remove();
+  });
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape") modal.remove();
+  });
+}
+
+function wireMiniProfileLinks() {
+  document.getElementById("linkPlaces")?.addEventListener("click", (e) => {
+    e.preventDefault(); e.stopPropagation();
+    enterMapMode();
+    showToast("Viser steder på kartet");
+  });
+
+  document.getElementById("linkBadges")?.addEventListener("click", (e) => {
+    e.preventDefault(); e.stopPropagation();
+    window.location.href = "profile.html#userBadgesGrid";
+  });
+
+  document.getElementById("linkQuiz")?.addEventListener("click", (e) => {
+    e.preventDefault(); e.stopPropagation();
+    showQuizHistory();
+  });
+}
