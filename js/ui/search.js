@@ -159,3 +159,22 @@ document.getElementById("globalSearch").addEventListener("input", e => {
   const results = globalSearch(value);
   renderSearchResults(results, value);
 });
+
+// Skjul når man klikker utenfor
+document.addEventListener("click", e => {
+  const box = document.getElementById("searchResults");
+  const input = document.getElementById("globalSearch");
+
+  if (!box.contains(e.target) && !input.contains(e.target)) {
+    showSearchBox(false);
+  }
+});
+
+// Skjul med Escape
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape") {
+    showSearchBox(false);
+    document.getElementById("globalSearch").value = "";
+  }
+});
+
