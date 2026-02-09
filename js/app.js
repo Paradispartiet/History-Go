@@ -1065,16 +1065,15 @@ function initPlaceCardCollapse() {
   const pc = getPlaceCardEl();
   if (!pc) return;
 
-  // restore
+  // restore collapsed-state
   const saved = (() => {
     try { return localStorage.getItem("hg_placecard_collapsed_v1") === "1"; }
     catch { return false; }
   })();
   if (saved) collapsePlaceCard();
 
-  // Klikk på handle-stripen (øverst i placeCard) toggler
+  // KUN handle-stripen (øverste ~32px) toggler
   pc.addEventListener("click", (e) => {
-    // Bare toggle når du klikker helt øverst (handle-området)
     const rect = pc.getBoundingClientRect();
     const y = e.clientY - rect.top;
     if (y <= 32) {
@@ -1083,6 +1082,7 @@ function initPlaceCardCollapse() {
     }
   });
 }
+
 
 function initLeftPanel() {
   const sel = document.getElementById("leftPanelMode");
@@ -1211,19 +1211,7 @@ function renderLeftBadges() {
 })();
 
 
-// Toggle placeCard ved klikk på bunnstripen
-function wirePlaceCardCollapseTapToExpand() {
-  const pc = document.getElementById("placeCard");
-  if (!pc) return;
 
-  pc.addEventListener("click", (e) => {
-    const t = e.target;
-    if (t && (t.closest("button") || t.closest("a"))) return;
-
-    const collapsed = pc.classList.contains("is-collapsed");
-    togglePlaceCard();
-  });
-}
 
 // ==============================
 // 10. INITIALISERING OG BOOT
