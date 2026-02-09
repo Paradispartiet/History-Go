@@ -1,3 +1,72 @@
+# SYSTEM REGISTRY – History Go
+
+Dette dokumentet definerer regler og kontrakter for systemet.
+Det er bindende for videre utvikling.
+
+---
+
+## TILLATTE GLOBALS
+
+Følgende globals er eksplisitt tillatt:
+
+- window.PLACES
+- window.PEOPLE
+- window.BADGES
+- window.RELATIONS
+- window.MAP
+- window.HGMap
+- window.HGPos
+- window.OPEN_MODE
+- window.API
+
+Ingen andre globals skal introduseres uten beslutning.
+
+---
+
+## INIT-REGLER
+
+| Funksjon | Fil | Når |
+|--------|-----|-----|
+| boot() | boot.js | DOMContentLoaded |
+| initLeftPanel() | left-panel.js | etter DOM |
+| initMiniProfile() | mini-profile.js | etter DOM |
+| QuizEngine.init() | boot.js | etter data |
+
+All init skjer via `boot()`.
+
+---
+
+## ABSOLUTTE REGLER
+
+1. ❌ Core-filer skal aldri bruke DOM
+2. ❌ UI-filer skal aldri fetch’e data
+3. ❌ Ingen `DOMContentLoaded` utenfor `app.js`
+4. ❌ Ingen dupliserte funksjonsnavn på tvers av filer
+5. ✅ All systemstart går gjennom `boot()`
+
+---
+
+## FEILHÅNDTERING
+
+- `safeRun()` er eneste tillatte wrapper for init
+- Kritiske feil logges til `window.__HG_LAST_ERROR__`
+- UI-feil skal ikke stoppe boot
+
+---
+
+## ENDRINGER
+
+Endringer i struktur krever:
+1. Oppdatert SYSTEM_MAP.md
+2. Oppdatert SYSTEM_REGISTRY.md
+
+Ingen unntak.
+
+---
+
+## SLUTT
+Dette dokumentet er kontrakten for History Go.
+
 SYSTEM REGISTRY (UPDATED 2025-12-28)
 ====================================
 
