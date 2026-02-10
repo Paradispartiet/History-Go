@@ -7,10 +7,10 @@ document.addEventListener("DOMContentLoaded", () => {
     window.dispatchEvent(new Event("updateProfile"));
   });
 
-  safeRun("initMiniProfile", initMiniProfile);
-  safeRun("wireMiniProfileLinks", wireMiniProfileLinks);
-  safeRun("initLeftPanel", initLeftPanel);
-  safeRun("initPlaceCardCollapse", initPlaceCardCollapse);
+  safeRun("initMiniProfile", window.initMiniProfile);
+  safeRun("wireMiniProfileLinks", window.wireMiniProfileLinks);
+  safeRun("initLeftPanel", window.initLeftPanel);
+  safeRun("initPlaceCardCollapse", window.initPlaceCardCollapse);
 });
 
 function safeRun(label, fn) {
