@@ -1,10 +1,15 @@
-// ==============================
-// 9.x VENSTRE PANEL – DROPDOWN + RAMME
-// (må ligge før wire/boot, og init kjøres i DOMContentLoaded)
-// ==============================
+// ============================================================
+// LEFT PANEL – NEARBY / PEOPLE / NATURE / ROUTES / BADGES
+// Eier: #nearbyListContainer + panel*-seksjoner
+// Init: initLeftPanel() kalles fra DOMContentLoaded
+// ============================================================
 
+// ---------- Hjelpere ----------
+function $(id) { return document.getElementById(id); }
+
+// ---------- PlaceCard collapse / expand ----------
 function getPlaceCardEl() {
-  return document.getElementById("placeCard");
+  return $("placeCard");
 }
 
 function isPlaceCardCollapsed() {
@@ -17,8 +22,8 @@ function collapsePlaceCard() {
   pc.classList.add("is-collapsed");
   document.body.classList.add("pc-collapsed");
   try { localStorage.setItem("hg_placecard_collapsed_v1", "1"); } catch {}
-  if (window.HGMap?.resize) HGMap.resize();
-  if (window.MAP?.resize) window.MAP.resize();
+  window.HGMap?.resize?.();
+  window.MAP?.resize?.();
 }
 
 function expandPlaceCard() {
@@ -27,27 +32,26 @@ function expandPlaceCard() {
   pc.classList.remove("is-collapsed");
   document.body.classList.remove("pc-collapsed");
   try { localStorage.setItem("hg_placecard_collapsed_v1", "0"); } catch {}
-  if (window.HGMap?.resize) HGMap.resize();
-  if (window.MAP?.resize) window.MAP.resize();
+  window.HGMap?.resize?.();
+  window.MAP?.resize?.();
 }
 
 function togglePlaceCard() {
-  if (isPlaceCardCollapsed()) expandPlaceCard();
-  else collapsePlaceCard();
+  isPlaceCardCollapsed() ? expandPlaceCard() : collapsePlaceCard();
 }
 
 function initPlaceCardCollapse() {
   const pc = getPlaceCardEl();
   if (!pc) return;
 
-  // restore collapsed-state
-  const saved = (() => {
-    try { return localStorage.getItem("hg_placecard_collapsed_v1") === "1"; }
-    catch { return false; }
-  })();
-  if (saved) collapsePlaceCard();
+  // restore
+  try {
+    if (localStorage.getItem("hg_placecard_collapsed_v1") === "1") {
+      collapsePlaceCard();
+    }
+  } catch {}
 
-  // KUN handle-stripen (øverste ~32px) toggler
+  // kun topp-strip (~32px) toggler
   pc.addEventListener("click", (e) => {
     const rect = pc.getBoundingClientRect();
     const y = e.clientY - rect.top;
@@ -58,130 +62,119 @@ function initPlaceCardCollapse() {
   });
 }
 
+// ---------- Left panel modes ----------
+function setLeftPanelMode(mode) {
+  const views = {
+    nearby: $("panelNearby"),
+    people: $("panelPeople"),
+    nature: $("panelNature"),
+    routes: $("panelRoutes"),
+    badges: $("panelBadges"),
+  };
 
-function initLeftPanel() {
-  const sel = document.getElementById("leftPanelMode");
-  const vNearby = document.getElementById("panelNearby");
-  const vRoutes  = document.getElementById("panelRoutes");
-  const vBadges  = document.getElementById("panelBadges");
+  Object.entries(views).forEach(([k, el]) => {
+    if (!el) return;
+    el.style.display = (k === mode) ? "" : "none";
+  });
 
-  if (!sel || !vNearby || !vRoutes || !vBadges) return;
+  try { localStorage.setItem("hg_leftpanel_mode_v1", mode); } catch {}
 
-  function show(mode) {
-    vNearby.style.display = mode === "nearby" ? "" : "none";
-    vRoutes.style.display  = mode === "routes" ? "" : "none";
-    vBadges.style.display  = mode === "badges" ? "" : "none";
-    try { localStorage.setItem("hg_leftpanel_mode_v1", mode); } catch {}
-  }
+  // aktiv tab
+  document.querySelectorAll(".nearby-tab").forEach(btn => {
+    btn.classList.toggle(
+      "is-active",
+      btn.getAttribute("data-leftmode") === mode
+    );
+  });
 
-  // restore mode
-  const saved = localStorage.getItem("hg_leftpanel_mode_v1") || "nearby";
-  sel.value = saved;
-  show(saved);
-
-  sel.addEventListener("change", () => show(sel.value));
-
-  renderLeftBadges();
-  syncLeftPanelFrame();
-
-  window.addEventListener("resize", syncLeftPanelFrame);
-
-  // resync når placeCard endrer høyde (åpne/lukke/innhold)
-  const pc = document.getElementById("placeCard");
-  if (pc && "ResizeObserver" in window) {
-    const ro = new ResizeObserver(() => syncLeftPanelFrame());
-    ro.observe(pc);
-  } else {
-    // fallback: mild polling (billig)
-    let last = 0;
-    setInterval(() => {
-      const el = document.getElementById("placeCard");
-      if (!el) return;
-      const h = Math.round(el.getBoundingClientRect().height || 0);
-      if (Math.abs(h - last) > 6) {
-        last = h;
-        syncLeftPanelFrame();
-      }
-    }, 500);
-  }
+  // resize map etter layout-endring
+  window.HGMap?.resize?.();
+  window.MAP?.resize?.();
 }
 
+// ---------- Frame sync (header + placecard påvirker høyde) ----------
 function syncLeftPanelFrame() {
   const header = document.querySelector("header") || document.querySelector(".site-header");
-  const pc = document.getElementById("placeCard");
-  if (!pc) return;
+  const pc = $("placeCard");
 
   const headerH = Math.round(header?.getBoundingClientRect().height || 62);
   document.documentElement.style.setProperty("--hg-header-h", headerH + "px");
 
-  // ✅ Eksakt: hvor mye plass placeCard faktisk tar fra bunnen
+  if (!pc) return;
+
   const rect = pc.getBoundingClientRect();
-
-  // bottomOffset = avstand fra bunnen av viewport til toppen av placeCard
-  // (dette matcher selv om du har ekstra bunnpanel/knapper)
   let bottomOffset = Math.round(window.innerHeight - rect.top);
-
-  // fallback hvis placeCard midlertidig måles rart
   if (!isFinite(bottomOffset) || bottomOffset < 80) bottomOffset = 220;
 
   document.documentElement.style.setProperty("--hg-placecard-h", bottomOffset + "px");
 }
 
+// ---------- Badges i venstre panel ----------
 function renderLeftBadges() {
-  const box = document.getElementById("leftBadgesList");
+  const box = $("leftBadgesList");
   if (!box) return;
 
-  if (!Array.isArray(CATEGORY_LIST) || !CATEGORY_LIST.length) {
-    box.innerHTML = `<div style="color:#9bb0c9;">Ingen kategorier lastet.</div>`;
+  if (!Array.isArray(window.CATEGORY_LIST) || !CATEGORY_LIST.length) {
+    box.innerHTML = `<div class="muted">Ingen kategorier lastet.</div>`;
     return;
   }
 
-  box.innerHTML = CATEGORY_LIST.map(c => {
-    const img = `bilder/merker/${c.id}.PNG`;
-    return `
-      <button class="chip ghost" data-badge-id="${c.id}" style="justify-content:flex-start; width:100%;">
-        <img src="${img}" alt="" style="width:18px; height:18px; margin-right:8px; border-radius:4px;">
-        ${c.name}
-      </button>
-    `;
-  }).join("");
-
-  // (valgfritt) klikk-håndtering kan legges i wire() via delegation senere
+  box.innerHTML = CATEGORY_LIST.map(c => `
+    <button class="chip ghost" data-badge-id="${c.id}" style="justify-content:flex-start;width:100%;">
+      <img src="bilder/merker/${c.id}.PNG" alt="" style="width:18px;height:18px;margin-right:8px;border-radius:4px;">
+      ${c.name}
+    </button>
+  `).join("");
 }
 
-// === LEFTPANEL TABS (Rad 1) ===
-(function bindLeftPanelTabs(){
-  const sel = document.getElementById("leftPanelMode");
-  if (!sel) return;
+// ---------- Init ----------
+function initLeftPanel() {
+  const container = $("nearbyListContainer");
+  const sel = $("leftPanelMode");
+  if (!container || !sel) return;
 
+  // restore mode
+  const saved = (() => {
+    try { return localStorage.getItem("hg_leftpanel_mode_v1"); } catch {}
+    return null;
+  })();
+  const mode = saved || sel.value || "nearby";
+  sel.value = mode;
+  setLeftPanelMode(mode);
+
+  sel.addEventListener("change", () => {
+    setLeftPanelMode(sel.value);
+  });
+
+  // tabs (rad 1)
   document.querySelectorAll(".nearby-tab").forEach(btn => {
     btn.addEventListener("click", () => {
-      const mode = btn.getAttribute("data-leftmode") || "nearby";
-      sel.value = mode;
-
-      // trigger eksisterende change-logikk
+      const m = btn.getAttribute("data-leftmode") || "nearby";
+      sel.value = m;
       sel.dispatchEvent(new Event("change", { bubbles: true }));
-
-      // aktiv-state visuelt
-      document.querySelectorAll(".nearby-tab").forEach(b => {
-        b.classList.toggle("is-active", b === btn);
-      });
     });
   });
-})();
 
-// === SEARCH (Rad 1) – lagrer query og ber om rerender ===
-(function bindNearbySearch(){
-  const inp = document.getElementById("nearbySearch");
-  if (!inp) return;
+  renderLeftBadges();
+  syncLeftPanelFrame();
+  window.addEventListener("resize", syncLeftPanelFrame);
 
-  window.HG_NEARBY_QUERY = window.HG_NEARBY_QUERY || "";
+  // observer placeCard høyde
+  const pc = $("placeCard");
+  if (pc && "ResizeObserver" in window) {
+    new ResizeObserver(syncLeftPanelFrame).observe(pc);
+  }
+}
 
-  inp.addEventListener("input", (e) => {
-    window.HG_NEARBY_QUERY = (e.target.value || "").trim().toLowerCase();
+// ---------- Nearby collapse API (kartmodus osv.) ----------
+window.setNearbyCollapsed = function(hidden) {
+  const el = $("nearbyListContainer");
+  if (!el) return;
+  el.classList.toggle("is-hidden", !!hidden);
+  window.HGMap?.resize?.();
+  window.MAP?.resize?.();
+};
 
-    // be pos.js om å rerendre om den har en funksjon
-    window.renderNearbyPlaces?.();
-  });
-})();
-
+// ---------- Expose init ----------
+window.initLeftPanel = initLeftPanel;
+window.initPlaceCardCollapse = initPlaceCardCollapse;
