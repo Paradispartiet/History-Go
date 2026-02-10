@@ -1,10 +1,8 @@
+// js/core/geo.js
 // ==============================
-// GEO – HJELPEFUNKSJONER
-// Eier: geo.js
-// Avhengig av: pos.js (HGPos)
+// GEO – AVSTAND (INGEN POSISJON)
 // ==============================
 
-// ---------- Avstand i meter ----------
 function distMeters(a, b) {
   const aLat = Number(a?.lat);
   const aLon = Number(a?.lon);
@@ -30,20 +28,3 @@ function distMeters(a, b) {
 }
 
 window.distMeters = distMeters;
-
-// ---------- Request location (delegér!) ----------
-function requestLocation() {
-  // Første render: vis steder selv uten pos
-  if (typeof window.renderNearbyPlaces === "function") {
-    window.renderNearbyPlaces();
-  }
-
-  // ÉN vei: via pos.js
-  if (window.HGPos?.request) {
-    return window.HGPos.request();
-  }
-
-  console.warn("[geo] HGPos.request mangler (pos.js ikke lastet?)");
-}
-
-window.requestLocation = requestLocation;
