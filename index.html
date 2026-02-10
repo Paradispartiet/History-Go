@@ -452,46 +452,7 @@
     setGeo(st);
   });
 
-  // post-prosess etter render
-  function patchRenderNearbyPlaces() {
-    if (typeof window.renderNearbyPlaces !== "function") return;
-    if (window.__hg_orig_renderNearbyPlaces) return;
 
-    window.__hg_orig_renderNearbyPlaces = window.renderNearbyPlaces;
-    window.renderNearbyPlaces = function () {
-      window.__hg_orig_renderNearbyPlaces();
-
-      const list = document.getElementById("nearbyList");
-      if (!list) return;
-      list.classList.add("nearby-strip");
-
-      list.querySelectorAll(".nearby-item").forEach(item => {
-        const thumb = item.querySelector(".nearby-thumb");
-        const badge = item.querySelector(".nearby-badge");
-
-        if (thumb && !(thumb.parentElement && thumb.parentElement.classList.contains("nearby-thumbWrap"))) {
-          const wrap = document.createElement("div");
-          wrap.className = "nearby-thumbWrap";
-
-          thumb.parentElement.insertBefore(wrap, thumb);
-          wrap.appendChild(thumb);
-          if (badge) wrap.appendChild(badge);
-        }
-
-        const name = item.querySelector(".nearby-name");
-        const dist = item.querySelector(".nearby-dist");
-
-        if (name && dist && !(name.parentElement && name.parentElement.classList.contains("nearby-text"))) {
-          const tw = document.createElement("div");
-          tw.className = "nearby-text";
-
-          name.parentElement.insertBefore(tw, name);
-          tw.appendChild(name);
-          tw.appendChild(dist);
-        }
-      });
-    };
-  }
 
   // init
   if (sel) showPanel(sel.value || "nearby");
