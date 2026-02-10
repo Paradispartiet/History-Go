@@ -1,13 +1,15 @@
-// ==============================
-// KATEGORIER – History Go (KANONISK)
-// ==============================
+// js/core/categories.js
+// (ingen export/import – vi kjører script-tag modus)
 
-// 1. Kategoriliste (én sannhet)
+// --- Canonical categories ---
 const CATEGORY_LIST = [
   { id: "historie",        name: "Historie" },
   { id: "vitenskap",       name: "Vitenskap & filosofi" },
   { id: "kunst",           name: "Kunst & kultur" },
   { id: "musikk",          name: "Musikk & scenekunst" },
+  { id: "scenekunst",      name: "Scenekunst" },
+  { id: "film_tv",         name: "Film & TV" },
+  { id: "media",           name: "Media" },
   { id: "natur",           name: "Natur & miljø" },
   { id: "sport",           name: "Sport & lek" },
   { id: "by",              name: "By & arkitektur" },
@@ -19,86 +21,65 @@ const CATEGORY_LIST = [
   { id: "psykologi",       name: "Psykologi" }
 ];
 
-// 2. Normalisering
-function norm(s) {
-  return String(s || "")
-    .toLowerCase()
+// --- Helpers (fra stabil versjon) ---
+function norm(x) {
+  return String(x || "")
     .trim()
-    .replace(/æ/g, "ae")
-    .replace(/ø/g, "oe")
-    .replace(/å/g, "aa");
+    .toLowerCase()
+    .replace(/\s+/g, "_")
+    .replace(/[^\wæøå]/g, "");
 }
 
-// 3. Farge per kategori
 function catColor(cat) {
-  const c = norm(cat);
-
-  if (c.includes("historie")) return "#344B80";
-  if (c.includes("vitenskap") || c.includes("filosofi")) return "#9b59b6";
-  if (c.includes("kunst") || c.includes("kultur")) return "#ffb703";
-  if (c.includes("musikk") || c.includes("scene")) return "#ff66cc";
-  if (c.includes("litteratur")) return "#f6c800";
-  if (c.includes("natur") || c.includes("miljoe")) return "#4caf50";
-  if (c.includes("sport") || c.includes("idrett") || c.includes("lek")) return "#2a9d8f";
-  if (c.includes("by") || c.includes("arkitektur")) return "#e63946";
-  if (c.includes("politikk") || c.includes("samfunn")) return "#c77dff";
-  if (c.includes("naeringsliv") || c.includes("industri") || c.includes("arbeid")) return "#ff8800";
-  if (c.includes("populaer") || c.includes("pop")) return "#ffb703";
-  if (c.includes("subkultur")) return "#ff66cc";
-  if (c.includes("psykologi") || c.includes("mental")) return "#ff7aa2";
-
-  return "#9b59b6";
+  cat = norm(cat);
+  if (cat === "historie") return "#f5a623";
+  if (cat === "vitenskap") return "#4aa3ff";
+  if (cat === "kunst") return "#c46cff";
+  if (cat === "musikk") return "#ff4a7a";
+  if (cat === "scenekunst") return "#ff4a7a";
+  if (cat === "film_tv") return "#6c757d";
+  if (cat === "media") return "#9aa2a9";
+  if (cat === "natur") return "#48c774";
+  if (cat === "sport") return "#00d1b2";
+  if (cat === "by") return "#ffd166";
+  if (cat === "politikk") return "#ff6b6b";
+  if (cat === "populaerkultur") return "#b8b8ff";
+  if (cat === "subkultur") return "#9bb0c9";
+  if (cat === "litteratur") return "#7c5cff";
+  if (cat === "naeringsliv") return "#c2a000";
+  if (cat === "psykologi") return "#00bcd4";
+  return "#f6c800";
 }
 
-// 4. CSS-klasse per kategori
 function catClass(cat) {
-  const c = norm(cat);
-
-  if (c.includes("historie")) return "historie";
-  if (c.includes("vitenskap") || c.includes("filosofi")) return "vitenskap";
-  if (c.includes("kunst") || c.includes("kultur")) return "kunst";
-  if (c.includes("musikk") || c.includes("scene")) return "musikk";
-  if (c.includes("litteratur")) return "litteratur";
-  if (c.includes("natur") || c.includes("miljoe")) return "natur";
-  if (c.includes("sport") || c.includes("idrett") || c.includes("lek")) return "sport";
-  if (c.includes("by") || c.includes("arkitektur")) return "by";
-  if (c.includes("politikk") || c.includes("samfunn")) return "politikk";
-  if (c.includes("naeringsliv") || c.includes("industri") || c.includes("arbeid")) return "naeringsliv";
-  if (c.includes("populaer") || c.includes("pop")) return "populaerkultur";
-  if (c.includes("subkultur")) return "subkultur";
-  if (c.includes("psykologi") || c.includes("mental")) return "psykologi";
-
-  return "vitenskap";
+  return "cat-" + norm(cat || "ukjent");
 }
 
-// 5. Tags → kategori
-function tagToCat(tags) {
-  const t = norm(Array.isArray(tags) ? tags.join(" ") : tags);
+// Tag→Category: støtter både string-tags og tag-registry (hvis du bruker det)
+function tagToCat(tag, registry) {
+  const t = norm(tag);
+  if (!t) return null;
 
-  if (t.includes("historie")) return "historie";
-  if (t.includes("vitenskap") || t.includes("filosofi")) return "vitenskap";
-  if (t.includes("kunst") || t.includes("kultur")) return "kunst";
-  if (t.includes("musikk") || t.includes("scene")) return "musikk";
-  if (t.includes("litteratur")) return "litteratur";
-  if (t.includes("natur") || t.includes("miljoe")) return "natur";
-  if (t.includes("sport") || t.includes("idrett") || t.includes("lek")) return "sport";
-  if (t.includes("by") || t.includes("arkitektur")) return "by";
-  if (t.includes("politikk") || t.includes("samfunn")) return "politikk";
-  if (t.includes("naeringsliv") || t.includes("industri") || t.includes("arbeid")) return "naeringsliv";
-  if (t.includes("populaer") || t.includes("pop")) return "populaerkultur";
-  if (t.includes("subkultur")) return "subkultur";
-  if (t.includes("psykologi") || t.includes("mental")) return "psykologi";
+  // Hvis registry har mapping: { "tag_id": { cat:"..." } } eller { "tag_id":"cat" }
+  if (registry && typeof registry === "object") {
+    const hit = registry[tag] || registry[t];
+    if (typeof hit === "string") return norm(hit);
+    if (hit && typeof hit === "object" && hit.cat) return norm(hit.cat);
+  }
 
-  return "vitenskap";
+  // Fallback: hvis tag *allerede* er cat-id
+  if (CATEGORY_LIST.some(c => c.id === t)) return t;
+
+  return null;
 }
 
-// 6. Display → ID (bridge)
-function catIdFromDisplay(name) {
-  const id = tagToCat(name);
-  return id === "naering" ? "naeringsliv" : id;
+function catIdFromDisplay(displayName) {
+  const dn = String(displayName || "").trim().toLowerCase();
+  const hit = CATEGORY_LIST.find(c => String(c.name).trim().toLowerCase() === dn);
+  return hit ? hit.id : null;
 }
 
-// 7. Global eksponering (VIKTIG – matcher resten av appen)
+// --- expose global ---
 window.CATEGORY_LIST = CATEGORY_LIST;
 window.catColor = catColor;
 window.catClass = catClass;
