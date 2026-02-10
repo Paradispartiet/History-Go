@@ -1,10 +1,10 @@
 // ==============================
-// GEO – POSISJON + AVSTAND
+// GEO – HJELPEFUNKSJONER
 // Eier: geo.js
 // Avhengig av: pos.js (HGPos)
 // ==============================
 
-// ---------- Avstand ----------
+// ---------- Avstand i meter ----------
 function distMeters(a, b) {
   const aLat = Number(a?.lat);
   const aLon = Number(a?.lon);
@@ -31,54 +31,19 @@ function distMeters(a, b) {
 
 window.distMeters = distMeters;
 
-// ---------- Posisjon ----------
-window.getPos = function () {
-  return window.HG_POS || null;
-};
-
-function setPos(pos) {
-  window.HG_POS = pos;
-  window.HG_ENV = window.HG_ENV || {};
-  window.HG_ENV.geo = "ok";
-
-  // 🔑 KRITISK: rerender når posisjon faktisk kommer
-  if (typeof window.renderNearbyPlaces === "function") {
-    window.renderNearbyPlaces();
-  }
-}
-
-// ---------- Request ----------
+// ---------- Request location (delegér!) ----------
 function requestLocation() {
-  window.HG_ENV = window.HG_ENV || {};
-  window.HG_ENV.geo = "unknown";
-
-  // Første render: vis steder selv uten posisjon
+  // Første render: vis steder selv uten pos
   if (typeof window.renderNearbyPlaces === "function") {
     window.renderNearbyPlaces();
   }
 
-  // Delegér til pos.js
+  // ÉN vei: via pos.js
   if (window.HGPos?.request) {
-    window.HGPos.request({
-      onSuccess: (coords) => {
-        setPos({
-          lat: coords.lat,
-          lon: coords.lon,
-          accuracy: coords.accuracy
-        });
-      },
-      onError: () => {
-        window.HG_ENV.geo = "denied";
-        // behold nearby uten avstand
-        if (typeof window.renderNearbyPlaces === "function") {
-          window.renderNearbyPlaces();
-        }
-      }
-    });
-    return;
+    return window.HGPos.request();
   }
 
-  console.warn("[geo] HGPos.request mangler (pos.js ikke lastet)");
+  console.warn("[geo] HGPos.request mangler (pos.js ikke lastet?)");
 }
 
 window.requestLocation = requestLocation;
