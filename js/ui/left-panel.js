@@ -1,12 +1,17 @@
 // ============================================================
 // LEFT PANEL – NEARBY / PEOPLE / NATURE / ROUTES / BADGES
-// Eier: #leftPanel + panel*-seksjoner
+// Eier: #nearbyListContainer + panel*-seksjoner
 // Init: initLeftPanel() kalles fra DOMContentLoaded
 // ============================================================
 
-function hg$(id) { return document.getElementById(id); }
+function hg$(id) {
+  return document.getElementById(id);
+}
 
-// ---------- PlaceCard collapse / expand ----------
+// ============================================================
+// PLACE CARD – collapse / expand
+// ============================================================
+
 function getPlaceCardEl() {
   return hg$("placeCard");
 }
@@ -43,7 +48,6 @@ function initPlaceCardCollapse() {
   const pc = getPlaceCardEl();
   if (!pc) return;
 
-  // restore
   try {
     if (localStorage.getItem("hg_placecard_collapsed_v1") === "1") {
       collapsePlaceCard();
@@ -53,15 +57,17 @@ function initPlaceCardCollapse() {
   // kun topp-strip (~32px) toggler
   pc.addEventListener("click", (e) => {
     const rect = pc.getBoundingClientRect();
-    const y = e.clientY - rect.top;
-    if (y <= 32) {
+    if ((e.clientY - rect.top) <= 32) {
       e.preventDefault();
       togglePlaceCard();
     }
   });
 }
 
-// ---------- Left panel modes ----------
+// ============================================================
+// LEFT PANEL MODES
+// ============================================================
+
 function setLeftPanelMode(mode) {
   const views = {
     nearby: hg$("panelNearby"),
@@ -71,27 +77,33 @@ function setLeftPanelMode(mode) {
     badges: hg$("panelBadges"),
   };
 
-  // vis/skjul views
-  Object.entries(views).forEach(([k, el]) => {
+  Object.entries(views).forEach(([key, el]) => {
     if (!el) return;
-    el.style.display = (k === mode) ? "" : "none";
+    el.style.display = (key === mode) ? "" : "none";
   });
 
   try { localStorage.setItem("hg_leftpanel_mode_v1", mode); } catch {}
 
-  // aktiv tab
   document.querySelectorAll(".nearby-tab").forEach(btn => {
-    btn.classList.toggle("is-active", btn.getAttribute("data-leftmode") === mode);
+    btn.classList.toggle(
+      "is-active",
+      btn.getAttribute("data-leftmode") === mode
+    );
   });
 
-  // resize map etter layout-endring
   window.HGMap?.resize?.();
   window.MAP?.resize?.();
 }
 
-// ---------- Frame sync (header + placecard påvirker høyde) ----------
+// ============================================================
+// FRAME SYNC (header + placeCard påvirker høyde)
+// ============================================================
+
 function syncLeftPanelFrame() {
-  const header = document.querySelector("header") || document.querySelector(".site-header");
+  const header =
+    document.querySelector("header") ||
+    document.querySelector(".site-header");
+
   const pc = hg$("placeCard");
 
   const headerH = Math.round(header?.getBoundingClientRect().height || 62);
@@ -103,10 +115,16 @@ function syncLeftPanelFrame() {
   let bottomOffset = Math.round(window.innerHeight - rect.top);
   if (!isFinite(bottomOffset) || bottomOffset < 80) bottomOffset = 220;
 
-  document.documentElement.style.setProperty("--hg-placecard-h", bottomOffset + "px");
+  document.documentElement.style.setProperty(
+    "--hg-placecard-h",
+    bottomOffset + "px"
+  );
 }
 
-// ---------- Badges i venstre panel ----------
+// ============================================================
+// BADGES I VENSTRE PANEL
+// ============================================================
+
 function renderLeftBadges() {
   const box = hg$("leftBadgesList");
   if (!box) return;
@@ -117,30 +135,36 @@ function renderLeftBadges() {
   }
 
   box.innerHTML = window.CATEGORY_LIST.map(c => `
-    <button class="chip ghost" data-badge-id="${c.id}" style="justify-content:flex-start;width:100%;">
-      <img src="bilder/merker/${c.id}.PNG" alt="" style="width:18px;height:18px;margin-right:8px;border-radius:4px;">
+    <button class="chip ghost" data-badge-id="${c.id}"
+      style="justify-content:flex-start;width:100%;">
+      <img src="bilder/merker/${c.id}.PNG"
+           alt=""
+           style="width:18px;height:18px;margin-right:8px;border-radius:4px;">
       ${c.name}
     </button>
   `).join("");
 }
 
-// ---------- Init ----------
+// ============================================================
+// INIT
+// ============================================================
+
 function initLeftPanel() {
-  const panel = hg$("leftPanel");
+  const panel = hg$("nearbyListContainer");
   const sel = hg$("leftPanelMode");
   if (!panel || !sel) return;
 
-  // restore mode
   let saved = null;
   try { saved = localStorage.getItem("hg_leftpanel_mode_v1"); } catch {}
+
   const mode = saved || sel.value || "nearby";
   sel.value = mode;
   setLeftPanelMode(mode);
 
-  // dropdown (skjult i DOM, men brukes som state-holder)
+  // dropdown (skjult, men state-holder)
   sel.addEventListener("change", () => setLeftPanelMode(sel.value));
 
-  // tabs (rad 1)
+  // tabs
   document.querySelectorAll(".nearby-tab").forEach(btn => {
     btn.addEventListener("click", () => {
       const m = btn.getAttribute("data-leftmode") || "nearby";
@@ -153,22 +177,28 @@ function initLeftPanel() {
   syncLeftPanelFrame();
   window.addEventListener("resize", syncLeftPanelFrame);
 
-  // observer placeCard høyde
+  // observer placeCard
   const pc = hg$("placeCard");
   if (pc && "ResizeObserver" in window) {
     new ResizeObserver(syncLeftPanelFrame).observe(pc);
   }
 }
 
-// ---------- Left panel collapse API (kartmodus osv.) ----------
-window.setNearbyCollapsed = function(hidden) {
-  const panel = hg$("leftPanel");
+// ============================================================
+// COLLAPSE API (kartmodus osv.)
+// ============================================================
+
+window.setNearbyCollapsed = function (hidden) {
+  const panel = hg$("nearbyListContainer");
   if (!panel) return;
   panel.classList.toggle("is-hidden", !!hidden);
   window.HGMap?.resize?.();
   window.MAP?.resize?.();
 };
 
-// ---------- Expose init ----------
+// ============================================================
+// EXPOSE
+// ============================================================
+
 window.initLeftPanel = initLeftPanel;
 window.initPlaceCardCollapse = initPlaceCardCollapse;
