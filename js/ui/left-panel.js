@@ -1,15 +1,14 @@
 // ============================================================
 // LEFT PANEL – NEARBY / PEOPLE / NATURE / ROUTES / BADGES
-// Eier: #nearbyListContainer + panel*-seksjoner
+// Eier: #leftPanel + panel*-seksjoner
 // Init: initLeftPanel() kalles fra DOMContentLoaded
 // ============================================================
 
-// ---------- Hjelpere ----------
-function $(id) { return document.getElementById(id); }
+function hg$(id) { return document.getElementById(id); }
 
 // ---------- PlaceCard collapse / expand ----------
 function getPlaceCardEl() {
-  return $("placeCard");
+  return hg$("placeCard");
 }
 
 function isPlaceCardCollapsed() {
@@ -65,13 +64,14 @@ function initPlaceCardCollapse() {
 // ---------- Left panel modes ----------
 function setLeftPanelMode(mode) {
   const views = {
-    nearby: $("panelNearby"),
-    people: $("panelPeople"),
-    nature: $("panelNature"),
-    routes: $("panelRoutes"),
-    badges: $("panelBadges"),
+    nearby: hg$("panelNearby"),
+    people: hg$("panelPeople"),
+    nature: hg$("panelNature"),
+    routes: hg$("panelRoutes"),
+    badges: hg$("panelBadges"),
   };
 
+  // vis/skjul views
   Object.entries(views).forEach(([k, el]) => {
     if (!el) return;
     el.style.display = (k === mode) ? "" : "none";
@@ -81,10 +81,7 @@ function setLeftPanelMode(mode) {
 
   // aktiv tab
   document.querySelectorAll(".nearby-tab").forEach(btn => {
-    btn.classList.toggle(
-      "is-active",
-      btn.getAttribute("data-leftmode") === mode
-    );
+    btn.classList.toggle("is-active", btn.getAttribute("data-leftmode") === mode);
   });
 
   // resize map etter layout-endring
@@ -95,7 +92,7 @@ function setLeftPanelMode(mode) {
 // ---------- Frame sync (header + placecard påvirker høyde) ----------
 function syncLeftPanelFrame() {
   const header = document.querySelector("header") || document.querySelector(".site-header");
-  const pc = $("placeCard");
+  const pc = hg$("placeCard");
 
   const headerH = Math.round(header?.getBoundingClientRect().height || 62);
   document.documentElement.style.setProperty("--hg-header-h", headerH + "px");
@@ -111,15 +108,15 @@ function syncLeftPanelFrame() {
 
 // ---------- Badges i venstre panel ----------
 function renderLeftBadges() {
-  const box = $("leftBadgesList");
+  const box = hg$("leftBadgesList");
   if (!box) return;
 
-  if (!Array.isArray(window.CATEGORY_LIST) || !CATEGORY_LIST.length) {
+  if (!Array.isArray(window.CATEGORY_LIST) || !window.CATEGORY_LIST.length) {
     box.innerHTML = `<div class="muted">Ingen kategorier lastet.</div>`;
     return;
   }
 
-  box.innerHTML = CATEGORY_LIST.map(c => `
+  box.innerHTML = window.CATEGORY_LIST.map(c => `
     <button class="chip ghost" data-badge-id="${c.id}" style="justify-content:flex-start;width:100%;">
       <img src="bilder/merker/${c.id}.PNG" alt="" style="width:18px;height:18px;margin-right:8px;border-radius:4px;">
       ${c.name}
@@ -129,22 +126,19 @@ function renderLeftBadges() {
 
 // ---------- Init ----------
 function initLeftPanel() {
-  const container = $("nearbyListContainer");
-  const sel = $("leftPanelMode");
-  if (!container || !sel) return;
+  const panel = hg$("leftPanel");
+  const sel = hg$("leftPanelMode");
+  if (!panel || !sel) return;
 
   // restore mode
-  const saved = (() => {
-    try { return localStorage.getItem("hg_leftpanel_mode_v1"); } catch {}
-    return null;
-  })();
+  let saved = null;
+  try { saved = localStorage.getItem("hg_leftpanel_mode_v1"); } catch {}
   const mode = saved || sel.value || "nearby";
   sel.value = mode;
   setLeftPanelMode(mode);
 
-  sel.addEventListener("change", () => {
-    setLeftPanelMode(sel.value);
-  });
+  // dropdown (skjult i DOM, men brukes som state-holder)
+  sel.addEventListener("change", () => setLeftPanelMode(sel.value));
 
   // tabs (rad 1)
   document.querySelectorAll(".nearby-tab").forEach(btn => {
@@ -160,17 +154,17 @@ function initLeftPanel() {
   window.addEventListener("resize", syncLeftPanelFrame);
 
   // observer placeCard høyde
-  const pc = $("placeCard");
+  const pc = hg$("placeCard");
   if (pc && "ResizeObserver" in window) {
     new ResizeObserver(syncLeftPanelFrame).observe(pc);
   }
 }
 
-// ---------- Nearby collapse API (kartmodus osv.) ----------
+// ---------- Left panel collapse API (kartmodus osv.) ----------
 window.setNearbyCollapsed = function(hidden) {
-  const el = $("nearbyListContainer");
-  if (!el) return;
-  el.classList.toggle("is-hidden", !!hidden);
+  const panel = hg$("leftPanel");
+  if (!panel) return;
+  panel.classList.toggle("is-hidden", !!hidden);
   window.HGMap?.resize?.();
   window.MAP?.resize?.();
 };
