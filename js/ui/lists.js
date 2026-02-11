@@ -21,7 +21,7 @@ function renderNearbyPlaces() {
     ? sorted.filter(p => String(p.name || "").toLowerCase().includes(q))
     : sorted;
 
-  el.list.innerHTML = filtered.map(renderPlaceCard).join("");
+  list.innerHTML = filtered.map(renderPlaceCard).join("");
 }
 
 function renderPlaceCard(p) {
