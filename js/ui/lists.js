@@ -4,7 +4,8 @@
 // 7. LISTEVISNINGER
 // ==============================
 function renderNearbyPlaces() {
-  if (!el.list) return;
+  const list = document.getElementById("nearbyList");
+  if (!list) return;
 
   const pos = (typeof window.getPos === "function") ? window.getPos() : null;
 
