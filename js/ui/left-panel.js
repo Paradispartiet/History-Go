@@ -111,13 +111,12 @@ function syncLeftPanelFrame() {
 
   if (!pc) return;
 
-  const rect = pc.getBoundingClientRect();
-  let bottomOffset = Math.round(window.innerHeight - rect.top);
-  if (!isFinite(bottomOffset) || bottomOffset < 80) bottomOffset = 220;
+  // 👉 bruk offsetHeight i stedet for getBoundingClientRect().top
+  const h = pc.offsetHeight || 0;
 
   document.documentElement.style.setProperty(
     "--hg-placecard-h",
-    bottomOffset + "px"
+    h + "px"
   );
 }
 
