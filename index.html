@@ -262,7 +262,15 @@
 
   
   <!-- MapLibre JS: MÅ før map.js -->
-<script src="https://unpkg.com/maplibre-gl@5.14.0/dist/maplibre-gl.js"></script>
+<link
+  href="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.css"
+  rel="stylesheet"
+/>
+
+<script
+  src="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.js"
+  crossorigin="anonymous">
+</script>
 
 <script>
   window.addEventListener("error", (e) => {
