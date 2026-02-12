@@ -186,6 +186,4 @@ if (window.QuizEngine) {
 
 }
 
-}
-
 boot();
