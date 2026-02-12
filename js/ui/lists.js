@@ -9,23 +9,32 @@ function renderNearbyPlaces() {
 
   const PLACES = window.PLACES || [];
   const visited = window.visited || {};
-  const catColor = window.catColor || (() => "#888");
-
   const pos = window.getPos?.();
 
-  const sorted = PLACES
-  .filter(p => !visited[p.id])   // ← skjul besøkte
-  .map(p => ({
+  const filterMode = window.HG_NEARBY_FILTER || "unvisited";
+
+  let items = PLACES.map(p => ({
     ...p,
     _d: pos && typeof window.distMeters === "function"
       ? Math.round(window.distMeters(pos, { lat: p.lat, lon: p.lon }))
       : null
-  }))
-  .sort((a, b) => (a._d ?? 1e12) - (b._d ?? 1e12));
+  }));
+
+  // 🔹 FILTER
+  if (filterMode === "unvisited") {
+    items = items.filter(p => !visited[p.id]);
+  }
+
+  if (filterMode === "visited") {
+    items = items.filter(p => visited[p.id]);
+  }
+
+  // 🔹 SORT
+  items.sort((a, b) => (a._d ?? 1e12) - (b._d ?? 1e12));
 
   listEl.innerHTML = "";
 
-  sorted.forEach(place => {
+  items.forEach(place => {
 
     const img = place.image || place.cardImage || "";
 
@@ -33,26 +42,24 @@ function renderNearbyPlaces() {
     item.className = "nearby-item";
 
     item.innerHTML = `
-  <div class="nearby-thumbWrap">
-    <img class="nearby-thumb" src="${img}" alt="${place.name}">
-    <img class="nearby-badge"
-         src="bilder/merker/${place.category}.PNG"
-         alt="">
-  </div>
+      <div class="nearby-thumbWrap">
+        <img class="nearby-thumb" src="${img}" alt="${place.name}">
+        <img class="nearby-badge"
+             src="bilder/merker/${place.category}.PNG"
+             alt="">
+      </div>
 
-  <div class="nearby-content">
-    <div class="nearby-title">${place.name}</div>
-    <div class="nearby-meta">
-      ${place._d != null ? place._d + " m" : ""}
-      ${visited[place.id] ? " • ✔" : ""}
-    </div>
-  </div>
-`;
+      <div class="nearby-content">
+        <div class="nearby-title">${place.name}</div>
+        <div class="nearby-meta">
+          ${place._d != null ? place._d + " m" : ""}
+          ${visited[place.id] ? " • ✔" : ""}
+        </div>
+      </div>
+    `;
 
     item.addEventListener("click", () => {
-      if (typeof window.openPlaceCard === "function") {
-        window.openPlaceCard(place);
-      }
+      window.openPlaceCard?.(place);
     });
 
     listEl.appendChild(item);
