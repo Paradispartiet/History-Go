@@ -165,15 +165,15 @@ async function boot() {
     try { await loadNature(); } catch (e) { console.error(e); }
   }
 
-  if (window.QuizEngine) {
-    QuizEngine.init({
-      getPersonById: id => PEOPLE.find(p => p.id === id),
-      getPlaceById:  id => PLACES.find(p => p.id === id),
-      getVisited: () => visited,
-      isTestMode: () => !!window.OPEN_MODE,
-      showToast
-    });
-  }
+if (window.QuizEngine) {
+  QuizEngine.init({
+    getPersonById: id => PEOPLE.find(p => p.id === id),
+    getPlaceById:  id => PLACES.find(p => p.id === id),
+    getVisited: () => (window.visited || {}),
+    isTestMode: () => !!window.OPEN_MODE,
+    showToast
+  });
+}
 
   if (typeof ensureBadgesLoaded === "function") {
     await ensureBadgesLoaded();
