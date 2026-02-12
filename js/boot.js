@@ -138,16 +138,24 @@ async function boot() {
   ============================== */
 
   if (window.HGMap) {
-    HGMap.setPlaces(window.PLACES);
-    HGMap.setVisited(visited);
-    HGMap.setCatColor(catColor);
-    HGMap.setOnPlaceClick((id) => {
-      const p = window.PLACES.find(x => x.id === id);
-      if (p) openPlaceCard(p);
-    });
-    HGMap.setDataReady(true);
-    HGMap.maybeDrawMarkers();
+  HGMap.setPlaces(window.PLACES);
+
+  if (typeof window.visited !== "undefined") {
+    HGMap.setVisited(window.visited);
   }
+
+  if (typeof window.catColor !== "undefined") {
+    HGMap.setCatColor(window.catColor);
+  }
+
+  HGMap.setOnPlaceClick((id) => {
+    const p = window.PLACES.find(x => x.id === id);
+    if (p) openPlaceCard(p);
+  });
+
+  HGMap.setDataReady(true);
+  HGMap.maybeDrawMarkers();
+}
 
   /* ==============================
      INIT
