@@ -30,7 +30,6 @@ function renderNearbyPlaces() {
 
     const item = document.createElement("div");
     item.className = "nearby-item";
-    item.style.borderLeft = `4px solid ${catColor(place.category)}`;
 
     item.innerHTML = `
       <div class="nearby-thumbWrap">
