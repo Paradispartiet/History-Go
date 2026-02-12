@@ -167,8 +167,8 @@ async function boot() {
 
 if (window.QuizEngine) {
   QuizEngine.init({
-    getPersonById: id => PEOPLE.find(p => p.id === id),
-    getPlaceById:  id => PLACES.find(p => p.id === id),
+    getPersonById: id => (window.PEOPLE || []).find(p => p.id === id),
+    getPlaceById:  id => (window.PLACES || []).find(p => p.id === id),
     getVisited: () => (window.visited || {}),
     isTestMode: () => !!window.OPEN_MODE,
     showToast
