@@ -26,7 +26,7 @@ function renderNearbyPlaces() {
 
   sorted.slice(0, 30).forEach(place => {
 
-    const img = place.cardImage || place.image || "";
+    const img = place.image || place.cardImage || "";
 
     const item = document.createElement("div");
     item.className = "nearby-item";
