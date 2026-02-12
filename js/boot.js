@@ -282,3 +282,8 @@ requestLocation();
 renderCollection();
 renderGallery();
 }
+
+
+requestAnimationFrame(() => {
+  window.scrollTo(0, 0);
+});
