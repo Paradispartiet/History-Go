@@ -82,16 +82,9 @@ function setLeftPanelMode(mode) {
     el.style.display = (key === mode) ? "" : "none";
   });
 
-  // 🔹 Render riktig liste når mode byttes
-if (mode === "nearby" && typeof renderNearbyPlaces === "function") {
-  renderNearbyPlaces();
-}
-
-if (mode === "people" && typeof renderNearbyPeople === "function") {
-  renderNearbyPeople();
-}
-
-  try { localStorage.setItem("hg_leftpanel_mode_v1", mode); } catch {}
+  try {
+    localStorage.setItem("hg_leftpanel_mode_v1", mode);
+  } catch {}
 
   document.querySelectorAll(".nearby-tab").forEach(btn => {
     btn.classList.toggle(
@@ -99,6 +92,23 @@ if (mode === "people" && typeof renderNearbyPeople === "function") {
       btn.getAttribute("data-leftmode") === mode
     );
   });
+
+  // 🔹 Render riktig liste når mode byttes
+  if (mode === "nearby" && typeof renderNearbyPlaces === "function") {
+    renderNearbyPlaces();
+  }
+
+  if (mode === "people" && typeof renderNearbyPeople === "function") {
+    renderNearbyPeople();
+  }
+
+  if (mode === "routes" && typeof renderLeftRoutesList === "function") {
+    renderLeftRoutesList();
+  }
+
+  if (mode === "badges" && typeof renderLeftBadges === "function") {
+    renderLeftBadges();
+  }
 
   window.HGMap?.resize?.();
   window.MAP?.resize?.();
