@@ -32,18 +32,21 @@ function renderNearbyPlaces() {
     item.className = "nearby-item";
 
     item.innerHTML = `
-      <div class="nearby-thumbWrap">
-        <img class="nearby-thumb" src="${img}" alt="${place.name}">
-      </div>
+  <div class="nearby-thumbWrap">
+    <img class="nearby-thumb" src="${img}" alt="${place.name}">
+    <img class="nearby-badge"
+         src="bilder/merker/${place.category}.PNG"
+         alt="">
+  </div>
 
-      <div class="nearby-content">
-        <div class="nearby-title">${place.name}</div>
-        <div class="nearby-meta">
-          ${place._d != null ? place._d + " m" : ""}
-          ${visited[place.id] ? " • ✔" : ""}
-        </div>
-      </div>
-    `;
+  <div class="nearby-content">
+    <div class="nearby-title">${place.name}</div>
+    <div class="nearby-meta">
+      ${place._d != null ? place._d + " m" : ""}
+      ${visited[place.id] ? " • ✔" : ""}
+    </div>
+  </div>
+`;
 
     item.addEventListener("click", () => {
       if (typeof window.openPlaceCard === "function") {
