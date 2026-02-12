@@ -15,23 +15,19 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 });
 
-function safeRun(label, fn) {
+async function safeRun(label, fn) {
   try {
-    const out = fn();
+    const out = fn?.();
+
     if (out && typeof out.then === "function") {
-      out.catch((e) => {
-        console.error(`[${label}]`, e);
-        if (DEBUG) {
-          window.__HG_LAST_ERROR__ = {
-            label,
-            message: String(e),
-            stack: e?.stack
-          };
-        }
-      });
+      return await out;
     }
+
+    return out;
+
   } catch (e) {
     console.error(`[${label}]`, e);
+
     if (DEBUG) {
       window.__HG_LAST_ERROR__ = {
         label,
@@ -39,9 +35,7 @@ function safeRun(label, fn) {
         stack: e?.stack
       };
     }
+
+    throw e; // viktig: la async-chain stoppe
   }
 }
-
-
-
-
