@@ -402,22 +402,6 @@
   border-radius: 0;
 }
 
-/* Lesbarhet: mørkt slør over bildet (bak tekst) */
-#nearbyList.nearby-strip .nearby-item::after{
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-
-  background: linear-gradient(
-    to top,
-    rgba(0,0,0,0.82),
-    rgba(0,0,0,0.35),
-    rgba(0,0,0,0.0)
-  );
-}
-
 /* Badge oppå bildet (liten, tydelig) */
 #nearbyList.nearby-strip .nearby-badge{
   position: absolute;
