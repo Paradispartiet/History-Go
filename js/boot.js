@@ -45,6 +45,18 @@ async function boot() {
   const btnUA = document.getElementById("btnUnlockAll");
   if (btnUA) btnUA.style.display = window.OPEN_MODE ? "inline-flex" : "none";
 
+
+/* ==============================
+   ENV
+============================== */
+
+window.HG_ENV = {
+  geo: "unknown",
+  openMode: !!window.OPEN_MODE
+};
+
+  
+
   /* ==============================
      MAP INIT
   ============================== */
