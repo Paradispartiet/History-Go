@@ -1,5 +1,42 @@
 
-  
+  function renderNearbyPeople() {
+  const list = document.getElementById("leftPeopleList");
+  if (!list) return;
+
+  if (!Array.isArray(window.PEOPLE) || window.PEOPLE.length === 0) {
+    list.innerHTML = `<div class="muted">Ingen personer enda.</div>`;
+    return;
+  }
+
+  const pos = (typeof window.getPos === "function") ? window.getPos() : null;
+
+  const sorted = window.PEOPLE
+    .map(p => ({
+      ...p,
+      _d: (pos && p.lat && p.lon)
+        ? Math.round(distMeters(pos, { lat: p.lat, lon: p.lon }))
+        : null
+    }))
+    .sort((a, b) => (a._d ?? 1e12) - (b._d ?? 1e12));
+
+  list.innerHTML = sorted.map(p => {
+    const dist =
+      p._d == null
+        ? ""
+        : p._d < 1000
+        ? `${p._d} m`
+        : `${(p._d / 1000).toFixed(1)} km`;
+
+    return `
+      <div class="nearby-item">
+        <span class="nearby-name">${p.name}</span>
+        <span class="nearby-dist">${dist}</span>
+      </div>
+    `;
+  }).join("");
+}
+
+
 // ==============================
 // 7. LISTEVISNINGER
 // ==============================
