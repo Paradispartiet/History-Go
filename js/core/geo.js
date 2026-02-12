@@ -28,3 +28,46 @@ function distMeters(a, b) {
 }
 
 window.distMeters = distMeters;
+
+
+(function () {
+
+  let currentPos = null;
+
+  window.getPos = function () {
+    return currentPos;
+  };
+
+  window.requestLocation = function () {
+    if (!navigator.geolocation) {
+      console.warn("Geolocation not supported");
+      return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        currentPos = {
+          lat: pos.coords.latitude,
+          lon: pos.coords.longitude
+        };
+
+        console.log("Location set:", currentPos);
+
+        if (typeof renderNearbyPlaces === "function") {
+          renderNearbyPlaces();
+        }
+
+        if (typeof window.HGMap?.setUserMarker === "function") {
+          window.HGMap.setUserMarker(currentPos);
+        }
+      },
+      (err) => {
+        console.warn("Geolocation error:", err);
+      },
+      {
+        enableHighAccuracy: true
+      }
+    );
+  };
+
+})();
