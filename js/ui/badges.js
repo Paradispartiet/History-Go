@@ -18,7 +18,7 @@ function pulseBadge(cat) {
 }
 
 async function ensureBadgesLoaded() {
-  if (Array.isArray(BADGES) && BADGES.length) return;
+  if (Array.isArray(window.BADGES) && window.BADGES.length)
 
   try {
     const data = await fetch("data/badges.json", { cache: "no-store" })
