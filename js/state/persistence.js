@@ -26,11 +26,11 @@ const userProgress = JSON.parse(
 );
 
 function saveVisited() {
-  localStorage.setItem("visited_places", JSON.stringify(visited));
+  localStorage.setItem("visited_places", JSON.stringify(window.visited));
   renderCollection();
 
   if (window.HGMap) {
-    HGMap.setVisited(visited);
+    HGMap.setVisited(window.visited);
     HGMap.refreshMarkers();
   }
 
