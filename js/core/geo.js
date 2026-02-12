@@ -1,6 +1,6 @@
 // js/core/geo.js
 // ==============================
-// GEO – AVSTAND (INGEN POSISJON)
+// GEO – POSISJON + AVSTAND
 // ==============================
 
 function distMeters(a, b) {
@@ -39,17 +39,25 @@ window.distMeters = distMeters;
   };
 
   window.requestLocation = function () {
+
+    window.HG_ENV = window.HG_ENV || {};
+    window.HG_ENV.geo = "loading";
+
     if (!navigator.geolocation) {
       console.warn("Geolocation not supported");
+      window.HG_ENV.geo = "error";
       return;
     }
 
     navigator.geolocation.getCurrentPosition(
       (pos) => {
+
         currentPos = {
           lat: pos.coords.latitude,
           lon: pos.coords.longitude
         };
+
+        window.HG_ENV.geo = "ok";
 
         console.log("Location set:", currentPos);
 
@@ -61,9 +69,15 @@ window.distMeters = distMeters;
           window.HGMap.setUserMarker(currentPos);
         }
       },
+
       (err) => {
+
         console.warn("Geolocation error:", err);
+
+        window.HG_ENV.geo =
+          err && err.code === 1 ? "denied" : "error";
       },
+
       {
         enableHighAccuracy: true
       }
