@@ -25,15 +25,24 @@ function renderNearbyPlaces() {
   listEl.innerHTML = "";
 
   sorted.slice(0, 30).forEach(place => {
+
+    const img = place.cardImage || place.image || "";
+
     const item = document.createElement("div");
     item.className = "nearby-item";
     item.style.borderLeft = `4px solid ${catColor(place.category)}`;
 
     item.innerHTML = `
-      <div class="nearby-title">${place.name}</div>
-      <div class="nearby-meta">
-        ${place._d != null ? place._d + " m" : ""}
-        ${visited[place.id] ? " • ✔" : ""}
+      <div class="nearby-thumbWrap">
+        <img class="nearby-thumb" src="${img}" alt="${place.name}">
+      </div>
+
+      <div class="nearby-content">
+        <div class="nearby-title">${place.name}</div>
+        <div class="nearby-meta">
+          ${place._d != null ? place._d + " m" : ""}
+          ${visited[place.id] ? " • ✔" : ""}
+        </div>
       </div>
     `;
 
@@ -57,7 +66,6 @@ function renderNearbyPeople() {
 
   listEl.innerHTML = "";
 
-  // vis folk relatert til besøkte steder
   const visitedPlaceIds = Object.keys(visited).filter(id => visited[id]);
   const relatedIds = new Set();
 
@@ -71,10 +79,15 @@ function renderNearbyPeople() {
   const relatedPeople = PEOPLE.filter(p => relatedIds.has(p.id));
 
   relatedPeople.forEach(person => {
+    const img = person.cardImage || person.image || "";
+
     const item = document.createElement("div");
     item.className = "nearby-item";
 
     item.innerHTML = `
+      <div class="nearby-thumbWrap">
+        <img class="nearby-thumb" src="${img}" alt="${person.name}">
+      </div>
       <div class="nearby-title">${person.name}</div>
     `;
 
@@ -98,9 +111,15 @@ function renderCollection() {
   grid.innerHTML = "";
 
   PLACES.filter(p => visited[p.id]).forEach(place => {
+    const img = place.cardImage || place.image || "";
+
     const item = document.createElement("div");
     item.className = "collection-item";
-    item.textContent = place.name;
+
+    item.innerHTML = `
+      <img src="${img}" alt="${place.name}">
+      <div>${place.name}</div>
+    `;
 
     item.addEventListener("click", () => {
       if (typeof window.openPlaceCard === "function") {
@@ -112,7 +131,7 @@ function renderCollection() {
   });
 }
 
-// eksponer globalt (viktig for left-panel)
+// eksponer globalt
 window.renderNearbyPlaces = renderNearbyPlaces;
 window.renderNearbyPeople = renderNearbyPeople;
 window.renderCollection = renderCollection;
