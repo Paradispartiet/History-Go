@@ -1,160 +1,118 @@
+// ============================================================
+// LISTS (Nearby, People, Collection)
+// Global-safe versjon
+// ============================================================
 
-  function renderNearbyPeople() {
-  const list = document.getElementById("leftPeopleList");
-  if (!list) return;
+function renderNearbyPlaces() {
+  const listEl = document.getElementById("nearbyList");
+  if (!listEl) return;
 
-  if (!Array.isArray(window.PEOPLE) || window.PEOPLE.length === 0) {
-    list.innerHTML = `<div class="muted">Ingen personer enda.</div>`;
-    return;
-  }
+  const PLACES = window.PLACES || [];
+  const visited = window.visited || {};
+  const catColor = window.catColor || (() => "#888");
 
-  const pos = (typeof window.getPos === "function") ? window.getPos() : null;
+  const pos = window.getPos?.();
 
-  const sorted = window.PEOPLE
+  const sorted = PLACES
     .map(p => ({
       ...p,
-      _d: (pos && p.lat && p.lon)
-        ? Math.round(distMeters(pos, { lat: p.lat, lon: p.lon }))
+      _d: pos && typeof window.distMeters === "function"
+        ? Math.round(window.distMeters(pos, { lat: p.lat, lon: p.lon }))
         : null
     }))
     .sort((a, b) => (a._d ?? 1e12) - (b._d ?? 1e12));
 
-  list.innerHTML = sorted.map(p => {
-    const dist =
-      p._d == null
-        ? ""
-        : p._d < 1000
-        ? `${p._d} m`
-        : `${(p._d / 1000).toFixed(1)} km`;
+  listEl.innerHTML = "";
 
-    return `
-      <div class="nearby-item">
-        <span class="nearby-name">${p.name}</span>
-        <span class="nearby-dist">${dist}</span>
+  sorted.slice(0, 30).forEach(place => {
+    const item = document.createElement("div");
+    item.className = "nearby-item";
+    item.style.borderLeft = `4px solid ${catColor(place.category)}`;
+
+    item.innerHTML = `
+      <div class="nearby-title">${place.name}</div>
+      <div class="nearby-meta">
+        ${place._d != null ? place._d + " m" : ""}
+        ${visited[place.id] ? " • ✔" : ""}
       </div>
     `;
-  }).join("");
+
+    item.addEventListener("click", () => {
+      if (typeof window.openPlaceCard === "function") {
+        window.openPlaceCard(place);
+      }
+    });
+
+    listEl.appendChild(item);
+  });
 }
 
+function renderNearbyPeople() {
+  const listEl = document.getElementById("leftPeopleList");
+  if (!listEl) return;
 
-// ==============================
-// 7. LISTEVISNINGER
-// ==============================
-function renderNearbyPlaces() {
-  const list = document.getElementById("nearbyList");
-  if (!list) return;
+  const PEOPLE = window.PEOPLE || [];
+  const visited = window.visited || {};
+  const REL = window.REL_BY_PLACE || {};
 
-  const pos = (typeof window.getPos === "function") ? window.getPos() : null;
+  listEl.innerHTML = "";
 
-  const sorted = (window.PLACES || [])
-    .map(p => ({
-      ...p,
-      _d: pos ? Math.round(distMeters(pos, { lat: p.lat, lon: p.lon })) : null
-    }))
-    .sort((a, b) => (a._d ?? 1e12) - (b._d ?? 1e12));
+  // vis folk relatert til besøkte steder
+  const visitedPlaceIds = Object.keys(visited).filter(id => visited[id]);
+  const relatedIds = new Set();
 
-  const q = (window.HG_NEARBY_QUERY || "").trim().toLowerCase();
-  const filtered = q
-    ? sorted.filter(p => String(p.name || "").toLowerCase().includes(q))
-    : sorted;
+  visitedPlaceIds.forEach(pid => {
+    const rels = REL[pid] || [];
+    rels.forEach(r => {
+      if (r.person) relatedIds.add(r.person);
+    });
+  });
 
-  list.innerHTML = filtered.map(renderPlaceCard).join("");
+  const relatedPeople = PEOPLE.filter(p => relatedIds.has(p.id));
+
+  relatedPeople.forEach(person => {
+    const item = document.createElement("div");
+    item.className = "nearby-item";
+
+    item.innerHTML = `
+      <div class="nearby-title">${person.name}</div>
+    `;
+
+    item.addEventListener("click", () => {
+      if (typeof window.openPersonCard === "function") {
+        window.openPersonCard(person);
+      }
+    });
+
+    listEl.appendChild(item);
+  });
 }
-
-function renderPlaceCard(p) {
-  const dist =
-    p._d == null
-      ? ""
-      : p._d < 1000
-      ? `${p._d} m`
-      : `${(p._d / 1000).toFixed(1)} km`;
-
-  const img = p.image; 
-
-  return `
-    <div class="nearby-item" data-open="${p.id}">
-      
-      <img class="nearby-thumb" src="${img}" alt="${p.name}">
-      
-      <span class="nearby-name">${p.name}</span>
-
-      <span class="nearby-dist">${dist}</span>
-
-      <img class="nearby-badge" src="bilder/merker/${catClass(p.category)}.PNG" alt="">
-    </div>
-  `;
-}
-
-window.renderNearbyPlaces = renderNearbyPlaces;
-
-// ✅ API: bruk denne fra "Se kart" osv. for å skjule/vis hele panelet
-window.setNearbyCollapsed = function (hidden) {
-  const container = document.getElementById("nearbyListContainer");
-  if (!container) return;
-
-  container.classList.toggle("is-hidden", !!hidden);
-};
-
-
-
-function renderPersonCardInline(pr) {
-  const cat = tagToCat(pr.tags);
-  const dist =
-    pr._d < 1000 ? `${pr._d} m` : `${(pr._d / 1000).toFixed(1)} km`;
-
-  const img = pr.imageCard || pr.image;
-
-  return `
-    <article class="card person-inline-card">
-      <img src="${img}" alt="${pr.name}" class="inline-thumb">
-
-      <div class="inline-info">
-        <div class="name">${pr.name}</div>
-        <div class="meta">${cat}</div>
-        <p class="desc">${pr.desc || ""}</p>
-
-        <div class="row between">
-          <div class="dist">${dist}</div>
-          <button class="primary" data-quiz="${pr.id}">Ta quiz</button>
-        </div>
-      </div>
-    </article>`;
-}
-
 
 function renderCollection() {
-  const grid = el.collectionGrid;
+  const grid = document.getElementById("collectionGrid");
   if (!grid) return;
 
-  const items = PLACES.filter(p => visited[p.id]);
+  const PLACES = window.PLACES || [];
+  const visited = window.visited || {};
 
-  if (el.collectionCount) el.collectionCount.textContent = items.length;
+  grid.innerHTML = "";
 
-  const first = items.slice(0, 18);
-  grid.innerHTML = first
-    .map(
-      p => `
-    <span class="badge ${catClass(p.category)}" title="${p.name}">
-      <span class="i" style="background:${catColor(p.category)}"></span> ${p.name}
-    </span>`
-    )
-    .join("");
+  PLACES.filter(p => visited[p.id]).forEach(place => {
+    const item = document.createElement("div");
+    item.className = "collection-item";
+    item.textContent = place.name;
+
+    item.addEventListener("click", () => {
+      if (typeof window.openPlaceCard === "function") {
+        window.openPlaceCard(place);
+      }
+    });
+
+    grid.appendChild(item);
+  });
 }
 
-function renderGallery() {
-  if (!el.gallery) return;
-  const collectedIds = Object.keys(peopleCollected).filter(id => peopleCollected[id]);
-  const collectedPeople = PEOPLE.filter(p => collectedIds.includes(p.id));
-
-  el.gallery.innerHTML = collectedPeople
-    .map(p => {
-      const imgPath = p.imageCard || p.image;
-      const cat = tagToCat(p.tags);
-      return `
-        <div class="person-card" data-quiz="${p.id}">
-          <img src="${imgPath}" alt="${p.name}" class="person-thumb">
-          <div class="person-label" style="color:${catColor(cat)}">${p.name}</div>
-        </div>`;
-    })
-    .join("");
-}
+// eksponer globalt (viktig for left-panel)
+window.renderNearbyPlaces = renderNearbyPlaces;
+window.renderNearbyPeople = renderNearbyPeople;
+window.renderCollection = renderCollection;
