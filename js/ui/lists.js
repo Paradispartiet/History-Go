@@ -25,8 +25,8 @@ function renderNearbyPlaces() {
     items = items.filter(p => !visited[p.id]);
   }
 
-  if (filterMode === "visited") {
-    items = items.filter(p => visited[p.id]);
+  if (filterMode === "unlocked") {
+   items = items.filter(p => visited[p.id]);
   }
 
   // 🔹 SORT
