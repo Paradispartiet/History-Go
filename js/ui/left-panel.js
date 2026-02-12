@@ -183,6 +183,10 @@ function initLeftPanel() {
 
   const mode = saved || sel.value || "nearby";
   sel.value = mode;
+
+  window.HG_NEARBY_FILTER =
+    localStorage.getItem("hg_nearby_filter_v1") || "unvisited";
+  
   setLeftPanelMode(mode);
 
   // dropdown (skjult state-holder)
