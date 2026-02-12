@@ -173,11 +173,9 @@ function initLeftPanel() {
   const sel   = hg$("leftPanelMode");
   if (!panel || !sel) return;
 
-  if (!window.HG_NEARBY_FILTER) {
     window.HG_NEARBY_FILTER =
       localStorage.getItem("hg_nearby_filter_v1") || "unvisited";
-  }
-  
+
   let saved = null;
   try { saved = localStorage.getItem("hg_leftpanel_mode_v1"); } catch {}
 
@@ -212,6 +210,9 @@ function initLeftPanel() {
     new ResizeObserver(syncLeftPanelFrame).observe(pc);
   }
 
+
+  
+  
   // =====================================
   // Nearby filter button
   // =====================================
