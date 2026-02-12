@@ -1,7 +1,8 @@
-document.addEventListener("DOMContentLoaded", () => {
-  safeRun("boot", boot);
+document.addEventListener("DOMContentLoaded", async () => {
 
-  safeRun("civicationPulse", async () => {
+  await safeRun("boot", boot);
+
+  await safeRun("civicationPulse", async () => {
     await window.HG_CiviEngine?.onAppOpen?.();
     window.renderCivicationInbox?.();
     window.dispatchEvent(new Event("updateProfile"));
@@ -11,6 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
   safeRun("wireMiniProfileLinks", window.wireMiniProfileLinks);
   safeRun("initLeftPanel", window.initLeftPanel);
   safeRun("initPlaceCardCollapse", window.initPlaceCardCollapse);
+
 });
 
 function safeRun(label, fn) {
