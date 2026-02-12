@@ -26,7 +26,11 @@ const userProgress = JSON.parse(
 );
 
 function saveVisited() {
-  localStorage.setItem("visited_places", JSON.stringify(window.visited));
+  localStorage.setItem(
+    "visited_places",
+    JSON.stringify(window.visited)
+  );
+
   renderCollection();
 
   if (window.HGMap) {
@@ -41,8 +45,8 @@ function saveVisitedFromQuiz(placeId) {
   const id = String(placeId ?? "");
   if (!id) return;
 
-  if (!visited[id]) {
-    visited[id] = true;
+  if (!window.visited[id]) {
+    window.visited[id] = true;
     saveVisited();
     window.dispatchEvent(new Event("updateProfile"));
     window.renderNearbyPlaces?.();
