@@ -219,15 +219,16 @@ function initLeftPanel() {
   const btn = document.getElementById("nearbyFilterBtn");
 
   function updateFilterButton() {
-    const labels = {
-      all: "Vis alle",
-      unlocked: "Låst opp",
-      unvisited: "Ikke besøkte"
-    };
-    if (btn) {
-      btn.textContent = labels[window.HG_NEARBY_FILTER] || "Ikke besøkte";
-    }
+  const icons = {
+    unvisited: "🎯",  // Gjenstår
+    unlocked: "🔓",   // Besøkt / låst opp
+    all: "🌍"         // Alle
+  };
+
+  if (btn) {
+    btn.textContent = icons[window.HG_NEARBY_FILTER] || "🎯";
   }
+}
 
   if (btn) {
     btn.addEventListener("click", () => {
