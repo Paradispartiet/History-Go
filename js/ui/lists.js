@@ -14,17 +14,18 @@ function renderNearbyPlaces() {
   const pos = window.getPos?.();
 
   const sorted = PLACES
-    .map(p => ({
-      ...p,
-      _d: pos && typeof window.distMeters === "function"
-        ? Math.round(window.distMeters(pos, { lat: p.lat, lon: p.lon }))
-        : null
-    }))
-    .sort((a, b) => (a._d ?? 1e12) - (b._d ?? 1e12));
+  .filter(p => !visited[p.id])   // ← skjul besøkte
+  .map(p => ({
+    ...p,
+    _d: pos && typeof window.distMeters === "function"
+      ? Math.round(window.distMeters(pos, { lat: p.lat, lon: p.lon }))
+      : null
+  }))
+  .sort((a, b) => (a._d ?? 1e12) - (b._d ?? 1e12));
 
   listEl.innerHTML = "";
 
-  sorted.slice(0, 30).forEach(place => {
+  sorted.forEach(place => {
 
     const img = place.image || place.cardImage || "";
 
