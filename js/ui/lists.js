@@ -46,7 +46,7 @@ function renderNearbyPlaces() {
 
   const pos = (typeof window.getPos === "function") ? window.getPos() : null;
 
-  const sorted = PLACES
+  const sorted = (window.PLACES || [])
     .map(p => ({
       ...p,
       _d: pos ? Math.round(distMeters(pos, { lat: p.lat, lon: p.lon })) : null
