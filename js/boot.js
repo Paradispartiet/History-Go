@@ -184,6 +184,10 @@ if (window.QuizEngine) {
   if (typeof renderCollection === "function") renderCollection();
   if (typeof renderGallery === "function") renderGallery();
 
+  if (typeof initLeftPanel === "function") {
+  initLeftPanel();
+}
+
 }
 
 boot();
