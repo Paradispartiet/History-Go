@@ -82,6 +82,15 @@ function setLeftPanelMode(mode) {
     el.style.display = (key === mode) ? "" : "none";
   });
 
+  // 🔹 Render riktig liste når mode byttes
+if (mode === "nearby" && typeof renderNearbyPlaces === "function") {
+  renderNearbyPlaces();
+}
+
+if (mode === "people" && typeof renderNearbyPeople === "function") {
+  renderNearbyPeople();
+}
+
   try { localStorage.setItem("hg_leftpanel_mode_v1", mode); } catch {}
 
   document.querySelectorAll(".nearby-tab").forEach(btn => {
