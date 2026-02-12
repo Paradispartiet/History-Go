@@ -112,33 +112,49 @@
 </header>
 
 
-  
-<!-- VENSTRE RAMMEPANEL -->
+  <!-- VENSTRE RAMMEPANEL -->
 <div id="nearbyListContainer" class="leftpanel">
 
-    <div class="leftpanel-head">
+  <div class="leftpanel-head">
     <div class="leftpanel-title">Utforsk</div>
 
     <div class="nearby-row1">
-  <div class="nearby-tabs" role="tablist" aria-label="Utforsk">
-    <button class="nearby-tab is-active" data-leftmode="nearby" type="button">Steder</button>
-    <button class="nearby-tab" data-leftmode="people" type="button">Folk</button>
-    <button class="nearby-tab" data-leftmode="nature" type="button">Natur</button>
-    <button class="nearby-tab" data-leftmode="routes" type="button">Ruter</button>
-    <button class="nearby-tab" data-leftmode="badges" type="button">Merker</button>
-  </div>
-      
-<button class="nearby-tab is-active"
-        data-leftmode="nearby"
-        type="button">
+      <div class="nearby-tabs" role="tablist" aria-label="Utforsk">
 
-  <span class="nearby-tab-icon" id="nearbyFilterBtn"></span>
-  <span class="nearby-tab-label">Steder</span>
+        <!-- FILTER-IKON -->
+        <button id="nearbyFilterBtn"
+                class="nearby-filter-icon"
+                type="button"
+                aria-label="Filter"></button>
 
-</button>
-        
-      <!-- behold select i DOM skjult for bakoverkomp (JS kan fortsatt bruke den om du vil) -->
-      <select id="leftPanelMode" class="leftpanel-select" aria-label="Velg visning" style="display:none">
+        <!-- TABBER -->
+        <button class="nearby-tab is-active"
+                data-leftmode="nearby"
+                type="button">Steder</button>
+
+        <button class="nearby-tab"
+                data-leftmode="people"
+                type="button">Folk</button>
+
+        <button class="nearby-tab"
+                data-leftmode="nature"
+                type="button">Natur</button>
+
+        <button class="nearby-tab"
+                data-leftmode="routes"
+                type="button">Ruter</button>
+
+        <button class="nearby-tab"
+                data-leftmode="badges"
+                type="button">Merker</button>
+
+      </div>
+
+      <!-- skjult select -->
+      <select id="leftPanelMode"
+              class="leftpanel-select"
+              aria-label="Velg visning"
+              style="display:none">
         <option value="nearby" selected>Nærmeste</option>
         <option value="people">Folk</option>
         <option value="nature">Natur</option>
@@ -146,11 +162,10 @@
         <option value="badges">Merker</option>
       </select>
 
-    </div> <!-- /nearby-row1 -->
-  </div>   <!-- /leftpanel-head  ✅ DENNE MANGLER HOS DEG -->
+    </div>
+  </div>
 
-  <div class="leftpanel-body">
-  <!-- 1) Nærmeste -->
+  <div class="leftpanel-body">  <!-- 1) Nærmeste -->
   <section id="panelNearby" class="leftpanel-view">
     <!-- status beholdes for logging/feilsøk, men skjules visuelt -->
     <div id="status" class="muted" style="display:none">Henter posisjon…</div>
