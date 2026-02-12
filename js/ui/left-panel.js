@@ -168,11 +168,9 @@ function renderLeftBadges() {
 // ============================================================
 
 function initLeftPanel() {
-  
-  console.log("INIT STEP 1");
-  
+
   const panel = hg$("nearbyListContainer");
-  const sel = hg$("leftPanelMode");
+  const sel   = hg$("leftPanelMode");
   if (!panel || !sel) return;
 
   let saved = null;
@@ -182,7 +180,7 @@ function initLeftPanel() {
   sel.value = mode;
   setLeftPanelMode(mode);
 
-  // dropdown (skjult, men state-holder)
+  // dropdown (skjult state-holder)
   sel.addEventListener("change", () => setLeftPanelMode(sel.value));
 
   // tabs
@@ -193,13 +191,9 @@ function initLeftPanel() {
       sel.dispatchEvent(new Event("change", { bubbles: true }));
     });
   });
-  
-console.log("INIT STEP 2");
-  
+
   renderLeftBadges();
 
-console.log("INIT STEP 3");
-  
   syncLeftPanelFrame();
   window.addEventListener("resize", syncLeftPanelFrame);
 
@@ -207,6 +201,48 @@ console.log("INIT STEP 3");
   const pc = hg$("placeCard");
   if (pc && "ResizeObserver" in window) {
     new ResizeObserver(syncLeftPanelFrame).observe(pc);
+  }
+
+  // =====================================
+  // Nearby filter button
+  // =====================================
+
+  if (!window.HG_NEARBY_FILTER) {
+    window.HG_NEARBY_FILTER =
+      localStorage.getItem("hg_nearby_filter_v1") || "unvisited";
+  }
+
+  const btn = document.getElementById("nearbyFilterBtn");
+
+  function updateFilterButton() {
+    const labels = {
+      all: "Vis alle",
+      unlocked: "Låst opp",
+      unvisited: "Ikke besøkte"
+    };
+    if (btn) {
+      btn.textContent = labels[window.HG_NEARBY_FILTER] || "Ikke besøkte";
+    }
+  }
+
+  if (btn) {
+    btn.addEventListener("click", () => {
+      const order = ["unvisited", "all", "unlocked"];
+      const i = order.indexOf(window.HG_NEARBY_FILTER);
+      window.HG_NEARBY_FILTER = order[(i + 1) % order.length];
+
+      try {
+        localStorage.setItem("hg_nearby_filter_v1", window.HG_NEARBY_FILTER);
+      } catch {}
+
+      updateFilterButton();
+
+      if (typeof renderNearbyPlaces === "function") {
+        renderNearbyPlaces();
+      }
+    });
+
+    updateFilterButton();
   }
 }
 
