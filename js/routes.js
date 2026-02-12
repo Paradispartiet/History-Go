@@ -422,19 +422,6 @@ async function renderLeftRoutesList() {
   };
 }
 
-function setLeftPanelMode(mode) {
-  const pNearby = document.getElementById("panelNearby");
-  const pRoutes = document.getElementById("panelRoutes");
-  const pBadges = document.getElementById("panelBadges");
-  if (!pNearby || !pRoutes || !pBadges) return;
-
-  pNearby.style.display = (mode === "nearby") ? "" : "none";
-  pRoutes.style.display = (mode === "routes") ? "" : "none";
-  pBadges.style.display = (mode === "badges") ? "" : "none";
-
-  if (mode === "routes") renderLeftRoutesList();
-}
-
 function initLeftRoutesPanel() {
   const sel = document.getElementById("leftPanelMode");
   if (!sel) return;
