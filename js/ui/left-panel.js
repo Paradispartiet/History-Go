@@ -158,6 +158,9 @@ function renderLeftBadges() {
 // ============================================================
 
 function initLeftPanel() {
+  
+  console.log("INIT STEP 1");
+  
   const panel = hg$("nearbyListContainer");
   const sel = hg$("leftPanelMode");
   if (!panel || !sel) return;
@@ -180,8 +183,13 @@ function initLeftPanel() {
       sel.dispatchEvent(new Event("change", { bubbles: true }));
     });
   });
-
+  
+console.log("INIT STEP 2");
+  
   renderLeftBadges();
+
+console.log("INIT STEP 3");
+  
   syncLeftPanelFrame();
   window.addEventListener("resize", syncLeftPanelFrame);
 
