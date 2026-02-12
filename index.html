@@ -127,10 +127,16 @@
     <button class="nearby-tab" data-leftmode="routes" type="button">Ruter</button>
     <button class="nearby-tab" data-leftmode="badges" type="button">Merker</button>
   </div>
+      
+      <<button class="nearby-tab is-active"
+       data-leftmode="nearby"
+       type="button">
 
-        <div class="nearby-filter">
-    <button id="nearbyFilterBtn" class="chip ghost"></button>
-  </div>
+       <span class="nearby-tab-icon" id="nearbyFilterIcon"></span>
+       Steder
+
+     </button>
+        
       <!-- behold select i DOM skjult for bakoverkomp (JS kan fortsatt bruke den om du vil) -->
       <select id="leftPanelMode" class="leftpanel-select" aria-label="Velg visning" style="display:none">
         <option value="nearby" selected>Nærmeste</option>
