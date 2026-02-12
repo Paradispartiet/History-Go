@@ -15,7 +15,7 @@ let TAGS_REGISTRY = null;
 // ==============================
 // USER STATE (persisted)
 // ==============================
-const visited = JSON.parse(
+window.visited = JSON.parse(
   localStorage.getItem("visited_places") || "{}"
 );
 
