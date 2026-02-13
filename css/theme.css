@@ -132,11 +132,12 @@ body.hg-app:has(#placeCard[aria-hidden="false"])::before{
 /* HEADER: helt svart, klikkbart, over watermark          */
 /* ===================================================== */
 body.hg-app header.site-header{
-  position: relative;
-  top: 0;
+  position: fixed;
   left: 0;
   right: 0;
+  top: 0;
 
+  height: var(--hg-header-h);
   z-index: 20;
 
   display: flex;
@@ -144,6 +145,7 @@ body.hg-app header.site-header{
   justify-content: flex-start;
   gap: 10px;
   flex-wrap: nowrap;
+
   padding: 2px calc(5px + env(safe-area-inset-right));
   padding-right: calc(8px + env(safe-area-inset-right));
 
