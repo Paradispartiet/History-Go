@@ -34,13 +34,19 @@
   right: 0;
   bottom: 0;
 
-  top: 160px;       /* 40 + 120 = under nearby, kant i kant */
+  top: calc(
+    var(--hg-header-h) +
+    var(--hg-header-gap) +
+    var(--hg-nearby-h)
+  );
+
   width: 100%;
   z-index: 500;
 
   background: #000;
   border-top: 0;
   box-shadow: 0 -12px 34px rgba(0,0,0,.40);
+
   overflow: hidden;
 }
 
