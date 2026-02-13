@@ -5,10 +5,15 @@
 /* Kartet: bruk top/left/right/bottom (ikke 100vh) */
 #map{
   position: relative;
+
+  flex: 1;          /* Fyller all tilgjengelig plass */
+  min-height: 0;    /* Viktig i flex-layout for å unngå overflow-bugs */
+
   width: 100%;
-  height: 100%;
+
   z-index: 1;
   background: #000;
+
   overflow: hidden;
 }
 
