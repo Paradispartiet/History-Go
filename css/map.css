@@ -4,12 +4,18 @@
 
 /* Kartet: bruk top/left/right/bottom (ikke 100vh) */
 #map{
-  position: relative;
+  position: fixed;
 
-  flex: 1;          /* Fyller all tilgjengelig plass */
-  min-height: 0;    /* Viktig i flex-layout for å unngå overflow-bugs */
+  left: 0;
+  right: 0;
 
-  width: 100%;
+  top: calc(
+    var(--hg-header-h) +
+    var(--hg-header-gap) +
+    var(--hg-nearby-h)
+  );
+
+  bottom: var(--pc-height);
 
   z-index: 1;
   background: #000;
