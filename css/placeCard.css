@@ -28,17 +28,24 @@
 /* PlaceCard: ekte bottom sheet                           */
 /* ===================================================== */
 
+
 #placeCard{
+  position: relative;
+  
+  height: var(--pc-height, 60vh);
+
   position: fixed;
+
   left: 0;
   right: 0;
-  bottom: 0;
 
   top: calc(
     var(--hg-header-h) +
     var(--hg-header-gap) +
     var(--hg-nearby-h)
   );
+
+  bottom: 0;              /* Fyller ned til bunnen */
 
   width: 100%;
   z-index: 500;
