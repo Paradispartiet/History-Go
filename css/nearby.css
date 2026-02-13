@@ -29,13 +29,9 @@
   position: fixed;
   left: 0;
   right: 0;
-  /* Ligger i kant med topplinja (under header) */
-  top: calc(var(--hg-header-h, 44px) + var(--hg-header-gap, 0px));
-  bottom: auto;
 
-  height: var(--hg-nearby-h, 92px);
-  width: auto;
-  padding-bottom: 0;
+  top: 60px;        /* header + ønsket avstand */
+  height: 120px;    /* eksakt høyde på nearby */
 
   z-index: 19;
 
@@ -43,13 +39,11 @@
   border: 0;
   border-radius: 0;
   box-shadow: none;
-  backdrop-filter: none;
 
   display: flex;
   flex-direction: column;
-  overflow: visible;   /* så watermark kan stikke opp */
+  overflow: visible;
 }
-
 #nearbyListContainer.is-hidden{ display:none; }
 
 /* Head */
