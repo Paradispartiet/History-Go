@@ -159,7 +159,14 @@ body.hg-app header.site-header{
 body.hg-app main{
   position: relative;
   z-index: 2;
-  overflow: visible;
+
+  display: flex;
+  flex-direction: column;
+
+  flex: 1;
+  min-height: 0;
+
+  overflow: hidden;
 }
 
 body.hg-app .panel{
