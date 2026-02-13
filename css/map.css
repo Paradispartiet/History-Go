@@ -4,11 +4,9 @@
 
 /* Kartet: bruk top/left/right/bottom (ikke 100vh) */
 #map{
-  position: fixed;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;        /* placeCard.css kan overstyre denne til --pc-height */
+  position: relative;
+  width: 100%;
+  height: 100%;
   z-index: 1;
   background: #000;
   overflow: hidden;
