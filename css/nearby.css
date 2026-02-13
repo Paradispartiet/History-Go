@@ -30,17 +30,24 @@
   left: 0;
   right: 0;
 
-  top: 52px;        /* 40px header + 12px luft */
-  height: 120px;
+  top: 40px;        /* kant i kant med header */
+  height: 120px;    /* behold din nearby-høyde */
 
+  bottom: auto;
   z-index: 19;
+
+  background: var(--hg-frame-bg);
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  backdrop-filter: none;
 
   display: flex;
   flex-direction: column;
   overflow: visible;
-
-  background: var(--hg-frame-bg);
 }
+
+
 #nearbyListContainer.is-hidden{ display:none; }
 
 /* Head */
