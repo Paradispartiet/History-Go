@@ -4,16 +4,19 @@
 
 /* Kartet: bruk top/left/right/bottom (ikke 100vh) */
 #map{
-  position: fixed;
+  position: relative;
 
-  left: 0;
-  right: 0;
+  flex: 1;
+  min-height: 0;
 
-  top: calc(
-    var(--hg-header-h) +
-    var(--hg-header-gap) +
-    var(--hg-nearby-h)
-  );
+  width: 100%;
+  height: auto;
+
+  z-index: 1;
+  background: #000;
+
+  overflow: hidden;
+}
 
   bottom: var(--pc-height);
 
