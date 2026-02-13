@@ -30,12 +30,15 @@
 
 
 #placeCard{
-  position: relative;               /* ingen fixed */
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  height: var(--pc-height);
 
   width: 100%;
-  height: var(--pc-height, 60vh);   /* din kontrollerte høyde */
-
-  z-index: 2;
+  z-index: 500;
 
   background: #000;
   border-top: 0;
