@@ -30,7 +30,8 @@
 
 
 #placeCard{
-  position: absolute;
+  position: fixed;   /* 🔥 Ikke absolute */
+
   left: 0;
   right: 0;
   bottom: 0;
@@ -39,7 +40,7 @@
   height: var(--pc-height);
   width: 100%;
 
-  z-index: 500;
+  z-index: 2000;
 
   background: #000;
   border-top: 0;
