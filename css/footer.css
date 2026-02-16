@@ -33,3 +33,20 @@
   font-size:0.9rem;
   opacity:.85;
 }
+
+#pcRoute::before   { content:"🗺️"; font-size:22px; }
+#pcObserve::before { content:"👁️"; font-size:22px; }
+#pcNote::before    { content:"📝"; font-size:22px; }
+
+#pcRoute,
+#pcObserve,
+#pcNote{
+  width:44px;
+  height:44px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  font-size:0;
+  border-radius:50%;
+  background:rgba(255,255,255,0.08);
+}
