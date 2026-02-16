@@ -26,22 +26,17 @@
 
 
 #placeCard{
-  position: fixed;   /* 🔥 Ikke absolute */
-
+  position: absolute;   /* 🔥 viktig */
   left: 0;
   right: 0;
-  bottom: 0px;
-  top: auto;
+  bottom: 0;
 
   height: var(--pc-height);
   width: 100%;
 
   z-index: 2000;
-
   background: #000;
-  border-top: 0;
   box-shadow: 0 -12px 34px rgba(0,0,0,.40);
-
   overflow: hidden;
 }
 
