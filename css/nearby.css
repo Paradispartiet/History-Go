@@ -26,16 +26,14 @@
    ============================================================ */
 
 #nearbyListContainer{
-  position: relative;
-  left: auto;
-  right: auto;
-  top: auto;
-  bottom: auto;
+  position: absolute;
+
+  top: var(--hg-header-h);   /* starter under header */
+  left: 0;
+  right: 0;
 
   height: var(--hg-nearby-h);
   width: 100%;
-
-  padding-bottom: 0;
 
   z-index: 19;
 
@@ -47,7 +45,8 @@
 
   display: flex;
   flex-direction: column;
-  overflow: visible; /* watermark kan stikke opp */
+
+  overflow: hidden; /* ikke visible */
 }
 
 
