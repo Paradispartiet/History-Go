@@ -171,11 +171,6 @@
   max-width: 62ch;
 }
 
-#placeCard .pc-text{
-  grid-column: 1 / -1;
-  grid-row: 1;
-}
-
 
 
 
@@ -269,7 +264,7 @@
   transition: opacity 120ms ease, transform 120ms ease;
 }
 
-#placeCard.is-switching .pc-main,
+#placeCard.is-switching .pc-grid,
 #placeCard.is-switching #pcPeopleList,
 #placeCard.is-switching #pcDesc{
   opacity: .25;
@@ -286,20 +281,7 @@
   position: relative;
 }
 
-/* Midten scroller */
-#placeCard .pc-scroll{
-  flex: 1 1 auto;
-  overflow-y: auto;     /* 🔥 dette stopper skyving */
-  overflow-x: hidden;
 
-  padding: var(--pc-pad);
-  padding-top: 8px;
-  padding-bottom: 10px;
-
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
 
 
 
