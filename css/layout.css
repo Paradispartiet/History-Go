@@ -93,16 +93,23 @@ body.hg-app .app-shell{
   height: 100dvh;
   width: 100%;
 
-  display: grid;
-  grid-template-rows: 1fr auto;
+  display: flex;
+  flex-direction: column;
 
   overflow: hidden;
 }
 
 body.hg-app .app-footer{
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  z-index: 2100; /* over placeCard (2000) */
+
   border-top: 1px solid rgba(255,255,255,0.08);
   padding: 10px;
-  background: rgba(0,0,0,0.85);
+  background: rgba(0,0,0,0.95);
 }
 
 body.hg-app .app-actions{
