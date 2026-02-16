@@ -122,12 +122,15 @@
   aspect-ratio: 4 / 5;
   overflow: hidden;
   border-radius: 16px;
+
+  background: #000; 
 }
 
 #placeCard .pc-image-wrapper img{
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;   /* 🔥 ikke cover */
+  display: block;
 }
 
 #placeCard .pc-icons{
