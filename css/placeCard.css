@@ -385,7 +385,7 @@
    PlaceCard actions – ÉN RAD, sentrert, ikon-only (ID-sikkert)
    ===================================================== */
 
-#placeCard .pc-actions{
+.pc-actions{
   margin-top: 1px;
   padding-top: 4px;
   margin-bottom: 0;
@@ -406,10 +406,10 @@
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
 }
-#placeCard .pc-actions::-webkit-scrollbar{ display:none; }
+.pc-actions::-webkit-scrollbar{ display:none; }
 
 /* Knappestørrelser (tekstknapper) */
-#placeCard .pc-actions button{
+.pc-actions button{
   height: 60px;
   padding: 0 15px;
   font-size: 16px;
@@ -418,10 +418,10 @@
 }
 
 /* Ikon-only (uansett hva JS skriver inni) */
-#placeCard #pcRoute,
-#placeCard #pcObserve,
-#placeCard #pcNote,
-#placeCard #pcClose{
+#pcRoute,
+#pcObserve,
+#pcNote,
+#pcClose{
   width: 70px;
   height: 70px;
   min-width: 70px;
@@ -438,15 +438,15 @@
 }
 
 /* Ikoner */
-#placeCard #pcRoute::before   { content:"🗺️"; font-size:50px; line-height:1; }
-#placeCard #pcObserve::before { content:"👁️"; font-size:50px; line-height:1; }
-#placeCard #pcNote::before    { content:"📝"; font-size:50px; line-height:1; }
-#placeCard #pcClose::before   { content:"✕";  font-size:50px; line-height:1; }
+#pcRoute::before   { content:"🗺️"; font-size:50px; line-height:1; }
+#pcObserve::before { content:"👁️"; font-size:50px; line-height:1; }
+#pcNote::before    { content:"📝"; font-size:50px; line-height:1; }
+#pcClose::before   { content:"✕";  font-size:50px; line-height:1; }
 
 /* Brand */
-#placeCard .pc-actions .brand{ flex: 0 0 auto; }
+.pc-actions .brand{ flex: 0 0 auto; }
 /* Mini-wonderkammer / NextUp – helt nederst */
-#placeCard #mpNextUp.pc-nextup--bottom{
+#mpNextUp.pc-nextup--bottom{
   width: 100%;
   box-sizing: border-box;
 
