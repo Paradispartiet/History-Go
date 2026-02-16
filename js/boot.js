@@ -197,4 +197,8 @@ if (window.QuizEngine) {
 
 }
 
-boot();
+boot().then(() => {
+  if (window.HGPos?.request) {
+    window.HGPos.request();
+  }
+});
