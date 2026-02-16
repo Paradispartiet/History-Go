@@ -71,9 +71,9 @@
   grid-column: 1 / -1;
   grid-row: 1;
 
-  padding-right: 6px;
-  padding-left: 2px;
-
+  padding-left: var(--pc-pad);
+  padding-right: var(--pc-pad);
+  
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text",
                "Inter", "Segoe UI", Roboto, system-ui, sans-serif;
   letter-spacing: 0.1px;
@@ -86,22 +86,22 @@
   color: #fff;
   line-height: 1.2;
 
-  font-weight: 650;
-  letter-spacing: -0.2px;
+  font-weight: 600;
+  letter-spacing: -0.3px;
 }
 
 #placeCard #pcMeta{
-  margin-top: 6px;
-  margin-bottom: 8px;
+  margin-top: 4px;
+  margin-bottom: 10px;
   font-size: var(--pc-meta);
   color: var(--text-dim);
 }
 
 /* Fast uttrykk + … (full tekst i popup via “Mer info”) */
 #placeCard #pcDesc{
-  margin: 0 0 10px 0;
+  margin: 0 0 14px 0;
   font-size: var(--pc-desc);
-  line-height: 1.48;
+  line-height: 1.50;
   color: var(--text);
 
   display: -webkit-box;
@@ -111,6 +111,7 @@
 
   font-weight: 400;
   letter-spacing: 0.15px;
+  max-width: 62ch;
 }
 
 #placeCard .pc-icons{
