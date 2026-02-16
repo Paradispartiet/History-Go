@@ -5,7 +5,8 @@ window.openPlaceCard = async function (place) {
   if (!place) return;
 
   const card      = document.getElementById("placeCard");
-  const imgEl     = document.getElementById("pcImage");
+  const frontImgEl = document.getElementById("pcFrontImage");
+  const cardImgEl  = document.getElementById("pcCardImage");
   const titleEl   = document.getElementById("pcTitle");
   const metaEl    = document.getElementById("pcMeta");
   const descEl    = document.getElementById("pcDesc");
@@ -118,7 +119,8 @@ if (isNarrow) {
   card.classList.add("is-switching");
 
   // Basic content
-  if (imgEl) imgEl.src = (place.cardImage ?? place.image ?? "");    
+  if (frontImgEl) frontImgEl.src = (place.image ?? place.cardImage ?? "");
+  if (cardImgEl) cardImgEl.src  = (place.cardImage ?? place.image ?? "");
   if (titleEl) titleEl.textContent = place.name || "";
   if (metaEl)  metaEl.textContent  = `${place.category || ""} • radius ${place.r || 150} m`;
   if (descEl)  descEl.textContent  = place.desc || "";
