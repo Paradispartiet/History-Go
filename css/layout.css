@@ -90,7 +90,9 @@ body:not(.hg-app) .top-actions{
 
 body.hg-app .app-shell{
   position: relative;
-  height: 100%;
+  height: 100dvh;   /* 🔥 ikke 100% */
   width: 100%;
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
 }
