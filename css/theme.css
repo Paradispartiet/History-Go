@@ -127,26 +127,24 @@ body.hg-app:has(#placeCard[aria-hidden="false"])::before{
 /* ===================================================== */
 body.hg-app header.site-header{
   position: fixed;
-  inset: 0 0 auto 0;
+  left: 0;
+  right: 0;
+  top: 0;
 
   height: var(--hg-header-h);
   z-index: 20;
 
   display: flex;
   align-items: center;
-  gap: 12px;
+  justify-content: flex-start;
+  gap: 10px;
+  flex-wrap: nowrap;
 
-  padding-left: 12px;
-  padding-right: calc(12px + env(safe-area-inset-right));
+  padding: 2px calc(5px + env(safe-area-inset-right));
+  padding-right: calc(8px + env(safe-area-inset-right));
 
   background: #000;
-}
-
-header.site-header img.hg-brand{
-  height: 34px;
-  width: auto;
-  display: block;
-  flex: 0 0 auto;
+  overflow: visible;
 }
 
 /* ===================================================== */
@@ -173,6 +171,25 @@ body.hg-app .panel{
 /* 3) Topplinje, main & toast                            */
 /* ===================================================== */
 
+/* Stor logo i header (kan henge ned over nearby) */
+/* Logo i header: fast plassert oppe til venstre */
+.hg-brand{
+  position: absolute;
+  left: 2px;  /* nesten helt til venstre */
+  top: calc(env(safe-area-inset-top) + 10px); /* litt ned */
+
+  width: 60px;
+  height: 60px;
+
+  object-fit: contain;
+  display: block;
+
+  margin: 0;            /* viktig: fjerner “heng ned”-hack */
+  opacity: 0.95;
+  pointer-events: none;
+  z-index: 21;          /* over header-bakgrunn */
+}
+
 /* === Brand med ikon i headeren === */
 body.hg-app .brand{
   display: flex;
@@ -189,18 +206,20 @@ body.hg-app .brand{
   min-width: max-content;
 }
 
+body.hg-app .brand-logo{
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+  border-radius: 6px;
+  background: rgba(255,255,255,0.1);
+  padding: 2px;
+  display:block; /* <-- var none */
+}
 
 body.hg-app .brand.brand-icononly .brand-logo{
   width: 34px;
   height: 34px;
   object-fit: contain;
-}
-
-body.hg-app .brand-logo{
-  width: 34px;
-  height: 34px;
-  object-fit: contain;
-  flex: 0 0 auto;
 }
 
 body.hg-app .brand-name{
@@ -564,4 +583,3 @@ body.hg-app #btnExitMap:hover{
   70%  { transform: translate(-50%, -50%) scale(2.2); opacity: .10; }
   100% { transform: translate(-50%, -50%) scale(2.4); opacity: 0; }
 }
-
