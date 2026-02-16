@@ -1,0 +1,35 @@
+.app-footer{
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  background: #000;
+  border-top: 1px solid rgba(255,255,255,.06);
+
+  padding: 8px 12px calc(6px + env(safe-area-inset-bottom));
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.app-actions{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+}
+
+.app-actions button{
+  height: 56px;
+  padding: 0 16px;
+  border-radius: 999px;
+  font-size: 15px;
+}
+
+.app-nextup{
+  text-align:center;
+  padding:4px 0;
+  font-size:0.9rem;
+  opacity:.85;
+}
