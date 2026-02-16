@@ -51,6 +51,57 @@
     </div>
   </div>
 
+<!-- HEADER -->
+<header class="site-header">
+
+  <img class="hg-brand" src="bilder/logo_historygo.PNG" alt="History GO">
+  
+  <div class="top-actions">
+
+    <a id="miniProfile" class="miniProfileTop" href="profile.html" aria-label="Profil">
+      <span id="miniName" class="mpt-name">Utforsker #182</span>
+
+      <span class="mpt-badges" aria-label="Merker">
+        <span class="mpt-badgeIcon" aria-hidden="true"></span>
+        <span id="linkBadges" class="mpt-count">0</span>
+      </span>
+
+      <div class="mp-extra" aria-hidden="true">
+        <p id="miniStats" class="muted">
+          <span id="linkPlaces" class="linkish">0 steder</span>
+          <span id="linkQuiz" class="linkish">0 quizzer</span>
+        </p>
+
+        <div id="miniBadges" class="profile-badges"></div>
+
+        <div id="miniLastQuiz" class="profile-last-quiz" style="display:none;">
+          <img id="miniLastQuizImg" src="">
+          <span id="miniLastQuizName"></span>
+        </div>
+      </div>
+    </a>
+    
+    <button id="btnSeeMap" class="iconbtn" type="button" aria-label="Kartmodus" title="Kartmodus">⌖</button>
+
+    <input id="globalSearch" type="search" placeholder="Søk…" autocomplete="off">
+
+    <span id="geoStatus" class="geo-status geo-unknown" title="Posisjonstatus">…</span>
+
+    <button id="btnUnlockAll" class="iconbtn" type="button" aria-label="Unlock all" title="Unlock all">🔓</button>
+      
+    <label class="toggle">
+      <input id="openToggle" type="checkbox" />
+      <span></span>
+    </label>
+
+  </div>
+
+  <div id="searchResults"></div>
+
+</header>
+
+
+<!-- APP SHELL -->
 <div class="app-shell">
   
   <!-- KART -->
@@ -60,13 +111,6 @@
     <button id="btnCenter" title="Sentrer">⌖</button>
     <button id="btnExitMap" title="Lukk kart" aria-label="Lukk kart">✕</button>
   </div>
-
-<!-- HEADER -->
-<header class="site-header">
-
-  <img class="hg-brand" src="bilder/logo_historygo.PNG" alt="History GO">
-  
-  <div class="top-actions">
 
 <a id="miniProfile" class="miniProfileTop" href="profile.html" aria-label="Profil">
   <!-- Kun dette skal synes i topplinja -->
