@@ -118,9 +118,7 @@ if (isNarrow) {
   card.classList.add("is-switching");
 
   // Basic content
-  if (imgEl) {
-  imgEl.src = place.cardImage || place.image || "";
-    
+  if (imgEl) imgEl.src = (place.cardImage ?? place.image ?? "");    
   if (titleEl) titleEl.textContent = place.name || "";
   if (metaEl)  metaEl.textContent  = `${place.category || ""} • radius ${place.r || 150} m`;
   if (descEl)  descEl.textContent  = place.desc || "";
