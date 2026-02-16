@@ -18,7 +18,7 @@
   /* Utforsk-modus tuning (kart mer i bakgrunnen) */
   
   --hg-nearby-drop: 0px;    /* ingen senking – flush mot topplinja */
-  --hg-nearby-h: 200px;
+  --hg-nearby-h: 220px;
 }
 
 /* ============================================================
@@ -258,7 +258,7 @@
   -webkit-appearance:none;
   appearance:none;
 
-  padding: 4px 8px;
+  padding: 10px 16px;        /* mer luft */
   border-radius: 999px;
 
   border: 0;
@@ -266,8 +266,13 @@
   color: rgba(255,255,255,0.92);
 
   font-weight: 800;
-  font-size: 0.78rem;
+  font-size: 1rem;       /* større tekst */
   line-height: 1;
+
+  min-height: 44px;         /* bedre touch-area */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 
   box-shadow: none;
   outline: none;
