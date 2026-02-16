@@ -8,10 +8,6 @@
   --pc-pad: 12px;
   --pc-gap: 17px;
 
-  /* Størrelser (rektangel) */
-  --pc-img-w: 540px;
-  --pc-img-h: 380px;
-
   --pc-title: 1.55rem;
   --pc-meta: 1rem;
   --pc-desc: 1.05rem;
@@ -60,8 +56,11 @@
 
 #placeCard .pc-main{
   display: grid;
-  grid-template-columns: var(--pc-img-w) auto;
+
+  /* 🔥 Ingen fast pixelbredde */
+  grid-template-columns: minmax(0, 1fr) auto;
   grid-template-rows: auto auto;
+
   column-gap: var(--pc-gap);
   row-gap: 6px;
   align-items: start;
