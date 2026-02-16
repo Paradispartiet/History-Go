@@ -28,25 +28,20 @@
 #nearbyListContainer{
   position: absolute;
 
-  bottom: var(--pc-height);
+  top: var(--hg-header-h);      /* starter rett under header */
+  bottom: var(--pc-height);     /* stopper rett over placecard */
+
   left: 0;
   right: 0;
-
-  height: var(--hg-nearby-h);
-  width: 100%;
 
   z-index: 19;
 
   background: var(--hg-frame-bg);
-  border: 0;
-  border-radius: 0;
-  box-shadow: none;
-  backdrop-filter: none;
 
   display: flex;
   flex-direction: column;
 
-  overflow: hidden; /* ikke visible */
+  overflow: hidden;
 }
 
 
