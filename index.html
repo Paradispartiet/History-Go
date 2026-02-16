@@ -112,217 +112,125 @@
     <button id="btnExitMap" title="Lukk kart" aria-label="Lukk kart">✕</button>
   </div>
 
-<a id="miniProfile" class="miniProfileTop" href="profile.html" aria-label="Profil">
-  <!-- Kun dette skal synes i topplinja -->
-  <span id="miniName" class="mpt-name">Utforsker #182</span>
-
-  <span class="mpt-badges" aria-label="Merker">
-    <span class="mpt-badgeIcon" aria-hidden="true"></span>
-    <!-- behold id=linkBadges så eksisterende JS fortsatt treffer -->
-    <span id="linkBadges" class="mpt-count">0</span>
-  </span>
-
-  <!-- ALT under her beholdes for ikke å miste ting, men skjules i topplinja -->
-  <div class="mp-extra" aria-hidden="true">
-    <p id="miniStats" class="muted">
-      <span id="linkPlaces" class="linkish">0 steder</span>
-      <span id="linkQuiz" class="linkish">0 quizzer</span>
-    </p>
-
-    <div id="miniBadges" class="profile-badges"></div>
-
-    <div id="miniLastQuiz" class="profile-last-quiz" style="display:none;">
-      <img id="miniLastQuizImg" src="">
-      <span id="miniLastQuizName"></span>
-    </div>
-  </div>
-</a>
-    
-    <button id="btnSeeMap" class="iconbtn" type="button" aria-label="Kartmodus" title="Kartmodus">⌖</button>
-
-    <input id="globalSearch" type="search" placeholder="Søk…" autocomplete="off">
-
-    <span id="geoStatus" class="geo-status geo-unknown" title="Posisjonstatus">…</span>
-
-    <button id="btnUnlockAll" class="iconbtn" type="button" aria-label="Unlock all" title="Unlock all">🔓</button>
-      
-    <label class="toggle">
-      <input id="openToggle" type="checkbox" />
-      <span></span>
-    </label>
-  </div>
-
-  <!-- SØKERESULTATER (ligger fortsatt i headeren, men kan styles til å droppe ned) -->
-  <div id="searchResults"></div>
-
-</header>
-
-
   <!-- nearbylistcontainer -->
-<div id="nearbyListContainer" class="leftpanel">
+  <div id="nearbyListContainer" class="leftpanel">
 
-  <div class="leftpanel-head">
-    <div class="leftpanel-title">Utforsk</div>
+    <div class="leftpanel-head">
+      <div class="leftpanel-title">Utforsk</div>
 
-    <div class="nearby-row1">
-      <div class="nearby-tabs" role="tablist" aria-label="Utforsk">
+      <div class="nearby-row1">
+        <div class="nearby-tabs" role="tablist" aria-label="Utforsk">
 
-        <!-- FILTER-IKON -->
-        <button id="nearbyFilterBtn"
-                class="nearby-filter-icon"
-                type="button"
-                aria-label="Filter"></button>
+          <button id="nearbyFilterBtn"
+                  class="nearby-filter-icon"
+                  type="button"
+                  aria-label="Filter"></button>
 
-        <!-- TABBER -->
-        <button class="nearby-tab is-active"
-                data-leftmode="nearby"
-                type="button">Steder</button>
+          <button class="nearby-tab is-active"
+                  data-leftmode="nearby"
+                  type="button">Steder</button>
 
-        <button class="nearby-tab"
-                data-leftmode="people"
-                type="button">Folk</button>
+          <button class="nearby-tab"
+                  data-leftmode="people"
+                  type="button">Folk</button>
 
-        <button class="nearby-tab"
-                data-leftmode="nature"
-                type="button">Natur</button>
+          <button class="nearby-tab"
+                  data-leftmode="nature"
+                  type="button">Natur</button>
 
-        <button class="nearby-tab"
-                data-leftmode="routes"
-                type="button">Ruter</button>
+          <button class="nearby-tab"
+                  data-leftmode="routes"
+                  type="button">Ruter</button>
 
-        <button class="nearby-tab"
-                data-leftmode="badges"
-                type="button">Merker</button>
+          <button class="nearby-tab"
+                  data-leftmode="badges"
+                  type="button">Merker</button>
+
+        </div>
+
+        <select id="leftPanelMode"
+                class="leftpanel-select"
+                aria-label="Velg visning"
+                style="display:none">
+          <option value="nearby" selected>Nærmeste</option>
+          <option value="people">Folk</option>
+          <option value="nature">Natur</option>
+          <option value="routes">Ruter</option>
+          <option value="badges">Merker</option>
+        </select>
 
       </div>
+    </div>
 
-      <!-- skjult select -->
-      <select id="leftPanelMode"
-              class="leftpanel-select"
-              aria-label="Velg visning"
-              style="display:none">
-        <option value="nearby" selected>Nærmeste</option>
-        <option value="people">Folk</option>
-        <option value="nature">Natur</option>
-        <option value="routes">Ruter</option>
-        <option value="badges">Merker</option>
-      </select>
+    <div class="leftpanel-body">
+      <section id="panelNearby" class="leftpanel-view">
+        <div id="status" class="muted" style="display:none">Henter posisjon…</div>
+        <div class="nearby-row2">
+          <div id="nearbyList" class="nearby-strip"></div>
+        </div>
+      </section>
+
+      <section id="panelPeople" class="leftpanel-view" style="display:none;">
+        <div id="leftPeopleList" class="leftpanel-list"></div>
+      </section>
+
+      <section id="panelNature" class="leftpanel-view" style="display:none;">
+        <div id="leftNatureList" class="leftpanel-list"></div>
+      </section>
+
+      <section id="panelRoutes" class="leftpanel-view" style="display:none;">
+        <div id="leftRoutesList" class="leftpanel-list"></div>
+      </section>
+
+      <section id="panelBadges" class="leftpanel-view" style="display:none;">
+        <div id="leftBadgesList" class="leftpanel-list"></div>
+      </section>
 
     </div>
   </div>
 
-  <div class="leftpanel-body">  <!-- 1) Nærmeste -->
-  <section id="panelNearby" class="leftpanel-view">
-    <!-- status beholdes for logging/feilsøk, men skjules visuelt -->
-    <div id="status" class="muted" style="display:none">Henter posisjon…</div>
-
-    <div class="nearby-row2">
-      <div id="nearbyList" class="nearby-strip"></div>
-    </div>
-  </section>
-
-<!-- 2) People -->
-<section id="panelPeople" class="leftpanel-view" style="display:none;">
-  <div class="leftpanel-hint muted">People (kommer).</div>
-  <div id="leftPeopleList" class="leftpanel-list"></div>
-</section>
-
-<!-- 3) Natur -->
-<section id="panelNature" class="leftpanel-view" style="display:none;">
-  <div class="leftpanel-hint muted">Natur (kommer).</div>
-  <div id="leftNatureList" class="leftpanel-list"></div>
-</section>
-    
-  <!-- 4) Ruter -->
-  <section id="panelRoutes" class="leftpanel-view" style="display:none;">
-    <div class="leftpanel-hint muted">Velg en rute, eller åpne rutearket.</div>
-    <button class="chip ghost" onclick="openRoutesSheet()">Åpne ruter</button>
-    <div id="leftRoutesList" class="leftpanel-list"></div>
-  </section>
-    
-  <!-- 5) Merker -->
-  <section id="panelBadges" class="leftpanel-view" style="display:none;">
-    <div class="leftpanel-hint muted">Velg en kategori.</div>
-    <div id="leftBadgesList" class="leftpanel-list"></div>
-  </section>
-
-  
-  </div>
-</div>
-  
   <!-- PLACE CARD -->
-<div id="placeCard" aria-hidden="true">
-  <div class="pc-body">
+  <div id="placeCard" aria-hidden="true">
+    <div class="pc-body">
 
-<div class="pc-main">
+      <div class="pc-main">
+        <div class="pc-text">
+          <h2 id="pcTitle"></h2>
+          <div id="pcMeta" class="pc-meta"></div>
+          <p id="pcDesc" class="pc-desc"></p>
+        </div>
 
-  <!-- Tekst først -->
-  <div class="pc-text">
-    <h2 id="pcTitle"></h2>
-    <div id="pcMeta" class="pc-meta"></div>
-    <p id="pcDesc" class="pc-desc"></p>
-  </div>
+        <div class="pc-icons">
+          <div id="pcPeopleIcon" class="pc-round"></div>
+          <div id="pcNatureIcon" class="pc-round"></div>
+          <div id="pcBadgesIcon" class="pc-round"></div>
+        </div>
 
-  <!-- Ikoner på samme nivå som bilde -->
-  <div class="pc-icons">
-    <div id="pcPeopleIcon" class="pc-round" data-toggle="people"></div>
-    <div id="pcNatureIcon" class="pc-round" data-toggle="nature"></div>
-    <div id="pcBadgesIcon" class="pc-round" data-toggle="badges"></div>
-  </div>
+        <div class="pc-image-wrapper">
+          <img id="pcImage" src="" alt="">
+        </div>
+      </div>
 
-  <!-- Bilde nederst -->
-  <div class="pc-image-wrapper">
-  <img id="pcImage" src="" alt="">
-</div>
-</div>
+      <div class="pc-lists">
+        <div id="pcPeopleList" class="pc-list pc-people"></div>
+        <div id="pcNatureList" class="pc-list pc-nature-list"></div>
+        <div id="pcBadgesList" class="pc-list pc-badges-list"></div>
+      </div>
 
+      <div class="pc-footer">
+        <div class="pc-actions">
+          <button id="pcInfo" class="secondary">Mer info</button>
+          <button id="pcQuiz" class="primary">Ta quiz</button>
+          <button id="pcUnlock" class="primary">Lås opp</button>
+        </div>
 
+        <div id="mpNextUp" class="pc-nextup pc-nextup--bottom"></div>
+      </div>
 
-    
-<div class="pc-lists">
-    <!-- PEOPLE LIST -->
-  <div id="pcPeopleList" class="pc-list pc-people">
-    <!-- JS fyller denne med personer -->
-  </div>
-
-    <!-- NATURE LIST -->
-  <div id="pcNatureList" class="pc-list pc-nature-list">
-  <!-- JS fyller denne med flora / fauna -->
-  </div>
-
-    <!-- BADGES LIST -->
-  <div id="pcBadgesList" class="pc-list pc-badges-list">
-    <!-- JS fyller denne med merker -->
-  </div>
-</div>
-    
-<!-- FAST BUNN -->
-<div class="pc-footer">
-
-  <div class="pc-actions">
-    <button id="pcInfo"   class="secondary">Mer info</button>
-    <button id="pcQuiz"   class="primary">Ta quiz</button>
-    <button id="pcUnlock" class="primary">Lås opp</button>
-
-    <button id="pcRoute"   class="ghost pc-iconbtn" aria-label="Rute" title="Rute"></button>
-    <button id="pcObserve" class="ghost pc-iconbtn" aria-label="Observasjon" title="Observasjon"></button>
-    <button id="pcNote"    class="ghost pc-iconbtn" aria-label="Notat" title="Notat"></button>
-
-    <div class="brand brand-icononly">
-      <img class="brand-logo" src="bilder/logo_historygo.PNG" alt="History GO">
     </div>
   </div>
 
-  <!-- Mini-wonderkammer / NextUp – helt nederst -->
-  <div id="mpNextUp" class="pc-nextup pc-nextup--bottom"></div>
-
 </div>
-
-  </div> <!-- /.pc-body -->
-</div>   <!-- /#placeCard -->
-
- </div> <!-- /app-shell --> 
-
   
   <!-- SERVICE WORKER -->
   <script>
