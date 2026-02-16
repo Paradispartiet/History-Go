@@ -192,33 +192,47 @@
 
   <!-- PLACE CARD -->
   <div id="placeCard" aria-hidden="true">
-    <div class="pc-body">
+<div class="pc-body">
 
-      <div class="pc-main">
-        <div class="pc-text">
-          <h2 id="pcTitle"></h2>
-          <div id="pcMeta" class="pc-meta"></div>
-          <p id="pcDesc" class="pc-desc"></p>
-        </div>
-
-        <div class="pc-icons">
-          <div id="pcPeopleIcon" class="pc-round"></div>
-          <div id="pcNatureIcon" class="pc-round"></div>
-          <div id="pcBadgesIcon" class="pc-round"></div>
-        </div>
-
-        <div class="pc-image-wrapper">
-          <img id="pcImage" src="" alt="">
-        </div>
-      </div>
-
-      <div class="pc-lists">
-        <div id="pcPeopleList" class="pc-list pc-people"></div>
-        <div id="pcNatureList" class="pc-list pc-nature-list"></div>
-        <div id="pcBadgesList" class="pc-list pc-badges-list"></div>
-      </div>
-    </div>
+  <!-- Tekst øverst -->
+  <div class="pc-text">
+    <h2 id="pcTitle"></h2>
+    <div id="pcMeta" class="pc-meta"></div>
+    <p id="pcDesc" class="pc-desc"></p>
   </div>
+
+  <!-- 2x2 Grid -->
+  <div class="pc-grid">
+
+    <!-- 1: FrontcardImage -->
+    <div class="pc-frontcard">
+      <img id="pcFrontImage" src="" alt="">
+    </div>
+
+    <!-- 3: Ikon-kvadrat -->
+    <div class="pc-quad pc-icons-quad">
+      <div id="pcPeopleIcon" class="pc-round"></div>
+      <div id="pcNatureIcon" class="pc-round"></div>
+      <div id="pcFloraIcon" class="pc-round"></div>
+      <div id="pcBadgesIcon" class="pc-round"></div>
+    </div>
+
+    <!-- 2: CardImage -->
+    <div class="pc-cardimage">
+      <img id="pcCardImage" src="" alt="">
+    </div>
+
+    <!-- 4: Actions-kvadrat -->
+    <div class="pc-quad pc-actions-quad">
+      <button id="pcRoute" class="pc-action"></button>
+      <button id="pcObserve" class="pc-action"></button>
+      <button id="pcNote" class="pc-action"></button>
+      <button id="pcEvents" class="pc-action"></button>
+    </div>
+
+  </div>
+
+</div>
 
 </div>
 
