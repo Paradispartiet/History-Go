@@ -126,10 +126,10 @@ body.hg-app:has(#placeCard[aria-hidden="false"])::before{
 /* HEADER: helt svart, klikkbart, over watermark          */
 /* ===================================================== */
 body.hg-app header.site-header{
-  position: fixed;
+  position: absolute;   /* 🔥 ikke fixed */
+  top: 0;
   left: 0;
   right: 0;
-  top: 0;
 
   height: var(--hg-header-h);
   z-index: 20;
