@@ -283,12 +283,13 @@
 /* Midten scroller */
 #placeCard .pc-scroll{
   flex: 1 1 auto;
-  overflow: hidden;          /* ✅ ingen scroll */
+  overflow-y: auto;     /* 🔥 dette stopper skyving */
+  overflow-x: hidden;
+
   padding: var(--pc-pad);
   padding-top: 8px;
   padding-bottom: 10px;
 
-  /* ✅ tving innhold til å ligge under hverandre */
   display: flex;
   flex-direction: column;
   gap: 8px;
