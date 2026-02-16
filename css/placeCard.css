@@ -49,17 +49,77 @@
 /* Innhold: bilde venstre – tekst høyre                   */
 /* ===================================================== */
 
-#placeCard .pc-main{
-  display: grid;
 
-  grid-template-columns: 340px 1fr;   /* 🔥 bilde + resten */
+/* Grid */
+#placeCard .pc-grid{
+  display:grid;
+  grid-template-columns: 240px 1fr;
   grid-template-rows: auto auto;
+  gap:16px;
+  padding: 18px;
+}
 
-  column-gap: var(--pc-gap);
-  row-gap: 10px;
-  align-items: start;
+/* Frontcard */
+.pc-frontcard{
+  grid-column:1;
+  grid-row:1;
+  aspect-ratio:4/5;
+  overflow:hidden;
+  border-radius:16px;
+}
 
-  padding-inline: 18px;
+.pc-frontcard img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+}
+
+/* CardImage */
+.pc-cardimage{
+  grid-column:1;
+  grid-row:2;
+  aspect-ratio:4/2;
+  overflow:hidden;
+  border-radius:14px;
+}
+
+.pc-cardimage img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+}
+
+/* Høyre kvadrater */
+.pc-quad{
+  display:grid;
+  gap:10px;
+}
+
+.pc-icons-quad{
+  grid-column:2;
+  grid-row:1;
+  grid-template-columns:repeat(2,1fr);
+}
+
+.pc-actions-quad{
+  grid-column:2;
+  grid-row:2;
+}
+
+/* Rundinger */
+.pc-round{
+  aspect-ratio:1/1;
+  border-radius:50%;
+  background:rgba(255,255,255,0.08);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* Actions */
+.pc-action{
+  height:42px;
+  border-radius:12px;
 }
 
 #placeCard .pc-text{
@@ -114,33 +174,21 @@
   grid-row: 1;
 }
 
-#placeCard .pc-image-wrapper{
-  grid-column: 1;
-  grid-row: 2;
-
-  width: 240px;
+.pc-frontcard{
   aspect-ratio: 4 / 5;
   overflow: hidden;
   border-radius: 16px;
-
-  background: #000; 
+  background: #000;
 }
 
-#placeCard .pc-image-wrapper img{
+.pc-frontcard img{
   width: 100%;
   height: 100%;
-  object-fit: contain;   /* 🔥 ikke cover */
+  object-fit: contain;
   display: block;
 }
 
-#placeCard .pc-icons{
-  grid-column: 2;
-  grid-row: 2;
 
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
 /* ===================================================== */
 /* Personer: horisontal scroll + fine runde bilder        */
 /* ===================================================== */
@@ -225,7 +273,7 @@
 /* Smooth “sted skifter”                                  */
 /* ===================================================== */
 
-#placeCard .pc-main,
+#placeCard .pc-grid,
 #placeCard #pcPeopleList,
 #placeCard #pcDesc{
   transition: opacity 120ms ease, transform 120ms ease;
@@ -499,4 +547,24 @@
 .hg-popup-desc{
   opacity:0.92;
   line-height:1.35;
+}
+
+@media (max-width: 720px){
+
+  #placeCard .pc-grid{
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+
+  .pc-frontcard,
+  .pc-cardimage,
+  .pc-icons-quad,
+  .pc-actions-quad{
+    grid-column:1 !important;
+    grid-row:auto !important;
+  }
+
+  .pc-icons-quad{
+    grid-template-columns:repeat(4,1fr);
+  }
 }
