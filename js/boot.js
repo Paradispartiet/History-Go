@@ -192,7 +192,6 @@ if (window.QuizEngine) {
   }
 
   if (typeof wire === "function") wire();
-  if (typeof requestLocation === "function") requestLocation();
   if (typeof renderCollection === "function") renderCollection();
   if (typeof renderGallery === "function") renderGallery();
 
