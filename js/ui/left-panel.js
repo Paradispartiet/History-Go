@@ -8,61 +8,7 @@ function hg$(id) {
   return document.getElementById(id);
 }
 
-// ============================================================
-// PLACE CARD – collapse / expand
-// ============================================================
 
-function getPlaceCardEl() {
-  return hg$("placeCard");
-}
-
-function isPlaceCardCollapsed() {
-  return !!getPlaceCardEl()?.classList.contains("is-collapsed");
-}
-
-function collapsePlaceCard() {
-  const pc = getPlaceCardEl();
-  if (!pc) return;
-  pc.classList.add("is-collapsed");
-  document.body.classList.add("pc-collapsed");
-  try { localStorage.setItem("hg_placecard_collapsed_v1", "1"); } catch {}
-  window.HGMap?.resize?.();
-  window.MAP?.resize?.();
-}
-
-function expandPlaceCard() {
-  const pc = getPlaceCardEl();
-  if (!pc) return;
-  pc.classList.remove("is-collapsed");
-  document.body.classList.remove("pc-collapsed");
-  try { localStorage.setItem("hg_placecard_collapsed_v1", "0"); } catch {}
-  window.HGMap?.resize?.();
-  window.MAP?.resize?.();
-}
-
-function togglePlaceCard() {
-  isPlaceCardCollapsed() ? expandPlaceCard() : collapsePlaceCard();
-}
-
-function initPlaceCardCollapse() {
-  const pc = getPlaceCardEl();
-  if (!pc) return;
-
-  try {
-    if (localStorage.getItem("hg_placecard_collapsed_v1") === "1") {
-      collapsePlaceCard();
-    }
-  } catch {}
-
-  // kun topp-strip (~32px) toggler
-  pc.addEventListener("click", (e) => {
-    const rect = pc.getBoundingClientRect();
-    if ((e.clientY - rect.top) <= 32) {
-      e.preventDefault();
-      togglePlaceCard();
-    }
-  });
-}
 
 // ============================================================
 // LEFT PANEL MODES
