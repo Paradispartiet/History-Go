@@ -105,16 +105,20 @@ body.hg-app .app-shell{
   position:absolute;
   top:50%;
   left:50%;
-  width:var(--app-design-w);
-  height:var(--app-design-h);
+
+  width:1280px;   /* din designbredde */
+  height:800px;   /* din designhøyde */
+
   transform-origin:top left;
 
-  transform: translate(-50%, -50%) scale(
-    max(
-      calc(100vw / var(--app-design-w)),
-      calc(100vh / var(--app-design-h))
-    )
-  );
+  transform:
+    translate(-50%, -50%)
+    scale(
+      min(
+        calc(100vw / 1280),
+        calc(100vh / 800)
+      )
+    );
 
   overflow:hidden;
 }
