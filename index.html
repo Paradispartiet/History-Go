@@ -223,12 +223,14 @@
     </div>
 
     <!-- 4: Actions-kvadrat -->
-    <div class="pc-quad pc-actions-quad">
-      <button id="pcRoute" class="pc-action"></button>
-      <button id="pcObserve" class="pc-action"></button>
-      <button id="pcNote" class="pc-action"></button>
-      <button id="pcEvents" class="pc-action"></button>
+    <div class="pc-quad pc-events-quad" id="pcEventsBox" aria-label="Det som skjer her">
+     <div class="pc-events-head">
+      <span class="pc-events-title">På stedet</span>
+      <button id="pcAddEvent" class="pc-events-add" type="button" aria-label="Legg til">＋</button>
     </div>
+
+  <div id="pcEvents" class="pc-events-list"></div>
+</div>
 
   </div>
 
