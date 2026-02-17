@@ -573,6 +573,17 @@ function initPlaceCardCollapse() {
   } catch {}
 }
 
+// Collapse-knapp
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.getElementById("pcCollapseBtn");
+  if (!btn) return;
+
+  btn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    togglePlaceCard();
+  });
+});
+
 // Mini-preview åpner placeCard igjen
 document.addEventListener("DOMContentLoaded", () => {
   const mini = document.getElementById("pcMini");
