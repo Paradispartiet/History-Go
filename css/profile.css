@@ -1,17 +1,16 @@
 /* ============================================================
-   === START PROFIL & MERKER – HISTORY GO v18+ ===============
+   === START PROFIL & MERKER – ENGINE VERSION ===============
    ============================================================ */
 
-/* === PROFIL: KART BAK ALT === */
+/* === KART (styres av layout.css – IKKE fixed) === */
 #map{
-  position: fixed;
+  position: absolute;
   inset: 0;
-  width: 100vw;
-  height: 100vh;
   z-index: 0;
-  background: #000; /* svart bakgrunn om tiles ikke laster */
+  background: #000;
 }
 
+/* Lag over kart */
 .profile-page .site-header,
 .profile-page #profileMain,
 .profile-page .map-controls,
@@ -20,137 +19,206 @@
   z-index: 2;
 }
 
-/* Toast skal aldri påvirke layout */
+/* Toast – canvas-basert */
 #toast{
-  position: fixed;
-  top: calc(env(safe-area-inset-top) + 14px);
+  position: absolute;
+  top: 20px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 20000;
 }
-/* Kartknapper over */
+
+/* Kartknapper */
 .map-controls{
-  position: fixed;
-  top: 74px;      /* justér om du vil */
+  position: absolute;
+  top: 74px;
   right: 12px;
   z-index: 3;
 }
 
-/* PROFILKORT */
-.profile-card {
+/* ============================================================
+   PROFILKORT
+   ============================================================ */
+
+.profile-card{
   position: relative;
   display: flex;
   align-items: center;
+
   background: rgba(25,25,30,0.9);
   border: 1px solid rgba(255,255,255,0.08);
   border-left: 5px solid #f6c800;
   border-radius: 10px;
+
   padding: 14px 18px;
   margin: 10px 12px 18px;
+
   color: #fff;
   box-shadow: 0 0 20px rgba(0,0,0,0.25);
 }
-.profile-right { flex: 1; margin-left: 14px; }
-.profile-right h2 { margin: 0; font-size: 1.2em; }
-.profile-sub { color: #ccc; font-size: 0.9em; margin: 3px 0; }
-.profile-stats { font-size: 0.85em; color: #bbb; }
 
-/* Ny pen “Endre”-knapp */
-#editProfileBtn {
+.profile-right{
+  flex: 1;
+  margin-left: 14px;
+}
+
+.profile-right h2{
+  margin: 0;
+  font-size: 19px;   /* 1.2em → ~19px */
+}
+
+.profile-sub{
+  color: #ccc;
+  font-size: 14px;   /* 0.9em */
+  margin: 3px 0;
+}
+
+.profile-stats{
+  font-size: 14px;   /* 0.85em avrundet */
+  color: #bbb;
+}
+
+/* ============================================================
+   EDIT BUTTON
+   ============================================================ */
+
+#editProfileBtn{
   background: rgba(255,255,255,0.05);
   border: 1px solid rgba(255,255,255,0.12);
+
   padding: 6px 12px;
   border-radius: 8px;
+
   color: #f6c800;
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 15px;   /* 0.95rem → 15px */
+
   cursor: pointer;
   transition: background .2s ease, transform .15s ease;
 }
 
-#editProfileBtn:hover {
+#editProfileBtn:hover{
   background: rgba(255,255,255,0.12);
   transform: translateY(-1px);
 }
 
-/* PROFILMODAL */
-.profile-modal {
-  position: fixed;
+/* ============================================================
+   PROFILMODAL (overlay inni app-shell)
+   ============================================================ */
+
+.profile-modal{
+  position: absolute;
   inset: 0;
-  display: none; /* ← denne må være NONE i stedet for flex */
+
+  display: none;
   align-items: center;
   justify-content: center;
+
   background: rgba(0,0,0,.7);
   z-index: 9999;
 }
-.profile-modal-inner {
+
+.profile-modal-inner{
   background: rgba(25,25,30,.95);
   border: 1px solid rgba(255,255,255,.1);
   border-radius: 10px;
+
   padding: 20px 24px;
   color: #fff;
-  max-width: 300px; width: 80%;
+
+  width: 300px;        /* fast bredde */
   text-align: center;
 }
-.profile-modal-inner input {
+
+.profile-modal-inner input{
   width: 100%;
   margin: 6px 0 12px;
   padding: 8px;
+
   border: 1px solid rgba(255,255,255,.1);
   border-radius: 6px;
+
   background: rgba(255,255,255,.05);
   color: #fff;
 }
-.profile-modal-inner button {
+
+.profile-modal-inner button{
   margin-top: 10px;
   background: #f6c800;
   border: none;
   color: #000;
+
   padding: 8px 14px;
   border-radius: 6px;
+
   cursor: pointer;
   font-weight: 600;
 }
 
-/* DELING / PLAKAT */
-button.primary.small {
-  font-size: .9em;
+/* ============================================================
+   DELING / PLAKAT
+   ============================================================ */
+
+button.primary.small{
+  font-size: 14px;   /* .9em */
   padding: 6px 12px;
   border-radius: 6px;
+
   background: #f6c800;
   border: none;
   color: #000;
+
   cursor: pointer;
   transition: opacity .25s;
 }
-button.primary.small:hover { opacity: .9; }
 
-.profile-poster {
-  width: 400px; height: 600px;
+button.primary.small:hover{
+  opacity: .9;
+}
+
+/* ============================================================
+   POSTER
+   ============================================================ */
+
+.profile-poster{
+  width: 400px;
+  height: 600px;
+
   position: relative;
-  background: #111; color: #fff;
+  background: #111;
+  color: #fff;
+
   font-family: system-ui, sans-serif;
   border-radius: 20px;
   overflow: hidden;
+
   box-shadow: 0 0 25px rgba(0,0,0,.6);
 }
-.poster-bg {
-  position: absolute; inset: 0;
+
+.poster-bg{
+  position: absolute;
+  inset: 0;
+
   background:
     radial-gradient(circle at 70% 30%, rgba(246,200,0,.15), transparent 70%),
     radial-gradient(circle at 20% 80%, rgba(255,255,255,.1), transparent 70%),
     #0a0a0a;
 }
-.poster-content {
+
+.poster-content{
   text-align: center;
   padding: 60px 20px;
   position: relative;
   z-index: 2;
 }
-.poster-logo {
-  position: absolute; bottom: 25px;
+
+.poster-logo{
+  position: absolute;
+  bottom: 25px;
+
   width: 100%;
   text-align: center;
+
   font-weight: 700;
   letter-spacing: 2px;
   color: #f6c800;
@@ -158,12 +226,15 @@ button.primary.small:hover { opacity: .9; }
 }
 
 
+
 /* --- HISTORIEKORT TIDSLINJE (profilvisning) --- */
-#timelineSection {
+
+#timelineSection{
   margin-top: 32px;
   padding-top: 12px;
 }
-.timeline-progress {
+
+.timeline-progress{
   width: 100%;
   height: 6px;
   background: rgba(255,255,255,0.08);
@@ -171,18 +242,21 @@ button.primary.small:hover { opacity: .9; }
   overflow: hidden;
   margin: 8px 0 4px 0;
 }
-.timeline-progress-bar {
+
+.timeline-progress-bar{
   height: 100%;
   width: 0%;
   background: linear-gradient(90deg, #f6c800, #ffb703);
   transition: width 0.4s ease;
 }
-.timeline-progress-text {
-  font-size: 0.85em;
+
+.timeline-progress-text{
+  font-size: 14px;
   margin-bottom: 10px;
   text-align: right;
 }
-.timeline-body {
+
+.timeline-body{
   display: flex;
   overflow-x: auto;
   gap: 30px;
@@ -190,13 +264,15 @@ button.primary.small:hover { opacity: .9; }
   scroll-snap-type: x mandatory;
   align-items: flex-start;
 }
-.timeline-card {
+
+.timeline-card{
   flex: 0 0 auto;
   width: 140px;
   text-align: center;
   scroll-snap-align: center;
 }
-.timeline-card img {
+
+.timeline-card img{
   width: 100%;
   border-radius: 10px;
   object-fit: cover;
@@ -204,15 +280,18 @@ button.primary.small:hover { opacity: .9; }
   margin-bottom: 6px;
   transition: transform 0.2s ease;
 }
-.timeline-name {
-  font-size: 0.9em;
+
+.timeline-name{
+  font-size: 14px;
   font-weight: 500;
 }
-.timeline-year {
-  font-size: 0.8em;
+
+.timeline-year{
+  font-size: 13px;
   color: #ccc;
 }
-.timeline-card:hover img {
+
+.timeline-card:hover img{
   transform: scale(1.05);
 }
 
@@ -220,7 +299,7 @@ button.primary.small:hover { opacity: .9; }
 
 
 /* CIVICATION – Jobbtilbud */
-#civiOfferBox {
+#civiOfferBox{
   display: block;          /* JS styrer synlighet */
   padding: 12px;
   border-radius: 8px;
@@ -228,20 +307,20 @@ button.primary.small:hover { opacity: .9; }
 }
 
 /* ParadiseCoin (PC) */
-.profile-pc {
+.profile-pc{
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.profile-pc .pc-icon {
+.profile-pc .pc-icon{
   width: 14px;
   height: 14px;
   margin-bottom: 2px;
 }
 
 /* CIVICATION – Decision box (Jobbtilbud) */
-#civiOfferBox {
+#civiOfferBox{
   border: 1px solid rgba(255, 215, 0, 0.35);
   background: linear-gradient(
     180deg,
@@ -251,30 +330,29 @@ button.primary.small:hover { opacity: .9; }
   box-shadow: 0 0 0 1px rgba(255, 215, 0, 0.15);
 }
 
-#civiOfferBox .lk-topic {
+#civiOfferBox .lk-topic{
   font-weight: 600;
   color: #ffd700;
 }
 
-#civiOfferBox .profile-subaction .btn {
+#civiOfferBox .profile-subaction .btn{
   flex: 1;
 }
 
-#civiOfferBox .btn {
+#civiOfferBox .btn{
   font-weight: 600;
 }
 
-#civiOfferBox .btn.secondary {
+#civiOfferBox .btn.secondary{
   opacity: 0.85;
 }
-
 
 
 /* ======================================
    SAMLEDE KORT – VISNINGSBOKS
    ====================================== */
 
-.collection-cards-body {
+.collection-cards-body{
   display: flex;
   gap: 22px;
   overflow-x: auto;
@@ -282,14 +360,14 @@ button.primary.small:hover { opacity: .9; }
   scroll-snap-type: x mandatory;
 }
 
-.collection-card {
+.collection-card{
   flex: 0 0 auto;
   width: 200px;
   scroll-snap-align: start;
   text-align: center;
 }
 
-.collection-card img {
+.collection-card img{
   width: 100%;
   height: auto;
   border-radius: 14px;
@@ -299,18 +377,18 @@ button.primary.small:hover { opacity: .9; }
   transition: transform .2s ease;
 }
 
-.collection-card:hover img {
+.collection-card:hover img{
   transform: scale(1.04);
 }
 
-.collection-card-name {
+.collection-card-name{
   margin-top: 6px;
-  font-size: .9rem;
+  font-size: 14px;   /* 0.9rem */
   color: #fff;
 }
 
-.collection-card-year {
-  font-size: .8rem;
+.collection-card-year{
+  font-size: 13px;   /* 0.8rem */
   color: #ccc;
 }
 
@@ -320,42 +398,55 @@ button.primary.small:hover { opacity: .9; }
 /* ===================================================== */
 /* HEADER – PROFILVERSJON                                */
 /* ===================================================== */
-.profile-page .site-header {
+
+.profile-page .site-header{
   display: flex;
   align-items: center;
   justify-content: flex-start;
   gap: 10px;
   padding: 14px 18px;
-  background: linear-gradient(180deg, rgba(10,25,41,.95), rgba(10,25,41,.65) 70%, transparent);
+
+  background: linear-gradient(
+    180deg,
+    rgba(10,25,41,.95),
+    rgba(10,25,41,.65) 70%,
+    transparent
+  );
+
   border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 
-.back-link {
+.back-link{
   text-decoration: none;
-  font-size: 1.6rem;
+  font-size: 26px;
   font-weight: 600;
   color: #fff;
+
   background: rgba(255,255,255,0.08);
   border: 1px solid rgba(255,255,255,0.1);
   border-radius: 8px;
+
   padding: 4px 10px;
   transition: background .2s ease;
 }
-.back-link:hover {
+
+.back-link:hover{
   background: rgba(255,255,255,0.15);
 }
 
-/* Samme logo og brand-stil som forsiden */
-.brand {
+/* Brand */
+.brand{
   display: flex;
   align-items: center;
   gap: 10px;
+
   font-weight: 800;
-  font-size: 1.3rem;
+  font-size: 21px;
   color: #fff;
   letter-spacing: 0.3px;
 }
-.brand-logo {
+
+.brand-logo{
   width: 32px;
   height: 32px;
   object-fit: contain;
@@ -363,78 +454,80 @@ button.primary.small:hover { opacity: .9; }
   background: rgba(255,255,255,0.1);
   padding: 3px;
 }
-.brand-name {
+
+.brand-name{
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   font-weight: 700;
   color: #f6c800;
 }
 
 
-
-
 /* ===================================================== */
-/* 17) PROFILSIDE – KORT, GRID OG LISTE                  */
+/* PROFILSIDE – KORT, GRID OG LISTE                      */
 /* ===================================================== */
 
-.profile-section {
+.profile-section{
   margin: 22px auto;
   padding: 14px 16px;
+
   background: var(--panel);
   border: 1px solid var(--panel-border);
   border-radius: 14px;
   box-shadow: var(--shadow);
+
   max-width: 640px;
 }
 
-.profile-section h2 {
-  font-size: 1.1rem;
+.profile-section h2{
+  font-size: 18px;
   font-weight: 600;
   margin-bottom: 10px;
   color: var(--accent);
 }
 
-/* Profilkortet med statistikk */
-#profileCard {
+/* Profilkort */
+#profileCard{
   text-align: center;
   padding-top: 20px;
 }
 
-#profileName {
-  font-size: 1.4rem;
+#profileName{
+  font-size: 22px;
   font-weight: 700;
   margin-bottom: 12px;
 }
 
-#profileCard .stats {
+#profileCard .stats{
   display: flex;
   justify-content: center;
   gap: 24px;
 }
 
-#profileCard .stats div {
+#profileCard .stats div{
   text-align: center;
 }
 
-#profileCard .stats span {
-  font-size: 1.4rem;
+#profileCard .stats span{
+  font-size: 22px;
   font-weight: 600;
   color: var(--accent);
 }
 
-#profileCard small {
+#profileCard small{
   color: var(--text-dim);
-  font-size: 0.8rem;
+  font-size: 13px;
 }
 
-/* Grid for merker og personer */
-.grid {
+/* Grid – ENGINE VERSION */
+.grid{
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  grid-template-columns: repeat(6, 80px);
+  justify-content: center;
   gap: 10px;
 }
 
 .grid img,
-.grid .badge-icon {
+.grid .badge-icon{
   width: 70px;
   height: 70px;
   border-radius: 50%;
@@ -442,39 +535,39 @@ button.primary.small:hover { opacity: .9; }
   border: 2px solid var(--panel-border);
 }
 
-/* Liste for steder og tidslinje */
+/* Liste */
 .list,
-.timeline {
+.timeline{
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
 .list li,
-.timeline li {
+.timeline li{
   padding: 8px 0;
   border-bottom: 1px solid var(--panel-border);
 }
 
 .list li:last-child,
-.timeline li:last-child {
+.timeline li:last-child{
   border-bottom: none;
 }
 
-.muted {
+.muted{
   color: var(--text-dim);
-  font-size: 0.9rem;
+  font-size: 14px;
 }
 
 /* Knapper */
-#actions {
+#actions{
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
 }
 
-.btn {
+.btn{
   background: var(--accent);
   color: #000;
   border: none;
@@ -485,23 +578,24 @@ button.primary.small:hover { opacity: .9; }
   transition: background 0.2s;
 }
 
-.btn:hover {
+.btn:hover{
   background: #ffea70;
 }
 
-.btn.danger {
+.btn.danger{
   background: #c23;
   color: #fff;
 }
 
-.btn.danger:hover {
+.btn.danger:hover{
   background: #e33;
 }
 
 /* ===================================================== */
-/* 17nn) STEDER PÅ PROFILSIDEN – SAMME STIL SOM KARTKORT  */
+/* STEDER PÅ PROFILSIDEN                                 */
 /* ===================================================== */
-.place-card {
+
+.place-card{
   background: rgba(255,255,255,0.03);
   border: 1px solid rgba(255,255,255,0.08);
   border-radius: 10px;
@@ -512,71 +606,73 @@ button.primary.small:hover { opacity: .9; }
   cursor: pointer;
 }
 
-.place-card:hover {
+.place-card:hover{
   background: rgba(255,255,255,0.07);
   transform: translateY(-2px);
 }
 
-.place-card .name {
+.place-card .name{
   font-weight: 700;
-  font-size: 1.05rem;
+  font-size: 17px;
   color: #fff;
   margin-bottom: 2px;
 }
 
-.place-card .meta {
-  font-size: 0.88rem;
+.place-card .meta{
+  font-size: 14px;
   color: var(--muted);
   margin-bottom: 6px;
 }
 
-.place-card .desc {
-  font-size: 0.9rem;
+.place-card .desc{
+  font-size: 14px;
   line-height: 1.45;
   color: #d0d8e4;
 }
 
 
-/* === Badge-modal === */
-#badgeModal {
-  position: fixed;
+/* ===================================================== */
+/* BADGE MODAL – ENGINE VERSION                          */
+/* ===================================================== */
+
+#badgeModal{
+  position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.65);     /* mørkere bakgrunn */
+  background: rgba(0,0,0,0.65);
   backdrop-filter: blur(4px);
   z-index: 999;
+  display: flex;
   justify-content: center;
   align-items: center;
 }
 
-#badgeModal .modal-inner {
+#badgeModal .modal-inner{
   background: rgba(20,20,20,0.92);
   border: 1px solid var(--panel-border);
   border-radius: 16px;
-  width: 92vw;
-  max-width: 540px;
-  max-height: 85vh;
+
+  width: 540px;
+  max-height: 720px;
+
   overflow-y: auto;
-  overscroll-behavior: contain;
   padding: 0;
+
   box-shadow: 0 0 25px rgba(0,0,0,0.5);
   color: var(--text);
   position: relative;
 }
 
-/* === Sticky Header === */
-.badge-modal-header {
-  position: sticky;
-  top: 0;
-  z-index: 10;
+/* Header (ikke sticky i engine) */
+.badge-modal-header{
+  position: relative;
   background: rgba(20,20,20,0.96);
-  backdrop-filter: blur(10px);
   padding: 22px 20px 16px;
   border-bottom: 1px solid rgba(255,255,255,0.1);
   text-align: center;
 }
 
-/* Lukk knapp */
-.close-btn {
+/* Close */
+.close-btn{
   position: absolute;
   top: 12px;
   right: 12px;
@@ -588,17 +684,15 @@ button.primary.small:hover { opacity: .9; }
   font-weight: 600;
 }
 
-.close-btn:hover {
-  opacity: 0.9;
-}
+.close-btn:hover{ opacity: .9; }
 
-.close-btn:active {
+.close-btn:active{
   transform: scale(0.96);
   transition: transform 0.05s;
 }
 
-/* Badge header-elementer */
-.badge-img {
+/* Badge header */
+.badge-img{
   width: 80px;
   height: 80px;
   border-radius: 12px;
@@ -606,7 +700,7 @@ button.primary.small:hover { opacity: .9; }
   border: 2px solid var(--panel-border);
 }
 
-.badge-title {
+.badge-title{
   background: var(--accent);
   color: #000;
   display: inline-block;
@@ -614,15 +708,15 @@ button.primary.small:hover { opacity: .9; }
   border-radius: 8px;
   margin: 8px 0;
   font-weight: 600;
-  font-size: 1.1em;
+  font-size: 18px;
 }
 
-.badge-level {
+.badge-level{
   color: var(--text-dim);
   margin-bottom: 6px;
 }
 
-.badge-progress {
+.badge-progress{
   background: rgba(255,255,255,0.12);
   height: 6px;
   border-radius: 6px;
@@ -630,186 +724,85 @@ button.primary.small:hover { opacity: .9; }
   margin: 4px 0 10px;
 }
 
-.badge-progress-bar {
+.badge-progress-bar{
   height: 100%;
   background: var(--accent);
   transition: width .4s ease;
 }
 
-.badge-progress-text {
-  font-size: 0.85em;
+.badge-progress-text{
+  font-size: 14px;
   color: var(--text-dim);
   margin-top: 6px;
 }
 
-/* === Innhold (scroll) === */
-.badge-modal-body {
+.badge-modal-body{
   padding: 20px 22px 26px;
 }
 
-/* === Quiz-historikk === */
-.badge-quizzes {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+/* Quiz-historikk */
+
+.badge-quiz-info strong{
+  font-size: 15px;
 }
 
-.badge-quiz-item {
-  display: flex;
-  gap: 12px;
-  margin-bottom: 18px;
+.badge-quiz-info span{
+  font-size: 13px;
 }
 
-.badge-quiz-img {
-  width: 58px;
-  height: 58px;
-  border-radius: 8px;
-  object-fit: cover;
-  flex-shrink: 0;
-  border: 2px solid var(--panel-border);
-}
-
-.badge-quiz-info {
-  flex: 1;
-  color: var(--text);
-  text-align: left;
-}
-
-.badge-quiz-info strong {
-  font-size: 0.95em;
-  color: var(--text);
-}
-
-.badge-quiz-info span {
-  font-size: 0.82em;
-  color: var(--text-dim);
-}
-
-/* Spørsmål + svar */
-.badge-quiz-answers {
-  list-style: none;
-  padding-left: 0;
-  margin: 8px 0 0 0;
-}
-
-.badge-quiz-answers li {
-  font-size: 0.82em;
-  margin: 4px 0;
-  line-height: 1.35;
-  padding-bottom: 6px;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-  color: #a7f59d; /* grønne svar */
+.badge-quiz-answers li{
+  font-size: 13px;
 }
 
 
+/* ===================================================== */
+/* PERSONER – FAST GRID (ENGINE)                         */
+/* ===================================================== */
 
-/* ============================
-   PERSONER – AVATAR GRID
-   ============================ */
-
-#peopleGrid {
+#peopleGrid{
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(75px, 1fr));
+  grid-template-columns: repeat(6, 80px);
+  justify-content: center;
   gap: 14px;
   padding-top: 10px;
 }
 
-.avatar-card {
-  text-align: center;
-  cursor: pointer;
-}
-
-.avatar-img {
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid var(--panel-border);
-  background: #111;
-  margin-bottom: 6px;
-}
-
-.avatar-name {
-  font-size: 0.8rem;
-  color: var(--text);
-  line-height: 1.25;
-}
-
-.face-img {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid var(--panel-border);
-  background: #111;
-}
-
-.profile-subaction {
-  margin-top: 6px;
-}
-
-.link-small {
-  font-size: 14px;
-  opacity: 0.75;
-  text-decoration: none;
-  color: #fff;
-}
-
-.link-small:hover {
-  opacity: 1;
-}
-
-
-.latest-trivia-box {
-  margin-top: 12px;
-  padding: 12px;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 10px;
-}
-
-.lt-topic {
-  font-size: 15px;
-  font-weight: 600;
-  margin-bottom: 4px;
-}
-
-.lt-category {
+.avatar-name{
   font-size: 13px;
-  opacity: 0.7;
 }
+
+
+/* ===================================================== */
+/* GRID SCROLLBOXER – ENGINE VERSION                     */
+/* ===================================================== */
 
 #userPlacesGrid,
 #userPlacesList,
-#collectionGrid {
-  max-height: 55vh;
+#collectionGrid{
+  max-height: 600px;
   overflow-y: auto;
   padding-right: 6px;
 }
 
 
-/* =====================================================
-   MAP-ONLY MODUS (profil)
-   - "Se kart" legger til body.map-only
-   - Vi skjuler panelene og viser kart-knappene
-   ===================================================== */
+/* ===================================================== */
+/* MAP-ONLY MODUS – ENGINE VERSION                       */
+/* ===================================================== */
 
 body.profile-page #map{
-  position: fixed;
+  position: absolute;
   inset: 0;
   z-index: 0;
 }
 
-/* Paneler + header over kartet i normal modus */
 body.profile-page .site-header,
 body.profile-page #profileMain{
   position: relative;
   z-index: 2;
 }
 
-/* Kartkontroller: skjult normalt */
 body.profile-page .map-controls{
-  position: fixed;
+  position: absolute;
   top: 72px;
   right: 12px;
   z-index: 5;
@@ -817,7 +810,6 @@ body.profile-page .map-controls{
   gap: 8px;
 }
 
-/* Kartkontroller-knapper */
 body.profile-page .map-controls button{
   width: 44px;
   height: 44px;
@@ -825,10 +817,9 @@ body.profile-page .map-controls button{
   border: 1px solid rgba(255,255,255,0.15);
   background: rgba(0,0,0,0.35);
   color: #fff;
-  font-size: 1.2rem;
+  font-size: 19px;
 }
 
-/* MAP-ONLY: skjul innhold, vis kartkontroller */
 body.profile-page.map-only .site-header{
   display: none;
 }
@@ -841,6 +832,97 @@ body.profile-page.map-only .map-controls{
   display: flex;
 }
 
-#userPlacesGrid,
-#userPlacesList,
-#collectionGrid { ... }
+/* Quiz-liste */
+.badge-quizzes{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.badge-quiz-item{
+  display: flex;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.badge-quiz-img{
+  width: 58px;
+  height: 58px;
+  border-radius: 8px;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 2px solid var(--panel-border);
+}
+
+.badge-quiz-info{
+  flex: 1;
+  color: var(--text);
+  text-align: left;
+}
+
+.badge-quiz-answers{
+  list-style: none;
+  padding-left: 0;
+  margin: 8px 0 0 0;
+}
+
+/* Avatar-kort */
+.avatar-card{
+  text-align: center;
+  cursor: pointer;
+}
+
+.avatar-img{
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--panel-border);
+  background: #111;
+  margin-bottom: 6px;
+}
+
+.face-img{
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--panel-border);
+  background: #111;
+}
+
+/* Små handlinger */
+.profile-subaction{
+  margin-top: 6px;
+}
+
+.link-small{
+  font-size: 14px;
+  opacity: 0.75;
+  text-decoration: none;
+  color: #fff;
+}
+
+.link-small:hover{
+  opacity: 1;
+}
+
+/* Latest trivia */
+.latest-trivia-box{
+  margin-top: 12px;
+  padding: 12px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 10px;
+}
+
+.lt-topic{
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.lt-category{
+  font-size: 13px;
+  opacity: 0.7;
+}
