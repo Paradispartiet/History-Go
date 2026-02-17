@@ -516,6 +516,13 @@ if (badgesEl) {
 // PLACE CARD – collapse / expand
 // ============================================================
 
+function setPlaceCardMiniVisible(on){
+  const mini = document.getElementById("pcMini");
+  if (!mini) return;
+  mini.style.display = on ? "block" : "none";
+  mini.setAttribute("aria-hidden", on ? "false" : "true");
+}
+
 function getPlaceCardEl() {
   return hg$("placeCard");
 }
@@ -530,6 +537,7 @@ function collapsePlaceCard() {
   pc.classList.add("is-collapsed");
   document.body.classList.add("pc-collapsed");
   try { localStorage.setItem("hg_placecard_collapsed_v1", "1"); } catch {}
+  setPlaceCardMiniVisible(true);
   window.HGMap?.resize?.();
   window.MAP?.resize?.();
 }
@@ -540,6 +548,7 @@ function expandPlaceCard() {
   pc.classList.remove("is-collapsed");
   document.body.classList.remove("pc-collapsed");
   try { localStorage.setItem("hg_placecard_collapsed_v1", "0"); } catch {}
+  setPlaceCardMiniVisible(false);
   window.HGMap?.resize?.();
   window.MAP?.resize?.();
 }
@@ -557,17 +566,18 @@ function initPlaceCardCollapse() {
       collapsePlaceCard();
     }
   } catch {}
-
-  // kun topp-strip (~32px) toggler
-  pc.addEventListener("click", (e) => {
-    const rect = pc.getBoundingClientRect();
-    if ((e.clientY - rect.top) <= 32) {
-      e.preventDefault();
-      togglePlaceCard();
-    }
-  });
 }
 
+// Mini-preview åpner placeCard igjen
+document.addEventListener("DOMContentLoaded", () => {
+  const mini = document.getElementById("pcMini");
+  if (!mini) return;
+
+  mini.addEventListener("click", (e) => {
+    e.preventDefault();
+    expandPlaceCard();
+  });
+});
 
 // ============================================================
 // 6. ÅPNE placeCard FRA PERSON (kart-modus)
