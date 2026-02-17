@@ -102,38 +102,31 @@ body.hg-app{
 }
 
 body.hg-app .app-shell{
-  position: absolute;
-  top: 0;
-  left: 0;
+  position:absolute;
+  top:50%;
+  left:50%;
+  width:var(--app-design-w);
+  height:var(--app-design-h);
+  transform-origin:top left;
 
-  width: 1280px;
-  height: 800px;
-
-  transform-origin: top left;
-
-  transform: scale(
-    min(
-      calc(100vw / 1280),
-      calc(100vh / 800)
+  transform: translate(-50%, -50%) scale(
+    max(
+      calc(100vw / var(--app-design-w)),
+      calc(100vh / var(--app-design-h))
     )
   );
 
-  overflow: hidden;
+  overflow:hidden;
 }
 
 /* Footer (fast pixel, del av canvas) */
 body.hg-app .app-footer{
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-
-  height: 77px;          /* fast design */
-  z-index: 2100;         /* over placeCard */
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height: var(--footer-h);
+  z-index: 2100;
 }
 
 /* Footer actions */
