@@ -107,13 +107,13 @@
     }
   }
 
-  window.BottomSheetController = {
-    init,
-    setState,
-    open,
-    peek,
-    hide,
-    toggle,
-    getState: () => current
-  };
+  window.bottomSheetController = {
+   init,
+   setState,
+   open,
+   peek,
+   hide,
+   toggle,
+   getState: () => current
+};
 })();
