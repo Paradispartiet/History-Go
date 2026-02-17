@@ -103,10 +103,59 @@
   grid-template-columns:repeat(2,1fr);
 }
 
-.pc-actions-quad{
+.pc-events-quad{
   grid-column:2;
   grid-row:2;
+
+  padding:10px;
+  border-radius:14px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+
+  min-height: 140px;
 }
+
+.pc-events-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.pc-events-title{
+  font-weight:700;
+  opacity:.9;
+}
+
+.pc-events-add{
+  width:34px;
+  height:34px;
+  border-radius:10px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.pc-events-list{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+
+.pc-event{
+  padding:8px 10px;
+  border-radius:12px;
+  background: rgba(0,0,0,0.25);
+  border: 1px solid rgba(255,255,255,0.06);
+  line-height:1.15;
+}
+
+.pc-event .t{ font-weight:700; }
+.pc-event .m{ opacity:.85; font-size:.92em; }
 
 /* Rundinger */
 .pc-round{
@@ -116,12 +165,6 @@
   display:flex;
   align-items:center;
   justify-content:center;
-}
-
-/* Actions */
-.pc-action{
-  height:42px;
-  border-radius:12px;
 }
 
 #placeCard .pc-text{
