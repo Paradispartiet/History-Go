@@ -32,10 +32,12 @@
 #placeCard{
   position: absolute;
   left: 0;
-  bottom: 0;
+  right: 0;
+  bottom: var(--footer-h);
+  top: auto;
 
-  width: calc(var(--pc-design-w) * 1px);
-  height: calc(var(--pc-design-h) * 1px);
+  height: var(--pc-height);
+  width: 100%;
 
   z-index: 2000;
   background: #000;
