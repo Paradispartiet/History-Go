@@ -512,6 +512,62 @@ if (badgesEl) {
   card.setAttribute("aria-hidden", "false");
 };
 
+// ============================================================
+// PLACE CARD – collapse / expand
+// ============================================================
+
+function getPlaceCardEl() {
+  return hg$("placeCard");
+}
+
+function isPlaceCardCollapsed() {
+  return !!getPlaceCardEl()?.classList.contains("is-collapsed");
+}
+
+function collapsePlaceCard() {
+  const pc = getPlaceCardEl();
+  if (!pc) return;
+  pc.classList.add("is-collapsed");
+  document.body.classList.add("pc-collapsed");
+  try { localStorage.setItem("hg_placecard_collapsed_v1", "1"); } catch {}
+  window.HGMap?.resize?.();
+  window.MAP?.resize?.();
+}
+
+function expandPlaceCard() {
+  const pc = getPlaceCardEl();
+  if (!pc) return;
+  pc.classList.remove("is-collapsed");
+  document.body.classList.remove("pc-collapsed");
+  try { localStorage.setItem("hg_placecard_collapsed_v1", "0"); } catch {}
+  window.HGMap?.resize?.();
+  window.MAP?.resize?.();
+}
+
+function togglePlaceCard() {
+  isPlaceCardCollapsed() ? expandPlaceCard() : collapsePlaceCard();
+}
+
+function initPlaceCardCollapse() {
+  const pc = getPlaceCardEl();
+  if (!pc) return;
+
+  try {
+    if (localStorage.getItem("hg_placecard_collapsed_v1") === "1") {
+      collapsePlaceCard();
+    }
+  } catch {}
+
+  // kun topp-strip (~32px) toggler
+  pc.addEventListener("click", (e) => {
+    const rect = pc.getBoundingClientRect();
+    if ((e.clientY - rect.top) <= 32) {
+      e.preventDefault();
+      togglePlaceCard();
+    }
+  });
+}
+
 
 // ============================================================
 // 6. ÅPNE placeCard FRA PERSON (kart-modus)
@@ -520,7 +576,7 @@ window.openPlaceCardByPerson = function(person) {
   if (!person) return;
 
   const relPlaces = getPlacesForPerson(person.id);
-let place = relPlaces.length ? relPlaces[0] : null;
+   let place = relPlaces.length ? relPlaces[0] : null;
 
   // Hvis person ikke har et registrert sted → generer et "midlertidig"
   if (!place) {
@@ -538,3 +594,9 @@ let place = relPlaces.length ? relPlaces[0] : null;
 
   openPlaceCard(place);
 };
+
+
+window.collapsePlaceCard = collapsePlaceCard;
+window.expandPlaceCard = expandPlaceCard;
+window.togglePlaceCard = togglePlaceCard;
+window.isPlaceCardCollapsed = isPlaceCardCollapsed;
