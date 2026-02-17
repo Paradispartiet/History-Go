@@ -24,14 +24,10 @@
   --kg-pad: 16px;
   --kg-pad-lg: 22px;
 
-  --kg-max: 1100px;
 }
 
-html, body{
-  height: 100%;
-}
 
-body{
+.hg-knowledge{
   margin: 0;
   background: radial-gradient(1200px 700px at 20% -20%, rgba(246,200,0,0.12), transparent 55%),
               radial-gradient(1200px 700px at 80% 0%, rgba(52,125,255,0.10), transparent 55%),
@@ -60,14 +56,6 @@ a:active{
   display: block;
 }
 
-/* Container (støtter både .container, main, og evt wrapper-klasser) */
-.container,
-main,
-.knowledge-wrap{
-  max-width: var(--kg-max);
-  margin: 0 auto;
-  padding: 0 var(--kg-pad);
-}
 
 /* -----------------------------
    2) Header / hero
@@ -124,18 +112,14 @@ main,
   line-height: 1.45;
 }
 
-@media (max-width: 900px){
-  .knowledge-hero{
-    grid-template-columns: 1fr;
-  }
-}
+
 
 /* -----------------------------
    3) Filter-rad (sticky)
 ----------------------------- */
 
 .knowledge-filters{
-  position: sticky;
+  position: absolute
   top: 0;
   z-index: 20;
 
@@ -172,14 +156,7 @@ main,
 
 .knowledge-filters select:focus{
   border-color: rgba(246,200,0,0.55);
-}
 
-@media (max-width: 520px){
-  .knowledge-filters{
-    justify-content: flex-start;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
 }
 
 /* -----------------------------
@@ -338,10 +315,6 @@ hr{
    9) Responsiv finpuss
 ----------------------------- */
 
-@media (max-width: 520px){
-  .knowledge-header{
-    padding: 18px var(--kg-pad) 12px;
-  }
 
   .knowledge-hero h1{
     font-size: 1.75rem;
