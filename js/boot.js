@@ -209,8 +209,8 @@ if (window.LayerManager) {
   LayerManager.init();
 }
 
-if (window.BottomSheetController?.init) {
-  window.BottomSheetController.init();
+if (window.bottomSheetController?.init) {
+  window.bottomSheetController.init();
 }
 
 boot().then(() => {
