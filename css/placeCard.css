@@ -511,23 +511,6 @@
   transform: translateY(100%);
 }
 
-/* scaling wrapper */
-#placeCard .pc-scale{
-  width: calc(var(--pc-design-w) * 1px);
-  height: calc(var(--pc-design-h) * 1px);
-
-  transform-origin: left bottom;
-
-  transform: scale(
-    min(
-      1,
-      min(
-        calc(100vw / var(--pc-design-w)),
-        calc(100vh / var(--pc-design-h))
-      )
-    )
-  );
-}
 
 /* =========================
    FLORA – vakker “samling”
