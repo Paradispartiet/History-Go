@@ -18,6 +18,10 @@
   --panel-border: transparent;
 
   --pc-collapsed-h: 26px; /* kun handle-stripen */
+
+  --pc-design-w: 834;   /* din designbredde i px */
+  --pc-design-h: 780;   /* din designhøyde i px */
+
 }
 
 /* ===================================================== */
@@ -26,20 +30,21 @@
 
 
 #placeCard{
-  position: absolute;   /* 🔥 viktig */
+  position: absolute;
   left: 0;
-  right: 0;
   bottom: 0;
-  top:auto;
 
-  height: var(--pc-height);
-  width: 100%;
+  width: calc(var(--pc-design-w) * 1px);
+  height: calc(var(--pc-design-h) * 1px);
 
   z-index: 2000;
   background: #000;
   box-shadow: 0 -12px 34px rgba(0,0,0,.40);
   overflow: hidden;
+
+  transition: transform .28s ease;
 }
+
 
 #placeCard::before{
   content:"";
@@ -499,12 +504,27 @@
   z-index: 10;   /* trenger ikke 100 */
 }
 
-#placeCard{
-  transition: transform .28s ease;
-}
-
+/* collapse */
 #placeCard.is-collapsed{
   transform: translateY(100%);
+}
+
+/* scaling wrapper */
+#placeCard .pc-scale{
+  width: calc(var(--pc-design-w) * 1px);
+  height: calc(var(--pc-design-h) * 1px);
+
+  transform-origin: left bottom;
+
+  transform: scale(
+    min(
+      1,
+      min(
+        calc(100vw / var(--pc-design-w)),
+        calc(100vh / var(--pc-design-h))
+      )
+    )
+  );
 }
 
 /* =========================
@@ -575,3 +595,29 @@
   line-height:1.35;
 }
 
+/* =====================================================
+   RESPONSIV SKALERING – frys komposisjon
+   ===================================================== */
+
+#placeCard{
+  transform-origin: bottom center;
+}
+
+/* Skaler hele kortet proporsjonalt */
+@media (max-width: 1200px){
+  #placeCard{
+    transform: scale(.9);
+  }
+}
+
+@media (max-width: 1000px){
+  #placeCard{
+    transform: scale(.8);
+  }
+}
+
+@media (max-width: 800px){
+  #placeCard{
+    transform: scale(.7);
+  }
+}
