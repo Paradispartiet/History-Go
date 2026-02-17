@@ -477,29 +477,34 @@
 }
 
 .pc-collapse-btn{
-  position:absolute;
-  top:10px;
-  right:12px;
-  width:36px;
-  height:36px;
-  border-radius:50%;
+  position: absolute;
+  top: 10px;
+  right: 12px;
+
+  width: 36px;
+  height: 36px;
+
+  border-radius: 50%;
   background: rgba(0,0,0,.6);
-  color:#fff;
-  border:none;
-  font-size:18px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  cursor:pointer;
-  z-index:100;   /* 🔥 viktig */
+  color: #fff;
+  border: none;
+
+  font-size: 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  z-index: 10;   /* trenger ikke 100 */
 }
 
-#placeCard {
+#placeCard{
   transition: transform .28s ease;
 }
 
 #placeCard.is-collapsed{
-  transform: translate(-50%, 100%);
+  transform: translateY(100%);
 }
 
 /* =========================
