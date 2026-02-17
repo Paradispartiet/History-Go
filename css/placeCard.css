@@ -8,9 +8,9 @@
   --pc-pad: 12px;
   --pc-gap: 17px;
 
-  --pc-title: 1.55rem;
-  --pc-meta: 1rem;
-  --pc-desc: 1.05rem;
+  --pc-title: 25px;
+  --pc-meta: 16px;
+  --pc-desc: 17px;
 
   --pc-person-img: 66px;
 
@@ -19,9 +19,8 @@
 
   --pc-collapsed-h: 26px; /* kun handle-stripen */
 
-  --pc-design-w: 834;   /* din designbredde i px */
-  --pc-design-h: 780;   /* din designhøyde i px */
-
+  --pc-design-w: 834;   /* designbredde i px */
+  --pc-design-h: 780;   /* designhøyde i px */
 }
 
 /* ===================================================== */
@@ -61,7 +60,7 @@
 /* Grid */
 #placeCard .pc-grid{
   display:grid;
-  grid-template-columns: minmax(240px, 38%) 1fr;
+  grid-template-columns: 320px 1fr;
   grid-template-rows: auto auto;
   gap:16px;
   padding: 18px;
@@ -163,7 +162,7 @@
 }
 
 .pc-event .t{ font-weight:700; }
-.pc-event .m{ opacity:.85; font-size:.92em; }
+.pc-event .m{ font-size:15px; }
 
 /* Rundinger */
 .pc-round{
@@ -263,7 +262,7 @@
 }
 
 #placeCard #pcPeopleList .pc-person span{
-  font-size: 0.85rem;
+  font-size: 14px;
   color: #fff;
   opacity: .92;
   text-align: center;
