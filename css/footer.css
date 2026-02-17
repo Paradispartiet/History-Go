@@ -10,8 +10,9 @@
   padding: 8px 12px calc(6px + env(safe-area-inset-bottom));
 
   display: flex;
-  flex-direction: column;
-  gap: 8px;
+  flex-direction: row;      /* ✅ samme linje */
+  align-items: center;      /* ✅ vertikalt sentrert */
+  gap: 10px;
 }
 
 .pc-mini{
@@ -33,6 +34,7 @@
 }
 
 .app-actions{
+  flex: 1 1 auto;           /* ✅ tar resten av linja */
   display:flex;
   justify-content:center;
   gap:10px;
