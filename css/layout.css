@@ -1,123 +1,96 @@
-/* layout.css – kun struktur for ikke-app-sider
-   Appen (body.hg-app) styles i theme.css (scopet).
-*/
+/* ============================================================
+   CORE APP LAYOUT – UI ENGINE BASE
+   ============================================================ */
 
-/* =========================
-   Global base layout
-   ========================= */
-main {
-  position: relative;
-  z-index: 2;
-  overflow: visible;
-}
-
-.panel {
-  position: relative;
-  overflow: visible;
-}
-
-/* =========================
-   Header / brand (IKKE app)
-   ========================= */
-body:not(.hg-app) header{
-  position: relative;
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 14px 14px;
-
-  background: var(--panel-bg, #121212);
-  border-bottom: 1px solid rgba(255,255,255,.06);
-}
-
-/* Brand med ikon i headeren (IKKE app) */
-body:not(.hg-app) .brand{
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-weight: 800;
-  font-size: 1.2rem;
-  color: #fff;
-  text-transform: uppercase;
-  letter-spacing: 0.3px;
-  white-space: nowrap;
-}
-
-body:not(.hg-app) .brand-logo{
-  width: 30px;
-  height: 30px;
-  object-fit: contain;
-  border-radius: 6px;
-  background: rgba(255,255,255,0.1);
-  padding: 3px;
-}
-
-body:not(.hg-app) .brand-name{
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  font-weight: 700;
-  color: #f6c800;
-  white-space: nowrap;
-}
-
-/* Actions (IKKE app) */
-body:not(.hg-app) .actions{
-  display:flex;
-  gap:10px;
-  align-items:center;
-}
-
-body:not(.hg-app) .toggle{
-  display:flex;
-  gap:6px;
-  align-items:center;
-  font-size:.9rem;
-}
-
-body:not(.hg-app) .toggle input{
-  accent-color: var(--primary);
-}
-
-body:not(.hg-app) .top-actions{
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-/* =====================================================
-   APP SHELL – History Go (Fixed Canvas Mode)
-===================================================== */
-
-:root{
-  --app-design-w: 1280;
-  --app-design-h: 800;
-  --footer-h: 77px;
-}
-
-/* App body */
 body.hg-app{
   margin:0;
   overflow:hidden;
   background:#000;
 }
 
+/* ============================================================
+   APP SHELL
+   ============================================================ */
+
 body.hg-app .app-shell{
-  position: absolute;
-  top: 0;
-  left: 0;
+  position:absolute;
+  left:0;
+  top:0;
 
-  width: calc(var(--app-design-w) * 1px);
-  height: calc(var(--app-design-h) * 1px);
+  width:1280px;
+  height:820px;
 
-  transform-origin: top left;
-
-  transform: scale(
-    min(
-      calc(100dvw / var(--app-design-w)),
-      calc(100dvh / var(--app-design-h))
-    )
-  );
-
-  overflow: hidden;
+  overflow:hidden;
 }
 
+/* ============================================================
+   HEADER
+   ============================================================ */
+
+body.hg-app .site-header{
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  height:60px;
+
+  z-index:100;
+}
+
+/* ============================================================
+   MAIN (MAP AREA)
+   ============================================================ */
+
+body.hg-app .app-main{
+  position:absolute;
+  top:60px;
+  left:0;
+  right:0;
+  bottom:80px; /* footer height */
+
+  overflow:hidden;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+
+body.hg-app .app-footer{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height:80px;
+
+  z-index:200;
+
+  background:#000;
+  border-top:1px solid rgba(255,255,255,.08);
+
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:10px;
+}
+
+/* ============================================================
+   MAP
+   ============================================================ */
+
+#map{
+  position:absolute;
+  inset:0;
+  z-index:0;
+}
+
+/* ============================================================
+   PLACE CARD LAYER (NO LOGIC HERE)
+   ============================================================ */
+
+#placeCard{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:80px; /* same as footer height */
+  z-index:100;
+}
