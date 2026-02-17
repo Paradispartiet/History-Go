@@ -15,11 +15,8 @@
   }
 
   function calculateScale(vw, vh){
-    return Math.min(
-      vw / DESIGN_WIDTH,
-      vh / DESIGN_HEIGHT
-    );
-  }
+  return vw / DESIGN_WIDTH;
+}
 
   function applyScale(scale){
     if (!shell) return;
