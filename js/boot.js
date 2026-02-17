@@ -195,6 +195,10 @@ if (window.QuizEngine) {
   if (typeof renderCollection === "function") renderCollection();
   if (typeof renderGallery === "function") renderGallery();
 
+    if (typeof initPlaceCardCollapse === "function") {
+    initPlaceCardCollapse();
+  }
+
 }
 
 boot().then(() => {
