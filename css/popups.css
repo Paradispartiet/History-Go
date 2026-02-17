@@ -1,11 +1,11 @@
-/* ===================================================== */
-/* REWARD POPUP – HISTORY GO v22 (for makePopup-systemet) */
-/* ===================================================== */
+/* =====================================================
+   REWARD POPUP – ENGINE VERSION
+   ===================================================== */
 
-.hg-popup.reward-popup .hg-popup-inner {
+.hg-popup.reward-popup .hg-popup-inner{
   position: relative;
-  width: min(360px, 90vw);
-  max-height: 85vh;
+  width: 360px;
+  max-height: 720px;
   overflow-y: auto;
 
   background: rgba(20, 25, 35, 0.96);
@@ -17,8 +17,7 @@
   animation: rewardIn .25s ease-out;
 }
 
-/* Bilde på toppen */
-.hg-popup.reward-popup .reward-img {
+.hg-popup.reward-popup .reward-img{
   width: 90px;
   height: 90px;
   border-radius: 12px;
@@ -27,29 +26,26 @@
   border: 2px solid rgba(255,255,255,0.25);
 }
 
-/* Overskrift */
-.hg-popup.reward-popup .reward-title {
-  font-size: 1.4rem;
+.hg-popup.reward-popup .reward-title{
+  font-size: 22px;
   font-weight: 700;
   margin: 4px 0 6px;
   color: #f6c800;
 }
 
-/* Undertittel */
-.hg-popup.reward-popup .reward-sub {
-  font-size: 1rem;
+.hg-popup.reward-popup .reward-sub{
+  font-size: 16px;
   color: #fff;
   margin-bottom: 18px;
   font-weight: 500;
 }
 
-/* OK-knapp */
-.hg-popup.reward-popup .reward-ok {
+.hg-popup.reward-popup .reward-ok{
   background: #f6c800;
   color: #000;
   padding: 10px 16px;
   border-radius: 10px;
-  font-size: 1rem;
+  font-size: 16px;
   font-weight: 600;
   border: none;
   cursor: pointer;
@@ -57,55 +53,21 @@
   transition: background .2s ease;
 }
 
-.hg-popup.reward-popup .reward-ok:hover {
+.hg-popup.reward-popup .reward-ok:hover{
   background: #ffe15a;
 }
 
-/* Clean entry animasjon */
-@keyframes rewardIn {
-  0% {
-    opacity: 0;
-    transform: scale(0.85);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
+/* Animation */
+@keyframes rewardIn{
+  0% { opacity: 0; transform: scale(.85); }
+  100% { opacity: 1; transform: scale(1); }
 }
 
+/* =====================================================
+   UNIVERSAL POPUP BASE
+   ===================================================== */
 
-/* ===================================================== */
-/* HISTORISK KORT I REWARD-POPUP (2:1, fade + zoom)      */
-/* ===================================================== */
-
-.hg-popup.reward-popup .reward-card-img {
-  width: 92%;
-  max-width: 440px;
-  border-radius: 16px;
-  border: 3px solid #f6c800;
-  display: block;
-  margin: 14px auto 22px auto;
-  background: #000;
-
-  opacity: 0;
-  transform: scale(0.88);
-  transition: opacity .45s ease-out, transform .45s cubic-bezier(.22, .68, 0, 1.4);
-}
-
-.hg-popup.reward-popup .reward-card-img.visible {
-  opacity: 1 !important;
-  transform: scale(1) !important;
-}
-
-
-
-
-
-/* ============================================================
-   UNIVERSAL PERSON/PLACE POPUP – HISTORY GO
-   ============================================================ */
-
-.hg-popup {
+.hg-popup{
   position: absolute;
   inset: 0;
   background: rgba(0,0,0,0.65);
@@ -116,20 +78,19 @@
   animation: hgFadeIn .25s ease;
 }
 
-/* Ensure reward-popup is above everything except quiz close interactions */
-.hg-popup.reward-popup {
-  z-index: 10060 !important;
+.hg-popup.reward-popup{
+  z-index: 10060;
 }
 
-@keyframes hgFadeIn {
+@keyframes hgFadeIn{
   from { opacity: 0; transform: scale(.96); }
   to   { opacity: 1; transform: scale(1); }
 }
 
-.hg-popup-inner {
+.hg-popup-inner{
   position: relative;
   width: 420px;
-  max-height: 90vh;
+  max-height: 720px;
   overflow-y: auto;
   background: rgba(15,15,20,0.95);
   border-radius: 16px;
@@ -138,16 +99,14 @@
   box-shadow: 0 0 35px rgba(0,0,0,0.6);
 }
 
-/* Wider layout for person- and place-popups */
+/* Wider layouts */
 .hg-popup.person-popup .hg-popup-inner,
-.hg-popup.place-popup .hg-popup-inner {
-  width: min(560px, 92vw);
+.hg-popup.place-popup .hg-popup-inner{
+  width: 560px;
 }
 
-/* ---------------------------------- */
-/* Close button */
-/* ---------------------------------- */
-.hg-popup-close {
+/* Close */
+.hg-popup-close{
   position: absolute;
   top: 12px;
   right: 12px;
@@ -157,25 +116,22 @@
   border: 1px solid rgba(255,255,255,0.2);
   background: rgba(255,255,255,0.1);
   color: #fff;
-  font-size: 1.2rem;
+  font-size: 19px;
   cursor: pointer;
 }
 
-/* ---------------------------------- */
-/* Top elements */
-/* ---------------------------------- */
-
+/* Titles */
 .hg-popup-name,
-.hg-popup-title {
+.hg-popup-title{
   text-align: center;
-  font-size: 1.35rem;
+  font-size: 22px;
   font-weight: 600;
   margin: 6px 0 12px;
   color: #fff;
 }
 
-/* Face image */
-.hg-popup-face {
+/* Images */
+.hg-popup-face{
   width: 160px;
   height: 160px;
   object-fit: cover;
@@ -184,16 +140,14 @@
   margin: 0 auto 12px;
 }
 
-/* Place main image */
-.hg-popup-img {
+.hg-popup-img{
   width: 100%;
   border-radius: 12px;
   margin-bottom: 12px;
   object-fit: cover;
 }
 
-/* Kortbilde nederst til høyre */
-.hg-popup-cardimg {
+.hg-popup-cardimg{
   position: absolute;
   bottom: 24px;
   right: 24px;
@@ -205,8 +159,7 @@
   border: 2px solid rgba(255,255,255,0.3);
 }
 
-/* Thumbnail card for places */
-.hg-popup-cardthumb {
+.hg-popup-cardthumb{
   width: 100px;
   height: 100px;
   object-fit: contain;
@@ -215,80 +168,63 @@
   display: block;
 }
 
-/* ---------------------------------- */
 /* Sections */
-/* ---------------------------------- */
-
-.hg-section {
+.hg-section{
   margin-top: 20px;
 }
 
-.hg-section h3 {
+.hg-section h3{
   margin: 0 0 6px;
-  font-size: 1.05rem;
+  font-size: 17px;
   color: #f6c800;
 }
 
-/* Wiki text – sekundær */
-.hg-wiki {
+.hg-wiki{
   line-height: 1.45;
-  color: #bbb;          /* mykere og tydelig sekundær */
-  font-size: 0.92rem;   /* litt mindre enn primærtekst */
+  color: #bbb;
+  font-size: 15px;
   margin-top: 4px;
 }
 
-/* Verk-listen */
-.hg-works {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-.hg-works li {
-  padding: 4px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-}
-/* Primær beskrivelse (popupDesc) */
-.hg-popupdesc {
+.hg-popupdesc{
   line-height: 1.55;
-  color: #fff;         
+  color: #fff;
   margin: 12px 0 0;
-  font-size: 1rem;
+  font-size: 16px;
   font-weight: 400;
 }
-/* ---------------------------------- */
-/* Places list */
-/* ---------------------------------- */
-.hg-places {
+
+/* Lists */
+.hg-places{
   display: flex;
   flex-direction: column;
   gap: 6px;
 }
-.hg-place {
+
+.hg-place{
   padding: 6px 10px;
   background: rgba(255,255,255,0.05);
   border-radius: 8px;
   cursor: pointer;
   transition: background .2s;
 }
-.hg-place:hover {
+
+.hg-place:hover{
   background: rgba(255,255,255,0.12);
 }
 
-.hg-muted {
+.hg-muted{
   color: #999;
-  font-size: 0.9rem;
+  font-size: 14px;
 }
 
-/* ---------------------------------- */
-/* Quiz button inside popup */
-/* ---------------------------------- */
-
-.hg-quiz-btn {
+/* Quiz button */
+.hg-quiz-btn{
   background: #FFD600;
   border: none;
   padding: 10px 14px;
   border-radius: 8px;
-  font-size: 1rem;
+  font-size: 16px;
   font-weight: 600;
   margin-top: 10px;
   cursor: pointer;
@@ -296,17 +232,14 @@
   width: 100%;
 }
 
-.hg-quiz-btn:hover {
+.hg-quiz-btn:hover{
   background: #ffe45c;
 }
 
-/* ============================================================
-   RELATIONS POPUP (utvidet relasjon / nettverk)
-   ============================================================ */
-
+/* Relations popup */
 .hg-popup.relations-popup .hg-popup-inner{
-  width: min(640px, 94vw);
-  max-height: 88vh;
+  width: 640px;
+  max-height: 720px;
   padding: 18px 18px 16px;
 }
 
@@ -322,4 +255,43 @@
   border-radius: 12px;
   border: 1px solid rgba(255,255,255,0.10);
   background: rgba(255,255,255,0.04);
+}
+
+/* =====================================================
+   HISTORISK KORT I REWARD-POPUP (2:1, fade + zoom)
+   ===================================================== */
+
+.hg-popup.reward-popup .reward-card-img{
+  width: 92%;
+  max-width: 440px;
+  border-radius: 16px;
+  border: 3px solid #f6c800;
+  display: block;
+  margin: 14px auto 22px auto;
+  background: #000;
+
+  opacity: 0;
+  transform: scale(0.88);
+  transition: opacity .45s ease-out,
+              transform .45s cubic-bezier(.22, .68, 0, 1.4);
+}
+
+.hg-popup.reward-popup .reward-card-img.visible{
+  opacity: 1 !important;
+  transform: scale(1) !important;
+}
+
+/* =====================================================
+   VERK-LISTE
+   ===================================================== */
+
+.hg-works{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.hg-works li{
+  padding: 4px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
 }
