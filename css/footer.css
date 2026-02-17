@@ -1,39 +1,51 @@
+/* ============================================================
+   FOOTER – kun innhold/layout inni footer (posisjon styres i layout.css)
+   ============================================================ */
+
 .app-footer{
   background: #000;
   border-top: 1px solid rgba(255,255,255,.06);
 
-  padding: 8px 12px;
+  /* litt mer “app”-følelse + safe-area */
+  padding: 8px 12px calc(8px + env(safe-area-inset-bottom));
 
   display: flex;
+  flex-direction: row;
   align-items: center;
   gap: 10px;
 }
 
+/* MINI placecard – ligger på SAMME linje som knappene */
 .pc-mini{
-  display:none;              /* skjult til collapsed */
-  width:56px;
-  height:56px;
-  border-radius:14px;
-  overflow:hidden;
+  display: none;            /* vises når collapsed (JS styrer) */
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  overflow: hidden;
+
   background: rgba(0,0,0,.55);
-  border:1px solid rgba(255,255,255,.10);
-  flex:0 0 auto;
+  border: 1px solid rgba(255,255,255,.10);
+
+  flex: 0 0 auto;
 }
 
 .pc-mini img{
-  width:100%;
-  height:100%;
-  object-fit:contain;
-  display:block;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
 }
 
+/* Action-raden tar resten av linja og sentrerer knappene */
 .app-actions{
-  flex: 1 1 auto;           /* ✅ tar resten av linja */
-  display:flex;
-  justify-content:center;
-  gap:10px;
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }
 
+/* Standard knappehøyder i footer */
 .app-actions button{
   height: 56px;
   padding: 0 16px;
@@ -41,13 +53,7 @@
   font-size: 15px;
 }
 
-.app-nextup{
-  text-align:center;
-  padding:4px 0;
-  font-size:0.9rem;
-  opacity:.85;
-}
-
+/* Ikonknapper */
 #pcRoute::before   { content:"🗺️"; font-size:22px; }
 #pcObserve::before { content:"👁️"; font-size:22px; }
 #pcNote::before    { content:"📝"; font-size:22px; }
@@ -55,12 +61,21 @@
 #pcRoute,
 #pcObserve,
 #pcNote{
-  width:44px;
-  height:44px;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  font-size:0;
-  border-radius:50%;
-  background:rgba(255,255,255,0.08);
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+}
+
+/* NextUp ligger utenfor .app-footer i HTML → style begge */
+#mpNextUp.app-nextup,
+.app-nextup{
+  text-align: center;
+  padding: 4px 0;
+  font-size: 0.9rem;
+  opacity: .85;
 }
