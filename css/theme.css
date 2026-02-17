@@ -27,21 +27,20 @@
    ===================================================== */
 
 /* ===================================================== */
-/* 1) Variabler & grunnstil                            */
+/* 1) Variabler & grunnstil                              */
 /* ===================================================== */
+
 :root{
-  /* Basis-tema */
   --bg: #0a1929;
   --panel: rgba(13,27,42,.86);
   --panel-border: rgba(255,255,255,.08);
   --text: #e6eef9;
   --muted: #9bb0c9;
   --primary: #1976d2;
-  --ok: #2ecc71;              /* "OK"-grønn – FIX: gyldig hex + ; */
+  --ok: #2ecc71;
   --warn: #ffb703;
   --yellow: #f6c800;
 
-    /* Kategorifarger (fra badges.json) */
   --cat-historie:       #344B80;
   --cat-vitenskap:      #9b59b6;
   --cat-kunst:          #ffb703;
@@ -54,33 +53,26 @@
   --cat-naeringsliv:    #ff8800;
   --cat-populaerkultur: #ffb703;
   --cat-subkultur:      #ff66cc;
-  --cat-psykologi:      #ff7aa2; /* NY – velg gjerne en annen farge hvis du vil */
+  --cat-psykologi:      #ff7aa2;
 
-  /* Alias som matcher eksisterende CSS (.badge.*) */
-  --hist:   var(--cat-historie);    /* .badge.historie */
-  --kult:   var(--cat-kunst);       /* .badge.kunst */
-  --sport:  var(--cat-sport);       /* .badge.sport */
-  --natur:  var(--cat-natur);       /* .badge.natur */
-  --urban:  var(--cat-by);          /* .badge.by */
-  --viten:  var(--cat-vitenskap);   /* .badge.vitenskap */
-  --psyko:  var(--cat-psykologi);   /* .badge.psykologi – hvis du lager den */
-  /* Diverse UI-ting */
+  --hist:   var(--cat-historie);
+  --kult:   var(--cat-kunst);
+  --sport:  var(--cat-sport);
+  --natur:  var(--cat-natur);
+  --urban:  var(--cat-by);
+  --viten:  var(--cat-vitenskap);
+  --psyko:  var(--cat-psykologi);
+
   --radius: 12px;
   --shadow: 0 10px 24px rgba(0,0,0,.35);
 }
 
-body.hg-app *{box-sizing:border-box}
-
-body.hg-app, 
 body.hg-app *{
-  -webkit-text-size-adjust: 100%;
-  text-size-adjust: 100%;
+  box-sizing: border-box;
 }
 
 body.hg-app{
   margin: 0;
-
-  height: 100dvh;     /* ekte viewport */
   overflow: hidden;
 
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
@@ -89,20 +81,22 @@ body.hg-app{
   line-height: 1.55;
 }
 
-body.hg-app .muted{color:var(--muted)}
+body.hg-app .muted{
+  color: var(--muted);
+}
+
 
 /* ===================================================== */
-/* Kart-watermark: tydeligere, litt mindre, oppe til venstre */
+/* WATERMARK – ENGINE VERSION                            */
 /* ===================================================== */
+
 body.hg-app::before{
   content:"";
-  position: fixed;
+  position: absolute;
 
   left: 10px;
-  right: auto;
-  top: auto;
-  bottom: calc(env(safe-area-inset-bottom) + 10px);
-   
+  bottom: 10px;
+
   width: 120px;
   height: 120px;
 
@@ -111,46 +105,45 @@ body.hg-app::before{
   background-size: contain;
   background-position: bottom left;
 
-  opacity: 0.34;              /* tydeligere */
+  opacity: 0.34;
   pointer-events: none;
 
-  z-index: 5;                 /* kartet under, UI over */
+  z-index: 5;
 }
 
-/* Skjul kart-watermark når placeCard er ÅPEN */
-body.hg-app:has(#placeCard[aria-hidden="false"])::before{
+/* Skjul watermark via klasse – ikke :has() */
+body.hg-app.placecard-open::before{
   opacity: 0;
 }
 
-/* ===================================================== */
-/* HEADER: helt svart, klikkbart, over watermark          */
-/* ===================================================== */
 
-body.hg-app header.site-header #miniProfile{
-  flex: 0 0 auto;
-  max-width: 170px;
-}
+/* ===================================================== */
+/* HEADER – ENGINE VERSION                               */
+/* ===================================================== */
 
 body.hg-app header.site-header{
-  position: absolute;   /* 🔥 ikke fixed */
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
 
-  height: var(--hg-header-h);
+  height: 60px;
   z-index: 20;
 
   display: flex;
   align-items: center;
   justify-content: flex-start;
   gap: 10px;
-  flex-wrap: nowrap;
 
-  padding: 2px calc(5px + env(safe-area-inset-right));
-  padding-right: calc(8px + env(safe-area-inset-right));
+  padding: 2px 8px;
 
   background: #000;
   overflow: visible;
+}
+
+body.hg-app header.site-header #miniProfile{
+  flex: 0 0 auto;
+  max-width: 170px;
 }
 
 /* ===================================================== */
@@ -173,16 +166,17 @@ body.hg-app .panel{
   position: relative;
   overflow: visible;
 }
+
+
 /* ===================================================== */
-/* 3) Topplinje, main & toast                            */
+/* 3) Topplinje, main & toast – ENGINE VERSION           */
 /* ===================================================== */
 
-/* Stor logo i header (kan henge ned over nearby) */
-/* Logo i header: fast plassert oppe til venstre */
+/* Logo i header */
 .hg-brand{
   position: absolute;
-  left: 2px;  /* nesten helt til venstre */
-  top: calc(env(safe-area-inset-top) + 10px); /* litt ned */
+  left: 2px;
+  top: 10px;
 
   width: 60px;
   height: 60px;
@@ -190,24 +184,27 @@ body.hg-app .panel{
   object-fit: contain;
   display: block;
 
-  margin: 0;            /* viktig: fjerner “heng ned”-hack */
+  margin: 0;
   opacity: 0.95;
   pointer-events: none;
-  z-index: 21;          /* over header-bakgrunn */
+  z-index: 21;
 }
 
-/* === Brand med ikon i headeren === */
+/* Brand */
 body.hg-app .brand{
   display: flex;
   align-items: center;
-  gap: 8px;              /* var 10px */
+  gap: 8px;
+
   font-weight: 800;
-  font-size: 1.05rem;    /* var 1.3rem */
-  line-height: 1;        /* strammer høyden */
+  font-size: 17px;
+  line-height: 1;
   color: #fff;
+
   text-transform: uppercase;
   letter-spacing: 0.3px;
-  white-space: nowrap;   /* ✅ hindrer HISTORY / GO på to linjer */
+  white-space: nowrap;
+
   flex: 0 0 auto;
   min-width: max-content;
 }
@@ -219,7 +216,7 @@ body.hg-app .brand-logo{
   border-radius: 6px;
   background: rgba(255,255,255,0.1);
   padding: 2px;
-  display:block; /* <-- var none */
+  display: block;
 }
 
 body.hg-app .brand.brand-icononly .brand-logo{
@@ -231,28 +228,39 @@ body.hg-app .brand.brand-icononly .brand-logo{
 body.hg-app .brand-name{
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   font-weight: 700;
-  color: #f6c800; /* gul History Go-tone */
-  white-space: nowrap;   /* ✅ ekstra failsafe */
-  line-height: 1;        /* ✅ strammer høyden */
-  display:none;
+  color: #f6c800;
+  white-space: nowrap;
+  line-height: 1;
+  display: none;
 }
 
-
-/* ✅ hvis markupen har <br> mellom HISTORY og GO */
 body.hg-app .brand-name br{
   display: none;
 }
 
-/* ✅ hvis markupen har spans/divs inni som kan være block */
 body.hg-app .brand-name *{
   display: inline;
 }
 
-body.hg-app .actions{ display:flex; gap:10px; align-items:center }
-body.hg-app .toggle{ display:flex; gap:6px; align-items:center; font-size:.9rem }
-body.hg-app .toggle input{ accent-color: var(--primary) }
+/* Actions */
+body.hg-app .actions{
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
 
-/* Header actions: gjør Se kart + Unlock All mindre (kun i topplinja) */
+body.hg-app .toggle{
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  font-size: 14px;
+}
+
+body.hg-app .toggle input{
+  accent-color: var(--primary);
+}
+
+/* Header actions */
 body.hg-app header .actions{
   gap: 6px;
 }
@@ -261,24 +269,28 @@ body.hg-app header .actions > button.secondary{
   height: 32px;
   line-height: 32px;
   padding: 0 10px;
-  font-size: 0.85rem;
+  font-size: 14px;
 }
 
+/* Toast – engine */
 #toast{
-  position:fixed;
-  top:14px;
-  left:50%;
-  transform:translateX(-50%);
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+
   background: rgba(0,0,0,.72);
-  color:#fff;
-  padding:8px 14px;
-  border-radius:999px;
-  font-weight:700;
-  display:none;
-  z-index:20000; /* ← FIX */
+  color: #fff;
+
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-weight: 700;
+
+  display: none;
+  z-index: 20000;
 }
 
-/* Top-actions: låst til høyre, aldri wrap, aldri “hopper” */
+/* Top-actions */
 .top-actions{
   display: flex;
   align-items: center;
@@ -287,12 +299,12 @@ body.hg-app header .actions > button.secondary{
   gap: 8px;
   margin-left: auto;
 
-  flex: 0 0 auto;        /* ✅ ikke stretch */
-  flex-wrap: nowrap;     /* ✅ aldri ned på ny linje */
+  flex: 0 0 auto;
+  flex-wrap: nowrap;
   white-space: nowrap;
 }
 
-/* Stabil bredde: geo-status endrer innhold (…/📍/⛔) men skal ikke flytte noe */
+/* Geo-status */
 #geoStatus{
   width: 24px;
   display: inline-flex;
@@ -300,12 +312,12 @@ body.hg-app header .actions > button.secondary{
   justify-content: center;
 }
 
-/* Ikonknapper har fast bredde allerede, men lås uansett */
+/* Icon buttons */
 .iconbtn{
   flex: 0 0 auto;
 }
 
-/* MiniProfile: ikke la navnet skyve på resten */
+/* MiniProfile */
 #miniProfile{
   max-width: 170px;
   overflow: hidden;
@@ -313,25 +325,39 @@ body.hg-app header .actions > button.secondary{
   white-space: nowrap;
 }
 
+
 /* ===================================================== */
-/* 8) Sheets (bunnark) – forbedret og oversiktlig        */
+/* 8) Sheets (bunnark) – ENGINE VERSION                  */
 /* ===================================================== */
+
 body.hg-app .sheet{
-  position: fixed;
-  left: 0; right: 0; bottom: 0;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 80px;              /* over footer */
+
   z-index: 13;
-  background: rgba(13, 27, 42, 0.95);
+  background: rgba(13,27,42,0.95);
+
   border: 1px solid var(--panel-border);
   border-radius: 16px 16px 0 0;
   box-shadow: var(--shadow);
+
   transform: translateY(100%);
   transition: transform .22s ease, opacity .2s ease;
 }
-body.hg-app .sheet[aria-hidden="false"]{ transform: none; }
+
+body.hg-app .sheet[aria-hidden="false"]{
+  transform: none;
+}
 
 body.hg-app .sheet-head{
-  display: flex; align-items: center; justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
   padding: 14px 18px;
+
   background: rgba(255,255,255,0.05);
   border-bottom: 1px solid rgba(255,255,255,0.1);
   border-radius: 16px 16px 0 0;
@@ -339,11 +365,14 @@ body.hg-app .sheet-head{
 
 body.hg-app .sheet-body{
   padding: 14px 16px 20px;
-  display: grid; gap: 12px;
-  overflow-y: auto; max-height: 70vh;
+  display: grid;
+  gap: 12px;
+
+  overflow-y: auto;
+  max-height: 520px;          /* fast høyde */
 }
 
-/* Kortene i "Se flere i nærheten" */
+/* Kortene */
 body.hg-app .sheet-body .card{
   background: rgba(255,255,255,0.05);
   border: 1px solid rgba(255,255,255,0.12);
@@ -351,50 +380,74 @@ body.hg-app .sheet-body .card{
   padding: 14px;
   transition: background .2s ease, transform .2s ease;
 }
+
 body.hg-app .sheet-body .card:hover{
   background: rgba(255,255,255,0.08);
   transform: translateY(-2px);
 }
-body.hg-app .sheet-body .name{ font-weight: 700; font-size: 1rem; color:#fff; }
-body.hg-app .sheet-body .meta{ color: #a9b7c7; font-size: .9rem; margin-bottom: 6px; }
-body.hg-app .sheet-body .desc{ color: #d0d8e4; font-size: .92rem; line-height: 1.45; }
+
+body.hg-app .sheet-body .name{
+  font-weight: 700;
+  font-size: 16px;
+  color: #fff;
+}
+
+body.hg-app .sheet-body .meta{
+  color: #a9b7c7;
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+body.hg-app .sheet-body .desc{
+  color: #d0d8e4;
+  font-size: 15px;
+  line-height: 1.45;
+}
 
 body.hg-app .sheet-close{
-  width: 44px; height: 44px; border-radius: 999px;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+
   border: 1px solid rgba(255,255,255,0.15);
   background: rgba(255,255,255,0.1);
-  color: #fff; font-size: 1.4rem;
+  color: #fff;
+  font-size: 22px;
 }
 
 
 /* ===================================================== */
-/* 9) Modal (quiz)                                       */
+/* 9) Modal (quiz) – ENGINE VERSION                      */
 /* ===================================================== */
+
 body.hg-app .modal{
-  position: fixed;
+  position: absolute;
   inset: 0;
-  z-index: 10050;              /* Sørger for at modalen ligger over alt */
+
+  z-index: 10050;
   display: none;
+
   background: rgba(0,0,0,.55);
-  pointer-events: auto;        /* Sikrer klikk på knapper */
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 body.hg-app .modal[aria-hidden="false"]{
-  display: block;
+  display: flex;
 }
 
 body.hg-app .modal .modal-body{
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: min(680px, 92vw);
+  width: 680px;
+
   background: var(--panel);
   border: 1px solid var(--panel-border);
   border-radius: 14px;
   box-shadow: var(--shadow);
   padding: 14px;
-  z-index: 10051;              /* Sørger for at X-knappen er klikkbar */
+
+  position: relative;
 }
 
 body.hg-app .modal-head{
@@ -405,60 +458,69 @@ body.hg-app .modal-head{
   margin-bottom: 8px;
 }
 
-#quizClose {
+#quizClose{
   width: 44px;
   height: 44px;
   border-radius: 999px;
   border: 1px solid var(--panel-border);
   background: rgba(255,255,255,.08);
   color: #fff;
-  font-size: 1.4rem;
-  z-index: 10052;              /* Helt øverst, alltid klikkbar */
+  font-size: 22px;
 }
 
 
 /* ===================================================== */
 /* 10) Quiz-stiler                                       */
 /* ===================================================== */
-#quizProgress { color: var(--muted); margin-bottom: 6px; }
-#quizQuestion { margin: 8px 0 10px; font-weight: 700; }
 
-.quiz-choices {
+#quizProgress{
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+#quizQuestion{
+  margin: 8px 0 10px;
+  font-weight: 700;
+}
+
+.quiz-choices{
   display: grid;
   gap: 8px;
 }
 
-.quiz-choices button {
+.quiz-choices button{
   text-align: left;
   width: 100%;
   padding: 10px 12px;
+
   border-radius: 10px;
   border: 1px solid var(--panel-border);
   background: rgba(255,255,255,.03);
   color: #fff;
+
   transition: background .2s ease, border-color .2s ease;
 }
 
-.quiz-choices button.correct {
+.quiz-choices button.correct{
   border-color: #1b7a4a;
   background: rgba(27,122,74,.18);
 }
 
-.quiz-choices button.wrong {
+.quiz-choices button.wrong{
   border-color: #7a1f25;
   background: rgba(122,31,37,.18);
 }
 
-.quiz-feedback {
-  min-height: 1.2em;
+.quiz-feedback{
+  min-height: 19px;
   font-weight: 700;
 }
-
 
 /* ===================================================== */
 /* 10b) Quiz-progress-bar                                */
 /* ===================================================== */
-.quiz-progress {
+
+.quiz-progress{
   width: 100%;
   height: 6px;
   background: rgba(255,255,255,.1);
@@ -467,7 +529,7 @@ body.hg-app .modal-head{
   margin-bottom: 10px;
 }
 
-.quiz-progress .bar {
+.quiz-progress .bar{
   height: 100%;
   width: 0%;
   background: var(--primary);
@@ -478,18 +540,19 @@ body.hg-app .modal-head{
 /* ===================================================== */
 /* 10c) Quiz-fade effekt ved avslutning                  */
 /* ===================================================== */
-#quizModal.fade-out .modal-body {
+
+#quizModal.fade-out .modal-body{
   animation: quizFadeOut 0.45s ease forwards;
 }
 
-@keyframes quizFadeOut {
-  0% {
+@keyframes quizFadeOut{
+  0%{
     opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
+    transform: scale(1);
   }
-  100% {
+  100%{
     opacity: 0;
-    transform: translate(-50%, -40%) scale(0.95);
+    transform: scale(0.95);
   }
 }
 
@@ -498,77 +561,59 @@ body.hg-app .modal-head{
 /* 10d) QUIZ – KNAPPER OG ANIMASJON VED PERFEKT SCORE    */
 /* ===================================================== */
 
-/* Fast stil for tidligere fullført quiz */
-button.quiz-done {
+button.quiz-done{
   background: rgba(255,215,0,0.12);
   border: 1px solid rgba(255,215,0,0.5);
   color: #ffd700;
   cursor: default;
   font-weight: 600;
   position: relative;
-  padding-left: 1.6em;
+  padding-left: 26px;
 }
 
-/* Liten medalje foran teksten */
-button.quiz-done::before {
+button.quiz-done::before{
   content: "🏅";
   position: absolute;
-  left: 0.6em;
+  left: 10px;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 1em;
+  font-size: 16px;
 }
 
-/* Kort gullglød første gang man klarer alt riktig */
-@keyframes quizGlow {
+@keyframes quizGlow{
   0%   { box-shadow: 0 0 0px 0 rgba(255,215,0,0); }
   40%  { box-shadow: 0 0 16px 6px rgba(255,215,0,0.8); }
   100% { box-shadow: 0 0 0px 0 rgba(255,215,0,0); }
 }
 
-button.quiz-done.blink {
+button.quiz-done.blink{
   animation: quizGlow 1.2s ease-out;
 }
 
 
-
-
-
 /* ===================================================== */
-/* 12) Effekter & media                                  */
+/* Hover-effekter                                        */
 /* ===================================================== */
-@media (max-width:760px){
-}
 
 body.hg-app .icon:hover,
 body.hg-app .sheet-close:hover,
 body.hg-app #quizClose:hover,
 body.hg-app #pcClose:hover,
 body.hg-app #btnExitMap:hover{
-  filter:brightness(1.1);
+  filter: brightness(1.1);
 }
 
 
+/* ===================================================== */
+/* Quiz button inside popup                              */
+/* ===================================================== */
 
-
-
-
-
-
-
-
-
-
-/* ---------------------------------- */
-/* Quiz button inside popup */
-/* ---------------------------------- */
-
-.hg-quiz-btn {
+.hg-quiz-btn{
   background: #FFD600;
   border: none;
   padding: 10px 14px;
   border-radius: 8px;
-  font-size: 1rem;
+  font-size: 16px;
   font-weight: 600;
   margin-top: 10px;
   cursor: pointer;
@@ -576,16 +621,17 @@ body.hg-app #btnExitMap:hover{
   width: 100%;
 }
 
-.hg-quiz-btn:hover {
+.hg-quiz-btn:hover{
   background: #ffe45c;
 }
 
 
-
-
+/* ===================================================== */
+/* Pulse animation                                       */
+/* ===================================================== */
 
 @keyframes hgPulse{
-  0%   { transform: translate(-50%, -50%) scale(0.7); opacity: .55; }
-  70%  { transform: translate(-50%, -50%) scale(2.2); opacity: .10; }
-  100% { transform: translate(-50%, -50%) scale(2.4); opacity: 0; }
+  0%   { transform: scale(0.7); opacity: .55; }
+  70%  { transform: scale(2.2); opacity: .10; }
+  100% { transform: scale(2.4); opacity: 0; }
 }
