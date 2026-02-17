@@ -18,18 +18,25 @@
   return vw / DESIGN_WIDTH;
 }
 
-  function applyScale(scale){
-    if (!shell) return;
+function applyScale(scale){
+  if (!shell) return;
 
-    // Unngå unødvendige writes
-    if (scale === lastScale) return;
+  // Unngå unødvendige writes
+  if (scale === lastScale) return;
 
-    shell.style.transform =
-      `translate(-50%, -50%) scale(${scale})`;
+  shell.style.transform =
+    `translate(-50%, -50%) scale(${scale})`;
 
-    lastScale = scale;
-  }
+  lastScale = scale;
 
+  // 🔥 Viktig: resize etter at transform er satt
+  requestAnimationFrame(() => {
+    if (window.hgMap?.resize) {
+      window.hgMap.resize();
+    }
+  });
+}
+  
   function update(){
     rafId = null;
 
@@ -37,11 +44,6 @@
     const scale = calculateScale(width, height);
 
     applyScale(scale);
-  }
-
-  function scheduleUpdate(){
-    if (rafId !== null) return;
-    rafId = requestAnimationFrame(update);
   }
 
   function init(){
