@@ -21,21 +21,29 @@
 }
 
   function applyScale(scale){
-    if (!shell) return;
-    if (scale === lastScale) return;
+  if (!shell) return;
+  if (scale === lastScale) return;
 
-    shell.style.transform =
-      `translate(-50%, -50%) scale(${scale})`;
+  const vw = window.innerWidth;
+  const vh = window.innerHeight;
 
-    lastScale = scale;
+  const scaledWidth  = DESIGN_WIDTH  * scale;
+  const scaledHeight = DESIGN_HEIGHT * scale;
 
-    // Resize kart etter transform
-    requestAnimationFrame(() => {
-      if (window.hgMap?.resize) {
-        window.hgMap.resize();
-      }
-    });
-  }
+  const offsetX = (vw - scaledWidth)  / 2;
+  const offsetY = (vh - scaledHeight) / 2;
+
+  shell.style.transform =
+    `translate(${offsetX}px, ${offsetY}px) scale(${scale})`;
+
+  lastScale = scale;
+
+  requestAnimationFrame(() => {
+    if (window.hgMap?.resize) {
+      window.hgMap.resize();
+    }
+  });
+}
 
   function update(){
     rafId = null;
