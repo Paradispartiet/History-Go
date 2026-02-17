@@ -46,6 +46,11 @@ function applyScale(scale){
     applyScale(scale);
   }
 
+  function scheduleUpdate(){
+  if (rafId !== null) return;
+  rafId = requestAnimationFrame(update);
+
+  
   function init(){
     shell = document.querySelector(".app-shell");
     if (!shell) return;
