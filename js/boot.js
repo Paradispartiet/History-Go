@@ -209,6 +209,10 @@ if (window.LayerManager) {
   LayerManager.init();
 }
 
+if (window.BottomSheetController?.init) {
+  window.BottomSheetController.init();
+}
+
 boot().then(() => {
   if (window.HGPos?.request) {
     window.HGPos.request();
