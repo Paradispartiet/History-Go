@@ -201,6 +201,10 @@ if (window.QuizEngine) {
 
 }
 
+if (window.ViewportManager) {
+  ViewportManager.init();
+}
+
 boot().then(() => {
   if (window.HGPos?.request) {
     window.HGPos.request();
