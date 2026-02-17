@@ -3,24 +3,18 @@
    ============================================================ */
 
 body.hg-app{
-  margin:0;
-  overflow:hidden;
-  background:#000;
-}
-
-/* ===================================================== */
-/* APP CANVAS (Fixed Design Model)                       */
-/* ===================================================== */
-
-:root{
-  --app-design-w: 1280;
-  --app-design-h: 820;
-}
-
-body.hg-app{
   margin: 0;
   overflow: hidden;
   background: #000;
+}
+
+/* ============================================================
+   APP CANVAS (Fixed Design Model)
+   ============================================================ */
+
+:root{
+  --app-design-w: 1280;
+  --app-design-h: 800; /* Standardisert */
 }
 
 body.hg-app .app-shell{
@@ -28,17 +22,11 @@ body.hg-app .app-shell{
   top: 50%;
   left: 50%;
 
-  width: calc(var(--app-design-w) * 1px);
-  height: calc(var(--app-design-h) * 1px);
+  width: 1280px;
+  height: 800px;
 
+  transform: translate(-50%, -50%); /* kun sentrering */
   transform-origin: center;
-
-  transform: translate(-50%, -50%) scale(
-    min(
-      calc(100vw / var(--app-design-w)),
-      calc(100vh / var(--app-design-h))
-    )
-  );
 
   overflow: hidden;
 }
@@ -48,13 +36,13 @@ body.hg-app .app-shell{
    ============================================================ */
 
 body.hg-app .site-header{
-  position:absolute;
-  top:0;
-  left:0;
-  right:0;
-  height:60px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
 
-  z-index:100;
+  z-index: 100;
 }
 
 /* ============================================================
@@ -62,13 +50,13 @@ body.hg-app .site-header{
    ============================================================ */
 
 body.hg-app .app-main{
-  position:absolute;
-  top:60px;
-  left:0;
-  right:0;
-  bottom:80px; /* footer height */
+  position: absolute;
+  top: 60px;
+  left: 0;
+  right: 0;
+  bottom: 80px; /* footer height */
 
-  overflow:hidden;
+  overflow: hidden;
 }
 
 /* ============================================================
@@ -76,21 +64,21 @@ body.hg-app .app-main{
    ============================================================ */
 
 body.hg-app .app-footer{
-  position:absolute;
-  left:0;
-  right:0;
-  bottom:0;
-  height:80px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 80px;
 
-  z-index:200;
+  z-index: 200;
 
-  background:#000;
-  border-top:1px solid rgba(255,255,255,.08);
+  background: #000;
+  border-top: 1px solid rgba(255,255,255,.08);
 
-  display:flex;
-  align-items:center;
-  gap:12px;
-  padding:10px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
 }
 
 /* ============================================================
@@ -98,9 +86,9 @@ body.hg-app .app-footer{
    ============================================================ */
 
 #map{
-  position:absolute;
-  inset:0;
-  z-index:0;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
 }
 
 /* ============================================================
@@ -108,9 +96,9 @@ body.hg-app .app-footer{
    ============================================================ */
 
 #placeCard{
-  position:absolute;
-  left:0;
-  right:0;
-  bottom:80px; /* same as footer height */
-  z-index:100;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 80px; /* same as footer height */
+  z-index: 100;
 }
