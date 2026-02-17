@@ -94,7 +94,11 @@
     if (!sheet) return;
 
     // Start i "hidden" (matcher aria-hidden="true" i HTML)
-    apply("hidden");
+    const startHidden =
+     sheet.getAttribute("aria-hidden") === "true" ||
+     sheet.classList.contains("is-collapsed");
+
+    apply(startHidden ? "hidden" : "open");
 
     if (collapseBtn) collapseBtn.addEventListener("click", toggle);
     if (mini) mini.addEventListener("click", open);
