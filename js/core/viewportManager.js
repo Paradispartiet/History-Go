@@ -15,28 +15,26 @@
   }
 
   function calculateScale(vw, vh){
-  return vw / DESIGN_WIDTH;
-}
+    return vw / DESIGN_WIDTH;
+  }
 
-function applyScale(scale){
-  if (!shell) return;
+  function applyScale(scale){
+    if (!shell) return;
+    if (scale === lastScale) return;
 
-  // Unngå unødvendige writes
-  if (scale === lastScale) return;
+    shell.style.transform =
+      `translate(-50%, -50%) scale(${scale})`;
 
-  shell.style.transform =
-    `translate(-50%, -50%) scale(${scale})`;
+    lastScale = scale;
 
-  lastScale = scale;
+    // Resize kart etter transform
+    requestAnimationFrame(() => {
+      if (window.hgMap?.resize) {
+        window.hgMap.resize();
+      }
+    });
+  }
 
-  // 🔥 Viktig: resize etter at transform er satt
-  requestAnimationFrame(() => {
-    if (window.hgMap?.resize) {
-      window.hgMap.resize();
-    }
-  });
-}
-  
   function update(){
     rafId = null;
 
@@ -47,31 +45,24 @@ function applyScale(scale){
   }
 
   function scheduleUpdate(){
-  if (rafId !== null) return;
-  rafId = requestAnimationFrame(update);
+    if (rafId !== null) return;
+    rafId = requestAnimationFrame(update);
+  }
 
-  
   function init(){
     shell = document.querySelector(".app-shell");
     if (!shell) return;
 
-    // Første kjøring
     update();
 
-    // Resize
     window.addEventListener("resize", scheduleUpdate);
-
-    // Orientation
     window.addEventListener("orientationchange", scheduleUpdate);
 
-    // iOS visual viewport (address bar collapse)
     if (window.visualViewport){
       window.visualViewport.addEventListener("resize", scheduleUpdate);
     }
   }
 
-  window.ViewportManager = {
-    init
-  };
+  window.ViewportManager = { init };
 
 })();
