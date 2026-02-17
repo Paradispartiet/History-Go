@@ -102,41 +102,22 @@ body.hg-app{
 }
 
 body.hg-app .app-shell{
-  position:absolute;
-  top:50%;
-  left:50%;
+  position: absolute;
+  top: 0;
+  left: 0;
 
-  width:1280px;   /* din designbredde */
-  height:800px;   /* din designhøyde */
+  width: calc(var(--app-design-w) * 1px);
+  height: calc(var(--app-design-h) * 1px);
 
-  transform-origin:top left;
+  transform-origin: top left;
 
-  transform:
-    translate(-50%, -50%)
-    scale(
-      min(
-        calc(100vw / 1280),
-        calc(100vh / 800)
-      )
-    );
+  transform: scale(
+    min(
+      calc(100dvw / var(--app-design-w)),
+      calc(100dvh / var(--app-design-h))
+    )
+  );
 
-  overflow:hidden;
+  overflow: hidden;
 }
 
-/* Footer (fast pixel, del av canvas) */
-body.hg-app .app-footer{
-  position:absolute;
-  left:0;
-  right:0;
-  bottom:0;
-  height: var(--footer-h);
-  z-index: 2100;
-}
-
-/* Footer actions */
-body.hg-app .app-actions{
-  display:flex;
-  gap:8px;
-  justify-content:center;
-  align-items:center;
-}
