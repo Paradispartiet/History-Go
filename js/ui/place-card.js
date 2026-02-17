@@ -518,8 +518,9 @@ if (badgesEl) {
   card.setAttribute("aria-hidden", "false");
 };
 
+
 // ============================================================
-// PLACE CARD – collapse / expand
+// PLACE CARD – bottom sheet bridge (engine-controlled)
 // ============================================================
 
 function setPlaceCardMiniVisible(on){
@@ -537,26 +538,55 @@ function isPlaceCardCollapsed() {
   return !!getPlaceCardEl()?.classList.contains("is-collapsed");
 }
 
+function requestMapResize(){
+  requestAnimationFrame(() => {
+    window.hgMap?.resize?.();
+    window.HGMap?.resize?.();
+    window.MAP?.resize?.();
+  });
+}
+
+// Velg hvilken "collapsed" state du vil ha:
+// - "hidden" = helt nede (ute av view)
+// - "peek"   = bare handle-strip synlig
+const COLLAPSED_STATE = "hidden";
+
 function collapsePlaceCard() {
   const pc = getPlaceCardEl();
   if (!pc) return;
+
+  // Kompatibilitet: behold flagg + body-hook (hvis andre steder bruker det)
   pc.classList.add("is-collapsed");
   document.body.classList.add("pc-collapsed");
+
   try { localStorage.setItem("hg_placecard_collapsed_v1", "1"); } catch {}
+
   setPlaceCardMiniVisible(true);
-  window.HGMap?.resize?.();
-  window.MAP?.resize?.();
+
+  // Motorstyrt posisjon (px-only)
+  if (window.BottomSheetController?.setState) {
+    window.BottomSheetController.setState(COLLAPSED_STATE);
+  }
+
+  requestMapResize();
 }
 
 function expandPlaceCard() {
   const pc = getPlaceCardEl();
   if (!pc) return;
+
   pc.classList.remove("is-collapsed");
   document.body.classList.remove("pc-collapsed");
+
   try { localStorage.setItem("hg_placecard_collapsed_v1", "0"); } catch {}
+
   setPlaceCardMiniVisible(false);
-  window.HGMap?.resize?.();
-  window.MAP?.resize?.();
+
+  if (window.BottomSheetController?.setState) {
+    window.BottomSheetController.setState("open");
+  }
+
+  requestMapResize();
 }
 
 function togglePlaceCard() {
@@ -567,61 +597,34 @@ function initPlaceCardCollapse() {
   const pc = getPlaceCardEl();
   if (!pc) return;
 
-  try {
-    if (localStorage.getItem("hg_placecard_collapsed_v1") === "1") {
-      collapsePlaceCard();
-    }
-  } catch {}
+  // default: hvis BottomSheetController finnes, start i open/hidden basert på storage
+  let collapsed = false;
+  try { collapsed = (localStorage.getItem("hg_placecard_collapsed_v1") === "1"); } catch {}
+
+  if (collapsed) collapsePlaceCard();
+  else expandPlaceCard();
 }
 
-// Collapse-knapp
+// Bind 1 gang når DOM er klar
 document.addEventListener("DOMContentLoaded", () => {
+  initPlaceCardCollapse();
+
   const btn = document.getElementById("pcCollapseBtn");
-  if (!btn) return;
-
-  btn.addEventListener("click", (e) => {
-    e.stopPropagation();
-    togglePlaceCard();
-  });
-});
-
-// Mini-preview åpner placeCard igjen
-document.addEventListener("DOMContentLoaded", () => {
-  const mini = document.getElementById("pcMini");
-  if (!mini) return;
-
-  mini.addEventListener("click", (e) => {
-    e.preventDefault();
-    expandPlaceCard();
-  });
-});
-
-// ============================================================
-// 6. ÅPNE placeCard FRA PERSON (kart-modus)
-// ============================================================
-window.openPlaceCardByPerson = function(person) {
-  if (!person) return;
-
-  const relPlaces = getPlacesForPerson(person.id);
-   let place = relPlaces.length ? relPlaces[0] : null;
-
-  // Hvis person ikke har et registrert sted → generer et "midlertidig"
-  if (!place) {
-    place = {
-      id: person.id,
-      name: person.name,
-      category: tagToCat(person.tags || []),
-      desc: person.desc || "",
-      r: person.r || 150,
-      lat: person.lat,
-      lon: person.lon,
-      cardImage: person.imageCard
-    };
+  if (btn) {
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      togglePlaceCard();
+    });
   }
 
-  openPlaceCard(place);
-};
-
+  const mini = document.getElementById("pcMini");
+  if (mini) {
+    mini.addEventListener("click", (e) => {
+      e.preventDefault();
+      expandPlaceCard();
+    });
+  }
+});
 
 window.collapsePlaceCard = collapsePlaceCard;
 window.expandPlaceCard = expandPlaceCard;
