@@ -1,8 +1,18 @@
 (function(){
 
-  const DESIGN_WIDTH  = 1280;
-  const DESIGN_HEIGHT = 820;
+const DESKTOP_WIDTH  = 1280;
+const DESKTOP_HEIGHT = 800;
 
+const MOBILE_WIDTH   = 1024;
+const MOBILE_HEIGHT  = 640;
+
+function getDesignSize(){
+  if (window.innerWidth < 900) {
+    return { w: MOBILE_WIDTH, h: MOBILE_HEIGHT };
+  }
+  return { w: DESKTOP_WIDTH, h: DESKTOP_HEIGHT };
+}
+  
   let shell = null;
   let rafId = null;
   let lastScale = null;
@@ -15,8 +25,11 @@
   }
 
   function calculateScale(vw, vh){
-  const scaleX = vw / DESIGN_WIDTH;
-  const scaleY = vh / DESIGN_HEIGHT;
+  const { w, h } = getDesignSize();
+
+  const scaleX = vw / w;
+  const scaleY = vh / h;
+
   return Math.min(scaleX, scaleY);
 }
 
@@ -27,11 +40,16 @@
   const vw = window.innerWidth;
   const vh = window.innerHeight;
 
-  const scaledWidth  = DESIGN_WIDTH  * scale;
-  const scaledHeight = DESIGN_HEIGHT * scale;
+  const { w, h } = getDesignSize();
+
+  const scaledWidth  = w * scale;
+  const scaledHeight = h * scale;
 
   const offsetX = (vw - scaledWidth)  / 2;
   const offsetY = (vh - scaledHeight) / 2;
+
+  shell.style.width  = w + "px";
+  shell.style.height = h + "px";
 
   shell.style.transform =
     `translate(${offsetX}px, ${offsetY}px) scale(${scale})`;
