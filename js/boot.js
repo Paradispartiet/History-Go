@@ -205,6 +205,10 @@ if (window.ViewportManager) {
   ViewportManager.init();
 }
 
+if (window.LayerManager) {
+  LayerManager.init();
+}
+
 boot().then(() => {
   if (window.HGPos?.request) {
     window.HGPos.request();
