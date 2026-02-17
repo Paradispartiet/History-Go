@@ -101,25 +101,24 @@ body.hg-app{
   background:#000;
 }
 
-/* Fixed design canvas */
 body.hg-app .app-shell{
-  position:absolute;
-  left:50%;
-  top:50%;
+  position: absolute;
+  top: 0;
+  left: 0;
 
-  width: calc(var(--app-design-w) * 1px);
-  height: calc(var(--app-design-h) * 1px);
+  width: 1280px;
+  height: 800px;
 
-  transform-origin: center center;
+  transform-origin: top left;
 
-  transform: translate(-50%, -50%) scale(
+  transform: scale(
     min(
-      calc(100vw / var(--app-design-w)),
-      calc(100vh / var(--app-design-h))
+      calc(100vw / 1280),
+      calc(100vh / 800)
     )
   );
 
-  overflow:hidden;
+  overflow: hidden;
 }
 
 /* Footer (fast pixel, del av canvas) */
