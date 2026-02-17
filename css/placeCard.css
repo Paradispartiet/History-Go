@@ -494,6 +494,13 @@
   z-index:100;   /* 🔥 viktig */
 }
 
+#placeCard {
+  transition: transform .28s ease;
+}
+
+#placeCard.is-collapsed {
+  transform: translateY(100%);
+}
 
 /* =========================
    FLORA – vakker “samling”
