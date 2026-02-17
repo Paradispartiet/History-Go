@@ -85,20 +85,23 @@ body:not(.hg-app) .top-actions{
 }
 
 /* =====================================================
-   APP SHELL – History Go
+   APP SHELL – History Go (Fixed Canvas Mode)
 ===================================================== */
 
 :root{
   --app-design-w: 1280;
   --app-design-h: 800;
+  --footer-h: 77px;
 }
 
+/* App body */
 body.hg-app{
   margin:0;
   overflow:hidden;
   background:#000;
 }
 
+/* Fixed design canvas */
 body.hg-app .app-shell{
   position:absolute;
   left:50%;
@@ -115,23 +118,32 @@ body.hg-app .app-shell{
       calc(100vh / var(--app-design-h))
     )
   );
+
+  overflow:hidden;
 }
 
+/* Footer (fast pixel, del av canvas) */
 body.hg-app .app-footer{
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
 
-  z-index: 2100; /* over placeCard (2000) */
+  height: var(--footer-h);
 
-  border-top: 1px solid rgba(255,255,255,0.08);
-  padding: 10px;
-  background: rgba(0,0,0,0.95);
+  z-index:2100;
+  border-top:1px solid rgba(255,255,255,0.08);
+  background:rgba(0,0,0,0.95);
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
+/* Footer actions */
 body.hg-app .app-actions{
-  display: flex;
-  gap: 8px;
-  justify-content: center;
+  display:flex;
+  gap:8px;
+  justify-content:center;
+  align-items:center;
 }
