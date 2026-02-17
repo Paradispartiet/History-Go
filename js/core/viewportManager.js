@@ -35,7 +35,7 @@ function getDesignSize(){
 
   function applyScale(scale){
   if (!shell) return;
-  if (scale === lastScale) return;
+  if (Math.abs(scale - lastScale) < 0.001) return;
 
   const vw = window.innerWidth;
   const vh = window.innerHeight;
