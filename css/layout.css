@@ -124,20 +124,17 @@ body.hg-app .app-shell{
 
 /* Footer (fast pixel, del av canvas) */
 body.hg-app .app-footer{
-  position:absolute;
-  left:0;
-  right:0;
-  bottom:0;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
 
-  height: var(--footer-h);
+  height: 77px;          /* fast design */
+  z-index: 2100;         /* over placeCard */
 
-  z-index:2100;
-  border-top:1px solid rgba(255,255,255,0.08);
-  background:rgba(0,0,0,0.95);
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Footer actions */
