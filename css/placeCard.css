@@ -32,7 +32,7 @@
   position: absolute;
   left: 0;
   right: 0;
-  bottom: var(--footer-h);
+  bottom: calc(var(--hg-footer-h, 56px) + env(safe-area-inset-bottom));
   top: auto;
 
   height: var(--pc-height);
@@ -46,6 +46,8 @@
   transition: transform .28s ease;
 }
 
+#placeCard.is-collapsed{ pointer-events: none; }
+#placeCard.is-open{ pointer-events: auto; }
 
 #placeCard::before{
   content:"";
