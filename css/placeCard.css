@@ -189,11 +189,25 @@
 
   padding-left: var(--pc-pad);
   padding-right: var(--pc-pad);
-  
+
+  /* ikke helt ut i bredden */
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+
+  /* 4 linjer + … */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  overflow: hidden;
+
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text",
                "Inter", "Segoe UI", Roboto, system-ui, sans-serif;
   letter-spacing: 0.1px;
 }
+
+/* Fjern default margins som kan ødelegge høyden */
+#placeCard .pc-text > *{ margin: 0; }
 
 /* Tekst */
 #placeCard #pcTitle{
