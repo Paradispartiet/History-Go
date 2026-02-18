@@ -547,11 +547,6 @@ function requestMapResize(){
   });
 }
 
-// Velg hvilken "collapsed" state du vil ha:
-// - "hidden" = helt nede (ute av view)
-// - "peek"   = bare handle-strip synlig
-const COLLAPSED_STATE = "collapsed";
-
 function collapsePlaceCard() {
   const pc = getPlaceCardEl();
   if (!pc) return;
@@ -564,8 +559,10 @@ function collapsePlaceCard() {
 
   setPlaceCardMiniVisible(true);
 
- if (window.bottomSheetController?.setState) {
-  window.bottomSheetController.setState(COLLAPSED_STATE);
+ if (window.bottomSheetController?.collapse) {
+  window.bottomSheetController.collapse();
+} else if (window.bottomSheetController?.setState) {
+  window.bottomSheetController.setState("hidden"); // fallback
 }
 
   requestMapResize();
@@ -582,9 +579,11 @@ function expandPlaceCard() {
 
   setPlaceCardMiniVisible(false);
 
-  if (window.bottomSheetController?.setState) {
-   window.bottomSheetController.setState("open");
-  }
+  if (window.bottomSheetController?.open) {
+  window.bottomSheetController.open();
+} else if (window.bottomSheetController?.setState) {
+  window.bottomSheetController.setState("open"); // fallback
+}
 
   requestMapResize();
 }
