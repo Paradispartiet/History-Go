@@ -194,10 +194,15 @@ function initLeftPanel() {
 // ============================================================
 
 window.setNearbyCollapsed = function (hidden) {
+  // Nearby skal kun kollapse i kartmodus
+  if (window.LayerManager?.getMode?.() !== "map") {
+    hidden = false;
+  }
+
   const panel = hg$("nearbyListContainer");
   if (!panel) return;
 
-  panel.setAttribute("aria-hidden", hidden ? "true" : "false");
+  panel.classList.toggle("is-hidden", !!hidden);
 
   window.HGMap?.resize?.();
   window.MAP?.resize?.();
