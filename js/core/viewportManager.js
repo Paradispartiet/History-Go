@@ -8,11 +8,22 @@
   let lastScale = null;
 
   function getViewportSize(){
+  const vv = window.visualViewport;
+  if (vv){
     return {
-      width:  window.innerWidth,
-      height: window.innerHeight
+      width: vv.width,
+      height: vv.height,
+      offsetLeft: vv.offsetLeft || 0,
+      offsetTop: vv.offsetTop || 0
     };
   }
+  return {
+    width: window.innerWidth,
+    height: window.innerHeight,
+    offsetLeft: 0,
+    offsetTop: 0
+  };
+}
 
   function calculateScale(vw, vh){
     const scaleX = vw / DESIGN_WIDTH;
@@ -21,41 +32,43 @@
   }
 
   function applyScale(scale){
-    if (!shell) return;
-    if (Math.abs(scale - lastScale) < 0.001) return;
+  if (!shell) return;
+  if (Math.abs(scale - lastScale) < 0.001) return;
 
-    const vw = window.innerWidth;
-    const vh = window.innerHeight;
+  const { width: vw, height: vh, offsetLeft, offsetTop } = getViewportSize();
 
-    const scaledWidth  = DESIGN_WIDTH  * scale;
-    const scaledHeight = DESIGN_HEIGHT * scale;
+  const scaledWidth  = DESIGN_WIDTH  * scale;
+  const scaledHeight = DESIGN_HEIGHT * scale;
 
-    const offsetX = (vw - scaledWidth)  / 2;
-    const offsetY = (vh - scaledHeight) / 2;
+  // Horisontalt: sentrer
+  const offsetX = offsetLeft + (vw - scaledWidth) / 2;
 
-    shell.style.width  = DESIGN_WIDTH  + "px";
-    shell.style.height = DESIGN_HEIGHT + "px";
+  // Vertikalt: bunn-align (ingen “safe area” under footer)
+  const offsetY = offsetTop + Math.max(0, (vh - scaledHeight));
 
-    shell.style.transform =
-      `translate(${offsetX}px, ${offsetY}px) scale(${scale})`;
+  shell.style.width  = DESIGN_WIDTH  + "px";
+  shell.style.height = DESIGN_HEIGHT + "px";
 
-    lastScale = scale;
+  shell.style.transform =
+    `translate(${offsetX}px, ${offsetY}px) scale(${scale})`;
 
-    requestAnimationFrame(() => {
-      if (window.hgMap?.resize) {
-        window.hgMap.resize();
-      }
-    });
-  }
+  lastScale = scale;
 
-  function update(){
-    rafId = null;
+  requestAnimationFrame(() => {
+    if (window.hgMap?.resize) {
+      window.hgMap.resize();
+    }
+  });
+}
 
-    const { width, height } = getViewportSize();
-    const scale = calculateScale(width, height);
+function update(){
+  rafId = null;
 
-    applyScale(scale);
-  }
+  const { width, height } = getViewportSize();
+  const scale = calculateScale(width, height);
+
+  applyScale(scale);
+}
 
   function scheduleUpdate(){
     if (rafId !== null) return;
