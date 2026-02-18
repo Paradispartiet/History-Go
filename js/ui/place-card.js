@@ -563,10 +563,9 @@ function collapsePlaceCard() {
 
   setPlaceCardMiniVisible(true);
 
-  // Motorstyrt posisjon (px-only)
-  if (window.BottomSheetController?.setState) {
-    window.BottomSheetController.setState(COLLAPSED_STATE);
-  }
+ if (window.bottomSheetController?.setState) {
+  window.bottomSheetController.setState(COLLAPSED_STATE);
+}
 
   requestMapResize();
 }
@@ -582,8 +581,8 @@ function expandPlaceCard() {
 
   setPlaceCardMiniVisible(false);
 
-  if (window.BottomSheetController?.setState) {
-    window.BottomSheetController.setState("open");
+  if (window.bottomSheetController?.setState) {
+   window.bottomSheetController.setState("open");
   }
 
   requestMapResize();
