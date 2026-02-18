@@ -516,7 +516,8 @@ if (badgesEl) {
   });
 
   card.setAttribute("aria-hidden", "false");
-};
+  expandPlaceCard();
+  };
 
 
 // ============================================================
