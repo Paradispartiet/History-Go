@@ -202,7 +202,7 @@ if (window.QuizEngine) {
 }
 
 if (window.ViewportManager) {
-  ViewportManager.init();
+  // ViewportManager.init();
 }
 
 if (window.LayerManager) {
