@@ -185,7 +185,7 @@ function hideEl(el) {
 
     register("nearby", nearby, Z.NEARBY, {
      hideInMapMode: true,
-     ariaHiddenControlsDisplay: true,
+     ariaHiddenControlsDisplay: false,
      display: ""
     
     });
@@ -225,9 +225,6 @@ function hideEl(el) {
 
     // Map controls hidden in explore by default
     if (mapControls) hideEl(mapControls);
-
-    // Observe placeCard aria-hidden
-    observeAriaHidden("placeCard");
 
     // Observe nearby aria-hidden
     observeAriaHidden("nearby");
