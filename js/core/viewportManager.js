@@ -13,11 +13,8 @@ const DESIGN_HEIGHT = 1280;
   }
 
   function calculateScale(vw, vh){
-  const { w, h } = getDesignSize();
-
-  const scaleX = vw / w;
-  const scaleY = vh / h;
-
+  const scaleX = vw / DESIGN_WIDTH;
+  const scaleY = vh / DESIGN_HEIGHT;
   return Math.min(scaleX, scaleY);
 }
 
