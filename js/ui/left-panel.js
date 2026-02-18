@@ -61,7 +61,7 @@ function setLeftPanelMode(mode) {
 }
 
 // ============================================================
-// FRAME SYNC (header + placeCard påvirker høyde)
+// FRAME SYNC (kun header)
 // ============================================================
 
 function syncLeftPanelFrame() {
@@ -69,19 +69,11 @@ function syncLeftPanelFrame() {
     document.querySelector("header") ||
     document.querySelector(".site-header");
 
-  const pc = hg$("placeCard");
-
   const headerH = Math.round(header?.getBoundingClientRect().height || 62);
-  document.documentElement.style.setProperty("--hg-header-h", headerH + "px");
-
-  if (!pc) return;
-
-  // 👉 bruk offsetHeight i stedet for getBoundingClientRect().top
-  const h = pc.offsetHeight || 0;
 
   document.documentElement.style.setProperty(
-    "--hg-placecard-h",
-    h + "px"
+    "--hg-header-h",
+    headerH + "px"
   );
 }
 
