@@ -9,19 +9,15 @@
 
   function getViewportSize(){
   const vv = window.visualViewport;
-  if (vv){
-    return {
-      width: vv.width,
-      height: vv.height,
-      offsetLeft: vv.offsetLeft || 0,
-      offsetTop: vv.offsetTop || 0
-    };
+
+  if (vv && vv.width && vv.height){
+    return { width: vv.width, height: vv.height };
   }
+
+  const de = document.documentElement;
   return {
-    width: window.innerWidth,
-    height: window.innerHeight,
-    offsetLeft: 0,
-    offsetTop: 0
+    width: de.clientWidth,
+    height: de.clientHeight
   };
 }
 
