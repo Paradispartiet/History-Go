@@ -1,17 +1,5 @@
-(function(){
-
-const DESKTOP_WIDTH  = 1280;
-const DESKTOP_HEIGHT = 800;
-
-const MOBILE_WIDTH   = 1024;
-const MOBILE_HEIGHT  = 640;
-
-function getDesignSize(){
-  if (window.innerWidth < 900) {
-    return { w: MOBILE_WIDTH, h: MOBILE_HEIGHT };
-  }
-  return { w: DESKTOP_WIDTH, h: DESKTOP_HEIGHT };
-}
+const DESIGN_WIDTH  = 800;
+const DESIGN_HEIGHT = 1280;
   
   let shell = null;
   let rafId = null;
