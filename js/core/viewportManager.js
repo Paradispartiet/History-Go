@@ -1,94 +1,88 @@
-(function(){
-
-  const DESIGN_WIDTH  = 800;
+(function () {
+  const DESIGN_WIDTH = 800;
   const DESIGN_HEIGHT = 1280;
 
   let shell = null;
   let rafId = null;
-  let lastScale = null;
+  let last = { scale: null, x: null, y: null };
 
-  function getViewport(){
+  function getViewport() {
     const vv = window.visualViewport;
-    if (vv && vv.width && vv.height){
-      return {
-        width: vv.width,
-        height: vv.height,
-        offsetLeft: vv.offsetLeft || 0,
-        offsetTop: vv.offsetTop || 0
-      };
-    }
-
-    const de = document.documentElement;
-    return {
-      width: de.clientWidth,
-      height: de.clientHeight,
-      offsetLeft: 0,
-      offsetTop: 0
-    };
+    if (vv) return { w: vv.width, h: vv.height };
+    return { w: window.innerWidth, h: window.innerHeight };
   }
 
-  function calculateScale(vw, vh){
-    return Math.min(vw / DESIGN_WIDTH, vh / DESIGN_HEIGHT);
+  function calculateScale(vw, vh) {
+    const sx = vw / DESIGN_WIDTH;
+    const sy = vh / DESIGN_HEIGHT;
+    return Math.min(sx, sy);
   }
 
-  function apply(scale){
+  function apply(scale, vw, vh) {
     if (!shell) return;
-    if (Math.abs(scale - lastScale) < 0.001) return;
 
-    const { width: vw, height: vh, offsetLeft, offsetTop } = getViewport();
-
-    const scaledW = DESIGN_WIDTH  * scale;
+    const scaledW = DESIGN_WIDTH * scale;
     const scaledH = DESIGN_HEIGHT * scale;
 
-    // X: sentrer, men aldri negativ (hindrer “ut til venstre”)
+    // ✅ Stabilt: aldri “dytt ned” vertikalt (det gir falsk safe-area under footer)
     const x = Math.max(0, (vw - scaledW) / 2);
+    const y = 0;
 
-    // Y: bunn-align (footer “låses” nederst)
-    const y = Math.max(0, (vh - scaledH));
+    if (
+      last.scale !== null &&
+      Math.abs(scale - last.scale) < 0.001 &&
+      Math.abs(x - last.x) < 0.5 &&
+      Math.abs(y - last.y) < 0.5
+    ) {
+      return;
+    }
 
-    // Bruk visualViewport-offset bare når shell er fixed (top/left=0)
-    const tx = Math.round(offsetLeft + x);
-    const ty = Math.round(offsetTop  + y);
-
-    shell.style.width  = DESIGN_WIDTH  + "px";
+    // App-shell er et “stage”
+    shell.style.width = DESIGN_WIDTH + "px";
     shell.style.height = DESIGN_HEIGHT + "px";
-    shell.style.transform = `translate(${tx}px, ${ty}px) scale(${scale})`;
 
-    lastScale = scale;
+    // Viktig for iOS: fixed + translate3d
+    shell.style.position = "fixed";
+    shell.style.top = "0";
+    shell.style.left = "0";
+    shell.style.transformOrigin = "top left";
+    shell.style.transform = `translate3d(${x}px, ${y}px, 0) scale(${scale})`;
+
+    last = { scale, x, y };
 
     requestAnimationFrame(() => {
       if (window.hgMap?.resize) window.hgMap.resize();
+      if (window.MAP?.resize) window.MAP.resize();
     });
   }
 
-  function update(){
+  function update() {
     rafId = null;
-    const { width, height } = getViewport();
-    apply(calculateScale(width, height));
+    const { w, h } = getViewport();
+    const scale = calculateScale(w, h);
+    apply(scale, w, h);
   }
 
-  function schedule(){
+  function schedule() {
     if (rafId !== null) return;
     rafId = requestAnimationFrame(update);
   }
 
-  function init(){
+  function init() {
     shell = document.querySelector(".app-shell");
     if (!shell) return;
 
-    // 2-pass init: iPad kan endre visualViewport rett etter første paint
     update();
-    requestAnimationFrame(update);
 
-    window.addEventListener("resize", schedule);
-    window.addEventListener("orientationchange", schedule);
+    window.addEventListener("resize", schedule, { passive: true });
+    window.addEventListener("orientationchange", schedule, { passive: true });
 
-    if (window.visualViewport){
-      window.visualViewport.addEventListener("resize", schedule);
-      window.visualViewport.addEventListener("scroll", schedule);
+    const vv = window.visualViewport;
+    if (vv) {
+      vv.addEventListener("resize", schedule, { passive: true });
+      vv.addEventListener("scroll", schedule, { passive: true }); // iOS toolbar/offset
     }
   }
 
   window.ViewportManager = { init };
-
 })();
