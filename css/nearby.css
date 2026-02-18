@@ -229,6 +229,8 @@
   gap: 6px;
   width: 100%;
   flex-wrap: nowrap;
+
+  padding-bottom: 12px;
 }
 
 /* Tabs som små buttons */
@@ -238,6 +240,8 @@
   align-items: center;
   flex: 1 1 auto;
   min-width: 0;
+
+  margin-top: 8px;
 }
 
 /* Tabs helt til høyre i head */
@@ -330,9 +334,8 @@
    ============================================================ */
 
 .nearby-row2{
-  margin-top: 8;        /* IKKE margin-top:auto */
-  height: 160px;         /* fast høyde som matcher kortene */
-
+  margin-top: 12px;   /* eller 8px, 14px osv */
+  height: 160px;
   padding: 0 8px 6px;
   display: flex;
   align-items: flex-end;
@@ -353,6 +356,8 @@
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
 
+
+  padding-top: 8px;   
   padding: 0 2px; /* litt “luft” så ikke siste kort klippes */
 }
 #nearbyList.nearby-strip::-webkit-scrollbar{ display:none; }
