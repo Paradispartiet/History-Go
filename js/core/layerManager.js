@@ -184,8 +184,10 @@ function hideEl(el) {
     });
 
     register("nearby", nearby, Z.NEARBY, {
-      hideInMapMode: true,
-      display: ""
+     hideInMapMode: true,
+     ariaHiddenControlsDisplay: true,
+     display: ""
+    
     });
 
     register("footer", footer, Z.FOOTER, {
@@ -226,6 +228,9 @@ function hideEl(el) {
 
     // Observe placeCard aria-hidden
     observeAriaHidden("placeCard");
+
+    // Observe nearby aria-hidden
+    observeAriaHidden("nearby");
 
     // Wire map mode buttons
     wireButtons();
