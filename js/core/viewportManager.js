@@ -35,16 +35,16 @@
   if (!shell) return;
   if (Math.abs(scale - lastScale) < 0.001) return;
 
-  const { width: vw, height: vh, offsetLeft, offsetTop } = getViewportSize();
+  const { width: vw, height: vh } = getViewportSize();
 
   const scaledWidth  = DESIGN_WIDTH  * scale;
   const scaledHeight = DESIGN_HEIGHT * scale;
 
   // Horisontalt: sentrer
-  const offsetX = offsetLeft + (vw - scaledWidth) / 2;
+  const offsetX = (vw - scaledWidth) / 2;
 
-  // Vertikalt: bunn-align (ingen “safe area” under footer)
-  const offsetY = offsetTop + Math.max(0, (vh - scaledHeight));
+  // Vertikalt: bunn-align (ingen gap under footer)
+  const offsetY = Math.max(0, (vh - scaledHeight));
 
   shell.style.width  = DESIGN_WIDTH  + "px";
   shell.style.height = DESIGN_HEIGHT + "px";
@@ -55,9 +55,7 @@
   lastScale = scale;
 
   requestAnimationFrame(() => {
-    if (window.hgMap?.resize) {
-      window.hgMap.resize();
-    }
+    if (window.hgMap?.resize) window.hgMap.resize();
   });
 }
 
