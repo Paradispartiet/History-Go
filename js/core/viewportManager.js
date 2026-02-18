@@ -1,6 +1,6 @@
 (function () {
   const DESIGN_WIDTH = 900;
-  const DESIGN_HEIGHT = 1340;
+  const DESIGN_HEIGHT = 1380;
 
   let shell = null;
   let rafId = null;
