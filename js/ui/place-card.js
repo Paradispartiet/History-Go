@@ -549,7 +549,7 @@ function requestMapResize(){
 // Velg hvilken "collapsed" state du vil ha:
 // - "hidden" = helt nede (ute av view)
 // - "peek"   = bare handle-strip synlig
-const COLLAPSED_STATE = "hidden";
+const COLLAPSED_STATE = "collapsed";
 
 function collapsePlaceCard() {
   const pc = getPlaceCardEl();
