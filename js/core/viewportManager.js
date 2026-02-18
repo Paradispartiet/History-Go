@@ -25,7 +25,8 @@ const DESIGN_HEIGHT = 1280;
   const vw = window.innerWidth;
   const vh = window.innerHeight;
 
-  const { w, h } = getDesignSize();
+  const w = DESIGN_WIDTH;
+  const h = DESIGN_HEIGHT;
 
   const scaledWidth  = w * scale;
   const scaledHeight = h * scale;
