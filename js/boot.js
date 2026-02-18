@@ -38,9 +38,18 @@ async function boot() {
   ============================== */
 
   window.OPEN_MODE = localStorage.getItem("HG_OPEN_MODE") === "1";
+  window.TEST_MODE = window.OPEN_MODE;
 
   const openEl = document.getElementById("openToggle");
-  if (openEl) openEl.checked = window.OPEN_MODE;
+if (openEl) {
+  openEl.checked = window.OPEN_MODE;
+
+  openEl.addEventListener("change", () => {
+    window.OPEN_MODE = !!openEl.checked;
+    window.TEST_MODE = window.OPEN_MODE;
+    localStorage.setItem("HG_OPEN_MODE", window.OPEN_MODE ? "1" : "0");
+  });
+}
 
   const btnUA = document.getElementById("btnUnlockAll");
   if (btnUA) btnUA.style.display = window.OPEN_MODE ? "inline-flex" : "none";
