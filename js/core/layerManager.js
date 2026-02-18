@@ -203,7 +203,7 @@ function hideEl(el) {
     // PlaceCard: visibility drives from aria-hidden in explore mode
     register("placeCard", placeCard, Z.PLACECARD, {
       hideInMapMode: true,
-      ariaHiddenControlsDisplay: true,
+      ariaHiddenControlsDisplay: false,
       display: ""
     });
 
