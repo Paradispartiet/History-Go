@@ -195,9 +195,7 @@ function initLeftPanel() {
 
 window.setNearbyCollapsed = function (hidden) {
   // Nearby skal kun kollapse i kartmodus
-  if (window.LayerManager?.getMode?.() !== "map") {
-    hidden = false;
-  }
+  if (window.LayerManager?.getMode?.() !== "map") hidden = false;
 
   const panel = hg$("nearbyListContainer");
   if (!panel) return;
