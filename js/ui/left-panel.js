@@ -196,7 +196,9 @@ function initLeftPanel() {
 window.setNearbyCollapsed = function (hidden) {
   const panel = hg$("nearbyListContainer");
   if (!panel) return;
-  panel.classList.toggle("is-hidden", !!hidden);
+
+  panel.setAttribute("aria-hidden", hidden ? "true" : "false");
+
   window.HGMap?.resize?.();
   window.MAP?.resize?.();
 };
