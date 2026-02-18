@@ -137,7 +137,10 @@ function enterMapMode() {
 
   // ✅ bare minimer (ingen hide av hele UI)
   window.setPlaceCardCollapsed?.(true);
-  window.setNearbyCollapsed?.(true);
+  // Ikke kollaps Nearby her (bare i kartmodus)
+  if (window.LayerManager?.getMode?.() === "map") {
+   window.setNearbyCollapsed?.(true);
+  }
 
   const mapEl = document.getElementById("map");
   if (mapEl) mapEl.style.zIndex = "10";
@@ -155,8 +158,9 @@ function exitMapMode() {
   if (el.btnExitMap) el.btnExitMap.style.display = "none";
 
   window.setPlaceCardCollapsed?.(false);
+  // Nearby skal alltid være synlig i explore
   window.setNearbyCollapsed?.(false);
-
+  
   const mapEl = document.getElementById("map");
   if (mapEl) mapEl.style.zIndex = "1";
 
