@@ -69,12 +69,21 @@ function syncLeftPanelFrame() {
     document.querySelector("header") ||
     document.querySelector(".site-header");
 
-  const headerH = Math.round(header?.getBoundingClientRect().height || 62);
+  if (!header) return;
 
-  document.documentElement.style.setProperty(
-    "--hg-header-h",
-    headerH + "px"
-  );
+  const shell = document.querySelector(".app-shell");
+
+  const hr = header.getBoundingClientRect();
+  let headerH = hr.bottom;
+
+  if (shell) {
+    const sr = shell.getBoundingClientRect();
+    headerH = hr.bottom - sr.top;
+  }
+
+  headerH = Math.max(0, Math.round(headerH));
+
+  document.documentElement.style.setProperty("--hg-header-h", headerH + "px");
 }
 
 // ============================================================
