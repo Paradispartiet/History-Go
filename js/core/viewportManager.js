@@ -1,5 +1,5 @@
 (function () {
-  const DESIGN_WIDTH = 800;
+  const DESIGN_WIDTH = 900;
   const DESIGN_HEIGHT = 1280;
 
   let shell = null;
