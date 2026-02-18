@@ -103,16 +103,21 @@
   object-fit:contain;
 }
 
-/* Høyre kvadrater */
+/* Høyre kvadrater (generelt) */
 .pc-quad{
-  display:grid;
-  gap:10px;
+  display: grid;
+  gap: 10px;
 }
 
+/* Ikon-kvadratet (rundingene) */
 .pc-icons-quad{
-  grid-column:2;
-  grid-row:1;
-  grid-template-columns:repeat(2,1fr);
+  grid-column: 2;
+  grid-row: 1;
+
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 6px; /* tettere mellom rundingene */
 }
 
 .pc-events-quad{
