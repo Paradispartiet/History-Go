@@ -30,10 +30,12 @@
 
   function open(){
     setState(STATES.OPEN);
+    if (el) el.setAttribute("aria-hidden", "false");
   }
 
   function collapse(){
     setState(STATES.COLLAPSED);
+    if (el) el.setAttribute("aria-hidden", "true");
   }
 
   function toggle(){
@@ -48,9 +50,9 @@
     el = document.getElementById("placeCard");
     if (!el) return;
 
-    // start collapsed
+   // start collapsed
     el.classList.add("is-collapsed");
-  }
+    el.setAttribute("aria-hidden", "true");
 
   window.bottomSheetController = {
     init,
