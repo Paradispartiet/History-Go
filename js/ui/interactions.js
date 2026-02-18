@@ -81,8 +81,8 @@ function enterMapMode() {
   if (el.btnSeeMap)  el.btnSeeMap.style.display = "none";
   if (el.btnExitMap) el.btnExitMap.style.display = "block";
 
-  window.setPlaceCardCollapsed?.(true);
-  window.setNearbyCollapsed?.(true);
+  window.setPlaceCardCollapsed?.(false);
+// Nearby skal ikke kollapse ved stedvalg
 
   const mapEl = document.getElementById("map");
   if (mapEl) mapEl.style.zIndex = "10";
