@@ -36,15 +36,15 @@
     el.style.zIndex = String(z);
   }
 
-  function showEl(el, display = "") {
+function showEl(el, display = "") {
   if (!el) return;
-  el.style.display = "";
+  el.style.display = display || "";
   el.style.pointerEvents = "";
 }
 
-  function hideEl(el) {
+function hideEl(el) {
   if (!el) return;
-  el.style.display = "";
+  el.style.display = "none";
   el.style.pointerEvents = "none";
 }
 
