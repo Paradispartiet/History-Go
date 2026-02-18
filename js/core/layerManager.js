@@ -37,16 +37,16 @@
   }
 
   function showEl(el, display = "") {
-    if (!el) return;
-    el.style.display = display;
-    el.style.pointerEvents = "";
-  }
+  if (!el) return;
+  el.style.display = "";
+  el.style.pointerEvents = "";
+}
 
   function hideEl(el) {
-    if (!el) return;
-    el.style.display = "none";
-    el.style.pointerEvents = "none";
-  }
+  if (!el) return;
+  el.style.display = "";
+  el.style.pointerEvents = "none";
+}
 
   function register(name, el, z, opts = {}) {
     if (!el) return null;
