@@ -80,12 +80,11 @@ function enterMapMode() {
   if (el.btnSeeMap)  el.btnSeeMap.style.display = "none";
   if (el.btnExitMap) el.btnExitMap.style.display = "block";
 
-  // ✅ bare minimer (ingen hide av hele UI)
+   // ✅ bare minimer (ingen hide av hele UI)
   window.setPlaceCardCollapsed?.(true);
-  // Ikke kollaps Nearby her (bare i kartmodus)
-  if (window.LayerManager?.getMode?.() === "map") {
-   window.setNearbyCollapsed?.(true);
-  }
+
+   // ✅ kartmodus: kollaps Nearby
+  window.setNearbyCollapsed?.(true);
 
   const mapEl = document.getElementById("map");
   if (mapEl) mapEl.style.zIndex = "10";
