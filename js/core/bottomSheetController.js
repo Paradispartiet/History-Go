@@ -50,9 +50,10 @@
     el = document.getElementById("placeCard");
     if (!el) return;
 
-   // start collapsed
+    // start collapsed
     el.classList.add("is-collapsed");
     el.setAttribute("aria-hidden", "true");
+  }
 
   window.bottomSheetController = {
     init,
