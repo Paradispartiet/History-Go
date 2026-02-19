@@ -13,17 +13,21 @@
     if (!el) return;
     if (next === state) return;
 
-    el.classList.remove("is-open", "is-collapsed");
+    el.classList.remove("is-open", "is-collapsed", "is-hidden");
 
-    switch(next){
-      case STATES.OPEN:
-        el.classList.add("is-open");
-        break;
+switch(next){
+  case STATES.OPEN:
+    el.classList.add("is-open");
+    break;
 
-      case STATES.COLLAPSED:
-        el.classList.add("is-collapsed");
-        break;
-    }
+  case STATES.COLLAPSED:
+    el.classList.add("is-collapsed");
+    break;
+
+  case STATES.HIDDEN:
+    el.classList.add("is-hidden");
+    break;
+}
 
     state = next;
   }
@@ -34,9 +38,14 @@
   }
 
   function collapse(){
-    setState(STATES.COLLAPSED);
-    if (el) el.setAttribute("aria-hidden", "true");
-  }
+  setState(STATES.COLLAPSED);
+  if (el) el.setAttribute("aria-hidden", "true");
+}
+
+function hide(){
+  setState(STATES.HIDDEN);
+  if (el) el.setAttribute("aria-hidden", "true");
+}
 
   function toggle(){
     if (state === STATES.OPEN){
@@ -56,11 +65,12 @@
   }
 
   window.bottomSheetController = {
-    init,
-    open,
-    collapse,
-    toggle,
-    setState
-  };
+  init,
+  open,
+  collapse,
+  hide,
+  toggle,
+  setState
+};
 
 })();
