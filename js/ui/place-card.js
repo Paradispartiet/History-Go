@@ -564,10 +564,10 @@ function collapsePlaceCard() {
 
   setPlaceCardMiniVisible(true);
 
- if (window.bottomSheetController?.collapse) {
-  window.bottomSheetController.collapse();
+ if (window.bottomSheetController?.hide) {
+  window.bottomSheetController.hide();
 } else if (window.bottomSheetController?.setState) {
-  window.bottomSheetController.setState("hidden"); // fallback
+  window.bottomSheetController.setState("hidden");
 }
 
   requestMapResize();
