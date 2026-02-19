@@ -50,6 +50,15 @@
 
     last = { scale, x, y };
 
+    shell.style.transformOrigin = "top left";
+    shell.style.transform = `translate3d(${x}px, ${y}px, 0) scale(${scale})`;
+
+     if (window.map) {
+      window.map.resize();
+     }
+
+    last = { scale, x, y };
+    
     requestAnimationFrame(() => {
       if (window.hgMap?.resize) window.hgMap.resize();
       if (window.MAP?.resize) window.MAP.resize();
