@@ -49,6 +49,11 @@
 #placeCard.is-collapsed{ pointer-events: none; }
 #placeCard.is-open{ pointer-events: auto; }
 
+#placeCard.is-hidden{
+  transform: translateY(120%);
+  pointer-events: none;
+}
+
 #placeCard::before{
   content:"";
   display:none;                     /* fjern “handle” */
