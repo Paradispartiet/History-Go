@@ -66,6 +66,9 @@ const PRECACHE_URLS = [
   "js/core/tiersCivi.js",
   "js/core/geo.js",
   "js/core/pos.js",
+  "js/core/viewportManager.js",
+  "js/core/layerManager.js",
+  "js/core/bottomSheetController.js",
 
   "js/map.js",
   "js/ors-config.js",
@@ -85,6 +88,7 @@ const PRECACHE_URLS = [
   "js/ui/badge-modal.js",
   "js/ui/mini-profile.js",
   "js/ui/civication-inbox.js",
+  "js/ui/geo-indicator.js",
 
   "js/boot.js",
   "js/app.js"
