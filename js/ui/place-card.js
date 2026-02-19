@@ -501,15 +501,20 @@ if (badgesEl) {
     };
   }
 
-  // --- Stop interval når du lukker kortet ---
-  if (btnClose) {
-    const prev = btnClose.onclick;
-    btnClose.onclick = (e) => {
-      if (_unlockTimer) { clearInterval(_unlockTimer); _unlockTimer = null; }
-      if (typeof prev === "function") prev.call(btnClose, e);
-    };
-  }
+if (btnClose) {
+  const prev = btnClose.onclick;
 
+  btnClose.onclick = (e) => {
+    if (_unlockTimer) { clearInterval(_unlockTimer); _unlockTimer = null; }
+
+    if (typeof window.collapsePlaceCard === "function") {
+      window.collapsePlaceCard();
+      return;
+    }
+
+    if (typeof prev === "function") prev.call(btnClose, e);
+  };
+}
   
   requestAnimationFrame(() => {
     card.classList.remove("is-switching");
