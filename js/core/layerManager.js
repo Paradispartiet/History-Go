@@ -92,18 +92,12 @@ function applyMode(mode) {
   state.mode = mode;
 
   const isMap = mode === "map";
-  const pcCollapsed = document.body.classList.contains("pc-collapsed");
 
   for (const entry of state.layers.values()) {
     const { el, opts, name } = entry;
     if (!el) continue;
 
     if (name === "toast" || name === "badgeModal") continue;
-
-    if (pcCollapsed && name === "nearby") {
-      hideEl(el);
-      continue;
-    }
 
     if (isMap) {
       if (opts.showInMapMode) showEl(el, opts.display);
@@ -126,6 +120,8 @@ function applyMode(mode) {
 
   document.body.classList.toggle("mode-map", isMap);
 }
+
+  
   function wireButtons() {
     const btnSeeMap = byId("btnSeeMap");
     const btnExitMap = byId("btnExitMap");
