@@ -9,9 +9,9 @@
   --pc-pad: 12px;
   --pc-gap: 17px;
 
-  --pc-title: 25px;
+  --pc-title: 35px;
   --pc-meta: 16px;
-  --pc-desc: 17px;
+  --pc-desc: 22px;
 
   --pc-person-img: 66px;
 
@@ -135,7 +135,10 @@ body.pc-collapsed #nearbyListContainer {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
 
-  gap: 6px; /* tettere mellom rundingene */
+  gap: 6px;
+
+  justify-self: end;   /* skyver hele blokken mot høyre */
+  width: fit-content;  /* så den ikke fyller hele 1fr */
 }
 
 .pc-events-quad{
@@ -194,8 +197,8 @@ body.pc-collapsed #nearbyListContainer {
 
 /* Rundinger */
 .pc-round{
-  width: 175px;
-  height: 175px;
+  width: 150px;
+  height: 150px;
 
   aspect-ratio: 1 / 1;
   border-radius: 50%;
@@ -206,10 +209,6 @@ body.pc-collapsed #nearbyListContainer {
   justify-content: center;
 }
 
-#placeCard{
-  --pc-title: 35px;
-}
-
 #placeCard .pc-text{
   grid-column: 1 / -1;
   grid-row: 1;
@@ -217,58 +216,52 @@ body.pc-collapsed #nearbyListContainer {
   padding-left: var(--pc-pad);
   padding-right: var(--pc-pad);
 
-  /* ikke helt ut i bredden */
   max-width: 720px;
   margin-left: auto;
   margin-right: auto;
 
-  /* 4 linjer + … */
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 4;
-  overflow: hidden;
-
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text",
-               "Inter", "Segoe UI", Roboto, system-ui, sans-serif;
-  letter-spacing: 0.1px;
+  font-family:
+    "Palatino Linotype",
+    "Palatino",
+    "Book Antiqua",
+    Georgia,
+    serif;
 }
 
-/* Fjern default margins som kan ødelegge høyden */
+/* Fjern default margins */
 #placeCard .pc-text > *{ margin: 0; }
 
-/* Tekst */
+/* Tittel */
 #placeCard #pcTitle{
-  margin: 0;
-  font-size: var(--pc-title);
+  font-size: 36px;          /* Palatino tåler størrelse */
   color: #fff;
   line-height: 1.2;
-
   font-weight: 600;
-  letter-spacing: -0.3px;
+  letter-spacing: 0;        /* viktig – ikke negativ */
 }
 
+/* Meta */
 #placeCard #pcMeta{
-  margin-top: 4px;
-  margin-bottom: 10px;
-  font-size: var(--pc-meta);
-  color: var(--text-dim);
+  margin-top: 6px;
+  margin-bottom: 16px;
+
+  font-size: 14px;
+  opacity: .65;
 }
 
-/* Fast uttrykk + … (full tekst i popup via “Mer info”) */
+/* Brødtekst */
 #placeCard #pcDesc{
   margin: 0 0 14px 0;
-  font-size: var(--pc-desc);
-  line-height: 1.50;
+  font-size: 19px;
+  line-height: 1.6;
   color: var(--text);
+
+  max-width: 60ch;
 
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
-
-  font-weight: 400;
-  letter-spacing: 0.15px;
-  max-width: 62ch;
 }
 
 
