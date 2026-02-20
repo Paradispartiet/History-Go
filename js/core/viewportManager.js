@@ -17,7 +17,8 @@
     const sy = vh / DESIGN_HEIGHT;
     return Math.min(sx, sy);
   }
-
+  
+  
   function apply(scale, vw, vh) {
   if (!shell) return;
 
@@ -36,20 +37,17 @@
     return;
   }
 
-  // Stage-dimensjoner
   shell.style.width = DESIGN_WIDTH + "px";
   shell.style.height = DESIGN_HEIGHT + "px";
 
-  // Fixed + transform
   shell.style.position = "fixed";
   shell.style.top = "0";
   shell.style.left = "0";
   shell.style.transformOrigin = "top left";
   shell.style.transform = `translate3d(${x}px, ${y}px, 0) scale(${scale})`;
 
-  // 🔥 Viktig: tving MapLibre til å re-beregne
-  if (typeof MAP !== "undefined" && MAP?.resize) {
-    MAP.resize();
+  if (window.HGMap?.resize) {
+    window.HGMap.resize();
   }
 
   last = { scale, x, y };
@@ -63,11 +61,13 @@
     apply(scale, w, h);
   }
 
+  
   function schedule() {
     if (rafId !== null) return;
     rafId = requestAnimationFrame(update);
   }
 
+  
   function init() {
     shell = document.querySelector(".app-shell");
     if (!shell) return;
