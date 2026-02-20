@@ -19,51 +19,42 @@
   }
 
   function apply(scale, vw, vh) {
-    if (!shell) return;
+  if (!shell) return;
 
-    const scaledW = DESIGN_WIDTH * scale;
-    const scaledH = DESIGN_HEIGHT * scale;
+  const scaledW = DESIGN_WIDTH * scale;
+  const scaledH = DESIGN_HEIGHT * scale;
 
-    // ✅ Stabilt: aldri “dytt ned” vertikalt (det gir falsk safe-area under footer)
-    const x = Math.max(0, (vw - scaledW) / 2);
-    const y = 0;
+  const x = Math.max(0, (vw - scaledW) / 2);
+  const y = 0;
 
-    if (
-      last.scale !== null &&
-      Math.abs(scale - last.scale) < 0.001 &&
-      Math.abs(x - last.x) < 0.5 &&
-      Math.abs(y - last.y) < 0.5
-    ) {
-      return;
-    }
-
-    // App-shell er et “stage”
-    shell.style.width = DESIGN_WIDTH + "px";
-    shell.style.height = DESIGN_HEIGHT + "px";
-
-    // Viktig for iOS: fixed + translate3d
-    shell.style.position = "fixed";
-    shell.style.top = "0";
-    shell.style.left = "0";
-    shell.style.transformOrigin = "top left";
-    shell.style.transform = `translate3d(${x}px, ${y}px, 0) scale(${scale})`;
-
-    last = { scale, x, y };
-
-    shell.style.transformOrigin = "top left";
-    shell.style.transform = `translate3d(${x}px, ${y}px, 0) scale(${scale})`;
-
-     if (window.map) {
-      window.map.resize();
-     }
-
-    last = { scale, x, y };
-    
-    requestAnimationFrame(() => {
-      if (window.hgMap?.resize) window.hgMap.resize();
-      if (window.MAP?.resize) window.MAP.resize();
-    });
+  if (
+    last.scale !== null &&
+    Math.abs(scale - last.scale) < 0.001 &&
+    Math.abs(x - last.x) < 0.5 &&
+    Math.abs(y - last.y) < 0.5
+  ) {
+    return;
   }
+
+  // Stage-dimensjoner
+  shell.style.width = DESIGN_WIDTH + "px";
+  shell.style.height = DESIGN_HEIGHT + "px";
+
+  // Fixed + transform
+  shell.style.position = "fixed";
+  shell.style.top = "0";
+  shell.style.left = "0";
+  shell.style.transformOrigin = "top left";
+  shell.style.transform = `translate3d(${x}px, ${y}px, 0) scale(${scale})`;
+
+  // 🔥 Viktig: tving MapLibre til å re-beregne
+  if (typeof MAP !== "undefined" && MAP?.resize) {
+    MAP.resize();
+  }
+
+  last = { scale, x, y };
+}
+
 
   function update() {
     rafId = null;
