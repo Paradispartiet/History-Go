@@ -128,7 +128,7 @@ if (isNarrow) {
    }
   
   if (titleEl) titleEl.textContent = place.name || "";
-  if (metaEl)  metaEl.textContent  = `${place.category || ""} • radius ${place.r || 150} m`;
+  if (metaEl)  metaEl.textContent  = place.category || "";
   if (descEl)  descEl.textContent  = place.desc || "";
 
   // (valgfritt men nyttig): beregn avstand live for NextUp hvis mulig
