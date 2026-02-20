@@ -79,9 +79,23 @@ body.hg-app .app-footer{
   padding: 10px;
 }
 
-#nearbyListContainer {
+#nearbyListContainer{
+  position: absolute;
+
   top: 74px;
   height: 228px;
+
+  left: 0;
+  right: 0;
+
+  z-index: 19;
+
+  background: var(--hg-frame-bg);
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
 }
 
 
