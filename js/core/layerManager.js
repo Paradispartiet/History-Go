@@ -87,7 +87,8 @@ function hideEl(el) {
     else showEl(el, entry.opts.display);
   }
 
-  function applyMode(mode) {
+  
+function applyMode(mode) {
   state.mode = mode;
 
   const isMap = mode === "map";
@@ -99,7 +100,6 @@ function hideEl(el) {
 
     if (name === "toast" || name === "badgeModal") continue;
 
-    // 🔥 NYTT: Hvis placeCard er minimert, skjul nearby-panelet
     if (pcCollapsed && name === "nearby") {
       hideEl(el);
       continue;
@@ -117,19 +117,15 @@ function hideEl(el) {
       }
     }
   }
-}
 
-    // Explicit: map-controls should only show in map mode
-    const mapControls = state.layers.get("mapControls")?.el || $(".map-controls");
-    if (mapControls) {
-      if (isMap) showEl(mapControls, "flex");
-      else hideEl(mapControls);
-    }
-
-    // Optional class hook (for future, not required)
-    document.body.classList.toggle("mode-map", isMap);
+  const mapControls = state.layers.get("mapControls")?.el || $(".map-controls");
+  if (mapControls) {
+    if (isMap) showEl(mapControls, "flex");
+    else hideEl(mapControls);
   }
 
+  document.body.classList.toggle("mode-map", isMap);
+}
   function wireButtons() {
     const btnSeeMap = byId("btnSeeMap");
     const btnExitMap = byId("btnExitMap");
