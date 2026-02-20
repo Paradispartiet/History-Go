@@ -88,35 +88,36 @@ function hideEl(el) {
   }
 
   function applyMode(mode) {
-    state.mode = mode;
+  state.mode = mode;
 
-    // Map-only mode: show map + controls, hide UI layers
-    const isMap = mode === "map";
+  const isMap = mode === "map";
+  const pcCollapsed = document.body.classList.contains("pc-collapsed");
 
-    for (const entry of state.layers.values()) {
-      const { el, opts } = entry;
-      if (!el) continue;
+  for (const entry of state.layers.values()) {
+    const { el, opts, name } = entry;
+    if (!el) continue;
 
-      // Always keep modals/toast logic separate (we don't force-hide them)
-      if (entry.name === "toast" || entry.name === "badgeModal") continue;
+    if (name === "toast" || name === "badgeModal") continue;
 
-      if (isMap) {
-        if (opts.showInMapMode) showEl(el, opts.display);
-        else if (opts.hideInMapMode) hideEl(el);
-        else {
-          // default in map mode: keep visible if not explicitly hidden
-          showEl(el, opts.display);
-        }
+    // 🔥 NYTT: Hvis placeCard er minimert, skjul nearby-panelet
+    if (pcCollapsed && name === "nearby") {
+      hideEl(el);
+      continue;
+    }
+
+    if (isMap) {
+      if (opts.showInMapMode) showEl(el, opts.display);
+      else if (opts.hideInMapMode) hideEl(el);
+      else showEl(el, opts.display);
+    } else {
+      if (opts.ariaHiddenControlsDisplay) {
+        applyVisibilityFromAria(entry);
       } else {
-        // explore mode
-        if (opts.ariaHiddenControlsDisplay) {
-          applyVisibilityFromAria(entry);
-        } else {
-          // show by default in explore unless something else hides it
-          showEl(el, opts.display);
-        }
+        showEl(el, opts.display);
       }
     }
+  }
+}
 
     // Explicit: map-controls should only show in map mode
     const mapControls = state.layers.get("mapControls")?.el || $(".map-controls");
