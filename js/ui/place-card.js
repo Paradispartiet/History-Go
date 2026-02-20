@@ -560,6 +560,10 @@ function collapsePlaceCard() {
   pc.classList.add("is-collapsed");
   document.body.classList.add("pc-collapsed");
 
+  if (window.LayerManager) {
+  LayerManager.setMode(LayerManager.getMode());
+}
+
   try { localStorage.setItem("hg_placecard_collapsed_v1", "1"); } catch {}
 
   setPlaceCardMiniVisible(true);
@@ -579,6 +583,10 @@ function expandPlaceCard() {
 
   pc.classList.remove("is-collapsed");
   document.body.classList.remove("pc-collapsed");
+
+  if (window.LayerManager) {
+  LayerManager.setMode(LayerManager.getMode());
+}
 
   try { localStorage.setItem("hg_placecard_collapsed_v1", "0"); } catch {}
 
