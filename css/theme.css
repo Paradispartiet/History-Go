@@ -334,7 +334,7 @@ body.hg-app .sheet{
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 80px;              /* over footer */
+  bottom: calc(var(--hg-footer-h) + env(safe-area-inset-bottom));
 
   z-index: 13;
   background: rgba(13,27,42,0.95);
