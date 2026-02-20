@@ -100,3 +100,13 @@ body.hg-app .app-footer{
   bottom: 80px; /* same as footer height */
   z-index: 100;
 }
+
+/* Når placeCard er åpen: reserver høyden */
+body:not(.pc-collapsed) .app-main{
+  bottom: calc(80px + var(--pc-height));
+}
+
+/* Når placeCard er minimert: kun footer */
+body.pc-collapsed .app-main{
+  bottom: 80px;
+}
