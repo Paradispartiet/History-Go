@@ -1,45 +1,55 @@
 (function(){
 
   const STATES = {
-    HIDDEN: "hidden",
-    OPEN: "open"
+    HIDDEN: "hidden",      // brukes bare av LayerManager
+    OPEN: "open",
+    COLLAPSED: "collapsed"
   };
 
   let el = null;
-  let state = STATES.HIDDEN;
+  let state = STATES.COLLAPSED;
 
   function setState(next){
     if (!el) return;
     if (next === state) return;
 
-    el.classList.remove("is-open", "is-hidden");
+    el.classList.remove("is-open", "is-collapsed", "is-hidden");
 
-    switch(next){
-      case STATES.OPEN:
-        el.classList.add("is-open");
-        el.setAttribute("aria-hidden", "false");
-        break;
+switch(next){
+  case STATES.OPEN:
+    el.classList.add("is-open");
+    break;
 
-      case STATES.HIDDEN:
-        el.classList.add("is-hidden");
-        el.setAttribute("aria-hidden", "true");
-        break;
-    }
+  case STATES.COLLAPSED:
+    el.classList.add("is-collapsed");
+    break;
+
+  case STATES.HIDDEN:
+    el.classList.add("is-hidden");
+    break;
+}
 
     state = next;
   }
 
   function open(){
     setState(STATES.OPEN);
+    if (el) el.setAttribute("aria-hidden", "false");
   }
 
-  function hide(){
-    setState(STATES.HIDDEN);
-  }
+  function collapse(){
+  setState(STATES.COLLAPSED);
+  if (el) el.setAttribute("aria-hidden", "true");
+}
+
+function hide(){
+  setState(STATES.HIDDEN);
+  if (el) el.setAttribute("aria-hidden", "true");
+}
 
   function toggle(){
     if (state === STATES.OPEN){
-      hide();
+      collapse();
     } else {
       open();
     }
@@ -49,16 +59,18 @@
     el = document.getElementById("placeCard");
     if (!el) return;
 
-    el.classList.add("is-hidden");
+    // start collapsed
+    el.classList.add("is-collapsed");
     el.setAttribute("aria-hidden", "true");
   }
 
   window.bottomSheetController = {
-    init,
-    open,
-    hide,
-    toggle,
-    setState
-  };
+  init,
+  open,
+  collapse,
+  hide,
+  toggle,
+  setState
+};
 
 })();
