@@ -86,9 +86,6 @@ function enterMapMode() {
    // ✅ kartmodus: kollaps Nearby
   window.setNearbyCollapsed?.(true);
 
-  const mapEl = document.getElementById("map");
-  if (mapEl) mapEl.style.zIndex = "10";
-
   window.HGMap?.resize?.();
   window.MAP?.resize?.();
 
@@ -100,14 +97,11 @@ function exitMapMode() {
 
   if (el.btnSeeMap)  el.btnSeeMap.style.display = "block";
   if (el.btnExitMap) el.btnExitMap.style.display = "none";
-
+  
   window.setPlaceCardCollapsed?.(false);
   // Nearby skal alltid være synlig i explore
   window.setNearbyCollapsed?.(false);
   
-  const mapEl = document.getElementById("map");
-  if (mapEl) mapEl.style.zIndex = "1";
-
   window.HGMap?.resize?.();
   window.MAP?.resize?.();
 
