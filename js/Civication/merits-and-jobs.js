@@ -108,7 +108,7 @@ async function updateMeritLevel(cat, oldPoints, newPoints) {
   showToast(`💼 Ny stilling i ${badge.name}: ${newTitle}!`);
   pulseBadge(badge.name);
 
-
+  hgPushJobOffer(badge, next, newPoints);
 
   
 // Poengsystem – +1 poeng per fullført quiz
