@@ -387,6 +387,15 @@ function tickPCIncomeWeekly() {
       if (Array.isArray(ev.choices) && ev.choices.length) {
         const choice = ev.choices.find(c => c && c.id === choiceId);
                // ---- v0.2: send choice-tags til Lifestyle ledger (path dependency)
+
+      // --- MORAL COLLAPSE ---
+      if (choice?.moral_flag) {
+       const active = getActivePosition();
+      if (active?.career_id) {
+       window.CivicationPsyche?.registerCollapse(active.career_id, "moral");
+       }
+      }
+         
       try {
         const tags = Array.isArray(choice?.tags) ? choice.tags : [];
         if (tags.length) window.HG_Lifestyle?.addTags?.(tags, "civication_choice");
@@ -449,20 +458,25 @@ function tickPCIncomeWeekly() {
       this.setInbox(inbox);
       this.setState({ consumed, score, strikes, stability, warning_used });
 
-      // Fired handling
-      if (stability === "FIRED") {
-        const prev = getActivePosition();
-        appendJobHistoryEnded(prev, "fired");
-        setActivePosition(null);
+// Fired handling
+if (stability === "FIRED") {
+  const prev = getActivePosition();
 
-        // legg fired-event som “info” i inbox
-        const firedEv = this.makeFiredEvent(this.getState().active_role_key);
-        this.enqueueEvent(firedEv);
-      }
-
-      return { ok: true, effect, feedback, stability };
-    }
+  // 1️⃣ Registrer kollaps i Psyche
+  if (prev?.career_id) {
+    window.CivicationPsyche?.registerCollapse(prev.career_id, "fired");
   }
+
+  // 2️⃣ Flytt til jobbhistorikk
+  appendJobHistoryEnded(prev, "fired");
+
+  // 3️⃣ Fjern aktiv jobb
+  setActivePosition(null);
+
+  // 4️⃣ Legg fired-info i inbox
+  const firedEv = this.makeFiredEvent(this.getState().active_role_key);
+  this.enqueueEvent(firedEv);
+}
 
   // global export
   window.HG_CiviEngine = new CivicationEventEngine({
