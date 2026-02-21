@@ -1,0 +1,281 @@
+Bra. Nå gjør vi det ryddig.
+
+Her er en README som forklarer hva Civication-systemet faktisk er blitt, uten romantisering og uten unødvendig fluff.
+
+Du kan legge dette som CIVICATION_README.md.
+
+⸻
+
+CIVICATION – Systemoversikt
+
+Hva er Civication?
+
+Civication er et realistisk rolle- og livssimuleringssystem koblet til History Go.
+
+Spilleren:
+	•	Tar quizzer
+	•	Får meritter (badges)
+	•	Får jobbtilbud
+	•	Inntar roller
+	•	Møter hendelser
+	•	Får konsekvenser
+
+Systemet modellerer:
+	•	Tillit
+	•	Integritet
+	•	Synlighet
+	•	Økonomisk handlingsrom
+	•	Autonomi
+	•	Burnout
+	•	Kollaps
+
+Det er ikke et moralsystem.
+Det er et konsekvenssystem.
+
+⸻
+
+1. Struktur
+
+Systemet består av fem hoveddeler:
+
+1. CivicationCore
+
+Grunnlogikk:
+	•	Aktiv jobb
+	•	Jobbtilbud
+	•	Aksept / avslag
+	•	Rolle-nøkler
+
+2. CivicationEngine
+
+Hendelsesmotor:
+	•	Leser events
+	•	Velger events
+	•	Håndterer valg
+	•	Kaller psyke-oppdateringer
+
+3. CivicationPsyche
+
+Psykologisk og sosial tilstand:
+	•	Trust per karriere
+	•	Kollaps
+	•	Integritet
+	•	Synlighet
+	•	EconomicRoom
+	•	Autonomi
+	•	Burnout
+	•	RoleBaseline
+
+4. Lifestyle
+
+Tag-basert identitetslag:
+	•	Samler choice_tags
+	•	Beregner primær livsstil
+	•	Påvirker event-vekting
+	•	Påvirker økonomisk volatilitet
+	•	Påvirker burnout-terskler
+
+Lifestyle er ikke en score.
+Det er en historikk av valg.
+
+5. CivicationUI
+
+Visualisering:
+	•	Rolle
+	•	Lønn
+	•	Merit
+	•	Inbox
+	•	Psyke-dashboard
+	•	Burnout-status
+	•	Kollapshistorikk
+
+⸻
+
+2. Trust-systemet
+
+Trust er rolle-spesifikk.
+
+Hver karriere har:
+	•	trust value
+	•	trust max
+	•	collapses
+	•	lastCollapse
+	•	collapseHistory
+
+Maks trust styres av kollapser:
+
+0 kollaps → maks 80
+1 kollaps → maks 100
+2 kollaps → maks 80
+3+ kollaps → maks 60
+
+Dette betyr:
+
+Du kan kun nå maksimal tillit hvis du har opplevd minst én kollaps.
+Men for mange kollapser reduserer permanent tak.
+
+Det er erfaringens modell.
+
+⸻
+
+3. Psykevariabler
+
+Globalt:
+	•	integrity (0–100)
+	•	visibility (0–100)
+	•	economicRoom (0–100)
+	•	autonomy (beregnet)
+
+Autonomy
+
+Autonomy er en funksjon av:
+
+economicRoom (40%)
+trust (30%)
+integrity (20%)
+− visibility (20%)
+	•	roleBaseline
+
+Autonomi er frihetsindikatoren.
+
+⸻
+
+4. Burnout
+
+Burnout trigges når:
+
+visibility er høy
+og
+integrity er lav
+
+Lifestyle kan gjøre terskelen strengere eller mildere.
+
+Når burnout aktiveres:
+	•	economicRoom reduseres
+	•	integrity reduseres
+	•	autonomy reduseres
+	•	burnoutActive settes
+
+Burnout må eksplisitt cleares.
+
+⸻
+
+5. EconomicRoom
+
+EconomicRoom er ikke penger.
+
+Det er fleksibilitet.
+
+Den påvirkes av:
+	•	Hendelser
+	•	Rolle
+	•	Burnout
+	•	Lifestyle-volatilitet
+
+Lifestyle påvirker kun endringens styrke, ikke basisverdien.
+
+⸻
+
+6. Lifestyle
+
+Lifestyle baseres på choice_tags.
+
+Den påvirker:
+	•	Hvilke events du får
+	•	Hvor volatile økonomiske endringer er
+	•	Burnout-terskler
+	•	Risiko for tillitsfall
+
+Lifestyle er path dependency.
+
+To spillere med samme jobb kan ha helt ulike liv.
+
+⸻
+
+7. Mismatch-stress
+
+Hvis aktiv karriere ikke matcher livsstilens unlock_hints:
+
+→ liten negativ effekt på autonomy
+
+Dette simulerer:
+
+“Feil sted i livet”
+
+Ikke dramatisk.
+Men merkbar over tid.
+
+⸻
+
+8. Kollaps
+
+Kollaps registreres via:
+
+registerCollapse(careerId, type)
+
+Det:
+	•	øker collapseCount
+	•	lagrer historikk
+	•	justerer trustMax
+	•	begrenser videre progresjon
+
+Kollaps er ikke game over.
+Det er del av progresjonen.
+
+⸻
+
+9. Designfilosofi
+
+Dette er ikke et fantasy-rollespill.
+
+Det er et hyperrealistisk system der:
+	•	Dårlige valg kan være rasjonelle
+	•	Blindgater finnes
+	•	Noen jobber fører ikke oppover
+	•	Å bli sparket kan være frigjørende
+	•	Å lykkes kan være kvelende
+	•	Livsstil og jobb kan kollidere
+
+Det er like gøy å lykkes som å gå til grunne.
+
+⸻
+
+10. Hva systemet nå kan
+
+Systemet støtter:
+	•	Langsiktig karakterutvikling
+	•	Ikke-lineær progresjon
+	•	Permanens i konsekvenser
+	•	Identitet basert på valg
+	•	Strukturell friksjon
+	•	Økonomisk volatilitet
+	•	Sosial tillitsøkonomi
+
+Det er ikke lenger en “jobb-feature”.
+
+Det er en sosial simulering.
+
+⸻
+
+11. Hva vi IKKE har gjort
+	•	Ingen moralscore
+	•	Ingen alignment-meter
+	•	Ingen direkte lifestyle-poeng
+	•	Ingen skjult gudemodifikator
+	•	Ingen tilfeldige straffer
+
+Alt går gjennom eksisterende variabler.
+
+⸻
+
+Status
+
+Motoren er ferdig.
+Strukturen er ferdig.
+Lifestyle er integrert.
+
+Neste fase er balanse og innhold.
+
+⸻
+
+Hvis du vil kan jeg lage en kortere README også – en 1-side versjon som forklarer det på 2 minutter for samarbeidspartner.
