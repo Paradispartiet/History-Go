@@ -29,17 +29,11 @@
 
   function ensure(state) {
   // --------------------------------------------------
-  // TRUST – institusjonelt (per career / badge)
-  // --------------------------------------------------
-  state.trustCareer ||= {};      // { [careerId]: number }
-  state.trustCareerMeta ||= {};  // { [careerId]: { collapses:number, lastCollapse?:{type,at} } }
-
-  // --------------------------------------------------
-  // TRUST – rolle-spesifikk (per role_key)
-  // --------------------------------------------------
-  state.trustRole ||= {};        // { [role_key]: number }
-  state.trustRoleMeta ||= {};    // { [role_key]: { collapses:number, lastCollapse?:{type,at} } }
-
+// TRUST – per career (badge-id)
+// --------------------------------------------------
+state.trust ||= {};      // { [careerId]: number }
+state.trustMeta ||= {};  // { [careerId]: { collapses:number, lastCollapse?, collapseHistory? } }
+    
   // --------------------------------------------------
   // Global psyke
   // --------------------------------------------------
@@ -53,12 +47,12 @@
   // --------------------------------------------------
 // ROLE BASELINE (strukturelt klima)
 // --------------------------------------------------
-state.roleBaseline ||= {
-  role_key: null,
-  integrity: 0,
-  visibility: 0,
-  economicRoom: 0,
-  autonomy: 0
+state.roleBaseline = {
+  role_key: state.roleBaseline?.role_key || null,
+  integrity: Number(baseline?.integrity || 0),
+  visibility: Number(baseline?.visibility || 0),
+  economicRoom: Number(baseline?.economicRoom || 0),
+  autonomy: Number(baseline?.autonomy || 0)
 };
   return state;
 }
@@ -263,10 +257,16 @@ state.roleBaseline ||= {
   }
 
   function clearRoleBaseline() {
-    write((state) => {
-      state.roleBaseline = { integrity: 0, visibility: 0, economicRoom: 0 };
-    });
-  }
+  write((state) => {
+    state.roleBaseline = {
+      role_key: null,
+      integrity: 0,
+      visibility: 0,
+      economicRoom: 0,
+      autonomy: 0
+    };
+  });
+}
   // -----------------------------
   // AUTONOMY (0..100)
   // Default: beregnes dynamisk av de andre.
