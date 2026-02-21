@@ -50,6 +50,16 @@
   // Autonomi override
   if (!("autonomyOverride" in state)) state.autonomyOverride = null;
 
+  // --------------------------------------------------
+// ROLE BASELINE (strukturelt klima)
+// --------------------------------------------------
+state.roleBaseline ||= {
+  role_key: null,
+  integrity: 0,
+  visibility: 0,
+  economicRoom: 0,
+  autonomy: 0
+};
   return state;
 }
 
@@ -243,34 +253,48 @@
   // Default: beregnes dynamisk av de andre.
   // Valgfri override hvis du vil "fryse" autonomy midlertidig.
   // -----------------------------
-  function computeAutonomy(careerId = null) {
-    const integrity = getIntegrity();      // 0..100
-    const visibility = getVisibility();    // 0..100
-    const economicRoom = getEconomicRoom();// 0..100
+function computeAutonomy(careerId = null) {
+  const state = ensure(load());
 
-    // Trust som prosent (rolle-spesifikk hvis careerId gis, ellers snitt)
-    let trustPct = 50;
+  const integrity = clamp(
+    state.integrity + (state.roleBaseline?.integrity || 0),
+    0,
+    100
+  );
 
-    if (careerId) {
-      const t = getCareerTrust(careerId);
-      trustPct = t.max ? Math.round((t.value / t.max) * 100) : 0;
-    } else {
-      trustPct = getTrustSummary().avgPercent;
-    }
+  const visibility = clamp(
+    state.visibility + (state.roleBaseline?.visibility || 0),
+    0,
+    100
+  );
 
-    // Autonomi-formel (kan tunes senere)
-    // - økonomisk handlingsrom gir mest
-    // - trust gir institusjonelt rom
-    // - integritet gir indre stabilitet/handlingskraft
-    // - synlighet trekker (mer press, mindre frihet)
-    const raw =
-      (economicRoom * 0.4) +
-      (trustPct * 0.3) +
-      (integrity * 0.2) -
-      (visibility * 0.2);
+  const economicRoom = clamp(
+    state.economicRoom + (state.roleBaseline?.economicRoom || 0),
+    0,
+    100
+  );
 
-    return clamp(raw, 0, 100);
+  let trustPct = 50;
+
+  if (careerId) {
+    const t = getCareerTrust(careerId);
+    trustPct = t.max ? Math.round((t.value / t.max) * 100) : 0;
+  } else {
+    trustPct = getTrustSummary().avgPercent;
   }
+
+  const raw =
+    (economicRoom * 0.4) +
+    (trustPct * 0.3) +
+    (integrity * 0.2) -
+    (visibility * 0.2);
+
+  return clamp(
+    raw + (state.roleBaseline?.autonomy || 0),
+    0,
+    100
+  );
+}
 
   function getAutonomy(careerId = null) {
     const state = ensure(load());
