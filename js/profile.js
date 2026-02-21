@@ -681,9 +681,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 safeCall("renderProfileCard", renderProfileCard);
 safeCall("renderPC", renderPC);
 
-// Civication bootes én gang
-safeCall("initCivication", () => window.CivicationUI?.init());
+// Civication: init (init bør selv wire actions + initial render)
+safeCall("initCivication", () => window.CivicationUI?.init?.());
 
+// Resten
 safeCall("renderMerits", renderMerits);
 safeCall("renderPeopleCollection", renderPeopleCollection);
 safeCall("renderPlacesCollection", renderPlacesCollection);
@@ -693,24 +694,19 @@ safeCall("renderLatestKnowledge", renderLatestKnowledge);
 safeCall("renderLatestTrivia", renderLatestTrivia);
 safeCall("renderNextWhy", renderNextWhy);
 safeCall("renderAhaSummary", renderAhaSummary);
-
 safeCall("setupProfileMap", setupProfileMap);
 
-// UI
-document.getElementById("editProfileBtn")
-  ?.addEventListener("click", openProfileModal);
+// UI-knapper
+document.getElementById("editProfileBtn")?.addEventListener("click", openProfileModal);
+document.getElementById("btnOpenAHA")?.addEventListener("click", () => window.open("aha/index.html", "_blank"));
 
-document.getElementById("btnOpenAHA")
-  ?.addEventListener("click", () => window.open("aha/index.html", "_blank"));
-
-
-// ------------------------------------------------------------
-// SYNC (etter quiz / endringer)
-// ------------------------------------------------------------
-
+// Sync etter quiz / endringer
 window.addEventListener("updateProfile", () => {
   safeCall("renderProfileCard", renderProfileCard);
   safeCall("renderPC", renderPC);
+
+  safeCall("renderCivication", () => window.CivicationUI?.render?.());
+  safeCall("renderCivicationInbox", () => window.CivicationUI?.renderInbox?.());
 
   safeCall("renderMerits", renderMerits);
   safeCall("renderPeopleCollection", renderPeopleCollection);
@@ -724,6 +720,7 @@ window.addEventListener("updateProfile", () => {
 
   safeCall("updateProfileMarkers", updateProfileMarkers);
 });
+    
 // ============================================================
 // KART PÅ PROFILSIDEN – KUN BESØKTE STEDER
 // ============================================================
