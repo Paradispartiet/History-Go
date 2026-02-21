@@ -362,6 +362,9 @@ function computeAutonomy(careerId = null) {
     setAutonomyOverride,
     clearAutonomyOverride,
 
+    applyRoleBaseline,
+    clearRoleBaseline,
+
     // debug/ui
     getSnapshot
   };
