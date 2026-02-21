@@ -356,8 +356,11 @@ function checkBurnout() {
     100
   );
 
+  if (state.burnoutActive) return false;
+
   if (visibility > 85 && integrity < 45) {
     write((s) => {
+      s.burnoutActive = true;
       s.economicRoom = clamp(s.economicRoom - 15, 0, 100);
       s.integrity = clamp(s.integrity - 10, 0, 100);
       s.autonomyOverride = clamp(
@@ -371,6 +374,18 @@ function checkBurnout() {
   }
 
   return false;
+}
+
+function isBurnoutActive() {
+  const state = ensure(load());
+  return Boolean(state.burnoutActive);
+}
+
+function clearBurnout() {
+  write((s) => {
+    s.burnoutActive = false;
+    s.autonomyOverride = null;
+  });
 }
   
   // -----------------------------
@@ -421,6 +436,10 @@ function checkBurnout() {
 
     applyRoleBaseline,
     clearRoleBaseline,
+
+    checkBurnout,
+    isBurnoutActive,
+    clearBurnout,
 
     // debug/ui
     getSnapshot
