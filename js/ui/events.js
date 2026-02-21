@@ -11,29 +11,7 @@ function closeSheet(sheet) {
 document.addEventListener("click", e => {
   const target = e.target;
 
-  const acceptId = target.getAttribute?.("data-accept-offer");
-if (acceptId) {
-  let offers = JSON.parse(localStorage.getItem("hg_job_offers_v1") || "[]");
-  const offer = offers.find(o => o.id === acceptId);
-  if (!offer) return;
 
-  const active = {
-    career_id: offer.career_id,
-    career_name: offer.career_name,
-    title: offer.title,
-    accepted_iso: new Date().toISOString()
-  };
-
-  localStorage.setItem("hg_active_position_v1", JSON.stringify(active));
-
-  offers = offers.filter(o => o.id !== acceptId);
-  localStorage.setItem("hg_job_offers_v1", JSON.stringify(offers));
-
-  showToast(`💼 Ny stilling: ${offer.title}`);
-  window.dispatchEvent(new Event("updateProfile"));
-  window.renderCivicationInbox?.();
-  return;
-}
   
   // --- PlaceCard: toggle icon lists (people / nature / badges) ---
   const toggleBtn = target.closest?.("[data-toggle]");
