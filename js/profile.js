@@ -712,10 +712,6 @@ window.addEventListener("updateProfile", () => {
   safeCall("renderProfileCard", renderProfileCard);
   safeCall("renderPC", renderPC);
 
-  // Repaint Civication – IKKE init igjen
-  safeCall("renderCivication", () => window.CivicationUI?.render());
-  safeCall("renderCivicationInbox", () => window.CivicationUI?.renderInbox());
-
   safeCall("renderMerits", renderMerits);
   safeCall("renderPeopleCollection", renderPeopleCollection);
   safeCall("renderPlacesCollection", renderPlacesCollection);
