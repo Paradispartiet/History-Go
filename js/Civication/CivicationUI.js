@@ -125,29 +125,7 @@ if (salaryLn && active && active.career_id) {
       `${offer.career_name || offer.career_id || ""} · ` +
       `Terskel: ${offer.threshold} · Utløper: ${expTxt}`;
 
-        // Wire buttons (Aksepter / Ikke nå)
-    const btnAccept = document.getElementById("btnCiviAccept");
-    const btnDecline = document.getElementById("btnCiviDecline");
 
-    if (btnAccept) {
-      btnAccept.onclick = async () => {
-        const accepted = acceptOfferById(offer.offer_key);
-        if (!accepted) return;
-
-        // Synk motor + kjør en puls så inbox kan komme
-        await window.HG_CiviEngine?.onAppOpen?.();
-
-        renderCivication();
-        window.renderCivicationInbox?.();
-        window.dispatchEvent(new Event("updateProfile"));
-      };
-    }
-
-    if (btnDecline) {
-      btnDecline.onclick = () => {
-        declineOfferById(offer.offer_key);
-        renderCivication();
-      };
     }
   }
 
@@ -265,7 +243,7 @@ function renderCivicationInbox() {
       btnOK.onclick = () => {
         renderCivication();
         window.renderCivicationInbox();
-        window.dispatchEvent(new Event("updateProfile"));
+        AppEvents.emit("updateProfile");
       };
     };
   }
