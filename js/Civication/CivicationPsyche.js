@@ -28,20 +28,30 @@
   }
 
   function ensure(state) {
-    // Trust (rolle-spesifikk)
-    state.trust ||= {};       // { [careerId]: number }
-    state.trustMeta ||= {};   // { [careerId]: { collapses:number, lastCollapse?:{type,at} } }
+  // --------------------------------------------------
+  // TRUST – institusjonelt (per career / badge)
+  // --------------------------------------------------
+  state.trustCareer ||= {};      // { [careerId]: number }
+  state.trustCareerMeta ||= {};  // { [careerId]: { collapses:number, lastCollapse?:{type,at} } }
 
-    // Psyche (global)
-    if (!Number.isFinite(state.integrity)) state.integrity = 50;     // 0..100
-    if (!Number.isFinite(state.visibility)) state.visibility = 50;   // 0..100
-    if (!Number.isFinite(state.economicRoom)) state.economicRoom = 50; // 0..100
+  // --------------------------------------------------
+  // TRUST – rolle-spesifikk (per role_key)
+  // --------------------------------------------------
+  state.trustRole ||= {};        // { [role_key]: number }
+  state.trustRoleMeta ||= {};    // { [role_key]: { collapses:number, lastCollapse?:{type,at} } }
 
-    // Autonomi: kan overstyres, ellers beregnes
-    if (!("autonomyOverride" in state)) state.autonomyOverride = null; // null | number 0..100
+  // --------------------------------------------------
+  // Global psyke
+  // --------------------------------------------------
+  if (!Number.isFinite(state.integrity)) state.integrity = 50;
+  if (!Number.isFinite(state.visibility)) state.visibility = 50;
+  if (!Number.isFinite(state.economicRoom)) state.economicRoom = 50;
 
-    return state;
-  }
+  // Autonomi override
+  if (!("autonomyOverride" in state)) state.autonomyOverride = null;
+
+  return state;
+}
 
   function write(patchFn) {
     const state = ensure(load());
