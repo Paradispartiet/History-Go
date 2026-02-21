@@ -248,6 +248,25 @@ state.roleBaseline ||= {
     return setEconomicRoom(getEconomicRoom() + Number(delta || 0));
   }
 
+
+    // -----------------------------
+  // ROLE BASELINE (settes av jobb/rolle)
+  // -----------------------------
+  function applyRoleBaseline(baseline) {
+    write((state) => {
+      state.roleBaseline = {
+        integrity: Number(baseline?.integrity || 0),
+        visibility: Number(baseline?.visibility || 0),
+        economicRoom: Number(baseline?.economicRoom || 0)
+      };
+    });
+  }
+
+  function clearRoleBaseline() {
+    write((state) => {
+      state.roleBaseline = { integrity: 0, visibility: 0, economicRoom: 0 };
+    });
+  }
   // -----------------------------
   // AUTONOMY (0..100)
   // Default: beregnes dynamisk av de andre.
