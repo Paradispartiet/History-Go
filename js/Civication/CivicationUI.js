@@ -8,11 +8,13 @@ async function init() {
   wireCivicationActions();
   renderCivication();
   renderCivicationInbox();
+  renderPsycheDashboard();   // ← LEGG TIL HER
 
   // Civication håndterer selv sync
   window.addEventListener("updateProfile", () => {
     renderCivication();
     renderCivicationInbox();
+    renderPsycheDashboard(); // ← OG HER
   });
 }
 
@@ -307,6 +309,56 @@ function syncRoleBaseline() {
   window.HG_CiviPsyche?.applyRoleBaseline?.(baseline);
 }
 
+
+
+function renderPsycheDashboard() {
+
+  const snapshot = window.CivicationPsyche?.getSnapshot?.(
+    getActivePosition()?.career_id
+  );
+
+  if (!snapshot) return;
+
+  document.getElementById("psyIntegrity").textContent =
+    snapshot.integrity;
+
+  document.getElementById("psyVisibility").textContent =
+    snapshot.visibility;
+
+  document.getElementById("psyEconomic").textContent =
+    snapshot.economicRoom;
+
+  document.getElementById("psyAutonomy").textContent =
+    snapshot.autonomy;
+
+  const trustBox = document.getElementById("psyTrust");
+
+  if (snapshot.trust) {
+    trustBox.textContent =
+      `${snapshot.trust.value} / ${snapshot.trust.max}`;
+  } else {
+    trustBox.textContent = "—";
+  }
+
+  const burnoutBox = document.getElementById("psyBurnout");
+
+  if (window.CivicationPsyche?.isBurnoutActive?.()) {
+    burnoutBox.style.display = "";
+    burnoutBox.textContent =
+      "🔥 Burnout: Autonomi redusert. Systemisk slitasje.";
+  } else {
+    burnoutBox.style.display = "none";
+  }
+
+  const collapseBox = document.getElementById("psyCollapseHistory");
+
+  const trustMeta = snapshot.trust?.collapses ?? 0;
+
+  collapseBox.textContent =
+    trustMeta > 0
+      ? `${trustMeta} kollaps(er)`
+      : "Ingen registrerte kollapser";
+}
 
 // ============================================================
 // INBOX
