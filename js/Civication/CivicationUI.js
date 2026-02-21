@@ -313,51 +313,92 @@ function syncRoleBaseline() {
 
 function renderPsycheDashboard() {
 
-  const snapshot = window.CivicationPsyche?.getSnapshot?.(
-    getActivePosition()?.career_id
-  );
+  const activeCareerId = getActivePosition()?.career_id || null;
 
+  const snapshot = window.CivicationPsyche?.getSnapshot?.(activeCareerId);
   if (!snapshot) return;
 
-  document.getElementById("psyIntegrity").textContent =
-    snapshot.integrity;
+  const integrityEl  = document.getElementById("psyIntegrity");
+  const visibilityEl = document.getElementById("psyVisibility");
+  const economicEl   = document.getElementById("psyEconomic");
+  const autonomyEl   = document.getElementById("psyAutonomy");
+  const trustEl      = document.getElementById("psyTrust");
+  const burnoutEl    = document.getElementById("psyBurnout");
+  const collapseEl   = document.getElementById("psyCollapseHistory");
 
-  document.getElementById("psyVisibility").textContent =
-    snapshot.visibility;
+  // -----------------------------
+  // Core values
+  // -----------------------------
 
-  document.getElementById("psyEconomic").textContent =
-    snapshot.economicRoom;
+  if (integrityEl)
+    integrityEl.textContent = Number(snapshot.integrity ?? 0);
 
-  document.getElementById("psyAutonomy").textContent =
-    snapshot.autonomy;
+  if (visibilityEl)
+    visibilityEl.textContent = Number(snapshot.visibility ?? 0);
 
-  const trustBox = document.getElementById("psyTrust");
+  if (economicEl)
+    economicEl.textContent = Number(snapshot.economicRoom ?? 0);
 
-  if (snapshot.trust) {
-    trustBox.textContent =
-      `${snapshot.trust.value} / ${snapshot.trust.max}`;
-  } else {
-    trustBox.textContent = "—";
+  if (autonomyEl)
+    autonomyEl.textContent = Number(snapshot.autonomy ?? 0);
+
+  // -----------------------------
+  // Trust (rolle-spesifikk)
+  // -----------------------------
+
+  if (trustEl) {
+    if (snapshot.trust && Number.isFinite(snapshot.trust.value)) {
+      trustEl.textContent =
+        `${snapshot.trust.value} / ${snapshot.trust.max ?? 0}`;
+    } else {
+      trustEl.textContent = "—";
+    }
   }
 
-  const burnoutBox = document.getElementById("psyBurnout");
+  // -----------------------------
+  // Burnout
+  // -----------------------------
 
-  if (window.CivicationPsyche?.isBurnoutActive?.()) {
-    burnoutBox.style.display = "";
-    burnoutBox.textContent =
-      "🔥 Burnout: Autonomi redusert. Systemisk slitasje.";
-  } else {
-    burnoutBox.style.display = "none";
+  if (burnoutEl) {
+    const isBurnout =
+      window.CivicationPsyche?.isBurnoutActive?.() === true;
+
+    if (isBurnout) {
+      burnoutEl.style.display = "";
+      burnoutEl.textContent =
+        "🔥 Burnout aktiv: Autonomi midlertidig redusert.";
+    } else {
+      burnoutEl.style.display = "none";
+      burnoutEl.textContent = "";
+    }
   }
 
-  const collapseBox = document.getElementById("psyCollapseHistory");
+  // -----------------------------
+  // Collapse history
+  // -----------------------------
 
-  const trustMeta = snapshot.trust?.collapses ?? 0;
+  if (collapseEl) {
+    const collapses =
+      snapshot.trust?.collapses ?? 0;
 
-  collapseBox.textContent =
-    trustMeta > 0
-      ? `${trustMeta} kollaps(er)`
-      : "Ingen registrerte kollapser";
+    if (collapses > 0) {
+      const last = snapshot.trust?.lastCollapse;
+
+      if (last?.at) {
+        const date = new Date(last.at)
+          .toLocaleDateString("no-NO");
+
+        collapseEl.textContent =
+          `${collapses} kollaps(er) · Sist: ${date}`;
+      } else {
+        collapseEl.textContent =
+          `${collapses} kollaps(er)`;
+      }
+    } else {
+      collapseEl.textContent =
+        "Ingen registrerte kollapser";
+    }
+  }
 }
 
 // ============================================================
