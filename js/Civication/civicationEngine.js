@@ -315,6 +315,15 @@ function tickPCIncomeWeekly() {
 
     // -------- main entrypoint --------
     async onAppOpen() {
+
+  // ----------------------------------------
+  // WEEKLY SALARY TICK
+  // ----------------------------------------
+     try {
+       tickPCIncomeWeekly();
+     } catch (e) {
+       console.warn("Salary tick failed", e);
+     }
       // 0) sync job/role_key
       const role_key = this.ensureRoleKeySynced();
       const active = getActivePosition();
