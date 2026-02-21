@@ -674,15 +674,15 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
     };
     
+// ------------------------------------------------------------
+// INITIAL RENDER (kun én gang ved load)
+// ------------------------------------------------------------
+
 safeCall("renderProfileCard", renderProfileCard);
 safeCall("renderPC", renderPC);
 
-safeCall("renderCivication", () => window.CivicationUI?.render());
-
-await window.HG_CiviEngine?.onAppOpen?.();
-
-safeCall("renderCivicationInbox", () => window.CivicationUI?.renderInbox());
-safeCall("wireCivicationActions", () => window.CivicationUI?.wireActions());
+// Civication bootes én gang
+safeCall("initCivication", () => window.CivicationUI?.init());
 
 safeCall("renderMerits", renderMerits);
 safeCall("renderPeopleCollection", renderPeopleCollection);
@@ -693,17 +693,26 @@ safeCall("renderLatestKnowledge", renderLatestKnowledge);
 safeCall("renderLatestTrivia", renderLatestTrivia);
 safeCall("renderNextWhy", renderNextWhy);
 safeCall("renderAhaSummary", renderAhaSummary);
-safeCall("setupProfileMap", setupProfileMap);
-    
-    // UI
-    document.getElementById("editProfileBtn")?.addEventListener("click", openProfileModal);
-    document.getElementById("btnOpenAHA")?.addEventListener("click", () => window.open("aha/index.html", "_blank"));
 
-    // Sync etter quiz / endringer
+safeCall("setupProfileMap", setupProfileMap);
+
+// UI
+document.getElementById("editProfileBtn")
+  ?.addEventListener("click", openProfileModal);
+
+document.getElementById("btnOpenAHA")
+  ?.addEventListener("click", () => window.open("aha/index.html", "_blank"));
+
+
+// ------------------------------------------------------------
+// SYNC (etter quiz / endringer)
+// ------------------------------------------------------------
+
 window.addEventListener("updateProfile", () => {
   safeCall("renderProfileCard", renderProfileCard);
   safeCall("renderPC", renderPC);
 
+  // Repaint Civication – IKKE init igjen
   safeCall("renderCivication", () => window.CivicationUI?.render());
   safeCall("renderCivicationInbox", () => window.CivicationUI?.renderInbox());
 
@@ -719,7 +728,6 @@ window.addEventListener("updateProfile", () => {
 
   safeCall("updateProfileMarkers", updateProfileMarkers);
 });
-
 // ============================================================
 // KART PÅ PROFILSIDEN – KUN BESØKTE STEDER
 // ============================================================
