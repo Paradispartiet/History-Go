@@ -191,6 +191,30 @@ function tickPCIncomeWeekly() {
       return null;
     }
 
+    syncRoleBaselineFromActive() {
+      const active = getActivePosition();
+      if (!active?.career_id) {
+        window.CivicationPsyche?.clearRoleBaseline?.();
+        return;
+      }
+
+      // Finn tierIndex fra merits + badges (samme logikk som ellers)
+      const merits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
+      const points = Number(merits[active.career_id]?.points || 0);
+
+      const badge = window.BADGES?.find(b => b.id === active.career_id);
+      const tier = badge ? deriveTierFromPoints(badge, points) : { tierIndex: 0 };
+
+      // Baseline: start enkelt (kan tunes per careerId + tierIndex senere)
+      const baseline = {
+        integrity: 0,
+        visibility: 0,
+        economicRoom: 0
+      };
+
+      window.CivicationPsyche?.applyRoleBaseline?.(baseline);
+    }
+     
     ensureRoleKeySynced() {
       const active = getActivePosition();
       if (!active) {
@@ -328,6 +352,8 @@ function tickPCIncomeWeekly() {
       const role_key = this.ensureRoleKeySynced();
       const active = getActivePosition();
       const state = this.getState();
+
+      this.syncRoleBaselineFromActive();
 
       // 1) Hvis det allerede finnes en pending event, ikke spam
       if (this.getPendingEvent()) return { enqueued: false, reason: "pending_exists" };
