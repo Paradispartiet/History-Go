@@ -1,8 +1,8 @@
 async function init() {
   await window.HG_CiviEngine?.onAppOpen?.();
-  render();
-  renderInbox();
-  wireActions();
+  renderCivication();
+  renderCivicationInbox();
+  wireCivicationActions();
 }
 
 // ------------------------------------------------------------
@@ -289,7 +289,7 @@ window.renderCivicationInbox = renderCivicationInbox;
 
 window.CivicationUI = {
   init,
-  render,
-  renderInbox,
-  wireActions
+  render: renderCivication,
+  renderInbox: renderCivicationInbox,
+  wireActions: wireCivicationActions
 };
