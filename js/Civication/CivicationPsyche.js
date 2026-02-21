@@ -120,9 +120,18 @@
     write((state) => {
       const meta = state.trustMeta[id] || { collapses: 0 };
       meta.collapses = clamp((meta.collapses ?? 0) + 1, 0, 99);
-      meta.lastCollapse = { type: String(type || "fired"), at: now };
-      state.trustMeta[id] = meta;
+      meta.collapseHistory ||= [];
+      meta.collapseHistory.push({
+       type: String(type || "fired"),
+       at: now
+     });
 
+     meta.lastCollapse = {
+      type: String(type || "fired"),
+      at: now
+     };
+
+     state.trustMeta[id] = meta;
       const max = computeMaxTrust(meta.collapses);
       const cur = Number(state.trust[id] ?? 50);
       state.trust[id] = clamp(cur, 0, max);
