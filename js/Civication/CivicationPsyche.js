@@ -44,16 +44,19 @@ state.trustMeta ||= {};  // { [careerId]: { collapses:number, lastCollapse?, col
   // Autonomi override
   if (!("autonomyOverride" in state)) state.autonomyOverride = null;
 
-  // --------------------------------------------------
+// --------------------------------------------------
 // ROLE BASELINE (strukturelt klima)
 // --------------------------------------------------
-state.roleBaseline = {
-  role_key: state.roleBaseline?.role_key || null,
-  integrity: Number(baseline?.integrity || 0),
-  visibility: Number(baseline?.visibility || 0),
-  economicRoom: Number(baseline?.economicRoom || 0),
-  autonomy: Number(baseline?.autonomy || 0)
-};
+if (!state.roleBaseline || typeof state.roleBaseline !== "object") {
+  state.roleBaseline = {
+    role_key: null,
+    integrity: 0,
+    visibility: 0,
+    economicRoom: 0,
+    autonomy: 0
+  };
+}
+    
   return state;
 }
 
@@ -335,6 +338,41 @@ function computeAutonomy(careerId = null) {
     return setAutonomyOverride(null);
   }
 
+// -----------------------------
+// BURNOUT
+// -----------------------------
+function checkBurnout() {
+  const state = ensure(load());
+
+  const integrity = clamp(
+    state.integrity + (state.roleBaseline?.integrity || 0),
+    0,
+    100
+  );
+
+  const visibility = clamp(
+    state.visibility + (state.roleBaseline?.visibility || 0),
+    0,
+    100
+  );
+
+  if (visibility > 85 && integrity < 45) {
+    write((s) => {
+      s.economicRoom = clamp(s.economicRoom - 15, 0, 100);
+      s.integrity = clamp(s.integrity - 10, 0, 100);
+      s.autonomyOverride = clamp(
+        (s.autonomyOverride ?? computeAutonomy()) - 20,
+        0,
+        100
+      );
+    });
+
+    return true;
+  }
+
+  return false;
+}
+  
   // -----------------------------
   // SNAPSHOT (til UI/debug)
   // -----------------------------
