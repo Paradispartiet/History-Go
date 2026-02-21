@@ -228,6 +228,49 @@ async function renderCivication() {
 }
 
 // ============================================================
+// ROLE → BASELINE SYNC (UI-lag)
+// ============================================================
+
+function syncRoleBaseline() {
+  const active = getActivePosition();
+
+  if (!active?.career_id) {
+    window.HG_CiviPsyche?.clearRoleBaseline?.();
+    return;
+  }
+
+  const careerId = active.career_id;
+
+  // Finn badge (som er career)
+  const badge = Array.isArray(window.BADGES)
+    ? window.BADGES.find(b => b.id === careerId)
+    : null;
+
+  if (!badge) {
+    window.HG_CiviPsyche?.clearRoleBaseline?.();
+    return;
+  }
+
+  // Eksempel: baselines etter kategori
+  let baseline = null;
+
+  if (badge.category === "naeringsliv") {
+    baseline = { economicRoom: 15, visibility: 10, integrity: -5 };
+  }
+
+  if (badge.category === "subkultur") {
+    baseline = { economicRoom: -10, visibility: 5, integrity: 10 };
+  }
+
+  if (!baseline) {
+    window.HG_CiviPsyche?.clearRoleBaseline?.();
+    return;
+  }
+
+  window.HG_CiviPsyche?.applyRoleBaseline?.(baseline);
+}
+
+// ============================================================
 // INBOX
 // ============================================================
 
