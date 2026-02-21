@@ -23,3 +23,92 @@
   opacity: 0.9;
   font-style: italic;
 }
+
+/* =====================================
+   PSYCHE DASHBOARD
+===================================== */
+
+.civi-psyche {
+  margin-top: 24px;
+}
+
+.psyche-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-top: 12px;
+}
+
+.psyche-item {
+  padding: 12px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.psyche-label {
+  font-size: 13px;
+  opacity: 0.6;
+  margin-bottom: 4px;
+}
+
+.psyche-value {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.psyche-item.highlight {
+  grid-column: span 2;
+  background: rgba(255, 200, 0, 0.08);
+  border: 1px solid rgba(255, 200, 0, 0.3);
+}
+
+.psyche-burnout {
+  margin-top: 12px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: rgba(255, 120, 0, 0.12);
+  border: 1px solid rgba(255, 120, 0, 0.4);
+  font-size: 14px;
+}
+
+.psyche-collapses {
+  margin-top: 18px;
+}
+
+.psy-bar {
+  margin-top: 6px;
+  height: 6px;
+  border-radius: 6px;
+  background: rgba(255,255,255,0.08);
+  overflow: hidden;
+}
+
+.psy-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: #7bd88f;
+  transition: width 0.3s ease;
+}
+
+
+/* =====================================
+   VALUE COLORS
+===================================== */
+
+.psy-weak {
+  color: #ff6b6b;
+}
+
+.psy-mid {
+  color: #f0c36d;
+}
+
+.psy-strong {
+  color: #7bd88f;
+}
+
+/* visibility er invertert */
+.psy-risk {
+  color: #ff6b6b;
+}
