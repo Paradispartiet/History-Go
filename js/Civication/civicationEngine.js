@@ -362,9 +362,16 @@ function tickPCIncomeWeekly() {
   // ----------------------------------------
      try {
        tickPCIncomeWeekly();
+     
+    try {
+     window.CivicationPsyche?.checkBurnout?.();
+     } catch (e) {
+     console.warn("Burnout check failed", e);
+   }
      } catch (e) {
        console.warn("Salary tick failed", e);
-     }
+   }
+       
       // 0) sync job/role_key
       const role_key = this.ensureRoleKeySynced();
       const active = getActivePosition();
