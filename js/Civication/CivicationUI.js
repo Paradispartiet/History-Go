@@ -1,8 +1,15 @@
 async function init() {
   await window.HG_CiviEngine?.onAppOpen?.();
+
   renderCivication();
   renderCivicationInbox();
   wireCivicationActions();
+
+  // 👇 Civication håndterer selv sync
+  window.addEventListener("updateProfile", () => {
+    renderCivication();
+    renderCivicationInbox();
+  });
 }
 
 // ------------------------------------------------------------
