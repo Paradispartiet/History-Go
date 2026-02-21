@@ -229,7 +229,7 @@ async function renderCivication() {
 }
 
 // ============================================================
-// ROLE → BASELINE SYNC (UI-lag)
+// ROLE → BASELINE SYNC (PER ROLLE / TIER)
 // ============================================================
 
 function syncRoleBaseline() {
@@ -242,7 +242,6 @@ function syncRoleBaseline() {
 
   const careerId = active.career_id;
 
-  // Finn badge (som er career)
   const badge = Array.isArray(window.BADGES)
     ? window.BADGES.find(b => b.id === careerId)
     : null;
@@ -252,24 +251,62 @@ function syncRoleBaseline() {
     return;
   }
 
-  // Eksempel: baselines etter kategori
-  let baseline = null;
+  const merits =
+    JSON.parse(localStorage.getItem("merits_by_category") || "{}");
 
-  if (badge.category === "naeringsliv") {
-    baseline = { economicRoom: 15, visibility: 10, integrity: -5 };
-  }
+  const points = Number(merits[careerId]?.points || 0);
 
-  if (badge.category === "subkultur") {
-    baseline = { economicRoom: -10, visibility: 5, integrity: 10 };
-  }
+  const { tierIndex, label } =
+    deriveTierFromPoints(badge, points);
 
-  if (!baseline) {
-    window.HG_CiviPsyche?.clearRoleBaseline?.();
-    return;
+  
+  // --------------------------------------------------
+  // Baseline-matrise per rolle + tier
+  // --------------------------------------------------
+
+  let baseline = { economicRoom: 0, visibility: 0, integrity: 0 };
+
+  switch (careerId) {
+
+    case "naeringsliv":
+
+      if (tierIndex >= 3) {
+        baseline = { economicRoom: 25, visibility: 20, integrity: -15 };
+      } else if (tierIndex === 2) {
+        baseline = { economicRoom: 15, visibility: 10, integrity: -5 };
+      } else {
+        baseline = { economicRoom: 5, visibility: 5, integrity: 0 };
+      }
+
+      break;
+
+    case "subkultur":
+
+      if (tierIndex >= 3) {
+        baseline = { economicRoom: -10, visibility: 15, integrity: 20 };
+      } else {
+        baseline = { economicRoom: -15, visibility: 5, integrity: 10 };
+      }
+
+      break;
+
+    case "vitenskap":
+
+      baseline = {
+        economicRoom: 10 + tierIndex * 3,
+        visibility: 5 + tierIndex * 5,
+        integrity: 10 + tierIndex * 2
+      };
+
+      break;
+
+    default:
+      baseline = { economicRoom: 0, visibility: 0, integrity: 0 };
   }
 
   window.HG_CiviPsyche?.applyRoleBaseline?.(baseline);
 }
+
 
 // ============================================================
 // INBOX
