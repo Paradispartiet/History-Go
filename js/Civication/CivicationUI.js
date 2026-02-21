@@ -96,6 +96,7 @@ async function renderCivication() {
   // ------------------------------------------------------------
 
   const active = getActivePosition();
+  syncRoleBaseline();
 
   if (active && active.title) {
     title.textContent = `Rolle: ${active.title}`;
