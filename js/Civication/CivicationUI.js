@@ -279,3 +279,9 @@ function renderCivicationInbox() {
 }
 
 window.renderCivicationInbox = renderCivicationInbox;  
+
+window.CivicationUI = {
+  render,
+  renderInbox,
+  wireActions
+};
