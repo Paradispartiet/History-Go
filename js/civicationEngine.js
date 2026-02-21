@@ -461,3 +461,49 @@ function tickPCIncomeWeekly() {
     maxInbox: 1
   });
 })();
+
+function qualifiesForCareer(player, career) {
+  if (!career.required_badges) return true;
+
+  return career.required_badges.every(req => {
+    const tier = player.badges?.[req.badge] ?? 0;
+    return tier >= req.min_tier;
+  });
+}
+
+function calculateWeeklySalary(career, tierIndex) {
+  const maxTier = career.max_tier ?? 1;
+  const progress = maxTier === 0 ? 0 : tierIndex / maxTier;
+
+  let factor;
+
+  switch (career.curve) {
+    case "early_peak":
+      factor = Math.sqrt(progress);
+      break;
+
+    case "late_bloom":
+      factor = progress * progress;
+      break;
+
+    case "flat":
+      factor = 0.7 + progress * 0.1;
+      break;
+
+    case "volatile":
+      factor = progress * (0.8 + Math.random() * 0.4);
+      break;
+
+    default:
+      factor = progress;
+  }
+
+  const annual = career.base_salary * factor * (career.career_mod ?? 1);
+  return annual / 52;
+}
+
+function payWeeklySalary(player, career, tierIndex) {
+  const weekly = calculateWeeklySalary(career, tierIndex);
+  player.balance = (player.balance ?? 0) + weekly;
+  return weekly;
+}
