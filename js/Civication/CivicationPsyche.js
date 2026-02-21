@@ -119,7 +119,12 @@ if (!state.roleBaseline || typeof state.roleBaseline !== "object") {
     if (!id) return null;
 
     const current = getCareerTrust(id);
-    const next = clamp(current.value + Number(delta || 0), 0, current.max);
+    let raw = Number(delta || 0);
+    const mod = getLifestyleTrustModifier();
+
+    if (raw < 0) raw *= mod;
+
+    const next = clamp(current.value + raw, 0, current.max);
 
     write((state) => {
       state.trust[id] = next;
@@ -242,8 +247,19 @@ if (!state.roleBaseline || typeof state.roleBaseline !== "object") {
   }
 
   function updateEconomicRoom(delta) {
-    return setEconomicRoom(getEconomicRoom() + Number(delta || 0));
+
+  const rawDelta = Number(delta || 0);
+
+  const mod = getLifestyleEconomyModifier?.() || { swing: 1, pressure: 1 };
+
+  let adjusted = rawDelta * mod.swing;
+
+  if (rawDelta < 0) {
+    adjusted = rawDelta * mod.pressure;
   }
+
+  return setEconomicRoom(getEconomicRoom() + adjusted);
+}
 
 
     // -----------------------------
@@ -358,22 +374,38 @@ function checkBurnout() {
 
   if (state.burnoutActive) return false;
 
-  if (visibility > 85 && integrity < 45) {
-    write((s) => {
-      s.burnoutActive = true;
-      s.economicRoom = clamp(s.economicRoom - 15, 0, 100);
-      s.integrity = clamp(s.integrity - 10, 0, 100);
-      s.autonomyOverride = clamp(
-        (s.autonomyOverride ?? computeAutonomy()) - 20,
-        0,
-        100
-      );
-    });
+  const lifestyle = window.HG_Lifestyle?.getPrimary?.();
 
-    return true;
-  }
+let burnoutMod = 1;
 
-  return false;
+if (lifestyle?.economy_profile?.budget_pressure) {
+  const map = {
+    low: 0.9,
+    medium: 1.0,
+    medium_high: 1.15,
+    high: 1.3
+  };
+
+  burnoutMod =
+    map[lifestyle.economy_profile.budget_pressure] || 1;
+}
+
+const visibilityThreshold = 85 / burnoutMod;
+const integrityThreshold  = 45 * burnoutMod;
+
+if (visibility > visibilityThreshold && integrity < integrityThreshold) {
+  write((s) => {
+    s.burnoutActive = true;
+    s.economicRoom = clamp(s.economicRoom - 15, 0, 100);
+    s.integrity = clamp(s.integrity - 10, 0, 100);
+    s.autonomyOverride = clamp(
+      (s.autonomyOverride ?? computeAutonomy()) - 20,
+      0,
+      100
+    );
+  });
+
+  return true;
 }
 
 function isBurnoutActive() {
@@ -412,6 +444,37 @@ function clearBurnout() {
     pressure: pressureMap[lifestyle.economy_profile.budget_pressure] || 1
   };
 }
+
+function getLifestyleTrustModifier() {
+  const lifestyle = window.HG_Lifestyle?.getPrimary?.();
+  if (!lifestyle) return 1;
+
+  const riskMap = {
+    low: 0.9,
+    medium: 1.0,
+    high: 1.2
+  };
+
+  return riskMap[lifestyle?.economy_profile?.risk] || 1;
+}
+
+  function getLifestyleBurnoutModifier() {
+  const lifestyle = window.HG_Lifestyle?.getPrimary?.();
+  if (!lifestyle) return 1;
+
+  const pressure = lifestyle?.economy_profile?.budget_pressure;
+
+  const map = {
+    low: 0.9,
+    medium: 1.0,
+    medium_high: 1.15,
+    high: 1.3
+  };
+
+  return map[pressure] || 1;
+}
+
+  
   
   // -----------------------------
   // SNAPSHOT (til UI/debug)
