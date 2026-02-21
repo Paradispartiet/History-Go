@@ -387,6 +387,31 @@ function clearBurnout() {
     s.autonomyOverride = null;
   });
 }
+
+  function getLifestyleEconomyModifier() {
+  const lifestyle = getPrimaryLifestyle?.();
+  if (!lifestyle || !lifestyle.economy_profile) {
+    return { swing: 1, pressure: 1 };
+  }
+
+  const riskMap = {
+    low: 0.8,
+    medium: 1.0,
+    high: 1.3
+  };
+
+  const pressureMap = {
+    low: 0.9,
+    medium: 1.0,
+    medium_high: 1.15,
+    high: 1.3
+  };
+
+  return {
+    swing: riskMap[lifestyle.economy_profile.risk] || 1,
+    pressure: pressureMap[lifestyle.economy_profile.budget_pressure] || 1
+  };
+}
   
   // -----------------------------
   // SNAPSHOT (til UI/debug)
