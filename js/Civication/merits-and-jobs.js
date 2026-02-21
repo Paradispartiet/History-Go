@@ -3,6 +3,34 @@
 // ------------------------------------------------------------
 // CIVICATION: Jobbtilbud (offers) lagres i localStorage
 // ------------------------------------------------------------
+function qualifiesForTierWithCross(careerId, tierIndex) {
+  if (!window.HG_CAREERS) return true;
+
+  const career = window.HG_CAREERS.careers?.find(
+    c => String(c.career_id) === String(careerId)
+  );
+
+  if (!career) return true;
+
+  const cross = career.cross_requirements?.[String(tierIndex)];
+  if (!cross) return true;
+
+  for (const req of cross) {
+    const playerPoints = Number(window.merits?.[req.badge]?.points || 0);
+
+    const badge = window.BADGES?.find(b => b.id === req.badge);
+    if (!badge) return false;
+
+    const tier = deriveTierFromPoints(badge, playerPoints);
+
+    if ((tier.tierIndex ?? 0) < req.min_tier) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
 function hgGetJobOffers() {
   try {
     const raw = JSON.parse(localStorage.getItem("hg_job_offers_v1") || "[]");
@@ -67,6 +95,12 @@ async function updateMeritLevel(cat, oldPoints, newPoints) {
   // Bare gjør noe hvis du faktisk rykker opp i "stilling"
   if ((next.tierIndex ?? 0) <= (prev.tierIndex ?? 0)) return;
 
+  // Sjekk cross-requirements før jobbtilbud
+  if (!qualifiesForTierWithCross(badge.id, next.tierIndex)) {
+   showToast("🔒 Du trenger bredere erfaring før denne toppstillingen.");
+   return;
+  }
+  
   // tiers.label er nå stillingstittel
   const newTitle = String(next.label || "").trim() || "Ny stilling";
 
