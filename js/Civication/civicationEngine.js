@@ -99,9 +99,9 @@ function tickPCIncomeWeekly() {
   const active = getActivePosition();
   const now = new Date();
 
-  // Ingen jobb → ingen lønn, men oppdater sist-uke så ikke “spretter”
-  if (!active || !active.year_salary) {
-    wallet.last_tick_iso = new Date().toISOString();
+  // Ingen jobb → ingen lønn
+  if (!active?.career_id) {
+    wallet.last_tick_iso = now.toISOString();
     savePCWallet(wallet);
     return;
   }
@@ -113,9 +113,26 @@ function tickPCIncomeWeekly() {
   // Samme uke → allerede betalt
   if (lastWeek === thisWeek) return;
 
-  // Betal 1 uke (cap)
-  const weekly = Math.floor(active.year_salary / 52);
-  wallet.balance += weekly;
+  // Finn career-regler (curve-basert lønn)
+  const career = window.HG_CAREERS?.careers?.find(
+    c => String(c.career_id) === String(active.career_id)
+  );
+
+  if (!career) return;
+
+  // Finn tierIndex via badge + merits
+  const merits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
+  const points = Number(merits[active.career_id]?.points || 0);
+
+  const badge = window.BADGES?.find(b => b.id === active.career_id);
+  if (!badge) return;
+
+  const { tierIndex } = deriveTierFromPoints(badge, points);
+
+  // Bruk én felles lønnsmodell
+  const weekly = calculateWeeklySalary(career, tierIndex);
+
+  wallet.balance += Math.floor(weekly);
 
   wallet.last_tick_iso = now.toISOString();
   savePCWallet(wallet);
@@ -281,7 +298,7 @@ function tickPCIncomeWeekly() {
     pickEventFromPack(pack, state) {
       if (!pack || !Array.isArray(pack.mails)) return null;
       const consumed = state.consumed || {};
-
+      const autonomy = window.CivicationPsyche?.getAutonomy?.(state.active_role_key) ?? 50;
       const stability = state.stability;
 
       // Advarselmail skal kunne prioriteres når vi er i WARNING og den ikke er brukt som “mail”.
@@ -422,17 +439,28 @@ function tickPCIncomeWeekly() {
        }
       }
          
-      try {
-        const tags = Array.isArray(choice?.tags) ? choice.tags : [];
-        if (tags.length) window.HG_Lifestyle?.addTags?.(tags, "civication_choice");
-      } catch {}
-        if (!choice) return { ok: false, reason: "bad_choice" };
-        effect = Number(choice.effect || 0);
-        feedback = String(choice.feedback || "");
-      } else {
-        // events uten valg
-        effect = 0;
-        feedback = String(ev.feedback || "");
+try {
+  const tags = Array.isArray(choice?.tags) ? choice.tags : [];
+  if (tags.length) window.HG_Lifestyle?.addTags?.(tags, "civication_choice");
+} catch {}
+
+if (!choice) return { ok: false, reason: "bad_choice" };
+
+let baseEffect = Number(choice.effect || 0);
+
+const autonomy =
+  window.CivicationPsyche?.getAutonomy?.(state.active_role_key) ?? 50;
+
+if (baseEffect < 0 && autonomy < 30) {
+  baseEffect *= 1.5;
+}
+
+if (baseEffect < 0 && autonomy > 70) {
+  baseEffect *= 0.7;
+}
+
+effect = Math.round(baseEffect);
+feedback = String(choice.feedback || "");
       }
 
       // mark consumed
