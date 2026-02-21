@@ -1,3 +1,10 @@
+async function init() {
+  await window.HG_CiviEngine?.onAppOpen?.();
+  render();
+  renderInbox();
+  wireActions();
+}
+
 // ------------------------------------------------------------
 // CIVICATION – wiring: Aksepter / Ikke nå (jobboffer)
 // Plassering: rett etter getLatestPendingOffer(), før renderCivication()
@@ -281,6 +288,7 @@ function renderCivicationInbox() {
 window.renderCivicationInbox = renderCivicationInbox;  
 
 window.CivicationUI = {
+  init,
   render,
   renderInbox,
   wireActions
