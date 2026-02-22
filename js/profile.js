@@ -666,13 +666,16 @@ document.addEventListener("DOMContentLoaded", async () => {
     window.BADGES = BADGES;
 
     const safeCall = (name, fn) => {
-      try {
-        if (typeof fn !== "function") return;
-        fn();
-      } catch (e) {
-        console.warn(`[profile] ${name} crashed`, e);
-      }
-    };
+  try {
+    if (typeof fn !== "function") return;
+    const res = fn();
+    if (res && typeof res.then === "function") {
+      res.catch(e => console.warn(`[profile] ${name} crashed`, e));
+    }
+  } catch (e) {
+    console.warn(`[profile] ${name} crashed`, e);
+  }
+};
     
 // ------------------------------------------------------------
 // INITIAL RENDER (kun én gang ved load)
