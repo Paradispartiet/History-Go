@@ -519,3 +519,5 @@ window.CivicationUI = {
   renderInbox: renderCivicationInbox
   
 };
+
+document.addEventListener("DOMContentLoaded", init);
