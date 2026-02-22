@@ -8,13 +8,14 @@ async function init() {
   wireCivicationActions();
   renderCivication();
   renderCivicationInbox();
-  renderPsycheDashboard();   // ← LEGG TIL HER
+  renderPsycheDashboard();
+  renderCapital(); // ← LEGG TIL
 
-  // Civication håndterer selv sync
   window.addEventListener("updateProfile", () => {
     renderCivication();
     renderCivicationInbox();
-    renderPsycheDashboard(); // ← OG HER
+    renderPsycheDashboard();
+    renderCapital(); // ← OG HER
   });
 }
 
