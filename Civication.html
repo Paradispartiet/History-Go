@@ -1,41 +1,115 @@
-<section class="civi-psyche">
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Civication</title>
 
-  <h2>Psyke</h2>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
 
-  <div class="psyche-grid">
+<body class="hg-app">
 
-    <div class="psyche-item">
-      <div class="psyche-label">Integrity</div>
-      <div class="psyche-value" id="psyIntegrity">—</div>
+  <header class="topbar">
+    <div class="topbar-left">
+      <span class="app-title">Civication</span>
     </div>
-
-    <div class="psyche-item">
-      <div class="psyche-label">Visibility</div>
-      <div class="psyche-value" id="psyVisibility">—</div>
+    <div class="topbar-right">
+      <a href="/index.html" class="back-link">← History Go</a>
     </div>
+  </header>
 
-    <div class="psyche-item">
-      <div class="psyche-label">Economic room</div>
-      <div class="psyche-value" id="psyEconomic">—</div>
-    </div>
+  <main class="app-canvas">
 
-    <div class="psyche-item">
-      <div class="psyche-label">Trust</div>
-      <div class="psyche-value" id="psyTrust">—</div>
-    </div>
+    <!-- Kapital -->
+    <section class="civi-capital">
+      <h2>Kapital</h2>
 
-    <div class="psyche-item highlight">
-      <div class="psyche-label">Autonomy</div>
-      <div class="psyche-value" id="psyAutonomy">—</div>
-    </div>
+      <div class="capital-grid">
+        <div class="capital-item">
+          <div class="capital-label">Økonomisk</div>
+          <div class="capital-value" id="capEconomic">—</div>
+        </div>
+        <div class="capital-item">
+          <div class="capital-label">Kulturell</div>
+          <div class="capital-value" id="capCultural">—</div>
+        </div>
+        <div class="capital-item">
+          <div class="capital-label">Sosial</div>
+          <div class="capital-value" id="capSocial">—</div>
+        </div>
+        <div class="capital-item">
+          <div class="capital-label">Symbolsk</div>
+          <div class="capital-value" id="capSymbolic">—</div>
+        </div>
+        <div class="capital-item">
+          <div class="capital-label">Politisk</div>
+          <div class="capital-value" id="capPolitical">—</div>
+        </div>
+      </div>
+    </section>
 
-  </div>
+    <!-- Psyke -->
+    <section class="civi-psyche">
 
-  <div id="psyBurnout" class="psyche-burnout" style="display:none;"></div>
+      <h2>Psyke</h2>
 
-  <div class="psyche-collapses">
-    <div class="psyche-label">Kollapser</div>
-    <div id="psyCollapseHistory">—</div>
-  </div>
+      <div class="psyche-grid">
 
-</section>
+        <div class="psyche-item">
+          <div class="psyche-label">Integrity</div>
+          <div class="psyche-value" id="psyIntegrity">—</div>
+        </div>
+
+        <div class="psyche-item">
+          <div class="psyche-label">Visibility</div>
+          <div class="psyche-value" id="psyVisibility">—</div>
+        </div>
+
+        <div class="psyche-item">
+          <div class="psyche-label">Economic room</div>
+          <div class="psyche-value" id="psyEconomic">—</div>
+        </div>
+
+        <div class="psyche-item">
+          <div class="psyche-label">Trust</div>
+          <div class="psyche-value" id="psyTrust">—</div>
+        </div>
+
+        <div class="psyche-item highlight">
+          <div class="psyche-label">Autonomy</div>
+          <div class="psyche-value" id="psyAutonomy">—</div>
+        </div>
+
+      </div>
+
+      <div id="psyBurnout" class="psyche-burnout" style="display:none;"></div>
+
+      <div class="psyche-collapses">
+        <div class="psyche-label">Kollapser</div>
+        <div id="psyCollapseHistory">—</div>
+      </div>
+
+    </section>
+
+    <!-- Aktiv rolle -->
+    <section id="activeJobSection">
+      <h2>Aktiv rolle</h2>
+      <div id="activeJobCard"></div>
+    </section>
+
+    <!-- Inbox -->
+    <section id="civiInboxSection">
+      <h2>Innkommende</h2>
+      <div id="civiInbox"></div>
+    </section>
+
+  </main>
+
+  <script src="/CivicationPsyche.js"></script>
+  <script src="/capitalEngine.js"></script>
+  <script src="/civicationEngine.js"></script>
+  <script src="/CivicationUI.js"></script>
+
+</body>
+</html>
