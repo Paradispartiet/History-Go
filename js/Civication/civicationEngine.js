@@ -603,3 +603,9 @@ function payWeeklySalary(player, career, tierIndex) {
   player.balance = (player.balance ?? 0) + weekly;
   return weekly;
 }
+
+window.HG_CiviEngine = {
+  onAppOpen,
+  calculateWeeklySalary,
+  payWeeklySalary
+};
