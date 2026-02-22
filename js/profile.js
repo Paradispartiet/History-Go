@@ -297,35 +297,32 @@ function renderPeopleCollection() {
   const grid = document.getElementById("peopleGrid");
   if (!grid) return;
 
-  const collected = ls("people_collected", {});
+  const { byQuiz } = getUnlockState();
+  const ids = Object.keys(byQuiz || {});
 
-  const ids = Object.keys(collected || {}).filter(id => !!collected[id]);
+  const peopleUnlocked = ids
+    .map(id => PEOPLE.find(p => String(p.id).trim() === String(id).trim()))
+    .filter(Boolean);
 
-const peopleUnlocked = ids
-  .map(id => PEOPLE.find(p => String(p.id).trim() === String(id).trim()) || ({
-    id,
-    name: id,
-    image: ""
-  }));
   if (!peopleUnlocked.length) {
     grid.innerHTML = `<div class="muted">Ingen personer låst opp ennå.</div>`;
     return;
   }
 
   grid.innerHTML = peopleUnlocked.map(p => `
-  <div class="avatar-card" data-person="${p.id}">
-    ${p.image
-      ? `<img src="${p.image}" class="avatar-img">`
-      : `<div class="avatar-img" style="display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.15);border-radius:999px;">👤</div>`
-    }
-    <div class="avatar-name">${p.name}</div>
-  </div>
-`).join("");
+    <div class="avatar-card" data-person="${p.id}">
+      ${p.image
+        ? `<img src="${p.image}" class="avatar-img">`
+        : `<div class="avatar-img" style="display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.15);border-radius:999px;">👤</div>`
+      }
+      <div class="avatar-name">${p.name}</div>
+    </div>
+  `).join("");
 
   grid.querySelectorAll(".avatar-card").forEach(el => {
     el.onclick = () => {
       const pr = PEOPLE.find(p => p.id === el.dataset.person);
-       if (pr) window.showPersonPopup(pr);
+      if (pr) window.showPersonPopup(pr);
     };
   });
 }
@@ -434,34 +431,33 @@ function renderTimeline() {
   });
 }
 
+
 function renderCollectionCards() {
   const body = document.getElementById("collectionCardsBody");
   if (!body) return;
 
-  const visited = ls("visited_places", {});
-  const collected = ls("people_collected", {});
+  const { byQuiz } = getUnlockState();
+  const visited = byQuiz;
+  const collected = byQuiz;
 
-  // Steder skal ALDRI bruke image – kun cardImage
   const placeCards = PLACES
     .filter(p => visited[p.id])
     .map(p => ({
       id: p.id,
       name: p.name,
       year: Number(p.year) || 0,
-      image: p.cardImage   // ← alltid denne!
+      image: p.cardImage
     }));
 
-  // Personer skal ALDRI bruke image – kun imageCard
   const personCards = PEOPLE
     .filter(p => collected[p.id])
     .map(p => ({
       id: p.id,
       name: p.name,
       year: Number(p.year) || 0,
-      image: p.imageCard   // ← alltid denne!
+      image: p.imageCard
     }));
 
-  // Kombiner og sorter etter år
   const items = [...placeCards, ...personCards].sort((a,b) => a.year - b.year);
 
   if (!items.length) {
@@ -469,17 +465,14 @@ function renderCollectionCards() {
     return;
   }
 
-  body.innerHTML = items
-    .map(x => `
-      <div class="collection-card" data-id="${x.id}">
-        <img src="${x.image}" alt="${x.name}">
-        <div class="collection-card-name">${x.name}</div>
-        <div class="collection-card-year">${x.year || ""}</div>
-      </div>
-    `)
-    .join("");
+  body.innerHTML = items.map(x => `
+    <div class="collection-card" data-id="${x.id}">
+      <img src="${x.image}" alt="${x.name}">
+      <div class="collection-card-name">${x.name}</div>
+      <div class="collection-card-year">${x.year || ""}</div>
+    </div>
+  `).join("");
 
-  // Klikk: åpne popup
   body.querySelectorAll(".collection-card").forEach(el => {
     el.onclick = () => {
       const id = el.dataset.id;
@@ -491,7 +484,6 @@ function renderCollectionCards() {
     };
   });
 }
-
 // ------------------------------------------------------------
 // SISTE KUNNSKAP
 // ------------------------------------------------------------
@@ -771,7 +763,9 @@ function setupProfileMap() {
 function updateProfileMarkers() {
   if (!PROFILE_LAYER || !PLACES.length) return;
 
-  const visited = ls("visited_places", {});
+  const { byQuiz } = getUnlockState();
+  const visited = byQuiz;
+
   PROFILE_LAYER.clearLayers();
 
   PLACES.filter(p => visited[p.id]).forEach(p => {
