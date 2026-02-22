@@ -16,6 +16,20 @@
 //
 // ============================================================
 
+function getUnlockState() {
+  const unlocks = JSON.parse(localStorage.getItem("hg_unlocks_v1") || "{}");
+
+  const byQuiz = unlocks.byQuiz || {};
+  const quizIds = Object.keys(byQuiz);
+
+  return {
+    raw: unlocks,
+    byQuiz,
+    quizIds,
+    visitedCount: quizIds.length
+  };
+}
+
 function _esc(s){ return String(s ?? "").replace(/[&<>"']/g, ch => ({
   "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"
 }[ch]));}
@@ -46,20 +60,19 @@ function ls(name, fallback = {}) {
 // PROFILKORT
 // ------------------------------------------------------------
 function renderProfileCard() {
-  const visited = ls("visited_places", {});
-  const quizProgress = ls("quiz_progress", {});
-  const quizHistory  = ls("quiz_history", []);
+  const { visitedCount } = getUnlockState();
+
+  const quizProgress = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
+  const quizHistory  = JSON.parse(localStorage.getItem("quiz_history") || "[]");
   const streak = Number(localStorage.getItem("user_streak") || 0);
 
   const userName = localStorage.getItem("user_name") || "Utforsker #182";
 
-  const visitedCount = Object.keys(visited).length;
-  
   const countFromHistory = Array.isArray(quizHistory) ? quizHistory.length : 0;
 
   const countFromProgress = Object.values(quizProgress || {})
-  .map(v => Array.isArray(v?.completed) ? v.completed.length : 0)
-  .reduce((a,b)=>a+b, 0);
+    .map(v => Array.isArray(v?.completed) ? v.completed.length : 0)
+    .reduce((a,b)=>a+b, 0);
 
   const quizCount = Math.max(countFromHistory, countFromProgress);
 
@@ -324,8 +337,9 @@ function renderPlacesCollection() {
   const grid = document.getElementById("collectionGrid");
   if (!grid) return;
 
-  const visited = ls("visited_places", {});
-  const ids = Object.keys(visited || {}).filter(id => !!visited[id]);
+const { byQuiz } = getUnlockState();
+const visited = byQuiz;
+const ids = Object.keys(visited || {});
 
   const places = ids
   .map(id => PLACES.find(p => String(p.id).trim() === String(id).trim()) || ({
@@ -366,8 +380,9 @@ function renderTimeline() {
   const txt  = document.getElementById("timelineProgressText");
   if (!body) return;
 
-  const visited   = ls("visited_places", {});
-  const collected = ls("people_collected", {});
+  const { byQuiz } = getUnlockState();
+  const visited = byQuiz;
+  const collected = byQuiz;
 
   // TIMELINE = KUN BILDE (ikke kort)
   const items = [
