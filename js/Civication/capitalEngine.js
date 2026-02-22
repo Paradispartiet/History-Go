@@ -76,3 +76,22 @@ export function calculateCapital(
 
   return capital;
 }
+
+export function applyCareerCapital(career, tier, capitalState) {
+  if (!career || !career.capital_base) return capitalState;
+
+  const tierMultiplier = tier === 3 ? 2 : tier === 2 ? 1.5 : 1;
+
+  const updated = { ...capitalState };
+
+  Object.keys(career.capital_base).forEach(type => {
+    const base = career.capital_base[type] || 0;
+    updated[type] = (updated[type] || 0) + base * tierMultiplier;
+  });
+
+  return updated;
+}
+
+window.CAPITAL_ENGINE = {
+  applyCareerCapital
+};
