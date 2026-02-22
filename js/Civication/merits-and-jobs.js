@@ -16,7 +16,8 @@ function qualifiesForTierWithCross(careerId, tierIndex) {
   if (!cross) return true;
 
   for (const req of cross) {
-    const playerPoints = Number(window.merits?.[req.badge]?.points || 0);
+    const merits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
+    const playerPoints = Number(merits?.[req.badge]?.points || 0);
 
     const badge = window.BADGES?.find(b => b.id === req.badge);
     if (!badge) return false;
@@ -127,19 +128,16 @@ localStorage.setItem("quiz_progress", JSON.stringify(progress));
 
 const badgeId = canonicalCategoryId;  if (!badgeId) return;
 
-  window.merits = window.merits || {};
-  window.merits[badgeId] = window.merits[badgeId] || { points: 0 };
+const merits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
 
-  const oldPoints = Number(window.merits[badgeId].points || 0);
-  window.merits[badgeId].points += 1;
+merits[badgeId] = merits[badgeId] || { points: 0 };
 
-  // Optional: fjern gammel lagret level hvis den finnes (rydder støy)
-  if ("level" in window.merits[badgeId]) delete window.merits[badgeId].level;
+const oldPoints = Number(merits[badgeId].points || 0);
+merits[badgeId].points += 1;
 
-  if (typeof window.saveMerits === "function") window.saveMerits();
+localStorage.setItem("merits_by_category", JSON.stringify(merits));
 
-  const newPoints = Number(window.merits[badgeId].points || 0);
-  updateMeritLevel(badgeId, oldPoints, newPoints);
+const newPoints = Number(merits[badgeId].points || 0);  updateMeritLevel(badgeId, oldPoints, newPoints);
 
   showToast(`🏅 +1 poeng i ${badgeId}!`);
   window.dispatchEvent(new Event("updateProfile"));}
