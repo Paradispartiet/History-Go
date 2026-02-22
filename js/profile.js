@@ -800,3 +800,8 @@ function lighten(hex, amount = 0.35) {
   let b = Math.min(255, (num & 255) + 255*amount);
   return `rgb(${r},${g},${b})`;
 }
+
+  } catch (e) {
+    console.warn("[profile] init crashed", e);
+  }
+});
