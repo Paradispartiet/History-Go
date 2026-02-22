@@ -134,6 +134,18 @@ function tickPCIncomeWeekly() {
 
   wallet.balance += Math.floor(weekly);
 
+  if (window.CAPITAL_ENGINE?.applyCareerCapital) {
+  const capitalState = JSON.parse(localStorage.getItem("hg_capital_v1") || "{}");
+
+  const updated = window.CAPITAL_ENGINE.applyCareerCapital(
+    career,
+    tierIndex,
+    capitalState
+  );
+
+  localStorage.setItem("hg_capital_v1", JSON.stringify(updated));
+}
+   
   wallet.last_tick_iso = now.toISOString();
   savePCWallet(wallet);
 }
