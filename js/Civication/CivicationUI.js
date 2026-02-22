@@ -488,6 +488,26 @@ function renderCivicationInbox() {
   if (cC) bindChoice(btnC, "C", cC.label || "C");
 }
 
+
+function renderCapital() {
+  const capital = JSON.parse(localStorage.getItem("hg_capital_v1")) || {};
+
+  const map = {
+    economic: "capEconomic",
+    cultural: "capCultural",
+    social: "capSocial",
+    symbolic: "capSymbolic",
+    political: "capPolitical"
+  };
+
+  Object.keys(map).forEach(key => {
+    const el = document.getElementById(map[key]);
+    if (el) {
+      el.textContent = Math.round(capital[key] || 0);
+    }
+  });
+}
+
 // ============================================================
 // EXPORT
 // ============================================================
@@ -496,4 +516,5 @@ window.CivicationUI = {
   init,
   render: renderCivication,
   renderInbox: renderCivicationInbox
+  
 };
