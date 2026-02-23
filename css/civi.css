@@ -1,488 +1,281 @@
 /* ============================================================
-   CIVICATION – SORT/HVITT (monokrom spill-dashboard)
-   (Full fil – erstatter hele css/civi.css)
+   CIVICATION – REN SPILLVERSJON
+   Fokus: lesbarhet + kontrast
 ============================================================ */
 
 :root{
   --ink: #111;
   --ink2:#222;
 
-  --line: rgba(0,0,0,0.18);
-  --line2: rgba(0,0,0,0.12);
+  --line: rgba(0,0,0,0.15);
+  --line2: rgba(0,0,0,0.10);
 
-  --card: rgba(255,255,255,0.78);
-  --card2: rgba(255,255,255,0.62);
+  --card: rgba(255,255,255,0.92);
+  --card2: rgba(255,255,255,0.85);
 
-  --shadow1: 0 14px 30px rgba(0,0,0,0.12);
-  --shadow2: 0 2px 0 rgba(255,255,255,0.70) inset;
+  --shadow: 0 10px 24px rgba(0,0,0,0.10);
 
-  --radius: 18px;
+  --radius: 16px;
   --footer-h: 64px;
 }
 
-html, body{ height:100%; }
+html, body{
+  height:100%;
+}
 
 body.civi-app{
   margin:0;
-  min-height: 100%;
-  overflow-y: auto;
-  overflow-x: hidden;
-  -webkit-overflow-scrolling: touch;
+  min-height:100%;
+  overflow-y:auto;
+  overflow-x:hidden;
+  -webkit-overflow-scrolling:touch;
 
-  color: var(--ink);
-  font-family: ui-rounded, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  color:var(--ink);
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
 
-  /* monokrom “papir + himmel” */
-  background:
-    radial-gradient(1200px 700px at 50% -20%, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0) 62%),
-    linear-gradient(#f4f4f4 0%, #e8e8e8 50%, #d9d9d9 100%);
+  background:#f2f2f2;
 }
 
-a{ color:#111; text-decoration:none; }
-a:hover{ text-decoration:underline; }
-button{ font: inherit; }
-
 /* ------------------------------------------------------------
-   Topbar
+   TOPBAR
 ------------------------------------------------------------ */
+
 .topbar{
-  position: sticky;
-  top: 0;
-  z-index: 80;
+  position:sticky;
+  top:0;
+  z-index:80;
 
-  padding: 10px 14px;
+  padding:12px 16px;
   display:flex;
-  align-items:center;
   justify-content:space-between;
+  align-items:center;
 
-  background: rgba(255,255,255,0.85);
-  border-bottom: 1px solid var(--line);
-  backdrop-filter: blur(10px);
+  background:#ffffff;
+  border-bottom:1px solid var(--line);
 }
 
 .app-title{
-  font-weight: 900;
-  letter-spacing: 0.02em;
+  font-weight:900;
 }
 
 .back-link{
-  font-weight: 800;
-  padding: 6px 10px;
-  border-radius: 12px;
-  background: rgba(255,255,255,0.70);
-  border: 1px solid var(--line2);
-  box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+  font-weight:700;
+  font-size:14px;
+  color:#111;
 }
 
 /* ------------------------------------------------------------
-   Layout
+   MAP LAYER
 ------------------------------------------------------------ */
-.civi-world{
-  position: relative;
-  min-height: 100%;
-  overflow: visible;
-}
 
-/* ------------------------------------------------------------
-   Kartlag
------------------------------------------------------------- */
 #civiMapWorld{
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  overflow: hidden;
-
-  /* fallback hvis svg ikke er rendret enda */
-  background:
-    radial-gradient(900px 650px at 45% 45%, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0) 55%),
-    radial-gradient(700px 520px at 62% 72%, rgba(0,0,0,0.06) 0%, rgba(0,0,0,0) 60%),
-    linear-gradient(#f2f2f2 0%, #e2e2e2 70%, #d6d6d6 100%);
-}
-
-/* hvis HTML fortsatt har <div class="civi-map-layer"> */
-.civi-map-layer{
-  width: 100%;
-  height: 100%;
-  background:
-    radial-gradient(circle at 40% 45%, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0) 55%),
-    radial-gradient(circle at 65% 70%, rgba(0,0,0,0.06) 0%, rgba(0,0,0,0) 60%);
-  opacity: 0.95;
-}
-
-/* papir/noise + vignette */
-#civiMapWorld::before{
-  content:"";
-  position:absolute;
-  inset:-80px;
-  z-index: 1;
-  pointer-events:none;
-
-  background:
-    radial-gradient(220px 160px at 20% 18%, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0) 70%),
-    radial-gradient(280px 200px at 52% 14%, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0) 70%),
-    repeating-linear-gradient(0deg, rgba(0,0,0,0.02) 0, rgba(0,0,0,0.02) 1px, rgba(0,0,0,0) 2px, rgba(0,0,0,0) 6px);
-  opacity: 0.55;
-}
-
-#civiMapWorld::after{
-  content:"";
-  position:absolute;
+  position:fixed;
   inset:0;
-  z-index: 3;
-  pointer-events:none;
-  background: radial-gradient(900px 700px at 50% 55%, rgba(0,0,0,0) 0%, rgba(0,0,0,0.10) 74%, rgba(0,0,0,0.18) 100%);
-  opacity: 0.45;
+  z-index:0;
+  overflow:hidden;
+  background:transparent;
 }
 
-/* SVG (JS setter også filter inline) */
 #civiMapWorld svg{
-  position: relative;
-  z-index: 2;
-  width: 100%;
-  height: 100%;
+  position:relative;
+  z-index:1;
+  width:100%;
+  height:100%;
   display:block;
 }
 
 /* ------------------------------------------------------------
-   Panels
+   PANELS
 ------------------------------------------------------------ */
+
+.civi-world{
+  position:relative;
+  min-height:100%;
+}
+
 .civi-panels{
-  position: relative;
-  z-index: 10;
+  position:relative;
+  z-index:10;
 
-  max-width: 980px;
-  margin: 0 auto;
-  padding: 18px 14px 18px;
+  max-width:960px;
+  margin:0 auto;
 
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
+  padding:20px 16px;
+  padding-bottom:calc(var(--footer-h) + 24px);
 
-  padding-bottom: calc(var(--footer-h) + env(safe-area-inset-bottom) + 24px);
+  display:flex;
+  flex-direction:column;
+  gap:20px;
 }
 
 .civi-panels > section{
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: 14px 14px 16px;
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:16px;
 
-  box-shadow: var(--shadow1), var(--shadow2);
-
-  backdrop-filter: blur(10px);
-  overflow: hidden;
-  position: relative;
-}
-
-.civi-panels > section::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  pointer-events:none;
-  background:
-    radial-gradient(400px 180px at 20% 0%, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0) 70%),
-    repeating-linear-gradient(135deg, rgba(0,0,0,0.015) 0, rgba(0,0,0,0.015) 1px, rgba(0,0,0,0) 2px, rgba(0,0,0,0) 7px);
-  opacity: 0.65;
+  box-shadow:var(--shadow);
 }
 
 .civi-panels h2{
-  margin: 4px 0 10px;
-  font-size: 22px;
-  letter-spacing: 0.01em;
-  position: relative;
-  z-index: 1;
+  margin:0 0 12px 0;
+  font-size:20px;
 }
 
-.civi-panels h2::after{
-  content:"";
-  display:block;
-  height: 2px;
-  width: 56px;
-  margin-top: 8px;
-  border-radius: 2px;
-  background: linear-gradient(90deg, rgba(0,0,0,0.55), rgba(0,0,0,0.18));
-  opacity: 0.9;
-}
+/* ------------------------------------------------------------
+   CAPITAL
+------------------------------------------------------------ */
 
-/* Kapital */
 .capital-grid{
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-  position: relative;
-  z-index: 1;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
 }
 
 .capital-item{
-  background: var(--card2);
-  border: 1px solid var(--line2);
-  border-radius: 16px;
-  padding: 10px 12px;
-
-  box-shadow:
-    0 10px 18px rgba(0,0,0,0.07),
-    inset 0 1px 0 rgba(255,255,255,0.65);
+  background:var(--card2);
+  border:1px solid var(--line2);
+  border-radius:12px;
+  padding:10px;
 }
 
 .capital-label{
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.10em;
-  opacity: 0.78;
-  margin-bottom: 4px;
+  font-size:12px;
+  text-transform:uppercase;
+  opacity:0.7;
 }
 
 .capital-value{
-  font-size: 22px;
-  font-weight: 900;
-  color: var(--ink2);
+  font-size:20px;
+  font-weight:900;
 }
 
-/* Identitet */
-#identityPerceptionBtn{
-  appearance: none;
-  border: 1px solid var(--line);
-  background: rgba(255,255,255,0.72);
-  color: var(--ink);
-  border-radius: 14px;
-  padding: 9px 12px;
-  font-weight: 900;
-  cursor: pointer;
-  box-shadow: 0 10px 18px rgba(0,0,0,0.08);
-}
-
-#identityPerceptionBtn:active{ transform: translateY(1px); }
-
-#identityPerception{
-  opacity: 0;
-  transform: translateY(-6px);
-  transition: opacity 220ms ease, transform 220ms ease;
-  pointer-events: none;
-
-  margin-top: 10px;
-  background: rgba(255,255,255,0.62);
-  border: 1px solid var(--line2);
-  border-radius: 14px;
-  padding: 10px 12px;
-}
-
-#identityPerception.open{
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
-}
-
-.perception-line{
-  margin-bottom: 6px;
-  font-size: 0.95rem;
-  line-height: 1.4;
-  opacity: 0.92;
-}
-
-/* Psyke */
-.civi-psyche{ margin-top: 6px; }
+/* ------------------------------------------------------------
+   PSYCHE
+------------------------------------------------------------ */
 
 .psyche-grid{
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-  margin-top: 12px;
-  position: relative;
-  z-index: 1;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
 }
 
 .psyche-item{
-  padding: 12px;
-  border-radius: 16px;
-  background: rgba(255,255,255,0.62);
-  border: 1px solid var(--line2);
-
-  box-shadow:
-    0 10px 18px rgba(0,0,0,0.07),
-    inset 0 1px 0 rgba(255,255,255,0.65);
-}
-
-.psyche-label{
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.10em;
-  opacity: 0.72;
-  margin-bottom: 4px;
-}
-
-.psyche-value{
-  font-size: 20px;
-  font-weight: 900;
-  color: var(--ink2);
+  background:var(--card2);
+  border:1px solid var(--line2);
+  border-radius:12px;
+  padding:10px;
 }
 
 .psyche-item.highlight{
-  grid-column: span 2;
-  background: rgba(255,255,255,0.70);
-  border: 1px solid rgba(0,0,0,0.16);
+  grid-column:span 2;
 }
 
-.psyche-burnout{
-  margin-top: 12px;
-  padding: 10px 12px;
-  border-radius: 14px;
-  background: rgba(0,0,0,0.06);
-  border: 1px solid rgba(0,0,0,0.12);
-  font-size: 14px;
+.psyche-label{
+  font-size:12px;
+  text-transform:uppercase;
+  opacity:0.7;
 }
 
-.psyche-collapses{ margin-top: 16px; }
+.psyche-value{
+  font-size:18px;
+  font-weight:800;
+}
 
-/* Modal */
+/* ------------------------------------------------------------
+   MODAL
+------------------------------------------------------------ */
+
 .civi-modal{
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.45);
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.45);
   display:flex;
-  align-items:center;
   justify-content:center;
-  z-index: 1000;
-  backdrop-filter: blur(10px);
+  align-items:center;
+  z-index:1000;
 }
 
 .civi-modal-content{
-  width: 900px;
-  max-width: 95%;
-  max-height: 85vh;
-  overflow-y: auto;
+  width:900px;
+  max-width:95%;
+  max-height:85vh;
+  overflow-y:auto;
 
-  background: rgba(255,255,255,0.92);
-  border-radius: 16px;
-  padding: 22px;
-  border: 1px solid rgba(0,0,0,0.18);
-  box-shadow: 0 0 50px rgba(0,0,0,0.28);
-}
-
-.civi-modal-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom: 16px;
-}
-
-.civi-modal-header button{
-  background: rgba(255,255,255,0.75);
-  border: 1px solid rgba(0,0,0,0.16);
-  border-radius: 12px;
-  padding: 4px 10px;
-  font-size: 20px;
-  color: var(--ink);
-  cursor:pointer;
+  background:#ffffff;
+  border-radius:16px;
+  padding:20px;
 }
 
 .district-grid{
   display:grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 14px;
+  grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+  gap:14px;
 }
 
 .district-card{
-  background: rgba(255,255,255,0.70);
-  padding: 14px;
-  border-radius: 16px;
-  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
-  border: 1px solid rgba(0,0,0,0.12);
-  box-shadow: 0 10px 18px rgba(0,0,0,0.07);
+  background:#fafafa;
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:14px;
 }
 
-.district-card.locked{ opacity: 0.55; }
-
-.district-card:hover{
-  transform: translateY(-2px);
-  border-color: rgba(0,0,0,0.22);
-  box-shadow: 0 18px 28px rgba(0,0,0,0.10);
+.district-card.locked{
+  opacity:0.6;
 }
-
-.district-name{ font-size: 18px; font-weight: 900; margin-bottom: 6px; }
-.district-cost{ font-size: 14px; opacity: 0.82; margin-bottom: 8px; }
-.district-effects{ font-size: 13px; opacity: 0.86; margin-bottom: 8px; }
-.district-requirements{ font-size: 12px; opacity: 0.75; margin-bottom: 10px; }
 
 .district-card button{
-  width: 100%;
-  padding: 10px 10px;
-  background: #111;
-  border: 1px solid #111;
-  border-radius: 14px;
-  color: #fff;
-  font-weight: 900;
-  cursor: pointer;
-  box-shadow: 0 12px 18px rgba(0,0,0,0.14);
+  width:100%;
+  margin-top:10px;
+  padding:8px;
+  border:none;
+  border-radius:10px;
+  background:#111;
+  color:#fff;
+  font-weight:700;
 }
 
-.district-card.locked button{
-  background: rgba(0,0,0,0.35);
-  border-color: rgba(0,0,0,0.35);
-  cursor: not-allowed;
-}
+/* ------------------------------------------------------------
+   FOOTER
+------------------------------------------------------------ */
 
-/* Glows */
-.civi-glow, .civi-subculture-glow{
-  opacity: 0.75;
-  filter: blur(0.6px);
-  transform-box: fill-box;
-  transform-origin: center;
-  animation: civiPulse 2.8s ease-in-out infinite;
-}
-
-@keyframes civiPulse{
-  0%,100% { opacity: 0.40; transform: scale(0.94); }
-  50%     { opacity: 0.86; transform: scale(1.10); }
-}
-
-@media (prefers-reduced-motion: reduce){
-  .civi-glow, .civi-subculture-glow{ animation:none; }
-}
-
-/* Map mode */
-body.civi-mapmode .civi-panels{
-  opacity: 0.16;
-  pointer-events: none;
-  transform: scale(0.995);
-}
-
-/* Footer */
 .civi-footer{
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 90;
+  position:fixed;
+  left:0;
+  right:0;
+  bottom:0;
 
-  height: calc(var(--footer-h) + env(safe-area-inset-bottom));
-  padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
+  height:var(--footer-h);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:10px;
 
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-
-  background: rgba(255,255,255,0.85);
-  border-top: 1px solid var(--line);
-  backdrop-filter: blur(10px);
+  background:#ffffff;
+  border-top:1px solid var(--line);
+  z-index:90;
 }
 
 .civi-btn{
-  appearance: none;
-  border: 1px solid rgba(0,0,0,0.18);
-  background: rgba(255,255,255,0.78);
-  color: var(--ink);
-  border-radius: 14px;
-  padding: 10px 12px;
-  font-weight: 900;
-  cursor: pointer;
-  box-shadow: 0 10px 18px rgba(0,0,0,0.08);
+  padding:8px 12px;
+  border-radius:10px;
+  border:1px solid var(--line);
+  background:#fff;
+  font-weight:700;
+  cursor:pointer;
 }
 
 .civi-btn.primary{
-  background: #111;
-  border-color: #111;
-  color: #fff;
+  background:#111;
+  color:#fff;
+  border-color:#111;
 }
 
-.civi-btn:active{ transform: translateY(1px); }
+/* ------------------------------------------------------------
+   MAP MODE
+------------------------------------------------------------ */
+
+body.civi-mapmode .civi-panels{
+  opacity:0.15;
+  pointer-events:none;
+}
