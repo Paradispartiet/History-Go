@@ -447,6 +447,68 @@ function clearBurnout() {
   });
 }
 
+// -----------------------------
+// COLLAPSE EVALUATION (dramatic)
+// -----------------------------
+function evaluateCollapse() {
+  const state = ensure(load());
+
+  const integrity = clamp(state.integrity, 0, 100);
+  const visibility = clamp(state.visibility, 0, 100);
+  const economic = clamp(state.economicRoom, 0, 100);
+  const autonomy = computeAutonomy();
+
+  const trust = getTrustSummary().avgPercent;
+
+  // STATUSKOLLAPS
+  if (visibility > 80 && trust < 40 && integrity < 40) {
+    return "status";
+  }
+
+  // KARRIEREKOLLAPS
+  if (economic > 75 && autonomy < 30 && integrity < 40) {
+    return "career";
+  }
+
+  // ISOLASJON
+  if (trust < 35 && visibility > 60) {
+    return "isolation";
+  }
+
+  return null;
+}
+
+function processCollapse() {
+  const type = evaluateCollapse();
+  if (!type) return null;
+
+  const state = ensure(load());
+
+  // Enkle dramatiske effekter
+  write((s) => {
+    if (type === "status") {
+      s.integrity = clamp(s.integrity - 20, 0, 100);
+    }
+    if (type === "career") {
+      s.economicRoom = clamp(s.economicRoom - 30, 0, 100);
+    }
+    if (type === "isolation") {
+      s.visibility = clamp(s.visibility - 15, 0, 100);
+    }
+  });
+
+  // OFFENTLIG ANNOUNCE
+  window.HG_CivicationPublic?.announceCollapse({
+    type,
+    playerId: "local",
+    district: "sentrum",
+    timestamp: Date.now()
+  });
+
+  return type;
+}
+
+  
   function getLifestyleEconomyModifier() {
   const lifestyle = getPrimaryLifestyle?.();
   if (!lifestyle || !lifestyle.economy_profile) {
@@ -555,6 +617,9 @@ function getLifestyleTrustModifier() {
     checkBurnout,
     isBurnoutActive,
     clearBurnout,
+
+    evaluateCollapse,
+    processCollapse,
 
     // debug/ui
     getSnapshot
