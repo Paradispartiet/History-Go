@@ -493,3 +493,27 @@ a:hover{ text-decoration:underline; }
 @media (prefers-reduced-motion: reduce){
   .civi-glow, .civi-subculture-glow{ animation:none; }
 }
+
+/* Kartet ligger bak */
+.civi-app #civiMapWorld{
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+}
+
+/* Panels over kartet */
+.civi-app .civi-panels{
+  position: relative;
+  z-index: 2;
+}
+
+/* Map mode: panelene tonet ned, kartet “kommer frem” */
+.civi-app.civi-mapmode .civi-panels{
+  opacity: 0.18;
+  pointer-events: none;
+  transform: scale(0.995);
+}
+
+.civi-app.civi-mapmode #civiMapWorld svg{
+  filter: saturate(1.35) contrast(1.12);
+}
