@@ -311,10 +311,15 @@ const DISTRICTS = {
 };
   
   window.CivicationHome = {
-    getState,
-    addObject,
-    getHomeInfluence,
-    purchaseHomeObject
-  };
+  getState,
+  addObject,
+  getHomeInfluence,
+  purchaseHomeObject,
+  sellHomeObject,
+  purchaseDistrict,
+  moveDistrict,
+  canPurchase,
+  DISTRICTS
+};
 
 })();
