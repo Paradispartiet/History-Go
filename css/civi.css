@@ -517,3 +517,43 @@ a:hover{ text-decoration:underline; }
 .civi-app.civi-mapmode #civiMapWorld svg{
   filter: saturate(1.35) contrast(1.12);
 }
+
+
+/* ============================================================
+   Civication: frikoble fra History-Go canvas-lock
+   (må stå nederst i civi.css)
+============================================================ */
+
+body.hg-app.civi-app{
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* HG sin app-shell er sannsynligvis låst til “canvas” bredde/høyde */
+body.hg-app.civi-app .app-shell{
+  position: relative;
+  inset: auto;
+  left: auto; right: auto; top: auto; bottom: auto;
+
+  width: 100vw;
+  max-width: none;
+  height: auto;
+  min-height: 100vh;
+
+  overflow: visible;
+
+  transform: none;
+  margin: 0;
+}
+
+/* Main må kunne bli høyere enn viewport */
+body.hg-app.civi-app .civi-world{
+  min-height: 100vh;
+  overflow: visible;
+}
+
+/* Sørg for at innhold ikke havner bak footer */
+body.hg-app.civi-app .civi-panels{
+  padding-bottom: calc(var(--hg-footer-h, 56px) + env(safe-area-inset-bottom) + 24px);
+}
