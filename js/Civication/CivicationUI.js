@@ -329,7 +329,49 @@ function syncRoleBaseline() {
   window.HG_CiviPsyche?.applyRoleBaseline?.(baseline);
 }
 
+// ============================================================
+// HOME STATUS UI
+// ============================================================
 
+function renderHomeStatus() {
+  const el = document.getElementById("homeStatusContent");
+  if (!el) return;
+
+  const home = window.CivicationHome?.getState?.();
+  if (!home) return;
+
+  if (home.home?.status !== "settled") {
+    el.innerHTML = `
+      <div class="home-homeless">
+        <p>Du har ikke kjøpt nabolag ennå.</p>
+        <button id="buyDistrictBtn">Velg nabolag</button>
+      </div>
+    `;
+
+    const btn = document.getElementById("buyDistrictBtn");
+    if (btn) {
+      btn.onclick = () => {
+        openDistrictSelector();
+      };
+    }
+
+  } else {
+    el.innerHTML = `
+      <div class="home-settled">
+        <p><strong>${home.home.district}</strong></p>
+        <p>Nivå: ${home.home.level || 1}</p>
+        <button id="changeDistrictBtn">Flytt</button>
+      </div>
+    `;
+
+    const btn = document.getElementById("changeDistrictBtn");
+    if (btn) {
+      btn.onclick = () => {
+        openDistrictSelector();
+      };
+    }
+  }
+}
 
 function renderPsycheDashboard() {
 
