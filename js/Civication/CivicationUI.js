@@ -469,6 +469,62 @@ function renderPsycheDashboard() {
 }
 
 // ============================================================
+// DISTRICT SELECTOR
+// ============================================================
+
+function openDistrictSelector() {
+  const modal = document.getElementById("districtModal");
+  const list = document.getElementById("districtList");
+  if (!modal || !list) return;
+
+  const districts = window.CivicationHome?.DISTRICTS || {};
+
+  list.innerHTML = "";
+
+  Object.values(districts).forEach(d => {
+
+    const canBuy = window.CivicationHome?.canPurchase?.(d.id);
+
+    const card = document.createElement("div");
+    card.className = "district-card" + (canBuy ? "" : " locked");
+
+    card.innerHTML = `
+      <div class="district-name">${d.name}</div>
+      <div class="district-cost">Pris: ${d.baseCost}</div>
+      <div class="district-effects">
+        ${Object.entries(d.modifiers || {})
+          .map(([k,v]) => `${k}: ${v > 0 ? "+" : ""}${v}`)
+          .join("<br>")}
+      </div>
+      <div class="district-requirements">
+        ${Object.entries(d.quizRequirements || {})
+          .map(([k,v]) => `${k}: ${v}`)
+          .join("<br>")}
+      </div>
+      <button ${canBuy ? "" : "disabled"}>
+        ${canBuy ? "Kjøp" : "Låst"}
+      </button>
+    `;
+
+    if (canBuy) {
+      card.querySelector("button").onclick = () => {
+        window.CivicationHome.purchaseDistrict(d.id);
+        modal.style.display = "none";
+      };
+    }
+
+    list.appendChild(card);
+  });
+
+  modal.style.display = "flex";
+}
+
+document.getElementById("closeDistrictModal")
+  ?.addEventListener("click", () => {
+    document.getElementById("districtModal").style.display = "none";
+  });
+
+// ============================================================
 // INBOX
 // ============================================================
 
