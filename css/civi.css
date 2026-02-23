@@ -557,3 +557,39 @@ body.hg-app.civi-app .civi-world{
 body.hg-app.civi-app .civi-panels{
   padding-bottom: calc(var(--hg-footer-h, 56px) + env(safe-area-inset-bottom) + 24px);
 }
+
+/* ============================================================
+   Civication: sørg for at kartlaget faktisk vises
+   (overstyr HG layout.css sin shell-lås)
+============================================================ */
+
+html, body { height: 100%; }
+
+body.hg-app.civi-app{
+  min-height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Viktig: slå av evt. transform/locking fra HG layout.css */
+body.hg-app.civi-app .app-shell{
+  width: 100%;
+  max-width: none;
+  height: auto;
+  min-height: 100%;
+  overflow: visible;
+  transform: none;
+}
+
+/* Kartet må være et reelt bakgrunnslag */
+body.hg-app.civi-app #civiMapWorld{
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  display: block;
+}
+
+/* Innhold over kartet */
+body.hg-app.civi-app .civi-world{ position: relative; z-index: 1; }
+body.hg-app.civi-app .civi-panels{ position: relative; z-index: 2; }å
