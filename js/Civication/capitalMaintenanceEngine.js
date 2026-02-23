@@ -181,37 +181,43 @@
 
   // Maintain via quiz/purchase/etc.
   function maintain(type, delta = 1, opts = {}) {
-    const nowMs = Number.isFinite(opts.nowMs) ? opts.nowMs : Date.now();
-    const t = String(type || "").trim();
-    if (!t) return { ok: false, reason: "missing_type" };
+  const nowMs = Number.isFinite(opts.nowMs) ? opts.nowMs : Date.now();
+  const t = String(type || "").trim();
+  if (!t) return { ok: false, reason: "missing_type" };
 
-    const profile = getProfile();
-    const values = loadCapitalValues();
-    const meta = ensureMeta(loadMeta(), nowMs);
+  const profile = getProfile();
+  const values = loadCapitalValues();
+  const meta = ensureMeta(loadMeta(), nowMs);
 
-    // Create key if absent (we allow unknown keys too, but defaults won't decay unless profiled)
-    const cur = Number(values[t] || 0);
-    const next = cur + Number(delta || 0);
+  const cur = Number(values[t] || 0);
 
-    values[t] = next;
-    meta.lastActive[t] = nowMs;
-
-    // Log (for UI/A)
-    meta.log.unshift({
-      at: new Date(nowMs).toISOString(),
-      type: t,
-      delta: Number(delta || 0),
-      source: String(opts.source || "manual")
-    });
-    meta.log = meta.log.slice(0, 100);
-
-    saveCapitalValues(values);
-    saveMeta(meta);
-
-    window.dispatchEvent(new Event("updateProfile"));
-
-    return { ok: true, type: t, value: values[t] };
+  // 🔷 Identity boost
+  let boost = 1;
+  if (window.HG_IdentityCore?.getBoost) {
+    boost = window.HG_IdentityCore.getBoost(t);
   }
+
+  const effectiveDelta = Number(delta || 0) * boost;
+  const next = cur + effectiveDelta;
+
+  values[t] = next;
+  meta.lastActive[t] = nowMs;
+
+  meta.log.unshift({
+    at: new Date(nowMs).toISOString(),
+    type: t,
+    delta: effectiveDelta,
+    source: String(opts.source || "manual")
+  });
+  meta.log = meta.log.slice(0, 100);
+
+  saveCapitalValues(values);
+  saveMeta(meta);
+
+  window.dispatchEvent(new Event("updateProfile"));
+
+  return { ok: true, type: t, value: values[t] };
+}
 
   function touch(type, opts = {}) {
     return maintain(type, 0, { ...opts, source: opts.source || "touch" });
