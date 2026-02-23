@@ -77,8 +77,92 @@
     svg.setAttribute("height", "100%");
     svg.style.display = "block";
 
+        // ======================================================
+    // DEFS (50-talls plakat / spillkart-effekter)
+    // ======================================================
+    const defs = svgEl("defs");
+
+    // Sky / paper tint
+    const skyGrad = svgEl("radialGradient");
+    skyGrad.setAttribute("id", "civiSkyGrad");
+    skyGrad.setAttribute("cx", "50%");
+    skyGrad.setAttribute("cy", "0%");
+    skyGrad.setAttribute("r", "80%");
+    const sky1 = svgEl("stop"); sky1.setAttribute("offset", "0%");  sky1.setAttribute("stop-color", "#ffffff"); sky1.setAttribute("stop-opacity", "0.75");
+    const sky2 = svgEl("stop"); sky2.setAttribute("offset", "55%"); sky2.setAttribute("stop-color", "#cfe9ff"); sky2.setAttribute("stop-opacity", "0.28");
+    const sky3 = svgEl("stop"); sky3.setAttribute("offset", "100%");sky3.setAttribute("stop-color", "#f7f0d8"); sky3.setAttribute("stop-opacity", "0.18");
+    skyGrad.appendChild(sky1); skyGrad.appendChild(sky2); skyGrad.appendChild(sky3);
+    defs.appendChild(skyGrad);
+
+    // Fjord gradient
+    const fjordGrad = svgEl("linearGradient");
+    fjordGrad.setAttribute("id", "civiFjordGrad");
+    fjordGrad.setAttribute("x1", "0%"); fjordGrad.setAttribute("y1", "0%");
+    fjordGrad.setAttribute("x2", "0%"); fjordGrad.setAttribute("y2", "100%");
+    const f1 = svgEl("stop"); f1.setAttribute("offset", "0%");   f1.setAttribute("stop-color", "#9ad7ff"); f1.setAttribute("stop-opacity", "0.95");
+    const f2 = svgEl("stop"); f2.setAttribute("offset", "100%"); f2.setAttribute("stop-color", "#4a9fdc"); f2.setAttribute("stop-opacity", "0.95");
+    fjordGrad.appendChild(f1); fjordGrad.appendChild(f2);
+    defs.appendChild(fjordGrad);
+
+    // City / parkland gradient
+    const cityGrad = svgEl("radialGradient");
+    cityGrad.setAttribute("id", "civiCityGrad");
+    cityGrad.setAttribute("cx", "45%");
+    cityGrad.setAttribute("cy", "45%");
+    cityGrad.setAttribute("r", "70%");
+    const c1 = svgEl("stop"); c1.setAttribute("offset", "0%");   c1.setAttribute("stop-color", "#e7f4da"); c1.setAttribute("stop-opacity", "0.98");
+    const c2 = svgEl("stop"); c2.setAttribute("offset", "70%");  c2.setAttribute("stop-color", "#bfe3a6"); c2.setAttribute("stop-opacity", "0.98");
+    const c3 = svgEl("stop"); c3.setAttribute("offset", "100%"); c3.setAttribute("stop-color", "#95c987"); c3.setAttribute("stop-opacity", "0.98");
+    cityGrad.appendChild(c1); cityGrad.appendChild(c2); cityGrad.appendChild(c3);
+    defs.appendChild(cityGrad);
+
+    // Soft shadow for “cutout” look
+    const drop = svgEl("filter");
+    drop.setAttribute("id", "civiDrop");
+    drop.setAttribute("x", "-30%"); drop.setAttribute("y", "-30%");
+    drop.setAttribute("width", "160%"); drop.setAttribute("height", "160%");
+    const feD = svgEl("feDropShadow");
+    feD.setAttribute("dx", "0");
+    feD.setAttribute("dy", "2");
+    feD.setAttribute("stdDeviation", "2.2");
+    feD.setAttribute("flood-color", "rgba(0,0,0,0.22)");
+    drop.appendChild(feD);
+    defs.appendChild(drop);
+
+    // Grain overlay (plakat/papir)
+    const grain = svgEl("filter");
+    grain.setAttribute("id", "civiGrain");
+    grain.setAttribute("x", "-20%"); grain.setAttribute("y", "-20%");
+    grain.setAttribute("width", "140%"); grain.setAttribute("height", "140%");
+    const turb = svgEl("feTurbulence");
+    turb.setAttribute("type", "fractalNoise");
+    turb.setAttribute("baseFrequency", "0.9");
+    turb.setAttribute("numOctaves", "2");
+    turb.setAttribute("stitchTiles", "stitch");
+    const col = svgEl("feColorMatrix");
+    col.setAttribute("type", "matrix");
+    col.setAttribute("values", `
+      0 0 0 0 0
+      0 0 0 0 0
+      0 0 0 0 0
+      0 0 0 .08 0
+    `.trim().replace(/\s+/g, " "));
+    grain.appendChild(turb);
+    grain.appendChild(col);
+    defs.appendChild(grain);
+
+    svg.appendChild(defs);
+
     const base = svgEl("g");
     base.setAttribute("id", "civi-map-base");
+
+    // “Sollys” over kartet (idyll/50-talls-illustrasjon)
+    const sunlight = svgEl("circle");
+    sunlight.setAttribute("cx", w * 0.20);
+    sunlight.setAttribute("cy", h * 0.18);
+    sunlight.setAttribute("r", Math.min(w,h) * 0.28);
+    sunlight.setAttribute("fill", "rgba(255, 235, 170, 0.35)");
+    base.appendChild(sunlight);
 
     const objects = svgEl("g");
     objects.setAttribute("id", "civi-map-objects");
@@ -86,38 +170,67 @@
     const fx = svgEl("g");
     fx.setAttribute("id", "civi-map-fx");
 
-    // Fjord
+    // Fjord (sommerfjord)
     const fjord = svgEl("ellipse");
     fjord.setAttribute("cx", w * 0.55);
     fjord.setAttribute("cy", h * 0.88);
     fjord.setAttribute("rx", w * 0.38);
     fjord.setAttribute("ry", h * 0.20);
-    fjord.setAttribute("fill", "#0b1b2a");
-    fjord.setAttribute("opacity", "0.85");
+    fjord.setAttribute("fill", "url(#civiFjordGrad)");
+    fjord.setAttribute("opacity", "0.92");
+    fjord.setAttribute("stroke", "rgba(20,60,90,0.22)");
+    fjord.setAttribute("stroke-width", "2");
+    fjord.setAttribute("filter", "url(#civiDrop)");
     base.appendChild(fjord);
 
-    // Bymasse
+    // Bymasse (park/grønn byflate – 50-talls illustrasjon)
     const city = svgEl("ellipse");
     city.setAttribute("cx", w * 0.48);
     city.setAttribute("cy", h * 0.55);
     city.setAttribute("rx", w * 0.32);
     city.setAttribute("ry", h * 0.32);
-    city.setAttribute("fill", "#18222f");
-    city.setAttribute("stroke", "rgba(255,255,255,0.06)");
-    city.setAttribute("stroke-width", "2");
+    city.setAttribute("fill", "url(#civiCityGrad)");
+    city.setAttribute("stroke", "rgba(40,60,40,0.22)");
+    city.setAttribute("stroke-width", "2.5");
+    city.setAttribute("filter", "url(#civiDrop)");
     base.appendChild(city);
 
-    // Akerselva
+    // Grønn “belt” rundt byen (spillkart-følelse)
+    const belt = svgEl("ellipse");
+    belt.setAttribute("cx", w * 0.48);
+    belt.setAttribute("cy", h * 0.55);
+    belt.setAttribute("rx", w * 0.35);
+    belt.setAttribute("ry", h * 0.35);
+    belt.setAttribute("fill", "none");
+    belt.setAttribute("stroke", "rgba(70,120,70,0.20)");
+    belt.setAttribute("stroke-width", "10");
+    belt.setAttribute("opacity", "0.35");
+    base.appendChild(belt);
+
+    // Akerselva (lysere blågrønn, rund caps)
     const elv = svgEl("line");
     elv.setAttribute("x1", w * 0.46);
     elv.setAttribute("y1", h * 0.20);
     elv.setAttribute("x2", w * 0.50);
     elv.setAttribute("y2", h * 0.72);
-    elv.setAttribute("stroke", "#1f4e79");
-    elv.setAttribute("stroke-width", "4");
-    elv.setAttribute("opacity", "0.6");
+    elv.setAttribute("stroke", "#2f86c6");
+    elv.setAttribute("stroke-width", "5");
+    elv.setAttribute("opacity", "0.72");
+    elv.setAttribute("stroke-linecap", "round");
     base.appendChild(elv);
 
+    // Tram-ring (spillkart / retro byring)
+    const ring = svgEl("ellipse");
+    ring.setAttribute("cx", w * 0.48);
+    ring.setAttribute("cy", h * 0.55);
+    ring.setAttribute("rx", w * 0.29);
+    ring.setAttribute("ry", h * 0.29);
+    ring.setAttribute("fill", "none");
+    ring.setAttribute("stroke", "rgba(180,60,40,0.35)");
+    ring.setAttribute("stroke-width", "3");
+    ring.setAttribute("stroke-dasharray", "10 10");
+    ring.setAttribute("opacity", "0.65");
+    base.appendChild(ring);
     // Roads
     drawRoad(base, w * 0.48, h * 0.55, w * 0.35, h * 0.55); // sentrum → frogner
     drawRoad(base, w * 0.48, h * 0.55, w * 0.46, h * 0.45); // sentrum → grünerløkka
@@ -177,18 +290,18 @@
   }
 
   function addDistrictGlow(layer, x, y) {
-    const glow = svgEl("circle");
-    glow.setAttribute("cx", x);
-    glow.setAttribute("cy", y);
-    glow.setAttribute("r", 22);
-    glow.setAttribute("fill", "rgba(255,255,150,0.15)");
-    glow.setAttribute("class", "civi-glow");
-    layer.appendChild(glow);
+  const glow = svgEl("circle");
+  glow.setAttribute("cx", x);
+  glow.setAttribute("cy", y);
 
-    const culturalBoost = capital.cultural / 3;
-    glow.setAttribute("r", 22 + culturalBoost);
-    glow.setAttribute("opacity", 0.15 + (capital.cultural / 400));
-  }
+  const cultural = Number(window.USER_CAPITAL?.cultural || 0);
+  const r = 18 + (cultural / 4);
+
+  glow.setAttribute("r", r);
+  glow.setAttribute("fill", "rgba(255, 235, 170, 0.35)");
+  glow.setAttribute("class", "civi-glow");
+  layer.appendChild(glow);
+}
 
   function getZones(w, h) {
     return {
