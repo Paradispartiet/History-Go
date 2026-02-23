@@ -631,7 +631,11 @@
     return g;
   }
 
+  
   function renderCommercialObjects(objectsLayer, fxLayer, w, h) {
+    const rawCapital = window.USER_CAPITAL || {};
+    const capital = normalizeCapital(rawCapital);
+    
     const zones = getZones(w, h);
 
     const inv = window.HG_CiviShop?.getInv();
@@ -650,8 +654,6 @@
         const district = String(pack.district || "sentrum").toLowerCase();
 const pos = zones[district];
 if (!pos) return;
-
-const capital = window.USER_CAPITAL || {};
 
 // Init stack counter hvis ikke finnes
 if (zoneStackCount[district] === undefined) {
