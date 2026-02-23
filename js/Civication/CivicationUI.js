@@ -231,6 +231,25 @@ async function renderCivication() {
     `${best.points} poeng · Sist: ${lastTxt}`;
 }
 
+function renderPublicFeed() {
+  const container = document.getElementById("civiPublicFeed");
+  if (!container) return;
+
+  const feed = window.HG_CivicationPublic?.getFeed() || [];
+
+  container.innerHTML = feed.map(e => {
+    const date = new Date(e.timestamp).toLocaleTimeString("no-NO");
+    return `
+      <div class="civi-feed-item">
+        <strong>${e.collapseType}</strong> – ${e.district}
+        <div class="civi-feed-time">${date}</div>
+      </div>
+    `;
+  }).join("");
+}
+
+window.addEventListener("civiPublicUpdated", renderPublicFeed);
+
 // ============================================================
 // ROLE → BASELINE SYNC (PER ROLLE / TIER)
 // ============================================================
