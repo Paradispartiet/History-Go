@@ -1,5 +1,5 @@
 // =======================================================
-// Capital Engine v2 – Strukturell modell
+// Capital Engine v3 – Strukturell modell + Home Influence
 // =======================================================
 
 export function calculateCapital(
@@ -74,8 +74,26 @@ export function calculateCapital(
     });
   }
 
+  // ----------------------------------------------------
+  // 5️⃣ HOME INFLUENCE (permanent materiell forankring)
+  // ----------------------------------------------------
+
+  const homeInfluence = window.CivicationHome?.getHomeInfluence?.();
+
+  if (homeInfluence) {
+    capital.economic += homeInfluence.economic || 0;
+    capital.cultural += homeInfluence.cultural || 0;
+    capital.symbolic += homeInfluence.symbolic || 0;
+    // autonomy går IKKE inn i kapital
+  }
+
   return capital;
 }
+
+
+// =======================================================
+// Career multiplier
+// =======================================================
 
 export function applyCareerCapital(career, tier, capitalState) {
   if (!career || !career.capital_base) return capitalState;
@@ -91,6 +109,7 @@ export function applyCareerCapital(career, tier, capitalState) {
 
   return updated;
 }
+
 
 window.CAPITAL_ENGINE = {
   applyCareerCapital
