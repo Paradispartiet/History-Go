@@ -1,285 +1,495 @@
-html, body {
-  height: 100%;
-  background: #0e1117;
+/* ============================================================
+   CIVICATION – idyllisert Oslo (50-talls), natur, spill
+   (Erstatter hele css/civi.css)
+============================================================ */
+
+/* --- Base --- */
+:root{
+  --ink: #1f2a1c;
+  --ink2:#2a3a25;
+
+  --sky1:#cfe9ff;
+  --sky2:#eaf6ff;
+  --sun:#ffe6a6;
+
+  --cream:#fff6e2;
+  --paper:#fffaf0;
+
+  --grass1:#bfe3a6;
+  --grass2:#9fd18b;
+
+  --fjord1:#7fc3ff;
+  --fjord2:#4a9fdc;
+
+  --accent:#2e7d6b;      /* retro grønn */
+  --accent2:#e1a84b;     /* honning/mustard */
+  --accent3:#c25a4a;     /* rødbrun */
+
+  --line: rgba(40,60,40,0.16);
+  --line2: rgba(40,60,40,0.12);
+
+  --card: rgba(255, 250, 236, 0.74);
+  --card2: rgba(255,255,255,0.60);
+
+  --shadow1: 0 14px 30px rgba(0,0,0,0.10);
+  --shadow2: 0 2px 0 rgba(255,255,255,0.55) inset;
+
+  --radius: 18px;
 }
 
-.civi-world {
+html, body{ height:100%; }
+
+body.hg-app{
+  margin:0;
+  color: var(--ink);
+  font-family: ui-rounded, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+
+  /* “Sommerdag i Oslo”-bakgrunn */
+  background:
+    radial-gradient(1200px 700px at 50% -20%, rgba(255,255,255,0.88) 0%, rgba(255,255,255,0) 60%),
+    radial-gradient(600px 450px at 18% 18%, rgba(255, 230, 166, 0.55) 0%, rgba(255,230,166,0) 62%),
+    linear-gradient(var(--sky1) 0%, var(--sky2) 44%, rgba(247,240,216,1) 60%, var(--grass1) 100%);
+}
+
+/* Linker */
+a{ color: #1b5b3b; text-decoration:none; }
+a:hover{ text-decoration:underline; }
+
+/* --- Topbar (fantes ikke i din CSS, derfor så alt “rått” ut når CSS ikke var lastet) --- */
+.topbar{
+  position: sticky;
+  top: 0;
+  z-index: 80;
+
+  padding: 10px 14px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  background: rgba(255, 250, 236, 0.82);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(10px);
+}
+
+.app-title{
+  font-weight: 900;
+  letter-spacing: 0.02em;
+}
+
+.back-link{
+  font-weight: 700;
+  padding: 6px 10px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.60);
+  border: 1px solid var(--line2);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+}
+
+/* --- Layout --- */
+.civi-world{
   position: relative;
-  height: 100%;
-  overflow: hidden;
+  min-height: 100%;
 }
 
-#civiMapWorld {
-  position: absolute;
+/* Kartet skal være et “diarama”-lag bak ALT */
+#civiMapWorld{
+  position: fixed;
   inset: 0;
   z-index: 0;
   overflow: hidden;
+
+  /* fallback hvis svg ennå ikke er rendret */
+  background:
+    radial-gradient(900px 650px at 45% 40%, rgba(255,255,255,0.32) 0%, rgba(255,255,255,0) 55%),
+    radial-gradient(700px 520px at 62% 66%, rgba(159, 209, 139, 0.30) 0%, rgba(159,209,139,0) 60%),
+    linear-gradient(var(--sky2) 0%, rgba(247,240,216,1) 62%, var(--grass1) 100%);
 }
 
+/* sky/noise/vignette for “illustrert spillkart” */
+#civiMapWorld::before{
+  content:"";
+  position:absolute;
+  inset:-80px;
+  z-index: 1;
+  pointer-events:none;
+
+  background:
+    radial-gradient(220px 160px at 20% 18%, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0) 70%),
+    radial-gradient(280px 200px at 52% 14%, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0) 70%),
+    radial-gradient(260px 180px at 78% 22%, rgba(255,255,255,0.42) 0%, rgba(255,255,255,0) 70%),
+    repeating-linear-gradient(0deg, rgba(0,0,0,0.02) 0, rgba(0,0,0,0.02) 1px, rgba(0,0,0,0) 2px, rgba(0,0,0,0) 6px);
+  opacity: 0.55;
+  filter: blur(0.2px);
+}
+
+#civiMapWorld::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index: 3;
+  pointer-events:none;
+  background: radial-gradient(900px 700px at 50% 55%, rgba(0,0,0,0) 0%, rgba(0,0,0,0.10) 72%, rgba(0,0,0,0.16) 100%);
+  opacity: 0.45;
+}
+
+/* SVG-injisert av CivicationMap.js */
+#civiMapWorld svg{
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  display:block;
+
+  /* “plakat/50-talls” vibe */
+  filter: saturate(1.25) contrast(1.06);
+}
+
+/* Panels er innholdet som scroller over kartet */
 .civi-panels{
   position: relative;
   z-index: 10;
-  padding: 24px;
+
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 18px 14px 90px;
+
   display: flex;
   flex-direction: column;
-  gap: 28px;
-  backdrop-filter: blur(6px);
+  gap: 18px;
 }
 
-.civi-map-layer {
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle at center, #1e2430 0%, #0f131a 100%);
-  opacity: 0.6;
+/* Seksjoner = spillkort */
+.civi-panels > section{
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 14px 14px 16px;
+
+  box-shadow: var(--shadow1), var(--shadow2);
+
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+  position: relative;
 }
 
-
-#civiInboxBox {
-  background: rgba(0,0,0,0.85);
-  border-radius: 14px;
-  padding: 12px 14px;
+/* “papir-tekstur” */
+.civi-panels > section::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(400px 180px at 20% 0%, rgba(255,255,255,0.40) 0%, rgba(255,255,255,0) 70%),
+    repeating-linear-gradient(135deg, rgba(0,0,0,0.015) 0, rgba(0,0,0,0.015) 1px, rgba(0,0,0,0) 2px, rgba(0,0,0,0) 7px);
+  opacity: 0.65;
 }
 
-#civiMailSubject {
-  font-weight: 600;
-  margin-bottom: 6px;
+.civi-panels h2{
+  margin: 4px 0 10px;
+  font-size: 22px;
+  letter-spacing: 0.01em;
+  position: relative;
+  z-index: 1;
 }
 
-#civiMailText {
-  font-size: 0.95em;
-  line-height: 1.4;
+/* dekorlinje under overskrift */
+.civi-panels h2::after{
+  content:"";
+  display:block;
+  height: 2px;
+  width: 56px;
+  margin-top: 8px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, rgba(46,125,107,0.55), rgba(225,168,75,0.55));
   opacity: 0.9;
 }
 
-#civiMailChoices .btn {
-  text-align: left;
-}
-
-#civiMailFeedback {
-  opacity: 0.9;
-  font-style: italic;
-}
-
-/* =====================================
-   PSYCHE DASHBOARD
-===================================== */
-
-.civi-psyche {
-  margin-top: 24px;
-}
-
-.psyche-grid {
+/* --- Kapital: du manglet grid-styling, derfor ble det “liste” --- */
+.capital-grid{
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 14px;
-  margin-top: 12px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  position: relative;
+  z-index: 1;
 }
 
-.psyche-item {
-  padding: 12px;
-  border-radius: 12px;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08);
+.capital-item{
+  background: var(--card2);
+  border: 1px solid var(--line2);
+  border-radius: 16px;
+  padding: 10px 12px;
+
+  box-shadow:
+    0 10px 18px rgba(0,0,0,0.07),
+    inset 0 1px 0 rgba(255,255,255,0.65);
 }
 
-.psyche-label {
-  font-size: 13px;
-  opacity: 0.6;
+.capital-label{
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.10em;
+  opacity: 0.78;
   margin-bottom: 4px;
 }
 
-.psyche-value {
-  font-size: 20px;
-  font-weight: 600;
+.capital-value{
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--ink2);
 }
 
-.psyche-item.highlight {
-  grid-column: span 2;
-  background: rgba(255, 200, 0, 0.08);
-  border: 1px solid rgba(255, 200, 0, 0.3);
-}
-
-.psyche-burnout {
-  margin-top: 12px;
-  padding: 8px 10px;
-  border-radius: 10px;
-  background: rgba(255, 120, 0, 0.12);
-  border: 1px solid rgba(255, 120, 0, 0.4);
-  font-size: 14px;
-}
-
-.psyche-collapses {
-  margin-top: 18px;
-}
-
-.psy-bar {
-  margin-top: 6px;
-  height: 6px;
-  border-radius: 6px;
-  background: rgba(255,255,255,0.08);
-  overflow: hidden;
-}
-
-.psy-bar-fill {
-  height: 100%;
-  width: 0%;
-  background: #7bd88f;
-  transition: width 0.3s ease;
-}
-
-
-/* =====================================
-   VALUE COLORS
-===================================== */
-
-.psy-weak {
-  color: #ff6b6b;
-}
-
-.psy-mid {
-  color: #f0c36d;
-}
-
-.psy-strong {
-  color: #7bd88f;
-}
-
-/* visibility er invertert */
-.psy-risk {
-  color: #ff6b6b;
-}
-
-
-.home-homeless {
-  opacity: 0.8;
-  font-style: italic;
-}
-
-.home-settled {
-  font-weight: 500;
-}
-
-/* ========================================================= */
-/* DISTRICT MODAL */
-/* ========================================================= */
-
-.civi-modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(10,15,20,0.85);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-}
-
-.civi-modal-content {
-  width: 900px;
-  max-width: 95%;
-  max-height: 85vh;
-  overflow-y: auto;
-  background: #141c24;
-  border-radius: 12px;
-  padding: 30px;
-  box-shadow: 0 0 40px rgba(0,0,0,0.6);
-}
-
-.civi-modal-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.civi-modal-header button {
-  background: none;
-  border: none;
-  font-size: 24px;
-  color: white;
+/* --- Identitet --- */
+#identityPerceptionBtn{
+  appearance: none;
+  border: 1px solid rgba(46,125,107,0.25);
+  background: rgba(255,255,255,0.65);
+  color: var(--ink);
+  border-radius: 14px;
+  padding: 9px 12px;
+  font-weight: 800;
   cursor: pointer;
+  box-shadow: 0 10px 18px rgba(0,0,0,0.08);
 }
 
-.district-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill,minmax(240px,1fr));
-  gap: 20px;
+#identityPerceptionBtn:active{
+  transform: translateY(1px);
 }
 
-.district-card {
-  background: #1c2630;
-  padding: 20px;
-  border-radius: 10px;
-  transition: 0.2s ease;
-  border: 1px solid rgba(255,255,255,0.05);
-}
-
-.district-card.locked {
-  opacity: 0.5;
-}
-
-.district-card:hover {
-  transform: translateY(-3px);
-  border-color: rgba(255,255,255,0.2);
-}
-
-.district-name {
-  font-size: 18px;
-  margin-bottom: 8px;
-}
-
-.district-cost {
-  font-size: 14px;
-  opacity: 0.7;
-  margin-bottom: 10px;
-}
-
-.district-effects {
-  font-size: 13px;
-  opacity: 0.8;
-  margin-bottom: 10px;
-}
-
-.district-requirements {
-  font-size: 12px;
-  opacity: 0.7;
-  margin-bottom: 12px;
-}
-
-.district-card button {
-  width: 100%;
-  padding: 8px;
-  background: #2f7ae5;
-  border: none;
-  border-radius: 6px;
-  color: white;
-  cursor: pointer;
-}
-
-.district-card.locked button {
-  background: #555;
-  cursor: not-allowed;
-}
-
-/* ============================================================
-   IDENTITY PERCEPTION PANEL
-   ============================================================ */
-
-#identityPerception {
+/* Panel som åpnes */
+#identityPerception{
   opacity: 0;
   transform: translateY(-6px);
   transition: opacity 220ms ease, transform 220ms ease;
   pointer-events: none;
+  margin-top: 10px;
+  background: rgba(255,255,255,0.55);
+  border: 1px solid var(--line2);
+  border-radius: 14px;
+  padding: 10px 12px;
 }
 
-#identityPerception.open {
+#identityPerception.open{
   opacity: 1;
   transform: translateY(0);
   pointer-events: auto;
 }
 
-.perception-line {
+.perception-line{
   margin-bottom: 6px;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   line-height: 1.4;
-  opacity: 0.9;
+  opacity: 0.92;
+}
+
+/* --- Psyche dashboard (bygger videre på din eksisterende) --- */
+.civi-psyche{ margin-top: 6px; }
+
+.psyche-grid{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+.psyche-item{
+  padding: 12px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.55);
+  border: 1px solid var(--line2);
+
+  box-shadow:
+    0 10px 18px rgba(0,0,0,0.07),
+    inset 0 1px 0 rgba(255,255,255,0.65);
+}
+
+.psyche-label{
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.10em;
+  opacity: 0.72;
+  margin-bottom: 4px;
+}
+
+.psyche-value{
+  font-size: 20px;
+  font-weight: 900;
+  color: var(--ink2);
+}
+
+/* Highlight (Autonomy) = sol/honning */
+.psyche-item.highlight{
+  grid-column: span 2;
+  background: rgba(255, 214, 102, 0.26);
+  border: 1px solid rgba(160, 120, 0, 0.25);
+}
+
+.psyche-burnout{
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: rgba(255, 160, 60, 0.18);
+  border: 1px solid rgba(160, 80, 0, 0.22);
+  font-size: 14px;
+}
+
+.psyche-collapses{ margin-top: 16px; }
+
+/* barer (hvis du bruker dem) */
+.psy-bar{
+  margin-top: 6px;
+  height: 7px;
+  border-radius: 8px;
+  background: rgba(40,60,40,0.10);
+  overflow: hidden;
+}
+
+.psy-bar-fill{
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, rgba(46,125,107,0.85), rgba(225,168,75,0.85));
+  transition: width 0.35s ease;
+}
+
+/* value colors */
+.psy-weak{ color:#b02e2e; }
+.psy-mid{ color:#8a5a0d; }
+.psy-strong{ color:#1f6a3e; }
+/* visibility invert */
+.psy-risk{ color:#b02e2e; }
+
+/* --- Home status --- */
+.home-homeless{ opacity: 0.85; font-style: italic; }
+.home-settled{ font-weight: 800; }
+
+/* --- Inbox (du hadde mørk “dev”-boks; gjør den til spillkort) --- */
+#civiInboxBox{
+  background: rgba(255,255,255,0.55);
+  border: 1px solid var(--line2);
+  border-radius: 16px;
+  padding: 12px 14px;
+  box-shadow: 0 10px 18px rgba(0,0,0,0.07);
+}
+
+#civiMailSubject{ font-weight: 900; margin-bottom: 6px; }
+#civiMailText{ font-size: 0.98em; line-height: 1.45; opacity: 0.92; }
+#civiMailChoices .btn{ text-align:left; }
+#civiMailFeedback{ opacity: 0.88; font-style: italic; }
+
+/* --- District modal (beholder “kveld” overlay, men lysere innhold) --- */
+.civi-modal{
+  position: fixed;
+  inset: 0;
+  background: rgba(10,15,20,0.62);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+}
+
+.civi-modal-content{
+  width: 900px;
+  max-width: 95%;
+  max-height: 85vh;
+  overflow-y: auto;
+
+  background: rgba(255, 250, 236, 0.90);
+  border-radius: 16px;
+  padding: 22px;
+  border: 1px solid rgba(40,60,40,0.18);
+  box-shadow: 0 0 50px rgba(0,0,0,0.28);
+}
+
+.civi-modal-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom: 16px;
+}
+
+.civi-modal-header button{
+  background: rgba(255,255,255,0.65);
+  border: 1px solid var(--line2);
+  border-radius: 12px;
+  padding: 4px 10px;
+  font-size: 20px;
+  color: var(--ink);
+  cursor:pointer;
+}
+
+.district-grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 14px;
+}
+
+.district-card{
+  background: rgba(255,255,255,0.62);
+  padding: 14px;
+  border-radius: 16px;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+  border: 1px solid var(--line2);
+  box-shadow: 0 10px 18px rgba(0,0,0,0.07);
+}
+
+.district-card.locked{ opacity: 0.55; }
+
+.district-card:hover{
+  transform: translateY(-2px);
+  border-color: rgba(46,125,107,0.28);
+  box-shadow: 0 18px 28px rgba(0,0,0,0.10);
+}
+
+.district-name{ font-size: 18px; font-weight: 900; margin-bottom: 6px; }
+.district-cost{ font-size: 14px; opacity: 0.82; margin-bottom: 8px; }
+.district-effects{ font-size: 13px; opacity: 0.86; margin-bottom: 8px; }
+.district-requirements{ font-size: 12px; opacity: 0.75; margin-bottom: 10px; }
+
+.district-card button{
+  width: 100%;
+  padding: 10px 10px;
+  background: linear-gradient(180deg, rgba(46,125,107,0.95), rgba(35,102,88,0.95));
+  border: none;
+  border-radius: 14px;
+  color: white;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 0 12px 18px rgba(0,0,0,0.14);
+}
+
+.district-card.locked button{
+  background: rgba(60,60,60,0.55);
+  cursor: not-allowed;
+}
+
+/* --- Kart-glows (JS bruker .civi-glow og .civi-subculture-glow) --- */
+.civi-glow, .civi-subculture-glow{
+  opacity: 0.80;
+  filter: blur(0.6px);
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: civiPulse 2.8s ease-in-out infinite;
+}
+
+@keyframes civiPulse{
+  0%,100% { opacity: 0.45; transform: scale(0.94); }
+  50%     { opacity: 0.92; transform: scale(1.10); }
+}
+
+/* --- “spillfølelse” på desktop (uten å ødelegge touch) --- */
+@media (hover:hover){
+  .civi-panels > section{
+    transition: transform 0.16s ease, box-shadow 0.16s ease;
+  }
+  .civi-panels > section:hover{
+    transform: translateY(-1px);
+    box-shadow: 0 18px 34px rgba(0,0,0,0.12), var(--shadow2);
+  }
+}
+
+/* --- Motion-respect --- */
+@media (prefers-reduced-motion: reduce){
+  .civi-glow, .civi-subculture-glow{ animation:none; }
 }
