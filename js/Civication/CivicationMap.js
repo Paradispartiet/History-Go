@@ -141,7 +141,8 @@
     road.setAttribute("x2", x2);
     road.setAttribute("y2", y2);
     road.setAttribute("stroke", "rgba(255,255,255,0.08)");
-    road.setAttribute("stroke-width", "3");
+    road.setAttribute("stroke-width", 3 + capital.institutional / 40);
+    
     base.appendChild(road);
   }
 
@@ -179,6 +180,10 @@
     glow.setAttribute("fill", "rgba(255,255,150,0.15)");
     glow.setAttribute("class", "civi-glow");
     layer.appendChild(glow);
+
+    const culturalBoost = capital.cultural / 3;
+    glow.setAttribute("r", 22 + culturalBoost);
+    glow.setAttribute("opacity", 0.15 + (capital.cultural / 400));
   }
 
   function getZones(w, h) {
@@ -221,6 +226,9 @@
     const isCentral = !!options.isCentral;
     const seed = Number(options.seed || 0);
 
+    const economicScale = 1 + (capital.economic / 200);
+    wrapper.setAttribute("transform", `scale(${scale * economicScale})`);
+  
     const type = normalizeType(options.type);
     const scale = isCentral ? 1.15 : (isSuburb ? 0.90 : 1.0);
 
@@ -675,6 +683,25 @@
     });
   }
 
+function drawNetworkLine(x1,y1,x2,y2,strength){
+  const line = svgEl("line");
+  line.setAttribute("x1", x1);
+  line.setAttribute("y1", y1);
+  line.setAttribute("x2", x2);
+  line.setAttribute("y2", y2);
+  line.setAttribute("stroke", "rgba(255,255,255,0.15)");
+  line.setAttribute("stroke-width", 1 + strength/25);
+  return line;
+}
+  
+function normalizeCapital(capital) {
+  const result = {};
+  Object.keys(capital).forEach(key => {
+    result[key] = Math.max(0, Math.min(100, capital[key]));
+  });
+  return result;
+}
+  
   function init() {
     render();
     window.addEventListener("resize", render, { passive: true });
