@@ -116,32 +116,36 @@ async function updateMeritLevel(cat, oldPoints, newPoints) {
 // Poengsystem – +1 poeng per fullført quiz
 async function addCompletedQuizAndMaybePoint(categoryDisplay, quizId) {
   const categoryId = catIdFromDisplay(categoryDisplay);
+
   const badgeId =
-  categoryId === "naering" ? "naeringsliv" : categoryId;  
+    categoryId === "naering" ? "naeringsliv" : categoryId;
+
+  if (!badgeId) return;
+
   const progress = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
-  progress[canonicalCategoryId] = progress[canonicalCategoryId] || { completed: [] };
+  progress[badgeId] = progress[badgeId] || { completed: [] };
 
-if (progress[canonicalCategoryId].completed.includes(quizId)) return;
+  if (progress[badgeId].completed.includes(quizId)) return;
 
-progress[canonicalCategoryId].completed.push(quizId);
-localStorage.setItem("quiz_progress", JSON.stringify(progress));
+  progress[badgeId].completed.push(quizId);
+  localStorage.setItem("quiz_progress", JSON.stringify(progress));
 
-const badgeId = canonicalCategoryId;  if (!badgeId) return;
+  const merits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
 
-const merits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
+  merits[badgeId] = merits[badgeId] || { points: 0 };
 
-merits[badgeId] = merits[badgeId] || { points: 0 };
+  const oldPoints = Number(merits[badgeId].points || 0);
+  merits[badgeId].points += 1;
 
-const oldPoints = Number(merits[badgeId].points || 0);
-merits[badgeId].points += 1;
+  localStorage.setItem("merits_by_category", JSON.stringify(merits));
 
-localStorage.setItem("merits_by_category", JSON.stringify(merits));
+  const newPoints = Number(merits[badgeId].points || 0);
 
-const newPoints = Number(merits[badgeId].points || 0);  updateMeritLevel(badgeId, oldPoints, newPoints);
+  updateMeritLevel(badgeId, oldPoints, newPoints);
 
   showToast(`🏅 +1 poeng i ${badgeId}!`);
-  window.dispatchEvent(new Event("updateProfile"));}
-
+  window.dispatchEvent(new Event("updateProfile"));
+}
 
 window.hgGetJobOffers = hgGetJobOffers;
 window.hgSetJobOffers = hgSetJobOffers;
