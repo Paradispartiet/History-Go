@@ -60,11 +60,14 @@ function purchaseDistrict(districtId){
   }
 
   function addObject(obj){
-    const state = ensure(load());
-    state.objects.push(obj);
-    save(state);
-    return state;
-  }
+  const state = ensure(load());
+  state.objects.push(obj);
+  save(state);
+
+  window.dispatchEvent(new Event("civi:homeChanged"));
+
+  return state;
+}
 
   function getHomeInfluence(){
     const state = ensure(load());
