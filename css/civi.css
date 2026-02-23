@@ -520,21 +520,69 @@ body.civi-mapmode #civiMapWorld svg{
   filter: saturate(1.35) contrast(1.12);
 }
 
-/* ------------------------------------------------------------
-   HG layout.css “canvas-lock” override (behold layout.css i head)
-   Dette er konsolidert til én blokk.
------------------------------------------------------------- */
-body.hg-app .app-shell{
-  width: 100vw;
-  max-width: none;
-  margin: 0;
+/* ============================================================
+   Civication: slå av HG canvas-lås (layout.css) – full bredde + scroll
+   (stå helt nederst i civi.css)
+============================================================ */
+
+html{
   height: auto;
-  min-height: 100vh;
-  overflow: visible;
-  transform: none;
+  overflow-y: auto;
 }
 
-body.hg-app .app-footer{
+body.hg-app.civi-app{
+  /* HG layout kan ha scroll-lock / flex-centering */
+  position: relative;
+  inset: auto;
+
+  display: block;
+  width: 100%;
+
+  height: auto;
+  min-height: 100vh;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+
+  /* hvis HG har touch-scroll sperre */
+  touch-action: pan-y;
+}
+
+body.hg-app.civi-app .app-shell{
+  position: relative;
+
+  width: 100vw;
+  max-width: none;
+
+  height: auto;
+  min-height: 100vh;
+
+  overflow: visible;
+
+  /* hvis HG layout skalerer canvas */
+  transform: none;
+  margin: 0;
+}
+
+/* Kartet skal dekke hele skjermen */
+body.hg-app.civi-app #civiMapWorld{
+  position: fixed;
+  inset: 0;
+}
+
+/* Panels: ikke lås til “smal” kolonne */
+body.hg-app.civi-app .civi-panels{
+  width: calc(100vw - 28px);
+  max-width: 1100px;      /* spill-panelbredde på store skjermer */
+  margin: 0 auto;
+
+  /* så footer ikke dekker innhold */
+  padding-bottom: calc(var(--hg-footer-h, 56px) + env(safe-area-inset-bottom) + 24px);
+}
+
+/* Footer: full skjermbredde */
+body.hg-app.civi-app .app-footer{
   left: 0;
   right: 0;
   width: 100vw;
