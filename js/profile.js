@@ -110,7 +110,6 @@ function renderPC() {
 // ------------------------------------------------------------
 
 async function renderMerits() {
-  await ensureBadgesLoaded();
 
   const box = document.getElementById("merits");
   if (!box) return;
