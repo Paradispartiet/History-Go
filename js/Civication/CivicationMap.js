@@ -643,12 +643,11 @@
         if (!pack) return;
 
         const district = String(pack.district || "sentrum").toLowerCase();
-    const pos = zones[district];
-      if (!pos) return;
+const pos = zones[district];
+if (!pos) return;
 
-    const capital = window.USER_CAPITAL || {};
-    const normCapital = normalizeCapital(capital);
-        
+const capital = window.USER_CAPITAL || {};
+
 // Init stack counter hvis ikke finnes
 if (zoneStackCount[district] === undefined) {
   zoneStackCount[district] = 0;
