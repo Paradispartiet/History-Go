@@ -787,20 +787,26 @@ function updateProfileMarkers() {
 }
 
 // ---------- FARGE / LIGHTEN ----------
-function catColor(cat="") {
+function catColor(cat = "") {
   const c = cat.toLowerCase();
-  if (c.includes("historie")) return "#344B80";
-  if (c.includes("vitenskap")) return "#9b59b6";
-  if (c.includes("kunst")) return "#ffb703";
-  if (c.includes("musikk")) return "#ff66cc";
-  if (c.includes("litteratur")) return "#f6c800";
-  if (c.includes("natur")) return "#4caf50";
-  if (c.includes("sport")) return "#2a9d8f";
-  if (c.includes("by")) return "#e63946";
-  if (c.includes("politikk")) return "#c77dff";
-  if (c.includes("naering")) return "#ff8800";
-  if (c.includes("populaer")) return "#ffb703";
-  if (c.includes("subkultur")) return "#ff66cc";
+
+  if (c === "historie") return "#344B80";
+  if (c === "vitenskap") return "#9b59b6";
+  if (c === "kunst") return "#ffb703";
+  if (c === "by") return "#e63946";
+  if (c === "musikk") return "#ff66cc";
+  if (c === "litteratur") return "#f6c800";
+  if (c === "natur") return "#4caf50";
+  if (c === "sport") return "#2a9d8f";
+  if (c === "politikk") return "#c77dff";
+  if (c === "naeringsliv") return "#ff8800";
+  if (c === "populaerkultur") return "#ffb703";
+  if (c === "subkultur") return "#ff66cc";
+  if (c === "film_tv") return "#6c757d";
+  if (c === "teater") return "#b5179e";
+  if (c === "media") return "#ff595e";
+  if (c === "psykologi") return "#06d6a0";
+
   return "#9b59b6";
 }
 
