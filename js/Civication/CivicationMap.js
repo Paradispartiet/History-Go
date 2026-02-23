@@ -772,9 +772,13 @@ function normalizeCapital(capital) {
 }
   
   function init() {
-    render();
-    window.addEventListener("resize", render, { passive: true });
-  }
+  render();
+
+  window.addEventListener("resize", render, { passive: true });
+
+  // Re-render når Home endres
+  window.addEventListener("civi:homeChanged", render);
+}
 
   document.addEventListener("DOMContentLoaded", init);
 
