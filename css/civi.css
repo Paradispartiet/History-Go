@@ -1,6 +1,7 @@
 /* ============================================================
-   CIVICATION – idyllisert Oslo (50-talls), natur, spill
-   (Ryddet/konsolidert: ingen duplikater, ingen tap av funksjon)
+   VIVI / CIVICATION – idyllisert Oslo (50-talls), natur, spill
+   (Ren Civication: ingen HG-CSS-avhengighet)
+   Bygget på: civi (14).css + Civication (19).html
 ============================================================ */
 
 /* --- Tokens --- */
@@ -26,14 +27,16 @@
   --shadow2: 0 2px 0 rgba(255,255,255,0.55) inset;
 
   --radius: 18px;
+
+  --footer-h: 64px;
 }
 
 html, body{ height:100%; }
 
 /* ------------------------------------------------------------
-   Base / bakgrunn
+   Base / bakgrunn + scrolling
 ------------------------------------------------------------ */
-body.hg-app{
+body.civi-app{
   margin:0;
   min-height: 100%;
   overflow-y: auto;
@@ -52,8 +55,10 @@ body.hg-app{
 a{ color:#1b5b3b; text-decoration:none; }
 a:hover{ text-decoration:underline; }
 
+button{ font: inherit; }
+
 /* ------------------------------------------------------------
-   Topbar (din)
+   Topbar (HTML har .topbar, .app-title, .back-link)
 ------------------------------------------------------------ */
 .topbar{
   position: sticky;
@@ -94,8 +99,7 @@ a:hover{ text-decoration:underline; }
 }
 
 /* ------------------------------------------------------------
-   Kartlag (bakgrunn)
-   NB: holder hele skjermen. Dette er også “failsafe” mot HG layout.css
+   Kartlag (bakgrunn) + fallback
 ------------------------------------------------------------ */
 #civiMapWorld{
   position: fixed;
@@ -108,6 +112,16 @@ a:hover{ text-decoration:underline; }
     radial-gradient(900px 650px at 45% 40%, rgba(255,255,255,0.32) 0%, rgba(255,255,255,0) 55%),
     radial-gradient(700px 520px at 62% 66%, rgba(159, 209, 139, 0.30) 0%, rgba(159,209,139,0) 60%),
     linear-gradient(var(--sky2) 0%, rgba(247,240,216,1) 62%, var(--grass1) 100%);
+}
+
+/* hvis du fortsatt har <div class="civi-map-layer"></div> i HTML */
+.civi-map-layer{
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(circle at 40% 45%, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0) 55%),
+    radial-gradient(circle at 65% 70%, rgba(159, 209, 139, 0.28) 0%, rgba(159,209,139,0) 60%);
+  opacity: 0.9;
 }
 
 /* sky/noise/vignette for “illustrert spillkart” */
@@ -156,14 +170,14 @@ a:hover{ text-decoration:underline; }
 
   max-width: 980px;
   margin: 0 auto;
-  padding: 18px 14px 90px;
+  padding: 18px 14px 18px;
 
   display: flex;
   flex-direction: column;
   gap: 18px;
 
   /* så footer ikke dekker innhold */
-  padding-bottom: calc(var(--hg-footer-h, 56px) + env(safe-area-inset-bottom) + 24px);
+  padding-bottom: calc(var(--footer-h) + env(safe-area-inset-bottom) + 24px);
 }
 
 .civi-panels > section{
@@ -520,70 +534,46 @@ body.civi-mapmode #civiMapWorld svg{
   filter: saturate(1.35) contrast(1.12);
 }
 
-/* ============================================================
-   Civication: slå av HG canvas-lås (layout.css) – full bredde + scroll
-   (stå helt nederst i civi.css)
-============================================================ */
-
-html{
-  height: auto;
-  overflow-y: auto;
-}
-
-body.hg-app.civi-app{
-  /* HG layout kan ha scroll-lock / flex-centering */
-  position: relative;
-  inset: auto;
-
-  display: block;
-  width: 100%;
-
-  height: auto;
-  min-height: 100vh;
-
-  overflow-y: auto;
-  overflow-x: hidden;
-  -webkit-overflow-scrolling: touch;
-
-  /* hvis HG har touch-scroll sperre */
-  touch-action: pan-y;
-}
-
-body.hg-app.civi-app .app-shell{
-  position: relative;
-
-  width: 100vw;
-  max-width: none;
-
-  height: auto;
-  min-height: 100vh;
-
-  overflow: visible;
-
-  /* hvis HG layout skalerer canvas */
-  transform: none;
-  margin: 0;
-}
-
-/* Kartet skal dekke hele skjermen */
-body.hg-app.civi-app #civiMapWorld{
+/* ------------------------------------------------------------
+   Footer (HTML har .civi-footer + .civi-btn)
+------------------------------------------------------------ */
+.civi-footer{
   position: fixed;
-  inset: 0;
-}
-
-/* Panels: ikke lås til “smal” kolonne */
-body.hg-app.civi-app .civi-panels{
-  width: calc(100vw - 28px);
-  max-width: 1100px;      /* spill-panelbredde på store skjermer */
-  margin: 0 auto;
-
-  /* så footer ikke dekker innhold */
-  padding-bottom: calc(var(--hg-footer-h, 56px) + env(safe-area-inset-bottom) + 24px);
-}
-
-/* Footer: full skjermbredde */
-body.hg-app.civi-app .app-footer{
   left: 0;
   right: 0;
-  width: 100vw;
+  bottom: 0;
+  z-index: 90;
+
+  height: calc(var(--footer-h) + env(safe-area-inset-bottom));
+  padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
+
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(255, 250, 236, 0.82);
+  border-top: 1px solid var(--line);
+  backdrop-filter: blur(10px);
 }
+
+.civi-btn{
+  appearance: none;
+  border: 1px solid var(--line2);
+  background: rgba(255,255,255,0.70);
+  color: var(--ink);
+  border-radius: 14px;
+  padding: 10px 12px;
+  font-weight: 900;
+  cursor: pointer;
+
+  box-shadow: 0 10px 18px rgba(0,0,0,0.08);
+}
+
+.civi-btn.primary{
+  border: 1px solid rgba(46,125,107,0.30);
+  background: linear-gradient(180deg, rgba(46,125,107,0.95), rgba(35,102,88,0.95));
+  color: #fff;
+}
+
+.civi-btn:active{ transform: translateY(1px); }
