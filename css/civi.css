@@ -254,3 +254,27 @@
   background: #555;
   cursor: not-allowed;
 }
+
+/* ============================================================
+   IDENTITY PERCEPTION PANEL
+   ============================================================ */
+
+#identityPerception {
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity 220ms ease, transform 220ms ease;
+  pointer-events: none;
+}
+
+#identityPerception.open {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.perception-line {
+  margin-bottom: 6px;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  opacity: 0.9;
+}
