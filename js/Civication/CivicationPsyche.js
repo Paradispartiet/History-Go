@@ -321,19 +321,46 @@ function computeAutonomy(careerId = null) {
     trustPct = getTrustSummary().avgPercent;
   }
 
+   // Identity influence on perceived trust (svak effekt)
+const identityMods = window.HG_IdentityCore?.getPsycheModifiers?.();
+let identityAutonomyBoost = 0;
+let identityTrustShift = 0;
+
+if (identityMods) {
+  identityAutonomyBoost = identityMods.autonomy || 0;
+
+  // Svak effekt (maks ±5)
+  identityTrustShift = (identityMods.trust || 0) * 0.1;
+}
+
+trustPct = clamp(trustPct + identityTrustShift, 0, 100);
+  
   const raw =
     (economicRoom * 0.4) +
     (trustPct * 0.3) +
     (integrity * 0.2) -
     (visibility * 0.2);
 
+
+   // Identity influence
+const identityMods = window.HG_IdentityCore?.getPsycheModifiers?.();
+let identityAutonomyBoost = 0;
+
+if (identityMods) {
+  identityAutonomyBoost = identityMods.autonomy || 0;
+}
+  
   return clamp(
-    raw + (state.roleBaseline?.autonomy || 0),
-    0,
-    100
-  );
+  raw +
+  identityAutonomyBoost +
+  (state.roleBaseline?.autonomy || 0),
+  0,
+  100
+);
 }
 
+
+  
   function getAutonomy(careerId = null) {
     const state = ensure(load());
     if (Number.isFinite(state.autonomyOverride)) {
