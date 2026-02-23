@@ -14,12 +14,13 @@ async function init() {
   renderPublicFeed();   // ← LEGG TIL DENNE
 
   window.addEventListener("updateProfile", () => {
-    renderCivication();
-    renderCivicationInbox();
-    renderPsycheDashboard();
-    renderCapital();
-    renderHomeStatus();
-  });
+  renderCivication();
+  renderCivicationInbox();
+  renderPsycheDashboard();
+  renderCapital();
+  renderHomeStatus();
+  renderPerception();   // ← LEGG TIL
+});
 
   window.addEventListener("civi:homeChanged", renderHomeStatus);
 }
@@ -636,6 +637,40 @@ function renderCapital() {
     }
   });
 }
+
+// ============================================================
+// IDENTITY PERCEPTION
+// ============================================================
+
+function renderPerception() {
+
+  const el = document.getElementById("identityPerception");
+  if (!el) return;
+
+  const snapshot = window.CivicationPsyche?.getSnapshot?.();
+  const capital = window.USER_CAPITAL || {};
+  const identity = window.HG_IdentityCore?.getProfile?.() || {};
+
+  const lines = window.HG_IdentityCore?.generatePerceptionProfile?.({
+    ...capital,
+    ...snapshot,
+    dominant: identity.dominant
+  }) || [];
+
+  el.innerHTML = lines
+    .map(l => `<div class="perception-line">${l}</div>`)
+    .join("");
+}
+
+document.getElementById("identityPerceptionBtn")
+  ?.addEventListener("click", () => {
+
+    const el = document.getElementById("identityPerception");
+    if (!el) return;
+
+    el.style.display =
+      el.style.display === "none" ? "block" : "none";
+  });
 
 // ============================================================
 // EXPORT
