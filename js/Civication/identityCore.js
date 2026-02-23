@@ -63,6 +63,105 @@
     visibility: (focus.subculture || 0) * 10
   };
 }
+
+function generatePerceptionProfile(data) {
+
+  const {
+    economic = 0,
+    cultural = 0,
+    symbolic = 0,
+    social = 0,
+    political = 0,
+    integrity = 0,
+    visibility = 0,
+    autonomy = 0,
+    dominant = ""
+  } = data || {};
+
+  const lines = [];
+
+  // --------------------------------------------------
+  // Økonomisk lesning
+  // --------------------------------------------------
+
+  if (economic > 70 && visibility > 60) {
+    lines.push("Du kan bli oppfattet som ambisiøs og posisjonert i maktsonen.");
+  }
+
+  if (economic > 70 && integrity < 40) {
+    lines.push("Noen kan lese deg som kalkulerende.");
+  }
+
+  if (economic < 30 && autonomy > 60) {
+    lines.push("Du kan fremstå som uavhengig av økonomiske spilleregler.");
+  }
+
+  // --------------------------------------------------
+  // Synlighet
+  // --------------------------------------------------
+
+  if (visibility > 75) {
+    lines.push("Du er vanskelig å ignorere i offentligheten.");
+  }
+
+  if (visibility < 25 && autonomy > 60) {
+    lines.push("Du kan oppleves som bevisst utilgjengelig.");
+  }
+
+  // --------------------------------------------------
+  // Integritet
+  // --------------------------------------------------
+
+  if (integrity > 75) {
+    lines.push("Du kan bli sett på som prinsippfast.");
+  }
+
+  if (integrity < 30 && symbolic > 60) {
+    lines.push("Noen kan mene du prioriterer status fremfor substans.");
+  }
+
+  // --------------------------------------------------
+  // Autonomi
+  // --------------------------------------------------
+
+  if (autonomy > 80) {
+    lines.push("Du virker lite avhengig av andres anerkjennelse.");
+  }
+
+  if (autonomy < 30 && social > 60) {
+    lines.push("Du kan fremstå som sosialt avhengig.");
+  }
+
+  // --------------------------------------------------
+  // Politisk
+  // --------------------------------------------------
+
+  if (political > 70) {
+    lines.push("Du beveger deg tett på beslutningsrom.");
+  }
+
+  // --------------------------------------------------
+  // Dominant identitet
+  // --------------------------------------------------
+
+  if (dominant === "subkultur") {
+    lines.push("Du kan leses som en som opererer i randsonene.");
+  }
+
+  if (dominant === "naeringsliv") {
+    lines.push("Du kan oppfattes som strategisk orientert.");
+  }
+
+  if (dominant === "vitenskap") {
+    lines.push("Du kan fremstå analytisk og systemorientert.");
+  }
+
+  if (!lines.length) {
+    lines.push("Du fremstår foreløpig som udefinert i det sosiale landskapet.");
+  }
+
+  return lines;
+}
   
 
   function getPerception(type) {
