@@ -27,7 +27,115 @@ state.home ||= {
     return state;
   }
 
+  function hasCompletedPlace(placeId) {
+  const history = JSON.parse(localStorage.getItem("quiz_history") || "[]");
+
+  return history.some(q =>
+    String(q.placeId || "").trim() === String(placeId).trim()
+  );
+}
+
+// ============================================================
+// PURCHASE HOME OBJECT
+// ============================================================
+
+function purchaseHomeObject(obj) {
+  if (!obj || !obj.id || !obj.placeId) return false;
+
+  const quiz = getUnlockingQuiz(obj.placeId);
+  if (!quiz) return false;
+
+  const capital = window.USER_CAPITAL || {};
+  const cost = Number(obj.cost || 0);
+
+  if ((capital.economic || 0) < cost) return false;
+
+  const state = ensure(load());
+
+  state.home ||= {
+    status: "homeless",
+    district: null,
+    level: 0
+  };
+
+  state.objects ||= [];
+
+  // Ikke tillat duplikat
+  if (state.objects.some(o => o.id === obj.id)) return false;
+
+  // Trekk kapital
+  if (window.USER_CAPITAL) {
+    window.USER_CAPITAL.economic =
+      Math.max(0, (window.USER_CAPITAL.economic || 0) - cost);
+  }
+
+  state.objects.push({
+    id: obj.id,
+    placeId: obj.placeId,
+    unlockedByQuizId: quiz.id,
+    unlockedAt: Date.now(),
+    economic: obj.capital_effect?.economic || 0,
+    cultural: obj.capital_effect?.cultural || 0,
+    symbolic: obj.capital_effect?.symbolic || 0,
+    autonomy: obj.autonomy || 0
+  });
+
+  save(state);
+
+  window.dispatchEvent(new Event("civi:homeChanged"));
+  window.dispatchEvent(new Event("updateProfile"));
+
+  return true;
+}
   
+  function canPurchaseHomeObject(obj) {
+  if (!obj || !obj.placeId) return false;
+
+  if (!hasCompletedPlace(obj.placeId)) return false;
+
+  const capital = window.USER_CAPITAL || {};
+  if ((capital.economic || 0) < (obj.cost || 0)) return false;
+
+  return true;
+}
+
+  // ============================================================
+// SELL HOME OBJECT
+// ============================================================
+
+function sellHomeObject(objectId) {
+  if (!objectId) return false;
+
+  const state = ensure(load());
+  if (!Array.isArray(state.objects)) return false;
+
+  const index = state.objects.findIndex(o => o.id === objectId);
+  if (index === -1) return false;
+
+  const obj = state.objects[index];
+
+  const originalDef =
+    window.CIVI_HOME_OBJECTS?.find(o => o.id === objectId);
+
+  const originalCost = Number(originalDef?.cost || 0);
+  const refund = Math.round(originalCost * 0.7);
+
+  // Fjern objekt
+  state.objects.splice(index, 1);
+  save(state);
+
+  // Gi tilbake kapital
+  if (window.USER_CAPITAL) {
+    window.USER_CAPITAL.economic =
+      (window.USER_CAPITAL.economic || 0) + refund;
+  }
+
+  // Oppdater systemer
+  window.dispatchEvent(new Event("civi:homeChanged"));
+  window.dispatchEvent(new Event("updateProfile"));
+
+  return true;
+}
 
 function canPurchase(districtId){
   const district = DISTRICTS[districtId];
@@ -205,7 +313,8 @@ const DISTRICTS = {
   window.CivicationHome = {
     getState,
     addObject,
-    getHomeInfluence
+    getHomeInfluence,
+    purchaseHomeObject
   };
 
 })();
