@@ -594,7 +594,8 @@
     body.setAttribute("fill", baseColor);
     body.setAttribute("stroke", "#222");
     body.setAttribute("stroke-width", "1.2");
-
+    body.setAttribute("fill-opacity",0.6 + (capital.symbolic / 250)
+   
     const roof = svgEl("polygon");
     roof.setAttribute("points", `${-width/2},${-height} 0,${-height - 10} ${width/2},${-height}`);
     roof.setAttribute("fill", roofColor);
@@ -642,14 +643,30 @@
         if (!pack) return;
 
         const district = String(pack.district || "sentrum").toLowerCase();
-        const pos = zones[district];
-        if (!pos) return;
+    const pos = zones[district];
+      if (!pos) return;
 
-        // Glow: én per aktiv sone
-        if (zoneStackCount[district] === undefined) {
-          zoneStackCount[district] = 0;
-          addDistrictGlow(fxLayer, pos.x, pos.y);
-        }
+    const capital = window.USER_CAPITAL || {};
+    const normCapital = normalizeCapital(capital);
+        
+// Init stack counter hvis ikke finnes
+if (zoneStackCount[district] === undefined) {
+  zoneStackCount[district] = 0;
+
+  // Base glow (én per aktiv sone)
+  addDistrictGlow(fxLayer, pos.x, pos.y);
+
+  // Subculture-forsterkning (kun suburbs)
+  if (pos.suburb && capital.subculture > 60) {
+    const boost = svgEl("circle");
+    boost.setAttribute("cx", pos.x);
+    boost.setAttribute("cy", pos.y);
+    boost.setAttribute("r", 32);
+    boost.setAttribute("fill", "rgba(255,120,200,0.15)");
+    boost.setAttribute("class", "civi-subculture-glow");
+    fxLayer.appendChild(boost);
+  }
+}
 
         const index = zoneStackCount[district]++;
 
