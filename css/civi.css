@@ -1,29 +1,20 @@
 /* ============================================================
    CIVICATION – idyllisert Oslo (50-talls), natur, spill
-   (Erstatter hele css/civi.css)
+   (Ryddet/konsolidert: ingen duplikater, ingen tap av funksjon)
 ============================================================ */
 
-/* --- Base --- */
+/* --- Tokens --- */
 :root{
   --ink: #1f2a1c;
   --ink2:#2a3a25;
 
   --sky1:#cfe9ff;
   --sky2:#eaf6ff;
-  --sun:#ffe6a6;
-
-  --cream:#fff6e2;
-  --paper:#fffaf0;
 
   --grass1:#bfe3a6;
-  --grass2:#9fd18b;
 
-  --fjord1:#7fc3ff;
-  --fjord2:#4a9fdc;
-
-  --accent:#2e7d6b;      /* retro grønn */
-  --accent2:#e1a84b;     /* honning/mustard */
-  --accent3:#c25a4a;     /* rødbrun */
+  --accent:#2e7d6b;
+  --accent2:#e1a84b;
 
   --line: rgba(40,60,40,0.16);
   --line2: rgba(40,60,40,0.12);
@@ -39,23 +30,31 @@
 
 html, body{ height:100%; }
 
+/* ------------------------------------------------------------
+   Base / bakgrunn
+------------------------------------------------------------ */
 body.hg-app{
   margin:0;
+  min-height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+
   color: var(--ink);
   font-family: ui-rounded, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
 
-  /* “Sommerdag i Oslo”-bakgrunn */
   background:
     radial-gradient(1200px 700px at 50% -20%, rgba(255,255,255,0.88) 0%, rgba(255,255,255,0) 60%),
     radial-gradient(600px 450px at 18% 18%, rgba(255, 230, 166, 0.55) 0%, rgba(255,230,166,0) 62%),
     linear-gradient(var(--sky1) 0%, var(--sky2) 44%, rgba(247,240,216,1) 60%, var(--grass1) 100%);
 }
 
-/* Linker */
-a{ color: #1b5b3b; text-decoration:none; }
+a{ color:#1b5b3b; text-decoration:none; }
 a:hover{ text-decoration:underline; }
 
-/* --- Topbar (fantes ikke i din CSS, derfor så alt “rått” ut når CSS ikke var lastet) --- */
+/* ------------------------------------------------------------
+   Topbar (din)
+------------------------------------------------------------ */
 .topbar{
   position: sticky;
   top: 0;
@@ -85,13 +84,19 @@ a:hover{ text-decoration:underline; }
   box-shadow: 0 8px 18px rgba(0,0,0,0.08);
 }
 
-/* --- Layout --- */
+/* ------------------------------------------------------------
+   Layout
+------------------------------------------------------------ */
 .civi-world{
   position: relative;
   min-height: 100%;
+  overflow: visible;
 }
 
-/* Kartet skal være et “diarama”-lag bak ALT */
+/* ------------------------------------------------------------
+   Kartlag (bakgrunn)
+   NB: holder hele skjermen. Dette er også “failsafe” mot HG layout.css
+------------------------------------------------------------ */
 #civiMapWorld{
   position: fixed;
   inset: 0;
@@ -132,19 +137,19 @@ a:hover{ text-decoration:underline; }
   opacity: 0.45;
 }
 
-/* SVG-injisert av CivicationMap.js */
+/* SVG injisert av CivicationMap.js */
 #civiMapWorld svg{
   position: relative;
   z-index: 2;
   width: 100%;
   height: 100%;
   display:block;
-
-  /* “plakat/50-talls” vibe */
   filter: saturate(1.25) contrast(1.06);
 }
 
-/* Panels er innholdet som scroller over kartet */
+/* ------------------------------------------------------------
+   Panels (innhold over kart)
+------------------------------------------------------------ */
 .civi-panels{
   position: relative;
   z-index: 10;
@@ -156,9 +161,11 @@ a:hover{ text-decoration:underline; }
   display: flex;
   flex-direction: column;
   gap: 18px;
+
+  /* så footer ikke dekker innhold */
+  padding-bottom: calc(var(--hg-footer-h, 56px) + env(safe-area-inset-bottom) + 24px);
 }
 
-/* Seksjoner = spillkort */
 .civi-panels > section{
   background: var(--card);
   border: 1px solid var(--line);
@@ -192,7 +199,6 @@ a:hover{ text-decoration:underline; }
   z-index: 1;
 }
 
-/* dekorlinje under overskrift */
 .civi-panels h2::after{
   content:"";
   display:block;
@@ -204,7 +210,9 @@ a:hover{ text-decoration:underline; }
   opacity: 0.9;
 }
 
-/* --- Kapital: du manglet grid-styling, derfor ble det “liste” --- */
+/* ------------------------------------------------------------
+   Kapital
+------------------------------------------------------------ */
 .capital-grid{
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -238,7 +246,9 @@ a:hover{ text-decoration:underline; }
   color: var(--ink2);
 }
 
-/* --- Identitet --- */
+/* ------------------------------------------------------------
+   Identitet
+------------------------------------------------------------ */
 #identityPerceptionBtn{
   appearance: none;
   border: 1px solid rgba(46,125,107,0.25);
@@ -251,16 +261,14 @@ a:hover{ text-decoration:underline; }
   box-shadow: 0 10px 18px rgba(0,0,0,0.08);
 }
 
-#identityPerceptionBtn:active{
-  transform: translateY(1px);
-}
+#identityPerceptionBtn:active{ transform: translateY(1px); }
 
-/* Panel som åpnes */
 #identityPerception{
   opacity: 0;
   transform: translateY(-6px);
   transition: opacity 220ms ease, transform 220ms ease;
   pointer-events: none;
+
   margin-top: 10px;
   background: rgba(255,255,255,0.55);
   border: 1px solid var(--line2);
@@ -281,7 +289,9 @@ a:hover{ text-decoration:underline; }
   opacity: 0.92;
 }
 
-/* --- Psyche dashboard (bygger videre på din eksisterende) --- */
+/* ------------------------------------------------------------
+   Psyke
+------------------------------------------------------------ */
 .civi-psyche{ margin-top: 6px; }
 
 .psyche-grid{
@@ -318,7 +328,6 @@ a:hover{ text-decoration:underline; }
   color: var(--ink2);
 }
 
-/* Highlight (Autonomy) = sol/honning */
 .psyche-item.highlight{
   grid-column: span 2;
   background: rgba(255, 214, 102, 0.26);
@@ -336,7 +345,6 @@ a:hover{ text-decoration:underline; }
 
 .psyche-collapses{ margin-top: 16px; }
 
-/* barer (hvis du bruker dem) */
 .psy-bar{
   margin-top: 6px;
   height: 7px;
@@ -352,18 +360,20 @@ a:hover{ text-decoration:underline; }
   transition: width 0.35s ease;
 }
 
-/* value colors */
 .psy-weak{ color:#b02e2e; }
 .psy-mid{ color:#8a5a0d; }
 .psy-strong{ color:#1f6a3e; }
-/* visibility invert */
 .psy-risk{ color:#b02e2e; }
 
-/* --- Home status --- */
+/* ------------------------------------------------------------
+   Home
+------------------------------------------------------------ */
 .home-homeless{ opacity: 0.85; font-style: italic; }
 .home-settled{ font-weight: 800; }
 
-/* --- Inbox (du hadde mørk “dev”-boks; gjør den til spillkort) --- */
+/* ------------------------------------------------------------
+   Inbox (hvis brukt)
+------------------------------------------------------------ */
 #civiInboxBox{
   background: rgba(255,255,255,0.55);
   border: 1px solid var(--line2);
@@ -377,7 +387,9 @@ a:hover{ text-decoration:underline; }
 #civiMailChoices .btn{ text-align:left; }
 #civiMailFeedback{ opacity: 0.88; font-style: italic; }
 
-/* --- District modal (beholder “kveld” overlay, men lysere innhold) --- */
+/* ------------------------------------------------------------
+   District modal
+------------------------------------------------------------ */
 .civi-modal{
   position: fixed;
   inset: 0;
@@ -464,7 +476,9 @@ a:hover{ text-decoration:underline; }
   cursor: not-allowed;
 }
 
-/* --- Kart-glows (JS bruker .civi-glow og .civi-subculture-glow) --- */
+/* ------------------------------------------------------------
+   Kart-glows + animasjon
+------------------------------------------------------------ */
 .civi-glow, .civi-subculture-glow{
   opacity: 0.80;
   filter: blur(0.6px);
@@ -478,7 +492,7 @@ a:hover{ text-decoration:underline; }
   50%     { opacity: 0.92; transform: scale(1.10); }
 }
 
-/* --- “spillfølelse” på desktop (uten å ødelegge touch) --- */
+/* “spillfølelse” */
 @media (hover:hover){
   .civi-panels > section{
     transition: transform 0.16s ease, box-shadow 0.16s ease;
@@ -489,107 +503,39 @@ a:hover{ text-decoration:underline; }
   }
 }
 
-/* --- Motion-respect --- */
 @media (prefers-reduced-motion: reduce){
   .civi-glow, .civi-subculture-glow{ animation:none; }
 }
 
-/* Kartet ligger bak */
-.civi-app #civiMapWorld{
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-}
-
-/* Panels over kartet */
-.civi-app .civi-panels{
-  position: relative;
-  z-index: 2;
-}
-
-/* Map mode: panelene tonet ned, kartet “kommer frem” */
-.civi-app.civi-mapmode .civi-panels{
+/* ------------------------------------------------------------
+   Map mode (body får class "civi-mapmode")
+------------------------------------------------------------ */
+body.civi-mapmode .civi-panels{
   opacity: 0.18;
   pointer-events: none;
   transform: scale(0.995);
 }
 
-.civi-app.civi-mapmode #civiMapWorld svg{
+body.civi-mapmode #civiMapWorld svg{
   filter: saturate(1.35) contrast(1.12);
 }
 
-
-/* ============================================================
-   Civication: frikoble fra History-Go canvas-lock
-   (må stå nederst i civi.css)
-============================================================ */
-
-body.hg-app.civi-app{
-  overflow-y: auto;
-  overflow-x: hidden;
-  -webkit-overflow-scrolling: touch;
-}
-
-/* HG sin app-shell er sannsynligvis låst til “canvas” bredde/høyde */
-body.hg-app.civi-app .app-shell{
-  position: relative;
-  inset: auto;
-  left: auto; right: auto; top: auto; bottom: auto;
-
+/* ------------------------------------------------------------
+   HG layout.css “canvas-lock” override (behold layout.css i head)
+   Dette er konsolidert til én blokk.
+------------------------------------------------------------ */
+body.hg-app .app-shell{
   width: 100vw;
   max-width: none;
-  height: auto;
-  min-height: 100vh;
-
-  overflow: visible;
-
-  transform: none;
   margin: 0;
-}
-
-/* Main må kunne bli høyere enn viewport */
-body.hg-app.civi-app .civi-world{
-  min-height: 100vh;
-  overflow: visible;
-}
-
-/* Sørg for at innhold ikke havner bak footer */
-body.hg-app.civi-app .civi-panels{
-  padding-bottom: calc(var(--hg-footer-h, 56px) + env(safe-area-inset-bottom) + 24px);
-}
-
-/* ============================================================
-   Civication: sørg for at kartlaget faktisk vises
-   (overstyr HG layout.css sin shell-lås)
-============================================================ */
-
-html, body { height: 100%; }
-
-body.hg-app.civi-app{
-  min-height: 100%;
-  overflow-y: auto;
-  overflow-x: hidden;
-  -webkit-overflow-scrolling: touch;
-}
-
-/* Viktig: slå av evt. transform/locking fra HG layout.css */
-body.hg-app.civi-app .app-shell{
-  width: 100%;
-  max-width: none;
   height: auto;
-  min-height: 100%;
+  min-height: 100vh;
   overflow: visible;
   transform: none;
 }
 
-/* Kartet må være et reelt bakgrunnslag */
-body.hg-app.civi-app #civiMapWorld{
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  display: block;
+body.hg-app .app-footer{
+  left: 0;
+  right: 0;
+  width: 100vw;
 }
-
-/* Innhold over kartet */
-body.hg-app.civi-app .civi-world{ position: relative; z-index: 1; }
-body.hg-app.civi-app .civi-panels{ position: relative; z-index: 2; }å
