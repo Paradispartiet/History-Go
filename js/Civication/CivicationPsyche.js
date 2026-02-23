@@ -480,25 +480,37 @@ function evaluateCollapse() {
 }
 
 function processCollapse() {
+  const state = ensure(load());
+
+  // Ikke kollaps mens burnout er aktiv
+  if (state.burnoutActive) return null;
+
+  // Cooldown: maks én kollaps per 24 timer
+  const last = state.lastCollapseAt || 0;
+  if (Date.now() - last < 1000 * 60 * 60 * 24) {
+    return null;
+  }
+
   const type = evaluateCollapse();
   if (!type) return null;
 
-  const state = ensure(load());
-
-  // Enkle dramatiske effekter
   write((s) => {
     if (type === "status") {
       s.integrity = clamp(s.integrity - 20, 0, 100);
     }
+
     if (type === "career") {
       s.economicRoom = clamp(s.economicRoom - 30, 0, 100);
     }
+
     if (type === "isolation") {
       s.visibility = clamp(s.visibility - 15, 0, 100);
     }
+
+    // Registrer tidspunkt for cooldown
+    s.lastCollapseAt = Date.now();
   });
 
-  // OFFENTLIG ANNOUNCE
   window.HG_CivicationPublic?.announceCollapse({
     type,
     playerId: "local",
