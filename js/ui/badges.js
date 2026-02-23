@@ -18,15 +18,17 @@ function pulseBadge(cat) {
 }
 
 async function ensureBadgesLoaded() {
-  if (Array.isArray(window.BADGES) && window.BADGES.length)
+  if (Array.isArray(window.BADGES) && window.BADGES.length) {
+    return;
+  }
 
   try {
-    const data = await fetch("data/badges.json", { cache: "no-store" })
+    const data = await fetch("/History-Go/data/badges.json", { cache: "no-store" })
       .then(r => r.json());
 
-    BADGES = Array.isArray(data?.badges) ? data.badges : [];
+    window.BADGES = Array.isArray(data?.badges) ? data.badges : [];
   } catch {
-    BADGES = [];
+    window.BADGES = [];
   }
 }
 
