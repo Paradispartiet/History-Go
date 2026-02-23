@@ -258,7 +258,7 @@
     road.setAttribute("x2", x2);
     road.setAttribute("y2", y2);
     road.setAttribute("stroke", "rgba(255,255,255,0.08)");
-    road.setAttribute("stroke-width", 3 + capital.institutional / 40);
+    road.setAttribute("stroke-width", 3 + ((capital.institutional || 0) / 40));
     
     base.appendChild(road);
   }
