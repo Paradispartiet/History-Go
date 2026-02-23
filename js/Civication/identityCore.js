@@ -45,6 +45,96 @@
     return 0.8 + weight * 0.4;
   }
 
+
+  function getPerception(type) {
+  const identity = loadIdentity();
+  const weight = identity.focus[type] || 0;
+
+  let tier = 0;
+  if (weight > 0.6) tier = 3;
+  else if (weight > 0.4) tier = 2;
+  else if (weight > 0.2) tier = 1;
+
+  return perceptionTexts(type, tier);
+}
+
+function perceptionTexts(type, tier) {
+
+  const data = {
+    economic: {
+      1: [
+        "Du fremstår som målrettet.",
+        "Du virker orientert mot struktur og fremdrift."
+      ],
+      2: [
+        "Du signaliserer vekst og ambisjon. Noen vil lese deg som strategisk.",
+        "Din retning mot økonomisk styrke gjør deg effektiv i konkurransepregede miljøer."
+      ],
+      3: [
+        "Din økonomiske orientering former relasjoner. Du kan bli lest som effektiv – eller instrumentell.",
+        "Høy økonomisk retning gir deg gjennomslag, men kan skape avstand i mer verdibaserte miljøer."
+      ]
+    },
+
+    subculture: {
+      1: [
+        "Du signaliserer individualitet.",
+        "Du virker uavhengig i stil og uttrykk."
+      ],
+      2: [
+        "Du dyrker stil og uavhengighet. Noen vil se deg som fri.",
+        "Din retning gir symbolsk særpreg i urbane rom."
+      ],
+      3: [
+        "Din subkulturelle orientering gir sterk symbolsk kapital, men kan skape friksjon i strukturerte miljøer.",
+        "Du fremstår som selvstendig og avvisende mot institusjonelle normer."
+      ]
+    },
+
+    cultural: {
+      1: [
+        "Du fremstår som estetisk orientert.",
+        "Du virker opptatt av form og uttrykk."
+      ],
+      2: [
+        "Du signaliserer dannelse og refleksjon.",
+        "Din kulturelle retning gir deg sosial tyngde i kreative miljøer."
+      ],
+      3: [
+        "Din kulturelle kapital gir symbolsk autoritet, men kan oppfattes som distanse.",
+        "Du fremstår som normsettende i estetiske sammenhenger."
+      ]
+    },
+
+    political: {
+      1: [
+        "Du viser interesse for struktur og makt.",
+        "Du virker orientert mot beslutningsrom."
+      ],
+      2: [
+        "Du beveger deg i institusjonelle rom.",
+        "Din politiske retning gir deg tilgang til strukturer."
+      ],
+      3: [
+        "Din politiske orientering påvirker hvem som gir deg tilgang – og hvem som holder avstand.",
+        "Du fremstår som en aktør i maktstrukturer."
+      ]
+    }
+  };
+
+  const options = data[type]?.[tier];
+  if (!options || options.length === 0) return "";
+
+  // Stabil variasjon: basert på weight
+  const identity = loadIdentity();
+  const weight = identity.focus[type] || 0;
+
+  const index = Math.floor(weight * 10) % options.length;
+
+  return options[index];
+}
+  
+  
   function shiftFocus(type, intensity = 0.05) {
     const identity = loadIdentity();
 
@@ -87,7 +177,8 @@
     getIdentity,
     getBoost,
     shiftFocus,
-    getIdentityState
+    getIdentityState,
+    getPerception
   };
 
 })();
