@@ -1,4 +1,8 @@
 // boot.js
+document.addEventListener("DOMContentLoaded", function () {
+  if (window.CoreEngine) CoreEngine.init();
+  if (window.HGEngine) HGEngine.init();
+});
 
 async function boot() {
 
