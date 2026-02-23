@@ -432,6 +432,7 @@ if (visibility > visibilityThreshold && integrity < integrityThreshold) {
     );
   });
 
+  processCollapse();
   return true;
 }
 
