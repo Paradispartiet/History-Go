@@ -135,7 +135,8 @@
   }
 
   function drawRoad(base, x1, y1, x2, y2) {
-    const road = svgEl("line");
+  const capital = window.USER_CAPITAL || {};
+  const road = svgEl("line");
     road.setAttribute("x1", x1);
     road.setAttribute("y1", y1);
     road.setAttribute("x2", x2);
@@ -222,18 +223,20 @@
 
   // Mini-bygg dispatcher (replicaer + generisk fallback)
   function createMiniBuilding(options = {}) {
-    const isSuburb = !!options.isSuburb;
-    const isCentral = !!options.isCentral;
-    const seed = Number(options.seed || 0);
 
-    const economicScale = 1 + (capital.economic / 200);
-    wrapper.setAttribute("transform", `scale(${scale * economicScale})`);
-  
-    const type = normalizeType(options.type);
-    const scale = isCentral ? 1.15 : (isSuburb ? 0.90 : 1.0);
+  const capital = window.USER_CAPITAL || {};
 
-    const wrapper = svgEl("g");
-    wrapper.setAttribute("transform", `scale(${scale})`);
+  const isSuburb = !!options.isSuburb;
+  const isCentral = !!options.isCentral;
+  const seed = Number(options.seed || 0);
+
+  const type = normalizeType(options.type);
+
+  const baseScale = isCentral ? 1.15 : (isSuburb ? 0.90 : 1.0);
+  const economicScale = 1 + (capital.economic || 0) / 200;
+
+  const wrapper = svgEl("g");
+  wrapper.setAttribute("transform", `scale(${baseScale * economicScale})`);
 
     switch (type) {
       case "opera": wrapper.appendChild(buildOpera()); return wrapper;
@@ -594,7 +597,9 @@
     body.setAttribute("fill", baseColor);
     body.setAttribute("stroke", "#222");
     body.setAttribute("stroke-width", "1.2");
-    body.setAttribute("fill-opacity",0.6 + (capital.symbolic / 250)
+    
+    const capital = window.USER_CAPITAL || {};
+    body.setAttribute("fill-opacity", 0.6 + (capital.symbolic || 0) / 250);
    
     const roof = svgEl("polygon");
     roof.setAttribute("points", `${-width/2},${-height} 0,${-height - 10} ${width/2},${-height}`);
