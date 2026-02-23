@@ -668,8 +668,7 @@ document.getElementById("identityPerceptionBtn")
     const el = document.getElementById("identityPerception");
     if (!el) return;
 
-    el.style.display =
-      el.style.display === "none" ? "block" : "none";
+    el.classList.toggle("open");
   });
 
 // ============================================================
