@@ -474,7 +474,7 @@ function renderPsycheDashboard() {
 
 function openDistrictSelector() {
   const modal = document.getElementById("districtModal");
-  const list = document.getElementById("districtList");
+  const list  = document.getElementById("districtList");
   if (!modal || !list) return;
 
   const districts = window.CivicationHome?.DISTRICTS || {};
@@ -482,7 +482,6 @@ function openDistrictSelector() {
   list.innerHTML = "";
 
   Object.values(districts).forEach(d => {
-
     const canBuy = window.CivicationHome?.canPurchase?.(d.id);
 
     const card = document.createElement("div");
@@ -491,16 +490,19 @@ function openDistrictSelector() {
     card.innerHTML = `
       <div class="district-name">${d.name}</div>
       <div class="district-cost">Pris: ${d.baseCost}</div>
+
       <div class="district-effects">
         ${Object.entries(d.modifiers || {})
           .map(([k,v]) => `${k}: ${v > 0 ? "+" : ""}${v}`)
           .join("<br>")}
       </div>
+
       <div class="district-requirements">
         ${Object.entries(d.quizRequirements || {})
           .map(([k,v]) => `${k}: ${v}`)
           .join("<br>")}
       </div>
+
       <button ${canBuy ? "" : "disabled"}>
         ${canBuy ? "Kjøp" : "Låst"}
       </button>
@@ -519,6 +521,10 @@ function openDistrictSelector() {
   modal.style.display = "flex";
 }
 
+// Viktig hvis knappen kaller openDistrictSelector() uten scope (inline onclick o.l.)
+window.openDistrictSelector = openDistrictSelector;
+
+// Close-knapp
 document.getElementById("closeDistrictModal")
   ?.addEventListener("click", () => {
     document.getElementById("districtModal").style.display = "none";
