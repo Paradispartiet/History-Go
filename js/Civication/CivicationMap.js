@@ -249,7 +249,8 @@
 
     renderCommercialObjects(objects, fx, w, h);
     renderHomeObjects(objects, fx, zones);
-
+  }
+    
   function drawRoad(base, x1, y1, x2, y2) {
   const capital = window.USER_CAPITAL || {};
   const road = svgEl("line");
