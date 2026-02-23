@@ -1,280 +1,685 @@
-/* =========================================================
-   CIVICATION MAP – Stylisert Oslo SVG
-   ========================================================= */
+// CivicationMap.js
+// Stylisert Oslo-kart + replica-bygg fra Civication packs
+(function () {
 
-const SVG_NS = "http://www.w3.org/2000/svg";
+  const SVG_NS = "http://www.w3.org/2000/svg";
 
-/* =========================================================
-   HELPERS
-   ========================================================= */
-
-function svgEl(tag) {
-  return document.createElementNS(SVG_NS, tag);
-}
-
-/* =========================================================
-   RENDER ENTRY
-   ========================================================= */
-
-function renderCiviMap() {
-
-  const host = document.getElementById("civiMapWorld");
-  if (!host) return;
-
-  host.innerHTML = "";
-
-  const w = host.clientWidth || 900;
-  const h = host.clientHeight || 600;
-
-  const svg = svgEl("svg");
-  svg.setAttribute("viewBox", `0 0 ${w} ${h}`);
-  svg.setAttribute("width", "100%");
-  svg.setAttribute("height", "100%");
-  svg.style.display = "block";
-
-  const baseLayer = svgEl("g");
-  const objectLayer = svgEl("g");
-  const fxLayer = svgEl("g");
-
-  drawBase(baseLayer, w, h);
-  drawSkyline(baseLayer, w, h);
-  drawRoads(baseLayer, w, h);
-
-  svg.appendChild(baseLayer);
-  svg.appendChild(objectLayer);
-  svg.appendChild(fxLayer);
-
-  host.appendChild(svg);
-
-  renderCommercialObjects(objectLayer, fxLayer, w, h);
-}
-
-/* =========================================================
-   BASE MAP
-   ========================================================= */
-
-function drawBase(base, w, h) {
-
-  // Fjord
-  const fjord = svgEl("ellipse");
-  fjord.setAttribute("cx", w * 0.55);
-  fjord.setAttribute("cy", h * 0.88);
-  fjord.setAttribute("rx", w * 0.38);
-  fjord.setAttribute("ry", h * 0.20);
-  fjord.setAttribute("fill", "#0b1b2a");
-  base.appendChild(fjord);
-
-  // Bymasse
-  const city = svgEl("ellipse");
-  city.setAttribute("cx", w * 0.48);
-  city.setAttribute("cy", h * 0.55);
-  city.setAttribute("rx", w * 0.32);
-  city.setAttribute("ry", h * 0.32);
-  city.setAttribute("fill", "#18222f");
-  base.appendChild(city);
-
-  // Akerselva
-  const river = svgEl("line");
-  river.setAttribute("x1", w * 0.46);
-  river.setAttribute("y1", h * 0.20);
-  river.setAttribute("x2", w * 0.50);
-  river.setAttribute("y2", h * 0.72);
-  river.setAttribute("stroke", "#1f4e79");
-  river.setAttribute("stroke-width", "4");
-  river.setAttribute("opacity", "0.6");
-  base.appendChild(river);
-}
-
-/* =========================================================
-   SKYLINE
-   ========================================================= */
-
-function drawSkyline(base, w, h) {
-
-  const skyline = svgEl("g");
-
-  const centerX = w * 0.48;
-  const centerY = h * 0.55;
-
-  for (let i = 0; i < 6; i++) {
-
-    const width = 18 + i * 4;
-    const height = 60 + i * 12;
-
-    const tower = svgEl("rect");
-    tower.setAttribute("x", centerX - 60 + i * 25);
-    tower.setAttribute("y", centerY - height);
-    tower.setAttribute("width", width);
-    tower.setAttribute("height", height);
-    tower.setAttribute("fill", "rgba(255,255,255,0.05)");
-
-    skyline.appendChild(tower);
+  function svgEl(tag) {
+    return document.createElementNS(SVG_NS, tag);
   }
 
-  base.appendChild(skyline);
-}
-
-/* =========================================================
-   ROADS
-   ========================================================= */
-
-function drawRoad(base, x1, y1, x2, y2) {
-
-  const road = svgEl("line");
-  road.setAttribute("x1", x1);
-  road.setAttribute("y1", y1);
-  road.setAttribute("x2", x2);
-  road.setAttribute("y2", y2);
-  road.setAttribute("stroke", "rgba(255,255,255,0.08)");
-  road.setAttribute("stroke-width", "2");
-
-  base.appendChild(road);
-}
-
-function drawRoads(base, w, h) {
-
-  const centerX = w * 0.48;
-  const centerY = h * 0.55;
-
-  drawRoad(base, centerX, centerY, w * 0.35, h * 0.55); // vest
-  drawRoad(base, centerX, centerY, w * 0.60, h * 0.42); // øst
-  drawRoad(base, centerX, centerY, w * 0.46, h * 0.30); // nord
-  drawRoad(base, centerX, centerY, w * 0.55, h * 0.75); // sør
-}
-
-/* =========================================================
-   DISTRICT COORDINATES
-   ========================================================= */
-
-function getZones(w, h) {
-
-  return {
-    sentrum: { x: w*0.48, y: h*0.55 },
-
-    gamle_oslo: { x: w*0.52, y: h*0.60 },
-    grunerlokka: { x: w*0.46, y: h*0.45 },
-    sagene: { x: w*0.44, y: h*0.35 },
-    st_hanshaugen: { x: w*0.40, y: h*0.48 },
-    frogner: { x: w*0.35, y: h*0.55 },
-    ullern: { x: w*0.28, y: h*0.58 },
-    vestre_aker: { x: w*0.30, y: h*0.30 },
-    nordre_aker: { x: w*0.42, y: h*0.22 },
-    bjerke: { x: w*0.52, y: h*0.35 },
-    grorud: { x: w*0.60, y: h*0.28 },
-    stovner: { x: w*0.65, y: h*0.22 },
-    alna: { x: w*0.60, y: h*0.42 },
-    ostensjo: { x: w*0.60, y: h*0.55 },
-    nordstrand: { x: w*0.55, y: h*0.75 },
-    sondre_nordstrand: { x: w*0.60, y: h*0.88 },
-
-    // Suburbs
-    baerum: { x: w*0.15, y: h*0.60, suburb:true },
-    asker: { x: w*0.05, y: h*0.60, suburb:true },
-    lorenskog: { x: w*0.80, y: h*0.45, suburb:true },
-    lillestrom: { x: w*0.88, y: h*0.38, suburb:true },
-    ski: { x: w*0.78, y: h*0.95, suburb:true },
-    nittedal: { x: w*0.45, y: h*0.05, suburb:true },
-    nesodden: { x: w*0.70, y: h*0.70, suburb:true }
+  // Landemerke → bygningstype (brukes hvis pack.placeId finnes)
+  const PLACE_TYPE = {
+    operaen: "opera",
+    barcode: "barcode",
+    munch_museet: "museum",
+    nasjonalmuseet: "museum",
+    astrup_fearnley: "museum",
+    deichman_bjorvika: "library",
+    stortinget: "parliament",
+    oslo_radhus: "cityhall",
+    nationaltheatret: "theatre",
+    rockefeller: "club",
+    bla: "club",
+    parkteatret: "theatre",
+    salt: "venue",
+    ullevaal_stadion: "stadium",
+    valle_hovin: "stadium",
+    holmenkollen: "tower",
+    aker_brygge: "harbor",
+    tjuvholmen: "harbor",
+    youngstorget: "square",
+    tollbukaia: "port",
+    havnelageret: "warehouse",
+    oslo_posthus: "post",
+    telegrafbygningen: "telecom",
+    oslo_gassverk: "factory",
+    akershus_kaier: "port",
+    jernbaneverkstedet_lodalen: "rail",
+    akerselva_industri: "factory",
+    myrens_verksted: "factory",
+    lilleborg_fabrikker: "factory",
+    schous_bryggeri: "brewery",
+    ringnes_bryggeri: "brewery",
+    hausmania: "culture_house",
+    skur13: "skate",
+    stovnertarnet: "tower",
+    vulkan_energisentral: "power",
+    botanisk_hage: "park",
+    sognsvann: "park"
   };
-}
 
-/* =========================================================
-   COMMERCIAL OBJECTS
-   ========================================================= */
+  function normalizeType(raw) {
+    const t = String(raw || "").trim().toLowerCase();
+    if (!t) return "generic";
 
-function renderCommercialObjects(layer, fxLayer, w, h) {
+    // gamle generiske typer (fargekoder)
+    if (t === "kultur") return "generic_kultur";
+    if (t === "butikk") return "generic_butikk";
+    if (t === "industri") return "generic_industri";
+    if (t === "bolig") return "generic_bolig";
 
-  const zones = getZones(w, h);
-  const inv = window.HG_CiviShop?.getInv();
-  if (!inv?.packs) return;
+    return t;
+  }
 
-  window.HG_CiviShop.getPacks().then(packs => {
+  function render() {
+    const host = document.getElementById("civiMapWorld");
+    if (!host) return;
 
-    const zoneStack = {};
+    host.innerHTML = "";
 
-    Object.keys(inv.packs).forEach(packId => {
+    const w = host.clientWidth || 900;
+    const h = host.clientHeight || 600;
 
-      const pack = packs.find(p => String(p.id) === String(packId));
-      if (!pack) return;
+    const svg = svgEl("svg");
+    svg.setAttribute("viewBox", `0 0 ${w} ${h}`);
+    svg.setAttribute("width", "100%");
+    svg.setAttribute("height", "100%");
+    svg.style.display = "block";
 
-      const district = String(pack.district || "sentrum").toLowerCase();
-      const pos = zones[district];
-      if (!pos) return;
+    const base = svgEl("g");
+    base.setAttribute("id", "civi-map-base");
 
-      if (!zoneStack[district]) {
-        zoneStack[district] = 0;
-        addDistrictGlow(fxLayer, pos.x, pos.y);
-      }
+    const objects = svgEl("g");
+    objects.setAttribute("id", "civi-map-objects");
 
-      const index = zoneStack[district]++;
+    const fx = svgEl("g");
+    fx.setAttribute("id", "civi-map-fx");
 
-      const g = svgEl("g");
-      g.setAttribute(
-        "transform",
-        `translate(${pos.x + index*18}, ${pos.y}) scale(0)`
-      );
+    // Fjord
+    const fjord = svgEl("ellipse");
+    fjord.setAttribute("cx", w * 0.55);
+    fjord.setAttribute("cy", h * 0.88);
+    fjord.setAttribute("rx", w * 0.38);
+    fjord.setAttribute("ry", h * 0.20);
+    fjord.setAttribute("fill", "#0b1b2a");
+    fjord.setAttribute("opacity", "0.85");
+    base.appendChild(fjord);
 
-      const building = createMiniBuilding({
-        isSuburb: !!pos.suburb,
-        isCentral: district === "sentrum",
-        type: pack.type || "generic",
-        seed: index
+    // Bymasse
+    const city = svgEl("ellipse");
+    city.setAttribute("cx", w * 0.48);
+    city.setAttribute("cy", h * 0.55);
+    city.setAttribute("rx", w * 0.32);
+    city.setAttribute("ry", h * 0.32);
+    city.setAttribute("fill", "#18222f");
+    city.setAttribute("stroke", "rgba(255,255,255,0.06)");
+    city.setAttribute("stroke-width", "2");
+    base.appendChild(city);
+
+    // Akerselva
+    const elv = svgEl("line");
+    elv.setAttribute("x1", w * 0.46);
+    elv.setAttribute("y1", h * 0.20);
+    elv.setAttribute("x2", w * 0.50);
+    elv.setAttribute("y2", h * 0.72);
+    elv.setAttribute("stroke", "#1f4e79");
+    elv.setAttribute("stroke-width", "4");
+    elv.setAttribute("opacity", "0.6");
+    base.appendChild(elv);
+
+    // Roads
+    drawRoad(base, w * 0.48, h * 0.55, w * 0.35, h * 0.55); // sentrum → frogner
+    drawRoad(base, w * 0.48, h * 0.55, w * 0.46, h * 0.45); // sentrum → grünerløkka
+    drawRoad(base, w * 0.48, h * 0.55, w * 0.52, h * 0.60); // sentrum → gamle oslo
+
+    // Skyline
+    drawSkyline(base, w, h);
+
+    svg.appendChild(base);
+    svg.appendChild(objects);
+    svg.appendChild(fx);
+    host.appendChild(svg);
+
+    renderCommercialObjects(objects, fx, w, h);
+  }
+
+  function drawRoad(base, x1, y1, x2, y2) {
+    const road = svgEl("line");
+    road.setAttribute("x1", x1);
+    road.setAttribute("y1", y1);
+    road.setAttribute("x2", x2);
+    road.setAttribute("y2", y2);
+    road.setAttribute("stroke", "rgba(255,255,255,0.08)");
+    road.setAttribute("stroke-width", "3");
+    base.appendChild(road);
+  }
+
+  function drawSkyline(base, w, h) {
+    const skyline = svgEl("g");
+    skyline.setAttribute("id", "civi-skyline");
+
+    const centerX = w * 0.48;
+    const centerY = h * 0.55;
+
+    for (let i = 0; i < 6; i++) {
+      const width = 18 + i * 4;
+      const height = 60 + i * 12;
+
+      const tower = svgEl("rect");
+      tower.setAttribute("x", centerX - 60 + i * 25);
+      tower.setAttribute("y", centerY - height);
+      tower.setAttribute("width", width);
+      tower.setAttribute("height", height);
+      tower.setAttribute("fill", "rgba(255,255,255,0.05)");
+      tower.setAttribute("stroke", "rgba(255,255,255,0.08)");
+      tower.setAttribute("stroke-width", "1");
+
+      skyline.appendChild(tower);
+    }
+
+    base.appendChild(skyline);
+  }
+
+  function addDistrictGlow(layer, x, y) {
+    const glow = svgEl("circle");
+    glow.setAttribute("cx", x);
+    glow.setAttribute("cy", y);
+    glow.setAttribute("r", 22);
+    glow.setAttribute("fill", "rgba(255,255,150,0.15)");
+    glow.setAttribute("class", "civi-glow");
+    layer.appendChild(glow);
+  }
+
+  function getZones(w, h) {
+    return {
+      // Spill-sone (ikke bydel)
+      sentrum: { x: w * 0.48, y: h * 0.55 },
+
+      // Oslo bydeler
+      gamle_oslo: { x: w * 0.52, y: h * 0.60 },
+      grunerlokka: { x: w * 0.46, y: h * 0.45 },
+      sagene: { x: w * 0.44, y: h * 0.35 },
+      st_hanshaugen: { x: w * 0.40, y: h * 0.48 },
+      frogner: { x: w * 0.35, y: h * 0.55 },
+      ullern: { x: w * 0.28, y: h * 0.58 },
+      vestre_aker: { x: w * 0.30, y: h * 0.30 },
+      nordre_aker: { x: w * 0.42, y: h * 0.22 },
+      bjerke: { x: w * 0.52, y: h * 0.35 },
+      grorud: { x: w * 0.60, y: h * 0.28 },
+      stovner: { x: w * 0.65, y: h * 0.22 },
+      alna: { x: w * 0.60, y: h * 0.42 },
+      ostensjo: { x: w * 0.60, y: h * 0.55 },
+      nordstrand: { x: w * 0.55, y: h * 0.75 },
+      sondre_nordstrand: { x: w * 0.60, y: h * 0.88 },
+
+      // Suburbs
+      baerum_fornebu: { x: w * 0.15, y: h * 0.60, suburb: true },
+      sandvika: { x: w * 0.10, y: h * 0.55, suburb: true },
+      asker: { x: w * 0.05, y: h * 0.60, suburb: true },
+      lorenskog: { x: w * 0.80, y: h * 0.45, suburb: true },
+      lillestrom: { x: w * 0.88, y: h * 0.38, suburb: true },
+      ski: { x: w * 0.78, y: h * 0.95, suburb: true },
+      nittedal: { x: w * 0.45, y: h * 0.05, suburb: true },
+      nesodden: { x: w * 0.70, y: h * 0.70, suburb: true }
+    };
+  }
+
+  // Mini-bygg dispatcher (replicaer + generisk fallback)
+  function createMiniBuilding(options = {}) {
+    const isSuburb = !!options.isSuburb;
+    const isCentral = !!options.isCentral;
+    const seed = Number(options.seed || 0);
+
+    const type = normalizeType(options.type);
+    const scale = isCentral ? 1.15 : (isSuburb ? 0.90 : 1.0);
+
+    const wrapper = svgEl("g");
+    wrapper.setAttribute("transform", `scale(${scale})`);
+
+    switch (type) {
+      case "opera": wrapper.appendChild(buildOpera()); return wrapper;
+      case "barcode": wrapper.appendChild(buildBarcode(seed)); return wrapper;
+      case "museum": wrapper.appendChild(buildMuseum(seed)); return wrapper;
+      case "library": wrapper.appendChild(buildLibrary()); return wrapper;
+      case "parliament": wrapper.appendChild(buildParliament()); return wrapper;
+      case "cityhall": wrapper.appendChild(buildCityHall()); return wrapper;
+      case "theatre": wrapper.appendChild(buildTheatre()); return wrapper;
+      case "club":
+      case "venue":
+      case "culture_house": wrapper.appendChild(buildVenue(seed)); return wrapper;
+      case "stadium": wrapper.appendChild(buildStadium()); return wrapper;
+      case "tower": wrapper.appendChild(buildTower(seed)); return wrapper;
+      case "warehouse":
+      case "port":
+      case "harbor": wrapper.appendChild(buildHarbor(seed)); return wrapper;
+      case "post":
+      case "telecom":
+      case "rail":
+      case "power": wrapper.appendChild(buildInfrastructure(type, seed)); return wrapper;
+      case "brewery":
+      case "factory": wrapper.appendChild(buildFactory(seed)); return wrapper;
+      case "skate": wrapper.appendChild(buildSkate()); return wrapper;
+      case "park": wrapper.appendChild(buildPark(seed)); return wrapper;
+
+      // gamle generiske fargekoder
+      case "generic_kultur":
+      case "generic_butikk":
+      case "generic_industri":
+      case "generic_bolig":
+        wrapper.appendChild(buildGenericHouse({ isSuburb, isCentral, seed, flavor: type }));
+        return wrapper;
+
+      default:
+        wrapper.appendChild(buildGenericHouse({ isSuburb, isCentral, seed, flavor: "generic" }));
+        return wrapper;
+    }
+  }
+
+  // Replica-bygninger (enkle SVG-ikoner)
+  function buildOpera() {
+    const g = svgEl("g");
+    const base = svgEl("polygon");
+    base.setAttribute("points", "-20,0 20,0 10,-10 -10,-10");
+    base.setAttribute("fill", "#dfe6ee");
+    const roof = svgEl("polygon");
+    roof.setAttribute("points", "-10,-10 10,-10 0,-20");
+    roof.setAttribute("fill", "#ffffff");
+    g.appendChild(base);
+    g.appendChild(roof);
+    return g;
+  }
+
+  function buildBarcode(seed) {
+    const g = svgEl("g");
+    for (let i = 0; i < 4; i++) {
+      const rect = svgEl("rect");
+      rect.setAttribute("x", -12 + i * 6);
+      rect.setAttribute("y", -40 + (i * 4));
+      rect.setAttribute("width", 4);
+      rect.setAttribute("height", 40 - (i * 4));
+      rect.setAttribute("fill", ["#6c757d", "#7f8c8d", "#8d99ae"][seed % 3]);
+      g.appendChild(rect);
+    }
+    return g;
+  }
+
+  function buildMuseum(seed) {
+    const g = svgEl("g");
+    const plinth = svgEl("rect");
+    plinth.setAttribute("x", -14);
+    plinth.setAttribute("y", -10);
+    plinth.setAttribute("width", 28);
+    plinth.setAttribute("height", 10);
+    plinth.setAttribute("fill", "#ced4da");
+    const body = svgEl("rect");
+    body.setAttribute("x", -12);
+    body.setAttribute("y", -30);
+    body.setAttribute("width", 24);
+    body.setAttribute("height", 20);
+    body.setAttribute("fill", ["#dee2e6", "#e9ecef", "#f8f9fa"][seed % 3]);
+    body.setAttribute("stroke", "rgba(0,0,0,0.25)");
+    body.setAttribute("stroke-width", "1");
+    const roof = svgEl("polygon");
+    roof.setAttribute("points", "-12,-30 0,-40 12,-30");
+    roof.setAttribute("fill", "#adb5bd");
+    g.appendChild(plinth);
+    g.appendChild(body);
+    g.appendChild(roof);
+    return g;
+  }
+
+  function buildLibrary() {
+    const g = svgEl("g");
+    const body = svgEl("rect");
+    body.setAttribute("x", -14);
+    body.setAttribute("y", -22);
+    body.setAttribute("width", 28);
+    body.setAttribute("height", 22);
+    body.setAttribute("fill", "#f1f3f5");
+    body.setAttribute("stroke", "rgba(0,0,0,0.25)");
+    body.setAttribute("stroke-width", "1");
+    const stripe = svgEl("rect");
+    stripe.setAttribute("x", -14);
+    stripe.setAttribute("y", -14);
+    stripe.setAttribute("width", 28);
+    stripe.setAttribute("height", 4);
+    stripe.setAttribute("fill", "#74c0fc");
+    g.appendChild(body);
+    g.appendChild(stripe);
+    return g;
+  }
+
+  function buildParliament() {
+    const g = svgEl("g");
+    const base = svgEl("rect");
+    base.setAttribute("x", -16);
+    base.setAttribute("y", -18);
+    base.setAttribute("width", 32);
+    base.setAttribute("height", 18);
+    base.setAttribute("fill", "#f0c674");
+    base.setAttribute("stroke", "rgba(0,0,0,0.25)");
+    base.setAttribute("stroke-width", "1");
+    const dome = svgEl("ellipse");
+    dome.setAttribute("cx", 0);
+    dome.setAttribute("cy", -20);
+    dome.setAttribute("rx", 10);
+    dome.setAttribute("ry", 6);
+    dome.setAttribute("fill", "#e0a800");
+    g.appendChild(base);
+    g.appendChild(dome);
+    return g;
+  }
+
+  function buildCityHall() {
+    const g = svgEl("g");
+    const left = svgEl("rect");
+    left.setAttribute("x", -16);
+    left.setAttribute("y", -34);
+    left.setAttribute("width", 12);
+    left.setAttribute("height", 34);
+    left.setAttribute("fill", "#b56576");
+    const right = svgEl("rect");
+    right.setAttribute("x", 4);
+    right.setAttribute("y", -34);
+    right.setAttribute("width", 12);
+    right.setAttribute("height", 34);
+    right.setAttribute("fill", "#b56576");
+    const mid = svgEl("rect");
+    mid.setAttribute("x", -4);
+    mid.setAttribute("y", -18);
+    mid.setAttribute("width", 8);
+    mid.setAttribute("height", 18);
+    mid.setAttribute("fill", "#9a4f63");
+    g.appendChild(left);
+    g.appendChild(right);
+    g.appendChild(mid);
+    return g;
+  }
+
+  function buildTheatre() {
+    const g = svgEl("g");
+    const body = svgEl("rect");
+    body.setAttribute("x", -16);
+    body.setAttribute("y", -18);
+    body.setAttribute("width", 32);
+    body.setAttribute("height", 18);
+    body.setAttribute("fill", "#f8f9fa");
+    body.setAttribute("stroke", "rgba(0,0,0,0.25)");
+    body.setAttribute("stroke-width", "1");
+    const roof = svgEl("polygon");
+    roof.setAttribute("points", "-16,-18 0,-30 16,-18");
+    roof.setAttribute("fill", "#6c757d");
+    g.appendChild(body);
+    g.appendChild(roof);
+    return g;
+  }
+
+  function buildVenue(seed) {
+    const g = svgEl("g");
+    const body = svgEl("rect");
+    body.setAttribute("x", -14);
+    body.setAttribute("y", -16);
+    body.setAttribute("width", 28);
+    body.setAttribute("height", 16);
+    body.setAttribute("fill", ["#ff66cc", "#ffd166", "#74c0fc"][seed % 3]);
+    const sign = svgEl("rect");
+    sign.setAttribute("x", -10);
+    sign.setAttribute("y", -22);
+    sign.setAttribute("width", 20);
+    sign.setAttribute("height", 6);
+    sign.setAttribute("fill", "rgba(0,0,0,0.35)");
+    g.appendChild(body);
+    g.appendChild(sign);
+    return g;
+  }
+
+  function buildStadium() {
+    const g = svgEl("g");
+    const base = svgEl("ellipse");
+    base.setAttribute("cx", 0);
+    base.setAttribute("cy", -10);
+    base.setAttribute("rx", 18);
+    base.setAttribute("ry", 8);
+    base.setAttribute("fill", "#2a9d8f");
+    const ring = svgEl("ellipse");
+    ring.setAttribute("cx", 0);
+    ring.setAttribute("cy", -10);
+    ring.setAttribute("rx", 12);
+    ring.setAttribute("ry", 5);
+    ring.setAttribute("fill", "rgba(255,255,255,0.25)");
+    g.appendChild(base);
+    g.appendChild(ring);
+    return g;
+  }
+
+  function buildTower(seed) {
+    const g = svgEl("g");
+    const body = svgEl("rect");
+    body.setAttribute("x", -4);
+    body.setAttribute("y", -34);
+    body.setAttribute("width", 8);
+    body.setAttribute("height", 34);
+    body.setAttribute("fill", ["#adb5bd", "#8d99ae", "#6c757d"][seed % 3]);
+    const cap = svgEl("polygon");
+    cap.setAttribute("points", "-6,-34 0,-42 6,-34");
+    cap.setAttribute("fill", "#495057");
+    g.appendChild(body);
+    g.appendChild(cap);
+    return g;
+  }
+
+  function buildHarbor(seed) {
+    const g = svgEl("g");
+    const dock = svgEl("rect");
+    dock.setAttribute("x", -18);
+    dock.setAttribute("y", -10);
+    dock.setAttribute("width", 36);
+    dock.setAttribute("height", 10);
+    dock.setAttribute("fill", "#343a40");
+    const container = svgEl("rect");
+    container.setAttribute("x", -14);
+    container.setAttribute("y", -24);
+    container.setAttribute("width", 12);
+    container.setAttribute("height", 14);
+    container.setAttribute("fill", ["#ff8800", "#ffb703", "#06d6a0"][seed % 3]);
+    const crane = svgEl("line");
+    crane.setAttribute("x1", 10);
+    crane.setAttribute("y1", -24);
+    crane.setAttribute("x2", 16);
+    crane.setAttribute("y2", -10);
+    crane.setAttribute("stroke", "rgba(255,255,255,0.35)");
+    crane.setAttribute("stroke-width", "2");
+    g.appendChild(dock);
+    g.appendChild(container);
+    g.appendChild(crane);
+    return g;
+  }
+
+  function buildInfrastructure(kind, seed) {
+    const g = svgEl("g");
+    const body = svgEl("rect");
+    body.setAttribute("x", -14);
+    body.setAttribute("y", -20);
+    body.setAttribute("width", 28);
+    body.setAttribute("height", 20);
+    body.setAttribute("fill", "#ced4da");
+    const icon = svgEl("rect");
+    icon.setAttribute("x", -6);
+    icon.setAttribute("y", -16);
+    icon.setAttribute("width", 12);
+    icon.setAttribute("height", 8);
+    const map = { post: "#ff595e", telecom: "#74c0fc", rail: "#adb5bd", power: "#ffd166" };
+    icon.setAttribute("fill", map[kind] || ["#74c0fc", "#ffd166"][seed % 2]);
+    g.appendChild(body);
+    g.appendChild(icon);
+    return g;
+  }
+
+  function buildFactory(seed) {
+    const g = svgEl("g");
+    const body = svgEl("rect");
+    body.setAttribute("x", -12);
+    body.setAttribute("y", -20);
+    body.setAttribute("width", 24);
+    body.setAttribute("height", 20);
+    body.setAttribute("fill", "#5c6b73");
+    const chimney = svgEl("rect");
+    chimney.setAttribute("x", 6);
+    chimney.setAttribute("y", -35);
+    chimney.setAttribute("width", 6);
+    chimney.setAttribute("height", 15);
+    chimney.setAttribute("fill", "#3a444a");
+    const smoke = svgEl("circle");
+    smoke.setAttribute("cx", 9);
+    smoke.setAttribute("cy", -40);
+    smoke.setAttribute("r", 4);
+    smoke.setAttribute("fill", "rgba(255,255,255,0.25)");
+    g.appendChild(body);
+    g.appendChild(chimney);
+    if (seed % 2 === 0) g.appendChild(smoke);
+    return g;
+  }
+
+  function buildSkate() {
+    const g = svgEl("g");
+    const ramp = svgEl("path");
+    ramp.setAttribute("d", "M -16 0 Q -6 -18 12 -10 L 16 0 Z");
+    ramp.setAttribute("fill", "#495057");
+    g.appendChild(ramp);
+    return g;
+  }
+
+  function buildPark(seed) {
+    const g = svgEl("g");
+    const trunk = svgEl("rect");
+    trunk.setAttribute("x", -2);
+    trunk.setAttribute("y", -12);
+    trunk.setAttribute("width", 4);
+    trunk.setAttribute("height", 12);
+    trunk.setAttribute("fill", "#8b5e3c");
+    const crown = svgEl("circle");
+    crown.setAttribute("cx", 0);
+    crown.setAttribute("cy", -18);
+    crown.setAttribute("r", 10);
+    crown.setAttribute("fill", ["#2d6a4f", "#40916c", "#52b788"][seed % 3]);
+    g.appendChild(trunk);
+    g.appendChild(crown);
+    return g;
+  }
+
+  // Generisk “Settlers”-hus (tak/vinduer/trær + fargevarianter)
+  function buildGenericHouse({ isSuburb, isCentral, seed, flavor }) {
+    const g = svgEl("g");
+
+    let width = 18 + (seed % 3) * 4;
+    let height = 24 + (seed % 4) * 6;
+
+    if (isCentral) height *= 1.6;
+    if (isSuburb) height *= 0.8;
+
+    let baseColor = "#ffffff";
+    let roofColor = "#495057";
+
+    if (flavor === "generic_kultur") baseColor = "#ffd166";
+    if (flavor === "generic_butikk") baseColor = "#06d6a0";
+    if (flavor === "generic_industri") baseColor = "#adb5bd";
+    if (flavor === "generic_bolig") baseColor = "#e9ecef";
+
+    if (isSuburb) roofColor = "#8d99ae";
+
+    const body = svgEl("rect");
+    body.setAttribute("x", -width / 2);
+    body.setAttribute("y", -height);
+    body.setAttribute("width", width);
+    body.setAttribute("height", height);
+    body.setAttribute("fill", baseColor);
+    body.setAttribute("stroke", "#222");
+    body.setAttribute("stroke-width", "1.2");
+
+    const roof = svgEl("polygon");
+    roof.setAttribute("points", `${-width/2},${-height} 0,${-height - 10} ${width/2},${-height}`);
+    roof.setAttribute("fill", roofColor);
+
+    g.appendChild(body);
+    g.appendChild(roof);
+
+    const floors = Math.floor(height / 12);
+    for (let i = 0; i < floors; i++) {
+      const win = svgEl("rect");
+      win.setAttribute("x", -width / 4);
+      win.setAttribute("y", -height + 8 + i * 12);
+      win.setAttribute("width", 4);
+      win.setAttribute("height", 4);
+      win.setAttribute("fill", "#ffe066");
+      g.appendChild(win);
+    }
+
+    if (isSuburb) {
+      const tree = svgEl("circle");
+      tree.setAttribute("cx", width / 2 + 6);
+      tree.setAttribute("cy", -6);
+      tree.setAttribute("r", 5);
+      tree.setAttribute("fill", "#2d6a4f");
+      g.appendChild(tree);
+    }
+
+    return g;
+  }
+
+  function renderCommercialObjects(objectsLayer, fxLayer, w, h) {
+    const zones = getZones(w, h);
+
+    const inv = window.HG_CiviShop?.getInv();
+    if (!inv?.packs) return;
+
+    const packsPromise = window.HG_CiviShop?.getPacks?.();
+    if (!packsPromise) return;
+
+    packsPromise.then((packs) => {
+      const zoneStackCount = {};
+
+      Object.keys(inv.packs).forEach((packId) => {
+        const pack = packs.find((p) => String(p.id) === String(packId));
+        if (!pack) return;
+
+        const district = String(pack.district || "sentrum").toLowerCase();
+        const pos = zones[district];
+        if (!pos) return;
+
+        // Glow: én per aktiv sone
+        if (zoneStackCount[district] === undefined) {
+          zoneStackCount[district] = 0;
+          addDistrictGlow(fxLayer, pos.x, pos.y);
+        }
+
+        const index = zoneStackCount[district]++;
+
+        const offsetX = index * 18;
+        const offsetY = index > 2 ? -20 : 0;
+
+        const g = svgEl("g");
+        g.setAttribute("data-pack-id", String(pack.id || ""));
+        g.setAttribute("transform", `translate(${pos.x + offsetX}, ${pos.y + offsetY}) scale(0)`);
+
+        const inferredType =
+          pack.type ||
+          (pack.placeId ? PLACE_TYPE[String(pack.placeId).trim()] : "") ||
+          "generic";
+
+        const building = createMiniBuilding({
+          isSuburb: !!pos.suburb,
+          isCentral: district === "sentrum",
+          type: inferredType,
+          seed: index
+        });
+
+        g.appendChild(building);
+        objectsLayer.appendChild(g);
+
+        requestAnimationFrame(() => {
+          g.style.transition = "transform 350ms cubic-bezier(.2,.8,.2,1)";
+          g.setAttribute("transform", `translate(${pos.x + offsetX}, ${pos.y + offsetY}) scale(1)`);
+        });
       });
-
-      g.appendChild(building);
-      layer.appendChild(g);
-
-      requestAnimationFrame(() => {
-        g.style.transition = "transform 350ms cubic-bezier(.2,.8,.2,1)";
-        g.setAttribute(
-          "transform",
-          `translate(${pos.x + index*18}, ${pos.y}) scale(1)`
-        );
-      });
-
     });
+  }
 
-  });
-}
+  function init() {
+    render();
+    window.addEventListener("resize", render, { passive: true });
+  }
 
-/* =========================================================
-   BUILDINGS
-   ========================================================= */
+  document.addEventListener("DOMContentLoaded", init);
 
-function createMiniBuilding(config) {
-
-  const g = svgEl("g");
-
-  let width = 16;
-  let height = 28;
-
-  if (config.isSuburb) height = 18;
-  if (config.isCentral) height = 40;
-
-  const rect = svgEl("rect");
-  rect.setAttribute("x", -width/2);
-  rect.setAttribute("y", -height);
-  rect.setAttribute("width", width);
-  rect.setAttribute("height", height);
-  rect.setAttribute("fill", config.isSuburb ? "#4a5a6a" : "#708090");
-  rect.setAttribute("rx", 2);
-
-  g.appendChild(rect);
-
-  return g;
-}
-
-/* =========================================================
-   DISTRICT GLOW
-   ========================================================= */
-
-function addDistrictGlow(layer, x, y) {
-
-  const glow = svgEl("circle");
-  glow.setAttribute("cx", x);
-  glow.setAttribute("cy", y);
-  glow.setAttribute("r", 30);
-  glow.setAttribute("fill", "rgba(123,216,143,0.15)");
-
-  layer.appendChild(glow);
-}
+})();
