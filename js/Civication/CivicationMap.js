@@ -129,11 +129,13 @@
     svg.appendChild(base);
     svg.appendChild(objects);
     svg.appendChild(fx);
+
     host.appendChild(svg);
 
+    const zones = getZones(w, h);
+
     renderCommercialObjects(objects, fx, w, h);
-    renderHomeObjects(objectsLayer, fxLayer, zones);
-  }
+    renderHomeObjects(objects, fx, zones);
 
   function drawRoad(base, x1, y1, x2, y2) {
   const capital = window.USER_CAPITAL || {};
