@@ -132,6 +132,7 @@
     host.appendChild(svg);
 
     renderCommercialObjects(objects, fx, w, h);
+    renderHomeObjects(objectsLayer, fxLayer, zones);
   }
 
   function drawRoad(base, x1, y1, x2, y2) {
@@ -706,6 +707,51 @@ if (zoneStackCount[district] === undefined) {
     });
   }
 
+   // ============================================================
+// HOME OBJECTS (PERSONLIG LAG)
+// ============================================================
+
+function renderHomeObjects(objectsLayer, fxLayer, zones) {
+  const homeState = window.CivicationHome?.getState?.();
+  if (!homeState) return;
+
+  if (homeState.home?.status !== "settled") return;
+  if (!Array.isArray(homeState.objects) || homeState.objects.length === 0) return;
+
+  const district = homeState.home.district;
+  const pos = zones[district];
+  if (!pos) return;
+
+  homeState.objects.forEach((obj, index) => {
+
+    const g = svgEl("g");
+    g.setAttribute("data-home-object", obj.type || "home");
+    g.setAttribute(
+      "transform",
+      `translate(${pos.x + index * 18}, ${pos.y - 12}) scale(0)`
+    );
+
+    const building = createMiniBuilding({
+      isSuburb: !!pos.suburb,
+      isCentral: district === "sentrum",
+      type: obj.type || "generic",
+      seed: index,
+      isHome: true
+    });
+
+    g.appendChild(building);
+    objectsLayer.appendChild(g);
+
+    requestAnimationFrame(() => {
+      g.style.transition = "transform 300ms ease-out";
+      g.setAttribute(
+        "transform",
+        `translate(${pos.x + index * 18}, ${pos.y - 12}) scale(1)`
+      );
+    });
+  });
+}
+  
 function drawNetworkLine(x1,y1,x2,y2,strength){
   const line = svgEl("line");
   line.setAttribute("x1", x1);
