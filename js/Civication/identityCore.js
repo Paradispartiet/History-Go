@@ -45,6 +45,25 @@
     return 0.8 + weight * 0.4;
   }
 
+  function getPsycheModifiers() {
+  const identity = loadIdentity();
+  const focus = identity.focus;
+
+  const values = Object.values(focus);
+  const max = Math.max(...values);
+  const sorted = [...values].sort((a,b) => b-a);
+  const second = sorted[1] || 0;
+
+  const balance = 1 - (max - second); // grov balanseindikator
+
+  return {
+    autonomy: max * 10,
+    integrity: (second / max) * 10,
+    trust: balance * 10,
+    visibility: (focus.subculture || 0) * 10
+  };
+}
+  
 
   function getPerception(type) {
   const identity = loadIdentity();
@@ -178,7 +197,8 @@ function perceptionTexts(type, tier) {
     getBoost,
     shiftFocus,
     getIdentityState,
-    getPerception
+    getPerception,
+    getPsycheModifiers
   };
 
 })();
