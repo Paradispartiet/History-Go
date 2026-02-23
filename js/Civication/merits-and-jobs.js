@@ -116,8 +116,8 @@ async function updateMeritLevel(cat, oldPoints, newPoints) {
 // Poengsystem – +1 poeng per fullført quiz
 async function addCompletedQuizAndMaybePoint(categoryDisplay, quizId) {
   const categoryId = catIdFromDisplay(categoryDisplay);
-  const canonicalCategoryId =
-  categoryId === "naering" ? "naeringsliv" : categoryId;
+  const badgeId =
+  categoryId === "naering" ? "naeringsliv" : categoryId;  
   const progress = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
   progress[canonicalCategoryId] = progress[canonicalCategoryId] || { completed: [] };
 
