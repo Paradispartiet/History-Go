@@ -9,14 +9,19 @@ async function init() {
   renderCivication();
   renderCivicationInbox();
   renderPsycheDashboard();
-  renderCapital(); // ← LEGG TIL
+  renderCapital();
+  renderHomeStatus();   // ← LEGG TIL HER
 
   window.addEventListener("updateProfile", () => {
     renderCivication();
     renderCivicationInbox();
     renderPsycheDashboard();
-    renderCapital(); // ← OG HER
+    renderCapital();
+    renderHomeStatus(); // ← OG HER
   });
+
+  // Når hjem endres (kjøp/flytt/salg)
+  window.addEventListener("civi:homeChanged", renderHomeStatus);
 }
 
 // ============================================================
