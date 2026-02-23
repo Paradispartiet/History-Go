@@ -76,12 +76,16 @@ if (!state.roleBaseline || typeof state.roleBaseline !== "object") {
   // 3+ kollaps -> max 60
   // -----------------------------
   function computeMaxTrust(collapses) {
-    const c = Number(collapses || 0);
-    if (c === 0) return 80;
-    if (c === 1) return 100;
-    if (c === 2) return 80;
-    return 60;
-  }
+  const c = Number(collapses || 0);
+
+  if (c === 0) return 80;   // Første karriere – stabil men uprøvd
+  if (c === 1) return 100;  // Lært av krise – høyere tillitspotensial
+  if (c === 2) return 85;   // Merket, men fortsatt robust
+  if (c === 3) return 70;   // Systemet begynner å tvile
+  if (c >= 4) return 60;    // Strukturell slitasje
+
+  return 80;
+}
 
   function getCareerTrust(careerId) {
     const id = String(careerId || "").trim();
@@ -494,6 +498,16 @@ function processCollapse() {
   const type = evaluateCollapse();
   if (!type) return null;
 
+  // Karrierekollaps: registrer + direkte trust-knekk
+  if (type === "career" && state.roleBaseline?.role_key) {
+    const roleId = state.roleBaseline.role_key;
+
+    registerCollapse(roleId, "systemic");
+
+    // Dramatiske konsekvenser
+    updateTrust(roleId, -30);
+  }
+
   write((s) => {
     if (type === "status") {
       s.integrity = clamp(s.integrity - 20, 0, 100);
@@ -507,7 +521,6 @@ function processCollapse() {
       s.visibility = clamp(s.visibility - 15, 0, 100);
     }
 
-    // Registrer tidspunkt for cooldown
     s.lastCollapseAt = Date.now();
   });
 
