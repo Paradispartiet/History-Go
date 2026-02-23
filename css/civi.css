@@ -153,3 +153,104 @@
 .home-settled {
   font-weight: 500;
 }
+
+/* ========================================================= */
+/* DISTRICT MODAL */
+/* ========================================================= */
+
+.civi-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(10,15,20,0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.civi-modal-content {
+  width: 900px;
+  max-width: 95%;
+  max-height: 85vh;
+  overflow-y: auto;
+  background: #141c24;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 0 40px rgba(0,0,0,0.6);
+}
+
+.civi-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.civi-modal-header button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+}
+
+.district-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill,minmax(240px,1fr));
+  gap: 20px;
+}
+
+.district-card {
+  background: #1c2630;
+  padding: 20px;
+  border-radius: 10px;
+  transition: 0.2s ease;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+.district-card.locked {
+  opacity: 0.5;
+}
+
+.district-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255,255,255,0.2);
+}
+
+.district-name {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.district-cost {
+  font-size: 14px;
+  opacity: 0.7;
+  margin-bottom: 10px;
+}
+
+.district-effects {
+  font-size: 13px;
+  opacity: 0.8;
+  margin-bottom: 10px;
+}
+
+.district-requirements {
+  font-size: 12px;
+  opacity: 0.7;
+  margin-bottom: 12px;
+}
+
+.district-card button {
+  width: 100%;
+  padding: 8px;
+  background: #2f7ae5;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+}
+
+.district-card.locked button {
+  background: #555;
+  cursor: not-allowed;
+}
