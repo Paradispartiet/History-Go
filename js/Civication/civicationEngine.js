@@ -681,7 +681,7 @@ if (stability === "FIRED") {
   // 3️⃣ Fjern aktiv jobb
   setActivePosition(null);
 
-  this.setState({ unemployed_since_iso: new Date().toISOString() });
+  this.setState({ unemployed_since_week: weekKey(new Date()) });
 
   // 4️⃣ Legg fired-info i inbox
   const firedEv = this.makeFiredEvent(this.getState().active_role_key);
