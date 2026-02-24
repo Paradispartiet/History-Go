@@ -45,8 +45,11 @@ function purchaseHomeObject(obj) {
   const quiz = getUnlockingQuiz(obj.placeId);
   if (!quiz) return false;
 
-  const capital = window.USER_CAPITAL || {};
   const cost = Number(obj.cost || 0);
+
+  // Hent kapital fra canonical storage
+  const capital =
+    JSON.parse(localStorage.getItem("hg_capital_v1") || "{}");
 
   if ((capital.economic || 0) < cost) return false;
 
@@ -63,11 +66,14 @@ function purchaseHomeObject(obj) {
   // Ikke tillat duplikat
   if (state.objects.some(o => o.id === obj.id)) return false;
 
-  // Trekk kapital
-  if (window.USER_CAPITAL) {
-    window.USER_CAPITAL.economic =
-      Math.max(0, (window.USER_CAPITAL.economic || 0) - cost);
-  }
+  // Trekk kapital (skriv tilbake til samme kilde)
+  capital.economic =
+    Math.max(0, (capital.economic || 0) - cost);
+
+  localStorage.setItem(
+    "hg_capital_v1",
+    JSON.stringify(capital)
+  );
 
   state.objects.push({
     id: obj.id,
@@ -87,13 +93,16 @@ function purchaseHomeObject(obj) {
 
   return true;
 }
-  
-  function canPurchaseHomeObject(obj) {
+
+
+function canPurchaseHomeObject(obj) {
   if (!obj || !obj.placeId) return false;
 
   if (!hasCompletedPlace(obj.placeId)) return false;
 
-  const capital = window.USER_CAPITAL || {};
+  const capital =
+    JSON.parse(localStorage.getItem("hg_capital_v1") || "{}");
+
   if ((capital.economic || 0) < (obj.cost || 0)) return false;
 
   return true;
@@ -112,8 +121,6 @@ function sellHomeObject(objectId) {
   const index = state.objects.findIndex(o => o.id === objectId);
   if (index === -1) return false;
 
-  const obj = state.objects[index];
-
   const originalDef =
     window.CIVI_HOME_OBJECTS?.find(o => o.id === objectId);
 
@@ -124,32 +131,41 @@ function sellHomeObject(objectId) {
   state.objects.splice(index, 1);
   save(state);
 
-  // Gi tilbake kapital
-  if (window.USER_CAPITAL) {
-    window.USER_CAPITAL.economic =
-      (window.USER_CAPITAL.economic || 0) + refund;
-  }
+  // Hent canonical kapital
+  const capital =
+    JSON.parse(localStorage.getItem("hg_capital_v1") || "{}");
 
-  // Oppdater systemer
+  // Legg til refund
+  capital.economic =
+    (capital.economic || 0) + refund;
+
+  localStorage.setItem(
+    "hg_capital_v1",
+    JSON.stringify(capital)
+  );
+
   window.dispatchEvent(new Event("civi:homeChanged"));
   window.dispatchEvent(new Event("updateProfile"));
 
   return true;
 }
 
-function canPurchase(districtId){
+  function canPurchase(districtId) {
   const district = DISTRICTS[districtId];
-  if(!district) return false;
+  if (!district) return false;
 
-  const capital = window.USER_CAPITAL || {};
-  if((capital.economic || 0) < district.baseCost) return false;
+  const capital =
+    JSON.parse(localStorage.getItem("hg_capital_v1") || "{}");
 
-  const merits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
+  if ((capital.economic || 0) < district.baseCost) return false;
 
-  for(const cat in district.quizRequirements){
+  const merits =
+    JSON.parse(localStorage.getItem("merits_by_category") || "{}");
+
+  for (const cat in district.quizRequirements) {
     const needed = district.quizRequirements[cat];
     const points = merits[cat]?.points || 0;
-    if(points < needed) return false;
+    if (points < needed) return false;
   }
 
   return true;
