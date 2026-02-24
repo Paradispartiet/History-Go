@@ -21,7 +21,13 @@
     score: 0,                   // intern buffer (-2 => strike). Ikke vis i UI.
     active_role_key: null,      // f.eks "journalist"
     consumed: {},               // { eventId: true }
-  };
+    // --- identitet ---
+    identity_tags: [],
+    tracks: [],
+
+     // --- meta ---
+     version: 1
+     };
 
   function todayKey() {
     const d = new Date();
