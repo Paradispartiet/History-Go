@@ -14,17 +14,35 @@
   const writeJSON = (k, v) => localStorage.setItem(k, JSON.stringify(v));
 
   function getWallet() {
-    // Hvis du allerede har globale wallet-funksjoner i profile.js / app.js, bruk dem.
-    if (typeof window.getPCWallet === "function") return Number(window.getPCWallet() || 0);
-    const w = readJSON(LS_WALLET, { pc: 0 });
-    return Number(w.pc || 0);
+  if (typeof window.getPCWallet === "function") {
+    const w = window.getPCWallet();
+    if (w && typeof w.balance === "number") {
+      return w;
+    }
   }
-  function setWallet(pc) {
-    if (typeof window.setPCWallet === "function") return window.setPCWallet(pc);
-    const w = readJSON(LS_WALLET, { pc: 0 });
-    w.pc = Number(pc || 0);
-    writeJSON(LS_WALLET, w);
+
+  const w = readJSON(LS_WALLET, {
+    balance: 0,
+    last_tick_iso: null
+  });
+
+  return {
+    balance: Number(w.balance || 0),
+    last_tick_iso: w.last_tick_iso || null
+  };
+}
+
+   function setWallet(wallet) {
+  if (!wallet || typeof wallet.balance !== "number") {
+    wallet = { balance: 0, last_tick_iso: null };
   }
+
+  if (typeof window.savePCWallet === "function") {
+    return window.savePCWallet(wallet);
+  }
+
+  writeJSON(LS_WALLET, wallet);
+}
 
   function getInv() {
     const inv = readJSON(LS_INV, null);
