@@ -125,10 +125,6 @@ function weeksPassedBetweenWeekKeys(sinceW, nowW) {
   return Math.max(0, b - a);
 }
 
-function weeksBetween(a, b) {
-  const ms = Math.abs(b - a);
-  return ms / (7 * 24 * 60 * 60 * 1000);
-}
 
 function normalizeWallet(w) {
   // Én canonical form: { balance, last_tick_iso }
