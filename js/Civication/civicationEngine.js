@@ -589,12 +589,17 @@ if (stability === "FIRED") {
   this.enqueueEvent(firedEv);
 }
 
-  // global export
+    } // ← lukker answer()
+
+  } // ← lukker class CivicationEventEngine
+
+  // -------- instantiate engine --------
   window.HG_CiviEngine = new CivicationEventEngine({
     packBasePath: "data/civication",
     maxInbox: 1
   });
-})();
+
+})(); // ← lukker IIFE
 
 function qualifiesForCareer(player, career) {
   if (!career.required_badges) return true;
@@ -651,5 +656,3 @@ Object.assign(window.HG_CiviEngine, {
   calculateWeeklySalary,
   payWeeklySalary
 });
-
-})();
