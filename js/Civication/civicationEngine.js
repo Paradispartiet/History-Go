@@ -649,10 +649,3 @@ function payWeeklySalary(player, career, tierIndex) {
   player.balance = (Number(player.balance) || 0) + weekly;
   return weekly;
 }
-
-window.HG_CiviEngine = window.HG_CiviEngine || {};
-Object.assign(window.HG_CiviEngine, {
-  onAppOpen,              // hvis den finnes i denne fila
-  calculateWeeklySalary,
-  payWeeklySalary
-});
