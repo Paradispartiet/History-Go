@@ -435,19 +435,28 @@ base.appendChild(districtLine(`
   // Mini-bygg dispatcher (replicaer + generisk fallback)
   function createMiniBuilding(options = {}) {
 
-  const capital = window.USER_CAPITAL || {};
+     const capital =
+    function createMiniBuilding(options = {}) {
 
-  const isSuburb = !!options.isSuburb;
-  const isCentral = !!options.isCentral;
-  const seed = Number(options.seed || 0);
+  const capital =
+    JSON.parse(localStorage.getItem("hg_capital_v1") || {});
 
-  const type = normalizeType(options.type);
+    const isSuburb = !!options.isSuburb;
+    const isCentral = !!options.isCentral;
+    const seed = Number(options.seed || 0);
 
-  const baseScale = isCentral ? 1.15 : (isSuburb ? 0.90 : 1.0);
-  const economicScale = 1 + (capital.economic || 0) / 200;
+    const type = normalizeType(options.type); JSON.parse(localStorage.getItem("hg_capital_v1") || {});
 
-  const wrapper = svgEl("g");
-  wrapper.setAttribute("transform", `scale(${baseScale * economicScale})`);
+    const isSuburb = !!options.isSuburb;
+    const isCentral = !!options.isCentral;
+    const seed = Number(options.seed || 0);
+
+    const type = normalizeType(options.type);
+    const baseScale = isCentral ? 1.15 : (isSuburb ? 0.90 : 1.0);
+    const economicScale = 1 + (capital.economic || 0) / 200;
+
+    const wrapper = svgEl("g");
+    wrapper.setAttribute("transform", `scale(${baseScale * economicScale})`);
 
     switch (type) {
       case "opera": wrapper.appendChild(buildOpera()); return wrapper;
@@ -809,7 +818,8 @@ base.appendChild(districtLine(`
     body.setAttribute("stroke", "#222");
     body.setAttribute("stroke-width", "1.2");
     
-    const capital = window.USER_CAPITAL || {};
+    const capital =
+     JSON.parse(localStorage.getItem("hg_capital_v1") || "{}");
     body.setAttribute("fill-opacity", 0.6 + (capital.symbolic || 0) / 250);
    
     const roof = svgEl("polygon");
@@ -844,7 +854,8 @@ base.appendChild(districtLine(`
 
   
   function renderCommercialObjects(objectsLayer, fxLayer, w, h) {
-    const rawCapital = window.USER_CAPITAL || {};
+    const rawCapital =
+     JSON.parse(localStorage.getItem("hg_capital_v1") || "{}");
     const capital = normalizeCapital(rawCapital);
     
     const zones = getZones(w, h);
