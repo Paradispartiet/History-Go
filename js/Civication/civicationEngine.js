@@ -142,11 +142,11 @@ function checkTierUpgrades() {
     const points =
       Number(merits[badge.id]?.points || 0);
 
-    const { tierIndex } =
+    const { tierIndex, label } =
       deriveTierFromPoints(badge, points);
 
     const previousTier =
-      Number(tierState[badge.id] || 0);
+      Number(tierState[badge.id] || -1);
 
     if (tierIndex > previousTier) {
 
@@ -156,10 +156,21 @@ function checkTierUpgrades() {
         );
 
       if (career) {
+
+        const now = new Date();
+        const expires = new Date(
+          now.getTime() + 7 * 86400000
+        );
+
         offers.push({
+          offer_key: `${badge.id}_${tierIndex}_${now.toISOString()}`,
           career_id: career.career_id,
-          title: career.title,
-          tier: tierIndex
+          career_name: badge.name,
+          title: `${badge.name} – ${label}`,
+          tier: tierIndex,
+          status: "pending",
+          created_iso: now.toISOString(),
+          expires_iso: expires.toISOString()
         });
       }
 
