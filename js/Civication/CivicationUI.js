@@ -623,12 +623,14 @@ function renderCapital() {
   const capital = JSON.parse(localStorage.getItem("hg_capital_v1")) || {};
 
   const map = {
-    economic: "capEconomic",
-    cultural: "capCultural",
-    social: "capSocial",
-    symbolic: "capSymbolic",
-    political: "capPolitical"
-  };
+  economic: "capEconomic",
+  cultural: "capCultural",
+  social: "capSocial",
+  symbolic: "capSymbolic",
+  political: "capPolitical",
+  institutional: "capInstitutional",
+  subculture: "capSubculture"
+};
 
   Object.keys(map).forEach(key => {
     const el = document.getElementById(map[key]);
