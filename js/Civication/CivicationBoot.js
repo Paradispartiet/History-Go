@@ -4,8 +4,8 @@
 
 async function loadCivicationData() {
   const [badgesRes, careersRes] = await Promise.all([
-    fetch("/data/badges.json"),
-    fetch("/data/Civication/hg_careers.json")
+    fetch("data/badges.json"),
+    fetch("data/Civication/hg_careers.json")
   ]);
 
   const badgesJson = await badgesRes.json();
@@ -15,7 +15,7 @@ async function loadCivicationData() {
   window.HG_CAREERS = careersJson.careers;
 }
 
-(function(){
+(function () {
 
   async function start() {
     console.log("Civication boot start");
