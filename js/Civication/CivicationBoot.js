@@ -1,6 +1,19 @@
 // ============================================================
 // CIVICATION BOOT – single orchestrator
 // ============================================================
+async function loadCivicationData() {
+  const [badgesRes, careersRes] = await Promise.all([
+    fetch("/History-Go/data/badges.json"),
+    fetch("/History-Go/data/hg_careers.json")
+  ]);
+
+  const badgesJson = await badgesRes.json();
+  const careersJson = await careersRes.json();
+
+  window.BADGES = badgesJson.badges;
+  window.HG_CAREERS = careersJson.careers;
+}
+
 
 (function(){
 
@@ -18,5 +31,13 @@
   }
 
   document.addEventListener("DOMContentLoaded", start);
+
+  document.addEventListener("DOMContentLoaded", async () => {
+  console.log("Civication boot start");
+
+  await loadCivicationData();
+
+  window.dispatchEvent(new Event("civi:dataReady"));
+});
 
 })();
