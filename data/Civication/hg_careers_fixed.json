@@ -1,0 +1,491 @@
+{
+  "schema": "civication_careers_rules_v1",
+  "version": 1,
+
+  "global_rules": {
+    "salary": {
+      "period": "weekly",
+      "source": "badge_tier",
+      "rounding": "nearest"
+    },
+    "employment": {
+      "max_active_jobs": 1,
+      "offer_expiry_days": 7,
+      "offer_cooldown_days": 7
+    },
+    "unemployment": {
+      "nav_after_weeks": 2,
+      "nav_weekly_pc": 3
+    }
+  },
+
+  "careers": [
+
+    {
+      "career_id": "historie",
+      "economy": {
+        "salary_by_tier": { "1": 5, "2": 8, "3": 14 },
+        "weekly_expenses": { "base": 1, "risk_modifier": 1.0 },
+        "risk": { "volatility": 0.2, "layoff_chance_per_week": 0.02 }
+      },
+      "capital_base": {
+        "economic": 1.0,
+        "cultural": 2.0,
+        "social": 1.2,
+        "symbolic": 1.6,
+        "political": 0.6
+      },
+      "world_logic": {
+        "maintenance": { "min_quiz_per_weeks": 1 },
+        "strikes": { "on_missed_maintenance": 1, "max_strikes": 3, "consequence": "fired" },
+        "fired_to": "nav"
+      },
+      "diegetic_text": {
+        "offer": ["Et arkiv åpner døren for deg."],
+        "maintenance_warning": ["Støvet legger seg på arbeidet ditt."],
+        "fired": ["Tilgangen til arkivet trekkes tilbake."],
+        "nav": ["Ingen spør hva du vet."]
+      }
+    },
+
+    {
+      "career_id": "vitenskap",
+      "economy": {
+        "salary_by_tier": { "1": 6, "2": 10, "3": 17 },
+        "weekly_expenses": { "base": 2, "risk_modifier": 1.1 },
+        "risk": { "volatility": 0.3, "layoff_chance_per_week": 0.04 }
+      },
+      "capital_base": {
+        "economic": 1.2,
+        "cultural": 2.2,
+        "social": 1.3,
+        "symbolic": 1.7,
+        "political": 0.7
+      },
+      "world_logic": {
+        "maintenance": { "min_quiz_per_weeks": 2 },
+        "strikes": { "on_missed_maintenance": 1, "max_strikes": 2, "consequence": "fired" },
+        "fired_to": "nav"
+      },
+      "diegetic_text": {
+        "offer": ["Et forskningsmiljø ser potensial i deg."],
+        "maintenance_warning": ["Dataene uteblir."],
+        "fired": ["Prosjektmidlene tørker inn."],
+        "nav": ["Du venter på neste utlysning."]
+      }
+    },
+
+    {
+      "career_id": "kunst",
+      "economy": {
+        "salary_by_tier": { "1": 4, "2": 7, "3": 13 },
+        "weekly_expenses": { "base": 1, "risk_modifier": 1.2 },
+        "risk": { "volatility": 0.6, "layoff_chance_per_week": 0.07 }
+      },
+      "capital_base": {
+        "economic": 0.9,
+        "cultural": 2.1,
+        "social": 1.6,
+        "symbolic": 2.0,
+        "political": 0.4
+      },
+      "world_logic": {
+        "maintenance": { "min_quiz_per_weeks": 1 },
+        "strikes": { "on_missed_maintenance": 1, "max_strikes": 2, "consequence": "fired" },
+        "fired_to": "nav"
+      },
+      "diegetic_text": {
+        "offer": ["Et galleri vil satse på deg."],
+        "maintenance_warning": ["Publikum uteblir."],
+        "fired": ["Utstillingen tas ned."],
+        "nav": ["Kunst er ingen garanti."]
+      }
+    },
+
+    {
+      "career_id": "by",
+      "cross_requirements": {
+        "3": [
+          { "badge": "naeringsliv", "min_tier": 2 },
+          { "badge": "politikk", "min_tier": 1 }
+        ]
+      },
+      "economy": {
+        "salary_by_tier": { "1": 6, "2": 9, "3": 15 },
+        "weekly_expenses": { "base": 2, "risk_modifier": 1.1 },
+        "risk": { "volatility": 0.5, "layoff_chance_per_week": 0.06 }
+      },
+      "capital_base": {
+        "economic": 1.4,
+        "cultural": 1.3,
+        "social": 1.8,
+        "symbolic": 1.9,
+        "political": 2.0
+      },
+      "world_logic": {
+        "maintenance": { "min_quiz_per_weeks": 2 },
+        "strikes": { "on_missed_maintenance": 1, "max_strikes": 2, "consequence": "fired" },
+        "fired_to": "nav"
+      },
+      "diegetic_text": {
+        "offer": ["Byrådet vurderer deg."],
+        "maintenance_warning": ["Prosjektene stopper."],
+        "fired": ["Planen forkastes."],
+        "nav": ["Byen går videre."]
+      }
+    },
+
+    {
+      "career_id": "musikk",
+      "economy": {
+        "salary_by_tier": { "1": 4, "2": 8, "3": 20 },
+        "weekly_expenses": { "base": 2, "risk_modifier": 1.4 },
+        "risk": { "volatility": 0.8, "layoff_chance_per_week": 0.1 }
+      },
+      "capital_base": {
+        "economic": 1.3,
+        "cultural": 1.6,
+        "social": 2.1,
+        "symbolic": 2.3,
+        "political": 0.5
+      },
+      "world_logic": {
+        "maintenance": { "min_quiz_per_weeks": 1 },
+        "strikes": { "on_missed_maintenance": 1, "max_strikes": 1, "consequence": "fired" },
+        "fired_to": "nav"
+      },
+      "diegetic_text": {
+        "offer": ["Et plateselskap tar kontakt."],
+        "maintenance_warning": ["Strømmetallene faller."],
+        "fired": ["Kontrakten kanselleres."],
+        "nav": ["Du spiller fortsatt, men uten scene."]
+      }
+    },
+
+    {
+      "career_id": "litteratur",
+      "economy": {
+        "salary_by_tier": { "1": 4, "2": 7, "3": 14 },
+        "weekly_expenses": { "base": 1, "risk_modifier": 1.1 },
+        "risk": { "volatility": 0.5, "layoff_chance_per_week": 0.05 }
+      },
+      "capital_base": {
+        "economic": 1.0,
+        "cultural": 2.2,
+        "social": 1.4,
+        "symbolic": 1.9,
+        "political": 0.5
+      },
+      "world_logic": {
+        "maintenance": { "min_quiz_per_weeks": 1 },
+        "strikes": { "on_missed_maintenance": 1, "max_strikes": 2, "consequence": "fired" },
+        "fired_to": "nav"
+      },
+      "diegetic_text": {
+        "offer": ["Et forlag viser interesse."],
+        "maintenance_warning": ["Manuset leveres for sent."],
+        "fired": ["Kontrakten avsluttes."],
+        "nav": ["Du skriver videre alene."]
+      }
+    },
+
+    {
+      "career_id": "natur",
+      "economy": {
+        "salary_by_tier": { "1": 4, "2": 7, "3": 11 },
+        "weekly_expenses": { "base": 1, "risk_modifier": 0.9 },
+        "risk": { "volatility": 0.3, "layoff_chance_per_week": 0.03 }
+      },
+      "capital_base": {
+        "economic": 0.9,
+        "cultural": 1.8,
+        "social": 1.2,
+        "symbolic": 1.5,
+        "political": 0.6
+      },
+      "world_logic": {
+        "maintenance": { "min_quiz_per_weeks": 1 },
+        "strikes": { "on_missed_maintenance": 1, "max_strikes": 3, "consequence": "fired" },
+        "fired_to": "nav"
+      },
+      "diegetic_text": {
+        "offer": ["En miljøorganisasjon søker deg."],
+        "maintenance_warning": ["Rapportene uteblir."],
+        "fired": ["Prosjektet avsluttes."],
+        "nav": ["Naturens rytme fortsetter."]
+      }
+    },
+
+    {
+      "career_id": "sport",
+      "economy": {
+        "salary_by_tier": { "1": 5, "2": 9, "3": 25 },
+        "weekly_expenses": { "base": 2, "risk_modifier": 1.3 },
+        "risk": { "volatility": 0.9, "layoff_chance_per_week": 0.12 }
+      },
+      "capital_base": {
+        "economic": 1.8,
+        "cultural": 1.2,
+        "social": 2.0,
+        "symbolic": 2.4,
+        "political": 0.4
+      },
+      "world_logic": {
+        "maintenance": { "min_quiz_per_weeks": 2 },
+        "strikes": { "on_missed_maintenance": 1, "max_strikes": 1, "consequence": "fired" },
+        "fired_to": "nav"
+      },
+      "diegetic_text": {
+        "offer": ["En klubb vil signere deg."],
+        "maintenance_warning": ["Formen daler."],
+        "fired": ["Kontrakten avsluttes."],
+        "nav": ["Du trener alene."]
+      }
+    },
+
+ {
+  "career_id": "politikk",
+
+  "economy": {
+    "salary_by_tier": { "1": 6, "2": 10, "3": 18 },
+    "weekly_expenses": { "base": 2, "risk_modifier": 1.3 },
+    "risk": { "volatility": 0.7, "layoff_chance_per_week": 0.1 }
+  },
+
+  "capital_base": {
+    "economic": 1.1,
+    "cultural": 0.8,
+    "social": 1.8,
+    "symbolic": 2.0,
+    "political": 2.2
+  },
+
+  "world_logic": {
+    "maintenance": { "min_quiz_per_weeks": 2 },
+    "strikes": { "on_missed_maintenance": 1, "max_strikes": 2, "consequence": "fired" },
+    "fired_to": "nav"
+  },
+
+  "diegetic_text": {
+    "offer": ["En komité har lagt merke til deg."],
+    "maintenance_warning": ["Støtten faller."],
+    "fired": ["Du mister plassen."],
+    "nav": ["Makten flyttes videre."]
+  }
+},
+    
+{
+  "career_id": "naeringsliv",
+  "cross_requirements": {
+    "3": [
+      { "badge": "historie", "min_tier": 2 }
+    ]
+  },
+  "economy": {
+    "salary_by_tier": { "1": 7, "2": 11, "3": 16 },
+    "weekly_expenses": { "base": 2, "risk_modifier": 1.2 },
+    "risk": { "volatility": 0.4, "layoff_chance_per_week": 0.05 }
+  },
+  "capital_base": {
+    "economic": 2.2,
+    "cultural": 0.6,
+    "social": 1.4,
+    "symbolic": 1.3,
+    "political": 1.2
+  },
+  "world_logic": {
+    "maintenance": { "min_quiz_per_weeks": 2 },
+    "strikes": { "on_missed_maintenance": 1, "max_strikes": 2, "consequence": "fired" },
+    "fired_to": "nav"
+  },
+  "diegetic_text": {
+    "offer": ["En bedrift har lagt merke til deg."],
+    "maintenance_warning": ["Tallene er ikke der de burde være."],
+    "fired": ["Kontrakten avsluttes."],
+    "nav": ["Du kalles inn til NAV."]
+  }
+},
+
+{
+  "career_id": "film_tv",
+  "cross_requirements": {
+    "3": [
+      { "badge": "litteratur", "min_tier": 1 }
+    ]
+  },
+  "economy": {
+    "salary_by_tier": { "1": 5, "2": 9, "3": 18 },
+    "weekly_expenses": { "base": 2, "risk_modifier": 1.3 },
+    "risk": { "volatility": 0.7, "layoff_chance_per_week": 0.08 }
+  },
+  "capital_base": {
+    "economic": 1.3,
+    "cultural": 1.4,
+    "social": 1.9,
+    "symbolic": 2.2,
+    "political": 0.6
+  },
+  "world_logic": {
+    "maintenance": { "min_quiz_per_weeks": 1 },
+    "strikes": { "on_missed_maintenance": 1, "max_strikes": 2, "consequence": "fired" },
+    "fired_to": "nav"
+  },
+  "diegetic_text": {
+    "offer": ["Et produksjonsselskap tar kontakt."],
+    "maintenance_warning": ["Prosjektet mister støtte."],
+    "fired": ["Rollen omskrives uten deg."],
+    "nav": ["Scenen blir mørk."]
+  }
+},
+
+{
+  "career_id": "teater",
+  "cross_requirements": {
+    "3": [
+      { "badge": "litteratur", "min_tier": 1 }
+    ]
+  },
+  "economy": {
+    "salary_by_tier": { "1": 4, "2": 8, "3": 15 },
+    "weekly_expenses": { "base": 1, "risk_modifier": 1.2 },
+    "risk": { "volatility": 0.6, "layoff_chance_per_week": 0.07 }
+  },
+  "capital_base": {
+    "economic": 0.9,
+    "cultural": 2.0,
+    "social": 1.5,
+    "symbolic": 2.1,
+    "political": 0.4
+  },
+  "world_logic": {
+    "maintenance": { "min_quiz_per_weeks": 1 },
+    "strikes": { "on_missed_maintenance": 1, "max_strikes": 2, "consequence": "fired" },
+    "fired_to": "nav"
+  },
+  "diegetic_text": {
+    "offer": ["Et teater vil ha deg på plakaten."],
+    "maintenance_warning": ["Publikum svikter."],
+    "fired": ["Forestillingen tas av programmet."],
+    "nav": ["Scenen står tom."]
+  }
+},
+
+    {
+  "career_id": "media",
+  "cross_requirements": {
+    "3": [
+      { "badge": "politikk", "min_tier": 2 }
+    ]
+  },
+  "economy": {
+    "salary_by_tier": { "1": 6, "2": 9, "3": 13 },
+    "weekly_expenses": { "base": 1, "risk_modifier": 1.1 },
+    "risk": { "volatility": 0.6, "layoff_chance_per_week": 0.08 }
+  },
+  "capital_base": {
+    "economic": 1.2,
+    "cultural": 1.3,
+    "social": 1.8,
+    "symbolic": 2.0,
+    "political": 1.5
+  },
+  "world_logic": {
+    "maintenance": { "min_quiz_per_weeks": 1 },
+    "strikes": { "on_missed_maintenance": 1, "max_strikes": 2, "consequence": "fired" },
+    "fired_to": "nav"
+  },
+  "diegetic_text": {
+    "offer": ["Redaksjonen trenger deg."],
+    "maintenance_warning": ["Sakene dine faller i rangering."],
+    "fired": ["Navnet ditt fjernes fra byline."],
+    "nav": ["Du fyller ut skjemaet."]
+  }
+    },
+      
+{
+  "career_id": "psykologi",
+  "cross_requirements": {
+    "3": [
+      { "badge": "vitenskap", "min_tier": 2 }
+    ]
+  },
+  "economy": {
+    "salary_by_tier": { "1": 5, "2": 9, "3": 16 },
+    "weekly_expenses": { "base": 1, "risk_modifier": 1.0 },
+    "risk": { "volatility": 0.3, "layoff_chance_per_week": 0.03 }
+  },
+  "capital_base": {
+    "economic": 1.3,
+    "cultural": 2.1,
+    "social": 1.5,
+    "symbolic": 1.6,
+    "political": 0.6
+  },
+  "world_logic": {
+    "maintenance": { "min_quiz_per_weeks": 1 },
+    "strikes": { "on_missed_maintenance": 1, "max_strikes": 2, "consequence": "fired" },
+    "fired_to": "nav"
+  },
+  "diegetic_text": {
+    "offer": ["En klinikk tilbyr deg stilling."],
+    "maintenance_warning": ["Du mister fokus."],
+    "fired": ["Stillingen avsluttes."],
+    "nav": ["Du lytter fortsatt."]
+  }
+},
+
+{
+  "career_id": "populaerkultur",
+  "economy": {
+    "salary_by_tier": { "1": 4, "2": 8, "3": 14 },
+    "weekly_expenses": { "base": 1, "risk_modifier": 1.2 },
+    "risk": { "volatility": 0.7, "layoff_chance_per_week": 0.09 }
+  },
+  "capital_base": {
+    "economic": 1.0,
+    "cultural": 1.3,
+    "social": 2.0,
+    "symbolic": 2.2,
+    "political": 0.4
+  },
+  "world_logic": {
+    "maintenance": { "min_quiz_per_weeks": 1 },
+    "strikes": { "on_missed_maintenance": 1, "max_strikes": 2, "consequence": "fired" },
+    "fired_to": "nav"
+  },
+  "diegetic_text": {
+    "offer": ["Du får følgere."],
+    "maintenance_warning": ["Engasjementet synker."],
+    "fired": ["Algoritmen forlater deg."],
+    "nav": ["Ingen ser deg lenger."]
+  }
+},
+
+    {
+  "career_id": "subkultur",
+  "economy": {
+    "salary_by_tier": { "1": 4, "2": 7, "3": 13 },
+    "weekly_expenses": { "base": 1, "risk_modifier": 1.1 },
+    "risk": { "volatility": 0.8, "layoff_chance_per_week": 0.1 }
+  },
+  "capital_base": {
+    "economic": 0.8,
+    "cultural": 1.4,
+    "social": 2.1,
+    "symbolic": 2.0,
+    "political": 0.2
+  },
+  "world_logic": {
+    "maintenance": { "min_quiz_per_weeks": 1 },
+    "strikes": { "on_missed_maintenance": 1, "max_strikes": 1, "consequence": "fired" },
+    "fired_to": "nav"
+  },
+  "diegetic_text": {
+    "offer": ["Noen legger merke til deg i undergrunnen."],
+    "maintenance_warning": ["Du mister fotfeste."],
+    "fired": ["Miljøet snur ryggen til."],
+    "nav": ["Du står alene igjen."]
+  }
+}
+  ]
+}
