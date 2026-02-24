@@ -187,6 +187,96 @@
     fjord.setAttribute("filter", "url(#civiDrop)");
     base.appendChild(fjord);
 
+
+
+     function addIsland(x, y, r) {
+     const island = svgEl("ellipse");
+     island.setAttribute("cx", x);
+     island.setAttribute("cy", y);
+     island.setAttribute("rx", r * 1.6);
+     island.setAttribute("ry", r);
+     island.setAttribute("fill", "rgba(70,110,70,0.7)");
+     island.setAttribute("stroke", "rgba(40,70,40,0.4)");
+     island.setAttribute("stroke-width", "1.5");
+     base.appendChild(island);
+   }
+
+   addIsland(w*0.55, h*0.86, 10);
+   addIsland(w*0.62, h*0.90, 7);
+   addIsland(w*0.48, h*0.89, 8);
+
+   
+// Sentrum-markering (svak tetthet)
+const sentrum = svgEl("circle");
+sentrum.setAttribute("cx", w*0.48);
+sentrum.setAttribute("cy", h*0.55);
+sentrum.setAttribute("r", 35);
+sentrum.setAttribute("fill", "rgba(0,0,0,0.08)");
+base.appendChild(sentrum);
+
+
+    // Akershus / historisk sentrum
+const akershus = svgEl("polygon");
+akershus.setAttribute("points", `
+  ${w*0.50},${h*0.60}
+  ${w*0.52},${h*0.62}
+  ${w*0.49},${h*0.64}
+  ${w*0.47},${h*0.61}
+`);
+akershus.setAttribute("fill", "rgba(90,90,90,0.6)");
+akershus.setAttribute("stroke", "rgba(40,40,40,0.6)");
+akershus.setAttribute("stroke-width", "1");
+base.appendChild(akershus);
+
+    // Ekeberg-platå
+const ekeberg = svgEl("path");
+ekeberg.setAttribute("d", `
+  M ${w*0.60} ${h*0.62}
+  Q ${w*0.72} ${h*0.58}, ${w*0.78} ${h*0.68}
+  L ${w*0.72} ${h*0.74}
+  Q ${w*0.64} ${h*0.70}, ${w*0.60} ${h*0.62}
+  Z
+`);
+ekeberg.setAttribute("fill", "rgba(80,120,80,0.6)");
+ekeberg.setAttribute("stroke", "rgba(40,80,40,0.35)");
+ekeberg.setAttribute("stroke-width", "1.5");
+base.appendChild(ekeberg);
+
+    // Holmenkollen / vestlig høyde
+const holmen = svgEl("path");
+holmen.setAttribute("d", `
+  M ${w*0.22} ${h*0.38}
+  Q ${w*0.30} ${h*0.30}, ${w*0.40} ${h*0.32}
+  L ${w*0.35} ${h*0.40}
+  Q ${w*0.28} ${h*0.42}, ${w*0.22} ${h*0.38}
+  Z
+`);
+holmen.setAttribute("fill", "rgba(70,110,70,0.65)");
+holmen.setAttribute("stroke", "rgba(40,70,40,0.4)");
+holmen.setAttribute("stroke-width", "1.5");
+base.appendChild(holmen);
+
+
+function districtLine(d) {
+  const p = svgEl("path");
+  p.setAttribute("d", d);
+  p.setAttribute("fill", "none");
+  p.setAttribute("stroke", "rgba(0,0,0,0.18)");
+  p.setAttribute("stroke-width", "1");
+  p.setAttribute("stroke-dasharray", "4 6");
+  return p;
+}
+
+base.appendChild(districtLine(`
+  M ${w*0.40} ${h*0.40}
+  Q ${w*0.48} ${h*0.45}, ${w*0.52} ${h*0.55}
+`));
+
+base.appendChild(districtLine(`
+  M ${w*0.48} ${h*0.55}
+  Q ${w*0.60} ${h*0.60}, ${w*0.68} ${h*0.68}
+`));
+    
     // Bymasse – stilisert Oslo-silhuett (ikke ellipse)
     const city = svgEl("path");
     city.setAttribute("d", `
@@ -205,6 +295,20 @@
     city.setAttribute("filter", "url(#civiDrop)");
     base.appendChild(city);
 
+    
+    // Nordmarka (skog/terreng)
+   const marka = svgEl("path");
+   marka.setAttribute("d", `
+     M ${w*0.20} ${h*0.20}
+     Q ${w*0.35} ${h*0.10}, ${w*0.55} ${h*0.12}
+     Q ${w*0.70} ${h*0.18}, ${w*0.80} ${h*0.30}
+     L ${w*0.20} ${h*0.30}
+     Z
+    `);
+    marka.setAttribute("fill", "rgba(60,90,60,0.55)");
+    marka.setAttribute("stroke", "rgba(40,70,40,0.25)");
+    marka.setAttribute("stroke-width", "2");
+    base.insertBefore(marka, city);
 
     // Akerselva (lysere blågrønn, rund caps)
     const elv = svgEl("line");
