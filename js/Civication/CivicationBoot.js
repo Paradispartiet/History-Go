@@ -4,8 +4,8 @@
 
 async function loadCivicationData() {
   const [badgesRes, careersRes] = await Promise.all([
-    fetch("/History-Go/data/badges.json"),
-    fetch("/History-Go/data/hg_careers.json")
+    fetch("/data/badges.json"),
+    fetch("/data/Civication/hg_careers.json")
   ]);
 
   const badgesJson = await badgesRes.json();
