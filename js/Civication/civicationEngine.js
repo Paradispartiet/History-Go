@@ -26,6 +26,7 @@
     tracks: [],
 
      // --- meta ---
+     unemployed_since_iso: null,
      version: 1
      };
 
@@ -100,58 +101,132 @@ function weekKey(d = new Date()) {
   return `${date.getUTCFullYear()}-W${String(weekNo).padStart(2,"0")}`;
 }
 
+function weeksBetween(a, b) {
+  const ms = Math.abs(b - a);
+  return ms / (7 * 24 * 60 * 60 * 1000);
+}
+
+function normalizeWallet(w) {
+  // Én canonical form: { balance, last_tick_iso }
+  if (!w || typeof w !== "object") return { balance: 0, last_tick_iso: null };
+  const balance = Number.isFinite(Number(w.balance)) ? Number(w.balance) :
+                  (Number.isFinite(Number(w.pc)) ? Number(w.pc) : 0);
+  return { ...w, balance, last_tick_iso: w.last_tick_iso || null };
+}
+
 function tickPCIncomeWeekly() {
-  const wallet = getPCWallet();
+  let wallet = normalizeWallet(getPCWallet());
   const active = getActivePosition();
   const now = new Date();
-
-  // Ingen jobb → ingen lønn
-  if (!active?.career_id) {
-    wallet.last_tick_iso = now.toISOString();
-    savePCWallet(wallet);
-    return;
-  }
 
   const lastIso = wallet.last_tick_iso;
   const lastWeek = lastIso ? weekKey(new Date(lastIso)) : null;
   const thisWeek = weekKey(now);
 
-  // Samme uke → allerede betalt
+  // Samme uke → allerede prosessert
   if (lastWeek === thisWeek) return;
 
-  // Finn career-regler (curve-basert lønn)
+  // Hent globale regler
+  const navAfterWeeks =
+    Number(window.HG_CAREERS?.global_rules?.unemployment?.nav_after_weeks || 0);
+  const navWeeklyPc =
+    Number(window.HG_CAREERS?.global_rules?.unemployment?.nav_weekly_pc || 0);
+
+  // --- NAV/arbeidsledig-løp ---
+  if (!active?.career_id) {
+    const state = window.HG_CiviEngine?.getState?.() || null;
+    const sinceIso = state?.unemployed_since_iso;
+    const since = sinceIso ? new Date(sinceIso) : null;
+
+    // Hvis vi ikke har startpunkt, setter vi det (men betaler ikke NAV samme uke med en gang)
+    if (!sinceIso) {
+      try { window.HG_CiviEngine?.setState?.({ unemployed_since_iso: now.toISOString() }); } catch {}
+      wallet.last_tick_iso = now.toISOString();
+      savePCWallet(wallet);
+      return;
+    }
+
+    // Før navAfterWeeks: ingen penger
+    const w = since ? weeksBetween(since, now) : 0;
+    if (w >= navAfterWeeks && navWeeklyPc > 0) {
+      wallet.balance += Math.floor(navWeeklyPc);
+    }
+
+    wallet.last_tick_iso = now.toISOString();
+    savePCWallet(wallet);
+    return;
+  }
+
+  // --- I jobb: lønn + utgifter + risk ---
   const career = window.HG_CAREERS?.careers?.find(
     c => String(c.career_id) === String(active.career_id)
   );
+  if (!career) {
+    wallet.last_tick_iso = now.toISOString();
+    savePCWallet(wallet);
+    return;
+  }
 
-  if (!career) return;
-
-  // Finn tierIndex via badge + merits
   const merits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
   const points = Number(merits[active.career_id]?.points || 0);
-
   const badge = window.BADGES?.find(b => b.id === active.career_id);
-  if (!badge) return;
+  if (!badge) {
+    wallet.last_tick_iso = now.toISOString();
+    savePCWallet(wallet);
+    return;
+  }
 
   const { tierIndex } = deriveTierFromPoints(badge, points);
 
-  // Bruk én felles lønnsmodell
-  const weekly = calculateWeeklySalary(career, tierIndex);
+  // 1) Lønn fra economy.salary_by_tier
+  const weeklyIncome = calculateWeeklySalary(career, tierIndex);
+  wallet.balance += Math.floor(weeklyIncome);
 
-  wallet.balance += Math.floor(weekly);
+  // 2) Ukentlige utgifter
+  const baseExpense = Number(career?.economy?.weekly_expenses?.base || 0);
+  const riskMod = Number(career?.economy?.weekly_expenses?.risk_modifier || 1);
+  const weeklyExpense = Math.floor(baseExpense * riskMod);
+  wallet.balance -= weeklyExpense;
 
+  // 3) Layoff-roll
+  const layoffChance = Number(career?.economy?.risk?.layoff_chance_per_week || 0);
+  const roll = Math.random();
+  if (layoffChance > 0 && roll < layoffChance) {
+    const prev = getActivePosition();
+
+    // Flytt til historikk
+    appendJobHistoryEnded(prev, "layoff");
+
+    // Fjern aktiv jobb
+    setActivePosition(null);
+
+    // Start arbeidsledighetstid
+    try { window.HG_CiviEngine?.setState?.({ unemployed_since_iso: now.toISOString() }); } catch {}
+
+    // Psyche: kollaps/markør (valgfritt, men konsekvent med resten)
+    try { window.CivicationPsyche?.registerCollapse?.(prev?.career_id, "layoff"); } catch {}
+
+    // Inbox: fired-event (bruk din eksisterende fired-konstruksjon)
+    try {
+      const firedEv = window.HG_CiviEngine?.makeFiredEvent?.(window.HG_CiviEngine?.getState?.().active_role_key);
+      if (firedEv) window.HG_CiviEngine?.enqueueEvent?.(firedEv);
+    } catch {}
+
+    wallet.last_tick_iso = now.toISOString();
+    savePCWallet(wallet);
+    return;
+  }
+
+  // 4) Capital Engine (som før)
   if (window.CAPITAL_ENGINE?.applyCareerCapital) {
-  const capitalState = JSON.parse(localStorage.getItem("hg_capital_v1") || "{}");
+    const capitalState = JSON.parse(localStorage.getItem("hg_capital_v1") || "{}");
+    const updated = window.CAPITAL_ENGINE.applyCareerCapital(career, tierIndex, capitalState);
+    localStorage.setItem("hg_capital_v1", JSON.stringify(updated));
+  }
 
-  const updated = window.CAPITAL_ENGINE.applyCareerCapital(
-    career,
-    tierIndex,
-    capitalState
-  );
+  // Klarer jobbtick → nullstill unemployment siden du faktisk er i jobb
+  try { window.HG_CiviEngine?.setState?.({ unemployed_since_iso: null }); } catch {}
 
-  localStorage.setItem("hg_capital_v1", JSON.stringify(updated));
-}
-   
   wallet.last_tick_iso = now.toISOString();
   savePCWallet(wallet);
 }
@@ -435,14 +510,36 @@ function tickPCIncomeWeekly() {
       // 2) Pulse gating
       if (!this.canPulseNow()) return { enqueued: false, reason: "pulse_used" };
 
-      // 3) Arbeidsledig => NAV-mail
-      if (!active) {
-        const nav = this.makeNavEvent();
-        this.enqueueEvent(nav);
-        this.markPulseUsed();
-        return { enqueued: true, type: "nav", event: nav };
-      }
+// 3) Arbeidsledig => før NAV: stille / evt. “arbeidsledig”-mail, etter X uker: NAV-mail
+if (!active) {
+  const st = this.getState();
+  const now = new Date();
 
+  // Sett startpunkt om mangler
+  if (!st.unemployed_since_iso) {
+    this.setState({ unemployed_since_iso: now.toISOString() });
+    this.markPulseUsed();
+    return { enqueued: false, reason: "unemployed_started" };
+  }
+
+  const navAfterWeeks =
+    Number(window.HG_CAREERS?.global_rules?.unemployment?.nav_after_weeks || 0);
+
+  const since = new Date(st.unemployed_since_iso);
+  const w = weeksBetween(since, now);
+
+  if (w >= navAfterWeeks) {
+    const nav = this.makeNavEvent();
+    this.enqueueEvent(nav);
+    this.markPulseUsed();
+    return { enqueued: true, type: "nav", event: nav };
+  }
+
+  // Før NAV: bruk pulse uten mail (stille uke)
+  this.markPulseUsed();
+  return { enqueued: false, reason: "unemployed_pre_nav" };
+}
+       
       // 4) Har jobb => velg fra pack
       const packFile = this.packMap[String(active?.career_id || "").trim()] || `${role_key}.json`;
       const pack = await this.loadPack(packFile);
