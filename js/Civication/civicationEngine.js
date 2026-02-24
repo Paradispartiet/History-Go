@@ -242,9 +242,9 @@ function tickPCIncomeWeekly() {
   // I JOBB
   // =========================================================
 
-  const career = window.HG_CAREERS?.careers?.find(
-    c => String(c.career_id) === String(active.career_id)
-  );
+     const career = window.HG_CAREERS?.find(
+     c => String(c.career_id) === String(active.career_id)
+   );
 
   if (!career) {
     wallet.last_tick_iso = now.toISOString();
