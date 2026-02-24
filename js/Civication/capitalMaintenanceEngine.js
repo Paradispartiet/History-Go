@@ -61,9 +61,17 @@
   }
 
   function loadCapitalValues() {
-    const raw = localStorage.getItem(LS_CAPITAL_VALUES);
-    return safeParse(raw, {});
-  }
+  const raw = localStorage.getItem(LS_CAPITAL_VALUES);
+  const v = safeParse(raw, {});
+
+  // ensure keys (opprydding: én kapital-liste)
+  const TYPES = ["economic","cultural","social","symbolic","political","institutional","subculture"];
+  TYPES.forEach(t => {
+    if (!Number.isFinite(Number(v[t]))) v[t] = 0;
+  });
+
+  return v;
+}
 
   function saveCapitalValues(obj) {
     try { localStorage.setItem(LS_CAPITAL_VALUES, JSON.stringify(obj || {})); } catch {}
