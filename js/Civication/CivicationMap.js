@@ -170,12 +170,16 @@
     const fx = svgEl("g");
     fx.setAttribute("id", "civi-map-fx");
 
-    // Fjord (sommerfjord)
-    const fjord = svgEl("ellipse");
-    fjord.setAttribute("cx", w * 0.55);
-    fjord.setAttribute("cy", h * 0.88);
-    fjord.setAttribute("rx", w * 0.38);
-    fjord.setAttribute("ry", h * 0.20);
+// Fjord (sommerfjord) – stilisert form (ikke ellipse)
+    const fjord = svgEl("path");
+    fjord.setAttribute("d", `
+      M ${w*0.18} ${h*0.76}
+      Q ${w*0.34} ${h*0.83}, ${w*0.52} ${h*0.88}
+      Q ${w*0.68} ${h*0.92}, ${w*0.86} ${h*0.86}
+      L ${w*0.86} ${h*1.02}
+      L ${w*0.18} ${h*1.02}
+      Z
+    `);
     fjord.setAttribute("fill", "url(#civiFjordGrad)");
     fjord.setAttribute("opacity", "0.92");
     fjord.setAttribute("stroke", "rgba(20,60,90,0.22)");
@@ -183,29 +187,24 @@
     fjord.setAttribute("filter", "url(#civiDrop)");
     base.appendChild(fjord);
 
-    // Bymasse (park/grønn byflate – 50-talls illustrasjon)
-    const city = svgEl("ellipse");
-    city.setAttribute("cx", w * 0.48);
-    city.setAttribute("cy", h * 0.55);
-    city.setAttribute("rx", w * 0.32);
-    city.setAttribute("ry", h * 0.32);
+    // Bymasse – stilisert Oslo-silhuett (ikke ellipse)
+    const city = svgEl("path");
+    city.setAttribute("d", `
+      M ${w*0.26} ${h*0.62}
+      Q ${w*0.28} ${h*0.48}, ${w*0.38} ${h*0.38}
+      Q ${w*0.50} ${h*0.28}, ${w*0.64} ${h*0.34}
+      Q ${w*0.74} ${h*0.40}, ${w*0.76} ${h*0.52}
+      Q ${w*0.77} ${h*0.62}, ${w*0.68} ${h*0.68}
+      Q ${w*0.58} ${h*0.74}, ${w*0.45} ${h*0.74}
+      Q ${w*0.32} ${h*0.72}, ${w*0.26} ${h*0.62}
+      Z
+    `);
     city.setAttribute("fill", "url(#civiCityGrad)");
     city.setAttribute("stroke", "rgba(40,60,40,0.22)");
     city.setAttribute("stroke-width", "2.5");
     city.setAttribute("filter", "url(#civiDrop)");
     base.appendChild(city);
 
-    // Grønn “belt” rundt byen (spillkart-følelse)
-    const belt = svgEl("ellipse");
-    belt.setAttribute("cx", w * 0.48);
-    belt.setAttribute("cy", h * 0.55);
-    belt.setAttribute("rx", w * 0.35);
-    belt.setAttribute("ry", h * 0.35);
-    belt.setAttribute("fill", "none");
-    belt.setAttribute("stroke", "rgba(70,120,70,0.20)");
-    belt.setAttribute("stroke-width", "10");
-    belt.setAttribute("opacity", "0.35");
-    base.appendChild(belt);
 
     // Akerselva (lysere blågrønn, rund caps)
     const elv = svgEl("line");
@@ -219,25 +218,71 @@
     elv.setAttribute("stroke-linecap", "round");
     base.appendChild(elv);
 
-    // Tram-ring (spillkart / retro byring)
-    const ring = svgEl("ellipse");
-    ring.setAttribute("cx", w * 0.48);
-    ring.setAttribute("cy", h * 0.55);
-    ring.setAttribute("rx", w * 0.29);
-    ring.setAttribute("ry", h * 0.29);
-    ring.setAttribute("fill", "none");
-    ring.setAttribute("stroke", "rgba(180,60,40,0.35)");
-    ring.setAttribute("stroke-width", "3");
-    ring.setAttribute("stroke-dasharray", "10 10");
-    ring.setAttribute("opacity", "0.65");
-    base.appendChild(ring);
-    // Roads
-    drawRoad(base, w * 0.48, h * 0.55, w * 0.35, h * 0.55); // sentrum → frogner
-    drawRoad(base, w * 0.48, h * 0.55, w * 0.46, h * 0.45); // sentrum → grünerløkka
-    drawRoad(base, w * 0.48, h * 0.55, w * 0.52, h * 0.60); // sentrum → gamle oslo
+    // -------------------------------------------------------
+    // Trikkelinjer (forenklet, realistisk Oslo-struktur)
+    // -------------------------------------------------------
 
-    // Skyline
-    drawSkyline(base, w, h);
+    const tram = svgEl("g");
+    tram.setAttribute("id", "civi-tram");
+
+    function tramLine(points) {
+      const path = svgEl("path");
+      path.setAttribute("d", points);
+      path.setAttribute("fill", "none");
+      path.setAttribute("stroke", "rgba(160,0,0,0.55)");
+      path.setAttribute("stroke-width", "2.2");
+      path.setAttribute("stroke-linecap", "round");
+      path.setAttribute("stroke-linejoin", "round");
+      return path;
+    }
+
+    // Vest–Sentrum–Øst
+    tram.appendChild(tramLine(`
+      M ${w*0.30} ${h*0.56}
+      Q ${w*0.40} ${h*0.54}, ${w*0.48} ${h*0.55}
+      Q ${w*0.58} ${h*0.58}, ${w*0.66} ${h*0.60}
+    `));
+
+    // Nord–Sentrum–Sør
+    tram.appendChild(tramLine(`
+      M ${w*0.46} ${h*0.32}
+      Q ${w*0.47} ${h*0.45}, ${w*0.48} ${h*0.55}
+      Q ${w*0.50} ${h*0.66}, ${w*0.52} ${h*0.75}
+    `));
+
+    base.appendChild(tram);
+
+    // -------------------------------------------------------
+    // Hovedveier (E6 / Ring 3 inspirert)
+    // -------------------------------------------------------
+
+    function drawRoadPath(d, strength = 1) {
+      const road = svgEl("path");
+      road.setAttribute("d", d);
+      road.setAttribute("fill", "none");
+      road.setAttribute("stroke", "rgba(80,80,80,0.45)");
+      road.setAttribute("stroke-width", 2 + strength);
+      road.setAttribute("stroke-linecap", "round");
+      return road;
+    }
+
+    // Ring 3-ish bue
+    base.appendChild(drawRoadPath(`
+      M ${w*0.35} ${h*0.40}
+      Q ${w*0.50} ${h*0.32}, ${w*0.65} ${h*0.45}
+      Q ${w*0.70} ${h*0.60}, ${w*0.55} ${h*0.70}
+    `, 1.2));
+
+    // E6 sør–nord
+    base.appendChild(drawRoadPath(`
+      M ${w*0.60} ${h*0.90}
+      Q ${w*0.58} ${h*0.70}, ${w*0.55} ${h*0.55}
+      Q ${w*0.52} ${h*0.40}, ${w*0.50} ${h*0.20}
+    `, 1.4));
+
+    // -------------------------------------------------------
+    // Ingen skyline – realistisk kart skal ikke ha kulisser
+    // -------------------------------------------------------
 
     svg.appendChild(base);
     svg.appendChild(objects);
@@ -249,61 +294,6 @@
 
     renderCommercialObjects(objects, fx, w, h);
     renderHomeObjects(objects, fx, zones);
-  }
-    
-  function drawRoad(base, x1, y1, x2, y2) {
-  const capital = window.USER_CAPITAL || {};
-  const road = svgEl("line");
-    road.setAttribute("x1", x1);
-    road.setAttribute("y1", y1);
-    road.setAttribute("x2", x2);
-    road.setAttribute("y2", y2);
-    road.setAttribute("stroke", "rgba(255,255,255,0.08)");
-    road.setAttribute("stroke-width", 3 + ((capital.institutional || 0) / 40));
-    
-    base.appendChild(road);
-  }
-
-  function drawSkyline(base, w, h) {
-    const skyline = svgEl("g");
-    skyline.setAttribute("id", "civi-skyline");
-
-    const centerX = w * 0.48;
-    const centerY = h * 0.55;
-
-    for (let i = 0; i < 6; i++) {
-      const width = 18 + i * 4;
-      const height = 60 + i * 12;
-
-      const tower = svgEl("rect");
-      tower.setAttribute("x", centerX - 60 + i * 25);
-      tower.setAttribute("y", centerY - height);
-      tower.setAttribute("width", width);
-      tower.setAttribute("height", height);
-      tower.setAttribute("fill", "rgba(255,255,255,0.05)");
-      tower.setAttribute("stroke", "rgba(255,255,255,0.08)");
-      tower.setAttribute("stroke-width", "1");
-
-      skyline.appendChild(tower);
-    }
-
-    base.appendChild(skyline);
-  }
-
-  function addDistrictGlow(layer, x, y) {
-  const glow = svgEl("circle");
-  glow.setAttribute("cx", x);
-  glow.setAttribute("cy", y);
-
-  const cultural = Number(window.USER_CAPITAL?.cultural || 0);
-  const r = 18 + (cultural / 4);
-
-  glow.setAttribute("r", r);
-  glow.setAttribute("fill", "rgba(255, 235, 170, 0.35)");
-  glow.setAttribute("class", "civi-glow");
-  layer.appendChild(glow);
-}
-
   function getZones(w, h) {
     return {
       // Spill-sone (ikke bydel)
