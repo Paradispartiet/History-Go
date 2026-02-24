@@ -568,39 +568,42 @@ function qualifiesForCareer(player, career) {
 }
 
 function calculateWeeklySalary(career, tierIndex) {
-  const maxTier = career.max_tier ?? 1;
-  const progress = maxTier === 0 ? 0 : tierIndex / maxTier;
+  // Kilde: hg_careers.json → economy.salary_by_tier (ukelønn per tier)
+  // tierIndex kommer fra deriveTierFromPoints og er 0-basert.
+  const tier = (Number.isFinite(tierIndex) ? tierIndex : 0) + 1;
 
-  let factor;
+  const byTier = career?.economy?.salary_by_tier;
+  let weekly = byTier && Object.prototype.hasOwnProperty.call(byTier, String(tier))
+    ? Number(byTier[String(tier)])
+    : (byTier && Object.prototype.hasOwnProperty.call(byTier, tier)
+        ? Number(byTier[tier])
+        : 0);
 
-  switch (career.curve) {
-    case "early_peak":
-      factor = Math.sqrt(progress);
+  if (!Number.isFinite(weekly)) weekly = 0;
+
+  // Rounding (default: nearest) fra HG_CAREERS.global_rules.salary.rounding
+  const rounding =
+    window.HG_CAREERS?.global_rules?.salary?.rounding || "nearest";
+
+  switch (rounding) {
+    case "floor":
+      weekly = Math.floor(weekly);
       break;
-
-    case "late_bloom":
-      factor = progress * progress;
+    case "ceil":
+      weekly = Math.ceil(weekly);
       break;
-
-    case "flat":
-      factor = 0.7 + progress * 0.1;
-      break;
-
-    case "volatile":
-      factor = progress * (0.8 + Math.random() * 0.4);
-      break;
-
+    case "nearest":
     default:
-      factor = progress;
+      weekly = Math.round(weekly);
+      break;
   }
 
-  const annual = career.base_salary * factor * (career.career_mod ?? 1);
-  return annual / 52;
+  return weekly;
 }
 
 function payWeeklySalary(player, career, tierIndex) {
   const weekly = calculateWeeklySalary(career, tierIndex);
-  player.balance = (player.balance ?? 0) + weekly;
+  player.balance = (Number(player.balance) || 0) + weekly;
   return weekly;
 }
 
@@ -610,3 +613,5 @@ Object.assign(window.HG_CiviEngine, {
   calculateWeeklySalary,
   payWeeklySalary
 });
+
+})();
