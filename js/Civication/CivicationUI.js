@@ -650,7 +650,7 @@ function renderPerception() {
   if (!el) return;
 
   const snapshot = window.CivicationPsyche?.getSnapshot?.();
-  const capital = window.USER_CAPITAL || {};
+  const capital = JSON.parse(localStorage.getItem("hg_capital_v1") || "{}");
   const identity = window.HG_IdentityCore?.getProfile?.() || {};
 
   const lines = window.HG_IdentityCore?.generatePerceptionProfile?.({
