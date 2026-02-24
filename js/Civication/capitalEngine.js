@@ -2,7 +2,7 @@
 // Capital Engine v3 – Strukturell modell + Home Influence
 // =======================================================
 
-export function calculateCapital(
+function calculateCapital(
   user,
   CIVI_ITEMS,
   CIVI_SYNERGIES,
@@ -11,11 +11,14 @@ export function calculateCapital(
 ) {
 
   const capital = {
-    economic: 0,
-    cultural: 0,
-    social: 0,
-    symbolic: 0
-  };
+  economic: 0,
+  cultural: 0,
+  social: 0,
+  symbolic: 0,
+  political: 0,
+  institutional: 0,
+  subculture: 0
+};
 
   // ----------------------------------------------------
   // 1️⃣ Jobb-base (strukturell posisjon)
@@ -95,7 +98,7 @@ export function calculateCapital(
 // Career multiplier
 // =======================================================
 
-export function applyCareerCapital(career, tier, capitalState) {
+function applyCareerCapital(career, tier, capitalState) {
   if (!career || !career.capital_base) return capitalState;
 
   const tierMultiplier = tier === 3 ? 2 : tier === 2 ? 1.5 : 1;
@@ -112,5 +115,6 @@ export function applyCareerCapital(career, tier, capitalState) {
 
 
 window.CAPITAL_ENGINE = {
+  calculateCapital,
   applyCareerCapital
 };
