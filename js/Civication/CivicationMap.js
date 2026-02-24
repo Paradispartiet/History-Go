@@ -985,16 +985,10 @@ function normalizeCapital(capital) {
   render();
 
   window.addEventListener("resize", render, { passive: true });
-
-  // Re-render når Home endres
   window.addEventListener("civi:homeChanged", render);
+  window.addEventListener("civi:mapActivated", render);
 }
 
-  document.addEventListener("DOMContentLoaded", init);
+document.addEventListener("DOMContentLoaded", init);
 
 })();
-
-window.addEventListener("civi:mapActivated", () => {
-  console.log("Map activated → rendering");
-  render();
-});
