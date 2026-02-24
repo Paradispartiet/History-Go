@@ -26,7 +26,7 @@
     tracks: [],
 
      // --- meta ---
-     unemployed_since_iso: null,
+     unemployed_since_week: null,
      version: 1
      };
 
@@ -594,24 +594,26 @@ if (!active) {
   const now = new Date();
 
   // Sett startpunkt om mangler
-  if (!st.unemployed_since_iso) {
-    this.setState({ unemployed_since_iso: now.toISOString() });
-    this.markPulseUsed();
-    return { enqueued: false, reason: "unemployed_started" };
-  }
-
   const navAfterWeeks =
-    Number(window.HG_CAREERS?.global_rules?.unemployment?.nav_after_weeks || 0);
+  Number(window.HG_CAREERS?.global_rules?.unemployment?.nav_after_weeks || 0);
 
-  const since = new Date(st.unemployed_since_iso);
-  const w = weeksBetween(since, now);
+const nowW = weekKey(now);
 
-  if (w >= navAfterWeeks) {
-    const nav = this.makeNavEvent();
-    this.enqueueEvent(nav);
-    this.markPulseUsed();
-    return { enqueued: true, type: "nav", event: nav };
-  }
+if (!st.unemployed_since_week) {
+  this.setState({ unemployed_since_week: nowW });
+  this.markPulseUsed();
+  return { enqueued: false, reason: "unemployed_started" };
+}
+
+const weeksPassed =
+  weeksPassedBetweenWeekKeys(st.unemployed_since_week, nowW);
+
+if (weeksPassed >= navAfterWeeks) {
+  const nav = this.makeNavEvent();
+  this.enqueueEvent(nav);
+  this.markPulseUsed();
+  return { enqueued: true, type: "nav", event: nav };
+}
 
   // Før NAV: bruk pulse uten mail (stille uke)
   this.markPulseUsed();
