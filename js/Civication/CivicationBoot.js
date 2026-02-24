@@ -36,4 +36,8 @@ async function loadCivicationData() {
 
   document.addEventListener("DOMContentLoaded", start);
 
+window.addEventListener("updateProfile", () => {
+  checkTierUpgrades();
+});
+  
 })();
