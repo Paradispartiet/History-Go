@@ -338,8 +338,44 @@ function tickPCIncomeWeekly() {
       }
 
       // Ellers velg første (kan senere randomiseres)
-      return candidates[0] || null;
+      // Score-basert valg (bruker gating dersom definert)
+function scoreMail(m) {
+  let score = 0;
+
+  const identityTags = state.identity_tags || [];
+  const tracks = state.tracks || [];
+
+  const gating = m.gating || {};
+
+  // Hard blokkering
+  if (gating.avoid_tags) {
+    for (const t of gating.avoid_tags) {
+      if (identityTags.includes(t)) return -1000;
     }
+  }
+
+  // Prefer tags
+  if (gating.prefer_tags) {
+    for (const t of gating.prefer_tags) {
+      if (identityTags.includes(t)) score += 2;
+    }
+  }
+
+  // Prefer tracks
+  if (gating.prefer_tracks) {
+    for (const t of gating.prefer_tracks) {
+      if (tracks.includes(t)) score += 3;
+    }
+  }
+
+  return score;
+}
+
+candidates.sort((a, b) => scoreMail(b) - scoreMail(a));
+
+return candidates[0] || null;
+
+}
 
     makeFiredEvent(role_key) {
       // fallback dersom pack ikke har fired-mail
