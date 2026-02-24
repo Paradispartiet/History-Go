@@ -824,3 +824,12 @@ function payWeeklySalary(player, career, tierIndex) {
   player.balance = (Number(player.balance) || 0) + weekly;
   return weekly;
 }
+
+function getCapital() {
+  return JSON.parse(localStorage.getItem("hg_capital_v1") || "{}");
+}
+
+function saveCapital(cap) {
+  localStorage.setItem("hg_capital_v1", JSON.stringify(cap));
+  window.dispatchEvent(new Event("updateProfile"));
+}
