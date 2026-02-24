@@ -236,6 +236,32 @@ function tickPCIncomeWeekly() {
 
   wallet.balance -= weeklyExpense;
 
+   // --------------------------------------------------
+// Maintenance-krav (quiz-aktivitet)
+// --------------------------------------------------
+
+const rules = window.HG_CAREER_RULES?.careers?.find(
+  c => c.id === active.career_id
+);
+
+const minQuiz =
+  Number(rules?.world_logic?.maintenance?.min_quiz_per_weeks || 0);
+
+if (minQuiz > 0) {
+
+  const done =
+    getQuizCountLastWeek(active.career_id);
+
+  if (done < minQuiz) {
+
+    state.strikes = (state.strikes || 0) + 1;
+
+    state.lastMaintenanceFailAt = Date.now();
+
+    // Eventuelt logg i inbox senere
+  }
+}
+
   // 3️⃣ Layoff-roll
   const layoffChance =
     Number(career?.economy?.risk?.layoff_chance_per_week || 0);
@@ -833,3 +859,23 @@ function saveCapital(cap) {
   localStorage.setItem("hg_capital_v1", JSON.stringify(cap));
   window.dispatchEvent(new Event("updateProfile"));
 }
+
+function getQuizCountLastWeek(careerId) {
+  const history =
+    JSON.parse(localStorage.getItem("quiz_history") || "[]");
+
+  if (!Array.isArray(history)) return 0;
+
+  const now = Date.now();
+  const oneWeek = 7 * 24 * 60 * 60 * 1000;
+
+  return history.filter(h => {
+    if (!h?.date) return false;
+    if (String(h?.categoryId) !== String(careerId)) return false;
+
+    const t = new Date(h.date).getTime();
+    return now - t <= oneWeek;
+  }).length;
+}
+
+
