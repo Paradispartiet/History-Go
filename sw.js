@@ -92,6 +92,19 @@ const PRECACHE_URLS = [
 
   "js/boot.js",
   "js/app.js"
+
+     // ---------------- Civication ----------------
+  "Civication.html",
+
+  "js/Civication/civicationEngine.js",
+  "js/Civication/CivicationUI.js",
+  "js/Civication/CivicationMap.js",
+  "js/Civication/CivicationHome.js",
+  "js/Civication/capitalEngine.js",
+  "js/Civication/capitalMaintenanceEngine.js",
+
+  // Career data
+  "data/hg_careers.json",
 ];
 
 // -------------------- helpers --------------------
