@@ -439,24 +439,26 @@ base.appendChild(districtLine(`
     function createMiniBuilding(options = {}) {
 
   const capital =
-    JSON.parse(localStorage.getItem("hg_capital_v1") || {});
+  JSON.parse(localStorage.getItem("hg_capital_v1") || "{}");
 
-    const isSuburb = !!options.isSuburb;
-    const isCentral = !!options.isCentral;
-    const seed = Number(options.seed || 0);
+const isSuburb = !!options.isSuburb;
+const isCentral = !!options.isCentral;
+const seed = Number(options.seed || 0);
 
-    const type = normalizeType(options.type); JSON.parse(localStorage.getItem("hg_capital_v1") || {});
+const type = normalizeType(options.type);
 
-    const isSuburb = !!options.isSuburb;
-    const isCentral = !!options.isCentral;
-    const seed = Number(options.seed || 0);
+const baseScale = isCentral
+  ? 1.15
+  : (isSuburb ? 0.90 : 1.0);
 
-    const type = normalizeType(options.type);
-    const baseScale = isCentral ? 1.15 : (isSuburb ? 0.90 : 1.0);
-    const economicScale = 1 + (capital.economic || 0) / 200;
+const economicScale =
+  1 + (capital.economic || 0) / 200;
 
-    const wrapper = svgEl("g");
-    wrapper.setAttribute("transform", `scale(${baseScale * economicScale})`);
+const wrapper = svgEl("g");
+wrapper.setAttribute(
+  "transform",
+  `scale(${baseScale * economicScale})`
+);
 
     switch (type) {
       case "opera": wrapper.appendChild(buildOpera()); return wrapper;
