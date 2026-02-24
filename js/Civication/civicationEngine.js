@@ -202,6 +202,8 @@ function tickPCIncomeWeekly() {
   const active = getActivePosition();
   const now = new Date();
 
+  const state = window.HG_CiviEngine?.getState?.() || {};
+   
   const lastIso = wallet.last_tick_iso;
   const lastWeek = lastIso ? weekKey(new Date(lastIso)) : null;
   const thisWeek = weekKey(now);
@@ -317,7 +319,9 @@ if (minQuiz > 0) {
 
   if (done < minQuiz) {
 
-    state.strikes = (state.strikes || 0) + 1;
+    window.HG_CiviEngine?.setState?.({
+      strikes: (state.strikes || 0) + 1
+    });
 
     state.lastMaintenanceFailAt = Date.now();
 
