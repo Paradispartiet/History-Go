@@ -993,3 +993,8 @@ function normalizeCapital(capital) {
   document.addEventListener("DOMContentLoaded", init);
 
 })();
+
+window.addEventListener("civi:mapActivated", () => {
+  console.log("Map activated → rendering");
+  render();
+});
