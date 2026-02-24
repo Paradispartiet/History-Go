@@ -125,7 +125,59 @@ function weeksPassedBetweenWeekKeys(sinceW, nowW) {
   return Math.max(0, b - a);
 }
 
+function checkTierUpgrades() {
 
+  const merits =
+    JSON.parse(localStorage.getItem("merits_by_category") || "{}");
+
+  const tierState =
+    JSON.parse(localStorage.getItem("hg_badge_tiers_v1") || "{}");
+
+  const newTierState = { ...tierState };
+
+  const offers = [];
+
+  (window.BADGES || []).forEach(badge => {
+
+    const points =
+      Number(merits[badge.id]?.points || 0);
+
+    const { tierIndex } =
+      deriveTierFromPoints(badge, points);
+
+    const previousTier =
+      Number(tierState[badge.id] || 0);
+
+    if (tierIndex > previousTier) {
+
+      const career =
+        window.HG_CAREERS?.find(
+          c => String(c.career_id) === String(badge.id)
+        );
+
+      if (career) {
+        offers.push({
+          career_id: career.career_id,
+          title: career.title,
+          tier: tierIndex
+        });
+      }
+
+      newTierState[badge.id] = tierIndex;
+    }
+
+  });
+
+  localStorage.setItem(
+    "hg_badge_tiers_v1",
+    JSON.stringify(newTierState)
+  );
+
+  if (offers.length) {
+    setJobOffers(offers);
+  }
+}
+   
 function normalizeWallet(w) {
   // Én canonical form: { balance, last_tick_iso }
   if (!w || typeof w !== "object") return { balance: 0, last_tick_iso: null };
