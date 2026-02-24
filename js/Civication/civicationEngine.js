@@ -852,6 +852,8 @@ if (stability === "FIRED") {
     maxInbox: 1
   });
 
+window.checkTierUpgrades = checkTierUpgrades;
+   
 })(); // ← lukker IIFE
 
 function qualifiesForCareer(player, career) {
