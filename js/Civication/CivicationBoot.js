@@ -1,6 +1,7 @@
 // ============================================================
-// CIVICATION BOOT – single orchestrator
+// CIVICATION BOOT – single orchestrator (correct order)
 // ============================================================
+
 async function loadCivicationData() {
   const [badgesRes, careersRes] = await Promise.all([
     fetch("/History-Go/data/badges.json"),
@@ -14,30 +15,25 @@ async function loadCivicationData() {
   window.HG_CAREERS = careersJson.careers;
 }
 
-
 (function(){
 
-  function start() {
+  async function start() {
     console.log("Civication boot start");
 
-    // 1. UI
+    // 1. Load data FIRST
+    await loadCivicationData();
+
+    // 2. Init UI after data exists
     window.CivicationUI?.init?.();
 
-    // 2. Engine warmup (hvis finnes)
+    // 3. Warm engine after data exists
     window.HG_CiviEngine?.onAppOpen?.();
 
-    // 3. Signal at system er klart
+    // 4. Signal system ready
+    window.dispatchEvent(new Event("civi:dataReady"));
     window.dispatchEvent(new Event("civi:booted"));
   }
 
   document.addEventListener("DOMContentLoaded", start);
-
-  document.addEventListener("DOMContentLoaded", async () => {
-  console.log("Civication boot start");
-
-  await loadCivicationData();
-
-  window.dispatchEvent(new Event("civi:dataReady"));
-});
 
 })();
