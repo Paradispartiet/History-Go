@@ -18,21 +18,38 @@ async function loadCivicationData() {
 (function () {
 
   async function start() {
-    console.log("Civication boot start");
+  console.log("Civication boot start");
 
-    // 1. Load data FIRST
-    await loadCivicationData();
+  // 1️⃣ Load data FIRST
+  await loadCivicationData();
 
-    // 2. Init UI after data exists
-    window.CivicationUI?.init?.();
+  // 2️⃣ Instantiate Event Engine
+  window.HG_CiviEngine =
+    new CivicationEventEngine({
+      packBasePath: "data/Civication",
+      maxInbox: 1
+    });
 
-    // 3. Warm engine after data exists
-    window.HG_CiviEngine?.onAppOpen?.();
-
-    // 4. Signal system ready
-    window.dispatchEvent(new Event("civi:dataReady"));
-    window.dispatchEvent(new Event("civi:booted"));
+  // 3️⃣ Weekly økonomi
+  if (window.CivicationEconomyEngine?.tickWeekly) {
+    CivicationEconomyEngine.tickWeekly();
   }
+
+  // 4️⃣ Evaluer kontrakter
+  if (window.CivicationObligationEngine?.evaluate) {
+    CivicationObligationEngine.evaluate();
+  }
+
+  // 5️⃣ Init UI after data exists
+  window.CivicationUI?.init?.();
+
+  // 6️⃣ Warm engine after data exists
+  window.HG_CiviEngine?.onAppOpen?.();
+
+  // 7️⃣ Signal system ready
+  window.dispatchEvent(new Event("civi:dataReady"));
+  window.dispatchEvent(new Event("civi:booted"));
+}
 
   document.addEventListener("DOMContentLoaded", start);
 
