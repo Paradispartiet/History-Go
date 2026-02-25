@@ -1162,6 +1162,9 @@ fetch("data/Civication/hg_careers.json")
     console.error("Careers load error:", e);
   });
 
+// expose class globally (for boot/other modules)
+window.CivicationEventEngine = CivicationEventEngine;
+   
 })(); // ← lukker IIFE
 
 
