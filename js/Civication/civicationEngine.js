@@ -1163,8 +1163,6 @@ fetch("data/Civication/hg_careers.json")
   });
 
 window.CivicationEventEngine = CivicationEventEngine;
-   
-})(); // ← lukker IIFE
 
 
 
