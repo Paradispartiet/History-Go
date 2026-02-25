@@ -91,11 +91,10 @@ const PRECACHE_URLS = [
   "js/ui/geo-indicator.js",
 
   "js/boot.js",
-  "js/app.js"
+  "js/app.js",
 
-     // ---------------- Civication ----------------
+// ---------------- Civication ----------------
   "Civication.html",
-
   "js/Civication/civicationEngine.js",
   "js/Civication/CivicationUI.js",
   "js/Civication/CivicationMap.js",
