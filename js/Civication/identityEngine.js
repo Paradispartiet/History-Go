@@ -108,7 +108,7 @@ function generateNarrativeHint(capital, zones, changes) {
 // 4️⃣ Main identity update
 // -------------------------------------------------------
 
-export function updateIdentity(
+function updateIdentity(
   user,
   CIVI_ITEMS,
   CIVI_SYNERGIES,
