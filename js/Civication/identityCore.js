@@ -21,13 +21,13 @@
   }
 
   function loadIdentity() {
-    try {
-      const raw = JSON.parse(localStorage.getItem(LS_IDENTITY));
-      return raw || DEFAULT_IDENTITY;
-    } catch {
-      return DEFAULT_IDENTITY;
-    }
+  try {
+    const raw = JSON.parse(localStorage.getItem(LS_IDENTITY));
+    return raw || DEFAULT_IDENTITY;
+  } catch (e) {
+    return DEFAULT_IDENTITY;
   }
+}
 
   function saveIdentity(identity) {
     localStorage.setItem(LS_IDENTITY, JSON.stringify(identity));
