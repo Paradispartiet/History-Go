@@ -345,14 +345,6 @@ trustPct = clamp(trustPct + identityTrustShift, 0, 100);
     (integrity * 0.2) -
     (visibility * 0.2);
 
-
-   // Identity influence
-const identityMods = window.HG_IdentityCore?.getPsycheModifiers?.();
-let identityAutonomyBoost = 0;
-
-if (identityMods) {
-  identityAutonomyBoost = identityMods.autonomy || 0;
-}
   
   return clamp(
   raw +
