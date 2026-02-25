@@ -1244,7 +1244,7 @@ function calculateWeeklySalary(career, tierIndex) {
   return weekly;
 }
 
-
+window.calculateWeeklySalary = calculateWeeklySalary;
 
 function payWeeklySalary(player, career, tierIndex) {
 
