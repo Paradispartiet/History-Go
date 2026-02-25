@@ -305,9 +305,16 @@ function tickPCIncomeWeekly() {
 // Maintenance-krav (quiz-aktivitet)
 // --------------------------------------------------
 
-const rules = window.HG_CAREER_RULES?.careers?.find(
-  c => c.id === active.career_id
-);
+let rules = null;
+
+if (
+  window.HG_CAREER_RULES &&
+  Array.isArray(window.HG_CAREER_RULES.careers)
+) {
+  rules = window.HG_CAREER_RULES.careers.find(
+    c => c.id === active.career_id
+  ) || null;
+}
 
 const minQuiz =
   Number(rules?.world_logic?.maintenance?.min_quiz_per_weeks || 0);
