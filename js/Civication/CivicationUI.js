@@ -189,7 +189,7 @@ if (salaryLn && active?.career_id) {
 
   if (!meritLn) return;
 
-  const merits = ls("merits_by_category", {});
+  const merits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
   const keys = Object.keys(merits || {});
 
   if (!Array.isArray(BADGES) || !BADGES.length || !keys.length) {
