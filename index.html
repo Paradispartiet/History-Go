@@ -5,6 +5,32 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
   <title>History Go</title>
 
+  <script>
+  window.__lastRejection = null;
+
+  window.addEventListener("unhandledrejection", (e) => {
+    window.__lastRejection = e;
+
+    console.error("[REAL UNHANDLED REJECTION]");
+    console.error("reason:", e.reason);
+
+    // Prøv å få tekst/stack hvis det finnes
+    try { console.error("reason.message:", e.reason && e.reason.message); } catch {}
+    try { console.error("reason.stack:", e.reason && e.reason.stack); } catch {}
+
+    // Safari kan ha “tomme” objekter -> dump keys
+    try { console.error("reason keys:", e.reason ? Object.keys(e.reason) : null); } catch {}
+
+    // Viktig: hindrer dobbel logging/noise
+    e.preventDefault();
+  });
+
+  window.addEventListener("error", (e) => {
+    console.error("[WINDOW ERROR]", e.message, e.filename, e.lineno, e.colno);
+    console.error(e.error && e.error.stack);
+  });
+</script>
+  
   <!-- CSS -->
   <link rel="stylesheet" href="css/theme.css">
   <link rel="stylesheet" href="css/base.css">
