@@ -234,25 +234,22 @@
         if (career) {
 
           const now = new Date();
-          const expires = new Date(
-            now.getTime() + 7 * 86400000
-          );
+          const expires = new Date(now.getTime() + 7 * 86400000);
+
+          const offer_key =
+           badge.id + "_" + tierIndex + "_" + now.toISOString();
 
           offers.push({
-            offer_key:
-              badge.id +
-              "_" +
-              tierIndex +
-              "_" +
-              now.toISOString(),
-            career_id: career.career_id,
-            career_name: badge.name,
-            title: badge.name + " – " + label,
-            tier: tierIndex,
-            status: "pending",
-            created_iso: now.toISOString(),
-            expires_iso: expires.toISOString()
-          });
+           id: offer_key,          // ✅ UI forventer id
+           offer_key: offer_key,   // behold for sporbarhet
+           career_id: career.career_id,
+           career_name: badge.name,
+           title: badge.name + " – " + label,
+           tier: tierIndex,
+           status: "pending",
+           created_iso: now.toISOString(),
+           expires_iso: expires.toISOString()
+         });
         }
 
         newTierState[badge.id] = tierIndex;
