@@ -124,25 +124,41 @@ async function renderCivication() {
       "Status: Ingen aktiv jobb (ta quiz for å få jobbtilbud).";
   }
 
-  // ------------------------------------------------------------
-  // LØNN
-  // ------------------------------------------------------------
+// ------------------------------------------------------------
+// LØNN
+// ------------------------------------------------------------
 
-  if (salaryLn && active?.career_id) {
-    const merits =
-      JSON.parse(localStorage.getItem("merits_by_category") || "{}");
+if (salaryLn && active?.career_id) {
 
-    const points =
-      Number(merits[active.career_id]?.points || 0);
+  const merits =
+    JSON.parse(localStorage.getItem("merits_by_category") || "{}");
 
-    const weekly =
-      getWeeklySalaryFromBadges(active.career_id, points);
+  const points =
+    Number(merits[active.career_id]?.points || 0);
 
-    salaryLn.textContent =
-      Number.isFinite(weekly)
-        ? `Lønn: ${weekly} PC / uke`
-        : "Lønn: —";
-  }
+  const badge =
+    Array.isArray(window.BADGES)
+      ? window.BADGES.find(b => b && String(b.id) === String(active.career_id))
+      : null;
+
+  const tierIndex =
+    badge ? (deriveTierFromPoints(badge, points).tierIndex || 0) : 0;
+
+  const career =
+    Array.isArray(window.HG_CAREERS)
+      ? window.HG_CAREERS.find(c => c && String(c.career_id) === String(active.career_id))
+      : null;
+
+  const weekly =
+    (career && typeof window.calculateWeeklySalary === "function")
+      ? window.calculateWeeklySalary(career, tierIndex)
+      : NaN;
+
+  salaryLn.textContent =
+    Number.isFinite(weekly)
+      ? `Lønn: ${weekly} PC / uke`
+      : "Lønn: —";
+}
 
   // ------------------------------------------------------------
   // JOBBTILBUD
