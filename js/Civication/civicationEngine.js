@@ -1137,14 +1137,30 @@ answer(eventId, choiceId) {
 
 } // ← lukker class CivicationEventEngine
 
+// -------- load careers and THEN start engine --------
+fetch("data/Civication/hg_careers.json")
+  .then(function (r) {
+    if (!r.ok) {
+      throw new Error("Failed to load careers");
+    }
+    return r.json();
+  })
+  .then(function (data) {
 
-// -------- instantiate engine --------
-window.HG_CiviEngine = new CivicationEventEngine({
-  packBasePath: "data/civication",
-  maxInbox: 1
-});
+    window.HG_CAREERS = data;
 
-window.checkTierUpgrades = checkTierUpgrades;
+    // -------- instantiate engine --------
+    window.HG_CiviEngine = new CivicationEventEngine({
+      packBasePath: "data/Civication",
+      maxInbox: 1
+    });
+
+    window.checkTierUpgrades = checkTierUpgrades;
+
+  })
+  .catch(function (e) {
+    console.error("Careers load error:", e);
+  });
 
 })(); // ← lukker IIFE
 
@@ -1296,11 +1312,6 @@ function getQuizCountLastWeek(careerId) {
 
   }).length;
 }
-
-window.HG_CiviEngine = new CivicationEventEngine({
-  packBasePath: "data/civication",
-  maxInbox: 1
-});
 
 window.checkTierUpgrades = checkTierUpgrades;
 
