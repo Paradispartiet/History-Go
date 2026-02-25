@@ -483,7 +483,7 @@ function openDistrictSelector() {
   list.innerHTML = "";
 
   Object.values(districts).forEach(d => {
-    const canBuy = window.CivicationHome?.canPurchase?.(d.id);
+    const canBuy = window.CivicationHome?.canPurchaseDistrict?.(d.id);
 
     const card = document.createElement("div");
     card.className = "district-card" + (canBuy ? "" : " locked");
