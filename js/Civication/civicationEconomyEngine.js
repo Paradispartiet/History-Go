@@ -297,6 +297,28 @@ function checkTierUpgrades() {
   CivicationState.updateWallet(wallet);
 }
 
+
+
+function qualifiesForCareer(player, career) {
+
+  if (!career.required_badges) return true;
+
+  return career.required_badges.every(function (req) {
+
+    let tier = 0;
+
+    if (player.badges &&
+        Object.prototype.hasOwnProperty.call(player.badges, req.badge)) {
+
+      tier = player.badges[req.badge];
+    }
+
+    return tier >= req.min_tier;
+  });
+}
+
+
+  
 window.CivicationEconomyEngine = {
     tickPCIncomeWeekly
   };
