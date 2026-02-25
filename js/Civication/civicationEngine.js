@@ -952,6 +952,8 @@ fetch("data/Civication/hg_careers.json")
       maxInbox: 1
     });
 
+    CivicationEconomyEngine.tickPCIncomeWeekly();
+     
     window.checkTierUpgrades = checkTierUpgrades;
 
   })
