@@ -946,24 +946,6 @@ fetch("data/Civication/hg_careers.json")
 
     window.HG_CAREERS = data;
 
-    // -------- instantiate engine --------
-    window.HG_CiviEngine = new CivicationEventEngine({
-      packBasePath: "data/Civication",
-      maxInbox: 1
-    });
-
-    CivicationEconomyEngine.tickPCIncomeWeekly();
-     
-    window.checkTierUpgrades = checkTierUpgrades;
-
-  })
-  .catch(function (e) {
-    console.error("Careers load error:", e);
-  });
-
-window.CivicationEventEngine = CivicationEventEngine;
-
-
 
 function qualifiesForCareer(player, career) {
 
