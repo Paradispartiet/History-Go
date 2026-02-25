@@ -4,7 +4,7 @@
 
 async function init() {
   await window.HG_CiviEngine?.onAppOpen?.();
-  checkTierUpgrades();
+  await window.HG_CiviEngine?.checkTierUpgrades?.();
 
   wireCivicationActions();
   renderCivication();
