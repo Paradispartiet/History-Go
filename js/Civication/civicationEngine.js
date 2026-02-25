@@ -305,19 +305,15 @@ function tickPCIncomeWeekly() {
 // Maintenance-krav (quiz-aktivitet)
 // --------------------------------------------------
 
-let rules = null;
-
-if (
-  window.HG_CAREER_RULES &&
-  Array.isArray(window.HG_CAREER_RULES.careers)
-) {
-  rules = window.HG_CAREER_RULES.careers.find(
-    c => c.id === active.career_id
-  ) || null;
-}
+const careerRules =
+  window.HG_CAREERS?.find(
+    c => String(c.career_id) === String(active.career_id)
+  );
 
 const minQuiz =
-  Number(rules?.world_logic?.maintenance?.min_quiz_per_weeks || 0);
+  Number(
+    careerRules?.world_logic?.maintenance?.min_quiz_per_weeks || 0
+  );
 
 if (minQuiz > 0) {
 
@@ -326,13 +322,17 @@ if (minQuiz > 0) {
 
   if (done < minQuiz) {
 
+    const currentState =
+      window.HG_CiviEngine?.getState?.() || {};
+
+    const newStrikes =
+      Number(currentState.strikes || 0) + 1;
+
     window.HG_CiviEngine?.setState?.({
-      strikes: (state.strikes || 0) + 1
+      strikes: newStrikes,
+      lastMaintenanceFailAt: Date.now()
     });
 
-    state.lastMaintenanceFailAt = Date.now();
-
-    // Eventuelt logg i inbox senere
   }
 }
 
