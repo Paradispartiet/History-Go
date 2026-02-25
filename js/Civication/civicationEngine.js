@@ -1296,3 +1296,5 @@ function getQuizCountLastWeek(careerId) {
 
   }).length;
 }
+
+})(); // close Civication Event Engine IIFE
