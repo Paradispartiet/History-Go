@@ -1047,6 +1047,4 @@ answer(eventId, choiceId) {
 
 } // ← lukker class CivicationEventEngine
 
-} // ← lukker class CivicationEventEngine
-
 window.CivicationEventEngine = CivicationEventEngine;
