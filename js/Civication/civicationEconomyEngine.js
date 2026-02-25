@@ -1,4 +1,6 @@
-function tickPCIncomeWeekly() {
+(function () {
+
+  function tickPCIncomeWeekly() {
 
   const state = CivicationState.getState();
   let wallet = state.economy.wallet || { balance: 0, last_tick_iso: null };
@@ -203,3 +205,9 @@ function tickPCIncomeWeekly() {
   wallet.last_tick_iso = now.toISOString();
   CivicationState.updateWallet(wallet);
 }
+
+window.CivicationEconomyEngine = {
+    tickPCIncomeWeekly
+  };
+
+})();
