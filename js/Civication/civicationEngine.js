@@ -1297,4 +1297,11 @@ function getQuizCountLastWeek(careerId) {
   }).length;
 }
 
+window.HG_CiviEngine = new CivicationEventEngine({
+  packBasePath: "data/civication",
+  maxInbox: 1
+});
+
+window.checkTierUpgrades = checkTierUpgrades;
+
 })(); // close Civication Event Engine IIFE
