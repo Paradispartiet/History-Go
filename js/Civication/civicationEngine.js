@@ -79,38 +79,14 @@
   }
 
 
-  function getActivePosition() {
-    return lsGet(LS_ACTIVE_POS, null);
-  }
+  const getActivePosition = () =>
+  window.CivicationState.getActivePosition();
 
+const setActivePosition = (p) =>
+  window.CivicationState.setActivePosition(p);
 
-  function setActivePosition(posOrNull) {
-    try {
-      localStorage.setItem(
-        LS_ACTIVE_POS,
-        JSON.stringify(posOrNull)
-      );
-    } catch (e) {}
-  }
-
-
-  function appendJobHistoryEnded(prevPos, end_reason) {
-
-    if (!prevPos) return;
-
-    const nowIso = new Date().toISOString();
-
-    const hist = lsGet(LS_JOB_HISTORY, []);
-    const arr = Array.isArray(hist) ? hist : [];
-
-    const entry = Object.assign({}, prevPos);
-    entry.ended_at = nowIso;
-    entry.end_reason = end_reason || "ended";
-
-    arr.unshift(entry);
-
-    lsSet(LS_JOB_HISTORY, arr);
-  }
+const appendJobHistoryEnded = (prev, reason) =>
+  window.CivicationState.appendJobHistoryEnded(prev, reason);
 
 
   function weekKey(d) {
@@ -330,44 +306,46 @@ class CivicationEventEngine {
 }
   // -------- state --------
 
-  getState() {
-    const s = lsGet(LS_STATE, null);
-    return { ...DEFAULTS, ...(s || {}) };
-  }
+getState() {
+  return window.CivicationState.getState();
+}
 
-  setState(patch) {
-    const s = this.getState();
-    const next = { ...s, ...(patch || {}) };
-    lsSet(LS_STATE, next);
-    return next;
-  }
+setState(patch) {
+  return window.CivicationState.setState(patch || {});
+}
 
-  resetForNewJob(role_key) {
-    const rk = role_key || null;
-    lsSet(LS_STATE, {
-      ...DEFAULTS,
-      active_role_key: rk,
-      consumed: {}
-    });
-  }
+resetForNewJob(role_key) {
+  const rk = role_key || null;
 
-  // -------- inbox --------
+  this.setState({
+    stability: "STABLE",
+    warning_used: false,
+    strikes: 0,
+    score: 0,
+    active_role_key: rk,
+    consumed: {},
+    identity_tags: [],
+    tracks: [],
+    unemployed_since_week: null
+  });
+}
 
-  getInbox() {
-    const raw = lsGet(LS_INBOX, []);
-    return Array.isArray(raw) ? raw : [];
-  }
+// -------- inbox --------
 
-  setInbox(arr) {
-    lsSet(LS_INBOX, Array.isArray(arr) ? arr : []);
-  }
+getInbox() {
+  return window.CivicationState.getInbox();
+}
 
-  getPendingEvent() {
-    const inbox = this.getInbox();
-    return inbox.find(
-      m => m && m.status === "pending"
-    ) || null;
-  }
+setInbox(arr) {
+  window.CivicationState.setInbox(arr);
+}
+
+getPendingEvent() {
+  const inbox = this.getInbox();
+  return inbox.find(
+    m => m && m.status === "pending"
+  ) || null;
+}
 
   // -------- role_key resolution --------
 
