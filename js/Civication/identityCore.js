@@ -291,13 +291,26 @@ function perceptionTexts(type, tier) {
     };
   }
 
-  window.HG_IdentityCore = {
+    // ----------------------------------------------------------
+  // Compat API (brukes av CivicationUI)
+  // ----------------------------------------------------------
+
+  function getProfile() {
+    // CivicationUI forventer "profile" => vi returnerer hele identity-state
+    return getIdentityState();
+  }
+
+    window.HG_IdentityCore = {
     getIdentity,
     getBoost,
     shiftFocus,
     getIdentityState,
     getPerception,
-    getPsycheModifiers
+    getPsycheModifiers,
+
+    // compat:
+    getProfile,
+    generatePerceptionProfile
   };
 
 })();
