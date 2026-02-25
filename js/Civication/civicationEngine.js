@@ -1162,6 +1162,8 @@ fetch("data/Civication/hg_careers.json")
     console.error("Careers load error:", e);
   });
 
+window.CivicationEventEngine = CivicationEventEngine;
+   
 })(); // ← lukker IIFE
 
 
