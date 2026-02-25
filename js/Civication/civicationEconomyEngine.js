@@ -297,8 +297,125 @@ function checkTierUpgrades() {
   CivicationState.updateWallet(wallet);
 }
 
+function calculateWeeklySalary(career, tierIndex) {
+
+  const tier =
+    (Number.isFinite(tierIndex) ? tierIndex : 0) + 1;
+
+  let byTier = null;
+
+  if (career &&
+      career.economy &&
+      career.economy.salary_by_tier) {
+
+    byTier = career.economy.salary_by_tier;
+  }
+
+  let weekly = 0;
+
+  if (byTier &&
+      Object.prototype.hasOwnProperty.call(byTier, String(tier))) {
+
+    weekly = Number(byTier[String(tier)]);
+
+  } else if (byTier &&
+             Object.prototype.hasOwnProperty.call(byTier, tier)) {
+
+    weekly = Number(byTier[tier]);
+  }
+
+  if (!Number.isFinite(weekly)) {
+    weekly = 0;
+  }
+
+  let rounding = "nearest";
+
+  if (window.HG_CAREERS &&
+      window.HG_CAREERS.global_rules &&
+      window.HG_CAREERS.global_rules.salary &&
+      window.HG_CAREERS.global_rules.salary.rounding) {
+
+    rounding =
+      window.HG_CAREERS.global_rules.salary.rounding;
+  }
+
+  switch (rounding) {
+
+    case "floor":
+      weekly = Math.floor(weekly);
+      break;
+
+    case "ceil":
+      weekly = Math.ceil(weekly);
+      break;
+
+    case "nearest":
+    default:
+      weekly = Math.round(weekly);
+      break;
+  }
+
+  return weekly;
+}
+
+window.calculateWeeklySalary = calculateWeeklySalary;
+
+function payWeeklySalary(player, career, tierIndex) {
+
+  const weekly =
+    calculateWeeklySalary(career, tierIndex);
+
+  player.balance =
+    (Number(player.balance) || 0) + weekly;
+
+  return weekly;
+}
 
 
+
+function getCapital() {
+
+  return JSON.parse(
+    localStorage.getItem("hg_capital_v1") || "{}"
+  );
+}
+
+
+
+function saveCapital(cap) {
+
+  localStorage.setItem(
+    "hg_capital_v1",
+    JSON.stringify(cap)
+  );
+
+  window.dispatchEvent(
+    new Event("updateProfile")
+  );
+}
+
+function normalizeWallet(w) {
+
+    if (!w || typeof w !== "object") {
+      return { balance: 0, last_tick_iso: null };
+    }
+
+    let balance = 0;
+
+    if (Number.isFinite(Number(w.balance))) {
+      balance = Number(w.balance);
+    } else if (Number.isFinite(Number(w.pc))) {
+      balance = Number(w.pc);
+    }
+
+    const out = Object.assign({}, w);
+    out.balance = balance;
+    out.last_tick_iso = w.last_tick_iso || null;
+
+    return out;
+  }
+
+  
 function qualifiesForCareer(player, career) {
 
   if (!career.required_badges) return true;
