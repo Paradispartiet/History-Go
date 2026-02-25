@@ -15,6 +15,20 @@ async function loadCivicationData() {
   window.HG_CAREERS = careersJson.careers;
 }
 
+// -------- load careers and THEN start engine --------
+fetch("data/Civication/hg_careers.json")
+  .then(function (r) {
+    if (!r.ok) {
+      throw new Error("Failed to load careers");
+    }
+    return r.json();
+  })
+  .then(function (data) {
+
+    window.HG_CAREERS = data;
+
+
+
 (function () {
 
   async function start() {
