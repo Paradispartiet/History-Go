@@ -1313,6 +1313,4 @@ function getQuizCountLastWeek(careerId) {
   }).length;
 }
 
-window.checkTierUpgrades = checkTierUpgrades;
-
 })(); // close Civication Event Engine IIFE
