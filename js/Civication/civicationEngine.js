@@ -325,11 +325,21 @@ if (minQuiz > 0) {
     const currentState =
       window.HG_CiviEngine?.getState?.() || {};
 
-    const newStrikes =
+    let strikes =
       Number(currentState.strikes || 0) + 1;
 
+    let stability =
+      currentState.stability || "STABLE";
+
+    if (strikes === 1) {
+      stability = "WARNING";
+    } else if (strikes >= 2) {
+      stability = "FIRED";
+    }
+
     window.HG_CiviEngine?.setState?.({
-      strikes: newStrikes,
+      strikes,
+      stability,
       lastMaintenanceFailAt: Date.now()
     });
 
