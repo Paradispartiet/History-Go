@@ -655,7 +655,7 @@ async onAppOpen() {
   // WEEKLY SALARY TICK
   // ----------------------------------------
   try {
-    tickPCIncomeWeekly();
+    CivicationEconomyEngine.tickWeekly();
 
     try {
       if (window.CivicationPsyche &&
