@@ -219,6 +219,34 @@
 
   }
 
+function getQuizCountLastWeek(careerId) {
+
+  const history =
+    JSON.parse(
+      localStorage.getItem("quiz_history") || "[]"
+    );
+
+  if (!Array.isArray(history)) {
+    return 0;
+  }
+
+  const now = Date.now();
+  const oneWeek = 7 * 24 * 60 * 60 * 1000;
+
+  return history.filter(function (h) {
+
+    if (!h || !h.date) return false;
+
+    if (String(h.categoryId) !== String(careerId)) {
+      return false;
+    }
+
+    const t = new Date(h.date).getTime();
+    return (now - t) <= oneWeek;
+
+  }).length;
+}
+   
   // --------------------------------------------------
   // Export
   // --------------------------------------------------
