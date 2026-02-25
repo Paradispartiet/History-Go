@@ -3,25 +3,31 @@
 // ============================================================
 
 async function init() {
+
   await window.HG_CiviEngine?.onAppOpen?.();
-  await window.HG_CiviEngine?.checkTierUpgrades?.();
+
+  // Generer jobbtilbud (global funksjon)
+  if (typeof checkTierUpgrades === "function") {
+    checkTierUpgrades();
+  }
 
   wireCivicationActions();
+
   renderCivication();
   renderCivicationInbox();
   renderPsycheDashboard();
   renderCapital();
   renderHomeStatus();
-  renderPublicFeed();   // ← LEGG TIL DENNE
+  renderPublicFeed();
 
   window.addEventListener("updateProfile", () => {
-  renderCivication();
-  renderCivicationInbox();
-  renderPsycheDashboard();
-  renderCapital();
-  renderHomeStatus();
-  renderPerception();   // ← LEGG TIL
-});
+    renderCivication();
+    renderCivicationInbox();
+    renderPsycheDashboard();
+    renderCapital();
+    renderHomeStatus();
+    renderPerception();
+  });
 
   window.addEventListener("civi:homeChanged", renderHomeStatus);
 }
