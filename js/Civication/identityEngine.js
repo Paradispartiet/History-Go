@@ -151,3 +151,7 @@ function updateIdentity(
     hint
   };
 }
+
+window.HG_CivicationCommercial = {
+  updateIdentity
+};
