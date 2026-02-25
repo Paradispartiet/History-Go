@@ -1,242 +1,208 @@
-function tickPCIncomeWeekly() {
-  let wallet = normalizeWallet(getPCWallet());
-  const active = getActivePosition();
-  const now = new Date();
+/* ============================================================
+   Civication Economy Engine v2
+   - Ingen direkte localStorage
+   - Kun CivicationState
+   ============================================================ */
 
-  const lastIso = wallet.last_tick_iso;
-  const lastWeek = lastIso ? weekKey(new Date(lastIso)) : null;
-  const thisWeek = weekKey(now);
+(function () {
 
-  // Samme uke → allerede prosessert
-  if (lastWeek === thisWeek) return;
+  function tickWeekly() {
 
-  // Globale regler
-  const navAfterWeeks =
-    Number(window.HG_CAREERS?.global_rules?.unemployment?.nav_after_weeks || 0);
+    const state = CivicationState.getState();
+    const wallet = { ...state.economy.wallet };
+    const active = state.role.active_position;
+    const now = new Date();
 
-  const navWeeklyPc =
-    Number(window.HG_CAREERS?.global_rules?.unemployment?.nav_weekly_pc || 0);
+    const lastIso = wallet.last_tick_iso;
+    const lastWeek = lastIso ? weekKey(new Date(lastIso)) : null;
+    const thisWeek = weekKey(now);
 
-  // =========================================================
-  // ARBEIDSLEDIG
-  // =========================================================
-  if (!active?.career_id) {
-    const state = window.HG_CiviEngine?.getState?.() || {};
-    const sinceW = state.unemployed_since_week;
-    const nowW = thisWeek;
+    if (lastWeek === thisWeek) return;
 
-    // Sett startuke hvis mangler
-    if (!sinceW) {
-      try {
-        window.HG_CiviEngine?.setState?.({
-          unemployed_since_week: nowW
+    const navAfterWeeks =
+      Number(window.HG_CAREERS?.global_rules?.unemployment?.nav_after_weeks || 0);
+
+    const navWeeklyPc =
+      Number(window.HG_CAREERS?.global_rules?.unemployment?.nav_weekly_pc || 0);
+
+    // =========================================================
+    // ARBEIDSLEDIG
+    // =========================================================
+
+    if (!active?.career_id) {
+
+      const sinceW = state.unemployed_since_week;
+
+      if (!sinceW) {
+
+        CivicationState.setState({
+          unemployed_since_week: thisWeek
         });
-      } catch (e) {}
+
+        wallet.last_tick_iso = now.toISOString();
+        CivicationState.updateWallet(wallet);
+        return;
+      }
+
+      const weeksPassed =
+        weeksPassedBetweenWeekKeys(sinceW, thisWeek);
+
+      if (weeksPassed >= navAfterWeeks && navWeeklyPc > 0) {
+        wallet.balance += Math.floor(navWeeklyPc);
+      }
 
       wallet.last_tick_iso = now.toISOString();
-      savePCWallet(wallet);
+      CivicationState.updateWallet(wallet);
       return;
     }
 
-    const weeksPassed =
-      weeksPassedBetweenWeekKeys(sinceW, nowW);
+    // =========================================================
+    // I JOBB
+    // =========================================================
 
-    if (weeksPassed >= navAfterWeeks && navWeeklyPc > 0) {
-      wallet.balance += Math.floor(navWeeklyPc);
+    const career =
+      window.HG_CAREERS?.find(
+        c => String(c.career_id) === String(active.career_id)
+      );
+
+    if (!career) {
+      wallet.last_tick_iso = now.toISOString();
+      CivicationState.updateWallet(wallet);
+      return;
     }
 
-    wallet.last_tick_iso = now.toISOString();
-    savePCWallet(wallet);
-    return;
-  }
+    const merits =
+      JSON.parse(localStorage.getItem("merits_by_category") || "{}");
 
-  // =========================================================
-  // I JOBB
-  // =========================================================
+    const points =
+      Number(merits[active.career_id]?.points || 0);
 
-  const career = window.HG_CAREERS?.find(
-    c => String(c.career_id) === String(active.career_id)
-  );
+    const badge =
+      window.BADGES?.find(b => b.id === active.career_id);
 
-  if (!career) {
-    wallet.last_tick_iso = now.toISOString();
-    savePCWallet(wallet);
-    return;
-  }
+    if (!badge) {
+      wallet.last_tick_iso = now.toISOString();
+      CivicationState.updateWallet(wallet);
+      return;
+    }
 
-  const merits =
-    JSON.parse(localStorage.getItem("merits_by_category") || "{}");
+    const { tierIndex } =
+      deriveTierFromPoints(badge, points);
 
-  const points =
-    Number(merits[active.career_id]?.points || 0);
+    // 1️⃣ Lønn
+    const weeklyIncome =
+      calculateWeeklySalary(career, tierIndex);
 
-  const badge =
-    window.BADGES?.find(b => b.id === active.career_id);
+    wallet.balance += Math.floor(weeklyIncome);
 
-  if (!badge) {
-    wallet.last_tick_iso = now.toISOString();
-    savePCWallet(wallet);
-    return;
-  }
+    // 2️⃣ Utgifter
+    const baseExpense =
+      Number(career?.economy?.weekly_expenses?.base || 0);
 
-  const { tierIndex } =
-    deriveTierFromPoints(badge, points);
+    const riskMod =
+      Number(career?.economy?.weekly_expenses?.risk_modifier || 1);
 
-  // 1️⃣ Lønn
-  const weeklyIncome =
-    calculateWeeklySalary(career, tierIndex);
+    const weeklyExpense =
+      Math.floor(baseExpense * riskMod);
 
-  wallet.balance += Math.floor(weeklyIncome);
+    wallet.balance -= weeklyExpense;
 
-  // 2️⃣ Utgifter
-  const baseExpense =
-    Number(career?.economy?.weekly_expenses?.base || 0);
+    // --------------------------------------------------
+    // Maintenance-krav
+    // --------------------------------------------------
 
-  const riskMod =
-    Number(career?.economy?.weekly_expenses?.risk_modifier || 1);
+    const minQuiz =
+      Number(
+        career?.world_logic?.maintenance?.min_quiz_per_weeks || 0
+      );
 
-  const weeklyExpense =
-    Math.floor(baseExpense * riskMod);
+    if (minQuiz > 0) {
 
-  wallet.balance -= weeklyExpense;
+      const done =
+        getQuizCountLastWeek(active.career_id);
 
-  // --------------------------------------------------
-  // Maintenance-krav (quiz-aktivitet)
-  // --------------------------------------------------
+      if (done < minQuiz) {
 
-  const careerRules =
-    window.HG_CAREERS?.find(
-      c => String(c.career_id) === String(active.career_id)
-    );
+        let strikes =
+          Number(state.strikes || 0) + 1;
 
-  const minQuiz =
-    Number(
-      careerRules?.world_logic?.maintenance?.min_quiz_per_weeks || 0
-    );
+        let stability =
+          state.stability || "STABLE";
 
-  if (minQuiz > 0) {
+        if (strikes === 1) stability = "WARNING";
+        else if (strikes >= 2) stability = "FIRED";
 
-    const done =
-      getQuizCountLastWeek(active.career_id);
-
-    if (done < minQuiz) {
-
-      const currentState =
-        window.HG_CiviEngine?.getState?.() || {};
-
-      let strikes =
-        Number(currentState.strikes || 0) + 1;
-
-      let stability =
-        currentState.stability || "STABLE";
-
-      if (strikes === 1) {
-        stability = "WARNING";
-      } else if (strikes >= 2) {
-        stability = "FIRED";
+        CivicationState.setState({
+          strikes,
+          stability,
+          lastMaintenanceFailAt: Date.now()
+        });
       }
-
-      window.HG_CiviEngine?.setState?.({
-        strikes,
-        stability,
-        lastMaintenanceFailAt: Date.now()
-      });
-
     }
-  }
 
-  // 3️⃣ Layoff-roll
-  const layoffChance =
-    Number(career?.economy?.risk?.layoff_chance_per_week || 0);
+    // --------------------------------------------------
+    // Layoff-roll
+    // --------------------------------------------------
 
-  const roll = Math.random();
+    const layoffChance =
+      Number(career?.economy?.risk?.layoff_chance_per_week || 0);
 
-  if (layoffChance > 0 && roll < layoffChance) {
-    const prev = getActivePosition();
+    const roll = Math.random();
 
-    appendJobHistoryEnded(prev, "layoff");
-    setActivePosition(null);
+    if (layoffChance > 0 && roll < layoffChance) {
 
-    try {
-      window.HG_CiviEngine?.setState?.({
+      const prev = state.role.active_position;
+
+      CivicationState.setState({
+        role: { active_position: null },
         unemployed_since_week: thisWeek
       });
-    } catch (e) {}
 
-    try {
-      window.CivicationPsyche?.registerCollapse?.(
-        prev?.career_id,
-        "layoff"
-      );
-    } catch (e) {}
+      if (window.CivicationPsyche?.registerCollapse) {
+        window.CivicationPsyche.registerCollapse(
+          prev?.career_id,
+          "layoff"
+        );
+      }
 
-    try {
-      const firedEv =
-        window.HG_CiviEngine?.makeFiredEvent?.(
-          window.HG_CiviEngine?.getState?.().active_role_key
+      wallet.last_tick_iso = now.toISOString();
+      CivicationState.updateWallet(wallet);
+      return;
+    }
+
+    // --------------------------------------------------
+    // Capital engine
+    // --------------------------------------------------
+
+    if (window.CAPITAL_ENGINE?.applyCareerCapital) {
+
+      const capitalState =
+        state.economy.capital || {};
+
+      const updated =
+        window.CAPITAL_ENGINE.applyCareerCapital(
+          career,
+          tierIndex,
+          capitalState
         );
 
-      if (firedEv)
-        window.HG_CiviEngine?.enqueueEvent?.(firedEv);
-    } catch (e) {}
+      CivicationState.setState({
+        economy: {
+          capital: updated
+        }
+      });
+    }
 
-    wallet.last_tick_iso = now.toISOString();
-    savePCWallet(wallet);
-    return;
-  }
-
-  // 4️⃣ Capital engine
-  if (window.CAPITAL_ENGINE?.applyCareerCapital) {
-    const capitalState =
-      JSON.parse(localStorage.getItem("hg_capital_v1") || "{}");
-
-    const updated =
-      window.CAPITAL_ENGINE.applyCareerCapital(
-        career,
-        tierIndex,
-        capitalState
-      );
-
-    localStorage.setItem(
-      "hg_capital_v1",
-      JSON.stringify(updated)
-    );
-  }
-
-  // Nullstill unemployment når i jobb
-  try {
-    window.HG_CiviEngine?.setState?.({
+    CivicationState.setState({
       unemployed_since_week: null
     });
-  } catch (e) {}
 
-  wallet.last_tick_iso = now.toISOString();
-  savePCWallet(wallet);
-}
-
-// ============================================================
-// OBLIGATION TYPES
-// ============================================================
-
-const OBLIGATION_TYPES = {
-
-  weekly_login: {
-    type: "time_based",
-    intervalDays: 7,
-    onFail: { reputation: -5 }
-  },
-
-  event_response: {
-    type: "count_based",
-    required: 1,
-    intervalDays: 7,
-    onFail: { reputation: -3 }
-  },
-
-  reputation_floor: {
-    type: "threshold",
-    minValue: 60,
-    onFail: { fire: true }
+    wallet.last_tick_iso = now.toISOString();
+    CivicationState.updateWallet(wallet);
   }
 
-};
+  window.CivicationEconomyEngine = {
+    tickWeekly
+  };
+
+})();
