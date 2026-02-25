@@ -7,6 +7,7 @@
    ============================================================ */
 
 (function () {
+
   const LS_STATE = "hg_civi_state_v1";
   const LS_INBOX = "hg_civi_inbox_v1";
   const LS_PULSE = "hg_civi_pulse_v1";
@@ -15,40 +16,43 @@
   const LS_JOB_HISTORY = "hg_job_history_v1";
 
   const DEFAULTS = {
-    stability: "STABLE",        // STABLE | WARNING | FIRED
-    warning_used: false,        // om advarsel allerede er gitt i denne jobbperioden
-    strikes: 0,                 // 0, 1, 2 (2 => FIRED)
-    score: 0,                   // intern buffer (-2 => strike). Ikke vis i UI.
-    active_role_key: null,      // f.eks "journalist"
-    consumed: {},               // { eventId: true }
-    // --- identitet ---
+    stability: "STABLE",
+    warning_used: false,
+    strikes: 0,
+    score: 0,
+    active_role_key: null,
+    consumed: {},
     identity_tags: [],
     tracks: [],
+    unemployed_since_week: null,
+    version: 1
+  };
 
-     // --- meta ---
-     unemployed_since_week: null,
-     version: 1
-     };
 
   function todayKey() {
     const d = new Date();
-    return d.toISOString().slice(0, 10); // YYYY-MM-DD
+    return d.toISOString().slice(0, 10);
   }
 
-  function getPulseSlot(now = new Date()) {
-    const h = now.getHours();
+
+  function getPulseSlot(now) {
+    const n = now || new Date();
+    const h = n.getHours();
+
     if (h >= 5 && h < 11) return "morning";
     if (h >= 11 && h < 17) return "midday";
     return "evening";
   }
 
+
   function safeJsonParse(raw, fallback) {
     try {
       return JSON.parse(raw);
-    } catch {
+    } catch (e) {
       return fallback;
     }
   }
+
 
   function lsGet(key, fallback) {
     const raw = localStorage.getItem(key);
@@ -56,154 +60,243 @@
     return safeJsonParse(raw, fallback);
   }
 
+
   function lsSet(key, value) {
     try {
       localStorage.setItem(key, JSON.stringify(value));
-    } catch {}
+    } catch (e) {}
   }
+
 
   function slugify(str) {
     return String(str || "")
       .toLowerCase()
-      .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
       .replace(/[^a-z0-9]+/g, "_")
       .replace(/^_+|_+$/g, "")
       .slice(0, 64);
   }
 
+
   function getActivePosition() {
     return lsGet(LS_ACTIVE_POS, null);
   }
 
+
   function setActivePosition(posOrNull) {
-    // posOrNull kan være null eller objekt
     try {
-      localStorage.setItem(LS_ACTIVE_POS, JSON.stringify(posOrNull));
-    } catch {}
+      localStorage.setItem(
+        LS_ACTIVE_POS,
+        JSON.stringify(posOrNull)
+      );
+    } catch (e) {}
   }
 
+
   function appendJobHistoryEnded(prevPos, end_reason) {
+
     if (!prevPos) return;
+
     const nowIso = new Date().toISOString();
+
     const hist = lsGet(LS_JOB_HISTORY, []);
     const arr = Array.isArray(hist) ? hist : [];
-    arr.unshift({ ...prevPos, ended_at: nowIso, end_reason: end_reason || "ended" });
+
+    const entry = Object.assign({}, prevPos);
+    entry.ended_at = nowIso;
+    entry.end_reason = end_reason || "ended";
+
+    arr.unshift(entry);
+
     lsSet(LS_JOB_HISTORY, arr);
   }
 
-function weekKey(d = new Date()) {
-  // ISO-uke (tilstrekkelig presis for spill)
-  const date = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
-  const dayNum = date.getUTCDay() || 7; // 1..7 (man..søn)
-  date.setUTCDate(date.getUTCDate() + 4 - dayNum);
-  const yearStart = new Date(Date.UTC(date.getUTCFullYear(), 0, 1));
-  const weekNo = Math.ceil((((date - yearStart) / 86400000) + 1) / 7);
-  return `${date.getUTCFullYear()}-W${String(weekNo).padStart(2, "0")}`;
-}
 
-// --- DISKRET UKE-LOGIKK ---
+  function weekKey(d) {
 
-function weekIndexFromWeekKey(k) {
-  const m = String(k || "").match(/^(\d{4})-W(\d{2})$/);
-  if (!m) return null;
+    const base = d || new Date();
 
-  const y = Number(m[1]);
-  const w = Number(m[2]);
+    const date = new Date(
+      Date.UTC(
+        base.getFullYear(),
+        base.getMonth(),
+        base.getDate()
+      )
+    );
 
-  if (!Number.isFinite(y) || !Number.isFinite(w)) return null;
+    const dayNum = date.getUTCDay() || 7;
 
-  // 53 for å sikre at årsskifte ikke kolliderer
-  return y * 53 + w;
-}
+    date.setUTCDate(
+      date.getUTCDate() + 4 - dayNum
+    );
 
-function weeksPassedBetweenWeekKeys(sinceW, nowW) {
-  const a = weekIndexFromWeekKey(sinceW);
-  const b = weekIndexFromWeekKey(nowW);
+    const yearStart = new Date(
+      Date.UTC(date.getUTCFullYear(), 0, 1)
+    );
 
-  if (a == null || b == null) return 0;
+    const weekNo = Math.ceil(
+      (((date - yearStart) / 86400000) + 1) / 7
+    );
 
-  return Math.max(0, b - a);
-}
+    return (
+      date.getUTCFullYear() +
+      "-W" +
+      String(weekNo).padStart(2, "0")
+    );
+  }
 
-function checkTierUpgrades() {
 
-  const merits =
-    JSON.parse(localStorage.getItem("merits_by_category") || "{}");
+  function weekIndexFromWeekKey(k) {
 
-  const tierState =
-    JSON.parse(localStorage.getItem("hg_badge_tiers_v1") || "{}");
+    const m = String(k || "")
+      .match(/^(\d{4})-W(\d{2})$/);
 
-  const newTierState = { ...tierState };
+    if (!m) return null;
 
-  const offers = [];
+    const y = Number(m[1]);
+    const w = Number(m[2]);
 
-  (window.BADGES || []).forEach(badge => {
-
-    const points =
-      Number(merits[badge.id]?.points || 0);
-
-    const { tierIndex, label } =
-      deriveTierFromPoints(badge, points);
-
-    const previousTier =
-      Number(tierState[badge.id] || -1);
-
-    if (tierIndex > previousTier) {
-
-      const career =
-        window.HG_CAREERS?.find(
-          c => String(c.career_id) === String(badge.id)
-        );
-
-      if (career) {
-
-        const now = new Date();
-        const expires = new Date(
-          now.getTime() + 7 * 86400000
-        );
-
-        offers.push({
-          offer_key: `${badge.id}_${tierIndex}_${now.toISOString()}`,
-          career_id: career.career_id,
-          career_name: badge.name,
-          title: `${badge.name} – ${label}`,
-          tier: tierIndex,
-          status: "pending",
-          created_iso: now.toISOString(),
-          expires_iso: expires.toISOString()
-        });
-      }
-
-      newTierState[badge.id] = tierIndex;
+    if (!Number.isFinite(y) ||
+        !Number.isFinite(w)) {
+      return null;
     }
 
-  });
-
-  localStorage.setItem(
-    "hg_badge_tiers_v1",
-    JSON.stringify(newTierState)
-  );
-
-  if (offers.length) {
-    setJobOffers(offers);
+    return y * 53 + w;
   }
-}
-   
-function normalizeWallet(w) {
-  // Én canonical form: { balance, last_tick_iso }
-  if (!w || typeof w !== "object") return { balance: 0, last_tick_iso: null };
-  const balance = Number.isFinite(Number(w.balance)) ? Number(w.balance) :
-                  (Number.isFinite(Number(w.pc)) ? Number(w.pc) : 0);
-  return { ...w, balance, last_tick_iso: w.last_tick_iso || null };
-}
+
+
+  function weeksPassedBetweenWeekKeys(sinceW, nowW) {
+
+    const a = weekIndexFromWeekKey(sinceW);
+    const b = weekIndexFromWeekKey(nowW);
+
+    if (a == null || b == null) return 0;
+
+    return Math.max(0, b - a);
+  }
+
+
+  function checkTierUpgrades() {
+
+    const merits =
+      JSON.parse(
+        localStorage.getItem("merits_by_category") || "{}"
+      );
+
+    const tierState =
+      JSON.parse(
+        localStorage.getItem("hg_badge_tiers_v1") || "{}"
+      );
+
+    const newTierState = Object.assign({}, tierState);
+
+    const offers = [];
+
+    const badges =
+      Array.isArray(window.BADGES)
+        ? window.BADGES
+        : [];
+
+    for (let i = 0; i < badges.length; i++) {
+
+      const badge = badges[i];
+
+      const points =
+        Number(
+          (merits[badge.id] &&
+           merits[badge.id].points) || 0
+        );
+
+      const tierData =
+        deriveTierFromPoints(badge, points);
+
+      const tierIndex = tierData.tierIndex;
+      const label = tierData.label;
+
+      const previousTier =
+        Number(tierState[badge.id] || -1);
+
+      if (tierIndex > previousTier) {
+
+        let career = null;
+
+        if (Array.isArray(window.HG_CAREERS)) {
+          for (let j = 0; j < window.HG_CAREERS.length; j++) {
+            const c = window.HG_CAREERS[j];
+            if (String(c.career_id) === String(badge.id)) {
+              career = c;
+              break;
+            }
+          }
+        }
+
+        if (career) {
+
+          const now = new Date();
+          const expires = new Date(
+            now.getTime() + 7 * 86400000
+          );
+
+          offers.push({
+            offer_key:
+              badge.id +
+              "_" +
+              tierIndex +
+              "_" +
+              now.toISOString(),
+            career_id: career.career_id,
+            career_name: badge.name,
+            title: badge.name + " – " + label,
+            tier: tierIndex,
+            status: "pending",
+            created_iso: now.toISOString(),
+            expires_iso: expires.toISOString()
+          });
+        }
+
+        newTierState[badge.id] = tierIndex;
+      }
+    }
+
+    localStorage.setItem(
+      "hg_badge_tiers_v1",
+      JSON.stringify(newTierState)
+    );
+
+    if (offers.length &&
+        typeof setJobOffers === "function") {
+      setJobOffers(offers);
+    }
+  }
+
+
+  function normalizeWallet(w) {
+
+    if (!w || typeof w !== "object") {
+      return { balance: 0, last_tick_iso: null };
+    }
+
+    let balance = 0;
+
+    if (Number.isFinite(Number(w.balance))) {
+      balance = Number(w.balance);
+    } else if (Number.isFinite(Number(w.pc))) {
+      balance = Number(w.pc);
+    }
+
+    const out = Object.assign({}, w);
+    out.balance = balance;
+    out.last_tick_iso = w.last_tick_iso || null;
+
+    return out;
+  }
 
 function tickPCIncomeWeekly() {
   let wallet = normalizeWallet(getPCWallet());
   const active = getActivePosition();
   const now = new Date();
 
-  const state = window.HG_CiviEngine?.getState?.() || {};
-   
   const lastIso = wallet.last_tick_iso;
   const lastWeek = lastIso ? weekKey(new Date(lastIso)) : null;
   const thisWeek = weekKey(now);
@@ -232,7 +325,7 @@ function tickPCIncomeWeekly() {
         window.HG_CiviEngine?.setState?.({
           unemployed_since_week: nowW
         });
-      } catch {}
+      } catch (e) {}
 
       wallet.last_tick_iso = now.toISOString();
       savePCWallet(wallet);
@@ -255,9 +348,9 @@ function tickPCIncomeWeekly() {
   // I JOBB
   // =========================================================
 
-     const career = window.HG_CAREERS?.find(
-     c => String(c.career_id) === String(active.career_id)
-   );
+  const career = window.HG_CAREERS?.find(
+    c => String(c.career_id) === String(active.career_id)
+  );
 
   if (!career) {
     wallet.last_tick_iso = now.toISOString();
@@ -301,50 +394,50 @@ function tickPCIncomeWeekly() {
 
   wallet.balance -= weeklyExpense;
 
-// --------------------------------------------------
-// Maintenance-krav (quiz-aktivitet)
-// --------------------------------------------------
+  // --------------------------------------------------
+  // Maintenance-krav (quiz-aktivitet)
+  // --------------------------------------------------
 
-const careerRules =
-  window.HG_CAREERS?.find(
-    c => String(c.career_id) === String(active.career_id)
-  );
+  const careerRules =
+    window.HG_CAREERS?.find(
+      c => String(c.career_id) === String(active.career_id)
+    );
 
-const minQuiz =
-  Number(
-    careerRules?.world_logic?.maintenance?.min_quiz_per_weeks || 0
-  );
+  const minQuiz =
+    Number(
+      careerRules?.world_logic?.maintenance?.min_quiz_per_weeks || 0
+    );
 
-if (minQuiz > 0) {
+  if (minQuiz > 0) {
 
-  const done =
-    getQuizCountLastWeek(active.career_id);
+    const done =
+      getQuizCountLastWeek(active.career_id);
 
-  if (done < minQuiz) {
+    if (done < minQuiz) {
 
-    const currentState =
-      window.HG_CiviEngine?.getState?.() || {};
+      const currentState =
+        window.HG_CiviEngine?.getState?.() || {};
 
-    let strikes =
-      Number(currentState.strikes || 0) + 1;
+      let strikes =
+        Number(currentState.strikes || 0) + 1;
 
-    let stability =
-      currentState.stability || "STABLE";
+      let stability =
+        currentState.stability || "STABLE";
 
-    if (strikes === 1) {
-      stability = "WARNING";
-    } else if (strikes >= 2) {
-      stability = "FIRED";
+      if (strikes === 1) {
+        stability = "WARNING";
+      } else if (strikes >= 2) {
+        stability = "FIRED";
+      }
+
+      window.HG_CiviEngine?.setState?.({
+        strikes,
+        stability,
+        lastMaintenanceFailAt: Date.now()
+      });
+
     }
-
-    window.HG_CiviEngine?.setState?.({
-      strikes,
-      stability,
-      lastMaintenanceFailAt: Date.now()
-    });
-
   }
-}
 
   // 3️⃣ Layoff-roll
   const layoffChance =
@@ -362,14 +455,14 @@ if (minQuiz > 0) {
       window.HG_CiviEngine?.setState?.({
         unemployed_since_week: thisWeek
       });
-    } catch {}
+    } catch (e) {}
 
     try {
       window.CivicationPsyche?.registerCollapse?.(
         prev?.career_id,
         "layoff"
       );
-    } catch {}
+    } catch (e) {}
 
     try {
       const firedEv =
@@ -379,7 +472,7 @@ if (minQuiz > 0) {
 
       if (firedEv)
         window.HG_CiviEngine?.enqueueEvent?.(firedEv);
-    } catch {}
+    } catch (e) {}
 
     wallet.last_tick_iso = now.toISOString();
     savePCWallet(wallet);
@@ -409,519 +502,726 @@ if (minQuiz > 0) {
     window.HG_CiviEngine?.setState?.({
       unemployed_since_week: null
     });
-  } catch {}
+  } catch (e) {}
 
   wallet.last_tick_iso = now.toISOString();
   savePCWallet(wallet);
 }
-   
-  class CivicationEventEngine {
+
+
+// ============================================================
+// CivicationEventEngine
+// ============================================================
+
+class CivicationEventEngine {
+
   constructor(opts = {}) {
-    this.packBasePath = opts.packBasePath || "data/civication"; // default mappe
-    this.maxInbox = Number.isFinite(opts.maxInbox) ? opts.maxInbox : 1; // ingen backlog i v0.1
-    this.pulseLimitPerDay = 3; // konseptuelt, men vi håndhever via slots
-    this.packsCache = new Map(); // packFile -> pack json
+    this.packBasePath = opts.packBasePath || "data/civication";
+    this.maxInbox =
+      Number.isFinite(opts.maxInbox) ? opts.maxInbox : 1;
 
-    // Mapping: badge-id (career_id) -> civic pack-fil
+    this.pulseLimitPerDay = 3;
+    this.packsCache = new Map();
+
     this.packMap = opts.packMap || {
-     naering: "naeringslivCivic.json",
-     naeringsliv: "naeringslivCivic.json",
-     media: "mediaCivic.json",
-     by: "byCivic.json"
-  };  }
-     
-    // -------- state --------
-    getState() {
-      const s = lsGet(LS_STATE, null);
-      return { ...DEFAULTS, ...(s || {}) };
+      naering: "naeringslivCivic.json",
+      naeringsliv: "naeringslivCivic.json",
+      media: "mediaCivic.json",
+      by: "byCivic.json"
+    };
+  }
+
+  // -------- state --------
+
+  getState() {
+    const s = lsGet(LS_STATE, null);
+    return { ...DEFAULTS, ...(s || {}) };
+  }
+
+  setState(patch) {
+    const s = this.getState();
+    const next = { ...s, ...(patch || {}) };
+    lsSet(LS_STATE, next);
+    return next;
+  }
+
+  resetForNewJob(role_key) {
+    const rk = role_key || null;
+    lsSet(LS_STATE, {
+      ...DEFAULTS,
+      active_role_key: rk,
+      consumed: {}
+    });
+  }
+
+  // -------- inbox --------
+
+  getInbox() {
+    const raw = lsGet(LS_INBOX, []);
+    return Array.isArray(raw) ? raw : [];
+  }
+
+  setInbox(arr) {
+    lsSet(LS_INBOX, Array.isArray(arr) ? arr : []);
+  }
+
+  getPendingEvent() {
+    const inbox = this.getInbox();
+    return inbox.find(
+      m => m && m.status === "pending"
+    ) || null;
+  }
+
+  // -------- role_key resolution --------
+
+  resolveRoleKey() {
+    const active = getActivePosition();
+    if (!active) return null;
+
+    if (active.role_key)
+      return String(active.role_key);
+
+    const t = slugify(active.title || "");
+    if (t) return t;
+
+    if (active.career_id)
+      return String(active.career_id);
+
+    return null;
+  }
+
+  syncRoleBaselineFromActive() {
+    const active = getActivePosition();
+
+    if (!active?.career_id) {
+      window.CivicationPsyche?.clearRoleBaseline?.();
+      return;
     }
 
-    setState(patch) {
-      const s = this.getState();
-      const next = { ...s, ...(patch || {}) };
-      lsSet(LS_STATE, next);
-      return next;
-    }
+    const merits =
+      JSON.parse(
+        localStorage.getItem("merits_by_category") || "{}"
+      );
 
-    resetForNewJob(role_key) {
-      const rk = role_key || null;
-      lsSet(LS_STATE, {
-        ...DEFAULTS,
-        active_role_key: rk,
-        consumed: {}
-      });
-    }
+    const points =
+      Number(merits[active.career_id]?.points || 0);
 
-    // -------- inbox --------
-    getInbox() {
-      const raw = lsGet(LS_INBOX, []);
-      return Array.isArray(raw) ? raw : [];
-    }
+    const badge =
+      window.BADGES?.find(
+        b => b.id === active.career_id
+      );
 
-    setInbox(arr) {
-      lsSet(LS_INBOX, Array.isArray(arr) ? arr : []);
-    }
+    const tier =
+      badge
+        ? deriveTierFromPoints(badge, points)
+        : { tierIndex: 0 };
 
-    getPendingEvent() {
-      const inbox = this.getInbox();
-      return inbox.find(m => m && m.status === "pending") || null;
-    }
+    const baseline = {
+      integrity: 0,
+      visibility: 0,
+      economicRoom: 0
+    };
 
-    // -------- role_key resolution --------
-    resolveRoleKey() {
-      const active = getActivePosition();
-      if (!active) return null;
+    window.CivicationPsyche?.applyRoleBaseline?.(
+      baseline
+    );
+  }
 
-      // 1) eksplisitt
-      if (active.role_key) return String(active.role_key);
+  ensureRoleKeySynced() {
+    const active = getActivePosition();
 
-      // 2) derivert fra tittel (robust)
-      const t = slugify(active.title || "");
-      if (t) return t;
-
-      // 3) fallback: career_id (kan være badge id)
-      if (active.career_id) return String(active.career_id);
-
+    if (!active) {
+      this.setState({ active_role_key: null });
       return null;
     }
 
-    syncRoleBaselineFromActive() {
-      const active = getActivePosition();
-      if (!active?.career_id) {
-        window.CivicationPsyche?.clearRoleBaseline?.();
-        return;
+    const rk = this.resolveRoleKey();
+    const st = this.getState();
+
+    if (rk && rk !== st.active_role_key) {
+      if (!active.role_key) {
+        setActivePosition({
+          ...active,
+          role_key: rk
+        });
       }
-
-      // Finn tierIndex fra merits + badges (samme logikk som ellers)
-      const merits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
-      const points = Number(merits[active.career_id]?.points || 0);
-
-      const badge = window.BADGES?.find(b => b.id === active.career_id);
-      const tier = badge ? deriveTierFromPoints(badge, points) : { tierIndex: 0 };
-
-      // Baseline: start enkelt (kan tunes per careerId + tierIndex senere)
-      const baseline = {
-        integrity: 0,
-        visibility: 0,
-        economicRoom: 0
-      };
-
-      window.CivicationPsyche?.applyRoleBaseline?.(baseline);
+      this.resetForNewJob(rk);
     }
-     
-    ensureRoleKeySynced() {
-      const active = getActivePosition();
-      if (!active) {
-        // arbeidsledig
-        this.setState({ active_role_key: null });
-        return null;
-      }
 
-      const rk = this.resolveRoleKey();
-      const st = this.getState();
+    return rk;
+  }
 
-      // hvis byttet jobb, reset spilltilstand for jobbperioden
-      if (rk && rk !== st.active_role_key) {
-        // skriv role_key tilbake på aktiv pos for konsistens
-        if (!active.role_key) {
-          setActivePosition({ ...active, role_key: rk });
+  // -------- pulse gating --------
+
+  canPulseNow() {
+    const slot = getPulseSlot();
+    const t = todayKey();
+    const p = lsGet(
+      LS_PULSE,
+      { date: t, seen: {} }
+    );
+
+    if (!p || p.date !== t) {
+      lsSet(
+        LS_PULSE,
+        { date: t, seen: {} }
+      );
+      return true;
+    }
+
+    const seen = p.seen || {};
+    return !seen[slot];
+  }
+
+  markPulseUsed() {
+    const slot = getPulseSlot();
+    const t = todayKey();
+    const p = lsGet(
+      LS_PULSE,
+      { date: t, seen: {} }
+    );
+
+    const seen = p.seen || {};
+    seen[slot] = true;
+
+    lsSet(LS_PULSE, { date: t, seen });
+  }
+
+  // -------- pack loading --------
+
+  async loadPack(packFile) {
+
+    if (!packFile) return null;
+
+    if (this.packsCache.has(packFile))
+      return this.packsCache.get(packFile);
+
+    const url =
+      `${this.packBasePath}/${packFile}`;
+
+    const res = await fetch(url);
+    if (!res.ok) return null;
+
+    const pack = await res.json();
+    this.packsCache.set(packFile, pack);
+    return pack;
+  }
+
+// -------- event selection --------
+pickEventFromPack(pack, state) {
+
+  if (!pack || !Array.isArray(pack.mails)) {
+    return null;
+  }
+
+  const consumed = state && state.consumed
+    ? state.consumed
+    : {};
+
+  const autonomy =
+    window.CivicationPsyche &&
+    typeof window.CivicationPsyche.getAutonomy === "function"
+      ? window.CivicationPsyche.getAutonomy(state.active_role_key)
+      : 50;
+
+  const stability = state.stability;
+
+  const wantWarningMail =
+    (stability === "WARNING" && state.warning_used === true);
+
+  // --- Filter ---
+  let candidates = pack.mails.filter(function (m) {
+    return m && m.id && !consumed[m.id];
+  });
+
+  candidates = candidates.filter(function (m) {
+    return m.stage !== "fired" && m.stage !== "unemployed";
+  });
+
+  if (stability === "STABLE") {
+    candidates = candidates.filter(function (m) {
+      return m.stage === "stable" ||
+             m.stage === "stable_warning";
+    });
+  }
+
+  if (stability === "WARNING") {
+    candidates = candidates.filter(function (m) {
+      return m.stage === "warning" ||
+             m.stage === "warning_danger" ||
+             m.stage === "stable_warning";
+    });
+  }
+
+  if (wantWarningMail) {
+    const warn = candidates.find(function (m) {
+      return m.is_warning_mail === true;
+    });
+    if (warn) return warn;
+  }
+
+  // --- Score ---
+  function scoreMail(m) {
+
+    let score = 0;
+
+    const identityTags =
+      Array.isArray(state.identity_tags)
+        ? state.identity_tags
+        : [];
+
+    const tracks =
+      Array.isArray(state.tracks)
+        ? state.tracks
+        : [];
+
+    const gating =
+      (m && m.gating)
+        ? m.gating
+        : {};
+
+    if (Array.isArray(gating.avoid_tags)) {
+      for (let i = 0; i < gating.avoid_tags.length; i++) {
+        const t = gating.avoid_tags[i];
+        if (identityTags.indexOf(t) !== -1) {
+          return -1000;
         }
-        this.resetForNewJob(rk);
       }
-
-      return rk;
     }
 
-    // -------- pulse gating --------
-    canPulseNow() {
-      const slot = getPulseSlot();
-      const t = todayKey();
-      const p = lsGet(LS_PULSE, { date: t, seen: {} });
-
-      // ny dag -> reset
-      if (!p || p.date !== t) {
-        lsSet(LS_PULSE, { date: t, seen: {} });
-        return true;
+    if (Array.isArray(gating.prefer_tags)) {
+      for (let i = 0; i < gating.prefer_tags.length; i++) {
+        const t = gating.prefer_tags[i];
+        if (identityTags.indexOf(t) !== -1) {
+          score += 2;
+        }
       }
-
-      const seen = p.seen || {};
-      return !seen[slot];
     }
 
-    markPulseUsed() {
-      const slot = getPulseSlot();
-      const t = todayKey();
-      const p = lsGet(LS_PULSE, { date: t, seen: {} });
-      const seen = p.seen || {};
-      seen[slot] = true;
-      lsSet(LS_PULSE, { date: t, seen });
+    if (Array.isArray(gating.prefer_tracks)) {
+      for (let i = 0; i < gating.prefer_tracks.length; i++) {
+        const tr = gating.prefer_tracks[i];
+        if (tracks.indexOf(tr) !== -1) {
+          score += 3;
+        }
+      }
     }
 
-    // -------- pack loading --------
-    async loadPack(packFile) {
-  if (!packFile) return null;
-  if (this.packsCache.has(packFile)) return this.packsCache.get(packFile);
+    return score;
+  }
 
-  const url = `${this.packBasePath}/${packFile}`;
-  const res = await fetch(url);
-  if (!res.ok) return null;
+  candidates.sort(function (a, b) {
+    return scoreMail(b) - scoreMail(a);
+  });
 
-  const pack = await res.json();
-  this.packsCache.set(packFile, pack);
-  return pack;
+  return candidates.length ? candidates[0] : null;
 }
 
-    // -------- event selection --------
-    pickEventFromPack(pack, state) {
-      if (!pack || !Array.isArray(pack.mails)) return null;
-      const consumed = state.consumed || {};
-      const autonomy = window.CivicationPsyche?.getAutonomy?.(state.active_role_key) ?? 50;
-      const stability = state.stability;
 
-      // Advarselmail skal kunne prioriteres når vi er i WARNING og den ikke er brukt som “mail”.
-      const wantWarningMail = (stability === "WARNING" && state.warning_used === true);
+// -------- fired fallback --------
+makeFiredEvent(role_key) {
 
-      // Filter
-      let candidates = pack.mails.filter(m => m && m.id && !consumed[m.id]);
-
-      // Arbeidsledig håndteres utenfor
-      // Stages:
-      // stable, stable_warning, warning, warning_danger, fired, unemployed
-      candidates = candidates.filter(m => m.stage !== "fired" && m.stage !== "unemployed");
-
-      if (stability === "STABLE") {
-        candidates = candidates.filter(m => m.stage === "stable" || m.stage === "stable_warning");
-      } else if (stability === "WARNING") {
-        // Hvis advarsel er brukt som status, tillat warning-innhold
-        candidates = candidates.filter(m => m.stage === "warning" || m.stage === "warning_danger" || m.stage === "stable_warning");
-      }
-
-      // Hvis vi vil tvinge advarselsmail (en gang) kan vi prioritere is_warning_mail
-      if (wantWarningMail) {
-        const warn = candidates.find(m => m.is_warning_mail === true);
-        if (warn) return warn;
-      }
-      // Score-basert valg (bruker gating dersom definert)
-      function scoreMail(m) {
-        let score = 0;
-
-        const identityTags = Array.isArray(state.identity_tags) ? state.identity_tags : [];
-        const tracks = Array.isArray(state.tracks) ? state.tracks : [];
-
-        const gating = (m && m.gating) ? m.gating : {};
-
-        // Hard blokkering
-        if (Array.isArray(gating.avoid_tags)) {
-          for (const t of gating.avoid_tags) {
-            if (identityTags.includes(t)) return -1000;
-          }
-        }
-
-        // Prefer tags
-        if (Array.isArray(gating.prefer_tags)) {
-          for (const t of gating.prefer_tags) {
-            if (identityTags.includes(t)) score += 2;
-          }
-        }
-
-        // Prefer tracks
-        if (Array.isArray(gating.prefer_tracks)) {
-          for (const tr of gating.prefer_tracks) {
-            if (tracks.includes(tr)) score += 3;
-          }
-        }
-
-        return score;
-      }
-
-      candidates.sort((a, b) => scoreMail(b) - scoreMail(a));
-      return candidates[0] || null;
+  return {
+    id: (role_key || "job") + "_fired_auto",
+    stage: "fired",
+    subject: "Vi avslutter samarbeidet",
+    situation: ["Tilliten er brukt opp."],
+    choices: [],
+    effect: "job_lost",
+    feedback:
+      "Du blir tatt av dekning med umiddelbar virkning."
+  };
 }
 
-    makeFiredEvent(role_key) {
-      // fallback dersom pack ikke har fired-mail
-      return {
-        id: `${role_key || "job"}_fired_auto`,
-        stage: "fired",
-        subject: "Vi avslutter samarbeidet",
-        situation: ["Tilliten er brukt opp."],
-        choices: [],
-        effect: "job_lost",
-        feedback: "Du blir tatt av dekning med umiddelbar virkning."
-      };
-    }
 
-    makeNavEvent() {
-      return {
-        id: `nav_auto_${Date.now()}`,
-        stage: "unemployed",
-        source: "NAV",
-        subject: "Din sak er registrert",
-        situation: ["Vi mangler fortsatt dokumentasjon.", "Du hører fra oss."],
-        choices: [],
-        feedback: "Bare virkelighet."
-      };
-    }
+// -------- NAV fallback --------
+makeNavEvent() {
 
-    // -------- main entrypoint --------
-    async onAppOpen() {
+  return {
+    id: "nav_auto_" + Date.now(),
+    stage: "unemployed",
+    source: "NAV",
+    subject: "Din sak er registrert",
+    situation: [
+      "Vi mangler fortsatt dokumentasjon.",
+      "Du hører fra oss."
+    ],
+    choices: [],
+    feedback: "Bare virkelighet."
+  };
+}
+
+// -------- main entrypoint --------
+async onAppOpen() {
 
   // ----------------------------------------
   // WEEKLY SALARY TICK
   // ----------------------------------------
-     try {
-       tickPCIncomeWeekly();
-     
+  try {
+    tickPCIncomeWeekly();
+
     try {
-     window.CivicationPsyche?.checkBurnout?.();
-     } catch (e) {
-     console.warn("Burnout check failed", e);
-   }
-     } catch (e) {
-       console.warn("Salary tick failed", e);
-   }
-       
-      // 0) sync job/role_key
-      const role_key = this.ensureRoleKeySynced();
-      const active = getActivePosition();
-      const state = this.getState();
-
-      this.syncRoleBaselineFromActive();
-
-      // 1) Hvis det allerede finnes en pending event, ikke spam
-      if (this.getPendingEvent()) return { enqueued: false, reason: "pending_exists" };
-
-      // 2) Pulse gating
-      if (!this.canPulseNow()) return { enqueued: false, reason: "pulse_used" };
-
-// 3) Arbeidsledig => før NAV: stille / evt. “arbeidsledig”-mail, etter X uker: NAV-mail
-if (!active) {
-  const st = this.getState();
-  const now = new Date();
-
-  // Sett startpunkt om mangler
-  const navAfterWeeks =
-  Number(window.HG_CAREERS?.global_rules?.unemployment?.nav_after_weeks || 0);
-
-const nowW = weekKey(now);
-
-if (!st.unemployed_since_week) {
-  this.setState({ unemployed_since_week: nowW });
-  this.markPulseUsed();
-  return { enqueued: false, reason: "unemployed_started" };
-}
-
-const weeksPassed =
-  weeksPassedBetweenWeekKeys(st.unemployed_since_week, nowW);
-
-if (weeksPassed >= navAfterWeeks) {
-  const nav = this.makeNavEvent();
-  this.enqueueEvent(nav);
-  this.markPulseUsed();
-  return { enqueued: true, type: "nav", event: nav };
-}
-
-  // Før NAV: bruk pulse uten mail (stille uke)
-  this.markPulseUsed();
-  return { enqueued: false, reason: "unemployed_pre_nav" };
-}
-       
-      // 4) Har jobb => velg fra pack
-      const packFile = this.packMap[String(active?.career_id || "").trim()] || `${role_key}.json`;
-      const pack = await this.loadPack(packFile);
-      const chosen = this.pickEventFromPack(pack, state);
-      if (!chosen) {
-        // ingen passende event igjen => bare bruk pulse uten mail (stille dag)
-        this.markPulseUsed();
-        return { enqueued: false, reason: "no_candidates" };
+      if (window.CivicationPsyche &&
+          typeof window.CivicationPsyche.checkBurnout === "function") {
+        window.CivicationPsyche.checkBurnout();
       }
-
-      this.enqueueEvent(chosen);
-      this.markPulseUsed();
-      return { enqueued: true, type: "job", event: chosen };
+    } catch (e) {
+      console.warn("Burnout check failed", e);
     }
 
-    enqueueEvent(eventObj) {
-      const inbox = this.getInbox();
-      const item = {
-        status: "pending",
-        enqueued_at: new Date().toISOString(),
-        event: eventObj
-      };
-      const next = [item, ...inbox].slice(0, this.maxInbox);
-      this.setInbox(next);
-    }
-
-    // -------- answering --------
-    answer(eventId, choiceId) {
-      const inbox = this.getInbox();
-      const idx = inbox.findIndex(
-        x => x && x.status === "pending" && x.event && x.event.id === eventId
-      );
-      if (idx < 0) return { ok: false, reason: "not_found" };
-
-      const item = inbox[idx];
-      const ev = item.event || {};
-      const state = this.getState();
-
-      let effect = 0;
-      let feedback = "";
-
-      if (Array.isArray(ev.choices) && ev.choices.length) {
-        const choice = ev.choices.find(c => c && c.id === choiceId);
-               // ---- v0.2: send choice-tags til Lifestyle ledger (path dependency)
-
-      // --- MORAL COLLAPSE ---
-      if (choice?.moral_flag) {
-       const active = getActivePosition();
-      if (active?.career_id) {
-       window.CivicationPsyche?.registerCollapse(active.career_id, "moral");
-       }
-      }
-         
-try {
-  const tags = Array.isArray(choice?.tags) ? choice.tags : [];
-  if (tags.length) window.HG_Lifestyle?.addTags?.(tags, "civication_choice");
-} catch {}
-
-if (!choice) return { ok: false, reason: "bad_choice" };
-
-let baseEffect = Number(choice.effect || 0);
-
-const autonomy =
-  window.CivicationPsyche?.getAutonomy?.(state.active_role_key) ?? 50;
-
-if (baseEffect < 0 && autonomy < 30) {
-  baseEffect *= 1.5;
-}
-
-if (baseEffect < 0 && autonomy > 70) {
-  baseEffect *= 0.7;
-}
-
-effect = Math.round(baseEffect);
-feedback = String(choice.feedback || "");
-      }
-
-      // mark consumed
-      const consumed = { ...(state.consumed || {}) };
-      consumed[ev.id] = true;
-
-      // apply effect -> internal score
-      let score = Number(state.score || 0) + effect;
-
-      // clamp score litt (så +1 ikke blir uendelig buffer)
-      if (score > 2) score = 2;
-      if (score < -5) score = -5;
-
-      let strikes = Number(state.strikes || 0);
-      let stability = state.stability;
-
-      // threshold: score <= -2 => strike
-      if (score <= -2) {
-        strikes += 1;
-        score = 0;
-
-        if (strikes === 1) {
-          stability = "WARNING";
-        } else if (strikes >= 2) {
-          stability = "FIRED";
-        }
-      } else {
-        // Hvis i WARNING og vi får positiv stabilisering, kan vi gå tilbake til STABLE
-        if (stability === "WARNING" && effect > 0) {
-          stability = "STABLE";
-        }
-      }
-
-      // Warning flag: første gang vi går inn i WARNING, marker warning_used (status)
-      let warning_used = state.warning_used;
-      if (stability === "WARNING") warning_used = true;
-
-      // Resolve item
-      inbox[idx] = {
-        ...item,
-        status: "resolved",
-        resolved_at: new Date().toISOString(),
-        chosen: choiceId || null,
-        effect,
-        feedback
-      };
-
-      // commit state
-      this.setInbox(inbox);
-      this.setState({ consumed, score, strikes, stability, warning_used });
-
-// Fired handling
-if (stability === "FIRED") {
-  const prev = getActivePosition();
-
-  // 1️⃣ Registrer kollaps i Psyche
-  if (prev?.career_id) {
-    window.CivicationPsyche?.registerCollapse(prev.career_id, "fired");
+  } catch (e) {
+    console.warn("Salary tick failed", e);
   }
 
-  // 2️⃣ Flytt til jobbhistorikk
-  appendJobHistoryEnded(prev, "fired");
+  // 0) sync job/role_key
+  const role_key = this.ensureRoleKeySynced();
+  const active = getActivePosition();
+  const state = this.getState();
 
-  // 3️⃣ Fjern aktiv jobb
-  setActivePosition(null);
+  this.syncRoleBaselineFromActive();
 
-  this.setState({ unemployed_since_week: weekKey(new Date()) });
+  // 1) Hvis det allerede finnes en pending event, ikke spam
+  if (this.getPendingEvent()) {
+    return { enqueued: false, reason: "pending_exists" };
+  }
 
-  // 4️⃣ Legg fired-info i inbox
-  const firedEv = this.makeFiredEvent(this.getState().active_role_key);
-  this.enqueueEvent(firedEv);
+  // 2) Pulse gating
+  if (!this.canPulseNow()) {
+    return { enqueued: false, reason: "pulse_used" };
+  }
+
+  // 3) Arbeidsledig => før NAV: stille / evt. “arbeidsledig”-mail,
+  //    etter X uker: NAV-mail
+  if (!active) {
+
+    const st = this.getState();
+    const now = new Date();
+
+    const navAfterWeeks =
+      Number(
+        (window.HG_CAREERS &&
+         window.HG_CAREERS.global_rules &&
+         window.HG_CAREERS.global_rules.unemployment &&
+         window.HG_CAREERS.global_rules.unemployment.nav_after_weeks) || 0
+      );
+
+    const nowW = weekKey(now);
+
+    if (!st.unemployed_since_week) {
+      this.setState({ unemployed_since_week: nowW });
+      this.markPulseUsed();
+      return { enqueued: false, reason: "unemployed_started" };
+    }
+
+    const weeksPassed =
+      weeksPassedBetweenWeekKeys(st.unemployed_since_week, nowW);
+
+    if (weeksPassed >= navAfterWeeks) {
+      const nav = this.makeNavEvent();
+      this.enqueueEvent(nav);
+      this.markPulseUsed();
+      return { enqueued: true, type: "nav", event: nav };
+    }
+
+    // Før NAV: bruk pulse uten mail (stille uke)
+    this.markPulseUsed();
+    return { enqueued: false, reason: "unemployed_pre_nav" };
+  }
+
+  // 4) Har jobb => velg fra pack
+  const careerId = String(active.career_id || "").trim();
+
+  const packFile =
+    (this.packMap && this.packMap[careerId])
+      ? this.packMap[careerId]
+      : (String(role_key || "") + ".json");
+
+  const pack = await this.loadPack(packFile);
+  const chosen = this.pickEventFromPack(pack, state);
+
+  if (!chosen) {
+    // ingen passende event igjen => bare bruk pulse uten mail (stille dag)
+    this.markPulseUsed();
+    return { enqueued: false, reason: "no_candidates" };
+  }
+
+  this.enqueueEvent(chosen);
+  this.markPulseUsed();
+  return { enqueued: true, type: "job", event: chosen };
 }
 
-    } // ← lukker answer()
+enqueueEvent(eventObj) {
 
-  } // ← lukker class CivicationEventEngine
+  const inbox = this.getInbox();
 
-  // -------- instantiate engine --------
-  window.HG_CiviEngine = new CivicationEventEngine({
-    packBasePath: "data/civication",
-    maxInbox: 1
+  const item = {
+    status: "pending",
+    enqueued_at: new Date().toISOString(),
+    event: eventObj
+  };
+
+  const next = [item].concat(inbox).slice(0, this.maxInbox);
+  this.setInbox(next);
+}
+
+
+// -------- answering --------
+answer(eventId, choiceId) {
+
+  const inbox = this.getInbox();
+
+  const idx = inbox.findIndex(function (x) {
+    return x &&
+           x.status === "pending" &&
+           x.event &&
+           x.event.id === eventId;
   });
 
+  if (idx < 0) {
+    return { ok: false, reason: "not_found" };
+  }
+
+  const item = inbox[idx];
+  const ev = item.event || {};
+  const state = this.getState();
+
+  let effect = 0;
+  let feedback = "";
+
+  let choice = null;
+
+  if (Array.isArray(ev.choices) && ev.choices.length) {
+
+    choice = ev.choices.find(function (c) {
+      return c && c.id === choiceId;
+    });
+
+    if (!choice) {
+      return { ok: false, reason: "bad_choice" };
+    }
+
+    // --- MORAL COLLAPSE ---
+    if (choice.moral_flag === true) {
+      const active = getActivePosition();
+      if (active && active.career_id &&
+          window.CivicationPsyche &&
+          typeof window.CivicationPsyche.registerCollapse === "function") {
+        window.CivicationPsyche.registerCollapse(active.career_id, "moral");
+      }
+    }
+
+    // --- Lifestyle tags ---
+    try {
+      const tags =
+        Array.isArray(choice.tags) ? choice.tags : [];
+
+      if (tags.length &&
+          window.HG_Lifestyle &&
+          typeof window.HG_Lifestyle.addTags === "function") {
+        window.HG_Lifestyle.addTags(tags, "civication_choice");
+      }
+
+    } catch (e) {}
+
+    let baseEffect = Number(choice.effect || 0);
+
+    let autonomy = 50;
+    if (window.CivicationPsyche &&
+        typeof window.CivicationPsyche.getAutonomy === "function") {
+      autonomy = window.CivicationPsyche.getAutonomy(state.active_role_key);
+    }
+
+    if (baseEffect < 0 && autonomy < 30) {
+      baseEffect = baseEffect * 1.5;
+    }
+
+    if (baseEffect < 0 && autonomy > 70) {
+      baseEffect = baseEffect * 0.7;
+    }
+
+    effect = Math.round(baseEffect);
+    feedback = String(choice.feedback || "");
+  }
+
+  // -------- mark consumed --------
+
+  const consumed = Object.assign({}, state.consumed || {});
+  consumed[ev.id] = true;
+
+  // -------- score logic --------
+
+  let score = Number(state.score || 0) + effect;
+
+  if (score > 2) score = 2;
+  if (score < -5) score = -5;
+
+  let strikes = Number(state.strikes || 0);
+  let stability = state.stability;
+
+  if (score <= -2) {
+
+    strikes += 1;
+    score = 0;
+
+    if (strikes === 1) {
+      stability = "WARNING";
+    } else if (strikes >= 2) {
+      stability = "FIRED";
+    }
+
+  } else {
+
+    if (stability === "WARNING" && effect > 0) {
+      stability = "STABLE";
+    }
+  }
+
+  let warning_used = state.warning_used;
+  if (stability === "WARNING") {
+    warning_used = true;
+  }
+
+  // -------- resolve inbox item --------
+
+  inbox[idx] = Object.assign({}, item, {
+    status: "resolved",
+    resolved_at: new Date().toISOString(),
+    chosen: choiceId || null,
+    effect: effect,
+    feedback: feedback
+  });
+
+  this.setInbox(inbox);
+  this.setState({
+    consumed: consumed,
+    score: score,
+    strikes: strikes,
+    stability: stability,
+    warning_used: warning_used
+  });
+
+  // -------- FIRED handling --------
+
+  if (stability === "FIRED") {
+
+    const prev = getActivePosition();
+
+    if (prev &&
+        prev.career_id &&
+        window.CivicationPsyche &&
+        typeof window.CivicationPsyche.registerCollapse === "function") {
+
+      window.CivicationPsyche.registerCollapse(prev.career_id, "fired");
+    }
+
+    appendJobHistoryEnded(prev, "fired");
+    setActivePosition(null);
+
+    this.setState({
+      unemployed_since_week: weekKey(new Date())
+    });
+
+    const firedEv =
+      this.makeFiredEvent(this.getState().active_role_key);
+
+    this.enqueueEvent(firedEv);
+  }
+
+  return {
+    ok: true,
+    effect: effect,
+    stability: stability
+  };
+
+} // ← lukker answer()
+
+} // ← lukker class CivicationEventEngine
+
+
+// -------- instantiate engine --------
+window.HG_CiviEngine = new CivicationEventEngine({
+  packBasePath: "data/civication",
+  maxInbox: 1
+});
+
 window.checkTierUpgrades = checkTierUpgrades;
-   
+
 })(); // ← lukker IIFE
 
+
+
 function qualifiesForCareer(player, career) {
+
   if (!career.required_badges) return true;
 
-  return career.required_badges.every(req => {
-    const tier = player.badges?.[req.badge] ?? 0;
+  return career.required_badges.every(function (req) {
+
+    let tier = 0;
+
+    if (player.badges &&
+        Object.prototype.hasOwnProperty.call(player.badges, req.badge)) {
+
+      tier = player.badges[req.badge];
+    }
+
     return tier >= req.min_tier;
   });
 }
 
+
+
 function calculateWeeklySalary(career, tierIndex) {
-  // Kilde: hg_careers.json → economy.salary_by_tier (ukelønn per tier)
-  // tierIndex kommer fra deriveTierFromPoints og er 0-basert.
-  const tier = (Number.isFinite(tierIndex) ? tierIndex : 0) + 1;
 
-  const byTier = career?.economy?.salary_by_tier;
-  let weekly = byTier && Object.prototype.hasOwnProperty.call(byTier, String(tier))
-    ? Number(byTier[String(tier)])
-    : (byTier && Object.prototype.hasOwnProperty.call(byTier, tier)
-        ? Number(byTier[tier])
-        : 0);
+  const tier =
+    (Number.isFinite(tierIndex) ? tierIndex : 0) + 1;
 
-  if (!Number.isFinite(weekly)) weekly = 0;
+  let byTier = null;
 
-  // Rounding (default: nearest) fra HG_CAREERS.global_rules.salary.rounding
-  const rounding =
-    window.HG_CAREERS?.global_rules?.salary?.rounding || "nearest";
+  if (career &&
+      career.economy &&
+      career.economy.salary_by_tier) {
+
+    byTier = career.economy.salary_by_tier;
+  }
+
+  let weekly = 0;
+
+  if (byTier &&
+      Object.prototype.hasOwnProperty.call(byTier, String(tier))) {
+
+    weekly = Number(byTier[String(tier)]);
+
+  } else if (byTier &&
+             Object.prototype.hasOwnProperty.call(byTier, tier)) {
+
+    weekly = Number(byTier[tier]);
+  }
+
+  if (!Number.isFinite(weekly)) {
+    weekly = 0;
+  }
+
+  let rounding = "nearest";
+
+  if (window.HG_CAREERS &&
+      window.HG_CAREERS.global_rules &&
+      window.HG_CAREERS.global_rules.salary &&
+      window.HG_CAREERS.global_rules.salary.rounding) {
+
+    rounding =
+      window.HG_CAREERS.global_rules.salary.rounding;
+  }
 
   switch (rounding) {
+
     case "floor":
       weekly = Math.floor(weekly);
       break;
+
     case "ceil":
       weekly = Math.ceil(weekly);
       break;
+
     case "nearest":
     default:
       weekly = Math.round(weekly);
@@ -931,37 +1231,68 @@ function calculateWeeklySalary(career, tierIndex) {
   return weekly;
 }
 
+
+
 function payWeeklySalary(player, career, tierIndex) {
-  const weekly = calculateWeeklySalary(career, tierIndex);
-  player.balance = (Number(player.balance) || 0) + weekly;
+
+  const weekly =
+    calculateWeeklySalary(career, tierIndex);
+
+  player.balance =
+    (Number(player.balance) || 0) + weekly;
+
   return weekly;
 }
 
+
+
 function getCapital() {
-  return JSON.parse(localStorage.getItem("hg_capital_v1") || "{}");
+
+  return JSON.parse(
+    localStorage.getItem("hg_capital_v1") || "{}"
+  );
 }
+
+
 
 function saveCapital(cap) {
-  localStorage.setItem("hg_capital_v1", JSON.stringify(cap));
-  window.dispatchEvent(new Event("updateProfile"));
+
+  localStorage.setItem(
+    "hg_capital_v1",
+    JSON.stringify(cap)
+  );
+
+  window.dispatchEvent(
+    new Event("updateProfile")
+  );
 }
 
-function getQuizCountLastWeek(careerId) {
-  const history =
-    JSON.parse(localStorage.getItem("quiz_history") || "[]");
 
-  if (!Array.isArray(history)) return 0;
+
+function getQuizCountLastWeek(careerId) {
+
+  const history =
+    JSON.parse(
+      localStorage.getItem("quiz_history") || "[]"
+    );
+
+  if (!Array.isArray(history)) {
+    return 0;
+  }
 
   const now = Date.now();
   const oneWeek = 7 * 24 * 60 * 60 * 1000;
 
-  return history.filter(h => {
-    if (!h?.date) return false;
-    if (String(h?.categoryId) !== String(careerId)) return false;
+  return history.filter(function (h) {
+
+    if (!h || !h.date) return false;
+
+    if (String(h.categoryId) !== String(careerId)) {
+      return false;
+    }
 
     const t = new Date(h.date).getTime();
-    return now - t <= oneWeek;
+    return (now - t) <= oneWeek;
+
   }).length;
 }
-
-
