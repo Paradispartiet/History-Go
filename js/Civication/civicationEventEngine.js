@@ -478,4 +478,4 @@ class CivicationEventEngine {
 
 } // ← lukker class CivicationEventEngine
 
-window.CivicationEventEngine = CivicationEventEng
+window.CivicationEventEngine = CivicationEventEngine;
