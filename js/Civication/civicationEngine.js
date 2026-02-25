@@ -505,7 +505,34 @@ function tickPCIncomeWeekly() {
   savePCWallet(wallet);
 }
 
+// ============================================================
+// OBLIGATION TYPES
+// ============================================================
 
+const OBLIGATION_TYPES = {
+
+  weekly_login: {
+    type: "time_based",
+    intervalDays: 7,
+    onFail: { reputation: -5 }
+  },
+
+  event_response: {
+    type: "count_based",
+    required: 1,
+    intervalDays: 7,
+    onFail: { reputation: -3 }
+  },
+
+  reputation_floor: {
+    type: "threshold",
+    minValue: 60,
+    onFail: { fire: true }
+  }
+
+};
+
+   
 // ============================================================
 // CivicationEventEngine
 // ============================================================
@@ -513,11 +540,26 @@ function tickPCIncomeWeekly() {
 class CivicationEventEngine {
 
   constructor(opts = {}) {
+
+    // 1️⃣ Hent state først
+    this.state = opts.state || window.HG_STATE || {};
+
+    // 2️⃣ Initialiser career hvis den mangler
+    this.state.career = this.state.career || {
+      activeJob: null,
+      obligations: [],
+      reputation: 70,
+      salaryModifier: 1
+    };
+
+    // 3️⃣ Resten av dine innstillinger
     this.packBasePath = opts.packBasePath || "data/civication";
+
     this.maxInbox =
       Number.isFinite(opts.maxInbox) ? opts.maxInbox : 1;
 
     this.pulseLimitPerDay = 3;
+
     this.packsCache = new Map();
 
     this.packMap = opts.packMap || {
@@ -527,7 +569,7 @@ class CivicationEventEngine {
       by: "byCivic.json"
     };
   }
-
+}
   // -------- state --------
 
   getState() {
