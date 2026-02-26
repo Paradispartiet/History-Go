@@ -8,8 +8,6 @@ const getActivePosition = () =>
 const setActivePosition = (p) =>
   window.CivicationState.setActivePosition(p);
 
-const ensureCiviCareerRulesLoaded =
-  window.ensureCiviCareerRulesLoaded;
 
 async function init() {
 
