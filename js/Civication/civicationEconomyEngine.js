@@ -437,7 +437,7 @@ function qualifiesForCareer(player, career) {
 
   
 window.CivicationEconomyEngine = {
-    tickPCIncomeWeekly
-  };
+  tickWeekly: tickPCIncomeWeekly
+};
 
 })();
