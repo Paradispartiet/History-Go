@@ -253,9 +253,14 @@ getPulseSlot() {
   return "evening";
 }
 
+todayKey() {
+  const d = new Date();
+  return d.toISOString().slice(0, 10); // YYYY-MM-DD
+}
+
 canPulseNow() {
   const slot = this.getPulseSlot();   // ✅ FIX
-  const t = todayKey();
+  const t = this.todayKey();
   const p = window.CivicationState.getPulse();
 
   if (!p || p.date !== t) {
@@ -269,7 +274,7 @@ canPulseNow() {
 
 markPulseUsed() {
   const slot = this.getPulseSlot();   // ✅ FIX
-  const t = todayKey();
+  const t = this.todayKey();
   const p = window.CivicationState.getPulse();
 
   const seen = p.seen || {};
