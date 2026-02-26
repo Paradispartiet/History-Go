@@ -719,3 +719,4 @@ answer(eventId, choiceId) {
 
 } // ← lukker class CivicationEventEngine
 
+window.CivicationEventEngine = CivicationEventEngine;
