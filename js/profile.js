@@ -724,8 +724,10 @@ window.addEventListener("updateProfile", () => {
   safeCall("renderProfileCard", renderProfileCard);
   safeCall("renderPC", renderPC);
 
-  safeCall("renderCivication", () => window.CivicationUI?.render?.());
-  safeCall("renderCivicationInbox", () => window.CivicationUI?.renderInbox?.());
+  safeCall("renderCivication", () => {
+  window.CivicationUI?.render?.();
+  window.CivicationUI?.renderInbox?.();
+});
 
   safeCall("renderMerits", renderMerits);
   safeCall("renderPeopleCollection", renderPeopleCollection);
