@@ -4,8 +4,6 @@
 
 async function init() {
 
-  await window.HG_CiviEngine?.onAppOpen?.();
-
   // Generer jobbtilbud (global funksjon)
   if (typeof checkTierUpgrades === "function") {
     checkTierUpgrades();
@@ -64,8 +62,6 @@ function wireCivicationActions() {
       threshold: offer.threshold ?? null,
       achieved_at: new Date().toISOString()
     });
-
-    await window.HG_CiviEngine?.onAppOpen?.();
 
     window.dispatchEvent(new Event("updateProfile"));
   };
