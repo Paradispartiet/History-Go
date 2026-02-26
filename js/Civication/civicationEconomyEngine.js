@@ -3,7 +3,7 @@
   function tickPCIncomeWeekly() {
 
   const state = CivicationState.getState();
-  let wallet = state.economy.wallet || { balance: 0, last_tick_iso: null };
+  let wallet = CivicationState.getWallet();
 
   const active = state.role.active_position;
   const now = new Date();
