@@ -97,38 +97,55 @@ window.checkTierUpgrades = checkTierUpgrades;
   function tickPCIncomeWeekly() {
 
   const state = window.CivicationState.getState();
-  let wallet = window.CivicationState.getWallet();
-  const active = window.CivicationState.getActivePosition();
+  let wallet = normalizeWallet(
+    window.CivicationState.getWallet()
+  );
+
+  const active =
+    window.CivicationState.getActivePosition();
+
   const now = new Date();
 
   const lastIso = wallet.last_tick_iso;
-  const lastWeek = lastIso ? weekKey(new Date(lastIso)) : null;
+  const lastWeek = lastIso
+    ? weekKey(new Date(lastIso))
+    : null;
+
   const thisWeek = weekKey(now);
 
-  // Samme uke → allerede prosessert
   if (lastWeek === thisWeek) return;
 
-  const navAfterWeeks =
-    Number(window.HG_CAREERS?.global_rules?.unemployment?.nav_after_weeks || 0);
+  // =========================================================
+  // GLOBAL RULES (hent fra CIVI_CAREER_RULES hvis tilgjengelig)
+  // =========================================================
 
-  const navWeeklyPc =
-    Number(window.HG_CAREERS?.global_rules?.unemployment?.nav_weekly_pc || 0);
+  let navAfterWeeks = 0;
+  let navWeeklyPc = 0;
+
+  if (Array.isArray(window.CIVI_CAREER_RULES)) {
+    const any = window.CIVI_CAREER_RULES[0];
+    navAfterWeeks =
+      Number(any?.global_rules?.unemployment?.nav_after_weeks || 0);
+    navWeeklyPc =
+      Number(any?.global_rules?.unemployment?.nav_weekly_pc || 0);
+  }
 
   // =========================================================
   // ARBEIDSLEDIG
   // =========================================================
+
   if (!active?.career_id) {
 
     const sinceW = state.unemployed_since_week;
 
     if (!sinceW) {
 
-      CivicationState.setState({
+      window.CivicationState.setState({
         unemployed_since_week: thisWeek
       });
 
       wallet.last_tick_iso = now.toISOString();
-      CivicationState.updateWallet(wallet);
+      window.CivicationState.updateWallet(wallet);
       return;
     }
 
@@ -140,7 +157,7 @@ window.checkTierUpgrades = checkTierUpgrades;
     }
 
     wallet.last_tick_iso = now.toISOString();
-    CivicationState.updateWallet(wallet);
+    window.CivicationState.updateWallet(wallet);
     return;
   }
 
@@ -148,28 +165,35 @@ window.checkTierUpgrades = checkTierUpgrades;
   // I JOBB
   // =========================================================
 
-  const career = window.HG_CAREERS?.find(
-    c => String(c.career_id) === String(active.career_id)
-  );
+  const career =
+    Array.isArray(window.HG_CAREERS)
+      ? window.HG_CAREERS.find(
+          c => String(c.career_id) === String(active.career_id)
+        )
+      : null;
 
   if (!career) {
     wallet.last_tick_iso = now.toISOString();
-    CivicationState.updateWallet(wallet);
+    window.CivicationState.updateWallet(wallet);
     return;
   }
 
   const merits =
-    JSON.parse(localStorage.getItem("merits_by_category") || "{}");
+    JSON.parse(
+      localStorage.getItem("merits_by_category") || "{}"
+    );
 
   const points =
     Number(merits[active.career_id]?.points || 0);
 
   const badge =
-    window.BADGES?.find(b => b.id === active.career_id);
+    window.BADGES?.find(
+      b => b.id === active.career_id
+    );
 
   if (!badge) {
     wallet.last_tick_iso = now.toISOString();
-    CivicationState.updateWallet(wallet);
+    window.CivicationState.updateWallet(wallet);
     return;
   }
 
@@ -177,26 +201,23 @@ window.checkTierUpgrades = checkTierUpgrades;
     deriveTierFromPoints(badge, points);
 
   // 1️⃣ Lønn
+
   const weeklyIncome =
     calculateWeeklySalary(career, tierIndex);
 
   wallet.balance += Math.floor(weeklyIncome);
 
   // 2️⃣ Utgifter
+
   const baseExpense =
     Number(career?.economy?.weekly_expenses?.base || 0);
 
   const riskMod =
     Number(career?.economy?.weekly_expenses?.risk_modifier || 1);
 
-  const weeklyExpense =
-    Math.floor(baseExpense * riskMod);
+  wallet.balance -= Math.floor(baseExpense * riskMod);
 
-  wallet.balance -= weeklyExpense;
-
-  // --------------------------------------------------
-  // Maintenance-krav (quiz-aktivitet)
-  // --------------------------------------------------
+  // 3️⃣ Maintenance
 
   const minQuiz =
     Number(
@@ -210,43 +231,39 @@ window.checkTierUpgrades = checkTierUpgrades;
 
     if (done < minQuiz) {
 
-      let strikes =
+      const strikes =
         Number(state.strikes || 0) + 1;
 
-      let stability =
-        state.stability || "STABLE";
+      let stability = "STABLE";
 
-      if (strikes === 1) {
-        stability = "WARNING";
-      } else if (strikes >= 2) {
-        stability = "FIRED";
-      }
+      if (strikes === 1) stability = "WARNING";
+      if (strikes >= 2) stability = "FIRED";
 
-      CivicationState.setState({
+      window.CivicationState.setState({
         strikes,
         stability,
         lastMaintenanceFailAt: Date.now()
       });
-
     }
   }
 
-    
-  // 3️⃣ Layoff-roll
+  // 4️⃣ Layoff
+
   const layoffChance =
-    Number(career?.economy?.risk?.layoff_chance_per_week || 0);
+    Number(
+      career?.economy?.risk?.layoff_chance_per_week || 0
+    );
 
-  const roll = Math.random();
-
-  if (layoffChance > 0 && roll < layoffChance) {
+  if (layoffChance > 0 && Math.random() < layoffChance) {
 
     const prev = active;
 
     window.CivicationState.setActivePosition(null);
 
-window.CivicationState.setState({
-  unemployed_since_week: thisWeek
-});
+    window.CivicationState.setState({
+      unemployed_since_week: thisWeek
+    });
+
     try {
       window.CivicationPsyche?.registerCollapse?.(
         prev?.career_id,
@@ -254,27 +271,17 @@ window.CivicationState.setState({
       );
     } catch (e) {}
 
-    try {
-      const firedEv =
-        window.HG_CiviEngine?.makeFiredEvent?.(
-          state.active_role_key
-        );
-
-      if (firedEv)
-        window.HG_CiviEngine?.enqueueEvent?.(firedEv);
-
-    } catch (e) {}
-
     wallet.last_tick_iso = now.toISOString();
-    CivicationState.updateWallet(wallet);
+    window.CivicationState.updateWallet(wallet);
     return;
   }
 
-  // 4️⃣ Capital engine
-  if (window.CAPITAL_ENGINE?.applyCareerCapital) {
+  // 5️⃣ Capital
 
-    const capitalState =
-      state.economy.capital || {};
+  const capitalState =
+    state?.economy?.capital || {};
+
+  if (window.CAPITAL_ENGINE?.applyCareerCapital) {
 
     const updated =
       window.CAPITAL_ENGINE.applyCareerCapital(
@@ -283,19 +290,17 @@ window.CivicationState.setState({
         capitalState
       );
 
-    CivicationState.setState({
-      economy: {
-        capital: updated
-      }
+    window.CivicationState.setState({
+      economy: { capital: updated }
     });
   }
 
-  CivicationState.setState({
+  window.CivicationState.setState({
     unemployed_since_week: null
   });
 
   wallet.last_tick_iso = now.toISOString();
-  CivicationState.updateWallet(wallet);
+  window.CivicationState.updateWallet(wallet);
 }
   
 
