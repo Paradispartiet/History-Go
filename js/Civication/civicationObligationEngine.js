@@ -114,15 +114,23 @@
     });
 
     if (fired) {
-      CivicationState.setState({
-        career: {
-          activeJob: null,
-          obligations: [],
-          reputation: reputation
-        }
-      });
-      return;
+
+  const prev = CivicationState.getActivePosition();
+
+  CivicationState.appendJobHistoryEnded(prev, "obligation_fail");
+  CivicationState.setActivePosition(null);
+
+  CivicationState.setState({
+    unemployed_since_week: weekKey(new Date()),
+    career: {
+      activeJob: null,
+      obligations: [],
+      reputation: reputation
     }
+  });
+
+  return;
+}
 
     CivicationState.setState({
       career: {
