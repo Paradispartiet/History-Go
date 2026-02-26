@@ -100,23 +100,28 @@
         }
       }
 
-      // -----------------------------
-      // THRESHOLD
-      // -----------------------------
-      if (def.type === "threshold") {
+// -----------------------------
+// THRESHOLD
+// -----------------------------
+if (def.type === "threshold") {
 
-        if (reputation < def.minValue) {
-          fired = true;
-        }
-      }
+  if (reputation < def.minValue) {
+    fired = true;
+  }
+}
 
-      return ob;
-    });
+return ob;
+});
 
-    if (fired) {
+// 🔽 Clamp reputation
+if (reputation > 100) reputation = 100;
+if (reputation < 0) reputation = 0;
+
+// 🔽 Fired handling
+if (fired) {
 
   const prev = CivicationState.getActivePosition();
-
+   
   CivicationState.appendJobHistoryEnded(prev, "obligation_fail");
   CivicationState.setActivePosition(null);
 
