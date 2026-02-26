@@ -155,7 +155,7 @@ getPendingEvent() {
   // -------- role_key resolution --------
 
   resolveRoleKey() {
-    const active = getActivePosition();
+    const active = window.CivicationState.getActivePosition()
     if (!active) return null;
 
     if (active.role_key)
@@ -171,7 +171,7 @@ getPendingEvent() {
   }
 
   syncRoleBaselineFromActive() {
-    const active = getActivePosition();
+    const active = window.CivicationState.getActivePosition()
 
     if (!active?.career_id) {
       window.CivicationPsyche?.clearRoleBaseline?.();
@@ -208,7 +208,7 @@ getPendingEvent() {
   }
 
   ensureRoleKeySynced() {
-    const active = getActivePosition();
+    const active = window.CivicationState.getActivePosition()
 
     if (!active) {
       this.setState({ active_role_key: null });
@@ -446,7 +446,7 @@ async onAppOpen() {
 
   // 0) sync job/role_key
   const role_key = this.ensureRoleKeySynced();
-  const active = getActivePosition();
+  const active = window.CivicationState.getActivePosition()
   const state = this.getState();
 
   this.syncRoleBaselineFromActive();
@@ -572,7 +572,7 @@ answer(eventId, choiceId) {
 
     // --- MORAL COLLAPSE ---
     if (choice.moral_flag === true) {
-      const active = getActivePosition();
+      const active = window.CivicationState.getActivePosition()
       if (active && active.career_id &&
           window.CivicationPsyche &&
           typeof window.CivicationPsyche.registerCollapse === "function") {
@@ -674,7 +674,7 @@ answer(eventId, choiceId) {
 
   if (stability === "FIRED") {
 
-    const prev = getActivePosition();
+    const prev = window.CivicationState.getActivePosition()
 
     if (prev &&
         prev.career_id &&
