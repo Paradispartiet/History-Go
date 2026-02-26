@@ -25,6 +25,8 @@ async function ensureCiviCareerRulesLoaded() {
   }
 }
 
+window.ensureCiviCareerRulesLoaded = ensureCiviCareerRulesLoaded;
+
 async function loadCivicationData() {
   const [badgesRes, careersRes] = await Promise.all([
     fetch("data/badges.json"),
