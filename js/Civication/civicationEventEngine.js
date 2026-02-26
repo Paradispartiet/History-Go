@@ -1,11 +1,4 @@
-function getPulseSlot() {
-  const now = new Date();
-  const hour = now.getHours();
 
-  if (hour < 8) return "morning";
-  if (hour < 16) return "day";
-  return "evening";
-}
 
 function slugify(str) {
     return String(str || "")
@@ -119,6 +112,8 @@ class CivicationEventEngine {
   }
 
   // -------- state --------
+
+  
 
 getState() {
   return window.CivicationState.getState();
@@ -245,10 +240,21 @@ getPendingEvent() {
     return rk;
   }
 
-  // -------- pulse gating --------
 
-  canPulseNow() {
-  const slot = getPulseSlot();
+  
+// -------- pulse gating --------
+
+getPulseSlot() {
+  const now = new Date();
+  const hour = now.getHours();
+
+  if (hour < 8) return "morning";
+  if (hour < 16) return "day";
+  return "evening";
+}
+
+canPulseNow() {
+  const slot = this.getPulseSlot();   // ✅ FIX
   const t = todayKey();
   const p = window.CivicationState.getPulse();
 
@@ -261,8 +267,8 @@ getPendingEvent() {
   return !seen[slot];
 }
 
-  markPulseUsed() {
-  const slot = getPulseSlot();
+markPulseUsed() {
+  const slot = this.getPulseSlot();   // ✅ FIX
   const t = todayKey();
   const p = window.CivicationState.getPulse();
 
