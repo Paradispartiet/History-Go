@@ -96,7 +96,7 @@ function setPulse(p) {
     );
   }
 
-  function CivicationState.getActivePosition() {
+  function getActivePosition() {
     return safeParse(
       localStorage.getItem(LS_ACTIVE_POS),
       null
