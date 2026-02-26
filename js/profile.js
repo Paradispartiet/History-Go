@@ -663,7 +663,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // LAST careers først
     if (typeof window.ensureCiviCareerRulesLoaded === "function") {
-     await window.ensureCiviCareerRulesLoaded();
+     await window.ensureCiviCareerRulesLoaded?.();
     }
 
     // 1) LAST DATA via DataHub
