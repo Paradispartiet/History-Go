@@ -92,7 +92,7 @@ class CivicationEventEngine {
     };
 
     // 3️⃣ Resten av dine innstillinger
-    this.packBasePath = opts.packBasePath || "data/civication";
+    this.packBasePath = opts.packBasePath || "data/Civication";
 
     this.maxInbox =
       Number.isFinite(opts.maxInbox) ? opts.maxInbox : 1;
@@ -434,7 +434,7 @@ async onAppOpen() {
   // WEEKLY SALARY TICK
   // ----------------------------------------
   try {
-    CivicationEconomyEngine.tickWeekly();
+    window.CivicationEconomyEngine?.tickWeekly?.();
 
     try {
       if (window.CivicationPsyche &&
@@ -451,7 +451,7 @@ async onAppOpen() {
 
   // 0) sync job/role_key
   const role_key = this.ensureRoleKeySynced();
-  const active = window.CivicationState.getActivePosition()
+  const active = window.CivicationState.getActivePosition();
   const state = this.getState();
 
   this.syncRoleBaselineFromActive();
