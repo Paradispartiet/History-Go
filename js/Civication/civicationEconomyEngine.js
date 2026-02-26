@@ -394,6 +394,27 @@ function saveCapital(cap) {
   );
 }
 
+
+function getWeeklySalaryFromBadges(careerId, points) {
+  if (!Array.isArray(window.BADGES) || !Array.isArray(window.CIVI_CAREER_RULES)) {
+    return null;
+  }
+
+  const badge = window.BADGES.find(b => b.id === careerId);
+  if (!badge) return null;
+
+  const { tierIndex } = deriveTierFromPoints(badge, points);
+  if (!Number.isFinite(tierIndex)) return null;
+
+  const rules = window.CIVI_CAREER_RULES.find(c => c.career_id === careerId);
+  if (!rules || !rules.economy?.salary_by_tier) return null;
+
+  // tierIndex er 0-basert → +1
+  return rules.economy.salary_by_tier[String(tierIndex + 1)] ?? null;
+}
+
+  
+
 function normalizeWallet(w) {
 
     if (!w || typeof w !== "object") {
