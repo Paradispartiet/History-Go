@@ -8,18 +8,6 @@ function slugify(str) {
       .slice(0, 64);
   }
 
-
-  const getActivePosition = () =>
-  window.CivicationState.getActivePosition();
-
-const setActivePosition = (p) =>
-  window.CivicationState.setActivePosition(p);
-
-const appendJobHistoryEnded = (prev, reason) =>
-  window.CivicationState.appendJobHistoryEnded(prev, reason);
-
-
-
 function weekKey(d) {
 
     const base = d || new Date();
