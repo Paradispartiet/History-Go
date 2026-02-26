@@ -662,7 +662,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   try {
 
     // LAST careers først
-    await ensureCiviCareerRulesLoaded();
+    if (typeof window.ensureCiviCareerRulesLoaded === "function") {
+     await window.ensureCiviCareerRulesLoaded();
+    }
 
     // 1) LAST DATA via DataHub
     const [people, places, badges] = await Promise.all([
