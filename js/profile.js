@@ -670,7 +670,11 @@ function openProfileModal() {
 // ------------------------------------------------------------
 document.addEventListener("DOMContentLoaded", async () => {
   try {
-    // 1) LAST DATA via DataHub (ikke direkte fetch her)
+
+    // LAST careers først
+    await ensureCareersLoaded();
+
+    // 1) LAST DATA via DataHub
     const [people, places, badges] = await Promise.all([
   (window.DataHub?.loadPeopleBase?.() || window.DataHub?.loadPeople?.()),
   (window.DataHub?.loadPlacesBase?.() || window.DataHub?.loadPlaces?.()),
