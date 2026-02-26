@@ -16,6 +16,18 @@
 //
 // ============================================================
 
+async function ensureCareersLoaded() {
+  if (Array.isArray(window.HG_CAREERS)) return;
+
+  const data = await fetch("data/Civication/hg_careers.json", {
+    cache: "no-store"
+  }).then(r => r.json());
+
+  window.HG_CAREERS = Array.isArray(data?.careers)
+    ? data.careers
+    : [];
+}
+
 function getUnlockState() {
   const unlocks = JSON.parse(localStorage.getItem("hg_unlocks_v1") || "{}");
 
