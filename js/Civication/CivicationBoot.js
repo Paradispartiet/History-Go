@@ -9,7 +9,7 @@ async function ensureCiviCareerRulesLoaded() {
   try {
 
     const data = await fetch(
-      "data/civication_careers_rules_v1.json",
+        "data/Civication/hg_careers.json",
       { cache: "no-store" }
     ).then(r => r.json());
 
