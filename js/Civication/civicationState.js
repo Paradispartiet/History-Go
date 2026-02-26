@@ -8,6 +8,8 @@
   const LS_INBOX = "hg_civi_inbox_v1";
   const LS_ACTIVE_POS = "hg_active_position_v1";
   const LS_JOB_HISTORY = "hg_job_history_v1";
+  const LS_PULSE = "hg_civi_pulse_v1";
+  const LS_WALLET = "hg_civi_wallet_v1";
 
   const DEFAULTS = {
     stability: "STABLE",
@@ -22,6 +24,20 @@
     version: 1
   };
 
+function getPulse() {
+  return safeParse(
+    localStorage.getItem(LS_PULSE),
+    { date: null, seen: {} }
+  );
+}
+
+function setPulse(p) {
+  localStorage.setItem(
+    LS_PULSE,
+    JSON.stringify(p || { date: null, seen: {} })
+  );
+}
+  
   function safeParse(raw, fallback) {
     try {
       return JSON.parse(raw);
@@ -87,6 +103,24 @@
     );
   }
 
+  function getWallet() {
+  return safeParse(
+    localStorage.getItem(LS_WALLET),
+    { balance: 0, last_tick_iso: null }
+  );
+}
+
+function updateWallet(wallet) {
+  localStorage.setItem(
+    LS_WALLET,
+    JSON.stringify(wallet || { balance: 0, last_tick_iso: null })
+  );
+
+  window.dispatchEvent(new Event("updateProfile"));
+}
+
+  
+
   function appendJobHistoryEnded(prevPos, reason) {
     if (!prevPos) return;
 
@@ -110,13 +144,17 @@
   }
 
   window.CivicationState = {
-    getState,
-    setState,
-    getInbox,
-    setInbox,
-    getActivePosition,
-    setActivePosition,
-    appendJobHistoryEnded
-  };
+  getState,
+  setState,
+  getInbox,
+  setInbox,
+  getActivePosition,
+  setActivePosition,
+  appendJobHistoryEnded,
+  getPulse,
+  setPulse,
+  getWallet,
+  updateWallet
+};
 
 })();
