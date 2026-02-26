@@ -45,6 +45,7 @@ async function loadCivicationData() {
     console.log("Civication boot start");
 
     await loadCivicationData();
+    await ensureCiviCareerRulesLoaded();
 
     window.HG_CiviEngine =
       new CivicationEventEngine({
