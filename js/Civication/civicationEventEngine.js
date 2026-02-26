@@ -1,3 +1,12 @@
+function getPulseSlot() {
+  const now = new Date();
+  const hour = now.getHours();
+
+  if (hour < 8) return "morning";
+  if (hour < 16) return "day";
+  return "evening";
+}
+
 function slugify(str) {
     return String(str || "")
       .toLowerCase()
