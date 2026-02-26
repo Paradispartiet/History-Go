@@ -246,38 +246,29 @@ getPendingEvent() {
   // -------- pulse gating --------
 
   canPulseNow() {
-    const slot = getPulseSlot();
-    const t = todayKey();
-    const p = lsGet(
-      LS_PULSE,
-      { date: t, seen: {} }
-    );
+  const slot = getPulseSlot();
+  const t = todayKey();
+  const p = window.CivicationState.getPulse();
 
-    if (!p || p.date !== t) {
-      lsSet(
-        LS_PULSE,
-        { date: t, seen: {} }
-      );
-      return true;
-    }
-
-    const seen = p.seen || {};
-    return !seen[slot];
+  if (!p || p.date !== t) {
+    window.CivicationState.setPulse({ date: t, seen: {} });
+    return true;
   }
+
+  const seen = p.seen || {};
+  return !seen[slot];
+}
 
   markPulseUsed() {
-    const slot = getPulseSlot();
-    const t = todayKey();
-    const p = lsGet(
-      LS_PULSE,
-      { date: t, seen: {} }
-    );
+  const slot = getPulseSlot();
+  const t = todayKey();
+  const p = window.CivicationState.getPulse();
 
-    const seen = p.seen || {};
-    seen[slot] = true;
+  const seen = p.seen || {};
+  seen[slot] = true;
 
-    lsSet(LS_PULSE, { date: t, seen });
-  }
+  window.CivicationState.setPulse({ date: t, seen });
+}
 
   // -------- pack loading --------
 
