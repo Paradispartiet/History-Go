@@ -3,12 +3,13 @@
 // ------------------------------------------------------------
 // CIVICATION: Jobbtilbud (offers) lagres i localStorage
 // ------------------------------------------------------------
-function qualifiesForTierWithCross(careerId, tierIndex) {
-  if (!window.HG_CAREERS) return true;
-
-  const career = window.HG_CAREERS.careers?.find(
-    c => String(c.career_id) === String(careerId)
-  );
+const career = Array.isArray(window.HG_CAREERS)
+  ? window.HG_CAREERS.find(
+      c => String(c.career_id) === String(careerId)
+    )
+  : window.HG_CAREERS?.careers?.find(
+      c => String(c.career_id) === String(careerId)
+    );
 
   if (!career) return true;
 
