@@ -117,7 +117,7 @@ async function renderCivication() {
   // AKTIV JOBB
   // ------------------------------------------------------------
 
-  const active = getActivePosition();
+  const active = window.CivicationState.getActivePosition();
   syncRoleBaseline();
 
   if (active && active.title) {
