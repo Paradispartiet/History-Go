@@ -121,7 +121,8 @@ if (reputation < 0) reputation = 0;
 if (fired) {
 
   const prev = CivicationState.getActivePosition();
-   
+  const roleKey = CivicationState.getState().active_role_key;
+
   CivicationState.appendJobHistoryEnded(prev, "obligation_fail");
   CivicationState.setActivePosition(null);
 
@@ -133,6 +134,12 @@ if (fired) {
       reputation: reputation
     }
   });
+
+  // 🔽 GENERER FIRED EVENT
+  if (window.HG_CiviEngine?.makeFiredEvent) {
+    const firedEv = window.HG_CiviEngine.makeFiredEvent(roleKey);
+    window.HG_CiviEngine.enqueueEvent(firedEv);
+  }
 
   return;
 }
