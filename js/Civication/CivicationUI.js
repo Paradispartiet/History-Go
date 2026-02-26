@@ -97,7 +97,7 @@ function wireCivicationActions() {
 // ============================================================
 
 async function renderCivication() {
-  await ensureCiviCareerRulesLoaded();
+  await window.ensureCiviCareerRulesLoaded?.();
 
   const title   = document.getElementById("civiRoleTitle");
   const details = document.getElementById("civiRoleDetails");
