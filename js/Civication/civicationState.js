@@ -12,17 +12,24 @@
   const LS_WALLET = "hg_civi_wallet_v1";
 
   const DEFAULTS = {
-    stability: "STABLE",
-    warning_used: false,
-    strikes: 0,
-    score: 0,
-    active_role_key: null,
-    consumed: {},
-    identity_tags: [],
-    tracks: [],
-    unemployed_since_week: null,
-    version: 1
-  };
+  stability: "STABLE",
+  warning_used: false,
+  strikes: 0,
+  score: 0,
+  active_role_key: null,
+  consumed: {},
+  identity_tags: [],
+  tracks: [],
+  unemployed_since_week: null,
+  version: 1,
+
+  career: {
+    activeJob: null,
+    obligations: [],
+    reputation: 70,
+    salaryModifier: 1
+  }
+};
 
 function getPulse() {
   return safeParse(
