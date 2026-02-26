@@ -106,34 +106,6 @@ function renderPC() {
 
 
 
-function renderMiniCivication() {
-  const elRole = document.getElementById("miniCiviRole");
-  const elSalary = document.getElementById("miniCiviSalary");
-
-  if (!elRole) return;
-
-  const active = window.CivicationState?.getActivePosition?.();
-
-  if (!active?.career_id) {
-    elRole.textContent = "Ingen aktiv rolle";
-    if (elSalary) elSalary.textContent = "";
-    return;
-  }
-
-  elRole.textContent = active.title || active.career_name || active.career_id;
-
-  if (elSalary && Array.isArray(window.HG_CAREERS)) {
-    const career = window.HG_CAREERS.find(
-      c => String(c.career_id) === String(active.career_id)
-    );
-
-    if (career && typeof window.calculateWeeklySalary === "function") {
-      const weekly = window.calculateWeeklySalary(career, 0);
-      elSalary.textContent = `${weekly} PC / uke`;
-    }
-  }
-}
-
 
 // ------------------------------------------------------------
 // MERKER – GRID + MODAL (STRICT)
@@ -727,8 +699,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 safeCall("renderProfileCard", renderProfileCard);
 safeCall("renderPC", renderPC);
-safeCall("renderMiniCivication", renderMiniCivication);
 
+// Civication: init (init bør selv wire actions + initial render)
+safeCall("initCivication", () => window.CivicationUI?.init?.());
 
 // Resten
 safeCall("renderMerits", renderMerits);
@@ -750,8 +723,10 @@ document.getElementById("btnOpenAHA")?.addEventListener("click", () => window.op
 window.addEventListener("updateProfile", () => {
   safeCall("renderProfileCard", renderProfileCard);
   safeCall("renderPC", renderPC);
-  safeCall("renderMiniCivication", renderMiniCivication);
-  
+
+  safeCall("renderCivication", () => window.CivicationUI?.render?.());
+  safeCall("renderCivicationInbox", () => window.CivicationUI?.renderInbox?.());
+
   safeCall("renderMerits", renderMerits);
   safeCall("renderPeopleCollection", renderPeopleCollection);
   safeCall("renderPlacesCollection", renderPlacesCollection);
