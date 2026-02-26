@@ -219,14 +219,17 @@ getPendingEvent() {
     const st = this.getState();
 
     if (rk && rk !== st.active_role_key) {
-      if (!active.role_key) {
-        setActivePosition({
-          ...active,
-          role_key: rk
-        });
-      }
-      this.resetForNewJob(rk);
-    }
+  if (!active?.role_key) {
+
+    window.CivicationState.setActivePosition({
+      ...active,
+      role_key: rk
+    });
+
+  }
+
+  this.resetForNewJob(rk);
+}
 
     return rk;
   }
