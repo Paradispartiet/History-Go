@@ -289,9 +289,10 @@ window.addEventListener("civiPublicUpdated", renderPublicFeed);
 // ============================================================
 
 function syncRoleBaseline() {
-  const active = window.CivicationState.getActivePosition();
 
-  if (!active?.career_id) {
+  const active = window.CivicationState?.getActivePosition?.();
+
+  if (!active || !active.career_id) {
     window.CivicationPsyche?.clearRoleBaseline?.();
     return;
   }
@@ -299,7 +300,7 @@ function syncRoleBaseline() {
   const careerId = active.career_id;
 
   const badge = Array.isArray(window.BADGES)
-    ? window.BADGES.find(b => b && b.id === careerId)
+    ? window.BADGES.find(b => b && String(b.id) === String(careerId))
     : null;
 
   if (!badge) {
@@ -315,7 +316,6 @@ function syncRoleBaseline() {
   const { tierIndex, label } =
     deriveTierFromPoints(badge, points);
 
-  
   // --------------------------------------------------
   // Baseline-matrise per rolle + tier
   // --------------------------------------------------
@@ -360,7 +360,7 @@ function syncRoleBaseline() {
       baseline = { economicRoom: 0, visibility: 0, integrity: 0 };
   }
 
-  window.HG_CiviPsyche?.applyRoleBaseline?.(baseline);
+  window.CivicationPsyche?.applyRoleBaseline?.(baseline);
 }
 
 // ============================================================
