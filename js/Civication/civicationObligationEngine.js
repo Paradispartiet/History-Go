@@ -126,7 +126,7 @@ if (fired) {
   CivicationState.setActivePosition(null);
 
   CivicationState.setState({
-    unemployed_since_week: weekKey(new Date()),
+    unemployed_since_week: new Date().toISOString(),
     career: {
       activeJob: null,
       obligations: [],
