@@ -684,9 +684,9 @@ answer(eventId, choiceId) {
       window.CivicationPsyche.registerCollapse(prev.career_id, "fired");
     }
 
-    appendJobHistoryEnded(prev, "fired");
-    setActivePosition(null);
-
+    window.CivicationState.appendJobHistoryEnded(prev, "fired");
+window.CivicationState.setActivePosition(null);
+      
     this.setState({
       unemployed_since_week: weekKey(new Date())
     });
