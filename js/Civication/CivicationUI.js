@@ -2,16 +2,19 @@
 // CIVICATION UI
 // ============================================================
 
-const getActivePosition = () =>
-  window.CivicationState.getActivePosition();
-
-const setActivePosition = (p) =>
-  window.CivicationState.setActivePosition(p);
-
-
 async function init() {
 
-  // Generer jobbtilbud (global funksjon)
+  // Sørg for at careers er lastet
+  await window.ensureCiviCareerRulesLoaded?.();
+
+  // 🔽 START-SEKVENS hvis systemet er tomt
+  if (!window.CivicationState.getActivePosition() &&
+      !window.CivicationState.getInbox()) {
+
+    await window.HG_CiviEngine?.onAppOpen?.();
+  }
+
+  // Oppgraderingslogikk
   if (typeof checkTierUpgrades === "function") {
     checkTierUpgrades();
   }
