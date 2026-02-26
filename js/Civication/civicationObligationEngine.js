@@ -126,14 +126,17 @@ if (fired) {
   CivicationState.appendJobHistoryEnded(prev, "obligation_fail");
   CivicationState.setActivePosition(null);
 
-  CivicationState.setState({
-    unemployed_since_week: new Date().toISOString(),
-    career: {
-      activeJob: null,
-      obligations: [],
-      reputation: reputation
-    }
-  });
+  const current = CivicationState.getState();
+
+CivicationState.setState({
+  unemployed_since_week: new Date().toISOString(),
+  career: {
+    ...current.career,
+    activeJob: null,
+    obligations: [],
+    reputation: reputation
+  }
+});
 
   // 🔽 GENERER FIRED EVENT
   if (window.HG_CiviEngine?.makeFiredEvent) {
