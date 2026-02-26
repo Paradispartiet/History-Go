@@ -147,6 +147,8 @@ setInbox(arr) {
 
 getPendingEvent() {
   const inbox = this.getInbox();
+  if (!Array.isArray(inbox)) return null;
+
   return inbox.find(
     m => m && m.status === "pending"
   ) || null;
