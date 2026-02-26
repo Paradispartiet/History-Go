@@ -120,7 +120,7 @@ class CivicationEventEngine {
       by: "byCivic.json"
     };
   }
-}
+
   // -------- state --------
 
 getState() {
