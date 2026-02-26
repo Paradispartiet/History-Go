@@ -150,6 +150,18 @@ function updateWallet(wallet) {
     );
   }
 
+  function weekKey(date) {
+  const d = new Date(date);
+  const year = d.getFullYear();
+  const firstJan = new Date(year, 0, 1);
+  const days = Math.floor((d - firstJan) / (24 * 60 * 60 * 1000));
+  const week = Math.floor(days / 7);
+  return year + "-W" + week;
+}
+
+window.weekKey = weekKey;
+
+  
   window.CivicationState = {
   getState,
   setState,
