@@ -699,9 +699,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 safeCall("renderProfileCard", renderProfileCard);
 safeCall("renderPC", renderPC);
+safeCall("renderMiniCivication", renderMiniCivication);
 
-// Civication: init (init bør selv wire actions + initial render)
-safeCall("initCivication", () => window.CivicationUI?.init?.());
 
 // Resten
 safeCall("renderMerits", renderMerits);
@@ -723,10 +722,8 @@ document.getElementById("btnOpenAHA")?.addEventListener("click", () => window.op
 window.addEventListener("updateProfile", () => {
   safeCall("renderProfileCard", renderProfileCard);
   safeCall("renderPC", renderPC);
-
-  safeCall("renderCivication", () => window.CivicationUI?.render?.());
-  safeCall("renderCivicationInbox", () => window.CivicationUI?.renderInbox?.());
-
+  safeCall("renderMiniCivication", renderMiniCivication);
+  
   safeCall("renderMerits", renderMerits);
   safeCall("renderPeopleCollection", renderPeopleCollection);
   safeCall("renderPlacesCollection", renderPlacesCollection);
