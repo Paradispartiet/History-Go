@@ -2,6 +2,15 @@
 // CIVICATION UI
 // ============================================================
 
+const getActivePosition = () =>
+  window.CivicationState.getActivePosition();
+
+const setActivePosition = (p) =>
+  window.CivicationState.setActivePosition(p);
+
+const ensureCiviCareerRulesLoaded =
+  window.ensureCiviCareerRulesLoaded;
+
 async function init() {
 
   // Generer jobbtilbud (global funksjon)
@@ -280,21 +289,21 @@ window.addEventListener("civiPublicUpdated", renderPublicFeed);
 // ============================================================
 
 function syncRoleBaseline() {
-  const active = getActivePosition();
+  const active = window.CivicationState.getActivePosition();
 
   if (!active?.career_id) {
-    window.HG_CiviPsyche?.clearRoleBaseline?.();
+    window.CivicationPsyche?.clearRoleBaseline?.();
     return;
   }
 
   const careerId = active.career_id;
 
   const badge = Array.isArray(window.BADGES)
-    ? window.BADGES.find(b => b.id === careerId)
+    ? window.BADGES.find(b => b && b.id === careerId)
     : null;
 
   if (!badge) {
-    window.HG_CiviPsyche?.clearRoleBaseline?.();
+    window.CivicationPsyche?.clearRoleBaseline?.();
     return;
   }
 
