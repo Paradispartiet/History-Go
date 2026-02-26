@@ -150,17 +150,77 @@ function updateWallet(wallet) {
     );
   }
 
-  function weekKey(date) {
-  const d = new Date(date);
-  const year = d.getFullYear();
-  const firstJan = new Date(year, 0, 1);
-  const days = Math.floor((d - firstJan) / (24 * 60 * 60 * 1000));
-  const week = Math.floor(days / 7);
-  return year + "-W" + week;
+
+  
+// --------------------------------------------------
+// Week utilities (global single source of truth)
+// --------------------------------------------------
+
+function weekKey(d) {
+
+  const base = d || new Date();
+
+  const date = new Date(
+    Date.UTC(
+      base.getFullYear(),
+      base.getMonth(),
+      base.getDate()
+    )
+  );
+
+  const dayNum = date.getUTCDay() || 7;
+
+  date.setUTCDate(
+    date.getUTCDate() + 4 - dayNum
+  );
+
+  const yearStart = new Date(
+    Date.UTC(date.getUTCFullYear(), 0, 1)
+  );
+
+  const weekNo = Math.ceil(
+    (((date - yearStart) / 86400000) + 1) / 7
+  );
+
+  return (
+    date.getUTCFullYear() +
+    "-W" +
+    String(weekNo).padStart(2, "0")
+  );
 }
 
-window.weekKey = weekKey;
+function weekIndexFromWeekKey(k) {
 
+  const m = String(k || "")
+    .match(/^(\d{4})-W(\d{2})$/);
+
+  if (!m) return null;
+
+  const y = Number(m[1]);
+  const w = Number(m[2]);
+
+  if (!Number.isFinite(y) ||
+      !Number.isFinite(w)) {
+    return null;
+  }
+
+  return y * 53 + w;
+}
+
+function weeksPassedBetweenWeekKeys(sinceW, nowW) {
+
+  const a = weekIndexFromWeekKey(sinceW);
+  const b = weekIndexFromWeekKey(nowW);
+
+  if (a == null || b == null) return 0;
+
+  return Math.max(0, b - a);
+}
+
+// Eksporter globalt
+window.weekKey = weekKey;
+window.weekIndexFromWeekKey = weekIndexFromWeekKey;
+window.weeksPassedBetweenWeekKeys = weeksPassedBetweenWeekKeys;
   
   window.CivicationState = {
   getState,
