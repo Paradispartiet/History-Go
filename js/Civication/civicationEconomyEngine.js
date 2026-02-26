@@ -1,11 +1,104 @@
+function checkTierUpgrades() {
+
+    const merits =
+      JSON.parse(
+        localStorage.getItem("merits_by_category") || "{}"
+      );
+
+    const tierState =
+      JSON.parse(
+        localStorage.getItem("hg_badge_tiers_v1") || "{}"
+      );
+
+    const newTierState = Object.assign({}, tierState);
+
+    const offers = [];
+
+    const badges =
+      Array.isArray(window.BADGES)
+        ? window.BADGES
+        : [];
+
+    for (let i = 0; i < badges.length; i++) {
+
+      const badge = badges[i];
+
+      const points =
+        Number(
+          (merits[badge.id] &&
+           merits[badge.id].points) || 0
+        );
+
+      const tierData =
+        deriveTierFromPoints(badge, points);
+
+      const tierIndex = tierData.tierIndex;
+      const label = tierData.label;
+
+      const previousTier =
+        Number(tierState[badge.id] || -1);
+
+      if (tierIndex > previousTier) {
+
+        let career = null;
+
+        if (Array.isArray(window.HG_CAREERS)) {
+          for (let j = 0; j < window.HG_CAREERS.length; j++) {
+            const c = window.HG_CAREERS[j];
+            if (String(c.career_id) === String(badge.id)) {
+              career = c;
+              break;
+            }
+          }
+        }
+
+        if (career) {
+
+          const now = new Date();
+          const expires = new Date(now.getTime() + 7 * 86400000);
+
+          const offer_key =
+           badge.id + "_" + tierIndex + "_" + now.toISOString();
+
+          offers.push({
+           id: offer_key,          // ✅ UI forventer id
+           offer_key: offer_key,   // behold for sporbarhet
+           career_id: career.career_id,
+           career_name: badge.name,
+           title: badge.name + " – " + label,
+           tier: tierIndex,
+           status: "pending",
+           created_iso: now.toISOString(),
+           expires_iso: expires.toISOString()
+         });
+        }
+
+        newTierState[badge.id] = tierIndex;
+      }
+    }
+
+    localStorage.setItem(
+      "hg_badge_tiers_v1",
+      JSON.stringify(newTierState)
+    );
+
+    if (offers.length &&
+        typeof setJobOffers === "function") {
+      setJobOffers(offers);
+    }
+  }
+
+window.checkTierUpgrades = checkTierUpgrades;
+
+
+
 (function () {
 
   function tickPCIncomeWeekly() {
 
-  const state = CivicationState.getState();
-  let wallet = CivicationState.getWallet();
-
-  const active = state.role.active_position;
+  const state = window.CivicationState.getState();
+  let wallet = window.CivicationState.getWallet();
+  const active = window.CivicationState.getActivePosition();
   const now = new Date();
 
   const lastIso = wallet.last_tick_iso;
@@ -138,96 +231,6 @@
     }
   }
 
-function checkTierUpgrades() {
-
-    const merits =
-      JSON.parse(
-        localStorage.getItem("merits_by_category") || "{}"
-      );
-
-    const tierState =
-      JSON.parse(
-        localStorage.getItem("hg_badge_tiers_v1") || "{}"
-      );
-
-    const newTierState = Object.assign({}, tierState);
-
-    const offers = [];
-
-    const badges =
-      Array.isArray(window.BADGES)
-        ? window.BADGES
-        : [];
-
-    for (let i = 0; i < badges.length; i++) {
-
-      const badge = badges[i];
-
-      const points =
-        Number(
-          (merits[badge.id] &&
-           merits[badge.id].points) || 0
-        );
-
-      const tierData =
-        deriveTierFromPoints(badge, points);
-
-      const tierIndex = tierData.tierIndex;
-      const label = tierData.label;
-
-      const previousTier =
-        Number(tierState[badge.id] || -1);
-
-      if (tierIndex > previousTier) {
-
-        let career = null;
-
-        if (Array.isArray(window.HG_CAREERS)) {
-          for (let j = 0; j < window.HG_CAREERS.length; j++) {
-            const c = window.HG_CAREERS[j];
-            if (String(c.career_id) === String(badge.id)) {
-              career = c;
-              break;
-            }
-          }
-        }
-
-        if (career) {
-
-          const now = new Date();
-          const expires = new Date(now.getTime() + 7 * 86400000);
-
-          const offer_key =
-           badge.id + "_" + tierIndex + "_" + now.toISOString();
-
-          offers.push({
-           id: offer_key,          // ✅ UI forventer id
-           offer_key: offer_key,   // behold for sporbarhet
-           career_id: career.career_id,
-           career_name: badge.name,
-           title: badge.name + " – " + label,
-           tier: tierIndex,
-           status: "pending",
-           created_iso: now.toISOString(),
-           expires_iso: expires.toISOString()
-         });
-        }
-
-        newTierState[badge.id] = tierIndex;
-      }
-    }
-
-    localStorage.setItem(
-      "hg_badge_tiers_v1",
-      JSON.stringify(newTierState)
-    );
-
-    if (offers.length &&
-        typeof setJobOffers === "function") {
-      setJobOffers(offers);
-    }
-  }
-
     
   // 3️⃣ Layoff-roll
   const layoffChance =
@@ -239,13 +242,11 @@ function checkTierUpgrades() {
 
     const prev = active;
 
-    CivicationState.setState({
-      role: {
-        active_position: null
-      },
-      unemployed_since_week: thisWeek
-    });
+    window.CivicationState.setActivePosition(null);
 
+window.CivicationState.setState({
+  unemployed_since_week: thisWeek
+});
     try {
       window.CivicationPsyche?.registerCollapse?.(
         prev?.career_id,
@@ -296,6 +297,7 @@ function checkTierUpgrades() {
   wallet.last_tick_iso = now.toISOString();
   CivicationState.updateWallet(wallet);
 }
+  
 
 function calculateWeeklySalary(career, tierIndex) {
 
