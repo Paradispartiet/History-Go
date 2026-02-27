@@ -112,38 +112,36 @@
   </p>
 
   <div class="latest-knowledge-box" id="civicationCard">
-  <div class="lk-topic" id="civiRoleTitle">Rolle: —</div>
-  <div class="lk-category" id="civiRoleDetails">Status: —</div>
+    <div class="lk-topic" id="civiRoleTitle">Rolle: —</div>
+    <div class="lk-category" id="civiRoleDetails">Status: —</div>
 
-  <!-- NY: Lønn -->
-  <div class="lk-category" id="civiSalaryLine">Lønn: —</div>
+    <div class="lk-category" id="civiSalaryLine">Lønn: —</div>
+    <div class="lk-category" id="civiMeritLine">Merit: —</div>
+    <div class="lk-category" id="civiBurnoutStatus" style="display:none;"></div>
+  </div>
 
-  <div class="lk-category" id="civiMeritLine">Merit: —</div>
-  <div class="lk-category" id="civiBurnoutStatus" style="display:none;"></div>
-</div>
-
+  <!-- Jobbtilbud: indikator-only på profil (ingen Aksepter/Avslå her) -->
   <div class="latest-knowledge-box" id="civiOfferBox" style="margin-top:10px; display:none;">
-    <div class="lk-topic" id="civiOfferTitle">Jobbtilbud: —</div>
+    <div class="lk-topic" id="civiOfferTitle">🧾 Nytt jobbtilbud</div>
     <div class="lk-category" id="civiOfferMeta">—</div>
 
-    <div class="profile-subaction" style="display:flex; gap:10px; margin-top:10px;">
-      <button id="btnCiviAccept" class="btn">Aksepter</button>
-      <button id="btnCiviDecline" class="btn secondary">Ikke nå</button>
+    <div class="profile-subaction" style="margin-top:10px;">
+      <a href="/History-Go/Civication.html" class="btn">Åpne Civication</a>
     </div>
   </div>
 
-<div class="latest-knowledge-box" id="civiShopBox" style="margin-top:10px; display:none;">
-  <div class="lk-topic">🪙 PC balance: <span id="civiPcBalance">0</span></div>
-  <div class="lk-category" id="civiShopHint">—</div>
+  <div class="latest-knowledge-box" id="civiShopBox" style="margin-top:10px; display:none;">
+    <div class="lk-topic">🪙 PC balance: <span id="civiPcBalance">0</span></div>
+    <div class="lk-category" id="civiShopHint">—</div>
 
-  <div id="civiShopPacks" style="display:flex; flex-direction:column; gap:8px; margin-top:10px;"></div>
+    <div id="civiShopPacks" style="display:flex; flex-direction:column; gap:8px; margin-top:10px;"></div>
 
-  <div style="margin-top:10px;">
-    <div class="lk-category">Stil-tags (inventory):</div>
-    <div id="civiStyleCounts" class="lk-category">—</div>
+    <div style="margin-top:10px;">
+      <div class="lk-category">Stil-tags (inventory):</div>
+      <div id="civiStyleCounts" class="lk-category">—</div>
+    </div>
   </div>
-</div>
-  
+
   <div class="latest-knowledge-box" id="civiInboxBox" style="margin-top:10px; display:none;">
     <div class="lk-topic" id="civiMailSubject">📬 —</div>
     <div class="lk-category" id="civiMailText">—</div>
@@ -159,11 +157,13 @@
   </div>
 
   <div class="profile-subaction" style="display:flex; gap:10px; flex-wrap:wrap;">
-    <button id="btnCiviOpen" class="btn">Åpne Civication</button>
+    <a id="btnCiviOpen" class="btn" href="/History-Go/Civication.html">Åpne Civication</a>
     <button id="btnCiviRanking" class="btn" disabled>Ranking (kommer)</button>
     <button id="btnCiviWorld" class="btn" disabled>Min verden (kommer)</button>
   </div>
 </section>
+
+  
   <section class="profile-section">
     <h2>Mine merker</h2>
     <div id="merits"></div>
