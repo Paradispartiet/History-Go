@@ -389,8 +389,9 @@ function renderHomeStatus() {
 
 function renderPsycheDashboard() {
 
-  const activeCareerId = getActivePosition()?.career_id || null;
-
+  const activeCareerId =
+  window.CivicationState?.getActivePosition?.()?.career_id || null;
+  
   const snapshot = window.CivicationPsyche?.getSnapshot?.(activeCareerId);
   if (!snapshot) return;
 
