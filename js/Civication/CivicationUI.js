@@ -51,45 +51,24 @@ function wireCivicationActions() {
   if (!btnAccept || !btnDecline) return;
 
   btnAccept.onclick = async () => {
-    const offer = getLatestPendingOffer();
+    const offer = window.CivicationJobs?.getLatestPendingOffer?.();
     if (!offer) return;
 
-    const offers = getJobOffers();
-    const idx = offers.findIndex(o => o && o.id === offer.id);
-    if (idx >= 0) {
-      offers[idx] = {
-        ...offers[idx],
-        status: "accepted",
-        accepted_at: new Date().toISOString()
-      };
-      setJobOffers(offers);
-    }
+    // Aksepter via sentral jobb-modul
+    const res = window.CivicationJobs?.acceptOffer?.(offer.offer_key);
+    if (!res?.ok) return;
 
-    setActivePosition({
-      career_id: offer.career_id,
-      career_name: offer.career_name,
-      title: offer.title,
-      threshold: offer.threshold ?? null,
-      achieved_at: new Date().toISOString()
-    });
+    // Etter aksept: kjør event-motor (kan trigge jobbmail)
+    await window.HG_CiviEngine?.onAppOpen?.();
 
     window.dispatchEvent(new Event("updateProfile"));
   };
 
   btnDecline.onclick = () => {
-    const offer = getLatestPendingOffer();
+    const offer = window.CivicationJobs?.getLatestPendingOffer?.();
     if (!offer) return;
 
-    const offers = getJobOffers();
-    const idx = offers.findIndex(o => o && o.id === offer.id);
-    if (idx >= 0) {
-      offers[idx] = {
-        ...offers[idx],
-        status: "declined",
-        declined_at: new Date().toISOString()
-      };
-      setJobOffers(offers);
-    }
+    window.CivicationJobs?.declineOffer?.(offer.offer_key);
 
     window.dispatchEvent(new Event("updateProfile"));
   };
