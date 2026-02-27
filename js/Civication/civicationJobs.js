@@ -12,7 +12,10 @@
   }
 
   function setOffers(arr) {
-    localStorage.setItem(LS_OFFERS, JSON.stringify(Array.isArray(arr) ? arr : []));
+    localStorage.setItem(
+      LS_OFFERS,
+      JSON.stringify(Array.isArray(arr) ? arr : [])
+    );
   }
 
   function isExpired(o) {
@@ -83,7 +86,6 @@
     offers[idx] = { ...offer, status: "accepted", accepted_at: new Date().toISOString() };
     setOffers(offers);
 
-    // Aktiv rolle lagres i CivicationState (single source of truth)
     window.CivicationState?.setActivePosition?.({
       career_id: offer.career_id,
       career_name: offer.career_name,
@@ -92,7 +94,6 @@
       achieved_at: new Date().toISOString()
     });
 
-    // Når aktiv rolle endres, skal UI oppdatere alt
     window.dispatchEvent(new Event("updateProfile"));
     return { ok: true, offer };
   }
@@ -121,4 +122,8 @@
     acceptOffer,
     declineOffer
   };
+
+  // Backward compat for tidligere navn (så du ikke “mister” gamle kall)
+  window.hgGetJobOffers = getOffers;
+  window.hgSetJobOffers = setOffers;
 })();
