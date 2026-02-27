@@ -74,7 +74,9 @@ async function loadCivicationData() {
   document.addEventListener("DOMContentLoaded", start);
 
   window.addEventListener("updateProfile", () => {
-    checkTierUpgrades();
-  });
+  if (typeof window.checkTierUpgrades === "function") {
+    window.checkTierUpgrades();
+  }
+});
 
 })();
