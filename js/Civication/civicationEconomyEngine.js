@@ -80,11 +80,6 @@ function checkTierUpgrades() {
       "hg_badge_tiers_v1",
       JSON.stringify(newTierState)
     );
-
-    if (offers.length &&
-        typeof setJobOffers === "function") {
-      setJobOffers(offers);
-    }
   }
 
 window.checkTierUpgrades = checkTierUpgrades;
