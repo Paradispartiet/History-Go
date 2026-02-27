@@ -926,3 +926,176 @@ body.profile-page.map-only .map-controls{
   font-size: 13px;
   opacity: 0.7;
 }
+
+
+
+/* ============================================================
+   MINI-CIVICATION (profil) – polert dashboard
+   (append nederst i profile.css)
+============================================================ */
+
+/* Seksjonen får egen “glow” og ryddigere header */
+#civicationSection{
+  position: relative;
+  overflow: hidden;
+}
+
+#civicationSection::before{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  background:
+    radial-gradient(circle at 18% 0%, rgba(246,200,0,.22), transparent 55%),
+    radial-gradient(circle at 82% 100%, rgba(255,255,255,.10), transparent 60%);
+  pointer-events:none;
+  z-index:0;
+}
+
+#civicationSection > *{
+  position: relative;
+  z-index: 1;
+}
+
+/* Strammere typografi i Civication-seksjonen */
+#civicationSection > h2{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom: 8px;
+  font-size: 20px;
+}
+
+/* Intro-tekst litt mer “UI” */
+#civicationSection > p.muted{
+  margin: 0 0 12px 0;
+  opacity: .85;
+  line-height: 1.35;
+}
+
+/* Alle mini-bokser inni Civication får samme “kort”-finish */
+#civicationSection .latest-knowledge-box{
+  border-radius: 14px;
+  padding: 14px;
+  background: rgba(255,255,255,0.045);
+  border: 1px solid rgba(255,255,255,0.10);
+  box-shadow: 0 10px 22px rgba(0,0,0,0.22);
+}
+
+/* ------------------------------------------------------------
+   HOVEDKORT: Rolle/Status/Lønn/Merit -> grid
+------------------------------------------------------------ */
+#civicationSection #civicationCard{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+#civicationSection #civiRoleTitle{
+  grid-column: 1 / -1;
+  font-weight: 850;
+  letter-spacing: .2px;
+  font-size: 18px;
+  margin-bottom: 2px;
+}
+
+#civicationSection #civiRoleDetails{
+  grid-column: 1 / -1;
+  opacity: .9;
+}
+
+/* KPI-kort for lønn/merit */
+#civicationSection #civiSalaryLine,
+#civicationSection #civiMeritLine{
+  background: rgba(0,0,0,0.18);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 12px;
+  padding: 10px 10px;
+  line-height: 1.25;
+  font-weight: 650;
+}
+
+/* Burnout som tydelig “alert” */
+#civicationSection #civiBurnoutStatus{
+  grid-column: 1 / -1;
+  margin-top: 2px;
+  padding: 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 80, 80, .25);
+  background: rgba(255, 80, 80, .10);
+}
+
+/* ------------------------------------------------------------
+   TILBUD: gjør det til “callout”
+------------------------------------------------------------ */
+#civicationSection #civiOfferBox{
+  border: 1px solid rgba(246, 200, 0, 0.42);
+  background: linear-gradient(
+    180deg,
+    rgba(246,200,0,.14),
+    rgba(0,0,0,.22)
+  );
+  box-shadow:
+    0 10px 22px rgba(0,0,0,0.25),
+    0 0 0 1px rgba(246,200,0,.10) inset;
+}
+
+#civicationSection #civiOfferBox .lk-topic{
+  font-weight: 800;
+}
+
+#civicationSection #civiOfferMeta{
+  opacity: .9;
+}
+
+/* ------------------------------------------------------------
+   INBOX: mer “mail”-følelse
+------------------------------------------------------------ */
+#civicationSection #civiInboxBox{
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.12);
+}
+
+#civicationSection #civiMailSubject{
+  font-weight: 800;
+}
+
+#civicationSection #civiMailText{
+  opacity: .9;
+  line-height: 1.35;
+}
+
+/* Choice-knapper: litt strammere */
+#civicationSection #civiMailChoices .btn{
+  border-radius: 12px;
+  padding: 10px 14px;
+}
+
+/* Feedback: tydelig, men rolig */
+#civicationSection #civiMailFeedback{
+  padding: 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(0,0,0,0.14);
+}
+
+/* ------------------------------------------------------------
+   SHOP: ryddigere
+------------------------------------------------------------ */
+#civicationSection #civiShopBox{
+  border: 1px solid rgba(255,255,255,0.12);
+}
+
+/* ------------------------------------------------------------
+   LINKS SOM .btn (anker) – uten å påvirke <button>
+------------------------------------------------------------ */
+#civicationSection a.btn{
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Litt bedre spacing på action-raden nederst */
+#civicationSection .profile-subaction{
+  margin-top: 10px;
+}
