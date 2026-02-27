@@ -156,7 +156,7 @@ if (salaryLn && active?.career_id) {
   // JOBBTILBUD
   // ------------------------------------------------------------
 
-  const offer = getLatestPendingOffer();
+  const offer = window.CivicationJobs?.getLatestPendingOffer?.()
 
   if (!offer) {
     oBox.style.display = "none";
