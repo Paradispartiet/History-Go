@@ -1,86 +1,144 @@
-function checkTierUpgrades() {
+function checkTierUpgrades(onlyCareerId) {
 
-    const merits =
-      JSON.parse(
-        localStorage.getItem("merits_by_category") || "{}"
-      );
+  function getLastQuizCategoryId() {
+    let raw = null;
+    try { raw = JSON.parse(localStorage.getItem("quiz_history") || "[]"); }
+    catch { raw = []; }
 
-    const tierState =
-      JSON.parse(
-        localStorage.getItem("hg_badge_tiers_v1") || "{}"
-      );
+    const hist = Array.isArray(raw) ? raw : [];
+    if (!hist.length) return null;
 
-    const newTierState = Object.assign({}, tierState);
+    // Finn siste på dato (robust hvis array ikke er append)
+    let best = null;
+    let bestT = -1;
 
-    const offers = [];
-
-    const badges =
-      Array.isArray(window.BADGES)
-        ? window.BADGES
-        : [];
-
-    for (let i = 0; i < badges.length; i++) {
-
-      const badge = badges[i];
-
-      const points =
-        Number(
-          (merits[badge.id] &&
-           merits[badge.id].points) || 0
-        );
-
-      const tierData =
-        deriveTierFromPoints(badge, points);
-
-      const tierIndex = tierData.tierIndex;
-      const label = tierData.label;
-
-      const previousTier =
-        Number(tierState[badge.id] || -1);
-
-      if (tierIndex > previousTier) {
-
-        let career = null;
-
-        if (Array.isArray(window.HG_CAREERS)) {
-          for (let j = 0; j < window.HG_CAREERS.length; j++) {
-            const c = window.HG_CAREERS[j];
-            if (String(c.career_id) === String(badge.id)) {
-              career = c;
-              break;
-            }
-          }
-        }
-
-        if (career) {
-  const tiers = Array.isArray(badge?.tiers) ? badge.tiers : [];
-
-  // robust: push tilbud for alle nivåer du passerer
-  for (let t = previousTier + 1; t <= tierIndex; t++) {
-    const thr = Number(tiers[t]?.threshold);
-    const lbl = String(tiers[t]?.label || "").trim();
-
-    if (!Number.isFinite(thr) || !lbl) continue;
-
-    window.CivicationJobs?.pushOffer?.({
-      career_id: String(badge.id),
-      career_name: String(badge.name || badge.id),
-      title: lbl,
-      threshold: thr,
-      points_at_offer: points
-    });
-  }
-}
-
-        newTierState[badge.id] = tierIndex;
+    for (let i = 0; i < hist.length; i++) {
+      const h = hist[i];
+      const t = h?.date ? Date.parse(h.date) : NaN;
+      if (Number.isFinite(t) && t > bestT) {
+        bestT = t;
+        best = h;
       }
     }
 
-    localStorage.setItem(
-      "hg_badge_tiers_v1",
-      JSON.stringify(newTierState)
-    );
+    // Fallback: siste element
+    const last = best || hist[hist.length - 1];
+
+    const cid = String(last?.categoryId || "").trim();
+    return cid || null;
   }
+
+  function prunePendingOffersToCareer(careerId) {
+    if (!careerId) return;
+
+    const getOffers = window.CivicationJobs?.getOffers;
+    const setOffers = window.CivicationJobs?.setOffers;
+    if (typeof getOffers !== "function" || typeof setOffers !== "function") return;
+
+    const offers = getOffers();
+    if (!Array.isArray(offers) || !offers.length) return;
+
+    const nowIso = new Date().toISOString();
+    let changed = false;
+
+    const next = offers.map(o => {
+      if (!o || o.status !== "pending") return o;
+
+      const oid = String(o.career_id || "").trim();
+      if (oid && oid !== careerId) {
+        changed = true;
+        return {
+          ...o,
+          status: "expired",
+          expired_at: nowIso,
+          expired_reason: "other_category_pruned"
+        };
+      }
+      return o;
+    });
+
+    if (changed) setOffers(next);
+  }
+
+  // 0) Finn hvilken kategori som faktisk skal trigge tilbud
+  const targetCareerId = String(onlyCareerId || "").trim() || getLastQuizCategoryId();
+  if (!targetCareerId) return;
+
+  // 1) Prune gamle pending offers i andre kategorier
+  prunePendingOffersToCareer(targetCareerId);
+
+  const merits =
+    JSON.parse(localStorage.getItem("merits_by_category") || "{}");
+
+  const tierState =
+    JSON.parse(localStorage.getItem("hg_badge_tiers_v1") || "{}");
+
+  const newTierState = Object.assign({}, tierState);
+
+  const badges =
+    Array.isArray(window.BADGES)
+      ? window.BADGES
+      : [];
+
+  // 2) Finn kun badge for targetCareerId (ikke loop alle)
+  const badge =
+    badges.find(b => String(b?.id || "").trim() === targetCareerId);
+
+  if (!badge) return;
+
+  const points =
+    Number((merits[badge.id] && merits[badge.id].points) || 0);
+
+  const tierData =
+    deriveTierFromPoints(badge, points);
+
+  const tierIndex = tierData.tierIndex;
+
+  const previousTier =
+    Number(tierState[badge.id] || -1);
+
+  if (tierIndex > previousTier) {
+
+    let career = null;
+
+    if (Array.isArray(window.HG_CAREERS)) {
+      for (let j = 0; j < window.HG_CAREERS.length; j++) {
+        const c = window.HG_CAREERS[j];
+        if (String(c.career_id) === String(badge.id)) {
+          career = c;
+          break;
+        }
+      }
+    }
+
+    if (career) {
+      const tiers = Array.isArray(badge?.tiers) ? badge.tiers : [];
+
+      // push tilbud for nivåer du passerer (innen samme kategori)
+      for (let t = previousTier + 1; t <= tierIndex; t++) {
+        const thr = Number(tiers[t]?.threshold);
+        const lbl = String(tiers[t]?.label || "").trim();
+
+        if (!Number.isFinite(thr) || !lbl) continue;
+
+        window.CivicationJobs?.pushOffer?.({
+          career_id: String(badge.id),
+          career_name: String(badge.name || badge.id),
+          title: lbl,
+          threshold: thr,
+          points_at_offer: points
+        });
+      }
+    }
+
+    newTierState[badge.id] = tierIndex;
+  }
+
+  localStorage.setItem(
+    "hg_badge_tiers_v1",
+    JSON.stringify(newTierState)
+  );
+}
 
 window.checkTierUpgrades = checkTierUpgrades;
 
