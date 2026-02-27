@@ -3,7 +3,7 @@
     const tiers = Array.isArray(badge?.tiers) ? badge.tiers : [];
     const p = Number(points || 0);
 
-    if (!tiers.length) return { tierIndex: -1, label: "Nybegynner" };
+    if (!tiers.length) return { tierIndex: -1, label: "Nybegynner", threshold: 0 };
 
     let tierIndex = 0;
     let label = String(tiers[0].label || "Nybegynner").trim() || "Nybegynner";
@@ -16,7 +16,10 @@
         label = String(t.label || "").trim() || label;
       }
     }
-    return { tierIndex, label };
+
+    const threshold = Number(tiers[tierIndex]?.threshold || 0);
+
+    return { tierIndex, label, threshold };
   }
 
   window.deriveTierFromPoints = deriveTierFromPoints;
