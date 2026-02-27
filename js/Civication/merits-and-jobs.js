@@ -3,13 +3,11 @@
 // ------------------------------------------------------------
 // CIVICATION: Jobbtilbud (offers) lagres i localStorage
 // ------------------------------------------------------------
-const career = Array.isArray(window.HG_CAREERS)
-  ? window.HG_CAREERS.find(
-      c => String(c.career_id) === String(careerId)
-    )
-  : window.HG_CAREERS?.careers?.find(
-      c => String(c.career_id) === String(careerId)
-    );
+
+function qualifiesForTierWithCross(careerId, tierIndex) {
+  const career = Array.isArray(window.HG_CAREERS)
+    ? window.HG_CAREERS.find(c => String(c.career_id) === String(careerId))
+    : window.HG_CAREERS?.careers?.find(c => String(c.career_id) === String(careerId));
 
   if (!career) return true;
 
@@ -25,9 +23,7 @@ const career = Array.isArray(window.HG_CAREERS)
 
     const tier = deriveTierFromPoints(badge, playerPoints);
 
-    if ((tier.tierIndex ?? 0) < req.min_tier) {
-      return false;
-    }
+    if ((tier.tierIndex ?? 0) < req.min_tier) return false;
   }
 
   return true;
