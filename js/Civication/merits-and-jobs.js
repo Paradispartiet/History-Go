@@ -54,28 +54,13 @@ function hgPushJobOffer(badge, tier, newPoints) {
 
   if (!badgeId || !title || !Number.isFinite(thr)) return;
 
-  const offerKey = `${badgeId}:${thr}`;
-  const offers = hgGetJobOffers();
-
-  // Ikke lag samme tilbud flere ganger
-  if (offers.some(o => o && o.offer_key === offerKey)) return;
-
-  const now = new Date();
-  const expires = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000); // 7 dager
-
-  offers.unshift({
-    offer_key: offerKey,
+  window.CivicationJobs?.pushOffer?.({
     career_id: badgeId,
     career_name: badgeName,
     title,
     threshold: thr,
-    points_at_offer: Number(newPoints || 0),
-    status: "pending",         // pending | accepted | declined | expired
-    created_iso: now.toISOString(),
-    expires_iso: expires.toISOString()
+    points_at_offer: Number(newPoints || 0)
   });
-
-  hgSetJobOffers(offers);
 }
 
 
