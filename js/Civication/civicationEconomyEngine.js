@@ -53,25 +53,24 @@ function checkTierUpgrades() {
         }
 
         if (career) {
+  const tiers = Array.isArray(badge?.tiers) ? badge.tiers : [];
 
-          const now = new Date();
-          const expires = new Date(now.getTime() + 7 * 86400000);
+  // robust: push tilbud for alle nivåer du passerer
+  for (let t = previousTier + 1; t <= tierIndex; t++) {
+    const thr = Number(tiers[t]?.threshold);
+    const lbl = String(tiers[t]?.label || "").trim();
 
-          const offer_key =
-           badge.id + "_" + tierIndex + "_" + now.toISOString();
+    if (!Number.isFinite(thr) || !lbl) continue;
 
-          offers.push({
-           id: offer_key,          // ✅ UI forventer id
-           offer_key: offer_key,   // behold for sporbarhet
-           career_id: career.career_id,
-           career_name: badge.name,
-           title: badge.name + " – " + label,
-           tier: tierIndex,
-           status: "pending",
-           created_iso: now.toISOString(),
-           expires_iso: expires.toISOString()
-         });
-        }
+    window.CivicationJobs?.pushOffer?.({
+      career_id: String(badge.id),
+      career_name: String(badge.name || badge.id),
+      title: lbl,
+      threshold: thr,
+      points_at_offer: points
+    });
+  }
+}
 
         newTierState[badge.id] = tierIndex;
       }
