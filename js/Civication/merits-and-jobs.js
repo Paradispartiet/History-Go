@@ -29,21 +29,6 @@ function qualifiesForTierWithCross(careerId, tierIndex) {
   return true;
 }
 
-function hgGetJobOffers() {
-  try {
-    const raw = JSON.parse(localStorage.getItem("hg_job_offers_v1") || "[]");
-    return Array.isArray(raw) ? raw : [];
-  } catch {
-    return [];
-  }
-}
-
-function hgSetJobOffers(arr) {
-  try {
-    localStorage.setItem("hg_job_offers_v1", JSON.stringify(arr || []));
-  } catch {}
-}
-
 function hgPushJobOffer(badge, tier, newPoints) {
   if (!badge || !tier) return;
 
@@ -128,8 +113,6 @@ async function addCompletedQuizAndMaybePoint(categoryDisplay, quizId) {
   window.dispatchEvent(new Event("updateProfile"));
 }
 
-window.hgGetJobOffers = hgGetJobOffers;
-window.hgSetJobOffers = hgSetJobOffers;
 window.hgPushJobOffer = hgPushJobOffer;
 
 window.updateMeritLevel = updateMeritLevel;
