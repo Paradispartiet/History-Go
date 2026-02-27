@@ -77,173 +77,223 @@ function wireCivicationActions() {
 // ============================================================
 // RENDER MAIN CIVICATION PANEL
 // ============================================================
-
 async function renderCivication() {
   await window.ensureCiviCareerRulesLoaded?.();
 
-  const title   = document.getElementById("civiRoleTitle");
-  const details = document.getElementById("civiRoleDetails");
-  const meritLn = document.getElementById("civiMeritLine");
+  // =========================
+  // PROFILE-MODE (profile.html)
+  // =========================
+  const title    = document.getElementById("civiRoleTitle");
+  const details  = document.getElementById("civiRoleDetails");
+  const meritLn  = document.getElementById("civiMeritLine");
   const salaryLn = document.getElementById("civiSalaryLine");
 
   const oBox   = document.getElementById("civiOfferBox");
   const oTitle = document.getElementById("civiOfferTitle");
   const oMeta  = document.getElementById("civiOfferMeta");
 
-  if (!title || !details || !oBox || !oTitle || !oMeta) return;
+  const isProfile =
+    title && details && meritLn && salaryLn && oBox && oTitle && oMeta;
 
-  // ------------------------------------------------------------
-  // AKTIV JOBB
-  // ------------------------------------------------------------
+  if (isProfile) {
+    const active = window.CivicationState.getActivePosition();
+    syncRoleBaseline();
+
+    if (active && active.title) {
+      title.textContent = `Rolle: ${active.title}`;
+
+      const cn = active.career_name || active.career_id || "—";
+      const dt = active.achieved_at
+        ? new Date(active.achieved_at).toLocaleDateString("no-NO")
+        : "";
+
+      details.textContent =
+        `Status: Aktiv · Felt: ${cn}` + (dt ? ` · Satt: ${dt}` : "");
+    } else {
+      title.textContent = "Rolle: —";
+      details.textContent =
+        "Status: Ingen aktiv jobb (ta quiz for å få jobbtilbud).";
+    }
+
+    // LØNN
+    if (salaryLn && active?.career_id) {
+      const merits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
+      const points = Number(merits[active.career_id]?.points || 0);
+
+      const badge = Array.isArray(window.BADGES)
+        ? window.BADGES.find(b => b && String(b.id) === String(active.career_id))
+        : null;
+
+      const tierIndex =
+        badge ? (deriveTierFromPoints(badge, points).tierIndex || 0) : 0;
+
+      const career = Array.isArray(window.HG_CAREERS)
+        ? window.HG_CAREERS.find(c => c && String(c.career_id) === String(active.career_id))
+        : null;
+
+      const weekly =
+        (career && typeof window.calculateWeeklySalary === "function")
+          ? window.calculateWeeklySalary(career, tierIndex)
+          : NaN;
+
+      salaryLn.textContent =
+        Number.isFinite(weekly) ? `Lønn: ${weekly} PC / uke` : "Lønn: —";
+    }
+
+    // JOBBTILBUD
+    const offer = window.CivicationJobs?.getLatestPendingOffer?.();
+
+    if (!offer) {
+      oBox.style.display = "none";
+    } else {
+      oBox.style.display = "";
+      oTitle.textContent = "🧾 Jobbtilbud";
+
+      const expTxt =
+        offer.expires_iso
+          ? new Date(offer.expires_iso).toLocaleDateString("no-NO")
+          : "—";
+
+      oMeta.textContent =
+        `${offer.career_name || offer.career_id || ""} · ` +
+        `Terskel: ${offer.threshold} · Utløper: ${expTxt}`;
+    }
+
+    // BESTE ROLLE (MERIT-PROFIL) – samme som din nå
+    const merits2 = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
+    const keys = Object.keys(merits2 || {});
+
+    if (!Array.isArray(BADGES) || !BADGES.length || !keys.length) {
+      meritLn.textContent = "Merit: —";
+      return;
+    }
+
+    const historyRaw = JSON.parse(localStorage.getItem("quiz_history") || "[]");
+    const history = Array.isArray(historyRaw) ? historyRaw : [];
+
+    let best = null;
+
+    for (const k of keys) {
+      const badge = BADGES.find(b => String(b?.id) === String(k));
+      if (!badge) continue;
+
+      const points = Number(merits2[k]?.points || 0);
+      const { tierIndex, label } = deriveTierFromPoints(badge, points);
+
+      const last =
+        history
+          .filter(h => String(h?.categoryId) === String(k))
+          .map(h => h?.date ? new Date(h.date).getTime() : 0)
+          .reduce((mx, t) => Math.max(mx, t), 0);
+
+      const item = {
+        badgeName: badge.name || k,
+        roleLabel: label || "Nybegynner",
+        tierIndex: Number.isFinite(tierIndex) ? tierIndex : -1,
+        points,
+        lastQuizAt: last
+      };
+
+      if (!best) best = item;
+      else if (
+        item.tierIndex > best.tierIndex ||
+        (item.tierIndex === best.tierIndex && item.points > best.points)
+      ) {
+        best = item;
+      }
+    }
+
+    if (!best) {
+      meritLn.textContent = "Merit: —";
+      return;
+    }
+
+    const lastTxt =
+      best.lastQuizAt
+        ? new Date(best.lastQuizAt).toLocaleDateString("no-NO")
+        : "aldri";
+
+    meritLn.textContent =
+      `Merit: ${best.roleLabel} (${best.badgeName}) · ` +
+      `${best.points} poeng · Sist: ${lastTxt}`;
+
+    return;
+  }
+
+  // =========================
+  // CIVICATION-MODE (Civication.html)
+  // =========================
+  const host = document.getElementById("activeJobCard");
+  if (!host) return;
 
   const active = window.CivicationState.getActivePosition();
-  syncRoleBaseline();
+  const offer = window.CivicationJobs?.getLatestPendingOffer?.();
 
-  if (active && active.title) {
-    title.textContent = `Rolle: ${active.title}`;
+  // Lønn (best effort)
+  let salaryTxt = "Lønn: —";
+  if (active?.career_id && typeof window.calculateWeeklySalary === "function") {
+    try {
+      const merits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
+      const points = Number(merits[active.career_id]?.points || 0);
 
-    const cn = active.career_name || active.career_id || "—";
-    const dt = active.achieved_at
-      ? new Date(active.achieved_at).toLocaleDateString("no-NO")
-      : "";
+      const badge = Array.isArray(window.BADGES)
+        ? window.BADGES.find(b => b && String(b.id) === String(active.career_id))
+        : null;
 
-    details.textContent =
-      `Status: Aktiv · Felt: ${cn}` +
-      (dt ? ` · Satt: ${dt}` : "");
-  } else {
-    title.textContent = "Rolle: —";
-    details.textContent =
-      "Status: Ingen aktiv jobb (ta quiz for å få jobbtilbud).";
+      const tierIndex =
+        badge ? (deriveTierFromPoints(badge, points).tierIndex || 0) : 0;
+
+      const career = Array.isArray(window.HG_CAREERS)
+        ? window.HG_CAREERS.find(c => c && String(c.career_id) === String(active.career_id))
+        : null;
+
+      const weekly = career ? window.calculateWeeklySalary(career, tierIndex) : NaN;
+      if (Number.isFinite(weekly)) salaryTxt = `Lønn: ${weekly} PC / uke`;
+    } catch {}
   }
 
-// ------------------------------------------------------------
-// LØNN
-// ------------------------------------------------------------
+  host.innerHTML = `
+    <div>
+      <div><strong>${active?.title ? `Rolle: ${active.title}` : "Rolle: —"}</strong></div>
+      <div>${active ? `Felt: ${active.career_name || active.career_id || "—"}` : "Status: Ingen aktiv jobb"}</div>
+      <div>${salaryTxt}</div>
 
-if (salaryLn && active?.career_id) {
+      <hr style="border:none;border-top:1px solid rgba(0,0,0,0.15);margin:12px 0;">
 
-  const merits =
-    JSON.parse(localStorage.getItem("merits_by_category") || "{}");
+      ${
+        offer
+          ? `
+            <div><strong>🧾 Jobbtilbud</strong></div>
+            <div>${offer.career_name || offer.career_id || ""}</div>
+            <div>Terskel: ${offer.threshold}</div>
+            <div>Utløper: ${offer.expires_iso ? new Date(offer.expires_iso).toLocaleDateString("no-NO") : "—"}</div>
 
-  const points =
-    Number(merits[active.career_id]?.points || 0);
+            <div style="display:flex;gap:10px;margin-top:10px;">
+              <button class="civi-btn primary" id="civiOfferAccept">Aksepter</button>
+              <button class="civi-btn" id="civiOfferDecline">Ikke nå</button>
+            </div>
+          `
+          : `<div>Ingen aktive jobbtilbud.</div>`
+      }
+    </div>
+  `;
 
-  const badge =
-    Array.isArray(window.BADGES)
-      ? window.BADGES.find(b => b && String(b.id) === String(active.career_id))
-      : null;
+  if (offer?.offer_key) {
+    host.querySelector("#civiOfferAccept")?.addEventListener("click", async () => {
+      const res = window.CivicationJobs?.acceptOffer?.(offer.offer_key);
+      if (!res?.ok) return;
+      await window.HG_CiviEngine?.onAppOpen?.();
+      window.dispatchEvent(new Event("updateProfile"));
+    });
 
-  const tierIndex =
-    badge ? (deriveTierFromPoints(badge, points).tierIndex || 0) : 0;
-
-  const career =
-    Array.isArray(window.HG_CAREERS)
-      ? window.HG_CAREERS.find(c => c && String(c.career_id) === String(active.career_id))
-      : null;
-
-  const weekly =
-    (career && typeof window.calculateWeeklySalary === "function")
-      ? window.calculateWeeklySalary(career, tierIndex)
-      : NaN;
-
-  salaryLn.textContent =
-    Number.isFinite(weekly)
-      ? `Lønn: ${weekly} PC / uke`
-      : "Lønn: —";
+    host.querySelector("#civiOfferDecline")?.addEventListener("click", () => {
+      window.CivicationJobs?.declineOffer?.(offer.offer_key);
+      window.dispatchEvent(new Event("updateProfile"));
+    });
+  }
 }
 
-  // ------------------------------------------------------------
-  // JOBBTILBUD
-  // ------------------------------------------------------------
 
-  const offer = window.CivicationJobs?.getLatestPendingOffer?.()
-
-  if (!offer) {
-    oBox.style.display = "none";
-  } else {
-    oBox.style.display = "";
-    oTitle.textContent = "🧾 Jobbtilbud";
-
-    const expTxt =
-      offer.expires_iso
-        ? new Date(offer.expires_iso).toLocaleDateString("no-NO")
-        : "—";
-
-    oMeta.textContent =
-      `${offer.career_name || offer.career_id || ""} · ` +
-      `Terskel: ${offer.threshold} · Utløper: ${expTxt}`;
-  }
-
-  // ------------------------------------------------------------
-  // BESTE ROLLE (MERIT-PROFIL)
-  // ------------------------------------------------------------
-
-  if (!meritLn) return;
-
-  const merits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
-  const keys = Object.keys(merits || {});
-
-  if (!Array.isArray(BADGES) || !BADGES.length || !keys.length) {
-    meritLn.textContent = "Merit: —";
-    return;
-  }
-
-  const historyRaw =
-    JSON.parse(localStorage.getItem("quiz_history") || "[]");
-  const history =
-    Array.isArray(historyRaw) ? historyRaw : [];
-
-  let best = null;
-
-  for (const k of keys) {
-    const badge =
-      BADGES.find(b => String(b?.id) === String(k));
-    if (!badge) continue;
-
-    const points =
-      Number(merits[k]?.points || 0);
-
-    const { tierIndex, label } =
-      deriveTierFromPoints(badge, points);
-
-    const last =
-      history
-        .filter(h => String(h?.categoryId) === String(k))
-        .map(h => h?.date ? new Date(h.date).getTime() : 0)
-        .reduce((mx, t) => Math.max(mx, t), 0);
-
-    const item = {
-      badgeName: badge.name || k,
-      roleLabel: label || "Nybegynner",
-      tierIndex: Number.isFinite(tierIndex) ? tierIndex : -1,
-      points,
-      lastQuizAt: last
-    };
-
-    if (!best) best = item;
-    else if (
-      item.tierIndex > best.tierIndex ||
-      (item.tierIndex === best.tierIndex &&
-       item.points > best.points)
-    ) {
-      best = item;
-    }
-  }
-
-  if (!best) {
-    meritLn.textContent = "Merit: —";
-    return;
-  }
-
-  const lastTxt =
-    best.lastQuizAt
-      ? new Date(best.lastQuizAt).toLocaleDateString("no-NO")
-      : "aldri";
-
-  meritLn.textContent =
-    `Merit: ${best.roleLabel} (${best.badgeName}) · ` +
-    `${best.points} poeng · Sist: ${lastTxt}`;
-}
 
 function renderPublicFeed() {
   const container = document.getElementById("civiPublicFeed");
@@ -545,86 +595,147 @@ document.getElementById("closeDistrictModal")
 // ============================================================
 
 function renderCivicationInbox() {
+  // =========================
+  // PROFILE-MODE (profile.html)
+  // =========================
   const box = document.getElementById("civiInboxBox");
-  const subj = document.getElementById("civiMailSubject");
-  const text = document.getElementById("civiMailText");
-  const fb   = document.getElementById("civiMailFeedback");
+  if (box) {
+    const subj = document.getElementById("civiMailSubject");
+    const text = document.getElementById("civiMailText");
+    const fb   = document.getElementById("civiMailFeedback");
 
-  const btnA = document.getElementById("civiChoiceA");
-  const btnB = document.getElementById("civiChoiceB");
-  const btnC = document.getElementById("civiChoiceC");
-  const btnOK = document.getElementById("civiChoiceOK");
+    const btnA = document.getElementById("civiChoiceA");
+    const btnB = document.getElementById("civiChoiceB");
+    const btnC = document.getElementById("civiChoiceC");
+    const btnOK = document.getElementById("civiChoiceOK");
 
-  if (!box || !subj || !text || !btnA || !btnB || !btnC || !btnOK || !fb) return;
+    if (!subj || !text || !btnA || !btnB || !btnC || !btnOK || !fb) return;
 
-  const pending =
-    window.HG_CiviEngine?.getPendingEvent?.();
+    const pending = window.HG_CiviEngine?.getPendingEvent?.();
 
-  if (!pending?.event) {
-    box.style.display = "none";
+    if (!pending?.event) {
+      box.style.display = "none";
+      return;
+    }
+
+    box.style.display = "";
+
+    const ev = pending.event;
+
+    subj.textContent = `📬 ${ev.subject || "—"}`;
+    text.textContent =
+      Array.isArray(ev.situation)
+        ? ev.situation.join(" ")
+        : (ev.situation || "—");
+
+    fb.style.display = "none";
+    btnOK.style.display = "none";
+    btnA.style.display = "none";
+    btnB.style.display = "none";
+    btnC.style.display = "none";
+
+    const choices = Array.isArray(ev.choices) ? ev.choices : [];
+
+    function bindChoice(btn, id, label) {
+      btn.textContent = label;
+      btn.style.display = "";
+      btn.onclick = () => {
+        const res = window.HG_CiviEngine?.answer?.(ev.id, id);
+        if (!res?.ok) return;
+
+        fb.textContent = res.feedback || "—";
+        fb.style.display = "";
+
+        btnA.style.display = "none";
+        btnB.style.display = "none";
+        btnC.style.display = "none";
+
+        btnOK.style.display = "";
+        btnOK.onclick = () => window.dispatchEvent(new Event("updateProfile"));
+      };
+    }
+
+    if (!choices.length) {
+      fb.textContent = ev.feedback || "—";
+      fb.style.display = "";
+
+      btnOK.style.display = "";
+      btnOK.onclick = () => window.dispatchEvent(new Event("updateProfile"));
+      return;
+    }
+
+    const cA = choices.find(c => c?.id === "A");
+    const cB = choices.find(c => c?.id === "B");
+    const cC = choices.find(c => c?.id === "C");
+
+    if (cA) bindChoice(btnA, "A", cA.label || "A");
+    if (cB) bindChoice(btnB, "B", cB.label || "B");
+    if (cC) bindChoice(btnC, "C", cC.label || "C");
+
     return;
   }
 
-  box.style.display = "";
+  // =========================
+  // CIVICATION-MODE (Civication.html)
+  // =========================
+  const host = document.getElementById("civiInbox");
+  if (!host) return;
+
+  const pending = window.HG_CiviEngine?.getPendingEvent?.();
+
+  if (!pending?.event) {
+    host.innerHTML = `<div>Ingen meldinger akkurat nå.</div>`;
+    return;
+  }
 
   const ev = pending.event;
+  const situation = Array.isArray(ev.situation) ? ev.situation.join(" ") : (ev.situation || "—");
+  const choices = Array.isArray(ev.choices) ? ev.choices : [];
 
-  subj.textContent = `📬 ${ev.subject || "—"}`;
-  text.textContent =
-    Array.isArray(ev.situation)
-      ? ev.situation.join(" ")
-      : (ev.situation || "—");
+  host.innerHTML = `
+    <div>
+      <div><strong>📬 ${ev.subject || "—"}</strong></div>
+      <div style="margin-top:6px;">${situation}</div>
 
-  fb.style.display = "none";
-  btnOK.style.display = "none";
-  btnA.style.display = "none";
-  btnB.style.display = "none";
-  btnC.style.display = "none";
+      <div id="civiInboxChoices" style="display:flex;flex-direction:column;gap:8px;margin-top:10px;"></div>
 
-  const choices =
-    Array.isArray(ev.choices) ? ev.choices : [];
+      <div id="civiInboxFeedback" style="display:none;margin-top:10px;"></div>
+      <button class="civi-btn primary" id="civiInboxOK" style="display:none;margin-top:10px;">OK</button>
+    </div>
+  `;
 
-  function bindChoice(btn, id, label) {
-    btn.textContent = label;
-    btn.style.display = "";
-    btn.onclick = () => {
-      const res =
-        window.HG_CiviEngine?.answer?.(ev.id, id);
+  const choiceBox = host.querySelector("#civiInboxChoices");
+  const fb = host.querySelector("#civiInboxFeedback");
+  const ok = host.querySelector("#civiInboxOK");
 
-      if (!res?.ok) return;
-
-      fb.textContent = res.feedback || "—";
-      fb.style.display = "";
-
-      btnA.style.display = "none";
-      btnB.style.display = "none";
-      btnC.style.display = "none";
-
-      btnOK.style.display = "";
-      btnOK.onclick = () => {
-        window.dispatchEvent(new Event("updateProfile"));
-      };
-    };
+  function showOk(txt) {
+    if (fb) { fb.textContent = txt || "—"; fb.style.display = ""; }
+    if (ok) { ok.style.display = ""; ok.onclick = () => window.dispatchEvent(new Event("updateProfile")); }
   }
 
   if (!choices.length) {
-    fb.textContent = ev.feedback || "—";
-    fb.style.display = "";
-
-    btnOK.style.display = "";
-    btnOK.onclick = () => {
-      window.dispatchEvent(new Event("updateProfile"));
-    };
+    showOk(ev.feedback || "—");
     return;
   }
 
-  const cA = choices.find(c => c?.id === "A");
-  const cB = choices.find(c => c?.id === "B");
-  const cC = choices.find(c => c?.id === "C");
+  choices.forEach(c => {
+    const id = String(c?.id || "").trim();
+    if (!id) return;
 
-  if (cA) bindChoice(btnA, "A", cA.label || "A");
-  if (cB) bindChoice(btnB, "B", cB.label || "B");
-  if (cC) bindChoice(btnC, "C", cC.label || "C");
+    const b = document.createElement("button");
+    b.className = "civi-btn";
+    b.textContent = String(c.label || id);
+
+    b.onclick = () => {
+      const res = window.HG_CiviEngine?.answer?.(ev.id, id);
+      if (!res?.ok) return;
+
+      if (choiceBox) choiceBox.innerHTML = "";
+      showOk(res.feedback || "—");
+    };
+
+    choiceBox?.appendChild(b);
+  });
 }
 
 
