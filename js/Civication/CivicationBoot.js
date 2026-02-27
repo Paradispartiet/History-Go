@@ -51,7 +51,7 @@ async function loadCivicationData() {
 
     window.HG_CiviEngine =
       new CivicationEventEngine({
-        packBasePath: "data/Civication",
+        packBasePath: "data/Civication/jobbmails",
         maxInbox: 1
       });
 
