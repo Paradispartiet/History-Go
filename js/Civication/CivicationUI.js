@@ -140,24 +140,23 @@ async function renderCivication() {
         Number.isFinite(weekly) ? `Lønn: ${weekly} PC / uke` : "Lønn: —";
     }
 
-    // JOBBTILBUD
-    const offer = window.CivicationJobs?.getLatestPendingOffer?.();
+    // JOBBTILBUD (profil = indikator, ingen handling)
+const offer = window.CivicationJobs?.getLatestPendingOffer?.();
 
-    if (!offer) {
-      oBox.style.display = "none";
-    } else {
-      oBox.style.display = "";
-      oTitle.textContent = "🧾 Jobbtilbud";
+if (!offer) {
+  oBox.style.display = "none";
+} else {
+  oBox.style.display = "";
+  oTitle.textContent = "🧾 Nytt jobbtilbud";
 
-      const expTxt =
-        offer.expires_iso
-          ? new Date(offer.expires_iso).toLocaleDateString("no-NO")
-          : "—";
+  const expTxt =
+    offer.expires_iso
+      ? new Date(offer.expires_iso).toLocaleDateString("no-NO")
+      : "—";
 
-      oMeta.textContent =
-        `${offer.career_name || offer.career_id || ""} · ` +
-        `Terskel: ${offer.threshold} · Utløper: ${expTxt}`;
-    }
+  const jobTxt = offer.career_name || offer.career_id || "Jobb";
+  oMeta.textContent = `${jobTxt} · Utløper: ${expTxt} · Åpne Civication for å svare.`;
+}
 
     // BESTE ROLLE (MERIT-PROFIL) – samme som din nå
     const merits2 = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
