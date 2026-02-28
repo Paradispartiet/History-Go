@@ -924,6 +924,55 @@ window.CivicationState.setActivePosition(null);
     this.enqueueEvent(firedEv);
   }
 
+// ============================================================
+// HYBRID QUEST TRIGGER (M3)
+// Hvis denne mailen var quest → prøv å enqueue neste direkte
+// ============================================================
+
+const isQuest =
+  Array.isArray(ev.mail_tags) &&
+  ev.mail_tags.indexOf("quest") !== -1;
+
+if (isQuest && stability !== "FIRED") {
+
+  const role_key = this.ensureRoleKeySynced();
+  const active = window.CivicationState.getActivePosition();
+
+  if (active) {
+
+    const careerId = String(active.career_id || "").trim();
+    const packFile =
+      (this.packMap && this.packMap[careerId])
+        ? this.packMap[careerId]
+        : (String(role_key || "") + ".json");
+
+    this.loadPack(packFile).then(pack => {
+
+      const nextState = this.getState();
+      const next = this.pickEventFromPack(pack, nextState);
+
+      if (next &&
+          Array.isArray(next.mail_tags) &&
+          next.mail_tags.indexOf("quest") !== -1) {
+
+        // Ikke bruk pulse her (quest ignorerer klokke)
+        const withMeta = Object.assign({}, next, {
+          __pack: {
+            role: pack?.role || null,
+            tag_rules: pack?.tag_rules || null,
+            tracks: Array.isArray(pack?.tracks) ? pack.tracks : []
+          }
+        });
+
+        this.enqueueEvent(withMeta);
+        window.dispatchEvent(new Event("updateProfile"));
+      }
+
+    });
+
+  }
+}
+    
   return {
     ok: true,
     effect: effect,
