@@ -27,6 +27,7 @@ async function init() {
   renderCapital();
   renderHomeStatus();
   renderPublicFeed();
+  renderTrackHUD();
 
    window.addEventListener("updateProfile", () => {
    renderCivication();
