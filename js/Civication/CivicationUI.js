@@ -28,13 +28,14 @@ async function init() {
   renderHomeStatus();
   renderPublicFeed();
 
-  window.addEventListener("updateProfile", () => {
-    renderCivication();
-    renderCivicationInbox();
-    renderPsycheDashboard();
-    renderCapital();
-    renderHomeStatus();
-    renderPerception();
+   window.addEventListener("updateProfile", () => {
+   renderCivication();
+   renderCivicationInbox();
+   renderPsycheDashboard();
+   renderCapital();
+   renderHomeStatus();
+   renderPerception();
+   renderTrackHUD();   // ← HER
   });
 
   window.addEventListener("civi:homeChanged", renderHomeStatus);
