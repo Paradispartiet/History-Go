@@ -20,6 +20,7 @@
   consumed: {},
   identity_tags: [],
   tracks: [],
+  track_progress: {},
   unemployed_since_week: null,
   version: 1,
 
