@@ -194,6 +194,115 @@
         }
       ]
     },
+
+   {
+  "id": "quest_process_001",
+  "stage": "stable",
+  "subject": "Saken uten eier",
+  "situation": [
+    "En leveranse glir mellom to team.",
+    "Alle antar at noen andre tar den.",
+    "Du blir pinget fordi du svarer."
+  ],
+  "mail_tags": ["quest", "process_pusher", "step_1"],
+  "gating": {
+    "prefer_tracks": ["process_pusher"],
+    "prefer_tags": ["process", "legitimacy"],
+    "avoid_tags": ["laziness"]
+  },
+  "choices": [
+    {
+      "id": "A",
+      "label": "Etabler mandat og prosess",
+      "effect": 1,
+      "tags": ["process", "legitimacy"],
+      "feedback": "Det blir roligere. Ingen applauderer, men friksjonen synker."
+    },
+    {
+      "id": "B",
+      "label": "Ta snarveien og lever selv",
+      "effect": -1,
+      "tags": ["shortcut", "risk"],
+      "feedback": "Det blir levert. Nå er det din sak neste gang også."
+    }
+  ]
+},
+
+    {
+  "id": "quest_process_002",
+  "stage": "stable",
+  "subject": "Møtet som ingen vil eie",
+  "situation": [
+    "Det kalles inn til «raskt møte».",
+    "Agendaen er tom.",
+    "Du skjønner at dette er ansvarsfordeling i forkledning."
+  ],
+  "mail_tags": ["quest", "process_pusher", "step_2"],
+  "gating": {
+    "require_tracks": ["process_pusher"],
+    "require_track_step_min": {
+      "process_pusher": 1
+    },
+    "prefer_tracks": ["process_pusher"],
+    "prefer_tags": ["process", "legitimacy", "avoidance"],
+    "avoid_tags": ["laziness"]
+  },
+  "choices": [
+    {
+      "id": "A",
+      "label": "Tving fram agenda før møte",
+      "effect": 1,
+      "tags": ["process", "legitimacy"],
+      "feedback": "Plutselig må noen mene noe skriftlig. Det er sterkt."
+    },
+    {
+      "id": "B",
+      "label": "La møtet skje og ta det i rommet",
+      "effect": 0,
+      "tags": ["avoidance", "visibility"],
+      "feedback": "Alle snakker. Ingenting flyttes. Du blir likevel synlig."
+    }
+  ]
+},
+
+    {
+  "id": "quest_process_003",
+  "stage": "stable_warning",
+  "subject": "«Prosess» blir et skjellsord",
+  "situation": [
+    "Noen sier at du «bremser».",
+    "Det sies i en tone som kan bli til en sak.",
+    "Dette er et av de øyeblikkene hvor status faktisk kan slå inn."
+  ],
+  "mail_tags": ["quest", "process_pusher", "step_3"],
+  "gating": {
+    "require_tracks": ["process_pusher"],
+    "require_track_step_min": {
+      "process_pusher": 2
+    },
+    "prefer_tracks": ["process_pusher"],
+    "prefer_tags": ["process", "legitimacy", "risk"],
+    "avoid_tags": ["laziness"]
+  },
+  "choices": [
+    {
+      "id": "A",
+      "label": "Hold linjen: dokumenter og forankre",
+      "effect": 1,
+      "tags": ["process", "legitimacy"],
+      "feedback": "Du skaper et spor. Spor er beskyttelse når stemning blir politikk."
+    },
+    {
+      "id": "B",
+      "label": "Gi etter: gjør det uformelt",
+      "effect": -1,
+      "tags": ["shortcut", "avoidance"],
+      "feedback": "Det blir rolig nå. Men du har mistet noe strukturelt."
+    }
+  ]
+},
+    
+    
     {
       "id": "fagarbeider_001",
       "stage": "stable_warning",
