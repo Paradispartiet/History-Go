@@ -377,6 +377,35 @@ pickEventFromPack(pack, state) {
         ? m.gating
         : {};
 
+    const trackProgress =
+  (state && state.track_progress && typeof state.track_progress === "object")
+    ? state.track_progress
+    : {};
+
+// Hard-gates (quest chain)
+if (Array.isArray(gating.require_tags)) {
+  for (let i = 0; i < gating.require_tags.length; i++) {
+    const t = gating.require_tags[i];
+    if (identityTags.indexOf(t) === -1) return -1000;
+  }
+}
+
+if (Array.isArray(gating.require_tracks)) {
+  for (let i = 0; i < gating.require_tracks.length; i++) {
+    const tr = gating.require_tracks[i];
+    if (tracks.indexOf(tr) === -1) return -1000;
+  }
+}
+
+if (gating.require_track_step_min && typeof gating.require_track_step_min === "object") {
+  for (const tr in gating.require_track_step_min) {
+    const need = Number(gating.require_track_step_min[tr] || 0);
+    const have = Number(trackProgress[tr] || 0);
+    if (Number.isFinite(need) && have < need) return -1000;
+  }
+}
+
+      
     if (Array.isArray(gating.avoid_tags)) {
       for (let i = 0; i < gating.avoid_tags.length; i++) {
         const t = gating.avoid_tags[i];
@@ -592,6 +621,163 @@ answer(eventId, choiceId) {
   let effect = 0;
   let feedback = "";
 
+  // ============================================================
+// ✅ M3: bygg profil over tid (tags + tracks + track_progress)
+// ============================================================
+const packMeta = (ev && ev.__pack) ? ev.__pack : {};
+const tagRules = packMeta.tag_rules || {};
+const packTracks = Array.isArray(packMeta.tracks) ? packMeta.tracks : [];
+
+const maxTagsPerChoice = Number(tagRules.max_tags_per_choice || 2);
+const memoryWindow = Number(tagRules.memory_window || 12);
+
+const chosenTags =
+  Array.isArray(choice?.tags) ? choice.tags : [];
+
+// identity_tags: prepend + unique + clamp
+(function applyIdentityTags() {
+  const cur = Array.isArray(state.identity_tags) ? state.identity_tags : [];
+  const next = [];
+
+  // først: tags fra valget (maks N)
+  for (let i = 0; i < chosenTags.length && next.length < maxTagsPerChoice; i++) {
+    const t = String(chosenTags[i] || "").trim();
+    if (t && next.indexOf(t) === -1) next.push(t);
+  }
+
+  // så: tidligere minne (uten duplikater)
+  for (let i = 0; i < cur.length && next.length < memoryWindow; i++) {
+    const t = String(cur[i] || "").trim();
+    if (t && next.indexOf(t) === -1) next.push(t);
+  }
+
+  state.__next_identity_tags = next;
+})();
+
+// tracks + track_progress: velg “beste track” fra pack.tracks tag_weights
+(function applyTracks() {
+  const curTracks = Array.isArray(state.tracks) ? state.tracks : [];
+  const curProg =
+    (state.track_progress && typeof state.track_progress === "object")
+      ? state.track_progress
+      : {};
+
+  let bestId = null;
+  let bestScore = 0;
+
+  for (let i = 0; i < packTracks.length; i++) {
+    const tr = packTracks[i];
+    const id = String(tr?.id || "").trim();
+    if (!id) continue;
+
+    const w = (tr && tr.tag_weights && typeof tr.tag_weights === "object")
+      ? tr.tag_weights
+      : {};
+
+    let score = 0;
+    for (let k = 0; k < chosenTags.length; k++) {
+      const tag = String(chosenTags[k] || "").trim();
+      if (!tag) continue;
+      score += Number(w[tag] || 0);
+    }
+
+    if (score > bestScore) {
+      bestScore = score;
+      bestId = id;
+    }
+  }
+
+  // Hvis ingen track-score: ikke endre tracks/progress
+  if (!bestId || bestScore <= 0) {
+    state.__next_tracks = curTracks;
+    state.__next_track_progress = curProg;
+    return;
+  }
+
+  const nextProg = Object.assign({}, curProg);
+  nextProg[bestId] = Number(nextProg[bestId] || 0) + 1;
+
+  const nextTracks = curTracks.filter(x => x !== bestId);
+  nextTracks.unshift(bestId);
+
+  state.__next_tracks = nextTracks.slice(0, 10);
+  state.__next_track_progress = nextProg;
+})();
+
+// ------------------------------------------------------------
+// ✅ System-effekt (lett v1): psyche + identity shift + capital
+// (kun hvis choice.effects finnes, ellers små auto-effekter fra tags)
+// ------------------------------------------------------------
+(function applySystemEffects() {
+  const active = window.CivicationState.getActivePosition();
+  const careerId = String(active?.career_id || "").trim();
+
+  // auto-effekter fra tags (små)
+  let dIntegrity = 0;
+  let dVisibility = 0;
+  let dEconomicRoom = 0;
+  let dTrust = 0;
+
+  for (let i = 0; i < chosenTags.length; i++) {
+    const t = String(chosenTags[i] || "").trim();
+    if (!t) continue;
+
+    if (t === "process") { dIntegrity += 2; dVisibility -= 1; dTrust += 1; }
+    if (t === "legitimacy") { dIntegrity += 1; dTrust += 2; }
+    if (t === "craft") { dIntegrity += 1; }
+    if (t === "shortcut") { dIntegrity -= 1; dVisibility += 1; dEconomicRoom += 1; dTrust -= 1; }
+    if (t === "opportunism") { dVisibility += 1; dTrust -= 1; }
+    if (t === "risk") { dIntegrity -= 2; dVisibility += 2; dTrust -= 2; }
+    if (t === "avoidance") { dIntegrity -= 1; dVisibility -= 1; }
+    if (t === "laziness") { dIntegrity -= 2; dTrust -= 1; }
+  }
+
+  // eksplisitte effekter (overstyr/adder)
+  const eff = (choice && choice.effects && typeof choice.effects === "object") ? choice.effects : null;
+  const psyche = eff?.psyche || null;
+
+  if (psyche) {
+    dIntegrity += Number(psyche.integrity || 0);
+    dVisibility += Number(psyche.visibility || 0);
+    dEconomicRoom += Number(psyche.economicRoom || 0);
+    dTrust += Number(psyche.trust || 0);
+  }
+
+  if (window.CivicationPsyche?.updateIntegrity && dIntegrity) window.CivicationPsyche.updateIntegrity(dIntegrity);
+  if (window.CivicationPsyche?.updateVisibility && dVisibility) window.CivicationPsyche.updateVisibility(dVisibility);
+  if (window.CivicationPsyche?.updateEconomicRoom && dEconomicRoom) window.CivicationPsyche.updateEconomicRoom(dEconomicRoom);
+
+  if (careerId && window.CivicationPsyche?.updateTrust && dTrust) {
+    window.CivicationPsyche.updateTrust(careerId, dTrust);
+  }
+
+  // identity_shift: { political: 0.03, economic: 0.02 }
+  const idShift = eff?.identity_shift;
+  if (idShift && window.HG_IdentityCore?.shiftFocus) {
+    for (const k in idShift) {
+      const n = Number(idShift[k] || 0);
+      if (Number.isFinite(n) && n !== 0) window.HG_IdentityCore.shiftFocus(k, n);
+    }
+  }
+
+  // capital: { institutional: 1, symbolic: -1 }
+  const capDelta = eff?.capital;
+  if (capDelta && typeof capDelta === "object") {
+    try {
+      const cur = JSON.parse(localStorage.getItem("hg_capital_v1") || "{}");
+      const next = Object.assign({}, cur);
+
+      for (const k in capDelta) {
+        const add = Number(capDelta[k] || 0);
+        if (!Number.isFinite(add)) continue;
+        next[k] = Number(next[k] || 0) + add;
+      }
+
+      localStorage.setItem("hg_capital_v1", JSON.stringify(next));
+    } catch (e) {}
+  }
+})();
+
   let choice = null;
 
   if (Array.isArray(ev.choices) && ev.choices.length) {
@@ -697,12 +883,19 @@ answer(eventId, choiceId) {
 
   this.setInbox(inbox);
   this.setState({
-    consumed: consumed,
-    score: score,
-    strikes: strikes,
-    stability: stability,
-    warning_used: warning_used
-  });
+  consumed: consumed,
+  score: score,
+  strikes: strikes,
+  stability: stability,
+  warning_used: warning_used,
+
+  // ✅ M3 state
+  identity_tags: state.__next_identity_tags || state.identity_tags || [],
+  tracks: state.__next_tracks || state.tracks || [],
+  track_progress: state.__next_track_progress || state.track_progress || {}
+});
+
+window.dispatchEvent(new Event("updateProfile"));
 
   // -------- FIRED handling --------
 
