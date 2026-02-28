@@ -792,6 +792,41 @@ document.getElementById("identityPerceptionBtn")
     el.classList.toggle("open");
   });
 
+function renderTrackHUD() {
+
+  const state = window.CivicationState.getState();
+  if (!state) return;
+
+  const tracks = Array.isArray(state.tracks) ? state.tracks : [];
+  const trackProgress = state.track_progress || {};
+  const tags = Array.isArray(state.identity_tags) ? state.identity_tags : [];
+
+  const nameEl = document.getElementById("civiTrackName");
+  const progEl = document.getElementById("civiTrackProgress");
+  const tagsEl = document.getElementById("civiTrackTags");
+
+  if (!nameEl || !progEl || !tagsEl) return;
+
+  if (!tracks.length) {
+    nameEl.textContent = "Ingen retning ennå";
+    progEl.textContent = "";
+    tagsEl.innerHTML = "";
+    return;
+  }
+
+  const activeTrack = tracks[0];
+  const progress = Number(trackProgress[activeTrack] || 0);
+
+  nameEl.textContent = activeTrack.replace(/_/g, " ");
+  progEl.textContent = "Progresjon: " + progress;
+
+  const recentTags = tags.slice(0, 3);
+
+  tagsEl.innerHTML = recentTags
+    .map(t => `<span>${t}</span>`)
+    .join("");
+}
+
 // ============================================================
 // EXPORT
 // ============================================================
