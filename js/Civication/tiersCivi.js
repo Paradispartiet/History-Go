@@ -7,6 +7,13 @@
       return { tierIndex: -1, label: "Nybegynner", threshold: 0 };
     }
 
+    const firstThr = Number(tiers[0]?.threshold || 0);
+
+    // ✅ NYTT: før første terskel har du ingen tier
+    if (Number.isFinite(firstThr) && p < firstThr) {
+      return { tierIndex: -1, label: "Nybegynner", threshold: 0 };
+    }
+
     let tierIndex = 0;
     let label = String(tiers[0].label || "Nybegynner").trim() || "Nybegynner";
 
@@ -19,7 +26,7 @@
       }
     }
 
-    const threshold = Number(tiers[tierIndex]?.threshold || 0);
+    const threshold = Number(tiers[tierIndex]?.threshold || firstThr || 0);
     return { tierIndex, label, threshold };
   }
 
