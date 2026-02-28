@@ -536,13 +536,21 @@ async onAppOpen() {
   const pack = await this.loadPack(packFile);
   const chosen = this.pickEventFromPack(pack, state);
 
-  if (!chosen) {
-    // ingen passende event igjen => bare bruk pulse uten mail (stille dag)
-    this.markPulseUsed();
-    return { enqueued: false, reason: "no_candidates" };
-  }
+if (!chosen) {
+  this.markPulseUsed();
+  return { enqueued: false, reason: "no_candidates" };
+}
 
-  this.enqueueEvent(chosen);
+// ✅ Legg ved pack-meta så answer() kan bruke tracks/tag_rules
+const chosenWithMeta = Object.assign({}, chosen, {
+  __pack: {
+    role: pack?.role || null,
+    tag_rules: pack?.tag_rules || null,
+    tracks: Array.isArray(pack?.tracks) ? pack.tracks : []
+  }
+});
+
+  this.enqueueEvent(chosenWithMeta);
   this.markPulseUsed();
   return { enqueued: true, type: "job", event: chosen };
 }
