@@ -321,15 +321,24 @@ window.addEventListener("civiPublicUpdated", renderPublicFeed);
 
 function syncRoleBaseline() {
 
-  const active = window.CivicationState?.getActivePosition?.();
+ const active = window.CivicationState?.getActivePosition?.();
 
-  if (!active || !active.career_id) {
-    window.CivicationPsyche?.clearRoleBaseline?.();
-    return;
-  }
+ if (!active || !active.career_id) {
+  window.CivicationPsyche?.clearRoleBaseline?.();
+  return;
+ }
 
-  const careerId = active.career_id;
+ const careerId = active.career_id;
 
+// 🔥 KONFLIKT-TEST
+window.CivicationConflicts
+  ?.load(careerId)
+  ?.then(data => {
+    const conflict = window.CivicationConflicts
+      ?.getForTier(data, active.title);
+
+    console.log("Active conflict:", conflict);
+  });
   const badge = Array.isArray(window.BADGES)
     ? window.BADGES.find(b => b && String(b.id) === String(careerId))
     : null;
