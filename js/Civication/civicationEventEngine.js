@@ -974,12 +974,13 @@ answer(eventId, choiceId) {
     }
   }
 
-  return {
-    ok: true,
-    effect: effect,
-    stability: stability
-  };
-}
+     return {
+     ok: true,
+     effect: effect,
+     stability: stability,
+     feedback: feedback
+   };
+  }
 
 } // ← lukker class CivicationEventEngine
 
