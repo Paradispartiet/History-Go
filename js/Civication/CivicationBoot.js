@@ -54,7 +54,6 @@ async function loadCivicationData() {
     packBasePath: "data/Civication/jobbmails",
     maxInbox: 1,
     packMap: {
-      naering: "naeringslivCivic.json",
       naeringsliv: "naeringslivCivic.json",
       vitenskap: "vitenskapCivic.json",
       media: "mediaCivic.json",
