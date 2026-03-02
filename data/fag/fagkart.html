@@ -94,38 +94,88 @@
     }
 
     function renderEmner(list, mount) {
-      if (!list.length) {
-        mount.innerHTML = `<p class="hg-muted">Ingen emner funnet (tom fil eller feil format).</p>`;
-        return;
-      }
+  if (!list.length) {
+    mount.innerHTML = `<p class="hg-muted">Ingen emner funnet (tom fil eller feil format).</p>`;
+    return;
+  }
 
-      const html = `
-        <ul class="hg-emner">
-          ${
-            list.map(e => {
-              const title = esc(e.title || e.name || e.short_label || e.emne_id || "Uten tittel");
-              const desc  = esc(e.description || "");
-              const label = esc(e.short_label || "");
-              const id    = esc(e.emne_id || e.id || "");
+  const hasDomain = list.some(e => e && typeof e.domain === "string" && e.domain.trim());
+  if (!hasDomain) {
+    // fallback: gammel flat liste
+    const html = `
+      <ul class="hg-emner">
+        ${
+          list.map(e => {
+            const title = esc(e.title || e.name || e.short_label || e.emne_id || "Uten tittel");
+            const desc  = esc(e.description || "");
+            const label = esc(e.short_label || "");
+            const id    = esc(e.emne_id || e.id || "");
+            const href  = `emne.html?id=${encodeURIComponent(id)}`;
 
-              const href = `emne.html?id=${encodeURIComponent(id)}`;
+            return `
+              <li class="hg-emne">
+                <a class="hg-emne-link" href="${href}" data-emne="${id}">
+                  <div class="hg-emne-title">${title}</div>
+                  ${label ? `<div class="hg-emne-label">${label}</div>` : ``}
+                  ${desc  ? `<div class="hg-emne-desc">${desc}</div>` : ``}
+                </a>
+              </li>
+            `;
+          }).join("")
+        }
+      </ul>
+    `;
+    mount.innerHTML = html;
+    return;
+  }
 
-              return `
-                <li class="hg-emne">
-                  <a class="hg-emne-link" href="${href}" data-emne="${id}">
-                    <div class="hg-emne-title">${title}</div>
-                    ${label ? `<div class="hg-emne-label">${label}</div>` : ``}
-                    ${desc  ? `<div class="hg-emne-desc">${desc}</div>` : ``}
-                  </a>
-                </li>
-              `;
-            }).join("")
-          }
-        </ul>
+  const order = ["struktur", "praksis", "makt", "tid"];
+  const labels = {
+    struktur: "Struktur",
+    praksis: "Praksis",
+    makt: "Makt",
+    tid: "Tid"
+  };
+
+  const groups = {};
+  for (const k of order) groups[k] = [];
+  for (const e of list) {
+    const d = String(e.domain || "").trim().toLowerCase();
+    (groups[d] || (groups[d] = [])).push(e);
+  }
+
+  const sections = order
+    .filter(d => groups[d] && groups[d].length)
+    .map(d => {
+      const itemsHtml = groups[d].map(e => {
+        const title = esc(e.title || e.name || e.short_label || e.emne_id || "Uten tittel");
+        const desc  = esc(e.description || "");
+        const label = esc(e.short_label || "");
+        const id    = esc(e.emne_id || e.id || "");
+        const href  = `emne.html?id=${encodeURIComponent(id)}`;
+
+        return `
+          <li class="hg-emne">
+            <a class="hg-emne-link" href="${href}" data-emne="${id}">
+              <div class="hg-emne-title">${title}</div>
+              ${label ? `<div class="hg-emne-label">${label}</div>` : ``}
+              ${desc  ? `<div class="hg-emne-desc">${desc}</div>` : ``}
+            </a>
+          </li>
+        `;
+      }).join("");
+
+      return `
+        <section class="hg-domain">
+          <h3 class="hg-domain-title">${labels[d] || d}</h3>
+          <ul class="hg-emner">${itemsHtml}</ul>
+        </section>
       `;
+    })
+    .join("");
 
-      mount.innerHTML = html;
-    }
+  mount.innerHTML = sections || `<p class="hg-muted">Ingen emner funnet.</p>`;
+}
 
     document.addEventListener("DOMContentLoaded", async () => {
       const mount = document.getElementById("emneListeBy");
