@@ -980,3 +980,7 @@ answer(eventId, choiceId) {
     stability: stability
   };
 }
+
+} // ← lukker class CivicationEventEngine
+
+window.CivicationEventEngine = CivicationEventEngine;
