@@ -900,7 +900,6 @@ answer(eventId, choiceId) {
     track_progress: state.__next_track_progress || state.track_progress || {}
   });
 
-  window.dispatchEvent(new Event("updateProfile"));
 
   // -------- FIRED handling --------
   if (stability === "FIRED") {
