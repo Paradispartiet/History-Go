@@ -657,13 +657,17 @@ function renderCivicationInbox() {
     }
 
     if (!choices.length) {
-      fb.textContent = ev.feedback || "—";
-      fb.style.display = "";
+     fb.textContent = ev.feedback || "—";
+     fb.style.display = "";
 
-      btnOK.style.display = "";
-      btnOK.onclick = () => window.dispatchEvent(new Event("updateProfile"));
-      return;
-    }
+     btnOK.style.display = "";
+     btnOK.onclick = () => {
+      window.HG_CiviEngine?.answer?.(ev.id, null);
+      window.dispatchEvent(new Event("updateProfile"));
+     };
+
+     return;
+     }
 
     const cA = choices.find(c => c?.id === "A");
     const cB = choices.find(c => c?.id === "B");
