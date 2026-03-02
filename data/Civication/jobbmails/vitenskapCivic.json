@@ -1,0 +1,406 @@
+{
+  "role": "vitenskap",
+  "aliases": [
+    "science",
+    "vitenskap"
+  ],
+  "version": "v0.2b",
+  "tag_rules": {
+    "max_tags_per_choice": 2,
+    "memory_window": 12
+  },
+  "tracks": [
+    {
+      "id": "rigor_builder",
+      "title": "Rigor-bygger",
+      "tag_weights": {
+        "process": 2,
+        "legitimacy": 2,
+        "craft": 1
+      }
+    },
+    {
+      "id": "visibility_hunter",
+      "title": "Synlighetsjeger",
+      "tag_weights": {
+        "visibility": 2,
+        "shortcut": 2,
+        "opportunism": 2
+      }
+    },
+    {
+      "id": "quiet_technician",
+      "title": "Stille tekniker",
+      "tag_weights": {
+        "craft": 2,
+        "avoidance": 1,
+        "process": 1
+      }
+    },
+    {
+      "id": "risk_taker",
+      "title": "Risikotaker",
+      "tag_weights": {
+        "risk": 2,
+        "visibility": 2,
+        "legitimacy": 1
+      }
+    }
+  ],
+  "mails": [
+    {
+      "id": "studentassistent_001",
+      "stage": "stable",
+      "subject": "Kan du rydde datasettet?",
+      "situation": [
+        "Datasettet er rotete.",
+        "Alle later som de forstår det.",
+        "Du får oppgaven fordi du faktisk ser mønster."
+      ],
+      "mail_tags": [
+        "studentassistent",
+        "data",
+        "prosess"
+      ],
+      "gating": {
+        "prefer_tags": [
+          "process",
+          "craft"
+        ],
+        "avoid_tags": [
+          "laziness"
+        ],
+        "prefer_tracks": [
+          "rigor_builder",
+          "quiet_technician"
+        ]
+      },
+      "choices": [
+        {
+          "id": "A",
+          "label": "Lag en rutine og dokumenter alt",
+          "effect": 1,
+          "tags": [
+            "process",
+            "legitimacy"
+          ],
+          "feedback": "Det blir ryddig. Ingen jubler, men alt flyter bedre."
+        },
+        {
+          "id": "B",
+          "label": "Fiks raskt og send videre",
+          "effect": 0,
+          "tags": [
+            "shortcut",
+            "craft"
+          ],
+          "feedback": "Det fungerer i dag. Du vet ikke om det fungerer neste uke."
+        },
+        {
+          "id": "C",
+          "label": "Utsett – for mange uklarheter",
+          "effect": -1,
+          "tags": [
+            "avoidance",
+            "laziness"
+          ],
+          "feedback": "Det blir stille. Det er ikke et godt tegn."
+        }
+      ]
+    },
+    {
+      "id": "studentassistent_002",
+      "stage": "stable",
+      "subject": "En kollega vil ha navnet ditt på papiret",
+      "situation": [
+        "Du har hjulpet mye.",
+        "Noen foreslår at du skal stå som medforfatter.",
+        "Ingen forklarer hva det innebærer."
+      ],
+      "mail_tags": [
+        "studentassistent",
+        "kreditering",
+        "synlighet"
+      ],
+      "gating": {
+        "prefer_tags": [
+          "legitimacy",
+          "visibility"
+        ],
+        "avoid_tags": [
+          "risk"
+        ],
+        "prefer_tracks": [
+          "visibility_hunter",
+          "rigor_builder"
+        ]
+      },
+      "choices": [
+        {
+          "id": "A",
+          "label": "Si ja, men krev tydelig bidragsliste",
+          "effect": 1,
+          "tags": [
+            "legitimacy",
+            "process"
+          ],
+          "feedback": "Det blir ryddig. Du får både navn og grenser."
+        },
+        {
+          "id": "B",
+          "label": "Si ja uten å gjøre det vanskelig",
+          "effect": 0,
+          "tags": [
+            "visibility",
+            "opportunism"
+          ],
+          "feedback": "Du blir synlig. Du vet ikke hva du sa ja til."
+        },
+        {
+          "id": "C",
+          "label": "Si nei – for uklart",
+          "effect": -1,
+          "tags": [
+            "avoidance",
+            "legitimacy"
+          ],
+          "feedback": "Du beholder kontroll. Du mister også moment."
+        }
+      ]
+    },
+    {
+      "id": "studentassistent_003",
+      "stage": "stable_warning",
+      "subject": "Raskt funn, svak metode",
+      "situation": [
+        "Du ser et mønster som kan bli en sak.",
+        "Men metoden er tynn.",
+        "Du kjenner presset i rommet."
+      ],
+      "mail_tags": [
+        "studentassistent",
+        "metode",
+        "press"
+      ],
+      "gating": {
+        "prefer_tags": [
+          "process",
+          "shortcut",
+          "risk"
+        ],
+        "avoid_tags": [
+          "laziness"
+        ],
+        "prefer_tracks": [
+          "rigor_builder",
+          "visibility_hunter",
+          "risk_taker"
+        ]
+      },
+      "choices": [
+        {
+          "id": "A",
+          "label": "Hold igjen og styrk metoden",
+          "effect": 1,
+          "tags": [
+            "process",
+            "craft"
+          ],
+          "feedback": "Du vinner tid. Du taper tempo. Det er ofte riktig."
+        },
+        {
+          "id": "B",
+          "label": "Kjør ut funnet nå",
+          "effect": -1,
+          "tags": [
+            "shortcut",
+            "visibility"
+          ],
+          "feedback": "Du får oppmerksomhet. Du får også risiko."
+        },
+        {
+          "id": "C",
+          "label": "Legg det i skuffen",
+          "effect": 0,
+          "tags": [
+            "avoidance",
+            "legitimacy"
+          ],
+          "feedback": "Du beskytter deg selv. Du mister et mulig spor."
+        }
+      ]
+    },
+
+    {
+      "id": "quest_rigor_001",
+      "stage": "stable",
+      "subject": "Kontrollvariabelen som mangler",
+      "situation": [
+        "En liten detalj gjør resultatet uklart.",
+        "Alle vil videre.",
+        "Du ser hva som mangler."
+      ],
+      "mail_tags": [
+        "quest",
+        "rigor_builder",
+        "step_1"
+      ],
+      "gating": {
+        "prefer_tracks": [
+          "rigor_builder"
+        ],
+        "prefer_tags": [
+          "process",
+          "legitimacy"
+        ],
+        "avoid_tags": [
+          "laziness"
+        ]
+      },
+      "choices": [
+        {
+          "id": "A",
+          "label": "Stopp og legg inn kontrollen",
+          "effect": 1,
+          "tags": [
+            "process",
+            "legitimacy"
+          ],
+          "feedback": "Det blir friksjon. Det blir også sant."
+        },
+        {
+          "id": "B",
+          "label": "Dokumenter mangelen og gå videre",
+          "effect": 0,
+          "tags": [
+            "avoidance",
+            "legitimacy"
+          ],
+          "feedback": "Du sier det høyt, men du gjør det ikke."
+        }
+      ]
+    },
+    {
+      "id": "quest_rigor_002",
+      "stage": "stable",
+      "subject": "Reviewer ber om rådata",
+      "situation": [
+        "En reviewer vil se rådata og skript.",
+        "Det er ikke fiendtlig.",
+        "Det er bare presist."
+      ],
+      "mail_tags": [
+        "quest",
+        "rigor_builder",
+        "step_2"
+      ],
+      "gating": {
+        "require_tracks": [
+          "rigor_builder"
+        ],
+        "require_track_step_min": {
+          "rigor_builder": 1
+        },
+        "prefer_tracks": [
+          "rigor_builder"
+        ],
+        "prefer_tags": [
+          "process",
+          "craft",
+          "legitimacy"
+        ],
+        "avoid_tags": [
+          "laziness"
+        ]
+      },
+      "choices": [
+        {
+          "id": "A",
+          "label": "Send rådata + skript + kort metode-notat",
+          "effect": 1,
+          "tags": [
+            "process",
+            "craft"
+          ],
+          "feedback": "Det er ryddig. Du kjenner at dette bygger tillit."
+        },
+        {
+          "id": "B",
+          "label": "Send bare det mest nødvendige",
+          "effect": 0,
+          "tags": [
+            "shortcut",
+            "legitimacy"
+          ],
+          "feedback": "Det kan holde. Det kan også bli plukket fra hverandre."
+        },
+        {
+          "id": "C",
+          "label": "Utsett og be om mer tid",
+          "effect": -1,
+          "tags": [
+            "avoidance",
+            "process"
+          ],
+          "feedback": "Du kjøper tid. Du betaler i oppmerksomhet."
+        }
+      ]
+    },
+    {
+      "id": "quest_rigor_003",
+      "stage": "stable_warning",
+      "subject": "Presentasjon før resultatet er helt robust",
+      "situation": [
+        "Du blir bedt om å presentere funnet internt.",
+        "Du vet at én del fortsatt er svak.",
+        "Likevel er rommet sultent."
+      ],
+      "mail_tags": [
+        "quest",
+        "rigor_builder",
+        "step_3"
+      ],
+      "gating": {
+        "require_tracks": [
+          "rigor_builder"
+        ],
+        "require_track_step_min": {
+          "rigor_builder": 2
+        },
+        "prefer_tracks": [
+          "rigor_builder"
+        ],
+        "prefer_tags": [
+          "process",
+          "legitimacy",
+          "visibility"
+        ],
+        "avoid_tags": [
+          "laziness"
+        ]
+      },
+      "choices": [
+        {
+          "id": "A",
+          "label": "Presenter, men avgrens klart hva som er sikkert",
+          "effect": 1,
+          "tags": [
+            "legitimacy",
+            "visibility"
+          ],
+          "feedback": "Du blir synlig uten å lyve. Det er sjeldent."
+        },
+        {
+          "id": "B",
+          "label": "Vent til alt er helt ferdig",
+          "effect": 0,
+          "tags": [
+            "process",
+            "avoidance"
+          ],
+          "feedback": "Du mister tempo. Du beholder integritet."
+        }
+      ]
+    }
+  ]
+}
