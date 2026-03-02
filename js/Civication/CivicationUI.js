@@ -719,9 +719,16 @@ function renderCivicationInbox() {
   }
 
   if (!choices.length) {
-    showOk(ev.feedback || "—");
-    return;
+  if (fb) { fb.textContent = ev.feedback || "—"; fb.style.display = ""; }
+  if (ok) {
+    ok.style.display = "";
+    ok.onclick = () => {
+      window.HG_CiviEngine?.answer?.(ev.id, null);
+      window.dispatchEvent(new Event("updateProfile"));
+    };
   }
+  return;
+}
 
   choices.forEach(c => {
     const id = String(c?.id || "").trim();
