@@ -39,13 +39,18 @@
     return await r.json();
   }
 
-  async function loadManifestFiles() {
-    const m = await fetchJson(QUIZ_MANIFEST_PATH);
-    if (!m || !Array.isArray(m.files) || !m.files.length) {
-      throw new Error("data/quiz/manifest.json mangler files[]");
-    }
-    return m.files;
+  async function loadManifestData() {
+  const m = await fetchJson(QUIZ_MANIFEST_PATH);
+
+  if (!m) {
+    throw new Error("manifest mangler");
   }
+
+  return {
+    files: Array.isArray(m.files) ? m.files : [],
+    sets: Array.isArray(m.sets) ? m.sets : []
+  };
+}
 
   // ============================================================
   // STORAGE HELPERS (STRICT, NO NORMALIZATION)
@@ -187,7 +192,7 @@
     if (_loading) return _loading;
 
     _loading = (async () => {
-      const files = await loadManifestFiles();
+      const { files, sets } = await loadManifestData();
 
       const lists = await Promise.all(
         files.map(async (f) => {
