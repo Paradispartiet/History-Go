@@ -1,0 +1,3556 @@
+{
+  "subject_id": "kunst",
+  "subject_label": "Kunst & kultur",
+  "source": "fagkart_kunst_oslo_thinkers_by_style.json",
+  "version": "1.2.0",
+  "node_types": [
+    "category",
+    "emne",
+    "dimensjon",
+    "thinker"
+  ],
+  "edge_types": [
+    "belongs_to",
+    "activates_dimension",
+    "references_thinker"
+  ],
+  "nodes": [
+    {
+      "id": "felt_institusjon",
+      "type": "category",
+      "title": "Felt og institusjon"
+    },
+    {
+      "id": "produksjon_praksis",
+      "type": "category",
+      "title": "Produksjon og praksis"
+    },
+    {
+      "id": "estetisk_sprak_form",
+      "type": "category",
+      "title": "Estetisk språk og form"
+    },
+    {
+      "id": "makt_legitimitet",
+      "type": "category",
+      "title": "Makt og legitimitet"
+    },
+    {
+      "id": "publikum_offentlighet",
+      "type": "category",
+      "title": "Publikum og offentlighet"
+    },
+    {
+      "id": "tid_transformasjon",
+      "type": "category",
+      "title": "Tid og transformasjon"
+    },
+    {
+      "id": "Felt",
+      "type": "dimensjon"
+    },
+    {
+      "id": "Normativ",
+      "type": "dimensjon"
+    },
+    {
+      "id": "Doxa",
+      "type": "dimensjon"
+    },
+    {
+      "id": "Sosial",
+      "type": "dimensjon"
+    },
+    {
+      "id": "Geografisk",
+      "type": "dimensjon"
+    },
+    {
+      "id": "Materiell",
+      "type": "dimensjon"
+    },
+    {
+      "id": "Metodisk",
+      "type": "dimensjon"
+    },
+    {
+      "id": "Temporal",
+      "type": "dimensjon"
+    },
+    {
+      "id": "institusjonell_legitimering",
+      "type": "emne",
+      "title": "Institusjonell legitimering",
+      "category": "felt_institusjon"
+    },
+    {
+      "id": "kuratorisk_makt",
+      "type": "emne",
+      "title": "Kuratorisk makt",
+      "category": "felt_institusjon"
+    },
+    {
+      "id": "finansieringslogikk",
+      "type": "emne",
+      "title": "Finansieringslogikk",
+      "category": "felt_institusjon"
+    },
+    {
+      "id": "distribusjonsinfrastruktur",
+      "type": "emne",
+      "title": "Distribusjonsinfrastruktur",
+      "category": "felt_institusjon"
+    },
+    {
+      "id": "kunstutdanning_og_rekruttering",
+      "type": "emne",
+      "title": "Kunstutdanning og rekruttering",
+      "category": "felt_institusjon"
+    },
+    {
+      "id": "offentlig_vs_privat_kunststruktur",
+      "type": "emne",
+      "title": "Offentlig vs privat kunststruktur",
+      "category": "felt_institusjon"
+    },
+    {
+      "id": "plattformisering_og_digitale_institusjoner",
+      "type": "emne",
+      "title": "Plattformisering og digitale institusjoner",
+      "category": "felt_institusjon"
+    },
+    {
+      "id": "regional_vs_sentralisert_kunstfelt",
+      "type": "emne",
+      "title": "Regionalt vs sentralisert kunstfelt",
+      "category": "felt_institusjon"
+    },
+    {
+      "id": "nettverk_og_portvoktere",
+      "type": "emne",
+      "title": "Nettverk og portvoktere",
+      "category": "felt_institusjon"
+    },
+    {
+      "id": "autonomi_vs_avhengighet",
+      "type": "emne",
+      "title": "Autonomi vs avhengighet",
+      "category": "felt_institusjon"
+    },
+    {
+      "id": "atelierlogikk_og_arbeidsformer",
+      "type": "emne",
+      "title": "Atelierlogikk og arbeidsformer",
+      "category": "produksjon_praksis"
+    },
+    {
+      "id": "kollektiv_vs_individuell_praksis",
+      "type": "emne",
+      "title": "Kollektiv vs individuell praksis",
+      "category": "produksjon_praksis"
+    },
+    {
+      "id": "diy_og_selvorganisering",
+      "type": "emne",
+      "title": "DIY og selvorganisering",
+      "category": "produksjon_praksis"
+    },
+    {
+      "id": "teknologisk_produksjon",
+      "type": "emne",
+      "title": "Teknologisk produksjon",
+      "category": "produksjon_praksis"
+    },
+    {
+      "id": "tverrfaglighet_og_hybridformer",
+      "type": "emne",
+      "title": "Tverrfaglighet og hybridformer",
+      "category": "produksjon_praksis"
+    },
+    {
+      "id": "kunstnerisk_risiko",
+      "type": "emne",
+      "title": "Kunstnerisk risiko",
+      "category": "produksjon_praksis"
+    },
+    {
+      "id": "arbeidsvilkar_og_prekaritet",
+      "type": "emne",
+      "title": "Arbeidsvilkår og prekariat",
+      "category": "produksjon_praksis"
+    },
+    {
+      "id": "produksjonstempo_og_prosjektlogikk",
+      "type": "emne",
+      "title": "Produksjonstempo og prosjektlogikk",
+      "category": "produksjon_praksis"
+    },
+    {
+      "id": "dokumentasjon_og_prosess",
+      "type": "emne",
+      "title": "Dokumentasjon og prosess",
+      "category": "produksjon_praksis"
+    },
+    {
+      "id": "materialvalg_som_metode",
+      "type": "emne",
+      "title": "Materialvalg som metode",
+      "category": "produksjon_praksis"
+    },
+    {
+      "id": "mediumspesifisitet",
+      "type": "emne",
+      "title": "Mediumspesifisitet",
+      "category": "estetisk_sprak_form"
+    },
+    {
+      "id": "sjangerkoder",
+      "type": "emne",
+      "title": "Sjangerkoder",
+      "category": "estetisk_sprak_form"
+    },
+    {
+      "id": "formalisme_vs_kontekstualisme",
+      "type": "emne",
+      "title": "Formalisme vs kontekstualisme",
+      "category": "estetisk_sprak_form"
+    },
+    {
+      "id": "konseptualitet",
+      "type": "emne",
+      "title": "Konseptualitet",
+      "category": "estetisk_sprak_form"
+    },
+    {
+      "id": "representasjon_vs_abstraksjon",
+      "type": "emne",
+      "title": "Representasjon vs abstraksjon",
+      "category": "estetisk_sprak_form"
+    },
+    {
+      "id": "estetisk_minimalisme",
+      "type": "emne",
+      "title": "Estetisk minimalisme",
+      "category": "estetisk_sprak_form"
+    },
+    {
+      "id": "estetisk_overflod",
+      "type": "emne",
+      "title": "Estetisk overflod",
+      "category": "estetisk_sprak_form"
+    },
+    {
+      "id": "symbolbruk_og_ikonografi",
+      "type": "emne",
+      "title": "Symbolbruk og ikonografi",
+      "category": "estetisk_sprak_form"
+    },
+    {
+      "id": "stil_som_posisjonering",
+      "type": "emne",
+      "title": "Stil som posisjonering",
+      "category": "estetisk_sprak_form"
+    },
+    {
+      "id": "originalitet_vs_referanse",
+      "type": "emne",
+      "title": "Originalitet vs referanse",
+      "category": "estetisk_sprak_form"
+    },
+    {
+      "id": "kanonisering",
+      "type": "emne",
+      "title": "Kanonisering",
+      "category": "makt_legitimitet"
+    },
+    {
+      "id": "kvalitetsregimer",
+      "type": "emne",
+      "title": "Kvalitetsregimer",
+      "category": "makt_legitimitet"
+    },
+    {
+      "id": "kritikkens_rolle",
+      "type": "emne",
+      "title": "Kritikkens rolle",
+      "category": "makt_legitimitet"
+    },
+    {
+      "id": "symbolsk_kapital",
+      "type": "emne",
+      "title": "Symbolsk kapital",
+      "category": "makt_legitimitet"
+    },
+    {
+      "id": "markedets_estetiske_pavirkningskraft",
+      "type": "emne",
+      "title": "Markedets estetiske påvirkningskraft",
+      "category": "makt_legitimitet"
+    },
+    {
+      "id": "institusjonskritikk",
+      "type": "emne",
+      "title": "Institusjonskritikk",
+      "category": "makt_legitimitet"
+    },
+    {
+      "id": "inkludering_og_ekskludering",
+      "type": "emne",
+      "title": "Inkludering og ekskludering",
+      "category": "makt_legitimitet"
+    },
+    {
+      "id": "kunst_og_politikk",
+      "type": "emne",
+      "title": "Kunst og politikk",
+      "category": "makt_legitimitet"
+    },
+    {
+      "id": "identitet_og_representasjon",
+      "type": "emne",
+      "title": "Identitet og representasjon",
+      "category": "makt_legitimitet"
+    },
+    {
+      "id": "estetisk_hegemoni",
+      "type": "emne",
+      "title": "Estetisk hegemoni",
+      "category": "makt_legitimitet"
+    },
+    {
+      "id": "publikumssegmentering",
+      "type": "emne",
+      "title": "Publikumssegmentering",
+      "category": "publikum_offentlighet"
+    },
+    {
+      "id": "klasse_og_kulturell_kapital",
+      "type": "emne",
+      "title": "Klasse og kulturell kapital",
+      "category": "publikum_offentlighet"
+    },
+    {
+      "id": "tilgjengelighet_og_terskler",
+      "type": "emne",
+      "title": "Tilgjengelighet og terskler",
+      "category": "publikum_offentlighet"
+    },
+    {
+      "id": "mot_offentligheter",
+      "type": "emne",
+      "title": "Mot-offentligheter",
+      "category": "publikum_offentlighet"
+    },
+    {
+      "id": "subkulturell_legitimitet",
+      "type": "emne",
+      "title": "Subkulturell legitimitet",
+      "category": "publikum_offentlighet"
+    },
+    {
+      "id": "offentlig_kunst_og_byrom",
+      "type": "emne",
+      "title": "Offentlig kunst og byrom",
+      "category": "publikum_offentlighet"
+    },
+    {
+      "id": "deltakende_praksiser",
+      "type": "emne",
+      "title": "Deltakende praksiser",
+      "category": "publikum_offentlighet"
+    },
+    {
+      "id": "digital_offentlighet",
+      "type": "emne",
+      "title": "Digital offentlighet",
+      "category": "publikum_offentlighet"
+    },
+    {
+      "id": "resepsjon_og_fortolkning",
+      "type": "emne",
+      "title": "Resepsjon og fortolkning",
+      "category": "publikum_offentlighet"
+    },
+    {
+      "id": "kunst_som_sosial_moteplass",
+      "type": "emne",
+      "title": "Kunst som sosial møteplass",
+      "category": "publikum_offentlighet"
+    },
+    {
+      "id": "epokefortellinger",
+      "type": "emne",
+      "title": "Epokefortellinger",
+      "category": "tid_transformasjon"
+    },
+    {
+      "id": "avantgarde_og_brudd",
+      "type": "emne",
+      "title": "Avantgarde og brudd",
+      "category": "tid_transformasjon"
+    },
+    {
+      "id": "tradisjon_og_kontinuitet",
+      "type": "emne",
+      "title": "Tradisjon og kontinuitet",
+      "category": "tid_transformasjon"
+    },
+    {
+      "id": "historisk_rekontekstualisering",
+      "type": "emne",
+      "title": "Historisk rekontekstualisering",
+      "category": "tid_transformasjon"
+    },
+    {
+      "id": "arkiv_og_minne",
+      "type": "emne",
+      "title": "Arkiv og minne",
+      "category": "tid_transformasjon"
+    },
+    {
+      "id": "remiks_og_reappropriasjon",
+      "type": "emne",
+      "title": "Remiks og reappropriasjon",
+      "category": "tid_transformasjon"
+    },
+    {
+      "id": "nostalgi_og_retromodernitet",
+      "type": "emne",
+      "title": "Nostalgi og retromodernitet",
+      "category": "tid_transformasjon"
+    },
+    {
+      "id": "kunsthistorisk_skriving",
+      "type": "emne",
+      "title": "Kunsthistorisk skriving",
+      "category": "tid_transformasjon"
+    },
+    {
+      "id": "temporale_estetiske_strategier",
+      "type": "emne",
+      "title": "Temporale estetiske strategier",
+      "category": "tid_transformasjon"
+    },
+    {
+      "id": "sykluser_og_trender",
+      "type": "emne",
+      "title": "Sykluser og trender",
+      "category": "tid_transformasjon"
+    },
+    {
+      "id": "brian_odoherty",
+      "type": "thinker",
+      "name": "Brian O'Doherty",
+      "role": "kunstkritiker / teoretiker",
+      "works": [
+        "Inside the White Cube"
+      ]
+    },
+    {
+      "id": "tony_bennett",
+      "type": "thinker",
+      "name": "Tony Bennett",
+      "role": "museumsstudier / kulturteoretiker",
+      "works": [
+        "The Birth of the Museum"
+      ]
+    },
+    {
+      "id": "boris_groys",
+      "type": "thinker",
+      "name": "Boris Groys",
+      "role": "kunstteoretiker",
+      "works": [
+        "Art Power",
+        "In the Flow"
+      ]
+    },
+    {
+      "id": "hans_ulrich_obrist",
+      "type": "thinker",
+      "name": "Hans Ulrich Obrist",
+      "role": "kurator",
+      "works": [
+        "Ways of Curating"
+      ]
+    },
+    {
+      "id": "maria_lind",
+      "type": "thinker",
+      "name": "Maria Lind",
+      "role": "kurator / skribent",
+      "works": [
+        "Performing the Curatorial"
+      ]
+    },
+    {
+      "id": "pierre_bourdieu",
+      "type": "thinker",
+      "name": "Pierre Bourdieu",
+      "role": "sosiolog / feltteoretiker",
+      "works": [
+        "The Rules of Art",
+        "Distinction"
+      ]
+    },
+    {
+      "id": "sarah_thornton",
+      "type": "thinker",
+      "name": "Sarah Thornton",
+      "role": "kunstfelt / sosiologi",
+      "works": [
+        "Seven Days in the Art World"
+      ]
+    },
+    {
+      "id": "walter_benjamin",
+      "type": "thinker",
+      "name": "Walter Benjamin",
+      "role": "filosof / kulturkritiker",
+      "works": [
+        "The Work of Art in the Age of Mechanical Reproduction",
+        "The Arcades Project"
+      ]
+    },
+    {
+      "id": "marshall_mcluhan",
+      "type": "thinker",
+      "name": "Marshall McLuhan",
+      "role": "medieteoretiker",
+      "works": [
+        "Understanding Media"
+      ]
+    },
+    {
+      "id": "hito_steyerl",
+      "type": "thinker",
+      "name": "Hito Steyerl",
+      "role": "kunstner / teoretiker",
+      "works": [
+        "The Wretched of the Screen"
+      ]
+    },
+    {
+      "id": "lev_manovich",
+      "type": "thinker",
+      "name": "Lev Manovich",
+      "role": "medieteoretiker",
+      "works": [
+        "The Language of New Media"
+      ]
+    },
+    {
+      "id": "nick_srnicek",
+      "type": "thinker",
+      "name": "Nick Srnicek",
+      "role": "teoretiker",
+      "works": [
+        "Platform Capitalism"
+      ]
+    },
+    {
+      "id": "john_dewey",
+      "type": "thinker",
+      "name": "John Dewey",
+      "role": "filosof / pragmatiker",
+      "works": [
+        "Art as Experience"
+      ]
+    },
+    {
+      "id": "richard_sennett",
+      "type": "thinker",
+      "name": "Richard Sennett",
+      "role": "sosiolog / håndverksteoretiker",
+      "works": [
+        "The Craftsman"
+      ]
+    },
+    {
+      "id": "tim_ingold",
+      "type": "thinker",
+      "name": "Tim Ingold",
+      "role": "antropolog",
+      "works": [
+        "Making",
+        "The Perception of the Environment"
+      ]
+    },
+    {
+      "id": "dick_hebdige",
+      "type": "thinker",
+      "name": "Dick Hebdige",
+      "role": "kulturteoretiker",
+      "works": [
+        "Subculture: The Meaning of Style"
+      ]
+    },
+    {
+      "id": "howard_s_becker",
+      "type": "thinker",
+      "name": "Howard S. Becker",
+      "role": "sosiolog / kunstsosiolog",
+      "works": [
+        "Art Worlds"
+      ]
+    },
+    {
+      "id": "donna_haraway",
+      "type": "thinker",
+      "name": "Donna Haraway",
+      "role": "teoretiker",
+      "works": [
+        "A Cyborg Manifesto"
+      ]
+    },
+    {
+      "id": "clement_greenberg",
+      "type": "thinker",
+      "name": "Clement Greenberg",
+      "role": "kunstkritiker",
+      "works": [
+        "Art and Culture"
+      ]
+    },
+    {
+      "id": "rosalind_krauss",
+      "type": "thinker",
+      "name": "Rosalind Krauss",
+      "role": "kunsthistoriker / teoretiker",
+      "works": [
+        "The Originality of the Avant-Garde",
+        "Passages in Modern Sculpture"
+      ]
+    },
+    {
+      "id": "erwin_panofsky",
+      "type": "thinker",
+      "name": "Erwin Panofsky",
+      "role": "kunsthistoriker",
+      "works": [
+        "Studies in Iconology"
+      ]
+    },
+    {
+      "id": "nelson_goodman",
+      "type": "thinker",
+      "name": "Nelson Goodman",
+      "role": "filosof",
+      "works": [
+        "Languages of Art"
+      ]
+    },
+    {
+      "id": "arthur_danto",
+      "type": "thinker",
+      "name": "Arthur C. Danto",
+      "role": "filosof / kunstkritiker",
+      "works": [
+        "The Transfiguration of the Commonplace"
+      ]
+    },
+    {
+      "id": "george_dickie",
+      "type": "thinker",
+      "name": "George Dickie",
+      "role": "filosof",
+      "works": [
+        "Art and the Aesthetic"
+      ]
+    },
+    {
+      "id": "roland_barthes",
+      "type": "thinker",
+      "name": "Roland Barthes",
+      "role": "kritiker / semiotiker",
+      "works": [
+        "Image–Music–Text"
+      ]
+    },
+    {
+      "id": "aby_warburg",
+      "type": "thinker",
+      "name": "Aby Warburg",
+      "role": "kunsthistoriker",
+      "works": [
+        "The Renewal of Pagan Antiquity"
+      ]
+    },
+    {
+      "id": "wj_t_mitchell",
+      "type": "thinker",
+      "name": "W. J. T. Mitchell",
+      "role": "bilde- og medieteoretiker",
+      "works": [
+        "Iconology",
+        "Picture Theory"
+      ]
+    },
+    {
+      "id": "andrea_fraser",
+      "type": "thinker",
+      "name": "Andrea Fraser",
+      "role": "kunstner / institusjonskritikk",
+      "works": [
+        "Museum Highlights"
+      ]
+    },
+    {
+      "id": "hans_haacke",
+      "type": "thinker",
+      "name": "Hans Haacke",
+      "role": "kunstner / institusjonskritikk",
+      "works": [
+        "Shapolsky et al. Manhattan Real Estate Holdings"
+      ]
+    },
+    {
+      "id": "stuart_hall",
+      "type": "thinker",
+      "name": "Stuart Hall",
+      "role": "kulturteoretiker",
+      "works": [
+        "Representation"
+      ]
+    },
+    {
+      "id": "bell_hooks",
+      "type": "thinker",
+      "name": "bell hooks",
+      "role": "kritiker / kulturteoretiker",
+      "works": [
+        "Art on My Mind"
+      ]
+    },
+    {
+      "id": "judith_butler",
+      "type": "thinker",
+      "name": "Judith Butler",
+      "role": "filosof",
+      "works": [
+        "Gender Trouble"
+      ]
+    },
+    {
+      "id": "jacques_ranciere",
+      "type": "thinker",
+      "name": "Jacques Rancière",
+      "role": "filosof",
+      "works": [
+        "The Emancipated Spectator",
+        "Disagreement"
+      ]
+    },
+    {
+      "id": "claire_bishop",
+      "type": "thinker",
+      "name": "Claire Bishop",
+      "role": "kunsthistoriker / kritiker",
+      "works": [
+        "Artificial Hells"
+      ]
+    },
+    {
+      "id": "grant_kester",
+      "type": "thinker",
+      "name": "Grant Kester",
+      "role": "kunsthistoriker / kritiker",
+      "works": [
+        "Conversation Pieces"
+      ]
+    },
+    {
+      "id": "miwon_kwon",
+      "type": "thinker",
+      "name": "Miwon Kwon",
+      "role": "kunsthistoriker",
+      "works": [
+        "One Place After Another"
+      ]
+    },
+    {
+      "id": "rosalyn_deutsche",
+      "type": "thinker",
+      "name": "Rosalyn Deutsche",
+      "role": "kunsthistoriker / kritiker",
+      "works": [
+        "Evictions"
+      ]
+    },
+    {
+      "id": "henri_lefebvre",
+      "type": "thinker",
+      "name": "Henri Lefebvre",
+      "role": "filosof / romteoretiker",
+      "works": [
+        "The Production of Space"
+      ]
+    },
+    {
+      "id": "umberto_eco",
+      "type": "thinker",
+      "name": "Umberto Eco",
+      "role": "semiotiker",
+      "works": [
+        "The Open Work"
+      ]
+    },
+    {
+      "id": "hal_foster",
+      "type": "thinker",
+      "name": "Hal Foster",
+      "role": "kunsthistoriker / kritiker",
+      "works": [
+        "The Return of the Real",
+        "An Archival Impulse"
+      ]
+    },
+    {
+      "id": "peter_burger",
+      "type": "thinker",
+      "name": "Peter Bürger",
+      "role": "kunst- og litteraturteoretiker",
+      "works": [
+        "Theory of the Avant-Garde"
+      ]
+    },
+    {
+      "id": "jacques_derrida",
+      "type": "thinker",
+      "name": "Jacques Derrida",
+      "role": "filosof",
+      "works": [
+        "Archive Fever"
+      ]
+    },
+    {
+      "id": "carol_duncan",
+      "type": "thinker",
+      "name": "Carol Duncan",
+      "role": "kunsthistoriker",
+      "works": [
+        "Civilizing Rituals"
+      ]
+    },
+    {
+      "id": "lawrence_lessig",
+      "type": "thinker",
+      "name": "Lawrence Lessig",
+      "role": "jurist / kulturteori",
+      "works": [
+        "Remix"
+      ]
+    },
+    {
+      "id": "svetlana_boym",
+      "type": "thinker",
+      "name": "Svetlana Boym",
+      "role": "kulturteoretiker",
+      "works": [
+        "The Future of Nostalgia"
+      ]
+    },
+    {
+      "id": "fredric_jameson",
+      "type": "thinker",
+      "name": "Fredric Jameson",
+      "role": "kulturteoretiker",
+      "works": [
+        "Postmodernism, or, The Cultural Logic of Late Capitalism"
+      ]
+    },
+    {
+      "id": "jean_baudrillard",
+      "type": "thinker",
+      "name": "Jean Baudrillard",
+      "role": "filosof / kulturkritiker",
+      "works": [
+        "Simulacra and Simulation"
+      ]
+    },
+    {
+      "id": "linda_nochlin",
+      "type": "thinker",
+      "name": "Linda Nochlin",
+      "role": "kunsthistoriker",
+      "works": [
+        "Why Have There Been No Great Women Artists?"
+      ]
+    },
+    {
+      "id": "tj_clark",
+      "type": "thinker",
+      "name": "T. J. Clark",
+      "role": "kunsthistoriker",
+      "works": [
+        "The Painting of Modern Life"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "from": "institusjonell_legitimering",
+      "to": "felt_institusjon",
+      "type": "belongs_to"
+    },
+    {
+      "from": "institusjonell_legitimering",
+      "to": "Felt",
+      "type": "activates_dimension",
+      "strength": "primary"
+    },
+    {
+      "from": "institusjonell_legitimering",
+      "to": "Normativ",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "institusjonell_legitimering",
+      "to": "Doxa",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "institusjonell_legitimering",
+      "to": "Sosial",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "institusjonell_legitimering",
+      "to": "brian_odoherty",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Rommet som institusjon: 'white cube' som normmaskin"
+    },
+    {
+      "from": "institusjonell_legitimering",
+      "to": "tony_bennett",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Museet som styring og offentlig pedagogikk"
+    },
+    {
+      "from": "institusjonell_legitimering",
+      "to": "boris_groys",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Utstillingen som makt- og arkivmaskin"
+    },
+    {
+      "from": "kuratorisk_makt",
+      "to": "felt_institusjon",
+      "type": "belongs_to"
+    },
+    {
+      "from": "kuratorisk_makt",
+      "to": "Normativ",
+      "type": "activates_dimension",
+      "strength": "primary"
+    },
+    {
+      "from": "kuratorisk_makt",
+      "to": "Felt",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "kuratorisk_makt",
+      "to": "Doxa",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "kuratorisk_makt",
+      "to": "hans_ulrich_obrist",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Kuratering som metode: utvalg og formidling"
+    },
+    {
+      "from": "kuratorisk_makt",
+      "to": "maria_lind",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Kuratorisk praksis som offentlighet og relasjon"
+    },
+    {
+      "from": "kuratorisk_makt",
+      "to": "boris_groys",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Utstillingen som makt- og arkivregime"
+    },
+    {
+      "from": "finansieringslogikk",
+      "to": "felt_institusjon",
+      "type": "belongs_to"
+    },
+    {
+      "from": "finansieringslogikk",
+      "to": "Felt",
+      "type": "activates_dimension",
+      "strength": "primary"
+    },
+    {
+      "from": "finansieringslogikk",
+      "to": "Sosial",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "finansieringslogikk",
+      "to": "Normativ",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "finansieringslogikk",
+      "to": "pierre_bourdieu",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Kapitalformer og legitimering i kunstfeltet"
+    },
+    {
+      "from": "finansieringslogikk",
+      "to": "sarah_thornton",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Kunstverdenens aktører, markeder og hierarkier"
+    },
+    {
+      "from": "finansieringslogikk",
+      "to": "tony_bennett",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Institusjonell økonomi og offentlig kulturpolitikk"
+    },
+    {
+      "from": "distribusjonsinfrastruktur",
+      "to": "felt_institusjon",
+      "type": "belongs_to"
+    },
+    {
+      "from": "distribusjonsinfrastruktur",
+      "to": "Felt",
+      "type": "activates_dimension",
+      "strength": "primary"
+    },
+    {
+      "from": "distribusjonsinfrastruktur",
+      "to": "Geografisk",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "distribusjonsinfrastruktur",
+      "to": "Materiell",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "distribusjonsinfrastruktur",
+      "to": "walter_benjamin",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Distribusjon/reproduksjon endrer kunstens status"
+    },
+    {
+      "from": "distribusjonsinfrastruktur",
+      "to": "marshall_mcluhan",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Mediet former uttrykk og mottakelse"
+    },
+    {
+      "from": "distribusjonsinfrastruktur",
+      "to": "boris_groys",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Sirkulasjon og arkiv som del av kunstens makt"
+    },
+    {
+      "from": "kunstutdanning_og_rekruttering",
+      "to": "felt_institusjon",
+      "type": "belongs_to"
+    },
+    {
+      "from": "kunstutdanning_og_rekruttering",
+      "to": "Felt",
+      "type": "activates_dimension",
+      "strength": "primary"
+    },
+    {
+      "from": "kunstutdanning_og_rekruttering",
+      "to": "Normativ",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "kunstutdanning_og_rekruttering",
+      "to": "Doxa",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "kunstutdanning_og_rekruttering",
+      "to": "Sosial",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "kunstutdanning_og_rekruttering",
+      "to": "brian_odoherty",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Rommet som institusjon: 'white cube' som normmaskin"
+    },
+    {
+      "from": "kunstutdanning_og_rekruttering",
+      "to": "tony_bennett",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Museet som styring og offentlig pedagogikk"
+    },
+    {
+      "from": "kunstutdanning_og_rekruttering",
+      "to": "boris_groys",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Utstillingen som makt- og arkivmaskin"
+    },
+    {
+      "from": "offentlig_vs_privat_kunststruktur",
+      "to": "felt_institusjon",
+      "type": "belongs_to"
+    },
+    {
+      "from": "offentlig_vs_privat_kunststruktur",
+      "to": "Felt",
+      "type": "activates_dimension",
+      "strength": "primary"
+    },
+    {
+      "from": "offentlig_vs_privat_kunststruktur",
+      "to": "Sosial",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "offentlig_vs_privat_kunststruktur",
+      "to": "Normativ",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "offentlig_vs_privat_kunststruktur",
+      "to": "brian_odoherty",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Rommet som institusjon: 'white cube' som normmaskin"
+    },
+    {
+      "from": "offentlig_vs_privat_kunststruktur",
+      "to": "tony_bennett",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Museet som styring og offentlig pedagogikk"
+    },
+    {
+      "from": "offentlig_vs_privat_kunststruktur",
+      "to": "boris_groys",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Utstillingen som makt- og arkivmaskin"
+    },
+    {
+      "from": "plattformisering_og_digitale_institusjoner",
+      "to": "felt_institusjon",
+      "type": "belongs_to"
+    },
+    {
+      "from": "plattformisering_og_digitale_institusjoner",
+      "to": "Felt",
+      "type": "activates_dimension",
+      "strength": "primary"
+    },
+    {
+      "from": "plattformisering_og_digitale_institusjoner",
+      "to": "Materiell",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "plattformisering_og_digitale_institusjoner",
+      "to": "Sosial",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "plattformisering_og_digitale_institusjoner",
+      "to": "Doxa",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "plattformisering_og_digitale_institusjoner",
+      "to": "hito_steyerl",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Digitale bilder, sirkulasjon og makt"
+    },
+    {
+      "from": "plattformisering_og_digitale_institusjoner",
+      "to": "lev_manovich",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Digital estetikk og grensesnitt"
+    },
+    {
+      "from": "plattformisering_og_digitale_institusjoner",
+      "to": "nick_srnicek",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Plattformlogikk og institusjonelle konsekvenser"
+    },
+    {
+      "from": "regional_vs_sentralisert_kunstfelt",
+      "to": "felt_institusjon",
+      "type": "belongs_to"
+    },
+    {
+      "from": "regional_vs_sentralisert_kunstfelt",
+      "to": "Geografisk",
+      "type": "activates_dimension",
+      "strength": "primary"
+    },
+    {
+      "from": "regional_vs_sentralisert_kunstfelt",
+      "to": "Felt",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "regional_vs_sentralisert_kunstfelt",
+      "to": "Sosial",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "regional_vs_sentralisert_kunstfelt",
+      "to": "brian_odoherty",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Rommet som institusjon: 'white cube' som normmaskin"
+    },
+    {
+      "from": "regional_vs_sentralisert_kunstfelt",
+      "to": "tony_bennett",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Museet som styring og offentlig pedagogikk"
+    },
+    {
+      "from": "regional_vs_sentralisert_kunstfelt",
+      "to": "boris_groys",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Utstillingen som makt- og arkivmaskin"
+    },
+    {
+      "from": "nettverk_og_portvoktere",
+      "to": "felt_institusjon",
+      "type": "belongs_to"
+    },
+    {
+      "from": "nettverk_og_portvoktere",
+      "to": "Sosial",
+      "type": "activates_dimension",
+      "strength": "primary"
+    },
+    {
+      "from": "nettverk_og_portvoktere",
+      "to": "Felt",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "nettverk_og_portvoktere",
+      "to": "Normativ",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "nettverk_og_portvoktere",
+      "to": "brian_odoherty",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Rommet som institusjon: 'white cube' som normmaskin"
+    },
+    {
+      "from": "nettverk_og_portvoktere",
+      "to": "tony_bennett",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Museet som styring og offentlig pedagogikk"
+    },
+    {
+      "from": "nettverk_og_portvoktere",
+      "to": "boris_groys",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Utstillingen som makt- og arkivmaskin"
+    },
+    {
+      "from": "autonomi_vs_avhengighet",
+      "to": "felt_institusjon",
+      "type": "belongs_to"
+    },
+    {
+      "from": "autonomi_vs_avhengighet",
+      "to": "Normativ",
+      "type": "activates_dimension",
+      "strength": "primary"
+    },
+    {
+      "from": "autonomi_vs_avhengighet",
+      "to": "Felt",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "autonomi_vs_avhengighet",
+      "to": "Sosial",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "autonomi_vs_avhengighet",
+      "to": "brian_odoherty",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Rommet som institusjon: 'white cube' som normmaskin"
+    },
+    {
+      "from": "autonomi_vs_avhengighet",
+      "to": "tony_bennett",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Museet som styring og offentlig pedagogikk"
+    },
+    {
+      "from": "autonomi_vs_avhengighet",
+      "to": "boris_groys",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Utstillingen som makt- og arkivmaskin"
+    },
+    {
+      "from": "atelierlogikk_og_arbeidsformer",
+      "to": "produksjon_praksis",
+      "type": "belongs_to"
+    },
+    {
+      "from": "atelierlogikk_og_arbeidsformer",
+      "to": "Metodisk",
+      "type": "activates_dimension",
+      "strength": "primary"
+    },
+    {
+      "from": "atelierlogikk_og_arbeidsformer",
+      "to": "Materiell",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "atelierlogikk_og_arbeidsformer",
+      "to": "Sosial",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "atelierlogikk_og_arbeidsformer",
+      "to": "john_dewey",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Kunst som erfaring og praksis, ikke bare objekt"
+    },
+    {
+      "from": "atelierlogikk_og_arbeidsformer",
+      "to": "richard_sennett",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Håndverk, ferdighet og arbeidets etikk"
+    },
+    {
+      "from": "atelierlogikk_og_arbeidsformer",
+      "to": "tim_ingold",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Materialer og making som tenkning"
+    },
+    {
+      "from": "kollektiv_vs_individuell_praksis",
+      "to": "produksjon_praksis",
+      "type": "belongs_to"
+    },
+    {
+      "from": "kollektiv_vs_individuell_praksis",
+      "to": "Sosial",
+      "type": "activates_dimension",
+      "strength": "primary"
+    },
+    {
+      "from": "kollektiv_vs_individuell_praksis",
+      "to": "Metodisk",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "kollektiv_vs_individuell_praksis",
+      "to": "Normativ",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "kollektiv_vs_individuell_praksis",
+      "to": "john_dewey",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Kunst som erfaring og praksis, ikke bare objekt"
+    },
+    {
+      "from": "kollektiv_vs_individuell_praksis",
+      "to": "richard_sennett",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Håndverk, ferdighet og arbeidets etikk"
+    },
+    {
+      "from": "kollektiv_vs_individuell_praksis",
+      "to": "tim_ingold",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Materialer og making som tenkning"
+    },
+    {
+      "from": "diy_og_selvorganisering",
+      "to": "produksjon_praksis",
+      "type": "belongs_to"
+    },
+    {
+      "from": "diy_og_selvorganisering",
+      "to": "Sosial",
+      "type": "activates_dimension",
+      "strength": "primary"
+    },
+    {
+      "from": "diy_og_selvorganisering",
+      "to": "Felt",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "diy_og_selvorganisering",
+      "to": "Normativ",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "diy_og_selvorganisering",
+      "to": "dick_hebdige",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Subkulturens stil og motstand"
+    },
+    {
+      "from": "diy_og_selvorganisering",
+      "to": "sarah_thornton",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Subkulturell kapital og scenehierarkier"
+    },
+    {
+      "from": "diy_og_selvorganisering",
+      "to": "howard_s_becker",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Hvordan kunstverdener bygges nedenfra"
+    },
+    {
+      "from": "teknologisk_produksjon",
+      "to": "produksjon_praksis",
+      "type": "belongs_to"
+    },
+    {
+      "from": "teknologisk_produksjon",
+      "to": "Materiell",
+      "type": "activates_dimension",
+      "strength": "primary"
+    },
+    {
+      "from": "teknologisk_produksjon",
+      "to": "Metodisk",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "teknologisk_produksjon",
+      "to": "Temporal",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "teknologisk_produksjon",
+      "to": "marshall_mcluhan",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Teknologi/medium som formende betingelse"
+    },
+    {
+      "from": "teknologisk_produksjon",
+      "to": "lev_manovich",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Digital produksjonslogikk og database-estetikk"
+    },
+    {
+      "from": "teknologisk_produksjon",
+      "to": "donna_haraway",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Teknologi, kropp og hybriditet"
+    },
+    {
+      "from": "tverrfaglighet_og_hybridformer",
+      "to": "produksjon_praksis",
+      "type": "belongs_to"
+    },
+    {
+      "from": "tverrfaglighet_og_hybridformer",
+      "to": "Metodisk",
+      "type": "activates_dimension",
+      "strength": "primary"
+    },
+    {
+      "from": "tverrfaglighet_og_hybridformer",
+      "to": "Materiell",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "tverrfaglighet_og_hybridformer",
+      "to": "Doxa",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "tverrfaglighet_og_hybridformer",
+      "to": "john_dewey",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Kunst som erfaring og praksis, ikke bare objekt"
+    },
+    {
+      "from": "tverrfaglighet_og_hybridformer",
+      "to": "richard_sennett",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Håndverk, ferdighet og arbeidets etikk"
+    },
+    {
+      "from": "tverrfaglighet_og_hybridformer",
+      "to": "tim_ingold",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Materialer og making som tenkning"
+    },
+    {
+      "from": "kunstnerisk_risiko",
+      "to": "produksjon_praksis",
+      "type": "belongs_to"
+    },
+    {
+      "from": "kunstnerisk_risiko",
+      "to": "Normativ",
+      "type": "activates_dimension",
+      "strength": "primary"
+    },
+    {
+      "from": "kunstnerisk_risiko",
+      "to": "Sosial",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "kunstnerisk_risiko",
+      "to": "Doxa",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "kunstnerisk_risiko",
+      "to": "john_dewey",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Kunst som erfaring og praksis, ikke bare objekt"
+    },
+    {
+      "from": "kunstnerisk_risiko",
+      "to": "richard_sennett",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Håndverk, ferdighet og arbeidets etikk"
+    },
+    {
+      "from": "kunstnerisk_risiko",
+      "to": "tim_ingold",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Materialer og making som tenkning"
+    },
+    {
+      "from": "arbeidsvilkar_og_prekaritet",
+      "to": "produksjon_praksis",
+      "type": "belongs_to"
+    },
+    {
+      "from": "arbeidsvilkar_og_prekaritet",
+      "to": "Sosial",
+      "type": "activates_dimension",
+      "strength": "primary"
+    },
+    {
+      "from": "arbeidsvilkar_og_prekaritet",
+      "to": "Felt",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "arbeidsvilkar_og_prekaritet",
+      "to": "Normativ",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "arbeidsvilkar_og_prekaritet",
+      "to": "john_dewey",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Kunst som erfaring og praksis, ikke bare objekt"
+    },
+    {
+      "from": "arbeidsvilkar_og_prekaritet",
+      "to": "richard_sennett",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Håndverk, ferdighet og arbeidets etikk"
+    },
+    {
+      "from": "arbeidsvilkar_og_prekaritet",
+      "to": "tim_ingold",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Materialer og making som tenkning"
+    },
+    {
+      "from": "produksjonstempo_og_prosjektlogikk",
+      "to": "produksjon_praksis",
+      "type": "belongs_to"
+    },
+    {
+      "from": "produksjonstempo_og_prosjektlogikk",
+      "to": "Temporal",
+      "type": "activates_dimension",
+      "strength": "primary"
+    },
+    {
+      "from": "produksjonstempo_og_prosjektlogikk",
+      "to": "Felt",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "produksjonstempo_og_prosjektlogikk",
+      "to": "Metodisk",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "produksjonstempo_og_prosjektlogikk",
+      "to": "john_dewey",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Kunst som erfaring og praksis, ikke bare objekt"
+    },
+    {
+      "from": "produksjonstempo_og_prosjektlogikk",
+      "to": "richard_sennett",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Håndverk, ferdighet og arbeidets etikk"
+    },
+    {
+      "from": "produksjonstempo_og_prosjektlogikk",
+      "to": "tim_ingold",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Materialer og making som tenkning"
+    },
+    {
+      "from": "dokumentasjon_og_prosess",
+      "to": "produksjon_praksis",
+      "type": "belongs_to"
+    },
+    {
+      "from": "dokumentasjon_og_prosess",
+      "to": "Temporal",
+      "type": "activates_dimension",
+      "strength": "primary"
+    },
+    {
+      "from": "dokumentasjon_og_prosess",
+      "to": "Metodisk",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "dokumentasjon_og_prosess",
+      "to": "Materiell",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "dokumentasjon_og_prosess",
+      "to": "john_dewey",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Kunst som erfaring og praksis, ikke bare objekt"
+    },
+    {
+      "from": "dokumentasjon_og_prosess",
+      "to": "richard_sennett",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Håndverk, ferdighet og arbeidets etikk"
+    },
+    {
+      "from": "dokumentasjon_og_prosess",
+      "to": "tim_ingold",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Materialer og making som tenkning"
+    },
+    {
+      "from": "materialvalg_som_metode",
+      "to": "produksjon_praksis",
+      "type": "belongs_to"
+    },
+    {
+      "from": "materialvalg_som_metode",
+      "to": "Materiell",
+      "type": "activates_dimension",
+      "strength": "primary"
+    },
+    {
+      "from": "materialvalg_som_metode",
+      "to": "Metodisk",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "materialvalg_som_metode",
+      "to": "Normativ",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "materialvalg_som_metode",
+      "to": "john_dewey",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Kunst som erfaring og praksis, ikke bare objekt"
+    },
+    {
+      "from": "materialvalg_som_metode",
+      "to": "richard_sennett",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Håndverk, ferdighet og arbeidets etikk"
+    },
+    {
+      "from": "materialvalg_som_metode",
+      "to": "tim_ingold",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Materialer og making som tenkning"
+    },
+    {
+      "from": "mediumspesifisitet",
+      "to": "estetisk_sprak_form",
+      "type": "belongs_to"
+    },
+    {
+      "from": "mediumspesifisitet",
+      "to": "Materiell",
+      "type": "activates_dimension",
+      "strength": "primary"
+    },
+    {
+      "from": "mediumspesifisitet",
+      "to": "Metodisk",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "mediumspesifisitet",
+      "to": "Normativ",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "mediumspesifisitet",
+      "to": "clement_greenberg",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Mediumets egenlogikk"
+    },
+    {
+      "from": "mediumspesifisitet",
+      "to": "rosalind_krauss",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Utvidet felt: medium glir og omdefineres"
+    },
+    {
+      "from": "mediumspesifisitet",
+      "to": "marshall_mcluhan",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Mediet som budskap"
+    },
+    {
+      "from": "sjangerkoder",
+      "to": "estetisk_sprak_form",
+      "type": "belongs_to"
+    },
+    {
+      "from": "sjangerkoder",
+      "to": "Doxa",
+      "type": "activates_dimension",
+      "strength": "primary"
+    },
+    {
+      "from": "sjangerkoder",
+      "to": "Normativ",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "sjangerkoder",
+      "to": "Temporal",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "sjangerkoder",
+      "to": "rosalind_krauss",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Form, modernisme og det 'utvidede feltet'"
+    },
+    {
+      "from": "sjangerkoder",
+      "to": "erwin_panofsky",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Ikonologi: symboler, motiver, lag"
+    },
+    {
+      "from": "sjangerkoder",
+      "to": "nelson_goodman",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Symbolsystemer: hvordan kunst betyr"
+    },
+    {
+      "from": "formalisme_vs_kontekstualisme",
+      "to": "estetisk_sprak_form",
+      "type": "belongs_to"
+    },
+    {
+      "from": "formalisme_vs_kontekstualisme",
+      "to": "Metodisk",
+      "type": "activates_dimension",
+      "strength": "primary"
+    },
+    {
+      "from": "formalisme_vs_kontekstualisme",
+      "to": "Normativ",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "formalisme_vs_kontekstualisme",
+      "to": "Doxa",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "formalisme_vs_kontekstualisme",
+      "to": "rosalind_krauss",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Form, modernisme og det 'utvidede feltet'"
+    },
+    {
+      "from": "formalisme_vs_kontekstualisme",
+      "to": "erwin_panofsky",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Ikonologi: symboler, motiver, lag"
+    },
+    {
+      "from": "formalisme_vs_kontekstualisme",
+      "to": "nelson_goodman",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Symbolsystemer: hvordan kunst betyr"
+    },
+    {
+      "from": "konseptualitet",
+      "to": "estetisk_sprak_form",
+      "type": "belongs_to"
+    },
+    {
+      "from": "konseptualitet",
+      "to": "Metodisk",
+      "type": "activates_dimension",
+      "strength": "primary"
+    },
+    {
+      "from": "konseptualitet",
+      "to": "Normativ",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "konseptualitet",
+      "to": "Doxa",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "konseptualitet",
+      "to": "arthur_danto",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Idé og kontekst gjør objektet til kunst"
+    },
+    {
+      "from": "konseptualitet",
+      "to": "george_dickie",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Institusjonell ramme for kunststatus"
+    },
+    {
+      "from": "konseptualitet",
+      "to": "roland_barthes",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Mening, lesning og tegnsystemer"
+    },
+    {
+      "from": "representasjon_vs_abstraksjon",
+      "to": "estetisk_sprak_form",
+      "type": "belongs_to"
+    },
+    {
+      "from": "representasjon_vs_abstraksjon",
+      "to": "Materiell",
+      "type": "activates_dimension",
+      "strength": "primary"
+    },
+    {
+      "from": "representasjon_vs_abstraksjon",
+      "to": "Doxa",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "representasjon_vs_abstraksjon",
+      "to": "Temporal",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "representasjon_vs_abstraksjon",
+      "to": "rosalind_krauss",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Form, modernisme og det 'utvidede feltet'"
+    },
+    {
+      "from": "representasjon_vs_abstraksjon",
+      "to": "erwin_panofsky",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Ikonologi: symboler, motiver, lag"
+    },
+    {
+      "from": "representasjon_vs_abstraksjon",
+      "to": "nelson_goodman",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Symbolsystemer: hvordan kunst betyr"
+    },
+    {
+      "from": "estetisk_minimalisme",
+      "to": "estetisk_sprak_form",
+      "type": "belongs_to"
+    },
+    {
+      "from": "estetisk_minimalisme",
+      "to": "Normativ",
+      "type": "activates_dimension",
+      "strength": "primary"
+    },
+    {
+      "from": "estetisk_minimalisme",
+      "to": "Materiell",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "estetisk_minimalisme",
+      "to": "Doxa",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "estetisk_minimalisme",
+      "to": "rosalind_krauss",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Form, modernisme og det 'utvidede feltet'"
+    },
+    {
+      "from": "estetisk_minimalisme",
+      "to": "erwin_panofsky",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Ikonologi: symboler, motiver, lag"
+    },
+    {
+      "from": "estetisk_minimalisme",
+      "to": "nelson_goodman",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Symbolsystemer: hvordan kunst betyr"
+    },
+    {
+      "from": "estetisk_overflod",
+      "to": "estetisk_sprak_form",
+      "type": "belongs_to"
+    },
+    {
+      "from": "estetisk_overflod",
+      "to": "Normativ",
+      "type": "activates_dimension",
+      "strength": "primary"
+    },
+    {
+      "from": "estetisk_overflod",
+      "to": "Materiell",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "estetisk_overflod",
+      "to": "Doxa",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "estetisk_overflod",
+      "to": "rosalind_krauss",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Form, modernisme og det 'utvidede feltet'"
+    },
+    {
+      "from": "estetisk_overflod",
+      "to": "erwin_panofsky",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Ikonologi: symboler, motiver, lag"
+    },
+    {
+      "from": "estetisk_overflod",
+      "to": "nelson_goodman",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Symbolsystemer: hvordan kunst betyr"
+    },
+    {
+      "from": "symbolbruk_og_ikonografi",
+      "to": "estetisk_sprak_form",
+      "type": "belongs_to"
+    },
+    {
+      "from": "symbolbruk_og_ikonografi",
+      "to": "Doxa",
+      "type": "activates_dimension",
+      "strength": "primary"
+    },
+    {
+      "from": "symbolbruk_og_ikonografi",
+      "to": "Temporal",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "symbolbruk_og_ikonografi",
+      "to": "Normativ",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "symbolbruk_og_ikonografi",
+      "to": "erwin_panofsky",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Ikonologi og symboltolkning"
+    },
+    {
+      "from": "symbolbruk_og_ikonografi",
+      "to": "aby_warburg",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Motiver som historisk hukommelse"
+    },
+    {
+      "from": "symbolbruk_og_ikonografi",
+      "to": "wj_t_mitchell",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Bilder som teoriobjekter og makt"
+    },
+    {
+      "from": "stil_som_posisjonering",
+      "to": "estetisk_sprak_form",
+      "type": "belongs_to"
+    },
+    {
+      "from": "stil_som_posisjonering",
+      "to": "Doxa",
+      "type": "activates_dimension",
+      "strength": "primary"
+    },
+    {
+      "from": "stil_som_posisjonering",
+      "to": "Felt",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "stil_som_posisjonering",
+      "to": "Normativ",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "stil_som_posisjonering",
+      "to": "rosalind_krauss",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Form, modernisme og det 'utvidede feltet'"
+    },
+    {
+      "from": "stil_som_posisjonering",
+      "to": "erwin_panofsky",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Ikonologi: symboler, motiver, lag"
+    },
+    {
+      "from": "stil_som_posisjonering",
+      "to": "nelson_goodman",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Symbolsystemer: hvordan kunst betyr"
+    },
+    {
+      "from": "originalitet_vs_referanse",
+      "to": "estetisk_sprak_form",
+      "type": "belongs_to"
+    },
+    {
+      "from": "originalitet_vs_referanse",
+      "to": "Temporal",
+      "type": "activates_dimension",
+      "strength": "primary"
+    },
+    {
+      "from": "originalitet_vs_referanse",
+      "to": "Normativ",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "originalitet_vs_referanse",
+      "to": "Doxa",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "originalitet_vs_referanse",
+      "to": "rosalind_krauss",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Form, modernisme og det 'utvidede feltet'"
+    },
+    {
+      "from": "originalitet_vs_referanse",
+      "to": "erwin_panofsky",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Ikonologi: symboler, motiver, lag"
+    },
+    {
+      "from": "originalitet_vs_referanse",
+      "to": "nelson_goodman",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Symbolsystemer: hvordan kunst betyr"
+    },
+    {
+      "from": "kanonisering",
+      "to": "makt_legitimitet",
+      "type": "belongs_to"
+    },
+    {
+      "from": "kanonisering",
+      "to": "Temporal",
+      "type": "activates_dimension",
+      "strength": "primary"
+    },
+    {
+      "from": "kanonisering",
+      "to": "Normativ",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "kanonisering",
+      "to": "Doxa",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "kanonisering",
+      "to": "Felt",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "kanonisering",
+      "to": "arthur_danto",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Definisjonen av kunst (institusjon og kontekst)"
+    },
+    {
+      "from": "kanonisering",
+      "to": "george_dickie",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Kunstverdenens institusjonelle teori"
+    },
+    {
+      "from": "kanonisering",
+      "to": "andrea_fraser",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Institusjonskritikk som praksis"
+    },
+    {
+      "from": "kvalitetsregimer",
+      "to": "makt_legitimitet",
+      "type": "belongs_to"
+    },
+    {
+      "from": "kvalitetsregimer",
+      "to": "Normativ",
+      "type": "activates_dimension",
+      "strength": "primary"
+    },
+    {
+      "from": "kvalitetsregimer",
+      "to": "Doxa",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "kvalitetsregimer",
+      "to": "Felt",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "kvalitetsregimer",
+      "to": "arthur_danto",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Definisjonen av kunst (institusjon og kontekst)"
+    },
+    {
+      "from": "kvalitetsregimer",
+      "to": "george_dickie",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Kunstverdenens institusjonelle teori"
+    },
+    {
+      "from": "kvalitetsregimer",
+      "to": "andrea_fraser",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Institusjonskritikk som praksis"
+    },
+    {
+      "from": "kritikkens_rolle",
+      "to": "makt_legitimitet",
+      "type": "belongs_to"
+    },
+    {
+      "from": "kritikkens_rolle",
+      "to": "Felt",
+      "type": "activates_dimension",
+      "strength": "primary"
+    },
+    {
+      "from": "kritikkens_rolle",
+      "to": "Normativ",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "kritikkens_rolle",
+      "to": "Doxa",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "kritikkens_rolle",
+      "to": "roland_barthes",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Kritikk som lesning og tegnarbeid"
+    },
+    {
+      "from": "kritikkens_rolle",
+      "to": "clement_greenberg",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Kritikk som form- og kvalitetsregime"
+    },
+    {
+      "from": "kritikkens_rolle",
+      "to": "arthur_danto",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Kritikk og filosofi i kunstverdenen"
+    },
+    {
+      "from": "symbolsk_kapital",
+      "to": "makt_legitimitet",
+      "type": "belongs_to"
+    },
+    {
+      "from": "symbolsk_kapital",
+      "to": "Sosial",
+      "type": "activates_dimension",
+      "strength": "primary"
+    },
+    {
+      "from": "symbolsk_kapital",
+      "to": "Felt",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "symbolsk_kapital",
+      "to": "Normativ",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "symbolsk_kapital",
+      "to": "arthur_danto",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Definisjonen av kunst (institusjon og kontekst)"
+    },
+    {
+      "from": "symbolsk_kapital",
+      "to": "george_dickie",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Kunstverdenens institusjonelle teori"
+    },
+    {
+      "from": "symbolsk_kapital",
+      "to": "andrea_fraser",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Institusjonskritikk som praksis"
+    },
+    {
+      "from": "markedets_estetiske_pavirkningskraft",
+      "to": "makt_legitimitet",
+      "type": "belongs_to"
+    },
+    {
+      "from": "markedets_estetiske_pavirkningskraft",
+      "to": "Felt",
+      "type": "activates_dimension",
+      "strength": "primary"
+    },
+    {
+      "from": "markedets_estetiske_pavirkningskraft",
+      "to": "Normativ",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "markedets_estetiske_pavirkningskraft",
+      "to": "Materiell",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "markedets_estetiske_pavirkningskraft",
+      "to": "arthur_danto",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Definisjonen av kunst (institusjon og kontekst)"
+    },
+    {
+      "from": "markedets_estetiske_pavirkningskraft",
+      "to": "george_dickie",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Kunstverdenens institusjonelle teori"
+    },
+    {
+      "from": "markedets_estetiske_pavirkningskraft",
+      "to": "andrea_fraser",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Institusjonskritikk som praksis"
+    },
+    {
+      "from": "institusjonskritikk",
+      "to": "makt_legitimitet",
+      "type": "belongs_to"
+    },
+    {
+      "from": "institusjonskritikk",
+      "to": "Metodisk",
+      "type": "activates_dimension",
+      "strength": "primary"
+    },
+    {
+      "from": "institusjonskritikk",
+      "to": "Normativ",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "institusjonskritikk",
+      "to": "Felt",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "institusjonskritikk",
+      "to": "andrea_fraser",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Institusjonskritikk som posisjon og metode"
+    },
+    {
+      "from": "institusjonskritikk",
+      "to": "hans_haacke",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Makt/finans synliggjort gjennom kunst"
+    },
+    {
+      "from": "institusjonskritikk",
+      "to": "tony_bennett",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Institusjonen som styring og normproduksjon"
+    },
+    {
+      "from": "inkludering_og_ekskludering",
+      "to": "makt_legitimitet",
+      "type": "belongs_to"
+    },
+    {
+      "from": "inkludering_og_ekskludering",
+      "to": "Sosial",
+      "type": "activates_dimension",
+      "strength": "primary"
+    },
+    {
+      "from": "inkludering_og_ekskludering",
+      "to": "Normativ",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "inkludering_og_ekskludering",
+      "to": "Doxa",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "inkludering_og_ekskludering",
+      "to": "arthur_danto",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Definisjonen av kunst (institusjon og kontekst)"
+    },
+    {
+      "from": "inkludering_og_ekskludering",
+      "to": "george_dickie",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Kunstverdenens institusjonelle teori"
+    },
+    {
+      "from": "inkludering_og_ekskludering",
+      "to": "andrea_fraser",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Institusjonskritikk som praksis"
+    },
+    {
+      "from": "kunst_og_politikk",
+      "to": "makt_legitimitet",
+      "type": "belongs_to"
+    },
+    {
+      "from": "kunst_og_politikk",
+      "to": "Normativ",
+      "type": "activates_dimension",
+      "strength": "primary"
+    },
+    {
+      "from": "kunst_og_politikk",
+      "to": "Sosial",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "kunst_og_politikk",
+      "to": "Felt",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "kunst_og_politikk",
+      "to": "arthur_danto",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Definisjonen av kunst (institusjon og kontekst)"
+    },
+    {
+      "from": "kunst_og_politikk",
+      "to": "george_dickie",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Kunstverdenens institusjonelle teori"
+    },
+    {
+      "from": "kunst_og_politikk",
+      "to": "andrea_fraser",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Institusjonskritikk som praksis"
+    },
+    {
+      "from": "identitet_og_representasjon",
+      "to": "makt_legitimitet",
+      "type": "belongs_to"
+    },
+    {
+      "from": "identitet_og_representasjon",
+      "to": "Sosial",
+      "type": "activates_dimension",
+      "strength": "primary"
+    },
+    {
+      "from": "identitet_og_representasjon",
+      "to": "Normativ",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "identitet_og_representasjon",
+      "to": "Doxa",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "identitet_og_representasjon",
+      "to": "stuart_hall",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Representasjon og kulturkamp"
+    },
+    {
+      "from": "identitet_og_representasjon",
+      "to": "bell_hooks",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Blikk, rase og kulturkritikk i kunst"
+    },
+    {
+      "from": "identitet_og_representasjon",
+      "to": "judith_butler",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Identitet, performativitet og normer"
+    },
+    {
+      "from": "estetisk_hegemoni",
+      "to": "makt_legitimitet",
+      "type": "belongs_to"
+    },
+    {
+      "from": "estetisk_hegemoni",
+      "to": "Doxa",
+      "type": "activates_dimension",
+      "strength": "primary"
+    },
+    {
+      "from": "estetisk_hegemoni",
+      "to": "Normativ",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "estetisk_hegemoni",
+      "to": "Felt",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "estetisk_hegemoni",
+      "to": "arthur_danto",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Definisjonen av kunst (institusjon og kontekst)"
+    },
+    {
+      "from": "estetisk_hegemoni",
+      "to": "george_dickie",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Kunstverdenens institusjonelle teori"
+    },
+    {
+      "from": "estetisk_hegemoni",
+      "to": "andrea_fraser",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Institusjonskritikk som praksis"
+    },
+    {
+      "from": "publikumssegmentering",
+      "to": "publikum_offentlighet",
+      "type": "belongs_to"
+    },
+    {
+      "from": "publikumssegmentering",
+      "to": "Sosial",
+      "type": "activates_dimension",
+      "strength": "primary"
+    },
+    {
+      "from": "publikumssegmentering",
+      "to": "Felt",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "publikumssegmentering",
+      "to": "Normativ",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "publikumssegmentering",
+      "to": "jacques_ranciere",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Publikum som aktør (emansipert tilskuer)"
+    },
+    {
+      "from": "publikumssegmentering",
+      "to": "claire_bishop",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Deltakelse, estetikk og konflikt"
+    },
+    {
+      "from": "publikumssegmentering",
+      "to": "grant_kester",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Dialogiske praksiser og sosial estetikk"
+    },
+    {
+      "from": "klasse_og_kulturell_kapital",
+      "to": "publikum_offentlighet",
+      "type": "belongs_to"
+    },
+    {
+      "from": "klasse_og_kulturell_kapital",
+      "to": "Sosial",
+      "type": "activates_dimension",
+      "strength": "primary"
+    },
+    {
+      "from": "klasse_og_kulturell_kapital",
+      "to": "Doxa",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "klasse_og_kulturell_kapital",
+      "to": "Normativ",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "klasse_og_kulturell_kapital",
+      "to": "jacques_ranciere",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Publikum som aktør (emansipert tilskuer)"
+    },
+    {
+      "from": "klasse_og_kulturell_kapital",
+      "to": "claire_bishop",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Deltakelse, estetikk og konflikt"
+    },
+    {
+      "from": "klasse_og_kulturell_kapital",
+      "to": "grant_kester",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Dialogiske praksiser og sosial estetikk"
+    },
+    {
+      "from": "tilgjengelighet_og_terskler",
+      "to": "publikum_offentlighet",
+      "type": "belongs_to"
+    },
+    {
+      "from": "tilgjengelighet_og_terskler",
+      "to": "Normativ",
+      "type": "activates_dimension",
+      "strength": "primary"
+    },
+    {
+      "from": "tilgjengelighet_og_terskler",
+      "to": "Sosial",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "tilgjengelighet_og_terskler",
+      "to": "Geografisk",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "tilgjengelighet_og_terskler",
+      "to": "jacques_ranciere",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Publikum som aktør (emansipert tilskuer)"
+    },
+    {
+      "from": "tilgjengelighet_og_terskler",
+      "to": "claire_bishop",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Deltakelse, estetikk og konflikt"
+    },
+    {
+      "from": "tilgjengelighet_og_terskler",
+      "to": "grant_kester",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Dialogiske praksiser og sosial estetikk"
+    },
+    {
+      "from": "mot_offentligheter",
+      "to": "publikum_offentlighet",
+      "type": "belongs_to"
+    },
+    {
+      "from": "mot_offentligheter",
+      "to": "Sosial",
+      "type": "activates_dimension",
+      "strength": "primary"
+    },
+    {
+      "from": "mot_offentligheter",
+      "to": "Felt",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "mot_offentligheter",
+      "to": "Geografisk",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "mot_offentligheter",
+      "to": "jacques_ranciere",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Publikum som aktør (emansipert tilskuer)"
+    },
+    {
+      "from": "mot_offentligheter",
+      "to": "claire_bishop",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Deltakelse, estetikk og konflikt"
+    },
+    {
+      "from": "mot_offentligheter",
+      "to": "grant_kester",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Dialogiske praksiser og sosial estetikk"
+    },
+    {
+      "from": "subkulturell_legitimitet",
+      "to": "publikum_offentlighet",
+      "type": "belongs_to"
+    },
+    {
+      "from": "subkulturell_legitimitet",
+      "to": "Doxa",
+      "type": "activates_dimension",
+      "strength": "primary"
+    },
+    {
+      "from": "subkulturell_legitimitet",
+      "to": "Sosial",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "subkulturell_legitimitet",
+      "to": "Felt",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "subkulturell_legitimitet",
+      "to": "jacques_ranciere",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Publikum som aktør (emansipert tilskuer)"
+    },
+    {
+      "from": "subkulturell_legitimitet",
+      "to": "claire_bishop",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Deltakelse, estetikk og konflikt"
+    },
+    {
+      "from": "subkulturell_legitimitet",
+      "to": "grant_kester",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Dialogiske praksiser og sosial estetikk"
+    },
+    {
+      "from": "offentlig_kunst_og_byrom",
+      "to": "publikum_offentlighet",
+      "type": "belongs_to"
+    },
+    {
+      "from": "offentlig_kunst_og_byrom",
+      "to": "Geografisk",
+      "type": "activates_dimension",
+      "strength": "primary"
+    },
+    {
+      "from": "offentlig_kunst_og_byrom",
+      "to": "Sosial",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "offentlig_kunst_og_byrom",
+      "to": "Normativ",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "offentlig_kunst_og_byrom",
+      "to": "miwon_kwon",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Stedsspesifikk kunst og institusjonelle betingelser"
+    },
+    {
+      "from": "offentlig_kunst_og_byrom",
+      "to": "rosalyn_deutsche",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Offentlig rom, konflikt og eksklusjon"
+    },
+    {
+      "from": "offentlig_kunst_og_byrom",
+      "to": "henri_lefebvre",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Romproduksjon og retten til byen"
+    },
+    {
+      "from": "deltakende_praksiser",
+      "to": "publikum_offentlighet",
+      "type": "belongs_to"
+    },
+    {
+      "from": "deltakende_praksiser",
+      "to": "Metodisk",
+      "type": "activates_dimension",
+      "strength": "primary"
+    },
+    {
+      "from": "deltakende_praksiser",
+      "to": "Sosial",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "deltakende_praksiser",
+      "to": "Normativ",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "deltakende_praksiser",
+      "to": "claire_bishop",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Deltakelse og estetikkens konflikter"
+    },
+    {
+      "from": "deltakende_praksiser",
+      "to": "grant_kester",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Dialog, prosess og sosialt engasjement"
+    },
+    {
+      "from": "deltakende_praksiser",
+      "to": "jacques_ranciere",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Estetikk og politikk i publikumserfaring"
+    },
+    {
+      "from": "digital_offentlighet",
+      "to": "publikum_offentlighet",
+      "type": "belongs_to"
+    },
+    {
+      "from": "digital_offentlighet",
+      "to": "Geografisk",
+      "type": "activates_dimension",
+      "strength": "primary"
+    },
+    {
+      "from": "digital_offentlighet",
+      "to": "Sosial",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "digital_offentlighet",
+      "to": "Materiell",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "digital_offentlighet",
+      "to": "jacques_ranciere",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Publikum som aktør (emansipert tilskuer)"
+    },
+    {
+      "from": "digital_offentlighet",
+      "to": "claire_bishop",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Deltakelse, estetikk og konflikt"
+    },
+    {
+      "from": "digital_offentlighet",
+      "to": "grant_kester",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Dialogiske praksiser og sosial estetikk"
+    },
+    {
+      "from": "resepsjon_og_fortolkning",
+      "to": "publikum_offentlighet",
+      "type": "belongs_to"
+    },
+    {
+      "from": "resepsjon_og_fortolkning",
+      "to": "Doxa",
+      "type": "activates_dimension",
+      "strength": "primary"
+    },
+    {
+      "from": "resepsjon_og_fortolkning",
+      "to": "Temporal",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "resepsjon_og_fortolkning",
+      "to": "Sosial",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "resepsjon_og_fortolkning",
+      "to": "umberto_eco",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Åpent verk og tolkning"
+    },
+    {
+      "from": "resepsjon_og_fortolkning",
+      "to": "roland_barthes",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Lesning og mening"
+    },
+    {
+      "from": "resepsjon_og_fortolkning",
+      "to": "stuart_hall",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Encoding/decoding og kulturelle koder"
+    },
+    {
+      "from": "kunst_som_sosial_moteplass",
+      "to": "publikum_offentlighet",
+      "type": "belongs_to"
+    },
+    {
+      "from": "kunst_som_sosial_moteplass",
+      "to": "Sosial",
+      "type": "activates_dimension",
+      "strength": "primary"
+    },
+    {
+      "from": "kunst_som_sosial_moteplass",
+      "to": "Geografisk",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "kunst_som_sosial_moteplass",
+      "to": "Felt",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "kunst_som_sosial_moteplass",
+      "to": "jacques_ranciere",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Publikum som aktør (emansipert tilskuer)"
+    },
+    {
+      "from": "kunst_som_sosial_moteplass",
+      "to": "claire_bishop",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Deltakelse, estetikk og konflikt"
+    },
+    {
+      "from": "kunst_som_sosial_moteplass",
+      "to": "grant_kester",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Dialogiske praksiser og sosial estetikk"
+    },
+    {
+      "from": "epokefortellinger",
+      "to": "tid_transformasjon",
+      "type": "belongs_to"
+    },
+    {
+      "from": "epokefortellinger",
+      "to": "Temporal",
+      "type": "activates_dimension",
+      "strength": "primary"
+    },
+    {
+      "from": "epokefortellinger",
+      "to": "Doxa",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "epokefortellinger",
+      "to": "Normativ",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "epokefortellinger",
+      "to": "walter_benjamin",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Reproduksjon, modernitet og historiens brudd"
+    },
+    {
+      "from": "epokefortellinger",
+      "to": "aby_warburg",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Motivvandring og historisk hukommelse"
+    },
+    {
+      "from": "epokefortellinger",
+      "to": "hal_foster",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Arkiv, ettertid og samtidskunst"
+    },
+    {
+      "from": "avantgarde_og_brudd",
+      "to": "tid_transformasjon",
+      "type": "belongs_to"
+    },
+    {
+      "from": "avantgarde_og_brudd",
+      "to": "Temporal",
+      "type": "activates_dimension",
+      "strength": "primary"
+    },
+    {
+      "from": "avantgarde_og_brudd",
+      "to": "Normativ",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "avantgarde_og_brudd",
+      "to": "Doxa",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "avantgarde_og_brudd",
+      "to": "peter_burger",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Avantgarde som institusjonskritikk og brudd"
+    },
+    {
+      "from": "avantgarde_og_brudd",
+      "to": "walter_benjamin",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Brudd i modernitetens erfaring"
+    },
+    {
+      "from": "avantgarde_og_brudd",
+      "to": "rosalind_krauss",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Formale brudd og modernismens logikk"
+    },
+    {
+      "from": "tradisjon_og_kontinuitet",
+      "to": "tid_transformasjon",
+      "type": "belongs_to"
+    },
+    {
+      "from": "tradisjon_og_kontinuitet",
+      "to": "Temporal",
+      "type": "activates_dimension",
+      "strength": "primary"
+    },
+    {
+      "from": "tradisjon_og_kontinuitet",
+      "to": "Doxa",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "tradisjon_og_kontinuitet",
+      "to": "Materiell",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "tradisjon_og_kontinuitet",
+      "to": "walter_benjamin",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Reproduksjon, modernitet og historiens brudd"
+    },
+    {
+      "from": "tradisjon_og_kontinuitet",
+      "to": "aby_warburg",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Motivvandring og historisk hukommelse"
+    },
+    {
+      "from": "tradisjon_og_kontinuitet",
+      "to": "hal_foster",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Arkiv, ettertid og samtidskunst"
+    },
+    {
+      "from": "historisk_rekontekstualisering",
+      "to": "tid_transformasjon",
+      "type": "belongs_to"
+    },
+    {
+      "from": "historisk_rekontekstualisering",
+      "to": "Temporal",
+      "type": "activates_dimension",
+      "strength": "primary"
+    },
+    {
+      "from": "historisk_rekontekstualisering",
+      "to": "Metodisk",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "historisk_rekontekstualisering",
+      "to": "Doxa",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "historisk_rekontekstualisering",
+      "to": "walter_benjamin",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Reproduksjon, modernitet og historiens brudd"
+    },
+    {
+      "from": "historisk_rekontekstualisering",
+      "to": "aby_warburg",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Motivvandring og historisk hukommelse"
+    },
+    {
+      "from": "historisk_rekontekstualisering",
+      "to": "hal_foster",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Arkiv, ettertid og samtidskunst"
+    },
+    {
+      "from": "arkiv_og_minne",
+      "to": "tid_transformasjon",
+      "type": "belongs_to"
+    },
+    {
+      "from": "arkiv_og_minne",
+      "to": "Temporal",
+      "type": "activates_dimension",
+      "strength": "primary"
+    },
+    {
+      "from": "arkiv_og_minne",
+      "to": "Felt",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "arkiv_og_minne",
+      "to": "Sosial",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "arkiv_og_minne",
+      "to": "jacques_derrida",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Arkivet som makt: hva bevares og hvorfor"
+    },
+    {
+      "from": "arkiv_og_minne",
+      "to": "hal_foster",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Den arkivale impulsen i samtidskunst"
+    },
+    {
+      "from": "arkiv_og_minne",
+      "to": "carol_duncan",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Minnets ritualer i institusjonelle rom"
+    },
+    {
+      "from": "remiks_og_reappropriasjon",
+      "to": "tid_transformasjon",
+      "type": "belongs_to"
+    },
+    {
+      "from": "remiks_og_reappropriasjon",
+      "to": "Temporal",
+      "type": "activates_dimension",
+      "strength": "primary"
+    },
+    {
+      "from": "remiks_og_reappropriasjon",
+      "to": "Materiell",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "remiks_og_reappropriasjon",
+      "to": "Normativ",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "remiks_og_reappropriasjon",
+      "to": "walter_benjamin",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Kopi, aura og teknisk reproduksjon"
+    },
+    {
+      "from": "remiks_og_reappropriasjon",
+      "to": "lawrence_lessig",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Remiks som kulturform og rettighetsregime"
+    },
+    {
+      "from": "remiks_og_reappropriasjon",
+      "to": "lev_manovich",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Sampling/montasje i digital kultur"
+    },
+    {
+      "from": "nostalgi_og_retromodernitet",
+      "to": "tid_transformasjon",
+      "type": "belongs_to"
+    },
+    {
+      "from": "nostalgi_og_retromodernitet",
+      "to": "Temporal",
+      "type": "activates_dimension",
+      "strength": "primary"
+    },
+    {
+      "from": "nostalgi_og_retromodernitet",
+      "to": "Doxa",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "nostalgi_og_retromodernitet",
+      "to": "Normativ",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "nostalgi_og_retromodernitet",
+      "to": "svetlana_boym",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Nostalgi som estetisk og politisk modus"
+    },
+    {
+      "from": "nostalgi_og_retromodernitet",
+      "to": "fredric_jameson",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Pastiche og historieløs stil"
+    },
+    {
+      "from": "nostalgi_og_retromodernitet",
+      "to": "jean_baudrillard",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Simulasjon og tegnverden"
+    },
+    {
+      "from": "kunsthistorisk_skriving",
+      "to": "tid_transformasjon",
+      "type": "belongs_to"
+    },
+    {
+      "from": "kunsthistorisk_skriving",
+      "to": "Metodisk",
+      "type": "activates_dimension",
+      "strength": "primary"
+    },
+    {
+      "from": "kunsthistorisk_skriving",
+      "to": "Temporal",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "kunsthistorisk_skriving",
+      "to": "Normativ",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "kunsthistorisk_skriving",
+      "to": "linda_nochlin",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Kanonkritikk og historie som makt"
+    },
+    {
+      "from": "kunsthistorisk_skriving",
+      "to": "tj_clark",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Kunsthistorie som sosial historie"
+    },
+    {
+      "from": "kunsthistorisk_skriving",
+      "to": "erwin_panofsky",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Metode: ikonologi og historisk lesning"
+    },
+    {
+      "from": "temporale_estetiske_strategier",
+      "to": "tid_transformasjon",
+      "type": "belongs_to"
+    },
+    {
+      "from": "temporale_estetiske_strategier",
+      "to": "Materiell",
+      "type": "activates_dimension",
+      "strength": "primary"
+    },
+    {
+      "from": "temporale_estetiske_strategier",
+      "to": "Temporal",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "temporale_estetiske_strategier",
+      "to": "Metodisk",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "temporale_estetiske_strategier",
+      "to": "walter_benjamin",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Reproduksjon, modernitet og historiens brudd"
+    },
+    {
+      "from": "temporale_estetiske_strategier",
+      "to": "aby_warburg",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Motivvandring og historisk hukommelse"
+    },
+    {
+      "from": "temporale_estetiske_strategier",
+      "to": "hal_foster",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Arkiv, ettertid og samtidskunst"
+    },
+    {
+      "from": "sykluser_og_trender",
+      "to": "tid_transformasjon",
+      "type": "belongs_to"
+    },
+    {
+      "from": "sykluser_og_trender",
+      "to": "Temporal",
+      "type": "activates_dimension",
+      "strength": "primary"
+    },
+    {
+      "from": "sykluser_og_trender",
+      "to": "Felt",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "sykluser_og_trender",
+      "to": "Doxa",
+      "type": "activates_dimension",
+      "strength": "secondary"
+    },
+    {
+      "from": "sykluser_og_trender",
+      "to": "fredric_jameson",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Kulturens sykluser og historielogikk"
+    },
+    {
+      "from": "sykluser_og_trender",
+      "to": "sarah_thornton",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Trend, scene og statusregimer"
+    },
+    {
+      "from": "sykluser_og_trender",
+      "to": "boris_groys",
+      "type": "references_thinker",
+      "tier": "core",
+      "why": "Kunstens sirkulasjon og oppdatering"
+    }
+  ]
+}
