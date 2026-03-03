@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <title>History Go – Kunnskap: BY & ARKITEKTUR</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Dine læringspunkter innen merket BY & ARKITEKTUR i History Go.">
+  <!-- Gjenbruker samme stil som merkene -->
+  <link rel="stylesheet" href="../../../css/merker.css">
+</head>
+
+<body class="merke-side merke-by knowledge-page">
+
+  <!-- ★ GLOBAL TOPPNAV MED DROPDOWN (peker til MERKER) -->
+  <nav class="hg-topnav">
+
+    <!-- Logo -->
+    <a href="../../../index.html" class="nav-logo">
+      <img src="../../../bilder/ui/historygo_logo.PNG" class="hg-logo-nav" alt="History Go logo">
+    </a>
+
+    <!-- Dropdown -->
+    <div class="nav-dropdown">
+      <button class="nav-dropbtn">Merker ▼</button>
+      <div class="nav-dropdown-content">
+
+        <a href="../historie/index.html">Historie</a>
+        <a href="../vitenskap/index.html">Vitenskap</a>
+        <a href="../kunst/index.html">Kunst & Kultur</a>
+        <a href="../musikk/index.html">Musikk</a>
+        <a href="../natur/index.html">Natur & Miljø</a>
+        <a href="../sport/index.html">Sport</a>
+        <a href="index.html" class="active">By & Arkitektur</a>
+        <a href="../politikk/index.html">Politikk & Samfunn</a>
+        <a href="../populaerkultur/index.html">Populærkultur</a>
+        <a href="../subkultur/index.html">Subkultur</a>
+
+      </div>
+    </div>
+
+  </nav>
+
+  <!-- ★ HEADER – KUNNSKAPSVERSJON -->
+  <header class="merke-header">
+
+    <!-- Tilbakeknapp -->
+    <a href="index.html" class="tilbake-knapp">
+      ← Til merket By & Arkitektur
+    </a>
+
+    <!-- Logo -->
+    <div class="logo-container">
+      <img src="../../../bilder/ui/historygo_logo.PNG" alt="History Go logo" class="hg-logo">
+    </div>
+
+    <!-- Merke-ikon -->
+    <div class="merke-ikon-container">
+      <img src="../../../bilder/merker/by.PNG" alt="Merke: By & Arkitektur" class="merke-ikon">
+    </div>
+
+    <h1>Kunnskap – BY & ARKITEKTUR</h1>
+
+    <p class="merke-ingress">
+      Her samles lærepunktene du har låst opp innen merket <strong>BY & ARKITEKTUR</strong>.
+      Hvert punkt kommer fra en quiz du har tatt – og er organisert etter dimensjon
+      (for eksempel <em>historisk</em>, <em>materiell</em>, <em>sosial</em>).
+    </p>
+
+  </header>
+
+  <!-- ★ INNHOLD -->
+  <main class="merke-main">
+
+    <!-- 1. Dine kunnskapspunkter -->
+    <section class="merke-blokk">
+      <h2>Dine kunnskapspunkter</h2>
+      <p>
+        Under ser du et sammendrag av kunnskapen du har lært så langt om byen, arkitekturen
+        og hvordan rom organiserer liv. Når du tar flere quizer om by & arkitektur, fylles denne
+        siden opp med nye punkter.
+      </p>
+
+      <!-- Her fylles inn dynamisk innhold fra knowledge.js -->
+      <div id="knowledgeContainer" class="knowledge-container"></div>
+
+      <p class="muted" style="margin-top:16px;">
+        Vil du se alt du har lært på tvers av alle merker?
+        <a href="../../../knowledge.html">Åpne din samlede kunnskapsprofil</a>.
+      </p>
+    </section>
+
+    <!-- 2. Emne-dekning for BY & ARKITEKTUR -->
+    <section class="merke-blokk">
+      <h2>Dekning av by-emner</h2>
+      <p class="merke-ingress">
+        Her ser du hvordan begrepene dine dekker de definerte emnene innen <strong>By & arkitektur</strong>:
+        romlig orden, infrastruktur, offentlige rom, bydelsforskjeller, gentrifisering og ruiner/tomrom.
+      </p>
+      <div id="emneDekningSection" class="emne-dekning"></div>
+    </section>
+
+  </main>
+
+  <!-- ★ KNOWLEDGE SYSTEM KOBLING -->
+  <script src="../../../knowledge.js"></script>
+  <script src="../../../js/hgInsights.js"></script>
+  <script src="../../../js/emnerLoader.js"></script>
+  <script src="../../../js/emneDekning.js"></script>
+
+  <!-- 1) Kunnskapspunkter for kategori "by" -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const CATEGORY = "by"; // matcher entry.category i saveKnowledgePoint
+      const container = document.getElementById("knowledgeContainer");
+      if (!container) return;
+
+      const html = renderKnowledgeSection(CATEGORY);
+      container.innerHTML = html;
+    });
+  </script>
+
+  <!-- 2) Emne-dekning for BY via Emner + HGInsights -->
+  <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+      const box = document.getElementById("emneDekningSection");
+      if (!box) return;
+
+      if (!window.HGInsights || !window.computeEmneDekning || !window.Emner) {
+        box.innerHTML = "<p class='muted'>Emne-dekning er ikke tilgjengelig ennå.</p>";
+        return;
+      }
+
+      const userId =
+        (window.getCurrentUserId && getCurrentUserId()) || "anon";
+
+      // Bare by-/arkitekturbegreper
+      const concepts = HGInsights.getUserConcepts(userId, {
+        categoryId: "by"
+      });
+
+      if (!concepts.length) {
+        box.innerHTML =
+          "<p class='muted'>Ta noen by- og arkitekturquizer for å se emnene dine her.</p>";
+        return;
+      }
+
+      try {
+        const emnerBy = await Emner.loadForSubject("by");
+        const result = computeEmneDekning(concepts, emnerBy);
+
+        if (!result.length) {
+          box.innerHTML =
+            "<p class='muted'>Ingen by-emner er definert ennå.</p>";
+          return;
+        }
+
+        box.innerHTML = `
+          <ul class="emne-list">
+            ${result
+              .map(r => `
+                <li class="emne-item">
+                  <div class="emne-header">
+                    <strong>${r.title}</strong>
+                    <small>${r.percent}% dekket (${r.matchCount}/${r.total})</small>
+                  </div>
+                  <div class="bar-bg">
+                    <div class="bar" style="width:${r.percent}%;"></div>
+                  </div>
+                  ${
+                    r.total === 0
+                      ? `<small class="muted">Ingen kjernebegreper definert for dette emnet.</small>`
+                      : r.missing.length
+                        ? `
+                          <details class="emne-missing">
+                            <summary>Mangler ${r.missing.length} kjernebegreper</summary>
+                            <ul>
+                              ${r.missing.map(m => `<li>${m}</li>`).join("")}
+                            </ul>
+                          </details>
+                        `
+                        : `<small class="emne-complete">✔ Du dekker alle kjernebegrepene i dette emnet</small>`
+                  }
+                </li>
+              `)
+              .join("")}
+          </ul>
+        `;
+        
+      } catch (e) {
+  if (window.DEBUG) console.warn("Feil ved lasting av by-emner", e);
+  box.innerHTML = "<p class='muted'>Kunne ikke laste by-emner akkurat nå.</p>";
+}
+      
+    });
+  </script>
+
+</body>
+</html>
