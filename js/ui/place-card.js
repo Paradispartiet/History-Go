@@ -4,8 +4,14 @@
 window.openPlaceCard = async function (place) {
   if (!place) return;
 
-  const card      = document.getElementById("placeCard");
-  const frontImgEl = document.getElementById("pcFrontImage");
+  // 🎓 Learning: mark seen for place-emner
+  if (Array.isArray(place?.emner)) {
+    place.emner.forEach(emne_id => {
+      window.HG_LearningEvents?.markSeen?.(emne_id);
+    });
+  }
+
+  const card = document.getElementById("placeCard");  const frontImgEl = document.getElementById("pcFrontImage");
   const cardImgEl  = document.getElementById("pcCardImage");
   const titleEl   = document.getElementById("pcTitle");
   const metaEl    = document.getElementById("pcMeta");
