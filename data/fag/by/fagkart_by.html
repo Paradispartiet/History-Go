@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <title>History Go – BY & ARKITEKTUR (fagkart)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Fagkart og emner for merket BY & ARKITEKTUR.">
+  <link rel="stylesheet" href="../../../css/merker.css">
+</head>
+
+<body class="merke-side merke-by merke-fagkart">
+
+  <nav class="hg-topnav">
+    <a href="../../../index.html" class="nav-logo">
+      <img src="../../../bilder/ui/historygo_logo.PNG" class="hg-logo-nav" alt="History Go logo">
+    </a>
+
+    <div class="nav-dropdown">
+      <button class="nav-dropbtn">Merker ▼</button>
+      <div class="nav-dropdown-content">
+
+        <a href="../historie/index.html">Historie</a>
+        <a href="../vitenskap/index.html">Vitenskap</a>
+        <a href="../kunst/index.html">Kunst & Kultur</a>
+        <a href="../musikk/index.html">Musikk</a>
+        <a href="../natur/index.html">Natur & Miljø</a>
+        <a href="../sport/index.html">Sport</a>
+        <a href="index.html" class="active">By & Arkitektur</a>
+        <a href="../politikk/index.html">Politikk & Samfunn</a>
+        <a href="../populaerkultur/index.html">Populærkultur</a>
+        <a href="../subkultur/index.html">Subkultur</a>
+
+      </div>
+    </div>
+
+    <a href="../index.html" class="nav-link">Alle merker</a>
+  </nav>
+
+
+  <header class="merke-header">
+    <h1>Fagkart — BY & ARKITEKTUR</h1>
+    <p class="merke-ingress">
+      Velg et emne for å gå nedover i faget. Hvert emne har egen underside.
+    </p>
+    <div class="merke-actions">
+      <a href="index.html" class="hg-btn">← Til merket</a>
+      <a href="teori.html" class="hg-btn">Les teori →</a>
+    </div>
+  </header>
+
+  <main class="merke-main">
+
+    <section class="merke-blokk" id="emner">
+      <h2>Emner</h2>
+      <p class="hg-muted">
+        Listen rendres fra <code>emner_by.json</code>. (Hvis ingenting vises: sjekk sti i scriptet nederst.)
+      </p>
+
+      <div id="emneListeBy" class="hg-emneliste">
+        <p class="hg-muted">Laster emner…</p>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    // ========= KONFIG =========
+    // Emnefilen ligger nå i samme mappe som denne siden (data/fag/by/)
+    const EMNER_PATH = "emner_by_merged.json";
+
+    // ========= HELPERS =========
+    const DOMAIN_ORDER = ["struktur", "praksis", "makt", "tid"];
+    const DOMAIN_LABEL = {
+      struktur: "Struktur",
+      praksis: "Praksis",
+      makt: "Makt",
+      tid: "Tid"
+    };
+
+    const STATUS_ORDER = { core: 0, existing: 1, planned: 2 };
+    const STATUS_LABEL = { core: "kjerne", existing: "eksisterende", planned: "planlagt" };
+
+    function esc(s) {
+      return String(s ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    async function fetchJson(path) {
+      const url = new URL(path, document.baseURI).toString();
+      const r = await fetch(url, { cache: "no-store" });
+      if (!r.ok) throw new Error(`${r.status} ${url}`);
+      return await r.json();
+    }
+
+    function normalizeEmner(data) {
+      if (Array.isArray(data)) return data;
+      if (Array.isArray(data?.emner)) return data.emner;
+      if (Array.isArray(data?.items)) return data.items;
+      return [];
+    }
+
+    function toNum(v, fallback = 999) {
+      const n = Number(v);
+      return Number.isFinite(n) ? n : fallback;
+    }
+
+    function cmpEmner(a, b) {
+      const sa = STATUS_ORDER[String(a?.status || "").toLowerCase()] ?? 9;
+      const sb = STATUS_ORDER[String(b?.status || "").toLowerCase()] ?? 9;
+      if (sa !== sb) return sa - sb;
+
+      const la = toNum(a?.level);
+      const lb = toNum(b?.level);
+      if (la !== lb) return la - lb;
+
+      const ta = String(a?.title || a?.name || a?.short_label || a?.emne_id || "");
+      const tb = String(b?.title || b?.name || b?.short_label || b?.emne_id || "");
+      return ta.localeCompare(tb, "no", { sensitivity: "base" });
+    }
+
+    function renderList(list) {
+      return `
+        <ul class="hg-emner">
+          ${
+            list.map(e => {
+              const title = esc(e.title || e.name || e.short_label || e.emne_id || "Uten tittel");
+              const desc  = esc(e.description || "");
+              const id    = esc(e.emne_id || e.id || "");
+              const short = esc(e.short_label || "");
+
+              const statusKey = String(e.status || "").toLowerCase();
+              const statusTxt = STATUS_LABEL[statusKey] || statusKey || "";
+              const levelTxt  = Number.isFinite(Number(e.level)) ? `nivå ${Number(e.level)}` : "";
+
+              const metaParts = [];
+              if (statusTxt) metaParts.push(statusTxt);
+              if (levelTxt) metaParts.push(levelTxt);
+              const meta = metaParts.join(" · ");
+
+              const href = `emne.html?id=${encodeURIComponent(id)}`;
+
+              return `
+                <li class="hg-emne">
+                  <a class="hg-emne-link" href="${href}" data-emne="${id}">
+                    <div class="hg-emne-title">${title}</div>
+                    ${meta ? `<div class="hg-emne-label">${esc(meta)}</div>` : (short ? `<div class="hg-emne-label">${short}</div>` : ``)}
+                    ${desc ? `<div class="hg-emne-desc">${desc}</div>` : ``}
+                  </a>
+                </li>
+              `;
+            }).join("")
+          }
+        </ul>
+      `;
+    }
+
+    function renderEmner(list, mount) {
+      if (!list.length) {
+        mount.innerHTML = `<p class="hg-muted">Ingen emner funnet (tom fil eller feil format).</p>`;
+        return;
+      }
+
+      // Tell status
+      const counts = { core: 0, existing: 0, planned: 0, other: 0 };
+      for (const e of list) {
+        const k = String(e?.status || "").toLowerCase();
+        if (k in counts) counts[k] += 1;
+        else counts.other += 1;
+      }
+
+      // Gruppér etter domain
+      const buckets = Object.fromEntries(DOMAIN_ORDER.map(d => [d, []]));
+      const other = [];
+
+      for (const e of list) {
+        const d = String(e?.domain || "").toLowerCase().trim();
+        if (d && buckets[d]) buckets[d].push(e);
+        else other.push(e);
+      }
+
+      for (const d of DOMAIN_ORDER) buckets[d].sort(cmpEmner);
+      other.sort(cmpEmner);
+
+      const summary = `
+        <p class="hg-muted">
+          Totalt: <b>${list.length}</b>
+          · kjerne: <b>${counts.core}</b>
+          · eksisterende: <b>${counts.existing}</b>
+          · planlagt: <b>${counts.planned}</b>
+        </p>
+      `;
+
+      const sections = DOMAIN_ORDER
+        .filter(d => buckets[d].length)
+        .map(d => `
+          <section class="merke-blokk hg-domain" data-domain="${esc(d)}">
+            <h3>${esc(DOMAIN_LABEL[d] || d)}</h3>
+            ${renderList(buckets[d])}
+          </section>
+        `)
+        .join("");
+
+      const otherSection = other.length ? `
+        <section class="merke-blokk hg-domain" data-domain="annet">
+          <h3>Annet</h3>
+          ${renderList(other)}
+        </section>
+      ` : "";
+
+      mount.innerHTML = summary + sections + otherSection;
+    }
+
+    document.addEventListener("DOMContentLoaded", async () => {
+      const mount = document.getElementById("emneListeBy");
+      if (!mount) return;
+
+      try {
+        const data = await fetchJson(EMNER_PATH);
+        const emner = normalizeEmner(data);
+        renderEmner(emner, mount);
+      } catch (e) {
+        console.error("[by/fagkart] emner load failed", e);
+        mount.innerHTML = `
+          <p class="hg-muted">Klarte ikke laste emner.</p>
+          <p class="hg-muted">Sjekk at filen finnes og at <code>EMNER_PATH</code> er riktig:</p>
+          <p class="hg-muted"><code>${esc(EMNER_PATH)}</code></p>
+        `;
+      }
+    });
+  </script>
+
+</body>
+</html>
