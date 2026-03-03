@@ -595,6 +595,16 @@ if (perfect) {
               related_emner: Array.isArray(meta?.emnerTouched) ? meta.emnerTouched : []
             });
 
+           // ------------------------------------------------------------
+          // KnowledgeLearningState → understood
+          // ------------------------------------------------------------
+            if (window.KnowledgeLearning && Array.isArray(meta?.emnerTouched)) {
+              const unique = [...new Set(meta.emnerTouched)];
+              unique.forEach(emneId => {
+               window.KnowledgeLearning.setUnderstood(emneId);
+              });
+            }
+
             // 3) progresjon
             markQuizProgress(categoryId, tid);
             API.addCompletedQuizAndMaybePoint(categoryId, tid);
