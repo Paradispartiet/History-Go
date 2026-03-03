@@ -137,6 +137,22 @@
     }
   }
 
+  function saveSetProgress(setId, score, total) {
+  try {
+    const key = "hg_quiz_sets_v1";
+    const data = safeParse(key, {});
+    data[setId] = {
+      completed: true,
+      score,
+      total,
+      timestamp: Date.now()
+    };
+    safeWrite(key, data);
+  } catch (e) {
+    dwarn("could not save set progress", e);
+  }
+}
+
   // ============================================================
   // ENGINE STATE
   // ============================================================
@@ -568,9 +584,19 @@ if (setMeta) {
     targetId: tid,
     questions: setData.questions,
     onEnd: (correct, total, meta) => {
-      API.showToast(`Set fullført: ${correct}/${total}`);
-      API.dispatchProfileUpdate();
-    }
+
+  saveSetProgress(setMeta.set_id, correct, total);
+
+  if (window.KnowledgeLearning && Array.isArray(meta?.emnerTouched)) {
+    const unique = [...new Set(meta.emnerTouched)];
+    unique.forEach(emneId => {
+      window.KnowledgeLearning.setUnderstood(emneId);
+    });
+  }
+
+  API.showToast(`Set fullført: ${correct}/${total}`);
+  API.dispatchProfileUpdate();
+}
   });
 
   return; // STOP – ikke kjør legacy
