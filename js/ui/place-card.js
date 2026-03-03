@@ -5,11 +5,11 @@ window.openPlaceCard = async function (place) {
   if (!place) return;
 
   // 🎓 Learning: mark seen for place-emner
-  if (Array.isArray(place?.emner)) {
-    place.emner.forEach(emne_id => {
-      window.HG_LearningEvents?.markSeen?.(emne_id);
+   if (window.KnowledgeLearning && Array.isArray(place.emne_ids)) {
+    place.emne_ids.forEach(emneId => {
+     window.KnowledgeLearning.setSeen(emneId);
     });
-  }
+   }
 
   const card = document.getElementById("placeCard");  const frontImgEl = document.getElementById("pcFrontImage");
   const cardImgEl  = document.getElementById("pcCardImage");
