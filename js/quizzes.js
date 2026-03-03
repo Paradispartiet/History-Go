@@ -212,6 +212,13 @@
         indexQuestion(q);
       });
 
+      // ---- INDEX SET METADATA ----
+      sets.forEach(set => {
+       if (set && set.set_id && set.targetId) {
+        _byTarget.set(set.targetId + "__SET__", set);
+      }
+     });
+
       _loaded = true;
       dlog("loaded questions:", _all.length, "targets:", _byTarget.size);
     })();
@@ -543,11 +550,38 @@ if (canTag) {
         }
       }
 
-      const questions = (_byTarget && _byTarget.get(tid)) || [];
-      if (!questions.length) {
-        API.showToast("Ingen quiz tilgjengelig her ennå");
-        return;
-      }
+      // ---- CHECK FOR SET FIRST ----
+const setMeta = _byTarget.get(tid + "__SET__");
+
+if (setMeta) {
+  const setData = await fetchJson(setMeta.file);
+
+  if (!setData || !Array.isArray(setData.questions)) {
+    API.showToast("Set-data feilformatert");
+    return;
+  }
+
+  openQuiz();
+
+  runQuizFlow({
+    title: person ? person.name : (place ? place.name : "Quiz"),
+    targetId: tid,
+    questions: setData.questions,
+    onEnd: (correct, total, meta) => {
+      API.showToast(`Set fullført: ${correct}/${total}`);
+      API.dispatchProfileUpdate();
+    }
+  });
+
+  return; // STOP – ikke kjør legacy
+}
+
+// ---- FALLBACK TO LEGACY ----
+const questions = (_byTarget && _byTarget.get(tid)) || [];
+if (!questions.length) {
+  API.showToast("Ingen quiz tilgjengelig her ennå");
+  return;
+}
 
       openQuiz();
 
