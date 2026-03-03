@@ -124,6 +124,29 @@
     localStorage.removeItem(KEY);
   }
 
+function getMastery(mainId, emnekart) {
+  const state = load();
+  const group = emnekart[mainId] || [];
+  const total = group.length;
+
+  if (!total) return { total: 0, understood: 0, ratio: 0, unlocked: false };
+
+  let understood = 0;
+
+  group.forEach(id => {
+    if (state.learning[id]?.understood) understood++;
+  });
+
+  const ratio = understood / total;
+
+  return {
+    total,
+    understood,
+    ratio,
+    unlocked: ratio >= 0.6
+  };
+}
+  
   window.KnowledgeLearning = {
     getState,
     getLearning,
