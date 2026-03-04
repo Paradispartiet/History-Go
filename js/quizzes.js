@@ -193,8 +193,8 @@
   const _all = [];
 
   function targetKey(q) {
-    return s(q?.personId || q?.placeId || "");
-  }
+    return s(q?.targetId || q?.personId || q?.placeId || "");
+}
 
   function indexQuestion(q) {
     const key = targetKey(q);
