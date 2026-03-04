@@ -780,3 +780,14 @@ Dette gjør at systemet kan balansere spørsmålene automatisk.
 Hvis du vil, kan jeg også vise deg noe som er ganske viktig før vi lager alle quizene:
 
 Du har faktisk allerede nok steder og emner til å lage et quizsystem som kan generere ca. 1500–2000 forskjellige spørsmål, men bare hvis vi organiserer emnekartet riktig først.
+
+
+...............
+
+
+
+set_1 → fakta/sted /
+set_2 → historie
+set_3 → hendelser / personer
+set_4 → konflikt / struktur
+set_5 → teori / begrep
