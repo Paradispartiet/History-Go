@@ -246,6 +246,7 @@ const b = coords.reduce(
 MAP.fitBounds(b, { padding: 60 });
 
 _toast("Rute vist på kartet");
+}  
 
 function showRouteOverlay(routeId, startIndex = 0) {
   // “overlay” hos deg = vis linja + toast
