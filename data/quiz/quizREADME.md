@@ -329,3 +329,178 @@ Minioppdrag skal behandles som en quiz-lignende videreføring:
 ---
 
 SLUTT.
+
+
+2
+
+Her er en ansvars-matrise som binder sammen History Go + Learning + Knowledge + AHA + Civication. Den er skrevet slik at du kan lime den rett inn i arbeidsdokumentet.
+
+⸻
+
+Ansvars-matrise (modul → leser → skriver → events)
+
+1) Quiz (legacy og set)
+
+Modul: quizzes.js
+Leser: quiz-data (manifest + filer), PEOPLE/PLACES
+Skriver:
+	•	legacy: quiz_history + merits_by_category (som før)
+	•	set: hg_quiz_sets_v1 (set progress)
+	•	set: KnowledgeLearning.setUnderstood(emne_id) kun via emne_ids på riktige svar
+Events:
+	•	alltid etter progresjon: updateProfile
+
+Regel: Legacy-quiz skal ikke trigge learning-state. Set-quiz gjør det.
+
+⸻
+
+2) PlaceCard / åpne sted
+
+Modul: place-card.js (openPlaceCard(place))
+Leser: place.emne_ids
+Skriver: KnowledgeLearning.setSeen(emne_id) for hvert emne_id
+Events: (valgfritt men anbefalt) learning:updated via HG_LearningEvents.markSeen
+
+Regel: seen trigges kun ved faktisk åpning av placeCard (ikke radius, ikke nearby).
+
+⸻
+
+3) KnowledgeLearningState (epistemisk status)
+
+Modul: knowledgeLearningState.js
+Leser: hg_learning_v1
+Skriver: hg_learning_v1
+API: getState/getLearning/setSeen/setUnderstood/setApplied/reset
+Events: ingen (state skal ikke være “motor”)
+
+Regel: dette er “status”, ikke analyse.
+
+⸻
+
+4) LearningEvents (bro og dispatch)
+
+Modul: learningEvents.js
+Leser: input emne_id
+Skriver: kaller KnowledgeLearning.*
+Events: learning:updated
+
+Regel: UI og spillmotorer kaller HG_LearningEvents.* når mulig. Direkte kall til KnowledgeLearning.* kun der det er enklest.
+
+⸻
+
+5) Knowledge (tekstlig innhold)
+
+Modul: knowledge.js
+Leser: quiz resultater / items (per riktig svar)
+Skriver: knowledge_universe + hg_learning_log_v1 (courses/emnedekning)
+Events: updateProfile (når det legges til knowledge/trivia)
+
+Regel: Knowledge = “hva du har lest/låst opp”, ikke seen/understood/applied.
+
+⸻
+
+6) KnowledgeComponent (render + emner)
+
+Modul: knowledge_component.js
+Leser: emner via DataHub.loadEmner(categoryId) + knowledge_universe
+Skriver: DOM (render)
+Events: ingen (kun UI)
+
+Regel: kan vise learning-status (seen/understood/applied) ved å lese KnowledgeLearning.getLearning(emne_id).
+
+⸻
+
+7) Emnedekning + Courses
+
+Modul: emneDekning.js + courses.js (og compute i knowledge.js)
+Leser: hg_learning_log_v1 + emne-definisjoner (core_concepts, key_terms)
+Skriver: normalt ingen permanent storage (beregning), evt course-progress hvis dere har det
+Events: valgfritt learning:updated eller updateProfile ved UI refresh
+
+Regel: dette er analyse/kuratering. Ikke epistemisk status.
+
+⸻
+
+8) HGUnlocks (samling/unlocks)
+
+Modul: hg_unlocks.js
+Leser: quiz items + targetId/placeId/personId
+Skriver: hg_unlocks_v1
+Events: hg:unlocks
+
+Regel: unlocks er samlingslogikk, ikke læringsstatus.
+
+⸻
+
+9) Trivia
+
+Modul: trivia.js
+Leser: trivia payload fra quiz/innhold
+Skriver: trivia_universe
+Events: updateProfile
+
+Regel: trivia er “minne/glede”, ikke emneprogress.
+
+⸻
+
+10) HGInsights (core concepts log)
+
+Modul: hgInsights.js
+Leser: quizItem.core_concepts (kun riktige svar)
+Skriver: hg_insights_events_v1
+Events: (valgfritt) learning:updated
+
+Regel: Insights = begrepsspor (events), ikke seen/understood/applied.
+
+⸻
+
+11) AHA InsightsChamber
+
+Modul: insightsChamber.js
+Leser: AHA signals + ev. KnowledgeLearning.getLearning(emne_id) for statusvisning
+Skriver: AHA-insights storage (intern)
+Events: AHA-egne
+
+Regel: AHA kan tagge emner, men skal ikke automatisk sette understood/applied uten eksplisitt brukerhandling.
+
+⸻
+
+12) AHA EmneMatcher
+
+Modul: ahaEmneMatcher.js
+Leser: emne-definisjoner (keywords/core_concepts)
+Skriver: forslag / match-resultat (ingen permanent state)
+Events: ingen
+
+Regel: tagging/hjelp, ikke “læringsbevis”.
+
+⸻
+
+13) Civication
+
+Moduler: civicationEventEngine.js, conflictLoader.js, packs
+Leser: KnowledgeLearning.getLearning(emne_id) for gating og “applied”
+Skriver: ved løst konflikt/quest: KnowledgeLearning.setApplied(emne_id) (helst via HG_LearningEvents.markApplied)
+Events: updateProfile, ev. civi:*
+
+Regel: Civication = anvendelse. Applied kommer herfra.
+
+⸻
+
+Globale regler (for disiplin)
+	1.	Evidens skriver LearningState
+
+	•	place opened → seen
+	•	set quiz correct → understood
+	•	conflict resolved → applied
+
+	2.	Analyse skriver ikke LearningState automatisk
+emnedekning/courses kan foreslå, men ikke sette.
+	3.	AHA tagger, men setter ikke
+AHA kan vise status og foreslå neste steg. “Markér som forstått” må være eksplisitt.
+	4.	UpdateProfile kun når progresjon endrer UI
+Når set completion, unlocks, trivia/knowledge, civication konsekvens.
+
+⸻
+
+Hvis du vil, kan vi nå bruke matrisen til å definere én konkret “kontrakt” for quiz-set-formatet (felt som type/funfact/epoch/lifestyle/emne_ids) slik at både Knowledge, Trivia, AHA-tagging og LearningState kan bruke samme quiz-objekt uten ekstra spesialkoding.
