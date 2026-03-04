@@ -174,9 +174,13 @@ function focusRouteOnMap(routeId, startIndex = 0) {
     ]
   };
 
-  clearThematicRoute();
+  if (!MAP.getSource(HG_ROUTE_SRC)) {
   MAP.addSource(HG_ROUTE_SRC, { type: "geojson", data: geo });
+} else {
+  MAP.getSource(HG_ROUTE_SRC).setData(geo);
+}
 
+if (!MAP.getLayer(HG_ROUTE_GLOW)) {
   MAP.addLayer({
     id: HG_ROUTE_GLOW,
     type: "line",
@@ -185,11 +189,13 @@ function focusRouteOnMap(routeId, startIndex = 0) {
     paint: {
       "line-color": "rgba(255,255,255,0.20)",
       "line-width": ["interpolate", ["linear"], ["zoom"], 10, 4, 14, 7, 18, 12],
-      "line-blur":  ["interpolate", ["linear"], ["zoom"], 10, 1.2, 14, 2.0, 18, 3.2],
+      "line-blur": ["interpolate", ["linear"], ["zoom"], 10, 1.2, 14, 2.0, 18, 3.2],
       "line-opacity": 0.7
     }
   });
+}
 
+if (!MAP.getLayer(HG_ROUTE_LINE)) {
   MAP.addLayer({
     id: HG_ROUTE_LINE,
     type: "line",
@@ -201,7 +207,9 @@ function focusRouteOnMap(routeId, startIndex = 0) {
       "line-opacity": 0.95
     }
   });
+}
 
+if (!MAP.getLayer(HG_ROUTE_STOPS)) {
   MAP.addLayer({
     id: HG_ROUTE_STOPS,
     type: "circle",
@@ -214,26 +222,30 @@ function focusRouteOnMap(routeId, startIndex = 0) {
       "circle-stroke-width": 1.4
     }
   });
-
-  if (!MAP.__hgRouteStopsClickBound) {
-    MAP.on("click", HG_ROUTE_STOPS, (e) => {
-      const f = e.features && e.features[0];
-      if (!f) return;
-      const id = f.properties?.placeId;
-      const p = id ? _placeById(id) : null;
-      if (p && typeof window.openPlaceCard === "function") window.openPlaceCard(p);
-    });
-    MAP.__hgRouteStopsClickBound = true;
-  }
-
-  const b = coords.reduce(
-    (bb, c) => bb.extend(c),
-    new maplibregl.LngLatBounds(coords[0], coords[0])
-  );
-  MAP.fitBounds(b, { padding: 60 });
-
-  _toast("Rute vist på kartet");
 }
+
+if (!MAP.__hgRouteStopsClickBound) {
+  MAP.on("click", HG_ROUTE_STOPS, (e) => {
+    const f = e.features && e.features[0];
+    if (!f) return;
+    const id = f.properties?.placeId;
+    const p = id ? _placeById(id) : null;
+    if (p && typeof window.openPlaceCard === "function") {
+      window.openPlaceCard(p);
+    }
+  });
+
+  MAP.__hgRouteStopsClickBound = true;
+}
+
+const b = coords.reduce(
+  (bb, c) => bb.extend(c),
+  new maplibregl.LngLatBounds(coords[0], coords[0])
+);
+
+MAP.fitBounds(b, { padding: 60 });
+
+_toast("Rute vist på kartet");
 
 function showRouteOverlay(routeId, startIndex = 0) {
   // “overlay” hos deg = vis linja + toast
