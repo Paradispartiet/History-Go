@@ -579,38 +579,53 @@ if (canTag) {
         }
       }
 
-      // ---- CHECK FOR SET FIRST ----
+// ---- CHECK FOR SET FIRST ----
 const setList = _byTarget.get(tid + "__SET__") || [];
 
 if (setList.length) {
-  const setMeta = setList[0];
+
+  // velg første set som ikke er fullført
+  const progress = JSON.parse(localStorage.getItem("hg_quiz_sets_v1") || "{}");
+  const setMeta = setList.find(s => !progress[s.set_id]) || setList[0];
+
   const setData = await fetchJson(setMeta.file);
 
-  if (!setData || !Array.isArray(setData.questions)) {
+  // støtt begge format:
+  // 1) [ {...}, {...} ]
+  // 2) { questions: [...] }
+  const setQuestions = Array.isArray(setData)
+    ? setData
+    : (setData && Array.isArray(setData.questions) ? setData.questions : null);
+
+  if (!setQuestions) {
     API.showToast("Set-data feilformatert");
     return;
   }
 
+  localStorage.setItem("hg_active_set", setMeta.set_id);
+  
   openQuiz();
 
   runQuizFlow({
     title: person ? person.name : (place ? place.name : "Quiz"),
     targetId: tid,
-    questions: setData.questions,
+    questions: setQuestions,
     onEnd: (correct, total, meta) => {
 
-  saveSetProgress(setMeta.set_id, correct, total);
+      localStorage.removeItem("hg_active_set");
 
-  if (window.KnowledgeLearning && Array.isArray(meta?.emnerTouched)) {
-    const unique = [...new Set(meta.emnerTouched)];
-    unique.forEach(emneId => {
-      window.KnowledgeLearning.setUnderstood(emneId);
-    });
-  }
+      saveSetProgress(setMeta.set_id, correct, total);
 
-  API.showToast(`Set fullført: ${correct}/${total}`);
-  API.dispatchProfileUpdate();
-}
+      if (window.KnowledgeLearning && Array.isArray(meta?.emnerTouched)) {
+        const unique = [...new Set(meta.emnerTouched)];
+        unique.forEach(emneId => {
+          window.KnowledgeLearning.setUnderstood(emneId);
+        });
+      }
+
+      API.showToast(`Set fullført: ${correct}/${total}`);
+      API.dispatchProfileUpdate();
+    }
   });
 
   return; // STOP – ikke kjør legacy
