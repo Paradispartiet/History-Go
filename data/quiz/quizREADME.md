@@ -504,3 +504,279 @@ Når set completion, unlocks, trivia/knowledge, civication konsekvens.
 ⸻
 
 Hvis du vil, kan vi nå bruke matrisen til å definere én konkret “kontrakt” for quiz-set-formatet (felt som type/funfact/epoch/lifestyle/emne_ids) slik at både Knowledge, Trivia, AHA-tagging og LearningState kan bruke samme quiz-objekt uten ekstra spesialkoding.
+
+
+Du har helt rett. Hvis systemet bare bruker én spørsmålsstruktur, vil quizene bli monotone. Løsningen er å definere spørsmålstyper (question archetypes) og la hvert set bruke en blanding av dem. Da trekker systemet fra ulike felt: fakta, trivia, emne, epoke, år, konsepter, osv.
+
+Nedenfor er en konkret modell som passer direkte med feltene i supersetQUIZMAL.
+
+⸻
+
+1. Definer faste spørsmåls-typer
+
+Lag en liten katalog med 10–12 archetypes. Hver type bruker forskjellige felt.
+
+A. Faktaspørsmål
+
+Bruker:
+
+personId / placeId
+year
+knowledge
+
+Eksempel
+
+Hvilken rolle hadde Carl Berner i 1905?
+
+⸻
+
+B. Stedsspørsmål
+
+Bruker:
+
+placeId
+emne_id
+knowledge
+
+Eksempel
+
+Hva illustrerer Torggata tydelig i byutvikling?
+
+⸻
+
+C. År-spørsmål
+
+Bruker:
+
+year
+epoke_id
+
+Eksempel
+
+Hvilket år markerer denne fasen i Oslos modernisering?
+
+⸻
+
+D. Begrepsspørsmål
+
+Bruker:
+
+core_concepts
+concept_focus
+
+Eksempel
+
+Hva betyr “knutepunkt” i bygeografi?
+
+⸻
+
+E. Mekanisme-spørsmål
+
+Bruker:
+
+emne_id
+core_concepts
+
+Eksempel
+
+Hva er en vanlig effekt av økt mobilitet i en by?
+
+⸻
+
+F. Epoque-spørsmål
+
+Bruker:
+
+epoke_id
+knowledge
+
+Eksempel
+
+Hvilken epoke i byutviklingen representerer Ring 3?
+
+⸻
+
+G. Sammenligning
+
+Bruker:
+
+related_emner
+
+Eksempel
+
+Hva skiller et offentlig møteplassrom fra et kommersielt byrom?
+
+⸻
+
+H. Case-spørsmål
+
+Bruker:
+
+placeId
+core_concepts
+
+Eksempel
+
+Hvilket sted i Oslo illustrerer tydelig et urbant knutepunkt?
+
+⸻
+
+I. Trivia / funfact
+
+Bruker:
+
+trivia
+knowledge
+
+Eksempel
+
+Hvilket uventet faktum gjelder Carl Berners plass?
+
+⸻
+
+J. Analyse
+
+Bruker:
+
+emne_id
+core_concepts
+epoke_id
+
+Eksempel
+
+Hvorfor oppstår flaskehalser i bytrafikk?
+
+⸻
+
+2. Hvert set bør ha en miks
+
+Dette hindrer monotoni.
+
+Set 1 – Introduksjon
+
+2 fakta
+1 sted
+1 trivia
+1 begrep
+
+
+⸻
+
+Set 2 – Forståelse
+
+1 fakta
+1 epoke
+1 mekanisme
+1 case
+1 begrep
+
+
+⸻
+
+Set 3 – Analyse
+
+1 fakta
+2 mekanisme
+1 analyse
+1 sammenligning
+
+
+⸻
+
+3. Distractors (feilalternativer)
+
+For å gjøre quizene mer varierte, trekk feilalternativer fra:
+
+andre emner i samme kategori
+andre core_concepts
+andre steder
+andre epoker
+
+Eksempel:
+
+Spørsmål om mobilitet:
+
+riktig:
+knutepunkt
+
+distractors:
+
+gentrifisering
+symbolsk makt
+territorialitet
+
+
+⸻
+
+4. Dette gjør quizene forskjellige
+
+Selv om temaet er det samme (f.eks. Carl Berner), kan spørsmålene variere:
+
+fakta
+sted
+epoke
+begrep
+analyse
+
+Dermed føles hvert set nytt.
+
+⸻
+
+5. Fordelen for appen
+
+Systemet kan lage:
+	•	kart-quiz
+	•	tematiske quiz
+	•	epoke-quiz
+	•	person-quiz
+	•	analyse-quiz
+
+fra samme database.
+
+⸻
+
+6. Praktisk regel
+
+Når vi lager nye quiz:
+
+hver quiz må bruke minst ett av:
+year
+emne
+concept
+epoke
+trivia
+
+Da blir de ikke like.
+
+⸻
+
+7. Viktig designvalg
+
+SupersetQUIZMAL bør derfor ha ett ekstra felt:
+
+question_type
+
+Eksempel:
+
+"question_type": "concept"
+
+mulige typer:
+
+fact
+place
+year
+concept
+mechanism
+epoque
+comparison
+case
+trivia
+analysis
+
+Dette gjør at systemet kan balansere spørsmålene automatisk.
+
+⸻
+
+Hvis du vil, kan jeg også vise deg noe som er ganske viktig før vi lager alle quizene:
+
+Du har faktisk allerede nok steder og emner til å lage et quizsystem som kan generere ca. 1500–2000 forskjellige spørsmål, men bare hvis vi organiserer emnekartet riktig først.
