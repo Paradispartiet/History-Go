@@ -33,6 +33,7 @@ window.HG_ORS.profile = HG_ORS.profile;
 // -------------------- State --------------------
 let ROUTES = [];
 let routesLoaded = false;
+let GENERATED_ROUTES = [];
 
 // -------------------- MapLibre IDs --------------------
 // Tematiske ruter
@@ -50,6 +51,35 @@ const HG_NAV_LINE = "hg-nav-route-line";
 // =====================================================
 function _toast(msg) {
   if (typeof window.showToast === "function") window.showToast(msg);
+}
+
+function generateThemeRoutes() {
+
+  const routes = {};
+  const places = window.PLACES || [];
+
+  places.forEach(p => {
+    if (!Array.isArray(p.emner)) return;
+
+    p.emner.forEach(emne => {
+
+      if (!routes[emne]) {
+        routes[emne] = {
+          id: "theme_" + emne,
+          name: emne,
+          stops: []
+        };
+      }
+
+      routes[emne].stops.push({
+        placeId: p.id
+      });
+
+    });
+  });
+
+  GENERATED_ROUTES = Object.values(routes);
+
 }
 
 function getUserPos() {
@@ -376,6 +406,7 @@ async function renderLeftRoutesList() {
   if (!box) return;
 
   await loadRoutes();
+  generateThemeRoutes();
 
   if (!ROUTES.length) {
     box.innerHTML = `<div class="muted">Ingen ruter lastet (routes.json tom / feil path).</div>`;
@@ -435,6 +466,8 @@ function initLeftRoutesPanel() {
 
   setLeftPanelMode(sel.value || "nearby");
 }
+
+
 
 // =====================================================
 // Public API (clean) + Compat for popup-utils
