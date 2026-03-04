@@ -228,12 +228,25 @@
         indexQuestion(q);
       });
 
-      // ---- INDEX SET METADATA ----
-      sets.forEach(set => {
-       if (set && set.set_id && set.targetId) {
-        _byTarget.set(set.targetId + "__SET__", set);
-      }
-     });
+// ---- INDEX SET METADATA ----
+sets.forEach(set => {
+  if (set && set.set_id && set.targetId) {
+
+    const key = set.targetId + "__SET__";
+
+    if (!_byTarget.has(key)) {
+      _byTarget.set(key, []);
+    }
+
+    _byTarget.get(key).push(set);
+
+    // ← LEGG SORTERING HER
+    _byTarget.get(key).sort((a, b) =>
+      (a.order || 0) - (b.order || 0)
+    );
+
+  }
+});
 
       _loaded = true;
       dlog("loaded questions:", _all.length, "targets:", _byTarget.size);
@@ -567,9 +580,10 @@ if (canTag) {
       }
 
       // ---- CHECK FOR SET FIRST ----
-const setMeta = _byTarget.get(tid + "__SET__");
+const setList = _byTarget.get(tid + "__SET__") || [];
 
-if (setMeta) {
+if (setList.length) {
+  const setMeta = setList[0];
   const setData = await fetchJson(setMeta.file);
 
   if (!setData || !Array.isArray(setData.questions)) {
