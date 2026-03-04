@@ -421,6 +421,19 @@ async function renderLeftRoutesList() {
   await loadRoutes();
   generateThemeRoutes();
 
+  // ---- FILTER ROUTES BY LEARNING ----
+  const filteredRoutes = ROUTES.filter(r => {
+    if (!r.unlock_emne) return true;
+
+    if (!window.KnowledgeLearning) return true;
+
+    return window.KnowledgeLearning.isUnderstood?.(r.unlock_emne);
+  });
+
+  if (!filteredRoutes.length) {
+    box.innerHTML = `<div class="muted">Ingen ruter tilgjengelige enda.</div>`;
+    return;
+  }
   if (!ROUTES.length) {
     box.innerHTML = `<div class="muted">Ingen ruter lastet (routes.json tom / feil path).</div>`;
     return;
