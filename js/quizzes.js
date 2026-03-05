@@ -590,17 +590,16 @@ if (setList.length) {
 
   const setData = await fetchJson(setMeta.file);
 
-  // støtt begge format:
-  // 1) [ {...}, {...} ]
-  // 2) { questions: [...] }
-  const setQuestions = Array.isArray(setData)
-    ? setData
-    : (setData && Array.isArray(setData.questions) ? setData.questions : null);
+const block = Array.isArray(setData?.sets)
+  ? setData.sets.find(s => s && s.set_id === setMeta.set_id)
+  : null;
 
-  if (!setQuestions) {
-    API.showToast("Set-data feilformatert");
-    return;
-  }
+const setQuestions = Array.isArray(block?.questions) ? block.questions : null;
+
+if (!setQuestions) {
+  API.showToast("Set-data feilformatert");
+  return;
+}
 
   localStorage.setItem("hg_active_set", setMeta.set_id);
   
