@@ -580,35 +580,43 @@ if (canTag) {
       }
 
 // ---- CHECK FOR SET FIRST ----
-const setList = _byTarget.get(tid + "__SET__") || [];
+
+const setList = (_byTargetSets && _byTargetSets.get(tid)) || [];
 
 if (setList.length) {
 
-  // velg første set som ikke er fullført
-  const progress = JSON.parse(localStorage.getItem("hg_quiz_sets_v1") || "{}");
+  let progress = {};
+  try {
+    progress = JSON.parse(localStorage.getItem("hg_quiz_sets_v1") || "{}");
+  } catch(e) {}
+
   const setMeta = setList.find(s => !progress[s.set_id]) || setList[0];
 
   const setData = await fetchJson(setMeta.file);
 
-const block = Array.isArray(setData?.sets)
-  ? setData.sets.find(s => s && s.set_id === setMeta.set_id)
-  : null;
+  if (!setData) {
+    API.showToast("Kunne ikke laste quiz-set");
+    return;
+  }
 
-const setQuestions = Array.isArray(block?.questions) ? block.questions : null;
+  const block = setData?.sets?.find(s => s?.set_id === setMeta.set_id) || null;
 
-if (!setQuestions) {
-  API.showToast("Set-data feilformatert");
-  return;
-}
+  const setQuestions = Array.isArray(block?.questions) ? block.questions : null;
+
+  if (!setQuestions) {
+    API.showToast("Set-data feilformatert");
+    return;
+  }
 
   localStorage.setItem("hg_active_set", setMeta.set_id);
-  
+
   openQuiz();
 
   runQuizFlow({
     title: person ? person.name : (place ? place.name : "Quiz"),
     targetId: tid,
     questions: setQuestions,
+
     onEnd: (correct, total, meta) => {
 
       localStorage.removeItem("hg_active_set");
