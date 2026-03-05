@@ -784,6 +784,124 @@ Du har faktisk allerede nok steder og emner til å lage et quizsystem som kan ge
 
 ...............
 
+vi endret lott:
+
+
+Det beste systemet for dere er ett quiz-system (set/levels), med én datamodell, én progresjonskilde, og ett læringsregelverk — og så lar dere “legacy” dø som runtime-mode.
+
+Grunnen er enkel: i quizzes.js kjører dere allerede både set-mode og legacy fallback, og begge flyter inn i “knowledge”-lagene (riktig svar → knowledge/trivia hooks).  ￼
+
+I tillegg har dere allerede id-kollisjoner i quizbankene (verifisert i filene du lastet opp):
+	•	kunst: 307 spørsmål / 287 unike id (bl.a. harriet_backer_quiz_1..5 x3)
+	•	musikk: 125 / 98 unike id (bl.a. bla_quiz_1..5 x2)
+	•	litteratur: 220 / 207 unike id (bl.a. inger_hagerup_quiz_1..5 x2)
+
+Det gjør at “legacy” som primærnøkkelmodell ikke skalerer.
+
+⸻
+
+Beste målarkitektur
+
+1) Én quizdatatype (superset) for ALT
+
+Alle spørsmål (uansett “fakta/historie/teori”) er samme objekt, alltid med:
+	•	quiz_id (globalt unik, stabil)
+	•	targetId (place/person/nature)
+	•	categoryId
+	•	level (1–5) ← dette ER settene dine
+	•	resten av superset-feltene (knowledge, emne_id, core_concepts, epoke_id, year, source, difficulty, tags, …)
+
+id blir kun “legacy/label”, ikke systemnøkkel.
+
+2) Én progresjonskilde
+
+Dropp quiz_progress + “perfect legacy”-logikk som egen verden. Behold bare:
+	•	hg_quiz_sets_v1 (eller rename til hg_quiz_progress_v2)
+
+Struktur per target:
+	•	hvilke level som er fullført
+	•	score/best score per level
+	•	timestamp
+
+3) Én runtime-vei: set-mode alltid
+
+I QuizEngine.start fjerner dere “fallback to legacy”, slik at alt går via set-listen (manifest.sets).  ￼
+
+Det betyr:
+	•	ingen “to systemer”
+	•	ingen “hva er legacy vs set”
+	•	bare “levels”
+
+4) Learning/Knowledge: hold to separate lag (men én motor)
+
+Dere vil ha “quiz = kunnskap”, ikke skole. Det løses ved å skille:
+	•	Knowledge-snippets: lagres per riktig svar (det gjør dere allerede i runQuizFlow).  ￼
+	•	KnowledgeLearningState (forståelse): trigges kun når det er faglig mening (typisk level 4–5, eller tags inneholder theory/concept). I dag trigges setUnderstood både i set og legacy perfect — dette må gjøres entydig.  ￼
+
+5) Filstruktur: ett “target-sett” per target, ikke per set
+
+Du ville ikke ha set_1.json, set_2.json, osv. Løsningen er:
+	•	Én fil per target: data/quiz/sets/by/karl_johan.json
+	•	Den filen inneholder alle 5 levels (set_1..set_5) som arrays.
+
+Manifestet peker på samme fil for alle levels, men med set_id/order. QuizEngine må da hente riktig set fra setData.sets[] (en liten endring i set-loaderen).
+
+Dette skalerer på iPad: små filer per target, ikke gigantfiler.
+
+⸻
+
+Minimal “konsekvensplan” (for å komme dit raskt)
+
+Steg 1 — Lås primærnøkkel
+
+Innfør quiz_id på ALLE spørsmål i alle kategorier.
+Anbefalt deterministisk format:
+	•	quiz_id = <categoryId>__<targetId>__L<level>__Q<index>
+Evt. med hash hvis du vil tåle kopier.
+
+Dette løser id-duplikater uten å måtte rydde alt manuelt.
+
+Steg 2 — Konverter eksisterende quizbanker til level=1
+
+Alt dere allerede har skrevet blir level 1 for sine targets, i riktig eierkategori (kunst/musikk/…).
+Ingen “legacy mode”, bare “level 1 content”.
+
+Steg 3 — Bygg level 2–5 som faktisk dypner
+
+Her legger dere inn:
+	•	level 2: historie
+	•	level 3: hendelser/personer
+	•	level 4: konflikt/struktur
+	•	level 5: teori/begrep (emnekart + teoretikere)
+
+Steg 4 — Slå av legacy fallback i quizzes.js
+
+Manifest.files kan stå tom.
+Kun manifest.sets brukes.
+
+Steg 5 — Flytt rewards/merits til set-onEnd (én regel)
+
+I dag ligger belønning i legacy perfect-blokken. Flytt den til set-onEnd med én tydelig regel, f.eks:
+	•	score >= 4/5 gir merits/badge/collect
+	•	score >= 3/5 låser opp neste level
+	•	alltid lagre score
+
+⸻
+
+Resultat for deres bruk
+	•	Én quizmotor
+	•	Én progresjon
+	•	Én datamodell
+	•	“Kunnskap” som faktisk bygges (knowledge snippets) uten at dere lager skoleopplegg
+	•	Settene dine (fakta/historie/hendelser/konflikt/teori) blir levels i samme system, ikke to parallelle systemer
+
+Hvis du vil at jeg skal gjøre neste konkrete leveranse: jeg kan generere en konvertert set-struktur for én kategori (f.eks. BY eller KUNST), der alle eksisterende spørsmål blir level 1 med quiz_id, og manifest.sets bygges automatisk slik at legacy fallback kan fjernes.
+
+
+
+.....
+
+
 
 
 set_1 → fakta/sted /
