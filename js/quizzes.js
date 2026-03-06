@@ -247,12 +247,13 @@ sets.forEach(set => {
 // sorter etter order
 for (const list of _byTargetSets.values()) {
   list.sort((a, b) => (a.order || 0) - (b.order || 0));
-};
+}
 
-      _loaded = true;
-      dlog("loaded questions:", _all.length, "targets:", _byTarget.size);
+_loaded = true;
+dlog("loaded questions:", _all.length, "targets:", _byTarget.size);
+dlog("loaded sets:", _byTargetSets.size);
+
     })();
-
     return _loading;
   }
 
