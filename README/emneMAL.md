@@ -1,10 +1,37 @@
 {
-  "id": "em_by_xxx",
+  "emne_id": "em_by_xxx",
+  "subject_id": "by",
+  "domain": "struktur",
+  "area_id": "",
+  "area_label": "",
+  "level": 2,
   "title": "Tittel",
-  "akse": ["struktur", "praksis", "makt", "tid"],
-  "status": "aktiv",
+  "short_label": "Kort tittel",
+  "status": "active",
   "definition": "Kort, presis definisjon av hva emnet studerer.",
   "why_it_matters": "Hvorfor dette emnet er viktig for å forstå byen i dag.",
+  "keywords": [
+    "ord_1",
+    "ord_2",
+    "ord_3"
+  ],
+  "dimensions": [
+    "dimensjon_1",
+    "dimensjon_2",
+    "dimensjon_3"
+  ],
+  "akse": [
+    "struktur",
+    "praksis",
+    "makt",
+    "tid"
+  ],
+  "key_concepts": [
+    "hovedbegrep_1",
+    "hovedbegrep_2",
+    "hovedbegrep_3",
+    "hovedbegrep_4"
+  ],
   "core_concepts": [
     "begrep_1",
     "begrep_2",
@@ -26,12 +53,27 @@
     "Hvem får tilgang, og hvem skyves ut?",
     "Hvordan merkes dette i kropp, rytme og hverdagsbruk?"
   ],
+  "conflicts": [
+    "konflikt_1",
+    "konflikt_2",
+    "konflikt_3"
+  ],
+  "ideological_dimensions": [
+    "ideologisk_spenning_1",
+    "ideologisk_spenning_2",
+    "ideologisk_spenning_3"
+  ],
   "methods": [
     "observasjon",
     "kartlegging",
     "sammenligning over tid",
     "fotoanalyse",
     "spor av bruk og slitasje"
+  ],
+  "analysis_axes": [
+    "akse_1",
+    "akse_2",
+    "akse_3"
   ],
   "canonical_thinkers": [
     "Lefebvre",
@@ -56,5 +98,12 @@
   ],
   "blindspots": [
     "Hva emnet ikke forklarer godt alene"
+  ],
+  "learning_goals": [],
+  "checkpoints": [],
+  "concepts": [
+    "begrep_1",
+    "begrep_2",
+    "begrep_3"
   ]
 }
