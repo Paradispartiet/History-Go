@@ -1,14 +1,14 @@
-Her er en samlet modell du kan låse i README.
+Ja. Her er den oppdaterte hele modellen med 7 set, der de to første er lette, åpne og inngangsvennlige før systemet blir mer faglig.
 
 # History Go – Quizmodell for BY
 
-Dette dokumentet definerer den faste quizarkitekturen for BY-kategorien i History Go. Modellen gjelder både for manuell skriving av quiz og for senere generering av quiz fra fagkart, emnekart og emner.
+Dette dokumentet definerer den faste quizarkitekturen for BY-kategorien i History Go.
 
 Målet er:
-- å unngå monotone quiz
-- å sikre faglig dybde
-- å holde fast på progresjonen vi allerede har definert
-- å gjøre datastrukturen stabil for appen
+- å gjøre quizene varierte
+- å gi en myk inngang før det blir faglig tyngre
+- å holde fast på progresjonen vi allerede har bestemt
+- å gjøre quizsystemet stabilt for både manuell skriving og senere generering
 
 ---
 
@@ -17,7 +17,7 @@ Målet er:
 Quizsystemet har to akser:
 
 1. **Set-nivå**
-   - styrer læringsprogresjon og dybde
+   - styrer progresjon og dybde
 
 2. **Question type**
    - styrer hvilken type spørsmål det er
@@ -35,7 +35,6 @@ Eksempel:
   "question_layer": "historie_kontekst"
 }
 
-Dette er et faktaspørsmål, men på historisk/kontekstuelt nivå.
 
 ⸻
 
@@ -44,55 +43,78 @@ Dette er et faktaspørsmål, men på historisk/kontekstuelt nivå.
 Dette er den faste modellen for alle BY-sett:
 
 {
-  "set_1": "fakta_sted",
-  "set_2": "historie_kontekst",
-  "set_3": "hendelser_personer",
-  "set_4": "konflikt_struktur",
-  "set_5": "teori_begrep"
+  "set_1": "intro_lett",
+  "set_2": "intro_sted",
+  "set_3": "fakta_sted",
+  "set_4": "historie_kontekst",
+  "set_5": "hendelser_personer",
+  "set_6": "konflikt_struktur",
+  "set_7": "teori_begrep"
 }
 
-Set 1 – fakta / sted
+Set 1 – intro / lett
 
-Spørsmålene skal introdusere stedet eller personen konkret:
-	•	hva det er
-	•	hvor det ligger
-	•	hva det er kjent for
-	•	enkel identitet, funksjon, utseende, navn
+Formål:
+	•	få brukeren inn
+	•	være løs, ledig, enkel og litt morsom
+	•	ingen tung faglighet
+	•	bygge nysgjerrighet
 
-Set 2 – historie / kontekst
+Typiske spørsmål:
+	•	enkle fakta
+	•	synlige kjennetegn
+	•	hva stedet er kjent for
+	•	små trivia-spørsmål
+	•	umiddelbar gjenkjennelse
 
-Spørsmålene skal gi historisk og kontekstuell forankring:
-	•	opprinnelse
-	•	transformasjon
-	•	epoke
+Set 2 – intro / sted
+
+Formål:
+	•	fortsatt lett inngang
+	•	mer konkret stedskunnskap
+	•	fortsatt ikke tørt eller teoretisk
+	•	brukeren skal føle at de “blir kjent” med stedet
+
+Typiske spørsmål:
+	•	plassering
+	•	navn
+	•	funksjon
+	•	nærmiljø
+	•	enkel historisk orientering
+
+Set 3 – fakta / sted
+
+Formål:
+	•	nå begynner det mer systematiske laget
+	•	tydelige faktaspørsmål om stedet eller personen
+	•	mer kunnskapsmessig tyngde enn set 1–2
+
+Set 4 – historie / kontekst
+
+Formål:
+	•	historisk plassering
 	•	utviklingslinjer
-	•	historiske funksjoner
+	•	epoker
+	•	bakgrunn
 
-Set 3 – hendelser / personer
+Set 5 – hendelser / personer
 
-Spørsmålene skal knytte stedet til konkrete hendelser eller personer:
-	•	sentrale aktører
-	•	avgjørende hendelser
-	•	konkrete forbindelser mellom sted og person
-	•	spesifikke byhistoriske hendelser
+Formål:
+	•	koble stedet til aktører og konkrete hendelser
+	•	gjøre materialet mer stofflig og levende
 
-Set 4 – konflikt / struktur
+Set 6 – konflikt / struktur
 
-Spørsmålene skal forklare hvordan stedet inngår i større mønstre:
-	•	konfliktlinjer
-	•	styring
-	•	privatisering
-	•	brukerkonflikter
-	•	mobilitet, makt, forskjeller, regulering
+Formål:
+	•	vise hvordan stedet inngår i større mønstre
+	•	makt, regulering, konflikt, styring, mobilitet, forskjeller
 
-Set 5 – teori / begrep
+Set 7 – teori / begrep
 
-Spørsmålene skal løfte stedet inn i faglig analyse:
-	•	begreper
-	•	mekanismer
-	•	analytiske kategorier
-	•	teorikoblinger
-	•	emnekart / fagplan / emner_by
+Formål:
+	•	løfte stedet inn i faglig analyse
+	•	bruke emnekart, fagkart og emner eksplisitt
+	•	begreper, mekanismer og analytiske distinksjoner
 
 ⸻
 
@@ -119,9 +141,11 @@ Disse skal brukes konsekvent.
 
 4. Faste question layers
 
-I stedet for generiske lag som intro eller analysis, bruker vi lag som matcher set-progresjonen:
+Vi bruker lag som matcher set-progresjonen:
 
 [
+  "intro_lett",
+  "intro_sted",
   "fakta_sted",
   "historie_kontekst",
   "hendelser_personer",
@@ -129,13 +153,16 @@ I stedet for generiske lag som intro eller analysis, bruker vi lag som matcher s
   "teori_begrep"
 ]
 
-Disse skal speile hvilket set spørsmålet hører til.
-
 Eksempel:
 
 {
+  "question_type": "trivia",
+  "question_layer": "intro_lett"
+}
+
+{
   "question_type": "fact",
-  "question_layer": "fakta_sted"
+  "question_layer": "intro_sted"
 }
 
 {
@@ -146,66 +173,87 @@ Eksempel:
 
 ⸻
 
-5. Fast kobling mellom set og tillatte spørsmålstyper
+5. Fast kobling mellom set og spørsmålstyper
 
-Set 1 – fakta / sted
+Set 1 – intro / lett
+
+Typisk miks:
+	•	fact
+	•	fact
+	•	trivia
+	•	place
+	•	fact
+
+Hovedregel:
+	•	lett
+	•	åpent
+	•	morsomt
+	•	konkret
+	•	lite fagterminologi
+
+Set 2 – intro / sted
 
 Typisk miks:
 	•	fact
 	•	place
+	•	fact
 	•	trivia
+	•	year
 
 Hovedregel:
-	•	konkrete spørsmål
-	•	lav terskel
-	•	tydelig sted/person-forankring
+	•	fortsatt lett
+	•	mer stedsnært
+	•	mer informativt enn set 1
+	•	fortsatt lav terskel
 
-Set 2 – historie / kontekst
+Set 3 – fakta / sted
+
+Typisk miks:
+	•	fact
+	•	fact
+	•	place
+	•	trivia
+	•	concept
+
+Hovedregel:
+	•	nå kan spørsmålene være mer faste og kunnskapsorienterte
+	•	men fortsatt ganske tilgjengelige
+
+Set 4 – historie / kontekst
 
 Typisk miks:
 	•	fact
 	•	year
 	•	epoque
 	•	case
+	•	concept
 
-Hovedregel:
-	•	historisk plassering
-	•	opprinnelse
-	•	utviklingsforløp
-
-Set 3 – hendelser / personer
+Set 5 – hendelser / personer
 
 Typisk miks:
 	•	fact
 	•	case
 	•	comparison
+	•	fact
+	•	trivia
 
-Hovedregel:
-	•	koble stedet til noe som faktisk skjedde
-	•	koble stedet til aktører
-	•	gi mer stofflig dybde
-
-Set 4 – konflikt / struktur
+Set 6 – konflikt / struktur
 
 Typisk miks:
+	•	mechanism
 	•	mechanism
 	•	analysis
 	•	comparison
+	•	case
 
-Hovedregel:
-	•	forklare hvordan stedet inngår i større strukturer
-	•	ikke bare beskrive stedet
-
-Set 5 – teori / begrep
+Set 7 – teori / begrep
 
 Typisk miks:
 	•	concept
+	•	concept
 	•	mechanism
 	•	analysis
-
-Hovedregel:
-	•	bruke emner, begreper og teoretiske distinksjoner
-	•	være klart mer analytisk enn set 1–3
+	•	comparison
 
 ⸻
 
@@ -223,9 +271,6 @@ Krever:
 Valgfritt:
 	•	year
 
-Eksempel:
-	•	Hvilken rolle hadde Carl Berner i 1905?
-
 ⸻
 
 B. place
@@ -238,9 +283,6 @@ Krever:
 	•	emne_id
 	•	knowledge
 
-Eksempel:
-	•	Hva illustrerer Torggata tydelig i byutvikling?
-
 ⸻
 
 C. year
@@ -251,9 +293,6 @@ Brukes til:
 Krever:
 	•	year
 	•	epoke_id
-
-Eksempel:
-	•	Hvilket år markerer denne fasen i Oslos modernisering?
 
 ⸻
 
@@ -266,9 +305,6 @@ Krever:
 	•	core_concepts
 	•	concept_focus
 
-Eksempel:
-	•	Hva betyr «knutepunkt» i bygeografi?
-
 ⸻
 
 E. mechanism
@@ -279,9 +315,6 @@ Brukes til:
 Krever:
 	•	emne_id
 	•	core_concepts
-
-Eksempel:
-	•	Hva er en vanlig effekt av økt mobilitet i en by?
 
 ⸻
 
@@ -294,9 +327,6 @@ Krever:
 	•	epoke_id
 	•	knowledge
 
-Eksempel:
-	•	Hvilken epoke i byutviklingen representerer Ring 3?
-
 ⸻
 
 G. comparison
@@ -306,9 +336,6 @@ Brukes til:
 
 Krever:
 	•	related_emner
-
-Eksempel:
-	•	Hva skiller et offentlig møteplassrom fra et kommersielt byrom?
 
 ⸻
 
@@ -321,9 +348,6 @@ Krever:
 	•	placeId
 	•	core_concepts
 
-Eksempel:
-	•	Hvilket sted i Oslo illustrerer tydelig et urbant knutepunkt?
-
 ⸻
 
 I. trivia
@@ -332,11 +356,8 @@ Brukes til:
 	•	funfacts og overraskende kunnskap
 
 Krever:
-	•	trivia
 	•	knowledge
-
-Eksempel:
-	•	Hvilket uventet faktum gjelder Carl Berners plass?
+	•	trivia
 
 ⸻
 
@@ -349,9 +370,6 @@ Krever:
 	•	emne_id
 	•	core_concepts
 	•	epoke_id
-
-Eksempel:
-	•	Hvorfor oppstår flaskehalser i bytrafikk?
 
 ⸻
 
@@ -377,22 +395,26 @@ Og hvert spørsmål må i tillegg ha minst én tydelig kunnskapsbærer utover ba
   "related_emner"
 ]
 
-Viktig regel
+Viktig unntak for set 1 og set 2
 
-Et spørsmål skal ikke bare være:
-	•	question
-	•	options
-	•	answer
+I de to første settene trenger ikke hvert spørsmål være tungt forankret i fagmodellen.
 
-Det skal være koblet til kunnskapsmodellen.
+Der gjelder denne mildere regelen:
+	•	alle spørsmål må ha knowledge
+	•	minst noen av spørsmålene i settet skal bruke year, emne_id, trivia eller concept_focus
+	•	set 1 og set 2 kan være mer frie, så lenge de er informative og stedsnære
+
+Altså:
+	•	set 1 og 2 skal være inviterende
+	•	set 3–7 skal være mer systematiske
 
 ⸻
 
 8. Distractors (feilalternativer)
 
-Feilalternativer skal ikke være tilfeldige. De skal trekkes fra nærliggende faglig stoff.
+Feilalternativer skal ikke være tilfeldige.
 
-Distractors kan hentes fra:
+De skal trekkes fra:
 	•	andre emner i samme kategori
 	•	andre core_concepts
 	•	andre steder
@@ -410,7 +432,7 @@ Distractors:
 	•	symbolsk geografi
 	•	territorialitet
 
-Dette gjør spørsmålene vanskeligere og mindre banale.
+Dette gjør quizene mindre banale.
 
 ⸻
 
@@ -439,18 +461,35 @@ Feil:
 
 Et set skal som hovedregel ikke blande emner hvis det kan unngås.
 
-Særlig i set 1 bør spørsmålene samles rundt ett tydelig emne når stedet faktisk peker mot ett hovedtema.
+Særlig fra set 3 og oppover bør spørsmålene samles rundt ett tydelig emne når stedet faktisk peker mot ett hovedtema.
 
-Eksempel:
-	•	Aker Brygge set 1 → em_by_uteservering_kommersielt_byliv
+Viktig unntak
 
-Dette gjør settene mer pedagogiske og mindre tilfeldige.
+Set 1 og set 2 kan være mer åpne og stedsnære.
+Der er det lov å være løsere før quizene blir tydelig faglig organisert.
 
 ⸻
 
 11. Standard oppsett for nye BY-sett
 
-Set 1
+Set 1 – intro / lett
+	•	3 fact
+	•	1 trivia
+	•	1 place
+
+Layer:
+	•	intro_lett
+
+Set 2 – intro / sted
+	•	2 fact
+	•	1 place
+	•	1 trivia
+	•	1 year
+
+Layer:
+	•	intro_sted
+
+Set 3 – fakta / sted
 	•	2 fact
 	•	1 place
 	•	1 trivia
@@ -459,7 +498,7 @@ Set 1
 Layer:
 	•	fakta_sted
 
-Set 2
+Set 4 – historie / kontekst
 	•	1 fact
 	•	1 year
 	•	1 epoque
@@ -469,7 +508,7 @@ Set 2
 Layer:
 	•	historie_kontekst
 
-Set 3
+Set 5 – hendelser / personer
 	•	1 fact
 	•	1 case
 	•	1 comparison
@@ -479,7 +518,7 @@ Set 3
 Layer:
 	•	hendelser_personer
 
-Set 4
+Set 6 – konflikt / struktur
 	•	2 mechanism
 	•	1 analysis
 	•	1 comparison
@@ -488,7 +527,7 @@ Set 4
 Layer:
 	•	konflikt_struktur
 
-Set 5
+Set 7 – teori / begrep
 	•	2 concept
 	•	1 mechanism
 	•	1 analysis
@@ -496,8 +535,6 @@ Set 5
 
 Layer:
 	•	teori_begrep
-
-Dette er ikke en absolutt matematisk tvang, men standardmønsteret.
 
 ⸻
 
@@ -514,7 +551,6 @@ Eksempel på korrekt struktur:
   "natureId": "",
   "targetId": "aker_brygge",
   "question_scope": "place",
-
   "question": "Hva var Aker Brygge-området før det ble et kommersielt byområde?",
   "options": [
     "Verfts- og industriområde",
@@ -523,23 +559,18 @@ Eksempel på korrekt struktur:
   ],
   "answer": "Verfts- og industriområde",
   "answerIndex": 0,
-
   "dimension": "historie",
   "topic": "Transformasjon",
   "knowledge": "Aker Brygge vokste fram på området til det tidligere Akers mekaniske verksted og ble senere transformert til handel, servering og kontorer.",
   "trivia": [],
-
   "difficulty": 1,
   "question_type": "fact",
   "question_layer": "fakta_sted",
-
   "year": null,
   "epoke_id": null,
   "epoke_domain": "by",
-
   "emne_id": "em_by_uteservering_kommersielt_byliv",
   "related_emner": [],
-
   "core_concepts": [
     "kommersielt byliv",
     "forbruk",
@@ -551,7 +582,6 @@ Eksempel på korrekt struktur:
   "concept_focus": [
     "kommersielt byliv"
   ],
-
   "learning_paths": [],
   "tags": [
     "fakta",
@@ -575,7 +605,8 @@ Alle nye spørsmål skal:
 	3.	passe inn i riktig set
 	4.	bruke riktige fagfelt fra fagkart_by, emnekart_by og emner_by
 	5.	ikke få automatisk utfylte begreper som ikke faktisk passer
-	6.	valideres mot denne modellen før de legges inn
+	6.	være lettere og friere i set 1–2
+	7.	være tydeligere faglig strukturert fra set 3 og oppover
 
 ⸻
 
@@ -583,6 +614,8 @@ Alle nye spørsmål skal:
 
 History Go BY-quiz bygger på denne modellen:
 	•	settene styrer progresjon
+	•	set 1 og 2 er lette, inviterende og stedsnære
+	•	set 3–7 går gradvis over i mer faglig struktur
 	•	question_type styrer spørsmålsform
 	•	question_layer speiler set-nivå
 	•	emne_id, core_concepts og epoke_id kobler quiz til fagmodellen
@@ -591,4 +624,4 @@ History Go BY-quiz bygger på denne modellen:
 
 Dette er den faste standarden fremover.
 
-Hvis du vil, lager jeg dette som en ferdig `.md`-fil du kan laste ned.
+Hvis du vil, lager jeg dette som en ferdig `.md`-fil.
