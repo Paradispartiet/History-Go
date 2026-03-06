@@ -90,6 +90,21 @@ function findNextSet(setList, currentSetId) {
   };
 }
 
+
+  function getQuizCount(targetId) {
+
+  const sets = (_byTargetSets && _byTargetSets.get(targetId)) || [];
+
+  if (sets.length) {
+    return sets.length;
+  }
+
+  const legacy = (_byTarget && _byTarget.get(targetId)) || [];
+
+  return legacy.length;
+}
+
+  
   // ============================================================
   // STORAGE HELPERS (STRICT, NO NORMALIZATION)
   // ============================================================
