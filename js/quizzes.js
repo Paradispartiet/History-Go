@@ -626,9 +626,11 @@ const setList = (_byTargetSets && _byTargetSets.get(tid)) || [];
 
 if (setList.length) {
 
+  setList.sort((a,b)=>(a.order||0)-(b.order||0));
+
   let progress = {};
   try {
-    const progress = safeParse("hg_quiz_sets_v1", {});
+    progress = safeParse("hg_quiz_sets_v1", {});
   } catch(e) {}
 
   const setMeta =
@@ -641,9 +643,13 @@ if (setList.length) {
     return;
   }
 
-  const block = setData?.sets?.find(s => s?.set_id === setMeta.set_id) || null;
+  const block = setData?.sets?.find(
+    s => s?.set_id === setMeta.set_id
+  ) || null;
 
-  const setQuestions = Array.isArray(block?.questions) ? block.questions : null;
+  const setQuestions = Array.isArray(block?.questions)
+    ? block.questions
+    : null;
 
   if (!setQuestions) {
     API.showToast("Set-data feilformatert");
@@ -679,13 +685,13 @@ if (setList.length) {
 
       if (nextSet) {
         setTimeout(() => {
-        QuizEngine.start(tid);
-       }, 600);
+          QuizEngine.start(tid);
+        }, 600);
       }
     }
   });
 
-  return; // STOP – ikke kjør legacy
+  return;
 }
 
 // ---- FALLBACK TO LEGACY ----
