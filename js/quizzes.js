@@ -67,6 +67,15 @@ async function loadSetQuestions(setMeta) {
   return block.questions;
 }
 
+function findNextSet(setList, currentSetId) {
+
+  const idx = setList.findIndex(s => s.set_id === currentSetId);
+
+  if (idx === -1) return null;
+
+  return setList[idx + 1] || null;
+}
+
   
   async function loadManifestData() {
   const m = await fetchJson(QUIZ_MANIFEST_PATH);
@@ -622,7 +631,8 @@ if (setList.length) {
     const progress = safeParse("hg_quiz_sets_v1", {});
   } catch(e) {}
 
-  const setMeta = setList.find(s => !progress[s.set_id]) || setList[0];
+  const setMeta =
+  setList.find(s => !progress[s.set_id]?.completed) || setList[0];
 
   const setData = await loadSetFile(setMeta.file);
 
@@ -664,6 +674,14 @@ if (setList.length) {
 
       API.showToast(`Set fullført: ${correct}/${total}`);
       API.dispatchProfileUpdate();
+
+      const nextSet = findNextSet(setList, setMeta.set_id);
+
+      if (nextSet) {
+        setTimeout(() => {
+        QuizEngine.start(tid);
+       }, 600);
+      }
     }
   });
 
