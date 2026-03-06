@@ -588,7 +588,7 @@ if (setList.length) {
 
   let progress = {};
   try {
-    progress = JSON.parse(localStorage.getItem("hg_quiz_sets_v1") || "{}");
+    const progress = safeParse("hg_quiz_sets_v1", {});
   } catch(e) {}
 
   const setMeta = setList.find(s => !progress[s.set_id]) || setList[0];
