@@ -42,17 +42,31 @@
   async function loadSetFile(path) {
 
   const url = absUrl(path);
-
   if (_setFileCache.has(url)) {
     return _setFileCache.get(url);
   }
 
   const data = await fetchJson(path);
-
   _setFileCache.set(url, data);
-
   return data;
 }
+
+  
+async function loadSetQuestions(setMeta) {
+
+  const data = await loadSetFile(setMeta.file);
+  if (!data || !Array.isArray(data.sets)) {
+    return null;
+  }
+
+  const block = data.sets.find(s => s?.set_id === setMeta.set_id);
+  if (!block || !Array.isArray(block.questions)) {
+    return null;
+  }
+
+  return block.questions;
+}
+
   
   async function loadManifestData() {
   const m = await fetchJson(QUIZ_MANIFEST_PATH);
