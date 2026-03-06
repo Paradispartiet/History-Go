@@ -189,7 +189,8 @@
   let _loaded = false;
   let _loading = null;
 
-  const _byTarget = new Map(); // targetId -> questions[]
+  const _byTarget = new Map();     // targetId -> questions[]
+  const _byTargetSets = new Map(); // targetId -> setMeta[]
   const _all = [];
 
   function targetKey(q) {
@@ -230,23 +231,23 @@
 
 // ---- INDEX SET METADATA ----
 sets.forEach(set => {
-  if (set && set.set_id && set.targetId) {
 
-    const key = set.targetId + "__SET__";
+  if (!set || !set.set_id || !set.targetId) return;
 
-    if (!_byTarget.has(key)) {
-      _byTarget.set(key, []);
-    }
+  const tid = set.targetId;
 
-    _byTarget.get(key).push(set);
-
-    // ← LEGG SORTERING HER
-    _byTarget.get(key).sort((a, b) =>
-      (a.order || 0) - (b.order || 0)
-    );
-
+  if (!_byTargetSets.has(tid)) {
+    _byTargetSets.set(tid, []);
   }
+
+  _byTargetSets.get(tid).push(set);
+
 });
+
+// sorter etter order
+for (const list of _byTargetSets.values()) {
+  list.sort((a, b) => (a.order || 0) - (b.order || 0));
+};
 
       _loaded = true;
       dlog("loaded questions:", _all.length, "targets:", _byTarget.size);
