@@ -39,6 +39,21 @@
     return await r.json();
   }
 
+  async function loadSetFile(path) {
+
+  const url = absUrl(path);
+
+  if (_setFileCache.has(url)) {
+    return _setFileCache.get(url);
+  }
+
+  const data = await fetchJson(path);
+
+  _setFileCache.set(url, data);
+
+  return data;
+}
+  
   async function loadManifestData() {
   const m = await fetchJson(QUIZ_MANIFEST_PATH);
 
@@ -191,6 +206,7 @@
 
   const _byTarget = new Map();     // targetId -> questions[]
   const _byTargetSets = new Map(); // targetId -> setMeta[]
+  const _setFileCache = new Map();
   const _all = [];
 
   function targetKey(q) {
@@ -594,7 +610,7 @@ if (setList.length) {
 
   const setMeta = setList.find(s => !progress[s.set_id]) || setList[0];
 
-  const setData = await fetchJson(setMeta.file);
+  const setData = await loadSetFile(setMeta.file);
 
   if (!setData) {
     API.showToast("Kunne ikke laste quiz-set");
