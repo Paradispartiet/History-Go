@@ -87,38 +87,62 @@ window.HG_ENV = {
     window.MAP = map;
   }
 
-  /* ==============================
-     LAST BASISDATA
-  ============================== */
+/* ==============================
+   LAST BASISDATA
+============================== */
 
-  const places        = await fetchJSON("data/places.json")        || [];
-  const relations     = await fetchJSON("data/relations.json")     || [];
-  const wonderkammer  = await fetchJSON("data/wonderkammer.json");
-  const tags          = await fetchJSON("data/tags.json");
+const PLACE_FILES = [
+  "data/places/places_by.json",
+  "data/places/places_historie.json",
+  "data/places/places_kunst.json",
+  "data/places/places_litteratur.json",
+  "data/places/places_musikk.json",
+  "data/places/places_naeringsliv.json",
+  "data/places/places_natur.json",
+  "data/places/places_politikk.json",
+  "data/places/places_sport.json",
+  "data/places/places_subkultur.json",
+  "data/places/places_vitenskap.json"
+];
 
-  /* ==============================
-     LAST PEOPLE (multi-file)
-  ============================== */
+let places = [];
 
-  let peopleAll = [];
+for (const url of PLACE_FILES) {
+  const data = await fetchJSON(url);
+  if (Array.isArray(data)) {
+    places.push(...data);
+  } else if (Array.isArray(data?.places)) {
+    places.push(...data.places);
+  }
+}
 
-  if (typeof PEOPLE_FILES === "object") {
-    for (const [domain, url] of Object.entries(PEOPLE_FILES)) {
-      const data = await fetchJSON(url);
-      if (Array.isArray(data)) {
-        peopleAll.push(...data.map(p => ({ ...p, __source: domain })));
-      }
+const relations     = await fetchJSON("data/relations.json")     || [];
+const wonderkammer  = await fetchJSON("data/wonderkammer.json");
+const tags          = await fetchJSON("data/tags.json");
+
+/* ==============================
+   LAST PEOPLE (multi-file)
+============================== */
+
+let peopleAll = [];
+
+if (typeof PEOPLE_FILES === "object") {
+  for (const [domain, url] of Object.entries(PEOPLE_FILES)) {
+    const data = await fetchJSON(url);
+    if (Array.isArray(data)) {
+      peopleAll.push(...data.map(p => ({ ...p, __source: domain })));
     }
   }
+}
 
-  /* ==============================
-     RUNTIME GLOBALS
-  ============================== */
+/* ==============================
+   RUNTIME GLOBALS
+============================== */
 
-  window.PLACES = places;
-  window.PEOPLE = peopleAll;
-  window.RELATIONS = relations;
-
+window.PLACES = places;
+window.PEOPLE = peopleAll;
+window.RELATIONS = relations;
+  
   /* ==============================
      RELATION INDEX
   ============================== */
