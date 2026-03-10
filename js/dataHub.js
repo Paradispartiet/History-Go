@@ -132,9 +132,28 @@ const DEFAULTS = {
   function loadTags(opts = {}) {
     return fetchJSON(pData("tags.json"), opts);
   }
-  function loadPlacesBase(opts = {}) {
-    return fetchJSON(pData("places.json"), opts);
+async function loadPlacesBase(opts = {}) {
+
+  const manifest = await fetchJSON(pData("places/manifest.json"), opts);
+
+  const places = [];
+
+  for (const file of manifest.files) {
+
+    const data = await fetchJSON(pData(file), opts);
+
+    if (Array.isArray(data)) {
+      places.push(...data);
+    } else if (Array.isArray(data?.places)) {
+      places.push(...data.places);
+    }
+
   }
+
+  return places;
+}
+  
+
   function loadPeopleBase(opts = {}) {
     return fetchJSON(pData("people.json"), opts);
   }
