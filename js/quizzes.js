@@ -283,18 +283,83 @@ function findNextSet(setList, currentSetId) {
         indexQuestion(q);
       });
 
+
+
+      
 // ---- INDEX SET METADATA ----
-sets.forEach(set => {
+// Støtter både:
+// A) ferdig ekspandert manifest: { targetId, file, set_id, order }
+// B) kompakt manifest:          { targetId, file }  -> ekspanderes fra file.sets[]
 
-  if (!set || !set.set_id || !set.targetId) return;
+const expandedSets = [];
+const seenSetKeys = new Set();
 
-  const tid = set.targetId;
+for (const entry of sets) {
+
+  if (!entry || !entry.targetId || !entry.file) continue;
+
+  const tid = s(entry.targetId);
+
+  // FORMAT A: allerede ekspandert
+  if (entry.set_id) {
+
+    const key = `${tid}::${entry.set_id}`;
+    if (seenSetKeys.has(key)) continue;
+
+    seenSetKeys.add(key);
+
+    expandedSets.push({
+      targetId: tid,
+      file: entry.file,
+      set_id: entry.set_id,
+      order: Number.isFinite(entry.order) ? entry.order : 0
+    });
+
+    continue;
+  }
+
+  // FORMAT B: kompakt -> les set-filen og ekspander
+  try {
+
+    const data = await loadSetFile(entry.file);
+
+    if (!data || !Array.isArray(data.sets)) {
+      dwarn("set file mangler sets[]:", entry.file);
+      continue;
+    }
+
+    data.sets.forEach((block, idx) => {
+
+      if (!block?.set_id) return;
+
+      const key = `${tid}::${block.set_id}`;
+      if (seenSetKeys.has(key)) return;
+
+      seenSetKeys.add(key);
+
+      expandedSets.push({
+        targetId: tid,
+        file: entry.file,
+        set_id: block.set_id,
+        order: Number.isFinite(block.order) ? block.order : (idx + 1)
+      });
+
+    });
+
+  } catch (e) {
+    dwarn("could not expand set file", entry.file, e);
+  }
+}
+
+expandedSets.forEach((setMeta) => {
+
+  const tid = setMeta.targetId;
 
   if (!_byTargetSets.has(tid)) {
     _byTargetSets.set(tid, []);
   }
 
-  _byTargetSets.get(tid).push(set);
+  _byTargetSets.get(tid).push(setMeta);
 
 });
 
@@ -303,6 +368,7 @@ for (const list of _byTargetSets.values()) {
   list.sort((a, b) => (a.order || 0) - (b.order || 0));
 }
 
+      
 _loaded = true;
 dlog("loaded questions:", _all.length, "targets:", _byTarget.size);
 dlog("loaded sets:", _byTargetSets.size);
