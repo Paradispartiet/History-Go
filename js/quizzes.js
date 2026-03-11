@@ -194,17 +194,53 @@ function findNextSet(setList, currentSetId) {
   try {
     const key = "hg_quiz_sets_v1";
     const data = safeParse(key, {});
+    const alreadyCompleted = !!data?.[setId]?.completed;
+
     data[setId] = {
       completed: true,
       score,
       total,
       timestamp: Date.now()
     };
+
     safeWrite(key, data);
+    return { alreadyCompleted, data };
   } catch (e) {
     dwarn("could not save set progress", e);
+    return { alreadyCompleted: false, data: {} };
   }
 }
+
+  function incrementMeritPoints(categoryId, amount = 1) {
+    try {
+      const key = s(categoryId);
+      if (!key) return false;
+
+      const merits = safeParse("merits_by_category", {});
+      merits[key] = merits[key] || { points: 0 };
+      merits[key].points = Number(merits[key].points || 0) + Number(amount || 0);
+      safeWrite("merits_by_category", merits);
+      return true;
+    } catch (e) {
+      dwarn("could not save merits_by_category", e);
+      return false;
+    }
+  }
+
+  function countCompletedSets(setList, progressMap) {
+    const list = Array.isArray(setList) ? setList : [];
+    const prog = progressMap && typeof progressMap === "object" ? progressMap : {};
+    return list.filter((item) => !!prog[item?.set_id]?.completed).length;
+  }
+
+  function getQuizCategoryId(questions) {
+    return s(
+      questions?.[0]?.categoryId ||
+      questions?.[0]?.category_id ||
+      questions?.[0]?.category ||
+      ""
+    );
+  }
 
   // ============================================================
   // ENGINE STATE
@@ -452,7 +488,7 @@ dlog("loaded sets:", _byTargetSets.size);
 // onEnd(correct, total, meta)
 // meta = { correctAnswers, conceptsCorrect, emnerTouched }
 // ============================================================
-function runQuizFlow({ title, targetId, questions, onEnd }) {
+function runQuizFlow({ title, targetId, questions, onEnd, titleSuffix = "", progressPrefix = "" }) {
   ensureQuizUI();
 
   const qs = {
@@ -462,7 +498,7 @@ function runQuizFlow({ title, targetId, questions, onEnd }) {
     progress: document.getElementById("quizProgress"),
     feedback: document.getElementById("quizFeedback")
   };
-  qs.title.textContent = title || "Quiz";
+  qs.title.textContent = [title || "Quiz", titleSuffix].filter(Boolean).join(" — ");
 
   let i = 0;
   let correct = 0;
@@ -472,12 +508,7 @@ function runQuizFlow({ title, targetId, questions, onEnd }) {
   const emnerTouched = [];     // string[]
 
   // ✅ categoryId beregnes ÉN gang per quiz-run (strict: ingen "by" fallback her)
-  const categoryId = s(
-    questions?.[0]?.categoryId ||
-    questions?.[0]?.category_id ||
-    questions?.[0]?.category ||
-    ""
-  );
+  const categoryId = getQuizCategoryId(questions);
 
   if (!categoryId && window.DEBUG) {
     console.warn("[quiz] missing categoryId on quiz questions", {
@@ -501,7 +532,9 @@ function runQuizFlow({ title, targetId, questions, onEnd }) {
       .map((opt, idx) => `<button data-idx="${idx}">${opt}</button>`)
       .join("");
 
-    qs.progress.textContent = `${i + 1}/${questions.length}`;
+    qs.progress.textContent = progressPrefix
+      ? `${progressPrefix} • ${i + 1}/${questions.length}`
+      : `${i + 1}/${questions.length}`;
     qs.feedback.textContent = "";
 
     const bar = document.querySelector(".quiz-progress .bar");
@@ -554,10 +587,11 @@ function runQuizFlow({ title, targetId, questions, onEnd }) {
           if (window.HGUnlocks && typeof window.HGUnlocks.recordFromQuiz === "function") {
             try {
               window.HGUnlocks.recordFromQuiz({
-               quizId,
-               categoryId,
-               targetId: tid
-             });
+                quizId,
+                categoryId, // strict: kan være "" hvis data mangler
+                item: q,
+                targetId: tid
+              });
             } catch (e) {
               dwarn("HGUnlocks.recordFromQuiz failed", e);
             }
@@ -736,12 +770,34 @@ if (setList.length) {
     return;
   }
 
+  const setIndex = setList.findIndex((s) => s.set_id === setMeta.set_id);
+  const totalSets = setList.length;
+  const completedBefore = countCompletedSets(setList, progress);
+  const alreadyCompleted = !!progress?.[setMeta.set_id]?.completed;
+  const remainingBefore = Math.max(totalSets - completedBefore, 0);
+  const remainingAfterThis = alreadyCompleted
+    ? remainingBefore
+    : Math.max(totalSets - (completedBefore + 1), 0);
+  const setName = s(block?.title || block?.name || block?.label || "");
+  const titleSuffix = setName
+    ? `${setName} · Sett ${setIndex + 1}/${totalSets}`
+    : `Sett ${setIndex + 1}/${totalSets}`;
+  const progressPrefix = alreadyCompleted
+    ? (remainingBefore > 0
+        ? `Dette settet er allerede tatt • ${remainingBefore} sett mangler fortsatt`
+        : `Alle sett er allerede fullført`)
+    : (remainingAfterThis > 0
+        ? `${remainingAfterThis} sett igjen etter dette • +1 poeng`
+        : `Siste sett • +1 poeng`);
+
   localStorage.setItem("hg_active_set", setMeta.set_id);
 
   openQuiz();
 
   runQuizFlow({
     title: person ? person.name : (place ? place.name : "Quiz"),
+    titleSuffix,
+    progressPrefix,
     targetId: tid,
     questions: setQuestions,
 
@@ -749,7 +805,18 @@ if (setList.length) {
 
       localStorage.removeItem("hg_active_set");
 
-      saveSetProgress(setMeta.set_id, correct, total);
+      const saveResult = saveSetProgress(setMeta.set_id, correct, total);
+      const firstCompletion = !saveResult.alreadyCompleted;
+      const completedAfter = countCompletedSets(setList, saveResult.data);
+      const remainingSets = Math.max(totalSets - completedAfter, 0);
+      const categoryId = getQuizCategoryId(setQuestions);
+      let awardedPoint = false;
+
+      if (firstCompletion && categoryId) {
+        incrementMeritPoints(categoryId, 1);
+        API.addCompletedQuizAndMaybePoint(categoryId, `${tid}::${setMeta.set_id}`);
+        awardedPoint = true;
+      }
 
       if (window.KnowledgeLearning && Array.isArray(meta?.emnerTouched)) {
         const unique = [...new Set(meta.emnerTouched)];
@@ -758,12 +825,23 @@ if (setList.length) {
         });
       }
 
-      API.showToast(`Set fullført: ${correct}/${total}`);
+      if (remainingSets === 0) {
+        if (typeof API.markQuizAsDoneExternal === "function") API.markQuizAsDoneExternal(tid);
+        else markQuizAsDone(tid);
+      }
+
+      const toastParts = [`Sett ${setIndex + 1}/${totalSets} fullført: ${correct}/${total}`];
+      if (awardedPoint) toastParts.push("+1 poeng");
+      else if (firstCompletion && !categoryId) toastParts.push("mangler kategori – ingen poeng");
+      if (remainingSets > 0) toastParts.push(`${remainingSets} sett gjenstår`);
+      else toastParts.push("alle sett fullført");
+
+      API.showToast(toastParts.join(" • "));
       API.dispatchProfileUpdate();
 
       const nextSet = findNextSet(setList, setMeta.set_id);
 
-      if (nextSet) {
+      if (nextSet && remainingSets > 0) {
         setTimeout(() => {
           QuizEngine.start(tid);
         }, 600);
@@ -791,12 +869,7 @@ if (!questions.length) {
           const perfect = correct === total;
 
 if (perfect) {
-  const categoryId = s(
-    questions[0]?.categoryId ||
-    questions[0]?.category_id ||
-    questions[0]?.category ||
-    ""
-  );
+  const categoryId = getQuizCategoryId(questions);
 
   if (!categoryId) {
     if (window.DEBUG) console.warn("[quiz] perfect but missing categoryId; not awarding points", questions[0]);
