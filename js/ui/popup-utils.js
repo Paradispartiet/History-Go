@@ -402,10 +402,27 @@ el.querySelectorAll("[data-wk]").forEach(btn => {
 // ------------------------------------------------------------
 
 // Sjekk om en quiz for person/sted er fullført
+function matchesQuizTarget(historyItem, targetId) {
+  const key = String(targetId ?? "").trim();
+  if (!key) return false;
+
+  const id = String(historyItem?.id ?? "").trim();
+  const tid = String(historyItem?.targetId ?? "").trim();
+  const parentTid = String(historyItem?.parentTargetId ?? "").trim();
+
+  return (
+    id === key ||
+    tid === key ||
+    parentTid === key ||
+    id.startsWith(key + "::") ||
+    tid.startsWith(key + "::")
+  );
+}
+
 function hasCompletedQuiz(targetId) {
   try {
     const hist = JSON.parse(localStorage.getItem("quiz_history") || "[]");
-    return hist.some(h => h.id === targetId);
+    return Array.isArray(hist) && hist.some(h => matchesQuizTarget(h, targetId));
   } catch {
     return false;
   }
@@ -414,11 +431,46 @@ function hasCompletedQuiz(targetId) {
 function getLastQuizCategoryId(targetId) {
   try {
     const hist = JSON.parse(localStorage.getItem("quiz_history") || "[]");
-    const last = [...hist].reverse().find(h => String(h.id) === String(targetId));
+    const last = Array.isArray(hist)
+      ? [...hist].reverse().find(h => matchesQuizTarget(h, targetId))
+      : null;
     return last?.categoryId || null;
   } catch {
     return null;
   }
+}
+
+async function enhanceQuizButton(btn, targetId) {
+  if (!btn || !targetId) return;
+
+  const engine = window.QuizEngine;
+  if (!engine || typeof engine.getTargetSummary !== "function") return;
+
+  try {
+    const info = await engine.getTargetSummary(targetId);
+    if (!btn.isConnected || !info || !info.hasAny) return;
+
+    if (info.mode === "sets") {
+      if (info.isComplete) {
+        btn.textContent = `Ta quiz igjen · ${info.totalSets}/${info.totalSets} sett`;
+        btn.classList.add("quiz-done");
+        btn.title = `Alle ${info.totalSets} sett er fullført.`;
+      } else if (info.completedSets > 0) {
+        btn.textContent = `Fortsett quiz · ${info.completedSets}/${info.totalSets} sett`;
+        btn.title = `${info.remainingSets} sett gjenstår.`;
+      } else {
+        btn.textContent = `Ta quiz · ${info.totalSets} sett`;
+        btn.title = `${info.totalSets} sett totalt.`;
+      }
+      return;
+    }
+
+    if (info.mode === "legacy" && info.isComplete) {
+      btn.textContent = "Ta quiz igjen";
+      btn.classList.add("quiz-done");
+      btn.title = "Quizen er allerede fullført, men kan tas igjen.";
+    }
+  } catch {}
 }
 
 // Hent kunnskapsblokker for en bestemt kategori + mål (person/sted)
@@ -708,6 +760,8 @@ window.showPersonPopup = function(person) {
 
   makePopup(html, "person-popup");
 
+  enhanceQuizButton(currentPopup.querySelector(`[data-quiz="${person.id}"]`), person.id);
+
   currentPopup.querySelectorAll("[data-place]").forEach(btn => {
     btn.onclick = () => {
       const place = PLACES.find(x => x.id === btn.dataset.place);
@@ -897,6 +951,8 @@ const peopleHere = (typeof getPeopleForPlace === "function")
       </div>
   `;
   makePopup(html, "place-popup");
+
+  enhanceQuizButton(currentPopup.querySelector(`[data-quiz="${place.id}"]`), place.id);
 };
 
 
