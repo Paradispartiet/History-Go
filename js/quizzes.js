@@ -451,9 +451,84 @@ dlog("loaded sets:", _byTargetSets.size);
     if (!_escWired) {
       _escWired = true;
       document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape") closeQuiz();
+        if (e.key === "Escape") {
+          closeQuizSummary();
+          closeQuiz();
+        }
       });
     }
+  }
+
+  function ensureQuizSummaryUI() {
+    if (document.getElementById("quizSummaryModal")) return;
+
+    const m = document.createElement("div");
+    m.id = "quizSummaryModal";
+    m.className = "modal";
+    m.innerHTML = `
+      <div class="modal-body">
+        <div class="modal-head">
+          <strong id="quizSummaryTitle">Quiz</strong>
+          <button class="ghost" id="quizSummaryClose">Lukk</button>
+        </div>
+        <div class="sheet-body">
+          <div id="quizSummaryLead" style="margin:0 0 10px;font-weight:600"></div>
+          <div id="quizSummaryMeta" class="muted" style="margin:0 0 14px"></div>
+          <div style="display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap;">
+            <button class="ghost" id="quizSummarySecondary" style="display:none"></button>
+            <button id="quizSummaryPrimary">Neste</button>
+          </div>
+        </div>
+      </div>`;
+    document.body.appendChild(m);
+
+    const modal = document.getElementById("quizSummaryModal");
+    modal.querySelector("#quizSummaryClose").onclick = closeQuizSummary;
+    modal.addEventListener("click", (e) => {
+      if (e.target && e.target.id === "quizSummaryModal") closeQuizSummary();
+    });
+  }
+
+  function openQuizSummary({ title = "Quiz", lead = "", meta = "", primaryText = "Neste", onPrimary = null, secondaryText = "", onSecondary = null }) {
+    ensureQuizSummaryUI();
+
+    const modal = document.getElementById("quizSummaryModal");
+    const titleEl = modal.querySelector("#quizSummaryTitle");
+    const leadEl = modal.querySelector("#quizSummaryLead");
+    const metaEl = modal.querySelector("#quizSummaryMeta");
+    const primaryBtn = modal.querySelector("#quizSummaryPrimary");
+    const secondaryBtn = modal.querySelector("#quizSummarySecondary");
+
+    titleEl.textContent = title;
+    leadEl.textContent = lead;
+    metaEl.textContent = meta;
+    primaryBtn.textContent = primaryText || "Neste";
+    primaryBtn.onclick = () => {
+      closeQuizSummary();
+      if (typeof onPrimary === "function") onPrimary();
+    };
+
+    if (secondaryText) {
+      secondaryBtn.style.display = "inline-flex";
+      secondaryBtn.textContent = secondaryText;
+      secondaryBtn.onclick = () => {
+        closeQuizSummary();
+        if (typeof onSecondary === "function") onSecondary();
+      };
+    } else {
+      secondaryBtn.style.display = "none";
+      secondaryBtn.onclick = null;
+    }
+
+    modal.style.display = "flex";
+    modal.classList.remove("fade-out");
+  }
+
+  function closeQuizSummary() {
+    const modal = document.getElementById("quizSummaryModal");
+    if (!modal) return;
+    modal.classList.add("fade-out");
+    setTimeout(() => modal.remove(), 450);
   }
 
   function openQuiz() {
@@ -488,7 +563,7 @@ dlog("loaded sets:", _byTargetSets.size);
 // onEnd(correct, total, meta)
 // meta = { correctAnswers, conceptsCorrect, emnerTouched }
 // ============================================================
-function runQuizFlow({ title, targetId, questions, onEnd, titleSuffix = "", progressPrefix = "" }) {
+function runQuizFlow({ title, targetId, questions, onEnd, titleSuffix = "", progressPrefix = "", autoClose = true }) {
   ensureQuizUI();
 
   const qs = {
@@ -681,7 +756,7 @@ if (canTag) {
           i++;
           if (i < questions.length) step();
           else {
-            closeQuiz();
+            if (autoClose) closeQuiz();
             const meta = { correctAnswers, conceptsCorrect, emnerTouched };
             try { onEnd(correct, questions.length, meta); }
             catch (e) { dwarn("onEnd crashed", e); }
@@ -801,7 +876,9 @@ if (setList.length) {
     targetId: tid,
     questions: setQuestions,
 
+    autoClose: false,
     onEnd: (correct, total, meta) => {
+
 
       localStorage.removeItem("hg_active_set");
 
@@ -812,9 +889,44 @@ if (setList.length) {
       const categoryId = getQuizCategoryId(setQuestions);
       let awardedPoint = false;
 
+      const compositeSetId = `${tid}::${setMeta.set_id}`;
+      const displayName = [person ? person.name : (place ? place.name : "Quiz"), setName || `Sett ${setIndex + 1}/${totalSets}`]
+        .filter(Boolean)
+        .join(" — ");
+      const image = s(place?.image || person?.image || "");
+
       if (firstCompletion && categoryId) {
         incrementMeritPoints(categoryId, 1);
-        API.addCompletedQuizAndMaybePoint(categoryId, `${tid}::${setMeta.set_id}`);
+        API.addCompletedQuizAndMaybePoint(categoryId, compositeSetId);
+        markQuizProgress(categoryId, compositeSetId);
+
+        saveQuizHistory({
+          schema: QUIZ_HISTORY_SCHEMA,
+          id: compositeSetId,
+          targetId: compositeSetId,
+          categoryId,
+          name: displayName,
+          image,
+          date: new Date().toISOString(),
+          correctCount: correct,
+          total,
+          correctAnswers: Array.isArray(meta?.correctAnswers) ? meta.correctAnswers : []
+        });
+
+        appendLearningEvent({
+          schema: HG_LEARNING_SCHEMA,
+          type: "quiz_set_complete",
+          ts: Date.now(),
+          targetId: compositeSetId,
+          parentTargetId: tid,
+          setId: s(setMeta.set_id),
+          categoryId,
+          correctCount: correct,
+          total,
+          concepts: Array.isArray(meta?.conceptsCorrect) ? meta.conceptsCorrect : [],
+          related_emner: Array.isArray(meta?.emnerTouched) ? meta.emnerTouched : []
+        });
+
         awardedPoint = true;
       }
 
@@ -832,6 +944,7 @@ if (setList.length) {
 
       const toastParts = [`Sett ${setIndex + 1}/${totalSets} fullført: ${correct}/${total}`];
       if (awardedPoint) toastParts.push("+1 poeng");
+      else if (!firstCompletion) toastParts.push("allerede fullført tidligere");
       else if (firstCompletion && !categoryId) toastParts.push("mangler kategori – ingen poeng");
       if (remainingSets > 0) toastParts.push(`${remainingSets} sett gjenstår`);
       else toastParts.push("alle sett fullført");
@@ -840,12 +953,32 @@ if (setList.length) {
       API.dispatchProfileUpdate();
 
       const nextSet = findNextSet(setList, setMeta.set_id);
+      const scoreLine = `Score: ${correct}/${total}`;
+      const rewardLine = awardedPoint
+        ? "+1 poeng"
+        : (!firstCompletion
+            ? "Ingen nye poeng – dette settet var allerede fullført."
+            : (categoryId ? "Ingen nye poeng." : "Ingen poeng – mangler kategori på settet."));
+      const remainingLine = remainingSets > 0
+        ? `${remainingSets} sett gjenstår.`
+        : "Alle sett for dette stedet er fullført.";
 
-      if (nextSet && remainingSets > 0) {
-        setTimeout(() => {
-          QuizEngine.start(tid);
-        }, 600);
-      }
+      closeQuiz();
+      setTimeout(() => {
+        openQuizSummary({
+          title: person ? person.name : (place ? place.name : "Quiz"),
+          lead: `Sett ${setIndex + 1} av ${totalSets} fullført`,
+          meta: [scoreLine, rewardLine, remainingLine].filter(Boolean).join(" • "),
+          primaryText: remainingSets > 0 ? "Neste sett" : "Ferdig",
+          onPrimary: () => {
+            if (remainingSets > 0) {
+              QuizEngine.start(tid);
+            }
+          },
+          secondaryText: remainingSets > 0 ? "Lukk" : "",
+          onSecondary: () => {}
+        });
+      }, 180);
     }
   });
 
@@ -963,6 +1096,56 @@ if (perfect) {
       dwarn("start crashed:", e);
       API.showToast("Quiz-feil: noe krasjet i quizzes.js");
     }
+  };
+
+  QuizEngine.getTargetSummary = async function (targetId) {
+    const tid = s(targetId);
+    if (!tid) {
+      return { targetId: tid, mode: "none", hasAny: false, totalSets: 0, completedSets: 0, remainingSets: 0, isComplete: false };
+    }
+
+    await ensureLoaded();
+
+    const setList = (_byTargetSets && _byTargetSets.get(tid)) || [];
+    if (setList.length) {
+      const progress = safeParse("hg_quiz_sets_v1", {});
+      const completedSets = countCompletedSets(setList, progress);
+      const totalSets = setList.length;
+      return {
+        targetId: tid,
+        mode: "sets",
+        hasAny: true,
+        totalSets,
+        completedSets,
+        remainingSets: Math.max(totalSets - completedSets, 0),
+        isComplete: completedSets >= totalSets && totalSets > 0
+      };
+    }
+
+    const legacy = (_byTarget && _byTarget.get(tid)) || [];
+    if (legacy.length) {
+      const history = safeParse(QUIZ_HISTORY_KEY, []);
+      const isComplete = Array.isArray(history) && history.some(h => s(h?.id || h?.targetId) === tid);
+      return {
+        targetId: tid,
+        mode: "legacy",
+        hasAny: true,
+        totalSets: 1,
+        completedSets: isComplete ? 1 : 0,
+        remainingSets: isComplete ? 0 : 1,
+        isComplete
+      };
+    }
+
+    return {
+      targetId: tid,
+      mode: "none",
+      hasAny: false,
+      totalSets: 0,
+      completedSets: 0,
+      remainingSets: 0,
+      isComplete: false
+    };
   };
 
   // ============================================================
