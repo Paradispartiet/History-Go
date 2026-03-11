@@ -1,0 +1,1304 @@
+// ============================================================
+// HISTORY GO – POPUP-UTILS (ENDLIG VERISON)
+// Bruker KUN filbaner fra JSON: image, imageCard, cardImage
+// Ingen fallback, ingen automatikk, ingen _face-filnavn
+//
+// + OBSERVASJONER:
+// - Leser fra hg_learning_log_v1 (type:"observation")
+// - Viser siste 10 i person- og steds-popup
+// - Trigger Observations fra placeCard via #pcObserve (hvis finnes)
+//
+// NB: STRICT: ingen normalisering utover trim.
+// ============================================================
+
+let currentPopup = null;
+
+
+// ============================================================
+// 0b. RELATIONS → UI (TILKNYTNING) + RUNTIME INDEX
+// Formelle relasjoner: jobb, rolle, virke, institusjon
+// SOLID: bygger runtime-index (byPlace/byPerson) fra window.RELATIONS
+// STRICT: kun trim. Ingen normalisering utover det.
+// ============================================================
+
+function _arr(x) { return Array.isArray(x) ? x : []; }
+function _s(x) { return String(x ?? "").trim(); }
+
+function getRelationsRaw() {
+  return Array.isArray(window.RELATIONS) ? window.RELATIONS : [];
+}
+
+/**
+ * Runtime index:
+ * window.HG_REL_INDEX = {
+ *   _srcRef, _srcLen,
+ *   byPlace: { [placeId]: [rel, ...] },
+ *   byPerson:{ [personId]: [rel, ...] }
+ * }
+ */
+function ensureRelationsIndex() {
+  const rels = getRelationsRaw();
+  const idx = window.HG_REL_INDEX;
+
+  // Hvis samme array-ref + samme lengde: anta uendret (billig).
+  if (idx && idx._srcRef === rels && idx._srcLen === rels.length) return idx;
+
+  const byPlace = Object.create(null);
+  const byPerson = Object.create(null);
+
+  // små hjelpere
+  const push = (map, key, rel) => {
+    if (!key) return;
+    (map[key] || (map[key] = [])).push(rel);
+  };
+
+  const getPlaceIdFromRel = (r) => {
+    const direct = _s(r?.placeId || r?.place_id || r?.place);
+    if (direct) return direct;
+
+    const fromT = _s(r?.fromType || r?.from_type);
+    const toT   = _s(r?.toType   || r?.to_type);
+    const fromI = _s(r?.fromId   || r?.from_id);
+    const toI   = _s(r?.toId     || r?.to_id);
+
+    if (fromT === "place" && fromI) return fromI;
+    if (toT   === "place" && toI)   return toI;
+    return "";
+  };
+
+  const getPersonIdFromRel = (r) => {
+    const direct = _s(r?.personId || r?.person_id || r?.person);
+    if (direct) return direct;
+
+    const fromT = _s(r?.fromType || r?.from_type);
+    const toT   = _s(r?.toType   || r?.to_type);
+    const fromI = _s(r?.fromId   || r?.from_id);
+    const toI   = _s(r?.toId     || r?.to_id);
+
+    if (fromT === "person" && fromI) return fromI;
+    if (toT   === "person" && toI)   return toI;
+    return "";
+  };
+
+const getPersonIdsFromRel = (r) => {
+  const out = [];
+
+  // legacy / direkte felt
+  const direct = _s(r?.personId || r?.person_id || r?.person);
+  if (direct) out.push(direct);
+
+  const fromT = _s(r?.fromType || r?.from_type);
+  const toT   = _s(r?.toType   || r?.to_type);
+  const fromI = _s(r?.fromId   || r?.from_id);
+  const toI   = _s(r?.toId     || r?.to_id);
+
+  if (fromT === "person" && fromI) out.push(fromI);
+  if (toT   === "person" && toI)   out.push(toI);
+
+  // uniq + fjern tom
+  return [...new Set(out.filter(Boolean))];
+};
+  
+  rels.forEach(r => {
+  const pid = getPlaceIdFromRel(r);
+  if (pid) push(byPlace, pid, r);
+
+  // ✅ indexer relasjonen på ALLE personer den berører (person↔person støttes)
+  const persons = getPersonIdsFromRel(r);
+  persons.forEach(pe => push(byPerson, pe, r));
+});
+
+  const out = { _srcRef: rels, _srcLen: rels.length, byPlace, byPerson };
+  window.HG_REL_INDEX = out;
+  return out;
+}
+
+function getRelationsForPlace(placeId) {
+  const pid = _s(placeId);
+  if (!pid) return [];
+  const idx = ensureRelationsIndex();
+  return _arr(idx.byPlace[pid]);
+}
+
+function getRelationsForPerson(personId) {
+  const pid = _s(personId);
+  if (!pid) return [];
+  const idx = ensureRelationsIndex();
+  return _arr(idx.byPerson[pid]);
+}
+
+// ============================================================
+// RELATIONS → lookup helpers (ID→obj)
+// ============================================================
+
+function getPeopleForPlace(placeId) {
+  const pid = _s(placeId);
+  if (!pid) return [];
+
+  const rels = getRelationsForPlace(pid);
+
+  const ids = rels
+    .map(r => {
+      const direct = _s(r?.personId || r?.person_id || r?.person);
+      if (direct) return direct;
+
+      const fromT = _s(r?.fromType || r?.from_type);
+      const toT   = _s(r?.toType   || r?.to_type);
+      const fromI = _s(r?.fromId   || r?.from_id);
+      const toI   = _s(r?.toId     || r?.to_id);
+
+      if (fromT === "person" && fromI) return fromI;
+      if (toT   === "person" && toI)   return toI;
+      return "";
+    })
+    .filter(Boolean);
+
+  const uniq = [...new Set(ids)];
+  const peopleArr = Array.isArray(window.PEOPLE) ? window.PEOPLE : (Array.isArray(PEOPLE) ? PEOPLE : []);
+  const out = uniq.map(id => peopleArr.find(p => _s(p?.id) === id)).filter(Boolean);
+
+  out.sort((a, b) => _s(a.name).localeCompare(_s(b.name), "no"));
+  return out;
+}
+
+function getPlacesForPerson(personId) {
+  const pid = _s(personId);
+  if (!pid) return [];
+
+  const rels = getRelationsForPerson(pid);
+
+  const ids = rels
+    .map(r => {
+      const direct = _s(r?.placeId || r?.place_id || r?.place);
+      if (direct) return direct;
+
+      const fromT = _s(r?.fromType || r?.from_type);
+      const toT   = _s(r?.toType   || r?.to_type);
+      const fromI = _s(r?.fromId   || r?.from_id);
+      const toI   = _s(r?.toId     || r?.to_id);
+
+      if (fromT === "place" && fromI) return fromI;
+      if (toT   === "place" && toI)   return toI;
+      return "";
+    })
+    .filter(Boolean);
+
+  const uniq = [...new Set(ids)];
+  const placesArr = Array.isArray(window.PLACES) ? window.PLACES : (Array.isArray(PLACES) ? PLACES : []);
+  const out = uniq.map(id => placesArr.find(s => _s(s?.id) === id)).filter(Boolean);
+
+  out.sort((a, b) => _s(a.name).localeCompare(_s(b.name), "no"));
+  return out;
+}
+
+// ============================================================
+// RELATIONS → render (TILKNYTNING)
+// ============================================================
+
+function findPersonById(id) {
+  const pid = _s(id);
+  if (!pid) return null;
+  const arr = Array.isArray(window.PEOPLE) ? window.PEOPLE : [];
+  return arr.find(p => _s(p.id) === pid) || null;
+}
+
+function getPersonIdFromSide(r, side /* "from" | "to" */) {
+  const t = _s(r?.[side + "Type"] || r?.[side + "_type"]);
+  const id = _s(r?.[side + "Id"] || r?.[side + "_id"]);
+  return t === "person" ? id : "";
+}
+
+function renderRelationRow(r) {
+  const type  = _s(r?.type || r?.rel || r?.kind) || "kobling";
+  const why   = _s(r?.why || r?.reason || r?.desc || r?.note);
+  const src   = _s(r?.source || r?.src);
+
+  // 1) Støtt person↔person edges (slekt/mentor/etc)
+  const fromPid = getPersonIdFromSide(r, "from");
+  const toPid   = getPersonIdFromSide(r, "to");
+
+  const fromP = fromPid ? findPersonById(fromPid) : null;
+  const toP   = toPid ? findPersonById(toPid) : null;
+
+  const mkPersonBtn = (p, fallbackId) => {
+    const id = _s(p?.id || fallbackId);
+    const name = _s(p?.name) || id;
+    return id
+      ? `<button class="hg-rel-link" data-person="${hgEscAttr(id)}"><strong>${hgEsc(name)}</strong></button>`
+      : `<strong>${hgEsc(name)}</strong>`;
+  };
+
+  let head = "";
+
+  // Edge-format hvis begge ender er personer
+  if (fromPid && toPid) {
+    const left  = mkPersonBtn(fromP, fromPid);
+    const right = mkPersonBtn(toP, toPid);
+    head = `${left} <span class="hg-muted">—</span> <strong>${hgEsc(type)}</strong> <span class="hg-muted">→</span> ${right}`;
+  } else {
+    // 2) Fallback: finn én person via personId / from/to
+    const pid =
+      _s(r?.personId || r?.person_id || r?.person) ||
+      fromPid || toPid;
+
+    const person = pid ? findPersonById(pid) : null;
+    const label = person ? person.name : _s(r?.label || r?.title || r?.name);
+
+    head = label
+      ? `${hgEsc(type)}: ${
+          person
+            ? `<button class="hg-rel-link" data-person="${hgEscAttr(person.id)}"><strong>${hgEsc(label)}</strong></button>`
+            : `<strong>${hgEsc(label)}</strong>`
+        }`
+      : `<strong>${hgEsc(type)}</strong>`;
+  }
+
+  const tail = [
+    why ? `<div class="hg-muted" style="margin-top:4px;">${hgEsc(why)}</div>` : "",
+    src ? `<div class="hg-muted" style="margin-top:4px;">Kilde: ${hgEsc(src)}</div>` : ""
+  ].filter(Boolean).join("");
+
+  return `<li style="margin:8px 0;">${head}${tail}</li>`;
+}
+
+function isAutoMigratedRel(r) {
+  const id = _s(r?.id);
+  if (id.startsWith("mig_")) return true;
+
+  const type = _s(r?.type || r?.rel || r?.kind).toLowerCase();
+  const why  = _s(r?.why || r?.reason || r?.desc || r?.note);
+  const src  = _s(r?.source || r?.src);
+  const label = _s(r?.label || r?.title || r?.name);
+
+  // "tilknytning" uten ekstra info = bare kobling (dupliserer people.json)
+  if (type === "tilknytning" && !why && !src && !label) return true;
+
+  return false;
+}
+
+function filterCuratedRels(rels) {
+  const list = _arr(rels);
+  return list.filter(r => !isAutoMigratedRel(r));
+}
+
+function buildWonderChamberHtml({ title, rels }) {
+  const list = _arr(rels);
+
+  return `
+  <div class="hg-section">
+    ${title ? `<h3>${title}</h3>` : ``}
+      ${
+        list.length
+          ? `<ul class="hg-rel-list" style="margin:0;padding-left:0;list-style:none;">${list.map(renderRelationRow).join("")}</ul>`
+          : `<p class="hg-muted">Ingen relasjoner registrert ennå.</p>`
+      }
+    </div>
+  `;
+}
+
+// ✅ behold disse navnene: de brukes allerede i UI (placeCard/personPopup)
+function wonderChambersForPlace(place) {
+  const rels = getRelationsForPlace(place?.id);
+
+  // ✅ PlaceCard: vis bare "kuraterte" relasjoner (ikke migrert tilknytning)
+  const curated = filterCuratedRels(rels);
+
+  return buildWonderChamberHtml({ title: "", rels: curated });
+}
+
+function wonderChambersForPerson(person) {
+  const rels = getRelationsForPerson(person?.id);
+  const curated = filterCuratedRels(rels);
+  return buildWonderChamberHtml({ title: "", rels: curated });
+}
+
+
+
+// ============================================================
+// 1. LUKK POPUP
+// ============================================================
+function closePopup() {
+  if (currentPopup) {
+    currentPopup.remove();
+    currentPopup = null;
+  }
+}
+
+// ============================================================
+// 2. GENERELL POPUP-GENERATOR
+// ============================================================
+function makePopup(html, extraClass = "", onClose = null) {
+  closePopup();
+
+  const el = document.createElement("div");
+  el.className = `hg-popup ${extraClass}`;
+
+  el.innerHTML = `
+    <div class="hg-popup-inner">
+      <button class="hg-popup-close" data-close-popup>✕</button>
+      ${html}
+    </div>
+  `;
+
+  let _closed = false;
+
+  // klikkbare personer fra Vunderkamre
+  el.querySelectorAll("[data-person]").forEach(btn => {
+    btn.onclick = () => {
+      const pid = String(btn.dataset.person || "").trim();
+      const pr = (Array.isArray(window.PEOPLE) ? window.PEOPLE : []).find(x => String(x.id).trim() === pid);
+      if (pr) {
+        closePopup();
+        window.showPersonPopup(pr);
+      }
+    };
+  });
+
+  // klikkbare Wonderkammer-entries
+el.querySelectorAll("[data-wk]").forEach(btn => {
+  btn.onclick = () => {
+    const id = String(btn.dataset.wk || "").trim();
+    if (!id) return;
+
+    if (window.Wonderkammer && typeof window.Wonderkammer.openEntry === "function") {
+      window.Wonderkammer.openEntry(id);
+    } else if (typeof window.openWonderkammerEntry === "function") {
+      window.openWonderkammerEntry(id);
+    } else {
+      console.warn("[WK] No open handler for entry", id);
+    }
+  };
+});
+  
+  function finishClose() {
+    if (_closed) return;
+    _closed = true;
+
+    // fjern popup (samme som closePopup, men lokalt)
+    if (el && el.parentNode) el.parentNode.removeChild(el);
+    if (currentPopup === el) currentPopup = null;
+
+    // kjør callback ETTER at popup faktisk er borte
+    if (typeof onClose === "function") {
+      try { onClose(); } catch (e) { if (window.DEBUG) console.warn("[makePopup] onClose failed", e); }
+    }
+  }
+
+  el.addEventListener("click", e => {
+    if (e.target.closest("[data-close-popup]")) finishClose();
+  });
+
+  el.addEventListener("click", e => {
+    if (e.target === el) finishClose();
+  });
+
+  document.body.appendChild(el);
+  currentPopup = el;
+  requestAnimationFrame(() => el.classList.add("visible"));
+}
+
+// ------------------------------------------------------------
+// 2b. HJELPERE FOR QUIZ / KUNNSKAP / TRIVIA
+// ------------------------------------------------------------
+
+// Sjekk om en quiz for person/sted er fullført
+function matchesQuizTarget(historyItem, targetId) {
+  const key = String(targetId ?? "").trim();
+  if (!key) return false;
+
+  const id = String(historyItem?.id ?? "").trim();
+  const tid = String(historyItem?.targetId ?? "").trim();
+  const parentTid = String(historyItem?.parentTargetId ?? "").trim();
+
+  return (
+    id === key ||
+    tid === key ||
+    parentTid === key ||
+    id.startsWith(key + "::") ||
+    tid.startsWith(key + "::")
+  );
+}
+
+function hasCompletedQuiz(targetId) {
+  try {
+    const hist = JSON.parse(localStorage.getItem("quiz_history") || "[]");
+    return Array.isArray(hist) && hist.some(h => matchesQuizTarget(h, targetId));
+  } catch {
+    return false;
+  }
+}
+
+function getLastQuizCategoryId(targetId) {
+  try {
+    const hist = JSON.parse(localStorage.getItem("quiz_history") || "[]");
+    const last = Array.isArray(hist)
+      ? [...hist].reverse().find(h => matchesQuizTarget(h, targetId))
+      : null;
+    return last?.categoryId || null;
+  } catch {
+    return null;
+  }
+}
+
+async function enhanceQuizButton(btn, targetId) {
+  if (!btn || !targetId) return;
+
+  const engine = window.QuizEngine;
+  if (!engine || typeof engine.getTargetSummary !== "function") return;
+
+  try {
+    const info = await engine.getTargetSummary(targetId);
+    if (!btn.isConnected || !info || !info.hasAny) return;
+
+    if (info.mode === "sets") {
+      if (info.isComplete) {
+        btn.textContent = `Ta quiz igjen · ${info.totalSets}/${info.totalSets} sett`;
+        btn.classList.add("quiz-done");
+        btn.title = `Alle ${info.totalSets} sett er fullført.`;
+      } else if (info.completedSets > 0) {
+        btn.textContent = `Fortsett quiz · ${info.completedSets}/${info.totalSets} sett`;
+        btn.title = `${info.remainingSets} sett gjenstår.`;
+      } else {
+        btn.textContent = `Ta quiz · ${info.totalSets} sett`;
+        btn.title = `${info.totalSets} sett totalt.`;
+      }
+      return;
+    }
+
+    if (info.mode === "legacy" && info.isComplete) {
+      btn.textContent = "Ta quiz igjen";
+      btn.classList.add("quiz-done");
+      btn.title = "Quizen er allerede fullført, men kan tas igjen.";
+    }
+  } catch {}
+}
+
+// Hent kunnskapsblokker for en bestemt kategori + mål (person/sted)
+// Leser direkte fra localStorage: knowledge_universe
+function getInlineKnowledgeFor(categoryId, targetId) {
+  if (!categoryId || !targetId) return null;
+
+  let uni;
+  try {
+    uni = JSON.parse(localStorage.getItem("knowledge_universe") || "{}");
+  } catch {
+    return null;
+  }
+
+  const cat = uni[categoryId];
+  if (!cat) return null;
+
+  const out = {};
+  const prefix = ("quiz_" + targetId + "_").toLowerCase();
+
+  Object.entries(cat).forEach(([dimension, items]) => {
+    if (!Array.isArray(items)) return;
+
+    const filtered = items.filter(k =>
+      k.id &&
+      typeof k.id === "string" &&
+      k.id.toLowerCase().startsWith(prefix)
+    );
+
+    if (filtered.length) {
+      out[dimension] = filtered;
+    }
+  });
+
+  return Object.keys(out).length ? out : null;
+}
+
+// Hent trivia-liste for en bestemt kategori + mål (person/sted)
+// Leser direkte fra localStorage: trivia_universe
+function getInlineTriviaFor(categoryId, targetId) {
+  if (!categoryId || !targetId) return [];
+
+  let uni;
+  try {
+    uni = JSON.parse(localStorage.getItem("trivia_universe") || "{}");
+  } catch {
+    return [];
+  }
+
+  const cat = uni[categoryId];
+  if (!cat || typeof cat !== "object") return [];
+
+  const list = cat[targetId] || [];
+  if (Array.isArray(list)) return list;
+  if (typeof list === "string") return [list];
+  return [];
+}
+
+// ============================================================
+// HELPER: Unlock-gate (reell unlock innenfor radius)
+// - TEST_MODE: bypass
+// - Live: krever getPos() + distMeters()
+// ============================================================
+function canUnlockPlaceNow(place) {
+  const r = Number(place?.r || 150);
+
+  // Testmodus: alltid lov
+  if (window.TEST_MODE) {
+    return { ok: true, d: null, r };
+  }
+
+  const pos = (typeof window.getPos === "function") ? window.getPos() : null;
+  if (!pos || typeof window.distMeters !== "function") {
+    // Hvis vi ikke har pos/distanse-funksjon: ikke lås opp (reell)
+    return { ok: false, d: null, r, reason: "no_pos" };
+  }
+
+  const d = window.distMeters(pos, { lat: place.lat, lon: place.lon });
+  return { ok: d <= r, d, r };
+}
+
+function fmtDist(m) {
+  if (m == null || !isFinite(m)) return "";
+  if (m < 1000) return `${Math.round(m)} m`;
+  return `${(m / 1000).toFixed(1)} km`;
+}
+
+// ------------------------------------------------------------
+// 2c. OBSERVASJONER (hg_learning_log_v1)
+// ------------------------------------------------------------
+function getObservationsForTarget(targetId, targetType) {
+  try {
+    const log = JSON.parse(localStorage.getItem("hg_learning_log_v1") || "[]");
+    if (!Array.isArray(log)) return [];
+    const tid = String(targetId || "").trim();
+    const ttype = String(targetType || "").trim();
+
+    return log
+      .filter(e =>
+        e &&
+        e.type === "observation" &&
+        String(e.targetId || "").trim() === tid &&
+        String(e.targetType || "").trim() === ttype
+      )
+      .sort((a, b) => (Number(b.ts) || 0) - (Number(a.ts) || 0));
+  } catch {
+    return [];
+  }
+}
+
+function renderObsList(obs) {
+  if (!obs || !obs.length) return `<p class="hg-muted">Ingen observasjoner ennå.</p>`;
+
+  return `
+    <ul style="margin:0;padding-left:18px;">
+      ${obs.slice(0, 10).map(o => {
+        const lens = String(o.lens_id || "").trim() || "linse";
+        const selected = Array.isArray(o.selected) ? o.selected : [];
+        const note = String(o.note || "").trim();
+        const when = o.ts ? new Date(o.ts).toLocaleString("no-NO") : "";
+        return `
+          <li style="margin:6px 0;">
+            <strong>${lens}</strong>
+            <div class="hg-muted" style="margin-top:2px;">
+              ${selected.length ? selected.join(" · ") : "—"}
+              ${when ? ` · ${when}` : ""}
+            </div>
+            ${note ? `<div style="margin-top:4px;">📝 ${note}</div>` : ""}
+          </li>
+        `;
+      }).join("")}
+    </ul>
+  `;
+}
+
+// ============================================================
+// 2c. FLORA-POPUP
+// ============================================================
+window.showFloraPopup = function (flora) {
+  if (!flora) return;
+
+  const img =
+    flora.imageCard || flora.image || flora.img || "";
+
+  const title = String(flora.name || "").trim() || "Plante";
+  const desc  = String(flora.desc || flora.description || "").trim();
+
+  makePopup(
+    `
+      <div class="hg-flora-popup">
+        ${img ? `<img src="${img}" class="hg-flora-img">` : ``}
+        <h2 class="hg-popup-name">${title}</h2>
+        ${desc ? `<p class="hg-popup-desc">${desc}</p>` : `<p class="hg-muted">Ingen beskrivelse ennå.</p>`}
+        <button class="reward-ok" data-close-popup>Lukk</button>
+      </div>
+    `,
+    "flora-popup"
+  );
+};
+
+// ============================================================
+// 3. PERSON-POPUP
+// ============================================================
+window.showPersonPopup = function(person) {
+  if (!person) return;
+
+  const face    = person.image;      // portrett
+  const cardImg = person.imageCard;  // kortbilde
+  const works   = person.works || [];
+  const wiki    = person.wiki || "";
+  const kind = String(person.kind || "").trim();
+  const kindLabel =
+  kind === "ikon" ? "Ikon" :
+  kind === "institusjonsbærer" ? "Institusjonsbærer" :
+  kind === "kontekst" ? "Kontekst" : "";
+  
+  const categoryId =
+    person.category ||
+    (Array.isArray(person.tags) && person.tags.length ? person.tags[0] : null);
+
+  const completed = hasCompletedQuiz(person.id);
+  const knowledgeBlocks =
+    completed && categoryId ? getInlineKnowledgeFor(categoryId, person.id) : null;
+  const triviaList =
+    completed && categoryId ? getInlineTriviaFor(categoryId, person.id) : [];
+
+  // Finn steder knyttet til personen
+  const placeMatches = getPlacesForPerson(person.id);
+
+  // OBSERVASJONER (person)
+  const observations = getObservationsForTarget(person.id, "person");
+  const obsHtml = renderObsList(observations);
+
+    // VUNDERKAMRE
+  const chambersHtml = (typeof wonderChambersForPerson === "function")
+    ? wonderChambersForPerson(person)
+    : "";
+  
+  const html = `
+    <img src="${face}" class="hg-popup-face">
+    <h2 class="hg-popup-name">${person.name}</h2>
+    ${kindLabel ? `<p class="hg-popup-cat">${kindLabel}</p>` : ``}
+    <img src="${cardImg}" class="hg-popup-cardimg">
+
+      <div class="hg-section">
+        <h3>Verk</h3>
+      ${
+      works.length
+        ? `<ul class="hg-works">${works.map(w => `<li>${w}</li>`).join("")}</ul>`
+        : `<p class="hg-muted">Ingen registrerte verk.</p>`
+        }
+        <button class="hg-quiz-btn" data-quiz="${person.id}">Ta quiz</button>
+        
+    </div>
+
+
+      <div class="hg-section">
+        <h3>Om personen</h3>
+        <p class="hg-wiki">${wiki}</p>
+      </div>
+  ${chambersHtml}
+      <div class="hg-section">
+        <h3>Steder</h3>
+        ${
+          placeMatches.length
+            ? `<div class="hg-places">
+                ${placeMatches
+                  .map(pl => `<div class="hg-place" data-place="${pl.id}">📍 ${pl.name}</div>`)
+                  .join("")}
+              </div>`
+            : `<p class="hg-muted">Ingen stedstilknytning.</p>`
+        }
+      </div>
+
+      <!-- Samtale & notat -->
+      <div class="hg-section">
+        <h3>Samtale & notat</h3>
+        <div class="hg-actions-row">
+          <button class="hg-ghost-btn" data-chat-person="${person.id}">
+            💬 Snakk med ${person.name}
+          </button>
+          <button class="hg-ghost-btn" data-note-person="${person.id}">
+            📝 Notat
+          </button>
+        </div>
+      </div>
+
+      <!-- Observasjoner -->
+      <div class="hg-section">
+        <h3>Observasjoner</h3>
+        ${obsHtml}
+      </div>
+
+      ${
+        completed && (knowledgeBlocks || triviaList.length)
+          ? `
+      <div class="hg-section">
+        <h3>Kunnskap</h3>
+        ${
+          knowledgeBlocks
+            ? Object.entries(knowledgeBlocks)
+                .map(([dim, items]) => `
+                  <strong>${dim}</strong>
+                  <ul>
+                    ${items
+                      .map(i => `<li><strong>${i.topic}:</strong> ${i.text || i.knowledge || ""}</li>`)
+                      .join("")}
+                  </ul>
+                `)
+                .join("")
+            : `<p class="hg-muted">Ingen kunnskap registrert ennå.</p>`
+        }
+      </div>
+
+      <div class="hg-section">
+        <h3>Funfacts</h3>
+        ${
+          triviaList.length
+            ? `<ul>${triviaList.map(t => `<li>${t}</li>`).join("")}</ul>`
+            : `<p class="hg-muted">Ingen funfacts ennå.</p>`
+        }
+      </div>
+          `
+          : ""
+      }
+  `;
+
+  makePopup(html, "person-popup");
+
+  enhanceQuizButton(currentPopup.querySelector(`[data-quiz="${person.id}"]`), person.id);
+
+  currentPopup.querySelectorAll("[data-place]").forEach(btn => {
+    btn.onclick = () => {
+      const place = PLACES.find(x => x.id === btn.dataset.place);
+      closePopup();
+      showPlacePopup(place);
+    };
+  });
+};
+
+
+// ============================================================
+// 4. STEDS-POPUP
+// ============================================================
+function wkEsc(s){
+  return String(s ?? "")
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+}
+
+function renderWonderkammerSection(chambers, title = "Wonderkammer") {
+  const list = Array.isArray(chambers) ? chambers : [];
+  if (!list.length) {
+    return `
+      <div class="hg-section">
+        <h3>${wkEsc(title)}</h3>
+        <p class="hg-muted">Ingen Wonderkammer-koblinger ennå.</p>
+      </div>
+    `;
+  }
+
+  // Støtter både string-id og obj-varianter
+  const rows = list.map((c) => {
+    const id = String(c?.id ?? c?.entry_id ?? c ?? "").trim();
+    if (!id) return "";
+
+    const label =
+      String(c?.title ?? c?.label ?? c?.name ?? id).trim();
+
+    return `
+      <li style="margin:8px 0;">
+        <button class="hg-rel-link" data-wk="${wkEsc(id)}">
+          <strong>${wkEsc(label)}</strong>
+        </button>
+      </li>
+    `;
+  }).join("");
+
+  return `
+    <div class="hg-section">
+      <h3>${wkEsc(title)}</h3>
+      <ul class="hg-rel-list" style="margin:0;padding-left:0;list-style:none;">
+        ${rows || `<li><p class="hg-muted">Ingen Wonderkammer-koblinger ennå.</p></li>`}
+      </ul>
+    </div>
+  `;
+}
+
+function renderWonderkammerDossier(doc) {
+  if (!doc || typeof doc !== "object") return "";
+
+  const one = String(doc?.summary?.one_liner || "").trim();
+
+  const facts = Array.isArray(doc?.facts) ? doc.facts : [];
+  const factsTop = facts.slice(0, 4);
+
+  const factHtml = factsTop.length
+    ? `<ul class="hg-rel-list" style="margin:0;padding-left:0;list-style:none;">
+        ${factsTop.map(f => {
+          const label = String(f?.label || "").trim();
+          const val = String(f?.value || "").trim();
+          if (!label && !val) return "";
+          return `<li style="margin:8px 0;"><strong>${wkEsc(label || "Fakta")}</strong>: ${wkEsc(val)}</li>`;
+        }).join("")}
+      </ul>`
+    : `<p class="hg-muted">Ingen fakta ennå.</p>`;
+
+  return `
+    <div class="hg-section">
+      ${one ? `<p style="margin:0 0 10px;">${wkEsc(one)}</p>` : ""}
+      ${factHtml}
+    </div>
+  `;
+}
+
+window.showPlacePopup = function(place) {
+  if (!place) return;
+
+  // RIKTIG: kun stedsbilde
+  const img = place.image || "";
+
+  const rels = window.REL_BY_PLACE?.[place.id] || [];
+
+const peopleHere = (typeof getPeopleForPlace === "function")
+  ? getPeopleForPlace(place.id)
+  : [];
+  
+  const categoryId = place.category || null;
+  const completed = hasCompletedQuiz(place.id);
+  const knowledgeBlocks =
+    completed && categoryId ? getInlineKnowledgeFor(categoryId, place.id) : null;
+  const triviaList =
+    completed && categoryId ? getInlineTriviaFor(categoryId, place.id) : [];
+
+  // OBSERVASJONER (place)
+  const observations = getObservationsForTarget(place.id, "place");
+  const obsHtml = renderObsList(observations);
+    // VUNDERKAMRE
+  const chambersHtml = (typeof wonderChambersForPlace === "function")
+    ? wonderChambersForPlace(place)
+    : "";
+
+  const wkChambers = window.WK_BY_PLACE?.[place.id] || [];
+  const wkHtml = wkChambers.length
+  ? renderWonderkammerSection(wkChambers, "Wonderkammer")
+  : "";
+  
+  const html = `
+      <img src="${img}" class="hg-popup-img">
+      <h3 class="hg-popup-title">${place.name}</h3>
+      <p class="hg-popup-cat">${place.category || ""}</p>
+      <p class="hg-popup-desc">${place.desc || ""}</p>
+
+      <button class="hg-quiz-btn" data-quiz="${place.id}">Ta quiz</button>
+
+      ${typeof wkDocHtml === "string" ? wkDocHtml : ""}
+      ${wkHtml}
+      ${chambersHtml}
+    
+      ${
+        peopleHere.length
+          ? `<div class="hg-popup-subtitle">Personer</div>
+             <div class="hg-popup-people">
+               ${peopleHere
+                 .map(
+                   pr => `
+                 <div class="hg-popup-face" data-person="${pr.id}">
+                   <img src="${pr.imageCard}">
+                 </div>
+               `
+                 )
+                 .join("")}
+             </div>`
+          : ""
+      }
+
+      ${
+        completed && (knowledgeBlocks || triviaList.length)
+          ? `
+      <div class="hg-section">
+        <h3>Kunnskap</h3>
+        ${
+          knowledgeBlocks
+            ? Object.entries(knowledgeBlocks)
+                .map(
+                  ([dim, items]) => `
+                  <strong>${dim}</strong>
+                  <ul>
+                    ${items
+                      .map(i => `<li><strong>${i.topic}:</strong> ${i.text}</li>`)
+                      .join("")}
+                  </ul>
+                `
+                )
+                .join("")
+            : `<p class="hg-muted">Ingen kunnskap registrert ennå.</p>`
+        }
+      </div>
+
+      <div class="hg-section">
+        <h3>Funfacts</h3>
+        ${
+          triviaList.length
+            ? `<ul>${triviaList.map(t => `<li>${t}</li>`).join("")}</ul>`
+            : `<p class="hg-muted">Ingen funfacts ennå.</p>`
+        }
+      </div>
+          `
+          : ""
+      }
+
+      <div class="hg-section">
+        <h3>Observasjoner</h3>
+        ${obsHtml}
+      </div>
+  `;
+  makePopup(html, "place-popup");
+
+  enhanceQuizButton(currentPopup.querySelector(`[data-quiz="${place.id}"]`), place.id);
+};
+
+
+// ============================================================
+// HGNavigator (BY) — 3 dimensjoner: gå / historie / forstå
+// Bruker: emner_by.json, emnekart_by.json, fagkart_by_oslo.json, quiz_by.json
+// ============================================================
+const HGNavigator = (() => {
+  const cache = {
+    by: {
+      loaded: false,
+      fagkart: null,
+      emnekart: null,
+      emner: [],
+      quiz: [],
+      stories: []   // optional
+    }
+  };
+
+  async function loadJSON(path) {
+    const r = await fetch(path, { cache: "no-store" });
+    if (!r.ok) throw new Error(`${r.status} ${path}`);
+    return await r.json();
+  }
+
+  async function ensureByLoaded() {
+    if (cache.by.loaded) return;
+
+    // tilpass paths til din struktur:
+    cache.by.fagkart  = await loadJSON("data/fagkart_by_oslo.json");
+    cache.by.emnekart = await loadJSON("data/emnekart_by.json");
+    cache.by.emner    = await loadJSON("data/emner_by.json");
+    cache.by.quiz     = await loadJSON("data/quiz_by.json");
+
+    // optional: stories (hvis fil finnes)
+    try {
+      cache.by.stories = await loadJSON("data/stories_by.json");
+    } catch {
+      cache.by.stories = [];
+    }
+
+    cache.by.loaded = true;
+  }
+
+  function uniq(arr) { return [...new Set((arr || []).filter(Boolean).map(String))]; }
+
+  // -------------------------
+  // 🧭 Romlig neste (sted)
+  // -------------------------
+  function pickSpatialNext(place, ctx = {}) {
+    // “romlig neste” er alltid sted.
+    // Vi bruker: nearby (hvis du har) ellers null.
+    const nearby = Array.isArray(ctx.nearbyPlaces) ? ctx.nearbyPlaces : [];
+    const next = nearby.find(p => p && p.id && String(p.id) !== String(place.id)) || null;
+
+    if (!next) return null;
+    return {
+      type: "spatial",
+      place_id: next.id,
+      label: next.name || next.id,
+      why: "I nærheten"
+    };
+  }
+
+  // -------------------------
+  // 📖 Narrativ neste (story beat)
+  // -------------------------
+  function pickNarrativeNext(place, byData) {
+    const stories = byData.stories || [];
+    if (!stories.length) return null;
+
+    const placeId = String(place.id);
+
+    // Finn story-beat hvor place_id matcher, og ta next_place_id
+    for (const st of stories) {
+      const beats = Array.isArray(st.beats) ? st.beats : [];
+      const beat = beats.find(b => String(b.place_id || "") === placeId);
+      if (beat && beat.next_place_id) {
+        return {
+          type: "narrative",
+          story_id: st.id,
+          label: st.title || "Fortsett historien",
+          next_place_id: String(beat.next_place_id),
+          why: "Neste kapittel"
+        };
+      }
+    }
+    return null; // ingen story => ikke vis
+  }
+
+  // -------------------------
+  // 🧠 Begrepsmessig neste (emne fra fagkart)
+  // Logikk (uten gjetting):
+  // - samle core_concepts fra relevante quiz-spørsmål (personer knyttet til stedet)
+  // - match mot emner_by.core_concepts
+  // -------------------------
+  function pickConceptNext(place, personsHere, byData) {
+    const emner = byData.emner || [];
+    const quiz  = byData.quiz || [];
+
+    // 1) finn quiz-items for personer her (quiz_by har personId + core_concepts + emne_id)  [oai_citation:5‡quiz_by.json](sediment://file_00000000b6d07243b2aa58bfca7023d1)
+    const personIds = new Set((personsHere || []).map(p => String(p.id)));
+    const relatedQuiz = quiz.filter(q => q && q.personId && personIds.has(String(q.personId)));
+
+    // 2) samle concepts fra quiz (kurert i data)
+    const concepts = uniq(relatedQuiz.flatMap(q => Array.isArray(q.core_concepts) ? q.core_concepts : []));
+
+    if (!concepts.length) return null; // ingen concepts => ikke vis
+
+    // 3) score emner_by på overlap i core_concepts  [oai_citation:6‡emner_by.json](sediment://file_00000000cf3c7243990459177610100e)
+    let best = null;
+    let bestScore = 0;
+
+    for (const e of emner) {
+      const eConcepts = Array.isArray(e.core_concepts) ? e.core_concepts.map(String) : [];
+      let overlap = 0;
+      for (const c of concepts) if (eConcepts.includes(c)) overlap++;
+      if (overlap > bestScore) { bestScore = overlap; best = e; }
+    }
+
+    if (!best || bestScore < 2) return null; // terskel: “må faktisk bære resonnement”
+
+    return {
+      type: "concept",
+      emne_id: best.emne_id,
+      label: best.title || "Forstå mer",
+      why: `Begreper ×${bestScore}`
+    };
+  }
+
+  // -------------------------
+  // Public API
+  // -------------------------
+  async function buildForPlace(place, ctx = {}) {
+    await ensureByLoaded();
+
+    const byData = cache.by;
+
+    const spatial = pickSpatialNext(place, ctx);
+
+    const narrative = pickNarrativeNext(place, byData);
+
+    const concept = pickConceptNext(place, ctx.personsHere || [], byData);
+
+    return { spatial, narrative, concept };
+  }
+
+  return { buildForPlace, ensureByLoaded };
+})();
+
+
+
+
+
+// ============================================================
+// 7. REWARD-POPUPS + KONFETTI
+// ============================================================
+function launchConfetti() {
+  const duration = 900;
+  const end = Date.now() + duration;
+
+  (function frame() {
+    const timeLeft = end - Date.now();
+    if (timeLeft <= 0) return;
+
+    const count = 12;
+
+    for (let i = 0; i < count; i++) {
+      const particle = document.createElement("div");
+      particle.className = "confetti-particle";
+
+      const colors = ["#f6c800", "#ff66cc", "#ffb703", "#4caf50", "#c77dff"];
+      particle.style.backgroundColor =
+        colors[Math.floor(Math.random() * colors.length)];
+
+      particle.style.left = Math.random() * 100 + "vw";
+      particle.style.animationDuration =
+        0.7 + Math.random() * 0.6 + "s";
+
+      document.body.appendChild(particle);
+      setTimeout(() => particle.remove(), 1000);
+    }
+
+    requestAnimationFrame(frame);
+  })();
+}
+
+window.showRewardPlace = function(place) {
+  if (!place) return;
+
+  const BASE = document.querySelector("base")?.href || "";
+  const card =
+    place.cardImage || place.image || `${BASE}bilder/kort/places/${place.id}.PNG`;
+
+  const categoryId = getLastQuizCategoryId(place.id);
+  const knowledgeBlocks =
+    categoryId ? getInlineKnowledgeFor(categoryId, place.id) : null;
+  const triviaList =
+    categoryId ? getInlineTriviaFor(categoryId, place.id) : [];
+
+  makePopup(
+    `
+      <div class="reward-center">
+        <h2 class="reward-title">🎉 Gratulerer!</h2>
+        <p class="reward-sub">Du har samlet kortet</p>
+
+        <img id="rewardCardImg" src="${card}" class="reward-card-img">
+
+        ${
+          knowledgeBlocks || triviaList.length
+            ? `
+        <div class="hg-section">
+          <h3>Kunnskap</h3>
+          ${
+            knowledgeBlocks
+              ? Object.entries(knowledgeBlocks)
+                  .map(([dim, items]) => `
+                    <strong>${dim}</strong>
+                    <ul>
+                      ${items.map(i => `<li><strong>${i.topic}:</strong> ${i.text}</li>`).join("")}
+                    </ul>
+                  `).join("")
+              : `<p class="hg-muted">Ingen kunnskap registrert ennå.</p>`
+          }
+        </div>
+
+        <div class="hg-section">
+          <h3>Funfacts</h3>
+          ${
+            triviaList.length
+              ? `<ul>${triviaList.map(t => `<li>${t}</li>`).join("")}</ul>`
+              : `<p class="hg-muted">Ingen funfacts ennå.</p>`
+          }
+        </div>
+            `
+            : ""
+        }
+
+        <button class="reward-ok" data-close-popup>Fortsett</button>
+      </div>
+    `,
+    "reward-popup",
+    () => {
+      // ÅPNE NESTE POPUP ETTER "FORTSETT"
+      if (typeof window.showPlacePopup === "function") {
+        window.showPlacePopup(place);
+      }
+    }
+  );
+
+  launchConfetti();
+
+  requestAnimationFrame(() => {
+    const img = document.getElementById("rewardCardImg");
+    if (img) img.classList.add("visible");
+  });
+};
+
+window.showRewardPerson = function(person) {
+  if (!person) return;
+
+  const BASE = document.querySelector("base")?.href || "";
+  const card =
+    person.cardImage || person.image || `${BASE}bilder/kort/people/${person.id}.PNG`;
+
+  const categoryId = getLastQuizCategoryId(person.id);
+  const knowledgeBlocks =
+    categoryId ? getInlineKnowledgeFor(categoryId, person.id) : null;
+  const triviaList =
+    categoryId ? getInlineTriviaFor(categoryId, person.id) : [];
+
+  makePopup(
+    `
+      <div class="reward-center">
+        <h2 class="reward-title">🎉 Gratulerer!</h2>
+        <p class="reward-sub">Du har samlet kortet</p>
+
+        <img id="rewardCardImg" src="${card}" class="reward-card-img">
+
+        ${
+          knowledgeBlocks || triviaList.length
+            ? `
+        <div class="hg-section">
+          <h3>Kunnskap</h3>
+          ${
+            knowledgeBlocks
+              ? Object.entries(knowledgeBlocks)
+                  .map(([dim, items]) => `
+                    <strong>${dim}</strong>
+                    <ul>
+                      ${items.map(i => `<li><strong>${i.topic}:</strong> ${i.text}</li>`).join("")}
+                    </ul>
+                  `).join("")
+              : `<p class="hg-muted">Ingen kunnskap registrert ennå.</p>`
+          }
+        </div>
+
+        <div class="hg-section">
+          <h3>Funfacts</h3>
+          ${
+            triviaList.length
+              ? `<ul>${triviaList.map(t => `<li>${t}</li>`).join("")}</ul>`
+              : `<p class="hg-muted">Ingen funfacts ennå.</p>`
+          }
+        </div>
+            `
+            : ""
+        }
+
+        <button class="reward-ok" data-close-popup>Fortsett</button>
+      </div>
+    `,
+    "reward-popup",
+    () => {
+      // ÅPNE NESTE POPUP ETTER "FORTSETT"
+      if (typeof window.showPersonPopup === "function") {
+        window.showPersonPopup(person);
+      }
+    }
+  );
+
+  launchConfetti();
+
+  requestAnimationFrame(() => {
+    const img = document.getElementById("rewardCardImg");
+    if (img) img.classList.add("visible");
+  });
+};
+
+// ============================================================
+// 8. ESC = LUKK
+// ============================================================
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape" && currentPopup) closePopup();
+});
+
+
+function hgEsc(s){
+  return String(s ?? "")
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+}
+
+function hgEscAttr(s){
+  return hgEsc(s).replaceAll("\n", " ").trim();
+}
