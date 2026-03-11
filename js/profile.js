@@ -58,30 +58,66 @@ function ls(name, fallback = {}) {
 }
 
 
+function getCompletedQuizUnitCount() {
+  const quizProgress = ls("quiz_progress", {});
+  const quizHistory = ls("quiz_history", []);
+
+  const ids = new Set();
+
+  if (Array.isArray(quizHistory)) {
+    quizHistory.forEach(entry => {
+      const id = String(entry?.id || entry?.targetId || "").trim();
+      if (id) ids.add(id);
+    });
+  }
+
+  if (quizProgress && typeof quizProgress === "object") {
+    Object.values(quizProgress).forEach(value => {
+      const completed = Array.isArray(value?.completed) ? value.completed : [];
+      completed.forEach(id => {
+        const key = String(id || "").trim();
+        if (key) ids.add(key);
+      });
+    });
+  }
+
+  return ids.size;
+}
+
+function getCompletedPlaceCount() {
+  const { byQuiz } = getUnlockState();
+  const unlockedIds = Object.keys(byQuiz || {});
+  const placeIds = new Set((Array.isArray(PLACES) ? PLACES : []).map(p => String(p?.id || "").trim()));
+  return unlockedIds.filter(id => placeIds.has(String(id || "").trim())).length;
+}
+
+
 // ------------------------------------------------------------
 // PROFILKORT
 // ------------------------------------------------------------
 function renderProfileCard() {
-  const { visitedCount } = getUnlockState();
-
-  const quizProgress = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
-  const quizHistory  = JSON.parse(localStorage.getItem("quiz_history") || "[]");
   const streak = Number(localStorage.getItem("user_streak") || 0);
-
   const userName = localStorage.getItem("user_name") || "Utforsker #182";
 
-  const countFromHistory = Array.isArray(quizHistory) ? quizHistory.length : 0;
-
-  const countFromProgress = Object.values(quizProgress || {})
-    .map(v => Array.isArray(v?.completed) ? v.completed.length : 0)
-    .reduce((a,b)=>a+b, 0);
-
-  const quizCount = Math.max(countFromHistory, countFromProgress);
+  const placeCount = getCompletedPlaceCount();
+  const quizUnitCount = getCompletedQuizUnitCount();
 
   document.getElementById("profileName").textContent = userName;
-  document.getElementById("statVisited").textContent = visitedCount;
-  document.getElementById("statQuizzes").textContent = quizCount;
+  document.getElementById("statVisited").textContent = placeCount;
+  document.getElementById("statQuizzes").textContent = quizUnitCount;
   document.getElementById("statStreak").textContent = streak;
+
+  const visitedLabel = document.getElementById("statVisitedLabel");
+  if (visitedLabel) visitedLabel.textContent = "Steder";
+
+  const quizzesLabel = document.getElementById("statQuizzesLabel");
+  if (quizzesLabel) quizzesLabel.textContent = "Quizsett";
+
+  const visitedEl = document.getElementById("statVisited");
+  if (visitedEl) visitedEl.title = "Antall steder du har låst opp.";
+
+  const quizzesEl = document.getElementById("statQuizzes");
+  if (quizzesEl) quizzesEl.title = "Antall fullførte quizenheter. Set-baserte quizer teller per sett.";
 
   renderPC();
 }
