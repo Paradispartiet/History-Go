@@ -554,11 +554,10 @@ function runQuizFlow({ title, targetId, questions, onEnd }) {
           if (window.HGUnlocks && typeof window.HGUnlocks.recordFromQuiz === "function") {
             try {
               window.HGUnlocks.recordFromQuiz({
-                quizId,
-                categoryId, // strict: kan være "" hvis data mangler
-                item: q,
-                targetId: tid
-              });
+               quizId,
+               categoryId,
+               targetId: tid
+             });
             } catch (e) {
               dwarn("HGUnlocks.recordFromQuiz failed", e);
             }
