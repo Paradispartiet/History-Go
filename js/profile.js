@@ -373,18 +373,16 @@ function renderPlacesCollection() {
   const grid = document.getElementById("collectionGrid");
   if (!grid) return;
 
-const { byQuiz } = getUnlockState();
-const visited = byQuiz;
-const ids = Object.keys(visited || {});
+  const { byQuiz } = getUnlockState();
+  const visited = byQuiz || {};
+  const validPlaceIds = new Set((Array.isArray(PLACES) ? PLACES : []).map(p => String(p?.id || "").trim()));
 
-  const places = ids
-  .map(id => PLACES.find(p => String(p.id).trim() === String(id).trim()) || ({
-    id,
-    name: id,
-    category: "",
-    year: "",
-    desc: ""
-  }));
+  const places = Object.keys(visited)
+    .map(id => String(id || "").trim())
+    .filter(id => validPlaceIds.has(id))
+    .map(id => PLACES.find(p => String(p.id).trim() === id))
+    .filter(Boolean);
+
   if (!places.length) {
     grid.innerHTML = `<div class="muted">Ingen steder besøkt ennå.</div>`;
     return;
@@ -399,11 +397,11 @@ const ids = Object.keys(visited || {});
   `).join("");
 
   grid.querySelectorAll(".place-card").forEach(el => {
-  el.onclick = () => {
-    const pl = PLACES.find(p => p.id === el.dataset.place);
-    if (pl) window.showPlacePopup(pl);
-  };
-});
+    el.onclick = () => {
+      const pl = PLACES.find(p => p.id === el.dataset.place);
+      if (pl) window.showPlacePopup(pl);
+    };
+  });
 }
 
 
