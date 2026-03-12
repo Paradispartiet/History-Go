@@ -897,7 +897,6 @@ if (setList.length) {
 
       if (firstCompletion && categoryId) {
         incrementMeritPoints(categoryId, 1);
-        API.addCompletedQuizAndMaybePoint(categoryId, compositeSetId);
         markQuizProgress(categoryId, compositeSetId);
 
         saveQuizHistory({
@@ -940,6 +939,16 @@ if (setList.length) {
       if (remainingSets === 0) {
         if (typeof API.markQuizAsDoneExternal === "function") API.markQuizAsDoneExternal(tid);
         else markQuizAsDone(tid);
+
+        if (firstCompletion) {
+          if (person) {
+            API.savePeopleCollected(tid);
+            API.showRewardPerson(person);
+          } else if (place) {
+            if (typeof API.saveVisitedFromQuiz === "function") API.saveVisitedFromQuiz(tid);
+            API.showRewardPlace(place);
+          }
+        }
       }
 
       const toastParts = [`Sett ${setIndex + 1}/${totalSets} fullført: ${correct}/${total}`];
