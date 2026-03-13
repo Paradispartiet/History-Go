@@ -1,0 +1,1103 @@
+{
+  "version": "3.1",
+  "source_files": {
+    "places": "places_by.json / places_*.json",
+    "emner": "emner_by.json / emner_*.json",
+    "emnemapping": "emnemapping_full.json",
+    "fagkart": "fagkart_by.json / fagkart_*.json",
+    "set_mal": "SET_MAL_README_v3.md",
+    "superset_quizmal": "supersetQUIZMAL (8).json"
+  },
+  "goal": "Generate production-ready place-specific set files with a binding 6x7 structure, where sets 1 and 2 are explicitly entertaining, story-led and place-near; set 4 returns to demanding concrete place logic; sets 3 and 5 are emne-driven; and set 6 is concept-driven.",
+  "core_principle": "place -> set_mode -> source_pool -> stedskarakter -> spørsmålsvinkel -> konkret spørsmål; emner are background only in sets 1, 2 and 4, drivers only in sets 3, 5 and 6.",
+  "selection_rules": {
+    "max_questions_per_emne_angle_per_place": 1,
+    "max_definition_questions_per_set": 1,
+    "min_distinct_question_families_per_set": 3,
+    "min_place_specific_features_represented_per_set": 2,
+    "min_must_include_features_represented_per_set": 1,
+    "max_generic_openings_per_set": 0,
+    "prefer_primary_angles_first": true,
+    "prefer_contrast_question_when_contrast_targets_exist": true,
+    "avoid_reusing_same_family_in_adjacent_questions": true,
+    "sets_per_place_must_equal": 6,
+    "questions_per_set_must_equal": 7,
+    "sets_1_2_4_emne_driven_forbidden": true,
+    "sets_3_5_emne_driven_required": true,
+    "set_6_concept_driven_required": true,
+    "max_repeated_signature_feature_per_set": 2,
+    "min_concrete_place_questions_in_sets_1_2_4": 5,
+    "min_core_concepts_used_in_set_6": 4,
+    "max_definition_questions_in_set_1": 0,
+    "max_definition_questions_in_set_2": 0,
+    "min_story_or_curiosity_questions_in_set_1": 4,
+    "min_visual_or_sensory_questions_in_set_1": 2,
+    "min_surprise_value_questions_in_set_1": 2,
+    "min_person_questions_in_set_2": 1,
+    "min_event_questions_in_set_2": 1,
+    "min_place_rhythm_or_use_questions_in_set_2": 1,
+    "min_noticed_physical_trait_questions_in_set_2": 1,
+    "min_people_events_or_curiosities_questions_in_set_2": 4,
+    "sets_1_2_must_be_entertaining_first": true,
+    "set_1_intro_story_required": true,
+    "set_2_people_events_curiosities_required": true,
+    "extra_intro_set_forbidden": true
+  },
+  "blocked_formulations": [
+    "Hvorfor er dette stedet relevant for",
+    "Hva gjør stedet til et eksempel på",
+    "Hvilket begrep passer best",
+    "Hva slags grøntområde er dette",
+    "Hvordan fungerer stedet som byrom",
+    "Hva gjør dette stedet relevant for",
+    "Hvordan fungerer stedet som eksempel på",
+    "Hva viser emnet",
+    "Hvordan fungerer dette stedet som byrom",
+    "Hvorfor er dette et viktig grøntområde",
+    "Hva gjør dette stedet relevant for biologisk mangfold",
+    "Hva er et eksempel på",
+    "Hvilket fagbegrep beskriver best dette stedet"
+  ],
+  "preferred_openings": [
+    "Hva forteller",
+    "Hvorfor ble",
+    "Hva skiller",
+    "Hvordan merker man",
+    "Hvilket spor ser man av",
+    "Hva gjør at",
+    "Hvorfor oppleves",
+    "Hva var dette stedet før",
+    "Hvilken løsning gjør",
+    "Hvor i stedet ser man",
+    "Hvordan ble",
+    "Hva kjennetegner",
+    "Hvem var",
+    "Hva skjedde",
+    "Hvilken detalj",
+    "Hva møter du",
+    "Hva ser man",
+    "Hvorfor virker"
+  ],
+  "angle_rules": {
+    "form": {
+      "focus": [
+        "romlig form",
+        "plassering",
+        "komposisjon",
+        "landemerkeeffekt"
+      ],
+      "best_families": [
+        "gjenkjenning",
+        "romlig_lesning",
+        "saertrekk"
+      ],
+      "dimension_hints": [
+        "byform",
+        "bybilde",
+        "romvirkning"
+      ]
+    },
+    "historie": {
+      "focus": [
+        "tidslag",
+        "endring",
+        "grunnleggelse",
+        "ombygging"
+      ],
+      "best_families": [
+        "historisk_endring",
+        "tidslag",
+        "kontrast"
+      ],
+      "dimension_hints": [
+        "historie",
+        "endring",
+        "epoke"
+      ]
+    },
+    "bruk": {
+      "focus": [
+        "hverdagsbruk",
+        "brukergrupper",
+        "rytme",
+        "funksjon i dag"
+      ],
+      "best_families": [
+        "bruk",
+        "saertrekk",
+        "kontrast"
+      ],
+      "dimension_hints": [
+        "bruk",
+        "hverdagsliv",
+        "sosial rolle"
+      ]
+    },
+    "materialitet": {
+      "focus": [
+        "materialer",
+        "overflater",
+        "farger",
+        "slitasje"
+      ],
+      "best_families": [
+        "teknisk_fysisk",
+        "gjenkjenning",
+        "saertrekk"
+      ],
+      "dimension_hints": [
+        "materiale",
+        "sanseerfaring",
+        "arkitektur"
+      ]
+    },
+    "topografi": {
+      "focus": [
+        "høyde",
+        "fall",
+        "terreng",
+        "utsiktslogikk"
+      ],
+      "best_families": [
+        "romlig_lesning",
+        "saertrekk",
+        "gjenkjenning"
+      ],
+      "dimension_hints": [
+        "terreng",
+        "høyde",
+        "orientering"
+      ]
+    },
+    "teknikk": {
+      "focus": [
+        "konstruksjon",
+        "infrastruktur",
+        "trafikksystem",
+        "teknisk løsning"
+      ],
+      "best_families": [
+        "teknisk_fysisk",
+        "gjenkjenning",
+        "bruk"
+      ],
+      "dimension_hints": [
+        "teknikk",
+        "infrastruktur",
+        "byggemåte"
+      ]
+    },
+    "vegetasjon": {
+      "focus": [
+        "beplantning",
+        "grønn karakter",
+        "trær",
+        "sesongpreg"
+      ],
+      "best_families": [
+        "gjenkjenning",
+        "saertrekk",
+        "tidslag"
+      ],
+      "dimension_hints": [
+        "vegetasjon",
+        "grønn karakter",
+        "sesong"
+      ]
+    },
+    "institusjon": {
+      "focus": [
+        "maktrolle",
+        "offentlig funksjon",
+        "forvaltning",
+        "symbolikk"
+      ],
+      "best_families": [
+        "saertrekk",
+        "historisk_endring",
+        "kontrast"
+      ],
+      "dimension_hints": [
+        "institusjon",
+        "makt",
+        "offentlig rolle"
+      ]
+    },
+    "konflikt_forandring": {
+      "focus": [
+        "omstridt utvikling",
+        "gentrifisering",
+        "styrt endring",
+        "brukskonflikt"
+      ],
+      "best_families": [
+        "historisk_endring",
+        "kontrast",
+        "bruk"
+      ],
+      "dimension_hints": [
+        "konflikt",
+        "transformasjon",
+        "utvikling"
+      ]
+    },
+    "utsyn_orientering": {
+      "focus": [
+        "siktlinjer",
+        "retning",
+        "oversikt",
+        "inngangsport"
+      ],
+      "best_families": [
+        "romlig_lesning",
+        "gjenkjenning",
+        "saertrekk"
+      ],
+      "dimension_hints": [
+        "orientering",
+        "utsyn",
+        "plassering"
+      ]
+    }
+  },
+  "question_families": {
+    "gjenkjenning": {
+      "purpose": "Identify the place through a concrete signature trait.",
+      "allowed_question_types": [
+        "fact",
+        "recognition"
+      ],
+      "good_openings": [
+        "Hva ved stedet gjør det lett å kjenne igjen",
+        "Hva er det første som skiller",
+        "Hvilket trekk gjør at"
+      ],
+      "knowledge_requirements": [
+        "must name a concrete place trait",
+        "must add why the trait matters in the city"
+      ]
+    },
+    "historisk_endring": {
+      "purpose": "Frame the place through change over time.",
+      "allowed_question_types": [
+        "fact",
+        "timeline",
+        "comparison"
+      ],
+      "good_openings": [
+        "Hva var dette stedet før",
+        "Hvorfor ble",
+        "Hvilken endring gjorde at"
+      ],
+      "knowledge_requirements": [
+        "must mention at least one dated or periodized shift",
+        "must connect shift to current place character"
+      ]
+    },
+    "teknisk_fysisk": {
+      "purpose": "Ask about construction, infrastructure, material or physical solution.",
+      "allowed_question_types": [
+        "fact",
+        "technical"
+      ],
+      "good_openings": [
+        "Hvilken løsning gjør",
+        "Hva er bygget i",
+        "Hvordan er dette anlagt"
+      ],
+      "knowledge_requirements": [
+        "must include a concrete technical or material detail",
+        "must explain what that detail enables"
+      ]
+    },
+    "bruk": {
+      "purpose": "Ask about actual use, rhythms and user groups.",
+      "allowed_question_types": [
+        "fact",
+        "usage",
+        "scenario"
+      ],
+      "good_openings": [
+        "Hva brukes stedet til i dag",
+        "Hvem virker stedet laget for",
+        "Hvordan merker man at"
+      ],
+      "knowledge_requirements": [
+        "must describe actual use today",
+        "must avoid generic byliv wording"
+      ]
+    },
+    "romlig_lesning": {
+      "purpose": "Read movement, openness, closure, direction and position in space.",
+      "allowed_question_types": [
+        "spatial",
+        "observation",
+        "fact"
+      ],
+      "good_openings": [
+        "Hva gjør at stedet åpner seg",
+        "Hvor i stedet ser man",
+        "Hvordan leder stedet deg"
+      ],
+      "knowledge_requirements": [
+        "must describe a spatial effect",
+        "must tie it to movement or orientation"
+      ]
+    },
+    "saertrekk": {
+      "purpose": "Distinguish the place from similar places in Oslo.",
+      "allowed_question_types": [
+        "comparison",
+        "fact"
+      ],
+      "good_openings": [
+        "Hva skiller",
+        "Hvorfor oppleves dette annerledes enn",
+        "Hva gjør dette stedet ulikt"
+      ],
+      "knowledge_requirements": [
+        "must state a real differentiator",
+        "must not fall back to generic category labels"
+      ]
+    },
+    "kontrast": {
+      "purpose": "Use contrast against a nearby or comparable place.",
+      "allowed_question_types": [
+        "comparison"
+      ],
+      "good_openings": [
+        "Hvorfor føles dette annerledes enn",
+        "Hva er den tydeligste forskjellen mellom",
+        "Hvilket trekk gjør at dette ikke fungerer som"
+      ],
+      "knowledge_requirements": [
+        "must compare against an explicit contrast target or same-type place",
+        "must explain difference, not just name it"
+      ]
+    },
+    "tidslag": {
+      "purpose": "Read multiple periods or surviving traces in the same place.",
+      "allowed_question_types": [
+        "history",
+        "observation",
+        "comparison"
+      ],
+      "good_openings": [
+        "Hvilket spor ser man av",
+        "Hvilke epoker kan fortsatt leses her",
+        "Hva i stedet røper at"
+      ],
+      "knowledge_requirements": [
+        "must identify at least one surviving trace",
+        "must connect trace to present-day reading"
+      ]
+    },
+    "begrepsdefinisjon": {
+      "purpose": "Define or identify a core concept that actually helps read the place.",
+      "best_for_sets": [
+        6
+      ],
+      "question_type": "concept",
+      "scope": "concept"
+    },
+    "begrepskontrast": {
+      "purpose": "Distinguish between two close concepts, terms or analytical pairs.",
+      "best_for_sets": [
+        6
+      ],
+      "question_type": "concept",
+      "scope": "concept"
+    },
+    "begrepsanvendelse": {
+      "purpose": "Apply a concept to the place instead of only defining it abstractly.",
+      "best_for_sets": [
+        6
+      ],
+      "question_type": "concept_application",
+      "scope": "concept"
+    },
+    "story": "Question built around a memorable local story, turning point or anecdote tied to the place.",
+    "kuriositet": "Question built around an unexpected, quirky or surprising detail that makes the place memorable.",
+    "person": "Question anchored in a person strongly tied to the place through use, design, event, statue, institution or memory.",
+    "hendelse": "Question anchored in an event, happening, controversy, opening, accident, performance or public moment at the place.",
+    "scene": "Question anchored in a vivid place-situation the player can imagine or observe on site.",
+    "visuell_hook": "Question anchored in something visually striking, bodily noticeable or easy to point at in the place."
+  },
+  "knowledge_rules": {
+    "answer_only_is_forbidden": true,
+    "target_length_chars": {
+      "min": 160,
+      "max": 420
+    },
+    "must_add_context_beyond_correct_option": true,
+    "should_include_at_least_two_of": [
+      "historisk kontekst",
+      "romlig forklaring",
+      "bruksmessig konsekvens",
+      "kontrast til lignende sted",
+      "faglig begrep",
+      "liten bonusinfo",
+      "stedlig scene eller sanselig detalj"
+    ],
+    "avoid": [
+      "ren fasitgjentakelse",
+      "tomt skolespråk",
+      "oppblåst teori uten stedlig forankring"
+    ],
+    "set_specific_rules": {
+      "1": "Knowledge should feel like bonus knowledge: vivid, concise and memorable, with at least one extra detail beyond the answer.",
+      "2": "Knowledge should connect people, events, use or curious details to how the place lives in the city.",
+      "3": "Knowledge should anchor terminology in the place and not stay generic.",
+      "4": "Knowledge should deepen the concrete place story through institutions, functions, people or development, while staying lively.",
+      "5": "Knowledge should show analytical reading, not just terminology.",
+      "6": "Knowledge should define the concept clearly and show why it helps interpret this place."
+    }
+  },
+  "output_mapping": {
+    "dimension": "Derived from angle_rules.dimension_hints and/or emne dimensions.",
+    "topic": "Concrete place topic in sets 1,2,4; faglig topic in sets 3,5,6.",
+    "emne_id": "Optional support field in sets 1,2,4; required and load-bearing in sets 3,5,6.",
+    "related_emner": "Fill from emne relations and mapping context, especially in sets 3,5,6.",
+    "core_concepts": "Required in sets 3,5,6 when concept-bearing emner are used.",
+    "concept_focus": "Required in set 6; optional but useful in sets 3 and 5.",
+    "tags": "Use place_type, subtype, set mode and major thematic markers.",
+    "question_scope": "place for sets 1,2,4; emne for sets 3,5; concept for set 6.",
+    "difficulty": "Low in set 1, mixed in sets 2-5, conceptually hardest in set 6.",
+    "question_type": "fact/use/analysis/comparison in sets 1-5; concept/definition/concept_application in set 6.",
+    "source": "Must list the concrete sources, files or place/emne evidence used to draft the question.",
+    "targetId": "For by place quizzes, copy placeId into targetId on every question and at file level.",
+    "question_layer": "Required. Stamp from set mode: 1=intro_story, 2=life_people_events, 3=emne_foundation, 4=place_advanced, 5=emne_advanced, 6=concept."
+  },
+  "place_type_defaults": {
+    "park": {
+      "prefer_angles": [
+        "bruk",
+        "historie",
+        "topografi",
+        "vegetasjon",
+        "institusjon"
+      ],
+      "avoid_families": [],
+      "extra_rule": "Do not let two parks in the same batch share the same subtype+primary family combination."
+    },
+    "knutepunkt": {
+      "prefer_angles": [
+        "teknikk",
+        "bruk",
+        "konflikt_forandring",
+        "institusjon",
+        "utsyn_orientering"
+      ],
+      "avoid_families": [
+        "tidslag"
+      ],
+      "extra_rule": "Force at least one question on flows, transfers or waiting."
+    },
+    "gate": {
+      "prefer_angles": [
+        "historie",
+        "bruk",
+        "konflikt_forandring",
+        "materialitet"
+      ],
+      "avoid_families": [],
+      "extra_rule": "Prefer street character, commerce, rhythm or transformation over generic byrom wording."
+    },
+    "boligomrade": {
+      "prefer_angles": [
+        "historie",
+        "form",
+        "materialitet",
+        "konflikt_forandring"
+      ],
+      "avoid_families": [
+        "teknisk_fysisk"
+      ],
+      "extra_rule": "At least one question should distinguish the area from another housing type in Oslo."
+    },
+    "plass": {
+      "prefer_angles": [
+        "bruk",
+        "institusjon",
+        "historie",
+        "utsyn_orientering"
+      ],
+      "avoid_families": [],
+      "extra_rule": "At least one question should address the place as a scene, threshold or civic room."
+    },
+    "omrade": {
+      "prefer_angles": [
+        "konflikt_forandring",
+        "historie",
+        "bruk",
+        "teknikk"
+      ],
+      "avoid_families": [],
+      "extra_rule": "Prefer large-scale area logic over single-building detail."
+    }
+  },
+  "generator_pipeline": [
+    "1. Read place, place.quiz_profile, optional entertaining source fields, emne mappings, emnemapping and relevant prior quiz context.",
+    "2. Build a six-set plan using binding_set_structure and set_mode_rules.",
+    "3. For set 1: collect stories, curiosities, visual hooks, memorable local facts and must_include traits before consulting emner.",
+    "4. For set 2: collect related people, events, institutions, place rhythm, use, architecture and notable concrete details before consulting emner.",
+    "5. For sets 1, 2 and 4: concrete place-near source pools must be exhausted before emner can be used as support metadata.",
+    "6. For sets 3 and 5: choose mapped emner that best support the place quiz_profile primary_angles and contrast needs.",
+    "7. For set 6: derive concepts from core_concepts, concept_focus, emner, mapping and prior quiz language.",
+    "8. Generate candidate questions within each set mode and required family spread.",
+    "9. Reject blocked formulations and dry generic phrasings, especially in sets 1 and 2.",
+    "10. Write knowledge so it adds bonus information, context and place feel beyond the answer.",
+    "11. Validate per-set hard requirements, field contract and cross-set repetition limits.",
+    "12. Emit production-ready 6x7 set file and flat export if needed.",
+    "9. Stamp output fields per question: targetId=placeId, question_scope from set mode, and question_layer from the bound set-mode map.",
+    "10. Validate against the superset output contract: required fields, field order preference, targetId consistency and question_layer consistency."
+  ],
+  "validator_checks": [
+    "File has exactly 6 sets.",
+    "Each set has exactly 7 questions.",
+    "set_id follows by_<place_id>_set_<1-6>.",
+    "Sets 1, 2 and 4 are place-driven and not emne-driven.",
+    "Sets 3 and 5 are emne-driven.",
+    "Set 6 is concept-driven.",
+    "No blocked formulation in question text.",
+    "Question text must mention or clearly hinge on a place-specific trait in all sets.",
+    "Knowledge must not be answer-only.",
+    "No more than one question per emne-angle pair per set unless set 6 explicitly compares concepts.",
+    "At least three distinct question families in each set except set 6, which may use concept families but must still vary its concept task types.",
+    "At least two signature_features or must_include items represented in each set.",
+    "If place has contrast_targets, at least one comparison question across the full place quiz.",
+    "Set 6 must use at least four distinct core concepts or concept pairs across the seven questions.",
+    "No question should be a thin rewording of another question in the same file.",
+    "Options must be plausible and answerIndex must match answer.",
+    "Manifest must point to each set individually.",
+    "Set 1 has at least 4 story/curiosity-driven questions.",
+    "Set 1 has at least 2 visual or sensory questions.",
+    "Set 1 has 0 definition questions.",
+    "Set 2 has at least 1 person question and 1 event question.",
+    "Set 2 has at least 1 question about rhythm/use and 1 about a noticed physical trait.",
+    "Sets 1 and 2 do not read like mini emnesett in disguise.",
+    "Knowledge in sets 1 and 2 contains bonus information and not just answer restatement.",
+    "Every question must include targetId and it must equal placeId for by place quizzes.",
+    "Every question must include question_layer.",
+    "question_layer must match the active set mode.",
+    "question_scope must match the active set mode and stay consistent with question_layer."
+  ],
+  "binding_set_structure": {
+    "sets_per_place": 6,
+    "questions_per_set": 7,
+    "required_set_ids_pattern": "by_<place_id>_set_<1-6>",
+    "set_modes": {
+      "1": "place_intro_story",
+      "2": "place_life_people_events",
+      "3": "emne_based_foundation",
+      "4": "place_concrete_advanced",
+      "5": "emne_based_advanced",
+      "6": "concept_based"
+    },
+    "binding_rule": "Only sets 3, 5 and 6 may be emne-/begrepsdriven. Set 1 must be an entertaining intro/story set. Set 2 must foreground place life, people, events and curiosities. Sets 1, 2 and 4 must be built from concrete place-specific information first, not from emne wording."
+  },
+  "set_mode_rules": {
+    "1": {
+      "mode": "place_intro_story",
+      "description": "Entertaining opening set built from stories, curiosities, visual hooks and memorable concrete facts.",
+      "driven_by": "place",
+      "emne_role": "background_only",
+      "question_scope": "place",
+      "difficulty_range": [
+        1,
+        2
+      ],
+      "must_prioritize": [
+        "stories",
+        "quirks",
+        "visual hooks",
+        "memorable place facts",
+        "what players can notice immediately"
+      ],
+      "preferred_question_families": [
+        "gjenkjenning",
+        "story",
+        "kuriositet",
+        "scene",
+        "visuell_hook",
+        "saertrekk"
+      ],
+      "forbid_question_families": [
+        "begrepsdefinisjon",
+        "begrepskontrast",
+        "begrepsanvendelse",
+        "kontrast"
+      ],
+      "preferred_sources": [
+        "stories",
+        "fun_facts",
+        "quirks",
+        "visual_hooks",
+        "signature_features",
+        "must_include",
+        "desc",
+        "popupDesc"
+      ],
+      "hard_requirements": {
+        "min_story_or_curiosity_questions": 4,
+        "min_visual_or_sensory_questions": 2,
+        "min_surprise_value_questions": 2,
+        "max_definition_questions": 0,
+        "min_questions_grounded_in_visible_place_traits": 3
+      },
+      "question_layer": "intro_story"
+    },
+    "2": {
+      "mode": "place_life_people_events",
+      "description": "Concrete and lively set built from people, events, use, rhythm, architecture and notable details.",
+      "driven_by": "place",
+      "emne_role": "background_only",
+      "question_scope": "place",
+      "difficulty_range": [
+        2,
+        3
+      ],
+      "must_prioritize": [
+        "historie",
+        "bruk",
+        "personer",
+        "hendelser",
+        "konkrete detaljer",
+        "stedets rytme og stemning"
+      ],
+      "preferred_question_families": [
+        "historisk_endring",
+        "bruk",
+        "person",
+        "hendelse",
+        "scene",
+        "teknisk_fysisk",
+        "visuell_hook"
+      ],
+      "forbid_question_families": [
+        "begrepsdefinisjon",
+        "begrepskontrast",
+        "begrepsanvendelse"
+      ],
+      "preferred_sources": [
+        "related_people",
+        "related_events",
+        "stories",
+        "fun_facts",
+        "visual_hooks",
+        "institutions",
+        "artifacts",
+        "signature_features",
+        "must_include",
+        "desc",
+        "popupDesc"
+      ],
+      "hard_requirements": {
+        "min_person_questions": 1,
+        "min_event_questions": 1,
+        "min_place_rhythm_or_use_questions": 1,
+        "min_noticed_physical_trait_questions": 1,
+        "min_people_events_or_curiosities_questions": 4,
+        "max_definition_questions": 0
+      },
+      "question_layer": "life_people_events"
+    },
+    "3": {
+      "mode": "emne_based_foundation",
+      "driven_by": "emne",
+      "description": "First explicit faglig set.",
+      "must_prioritize": [
+        "emner",
+        "core concepts",
+        "terminologi",
+        "romlig analyse",
+        "faglige forskjeller",
+        "begrepsbruk"
+      ],
+      "prefer_question_families": [
+        "romlig_lesning",
+        "historisk_endring",
+        "teknisk_fysisk",
+        "tidslag"
+      ],
+      "forbid_question_families": [],
+      "max_definition_questions": 2,
+      "emne_role": "driver",
+      "difficulty_range": [
+        2,
+        4
+      ],
+      "question_scope": "emne",
+      "question_layer": "emne_foundation"
+    },
+    "4": {
+      "mode": "place_concrete_advanced",
+      "driven_by": "place",
+      "description": "Return to the place with more demanding but still concrete logic: people, institutions, functions, development lines and specific traits.",
+      "must_prioritize": [
+        "konkrete hendelser",
+        "konkrete funksjoner",
+        "personer",
+        "institusjoner",
+        "utviklingsløp",
+        "spesifikke trekk ved stedet"
+      ],
+      "prefer_question_families": [
+        "saertrekk",
+        "bruk",
+        "historisk_endring",
+        "kontrast"
+      ],
+      "forbid_question_families": [],
+      "max_definition_questions": 1,
+      "emne_role": "background_only",
+      "difficulty_range": [
+        3,
+        4
+      ],
+      "question_scope": "place",
+      "preferred_sources": [
+        "related_people",
+        "related_events",
+        "institutions",
+        "artifacts",
+        "signature_features",
+        "must_include",
+        "desc",
+        "popupDesc"
+      ],
+      "hard_requirements": {
+        "min_people_institutions_or_development_questions": 3,
+        "max_definition_questions": 1
+      },
+      "question_layer": "place_advanced"
+    },
+    "5": {
+      "mode": "emne_based_advanced",
+      "driven_by": "emne",
+      "description": "Second faglig set with deeper structure and analysis.",
+      "must_prioritize": [
+        "teori",
+        "struktur",
+        "emneforstaelse",
+        "faglig lesning av stedet",
+        "terminologi fra emner og tidligere quiz",
+        "dypere analyse"
+      ],
+      "prefer_question_families": [
+        "romlig_lesning",
+        "kontrast",
+        "tidslag",
+        "saertrekk"
+      ],
+      "forbid_question_families": [],
+      "max_definition_questions": 2,
+      "emne_role": "driver",
+      "difficulty_range": [
+        3,
+        5
+      ],
+      "question_scope": "emne",
+      "question_layer": "emne_advanced"
+    },
+    "6": {
+      "mode": "concept_based",
+      "driven_by": "concept",
+      "description": "Dedicated begrepssett.",
+      "must_prioritize": [
+        "begrepsquiz",
+        "terminologi",
+        "definisjoner",
+        "konseptpar",
+        "kjerneord fra core_concepts",
+        "begreper som faktisk hjelper spilleren å lese stedet"
+      ],
+      "prefer_question_families": [
+        "begrepsdefinisjon",
+        "begrepskontrast",
+        "begrepsanvendelse"
+      ],
+      "forbid_question_families": [],
+      "max_definition_questions": 4,
+      "emne_role": "driver",
+      "difficulty_range": [
+        3,
+        5
+      ],
+      "question_scope": "concept",
+      "question_layer": "concept"
+    }
+  },
+  "output_contract": {
+    "file_shape": {
+      "required_top_level_fields": [
+        "targetId",
+        "categoryId",
+        "sets"
+      ],
+      "categoryId_fixed": "by",
+      "sets_length_exact": 6,
+      "targetId_rule": "File-level targetId must equal the placeId / place target of the full quiz file."
+    },
+    "set_shape": {
+      "required_fields": [
+        "set_id",
+        "questions"
+      ],
+      "questions_length_exact": 7,
+      "set_id_pattern": "by_<place_id>_set_<1-6>"
+    },
+    "question_shape": {
+      "required_fields": [
+        "id",
+        "quiz_id",
+        "categoryId",
+        "placeId",
+        "personId",
+        "natureId",
+        "targetId",
+        "question_scope",
+        "question",
+        "options",
+        "answer",
+        "answerIndex",
+        "dimension",
+        "topic",
+        "knowledge",
+        "trivia",
+        "difficulty",
+        "question_type",
+        "question_layer",
+        "year",
+        "epoke_id",
+        "epoke_domain",
+        "emne_id",
+        "related_emner",
+        "core_concepts",
+        "concept_focus",
+        "learning_paths",
+        "tags",
+        "required_tags",
+        "source"
+      ],
+      "options_length_exact": 3,
+      "answer_must_be_in_options": true,
+      "answerIndex_must_match_answer": true,
+      "quiz_id_pattern": "by_<place_id>_set_<set_no>_q<1-7>",
+      "id_pattern_recommended": "<place_id>_quiz_<running_no>",
+      "field_order_preferred": [
+        "id",
+        "quiz_id",
+        "categoryId",
+        "placeId",
+        "personId",
+        "natureId",
+        "targetId",
+        "question_scope",
+        "question",
+        "options",
+        "answer",
+        "answerIndex",
+        "dimension",
+        "topic",
+        "knowledge",
+        "trivia",
+        "difficulty",
+        "question_type",
+        "question_layer",
+        "year",
+        "epoke_id",
+        "epoke_domain",
+        "emne_id",
+        "related_emner",
+        "core_concepts",
+        "concept_focus",
+        "learning_paths",
+        "tags",
+        "required_tags",
+        "source"
+      ],
+      "targetId_rule": "For by place quizzes, targetId must equal placeId on every question. It is required even when the file-level targetId is present.",
+      "question_layer_rule": "Every question must carry a question_layer that matches the set mode. The generator may not leave this inferred or blank.",
+      "question_layer_allowed_values": [
+        "intro_story",
+        "life_people_events",
+        "emne_foundation",
+        "place_advanced",
+        "emne_advanced",
+        "concept"
+      ],
+      "question_layer_by_set": {
+        "1": "intro_story",
+        "2": "life_people_events",
+        "3": "emne_foundation",
+        "4": "place_advanced",
+        "5": "emne_advanced",
+        "6": "concept"
+      }
+    },
+    "question_shape_notes": {
+      "question_scope": "Use place in sets 1,2,4; emne in sets 3,5; concept in set 6.",
+      "question_type": "Prefer fact/story/person/event/scene in sets 1,2,4; analysis or concept types only from set 3 onward.",
+      "source": "Early sets should cite concrete place-near source material when possible.",
+      "question_layer": "Bind question_layer to set mode: set 1=intro_story, set 2=life_people_events, set 3=emne_foundation, set 4=place_advanced, set 5=emne_advanced, set 6=concept.",
+      "targetId": "Repeat the place target on every question to match the superset quiz schema and simplify downstream filtering."
+    }
+  },
+  "emne_field_rules": {
+    "sets_1_2_4": {
+      "emne_fields_allowed": true,
+      "emne_fields_may_drive_question": false,
+      "rule": "emne_id, related_emner, core_concepts and concept_focus may be present, but the question must originate from place-specific facts, traits, functions, institutions or concrete history."
+    },
+    "sets_3_5_6": {
+      "emne_fields_allowed": true,
+      "emne_fields_may_drive_question": true,
+      "rule": "emne_id, related_emner, core_concepts and concept_focus must be meaningfully populated and should actively structure the question."
+    }
+  },
+  "manifest_rules": {
+    "manifest_points_to_each_set": true,
+    "manifest_entry_shape": {
+      "required_fields": [
+        "targetId",
+        "set_id",
+        "order",
+        "file"
+      ],
+      "example": {
+        "targetId": "akershus_festning",
+        "set_id": "by_akershus_festning_set_1",
+        "order": 1,
+        "file": "data/quiz/by/akershus_festning_sets.json"
+      }
+    }
+  },
+  "authoring_workflow": [
+    "Build set 1 from stories, quirks, visual hooks and memorable concrete place facts first.",
+    "Build set 2 from people, events, use, rhythm, architecture and notable details tied to the place.",
+    "Only then check emnekart, emnemapping and relevant emner for support metadata.",
+    "Build set 3 from the strongest mapped emner.",
+    "Build set 4 as a concrete advanced place set using institutions, people, functions and development lines.",
+    "Build set 5 from deeper emne structure and terminology.",
+    "Build set 6 from concepts, definitions and concept contrasts tied to the place."
+  ],
+  "place_profile_extensions": {
+    "optional_fields_for_entertaining_sets": {
+      "stories": "Short local stories, anecdotes or turning points that can seed set 1 or 2 questions.",
+      "fun_facts": "Quick surprising facts or memorable details.",
+      "related_people": "Named people strongly tied to the place.",
+      "related_events": "Events, openings, protests, accidents, concerts or public happenings tied to the place.",
+      "visual_hooks": "Things players can immediately see, notice or imagine on site.",
+      "quirks": "Oddities, paradoxes, nicknames, slang or peculiar local traits.",
+      "institutions": "Institutions, venues, buildings or organizations that matter for the place story.",
+      "artifacts": "Statues, signs, infrastructure, artworks or objects that can anchor concrete questions."
+    },
+    "fallback_rule": "If these fields are missing, the generator must derive equivalent material from desc, popupDesc, signature_features, must_include and mapped quiz context before falling back to emner."
+  },
+  "source_pool_rules": {
+    "early_set_source_priority": {
+      "1": [
+        "stories",
+        "fun_facts",
+        "quirks",
+        "visual_hooks",
+        "signature_features",
+        "must_include",
+        "desc",
+        "popupDesc"
+      ],
+      "2": [
+        "related_people",
+        "related_events",
+        "stories",
+        "institutions",
+        "artifacts",
+        "visual_hooks",
+        "signature_features",
+        "must_include",
+        "desc",
+        "popupDesc"
+      ],
+      "4": [
+        "related_people",
+        "related_events",
+        "institutions",
+        "artifacts",
+        "signature_features",
+        "must_include",
+        "desc",
+        "popupDesc"
+      ]
+    },
+    "fallback_order": [
+      "place.quiz_profile extensions",
+      "signature_features",
+      "must_include",
+      "desc",
+      "popupDesc",
+      "mapped prior quizzes",
+      "mapped emner"
+    ],
+    "rule": "For sets 1, 2 and 4, the generator must exhaust concrete place-near source pools before drawing on emne wording or abstract analytical language."
+  },
+  "entertainment_rules": {
+    "early_sets_should_feel_like": [
+      "intro",
+      "story",
+      "street-level discovery",
+      "place memory",
+      "curiosity-driven learning"
+    ],
+    "early_sets_must_avoid": [
+      "dry abstract phrasing",
+      "serial emne paraphrases",
+      "overweight theory",
+      "same-question-in-new-words"
+    ],
+    "surprise_value_definition": "A question has surprise value if the answer or knowledge contains a memorable, unexpected or vivid detail likely to stick with the player.",
+    "bonus_info_definition": "Knowledge should often contain one extra detail, contrast, anecdote or sensory cue beyond what is needed to justify the answer."
+  },
+  "set_labels": {
+    "1": "intro_story",
+    "2": "life_people_events",
+    "3": "emne_foundation",
+    "4": "place_advanced",
+    "5": "emne_advanced",
+    "6": "concepts"
+  },
+  "superset_sync": {
+    "synced_with": "supersetQUIZMAL (8).json",
+    "purpose": "Align quiz generator output contract and validator with the canonical question superset while keeping the v3 place-first set logic.",
+    "key_changes": [
+      "set_mal source updated to SET_MAL_README_v3.md",
+      "targetId added as required field on each question",
+      "question_layer added as required field on each question",
+      "question_layer bound to set mode",
+      "field order aligned more closely with supersetQUIZMAL",
+      "validator checks added for targetId and question_layer consistency"
+    ]
+  },
+  "field_binding_rules": {
+    "targetId": "Must be emitted on every question and must equal the place target for by place quizzes.",
+    "question_layer": "Must be emitted on every question and must match the active set mode.",
+    "question_scope": "Must match set mode and stay in sync with question_layer."
+  },
+  "superset_contract": {
+    "canonical_question_schema": "supersetQUIZMAL (8).json",
+    "required_alignment": {
+      "question_level_targetId": true,
+      "question_level_question_layer": true,
+      "preferred_field_order_alignment": true,
+      "set_mode_to_question_layer_binding": true
+    },
+    "question_layer_map": {
+      "1": "intro_story",
+      "2": "life_people_events",
+      "3": "emne_foundation",
+      "4": "place_advanced",
+      "5": "emne_advanced",
+      "6": "concept"
+    }
+  }
+}
