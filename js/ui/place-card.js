@@ -48,48 +48,45 @@ const btnClose  = document.getElementById("pcClose");
   // (bindes kun én gang)
   // ------------------------------------------------------------
   if (!card.dataset.pcIconsBound) {
-    card.dataset.pcIconsBound = "1";
+  card.dataset.pcIconsBound = "1";
 
-    const closeAllLists = () => {
-      peopleEl?.classList.remove("is-open");
-      natureEl?.classList.remove("is-open");
-      badgesEl?.classList.remove("is-open");
-    };
+  const closeAllLists = () => {
+    peopleEl?.classList.remove("is-open");
+    natureEl?.classList.remove("is-open");
+    badgesEl?.classList.remove("is-open");
+    storiesEl?.classList.remove("is-open");
+    wonderkammerEl?.classList.remove("is-open");
+    civicationStoreEl?.classList.remove("is-open");
+  };
 
-
-    iconsWrap?.addEventListener("click", (e) => {
-      e.stopPropagation();
-     });
-    
-    peopleIcon?.addEventListener("click", (e) => {
-      e.preventDefault();
-      e.stopPropagation();           // ⬅️ dette stopper “placeCard lukker seg”
-      const open = !peopleEl?.classList.contains("is-open");
-      closeAllLists();
-      if (open) peopleEl?.classList.add("is-open");
-    });
-
-    natureIcon?.addEventListener("click", (e) => {
+  const bindIconToggle = (iconEl, listEl) => {
+    iconEl?.addEventListener("click", (e) => {
       e.preventDefault();
       e.stopPropagation();
-      const open = !natureEl?.classList.contains("is-open");
+      const open = !listEl?.classList.contains("is-open");
       closeAllLists();
-      if (open) natureEl?.classList.add("is-open");
+      if (open) listEl?.classList.add("is-open");
     });
+  };
 
-    badgesIcon?.addEventListener("click", (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      const open = !badgesEl?.classList.contains("is-open");
-      closeAllLists();
-      if (open) badgesEl?.classList.add("is-open");
-    });
+  iconsWrap?.addEventListener("click", (e) => {
+    e.stopPropagation();
+  });
 
-    // Valgfritt men smart: klikk inni listene skal heller ikke lukke kortet
-    peopleEl?.addEventListener("click", (e) => e.stopPropagation());
-    natureEl?.addEventListener("click", (e) => e.stopPropagation());
-    badgesEl?.addEventListener("click", (e) => e.stopPropagation());
-  }
+  bindIconToggle(peopleIcon, peopleEl);
+  bindIconToggle(natureIcon, natureEl);
+  bindIconToggle(badgesIcon, badgesEl);
+  bindIconToggle(storiesIcon, storiesEl);
+  bindIconToggle(wonderkammerIcon, wonderkammerEl);
+  bindIconToggle(civicationStoreIcon, civicationStoreEl);
+
+  peopleEl?.addEventListener("click", (e) => e.stopPropagation());
+  natureEl?.addEventListener("click", (e) => e.stopPropagation());
+  badgesEl?.addEventListener("click", (e) => e.stopPropagation());
+  storiesEl?.addEventListener("click", (e) => e.stopPropagation());
+  wonderkammerEl?.addEventListener("click", (e) => e.stopPropagation());
+  civicationStoreEl?.addEventListener("click", (e) => e.stopPropagation());
+}
 
 // --- pc-actions: ikonmodus (kun på smale skjermer) ---
 const isNarrow = window.matchMedia && window.matchMedia("(max-width: 520px)").matches;
@@ -110,6 +107,16 @@ const setPcText = (btn, text) => {
   btn.classList.remove("pc-iconbtn");
 };
 
+const setRoundLabel = (el, emoji, count = 0) => {
+  if (!el) return;
+  el.innerHTML = `
+    <div class="pc-round-label">
+      <span class="pc-round-emoji">${emoji}</span>
+      <span class="pc-round-count">${count}</span>
+    </div>
+  `;
+};
+
 if (isNarrow) {
   setPcIcon(btnInfo,  "ℹ️", "Mer info");
   setPcText(btnQuiz,  "Quiz");
@@ -126,8 +133,8 @@ if (isNarrow) {
   setPcText(btnNote,  "Notat");
   setPcText(btnClose, "Lukk");
 }
-  
-  if (!card) return;
+
+if (!card) return;
 
   // Smooth “skifte sted”
   card.classList.add("is-switching");
@@ -241,9 +248,11 @@ const peopleHtml = restPersons
 // people icon preview (første person)
 if (peopleIcon) {
   const p0 = persons?.[0];
-  peopleIcon.innerHTML = p0?.image
-    ? `<img src="${p0.image}" class="pc-person-img" alt="">`
-    : "";
+  if (p0?.image) {
+    peopleIcon.innerHTML = `<img src="${p0.image}" class="pc-person-img" alt="">`;
+  } else {
+    setRoundLabel(peopleIcon, "👥", persons.length);
+  }
 }
 
 
@@ -280,26 +289,24 @@ if (natureEl) {
 if (natureIcon) {
   const f0 = floraHere.find(a => (a.imageCard || a.image || a.img));
   const img = f0 ? (f0.imageCard || f0.image || f0.img || "") : "";
-  natureIcon.innerHTML = img
-    ? `<img src="${img}" class="pc-person-img" alt="">`
-    : "";
+  if (img) {
+    natureIcon.innerHTML = `<img src="${img}" class="pc-person-img" alt="">`;
+  } else {
+    setRoundLabel(natureIcon, "🌿", floraHere.length);
+  }
 }
 
 
-// --- BADGES LIST (foreløpig tom) ---
 // --- BADGES LIST + BADGES ICON ---
 if (badgesEl) {
-  // Robust: støtter badges fra RELATIONS (REL_BY_PLACE), og fra place-felter/tags
   const BADGES_LIST =
     (typeof BADGES !== "undefined" && Array.isArray(BADGES)) ? BADGES :
     (Array.isArray(window.BADGES) ? window.BADGES : []);
 
   const rels = (window.REL_BY_PLACE && window.REL_BY_PLACE[place.id]) ? window.REL_BY_PLACE[place.id] : [];
 
-  // 1) samle badge-id'er fra relasjoner + place
   let badgeIds = [];
 
-  // a) RELATIONS → badge/merke-felt (flere mulige navn, så vi er kompatible)
   for (const r of rels) {
     const id =
       r?.badge || r?.badge_id || r?.badgeId ||
@@ -307,17 +314,19 @@ if (badgesEl) {
     if (id) badgeIds.push(String(id).trim());
   }
 
-  // b) place → eksplisitte felt (hvis de finnes)
   const placeArrays = [
     place.badges, place.badgeIds, place.merker, place.merkeIds
   ];
+
   for (const arr of placeArrays) {
     if (Array.isArray(arr)) badgeIds.push(...arr.map(x => String(x).trim()));
   }
 
-  // c) fallback: category/tags, men kun hvis de matcher faktiske badge-id'er
   const allBadgeIds = new Set(BADGES_LIST.map(b => String(b.id).trim()));
-  if (place.category && allBadgeIds.has(String(place.category).trim())) badgeIds.push(String(place.category).trim());
+  if (place.category && allBadgeIds.has(String(place.category).trim())) {
+    badgeIds.push(String(place.category).trim());
+  }
+
   if (Array.isArray(place.tags)) {
     for (const t of place.tags) {
       const id = String(t).trim();
@@ -325,27 +334,177 @@ if (badgesEl) {
     }
   }
 
-  // dedupe
   badgeIds = [...new Set(badgeIds)];
 
-  // 2) slå opp og render
   const badges = badgeIds
     .map(id => BADGES_LIST.find(b => String(b.id).trim() === String(id).trim()))
     .filter(Boolean);
 
-  badgesEl.innerHTML = badges.map(b => `
-    <button class="pc-badge" data-badge="${b.id}">
-      <img src="${b.image || b.icon || ""}" class="pc-person-img" alt="">
-      <span>${b.name || b.title || b.id}</span>
-    </button>
-  `).join("");
+  badgesEl.innerHTML = badges.length
+    ? badges.map(b => `
+        <button class="pc-badge" data-badge="${b.id}">
+          <img src="${b.image || b.icon || ""}" class="pc-person-img" alt="">
+          <span>${b.name || b.title || b.id}</span>
+        </button>
+      `).join("")
+    : `<div class="pc-empty">Ingen merker ennå</div>`;
 
-  // 3) ikon-preview (første badge med bilde)
   if (badgesIcon) {
     const b0 = badges.find(b => (b.image || b.icon));
     const img = b0 ? (b0.image || b0.icon || "") : "";
-    badgesIcon.innerHTML = img ? `<img src="${img}" class="pc-person-img" alt="">` : "";
+    if (img) {
+      badgesIcon.innerHTML = `<img src="${img}" class="pc-person-img" alt="">`;
+    } else {
+      setRoundLabel(badgesIcon, "🏅", badges.length);
+    }
   }
+}
+
+// --- STORIES LIST + STORIES ICON ---
+if (storiesEl) {
+  let stories = [];
+
+  try {
+    if (window.HGStories && typeof window.HGStories.init === "function") {
+      await window.HGStories.init();
+      stories = window.HGStories.getByPlace(place.id) || [];
+    }
+  } catch (err) {
+    console.warn("[stories]", err);
+  }
+
+  storiesEl.innerHTML = stories.length
+    ? stories.map(st => `
+        <article class="pc-story" data-story="${st.id}">
+          <div class="pc-story-top">
+            <span class="pc-story-type">${st.type || "story"}</span>
+            ${st.year ? `<span class="pc-story-year">${st.year}</span>` : ""}
+          </div>
+          <div class="pc-story-title">${st.title || ""}</div>
+          <div class="pc-story-text">${st.summary || st.story || ""}</div>
+        </article>
+      `).join("")
+    : `<div class="pc-empty">Ingen historier ennå</div>`;
+
+  setRoundLabel(storiesIcon, "📖", stories.length);
+}
+
+// --- WONDERKAMMER LIST + WONDERKAMMER ICON ---
+if (wonderkammerEl) {
+  const wkChambers = Array.isArray(window.WK_BY_PLACE?.[place.id])
+    ? window.WK_BY_PLACE[place.id]
+    : [];
+
+  const wkEntriesHtml = wkChambers.length
+    ? `
+      <div class="pc-wk-chambers">
+        ${wkChambers.map(c => {
+          const id = String(c?.id ?? "").trim();
+          const label = String(c?.title ?? c?.label ?? c?.name ?? id).trim();
+          if (!id) return "";
+          return `
+            <button class="pc-wk-entry" data-wk="${id}">
+              <span class="pc-wk-entry-title">${label}</span>
+            </button>
+          `;
+        }).join("")}
+      </div>
+    `
+    : "";
+
+  const wkRelationsHtml =
+    (typeof window.wonderChambersForPlace === "function")
+      ? window.wonderChambersForPlace(place)
+      : "";
+
+  wonderkammerEl.innerHTML =
+    (wkEntriesHtml || wkRelationsHtml)
+      ? `${wkEntriesHtml}${wkRelationsHtml}`
+      : `<div class="pc-empty">Ingen Wonderkammer-koblinger ennå</div>`;
+
+  wonderkammerEl.querySelectorAll("[data-wk]").forEach(btn => {
+    btn.onclick = () => {
+      const id = String(btn.dataset.wk || "").trim();
+      if (!id) return;
+
+      if (window.Wonderkammer && typeof window.Wonderkammer.openEntry === "function") {
+        window.Wonderkammer.openEntry(id);
+      } else if (typeof window.openWonderkammerEntry === "function") {
+        window.openWonderkammerEntry(id);
+      } else {
+        window.showToast?.("Wonderkammer-handler ikke lastet");
+      }
+    };
+  });
+
+  const wkCount =
+    wonderkammerEl.querySelectorAll("[data-wk]").length ||
+    wonderkammerEl.querySelectorAll(".hg-rel-link").length ||
+    0;
+
+  setRoundLabel(wonderkammerIcon, "🗃️", wkCount);
+}
+
+// --- CIVICATION STORE LIST + ICON ---
+if (civicationStoreEl) {
+  const rawStoreItems = [
+    ...(Array.isArray(window.CIVICATION_STORE_BY_PLACE?.[place.id]) ? window.CIVICATION_STORE_BY_PLACE[place.id] : []),
+    ...(Array.isArray(place.civication_store) ? place.civication_store : []),
+    ...(Array.isArray(place.civicationStore) ? place.civicationStore : []),
+    ...(Array.isArray(place.civication_items) ? place.civication_items : []),
+    ...(Array.isArray(place.civicationItems) ? place.civicationItems : [])
+  ];
+
+  const seenStore = new Set();
+  const storeItems = rawStoreItems
+    .map((item, i) => {
+      if (typeof item === "string") {
+        return {
+          id: item,
+          label: item,
+          image: ""
+        };
+      }
+
+      return {
+        id: String(item?.id ?? item?.slug ?? item?.key ?? `civi_${i}`).trim(),
+        label: String(item?.title ?? item?.name ?? item?.label ?? item?.id ?? `Objekt ${i + 1}`).trim(),
+        image: String(item?.image ?? item?.icon ?? "").trim()
+      };
+    })
+    .filter(item => item.id && item.label)
+    .filter(item => {
+      if (seenStore.has(item.id)) return false;
+      seenStore.add(item.id);
+      return true;
+    });
+
+  civicationStoreEl.innerHTML = storeItems.length
+    ? storeItems.map(item => `
+        <button class="pc-civi-entry" data-civi-store="${item.id}">
+          ${item.image ? `<img src="${item.image}" class="pc-person-img" alt="">` : `<span class="pc-civi-emoji">🛒</span>`}
+          <span class="pc-civi-entry-title">${item.label}</span>
+        </button>
+      `).join("")
+    : `<div class="pc-empty">Ingen Civication-objekter ennå</div>`;
+
+  civicationStoreEl.querySelectorAll("[data-civi-store]").forEach(btn => {
+    btn.onclick = () => {
+      const id = String(btn.dataset.civiStore || "").trim();
+      if (!id) return;
+
+      if (window.CivicationStore && typeof window.CivicationStore.openEntry === "function") {
+        window.CivicationStore.openEntry(id, place);
+      } else if (typeof window.openCivicationStoreEntry === "function") {
+        window.openCivicationStoreEntry(id, place);
+      } else {
+        window.showToast?.("Civication Store-handler ikke lastet");
+      }
+    };
+  });
+
+  setRoundLabel(civicationStoreIcon, "🛒", storeItems.length);
+}
 
   
 }  // --- Mer info ---
