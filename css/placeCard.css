@@ -133,12 +133,12 @@ body.pc-collapsed #nearbyListContainer {
   grid-row: 1;
 
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
 
   gap: 6px;
 
-  justify-self: end;   /* skyver hele blokken mot høyre */
-  width: fit-content;  /* så den ikke fyller hele 1fr */
+  justify-self: end;
+  width: fit-content;
 }
 
 .pc-events-quad{
@@ -381,16 +381,9 @@ body.pc-collapsed #nearbyListContainer {
 
 
 /* =========================
-   POP-OUTS FOR 6 RUNDINGER
-   People / Nature / Badges / Stories / Wonderkammer / Civication Store
+   POP-OUTS FOR 9 RUNDINGER
+   People / Nature / Badges / Stories / Wonderkammer / Civication Store / Events / Leksikon / Ruter
    ========================= */
-
-#placeCard{
-  --pc-round-size: 150px;
-  --pc-round-gap: 6px;
-  --pc-popout-right: calc(12px + var(--pc-round-size) + 10px);
-  --pc-popout-step: calc(var(--pc-round-size) + var(--pc-round-gap));
-}
 
 /* Alle lister skjult som default */
 #placeCard #pcPeopleList,
@@ -398,7 +391,10 @@ body.pc-collapsed #nearbyListContainer {
 #placeCard #pcBadgesList,
 #placeCard #pcStoriesList,
 #placeCard #pcWonderkammerList,
-#placeCard #pcCivicationStoreList{
+#placeCard #pcCivicationStoreList,
+#placeCard #pcEventsList,
+#placeCard #pcLeksikonList,
+#placeCard #pcRoutesList{
   display: none;
 }
 
@@ -408,7 +404,10 @@ body.pc-collapsed #nearbyListContainer {
 #placeCard #pcBadgesList.is-open,
 #placeCard #pcStoriesList.is-open,
 #placeCard #pcWonderkammerList.is-open,
-#placeCard #pcCivicationStoreList.is-open{
+#placeCard #pcCivicationStoreList.is-open,
+#placeCard #pcEventsList.is-open,
+#placeCard #pcLeksikonList.is-open,
+#placeCard #pcRoutesList.is-open{
   position: absolute;
   right: var(--pc-popout-right);
   z-index: 100;
@@ -423,34 +422,31 @@ body.pc-collapsed #nearbyListContainer {
 
 /* Rad 1 */
 #placeCard #pcPeopleList.is-open,
-#placeCard #pcNatureList.is-open{
+#placeCard #pcNatureList.is-open,
+#placeCard #pcBadgesList.is-open{
   display: flex;
   top: 12px;
-
-  flex-direction: row;
-  flex-wrap: nowrap;
-  gap: 10px;
-
-  overflow-x: auto;
-  overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
 }
 
 /* Rad 2 */
-#placeCard #pcBadgesList.is-open,
-#placeCard #pcStoriesList.is-open{
+#placeCard #pcStoriesList.is-open,
+#placeCard #pcWonderkammerList.is-open,
+#placeCard #pcCivicationStoreList.is-open{
   display: flex;
   top: calc(12px + var(--pc-popout-step));
 }
 
 /* Rad 3 */
-#placeCard #pcWonderkammerList.is-open,
-#placeCard #pcCivicationStoreList.is-open{
+#placeCard #pcEventsList.is-open,
+#placeCard #pcLeksikonList.is-open,
+#placeCard #pcRoutesList.is-open{
   display: flex;
   top: calc(12px + (2 * var(--pc-popout-step)));
 }
 
-/* Badges = horisontal rad */
+/* People / Nature / Badges = horisontal */
+#placeCard #pcPeopleList.is-open,
+#placeCard #pcNatureList.is-open,
 #placeCard #pcBadgesList.is-open{
   flex-direction: row;
   flex-wrap: nowrap;
@@ -461,10 +457,13 @@ body.pc-collapsed #nearbyListContainer {
   -webkit-overflow-scrolling: touch;
 }
 
-/* Stories / Wonderkammer / Store = vertikale paneler */
+/* Stories / Wonderkammer / Store / Events / Leksikon / Routes = vertikal */
 #placeCard #pcStoriesList.is-open,
 #placeCard #pcWonderkammerList.is-open,
-#placeCard #pcCivicationStoreList.is-open{
+#placeCard #pcCivicationStoreList.is-open,
+#placeCard #pcEventsList.is-open,
+#placeCard #pcLeksikonList.is-open,
+#placeCard #pcRoutesList.is-open{
   flex-direction: column;
   gap: 10px;
 
@@ -477,7 +476,7 @@ body.pc-collapsed #nearbyListContainer {
   padding: 10px 12px;
 }
 
-/* Runde-labels når det ikke vises bilde */
+/* Runde-labels */
 #placeCard .pc-round-label{
   display: flex;
   flex-direction: column;
@@ -735,10 +734,14 @@ body.pc-collapsed #nearbyListContainer {
    CIVICATION STORE
    ========================= */
 
-#placeCard #pcCivicationStoreList .pc-civi-entry{
+#placeCard #pcCivicationStoreList .pc-civi-entry,
+#placeCard #pcEventsList .pc-event-entry,
+#placeCard #pcLeksikonList .pc-leksikon-entry,
+#placeCard #pcRoutesList .pc-route-entry{
   display: flex;
-  align-items: center;
-  gap: 10px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
   width: 100%;
   padding: 10px 12px;
   border-radius: 12px;
@@ -749,15 +752,27 @@ body.pc-collapsed #nearbyListContainer {
   cursor: pointer;
 }
 
-#placeCard #pcCivicationStoreList .pc-civi-entry-title{
+#placeCard #pcCivicationStoreList .pc-civi-entry-title,
+#placeCard #pcEventsList .pc-event-entry-title,
+#placeCard #pcLeksikonList .pc-leksikon-entry-title,
+#placeCard #pcRoutesList .pc-route-entry-title{
   font-size: 14px;
   line-height: 1.3;
   color: #fff;
+  font-weight: 700;
 }
 
 #placeCard #pcCivicationStoreList .pc-civi-emoji{
   font-size: 24px;
   line-height: 1;
+}
+
+#placeCard #pcEventsList .pc-event-entry-meta,
+#placeCard #pcLeksikonList .pc-leksikon-entry-meta,
+#placeCard #pcRoutesList .pc-route-entry-meta{
+  font-size: 12px;
+  line-height: 1.3;
+  color: rgba(255,255,255,.72);
 }
 
 
