@@ -262,29 +262,36 @@
    ===================================================== */
 
 .hg-popup.placecard-round-popup .hg-popup-inner{
-  width: 560px;
-  max-height: 76vh;
-  padding: 20px 18px 18px;
-  background: rgba(15,15,20,0.97);
-  border-radius: 18px;
-  box-shadow: 0 0 38px rgba(0,0,0,0.60);
+  width: min(680px, 92vw);
+  max-height: 80vh;
+  padding: 22px 20px 18px;
+  background:
+    linear-gradient(180deg, rgba(24,24,30,0.98), rgba(12,12,16,0.98));
+  border-radius: 22px;
+  box-shadow:
+    0 24px 80px rgba(0,0,0,0.55),
+    0 0 0 1px rgba(255,255,255,0.05) inset;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
 }
 
 .pc-round-popup-head{
-  margin-bottom: 14px;
-  padding-right: 36px;
+  margin-bottom: 16px;
+  padding-right: 42px;
 }
 
 .pc-round-popup-title{
   margin: 0;
-  font-size: 22px;
-  line-height: 1.15;
+  font-size: 24px;
+  line-height: 1.1;
   color: #fff;
-  font-weight: 700;
+  font-weight: 800;
+  letter-spacing: -0.02em;
 }
 
 .pc-round-popup-sub{
-  margin: 6px 0 0;
+  margin: 7px 0 0;
   font-size: 14px;
   line-height: 1.35;
   color: rgba(255,255,255,.72);
@@ -293,29 +300,43 @@
 .pc-round-popup-body{
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
 }
 
 .hg-popup.placecard-round-popup .pc-empty{
   font-size: 14px;
   color: rgba(255,255,255,.72);
+  padding: 8px 2px;
 }
 
-/* People */
+/* =====================================================
+   PEOPLE
+   ===================================================== */
+
 .hg-popup.placecard-round-popup .pc-person{
-  background: transparent;
-  border: none;
-  padding: 0;
-  display: flex;
+  width: 100%;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 10px 12px;
+  display: grid;
+  grid-template-columns: 56px 1fr;
   align-items: center;
   gap: 12px;
   text-align: left;
   color: #fff;
   cursor: pointer;
+  transition: transform .14s ease, background .14s ease, border-color .14s ease;
+}
+
+.hg-popup.placecard-round-popup .pc-person:hover{
+  transform: translateY(-1px);
+  background: rgba(255,255,255,0.075);
+  border-color: rgba(255,255,255,0.14);
 }
 
 .hg-popup.placecard-round-popup .pc-person + .pc-person{
-  margin-top: 8px;
+  margin-top: 0;
 }
 
 .hg-popup.placecard-round-popup .pc-person-img{
@@ -328,31 +349,137 @@
   flex: 0 0 auto;
 }
 
+.hg-popup.placecard-round-popup .pc-person span{
+  font-size: 15px;
+  line-height: 1.3;
+  font-weight: 600;
+  color: #fff;
+}
+
+/* =====================================================
+   NATURE
+   ===================================================== */
+
 .hg-popup.placecard-round-popup #pcNatureList .pc-flora-row,
 .hg-popup.placecard-round-popup .pc-flora-row{
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 10px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
 }
 
 .hg-popup.placecard-round-popup .pc-flora{
-  border: none;
+  border: 1px solid rgba(255,255,255,0.08);
   background: rgba(255,255,255,0.05);
-  border-radius: 14px;
-  padding: 6px;
+  border-radius: 16px;
+  padding: 8px;
   cursor: pointer;
+  transition: transform .14s ease, background .14s ease, border-color .14s ease;
+}
+
+.hg-popup.placecard-round-popup .pc-flora:hover{
+  transform: translateY(-1px);
+  background: rgba(255,255,255,0.075);
+  border-color: rgba(255,255,255,0.14);
 }
 
 .hg-popup.placecard-round-popup .pc-flora img{
   width: 100%;
   aspect-ratio: 1 / 1;
   object-fit: cover;
-  border-radius: 10px;
+  border-radius: 12px;
+  display: block;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.28);
+}
+
+/* =====================================================
+   BADGES
+   ===================================================== */
+
+.hg-popup.placecard-round-popup .pc-badge{
+  display: grid;
+  grid-template-columns: 52px 1fr;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.05);
+  color: #fff;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform .14s ease, background .14s ease, border-color .14s ease;
+}
+
+.hg-popup.placecard-round-popup .pc-badge:hover{
+  transform: translateY(-1px);
+  background: rgba(255,255,255,0.075);
+  border-color: rgba(255,255,255,0.14);
+}
+
+.hg-popup.placecard-round-popup .pc-badge img{
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+  border-radius: 50%;
+  background: rgba(0,0,0,.45);
+  flex: 0 0 auto;
   display: block;
 }
 
-/* Cards / rows */
-.hg-popup.placecard-round-popup .pc-badge,
+.hg-popup.placecard-round-popup .pc-badge span{
+  font-size: 15px;
+  line-height: 1.3;
+  color: #fff;
+  font-weight: 700;
+}
+
+/* =====================================================
+   STORIES
+   ===================================================== */
+
+.hg-popup.placecard-round-popup .pc-story{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 14px 15px;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.04));
+  box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+}
+
+.hg-popup.placecard-round-popup .pc-story-top{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  color: rgba(255,255,255,.62);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+.hg-popup.placecard-round-popup .pc-story-title{
+  font-size: 17px;
+  line-height: 1.25;
+  color: #fff;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.hg-popup.placecard-round-popup .pc-story-text{
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(255,255,255,.90);
+}
+
+/* =====================================================
+   WONDERKAMMER / STORE / EVENTS / LEKSIKON / ROUTES
+   ===================================================== */
+
 .hg-popup.placecard-round-popup .pc-wk-entry,
 .hg-popup.placecard-round-popup .pc-civi-entry,
 .hg-popup.placecard-round-popup .pc-event-entry,
@@ -363,25 +490,26 @@
   gap: 12px;
   width: 100%;
   padding: 12px 14px;
-  border-radius: 14px;
+  border-radius: 16px;
   border: 1px solid rgba(255,255,255,0.10);
   background: rgba(255,255,255,0.05);
   color: #fff;
   text-align: left;
   text-decoration: none;
   cursor: pointer;
+  transition: transform .14s ease, background .14s ease, border-color .14s ease;
 }
 
-.hg-popup.placecard-round-popup .pc-badge img{
-  width: 48px;
-  height: 48px;
-  object-fit: contain;
-  border-radius: 50%;
-  background: #000;
-  flex: 0 0 auto;
+.hg-popup.placecard-round-popup .pc-wk-entry:hover,
+.hg-popup.placecard-round-popup .pc-civi-entry:hover,
+.hg-popup.placecard-round-popup .pc-event-entry:hover,
+.hg-popup.placecard-round-popup .pc-leksikon-entry:hover,
+.hg-popup.placecard-round-popup .pc-route-entry:hover{
+  transform: translateY(-1px);
+  background: rgba(255,255,255,0.075);
+  border-color: rgba(255,255,255,0.14);
 }
 
-.hg-popup.placecard-round-popup .pc-badge span,
 .hg-popup.placecard-round-popup .pc-wk-entry-title,
 .hg-popup.placecard-round-popup .pc-civi-entry-title,
 .hg-popup.placecard-round-popup .pc-event-entry-title,
@@ -390,7 +518,7 @@
   font-size: 15px;
   line-height: 1.3;
   color: #fff;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .hg-popup.placecard-round-popup .pc-event-entry-meta,
@@ -401,38 +529,6 @@
   font-size: 12px;
   line-height: 1.3;
   color: rgba(255,255,255,.68);
-}
-
-/* Stories */
-.hg-popup.placecard-round-popup .pc-story{
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  padding: 12px 14px;
-  border-radius: 14px;
-  border: 1px solid rgba(255,255,255,0.10);
-  background: rgba(255,255,255,0.05);
-}
-
-.hg-popup.placecard-round-popup .pc-story-top{
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  font-size: 12px;
-  color: rgba(255,255,255,.64);
-}
-
-.hg-popup.placecard-round-popup .pc-story-title{
-  font-size: 16px;
-  line-height: 1.25;
-  color: #fff;
-  font-weight: 700;
-}
-
-.hg-popup.placecard-round-popup .pc-story-text{
-  font-size: 14px;
-  line-height: 1.45;
-  color: rgba(255,255,255,.90);
 }
 
 /* Wonderkammer relation blocks */
@@ -453,7 +549,7 @@
 .hg-popup.placecard-round-popup .hg-rel-list li{
   margin: 8px 0;
   padding: 10px 12px;
-  border-radius: 12px;
+  border-radius: 14px;
   border: 1px solid rgba(255,255,255,0.10);
   background: rgba(255,255,255,0.04);
 }
