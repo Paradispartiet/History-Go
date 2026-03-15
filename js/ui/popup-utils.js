@@ -132,6 +132,20 @@ window.showPlaceCardRoundPopup = function ({
       }
     };
   });
+
+  currentPopup.querySelectorAll("[data-brand]").forEach(btn => {
+  btn.onclick = () => {
+    const brandId = String(btn.dataset.brand || "").trim();
+    if (!brandId) return;
+
+    if (typeof window.showBrandPopup === "function") {
+      closePopup();
+      window.showBrandPopup(brandId, place);
+    } else {
+      window.showToast?.("Brand-popup ikke lastet");
+    }
+  };
+});
 };
 
 
