@@ -1,5 +1,5 @@
 (function () {
-  const BRANDS_PATH = new URL("data/brands/brands.json", document.baseURI).toString();
+  const BRANDS_CATALOG_PATH = new URL("data/brands/brands_catalog.json", document.baseURI).toString();
   const BRANDS_BY_PLACE_PATH = new URL("data/brands/brands_by_place.json", document.baseURI).toString();
 
   function asString(v) {
@@ -22,10 +22,11 @@
     return {
       id: asString(raw?.id),
       name: asString(raw?.name),
+      type: asString(raw?.type),
+      sector: asString(raw?.sector),
+      logo: asString(raw?.logo),
       popupdesc: asString(raw?.popupdesc),
       desc: asString(raw?.desc),
-      type: asString(raw?.type),
-      image: asString(raw?.image),
       tags: ensureArray(raw?.tags).map(asString).filter(Boolean)
     };
   }
@@ -40,10 +41,10 @@
     async init() {
       if (this.ready) return this;
 
-      const rawBrands = await fetchJson(BRANDS_PATH);
+      const rawCatalog = await fetchJson(BRANDS_CATALOG_PATH);
       const rawByPlace = await fetchJson(BRANDS_BY_PLACE_PATH);
 
-      this.all = ensureArray(rawBrands)
+      this.all = ensureArray(rawCatalog)
         .map(normalizeBrand)
         .filter(b => b.id && b.name);
 
