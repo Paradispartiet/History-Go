@@ -1,0 +1,2698 @@
+{
+  "version": "4.8",
+  "source_files": {
+    "places": "places_by.json / places_*.json",
+    "emner": "emner_by.json / emner_*.json",
+    "emnemapping": "emnemapping_full.json",
+    "fagkart": "fagkart_by.json / fagkart_*.json",
+    "set_mal": "SET_MAL_README_v4_3.md",
+    "superset_quizmal": "supersetQUIZMAL (8).json"
+  },
+  "goal": "Generate History Go place quizzes for a history app where the opening sets establish the historical core clearly, the middle sets deepen it through concrete facts and visible traces, and the later sets increase analytical, theoretical and philosophical depth. Theory and named thinkers should be taught more often, but always through fact-based, place-specific questions.",
+  "core_principle": "History Go is a history app with escalating depth: historical core first -> local stories/people/buildings/events/former functions -> visible traces and concrete facts -> theory, emner, concepts and philosophers in late-middle and late sets. History leads the opening, but theory should progressively take over after the historical base is secured. All questions must remain fact-based and anchored in the place.",
+  "selection_rules": {
+    "max_questions_per_emne_angle_per_place": 1,
+    "max_definition_questions_per_set": 1,
+    "min_distinct_question_families_per_set": 3,
+    "min_place_specific_features_represented_per_set": 2,
+    "min_must_include_features_represented_per_set": 1,
+    "max_generic_openings_per_set": 0,
+    "prefer_primary_angles_first": true,
+    "prefer_contrast_question_when_contrast_targets_exist": true,
+    "avoid_reusing_same_family_in_adjacent_questions": true,
+    "max_repeated_signature_feature_per_set": 2,
+    "max_definition_questions_in_set_1": 0,
+    "min_story_or_curiosity_questions_in_set_1": 4,
+    "min_visual_or_sensory_questions_in_set_1": 2,
+    "min_surprise_value_questions_in_set_1": 2,
+    "sets_1_2_must_be_entertaining_first": true,
+    "set_1_intro_story_required": true,
+    "extra_intro_set_forbidden": true,
+    "sets_1_2_3_5_6_emne_driven_forbidden": true,
+    "sets_4_7_emne_driven_required": false,
+    "set_8_concept_driven_required": true,
+    "min_concrete_place_questions_in_sets_1_2_3_5_6": 5,
+    "min_core_concepts_used_in_set_8": 4,
+    "max_definition_questions_in_set_3": 0,
+    "max_definition_questions_in_set_2": 0,
+    "min_historical_questions_in_set_2": 7,
+    "set_2_history_only_required": true,
+    "set_5_architecture_only_required": false,
+    "min_architecture_materiality_or_form_questions_in_set_5": 7,
+    "min_person_questions_in_set_3": 1,
+    "min_event_questions_in_set_3": 1,
+    "min_place_rhythm_or_use_questions_in_set_3": 1,
+    "min_noticed_physical_trait_questions_in_set_3": 1,
+    "min_people_events_or_curiosities_questions_in_set_3": 4,
+    "sets_1_2_3_must_be_place_first": true,
+    "set_3_people_events_curiosities_required": true,
+    "set_4_theory_and_theorist_required": true,
+    "set_7_theory_and_theorist_required": true,
+    "set_8_theory_and_theorist_required": true,
+    "min_questions_with_named_theorist_in_set_4": 3,
+    "min_questions_with_named_theorist_in_set_7": 4,
+    "min_questions_with_named_theorist_in_set_8": 5,
+    "min_questions_explicitly_naming_theorist_in_question_or_options_set_4": 2,
+    "min_questions_explicitly_naming_theorist_in_question_or_options_set_7": 2,
+    "min_questions_explicitly_naming_theorist_in_question_or_options_set_8": 3,
+    "min_theory_application_questions_in_set_4": 2,
+    "min_theory_application_questions_in_set_7": 3,
+    "min_theory_comparison_questions_in_set_8": 2,
+    "theory_refs_must_come_from_fagkart_canon": true,
+    "topic_hook_trace_required_in_emne_sets": true,
+    "sets_per_place_variable": true,
+    "questions_per_set_variable": true,
+    "sets_per_place_range": {
+      "min": 4,
+      "max": 10
+    },
+    "questions_per_set_range": {
+      "min": 5,
+      "max": 7
+    },
+    "default_profile": "rich_place",
+    "extra_sets_allowed_for_major_places": true,
+    "set_9_deep_history_conflict_optional": true,
+    "set_10_theory_mastery_comparison_optional": true,
+    "full_length_quiz_required_for_all_places": false,
+    "sets_per_place_must_be_adaptive": true,
+    "questions_per_set_must_be_adaptive": true,
+    "history_priority_over_emne": true,
+    "humor_priority_over_emne_in_early_sets": true,
+    "fagplan_meta_questions_forbidden": true,
+    "topic_hook_reference_in_question_forbidden": true,
+    "theorist_name_as_main_question_target_forbidden": true,
+    "minimum_history_first_sets_before_emne_sets": 4,
+    "minimal_place_may_skip_emne_sets_entirely": true,
+    "set_4_place_fact_or_architecture_required": true,
+    "set_5_place_concrete_advanced_required": true,
+    "set_6_emne_driven_required": true,
+    "set_7_emne_driven_required": true,
+    "prefer_questions_with_change": true,
+    "narrative_arc_required": true,
+    "question_refinement_stage_required": true,
+    "story_core_required_before_question_generation": true,
+    "place_reference_required_in_emne_questions": true,
+    "max_questions_about_same_person_per_quiz": 2,
+    "max_questions_about_same_building_per_set": 2,
+    "max_questions_about_same_event_per_quiz": 2,
+    "max_questions_about_same_year_per_set": 1,
+    "min_scene_questions_per_quiz": 2,
+    "min_story_components_before_generation": 3,
+    "late_theory_sets_may_be_skipped_if_history_core_weak": true,
+    "early_sets_must_be_claim_or_story_unit_driven": true,
+    "emne_angle_labels_may_not_seed_questions_in_sets_1_5": true,
+    "noun_swap_place_specificity_test_required": true,
+    "theory_may_not_compensate_for_weak_history": true,
+    "min_story_unit_driven_questions_in_sets_1_5": 0.5,
+    "history_app_mode_required": true,
+    "history_priority_over_everything": false,
+    "historical_core_must_dominate_whole_quiz": false,
+    "present_day_branding_outweighing_history_forbidden": true,
+    "contemporary_commercial_identity_as_primary_story_forbidden": true,
+    "former_function_or_historical_change_required_by_set_2": true,
+    "visible_trace_or_historical_consequence_required_by_set_4": true,
+    "minimum_history_first_sets_before_non_historical_framing": 4,
+    "history_first_rewrite_required_when_current_identity_is_stronger_than_past_in_sources": true,
+    "set_5_theory_support_recommended": true,
+    "set_6_theory_and_theorist_required": true,
+    "min_questions_with_named_theorist_in_set_5": 2,
+    "min_questions_with_named_theorist_in_set_6": 3,
+    "min_questions_explicitly_naming_theorist_in_question_or_options_set_5": 1,
+    "min_questions_explicitly_naming_theorist_in_question_or_options_set_6": 2,
+    "min_theory_application_questions_in_set_5": 1,
+    "min_theory_application_questions_in_set_6": 2,
+    "historical_core_must_dominate_sets_1_4": true,
+    "theory_progression_required_from_set_4_onward": true,
+    "more_fact_based_than_impressionistic_required": true,
+    "generic_sociology_overreach_forbidden": true
+  },
+  "blocked_formulations": [
+    "Hvilket begrep passer best",
+    "Hvilken teoretiker fra fagplanen",
+    "Hvilken hook fra fagkartet",
+    "Hva slags grøntområde er dette",
+    "Hva gjør dette stedet relevant for",
+    "Hvilken teoretiker passer best",
+    "Hvilken topic-hook",
+    "Når dette stedet analyseres gjennom fagplanen",
+    "Hvordan fungerer stedet som byrom",
+    "Hvorfor er dette et viktig grøntområde",
+    "Hva viser emnet",
+    "Hvilken topic hook",
+    "Hvordan fungerer dette stedet som byrom",
+    "Hvilket emne fra fagplanen",
+    "Hvilket fagbegrep beskriver best dette stedet",
+    "Hvorfor er dette stedet relevant for",
+    "Hva gjør dette stedet relevant for biologisk mangfold",
+    "Hvilken canon thinker",
+    "Hvilken tenker fra fagplanen",
+    "Hvordan fungerer stedet som eksempel på",
+    "Hva er et eksempel på",
+    "Hvilken teoretiker er særlig nyttig når",
+    "Hvilken topic hook fra fagkartet passer best når",
+    "Hva gjør stedet til et eksempel på",
+    "Hvem virker stedet laget for",
+    "Hva forteller dette om byen i dag",
+    "Hva sier dette stedet om identitet",
+    "Hvordan speiler stedet dagens livsstil",
+    "Hva gjør stedet urbant",
+    "Hva slags sosial dynamikk ser man her",
+    "Hvordan brukes stedet av ulike grupper"
+  ],
+  "preferred_openings": [
+    "Hva forteller",
+    "Hvorfor ble",
+    "Hva skiller",
+    "Hvordan merker man",
+    "Hvilket spor ser man av",
+    "Hva gjør at",
+    "Hvorfor oppleves",
+    "Hva var dette stedet før",
+    "Hvilken løsning gjør",
+    "Hvor i stedet ser man",
+    "Hvordan ble",
+    "Hva kjennetegner",
+    "Hvem var",
+    "Hva skjedde",
+    "Hvilken detalj",
+    "Hva møter du",
+    "Hva ser man",
+    "Hvorfor virker"
+  ],
+  "angle_rules": {
+    "form": {
+      "focus": [
+        "romlig form",
+        "plassering",
+        "komposisjon",
+        "landemerkeeffekt"
+      ],
+      "best_families": [
+        "gjenkjenning",
+        "romlig_lesning",
+        "saertrekk"
+      ],
+      "dimension_hints": [
+        "byform",
+        "bybilde",
+        "romvirkning"
+      ]
+    },
+    "historie": {
+      "focus": [
+        "tidslag",
+        "endring",
+        "grunnleggelse",
+        "ombygging"
+      ],
+      "best_families": [
+        "historisk_endring",
+        "tidslag",
+        "kontrast"
+      ],
+      "dimension_hints": [
+        "historie",
+        "endring",
+        "epoke"
+      ]
+    },
+    "bruk": {
+      "focus": [
+        "hverdagsbruk",
+        "brukergrupper",
+        "rytme",
+        "funksjon i dag"
+      ],
+      "best_families": [
+        "bruk",
+        "saertrekk",
+        "kontrast"
+      ],
+      "dimension_hints": [
+        "bruk",
+        "hverdagsliv",
+        "sosial rolle"
+      ]
+    },
+    "materialitet": {
+      "focus": [
+        "materialer",
+        "overflater",
+        "farger",
+        "slitasje"
+      ],
+      "best_families": [
+        "teknisk_fysisk",
+        "gjenkjenning",
+        "saertrekk"
+      ],
+      "dimension_hints": [
+        "materiale",
+        "sanseerfaring",
+        "arkitektur"
+      ]
+    },
+    "topografi": {
+      "focus": [
+        "høyde",
+        "fall",
+        "terreng",
+        "utsiktslogikk"
+      ],
+      "best_families": [
+        "romlig_lesning",
+        "saertrekk",
+        "gjenkjenning"
+      ],
+      "dimension_hints": [
+        "terreng",
+        "høyde",
+        "orientering"
+      ]
+    },
+    "teknikk": {
+      "focus": [
+        "konstruksjon",
+        "infrastruktur",
+        "trafikksystem",
+        "teknisk løsning"
+      ],
+      "best_families": [
+        "teknisk_fysisk",
+        "gjenkjenning",
+        "bruk"
+      ],
+      "dimension_hints": [
+        "teknikk",
+        "infrastruktur",
+        "byggemåte"
+      ]
+    },
+    "vegetasjon": {
+      "focus": [
+        "beplantning",
+        "grønn karakter",
+        "trær",
+        "sesongpreg"
+      ],
+      "best_families": [
+        "gjenkjenning",
+        "saertrekk",
+        "tidslag"
+      ],
+      "dimension_hints": [
+        "vegetasjon",
+        "grønn karakter",
+        "sesong"
+      ]
+    },
+    "institusjon": {
+      "focus": [
+        "maktrolle",
+        "offentlig funksjon",
+        "forvaltning",
+        "symbolikk"
+      ],
+      "best_families": [
+        "saertrekk",
+        "historisk_endring",
+        "kontrast"
+      ],
+      "dimension_hints": [
+        "institusjon",
+        "makt",
+        "offentlig rolle"
+      ]
+    },
+    "konflikt_forandring": {
+      "focus": [
+        "omstridt utvikling",
+        "gentrifisering",
+        "styrt endring",
+        "brukskonflikt"
+      ],
+      "best_families": [
+        "historisk_endring",
+        "kontrast",
+        "bruk"
+      ],
+      "dimension_hints": [
+        "konflikt",
+        "transformasjon",
+        "utvikling"
+      ]
+    },
+    "utsyn_orientering": {
+      "focus": [
+        "siktlinjer",
+        "retning",
+        "oversikt",
+        "inngangsport"
+      ],
+      "best_families": [
+        "romlig_lesning",
+        "gjenkjenning",
+        "saertrekk"
+      ],
+      "dimension_hints": [
+        "orientering",
+        "utsyn",
+        "plassering"
+      ]
+    }
+  },
+  "question_families": {
+    "gjenkjenning": {
+      "purpose": "Identify the place through a concrete signature trait.",
+      "allowed_question_types": [
+        "fact",
+        "recognition"
+      ],
+      "good_openings": [
+        "Hva ved stedet gjør det lett å kjenne igjen",
+        "Hva er det første som skiller",
+        "Hvilket trekk gjør at"
+      ],
+      "knowledge_requirements": [
+        "must name a concrete place trait",
+        "must add why the trait matters in the city"
+      ]
+    },
+    "historisk_endring": {
+      "purpose": "Frame the place through change over time.",
+      "allowed_question_types": [
+        "fact",
+        "timeline",
+        "comparison"
+      ],
+      "good_openings": [
+        "Hva var dette stedet før",
+        "Hvorfor ble",
+        "Hvilken endring gjorde at"
+      ],
+      "knowledge_requirements": [
+        "must mention at least one dated or periodized shift",
+        "must connect shift to current place character"
+      ]
+    },
+    "teknisk_fysisk": {
+      "purpose": "Ask about construction, infrastructure, material or physical solution.",
+      "allowed_question_types": [
+        "fact",
+        "technical"
+      ],
+      "good_openings": [
+        "Hvilken løsning gjør",
+        "Hva er bygget i",
+        "Hvordan er dette anlagt"
+      ],
+      "knowledge_requirements": [
+        "must include a concrete technical or material detail",
+        "must explain what that detail enables"
+      ]
+    },
+    "bruk": {
+      "purpose": "Ask about actual use, rhythms and user groups.",
+      "allowed_question_types": [
+        "fact",
+        "usage",
+        "scenario"
+      ],
+      "good_openings": [
+        "Hva brukes stedet til i dag",
+        "Hvem virker stedet laget for",
+        "Hvordan merker man at"
+      ],
+      "knowledge_requirements": [
+        "must describe actual use today",
+        "must avoid generic byliv wording"
+      ]
+    },
+    "romlig_lesning": {
+      "purpose": "Read movement, openness, closure, direction and position in space.",
+      "allowed_question_types": [
+        "spatial",
+        "observation",
+        "fact"
+      ],
+      "good_openings": [
+        "Hva gjør at stedet åpner seg",
+        "Hvor i stedet ser man",
+        "Hvordan leder stedet deg"
+      ],
+      "knowledge_requirements": [
+        "must describe a spatial effect",
+        "must tie it to movement or orientation"
+      ]
+    },
+    "saertrekk": {
+      "purpose": "Distinguish the place from similar places in Oslo.",
+      "allowed_question_types": [
+        "comparison",
+        "fact"
+      ],
+      "good_openings": [
+        "Hva skiller",
+        "Hvorfor oppleves dette annerledes enn",
+        "Hva gjør dette stedet ulikt"
+      ],
+      "knowledge_requirements": [
+        "must state a real differentiator",
+        "must not fall back to generic category labels"
+      ]
+    },
+    "kontrast": {
+      "purpose": "Use contrast against a nearby or comparable place.",
+      "allowed_question_types": [
+        "comparison"
+      ],
+      "good_openings": [
+        "Hvorfor føles dette annerledes enn",
+        "Hva er den tydeligste forskjellen mellom",
+        "Hvilket trekk gjør at dette ikke fungerer som"
+      ],
+      "knowledge_requirements": [
+        "must compare against an explicit contrast target or same-type place",
+        "must explain difference, not just name it"
+      ]
+    },
+    "tidslag": {
+      "purpose": "Read multiple periods or surviving traces in the same place.",
+      "allowed_question_types": [
+        "history",
+        "observation",
+        "comparison"
+      ],
+      "good_openings": [
+        "Hvilket spor ser man av",
+        "Hvilke epoker kan fortsatt leses her",
+        "Hva i stedet røper at"
+      ],
+      "knowledge_requirements": [
+        "must identify at least one surviving trace",
+        "must connect trace to present-day reading"
+      ]
+    },
+    "begrepsdefinisjon": {
+      "purpose": "Define or identify a core concept that actually helps read the place.",
+      "best_for_sets": [
+        6
+      ],
+      "question_type": "concept",
+      "scope": "concept"
+    },
+    "begrepskontrast": {
+      "purpose": "Distinguish between two close concepts, terms or analytical pairs.",
+      "best_for_sets": [
+        6
+      ],
+      "question_type": "concept",
+      "scope": "concept"
+    },
+    "begrepsanvendelse": {
+      "purpose": "Apply a concept to the place instead of only defining it abstractly.",
+      "best_for_sets": [
+        6
+      ],
+      "question_type": "concept_application",
+      "scope": "concept"
+    },
+    "story": "Question built around a memorable local story, turning point or anecdote tied to the place.",
+    "kuriositet": "Question built around an unexpected, quirky or surprising detail that makes the place memorable.",
+    "person": "Question anchored in a person strongly tied to the place through use, design, event, statue, institution or memory.",
+    "hendelse": "Question anchored in an event, happening, controversy, opening, accident, performance or public moment at the place.",
+    "scene": "Question anchored in a vivid place-situation the player can imagine or observe on site.",
+    "visuell_hook": "Question anchored in something visually striking, bodily noticeable or easy to point at in the place.",
+    "opprinnelse": {
+      "purpose": "Ask what was here before the current place existed.",
+      "allowed_question_types": [
+        "history",
+        "fact",
+        "comparison"
+      ],
+      "good_openings": [
+        "Hva var dette stedet før",
+        "Hva lå her før",
+        "Hva startet historien til stedet med"
+      ],
+      "knowledge_requirements": [
+        "must identify an earlier state",
+        "must connect old state to the present place"
+      ]
+    },
+    "endring": {
+      "purpose": "Ask what changed the place and why it matters.",
+      "allowed_question_types": [
+        "history",
+        "timeline",
+        "comparison"
+      ],
+      "good_openings": [
+        "Hva forandret stedet",
+        "Hvorfor ble dette endret",
+        "Hva gjorde at området ble noe annet"
+      ],
+      "knowledge_requirements": [
+        "must identify a concrete shift",
+        "must explain why the shift matters"
+      ]
+    },
+    "bygning": {
+      "purpose": "Ask about the history, role or transformation of a concrete building or built structure tied to the place.",
+      "allowed_question_types": [
+        "history",
+        "fact",
+        "observation"
+      ],
+      "good_openings": [
+        "Hvilken bygning",
+        "Hva forteller bygningen",
+        "Hva skjedde med denne bygningen"
+      ],
+      "knowledge_requirements": [
+        "must mention a concrete building or structure",
+        "must connect it to local history"
+      ]
+    },
+    "humor": {
+      "purpose": "Use playful but real local details, quirks or odd contrasts without becoming silly.",
+      "allowed_question_types": [
+        "fact",
+        "observation",
+        "comparison"
+      ],
+      "good_openings": [
+        "Hvilken detalj",
+        "Hva er det rareste",
+        "Hva legger folk ofte merke til"
+      ],
+      "knowledge_requirements": [
+        "must be rooted in a real place detail",
+        "must still teach something true about the place"
+      ]
+    },
+    "analytisk_tolkning": {
+      "purpose": "Ask a deep, place-specific analytical question informed by emner and theory, without exposing generator metadata.",
+      "allowed_question_types": [
+        "analysis",
+        "comparison",
+        "concept_application"
+      ],
+      "good_openings": [
+        "Hva forteller dette om",
+        "Hvordan kan man lese",
+        "Hvorfor virker dette som"
+      ],
+      "knowledge_requirements": [
+        "must stay anchored in the place",
+        "may use academic language but not meta-fagplan wording"
+      ]
+    }
+  },
+  "knowledge_rules": {
+    "answer_only_is_forbidden": true,
+    "target_length_chars": {
+      "min": 160,
+      "max": 420
+    },
+    "must_add_context_beyond_correct_option": true,
+    "should_include_at_least_two_of": [
+      "historisk kontekst",
+      "konkret kildebasert detalj",
+      "romlig forklaring",
+      "bruksmessig konsekvens",
+      "kontrast til lignende sted",
+      "navngitt teoretiker eller verk",
+      "liten bonusinfo",
+      "stedlig scene eller sanselig detalj"
+    ],
+    "avoid": [
+      "ren fasitgjentakelse",
+      "tomt skolespråk",
+      "oppblåst teori uten stedlig forankring",
+      "løs teorireferanse uten fagkart-forankring",
+      "overtydelig sosiologisering uten kildegrunnlag",
+      "løse brukergruppe-antakelser uten historisk eller kildebasert forankring",
+      "psykologiserende eller impressionistiske lesninger uten faktastøtte"
+    ],
+    "set_specific_rules": {
+      "1": "Knowledge should foreground local history and a vivid story detail.",
+      "2": "Knowledge should tie people, buildings, events or former functions to the place.",
+      "3": "Knowledge may be lighter or more playful, but must still teach something true and place-specific.",
+      "4": "Knowledge should deepen concrete facts through building history, visible traces or why the detail matters.",
+      "5": "Knowledge should deepen the concrete place story through institutions, functions, people or development lines.",
+      "6": "Knowledge may be more academic, but should explain the place through analysis rather than syllabus language.",
+      "7": "Knowledge may be advanced and theory-shaped, but the visible question should remain about the place.",
+      "8": "Knowledge should define the concept clearly and show why it helps interpret this place.",
+      "9": "Knowledge should foreground conflict, rupture, power or contested change in local history.",
+      "10": "Knowledge should synthesize rather than quiz theory names."
+    },
+    "preferred_style": "short narrative explanation",
+    "must_include_one_of": [
+      "mini_story",
+      "historical_consequence",
+      "urban_transformation",
+      "visible_trace",
+      "scene_or_sensory_detail",
+      "why_it_matters_today"
+    ]
+  },
+  "output_mapping": {
+    "dimension": "Derived from angle_rules.dimension_hints and/or emne dimensions.",
+    "topic": "Concrete place topic in sets 1,2,4; faglig topic in sets 3,5,6.",
+    "emne_id": "Optional support field in sets 1,2,4; required and load-bearing in sets 3,5,6.",
+    "related_emner": "Fill from emne relations and mapping context, especially in sets 3,5,6.",
+    "core_concepts": "Required in sets 3,5,6 when concept-bearing emner are used.",
+    "concept_focus": "Required in set 6; optional but useful in sets 3 and 5.",
+    "tags": "Use place_type, subtype, set mode and major thematic markers.",
+    "question_scope": "place for sets 1-5; emne for sets 6,7,10; concept for set 8; place for set 9.",
+    "difficulty": "Low in set 1, low-to-medium in set 2, mixed in sets 3-7, conceptually hardest in set 8.",
+    "question_type": "Prefer history/fact/story/person/event/scene in sets 1-5; deeper analysis only from set 6 onward.",
+    "source": "Must list the concrete sources, files or place/emne evidence used to draft the question.",
+    "targetId": "For by place quizzes, copy placeId into targetId on every question and at file level.",
+    "question_layer": "Required. Stamp from set mode. Sets 1-3 may share lighter layers; sets 4-5 place_advanced; sets 6-7 emne layers; set 8 concept.",
+    "theory_ref": "Required in sets 4, 7 and 8. Must trace the question to fagkart.topic_hook canon via topic_hook_id, thinker_id, thinker_name, work and theory_focus.",
+    "topic_hook_id": "Required in sets 4, 7 and 8. The emne-driven question must be traceable to the exact fagkart topic_hook that supplied the canon thinker(s).",
+    "thinker_name": "May be surfaced in question, options and/or knowledge; in sets 4, 7 and 8 the named thinker should be visible often enough that the player actually learns the fagplan canon."
+  },
+  "place_type_defaults": {
+    "park": {
+      "prefer_angles": [
+        "bruk",
+        "historie",
+        "topografi",
+        "vegetasjon",
+        "institusjon"
+      ],
+      "avoid_families": [],
+      "extra_rule": "Do not let two parks in the same batch share the same subtype+primary family combination."
+    },
+    "knutepunkt": {
+      "prefer_angles": [
+        "teknikk",
+        "bruk",
+        "konflikt_forandring",
+        "institusjon",
+        "utsyn_orientering"
+      ],
+      "avoid_families": [
+        "tidslag"
+      ],
+      "extra_rule": "Force at least one question on flows, transfers or waiting."
+    },
+    "gate": {
+      "prefer_angles": [
+        "historie",
+        "bruk",
+        "konflikt_forandring",
+        "materialitet"
+      ],
+      "avoid_families": [],
+      "extra_rule": "Prefer street character, commerce, rhythm or transformation over generic byrom wording."
+    },
+    "boligomrade": {
+      "prefer_angles": [
+        "historie",
+        "form",
+        "materialitet",
+        "konflikt_forandring"
+      ],
+      "avoid_families": [
+        "teknisk_fysisk"
+      ],
+      "extra_rule": "At least one question should distinguish the area from another housing type in Oslo."
+    },
+    "plass": {
+      "prefer_angles": [
+        "bruk",
+        "institusjon",
+        "historie",
+        "utsyn_orientering"
+      ],
+      "avoid_families": [],
+      "extra_rule": "At least one question should address the place as a scene, threshold or civic room."
+    },
+    "omrade": {
+      "prefer_angles": [
+        "konflikt_forandring",
+        "historie",
+        "bruk",
+        "teknikk"
+      ],
+      "avoid_families": [],
+      "extra_rule": "Prefer large-scale area logic over single-building detail."
+    }
+  },
+  "generator_pipeline": [
+    "0. Apply history-first opening rule: sets 1-3 must establish the historical core of the place clearly and factually.",
+    "0.1 Detect the dominant historical core, former function, key turning points and strongest visible traces before drafting.",
+    "0.2 Harvest external historical and place-specific sources and rank them by source tier.",
+    "0.3 Harvest typed source claims into a claim bank before any question drafting.",
+    "0.4 Build story units from claim clusters, persons, buildings, institutions, visible traces and before/after changes.",
+    "0.5 Build a factual narrative skeleton and choose a dominant story pattern / narrative arc.",
+    "1. Run place-content analysis and choose the smallest strong profile the material supports.",
+    "2. Schedule question-type diversity and set-level narrative progression before drafting.",
+    "3. Draft sets 1-2 from historical core, former functions, named people, buildings, conflicts, events and key transitions.",
+    "4. Draft set 3 from scenes, curiosities, remembered details and everyday life that still illuminate the historical story.",
+    "5. Draft set 4 from concrete place facts, architecture, visible traces and the first explicit theory/philosopher layer.",
+    "6. Draft set 5 from concrete advanced place reading, stronger theoretical framing and factual interpretation of historical consequences.",
+    "7. Draft sets 6-8 as progressively more analytical, theoretical and philosophical, while keeping every question tied to place-specific facts.",
+    "8. Prefer philosophers, theorists and works from fagkart canon over generic sociological phrasing in late-middle and late sets.",
+    "9. Rewrite or drop questions that are over-obvious, overly sociological, weakly sourced or insufficiently place-specific.",
+    "10. Run banality scoring, source coverage checks, claim binding checks, place-specificity tests, factuality guard, refinement/rewrite stage and diversity checks.",
+    "11. Shorten the quiz if weak filler remains.",
+    "12. Emit production-ready adaptive set file with source trace metadata whenever possible."
+  ],
+  "validator_checks": [
+    "File has between 4 and 10 sets.",
+    "Each set has between 5 and 7 questions.",
+    "Set 1 and set 2 must always exist.",
+    "If set 6 exists, sets 1-5 must already be strong and non-banal.",
+    "No question may mention topic hook, fagplan, fagkart, canon or mapping logic in visible question text.",
+    "No question may ask which theorist is most useful or best fits the place.",
+    "Early sets must be history-first and place-first.",
+    "At least 4 strong local-history/building/event questions must appear across sets 1 and 2.",
+    "At least 2 humor/quirk/curiosity questions must appear by the end of set 3 when set 3 exists.",
+    "If material cannot support strong early sets, shorten the quiz instead of keeping analytical sets.",
+    "Questions must remain place-specific, concrete and non-banal.",
+    "Knowledge must not be answer-only.",
+    "targetId must equal placeId on every question for by place quizzes.",
+    "question_layer must exist and match the active set mode.",
+    "A dominant narrative arc must be stored in generation metadata or derivable from the selected story pattern.",
+    "At least 3 narrative skeleton components must exist before question generation.",
+    "At least 2 scene or observation questions must exist across the full quiz when material allows.",
+    "No question may exceed banality score threshold.",
+    "No quiz may exceed diversity caps for same person, building, event or year.",
+    "If theory sets exist, the theory activation guard must have passed.",
+    "Each quiz must use at least 3 external historical or institutional sources when such sources are available for the place.",
+    "Sets 1 and 2 must include at least 2 externally supported historical questions when external sources are available.",
+    "Every dated claim, person-place link, building history claim or conflict claim must be traceable to source support.",
+    "Wikipedia may not be the only source for contested, surprising or easily disputed claims when stronger sources exist.",
+    "If too many early-set questions rely only on internal desc/popupDesc fields, shorten or rewrite the quiz.",
+    "If sources disagree on year, naming or event framing, prefer the highest-tier local source or rewrite cautiously.",
+    "Every question in sets 1-5 must be traceable to at least one harvested source claim or one story unit built from such claims.",
+    "Sets 1-5 may not be primarily seeded from emne labels, angle labels, theory labels or generic desc text alone.",
+    "At least half of the questions across sets 1-5 must be story-unit-driven when material allows.",
+    "Questions that pass the noun-swap place-specificity test must be rewritten or dropped.",
+    "If a question lacks a concrete local anchor type, it must be rewritten or dropped.",
+    "Theory-heavy sets may not survive if they are compensating for weak history material.",
+    "History Go is a history app: the quiz must be historically driven, not merely analytical or descriptive.",
+    "The historical core of the place must outweigh present-day branding, lifestyle framing and abstract analysis.",
+    "If a dominant historical story exists, at least two of the first three sets must clearly teach it.",
+    "Set 2 must explain former function, origin, major change or historical reason for the place.",
+    "Set 4 and set 5 must connect concrete place facts back to history, former function or visible trace.",
+    "Late sets may not rescue a weak historical quiz with theory or emne padding.",
+    "Sets 1-3 must clearly teach the historical core before theory takes over.",
+    "Set 4 must introduce named theorists or works when the place supports a rich profile.",
+    "Sets 6-8 must be more theory-rich and philosopher-rich than sets 1-5, while remaining fact-based.",
+    "Questions may not rely mainly on generic sociology, lifestyle language or unsourced user-group inference.",
+    "At least one third of the late-set questions in rich and major profiles should mention a named theorist, work or philosophical concept.",
+    "If a late analytical question can be rewritten as a more factual, source-grounded place question, the factual version must be preferred."
+  ],
+  "binding_set_structure": {
+    "sets_per_place": "adaptive",
+    "questions_per_set": "adaptive",
+    "default_profile": "rich_place",
+    "required_set_ids_pattern": "by_<place_id>_set_<1-n>",
+    "mode_order": [
+      "history_intro_story",
+      "local_history_buildings_events",
+      "humor_curiosities_life",
+      "place_facts_architecture",
+      "place_concrete_advanced",
+      "emne_based_foundation",
+      "emne_based_advanced",
+      "concept_based",
+      "deep_history_conflict",
+      "synthesis_comparison"
+    ],
+    "set_modes": {
+      "1": "history_intro_story",
+      "2": "local_history_buildings_events",
+      "3": "humor_curiosities_life",
+      "4": "place_facts_architecture",
+      "5": "place_concrete_advanced",
+      "6": "emne_based_foundation",
+      "7": "emne_based_advanced",
+      "8": "concept_based",
+      "9": "deep_history_conflict",
+      "10": "synthesis_comparison"
+    },
+    "activation_profiles": {
+      "minimal_place": {
+        "sets": 4,
+        "questions_per_set": 5,
+        "active_set_modes": [
+          "history_intro_story",
+          "local_history_buildings_events",
+          "humor_curiosities_life",
+          "place_facts_architecture"
+        ],
+        "use_when": "Place has limited but usable history and concrete local material. No emne sets required."
+      },
+      "normal_place": {
+        "sets": 5,
+        "questions_per_set": 6,
+        "active_set_modes": [
+          "history_intro_story",
+          "local_history_buildings_events",
+          "humor_curiosities_life",
+          "place_facts_architecture",
+          "place_concrete_advanced"
+        ],
+        "use_when": "Place supports strong history and place material, but not enough for full emne expansion."
+      },
+      "rich_place": {
+        "sets": 8,
+        "questions_per_set": 7,
+        "active_set_modes": [
+          "history_intro_story",
+          "local_history_buildings_events",
+          "humor_curiosities_life",
+          "place_facts_architecture",
+          "place_concrete_advanced",
+          "emne_based_foundation",
+          "emne_based_advanced",
+          "concept_based"
+        ],
+        "use_when": "Place can carry long local history plus late analytical sets."
+      },
+      "major_place": {
+        "sets": 10,
+        "questions_per_set": 7,
+        "active_set_modes": [
+          "history_intro_story",
+          "local_history_buildings_events",
+          "humor_curiosities_life",
+          "place_facts_architecture",
+          "place_concrete_advanced",
+          "emne_based_foundation",
+          "emne_based_advanced",
+          "concept_based",
+          "deep_history_conflict",
+          "synthesis_comparison"
+        ],
+        "use_when": "Place is historically dense enough for deep conflict/history and final analytical synthesis."
+      }
+    },
+    "binding_rule": "History comes first, humor/quirks second, concrete facts/buildings third, and fag/emner only after that. Small and medium places may end before any emne set appears."
+  },
+  "set_mode_rules": {
+    "1": {
+      "mode": "history_intro_story",
+      "description": "Open with the strongest local history, former function or origin story. The first impression must still teach history.",
+      "driven_by": "place_history",
+      "emne_role": "background_only",
+      "question_scope": "place",
+      "difficulty_range": [
+        1,
+        2
+      ],
+      "preferred_question_families": [
+        "opprinnelse",
+        "story",
+        "historisk_endring",
+        "tidslag",
+        "kuriositet"
+      ],
+      "preferred_sources": [
+        "stories",
+        "desc",
+        "popupDesc",
+        "related_events",
+        "related_people",
+        "visual_hooks",
+        "artifacts"
+      ],
+      "hard_requirements": {
+        "min_local_history_questions": 3,
+        "min_story_or_curiosity_questions": 4,
+        "max_meta_or_definition_questions": 0,
+        "dominant_historical_story_if_available": true
+      },
+      "question_layer": "intro_story",
+      "history_anchor_required": true
+    },
+    "2": {
+      "mode": "local_history_buildings_events",
+      "description": "Buildings, former functions, named people, conflicts and events. This set should explain why the place exists historically.",
+      "driven_by": "place_history",
+      "emne_role": "background_only",
+      "question_scope": "place",
+      "difficulty_range": [
+        2,
+        3
+      ],
+      "preferred_question_families": [
+        "bygning",
+        "hendelse",
+        "person",
+        "historisk_endring",
+        "tidslag"
+      ],
+      "preferred_sources": [
+        "related_people",
+        "related_events",
+        "institutions",
+        "artifacts",
+        "stories",
+        "desc",
+        "popupDesc"
+      ],
+      "hard_requirements": {
+        "min_building_or_former_function_questions": 2,
+        "min_person_questions": 1,
+        "min_event_questions": 1,
+        "min_former_function_or_major_change_questions": 2
+      },
+      "question_layer": "life_people_events",
+      "history_anchor_required": true
+    },
+    "3": {
+      "mode": "humor_curiosities_life",
+      "description": "Playful, memorable local details and everyday-life scenes, but still rooted in historical character, local memory or visible traces.",
+      "driven_by": "place",
+      "emne_role": "background_only",
+      "question_scope": "place",
+      "difficulty_range": [
+        1,
+        3
+      ],
+      "preferred_question_families": [
+        "humor",
+        "kuriositet",
+        "scene",
+        "visuell_hook",
+        "bruk",
+        "saertrekk"
+      ],
+      "preferred_sources": [
+        "quirks",
+        "fun_facts",
+        "visual_hooks",
+        "stories",
+        "signature_features",
+        "must_include"
+      ],
+      "hard_requirements": {
+        "min_curiosity_or_humor_questions": 3,
+        "min_real_noticed_trait_questions": 2,
+        "max_meta_or_definition_questions": 0,
+        "min_history_linked_curiosity_questions": 2
+      },
+      "question_layer": "life_people_events",
+      "history_anchor_required": true
+    },
+    "4": {
+      "mode": "place_facts_architecture",
+      "description": "Concrete, verifiable place facts about buildings, materials, architecture and visible traces, now with an explicit first theory/philosopher layer.",
+      "driven_by": "place",
+      "emne_role": "background_only",
+      "question_scope": "place",
+      "difficulty_range": [
+        2,
+        4
+      ],
+      "preferred_question_families": [
+        "bygning",
+        "teknisk_fysisk",
+        "gjenkjenning",
+        "romlig_lesning",
+        "historisk_endring"
+      ],
+      "preferred_sources": [
+        "institutions",
+        "artifacts",
+        "visual_hooks",
+        "desc",
+        "popupDesc",
+        "existing_verified_sources"
+      ],
+      "hard_requirements": {
+        "min_building_material_or_visible_detail_questions": 3,
+        "max_definition_questions": 1,
+        "min_building_history_or_visible_trace_questions": 2,
+        "min_named_theorist_or_work_questions": 3,
+        "min_theory_application_questions": 2
+      },
+      "question_layer": "place_advanced",
+      "history_anchor_required": true,
+      "theory_anchor_required": true
+    },
+    "5": {
+      "mode": "place_concrete_advanced",
+      "description": "Deeper concrete reading through former functions, institutions, conflicts, visible traces and development lines, with stronger theoretical framing and philosophical depth.",
+      "driven_by": "place",
+      "emne_role": "background_only",
+      "question_scope": "place",
+      "difficulty_range": [
+        3,
+        4
+      ],
+      "preferred_question_families": [
+        "kontrast",
+        "saertrekk",
+        "bruk",
+        "historisk_endring",
+        "romlig_lesning",
+        "endring"
+      ],
+      "preferred_sources": [
+        "stories",
+        "related_events",
+        "institutions",
+        "must_include",
+        "desc",
+        "popupDesc",
+        "existing_verified_sources"
+      ],
+      "hard_requirements": {
+        "min_development_or_conflict_questions": 2,
+        "min_questions_framed_as_historical_consequence": 2,
+        "min_named_theorist_or_work_questions": 2
+      },
+      "question_layer": "place_advanced",
+      "history_anchor_required": true,
+      "theory_anchor_recommended": true
+    },
+    "6": {
+      "mode": "emne_based_foundation",
+      "description": "First analytical set. It must remain fact-based and place-specific, but it should now clearly teach emne + theory + named theorists.",
+      "driven_by": "emne",
+      "question_scope": "emne",
+      "difficulty_range": [
+        3,
+        5
+      ],
+      "preferred_question_families": [
+        "analytisk_tolkning",
+        "historisk_endring",
+        "romlig_lesning",
+        "teknisk_fysisk",
+        "kontrast"
+      ],
+      "forbid_patterns": [
+        "topic hook",
+        "fagplan",
+        "teoretiker fra fagplanen",
+        "hvilken teoretiker"
+      ],
+      "question_layer": "emne_foundation",
+      "history_anchor_required": true,
+      "history_anchor_rule": "Even late analytical sets must remain anchored in the local historical core, former function, visible trace, or named historical change of the place.",
+      "forbidden_if_history_weak": true,
+      "theory_anchor_required": true,
+      "hard_requirements": {
+        "min_named_theorist_or_work_questions": 3,
+        "min_theory_application_questions": 2,
+        "min_fact_based_place_anchor_questions": 5
+      }
+    },
+    "7": {
+      "mode": "emne_based_advanced",
+      "description": "Advanced analytical set. Theory, philosophers and canonical works should now be overt enough to be learned, while every question stays anchored in the place.",
+      "driven_by": "emne",
+      "question_scope": "emne",
+      "difficulty_range": [
+        4,
+        5
+      ],
+      "preferred_question_families": [
+        "analytisk_tolkning",
+        "kontrast",
+        "tidslag",
+        "endring",
+        "romlig_lesning"
+      ],
+      "forbid_patterns": [
+        "topic hook",
+        "fagplan",
+        "teoretiker fra fagplanen",
+        "hvilken teoretiker"
+      ],
+      "question_layer": "emne_advanced",
+      "history_anchor_required": true,
+      "history_anchor_rule": "Even late analytical sets must remain anchored in the local historical core, former function, visible trace, or named historical change of the place.",
+      "forbidden_if_history_weak": true
+    },
+    "8": {
+      "mode": "concept_based",
+      "description": "Concept set. Concepts must help read the place and should often be taught through named philosophers, theorists and works rather than generic glossary language.",
+      "driven_by": "concept",
+      "question_scope": "concept",
+      "difficulty_range": [
+        3,
+        5
+      ],
+      "preferred_question_families": [
+        "begrepsdefinisjon",
+        "begrepsanvendelse",
+        "begrepskontrast",
+        "analytisk_tolkning"
+      ],
+      "question_layer": "concept",
+      "history_anchor_required": true,
+      "history_anchor_rule": "Even late analytical sets must remain anchored in the local historical core, former function, visible trace, or named historical change of the place.",
+      "forbidden_if_history_weak": true
+    },
+    "9": {
+      "mode": "deep_history_conflict",
+      "description": "For major places only: wars, demolition, political conflict, planning battles, class conflict or ruptures in local history.",
+      "driven_by": "history_conflict",
+      "question_scope": "place",
+      "difficulty_range": [
+        4,
+        5
+      ],
+      "preferred_question_families": [
+        "endring",
+        "historisk_endring",
+        "kontrast",
+        "tidslag"
+      ],
+      "question_layer": "place_advanced",
+      "history_anchor_required": true
+    },
+    "10": {
+      "mode": "synthesis_comparison",
+      "description": "For major places only: synthesize history, structure and concepts without quizzing theory names directly.",
+      "driven_by": "synthesis",
+      "question_scope": "emne",
+      "difficulty_range": [
+        4,
+        5
+      ],
+      "preferred_question_families": [
+        "analytisk_tolkning",
+        "kontrast",
+        "begrepsanvendelse"
+      ],
+      "question_layer": "emne_advanced",
+      "history_anchor_required": true,
+      "history_anchor_rule": "Even late analytical sets must remain anchored in the local historical core, former function, visible trace, or named historical change of the place.",
+      "forbidden_if_history_weak": true
+    }
+  },
+  "output_contract": {
+    "file_shape": {
+      "required_top_level_fields": [
+        "targetId",
+        "categoryId",
+        "sets"
+      ],
+      "categoryId_fixed": "by",
+      "targetId_rule": "File-level targetId must equal the placeId / place target of the full quiz file.",
+      "sets_length_range": {
+        "min": 4,
+        "max": 10
+      },
+      "sets_length_exact": "adaptive"
+    },
+    "set_shape": {
+      "required_fields": [
+        "set_id",
+        "questions"
+      ],
+      "set_id_pattern": "by_<place_id>_set_<1-n>",
+      "questions_length_range": {
+        "min": 5,
+        "max": 7
+      },
+      "questions_length_exact": "adaptive"
+    },
+    "question_shape": {
+      "required_fields": [
+        "id",
+        "quiz_id",
+        "categoryId",
+        "placeId",
+        "personId",
+        "natureId",
+        "targetId",
+        "question_scope",
+        "question",
+        "options",
+        "answer",
+        "answerIndex",
+        "dimension",
+        "topic",
+        "knowledge",
+        "trivia",
+        "difficulty",
+        "question_type",
+        "question_layer",
+        "year",
+        "epoke_id",
+        "epoke_domain",
+        "emne_id",
+        "related_emner",
+        "core_concepts",
+        "concept_focus",
+        "learning_paths",
+        "tags",
+        "required_tags",
+        "source"
+      ],
+      "options_length_exact": 3,
+      "answer_must_be_in_options": true,
+      "answerIndex_must_match_answer": true,
+      "quiz_id_pattern": "by_<place_id>_set_<set_no>_q<1-7>",
+      "id_pattern_recommended": "<place_id>_quiz_<running_no>",
+      "field_order_preferred": [
+        "id",
+        "quiz_id",
+        "categoryId",
+        "placeId",
+        "personId",
+        "natureId",
+        "targetId",
+        "question_scope",
+        "question",
+        "options",
+        "answer",
+        "answerIndex",
+        "dimension",
+        "topic",
+        "knowledge",
+        "trivia",
+        "difficulty",
+        "question_type",
+        "question_layer",
+        "year",
+        "epoke_id",
+        "epoke_domain",
+        "emne_id",
+        "related_emner",
+        "core_concepts",
+        "concept_focus",
+        "learning_paths",
+        "tags",
+        "required_tags",
+        "source"
+      ],
+      "targetId_rule": "For by place quizzes, targetId must equal placeId on every question. It is required even when the file-level targetId is present.",
+      "question_layer_rule": "Every question must carry a question_layer that matches the set mode. The generator may not leave this inferred or blank.",
+      "question_layer_allowed_values": [
+        "intro_story",
+        "life_people_events",
+        "history_place",
+        "place_advanced",
+        "emne_foundation",
+        "emne_advanced",
+        "concept"
+      ],
+      "question_layer_by_set": {
+        "1": "intro_story",
+        "2": "history_place",
+        "3": "life_people_events",
+        "4": "place_advanced",
+        "5": "place_advanced",
+        "6": "emne_foundation",
+        "7": "emne_advanced",
+        "8": "concept",
+        "9": "place_advanced",
+        "10": "emne_advanced"
+      },
+      "conditional_required_fields_by_set": {
+        "4": [
+          "topic_hook_id",
+          "theory_ref"
+        ],
+        "7": [
+          "topic_hook_id",
+          "theory_ref"
+        ],
+        "8": [
+          "topic_hook_id",
+          "theory_ref"
+        ],
+        "10": [
+          "topic_hook_id",
+          "theory_ref"
+        ],
+        "5": [
+          "topic_hook_id",
+          "theory_ref"
+        ],
+        "6": [
+          "topic_hook_id",
+          "theory_ref"
+        ]
+      },
+      "optional_fields_global": [
+        "topic_hook_id",
+        "theory_ref",
+        "theorist_names",
+        "theory_focus",
+        "claim_support",
+        "source_tier",
+        "source_confidence",
+        "story_unit_id",
+        "source_claim_ids"
+      ],
+      "theory_ref_shape": {
+        "required_fields": [
+          "topic_hook_id",
+          "thinker_id",
+          "thinker_name",
+          "theory_focus"
+        ],
+        "recommended_fields": [
+          "work",
+          "why",
+          "tier"
+        ],
+        "rule": "Use fagkart topic_hook canon only. thinker_id must exist inside the canon.thinkers array of the referenced topic_hook."
+      }
+    },
+    "question_shape_notes": {
+      "question_scope": "Use place in sets 1-5 and 9; emne in sets 6,7,10; concept in set 8.",
+      "question_type": "Keep early sets historical, vivid and concrete. Analytical and concept-heavy types start late.",
+      "source": "Early sets should cite concrete place-near source material when possible.",
+      "question_layer": "Bind question_layer to the adaptive set map in v4.3.",
+      "targetId": "Repeat the place target on every question to match the superset quiz schema and simplify downstream filtering.",
+      "topic_hook_id": "Required in sets 4, 7 and 8. Trace every theory-bearing question to a specific fagkart topic_hook.",
+      "theory_ref": "Required in sets 4, 7 and 8. Use it to store the named theorist/work that the question teaches from the fagplan canon.",
+      "claim_support": "Recommended structured binding for year claims, person-place links, building history claims and conflict claims.",
+      "source_tier": "Recommended source quality tier for the strongest supporting source used in the question.",
+      "source_confidence": "Recommended confidence label when sources are thin, conflicting or partly inferential.",
+      "story_unit_id": "Recommended ID linking the question to the narrative/story unit that seeded it.",
+      "source_claim_ids": "Recommended list of harvested claim IDs that directly support the question."
+    }
+  },
+  "emne_field_rules": {
+    "sets_1_5": {
+      "emne_fields_allowed": true,
+      "emne_fields_may_drive_question": false,
+      "rule": "Early and middle sets must originate from local history, buildings, events, people, humor, visible details or concrete place facts."
+    },
+    "sets_6_10": {
+      "emne_fields_allowed": true,
+      "emne_fields_may_drive_question": true,
+      "rule": "Late analytical sets may be emne-driven, but the visible question must still be written as a place question, not a metadata question."
+    }
+  },
+  "manifest_rules": {
+    "manifest_points_to_each_set": true,
+    "manifest_entry_shape": {
+      "required_fields": [
+        "targetId",
+        "set_id",
+        "order",
+        "file"
+      ],
+      "example": {
+        "targetId": "akershus_festning",
+        "set_id": "by_akershus_festning_set_1",
+        "order": 1,
+        "file": "data/quiz/by/akershus_festning_sets.json"
+      }
+    }
+  },
+  "authoring_workflow": [
+    "Start by identifying the dominant historical core of the place: former function, origin, conflict, major change, named people, visible traces and present-day consequences.",
+    "Build a factual narrative skeleton first, not just a thematic one.",
+    "Use external and internal sources to harvest typed claims before writing any questions.",
+    "Build story units from claims so sets 1-3 can teach history clearly and memorably.",
+    "Build set 4 as the bridge set: concrete architecture/facts plus the first named theorists or works.",
+    "Build set 5 as advanced place reading where theory is more visible but still grounded in facts.",
+    "Let sets 6-8 increase theory, philosophy and conceptual depth progressively.",
+    "Prefer named philosophers, theorists and works over vague sociological generalities in late-middle and late sets.",
+    "Reject over-obvious sociology if it is not anchored in source-based change, visible traces, institutions, users in history or factual place evidence.",
+    "When a place has a strong current identity but an older historical core, teach the older core first and then reinterpret the current identity through theory."
+  ],
+  "place_profile_extensions": {
+    "optional_fields_for_entertaining_sets": {
+      "stories": "Short local stories, anecdotes or turning points that can seed set 1 or 2 questions.",
+      "fun_facts": "Quick surprising facts or memorable details.",
+      "related_people": "Named people strongly tied to the place.",
+      "related_events": "Events, openings, protests, accidents, concerts or public happenings tied to the place.",
+      "visual_hooks": "Things players can immediately see, notice or imagine on site.",
+      "quirks": "Oddities, paradoxes, nicknames, slang or peculiar local traits.",
+      "institutions": "Institutions, venues, buildings or organizations that matter for the place story.",
+      "artifacts": "Statues, signs, infrastructure, artworks or objects that can anchor concrete questions.",
+      "building_stories": "Short stories about specific buildings, structures, former functions or visible traces.",
+      "local_conflicts": "Conflicts, controversies, demolition debates, planning battles or class tensions tied to the place."
+    },
+    "fallback_rule": "If these fields are missing, the generator must derive equivalent material from desc, popupDesc, signature_features, must_include and mapped quiz context before falling back to emner."
+  },
+  "source_pool_rules": {
+    "early_set_source_priority": {
+      "1": [
+        "stories",
+        "fun_facts",
+        "quirks",
+        "visual_hooks",
+        "signature_features",
+        "must_include",
+        "desc",
+        "popupDesc"
+      ],
+      "2": [
+        "stories",
+        "related_events",
+        "desc",
+        "popupDesc",
+        "artifacts",
+        "institutions",
+        "visual_hooks",
+        "signature_features",
+        "must_include"
+      ],
+      "3": [
+        "related_people",
+        "related_events",
+        "stories",
+        "institutions",
+        "artifacts",
+        "visual_hooks",
+        "signature_features",
+        "must_include",
+        "desc",
+        "popupDesc"
+      ],
+      "5": [
+        "visual_hooks",
+        "artifacts",
+        "institutions",
+        "signature_features",
+        "must_include",
+        "desc",
+        "popupDesc"
+      ],
+      "6": [
+        "related_people",
+        "related_events",
+        "institutions",
+        "artifacts",
+        "signature_features",
+        "must_include",
+        "desc",
+        "popupDesc"
+      ]
+    },
+    "fallback_order": [
+      "place.quiz_profile extensions",
+      "signature_features",
+      "must_include",
+      "desc",
+      "popupDesc",
+      "mapped prior quizzes",
+      "mapped emner"
+    ],
+    "rule": "For sets 1-5, the generator must first harvest and test external place-specific historical sources, then exhaust concrete place-near source pools, and only then draw on emne wording or abstract analytical language.",
+    "4": {
+      "primary": [
+        "emner",
+        "emnemapping",
+        "fagkart.topic_hooks",
+        "fagkart.topic_hooks.canon.thinkers"
+      ],
+      "rule": "Set 4 must resolve each emne-driven question through a topic_hook and named theorist."
+    },
+    "7": {
+      "primary": [
+        "emner",
+        "emnemapping",
+        "fagkart.topic_hooks",
+        "fagkart.topic_hooks.canon.thinkers"
+      ],
+      "rule": "Set 7 must deepen emne questions through theory and named theorists from fagplan canon."
+    },
+    "8": {
+      "primary": [
+        "emner.core_concepts",
+        "concept_focus",
+        "emnemapping",
+        "fagkart.topic_hooks",
+        "fagkart.topic_hooks.canon.thinkers"
+      ],
+      "rule": "Set 8 must connect concepts to theories/theorists from the fagplan canon rather than stay glossary-like."
+    },
+    "deep_history_source_priority": [
+      "stories",
+      "related_events",
+      "artifacts",
+      "institutions",
+      "desc",
+      "popupDesc",
+      "verified historical sources"
+    ],
+    "verified_external_history_sources": [
+      "local history wiki / lokalhistoriewiki",
+      "Wikipedia",
+      "Store norske leksikon",
+      "municipal or heritage pages",
+      "museum/institution pages"
+    ],
+    "wikipedia_mining_allowed_when_place_specific": true,
+    "external_source_harvest_required_before_internal_fallback": true,
+    "early_set_external_source_priority": {
+      "1": [
+        "local history encyclopedia",
+        "municipal or heritage pages",
+        "museum/institution history pages",
+        "Store norske leksikon",
+        "Lokalhistoriewiki",
+        "Wikipedia"
+      ],
+      "2": [
+        "local history encyclopedia",
+        "museum/institution history pages",
+        "municipal or heritage pages",
+        "Store norske leksikon",
+        "Lokalhistoriewiki",
+        "Wikipedia"
+      ],
+      "3": [
+        "museum/institution history pages",
+        "local history encyclopedia",
+        "municipal or heritage pages",
+        "Store norske leksikon",
+        "Lokalhistoriewiki",
+        "Wikipedia"
+      ],
+      "4": [
+        "museum/institution history pages",
+        "municipal or heritage pages",
+        "Store norske leksikon",
+        "Lokalhistoriewiki",
+        "Wikipedia"
+      ],
+      "5": [
+        "local history encyclopedia",
+        "museum/institution history pages",
+        "municipal or heritage pages",
+        "Store norske leksikon",
+        "Lokalhistoriewiki",
+        "Wikipedia"
+      ]
+    }
+  },
+  "entertainment_rules": {
+    "early_sets_should_feel_like": [
+      "intro",
+      "story",
+      "street-level discovery",
+      "place memory",
+      "curiosity-driven learning",
+      "historical discovery"
+    ],
+    "early_sets_must_avoid": [
+      "dry abstract phrasing",
+      "serial emne paraphrases",
+      "overweight theory",
+      "same-question-in-new-words"
+    ],
+    "surprise_value_definition": "A question has surprise value if the answer or knowledge contains a memorable, unexpected or vivid detail likely to stick with the player.",
+    "bonus_info_definition": "Knowledge should often contain one extra detail, contrast, anecdote or sensory cue beyond what is needed to justify the answer.",
+    "size_rule": "Early-set quality outranks quiz length. A shorter vivid historical quiz is better than a full padded quiz."
+  },
+  "set_labels": {
+    "1": "intro_story",
+    "2": "history_only",
+    "3": "life_people_events",
+    "4": "place_facts_architecture",
+    "5": "place_advanced",
+    "6": "emne_foundation",
+    "7": "emne_advanced",
+    "8": "concept",
+    "9": "deep_history_conflict",
+    "10": "theory_mastery_comparison"
+  },
+  "superset_sync": {
+    "synced_with": "supersetQUIZMAL (8).json",
+    "purpose": "Align quiz generator output contract and validator with the canonical question superset while keeping the v4 place-first 8-set logic.",
+    "key_changes": [
+      "set_mal source updated to SET_MAL_README_v3.md",
+      "targetId added as required field on each question",
+      "question_layer added as required field on each question",
+      "question_layer bound to set mode",
+      "field order aligned more closely with supersetQUIZMAL",
+      "validator checks added for targetId and question_layer consistency",
+      "adaptive set count and question count added in v4.2",
+      "sets 9 and 10 added for major places"
+    ]
+  },
+  "field_binding_rules": {
+    "targetId": "Must be emitted on every question and must equal the place target for by place quizzes.",
+    "question_layer": "Must be emitted on every question and must match the adaptive set map in v4.3.",
+    "question_scope": "Must match set mode and stay in sync with question_layer across the 8-set structure.",
+    "topic_hook_id": "Required in sets 4, 7 and 8 and must resolve to a real fagkart topic_hook.",
+    "theory_ref": "Required in sets 4, 7 and 8 and must match a canon thinker in the referenced topic_hook.",
+    "adaptive_profile": "Every generated file must store or log the chosen adaptive profile in generation metadata, even if the downstream quiz format does not expose it."
+  },
+  "superset_contract": {
+    "canonical_question_schema": "supersetQUIZMAL (8).json",
+    "required_alignment": {
+      "question_level_targetId": true,
+      "question_level_question_layer": true,
+      "preferred_field_order_alignment": true,
+      "set_mode_to_question_layer_binding": true
+    },
+    "question_layer_map": {
+      "1": "intro_story",
+      "2": "history_only",
+      "3": "life_people_events",
+      "4": "emne_foundation",
+      "5": "architecture",
+      "6": "place_advanced",
+      "7": "emne_advanced",
+      "8": "concept"
+    }
+  },
+  "fagplan_theory_integration": {
+    "binding_rule": "In sets 4-8 and 10 the generator should teach emne + theory + named theorist from the fagplan canon whenever the place supports a rich or major profile. Set 4 is now the normal bridge into overt theory.",
+    "lookup_chain": "place -> mapped emner -> fagkart.topic_hooks where emne_id appears -> canon.thinkers -> theory_ref",
+    "preferred_surface_forms": [
+      "name theorist directly in question text",
+      "name theorist in one or more options",
+      "name theorist/work in knowledge",
+      "compare two theorists when the hook canon supports it"
+    ],
+    "minimums_by_set": {
+      "4": {
+        "min_named_theorist_questions": 3,
+        "min_direct_name_mentions": 2,
+        "min_theory_application_questions": 2
+      },
+      "7": {
+        "min_named_theorist_questions": 4,
+        "min_direct_name_mentions": 2,
+        "min_theory_application_questions": 3
+      },
+      "8": {
+        "min_named_theorist_questions": 5,
+        "min_direct_name_mentions": 3,
+        "min_theory_comparison_questions": 2
+      },
+      "10": {
+        "min_named_theorist_questions": 5,
+        "min_direct_name_mentions": 3,
+        "min_theory_comparison_questions": 3
+      },
+      "5": {
+        "min_named_theorist_questions": 2,
+        "min_direct_name_mentions": 1,
+        "min_theory_application_questions": 1
+      },
+      "6": {
+        "min_named_theorist_questions": 3,
+        "min_direct_name_mentions": 2,
+        "min_theory_application_questions": 2
+      }
+    },
+    "theory_ref_example": {
+      "topic_hook_id": "byliv_aapne_rom",
+      "thinker_id": "william_h_whyte",
+      "thinker_name": "William H. Whyte",
+      "work": "The Social Life of Small Urban Spaces",
+      "theory_focus": "observasjon av faktisk bruk av plasser"
+    }
+  },
+  "quiz_size_rules": {
+    "principle": "Quiz size must follow real historical and local material. A place without enough stories, buildings, events, conflicts or memorable details must get a shorter quiz instead of emne padding.",
+    "sets_range": {
+      "min": 4,
+      "max": 10
+    },
+    "questions_per_set_range": {
+      "min": 5,
+      "max": 7
+    },
+    "default_profile": "rich_place",
+    "material_profiles": {
+      "minimal_place": {
+        "sets": 4,
+        "questions_per_set": 5,
+        "active_set_modes": [
+          "history_intro_story",
+          "local_history_buildings_events",
+          "humor_curiosities_life",
+          "place_facts_architecture"
+        ],
+        "use_when": "Place has limited but usable history and concrete local material. No emne sets required."
+      },
+      "normal_place": {
+        "sets": 5,
+        "questions_per_set": 6,
+        "active_set_modes": [
+          "history_intro_story",
+          "local_history_buildings_events",
+          "humor_curiosities_life",
+          "place_facts_architecture",
+          "place_concrete_advanced"
+        ],
+        "use_when": "Place supports strong history and place material, but not enough for full emne expansion."
+      },
+      "rich_place": {
+        "sets": 8,
+        "questions_per_set": 7,
+        "active_set_modes": [
+          "history_intro_story",
+          "local_history_buildings_events",
+          "humor_curiosities_life",
+          "place_facts_architecture",
+          "place_concrete_advanced",
+          "emne_based_foundation",
+          "emne_based_advanced",
+          "concept_based"
+        ],
+        "use_when": "Place can carry long local history plus late analytical sets."
+      },
+      "major_place": {
+        "sets": 10,
+        "questions_per_set": 7,
+        "active_set_modes": [
+          "history_intro_story",
+          "local_history_buildings_events",
+          "humor_curiosities_life",
+          "place_facts_architecture",
+          "place_concrete_advanced",
+          "emne_based_foundation",
+          "emne_based_advanced",
+          "concept_based",
+          "deep_history_conflict",
+          "synthesis_comparison"
+        ],
+        "use_when": "Place is historically dense enough for deep conflict/history and final analytical synthesis."
+      }
+    },
+    "profile_selection_hints": [
+      "Choose the smallest strong profile the material can actually carry.",
+      "Minimal and normal places may end before any emne set appears.",
+      "Do not unlock emne sets unless the history/place material is already strong.",
+      "Major profile requires deep local history, not just many emner."
+    ]
+  },
+  "place_content_analysis": {
+    "purpose": "Estimate how much strong quiz material the place actually has before choosing set count and question count.",
+    "sources_checked": [
+      "stories",
+      "related_people",
+      "related_events",
+      "institutions",
+      "artifacts",
+      "fun_facts",
+      "visual_hooks",
+      "quirks",
+      "signature_features",
+      "must_include",
+      "desc",
+      "popupDesc",
+      "mapped_emner",
+      "existing_verified_sources"
+    ],
+    "weighted_scoring": {
+      "stories": 3,
+      "related_people": 2,
+      "related_events": 2,
+      "institutions": 2,
+      "artifacts": 2,
+      "fun_facts": 1,
+      "visual_hooks": 1,
+      "quirks": 1,
+      "signature_features": 1,
+      "must_include": 1,
+      "historical_depth_bonus": 3,
+      "building_history_bonus": 2,
+      "conflict_bonus": 2,
+      "emne_bonus": 1
+    },
+    "history_detector": {
+      "goal": "Find local history, building history, former functions, conflicts, named episodes and visible traces before any emne logic is used.",
+      "look_for": [
+        "før",
+        "tidligere",
+        "ble",
+        "bygget",
+        "oppført",
+        "ombygd",
+        "brant",
+        "flyttet",
+        "stengt",
+        "nedlagt",
+        "anlagt",
+        "utvidet",
+        "revet",
+        "gjenreist",
+        "åpnet",
+        "grunnlagt",
+        "omgjort",
+        "utvidet",
+        "beslaglagt",
+        "under krigen",
+        "etter krigen",
+        "i 18",
+        "i 19",
+        "i 20",
+        "rest av",
+        "spor av",
+        "minne om"
+      ],
+      "signal_types": [
+        "former function",
+        "building history",
+        "dated change",
+        "named person link",
+        "named event",
+        "conflict",
+        "infrastructure shift",
+        "visible trace",
+        "renaming",
+        "demolition or reuse"
+      ],
+      "rule": "If fewer than 4 strong local-history candidates exist, the generator must not unlock long history or emne-heavy profiles."
+    },
+    "profile_decision_rules": [
+      {
+        "if": "score <= 8 or fewer than 3 narrative components",
+        "profile": "minimal_place"
+      },
+      {
+        "if": "score between 9 and 15 and at least 3 narrative components",
+        "profile": "normal_place"
+      },
+      {
+        "if": "score between 16 and 25 and at least 4 narrative components",
+        "profile": "rich_place"
+      },
+      {
+        "if": "score >= 26 and at least 5 narrative components",
+        "profile": "major_place"
+      }
+    ],
+    "urban_story_pattern_detection": {
+      "goal": "Identify whether the place mainly follows industrial_to_culture, transport_node_growth, institutional_power, working_class_to_gentrified, market_and_trade, waterfront_redevelopment or everyday_urban_space.",
+      "rule": "Pattern detection should influence set emphasis, question types and narrative arc choice."
+    },
+    "story_component_bonus": {
+      "origin": 2,
+      "major_transformation": 3,
+      "conflict_or_turning_point": 2,
+      "visible_trace": 1,
+      "present_day_character": 1
+    },
+    "historical_core_detector": {
+      "goal": "Identify the single strongest historical explanation for why the place exists or matters.",
+      "candidate_types": [
+        "origin",
+        "former_function",
+        "infrastructure shift",
+        "industrial phase",
+        "institutional role",
+        "conflict",
+        "demolition/reuse",
+        "war/occupation",
+        "renaming",
+        "symbolic turning point"
+      ],
+      "rule": "If a dominant historical core is found, it must shape sets 1-3 and remain visible through the rest of the quiz."
+    }
+  },
+  "banality_guard": {
+    "principle": "If the generator cannot produce strong local history, vivid place stories and concrete building/event questions, it must shorten the quiz instead of padding with obvious or pseudo-academic filler.",
+    "hard_rules": [
+      "If fewer than 4 strong local-history candidates exist, do not force full history architecture or emne expansion.",
+      "If early-set candidates are mostly obvious landmark questions, reduce quiz size.",
+      "If candidate questions rely on generator vocabulary such as topic hook, fagplan or teoretiker, reject them.",
+      "If emne sets begin to sound like metadata quizzes, shorten the profile or rewrite them as place-specific analytical questions.",
+      "Never keep an emne set alive if the history and place sets are weaker than the analytical tail."
+    ],
+    "banal_question_signals": [
+      "question asks about topic hook, fagplan or mapping instead of the place",
+      "question asks who is the most useful theorist",
+      "question only paraphrases a visible landmark",
+      "question asks isolated year/name/height without context",
+      "question sounds like a dry emne heading turned into a question",
+      "question contains one absurd distractor and two empty ones"
+    ],
+    "fallback_action_order": [
+      "replace with stronger local history, building, person or event question",
+      "move analysis into knowledge instead of the question stem",
+      "merge material into fewer but better sets",
+      "drop lowest-priority analytical set",
+      "reduce questions_per_set by 1 within allowed range"
+    ]
+  },
+  "generation_metadata_rules": {
+    "recommended_top_level_fields": [
+      "generator_version",
+      "generation_profile",
+      "generated_from",
+      "profile_snapshot",
+      "dominant_story_pattern",
+      "narrative_arc",
+      "narrative_skeleton",
+      "claim_bank_summary",
+      "story_unit_summary",
+      "dominant_historical_core",
+      "history_app_compliance"
+    ],
+    "generation_profile_rule": "Store the chosen adaptive material profile (minimal_place, normal_place, rich_place or major_place) in generation metadata whenever possible.",
+    "history_app_compliance_rule": "Store the detected dominant historical core and whether the quiz passed history_substance_guard whenever possible."
+  },
+  "adaptive_activation_rules": {
+    "required_core_sets": [
+      "history_intro_story",
+      "local_history_buildings_events",
+      "humor_curiosities_life",
+      "place_facts_architecture"
+    ],
+    "optional_sets_in_order": [
+      "place_concrete_advanced",
+      "emne_based_foundation",
+      "emne_based_advanced",
+      "concept_based",
+      "deep_history_conflict",
+      "synthesis_comparison"
+    ],
+    "rule": "Core sets must exist in every by quiz and must be historically driven. Optional sets may only be activated if the place has enough verified material and the historical core remains dominant."
+  },
+  "user_facing_question_rules": {
+    "principle": "Questions must read as real history-and-place questions. The opening sets should foreground history; the later sets should increase analytical, theoretical and philosophical depth. Present-day observations, architecture, theory and analysis are welcome when they deepen the historical story and stay fact-based.",
+    "must_do": [
+      "Pack concrete local information into the question stem when relevant.",
+      "Prefer stories, buildings, events, people, conflicts, traces and named local details.",
+      "Let analytical depth appear through place-specific wording, not through explicit references to topic_hook, fagkart or fagplan.",
+      "Prefer before/after, what changed, what was here before and visible-trace questions when material allows.",
+      "Anchor emne questions in the place name, a local building, event, person or transformation.",
+      "Let each set feel like a small chapter in the place story.",
+      "Prefer questions about former functions, historical change, visible traces, named people, conflicts and stories before present-day branding or lifestyle framing.",
+      "Frame current use as a consequence of history whenever possible.",
+      "Make the player feel that they are uncovering the history of a place, not just describing a place.",
+      "Increase philosopher and theorist visibility from set 4 onward when the place supports it.",
+      "Prefer named thinkers and works over vague sociological over-explanations in late sets.",
+      "Keep analytical claims factual, sourced and tied to local change, buildings, institutions, traces or documented use."
+    ],
+    "must_not_do": [
+      "Do not ask which topic hook fits the place.",
+      "Do not ask which theorist from the syllabus is most useful.",
+      "Do not expose generator metadata such as topic_hook_id, canon, theory_ref or mapping logic in question text or options.",
+      "Do not let present-day commercial identity, branding or trend language become the main story of a historically rich place.",
+      "Do not let architecture-only or lifestyle-only framing dominate the first half of the quiz.",
+      "Do not let generic sociology replace local history, concrete facts or named theory.",
+      "Do not write over-obvious group, identity or lifestyle questions unless they are historically grounded and source-supported."
+    ],
+    "theory_visibility_rule": "Theory may live in hidden metadata and can shape framing, but the visible question must remain about the place, its history, former functions, buildings, events, users, conflicts, visible traces or concepts rooted in that history."
+  },
+  "content_priority": {
+    "order": [
+      "dominant_historical_core",
+      "local_history",
+      "former_functions_and_historical_change",
+      "stories_people_buildings_events_visible_traces",
+      "concrete_place_facts",
+      "architecture_and_materiality",
+      "theory_philosophers_and_named_works",
+      "present_day_use_as_historical_consequence",
+      "fag_emner_concepts"
+    ],
+    "rule": "History should dominate the opening and concrete facts should dominate the bridge into theory. Later sets should then grow more theoretical and philosophical, but without becoming vague, generic or weakly sourced."
+  },
+  "theory_usage_rules": {
+    "principle": "Theory is a late-middle and late depth layer that should become clearly visible after the historical base is secured. It should often be taught through named philosophers, theorists and works, not through vague sociology.",
+    "allowed_visibility": [
+      "question text from set 4 onward",
+      "options",
+      "knowledge field",
+      "internal metadata",
+      "optional notes"
+    ],
+    "forbidden_visibility": [
+      "question text framed as syllabus metadata",
+      "options that ask which theorist or topic hook fits best",
+      "questions that expose canon or mapping names"
+    ],
+    "rule": "The generator may use theory_ref internally to shape depth and precision, but from set 4 onward it should increasingly surface named theorists and works in fact-based, place-specific questions. Theory may enrich a strong historical quiz, but may never compensate for weak historical material."
+  },
+  "story_detection": {
+    "goal": "Detect real local stories before question drafting so that the quiz is built from narratives rather than atomized facts.",
+    "story_signals": [
+      "anecdote",
+      "nickname",
+      "urban legend",
+      "famous visit",
+      "celebration",
+      "protest",
+      "scandal",
+      "fire",
+      "war damage",
+      "demolition",
+      "renaming",
+      "industrial decline",
+      "redevelopment conflict",
+      "surprising object",
+      "local saying",
+      "public controversy"
+    ],
+    "story_source_priority": [
+      "stories",
+      "related_events",
+      "related_people",
+      "local_conflicts",
+      "building_stories",
+      "fun_facts",
+      "quirks",
+      "desc",
+      "popupDesc",
+      "verified external local-history sources"
+    ],
+    "rule": "If no strong story candidate exists, the generator must convert a building, event, trace or institutional change into a narrative-style question instead of falling back to abstract emne wording."
+  },
+  "place_narrative_builder": {
+    "goal": "Create a minimal historical story skeleton for each place before drafting questions.",
+    "required_components_pool": [
+      "origin",
+      "previous_state",
+      "major_transformation",
+      "people_or_institution",
+      "conflict_or_turning_point",
+      "visible_trace",
+      "present_day_character"
+    ],
+    "minimum_components_required": 3,
+    "preferred_components_required": 5,
+    "rule": "At least three components must be detected before question generation begins; if fewer are found, shorten the quiz profile."
+  },
+  "narrative_arc_engine": {
+    "goal": "Bind each quiz to one dominant historical arc so the sets feel like chapters rather than loose fact buckets.",
+    "possible_arcs": [
+      "origin -> growth -> transformation -> present",
+      "industrial -> decline -> cultural reuse",
+      "transport -> congestion -> redesign",
+      "institution -> expansion -> controversy",
+      "working_class -> decline -> gentrification",
+      "market -> civic role -> reinvention",
+      "harbor -> plan -> redevelopment"
+    ],
+    "dominant_arc_required": true,
+    "set_design_rule": "Each set should advance the dominant arc through hook, origin, change, consequence and present-day reading.",
+    "fallback_rule": "If no single strong arc exists, use two linked micro-arcs and reduce quiz length."
+  },
+  "banality_score": {
+    "signals": [
+      "isolated_year_only",
+      "single_name_fact_only",
+      "landmark_recognition_without_context",
+      "generic_city_question",
+      "no historical consequence",
+      "no place-specific feature",
+      "one absurd distractor plus two empty distractors",
+      "dry metadata paraphrase",
+      "question could fit almost any place in the category"
+    ],
+    "threshold": 2,
+    "score_rule": "If a question triggers two or more banality signals, it must be rewritten or dropped.",
+    "preferred_fixes": [
+      "add before/after structure",
+      "add local consequence",
+      "add named place trace or building",
+      "replace generic wording with local story detail",
+      "merge with a stronger question"
+    ]
+  },
+  "content_diversity_rules": {
+    "goal": "Prevent over-concentration on one person, building, year, object or event.",
+    "max_questions_about_same_person_per_quiz": 2,
+    "max_questions_about_same_building_per_set": 2,
+    "max_questions_about_same_event_per_quiz": 2,
+    "max_questions_about_same_year_per_set": 1,
+    "max_questions_about_same_object_per_set": 2,
+    "diversity_priority_order": [
+      "story source diversity",
+      "question family diversity",
+      "time-layer diversity",
+      "person/building/event diversity"
+    ]
+  },
+  "historical_drama_priority": {
+    "goal": "Prefer the most memorable historical material when several true candidates exist.",
+    "prefer": [
+      "fire",
+      "demolition",
+      "war damage",
+      "political conflict",
+      "industrial collapse",
+      "redevelopment conflict",
+      "major opening",
+      "renaming with consequence",
+      "infrastructure shift",
+      "institutional rupture"
+    ],
+    "rule": "When multiple history candidates are equally reliable, choose the one with the strongest transformation, conflict or memorable consequence."
+  },
+  "urban_story_patterns": {
+    "goal": "Classify places into reusable urban history patterns before quiz assembly.",
+    "patterns": [
+      {
+        "id": "industrial_to_culture",
+        "description": "Industry -> decline -> reuse by culture, housing or leisure."
+      },
+      {
+        "id": "transport_node_growth",
+        "description": "New transport technology -> node growth -> congestion -> redesign."
+      },
+      {
+        "id": "institutional_power",
+        "description": "Seat of power, administration, law, monarchy, defense or civic authority."
+      },
+      {
+        "id": "working_class_to_gentrified",
+        "description": "Working-class or low-cost area -> disinvestment -> cultural shift -> rising values."
+      },
+      {
+        "id": "market_and_trade",
+        "description": "Trade, commerce, exchange, meeting and civic-market rhythms shape the place."
+      },
+      {
+        "id": "waterfront_redevelopment",
+        "description": "Harbor, industry or infrastructure edge -> planning -> new city district."
+      },
+      {
+        "id": "everyday_urban_space",
+        "description": "High everyday urban significance through rhythm, commerce, connection or repeated use rather than one dramatic event."
+      }
+    ],
+    "rule": "The generator must try to assign one primary pattern and optionally one secondary pattern before selecting sets and question types."
+  },
+  "theory_activation_guard": {
+    "goal": "Stop theory from activating too early or on places that cannot carry it.",
+    "minimum_strong_history_questions_before_theory_sets": 6,
+    "minimum_story_components_before_theory_sets": 4,
+    "rule": "Theory-bearing late sets may only activate when the place already supports at least six strong historical/place-specific questions and a stable narrative core."
+  },
+  "knowledge_quality_rules": {
+    "goal": "Keep the knowledge field vivid, explanatory and place-specific.",
+    "must_include_one_of": [
+      "mini_story",
+      "historical_consequence",
+      "urban_transformation",
+      "visible_trace",
+      "scene_or_sensory_detail",
+      "why_it_matters_today"
+    ],
+    "preferred_style": "short narrative explanation",
+    "avoid": [
+      "dry answer repetition",
+      "single-sentence dictionary definitions",
+      "theory name dropping without place relevance"
+    ]
+  },
+  "spatial_scene_rules": {
+    "goal": "Make the quiz feel embodied and place-based rather than purely textual.",
+    "min_scene_questions_per_quiz": 2,
+    "scene_definition": "A question that places the player physically in the space through orientation, movement, sightline, threshold, route, waiting, sequence or bodily perception.",
+    "preferred_scene_prompts": [
+      "Hva møter du",
+      "Hvor i stedet ser man",
+      "Hva legger folk merke til først",
+      "Hvordan merker man",
+      "Hvilken retning",
+      "Hvor oppstår presset eller roen"
+    ]
+  },
+  "question_refinement_stage": {
+    "goal": "Rewrite drafted questions to remove banality and sharpen narrative clarity.",
+    "rewrite_rules": [
+      "replace isolated facts with context",
+      "prefer cause/effect wording when possible",
+      "prefer before/after or why/what changed over naked when-questions",
+      "add place reference if missing",
+      "swap generic city wording for local trace, building, person or event",
+      "move abstract theory from question stem into knowledge when needed"
+    ],
+    "hard_rule": "Every drafted question must pass through refinement before validation."
+  },
+  "question_variety_scheduler": {
+    "goal": "Schedule question types before final drafting so each quiz gets a balanced mix.",
+    "required_distribution": {
+      "history_questions": 0.35,
+      "people_questions": 0.15,
+      "building_questions": 0.15,
+      "scene_questions": 0.15,
+      "curiosity_questions": 0.1,
+      "analysis_questions": 0.1
+    },
+    "fallback_rule": "If a place cannot support the full mix, reduce quiz size instead of padding one type."
+  },
+  "preferred_question_type_system": {
+    "goal": "Prioritize question types that work well in a history app.",
+    "preferred_question_types": [
+      "previous_state",
+      "historical_change",
+      "person_impact",
+      "visible_trace",
+      "construction_reason",
+      "event",
+      "contrast",
+      "observation",
+      "curiosity",
+      "urban_meaning"
+    ],
+    "best_types_to_prioritize": [
+      "previous_state",
+      "historical_change",
+      "visible_trace"
+    ],
+    "minimum_share_with_place_event_time_combo": 0.5,
+    "question_type_shares": {
+      "transformation": 0.35,
+      "event": 0.25,
+      "people": 0.15,
+      "place_facts": 0.15,
+      "reflection_or_emne": 0.1
+    }
+  },
+  "source_priority_rules": {
+    "goal": "Prefer historically rich and place-specific sources over generic summaries.",
+    "source_priority": [
+      "municipal archives, heritage registries and official preservation documents",
+      "museum or institution primary history pages",
+      "local history books and encyclopedias",
+      "Store norske leksikon",
+      "Lokalhistoriewiki",
+      "Wikipedia",
+      "place desc/popupDesc",
+      "mapped emner and fagkart"
+    ],
+    "rule": "If two candidate facts exist, choose the one supported by the more local, more primary and more historical source; internal desc/popupDesc may support framing, but should not replace stronger external documentation when it exists.",
+    "external_history_first": true
+  },
+  "wikipedia_mining_rules": {
+    "goal": "Mine Wikipedia and similar place articles for strong history-first quiz material.",
+    "pipeline": [
+      "split article into sections",
+      "detect historical paragraphs",
+      "extract events, people, institutions, buildings, transformations and dates",
+      "classify each candidate as construction, transformation, institution, person, event or urban_change",
+      "map candidate to question type",
+      "filter out weak or coordinate-like trivia",
+      "rewrite into place-specific history questions"
+    ],
+    "preferred_sections": [
+      "History",
+      "Early history",
+      "Development",
+      "Architecture",
+      "Transport",
+      "Culture"
+    ],
+    "historical_signal_words": [
+      "built",
+      "opened",
+      "expanded",
+      "moved",
+      "closed",
+      "demolished",
+      "rebuilt",
+      "founded",
+      "destroyed",
+      "redeveloped",
+      "renamed",
+      "converted"
+    ],
+    "reject_rules": [
+      "reject coordinate-like facts",
+      "reject bare year-only facts",
+      "reject generic dimensions without consequence"
+    ],
+    "merge_rule": "If two nearby facts together tell a stronger before/after story, merge them into one question seed."
+  },
+  "change_log_v4_4": [
+    "Added narrative-first generator logic (story detection, narrative skeleton, narrative arc engine).",
+    "Added banality scoring and a mandatory question refinement stage.",
+    "Added content-diversity caps for repeated people, buildings, events and years.",
+    "Added urban story-pattern detection and question-type scheduling.",
+    "Added theory activation guard so late theory sets do not activate on weak places.",
+    "Added spatial scene rules and knowledge-quality rules.",
+    "Added Wikipedia/local-history mining rules for stronger source harvesting.",
+    "Corrected set 4 / set 5 / set 6-8 role inconsistencies so place sets come before analytical sets."
+  ],
+  "source_enforcement_rules": {
+    "goal": "Make source use measurable, not just aspirational, especially in the history-first sets.",
+    "min_external_sources_per_quiz": 3,
+    "min_external_sources_in_sets_1_2_if_available": 2,
+    "min_sources_per_historical_question": 1,
+    "min_sources_per_contested_or_dated_claim": 2,
+    "min_sources_per_conflict_or_demolition_claim": 2,
+    "wikipedia_may_not_be_only_source_for_contested_claims": true,
+    "internal_fields_may_support_but_not_replace_external_history_if_available": true,
+    "allow_internal_only_questions_when": [
+      "question is a pure observation or on-site scene question",
+      "place genuinely lacks external coverage",
+      "detail is already verified inside a stronger cited source bundle"
+    ],
+    "rule": "The generator must fail or shorten rather than emit a history-heavy quiz whose early sets are mostly unsupported by external historical sources when such sources are available."
+  },
+  "claim_binding_rules": {
+    "goal": "Bind concrete historical claims to the right kind of evidence.",
+    "bind_year_claims_to_source": true,
+    "bind_person_place_links_to_source": true,
+    "bind_building_history_claims_to_source": true,
+    "bind_conflict_or_demolition_claims_to_source": true,
+    "bind_renaming_and_former_function_claims_to_source": true,
+    "recommended_output_field": "claim_support",
+    "claim_support_shape": {
+      "year_claim": "Source(s) that support the year or dated change.",
+      "person_link": "Source(s) that support the person-place relation.",
+      "building_history": "Source(s) that support building history, reuse or visible trace.",
+      "conflict_claim": "Source(s) that support controversy, demolition, protest or planning conflict."
+    },
+    "rule": "When a question contains a specific historical claim, the generator should be able to state which source supports that claim and avoid mixing unsupported details into the same stem."
+  },
+  "source_conflict_rules": {
+    "goal": "Handle disagreement between sources without silently hardening weak claims.",
+    "if_sources_disagree_on_year_or_event": "Prefer the highest-tier local or primary source; otherwise rewrite the question more cautiously.",
+    "if_only_one_weak_source_exists": "Downgrade claim strength, move uncertainty into knowledge, or drop the question.",
+    "if_wikipedia_and_local_source_disagree": "Prefer the local source unless the local source is clearly stale or secondary.",
+    "if_sources_disagree_on_interpretation": "Keep the stem factual and move interpretation into the knowledge field with cautious wording.",
+    "must_not_do": "Do not present a disputed claim as certain just because it makes a cleaner quiz question."
+  },
+  "source_quality_tiers": {
+    "purpose": "Rank source strength so the generator can prefer stronger evidence automatically.",
+    "tier_1": [
+      "municipal archives",
+      "heritage registry",
+      "official preservation documents",
+      "museum/institution primary history pages",
+      "local history encyclopedia"
+    ],
+    "tier_2": [
+      "Store norske leksikon",
+      "Lokalhistoriewiki",
+      "official place or institution pages",
+      "transport authority or infrastructure operator history pages"
+    ],
+    "tier_3": [
+      "Wikipedia"
+    ],
+    "tier_4": [
+      "internal desc/popupDesc fields",
+      "mapped prior quizzes"
+    ],
+    "rule": "When stronger tiers are available for a claim, weaker tiers may inform wording but should not be the sole support for the claim."
+  },
+  "source_coverage_validator": {
+    "goal": "Reject or shorten quizzes whose source coverage is too weak for their ambition.",
+    "reject_quiz_if_too_many_questions_use_only_internal_fields": true,
+    "max_internal_only_questions_in_sets_1_5": 0.4,
+    "max_internal_only_questions_in_sets_1_2": 0.25,
+    "require_source_spread_across_quiz": true,
+    "require_at_least_one_tier_1_or_tier_2_source_when_available": true,
+    "preferred_distribution": {
+      "sets_1_2": "history-first and externally anchored when possible",
+      "set_3": "may use more on-site or quirky/internal material, but should still inherit source support from place history",
+      "sets_4_5": "should mix external documentation with concrete place-near detail",
+      "late_sets": "may lean on emner, but strong place claims should still remain sourced"
+    }
+  },
+  "change_log_v4_5": [
+    "Added hard source enforcement rules so early history sets must use external historical sources when available.",
+    "Added claim binding rules for years, person-place links, building histories, renamings and conflicts.",
+    "Added source conflict handling so disputed claims are rewritten cautiously or dropped.",
+    "Added explicit source quality tiers and source coverage validation.",
+    "Strengthened generator pipeline and validator checks to include source harvest, claim binding and source coverage checks.",
+    "Extended optional output metadata with claim_support, source_tier and source_confidence."
+  ],
+  "question_generation_unit": {
+    "rule": "Every question must be based on a concrete claim or story unit extracted from a source, and every claim/story unit must support the historical core of the place before analysis or branding layers are considered.",
+    "preferred_unit_order": [
+      "story_unit",
+      "source_claim",
+      "visible_trace",
+      "person_place_link",
+      "building_history_claim",
+      "dated_change_claim"
+    ],
+    "forbidden_primary_units_in_sets_1_5": [
+      "emne_label_only",
+      "angle_label_only",
+      "theory_label_only",
+      "generic_desc_only"
+    ],
+    "history_first_constraint": "If a question can be written either as contemporary description or historical explanation, prefer the historical explanation."
+  },
+  "source_claim_harvester": {
+    "goal": "Harvest verifiable, typed historical claims from external and internal sources before drafting any questions.",
+    "claim_types": [
+      "dated_event",
+      "former_function",
+      "building_history",
+      "person_place_link",
+      "institutional_role",
+      "renaming",
+      "conflict",
+      "redevelopment",
+      "visible_trace",
+      "quirk_or_microhistory"
+    ],
+    "required_fields_per_claim": [
+      "claim_id",
+      "claim_type",
+      "claim_text",
+      "supported_by",
+      "source_tier",
+      "confidence"
+    ],
+    "preferred_harvest_order": [
+      "external_historical_sources",
+      "museum_or_institution_pages",
+      "local_encyclopedias",
+      "official_place_pages",
+      "wikipedia",
+      "internal_place_fields"
+    ],
+    "claim_strength": {
+      "strong": "Specific event, transformation, named person-role, building history, renaming, conflict or visible surviving trace with source support.",
+      "medium": "Useful place fact or recurring use pattern with at least one concrete supporting source.",
+      "weak": "Generic description, broad category wording or unsupported inference."
+    },
+    "early_set_rules": {
+      "sets_1_5_must_use": [
+        "strong",
+        "medium"
+      ],
+      "sets_1_5_may_not_be_seeded_by": [
+        "emne labels",
+        "angle labels",
+        "theory labels",
+        "generic desc without claim extraction"
+      ],
+      "minimum_strong_claims_before_long_profile": 6
+    },
+    "history_app_priority": [
+      "former functions",
+      "origin stories",
+      "major changes",
+      "named people linked to place history",
+      "conflicts and losses",
+      "visible traces from earlier periods",
+      "how present-day use follows from earlier history"
+    ]
+  },
+  "story_unit_builder": {
+    "goal": "Build reusable story units that keep the quiz historically grounded and narratively coherent.",
+    "story_unit_types": [
+      "origin",
+      "before_after_change",
+      "named_person_story",
+      "building_story",
+      "institution_story",
+      "conflict_story",
+      "microhistory",
+      "visible_trace_story",
+      "present_character_explainer"
+    ],
+    "required_fields_per_story_unit": [
+      "story_unit_id",
+      "story_type",
+      "summary",
+      "claim_ids",
+      "time_relation",
+      "place_anchor"
+    ],
+    "assembly_rule": "Build a narrative bank before drafting questions. Prefer story units that explain how the present place emerged from earlier states, conflicts, institutions, people or visible traces.",
+    "minimums": {
+      "minimal_place": 4,
+      "normal_place": 6,
+      "rich_place": 9,
+      "major_place": 12
+    },
+    "set_usage_hints": {
+      "1": [
+        "origin",
+        "microhistory",
+        "visible_trace_story"
+      ],
+      "2": [
+        "building_story",
+        "named_person_story",
+        "institution_story",
+        "before_after_change"
+      ],
+      "3": [
+        "microhistory",
+        "quirk_or_scene",
+        "present_character_explainer"
+      ],
+      "4": [
+        "visible_trace_story",
+        "building_story",
+        "before_after_change"
+      ],
+      "5": [
+        "conflict_story",
+        "institution_story",
+        "present_character_explainer"
+      ]
+    },
+    "required_story_unit_priority": [
+      "origin_or_previous_state",
+      "former_function",
+      "major_change_or_turning_point",
+      "visible_trace_in_present",
+      "named_person_or_institution",
+      "conflict_or_loss",
+      "present_day_consequence"
+    ],
+    "history_app_rule": "Story units must explain why the place is what it is now. Present-day character alone is not enough."
+  },
+  "place_specificity_test": {
+    "goal": "Reject questions that sound smart but are not truly tied to this place.",
+    "rule": "Reject any question that could plausibly fit another place by swapping only the place name. Prefer questions locked to the place through history, former function, conflict, visible trace or named local detail.",
+    "tests": [
+      "noun_swap_test",
+      "generic_landmark_test",
+      "generic_analysis_test",
+      "place_anchor_presence_test"
+    ],
+    "fail_signals": [
+      "question works after simple place-name substitution",
+      "question could fit multiple same-type places without loss of meaning",
+      "question uses abstract city language without local anchor",
+      "question lacks event, person, building, trace, institution or concrete local detail"
+    ],
+    "required_anchor_types_one_of": [
+      "place_name",
+      "building_or_structure",
+      "named_person",
+      "named_event",
+      "visible_trace",
+      "former_function",
+      "institution"
+    ],
+    "fallback_action_order": [
+      "rewrite with stronger local anchor",
+      "replace with claim-driven question",
+      "drop question"
+    ],
+    "history_specificity_bonus": "Questions that become meaningless without the place's historical core should be preferred."
+  },
+  "theory_usage_rule_strict": {
+    "rule": "Theory may enrich a strong historical quiz, but may never compensate for weak historical material. If the history core is weak, shorten the quiz instead of keeping theory-heavy sets alive.",
+    "operational_effects": [
+      "do not unlock theory-bearing sets unless strong claim and story-unit thresholds are met",
+      "move theory into knowledge when question quality would otherwise become abstract",
+      "prefer historically grounded place questions over theorist visibility when the two conflict"
+    ]
+  },
+  "change_log_v4_6": {
+    "based_on": "v4.5",
+    "focus": "Move the generator from rule-heavy question templating toward source-claim and story-unit generation.",
+    "key_changes": [
+      "Added question_generation_unit so questions must originate from source claims or story units, not labels alone.",
+      "Added source_claim_harvester for typed claim extraction before question drafting.",
+      "Added story_unit_builder so early and middle sets can be seeded by local narratives.",
+      "Added place_specificity_test with noun-swap rejection logic.",
+      "Added theory_usage_rule_strict so theory cannot compensate for weak history.",
+      "Updated generator_pipeline, validator_checks, output metadata and output contract to support claim/story tracing."
+    ]
+  },
+  "history_app_prime_directive": {
+    "rule": "History Go is a history app. Every quiz must be driven first by local history, historical change, named people, former functions, visible traces and place-specific stories. Analysis, emner, concepts, architecture and theory may enrich but never replace historical substance.",
+    "applies_to": [
+      "goal",
+      "core_principle",
+      "selection_rules",
+      "generator_pipeline",
+      "validator_checks",
+      "set_mode_rules",
+      "authoring_workflow",
+      "user_facing_question_rules",
+      "content_priority",
+      "theory_usage_rules",
+      "question_generation_unit",
+      "story_unit_builder"
+    ],
+    "priority": "highest",
+    "fallback": "If the generator cannot sustain historical substance, it must shorten the quiz rather than compensate with theory, branding, present-day lifestyle or abstract analysis."
+  },
+  "history_substance_guard": {
+    "rule": "Reject or shorten any quiz where analysis, emne framing, architecture-only reading, contemporary branding or present-day commercial identity outweigh the historical core of the place.",
+    "dominant_history_required": true,
+    "checks": [
+      "sets 1-3 must be history-first and place-specific",
+      "former functions and historical change should appear before present-day branding or lifestyle framing",
+      "if a place has one dominant historical story, at least two of the first three sets must be built around it",
+      "questions about current use may not erase the older place story that explains why the place exists"
+    ],
+    "fallback_action_order": [
+      "rewrite present-day framing as historical consequence",
+      "replace contemporary branding questions with former-function or visible-trace questions",
+      "drop weak analytical tail",
+      "shorten quiz profile"
+    ]
+  },
+  "change_log_v4_7": [
+    "Added history_app_prime_directive as the highest-priority global rule.",
+    "Added history_substance_guard to reject quizzes where analysis, branding or present-day framing outweigh history.",
+    "Rewrote goal and core_principle so History Go is explicitly defined as a history app.",
+    "Strengthened selection rules, validator checks, pipeline and authoring workflow around historical dominance.",
+    "Updated set mode rules so sets 1-5 must stay history-anchored and later sets cannot escape the historical core.",
+    "Updated user-facing rules, content priority and theory usage so present-day branding and theory cannot replace local history.",
+    "Extended metadata and story-unit rules so the generator must track a dominant historical core."
+  ],
+  "factuality_guard": {
+    "goal": "Keep the generator more fact-based and less impressionistic or over-obviously sociological.",
+    "reject_signals": [
+      "unsupported claim about what social group the place is 'for'",
+      "vague statement about identity, lifestyle or urbanity without concrete evidence",
+      "question driven mainly by present-day vibe rather than source-based history or trace",
+      "analysis that uses generic sociology without named theorist, work or factual local anchor"
+    ],
+    "preferred_rewrites": [
+      "replace vibe-language with before/after history",
+      "replace generic social reading with named thinker or concrete institution",
+      "replace impressionistic use-question with documented use pattern or visible trace",
+      "replace vague sociology with architecture, building history, former function or a theorist-backed interpretation"
+    ],
+    "rule": "If a question is not anchored in a concrete claim, story unit, visible trace, named person, institution, building, event or named theoretical source, it must be rewritten or dropped."
+  },
+  "historical_theoretical_balance": {
+    "goal": "Avoid false either/or between history and theory.",
+    "opening_rule": "Sets 1-3 must be history-dominant.",
+    "bridge_rule": "Sets 4-5 must combine facts, traces, architecture and the first strong theory/philosopher layer.",
+    "late_rule": "Sets 6-8 should be increasingly theory-rich and philosopher-rich while staying place-specific and fact-based.",
+    "anti_simple_sociology_rule": "When theory is needed, prefer named philosophers, theorists and works over generic sociological wording.",
+    "default_progression": {
+      "1": "historical core and origin",
+      "2": "former functions, change, people, events",
+      "3": "memory, scenes, curiosities with historical relevance",
+      "4": "facts, architecture, traces plus first theorists",
+      "5": "advanced factual reading with stronger theory",
+      "6": "emne + theory foundation",
+      "7": "emne + advanced theory and philosophers",
+      "8": "concept + philosopher comparison and theoretical synthesis"
+    }
+  },
+  "change_log_v4_8": [
+    "Rebalanced the generator away from false either/or logic: history now dominates the opening, while theory progressively takes over from set 4 onward.",
+    "Made set 4 a required bridge layer with named theorists and theory application instead of leaving overt theory mostly to sets 7-8.",
+    "Strengthened fact-based generation and added factuality_guard against vague, obvious sociology.",
+    "Raised philosopher/theorist visibility across sets 4-8 and added conditional theory_ref requirements in sets 4-6.",
+    "Changed content priority so concrete facts and architecture precede late theory, while late sets become more philosophical rather than merely sociological.",
+    "Added historical_theoretical_balance to define the intended progression of every rich quiz."
+  ]
+}
