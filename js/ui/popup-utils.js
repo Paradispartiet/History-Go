@@ -14,6 +14,128 @@
 let currentPopup = null;
 
 
+window.showPlaceCardRoundPopup = function ({
+  title = "",
+  subtitle = "",
+  html = "",
+  place = null,
+  kind = ""
+} = {}) {
+  makePopup(
+    `
+      <div class="pc-round-popup pc-round-popup-${kind || "generic"}">
+        <div class="pc-round-popup-head">
+          <h2 class="pc-round-popup-title">${hgEsc(title)}</h2>
+          ${subtitle ? `<p class="pc-round-popup-sub">${hgEsc(subtitle)}</p>` : ``}
+        </div>
+        <div class="pc-round-popup-body">
+          ${html || `<p class="hg-muted">Ingen innhold ennå.</p>`}
+        </div>
+      </div>
+    `,
+    "placecard-round-popup"
+  );
+
+  if (!currentPopup) return;
+
+  currentPopup.querySelectorAll("[data-person]").forEach(btn => {
+    btn.onclick = () => {
+      const pid = String(btn.dataset.person || "").trim();
+      const pr = (Array.isArray(window.PEOPLE) ? window.PEOPLE : []).find(x => String(x.id).trim() === pid);
+      if (pr) {
+        closePopup();
+        window.showPersonPopup(pr);
+      }
+    };
+  });
+
+  currentPopup.querySelectorAll("[data-place]").forEach(btn => {
+    btn.onclick = () => {
+      const placeId = String(btn.dataset.place || "").trim();
+      const pl = (Array.isArray(window.PLACES) ? window.PLACES : []).find(x => String(x.id).trim() === placeId);
+      if (pl) {
+        closePopup();
+        window.showPlacePopup(pl);
+      }
+    };
+  });
+
+  currentPopup.querySelectorAll("[data-wk]").forEach(btn => {
+    btn.onclick = () => {
+      const id = String(btn.dataset.wk || "").trim();
+      if (!id) return;
+
+      if (window.Wonderkammer && typeof window.Wonderkammer.openEntry === "function") {
+        closePopup();
+        window.Wonderkammer.openEntry(id);
+      } else if (typeof window.openWonderkammerEntry === "function") {
+        closePopup();
+        window.openWonderkammerEntry(id);
+      } else {
+        window.showToast?.("Wonderkammer-handler ikke lastet");
+      }
+    };
+  });
+
+  currentPopup.querySelectorAll("[data-civi-store]").forEach(btn => {
+    btn.onclick = () => {
+      const id = String(btn.dataset.civiStore || "").trim();
+      if (!id) return;
+
+      if (window.CivicationStore && typeof window.CivicationStore.openEntry === "function") {
+        closePopup();
+        window.CivicationStore.openEntry(id, place);
+      } else if (typeof window.openCivicationStoreEntry === "function") {
+        closePopup();
+        window.openCivicationStoreEntry(id, place);
+      } else {
+        window.showToast?.("Civication Store-handler ikke lastet");
+      }
+    };
+  });
+
+  currentPopup.querySelectorAll("[data-route]").forEach(btn => {
+    btn.onclick = () => {
+      const id = String(btn.dataset.route || "").trim();
+      if (!id) return;
+
+      closePopup();
+
+      if (typeof window.loadRoutes === "function" && typeof window.focusRouteOnMap === "function") {
+        window.loadRoutes().then(() => window.focusRouteOnMap(id));
+      } else {
+        window.showToast?.("Rute-funksjon ikke lastet");
+      }
+    };
+  });
+
+  currentPopup.querySelectorAll("[data-flora]").forEach(btn => {
+    btn.onclick = () => {
+      const floraId = String(btn.dataset.flora || "").trim();
+      const floraList = Array.isArray(window.FLORA) ? window.FLORA : [];
+      const flora = floraList.find(x => String(x?.id || "").trim() === floraId);
+      if (flora && typeof window.showFloraPopup === "function") {
+        closePopup();
+        window.showFloraPopup(flora);
+      }
+    };
+  });
+
+  currentPopup.querySelectorAll("[data-badge]").forEach(btn => {
+    btn.onclick = () => {
+      const badgeId = String(btn.dataset.badge || "").trim();
+      if (!badgeId) return;
+
+      if (typeof window.showBadgePopup === "function") {
+        closePopup();
+        window.showBadgePopup(badgeId);
+      }
+    };
+  });
+};
+
+
+
 // ============================================================
 // 0b. RELATIONS → UI (TILKNYTNING) + RUNTIME INDEX
 // Formelle relasjoner: jobb, rolle, virke, institusjon
