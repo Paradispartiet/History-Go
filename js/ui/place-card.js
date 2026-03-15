@@ -24,7 +24,7 @@ const badgesIcon          = document.getElementById("pcBadgesIcon");
 const storiesIcon         = document.getElementById("pcStoriesIcon");
 const wonderkammerIcon    = document.getElementById("pcWonderkammerIcon");
 const civicationStoreIcon = document.getElementById("pcCivicationStoreIcon");
-const eventsIcon          = document.getElementById("pcEventsIcon");
+const brandsIcon          = document.getElementById("pcBrandsIcon");
 const leksikonIcon        = document.getElementById("pcLeksikonIcon");
 const routesIcon          = document.getElementById("pcRoutesIcon");
   
@@ -38,9 +38,12 @@ const badgesEl          = document.getElementById("pcBadgesList");
 const storiesEl         = document.getElementById("pcStoriesList");
 const wonderkammerEl    = document.getElementById("pcWonderkammerList");
 const civicationStoreEl = document.getElementById("pcCivicationStoreList");
-const eventsEl          = document.getElementById("pcEventsList");
+const brandsEl          = document.getElementById("pcBrandsList");
 const leksikonEl        = document.getElementById("pcLeksikonList");
 const routesEl          = document.getElementById("pcRoutesList");
+
+const eventsBox         = document.getElementById("pcEventsBox");
+const addEventBtn       = document.getElementById("pcAddEvent");
   
 const btnInfo   = document.getElementById("pcInfo");
 const btnQuiz   = document.getElementById("pcQuiz");
@@ -65,7 +68,7 @@ if (!card.dataset.pcIconsBound) {
     storiesEl?.classList.remove("is-open");
     wonderkammerEl?.classList.remove("is-open");
     civicationStoreEl?.classList.remove("is-open");
-    eventsEl?.classList.remove("is-open");
+    brandsEl?.classList.remove("is-open");
     leksikonEl?.classList.remove("is-open");
     routesEl?.classList.remove("is-open");
   };
