@@ -24,6 +24,9 @@ const badgesIcon          = document.getElementById("pcBadgesIcon");
 const storiesIcon         = document.getElementById("pcStoriesIcon");
 const wonderkammerIcon    = document.getElementById("pcWonderkammerIcon");
 const civicationStoreIcon = document.getElementById("pcCivicationStoreIcon");
+const eventsIcon          = document.getElementById("pcEventsIcon");
+const leksikonIcon        = document.getElementById("pcLeksikonIcon");
+const routesIcon          = document.getElementById("pcRoutesIcon");
 
 const iconsWrap = card ? card.querySelector(".pc-icons-quad") : null;
 
@@ -33,7 +36,10 @@ const badgesEl          = document.getElementById("pcBadgesList");
 const storiesEl         = document.getElementById("pcStoriesList");
 const wonderkammerEl    = document.getElementById("pcWonderkammerList");
 const civicationStoreEl = document.getElementById("pcCivicationStoreList");
-
+const eventsEl          = document.getElementById("pcEventsList");
+const leksikonEl        = document.getElementById("pcLeksikonList");
+const routesEl          = document.getElementById("pcRoutesList");
+  
 const btnInfo   = document.getElementById("pcInfo");
 const btnQuiz   = document.getElementById("pcQuiz");
 const btnUnlock = document.getElementById("pcUnlock");
@@ -47,7 +53,7 @@ const btnClose  = document.getElementById("pcClose");
   // + Toggle lister uten å påvirke kortet
   // (bindes kun én gang)
   // ------------------------------------------------------------
-  if (!card.dataset.pcIconsBound) {
+if (!card.dataset.pcIconsBound) {
   card.dataset.pcIconsBound = "1";
 
   const closeAllLists = () => {
@@ -57,6 +63,9 @@ const btnClose  = document.getElementById("pcClose");
     storiesEl?.classList.remove("is-open");
     wonderkammerEl?.classList.remove("is-open");
     civicationStoreEl?.classList.remove("is-open");
+    eventsEl?.classList.remove("is-open");
+    leksikonEl?.classList.remove("is-open");
+    routesEl?.classList.remove("is-open");
   };
 
   const bindIconToggle = (iconEl, listEl) => {
@@ -79,6 +88,9 @@ const btnClose  = document.getElementById("pcClose");
   bindIconToggle(storiesIcon, storiesEl);
   bindIconToggle(wonderkammerIcon, wonderkammerEl);
   bindIconToggle(civicationStoreIcon, civicationStoreEl);
+  bindIconToggle(eventsIcon, eventsEl);
+  bindIconToggle(leksikonIcon, leksikonEl);
+  bindIconToggle(routesIcon, routesEl);
 
   peopleEl?.addEventListener("click", (e) => e.stopPropagation());
   natureEl?.addEventListener("click", (e) => e.stopPropagation());
@@ -86,6 +98,9 @@ const btnClose  = document.getElementById("pcClose");
   storiesEl?.addEventListener("click", (e) => e.stopPropagation());
   wonderkammerEl?.addEventListener("click", (e) => e.stopPropagation());
   civicationStoreEl?.addEventListener("click", (e) => e.stopPropagation());
+  eventsEl?.addEventListener("click", (e) => e.stopPropagation());
+  leksikonEl?.addEventListener("click", (e) => e.stopPropagation());
+  routesEl?.addEventListener("click", (e) => e.stopPropagation());
 }
 
 // --- pc-actions: ikonmodus (kun på smale skjermer) ---
@@ -506,7 +521,86 @@ if (civicationStoreEl) {
   setRoundLabel(civicationStoreIcon, "🛒", storeItems.length);
 }
 
+
+
+// --- EVENTS LIST + EVENTS ICON ---
+if (eventsEl) {
+  const rawEvents = [
+    ...(Array.isArray(window.HGEvents?.getByPlace?.(place.id)) ? window.HGEvents.getByPlace(place.id) : []),
+    ...(Array.isArray(place.events) ? place.events : [])
+  ];
+
+  const events = rawEvents
+    .map((evt, i) => ({
+      id: String(evt?.id ?? `evt_${i}`).trim(),
+      title: String(evt?.title ?? evt?.name ?? "Event").trim(),
+      meta: String(evt?.start ?? evt?.date ?? evt?.time ?? "").trim(),
+      url: String(evt?.url ?? evt?.link ?? "").trim()
+    }))
+    .filter(evt => evt.title);
+
+  eventsEl.innerHTML = events.length
+    ? events.map(evt => `
+        <a class="pc-event-entry" href="${evt.url || "#"}" ${evt.url ? `target="_blank" rel="noopener"` : ""}>
+          <span class="pc-event-entry-title">${evt.title}</span>
+          ${evt.meta ? `<span class="pc-event-entry-meta">${evt.meta}</span>` : ""}
+        </a>
+      `).join("")
+    : `<div class="pc-empty">Ingen events ennå</div>`;
+
+  setRoundLabel(eventsIcon, "📅", events.length);
+}
+
+// --- LEKSIKON LIST + LEKSIKON ICON ---
+if (leksikonEl) {
+  const leksikonPath = `/leksikon/${String(place.category || "by").trim()}/${String(place.id || "").trim()}.html`;
+
+  leksikonEl.innerHTML = `
+    <a class="pc-leksikon-entry" href="${leksikonPath}" target="_blank" rel="noopener">
+      <span class="pc-leksikon-entry-title">Åpne leksikon</span>
+      <span class="pc-leksikon-entry-meta">${place.name}</span>
+    </a>
+  `;
+
+  setRoundLabel(leksikonIcon, "📚", 1);
+}
+
+// --- ROUTES LIST + ROUTES ICON ---
+if (routesEl) {
+  const allRoutes = Array.isArray(window.ROUTES) ? window.ROUTES : [];
+  const placeRoutes = allRoutes.filter(route =>
+    Array.isArray(route?.place_ids) && route.place_ids.includes(place.id)
+  );
+
+  routesEl.innerHTML = placeRoutes.length
+    ? placeRoutes.map(route => `
+        <button class="pc-route-entry" data-route="${route.id}">
+          <span class="pc-route-entry-title">${route.title || route.id}</span>
+          ${Array.isArray(route.place_ids) ? `<span class="pc-route-entry-meta">${route.place_ids.length} stopp</span>` : ""}
+        </button>
+      `).join("")
+    : `<div class="pc-empty">Ingen ruter ennå</div>`;
+
+  routesEl.querySelectorAll("[data-route]").forEach(btn => {
+    btn.onclick = () => {
+      const id = String(btn.dataset.route || "").trim();
+      if (!id) return;
+
+      if (typeof window.loadRoutes === "function" && typeof window.focusRouteOnMap === "function") {
+        window.loadRoutes().then(() => window.focusRouteOnMap(id));
+      } else {
+        window.showToast?.("Rute-funksjon ikke lastet");
+      }
+    };
+  });
+
+  setRoundLabel(routesIcon, "🗺️", placeRoutes.length);
+}
+
+
+  
 // --- Mer info ---
+  
 if (btnInfo) btnInfo.onclick = () => window.showPlacePopup?.(place);
 
 // --- Quiz (ny motor) ---
