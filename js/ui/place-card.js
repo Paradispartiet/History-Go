@@ -447,27 +447,244 @@ if (wonderkammerEl) {
 
 // --- CIVICATION STORE LIST + ICON ---
 if (civicationStoreEl) {
-  ...
-  setRoundLabel(civicationStoreIcon, "🛒", storeItems.length);
-  
+  const rawStoreItems = [
+    ...(Array.isArray(window.CIVICATION_STORE_BY_PLACE?.[place.id]) ? window.CIVICATION_STORE_BY_PLACE[place.id] : []),
+    ...(Array.isArray(place.civication_store) ? place.civication_store : []),
+    ...(Array.isArray(place.civicationStore) ? place.civicationStore : []),
+    ...(Array.isArray(place.civication_items) ? place.civication_items : []),
+    ...(Array.isArray(place.civicationItems) ? place.civicationItems : [])
+  ];
 
-  // --- Mer info ---
-  if (btnInfo) btnInfo.onclick = () => window.showPlacePopup?.(place);
-  
-  // --- Quiz (ny motor) ---
-  if (btnQuiz) {
-    ...
-  }
+  const seenStore = new Set();
+  const storeItems = rawStoreItems
+    .map((item, i) => {
+      if (typeof item === "string") {
+        return {
+          id: item,
+          label: item,
+          image: ""
+        };
+      }
 
-  ...
-  requestAnimationFrame(() => {
-    card.classList.remove("is-switching");
+      return {
+        id: String(item?.id ?? item?.slug ?? item?.key ?? `civi_${i}`).trim(),
+        label: String(item?.title ?? item?.name ?? item?.label ?? item?.id ?? `Objekt ${i + 1}`).trim(),
+        image: String(item?.image ?? item?.icon ?? "").trim()
+      };
+    })
+    .filter(item => item.id && item.label)
+    .filter(item => {
+      if (seenStore.has(item.id)) return false;
+      seenStore.add(item.id);
+      return true;
+    });
+
+  civicationStoreEl.innerHTML = storeItems.length
+    ? storeItems.map(item => `
+        <button class="pc-civi-entry" data-civi-store="${item.id}">
+          ${item.image ? `<img src="${item.image}" class="pc-person-img" alt="">` : `<span class="pc-civi-emoji">🛒</span>`}
+          <span class="pc-civi-entry-title">${item.label}</span>
+        </button>
+      `).join("")
+    : `<div class="pc-empty">Ingen Civication-objekter ennå</div>`;
+
+  civicationStoreEl.querySelectorAll("[data-civi-store]").forEach(btn => {
+    btn.onclick = () => {
+      const id = String(btn.dataset.civiStore || "").trim();
+      if (!id) return;
+
+      if (window.CivicationStore && typeof window.CivicationStore.openEntry === "function") {
+        window.CivicationStore.openEntry(id, place);
+      } else if (typeof window.openCivicationStoreEntry === "function") {
+        window.openCivicationStoreEntry(id, place);
+      } else {
+        window.showToast?.("Civication Store-handler ikke lastet");
+      }
+    };
   });
 
-  card.setAttribute("aria-hidden", "false");
-  expandPlaceCard();
-  };
+  setRoundLabel(civicationStoreIcon, "🛒", storeItems.length);
+}
 
+// --- Mer info ---
+if (btnInfo) btnInfo.onclick = () => window.showPlacePopup?.(place);
+
+// --- Quiz (ny motor) ---
+if (btnQuiz) {
+  btnQuiz.onclick = () => {
+    if (window.QuizEngine && typeof window.QuizEngine.start === "function") {
+      window.QuizEngine.start(place.id);
+    } else {
+      window.showToast?.("Quiz-modul ikke lastet");
+    }
+  };
+}
+
+// --- Rute ---
+if (btnRoute) {
+  btnRoute.onclick = () => {
+    if (typeof window.showNavRouteToPlace === "function") return window.showNavRouteToPlace(place);
+    if (typeof window.showRouteTo === "function") return window.showRouteTo(place);
+    window.showToast?.("Rute-funksjon ikke lastet");
+  };
+}
+
+// --- Notat ---
+if (btnNote && typeof window.handlePlaceNote === "function") {
+  btnNote.onclick = () => window.handlePlaceNote(place);
+}
+
+// --- Observasjon ---
+if (btnObs) {
+  btnObs.onclick = () => {
+    if (!window.HGObservations || typeof window.HGObservations.start !== "function") {
+      window.showToast?.("Observasjoner er ikke lastet");
+      return;
+    }
+
+    const subjectId = String(place.categoryId || place.category || place.subject_id || "by").trim();
+
+    window.HGObservations.start({
+      target: {
+        targetId: String(place.id || "").trim(),
+        targetType: "place",
+        subject_id: subjectId,
+        categoryId: subjectId,
+        title: place.name
+      },
+      lensId: "by_byliv"
+    });
+  };
+}
+
+// --- UNLOCK GATE ---
+let _unlockTimer = null;
+let _lastUnlockText = null;
+let _lastUnlockDisabled = null;
+
+function setUnlockUI(disabled, text) {
+  if (!btnUnlock) return;
+  if (_lastUnlockDisabled === disabled && _lastUnlockText === text) return;
+  _lastUnlockDisabled = disabled;
+  _lastUnlockText = text;
+  btnUnlock.disabled = disabled;
+  btnUnlock.textContent = text;
+}
+
+function updateUnlockUI() {
+  if (!btnUnlock) return;
+
+  const isUnlocked = !!(window.visited && window.visited[place.id]);
+
+  if (isUnlocked) {
+    setUnlockUI(true, "Låst opp ✅");
+    return;
+  }
+
+  if (window.TEST_MODE) {
+    setUnlockUI(false, "Lås opp (test)");
+    return;
+  }
+
+  const gate = canUnlockPlaceNow(place);
+
+  if (!gate.ok) {
+    if (gate.reason === "no_pos") {
+      setUnlockUI(true, "Aktiver posisjon");
+      return;
+    }
+
+    if (gate.d != null) {
+      const left = Math.max(0, Math.ceil(gate.d - gate.r));
+      setUnlockUI(true, `Gå nærmere (${left} m)`);
+      return;
+    }
+
+    setUnlockUI(true, "Gå nærmere");
+    return;
+  }
+
+  setUnlockUI(false, "Lås opp");
+}
+
+updateUnlockUI();
+_unlockTimer = window.TEST_MODE ? null : setInterval(updateUnlockUI, 1200);
+
+if (btnUnlock) {
+  btnUnlock.onclick = () => {
+    if (window.visited && window.visited[place.id]) {
+      window.showToast?.("Allerede låst opp");
+      return;
+    }
+
+    const gate = canUnlockPlaceNow(place);
+    if (!gate.ok) {
+      if (gate.reason === "no_pos") {
+        window.showToast?.("Aktiver posisjon for å låse opp");
+        return;
+      }
+      const left = gate.d != null ? Math.max(0, Math.ceil(gate.d - gate.r)) : null;
+      window.showToast?.(left != null ? `Gå nærmere: ${left} m igjen` : "Gå nærmere for å låse opp");
+      return;
+    }
+
+    window.visited = window.visited || {};
+    window.visited[place.id] = true;
+    if (typeof window.saveVisited === "function") window.saveVisited();
+
+    if (window.HGMap) {
+      window.HGMap.setVisited(window.visited);
+      window.HGMap.refreshMarkers();
+    } else if (typeof window.drawPlaceMarkers === "function") {
+      window.drawPlaceMarkers();
+    }
+
+    if (typeof window.pulseMarker === "function") {
+      window.pulseMarker(place.lat, place.lon);
+    }
+
+    const badgeId = String(place.badgeId || place.categoryId || "").trim();
+    if (badgeId) {
+      window.merits = window.merits || {};
+      window.merits[badgeId] = window.merits[badgeId] || { points: 0 };
+      window.merits[badgeId].points++;
+      if (typeof window.saveMerits === "function") window.saveMerits();
+      if (typeof window.updateMeritLevel === "function") {
+        window.updateMeritLevel(badgeId, window.merits[badgeId].points);
+      }
+    }
+
+    window.showToast?.(`Låst opp: ${place.name} ✅`);
+    window.dispatchEvent(new Event("updateProfile"));
+    updateUnlockUI();
+  };
+}
+
+if (btnClose) {
+  const prev = btnClose.onclick;
+
+  btnClose.onclick = (e) => {
+    if (_unlockTimer) {
+      clearInterval(_unlockTimer);
+      _unlockTimer = null;
+    }
+
+    if (typeof window.collapsePlaceCard === "function") {
+      window.collapsePlaceCard();
+      return;
+    }
+
+    if (typeof prev === "function") prev.call(btnClose, e);
+  };
+}
+
+requestAnimationFrame(() => {
+  card.classList.remove("is-switching");
+});
+
+card.setAttribute("aria-hidden", "false");
+expandPlaceCard();
+};
 
 // ============================================================
 // PLACE CARD – bottom sheet bridge (engine-controlled)
