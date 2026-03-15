@@ -768,6 +768,65 @@ window.showFloraPopup = function (flora) {
 };
 
 // ============================================================
+// 2D. Brand-POPUP
+// ============================================================
+
+window.showBrandPopup = async function (brandId, place = null) {
+  const id = String(brandId || "").trim();
+  if (!id) return;
+
+  if (window.HGBrands?.init) {
+    try {
+      await window.HGBrands.init();
+    } catch (e) {
+      console.warn("[HGBrands.init]", e);
+    }
+  }
+
+  const brand = window.HGBrands?.getById?.(id);
+  if (!brand) {
+    window.showToast?.("Fant ikke brand");
+    return;
+  }
+
+  const relatedPlaces = window.HGBrands?.getPlacesForBrand?.(id) || [];
+  const desc = String(brand.popupdesc || brand.desc || "").trim();
+
+  const html = `
+    ${brand.image ? `<img src="${brand.image}" class="hg-popup-cardimg">` : ``}
+    <h2 class="hg-popup-name">${brand.name}</h2>
+    ${brand.type ? `<p class="hg-popup-cat">${brand.type}</p>` : ``}
+    ${desc ? `<p class="hg-popup-desc">${desc}</p>` : `<p class="hg-muted">Ingen beskrivelse ennå.</p>`}
+
+    <div class="hg-section">
+      <h3>Tilknyttede steder</h3>
+      ${
+        relatedPlaces.length
+          ? `<div class="hg-places">
+              ${relatedPlaces.map(pl => `
+                <div class="hg-place" data-place="${pl.id}">📍 ${pl.name}</div>
+              `).join("")}
+            </div>`
+          : `<p class="hg-muted">Ingen steder registrert ennå.</p>`
+      }
+    </div>
+  `;
+
+  makePopup(html, "brand-popup");
+
+  currentPopup?.querySelectorAll("[data-place]").forEach(btn => {
+    btn.onclick = () => {
+      const placeId = String(btn.dataset.place || "").trim();
+      const pl = (Array.isArray(window.PLACES) ? window.PLACES : []).find(x => String(x.id).trim() === placeId);
+      if (pl) {
+        closePopup();
+        window.showPlacePopup(pl);
+      }
+    };
+  });
+};
+
+// ============================================================
 // 3. PERSON-POPUP
 // ============================================================
 window.showPersonPopup = function(person) {
