@@ -11,28 +11,36 @@ window.openPlaceCard = async function (place) {
     });
    }
 
-  const card = document.getElementById("placeCard");  const frontImgEl = document.getElementById("pcFrontImage");
-  const cardImgEl  = document.getElementById("pcCardImage");
-  const titleEl   = document.getElementById("pcTitle");
-  const metaEl    = document.getElementById("pcMeta");
-  const descEl    = document.getElementById("pcDesc");
-  const peopleIcon = document.getElementById("pcPeopleIcon");
-  const natureIcon = document.getElementById("pcNatureIcon");
-  const badgesIcon = document.getElementById("pcBadgesIcon");
+const card = document.getElementById("placeCard");
+const frontImgEl = document.getElementById("pcFrontImage");
+const cardImgEl  = document.getElementById("pcCardImage");
+const titleEl    = document.getElementById("pcTitle");
+const metaEl     = document.getElementById("pcMeta");
+const descEl     = document.getElementById("pcDesc");
 
-  const iconsWrap = card ? card.querySelector(".pc-icons") : null;
+const peopleIcon          = document.getElementById("pcPeopleIcon");
+const natureIcon          = document.getElementById("pcNatureIcon");
+const badgesIcon          = document.getElementById("pcBadgesIcon");
+const storiesIcon         = document.getElementById("pcStoriesIcon");
+const wonderkammerIcon    = document.getElementById("pcWonderkammerIcon");
+const civicationStoreIcon = document.getElementById("pcCivicationStoreIcon");
 
-  const peopleEl = document.getElementById("pcPeopleList");
-  const natureEl = document.getElementById("pcNatureList");
-  const badgesEl = document.getElementById("pcBadgesList");
-  
-  const btnInfo   = document.getElementById("pcInfo");
-  const btnQuiz   = document.getElementById("pcQuiz");
-  const btnUnlock = document.getElementById("pcUnlock");
-  const btnRoute  = document.getElementById("pcRoute");
-  const btnNote   = document.getElementById("pcNote");
-  const btnObs    = document.getElementById("pcObserve");
-  const btnClose  = document.getElementById("pcClose");
+const iconsWrap = card ? card.querySelector(".pc-icons-quad") : null;
+
+const peopleEl          = document.getElementById("pcPeopleList");
+const natureEl          = document.getElementById("pcNatureList");
+const badgesEl          = document.getElementById("pcBadgesList");
+const storiesEl         = document.getElementById("pcStoriesList");
+const wonderkammerEl    = document.getElementById("pcWonderkammerList");
+const civicationStoreEl = document.getElementById("pcCivicationStoreList");
+
+const btnInfo   = document.getElementById("pcInfo");
+const btnQuiz   = document.getElementById("pcQuiz");
+const btnUnlock = document.getElementById("pcUnlock");
+const btnRoute  = document.getElementById("pcRoute");
+const btnNote   = document.getElementById("pcNote");
+const btnObs    = document.getElementById("pcObserve");
+const btnClose  = document.getElementById("pcClose");
 
     // ------------------------------------------------------------
   // FIX: Ikke la ikon-klikk boble opp og lukke/kollapse placeCard
