@@ -242,6 +242,10 @@ for (const url of PEOPLE_FILE_LIST) {
     try { await window.HGEvents.init(); } catch (e) { console.error("[HGEvents.init]", e); }
   }
 
+  if (window.HGBrands?.init) {
+    try { await window.HGBrands.init(); } catch (e) { console.error("[HGBrands.init]", e); }
+  }
+
   if (window.QuizEngine) {
     QuizEngine.init({
       getPersonById: id => (window.PEOPLE || []).find(p => p.id === id),
