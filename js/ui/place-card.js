@@ -123,7 +123,7 @@ wonderkammerEl?.addEventListener("click", (e) => e.stopPropagation());
 civicationStoreEl?.addEventListener("click", (e) => e.stopPropagation());
 brandsEl?.addEventListener("click", (e) => e.stopPropagation());
 leksikonEl?.addEventListener("click", (e) => e.stopPropagation());
-routesEl?.addEventListener("click", (e) => e.stopPropagation());}
+routesEl?.addEventListener("click", (e) => e.stopPropagation());
 }
 
 // --- pc-actions: ikonmodus (kun på smale skjermer) ---
