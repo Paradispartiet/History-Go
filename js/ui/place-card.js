@@ -561,39 +561,47 @@ if (brandsEl) {
     ...(Array.isArray(place.brand_ids) ? place.brand_ids : [])
   ];
 
-  const brands = rawBrands
-    .map((item, i) => {
-      if (typeof item === "string") {
-        return {
-          id: item,
-          label: item,
-          image: ""
-        };
-      }
+const seenBrands = new Set();
 
+const brands = rawBrands
+  .map((item, i) => {
+    if (typeof item === "string") {
+      const resolved = window.HGBrands?.getById?.(item);
       return {
-        id: String(item?.id ?? item?.slug ?? `brand_${i}`).trim(),
-        label: String(item?.title ?? item?.name ?? item?.label ?? item?.id ?? `Brand ${i + 1}`).trim(),
-        image: String(item?.image ?? item?.logo ?? item?.icon ?? "").trim()
+        id: item,
+        label: resolved?.name || item,
+        logo: resolved?.logo || ""
       };
-    })
-    .filter(item => item.id && item.label);
+    }
+
+    return {
+      id: String(item?.id ?? item?.slug ?? `brand_${i}`).trim(),
+      label: String(item?.title ?? item?.name ?? item?.label ?? item?.id ?? `Brand ${i + 1}`).trim(),
+      logo: String(item?.logo ?? item?.image ?? item?.icon ?? "").trim()
+    };
+  })
+  .filter(item => item.id && item.label)
+  .filter(item => {
+    if (seenBrands.has(item.id)) return false;
+    seenBrands.add(item.id);
+    return true;
+  });
 
   brandsEl.innerHTML = brands.length
-    ? brands.map(item => `
-        <button class="pc-brand-entry" data-brand="${item.id}">
-          ${item.image ? `<img src="${item.image}" class="pc-person-img" alt="">` : `<span class="pc-brand-emoji">🏷️</span>`}
-          <span class="pc-brand-entry-title">${item.label}</span>
-        </button>
-      `).join("")
-    : `<div class="pc-empty">Ingen brands ennå</div>`;
+  ? brands.map(item => `
+      <button class="pc-brand-entry" data-brand="${item.id}">
+        ${item.logo ? `<img src="${item.logo}" class="pc-person-img" alt="">` : `<span class="pc-brand-emoji">🏷️</span>`}
+        <span class="pc-brand-entry-title">${item.label}</span>
+      </button>
+    `).join("")
+  : `<div class="pc-empty">Ingen brands ennå</div>`;
 
-  const b0 = brands.find(b => b.image);
-  if (b0?.image) {
-    brandsIcon.innerHTML = `<img src="${b0.image}" class="pc-person-img" alt="">`;
-  } else {
-    setRoundLabel(brandsIcon, "🏷️", brands.length);
-  }
+const b0 = brands.find(b => b.logo);
+if (b0?.logo) {
+  brandsIcon.innerHTML = `<img src="${b0.logo}" class="pc-person-img" alt="">`;
+} else {
+  setRoundLabel(brandsIcon, "🏷️", brands.length);
+}
 }
 
 // --- EVENTS BOX (ikke runding) ---
