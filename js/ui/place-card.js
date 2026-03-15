@@ -27,7 +27,9 @@ const civicationStoreIcon = document.getElementById("pcCivicationStoreIcon");
 const eventsIcon          = document.getElementById("pcEventsIcon");
 const leksikonIcon        = document.getElementById("pcLeksikonIcon");
 const routesIcon          = document.getElementById("pcRoutesIcon");
-
+  
+card.dataset.currentPlaceId = String(place.id || "").trim();
+  
 const iconsWrap = card ? card.querySelector(".pc-icons-quad") : null;
 
 const peopleEl          = document.getElementById("pcPeopleList");
@@ -75,6 +77,11 @@ if (!card.dataset.pcIconsBound) {
 
     closeAllLists();
 
+    const currentPlaceId = String(card?.dataset?.currentPlaceId || "").trim();
+    const currentPlace = (Array.isArray(window.PLACES) ? window.PLACES : []).find(
+      p => String(p?.id || "").trim() === currentPlaceId
+    ) || place;
+
     const html = (listEl && listEl.innerHTML && listEl.innerHTML.trim())
       ? listEl.innerHTML
       : `<div class="pc-empty">Ingen innhold ennå</div>`;
@@ -82,9 +89,9 @@ if (!card.dataset.pcIconsBound) {
     if (typeof window.showPlaceCardRoundPopup === "function") {
       window.showPlaceCardRoundPopup({
         title,
-        subtitle: place?.name || "",
+        subtitle: currentPlace?.name || "",
         html,
-        place,
+        place: currentPlace,
         kind
       });
     }
