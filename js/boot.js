@@ -121,19 +121,31 @@ async function boot() {
      LAST PEOPLE (multi-file)
   ============================== */
 
-  let peopleAll = [];
+  const PEOPLE_FILE_LIST = [
+  "data/people/people_by.json",
+  "data/people/people_historie.json",
+  "data/people/people_kunst.json",
+  "data/people/people_litteratur.json",
+  "data/people/people_musikk.json",
+  "data/people/people_naeringsliv.json",
+  "data/people/people_natur.json",
+  "data/people/people_politikk.json",
+  "data/people/people_sport.json",
+  "data/people/people_subkultur.json",
+  "data/people/people_vitenskap.json"
+];
 
-  if (typeof PEOPLE_FILES === "object" && PEOPLE_FILES) {
-    for (const [domain, url] of Object.entries(PEOPLE_FILES)) {
-      const data = await fetchJSON(url);
-      if (Array.isArray(data)) {
-        peopleAll.push(...data.map(p => ({ ...p, __source: domain })));
-      } else if (Array.isArray(data?.people)) {
-        peopleAll.push(...data.people.map(p => ({ ...p, __source: domain })));
-      }
-    }
+let peopleAll = [];
+
+for (const url of PEOPLE_FILE_LIST) {
+  const data = await fetchJSON(url);
+
+  if (Array.isArray(data)) {
+    peopleAll.push(...data);
+  } else if (Array.isArray(data?.people)) {
+    peopleAll.push(...data.people);
   }
-
+}
   /* ==============================
      RUNTIME GLOBALS
   ============================== */
