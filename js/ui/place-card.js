@@ -111,19 +111,19 @@ bindRoundPopup(badgesIcon, badgesEl, "Badges", "badges");
 bindRoundPopup(storiesIcon, storiesEl, "Stories", "stories");
 bindRoundPopup(wonderkammerIcon, wonderkammerEl, "Wonderkammer", "wonderkammer");
 bindRoundPopup(civicationStoreIcon, civicationStoreEl, "Civication Store", "civication");
-bindRoundPopup(eventsIcon, eventsEl, "Events", "events");
+bindRoundPopup(brandsIcon, brandsEl, "Brands", "brands");
 bindRoundPopup(leksikonIcon, leksikonEl, "Leksikon", "leksikon");
 bindRoundPopup(routesIcon, routesEl, "Ruter", "routes");
 
-  peopleEl?.addEventListener("click", (e) => e.stopPropagation());
-  natureEl?.addEventListener("click", (e) => e.stopPropagation());
-  badgesEl?.addEventListener("click", (e) => e.stopPropagation());
-  storiesEl?.addEventListener("click", (e) => e.stopPropagation());
-  wonderkammerEl?.addEventListener("click", (e) => e.stopPropagation());
-  civicationStoreEl?.addEventListener("click", (e) => e.stopPropagation());
-  eventsEl?.addEventListener("click", (e) => e.stopPropagation());
-  leksikonEl?.addEventListener("click", (e) => e.stopPropagation());
-  routesEl?.addEventListener("click", (e) => e.stopPropagation());
+peopleEl?.addEventListener("click", (e) => e.stopPropagation());
+natureEl?.addEventListener("click", (e) => e.stopPropagation());
+badgesEl?.addEventListener("click", (e) => e.stopPropagation());
+storiesEl?.addEventListener("click", (e) => e.stopPropagation());
+wonderkammerEl?.addEventListener("click", (e) => e.stopPropagation());
+civicationStoreEl?.addEventListener("click", (e) => e.stopPropagation());
+brandsEl?.addEventListener("click", (e) => e.stopPropagation());
+leksikonEl?.addEventListener("click", (e) => e.stopPropagation());
+routesEl?.addEventListener("click", (e) => e.stopPropagation());}
 }
 
 // --- pc-actions: ikonmodus (kun på smale skjermer) ---
@@ -553,10 +553,51 @@ if (civicationStoreEl) {
   setRoundLabel(civicationStoreIcon, "🛒", storeItems.length);
 }
 
+// --- BRANDS LIST + BRANDS ICON ---
+if (brandsEl) {
+  const rawBrands = [
+    ...(Array.isArray(window.BRANDS_BY_PLACE?.[place.id]) ? window.BRANDS_BY_PLACE[place.id] : []),
+    ...(Array.isArray(place.brands) ? place.brands : []),
+    ...(Array.isArray(place.brand_ids) ? place.brand_ids : [])
+  ];
 
+  const brands = rawBrands
+    .map((item, i) => {
+      if (typeof item === "string") {
+        return {
+          id: item,
+          label: item,
+          image: ""
+        };
+      }
 
-// --- EVENTS LIST + EVENTS ICON ---
-if (eventsEl) {
+      return {
+        id: String(item?.id ?? item?.slug ?? `brand_${i}`).trim(),
+        label: String(item?.title ?? item?.name ?? item?.label ?? item?.id ?? `Brand ${i + 1}`).trim(),
+        image: String(item?.image ?? item?.logo ?? item?.icon ?? "").trim()
+      };
+    })
+    .filter(item => item.id && item.label);
+
+  brandsEl.innerHTML = brands.length
+    ? brands.map(item => `
+        <button class="pc-brand-entry" data-brand="${item.id}">
+          ${item.image ? `<img src="${item.image}" class="pc-person-img" alt="">` : `<span class="pc-brand-emoji">🏷️</span>`}
+          <span class="pc-brand-entry-title">${item.label}</span>
+        </button>
+      `).join("")
+    : `<div class="pc-empty">Ingen brands ennå</div>`;
+
+  const b0 = brands.find(b => b.image);
+  if (b0?.image) {
+    brandsIcon.innerHTML = `<img src="${b0.image}" class="pc-person-img" alt="">`;
+  } else {
+    setRoundLabel(brandsIcon, "🏷️", brands.length);
+  }
+}
+
+// --- EVENTS BOX (ikke runding) ---
+if (eventsBox) {
   const rawEvents = [
     ...(Array.isArray(window.HGEvents?.getByPlace?.(place.id)) ? window.HGEvents.getByPlace(place.id) : []),
     ...(Array.isArray(place.events) ? place.events : [])
@@ -571,16 +612,34 @@ if (eventsEl) {
     }))
     .filter(evt => evt.title);
 
-  eventsEl.innerHTML = events.length
-    ? events.map(evt => `
-        <a class="pc-event-entry" href="${evt.url || "#"}" ${evt.url ? `target="_blank" rel="noopener"` : ""}>
-          <span class="pc-event-entry-title">${evt.title}</span>
-          ${evt.meta ? `<span class="pc-event-entry-meta">${evt.meta}</span>` : ""}
-        </a>
-      `).join("")
+  const head = `
+    <div class="pc-events-head">
+      <span class="pc-events-title">På stedet</span>
+      <button id="pcAddEvent" class="pc-events-add" type="button" aria-label="Legg til">＋</button>
+    </div>
+  `;
+
+  const body = events.length
+    ? `
+      <div class="pc-events-list">
+        ${events.slice(0, 4).map(evt => `
+          <a class="pc-event-entry" href="${evt.url || "#"}" ${evt.url ? `target="_blank" rel="noopener"` : ""}>
+            <span class="pc-event-entry-title">${evt.title}</span>
+            ${evt.meta ? `<span class="pc-event-entry-meta">${evt.meta}</span>` : ""}
+          </a>
+        `).join("")}
+      </div>
+    `
     : `<div class="pc-empty">Ingen events ennå</div>`;
 
-  setRoundLabel(eventsIcon, "📅", events.length);
+  eventsBox.innerHTML = head + body;
+
+  const addBtn = document.getElementById("pcAddEvent");
+  if (addBtn) {
+    addBtn.onclick = () => {
+      window.showToast?.("Event-generator / event-innsending kommer her");
+    };
+  }
 }
 
 // --- LEKSIKON LIST + LEKSIKON ICON ---
