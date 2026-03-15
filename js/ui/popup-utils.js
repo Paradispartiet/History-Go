@@ -793,7 +793,7 @@ window.showBrandPopup = async function (brandId, place = null) {
   const desc = String(brand.popupdesc || brand.desc || "").trim();
 
   const html = `
-    ${brand.image ? `<img src="${brand.image}" class="hg-popup-cardimg">` : ``}
+    ${brand.logo ? `<img src="${brand.logo}" class="hg-popup-cardimg">` : ``}
     <h2 class="hg-popup-name">${brand.name}</h2>
     ${brand.type ? `<p class="hg-popup-cat">${brand.type}</p>` : ``}
     ${desc ? `<p class="hg-popup-desc">${desc}</p>` : `<p class="hg-muted">Ingen beskrivelse ennå.</p>`}
