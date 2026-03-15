@@ -33,6 +33,11 @@ body.pc-collapsed #nearbyListContainer {
 
 
 #placeCard{
+  --pc-round-size: 138px;
+  --pc-round-gap: 6px;
+  --pc-popout-right: calc(12px + var(--pc-round-size) + 10px);
+  --pc-popout-step: calc(var(--pc-round-size) + var(--pc-round-gap));
+
   position: absolute;
   left: 0;
   right: 0;
@@ -47,6 +52,8 @@ body.pc-collapsed #nearbyListContainer {
   box-shadow: 0 -12px 34px rgba(0,0,0,.40);
   overflow: hidden;
 
+  transition: transform .28s ease;
+}
   transition: transform .28s ease;
 }
 
