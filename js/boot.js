@@ -45,30 +45,27 @@ async function boot() {
   window.TEST_MODE = window.OPEN_MODE;
 
   const openEl = document.getElementById("openToggle");
-if (openEl) {
-  openEl.checked = window.OPEN_MODE;
+  if (openEl) {
+    openEl.checked = window.OPEN_MODE;
 
-  openEl.addEventListener("change", () => {
-    window.OPEN_MODE = !!openEl.checked;
-    window.TEST_MODE = window.OPEN_MODE;
-    localStorage.setItem("HG_OPEN_MODE", window.OPEN_MODE ? "1" : "0");
-  });
-}
+    openEl.addEventListener("change", () => {
+      window.OPEN_MODE = !!openEl.checked;
+      window.TEST_MODE = window.OPEN_MODE;
+      localStorage.setItem("HG_OPEN_MODE", window.OPEN_MODE ? "1" : "0");
+    });
+  }
 
   const btnUA = document.getElementById("btnUnlockAll");
   if (btnUA) btnUA.style.display = window.OPEN_MODE ? "inline-flex" : "none";
 
+  /* ==============================
+     ENV
+  ============================== */
 
-/* ==============================
-   ENV
-============================== */
-
-window.HG_ENV = {
-  geo: "unknown",
-  openMode: !!window.OPEN_MODE
-};
-
-  
+  window.HG_ENV = {
+    geo: "unknown",
+    openMode: !!window.OPEN_MODE
+  };
 
   /* ==============================
      MAP INIT
@@ -87,62 +84,65 @@ window.HG_ENV = {
     window.MAP = map;
   }
 
-/* ==============================
-   LAST BASISDATA
-============================== */
+  /* ==============================
+     LAST BASISDATA
+  ============================== */
 
-const PLACE_FILES = [
-  "data/places/places_by.json",
-  "data/places/places_historie.json",
-  "data/places/places_kunst.json",
-  "data/places/places_litteratur.json",
-  "data/places/places_musikk.json",
-  "data/places/places_naeringsliv.json",
-  "data/places/places_natur.json",
-  "data/places/places_politikk.json",
-  "data/places/places_sport.json",
-  "data/places/places_subkultur.json",
-  "data/places/places_vitenskap.json"
-];
+  const PLACE_FILES = [
+    "data/places/places_by.json",
+    "data/places/places_historie.json",
+    "data/places/places_kunst.json",
+    "data/places/places_litteratur.json",
+    "data/places/places_musikk.json",
+    "data/places/places_naeringsliv.json",
+    "data/places/places_natur.json",
+    "data/places/places_politikk.json",
+    "data/places/places_sport.json",
+    "data/places/places_subkultur.json",
+    "data/places/places_vitenskap.json"
+  ];
 
-let places = [];
+  let places = [];
 
-for (const url of PLACE_FILES) {
-  const data = await fetchJSON(url);
-  if (Array.isArray(data)) {
-    places.push(...data);
-  } else if (Array.isArray(data?.places)) {
-    places.push(...data.places);
-  }
-}
-
-const relations     = await fetchJSON("data/relations.json")     || [];
-const wonderkammer  = await fetchJSON("data/wonderkammer.json");
-const tags          = await fetchJSON("data/tags.json");
-
-/* ==============================
-   LAST PEOPLE (multi-file)
-============================== */
-
-let peopleAll = [];
-
-if (typeof PEOPLE_FILES === "object") {
-  for (const [domain, url] of Object.entries(PEOPLE_FILES)) {
+  for (const url of PLACE_FILES) {
     const data = await fetchJSON(url);
     if (Array.isArray(data)) {
-      peopleAll.push(...data.map(p => ({ ...p, __source: domain })));
+      places.push(...data);
+    } else if (Array.isArray(data?.places)) {
+      places.push(...data.places);
     }
   }
-}
 
-/* ==============================
-   RUNTIME GLOBALS
-============================== */
+  const relations = await fetchJSON("data/relations.json") || [];
+  const wonderkammer = await fetchJSON("data/wonderkammer.json");
+  const tags = await fetchJSON("data/tags.json");
 
-window.PLACES = places;
-window.PEOPLE = peopleAll;
-window.RELATIONS = relations;
-  
+  /* ==============================
+     LAST PEOPLE (multi-file)
+  ============================== */
+
+  let peopleAll = [];
+
+  if (typeof PEOPLE_FILES === "object" && PEOPLE_FILES) {
+    for (const [domain, url] of Object.entries(PEOPLE_FILES)) {
+      const data = await fetchJSON(url);
+      if (Array.isArray(data)) {
+        peopleAll.push(...data.map(p => ({ ...p, __source: domain })));
+      } else if (Array.isArray(data?.people)) {
+        peopleAll.push(...data.people.map(p => ({ ...p, __source: domain })));
+      }
+    }
+  }
+
+  /* ==============================
+     RUNTIME GLOBALS
+  ============================== */
+
+  window.PLACES = places;
+  window.PEOPLE = peopleAll;
+  window.RELATIONS = relations;
+  window.TAGS = tags || [];
+
   /* ==============================
      RELATION INDEX
   ============================== */
@@ -151,10 +151,10 @@ window.RELATIONS = relations;
   window.REL_BY_PERSON = Object.create(null);
 
   for (const r of window.RELATIONS) {
-    const place = String(r.place || "").trim();
-    const person = String(r.person || "").trim();
+    const place = String(r.place || r.place_id || "").trim();
+    const person = String(r.person || r.person_id || "").trim();
 
-    if (place)  (window.REL_BY_PLACE[place]  ||= []).push(r);
+    if (place) (window.REL_BY_PLACE[place] ||= []).push(r);
     if (person) (window.REL_BY_PERSON[person] ||= []).push(r);
   }
 
@@ -168,17 +168,25 @@ window.RELATIONS = relations;
   window.WK_BY_PERSON = Object.create(null);
 
   if (window.WONDERKAMMER) {
-    const wkPlaces = window.WONDERKAMMER.places || [];
-    const wkPeople = window.WONDERKAMMER.people || [];
+    if (Array.isArray(window.WONDERKAMMER.places) || Array.isArray(window.WONDERKAMMER.people)) {
+      const wkPlaces = window.WONDERKAMMER.places || [];
+      const wkPeople = window.WONDERKAMMER.people || [];
 
-    for (const row of wkPlaces) {
-      const id = row.place || row.place_id;
-      if (id) window.WK_BY_PLACE[id] = row.chambers || [];
-    }
+      for (const row of wkPlaces) {
+        const id = row.place || row.place_id;
+        if (id) window.WK_BY_PLACE[id] = row.chambers || [];
+      }
 
-    for (const row of wkPeople) {
-      const id = row.person || row.person_id;
-      if (id) window.WK_BY_PERSON[id] = row.chambers || [];
+      for (const row of wkPeople) {
+        const id = row.person || row.person_id;
+        if (id) window.WK_BY_PERSON[id] = row.chambers || [];
+      }
+    } else {
+      const placeId = window.WONDERKAMMER.place || window.WONDERKAMMER.place_id;
+      const personId = window.WONDERKAMMER.person || window.WONDERKAMMER.person_id;
+
+      if (placeId) window.WK_BY_PLACE[placeId] = window.WONDERKAMMER.chambers || [];
+      if (personId) window.WK_BY_PERSON[personId] = window.WONDERKAMMER.chambers || [];
     }
   }
 
@@ -187,83 +195,80 @@ window.RELATIONS = relations;
   ============================== */
 
   if (window.HGMap) {
-  HGMap.setPlaces(window.PLACES);
+    HGMap.setPlaces(window.PLACES);
 
-  if (typeof window.visited !== "undefined") {
-    HGMap.setVisited(window.visited);
+    if (typeof window.visited !== "undefined") {
+      HGMap.setVisited(window.visited);
+    }
+
+    if (typeof window.catColor !== "undefined") {
+      HGMap.setCatColor(window.catColor);
+    }
+
+    HGMap.setOnPlaceClick((id) => {
+      const p = window.PLACES.find(x => x.id === id);
+      if (p) openPlaceCard(p);
+    });
+
+    HGMap.setDataReady(true);
+    HGMap.maybeDrawMarkers();
   }
 
-  if (typeof window.catColor !== "undefined") {
-    HGMap.setCatColor(window.catColor);
+  /* ==============================
+     INIT
+  ============================== */
+
+  if (typeof loadNature === "function") {
+    try { await loadNature(); } catch (e) { console.error(e); }
   }
 
-  HGMap.setOnPlaceClick((id) => {
-    const p = window.PLACES.find(x => x.id === id);
-    if (p) openPlaceCard(p);
-  });
+  if (window.HGStories?.init) {
+    try { await window.HGStories.init(); } catch (e) { console.error("[HGStories.init]", e); }
+  }
 
-  HGMap.setDataReady(true);
-  HGMap.maybeDrawMarkers();
-}
+  if (window.HGEvents?.init) {
+    try { await window.HGEvents.init(); } catch (e) { console.error("[HGEvents.init]", e); }
+  }
 
+  if (window.QuizEngine) {
+    QuizEngine.init({
+      getPersonById: id => (window.PEOPLE || []).find(p => p.id === id),
+      getPlaceById: id => (window.PLACES || []).find(p => p.id === id),
+      getVisited: () => (window.visited || {}),
+      isTestMode: () => !!window.OPEN_MODE,
+      showToast
+    });
+  }
 
-  
+  if (typeof ensureBadgesLoaded === "function") {
+    await ensureBadgesLoaded();
+  }
 
-/* ==============================
-            INIT
-============================== */
+  if (typeof wire === "function") wire();
+  if (typeof renderCollection === "function") renderCollection();
+  if (typeof renderGallery === "function") renderGallery();
 
-  
+  if (typeof initPlaceCardCollapse === "function") {
+    initPlaceCardCollapse();
+  }
 
-if (typeof loadNature === "function") {
-  try { await loadNature(); } catch (e) { console.error(e); }
-}
+  if (window.ViewportManager) {
+    ViewportManager.init();
+  }
 
-if (window.HGStories?.init) {
-  try { await window.HGStories.init(); } catch (e) { console.error("[HGStories.init]", e); }
-}
+  if (window.LayerManager) {
+    LayerManager.init();
+  }
 
-if (window.HGEvents?.init) {
-  try { await window.HGEvents.init(); } catch (e) { console.error("[HGEvents.init]", e); }
-}
-
-if (window.QuizEngine) {
-  QuizEngine.init({
-    getPersonById: id => (window.PEOPLE || []).find(p => p.id === id),
-    getPlaceById:  id => (window.PLACES || []).find(p => p.id === id),
-    getVisited: () => (window.visited || {}),
-    isTestMode: () => !!window.OPEN_MODE,
-    showToast
-  });
-}
-
-if (typeof ensureBadgesLoaded === "function") {
-  await ensureBadgesLoaded();
-}
-
-if (typeof wire === "function") wire();
-if (typeof renderCollection === "function") renderCollection();
-if (typeof renderGallery === "function") renderGallery();
-
-if (typeof initPlaceCardCollapse === "function") {
-  initPlaceCardCollapse();
-}
-
-
-if (window.ViewportManager) {
-  ViewportManager.init();
-}
-
-if (window.LayerManager) {
-  LayerManager.init();
-}
-
-if (window.bottomSheetController?.init) {
-  window.bottomSheetController.init();
+  if (window.bottomSheetController?.init) {
+    window.bottomSheetController.init();
+  }
 }
 
 boot().then(() => {
   if (window.HGPos?.request) {
     window.HGPos.request();
   }
+}).catch((e) => {
+  console.error("[boot failed]", e);
 });
