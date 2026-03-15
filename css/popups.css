@@ -258,6 +258,207 @@
 }
 
 /* =====================================================
+   PLACE-CARD ROUND POPUPS
+   ===================================================== */
+
+.hg-popup.placecard-round-popup .hg-popup-inner{
+  width: 560px;
+  max-height: 76vh;
+  padding: 20px 18px 18px;
+  background: rgba(15,15,20,0.97);
+  border-radius: 18px;
+  box-shadow: 0 0 38px rgba(0,0,0,0.60);
+}
+
+.pc-round-popup-head{
+  margin-bottom: 14px;
+  padding-right: 36px;
+}
+
+.pc-round-popup-title{
+  margin: 0;
+  font-size: 22px;
+  line-height: 1.15;
+  color: #fff;
+  font-weight: 700;
+}
+
+.pc-round-popup-sub{
+  margin: 6px 0 0;
+  font-size: 14px;
+  line-height: 1.35;
+  color: rgba(255,255,255,.72);
+}
+
+.pc-round-popup-body{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.hg-popup.placecard-round-popup .pc-empty{
+  font-size: 14px;
+  color: rgba(255,255,255,.72);
+}
+
+/* People */
+.hg-popup.placecard-round-popup .pc-person{
+  background: transparent;
+  border: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-align: left;
+  color: #fff;
+  cursor: pointer;
+}
+
+.hg-popup.placecard-round-popup .pc-person + .pc-person{
+  margin-top: 8px;
+}
+
+.hg-popup.placecard-round-popup .pc-person-img{
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  background: #000;
+  flex: 0 0 auto;
+}
+
+.hg-popup.placecard-round-popup #pcNatureList .pc-flora-row,
+.hg-popup.placecard-round-popup .pc-flora-row{
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.hg-popup.placecard-round-popup .pc-flora{
+  border: none;
+  background: rgba(255,255,255,0.05);
+  border-radius: 14px;
+  padding: 6px;
+  cursor: pointer;
+}
+
+.hg-popup.placecard-round-popup .pc-flora img{
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 10px;
+  display: block;
+}
+
+/* Cards / rows */
+.hg-popup.placecard-round-popup .pc-badge,
+.hg-popup.placecard-round-popup .pc-wk-entry,
+.hg-popup.placecard-round-popup .pc-civi-entry,
+.hg-popup.placecard-round-popup .pc-event-entry,
+.hg-popup.placecard-round-popup .pc-leksikon-entry,
+.hg-popup.placecard-round-popup .pc-route-entry{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.05);
+  color: #fff;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.hg-popup.placecard-round-popup .pc-badge img{
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  border-radius: 50%;
+  background: #000;
+  flex: 0 0 auto;
+}
+
+.hg-popup.placecard-round-popup .pc-badge span,
+.hg-popup.placecard-round-popup .pc-wk-entry-title,
+.hg-popup.placecard-round-popup .pc-civi-entry-title,
+.hg-popup.placecard-round-popup .pc-event-entry-title,
+.hg-popup.placecard-round-popup .pc-leksikon-entry-title,
+.hg-popup.placecard-round-popup .pc-route-entry-title{
+  font-size: 15px;
+  line-height: 1.3;
+  color: #fff;
+  font-weight: 600;
+}
+
+.hg-popup.placecard-round-popup .pc-event-entry-meta,
+.hg-popup.placecard-round-popup .pc-leksikon-entry-meta,
+.hg-popup.placecard-round-popup .pc-route-entry-meta{
+  display: block;
+  margin-top: 2px;
+  font-size: 12px;
+  line-height: 1.3;
+  color: rgba(255,255,255,.68);
+}
+
+/* Stories */
+.hg-popup.placecard-round-popup .pc-story{
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.05);
+}
+
+.hg-popup.placecard-round-popup .pc-story-top{
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 12px;
+  color: rgba(255,255,255,.64);
+}
+
+.hg-popup.placecard-round-popup .pc-story-title{
+  font-size: 16px;
+  line-height: 1.25;
+  color: #fff;
+  font-weight: 700;
+}
+
+.hg-popup.placecard-round-popup .pc-story-text{
+  font-size: 14px;
+  line-height: 1.45;
+  color: rgba(255,255,255,.90);
+}
+
+/* Wonderkammer relation blocks */
+.hg-popup.placecard-round-popup .hg-section{
+  margin-top: 0;
+}
+
+.hg-popup.placecard-round-popup .hg-section h3{
+  display: none;
+}
+
+.hg-popup.placecard-round-popup .hg-rel-list{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hg-popup.placecard-round-popup .hg-rel-list li{
+  margin: 8px 0;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.04);
+}
+
+/* =====================================================
    HISTORISK KORT I REWARD-POPUP (2:1, fade + zoom)
    ===================================================== */
 
