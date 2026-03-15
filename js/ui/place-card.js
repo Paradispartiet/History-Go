@@ -68,29 +68,42 @@ if (!card.dataset.pcIconsBound) {
     routesEl?.classList.remove("is-open");
   };
 
-  const bindIconToggle = (iconEl, listEl) => {
-    iconEl?.addEventListener("click", (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      const open = !listEl?.classList.contains("is-open");
-      closeAllLists();
-      if (open) listEl?.classList.add("is-open");
-    });
-  };
-
-  iconsWrap?.addEventListener("click", (e) => {
+  const bindRoundPopup = (iconEl, listEl, title, kind) => {
+  iconEl?.addEventListener("click", (e) => {
+    e.preventDefault();
     e.stopPropagation();
-  });
 
-  bindIconToggle(peopleIcon, peopleEl);
-  bindIconToggle(natureIcon, natureEl);
-  bindIconToggle(badgesIcon, badgesEl);
-  bindIconToggle(storiesIcon, storiesEl);
-  bindIconToggle(wonderkammerIcon, wonderkammerEl);
-  bindIconToggle(civicationStoreIcon, civicationStoreEl);
-  bindIconToggle(eventsIcon, eventsEl);
-  bindIconToggle(leksikonIcon, leksikonEl);
-  bindIconToggle(routesIcon, routesEl);
+    closeAllLists();
+
+    const html = (listEl && listEl.innerHTML && listEl.innerHTML.trim())
+      ? listEl.innerHTML
+      : `<div class="pc-empty">Ingen innhold ennå</div>`;
+
+    if (typeof window.showPlaceCardRoundPopup === "function") {
+      window.showPlaceCardRoundPopup({
+        title,
+        subtitle: place?.name || "",
+        html,
+        place,
+        kind
+      });
+    }
+  });
+};
+
+iconsWrap?.addEventListener("click", (e) => {
+  e.stopPropagation();
+});
+
+bindRoundPopup(peopleIcon, peopleEl, "People", "people");
+bindRoundPopup(natureIcon, natureEl, "Nature", "nature");
+bindRoundPopup(badgesIcon, badgesEl, "Badges", "badges");
+bindRoundPopup(storiesIcon, storiesEl, "Stories", "stories");
+bindRoundPopup(wonderkammerIcon, wonderkammerEl, "Wonderkammer", "wonderkammer");
+bindRoundPopup(civicationStoreIcon, civicationStoreEl, "Civication Store", "civication");
+bindRoundPopup(eventsIcon, eventsEl, "Events", "events");
+bindRoundPopup(leksikonIcon, leksikonEl, "Leksikon", "leksikon");
+bindRoundPopup(routesIcon, routesEl, "Ruter", "routes");
 
   peopleEl?.addEventListener("click", (e) => e.stopPropagation());
   natureEl?.addEventListener("click", (e) => e.stopPropagation());
