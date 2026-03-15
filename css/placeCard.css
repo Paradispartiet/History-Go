@@ -197,8 +197,8 @@ body.pc-collapsed #nearbyListContainer {
 
 /* Rundinger */
 .pc-round{
-  width: 150px;
-  height: 150px;
+  width: var(--pc-round-size);
+  height: var(--pc-round-size);
 
   aspect-ratio: 1 / 1;
   border-radius: 50%;
@@ -207,6 +207,16 @@ body.pc-collapsed #nearbyListContainer {
   display: flex;
   align-items: center;
   justify-content: center;
+
+  position: relative;
+  overflow: hidden;
+}
+
+#pcBadgesIcon img{
+  width: 72%;
+  height: 72%;
+  object-fit: contain;
+  display: block;
 }
 
 #placeCard .pc-text{
