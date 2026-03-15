@@ -206,13 +206,26 @@ window.RELATIONS = relations;
   HGMap.maybeDrawMarkers();
 }
 
-  /* ==============================
-     INIT
-  ============================== */
 
-  if (typeof loadNature === "function") {
-    try { await loadNature(); } catch (e) { console.error(e); }
-  }
+  
+
+/* ==============================
+            INIT
+============================== */
+
+  
+
+if (typeof loadNature === "function") {
+  try { await loadNature(); } catch (e) { console.error(e); }
+}
+
+if (window.HGStories?.init) {
+  try { await window.HGStories.init(); } catch (e) { console.error("[HGStories.init]", e); }
+}
+
+if (window.HGEvents?.init) {
+  try { await window.HGEvents.init(); } catch (e) { console.error("[HGEvents.init]", e); }
+}
 
 if (window.QuizEngine) {
   QuizEngine.init({
@@ -224,19 +237,18 @@ if (window.QuizEngine) {
   });
 }
 
-  if (typeof ensureBadgesLoaded === "function") {
-    await ensureBadgesLoaded();
-  }
-
-  if (typeof wire === "function") wire();
-  if (typeof renderCollection === "function") renderCollection();
-  if (typeof renderGallery === "function") renderGallery();
-
-    if (typeof initPlaceCardCollapse === "function") {
-    initPlaceCardCollapse();
-  }
-
+if (typeof ensureBadgesLoaded === "function") {
+  await ensureBadgesLoaded();
 }
+
+if (typeof wire === "function") wire();
+if (typeof renderCollection === "function") renderCollection();
+if (typeof renderGallery === "function") renderGallery();
+
+if (typeof initPlaceCardCollapse === "function") {
+  initPlaceCardCollapse();
+}
+
 
 if (window.ViewportManager) {
   ViewportManager.init();
