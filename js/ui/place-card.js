@@ -504,12 +504,11 @@ if (civicationStoreEl) {
   });
 
   setRoundLabel(civicationStoreIcon, "🛒", storeItems.length);
-}
-
   
-}  // --- Mer info ---
-  if (btnInfo) btnInfo.onclick = () => window.showPlacePopup?.(place);
 
+  // --- Mer info ---
+  if (btnInfo) btnInfo.onclick = () => window.showPlacePopup?.(place);
+  
   // --- Quiz (ny motor) ---
   if (btnQuiz) {
     btnQuiz.onclick = () => {
