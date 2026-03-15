@@ -251,20 +251,29 @@ try {
   
 // --- PEOPLE LIST ---
 if (peopleEl) {
-  const restPersons = Array.isArray(persons) ? persons.slice(1) : [];
+  const popupPersons = Array.isArray(persons) ? persons : [];
 
-const peopleHtml = restPersons
-  .map(p => `
-    <button class="pc-person" data-person="${p.id}">
-      <img src="${p.image}" class="pc-person-img" alt="">
-      <span>${p.name}</span>
-    </button>
-  `)
-  .join("");
+  const peopleHtml = popupPersons
+    .map(p => {
+      const personDesc = String(p.popupdesc || p.desc || "").trim();
 
-  peopleEl.innerHTML = peopleHtml;
+      return `
+        <button class="pc-person" data-person="${p.id}">
+          <img src="${p.image}" class="pc-person-img" alt="">
+          <div class="pc-person-meta">
+            <div class="pc-person-name-row">
+              <span class="pc-person-name">${p.name || ""}</span>
+              ${p.year ? `<span class="pc-person-year">${p.year}</span>` : ""}
+            </div>
+            ${personDesc ? `<div class="pc-person-desc">${personDesc}</div>` : ""}
+          </div>
+        </button>
+      `;
+    })
+    .join("");
 
-  // people click (som før)
+  peopleEl.innerHTML = peopleHtml || `<div class="pc-empty">Ingen personer ennå</div>`;
+
   peopleEl.querySelectorAll("[data-person]").forEach(btn => {
     btn.onclick = () => {
       const pr = PEOPLE_LIST.find(x => x.id === btn.dataset.person);
