@@ -1,0 +1,109 @@
+{
+  "version": "v5.1-source-priority-patch",
+  "purpose": "Tighten the generator so canonical files guide question type and theory selection, while external sources and literature dominate actual question content.",
+  "hard_rules": {
+    "source_dominance_rule": "External historical/local sources must dominate the factual substance of the quiz. Canonical files may guide selection, progression, emne choice, theory choice and method choice, but may not be the main source of visible question content.",
+    "canonical_files_are_guides_not_content": true,
+    "external_history_first_all_sets": true,
+    "minimum_external_source_ratio_by_set": {
+      "1": 0.8,
+      "2": 0.8,
+      "3": 0.6,
+      "4": 0.8,
+      "5": 0.6,
+      "6": 0.8,
+      "7": 0.8,
+      "8": 0.8
+    },
+    "internal_file_only_questions_max_per_quiz": 0.1,
+    "internal_file_only_questions_allowed_only_for": [
+      "pure on-site observation questions",
+      "question-layer/metadata validation",
+      "fallback when no external coverage exists and this is explicitly logged"
+    ],
+    "question_seed_priority": [
+      "external_local_history_sources",
+      "official institution pages",
+      "local history literature / encyclopedia",
+      "verified journalism / archival references",
+      "place profile source fields",
+      "canonical emner/fagkart/emnemapping/methods as guidance only"
+    ],
+    "emne_guidance_priority_sets": {
+      "3": "high_guidance_allowed",
+      "5": "high_guidance_allowed"
+    },
+    "emne_guidance_other_sets": "allowed_but_secondary",
+    "forbidden_generation_pattern": "Do not generate visible questions directly from emne labels, hook names, method names or theory lists."
+  },
+  "soft_preferences": {
+    "preferred_external_source_mix_per_place": [
+      "at least one local history / encyclopedia source",
+      "at least one institution / official source",
+      "at least one complementary source such as article, book, archive or museum page"
+    ],
+    "preferred_question_build_path": "external source -> claim -> story unit -> question",
+    "preferred_role_of_canonical_files": [
+      "help choose what kind of question to ask",
+      "help choose which theory fits",
+      "help choose which method fits",
+      "help spread cases and thinkers",
+      "help avoid overlap and theory overreach"
+    ]
+  },
+  "set_guidance": {
+    "1": {
+      "dominant_driver": "external history and place story",
+      "canonical_role": "light guidance only"
+    },
+    "2": {
+      "dominant_driver": "external history, buildings, events, former functions",
+      "canonical_role": "light guidance only"
+    },
+    "3": {
+      "dominant_driver": "external sources plus strong emne guidance for lived use, rhythm, contrast and everyday reading",
+      "canonical_role": "high guidance allowed"
+    },
+    "4": {
+      "dominant_driver": "external facts and visible traces, with theory introduced through canonical guidance",
+      "canonical_role": "medium guidance"
+    },
+    "5": {
+      "dominant_driver": "external place reading plus strong emne guidance for concrete advanced interpretation",
+      "canonical_role": "high guidance allowed"
+    },
+    "6": {
+      "dominant_driver": "external sources still dominate claim content; emner/theory organise the reading",
+      "canonical_role": "medium-high guidance"
+    },
+    "7": {
+      "dominant_driver": "external sources and literature plus theory comparison",
+      "canonical_role": "medium-high guidance"
+    },
+    "8": {
+      "dominant_driver": "external sources and literature plus concept clarification",
+      "canonical_role": "medium-high guidance"
+    }
+  },
+  "validator_additions": [
+    "Reject a quiz if early sets are mostly paraphrases of uploaded structure files rather than externally grounded place claims.",
+    "Reject a question if it can be traced only to emne/hook names and not to a concrete external claim or observation.",
+    "Log per-question source_origin as one of: external, mixed, internal_only.",
+    "Flag any quiz where internal_only exceeds 10 percent."
+  ],
+  "generation_metadata_additions": {
+    "required_per_question_fields_recommended": [
+      "source_origin",
+      "claim_basis",
+      "guidance_basis"
+    ],
+    "source_origin_values": [
+      "external",
+      "mixed",
+      "internal_only"
+    ],
+    "claim_basis_definition": "The concrete historical/place claim from an external or observed source.",
+    "guidance_basis_definition": "Which emne/hook/method/theory helped shape the question."
+  },
+  "diagnosis_note": "When many files are uploaded, the model must not over-weight the uploaded canonical system files simply because they are numerous. The generator should explicitly privilege source-bearing files and external history material over structural guidance files."
+}
