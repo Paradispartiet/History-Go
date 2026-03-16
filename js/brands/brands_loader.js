@@ -1,5 +1,5 @@
 (function () {
-  const BRANDS_CATALOG_PATH = new URL("data/brands/brands_catalog.json", document.baseURI).toString();
+  const BRANDS_MASTER_PATH = new URL("data/brands/brands_master_raw.json", document.baseURI).toString();
   const BRANDS_BY_PLACE_PATH = new URL("data/brands/brands_by_place.json", document.baseURI).toString();
 
   function asString(v) {
@@ -8,6 +8,10 @@
 
   function ensureArray(v) {
     return Array.isArray(v) ? v : [];
+  }
+
+  function uniq(arr) {
+    return [...new Set(ensureArray(arr).map(asString).filter(Boolean))];
   }
 
   async function fetchJson(url) {
@@ -22,18 +26,32 @@
     return {
       id: asString(raw?.id),
       name: asString(raw?.name),
-      type: asString(raw?.type),
+      brand_type: asString(raw?.brand_type),
       sector: asString(raw?.sector),
+      status: asString(raw?.status),
+      state: asString(raw?.state || "borderline"),
+      verification: asString(raw?.verification),
       logo: asString(raw?.logo),
       popupdesc: asString(raw?.popupdesc),
       desc: asString(raw?.desc),
-      tags: ensureArray(raw?.tags).map(asString).filter(Boolean)
+      aliases: uniq(raw?.aliases),
+      tags: uniq(raw?.tags)
     };
+  }
+
+  function filterByState(brands, state) {
+    return ensureArray(brands).filter(b => asString(b?.state) === state);
   }
 
   window.HGBrands = {
     ready: false,
+
     all: [],
+    catalog: [],
+    strong: [],
+    borderline: [],
+    move_to_places: [],
+
     byId: {},
     byPlace: {},
     placesByBrand: {},
@@ -41,12 +59,17 @@
     async init() {
       if (this.ready) return this;
 
-      const rawCatalog = await fetchJson(BRANDS_CATALOG_PATH);
+      const rawMaster = await fetchJson(BRANDS_MASTER_PATH);
       const rawByPlace = await fetchJson(BRANDS_BY_PLACE_PATH);
 
-      this.all = ensureArray(rawCatalog)
+      this.all = ensureArray(rawMaster)
         .map(normalizeBrand)
         .filter(b => b.id && b.name);
+
+      this.catalog = filterByState(this.all, "catalog");
+      this.strong = filterByState(this.all, "strong");
+      this.borderline = filterByState(this.all, "borderline");
+      this.move_to_places = filterByState(this.all, "move_to_places");
 
       this.byId = {};
       this.byPlace = {};
@@ -60,21 +83,38 @@
         const pid = asString(placeId);
         const ids = ensureArray(brandIds).map(asString).filter(Boolean);
 
-        this.byPlace[pid] = ids
+        const catalogBrands = ids
           .map(id => this.byId[id])
-          .filter(Boolean);
+          .filter(Boolean)
+          .filter(brand => brand.state === "catalog");
 
-        ids.forEach(id => {
-          if (!this.placesByBrand[id]) this.placesByBrand[id] = [];
-          this.placesByBrand[id].push(pid);
+        this.byPlace[pid] = catalogBrands;
+
+        catalogBrands.forEach(brand => {
+          if (!this.placesByBrand[brand.id]) this.placesByBrand[brand.id] = [];
+          this.placesByBrand[brand.id].push(pid);
         });
       });
 
-      window.BRANDS = this.all;
+      window.BRANDS_MASTER = this.all;
+      window.BRANDS = this.catalog;
       window.BRANDS_BY_PLACE = this.byPlace;
 
       this.ready = true;
       return this;
+    },
+
+    getAll() {
+      return this.all;
+    },
+
+    getCatalog() {
+      return this.catalog;
+    },
+
+    getByState(state) {
+      const s = asString(state);
+      return this.all.filter(b => b.state === s);
     },
 
     getById(id) {
