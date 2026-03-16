@@ -792,19 +792,110 @@ window.showBrandPopup = async function (brandId, place = null) {
   const relatedPlaces = window.HGBrands?.getPlacesForBrand?.(id) || [];
   const desc = String(brand.popupdesc || brand.desc || "").trim();
 
-  const html = `
-    ${brand.logo ? `<img src="${brand.logo}" class="hg-popup-cardimg">` : ``}
-    <h2 class="hg-popup-name">${brand.name}</h2>
-    ${brand.type ? `<p class="hg-popup-cat">${brand.type}</p>` : ``}
-    ${desc ? `<p class="hg-popup-desc">${desc}</p>` : `<p class="hg-muted">Ingen beskrivelse ennå.</p>`}
+  const state = String(brand.state || "").trim();
+  const type = String(brand.brand_type || "").trim();
+  const verification = String(brand.verification || "").trim();
+  const logo = String(brand.logo || "").trim();
+  const aliases = Array.isArray(brand.aliases) ? brand.aliases.filter(Boolean) : [];
+  const tags = Array.isArray(brand.tags) ? brand.tags.filter(Boolean) : [];
 
+  const niceState =
+    state === "catalog" ? "Aktiv i appen" :
+    state === "strong" ? "Sterk kandidat" :
+    state === "borderline" ? "Borderline" :
+    state === "move_to_places" ? "Flytt til steder" :
+    state || "Ukjent";
+
+  const niceVerification =
+    verification === "verified" ? "Verifisert" :
+    verification === "verified_legacy" ? "Verifisert historisk" :
+    verification === "verified_landmark" ? "Verifisert landemerke" :
+    verification === "manual_curated" ? "Manuelt kuratert" :
+    verification === "verified_unmapped" ? "Verifisert, ikke mappet" :
+    verification || "Ikke satt";
+
+  const niceType = type || "brand";
+
+  const logoFallback = (() => {
+    const src = logo;
+    if (src) {
+      return `<img src="${hgEscAttr(src)}" class="hg-brand-logo-img" alt="${hgEscAttr(brand.name)}">`;
+    }
+
+    const letters = String(brand.name || "")
+      .trim()
+      .split(/\s+/)
+      .slice(0, 2)
+      .map(w => w.charAt(0))
+      .join("")
+      .toUpperCase() || "B";
+
+    return `<div class="hg-brand-logo-fallback">${hgEsc(letters)}</div>`;
+  })();
+
+  const relatedBrands = (() => {
+    const seen = new Set([id]);
+    const out = [];
+
+    relatedPlaces.forEach(pl => {
+      const brandsHere = window.HGBrands?.getByPlace?.(pl.id) || [];
+      brandsHere.forEach(b => {
+        const bid = String(b?.id || "").trim();
+        if (!bid || seen.has(bid)) return;
+        seen.add(bid);
+        out.push({
+          id: bid,
+          name: b.name || bid,
+          placeId: pl.id,
+          placeName: pl.name || pl.id
+        });
+      });
+    });
+
+    return out;
+  })();
+
+  const chipsHtml = `
+    <div class="hg-brand-chips">
+      ${type ? `<span class="hg-brand-chip hg-brand-chip-type">${hgEsc(niceType)}</span>` : ``}
+      ${state ? `<span class="hg-brand-chip hg-brand-chip-state">${hgEsc(niceState)}</span>` : ``}
+      ${verification ? `<span class="hg-brand-chip hg-brand-chip-verification">${hgEsc(niceVerification)}</span>` : ``}
+    </div>
+  `;
+
+  const aliasesHtml = aliases.length
+    ? `
+      <div class="hg-section">
+        <h3>Alias</h3>
+        <div class="hg-brand-inline-list">
+          ${aliases.map(a => `<span class="hg-inline-pill">${hgEsc(a)}</span>`).join("")}
+        </div>
+      </div>
+    `
+    : "";
+
+  const tagsHtml = tags.length
+    ? `
+      <div class="hg-section">
+        <h3>Tags</h3>
+        <div class="hg-brand-inline-list">
+          ${tags.map(t => `<span class="hg-inline-pill">${hgEsc(t)}</span>`).join("")}
+        </div>
+      </div>
+    `
+    : "";
+
+  const placesHtml = `
     <div class="hg-section">
       <h3>Tilknyttede steder</h3>
       ${
         relatedPlaces.length
-          ? `<div class="hg-places">
+          ? `<div class="hg-brand-place-list">
               ${relatedPlaces.map(pl => `
-                <div class="hg-place" data-place="${pl.id}">📍 ${pl.name}</div>
+                <button class="hg-brand-place-row" data-place="${hgEscAttr(pl.id)}">
+                  <span class="hg-brand-place-name">${hgEsc(pl.name || pl.id)}</span>
+                  <span class="hg-brand-place-meta">${hgEsc(pl.id)}</span>
+                </button>
               `).join("")}
             </div>`
           : `<p class="hg-muted">Ingen steder registrert ennå.</p>`
@@ -812,16 +903,68 @@ window.showBrandPopup = async function (brandId, place = null) {
     </div>
   `;
 
+  const relatedBrandsHtml = `
+    <div class="hg-section">
+      <h3>Relaterte brands i samme område</h3>
+      ${
+        relatedBrands.length
+          ? `<div class="hg-brand-related-list">
+              ${relatedBrands.map(item => `
+                <button class="hg-brand-related-row" data-brand="${hgEscAttr(item.id)}">
+                  <span class="hg-brand-related-name">${hgEsc(item.name)}</span>
+                  <span class="hg-brand-related-meta">${hgEsc(item.placeName)}</span>
+                </button>
+              `).join("")}
+            </div>`
+          : `<p class="hg-muted">Ingen relaterte brands funnet ennå.</p>`
+      }
+    </div>
+  `;
+
+  const html = `
+    <div class="hg-brand-popup">
+      <div class="hg-brand-top">
+        <div class="hg-brand-logo-wrap">
+          ${logoFallback}
+        </div>
+
+        <div class="hg-brand-head">
+          <h2 class="hg-popup-name">${hgEsc(brand.name)}</h2>
+          ${chipsHtml}
+          ${desc ? `<p class="hg-popup-desc">${hgEsc(desc)}</p>` : `<p class="hg-muted">Ingen beskrivelse ennå.</p>`}
+        </div>
+      </div>
+
+      ${aliasesHtml}
+      ${tagsHtml}
+      ${placesHtml}
+      ${relatedBrandsHtml}
+    </div>
+  `;
+
   makePopup(html, "brand-popup");
 
-  currentPopup?.querySelectorAll("[data-place]").forEach(btn => {
+  if (!currentPopup) return;
+
+  currentPopup.querySelectorAll("[data-place]").forEach(btn => {
     btn.onclick = () => {
       const placeId = String(btn.dataset.place || "").trim();
-      const pl = (Array.isArray(window.PLACES) ? window.PLACES : []).find(x => String(x.id).trim() === placeId);
+      const pl = (Array.isArray(window.PLACES) ? window.PLACES : []).find(
+        x => String(x.id || "").trim() === placeId
+      );
       if (pl) {
         closePopup();
-        window.showPlacePopup(pl);
+        window.showPlacePopup?.(pl);
       }
+    };
+  });
+
+  currentPopup.querySelectorAll("[data-brand]").forEach(btn => {
+    btn.onclick = () => {
+      const nextBrandId = String(btn.dataset.brand || "").trim();
+      if (!nextBrandId) return;
+      closePopup();
+      window.showBrandPopup?.(nextBrandId, place);
     };
   });
 };
