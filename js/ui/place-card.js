@@ -963,7 +963,6 @@ function initPlaceCardCollapse() {
   const pc = getPlaceCardEl();
   if (!pc) return;
 
-  // default: hvis BottomSheetController finnes, start i open/hidden basert på storage
   let collapsed = false;
   try { collapsed = (localStorage.getItem("hg_placecard_collapsed_v1") === "1"); } catch {}
 
@@ -971,15 +970,24 @@ function initPlaceCardCollapse() {
   else expandPlaceCard();
 }
 
-// Bind 1 gang når DOM er klar
 document.addEventListener("DOMContentLoaded", () => {
   initPlaceCardCollapse();
 
   const btn = document.getElementById("pcCollapseBtn");
   if (btn) {
     btn.addEventListener("click", (e) => {
+      e.preventDefault();
       e.stopPropagation();
       togglePlaceCard();
+    });
+  }
+
+  const expandBtn = document.getElementById("pcExpandBtn");
+  if (expandBtn) {
+    expandBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      expandPlaceCard();
     });
   }
 
