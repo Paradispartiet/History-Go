@@ -859,6 +859,45 @@ body.pc-collapsed #nearbyListContainer {
   transform: translateY(100%);
 }
 
+.pc-expand-btn{
+  z-index: 11;
+  pointer-events: auto;
+}
+
+.pc-mini-openbar{
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  pointer-events: none;
+}
+
+.pc-mini-label{
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 0 12px;
+  border-radius: 999px;
+  background: rgba(0,0,0,.55);
+  color: #fff;
+  font-size: .85rem;
+  font-weight: 700;
+  letter-spacing: .01em;
+  backdrop-filter: blur(6px);
+}
+
+#pcMini{
+  cursor: pointer;
+}
+
+#pcMini img{
+  display: block;
+}
+
 
 /* =========================
    FLORA – vakker “samling”
