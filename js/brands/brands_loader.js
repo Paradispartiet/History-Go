@@ -1,7 +1,6 @@
 (function () {
-  const BRANDS_MASTER_PATH = new URL("data/brands/brands_master_raw.json", document.baseURI).toString();
+  const BRANDS_MASTER_PATH = new URL("data/brands/brands_master.json", document.baseURI).toString();
   const BRANDS_BY_PLACE_PATH = new URL("data/brands/brands_by_place.json", document.baseURI).toString();
-
   function asString(v) {
     return typeof v === "string" ? v.trim() : "";
   }
