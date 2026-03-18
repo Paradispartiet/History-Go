@@ -385,6 +385,81 @@
 
 
 /* =====================================================
+   BRANDS – ROUND POPUP LIST
+   ===================================================== */
+
+.hg-popup.placecard-round-popup .pc-brand-entry{
+  appearance: none;
+  -webkit-appearance: none;
+
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  align-items: center;
+  gap: 12px;
+
+  width: 100%;
+  padding: 12px 14px;
+
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 16px;
+  background: rgba(255,255,255,0.05);
+
+  color: #fff;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+
+  transition:
+    transform .14s ease,
+    background .14s ease,
+    border-color .14s ease,
+    box-shadow .14s ease;
+}
+
+.hg-popup.placecard-round-popup .pc-brand-entry:hover,
+.hg-popup.placecard-round-popup .pc-brand-entry:focus-visible{
+  transform: translateY(-1px);
+  background: rgba(255,255,255,0.075);
+  border-color: rgba(255,255,255,0.14);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.20);
+  outline: none;
+}
+
+.hg-popup.placecard-round-popup .pc-brand-entry:active{
+  transform: translateY(0);
+}
+
+.hg-popup.placecard-round-popup .pc-brand-emoji{
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.10);
+
+  font-size: 16px;
+  line-height: 1;
+  color: rgba(255,255,255,.92);
+}
+
+.hg-popup.placecard-round-popup .pc-brand-entry-title{
+  display: block;
+  min-width: 0;
+
+  font-size: 16px;
+  line-height: 1.3;
+  font-weight: 700;
+  color: #fff;
+
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+/* =====================================================
    BRAND POPUP
    ===================================================== */
 
