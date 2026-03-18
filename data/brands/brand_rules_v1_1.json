@@ -1,0 +1,201 @@
+{
+  "version": "1.1",
+  "purpose": "Rules for deciding whether a name should be modeled as a Brand in History Go, and how it should be classified.",
+  "source_basis": {
+    "core_definition": [
+      "A brand is a name, term, design, symbol, or other feature that identifies one seller's goods or services as distinct from others.",
+      "A brand is also an intangible asset that creates distinctive images and associations in stakeholders' minds."
+    ],
+    "theory_used": [
+      "Brand identity",
+      "Brand equity",
+      "Brand positioning",
+      "Brand architecture",
+      "Brand personality"
+    ]
+  },
+  "history_go_definition": {
+    "working_definition": "In History Go, a Brand is a socially recognized name with identity beyond a generic location label. It can be commercial, professional, subcultural, retail, gallery-based, hospitality-based, legacy, signage-based, or venue-based, as long as the name carries distinct recognition in public memory.",
+    "important_note": "A Place is not automatically a Brand, and a Brand is not automatically a Place. Places should be reserved for sites with independent historical, architectural, institutional, or urban significance. Brands may operate under, within, or around such places.",
+    "place_definition_for_history_go": "In History Go, a Place should normally be a site of historical significance, architectural weight, institutional importance, or strong urban/topographical meaning. Ordinary businesses, galleries, restaurants, bars, and clubs should usually remain in the brand layer unless the site itself is a major historical place."
+  },
+  "decision_logic": {
+    "minimum_rule": "A candidate should satisfy at least 2 core criteria, and should not fail any hard exclusion.",
+    "core_criteria": {
+      "identity_autonomy": "The name functions as an identity in itself, not just as a street address or generic location label.",
+      "recognition": "The name is recognized by a public, scene, profession, customer group, or cultural memory.",
+      "distinctive_association": "The name carries distinctive associations such as quality, prestige, style, ideology, subculture, trust, or historical memory.",
+      "symbolic_or_visual_presence": "The name has a logo, signage, facade identity, packaging, visual language, or strong typographic/graphic presence.",
+      "repeatability_beyond_one_building": "The identity can travel beyond one building: through products, media, reputation, community, or multi-site presence.",
+      "memory_value": "The name persists in collective memory even if the original business is closed."
+    },
+    "hard_exclusions": [
+      "Pure place names with no separate identity layer",
+      "Generic institutions used only as locations",
+      "Infrastructure names with no brand recognition",
+      "Ordinary chain tenants with weak symbolic value",
+      "Temporary event titles with no durable identity",
+      "Historically significant main sites that should primarily be modeled as places"
+    ]
+  },
+  "inclusion_rules": {
+    "include": [
+      "Commercial brands and product brands",
+      "Professional brands such as major law firms or architecture firms",
+      "Subculture stores, record shops, scene names, cult venues, clubs, bars, restaurants and cafés when the name functions as a recognized identity",
+      "Gallery names when the gallery is an actor/brand rather than a historical main place",
+      "Legacy brands and historical trade names",
+      "Signage brands and iconic advertising signs",
+      "Venue brands when the venue name itself has strong public identity and is not better modeled as a historical main place",
+      "Oslo-origin brands",
+      "Oslo-based brands",
+      "Oslo-associated brands with strong city-memory value"
+    ],
+    "exclude_by_default": [
+      "Places that are primarily historical, architectural, institutional, or urban landmarks",
+      "Museums, libraries, theatres, or cultural houses modeled primarily as historical main places",
+      "Weak retail chains with little symbolic value",
+      "Generic franchise outlets unless they have exceptional local symbolic force"
+    ]
+  },
+  "brand_groups": {
+    "oslo_origin_brand": "Founded in Oslo or clearly originating in Oslo.",
+    "oslo_based_brand": "Strongly based in Oslo even if origin is mixed or elsewhere.",
+    "oslo_associated_brand": "Strongly associated with Oslo in public memory, trade, or culture.",
+    "subculture_brand": "Carries scene, cult, underground, indie, or countercultural value.",
+    "professional_brand": "Professional-services identity with public recognition, such as law or architecture firms.",
+    "legacy_brand": "Historically important brand that may now be closed or transformed.",
+    "signage_brand": "Primarily known through signage, facade identity, or iconic visual mark.",
+    "venue_brand": "A venue, restaurant, bar, club, café, gallery, or similar actor-name that functions as a brand in public consciousness but does not outrank the place layer."
+  },
+  "brand_type_examples": {
+    "fashion_brand": "Apparel, streetwear, accessories, or fashion-led retail identity.",
+    "luxury_brand": "High-prestige brand with strong status signaling.",
+    "coffee_brand": "Coffee roaster, café identity, or coffee-led product/venue brand.",
+    "restaurant_brand": "Restaurant or dining name with strong standalone identity.",
+    "music_store": "Record stores, instrument stores, or music retail with scene value.",
+    "music_venue": "Concert/club venue with durable name recognition, unless it is better modeled as a major historical place.",
+    "bookstore_brand": "Bookstore with strong identity beyond ordinary retail.",
+    "beauty_brand": "Beauty, skincare, cosmetics identity.",
+    "design_brand": "Furniture, interiors, or design-led identity.",
+    "institution_brand": "Institution that truly functions as a public brand, not just a place label.",
+    "historic_company": "Long-running or historically important commercial company.",
+    "media_brand": "Newspaper, magazine, publisher, or media identity.",
+    "tech_brand": "Software, internet, or technology identity.",
+    "specialty_store_brand": "Niche retail concept with strong recognition.",
+    "gallery_brand": "Gallery or art-space name treated as a brand actor rather than a historical main site."
+  },
+  "state_system": {
+    "catalog": "Approved active brand for app use.",
+    "strong": "Strong candidate, likely brand, needs final place mapping or review.",
+    "borderline": "Plausible candidate, but weaker or more ambiguous.",
+    "move_to_places": "Should live primarily in places because the site itself is historically/architecturally/institutionally primary."
+  },
+  "place_vs_brand_rules": {
+    "core_rule": "Do not decide based on whether something is physical. Decide based on whether the name should be the primary historical place object or a brand/actor operating under a place.",
+    "place_first_when": [
+      "The site has independent historical significance",
+      "The site has major architectural weight",
+      "The site has institutional/public significance beyond one operator",
+      "The place would still matter historically even if today's operator disappeared"
+    ],
+    "brand_first_when": [
+      "The name is an actor, business, venue concept, gallery, restaurant, bar, club, or store operating under a larger place framework",
+      "The name is recognized as a distinct identity with its own public memory",
+      "The site is important mainly because of the operator-name, not because the physical place itself is a major historical site"
+    ],
+    "examples_place_first": [
+      "Rockefeller",
+      "Astrup Fearnley",
+      "Holmenkollen",
+      "Frognerparken",
+      "MUNCH when treated as the museum place",
+      "Major historical theatres, museums, libraries, parks, landmarks, or architectural complexes"
+    ],
+    "examples_brand_first": [
+      "Stratos",
+      "Galleri Brandstrup",
+      "Freia",
+      "BAHR",
+      "Neseblod Records",
+      "Tim Wendelboe"
+    ],
+    "borderline_rule": "If a name is both a place and a brand, keep the place object only when the place has independent historical or architectural primacy. Otherwise keep it in brands."
+  },
+  "scoring_model": {
+    "use_scoring": true,
+    "score_range_per_signal": "0 to 2",
+    "signals": {
+      "identity_autonomy": 2,
+      "recognition": 2,
+      "distinctive_association": 2,
+      "symbolic_or_visual_presence": 2,
+      "repeatability_beyond_one_building": 1,
+      "memory_value": 1
+    },
+    "recommended_thresholds": {
+      "catalog": "8+ points and no hard exclusion",
+      "strong": "6-7 points and no hard exclusion",
+      "borderline": "4-5 points or mixed evidence",
+      "move_to_places": "Fails brand threshold or is fundamentally place-first"
+    }
+  },
+  "field_schema": {
+    "required": [
+      "id",
+      "name",
+      "brand_group",
+      "brand_type",
+      "sector",
+      "state"
+    ],
+    "optional": [
+      "status",
+      "verification",
+      "logo",
+      "popupdesc",
+      "desc",
+      "aliases",
+      "tags",
+      "founded",
+      "place_ids",
+      "source_urls"
+    ]
+  },
+  "verification_policy": {
+    "verified": "Strong source support and clean identity/place distinction.",
+    "verified_legacy": "Historically verified, even if inactive now.",
+    "verified_landmark": "Verified as a landmark/signage identity.",
+    "manual_curated": "Accepted by curator based on strong qualitative judgment.",
+    "verified_unmapped": "Clearly a brand, but not yet mapped to a place."
+  },
+  "mapping_policy": {
+    "rule": "A brand may map to multiple places. Use direct place match first; otherwise use best-fit only when the relationship is obvious and documented.",
+    "do_not_do": [
+      "Do not force a brand into a by-category place if a better place exists in another category",
+      "Do not create a place mapping from vibe alone",
+      "Do not map a place to itself just because the names match",
+      "Do not move a brand to places merely because it is a venue; first test whether the place itself has historical or architectural primacy"
+    ]
+  },
+  "examples": {
+    "brand_yes": [
+      "Freia",
+      "David-Andersen",
+      "BAHR",
+      "Neseblod Records",
+      "Blue Master",
+      "Tim Wendelboe",
+      "Stratos",
+      "Galleri Brandstrup"
+    ],
+    "brand_no_or_place_first": [
+      "Rockefeller",
+      "Astrup Fearnley",
+      "Holmenkollen",
+      "Frognerparken",
+      "Mathallen when treated as the historical/main place",
+      "Dansens Hus when treated as the institutional place"
+    ]
+  }
+}
