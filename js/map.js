@@ -300,25 +300,45 @@ if (!MAP.__hgPlacesBound) {
   ];
 };
   const openPlaceAtPoint = (point, originalEvent) => {
-    const radius = 20;
-    const bbox = [
-      [point[0] - radius, point[1] - radius],
-      [point[0] + radius, point[1] + radius]
-    ];
+  const radius = 8;
 
-    const feats = MAP.queryRenderedFeatures(bbox, {
-      layers: [L_HIT, L_DOTS]
-    });
+  const bbox = [
+    [point[0] - radius, point[1] - radius],
+    [point[0] + radius, point[1] + radius]
+  ];
 
-    const f = feats && feats[0];
-    const id = f && f.properties && f.properties.id;
-    if (!id) return;
+  const feats = MAP.queryRenderedFeatures(bbox, {
+    layers: [L_DOTS]
+  });
 
-    originalEvent?.preventDefault?.();
-    originalEvent?.stopPropagation?.();
+  if (!feats || !feats.length) return;
 
-    onPlaceClick(id);
-  };
+  let best = null;
+  let bestDist = Infinity;
+
+  for (const f of feats) {
+    const coords = f?.geometry?.coordinates;
+    if (!Array.isArray(coords) || coords.length < 2) continue;
+
+    const projected = MAP.project(coords);
+    const dx = projected.x - point[0];
+    const dy = projected.y - point[1];
+    const dist = Math.sqrt(dx * dx + dy * dy);
+
+    if (dist < bestDist) {
+      bestDist = dist;
+      best = f;
+    }
+  }
+
+  const id = best?.properties?.id;
+  if (!id) return;
+
+  originalEvent?.preventDefault?.();
+  originalEvent?.stopPropagation?.();
+
+  onPlaceClick(id);
+};
 
   MAP.on("mouseenter", L_HIT, setPointer);
   MAP.on("mouseleave", L_HIT, clearPointer);
