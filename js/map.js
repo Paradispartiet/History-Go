@@ -270,15 +270,37 @@
       }
     });
 
-    if (!MAP.__hgPlacesBound) {
+if (!MAP.__hgPlacesBound) {
   const canvas = MAP.getCanvas();
+  const surface = typeof MAP.getCanvasContainer === "function"
+    ? MAP.getCanvasContainer()
+    : canvas;
 
-  let touchStartX = 0;
-  let touchStartY = 0;
-  let touchMoved = false;
+  let startX = 0;
+  let startY = 0;
+  let moved = false;
+
+  const setPointer = () => {
+    canvas.style.cursor = "pointer";
+  };
+
+  const clearPointer = () => {
+    canvas.style.cursor = "";
+  };
+
+  const getPointFromClient = (clientX, clientY) => {
+    const rect = surface.getBoundingClientRect();
+    return [clientX - rect.left, clientY - rect.top];
+  };
 
   const openPlaceAtPoint = (point, originalEvent) => {
-    const feats = MAP.queryRenderedFeatures(point, {
+    const radius = 14;
+    const bbox = [
+      [point[0] - radius, point[1] - radius],
+      [point[0] + radius, point[1] + radius]
+    ];
+
+    const feats = MAP.queryRenderedFeatures(bbox, {
       layers: [L_HIT, L_DOTS]
     });
 
@@ -292,68 +314,30 @@
     onPlaceClick(id);
   };
 
-  const pointFromMouse = (ev) => {
-    const rect = canvas.getBoundingClientRect();
-    return [ev.clientX - rect.left, ev.clientY - rect.top];
-  };
+  MAP.on("mouseenter", L_HIT, setPointer);
+  MAP.on("mouseleave", L_HIT, clearPointer);
+  MAP.on("mouseenter", L_DOTS, setPointer);
+  MAP.on("mouseleave", L_DOTS, clearPointer);
 
-  const pointFromTouch = (touch) => {
-    const rect = canvas.getBoundingClientRect();
-    return [touch.clientX - rect.left, touch.clientY - rect.top];
-  };
-
-  MAP.on("mouseenter", L_HIT, () => {
-    canvas.style.cursor = "pointer";
-  });
-
-  MAP.on("mouseleave", L_HIT, () => {
-    canvas.style.cursor = "";
-  });
-
-  MAP.on("mouseenter", L_DOTS, () => {
-    canvas.style.cursor = "pointer";
-  });
-
-  MAP.on("mouseleave", L_DOTS, () => {
-    canvas.style.cursor = "";
-  });
-
-  canvas.addEventListener("click", (ev) => {
-    openPlaceAtPoint(pointFromMouse(ev), ev);
-  });
-
-  canvas.addEventListener("touchstart", (ev) => {
-    const t = ev.changedTouches && ev.changedTouches[0];
-    if (!t) return;
-
-    touchStartX = t.clientX;
-    touchStartY = t.clientY;
-    touchMoved = false;
+  surface.addEventListener("pointerdown", (ev) => {
+    startX = ev.clientX;
+    startY = ev.clientY;
+    moved = false;
   }, { passive: true });
 
-  canvas.addEventListener("touchmove", (ev) => {
-    const t = ev.changedTouches && ev.changedTouches[0];
-    if (!t) return;
-
-    const dx = Math.abs(t.clientX - touchStartX);
-    const dy = Math.abs(t.clientY - touchStartY);
-
-    if (dx > 8 || dy > 8) {
-      touchMoved = true;
-    }
+  surface.addEventListener("pointermove", (ev) => {
+    const dx = Math.abs(ev.clientX - startX);
+    const dy = Math.abs(ev.clientY - startY);
+    if (dx > 8 || dy > 8) moved = true;
   }, { passive: true });
 
-  canvas.addEventListener("touchend", (ev) => {
-    const t = ev.changedTouches && ev.changedTouches[0];
-    if (!t) return;
-    if (touchMoved) return;
-
-    openPlaceAtPoint(pointFromTouch(t), ev);
+  surface.addEventListener("pointerup", (ev) => {
+    if (moved) return;
+    openPlaceAtPoint(getPointFromClient(ev.clientX, ev.clientY), ev);
   }, { passive: false });
 
   MAP.__hgPlacesBound = true;
 }
-
     moveMarkersOnTop();
   }
 
