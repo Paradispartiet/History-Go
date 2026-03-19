@@ -289,10 +289,19 @@ if (!MAP.__hgPlacesBound) {
   };
 
   const getPointFromClient = (clientX, clientY) => {
-    const rect = surface.getBoundingClientRect();
-    return [clientX - rect.left, clientY - rect.top];
-  };
+  const rect = surface.getBoundingClientRect();
 
+  const internalW = surface.clientWidth || rect.width;
+  const internalH = surface.clientHeight || rect.height;
+
+  const scaleX = rect.width > 0 ? internalW / rect.width : 1;
+  const scaleY = rect.height > 0 ? internalH / rect.height : 1;
+
+  return [
+    (clientX - rect.left) * scaleX,
+    (clientY - rect.top) * scaleY
+  ];
+};
   const openPlaceAtPoint = (point, originalEvent) => {
     const radius = 14;
     const bbox = [
