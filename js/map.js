@@ -271,15 +271,88 @@
     });
 
     if (!MAP.__hgPlacesBound) {
-      MAP.on("mouseenter", L_HIT, () => { MAP.getCanvas().style.cursor = "pointer"; });
-      MAP.on("mouseleave", L_HIT, () => { MAP.getCanvas().style.cursor = ""; });
-      MAP.on("click", L_HIT, (e) => {
-        const f = e.features && e.features[0];
-        const id = f && f.properties && f.properties.id;
-        if (id) onPlaceClick(id);
-      });
-      MAP.__hgPlacesBound = true;
+  const canvas = MAP.getCanvas();
+
+  let touchStartX = 0;
+  let touchStartY = 0;
+  let touchMoved = false;
+
+  const openPlaceAtPoint = (point, originalEvent) => {
+    const feats = MAP.queryRenderedFeatures(point, {
+      layers: [L_HIT, L_DOTS]
+    });
+
+    const f = feats && feats[0];
+    const id = f && f.properties && f.properties.id;
+    if (!id) return;
+
+    originalEvent?.preventDefault?.();
+    originalEvent?.stopPropagation?.();
+
+    onPlaceClick(id);
+  };
+
+  const pointFromMouse = (ev) => {
+    const rect = canvas.getBoundingClientRect();
+    return [ev.clientX - rect.left, ev.clientY - rect.top];
+  };
+
+  const pointFromTouch = (touch) => {
+    const rect = canvas.getBoundingClientRect();
+    return [touch.clientX - rect.left, touch.clientY - rect.top];
+  };
+
+  MAP.on("mouseenter", L_HIT, () => {
+    canvas.style.cursor = "pointer";
+  });
+
+  MAP.on("mouseleave", L_HIT, () => {
+    canvas.style.cursor = "";
+  });
+
+  MAP.on("mouseenter", L_DOTS, () => {
+    canvas.style.cursor = "pointer";
+  });
+
+  MAP.on("mouseleave", L_DOTS, () => {
+    canvas.style.cursor = "";
+  });
+
+  canvas.addEventListener("click", (ev) => {
+    openPlaceAtPoint(pointFromMouse(ev), ev);
+  });
+
+  canvas.addEventListener("touchstart", (ev) => {
+    const t = ev.changedTouches && ev.changedTouches[0];
+    if (!t) return;
+
+    touchStartX = t.clientX;
+    touchStartY = t.clientY;
+    touchMoved = false;
+  }, { passive: true });
+
+  canvas.addEventListener("touchmove", (ev) => {
+    const t = ev.changedTouches && ev.changedTouches[0];
+    if (!t) return;
+
+    const dx = Math.abs(t.clientX - touchStartX);
+    const dy = Math.abs(t.clientY - touchStartY);
+
+    if (dx > 8 || dy > 8) {
+      touchMoved = true;
     }
+  }, { passive: true });
+
+  canvas.addEventListener("touchend", (ev) => {
+    const t = ev.changedTouches && ev.changedTouches[0];
+    if (!t) return;
+    if (touchMoved) return;
+
+    openPlaceAtPoint(pointFromTouch(t), ev);
+  }, { passive: false });
+
+  MAP.__hgPlacesBound = true;
+}
 
     moveMarkersOnTop();
   }
