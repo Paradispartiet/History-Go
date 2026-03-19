@@ -291,19 +291,16 @@ if (!MAP.__hgPlacesBound) {
   const getPointFromClient = (clientX, clientY) => {
   const rect = surface.getBoundingClientRect();
 
-  const internalW = surface.clientWidth || rect.width;
-  const internalH = surface.clientHeight || rect.height;
-
-  const scaleX = rect.width > 0 ? internalW / rect.width : 1;
-  const scaleY = rect.height > 0 ? internalH / rect.height : 1;
+  const mapW = MAP?.transform?.width || rect.width;
+  const mapH = MAP?.transform?.height || rect.height;
 
   return [
-    (clientX - rect.left) * scaleX,
-    (clientY - rect.top) * scaleY
+    rect.width > 0 ? ((clientX - rect.left) / rect.width) * mapW : 0,
+    rect.height > 0 ? ((clientY - rect.top) / rect.height) * mapH : 0
   ];
 };
   const openPlaceAtPoint = (point, originalEvent) => {
-    const radius = 14;
+    const radius = 16;
     const bbox = [
       [point[0] - radius, point[1] - radius],
       [point[0] + radius, point[1] + radius]
@@ -341,9 +338,13 @@ if (!MAP.__hgPlacesBound) {
   }, { passive: true });
 
   surface.addEventListener("pointerup", (ev) => {
-    if (moved) return;
+  if (moved) return;
+  if (MAP?.isMoving?.() || MAP?.isZooming?.()) return;
+
+  requestAnimationFrame(() => {
     openPlaceAtPoint(getPointFromClient(ev.clientX, ev.clientY), ev);
-  }, { passive: false });
+  });
+}, { passive: false });
 
   MAP.__hgPlacesBound = true;
 }
