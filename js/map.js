@@ -272,13 +272,6 @@
 
 if (!MAP.__hgPlacesBound) {
   const canvas = MAP.getCanvas();
-  const surface = typeof MAP.getCanvasContainer === "function"
-    ? MAP.getCanvasContainer()
-    : canvas;
-
-  let startX = 0;
-  let startY = 0;
-  let moved = false;
 
   const setPointer = () => {
     canvas.style.cursor = "pointer";
@@ -288,83 +281,22 @@ if (!MAP.__hgPlacesBound) {
     canvas.style.cursor = "";
   };
 
-  const getPointFromClient = (clientX, clientY) => {
-  const rect = surface.getBoundingClientRect();
+  const handlePlaceClick = (e) => {
+    const f = e?.features?.[0];
+    const id = f?.properties?.id;
+    if (!id) return;
 
-  const mapW = MAP?.transform?.width || rect.width;
-  const mapH = MAP?.transform?.height || rect.height;
+    e?.originalEvent?.preventDefault?.();
+    e?.originalEvent?.stopPropagation?.();
 
-  return [
-    rect.width > 0 ? ((clientX - rect.left) / rect.width) * mapW : 0,
-    rect.height > 0 ? ((clientY - rect.top) / rect.height) * mapH : 0
-  ];
-};
-  const openPlaceAtPoint = (point, originalEvent) => {
-  const radius = 8;
+    onPlaceClick(id);
+  };
 
-  const bbox = [
-    [point[0] - radius, point[1] - radius],
-    [point[0] + radius, point[1] + radius]
-  ];
-
-  const feats = MAP.queryRenderedFeatures(bbox, {
-    layers: [L_DOTS]
-  });
-
-  if (!feats || !feats.length) return;
-
-  let best = null;
-  let bestDist = Infinity;
-
-  for (const f of feats) {
-    const coords = f?.geometry?.coordinates;
-    if (!Array.isArray(coords) || coords.length < 2) continue;
-
-    const projected = MAP.project(coords);
-    const dx = projected.x - point[0];
-    const dy = projected.y - point[1];
-    const dist = Math.sqrt(dx * dx + dy * dy);
-
-    if (dist < bestDist) {
-      bestDist = dist;
-      best = f;
-    }
-  }
-
-  const id = best?.properties?.id;
-  if (!id) return;
-
-  originalEvent?.preventDefault?.();
-  originalEvent?.stopPropagation?.();
-
-  onPlaceClick(id);
-};
-
-  MAP.on("mouseenter", L_HIT, setPointer);
-  MAP.on("mouseleave", L_HIT, clearPointer);
   MAP.on("mouseenter", L_DOTS, setPointer);
   MAP.on("mouseleave", L_DOTS, clearPointer);
 
-  surface.addEventListener("pointerdown", (ev) => {
-    startX = ev.clientX;
-    startY = ev.clientY;
-    moved = false;
-  }, { passive: true });
-
-  surface.addEventListener("pointermove", (ev) => {
-    const dx = Math.abs(ev.clientX - startX);
-    const dy = Math.abs(ev.clientY - startY);
-    if (dx > 8 || dy > 8) moved = true;
-  }, { passive: true });
-
-  surface.addEventListener("pointerup", (ev) => {
-  if (moved) return;
-  if (MAP?.isMoving?.() || MAP?.isZooming?.()) return;
-
-  requestAnimationFrame(() => {
-    openPlaceAtPoint(getPointFromClient(ev.clientX, ev.clientY), ev);
-  });
-}, { passive: false });
+  MAP.on("click", L_DOTS, handlePlaceClick);
+  MAP.on("touchend", L_DOTS, handlePlaceClick);
 
   MAP.__hgPlacesBound = true;
 }
