@@ -271,57 +271,15 @@
     });
 
     if (!MAP.__hgPlacesBound) {
-  const setPointer = () => {
-    MAP.getCanvas().style.cursor = "pointer";
-  };
-
-  const clearPointer = () => {
-    MAP.getCanvas().style.cursor = "";
-  };
-
-  const handlePlaceTap = (e) => {
-    const f = e?.features?.[0];
-    const id = f?.properties?.id;
-    if (!id) return;
-
-    e?.originalEvent?.preventDefault?.();
-    e?.originalEvent?.stopPropagation?.();
-
-    onPlaceClick(id);
-  };
-
-  const handleMapFallbackTap = (e) => {
-    const feats = MAP.queryRenderedFeatures(e.point, {
-      layers: [L_HIT, L_DOTS]
-    });
-
-    const f = feats?.[0];
-    const id = f?.properties?.id;
-    if (!id) return;
-
-    e?.originalEvent?.preventDefault?.();
-    e?.originalEvent?.stopPropagation?.();
-
-    onPlaceClick(id);
-  };
-
-  MAP.on("mouseenter", L_HIT, setPointer);
-  MAP.on("mouseleave", L_HIT, clearPointer);
-
-  MAP.on("mouseenter", L_DOTS, setPointer);
-  MAP.on("mouseleave", L_DOTS, clearPointer);
-
-  MAP.on("click", L_HIT, handlePlaceTap);
-  MAP.on("click", L_DOTS, handlePlaceTap);
-
-  MAP.on("touchend", L_HIT, handlePlaceTap);
-  MAP.on("touchend", L_DOTS, handlePlaceTap);
-
-  MAP.on("click", handleMapFallbackTap);
-  MAP.on("touchend", handleMapFallbackTap);
-
-  MAP.__hgPlacesBound = true;
-}
+      MAP.on("mouseenter", L_HIT, () => { MAP.getCanvas().style.cursor = "pointer"; });
+      MAP.on("mouseleave", L_HIT, () => { MAP.getCanvas().style.cursor = ""; });
+      MAP.on("click", L_HIT, (e) => {
+        const f = e.features && e.features[0];
+        const id = f && f.properties && f.properties.id;
+        if (id) onPlaceClick(id);
+      });
+      MAP.__hgPlacesBound = true;
+    }
 
     moveMarkersOnTop();
   }
