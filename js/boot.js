@@ -1,10 +1,10 @@
 // boot.js
-document.addEventListener("DOMContentLoaded", function () {
-  if (window.CoreEngine) CoreEngine.init();
-  if (window.HGEngine) HGEngine.init();
-});
+// Ren orchestrator: definerer boot(), men starter ikke appen selv.
+// app.js skal være eneste entry på index-siden.
 
 async function boot() {
+  if (window.CoreEngine) CoreEngine.init();
+  if (window.HGEngine) HGEngine.init();
 
   /* ==============================
      BASE PATH (GitHub Pages safe)
@@ -30,7 +30,6 @@ async function boot() {
         console.error("JSON parse error:", BASE + url);
         return null;
       }
-
     } catch (e) {
       console.error("Fetch error:", BASE + url, e);
       return null;
@@ -113,7 +112,7 @@ async function boot() {
     }
   }
 
-  const relations = await fetchJSON("data/relations.json") || [];
+  const relations = (await fetchJSON("data/relations.json")) || [];
   const wonderkammer = await fetchJSON("data/wonderkammer.json");
   const tags = await fetchJSON("data/tags.json");
 
@@ -122,30 +121,31 @@ async function boot() {
   ============================== */
 
   const PEOPLE_FILE_LIST = [
-  "data/people/people_by.json",
-  "data/people/people_historie.json",
-  "data/people/people_kunst.json",
-  "data/people/people_litteratur.json",
-  "data/people/people_musikk.json",
-  "data/people/people_naeringsliv.json",
-  "data/people/people_natur.json",
-  "data/people/people_politikk.json",
-  "data/people/people_sport.json",
-  "data/people/people_subkultur.json",
-  "data/people/people_vitenskap.json"
-];
+    "data/people/people_by.json",
+    "data/people/people_historie.json",
+    "data/people/people_kunst.json",
+    "data/people/people_litteratur.json",
+    "data/people/people_musikk.json",
+    "data/people/people_naeringsliv.json",
+    "data/people/people_natur.json",
+    "data/people/people_politikk.json",
+    "data/people/people_sport.json",
+    "data/people/people_subkultur.json",
+    "data/people/people_vitenskap.json"
+  ];
 
-let peopleAll = [];
+  let peopleAll = [];
 
-for (const url of PEOPLE_FILE_LIST) {
-  const data = await fetchJSON(url);
+  for (const url of PEOPLE_FILE_LIST) {
+    const data = await fetchJSON(url);
 
-  if (Array.isArray(data)) {
-    peopleAll.push(...data);
-  } else if (Array.isArray(data?.people)) {
-    peopleAll.push(...data.people);
+    if (Array.isArray(data)) {
+      peopleAll.push(...data);
+    } else if (Array.isArray(data?.people)) {
+      peopleAll.push(...data.people);
+    }
   }
-}
+
   /* ==============================
      RUNTIME GLOBALS
   ============================== */
@@ -180,7 +180,10 @@ for (const url of PEOPLE_FILE_LIST) {
   window.WK_BY_PERSON = Object.create(null);
 
   if (window.WONDERKAMMER) {
-    if (Array.isArray(window.WONDERKAMMER.places) || Array.isArray(window.WONDERKAMMER.people)) {
+    if (
+      Array.isArray(window.WONDERKAMMER.places) ||
+      Array.isArray(window.WONDERKAMMER.people)
+    ) {
       const wkPlaces = window.WONDERKAMMER.places || [];
       const wkPeople = window.WONDERKAMMER.people || [];
 
@@ -218,7 +221,7 @@ for (const url of PEOPLE_FILE_LIST) {
     }
 
     HGMap.setOnPlaceClick((id) => {
-      const p = window.PLACES.find(x => x.id === id);
+      const p = window.PLACES.find((x) => x.id === id);
       if (p) openPlaceCard(p);
     });
 
@@ -231,25 +234,41 @@ for (const url of PEOPLE_FILE_LIST) {
   ============================== */
 
   if (typeof loadNature === "function") {
-    try { await loadNature(); } catch (e) { console.error(e); }
+    try {
+      await loadNature();
+    } catch (e) {
+      console.error(e);
+    }
   }
 
   if (window.HGStories?.init) {
-    try { await window.HGStories.init(); } catch (e) { console.error("[HGStories.init]", e); }
+    try {
+      await window.HGStories.init();
+    } catch (e) {
+      console.error("[HGStories.init]", e);
+    }
   }
 
   if (window.HGEvents?.init) {
-    try { await window.HGEvents.init(); } catch (e) { console.error("[HGEvents.init]", e); }
+    try {
+      await window.HGEvents.init();
+    } catch (e) {
+      console.error("[HGEvents.init]", e);
+    }
   }
 
   if (window.HGBrands?.init) {
-    try { await window.HGBrands.init(); } catch (e) { console.error("[HGBrands.init]", e); }
+    try {
+      await window.HGBrands.init();
+    } catch (e) {
+      console.error("[HGBrands.init]", e);
+    }
   }
 
   if (window.QuizEngine) {
     QuizEngine.init({
-      getPersonById: id => (window.PEOPLE || []).find(p => p.id === id),
-      getPlaceById: id => (window.PLACES || []).find(p => p.id === id),
+      getPersonById: (id) => (window.PEOPLE || []).find((p) => p.id === id),
+      getPlaceById: (id) => (window.PLACES || []).find((p) => p.id === id),
       getVisited: () => (window.visited || {}),
       isTestMode: () => !!window.OPEN_MODE,
       showToast
@@ -280,11 +299,3 @@ for (const url of PEOPLE_FILE_LIST) {
     window.bottomSheetController.init();
   }
 }
-
-boot().then(() => {
-  if (window.HGPos?.request) {
-    window.HGPos.request();
-  }
-}).catch((e) => {
-  console.error("[boot failed]", e);
-});
