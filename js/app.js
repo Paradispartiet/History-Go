@@ -1,12 +1,13 @@
 document.addEventListener("DOMContentLoaded", async () => {
+  await safeRun("boot", window.boot);
 
-  await safeRun("boot", boot);
+  await safeRun("initMiniProfile", window.initMiniProfile);
+  await safeRun("wireMiniProfileLinks", window.wireMiniProfileLinks);
+  await safeRun("initLeftPanel", window.initLeftPanel);
 
-  safeRun("initMiniProfile", window.initMiniProfile);
-  safeRun("wireMiniProfileLinks", window.wireMiniProfileLinks);
-  safeRun("initLeftPanel", window.initLeftPanel);
-  safeRun("initPlaceCardCollapse", window.initPlaceCardCollapse);
-
+  if (window.HGPos?.request) {
+    await safeRun("HGPos.request", window.HGPos.request);
+  }
 });
 
 async function safeRun(label, fn) {
@@ -18,18 +19,17 @@ async function safeRun(label, fn) {
     }
 
     return out;
-
   } catch (e) {
     console.error(`[${label}]`, e);
 
-    if (DEBUG) {
+    if (window.DEBUG) {
       window.__HG_LAST_ERROR__ = {
         label,
         message: String(e),
-        stack: e?.stack
+        stack: e?.stack || null
       };
     }
 
-    throw e; // viktig: la async-chain stoppe
+    throw e;
   }
 }
