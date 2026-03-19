@@ -300,7 +300,7 @@ if (!MAP.__hgPlacesBound) {
   ];
 };
   const openPlaceAtPoint = (point, originalEvent) => {
-    const radius = 16;
+    const radius = 20;
     const bbox = [
       [point[0] - radius, point[1] - radius],
       [point[0] + radius, point[1] + radius]
