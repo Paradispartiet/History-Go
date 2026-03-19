@@ -964,14 +964,15 @@ function initPlaceCardCollapse() {
   if (!pc) return;
 
   let collapsed = false;
-  try { collapsed = (localStorage.getItem("hg_placecard_collapsed_v1") === "1"); } catch {}
+  try {
+    collapsed = (localStorage.getItem("hg_placecard_collapsed_v1") === "1");
+  } catch {}
 
   if (collapsed) collapsePlaceCard();
   else expandPlaceCard();
-}
 
-document.addEventListener("DOMContentLoaded", () => {
-  initPlaceCardCollapse();
+  if (pc.dataset.pcCollapseBound === "1") return;
+  pc.dataset.pcCollapseBound = "1";
 
   const btn = document.getElementById("pcCollapseBtn");
   if (btn) {
@@ -995,11 +996,13 @@ document.addEventListener("DOMContentLoaded", () => {
   if (mini) {
     mini.addEventListener("click", (e) => {
       e.preventDefault();
+      e.stopPropagation();
       expandPlaceCard();
     });
   }
-});
+}
 
+window.initPlaceCardCollapse = initPlaceCardCollapse;
 window.collapsePlaceCard = collapsePlaceCard;
 window.expandPlaceCard = expandPlaceCard;
 window.togglePlaceCard = togglePlaceCard;
