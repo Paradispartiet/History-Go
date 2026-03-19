@@ -538,8 +538,4 @@ window.showRouteTo = function(place) {
   _toast("Rute-funksjon ikke lastet");
 };
 
-document.addEventListener("DOMContentLoaded", () => {
-  try { window.HGRoutes.init(); } catch (e) { console.warn("[HGRoutes.init]", e); }
-});
-
 console.log("routes.js end", typeof window.showRouteToPlace);
