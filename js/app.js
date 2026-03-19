@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   await safeRun("initMiniProfile", window.initMiniProfile);
   await safeRun("wireMiniProfileLinks", window.wireMiniProfileLinks);
   await safeRun("initLeftPanel", window.initLeftPanel);
+  await safeRun("HGRoutes.init", () => window.HGRoutes?.init?.());
 
   if (window.HGPos?.request) {
     await safeRun("HGPos.request", window.HGPos.request);
