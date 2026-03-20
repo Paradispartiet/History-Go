@@ -72,7 +72,7 @@ function renderNearbyPlaces() {
 
   setTimeout(() => {
     window.openPlaceCard?.(place);
-  }, 320);
+  }, 820);
 });
 
     listEl.appendChild(item);
