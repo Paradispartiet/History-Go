@@ -898,13 +898,7 @@ function isPlaceCardCollapsed() {
   return !!getPlaceCardEl()?.classList.contains("is-collapsed");
 }
 
-function requestMapResize(){
-  requestAnimationFrame(() => {
-    window.hgMap?.resize?.();
-    window.HGMap?.resize?.();
-    window.MAP?.resize?.();
-  });
-}
+function requestMapResize() {}
 
 function collapsePlaceCard() {
   const pc = getPlaceCardEl();
@@ -926,9 +920,7 @@ function collapsePlaceCard() {
   window.bottomSheetController.hide();
 } else if (window.bottomSheetController?.setState) {
   window.bottomSheetController.setState("hidden");
-}
-
-  requestMapResize();
+ }
 }
 
 function expandPlaceCard() {
@@ -950,9 +942,7 @@ function expandPlaceCard() {
   window.bottomSheetController.open();
 } else if (window.bottomSheetController?.setState) {
   window.bottomSheetController.setState("open"); // fallback
-}
-
-  requestMapResize();
+ }
 }
 
 function togglePlaceCard() {
