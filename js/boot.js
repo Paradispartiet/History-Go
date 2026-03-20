@@ -284,18 +284,18 @@ async function boot() {
   if (typeof renderGallery === "function") renderGallery();
 
   if (typeof initPlaceCardCollapse === "function") {
-  initPlaceCardCollapse();
-}
+    initPlaceCardCollapse();
+  }
 
-if (window.LayerManager) {
-  LayerManager.init();
-}
+  if (window.ViewportManager) {
+    ViewportManager.init();
+  }
 
-if (window.bottomSheetController?.init) {
-  window.bottomSheetController.init();
-}
+  if (window.LayerManager) {
+    LayerManager.init();
+  }
 
-if (window.HGMap?.resize) {
-  window.HGMap.resize();
-}
+  if (window.bottomSheetController?.init) {
+    window.bottomSheetController.init();
+  }
 }
