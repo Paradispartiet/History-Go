@@ -27,6 +27,13 @@ body.hg-app .app-shell{
 
   transform-origin: top left;
   overflow: hidden;
+
+  z-index: 10;
+  pointer-events: none;
+}
+
+body.hg-app .app-shell > *{
+  pointer-events: auto;
 }
 
 /* ============================================================
@@ -103,6 +110,14 @@ body.hg-app .app-footer{
 /* ============================================================
    MAP
    ============================================================ */
+
+#mapLayer{
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  background: #000;
+}
 
 #map{
   position: absolute;
