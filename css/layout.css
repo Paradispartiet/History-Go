@@ -12,20 +12,21 @@ body.hg-app{
    APP CANVAS (Fixed Design Model)
    ============================================================ */
 
-:root{
-  --app-design-w: 900;
-  --app-design-h: 1230; /* Standardisert */
+body.hg-app{
+  margin: 0;
+  overflow: hidden;
+  background: #000;
+  width: 100vw;
+  height: 100dvh;
 }
 
 body.hg-app .app-shell{
   position: fixed;
-  top: 0;
-  left: 0;
+  inset: 0;
 
-  width: 900px;
-  height: 1230px;
+  width: 100vw;
+  height: 100dvh;
 
-  transform-origin: top left;
   overflow: hidden;
 }
 
