@@ -58,9 +58,14 @@
 
 <body class="hg-app">
 
-<!-- APP SHELL -->
-<div class="app-shell">
+  <!-- EGET KARTLAG -->
+  <div id="mapLayer" aria-hidden="false">
+    <div id="map" aria-label="Kart"></div>
+  </div>
 
+  <!-- APP SHELL -->
+  <div class="app-shell">
+    
 <!-- HEADER -->
 <header class="site-header">
 
@@ -122,8 +127,6 @@
 
   
   <!-- KART -->
-  <div id="map" aria-label="Kart"></div>
-
   <div class="map-controls">
     <button id="btnCenter" title="Sentrer">⌖</button>
     <button id="btnExitMap" title="Lukk kart" aria-label="Lukk kart">✕</button>
