@@ -210,24 +210,23 @@ async function boot() {
   ============================== */
 
   if (window.HGMap) {
-    HGMap.setPlaces(window.PLACES);
-
-    if (typeof window.visited !== "undefined") {
-      HGMap.setVisited(window.visited);
-    }
-
-    if (typeof window.catColor !== "undefined") {
-      HGMap.setCatColor(window.catColor);
-    }
-
-    HGMap.setOnPlaceClick((id) => {
-      const p = window.PLACES.find((x) => x.id === id);
-      if (p) openPlaceCard(p);
-    });
-
-    HGMap.setDataReady(true);
-    HGMap.maybeDrawMarkers();
+  if (typeof window.catColor === "function") {
+    HGMap.setCatColor(window.catColor);
   }
+
+  if (typeof window.visited !== "undefined") {
+    HGMap.setVisited(window.visited);
+  }
+
+  HGMap.setPlaces(window.PLACES);
+
+  HGMap.setOnPlaceClick((id) => {
+    const p = window.PLACES.find((x) => x.id === id);
+    if (p) openPlaceCard(p);
+  });
+
+  HGMap.refreshMarkers();
+}
 
   /* ==============================
      INIT
