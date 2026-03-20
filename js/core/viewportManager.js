@@ -46,6 +46,14 @@
   shell.style.transformOrigin = "top left";
   shell.style.transform = `translate3d(${x}px, ${y}px, 0) scale(${scale})`;
 
+window.HGViewport = {
+  scale,
+  x,
+  y,
+  designWidth: DESIGN_WIDTH,
+  designHeight: DESIGN_HEIGHT
+};
+
   if (window.HGMap?.resize) {
     window.HGMap.resize();
   }
