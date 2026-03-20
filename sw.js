@@ -204,9 +204,9 @@ self.addEventListener("fetch", (event) => {
   if (url.origin === self.location.origin) {
     const path = url.pathname;
 
-    // Data (JSON) – cache-first (offline-friendly)
+    // Data (JSON) – network-first under utvikling
     if (path.startsWith("/History-Go/data/") || path.includes("/data/")) {
-      event.respondWith(cacheFirst(req, CACHE_RUNTIME));
+      event.respondWith(networkFirst(req, CACHE_RUNTIME));
       return;
     }
 
@@ -216,14 +216,14 @@ self.addEventListener("fetch", (event) => {
       return;
     }
 
-    // JS/CSS – stale-while-revalidate
+    // JS/CSS – network-first under utvikling
     if (/\.(js|css)$/i.test(path)) {
-      event.respondWith(staleWhileRevalidate(req, CACHE_STATIC));
+      event.respondWith(networkFirst(req, CACHE_STATIC));
       return;
     }
 
-    // Fallback: stale-while-revalidate
-    event.respondWith(staleWhileRevalidate(req, CACHE_RUNTIME));
+    // Fallback: network-first
+    event.respondWith(networkFirst(req, CACHE_RUNTIME));
     return;
   }
 
