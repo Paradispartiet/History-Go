@@ -59,8 +59,21 @@ function renderNearbyPlaces() {
     `;
 
     item.addEventListener("click", () => {
-      window.openPlaceCard?.(place);
+  const map = window.HGMap?.getMap?.() || window.MAP;
+
+  if (map && Number.isFinite(place.lon) && Number.isFinite(place.lat)) {
+    map.flyTo({
+      center: [place.lon, place.lat],
+      zoom: Math.max(map.getZoom?.() || 13, 16),
+      speed: 1.1,
+      essential: true
     });
+  }
+
+  setTimeout(() => {
+    window.openPlaceCard?.(place);
+  }, 120);
+});
 
     listEl.appendChild(item);
   });
