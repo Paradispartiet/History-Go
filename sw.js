@@ -5,7 +5,7 @@
 
 const SW_VERSION = "hg-sw-2026-02-10-v1.2.202";
 
-const CACHE_STATIC  = `hg-static-${SW_VERSION}`;y
+const CACHE_STATIC  = `hg-static-${SW_VERSION}`;
 const CACHE_RUNTIME = `hg-runtime-${SW_VERSION}`;
 
 // ✅ Dette er alle lokale assets jeg fant referert i index (129).html
