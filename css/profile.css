@@ -106,6 +106,36 @@
    PROFILMODAL (overlay inni app-shell)
    ============================================================ */
 
+.profile-dashboard{
+  max-width: none;
+  margin: 0;
+  padding: 14px 12px 40px;
+}
+
+.profile-shell{
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 18px;
+  border-radius: 24px;
+  background: rgba(8,12,18,0.72);
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+  backdrop-filter: blur(10px);
+  display: grid;
+  gap: 18px;
+}
+
+.profile-shell .profile-section{
+  margin: 0;
+}
+
+@media (max-width: 820px){
+  .profile-shell{
+    padding: 14px;
+    border-radius: 18px;
+  }
+}
+
 .profile-modal{
   position: absolute;
   inset: 0;
