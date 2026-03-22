@@ -477,8 +477,134 @@ makeNavEvent() {
   };
 }
 
+getCareerRules(careerId) {
+  const list = Array.isArray(window.HG_CAREERS)
+    ? window.HG_CAREERS
+    : Array.isArray(window.HG_CAREERS?.careers)
+      ? window.HG_CAREERS.careers
+      : [];
+
+  return list.find(c =>
+    c && String(c.career_id || "").trim() === String(careerId || "").trim()
+  ) || null;
+}
+
+buildGenericChoices(stage) {
+  if (stage === "warning" || stage === "warning_danger") {
+    return [
+      {
+        id: "A",
+        label: "Lag en ryddig plan og forankre den",
+        effect: 1,
+        tags: ["process", "legitimacy"],
+        feedback: "Du skaper struktur rundt saken. Det roer systemet."
+      },
+      {
+        id: "B",
+        label: "Løs det raskt og hold det i gang",
+        effect: 0,
+        tags: ["shortcut", "visibility"],
+        feedback: "Det går videre. Du vet at det er skjørt."
+      },
+      {
+        id: "C",
+        label: "Skyv det litt foran deg",
+        effect: -1,
+        tags: ["avoidance", "laziness"],
+        feedback: "Du kjøper tid. Tid er ikke alltid gratis."
+      }
+    ];
+  }
+
+  return [
+    {
+      id: "A",
+      label: "Lag en ryddig plan og dokumenter",
+      effect: 1,
+      tags: ["process", "craft"],
+      feedback: "Det blir ryddigere. Ingen jubler, men det virker."
+    },
+    {
+      id: "B",
+      label: "Løs det raskt og send videre",
+      effect: 0,
+      tags: ["shortcut", "visibility"],
+      feedback: "Det fungerer nå. Du vet ikke om det holder lenge."
+    },
+    {
+      id: "C",
+      label: "La det ligge litt",
+      effect: -1,
+      tags: ["avoidance", "laziness"],
+      feedback: "Det blir stille. Det er sjelden et godt tegn."
+    }
+  ];
+}
+
+makeGenericCareerEvent(active, state, reason) {
+  const careerId = String(active?.career_id || "").trim();
+  const title = String(active?.title || "Rolle").trim() || "Rolle";
+  const career = this.getCareerRules(careerId);
+  const stability = String(state?.stability || "STABLE").toUpperCase();
+
+  let stage = "stable";
+  if (stability === "WARNING") stage = "warning";
+  if (stability === "FIRED") stage = "warning_danger";
+
+  const diegetic = career?.diegetic_text || {};
+  const intro = Array.isArray(diegetic.offer) ? diegetic.offer[0] : "";
+  const warn = Array.isArray(diegetic.maintenance_warning)
+    ? diegetic.maintenance_warning[0]
+    : "";
+
+  const subject =
+    stage === "warning" || stage === "warning_danger"
+      ? `${title}: situasjonen må avklares`
+      : `${title}: ny arbeidsoppgave`;
+
+  const tail =
+    reason === "job_accepted"
+      ? "Dette er den første meldingen i rollen din."
+      : "Denne rollen har ikke egen mailpack ennå, så Civication lager en generisk jobbmail.";
+
+  const situation =
+    stage === "warning" || stage === "warning_danger"
+      ? [
+          warn || "Det er friksjon rundt arbeidet ditt.",
+          "Du må velge hvordan du håndterer situasjonen.",
+          tail
+        ]
+      : [
+          intro || "Du får en ny oppgave i rollen din.",
+          "Hvordan du løser den former rollen videre.",
+          tail
+        ];
+
+  const slot = this.getPulseSlot();
+  const today = this.todayKey();
+
+  return {
+    id: `generic_${careerId || slugify(title)}_${stage}_${today}_${slot}`,
+    stage,
+    source: "Civication",
+    subject,
+    situation,
+    mail_tags: ["generic", careerId || "career", reason || "fallback"],
+    choices: this.buildGenericChoices(stage),
+    __pack: {
+      role: careerId || null,
+      tag_rules: {
+        max_tags_per_choice: 2,
+        memory_window: 12
+      },
+      tracks: []
+    }
+  };
+}
+
 // -------- main entrypoint --------
-async onAppOpen() {
+async onAppOpen(opts = {}) {
+  const force = opts && opts.force === true;
 
   // ----------------------------------------
   // WEEKLY SALARY TICK
@@ -487,8 +613,10 @@ async onAppOpen() {
     window.CivicationEconomyEngine?.tickWeekly?.();
 
     try {
-      if (window.CivicationPsyche &&
-          typeof window.CivicationPsyche.checkBurnout === "function") {
+      if (
+        window.CivicationPsyche &&
+        typeof window.CivicationPsyche.checkBurnout === "function"
+      ) {
         window.CivicationPsyche.checkBurnout();
       }
     } catch (e) {
@@ -512,14 +640,13 @@ async onAppOpen() {
   }
 
   // 2) Pulse gating
-  if (!this.canPulseNow()) {
+  if (!force && !this.canPulseNow()) {
     return { enqueued: false, reason: "pulse_used" };
   }
 
   // 3) Arbeidsledig => før NAV: stille / evt. “arbeidsledig”-mail,
   //    etter X uker: NAV-mail
   if (!active) {
-
     const st = this.getState();
     const now = new Date();
 
@@ -549,7 +676,6 @@ async onAppOpen() {
       return { enqueued: true, type: "nav", event: nav };
     }
 
-    // Før NAV: bruk pulse uten mail (stille uke)
     this.markPulseUsed();
     return { enqueued: false, reason: "unemployed_pre_nav" };
   }
@@ -560,24 +686,60 @@ async onAppOpen() {
   const packFile =
     (this.packMap && this.packMap[careerId])
       ? this.packMap[careerId]
-      : (String(role_key || "") + ".json");
+      : (careerId
+          ? `${careerId}Civic.json`
+          : (String(role_key || "") + ".json"));
 
   const pack = await this.loadPack(packFile);
+
+  // 4a) Hvis pack mangler: lag generisk jobbmail i stedet for ingenting
+  if (!pack || !Array.isArray(pack.mails) || !pack.mails.length) {
+    const generic = this.makeGenericCareerEvent(
+      active,
+      state,
+      force ? "job_accepted" : "missing_pack"
+    );
+
+    this.enqueueEvent(generic);
+    this.markPulseUsed();
+
+    return {
+      enqueued: true,
+      type: "generic",
+      reason: "missing_pack",
+      event: generic
+    };
+  }
+
   const chosen = this.pickEventFromPack(pack, state);
 
-if (!chosen) {
-  this.markPulseUsed();
-  return { enqueued: false, reason: "no_candidates" };
-}
+  // 4b) Hvis pack finnes men ikke har kandidater: fallback
+  if (!chosen) {
+    const generic = this.makeGenericCareerEvent(
+      active,
+      state,
+      force ? "job_accepted" : "no_candidates"
+    );
 
-// ✅ Legg ved pack-meta så answer() kan bruke tracks/tag_rules
-const chosenWithMeta = Object.assign({}, chosen, {
-  __pack: {
-    role: pack?.role || null,
-    tag_rules: pack?.tag_rules || null,
-    tracks: Array.isArray(pack?.tracks) ? pack.tracks : []
+    this.enqueueEvent(generic);
+    this.markPulseUsed();
+
+    return {
+      enqueued: true,
+      type: "generic",
+      reason: "no_candidates",
+      event: generic
+    };
   }
-});
+
+  // ✅ Legg ved pack-meta så answer() kan bruke tracks/tag_rules
+  const chosenWithMeta = Object.assign({}, chosen, {
+    __pack: {
+      role: pack?.role || null,
+      tag_rules: pack?.tag_rules || null,
+      tracks: Array.isArray(pack?.tracks) ? pack.tracks : []
+    }
+  });
 
   this.enqueueEvent(chosenWithMeta);
   this.markPulseUsed();
