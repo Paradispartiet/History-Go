@@ -1,0 +1,37 @@
+{
+  "id": "arbeider_hist_001",
+  "stage": "stable",
+  "subject": "Gamle spor i ny drift",
+  "mail_tags": ["historical_echo", "industri"],
+  "gating": {
+    "require_story_flags": ["thread_akerselva_industri"],
+    "prefer_tags": ["process", "craft"]
+  },
+  "historical_context": {
+    "thread_id": "akerselva_industri",
+    "mode": "echo"
+  },
+  "attachments": [
+    {
+      "type": "archive_note",
+      "title": "Utdrag fra industrireglement",
+      "text": "Arbeidet organiseres i nye ledd for å øke tempo og kontroll."
+    }
+  ],
+  "choices": [
+    {
+      "id": "A",
+      "label": "Bruk historisk innsikt i vurderingen",
+      "effect": 1,
+      "tags": ["process", "legitimacy"],
+      "feedback": "Du leser nåtiden gjennom et eldre mønster."
+    },
+    {
+      "id": "B",
+      "label": "Forhold deg kun til dagens krav",
+      "effect": 0,
+      "tags": ["shortcut", "visibility"],
+      "feedback": "Du leverer raskt, men uten historisk dybde."
+    }
+  ]
+}
