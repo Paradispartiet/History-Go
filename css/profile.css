@@ -32,14 +32,19 @@
    BASE
    ============================================================ */
 
+*, *::before, *::after{
+  box-sizing: border-box;
+}
+
 html,
 body.profile-page{
   height: 100dvh;
   margin: 0;
+  overflow-x: hidden;
 }
 
 body.profile-page{
-  overflow: hidden;
+  overflow-y: hidden;
 }
 
 .muted{
@@ -232,16 +237,22 @@ button.primary.small:hover{
    ============================================================ */
 
 #profileMain.profile-dashboard{
-  width: min(var(--profile-max-w), calc(100% - 24px));
+  width: min(var(--profile-max-w), calc(100vw - 24px));
+  max-width: calc(100vw - 24px);
   height: calc(100dvh - var(--profile-header-h));
   margin: 12px auto 16px;
   padding: 0;
+
+  overflow-x: hidden;
   overflow-y: auto;
   overscroll-behavior: contain;
+
   display: grid;
   grid-auto-rows: min-content;
   gap: var(--profile-gap);
 }
+
+
 
 .profile-two-col{
   min-height: 0;
@@ -1074,7 +1085,8 @@ button.primary.small:hover{
   }
 
   #profileMain.profile-dashboard{
-    width: calc(100% - 16px);
+    width: calc(100vw - 16px);
+    max-width: calc(100vw - 16px);
     margin: 8px auto 12px;
   }
 
