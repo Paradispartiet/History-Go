@@ -635,28 +635,29 @@ button.primary.small:hover{
 /* BADGE MODAL – ENGINE VERSION                          */
 /* ===================================================== */
 
-#badgeModal{
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.65);
-  backdrop-filter: blur(4px);
-  z-index: 999;
-  display: flex;
+#merits{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 82px);
   justify-content: center;
-  align-items: center;
+  justify-items: center;
+  gap: 14px;
+  padding-top: 10px;
+}
+
+.badge-mini{
+  width: 82px;
+  text-align: center;
+  cursor: pointer;
 }
 
 #badgeModal .modal-inner{
   background: rgba(20,20,20,0.92);
   border: 1px solid var(--panel-border);
   border-radius: 16px;
-
-  width: 540px;
+  width: min(540px, calc(100% - 24px));
   max-height: 720px;
-
   overflow-y: auto;
   padding: 0;
-
   box-shadow: 0 0 25px rgba(0,0,0,0.5);
   color: var(--text);
   position: relative;
@@ -672,7 +673,7 @@ button.primary.small:hover{
 }
 
 /* Close */
-.close-btn{
+#badgeModal .close-btn{
   position: absolute;
   top: 12px;
   right: 12px;
@@ -684,9 +685,9 @@ button.primary.small:hover{
   font-weight: 600;
 }
 
-.close-btn:hover{ opacity: .9; }
+#badgeModal .close-btn:hover{ opacity: .9; }
 
-.close-btn:active{
+#badgeModal .close-btn:active{
   transform: scale(0.96);
   transition: transform 0.05s;
 }
@@ -741,7 +742,6 @@ button.primary.small:hover{
 }
 
 /* Quiz-historikk */
-
 .badge-quiz-info strong{
   font-size: 15px;
 }
@@ -754,6 +754,31 @@ button.primary.small:hover{
   font-size: 13px;
 }
 
+.badge-wrapper{
+  position: relative;
+  width: 70px;
+  height: 70px;
+  margin: 0 auto 6px;
+}
+
+.badge-mini-icon{
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+
+.badge-medal{
+  position: absolute;
+  right: -2px;
+  bottom: -2px;
+}
+
+.badge-mini-level{
+  font-size: 13px;
+  line-height: 1.2;
+}
 
 /* ===================================================== */
 /* PERSONER – FAST GRID (ENGINE)                         */
