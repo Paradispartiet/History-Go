@@ -1,22 +1,397 @@
-
 {
+  "schema": "civication_story_threads_v1",
+  "version": 1,
   "threads": [
     {
       "id": "akerselva_industri",
       "title": "Akerselvas industrielle nerve",
-      "summary": "Industrialisering, arbeidsdeling, effektivisering og sosial konflikt langs elva.",
+      "summary": "Industrialisering, arbeidsdeling, effektivisering og sosial omforming i byen.",
       "required": {
-        "places": ["akerselva", "sagene", "grunerlokka"],
-        "categories": ["historie", "naeringsliv"],
-        "people": []
+        "unlock_ids": [],
+        "places": [],
+        "people": [],
+        "categories": [
+          "historie",
+          "naeringsliv"
+        ]
       },
       "derived_from": {
-        "knowledge_topics": ["industri", "fabrikk", "arbeid", "modernisering"],
-        "emner": ["industrihistorie_oslo"]
+        "knowledge_topics": [
+          "industri",
+          "fabrikk",
+          "arbeid",
+          "arbeidere",
+          "modernisering",
+          "produksjon",
+          "maskin",
+          "verksted"
+        ],
+        "emner": [],
+        "learning_concepts": [
+          "industri",
+          "arbeid",
+          "modernisering"
+        ],
+        "min_merit_points": {
+          "naeringsliv": 2,
+          "historie": 2
+        },
+        "minimum_matches": 2
       },
-      "tags": ["industri", "arbeid", "modernisering", "klasse"],
-      "careers": ["naeringsliv", "by", "politikk"],
+      "tags": [
+        "industri",
+        "arbeid",
+        "modernisering",
+        "klasse"
+      ],
+      "careers": [
+        "naeringsliv",
+        "by",
+        "politikk"
+      ],
       "priority": 10
+    },
+    {
+      "id": "arbeiderkamp_oslo",
+      "title": "Arbeiderkamp og organisering",
+      "summary": "Forholdet mellom ledelse, arbeidere, organisering, konflikt og legitimitet.",
+      "required": {
+        "unlock_ids": [],
+        "places": [],
+        "people": [],
+        "categories": [
+          "historie",
+          "politikk"
+        ]
+      },
+      "derived_from": {
+        "knowledge_topics": [
+          "arbeiderbevegelse",
+          "fagforening",
+          "streik",
+          "organisering",
+          "konflikt",
+          "rettigheter",
+          "solidaritet"
+        ],
+        "emner": [],
+        "learning_concepts": [
+          "streik",
+          "fagforening",
+          "arbeiderbevegelse"
+        ],
+        "min_merit_points": {
+          "historie": 2,
+          "politikk": 2
+        },
+        "minimum_matches": 2
+      },
+      "tags": [
+        "arbeid",
+        "konflikt",
+        "organisering",
+        "legitimitet"
+      ],
+      "careers": [
+        "naeringsliv",
+        "politikk",
+        "media"
+      ],
+      "priority": 9
+    },
+    {
+      "id": "handelsby_og_havn",
+      "title": "Handelsby og havn",
+      "summary": "Byens vekst gjennom handel, logistikk, sjøfart og økonomiske forbindelser.",
+      "required": {
+        "unlock_ids": [],
+        "places": [],
+        "people": [],
+        "categories": [
+          "historie",
+          "naeringsliv",
+          "by"
+        ]
+      },
+      "derived_from": {
+        "knowledge_topics": [
+          "handel",
+          "havn",
+          "sjøfart",
+          "logistikk",
+          "eksport",
+          "import",
+          "brygge",
+          "vareflyt"
+        ],
+        "emner": [],
+        "learning_concepts": [
+          "handel",
+          "havn",
+          "logistikk"
+        ],
+        "min_merit_points": {
+          "naeringsliv": 2,
+          "by": 1
+        },
+        "minimum_matches": 2
+      },
+      "tags": [
+        "handel",
+        "havn",
+        "transport",
+        "kapital"
+      ],
+      "careers": [
+        "naeringsliv",
+        "by",
+        "politikk"
+      ],
+      "priority": 8
+    },
+    {
+      "id": "byutvikling_og_kapital",
+      "title": "Byutvikling og kapital",
+      "summary": "Transformasjon av byrom gjennom investeringer, eiendom, symbolmakt og planlegging.",
+      "required": {
+        "unlock_ids": [],
+        "places": [],
+        "people": [],
+        "categories": [
+          "by",
+          "naeringsliv"
+        ]
+      },
+      "derived_from": {
+        "knowledge_topics": [
+          "byutvikling",
+          "eiendom",
+          "utbygging",
+          "regulering",
+          "transformasjon",
+          "arkitektur",
+          "investering",
+          "bjorvika"
+        ],
+        "emner": [],
+        "learning_concepts": [
+          "byutvikling",
+          "utbygging",
+          "regulering"
+        ],
+        "min_merit_points": {
+          "by": 2,
+          "naeringsliv": 2
+        },
+        "minimum_matches": 2
+      },
+      "tags": [
+        "byutvikling",
+        "kapital",
+        "symbolmakt",
+        "plan"
+      ],
+      "careers": [
+        "by",
+        "naeringsliv",
+        "politikk"
+      ],
+      "priority": 10
+    },
+    {
+      "id": "velferd_og_styring",
+      "title": "Velferd, styring og offentlig ansvar",
+      "summary": "Forholdet mellom byråkrati, offentlig styring, politiske valg og sosial organisering.",
+      "required": {
+        "unlock_ids": [],
+        "places": [],
+        "people": [],
+        "categories": [
+          "politikk",
+          "historie"
+        ]
+      },
+      "derived_from": {
+        "knowledge_topics": [
+          "velferd",
+          "stat",
+          "kommune",
+          "forvaltning",
+          "styring",
+          "reform",
+          "offentlig",
+          "byråkrati"
+        ],
+        "emner": [],
+        "learning_concepts": [
+          "velferd",
+          "forvaltning",
+          "styring"
+        ],
+        "min_merit_points": {
+          "politikk": 2,
+          "historie": 1
+        },
+        "minimum_matches": 2
+      },
+      "tags": [
+        "styring",
+        "forvaltning",
+        "legitimitet",
+        "offentlighet"
+      ],
+      "careers": [
+        "politikk",
+        "media",
+        "by"
+      ],
+      "priority": 8
+    },
+    {
+      "id": "forskningsnasjon_og_institusjon",
+      "title": "Forskningsnasjon og institusjon",
+      "summary": "Spennet mellom kunnskap, metode, prestisje, institusjoner og offentlig verdi.",
+      "required": {
+        "unlock_ids": [],
+        "places": [],
+        "people": [],
+        "categories": [
+          "vitenskap",
+          "historie"
+        ]
+      },
+      "derived_from": {
+        "knowledge_topics": [
+          "forskning",
+          "universitet",
+          "laboratorium",
+          "eksperiment",
+          "metode",
+          "institusjon",
+          "oppdagelse",
+          "vitenskap"
+        ],
+        "emner": [],
+        "learning_concepts": [
+          "metode",
+          "forskning",
+          "eksperiment"
+        ],
+        "min_merit_points": {
+          "vitenskap": 2
+        },
+        "minimum_matches": 2
+      },
+      "tags": [
+        "vitenskap",
+        "institusjon",
+        "metode",
+        "prestisje"
+      ],
+      "careers": [
+        "vitenskap",
+        "media",
+        "politikk"
+      ],
+      "priority": 8
+    },
+    {
+      "id": "offentlighet_og_mediemakt",
+      "title": "Offentlighet og mediemakt",
+      "summary": "Hvordan narrativer, kilder, oppmerksomhet og offentlig legitimitet former samfunn og karrierer.",
+      "required": {
+        "unlock_ids": [],
+        "places": [],
+        "people": [],
+        "categories": [
+          "media",
+          "politikk"
+        ]
+      },
+      "derived_from": {
+        "knowledge_topics": [
+          "avis",
+          "offentlighet",
+          "presse",
+          "journalistikk",
+          "debatt",
+          "kilde",
+          "redaksjon",
+          "medier"
+        ],
+        "emner": [],
+        "learning_concepts": [
+          "offentlighet",
+          "presse",
+          "journalistikk"
+        ],
+        "min_merit_points": {
+          "media": 2
+        },
+        "minimum_matches": 2
+      },
+      "tags": [
+        "offentlighet",
+        "medier",
+        "synlighet",
+        "fortelling"
+      ],
+      "careers": [
+        "media",
+        "politikk",
+        "naeringsliv"
+      ],
+      "priority": 7
+    },
+    {
+      "id": "subkultur_og_gentrifisering",
+      "title": "Subkultur og gentrifisering",
+      "summary": "Hvordan alternative miljøer, kulturuttrykk og kapital møtes og fortrenger hverandre i byen.",
+      "required": {
+        "unlock_ids": [],
+        "places": [],
+        "people": [],
+        "categories": [
+          "subkultur",
+          "by"
+        ]
+      },
+      "derived_from": {
+        "knowledge_topics": [
+          "subkultur",
+          "gentrifisering",
+          "miljo",
+          "klubb",
+          "scene",
+          "gatekunst",
+          "kreativitet",
+          "fortrengning"
+        ],
+        "emner": [],
+        "learning_concepts": [
+          "subkultur",
+          "gentrifisering",
+          "scene"
+        ],
+        "min_merit_points": {
+          "subkultur": 2,
+          "by": 1
+        },
+        "minimum_matches": 2
+      },
+      "tags": [
+        "subkultur",
+        "byrom",
+        "kapital",
+        "fortrengning"
+      ],
+      "careers": [
+        "subkultur",
+        "by",
+        "naeringsliv",
+        "media"
+      ],
+      "priority": 7
     }
   ]
 }
