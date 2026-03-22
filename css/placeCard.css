@@ -3,7 +3,7 @@
 /* ===================================================== */
 
 :root{
-  --pc-height: 930px;   /* 1320 - 80 - (74 + 228) */
+  --pc-height: 900px;   /* litt lavere placeCard */
 
   --pc-radius: 0px;
   --pc-pad: 12px;
@@ -32,6 +32,7 @@
   --pc-round-gap: 6px;
   --pc-popout-right: calc(12px + var(--pc-round-size) + 10px);
   --pc-popout-step: calc(var(--pc-round-size) + var(--pc-round-gap));
+  --pc-popout-top: 30px;
 
   position: absolute;
   left: 0;
@@ -86,7 +87,7 @@
   column-gap: 16px; /* samme som før */
   row-gap: 6px;     /* nærmere */
 
-  padding: 18px;
+  padding: 34px 18px 18px;
 }
 
 .pc-frontcard{
@@ -215,12 +216,14 @@
   grid-column: 1 / -1;
   grid-row: 1;
 
-  padding-left: var(--pc-pad);
-  padding-right: var(--pc-pad);
+  padding-left: 0;
+  padding-right: 0;
 
-  max-width: 720px;
-  margin-left: auto;
-  margin-right: auto;
+  width: calc(100% - 336px);
+  max-width: none;
+  margin-top: 18px;
+  margin-left: 336px;
+  margin-right: 0;
 
   font-family:
     "Palatino Linotype",
@@ -258,7 +261,7 @@
   line-height: 1.6;
   color: var(--text);
 
-  max-width: 60ch;
+  max-width: none;
 
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -425,7 +428,7 @@
 #placeCard #pcNatureList.is-open,
 #placeCard #pcBadgesList.is-open{
   display: flex;
-  top: 12px;
+  top: var(--pc-popout-top);
 }
 
 /* Rad 2 */
@@ -433,7 +436,7 @@
 #placeCard #pcWonderkammerList.is-open,
 #placeCard #pcCivicationStoreList.is-open{
   display: flex;
-  top: calc(12px + var(--pc-popout-step));
+  top: calc(var(--pc-popout-top) + var(--pc-popout-step));
 }
 
 /* Rad 3 */
@@ -441,7 +444,7 @@
 #placeCard #pcLeksikonList.is-open,
 #placeCard #pcRoutesList.is-open{
   display: flex;
-  top: calc(12px + (2 * var(--pc-popout-step)));
+  top: calc(var(--pc-popout-top) + (2 * var(--pc-popout-step)));
 }
 
 /* People / Nature / Badges = horisontal */
