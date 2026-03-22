@@ -1,14 +1,10 @@
 /* ============================================================
-   PROFILE.CSS – CLEAN DASHBOARD VERSION
-   Matcher profile.html med:
-   - body.profile-page
-   - ett #map bak alt
-   - #profileMain.profile-dashboard
-   - dashboard-seksjoner med intern scroll
+   PROFILE.CSS – DASHBOARD VERSION 28
+   Ryddet fil for profile.html / profile.js
    ============================================================ */
 
 /* ============================================================
-   BASE / LAYERS
+   ROOT
    ============================================================ */
 
 :root{
@@ -23,15 +19,18 @@
   --panel-line: rgba(255,255,255,0.08);
   --panel-line-strong: rgba(255,255,255,0.14);
 
-  --text-soft: rgba(255,255,255,0.72);
-  --text-dim: rgba(255,255,255,0.56);
+  --text-soft: rgba(255,255,255,0.76);
+  --text-dim: rgba(255,255,255,0.58);
 
   --gold: #f6c800;
   --gold-2: #ffb703;
 
-  --shadow-soft: 0 14px 40px rgba(0,0,0,0.28);
   --shadow-panel: 0 12px 28px rgba(0,0,0,0.22);
 }
+
+/* ============================================================
+   BASE
+   ============================================================ */
 
 html,
 body.profile-page{
@@ -43,8 +42,13 @@ body.profile-page{
   overflow: hidden;
 }
 
+.muted{
+  color: var(--text-dim);
+  font-size: 14px;
+}
+
 /* ============================================================
-   MAP / BACKGROUND LAYERS
+   BACKGROUND / LAYERS
    ============================================================ */
 
 #map{
@@ -75,13 +79,152 @@ body.profile-page{
   position: absolute;
   top: 74px;
   right: 12px;
-  z-index: 3;
+  z-index: 5;
   display: none;
   gap: 8px;
 }
 
+.map-controls button{
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(0,0,0,0.35);
+  color: #fff;
+  font-size: 19px;
+}
+
 body.profile-page.map-only .map-controls{
   display: flex;
+}
+
+body.profile-page.map-only .site-header{
+  display: none;
+}
+
+body.profile-page.map-only #profileMain{
+  display: none;
+}
+
+/* ============================================================
+   HEADER – PROFILE VERSION
+   ============================================================ */
+
+.profile-page .site-header{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  padding: 14px 18px;
+  background: linear-gradient(
+    180deg,
+    rgba(10,25,41,.95),
+    rgba(10,25,41,.65) 70%,
+    transparent
+  );
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.back-link{
+  text-decoration: none;
+  font-size: 26px;
+  font-weight: 600;
+  color: #fff;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 8px;
+  padding: 4px 10px;
+  transition: background .2s ease;
+}
+
+.back-link:hover{
+  background: rgba(255,255,255,0.15);
+}
+
+.brand{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  font-size: 21px;
+  color: #fff;
+  letter-spacing: .3px;
+}
+
+.brand-logo{
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  border-radius: 6px;
+  background: rgba(255,255,255,0.10);
+  padding: 3px;
+}
+
+.brand-name{
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-weight: 700;
+  color: var(--gold);
+}
+
+.site-header .actions{
+  margin-left: auto;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+
+.btn,
+button.secondary,
+button.primary.small{
+  border: none;
+  border-radius: 10px;
+  padding: 10px 18px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background .2s ease, transform .15s ease, opacity .2s ease;
+}
+
+.btn{
+  background: var(--gold);
+  color: #000;
+}
+
+.btn:hover{
+  background: #ffea70;
+}
+
+.btn.danger{
+  background: #c23;
+  color: #fff;
+}
+
+.btn.danger:hover{
+  background: #e33;
+}
+
+button.secondary{
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.12);
+}
+
+button.secondary:hover{
+  background: rgba(255,255,255,0.14);
+}
+
+button.primary.small{
+  padding: 6px 12px;
+  border-radius: 6px;
+  background: var(--gold);
+  color: #000;
+}
+
+button.primary.small:hover{
+  opacity: .9;
 }
 
 /* ============================================================
@@ -95,7 +238,6 @@ body.profile-page.map-only .map-controls{
   padding: 0;
   overflow-y: auto;
   overscroll-behavior: contain;
-
   display: grid;
   grid-auto-rows: min-content;
   gap: var(--profile-gap);
@@ -118,7 +260,6 @@ body.profile-page.map-only .map-controls{
   overflow: hidden;
   display: flex;
   flex-direction: column;
-
   padding: var(--profile-pad);
   border-radius: var(--profile-radius);
   background: var(--panel-bg-strong);
@@ -151,6 +292,21 @@ body.profile-page.map-only .map-controls{
   color: var(--text-dim);
 }
 
+.profile-subaction{
+  margin-top: 8px;
+}
+
+.link-small{
+  font-size: 14px;
+  color: #fff;
+  opacity: .78;
+  text-decoration: none;
+}
+
+.link-small:hover{
+  opacity: 1;
+}
+
 /* ============================================================
    HERO
    ============================================================ */
@@ -170,7 +326,7 @@ body.profile-page.map-only .map-controls{
 .profile-kicker{
   margin-bottom: 6px;
   font-size: 12px;
-  letter-spacing: 0.12em;
+  letter-spacing: .12em;
   text-transform: uppercase;
   color: var(--text-dim);
 }
@@ -238,25 +394,6 @@ body.profile-page.map-only .map-controls{
 }
 
 /* ============================================================
-   LINKS / SMALL ACTIONS
-   ============================================================ */
-
-.profile-subaction{
-  margin-top: 8px;
-}
-
-.link-small{
-  font-size: 14px;
-  color: #fff;
-  opacity: 0.78;
-  text-decoration: none;
-}
-
-.link-small:hover{
-  opacity: 1;
-}
-
-/* ============================================================
    MERITS / BADGES
    ============================================================ */
 
@@ -266,7 +403,6 @@ body.profile-page.map-only .map-controls{
   justify-content: center;
   justify-items: center;
   gap: 14px;
-
   max-height: 252px;
   overflow-y: auto;
   overscroll-behavior: contain;
@@ -314,7 +450,6 @@ body.profile-page.map-only .map-controls{
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(82px, 1fr));
   gap: 14px;
-
   max-height: 252px;
   overflow-y: auto;
   overscroll-behavior: contain;
@@ -347,8 +482,12 @@ body.profile-page.map-only .map-controls{
   background: #111;
 }
 
+.avatar-name{
+  font-size: 13px;
+}
+
 /* ============================================================
-   COLLECTION
+   COLLECTION – CARDS
    ============================================================ */
 
 #collectionCardsSection{
@@ -357,12 +496,50 @@ body.profile-page.map-only .map-controls{
 
 .collection-cards-body{
   display: flex;
-  gap: 14px;
+  gap: 22px;
   overflow-x: auto;
   overflow-y: hidden;
   overscroll-behavior-x: contain;
-  padding: 4px 0 10px;
+  padding: 10px 0 6px;
+  scroll-snap-type: x mandatory;
 }
+
+.collection-card{
+  flex: 0 0 auto;
+  width: 200px;
+  scroll-snap-align: start;
+  text-align: center;
+  cursor: pointer;
+}
+
+.collection-card img{
+  width: 100%;
+  height: auto;
+  border-radius: 14px;
+  border: 3px solid var(--gold);
+  object-fit: cover;
+  background: #000;
+  transition: transform .2s ease;
+}
+
+.collection-card:hover img{
+  transform: scale(1.04);
+}
+
+.collection-card-name{
+  margin-top: 6px;
+  font-size: 14px;
+  color: #fff;
+}
+
+.collection-card-year{
+  font-size: 13px;
+  color: #ccc;
+}
+
+/* ============================================================
+   COLLECTION – DETAIL LIST
+   ============================================================ */
 
 .profile-detail-box{
   margin-top: 14px;
@@ -388,6 +565,41 @@ body.profile-page.map-only .map-controls{
   padding-right: 6px;
 }
 
+.place-card{
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+  transition: background .2s ease, transform .2s ease;
+  cursor: pointer;
+}
+
+.place-card:hover{
+  background: rgba(255,255,255,0.07);
+  transform: translateY(-2px);
+}
+
+.place-card .name{
+  font-weight: 700;
+  font-size: 17px;
+  color: #fff;
+  margin-bottom: 2px;
+}
+
+.place-card .meta{
+  font-size: 14px;
+  color: var(--text-dim);
+  margin-bottom: 6px;
+}
+
+.place-card .desc{
+  font-size: 14px;
+  line-height: 1.45;
+  color: #d0d8e4;
+}
+
 /* ============================================================
    TIMELINE
    ============================================================ */
@@ -410,7 +622,7 @@ body.profile-page.map-only .map-controls{
   width: 0%;
   height: 100%;
   background: linear-gradient(90deg, var(--gold), var(--gold-2));
-  transition: width 0.4s ease;
+  transition: width .4s ease;
 }
 
 .timeline-progress-text{
@@ -435,6 +647,7 @@ body.profile-page.map-only .map-controls{
   width: 140px;
   text-align: center;
   scroll-snap-align: center;
+  cursor: pointer;
 }
 
 .timeline-card img{
@@ -444,7 +657,7 @@ body.profile-page.map-only .map-controls{
   border-radius: 10px;
   object-fit: cover;
   border: 2px solid var(--gold);
-  transition: transform 0.2s ease;
+  transition: transform .2s ease;
 }
 
 .timeline-card:hover img{
@@ -515,8 +728,8 @@ body.profile-page.map-only .map-controls{
   position: absolute;
   inset: -2px;
   background:
-    radial-gradient(circle at 18% 0%, rgba(246,200,0,.18), transparent 55%),
-    radial-gradient(circle at 82% 100%, rgba(255,255,255,.08), transparent 60%);
+    radial-gradient(circle at 18% 0%, rgba(246,200,0,.22), transparent 55%),
+    radial-gradient(circle at 82% 100%, rgba(255,255,255,.10), transparent 60%);
   pointer-events: none;
   z-index: 0;
 }
@@ -532,8 +745,47 @@ body.profile-page.map-only .map-controls{
   line-height: 1.35;
 }
 
+#civicationSection .latest-knowledge-box{
+  border-radius: 14px;
+  padding: 14px;
+  background: rgba(255,255,255,0.045);
+  border: 1px solid rgba(255,255,255,0.10);
+  box-shadow: 0 10px 22px rgba(0,0,0,0.22);
+}
+
 #civicationCard{
-  flex: 0 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+#civiRoleTitle{
+  grid-column: 1 / -1;
+  font-weight: 850;
+  letter-spacing: .2px;
+  font-size: 18px;
+  margin-bottom: 2px;
+}
+
+#civiRoleDetails{
+  grid-column: 1 / -1;
+  opacity: .9;
+}
+
+#civiSalaryLine,
+#civiMeritLine{
+  background: rgba(0,0,0,0.18);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 12px;
+  padding: 10px;
+}
+
+#civiBurnoutStatus{
+  grid-column: 1 / -1;
+  border-radius: 12px;
+  padding: 10px 12px;
+  background: rgba(255,120,120,0.10);
+  border: 1px solid rgba(255,120,120,0.22);
 }
 
 #civiOfferBox,
@@ -547,9 +799,29 @@ body.profile-page.map-only .map-controls{
 
 #civiOfferBox{
   border: 1px solid rgba(255,215,0,.35);
-  background:
-    linear-gradient(180deg, rgba(255,215,0,.12), rgba(0,0,0,.25));
-  box-shadow: 0 0 0 1px rgba(255,215,0,.12);
+  background: linear-gradient(
+    180deg,
+    rgba(255,215,0,.12),
+    rgba(0,0,0,.25)
+  );
+  box-shadow: 0 0 0 1px rgba(255,215,0,.15);
+}
+
+#civiOfferBox .lk-topic{
+  font-weight: 600;
+  color: #ffd700;
+}
+
+#civiOfferBox .profile-subaction .btn{
+  flex: 1;
+}
+
+#civiOfferBox .btn{
+  font-weight: 600;
+}
+
+#civiOfferBox .btn.secondary{
+  opacity: .85;
 }
 
 /* ============================================================
@@ -557,11 +829,10 @@ body.profile-page.map-only .map-controls{
    ============================================================ */
 
 #actions{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: 10px;
-}
-
-#actions .btn + .btn{
-  margin-top: 0;
 }
 
 /* ============================================================
@@ -620,7 +891,7 @@ body.profile-page.map-only .map-controls{
 }
 
 #badgeModal .close-btn:active{
-  transform: scale(0.97);
+  transform: scale(.97);
 }
 
 .badge-img{
@@ -717,7 +988,7 @@ body.profile-page.map-only .map-controls{
 }
 
 /* ============================================================
-   PROFILE MODAL / EXPORT / POSTER
+   PROFILE MODAL / POSTER
    ============================================================ */
 
 .profile-modal{
@@ -734,7 +1005,7 @@ body.profile-page.map-only .map-controls{
   padding: 20px 24px;
   text-align: center;
   color: #fff;
-  background: rgba(20,20,20,.96);
+  background: rgba(25,25,30,.96);
   border-radius: 14px;
   border: 1px solid rgba(255,255,255,.10);
 }
@@ -751,27 +1022,6 @@ body.profile-page.map-only .map-controls{
 
 .profile-modal-inner button{
   margin-top: 10px;
-  padding: 8px 14px;
-  border: none;
-  border-radius: 6px;
-  background: var(--gold);
-  color: #000;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-button.primary.small{
-  padding: 6px 12px;
-  border-radius: 6px;
-  font-size: 14px;
-  background: var(--gold);
-  border: none;
-  color: #000;
-  cursor: pointer;
-}
-
-button.primary.small:hover{
-  opacity: .9;
 }
 
 .profile-poster{
@@ -811,24 +1061,6 @@ button.primary.small:hover{
   letter-spacing: 2px;
   color: var(--gold);
   opacity: .9;
-}
-
-/* ============================================================
-   MAP-ONLY MODE
-   ============================================================ */
-
-body.profile-page.map-only #profileMain{
-  opacity: 0;
-  pointer-events: none;
-}
-
-body.profile-page.map-only .site-header{
-  opacity: 0;
-  pointer-events: none;
-}
-
-body.profile-page.map-only .map-controls{
-  display: flex;
 }
 
 /* ============================================================
