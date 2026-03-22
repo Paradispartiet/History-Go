@@ -694,18 +694,32 @@ function openProfileModal() {
 // ------------------------------------------------------------
 document.addEventListener("DOMContentLoaded", async () => {
   try {
+    const safeCall = (name, fn) => {
+      try {
+        if (typeof fn !== "function") return;
+        const res = fn();
+        if (res && typeof res.then === "function") {
+          res.catch(e => console.warn(`[profile] ${name} crashed`, e));
+        }
+      } catch (e) {
+        console.warn(`[profile] ${name} crashed`, e);
+      }
+    };
+
+    // Kart først
+    safeCall("setupProfileMap", setupProfileMap);
 
     // LAST careers først
     if (typeof window.ensureCiviCareerRulesLoaded === "function") {
-     await window.ensureCiviCareerRulesLoaded?.();
+      await window.ensureCiviCareerRulesLoaded?.();
     }
 
-    // 1) LAST DATA via DataHub
+    // LAST DATA via DataHub
     const [people, places, badges] = await Promise.all([
-  (window.DataHub?.loadPeopleBase?.() || window.DataHub?.loadPeople?.()),
-  (window.DataHub?.loadPlacesBase?.() || window.DataHub?.loadPlaces?.()),
-  window.DataHub?.loadBadges?.()
-]);
+      (window.DataHub?.loadPeopleBase?.() || window.DataHub?.loadPeople?.()),
+      (window.DataHub?.loadPlacesBase?.() || window.DataHub?.loadPlaces?.()),
+      window.DataHub?.loadBadges?.()
+    ]);
 
     PEOPLE = Array.isArray(people) ? people : [];
     PLACES = Array.isArray(places) ? places : [];
@@ -715,65 +729,52 @@ document.addEventListener("DOMContentLoaded", async () => {
     window.PLACES = PLACES;
     window.BADGES = BADGES;
 
-    const safeCall = (name, fn) => {
-  try {
-    if (typeof fn !== "function") return;
-    const res = fn();
-    if (res && typeof res.then === "function") {
-      res.catch(e => console.warn(`[profile] ${name} crashed`, e));
-    }
+    // Initial render
+    safeCall("renderProfileCard", renderProfileCard);
+    safeCall("renderPC", renderPC);
+    safeCall("initCivication", () => window.CivicationUI?.init?.());
+    safeCall("renderMerits", renderMerits);
+    safeCall("renderPeopleCollection", renderPeopleCollection);
+    safeCall("renderPlacesCollection", renderPlacesCollection);
+    safeCall("renderTimeline", renderTimeline);
+    safeCall("renderCollectionCards", renderCollectionCards);
+    safeCall("renderLatestKnowledge", renderLatestKnowledge);
+    safeCall("renderLatestTrivia", renderLatestTrivia);
+    safeCall("renderNextWhy", renderNextWhy);
+    safeCall("renderAhaSummary", renderAhaSummary);
+
+    // Markører etter at PLACES er lastet
+    safeCall("updateProfileMarkers", updateProfileMarkers);
+
+    // UI-knapper
+    document.getElementById("editProfileBtn")?.addEventListener("click", openProfileModal);
+    document.getElementById("btnOpenAHA")?.addEventListener("click", () => window.open("aha/index.html", "_blank"));
+
+    // Sync etter quiz / endringer
+    window.addEventListener("updateProfile", () => {
+      safeCall("renderProfileCard", renderProfileCard);
+      safeCall("renderPC", renderPC);
+
+      safeCall("renderCivication", () => {
+        window.CivicationUI?.render?.();
+        window.CivicationUI?.renderInbox?.();
+      });
+
+      safeCall("renderMerits", renderMerits);
+      safeCall("renderPeopleCollection", renderPeopleCollection);
+      safeCall("renderPlacesCollection", renderPlacesCollection);
+      safeCall("renderTimeline", renderTimeline);
+      safeCall("renderCollectionCards", renderCollectionCards);
+      safeCall("renderLatestKnowledge", renderLatestKnowledge);
+      safeCall("renderLatestTrivia", renderLatestTrivia);
+      safeCall("renderNextWhy", renderNextWhy);
+      safeCall("renderAhaSummary", renderAhaSummary);
+      safeCall("updateProfileMarkers", updateProfileMarkers);
+    });
+
   } catch (e) {
-    console.warn(`[profile] ${name} crashed`, e);
+    console.warn("[profile] init crashed", e);
   }
-};
-    
-// ------------------------------------------------------------
-// INITIAL RENDER (kun én gang ved load)
-// ------------------------------------------------------------
-
-safeCall("renderProfileCard", renderProfileCard);
-safeCall("renderPC", renderPC);
-
-// Civication: init (init bør selv wire actions + initial render)
-safeCall("initCivication", () => window.CivicationUI?.init?.());
-
-// Resten
-safeCall("renderMerits", renderMerits);
-safeCall("renderPeopleCollection", renderPeopleCollection);
-safeCall("renderPlacesCollection", renderPlacesCollection);
-safeCall("renderTimeline", renderTimeline);
-safeCall("renderCollectionCards", renderCollectionCards);
-safeCall("renderLatestKnowledge", renderLatestKnowledge);
-safeCall("renderLatestTrivia", renderLatestTrivia);
-safeCall("renderNextWhy", renderNextWhy);
-safeCall("renderAhaSummary", renderAhaSummary);
-safeCall("setupProfileMap", setupProfileMap);
-
-// UI-knapper
-document.getElementById("editProfileBtn")?.addEventListener("click", openProfileModal);
-document.getElementById("btnOpenAHA")?.addEventListener("click", () => window.open("aha/index.html", "_blank"));
-
-// Sync etter quiz / endringer
-window.addEventListener("updateProfile", () => {
-  safeCall("renderProfileCard", renderProfileCard);
-  safeCall("renderPC", renderPC);
-
-  safeCall("renderCivication", () => {
-  window.CivicationUI?.render?.();
-  window.CivicationUI?.renderInbox?.();
-});
-
-  safeCall("renderMerits", renderMerits);
-  safeCall("renderPeopleCollection", renderPeopleCollection);
-  safeCall("renderPlacesCollection", renderPlacesCollection);
-  safeCall("renderTimeline", renderTimeline);
-  safeCall("renderCollectionCards", renderCollectionCards);
-  safeCall("renderLatestKnowledge", renderLatestKnowledge);
-  safeCall("renderLatestTrivia", renderLatestTrivia);
-  safeCall("renderNextWhy", renderNextWhy);
-  safeCall("renderAhaSummary", renderAhaSummary);
-
-  safeCall("updateProfileMarkers", updateProfileMarkers);
 });
     
 // ============================================================
