@@ -32,7 +32,7 @@
   --pc-round-gap: 12px;
   --pc-popout-right: calc(12px + var(--pc-round-size) + 10px);
   --pc-popout-step: calc(var(--pc-round-size) + var(--pc-round-gap));
-  --pc-popout-top: 44px;
+  --pc-popout-top: 66px;
 
   position: absolute;
   left: 0;
@@ -85,7 +85,7 @@
   grid-template-rows: auto auto;
 
   column-gap: 16px; /* samme som før */
-  row-gap: 10px;     /* litt mer luft */
+  row-gap: 12px;     /* litt mer luft */
 
   padding: 48px 18px 18px;
 }
@@ -98,6 +98,7 @@
   overflow:hidden;
   border-radius:16px;
   background:#000;
+  margin-top: 22px;
 }
 
 .pc-frontcard img{
@@ -114,6 +115,7 @@
   aspect-ratio:4/1.8;
   overflow:hidden;
   border-radius:14px;
+  margin-top: 12px;
 }
 
 .pc-cardimage img{
@@ -141,6 +143,7 @@
   justify-self: center;
   width: fit-content;
   transform: translateX(-10px);
+  margin-top: 22px;
 }
 
 .pc-events-quad{
@@ -157,6 +160,7 @@
   gap:8px;
 
   min-height: 140px;
+  margin-top: 22px;
 }
 
 .pc-events-head{
@@ -222,13 +226,16 @@
 
   width: calc(100% - 336px);
   max-width: none;
-  margin-top: 18px;
+  margin-top: 10px;
   margin-left: 336px;
   margin-right: 0;
 
   text-align: left;
   justify-self: stretch;
   align-self: start;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 
   font-family:
     "Palatino Linotype",
@@ -245,6 +252,14 @@
 }
 
 
+#placeCard #pcTitle,
+#placeCard #pcMeta,
+#placeCard #pcDesc{
+  width: 100%;
+  text-align: left;
+  align-self: stretch;
+}
+
 /* Tittel */
 #placeCard #pcTitle{
   font-size: 36px;          /* Palatino tåler størrelse */
@@ -257,7 +272,7 @@
 /* Meta */
 #placeCard #pcMeta{
   margin-top: 6px;
-  margin-bottom: 16px;
+  margin-bottom: 10px;
 
   font-size: 14px;
   opacity: .65;
@@ -273,7 +288,7 @@
   max-width: none;
 
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 5;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
