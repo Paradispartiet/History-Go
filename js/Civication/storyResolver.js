@@ -1,5 +1,5 @@
 // ============================================================
-// storyResolver.js
+// js/Civication/storyResolver.js
 // History Go / Civication
 // Resolver historiske story flags fra faktisk spillerdata
 // ============================================================
@@ -9,6 +9,16 @@
 
   const LS_STORY_STATE = "hg_story_state_v1";
   const STORY_THREADS_URL = "data/Civication/storyThreads.json";
+
+  let THREADS_CACHE = null;
+  let CATALOG_CACHE = {
+    places: null,
+    people: null
+  };
+
+  // ------------------------------------------------------------
+  // Helpers
+  // ------------------------------------------------------------
 
   function safeParse(raw, fallback) {
     try {
@@ -21,6 +31,10 @@
 
   function readLS(key, fallback) {
     return safeParse(localStorage.getItem(key), fallback);
+  }
+
+  function writeLS(key, value) {
+    localStorage.setItem(key, JSON.stringify(value));
   }
 
   function uniq(arr) {
@@ -45,32 +59,119 @@
       .filter(Boolean);
   }
 
-  function collectUnlockIds() {
+  function toLowerSet(arr) {
+    return new Set(
+      (Array.isArray(arr) ? arr : [])
+        .map(normLower)
+        .filter(Boolean)
+    );
+  }
+
+  function intersectCount(a, b) {
+    const aSet = toLowerSet(a);
+    const bSet = toLowerSet(b);
+
+    let count = 0;
+    for (const v of aSet) {
+      if (bSet.has(v)) count += 1;
+    }
+    return count;
+  }
+
+  function hasAll(requiredValues, actualValues) {
+    const req = Array.isArray(requiredValues) ? requiredValues : [];
+    if (!req.length) return true;
+
+    const actual = toLowerSet(actualValues);
+    return req.every(v => actual.has(normLower(v)));
+  }
+
+  function getUnlockState() {
     const unlocks = readLS("hg_unlocks_v1", {});
-    const byQuiz = unlocks && typeof unlocks === "object" ? (unlocks.byQuiz || {}) : {};
-    return uniq(Object.keys(byQuiz).map(normStr).filter(Boolean));
+    const byQuiz =
+      unlocks && typeof unlocks === "object" && unlocks.byQuiz && typeof unlocks.byQuiz === "object"
+        ? unlocks.byQuiz
+        : {};
+
+    const unlockIds = uniq(
+      Object.keys(byQuiz)
+        .map(normStr)
+        .filter(Boolean)
+    );
+
+    return {
+      raw: unlocks,
+      byQuiz,
+      unlockIds
+    };
   }
 
-  function collectVisitedPlaceIds() {
-    const ids = collectUnlockIds();
+  async function ensureCatalogsLoaded() {
+    if (
+      Array.isArray(CATALOG_CACHE.places) &&
+      Array.isArray(CATALOG_CACHE.people)
+    ) {
+      return CATALOG_CACHE;
+    }
+
+    const globalPlaces = Array.isArray(window.PLACES) ? window.PLACES : null;
+    const globalPeople = Array.isArray(window.PEOPLE) ? window.PEOPLE : null;
+
+    if (globalPlaces && globalPeople) {
+      CATALOG_CACHE.places = globalPlaces;
+      CATALOG_CACHE.people = globalPeople;
+      return CATALOG_CACHE;
+    }
+
+    const out = {
+      places: globalPlaces || [],
+      people: globalPeople || []
+    };
+
+    try {
+      if (window.DataHub?.loadPlacesBase) {
+        const places = await window.DataHub.loadPlacesBase();
+        if (Array.isArray(places)) out.places = places;
+      } else if (window.DataHub?.loadPlaces) {
+        const places = await window.DataHub.loadPlaces();
+        if (Array.isArray(places)) out.places = places;
+      }
+    } catch {}
+
+    try {
+      if (window.DataHub?.loadPeopleBase) {
+        const people = await window.DataHub.loadPeopleBase();
+        if (Array.isArray(people)) out.people = people;
+      } else if (window.DataHub?.loadPeople) {
+        const people = await window.DataHub.loadPeople();
+        if (Array.isArray(people)) out.people = people;
+      }
+    } catch {}
+
+    CATALOG_CACHE = out;
+    return out;
+  }
+
+  function collectVisitedPlaceIds(unlockIds, places) {
     const placeIds = new Set(
-      (Array.isArray(window.PLACES) ? window.PLACES : [])
+      (Array.isArray(places) ? places : [])
         .map(p => normStr(p && p.id))
         .filter(Boolean)
     );
 
-    return ids.filter(id => placeIds.has(id));
+    if (!placeIds.size) return [];
+    return unlockIds.filter(id => placeIds.has(id));
   }
 
-  function collectUnlockedPeopleIds() {
-    const ids = collectUnlockIds();
+  function collectUnlockedPeopleIds(unlockIds, people) {
     const peopleIds = new Set(
-      (Array.isArray(window.PEOPLE) ? window.PEOPLE : [])
+      (Array.isArray(people) ? people : [])
         .map(p => normStr(p && p.id))
         .filter(Boolean)
     );
 
-    return ids.filter(id => peopleIds.has(id));
+    if (!peopleIds.size) return [];
+    return unlockIds.filter(id => peopleIds.has(id));
   }
 
   function collectQuizCategoryIds() {
@@ -95,24 +196,38 @@
     );
   }
 
+  function collectMeritPointsByCategory() {
+    const merits = readLS("merits_by_category", {});
+    const out = {};
+
+    if (!merits || typeof merits !== "object") return out;
+
+    for (const key of Object.keys(merits)) {
+      out[key] = Number(merits[key]?.points || 0);
+    }
+
+    return out;
+  }
+
   function collectKnowledgeTopics() {
     const uni = readLS("knowledge_universe", {});
     const out = [];
 
-    if (uni && typeof uni === "object") {
-      for (const cat of Object.keys(uni)) {
-        const dims = uni[cat];
-        if (!dims || typeof dims !== "object") continue;
+    if (!uni || typeof uni !== "object") return [];
 
-        for (const dim of Object.keys(dims)) {
-          const items = Array.isArray(dims[dim]) ? dims[dim] : [];
-          for (const item of items) {
-            const topic = normStr(item && item.topic);
-            const text = normStr(item && item.text);
+    for (const cat of Object.keys(uni)) {
+      const dims = uni[cat];
+      if (!dims || typeof dims !== "object") continue;
 
-            if (topic) out.push(topic);
-            if (text) out.push(...tokenizeText(text));
-          }
+      for (const dim of Object.keys(dims)) {
+        const items = Array.isArray(dims[dim]) ? dims[dim] : [];
+
+        for (const item of items) {
+          const topic = normStr(item && item.topic);
+          const text = normStr(item && item.text);
+
+          if (topic) out.push(topic);
+          if (text) out.push(...tokenizeText(text));
         }
       }
     }
@@ -127,7 +242,7 @@
     const out = [];
 
     for (const evt of log) {
-      const concepts = Array.isArray(evt && evt.concepts) ? evt.concepts : [];
+      const concepts = Array.isArray(evt?.concepts) ? evt.concepts : [];
       for (const c of concepts) {
         const v = normStr(c);
         if (v) out.push(v);
@@ -144,7 +259,7 @@
     const out = [];
 
     for (const evt of log) {
-      const emner = Array.isArray(evt && evt.related_emner) ? evt.related_emner : [];
+      const emner = Array.isArray(evt?.related_emner) ? evt.related_emner : [];
       for (const id of emner) {
         const v = normStr(id);
         if (v) out.push(v);
@@ -154,29 +269,267 @@
     return uniq(out.map(normLower).filter(Boolean));
   }
 
-  function buildSnapshot() {
-    const visitedPlaceIds = collectVisitedPlaceIds();
-    const unlockedPeopleIds = collectUnlockedPeopleIds();
+  async function buildSnapshot() {
+    const { unlockIds } = getUnlockState();
+    const catalogs = await ensureCatalogsLoaded();
+
+    const visitedPlaceIds = collectVisitedPlaceIds(unlockIds, catalogs.places);
+    const unlockedPeopleIds = collectUnlockedPeopleIds(unlockIds, catalogs.people);
     const quizCategoryIds = collectQuizCategoryIds();
     const meritCategoryIds = collectMeritCategoryIds();
-    const knowledgeTopics = collectKnowledgeTopics();
-    const learningConcepts = collectLearningConcepts();
-    const learningEmner = collectLearningEmner();
 
     const categoryIds = uniq(
       quizCategoryIds.concat(meritCategoryIds).map(normStr).filter(Boolean)
     );
 
     return {
+      unlock_ids: unlockIds,
       visited_place_ids: visitedPlaceIds,
       unlocked_people_ids: unlockedPeopleIds,
       category_ids: categoryIds,
-      knowledge_topics: knowledgeTopics,
-      learning_concepts: learningConcepts,
-      emne_hits: learningEmner
+      merit_points_by_category: collectMeritPointsByCategory(),
+      knowledge_topics: collectKnowledgeTopics(),
+      learning_concepts: collectLearningConcepts(),
+      emne_hits: collectLearningEmner()
     };
   }
 
-  function hasAll(requiredValues, actualValues, lower = false) {
-    const req = Array.isArray(requiredValues) ? requiredValues : [];
-    if (!req
+  // ------------------------------------------------------------
+  // Story threads
+  // ------------------------------------------------------------
+
+  async function loadThreads(force = false) {
+    if (THREADS_CACHE && !force) return THREADS_CACHE;
+
+    const res = await fetch(STORY_THREADS_URL, { cache: "no-store" });
+    if (!res.ok) {
+      throw new Error(`Could not load ${STORY_THREADS_URL} (${res.status})`);
+    }
+
+    const json = await res.json();
+    const threads = Array.isArray(json?.threads) ? json.threads : [];
+
+    THREADS_CACHE = threads;
+    return threads;
+  }
+
+  function evaluateRequired(thread, snapshot) {
+    const req = thread?.required || {};
+
+    const okUnlocks = hasAll(req.unlock_ids, snapshot.unlock_ids);
+    const okPlaces = hasAll(req.places, snapshot.visited_place_ids);
+    const okPeople = hasAll(req.people, snapshot.unlocked_people_ids);
+    const okCategories = hasAll(req.categories, snapshot.category_ids);
+
+    return okUnlocks && okPlaces && okPeople && okCategories;
+  }
+
+  function evaluateDerived(thread, snapshot) {
+    const derived = thread?.derived_from || {};
+
+    const knowledgeReq = Array.isArray(derived.knowledge_topics)
+      ? derived.knowledge_topics
+      : [];
+
+    const emneReq = Array.isArray(derived.emner)
+      ? derived.emner
+      : [];
+
+    const conceptReq = Array.isArray(derived.learning_concepts)
+      ? derived.learning_concepts
+      : [];
+
+    const meritReq = derived.min_merit_points && typeof derived.min_merit_points === "object"
+      ? derived.min_merit_points
+      : {};
+
+    const knowledgeHits = intersectCount(knowledgeReq, snapshot.knowledge_topics);
+    const emneHits = intersectCount(emneReq, snapshot.emne_hits);
+    const conceptHits = intersectCount(conceptReq, snapshot.learning_concepts);
+
+    let meritOk = true;
+    for (const categoryId of Object.keys(meritReq)) {
+      const need = Number(meritReq[categoryId] || 0);
+      const have = Number(snapshot.merit_points_by_category?.[categoryId] || 0);
+      if (have < need) {
+        meritOk = false;
+        break;
+      }
+    }
+
+    const minimumMatches = Number(
+      derived.minimum_matches ??
+      ((knowledgeReq.length || emneReq.length || conceptReq.length) ? 1 : 0)
+    );
+
+    const totalMatches = knowledgeHits + emneHits + conceptHits;
+    const contentOk = totalMatches >= minimumMatches;
+
+    return {
+      ok: meritOk && contentOk,
+      knowledgeHits,
+      emneHits,
+      conceptHits,
+      meritOk,
+      totalMatches
+    };
+  }
+
+  function scoreThread(thread, snapshot, derivedResult) {
+    const priority = Number(thread?.priority || 0);
+    const tagCount = Array.isArray(thread?.tags) ? thread.tags.length : 0;
+
+    const categoryOverlap = intersectCount(thread?.careers || [], snapshot.category_ids);
+
+    return (
+      priority * 100 +
+      derivedResult.totalMatches * 10 +
+      categoryOverlap * 5 +
+      tagCount
+    );
+  }
+
+  function materializeThread(thread, snapshot, derivedResult) {
+    return {
+      id: normStr(thread.id),
+      title: normStr(thread.title),
+      summary: normStr(thread.summary),
+      tags: uniq((Array.isArray(thread.tags) ? thread.tags : []).map(normLower)),
+      careers: uniq((Array.isArray(thread.careers) ? thread.careers : []).map(normStr)),
+      score: scoreThread(thread, snapshot, derivedResult),
+      priority: Number(thread?.priority || 0),
+      evidence: {
+        required: thread?.required || {},
+        derived_from: thread?.derived_from || {},
+        matches: {
+          knowledge_topics: derivedResult.knowledgeHits,
+          emner: derivedResult.emneHits,
+          learning_concepts: derivedResult.conceptHits
+        }
+      }
+    };
+  }
+
+  function resolveFromThreads(threads, snapshot) {
+    const activeThreads = [];
+
+    for (const thread of (Array.isArray(threads) ? threads : [])) {
+      if (!thread || !thread.id) continue;
+
+      const requiredOk = evaluateRequired(thread, snapshot);
+      if (!requiredOk) continue;
+
+      const derivedResult = evaluateDerived(thread, snapshot);
+      if (!derivedResult.ok) continue;
+
+      activeThreads.push(materializeThread(thread, snapshot, derivedResult));
+    }
+
+    activeThreads.sort((a, b) => {
+      if (b.score !== a.score) return b.score - a.score;
+      return a.id.localeCompare(b.id);
+    });
+
+    const storyFlags = activeThreads.map(t => `thread_${t.id}`);
+    const storyTags = uniq(activeThreads.flatMap(t => t.tags || []));
+
+    return {
+      story_flags: storyFlags,
+      story_tags: storyTags,
+      threads: activeThreads
+    };
+  }
+
+  // ------------------------------------------------------------
+  // Public API
+  // ------------------------------------------------------------
+
+  function getState() {
+    return readLS(LS_STORY_STATE, {
+      generated_at: null,
+      snapshot: null,
+      story_flags: [],
+      story_tags: [],
+      threads: []
+    });
+  }
+
+  function saveState(state) {
+    const next = {
+      generated_at: new Date().toISOString(),
+      snapshot: state?.snapshot || null,
+      story_flags: Array.isArray(state?.story_flags) ? state.story_flags : [],
+      story_tags: Array.isArray(state?.story_tags) ? state.story_tags : [],
+      threads: Array.isArray(state?.threads) ? state.threads : []
+    };
+
+    writeLS(LS_STORY_STATE, next);
+    return next;
+  }
+
+  async function refresh(opts = {}) {
+    const threads = await loadThreads(!!opts.forceThreads);
+    const snapshot = await buildSnapshot();
+    const resolved = resolveFromThreads(threads, snapshot);
+
+    const state = saveState({
+      snapshot,
+      story_flags: resolved.story_flags,
+      story_tags: resolved.story_tags,
+      threads: resolved.threads
+    });
+
+    return state;
+  }
+
+  async function init(opts = {}) {
+    const existing = getState();
+    if (existing?.generated_at && !opts.force) {
+      return existing;
+    }
+
+    return refresh(opts);
+  }
+
+  function clearState() {
+    localStorage.removeItem(LS_STORY_STATE);
+  }
+
+  function hasFlag(flag) {
+    const wanted = normStr(flag);
+    if (!wanted) return false;
+
+    return getState().story_flags.includes(wanted);
+  }
+
+  function getFlags() {
+    return Array.isArray(getState().story_flags)
+      ? getState().story_flags
+      : [];
+  }
+
+  function getTags() {
+    return Array.isArray(getState().story_tags)
+      ? getState().story_tags
+      : [];
+  }
+
+  function getThreads() {
+    return Array.isArray(getState().threads)
+      ? getState().threads
+      : [];
+  }
+
+  window.CiviStoryResolver = {
+    init,
+    refresh,
+    loadThreads,
+    buildSnapshot,
+    getState,
+    getFlags,
+    getTags,
+    getThreads,
+    hasFlag,
+    clearState
+  };
+})();
