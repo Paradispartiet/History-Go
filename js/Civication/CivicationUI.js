@@ -61,7 +61,10 @@ function wireCivicationActions() {
     if (!res?.ok) return;
 
     // Etter aksept: kjør event-motor (kan trigge jobbmail)
-    await window.HG_CiviEngine?.onAppOpen?.();
+    await window.HG_CiviEngine?.onAppOpen?.({
+     force: true,
+     source: "job_accept"
+    });
 
     window.dispatchEvent(new Event("updateProfile"));
   };
@@ -283,7 +286,10 @@ if (!offer) {
     host.querySelector("#civiOfferAccept")?.addEventListener("click", async () => {
       const res = window.CivicationJobs?.acceptOffer?.(offer.offer_key);
       if (!res?.ok) return;
-      await window.HG_CiviEngine?.onAppOpen?.();
+      await window.HG_CiviEngine?.onAppOpen?.({
+       force: true,
+       source: "job_accept"
+    });
       window.dispatchEvent(new Event("updateProfile"));
     });
 
