@@ -3,7 +3,7 @@
 /* ===================================================== */
 
 :root{
-  --pc-height: 900px;   /* litt lavere placeCard */
+  --pc-height: 910px;   /* litt lavere placeCard */
 
   --pc-radius: 0px;
   --pc-pad: 12px;
@@ -29,10 +29,10 @@
 
 #placeCard{
   --pc-round-size: 138px;
-  --pc-round-gap: 6px;
+  --pc-round-gap: 12px;
   --pc-popout-right: calc(12px + var(--pc-round-size) + 10px);
   --pc-popout-step: calc(var(--pc-round-size) + var(--pc-round-gap));
-  --pc-popout-top: 30px;
+  --pc-popout-top: 44px;
 
   position: absolute;
   left: 0;
@@ -85,9 +85,9 @@
   grid-template-rows: auto auto;
 
   column-gap: 16px; /* samme som før */
-  row-gap: 6px;     /* nærmere */
+  row-gap: 10px;     /* litt mer luft */
 
-  padding: 34px 18px 18px;
+  padding: 48px 18px 18px;
 }
 
 .pc-frontcard{
@@ -111,7 +111,7 @@
 .pc-cardimage{
   grid-column:1;
   grid-row:2;
-  aspect-ratio:4/2;
+  aspect-ratio:4/1.8;
   overflow:hidden;
   border-radius:14px;
 }
@@ -136,10 +136,11 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
 
-  gap: 6px;
+  gap: var(--pc-round-gap);
 
-  justify-self: end;
+  justify-self: center;
   width: fit-content;
+  transform: translateX(-10px);
 }
 
 .pc-events-quad{
@@ -225,6 +226,10 @@
   margin-left: 336px;
   margin-right: 0;
 
+  text-align: left;
+  justify-self: stretch;
+  align-self: start;
+
   font-family:
     "Palatino Linotype",
     "Palatino",
@@ -234,7 +239,11 @@
 }
 
 /* Fjern default margins */
-#placeCard .pc-text > *{ margin: 0; }
+#placeCard .pc-text > *{
+  margin: 0;
+  text-align: left;
+}
+
 
 /* Tittel */
 #placeCard #pcTitle{
