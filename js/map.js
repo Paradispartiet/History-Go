@@ -235,12 +235,12 @@
       paint: {
         "circle-radius": [
           "interpolate", ["linear"], ["zoom"],
-          10, ["+", 3.2, ["*", 0.6, ["get", "visited"]]],
-          12, ["+", 4.2, ["*", 0.8, ["get", "visited"]]],
-          14, ["+", 6.0, ["*", 1.1, ["get", "visited"]]],
-          16, ["+", 9.0, ["*", 1.4, ["get", "visited"]]],
-          18, ["+", 13.0, ["*", 1.7, ["get", "visited"]]]
-        ],
+          10, ["+", 2.4, ["*", 0.5, ["get", "visited"]]],
+          12, ["+", 3.2, ["*", 0.7, ["get", "visited"]]],
+          14, ["+", 4.8, ["*", 0.9, ["get", "visited"]]],
+          16, ["+", 7.2, ["*", 1.2, ["get", "visited"]]],
+          18, ["+", 10.5, ["*", 1.5, ["get", "visited"]]]
+         ],
         "circle-color": ["get", "fill"],
         "circle-stroke-color": ["get", "border"],
         "circle-stroke-width": 1.8,
@@ -292,12 +292,12 @@ if (!MAP.__hgPlacesBound) {
     onPlaceClick(id);
   };
 
-  MAP.on("mouseenter", L_DOTS, setPointer);
-  MAP.on("mouseleave", L_DOTS, clearPointer);
+  MAP.on("mouseenter", L_HIT, setPointer);
+  MAP.on("mouseleave", L_HIT, clearPointer);
 
-  MAP.on("click", L_DOTS, handlePlaceClick);
-  MAP.on("touchend", L_DOTS, handlePlaceClick);
-
+  MAP.on("click", L_HIT, handlePlaceClick);
+  MAP.on("touchend", L_HIT, handlePlaceClick);
+  
   MAP.__hgPlacesBound = true;
 }
     moveMarkersOnTop();
