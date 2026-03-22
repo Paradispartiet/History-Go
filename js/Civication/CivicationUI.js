@@ -8,9 +8,11 @@ async function init() {
   await window.ensureCiviCareerRulesLoaded?.();
 
   // 🔽 START-SEKVENS hvis systemet er tomt
-  if (!window.CivicationState.getActivePosition() &&
-      !window.CivicationState.getInbox()) {
-
+  const inbox = window.CivicationState.getInbox?.();
+  if (
+    !window.CivicationState.getActivePosition() &&
+    (!Array.isArray(inbox) || inbox.length === 0)
+  ) {
     await window.HG_CiviEngine?.onAppOpen?.();
   }
 
