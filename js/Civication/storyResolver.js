@@ -458,27 +458,52 @@ async function loadThreads(force = false) {
   // ------------------------------------------------------------
 
   function getState() {
-    return readLS(LS_STORY_STATE, {
-      generated_at: null,
-      snapshot: null,
-      story_flags: [],
-      story_tags: [],
-      threads: []
-    });
+  if (window.__HG_STORY_STATE_MEM__) {
+    return window.__HG_STORY_STATE_MEM__;
   }
+
+  const saved = readLS(LS_STORY_STATE, {
+    generated_at: null,
+    story_flags: [],
+    story_tags: [],
+    thread_ids: []
+  });
+
+  return {
+    generated_at: saved?.generated_at || null,
+    snapshot: null,
+    story_flags: Array.isArray(saved?.story_flags) ? saved.story_flags : [],
+    story_tags: Array.isArray(saved?.story_tags) ? saved.story_tags : [],
+    threads: []
+  };
+}
 
   function saveState(state) {
-    const next = {
-      generated_at: new Date().toISOString(),
-      snapshot: state?.snapshot || null,
-      story_flags: Array.isArray(state?.story_flags) ? state.story_flags : [],
-      story_tags: Array.isArray(state?.story_tags) ? state.story_tags : [],
-      threads: Array.isArray(state?.threads) ? state.threads : []
-    };
+  const full = {
+    generated_at: new Date().toISOString(),
+    snapshot: state?.snapshot || null,
+    story_flags: Array.isArray(state?.story_flags) ? state.story_flags : [],
+    story_tags: Array.isArray(state?.story_tags) ? state.story_tags : [],
+    threads: Array.isArray(state?.threads) ? state.threads : []
+  };
 
-    writeLS(LS_STORY_STATE, next);
-    return next;
+  const light = {
+    generated_at: full.generated_at,
+    story_flags: full.story_flags,
+    story_tags: full.story_tags,
+    thread_ids: full.threads.map(t => t?.id).filter(Boolean)
+  };
+
+  window.__HG_STORY_STATE_MEM__ = full;
+
+  try {
+    writeLS(LS_STORY_STATE, light);
+  } catch (e) {
+    console.warn("Could not persist hg_story_state_v1", e);
   }
+
+  return full;
+}
 
   async function refresh(opts = {}) {
     const threads = await loadThreads(!!opts.forceThreads);
