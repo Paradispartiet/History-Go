@@ -602,6 +602,24 @@ makeGenericCareerEvent(active, state, reason) {
   };
 }
 
+async ensureStoryState() {
+  try {
+    if (window.CiviStoryResolver?.refresh) {
+      return await window.CiviStoryResolver.refresh();
+    }
+  } catch (e) {
+    console.warn("Story resolver failed", e);
+  }
+
+  return {
+    generated_at: null,
+    snapshot: null,
+    story_flags: [],
+    story_tags: [],
+    threads: []
+  };
+}
+    
 // -------- main entrypoint --------
 async onAppOpen(opts = {}) {
   const force = opts && opts.force === true;
