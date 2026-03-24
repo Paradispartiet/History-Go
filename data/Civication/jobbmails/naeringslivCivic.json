@@ -195,6 +195,66 @@
       ]
     },
 
+{
+  "id": "arbeider_hist_001",
+  "stage": "stable",
+  "subject": "Gamle spor i ny drift",
+  "situation": [
+    "Du sitter med en effektiviseringssak.",
+    "Materiale du tidligere har samlet om industrihistorien langs Akerselva peker mot eldre konflikter mellom tempo, kontroll og arbeid.",
+    "Vil du lese situasjonen gjennom historien, eller bare gjennom dagens krav?"
+  ],
+  "mail_tags": [
+    "historical_echo",
+    "industri"
+  ],
+  "gating": {
+    "require_story_flags": [
+      "thread_akerselva_industri"
+    ],
+    "prefer_tags": [
+      "process",
+      "craft"
+    ],
+    "prefer_story_tags": [
+      "industri",
+      "arbeid"
+    ]
+  },
+  "choices": [
+    {
+      "id": "A",
+      "label": "Bruk historisk innsikt i vurderingen",
+      "effect": 1,
+      "tags": [
+        "process",
+        "legitimacy"
+      ],
+      "feedback": "Du ser saken som del av et eldre mønster, ikke bare som en KPI-øvelse."
+    },
+    {
+      "id": "B",
+      "label": "Forhold deg bare til dagens krav",
+      "effect": 0,
+      "tags": [
+        "shortcut",
+        "visibility"
+      ],
+      "feedback": "Du leverer raskt. Noe viktig blir liggende bak tallene."
+    },
+    {
+      "id": "C",
+      "label": "Skyv saken videre uten å åpne det historiske sporet",
+      "effect": -1,
+      "tags": [
+        "avoidance",
+        "laziness"
+      ],
+      "feedback": "Du unngår friksjon nå, men mister en dypere forståelse av konflikten."
+    }
+  ]
+},
+    
    {
   "id": "quest_process_001",
   "stage": "stable",
