@@ -632,6 +632,14 @@ async onAppOpen(opts = {}) {
   const active = window.CivicationState.getActivePosition();
   const state = this.getState();
 
+  const resolvedStoryState = await this.ensureStoryState();
+
+  this.setState({
+   story_state: resolvedStoryState
+  });
+
+  const stateWithStory = this.getState();
+    
   this.syncRoleBaselineFromActive();
 
   // 1) Hvis det allerede finnes en pending event, ikke spam
@@ -711,7 +719,7 @@ async onAppOpen(opts = {}) {
     };
   }
 
-  const chosen = this.pickEventFromPack(pack, state);
+  const chosen = this.pickEventFromPack(pack, stateWithStory);
 
   // 4b) Hvis pack finnes men ikke har kandidater: fallback
   if (!chosen) {
