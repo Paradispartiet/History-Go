@@ -1,3 +1,5 @@
+
+
 // ------------------------------------------------------------
 // CIVICATION: Jobbtilbud (offers) lagres i localStorage
 // ------------------------------------------------------------
@@ -28,24 +30,22 @@ function qualifiesForTierWithCross(careerId, tierIndex) {
 }
 
 function hgPushJobOffer(badge, tier, newPoints) {
-  if (!badge || !tier) return { ok: false, reason: "invalid_offer" };
+  if (!badge || !tier) return;
 
   const badgeId = String(badge.id || "").trim();
   const badgeName = String(badge.name || "").trim();
   const title = String(tier.label || "").trim();
   const thr = Number(tier.threshold);
 
-  if (!badgeId || !title || !Number.isFinite(thr)) {
-    return { ok: false, reason: "invalid_offer" };
-  }
+  if (!badgeId || !title || !Number.isFinite(thr)) return;
 
-  return window.CivicationJobs?.pushOffer?.({
+  window.CivicationJobs?.pushOffer?.({
     career_id: badgeId,
     career_name: badgeName,
     title,
     threshold: thr,
     points_at_offer: Number(newPoints || 0)
-  }) || { ok: false, reason: "jobs_unavailable" };
+  });
 }
 
 
@@ -68,30 +68,24 @@ async function updateMeritLevel(cat, oldPoints, newPoints) {
    showToast("🔒 Du trenger bredere erfaring før denne toppstillingen.");
    return;
   }
-
-  if (window.CivicationJobs?.canReceiveNewOffers &&
-      !window.CivicationJobs.canReceiveNewOffers()) {
-    showToast("📌 Fullfør nåværende jobb eller mist den før neste tilbud.");
-    return;
-  }
-
+  
   // tiers.label er nå stillingstittel
   const newTitle = String(next.label || "").trim() || "Ny stilling";
-
-  const pushed = hgPushJobOffer(badge, next, newPoints);
-  if (!pushed?.ok) return;
 
   // 1) UI feedback
   showToast(`💼 Ny stilling i ${badge.name}: ${newTitle}!`);
   pulseBadge(badge.name);
-}
+
+  hgPushJobOffer(badge, next, newPoints);
+
+  }
 
 // Poengsystem – +1 poeng per fullført quiz
 async function addCompletedQuizAndMaybePoint(categoryDisplay, quizId) {
   const categoryId = catIdFromDisplay(categoryDisplay);
 
   const badgeId = categoryId;
-
+  
   if (!badgeId) return;
 
   const progress = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
