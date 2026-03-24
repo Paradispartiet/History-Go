@@ -382,6 +382,20 @@ pickEventFromPack(pack, state) {
     ? state.track_progress
     : {};
 
+      const storyState =
+  (state && state.story_state && typeof state.story_state === "object")
+    ? state.story_state
+    : { story_flags: [], story_tags: [] };
+
+const storyFlags = Array.isArray(storyState.story_flags)
+  ? storyState.story_flags
+  : [];
+
+const storyTags = Array.isArray(storyState.story_tags)
+  ? storyState.story_tags
+  : [];
+
+
 // Hard-gates (quest chain)
 if (Array.isArray(gating.require_tags)) {
   for (let i = 0; i < gating.require_tags.length; i++) {
@@ -390,6 +404,38 @@ if (Array.isArray(gating.require_tags)) {
   }
 }
 
+if (Array.isArray(gating.require_story_flags)) {
+  for (let i = 0; i < gating.require_story_flags.length; i++) {
+    const f = gating.require_story_flags[i];
+    if (storyFlags.indexOf(f) === -1) return -1000;
+  }
+}
+
+if (Array.isArray(gating.avoid_story_flags)) {
+  for (let i = 0; i < gating.avoid_story_flags.length; i++) {
+    const f = gating.avoid_story_flags[i];
+    if (storyFlags.indexOf(f) !== -1) return -1000;
+  }
+}
+
+if (Array.isArray(gating.prefer_story_flags)) {
+  for (let i = 0; i < gating.prefer_story_flags.length; i++) {
+    const f = gating.prefer_story_flags[i];
+    if (storyFlags.indexOf(f) !== -1) {
+      score += 4;
+    }
+  }
+}
+
+if (Array.isArray(gating.prefer_story_tags)) {
+  for (let i = 0; i < gating.prefer_story_tags.length; i++) {
+    const t = gating.prefer_story_tags[i];
+    if (storyTags.indexOf(t) !== -1) {
+      score += 2;
+    }
+  }
+}
+      
 if (Array.isArray(gating.require_tracks)) {
   for (let i = 0; i < gating.require_tracks.length; i++) {
     const tr = gating.require_tracks[i];
@@ -405,6 +451,7 @@ if (gating.require_track_step_min && typeof gating.require_track_step_min === "o
   }
 }
 
+      
       
     if (Array.isArray(gating.avoid_tags)) {
       for (let i = 0; i < gating.avoid_tags.length; i++) {
