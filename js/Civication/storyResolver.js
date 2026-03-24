@@ -8,7 +8,7 @@
   "use strict";
 
   const LS_STORY_STATE = "hg_story_state_v1";
-  const STORY_THREADS_URL = "data/Civication/storyThreads.json";
+  const STORY_MANIFEST_URL = "data/Civication/storyThreads/st_manifest.json";
 
   let THREADS_CACHE = null;
   let CATALOG_CACHE = {
@@ -298,20 +298,33 @@
   // Story threads
   // ------------------------------------------------------------
 
-  async function loadThreads(force = false) {
-    if (THREADS_CACHE && !force) return THREADS_CACHE;
+async function loadThreads(force = false) {
+  if (THREADS_CACHE && !force) return THREADS_CACHE;
 
-    const res = await fetch(STORY_THREADS_URL, { cache: "no-store" });
+  const manifestRes = await fetch(STORY_MANIFEST_URL, { cache: "no-store" });
+  if (!manifestRes.ok) {
+    throw new Error(`Could not load ${STORY_MANIFEST_URL} (${manifestRes.status})`);
+  }
+
+  const manifest = await manifestRes.json();
+  const files = Array.isArray(manifest?.files) ? manifest.files : [];
+
+  const allThreads = [];
+
+  for (const url of files) {
+    const res = await fetch(url, { cache: "no-store" });
     if (!res.ok) {
-      throw new Error(`Could not load ${STORY_THREADS_URL} (${res.status})`);
+      throw new Error(`Could not load ${url} (${res.status})`);
     }
 
     const json = await res.json();
     const threads = Array.isArray(json?.threads) ? json.threads : [];
-
-    THREADS_CACHE = threads;
-    return threads;
+    allThreads.push(...threads);
   }
+
+  THREADS_CACHE = allThreads;
+  return allThreads;
+}
 
   function evaluateRequired(thread, snapshot) {
     const req = thread?.required || {};
