@@ -51,36 +51,42 @@ async function init() {
 // ============================================================
 
 function wireCivicationActions() {
-  const btnAccept  = document.getElementById("btnCiviAccept");
+  const btnAccept = document.getElementById("btnCiviAccept");
   const btnDecline = document.getElementById("btnCiviDecline");
 
-  if (!btnAccept || !btnDecline) return;
+  if (btnAccept) {
+    btnAccept.onclick = async () => {
+      const offer = window.CivicationJobs?.getLatestPendingOffer?.();
+      if (!offer) return;
 
-  btnAccept.onclick = async () => {
-    const offer = window.CivicationJobs?.getLatestPendingOffer?.();
-    if (!offer) return;
+      const res = window.CivicationJobs?.acceptOffer?.(offer.offer_key);
+      if (!res?.ok) return;
 
-    // Aksepter via sentral jobb-modul
-    const res = window.CivicationJobs?.acceptOffer?.(offer.offer_key);
-    if (!res?.ok) return;
+      await window.HG_CiviEngine?.onAppOpen?.({
+        force: true,
+        source: "job_accept"
+      });
 
-    // Etter aksept: kjør event-motor (kan trigge jobbmail)
-    await window.HG_CiviEngine?.onAppOpen?.({
-     force: true,
-     source: "job_accept"
-    });
+      window.dispatchEvent(new Event("updateProfile"));
+    };
+  }
 
-    window.dispatchEvent(new Event("updateProfile"));
-  };
+  if (btnDecline) {
+    btnDecline.onclick = () => {
+      const offer = window.CivicationJobs?.getLatestPendingOffer?.();
+      if (!offer) return;
 
-  btnDecline.onclick = () => {
-    const offer = window.CivicationJobs?.getLatestPendingOffer?.();
-    if (!offer) return;
+      window.CivicationJobs?.declineOffer?.(offer.offer_key);
+      window.dispatchEvent(new Event("updateProfile"));
+    };
+  }
 
-    window.CivicationJobs?.declineOffer?.(offer.offer_key);
+  document.getElementById("civiTaskModalClose")
+    ?.addEventListener("click", closeTaskModal);
 
-    window.dispatchEvent(new Event("updateProfile"));
-  };
+  document.querySelectorAll("[data-close-task]").forEach(function (el) {
+    el.addEventListener("click", closeTaskModal);
+  });
 }
 
 // ============================================================
@@ -757,7 +763,7 @@ host.querySelectorAll("[data-open-task]").forEach(function (btn) {
     openTaskModalByMailId(mailId);
   });
 });
-
+}
 
   
 function getTaskWindowLabel(task, ev) {
@@ -1147,13 +1153,8 @@ function renderTrackHUD() {
 window.CivicationUI = {
   init,
   render: renderCivication,
-  renderInbox: renderCivicationInbox
-
-  document.getElementById("civiTaskModalClose")
-    ?.addEventListener("click", closeTaskModal);
-
-  document.querySelectorAll("[data-close-task]").forEach(function (el) {
-    el.addEventListener("click", closeTaskModal);
-  });
-  
+  renderInbox: renderCivicationInbox,
+  renderWorkdayPanel,
+  renderCapital,
+  renderPerception
 };
