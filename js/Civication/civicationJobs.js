@@ -79,7 +79,15 @@
     }) || null;
   }
 
-  function pushOffer({ career_id, career_name, title, threshold, points_at_offer }) {
+  function pushOffer({
+    career_id,
+    career_name,
+    title,
+    threshold,
+    points_at_offer,
+    brand_id,
+    brand_name
+  }) {
     if (!canReceiveNewOffers()) {
       return { ok: false, reason: "active_job" };
     }
@@ -111,6 +119,8 @@
       title: ttl,
       threshold: thr,
       points_at_offer: Number(points_at_offer || 0),
+      brand_id: String(brand_id || "").trim() || null,
+      brand_name: String(brand_name || "").trim() || null,
       status: "pending",
       created_iso: now.toISOString(),
       expires_iso: expires.toISOString()
@@ -172,7 +182,9 @@
       title: offer.title,
       threshold: offer.threshold ?? null,
       achieved_at: nowIso,
-      role_key: role_key
+      role_key: role_key,
+      brand_id: String(offer.brand_id || "").trim() || null,
+      brand_name: String(offer.brand_name || "").trim() || null
     });
 
     if (window.CivicationObligationEngine?.activateJob) {
@@ -218,6 +230,13 @@
           }
         }
       });
+    }
+
+    try {
+      const active = window.CivicationState?.getActivePosition?.();
+      window.CivicationCalendar?.startShiftForJob?.(active);
+    } catch (e) {
+      console.warn("Calendar shift start failed", e);
     }
 
     try {
