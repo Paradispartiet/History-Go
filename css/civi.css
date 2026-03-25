@@ -452,3 +452,100 @@ body.civi-mapmode .civi-panels{
     transition:none;
   }
 }
+
+/* ------------------------------------------------------------
+   WORKDAY PANEL
+------------------------------------------------------------ */
+
+#civiWorkdayPanel{
+  min-height: 120px;
+}
+
+.civi-workday{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
+.civi-workday-top{
+  display:grid;
+  grid-template-columns: 180px 1fr;
+  gap:12px;
+}
+
+.civi-workday-clock,
+.civi-workday-meta,
+.civi-workday-card{
+  background:var(--card2);
+  border:1px solid var(--line2);
+  border-radius:12px;
+  padding:12px;
+}
+
+.civi-workday-time{
+  font-size:28px;
+  font-weight:900;
+  letter-spacing:0.5px;
+}
+
+.civi-workday-label{
+  font-size:12px;
+  text-transform:uppercase;
+  letter-spacing:0.6px;
+  opacity:0.72;
+  color:var(--ink2);
+  margin-bottom:6px;
+}
+
+.civi-workday-sub{
+  font-size:12px;
+  color:var(--ink2);
+  opacity:0.82;
+  margin-top:4px;
+}
+
+.civi-workday-row{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  padding:4px 0;
+}
+
+.civi-workday-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+}
+
+.civi-workday-big{
+  font-size:22px;
+  font-weight:900;
+}
+
+.civi-workday-task-title{
+  font-size:16px;
+  font-weight:800;
+  margin-bottom:6px;
+}
+
+.civi-workday-task-desc{
+  font-size:14px;
+  color:var(--ink2);
+}
+
+.civi-workday-empty{
+  background:var(--card2);
+  border:1px solid var(--line2);
+  border-radius:12px;
+  padding:14px;
+}
+
+@media (max-width: 700px){
+  .civi-workday-top{
+    grid-template-columns:1fr;
+  }
+
+  .civi-workday-grid{
+    grid-template-columns:1fr;
+  }
+}
