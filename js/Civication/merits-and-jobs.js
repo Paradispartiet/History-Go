@@ -1,5 +1,3 @@
-
-
 // ------------------------------------------------------------
 // CIVICATION: Jobbtilbud (offers) lagres i localStorage
 // ------------------------------------------------------------
@@ -18,7 +16,10 @@ function qualifiesForTierWithCross(careerId, tierIndex) {
     const merits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
     const playerPoints = Number(merits?.[req.badge]?.points || 0);
 
-    const badge = window.BADGES?.find(b => b.id === req.badge);
+    const badge = window.BADGES?.find(function (b) {
+      return b.id === req.badge;
+    });
+
     if (!badge) return false;
 
     const tier = deriveTierFromPoints(badge, playerPoints);
@@ -30,22 +31,26 @@ function qualifiesForTierWithCross(careerId, tierIndex) {
 }
 
 function hgPushJobOffer(badge, tier, newPoints) {
-  if (!badge || !tier) return;
+  if (!badge || !tier) {
+    return { ok: false, reason: "invalid_offer" };
+  }
 
   const badgeId = String(badge.id || "").trim();
   const badgeName = String(badge.name || "").trim();
   const title = String(tier.label || "").trim();
   const thr = Number(tier.threshold);
 
-  if (!badgeId || !title || !Number.isFinite(thr)) return;
+  if (!badgeId || !title || !Number.isFinite(thr)) {
+    return { ok: false, reason: "invalid_offer" };
+  }
 
-  window.CivicationJobs?.pushOffer?.({
+  return window.CivicationJobs?.pushOffer?.({
     career_id: badgeId,
     career_name: badgeName,
     title,
     threshold: thr,
     points_at_offer: Number(newPoints || 0)
-  });
+  }) || { ok: false, reason: "jobs_unavailable" };
 }
 
 
@@ -54,38 +59,48 @@ async function updateMeritLevel(cat, oldPoints, newPoints) {
   await ensureBadgesLoaded();
 
   const catId = String(cat || "").trim();
-  const badge = BADGES.find(b => String(b?.id || "").trim() === catId);
+  const badge = BADGES.find(function (b) {
+    return String(b?.id || "").trim() === catId;
+  });
+
   if (!badge || !Array.isArray(badge.tiers) || !badge.tiers.length) return;
 
   const prev = deriveTierFromPoints(badge, Number(oldPoints || 0));
   const next = deriveTierFromPoints(badge, Number(newPoints || 0));
 
-  // Bare gjør noe hvis du faktisk rykker opp i "stilling"
   if ((next.tierIndex ?? 0) <= (prev.tierIndex ?? 0)) return;
 
-  // Sjekk cross-requirements før jobbtilbud
   if (!qualifiesForTierWithCross(badge.id, next.tierIndex)) {
-   showToast("🔒 Du trenger bredere erfaring før denne toppstillingen.");
-   return;
+    showToast("🔒 Du trenger bredere erfaring før denne toppstillingen.");
+    return;
   }
-  
-  // tiers.label er nå stillingstittel
+
+  if (window.CivicationJobs?.canReceiveNewOffers &&
+      !window.CivicationJobs.canReceiveNewOffers()) {
+    showToast("📌 Fullfør nåværende jobb eller mist den før neste tilbud.");
+    return;
+  }
+
   const newTitle = String(next.label || "").trim() || "Ny stilling";
 
-  // 1) UI feedback
+  const pushed = hgPushJobOffer(badge, next, newPoints);
+
+  if (!pushed?.ok) {
+    if (pushed?.reason === "active_job") {
+      showToast("📌 Du har allerede en aktiv jobb.");
+    }
+    return;
+  }
+
   showToast(`💼 Ny stilling i ${badge.name}: ${newTitle}!`);
   pulseBadge(badge.name);
-
-  hgPushJobOffer(badge, next, newPoints);
-
-  }
+}
 
 // Poengsystem – +1 poeng per fullført quiz
 async function addCompletedQuizAndMaybePoint(categoryDisplay, quizId) {
   const categoryId = catIdFromDisplay(categoryDisplay);
-
   const badgeId = categoryId;
-  
+
   if (!badgeId) return;
 
   const progress = JSON.parse(localStorage.getItem("quiz_progress") || "{}");
@@ -97,7 +112,6 @@ async function addCompletedQuizAndMaybePoint(categoryDisplay, quizId) {
   localStorage.setItem("quiz_progress", JSON.stringify(progress));
 
   const merits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
-
   merits[badgeId] = merits[badgeId] || { points: 0 };
 
   const oldPoints = Number(merits[badgeId].points || 0);
@@ -114,6 +128,5 @@ async function addCompletedQuizAndMaybePoint(categoryDisplay, quizId) {
 }
 
 window.hgPushJobOffer = hgPushJobOffer;
-
 window.updateMeritLevel = updateMeritLevel;
 window.addCompletedQuizAndMaybePoint = addCompletedQuizAndMaybePoint;
