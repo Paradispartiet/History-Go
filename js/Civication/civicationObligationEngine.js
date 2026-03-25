@@ -230,20 +230,55 @@
     };
   }
 
+  function buildMailContext(active, metrics) {
+    const rate = Number(metrics?.completionRate || 0);
+
+    return {
+      role_key: String(
+        active?.role_key ||
+        active?.career_id ||
+        "job"
+      ),
+      title: String(
+        active?.title ||
+        active?.career_name ||
+        "Stilling"
+      ),
+      career_id: String(active?.career_id || ""),
+      career_name: String(active?.career_name || ""),
+      expectedCount: Number(metrics?.expectedCount || 0),
+      answeredCount: Number(metrics?.answeredCount || 0),
+      completionRate: rate,
+      completionPercent: Math.max(
+        0,
+        Math.min(100, Math.round(rate * 100))
+      ),
+      daysSinceStart: Number(metrics?.daysSinceStart || 0),
+      daysSinceLogin: Number(metrics?.daysSinceLogin || 0),
+      daysLeft: Math.max(
+        0,
+        Number(metrics?.contract?.fireAfterDays || 14) -
+        Math.floor(Number(metrics?.daysSinceStart || 0))
+      )
+    };
+  }
+
   function fireCurrentEmployment(reason, reputation) {
     const prev = getActivePosition();
-    const roleKey = getState().active_role_key;
     const current = getState();
 
     if (prev) {
-      CivicationState.appendJobHistoryEnded(prev, reason || "obligation_fail");
+      CivicationState.appendJobHistoryEnded(
+        prev,
+        reason || "obligation_fail"
+      );
     }
 
     CivicationState.setActivePosition(null);
 
     CivicationState.setState({
       stability: "FIRED",
-      warning_used: true,
+      warning_used: false,
       active_role_key: null,
       unemployed_since_week:
         (typeof weekKey === "function")
@@ -258,11 +293,6 @@
         reputation: Number(reputation || 0)
       }
     });
-
-    if (window.HG_CiviEngine?.makeFiredEvent) {
-      const firedEv = window.HG_CiviEngine.makeFiredEvent(roleKey);
-      window.HG_CiviEngine.enqueueEvent(firedEv);
-    }
 
     window.dispatchEvent(new Event("updateProfile"));
 
@@ -342,13 +372,27 @@
     if (reputation > 100) reputation = 100;
     if (reputation < 0) reputation = 0;
 
+    const mailContext = buildMailContext(active, metrics);
+
     if (shouldFireForReputation || shouldFireForWorkload) {
-      return fireCurrentEmployment("obligation_fail", reputation);
+      const ended = fireCurrentEmployment("obligation_fail", reputation);
+
+      return {
+        ...ended,
+        shouldEnqueueFired: true,
+        mailContext: mailContext
+      };
     }
+
+    const shouldEnqueueWarning =
+      shouldWarn && state.warning_used !== true;
 
     CivicationState.setState({
       stability: nextStability,
-      warning_used: shouldWarn ? true : state.warning_used,
+      warning_used:
+        nextStability === "WARNING"
+          ? state.warning_used
+          : false,
       career: {
         ...(state.career || {}),
         activeJob: career.activeJob,
@@ -375,6 +419,8 @@
     return {
       ok: true,
       reason: nextStability === "WARNING" ? "warning" : "active",
+      shouldEnqueueWarning: shouldEnqueueWarning,
+      mailContext: mailContext,
       expectedCount: metrics.expectedCount,
       answeredCount: metrics.answeredCount,
       completionRate: metrics.completionRate
