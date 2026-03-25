@@ -692,9 +692,25 @@ async onAppOpen(opts = {}) {
     console.warn("Salary tick failed", e);
   }
 
-  // 0) sync job/role_key
+    // 0) sync job/role_key
   const role_key = this.ensureRoleKeySynced();
+
+  try {
+    window.CivicationObligationEngine?.evaluate?.();
+  } catch (e) {
+    console.warn("Obligation evaluate failed", e);
+  }
+
   const active = window.CivicationState.getActivePosition();
+
+  try {
+    if (active) {
+      window.CivicationObligationEngine?.registerLogin?.();
+    }
+  } catch (e) {
+    console.warn("Login registration failed", e);
+  }
+
   const state = this.getState();
 
   const resolvedStoryState = await this.ensureStoryState();
