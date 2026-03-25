@@ -835,6 +835,85 @@ async onAppOpen(opts = {}) {
   return { enqueued: true, type: "job", event: chosen };
 }
 
+async enqueueImmediateFollowupEvent() {
+  if (this.getPendingEvent()) {
+    return { enqueued: false, reason: "pending_exists" };
+  }
+
+  const active = window.CivicationState.getActivePosition();
+  if (!active) {
+    return { enqueued: false, reason: "no_active_job" };
+  }
+
+  const role_key = this.ensureRoleKeySynced();
+  const state = this.getState();
+  const careerId = String(active.career_id || "").trim();
+
+  const packFile =
+    (this.packMap && this.packMap[careerId])
+      ? this.packMap[careerId]
+      : (careerId
+          ? `${careerId}Civic.json`
+          : (String(role_key || "") + ".json"));
+
+  const pack = await this.loadPack(packFile);
+
+  if (!pack || !Array.isArray(pack.mails) || !pack.mails.length) {
+    const generic = this.makeGenericCareerEvent(
+      active,
+      state,
+      "followup_missing_pack"
+    );
+
+    this.enqueueEvent(generic);
+    window.dispatchEvent(new Event("updateProfile"));
+
+    return {
+      enqueued: true,
+      type: "generic",
+      reason: "missing_pack",
+      event: generic
+    };
+  }
+
+  const chosen = this.pickEventFromPack(pack, state);
+
+  if (!chosen) {
+    const generic = this.makeGenericCareerEvent(
+      active,
+      state,
+      "followup_no_candidates"
+    );
+
+    this.enqueueEvent(generic);
+    window.dispatchEvent(new Event("updateProfile"));
+
+    return {
+      enqueued: true,
+      type: "generic",
+      reason: "no_candidates",
+      event: generic
+    };
+  }
+
+  const chosenWithMeta = Object.assign({}, chosen, {
+    __pack: {
+      role: pack?.role || null,
+      tag_rules: pack?.tag_rules || null,
+      tracks: Array.isArray(pack?.tracks) ? pack.tracks : []
+    }
+  });
+
+  this.enqueueEvent(chosenWithMeta);
+  window.dispatchEvent(new Event("updateProfile"));
+
+  return {
+    enqueued: true,
+    type: "job",
+    event: chosenWithMeta
+  };
+}
+    
 enqueueEvent(eventObj) {
 
   const inbox = this.getInbox();
@@ -1151,11 +1230,18 @@ answer(eventId, choiceId) {
     track_progress: state.__next_track_progress || state.track_progress || {}
   });
 
+    try {
+    window.CivicationObligationEngine?.registerEventResponse?.();
+  } catch (e) {
+    console.warn("Event response registration failed", e);
+  }
 
-  // -------- FIRED handling --------
+    // -------- FIRED handling --------
   if (stability === "FIRED") {
 
-    const prev = window.CivicationState.getActivePosition()
+    const prev = window.CivicationState.getActivePosition();
+    const currentState = this.getState();
+    const firedRoleKey = currentState.active_role_key;
 
     if (prev &&
         prev.career_id &&
@@ -1165,63 +1251,37 @@ answer(eventId, choiceId) {
       window.CivicationPsyche.registerCollapse(prev.career_id, "fired");
     }
 
-    window.CivicationState.appendJobHistoryEnded(prev, "fired");
+    if (prev) {
+      window.CivicationState.appendJobHistoryEnded(prev, "fired");
+    }
+
     window.CivicationState.setActivePosition(null);
 
     this.setState({
-      unemployed_since_week: weekKey(new Date())
+      unemployed_since_week: weekKey(new Date()),
+      active_role_key: null,
+      career: {
+        ...(currentState.career || {}),
+        activeJob: null,
+        obligations: [],
+        contract: null,
+        progress: null
+      }
     });
 
-    const firedEv =
-      this.makeFiredEvent(this.getState().active_role_key);
-
+    const firedEv = this.makeFiredEvent(firedRoleKey);
     this.enqueueEvent(firedEv);
   }
 
   // ============================================================
-  // HYBRID QUEST TRIGGER (M3)
+  // ÅPEN FLYT:
+  // Når én mail er besvart, legg inn neste umiddelbart
+  // uten å vente på neste pulse-slot.
   // ============================================================
-  const isQuest =
-    Array.isArray(ev.mail_tags) &&
-    ev.mail_tags.indexOf("quest") !== -1;
-
-  if (isQuest && stability !== "FIRED") {
-
-    const role_key = this.ensureRoleKeySynced();
-    const active = window.CivicationState.getActivePosition();
-
-    if (active) {
-
-      const careerId = String(active.career_id || "").trim();
-      const packFile =
-        (this.packMap && this.packMap[careerId])
-          ? this.packMap[careerId]
-          : (String(role_key || "") + ".json");
-
-      this.loadPack(packFile).then(pack => {
-
-        const nextState = this.getState();
-        const next = this.pickEventFromPack(pack, nextState);
-
-        if (next &&
-            Array.isArray(next.mail_tags) &&
-            next.mail_tags.indexOf("quest") !== -1) {
-
-          const withMeta = Object.assign({}, next, {
-            __pack: {
-              role: pack?.role || null,
-              tag_rules: pack?.tag_rules || null,
-              tracks: Array.isArray(pack?.tracks) ? pack.tracks : []
-            }
-          });
-
-          this.enqueueEvent(withMeta);
-          window.dispatchEvent(new Event("updateProfile"));
-        }
-
-      });
-
-    }
+  if (stability !== "FIRED" && window.CivicationState.getActivePosition()) {
+    this.enqueueImmediateFollowupEvent().catch(function (e) {
+      console.warn("Immediate follow-up mail failed", e);
+    });
   }
 
      return {
