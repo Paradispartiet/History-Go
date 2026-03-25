@@ -549,3 +549,128 @@ body.civi-mapmode .civi-panels{
     grid-template-columns:1fr;
   }
 }
+
+/* ------------------------------------------------------------
+   TASK MODAL
+------------------------------------------------------------ */
+
+.civi-modal{
+  position:fixed;
+  inset:0;
+  display:none;
+  z-index:9999;
+}
+
+.civi-modal.is-open{
+  display:block;
+}
+
+.civi-modal-backdrop{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.55);
+  backdrop-filter:blur(2px);
+}
+
+.civi-modal-card{
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  width:min(720px, calc(100vw - 24px));
+  max-height:calc(100vh - 24px);
+  overflow:auto;
+  background:var(--card2);
+  border:1px solid var(--line2);
+  border-radius:16px;
+  box-shadow:0 20px 60px rgba(0,0,0,0.35);
+}
+
+.civi-modal-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:14px 16px;
+  border-bottom:1px solid var(--line2);
+}
+
+.civi-modal-close{
+  border:1px solid var(--line2);
+  background:var(--card1);
+  color:var(--ink1);
+  border-radius:10px;
+  min-width:40px;
+  height:40px;
+  cursor:pointer;
+}
+
+.civi-modal-body{
+  padding:16px;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
+.civi-task-meta{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+}
+
+.civi-task-box{
+  background:var(--card1);
+  border:1px solid var(--line2);
+  border-radius:12px;
+  padding:12px;
+}
+
+.civi-task-kicker{
+  font-size:12px;
+  text-transform:uppercase;
+  letter-spacing:0.6px;
+  color:var(--ink2);
+  opacity:0.8;
+  margin-bottom:6px;
+}
+
+.civi-task-title{
+  font-size:20px;
+  font-weight:900;
+}
+
+.civi-task-desc{
+  font-size:14px;
+  color:var(--ink2);
+}
+
+.civi-task-list{
+  margin:0;
+  padding-left:18px;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+
+.civi-task-actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.civi-task-open-btn{
+  margin-top:10px;
+  border:1px solid var(--line2);
+  background:var(--card1);
+  color:var(--ink1);
+  border-radius:10px;
+  padding:10px 12px;
+  cursor:pointer;
+  font-weight:700;
+}
+
+@media (max-width: 700px){
+  .civi-task-meta{
+    grid-template-columns:1fr;
+  }
+}
