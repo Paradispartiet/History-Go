@@ -25,6 +25,7 @@ async function init() {
 
   renderCivication();
   renderCivicationInbox();
+  renderWorkdayPanel();
   renderPsycheDashboard();
   renderCapital();
   renderHomeStatus();
@@ -34,12 +35,12 @@ async function init() {
    window.addEventListener("updateProfile", () => {
    renderCivication();
    renderCivicationInbox();
+   renderWorkdayPanel();
    renderPsycheDashboard();
    renderCapital();
    renderHomeStatus();
    renderPerception();
-   renderTrackHUD();   // ← HER
-  });
+   renderTrackHUD();
 
   window.addEventListener("civi:homeChanged", renderHomeStatus);
 }
@@ -608,6 +609,142 @@ document.getElementById("closeDistrictModal")
     document.getElementById("districtModal").style.display = "none";
   });
 
+
+function renderWorkdayPanel() {
+  const host = document.getElementById("civiWorkdayPanel");
+  if (!host) return;
+
+  const active = window.CivicationState?.getActivePosition?.();
+  const state = window.CivicationState?.getState?.() || {};
+  const career = state?.career || {};
+  const progress = career?.progress || {};
+  const contract = career?.contract || {};
+  const pending = window.HG_CiviEngine?.getPendingEvent?.();
+  const ev = pending?.event || null;
+
+  const clock =
+    window.CivicationCalendar?.getDisplayModel?.() || null;
+
+  const task =
+    ev?.task_id && window.CivicationTaskEngine?.getTaskById
+      ? window.CivicationTaskEngine.getTaskById(ev.task_id)
+      : null;
+
+  if (!active) {
+    host.innerHTML = `
+      <div class="civi-workday-empty">
+        <div>Ingen aktiv jobb akkurat nå.</div>
+        <div class="muted">Ta imot et jobbtilbud for å starte arbeidsdagen.</div>
+      </div>
+    `;
+    return;
+  }
+
+  const brandName =
+    String(active?.brand_name || "").trim() ||
+    String(ev?.brand_name || "").trim() ||
+    "Ikke satt";
+
+  const currentTime =
+    clock?.currentLabel || "—";
+
+  const shiftLabel =
+    clock
+      ? `${clock.shiftStartLabel}–${clock.shiftEndLabel}`
+      : "—";
+
+  const taskTitle =
+    task?.title ||
+    ev?.subject ||
+    "Ingen aktiv oppgave";
+
+  const taskDesc =
+    task?.description ||
+    (Array.isArray(ev?.situation) ? ev.situation[0] : "") ||
+    "—";
+
+  const windowLabel =
+    ev?.calendar_label ||
+    (task?.time_window
+      ? `${task.time_window.startsAtLabel}–${task.time_window.deadlineAtLabel}`
+      : "—");
+
+  const answered = Number(progress?.answeredCount || 0);
+  const expected = Number(progress?.expectedCount || 0);
+  const pct = Math.max(
+    0,
+    Math.min(100, Math.round(Number(progress?.completionRate || 0) * 100))
+  );
+
+  const stability = String(state?.stability || "STABLE").toUpperCase();
+
+  const statusLabel =
+    stability === "WARNING"
+      ? "Advarsel"
+      : stability === "FIRED"
+        ? "Sparket"
+        : "Stabil";
+
+  const daysSinceStart = Number(progress?.daysSinceStart || 0);
+  const daysLeft = Math.max(
+    0,
+    Number(contract?.fireAfterDays || 14) - Math.floor(daysSinceStart)
+  );
+
+  host.innerHTML = `
+    <div class="civi-workday">
+      <div class="civi-workday-top">
+        <div class="civi-workday-clock">
+          <div class="civi-workday-label">Klokke</div>
+          <div class="civi-workday-time">${currentTime}</div>
+          <div class="civi-workday-sub">Skift: ${shiftLabel}</div>
+        </div>
+
+        <div class="civi-workday-meta">
+          <div class="civi-workday-row">
+            <span class="muted">Rolle</span>
+            <strong>${active?.title || "—"}</strong>
+          </div>
+          <div class="civi-workday-row">
+            <span class="muted">Brand / sted</span>
+            <strong>${brandName}</strong>
+          </div>
+          <div class="civi-workday-row">
+            <span class="muted">Status</span>
+            <strong>${statusLabel}</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="civi-workday-grid">
+        <div class="civi-workday-card">
+          <div class="civi-workday-label">Aktiv oppgave</div>
+          <div class="civi-workday-task-title">${taskTitle}</div>
+          <div class="civi-workday-task-desc">${taskDesc}</div>
+        </div>
+
+        <div class="civi-workday-card">
+          <div class="civi-workday-label">Tidsvindu</div>
+          <div class="civi-workday-big">${windowLabel}</div>
+          <div class="civi-workday-sub">Neste deadline i denne arbeidsøkten</div>
+        </div>
+
+        <div class="civi-workday-card">
+          <div class="civi-workday-label">Ukeprogresjon</div>
+          <div class="civi-workday-big">${answered} / ${expected}</div>
+          <div class="civi-workday-sub">${pct}% fullført</div>
+        </div>
+
+        <div class="civi-workday-card">
+          <div class="civi-workday-label">Kontraktspress</div>
+          <div class="civi-workday-big">${daysLeft} dager</div>
+          <div class="civi-workday-sub">igjen før ny vurdering</div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+  
 // ============================================================
 // INBOX
 // ============================================================
