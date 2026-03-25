@@ -693,59 +693,204 @@ function renderWorkdayPanel() {
   );
 
   host.innerHTML = `
-    <div class="civi-workday">
-      <div class="civi-workday-top">
-        <div class="civi-workday-clock">
-          <div class="civi-workday-label">Klokke</div>
-          <div class="civi-workday-time">${currentTime}</div>
-          <div class="civi-workday-sub">Skift: ${shiftLabel}</div>
-        </div>
-
-        <div class="civi-workday-meta">
-          <div class="civi-workday-row">
-            <span class="muted">Rolle</span>
-            <strong>${active?.title || "—"}</strong>
-          </div>
-          <div class="civi-workday-row">
-            <span class="muted">Brand / sted</span>
-            <strong>${brandName}</strong>
-          </div>
-          <div class="civi-workday-row">
-            <span class="muted">Status</span>
-            <strong>${statusLabel}</strong>
-          </div>
-        </div>
+  <div class="civi-workday">
+    <div class="civi-workday-top">
+      <div class="civi-workday-clock">
+        <div class="civi-workday-label">Klokke</div>
+        <div class="civi-workday-time">${currentTime}</div>
+        <div class="civi-workday-sub">Skift: ${shiftLabel}</div>
       </div>
 
-      <div class="civi-workday-grid">
-        <div class="civi-workday-card">
-          <div class="civi-workday-label">Aktiv oppgave</div>
-          <div class="civi-workday-task-title">${taskTitle}</div>
-          <div class="civi-workday-task-desc">${taskDesc}</div>
+      <div class="civi-workday-meta">
+        <div class="civi-workday-row">
+          <span class="muted">Rolle</span>
+          <strong>${active?.title || "—"}</strong>
         </div>
-
-        <div class="civi-workday-card">
-          <div class="civi-workday-label">Tidsvindu</div>
-          <div class="civi-workday-big">${windowLabel}</div>
-          <div class="civi-workday-sub">Neste deadline i denne arbeidsøkten</div>
+        <div class="civi-workday-row">
+          <span class="muted">Brand / sted</span>
+          <strong>${brandName}</strong>
         </div>
-
-        <div class="civi-workday-card">
-          <div class="civi-workday-label">Ukeprogresjon</div>
-          <div class="civi-workday-big">${answered} / ${expected}</div>
-          <div class="civi-workday-sub">${pct}% fullført</div>
-        </div>
-
-        <div class="civi-workday-card">
-          <div class="civi-workday-label">Kontraktspress</div>
-          <div class="civi-workday-big">${daysLeft} dager</div>
-          <div class="civi-workday-sub">igjen før ny vurdering</div>
+        <div class="civi-workday-row">
+          <span class="muted">Status</span>
+          <strong>${statusLabel}</strong>
         </div>
       </div>
     </div>
-  `;
-}
+
+    <div class="civi-workday-grid">
+      <div class="civi-workday-card">
+        <div class="civi-workday-label">Aktiv oppgave</div>
+        <div class="civi-workday-task-title">${taskTitle}</div>
+        <div class="civi-workday-task-desc">${taskDesc}</div>
+        ${
+          ev?.id
+            ? `<button class="civi-task-open-btn" data-open-task="${ev.id}">Åpne oppgave</button>`
+            : ``
+        }
+      </div>
+
+      <div class="civi-workday-card">
+        <div class="civi-workday-label">Tidsvindu</div>
+        <div class="civi-workday-big">${windowLabel}</div>
+        <div class="civi-workday-sub">Neste deadline i denne arbeidsøkten</div>
+      </div>
+
+      <div class="civi-workday-card">
+        <div class="civi-workday-label">Ukeprogresjon</div>
+        <div class="civi-workday-big">${answered} / ${expected}</div>
+        <div class="civi-workday-sub">${pct}% fullført</div>
+      </div>
+
+      <div class="civi-workday-card">
+        <div class="civi-workday-label">Kontraktspress</div>
+        <div class="civi-workday-big">${daysLeft} dager</div>
+        <div class="civi-workday-sub">igjen før ny vurdering</div>
+      </div>
+    </div>
+  </div>
+`;
+
+host.querySelectorAll("[data-open-task]").forEach(function (btn) {
+  btn.addEventListener("click", function () {
+    const mailId = btn.getAttribute("data-open-task");
+    if (!mailId) return;
+    openTaskModalByMailId(mailId);
+  });
+});
+
+
   
+function getTaskWindowLabel(task, ev) {
+  if (ev?.calendar_label) return ev.calendar_label;
+
+  const tw = task?.time_window;
+  if (!tw) return "—";
+
+  return `${tw.startsAtLabel}–${tw.deadlineAtLabel}`;
+}
+
+function openTaskModalByMailId(mailId) {
+  const modal = document.getElementById("civiTaskModal");
+  const body = document.getElementById("civiTaskModalBody");
+  const title = document.getElementById("civiTaskModalTitle");
+  if (!modal || !body || !title) return;
+
+  const inbox = window.CivicationState.getInbox?.() || [];
+  const ev =
+    inbox
+      .map(function (item) { return item?.event || null; })
+      .find(function (eventObj) {
+        return eventObj && eventObj.id === mailId;
+      }) || null;
+
+  const task =
+    window.CivicationTaskEngine?.getTaskByMailId?.(mailId) || null;
+
+  if (!ev && !task) return;
+
+  const displayTitle =
+    task?.title ||
+    ev?.subject ||
+    "Oppgave";
+
+  const desc =
+    task?.description ||
+    (Array.isArray(ev?.situation) ? ev.situation[0] : "") ||
+    "—";
+
+  const knowledgeTargets = Array.isArray(task?.knowledge_targets)
+    ? task.knowledge_targets
+    : [];
+
+  const quizTargets = Array.isArray(task?.quiz_targets)
+    ? task.quiz_targets
+    : [];
+
+  const workType =
+    String(task?.kind || ev?.task_kind || "oppgave");
+
+  const duration =
+    Number(task?.durationMinutes || ev?.work_minutes || ev?.duration_minutes || 0);
+
+  const windowLabel = getTaskWindowLabel(task, ev);
+
+  const brandName =
+    String(task?.brand_name || ev?.brand_name || "").trim() || "—";
+
+  title.textContent = displayTitle;
+
+  body.innerHTML = `
+    <div class="civi-task-box">
+      <div class="civi-task-kicker">Oppgavebeskrivelse</div>
+      <div class="civi-task-title">${displayTitle}</div>
+      <div class="civi-task-desc">${desc}</div>
+    </div>
+
+    <div class="civi-task-meta">
+      <div class="civi-task-box">
+        <div class="civi-task-kicker">Arbeidstype</div>
+        <div><strong>${workType}</strong></div>
+      </div>
+
+      <div class="civi-task-box">
+        <div class="civi-task-kicker">Tidsvindu</div>
+        <div><strong>${windowLabel}</strong></div>
+      </div>
+
+      <div class="civi-task-box">
+        <div class="civi-task-kicker">Varighet</div>
+        <div><strong>${duration ? `${duration} min` : "—"}</strong></div>
+      </div>
+
+      <div class="civi-task-box">
+        <div class="civi-task-kicker">Brand / sted</div>
+        <div><strong>${brandName}</strong></div>
+      </div>
+    </div>
+
+    <div class="civi-task-box">
+      <div class="civi-task-kicker">Kunnskapsmål</div>
+      ${
+        knowledgeTargets.length
+          ? `<ul class="civi-task-list">${knowledgeTargets.map(function (x) {
+              return `<li>${x}</li>`;
+            }).join("")}</ul>`
+          : `<div class="civi-task-desc">Ingen spesifikke kunnskapsmål registrert ennå.</div>`
+      }
+    </div>
+
+    <div class="civi-task-box">
+      <div class="civi-task-kicker">Quizkobling</div>
+      ${
+        quizTargets.length
+          ? `<ul class="civi-task-list">${quizTargets.map(function (x) {
+              return `<li>${x}</li>`;
+            }).join("")}</ul>`
+          : `<div class="civi-task-desc">Ingen quizkobling registrert ennå.</div>`
+      }
+    </div>
+
+    <div class="civi-task-actions">
+      <button class="civi-modal-close" type="button" id="civiTaskModalCloseInner">Lukk</button>
+    </div>
+  `;
+
+  modal.classList.add("is-open");
+  modal.setAttribute("aria-hidden", "false");
+
+  document.getElementById("civiTaskModalCloseInner")
+    ?.addEventListener("click", closeTaskModal);
+}
+
+function closeTaskModal() {
+  const modal = document.getElementById("civiTaskModal");
+  if (!modal) return;
+
+  modal.classList.remove("is-open");
+  modal.setAttribute("aria-hidden", "true");
+}
+
+
 // ============================================================
 // INBOX
 // ============================================================
@@ -1003,5 +1148,12 @@ window.CivicationUI = {
   init,
   render: renderCivication,
   renderInbox: renderCivicationInbox
+
+  document.getElementById("civiTaskModalClose")
+    ?.addEventListener("click", closeTaskModal);
+
+  document.querySelectorAll("[data-close-task]").forEach(function (el) {
+    el.addEventListener("click", closeTaskModal);
+  });
   
 };
