@@ -54,15 +54,16 @@ function wireCivicationActions() {
   const btnAccept = document.getElementById("btnCiviAccept");
   const btnDecline = document.getElementById("btnCiviDecline");
 
-  btnAccept.onclick = () => {
-  const offer = window.CivicationJobs?.getLatestPendingOffer?.();
-  if (!offer) return;
+  if (btnAccept) {
+    btnAccept.onclick = () => {
+      const offer = window.CivicationJobs?.getLatestPendingOffer?.();
+      if (!offer) return;
 
-  const res = window.CivicationJobs?.acceptOffer?.(offer.offer_key);
-  if (!res?.ok) return;
+      const res = window.CivicationJobs?.acceptOffer?.(offer.offer_key);
+      if (!res?.ok) return;
 
-  window.dispatchEvent(new Event("updateProfile"));
-};
+      window.dispatchEvent(new Event("updateProfile"));
+    };
   }
 
   if (btnDecline) {
@@ -287,15 +288,12 @@ if (!offer) {
   `;
 
   if (offer?.offer_key) {
-    host.querySelector("#civiOfferAccept")?.addEventListener("click", async () => {
-      const res = window.CivicationJobs?.acceptOffer?.(offer.offer_key);
-      if (!res?.ok) return;
-      await window.HG_CiviEngine?.onAppOpen?.({
-       force: true,
-       source: "job_accept"
-    });
-      window.dispatchEvent(new Event("updateProfile"));
-    });
+    host.querySelector("#civiOfferAccept")?.addEventListener("click", () => {
+  const res = window.CivicationJobs?.acceptOffer?.(offer.offer_key);
+  if (!res?.ok) return;
+
+  window.dispatchEvent(new Event("updateProfile"));
+});
 
     host.querySelector("#civiOfferDecline")?.addEventListener("click", () => {
       window.CivicationJobs?.declineOffer?.(offer.offer_key);
