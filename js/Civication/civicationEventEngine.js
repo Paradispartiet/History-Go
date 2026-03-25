@@ -890,215 +890,229 @@ class CivicationEventEngine {
     }
 
     if (!active) {
-      const st = this.getState();
-      const now = new Date();
+  const st = this.getState();
+  const now = new Date();
 
-      const navAfterWeeks =
-        Number(
-          (window.HG_CAREERS &&
-           window.HG_CAREERS.global_rules &&
-           window.HG_CAREERS.global_rules.unemployment &&
-           window.HG_CAREERS.global_rules.unemployment.nav_after_weeks) || 0
-        );
-
-      const nowW = weekKey(now);
-
-      if (!st.unemployed_since_week) {
-        this.setState({ unemployed_since_week: nowW });
-        this.markPulseUsed();
-        return { enqueued: false, reason: "unemployed_started" };
-      }
-
-      const weeksPassed =
-        weeksPassedBetweenWeekKeys(st.unemployed_since_week, nowW);
-
-      if (weeksPassed >= navAfterWeeks) {
-        const nav = this.makeNavEvent();
-        this.enqueueEvent(nav);
-        this.markPulseUsed();
-        return { enqueued: true, type: "nav", event: nav };
-      }
-
-      this.markPulseUsed();
-      return { enqueued: false, reason: "unemployed_pre_nav" };
-    }
-
-    const careerId = String(active.career_id || "").trim();
-
-    const packFile =
-      (this.packMap && this.packMap[careerId])
-        ? this.packMap[careerId]
-        : (careerId
-            ? `${careerId}Civic.json`
-            : (String(role_key || "") + ".json"));
-
-    const pack = await this.loadPack(packFile);
-
-    if (!pack || !Array.isArray(pack.mails) || !pack.mails.length) {
-      const generic = this.makeGenericCareerEvent(
-        active,
-        state,
-        force ? "job_accepted" : "missing_pack"
-      );
-
-      const decorated = this.decorateWorkMail(
-       generic,
-       active,
-       force ? "job_accepted" : "missing_pack"
-      );
-
-      this.enqueueEvent(decorated);
-      this.markPulseUsed();
-
-      return {
-        enqueued: true,
-        type: "generic",
-        reason: "missing_pack",
-        event: generic
-      };
-    }
-
-    const chosen = this.pickEventFromPack(pack, stateWithStory);
-
-    if (!chosen) {
-      const generic = this.makeGenericCareerEvent(
-        active,
-        state,
-        force ? "job_accepted" : "no_candidates"
-      );
-
-      const decorated = this.decorateWorkMail(
-       generic,
-       active,
-       force ? "job_accepted" : "no_candidates"
-      );
-
-this.enqueueEvent(decorated);
-      this.markPulseUsed();
-
-      return {
-        enqueued: true,
-        type: "generic",
-        reason: "no_candidates",
-        event: generic
-      };
-    }
-
-    const chosenWithMeta = Object.assign({}, chosen, {
-      __pack: {
-        role: pack?.role || null,
-        tag_rules: pack?.tag_rules || null,
-        tracks: Array.isArray(pack?.tracks) ? pack.tracks : []
-      }
-    });
-
-    const decoratedChosen = this.decorateWorkMail(
-     chosenWithMeta,
-     active,
-     force ? "job_accepted" : "scheduled"
+  const navAfterWeeks =
+    Number(
+      (window.HG_CAREERS &&
+       window.HG_CAREERS.global_rules &&
+       window.HG_CAREERS.global_rules.unemployment &&
+       window.HG_CAREERS.global_rules.unemployment.nav_after_weeks) || 0
     );
 
-    this.enqueueEvent(decoratedChosen);
+  const nowW = weekKey(now);
+
+  if (!st.unemployed_since_week) {
+    this.setState({ unemployed_since_week: nowW });
     this.markPulseUsed();
-    return { enqueued: true, type: "job", event: chosenWithMeta };
+    return { enqueued: false, reason: "unemployed_started" };
   }
 
-  async enqueueImmediateFollowupEvent() {
-    if (this.getPendingEvent()) {
-      return { enqueued: false, reason: "pending_exists" };
-    }
+  const weeksPassed =
+    weeksPassedBetweenWeekKeys(st.unemployed_since_week, nowW);
 
-    const active = window.CivicationState.getActivePosition();
-    if (!active) {
-      return { enqueued: false, reason: "no_active_job" };
-    }
+  if (weeksPassed >= navAfterWeeks) {
+    const nav = this.makeNavEvent();
+    this.enqueueEvent(nav);
+    this.markPulseUsed();
+    return { enqueued: true, type: "nav", event: nav };
+  }
 
-    const role_key = this.ensureRoleKeySynced();
-    const state = this.getState();
-    const careerId = String(active.career_id || "").trim();
+  this.markPulseUsed();
+  return { enqueued: false, reason: "unemployed_pre_nav" };
+}
 
-    const packFile =
-      (this.packMap && this.packMap[careerId])
-        ? this.packMap[careerId]
-        : (careerId
-            ? `${careerId}Civic.json`
-            : (String(role_key || "") + ".json"));
+const careerId = String(active.career_id || "").trim();
 
-    const pack = await this.loadPack(packFile);
+const packFile =
+  (this.packMap && this.packMap[careerId])
+    ? this.packMap[careerId]
+    : (careerId
+        ? `${careerId}Civic.json`
+        : (String(role_key || "") + ".json"));
 
-    if (!pack || !Array.isArray(pack.mails) || !pack.mails.length) {
-      const generic = this.makeGenericCareerEvent(
-        active,
-        state,
-        "followup_missing_pack"
-      );
+const pack = await this.loadPack(packFile);
 
-      const decorated = this.decorateWorkMail(
-       generic,
-       active,
-       "followup_missing_pack"
-      );
+if (!pack || !Array.isArray(pack.mails) || !pack.mails.length) {
+  const generic = this.makeGenericCareerEvent(
+    active,
+    state,
+    force ? "job_accepted" : "missing_pack"
+  );
 
-this.enqueueEvent(decorated);
-      window.dispatchEvent(new Event("updateProfile"));
+  const decorated = this.decorateWorkMail(
+    generic,
+    active,
+    force ? "job_accepted" : "missing_pack"
+  );
 
-      return {
-        enqueued: true,
-        type: "generic",
-        reason: "missing_pack",
-        event: generic
-      };
-    }
+  this.enqueueEvent(decorated);
 
-    const chosen = this.pickEventFromPack(pack, state);
+  if (!force) {
+    this.markPulseUsed();
+  }
 
-    if (!chosen) {
-      const generic = this.makeGenericCareerEvent(
-        active,
-        state,
-        "followup_no_candidates"
-      );
+  return {
+    enqueued: true,
+    type: "generic",
+    reason: "missing_pack",
+    event: decorated
+  };
+}
 
-      const decorated = this.decorateWorkMail(
-       generic,
-       active,
-       "followup_no_candidates"
-       );
+const chosen = this.pickEventFromPack(pack, stateWithStory);
 
-      this.enqueueEvent(decorated);
-      window.dispatchEvent(new Event("updateProfile"));
+if (!chosen) {
+  const generic = this.makeGenericCareerEvent(
+    active,
+    state,
+    force ? "job_accepted" : "no_candidates"
+  );
 
-      return {
-        enqueued: true,
-        type: "generic",
-        reason: "no_candidates",
-        event: generic
-      };
-    }
+  const decorated = this.decorateWorkMail(
+    generic,
+    active,
+    force ? "job_accepted" : "no_candidates"
+  );
 
-    const chosenWithMeta = Object.assign({}, chosen, {
-      __pack: {
-        role: pack?.role || null,
-        tag_rules: pack?.tag_rules || null,
-        tracks: Array.isArray(pack?.tracks) ? pack.tracks : []
-      }
-    });
+  this.enqueueEvent(decorated);
 
-    const decoratedChosen = this.decorateWorkMail(
-     chosenWithMeta,
-     active,
-     "followup"
-    );
+  if (!force) {
+    this.markPulseUsed();
+  }
+
+  return {
+    enqueued: true,
+    type: "generic",
+    reason: "no_candidates",
+    event: decorated
+  };
+}
+
+const chosenWithMeta = Object.assign({}, chosen, {
+  __pack: {
+    role: pack?.role || null,
+    tag_rules: pack?.tag_rules || null,
+    tracks: Array.isArray(pack?.tracks) ? pack.tracks : []
+  }
+});
+
+const decoratedChosen = this.decorateWorkMail(
+  chosenWithMeta,
+  active,
+  force ? "job_accepted" : "scheduled"
+);
 
 this.enqueueEvent(decoratedChosen);
+
+if (!force) {
+  this.markPulseUsed();
+}
+
+return {
+  enqueued: true,
+  type: "job",
+  event: decoratedChosen
+};
+}
+
+async enqueueImmediateFollowupEvent() {
+  if (this.getPendingEvent()) {
+    return { enqueued: false, reason: "pending_exists" };
+  }
+
+  const active = window.CivicationState.getActivePosition();
+  if (!active) {
+    return { enqueued: false, reason: "no_active_job" };
+  }
+
+  const role_key = this.ensureRoleKeySynced();
+  const state = this.getState();
+  const careerId = String(active.career_id || "").trim();
+
+  const packFile =
+    (this.packMap && this.packMap[careerId])
+      ? this.packMap[careerId]
+      : (careerId
+          ? `${careerId}Civic.json`
+          : (String(role_key || "") + ".json"));
+
+  const pack = await this.loadPack(packFile);
+
+  if (!pack || !Array.isArray(pack.mails) || !pack.mails.length) {
+    const generic = this.makeGenericCareerEvent(
+      active,
+      state,
+      "followup_missing_pack"
+    );
+
+    const decorated = this.decorateWorkMail(
+      generic,
+      active,
+      "followup_missing_pack"
+    );
+
+    this.enqueueEvent(decorated);
     window.dispatchEvent(new Event("updateProfile"));
 
     return {
       enqueued: true,
-      type: "job",
-      event: chosenWithMeta
+      type: "generic",
+      reason: "missing_pack",
+      event: decorated
     };
   }
+
+  const chosen = this.pickEventFromPack(pack, state);
+
+  if (!chosen) {
+    const generic = this.makeGenericCareerEvent(
+      active,
+      state,
+      "followup_no_candidates"
+    );
+
+    const decorated = this.decorateWorkMail(
+      generic,
+      active,
+      "followup_no_candidates"
+    );
+
+    this.enqueueEvent(decorated);
+    window.dispatchEvent(new Event("updateProfile"));
+
+    return {
+      enqueued: true,
+      type: "generic",
+      reason: "no_candidates",
+      event: decorated
+    };
+  }
+
+  const chosenWithMeta = Object.assign({}, chosen, {
+    __pack: {
+      role: pack?.role || null,
+      tag_rules: pack?.tag_rules || null,
+      tracks: Array.isArray(pack?.tracks) ? pack.tracks : []
+    }
+  });
+
+  const decoratedChosen = this.decorateWorkMail(
+    chosenWithMeta,
+    active,
+    "followup"
+  );
+
+  this.enqueueEvent(decoratedChosen);
+  window.dispatchEvent(new Event("updateProfile"));
+
+  return {
+    enqueued: true,
+    type: "job",
+    event: decoratedChosen
+  };
+}
 
   enqueueEvent(eventObj) {
     const inbox = this.getInbox();
