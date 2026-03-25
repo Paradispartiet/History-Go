@@ -660,66 +660,110 @@ class CivicationEventEngine {
   }
 
   makeGenericCareerEvent(active, state, reason) {
-    const careerId = String(active?.career_id || "").trim();
-    const title = String(active?.title || "Rolle").trim() || "Rolle";
-    const career = this.getCareerRules(careerId);
-    const stability = String(state?.stability || "STABLE").toUpperCase();
+  const careerId = String(active?.career_id || "").trim();
+  const title = String(active?.title || "Rolle").trim() || "Rolle";
+  const career = this.getCareerRules(careerId);
+  const stability = String(state?.stability || "STABLE").toUpperCase();
 
-    let stage = "stable";
-    if (stability === "WARNING") stage = "warning";
-    if (stability === "FIRED") stage = "warning_danger";
+  let stage = "stable";
+  if (stability === "WARNING") stage = "warning";
+  if (stability === "FIRED") stage = "warning_danger";
 
-    const diegetic = career?.diegetic_text || {};
-    const intro = Array.isArray(diegetic.offer) ? diegetic.offer[0] : "";
-    const warn = Array.isArray(diegetic.maintenance_warning)
-      ? diegetic.maintenance_warning[0]
-      : "";
+  const diegetic = career?.diegetic_text || {};
+  const intro = Array.isArray(diegetic.offer) ? diegetic.offer[0] : "";
+  const warn = Array.isArray(diegetic.maintenance_warning)
+    ? diegetic.maintenance_warning[0]
+    : "";
 
-    const subject =
-      stage === "warning" || stage === "warning_danger"
-        ? `${title}: situasjonen må avklares`
-        : `${title}: ny arbeidsoppgave`;
+  const subject =
+    stage === "warning" || stage === "warning_danger"
+      ? `${title}: situasjonen må avklares`
+      : `${title}: ny arbeidsoppgave`;
 
-    const tail =
-      reason === "job_accepted"
-        ? "Dette er den første meldingen i rollen din."
-        : "Denne rollen har ikke egen mailpack ennå, så Civication lager en generisk jobbmail.";
+  const tail =
+    reason === "job_accepted"
+      ? "Dette er den første meldingen i rollen din."
+      : "Denne rollen har ikke egen mailpack ennå, så Civication lager en generisk jobbmail.";
 
-    const situation =
-      stage === "warning" || stage === "warning_danger"
-        ? [
-            warn || "Det er friksjon rundt arbeidet ditt.",
-            "Du må velge hvordan du håndterer situasjonen.",
-            tail
-          ]
-        : [
-            intro || "Du får en ny oppgave i rollen din.",
-            "Hvordan du løser den former rollen videre.",
-            tail
-          ];
+  const situation =
+    stage === "warning" || stage === "warning_danger"
+      ? [
+          warn || "Det er friksjon rundt arbeidet ditt.",
+          "Du må velge hvordan du håndterer situasjonen.",
+          tail
+        ]
+      : [
+          intro || "Du får en ny oppgave i rollen din.",
+          "Hvordan du løser den former rollen videre.",
+          tail
+        ];
 
-    const slot = this.getPulseSlot();
-    const today = this.todayKey();
+  return {
+    id: `generic_${careerId || slugify(title)}_${stage}_${Date.now()}`,
+    stage,
+    source: "Civication",
+    subject,
+    situation,
+    mail_tags: ["generic", careerId || "career", reason || "fallback"],
+    choices: this.buildGenericChoices(stage),
+    __pack: {
+      role: careerId || null,
+      tag_rules: {
+        max_tags_per_choice: 2,
+        memory_window: 12
+      },
+      tracks: []
+    }
+  };
+}
 
-    return {
-      id: `generic_${careerId || slugify(title)}_${stage}_${today}_${slot}`,
-      stage,
-      source: "Civication",
-      subject,
-      situation,
-      mail_tags: ["generic", careerId || "career", reason || "fallback"],
-      choices: this.buildGenericChoices(stage),
-      __pack: {
-        role: careerId || null,
-        tag_rules: {
-          max_tags_per_choice: 2,
-          memory_window: 12
-        },
-        tracks: []
-      }
-    };
+  decorateWorkMail(eventObj, active, reason) {
+  if (!eventObj || !active) return eventObj;
+
+  const stage = String(eventObj.stage || "").trim().toLowerCase();
+  if (stage === "warning" || stage === "fired" || stage === "unemployed") {
+    return eventObj;
   }
 
+  try {
+    window.CivicationCalendar?.ensureShiftForActiveJob?.(active);
+  } catch (e) {
+    console.warn("Calendar ensure shift failed", e);
+  }
+
+  const durationMinutes = Math.max(
+    10,
+    Number(eventObj.work_minutes || eventObj.duration_minutes || 45)
+  );
+
+  const windowInfo =
+    window.CivicationCalendar?.getWindow?.(durationMinutes) || null;
+
+  const task =
+    window.CivicationTaskEngine?.ensureTaskForMail?.(
+      eventObj,
+      active,
+      { windowInfo, reason }
+    ) || null;
+
+  return Object.assign({}, eventObj, {
+    task_id: task?.id || eventObj.task_id || null,
+    work_minutes: durationMinutes,
+    work_window: windowInfo,
+    brand_id:
+      String(active?.brand_id || "").trim() ||
+      eventObj.brand_id ||
+      null,
+    brand_name:
+      String(active?.brand_name || "").trim() ||
+      eventObj.brand_name ||
+      null,
+    calendar_label: windowInfo
+      ? `${windowInfo.startsAtLabel}–${windowInfo.deadlineAtLabel}`
+      : null
+  });
+}
+  
   async ensureStoryState() {
     try {
       if (window.CiviStoryResolver?.refresh) {
@@ -897,7 +941,13 @@ class CivicationEventEngine {
         force ? "job_accepted" : "missing_pack"
       );
 
-      this.enqueueEvent(generic);
+      const decorated = this.decorateWorkMail(
+       generic,
+       active,
+       force ? "job_accepted" : "missing_pack"
+      );
+
+      this.enqueueEvent(decorated);
       this.markPulseUsed();
 
       return {
@@ -917,7 +967,13 @@ class CivicationEventEngine {
         force ? "job_accepted" : "no_candidates"
       );
 
-      this.enqueueEvent(generic);
+      const decorated = this.decorateWorkMail(
+       generic,
+       active,
+       force ? "job_accepted" : "no_candidates"
+      );
+
+this.enqueueEvent(decorated);
       this.markPulseUsed();
 
       return {
@@ -936,7 +992,13 @@ class CivicationEventEngine {
       }
     });
 
-    this.enqueueEvent(chosenWithMeta);
+    const decoratedChosen = this.decorateWorkMail(
+     chosenWithMeta,
+     active,
+     force ? "job_accepted" : "scheduled"
+    );
+
+    this.enqueueEvent(decoratedChosen);
     this.markPulseUsed();
     return { enqueued: true, type: "job", event: chosenWithMeta };
   }
@@ -971,7 +1033,13 @@ class CivicationEventEngine {
         "followup_missing_pack"
       );
 
-      this.enqueueEvent(generic);
+      const decorated = this.decorateWorkMail(
+       generic,
+       active,
+       "followup_missing_pack"
+      );
+
+this.enqueueEvent(decorated);
       window.dispatchEvent(new Event("updateProfile"));
 
       return {
@@ -991,7 +1059,13 @@ class CivicationEventEngine {
         "followup_no_candidates"
       );
 
-      this.enqueueEvent(generic);
+      const decorated = this.decorateWorkMail(
+       generic,
+       active,
+       "followup_no_candidates"
+       );
+
+      this.enqueueEvent(decorated);
       window.dispatchEvent(new Event("updateProfile"));
 
       return {
@@ -1010,7 +1084,13 @@ class CivicationEventEngine {
       }
     });
 
-    this.enqueueEvent(chosenWithMeta);
+    const decoratedChosen = this.decorateWorkMail(
+     chosenWithMeta,
+     active,
+     "followup"
+    );
+
+this.enqueueEvent(decoratedChosen);
     window.dispatchEvent(new Event("updateProfile"));
 
     return {
