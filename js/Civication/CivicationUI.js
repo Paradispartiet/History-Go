@@ -54,21 +54,15 @@ function wireCivicationActions() {
   const btnAccept = document.getElementById("btnCiviAccept");
   const btnDecline = document.getElementById("btnCiviDecline");
 
-  if (btnAccept) {
-    btnAccept.onclick = async () => {
-      const offer = window.CivicationJobs?.getLatestPendingOffer?.();
-      if (!offer) return;
+  btnAccept.onclick = () => {
+  const offer = window.CivicationJobs?.getLatestPendingOffer?.();
+  if (!offer) return;
 
-      const res = window.CivicationJobs?.acceptOffer?.(offer.offer_key);
-      if (!res?.ok) return;
+  const res = window.CivicationJobs?.acceptOffer?.(offer.offer_key);
+  if (!res?.ok) return;
 
-      await window.HG_CiviEngine?.onAppOpen?.({
-        force: true,
-        source: "job_accept"
-      });
-
-      window.dispatchEvent(new Event("updateProfile"));
-    };
+  window.dispatchEvent(new Event("updateProfile"));
+};
   }
 
   if (btnDecline) {
