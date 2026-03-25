@@ -1,0 +1,330 @@
+{
+  "brand_id": "norli_universitetsgata",
+  "brand_name": "Norli Universitetsgata",
+  "role": "bokhandler",
+  "knowledge_domains": [
+    "bokhandelshistorie",
+    "forfatterkunnskap",
+    "sjangerforståelse",
+    "oslo-litteratur",
+    "butikkprofil"
+  ],
+  "tag_rules": {
+    "max_tags_per_choice": 2,
+    "memory_window": 12
+  },
+  "tracks": [
+    {
+      "id": "faglighet",
+      "tag_weights": {
+        "craft": 2,
+        "process": 1,
+        "legitimacy": 1
+      }
+    },
+    {
+      "id": "salgspress",
+      "tag_weights": {
+        "shortcut": 2,
+        "visibility": 2,
+        "opportunism": 1
+      }
+    },
+    {
+      "id": "unngaelse",
+      "tag_weights": {
+        "avoidance": 2,
+        "laziness": 2
+      }
+    }
+  ],
+  "mails": [
+    {
+      "id": "norli_shift_001",
+      "stage": "stable",
+      "source": "Butikksjef",
+      "subject": "08:00 – Start dagen ved frontbordet",
+      "situation": [
+        "Du åpner vakten i Norli Universitetsgata.",
+        "Frontbordet skal rigges for kunder som vil ha både klassikere og nyere norske stemmer.",
+        "Du må orientere deg raskt om butikkens profil før dørene åpner."
+      ],
+      "task_kind": "brand_knowledge",
+      "work_minutes": 20,
+      "knowledge_targets": [
+        "norli_universitetsgata",
+        "bokhandelshistorie",
+        "butikkprofil"
+      ],
+      "quiz_targets": [
+        "litteratur"
+      ],
+      "task_payload": {
+        "task_mode": "learning_mission",
+        "prompt": "Sett deg inn i hva som gjør Norli Universitetsgata historisk og hvilken type lesere butikken tiltrekker."
+      },
+      "choices": [
+        {
+          "id": "A",
+          "label": "Start med butikkprofil og historikk",
+          "effect": 1,
+          "tags": ["craft", "process"],
+          "feedback": "Du bygger grunnlag før du begynner å anbefale bøker."
+        },
+        {
+          "id": "B",
+          "label": "Sett ut bestselgere uten å lese deg opp",
+          "effect": 0,
+          "tags": ["shortcut", "visibility"],
+          "feedback": "Det ser effektivt ut, men du vet mindre om hvorfor dette fungerer."
+        },
+        {
+          "id": "C",
+          "label": "Utsett oppgaven og håp at det ordner seg senere",
+          "effect": -1,
+          "tags": ["avoidance", "laziness"],
+          "feedback": "Du starter dagen på etterskudd."
+        }
+      ]
+    },
+    {
+      "id": "norli_shift_002",
+      "stage": "stable",
+      "source": "Kunde",
+      "subject": "08:30 – Jeg vil lese en Oslo-roman",
+      "situation": [
+        "En kunde vil ha en roman som sier noe om Oslo som by og oppvekstmiljø.",
+        "Hun vil ha noe tilgjengelig, men litterært sterkt.",
+        "Du må bruke faktisk forfatterkunnskap."
+      ],
+      "task_kind": "quiz_mission",
+      "work_minutes": 25,
+      "knowledge_targets": [
+        "lars_saabye_christensen",
+        "oslo-litteratur",
+        "norli_universitetsgata"
+      ],
+      "quiz_targets": [
+        "litteratur"
+      ],
+      "task_payload": {
+        "task_mode": "customer_recommendation",
+        "prompt": "Bruk kunnskap om Oslo-litteratur og forfattere knyttet til stedet for å gi et relevant råd."
+      },
+      "choices": [
+        {
+          "id": "A",
+          "label": "Anbefal en Oslo-forfatter med lokal relevans",
+          "effect": 1,
+          "tags": ["craft", "legitimacy"],
+          "feedback": "Du anbefaler med faktisk forankring."
+        },
+        {
+          "id": "B",
+          "label": "Pek bare mot bestselgerhyllen",
+          "effect": 0,
+          "tags": ["visibility", "shortcut"],
+          "feedback": "Det går fort, men er lite presist."
+        },
+        {
+          "id": "C",
+          "label": "Si at du ikke vet og be kunden google",
+          "effect": -2,
+          "tags": ["avoidance", "laziness"],
+          "feedback": "Det undergraver rollen din."
+        }
+      ]
+    },
+    {
+      "id": "norli_shift_003",
+      "stage": "stable",
+      "source": "Butikksjef",
+      "subject": "09:15 – Lag et lite bord for sentrale norske stemmer",
+      "situation": [
+        "Det skal bygges et lite temabord med sentrale norske forfattere.",
+        "Kundene skal skjønne hvorfor disse navnene betyr noe.",
+        "Du må kombinere butikkforståelse og litterær kunnskap."
+      ],
+      "task_kind": "catalog_knowledge",
+      "work_minutes": 30,
+      "knowledge_targets": [
+        "cecilie_enger",
+        "lars_saabye_christensen",
+        "forfatterkunnskap",
+        "butikkprofil"
+      ],
+      "quiz_targets": [
+        "litteratur"
+      ],
+      "task_payload": {
+        "task_mode": "shelf_curating",
+        "prompt": "Bygg et lite kvalitetsutvalg som passer Norli Universitetsgata som historisk bokhandel."
+      },
+      "choices": [
+        {
+          "id": "A",
+          "label": "Lag et kuratert bord med begrunnelse",
+          "effect": 1,
+          "tags": ["craft", "process"],
+          "feedback": "Bordet får tydelig profil og mening."
+        },
+        {
+          "id": "B",
+          "label": "Bruk bare bøker som allerede ligger nærmest",
+          "effect": 0,
+          "tags": ["shortcut", "visibility"],
+          "feedback": "Det fungerer praktisk, men ikke særlig godt."
+        },
+        {
+          "id": "C",
+          "label": "La bordet stå halvferdig",
+          "effect": -1,
+          "tags": ["avoidance", "laziness"],
+          "feedback": "Det ser uferdig og lite gjennomtenkt ut."
+        }
+      ]
+    },
+    {
+      "id": "norli_shift_004",
+      "stage": "stable",
+      "source": "Kunde",
+      "subject": "10:00 – Hva gjør denne bokhandelen spesiell?",
+      "situation": [
+        "En kunde spør hvorfor akkurat denne bokhandelen er kjent i sentrum.",
+        "Hun vil vite om stedet har historie eller bare er enda en butikk.",
+        "Du må svare med faktisk stedskunnskap."
+      ],
+      "task_kind": "brand_knowledge",
+      "work_minutes": 15,
+      "knowledge_targets": [
+        "norli_universitetsgata",
+        "bokhandelshistorie",
+        "forfattere_og_lesere_i_sentrum"
+      ],
+      "quiz_targets": [
+        "litteratur"
+      ],
+      "task_payload": {
+        "task_mode": "brand_history",
+        "prompt": "Forklar kort hvorfor Norli Universitetsgata har en særlig plass i Oslos litterære liv."
+      },
+      "choices": [
+        {
+          "id": "A",
+          "label": "Forklar den historiske rollen i sentrum",
+          "effect": 1,
+          "tags": ["legitimacy", "craft"],
+          "feedback": "Du gir et svar som løfter både stedet og samtalen."
+        },
+        {
+          "id": "B",
+          "label": "Svar bare at den er stor og sentral",
+          "effect": 0,
+          "tags": ["visibility", "shortcut"],
+          "feedback": "Det er ikke feil, men det sier lite."
+        },
+        {
+          "id": "C",
+          "label": "Si at det egentlig ikke spiller noen rolle",
+          "effect": -2,
+          "tags": ["risk", "laziness"],
+          "feedback": "Du undergraver hele butikkens profil."
+        }
+      ]
+    },
+    {
+      "id": "norli_shift_005",
+      "stage": "warning",
+      "source": "Butikksjef",
+      "subject": "11:00 – Du må stramme inn arbeidsformen",
+      "situation": [
+        "Du har begynt å falle bakpå i oppgavene dine.",
+        "Det er fortsatt mulig å hente seg inn, men du må jobbe mer målrettet.",
+        "Nå teller både struktur og faglighet."
+      ],
+      "task_kind": "work_case",
+      "work_minutes": 20,
+      "knowledge_targets": [
+        "butikkprofil",
+        "arbeidsrutine"
+      ],
+      "quiz_targets": [
+        "litteratur"
+      ],
+      "task_payload": {
+        "task_mode": "recovery_plan",
+        "prompt": "Velg en måte å hente deg inn på som faktisk passer rollen."
+      },
+      "choices": [
+        {
+          "id": "A",
+          "label": "Lag en ryddig plan for resten av vakten",
+          "effect": 1,
+          "tags": ["process", "legitimacy"],
+          "feedback": "Du tar grep før situasjonen sklir videre."
+        },
+        {
+          "id": "B",
+          "label": "Prøv å se travel ut og håp at det holder",
+          "effect": 0,
+          "tags": ["visibility", "shortcut"],
+          "feedback": "Det kan fungere kort, men ikke lenge."
+        },
+        {
+          "id": "C",
+          "label": "Trekk deg unna og vent på at vakten går over",
+          "effect": -2,
+          "tags": ["avoidance", "laziness"],
+          "feedback": "Du forverrer situasjonen."
+        }
+      ]
+    },
+    {
+      "id": "norli_shift_006",
+      "stage": "warning_danger",
+      "source": "System",
+      "subject": "11:45 – Kritisk etterslep",
+      "situation": [
+        "Du ligger for langt bak kontraktskravene.",
+        "Det er nå helt avgjørende at du fullfører relevante oppgaver og viser faglig innsats.",
+        "Du er i ferd med å miste stillingen."
+      ],
+      "task_kind": "work_case",
+      "work_minutes": 15,
+      "knowledge_targets": [
+        "arbeidsrutine",
+        "butikkprofil"
+      ],
+      "quiz_targets": [
+        "litteratur"
+      ],
+      "task_payload": {
+        "task_mode": "critical_recovery",
+        "prompt": "Ta et valg som kan stabilisere situasjonen akkurat nå."
+      },
+      "choices": [
+        {
+          "id": "A",
+          "label": "Prioriter den mest faglig relevante oppgaven først",
+          "effect": 1,
+          "tags": ["process", "craft"],
+          "feedback": "Du forsøker å redde det som kan reddes."
+        },
+        {
+          "id": "B",
+          "label": "Ta den enkleste oppgaven for å få noe unna",
+          "effect": 0,
+          "tags": ["shortcut", "visibility"],
+          "feedback": "Det kjøper litt tid, men løser ikke alt."
+        },
+        {
+          "id": "C",
+          "label": "Gi opp og la resten skure",
+          "effect": -2,
+          "tags": ["avoidance", "laziness"],
+          "feedback": "Du lar stillingen gli ut av hendene dine."
+        }
+      ]
+    }
+  ]
+}
