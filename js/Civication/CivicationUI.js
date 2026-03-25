@@ -32,15 +32,16 @@ async function init() {
   renderPublicFeed();
   renderTrackHUD();
 
-   window.addEventListener("updateProfile", () => {
-   renderCivication();
-   renderCivicationInbox();
-   renderWorkdayPanel();
-   renderPsycheDashboard();
-   renderCapital();
-   renderHomeStatus();
-   renderPerception();
-   renderTrackHUD();
+  window.addEventListener("updateProfile", () => {
+    renderCivication();
+    renderCivicationInbox();
+    renderWorkdayPanel();
+    renderPsycheDashboard();
+    renderCapital();
+    renderHomeStatus();
+    renderPerception();
+    renderTrackHUD();
+  });
 
   window.addEventListener("civi:homeChanged", renderHomeStatus);
 }
