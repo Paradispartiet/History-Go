@@ -782,6 +782,23 @@ class CivicationEventEngine {
     };
   }
 
+
+resolvePackFile(active, role_key) {
+  const careerId = String(active?.career_id || "").trim();
+  const brandId = String(active?.brand_id || "").trim();
+
+  if (brandId) {
+    return `${brandId}Civic.json`;
+  }
+
+  return (this.packMap && this.packMap[careerId])
+    ? this.packMap[careerId]
+    : (careerId
+        ? `${careerId}Civic.json`
+        : (String(role_key || "") + ".json"));
+}
+  
+  
   // -------- main entrypoint --------
 
   async onAppOpen(opts = {}) {
@@ -925,12 +942,7 @@ class CivicationEventEngine {
 
 const careerId = String(active.career_id || "").trim();
 
-const packFile =
-  (this.packMap && this.packMap[careerId])
-    ? this.packMap[careerId]
-    : (careerId
-        ? `${careerId}Civic.json`
-        : (String(role_key || "") + ".json"));
+const packFile = this.resolvePackFile(active, role_key);
 
 const pack = await this.loadPack(packFile);
 
@@ -1031,12 +1043,7 @@ async enqueueImmediateFollowupEvent() {
   const state = this.getState();
   const careerId = String(active.career_id || "").trim();
 
-  const packFile =
-    (this.packMap && this.packMap[careerId])
-      ? this.packMap[careerId]
-      : (careerId
-          ? `${careerId}Civic.json`
-          : (String(role_key || "") + ".json"));
+  const packFile = this.resolvePackFile(active, role_key);
 
   const pack = await this.loadPack(packFile);
 
