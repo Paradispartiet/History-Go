@@ -1397,6 +1397,32 @@ this.enqueueEvent(decoratedChosen);
       console.warn("Event response registration failed", e);
     }
 
+    try {
+     const completedTask =
+      window.CivicationTaskEngine?.completeByMail?.(
+        ev.id,
+        {
+         choiceId: choiceId || null,
+         effect: effect,
+         feedback: feedback
+       }
+     ) || null;
+
+      const spentMinutes = Math.max(
+       5,
+       Number(
+        completedTask?.durationMinutes ||
+        ev?.work_minutes ||
+        ev?.duration_minutes ||
+        45
+      )
+    );
+
+    window.CivicationCalendar?.advanceByMinutes?.(spentMinutes);
+  } catch (e) {
+    console.warn("Task/calendar completion failed", e);
+  }
+    
     if (stability === "FIRED") {
       const prev = window.CivicationState.getActivePosition();
       const currentState = this.getState();
