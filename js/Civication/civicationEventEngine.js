@@ -1134,6 +1134,69 @@ async enqueueImmediateFollowupEvent() {
     this.setInbox(next);
   }
 
+getStoredTaskResult(taskId) {
+  if (!taskId) return null;
+
+  try {
+    const raw = JSON.parse(
+      localStorage.getItem("hg_civi_task_results_v1") || "{}"
+    );
+
+    return raw && typeof raw === "object"
+      ? (raw[taskId] || null)
+      : null;
+  } catch {
+    return null;
+  }
+}
+
+getTaskResultModifier(ev) {
+  const interaction = ev?.task_payload?.interaction || null;
+
+  // Ingen interaktiv oppgave => ingen modifikator
+  if (!interaction) {
+    return {
+      delta: 0,
+      state: "none",
+      feedbackSuffix: ""
+    };
+  }
+
+  const taskId = String(ev?.task_id || "").trim();
+  const result = this.getStoredTaskResult(taskId);
+
+  // Oppgaven finnes, men kunnskapsdelen er ikke gjort
+  if (!result || !result.selected) {
+    return {
+      delta: -1,
+      state: "not_done",
+      feedbackSuffix: "Du svarte uten å fullføre kunnskapsdelen først."
+    };
+  }
+
+  if (result.correct === true) {
+    return {
+      delta: 1,
+      state: "passed",
+      feedbackSuffix: "Du hadde også løst kunnskapsdelen riktig."
+    };
+  }
+
+  if (result.correct === false) {
+    return {
+      delta: -1,
+      state: "failed",
+      feedbackSuffix: "Kunnskapsdelen ble ikke løst riktig."
+    };
+  }
+
+  return {
+    delta: 0,
+    state: "unknown",
+    feedbackSuffix: ""
+  };
+}
+  
   answer(eventId, choiceId) {
     const inbox = this.getInbox();
 
@@ -1204,7 +1267,15 @@ async enqueueImmediateFollowupEvent() {
 
       effect = Math.round(baseEffect);
       feedback = String(choice.feedback || "");
-    }
+
+      const taskMod = this.getTaskResultModifier(ev);
+      effect += Number(taskMod.delta || 0);
+
+      if (taskMod.feedbackSuffix) {
+       feedback = feedback
+        ? `${feedback} ${taskMod.feedbackSuffix}`
+        : taskMod.feedbackSuffix;
+      }
 
     const packMeta = (ev && ev.__pack) ? ev.__pack : {};
     const tagRules = packMeta.tag_rules || {};
