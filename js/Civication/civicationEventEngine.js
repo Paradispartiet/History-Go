@@ -788,7 +788,7 @@ resolvePackFile(active, role_key) {
   const brandId = String(active?.brand_id || "").trim();
 
   if (brandId) {
-    return `brand/${brandId}Civic.json`;
+    return `${brandId}Civic.json`;
   }
 
   return (this.packMap && this.packMap[careerId])
