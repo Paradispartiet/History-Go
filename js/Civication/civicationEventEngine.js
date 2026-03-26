@@ -1599,10 +1599,11 @@ getTaskResultModifier(ev) {
     }
 
     return {
-      ok: true,
-      effect: effect,
-      stability: stability,
-      feedback: feedback
+     ok: true,
+     effect: effect,
+     stability: stability,
+     feedback: feedback,
+     taskResultState: (typeof taskMod !== "undefined" ? taskMod.state : "none")
     };
   }
 
