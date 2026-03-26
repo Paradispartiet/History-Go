@@ -1,0 +1,777 @@
+{
+  "brand_id": "norli",
+  "brand_name": "Norli",
+  "role": "bokhandler",
+  "knowledge_domains": [
+    "bokhandelshistorie",
+    "forfatterkunnskap",
+    "sjangerforståelse",
+    "oslo-litteratur",
+    "butikkprofil"
+  ],
+  "tag_rules": {
+    "max_tags_per_choice": 2,
+    "memory_window": 12
+  },
+  "tracks": [
+    {
+      "id": "faglighet",
+      "tag_weights": {
+        "craft": 2,
+        "process": 1,
+        "legitimacy": 1
+      }
+    },
+    {
+      "id": "salgspress",
+      "tag_weights": {
+        "shortcut": 2,
+        "visibility": 2,
+        "opportunism": 1
+      }
+    },
+    {
+      "id": "unngaelse",
+      "tag_weights": {
+        "avoidance": 2,
+        "laziness": 2
+      }
+    }
+  ],
+  "mails": [
+    {
+      "id": "norli_shift_001",
+      "stage": "stable",
+      "source": "Butikksjef",
+      "source_type": "boss",
+      "source_id": "sjef_norli_universitetsgata",
+      "source_name": "Butikksjef",
+      "mail_type": "assignment",
+      "subject": "08:00 – Start dagen ved frontbordet",
+      "situation": [
+        "Du åpner vakten i Norli Universitetsgata.",
+        "Frontbordet skal rigges for kunder som vil ha både klassikere og nyere norske stemmer.",
+        "Du må orientere deg raskt om butikkens profil før dørene åpner."
+      ],
+      "task_kind": "brand_knowledge",
+      "work_minutes": 20,
+      "knowledge_targets": [
+        "norli_universitetsgata",
+        "bokhandelshistorie",
+        "butikkprofil"
+      ],
+      "quiz_targets": [
+        "litteratur"
+      ],
+      "task_payload": {
+        "task_mode": "learning_mission",
+        "prompt": "Sett deg inn i hva som gjør Norli Universitetsgata historisk og hvilken type lesere butikken tiltrekker.",
+        "relevant_places": [
+          "norli_universitetsgata"
+        ],
+        "relevant_people": [],
+        "relevant_quizzes": [
+          "litteratur"
+        ]
+      },
+      "choices": [
+        {
+          "id": "A",
+          "label": "Start med butikkprofil og historikk",
+          "effect": 1,
+          "tags": [
+            "craft",
+            "process"
+          ],
+          "feedback": "Du bygger grunnlag før du begynner å anbefale bøker."
+        },
+        {
+          "id": "B",
+          "label": "Sett ut bestselgere uten å lese deg opp",
+          "effect": 0,
+          "tags": [
+            "shortcut",
+            "visibility"
+          ],
+          "feedback": "Det ser effektivt ut, men du vet mindre om hvorfor dette fungerer."
+        },
+        {
+          "id": "C",
+          "label": "Utsett oppgaven og håp at det ordner seg senere",
+          "effect": -1,
+          "tags": [
+            "avoidance",
+            "laziness"
+          ],
+          "feedback": "Du starter dagen på etterskudd."
+        }
+      ]
+    },
+    {
+      "id": "norli_shift_002",
+      "stage": "stable",
+      "source": "Kunde",
+      "source_type": "person",
+      "source_id": "kunde_oslo_roman",
+      "source_name": "Kunde i butikken",
+      "mail_type": "request",
+      "subject": "08:30 – Jeg vil lese en Oslo-roman",
+      "situation": [
+        "En kunde vil ha en roman som sier noe om Oslo som by og oppvekstmiljø.",
+        "Hun vil ha noe tilgjengelig, men litterært sterkt.",
+        "Du må bruke faktisk forfatterkunnskap."
+      ],
+      "task_kind": "quiz_mission",
+      "work_minutes": 25,
+      "person_name": "Kunde i butikken",
+      "problem_type": "needs_recommendation",
+      "problem_text": "Vil ha en Oslo-roman med sterk byforankring, men som fortsatt er lesbar og tilgjengelig.",
+      "knowledge_targets": [
+        "lars_saabye_christensen",
+        "oslo-litteratur",
+        "norli_universitetsgata"
+      ],
+      "quiz_targets": [
+        "litteratur"
+      ],
+      "task_payload": {
+        "task_mode": "customer_recommendation",
+        "prompt": "Bruk kunnskap om Oslo-litteratur og forfattere knyttet til stedet for å gi et relevant råd.",
+        "relevant_places": [
+          "norli_universitetsgata"
+        ],
+        "relevant_people": [
+          "lars_saabye_christensen"
+        ],
+        "relevant_quizzes": [
+          "litteratur"
+        ],
+        "interaction": {
+          "type": "single_choice",
+          "question": "Hvilken forfatter passer best hvis kunden vil ha en sterk Oslo-roman med tydelig byforankring?",
+          "options": [
+            {
+              "id": "A",
+              "label": "Lars Saabye Christensen"
+            },
+            {
+              "id": "B",
+              "label": "Camilla Collett"
+            },
+            {
+              "id": "C",
+              "label": "Henrik Wergeland"
+            }
+          ],
+          "correct": "A",
+          "success_feedback": "Riktig. Lars Saabye Christensen er den mest direkte Oslo-forbindelsen her.",
+          "failure_feedback": "Ikke helt. Tenk på hvem som er tydeligst knyttet til Oslo-romanen og til Norli Universitetsgata."
+        }
+      },
+      "choices": [
+        {
+          "id": "A",
+          "label": "Anbefal en Oslo-forfatter med lokal relevans",
+          "effect": 1,
+          "tags": [
+            "craft",
+            "legitimacy"
+          ],
+          "feedback": "Du anbefaler med faktisk forankring."
+        },
+        {
+          "id": "B",
+          "label": "Pek bare mot bestselgerhyllen",
+          "effect": 0,
+          "tags": [
+            "visibility",
+            "shortcut"
+          ],
+          "feedback": "Det går fort, men er lite presist."
+        },
+        {
+          "id": "C",
+          "label": "Si at du ikke vet og be kunden google",
+          "effect": -2,
+          "tags": [
+            "avoidance",
+            "laziness"
+          ],
+          "feedback": "Det undergraver rollen din."
+        }
+      ]
+    },
+    {
+      "id": "norli_shift_003",
+      "stage": "stable",
+      "source": "Butikksjef",
+      "source_type": "boss",
+      "source_id": "sjef_norli_universitetsgata",
+      "source_name": "Butikksjef",
+      "mail_type": "assignment",
+      "subject": "09:15 – Lag et lite bord for sentrale norske stemmer",
+      "situation": [
+        "Det skal bygges et lite temabord med sentrale norske forfattere.",
+        "Kundene skal skjønne hvorfor disse navnene betyr noe.",
+        "Du må kombinere butikkforståelse og litterær kunnskap."
+      ],
+      "task_kind": "catalog_knowledge",
+      "work_minutes": 30,
+      "knowledge_targets": [
+        "cecilie_enger",
+        "lars_saabye_christensen",
+        "forfatterkunnskap",
+        "butikkprofil"
+      ],
+      "quiz_targets": [
+        "litteratur"
+      ],
+      "task_payload": {
+        "task_mode": "shelf_curating",
+        "prompt": "Bygg et lite kvalitetsutvalg som passer Norli Universitetsgata som historisk bokhandel.",
+        "relevant_places": [
+          "norli_universitetsgata"
+        ],
+        "relevant_people": [
+          "lars_saabye_christensen",
+          "cecilie_enger"
+        ],
+        "relevant_quizzes": [
+          "litteratur"
+        ]
+      },
+      "choices": [
+        {
+          "id": "A",
+          "label": "Lag et kuratert bord med begrunnelse",
+          "effect": 1,
+          "tags": [
+            "craft",
+            "process"
+          ],
+          "feedback": "Bordet får tydelig profil og mening."
+        },
+        {
+          "id": "B",
+          "label": "Bruk bare bøker som allerede ligger nærmest",
+          "effect": 0,
+          "tags": [
+            "shortcut",
+            "visibility"
+          ],
+          "feedback": "Det fungerer praktisk, men ikke særlig godt."
+        },
+        {
+          "id": "C",
+          "label": "La bordet stå halvferdig",
+          "effect": -1,
+          "tags": [
+            "avoidance",
+            "laziness"
+          ],
+          "feedback": "Det ser uferdig og lite gjennomtenkt ut."
+        }
+      ]
+    },
+    {
+      "id": "norli_shift_004",
+      "stage": "stable",
+      "source": "Kunde",
+      "source_type": "person",
+      "source_id": "kunde_butikkhistorie",
+      "source_name": "Kunde i butikken",
+      "mail_type": "request",
+      "subject": "10:00 – Hva gjør denne bokhandelen spesiell?",
+      "situation": [
+        "En kunde spør hvorfor akkurat denne bokhandelen er kjent i sentrum.",
+        "Hun vil vite om stedet har historie eller bare er enda en butikk.",
+        "Du må svare med faktisk stedskunnskap."
+      ],
+      "task_kind": "brand_knowledge",
+      "work_minutes": 15,
+      "person_name": "Kunde i butikken",
+      "problem_type": "needs_history_context",
+      "problem_text": "Vil forstå hvorfor akkurat denne bokhandelen har en spesiell plass i byen.",
+      "knowledge_targets": [
+        "norli_universitetsgata",
+        "bokhandelshistorie",
+        "forfattere_og_lesere_i_sentrum"
+      ],
+      "quiz_targets": [
+        "litteratur"
+      ],
+      "task_payload": {
+        "task_mode": "brand_history",
+        "prompt": "Forklar kort hvorfor Norli Universitetsgata har en særlig plass i Oslos litterære liv.",
+        "relevant_places": [
+          "norli_universitetsgata"
+        ],
+        "relevant_people": [],
+        "relevant_quizzes": [
+          "litteratur"
+        ]
+      },
+      "choices": [
+        {
+          "id": "A",
+          "label": "Forklar den historiske rollen i sentrum",
+          "effect": 1,
+          "tags": [
+            "legitimacy",
+            "craft"
+          ],
+          "feedback": "Du gir et svar som løfter både stedet og samtalen."
+        },
+        {
+          "id": "B",
+          "label": "Svar bare at den er stor og sentral",
+          "effect": 0,
+          "tags": [
+            "visibility",
+            "shortcut"
+          ],
+          "feedback": "Det er ikke feil, men det sier lite."
+        },
+        {
+          "id": "C",
+          "label": "Si at det egentlig ikke spiller noen rolle",
+          "effect": -2,
+          "tags": [
+            "risk",
+            "laziness"
+          ],
+          "feedback": "Du undergraver hele butikkens profil."
+        }
+      ]
+    },
+    {
+      "id": "norli_shift_005",
+      "stage": "warning",
+      "source": "Butikksjef",
+      "source_type": "boss",
+      "source_id": "sjef_norli_universitetsgata",
+      "source_name": "Butikksjef",
+      "mail_type": "warning",
+      "subject": "11:00 – Du må stramme inn arbeidsformen",
+      "situation": [
+        "Du har begynt å falle bakpå i oppgavene dine.",
+        "Det er fortsatt mulig å hente seg inn, men du må jobbe mer målrettet.",
+        "Nå teller både struktur og faglighet."
+      ],
+      "task_kind": "work_case",
+      "work_minutes": 20,
+      "knowledge_targets": [
+        "butikkprofil",
+        "arbeidsrutine"
+      ],
+      "quiz_targets": [
+        "litteratur"
+      ],
+      "task_payload": {
+        "task_mode": "recovery_plan",
+        "prompt": "Velg en måte å hente deg inn på som faktisk passer rollen."
+      },
+      "choices": [
+        {
+          "id": "A",
+          "label": "Lag en ryddig plan for resten av vakten",
+          "effect": 1,
+          "tags": [
+            "process",
+            "legitimacy"
+          ],
+          "feedback": "Du tar grep før situasjonen sklir videre."
+        },
+        {
+          "id": "B",
+          "label": "Prøv å se travel ut og håp at det holder",
+          "effect": 0,
+          "tags": [
+            "visibility",
+            "shortcut"
+          ],
+          "feedback": "Det kan fungere kort, men ikke lenge."
+        },
+        {
+          "id": "C",
+          "label": "Trekk deg unna og vent på at vakten går over",
+          "effect": -2,
+          "tags": [
+            "avoidance",
+            "laziness"
+          ],
+          "feedback": "Du forverrer situasjonen."
+        }
+      ]
+    },
+    {
+      "id": "norli_shift_006",
+      "stage": "warning_danger",
+      "source": "System",
+      "source_type": "system",
+      "source_id": "civication_system",
+      "source_name": "Civication",
+      "mail_type": "critical",
+      "subject": "11:45 – Kritisk etterslep",
+      "situation": [
+        "Du ligger for langt bak kontraktskravene.",
+        "Det er nå helt avgjørende at du fullfører relevante oppgaver og viser faglig innsats.",
+        "Du er i ferd med å miste stillingen."
+      ],
+      "task_kind": "work_case",
+      "work_minutes": 15,
+      "knowledge_targets": [
+        "arbeidsrutine",
+        "butikkprofil"
+      ],
+      "quiz_targets": [
+        "litteratur"
+      ],
+      "task_payload": {
+        "task_mode": "critical_recovery",
+        "prompt": "Ta et valg som kan stabilisere situasjonen akkurat nå."
+      },
+      "choices": [
+        {
+          "id": "A",
+          "label": "Prioriter den mest faglig relevante oppgaven først",
+          "effect": 1,
+          "tags": [
+            "process",
+            "craft"
+          ],
+          "feedback": "Du forsøker å redde det som kan reddes."
+        },
+        {
+          "id": "B",
+          "label": "Ta den enkleste oppgaven for å få noe unna",
+          "effect": 0,
+          "tags": [
+            "shortcut",
+            "visibility"
+          ],
+          "feedback": "Det kjøper litt tid, men løser ikke alt."
+        },
+        {
+          "id": "C",
+          "label": "Gi opp og la resten skure",
+          "effect": -2,
+          "tags": [
+            "avoidance",
+            "laziness"
+          ],
+          "feedback": "Du lar stillingen gli ut av hendene dine."
+        }
+      ]
+    },
+    {
+      "id": "norli_shift_007",
+      "stage": "stable",
+      "source": "Butikksjef",
+      "source_type": "boss",
+      "source_id": "sjef_norli_universitetsgata",
+      "source_name": "Butikksjef",
+      "mail_type": "assignment",
+      "subject": "10:30 – Hjelp en kunde som ikke vet hvor hun skal begynne",
+      "situation": [
+        "En kunde står lenge foran bordet med norske romaner uten å velge noe.",
+        "Hun sier at hun vil ha noe godt, men vet ikke om hun vil ha noe varmt, mørkt eller krevende.",
+        "Du må først forstå hva hun faktisk trenger før du anbefaler noe."
+      ],
+      "task_kind": "person_help",
+      "work_minutes": 20,
+      "person_name": "Usikker kunde",
+      "problem_type": "needs_orientation",
+      "problem_text": "Kunden trenger hjelp til å forstå hva slags bok hun faktisk er ute etter.",
+      "knowledge_targets": [
+        "butikkprofil",
+        "sjangerforståelse",
+        "forfatterkunnskap"
+      ],
+      "quiz_targets": [
+        "litteratur"
+      ],
+      "task_payload": {
+        "task_mode": "person_help",
+        "prompt": "Still deg spørsmålet: Hva trenger denne leseren egentlig hjelp til å velge?",
+        "relevant_places": [
+          "norli_universitetsgata"
+        ],
+        "relevant_people": [
+          "lars_saabye_christensen",
+          "cecilie_enger"
+        ],
+        "relevant_quizzes": [
+          "litteratur"
+        ]
+      },
+      "choices": [
+        {
+          "id": "A",
+          "label": "Spør hva slags stemning og leserfaring hun ønsker",
+          "effect": 1,
+          "tags": [
+            "craft",
+            "process"
+          ],
+          "feedback": "Du forsøker å forstå behovet før du anbefaler."
+        },
+        {
+          "id": "B",
+          "label": "Pek mot bestselgerhyllen med en gang",
+          "effect": 0,
+          "tags": [
+            "shortcut",
+            "visibility"
+          ],
+          "feedback": "Det er effektivt, men lite presist."
+        },
+        {
+          "id": "C",
+          "label": "La henne stå litt til og håp hun velger selv",
+          "effect": -1,
+          "tags": [
+            "avoidance",
+            "laziness"
+          ],
+          "feedback": "Du unngår oppgaven i stedet for å hjelpe."
+        }
+      ]
+    },
+    {
+      "id": "norli_shift_008",
+      "stage": "stable",
+      "source": "Student",
+      "source_type": "person",
+      "source_id": "student_modern_norsk",
+      "source_name": "Student",
+      "mail_type": "request",
+      "subject": "10:50 – Jeg trenger en inngang til moderne norsk litteratur",
+      "situation": [
+        "En student vil begynne å lese mer norsk samtidslitteratur.",
+        "Hun vil ha noe som føles viktig, men som ikke er utilgjengelig.",
+        "Du må gi en faglig god start, ikke bare peke på noe populært."
+      ],
+      "task_kind": "customer_recommendation",
+      "work_minutes": 25,
+      "person_name": "Student",
+      "problem_type": "needs_explanation",
+      "problem_text": "Studenten trenger en lesbar, men seriøs inngang til moderne norsk litteratur.",
+      "knowledge_targets": [
+        "cecilie_enger",
+        "lars_saabye_christensen",
+        "forfatterkunnskap",
+        "butikkprofil"
+      ],
+      "quiz_targets": [
+        "litteratur"
+      ],
+      "task_payload": {
+        "task_mode": "customer_recommendation",
+        "prompt": "Velg en forfatter eller bok som fungerer som inngang til moderne norsk litteratur.",
+        "relevant_places": [
+          "norli_universitetsgata"
+        ],
+        "relevant_people": [
+          "lars_saabye_christensen",
+          "cecilie_enger"
+        ],
+        "relevant_quizzes": [
+          "litteratur"
+        ],
+        "interaction": {
+          "type": "single_choice",
+          "question": "Hvem passer best som en lesbar, men sterk inngang til moderne norsk litteratur i denne settingen?",
+          "options": [
+            {
+              "id": "A",
+              "label": "Lars Saabye Christensen"
+            },
+            {
+              "id": "B",
+              "label": "Henrik Wergeland"
+            },
+            {
+              "id": "C",
+              "label": "Johan Ludvig Runeberg"
+            }
+          ],
+          "correct": "A",
+          "success_feedback": "Riktig. Dette er den mest direkte og relevante inngangen i denne butikk- og Oslo-konteksten.",
+          "failure_feedback": "Ikke helt. Tenk mer på samtid, tilgjengelighet og Oslo-forankring."
+        }
+      },
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gi en begrunnet anbefaling med lokal og litterær forankring",
+          "effect": 1,
+          "tags": [
+            "craft",
+            "legitimacy"
+          ],
+          "feedback": "Du anbefaler med faktisk faglig grunnlag."
+        },
+        {
+          "id": "B",
+          "label": "Velg noe kjent uten å forklare hvorfor",
+          "effect": 0,
+          "tags": [
+            "visibility",
+            "shortcut"
+          ],
+          "feedback": "Det kan fungere, men forklaringen mangler."
+        },
+        {
+          "id": "C",
+          "label": "Be studenten lese seg opp selv før du anbefaler noe",
+          "effect": -2,
+          "tags": [
+            "avoidance",
+            "risk"
+          ],
+          "feedback": "Du svikter rollen som kunnskapsmedarbeider."
+        }
+      ]
+    },
+    {
+      "id": "norli_shift_009",
+      "stage": "stable",
+      "source": "Cecilie Enger",
+      "source_type": "relation",
+      "source_id": "cecilie_enger",
+      "source_name": "Cecilie Enger",
+      "mail_type": "request",
+      "subject": "11:15 – Kan dere lage en liten synlig profilering?",
+      "situation": [
+        "Det kommer en henvendelse knyttet til et mulig lite litterært arrangement eller en anbefalt plassering i butikken.",
+        "Dette må håndteres med både faglighet og butikkforståelse.",
+        "Du må foreslå en profilering som virker troverdig i Norli Universitetsgata."
+      ],
+      "task_kind": "relation_request",
+      "work_minutes": 20,
+      "person_name": "Cecilie Enger",
+      "problem_type": "needs_curating",
+      "problem_text": "Du må lage en liten, troverdig profilering rundt et litterært navn knyttet til butikken.",
+      "knowledge_targets": [
+        "cecilie_enger",
+        "norli_universitetsgata",
+        "butikkprofil",
+        "forfatterkunnskap"
+      ],
+      "quiz_targets": [
+        "litteratur"
+      ],
+      "task_payload": {
+        "task_mode": "relation_request",
+        "prompt": "Hvordan lager du en liten profilering som passer butikkens identitet og faktisk virker gjennomtenkt?",
+        "relevant_places": [
+          "norli_universitetsgata"
+        ],
+        "relevant_people": [
+          "cecilie_enger"
+        ],
+        "relevant_quizzes": [
+          "litteratur"
+        ]
+      },
+      "choices": [
+        {
+          "id": "A",
+          "label": "Lag en liten, tydelig og faglig begrunnet profilering",
+          "effect": 1,
+          "tags": [
+            "craft",
+            "legitimacy"
+          ],
+          "feedback": "Du behandler henvendelsen som en del av butikkens litterære troverdighet."
+        },
+        {
+          "id": "B",
+          "label": "Sett ut noen bøker raskt uten tydelig idé",
+          "effect": 0,
+          "tags": [
+            "visibility",
+            "shortcut"
+          ],
+          "feedback": "Det blir synlig, men ikke særlig overbevisende."
+        },
+        {
+          "id": "C",
+          "label": "Skyv forespørselen til side og prioriter noe annet",
+          "effect": -2,
+          "tags": [
+            "avoidance",
+            "laziness"
+          ],
+          "feedback": "Du lar en viktig relasjon og profilering glippe."
+        }
+      ]
+    },
+    {
+      "id": "norli_shift_010",
+      "stage": "stable",
+      "source": "Civication",
+      "source_type": "system",
+      "source_id": "civication_system",
+      "source_name": "Civication",
+      "mail_type": "feedback",
+      "subject": "11:45 – Første vurdering av vakten",
+      "situation": [
+        "Systemet oppsummerer hvordan du ligger an før resten av dagen.",
+        "Du får ikke full rapport, men en tydelig pekepinn på om du holder tempo og faglig nivå.",
+        "Dette er første steg mot en egentlig dagsvurdering."
+      ],
+      "task_kind": "internal_store_task",
+      "work_minutes": 10,
+      "knowledge_targets": [
+        "arbeidsrutine",
+        "butikkprofil"
+      ],
+      "quiz_targets": [
+        "litteratur"
+      ],
+      "task_payload": {
+        "task_mode": "feedback_check",
+        "prompt": "Les vurderingen som en statusnode, ikke som en vanlig kundeoppgave.",
+        "relevant_places": [
+          "norli_universitetsgata"
+        ],
+        "relevant_people": [],
+        "relevant_quizzes": []
+      },
+      "choices": [
+        {
+          "id": "A",
+          "label": "Registrer vurderingen og juster arbeidsformen",
+          "effect": 1,
+          "tags": [
+            "process",
+            "legitimacy"
+          ],
+          "feedback": "Du bruker vurderingen til å stabilisere resten av vakten."
+        },
+        {
+          "id": "B",
+          "label": "Registrer den, men fortsett omtrent som før",
+          "effect": 0,
+          "tags": [
+            "visibility",
+            "shortcut"
+          ],
+          "feedback": "Du tar den til deg, men uten tydelig kursendring."
+        },
+        {
+          "id": "C",
+          "label": "Ignorer vurderingen og håp det går over",
+          "effect": -1,
+          "tags": [
+            "avoidance",
+            "laziness"
+          ],
+          "feedback": "Du lar signalet passere uten å bruke det."
+        }
+      ]
+    }
+  ]
+}
