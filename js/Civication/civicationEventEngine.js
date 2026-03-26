@@ -1216,66 +1216,72 @@ getTaskResultModifier(ev) {
     const state = this.getState();
 
     let effect = 0;
-    let feedback = "";
-    let choice = null;
+let feedback = "";
+let choice = null;
+let taskMod = {
+  delta: 0,
+  state: "none",
+  feedbackSuffix: ""
+};
 
-    if (Array.isArray(ev.choices) && ev.choices.length) {
-      choice = ev.choices.find(function (c) {
-        return c && c.id === choiceId;
-      });
+if (Array.isArray(ev.choices) && ev.choices.length) {
+  choice = ev.choices.find(function (c) {
+    return c && c.id === choiceId;
+  });
 
-      if (!choice) {
-        return { ok: false, reason: "bad_choice" };
-      }
+  if (!choice) {
+    return { ok: false, reason: "bad_choice" };
+  }
 
-      if (choice.moral_flag === true) {
-        const active = window.CivicationState.getActivePosition();
-        if (active && active.career_id &&
-            window.CivicationPsyche &&
-            typeof window.CivicationPsyche.registerCollapse === "function") {
-          window.CivicationPsyche.registerCollapse(active.career_id, "moral");
-        }
-      }
+  if (choice.moral_flag === true) {
+    const active = window.CivicationState.getActivePosition();
+    if (active && active.career_id &&
+        window.CivicationPsyche &&
+        typeof window.CivicationPsyche.registerCollapse === "function") {
+      window.CivicationPsyche.registerCollapse(active.career_id, "moral");
+    }
+  }
 
-      try {
-        const tags =
-          Array.isArray(choice.tags) ? choice.tags : [];
+  try {
+    const tags =
+      Array.isArray(choice.tags) ? choice.tags : [];
 
-        if (tags.length &&
-            window.HG_Lifestyle &&
-            typeof window.HG_Lifestyle.addTags === "function") {
-          window.HG_Lifestyle.addTags(tags, "civication_choice");
-        }
+    if (tags.length &&
+        window.HG_Lifestyle &&
+        typeof window.HG_Lifestyle.addTags === "function") {
+      window.HG_Lifestyle.addTags(tags, "civication_choice");
+    }
 
-      } catch (e) {}
+  } catch (e) {}
 
-      let baseEffect = Number(choice.effect || 0);
+  let baseEffect = Number(choice.effect || 0);
 
-      let autonomy = 50;
-      if (window.CivicationPsyche &&
-          typeof window.CivicationPsyche.getAutonomy === "function") {
-        autonomy = window.CivicationPsyche.getAutonomy(state.active_role_key);
-      }
+  let autonomy = 50;
+  if (window.CivicationPsyche &&
+      typeof window.CivicationPsyche.getAutonomy === "function") {
+    autonomy = window.CivicationPsyche.getAutonomy(state.active_role_key);
+  }
 
-      if (baseEffect < 0 && autonomy < 30) {
-        baseEffect = baseEffect * 1.5;
-      }
+  if (baseEffect < 0 && autonomy < 30) {
+    baseEffect = baseEffect * 1.5;
+  }
 
-      if (baseEffect < 0 && autonomy > 70) {
-        baseEffect = baseEffect * 0.7;
-      }
+  if (baseEffect < 0 && autonomy > 70) {
+    baseEffect = baseEffect * 0.7;
+  }
 
-      effect = Math.round(baseEffect);
-      feedback = String(choice.feedback || "");
+  effect = Math.round(baseEffect);
+  feedback = String(choice.feedback || "");
 
-      const taskMod = this.getTaskResultModifier(ev);
-      effect += Number(taskMod.delta || 0);
+  taskMod = this.getTaskResultModifier(ev);
+  effect += Number(taskMod.delta || 0);
 
-      if (taskMod.feedbackSuffix) {
-       feedback = feedback
-        ? `${feedback} ${taskMod.feedbackSuffix}`
-        : taskMod.feedbackSuffix;
-      }
+  if (taskMod.feedbackSuffix) {
+    feedback = feedback
+      ? `${feedback} ${taskMod.feedbackSuffix}`
+      : taskMod.feedbackSuffix;
+  }
+}
 
     const packMeta = (ev && ev.__pack) ? ev.__pack : {};
     const tagRules = packMeta.tag_rules || {};
@@ -1599,12 +1605,12 @@ getTaskResultModifier(ev) {
     }
 
     return {
-     ok: true,
-     effect: effect,
-     stability: stability,
-     feedback: feedback,
-     taskResultState: (typeof taskMod !== "undefined" ? taskMod.state : "none")
-    };
+  ok: true,
+  effect: effect,
+  stability: stability,
+  feedback: feedback,
+  taskResultState: taskMod.state
+};
   }
 
 }
