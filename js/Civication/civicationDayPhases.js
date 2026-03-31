@@ -366,7 +366,11 @@
 
     proto.answer = function (eventId, choiceId) {
       const pending = this.getPendingEvent ? this.getPendingEvent() : null;
-      const phaseTag = pending?.event?.phase_tag || null;
+      const inferredPhaseTag =
+        pending?.event?.phase_tag ||
+        (window.CivicationCalendar?.getPhase?.() === "morning" ? "morning" : null);
+
+      const phaseTag = inferredPhaseTag;
 
       let originalFollowup = null;
       if (phaseTag && typeof this.enqueueImmediateFollowupEvent === "function") {
