@@ -804,6 +804,91 @@ function pickStoreContext(active, phaseTag) {
   };
 }
   
+function getCareerStorePool(active) {
+  const careerId = String(active?.career_id || "").trim();
+  const visitedCount = getVisitedPlacesCount();
+
+  const allStores = [
+    {
+      id: "street_shop_generic",
+      name: "Gatebutikken",
+      type: "clothing",
+      blurb: "Trygge valg. Mye logo. Litt sjel.",
+      careers: ["subkultur", "populaerkultur", "musikk"]
+    },
+    {
+      id: "work_shop_generic",
+      name: "Arbeidsklær & Verktøy",
+      type: "clothing",
+      blurb: "Alt som tåler regn, kaffe og mellomlederblikk.",
+      careers: ["naeringsliv", "by"]
+    },
+    {
+      id: "hifi_shop_generic",
+      name: "Hi-Fi & Lyd",
+      type: "tech",
+      blurb: "Du hører forskjell. (Du kommer til å si at du gjør det.)",
+      careers: ["musikk", "vitenskap"]
+    },
+    {
+      id: "car_dealer_generic",
+      name: "Bilforhandler",
+      type: "car",
+      blurb: "Du trenger den ikke. Men du kommer til å ville ha den.",
+      careers: ["naeringsliv", "by"],
+      minVisitedPlaces: 10
+    },
+    {
+      id: "housing_market",
+      name: "Boligmarkedet",
+      type: "housing",
+      blurb: "Markedet er rolig i dag. (Neida.)",
+      careers: ["by"],
+      minVisitedPlaces: 8
+    }
+  ];
+
+  const filtered = allStores.filter((store) => {
+    const careerOk =
+      !Array.isArray(store.careers) || store.careers.includes(careerId);
+
+    const visitOk =
+      !Number.isFinite(Number(store.minVisitedPlaces)) ||
+      visitedCount >= Number(store.minVisitedPlaces);
+
+    return careerOk && visitOk;
+  });
+
+  return filtered.length ? filtered : allStores.slice(0, 2);
+}
+
+function pickStoreContext(active, phaseTag) {
+  const pool = getCareerStorePool(active);
+  if (!pool.length) {
+    return {
+      id: "fallback_context",
+      name: String(active?.brand_name || "").trim() || "miljøet ditt",
+      type: "generic",
+      blurb: "Et sted du kjenner litt, men ikke helt.",
+      phaseTag
+    };
+  }
+
+  const visitedCount = getVisitedPlacesCount();
+  const idxBase =
+    Number(window.CivicationCalendar?.getPhaseModel?.()?.dayIndex || 1) +
+    (phaseTag === "evening" ? 1 : 0) +
+    visitedCount;
+
+  const chosen = pool[idxBase % pool.length];
+
+  return {
+    ...chosen,
+    phaseTag,
+    visitedCount
+  };
+}
+
   
 function patchEventEngine() {
   const proto = window.CivicationEventEngine?.prototype;
