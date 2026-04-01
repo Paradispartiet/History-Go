@@ -824,10 +824,11 @@ if (carryover.fatigue > 1 && adjustedChoices.length) {
                 event: {
                   ...ev,
                   phase_tag: "morning",
+                  morning_mode: morningMode,
                   choices: adjustedChoices.length ? adjustedChoices : ev.choices,
                   situation: (Array.isArray(ev.situation) ? ev.situation : []).concat(extraLines, effectNotes),
                   carryover_context: carryover
-                }
+               }
               };
 
               this.setInbox?.(inbox);
