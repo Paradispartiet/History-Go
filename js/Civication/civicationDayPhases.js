@@ -429,15 +429,16 @@ function appendDayChoiceLog(entry) {
     ? currentSummary.choiceLog
     : [];
 
-  const nextLog = currentLog.concat([
-    {
-      phase: String(entry?.phase || ""),
-      choiceId: entry?.choiceId ?? null,
-      label: String(entry?.label || ""),
-      feedback: String(entry?.feedback || ""),
-      effect: Number(entry?.effect || 0)
-    }
-  ]);
+const nextLog = currentLog.concat([
+  {
+    phase: String(entry?.phase || ""),
+    subject: String(entry?.subject || ""),
+    choiceId: entry?.choiceId ?? null,
+    label: String(entry?.label || ""),
+    feedback: String(entry?.feedback || ""),
+    effect: Number(entry?.effect || 0)
+  }
+]);
 
   cal?.setDailySummary?.({
     ...currentSummary,
@@ -573,6 +574,7 @@ function appendDayChoiceLog(entry) {
 
       appendDayChoiceLog({
        phase: phaseTag,
+       subject: String(pending?.event?.subject || ""),
        choiceId,
        label: choice?.label || (phaseTag === "day_end" ? "Bekreftet dagslutt" : ""),
        feedback: String(result?.feedback || ""),
