@@ -621,6 +621,52 @@ function patchEventEngine() {
           const ev = tagged.event;
           const extraLines = [];
 
+          let adjustedChoices = Array.isArray(ev.choices)
+  ? ev.choices.map((c) => ({ ...c }))
+  : [];
+
+if (carryover.visibilityBias > carryover.processBias && adjustedChoices.length) {
+  adjustedChoices = adjustedChoices.map((c) => {
+    if (c.id === "A") {
+      return {
+        ...c,
+        label: String(c.label || "").replace("Lag en ryddig plan og dokumenter", "Ta styring og vær synlig tidlig")
+      };
+    }
+    return c;
+  });
+
+  extraLines.push("Det ligger et lite sosialt og synlighetsmessig trykk i starten av dagen.");
+}
+
+if (carryover.processBias >= carryover.visibilityBias && carryover.processBias > 0 && adjustedChoices.length) {
+  adjustedChoices = adjustedChoices.map((c) => {
+    if (c.id === "B") {
+      return {
+        ...c,
+        label: String(c.label || "").replace("Løs det raskt og send videre", "Løs det nøkternt og med kontroll")
+      };
+    }
+    return c;
+  });
+
+  extraLines.push("Morgenen drar mer mot struktur, kontroll og presisjon.");
+}
+
+if (carryover.fatigue > 1 && adjustedChoices.length) {
+  adjustedChoices = adjustedChoices.map((c) => {
+    if (c.id === "C") {
+      return {
+        ...c,
+        label: String(c.label || "").replace("La det ligge litt", "Trekk pusten og utsett litt")
+      };
+    }
+    return c;
+  });
+
+  extraLines.push("Du merker at slit og treghet prøver å farge det første valget ditt.");
+}
+
           if (carryover.fatigue > 1) {
             extraLines.push("Du kjenner litt slitasje fra gårsdagen idet morgenen starter.");
           } else if (carryover.visibilityBias > carryover.processBias) {
@@ -641,6 +687,7 @@ function patchEventEngine() {
                 event: {
                   ...ev,
                   phase_tag: "morning",
+                  choices: adjustedChoices.length ? adjustedChoices : ev.choices,
                   situation: (Array.isArray(ev.situation) ? ev.situation : []).concat(extraLines),
                   carryover_context: carryover
                 }
