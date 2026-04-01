@@ -625,6 +625,50 @@ function patchEventEngine() {
   ? ev.choices.map((c) => ({ ...c }))
   : [];
 
+let effectNotes = [];
+
+if (carryover.visibilityBias > carryover.processBias && adjustedChoices.length) {
+  adjustedChoices = adjustedChoices.map((c) => {
+    if (c.id === "A") {
+      return {
+        ...c,
+        effect: Number(c.effect || 0) + 1
+      };
+    }
+    return c;
+  });
+
+  effectNotes.push("Synlighet fra gårsdagen gjør det lettere å vinne på et offensivt valg.");
+}
+
+if (carryover.processBias >= carryover.visibilityBias && carryover.processBias > 0 && adjustedChoices.length) {
+  adjustedChoices = adjustedChoices.map((c) => {
+    if (c.id === "B") {
+      return {
+        ...c,
+        effect: Number(c.effect || 0) + 1
+      };
+    }
+    return c;
+  });
+
+  effectNotes.push("Den ryddige rytmen fra gårsdagen styrker det kontrollerte valget.");
+}
+
+if (carryover.fatigue > 1 && adjustedChoices.length) {
+  adjustedChoices = adjustedChoices.map((c) => {
+    if (c.id === "C") {
+      return {
+        ...c,
+        effect: Number(c.effect || 0) + 1
+      };
+    }
+    return c;
+  });
+
+  effectNotes.push("Slitasje gjør det mer fristende å velge den minst krevende veien.");
+}
+          
 if (carryover.visibilityBias > carryover.processBias && adjustedChoices.length) {
   adjustedChoices = adjustedChoices.map((c) => {
     if (c.id === "A") {
@@ -688,7 +732,7 @@ if (carryover.fatigue > 1 && adjustedChoices.length) {
                   ...ev,
                   phase_tag: "morning",
                   choices: adjustedChoices.length ? adjustedChoices : ev.choices,
-                  situation: (Array.isArray(ev.situation) ? ev.situation : []).concat(extraLines),
+                  situation: (Array.isArray(ev.situation) ? ev.situation : []).concat(extraLines, effectNotes),
                   carryover_context: carryover
                 }
               };
