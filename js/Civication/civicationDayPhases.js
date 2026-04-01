@@ -588,13 +588,51 @@ function buildCarryoverFromChoiceLog(choiceLog) {
       const state = this.getState ? this.getState() : {};
 
       if (phase === "morning") {
-        if (legacyOnAppOpen) {
-          const res = await legacyOnAppOpen.call(this, { ...opts, force: true });
-          const tagged = retagPendingEvent(this, "morning");
-          if (tagged?.event) return { ...(res || {}), event: tagged.event };
-        }
-        return { enqueued: false, reason: "morning_no_event" };
+  const carryover = getNextDayCarryover();
+
+  if (legacyOnAppOpen) {
+    const res = await legacyOnAppOpen.call(this, { ...opts, force: true });
+    const tagged = retagPendingEvent(this, "morning");
+
+    if (tagged?.event) {
+      const ev = tagged.event;
+      const extraLines = [];
+
+      if (carryover.fatigue > 1) {
+        extraLines.push("Du kjenner litt slitasje fra gårsdagen idet morgenen starter.");
+      } else if (carryover.visibilityBias > carryover.processBias) {
+        extraLines.push("Morgenen føles litt mer sosial og eksponert enn vanlig.");
+      } else if (carryover.processBias > 0) {
+        extraLines.push("Morgenen har en mer ryddig og kontrollert tone enn vanlig.");
       }
+
+      if (extraLines.length) {
+        const inbox = this.getInbox ? this.getInbox() : [];
+        const idx = Array.isArray(inbox)
+          ? inbox.findIndex((x) => x && x.status === "pending" && x.event?.id === ev.id)
+          : -1;
+
+        if (idx >= 0) {
+          inbox[idx] = {
+            ...inbox[idx],
+            event: {
+              ...ev,
+              phase_tag: "morning",
+              situation: (Array.isArray(ev.situation) ? ev.situation : []).concat(extraLines),
+              carryover_context: carryover
+            }
+          };
+          this.setInbox?.(inbox);
+          return { ...(res || {}), event: inbox[idx].event };
+        }
+      }
+
+      return { ...(res || {}), event: tagged.event };
+    }
+  }
+
+  return { enqueued: false, reason: "morning_no_event" };
+}
 
       if (phase === "lunch") {
         const ev = makeLunchEvent(active);
