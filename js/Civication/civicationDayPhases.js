@@ -86,18 +86,34 @@
     }
 
     function resetForNewDay() {
-      const current = getSafeClock();
+  const current = getSafeClock();
+  const existingSummary =
+    current.dailySummary && typeof current.dailySummary === "object"
+      ? current.dailySummary
+      : {};
 
-      return cal.setClock({
-        dayIndex: Number(current.dayIndex || 1) + 1,
-        currentMinutes: Number(current.shiftStartMinutes || 8 * 60),
-        phase: "morning",
-        phaseStatus: "open",
-        dailyFlags: {},
-        dailySummary: null,
-        lastAdvancedAt: Date.now()
-      });
-    }
+  const carryover =
+    existingSummary.nextDayCarryover && typeof existingSummary.nextDayCarryover === "object"
+      ? existingSummary.nextDayCarryover
+      : {
+          visibilityBias: 0,
+          processBias: 0,
+          fatigue: 0
+        };
+
+  return cal.setClock({
+    dayIndex: Number(current.dayIndex || 1) + 1,
+    currentMinutes: Number(current.shiftStartMinutes || 8 * 60),
+    phase: "morning",
+    phaseStatus: "open",
+    dailyFlags: {},
+    dailySummary: {
+      choiceLog: [],
+      nextDayCarryover: carryover
+    },
+    lastAdvancedAt: Date.now()
+  });
+}
 
     function getPhaseModel() {
       const current = getSafeClock();
