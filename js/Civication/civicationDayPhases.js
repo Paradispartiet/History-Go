@@ -212,52 +212,56 @@ function getLunchContext(active) {
   
   function makeLunchEvent(active) {
   const ctx = getLunchContext(active);
+  const store = pickStoreContext(active, "lunch");
 
   return {
     id: `phase_lunch_${Date.now()}`,
     stage: "stable",
     source: "Civication",
     phase_tag: "lunch",
-    subject: "Lunsjpause",
+    subject: `Lunsjpause – ${store.name}`,
     situation: [
-      ctx.line1,
-      ctx.line2
+      `${ctx.line1} I dag trekkes du mot ${store.name}.`,
+      `${store.blurb} ${ctx.line2}`
     ],
     lunch_context: {
       brand_name: ctx.brandName,
       visited_places_count: ctx.visitedCount,
-      tier: ctx.tier
+      tier: ctx.tier,
+      store_id: store.id,
+      store_name: store.name,
+      store_type: store.type
     },
     choices: [
       {
         id: "A",
-        label: "Spis billig og effektivt",
+        label: `Spis raskt ved ${store.name}`,
         effect: 0,
         tags: ["process", "craft"],
         feedback:
           ctx.visitedCount >= 5
-            ? "Du holder rytmen og bruker byen nøkternt."
-            : "Du holder rytmen uten å gjøre noe ekstra ut av lunsjen."
+            ? `Du holder rytmen og bruker ${store.name} nøkternt.`
+            : `Du bruker ${store.name} uten å gjøre noe større ut av lunsjen.`
       },
       {
         id: "B",
-        label: "Ta en sosial lunsj",
+        label: `Ta en sosial lunsj ved ${store.name}`,
         effect: 1,
         tags: ["visibility", "legitimacy"],
         feedback:
           ctx.visitedCount >= 5
-            ? "Du bruker lunsjen til å bli litt mer synlig i miljøet rundt deg."
-            : "Du blir sett, og dagen åpner seg litt mer sosialt."
+            ? `Du bruker lunsjen ved ${store.name} til å bli litt mer synlig i miljøet rundt deg.`
+            : `Du blir sett rundt ${store.name}, og dagen åpner seg litt mer sosialt.`
       },
       {
         id: "C",
-        label: "Hopp over lunsjen og jobb videre",
+        label: `Hopp over lunsjen og gå forbi ${store.name}`,
         effect: -1,
         tags: ["avoidance", "laziness"],
         feedback:
           ctx.visitedCount >= 20
-            ? "Du kunne brukt nettverket ditt bedre, men velger ren effektivitet."
-            : "Du sparer tid, men betaler litt for det senere."
+            ? `Du kunne brukt ${store.name} bedre, men velger ren effektivitet.`
+            : `Du sparer tid, men lar muligheten ved ${store.name} passere.`
       }
     ]
   };
@@ -265,24 +269,25 @@ function getLunchContext(active) {
 
   function makeEveningEvent(active) {
   const visitedCount = getVisitedPlacesCount();
+  const store = pickStoreContext(active, "evening");
   const brandName =
-    String(active?.brand_name || "").trim() || "miljøet ditt";
+    String(active?.brand_name || "").trim() || store.name || "miljøet ditt";
 
   let line1 =
-    `Arbeidsdelen av dagen er over, og kvelden rundt ${brandName} åpner seg.`;
+    `Arbeidsdelen av dagen er over, og kvelden trekker deg mot ${store.name}.`;
   let line2 =
-    "Nå velger du om kvelden skal handle om ekstra innsats, ro eller synlighet.";
+    `Rundt ${store.name} må du velge om kvelden skal handle om ekstra innsats, ro eller synlighet.`;
 
   if (visitedCount >= 20) {
     line1 =
-      `Du kjenner byen godt nå, og kvelden rundt ${brandName} føles som en forlengelse av posisjonen din.`;
+      `Du kjenner byen godt nå, og kvelden ved ${store.name} føles som en forlengelse av posisjonen din.`;
     line2 =
-      "Kvelden kan brukes til å styrke nettverk, hente inn mer verdi eller trekke deg smart tilbake.";
+      `${store.blurb} Kvelden kan brukes til å styrke nettverk, hente inn mer verdi eller trekke deg smart tilbake.`;
   } else if (visitedCount >= 5) {
     line1 =
-      `Du begynner å få flere muligheter rundt ${brandName} også etter arbeidstid.`;
+      `Du begynner å få flere muligheter rundt ${store.name} også etter arbeidstid.`;
     line2 =
-      "Kvelden handler om hva slags retning du vil gi dagen som helhet.";
+      `${store.blurb} Kvelden handler om hva slags retning du vil gi dagen som helhet.`;
   }
 
   return {
@@ -290,42 +295,45 @@ function getLunchContext(active) {
     stage: "stable",
     source: "Civication",
     phase_tag: "evening",
-    subject: "Kveld i Civication",
+    subject: `Kveld – ${store.name}`,
     situation: [line1, line2],
     evening_context: {
       brand_name: brandName,
-      visited_places_count: visitedCount
+      visited_places_count: visitedCount,
+      store_id: store.id,
+      store_name: store.name,
+      store_type: store.type
     },
     choices: [
       {
         id: "A",
-        label: "Ta frivillig overtid",
+        label: `Ta frivillig overtid før du drar fra ${store.name}`,
         effect: 1,
         tags: ["craft", "visibility"],
         feedback:
           visitedCount >= 5
-            ? "Du bruker kvelden til å presse ut litt mer verdi av dagen."
-            : "Du presser dagen litt lenger og får mer ut av den."
+            ? `Du bruker kvelden rundt ${store.name} til å presse ut litt mer verdi av dagen.`
+            : `Du presser dagen litt lenger før du forlater ${store.name}.`
       },
       {
         id: "B",
-        label: "Trekk hjem og hold kvelden rolig",
+        label: `Trekk deg rolig bort fra ${store.name}`,
         effect: 0,
         tags: ["process", "legitimacy"],
         feedback:
           visitedCount >= 5
-            ? "Du holder strukturen og lar dagen lande uten unødvendig støy."
-            : "Du holder strukturen og lar dagen lande."
+            ? `Du holder strukturen og lar dagen lande uten unødvendig støy rundt ${store.name}.`
+            : `Du lar kvelden roe seg ned etter ${store.name}.`
       },
       {
         id: "C",
-        label: "Oppsøk folk og miljø",
+        label: `Oppsøk folk og miljø rundt ${store.name}`,
         effect: 1,
         tags: ["visibility", "shortcut"],
         feedback:
           visitedCount >= 20
-            ? "Du bruker byen og nettverket ditt aktivt, og gjør kvelden mer strategisk."
-            : "Kvelden blir mer sosial og mer åpen."
+            ? `Du bruker miljøet rundt ${store.name} aktivt, og gjør kvelden mer strategisk.`
+            : `Kvelden blir mer sosial og mer åpen rundt ${store.name}.`
       }
     ]
   };
