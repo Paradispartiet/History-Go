@@ -316,38 +316,56 @@ function getLunchContext(active) {
 }
 
   function makeDayEndEvent() {
-    const cal = window.CivicationCalendar;
-    const model = cal?.getPhaseModel?.() || {};
-    const flags = model.dailyFlags || {};
+  const cal = window.CivicationCalendar;
+  const model = cal?.getPhaseModel?.() || {};
+  const flags = model.dailyFlags || {};
 
-    const doneCount = [
-      "morning_done",
-      "lunch_done",
-      "afternoon_done",
-      "evening_done"
-    ].filter((k) => !!flags[k]).length;
+  const doneCount = [
+    "morning_done",
+    "lunch_done",
+    "afternoon_done",
+    "evening_done"
+  ].filter((k) => !!flags[k]).length;
 
-    const summary = {
-      dayIndex: Number(model.dayIndex || 1),
-      completedPhases: doneCount
-    };
+  const state = window.CivicationState?.getState?.() || {};
+  const score = Number(state.score || 0);
+  const stability = String(state.stability || "STABLE");
 
-    cal?.setDailySummary?.(summary);
+  let quality = "jevn";
+  if (doneCount >= 4 && score >= 1) quality = "sterk";
+  else if (doneCount <= 2 || score < 0) quality = "ujevn";
 
-    return {
-      id: `phase_day_end_${Date.now()}`,
-      stage: "stable",
-      source: "Civication",
-      phase_tag: "day_end",
-      subject: `Dag ${summary.dayIndex} er over`,
-      situation: [
-        `Du fullførte ${summary.completedPhases} av 4 hovedfaser i dag.`,
-        "Bekreft for å runde dagen og gå videre til neste."
-      ],
-      choices: [],
-      feedback: "Dagen lukkes. En ny dag starter."
-    };
+  const summary = {
+    dayIndex: Number(model.dayIndex || 1),
+    completedPhases: doneCount,
+    score,
+    stability,
+    quality
+  };
+
+  cal?.setDailySummary?.(summary);
+
+  let line1 = `Dag ${summary.dayIndex} går mot slutten. Du fullførte ${summary.completedPhases} av 4 hovedfaser.`;
+  let line2 = `Statusen din er ${summary.stability.toLowerCase()}, og dagen står igjen som ${summary.quality}.`;
+
+  if (quality === "sterk") {
+    line2 = "Du holder en tydelig rytme, og dagen virker samlet og solid.";
+  } else if (quality === "ujevn") {
+    line2 = "Dagen hang ikke helt sammen, og noe av trykket ble med videre.";
   }
+
+  return {
+    id: `phase_day_end_${Date.now()}`,
+    stage: "stable",
+    source: "Civication",
+    phase_tag: "day_end",
+    subject: `Dag ${summary.dayIndex} er over`,
+    situation: [line1, line2],
+    day_end_context: summary,
+    choices: [],
+    feedback: "Dagen lukkes. En ny dag starter."
+  };
+}
 
   function retagPendingEvent(engine, phaseTag) {
     const inbox = engine.getInbox ? engine.getInbox() : [];
