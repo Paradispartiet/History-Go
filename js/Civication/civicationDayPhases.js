@@ -387,6 +387,49 @@ function getLunchContext(active) {
     return inbox[idx];
   }
 
+
+function getDayChoiceLog() {
+  const cal = window.CivicationCalendar;
+  const model = cal?.getPhaseModel?.() || {};
+  const summary = model.dailySummary && typeof model.dailySummary === "object"
+    ? model.dailySummary
+    : {};
+
+  return Array.isArray(summary.choiceLog) ? summary.choiceLog : [];
+}
+
+function appendDayChoiceLog(entry) {
+  const cal = window.CivicationCalendar;
+  const model = cal?.getPhaseModel?.() || {};
+  const currentSummary =
+    model.dailySummary && typeof model.dailySummary === "object"
+      ? model.dailySummary
+      : {};
+
+  const currentLog = Array.isArray(currentSummary.choiceLog)
+    ? currentSummary.choiceLog
+    : [];
+
+  const nextLog = currentLog.concat([
+    {
+      phase: String(entry?.phase || ""),
+      choiceId: entry?.choiceId ?? null,
+      label: String(entry?.label || ""),
+      feedback: String(entry?.feedback || ""),
+      effect: Number(entry?.effect || 0)
+    }
+  ]);
+
+  cal?.setDailySummary?.({
+    ...currentSummary,
+    choiceLog: nextLog
+  });
+
+  return nextLog;
+}
+
+  
+  
   function patchEventEngine() {
     const proto = window.CivicationEventEngine?.prototype;
     if (!proto || proto.__dayPhasePatched) return;
