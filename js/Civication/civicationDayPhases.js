@@ -195,44 +195,57 @@ function getLunchContext(active) {
 }
   
   function makeLunchEvent(active) {
-    const brandName =
-      String(active?.brand_name || "").trim() || "stedet ditt";
+  const ctx = getLunchContext(active);
 
-    return {
-      id: `phase_lunch_${Date.now()}`,
-      stage: "stable",
-      source: "Civication",
-      phase_tag: "lunch",
-      subject: "Lunsjpause",
-      situation: [
-        `Du er ute av morgenpresset og må velge hvordan du bruker lunsjen rundt ${brandName}.`,
-        "Valget påvirker resten av dagen."
-      ],
-      choices: [
-        {
-          id: "A",
-          label: "Spis billig og effektivt",
-          effect: 0,
-          tags: ["process", "craft"],
-          feedback: "Du holder rytmen uten å gjøre noe ekstra ut av lunsjen."
-        },
-        {
-          id: "B",
-          label: "Ta en sosial lunsj",
-          effect: 1,
-          tags: ["visibility", "legitimacy"],
-          feedback: "Du blir sett, og dagen åpner seg litt mer sosialt."
-        },
-        {
-          id: "C",
-          label: "Hopp over lunsjen og jobb videre",
-          effect: -1,
-          tags: ["avoidance", "laziness"],
-          feedback: "Du sparer tid, men betaler litt for det senere."
-        }
-      ]
-    };
-  }
+  return {
+    id: `phase_lunch_${Date.now()}`,
+    stage: "stable",
+    source: "Civication",
+    phase_tag: "lunch",
+    subject: "Lunsjpause",
+    situation: [
+      ctx.line1,
+      ctx.line2
+    ],
+    lunch_context: {
+      brand_name: ctx.brandName,
+      visited_places_count: ctx.visitedCount,
+      tier: ctx.tier
+    },
+    choices: [
+      {
+        id: "A",
+        label: "Spis billig og effektivt",
+        effect: 0,
+        tags: ["process", "craft"],
+        feedback:
+          ctx.visitedCount >= 5
+            ? "Du holder rytmen og bruker byen nøkternt."
+            : "Du holder rytmen uten å gjøre noe ekstra ut av lunsjen."
+      },
+      {
+        id: "B",
+        label: "Ta en sosial lunsj",
+        effect: 1,
+        tags: ["visibility", "legitimacy"],
+        feedback:
+          ctx.visitedCount >= 5
+            ? "Du bruker lunsjen til å bli litt mer synlig i miljøet rundt deg."
+            : "Du blir sett, og dagen åpner seg litt mer sosialt."
+      },
+      {
+        id: "C",
+        label: "Hopp over lunsjen og jobb videre",
+        effect: -1,
+        tags: ["avoidance", "laziness"],
+        feedback:
+          ctx.visitedCount >= 20
+            ? "Du kunne brukt nettverket ditt bedre, men velger ren effektivitet."
+            : "Du sparer tid, men betaler litt for det senere."
+      }
+    ]
+  };
+}
 
   function makeEveningEvent() {
     return {
