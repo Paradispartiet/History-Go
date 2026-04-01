@@ -609,7 +609,7 @@ function buildCarryoverFromChoiceLog(choiceLog) {
       const phase = window.CivicationCalendar?.getPhase?.() || "morning";
       const state = this.getState ? this.getState() : {};
 
-      if (phase === "morning") {
+if (phase === "morning") {
   const carryover = getNextDayCarryover();
   applyMorningCarryoverEffects(carryover);
 
@@ -671,14 +671,7 @@ function buildCarryoverFromChoiceLog(choiceLog) {
   return { enqueued: false, reason: "morning_no_event" };
 }
 
-setNextDayCarryover({
-  visibilityBias: 0,
-  processBias: 0,
-  fatigue: 0
-});
-
-return { ...(res || {}), event: tagged.event };
-      if (phase === "lunch") {
+if (phase === "lunch") {
         const ev = makeLunchEvent(active);
         this.enqueueEvent(ev);
         return { enqueued: true, type: "lunch", event: ev };
