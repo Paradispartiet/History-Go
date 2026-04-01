@@ -365,9 +365,27 @@ function getLunchContext(active) {
   }
 
   const recentChoices = choiceLog
-    .slice(-3)
-    .map((x) => x?.label)
-    .filter(Boolean);
+  .slice(-3)
+  .map((x) => {
+    const phaseLabel =
+      x?.phase === "morning"
+        ? "Morgen"
+        : x?.phase === "lunch"
+          ? "Lunsj"
+          : x?.phase === "afternoon"
+            ? "Ettermiddag"
+            : x?.phase === "evening"
+              ? "Kveld"
+              : x?.phase === "day_end"
+                ? "Dagslutt"
+                : "Fase";
+
+    const label = String(x?.label || "").trim();
+    if (!label) return null;
+
+    return `${phaseLabel}: ${label}`;
+  })
+  .filter(Boolean);
 
   const line3 = recentChoices.length
     ? `Valg du faktisk tok i dag: ${recentChoices.join(" · ")}.`
