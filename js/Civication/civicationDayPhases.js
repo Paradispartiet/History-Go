@@ -214,58 +214,59 @@ function getLunchContext(active) {
   const ctx = getLunchContext(active);
   const store = pickStoreContext(active, "lunch");
 
-  return {
-    id: `phase_lunch_${Date.now()}`,
-    stage: "stable",
-    source: "Civication",
-    phase_tag: "lunch",
-    subject: `Lunsjpause – ${store.name}`,
-    situation: [
-      `${ctx.line1} I dag trekkes du mot ${store.name}.`,
-      `${store.blurb} ${ctx.line2}`
-    ],
-    lunch_context: {
-      brand_name: ctx.brandName,
-      visited_places_count: ctx.visitedCount,
-      tier: ctx.tier,
-      store_id: store.id,
-      store_name: store.name,
-      store_type: store.type
+const baseEvent = {
+  id: `phase_lunch_${Date.now()}`,
+  stage: "stable",
+  source: "Civication",
+  phase_tag: "lunch",
+  subject: `Lunsjpause – ${store.name}`,
+  situation: [
+    `${ctx.line1} I dag trekkes du mot ${store.name}.`,
+    `${store.blurb} ${ctx.line2}`
+  ],
+  lunch_context: {
+    brand_name: ctx.brandName,
+    visited_places_count: ctx.visitedCount,
+    tier: ctx.tier,
+    store_id: store.id,
+    store_name: store.name,
+    store_type: store.type
+  },
+  choices: [
+    {
+      id: "A",
+      label: `Spis raskt ved ${store.name}`,
+      effect: 0,
+      tags: ["process", "craft"],
+      feedback:
+        ctx.visitedCount >= 5
+          ? `Du holder rytmen og bruker ${store.name} nøkternt.`
+          : `Du bruker ${store.name} uten å gjøre noe større ut av lunsjen.`
     },
-    choices: [
-      {
-        id: "A",
-        label: `Spis raskt ved ${store.name}`,
-        effect: 0,
-        tags: ["process", "craft"],
-        feedback:
-          ctx.visitedCount >= 5
-            ? `Du holder rytmen og bruker ${store.name} nøkternt.`
-            : `Du bruker ${store.name} uten å gjøre noe større ut av lunsjen.`
-      },
-      {
-        id: "B",
-        label: `Ta en sosial lunsj ved ${store.name}`,
-        effect: 1,
-        tags: ["visibility", "legitimacy"],
-        feedback:
-          ctx.visitedCount >= 5
-            ? `Du bruker lunsjen ved ${store.name} til å bli litt mer synlig i miljøet rundt deg.`
-            : `Du blir sett rundt ${store.name}, og dagen åpner seg litt mer sosialt.`
-      },
-      {
-        id: "C",
-        label: `Hopp over lunsjen og gå forbi ${store.name}`,
-        effect: -1,
-        tags: ["avoidance", "laziness"],
-        feedback:
-          ctx.visitedCount >= 20
-            ? `Du kunne brukt ${store.name} bedre, men velger ren effektivitet.`
-            : `Du sparer tid, men lar muligheten ved ${store.name} passere.`
-      }
-    ]
-  };
-}
+    {
+      id: "B",
+      label: `Ta en sosial lunsj ved ${store.name}`,
+      effect: 1,
+      tags: ["visibility", "legitimacy"],
+      feedback:
+        ctx.visitedCount >= 5
+          ? `Du bruker lunsjen ved ${store.name} til å bli litt mer synlig i miljøet rundt deg.`
+          : `Du blir sett rundt ${store.name}, og dagen åpner seg litt mer sosialt.`
+    },
+    {
+      id: "C",
+      label: `Hopp over lunsjen og gå forbi ${store.name}`,
+      effect: -1,
+      tags: ["avoidance", "laziness"],
+      feedback:
+        ctx.visitedCount >= 20
+          ? `Du kunne brukt ${store.name} bedre, men velger ren effektivitet.`
+          : `Du sparer tid, men lar muligheten ved ${store.name} passere.`
+    }
+  ]
+};
+
+return applyStoreTypeFlavor(baseEvent, "lunch", store);
 
   function makeEveningEvent(active) {
   const visitedCount = getVisitedPlacesCount();
@@ -290,54 +291,55 @@ function getLunchContext(active) {
       `${store.blurb} Kvelden handler om hva slags retning du vil gi dagen som helhet.`;
   }
 
-  return {
-    id: `phase_evening_${Date.now()}`,
-    stage: "stable",
-    source: "Civication",
-    phase_tag: "evening",
-    subject: `Kveld – ${store.name}`,
-    situation: [line1, line2],
-    evening_context: {
-      brand_name: brandName,
-      visited_places_count: visitedCount,
-      store_id: store.id,
-      store_name: store.name,
-      store_type: store.type
+  const baseEvent = {
+  id: `phase_evening_${Date.now()}`,
+  stage: "stable",
+  source: "Civication",
+  phase_tag: "evening",
+  subject: `Kveld – ${store.name}`,
+  situation: [line1, line2],
+  evening_context: {
+    brand_name: brandName,
+    visited_places_count: visitedCount,
+    store_id: store.id,
+    store_name: store.name,
+    store_type: store.type
+  },
+  choices: [
+    {
+      id: "A",
+      label: `Ta frivillig overtid før du drar fra ${store.name}`,
+      effect: 1,
+      tags: ["craft", "visibility"],
+      feedback:
+        visitedCount >= 5
+          ? `Du bruker kvelden rundt ${store.name} til å presse ut litt mer verdi av dagen.`
+          : `Du presser dagen litt lenger før du forlater ${store.name}.`
     },
-    choices: [
-      {
-        id: "A",
-        label: `Ta frivillig overtid før du drar fra ${store.name}`,
-        effect: 1,
-        tags: ["craft", "visibility"],
-        feedback:
-          visitedCount >= 5
-            ? `Du bruker kvelden rundt ${store.name} til å presse ut litt mer verdi av dagen.`
-            : `Du presser dagen litt lenger før du forlater ${store.name}.`
-      },
-      {
-        id: "B",
-        label: `Trekk deg rolig bort fra ${store.name}`,
-        effect: 0,
-        tags: ["process", "legitimacy"],
-        feedback:
-          visitedCount >= 5
-            ? `Du holder strukturen og lar dagen lande uten unødvendig støy rundt ${store.name}.`
-            : `Du lar kvelden roe seg ned etter ${store.name}.`
-      },
-      {
-        id: "C",
-        label: `Oppsøk folk og miljø rundt ${store.name}`,
-        effect: 1,
-        tags: ["visibility", "shortcut"],
-        feedback:
-          visitedCount >= 20
-            ? `Du bruker miljøet rundt ${store.name} aktivt, og gjør kvelden mer strategisk.`
-            : `Kvelden blir mer sosial og mer åpen rundt ${store.name}.`
-      }
-    ]
-  };
-}
+    {
+      id: "B",
+      label: `Trekk deg rolig bort fra ${store.name}`,
+      effect: 0,
+      tags: ["process", "legitimacy"],
+      feedback:
+        visitedCount >= 5
+          ? `Du holder strukturen og lar dagen lande uten unødvendig støy rundt ${store.name}.`
+          : `Du lar kvelden roe seg ned etter ${store.name}.`
+    },
+    {
+      id: "C",
+      label: `Oppsøk folk og miljø rundt ${store.name}`,
+      effect: 1,
+      tags: ["visibility", "shortcut"],
+      feedback:
+        visitedCount >= 20
+          ? `Du bruker miljøet rundt ${store.name} aktivt, og gjør kvelden mer strategisk.`
+          : `Kvelden blir mer sosial og mer åpen rundt ${store.name}.`
+    }
+  ]
+};
+
+return applyStoreTypeFlavor(baseEvent, "evening", store);
 
   function makeDayEndEvent() {
   const cal = window.CivicationCalendar;
@@ -804,6 +806,136 @@ function pickStoreContext(active, phaseTag) {
   };
 }
   
+
+function applyStoreTypeFlavor(eventObj, phaseTag, store) {
+  const type = String(store?.type || "generic");
+  const ev = {
+    ...eventObj,
+    choices: Array.isArray(eventObj?.choices)
+      ? eventObj.choices.map((c) => ({ ...c }))
+      : [],
+    situation: Array.isArray(eventObj?.situation)
+      ? eventObj.situation.slice()
+      : []
+  };
+
+  if (phaseTag === "lunch") {
+    if (type === "clothing") {
+      ev.situation.push("Miljøet her handler om stil, signaler og hva slags person du ser ut som i andres øyne.");
+      ev.choices = ev.choices.map((c) => {
+        if (c.id === "B") {
+          return {
+            ...c,
+            effect: Number(c.effect || 0) + 1,
+            label: String(c.label || "").replace("Ta en sosial lunsj", "Ta en synlig lunsj")
+          };
+        }
+        return c;
+      });
+    }
+
+    if (type === "tech") {
+      ev.situation.push("Samtalene her drar lett mot kvalitet, detaljer og hvem som faktisk kan noe.");
+      ev.choices = ev.choices.map((c) => {
+        if (c.id === "A") {
+          return {
+            ...c,
+            effect: Number(c.effect || 0) + 1,
+            label: String(c.label || "").replace("Spis raskt", "Ta en presis og fokusert lunsj")
+          };
+        }
+        return c;
+      });
+    }
+
+    if (type === "car") {
+      ev.situation.push("Her handler alt litt mer om ambisjon, status og hvor raskt ting kan beveges videre.");
+      ev.choices = ev.choices.map((c) => {
+        if (c.id === "C") {
+          return {
+            ...c,
+            effect: Number(c.effect || 0) + 1,
+            label: String(c.label || "").replace("Hopp over lunsjen", "Dropp lunsjen og jag momentum")
+          };
+        }
+        return c;
+      });
+    }
+
+    if (type === "housing") {
+      ev.situation.push("Stemningen her trekker mot stabilitet, forankring og spørsmålet om hvor livet egentlig er på vei.");
+      ev.choices = ev.choices.map((c) => {
+        if (c.id === "A") {
+          return {
+            ...c,
+            effect: Number(c.effect || 0) + 1,
+            label: String(c.label || "").replace("Spis raskt", "Ta en rolig og stabil lunsj")
+          };
+        }
+        return c;
+      });
+    }
+  }
+
+  if (phaseTag === "evening") {
+    if (type === "clothing") {
+      ev.situation.push("Kvelden her handler om stil, scene og hvor synlig du vil gjøre deg selv.");
+      ev.choices = ev.choices.map((c) => {
+        if (c.id === "C") {
+          return {
+            ...c,
+            effect: Number(c.effect || 0) + 1,
+            label: String(c.label || "").replace("Oppsøk folk og miljø", "Gjør deg synlig i miljøet")
+          };
+        }
+        return c;
+      });
+    }
+
+    if (type === "tech") {
+      ev.situation.push("Kvelden her handler mer om nerdekapital, presisjon og hvem som faktisk har oversikt.");
+      ev.choices = ev.choices.map((c) => {
+        if (c.id === "A") {
+          return {
+            ...c,
+            effect: Number(c.effect || 0) + 1,
+            label: String(c.label || "").replace("Ta frivillig overtid", "Fordyp deg og press ut mer verdi")
+          };
+        }
+        return c;
+      });
+    }
+
+    if (type === "car") {
+      ev.situation.push("Alt rundt deg peker mot tempo, status og en litt mer risikovillig kveld.");
+      ev.choices = ev.choices.map((c) => {
+        if (c.id === "A" || c.id === "C") {
+          return {
+            ...c,
+            effect: Number(c.effect || 0) + 1
+          };
+        }
+        return c;
+      });
+    }
+
+    if (type === "housing") {
+      ev.situation.push("Kvelden her gjør det vanskelig å ignorere spørsmål om trygghet, plass og hvilken struktur livet ditt hviler på.");
+      ev.choices = ev.choices.map((c) => {
+        if (c.id === "B") {
+          return {
+            ...c,
+            effect: Number(c.effect || 0) + 1,
+            label: String(c.label || "").replace("Trekk deg rolig bort", "Trekk deg hjemover og la kvelden lande")
+          };
+        }
+        return c;
+      });
+    }
+  }
+
+  return ev;
+}
   
 function patchEventEngine() {
   const proto = window.CivicationEventEngine?.prototype;
