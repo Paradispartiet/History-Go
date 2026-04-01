@@ -990,6 +990,8 @@ if (carryover.fatigue > 1 && adjustedChoices.length) {
        effect: Number(result?.effect || 0)
       });
 
+      applyPhaseChoiceEffects(phaseTag, choiceId, choice);
+
       const cal = window.CivicationCalendar;
       if (!cal) return result;
 
