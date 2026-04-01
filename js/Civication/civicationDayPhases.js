@@ -673,6 +673,43 @@ function applyMorningModeToEvent(ev, mode) {
   };
 }
 
+function applyPhaseChoiceEffects(phaseTag, choiceId, choice) {
+  const label = String(choice?.label || "");
+  const tags = Array.isArray(choice?.tags) ? choice.tags : [];
+
+  try {
+    if (phaseTag === "lunch") {
+      if (choiceId === "A") {
+        window.CivicationPsyche?.updateIntegrity?.(1);
+      } else if (choiceId === "B") {
+        window.CivicationPsyche?.updateVisibility?.(1);
+      } else if (choiceId === "C") {
+        window.CivicationPsyche?.updateEconomicRoom?.(1);
+        window.CivicationPsyche?.updateIntegrity?.(-1);
+      }
+    }
+
+    if (phaseTag === "evening") {
+      if (choiceId === "A") {
+        window.CivicationPsyche?.updateEconomicRoom?.(1);
+        window.CivicationPsyche?.updateIntegrity?.(-1);
+      } else if (choiceId === "B") {
+        window.CivicationPsyche?.updateIntegrity?.(1);
+      } else if (choiceId === "C") {
+        window.CivicationPsyche?.updateVisibility?.(1);
+      }
+    }
+
+    if (tags.includes("legitimacy")) {
+      window.CivicationPsyche?.updateIntegrity?.(1);
+    }
+
+    if (tags.includes("visibility")) {
+      window.CivicationPsyche?.updateVisibility?.(1);
+    }
+  } catch {}
+}
+  
   
 function patchEventEngine() {
   const proto = window.CivicationEventEngine?.prototype;
