@@ -145,6 +145,55 @@
     };
   }
 
+  function getVisitedPlacesCount() {
+  try {
+    const raw = JSON.parse(localStorage.getItem("visited_places") || "[]");
+    if (Array.isArray(raw)) return raw.length;
+
+    if (raw && typeof raw === "object") {
+      return Object.keys(raw).filter((k) => !!raw[k]).length;
+    }
+
+    return 0;
+  } catch {
+    return 0;
+  }
+}
+
+function getLunchContext(active) {
+  const visitedCount = getVisitedPlacesCount();
+  const brandName =
+    String(active?.brand_name || "").trim() || "stedet ditt";
+
+  if (visitedCount >= 20) {
+    return {
+      brandName,
+      visitedCount,
+      tier: "rich",
+      line1: `Du har vært mange steder i History Go og kjenner byen bedre enn før. Lunsjen rundt ${brandName} føles som en del av nettverket ditt.`,
+      line2: "Du kan bruke lunsjen til rytme, nettverk eller ren effektivitet."
+    };
+  }
+
+  if (visitedCount >= 5) {
+    return {
+      brandName,
+      visitedCount,
+      tier: "mid",
+      line1: `Du begynner å få fotfeste i byen. Lunsjen rundt ${brandName} er ikke tilfeldig lenger.`,
+      line2: "Valget ditt kan gjøre dagen litt lettere eller litt skarpere."
+    };
+  }
+
+  return {
+    brandName,
+    visitedCount,
+    tier: "basic",
+    line1: `Du er fortsatt tidlig i løypa og bruker lunsjen rundt ${brandName} mest for å holde dagen samlet.`,
+    line2: "Det er fortsatt et valg mellom ro, sosialt spill og ren effektivitet."
+  };
+}
+  
   function makeLunchEvent(active) {
     const brandName =
       String(active?.brand_name || "").trim() || "stedet ditt";
