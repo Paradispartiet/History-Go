@@ -584,69 +584,79 @@ function buildCarryoverFromChoiceLog(choiceLog) {
   
   
   
-  function patchEventEngine() {
-    const proto = window.CivicationEventEngine?.prototype;
-    if (!proto || proto.__dayPhasePatched) return;
-    proto.__dayPhasePatched = true;
+function patchEventEngine() {
+  const proto = window.CivicationEventEngine?.prototype;
+  if (!proto || proto.__dayPhasePatched) return;
+  proto.__dayPhasePatched = true;
 
-    const legacyOnAppOpen = proto.onAppOpen;
-    const legacyAnswer = proto.answer;
+  const legacyOnAppOpen = proto.onAppOpen;
+  const legacyAnswer = proto.answer;
 
-    proto.onAppOpen = async function (opts = {}) {
-      const active = window.CivicationState?.getActivePosition?.();
+  proto.onAppOpen = async function (opts = {}) {
+    const active = window.CivicationState?.getActivePosition?.();
 
-      if (!active) {
-        return legacyOnAppOpen
-          ? legacyOnAppOpen.call(this, opts)
-          : { enqueued: false, reason: "no_active_job" };
-      }
+    if (!active) {
+      return legacyOnAppOpen
+        ? legacyOnAppOpen.call(this, opts)
+        : { enqueued: false, reason: "no_active_job" };
+    }
 
-      const pending = this.getPendingEvent ? this.getPendingEvent() : null;
-      if (pending?.event) {
-        return { enqueued: false, reason: "pending_exists" };
-      }
+    const pending = this.getPendingEvent ? this.getPendingEvent() : null;
+    if (pending?.event) {
+      return { enqueued: false, reason: "pending_exists" };
+    }
 
-      const phase = window.CivicationCalendar?.getPhase?.() || "morning";
-      const state = this.getState ? this.getState() : {};
+    const phase = window.CivicationCalendar?.getPhase?.() || "morning";
+    const state = this.getState ? this.getState() : {};
 
-if (phase === "morning") {
-  const carryover = getNextDayCarryover();
-  applyMorningCarryoverEffects(carryover);
+    if (phase === "morning") {
+      const carryover = getNextDayCarryover();
+      applyMorningCarryoverEffects(carryover);
 
-  if (legacyOnAppOpen) {
-    const res = await legacyOnAppOpen.call(this, { ...opts, force: true });
-    const tagged = retagPendingEvent(this, "morning");
+      if (legacyOnAppOpen) {
+        const res = await legacyOnAppOpen.call(this, { ...opts, force: true });
+        const tagged = retagPendingEvent(this, "morning");
 
-    if (tagged?.event) {
-      const ev = tagged.event;
-      const extraLines = [];
+        if (tagged?.event) {
+          const ev = tagged.event;
+          const extraLines = [];
 
-      if (carryover.fatigue > 1) {
-        extraLines.push("Du kjenner litt slitasje fra gårsdagen idet morgenen starter.");
-      } else if (carryover.visibilityBias > carryover.processBias) {
-        extraLines.push("Morgenen føles litt mer sosial og eksponert enn vanlig.");
-      } else if (carryover.processBias > 0) {
-        extraLines.push("Morgenen har en mer ryddig og kontrollert tone enn vanlig.");
-      }
+          if (carryover.fatigue > 1) {
+            extraLines.push("Du kjenner litt slitasje fra gårsdagen idet morgenen starter.");
+          } else if (carryover.visibilityBias > carryover.processBias) {
+            extraLines.push("Morgenen føles litt mer sosial og eksponert enn vanlig.");
+          } else if (carryover.processBias > 0) {
+            extraLines.push("Morgenen har en mer ryddig og kontrollert tone enn vanlig.");
+          }
 
-      if (extraLines.length) {
-        const inbox = this.getInbox ? this.getInbox() : [];
-        const idx = Array.isArray(inbox)
-          ? inbox.findIndex((x) => x && x.status === "pending" && x.event?.id === ev.id)
-          : -1;
+          if (extraLines.length) {
+            const inbox = this.getInbox ? this.getInbox() : [];
+            const idx = Array.isArray(inbox)
+              ? inbox.findIndex((x) => x && x.status === "pending" && x.event?.id === ev.id)
+              : -1;
 
-        if (idx >= 0) {
-          inbox[idx] = {
-            ...inbox[idx],
-            event: {
-              ...ev,
-              phase_tag: "morning",
-              situation: (Array.isArray(ev.situation) ? ev.situation : []).concat(extraLines),
-              carryover_context: carryover
+            if (idx >= 0) {
+              inbox[idx] = {
+                ...inbox[idx],
+                event: {
+                  ...ev,
+                  phase_tag: "morning",
+                  situation: (Array.isArray(ev.situation) ? ev.situation : []).concat(extraLines),
+                  carryover_context: carryover
+                }
+              };
+
+              this.setInbox?.(inbox);
+
+              setNextDayCarryover({
+                visibilityBias: 0,
+                processBias: 0,
+                fatigue: 0
+              });
+
+              return { ...(res || {}), event: inbox[idx].event };
             }
-          };
-
-          this.setInbox?.(inbox);
+          }
 
           setNextDayCarryover({
             visibilityBias: 0,
@@ -654,76 +664,66 @@ if (phase === "morning") {
             fatigue: 0
           });
 
-          return { ...(res || {}), event: inbox[idx].event };
+          return { ...(res || {}), event: tagged.event };
         }
       }
 
-      setNextDayCarryover({
-        visibilityBias: 0,
-        processBias: 0,
-        fatigue: 0
-      });
-
-      return { ...(res || {}), event: tagged.event };
+      return { enqueued: false, reason: "morning_no_event" };
     }
-  }
 
-  return { enqueued: false, reason: "morning_no_event" };
-}
+    if (phase === "lunch") {
+      const ev = makeLunchEvent(active);
+      this.enqueueEvent(ev);
+      return { enqueued: true, type: "lunch", event: ev };
+    }
 
-if (phase === "lunch") {
-        const ev = makeLunchEvent(active);
-        this.enqueueEvent(ev);
-        return { enqueued: true, type: "lunch", event: ev };
-      }
+    if (phase === "afternoon") {
+      const base = this.makeGenericCareerEvent
+        ? this.makeGenericCareerEvent(active, state, "day_phase_afternoon")
+        : {
+            id: `phase_afternoon_${Date.now()}`,
+            stage: "stable",
+            source: "Civication",
+            subject: "Ettermiddagsleveranse",
+            situation: ["Ettermiddagen krever en konkret leveranse."],
+            choices: []
+          };
 
-      if (phase === "afternoon") {
-        const base = this.makeGenericCareerEvent
-          ? this.makeGenericCareerEvent(active, state, "day_phase_afternoon")
-          : {
-              id: `phase_afternoon_${Date.now()}`,
-              stage: "stable",
-              source: "Civication",
+      const ev = this.decorateWorkMail
+        ? this.decorateWorkMail(
+            {
+              ...base,
+              phase_tag: "afternoon",
               subject: "Ettermiddagsleveranse",
-              situation: ["Ettermiddagen krever en konkret leveranse."],
-              choices: []
-            };
+              situation: [
+                "Ettermiddagen handler om å få noe faktisk levert.",
+                "Hvordan du løser dette former inntrykket av deg."
+              ],
+              task_kind: "work_case"
+            },
+            active,
+            "day_phase_afternoon"
+          )
+        : { ...base, phase_tag: "afternoon" };
 
-        const ev = this.decorateWorkMail
-          ? this.decorateWorkMail(
-              {
-                ...base,
-                phase_tag: "afternoon",
-                subject: "Ettermiddagsleveranse",
-                situation: [
-                  "Ettermiddagen handler om å få noe faktisk levert.",
-                  "Hvordan du løser dette former inntrykket av deg."
-                ],
-                task_kind: "work_case"
-              },
-              active,
-              "day_phase_afternoon"
-            )
-          : { ...base, phase_tag: "afternoon" };
+      this.enqueueEvent(ev);
+      return { enqueued: true, type: "job", event: ev };
+    }
 
-        this.enqueueEvent(ev);
-        return { enqueued: true, type: "job", event: ev };
-      }
+    if (phase === "evening") {
+      const ev = makeEveningEvent(active);
+      this.enqueueEvent(ev);
+      return { enqueued: true, type: "evening", event: ev };
+    }
 
-      if (phase === "evening") {
-        const ev = makeEveningEvent();
-        this.enqueueEvent(ev);
-        return { enqueued: true, type: "evening", event: ev };
-      }
+    if (phase === "day_end") {
+      const ev = makeDayEndEvent();
+      this.enqueueEvent(ev);
+      return { enqueued: true, type: "day_end", event: ev };
+    }
 
-      if (phase === "day_end") {
-        const ev = makeDayEndEvent();
-        this.enqueueEvent(ev);
-        return { enqueued: true, type: "day_end", event: ev };
-      }
-
-      return { enqueued: false, reason: "unknown_phase" };
-    };
+    return { enqueued: false, reason: "unknown_phase" };
+  };
 
     proto.answer = function (eventId, choiceId) {
       const pending = this.getPendingEvent ? this.getPendingEvent() : null;
