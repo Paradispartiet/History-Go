@@ -709,13 +709,15 @@ function patchEventEngine() {
         const tagged = retagPendingEvent(this, "morning");
 
         if (tagged?.event) {
-          const ev = tagged.event;
+          const ev = applyMorningModeToEvent(tagged.event, morningMode);
           const extraLines = [];
 
-          let adjustedChoices = Array.isArray(ev.choices)
-  ? ev.choices.map((c) => ({ ...c }))
-  : [];
+      let adjustedChoices = Array.isArray(ev.choices)
+      ? ev.choices.map((c) => ({ ...c }))
+      : [];
 
+
+          
 let effectNotes = [];
 
 if (carryover.visibilityBias > carryover.processBias && adjustedChoices.length) {
