@@ -247,42 +247,73 @@ function getLunchContext(active) {
   };
 }
 
-  function makeEveningEvent() {
-    return {
-      id: `phase_evening_${Date.now()}`,
-      stage: "stable",
-      source: "Civication",
-      phase_tag: "evening",
-      subject: "Kveld i Civication",
-      situation: [
-        "Arbeidsdelen av dagen er over. Nå velger du hva slags kveld dette skal være.",
-        "Kvelden handler mer om retning enn plikt."
-      ],
-      choices: [
-        {
-          id: "A",
-          label: "Ta frivillig overtid",
-          effect: 1,
-          tags: ["craft", "visibility"],
-          feedback: "Du presser dagen litt lenger og får mer ut av den."
-        },
-        {
-          id: "B",
-          label: "Trekk hjem og hold kvelden rolig",
-          effect: 0,
-          tags: ["process", "legitimacy"],
-          feedback: "Du holder strukturen og lar dagen lande."
-        },
-        {
-          id: "C",
-          label: "Oppsøk folk og miljø",
-          effect: 1,
-          tags: ["visibility", "shortcut"],
-          feedback: "Kvelden blir mer sosial og mer åpen."
-        }
-      ]
-    };
+  function makeEveningEvent(active) {
+  const visitedCount = getVisitedPlacesCount();
+  const brandName =
+    String(active?.brand_name || "").trim() || "miljøet ditt";
+
+  let line1 =
+    `Arbeidsdelen av dagen er over, og kvelden rundt ${brandName} åpner seg.`;
+  let line2 =
+    "Nå velger du om kvelden skal handle om ekstra innsats, ro eller synlighet.";
+
+  if (visitedCount >= 20) {
+    line1 =
+      `Du kjenner byen godt nå, og kvelden rundt ${brandName} føles som en forlengelse av posisjonen din.`;
+    line2 =
+      "Kvelden kan brukes til å styrke nettverk, hente inn mer verdi eller trekke deg smart tilbake.";
+  } else if (visitedCount >= 5) {
+    line1 =
+      `Du begynner å få flere muligheter rundt ${brandName} også etter arbeidstid.`;
+    line2 =
+      "Kvelden handler om hva slags retning du vil gi dagen som helhet.";
   }
+
+  return {
+    id: `phase_evening_${Date.now()}`,
+    stage: "stable",
+    source: "Civication",
+    phase_tag: "evening",
+    subject: "Kveld i Civication",
+    situation: [line1, line2],
+    evening_context: {
+      brand_name: brandName,
+      visited_places_count: visitedCount
+    },
+    choices: [
+      {
+        id: "A",
+        label: "Ta frivillig overtid",
+        effect: 1,
+        tags: ["craft", "visibility"],
+        feedback:
+          visitedCount >= 5
+            ? "Du bruker kvelden til å presse ut litt mer verdi av dagen."
+            : "Du presser dagen litt lenger og får mer ut av den."
+      },
+      {
+        id: "B",
+        label: "Trekk hjem og hold kvelden rolig",
+        effect: 0,
+        tags: ["process", "legitimacy"],
+        feedback:
+          visitedCount >= 5
+            ? "Du holder strukturen og lar dagen lande uten unødvendig støy."
+            : "Du holder strukturen og lar dagen lande."
+      },
+      {
+        id: "C",
+        label: "Oppsøk folk og miljø",
+        effect: 1,
+        tags: ["visibility", "shortcut"],
+        feedback:
+          visitedCount >= 20
+            ? "Du bruker byen og nettverket ditt aktivt, og gjør kvelden mer strategisk."
+            : "Kvelden blir mer sosial og mer åpen."
+      }
+    ]
+  };
+}
 
   function makeDayEndEvent() {
     const cal = window.CivicationCalendar;
