@@ -582,7 +582,97 @@ function buildCarryoverFromChoiceLog(choiceLog) {
   return { visibilityBias, processBias, fatigue };
 }
   
-  
+  function getMorningModeFromCarryover(carryover) {
+  const vis = Number(carryover?.visibilityBias || 0);
+  const proc = Number(carryover?.processBias || 0);
+  const fatigue = Number(carryover?.fatigue || 0);
+
+  if (fatigue > 1) return "fatigued";
+  if (vis > proc && vis > 0) return "visible";
+  if (proc > 0) return "structured";
+  return "neutral";
+}
+
+function applyMorningModeToEvent(ev, mode) {
+  const baseChoices = Array.isArray(ev?.choices)
+    ? ev.choices.map((c) => ({ ...c }))
+    : [];
+
+  const baseSituation = Array.isArray(ev?.situation)
+    ? ev.situation.slice()
+    : [];
+
+  if (mode === "visible") {
+    return {
+      ...ev,
+      morning_mode: "visible",
+      subject: `Synlig start: ${String(ev?.subject || "Arbeidsdag")}`,
+      situation: baseSituation.concat([
+        "Du går inn i morgenen med litt mer sosialt momentum enn vanlig."
+      ]),
+      choices: baseChoices.map((c) => {
+        if (c.id === "A") {
+          return {
+            ...c,
+            label: "Ta styring og vær synlig tidlig",
+            effect: Number(c.effect || 0) + 1
+          };
+        }
+        return c;
+      })
+    };
+  }
+
+  if (mode === "structured") {
+    return {
+      ...ev,
+      morning_mode: "structured",
+      subject: `Kontrollert start: ${String(ev?.subject || "Arbeidsdag")}`,
+      situation: baseSituation.concat([
+        "Morgenen har en mer ryddig, disiplinert og kontrollert tone."
+      ]),
+      choices: baseChoices.map((c) => {
+        if (c.id === "B") {
+          return {
+            ...c,
+            label: "Løs det nøkternt og med kontroll",
+            effect: Number(c.effect || 0) + 1
+          };
+        }
+        return c;
+      })
+    };
+  }
+
+  if (mode === "fatigued") {
+    return {
+      ...ev,
+      morning_mode: "fatigued",
+      subject: `Treg start: ${String(ev?.subject || "Arbeidsdag")}`,
+      situation: baseSituation.concat([
+        "Du kjenner slitasje fra gårsdagen, og morgenen starter med litt tyngre bein."
+      ]),
+      choices: baseChoices.map((c) => {
+        if (c.id === "C") {
+          return {
+            ...c,
+            label: "Trekk pusten og utsett litt",
+            effect: Number(c.effect || 0) + 1
+          };
+        }
+        return c;
+      })
+    };
+  }
+
+  return {
+    ...ev,
+    morning_mode: "neutral",
+    choices: baseChoices,
+    situation: baseSituation
+  };
+}
+
   
 function patchEventEngine() {
   const proto = window.CivicationEventEngine?.prototype;
@@ -612,6 +702,7 @@ function patchEventEngine() {
     if (phase === "morning") {
       const carryover = getNextDayCarryover();
       applyMorningCarryoverEffects(carryover);
+      const morningMode = getMorningModeFromCarryover(carryover);
 
       if (legacyOnAppOpen) {
         const res = await legacyOnAppOpen.call(this, { ...opts, force: true });
