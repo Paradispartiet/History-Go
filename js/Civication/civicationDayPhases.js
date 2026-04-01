@@ -331,6 +331,15 @@ function getLunchContext(active) {
   const score = Number(state.score || 0);
   const stability = String(state.stability || "STABLE");
 
+  const existingSummary =
+    model.dailySummary && typeof model.dailySummary === "object"
+      ? model.dailySummary
+      : {};
+
+  const choiceLog = Array.isArray(existingSummary.choiceLog)
+    ? existingSummary.choiceLog
+    : [];
+
   let quality = "jevn";
   if (doneCount >= 4 && score >= 1) quality = "sterk";
   else if (doneCount <= 2 || score < 0) quality = "ujevn";
@@ -340,7 +349,8 @@ function getLunchContext(active) {
     completedPhases: doneCount,
     score,
     stability,
-    quality
+    quality,
+    choiceLog
   };
 
   cal?.setDailySummary?.(summary);
@@ -354,13 +364,22 @@ function getLunchContext(active) {
     line2 = "Dagen hang ikke helt sammen, og noe av trykket ble med videre.";
   }
 
+  const recentChoices = choiceLog
+    .slice(-3)
+    .map((x) => x?.label)
+    .filter(Boolean);
+
+  const line3 = recentChoices.length
+    ? `Valg du faktisk tok i dag: ${recentChoices.join(" · ")}.`
+    : "Dagen har foreløpig få registrerte valg.";
+
   return {
     id: `phase_day_end_${Date.now()}`,
     stage: "stable",
     source: "Civication",
     phase_tag: "day_end",
     subject: `Dag ${summary.dayIndex} er over`,
-    situation: [line1, line2],
+    situation: [line1, line2, line3],
     day_end_context: summary,
     choices: [],
     feedback: "Dagen lukkes. En ny dag starter."
@@ -546,6 +565,19 @@ function appendDayChoiceLog(entry) {
       }
 
       if (!result?.ok || !phaseTag) return result;
+
+      const choice =
+       Array.isArray(pending?.event?.choices)
+        ? pending.event.choices.find((c) => c && c.id === choiceId)
+        : null;
+
+      appendDayChoiceLog({
+       phase: phaseTag,
+       choiceId,
+       label: choice?.label || (phaseTag === "day_end" ? "Bekreftet dagslutt" : ""),
+       feedback: String(result?.feedback || ""),
+       effect: Number(result?.effect || 0)
+      });
 
       const cal = window.CivicationCalendar;
       if (!cal) return result;
