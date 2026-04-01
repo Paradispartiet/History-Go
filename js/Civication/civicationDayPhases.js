@@ -344,13 +344,16 @@ function getLunchContext(active) {
   if (doneCount >= 4 && score >= 1) quality = "sterk";
   else if (doneCount <= 2 || score < 0) quality = "ujevn";
 
+  const nextDayCarryover = buildCarryoverFromChoiceLog(choiceLog);
+
   const summary = {
     dayIndex: Number(model.dayIndex || 1),
     completedPhases: doneCount,
     score,
     stability,
     quality,
-    choiceLog
+    choiceLog,
+    nextDayCarryover
   };
 
   cal?.setDailySummary?.(summary);
@@ -365,31 +368,40 @@ function getLunchContext(active) {
   }
 
   const recentChoices = choiceLog
-  .slice(-3)
-  .map((x) => {
-    const phaseLabel =
-      x?.phase === "morning"
-        ? "Morgen"
-        : x?.phase === "lunch"
-          ? "Lunsj"
-          : x?.phase === "afternoon"
-            ? "Ettermiddag"
-            : x?.phase === "evening"
-              ? "Kveld"
-              : x?.phase === "day_end"
-                ? "Dagslutt"
-                : "Fase";
+    .slice(-3)
+    .map((x) => {
+      const phaseLabel =
+        x?.phase === "morning"
+          ? "Morgen"
+          : x?.phase === "lunch"
+            ? "Lunsj"
+            : x?.phase === "afternoon"
+              ? "Ettermiddag"
+              : x?.phase === "evening"
+                ? "Kveld"
+                : x?.phase === "day_end"
+                  ? "Dagslutt"
+                  : "Fase";
 
-    const label = String(x?.label || "").trim();
-    if (!label) return null;
+      const label = String(x?.label || "").trim();
+      if (!label) return null;
 
-    return `${phaseLabel}: ${label}`;
-  })
-  .filter(Boolean);
+      return `${phaseLabel}: ${label}`;
+    })
+    .filter(Boolean);
 
   const line3 = recentChoices.length
     ? `Valg du faktisk tok i dag: ${recentChoices.join(" · ")}.`
     : "Dagen har foreløpig få registrerte valg.";
+
+  const line4 =
+    nextDayCarryover.fatigue > 1
+      ? "Neste morgen kan starte med litt slitasje."
+      : nextDayCarryover.visibilityBias > nextDayCarryover.processBias
+        ? "Neste morgen kan bli mer sosial og synlig."
+        : nextDayCarryover.processBias > 0
+          ? "Neste morgen kan bli mer ryddig og prosessorientert."
+          : "Neste morgen starter uten tydelig etterslep.";
 
   return {
     id: `phase_day_end_${Date.now()}`,
@@ -397,7 +409,7 @@ function getLunchContext(active) {
     source: "Civication",
     phase_tag: "day_end",
     subject: `Dag ${summary.dayIndex} er over`,
-    situation: [line1, line2, line3],
+    situation: [line1, line2, line3, line4],
     day_end_context: summary,
     choices: [],
     feedback: "Dagen lukkes. En ny dag starter."
@@ -466,6 +478,72 @@ const nextLog = currentLog.concat([
   return nextLog;
 }
 
+
+function getNextDayCarryover() {
+  const cal = window.CivicationCalendar;
+  const model = cal?.getPhaseModel?.() || {};
+  const summary =
+    model.dailySummary && typeof model.dailySummary === "object"
+      ? model.dailySummary
+      : {};
+
+  return summary.nextDayCarryover && typeof summary.nextDayCarryover === "object"
+    ? summary.nextDayCarryover
+    : {
+        visibilityBias: 0,
+        processBias: 0,
+        fatigue: 0
+      };
+}
+
+function setNextDayCarryover(carryover) {
+  const cal = window.CivicationCalendar;
+  const model = cal?.getPhaseModel?.() || {};
+  const currentSummary =
+    model.dailySummary && typeof model.dailySummary === "object"
+      ? model.dailySummary
+      : {};
+
+  cal?.setDailySummary?.({
+    ...currentSummary,
+    nextDayCarryover: {
+      visibilityBias: Number(carryover?.visibilityBias || 0),
+      processBias: Number(carryover?.processBias || 0),
+      fatigue: Number(carryover?.fatigue || 0)
+    }
+  });
+}
+
+function buildCarryoverFromChoiceLog(choiceLog) {
+  const log = Array.isArray(choiceLog) ? choiceLog : [];
+
+  let visibilityBias = 0;
+  let processBias = 0;
+  let fatigue = 0;
+
+  for (const entry of log) {
+    const feedback = String(entry?.feedback || "");
+    const label = String(entry?.label || "");
+    const effect = Number(entry?.effect || 0);
+
+    if (/sosial|synlig|miljø|overtid/i.test(label + " " + feedback)) {
+      visibilityBias += 1;
+    }
+
+    if (/rolig|ryddig|struktur|effektiv|nøkternt/i.test(label + " " + feedback)) {
+      processBias += 1;
+    }
+
+    if (/overtid|hopp over lunsj|presser dagen/i.test(label + " " + feedback)) {
+      fatigue += 1;
+    }
+
+    if (effect < 0) fatigue += 1;
+  }
+
+  return { visibilityBias, processBias, fatigue };
+}
+  
   
   
   function patchEventEngine() {
