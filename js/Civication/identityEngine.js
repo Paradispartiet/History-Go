@@ -1,5 +1,5 @@
 // =======================================================
-// Identity Engine v1
+// Identity Engine v2
 // =======================================================
 
 const CAPITAL_KEYS = [
@@ -7,6 +7,7 @@ const CAPITAL_KEYS = [
   "cultural",
   "social",
   "symbolic",
+  "political",
   "institutional",
   "subculture"
 ];
@@ -16,16 +17,17 @@ const CAPITAL_KEYS = [
 // -------------------------------------------------------
 
 function getZone(value) {
-  if (value < 30) return 0;
-  if (value < 60) return 1;
-  if (value < 80) return 2;
+  const n = Number(value || 0);
+  if (n < 30) return 0;
+  if (n < 60) return 1;
+  if (n < 80) return 2;
   return 3;
 }
 
 function calculateZones(capital) {
   const zones = {};
-  CAPITAL_KEYS.forEach(key => {
-    zones[key] = getZone(capital[key]);
+  CAPITAL_KEYS.forEach((key) => {
+    zones[key] = getZone(capital?.[key]);
   });
   return zones;
 }
@@ -35,7 +37,6 @@ function calculateZones(capital) {
 // -------------------------------------------------------
 
 function detectChanges(user, newZones, newProfileId) {
-
   const previous = user.identityState || {
     lastProfileId: null,
     lastCapitalZones: {}
@@ -44,8 +45,8 @@ function detectChanges(user, newZones, newProfileId) {
   let zoneShift = false;
   let profileShift = false;
 
-  CAPITAL_KEYS.forEach(key => {
-    if (previous.lastCapitalZones[key] !== newZones[key]) {
+  CAPITAL_KEYS.forEach((key) => {
+    if (previous.lastCapitalZones?.[key] !== newZones[key]) {
       zoneShift = true;
     }
   });
@@ -58,14 +59,14 @@ function detectChanges(user, newZones, newProfileId) {
 }
 
 // -------------------------------------------------------
-// 3️⃣ Hint generator (A + B + conditional C)
+// 3️⃣ Hint generator
 // -------------------------------------------------------
 
 function generateNarrativeHint(capital, zones, changes) {
+  const safeCapital = capital && typeof capital === "object" ? capital : {};
 
-  // Finn sterkeste og svakeste kapital
   const sorted = [...CAPITAL_KEYS].sort(
-    (a, b) => capital[b] - capital[a]
+    (a, b) => Number(safeCapital?.[b] || 0) - Number(safeCapital?.[a] || 0)
   );
 
   const strongest = sorted[0];
@@ -76,28 +77,29 @@ function generateNarrativeHint(capital, zones, changes) {
     cultural: "kulturelle investeringer",
     social: "sosiale nettverk",
     symbolic: "symbolske prestisje",
+    political: "politiske innflytelse",
     institutional: "institusjonelle forankring",
     subculture: "subkulturelle tyngde"
   };
 
-  let sentences = [];
+  const strongestValue = Number(safeCapital?.[strongest] || 0);
+  const weakestValue = Number(safeCapital?.[weakest] || 0);
 
-  // A) Situasjonsbeskrivelse
+  const sentences = [];
+
   sentences.push(
-    `Din ${capitalLabel[strongest]} preger i økende grad din posisjon.`
+    `Din ${capitalLabel[strongest] || strongest} preger i økende grad din posisjon.`
   );
 
-  // B) Retning (kun hvis zoneShift)
-  if (changes.zoneShift) {
+  if (changes?.zoneShift) {
     sentences.push(
-      `Du beveger deg gradvis mot en mer markant rolle innen dette feltet.`
+      "Du beveger deg gradvis mot en mer markant rolle innen dette feltet."
     );
   }
 
-  // C) Advarsel (kun hvis sterk ubalanse)
-  if (capital[strongest] - capital[weakest] > 40) {
+  if (strongestValue - weakestValue > 40) {
     sentences.push(
-      `Samtidig skaper dette avstand til andre deler av din livsverden.`
+      "Samtidig skaper dette avstand til andre deler av din livsverden."
     );
   }
 
@@ -105,53 +107,126 @@ function generateNarrativeHint(capital, zones, changes) {
 }
 
 // -------------------------------------------------------
-// 4️⃣ Main identity update
+// 4️⃣ Capital source resolution
+// -------------------------------------------------------
+
+function readMaintainedCapital() {
+  try {
+    const raw = JSON.parse(localStorage.getItem("hg_capital_v1") || "{}");
+    return raw && typeof raw === "object" ? raw : {};
+  } catch {
+    return {};
+  }
+}
+
+function mergeCapitalShapes(baseCapital, maintainedCapital) {
+  const merged = {};
+
+  CAPITAL_KEYS.forEach((key) => {
+    const baseValue = Number(baseCapital?.[key] || 0);
+    const maintainedValue = Number(maintainedCapital?.[key] || 0);
+
+    merged[key] = maintainedValue || baseValue;
+  });
+
+  return merged;
+}
+
+function resolveCapital(
+  user,
+  CIVI_ITEMS,
+  CIVI_SYNERGIES,
+  CAREERS,
+  LIFESTYLES,
+  calculateCapital
+) {
+  const calculated =
+    typeof calculateCapital === "function"
+      ? calculateCapital(
+          user,
+          CIVI_ITEMS || {},
+          CIVI_SYNERGIES || [],
+          CAREERS || {},
+          LIFESTYLES || {}
+        )
+      : {};
+
+  const maintained = readMaintainedCapital();
+
+  return mergeCapitalShapes(calculated, maintained);
+}
+
+// -------------------------------------------------------
+// 5️⃣ Main identity update
 // -------------------------------------------------------
 
 function updateIdentity(
   user,
   CIVI_ITEMS,
   CIVI_SYNERGIES,
+  CAREERS,
+  LIFESTYLES,
   calculateCapital,
   getLifeProfile
 ) {
+  if (!user || typeof user !== "object") {
+    return {
+      capital: {},
+      profile: null,
+      hint: null
+    };
+  }
 
-  // 1. Recalculate capital
-  const capital = calculateCapital(user, CIVI_ITEMS, CIVI_SYNERGIES);
+  const capital = resolveCapital(
+    user,
+    CIVI_ITEMS,
+    CIVI_SYNERGIES,
+    CAREERS,
+    LIFESTYLES,
+    calculateCapital
+  );
 
-  // 2. Zones
   const zones = calculateZones(capital);
 
-  // 3. Profile
-  const profile = getLifeProfile(capital);
+  const profile =
+    typeof getLifeProfile === "function"
+      ? getLifeProfile(capital)
+      : { profileId: null };
 
-  // 4. Detect changes
-  const changes = detectChanges(user, zones, profile.profileId);
+  const profileId = profile?.profileId || null;
+  const changes = detectChanges(user, zones, profileId);
 
-  // 5. Generate hint if needed
   let hint = user.currentHint || null;
 
   if (changes.zoneShift || changes.profileShift) {
     hint = generateNarrativeHint(capital, zones, changes);
   }
 
-  // 6. Update user state
   user.capital = capital;
-  user.profile = profile.profileId;
+  user.profile = profileId;
   user.currentHint = hint;
 
   user.identityState = {
-    lastProfileId: profile.profileId,
+    lastProfileId: profileId,
     lastCapitalZones: zones
   };
 
   return {
     capital,
-    profile: profile.profileId,
+    profile: profileId,
     hint
   };
 }
 
-window.HG_CivicationCommercial = {
+// -------------------------------------------------------
+// 6️⃣ Public API
+// -------------------------------------------------------
+
+window.HG_IdentityEngine = {
+  getZone,
+  calculateZones,
+  detectChanges,
+  generateNarrativeHint,
+  resolveCapital,
   updateIdentity
 };
