@@ -251,16 +251,23 @@
   // Convenience: map quiz category → maintain capital types (optional)
   // Override with window.CIVI_QUIZ_CAPITAL_MAP if you want.
   const DEFAULT_QUIZ_MAP = {
-    naeringsliv: ["economic", "institutional"],
-    media: ["cultural", "symbolic"],
-    politikk: ["institutional", "symbolic"],
-    kunst: ["cultural", "symbolic"],
-    subkultur: ["subculture", "cultural"],
-    by: ["symbolic", "institutional"],
-    sport: ["social"],
-    historie: ["symbolic"],
-    vitenskap: ["cultural"]
-  };
+  historie:       ["symbolic", "institutional", "cultural", "political"],
+  vitenskap:      ["cultural", "institutional", "symbolic", "economic"],
+  kunst:          ["cultural", "symbolic", "social", "economic"],
+  by:             ["institutional", "symbolic", "political", "economic"],
+  musikk:         ["symbolic", "social", "cultural", "economic"],
+  litteratur:     ["cultural", "symbolic", "institutional", "social"],
+  natur:          ["cultural", "institutional", "political", "symbolic"],
+  sport:          ["social", "symbolic", "economic", "institutional"],
+  politikk:       ["political", "institutional", "symbolic", "social"],
+  naeringsliv:    ["economic", "institutional", "symbolic", "political"],
+  populaerkultur: ["symbolic", "social", "economic", "subculture"],
+  subkultur:      ["subculture", "symbolic", "social", "cultural"],
+  film_tv:        ["symbolic", "cultural", "social", "economic"],
+  teater:         ["symbolic", "cultural", "social", "institutional"],
+  media:          ["symbolic", "political", "institutional", "social"],
+  psykologi:      ["cultural", "institutional", "social", "symbolic"]
+};
 
   function maintainFromQuiz(categoryId, delta = 1, opts = {}) {
     const map = (window.CIVI_QUIZ_CAPITAL_MAP && typeof window.CIVI_QUIZ_CAPITAL_MAP === "object")
