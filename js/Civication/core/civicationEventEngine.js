@@ -1061,31 +1061,14 @@ if (!chosen) {
     const pack = await this.buildMailPool(active, state, role_key);
 
     if (!pack || !Array.isArray(pack.mails) || !pack.mails.length) {
-     const generic = this.makeGenericCareerEvent(
-    active,
-    state,
-    "followup_missing_pack"
-  );
-
-  const decorated = this.decorateWorkMail(
-    generic,
-    active,
-    "followup_missing_pack"
-  );
-
-  this.enqueueEvent(decorated);
-  window.dispatchEvent(new Event("updateProfile"));
-
-  return {
-    enqueued: true,
-    type: "generic",
-    reason: "missing_pack",
-    event: decorated
-  };
-}
+      const generic = this.makeGenericCareerEvent(
+        active,
+        state,
+        "followup_missing_pack"
+      );
 
       const decorated = this.decorateWorkMail(
-        fallbackEvent,
+        generic,
         active,
         "followup_missing_pack"
       );
@@ -1095,7 +1078,7 @@ if (!chosen) {
 
       return {
         enqueued: true,
-        type: roleMail ? "role_storylet" : "generic",
+        type: "generic",
         reason: "missing_pack",
         event: decorated
       };
@@ -1104,17 +1087,14 @@ if (!chosen) {
     const chosen = this.pickEventFromPack(pack, state);
 
     if (!chosen) {
-      const roleMail =
-        await window.CiviRoleStoryletBridge?.makeMailForActiveRole?.(active, state);
-
-      const fallbackEvent = roleMail || this.makeGenericCareerEvent(
+      const generic = this.makeGenericCareerEvent(
         active,
         state,
         "followup_no_candidates"
       );
 
       const decorated = this.decorateWorkMail(
-        fallbackEvent,
+        generic,
         active,
         "followup_no_candidates"
       );
@@ -1124,11 +1104,35 @@ if (!chosen) {
 
       return {
         enqueued: true,
-        type: roleMail ? "role_storylet" : "generic",
+        type: "generic",
         reason: "no_candidates",
         event: decorated
       };
     }
+
+    const chosenWithMeta = Object.assign({}, chosen, {
+      __pack: {
+        role: pack?.role || null,
+        tag_rules: pack?.tag_rules || null,
+        tracks: Array.isArray(pack?.tracks) ? pack.tracks : []
+      }
+    });
+
+    const decoratedChosen = this.decorateWorkMail(
+      chosenWithMeta,
+      active,
+      "followup"
+    );
+
+    this.enqueueEvent(decoratedChosen);
+    window.dispatchEvent(new Event("updateProfile"));
+
+    return {
+      enqueued: true,
+      type: "job",
+      event: decoratedChosen
+    };
+  }
 
     const chosenWithMeta = Object.assign({}, chosen, {
       __pack: {
