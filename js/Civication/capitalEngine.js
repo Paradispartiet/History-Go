@@ -1,5 +1,5 @@
 // =======================================================
-// Capital Engine v4 – Runtime bridge + Home Influence
+// Capital Engine v5 – Runtime bridge + array-safe careers
 // =======================================================
 
 (function () {
@@ -45,6 +45,27 @@
     return out;
   }
 
+  function resolveById(collection, id) {
+    const key = String(id || "").trim();
+    if (!key || !collection) return null;
+
+    if (Array.isArray(collection)) {
+      return (
+        collection.find((entry) => {
+          const entryId =
+            String(entry?.id || entry?.career_id || entry?.key || "").trim();
+          return entryId === key;
+        }) || null
+      );
+    }
+
+    if (typeof collection === "object") {
+      return collection[key] || null;
+    }
+
+    return null;
+  }
+
   function calculateCapital(
     user,
     CIVI_ITEMS,
@@ -54,11 +75,8 @@
   ) {
     const capital = emptyCapital();
 
-    // ----------------------------------------------------
-    // 1️⃣ Jobb-base
-    // ----------------------------------------------------
     if (user.currentCareer) {
-      const career = CAREERS?.[user.currentCareer];
+      const career = resolveById(CAREERS, user.currentCareer);
 
       if (career && career.capital_base) {
         Object.keys(career.capital_base).forEach((key) => {
@@ -67,12 +85,9 @@
       }
     }
 
-    // ----------------------------------------------------
-    // 2️⃣ Items
-    // ----------------------------------------------------
     if (Array.isArray(user.ownedItems)) {
       user.ownedItems.forEach((id) => {
-        const item = CIVI_ITEMS?.[id];
+        const item = resolveById(CIVI_ITEMS, id);
         if (!item || !item.capital_effect) return;
 
         Object.keys(item.capital_effect).forEach((key) => {
@@ -81,11 +96,8 @@
       });
     }
 
-    // ----------------------------------------------------
-    // 3️⃣ Livsstil
-    // ----------------------------------------------------
     if (user.currentLifestyle) {
-      const lifestyle = LIFESTYLES?.[user.currentLifestyle];
+      const lifestyle = resolveById(LIFESTYLES, user.currentLifestyle);
 
       if (lifestyle && lifestyle.capital_shift) {
         Object.keys(lifestyle.capital_shift).forEach((key) => {
@@ -94,9 +106,6 @@
       }
     }
 
-    // ----------------------------------------------------
-    // 4️⃣ Synergier
-    // ----------------------------------------------------
     if (Array.isArray(CIVI_SYNERGIES)) {
       CIVI_SYNERGIES.forEach((synergy) => {
         if (typeof synergy?.condition !== "function") return;
@@ -108,11 +117,7 @@
       });
     }
 
-    // ----------------------------------------------------
-    // 5️⃣ Home influence
-    // ----------------------------------------------------
     const homeInfluence = window.CivicationHome?.getHomeInfluence?.();
-
     if (homeInfluence) {
       capital.economic += Number(homeInfluence.economic || 0);
       capital.cultural += Number(homeInfluence.cultural || 0);
@@ -136,10 +141,6 @@
     return updated;
   }
 
-  // ----------------------------------------------------
-  // Runtime bridge
-  // ----------------------------------------------------
-
   function getPrimaryLifestyleId() {
     const stamp = window.getPrimaryLifestyle?.() || window.HG_Lifestyle?.getStamp?.();
     return stamp?.id ? String(stamp.id) : null;
@@ -149,8 +150,6 @@
     const inv = window.HG_CiviShop?.getInv?.();
     if (!inv || typeof inv !== "object") return [];
 
-    // Foreløpig trygg minimumsvariant:
-    // dersom inventory bare har packs, ikke map dem til items her.
     if (Array.isArray(inv.ownedItems)) {
       return inv.ownedItems.map(String);
     }
@@ -179,15 +178,13 @@
 
     return calculateCapital(
       runtimeUser,
-      CIVI_ITEMS || window.CIVI_ITEMS || {},
+      CIVI_ITEMS || window.CIVI_ITEMS || [],
       CIVI_SYNERGIES || window.CIVI_SYNERGIES || [],
-      CAREERS || window.HG_CAREERS || window.CAREERS || {},
-      LIFESTYLES || window.CIVI_LIFESTYLES || window.LIFESTYLES || {}
+      CAREERS || window.HG_CAREERS || window.CAREERS || [],
+      LIFESTYLES || window.CIVI_LIFESTYLES || window.LIFESTYLES || []
     );
   }
 
-  // Skriver jobbbasert grunnkapital inn i hg_capital_v1
-  // slik at maintenance/identity/UI faktisk har noe å lese.
   function syncRuntimeCapitalToStorage(CIVI_ITEMS, CIVI_SYNERGIES, CAREERS, LIFESTYLES) {
     const runtimeCapital = getRuntimeCapital(
       CIVI_ITEMS,
@@ -200,8 +197,6 @@
     const next = emptyCapital();
 
     Object.keys(next).forEach((key) => {
-      // Jobben skal minst kvalifisere deg til basekapital.
-      // Vi senker ikke eksisterende lagret kapital her.
       next[key] = Math.max(
         Number(stored[key] || 0),
         Number(runtimeCapital[key] || 0)
@@ -217,10 +212,10 @@
     applyCareerCapital,
     buildRuntimeUser,
     getRuntimeCapital,
-    syncRuntimeCapitalToStorage
+    syncRuntimeCapitalToStorage,
+    resolveById
   };
 
-  // Første sync ved lasting
   try {
     syncRuntimeCapitalToStorage();
   } catch {}
