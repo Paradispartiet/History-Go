@@ -1014,3 +1014,88 @@ function applyCareerFlavor(eventObj, phaseTag, active) {
 
   return ev;
 }
+
+
+function applyContactBonusToEvent(eventObj, phaseTag) {
+  const contacts = getCiviContacts();
+  if (!Array.isArray(contacts) || !contacts.length) return eventObj;
+
+  const ctx =
+    phaseTag === "lunch"
+      ? eventObj?.lunch_context || null
+      : phaseTag === "evening"
+        ? eventObj?.evening_context || null
+        : null;
+
+  if (!ctx) return eventObj;
+
+  const contextId = String(ctx?.history_go_context_id || ctx?.store_id || "");
+  if (!contextId) return eventObj;
+
+  const matching = contacts.filter((c) => {
+    const sourceId = String(c?.sourceContextId || "");
+    return sourceId && sourceId === contextId;
+  });
+
+  if (!matching.length) return eventObj;
+
+  const strongest = matching
+    .slice()
+    .sort((a, b) => Number(b?.strength || 0) - Number(a?.strength || 0))[0];
+
+  const type = String(strongest?.type || "generic");
+  const strength = Number(strongest?.strength || 1);
+
+  const ev = {
+    ...eventObj,
+    choices: Array.isArray(eventObj?.choices)
+      ? eventObj.choices.map((c) => ({ ...c }))
+      : [],
+    situation: Array.isArray(eventObj?.situation)
+      ? eventObj.situation.slice()
+      : []
+  };
+
+  let boostedChoiceId = null;
+
+  if (phaseTag === "lunch") {
+    if (type === "miljo" || type === "synlighet") {
+      boostedChoiceId = "B";
+    } else if (type === "kollega") {
+      boostedChoiceId = "A";
+    }
+  }
+
+  if (phaseTag === "evening")
+    if (type === "nettverk" || type === "synlighet") {
+      boostedChoiceId = "C";
+    } else if (type === "kollega") {
+      boostedChoiceId = "A";
+    }
+  }
+
+  if (!boostedChoiceId) return ev;
+
+  ev.choices = ev.choices.map((c) => {
+    if (String(c?.id || "") === boostedChoiceId) {
+      return {
+        ...c,
+        effect: Number(c.effect || 0) + 1
+      };
+    }
+    return c;
+  });
+
+  ev.situation.push(
+    `En kontakt i dette miljøet gir deg litt ekstra handlingsrom akkurat her.`
+  );
+
+  ev.contact_bonus = {
+    contactType: type,
+    sourceContextId: contextId,
+    strength,
+    boostedChoiceId
+  };
+
+  return ev;
+}
