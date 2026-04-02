@@ -1062,9 +1062,13 @@ if (perfect) {
             }
 
             // 3) progresjon
-            markQuizProgress(categoryId, tid);
-            API.addCompletedQuizAndMaybePoint(categoryId, tid);
+          markQuizProgress(categoryId, tid);
+          API.addCompletedQuizAndMaybePoint(categoryId, tid);
 
+          window.HG_CapitalMaintenance?.maintainFromQuiz?.(categoryId, 1, {
+            source: "quiz_perfect"
+          });
+  
             // 3.5) merits_by_category (profile.html bruker denne til badge-grid)
             try {
             const merits = safeParse("merits_by_category", {});
