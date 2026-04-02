@@ -991,35 +991,33 @@ if (!pack || !Array.isArray(pack.mails) || !pack.mails.length) {
 }
 
 const chosen = this.pickEventFromPack(pack, stateWithStory);
-    if (!chosen) {
-      const roleMail =
-        await window.CiviRoleStoryletBridge?.makeMailForActiveRole?.(active, state);
 
-      const fallbackEvent = roleMail || this.makeGenericCareerEvent(
-        active,
-        state,
-        force ? "job_accepted" : "no_candidates"
-      );
+if (!chosen) {
+  const generic = this.makeGenericCareerEvent(
+    active,
+    state,
+    force ? "job_accepted" : "no_candidates"
+  );
 
-      const decorated = this.decorateWorkMail(
-        fallbackEvent,
-        active,
-        force ? "job_accepted" : "no_candidates"
-      );
+  const decorated = this.decorateWorkMail(
+    generic,
+    active,
+    force ? "job_accepted" : "no_candidates"
+  );
 
-      this.enqueueEvent(decorated);
+  this.enqueueEvent(decorated);
 
-      if (!force) {
-        this.markPulseUsed();
-      }
+  if (!force) {
+    this.markPulseUsed();
+  }
 
-      return {
-        enqueued: true,
-        type: roleMail ? "role_storylet" : "generic",
-        reason: "no_candidates",
-        event: decorated
-      };
-    }
+  return {
+    enqueued: true,
+    type: "generic",
+    reason: "no_candidates",
+    event: decorated
+  };
+}
 
     const chosenWithMeta = Object.assign({}, chosen, {
       __pack: {
