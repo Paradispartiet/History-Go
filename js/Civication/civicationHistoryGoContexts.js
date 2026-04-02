@@ -1,4 +1,18 @@
 
+function getVisitedPlacesCount() {
+  try {
+    const raw = JSON.parse(localStorage.getItem("visited_places") || "[]");
+    if (Array.isArray(raw)) return raw.length;
+
+    if (raw && typeof raw === "object") {
+      return Object.keys(raw).filter((k) => !!raw[k]).length;
+    }
+
+    return 0;
+  } catch {
+    return 0;
+  }
+}
 
 
   function inferPlaceContextsFromBadges() {
