@@ -1,5 +1,5 @@
 /* ============================================================
-   HG Lifestyle v0.1
+   HG Lifestyle v0.2
    - Leser data/lifestyles.json
    - Samler tags over tid (path dependency)
    - Regner ut "stamp" (dominant lifestyle)
@@ -8,19 +8,21 @@
 (() => {
   const LS_LIFE = "hg_lifestyle_v1";
   const DEFAULT = {
-    tag_counts: {},     // { tag: count }
-    lifestyle_scores: {}, // { lifestyleId: score }
-    stamp: null,        // { id, name, icon, score }
+    tag_counts: {},
+    lifestyle_scores: {},
+    stamp: null,
     updated_at: null
   };
 
   function safeParse(raw, fb) {
     try { return JSON.parse(raw); } catch { return fb; }
   }
+
   function lsGet(k, fb) {
     const raw = localStorage.getItem(k);
     return raw == null ? fb : safeParse(raw, fb);
   }
+
   function lsSet(k, v) {
     try { localStorage.setItem(k, JSON.stringify(v)); } catch {}
   }
@@ -43,23 +45,20 @@
     return next;
   }
 
-  // ---------- data cache ----------
   let _lifeData = null;
+
   async function ensureLifeData(url = "data/lifestyles.json") {
     if (_lifeData) return _lifeData;
-    const res = await fetch(url);
+
+    const res = await fetch(url, { cache: "no-store" });
     if (!res.ok) throw new Error("Could not load lifestyles.json");
+
     const json = await res.json();
     _lifeData = json;
     return _lifeData;
   }
 
-  // ---------- scoring ----------
   function scoreLifestyle(life, tagCounts) {
-    // enkel, men robust:
-    // +2 per match i "core_tags"
-    // +1 per match i "tags"
-    // -1 per match i "avoid_tags"
     const core = Array.isArray(life?.core_tags) ? life.core_tags : [];
     const plus = Array.isArray(life?.tags) ? life.tags : [];
     const avoid = Array.isArray(life?.avoid_tags) ? life.avoid_tags : [];
@@ -68,16 +67,19 @@
 
     for (const t of core) {
       const k = normalizeTag(t);
-      score += 2 * (Number(tagCounts[k] || 0));
+      score += 2 * Number(tagCounts[k] || 0);
     }
+
     for (const t of plus) {
       const k = normalizeTag(t);
-      score += 1 * (Number(tagCounts[k] || 0));
+      score += 1 * Number(tagCounts[k] || 0);
     }
+
     for (const t of avoid) {
       const k = normalizeTag(t);
-      score -= 1 * (Number(tagCounts[k] || 0));
+      score -= 1 * Number(tagCounts[k] || 0);
     }
+
     return score;
   }
 
@@ -95,8 +97,9 @@
       const sc = scoreLifestyle(life, tagCounts);
       scores[id] = sc;
 
-      if (!best) best = { life, score: sc };
-      else if (sc > best.score) best = { life, score: sc };
+      if (!best || sc > best.score) {
+        best = { life, score: sc };
+      }
     }
 
     const stamp = best
@@ -111,7 +114,6 @@
     return { scores, stamp };
   }
 
-  // ---------- public api ----------
   async function addTags(tags = [], source = "") {
     const arr = Array.isArray(tags) ? tags : [];
     if (!arr.length) return getState();
@@ -127,15 +129,12 @@
 
     next.updated_at = new Date().toISOString();
 
-    // recompute
     try {
       const lifeData = await ensureLifeData();
       const { scores, stamp } = recomputeStamp(lifeData, next);
       next.lifestyle_scores = scores;
       next.stamp = stamp;
-    } catch {
-      // hvis json ikke lastes, behold counts uten stamp
-    }
+    } catch {}
 
     saveState(next);
     return next;
@@ -165,5 +164,10 @@
     getStamp,
     getTagCounts,
     forceRecompute
+  };
+
+  // Backward compatibility for older Civication code
+  window.getPrimaryLifestyle = function () {
+    return window.HG_Lifestyle?.getStamp?.() || null;
   };
 })();
