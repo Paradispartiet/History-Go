@@ -2051,6 +2051,51 @@ function applyKnowledgeGateToTask(task, mailEvent, active) {
   };
 }
 
+function applyKnowledgeGateToMailEvent(mailEvent, task) {
+  const solutionMode = String(task?.solution_mode || "fallback");
+  const choices = Array.isArray(mailEvent?.choices)
+    ? mailEvent.choices.map((c) => ({ ...c }))
+    : [];
+
+  if (!choices.length) return mailEvent;
+
+  let visibleChoices = choices;
+
+  if (solutionMode === "fallback") {
+    visibleChoices = choices.filter((c) => {
+      const id = String(c?.id || "");
+      return id !== "A";
+    });
+  } else if (solutionMode === "assisted") {
+    visibleChoices = choices.filter((c) => {
+      const id = String(c?.id || "");
+      return id !== "A" || /hjelp|råd|kontakt/i.test(String(c?.label || ""));
+    });
+  } else if (solutionMode === "qualified") {
+    visibleChoices = choices;
+  }
+
+  const knowledgeLine =
+    solutionMode === "qualified"
+      ? "Du forstår oppgaven på riktig nivå og ser de beste løsningsmulighetene."
+      : solutionMode === "assisted"
+        ? "Du ser deler av løsningen, men er fortsatt delvis avhengig av støtte eller enklere vurderinger."
+        : "Du mangler nok innsikt til å se den beste løsningen direkte.";
+
+  return {
+    ...mailEvent,
+    choices: visibleChoices,
+    knowledge_state: String(task?.knowledge_state || "missing"),
+    solution_mode: solutionMode,
+    knowledge_note: String(task?.knowledge_note || knowledgeLine),
+    situation: (Array.isArray(mailEvent?.situation) ? mailEvent.situation : []).concat([
+      knowledgeLine
+    ])
+  };
+}
+
+
+
   
 function patchEventEngine() {
   const proto = window.CivicationEventEngine?.prototype;
@@ -2374,55 +2419,63 @@ if (carryover.fatigue > 1 && adjustedChoices.length) {
     };
   }
 
-  function patchTaskEngine() {
-    const engine = window.CivicationTaskEngine;
-    if (!engine || engine.__dayPhasePatched) return;
-    engine.__dayPhasePatched = true;
+function patchTaskEngine() {
+  const engine = window.CivicationTaskEngine;
+  if (!engine || engine.__dayPhasePatched) return;
+  engine.__dayPhasePatched = true;
 
-    const originalCreateTaskForMail = engine.createTaskForMail;
+  const originalCreateTaskForMail = engine.createTaskForMail;
 
-    if (typeof originalCreateTaskForMail === "function") {
-      engine.createTaskForMail = function (mailEvent, active, options) {
-        const task = originalCreateTaskForMail.call(engine, mailEvent, active, options);
-        if (!task) return task;
+  if (typeof originalCreateTaskForMail === "function") {
+    engine.createTaskForMail = function (mailEvent, active, options) {
+      const task = originalCreateTaskForMail.call(engine, mailEvent, active, options);
+      if (!task) return task;
 
-        const phaseModel = window.CivicationCalendar?.getPhaseModel?.() || {};
-
-        const gatedTask = applyKnowledgeGateToTask(task, mailEvent, active);
-
-        const updated = {
-         ...gatedTask,
-         dayIndex: Number(phaseModel.dayIndex || 1),
-         phase: String(mailEvent?.phase_tag || phaseModel.phase || "morning"),
-         phase_required: true
-         };
-
-        const store = engine.getStore ? engine.getStore() : null;
-        if (store?.byId?.[updated.id]) {
-          store.byId[updated.id] = updated;
-          engine.setStore?.(store);
-        }
-
-        return updated;
-      };
-    }
-
-    engine.listOpenTasksForCurrentPhase = function () {
-      const store = engine.getStore ? engine.getStore() : { byId: {}, order: [] };
-      const order = Array.isArray(store.order) ? store.order : [];
       const phaseModel = window.CivicationCalendar?.getPhaseModel?.() || {};
 
-      return order
-        .map((id) => store.byId?.[id] || null)
-        .filter(
-          (task) =>
-            task &&
-            task.status === "open" &&
-            Number(task.dayIndex || 1) === Number(phaseModel.dayIndex || 1) &&
-            String(task.phase || "") === String(phaseModel.phase || "")
-        );
+      const gatedTask = applyKnowledgeGateToTask(task, mailEvent, active);
+
+      const updated = {
+        ...gatedTask,
+        dayIndex: Number(phaseModel.dayIndex || 1),
+        phase: String(mailEvent?.phase_tag || phaseModel.phase || "morning"),
+        phase_required: true
+      };
+
+      const gatedMailEvent = applyKnowledgeGateToMailEvent(mailEvent, updated);
+
+      const store = engine.getStore ? engine.getStore() : null;
+      if (store?.byId?.[updated.id]) {
+        store.byId[updated.id] = {
+          ...updated,
+          gated_mail_event: gatedMailEvent
+        };
+        engine.setStore?.(store);
+      }
+
+      return {
+        ...updated,
+        gated_mail_event: gatedMailEvent
+      };
     };
   }
+
+  engine.listOpenTasksForCurrentPhase = function () {
+    const store = engine.getStore ? engine.getStore() : { byId: {}, order: [] };
+    const order = Array.isArray(store.order) ? store.order : [];
+    const phaseModel = window.CivicationCalendar?.getPhaseModel?.() || {};
+
+    return order
+      .map((id) => store.byId?.[id] || null)
+      .filter(
+        (task) =>
+          task &&
+          task.status === "open" &&
+          Number(task.dayIndex || 1) === Number(phaseModel.dayIndex || 1) &&
+          String(task.phase || "") === String(phaseModel.phase || "")
+      );
+  };
+}
 
   function patchJobs() {
     const jobs = window.CivicationJobs;
@@ -2499,10 +2552,18 @@ window.renderWorkdayPanel = function () {
   const weeklyHtml = buildWeeklyReportHtml();
   const contactsHtml = buildContactsHtml();
 
-  host.insertAdjacentHTML(
-    "afterbegin",
-    `${contactsHtml}${weeklyHtml}${buildPhaseHud(model)}`
-  );
+  const activeTasks =
+   window.CivicationTaskEngine?.listOpenTasksForCurrentPhase?.() || [];
+  const firstTask = Array.isArray(activeTasks) && activeTasks.length ? activeTasks[0] : null;
+  const knowledgeHtml = buildKnowledgeTaskHtml(firstTask);
+
+  const existingKnowledge = host.querySelector(".civi-knowledge-report");
+   if (existingKnowledge) existingKnowledge.remove();
+
+host.insertAdjacentHTML(
+  "afterbegin",
+  `${knowledgeHtml}${contactsHtml}${weeklyHtml}${buildPhaseHud(model)}`
+);
 };
     if (window.CivicationUI) {
       window.CivicationUI.renderWorkdayPanel = window.renderWorkdayPanel;
