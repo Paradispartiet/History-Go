@@ -465,7 +465,18 @@ appendDayChoiceLog({
 
 applyPhaseChoiceEffects(phaseTag, choiceId, choice);
 applyTaskCapitalFromChoice(phaseTag, pending?.event, choice, result);
-maybeCreateContactFromChoice(phaseTag, pending?.event, choice, result);
+
+window.CivicationTaskEngine?.completeByMail?.(
+  pending?.event?.id,
+  {
+    choiceId,
+    effect: Number(result?.effect || 0),
+    feedback: String(result?.feedback || ""),
+    capitalApplied: true
+  }
+);
+
+maybeCreateContactFromChoice(phaseTag, pending?.event, choice, result);    
         
       const cal = window.CivicationCalendar;
       if (!cal) return result;
