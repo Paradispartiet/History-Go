@@ -660,110 +660,110 @@ class CivicationEventEngine {
   }
 
   makeGenericCareerEvent(active, state, reason) {
-  const careerId = String(active?.career_id || "").trim();
-  const title = String(active?.title || "Rolle").trim() || "Rolle";
-  const career = this.getCareerRules(careerId);
-  const stability = String(state?.stability || "STABLE").toUpperCase();
+    const careerId = String(active?.career_id || "").trim();
+    const title = String(active?.title || "Rolle").trim() || "Rolle";
+    const career = this.getCareerRules(careerId);
+    const stability = String(state?.stability || "STABLE").toUpperCase();
 
-  let stage = "stable";
-  if (stability === "WARNING") stage = "warning";
-  if (stability === "FIRED") stage = "warning_danger";
+    let stage = "stable";
+    if (stability === "WARNING") stage = "warning";
+    if (stability === "FIRED") stage = "warning_danger";
 
-  const diegetic = career?.diegetic_text || {};
-  const intro = Array.isArray(diegetic.offer) ? diegetic.offer[0] : "";
-  const warn = Array.isArray(diegetic.maintenance_warning)
-    ? diegetic.maintenance_warning[0]
-    : "";
+    const diegetic = career?.diegetic_text || {};
+    const intro = Array.isArray(diegetic.offer) ? diegetic.offer[0] : "";
+    const warn = Array.isArray(diegetic.maintenance_warning)
+      ? diegetic.maintenance_warning[0]
+      : "";
 
-  const subject =
-    stage === "warning" || stage === "warning_danger"
-      ? `${title}: situasjonen må avklares`
-      : `${title}: ny arbeidsoppgave`;
+    const subject =
+      stage === "warning" || stage === "warning_danger"
+        ? `${title}: situasjonen må avklares`
+        : `${title}: ny arbeidsoppgave`;
 
-  const tail =
-    reason === "job_accepted"
-      ? "Dette er den første meldingen i rollen din."
-      : "Denne rollen har ikke egen mailpack ennå, så Civication lager en generisk jobbmail.";
+    const tail =
+      reason === "job_accepted"
+        ? "Dette er den første meldingen i rollen din."
+        : "Denne rollen har ikke egen mailpack ennå, så Civication lager en generisk jobbmail.";
 
-  const situation =
-    stage === "warning" || stage === "warning_danger"
-      ? [
-          warn || "Det er friksjon rundt arbeidet ditt.",
-          "Du må velge hvordan du håndterer situasjonen.",
-          tail
-        ]
-      : [
-          intro || "Du får en ny oppgave i rollen din.",
-          "Hvordan du løser den former rollen videre.",
-          tail
-        ];
+    const situation =
+      stage === "warning" || stage === "warning_danger"
+        ? [
+            warn || "Det er friksjon rundt arbeidet ditt.",
+            "Du må velge hvordan du håndterer situasjonen.",
+            tail
+          ]
+        : [
+            intro || "Du får en ny oppgave i rollen din.",
+            "Hvordan du løser den former rollen videre.",
+            tail
+          ];
 
-  return {
-    id: `generic_${careerId || slugify(title)}_${stage}_${Date.now()}`,
-    stage,
-    source: "Civication",
-    subject,
-    situation,
-    mail_tags: ["generic", careerId || "career", reason || "fallback"],
-    choices: this.buildGenericChoices(stage),
-    __pack: {
-      role: careerId || null,
-      tag_rules: {
-        max_tags_per_choice: 2,
-        memory_window: 12
-      },
-      tracks: []
-    }
-  };
-}
+    return {
+      id: `generic_${careerId || slugify(title)}_${stage}_${Date.now()}`,
+      stage,
+      source: "Civication",
+      subject,
+      situation,
+      mail_tags: ["generic", careerId || "career", reason || "fallback"],
+      choices: this.buildGenericChoices(stage),
+      __pack: {
+        role: careerId || null,
+        tag_rules: {
+          max_tags_per_choice: 2,
+          memory_window: 12
+        },
+        tracks: []
+      }
+    };
+  }
 
   decorateWorkMail(eventObj, active, reason) {
-  if (!eventObj || !active) return eventObj;
+    if (!eventObj || !active) return eventObj;
 
-  const stage = String(eventObj.stage || "").trim().toLowerCase();
-  if (stage === "warning" || stage === "fired" || stage === "unemployed") {
-    return eventObj;
+    const stage = String(eventObj.stage || "").trim().toLowerCase();
+    if (stage === "warning" || stage === "fired" || stage === "unemployed") {
+      return eventObj;
+    }
+
+    try {
+      window.CivicationCalendar?.ensureShiftForActiveJob?.(active);
+    } catch (e) {
+      console.warn("Calendar ensure shift failed", e);
+    }
+
+    const durationMinutes = Math.max(
+      10,
+      Number(eventObj.work_minutes || eventObj.duration_minutes || 45)
+    );
+
+    const windowInfo =
+      window.CivicationCalendar?.getWindow?.(durationMinutes) || null;
+
+    const task =
+      window.CivicationTaskEngine?.ensureTaskForMail?.(
+        eventObj,
+        active,
+        { windowInfo, reason }
+      ) || null;
+
+    return Object.assign({}, eventObj, {
+      task_id: task?.id || eventObj.task_id || null,
+      work_minutes: durationMinutes,
+      work_window: windowInfo,
+      brand_id:
+        String(active?.brand_id || "").trim() ||
+        eventObj.brand_id ||
+        null,
+      brand_name:
+        String(active?.brand_name || "").trim() ||
+        eventObj.brand_name ||
+        null,
+      calendar_label: windowInfo
+        ? `${windowInfo.startsAtLabel}–${windowInfo.deadlineAtLabel}`
+        : null
+    });
   }
 
-  try {
-    window.CivicationCalendar?.ensureShiftForActiveJob?.(active);
-  } catch (e) {
-    console.warn("Calendar ensure shift failed", e);
-  }
-
-  const durationMinutes = Math.max(
-    10,
-    Number(eventObj.work_minutes || eventObj.duration_minutes || 45)
-  );
-
-  const windowInfo =
-    window.CivicationCalendar?.getWindow?.(durationMinutes) || null;
-
-  const task =
-    window.CivicationTaskEngine?.ensureTaskForMail?.(
-      eventObj,
-      active,
-      { windowInfo, reason }
-    ) || null;
-
-  return Object.assign({}, eventObj, {
-    task_id: task?.id || eventObj.task_id || null,
-    work_minutes: durationMinutes,
-    work_window: windowInfo,
-    brand_id:
-      String(active?.brand_id || "").trim() ||
-      eventObj.brand_id ||
-      null,
-    brand_name:
-      String(active?.brand_name || "").trim() ||
-      eventObj.brand_name ||
-      null,
-    calendar_label: windowInfo
-      ? `${windowInfo.startsAtLabel}–${windowInfo.deadlineAtLabel}`
-      : null
-  });
-}
-  
   async ensureStoryState() {
     try {
       if (window.CiviStoryResolver?.refresh) {
@@ -782,23 +782,21 @@ class CivicationEventEngine {
     };
   }
 
+  resolvePackFile(active, role_key) {
+    const careerId = String(active?.career_id || "").trim();
+    const brandId = String(active?.brand_id || "").trim();
 
-resolvePackFile(active, role_key) {
-  const careerId = String(active?.career_id || "").trim();
-  const brandId = String(active?.brand_id || "").trim();
+    if (brandId) {
+      return `brand/${brandId}Civic.json`;
+    }
 
-  if (brandId) {
-    return `brand/${brandId}Civic.json`;
+    return (this.packMap && this.packMap[careerId])
+      ? this.packMap[careerId]
+      : (careerId
+          ? `${careerId}Civic.json`
+          : (String(role_key || "") + ".json"));
   }
 
-  return (this.packMap && this.packMap[careerId])
-    ? this.packMap[careerId]
-    : (careerId
-        ? `${careerId}Civic.json`
-        : (String(role_key || "") + ".json"));
-}
-  
-  
   // -------- main entrypoint --------
 
   async onAppOpen(opts = {}) {
@@ -907,222 +905,225 @@ resolvePackFile(active, role_key) {
     }
 
     if (!active) {
-  const st = this.getState();
-  const now = new Date();
+      const st = this.getState();
+      const now = new Date();
 
-  const navAfterWeeks =
-    Number(
-      (window.HG_CAREERS &&
-       window.HG_CAREERS.global_rules &&
-       window.HG_CAREERS.global_rules.unemployment &&
-       window.HG_CAREERS.global_rules.unemployment.nav_after_weeks) || 0
-    );
+      const navAfterWeeks =
+        Number(
+          (window.HG_CAREERS &&
+           window.HG_CAREERS.global_rules &&
+           window.HG_CAREERS.global_rules.unemployment &&
+           window.HG_CAREERS.global_rules.unemployment.nav_after_weeks) || 0
+        );
 
-  const nowW = weekKey(now);
+      const nowW = weekKey(now);
 
-  if (!st.unemployed_since_week) {
-    this.setState({ unemployed_since_week: nowW });
-    this.markPulseUsed();
-    return { enqueued: false, reason: "unemployed_started" };
-  }
+      if (!st.unemployed_since_week) {
+        this.setState({ unemployed_since_week: nowW });
+        this.markPulseUsed();
+        return { enqueued: false, reason: "unemployed_started" };
+      }
 
-  const weeksPassed =
-    weeksPassedBetweenWeekKeys(st.unemployed_since_week, nowW);
+      const weeksPassed =
+        weeksPassedBetweenWeekKeys(st.unemployed_since_week, nowW);
 
-  if (weeksPassed >= navAfterWeeks) {
-    const nav = this.makeNavEvent();
-    this.enqueueEvent(nav);
-    this.markPulseUsed();
-    return { enqueued: true, type: "nav", event: nav };
-  }
+      if (weeksPassed >= navAfterWeeks) {
+        const nav = this.makeNavEvent();
+        this.enqueueEvent(nav);
+        this.markPulseUsed();
+        return { enqueued: true, type: "nav", event: nav };
+      }
 
-  this.markPulseUsed();
-  return { enqueued: false, reason: "unemployed_pre_nav" };
-}
-
-const careerId = String(active.career_id || "").trim();
-
-const packFile = this.resolvePackFile(active, role_key);
-
-const pack = await this.loadPack(packFile);
-
-if (!pack || !Array.isArray(pack.mails) || !pack.mails.length) {
-  const roleMail =
-    await window.CiviRoleStoryletBridge?.makeMailForActiveRole?.(active, state);
-
-  const fallbackEvent = roleMail || this.makeGenericCareerEvent(
-    active,
-    state,
-    force ? "job_accepted" : "missing_pack"
-  );
-
-  const decorated = this.decorateWorkMail(
-    fallbackEvent,
-    active,
-    force ? "job_accepted" : "missing_pack"
-  );
-
-  this.enqueueEvent(decorated);
-
-  if (!force) {
-    this.markPulseUsed();
-  }
-
-  return {
-    enqueued: true,
-    type: roleMail ? "role_storylet" : "generic",
-    reason: "missing_pack",
-    event: decorated
-  };
-}
-
-const chosen = this.pickEventFromPack(pack, stateWithStory);
-
-if (!chosen) {
-  const generic = this.makeGenericCareerEvent(
-    active,
-    state,
-    force ? "job_accepted" : "no_candidates"
-  );
-
-  const decorated = this.decorateWorkMail(
-    generic,
-    active,
-    force ? "job_accepted" : "no_candidates"
-  );
-
-  this.enqueueEvent(decorated);
-
-  if (!force) {
-    this.markPulseUsed();
-  }
-
-  return {
-    enqueued: true,
-    type: "generic",
-    reason: "no_candidates",
-    event: decorated
-  };
-}
-
-const chosenWithMeta = Object.assign({}, chosen, {
-  __pack: {
-    role: pack?.role || null,
-    tag_rules: pack?.tag_rules || null,
-    tracks: Array.isArray(pack?.tracks) ? pack.tracks : []
-  }
-});
-
-const decoratedChosen = this.decorateWorkMail(
-  chosenWithMeta,
-  active,
-  force ? "job_accepted" : "scheduled"
-);
-
-this.enqueueEvent(decoratedChosen);
-
-if (!force) {
-  this.markPulseUsed();
-}
-
-return {
-  enqueued: true,
-  type: "job",
-  event: decoratedChosen
-};
-}
-
-async enqueueImmediateFollowupEvent() {
-  if (this.getPendingEvent()) {
-    return { enqueued: false, reason: "pending_exists" };
-  }
-
-  const active = window.CivicationState.getActivePosition();
-  if (!active) {
-    return { enqueued: false, reason: "no_active_job" };
-  }
-
-  const role_key = this.ensureRoleKeySynced();
-  const state = this.getState();
-  const careerId = String(active.career_id || "").trim();
-
-  const packFile = this.resolvePackFile(active, role_key);
-
-  const pack = await this.loadPack(packFile);
-
-  if (!pack || !Array.isArray(pack.mails) || !pack.mails.length) {
-    const generic = this.makeGenericCareerEvent(
-      active,
-      state,
-      "followup_missing_pack"
-    );
-
-    const decorated = this.decorateWorkMail(
-      generic,
-      active,
-      "followup_missing_pack"
-    );
-
-    this.enqueueEvent(decorated);
-    window.dispatchEvent(new Event("updateProfile"));
-
-    return {
-      enqueued: true,
-      type: "generic",
-      reason: "missing_pack",
-      event: decorated
-    };
-  }
-
-  const chosen = this.pickEventFromPack(pack, state);
-
-  if (!chosen) {
-    const generic = this.makeGenericCareerEvent(
-      active,
-      state,
-      "followup_no_candidates"
-    );
-
-    const decorated = this.decorateWorkMail(
-      generic,
-      active,
-      "followup_no_candidates"
-    );
-
-    this.enqueueEvent(decorated);
-    window.dispatchEvent(new Event("updateProfile"));
-
-    return {
-      enqueued: true,
-      type: "generic",
-      reason: "no_candidates",
-      event: decorated
-    };
-  }
-
-  const chosenWithMeta = Object.assign({}, chosen, {
-    __pack: {
-      role: pack?.role || null,
-      tag_rules: pack?.tag_rules || null,
-      tracks: Array.isArray(pack?.tracks) ? pack.tracks : []
+      this.markPulseUsed();
+      return { enqueued: false, reason: "unemployed_pre_nav" };
     }
-  });
 
-  const decoratedChosen = this.decorateWorkMail(
-    chosenWithMeta,
-    active,
-    "followup"
-  );
+    const packFile = this.resolvePackFile(active, role_key);
+    const pack = await this.loadPack(packFile);
 
-  this.enqueueEvent(decoratedChosen);
-  window.dispatchEvent(new Event("updateProfile"));
+    if (!pack || !Array.isArray(pack.mails) || !pack.mails.length) {
+      const roleMail =
+        await window.CiviRoleStoryletBridge?.makeMailForActiveRole?.(active, state);
 
-  return {
-    enqueued: true,
-    type: "job",
-    event: decoratedChosen
-  };
-}
+      const fallbackEvent = roleMail || this.makeGenericCareerEvent(
+        active,
+        state,
+        force ? "job_accepted" : "missing_pack"
+      );
+
+      const decorated = this.decorateWorkMail(
+        fallbackEvent,
+        active,
+        force ? "job_accepted" : "missing_pack"
+      );
+
+      this.enqueueEvent(decorated);
+
+      if (!force) {
+        this.markPulseUsed();
+      }
+
+      return {
+        enqueued: true,
+        type: roleMail ? "role_storylet" : "generic",
+        reason: "missing_pack",
+        event: decorated
+      };
+    }
+
+    const chosen = this.pickEventFromPack(pack, stateWithStory);
+
+    if (!chosen) {
+      const roleMail =
+        await window.CiviRoleStoryletBridge?.makeMailForActiveRole?.(active, state);
+
+      const fallbackEvent = roleMail || this.makeGenericCareerEvent(
+        active,
+        state,
+        force ? "job_accepted" : "no_candidates"
+      );
+
+      const decorated = this.decorateWorkMail(
+        fallbackEvent,
+        active,
+        force ? "job_accepted" : "no_candidates"
+      );
+
+      this.enqueueEvent(decorated);
+
+      if (!force) {
+        this.markPulseUsed();
+      }
+
+      return {
+        enqueued: true,
+        type: roleMail ? "role_storylet" : "generic",
+        reason: "no_candidates",
+        event: decorated
+      };
+    }
+
+    const chosenWithMeta = Object.assign({}, chosen, {
+      __pack: {
+        role: pack?.role || null,
+        tag_rules: pack?.tag_rules || null,
+        tracks: Array.isArray(pack?.tracks) ? pack.tracks : []
+      }
+    });
+
+    const decoratedChosen = this.decorateWorkMail(
+      chosenWithMeta,
+      active,
+      force ? "job_accepted" : "scheduled"
+    );
+
+    this.enqueueEvent(decoratedChosen);
+
+    if (!force) {
+      this.markPulseUsed();
+    }
+
+    return {
+      enqueued: true,
+      type: "job",
+      event: decoratedChosen
+    };
+  }
+
+  async enqueueImmediateFollowupEvent() {
+    if (this.getPendingEvent()) {
+      return { enqueued: false, reason: "pending_exists" };
+    }
+
+    const active = window.CivicationState.getActivePosition();
+    if (!active) {
+      return { enqueued: false, reason: "no_active_job" };
+    }
+
+    const role_key = this.ensureRoleKeySynced();
+    const state = this.getState();
+    const packFile = this.resolvePackFile(active, role_key);
+    const pack = await this.loadPack(packFile);
+
+    if (!pack || !Array.isArray(pack.mails) || !pack.mails.length) {
+      const roleMail =
+        await window.CiviRoleStoryletBridge?.makeMailForActiveRole?.(active, state);
+
+      const fallbackEvent = roleMail || this.makeGenericCareerEvent(
+        active,
+        state,
+        "followup_missing_pack"
+      );
+
+      const decorated = this.decorateWorkMail(
+        fallbackEvent,
+        active,
+        "followup_missing_pack"
+      );
+
+      this.enqueueEvent(decorated);
+      window.dispatchEvent(new Event("updateProfile"));
+
+      return {
+        enqueued: true,
+        type: roleMail ? "role_storylet" : "generic",
+        reason: "missing_pack",
+        event: decorated
+      };
+    }
+
+    const chosen = this.pickEventFromPack(pack, state);
+
+    if (!chosen) {
+      const roleMail =
+        await window.CiviRoleStoryletBridge?.makeMailForActiveRole?.(active, state);
+
+      const fallbackEvent = roleMail || this.makeGenericCareerEvent(
+        active,
+        state,
+        "followup_no_candidates"
+      );
+
+      const decorated = this.decorateWorkMail(
+        fallbackEvent,
+        active,
+        "followup_no_candidates"
+      );
+
+      this.enqueueEvent(decorated);
+      window.dispatchEvent(new Event("updateProfile"));
+
+      return {
+        enqueued: true,
+        type: roleMail ? "role_storylet" : "generic",
+        reason: "no_candidates",
+        event: decorated
+      };
+    }
+
+    const chosenWithMeta = Object.assign({}, chosen, {
+      __pack: {
+        role: pack?.role || null,
+        tag_rules: pack?.tag_rules || null,
+        tracks: Array.isArray(pack?.tracks) ? pack.tracks : []
+      }
+    });
+
+    const decoratedChosen = this.decorateWorkMail(
+      chosenWithMeta,
+      active,
+      "followup"
+    );
+
+    this.enqueueEvent(decoratedChosen);
+    window.dispatchEvent(new Event("updateProfile"));
+
+    return {
+      enqueued: true,
+      type: "job",
+      event: decoratedChosen
+    };
+  }
 
   enqueueEvent(eventObj) {
     const inbox = this.getInbox();
