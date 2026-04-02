@@ -731,3 +731,286 @@ function pickStoreContext(active, phaseTag) {
     visitedCount
   };
 }
+
+
+function applyStoreTypeFlavor(eventObj, phaseTag, store) {
+  const type = String(store?.type || "generic");
+  const ev = {
+    ...eventObj,
+    choices: Array.isArray(eventObj?.choices)
+      ? eventObj.choices.map((c) => ({ ...c }))
+      : [],
+    situation: Array.isArray(eventObj?.situation)
+      ? eventObj.situation.slice()
+      : []
+  };
+
+  if (phaseTag === "lunch") {
+    if (type === "clothing") {
+      ev.situation.push("Miljøet her handler om stil, signaler og hva slags person du ser ut som i andres øyne.");
+      ev.choices = ev.choices.map((c) => {
+        if (c.id === "B") {
+          return {
+            ...c,
+            effect: Number(c.effect || 0) + 1,
+            label: String(c.label || "").replace("Ta en sosial lunsj", "Ta en synlig lunsj")
+          };
+        }
+        return c;
+      });
+    }
+
+    if (type === "tech") {
+      ev.situation.push("Samtalene her drar lett mot kvalitet, detaljer og hvem som faktisk kan noe.");
+      ev.choices = ev.choices.map((c) => {
+        if (c.id === "A") {
+          return {
+            ...c,
+            effect: Number(c.effect || 0) + 1,
+            label: String(c.label || "").replace("Spis raskt", "Ta en presis og fokusert lunsj")
+          };
+        }
+        return c;
+      });
+    }
+
+    if (type === "car") {
+      ev.situation.push("Her handler alt litt mer om ambisjon, status og hvor raskt ting kan beveges videre.");
+      ev.choices = ev.choices.map((c) => {
+        if (c.id === "C") {
+          return {
+            ...c,
+            effect: Number(c.effect || 0) + 1,
+            label: String(c.label || "").replace("Hopp over lunsjen", "Dropp lunsjen og jag momentum")
+          };
+        }
+        return c;
+      });
+    }
+
+    if (type === "housing") {
+      ev.situation.push("Stemningen her trekker mot stabilitet, forankring og spørsmålet om hvor livet egentlig er på vei.");
+      ev.choices = ev.choices.map((c) => {
+        if (c.id === "A") {
+          return {
+            ...c,
+            effect: Number(c.effect || 0) + 1,
+            label: String(c.label || "").replace("Spis raskt", "Ta en rolig og stabil lunsj")
+          };
+        }
+        return c;
+      });
+    }
+  }
+
+  if (phaseTag === "evening") {
+    if (type === "clothing") {
+      ev.situation.push("Kvelden her handler om stil, scene og hvor synlig du vil gjøre deg selv.");
+      ev.choices = ev.choices.map((c) => {
+        if (c.id === "C") {
+          return {
+            ...c,
+            effect: Number(c.effect || 0) + 1,
+            label: String(c.label || "").replace("Oppsøk folk og miljø", "Gjør deg synlig i miljøet")
+          };
+        }
+        return c;
+      });
+    }
+
+    if (type === "tech") {
+      ev.situation.push("Kvelden her handler mer om nerdekapital, presisjon og hvem som faktisk har oversikt.");
+      ev.choices = ev.choices.map((c) => {
+        if (c.id === "A") {
+          return {
+            ...c,
+            effect: Number(c.effect || 0) + 1,
+            label: String(c.label || "").replace("Ta frivillig overtid", "Fordyp deg og press ut mer verdi")
+          };
+        }
+        return c;
+      });
+    }
+
+    if (type === "car") {
+      ev.situation.push("Alt rundt deg peker mot tempo, status og en litt mer risikovillig kveld.");
+      ev.choices = ev.choices.map((c) => {
+        if (c.id === "A" || c.id === "C") {
+          return {
+            ...c,
+            effect: Number(c.effect || 0) + 1
+          };
+        }
+        return c;
+      });
+    }
+
+    if (type === "housing") {
+      ev.situation.push("Kvelden her gjør det vanskelig å ignorere spørsmål om trygghet, plass og hvilken struktur livet ditt hviler på.");
+      ev.choices = ev.choices.map((c) => {
+        if (c.id === "B") {
+          return {
+            ...c,
+            effect: Number(c.effect || 0) + 1,
+            label: String(c.label || "").replace("Trekk deg rolig bort", "Trekk deg hjemover og la kvelden lande")
+          };
+        }
+        return c;
+      });
+    }
+  }
+
+  return ev;
+}
+
+function applyCareerFlavor(eventObj, phaseTag, active) {
+  const careerId = String(active?.career_id || "").trim();
+
+  const ev = {
+    ...eventObj,
+    choices: Array.isArray(eventObj?.choices)
+      ? eventObj.choices.map((c) => ({ ...c }))
+      : [],
+    situation: Array.isArray(eventObj?.situation)
+      ? eventObj.situation.slice()
+      : []
+  };
+
+  if (careerId === "naeringsliv") {
+    ev.situation.push("Alt vurderes litt i lys av verdi, tempo og hva som faktisk flytter noe fremover.");
+    ev.choices = ev.choices.map((c) => {
+      if (c.id === "A") return { ...c, effect: Number(c.effect || 0) + 1 };
+      return c;
+    });
+  }
+
+  if (careerId === "by") {
+    ev.situation.push("Du leser situasjonen gjennom struktur, koordinering og hvordan ting henger sammen i større skala.");
+    ev.choices = ev.choices.map((c) => {
+      if (c.id === "B") return { ...c, effect: Number(c.effect || 0) + 1 };
+      return c;
+    });
+  }
+
+  if (careerId === "musikk") {
+    ev.situation.push("Du merker alt litt mer som scene, rytme og nærvær mellom mennesker.");
+    ev.choices = ev.choices.map((c) => {
+      if (c.id === "C") return { ...c, effect: Number(c.effect || 0) + 1 };
+      return c;
+    });
+  }
+
+  if (careerId === "politikk") {
+    ev.situation.push("Du kjenner etter hvordan valgene dine leses offentlig, og hva de signaliserer utover seg selv.");
+    ev.choices = ev.choices.map((c) => {
+      if (c.id === "B" || c.id === "C") {
+        return { ...c, effect: Number(c.effect || 0) + 1 };
+      }
+      return c;
+    });
+  }
+
+  if (careerId === "media") {
+    ev.situation.push("Du tenker fort i vinkler, oppmerksomhet og hvilke handlinger som faktisk blir lagt merke til.");
+    ev.choices = ev.choices.map((c) => {
+      if (c.id === "C") return { ...c, effect: Number(c.effect || 0) + 1 };
+      return c;
+    });
+  }
+
+  if (careerId === "historie") {
+    ev.situation.push("Du leser stedet og øyeblikket som lag på lag av spor, institusjoner og minner.");
+    ev.choices = ev.choices.map((c) => {
+      if (c.id === "B") return { ...c, effect: Number(c.effect || 0) + 1 };
+      return c;
+    });
+  }
+
+  if (careerId === "vitenskap") {
+    ev.situation.push("Du vurderer valgene gjennom presisjon, metode og hva som faktisk tåler nærmere gransking.");
+    ev.choices = ev.choices.map((c) => {
+      if (c.id === "A" || c.id === "B") {
+        return { ...c, effect: Number(c.effect || 0) + 1 };
+      }
+      return c;
+    });
+  }
+
+  if (careerId === "kunst") {
+    ev.situation.push("Du kjenner etter uttrykk, symbolsk verdi og hva slags blikk situasjonen inviterer frem.");
+    ev.choices = ev.choices.map((c) => {
+      if (c.id === "C") return { ...c, effect: Number(c.effect || 0) + 1 };
+      return c;
+    });
+  }
+
+  if (careerId === "litteratur") {
+    ev.situation.push("Du tenker i formuleringer, nyanser og hvordan små valg får mening over tid.");
+    ev.choices = ev.choices.map((c) => {
+      if (c.id === "B") return { ...c, effect: Number(c.effect || 0) + 1 };
+      return c;
+    });
+  }
+
+  if (careerId === "natur") {
+    ev.situation.push("Du leser tempo, belastning og omgivelser som del av et større økologisk og kroppslig bilde.");
+    ev.choices = ev.choices.map((c) => {
+      if (c.id === "A" || c.id === "B") {
+        return { ...c, effect: Number(c.effect || 0) + 1 };
+      }
+      return c;
+    });
+  }
+
+  if (careerId === "sport") {
+    ev.situation.push("Du oppfatter valgene som rytme, driv og hvor mye energi som faktisk er i kroppen akkurat nå.");
+    ev.choices = ev.choices.map((c) => {
+      if (c.id === "A") return { ...c, effect: Number(c.effect || 0) + 1 };
+      return c;
+    });
+  }
+
+  if (careerId === "populaerkultur") {
+    ev.situation.push("Du leser situasjonen gjennom referanser, stemning og hva som fester seg i folks oppmerksomhet.");
+    ev.choices = ev.choices.map((c) => {
+      if (c.id === "C") return { ...c, effect: Number(c.effect || 0) + 1 };
+      return c;
+    });
+  }
+
+  if (careerId === "subkultur") {
+    ev.situation.push("Du kjenner etter miljø, edge og hvem som faktisk hører hjemme i rommet.");
+    ev.choices = ev.choices.map((c) => {
+      if (c.id === "C") return { ...c, effect: Number(c.effect || 0) + 1 };
+      return c;
+    });
+  }
+
+  if (careerId === "film_tv") {
+    ev.situation.push("Du ser lett situasjonen som scene, klipp og hvordan den ville tatt seg ut for et publikum.");
+    ev.choices = ev.choices.map((c) => {
+      if (c.id === "C") return { ...c, effect: Number(c.effect || 0) + 1 };
+      return c;
+    });
+  }
+
+  if (careerId === "teater") {
+    ev.situation.push("Du kjenner etter timing, nærvær og hvordan rollen din spilles i møte med andre.");
+    ev.choices = ev.choices.map((c) => {
+      if (c.id === "C" || c.id === "B") {
+        return { ...c, effect: Number(c.effect || 0) + 1 };
+      }
+      return c;
+    });
+  }
+
+  if (careerId === "psykologi") {
+    ev.situation.push("Du merker raskt hva som driver mennesker, og hvordan små valg setter spor i relasjoner og selvforståelse.");
+    ev.choices = ev.choices.map((c) => {
+      if (c.id === "B") return { ...c, effect: Number(c.effect || 0) + 1 };
+      return c;
+    });
+  }
+
+  return ev;
+}
