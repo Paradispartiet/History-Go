@@ -1134,30 +1134,6 @@ if (!chosen) {
     };
   }
 
-    const chosenWithMeta = Object.assign({}, chosen, {
-      __pack: {
-        role: pack?.role || null,
-        tag_rules: pack?.tag_rules || null,
-        tracks: Array.isArray(pack?.tracks) ? pack.tracks : []
-      }
-    });
-
-    const decoratedChosen = this.decorateWorkMail(
-      chosenWithMeta,
-      active,
-      "followup"
-    );
-
-    this.enqueueEvent(decoratedChosen);
-    window.dispatchEvent(new Event("updateProfile"));
-
-    return {
-      enqueued: true,
-      type: "job",
-      event: decoratedChosen
-    };
-  }
-
   enqueueEvent(eventObj) {
     const inbox = this.getInbox();
 
