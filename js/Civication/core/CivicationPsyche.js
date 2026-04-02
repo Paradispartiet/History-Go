@@ -397,7 +397,7 @@ function checkBurnout() {
 
   if (state.burnoutActive) return false;
 
-  const lifestyle = window.HG_Lifestyle?.getPrimary?.();
+  const lifestyle = window.getPrimaryLifestyle?.() || window.HG_Lifestyle?.getStamp?.();
 
   let burnoutMod = 1;
 
