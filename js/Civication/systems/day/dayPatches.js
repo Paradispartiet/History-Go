@@ -411,11 +411,12 @@ function patchTaskEngine() {
     jobs.acceptOffer = function (offerKey) {
       const res = originalAcceptOffer.call(jobs, offerKey);
 
-      if (res?.ok) {
-        window.CivicationCalendar?.setPhase?.("morning");
-        window.CivicationCalendar?.setDailySummary?.(null);
-      }
-
+    if (res?.ok) {
+     window.CivicationCalendar?.setPhase?.("morning");
+     window.CivicationCalendar?.setDailySummary?.(null);
+     window.CAPITAL_ENGINE?.syncRuntimeCapitalToStorage?.();
+     window.dispatchEvent(new Event("updateProfile"));
+    }
       return res;
     };
   }
