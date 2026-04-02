@@ -1060,18 +1060,31 @@ const chosen = this.pickEventFromPack(pack, stateWithStory);
 
     const role_key = this.ensureRoleKeySynced();
     const state = this.getState();
-    const packFile = this.resolvePackFile(active, role_key);
-    const pack = await this.loadPack(packFile);
+    const pack = await this.buildMailPool(active, state, role_key);
 
     if (!pack || !Array.isArray(pack.mails) || !pack.mails.length) {
-      const roleMail =
-        await window.CiviRoleStoryletBridge?.makeMailForActiveRole?.(active, state);
+     const generic = this.makeGenericCareerEvent(
+    active,
+    state,
+    "followup_missing_pack"
+  );
 
-      const fallbackEvent = roleMail || this.makeGenericCareerEvent(
-        active,
-        state,
-        "followup_missing_pack"
-      );
+  const decorated = this.decorateWorkMail(
+    generic,
+    active,
+    "followup_missing_pack"
+  );
+
+  this.enqueueEvent(decorated);
+  window.dispatchEvent(new Event("updateProfile"));
+
+  return {
+    enqueued: true,
+    type: "generic",
+    reason: "missing_pack",
+    event: decorated
+  };
+}
 
       const decorated = this.decorateWorkMail(
         fallbackEvent,
