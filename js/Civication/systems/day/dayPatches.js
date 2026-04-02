@@ -20,6 +20,169 @@ function retagPendingEvent(engine, phaseTag) {
     return inbox[idx];
   }
 
+function getTaskCapitalPlan(phaseTag, pendingEvent, choice, result) {
+  const tags = Array.isArray(choice?.tags) ? choice.tags.map(String) : [];
+  const careerId =
+    String(
+      pendingEvent?.career_id ||
+      window.CivicationState?.getActivePosition?.()?.career_id ||
+      ""
+    ).trim();
+
+  const taskKind = String(
+    pendingEvent?.task_kind ||
+    pendingEvent?.phase_tag ||
+    ""
+  ).trim();
+
+  const plan = [];
+
+  function push(type, amount) {
+    if (!type) return;
+    const n = Number(amount || 0);
+    if (!Number.isFinite(n) || n === 0) return;
+    plan.push({ type, amount: n });
+  }
+
+  // ------------------------------------------
+  // Base fra fase / task
+  // ------------------------------------------
+  if (phaseTag === "afternoon" || pendingEvent?.task_id || taskKind === "work_case") {
+    push("institutional", 0.6);
+    push("economic", 0.3);
+  }
+
+  if (taskKind === "brand_knowledge") {
+    push("economic", 0.4);
+    push("symbolic", 0.2);
+  }
+
+  if (taskKind === "catalog_knowledge") {
+    push("cultural", 0.5);
+    push("institutional", 0.2);
+  }
+
+  if (taskKind === "place_knowledge") {
+    push("symbolic", 0.4);
+    push("institutional", 0.25);
+  }
+
+  // ------------------------------------------
+  // Choice tags → kapital
+  // ------------------------------------------
+  if (tags.includes("craft")) {
+    push("cultural", 0.45);
+    push("institutional", 0.35);
+  }
+
+  if (tags.includes("process")) {
+    push("institutional", 0.5);
+    push("economic", 0.15);
+  }
+
+  if (tags.includes("legitimacy")) {
+    push("institutional", 0.45);
+    push("political", 0.2);
+  }
+
+  if (tags.includes("visibility")) {
+    push("symbolic", 0.45);
+    push("social", 0.25);
+  }
+
+  if (tags.includes("community")) {
+    push("social", 0.45);
+  }
+
+  if (tags.includes("status")) {
+    push("symbolic", 0.4);
+    push("economic", 0.2);
+  }
+
+  if (tags.includes("risk")) {
+    push("economic", 0.25);
+    push("symbolic", 0.25);
+  }
+
+  if (tags.includes("shortcut") || tags.includes("opportunism")) {
+    push("economic", 0.15);
+  }
+
+  if (tags.includes("avoidance")) {
+    push("social", -0.1);
+    push("institutional", -0.1);
+  }
+
+  // ------------------------------------------
+  // Career-sensitive bonus
+  // ------------------------------------------
+  if (careerId === "naeringsliv") {
+    push("economic", 0.2);
+    push("institutional", 0.15);
+  }
+
+  if (careerId === "politikk") {
+    push("political", 0.25);
+    push("institutional", 0.15);
+  }
+
+  if (careerId === "media") {
+    push("symbolic", 0.25);
+    push("political", 0.1);
+  }
+
+  if (careerId === "kunst" || careerId === "litteratur") {
+    push("cultural", 0.2);
+    push("symbolic", 0.15);
+  }
+
+  if (careerId === "subkultur") {
+    push("subculture", 0.25);
+    push("symbolic", 0.15);
+  }
+
+  return plan;
+}
+
+function mergeCapitalPlan(plan) {
+  const merged = {};
+
+  (Array.isArray(plan) ? plan : []).forEach((row) => {
+    const type = String(row?.type || "").trim();
+    const amount = Number(row?.amount || 0);
+    if (!type || !Number.isFinite(amount) || amount === 0) return;
+    merged[type] = Number(merged[type] || 0) + amount;
+  });
+
+  return merged;
+}
+
+function applyTaskCapitalFromChoice(phaseTag, pendingEvent, choice, result) {
+  if (!pendingEvent || !choice) return null;
+
+  const plan = getTaskCapitalPlan(phaseTag, pendingEvent, choice, result);
+  const merged = mergeCapitalPlan(plan);
+  const entries = Object.entries(merged);
+
+  if (!entries.length) return null;
+
+  const applied = entries.map(([type, amount]) => {
+    return window.HG_CapitalMaintenance?.maintain?.(type, amount, {
+      source: `task_${phaseTag || "work"}`,
+      useIdentityBoost: true
+    });
+  });
+
+  window.dispatchEvent(new Event("updateProfile"));
+
+  return {
+    phaseTag,
+    appliedTypes: entries.map(([type]) => type),
+    totals: merged,
+    applied
+  };
+}
+    
 function patchEventEngine() {
   const proto = window.CivicationEventEngine?.prototype;
   if (!proto || proto.__dayPhasePatched) return;
@@ -291,18 +454,19 @@ if (carryover.fatigue > 1 && adjustedChoices.length) {
         ? pending.event.choices.find((c) => c && c.id === choiceId)
         : null;
 
-      appendDayChoiceLog({
-       phase: phaseTag,
-       subject: String(pending?.event?.subject || ""),
-       choiceId,
-       label: choice?.label || (phaseTag === "day_end" ? "Bekreftet dagslutt" : ""),
-       feedback: String(result?.feedback || ""),
-       effect: Number(result?.effect || 0)
-      });
+appendDayChoiceLog({
+  phase: phaseTag,
+  subject: String(pending?.event?.subject || ""),
+  choiceId,
+  label: choice?.label || (phaseTag === "day_end" ? "Bekreftet dagslutt" : ""),
+  feedback: String(result?.feedback || ""),
+  effect: Number(result?.effect || 0)
+});
 
-      applyPhaseChoiceEffects(phaseTag, choiceId, choice);
-      maybeCreateContactFromChoice(phaseTag, pending?.event, choice, result);
-
+applyPhaseChoiceEffects(phaseTag, choiceId, choice);
+applyTaskCapitalFromChoice(phaseTag, pending?.event, choice, result);
+maybeCreateContactFromChoice(phaseTag, pending?.event, choice, result);
+        
       const cal = window.CivicationCalendar;
       if (!cal) return result;
 
