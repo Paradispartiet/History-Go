@@ -1,3 +1,4 @@
+(function () {
 
 function retagPendingEvent(engine, phaseTag) {
     const inbox = engine.getInbox ? engine.getInbox() : [];
