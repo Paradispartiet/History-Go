@@ -2071,6 +2071,7 @@ if (carryover.fatigue > 1 && adjustedChoices.length) {
       });
 
       applyPhaseChoiceEffects(phaseTag, choiceId, choice);
+      maybeCreateContactFromChoice(phaseTag, pending?.event, choice, result);
 
       const cal = window.CivicationCalendar;
       if (!cal) return result;
