@@ -395,8 +395,8 @@ async function makeEveningEvent(active) {
   };
 
   const flavoredByStore = applyStoreTypeFlavor(baseEvent, "evening", store);
-  return applyCareerFlavor(flavoredByStore, "evening", active);
-}
+  const flavoredByCareer = applyCareerFlavor(flavoredByStore, "evening", active);
+  return applyContactBonusToEvent(flavoredByCareer, "evening");}
 
 function makeDayEndEvent() {
   const cal = window.CivicationCalendar;
