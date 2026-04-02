@@ -267,8 +267,9 @@ const baseEvent = {
 };
 
 return applyStoreTypeFlavor(baseEvent, "lunch", store);
+}
 
-  function makeEveningEvent(active) {
+function makeEveningEvent(active) {
   const visitedCount = getVisitedPlacesCount();
   const store = pickStoreContext(active, "evening");
   const brandName =
@@ -340,8 +341,9 @@ return applyStoreTypeFlavor(baseEvent, "lunch", store);
 };
 
 return applyStoreTypeFlavor(baseEvent, "evening", store);
+}
 
-  function makeDayEndEvent() {
+function makeDayEndEvent() {
   const cal = window.CivicationCalendar;
   const model = cal?.getPhaseModel?.() || {};
   const flags = model.dailyFlags || {};
