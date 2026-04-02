@@ -45,100 +45,100 @@ function getTaskCapitalPlan(phaseTag, pendingEvent, choice, result) {
   }
 
   // ------------------------------------------
-  // Base fra fase / task
+  // Svak base fra faktisk arbeid
   // ------------------------------------------
   if (phaseTag === "afternoon" || pendingEvent?.task_id || taskKind === "work_case") {
-    push("institutional", 0.6);
-    push("economic", 0.3);
+    push("institutional", 0.15);
+    push("economic", 0.08);
   }
 
   if (taskKind === "brand_knowledge") {
-    push("economic", 0.4);
-    push("symbolic", 0.2);
+    push("economic", 0.10);
+    push("symbolic", 0.04);
   }
 
   if (taskKind === "catalog_knowledge") {
-    push("cultural", 0.5);
-    push("institutional", 0.2);
+    push("cultural", 0.12);
+    push("institutional", 0.05);
   }
 
   if (taskKind === "place_knowledge") {
-    push("symbolic", 0.4);
-    push("institutional", 0.25);
+    push("symbolic", 0.10);
+    push("institutional", 0.05);
   }
 
   // ------------------------------------------
-  // Choice tags → kapital
+  // Choice tags → små drypp
   // ------------------------------------------
   if (tags.includes("craft")) {
-    push("cultural", 0.45);
-    push("institutional", 0.35);
+    push("cultural", 0.12);
+    push("institutional", 0.08);
   }
 
   if (tags.includes("process")) {
-    push("institutional", 0.5);
-    push("economic", 0.15);
+    push("institutional", 0.12);
+    push("economic", 0.04);
   }
 
   if (tags.includes("legitimacy")) {
-    push("institutional", 0.45);
-    push("political", 0.2);
+    push("institutional", 0.10);
+    push("political", 0.05);
   }
 
   if (tags.includes("visibility")) {
-    push("symbolic", 0.45);
-    push("social", 0.25);
+    push("symbolic", 0.10);
+    push("social", 0.05);
   }
 
   if (tags.includes("community")) {
-    push("social", 0.45);
+    push("social", 0.10);
   }
 
   if (tags.includes("status")) {
-    push("symbolic", 0.4);
-    push("economic", 0.2);
+    push("symbolic", 0.08);
+    push("economic", 0.04);
   }
 
   if (tags.includes("risk")) {
-    push("economic", 0.25);
-    push("symbolic", 0.25);
+    push("economic", 0.06);
+    push("symbolic", 0.04);
   }
 
   if (tags.includes("shortcut") || tags.includes("opportunism")) {
-    push("economic", 0.15);
+    push("economic", 0.03);
   }
 
   if (tags.includes("avoidance")) {
-    push("social", -0.1);
-    push("institutional", -0.1);
+    push("social", -0.02);
+    push("institutional", -0.02);
   }
 
   // ------------------------------------------
-  // Career-sensitive bonus
+  // Svak karrierefarging
   // ------------------------------------------
   if (careerId === "naeringsliv") {
-    push("economic", 0.2);
-    push("institutional", 0.15);
+    push("economic", 0.05);
+    push("institutional", 0.03);
   }
 
   if (careerId === "politikk") {
-    push("political", 0.25);
-    push("institutional", 0.15);
+    push("political", 0.06);
+    push("institutional", 0.03);
   }
 
   if (careerId === "media") {
-    push("symbolic", 0.25);
-    push("political", 0.1);
+    push("symbolic", 0.06);
+    push("political", 0.02);
   }
 
   if (careerId === "kunst" || careerId === "litteratur") {
-    push("cultural", 0.2);
-    push("symbolic", 0.15);
+    push("cultural", 0.05);
+    push("symbolic", 0.03);
   }
 
   if (careerId === "subkultur") {
-    push("subculture", 0.25);
-    push("symbolic", 0.15);
+    push("subculture", 0.06);
+    push("symbolic", 0.03);
   }
 
   return plan;
