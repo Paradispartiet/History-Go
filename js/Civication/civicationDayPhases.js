@@ -2094,7 +2094,31 @@ function applyKnowledgeGateToMailEvent(mailEvent, task) {
   };
 }
 
+function buildKnowledgeTaskHtml(task) {
+  if (!task) return "";
 
+  const knowledgeState = String(task?.knowledge_state || "");
+  const knowledgeNote = String(task?.knowledge_note || "").trim();
+  const solutionMode = String(task?.solution_mode || "");
+
+  if (!knowledgeState && !knowledgeNote) return "";
+
+  const label =
+    knowledgeState === "qualified"
+      ? "Kunnskapsnivå: Kvalifisert"
+      : knowledgeState === "assisted"
+        ? "Kunnskapsnivå: Delvis støtte"
+        : "Kunnskapsnivå: Mangler innsikt";
+
+  return `
+    <div class="civi-knowledge-report" style="margin-bottom:12px;padding:12px;border:1px solid rgba(255,255,255,0.12);border-radius:14px;background:rgba(255,255,255,0.04);">
+      <div style="font-weight:700;margin-bottom:8px;">Oppgaveforståelse</div>
+      <div style="font-size:0.95rem;line-height:1.4;">${label}</div>
+      ${solutionMode ? `<div style="font-size:0.9rem;opacity:0.9;margin-top:4px;">Løsningsnivå: ${solutionMode}</div>` : ""}
+      ${knowledgeNote ? `<div style="margin-top:8px;font-size:0.95rem;line-height:1.45;">${knowledgeNote}</div>` : ""}
+    </div>
+  `;
+}
 
   
 function patchEventEngine() {
