@@ -1612,6 +1612,56 @@ function finalizeWeekIfNeeded(activeCareerId) {
   return nextReview;
 }
   
+
+function buildWeeklyReportHtml() {
+  const review = getWeeklyReview();
+  const summary =
+    review?.summary && typeof review.summary === "object"
+      ? review.summary
+      : null;
+
+  if (!summary) return "";
+
+  const daysCount = Number(summary.daysCount || 0);
+  if (daysCount <= 0) return "";
+
+  const note = String(summary.weeklyNote || "").trim();
+  const effects =
+    summary.appliedEffects && typeof summary.appliedEffects === "object"
+      ? summary.appliedEffects
+      : null;
+
+  const effectBits = [];
+  if (effects) {
+    if (Number(effects.integrityDelta || 0) !== 0) {
+      effectBits.push(`Integritet ${effects.integrityDelta > 0 ? "+" : ""}${effects.integrityDelta}`);
+    }
+    if (Number(effects.visibilityDelta || 0) !== 0) {
+      effectBits.push(`Synlighet ${effects.visibilityDelta > 0 ? "+" : ""}${effects.visibilityDelta}`);
+    }
+    if (Number(effects.economicRoomDelta || 0) !== 0) {
+      effectBits.push(`Handlingsrom ${effects.economicRoomDelta > 0 ? "+" : ""}${effects.economicRoomDelta}`);
+    }
+    if (Number(effects.burnoutPressure || 0) > 0) {
+      effectBits.push(`Press +${effects.burnoutPressure}`);
+    }
+  }
+
+  return `
+    <div class="civi-weekly-report" style="margin-bottom:12px;padding:12px;border:1px solid rgba(255,255,255,0.12);border-radius:14px;background:rgba(255,255,255,0.04);">
+      <div style="font-weight:700;margin-bottom:8px;">Ukerapport · ${String(review.weekKey || "")}</div>
+      <div style="font-size:0.95rem;line-height:1.4;">
+        Dager: ${daysCount} · Sterke: ${Number(summary.strongDays || 0)} · Jevne: ${Number(summary.evenDays || 0)} · Ujevne: ${Number(summary.unevenDays || 0)}
+      </div>
+      <div style="font-size:0.95rem;line-height:1.4;margin-top:4px;">
+        Synlighet: ${Number(summary.visibilityDays || 0)} · Struktur: ${Number(summary.processDays || 0)} · Slitasje: ${Number(summary.fatigueDays || 0)} · Snittscore: ${Number(summary.avgScore || 0)}
+      </div>
+      ${note ? `<div style="margin-top:8px;font-size:0.95rem;line-height:1.45;">${note}</div>` : ""}
+      ${effectBits.length ? `<div style="margin-top:8px;font-size:0.9rem;opacity:0.9;">${effectBits.join(" · ")}</div>` : ""}
+    </div>
+  `;
+}
+
   
 function patchEventEngine() {
   const proto = window.CivicationEventEngine?.prototype;
@@ -2035,20 +2085,28 @@ if (carryover.fatigue > 1 && adjustedChoices.length) {
       `;
     }
 
-    window.renderWorkdayPanel = function () {
-      legacyRenderWorkdayPanel();
+window.renderWorkdayPanel = function () {
+  legacyRenderWorkdayPanel();
 
-      const host = document.getElementById("civiWorkdayPanel");
-      if (!host) return;
+  const host = document.getElementById("civiWorkdayPanel");
+  if (!host) return;
 
-      const model = window.CivicationCalendar?.getPhaseModel?.();
-      if (!model) return;
+  const model = window.CivicationCalendar?.getPhaseModel?.();
+  if (!model) return;
 
-      const existing = host.querySelector(".civi-dayphase-hud");
-      if (existing) existing.remove();
+  const existingHud = host.querySelector(".civi-dayphase-hud");
+  if (existingHud) existingHud.remove();
 
-      host.insertAdjacentHTML("afterbegin", buildPhaseHud(model));
-    };
+  const existingWeekly = host.querySelector(".civi-weekly-report");
+  if (existingWeekly) existingWeekly.remove();
+
+  const weeklyHtml = buildWeeklyReportHtml();
+
+  host.insertAdjacentHTML(
+    "afterbegin",
+    `${weeklyHtml}${buildPhaseHud(model)}`
+  );
+};
 
     if (window.CivicationUI) {
       window.CivicationUI.renderWorkdayPanel = window.renderWorkdayPanel;
