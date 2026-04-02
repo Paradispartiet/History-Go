@@ -531,7 +531,7 @@ function processCollapse() {
 
   
   function getLifestyleEconomyModifier() {
-  const lifestyle = getPrimaryLifestyle?.();
+  const lifestyle = window.getPrimaryLifestyle?.() || window.HG_Lifestyle?.getStamp?.();
   if (!lifestyle || !lifestyle.economy_profile) {
     return { swing: 1, pressure: 1 };
   }
@@ -569,7 +569,7 @@ function getLifestyleTrustModifier() {
 }
 
   function getLifestyleBurnoutModifier() {
-  const lifestyle = window.HG_Lifestyle?.getPrimary?.();
+  const lifestyle = window.getPrimaryLifestyle?.() || window.HG_Lifestyle?.getStamp?.();
   if (!lifestyle) return 1;
 
   const pressure = lifestyle?.economy_profile?.budget_pressure;
