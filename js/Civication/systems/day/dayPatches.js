@@ -494,12 +494,11 @@ function patchTaskEngine() {
 }
 
   function initPatches() {
-    patchCalendar();
-    patchEventEngine();
-    patchTaskEngine();
-    patchJobs();
-    patchUI();
-  }
+  patchEventEngine();
+  patchTaskEngine();
+  patchJobs();
+  patchUI();
+}
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", initPatches);
