@@ -1,0 +1,155 @@
+{
+  "schema": "civication_role_content_v1",
+  "version": 1,
+  "category": "naeringsliv",
+  "tier_label": "Mellomleder",
+  "role_id": "naer_mellomleder",
+  "role_name": "Mellomleder",
+  "role_level": 3,
+  "primary_conflict": "ansvar_vs_kontroll",
+  "secondary_conflict": "gulvlogikk_vs_ledersprak",
+  "background_conflict": "lojalitet_oppover_vs_tillit_nedover",
+  "tone": [
+    "presset",
+    "kontrollert",
+    "litt tørr",
+    "sosialt utmattet",
+    "språklig ryddig, praktisk urolig"
+  ],
+  "role_summary": "Du holder ting sammen uten å eie hele systemet. Du står mellom krav ovenfra og virkelighet nedenfra.",
+  "actual_work": [
+    "fordele oppgaver",
+    "dempe friksjon",
+    "oversette beslutninger til gjennomførbar praksis",
+    "følge opp tempo, avvik og folk",
+    "holde stemningen brukbar nok til at driften fortsetter",
+    "ta ansvar for ting du ikke fullt ut kontrollerer"
+  ],
+  "key_skills": [
+    "prioritering",
+    "sosial lesning",
+    "konfliktdemping",
+    "oversettelse mellom språk og praksis",
+    "tåle misnøye fra begge sider",
+    "vite når du må beskytte folk og når du må beskytte systemet"
+  ],
+  "common_irritations": [
+    "du får ansvar uten full myndighet",
+    "du må selge inn beslutninger du ikke tror på",
+    "folk over deg vil ha ryddige rapporter, ikke virkelige forklaringer",
+    "folk under deg tror du bestemmer mer enn du gjør",
+    "mye av jobben er å få ting til å virke mindre kaotiske enn de er"
+  ],
+  "misconception": "At mellomledelse handler om ledelse. Ofte handler det mer om buffering, oversettelse og skadebegrensning.",
+  "what_player_learns": [
+    "at mellomledelse er en egen type slitasje",
+    "at organisasjoner ofte bæres av dem som verken har mest makt eller minst arbeid",
+    "at språk, tone og timing kan være like viktige som faglighet"
+  ],
+  "knowledge_layers": {
+    "field_knowledge": [
+      "drift",
+      "bemanning",
+      "avvikshåndtering",
+      "intern prioritering",
+      "produktivitet vs menneskelig kapasitet"
+    ],
+    "role_knowledge": [
+      "hvordan beslutninger oversettes nedover",
+      "hvordan misnøye dempes",
+      "hvordan ansvar skyves",
+      "hvordan rapportering former virkelighetsbildet"
+    ],
+    "situational_knowledge": [
+      "når du tar en konflikt direkte",
+      "når du lar noe passere",
+      "når du beskytter ansatte",
+      "når du beskytter systemet",
+      "når du later som du har mer kontroll enn du har"
+    ]
+  },
+  "scenario_families": [
+    {
+      "family_id": "oversettelse_mellom_oppover_og_nedover",
+      "title": "Oversettelse mellom oppover og nedover",
+      "primary_conflict": "gulvlogikk_vs_ledersprak",
+      "secondary_conflict": "klarhet_vs_lojal_uklarhet",
+      "what_it_teaches": [
+        "at mye av rollen er å oversette språk til arbeid",
+        "at du ofte vet at formuleringen er penere enn virkeligheten",
+        "at oversettelse også er makt"
+      ]
+    },
+    {
+      "family_id": "ansvar_uten_full_kontroll",
+      "title": "Ansvar uten full kontroll",
+      "primary_conflict": "ansvar_vs_kontroll",
+      "secondary_conflict": "forventning_vs_mulighet",
+      "what_it_teaches": [
+        "at du blir holdt ansvarlig for ting du bare delvis styrer",
+        "at mellomnivået absorberer press",
+        "at kontroll i organisasjoner ofte er mer påstått enn faktisk"
+      ]
+    },
+    {
+      "family_id": "folk_stemning_og_friksjon",
+      "title": "Folk, stemning og friksjon",
+      "primary_conflict": "drift_vs_relasjon",
+      "secondary_conflict": "rettferdighet_vs_fred",
+      "what_it_teaches": [
+        "at stemning er en produksjonsfaktor",
+        "at rettferdighet og ro ikke alltid er det samme",
+        "at små konflikter kan være driftskritiske"
+      ]
+    },
+    {
+      "family_id": "rapportering_og_virkelighetsredigering",
+      "title": "Rapportering og virkelighetsredigering",
+      "primary_conflict": "sannhet_vs_rapportbarhet",
+      "secondary_conflict": "beskrivelse_vs_ansvarsplassering",
+      "what_it_teaches": [
+        "at det som skrives oppover sjelden er identisk med det som skjedde",
+        "at rapporter både dokumenterer og beskytter",
+        "at språk er organisasjonens viktigste filter"
+      ]
+    },
+    {
+      "family_id": "slitasje_lojalitet_og_selvbilde",
+      "title": "Slitasje, lojalitet og selvbilde",
+      "primary_conflict": "lojalitet_oppover_vs_tillit_nedover",
+      "secondary_conflict": "rolleidentitet_vs_selvrespekt",
+      "what_it_teaches": [
+        "at mellomlederrollen kan forandre hvordan du ser deg selv",
+        "at du gradvis kan bli systemets språk uten å mene det",
+        "at lojalitet alltid har en retning og en pris"
+      ]
+    }
+  ],
+  "storylets": [
+    {"id":"naer_mellomleder_1_1","family_id":"oversettelse_mellom_oppover_og_nedover","title":"Du må selge inn noe du ikke tror på","primary_conflict":"gulvlogikk_vs_ledersprak","secondary_conflict":"klarhet_vs_lojal_uklarhet","tone":["presset","ryddig","litt hul"],"summary":"Du får en beslutning ovenfra som skal presenteres som forbedring, selv om du vet at gulvet vil oppleve den som merarbeid.","choices":[{"id":"A","label":"Presenter den så ærlig du kan uten å undergrave beslutningen","tags":["legitimacy","process"]},{"id":"B","label":"Pakk den inn pent og håp at den glir lettere ned","tags":["visibility","status"]},{"id":"C","label":"Oversett den til noe praktisk og kort, uten hele pyntespråket","tags":["craft","community"]}],"what_player_learns":["mellomledelse er ofte å bære andres formuleringer inn i andres slit"],"progress_tags":["translation","manager_speech","loyalty_test"]},
+    {"id":"naer_mellomleder_1_2","family_id":"oversettelse_mellom_oppover_og_nedover","title":"Hva betyr dette i praksis?","primary_conflict":"gulvlogikk_vs_ledersprak","secondary_conflict":"abstraksjon_vs_gjennomforbarhet","tone":["tørr","nøktern"],"summary":"En ny beskjed ovenfra er full av mål og prinsipper, men nesten tom for praktisk innhold.","choices":[{"id":"A","label":"Bryt det ned i tre konkrete instrukser","tags":["process","craft"]},{"id":"B","label":"Send det videre som det er og la folk tilpasse seg","tags":["security","avoidance"]},{"id":"C","label":"Be oppover om presisering selv om det sinker deg","tags":["legitimacy","risk"]}],"what_player_learns":["mellomnivået gjør ofte abstrakte beslutninger mulig å utføre"],"progress_tags":["translation","operationalization","middle_layer"]},
+    {"id":"naer_mellomleder_2_1","family_id":"ansvar_uten_full_kontroll","title":"Du får skylden før du får verktøyene","primary_conflict":"ansvar_vs_kontroll","secondary_conflict":"forventning_vs_mulighet","tone":["rolig","lett oppgitt"],"summary":"Noe fungerer dårlig i avdelingen, og du forventes å rydde opp uten ekstra ressurser, tid eller folk.","choices":[{"id":"A","label":"Prioriter det viktigste og si tydelig hva som ikke kan holdes samtidig","tags":["process","legitimacy"]},{"id":"B","label":"Prøv å få alt til å se noenlunde ut for å kjøpe deg tid","tags":["visibility","security"]},{"id":"C","label":"Skyv ansvaret tydelig oppover igjen","tags":["risk","status"]}],"what_player_learns":["ansvar i organisasjoner fordeles ofte før kontroll gjør det"],"progress_tags":["responsibility_gap","resource_shortage","control_fiction"]},
+    {"id":"naer_mellomleder_2_2","family_id":"ansvar_uten_full_kontroll","title":"Fravær midt i driften","primary_conflict":"ansvar_vs_kontroll","secondary_conflict":"menneske_vs_flyt","tone":["presset","praktisk"],"summary":"To personer er borte samme dag, og planen din faller delvis sammen før lunsj.","choices":[{"id":"A","label":"Omfordel oppgaver hardt og hold dagen i gang","tags":["process","risk"]},{"id":"B","label":"Skjerm de mest slitne og la noe annet ryke","tags":["community","legitimacy"]},{"id":"C","label":"Ta mer selv og prøv å holde misnøyen nede","tags":["craft","durability"]}],"what_player_learns":["mellomledelse er ofte prioritering under ressursmangel"],"progress_tags":["staffing_pressure","triage","operational_compromise"]},
+    {"id":"naer_mellomleder_3_1","family_id":"folk_stemning_og_friksjon","title":"To personer tåler ikke hverandre lenger","primary_conflict":"drift_vs_relasjon","secondary_conflict":"rettferdighet_vs_fred","tone":["lavmælt","sosialt sliten"],"summary":"Ingenting eksploderer, men stemningen er nå så dårlig at den spiser av dagen.","choices":[{"id":"A","label":"Ta samtalene separat og ro ned temperaturen","tags":["community","process"]},{"id":"B","label":"Snakk åpent med begge og forsøk å rydde det helt","tags":["legitimacy","risk"]},{"id":"C","label":"Juster turnus og håp at avstand er nok","tags":["security","shortcut"]}],"what_player_learns":["mye ledelse er vedlikehold av sosial temperatur"],"progress_tags":["conflict_damping","social_temperature","manager_fatigue"]},
+    {"id":"naer_mellomleder_3_2","family_id":"folk_stemning_og_friksjon","title":"Den stille misnøyen","primary_conflict":"drift_vs_relasjon","secondary_conflict":"synlig_problem_vs_stille_erosjon","tone":["observerende","urolig"],"summary":"Ingen klager direkte, men du kjenner at laget er i ferd med å bli tynt i tonen.","choices":[{"id":"A","label":"Spør hvordan folk faktisk har det med flyten nå","tags":["community","social"]},{"id":"B","label":"Ikke åpne noe du kanskje ikke rekker å følge opp","tags":["security","avoidance"]},{"id":"C","label":"Lag en liten endring som viser at du ser noe","tags":["craft","visibility"]}],"what_player_learns":["stemning er ofte et driftsproblem før den blir en konflikt"],"progress_tags":["team_mood","erosion","soft_signal"]},
+    {"id":"naer_mellomleder_4_1","family_id":"rapportering_og_virkelighetsredigering","title":"Hvordan skriver du dette oppover?","primary_conflict":"sannhet_vs_rapportbarhet","secondary_conflict":"beskrivelse_vs_ansvarsplassering","tone":["språklig presis","mildt ubehagelig"],"summary":"Det som skjedde i dag lar seg ikke enkelt skrive som enten avvik eller normaldrift.","choices":[{"id":"A","label":"Skriv det så presist som mulig, selv om noen ser dårlig ut","tags":["legitimacy","integrity"]},{"id":"B","label":"Skriv det ryddig nok til at det kan håndteres uten oppstyr","tags":["process","security"]},{"id":"C","label":"Vinkle det slik at ansvaret ikke lander hos dine folk","tags":["community","status"]}],"what_player_learns":["rapporter er ikke bare dokumentasjon; de er også fordeling av risiko"],"progress_tags":["reporting","narrative_control","upward_shielding"]},
+    {"id":"naer_mellomleder_4_2","family_id":"rapportering_og_virkelighetsredigering","title":"Tallene ser bedre ut enn dagen føltes","primary_conflict":"sannhet_vs_rapportbarhet","secondary_conflict":"måling_vs_erfaring","tone":["tørr","litt fremmedgjort"],"summary":"Dagen var kaotisk, men noen nøkkeltall ser faktisk greie ut.","choices":[{"id":"A","label":"Rapporter tallene og la det være nok","tags":["process","visibility"]},{"id":"B","label":"Legg ved en forklaring som viser hva tallene skjuler","tags":["legitimacy","craft"]},{"id":"C","label":"Noter det for deg selv og se om mønsteret gjentar seg","tags":["observation","security"]}],"what_player_learns":["det som måles og det som oppleves er ofte ikke det samme"],"progress_tags":["metrics_gap","reported_reality","management_distance"]},
+    {"id":"naer_mellomleder_5_1","family_id":"slitasje_lojalitet_og_selvbilde","title":"Du hører deg selv snakke som systemet","primary_conflict":"lojalitet_oppover_vs_tillit_nedover","secondary_conflict":"rolleidentitet_vs_selvrespekt","tone":["stille","litt skremt av seg selv"],"summary":"Midt i en forklaring hører du deg selv bruke formuleringer du tidligere ville gjort narr av.","choices":[{"id":"A","label":"Stopp opp og si det mer menneskelig","tags":["integrity","community"]},{"id":"B","label":"Fullfør; rollen krever noen ganger det språket","tags":["institutional","status"]},{"id":"C","label":"Merk deg det bare og tenk på det senere","tags":["observation","minimalism"]}],"what_player_learns":["roller virker tilbake på språket og selvbildet ditt"],"progress_tags":["identity_shift","manager_voice","role_absorption"]},
+    {"id":"naer_mellomleder_5_2","family_id":"slitasje_lojalitet_og_selvbilde","title":"Hvem er du mest lojal mot nå?","primary_conflict":"lojalitet_oppover_vs_tillit_nedover","secondary_conflict":"rolleidentitet_vs_selvrespekt","tone":["rolig","skarp underflate"],"summary":"Du merker at det ikke lenger er opplagt hvem du først og fremst beskytter i en vanskelig situasjon.","choices":[{"id":"A","label":"Beskytt folkene dine selv om det koster oppover","tags":["community","risk"]},{"id":"B","label":"Hold linjen oppover og unngå å bli den som tar støyen","tags":["security","institutional"]},{"id":"C","label":"Prøv å finne en formulering som skjermer begge sider litt","tags":["process","craft"]}],"what_player_learns":["mellomlederrollen er også en lojalitetsmaskin"],"progress_tags":["loyalty_split","shielding","middle_identity"]},
+    {"id":"naer_mellomleder_1_3","family_id":"oversettelse_mellom_oppover_og_nedover","title":"Det fine notatet og den stygge dagen","primary_conflict":"gulvlogikk_vs_ledersprak","secondary_conflict":"spraklig_orden_vs_operativt_rot","tone":["tørr","lett absurd"],"summary":"Du får et fint formulert notat om forbedret samhandling samme dag som halve skiftet går med til å slukke små branner.","choices":[{"id":"A","label":"Bruk notatet som utgangspunkt, men oversett det brutalt ned til praksis","tags":["craft","process"]},{"id":"B","label":"Les det opp slik det er og håp at språket virker samlende","tags":["visibility","status"]},{"id":"C","label":"Legg det bort og fokuser på å få dagen til å overleve","tags":["security","minimalism"]}],"what_player_learns":["organisasjoner produserer ofte språk raskere enn de produserer ro"],"progress_tags":["manager_speech","operational_noise","translation"]},
+    {"id":"naer_mellomleder_1_4","family_id":"oversettelse_mellom_oppover_og_nedover","title":"Ingen vil eie ordet effektivisering","primary_conflict":"gulvlogikk_vs_ledersprak","secondary_conflict":"klarhet_vs_lojal_uklarhet","tone":["nøktern","litt hard"],"summary":"Det er forventet at noe skal bli mer effektivt, men ingen vil si rett ut hva som skal kuttes, flyttes eller presses.","choices":[{"id":"A","label":"Spør direkte hva som faktisk forventes ofret","tags":["legitimacy","risk"]},{"id":"B","label":"Finn en lokal tolkning som er minst ødeleggende","tags":["craft","community"]},{"id":"C","label":"Gjenta bare målet og la resten flyte nedover","tags":["status","security"]}],"what_player_learns":["effektivisering er ofte et ord som skjuler hvem som skal bære kostnaden"],"progress_tags":["efficiency_language","cost_translation","ambiguity"]},
+    {"id":"naer_mellomleder_1_5","family_id":"oversettelse_mellom_oppover_og_nedover","title":"Du blir bedt om å roe ned noe du vet folk har rett i","primary_conflict":"gulvlogikk_vs_ledersprak","secondary_conflict":"lojalitet_oppover_vs_tillit_nedover","tone":["presset","lavmælt"],"summary":"Misnøyen nedenfra er reell, men oppgaven din blir å dempe tonen, ikke å løse årsaken.","choices":[{"id":"A","label":"Si tydelig at du forstår dem, men be om at det tas kontrollert","tags":["community","process"]},{"id":"B","label":"Forsvar linjen og prioriter ro framfor rettferdighet nå","tags":["institutional","security"]},{"id":"C","label":"Løft hovedpoenget videre oppover selv om du ikke får garanti for noe","tags":["risk","legitimacy"]}],"what_player_learns":["mellomledelse handler ofte om å håndtere sann misnøye uten sann løsning"],"progress_tags":["tone_control","upward_pressure","downward_trust"]},
+    {"id":"naer_mellomleder_2_3","family_id":"ansvar_uten_full_kontroll","title":"Planen din varer til første telefon","primary_conflict":"ansvar_vs_kontroll","secondary_conflict":"plan_vs_avbrudd","tone":["praktisk","smått utmattet"],"summary":"Du møter med en plan, men før formiddagen er over har to telefoner og ett avvik flyttet hele dagen.","choices":[{"id":"A","label":"Hold fast i planen så langt det går","tags":["process","durability"]},{"id":"B","label":"Endre raskt og la planen være et bakgrunnsdokument","tags":["craft","risk"]},{"id":"C","label":"Kommuniser med én gang at dagen nå styres av avvik","tags":["legitimacy","visibility"]}],"what_player_learns":["kontroll i mellomledelse er ofte evnen til å reorganisere raskt"],"progress_tags":["replanning","interruptions","control_fiction"]},
+    {"id":"naer_mellomleder_2_4","family_id":"ansvar_uten_full_kontroll","title":"Du må få det til å se ut som valg","primary_conflict":"ansvar_vs_kontroll","secondary_conflict":"nødvendighet_vs_frivillighet","tone":["tørr","sosialt krevende"],"summary":"Noe må gjøres, men du vet at hvis du bare kommanderer, taper du goodwill. Hvis du spør for åpent, taper du tid.","choices":[{"id":"A","label":"Formuler det som et tydelig behov, men med litt rom","tags":["process","community"]},{"id":"B","label":"Si rett ut hva som må skje og stå i det","tags":["status","legitimacy"]},{"id":"C","label":"Finn personen som oftest tar slike ting uten mye støy","tags":["social","shortcut"]}],"what_player_learns":["mellomledelse er ofte iscenesatt frivillighet under tidspress"],"progress_tags":["soft_command","goodwill","pressure_distribution"]},
+    {"id":"naer_mellomleder_2_5","family_id":"ansvar_uten_full_kontroll","title":"Målet gjelder, men midlene er dine problem","primary_conflict":"forventning_vs_mulighet","secondary_conflict":"målstyring_vs_virkelighet","tone":["hard","ryddig"],"summary":"Et mål er satt, men alt rundt bemanning, flyt og slitasje blir skjøvet ned som lokalt ansvar.","choices":[{"id":"A","label":"Del opp målet i det som faktisk er mulig å levere","tags":["process","craft"]},{"id":"B","label":"Kommuniser oppover at målet er feilkalibrert","tags":["risk","legitimacy"]},{"id":"C","label":"Aksepter målet og optimaliser stille nedover","tags":["security","status"]}],"what_player_learns":["mål er ofte elegante på papiret og skitne i praksis"],"progress_tags":["target_pressure","delegated_burden","local_optimization"]},
+    {"id":"naer_mellomleder_3_3","family_id":"folk_stemning_og_friksjon","title":"Den kompetente som sprer dårlig luft","primary_conflict":"drift_vs_relasjon","secondary_conflict":"kompetanse_vs_sosial_kostnad","tone":["rolig","sosialt skarp"],"summary":"En av de mest nyttige personene på laget er også den som tærer mest på stemningen.","choices":[{"id":"A","label":"Ta det direkte og risiker å miste noe flyt på kort sikt","tags":["legitimacy","risk"]},{"id":"B","label":"Skjerm laget rundt personen uten å ta kjernen fullt ut","tags":["community","process"]},{"id":"C","label":"La det stå litt til fordi kapasiteten trumfer alt akkurat nå","tags":["security","status"]}],"what_player_learns":["dyktighet og sosial bærekraft er ikke det samme"],"progress_tags":["high_performer_problem","team_cost","manager_tradeoff"]},
+    {"id":"naer_mellomleder_3_4","family_id":"folk_stemning_og_friksjon","title":"Rettferdig blir ikke alltid rolig","primary_conflict":"rettferdighet_vs_fred","secondary_conflict":"prinsipp_vs_flyt","tone":["tørr","moralsk trett"],"summary":"Du kan fordele noe helt rettferdig, men du vet at én løsning skaper mer friksjon enn en annen.","choices":[{"id":"A","label":"Velg det mest rettferdige og ta støyen","tags":["integrity","legitimacy"]},{"id":"B","label":"Velg det som holder laget mest samlet her og nå","tags":["community","security"]},{"id":"C","label":"Forklar premissene så tydelig at folk i det minste skjønner hvorfor","tags":["process","visibility"]}],"what_player_learns":["rettferdighet i arbeidslivet er ofte sosialt dyr"],"progress_tags":["fairness_cost","peacekeeping","manager_ethics"]},
+    {"id":"naer_mellomleder_3_5","family_id":"folk_stemning_og_friksjon","title":"En liten kommentar som setter seg i rommet","primary_conflict":"drift_vs_relasjon","secondary_conflict":"mikroaggresjon_vs_taus_toleranse","tone":["lavmælt","observant"],"summary":"Noen sier noe lite, men rommet endrer temperatur. Ikke nok til rapport. Nok til å merkes.","choices":[{"id":"A","label":"Marker det med én gang, kort og tydelig","tags":["legitimacy","integrity"]},{"id":"B","label":"Ta personen etterpå og unngå scene","tags":["process","community"]},{"id":"C","label":"La det gå nå og se om det blir et mønster","tags":["observation","security"]}],"what_player_learns":["mange arbeidsmiljøproblemer begynner under rapporteringsgrensen"],"progress_tags":["micro_tension","room_temperature","boundary_setting"]},
+    {"id":"naer_mellomleder_4_3","family_id":"rapportering_og_virkelighetsredigering","title":"Du vet hva som skjedde, men hva tåler teksten?","primary_conflict":"sannhet_vs_rapportbarhet","secondary_conflict":"presisjon_vs_beskyttelse","tone":["språklig nøyaktig","urolig"],"summary":"Jo mer presis du er, desto tydeligere blir det også hvor ansvaret lander.","choices":[{"id":"A","label":"Skriv det presist og la ansvaret havne der det havner","tags":["integrity","legitimacy"]},{"id":"B","label":"Skriv det ryddig nok til at systemet kan svelge det uten å reagere for hardt","tags":["process","security"]},{"id":"C","label":"Skriv det slik at folkene dine ikke tar hovedstøyen","tags":["community","status"]}],"what_player_learns":["rapportering er også moralsk plassering"],"progress_tags":["report_ethics","text_pressure","shielding"]},
+    {"id":"naer_mellomleder_4_4","family_id":"rapportering_og_virkelighetsredigering","title":"Du fjerner tre detaljer og får en penere sannhet","primary_conflict":"sannhet_vs_rapportbarhet","secondary_conflict":"kompleksitet_vs_ledbarhet","tone":["tørr","selvbevisst"],"summary":"Du oppdager hvor lite som skal til før en rapport går fra vanskelig virkelighet til håndterbar fortelling.","choices":[{"id":"A","label":"La alle vanskelige detaljer stå","tags":["integrity","risk"]},{"id":"B","label":"Kutt bare det som ikke endrer hovedbildet","tags":["process","craft"]},{"id":"C","label":"Bruk den penere versjonen og tenk at det viktigste allerede er sagt","tags":["security","visibility"]}],"what_player_learns":["organisasjoner lever av redigerbar sannhet"],"progress_tags":["editing_reality","summary_power","text_management"]},
+    {"id":"naer_mellomleder_4_5","family_id":"rapportering_og_virkelighetsredigering","title":"Tallene ber om én historie, menneskene en annen","primary_conflict":"måling_vs_erfaring","secondary_conflict":"oversikt_vs_narhet","tone":["rolig","splittet"],"summary":"Hvis du følger tallene, ser uken grei ut. Hvis du følger folkene, ser den tynnslitt ut.","choices":[{"id":"A","label":"Rapporter begge deler og aksepter at du virker mindre ryddig","tags":["legitimacy","integrity"]},{"id":"B","label":"Prioriter tallene oppover og jobb mer skjermende nedover","tags":["process","community"]},{"id":"C","label":"Hold deg til tallene og håp at slitasjen ikke vokser videre","tags":["security","status"]}],"what_player_learns":["organisatorisk oversikt og menneskelig sannhet ligger ofte i hver sin kanal"],"progress_tags":["metrics_gap","human_cost","dual_reporting"]},
+    {"id":"naer_mellomleder_5_3","family_id":"slitasje_lojalitet_og_selvbilde","title":"Du blir flink til å tåle ting du ikke liker","primary_conflict":"rolleidentitet_vs_selvrespekt","secondary_conflict":"tilpasning_vs_erodering","tone":["lavmælt","sliten"],"summary":"Du merker at det som før skurret, nå bare passerer gjennom deg som del av arbeidsflyten.","choices":[{"id":"A","label":"Ta det som et tegn på profesjonell robusthet","tags":["durability","institutional"]},{"id":"B","label":"Ta det som et faresignal og prøv å justere noe lite","tags":["integrity","risk"]},{"id":"C","label":"Ikke analyser det nå; du trenger bare at uka går opp","tags":["security","minimalism"]}],"what_player_learns":["arbeidsroller former toleransegrenser saktere enn man merker"],"progress_tags":["adaptation","erosion","manager_fatigue"]},
+    {"id":"naer_mellomleder_5_4","family_id":"slitasje_lojalitet_og_selvbilde","title":"Du merker at folk leser deg annerledes nå","primary_conflict":"rolleidentitet_vs_selvrespekt","secondary_conflict":"narhet_vs_funksjon","tone":["observerende","litt fremmed"],"summary":"Du er ikke helt en av dem du leder lenger, men heller ikke en del av toppen.","choices":[{"id":"A","label":"Aksepter mellomposisjonen som rollens pris","tags":["institutional","security"]},{"id":"B","label":"Jobb mer aktivt for å holde tilliten nedenfra levende","tags":["community","social"]},{"id":"C","label":"Begynn å tenke mer oppover og eie bevegelsen","tags":["status","visibility"]}],"what_player_learns":["mellomnivået er også et sosialt ingenmannsland"],"progress_tags":["middle_position","distance_shift","identity_reframing"]},
+    {"id":"naer_mellomleder_5_5","family_id":"slitasje_lojalitet_og_selvbilde","title":"Når blir buffering bare en vane?","primary_conflict":"lojalitet_oppover_vs_tillit_nedover","secondary_conflict":"rolleidentitet_vs_selvrespekt","tone":["ettertenksom","stram"],"summary":"Du skjermer folk, oversetter press, glatter språk, demper støy. Plutselig lurer du på om du fortsatt gjør det bevisst.","choices":[{"id":"A","label":"Se buffering som et reelt arbeid og eie det","tags":["craft","institutional"]},{"id":"B","label":"Begynn å velge tydeligere når du skjermer og når du ikke gjør det","tags":["integrity","process"]},{"id":"C","label":"La rollen fortsette å bære deg uten å se for nøye på det","tags":["security","minimalism"]}],"what_player_learns":["mellomledelse kan bli en vaneform før den blir et bevisst kall"],"progress_tags":["buffering","role_habit","self_distance"]}
+  ]
+}

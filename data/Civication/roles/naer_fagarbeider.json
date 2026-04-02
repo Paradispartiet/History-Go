@@ -1,0 +1,141 @@
+{
+  "schema": "civication_role_content_v1",
+  "version": 1,
+  "category": "naeringsliv",
+  "tier_label": "Fagarbeider",
+  "role_id": "naer_fagarbeider",
+  "role_name": "Fagarbeider",
+  "role_level": 2,
+  "primary_conflict": "kvalitet_vs_tidsfrist",
+  "secondary_conflict": "fagstolthet_vs_underdanighet",
+  "background_conflict": "praktisk_kunnskap_vs_formell_ledelse",
+  "tone": [
+    "presis",
+    "jordnær",
+    "litt tørr",
+    "stolt uten å være høytidelig",
+    "irritert på overfladiskhet"
+  ],
+  "role_summary": "Du kan jobben godt nok til å se det andre overser. Det gir deg ikke nødvendigvis makt, men det gir deg tyngde.",
+  "actual_work": [
+    "løse konkrete problemer",
+    "kvalitetssikre arbeid under press",
+    "oppdage feil tidlig",
+    "finne praktiske løsninger når rutinen ikke holder",
+    "lære opp nye uten å ha full lederstatus",
+    "bære taus kunnskap i drift"
+  ],
+  "key_skills": [
+    "presisjon",
+    "arbeidsminne",
+    "mønsterblikk",
+    "kvalitetsvurdering",
+    "rolig problemløsing",
+    "vite når du skal bøye rutinen og når du ikke skal"
+  ],
+  "common_irritations": [
+    "du ser flere feil enn du kan få rettet",
+    "folk over deg bruker fagord uten å forstå faget",
+    "tempo brukes som argument mot kvalitet",
+    "du får ansvar uten tydelig belønning",
+    "du må lære opp andre mens noen andre får æren"
+  ],
+  "misconception": "At fagarbeid bare er mer erfaring. Egentlig er det et annet blikk på arbeidet.",
+  "what_player_learns": [
+    "at kvalitet er sosialt og tidsmessig presset, ikke bare teknisk definert",
+    "at praktisk kunnskap ofte bærer virksomheten uten å bli fullstendig anerkjent",
+    "at presisjon og stolthet kan bli både styrke og belastning"
+  ],
+  "knowledge_layers": {
+    "field_knowledge": [
+      "kvalitetssikring",
+      "produksjonsflyt",
+      "praktisk problemløsing",
+      "feilmarginer",
+      "yrkesstolthet i drift"
+    ],
+    "role_knowledge": [
+      "taus kunnskap",
+      "opplæring av andre",
+      "håndtering av standarder",
+      "hva som tåler avvik og hva som ikke gjør det",
+      "når man må stå på sitt"
+    ],
+    "situational_knowledge": [
+      "når du stopper noe",
+      "når du lar noe passere",
+      "når du lærer bort",
+      "når du sier fra oppover",
+      "når du bare løser det"
+    ]
+  },
+  "scenario_families": [
+    {
+      "family_id": "presisjon_og_standard",
+      "title": "Presisjon og standard",
+      "primary_conflict": "kvalitet_vs_tidsfrist",
+      "secondary_conflict": "standard_vs_virkelighet",
+      "what_it_teaches": [
+        "at kvalitet ikke er gratis",
+        "at standarder må tolkes i praksis",
+        "at tempo alltid prøver å spise presisjon"
+      ]
+    },
+    {
+      "family_id": "opplaering_og_taus_kunnskap",
+      "title": "Opplæring og taus kunnskap",
+      "primary_conflict": "fagkunnskap_vs_forenkling",
+      "secondary_conflict": "ansvar_vs_anerkjennelse",
+      "what_it_teaches": [
+        "at mye viktig kunnskap er vanskelig å skrive ned",
+        "at opplæring er arbeid, ikke bare hjelp",
+        "at erfaring er sosialt distribuert"
+      ]
+    },
+    {
+      "family_id": "feil_avvik_og_stoppunkt",
+      "title": "Feil, avvik og stoppunkt",
+      "primary_conflict": "drift_vs_feilforebygging",
+      "secondary_conflict": "rolig_vurdering_vs_press",
+      "what_it_teaches": [
+        "at fagfolk ofte må stoppe ting ingen andre vil stoppe",
+        "at det koster noe å være den som sier nei",
+        "at små avvik ofte har store følger"
+      ]
+    },
+    {
+      "family_id": "fagstolthet_og_ledelse",
+      "title": "Fagstolthet og ledelse",
+      "primary_conflict": "fagstolthet_vs_underdanighet",
+      "secondary_conflict": "praktisk_blokk_vs_ledersprak",
+      "what_it_teaches": [
+        "at ledelse og fagkunnskap ikke er det samme",
+        "at faglig integritet ofte kommer i konflikt med glatte formuleringer",
+        "at respekt ikke nødvendigvis følger tittel"
+      ]
+    },
+    {
+      "family_id": "synlighet_og_videre_vei",
+      "title": "Synlighet og videre vei",
+      "primary_conflict": "mestring_vs_karriere",
+      "secondary_conflict": "stabilitet_vs_avansement",
+      "what_it_teaches": [
+        "at den som kan jobben best ikke alltid går videre",
+        "at synlighet endrer hvordan kompetanse leses",
+        "at forfremmelse kan være en bevegelse bort fra selve faget"
+      ]
+    }
+  ],
+  "storylets": [
+    {"id":"naer_fagarbeider_1_1","family_id":"presisjon_og_standard","title":"Dette holder ikke helt","primary_conflict":"kvalitet_vs_tidsfrist","secondary_conflict":"standard_vs_virkelighet","tone":["presis","rolig","lett irritert"],"summary":"Noe ser greit ut ved første øyekast, men du ser at det ikke holder helt.","situation":["De fleste ville latt det gå. Du vet at det kan bli en større jobb senere."],"choices":[{"id":"A","label":"Stopp det og få det gjort ordentlig","tags":["craft","legitimacy"]},{"id":"B","label":"Rett det akkurat nok til at det holder nå","tags":["process","risk"]},{"id":"C","label":"La det gå og følg med på om det faktisk blir et problem","tags":["security","observation"]}],"what_player_learns":["faglighet er ofte å se det andre ikke ser","kvalitet har en tidskostnad"],"progress_tags":["quality_threshold","professional_eye","time_pressure"]},
+    {"id":"naer_fagarbeider_1_2","family_id":"presisjon_og_standard","title":"Ingen har tid til å gjøre det riktig, bare tid til å gjøre det om igjen","primary_conflict":"kvalitet_vs_tidsfrist","secondary_conflict":"kortsiktighet_vs_holdbarhet","tone":["tørr","litt mørk humor"],"summary":"Noen vil skynde seg. Du vet at hastverk ofte bare flytter arbeidet fram i tid.","situation":["Det du prøver å forsvare er ikke perfeksjon, men å slippe dobbeltarbeid."],"choices":[{"id":"A","label":"Forklar hva som faktisk vil gå tapt hvis dere haster","tags":["legitimacy","craft"]},{"id":"B","label":"Løs det så godt du kan innenfor presset","tags":["process","durability"]},{"id":"C","label":"Gi etter og noter deg bare hva som kommer til å skje","tags":["security","observation"]}],"what_player_learns":["kortsiktig effektivitet er ofte dyr i drift"],"progress_tags":["rework","time_cost","practical_argument"]},
+    {"id":"naer_fagarbeider_2_1","family_id":"opplaering_og_taus_kunnskap","title":"Det står ikke i manualen","primary_conflict":"fagkunnskap_vs_forenkling","secondary_conflict":"tekst_vs_praksis","tone":["rolig","presis"],"summary":"En ny person følger boka. Problemet er bare at boka ikke dekker det viktigste.","situation":["Du må forklare noe som mest sitter i kroppen og timingen."],"choices":[{"id":"A","label":"Vis det i praksis og la vedkommende kjenne forskjellen","tags":["craft","community"]},{"id":"B","label":"Prøv å oversette erfaringen til en regel","tags":["process","legitimacy"]},{"id":"C","label":"La dem gjøre det feil én gang først","tags":["risk","observation"]}],"what_player_learns":["taus kunnskap er ekte kunnskap, ikke bare vane"],"progress_tags":["tacit_knowledge","training","embodied_skill"]},
+    {"id":"naer_fagarbeider_2_2","family_id":"opplaering_og_taus_kunnskap","title":"Du lærer opp, men det synes ikke","primary_conflict":"ansvar_vs_anerkjennelse","secondary_conflict":"faglig_bidrag_vs_formell_rolle","tone":["nøktern","litt bitter"],"summary":"Du bruker tid på å gjøre andre bedre, men det står ingen steder at det er du som gjør det.","situation":["Opplæring er arbeid, bare uten samme språk rundt seg."],"choices":[{"id":"A","label":"Fortsett å lære bort fordi det gjør driften bedre","tags":["community","craft"]},{"id":"B","label":"Gjør det, men sørg for at noen ser det","tags":["visibility","status"]},{"id":"C","label":"Trekk deg litt tilbake og gjør bare ditt","tags":["security","minimalism"]}],"what_player_learns":["uformelt ansvar kan bære mye av arbeidsplassen"],"progress_tags":["teaching","invisible_responsibility","recognition"]},
+    {"id":"naer_fagarbeider_3_1","family_id":"feil_avvik_og_stoppunkt","title":"Dette må stoppes nå","primary_conflict":"drift_vs_feilforebygging","secondary_conflict":"rolig_vurdering_vs_press","tone":["stram","rolig"],"summary":"Du ser et avvik som bør stoppe flyten et øyeblikk.","situation":["Ingen rundt deg ønsker mer stopp, men du vet at dette er øyeblikket det enten tas på alvor eller ikke."],"choices":[{"id":"A","label":"Stopp det tydelig og stå i det","tags":["legitimacy","craft"]},{"id":"B","label":"Prøv å rette det uten å lage fullt stopp","tags":["process","risk"]},{"id":"C","label":"Marker bekymringen og la andre eie avgjørelsen","tags":["security","institutional"]}],"what_player_learns":["faglighet innebærer å være den som noen ganger stanser flyten"],"progress_tags":["stop_point","avvik","professional_courage"]},
+    {"id":"naer_fagarbeider_3_2","family_id":"feil_avvik_og_stoppunkt","title":"Et lite avvik ingen vil høre om","primary_conflict":"drift_vs_feilforebygging","secondary_conflict":"ansvar_vs_bekvemmelighet","tone":["lavmælt","tørr"],"summary":"Du vet at noe er litt galt, men akkurat lite nok til at alle helst vil gå videre.","situation":["Spørsmålet er ikke om du har rett. Spørsmålet er om du orker å ha rett."],"choices":[{"id":"A","label":"Si fra likevel","tags":["legitimacy","integrity"]},{"id":"B","label":"Vent og se om det utvikler seg","tags":["observation","security"]},{"id":"C","label":"Juster litt lokalt og hold det i gang","tags":["craft","process"]}],"what_player_learns":["ikke alle riktige vurderinger er sosialt velkomne"],"progress_tags":["micro_deviation","professional_friction","moral_fatigue"]},
+    {"id":"naer_fagarbeider_4_1","family_id":"fagstolthet_og_ledelse","title":"De vil ha et fint ord for noe som ikke virker","primary_conflict":"praktisk_kunnskap_vs_formell_ledelse","secondary_conflict":"sprak_vs_virkelighet","tone":["tørr","irritert på en stille måte"],"summary":"Noen over deg beskriver situasjonen pent, men du vet at ordene ikke treffer arbeidet.","situation":["Det er ikke direkte løgn. Bare en språkføring som glatter over det vesentlige."],"choices":[{"id":"A","label":"Si konkret hva som faktisk er problemet","tags":["craft","legitimacy"]},{"id":"B","label":"Oversett det stille til noe brukbart for gulvet","tags":["process","community"]},{"id":"C","label":"La dem snakke og gjør bare jobben din","tags":["security","minimalism"]}],"what_player_learns":["lederspråk og arbeidssannhet er ikke alltid på samme sted"],"progress_tags":["manager_speech","translation","professional_distance"]},
+    {"id":"naer_fagarbeider_4_2","family_id":"fagstolthet_og_ledelse","title":"Du vet bedre enn møtet","primary_conflict":"fagstolthet_vs_underdanighet","secondary_conflict":"taushet_vs_intervensjon","tone":["rolig","innestengt"],"summary":"Et møte går i en retning som høres riktig ut i rommet, men ikke på gulvet.","situation":["Du kjenner den særegne frustrasjonen ved å vite mer enn situasjonen tillater deg å bruke."],"choices":[{"id":"A","label":"Bryt inn og si hvordan dette faktisk vil slå ut","tags":["visibility","craft"]},{"id":"B","label":"Ta det med riktig person etterpå","tags":["social","institutional"]},{"id":"C","label":"Spar energien og noter deg hvem som skjønner hva","tags":["observation","security"]}],"what_player_learns":["faglighet og innflytelse er to forskjellige ting"],"progress_tags":["meeting_gap","voice","status_distance"]},
+    {"id":"naer_fagarbeider_5_1","family_id":"synlighet_og_videre_vei","title":"Det er du som kan dette nå","primary_conflict":"mestring_vs_karriere","secondary_conflict":"stabilitet_vs_avansement","tone":["rolig","svakt tung"],"summary":"Du merker at folk begynner å behandle deg som en som faktisk kan faget.","situation":["Det betyr respekt. Det betyr også at du kanskje blir stående der du er fordi du er for nyttig."],"choices":[{"id":"A","label":"Bygg videre på fagtyngden din","tags":["craft","durability"]},{"id":"B","label":"Begynn å tenke mer strategisk om synlighet","tags":["status","visibility"]},{"id":"C","label":"Undersøk hva som faktisk kreves for å komme videre","tags":["institutional","observation"]}],"what_player_learns":["det å være god i rollen kan både hjelpe og binde deg"],"progress_tags":["competence_recognized","career_friction","role_lock"]},
+    {"id":"naer_fagarbeider_5_2","family_id":"synlighet_og_videre_vei","title":"Vil du opp, eller vil du beholde faget?","primary_conflict":"mestring_vs_karriere","secondary_conflict":"faglighet_vs_administrasjon","tone":["ettertenksom","nøktern"],"summary":"Du ser at neste steg kanskje betyr mindre faktisk fag og mer koordinering, språk og ansvar.","situation":["Det er ikke bare et opprykk. Det er et mulig skifte bort fra det du liker best."],"choices":[{"id":"A","label":"Tenk at det er verdt det om du får mer innflytelse","tags":["status","risk"]},{"id":"B","label":"Tenk at faget er viktigere enn tittelen","tags":["craft","minimalism"]},{"id":"C","label":"Hold spørsmålet åpent og observer videre","tags":["observation","security"]}],"what_player_learns":["forfremmelse er også et skifte i hva slags arbeid du faktisk gjør"],"progress_tags":["promotion_horizon","identity_shift","professional_choice"]}
+  ]
+}
