@@ -2266,14 +2266,17 @@ window.renderWorkdayPanel = function () {
   const existingWeekly = host.querySelector(".civi-weekly-report");
   if (existingWeekly) existingWeekly.remove();
 
+  const existingContacts = host.querySelector(".civi-contacts-report");
+  if (existingContacts) existingContacts.remove();
+
   const weeklyHtml = buildWeeklyReportHtml();
+  const contactsHtml = buildContactsHtml();
 
   host.insertAdjacentHTML(
     "afterbegin",
-    `${weeklyHtml}${buildPhaseHud(model)}`
+    `${contactsHtml}${weeklyHtml}${buildPhaseHud(model)}`
   );
 };
-
     if (window.CivicationUI) {
       window.CivicationUI.renderWorkdayPanel = window.renderWorkdayPanel;
     }
