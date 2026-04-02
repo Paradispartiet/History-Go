@@ -1146,25 +1146,6 @@ function applyCareerFlavor(eventObj, phaseTag, active) {
 }
 
 
-
-function getVisitedPlaceIds() {
-  try {
-    const raw = JSON.parse(localStorage.getItem("visited_places") || "[]");
-
-    if (Array.isArray(raw)) {
-      return raw.map(String);
-    }
-
-    if (raw && typeof raw === "object") {
-      return Object.keys(raw).filter((k) => !!raw[k]).map(String);
-    }
-
-    return [];
-  } catch {
-    return [];
-  }
-}
-
   function inferPlaceContextsFromBadges() {
   const merits =
     JSON.parse(localStorage.getItem("merits_by_category") || "{}");
