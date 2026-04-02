@@ -210,12 +210,27 @@ function getLunchContext(active) {
   };
 }
   
-function makeLunchEvent(active) {
+async function makeLunchEvent(active) {
   const ctx = getLunchContext(active);
   const store = pickStoreContext(active, "lunch");
+
+  const visitedIds = getVisitedPlaceIds();
+  const placeContexts = await loadPlaceContexts();
+  const matchedContexts = getMatchedHistoryGoContexts(placeContexts, visitedIds);
+  const historyGoContext = pickHistoryGoContext(
+    matchedContexts,
+    "lunch",
+    active
+  );
+
   const contextFlavor = getContextFlavorForCareer(active);
+
   const extraContextLine = contextFlavor?.flavor?.lunch
     ? `Du trekkes også mot miljøer preget av ${contextFlavor.flavor.lunch}.`
+    : null;
+
+  const historyGoLine = historyGoContext?.lunch_text
+    ? `Bylivet ditt trekker også mot ${historyGoContext.lunch_text}.`
     : null;
 
   const baseEvent = {
@@ -227,7 +242,8 @@ function makeLunchEvent(active) {
     situation: [
       `${ctx.line1} I dag trekkes du mot ${store.name}.`,
       `${store.blurb} ${ctx.line2}`,
-      ...(extraContextLine ? [extraContextLine] : [])
+      ...(extraContextLine ? [extraContextLine] : []),
+      ...(historyGoLine ? [historyGoLine] : [])
     ],
     lunch_context: {
       brand_name: ctx.brandName,
@@ -235,7 +251,10 @@ function makeLunchEvent(active) {
       tier: ctx.tier,
       store_id: store.id,
       store_name: store.name,
-      store_type: store.type
+      store_type: store.type,
+      history_go_context_id: historyGoContext?.id || null,
+      history_go_context_label: historyGoContext?.label || null,
+      history_go_match_count: Number(historyGoContext?.matchCount || 0)
     },
     choices: [
       {
@@ -275,12 +294,27 @@ function makeLunchEvent(active) {
   return applyCareerFlavor(flavoredByStore, "lunch", active);
 }
 
-function makeEveningEvent(active) {
+async function makeEveningEvent(active) {
   const visitedCount = getVisitedPlacesCount();
   const store = pickStoreContext(active, "evening");
+
+  const visitedIds = getVisitedPlaceIds();
+  const placeContexts = await loadPlaceContexts();
+  const matchedContexts = getMatchedHistoryGoContexts(placeContexts, visitedIds);
+  const historyGoContext = pickHistoryGoContext(
+    matchedContexts,
+    "evening",
+    active
+  );
+
   const contextFlavor = getContextFlavorForCareer(active);
+
   const extraContextLine = contextFlavor?.flavor?.evening
     ? `Kvelden bærer også preg av ${contextFlavor.flavor.evening}.`
+    : null;
+
+  const historyGoLine = historyGoContext?.evening_text
+    ? `Kvelden bærer også preg av ${historyGoContext.evening_text}.`
     : null;
 
   const brandName =
@@ -312,14 +346,18 @@ function makeEveningEvent(active) {
     situation: [
       line1,
       line2,
-      ...(extraContextLine ? [extraContextLine] : [])
+      ...(extraContextLine ? [extraContextLine] : []),
+      ...(historyGoLine ? [historyGoLine] : [])
     ],
     evening_context: {
       brand_name: brandName,
       visited_places_count: visitedCount,
       store_id: store.id,
       store_name: store.name,
-      store_type: store.type
+      store_type: store.type,
+      history_go_context_id: historyGoContext?.id || null,
+      history_go_context_label: historyGoContext?.label || null,
+      history_go_match_count: Number(historyGoContext?.matchCount || 0)
     },
     choices: [
       {
@@ -1217,6 +1255,98 @@ function getContextFlavorForCareer(active) {
   return relevant[idx];
 }
 
+function getVisitedPlaceIds() {
+  try {
+    const raw = JSON.parse(localStorage.getItem("visited_places") || "[]");
+
+    if (Array.isArray(raw)) {
+      return raw.map(String);
+    }
+
+    if (raw && typeof raw === "object") {
+      return Object.keys(raw).filter((k) => !!raw[k]).map(String);
+    }
+
+    return [];
+  } catch {
+    return [];
+  }
+}
+
+let __civiPlaceContextsCache = null;
+
+async function loadPlaceContexts() {
+  if (Array.isArray(__civiPlaceContextsCache)) {
+    return __civiPlaceContextsCache;
+  }
+
+  try {
+    const res = await fetch("data/Civication/place_contexts.json", {
+      cache: "no-store"
+    });
+
+    if (!res.ok) {
+      __civiPlaceContextsCache = [];
+      return __civiPlaceContextsCache;
+    }
+
+    const json = await res.json();
+    __civiPlaceContextsCache = Array.isArray(json?.contexts)
+      ? json.contexts
+      : [];
+
+    return __civiPlaceContextsCache;
+  } catch {
+    __civiPlaceContextsCache = [];
+    return __civiPlaceContextsCache;
+  }
+}
+
+function getMatchedHistoryGoContexts(contexts, visitedIds) {
+  const ids = new Set((visitedIds || []).map(String));
+
+  return (contexts || [])
+    .map((ctx) => {
+      const matches = (ctx.matches_place_ids || []).filter((id) =>
+        ids.has(String(id))
+      );
+
+      return {
+        ...ctx,
+        matchCount: matches.length,
+        matchedPlaceIds: matches
+      };
+    })
+    .filter((ctx) => ctx.matchCount > 0)
+    .sort((a, b) => Number(b.matchCount || 0) - Number(a.matchCount || 0));
+}
+
+function pickHistoryGoContext(matchedContexts, phaseTag, active) {
+  if (!Array.isArray(matchedContexts) || !matchedContexts.length) return null;
+
+  const careerId = String(active?.career_id || "").trim();
+
+  const weighted = matchedContexts
+    .map((ctx) => {
+      const bias =
+        Array.isArray(ctx.badge_bias) && ctx.badge_bias.includes(careerId)
+          ? 2
+          : 0;
+
+      return {
+        ...ctx,
+        score: Number(ctx.matchCount || 0) + bias
+      };
+    })
+    .sort((a, b) => Number(b.score || 0) - Number(a.score || 0));
+
+  const dayIndex = Number(
+    window.CivicationCalendar?.getPhaseModel?.()?.dayIndex || 1
+  );
+  const offset = phaseTag === "evening" ? 1 : 0;
+  return weighted[(dayIndex + offset) % weighted.length] || weighted[0];
+}
+
   
   
 function patchEventEngine() {
@@ -1402,10 +1532,11 @@ if (carryover.fatigue > 1 && adjustedChoices.length) {
     }
 
     if (phase === "lunch") {
-      const ev = makeLunchEvent(active);
-      this.enqueueEvent(ev);
-      return { enqueued: true, type: "lunch", event: ev };
+     const ev = await makeLunchEvent(active);
+     this.enqueueEvent(ev);
+     return { enqueued: true, type: "lunch", event: ev };
     }
+
 
     if (phase === "afternoon") {
       const base = this.makeGenericCareerEvent
@@ -1441,9 +1572,9 @@ if (carryover.fatigue > 1 && adjustedChoices.length) {
     }
 
     if (phase === "evening") {
-      const ev = makeEveningEvent(active);
-      this.enqueueEvent(ev);
-      return { enqueued: true, type: "evening", event: ev };
+     const ev = await makeEveningEvent(active);
+     this.enqueueEvent(ev);
+     return { enqueued: true, type: "evening", event: ev };
     }
 
     if (phase === "day_end") {
