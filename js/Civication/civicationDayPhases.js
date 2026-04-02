@@ -1506,6 +1506,111 @@ function buildWeeklySummary(days) {
   summary.avgScore = Number((scoreTotal / safeDays.length).toFixed(2));
   return summary;
 }
+
+function applyWeeklyConsequences(summary, activeCareerId) {
+  const safe = summary && typeof summary === "object" ? summary : {};
+
+  const strongDays = Number(safe.strongDays || 0);
+  const unevenDays = Number(safe.unevenDays || 0);
+  const visibilityDays = Number(safe.visibilityDays || 0);
+  const processDays = Number(safe.processDays || 0);
+  const fatigueDays = Number(safe.fatigueDays || 0);
+  const avgScore = Number(safe.avgScore || 0);
+
+  const trustDelta = 0;
+  let integrityDelta = 0;
+  let visibilityDelta = 0;
+  let economicRoomDelta = 0;
+  let burnoutPressure = 0;
+
+  if (strongDays >= 3) {
+    economicRoomDelta += 1;
+  }
+
+  if (unevenDays >= 2 || fatigueDays >= 2) {
+    integrityDelta -= 1;
+    economicRoomDelta -= 1;
+    burnoutPressure += 1;
+  }
+
+  if (visibilityDays >= 3) {
+    visibilityDelta += 1;
+    burnoutPressure += 1;
+  }
+
+  if (processDays >= 3) {
+    integrityDelta += 1;
+  }
+
+  if (avgScore >= 1.5) {
+    economicRoomDelta += 1;
+  } else if (avgScore < 0) {
+    economicRoomDelta -= 1;
+  }
+
+  try {
+    if (integrityDelta !== 0) {
+      window.CivicationPsyche?.updateIntegrity?.(integrityDelta);
+    }
+
+    if (visibilityDelta !== 0) {
+      window.CivicationPsyche?.updateVisibility?.(visibilityDelta);
+    }
+
+    if (economicRoomDelta !== 0) {
+      window.CivicationPsyche?.updateEconomicRoom?.(economicRoomDelta);
+    }
+
+    if (burnoutPressure > 0) {
+      window.CivicationPsyche?.updateIntegrity?.(-1 * burnoutPressure);
+    }
+  } catch {}
+
+  return {
+    integrityDelta,
+    visibilityDelta,
+    economicRoomDelta,
+    burnoutPressure,
+    trustDelta,
+    activeCareerId: String(activeCareerId || "")
+  };
+}
+
+
+function finalizeWeekIfNeeded(activeCareerId) {
+  const review = getWeeklyReview();
+  const summary =
+    review?.summary && typeof review.summary === "object"
+      ? review.summary
+      : null;
+
+  if (!summary) return null;
+  if (review?.applied) return review;
+  if (Number(summary.daysCount || 0) < 3) return review;
+
+  const effects = applyWeeklyConsequences(summary, activeCareerId);
+
+  const nextReview = saveWeeklyReview({
+    ...review,
+    applied: true,
+    summary: {
+      ...summary,
+      appliedEffects: effects,
+      weeklyNote:
+        Number(summary.strongDays || 0) >= 3
+          ? "Uken hang godt sammen og gir deg litt mer rom."
+          : Number(summary.unevenDays || 0) >= 2
+            ? "Uken ble ujevn, og presset setter noen spor."
+            : Number(summary.visibilityDays || 0) >= 3
+              ? "Du har vært synlig denne uken, men det koster litt."
+              : Number(summary.processDays || 0) >= 3
+                ? "Du har holdt struktur gjennom uken og bygger troverdighet."
+                : "Uken gir et lite, men merkbart avtrykk."
+    }
+  });
+
+  return nextReview;
+}
   
   
 function patchEventEngine() {
@@ -1805,13 +1910,18 @@ if (carryover.fatigue > 1 && adjustedChoices.length) {
       } else if (phaseTag === "evening") {
         cal.markDailyFlag?.("evening_done", true);
         cal.setPhase?.("day_end");
-      } else if (phaseTag === "day_end") {
-        const summary = cal.getDailySummary?.();
-        if (summary) {
-         saveDailySummaryToWeek(summary);
-        }
-        cal.resetForNewDay?.();
+     } else if (phaseTag === "day_end") {
+       const summary = cal.getDailySummary?.();
+       if (summary) {
+        saveDailySummaryToWeek(summary);
+
+        const activeCareerId =
+        window.CivicationState?.getActivePosition?.()?.career_id || "";
+
+        finalizeWeekIfNeeded(activeCareerId);
        }
+       cal.resetForNewDay?.();
+     }
 
       setTimeout(() => {
         try {
