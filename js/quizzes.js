@@ -896,8 +896,12 @@ if (setList.length) {
       const image = s(place?.image || person?.image || "");
 
       if (firstCompletion && categoryId) {
-        incrementMeritPoints(categoryId, 1);
-        markQuizProgress(categoryId, compositeSetId);
+       incrementMeritPoints(categoryId, 1);
+       markQuizProgress(categoryId, compositeSetId);
+
+       window.HG_CapitalMaintenance?.maintainFromQuiz?.(categoryId, 1, {
+       source: "quiz_set_complete"
+      });
 
         saveQuizHistory({
           schema: QUIZ_HISTORY_SCHEMA,
