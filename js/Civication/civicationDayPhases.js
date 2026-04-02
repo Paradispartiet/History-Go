@@ -2387,12 +2387,15 @@ if (carryover.fatigue > 1 && adjustedChoices.length) {
         if (!task) return task;
 
         const phaseModel = window.CivicationCalendar?.getPhaseModel?.() || {};
+
+        const gatedTask = applyKnowledgeGateToTask(task, mailEvent, active);
+
         const updated = {
-          ...task,
-          dayIndex: Number(phaseModel.dayIndex || 1),
-          phase: String(mailEvent?.phase_tag || phaseModel.phase || "morning"),
-          phase_required: true
-        };
+         ...gatedTask,
+         dayIndex: Number(phaseModel.dayIndex || 1),
+         phase: String(mailEvent?.phase_tag || phaseModel.phase || "morning"),
+         phase_required: true
+         };
 
         const store = engine.getStore ? engine.getStore() : null;
         if (store?.byId?.[updated.id]) {
