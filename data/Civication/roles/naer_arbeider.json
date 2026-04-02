@@ -1,0 +1,160 @@
+{
+  "schema": "civication_role_content_v1",
+  "version": 1,
+  "category": "naeringsliv",
+  "tier_label": "Arbeider",
+  "role_id": "naer_arbeider",
+  "role_name": "Arbeider",
+  "role_level": 1,
+  "primary_conflict": "tempo_vs_kvalitet",
+  "secondary_conflict": "lojalitet_vs_selvoppholdelse",
+  "background_conflict": "gulvlogikk_vs_lederlogikk",
+  "tone": [
+    "tørr",
+    "konkret",
+    "litt morsom",
+    "litt sliten",
+    "observant på små maktforskjeller"
+  ],
+  "role_summary": "Du møter opp, gjør konkrete oppgaver, holder tempoet, følger flyten, og prøver å ikke være den som stopper noe.",
+  "actual_work": [
+    "bære",
+    "rydde",
+    "hente",
+    "plassere",
+    "kontrollere",
+    "følge rutiner",
+    "lære små interne systemer",
+    "lese rommet",
+    "forstå hvordan ting egentlig gjøres"
+  ],
+  "key_skills": [
+    "stabilitet",
+    "rytme",
+    "hukommelse for småting",
+    "tåle repetisjon",
+    "oppfatte uformelle regler",
+    "vite når det lønner seg å si noe"
+  ],
+  "common_irritations": [
+    "ting tar lenger tid enn de burde",
+    "folk over deg forstår ikke gulvet",
+    "små feil blir store fordi alt henger sammen",
+    "jobben later som den er enkel, men straffer deg hvis du tar den for lett"
+  ],
+  "misconception": "At arbeid på dette nivået er ukomplisert.",
+  "what_player_learns": [
+    "at næringsliv ikke bare er ledelse og penger, men også rytme, drift og gulv",
+    "at verdiskaping ofte begynner i rutiner ingen snakker høyt om",
+    "at små driftsvalg kan bety mer enn store ord"
+  ],
+  "knowledge_layers": {
+    "field_knowledge": [
+      "arbeidshverdag",
+      "logistikk",
+      "butikk verksted drift",
+      "kvalitet vs tempo",
+      "grunnleggende næringslivsforståelse"
+    ],
+    "role_knowledge": [
+      "rutiner",
+      "skift",
+      "intern rang",
+      "praktisk feilmargin",
+      "kollegial læring"
+    ],
+    "situational_knowledge": [
+      "når spørre",
+      "når tie",
+      "når foreslå",
+      "når ta initiativ",
+      "når bare få det gjort"
+    ]
+  },
+  "scenario_families": [
+    {
+      "family_id": "forste_uker_pa_gulvet",
+      "title": "Første uker på gulvet",
+      "primary_conflict": "klarhet_vs_faktisk_drift",
+      "secondary_conflict": "selvstendighet_vs_avhengighet",
+      "what_it_teaches": [
+        "tempo",
+        "små regler",
+        "hvem som faktisk kan noe",
+        "hvor lite manualer hjelper når dagen begynner"
+      ]
+    },
+    {
+      "family_id": "flyt_rutine_og_smaa_avvik",
+      "title": "Flyt, rutine og små avvik",
+      "primary_conflict": "tempo_vs_kvalitet",
+      "secondary_conflict": "regel_vs_praksis",
+      "what_it_teaches": [
+        "at jobben handler om å holde ting i gang",
+        "at ett lite problem sprer seg fort",
+        "at den som ser avvik tidlig er mer verdifull enn den som snakker mest"
+      ]
+    },
+    {
+      "family_id": "kollegaer_rang_og_intern_kultur",
+      "title": "Kollegaer, rang og intern kultur",
+      "primary_conflict": "formell_rolle_vs_faktisk_makt",
+      "secondary_conflict": "tilhorighet_vs_avstand",
+      "what_it_teaches": [
+        "hvem som er raus",
+        "hvem som er smålig",
+        "hvem som er viktig uten tittel",
+        "hvordan miljøet egentlig organiserer seg selv"
+      ]
+    },
+    {
+      "family_id": "kjedsomhet_gjentakelse_og_meningsloshet",
+      "title": "Kjedsomhet, gjentakelse og meningsløshet",
+      "primary_conflict": "nodvendighet_vs_tomhet",
+      "secondary_conflict": "utholdenhet_vs_fremmedgjoring",
+      "what_it_teaches": [
+        "at jobben ikke alltid utfordrer deg",
+        "at utfordringen noen ganger er å holde ut",
+        "at arbeid kan være både nødvendig og tomt samtidig"
+      ]
+    },
+    {
+      "family_id": "smaa_muligheter_lite_ansvar_storre_blikk",
+      "title": "Små muligheter, lite ansvar, større blikk",
+      "primary_conflict": "mestring_vs_karriere",
+      "secondary_conflict": "lojalitet_vs_selvoppholdelse",
+      "what_it_teaches": [
+        "hvordan man blir lagt merke til",
+        "hva som skiller en stabil arbeider fra en som kan rykke opp",
+        "at det finnes en karrieresti, men at den ikke alltid føles naturlig"
+      ]
+    }
+  ],
+  "storylets": [
+    {"id":"naer_arbeider_1_1","family_id":"forste_uker_pa_gulvet","title":"Første dag uten at noen egentlig tar deg imot","primary_conflict":"klarhet_vs_faktisk_drift","secondary_conflict":"selvstendighet_vs_avhengighet","tone":["tørr","småstresset","observerende"],"summary":"Du kommer tidsnok, men ingen har egentlig tid til å ta deg imot ordentlig.","situation":["Du blir vist rundt i en fart og står igjen med informasjon nok til å vite at du mangler viktig informasjon."],"choices":[{"id":"A","label":"Spør med en gang om det du ikke forstår","tags":["legitimacy","process"],"effect_bias":"stabil"},{"id":"B","label":"Se an noen timer og prøv å lære ved å se","tags":["craft","avoidance"],"effect_bias":"observasjon"},{"id":"C","label":"Lat som du forstår mer enn du gjør","tags":["visibility","risk"],"effect_bias":"risiko"}],"what_player_learns":["onboarding er ofte halvt improvisert","arbeid begynner sjelden med klarhet"],"progress_tags":["onboarding","uncertainty","room_reading"],"capital_bias":["institutional","social"],"psyche_bias":["integrity","visibility"]},
+    {"id":"naer_arbeider_1_2","family_id":"forste_uker_pa_gulvet","title":"Hvor legger vi denne?","primary_conflict":"klarhet_vs_faktisk_drift","secondary_conflict":"orden_vs_improvisasjon","tone":["konkret","litt komisk"],"summary":"Du får en oppgave som virker enkel, men ingen steder er helt riktige.","situation":["Nesten alt har et system, men systemet er dårlig forklart."],"choices":[{"id":"A","label":"Spør den nærmeste om hva som gjelder her","tags":["process","community"]},{"id":"B","label":"Finn den løsningen som virker mest logisk","tags":["craft","risk"]},{"id":"C","label":"Sett det der andre setter lignende ting","tags":["shortcut","observation"]}],"what_player_learns":["drift bæres av lokalkunnskap","selv små ting er sosialt kodet"],"progress_tags":["local_rules","placement","micro_logistics"],"capital_bias":["institutional"],"psyche_bias":["autonomy"]},
+    {"id":"naer_arbeider_1_3","family_id":"forste_uker_pa_gulvet","title":"Han med nøklene","primary_conflict":"formell_rolle_vs_faktisk_makt","secondary_conflict":"adgang_vs_avhengighet","tone":["tørr","sosialt skarp"],"summary":"Det finnes alltid en person som ikke er sjef, men som likevel får ting til å åpne seg.","situation":["Skap, rom, snarveier, pauser og små unntak går gjennom ham."],"choices":[{"id":"A","label":"Prøv å komme på god fot med ham tidlig","tags":["social","community"]},{"id":"B","label":"Hold avstand og gjør ting formelt","tags":["institutional","legitimacy"]},{"id":"C","label":"Se først hvor mye makt han faktisk har","tags":["craft","observation"]}],"what_player_learns":["uformell makt er ofte mer praktisk enn formell makt"],"progress_tags":["informal_power","gatekeeper","workplace_map"],"capital_bias":["social","institutional"],"psyche_bias":["trust"]},
+    {"id":"naer_arbeider_1_4","family_id":"forste_uker_pa_gulvet","title":"Tempotesten","primary_conflict":"tempo_vs_kvalitet","secondary_conflict":"synlighet_vs_arbeidsro","tone":["kort","nøktern"],"summary":"Ingen sier at du jobber for sakte. Ingen sier at du jobber fort nok heller.","situation":["Du kjenner bare at du blir lest som rytme."],"choices":[{"id":"A","label":"Øk tempoet litt og se om noen reagerer","tags":["risk","visibility"]},{"id":"B","label":"Hold jevnt tempo og unngå dumme feil","tags":["process","craft"]},{"id":"C","label":"Spør hva som regnes som bra flyt her","tags":["legitimacy","community"]}],"what_player_learns":["arbeidsplasser måler folk før de forklarer målingen"],"progress_tags":["pace","embodied_work","unspoken_standards"],"capital_bias":["institutional","symbolic"],"psyche_bias":["visibility","integrity"]},
+    {"id":"naer_arbeider_1_5","family_id":"forste_uker_pa_gulvet","title":"Første lille feil","primary_conflict":"feilmargin_vs_social_lesning","secondary_conflict":"ansvar_vs_litenhet","tone":["konkret","lett pinlig"],"summary":"Du setter noe feil, registrerer noe feil eller glemmer noe lite.","situation":["Det er ikke dramatisk, men du merker hvor fort en liten feil blir en sosial hendelse."],"choices":[{"id":"A","label":"Si fra med en gang","tags":["legitimacy","process"]},{"id":"B","label":"Rett det selv før noen merker noe","tags":["craft","risk"]},{"id":"C","label":"Vent og se om det faktisk betyr noe","tags":["avoidance","shortcut"]}],"what_player_learns":["små feil er også sosiale signaler"],"progress_tags":["mistake","repair","accountability"],"capital_bias":["institutional"],"psyche_bias":["integrity","trust"]},
+    {"id":"naer_arbeider_2_1","family_id":"flyt_rutine_og_smaa_avvik","title":"Den lille forsinkelsen","primary_conflict":"tempo_vs_kvalitet","secondary_conflict":"helhet_vs_lokal_oppgave","tone":["rolig","presis"],"summary":"Én ting kommer ikke når den skal, og plutselig må tre andre ting gjøres i annen rekkefølge.","situation":["Det er ikke en katastrofe. Det er bare sånn arbeid egentlig ser ut."],"choices":[{"id":"A","label":"Prioriter flyt selv om noe blir litt grovere løst","tags":["process","opportunism"]},{"id":"B","label":"Hold kvaliteten selv om det tar lenger tid","tags":["craft","durability"]},{"id":"C","label":"Få oversikt før du gjør noe","tags":["legitimacy","order"]}],"what_player_learns":["drift er rekkefølge under press"],"progress_tags":["delay","reordering","flow"],"capital_bias":["economic","institutional"],"psyche_bias":["economicRoom","autonomy"]},
+    {"id":"naer_arbeider_2_2","family_id":"flyt_rutine_og_smaa_avvik","title":"Rydding som egentlig er logistikk","primary_conflict":"synlig_enkelhet_vs_skjult_kompleksitet","secondary_conflict":"nåtid_vs_fremtidig_friksjon","tone":["tørr","innsiktsfull"],"summary":"Du får beskjed om å rydde litt, men det er egentlig logistikk, tilgjengelighet og sikkerhet.","situation":["Fremtidig tidsbruk ligger gjemt i små plasseringer."],"choices":[{"id":"A","label":"Rydd raskt nok til at det ser ordentlig ut","tags":["visibility","shortcut"]},{"id":"B","label":"Rydd så det faktisk blir lettere å jobbe senere","tags":["craft","process"]},{"id":"C","label":"Spør hvordan de som kan stedet ville løst det","tags":["community","legitimacy"]}],"what_player_learns":["mye arbeid er forebygging forkledd som rutine"],"progress_tags":["layout","anticipation","practical_intelligence"],"capital_bias":["institutional","cultural"],"psyche_bias":["integrity"]},
+    {"id":"naer_arbeider_2_3","family_id":"flyt_rutine_og_smaa_avvik","title":"Når systemet ikke passer virkeligheten","primary_conflict":"regel_vs_praksis","secondary_conflict":"tempo_vs_kvalitet","tone":["nøktern","lett oppgitt"],"summary":"Rutinen sier én ting. Gulvet sier noe annet.","situation":["Jobben går ofte bra fordi folk avviker riktig, ikke fordi de følger alt perfekt."],"choices":[{"id":"A","label":"Følg rutinen selv om det blir tungvint","tags":["process","legitimacy"]},{"id":"B","label":"Gjør det slik du ser at det faktisk fungerer","tags":["craft","risk"]},{"id":"C","label":"Spør en erfaren kollega hvor grensen går","tags":["community","observation"]}],"what_player_learns":["praksis er ofte systemets usynlige støttehjul"],"progress_tags":["tacit_knowledge","rule_bending","drift_realism"],"capital_bias":["institutional","economic"],"psyche_bias":["autonomy","integrity"]},
+    {"id":"naer_arbeider_2_4","family_id":"flyt_rutine_og_smaa_avvik","title":"Ingen takk, bare mindre friksjon","primary_conflict":"synlighet_vs_nytte","secondary_conflict":"anerkjennelse_vs_funksjon","tone":["rolig","litt bitter"],"summary":"Du gjør noe riktig nok til at ingen legger merke til deg.","situation":["Dette er en egen type arbeidssuksess: ikke ros, men færre problemer."],"choices":[{"id":"A","label":"Vær fornøyd med at ting glir bedre","tags":["process","minimalism"]},{"id":"B","label":"Nevn diskret at det var du som ordnet det","tags":["visibility","status"]},{"id":"C","label":"Noter deg bare hvem som legger merke til noe i det hele tatt","tags":["observation","community"]}],"what_player_learns":["arbeid belønnes ofte ved at det ikke merkes"],"progress_tags":["invisible_work","status_reading","recognition"],"capital_bias":["symbolic","institutional"],"psyche_bias":["visibility","autonomy"]},
+    {"id":"naer_arbeider_2_5","family_id":"flyt_rutine_og_smaa_avvik","title":"Det døde kvarteret","primary_conflict":"arbeid_vs_tomgang","secondary_conflict":"rastloshet_vs_utholdenhet","tone":["stille","sliten"],"summary":"En liten periode av dagen skjer nesten ingenting.","situation":["Det er ikke mangel på arbeid som sliter mest, men meningsløs venting."],"choices":[{"id":"A","label":"Finn noe lite nyttig å gjøre uten å lage show av det","tags":["process","craft"]},{"id":"B","label":"Ta den lille pausen du kan få","tags":["security","avoidance"]},{"id":"C","label":"Begynn å småprate og les stemningen","tags":["community","social"]}],"what_player_learns":["mange arbeidsdager sliter gjennom lavintensitet, ikke drama"],"progress_tags":["idle_time","endurance","micro_rest"],"capital_bias":["social"],"psyche_bias":["autonomy","economicRoom"]},
+    {"id":"naer_arbeider_3_1","family_id":"kollegaer_rang_og_intern_kultur","title":"Den hjelpsomme som ikke vil se hjelpsom ut","primary_conflict":"tilhorighet_vs_uavhengighet","secondary_conflict":"pedagogikk_vs_tone","tone":["sosialt skarp","varm underflate"],"summary":"En kollega viser deg noe viktig, men pakker det inn som en kommentar, ikke en læretime.","situation":["Her lærer man ikke alltid gjennom pedagogikk. Man lærer gjennom tonefall."],"choices":[{"id":"A","label":"Ta hintet og husk det","tags":["craft","observation"]},{"id":"B","label":"Takk tydelig og vis at du skjønner gesten","tags":["community","social"]},{"id":"C","label":"Be om å få det forklart ordentlig","tags":["legitimacy","risk"]}],"what_player_learns":["mye kollegial læring er indirekte"],"progress_tags":["mentorship","tone_reading","belonging"],"capital_bias":["social"],"psyche_bias":["trust"]},
+    {"id":"naer_arbeider_3_2","family_id":"kollegaer_rang_og_intern_kultur","title":"Han som alltid er litt irritert","primary_conflict":"sameksistens_vs_friksjon","secondary_conflict":"tolkning_vs_overreaksjon","tone":["tørr","lett humoristisk"],"summary":"Noen er ikke direkte vanskelige. Bare jevnt småsure.","situation":["Du forstår etter hvert at arbeidsplasser ofte har egne værtyper."],"choices":[{"id":"A","label":"Hold det kort og profesjonelt","tags":["process","security"]},{"id":"B","label":"Prøv en liten fleip for å teste tonen","tags":["social","risk"]},{"id":"C","label":"Spør en annen hvordan han egentlig er","tags":["community","observation"]}],"what_player_learns":["arbeidsmiljø består av mønstre, ikke bare hendelser"],"progress_tags":["mood_map","micro_conflict","tone_management"],"capital_bias":["social"],"psyche_bias":["trust","visibility"]},
+    {"id":"naer_arbeider_3_3","family_id":"kollegaer_rang_og_intern_kultur","title":"Intern humor som test","primary_conflict":"tilhorighet_vs_utenforskap","secondary_conflict":"avslappethet_vs_selvbeskyttelse","tone":["lett","sosialt farlig"],"summary":"Noen fleiper med deg på en måte som både er sosial åpning og måling.","situation":["Ler du riktig, er du litt innenfor. Tar du det feil, tar dagen en annen form."],"choices":[{"id":"A","label":"Ler med og gir litt tilbake","tags":["social","visibility"]},{"id":"B","label":"Smil kort og gå videre","tags":["security","avoidance"]},{"id":"C","label":"Spør hva de egentlig mener","tags":["legitimacy","risk"]}],"what_player_learns":["humor er også hierarki og opptaksprøve"],"progress_tags":["banter","belonging","social_testing"],"capital_bias":["social","symbolic"],"psyche_bias":["visibility","trust"]},
+    {"id":"naer_arbeider_3_4","family_id":"kollegaer_rang_og_intern_kultur","title":"Tittel og faktisk betydning","primary_conflict":"formell_rolle_vs_faktisk_makt","secondary_conflict":"kart_vs_terreng","tone":["nøktern","oppklarende"],"summary":"En person med formell rolle sier én ting. En annen uten fin tittel sier noe annet.","situation":["Alle følger den andre."],"choices":[{"id":"A","label":"Følg den formelle rollen","tags":["institutional","process"]},{"id":"B","label":"Følg den som faktisk får ting til å skje","tags":["craft","community"]},{"id":"C","label":"Prøv å holde deg midt imellom til du vet mer","tags":["security","observation"]}],"what_player_learns":["organisasjonskartet beskriver ikke hele sannheten"],"progress_tags":["power_map","hierarchy","pragmatism"],"capital_bias":["institutional","social"],"psyche_bias":["autonomy"]},
+    {"id":"naer_arbeider_3_5","family_id":"kollegaer_rang_og_intern_kultur","title":"Hvem får de beste oppgavene?","primary_conflict":"rettferdighet_vs_tillit","secondary_conflict":"synlighet_vs_stabilitet","tone":["stille","observerende"],"summary":"Det er ikke alltid tilfeldig hvem som får de mer interessante tingene.","situation":["Du begynner å se at tillit og variasjon fordeles sosialt, ikke bare administrativt."],"choices":[{"id":"A","label":"Jobb jevnt og la det bygge seg opp","tags":["process","durability"]},{"id":"B","label":"Vis at du vil ha mer ansvar","tags":["visibility","status"]},{"id":"C","label":"Spør hva som skal til for å få gjøre mer","tags":["legitimacy","community"]}],"what_player_learns":["interessante oppgaver følger ofte sosial kreditt"],"progress_tags":["recognition","task_access","trust_building"],"capital_bias":["social","symbolic"],"psyche_bias":["trust","visibility"]},
+    {"id":"naer_arbeider_4_1","family_id":"kjedsomhet_gjentakelse_og_meningsloshet","title":"Samme oppgave, fjerde gang","primary_conflict":"forbedring_vs_tomhet","secondary_conflict":"mestring_vs_mening","tone":["stille","sliten"],"summary":"Du gjør noe du allerede har gjort flere ganger, og du gjør det bedre nå.","situation":["Problemet er bare at det ikke føles bedre."],"choices":[{"id":"A","label":"Bruk forbedringen som et lite privat mål","tags":["craft","minimalism"]},{"id":"B","label":"Slå deg til ro med at dette bare er jobben","tags":["security","avoidance"]},{"id":"C","label":"Begynn å tenke på hva du heller ville lært","tags":["risk","self_reflection"]}],"what_player_learns":["forbedring og mening er ikke det samme"],"progress_tags":["repetition","skill_without_joy","drift_fatigue"],"capital_bias":["cultural"],"psyche_bias":["autonomy","integrity"]},
+    {"id":"naer_arbeider_4_2","family_id":"kjedsomhet_gjentakelse_og_meningsloshet","title":"Når klokka går sakte","primary_conflict":"tid_vs_form","secondary_conflict":"rastloshet_vs_disiplin","tone":["lavmælt","oppløst"],"summary":"Dagen mangler form. Det er ikke drama som sliter deg ut, men oppløste timer.","situation":["Du blir sittende mer i tiden enn i oppgaven."],"choices":[{"id":"A","label":"Bryt opp dagen i små private mål","tags":["process","craft"]},{"id":"B","label":"Flyt med og vent ut timen","tags":["security","minimalism"]},{"id":"C","label":"Finn noen å snakke med så dagen får kontur","tags":["social","community"]}],"what_player_learns":["tidsopplevelse er en del av arbeidslivet"],"progress_tags":["slow_time","low_intensity","mental_pacing"],"capital_bias":["social"],"psyche_bias":["autonomy","economicRoom"]},
+    {"id":"naer_arbeider_4_3","family_id":"kjedsomhet_gjentakelse_og_meningsloshet","title":"Ny runde med noe ingen egentlig tror på","primary_conflict":"systemsprak_vs_praktisk_troverdighet","secondary_conflict":"lydighet_vs_sunn_fornuft","tone":["tørr","lett absurd"],"summary":"En liten rutine blir plutselig viktig fordi noen lenger opp har bestemt det.","situation":["Alle gjør den. Ingen tror egentlig den hjelper."],"choices":[{"id":"A","label":"Gjør det ordentlig og bli ferdig med det","tags":["process","legitimacy"]},{"id":"B","label":"Gjør minimum og spar energien","tags":["shortcut","security"]},{"id":"C","label":"Test forsiktig om noen faktisk bryr seg","tags":["risk","observation"]}],"what_player_learns":["organisasjoner skaper ofte arbeid gjennom språk"],"progress_tags":["bureaucratic_routine","compliance","cynicism"],"capital_bias":["institutional"],"psyche_bias":["integrity","autonomy"]},
+    {"id":"naer_arbeider_4_4","family_id":"kjedsomhet_gjentakelse_og_meningsloshet","title":"Å bli flink til noe du ikke vil bli i","primary_conflict":"mestring_vs_identitet","secondary_conflict":"dyktighet_vs_retning","tone":["rolig","lett eksistensiell uten patos"],"summary":"Du kjenner at du faktisk mestrer jobben bedre.","situation":["Det burde føles bra, men det vekker også et annet spørsmål: er dette noe du vil bli enda bedre i?"],"choices":[{"id":"A","label":"Ta mestringen på alvor og se hvor den kan føre","tags":["craft","durability"]},{"id":"B","label":"Skille mellom å fungere her og å høre hjemme her","tags":["self_reflection","minimalism"]},{"id":"C","label":"Prøv å få en liten mer utfordrende oppgave snart","tags":["visibility","risk"]}],"what_player_learns":["kompetanse kan vokse uten at identiteten følger med"],"progress_tags":["competence","disidentification","career_thought"],"capital_bias":["cultural","symbolic"],"psyche_bias":["autonomy"]},
+    {"id":"naer_arbeider_4_5","family_id":"kjedsomhet_gjentakelse_og_meningsloshet","title":"Dagen som bare gikk","primary_conflict":"arbeidets_nodvendighet_vs_fortellingens_fravar","secondary_conflict":"brukbarhet_vs_mening","tone":["helt nøktern","lavmælt"],"summary":"Ingen feil. Ingen seier. Ingen scene. Bare en dag som ble brukt opp.","situation":["Dette er også arbeid."],"choices":[{"id":"A","label":"Godta at ikke alle dager skal gi noe tilbake","tags":["security","minimalism"]},{"id":"B","label":"Prøv å finne ett lite punkt som faktisk betydde noe","tags":["craft","self_reflection"]},{"id":"C","label":"Bestem deg for å merke mer neste gang","tags":["risk","visibility"]}],"what_player_learns":["en stor del av arbeidslivet er hendelsesfattig, ikke meningsfullt kuratert"],"progress_tags":["ordinary_day","flat_affect","work_realism"],"capital_bias":[],"psyche_bias":["autonomy","integrity"]},
+    {"id":"naer_arbeider_5_1","family_id":"smaa_muligheter_lite_ansvar_storre_blikk","title":"Du ser en smartere måte","primary_conflict":"mestring_vs_posisjon","secondary_conflict":"initiativ_vs_selvbeskyttelse","tone":["skarp","nøktern"],"summary":"Du oppdager en liten forbedring i flyten. Ikke noe revolusjonerende, bare en bedre rekkefølge.","situation":["Nå oppstår spørsmålet: sier du noe, eller beholder du det til du vet mer?"],"choices":[{"id":"A","label":"Si det på en enkel og konkret måte","tags":["visibility","craft"]},{"id":"B","label":"Prøv det litt ut selv først","tags":["risk","process"]},{"id":"C","label":"Hold det for deg selv til noen spør","tags":["security","avoidance"]}],"what_player_learns":["initiativ er aldri bare faglig; det er også sosial timing"],"progress_tags":["initiative","improvement","self_positioning"],"capital_bias":["economic","institutional"],"psyche_bias":["visibility","autonomy"]},
+    {"id":"naer_arbeider_5_2","family_id":"smaa_muligheter_lite_ansvar_storre_blikk","title":"Du blir spurt om å vise en ny person noe","primary_conflict":"uformell_tillit_vs_formell_posisjon","secondary_conflict":"mestring_vs_beskjedenhet","tone":["rolig","svakt stolt"],"summary":"Det er en liten ting, men viktig. Du er ikke lenger bare den som ikke kan.","situation":["Du er blitt en som andre kan peke på."],"choices":[{"id":"A","label":"Vis det slik du selv lærte det på den praktiske måten","tags":["craft","community"]},{"id":"B","label":"Forklar det ryddig og ordentlig","tags":["process","legitimacy"]},{"id":"C","label":"Gjør det kort; dette er ikke egentlig ditt ansvar","tags":["security","minimalism"]}],"what_player_learns":["uformell autoritet kommer før formell forfremmelse"],"progress_tags":["trust","teaching","role_shift"],"capital_bias":["social","institutional"],"psyche_bias":["trust","integrity"]},
+    {"id":"naer_arbeider_5_3","family_id":"smaa_muligheter_lite_ansvar_storre_blikk","title":"Et lite ansvar uten tittel","primary_conflict":"ansvar_vs_anerkjennelse","secondary_conflict":"plikt_vs_selvrespekt","tone":["konkret","litt skarp"],"summary":"Du får holde oversikt over en liten del av dagen. Ikke fordi du er sjef.","situation":["Bare fordi noen har begynt å tro at du følger med."],"choices":[{"id":"A","label":"Ta det alvorlig og vis at du kan bære det","tags":["process","durability"]},{"id":"B","label":"Ta det, men merk deg at ansvar gis billig","tags":["observation","self_reflection"]},{"id":"C","label":"Spør hva dette faktisk betyr for veien videre","tags":["visibility","legitimacy"]}],"what_player_learns":["mye ansvar kommer før tydelig belønning"],"progress_tags":["micro_authority","responsibility","career_signal"],"capital_bias":["institutional","symbolic"],"psyche_bias":["integrity","autonomy"]},
+    {"id":"naer_arbeider_5_4","family_id":"smaa_muligheter_lite_ansvar_storre_blikk","title":"Du merker forskjellen på dyktighet og lojalitet","primary_conflict":"mestring_vs_karriere","secondary_conflict":"lojalitet_vs_selvoppholdelse","tone":["stille","litt bitter","sosialt observant"],"summary":"Noen som kan mye, kommer ikke videre. Noen som sier de riktige tingene, gjør det.","situation":["Du begynner å forstå at karriere ikke bare er mestring."],"choices":[{"id":"A","label":"Bestem deg for å bli bedre på det som faktisk teller på gulvet","tags":["craft","durability"]},{"id":"B","label":"Begynn å lese hva slags lojalitet systemet faktisk belønner","tags":["observation","status"]},{"id":"C","label":"Ta et lite steg mot å bli mer synlig selv","tags":["visibility","risk"]}],"what_player_learns":["karriere er også sosial lesbarhet"],"progress_tags":["advancement","loyalty_logic","realism"],"capital_bias":["social","symbolic"],"psyche_bias":["integrity","visibility"]},
+    {"id":"naer_arbeider_5_5","family_id":"smaa_muligheter_lite_ansvar_storre_blikk","title":"Skal du bli, eller bare fungere her?","primary_conflict":"tilhorighet_vs_midlertidighet","secondary_conflict":"vekst_vs_overlevelse","tone":["rolig","ettertenksom uten patos"],"summary":"Ikke som stor eksistensiell monolog, men som liten arbeidslivstanke.","situation":["Er du her for å vokse, eller bare for å holde det gående en stund?"],"choices":[{"id":"A","label":"Se om det finnes en sti videre her","tags":["durability","process"]},{"id":"B","label":"Bruk jobben som base, ikke identitet","tags":["security","minimalism"]},{"id":"C","label":"Begynn å følge mer med på hvem som faktisk beveger seg oppover","tags":["observation","status"]}],"what_player_learns":["arbeid kan være både oppholdssted og bane"],"progress_tags":["career_horizon","self_position","future_reading"],"capital_bias":["cultural","symbolic"],"psyche_bias":["autonomy","economicRoom"]}
+  ]
+}
