@@ -161,3 +161,13 @@
     };
   }
 
+  function initDayCalendarBridge() {
+    patchCalendar();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initDayCalendarBridge);
+  } else {
+    initDayCalendarBridge();
+  }
+})();
