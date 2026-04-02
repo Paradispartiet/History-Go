@@ -270,18 +270,31 @@
 };
 
   function maintainFromQuiz(categoryId, delta = 1, opts = {}) {
-    const map = (window.CIVI_QUIZ_CAPITAL_MAP && typeof window.CIVI_QUIZ_CAPITAL_MAP === "object")
-      ? window.CIVI_QUIZ_CAPITAL_MAP
-      : DEFAULT_QUIZ_MAP;
+  const map = (window.CIVI_QUIZ_CAPITAL_MAP && typeof window.CIVI_QUIZ_CAPITAL_MAP === "object")
+    ? window.CIVI_QUIZ_CAPITAL_MAP
+    : DEFAULT_QUIZ_MAP;
 
-    const key = String(categoryId || "").trim();
-    const types = Array.isArray(map[key]) ? map[key] : null;
-    if (!types) return { ok: false, reason: "no_mapping", categoryId: key };
-
-    const res = [];
-    types.forEach((t) => res.push(maintain(t, delta, { ...opts, source: opts.source || "quiz" })));
-    return { ok: true, categoryId: key, results: res };
+  const key = String(categoryId || "").trim();
+  const types = Array.isArray(map[key]) ? map[key] : null;
+  if (!types || !types.length) {
+    return { ok: false, reason: "no_mapping", categoryId: key };
   }
+
+  const weights = [1.0, 0.6, 0.3, 0.15];
+  const res = [];
+
+  types.forEach((t, idx) => {
+    const w = Number(weights[idx] || 0.15);
+    res.push(
+      maintain(t, Number(delta || 0) * w, {
+        ...opts,
+        source: opts.source || "quiz"
+      })
+    );
+  });
+
+  return { ok: true, categoryId: key, results: res };
+}
 
   // Public API
   window.HG_CapitalMaintenance = {
