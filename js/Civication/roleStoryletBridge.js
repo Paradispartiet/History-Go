@@ -44,17 +44,6 @@
       : {};
   }
 
-  function pickStorylet(roleData, state) {
-    const consumed = getConsumedMap(state);
-    const storylets = Array.isArray(roleData?.storylets) ? roleData.storylets : [];
-    const available = storylets.filter((s) => s?.id && !consumed[s.id]);
-
-    if (!available.length) return null;
-
-    available.sort((a, b) => String(a.id).localeCompare(String(b.id)));
-    return available[0];
-  }
-
   function normalizeChoices(choices) {
     return (Array.isArray(choices) ? choices : [])
       .filter(Boolean)
@@ -74,7 +63,7 @@
     const storyletId = normStr(storylet?.id);
 
     return {
-      id: `role_${slugify(storyletId)}_${Date.now()}`,
+      id: `role_${slugify(storyletId)}`,
       stage: "stable",
       source: "Civication",
       subject: normStr(storylet?.title),
@@ -91,7 +80,19 @@
         slugify(tierLabel)
       ].filter(Boolean),
 
-      gating: {},
+      gating: {
+        require_tags: [],
+        prefer_tags: [],
+        avoid_tags: [],
+        prefer_tracks: [],
+        require_tracks: [],
+        require_track_step_min: {},
+        require_story_flags: [],
+        avoid_story_flags: [],
+        prefer_story_flags: [],
+        prefer_story_tags: []
+      },
+
       choices: normalizeChoices(storylet?.choices),
 
       role_content_meta: {
@@ -114,21 +115,23 @@
     };
   }
 
-  async function makeMailForActiveRole(active, state) {
+  async function makeCandidateMailsForActiveRole(active, state) {
     const roleId = normStr(active?.role_id);
-    if (!roleId) return null;
+    if (!roleId) return [];
 
     const roleData = await loadRoleFile(roleId);
-    if (!roleData) return null;
+    if (!roleData) return [];
 
-    const storylet = pickStorylet(roleData, state);
-    if (!storylet) return null;
+    const consumed = getConsumedMap(state);
+    const storylets = Array.isArray(roleData?.storylets) ? roleData.storylets : [];
 
-    return toMail(roleData, storylet, active);
+    return storylets
+      .filter((s) => s && s.id && !consumed[s.id])
+      .map((s) => toMail(roleData, s, active));
   }
 
   window.CiviRoleStoryletBridge = {
     loadRoleFile,
-    makeMailForActiveRole
+    makeCandidateMailsForActiveRole
   };
 })();
