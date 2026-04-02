@@ -93,13 +93,12 @@ class CivicationEventEngine {
 
     this.packsCache = new Map();
 
-    this.packMap = opts.packMap || {
-      naering: "naeringslivCivic.json",
-      naeringsliv: "naeringslivCivic.json",
-      media: "mediaCivic.json",
-      by: "byCivic.json"
-    };
-  }
+  this.packMap = opts.packMap || {
+   naering: "jobbmails/naeringsliv/naeringslivCivic.json",
+   naeringsliv: "jobbmails/naeringsliv/naeringslivCivic.json",
+   media: "mediaCivic.json",
+   by: "byCivic.json"
+  };
 
   // -------- state --------
 
