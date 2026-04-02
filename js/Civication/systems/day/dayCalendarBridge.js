@@ -20,16 +20,33 @@
       };
     }
 
-    function setPhase(phase) {
-      const next = DAY_PHASES.includes(String(phase))
-        ? String(phase)
-        : "morning";
+    function getPhaseMinutes(phase, clock) {
+  const shiftStart = Number(clock?.shiftStartMinutes || 8 * 60);
 
-      return cal.setClock({
-        phase: next,
-        phaseStatus: "open"
-      });
-    }
+  const anchors = {
+    morning: shiftStart,        // 08:00
+    lunch: shiftStart + 4 * 60, // 12:00
+    afternoon: shiftStart + 6 * 60, // 14:00
+    evening: shiftStart + 9 * 60,   // 17:00
+    day_end: shiftStart + 11 * 60   // 19:00
+  };
+
+  return Number(anchors[String(phase)] || shiftStart);
+}
+
+function setPhase(phase) {
+  const current = getSafeClock();
+  const next = DAY_PHASES.includes(String(phase))
+    ? String(phase)
+    : "morning";
+
+  return cal.setClock({
+    phase: next,
+    phaseStatus: "open",
+    currentMinutes: getPhaseMinutes(next, current),
+    lastAdvancedAt: Date.now()
+  });
+}
 
     function getPhase() {
       return getSafeClock().phase;
@@ -52,18 +69,15 @@
       }
     }
 
-    function advancePhase() {
-      const phase = getPhase();
-      const idx = DAY_PHASES.indexOf(phase);
+function advancePhase() {
+  const phase = getPhase();
+  const idx = DAY_PHASES.indexOf(phase);
 
-      if (idx === -1) return setPhase("morning");
-      if (idx >= DAY_PHASES.length - 1) return resetForNewDay();
+  if (idx === -1) return setPhase("morning");
+  if (idx >= DAY_PHASES.length - 1) return resetForNewDay();
 
-      return cal.setClock({
-        phase: DAY_PHASES[idx + 1],
-        phaseStatus: "open"
-      });
-    }
+  return setPhase(DAY_PHASES[idx + 1]);
+}
 
     function markDailyFlag(key, value = true) {
       const current = getSafeClock();
