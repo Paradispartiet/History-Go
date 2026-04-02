@@ -1,0 +1,302 @@
+{
+  "schema": "civication_role_threads_v1",
+  "version": 1,
+  "category": "naeringsliv",
+  "threads": [
+    {
+      "id": "naer_arbeider_forste_maaned",
+      "title": "Første måned på gulvet",
+      "summary": "Du lærer rytmen, de små reglene, onboardingens hull og hvem som faktisk får ting til å fungere.",
+      "role_ids": ["naer_arbeider"],
+      "tier_labels": ["Arbeider"],
+      "primary_conflict": "klarhet_vs_faktisk_drift",
+      "secondary_conflict": "tempo_vs_kvalitet",
+      "families": [
+        "forste_uker_pa_gulvet",
+        "flyt_rutine_og_smaa_avvik",
+        "kollegaer_rang_og_intern_kultur"
+      ],
+      "required_state": {
+        "career_category_ids": ["naeringsliv"],
+        "min_merit_points": {
+          "naeringsliv": 1
+        },
+        "required_story_flags": [],
+        "required_role_threads": [],
+        "excluded_role_threads": []
+      },
+      "progress_model": {
+        "type": "tag_accumulation",
+        "required_tags": [
+          "onboarding",
+          "uncertainty",
+          "local_rules",
+          "pace",
+          "mistake",
+          "workplace_map"
+        ],
+        "minimum_matches": 4
+      },
+      "outcomes": {
+        "story_flags_on_complete": [
+          "rt_naer_arbeider_forste_maaned_complete"
+        ],
+        "story_tags_on_complete": [
+          "gulv",
+          "drift",
+          "arbeidsstart"
+        ],
+        "unlocks_role_threads": [
+          "naer_arbeider_ser_systemet"
+        ]
+      },
+      "priority": 12
+    },
+    {
+      "id": "naer_arbeider_ser_systemet",
+      "title": "Du begynner å se systemet",
+      "summary": "Arbeidet er ikke lenger bare enkeltoppgaver. Du begynner å forstå forskjellen mellom formell rolle og faktisk makt.",
+      "role_ids": ["naer_arbeider"],
+      "tier_labels": ["Arbeider"],
+      "primary_conflict": "formell_rolle_vs_faktisk_makt",
+      "secondary_conflict": "mestring_vs_karriere",
+      "families": [
+        "kollegaer_rang_og_intern_kultur",
+        "smaa_muligheter_lite_ansvar_storre_blikk"
+      ],
+      "required_state": {
+        "career_category_ids": ["naeringsliv"],
+        "min_merit_points": {
+          "naeringsliv": 1
+        },
+        "required_story_flags": [
+          "rt_naer_arbeider_forste_maaned_complete"
+        ],
+        "required_role_threads": [],
+        "excluded_role_threads": []
+      },
+      "progress_model": {
+        "type": "tag_accumulation",
+        "required_tags": [
+          "power_map",
+          "hierarchy",
+          "recognition",
+          "initiative",
+          "career_horizon",
+          "trust_building"
+        ],
+        "minimum_matches": 4
+      },
+      "outcomes": {
+        "story_flags_on_complete": [
+          "rt_naer_arbeider_ser_systemet_complete"
+        ],
+        "story_tags_on_complete": [
+          "hierarki",
+          "tillit",
+          "arbeidsrealisme"
+        ],
+        "unlocks_role_threads": [
+          "naer_fagarbeider_baerer_kvalitet"
+        ]
+      },
+      "priority": 11
+    },
+    {
+      "id": "naer_fagarbeider_baerer_kvalitet",
+      "title": "Du bærer kvaliteten",
+      "summary": "Du ser det andre overser og merker hvordan kvalitet, tid og fagstolthet stadig presses mot hverandre.",
+      "role_ids": ["naer_fagarbeider"],
+      "tier_labels": ["Fagarbeider"],
+      "primary_conflict": "kvalitet_vs_tidsfrist",
+      "secondary_conflict": "fagstolthet_vs_underdanighet",
+      "families": [
+        "presisjon_og_standard",
+        "feil_avvik_og_stoppunkt",
+        "opplaering_og_taus_kunnskap"
+      ],
+      "required_state": {
+        "career_category_ids": ["naeringsliv"],
+        "min_merit_points": {
+          "naeringsliv": 2
+        },
+        "required_story_flags": [],
+        "required_role_threads": [],
+        "excluded_role_threads": []
+      },
+      "progress_model": {
+        "type": "tag_accumulation",
+        "required_tags": [
+          "quality_threshold",
+          "professional_eye",
+          "tacit_knowledge",
+          "training",
+          "stop_point",
+          "professional_courage"
+        ],
+        "minimum_matches": 4
+      },
+      "outcomes": {
+        "story_flags_on_complete": [
+          "rt_naer_fagarbeider_baerer_kvalitet_complete"
+        ],
+        "story_tags_on_complete": [
+          "fagblikk",
+          "kvalitet",
+          "taus_kunnskap"
+        ],
+        "unlocks_role_threads": [
+          "naer_fagarbeider_synlig_uten_tittel"
+        ]
+      },
+      "priority": 13
+    },
+    {
+      "id": "naer_fagarbeider_synlig_uten_tittel",
+      "title": "Synlig uten tittel",
+      "summary": "Du blir en som kan lære bort, vurdere og varsle, men ikke nødvendigvis en som får formell makt.",
+      "role_ids": ["naer_fagarbeider"],
+      "tier_labels": ["Fagarbeider"],
+      "primary_conflict": "ansvar_vs_anerkjennelse",
+      "secondary_conflict": "mestring_vs_karriere",
+      "families": [
+        "opplaering_og_taus_kunnskap",
+        "fagstolthet_og_ledelse",
+        "synlighet_og_videre_vei"
+      ],
+      "required_state": {
+        "career_category_ids": ["naeringsliv"],
+        "min_merit_points": {
+          "naeringsliv": 2
+        },
+        "required_story_flags": [
+          "rt_naer_fagarbeider_baerer_kvalitet_complete"
+        ],
+        "required_role_threads": [],
+        "excluded_role_threads": []
+      },
+      "progress_model": {
+        "type": "tag_accumulation",
+        "required_tags": [
+          "invisible_responsibility",
+          "recognition",
+          "career_signal",
+          "role_lock",
+          "competence_recognized"
+        ],
+        "minimum_matches": 3
+      },
+      "outcomes": {
+        "story_flags_on_complete": [
+          "rt_naer_fagarbeider_synlig_uten_tittel_complete"
+        ],
+        "story_tags_on_complete": [
+          "fagstolthet",
+          "uformell_autoritet",
+          "karrierefriksjon"
+        ],
+        "unlocks_role_threads": [
+          "naer_mellomleder_blir_buffer"
+        ]
+      },
+      "priority": 12
+    },
+    {
+      "id": "naer_mellomleder_blir_buffer",
+      "title": "Du blir buffer",
+      "summary": "Du går fra å gjøre arbeid til å bære arbeid: oversette språk, dempe konflikter og stå ansvarlig for ting du ikke fullt ut kontrollerer.",
+      "role_ids": ["naer_mellomleder"],
+      "tier_labels": ["Mellomleder"],
+      "primary_conflict": "ansvar_vs_kontroll",
+      "secondary_conflict": "gulvlogikk_vs_ledersprak",
+      "families": [
+        "oversettelse_mellom_oppover_og_nedover",
+        "ansvar_uten_full_kontroll",
+        "folk_stemning_og_friksjon"
+      ],
+      "required_state": {
+        "career_category_ids": ["naeringsliv"],
+        "min_merit_points": {
+          "naeringsliv": 3
+        },
+        "required_story_flags": [],
+        "required_role_threads": [],
+        "excluded_role_threads": []
+      },
+      "progress_model": {
+        "type": "tag_accumulation",
+        "required_tags": [
+          "translation",
+          "responsibility_gap",
+          "staffing_pressure",
+          "conflict_damping",
+          "team_mood",
+          "middle_layer"
+        ],
+        "minimum_matches": 4
+      },
+      "outcomes": {
+        "story_flags_on_complete": [
+          "rt_naer_mellomleder_blir_buffer_complete"
+        ],
+        "story_tags_on_complete": [
+          "buffer",
+          "mellomniva",
+          "driftspress"
+        ],
+        "unlocks_role_threads": [
+          "naer_mellomleder_mister_enkelheten"
+        ]
+      },
+      "priority": 14
+    },
+    {
+      "id": "naer_mellomleder_mister_enkelheten",
+      "title": "Du mister enkelheten",
+      "summary": "Språk, lojalitet, rapportering og selvbilde glir inn i hverandre. Rollen blir mindre konkret og mer krevende å stå i.",
+      "role_ids": ["naer_mellomleder"],
+      "tier_labels": ["Mellomleder"],
+      "primary_conflict": "lojalitet_oppover_vs_tillit_nedover",
+      "secondary_conflict": "rolleidentitet_vs_selvrespekt",
+      "families": [
+        "rapportering_og_virkelighetsredigering",
+        "slitasje_lojalitet_og_selvbilde"
+      ],
+      "required_state": {
+        "career_category_ids": ["naeringsliv"],
+        "min_merit_points": {
+          "naeringsliv": 3
+        },
+        "required_story_flags": [
+          "rt_naer_mellomleder_blir_buffer_complete"
+        ],
+        "required_role_threads": [],
+        "excluded_role_threads": []
+      },
+      "progress_model": {
+        "type": "tag_accumulation",
+        "required_tags": [
+          "reporting",
+          "metrics_gap",
+          "identity_shift",
+          "loyalty_split",
+          "buffering",
+          "manager_voice"
+        ],
+        "minimum_matches": 4
+      },
+      "outcomes": {
+        "story_flags_on_complete": [
+          "rt_naer_mellomleder_mister_enkelheten_complete"
+        ],
+        "story_tags_on_complete": [
+          "ledersprak",
+          "lojalitet",
+          "selvbilde"
+        ],
+        "unlocks_role_threads": []
+      },
+      "priority": 15
+    }
+  ]
+}
