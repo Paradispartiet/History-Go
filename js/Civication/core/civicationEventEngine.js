@@ -947,14 +947,17 @@ const packFile = this.resolvePackFile(active, role_key);
 const pack = await this.loadPack(packFile);
 
 if (!pack || !Array.isArray(pack.mails) || !pack.mails.length) {
-  const generic = this.makeGenericCareerEvent(
+  const roleMail =
+    await window.CiviRoleStoryletBridge?.makeMailForActiveRole?.(active, state);
+
+  const fallbackEvent = roleMail || this.makeGenericCareerEvent(
     active,
     state,
     force ? "job_accepted" : "missing_pack"
   );
 
   const decorated = this.decorateWorkMail(
-    generic,
+    fallbackEvent,
     active,
     force ? "job_accepted" : "missing_pack"
   );
@@ -967,7 +970,7 @@ if (!pack || !Array.isArray(pack.mails) || !pack.mails.length) {
 
   return {
     enqueued: true,
-    type: "generic",
+    type: roleMail ? "role_storylet" : "generic",
     reason: "missing_pack",
     event: decorated
   };
