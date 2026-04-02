@@ -1789,6 +1789,44 @@ function maybeCreateContactFromChoice(phaseTag, pendingEvent, choice, result) {
 
   return false;
 }
+
+function buildContactsHtml() {
+  const contacts = getCiviContacts();
+  if (!Array.isArray(contacts) || !contacts.length) return "";
+
+  const sorted = contacts
+    .slice()
+    .sort((a, b) => Number(b?.strength || 0) - Number(a?.strength || 0))
+    .slice(0, 5);
+
+  return `
+    <div class="civi-contacts-report" style="margin-bottom:12px;padding:12px;border:1px solid rgba(255,255,255,0.12);border-radius:14px;background:rgba(255,255,255,0.04);">
+      <div style="font-weight:700;margin-bottom:8px;">Kontakter</div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        ${sorted
+          .map((c) => {
+            const type = String(c?.type || "kontakt");
+            const name = String(c?.name || "Kontakt");
+            const label = String(c?.sourceContextLabel || "Ukjent miljø");
+            const strength = Number(c?.strength || 1);
+
+            return `
+              <div style="padding:8px 10px;border:1px solid rgba(255,255,255,0.08);border-radius:10px;background:rgba(255,255,255,0.03);">
+                <div style="font-weight:600;">${name}</div>
+                <div style="font-size:0.9rem;opacity:0.9;">Type: ${type} · Miljø: ${label}</div>
+                <div style="font-size:0.88rem;opacity:0.8;">Styrke: ${strength}</div>
+              </div>
+            `;
+          })
+          .join("")}
+      </div>
+    </div>
+  `;
+}
+
+
+
+
   
 function patchEventEngine() {
   const proto = window.CivicationEventEngine?.prototype;
