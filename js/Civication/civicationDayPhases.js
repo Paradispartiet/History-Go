@@ -1755,8 +1755,12 @@ if (carryover.fatigue > 1 && adjustedChoices.length) {
         cal.markDailyFlag?.("evening_done", true);
         cal.setPhase?.("day_end");
       } else if (phaseTag === "day_end") {
+        const summary = cal.getDailySummary?.();
+        if (summary) {
+         saveDailySummaryToWeek(summary);
+        }
         cal.resetForNewDay?.();
-      }
+       }
 
       setTimeout(() => {
         try {
