@@ -421,77 +421,77 @@ function patchTaskEngine() {
   }
 
   function patchUI() {
-    if (window.__civiDayPhaseUiPatched) return;
-    if (typeof window.renderWorkdayPanel !== "function") return;
-    window.__civiDayPhaseUiPatched = true;
+  if (window.__civiDayPhaseUiPatched) return;
 
-    const legacyRenderWorkdayPanel = window.renderWorkdayPanel;
+  const legacyRenderWorkdayPanel =
+    typeof window.renderWorkdayPanel === "function"
+      ? window.renderWorkdayPanel
+      : window.CivicationUI?.renderWorkdayPanel;
 
-    function buildPhaseHud(model) {
-      const flags = model.dailyFlags || {};
-      const phaseOrder = [
-        { id: "morning", label: "Morgen", doneKey: "morning_done" },
-        { id: "lunch", label: "Lunsj", doneKey: "lunch_done" },
-        { id: "afternoon", label: "Ettermiddag", doneKey: "afternoon_done" },
-        { id: "evening", label: "Kveld", doneKey: "evening_done" },
-        { id: "day_end", label: "Dagslutt", doneKey: null }
-      ];
+  if (typeof legacyRenderWorkdayPanel !== "function") return;
 
-      return `
-        <div class="civi-dayphase-hud" style="margin-bottom:12px;padding:12px;border:1px solid rgba(255,255,255,0.12);border-radius:14px;background:rgba(255,255,255,0.04);">
-          <div style="font-weight:700;margin-bottom:8px;">Dag ${model.dayIndex} · ${model.phaseLabel}</div>
-          <div style="display:flex;gap:8px;flex-wrap:wrap;">
-            ${phaseOrder
-              .map((item) => {
-                const isActive = item.id === model.phase;
-                const isDone = item.doneKey ? !!flags[item.doneKey] : false;
-                const badge = isDone ? "✅" : isActive ? "🔵" : "⬜";
-                return `<span style="padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,0.12);">${badge} ${item.label}</span>`;
-              })
-              .join("")}
-          </div>
+  window.__civiDayPhaseUiPatched = true;
+
+  function buildPhaseHud(model) {
+    const flags = model.dailyFlags || {};
+    const phaseOrder = [
+      { id: "morning", label: "Morgen", doneKey: "morning_done" },
+      { id: "lunch", label: "Lunsj", doneKey: "lunch_done" },
+      { id: "afternoon", label: "Ettermiddag", doneKey: "afternoon_done" },
+      { id: "evening", label: "Kveld", doneKey: "evening_done" },
+      { id: "day_end", label: "Dagslutt", doneKey: null }
+    ];
+
+    return `
+      <div class="civi-dayphase-hud" style="margin-bottom:12px;padding:12px;border:1px solid rgba(255,255,255,0.12);border-radius:14px;background:rgba(255,255,255,0.04);">
+        <div style="font-weight:700;margin-bottom:8px;">Dag ${model.dayIndex} · ${model.phaseLabel}</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          ${phaseOrder
+            .map((item) => {
+              const isActive = item.id === model.phase;
+              const isDone = item.doneKey ? !!flags[item.doneKey] : false;
+              const badge = isDone ? "✅" : isActive ? "🔵" : "⬜";
+              return `<span style="padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,0.12);">${badge} ${item.label}</span>`;
+            })
+            .join("")}
         </div>
-      `;
-    }
-
-window.renderWorkdayPanel = function () {
-  legacyRenderWorkdayPanel();
-
-  const host = document.getElementById("civiWorkdayPanel");
-  if (!host) return;
-
-  const model = window.CivicationCalendar?.getPhaseModel?.();
-  if (!model) return;
-
-  const existingHud = host.querySelector(".civi-dayphase-hud");
-  if (existingHud) existingHud.remove();
-
-  const existingWeekly = host.querySelector(".civi-weekly-report");
-  if (existingWeekly) existingWeekly.remove();
-
-  const existingContacts = host.querySelector(".civi-contacts-report");
-  if (existingContacts) existingContacts.remove();
-
-  const weeklyHtml = buildWeeklyReportHtml();
-  const contactsHtml = buildContactsHtml();
-
-  const activeTasks =
-   window.CivicationTaskEngine?.listOpenTasksForCurrentPhase?.() || [];
-  const firstTask = Array.isArray(activeTasks) && activeTasks.length ? activeTasks[0] : null;
-  const knowledgeHtml = buildKnowledgeTaskHtml(firstTask);
-
-  const existingKnowledge = host.querySelector(".civi-knowledge-report");
-   if (existingKnowledge) existingKnowledge.remove();
-
-host.insertAdjacentHTML(
-  "afterbegin",
-  `${knowledgeHtml}${contactsHtml}${weeklyHtml}${buildPhaseHud(model)}`
-);
-};
-    if (window.CivicationUI) {
-      window.CivicationUI.renderWorkdayPanel = window.renderWorkdayPanel;
-    }
+      </div>
+    `;
   }
+
+  window.renderWorkdayPanel = function () {
+    legacyRenderWorkdayPanel.call(window.CivicationUI || window);
+
+    const host = document.getElementById("civiWorkdayPanel");
+    if (!host) return;
+
+    const model = window.CivicationCalendar?.getPhaseModel?.();
+    if (!model) return;
+
+    host.querySelector(".civi-dayphase-hud")?.remove();
+    host.querySelector(".civi-weekly-report")?.remove();
+    host.querySelector(".civi-contacts-report")?.remove();
+    host.querySelector(".civi-knowledge-report")?.remove();
+
+    const weeklyHtml = buildWeeklyReportHtml();
+    const contactsHtml = buildContactsHtml();
+
+    const activeTasks =
+      window.CivicationTaskEngine?.listOpenTasksForCurrentPhase?.() || [];
+    const firstTask =
+      Array.isArray(activeTasks) && activeTasks.length ? activeTasks[0] : null;
+    const knowledgeHtml = buildKnowledgeTaskHtml(firstTask);
+
+    host.insertAdjacentHTML(
+      "afterbegin",
+      `${knowledgeHtml}${contactsHtml}${weeklyHtml}${buildPhaseHud(model)}`
+    );
+  };
+
+  if (window.CivicationUI) {
+    window.CivicationUI.renderWorkdayPanel = window.renderWorkdayPanel;
+  }
+}
 
   function initPatches() {
     patchCalendar();
