@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Civication</title>
 
-  <!-- Kun Civication CSS -->
   <link rel="stylesheet" href="css/civi.css" />
 </head>
 
@@ -22,12 +21,10 @@
 
   <main class="civi-world">
 
-    <!-- KARTLAG -->
     <div id="civiMapWorld">
       <div class="civi-map-layer"></div>
     </div>
 
-    <!-- UI -->
     <div class="civi-panels">
 
       <section class="civi-capital">
@@ -87,13 +84,13 @@
         <div id="civiWorkdayPanel"></div>
       </section>
 
-<div id="civiTrackHUD" class="civi-track-hud">
-  <div class="civi-track-title">🎯 Aktiv retning</div>
-  <div id="civiTrackName">–</div>
-  <div id="civiTrackProgress" class="muted">–</div>
-  <div id="civiTrackTags" class="civi-track-tags"></div>
-</div>
-      
+      <div id="civiTrackHUD" class="civi-track-hud">
+        <div class="civi-track-title">🎯 Aktiv retning</div>
+        <div id="civiTrackName">–</div>
+        <div id="civiTrackProgress" class="muted">–</div>
+        <div id="civiTrackTags" class="civi-track-tags"></div>
+      </div>
+
       <section id="civiInboxSection">
         <h2>Innkommende</h2>
         <div id="civiInbox"></div>
@@ -101,7 +98,6 @@
 
     </div>
 
-    <!-- MODAL -->
     <div id="districtModal" class="civi-modal" style="display:none;">
       <div class="civi-modal-content">
         <div class="civi-modal-header">
@@ -114,7 +110,6 @@
 
   </main>
 
-  <!-- (Valgfritt) enkel footer for Civication -->
   <div class="civi-footer">
     <button id="btnCiviMap" class="civi-btn">Kart</button>
     <button class="civi-btn" data-scroll="#activeJobSection">Rolle</button>
@@ -122,106 +117,88 @@
     <button class="civi-btn primary" data-scroll="#civiInboxSection">Inbox</button>
   </div>
 
-<!-- ===================================================== -->
-<!-- State -->
-<!-- ===================================================== -->
+  <!-- State -->
+  <script src="js/Civication/core/civicationState.js"></script>
 
-<script src="js/Civication/civicationState.js"></script>
+  <!-- Data / tier / job offers -->
+  <script src="js/Civication/tiersCivi.js"></script>
+  <script src="js/Civication/core/civicationJobs.js"></script>
+  <script src="js/Civication/merits-and-jobs.js"></script>
 
-<!-- Data / tier / job offers -->
-<script src="js/Civication/tiersCivi.js"></script>
-<script src="js/Civication/civicationJobs.js"></script>
-<script src="js/Civication/merits-and-jobs.js"></script>
-  
-<!-- ===================================================== -->
-<!-- Core engines -->
-<!-- ===================================================== -->
+  <!-- Core engines -->
+  <script src="js/Civication/core/civicationCalendar.js"></script>
+  <script src="js/Civication/core/civicationTaskEngine.js"></script>
+  <script src="js/Civication/core/civicationEconomyEngine.js"></script>
+  <script src="js/Civication/civicationObligationEngine.js"></script>
+  <script src="js/Civication/utils/storyResolver.js"></script>
+  <script src="js/Civication/core/civicationEventEngine.js"></script>
+  <script src="js/Civication/utils/conflictLoader.js"></script>
+  <script src="js/Civication/capitalEngine.js"></script>
+  <script src="js/Civication/capitalMaintenanceEngine.js"></script>
 
-<script src="js/Civication/civicationCalendar.js"></script>
-<script src="js/Civication/civicationTaskEngine.js"></script>
-<script src="js/Civication/civicationEconomyEngine.js"></script>
-<script src="js/Civication/civicationObligationEngine.js"></script>
-<script src="js/Civication/storyResolver.js"></script>
-<script src="js/Civication/civicationEventEngine.js"></script>
-<script src="js/Civication/conflictLoader.js"></script>
-<script src="js/Civication/capitalEngine.js"></script>
-<script src="js/Civication/capitalMaintenanceEngine.js"></script>
+  <!-- Identity -->
+  <script src="js/Civication/identityCore.js"></script>
+  <script src="js/Civication/identityCompass.js"></script>
+  <script src="js/Civication/identityEngine.js"></script>
 
-<!-- ===================================================== -->
-<!-- Identity -->
-<!-- ===================================================== -->
+  <!-- Psyche -->
+  <script src="js/Civication/core/CivicationPsyche.js"></script>
 
-<script src="js/Civication/identityCore.js"></script>
-<script src="js/Civication/identityCompass.js"></script>
-<script src="js/Civication/identityEngine.js"></script>
+  <!-- Lifestyle / commercial -->
+  <script src="js/Civication/civiLifestyle.js"></script>
+  <script src="js/Civication/civicationCommercial.js"></script>
 
-<!-- ===================================================== -->
-<!-- Psyche -->
-<!-- ===================================================== -->
+  <!-- Home / public / map -->
+  <script src="js/Civication/ui/CivicationHome.js"></script>
+  <script src="js/Civication/ui/CivicationPublicLayer.js"></script>
+  <script src="js/Civication/ui/CivicationMap.js"></script>
 
-<script src="js/Civication/CivicationPsyche.js"></script>
+  <!-- UI -->
+  <script src="js/Civication/ui/CivicationUI.js"></script>
 
-<!-- ===================================================== -->
-<!-- Lifestyle / commercial -->
-<!-- ===================================================== -->
+  <!-- Day / weekly systems -->
+  <script src="js/Civication/systems/day/dayCalendarBridge.js"></script>
+  <script src="js/Civication/systems/day/dayHistoryGoContexts.js"></script>
+  <script src="js/Civication/systems/day/dayCarryover.js"></script>
+  <script src="js/Civication/systems/weekly/weeklyReview.js"></script>
+  <script src="js/Civication/systems/day/dayContacts.js"></script>
+  <script src="js/Civication/systems/day/dayKnowledge.js"></script>
+  <script src="js/Civication/systems/day/dayEvents.js"></script>
+  <script src="js/Civication/systems/day/dayPatches.js"></script>
 
-<script src="js/Civication/civiLifestyle.js"></script>
-<script src="js/Civication/civicationCommercial.js"></script>
+  <!-- Boot -->
+  <script src="js/Civication/CivicationBoot.js"></script>
 
-<!-- ===================================================== -->
-<!-- Home / public / map -->
-<!-- ===================================================== -->
-
-<script src="js/Civication/CivicationHome.js"></script>
-<script src="js/Civication/CivicationPublicLayer.js"></script>
-<script src="js/Civication/CivicationMap.js"></script>
-
-<!-- ===================================================== -->
-<!-- UI -->
-<!-- ===================================================== -->
-
-<script src="js/Civication/CivicationUI.js"></script>
-<script src="js/Civication/systems/day/dayCalendarBridge.js"></script>
-<script src="js/Civication/systems/day/dayHistoryGoContexts.js"></script>
-<script src="js/Civication/systems/day/dayCarryover.js"></script>
-<script src="js/Civication/systems/weekly/weeklyReview.js"></script>
-<script src="js/Civication/systems/day/dayContacts.js"></script>
-<script src="js/Civication/systems/day/dayKnowledge.js"></script>
-<script src="js/Civication/systems/day/dayEvents.js"></script>
-<script src="js/Civication/systems/day/dayPatches.js"></script>
-
-<!-- ===================================================== -->
-<!-- BOOT (ALLTID SIST) -->
-<!-- ===================================================== -->
-
-<script src="js/Civication/CivicationBoot.js"></script>
-  
   <script>
-    (function(){
+    (function () {
       const btnMap = document.getElementById("btnCiviMap");
-      if (btnMap) btnMap.addEventListener("click", () => document.body.classList.toggle("civi-mapmode"));
+      if (btnMap) {
+        btnMap.addEventListener("click", () => {
+          document.body.classList.toggle("civi-mapmode");
+        });
+      }
 
       document.querySelectorAll("[data-scroll]").forEach((b) => {
         b.addEventListener("click", () => {
           const el = document.querySelector(b.getAttribute("data-scroll"));
-          if (el) el.scrollIntoView({ behavior:"smooth", block:"start" });
+          if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
         });
       });
     })();
   </script>
 
-<div id="civiTaskModal" class="civi-modal" aria-hidden="true">
-  <div class="civi-modal-backdrop" data-close-task></div>
+  <div id="civiTaskModal" class="civi-modal" aria-hidden="true">
+    <div class="civi-modal-backdrop" data-close-task></div>
 
-  <div class="civi-modal-card" role="dialog" aria-modal="true" aria-labelledby="civiTaskModalTitle">
-    <div class="civi-modal-head">
-      <h3 id="civiTaskModalTitle">Oppgave</h3>
-      <button id="civiTaskModalClose" class="civi-modal-close" type="button">✕</button>
+    <div class="civi-modal-card" role="dialog" aria-modal="true" aria-labelledby="civiTaskModalTitle">
+      <div class="civi-modal-head">
+        <h3 id="civiTaskModalTitle">Oppgave</h3>
+        <button id="civiTaskModalClose" class="civi-modal-close" type="button">✕</button>
+      </div>
+
+      <div id="civiTaskModalBody" class="civi-modal-body"></div>
     </div>
-
-    <div id="civiTaskModalBody" class="civi-modal-body"></div>
   </div>
-</div>
-  
+
 </body>
 </html>
