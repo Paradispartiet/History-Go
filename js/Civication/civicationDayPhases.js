@@ -1449,11 +1449,62 @@ function saveDailySummaryToWeek(summary) {
       ? baseReview.days.map((d, i) => (i === existingIdx ? entry : d))
       : baseReview.days.concat([entry]);
 
-  return saveWeeklyReview({
-    ...baseReview,
-    days: nextDays,
-    applied: false
-  });
+  const weeklySummary = buildWeeklySummary(nextDays);
+
+return saveWeeklyReview({
+  ...baseReview,
+  days: nextDays,
+  summary: weeklySummary,
+  applied: false
+});
+}
+
+function buildWeeklySummary(days) {
+  const safeDays = Array.isArray(days) ? days : [];
+
+  const summary = {
+    daysCount: safeDays.length,
+    strongDays: 0,
+    evenDays: 0,
+    unevenDays: 0,
+    visibilityDays: 0,
+    processDays: 0,
+    fatigueDays: 0,
+    avgScore: 0
+  };
+
+  if (!safeDays.length) return summary;
+
+  let scoreTotal = 0;
+
+  for (const day of safeDays) {
+    const quality = String(day?.quality || "jevn");
+    const score = Number(day?.score || 0);
+    const carry = day?.nextDayCarryover && typeof day.nextDayCarryover === "object"
+      ? day.nextDayCarryover
+      : { visibilityBias: 0, processBias: 0, fatigue: 0 };
+
+    scoreTotal += score;
+
+    if (quality === "sterk") summary.strongDays += 1;
+    else if (quality === "ujevn") summary.unevenDays += 1;
+    else summary.evenDays += 1;
+
+    if (Number(carry.visibilityBias || 0) > Number(carry.processBias || 0)) {
+      summary.visibilityDays += 1;
+    }
+
+    if (Number(carry.processBias || 0) > 0) {
+      summary.processDays += 1;
+    }
+
+    if (Number(carry.fatigue || 0) > 1 || quality === "ujevn") {
+      summary.fatigueDays += 1;
+    }
+  }
+
+  summary.avgScore = Number((scoreTotal / safeDays.length).toFixed(2));
+  return summary;
 }
   
   
