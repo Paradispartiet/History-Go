@@ -290,6 +290,29 @@ class CivicationEventEngine {
     return pack;
   }
 
+async buildMailPool(active, state, role_key) {
+  const packFile = this.resolvePackFile(active, role_key);
+  const pack = await this.loadPack(packFile);
+
+  const packMails = Array.isArray(pack?.mails) ? pack.mails : [];
+
+  const roleMails =
+    await window.CiviRoleStoryletBridge?.makeCandidateMailsForActiveRole?.(
+      active,
+      state
+    ) || [];
+
+  return {
+    role: pack?.role || active?.career_id || null,
+    tag_rules: pack?.tag_rules || {
+      max_tags_per_choice: 2,
+      memory_window: 12
+    },
+    tracks: Array.isArray(pack?.tracks) ? pack.tracks : [],
+    mails: [...packMails, ...roleMails]
+  };
+}
+  
   // -------- event selection --------
 
   pickEventFromPack(pack, state) {
@@ -938,41 +961,36 @@ class CivicationEventEngine {
       return { enqueued: false, reason: "unemployed_pre_nav" };
     }
 
-    const packFile = this.resolvePackFile(active, role_key);
-    const pack = await this.loadPack(packFile);
+    const pack = await this.buildMailPool(active, stateWithStory, role_key);
 
-    if (!pack || !Array.isArray(pack.mails) || !pack.mails.length) {
-      const roleMail =
-        await window.CiviRoleStoryletBridge?.makeMailForActiveRole?.(active, state);
+if (!pack || !Array.isArray(pack.mails) || !pack.mails.length) {
+  const generic = this.makeGenericCareerEvent(
+    active,
+    state,
+    force ? "job_accepted" : "missing_pack"
+  );
 
-      const fallbackEvent = roleMail || this.makeGenericCareerEvent(
-        active,
-        state,
-        force ? "job_accepted" : "missing_pack"
-      );
+  const decorated = this.decorateWorkMail(
+    generic,
+    active,
+    force ? "job_accepted" : "missing_pack"
+  );
 
-      const decorated = this.decorateWorkMail(
-        fallbackEvent,
-        active,
-        force ? "job_accepted" : "missing_pack"
-      );
+  this.enqueueEvent(decorated);
 
-      this.enqueueEvent(decorated);
+  if (!force) {
+    this.markPulseUsed();
+  }
 
-      if (!force) {
-        this.markPulseUsed();
-      }
+  return {
+    enqueued: true,
+    type: "generic",
+    reason: "missing_pack",
+    event: decorated
+  };
+}
 
-      return {
-        enqueued: true,
-        type: roleMail ? "role_storylet" : "generic",
-        reason: "missing_pack",
-        event: decorated
-      };
-    }
-
-    const chosen = this.pickEventFromPack(pack, stateWithStory);
-
+const chosen = this.pickEventFromPack(pack, stateWithStory);
     if (!chosen) {
       const roleMail =
         await window.CiviRoleStoryletBridge?.makeMailForActiveRole?.(active, state);
