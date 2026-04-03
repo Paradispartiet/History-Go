@@ -393,6 +393,22 @@ async buildMailPool(active, state, role_key) {
     function scoreMail(m) {
       let score = 0;
 
+    
+
+      const director =
+  (state && state.mail_director && typeof state.mail_director === "object")
+    ? state.mail_director
+    : {
+        turn_index: 0,
+        last_source_type: null,
+        consecutive_role_mails: 0
+      };
+
+      const sourceType = String(m?.source_type || "pack").trim();
+      const turnIndex = Number(director.turn_index || 0);
+      const consecutiveRoleMails = Number(director.consecutive_role_mails || 0);
+      const lastSourceType = String(director.last_source_type || "").trim();
+      
       const identityTags =
         Array.isArray(state.identity_tags)
           ? state.identity_tags
@@ -426,6 +442,28 @@ async buildMailPool(active, state, role_key) {
         ? storyState.story_tags
         : [];
 
+   // Enkel mail-regissør:
+// - start med pack for å etablere jobbhverdagen
+// - ikke la rollemails komme to ganger på rad for lett
+// - gi rollemails litt plass etter at packen har etablert feltet
+
+if (turnIndex < 2) {
+  if (sourceType === "pack") score += 20;
+  if (sourceType === "role") score -= 8;
+}
+
+if (consecutiveRoleMails >= 1 && sourceType === "role") {
+  score -= 12;
+}
+
+if (lastSourceType === "pack" && turnIndex >= 2 && sourceType === "role") {
+  score += 4;
+}
+
+if (lastSourceType === "role" && sourceType === "pack") {
+  score += 6;
+}
+      
       if (Array.isArray(gating.require_tags)) {
         for (let i = 0; i < gating.require_tags.length; i++) {
           const t = gating.require_tags[i];
