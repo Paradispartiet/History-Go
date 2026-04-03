@@ -207,40 +207,39 @@ class CivicationEventEngine {
   }
 
   ensureRoleKeySynced() {
-    const active = window.CivicationState.getActivePosition();
+  const active = window.CivicationState.getActivePosition();
 
-    if (!active) {
-      this.setState({ active_role_key: null });
-      return null;
-    }
+  if (!active) {
+    this.setState({ active_role_key: null });
+    return null;
+  }
 
-    const rk = this.resolveRoleKey();
-    const st = this.getState();
+  const rk = this.resolveRoleKey();
+  const st = this.getState();
 
-    if (rk && rk !== st.active_role_key) {
-     if (!active?.role_key || !active?.role_id) {
-      const ROLE_ID_BY_TITLE = {
-       "Arbeider": "naer_arbeider",
-       "Fagarbeider": "naer_fagarbeider",
-       "Mellomleder": "naer_mellomleder"
-      };
+  const ROLE_ID_BY_TITLE = {
+    "Arbeider": "naer_arbeider",
+    "Fagarbeider": "naer_fagarbeider",
+    "Mellomleder": "naer_mellomleder"
+  };
 
-      const title = String(active?.title || "").trim();
-      const roleId = ROLE_ID_BY_TITLE[title] || null;
+  const title = String(active?.title || "").trim();
+  const roleId = ROLE_ID_BY_TITLE[title] || null;
 
-      window.CivicationState.setActivePosition({
-        ...active,
-        role_key: active?.role_key || rk,
-        role_id: active?.role_id || roleId
-      });
-    }
+  if ((!active?.role_key && rk) || (!active?.role_id && roleId)) {
+    window.CivicationState.setActivePosition({
+      ...active,
+      role_key: active?.role_key || rk,
+      role_id: active?.role_id || roleId
+    });
+  }
 
+  if (rk && rk !== st.active_role_key) {
     this.resetForNewJob(rk);
   }
-    
-    return rk;
-  }
 
+  return rk;
+}
   // -------- pulse gating --------
 
   getPulseSlot() {
