@@ -1096,6 +1096,8 @@ if (!chosen) {
       force ? "job_accepted" : "scheduled"
     );
 
+    
+    this.registerChosenMail(chosenWithMeta);
     this.enqueueEvent(decoratedChosen);
 
     if (!force) {
@@ -1187,6 +1189,7 @@ if (!chosen) {
       "followup"
     );
 
+    this.registerChosenMail(chosenWithMeta);
     this.enqueueEvent(decoratedChosen);
     window.dispatchEvent(new Event("updateProfile"));
 
