@@ -113,23 +113,27 @@ class CivicationEventEngine {
     return window.CivicationState.setState(patch || {});
   }
 
-  resetForNewJob(role_key) {
-    const rk = role_key || null;
+resetForNewJob(role_key) {
+  const rk = role_key || null;
 
-    this.setState({
-      stability: "STABLE",
-      warning_used: false,
-      strikes: 0,
-      score: 0,
-      active_role_key: rk,
-      consumed: {},
-      identity_tags: [],
-      tracks: [],
-      track_progress: {},
-      unemployed_since_week: null
-    });
-  }
-
+  this.setState({
+    stability: "STABLE",
+    warning_used: false,
+    strikes: 0,
+    score: 0,
+    active_role_key: rk,
+    consumed: {},
+    identity_tags: [],
+    tracks: [],
+    track_progress: {},
+    unemployed_since_week: null,
+    mail_director: {
+      turn_index: 0,
+      last_source_type: null,
+      consecutive_role_mails: 0
+    }
+  });
+}
   // -------- inbox --------
 
   getInbox() {
