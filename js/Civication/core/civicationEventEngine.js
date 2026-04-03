@@ -218,15 +218,25 @@ class CivicationEventEngine {
     const st = this.getState();
 
     if (rk && rk !== st.active_role_key) {
-      if (!active?.role_key) {
-        window.CivicationState.setActivePosition({
-          ...active,
-          role_key: rk
-        });
-      }
+  if (!active?.role_key) {
+    const ROLE_ID_BY_TITLE = {
+      "Arbeider": "naer_arbeider",
+      "Fagarbeider": "naer_fagarbeider",
+      "Mellomleder": "naer_mellomleder"
+    };
 
-      this.resetForNewJob(rk);
-    }
+    const title = String(active?.title || "").trim();
+    const roleId = ROLE_ID_BY_TITLE[title] || null;
+
+    window.CivicationState.setActivePosition({
+      ...active,
+      role_key: rk,
+      role_id: active?.role_id || roleId
+    });
+  }
+
+  this.resetForNewJob(rk);
+}
 
     return rk;
   }
