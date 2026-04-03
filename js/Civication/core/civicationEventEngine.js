@@ -309,13 +309,23 @@ async buildMailPool(active, state, role_key) {
   const packFile = this.resolvePackFile(active, role_key);
   const pack = await this.loadPack(packFile);
 
-  const packMails = Array.isArray(pack?.mails) ? pack.mails : [];
+  const packMails = Array.isArray(pack?.mails)
+    ? pack.mails.map((m) => ({
+        ...m,
+        source_type: m?.source_type || "pack"
+      }))
+    : [];
 
   const roleMails =
     await window.CiviRoleStoryletBridge?.makeCandidateMailsForActiveRole?.(
       active,
       state
     ) || [];
+
+  const taggedRoleMails = roleMails.map((m) => ({
+    ...m,
+    source_type: "role"
+  }));
 
   return {
     role: pack?.role || active?.career_id || null,
@@ -324,7 +334,7 @@ async buildMailPool(active, state, role_key) {
       memory_window: 12
     },
     tracks: Array.isArray(pack?.tracks) ? pack.tracks : [],
-    mails: [...packMails, ...roleMails]
+    mails: [...packMails, ...taggedRoleMails]
   };
 }
   
