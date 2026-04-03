@@ -1197,6 +1197,32 @@ if (!chosen) {
     };
   }
 
+
+registerChosenMail(eventObj) {
+  const state = this.getState();
+  const director =
+    (state && state.mail_director && typeof state.mail_director === "object")
+      ? state.mail_director
+      : {
+          turn_index: 0,
+          last_source_type: null,
+          consecutive_role_mails: 0
+        };
+
+  const sourceType = String(eventObj?.source_type || "pack").trim() || "pack";
+
+  this.setState({
+    mail_director: {
+      turn_index: Number(director.turn_index || 0) + 1,
+      last_source_type: sourceType,
+      consecutive_role_mails:
+        sourceType === "role"
+          ? Number(director.consecutive_role_mails || 0) + 1
+          : 0
+    }
+  });
+}
+  
   enqueueEvent(eventObj) {
     const inbox = this.getInbox();
 
