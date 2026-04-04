@@ -1019,7 +1019,8 @@ async ensureConflictState(active) {
     });
 
     const stateWithStory = this.getState();
-
+    await this.ensureConflictState(active);
+    
     this.syncRoleBaselineFromActive();
 
     if (this.getPendingEvent()) {
@@ -1194,19 +1195,21 @@ if (!chosen) {
   }
 
   async enqueueImmediateFollowupEvent() {
-    if (this.getPendingEvent()) {
-      return { enqueued: false, reason: "pending_exists" };
-    }
+  if (this.getPendingEvent()) {
+    return { enqueued: false, reason: "pending_exists" };
+  }
 
-    const active = window.CivicationState.getActivePosition();
-    if (!active) {
-      return { enqueued: false, reason: "no_active_job" };
-    }
+  const active = window.CivicationState.getActivePosition();
+  if (!active) {
+    return { enqueued: false, reason: "no_active_job" };
+  }
 
-    const role_key = this.ensureRoleKeySynced();
-    const state = this.getState();
-    const pack = await this.buildMailPool(active, state, role_key);
+  await this.ensureConflictState(active);
 
+  const role_key = this.ensureRoleKeySynced();
+  const state = this.getState();
+  const pack = await this.buildMailPool(active, state, role_key);
+    
     if (!pack || !Array.isArray(pack.mails) || !pack.mails.length) {
       const generic = this.makeGenericCareerEvent(
         active,
