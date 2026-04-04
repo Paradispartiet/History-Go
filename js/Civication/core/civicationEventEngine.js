@@ -416,26 +416,26 @@ async buildMailPool(active, state, role_key) {
       const consecutiveRoleMails = Number(director.consecutive_role_mails || 0);
       const lastSourceType = String(director.last_source_type || "").trim();
 
-      const conflictState =
-       state?.conflict_state && typeof state.conflict_state === "object"
-       ? state.conflict_state
-       : {
+const conflictState =
+  state?.conflict_state && typeof state.conflict_state === "object"
+    ? state.conflict_state
+    : {
         active_conflicts: [],
         cycle_index: 0
       };
 
-      const activeConflicts = Array.isArray(conflictState.active_conflicts)
-       ? conflictState.active_conflicts
-       : [];
+const activeConflicts = Array.isArray(conflictState.active_conflicts)
+  ? conflictState.active_conflicts
+  : [];
 
-      const activeConflictFocus =
-        activeConflicts.length
-          ? String(
-             activeConflicts[
-               Number(conflictState.cycle_index || 0) % activeConflicts.length
-             ] || ""
-           ).trim()
-         : "";
+const activeConflictFocus =
+  activeConflicts.length
+    ? String(
+        activeConflicts[
+          Number(conflictState.cycle_index || 0) % activeConflicts.length
+        ] || ""
+      ).trim()
+    : "";
       
       const identityTags =
         Array.isArray(state.identity_tags)
