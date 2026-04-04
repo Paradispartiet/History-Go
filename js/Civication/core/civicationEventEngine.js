@@ -994,7 +994,12 @@ async ensureConflictState(active) {
     const conflictData = await window.CivicationConflicts?.load?.(careerId);
     const tierData = window.CivicationConflicts?.getForTier?.(conflictData, tierLabel);
 
-    const rawConflicts = Array.isArray(tierData?.conflicts) ? tierData.conflicts : [];
+    const rawConflicts = Array.isArray(tierData?.conflicts)
+     ? tierData.conflicts
+     : [
+        tierData?.primary,
+        tierData?.secondary
+      ].filter(Boolean);
 
     const activeConflicts = rawConflicts
       .map((c) => {
