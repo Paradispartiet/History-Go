@@ -131,9 +131,16 @@ resetForNewJob(role_key) {
       turn_index: 0,
       last_source_type: null,
       consecutive_role_mails: 0
+    },
+    conflict_state: {
+      category: null,
+      tier_label: null,
+      active_conflicts: [],
+      cycle_index: 0
     }
   });
 }
+  
   // -------- inbox --------
 
   getInbox() {
@@ -883,6 +890,81 @@ if (lastSourceType === "role" && sourceType === "pack") {
           : (String(role_key || "") + ".json"));
   }
 
+async ensureConflictState(active) {
+  const careerId = String(active?.career_id || "").trim();
+  const tierLabel = String(active?.title || "").trim();
+
+  if (!careerId || !tierLabel) {
+    return {
+      category: null,
+      tier_label: null,
+      active_conflicts: [],
+      cycle_index: 0
+    };
+  }
+
+  const state = this.getState();
+  const current =
+    state?.conflict_state && typeof state.conflict_state === "object"
+      ? state.conflict_state
+      : null;
+
+  if (
+    current &&
+    current.category === careerId &&
+    current.tier_label === tierLabel &&
+    Array.isArray(current.active_conflicts) &&
+    current.active_conflicts.length
+  ) {
+    return current;
+  }
+
+  try {
+    const conflictData = await window.CivicationConflicts?.load?.(careerId);
+    const tierData = window.CivicationConflicts?.getForTier?.(conflictData, tierLabel);
+
+    const rawConflicts = Array.isArray(tierData?.conflicts) ? tierData.conflicts : [];
+
+    const activeConflicts = rawConflicts
+      .map((c) => {
+        if (typeof c === "string") return c.trim();
+        if (c && typeof c === "object") {
+          return String(c.id || c.conflict_id || c.name || "").trim();
+        }
+        return "";
+      })
+      .filter(Boolean);
+
+    const nextState = {
+      category: careerId,
+      tier_label: tierLabel,
+      active_conflicts: activeConflicts,
+      cycle_index: 0
+    };
+
+    this.setState({
+      conflict_state: nextState
+    });
+
+    return nextState;
+  } catch (e) {
+    console.warn("Conflict resolver failed", e);
+
+    const nextState = {
+      category: careerId,
+      tier_label: tierLabel,
+      active_conflicts: [],
+      cycle_index: 0
+    };
+
+    this.setState({
+      conflict_state: nextState
+    });
+
+    return nextState;
+  }
+}
+  
   // -------- main entrypoint --------
 
   async onAppOpen(opts = {}) {
