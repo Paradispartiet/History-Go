@@ -1086,17 +1086,17 @@ async ensureConflictState(active) {
     const resolvedStoryState = await this.ensureStoryState();
 
     this.setState({
-      story_state: resolvedStoryState
+     story_state: resolvedStoryState
     });
 
-    const stateWithStory = this.getState();
     await this.ensureConflictState(active);
-    
-    this.syncRoleBaselineFromActive();
 
-    if (this.getPendingEvent()) {
-      return { enqueued: false, reason: "pending_exists" };
-    }
+    const stateWithStory = this.getState();
+
+    this.syncRoleBaselineFromActive();
+       if (this.getPendingEvent()) {
+         return { enqueued: false, reason: "pending_exists" };
+       }
 
     if (obligationEval?.shouldEnqueueFired) {
       const firedEv = this.makeFiredEvent(
