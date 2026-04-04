@@ -415,6 +415,27 @@ async buildMailPool(active, state, role_key) {
       const turnIndex = Number(director.turn_index || 0);
       const consecutiveRoleMails = Number(director.consecutive_role_mails || 0);
       const lastSourceType = String(director.last_source_type || "").trim();
+
+      const conflictState =
+       state?.conflict_state && typeof state.conflict_state === "object"
+       ? state.conflict_state
+       : {
+        active_conflicts: [],
+        cycle_index: 0
+      };
+
+      const activeConflicts = Array.isArray(conflictState.active_conflicts)
+       ? conflictState.active_conflicts
+       : [];
+
+      const activeConflictFocus =
+        activeConflicts.length
+          ? String(
+             activeConflicts[
+               Number(conflictState.cycle_index || 0) % activeConflicts.length
+             ] || ""
+           ).trim()
+         : "";
       
       const identityTags =
         Array.isArray(state.identity_tags)
@@ -470,6 +491,56 @@ if (lastSourceType === "pack" && turnIndex >= 2 && sourceType === "role") {
 if (lastSourceType === "role" && sourceType === "pack") {
   score += 6;
 }
+
+const mailConflictIds = Array.isArray(m?.conflict_ids)
+  ? m.conflict_ids.map(x => String(x || "").trim()).filter(Boolean)
+  : [];
+
+const primaryConflict = String(
+  m?.role_content_meta?.primary_conflict ||
+  m?.primary_conflict ||
+  ""
+).trim();
+
+const secondaryConflict = String(
+  m?.role_content_meta?.secondary_conflict ||
+  m?.secondary_conflict ||
+  ""
+).trim();
+
+if (activeConflictFocus) {
+  if (mailConflictIds.indexOf(activeConflictFocus) !== -1) {
+    score += 8;
+  }
+
+  if (primaryConflict === activeConflictFocus) {
+    score += 10;
+  }
+
+  if (secondaryConflict === activeConflictFocus) {
+    score += 4;
+  }
+}
+
+if (activeConflicts.length > 1) {
+  for (let i = 0; i < activeConflicts.length; i++) {
+    const ac = String(activeConflicts[i] || "").trim();
+    if (!ac || ac === activeConflictFocus) continue;
+
+    if (mailConflictIds.indexOf(ac) !== -1) {
+      score += 2;
+    }
+
+    if (primaryConflict === ac) {
+      score += 3;
+    }
+
+    if (secondaryConflict === ac) {
+      score += 1;
+    }
+  }
+}
+      
       
       if (Array.isArray(gating.require_tags)) {
         for (let i = 0; i < gating.require_tags.length; i++) {
