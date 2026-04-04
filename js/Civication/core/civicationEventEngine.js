@@ -1370,6 +1370,24 @@ registerChosenMail(eventObj) {
 
   const sourceType = String(eventObj?.source_type || "pack").trim() || "pack";
 
+  const conflictState =
+    state?.conflict_state && typeof state.conflict_state === "object"
+      ? state.conflict_state
+      : {
+          category: null,
+          tier_label: null,
+          active_conflicts: [],
+          cycle_index: 0
+        };
+
+  const activeConflicts = Array.isArray(conflictState.active_conflicts)
+    ? conflictState.active_conflicts
+    : [];
+
+  const nextConflictIndex = activeConflicts.length
+    ? (Number(conflictState.cycle_index || 0) + 1) % activeConflicts.length
+    : 0;
+
   this.setState({
     mail_director: {
       turn_index: Number(director.turn_index || 0) + 1,
@@ -1378,6 +1396,10 @@ registerChosenMail(eventObj) {
         sourceType === "role"
           ? Number(director.consecutive_role_mails || 0) + 1
           : 0
+    },
+    conflict_state: {
+      ...conflictState,
+      cycle_index: nextConflictIndex
     }
   });
 }
