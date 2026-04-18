@@ -1,30 +1,44 @@
 import type { NodeType } from '@/lib/constants/nodeTypes';
 import type { PostType } from '@/lib/constants/postTypes';
 
-export interface BaseEntity {
-  id: string;
+export interface Timestamped {
   createdAt: string;
   updatedAt: string;
 }
 
-export interface UserProfile extends BaseEntity {
-  nodeType: NodeType;
+export interface Profile extends Timestamped {
+  id: string;
+  userId: string;
   username: string;
   displayName: string;
   avatarUrl: string | null;
   bio: string | null;
 }
 
-export interface FeedPost extends BaseEntity {
-  nodeType: NodeType;
-  postType: PostType;
+export interface Post extends Timestamped {
+  id: string;
   authorId: string;
+  postType: PostType;
   content: string;
 }
 
-export interface Edge {
+export interface GraphNode {
   id: string;
-  fromNodeId: string;
-  toNodeId: string;
-  relation: string;
+  nodeType: NodeType;
+  label: string;
+  description: string | null;
+  createdAt: string;
+}
+
+export interface PostNode {
+  id: string;
+  postId: string;
+  nodeId: string;
+  createdAt: string;
+}
+
+export interface Follow extends Timestamped {
+  id: string;
+  followerId: string;
+  followingId: string;
 }
