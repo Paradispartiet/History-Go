@@ -19,3 +19,11 @@ npm run dev
 
 ## Miljøvariabler
 Kopier `.env.example` til `.env.local` og fyll inn verdier.
+
+## Verifisering (agent/CI-kommandoer)
+Prosjektet forventes validert med:
+
+```bash
+cd /workspace/AHA-Echonet/AHA_Twitter && npm run typecheck
+cd /workspace/AHA-Echonet/AHA_Twitter && npm run build
+```
