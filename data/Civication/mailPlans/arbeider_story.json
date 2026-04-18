@@ -1,0 +1,135 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "category": "naeringsliv",
+  "role_scope": "arbeider",
+  "mail_type": "story",
+  "families": [
+    {
+      "id": "industrihistorisk_ekko",
+      "thread_binding": {
+        "story_thread_id": "thread_akerselva_industri"
+      },
+      "mails": [
+        {
+          "id": "arbeider_story_industri_001",
+          "mail_type": "story",
+          "mail_family": "industrihistorisk_ekko",
+          "role_scope": "arbeider",
+          "phase": "mid",
+          "priority": 58,
+          "cooldown": 4,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Gamle maskiner, nye ord",
+          "situation": [
+            "Du ser et effektiviseringsgrep omtalt som om det var nytt.",
+            "Likevel ligner logikken på eldre former for arbeidspress og utskiftbarhet.",
+            "Det som skjer i dag, bærer fortsatt spor av industrisamfunnet."
+          ],
+          "gating": {
+            "require_story_flags": [
+              "thread_akerselva_industri"
+            ],
+            "prefer_story_tags": [
+              "industri",
+              "arbeid"
+            ],
+            "require_tracks": [],
+            "require_track_step_min": {},
+            "require_tags": [],
+            "avoid_tags": [],
+            "prefer_tags": [
+              "process",
+              "craft"
+            ],
+            "avoid_story_flags": [],
+            "prefer_story_flags": []
+          },
+          "thread_binding": {
+            "conflict_id": null,
+            "conflict_phase": null,
+            "people_thread_id": null,
+            "story_thread_id": "thread_akerselva_industri",
+            "event_thread_id": null
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lese situasjonen som et historisk mønster",
+              "effect": 1,
+              "tags": [
+                "process",
+                "legitimacy"
+              ],
+              "feedback": "Jobben blir større enn dagen. Det gjør også innsikten."
+            },
+            {
+              "id": "B",
+              "label": "Holde deg til dagens KPI-språk",
+              "effect": 0,
+              "tags": [
+                "shortcut",
+                "visibility"
+              ],
+              "feedback": "Det er lettere å være moderne når man glemmer hvor gammelt presset er."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "arbeidets_usynlighet",
+      "thread_binding": {
+        "story_thread_id": "arbeidets_usynlighet"
+      },
+      "mails": [
+        {
+          "id": "arbeider_story_usynlig_001",
+          "mail_type": "story",
+          "mail_family": "arbeidets_usynlighet",
+          "role_scope": "arbeider",
+          "phase": "mid",
+          "priority": 54,
+          "cooldown": 4,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Det som ikke teller, holder alt oppe",
+          "situation": [
+            "Arbeidet som faktisk får dagen til å henge sammen, blir ikke nevnt i rapportene.",
+            "Det synlige er tall og fremdrift; det usynlige er justeringene, dekningen, redningen.",
+            "Du merker hvor mye av arbeidslivet som lever av at noen gjør mer enn systemet registrerer."
+          ],
+          "thread_binding": {
+            "conflict_id": null,
+            "conflict_phase": null,
+            "people_thread_id": null,
+            "story_thread_id": "arbeidets_usynlighet",
+            "event_thread_id": null
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Forsøke å synliggjøre det usynlige",
+              "effect": 1,
+              "tags": [
+                "visibility",
+                "process"
+              ],
+              "feedback": "Du gjør noe uklart synlig. Det blir ikke nødvendigvis belønnet."
+            },
+            {
+              "id": "B",
+              "label": "Fortsette å være en stille bærer",
+              "effect": 0,
+              "tags": [
+                "legitimacy",
+                "avoidance"
+              ],
+              "feedback": "Systemet flyter videre. Det gjør ikke det usynlige mindre virkelig."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

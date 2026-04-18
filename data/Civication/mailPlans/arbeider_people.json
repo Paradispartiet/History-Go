@@ -1,0 +1,173 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "category": "naeringsliv",
+  "role_scope": "arbeider",
+  "mail_type": "people",
+  "families": [
+    {
+      "id": "uformell_leder_intro",
+      "thread_binding": {
+        "people_thread_id": "uformell_leder",
+        "people_phase": "intro"
+      },
+      "mails": [
+        {
+          "id": "arbeider_people_uformell_001",
+          "mail_type": "people",
+          "mail_family": "uformell_leder_intro",
+          "role_scope": "arbeider",
+          "phase": "early",
+          "priority": 55,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Han som ikke er leder, men bestemmer",
+          "situation": [
+            "En kollega gir instrukser før noen formell beskjed har kommet.",
+            "Alle andre følger ham som om det var helt normalt.",
+            "Du må velge om du går inn i den uformelle ordenen eller holder deg til formalia."
+          ],
+          "thread_binding": {
+            "conflict_id": null,
+            "conflict_phase": null,
+            "people_thread_id": "uformell_leder",
+            "story_thread_id": null,
+            "event_thread_id": null
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Følge ham for å holde flyten oppe",
+              "effect": 0,
+              "tags": [
+                "legitimacy",
+                "avoidance"
+              ],
+              "feedback": "Du glir inn i den virkelige strukturen, ikke den formelle."
+            },
+            {
+              "id": "B",
+              "label": "Be om tydelig beskjed fra faktisk leder",
+              "effect": -1,
+              "tags": [
+                "process",
+                "risk"
+              ],
+              "feedback": "Du gjør det riktig. Du gjør også friksjonen synlig."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kollega_press_intro",
+      "thread_binding": {
+        "people_thread_id": "kollega_press",
+        "people_phase": "intro"
+      },
+      "mails": [
+        {
+          "id": "arbeider_people_kollega_001",
+          "mail_type": "people",
+          "mail_family": "kollega_press_intro",
+          "role_scope": "arbeider",
+          "phase": "early",
+          "priority": 52,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "«Ikke gjør det vanskelig»",
+          "situation": [
+            "En kollega sier det halvt vennlig, halvt truende.",
+            "Det du vurderer å påpeke, vil gjøre dagen mer tungvint for flere.",
+            "Du merker at gruppetrykk er billigere enn argumenter."
+          ],
+          "thread_binding": {
+            "conflict_id": null,
+            "conflict_phase": null,
+            "people_thread_id": "kollega_press",
+            "story_thread_id": null,
+            "event_thread_id": null
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Tone det ned og glatte over",
+              "effect": 0,
+              "tags": [
+                "avoidance",
+                "legitimacy"
+              ],
+              "feedback": "Dagen blir enklere. Det blir du også."
+            },
+            {
+              "id": "B",
+              "label": "Stå i det du mente",
+              "effect": -1,
+              "tags": [
+                "risk",
+                "visibility"
+              ],
+              "feedback": "Du beskytter innholdet og svekker stillheten."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "taus_lojalitet",
+      "thread_binding": {
+        "people_thread_id": "taus_lojalitet",
+        "people_phase": "mid"
+      },
+      "mails": [
+        {
+          "id": "arbeider_people_taus_001",
+          "mail_type": "people",
+          "mail_family": "taus_lojalitet",
+          "role_scope": "arbeider",
+          "phase": "mid",
+          "priority": 60,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "stable_warning",
+          "subject": "Stillheten blir et bånd",
+          "situation": [
+            "Det som før var en enkel tjeneste mellom kolleger, begynner å ligne en ordning.",
+            "Ingen sier høyt hva som bæres av hvem.",
+            "Du merker at det er vanskelig å trekke seg uten å bli lest som illojal."
+          ],
+          "thread_binding": {
+            "conflict_id": "lojalitet_vs_selvoppholdelse",
+            "conflict_phase": "early",
+            "people_thread_id": "taus_lojalitet",
+            "story_thread_id": null,
+            "event_thread_id": null
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Sette ord på det som har blitt normalt",
+              "effect": 1,
+              "tags": [
+                "process",
+                "visibility"
+              ],
+              "feedback": "Stillheten sprekker litt. Det kan være en begynnelse."
+            },
+            {
+              "id": "B",
+              "label": "Bære det videre uten å markere noe",
+              "effect": -1,
+              "tags": [
+                "avoidance",
+                "legitimacy"
+              ],
+              "feedback": "Lojaliteten kjennes edel helt til regningen kommer."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

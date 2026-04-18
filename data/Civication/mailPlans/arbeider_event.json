@@ -1,0 +1,118 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "category": "naeringsliv",
+  "role_scope": "arbeider",
+  "mail_type": "event",
+  "families": [
+    {
+      "id": "feil_i_linja",
+      "thread_binding": {
+        "event_thread_id": "feil_i_linja",
+        "event_phase": "active"
+      },
+      "mails": [
+        {
+          "id": "arbeider_event_linje_001",
+          "mail_type": "event",
+          "mail_family": "feil_i_linja",
+          "role_scope": "arbeider",
+          "phase": "climax",
+          "priority": 80,
+          "cooldown": 5,
+          "repeatable": false,
+          "stage": "warning",
+          "subject": "Linjen stopper",
+          "situation": [
+            "En feil som lenge har vært mulig, blir plutselig faktisk.",
+            "Produksjonen stopper eller glir kraftig ut.",
+            "Alle vil vite hvem som visste hva, og når."
+          ],
+          "thread_binding": {
+            "conflict_id": "tempo_vs_kvalitet",
+            "conflict_phase": "climax",
+            "people_thread_id": null,
+            "story_thread_id": null,
+            "event_thread_id": "feil_i_linja"
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Beskrive forløpet presist",
+              "effect": 1,
+              "tags": [
+                "process",
+                "risk"
+              ],
+              "feedback": "Du gjør sannheten brukbar. Det gjør deg også sårbar."
+            },
+            {
+              "id": "B",
+              "label": "Bare bidra til å få driften i gang igjen",
+              "effect": 0,
+              "tags": [
+                "craft",
+                "avoidance"
+              ],
+              "feedback": "Du redder øyeblikket. Spørsmålene overlever."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "inspeksjon",
+      "thread_binding": {
+        "event_thread_id": "inspeksjon",
+        "event_phase": "active"
+      },
+      "mails": [
+        {
+          "id": "arbeider_event_inspeksjon_001",
+          "mail_type": "event",
+          "mail_family": "inspeksjon",
+          "role_scope": "arbeider",
+          "phase": "climax",
+          "priority": 76,
+          "cooldown": 5,
+          "repeatable": false,
+          "stage": "stable_warning",
+          "subject": "Noen utenfra kommer inn",
+          "situation": [
+            "En inspeksjon eller kontroll blir varslet på kort varsel.",
+            "Plutselig blir rutiner og avvik noe man later som man alltid har hatt styr på.",
+            "Du ser hvordan systemet prøver å oversette virkelighet til fremvisbar orden."
+          ],
+          "thread_binding": {
+            "conflict_id": null,
+            "conflict_phase": null,
+            "people_thread_id": null,
+            "story_thread_id": null,
+            "event_thread_id": "inspeksjon"
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Bidra til at framstillingen blir ryddig",
+              "effect": 0,
+              "tags": [
+                "legitimacy",
+                "process"
+              ],
+              "feedback": "Systemet ser bedre ut enn det er. Det er også en type arbeid."
+            },
+            {
+              "id": "B",
+              "label": "Peke på det som faktisk er løst og uløst",
+              "effect": -1,
+              "tags": [
+                "risk",
+                "visibility"
+              ],
+              "feedback": "Du gjør bildet sannere. Ikke nødvendigvis tryggere."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
