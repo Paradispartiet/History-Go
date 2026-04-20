@@ -1,0 +1,231 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "category": "naeringsliv",
+  "role_scope": "arbeider",
+  "mail_type": "job",
+  "families": [
+    {
+      "id": "arbeider_intro",
+      "mails": [
+        {
+          "id": "arbeider_job_intro_001",
+          "mail_type": "job",
+          "mail_family": "arbeider_intro",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 60,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Første fulle skift",
+          "situation": [
+            "Du er ikke helt ny lenger, men heller ikke inne i rytmen.",
+            "Dagen består av konkrete oppgaver, små avbrudd og et tempo du ennå lærer å lese.",
+            "Det er nå du merker at arbeidet ikke bare handler om å gjøre, men om å henge med."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Følge flyten tett og lære mens du gjør",
+              "effect": 0,
+              "tags": ["craft", "legitimacy"],
+              "feedback": "Du går inn i rytmen uten å lage mer friksjon enn nødvendig."
+            },
+            {
+              "id": "B",
+              "label": "Be om tydeligere oversikt før du går i gang",
+              "effect": 1,
+              "tags": ["process", "risk"],
+              "feedback": "Du skaper klarhet, men gjør samtidig strukturen litt synlig."
+            }
+          ]
+        },
+        {
+          "id": "arbeider_job_intro_002",
+          "mail_type": "job",
+          "mail_family": "arbeider_intro",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 56,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Ingen forklarer helheten",
+          "situation": [
+            "Du får vite hva som skal gjøres, men ikke hvorfor rekkefølgen er som den er.",
+            "Alle rundt deg handler som om sammenhengen er åpenbar.",
+            "Du kjenner at arbeidet bæres av taus kunnskap."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Observere og lese mønsteret selv",
+              "effect": 0,
+              "tags": ["craft", "avoidance"],
+              "feedback": "Du lærer systemet innenfra, sakte og uten å forstyrre det."
+            },
+            {
+              "id": "B",
+              "label": "Spørre hva som styrer prioriteringene",
+              "effect": 1,
+              "tags": ["process", "visibility"],
+              "feedback": "Du ber om forståelse, ikke bare ordre. Det merkes."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "drift_basics",
+      "mails": [
+        {
+          "id": "arbeider_job_drift_001",
+          "mail_type": "job",
+          "mail_family": "drift_basics",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 58,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Småtingene som holder dagen oppe",
+          "situation": [
+            "Det er ikke én stor oppgave som tynger dagen, men mange små som må sitte.",
+            "Hvis én del glipper, må noen andre bære det senere.",
+            "Du lærer at drift er summen av alt som ikke får lov til å stoppe."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta de små tingene med en gang",
+              "effect": 1,
+              "tags": ["process", "craft"],
+              "feedback": "Du bygger dagen nedenfra. Det synes sjelden, men det virker."
+            },
+            {
+              "id": "B",
+              "label": "Skyve det usynlige og holde tempoet oppe",
+              "effect": 0,
+              "tags": ["shortcut", "visibility"],
+              "feedback": "Dagen ser raskere ut. Det usette blir liggende og vente."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "oppgaveflyt",
+      "mails": [
+        {
+          "id": "arbeider_job_flyt_001",
+          "mail_type": "job",
+          "mail_family": "oppgaveflyt",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 54,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "For mange små skifter",
+          "situation": [
+            "Du blir sendt mellom oppgaver raskere enn du rekker å lande i noen av dem.",
+            "Hver overgang virker liten, men summen gjør dagen porøs.",
+            "Flyt handler ikke bare om fart, men om hvor mange ganger du må begynne på nytt."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Be om å fullføre én ting før neste",
+              "effect": 1,
+              "tags": ["process", "risk"],
+              "feedback": "Du prøver å skape sammenheng i en dag som helst skal være friksjonsfri."
+            },
+            {
+              "id": "B",
+              "label": "Hoppe lydig mellom oppgavene",
+              "effect": 0,
+              "tags": ["legitimacy", "avoidance"],
+              "feedback": "Du følger flyten slik den er gitt, selv om den koster mer enn den ser ut til."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "drift_press",
+      "mails": [
+        {
+          "id": "arbeider_job_press_001",
+          "mail_type": "job",
+          "mail_family": "drift_press",
+          "role_scope": "arbeider",
+          "phase": "early",
+          "priority": 66,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "stable_warning",
+          "subject": "Dagen tåler ikke flere avvik",
+          "situation": [
+            "Flere små forsinkelser har samlet seg i løpet av skiftet.",
+            "Det er ikke krise ennå, men alle jobber som om den står i døråpningen.",
+            "Du merker at selv normale hensyn begynner å se ut som luksus."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Stramme inn og prioritere det mest nødvendige",
+              "effect": 0,
+              "tags": ["process", "visibility"],
+              "feedback": "Du holder ting oppe ved å gjøre dagen smalere."
+            },
+            {
+              "id": "B",
+              "label": "Prøve å bevare samme standard over hele linjen",
+              "effect": 1,
+              "tags": ["craft", "risk"],
+              "feedback": "Du nekter å la presset bestemme alt. Det koster i et annet regnskap."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "forbedring_uten_mandat",
+      "mails": [
+        {
+          "id": "arbeider_job_forbedring_001",
+          "mail_type": "job",
+          "mail_family": "forbedring_uten_mandat",
+          "role_scope": "arbeider",
+          "phase": "early",
+          "priority": 62,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Du ser en bedre måte",
+          "situation": [
+            "Det finnes en liten justering som kunne spart tid eller feil, men det er ikke din beslutning å endre den.",
+            "Systemet er fullt av slike små innsikter som mangler et språk oppover.",
+            "Du må velge om du bare skal se det, eller forsøke å løfte det inn i arbeidet."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Foreslå endringen og begrunne den konkret",
+              "effect": 1,
+              "tags": ["process", "legitimacy"],
+              "feedback": "Du forsøker å gjøre erfaring om til struktur. Det er sjelden nøytralt."
+            },
+            {
+              "id": "B",
+              "label": "Bare bruke innsikten selv når du kan",
+              "effect": 0,
+              "tags": ["craft", "avoidance"],
+              "feedback": "Du forbedrer arbeidet lokalt, uten å røre systemet rundt deg."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
