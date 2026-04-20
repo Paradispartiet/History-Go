@@ -79,6 +79,7 @@
         if (!category || !title) return [];
 
         return [
+          `mailFamilies/${category}/job/${title}_job.json`,
           `mailFamilies/${category}/conflict/${title}_conflict.json`,
           `mailFamilies/${category}/people/${title}_people.json`,
           `mailFamilies/${category}/story/${title}_story.json`,
