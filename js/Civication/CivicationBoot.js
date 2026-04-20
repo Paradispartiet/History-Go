@@ -51,10 +51,11 @@ async function loadCivicationData() {
 
     window.HG_CiviEngine =
   new CivicationEventEngine({
-    packBasePath: "data/Civication/jobbmails",
+    packBasePath: "data/Civication",
     maxInbox: 1,
     packMap: {
-      naeringsliv: "naeringslivCivic.json",
+      naering: "jobbmails/naeringsliv/naeringslivCivic.json",
+      naeringsliv: "jobbmails/naeringsliv/naeringslivCivic.json",
       vitenskap: "vitenskapCivic.json",
       media: "mediaCivic.json",
       by: "byCivic.json"
