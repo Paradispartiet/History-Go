@@ -72,6 +72,39 @@
               "feedback": "Du ber om forståelse, ikke bare ordre. Det merkes."
             }
           ]
+        },
+        {
+          "id": "arbeider_job_intro_003",
+          "mail_type": "job",
+          "mail_family": "arbeider_intro",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 57,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Du merker blikkene før ordene",
+          "situation": [
+            "Ingen gransker deg direkte, men alle registrerer om du sinker eller glir med.",
+            "Arbeidsplassen lærer deg før den forklarer deg noe.",
+            "Du kjenner at tilpasning er en egen oppgave i tillegg til selve jobben."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Tilpasse deg stille og følge rytmen",
+              "effect": 0,
+              "tags": ["legitimacy", "avoidance"],
+              "feedback": "Du blir mindre synlig og lettere å plassere."
+            },
+            {
+              "id": "B",
+              "label": "La tempoet styres av at du gjør ting ordentlig",
+              "effect": 1,
+              "tags": ["craft", "risk"],
+              "feedback": "Du lar arbeidet, ikke blikkene, avgjøre farten."
+            }
+          ]
         }
       ]
     },
@@ -108,6 +141,39 @@
               "effect": 0,
               "tags": ["shortcut", "visibility"],
               "feedback": "Dagen ser raskere ut. Det usette blir liggende og vente."
+            }
+          ]
+        },
+        {
+          "id": "arbeider_job_drift_002",
+          "mail_type": "job",
+          "mail_family": "drift_basics",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 55,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Når noe mangler, fyller noen det inn",
+          "situation": [
+            "En rutine er dårlig beskrevet, men dagen forventer likevel at den skjer riktig.",
+            "Slike hull blir sjelden tema; de bare absorberes av noen nærmest dem.",
+            "Du ser hvor mye arbeid som egentlig består i å kompensere for strukturens mangler."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Tette hullet og notere hva som mangler",
+              "effect": 1,
+              "tags": ["process", "legitimacy"],
+              "feedback": "Du holder driften oppe uten å late som systemet er komplett."
+            },
+            {
+              "id": "B",
+              "label": "Bare løse det der og da uten å si noe",
+              "effect": 0,
+              "tags": ["craft", "avoidance"],
+              "feedback": "Du får dagen til å gå rundt. Hullet blir stående."
             }
           ]
         }
@@ -148,6 +214,39 @@
               "feedback": "Du følger flyten slik den er gitt, selv om den koster mer enn den ser ut til."
             }
           ]
+        },
+        {
+          "id": "arbeider_job_flyt_002",
+          "mail_type": "job",
+          "mail_family": "oppgaveflyt",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 53,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Alt haster litt, derfor haster ingenting klart",
+          "situation": [
+            "Det er ingen enkeltoppgave som skriker høyest, men alle kommer med et lite press.",
+            "Du kjenner hvordan arbeidsdagen fylles av små forskyvninger snarere enn tydelige beslutninger.",
+            "Det gjør det vanskelig å vite når man faktisk ligger bak."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lage din egen rekkefølge og stå i den",
+              "effect": 1,
+              "tags": ["process", "visibility"],
+              "feedback": "Du setter en intern struktur i et ytre kaos. Det gjør deg mer synlig."
+            },
+            {
+              "id": "B",
+              "label": "La siste impuls styre det neste du gjør",
+              "effect": 0,
+              "tags": ["avoidance", "legitimacy"],
+              "feedback": "Du blir lett å bevege, men vanskelig å forankre."
+            }
+          ]
         }
       ]
     },
@@ -186,6 +285,39 @@
               "feedback": "Du nekter å la presset bestemme alt. Det koster i et annet regnskap."
             }
           ]
+        },
+        {
+          "id": "arbeider_job_press_002",
+          "mail_type": "job",
+          "mail_family": "drift_press",
+          "role_scope": "arbeider",
+          "phase": "early",
+          "priority": 64,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "stable_warning",
+          "subject": "Ingen har tid til å rydde ordentlig",
+          "situation": [
+            "Det som normalt skulle vært lukket og ryddet, blir bare skjøvet i riktig retning.",
+            "Presset gjør at orden blir midlertidig og gjeld bygges i systemet.",
+            "Du kjenner at det er forskjell på å få dagen videre og å få den ren."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta ryddingen nå før det vokser",
+              "effect": 1,
+              "tags": ["craft", "process"],
+              "feedback": "Du velger å betale noe av gjelden med én gang."
+            },
+            {
+              "id": "B",
+              "label": "Skyve restene videre til neste ledd",
+              "effect": 0,
+              "tags": ["shortcut", "avoidance"],
+              "feedback": "Du redder tempoet. Noen andre arver uklarheten."
+            }
+          ]
         }
       ]
     },
@@ -222,6 +354,39 @@
               "effect": 0,
               "tags": ["craft", "avoidance"],
               "feedback": "Du forbedrer arbeidet lokalt, uten å røre systemet rundt deg."
+            }
+          ]
+        },
+        {
+          "id": "arbeider_job_forbedring_002",
+          "mail_type": "job",
+          "mail_family": "forbedring_uten_mandat",
+          "role_scope": "arbeider",
+          "phase": "early",
+          "priority": 59,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Forbedringen dør i lufta",
+          "situation": [
+            "Du nevner en løsning, men den blir møtt med et nikk som ikke betyr handling.",
+            "Arbeidsplassen er full av ideer som anerkjennes sosialt og forsvinner organisatorisk.",
+            "Du må velge om du skal slippe det, eller gjøre innsikten vanskeligere å overse."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Følge opp og gjøre forslaget konkret igjen",
+              "effect": 1,
+              "tags": ["process", "risk"],
+              "feedback": "Du nekter å la idéen bli et tomt høflighetsrituale."
+            },
+            {
+              "id": "B",
+              "label": "La det ligge og bruke energien på dagens arbeid",
+              "effect": 0,
+              "tags": ["legitimacy", "avoidance"],
+              "feedback": "Du beskytter kapasiteten din, men lar også tregheten vinne."
             }
           ]
         }
