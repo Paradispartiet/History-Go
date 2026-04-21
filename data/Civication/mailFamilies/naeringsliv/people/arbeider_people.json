@@ -90,6 +90,46 @@
               "feedback": "Du verner om struktur fremfor personavhengighet."
             }
           ]
+        },
+        {
+          "id": "arbeider_people_uformell_003",
+          "mail_type": "people",
+          "mail_family": "uformell_leder_intro",
+          "role_scope": "arbeider",
+          "phase": "early",
+          "priority": 53,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Det er lettere å følge den som får dagen til å henge sammen enn den som formelt har ansvaret",
+          "situation": [
+            "Du merker at gruppen orienterer seg mot den som faktisk vet hvor ting skal, ikke nødvendigvis den som har tittelen.",
+            "Det gjør hverdagen smidigere, men gjør også maktforholdene vanskeligere å lese rent.",
+            "Du står mellom effektivitetens dragning og ønsket om klarere struktur."
+          ],
+          "thread_binding": {
+            "conflict_id": null,
+            "conflict_phase": null,
+            "people_thread_id": "uformell_leder",
+            "story_thread_id": null,
+            "event_thread_id": null
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Godta denne ordenen som det som faktisk får arbeidet til å fungere",
+              "effect": 0,
+              "tags": ["legitimacy", "craft"],
+              "feedback": "Du bøyer deg mot praksisens egen autoritet."
+            },
+            {
+              "id": "B",
+              "label": "Holde fast ved at flyt ikke alene kan definere hvem som styrer",
+              "effect": 1,
+              "tags": ["process", "visibility"],
+              "feedback": "Du prøver å skille funksjonell makt fra legitim styring."
+            }
+          ]
         }
       ]
     },
@@ -177,6 +217,46 @@
               "effect": 0,
               "tags": ["avoidance", "legitimacy"],
               "feedback": "Du kjøper ro i øyeblikket med stillhet i sak."
+            }
+          ]
+        },
+        {
+          "id": "arbeider_people_kollega_003",
+          "mail_type": "people",
+          "mail_family": "kollega_press_intro",
+          "role_scope": "arbeider",
+          "phase": "early",
+          "priority": 50,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Det er ikke alltid ordlyden som gjør presset tydeligst, men tidspunktet og blikkene",
+          "situation": [
+            "Det kommer små kommentarer akkurat når du vurderer å bremse eller si fra.",
+            "Ingen setning er grov nok alene til å bli en sak, men summen gjør valget ditt mindre fritt.",
+            "Du merker at tilpasning ofte presses fram gjennom stemning mer enn argument."
+          ],
+          "thread_binding": {
+            "conflict_id": null,
+            "conflict_phase": null,
+            "people_thread_id": "kollega_press",
+            "story_thread_id": null,
+            "event_thread_id": null
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Behandle stemningen som reelt press og stå litt mer imot",
+              "effect": 1,
+              "tags": ["risk", "visibility"],
+              "feedback": "Du lar ikke det uskarpe slippe unna bare fordi det er sosialt billig."
+            },
+            {
+              "id": "B",
+              "label": "La det gli forbi fordi det er vanskelig å peke presist på",
+              "effect": 0,
+              "tags": ["avoidance", "legitimacy"],
+              "feedback": "Du beskytter freden og lar også mønsteret bli litt sterkere."
             }
           ]
         }
@@ -268,6 +348,46 @@
               "feedback": "Du bevarer roen og lar regnskapet forbli skjult."
             }
           ]
+        },
+        {
+          "id": "arbeider_people_taus_003",
+          "mail_type": "people",
+          "mail_family": "taus_lojalitet",
+          "role_scope": "arbeider",
+          "phase": "mid",
+          "priority": 57,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "stable_warning",
+          "subject": "Jo lenger ordningen varer, desto mer ligner den karakter i stedet for valg",
+          "situation": [
+            "Du merker at det som først ble lest som hjelpsomhet nå begynner å bli oppfattet som bare sånn du er.",
+            "Det gjør det vanskeligere å trekke grenser, fordi du da ikke bare endrer handlinger, men andres bilde av deg.",
+            "Taus lojalitet begynner å feste seg som identitet."
+          ],
+          "thread_binding": {
+            "conflict_id": "lojalitet_vs_selvoppholdelse",
+            "conflict_phase": "early",
+            "people_thread_id": "taus_lojalitet",
+            "story_thread_id": null,
+            "event_thread_id": null
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Bryte mønsteret før det helt blir lest som hvem du er",
+              "effect": 1,
+              "tags": ["visibility", "risk"],
+              "feedback": "Du forsvarer et rom mellom rollen du tok og personen du blir gjort til."
+            },
+            {
+              "id": "B",
+              "label": "La bildet få stå fordi det fortsatt holder laget sammen",
+              "effect": 0,
+              "tags": ["legitimacy", "avoidance"],
+              "feedback": "Du lar samholdet bruke identiteten din som lim."
+            }
+          ]
         }
       ]
     },
@@ -315,6 +435,46 @@
               "effect": 0,
               "tags": ["legitimacy", "avoidance"],
               "feedback": "Du kjøper midlertidig ro med uklar rettferdighet."
+            }
+          ]
+        },
+        {
+          "id": "arbeider_people_skyld_002",
+          "mail_type": "people",
+          "mail_family": "kollega_skyld",
+          "role_scope": "arbeider",
+          "phase": "mid",
+          "priority": 56,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "stable_warning",
+          "subject": "Det kalles lagånd når ansvaret blir uklart nok",
+          "situation": [
+            "Språket om at man står i det sammen begynner å bli brukt på en måte som gjør ulik skyld mindre synlig.",
+            "Du merker hvordan fellesskapet noen ganger ikke fjerner urettferdighet, men pakker den inn.",
+            "Du må velge om du vil la gruppespråket bli skjold eller skjære gjennom det."
+          ],
+          "thread_binding": {
+            "conflict_id": null,
+            "conflict_phase": null,
+            "people_thread_id": "kollega_skyld",
+            "story_thread_id": null,
+            "event_thread_id": null
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gjøre det tydelig at samhold ikke opphever ulikt ansvar",
+              "effect": 1,
+              "tags": ["visibility", "process"],
+              "feedback": "Du lar ikke varme ord alene få definere rettferdighet."
+            },
+            {
+              "id": "B",
+              "label": "Akseptere fellesskapets språk for å unngå ny splittelse",
+              "effect": 0,
+              "tags": ["avoidance", "legitimacy"],
+              "feedback": "Du holder laget mykere og lar skylden bli mer diffus."
             }
           ]
         }
