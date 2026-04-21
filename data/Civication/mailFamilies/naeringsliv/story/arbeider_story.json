@@ -57,21 +57,55 @@
               "id": "A",
               "label": "Lese situasjonen som et historisk mønster",
               "effect": 1,
-              "tags": [
-                "process",
-                "legitimacy"
-              ],
+              "tags": ["process", "legitimacy"],
               "feedback": "Jobben blir større enn dagen. Det gjør også innsikten."
             },
             {
               "id": "B",
               "label": "Holde deg til dagens KPI-språk",
               "effect": 0,
-              "tags": [
-                "shortcut",
-                "visibility"
-              ],
+              "tags": ["shortcut", "visibility"],
               "feedback": "Det er lettere å være moderne når man glemmer hvor gammelt presset er."
+            }
+          ]
+        },
+        {
+          "id": "arbeider_story_industri_002",
+          "mail_type": "story",
+          "mail_family": "industrihistorisk_ekko",
+          "role_scope": "arbeider",
+          "phase": "mid",
+          "priority": 55,
+          "cooldown": 4,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Det nye språket dekker ofte over gamle former for kontroll",
+          "situation": [
+            "Ord som optimalisering, forbedring og smidighet høres moderne ut, men du kjenner igjen noe eldre under dem.",
+            "Det handler fortsatt om tempo, utskiftbarhet og hvor lite rom det er for å bremse uten å bli lest som problem.",
+            "Du ser at tiden skifter ord fortere enn den skifter makt."
+          ],
+          "thread_binding": {
+            "conflict_id": null,
+            "conflict_phase": null,
+            "people_thread_id": null,
+            "story_thread_id": "thread_akerselva_industri",
+            "event_thread_id": null
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Forstå dagen som del av en lengre arbeidshistorie",
+              "effect": 1,
+              "tags": ["process", "visibility"],
+              "feedback": "Du lar ordene miste litt av sin moderne uskyld."
+            },
+            {
+              "id": "B",
+              "label": "La språket stå som om det beskrev noe helt nytt",
+              "effect": 0,
+              "tags": ["legitimacy", "avoidance"],
+              "feedback": "Du lar nåtiden slippe billig fra fortiden sin."
             }
           ]
         }
@@ -111,21 +145,55 @@
               "id": "A",
               "label": "Forsøke å synliggjøre det usynlige",
               "effect": 1,
-              "tags": [
-                "visibility",
-                "process"
-              ],
+              "tags": ["visibility", "process"],
               "feedback": "Du gjør noe uklart synlig. Det blir ikke nødvendigvis belønnet."
             },
             {
               "id": "B",
               "label": "Fortsette å være en stille bærer",
               "effect": 0,
-              "tags": [
-                "legitimacy",
-                "avoidance"
-              ],
+              "tags": ["legitimacy", "avoidance"],
               "feedback": "Systemet flyter videre. Det gjør ikke det usynlige mindre virkelig."
+            }
+          ]
+        },
+        {
+          "id": "arbeider_story_usynlig_002",
+          "mail_type": "story",
+          "mail_family": "arbeidets_usynlighet",
+          "role_scope": "arbeider",
+          "phase": "mid",
+          "priority": 53,
+          "cooldown": 4,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Det viktigste arbeidet er ofte det som ser ut som ingenting utenfra",
+          "situation": [
+            "Å dekke opp, oppdage feil tidlig, roe andre ned og få små brudd til å forsvinne er sjelden det som blir trukket fram som innsats.",
+            "Likevel er det ofte nettopp dette som hindrer at dagen rakner.",
+            "Du ser hvordan arbeidslivet ofte lever av handlinger som bare blir synlige hvis de uteblir."
+          ],
+          "thread_binding": {
+            "conflict_id": null,
+            "conflict_phase": null,
+            "people_thread_id": null,
+            "story_thread_id": "arbeidets_usynlighet",
+            "event_thread_id": null
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Tenke at systemet burde regne dette som reelt arbeid",
+              "effect": 1,
+              "tags": ["process", "legitimacy"],
+              "feedback": "Du gir mer tyngde til det systemet vanligvis lar gli forbi."
+            },
+            {
+              "id": "B",
+              "label": "Akseptere at det avgjørende ofte må forbli nesten usynlig",
+              "effect": 0,
+              "tags": ["craft", "avoidance"],
+              "feedback": "Du erkjenner sannheten og lar også ordningen bestå."
             }
           ]
         }
