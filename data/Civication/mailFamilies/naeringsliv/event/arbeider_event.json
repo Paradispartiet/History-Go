@@ -39,21 +39,55 @@
               "id": "A",
               "label": "Beskrive forløpet presist",
               "effect": 1,
-              "tags": [
-                "process",
-                "risk"
-              ],
+              "tags": ["process", "risk"],
               "feedback": "Du gjør sannheten brukbar. Det gjør deg også sårbar."
             },
             {
               "id": "B",
               "label": "Bare bidra til å få driften i gang igjen",
               "effect": 0,
-              "tags": [
-                "craft",
-                "avoidance"
-              ],
+              "tags": ["craft", "avoidance"],
               "feedback": "Du redder øyeblikket. Spørsmålene overlever."
+            }
+          ]
+        },
+        {
+          "id": "arbeider_event_linje_002",
+          "mail_type": "event",
+          "mail_family": "feil_i_linja",
+          "role_scope": "arbeider",
+          "phase": "climax",
+          "priority": 78,
+          "cooldown": 5,
+          "repeatable": false,
+          "stage": "warning",
+          "subject": "Alle ser på stoppet, men du ser også alt som ledet fram til det",
+          "situation": [
+            "Linjen har stanset, men for deg er ikke hendelsen bare et punkt — den er summen av små kompromisser, press og oversette signaler.",
+            "Nå er det lett for andre å behandle dette som et isolert avvik.",
+            "Du må velge om du vil beskrive stoppet som hendelse eller som mønster."
+          ],
+          "thread_binding": {
+            "conflict_id": "tempo_vs_kvalitet",
+            "conflict_phase": "climax",
+            "people_thread_id": null,
+            "story_thread_id": null,
+            "event_thread_id": "feil_i_linja"
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Forklare kjeden som gjorde stoppet sannsynlig",
+              "effect": 1,
+              "tags": ["process", "visibility"],
+              "feedback": "Du nekter å la det akutte skjule det strukturelle."
+            },
+            {
+              "id": "B",
+              "label": "Holde deg til selve hendelsen og hjelpe systemet raskere videre",
+              "effect": 0,
+              "tags": ["legitimacy", "shortcut"],
+              "feedback": "Du gjør forklaringen smalere og driften lettere å gjenoppta."
             }
           ]
         }
@@ -94,21 +128,55 @@
               "id": "A",
               "label": "Bidra til at framstillingen blir ryddig",
               "effect": 0,
-              "tags": [
-                "legitimacy",
-                "process"
-              ],
+              "tags": ["legitimacy", "process"],
               "feedback": "Systemet ser bedre ut enn det er. Det er også en type arbeid."
             },
             {
               "id": "B",
               "label": "Peke på det som faktisk er løst og uløst",
               "effect": -1,
-              "tags": [
-                "risk",
-                "visibility"
-              ],
+              "tags": ["risk", "visibility"],
               "feedback": "Du gjør bildet sannere. Ikke nødvendigvis tryggere."
+            }
+          ]
+        },
+        {
+          "id": "arbeider_event_inspeksjon_002",
+          "mail_type": "event",
+          "mail_family": "inspeksjon",
+          "role_scope": "arbeider",
+          "phase": "climax",
+          "priority": 74,
+          "cooldown": 5,
+          "repeatable": false,
+          "stage": "stable_warning",
+          "subject": "Det er ikke bare arbeidet som blir kontrollert, men fortellingen om det",
+          "situation": [
+            "Under inspeksjonen merker du at det ikke bare handler om hva som faktisk gjøres, men om hvor pent og sammenhengende det kan vises fram for andre.",
+            "Hverdagslige kompromisser må plutselig kle seg ut som ryddige prosedyrer.",
+            "Du står mellom å hjelpe fram et glatt bilde og å la virkeligheten være mer kantete."
+          ],
+          "thread_binding": {
+            "conflict_id": null,
+            "conflict_phase": null,
+            "people_thread_id": null,
+            "story_thread_id": null,
+            "event_thread_id": "inspeksjon"
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gjøre bildet penere for å få kontrollen gjennomført uten mer støy",
+              "effect": 0,
+              "tags": ["legitimacy", "avoidance"],
+              "feedback": "Du hjelper ordenen fram og lar også glanslaget bli tykkere."
+            },
+            {
+              "id": "B",
+              "label": "Holde fast ved det som faktisk fungerer og det som faktisk glipper",
+              "effect": 1,
+              "tags": ["process", "visibility"],
+              "feedback": "Du gjør inspeksjonen mindre komfortabel og mer sann."
             }
           ]
         }
@@ -149,21 +217,55 @@
               "id": "A",
               "label": "Peke på hele hendelseskjeden og hvordan rammene ledet fram hit",
               "effect": 1,
-              "tags": [
-                "process",
-                "visibility"
-              ],
+              "tags": ["process", "visibility"],
               "feedback": "Du nekter å la nærhet til feilen bli det samme som eierskap til den."
             },
             {
               "id": "B",
               "label": "Ta din del og bidra til å roe fordelingen av skyld",
               "effect": 0,
-              "tags": [
-                "legitimacy",
-                "avoidance"
-              ],
+              "tags": ["legitimacy", "avoidance"],
               "feedback": "Du kjøper ro i øyeblikket og lar også et kjent mønster fortsette."
+            }
+          ]
+        },
+        {
+          "id": "arbeider_event_ansvar_002",
+          "mail_type": "event",
+          "mail_family": "ansvarsforskyvning",
+          "role_scope": "arbeider",
+          "phase": "climax",
+          "priority": 76,
+          "cooldown": 5,
+          "repeatable": false,
+          "stage": "warning",
+          "subject": "Skylden begynner å finne den letteste veien nedover",
+          "situation": [
+            "I etterspillet merker du at samtalen om årsaker glir raskt over i en enklere samtale om hvem som sto nærmest problemet da det ble synlig.",
+            "Det er en ryddig måte å snakke på, men ikke nødvendigvis en sann en.",
+            "Du må velge om du skal godta denne lettelsen i forklaringen eller gjøre fordelingen mer krevende og mer rett."
+          ],
+          "thread_binding": {
+            "conflict_id": "lojalitet_vs_selvoppholdelse",
+            "conflict_phase": "climax",
+            "people_thread_id": "taus_lojalitet",
+            "story_thread_id": null,
+            "event_thread_id": "ansvarsforskyvning"
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Insistere på at årsak og nærhet til hendelsen ikke er det samme",
+              "effect": 1,
+              "tags": ["visibility", "risk"],
+              "feedback": "Du gjør regnskapet mer ubehagelig og også mer rettvis."
+            },
+            {
+              "id": "B",
+              "label": "La skylden lande der systemet enklest får ro av det",
+              "effect": 0,
+              "tags": ["avoidance", "legitimacy"],
+              "feedback": "Du gjør etterspillet smidigere og mønsteret mer kjent."
             }
           ]
         }
