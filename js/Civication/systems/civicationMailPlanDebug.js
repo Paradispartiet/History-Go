@@ -61,12 +61,37 @@
     };
   }
 
-  async function simulate(roleInput) {
+  function buildFreshDebugState(baseState) {
+    const state = clone(baseState || {}) || {};
+    state.mail_system = {
+      role_plan_id: null,
+      step_index: 0,
+      current_cycle: 1,
+      last_mail_type: null,
+      active_conflict_id: null,
+      active_conflict_phase: "intro",
+      active_people_threads: [],
+      people_thread_phases: {},
+      active_story_threads: [],
+      story_thread_phases: {},
+      active_event_queue: [],
+      active_event_thread_id: null,
+      active_event_phase: null,
+      consumed_mail_ids: [],
+      consumed_families: [],
+      cooldowns: {},
+      history: []
+    };
+    return state;
+  }
+
+  async function simulate(roleInput, opts = {}) {
     const role = normalizeRoleInput(roleInput);
     if (!role) {
       throw new Error("Ukjent rolle. Bruk 'Arbeider', 'Fagarbeider' eller 'Mellomleder'.");
     }
 
+    const clean = opts?.clean !== false;
     const engine = window.HG_CiviEngine;
     if (!engine) throw new Error("HG_CiviEngine finnes ikke.");
     if (typeof engine.loadMailPlan !== "function") {
@@ -79,6 +104,10 @@
     try {
       window.CivicationState?.setActivePosition?.(role);
       engine.packsCache?.clear?.();
+
+      if (clean && typeof engine.setState === "function") {
+        engine.setState(buildFreshDebugState(previousState));
+      }
 
       if (typeof engine.ensureRoleKeySynced === "function") {
         engine.ensureRoleKeySynced();
@@ -149,7 +178,9 @@
           totalSteps: results.length,
           fallbackCount: results.filter((r) => r.fallbackUsed).length,
           directHits: results.filter((r) => !r.fallbackUsed).length,
-          finalMailSystem: summarizeMailSystem(simState.mail_system)
+          totalEmptySteps: results.filter((r) => !r.chosenId).length,
+          finalMailSystem: summarizeMailSystem(simState.mail_system),
+          clean
         }
       };
     } finally {
@@ -162,7 +193,7 @@
     }
   }
 
-  async function simulateRepeated(roleInput, runs = 5) {
+  async function simulateRepeated(roleInput, runs = 5, opts = {}) {
     const role = normalizeRoleInput(roleInput);
     if (!role) {
       throw new Error("Ukjent rolle. Bruk 'Arbeider', 'Fagarbeider' eller 'Mellomleder'.");
@@ -173,7 +204,7 @@
     const byStep = new Map();
 
     for (let i = 0; i < totalRuns; i += 1) {
-      const result = await simulate(role);
+      const result = await simulate(role, opts);
       runResults.push(result);
 
       for (const step of (Array.isArray(result?.steps) ? result.steps : [])) {
@@ -221,6 +252,7 @@
     const overview = {
       role: role.title,
       runs: totalRuns,
+      clean: opts?.clean !== false,
       totalFallbackRuns: summaryRows.reduce((sum, row) => sum + row.fallbackRuns, 0),
       totalEmptyRuns: summaryRows.reduce((sum, row) => sum + row.emptyRuns, 0),
       stepsWithLowVariation: summaryRows.filter((row) => row.uniqueChosenIds <= 1).map((row) => row.step),
@@ -237,11 +269,11 @@
     };
   }
 
-  async function simulateRepeatedAll(runs = 5) {
+  async function simulateRepeatedAll(runs = 5, opts = {}) {
     const roles = ["Arbeider", "Fagarbeider", "Mellomleder"];
     const out = [];
     for (const role of roles) {
-      out.push(await simulateRepeated(role, runs));
+      out.push(await simulateRepeated(role, runs, opts));
     }
     return out;
   }
@@ -250,23 +282,23 @@
     simulate,
     simulateRepeated,
     simulateRepeatedAll,
-    simulateArbeider() {
-      return simulate("Arbeider");
+    simulateArbeider(opts) {
+      return simulate("Arbeider", opts);
     },
-    simulateFagarbeider() {
-      return simulate("Fagarbeider");
+    simulateFagarbeider(opts) {
+      return simulate("Fagarbeider", opts);
     },
-    simulateMellomleder() {
-      return simulate("Mellomleder");
+    simulateMellomleder(opts) {
+      return simulate("Mellomleder", opts);
     },
-    simulateArbeiderRepeated(runs = 5) {
-      return simulateRepeated("Arbeider", runs);
+    simulateArbeiderRepeated(runs = 5, opts = {}) {
+      return simulateRepeated("Arbeider", runs, opts);
     },
-    simulateFagarbeiderRepeated(runs = 5) {
-      return simulateRepeated("Fagarbeider", runs);
+    simulateFagarbeiderRepeated(runs = 5, opts = {}) {
+      return simulateRepeated("Fagarbeider", runs, opts);
     },
-    simulateMellomlederRepeated(runs = 5) {
-      return simulateRepeated("Mellomleder", runs);
+    simulateMellomlederRepeated(runs = 5, opts = {}) {
+      return simulateRepeated("Mellomleder", runs, opts);
     }
   };
 })();
