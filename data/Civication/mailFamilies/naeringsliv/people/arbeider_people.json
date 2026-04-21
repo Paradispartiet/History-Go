@@ -39,21 +39,55 @@
               "id": "A",
               "label": "Følge ham for å holde flyten oppe",
               "effect": 0,
-              "tags": [
-                "legitimacy",
-                "avoidance"
-              ],
+              "tags": ["legitimacy", "avoidance"],
               "feedback": "Du glir inn i den virkelige strukturen, ikke den formelle."
             },
             {
               "id": "B",
               "label": "Be om tydelig beskjed fra faktisk leder",
               "effect": -1,
-              "tags": [
-                "process",
-                "risk"
-              ],
+              "tags": ["process", "risk"],
               "feedback": "Du gjør det riktig. Du gjør også friksjonen synlig."
+            }
+          ]
+        },
+        {
+          "id": "arbeider_people_uformell_002",
+          "mail_type": "people",
+          "mail_family": "uformell_leder_intro",
+          "role_scope": "arbeider",
+          "phase": "early",
+          "priority": 54,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Han vet hvordan ting faktisk blir gjort",
+          "situation": [
+            "Den uformelle lederen har løsninger på alt, men nesten ingen av dem finnes i de offisielle rutinene.",
+            "Du skjønner hvorfor folk lytter til ham, samtidig som du ser hva det koster at strukturen bor i en person.",
+            "Spørsmålet er om du skal lære av ham eller holde avstand til metoden hans."
+          ],
+          "thread_binding": {
+            "conflict_id": null,
+            "conflict_phase": null,
+            "people_thread_id": "uformell_leder",
+            "story_thread_id": null,
+            "event_thread_id": null
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lære den uoffisielle logikken for å overleve bedre",
+              "effect": 0,
+              "tags": ["craft", "legitimacy"],
+              "feedback": "Du blir mer funksjonell i det virkelige systemet."
+            },
+            {
+              "id": "B",
+              "label": "Holde deg til det formelle selv om det går tregere",
+              "effect": 1,
+              "tags": ["process", "risk"],
+              "feedback": "Du verner om struktur fremfor personavhengighet."
             }
           ]
         }
@@ -94,21 +128,55 @@
               "id": "A",
               "label": "Tone det ned og glatte over",
               "effect": 0,
-              "tags": [
-                "avoidance",
-                "legitimacy"
-              ],
+              "tags": ["avoidance", "legitimacy"],
               "feedback": "Dagen blir enklere. Det blir du også."
             },
             {
               "id": "B",
               "label": "Stå i det du mente",
               "effect": -1,
-              "tags": [
-                "risk",
-                "visibility"
-              ],
+              "tags": ["risk", "visibility"],
               "feedback": "Du beskytter innholdet og svekker stillheten."
+            }
+          ]
+        },
+        {
+          "id": "arbeider_people_kollega_002",
+          "mail_type": "people",
+          "mail_family": "kollega_press_intro",
+          "role_scope": "arbeider",
+          "phase": "early",
+          "priority": 51,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Humor som sosial styring",
+          "situation": [
+            "Innvendinger blir møtt med vitser og små stikk i stedet for argumenter.",
+            "Alle ler litt, og dermed er retningen allerede satt.",
+            "Du kjenner hvordan arbeidsplassen kan bruke lett tone til å gjøre motstand dyrere."
+          ],
+          "thread_binding": {
+            "conflict_id": null,
+            "conflict_phase": null,
+            "people_thread_id": "kollega_press",
+            "story_thread_id": null,
+            "event_thread_id": null
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lese humoren som press og markere rolig tilbake",
+              "effect": 1,
+              "tags": ["visibility", "risk"],
+              "feedback": "Du lar ikke tonen skjule hva som faktisk skjer."
+            },
+            {
+              "id": "B",
+              "label": "Ler med og lar temaet passere",
+              "effect": 0,
+              "tags": ["avoidance", "legitimacy"],
+              "feedback": "Du kjøper ro i øyeblikket med stillhet i sak."
             }
           ]
         }
@@ -149,21 +217,104 @@
               "id": "A",
               "label": "Sette ord på det som har blitt normalt",
               "effect": 1,
-              "tags": [
-                "process",
-                "visibility"
-              ],
+              "tags": ["process", "visibility"],
               "feedback": "Stillheten sprekker litt. Det kan være en begynnelse."
             },
             {
               "id": "B",
               "label": "Bære det videre uten å markere noe",
               "effect": -1,
-              "tags": [
-                "avoidance",
-                "legitimacy"
-              ],
+              "tags": ["avoidance", "legitimacy"],
               "feedback": "Lojaliteten kjennes edel helt til regningen kommer."
+            }
+          ]
+        },
+        {
+          "id": "arbeider_people_taus_002",
+          "mail_type": "people",
+          "mail_family": "taus_lojalitet",
+          "role_scope": "arbeider",
+          "phase": "mid",
+          "priority": 58,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "stable_warning",
+          "subject": "Den som sier minst, skylder mest",
+          "situation": [
+            "Det blir stadig tydeligere at visse ting bare fungerer fordi noen absorberer dem uten å kreve språk for det.",
+            "Stillheten ser ut som samhold, men kjennes mer og mer som binding.",
+            "Du merker at taus lojalitet ikke bare er en holdning, men en fordeling av kostnader."
+          ],
+          "thread_binding": {
+            "conflict_id": "lojalitet_vs_selvoppholdelse",
+            "conflict_phase": "early",
+            "people_thread_id": "taus_lojalitet",
+            "story_thread_id": null,
+            "event_thread_id": null
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gjøre det tydelig hvem som faktisk bærer hva",
+              "effect": 1,
+              "tags": ["process", "visibility"],
+              "feedback": "Du gjør samholdet mindre mytisk og mer konkret."
+            },
+            {
+              "id": "B",
+              "label": "La stillheten fortsette å holde laget samlet",
+              "effect": 0,
+              "tags": ["legitimacy", "avoidance"],
+              "feedback": "Du bevarer roen og lar regnskapet forbli skjult."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kollega_skyld",
+      "thread_binding": {
+        "people_thread_id": "kollega_skyld",
+        "people_phase": "mid"
+      },
+      "mails": [
+        {
+          "id": "arbeider_people_skyld_001",
+          "mail_type": "people",
+          "mail_family": "kollega_skyld",
+          "role_scope": "arbeider",
+          "phase": "mid",
+          "priority": 59,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "stable_warning",
+          "subject": "Skylden lander mykt og skjevt",
+          "situation": [
+            "Et problem blir omtalt som noe gruppen må rydde opp i, men du ser at ansvaret ikke er likt fordelt.",
+            "Noen slipper billigere fordi de har språk, status eller rett tone.",
+            "Du må velge om du lar skyld bli sosial tyngdekraft eller gjør fordelingen mer presis."
+          ],
+          "thread_binding": {
+            "conflict_id": null,
+            "conflict_phase": null,
+            "people_thread_id": "kollega_skyld",
+            "story_thread_id": null,
+            "event_thread_id": null
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Peke på ansvaret slik det faktisk fordeler seg",
+              "effect": 1,
+              "tags": ["process", "risk"],
+              "feedback": "Du gjør noe ubehagelig enklere å se og vanskeligere å skjule."
+            },
+            {
+              "id": "B",
+              "label": "Ta din del og la resten flyte ut i gruppen",
+              "effect": 0,
+              "tags": ["legitimacy", "avoidance"],
+              "feedback": "Du kjøper midlertidig ro med uklar rettferdighet."
             }
           ]
         }
