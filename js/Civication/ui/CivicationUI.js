@@ -709,7 +709,6 @@ function renderCivicationInbox() {
         btnC.style.display = "none";
         btnOK.style.display = "";
         btnOK.onclick = () => refreshCivicationAfterAnswer(ev.id);
-        refreshCivicationAfterAnswer(ev.id);
       };
     }
 
@@ -800,7 +799,6 @@ function renderCivicationInbox() {
       if (!res?.ok) return;
       if (choiceBox) choiceBox.innerHTML = "";
       showOk(res.feedback || "—");
-      refreshCivicationAfterAnswer(ev.id);
     };
 
     choiceBox?.appendChild(b);
