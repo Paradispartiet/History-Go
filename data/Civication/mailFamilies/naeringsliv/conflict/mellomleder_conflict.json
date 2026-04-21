@@ -1,0 +1,176 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "category": "naeringsliv",
+  "role_scope": "mellomleder",
+  "mail_type": "conflict",
+  "families": [
+    {
+      "id": "lojalitet_oppover_nedover_intro",
+      "thread_binding": {
+        "conflict_id": "lojalitet_oppover_nedover",
+        "conflict_phase": "intro"
+      },
+      "mails": [
+        {
+          "id": "mellomleder_conflict_lojalitet_intro_001",
+          "mail_type": "conflict",
+          "mail_family": "lojalitet_oppover_nedover_intro",
+          "role_scope": "mellomleder",
+          "phase": "intro",
+          "priority": 64,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Oppover vil ha ro, nedover trenger noen å bli hørt",
+          "situation": [
+            "Du får et tydelig signal om å holde bildet ryddig oppover i systemet.",
+            "Samtidig vet du at laget under deg står i en belastning som ikke blir mindre av at den ties ned.",
+            "Mellomledelse blir her et spørsmål om hvem du oversetter mest lojalt for."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Løfte bekymringen tydelig videre oppover",
+              "effect": 1,
+              "tags": ["visibility", "risk"],
+              "feedback": "Du gjør mellomlaget til en kanal, ikke bare et filter."
+            },
+            {
+              "id": "B",
+              "label": "Skjerme systemet oppover og roe det nedover lokalt",
+              "effect": 0,
+              "tags": ["legitimacy", "avoidance"],
+              "feedback": "Du kjøper kortsiktig ro og bærer mer av spennet selv."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "press_mot_standard_intro",
+      "thread_binding": {
+        "conflict_id": "press_mot_standard",
+        "conflict_phase": "intro"
+      },
+      "mails": [
+        {
+          "id": "mellomleder_conflict_standard_intro_001",
+          "mail_type": "conflict",
+          "mail_family": "press_mot_standard_intro",
+          "role_scope": "mellomleder",
+          "phase": "intro",
+          "priority": 63,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Standarden presses ned av målet om flyt",
+          "situation": [
+            "Det kommer et tydelig signal om at leveranse og tempo må prioriteres hardere enn før.",
+            "Du vet at laget under deg vil lese dette som et reelt trykk mot kvaliteten, selv om ordene er penere.",
+            "Du står mellom styringslogikk og faglig ryggmarg."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Holde fast ved standarden og forklare konsekvensene oppover",
+              "effect": 1,
+              "tags": ["craft", "risk"],
+              "feedback": "Du gjør standard til et ledelsesansvar, ikke bare en faglig vane."
+            },
+            {
+              "id": "B",
+              "label": "Justere nivået stille og få systemet til å gli",
+              "effect": 0,
+              "tags": ["shortcut", "legitimacy"],
+              "feedback": "Du redder flyten og lar standarden tape uten formelt vedtak."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lojalitet_oppover_nedover_early",
+      "thread_binding": {
+        "conflict_id": "lojalitet_oppover_nedover",
+        "conflict_phase": "early"
+      },
+      "mails": [
+        {
+          "id": "mellomleder_conflict_lojalitet_early_001",
+          "mail_type": "conflict",
+          "mail_family": "lojalitet_oppover_nedover_early",
+          "role_scope": "mellomleder",
+          "phase": "early",
+          "priority": 69,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "stable_warning",
+          "subject": "Du blir målt på ro i et system som egentlig trenger sannhet",
+          "situation": [
+            "Jo mer press som bygges nedenfra, desto mer belønnes evnen til å holde overflaten rolig.",
+            "Du kjenner at det oppstår en ledelsesform der stillhet ser ut som kontroll.",
+            "Spørsmålet er om du skal gi bildet de vil ha, eller virkeligheten de trenger."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gå for tydelighet selv om det skaper uro",
+              "effect": 1,
+              "tags": ["visibility", "risk"],
+              "feedback": "Du velger styring gjennom realitet framfor stemning."
+            },
+            {
+              "id": "B",
+              "label": "Prioritere ro og ta mer av trykket selv",
+              "effect": 0,
+              "tags": ["avoidance", "legitimacy"],
+              "feedback": "Du gjør systemet roligere på utsiden og tyngre inni deg."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "press_mot_standard_early",
+      "thread_binding": {
+        "conflict_id": "press_mot_standard",
+        "conflict_phase": "early"
+      },
+      "mails": [
+        {
+          "id": "mellomleder_conflict_standard_early_001",
+          "mail_type": "conflict",
+          "mail_family": "press_mot_standard_early",
+          "role_scope": "mellomleder",
+          "phase": "early",
+          "priority": 68,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "stable_warning",
+          "subject": "Kravet om effektivitet kommer tilbake som hverdagspraksis",
+          "situation": [
+            "Det som først kom som et midlertidig trykk begynner å bli en fast styringsmåte.",
+            "Laget under deg merker det som standardtap, mens oppover ser det ut som forbedret kontroll.",
+            "Du må velge om du skal bremse glidningen eller hjelpe den inn som ny normal."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Markere tydelig at dette ikke kan bli ny standard",
+              "effect": 1,
+              "tags": ["craft", "visibility"],
+              "feedback": "Du forsøker å beskytte nivået før vanen setter seg."
+            },
+            {
+              "id": "B",
+              "label": "Pakke det inn og få laget til å tilpasse seg",
+              "effect": 0,
+              "tags": ["legitimacy", "shortcut"],
+              "feedback": "Du blir formidler for et press du ikke fullt ut står for."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
