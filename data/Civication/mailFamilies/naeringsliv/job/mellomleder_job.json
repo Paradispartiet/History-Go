@@ -1,0 +1,231 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "category": "naeringsliv",
+  "role_scope": "mellomleder",
+  "mail_type": "job",
+  "families": [
+    {
+      "id": "styring_av_flyt",
+      "mails": [
+        {
+          "id": "mellomleder_job_flyt_001",
+          "mail_type": "job",
+          "mail_family": "styring_av_flyt",
+          "role_scope": "mellomleder",
+          "phase": "intro",
+          "priority": 62,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Flyten stopper ikke av seg selv",
+          "situation": [
+            "Du merker at avdelingen ikke først og fremst trenger store vedtak, men små justeringer som holder ting sammen.",
+            "Mellomledelse viser seg i det som ikke får lov til å falle mellom oppgavene.",
+            "Du må velge om du styrer tett eller lar dagen finne sin egen form."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gå tettere inn og styre flyten aktivt",
+              "effect": 1,
+              "tags": ["process", "visibility"],
+              "feedback": "Du gjør koordineringsarbeidet tydeligere og tyngre."
+            },
+            {
+              "id": "B",
+              "label": "Gi mer rom og håpe at gruppen regulerer seg selv",
+              "effect": 0,
+              "tags": ["legitimacy", "risk"],
+              "feedback": "Du viser tillit og gjør samtidig utfallet mer sårbart."
+            }
+          ]
+        },
+        {
+          "id": "mellomleder_job_flyt_002",
+          "mail_type": "job",
+          "mail_family": "styring_av_flyt",
+          "role_scope": "mellomleder",
+          "phase": "intro",
+          "priority": 59,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Det som hakker, hører alle på deg om",
+          "situation": [
+            "Små forsinkelser og misforståelser har ingen klar eier, men forventningen er at du samler dem opp.",
+            "Du kjenner at mye av rollen består i å bære summen av andres små glipp.",
+            "Spørsmålet er om du skal absorbere dem eller gjøre mønsteret mer eksplisitt."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta tak i mønsteret og sette tydeligere rammer",
+              "effect": 1,
+              "tags": ["process", "risk"],
+              "feedback": "Du gjør deg mindre populær og mer styrende."
+            },
+            {
+              "id": "B",
+              "label": "Løse det stille og få dagen videre",
+              "effect": 0,
+              "tags": ["avoidance", "legitimacy"],
+              "feedback": "Du kjøper ro og lar samme dynamikk vende tilbake."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rapportering_og_driftsblikk",
+      "mails": [
+        {
+          "id": "mellomleder_job_rapport_001",
+          "mail_type": "job",
+          "mail_family": "rapportering_og_driftsblikk",
+          "role_scope": "mellomleder",
+          "phase": "intro",
+          "priority": 60,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Du skal se både tall og mennesker samtidig",
+          "situation": [
+            "Rapporten oppover spør etter framdrift, avvik og kontroll.",
+            "Dagen nedover består av slit, avbrytelser og forhold som sjelden lar seg skrive rent.",
+            "Du må oversette virkelighet til styrbar form uten å miste blikket for hva som faktisk skjer."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Rapportere rent, men beholde nyansene internt",
+              "effect": 0,
+              "tags": ["legitimacy", "process"],
+              "feedback": "Du holder to språk gående samtidig."
+            },
+            {
+              "id": "B",
+              "label": "Synliggjøre mer av friksjonen også oppover",
+              "effect": 1,
+              "tags": ["visibility", "risk"],
+              "feedback": "Du gjør styringsbildet sannere og mindre behagelig."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "oppfolging_av_team",
+      "mails": [
+        {
+          "id": "mellomleder_job_team_001",
+          "mail_type": "job",
+          "mail_family": "oppfolging_av_team",
+          "role_scope": "mellomleder",
+          "phase": "intro",
+          "priority": 58,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Folk trenger mer enn oppgavefordeling",
+          "situation": [
+            "Én ting er å fordele arbeid; noe annet er å lese hvor folk er i stand til å bære det.",
+            "Du merker at ledelse begynner der standardiserte planer slutter.",
+            "Det er et spørsmål om oppfølging, ikke bare organisering."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gå nærmere inn i hvordan folk faktisk fungerer i dag",
+              "effect": 1,
+              "tags": ["process", "care"],
+              "feedback": "Du leder ikke bare oppgaver, men kapasitet."
+            },
+            {
+              "id": "B",
+              "label": "Holde deg til rollen og styre gjennom fordeling alene",
+              "effect": 0,
+              "tags": ["legitimacy", "distance"],
+              "feedback": "Du holder deg tydelig i rollen og mister noe av blikket på menneskene."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "koordinering_under_trykk",
+      "mails": [
+        {
+          "id": "mellomleder_job_trykk_001",
+          "mail_type": "job",
+          "mail_family": "koordinering_under_trykk",
+          "role_scope": "mellomleder",
+          "phase": "early",
+          "priority": 66,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "stable_warning",
+          "subject": "Alle trenger avklaring samtidig",
+          "situation": [
+            "Presset gjør at flere små spørsmål blir akutte på én gang.",
+            "Det er sjelden de store beslutningene som knekker dagen, men de mange små som må tas fort nok og riktig nok.",
+            "Du må velge om du samler avgjørelsene hos deg eller fordeler dem ut med risiko."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Samle styringen tett rundt deg i denne fasen",
+              "effect": 1,
+              "tags": ["visibility", "control"],
+              "feedback": "Du skaper mer orden og også mer avhengighet av deg."
+            },
+            {
+              "id": "B",
+              "label": "Gi mer handlingsrom og tåle et mer ujevnt bilde",
+              "effect": 0,
+              "tags": ["trust", "risk"],
+              "feedback": "Du sprer ansvar og gjør utfallet mindre kontrollerbart."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "forbedring_gjennom_andre",
+      "mails": [
+        {
+          "id": "mellomleder_job_forbedring_001",
+          "mail_type": "job",
+          "mail_family": "forbedring_gjennom_andre",
+          "role_scope": "mellomleder",
+          "phase": "early",
+          "priority": 63,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Forbedring skjer bare hvis noen andre bærer den ut",
+          "situation": [
+            "Du ser hva som burde endres, men mellomledernivået handler sjelden om å gjøre det selv.",
+            "Det handler om å få andre til å tro på endringen, forstå den og holde den gående.",
+            "Du står mellom idé og forankring."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Bruke tid på å forankre endringen ordentlig i laget",
+              "effect": 1,
+              "tags": ["process", "legitimacy"],
+              "feedback": "Du gjør endringen tregere og mer virkelig."
+            },
+            {
+              "id": "B",
+              "label": "Skyve endringen raskt gjennom og håpe at den setter seg",
+              "effect": 0,
+              "tags": ["shortcut", "visibility"],
+              "feedback": "Du får bevegelse raskt og eierskap langsommere."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
