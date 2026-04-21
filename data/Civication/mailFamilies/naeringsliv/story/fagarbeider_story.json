@@ -1,0 +1,84 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "category": "naeringsliv",
+  "role_scope": "fagarbeider",
+  "mail_type": "story",
+  "families": [
+    {
+      "id": "kunnskapens_usynlighet",
+      "mails": [
+        {
+          "id": "fagarbeider_story_kunnskap_001",
+          "mail_type": "story",
+          "mail_family": "kunnskapens_usynlighet",
+          "role_scope": "fagarbeider",
+          "phase": "mid",
+          "priority": 58,
+          "cooldown": 4,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Det viktigste du vet finnes knapt i dokumentene",
+          "situation": [
+            "Den avgjørende kunnskapen i arbeidet sitter i vurderinger, tegn og små forskjeller som sjelden står i manualene.",
+            "Systemet registrerer utfallet, men ikke alltid det erfaringslaget som gjør utfallet mulig.",
+            "Du ser hvor mye av produksjon og kvalitet som bæres av usynliggjort faglig dømmekraft."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lese dette som et tegn på at faget er større enn systemet registrerer",
+              "effect": 1,
+              "tags": ["process", "legitimacy"],
+              "feedback": "Du gjør den stille kunnskapen til en del av hvordan du forstår arbeidet."
+            },
+            {
+              "id": "B",
+              "label": "Akseptere at det viktigste bare må leve i praksis",
+              "effect": 0,
+              "tags": ["craft", "avoidance"],
+              "feedback": "Du holder faget levende, men lar også systemet slippe å se det."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "industriell_stolthet",
+      "mails": [
+        {
+          "id": "fagarbeider_story_stolthet_001",
+          "mail_type": "story",
+          "mail_family": "industriell_stolthet",
+          "role_scope": "fagarbeider",
+          "phase": "mid",
+          "priority": 56,
+          "cooldown": 4,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Faget bærer en eldre rytme enn dagens språk",
+          "situation": [
+            "Det moderne språket rundt effektivitet og leveranse fanger ikke helt stoltheten som ligger i å kunne et arbeid ordentlig.",
+            "Du kjenner en tradisjon av presisjon, håndlag og standard som er eldre enn de siste styringsordene.",
+            "Det er en historie om industriell verdighet inni den mest vanlige arbeidsdagen."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Tenke på deg selv som del av en lengre faglinje",
+              "effect": 1,
+              "tags": ["craft", "legitimacy"],
+              "feedback": "Du plasserer dagens arbeid i en større historisk form."
+            },
+            {
+              "id": "B",
+              "label": "Holde det til dagens produksjonsmål og ikke mer",
+              "effect": 0,
+              "tags": ["visibility", "shortcut"],
+              "feedback": "Du gjør dagen mindre, men også enklere å bære."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
