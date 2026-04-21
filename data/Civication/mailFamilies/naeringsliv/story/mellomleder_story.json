@@ -1,0 +1,84 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "category": "naeringsliv",
+  "role_scope": "mellomleder",
+  "mail_type": "story",
+  "families": [
+    {
+      "id": "mellomlagets_usynlighet",
+      "mails": [
+        {
+          "id": "mellomleder_story_usynlighet_001",
+          "mail_type": "story",
+          "mail_family": "mellomlagets_usynlighet",
+          "role_scope": "mellomleder",
+          "phase": "mid",
+          "priority": 58,
+          "cooldown": 4,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Arbeidet ditt synes mest når det mislykkes",
+          "situation": [
+            "Det meste av det du gjør som mellomleder er å binde sammen, oversette, rydde og avverge.",
+            "Når det lykkes, ser det ut som om dagen bare gikk av seg selv.",
+            "Du kjenner at mellomlaget i organisasjoner ofte er avgjørende og samtidig nesten usynlig."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Se dette som kjernen i rollen, ikke som et underskudd av synlighet",
+              "effect": 1,
+              "tags": ["legitimacy", "process"],
+              "feedback": "Du gjør usynlig arbeid til en bevisst del av selvforståelsen din."
+            },
+            {
+              "id": "B",
+              "label": "Kjenne på hvor vanskelig det er å bære ansvar uten tydelig anerkjennelse",
+              "effect": 0,
+              "tags": ["visibility", "strain"],
+              "feedback": "Du ser tydeligere den stille kostnaden i mellomleddet."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "styringens_doble_sprak",
+      "mails": [
+        {
+          "id": "mellomleder_story_sprak_001",
+          "mail_type": "story",
+          "mail_family": "styringens_doble_sprak",
+          "role_scope": "mellomleder",
+          "phase": "mid",
+          "priority": 56,
+          "cooldown": 4,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Du snakker ett språk oppover og et annet nedover",
+          "situation": [
+            "Mye av rollen din består i å oversette mellom styringens begreper og arbeidets erfaringer.",
+            "Oppover er det mål, leveranse og kontroll. Nedover er det kapasitet, slitasje og praktiske valg.",
+            "Du merker hvordan mellomledelse også er et språkarbeid."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Tenke på oversettelsen som en nødvendig funksjon",
+              "effect": 1,
+              "tags": ["process", "legitimacy"],
+              "feedback": "Du gjør språkarbeidet til en del av ledelse, ikke bare en bivirkning av det."
+            },
+            {
+              "id": "B",
+              "label": "Kjenne på hvordan to språk kan slite på samme person",
+              "effect": 0,
+              "tags": ["strain", "visibility"],
+              "feedback": "Du ser tydeligere hvor mye rolle og person smelter sammen i oversettelsen."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
