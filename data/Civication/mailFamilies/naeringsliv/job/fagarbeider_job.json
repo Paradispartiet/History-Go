@@ -1,0 +1,264 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "category": "naeringsliv",
+  "role_scope": "fagarbeider",
+  "mail_type": "job",
+  "families": [
+    {
+      "id": "fagarbeider_ansvar",
+      "mails": [
+        {
+          "id": "fagarbeider_job_ansvar_001",
+          "mail_type": "job",
+          "mail_family": "fagarbeider_ansvar",
+          "role_scope": "fagarbeider",
+          "phase": "intro",
+          "priority": 62,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Du er den som skal kunne dette",
+          "situation": [
+            "Oppgaven er ikke ny, men forventningen til presisjon er høyere enn før.",
+            "Folk kommer til deg når de er usikre, også når det egentlig ikke er ditt ansvar å bære alt.",
+            "Du merker at faglighet betyr å være siste stopp før feil."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta ansvaret fullt og sikre at det blir riktig",
+              "effect": 1,
+              "tags": ["craft", "legitimacy"],
+              "feedback": "Du bærer faget slik andre bærer tempoet."
+            },
+            {
+              "id": "B",
+              "label": "Avgrense deg og holde deg til det som faktisk er ditt",
+              "effect": 0,
+              "tags": ["process", "risk"],
+              "feedback": "Du beskytter kapasiteten din, men lar også noe falle utenfor deg."
+            }
+          ]
+        },
+        {
+          "id": "fagarbeider_job_ansvar_002",
+          "mail_type": "job",
+          "mail_family": "fagarbeider_ansvar",
+          "role_scope": "fagarbeider",
+          "phase": "intro",
+          "priority": 59,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Ansvar kommer før myndighet",
+          "situation": [
+            "Du forventes å vite hva som må gjøres, men ikke nødvendigvis ha full rett til å bestemme hvordan.",
+            "Det er en rolle mellom utførelse og ledelse, og den blir ofte usynlig i formelle linjer.",
+            "Du kjenner at kompetanse ikke automatisk gir styring."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Bruke fagautoriteten din uten å vente på alt formelt",
+              "effect": 1,
+              "tags": ["craft", "visibility"],
+              "feedback": "Du lar kompetansen gripe inn der strukturen er treg."
+            },
+            {
+              "id": "B",
+              "label": "Holde deg til mandatet selv om du ser mer enn det rommer",
+              "effect": 0,
+              "tags": ["legitimacy", "avoidance"],
+              "feedback": "Du holder deg renere formelt, men lar også en kjent mangel stå."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "faglig_presisjon",
+      "mails": [
+        {
+          "id": "fagarbeider_job_presisjon_001",
+          "mail_type": "job",
+          "mail_family": "faglig_presisjon",
+          "role_scope": "fagarbeider",
+          "phase": "intro",
+          "priority": 61,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Det er forskjell på å få det unna og å få det riktig",
+          "situation": [
+            "Du ser små avvik som andre ikke oppfatter som viktige.",
+            "Det er nettopp derfor du er der, men det gjør også at du hele tiden må velge hva som er verdt å stoppe.",
+            "Faglighet viser seg ofte i det som for andre ser ut som pirk."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Stanser arbeidet for å rette presist",
+              "effect": 1,
+              "tags": ["craft", "risk"],
+              "feedback": "Du lar kvalitet definere rytmen, ikke omvendt."
+            },
+            {
+              "id": "B",
+              "label": "Lar avviket passere fordi helheten ellers flyter",
+              "effect": 0,
+              "tags": ["shortcut", "visibility"],
+              "feedback": "Du redder flyten og lar det faglige regnskapet vokse i bakgrunnen."
+            }
+          ]
+        },
+        {
+          "id": "fagarbeider_job_presisjon_002",
+          "mail_type": "job",
+          "mail_family": "faglig_presisjon",
+          "role_scope": "fagarbeider",
+          "phase": "intro",
+          "priority": 58,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Du ser feilen før den blir synlig for andre",
+          "situation": [
+            "Erfaringen din gjør at du leser problemer tidligere enn resten av skiftet.",
+            "Det gir deg et fortrinn, men også et ansvar du ikke alltid ba om.",
+            "Noen ganger er det å vite først nesten det samme som å eie problemet."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Varsle tidlig og ta diskusjonen med én gang",
+              "effect": 1,
+              "tags": ["process", "visibility"],
+              "feedback": "Du flytter problemet fram i tid mens det ennå kan styres."
+            },
+            {
+              "id": "B",
+              "label": "Observere litt til før du gjør det til en sak",
+              "effect": 0,
+              "tags": ["craft", "avoidance"],
+              "feedback": "Du kjøper mer sikkerhet, men også mindre handlingsrom."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "opplaering_av_andre",
+      "mails": [
+        {
+          "id": "fagarbeider_job_opplaering_001",
+          "mail_type": "job",
+          "mail_family": "opplaering_av_andre",
+          "role_scope": "fagarbeider",
+          "phase": "intro",
+          "priority": 57,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Du lærer bort mens du selv skal levere",
+          "situation": [
+            "En mindre erfaren kollega trenger forklaring midt i et løp som allerede er presset.",
+            "Du vet at opplæring er nødvendig, men systemet later ofte som om den kan skje gratis ved siden av produksjonen.",
+            "Du må velge mellom å sikre dagen eller å bygge morgendagen."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Bruke tid på å lære bort ordentlig",
+              "effect": 1,
+              "tags": ["process", "legitimacy"],
+              "feedback": "Du gjør fremtidig drift mindre sårbar."
+            },
+            {
+              "id": "B",
+              "label": "Gi bare det minimale så dagen holder",
+              "effect": 0,
+              "tags": ["shortcut", "avoidance"],
+              "feedback": "Dagen reddes. Avhengigheten blir værende."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "koordinering_i_press",
+      "mails": [
+        {
+          "id": "fagarbeider_job_koordinering_001",
+          "mail_type": "job",
+          "mail_family": "koordinering_i_press",
+          "role_scope": "fagarbeider",
+          "phase": "early",
+          "priority": 65,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "stable_warning",
+          "subject": "Du holder sammen flere ledd enn noen ser",
+          "situation": [
+            "Arbeidet stopper ikke ett sted, men mister sammenheng mellom flere små overleveringer.",
+            "Du merker at mye av rollen din er å binde sammen ting som ellers glir fra hverandre.",
+            "Det er koordinering uten tittelen koordinator."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta styringen uformelt og holde linjene samlet",
+              "effect": 1,
+              "tags": ["process", "visibility"],
+              "feedback": "Du gjør usynlig ledelse uten å få den som posisjon."
+            },
+            {
+              "id": "B",
+              "label": "Holde deg til eget ledd og la resten finne seg selv",
+              "effect": 0,
+              "tags": ["legitimacy", "avoidance"],
+              "feedback": "Du beskytter rollen din, men lar helheten bli mer skjør."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "forbedring_uten_mandat_fag",
+      "mails": [
+        {
+          "id": "fagarbeider_job_forbedring_001",
+          "mail_type": "job",
+          "mail_family": "forbedring_uten_mandat_fag",
+          "role_scope": "fagarbeider",
+          "phase": "early",
+          "priority": 63,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Du ser hvordan rutinen kunne vært bedre",
+          "situation": [
+            "Erfaringen din gjør at du ser forbedringer som virker små på papiret, men store i drift.",
+            "Likevel er det ingen klar kanal som gjør innsikten din til beslutning.",
+            "Du står mellom faget og systemets treghet."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Formulere forbedringen så konkret at den blir vanskelig å overse",
+              "effect": 1,
+              "tags": ["process", "legitimacy"],
+              "feedback": "Du prøver å gjøre erfaring til styrbar kunnskap."
+            },
+            {
+              "id": "B",
+              "label": "Bare justere lokalt der du selv kan",
+              "effect": 0,
+              "tags": ["craft", "avoidance"],
+              "feedback": "Du forbedrer praksis uten å få systemet med deg."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
