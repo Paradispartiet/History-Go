@@ -1,0 +1,84 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "category": "naeringsliv",
+  "role_scope": "fagarbeider",
+  "mail_type": "event",
+  "families": [
+    {
+      "id": "kritisk_avvik",
+      "mails": [
+        {
+          "id": "fagarbeider_event_avvik_001",
+          "mail_type": "event",
+          "mail_family": "kritisk_avvik",
+          "role_scope": "fagarbeider",
+          "phase": "climax",
+          "priority": 80,
+          "cooldown": 5,
+          "repeatable": false,
+          "stage": "warning",
+          "subject": "Et avvik blir plutselig kritisk",
+          "situation": [
+            "Noe som lenge har vært håndtert lokalt og praktisk vokser til en situasjon ingen kan bagatellisere.",
+            "Nå trengs ikke bare tempo, men dømmekraft og teknisk presisjon under press.",
+            "Alle ser mot den som faktisk kan lese hva som står på spill."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Stanse og behandle avviket som en faglig nødsituasjon",
+              "effect": 1,
+              "tags": ["craft", "risk"],
+              "feedback": "Du lar alvor styre handlingen, ikke bare produksjonstrykket."
+            },
+            {
+              "id": "B",
+              "label": "Finne en midlertidig løsning for å holde ting i gang",
+              "effect": 0,
+              "tags": ["shortcut", "visibility"],
+              "feedback": "Du kjøper tid og øker samtidig betydningen av alt som fortsatt er uavklart."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "revisjon_av_rutine",
+      "mails": [
+        {
+          "id": "fagarbeider_event_revisjon_001",
+          "mail_type": "event",
+          "mail_family": "revisjon_av_rutine",
+          "role_scope": "fagarbeider",
+          "phase": "climax",
+          "priority": 77,
+          "cooldown": 5,
+          "repeatable": false,
+          "stage": "stable_warning",
+          "subject": "Rutinene blir plutselig gransket",
+          "situation": [
+            "En gjennomgang eller revisjon gjør at hverdagslige kompromisser må forklares som om de var bevisste valg.",
+            "Det som til daglig holdes sammen av erfaring og taus justering, må nå oversettes til et språk systemet tåler.",
+            "Du må velge om du skal pynte på praksisen eller vise hvordan den faktisk henger sammen."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Forklare praksisen slik den faktisk fungerer",
+              "effect": 1,
+              "tags": ["process", "visibility"],
+              "feedback": "Du gjør virkeligheten vanskeligere å dekorere og lettere å forstå."
+            },
+            {
+              "id": "B",
+              "label": "Tilpasse fortellingen til hvordan systemet helst vil se det",
+              "effect": 0,
+              "tags": ["legitimacy", "avoidance"],
+              "feedback": "Du gjør gjennomgangen smidigere og sannheten mer veloppdragen."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
