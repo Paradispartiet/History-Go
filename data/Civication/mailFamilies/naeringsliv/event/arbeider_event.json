@@ -113,6 +113,61 @@
           ]
         }
       ]
+    },
+    {
+      "id": "ansvarsforskyvning",
+      "thread_binding": {
+        "event_thread_id": "ansvarsforskyvning",
+        "event_phase": "active"
+      },
+      "mails": [
+        {
+          "id": "arbeider_event_ansvar_001",
+          "mail_type": "event",
+          "mail_family": "ansvarsforskyvning",
+          "role_scope": "arbeider",
+          "phase": "climax",
+          "priority": 78,
+          "cooldown": 5,
+          "repeatable": false,
+          "stage": "warning",
+          "subject": "Spørsmålet blir ikke bare hva som skjedde, men hvem som skal bære det",
+          "situation": [
+            "Et avvik eller et stopp gjør at forklaringer begynner å sirkulere raskere enn fakta.",
+            "Du merker at ansvaret glir nedover mot dem som sto nærmest hendelsen, ikke nødvendigvis dem som formet vilkårene for den.",
+            "Nå handler det ikke bare om drift, men om hvordan skyld fordeles når systemet sprekker."
+          ],
+          "thread_binding": {
+            "conflict_id": "lojalitet_vs_selvoppholdelse",
+            "conflict_phase": "climax",
+            "people_thread_id": "taus_lojalitet",
+            "story_thread_id": null,
+            "event_thread_id": "ansvarsforskyvning"
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Peke på hele hendelseskjeden og hvordan rammene ledet fram hit",
+              "effect": 1,
+              "tags": [
+                "process",
+                "visibility"
+              ],
+              "feedback": "Du nekter å la nærhet til feilen bli det samme som eierskap til den."
+            },
+            {
+              "id": "B",
+              "label": "Ta din del og bidra til å roe fordelingen av skyld",
+              "effect": 0,
+              "tags": [
+                "legitimacy",
+                "avoidance"
+              ],
+              "feedback": "Du kjøper ro i øyeblikket og lar også et kjent mønster fortsette."
+            }
+          ]
+        }
+      ]
     }
   ]
 }
