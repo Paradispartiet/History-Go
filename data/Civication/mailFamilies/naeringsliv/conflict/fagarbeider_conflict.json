@@ -90,6 +90,46 @@
               "feedback": "Du lar ordene gjøre jobben med å senke standarden."
             }
           ]
+        },
+        {
+          "id": "fagarbeider_conflict_integritet_intro_003",
+          "mail_type": "conflict",
+          "mail_family": "faglig_integritet_intro",
+          "role_scope": "fagarbeider",
+          "phase": "intro",
+          "priority": 59,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Det raske valget begynner å låne legitimitet fra vanen",
+          "situation": [
+            "En løsning som først ble valgt fordi dagen var presset, gjentas nå oftere med henvisning til at den pleier å fungere.",
+            "Du ser hvordan praksis kan bli sitt eget argument lenge før den er blitt et godt prinsipp.",
+            "Spørsmålet er om du skal bryte vanens autoritet før den setter seg dypere."
+          ],
+          "thread_binding": {
+            "conflict_id": "faglig_integritet",
+            "conflict_phase": "intro",
+            "people_thread_id": null,
+            "story_thread_id": null,
+            "event_thread_id": null
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Markere at gjentakelse ikke i seg selv gjør noe faglig riktig",
+              "effect": 1,
+              "tags": ["craft", "visibility"],
+              "feedback": "Du nekter å la vane kle seg ut som kvalitet."
+            },
+            {
+              "id": "B",
+              "label": "Godta at det som glir lett ofte blir stående som norm",
+              "effect": 0,
+              "tags": ["legitimacy", "shortcut"],
+              "feedback": "Du lar systemets treghet gi snarveien tyngde."
+            }
+          ]
         }
       ]
     },
@@ -137,6 +177,46 @@
               "effect": 0,
               "tags": ["legitimacy", "avoidance"],
               "feedback": "Du beskytter deg formelt og gjør samtidig tomrommet større."
+            }
+          ]
+        },
+        {
+          "id": "fagarbeider_conflict_ansvar_intro_002",
+          "mail_type": "conflict",
+          "mail_family": "ansvar_uten_myndighet_intro",
+          "role_scope": "fagarbeider",
+          "phase": "intro",
+          "priority": 60,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Du blir ansvarlig i andres øyne lenge før du får retten til å definere rammen",
+          "situation": [
+            "Folk rundt deg forventer at du griper inn når noe er uklart, nettopp fordi du kan mest.",
+            "Likevel er det fortsatt andre som setter grensene for hva som faktisk kan avgjøres.",
+            "Du ser hvordan autoritet og mandat glir fra hverandre."
+          ],
+          "thread_binding": {
+            "conflict_id": "ansvar_uten_myndighet",
+            "conflict_phase": "intro",
+            "people_thread_id": null,
+            "story_thread_id": null,
+            "event_thread_id": null
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gjøre det tydelig at ansvar krever mer enn tillit fra sidelinjen",
+              "effect": 1,
+              "tags": ["process", "visibility"],
+              "feedback": "Du prøver å knytte ansvar tettere til faktisk styringsrett."
+            },
+            {
+              "id": "B",
+              "label": "La forventningen om at du fikser det leve videre uten å utfordre rammen",
+              "effect": 0,
+              "tags": ["avoidance", "legitimacy"],
+              "feedback": "Du holder hjulene i gang og lar tomrommet bestå."
             }
           ]
         }
@@ -188,6 +268,46 @@
               "feedback": "Du redder strømmen i systemet og skyver tyngden inn i deg selv."
             }
           ]
+        },
+        {
+          "id": "fagarbeider_conflict_integritet_early_002",
+          "mail_type": "conflict",
+          "mail_family": "faglig_integritet_early",
+          "role_scope": "fagarbeider",
+          "phase": "early",
+          "priority": 67,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "stable_warning",
+          "subject": "Du kjenner at signaturen din kan bli brukt til å lukke mer enn du egentlig godkjenner",
+          "situation": [
+            "Det forventes at din vurdering skal gi saken et siste preg av trygghet og legitimitet.",
+            "Men du ser at det som lukkes, ikke bare er arbeidsoppgaven, men også rommet for videre spørsmål.",
+            "Nå handler integritet ikke bare om kvalitet, men om hva navnet ditt får lov til å dekke over."
+          ],
+          "thread_binding": {
+            "conflict_id": "faglig_integritet",
+            "conflict_phase": "early",
+            "people_thread_id": null,
+            "story_thread_id": null,
+            "event_thread_id": null
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Insistere på at signaturen må følge en reell vurdering, ikke bare et behov for lukking",
+              "effect": 1,
+              "tags": ["process", "risk"],
+              "feedback": "Du forsvarer signaturen som faglig handling, ikke som formalitet."
+            },
+            {
+              "id": "B",
+              "label": "La saken passere for å unngå mer stans og friksjon",
+              "effect": 0,
+              "tags": ["shortcut", "avoidance"],
+              "feedback": "Du hjelper systemet videre og lar integriteten bli litt tynnere."
+            }
+          ]
         }
       ]
     },
@@ -235,6 +355,46 @@
               "effect": 0,
               "tags": ["craft", "avoidance"],
               "feedback": "Du holder ting gående og lar mønsteret fortsette."
+            }
+          ]
+        },
+        {
+          "id": "fagarbeider_conflict_ansvar_early_002",
+          "mail_type": "conflict",
+          "mail_family": "ansvar_uten_myndighet_early",
+          "role_scope": "fagarbeider",
+          "phase": "early",
+          "priority": 65,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "stable_warning",
+          "subject": "Du blir stående som siste vern mot konsekvensene av andres valg",
+          "situation": [
+            "Igjen oppstår en situasjon hvor beslutningen kom ovenfra, men risikoen folder seg ut hos deg og dem nærmest arbeidet.",
+            "Du merker hvordan kompetansen din gjør deg uvurderlig og samtidig utsatt.",
+            "Nå må du velge om du skal la dyktigheten din fortsette å absorbere systemets skjevhet."
+          ],
+          "thread_binding": {
+            "conflict_id": "ansvar_uten_myndighet",
+            "conflict_phase": "early",
+            "people_thread_id": null,
+            "story_thread_id": null,
+            "event_thread_id": null
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gjøre det eksplisitt at vern ikke er det samme som ansvarseierskap",
+              "effect": 1,
+              "tags": ["visibility", "process"],
+              "feedback": "Du prøver å bryte koblingen mellom kompetanse og automatisk skyld."
+            },
+            {
+              "id": "B",
+              "label": "Fortsette å ta slaget fordi noen må gjøre det",
+              "effect": 0,
+              "tags": ["craft", "legitimacy"],
+              "feedback": "Du holder skaden nede og styrker samtidig forventningen om at du alltid skal bære den."
             }
           ]
         }
