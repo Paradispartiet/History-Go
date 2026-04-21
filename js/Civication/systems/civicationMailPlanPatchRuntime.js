@@ -33,6 +33,25 @@
         return [...new Set((Array.isArray(values) ? values : []).map((v) => String(v || "").trim()).filter(Boolean))];
       }
 
+      function deriveBinding(mail) {
+        const binding = mail?.thread_binding && typeof mail.thread_binding === "object"
+          ? { ...mail.thread_binding }
+          : {};
+        const familyId = String(mail?.mail_family || "").trim() || null;
+        const mailType = String(mail?.mail_type || "").trim() || null;
+
+        if (!binding.people_thread_id && mailType === "people" && familyId) {
+          binding.people_thread_id = familyId;
+        }
+        if (!binding.story_thread_id && mailType === "story" && familyId) {
+          binding.story_thread_id = familyId;
+        }
+        if (!binding.event_thread_id && mailType === "event" && familyId) {
+          binding.event_thread_id = familyId;
+        }
+        return binding;
+      }
+
       const originalResetForNewJob = proto.resetForNewJob;
       proto.resetForNewJob = function (role_key) {
         const res = originalResetForNewJob.call(this, role_key);
@@ -147,10 +166,15 @@
                 source_type: m?.source_type || "family",
                 mail_type: m?.mail_type || catalogType || "job",
                 mail_family: m?.mail_family || familyId,
-                thread_binding: {
-                  ...familyBinding,
-                  ...(m?.thread_binding && typeof m.thread_binding === "object" ? m.thread_binding : {})
-                }
+                thread_binding: deriveBinding({
+                  ...m,
+                  mail_type: m?.mail_type || catalogType || "job",
+                  mail_family: m?.mail_family || familyId,
+                  thread_binding: {
+                    ...familyBinding,
+                    ...(m?.thread_binding && typeof m.thread_binding === "object" ? m.thread_binding : {})
+                  }
+                })
               });
             }
           }
@@ -238,9 +262,7 @@
         const mailSystem = state?.mail_system && typeof state.mail_system === "object"
           ? state.mail_system
           : {};
-        const binding = mail?.thread_binding && typeof mail.thread_binding === "object"
-          ? mail.thread_binding
-          : {};
+        const binding = deriveBinding(mail);
         const phase = getThreadPhase(binding, mail?.phase);
 
         const conflictId = String(binding?.conflict_id || "").trim();
@@ -262,9 +284,9 @@
           const threadPhases = mailSystem?.people_thread_phases && typeof mailSystem.people_thread_phases === "object"
             ? mailSystem.people_thread_phases
             : {};
-          const currentPhase = normalizePhase(threadPhases[peopleThreadId] || "intro");
+          const currentPhase = normalizePhase(threadPhases[peopleThreadId] || phase);
           if (!activeThreads.has(peopleThreadId)) {
-            return phase === "intro" || phase === "early";
+            return true;
           }
           return currentPhase === phase;
         }
@@ -275,9 +297,9 @@
           const threadPhases = mailSystem?.story_thread_phases && typeof mailSystem.story_thread_phases === "object"
             ? mailSystem.story_thread_phases
             : {};
-          const currentPhase = normalizePhase(threadPhases[storyThreadId] || "intro");
+          const currentPhase = normalizePhase(threadPhases[storyThreadId] || phase);
           if (!activeThreads.has(storyThreadId)) {
-            return phase === "intro" || phase === "mid";
+            return true;
           }
           return currentPhase === phase;
         }
@@ -285,12 +307,12 @@
         const eventThreadId = String(binding?.event_thread_id || "").trim();
         if (eventThreadId) {
           const activeEventThreadId = String(mailSystem?.active_event_thread_id || "").trim();
-          const activeEventPhase = normalizePhase(mailSystem?.active_event_phase || "intro");
+          const activeEventPhase = normalizePhase(mailSystem?.active_event_phase || phase);
           if (!activeEventThreadId) {
-            return phase === "climax" || phase === "intro";
+            return true;
           }
           if (activeEventThreadId !== eventThreadId) {
-            return phase === "climax" || phase === "intro";
+            return true;
           }
           return activeEventPhase === phase;
         }
@@ -311,11 +333,11 @@
         if (!step) return { plannedType: null, plannedStep: null, pack };
 
         const firstTypePack = this.filterPoolByMailType(pack, step.type);
-        const firstThreadPack = this.filterPoolByThreadState(firstTypePack, state);
-        const firstFamilyPack = this.filterPoolByFamilies(firstThreadPack, step.allowed_families);
+        const firstFamilyPack = this.filterPoolByFamilies(firstTypePack, step.allowed_families);
+        const firstThreadPack = this.filterPoolByThreadState(firstFamilyPack, state);
 
-        if (Array.isArray(firstFamilyPack?.mails) && firstFamilyPack.mails.length) {
-          return { plannedType: step.type, plannedStep: step, pack: firstFamilyPack };
+        if (Array.isArray(firstThreadPack?.mails) && firstThreadPack.mails.length) {
+          return { plannedType: step.type, plannedStep: step, pack: firstThreadPack };
         }
 
         const fallbackTypes = Array.isArray(step?.fallback_types) ? step.fallback_types : [];
@@ -376,9 +398,7 @@
 
         const mailType = String(eventObj?.mail_type || "").trim() || null;
         const mailFamily = String(eventObj?.mail_family || "").trim() || null;
-        const binding = eventObj?.thread_binding && typeof eventObj.thread_binding === "object"
-          ? eventObj.thread_binding
-          : {};
+        const binding = deriveBinding(eventObj);
         const phase = getThreadPhase(binding, eventObj?.phase);
 
         const consumedMailIds = Array.isArray(currentMailSystem.consumed_mail_ids)
