@@ -82,8 +82,8 @@
     const sid = s(subjectId);
     if (!sid) throw new Error("subjectId missing");
 
-    // primær: data/pensum_<subjectId>.json
-    const primary = `data/pensum_${sid}.json`;
+    // primær: data/fag/<subjectId>/pensum_<subjectId>.json
+    const primary = `data/fag/${sid}/pensum_${sid}.json`;
 
     try {
       const p = await fetchJson(primary);
@@ -92,8 +92,6 @@
       dwarn("could not load", primary, e);
     }
 
-    // fallback: hvis du fortsatt har gamle filer med annet navn,
-    // kan du legge en eksplisitt map i app.js senere. Ikke her.
     throw new Error(`Fant ikke pensumfil: ${primary}`);
   }
 
