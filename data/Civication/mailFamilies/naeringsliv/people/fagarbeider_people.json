@@ -50,6 +50,46 @@
               "feedback": "Du utfordrer personbåren autoritet uten å avvise erfaringen."
             }
           ]
+        },
+        {
+          "id": "fagarbeider_people_mentor_002",
+          "mail_type": "people",
+          "mail_family": "uformell_mentor",
+          "role_scope": "fagarbeider",
+          "phase": "early",
+          "priority": 54,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Du merker at den viktigste læren ofte kommer som små korreksjoner",
+          "situation": [
+            "Mentoren din sier lite, men flytter hånden din, stopper deg i tide eller peker på noe før feilen rekker å bli synlig.",
+            "Det er en undervisning som er mer rytme enn teori.",
+            "Du kjenner at faget overføres gjennom nærvær like mye som gjennom forklaring."
+          ],
+          "thread_binding": {
+            "conflict_id": null,
+            "conflict_phase": null,
+            "people_thread_id": "uformell_mentor",
+            "story_thread_id": null,
+            "event_thread_id": null
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta imot denne formen for læring som en del av fagtradisjonen",
+              "effect": 1,
+              "tags": ["craft", "legitimacy"],
+              "feedback": "Du går dypere inn i hvordan erfaring faktisk overføres i arbeid."
+            },
+            {
+              "id": "B",
+              "label": "Be om at også denne kunnskapen må gjøres mer uttalt og delbar",
+              "effect": 0,
+              "tags": ["process", "visibility"],
+              "feedback": "Du prøver å gjøre den tause læren mer allmenn."
+            }
+          ]
         }
       ]
     },
@@ -97,6 +137,46 @@
               "effect": 0,
               "tags": ["avoidance", "legitimacy"],
               "feedback": "Du velger ro i gruppen fremfor renhet i metoden."
+            }
+          ]
+        },
+        {
+          "id": "fagarbeider_people_snarvei_002",
+          "mail_type": "people",
+          "mail_family": "kollega_med_snarveier",
+          "role_scope": "fagarbeider",
+          "phase": "early",
+          "priority": 53,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Det er vanskelig å kritisere noen som gjør dagen lettere for alle",
+          "situation": [
+            "Kollegaen med snarveiene løser ofte reelle problemer i øyeblikket og blir derfor lett en sosial favoritt.",
+            "Samtidig ser du at det som redder dagen også gradvis kan bryte ned nivået i arbeidet.",
+            "Du står mellom lojalitet til fellesskapets lettelse og lojalitet til faget."
+          ],
+          "thread_binding": {
+            "conflict_id": null,
+            "conflict_phase": null,
+            "people_thread_id": "kollega_med_snarveier",
+            "story_thread_id": null,
+            "event_thread_id": null
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Markere at nytte ikke alene kan definere hva som er godt arbeid",
+              "effect": 1,
+              "tags": ["craft", "visibility"],
+              "feedback": "Du forsvarer standard mot gruppens dragning mot det praktisk enkle."
+            },
+            {
+              "id": "B",
+              "label": "La det leve videre fordi hverdagen faktisk blir lettere av det",
+              "effect": 0,
+              "tags": ["legitimacy", "avoidance"],
+              "feedback": "Du aksepterer at det funksjonelle får forrang over det rene."
             }
           ]
         }
@@ -148,6 +228,46 @@
               "feedback": "Du bevarer roen, men lar også strukturen forbli uklar."
             }
           ]
+        },
+        {
+          "id": "fagarbeider_people_respekt_002",
+          "mail_type": "people",
+          "mail_family": "taus_fagrespekt",
+          "role_scope": "fagarbeider",
+          "phase": "mid",
+          "priority": 57,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "stable_warning",
+          "subject": "Når du sier lite, får det større vekt",
+          "situation": [
+            "Du merker at nettopp fordi du ikke kommenterer alt, blir de gangene du faktisk sier noe lest som viktigere.",
+            "Stillheten din gir ikke bare ro, men også tyngde.",
+            "Du ser at autoritet kan vokse frem som tilbakeholdenhet, ikke bare som synlighet."
+          ],
+          "thread_binding": {
+            "conflict_id": null,
+            "conflict_phase": null,
+            "people_thread_id": "taus_fagrespekt",
+            "story_thread_id": null,
+            "event_thread_id": null
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Bruke denne tyngden mer bevisst når noe virkelig står på spill",
+              "effect": 1,
+              "tags": ["visibility", "craft"],
+              "feedback": "Du gjør den stillferdige respekten mer aktiv som kraft."
+            },
+            {
+              "id": "B",
+              "label": "La autoriteten forbli indirekte og lite uttalt",
+              "effect": 0,
+              "tags": ["avoidance", "legitimacy"],
+              "feedback": "Du bevarer formen og lar mye fortsatt bero på tolkning."
+            }
+          ]
         }
       ]
     },
@@ -195,6 +315,46 @@
               "effect": 0,
               "tags": ["legitimacy", "avoidance"],
               "feedback": "Du lar respekten komme med en ubetalt pris."
+            }
+          ]
+        },
+        {
+          "id": "fagarbeider_people_ansvar_002",
+          "mail_type": "people",
+          "mail_family": "ansvar_som_glir",
+          "role_scope": "fagarbeider",
+          "phase": "mid",
+          "priority": 56,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "stable_warning",
+          "subject": "Det som ingen eier tydelig, begynner å ligne ditt ansvar",
+          "situation": [
+            "Små beslutninger, siste kontroller og vanskelige avklaringer havner stadig oftere hos deg, uten at noen egentlig har gitt deg dem formelt.",
+            "Det skjer fordi folk stoler på deg, men også fordi systemet liker å la dyktighet absorbere uklarhet.",
+            "Du kjenner at tillit og utnyttelse kan ligge ubehagelig tett."
+          ],
+          "thread_binding": {
+            "conflict_id": "ansvar_uten_myndighet",
+            "conflict_phase": "early",
+            "people_thread_id": "ansvar_som_glir",
+            "story_thread_id": null,
+            "event_thread_id": null
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Synliggjøre hvor grensene faktisk burde gå",
+              "effect": 1,
+              "tags": ["process", "visibility"],
+              "feedback": "Du prøver å stanse glidningen før den blir identiteten din."
+            },
+            {
+              "id": "B",
+              "label": "Fortsette å bære det som en naturlig del av å være den som kan mest",
+              "effect": 0,
+              "tags": ["craft", "legitimacy"],
+              "feedback": "Du gjør dyktigheten din til en enda bredere beholder for andres uklarhet."
             }
           ]
         }
