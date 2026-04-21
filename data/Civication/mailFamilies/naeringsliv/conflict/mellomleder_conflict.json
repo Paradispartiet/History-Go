@@ -43,6 +43,39 @@
               "feedback": "Du kjøper kortsiktig ro og bærer mer av spennet selv."
             }
           ]
+        },
+        {
+          "id": "mellomleder_conflict_lojalitet_intro_002",
+          "mail_type": "conflict",
+          "mail_family": "lojalitet_oppover_nedover_intro",
+          "role_scope": "mellomleder",
+          "phase": "intro",
+          "priority": 61,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Du kjenner at lojalitet oppover ofte begynner som en forventning om å tone ned sannheten",
+          "situation": [
+            "Det er ikke alltid noen sier direkte at noe må skjules, men tonen gjør det klart at enkelte sider av bildet helst bør holdes inne i mellomlaget.",
+            "Samtidig vet du at det nettopp er disse sidene laget under deg trenger at noen faktisk bærer videre.",
+            "Du står mellom to former for lojalitet som ikke uten videre kan forenes."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "La sannheten gå videre selv om den gjør deg mindre bekvem oppover",
+              "effect": 1,
+              "tags": ["visibility", "legitimacy"],
+              "feedback": "Du lar mellomleddet være gjennomgang, ikke demping."
+            },
+            {
+              "id": "B",
+              "label": "Filtrere bort mer av friksjonen for å holde systemet rolig",
+              "effect": 0,
+              "tags": ["avoidance", "process"],
+              "feedback": "Du beskytter overflaten og gjør avstanden større under den."
+            }
+          ]
         }
       ]
     },
@@ -83,6 +116,39 @@
               "effect": 0,
               "tags": ["shortcut", "legitimacy"],
               "feedback": "Du redder flyten og lar standarden tape uten formelt vedtak."
+            }
+          ]
+        },
+        {
+          "id": "mellomleder_conflict_standard_intro_002",
+          "mail_type": "conflict",
+          "mail_family": "press_mot_standard_intro",
+          "role_scope": "mellomleder",
+          "phase": "intro",
+          "priority": 60,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Du merker hvordan ordene blir mykere jo hardere trykket faktisk er",
+          "situation": [
+            "Kravet om mer tempo presenteres i formuleringer som lyder rimelige, men du vet at de i praksis betyr mindre rom for standard og kontroll.",
+            "Det er en språkbruk som forsøker å gjøre nedprioritering av kvalitet mindre synlig.",
+            "Du må velge om du oversetter språket ærlig eller lar det beholde sin myke form."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gjøre det tydelig hva det milde språket faktisk innebærer i praksis",
+              "effect": 1,
+              "tags": ["visibility", "craft"],
+              "feedback": "Du river litt i styringens høflige overflate og viser kostnaden under."
+            },
+            {
+              "id": "B",
+              "label": "La signalet komme videre i den formen det ble gitt",
+              "effect": 0,
+              "tags": ["legitimacy", "avoidance"],
+              "feedback": "Du viderefører presset som om det bare var en nøytral justering."
             }
           ]
         }
@@ -127,6 +193,39 @@
               "feedback": "Du gjør systemet roligere på utsiden og tyngre inni deg."
             }
           ]
+        },
+        {
+          "id": "mellomleder_conflict_lojalitet_early_002",
+          "mail_type": "conflict",
+          "mail_family": "lojalitet_oppover_nedover_early",
+          "role_scope": "mellomleder",
+          "phase": "early",
+          "priority": 66,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "stable_warning",
+          "subject": "Du merker at roen du produserer også kan bli en måte å skjule systemets spenning på",
+          "situation": [
+            "Det du lykkes med som mellomleder er ofte å hindre at press blir synlig nok til å skape overreaksjoner oppover.",
+            "Men jo bedre du gjør dette, desto lettere blir det også for systemet å misforstå hvor mye som faktisk bæres av laget under deg.",
+            "Spørsmålet er om din ro fortsatt hjelper, eller om den nå begynner å hindre nødvendig erkjennelse."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "La roen få mer sannhet i seg, selv om det gjør bildet skarpere",
+              "effect": 1,
+              "tags": ["process", "visibility"],
+              "feedback": "Du prøver å gjøre kontroll mindre lik forskjønning."
+            },
+            {
+              "id": "B",
+              "label": "Fortsette å absorbere trykket for å verne både oppover og nedover",
+              "effect": 0,
+              "tags": ["care", "strain"],
+              "feedback": "Du beskytter flere samtidig og gjør også deg selv tyngre som bærer."
+            }
+          ]
         }
       ]
     },
@@ -167,6 +266,39 @@
               "effect": 0,
               "tags": ["legitimacy", "shortcut"],
               "feedback": "Du blir formidler for et press du ikke fullt ut står for."
+            }
+          ]
+        },
+        {
+          "id": "mellomleder_conflict_standard_early_002",
+          "mail_type": "conflict",
+          "mail_family": "press_mot_standard_early",
+          "role_scope": "mellomleder",
+          "phase": "early",
+          "priority": 65,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "stable_warning",
+          "subject": "Det som skulle være midlertidig begynner å lære organisasjonen en ny terskel",
+          "situation": [
+            "Folk under deg venner seg gradvis til et nivå av kompromiss som først ble forklart som et unntak.",
+            "Du ser at styring ofte endrer kulturen ikke gjennom store vedtak, men gjennom det som får fortsette lenge nok.",
+            "Nå må du velge om du fortsatt kan kalle dette et avvik, eller om du skal erkjenne at normen er i ferd med å flytte seg."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Bremse glidningen og gjøre den synlig som reell normendring",
+              "effect": 1,
+              "tags": ["visibility", "risk"],
+              "feedback": "Du prøver å stoppe vanen før den fullfører arbeidet sitt."
+            },
+            {
+              "id": "B",
+              "label": "La laget tilpasse seg fordi systemet allerede har begynt å lære dette",
+              "effect": 0,
+              "tags": ["legitimacy", "avoidance"],
+              "feedback": "Du godtar bevegelsen og gjør den lettere å leve med."
             }
           ]
         }
