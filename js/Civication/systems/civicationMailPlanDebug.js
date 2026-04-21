@@ -104,7 +104,9 @@
         const beforeMailSystem = summarizeMailSystem(simState.mail_system);
         const selected = engine.selectPackByPlan(pack, simState, role, plan);
         const mails = Array.isArray(selected?.pack?.mails) ? selected.pack.mails : [];
-        const chosen = mails[0] || null;
+        const chosen = typeof engine.chooseMailFromPack === "function"
+          ? engine.chooseMailFromPack(selected?.pack || { mails }, simState)
+          : (mails[0] || null);
 
         let afterMailSystem = beforeMailSystem;
         if (chosen) {
@@ -160,8 +162,94 @@
     }
   }
 
+  async function simulateRepeated(roleInput, runs = 5) {
+    const role = normalizeRoleInput(roleInput);
+    if (!role) {
+      throw new Error("Ukjent rolle. Bruk 'Arbeider', 'Fagarbeider' eller 'Mellomleder'.");
+    }
+
+    const totalRuns = Math.max(1, Number(runs || 1));
+    const runResults = [];
+    const byStep = new Map();
+
+    for (let i = 0; i < totalRuns; i += 1) {
+      const result = await simulate(role);
+      runResults.push(result);
+
+      for (const step of (Array.isArray(result?.steps) ? result.steps : [])) {
+        const stepKey = Number(step?.step || 0);
+        if (!byStep.has(stepKey)) {
+          byStep.set(stepKey, {
+            step: stepKey,
+            chosenIds: new Set(),
+            chosenFamilies: new Set(),
+            fallbackCount: 0,
+            emptyCount: 0,
+            selectedCounts: [],
+            actualTypes: new Set()
+          });
+        }
+        const slot = byStep.get(stepKey);
+        if (step?.chosenId) slot.chosenIds.add(step.chosenId);
+        if (step?.chosenFamily) slot.chosenFamilies.add(step.chosenFamily);
+        if (step?.fallbackUsed) slot.fallbackCount += 1;
+        if (!step?.chosenId) slot.emptyCount += 1;
+        slot.selectedCounts.push(Number(step?.selectedCount || 0));
+        if (step?.actualType) slot.actualTypes.add(step.actualType);
+      }
+    }
+
+    const summaryRows = [...byStep.values()]
+      .sort((a, b) => a.step - b.step)
+      .map((slot) => {
+        const avgSelectedCount = slot.selectedCounts.length
+          ? Number((slot.selectedCounts.reduce((sum, n) => sum + n, 0) / slot.selectedCounts.length).toFixed(2))
+          : 0;
+        return {
+          step: slot.step,
+          uniqueChosenIds: slot.chosenIds.size,
+          uniqueFamilies: slot.chosenFamilies.size,
+          actualTypes: [...slot.actualTypes].join(", "),
+          fallbackRuns: slot.fallbackCount,
+          emptyRuns: slot.emptyCount,
+          avgSelectedCount,
+          chosenIds: [...slot.chosenIds].join(", "),
+          families: [...slot.chosenFamilies].join(", ")
+        };
+      });
+
+    const overview = {
+      role: role.title,
+      runs: totalRuns,
+      totalFallbackRuns: summaryRows.reduce((sum, row) => sum + row.fallbackRuns, 0),
+      totalEmptyRuns: summaryRows.reduce((sum, row) => sum + row.emptyRuns, 0),
+      stepsWithLowVariation: summaryRows.filter((row) => row.uniqueChosenIds <= 1).map((row) => row.step),
+      stepsWithThinPools: summaryRows.filter((row) => row.avgSelectedCount <= 1).map((row) => row.step)
+    };
+
+    console.table(summaryRows);
+    console.log("CiviMailPlanDebug repeated summary", overview);
+
+    return {
+      overview,
+      summaryRows,
+      runs: runResults
+    };
+  }
+
+  async function simulateRepeatedAll(runs = 5) {
+    const roles = ["Arbeider", "Fagarbeider", "Mellomleder"];
+    const out = [];
+    for (const role of roles) {
+      out.push(await simulateRepeated(role, runs));
+    }
+    return out;
+  }
+
   window.CiviMailPlanDebug = {
     simulate,
+    simulateRepeated,
+    simulateRepeatedAll,
     simulateArbeider() {
       return simulate("Arbeider");
     },
@@ -170,6 +258,15 @@
     },
     simulateMellomleder() {
       return simulate("Mellomleder");
+    },
+    simulateArbeiderRepeated(runs = 5) {
+      return simulateRepeated("Arbeider", runs);
+    },
+    simulateFagarbeiderRepeated(runs = 5) {
+      return simulateRepeated("Fagarbeider", runs);
+    },
+    simulateMellomlederRepeated(runs = 5) {
+      return simulateRepeated("Mellomleder", runs);
     }
   };
 })();
