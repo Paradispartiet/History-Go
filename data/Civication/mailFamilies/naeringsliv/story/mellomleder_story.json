@@ -39,6 +39,39 @@
               "feedback": "Du ser tydeligere den stille kostnaden i mellomleddet."
             }
           ]
+        },
+        {
+          "id": "mellomleder_story_usynlighet_002",
+          "mail_type": "story",
+          "mail_family": "mellomlagets_usynlighet",
+          "role_scope": "mellomleder",
+          "phase": "mid",
+          "priority": 55,
+          "cooldown": 4,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Du merker at mye av jobben din er å sørge for at andre slipper å merke den",
+          "situation": [
+            "Den beste dagen som mellomleder er ofte den dagen minst av koordineringsarbeidet ditt blir synlig for andre.",
+            "Du rydder i forkant, demper misforståelser og holder forbindelser sammen før de sprekker.",
+            "Det gjør rollen effektiv og samtidig vanskelig å peke på som verdi."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Akseptere dette som en dyp del av ledelsesarbeidet",
+              "effect": 1,
+              "tags": ["process", "legitimacy"],
+              "feedback": "Du gjør det usynlige arbeidet mer bevisst i egen forståelse."
+            },
+            {
+              "id": "B",
+              "label": "Kjenne at rollen blir slitsom nettopp fordi den glir så lett bort fra anerkjennelse",
+              "effect": 0,
+              "tags": ["strain", "visibility"],
+              "feedback": "Du ser tydeligere hvordan fravær av brudd ofte skjuler hvem som bar vekten."
+            }
+          ]
         }
       ]
     },
@@ -75,6 +108,39 @@
               "effect": 0,
               "tags": ["strain", "visibility"],
               "feedback": "Du ser tydeligere hvor mye rolle og person smelter sammen i oversettelsen."
+            }
+          ]
+        },
+        {
+          "id": "mellomleder_story_sprak_002",
+          "mail_type": "story",
+          "mail_family": "styringens_doble_sprak",
+          "role_scope": "mellomleder",
+          "phase": "mid",
+          "priority": 54,
+          "cooldown": 4,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Noen ganger er det ikke innholdet som er vanskeligst, men oversettelsen",
+          "situation": [
+            "Det du vet om laget lar seg ikke alltid si oppover uten å miste noe vesentlig på veien.",
+            "Samtidig må krav ovenfra ned til folk under deg i en form som kan bæres i praksis.",
+            "Du kjenner at språket i seg selv blir en del av styringen."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Se dette som et ansvar for presisjon, ikke bare kommunikasjon",
+              "effect": 1,
+              "tags": ["process", "craft"],
+              "feedback": "Du gjør oversettelsen til en del av selve ledelsesfaget."
+            },
+            {
+              "id": "B",
+              "label": "Akseptere at noe alltid vil tapes mellom nivåene",
+              "effect": 0,
+              "tags": ["avoidance", "strain"],
+              "feedback": "Du erkjenner begrensningen og lar den også sette rammen."
             }
           ]
         }
