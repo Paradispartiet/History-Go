@@ -1,0 +1,79 @@
+{
+  "schema": "civication_mail_plan_v1",
+  "id": "fagarbeider_naeringsliv_v1",
+  "category": "naeringsliv",
+  "role_scope": "fagarbeider",
+  "description": "Fast dramaturgisk plan for Fagarbeider i Næringsliv & industri.",
+  "sequence": [
+    {
+      "step": 1,
+      "type": "job",
+      "phase": "intro",
+      "allowed_families": ["fagarbeider_ansvar", "faglig_presisjon"],
+      "fallback_types": ["people", "conflict"]
+    },
+    {
+      "step": 2,
+      "type": "job",
+      "phase": "intro",
+      "allowed_families": ["opplaering_av_andre", "faglig_presisjon"],
+      "fallback_types": ["conflict", "people"]
+    },
+    {
+      "step": 3,
+      "type": "conflict",
+      "phase": "intro",
+      "allowed_families": ["faglig_integritet_intro", "ansvar_uten_myndighet_intro"],
+      "fallback_types": ["job"]
+    },
+    {
+      "step": 4,
+      "type": "people",
+      "phase": "early",
+      "allowed_families": ["uformell_mentor", "kollega_med_snarveier"],
+      "fallback_types": ["job", "conflict"]
+    },
+    {
+      "step": 5,
+      "type": "job",
+      "phase": "early",
+      "allowed_families": ["koordinering_i_press", "forbedring_uten_mandat_fag"],
+      "fallback_types": ["people", "conflict"]
+    },
+    {
+      "step": 6,
+      "type": "conflict",
+      "phase": "early",
+      "allowed_families": ["faglig_integritet_early", "ansvar_uten_myndighet_early"],
+      "fallback_types": ["job"]
+    },
+    {
+      "step": 7,
+      "type": "story",
+      "phase": "mid",
+      "allowed_families": ["kunnskapens_usynlighet", "industriell_stolthet"],
+      "fallback_types": ["conflict", "people", "job"]
+    },
+    {
+      "step": 8,
+      "type": "job",
+      "phase": "mid",
+      "allowed_families": ["koordinering_i_press", "opplaering_av_andre"],
+      "fallback_types": ["people", "conflict"]
+    },
+    {
+      "step": 9,
+      "type": "people",
+      "phase": "mid",
+      "allowed_families": ["taus_fagrespekt", "ansvar_som_glir"],
+      "fallback_types": ["job", "conflict"]
+    },
+    {
+      "step": 10,
+      "type": "event",
+      "phase": "climax",
+      "allowed_families": ["kritisk_avvik", "revisjon_av_rutine"],
+      "fallback_types": ["conflict", "job"]
+    }
+  ]
+}
