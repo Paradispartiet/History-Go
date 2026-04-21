@@ -348,14 +348,12 @@
 
         for (const mail of (Array.isArray(mails) ? mails : [])) {
           const id = String(mail?.id || "").trim();
-          const repeatable = mail?.repeatable === true;
-          const cooldown = Math.max(0, Number(mail?.cooldown || 0));
           const cooldownLeft = Math.max(0, Number(cooldowns[id] || 0));
           const seenBefore = consumedMailIds.has(id);
           const recentlySeen = recentMailIds.has(id);
 
           if (cooldownLeft > 0) continue;
-          if (!repeatable && seenBefore) continue;
+          if (seenBefore) continue;
           if (recentlySeen) {
             fallback.push(mail);
             continue;
@@ -396,7 +394,7 @@
         if (!mails.length) return null;
 
         const eligible = this.getEligibleMails(mails, state);
-        if (!eligible.length) return mails[0] || null;
+        if (!eligible.length) return null;
 
         let best = null;
         let bestScore = -Infinity;
@@ -616,7 +614,7 @@
             const chosen = this.chooseMailFromPack(plannedPack, this.getState());
             const narrowedPack = chosen
               ? { ...plannedPack, mails: [chosen] }
-              : plannedPack;
+              : { ...plannedPack, mails: [] };
             return originalPick(narrowedPack, stateArg);
           };
 
@@ -654,7 +652,7 @@
             const chosen = this.chooseMailFromPack(plannedPack, this.getState());
             const narrowedPack = chosen
               ? { ...plannedPack, mails: [chosen] }
-              : plannedPack;
+              : { ...plannedPack, mails: [] };
             return originalPick(narrowedPack, stateArg);
           };
 
