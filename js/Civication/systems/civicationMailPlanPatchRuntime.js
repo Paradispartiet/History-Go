@@ -6,6 +6,33 @@
       const proto = Engine.prototype;
       if (proto.__mailPlanRuntimePatched) return true;
 
+      const PHASE_ORDER = ["intro", "early", "mid", "climax"];
+
+      function normalizePhase(value) {
+        const phase = String(value || "").trim().toLowerCase();
+        return PHASE_ORDER.includes(phase) ? phase : "intro";
+      }
+
+      function nextPhase(value) {
+        const phase = normalizePhase(value);
+        const idx = PHASE_ORDER.indexOf(phase);
+        return PHASE_ORDER[Math.min(idx + 1, PHASE_ORDER.length - 1)] || "climax";
+      }
+
+      function getThreadPhase(binding, fallbackPhase) {
+        return normalizePhase(
+          binding?.conflict_phase ||
+          binding?.people_phase ||
+          binding?.story_phase ||
+          binding?.event_phase ||
+          fallbackPhase
+        );
+      }
+
+      function uniqueStrings(values) {
+        return [...new Set((Array.isArray(values) ? values : []).map((v) => String(v || "").trim()).filter(Boolean))];
+      }
+
       const originalResetForNewJob = proto.resetForNewJob;
       proto.resetForNewJob = function (role_key) {
         const res = originalResetForNewJob.call(this, role_key);
@@ -207,12 +234,85 @@
         };
       };
 
+      proto.isMailAllowedByThreadState = function (mail, state) {
+        const mailSystem = state?.mail_system && typeof state.mail_system === "object"
+          ? state.mail_system
+          : {};
+        const binding = mail?.thread_binding && typeof mail.thread_binding === "object"
+          ? mail.thread_binding
+          : {};
+        const phase = getThreadPhase(binding, mail?.phase);
+
+        const conflictId = String(binding?.conflict_id || "").trim();
+        if (conflictId) {
+          const activeConflictId = String(mailSystem?.active_conflict_id || "").trim();
+          const activeConflictPhase = normalizePhase(mailSystem?.active_conflict_phase || "intro");
+          if (!activeConflictId) {
+            return phase === "intro";
+          }
+          if (activeConflictId !== conflictId) {
+            return phase === "intro";
+          }
+          return activeConflictPhase === phase;
+        }
+
+        const peopleThreadId = String(binding?.people_thread_id || "").trim();
+        if (peopleThreadId) {
+          const activeThreads = new Set(uniqueStrings(mailSystem?.active_people_threads));
+          const threadPhases = mailSystem?.people_thread_phases && typeof mailSystem.people_thread_phases === "object"
+            ? mailSystem.people_thread_phases
+            : {};
+          const currentPhase = normalizePhase(threadPhases[peopleThreadId] || "intro");
+          if (!activeThreads.has(peopleThreadId)) {
+            return phase === "intro" || phase === "early";
+          }
+          return currentPhase === phase;
+        }
+
+        const storyThreadId = String(binding?.story_thread_id || "").trim();
+        if (storyThreadId) {
+          const activeThreads = new Set(uniqueStrings(mailSystem?.active_story_threads));
+          const threadPhases = mailSystem?.story_thread_phases && typeof mailSystem.story_thread_phases === "object"
+            ? mailSystem.story_thread_phases
+            : {};
+          const currentPhase = normalizePhase(threadPhases[storyThreadId] || "intro");
+          if (!activeThreads.has(storyThreadId)) {
+            return phase === "intro" || phase === "mid";
+          }
+          return currentPhase === phase;
+        }
+
+        const eventThreadId = String(binding?.event_thread_id || "").trim();
+        if (eventThreadId) {
+          const activeEventThreadId = String(mailSystem?.active_event_thread_id || "").trim();
+          const activeEventPhase = normalizePhase(mailSystem?.active_event_phase || "intro");
+          if (!activeEventThreadId) {
+            return phase === "climax" || phase === "intro";
+          }
+          if (activeEventThreadId !== eventThreadId) {
+            return phase === "climax" || phase === "intro";
+          }
+          return activeEventPhase === phase;
+        }
+
+        return true;
+      };
+
+      proto.filterPoolByThreadState = function (pack, state) {
+        if (!Array.isArray(pack?.mails)) return pack;
+        return {
+          ...pack,
+          mails: pack.mails.filter((mail) => this.isMailAllowedByThreadState(mail, state))
+        };
+      };
+
       proto.selectPackByPlan = function (pack, state, active, plan) {
         const { step } = this.getCurrentPlanStep(plan, state);
         if (!step) return { plannedType: null, plannedStep: null, pack };
 
         const firstTypePack = this.filterPoolByMailType(pack, step.type);
-        const firstFamilyPack = this.filterPoolByFamilies(firstTypePack, step.allowed_families);
+        const firstThreadPack = this.filterPoolByThreadState(firstTypePack, state);
+        const firstFamilyPack = this.filterPoolByFamilies(firstThreadPack, step.allowed_families);
 
         if (Array.isArray(firstFamilyPack?.mails) && firstFamilyPack.mails.length) {
           return { plannedType: step.type, plannedStep: step, pack: firstFamilyPack };
@@ -220,13 +320,16 @@
 
         const fallbackTypes = Array.isArray(step?.fallback_types) ? step.fallback_types : [];
         for (const fallbackType of fallbackTypes) {
-          const fallbackPack = this.filterPoolByMailType(pack, fallbackType);
+          const fallbackPack = this.filterPoolByThreadState(
+            this.filterPoolByMailType(pack, fallbackType),
+            state
+          );
           if (Array.isArray(fallbackPack?.mails) && fallbackPack.mails.length) {
             return { plannedType: fallbackType, plannedStep: step, pack: fallbackPack };
           }
         }
 
-        return { plannedType: step.type, plannedStep: step, pack };
+        return { plannedType: step.type, plannedStep: step, pack: this.filterPoolByThreadState(pack, state) };
       };
 
       const originalBuildMailPool = proto.buildMailPool;
@@ -273,6 +376,10 @@
 
         const mailType = String(eventObj?.mail_type || "").trim() || null;
         const mailFamily = String(eventObj?.mail_family || "").trim() || null;
+        const binding = eventObj?.thread_binding && typeof eventObj.thread_binding === "object"
+          ? eventObj.thread_binding
+          : {};
+        const phase = getThreadPhase(binding, eventObj?.phase);
 
         const consumedMailIds = Array.isArray(currentMailSystem.consumed_mail_ids)
           ? currentMailSystem.consumed_mail_ids.slice()
@@ -291,24 +398,77 @@
           consumedFamilies.push(mailFamily);
         }
 
-        history.push({
-          id: String(eventObj?.id || "").trim() || null,
-          mail_type: mailType,
-          mail_family: mailFamily,
-          source_type: String(eventObj?.source_type || "").trim() || null,
-          at: new Date().toISOString()
-        });
+        const nextPeopleThreads = uniqueStrings(currentMailSystem.active_people_threads);
+        const nextPeoplePhases = {
+          ...(currentMailSystem.people_thread_phases && typeof currentMailSystem.people_thread_phases === "object"
+            ? currentMailSystem.people_thread_phases
+            : {})
+        };
+        const nextStoryThreads = uniqueStrings(currentMailSystem.active_story_threads);
+        const nextStoryPhases = {
+          ...(currentMailSystem.story_thread_phases && typeof currentMailSystem.story_thread_phases === "object"
+            ? currentMailSystem.story_thread_phases
+            : {})
+        };
 
-        this.setState({
-          mail_system: {
-            ...currentMailSystem,
-            step_index: Number(currentMailSystem.step_index || 0) + 1,
-            last_mail_type: mailType,
-            consumed_mail_ids: consumedMailIds,
-            consumed_families: consumedFamilies,
-            history: history.slice(-50)
+        const nextMailSystem = {
+          ...currentMailSystem,
+          step_index: Number(currentMailSystem.step_index || 0) + 1,
+          last_mail_type: mailType,
+          consumed_mail_ids: consumedMailIds,
+          consumed_families: consumedFamilies,
+          history: history.slice(-50)
+        };
+
+        const conflictId = String(binding?.conflict_id || "").trim();
+        if (conflictId) {
+          nextMailSystem.active_conflict_id = conflictId;
+          nextMailSystem.active_conflict_phase = nextPhase(phase);
+        }
+
+        const peopleThreadId = String(binding?.people_thread_id || "").trim();
+        if (peopleThreadId) {
+          if (!nextPeopleThreads.includes(peopleThreadId)) {
+            nextPeopleThreads.push(peopleThreadId);
           }
-        });
+          nextPeoplePhases[peopleThreadId] = nextPhase(phase);
+          nextMailSystem.active_people_threads = nextPeopleThreads;
+          nextMailSystem.people_thread_phases = nextPeoplePhases;
+        }
+
+        const storyThreadId = String(binding?.story_thread_id || "").trim();
+        if (storyThreadId) {
+          if (!nextStoryThreads.includes(storyThreadId)) {
+            nextStoryThreads.push(storyThreadId);
+          }
+          nextStoryPhases[storyThreadId] = nextPhase(phase);
+          nextMailSystem.active_story_threads = nextStoryThreads;
+          nextMailSystem.story_thread_phases = nextStoryPhases;
+        }
+
+        const eventThreadId = String(binding?.event_thread_id || "").trim();
+        if (eventThreadId) {
+          nextMailSystem.active_event_thread_id = eventThreadId;
+          nextMailSystem.active_event_phase = nextPhase(phase);
+        }
+
+        nextMailSystem.history = [
+          ...history,
+          {
+            id: String(eventObj?.id || "").trim() || null,
+            mail_type: mailType,
+            mail_family: mailFamily,
+            source_type: String(eventObj?.source_type || "").trim() || null,
+            conflict_id: conflictId || null,
+            people_thread_id: peopleThreadId || null,
+            story_thread_id: storyThreadId || null,
+            event_thread_id: eventThreadId || null,
+            phase,
+            at: new Date().toISOString()
+          }
+        ].slice(-50);
+
+        this.setState({ mail_system: nextMailSystem });
 
         return res;
       };
