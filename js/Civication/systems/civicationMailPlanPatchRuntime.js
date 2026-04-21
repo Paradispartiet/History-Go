@@ -328,6 +328,98 @@
         };
       };
 
+      proto.getRecentMailIds = function (state, limit = 6) {
+        const history = Array.isArray(state?.mail_system?.history) ? state.mail_system.history : [];
+        return history.slice(-limit).map((entry) => String(entry?.id || "").trim()).filter(Boolean);
+      };
+
+      proto.getEligibleMails = function (mails, state) {
+        const mailSystem = state?.mail_system && typeof state.mail_system === "object"
+          ? state.mail_system
+          : {};
+        const consumedMailIds = new Set(uniqueStrings(mailSystem?.consumed_mail_ids));
+        const cooldowns = mailSystem?.cooldowns && typeof mailSystem.cooldowns === "object"
+          ? mailSystem.cooldowns
+          : {};
+        const recentMailIds = new Set(this.getRecentMailIds(state, 6));
+
+        const eligible = [];
+        const fallback = [];
+
+        for (const mail of (Array.isArray(mails) ? mails : [])) {
+          const id = String(mail?.id || "").trim();
+          const repeatable = mail?.repeatable === true;
+          const cooldown = Math.max(0, Number(mail?.cooldown || 0));
+          const cooldownLeft = Math.max(0, Number(cooldowns[id] || 0));
+          const seenBefore = consumedMailIds.has(id);
+          const recentlySeen = recentMailIds.has(id);
+
+          if (cooldownLeft > 0) continue;
+          if (!repeatable && seenBefore) continue;
+          if (recentlySeen) {
+            fallback.push(mail);
+            continue;
+          }
+          eligible.push(mail);
+        }
+
+        return eligible.length ? eligible : fallback;
+      };
+
+      proto.scoreMailCandidate = function (mail, state) {
+        const mailSystem = state?.mail_system && typeof state.mail_system === "object"
+          ? state.mail_system
+          : {};
+        const history = Array.isArray(mailSystem?.history) ? mailSystem.history : [];
+        const familyId = String(mail?.mail_family || "").trim();
+        const basePriority = Math.max(1, Number(mail?.priority || 1));
+        let score = basePriority;
+
+        if (familyId) {
+          const sameFamilyRecent = history.slice(-4).filter((entry) => String(entry?.mail_family || "").trim() === familyId).length;
+          if (sameFamilyRecent > 0) {
+            score = Math.max(1, score - sameFamilyRecent * 8);
+          }
+        }
+
+        const stage = String(mail?.stage || "").trim();
+        if (stage === "warning" || stage === "stable_warning") {
+          score += 3;
+        }
+
+        score += Math.random() * 2.5;
+        return score;
+      };
+
+      proto.chooseMailFromPack = function (pack, state) {
+        const mails = Array.isArray(pack?.mails) ? pack.mails.slice() : [];
+        if (!mails.length) return null;
+
+        const eligible = this.getEligibleMails(mails, state);
+        if (!eligible.length) return mails[0] || null;
+
+        let best = null;
+        let bestScore = -Infinity;
+        for (const mail of eligible) {
+          const score = this.scoreMailCandidate(mail, state);
+          if (score > bestScore) {
+            best = mail;
+            bestScore = score;
+          }
+        }
+        return best || eligible[0] || null;
+      };
+
+      proto.decrementMailCooldowns = function (cooldowns) {
+        const out = {};
+        const src = cooldowns && typeof cooldowns === "object" ? cooldowns : {};
+        for (const [id, value] of Object.entries(src)) {
+          const next = Math.max(0, Number(value || 0) - 1);
+          if (next > 0) out[id] = next;
+        }
+        return out;
+      };
+
       proto.selectPackByPlan = function (pack, state, active, plan) {
         const { step } = this.getCurrentPlanStep(plan, state);
         if (!step) return { plannedType: null, plannedStep: null, pack };
@@ -410,12 +502,19 @@
         const history = Array.isArray(currentMailSystem.history)
           ? currentMailSystem.history.slice()
           : [];
+        const nextCooldowns = this.decrementMailCooldowns(currentMailSystem.cooldowns);
 
         if (eventObj?.id && !consumedMailIds.includes(eventObj.id)) {
           consumedMailIds.push(eventObj.id);
         }
         if (mailFamily && !consumedFamilies.includes(mailFamily)) {
           consumedFamilies.push(mailFamily);
+        }
+        if (eventObj?.id) {
+          const cooldown = Math.max(0, Number(eventObj?.cooldown || 0));
+          if (cooldown > 0) {
+            nextCooldowns[eventObj.id] = cooldown;
+          }
         }
 
         const nextPeopleThreads = uniqueStrings(currentMailSystem.active_people_threads);
@@ -437,6 +536,7 @@
           last_mail_type: mailType,
           consumed_mail_ids: consumedMailIds,
           consumed_families: consumedFamilies,
+          cooldowns: nextCooldowns,
           history: history.slice(-50)
         };
 
@@ -513,7 +613,11 @@
 
           this.pickEventFromPack = (pack, stateArg) => {
             const plannedPack = pack?.__planned?.pack || pack;
-            return originalPick(plannedPack, stateArg);
+            const chosen = this.chooseMailFromPack(plannedPack, this.getState());
+            const narrowedPack = chosen
+              ? { ...plannedPack, mails: [chosen] }
+              : plannedPack;
+            return originalPick(narrowedPack, stateArg);
           };
 
           try {
@@ -547,7 +651,11 @@
 
           this.pickEventFromPack = (pack, stateArg) => {
             const plannedPack = pack?.__planned?.pack || pack;
-            return originalPick(plannedPack, stateArg);
+            const chosen = this.chooseMailFromPack(plannedPack, this.getState());
+            const narrowedPack = chosen
+              ? { ...plannedPack, mails: [chosen] }
+              : plannedPack;
+            return originalPick(narrowedPack, stateArg);
           };
 
           try {
