@@ -47,7 +47,12 @@ async function init() {
 }
 
 function refreshCivicationAfterAnswer(previousEventId) {
-  window.dispatchEvent(new Event("updateProfile"));
+  function rerenderMailViews() {
+    renderCivicationInbox();
+    renderWorkdayPanel();
+  }
+
+  rerenderMailViews();
 
   const delays = [80, 220, 500, 900];
   delays.forEach(function (delay) {
@@ -56,11 +61,11 @@ function refreshCivicationAfterAnswer(previousEventId) {
       const nextId = String(pending?.event?.id || "").trim() || null;
 
       if (!previousEventId || nextId !== previousEventId || !nextId) {
-        window.dispatchEvent(new Event("updateProfile"));
+        rerenderMailViews();
         return;
       }
 
-      window.dispatchEvent(new Event("updateProfile"));
+      rerenderMailViews();
     }, delay);
   });
 }
