@@ -46,6 +46,25 @@ async function init() {
   window.addEventListener("civi:homeChanged", renderHomeStatus);
 }
 
+function refreshCivicationAfterAnswer(previousEventId) {
+  window.dispatchEvent(new Event("updateProfile"));
+
+  const delays = [80, 220, 500, 900];
+  delays.forEach(function (delay) {
+    window.setTimeout(function () {
+      const pending = window.HG_CiviEngine?.getPendingEvent?.();
+      const nextId = String(pending?.event?.id || "").trim() || null;
+
+      if (!previousEventId || nextId !== previousEventId || !nextId) {
+        window.dispatchEvent(new Event("updateProfile"));
+        return;
+      }
+
+      window.dispatchEvent(new Event("updateProfile"));
+    }, delay);
+  });
+}
+
 // ============================================================
 // ACTION WIRING (KJØRES ÉN GANG)
 // ============================================================
