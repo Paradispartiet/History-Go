@@ -39,20 +39,14 @@
               "id": "A",
               "label": "Hold standarden selv om det sinker",
               "effect": 1,
-              "tags": [
-                "craft",
-                "risk"
-              ],
+              "tags": ["craft", "risk"],
               "feedback": "Du holder nivået. Nå blir tempoet plutselig ditt problem."
             },
             {
               "id": "B",
               "label": "Prioriter flyt og håp at det holder",
               "effect": 0,
-              "tags": [
-                "shortcut",
-                "visibility"
-              ],
+              "tags": ["shortcut", "visibility"],
               "feedback": "Linjen ser penere ut. Du vet at noe glipper."
             }
           ]
@@ -67,7 +61,7 @@
           "cooldown": 2,
           "repeatable": false,
           "stage": "stable",
-          "subject": "«Det holder for i dag»",
+          "subject": "Det holder for i dag",
           "situation": [
             "En oppgave blir avsluttet før den egentlig er ferdig.",
             "Ingen sier direkte at det er godt nok.",
@@ -85,21 +79,55 @@
               "id": "A",
               "label": "Åpne saken igjen og gjøre den ordentlig",
               "effect": -1,
-              "tags": [
-                "process",
-                "risk"
-              ],
+              "tags": ["process", "risk"],
               "feedback": "Du gjør det riktig. Du gjør deg også synlig."
             },
             {
               "id": "B",
               "label": "La den gå videre som den er",
               "effect": 0,
-              "tags": [
-                "avoidance",
-                "shortcut"
-              ],
+              "tags": ["avoidance", "shortcut"],
               "feedback": "Ting flyter videre. Du bærer resten i kroppen."
+            }
+          ]
+        },
+        {
+          "id": "arbeider_conflict_tempo_intro_003",
+          "mail_type": "conflict",
+          "mail_family": "tempo_vs_kvalitet_intro",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 57,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Snarveien begynner å ligne regel",
+          "situation": [
+            "En midlertidig løsning blir brukt så ofte at den ikke lenger føles midlertidig.",
+            "Ingen har bestemt at dette er standarden, men alle oppfører seg som om det er den.",
+            "Du merker hvor raskt press kan gjøre improvisasjon til struktur."
+          ],
+          "thread_binding": {
+            "conflict_id": "tempo_vs_kvalitet",
+            "conflict_phase": "intro",
+            "people_thread_id": null,
+            "story_thread_id": null,
+            "event_thread_id": null
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Holde fast ved den gamle standarden",
+              "effect": 1,
+              "tags": ["craft", "visibility"],
+              "feedback": "Du nekter å la det tilfeldige bli normal praksis."
+            },
+            {
+              "id": "B",
+              "label": "Godta snarveien som ny hverdag",
+              "effect": 0,
+              "tags": ["legitimacy", "shortcut"],
+              "feedback": "Du glir med i en regel ingen vil eie."
             }
           ]
         }
@@ -140,21 +168,55 @@
               "id": "A",
               "label": "Ta litt ekstra og dekke over det",
               "effect": 0,
-              "tags": [
-                "legitimacy",
-                "avoidance"
-              ],
+              "tags": ["legitimacy", "avoidance"],
               "feedback": "Du holder laget samlet. Kostnaden blir din."
             },
             {
               "id": "B",
               "label": "La saken bli synlig og beskytte deg selv",
               "effect": -1,
-              "tags": [
-                "visibility",
-                "risk"
-              ],
+              "tags": ["visibility", "risk"],
               "feedback": "Du beskytter deg. Stemningen skifter."
+            }
+          ]
+        },
+        {
+          "id": "arbeider_conflict_lojalitet_intro_002",
+          "mail_type": "conflict",
+          "mail_family": "lojalitet_vs_selvoppholdelse_intro",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 58,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Du vet mer enn du burde bære alene",
+          "situation": [
+            "Du får vite hvorfor noe gikk galt, men også hvorfor ingen ønsker at det skal sies høyt.",
+            "Kunnskap blir plutselig en byrde, ikke bare en innsikt.",
+            "Du merker at lojalitet ofte begynner som taushet."
+          ],
+          "thread_binding": {
+            "conflict_id": "lojalitet_vs_selvoppholdelse",
+            "conflict_phase": "intro",
+            "people_thread_id": "taus_lojalitet",
+            "story_thread_id": null,
+            "event_thread_id": null
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Bære det videre for å beskytte andre",
+              "effect": 0,
+              "tags": ["legitimacy", "avoidance"],
+              "feedback": "Du beskytter fellesskapet på kort sikt og gjør deg selv mer innviklet i det."
+            },
+            {
+              "id": "B",
+              "label": "Markere at kunnskapen må deles riktig",
+              "effect": 1,
+              "tags": ["process", "risk"],
+              "feedback": "Du prøver å flytte byrden fra person til struktur."
             }
           ]
         }
@@ -195,21 +257,55 @@
               "id": "A",
               "label": "Dokumenter feilen og vis hvor den oppsto",
               "effect": 1,
-              "tags": [
-                "process",
-                "legitimacy"
-              ],
+              "tags": ["process", "legitimacy"],
               "feedback": "Du gjør konflikten synlig. Det er nyttig og farlig."
             },
             {
               "id": "B",
               "label": "Bare rydde opp og gå videre",
               "effect": 0,
-              "tags": [
-                "craft",
-                "avoidance"
-              ],
+              "tags": ["craft", "avoidance"],
               "feedback": "Du redder dagen. Mønsteret får leve videre."
+            }
+          ]
+        },
+        {
+          "id": "arbeider_conflict_tempo_early_002",
+          "mail_type": "conflict",
+          "mail_family": "tempo_vs_kvalitet_early",
+          "role_scope": "arbeider",
+          "phase": "early",
+          "priority": 67,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "stable_warning",
+          "subject": "Tallene ser bedre ut enn arbeidet føles",
+          "situation": [
+            "Resultatene for dagen ser penere ut enn restene du står i.",
+            "Det som måles ovenfra, stemmer dårlig med det som merkes nedenfra.",
+            "Du må velge om du skal stole på tallene eller på sporene de etterlater."
+          ],
+          "thread_binding": {
+            "conflict_id": "tempo_vs_kvalitet",
+            "conflict_phase": "early",
+            "people_thread_id": null,
+            "story_thread_id": null,
+            "event_thread_id": null
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Peke på kostnaden som skjules i regnskapet",
+              "effect": 1,
+              "tags": ["process", "visibility"],
+              "feedback": "Du gjør målesystemet mindre uskyldig."
+            },
+            {
+              "id": "B",
+              "label": "Akseptere at tallene teller mest akkurat nå",
+              "effect": 0,
+              "tags": ["legitimacy", "shortcut"],
+              "feedback": "Du lar det målbare definere virkeligheten for denne dagen."
             }
           ]
         }
@@ -235,13 +331,13 @@
           "subject": "Navnet ditt begynner å følge andres feil",
           "situation": [
             "Du har hjulpet så ofte at grensene har blitt uklare.",
-            "Når noe svikter, nevnes gruppen – og gruppen er plutselig deg.",
+            "Når noe svikter, nevnes gruppen og gruppen er plutselig deg.",
             "Du må velge om lojalitet fortsatt er gratis."
           ],
           "thread_binding": {
             "conflict_id": "lojalitet_vs_selvoppholdelse",
             "conflict_phase": "early",
-            "people_thread_id": "taus_loyalitet",
+            "people_thread_id": "taus_lojalitet",
             "story_thread_id": null,
             "event_thread_id": null
           },
@@ -250,21 +346,55 @@
               "id": "A",
               "label": "Trekk en grense og avklar ansvar",
               "effect": 1,
-              "tags": [
-                "process",
-                "risk"
-              ],
+              "tags": ["process", "risk"],
               "feedback": "Du beskytter deg. Nå vet alle at du har merket det."
             },
             {
               "id": "B",
               "label": "Fortsett å bære det i stillhet",
               "effect": -1,
-              "tags": [
-                "avoidance",
-                "legitimacy"
-              ],
+              "tags": ["avoidance", "legitimacy"],
               "feedback": "Lojaliteten kjennes edel helt til regningen kommer."
+            }
+          ]
+        },
+        {
+          "id": "arbeider_conflict_lojalitet_early_002",
+          "mail_type": "conflict",
+          "mail_family": "lojalitet_vs_selvoppholdelse_early",
+          "role_scope": "arbeider",
+          "phase": "early",
+          "priority": 66,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "stable_warning",
+          "subject": "Du blir lett å bruke fordi du er lett å stole på",
+          "situation": [
+            "Det du gjør godt, gjør også at andre begynner å lene seg mot deg uten å spørre.",
+            "Kompetanse blir gradvis til ekstra belastning når ingen eier grensene.",
+            "Du kjenner at pålitelighet kan være en form for sårbarhet."
+          ],
+          "thread_binding": {
+            "conflict_id": "lojalitet_vs_selvoppholdelse",
+            "conflict_phase": "early",
+            "people_thread_id": "taus_lojalitet",
+            "story_thread_id": null,
+            "event_thread_id": null
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gjøre grensene tydelige før mønsteret fester seg mer",
+              "effect": 1,
+              "tags": ["process", "visibility"],
+              "feedback": "Du forsøker å stoppe en vane før den blir en forventning."
+            },
+            {
+              "id": "B",
+              "label": "Fortsette å være den som alltid tar det",
+              "effect": 0,
+              "tags": ["legitimacy", "avoidance"],
+              "feedback": "Du holder systemet mykt for andre og hardt for deg selv."
             }
           ]
         }
