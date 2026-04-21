@@ -1,0 +1,204 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "category": "naeringsliv",
+  "role_scope": "fagarbeider",
+  "mail_type": "people",
+  "families": [
+    {
+      "id": "uformell_mentor",
+      "thread_binding": {
+        "people_thread_id": "uformell_mentor",
+        "people_phase": "intro"
+      },
+      "mails": [
+        {
+          "id": "fagarbeider_people_mentor_001",
+          "mail_type": "people",
+          "mail_family": "uformell_mentor",
+          "role_scope": "fagarbeider",
+          "phase": "early",
+          "priority": 56,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Han lærer deg det ingen rutine sier høyt",
+          "situation": [
+            "En eldre fagperson viser deg hvordan ting faktisk unngår å gå galt i praksis.",
+            "Kunnskapen er presis, men bor mer i personen enn i systemet.",
+            "Du merker spenningen mellom tradisjon og formell styring."
+          ],
+          "thread_binding": {
+            "conflict_id": null,
+            "conflict_phase": null,
+            "people_thread_id": "uformell_mentor",
+            "story_thread_id": null,
+            "event_thread_id": null
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lære det som en nødvendig del av faget",
+              "effect": 0,
+              "tags": ["craft", "legitimacy"],
+              "feedback": "Du går inn i en levende faglinje som systemet ikke helt rommer."
+            },
+            {
+              "id": "B",
+              "label": "Be om at kunnskapen også må kunne forklares formelt",
+              "effect": 1,
+              "tags": ["process", "risk"],
+              "feedback": "Du utfordrer personbåren autoritet uten å avvise erfaringen."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kollega_med_snarveier",
+      "thread_binding": {
+        "people_thread_id": "kollega_med_snarveier",
+        "people_phase": "intro"
+      },
+      "mails": [
+        {
+          "id": "fagarbeider_people_snarvei_001",
+          "mail_type": "people",
+          "mail_family": "kollega_med_snarveier",
+          "role_scope": "fagarbeider",
+          "phase": "early",
+          "priority": 55,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Han får det alltid unna, men ikke alltid riktig",
+          "situation": [
+            "En kollega er effektiv og populær fordi han holder flyten oppe.",
+            "Du ser samtidig at metoden hans hviler på ting du ikke helt kan forsvare faglig.",
+            "Det gjør personen både nyttig og problematisk på én gang."
+          ],
+          "thread_binding": {
+            "conflict_id": null,
+            "conflict_phase": null,
+            "people_thread_id": "kollega_med_snarveier",
+            "story_thread_id": null,
+            "event_thread_id": null
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta samtalen med ham direkte om standarden",
+              "effect": 1,
+              "tags": ["craft", "risk"],
+              "feedback": "Du utfordrer en sosialt nyttig vane med et faglig blikk."
+            },
+            {
+              "id": "B",
+              "label": "La det passere så lenge utfallet ser greit ut",
+              "effect": 0,
+              "tags": ["avoidance", "legitimacy"],
+              "feedback": "Du velger ro i gruppen fremfor renhet i metoden."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "taus_fagrespekt",
+      "thread_binding": {
+        "people_thread_id": "taus_fagrespekt",
+        "people_phase": "mid"
+      },
+      "mails": [
+        {
+          "id": "fagarbeider_people_respekt_001",
+          "mail_type": "people",
+          "mail_family": "taus_fagrespekt",
+          "role_scope": "fagarbeider",
+          "phase": "mid",
+          "priority": 60,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "stable_warning",
+          "subject": "Noen lytter til deg uten å si det høyt",
+          "situation": [
+            "Du merker at folk justerer seg etter vurderingene dine selv når ingen formelt anerkjenner det.",
+            "Respekten finnes, men den bor i små handlinger og ikke i titler.",
+            "Du står i en sosial autoritet som både styrker og binder deg."
+          ],
+          "thread_binding": {
+            "conflict_id": null,
+            "conflict_phase": null,
+            "people_thread_id": "taus_fagrespekt",
+            "story_thread_id": null,
+            "event_thread_id": null
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Bruke respekten til å heve standarden rundt deg",
+              "effect": 1,
+              "tags": ["legitimacy", "visibility"],
+              "feedback": "Du gjør stilltiende autoritet til faglig retning."
+            },
+            {
+              "id": "B",
+              "label": "Holde autoriteten lavmælt og personlig",
+              "effect": 0,
+              "tags": ["craft", "avoidance"],
+              "feedback": "Du bevarer roen, men lar også strukturen forbli uklar."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ansvar_som_glir",
+      "thread_binding": {
+        "people_thread_id": "ansvar_som_glir",
+        "people_phase": "mid"
+      },
+      "mails": [
+        {
+          "id": "fagarbeider_people_ansvar_001",
+          "mail_type": "people",
+          "mail_family": "ansvar_som_glir",
+          "role_scope": "fagarbeider",
+          "phase": "mid",
+          "priority": 59,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "stable_warning",
+          "subject": "Alle regner med at du tar det hvis noe blir uklart",
+          "situation": [
+            "Oppgaver begynner å gli mot deg fordi du er den som vanligvis lander ting.",
+            "Det skjer uten konflikt, nesten uten ord, og nettopp derfor er det vanskelig å markere.",
+            "Du ser hvordan sosial tillit blir til ekstra belastning."
+          ],
+          "thread_binding": {
+            "conflict_id": "ansvar_uten_myndighet",
+            "conflict_phase": "early",
+            "people_thread_id": "ansvar_som_glir",
+            "story_thread_id": null,
+            "event_thread_id": null
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gjøre fordelingen av ansvar mer eksplisitt",
+              "effect": 1,
+              "tags": ["process", "risk"],
+              "feedback": "Du prøver å stoppe glidningen før den blir normal."
+            },
+            {
+              "id": "B",
+              "label": "Ta det som nok et tegn på tillit og fortsette",
+              "effect": 0,
+              "tags": ["legitimacy", "avoidance"],
+              "feedback": "Du lar respekten komme med en ubetalt pris."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
