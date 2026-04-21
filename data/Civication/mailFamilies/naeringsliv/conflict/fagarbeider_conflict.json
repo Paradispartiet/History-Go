@@ -1,0 +1,244 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "category": "naeringsliv",
+  "role_scope": "fagarbeider",
+  "mail_type": "conflict",
+  "families": [
+    {
+      "id": "faglig_integritet_intro",
+      "thread_binding": {
+        "conflict_id": "faglig_integritet",
+        "conflict_phase": "intro"
+      },
+      "mails": [
+        {
+          "id": "fagarbeider_conflict_integritet_intro_001",
+          "mail_type": "conflict",
+          "mail_family": "faglig_integritet_intro",
+          "role_scope": "fagarbeider",
+          "phase": "intro",
+          "priority": 64,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Du vet at dette burde vært gjort annerledes",
+          "situation": [
+            "En løsning ser grei ut på avstand, men bryter med det du vet om godt fagarbeid.",
+            "Andre ser et akseptabelt resultat; du ser begynnelsen på senere slitasje eller feil.",
+            "Spørsmålet er om du skal stoppe det nå eller la standarden gli."
+          ],
+          "thread_binding": {
+            "conflict_id": "faglig_integritet",
+            "conflict_phase": "intro",
+            "people_thread_id": null,
+            "story_thread_id": null,
+            "event_thread_id": null
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Stanser og forklarer hvorfor det må gjøres ordentlig",
+              "effect": 1,
+              "tags": ["craft", "visibility"],
+              "feedback": "Du gjør faget til målestokk, ikke bare resultatet."
+            },
+            {
+              "id": "B",
+              "label": "Lar det passere fordi dagen ellers blir tyngre",
+              "effect": 0,
+              "tags": ["shortcut", "avoidance"],
+              "feedback": "Du skåner flyten og tærer litt på standarden."
+            }
+          ]
+        },
+        {
+          "id": "fagarbeider_conflict_integritet_intro_002",
+          "mail_type": "conflict",
+          "mail_family": "faglig_integritet_intro",
+          "role_scope": "fagarbeider",
+          "phase": "intro",
+          "priority": 61,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Godt nok for hvem?",
+          "situation": [
+            "Noen bruker uttrykket godt nok som om det var teknisk presist.",
+            "For deg er det tydelig at ordene skjuler et valg om å senke ambisjonsnivået.",
+            "Du kjenner at språk blir en måte å presse faget ned på."
+          ],
+          "thread_binding": {
+            "conflict_id": "faglig_integritet",
+            "conflict_phase": "intro",
+            "people_thread_id": null,
+            "story_thread_id": null,
+            "event_thread_id": null
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Be om en konkret faglig begrunnelse",
+              "effect": 1,
+              "tags": ["process", "risk"],
+              "feedback": "Du tvinger vurderingen ut av tåkespråk og inn i ansvar."
+            },
+            {
+              "id": "B",
+              "label": "Akseptere formuleringen og jobbe videre",
+              "effect": 0,
+              "tags": ["legitimacy", "avoidance"],
+              "feedback": "Du lar ordene gjøre jobben med å senke standarden."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ansvar_uten_myndighet_intro",
+      "thread_binding": {
+        "conflict_id": "ansvar_uten_myndighet",
+        "conflict_phase": "intro"
+      },
+      "mails": [
+        {
+          "id": "fagarbeider_conflict_ansvar_intro_001",
+          "mail_type": "conflict",
+          "mail_family": "ansvar_uten_myndighet_intro",
+          "role_scope": "fagarbeider",
+          "phase": "intro",
+          "priority": 63,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Du skal sikre det, men ikke bestemme det",
+          "situation": [
+            "Andre tar beslutninger som forutsetter at du får detaljene til å holde.",
+            "Ansvar renner nedover, mens myndighet stopper før den når deg.",
+            "Du står i et mellomrom mellom fag og hierarki."
+          ],
+          "thread_binding": {
+            "conflict_id": "ansvar_uten_myndighet",
+            "conflict_phase": "intro",
+            "people_thread_id": null,
+            "story_thread_id": null,
+            "event_thread_id": null
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta ordet og styre prosessen faglig",
+              "effect": 1,
+              "tags": ["visibility", "risk"],
+              "feedback": "Du fyller tomrommet med kompetanse, ikke formell rett."
+            },
+            {
+              "id": "B",
+              "label": "Holde deg til rollen og la andre eie beslutningen",
+              "effect": 0,
+              "tags": ["legitimacy", "avoidance"],
+              "feedback": "Du beskytter deg formelt og gjør samtidig tomrommet større."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "faglig_integritet_early",
+      "thread_binding": {
+        "conflict_id": "faglig_integritet",
+        "conflict_phase": "early"
+      },
+      "mails": [
+        {
+          "id": "fagarbeider_conflict_integritet_early_001",
+          "mail_type": "conflict",
+          "mail_family": "faglig_integritet_early",
+          "role_scope": "fagarbeider",
+          "phase": "early",
+          "priority": 70,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "stable_warning",
+          "subject": "Du blir bedt om å signere under på noe du ikke helt står for",
+          "situation": [
+            "Arbeidet er gjennomført, men ikke på et nivå du ville kalt sikkert eller godt.",
+            "Likevel forventes det at fagpersonen nikker og lar saken gå videre.",
+            "Det er nå integritet slutter å være et ideal og blir et valg med konsekvenser."
+          ],
+          "thread_binding": {
+            "conflict_id": "faglig_integritet",
+            "conflict_phase": "early",
+            "people_thread_id": null,
+            "story_thread_id": null,
+            "event_thread_id": null
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Nekte å stå inne for det uten retting",
+              "effect": 1,
+              "tags": ["craft", "risk"],
+              "feedback": "Du lar navnet ditt bety noe mer enn bare bekreftelse."
+            },
+            {
+              "id": "B",
+              "label": "Godta det fordi systemet ellers stopper",
+              "effect": 0,
+              "tags": ["shortcut", "legitimacy"],
+              "feedback": "Du redder strømmen i systemet og skyver tyngden inn i deg selv."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ansvar_uten_myndighet_early",
+      "thread_binding": {
+        "conflict_id": "ansvar_uten_myndighet",
+        "conflict_phase": "early"
+      },
+      "mails": [
+        {
+          "id": "fagarbeider_conflict_ansvar_early_001",
+          "mail_type": "conflict",
+          "mail_family": "ansvar_uten_myndighet_early",
+          "role_scope": "fagarbeider",
+          "phase": "early",
+          "priority": 68,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "stable_warning",
+          "subject": "Feilen blir din når vurderingen var andres",
+          "situation": [
+            "Et valg høyere opp i linjen gir problemer på gulvet, men ansvaret vender raskt tilbake til den som kan mest.",
+            "Faglighet blir brukt som sikkerhetsnett for andres beslutninger.",
+            "Du må velge om du skal absorbere dette eller gjøre mønsteret tydelig."
+          ],
+          "thread_binding": {
+            "conflict_id": "ansvar_uten_myndighet",
+            "conflict_phase": "early",
+            "people_thread_id": null,
+            "story_thread_id": null,
+            "event_thread_id": null
+          },
+          "choices": [
+            {
+              "id": "A",
+              "label": "Dokumentere hvor ansvaret faktisk startet",
+              "effect": 1,
+              "tags": ["process", "visibility"],
+              "feedback": "Du nekter å la kompetanse være det samme som skyld."
+            },
+            {
+              "id": "B",
+              "label": "Rydde opp uten å åpne fordeling av ansvar",
+              "effect": 0,
+              "tags": ["craft", "avoidance"],
+              "feedback": "Du holder ting gående og lar mønsteret fortsette."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
