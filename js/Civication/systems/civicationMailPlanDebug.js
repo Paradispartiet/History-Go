@@ -37,6 +37,30 @@
     return map[title] || null;
   }
 
+  function summarizeMailSystem(mailSystem) {
+    const ms = mailSystem && typeof mailSystem === "object" ? mailSystem : {};
+    return {
+      stepIndex: Number(ms.step_index || 0),
+      activeConflictId: ms.active_conflict_id || null,
+      activeConflictPhase: ms.active_conflict_phase || null,
+      activePeopleThreads: Array.isArray(ms.active_people_threads)
+        ? ms.active_people_threads.join(", ")
+        : "",
+      peopleThreadPhases: ms.people_thread_phases
+        ? JSON.stringify(ms.people_thread_phases)
+        : "{}",
+      activeStoryThreads: Array.isArray(ms.active_story_threads)
+        ? ms.active_story_threads.join(", ")
+        : "",
+      storyThreadPhases: ms.story_thread_phases
+        ? JSON.stringify(ms.story_thread_phases)
+        : "{}",
+      activeEventThreadId: ms.active_event_thread_id || null,
+      activeEventPhase: ms.active_event_phase || null,
+      lastMailType: ms.last_mail_type || null
+    };
+  }
+
   async function simulate(roleInput) {
     const role = normalizeRoleInput(roleInput);
     if (!role) {
@@ -68,18 +92,27 @@
       const pack = await engine.buildMailPool(role, engine.getState(), role.role_key);
       const sequence = Array.isArray(plan?.sequence) ? plan.sequence : [];
       const results = [];
+      let simState = clone(engine.getState?.() || {});
 
       for (let idx = 0; idx < sequence.length; idx += 1) {
-        const baseState = clone(engine.getState?.() || {});
-        baseState.mail_system = {
-          ...(baseState.mail_system || {}),
+        simState.mail_system = {
+          ...(simState.mail_system || {}),
           step_index: idx,
           role_plan_id: String(plan?.id || "").trim() || null
         };
 
-        const selected = engine.selectPackByPlan(pack, baseState, role, plan);
+        const beforeMailSystem = summarizeMailSystem(simState.mail_system);
+        const selected = engine.selectPackByPlan(pack, simState, role, plan);
         const mails = Array.isArray(selected?.pack?.mails) ? selected.pack.mails : [];
         const chosen = mails[0] || null;
+
+        let afterMailSystem = beforeMailSystem;
+        if (chosen) {
+          engine.setState(clone(simState));
+          engine.registerChosenMail(chosen, role);
+          simState = clone(engine.getState?.() || simState);
+          afterMailSystem = summarizeMailSystem(simState.mail_system);
+        }
 
         results.push({
           step: idx + 1,
@@ -93,7 +126,15 @@
           chosenId: chosen?.id || null,
           chosenFamily: chosen?.mail_family || null,
           chosenSubject: chosen?.subject || null,
-          fallbackUsed: !!(selected?.plannedStep?.type && selected?.plannedType && selected.plannedStep.type !== selected.plannedType)
+          fallbackUsed: !!(selected?.plannedStep?.type && selected?.plannedType && selected.plannedStep.type !== selected.plannedType),
+          beforeConflict: `${beforeMailSystem.activeConflictId || "-"} (${beforeMailSystem.activeConflictPhase || "-"})`,
+          afterConflict: `${afterMailSystem.activeConflictId || "-"} (${afterMailSystem.activeConflictPhase || "-"})`,
+          beforePeople: beforeMailSystem.activePeopleThreads || "-",
+          afterPeople: afterMailSystem.activePeopleThreads || "-",
+          beforeStories: beforeMailSystem.activeStoryThreads || "-",
+          afterStories: afterMailSystem.activeStoryThreads || "-",
+          beforeEvent: `${beforeMailSystem.activeEventThreadId || "-"} (${beforeMailSystem.activeEventPhase || "-"})`,
+          afterEvent: `${afterMailSystem.activeEventThreadId || "-"} (${afterMailSystem.activeEventPhase || "-"})`
         });
       }
 
@@ -105,7 +146,8 @@
         summary: {
           totalSteps: results.length,
           fallbackCount: results.filter((r) => r.fallbackUsed).length,
-          directHits: results.filter((r) => !r.fallbackUsed).length
+          directHits: results.filter((r) => !r.fallbackUsed).length,
+          finalMailSystem: summarizeMailSystem(simState.mail_system)
         }
       };
     } finally {
