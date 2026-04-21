@@ -43,6 +43,39 @@
               "feedback": "Du beskytter strukturen og gjør relasjonen tynnere."
             }
           ]
+        },
+        {
+          "id": "mellomleder_people_ansatt_002",
+          "mail_type": "people",
+          "mail_family": "ansatt_som_trenger_mer",
+          "role_scope": "mellomleder",
+          "phase": "early",
+          "priority": 55,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Du merker at oppfølgingen ikke bare handler om omsorg, men om struktur",
+          "situation": [
+            "Det blir tydelig at ekstra støtte til én person også påvirker fordelingen, rytmen og stemningen i resten av laget.",
+            "Du står derfor ikke bare i en relasjon, men i en liten omforming av hele arbeidsdagen.",
+            "Spørsmålet er om du skal ta den kostnaden åpent eller forsøke å absorbere den stille."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gjøre tilpasningen eksplisitt så laget forstår hvorfor den finnes",
+              "effect": 1,
+              "tags": ["process", "care"],
+              "feedback": "Du prøver å bære både personen og helheten med samme tydelighet."
+            },
+            {
+              "id": "B",
+              "label": "Skjule mest mulig av justeringen for å unngå ny friksjon",
+              "effect": 0,
+              "tags": ["avoidance", "legitimacy"],
+              "feedback": "Du holder roen bedre og gjør også strukturen mindre forståelig."
+            }
+          ]
         }
       ]
     },
@@ -83,6 +116,39 @@
               "effect": 0,
               "tags": ["avoidance", "trust"],
               "feedback": "Du bevarer energien og lar også grenseflatene forbli uklare."
+            }
+          ]
+        },
+        {
+          "id": "mellomleder_people_fagperson_002",
+          "mail_type": "people",
+          "mail_family": "sterk_fagperson_under_deg",
+          "role_scope": "mellomleder",
+          "phase": "early",
+          "priority": 54,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Det er ikke bare kompetansen, men også tilliten rundt den du må lede",
+          "situation": [
+            "Den sterke fagpersonen bærer mye av lagets reelle orientering, og andre følger ofte vurderingene hans før de følger strukturen.",
+            "Det gjør personen til en ressurs og en alternativ tyngdeakse i avdelingen.",
+            "Du må velge om du gjør den tyngden til del av ledelsen eller lar den fortsette som parallell kraft."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Invitere kompetansen tydeligere inn i en definert ledelsesstruktur",
+              "effect": 1,
+              "tags": ["process", "visibility"],
+              "feedback": "Du prøver å omforme uformell tyngde til mer lesbar orden."
+            },
+            {
+              "id": "B",
+              "label": "La balansen bli uuttalt så lenge den virker",
+              "effect": 0,
+              "tags": ["trust", "avoidance"],
+              "feedback": "Du beholder energien og lar også uklarheten bli værende."
             }
           ]
         }
@@ -127,6 +193,39 @@
               "feedback": "Du svarer på treghet med mer ledelse og mindre tolkning."
             }
           ]
+        },
+        {
+          "id": "mellomleder_people_motstand_002",
+          "mail_type": "people",
+          "mail_family": "taus_motstand",
+          "role_scope": "mellomleder",
+          "phase": "mid",
+          "priority": 57,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "stable_warning",
+          "subject": "Det som ikke sies, begynner å forme dagen likevel",
+          "situation": [
+            "Motstanden i laget uttrykkes fortsatt ikke som åpen uenighet, men viser seg i rytme, energi og små omveier rundt det du prøver å få til.",
+            "Du merker at stillhet også kan være en kollektiv måte å sette grenser på.",
+            "Spørsmålet er om du skal behandle dette som en ledelsesutfordring eller som et varsel om at noe dypere er ute av leie."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Tolke dette som et signal om at laget trenger et mer ærlig rom",
+              "effect": 1,
+              "tags": ["care", "process"],
+              "feedback": "Du prøver å møte tregheten som mening, ikke bare som ulydighet."
+            },
+            {
+              "id": "B",
+              "label": "Møte mønsteret med mer oppfølging og klarere styring",
+              "effect": 0,
+              "tags": ["control", "legitimacy"],
+              "feedback": "Du svarer på det usagte med mer form enn tolkning."
+            }
+          ]
         }
       ]
     },
@@ -167,6 +266,39 @@
               "effect": 0,
               "tags": ["legitimacy", "avoidance"],
               "feedback": "Du gjør deg nødvendig og mer belastet på samme tid."
+            }
+          ]
+        },
+        {
+          "id": "mellomleder_people_ansvar_002",
+          "mail_type": "people",
+          "mail_family": "ansvar_som_stiger",
+          "role_scope": "mellomleder",
+          "phase": "mid",
+          "priority": 56,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "stable_warning",
+          "subject": "Du kjenner at avdelingen bruker deg som buffer mot sin egen uklarhet",
+          "situation": [
+            "Flere ting enn før lander hos deg ikke fordi de naturlig hører hjemme der, men fordi du er blitt stedet der uklarheter kan oppbevares midlertidig.",
+            "Mellomledelse glir her over i å være absorberende struktur.",
+            "Du må velge om du fortsatt skal være buffer eller begynne å sende mer av tyngden tilbake dit den egentlig oppstår."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gjøre tydeligere hva som må eies lenger ned i systemet",
+              "effect": 1,
+              "tags": ["process", "visibility"],
+              "feedback": "Du prøver å hindre at uklarheten fortsetter å stige mot deg."
+            },
+            {
+              "id": "B",
+              "label": "Fortsette å fungere som det stedet som holder alt sammen",
+              "effect": 0,
+              "tags": ["legitimacy", "strain"],
+              "feedback": "Du bevarer formen og gjør rollen enda mer bærende."
             }
           ]
         }
