@@ -109,9 +109,6 @@ function wireCivicationActions() {
 async function renderCivication() {
   await window.ensureCiviCareerRulesLoaded?.();
 
-  // =========================
-  // PROFILE-MODE (profile.html)
-  // =========================
   const title    = document.getElementById("civiRoleTitle");
   const details  = document.getElementById("civiRoleDetails");
   const meritLn  = document.getElementById("civiMeritLine");
@@ -144,7 +141,6 @@ async function renderCivication() {
         "Status: Ingen aktiv jobb (ta quiz for å få jobbtilbud).";
     }
 
-    // LØNN
     if (salaryLn && active?.career_id) {
       const merits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
       const points = Number(merits[active.career_id]?.points || 0);
@@ -169,25 +165,23 @@ async function renderCivication() {
         Number.isFinite(weekly) ? `Lønn: ${weekly} PC / uke` : "Lønn: —";
     }
 
-    // JOBBTILBUD (profil = indikator, ingen handling)
-const offer = window.CivicationJobs?.getLatestPendingOffer?.();
+    const offer = window.CivicationJobs?.getLatestPendingOffer?.();
 
-if (!offer) {
-  oBox.style.display = "none";
-} else {
-  oBox.style.display = "";
-  oTitle.textContent = "🧾 Nytt jobbtilbud";
+    if (!offer) {
+      oBox.style.display = "none";
+    } else {
+      oBox.style.display = "";
+      oTitle.textContent = "🧾 Nytt jobbtilbud";
 
-  const expTxt =
-    offer.expires_iso
-      ? new Date(offer.expires_iso).toLocaleDateString("no-NO")
-      : "—";
+      const expTxt =
+        offer.expires_iso
+          ? new Date(offer.expires_iso).toLocaleDateString("no-NO")
+          : "—";
 
-  const jobTxt = offer.career_name || offer.career_id || "Jobb";
-  oMeta.textContent = `${jobTxt} · Utløper: ${expTxt} · Åpne Civication for å svare.`;
-}
+      const jobTxt = offer.career_name || offer.career_id || "Jobb";
+      oMeta.textContent = `${jobTxt} · Utløper: ${expTxt} · Åpne Civication for å svare.`;
+    }
 
-    // BESTE ROLLE (MERIT-PROFIL) – samme som din nå
     const merits2 = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
     const keys = Object.keys(merits2 || {});
 
@@ -242,22 +236,17 @@ if (!offer) {
         : "aldri";
 
     meritLn.textContent =
-      `Merit: ${best.roleLabel} (${best.badgeName}) · ` +
-      `${best.points} poeng · Sist: ${lastTxt}`;
+      `Merit: ${best.roleLabel} (${best.badgeName}) · ${best.points} poeng · Sist: ${lastTxt}`;
 
     return;
   }
 
-  // =========================
-  // CIVICATION-MODE (Civication.html)
-  // =========================
   const host = document.getElementById("activeJobCard");
   if (!host) return;
 
   const active = window.CivicationState.getActivePosition();
   const offer = window.CivicationJobs?.getLatestPendingOffer?.();
 
-  // Lønn (best effort)
   let salaryTxt = "Lønn: —";
   if (active?.career_id && typeof window.calculateWeeklySalary === "function") {
     try {
@@ -268,9 +257,7 @@ if (!offer) {
         ? window.BADGES.find(b => b && String(b.id) === String(active.career_id))
         : null;
 
-      const tierIndex =
-        badge ? (deriveTierFromPoints(badge, points).tierIndex || 0) : 0;
-
+      const tierIndex = badge ? (deriveTierFromPoints(badge, points).tierIndex || 0) : 0;
       const career = Array.isArray(window.HG_CAREERS)
         ? window.HG_CAREERS.find(c => c && String(c.career_id) === String(active.career_id))
         : null;
@@ -288,31 +275,25 @@ if (!offer) {
 
       <hr style="border:none;border-top:1px solid rgba(0,0,0,0.15);margin:12px 0;">
 
-      ${
-        offer
-          ? `
-            <div><strong>🧾 Jobbtilbud</strong></div>
-            <div>${offer.career_name || offer.career_id || ""}</div>
-            <div>Terskel: ${offer.threshold}</div>
-            <div>Utløper: ${offer.expires_iso ? new Date(offer.expires_iso).toLocaleDateString("no-NO") : "—"}</div>
-
-            <div style="display:flex;gap:10px;margin-top:10px;">
-              <button class="civi-btn primary" id="civiOfferAccept">Aksepter</button>
-              <button class="civi-btn" id="civiOfferDecline">Ikke nå</button>
-            </div>
-          `
-          : `<div>Ingen aktive jobbtilbud.</div>`
-      }
+      ${offer ? `
+        <div><strong>🧾 Jobbtilbud</strong></div>
+        <div>${offer.career_name || offer.career_id || ""}</div>
+        <div>Terskel: ${offer.threshold}</div>
+        <div>Utløper: ${offer.expires_iso ? new Date(offer.expires_iso).toLocaleDateString("no-NO") : "—"}</div>
+        <div style="display:flex;gap:10px;margin-top:10px;">
+          <button class="civi-btn primary" id="civiOfferAccept">Aksepter</button>
+          <button class="civi-btn" id="civiOfferDecline">Ikke nå</button>
+        </div>
+      ` : `<div>Ingen aktive jobbtilbud.</div>`}
     </div>
   `;
 
   if (offer?.offer_key) {
     host.querySelector("#civiOfferAccept")?.addEventListener("click", () => {
-  const res = window.CivicationJobs?.acceptOffer?.(offer.offer_key);
-  if (!res?.ok) return;
-
-  window.dispatchEvent(new Event("updateProfile"));
-});
+      const res = window.CivicationJobs?.acceptOffer?.(offer.offer_key);
+      if (!res?.ok) return;
+      window.dispatchEvent(new Event("updateProfile"));
+    });
 
     host.querySelector("#civiOfferDecline")?.addEventListener("click", () => {
       window.CivicationJobs?.declineOffer?.(offer.offer_key);
@@ -320,8 +301,6 @@ if (!offer) {
     });
   }
 }
-
-
 
 function renderPublicFeed() {
   const container = document.getElementById("civiPublicFeed");
@@ -342,30 +321,21 @@ function renderPublicFeed() {
 
 window.addEventListener("civiPublicUpdated", renderPublicFeed);
 
-// ============================================================
-// ROLE → BASELINE SYNC (PER ROLLE / TIER)
-// ============================================================
-
 function syncRoleBaseline() {
+  const active = window.CivicationState?.getActivePosition?.();
 
- const active = window.CivicationState?.getActivePosition?.();
+  if (!active || !active.career_id) {
+    window.CivicationPsyche?.clearRoleBaseline?.();
+    return;
+  }
 
- if (!active || !active.career_id) {
-  window.CivicationPsyche?.clearRoleBaseline?.();
-  return;
- }
+  const careerId = active.career_id;
 
- const careerId = active.career_id;
-
-// 🔥 KONFLIKT-TEST
-window.CivicationConflicts
-  ?.load(careerId)
-  ?.then(data => {
-    const conflict = window.CivicationConflicts
-      ?.getForTier(data, active.title);
-
+  window.CivicationConflicts?.load(careerId)?.then(data => {
+    const conflict = window.CivicationConflicts?.getForTier(data, active.title);
     console.log("Active conflict:", conflict);
   });
+
   const badge = Array.isArray(window.BADGES)
     ? window.BADGES.find(b => b && String(b.id) === String(careerId))
     : null;
@@ -375,64 +345,35 @@ window.CivicationConflicts
     return;
   }
 
-  const merits =
-    JSON.parse(localStorage.getItem("merits_by_category") || "{}");
-
+  const merits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
   const points = Number(merits[careerId]?.points || 0);
-
-  const { tierIndex, label } =
-    deriveTierFromPoints(badge, points);
-
-  // --------------------------------------------------
-  // Baseline-matrise per rolle + tier
-  // --------------------------------------------------
+  const { tierIndex } = deriveTierFromPoints(badge, points);
 
   let baseline = { economicRoom: 0, visibility: 0, integrity: 0 };
 
   switch (careerId) {
-
     case "naeringsliv":
-
-      if (tierIndex >= 3) {
-        baseline = { economicRoom: 25, visibility: 20, integrity: -15 };
-      } else if (tierIndex === 2) {
-        baseline = { economicRoom: 15, visibility: 10, integrity: -5 };
-      } else {
-        baseline = { economicRoom: 5, visibility: 5, integrity: 0 };
-      }
-
+      if (tierIndex >= 3) baseline = { economicRoom: 25, visibility: 20, integrity: -15 };
+      else if (tierIndex === 2) baseline = { economicRoom: 15, visibility: 10, integrity: -5 };
+      else baseline = { economicRoom: 5, visibility: 5, integrity: 0 };
       break;
-
     case "subkultur":
-
-      if (tierIndex >= 3) {
-        baseline = { economicRoom: -10, visibility: 15, integrity: 20 };
-      } else {
-        baseline = { economicRoom: -15, visibility: 5, integrity: 10 };
-      }
-
+      if (tierIndex >= 3) baseline = { economicRoom: -10, visibility: 15, integrity: 20 };
+      else baseline = { economicRoom: -15, visibility: 5, integrity: 10 };
       break;
-
     case "vitenskap":
-
       baseline = {
         economicRoom: 10 + tierIndex * 3,
         visibility: 5 + tierIndex * 5,
         integrity: 10 + tierIndex * 2
       };
-
       break;
-
     default:
       baseline = { economicRoom: 0, visibility: 0, integrity: 0 };
   }
 
   window.CivicationPsyche?.applyRoleBaseline?.(baseline);
 }
-
-// ============================================================
-// HOME STATUS UI
-// ============================================================
 
 function renderHomeStatus() {
   const el = document.getElementById("homeStatusContent");
@@ -449,13 +390,9 @@ function renderHomeStatus() {
       </div>
     `;
 
-    const btn = document.getElementById("buyDistrictBtn");
-    if (btn) {
-      btn.onclick = () => {
-        openDistrictSelector();
-      };
-    }
-
+    document.getElementById("buyDistrictBtn")?.onclick = () => {
+      openDistrictSelector();
+    };
   } else {
     el.innerHTML = `
       <div class="home-settled">
@@ -465,20 +402,14 @@ function renderHomeStatus() {
       </div>
     `;
 
-    const btn = document.getElementById("changeDistrictBtn");
-    if (btn) {
-      btn.onclick = () => {
-        openDistrictSelector();
-      };
-    }
+    document.getElementById("changeDistrictBtn")?.onclick = () => {
+      openDistrictSelector();
+    };
   }
 }
 
 function renderPsycheDashboard() {
-
-  const activeCareerId =
-  window.CivicationState?.getActivePosition?.()?.career_id || null;
-  
+  const activeCareerId = window.CivicationState?.getActivePosition?.()?.career_id || null;
   const snapshot = window.CivicationPsyche?.getSnapshot?.(activeCareerId);
   if (!snapshot) return;
 
@@ -490,84 +421,45 @@ function renderPsycheDashboard() {
   const burnoutEl    = document.getElementById("psyBurnout");
   const collapseEl   = document.getElementById("psyCollapseHistory");
 
-  // -----------------------------
-  // Core values
-  // -----------------------------
-
-  if (integrityEl)
-    integrityEl.textContent = Number(snapshot.integrity ?? 0);
-
-  if (visibilityEl)
-    visibilityEl.textContent = Number(snapshot.visibility ?? 0);
-
-  if (economicEl)
-    economicEl.textContent = Number(snapshot.economicRoom ?? 0);
-
-  if (autonomyEl)
-    autonomyEl.textContent = Number(snapshot.autonomy ?? 0);
-
-  // -----------------------------
-  // Trust (rolle-spesifikk)
-  // -----------------------------
+  if (integrityEl) integrityEl.textContent = Number(snapshot.integrity ?? 0);
+  if (visibilityEl) visibilityEl.textContent = Number(snapshot.visibility ?? 0);
+  if (economicEl) economicEl.textContent = Number(snapshot.economicRoom ?? 0);
+  if (autonomyEl) autonomyEl.textContent = Number(snapshot.autonomy ?? 0);
 
   if (trustEl) {
     if (snapshot.trust && Number.isFinite(snapshot.trust.value)) {
-      trustEl.textContent =
-        `${snapshot.trust.value} / ${snapshot.trust.max ?? 0}`;
+      trustEl.textContent = `${snapshot.trust.value} / ${snapshot.trust.max ?? 0}`;
     } else {
       trustEl.textContent = "—";
     }
   }
 
-  // -----------------------------
-  // Burnout
-  // -----------------------------
-
   if (burnoutEl) {
-    const isBurnout =
-      window.CivicationPsyche?.isBurnoutActive?.() === true;
-
+    const isBurnout = window.CivicationPsyche?.isBurnoutActive?.() === true;
     if (isBurnout) {
       burnoutEl.style.display = "";
-      burnoutEl.textContent =
-        "🔥 Burnout aktiv: Autonomi midlertidig redusert.";
+      burnoutEl.textContent = "🔥 Burnout aktiv: Autonomi midlertidig redusert.";
     } else {
       burnoutEl.style.display = "none";
       burnoutEl.textContent = "";
     }
   }
 
-  // -----------------------------
-  // Collapse history
-  // -----------------------------
-
   if (collapseEl) {
-    const collapses =
-      snapshot.trust?.collapses ?? 0;
-
+    const collapses = snapshot.trust?.collapses ?? 0;
     if (collapses > 0) {
       const last = snapshot.trust?.lastCollapse;
-
       if (last?.at) {
-        const date = new Date(last.at)
-          .toLocaleDateString("no-NO");
-
-        collapseEl.textContent =
-          `${collapses} kollaps(er) · Sist: ${date}`;
+        const date = new Date(last.at).toLocaleDateString("no-NO");
+        collapseEl.textContent = `${collapses} kollaps(er) · Sist: ${date}`;
       } else {
-        collapseEl.textContent =
-          `${collapses} kollaps(er)`;
+        collapseEl.textContent = `${collapses} kollaps(er)`;
       }
     } else {
-      collapseEl.textContent =
-        "Ingen registrerte kollapser";
+      collapseEl.textContent = "Ingen registrerte kollapser";
     }
   }
 }
-
-// ============================================================
-// DISTRICT SELECTOR
-// ============================================================
 
 function openDistrictSelector() {
   const modal = document.getElementById("districtModal");
@@ -575,34 +467,23 @@ function openDistrictSelector() {
   if (!modal || !list) return;
 
   const districts = window.CivicationHome?.DISTRICTS || {};
-
   list.innerHTML = "";
 
   Object.values(districts).forEach(d => {
     const canBuy = window.CivicationHome?.canPurchaseDistrict?.(d.id);
-
     const card = document.createElement("div");
     card.className = "district-card" + (canBuy ? "" : " locked");
 
     card.innerHTML = `
       <div class="district-name">${d.name}</div>
       <div class="district-cost">Pris: ${d.baseCost}</div>
-
       <div class="district-effects">
-        ${Object.entries(d.modifiers || {})
-          .map(([k,v]) => `${k}: ${v > 0 ? "+" : ""}${v}`)
-          .join("<br>")}
+        ${Object.entries(d.modifiers || {}).map(([k,v]) => `${k}: ${v > 0 ? "+" : ""}${v}`).join("<br>")}
       </div>
-
       <div class="district-requirements">
-        ${Object.entries(d.quizRequirements || {})
-          .map(([k,v]) => `${k}: ${v}`)
-          .join("<br>")}
+        ${Object.entries(d.quizRequirements || {}).map(([k,v]) => `${k}: ${v}`).join("<br>")}
       </div>
-
-      <button ${canBuy ? "" : "disabled"}>
-        ${canBuy ? "Kjøp" : "Låst"}
-      </button>
+      <button ${canBuy ? "" : "disabled"}>${canBuy ? "Kjøp" : "Låst"}</button>
     `;
 
     if (canBuy) {
@@ -618,15 +499,10 @@ function openDistrictSelector() {
   modal.style.display = "flex";
 }
 
-// Viktig hvis knappen kaller openDistrictSelector() uten scope (inline onclick o.l.)
 window.openDistrictSelector = openDistrictSelector;
-
-// Close-knapp
-document.getElementById("closeDistrictModal")
-  ?.addEventListener("click", () => {
-    document.getElementById("districtModal").style.display = "none";
-  });
-
+document.getElementById("closeDistrictModal")?.addEventListener("click", () => {
+  document.getElementById("districtModal").style.display = "none";
+});
 
 function renderWorkdayPanel() {
   const host = document.getElementById("civiWorkdayPanel");
@@ -640,13 +516,10 @@ function renderWorkdayPanel() {
   const pending = window.HG_CiviEngine?.getPendingEvent?.();
   const ev = pending?.event || null;
 
-  const clock =
-    window.CivicationCalendar?.getDisplayModel?.() || null;
-
-  const task =
-    ev?.task_id && window.CivicationTaskEngine?.getTaskById
-      ? window.CivicationTaskEngine.getTaskById(ev.task_id)
-      : null;
+  const clock = window.CivicationCalendar?.getDisplayModel?.() || null;
+  const task = ev?.task_id && window.CivicationTaskEngine?.getTaskById
+    ? window.CivicationTaskEngine.getTaskById(ev.task_id)
+    : null;
 
   if (!active) {
     host.innerHTML = `
@@ -658,131 +531,73 @@ function renderWorkdayPanel() {
     return;
   }
 
-  const brandName =
-    String(active?.brand_name || "").trim() ||
-    String(ev?.brand_name || "").trim() ||
-    "Ikke satt";
-
-  const currentTime =
-    clock?.currentLabel || "—";
-
-  const shiftLabel =
-    clock
-      ? `${clock.shiftStartLabel}–${clock.shiftEndLabel}`
-      : "—";
-
-  const taskTitle =
-    task?.title ||
-    ev?.subject ||
-    "Ingen aktiv oppgave";
-
-  const taskDesc =
-    task?.description ||
-    (Array.isArray(ev?.situation) ? ev.situation[0] : "") ||
-    "—";
-
-  const windowLabel =
-    ev?.calendar_label ||
-    (task?.time_window
-      ? `${task.time_window.startsAtLabel}–${task.time_window.deadlineAtLabel}`
-      : "—");
-
+  const brandName = String(active?.brand_name || "").trim() || String(ev?.brand_name || "").trim() || "Ikke satt";
+  const currentTime = clock?.currentLabel || "—";
+  const shiftLabel = clock ? `${clock.shiftStartLabel}–${clock.shiftEndLabel}` : "—";
+  const taskTitle = task?.title || ev?.subject || "Ingen aktiv oppgave";
+  const taskDesc = task?.description || (Array.isArray(ev?.situation) ? ev.situation[0] : "") || "—";
+  const windowLabel = ev?.calendar_label || (task?.time_window ? `${task.time_window.startsAtLabel}–${task.time_window.deadlineAtLabel}` : "—");
   const answered = Number(progress?.answeredCount || 0);
   const expected = Number(progress?.expectedCount || 0);
-  const pct = Math.max(
-    0,
-    Math.min(100, Math.round(Number(progress?.completionRate || 0) * 100))
-  );
-
+  const pct = Math.max(0, Math.min(100, Math.round(Number(progress?.completionRate || 0) * 100)));
   const stability = String(state?.stability || "STABLE").toUpperCase();
-
-  const statusLabel =
-    stability === "WARNING"
-      ? "Advarsel"
-      : stability === "FIRED"
-        ? "Sparket"
-        : "Stabil";
-
+  const statusLabel = stability === "WARNING" ? "Advarsel" : stability === "FIRED" ? "Sparket" : "Stabil";
   const daysSinceStart = Number(progress?.daysSinceStart || 0);
-  const daysLeft = Math.max(
-    0,
-    Number(contract?.fireAfterDays || 14) - Math.floor(daysSinceStart)
-  );
+  const daysLeft = Math.max(0, Number(contract?.fireAfterDays || 14) - Math.floor(daysSinceStart));
 
   host.innerHTML = `
-  <div class="civi-workday">
-    <div class="civi-workday-top">
-      <div class="civi-workday-clock">
-        <div class="civi-workday-label">Klokke</div>
-        <div class="civi-workday-time">${currentTime}</div>
-        <div class="civi-workday-sub">Skift: ${shiftLabel}</div>
+    <div class="civi-workday">
+      <div class="civi-workday-top">
+        <div class="civi-workday-clock">
+          <div class="civi-workday-label">Klokke</div>
+          <div class="civi-workday-time">${currentTime}</div>
+          <div class="civi-workday-sub">Skift: ${shiftLabel}</div>
+        </div>
+        <div class="civi-workday-meta">
+          <div class="civi-workday-row"><span class="muted">Rolle</span><strong>${active?.title || "—"}</strong></div>
+          <div class="civi-workday-row"><span class="muted">Brand / sted</span><strong>${brandName}</strong></div>
+          <div class="civi-workday-row"><span class="muted">Status</span><strong>${statusLabel}</strong></div>
+        </div>
       </div>
-
-      <div class="civi-workday-meta">
-        <div class="civi-workday-row">
-          <span class="muted">Rolle</span>
-          <strong>${active?.title || "—"}</strong>
+      <div class="civi-workday-grid">
+        <div class="civi-workday-card">
+          <div class="civi-workday-label">Aktiv oppgave</div>
+          <div class="civi-workday-task-title">${taskTitle}</div>
+          <div class="civi-workday-task-desc">${taskDesc}</div>
+          ${ev?.id ? `<button class="civi-task-open-btn" data-open-task="${ev.id}">Åpne oppgave</button>` : ``}
         </div>
-        <div class="civi-workday-row">
-          <span class="muted">Brand / sted</span>
-          <strong>${brandName}</strong>
+        <div class="civi-workday-card">
+          <div class="civi-workday-label">Tidsvindu</div>
+          <div class="civi-workday-big">${windowLabel}</div>
+          <div class="civi-workday-sub">Neste deadline i denne arbeidsøkten</div>
         </div>
-        <div class="civi-workday-row">
-          <span class="muted">Status</span>
-          <strong>${statusLabel}</strong>
+        <div class="civi-workday-card">
+          <div class="civi-workday-label">Ukeprogresjon</div>
+          <div class="civi-workday-big">${answered} / ${expected}</div>
+          <div class="civi-workday-sub">${pct}% fullført</div>
+        </div>
+        <div class="civi-workday-card">
+          <div class="civi-workday-label">Kontraktspress</div>
+          <div class="civi-workday-big">${daysLeft} dager</div>
+          <div class="civi-workday-sub">igjen før ny vurdering</div>
         </div>
       </div>
     </div>
+  `;
 
-    <div class="civi-workday-grid">
-      <div class="civi-workday-card">
-        <div class="civi-workday-label">Aktiv oppgave</div>
-        <div class="civi-workday-task-title">${taskTitle}</div>
-        <div class="civi-workday-task-desc">${taskDesc}</div>
-        ${
-          ev?.id
-            ? `<button class="civi-task-open-btn" data-open-task="${ev.id}">Åpne oppgave</button>`
-            : ``
-        }
-      </div>
-
-      <div class="civi-workday-card">
-        <div class="civi-workday-label">Tidsvindu</div>
-        <div class="civi-workday-big">${windowLabel}</div>
-        <div class="civi-workday-sub">Neste deadline i denne arbeidsøkten</div>
-      </div>
-
-      <div class="civi-workday-card">
-        <div class="civi-workday-label">Ukeprogresjon</div>
-        <div class="civi-workday-big">${answered} / ${expected}</div>
-        <div class="civi-workday-sub">${pct}% fullført</div>
-      </div>
-
-      <div class="civi-workday-card">
-        <div class="civi-workday-label">Kontraktspress</div>
-        <div class="civi-workday-big">${daysLeft} dager</div>
-        <div class="civi-workday-sub">igjen før ny vurdering</div>
-      </div>
-    </div>
-  </div>
-`;
-
-host.querySelectorAll("[data-open-task]").forEach(function (btn) {
-  btn.addEventListener("click", function () {
-    const mailId = btn.getAttribute("data-open-task");
-    if (!mailId) return;
-    openTaskModalByMailId(mailId);
+  host.querySelectorAll("[data-open-task]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      const mailId = btn.getAttribute("data-open-task");
+      if (!mailId) return;
+      openTaskModalByMailId(mailId);
+    });
   });
-});
 }
 
-  
 function getTaskWindowLabel(task, ev) {
   if (ev?.calendar_label) return ev.calendar_label;
-
   const tw = task?.time_window;
   if (!tw) return "—";
-
   return `${tw.startsAtLabel}–${tw.deadlineAtLabel}`;
 }
 
@@ -793,100 +608,43 @@ function openTaskModalByMailId(mailId) {
   if (!modal || !body || !title) return;
 
   const inbox = window.CivicationState.getInbox?.() || [];
-  const ev =
-    inbox
-      .map(function (item) { return item?.event || null; })
-      .find(function (eventObj) {
-        return eventObj && eventObj.id === mailId;
-      }) || null;
+  const ev = inbox.map(function (item) { return item?.event || null; }).find(function (eventObj) {
+    return eventObj && eventObj.id === mailId;
+  }) || null;
 
-  const task =
-    window.CivicationTaskEngine?.getTaskByMailId?.(mailId) || null;
-
+  const task = window.CivicationTaskEngine?.getTaskByMailId?.(mailId) || null;
   if (!ev && !task) return;
 
-  const displayTitle =
-    task?.title ||
-    ev?.subject ||
-    "Oppgave";
-
-  const desc =
-    task?.description ||
-    (Array.isArray(ev?.situation) ? ev.situation[0] : "") ||
-    "—";
-
-  const knowledgeTargets = Array.isArray(task?.knowledge_targets)
-    ? task.knowledge_targets
-    : [];
-
-  const quizTargets = Array.isArray(task?.quiz_targets)
-    ? task.quiz_targets
-    : [];
-
-  const workType =
-    String(task?.kind || ev?.task_kind || "oppgave");
-
-  const duration =
-    Number(task?.durationMinutes || ev?.work_minutes || ev?.duration_minutes || 0);
-
+  const displayTitle = task?.title || ev?.subject || "Oppgave";
+  const desc = task?.description || (Array.isArray(ev?.situation) ? ev.situation[0] : "") || "—";
+  const knowledgeTargets = Array.isArray(task?.knowledge_targets) ? task.knowledge_targets : [];
+  const quizTargets = Array.isArray(task?.quiz_targets) ? task.quiz_targets : [];
+  const workType = String(task?.kind || ev?.task_kind || "oppgave");
+  const duration = Number(task?.durationMinutes || ev?.work_minutes || ev?.duration_minutes || 0);
   const windowLabel = getTaskWindowLabel(task, ev);
-
-  const brandName =
-    String(task?.brand_name || ev?.brand_name || "").trim() || "—";
+  const brandName = String(task?.brand_name || ev?.brand_name || "").trim() || "—";
 
   title.textContent = displayTitle;
-
   body.innerHTML = `
     <div class="civi-task-box">
       <div class="civi-task-kicker">Oppgavebeskrivelse</div>
       <div class="civi-task-title">${displayTitle}</div>
       <div class="civi-task-desc">${desc}</div>
     </div>
-
     <div class="civi-task-meta">
-      <div class="civi-task-box">
-        <div class="civi-task-kicker">Arbeidstype</div>
-        <div><strong>${workType}</strong></div>
-      </div>
-
-      <div class="civi-task-box">
-        <div class="civi-task-kicker">Tidsvindu</div>
-        <div><strong>${windowLabel}</strong></div>
-      </div>
-
-      <div class="civi-task-box">
-        <div class="civi-task-kicker">Varighet</div>
-        <div><strong>${duration ? `${duration} min` : "—"}</strong></div>
-      </div>
-
-      <div class="civi-task-box">
-        <div class="civi-task-kicker">Brand / sted</div>
-        <div><strong>${brandName}</strong></div>
-      </div>
+      <div class="civi-task-box"><div class="civi-task-kicker">Arbeidstype</div><div><strong>${workType}</strong></div></div>
+      <div class="civi-task-box"><div class="civi-task-kicker">Tidsvindu</div><div><strong>${windowLabel}</strong></div></div>
+      <div class="civi-task-box"><div class="civi-task-kicker">Varighet</div><div><strong>${duration ? `${duration} min` : "—"}</strong></div></div>
+      <div class="civi-task-box"><div class="civi-task-kicker">Brand / sted</div><div><strong>${brandName}</strong></div></div>
     </div>
-
     <div class="civi-task-box">
       <div class="civi-task-kicker">Kunnskapsmål</div>
-      ${
-        knowledgeTargets.length
-          ? `<ul class="civi-task-list">${knowledgeTargets.map(function (x) {
-              return `<li>${x}</li>`;
-            }).join("")}</ul>`
-          : `<div class="civi-task-desc">Ingen spesifikke kunnskapsmål registrert ennå.</div>`
-      }
+      ${knowledgeTargets.length ? `<ul class="civi-task-list">${knowledgeTargets.map(function (x) { return `<li>${x}</li>`; }).join("")}</ul>` : `<div class="civi-task-desc">Ingen spesifikke kunnskapsmål registrert ennå.</div>`}
     </div>
-
     <div class="civi-task-box">
       <div class="civi-task-kicker">Quizkobling</div>
-      ${
-        quizTargets.length
-          ? `<ul class="civi-task-list">${quizTargets.map(function (x) {
-              return `<li>${x}</li>`;
-            }).join("")}</ul>`
-          : `<div class="civi-task-desc">Ingen quizkobling registrert ennå.</div>`
-      }
+      ${quizTargets.length ? `<ul class="civi-task-list">${quizTargets.map(function (x) { return `<li>${x}</li>`; }).join("")}</ul>` : `<div class="civi-task-desc">Ingen quizkobling registrert ennå.</div>`}
     </div>
-
     <div class="civi-task-actions">
       <button class="civi-modal-close" type="button" id="civiTaskModalCloseInner">Lukk</button>
     </div>
@@ -894,34 +652,22 @@ function openTaskModalByMailId(mailId) {
 
   modal.classList.add("is-open");
   modal.setAttribute("aria-hidden", "false");
-
-  document.getElementById("civiTaskModalCloseInner")
-    ?.addEventListener("click", closeTaskModal);
+  document.getElementById("civiTaskModalCloseInner")?.addEventListener("click", closeTaskModal);
 }
 
 function closeTaskModal() {
   const modal = document.getElementById("civiTaskModal");
   if (!modal) return;
-
   modal.classList.remove("is-open");
   modal.setAttribute("aria-hidden", "true");
 }
 
-
-// ============================================================
-// INBOX
-// ============================================================
-
 function renderCivicationInbox() {
-  // =========================
-  // PROFILE-MODE (profile.html)
-  // =========================
   const box = document.getElementById("civiInboxBox");
   if (box) {
     const subj = document.getElementById("civiMailSubject");
     const text = document.getElementById("civiMailText");
     const fb   = document.getElementById("civiMailFeedback");
-
     const btnA = document.getElementById("civiChoiceA");
     const btnB = document.getElementById("civiChoiceB");
     const btnC = document.getElementById("civiChoiceC");
@@ -930,21 +676,16 @@ function renderCivicationInbox() {
     if (!subj || !text || !btnA || !btnB || !btnC || !btnOK || !fb) return;
 
     const pending = window.HG_CiviEngine?.getPendingEvent?.();
-
     if (!pending?.event) {
       box.style.display = "none";
       return;
     }
 
     box.style.display = "";
-
     const ev = pending.event;
 
     subj.textContent = `📬 ${ev.subject || "—"}`;
-    text.textContent =
-      Array.isArray(ev.situation)
-        ? ev.situation.join(" ")
-        : (ev.situation || "—");
+    text.textContent = Array.isArray(ev.situation) ? ev.situation.join(" ") : (ev.situation || "—");
 
     fb.style.display = "none";
     btnOK.style.display = "none";
@@ -963,28 +704,25 @@ function renderCivicationInbox() {
 
         fb.textContent = res.feedback || "—";
         fb.style.display = "";
-
         btnA.style.display = "none";
         btnB.style.display = "none";
         btnC.style.display = "none";
-
         btnOK.style.display = "";
-        btnOK.onclick = () => window.dispatchEvent(new Event("updateProfile"));
+        btnOK.onclick = () => refreshCivicationAfterAnswer(ev.id);
+        refreshCivicationAfterAnswer(ev.id);
       };
     }
 
     if (!choices.length) {
-     fb.textContent = ev.feedback || "—";
-     fb.style.display = "";
-
-     btnOK.style.display = "";
-     btnOK.onclick = () => {
-      window.HG_CiviEngine?.answer?.(ev.id, null);
-      window.dispatchEvent(new Event("updateProfile"));
-     };
-
-     return;
-     }
+      fb.textContent = ev.feedback || "—";
+      fb.style.display = "";
+      btnOK.style.display = "";
+      btnOK.onclick = () => {
+        window.HG_CiviEngine?.answer?.(ev.id, null);
+        refreshCivicationAfterAnswer(ev.id);
+      };
+      return;
+    }
 
     const cA = choices.find(c => c?.id === "A");
     const cB = choices.find(c => c?.id === "B");
@@ -997,14 +735,10 @@ function renderCivicationInbox() {
     return;
   }
 
-  // =========================
-  // CIVICATION-MODE (Civication.html)
-  // =========================
   const host = document.getElementById("civiInbox");
   if (!host) return;
 
   const pending = window.HG_CiviEngine?.getPendingEvent?.();
-
   if (!pending?.event) {
     host.innerHTML = `<div>Ingen meldinger akkurat nå.</div>`;
     return;
@@ -1018,9 +752,7 @@ function renderCivicationInbox() {
     <div>
       <div><strong>📬 ${ev.subject || "—"}</strong></div>
       <div style="margin-top:6px;">${situation}</div>
-
       <div id="civiInboxChoices" style="display:flex;flex-direction:column;gap:8px;margin-top:10px;"></div>
-
       <div id="civiInboxFeedback" style="display:none;margin-top:10px;"></div>
       <button class="civi-btn primary" id="civiInboxOK" style="display:none;margin-top:10px;">OK</button>
     </div>
@@ -1031,21 +763,30 @@ function renderCivicationInbox() {
   const ok = host.querySelector("#civiInboxOK");
 
   function showOk(txt) {
-    if (fb) { fb.textContent = txt || "—"; fb.style.display = ""; }
-    if (ok) { ok.style.display = ""; ok.onclick = () => window.dispatchEvent(new Event("updateProfile")); }
+    if (fb) {
+      fb.textContent = txt || "—";
+      fb.style.display = "";
+    }
+    if (ok) {
+      ok.style.display = "";
+      ok.onclick = () => refreshCivicationAfterAnswer(ev.id);
+    }
   }
 
   if (!choices.length) {
-  if (fb) { fb.textContent = ev.feedback || "—"; fb.style.display = ""; }
-  if (ok) {
-    ok.style.display = "";
-    ok.onclick = () => {
-      window.HG_CiviEngine?.answer?.(ev.id, null);
-      window.dispatchEvent(new Event("updateProfile"));
-    };
+    if (fb) {
+      fb.textContent = ev.feedback || "—";
+      fb.style.display = "";
+    }
+    if (ok) {
+      ok.style.display = "";
+      ok.onclick = () => {
+        window.HG_CiviEngine?.answer?.(ev.id, null);
+        refreshCivicationAfterAnswer(ev.id);
+      };
+    }
+    return;
   }
-  return;
-}
 
   choices.forEach(c => {
     const id = String(c?.id || "").trim();
@@ -1054,47 +795,37 @@ function renderCivicationInbox() {
     const b = document.createElement("button");
     b.className = "civi-btn";
     b.textContent = String(c.label || id);
-
     b.onclick = () => {
       const res = window.HG_CiviEngine?.answer?.(ev.id, id);
       if (!res?.ok) return;
-
       if (choiceBox) choiceBox.innerHTML = "";
       showOk(res.feedback || "—");
+      refreshCivicationAfterAnswer(ev.id);
     };
 
     choiceBox?.appendChild(b);
   });
 }
 
-
 function renderCapital() {
   const capital = JSON.parse(localStorage.getItem("hg_capital_v1")) || {};
-
   const map = {
-  economic: "capEconomic",
-  cultural: "capCultural",
-  social: "capSocial",
-  symbolic: "capSymbolic",
-  political: "capPolitical",
-  institutional: "capInstitutional",
-  subculture: "capSubculture"
-};
+    economic: "capEconomic",
+    cultural: "capCultural",
+    social: "capSocial",
+    symbolic: "capSymbolic",
+    political: "capPolitical",
+    institutional: "capInstitutional",
+    subculture: "capSubculture"
+  };
 
   Object.keys(map).forEach(key => {
     const el = document.getElementById(map[key]);
-    if (el) {
-      el.textContent = Math.round(capital[key] || 0);
-    }
+    if (el) el.textContent = Math.round(capital[key] || 0);
   });
 }
 
-// ============================================================
-// IDENTITY PERCEPTION
-// ============================================================
-
 function renderPerception() {
-
   const el = document.getElementById("identityPerception");
   if (!el) return;
 
@@ -1108,22 +839,16 @@ function renderPerception() {
     dominant: identity.dominant
   }) || [];
 
-  el.innerHTML = lines
-    .map(l => `<div class="perception-line">${l}</div>`)
-    .join("");
+  el.innerHTML = lines.map(l => `<div class="perception-line">${l}</div>`).join("");
 }
 
-document.getElementById("identityPerceptionBtn")
-  ?.addEventListener("click", () => {
-
-    const el = document.getElementById("identityPerception");
-    if (!el) return;
-
-    el.classList.toggle("open");
-  });
+document.getElementById("identityPerceptionBtn")?.addEventListener("click", () => {
+  const el = document.getElementById("identityPerception");
+  if (!el) return;
+  el.classList.toggle("open");
+});
 
 function renderTrackHUD() {
-
   const state = window.CivicationState.getState();
   if (!state) return;
 
@@ -1134,7 +859,6 @@ function renderTrackHUD() {
   const nameEl = document.getElementById("civiTrackName");
   const progEl = document.getElementById("civiTrackProgress");
   const tagsEl = document.getElementById("civiTrackTags");
-
   if (!nameEl || !progEl || !tagsEl) return;
 
   if (!tracks.length) {
@@ -1149,17 +873,8 @@ function renderTrackHUD() {
 
   nameEl.textContent = activeTrack.replace(/_/g, " ");
   progEl.textContent = "Progresjon: " + progress;
-
-  const recentTags = tags.slice(0, 3);
-
-  tagsEl.innerHTML = recentTags
-    .map(t => `<span>${t}</span>`)
-    .join("");
+  tagsEl.innerHTML = tags.slice(0, 3).map(t => `<span>${t}</span>`).join("");
 }
-
-// ============================================================
-// EXPORT
-// ============================================================
 
 window.CivicationUI = {
   init,
