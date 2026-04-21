@@ -244,7 +244,18 @@ async function loadPlacesBase(opts = {}) {
   // ----------------------------
   function loadEmner(themeId, opts = {}) {
     if (!themeId) return Promise.resolve([]);
-    return fetchJSON(pEmner(`emner_${themeId}.json`), opts).catch(() => []);
+
+    let id = String(themeId).trim();
+    try {
+      if (window.DomainRegistry?.resolve) id = window.DomainRegistry.resolve(id);
+    } catch (e) { /* behold rå id ved ukjent domene */ }
+
+    const nested = pData(`fag/${id}/emner_${id}.json`);
+    const flat = pData(`fag/emner_${id}.json`);
+
+    return fetchJSON(nested, opts)
+      .catch(() => fetchJSON(flat, opts))
+      .catch(() => []);
   }
 
   function loadFagkart(opts = {}) {

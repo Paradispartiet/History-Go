@@ -21,20 +21,23 @@ window.Emner = (function () {
   const DEBUG = !!window.DEBUG;
 
   // Kart over alle emne-filer per fagfelt / merke-id
+  // historie og vitenskap ligger direkte i data/fag/, resten i underfolder.
+  // populaerkultur er alias for popkultur (fysisk fil).
   const EMNER_INDEX = {
-    historie:       "emner/emner_historie.json",
-    by:             "emner/emner_by.json",
-    kunst:          "emner/emner_kunst.json",
-    musikk:         "emner/emner_musikk.json",
-    natur:          "emner/emner_natur.json",
-    vitenskap:      "emner/emner_vitenskap.json",
-    litteratur:     "emner/emner_litteratur.json",
-    populaerkultur: "emner/emner_populaerkultur.json",
-    naeringsliv:    "emner/emner_naeringsliv.json",
-    sport:          "emner/emner_sport.json",
-    politikk:       "emner/emner_politikk.json",
-    subkultur:      "emner/emner_subkultur.json",
-    psykologi:      "emner/emner_psykologi.json"
+    historie:       "data/fag/emner_historie.json",
+    vitenskap:      "data/fag/emner_vitenskap.json",
+    by:             "data/fag/by/emner_by.json",
+    kunst:          "data/fag/kunst/emner_kunst.json",
+    musikk:         "data/fag/musikk/emner_musikk.json",
+    natur:          "data/fag/natur/emner_natur.json",
+    litteratur:     "data/fag/litteratur/emner_litteratur.json",
+    popkultur:      "data/fag/popkultur/emner_popkultur.json",
+    populaerkultur: "data/fag/popkultur/emner_popkultur.json",
+    naeringsliv:    "data/fag/naeringsliv/emner_naeringsliv.json",
+    sport:          "data/fag/sport/emner_sport.json",
+    politikk:       "data/fag/politikk/emner_politikk.json",
+    subkultur:      "data/fag/subkultur/emner_subkultur.json",
+    psykologi:      "data/fag/psykologi/emner_psykologi.json"
   };
 
   // cache[subjectId] = [emner...]
