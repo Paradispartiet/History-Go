@@ -1,0 +1,150 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "category": "naeringsliv",
+  "role_scope": "formann",
+  "mail_type": "event",
+  "families": [
+    {
+      "id": "kritisk_bemanningssprekk",
+      "mails": [
+        {
+          "id": "formann_event_bemanning_001",
+          "mail_type": "event",
+          "mail_family": "kritisk_bemanningssprekk",
+          "role_scope": "formann",
+          "phase": "climax",
+          "priority": 72,
+          "cooldown": 4,
+          "repeatable": false,
+          "stage": "warning",
+          "subject": "Bemanningen sprekker akkurat der dagen minst tåler det",
+          "situation": [
+            "Et fravær eller en plutselig svikt gjør at et kritisk punkt står svakere bemannet enn dagen tåler.",
+            "Ingen løsning er ren: enten må noen strekkes for langt, eller så må produksjonen tapes synlig.",
+            "Som formann må du velge om du skjærer hardt i belastning eller lar tapet bli synlig oppover."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Strekke laget hardt for å holde produksjonen oppe",
+              "effect": 1,
+              "tags": ["control", "strain"],
+              "feedback": "Du redder output og lar kroppenes pris bli høyere."
+            },
+            {
+              "id": "B",
+              "label": "Gjøre tapet synlig og beskytte laget mer",
+              "effect": 0,
+              "tags": ["care", "visibility"],
+              "feedback": "Du lar konsekvensen gå oppover i stedet for bare nedover i laget."
+            }
+          ]
+        },
+        {
+          "id": "formann_event_bemanning_002",
+          "mail_type": "event",
+          "mail_family": "kritisk_bemanningssprekk",
+          "role_scope": "formann",
+          "phase": "climax",
+          "priority": 69,
+          "cooldown": 4,
+          "repeatable": false,
+          "stage": "warning",
+          "subject": "Du ser at én svak åpning i bemanningen gjør hele gulvet mer skjørt",
+          "situation": [
+            "Det er ikke bare én oppgave som mangler folk; hele koordineringen rundt den blir mer nervøs og mer sårbar for små feil.",
+            "Du kjenner at et slikt øyeblikk raskt kan bli testen på om formannsrollen faktisk klarer å holde helheten sammen under press.",
+            "Du må velge om du sentraliserer styringen helt eller lar laget improvisere mer rundt hullet."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Sentralisere styringen og holde alt tettere rundt deg",
+              "effect": 1,
+              "tags": ["control", "visibility"],
+              "feedback": "Du samler mer ansvar hos deg og gjør dagen mer avhengig av din kapasitet."
+            },
+            {
+              "id": "B",
+              "label": "La laget improvisere mer for å spre belastningen",
+              "effect": 0,
+              "tags": ["trust", "risk"],
+              "feedback": "Du fordeler ansvaret bredere og gjør utfallet mindre kontrollert."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "maskinstans_med_ansvar",
+      "mails": [
+        {
+          "id": "formann_event_maskin_001",
+          "mail_type": "event",
+          "mail_family": "maskinstans_med_ansvar",
+          "role_scope": "formann",
+          "phase": "climax",
+          "priority": 70,
+          "cooldown": 4,
+          "repeatable": false,
+          "stage": "warning",
+          "subject": "Maskinen stanser, men ansvaret stanser ikke med den",
+          "situation": [
+            "En stans i utstyret gjør at både sikkerhet, tid og forventning plutselig kolliderer i samme punkt.",
+            "Du vet at alle blikk nå går mot deg for prioritering, selv om årsaken ligger utenfor det du direkte kontrollerer.",
+            "Du må velge om du går for trygg og tydelig stans eller prøver å hente dagen inn igjen raskere."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta en klar og forsvarlig stans før noe annet",
+              "effect": 1,
+              "tags": ["craft", "risk"],
+              "feedback": "Du beskytter nivået og tåler at produksjonen blir skarpere avbrutt."
+            },
+            {
+              "id": "B",
+              "label": "Prøve å hente inn igjen tid så raskt som mulig etter en kort vurdering",
+              "effect": 0,
+              "tags": ["speed", "strain"],
+              "feedback": "Du jager tapet raskt og gjør avgjørelsen mer sårbar i ettertid."
+            }
+          ]
+        },
+        {
+          "id": "formann_event_maskin_002",
+          "mail_type": "event",
+          "mail_family": "maskinstans_med_ansvar",
+          "role_scope": "formann",
+          "phase": "climax",
+          "priority": 67,
+          "cooldown": 4,
+          "repeatable": false,
+          "stage": "warning",
+          "subject": "Det tekniske problemet blir raskt et spørsmål om hvem som tør å eie avgjørelsen",
+          "situation": [
+            "Når noe stanser teknisk, oppstår det også et ledelsesrom: hvem tar beslutningen om stopp, venting, omdirigering og risiko.",
+            "Som formann blir du stående nærmest både konsekvensene og valget, selv når ingen løsning er helt god.",
+            "Du må velge om du eskalerer raskt eller bærer avgjørelsen lokalt først."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Eskalere raskt og gjøre ansvarsbildet tydeligere oppover",
+              "effect": 1,
+              "tags": ["visibility", "legitimacy"],
+              "feedback": "Du deler ansvaret tidligere og gjør systemet mer delaktig i konsekvensen."
+            },
+            {
+              "id": "B",
+              "label": "Bære avgjørelsen lokalt og forsøke å holde flere ledd i gang",
+              "effect": 0,
+              "tags": ["control", "strain"],
+              "feedback": "Du beskytter flyten rundt hendelsen og gjør deg selv mer eksponert hvis det går galt."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
