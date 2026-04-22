@@ -332,7 +332,7 @@ function getCareerStorePool(active) {
       name: "Gatebutikken",
       type: "clothing",
       blurb: "Trygge valg. Mye logo. Litt sjel.",
-      careers: ["subkultur", "populaerkultur", "musikk"]
+      careers: ["subkultur", "populaerkultur", "musikk", "naeringsliv"]
     },
     {
       id: "work_shop_generic",
@@ -342,11 +342,19 @@ function getCareerStorePool(active) {
       careers: ["naeringsliv", "by"]
     },
     {
+      id: "canteen_generic",
+      name: "Kantina & Kaffebaren",
+      type: "food",
+      blurb: "Halv pause, halv strategi. Mye småprat. Nakne lysrør.",
+      careers: ["naeringsliv", "by", "vitenskap", "media"]
+    },
+    {
       id: "hifi_shop_generic",
       name: "Hi-Fi & Lyd",
       type: "tech",
       blurb: "Du hører forskjell. (Du kommer til å si at du gjør det.)",
-      careers: ["musikk", "vitenskap"]
+      careers: ["musikk", "vitenskap", "naeringsliv"],
+      minVisitedPlaces: 5
     },
     {
       id: "car_dealer_generic",
