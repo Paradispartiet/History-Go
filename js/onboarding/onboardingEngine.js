@@ -2,6 +2,7 @@
   "use strict";
 
   const LS_KEY = "hg_onboarding_v1";
+  const SESSION_WELCOME_KEY = "hg_welcome_toast_seen_v1";
 
   const STEP_ORDER = [
     "first_quiz",
@@ -115,6 +116,12 @@
     }
   }
 
+  function getNearbyVisibleCount() {
+    const host = document.getElementById("nearbyList");
+    if (!host) return 0;
+    return Number(host.children?.length || 0);
+  }
+
   function hasActiveJob() {
     return !!window.CivicationState?.getActivePosition?.();
   }
@@ -180,6 +187,7 @@
       stats: {
         quizCount: progress.quizCount,
         visitedCount: progress.visitedCount,
+        nearbyVisibleCount: progress.nearbyVisibleCount,
         pendingOffer: !!progress.pendingOffer,
         pendingOfferCount: Number(progress.pendingOfferCount || 0),
         pendingMailCount: Number(progress.pendingMailCount || 0),
@@ -241,6 +249,34 @@
     return guidance;
   }
 
+  function buildWelcomeToast(progress) {
+    const parts = [];
+
+    if (progress.quizCount > 0 || progress.visitedCount > 0) {
+      parts.push("Velkommen tilbake. Ta en quiz og se hvor den fører deg.");
+    } else {
+      parts.push("Velkommen. Ta en quiz og se hvor den fører deg.");
+    }
+
+    if (progress.visitedCount > 0) {
+      parts.push(`Du har allerede åpnet ${progress.visitedCount} steder.`);
+    }
+
+    if (progress.nearbyVisibleCount > 0) {
+      parts.push(`Du har ${progress.nearbyVisibleCount} steder i nærheten akkurat nå.`);
+    }
+
+    if (progress.pendingOfferCount > 0) {
+      parts.push(`Du har ${progress.pendingOfferCount} ventende jobbtilbud i Civication.`);
+    }
+
+    if (progress.pendingMailCount > 0) {
+      parts.push(`Du har ${progress.pendingMailCount} ventende meldinger eller hendelser.`);
+    }
+
+    return parts.join(" ");
+  }
+
   function buildToastText(stepKey, progress) {
     if (stepKey === "first_quiz") {
       return "✨ Første sted åpnet. Dette gir deg ditt første faktiske fotfeste i byen.";
@@ -279,9 +315,23 @@
     return null;
   }
 
+  function hasAnnouncedAnything(state) {
+    return Object.keys(state?.announced || {}).length > 0;
+  }
+
+  function seedHistoricalUnlockedSteps(state, progress) {
+    const now = new Date().toISOString();
+    for (const step of STEP_ORDER) {
+      if (progress.unlocked[step] && !state.announced[step]) {
+        state.announced[step] = now;
+      }
+    }
+  }
+
   async function evaluateProgress() {
     const quizCount = getQuizCount();
     const visitedCount = getVisitedCount();
+    const nearbyVisibleCount = getNearbyVisibleCount();
     const activeJob = hasActiveJob();
     const dayEvent = hasDayEvent();
     const people = hasPeople();
@@ -323,6 +373,7 @@
     const progress = {
       quizCount,
       visitedCount,
+      nearbyVisibleCount,
       pendingOffer,
       pendingOfferCount,
       pendingMailCount,
@@ -363,13 +414,21 @@
     }
   }
 
-  async function refreshOnboarding() {
+  async function refreshOnboarding(options = {}) {
     const state = readState();
     const progress = await evaluateProgress();
 
-    for (const step of STEP_ORDER) {
-      if (progress.unlocked[step]) {
-        announceStep(step, state, progress);
+    const shouldSeedHistorical = !!options.seedHistorical &&
+      !hasAnnouncedAnything(state) &&
+      (progress.quizCount > 0 || progress.visitedCount > 0 || progress.pendingOfferCount > 0 || progress.pendingMailCount > 0 || progress.peopleCount > 0 || progress.storeCount > 0);
+
+    if (shouldSeedHistorical) {
+      seedHistoricalUnlockedSteps(state, progress);
+    } else {
+      for (const step of STEP_ORDER) {
+        if (progress.unlocked[step]) {
+          announceStep(step, state, progress);
+        }
       }
     }
 
@@ -385,6 +444,17 @@
     };
   }
 
+  function maybeShowWelcomeToast(progress) {
+    if (typeof window.showToast !== "function") return;
+
+    try {
+      if (sessionStorage.getItem(SESSION_WELCOME_KEY) === "1") return;
+      sessionStorage.setItem(SESSION_WELCOME_KEY, "1");
+    } catch {}
+
+    window.showToast(buildWelcomeToast(progress));
+  }
+
   window.HGOnboarding = {
     getState: readState,
     refresh: refreshOnboarding,
@@ -395,13 +465,17 @@
     },
     getCurrentGuidance: function () {
       return readState().current_guidance || null;
-    }
+    },
+    buildWelcomeToast
   };
 
   document.addEventListener("DOMContentLoaded", function () {
-    setTimeout(function () {
-      window.HGOnboarding?.refresh?.();
-    }, 50);
+    setTimeout(async function () {
+      const result = await window.HGOnboarding?.refresh?.({ seedHistorical: true });
+      if (result?.progress) {
+        maybeShowWelcomeToast(result.progress);
+      }
+    }, 120);
   });
 
   window.addEventListener("updateProfile", function () {
