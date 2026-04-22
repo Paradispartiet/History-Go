@@ -124,6 +124,106 @@ function renderNearbyPeople() {
   });
 }
 
+// ============================================================
+// NATURE — flora + fauna fra window.FLORA / window.FAUNA
+// Flatter ut emne_pack-objekter (tar med .items) og viser som flat liste.
+// ============================================================
+
+function flattenNatureEntries(arr, kind) {
+  const out = [];
+  (Array.isArray(arr) ? arr : []).forEach(entry => {
+    if (!entry || typeof entry !== "object") return;
+    if (entry.kind === "emne_pack" && Array.isArray(entry.items)) {
+      entry.items.forEach(it => {
+        if (it && typeof it === "object" && it.id) out.push({ ...it, _kind: kind });
+      });
+    } else if (entry.id) {
+      out.push({ ...entry, _kind: kind });
+    }
+  });
+  return out;
+}
+
+function getNatureUnlockedIds() {
+  try {
+    const db = window.HGNatureUnlocks?.load?.() || {};
+    const flora = Array.isArray(db?.collected?.flora) ? db.collected.flora : [];
+    const fauna = Array.isArray(db?.collected?.fauna) ? db.collected.fauna : [];
+    return new Set([...flora, ...fauna].map(x => String(x || "").trim()));
+  } catch { return new Set(); }
+}
+
+function renderNearbyNature() {
+  const listEl = document.getElementById("leftNatureList");
+  if (!listEl) return;
+
+  const flora = flattenNatureEntries(window.FLORA, "flora");
+  const fauna = flattenNatureEntries(window.FAUNA, "fauna");
+  const all = flora.concat(fauna);
+
+  if (!all.length) {
+    listEl.innerHTML = `<div class="muted" style="padding:12px;">Ingen natur-data lastet ennå.</div>`;
+    return;
+  }
+
+  const unlocked = getNatureUnlockedIds();
+
+  // Sortering: låst opp først, deretter alfabetisk på tittel.
+  all.sort((a, b) => {
+    const au = unlocked.has(a.id) ? 0 : 1;
+    const bu = unlocked.has(b.id) ? 0 : 1;
+    if (au !== bu) return au - bu;
+    return String(a.title || "").localeCompare(String(b.title || ""), "nb");
+  });
+
+  listEl.innerHTML = "";
+
+  all.forEach(obj => {
+    const isUnlocked = unlocked.has(obj.id);
+    const title = obj.title || obj.id || "";
+    const latin = obj.latin || obj.taxonomy?.latin_navn || "";
+    const kindIcon = obj._kind === "fauna" ? "🐞" : "🌿";
+
+    const item = document.createElement("div");
+    item.className = "nearby-item" + (isUnlocked ? " is-unlocked" : " is-locked");
+
+    item.innerHTML = `
+      <div class="nearby-thumbWrap">
+        <div class="nearby-thumb" style="display:flex;align-items:center;justify-content:center;background:#e8efe6;font-size:22px;">
+          ${kindIcon}
+        </div>
+      </div>
+      <div class="nearby-content">
+        <div class="nearby-title">${title}</div>
+        <div class="nearby-meta">
+          ${latin ? `<em>${latin}</em>` : ""}
+          ${isUnlocked ? " • ✔" : ""}
+        </div>
+      </div>
+    `;
+
+    item.addEventListener("click", () => {
+      window.openNatureCard?.(obj) || openNatureInfoToast(obj, isUnlocked);
+    });
+
+    listEl.appendChild(item);
+  });
+}
+
+function openNatureInfoToast(obj, isUnlocked) {
+  const parts = [];
+  parts.push(`${obj.title}${obj.latin ? ` (${obj.latin})` : ""}`);
+  if (!isUnlocked) parts.push("Ikke låst opp ennå — ta en quiz på riktig sted.");
+  if (Array.isArray(obj.kjennetegn) && obj.kjennetegn.length) {
+    parts.push("Kjennetegn: " + obj.kjennetegn.slice(0, 2).join("; "));
+  }
+  if (typeof window.showToast === "function") {
+    window.showToast(parts.join(" • "));
+  } else {
+    console.log("[nature]", parts.join(" • "));
+  }
+}
+
 function renderCollection() {
   const grid = document.getElementById("collectionGrid");
   if (!grid) return;
@@ -157,4 +257,5 @@ function renderCollection() {
 // eksponer globalt
 window.renderNearbyPlaces = renderNearbyPlaces;
 window.renderNearbyPeople = renderNearbyPeople;
+window.renderNearbyNature = renderNearbyNature;
 window.renderCollection = renderCollection;

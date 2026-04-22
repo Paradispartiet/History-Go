@@ -48,6 +48,10 @@ function setLeftPanelMode(mode) {
     renderNearbyPeople();
   }
 
+  if (mode === "nature" && typeof renderNearbyNature === "function") {
+    renderNearbyNature();
+  }
+
   if (mode === "routes" && typeof renderLeftRoutesList === "function") {
     renderLeftRoutesList();
   }
@@ -144,6 +148,22 @@ function initLeftPanel() {
   });
 
   renderLeftBadges();
+
+  // Re-render natur når DataHub blir ferdig (hvis fanen allerede står åpen).
+  window.addEventListener("hg:nature-loaded", () => {
+    const active = document.querySelector(".nearby-tab.is-active")?.getAttribute("data-leftmode");
+    if (active === "nature" && typeof renderNearbyNature === "function") {
+      renderNearbyNature();
+    }
+  });
+
+  // Re-render natur når en unlock skjer fra quiz (HGNatureUnlocks dispatcher hg:nature).
+  window.addEventListener("hg:nature", () => {
+    const active = document.querySelector(".nearby-tab.is-active")?.getAttribute("data-leftmode");
+    if (active === "nature" && typeof renderNearbyNature === "function") {
+      renderNearbyNature();
+    }
+  });
 
   syncLeftPanelFrame();
   window.addEventListener("resize", syncLeftPanelFrame);
