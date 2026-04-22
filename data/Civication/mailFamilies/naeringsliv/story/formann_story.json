@@ -1,0 +1,150 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "category": "naeringsliv",
+  "role_scope": "formann",
+  "mail_type": "story",
+  "families": [
+    {
+      "id": "gulvets_mellomposisjon",
+      "mails": [
+        {
+          "id": "formann_story_mellomposisjon_001",
+          "mail_type": "story",
+          "mail_family": "gulvets_mellomposisjon",
+          "role_scope": "formann",
+          "phase": "mid",
+          "priority": 61,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Du står nærmere gulvet enn ledelsen, og nærmere ledelsen enn gulvet liker å tro",
+          "situation": [
+            "Formannsrollen lever i et mellomrom der du både er en del av laget og en forlengelse av systemet over det.",
+            "Det gjør at du sjelden kan være helt ren i andres øyne: noen vil se deg som for lojal oppover, andre som for myk nedover.",
+            "Historien i rollen er nettopp denne dobbeltheten, ikke en enkel identitet."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Bære mellomposisjonen mer bevisst og tydelig",
+              "effect": 1,
+              "tags": ["legitimacy", "visibility"],
+              "feedback": "Du prøver å gjøre spennet til en del av rollen i stedet for å skjule det."
+            },
+            {
+              "id": "B",
+              "label": "Lene deg mer mot én side for å gjøre rollen enklere å lese",
+              "effect": 0,
+              "tags": ["control", "distance"],
+              "feedback": "Du gjør bildet klarere og taper noe av den dobbelte følsomheten i rollen."
+            }
+          ]
+        },
+        {
+          "id": "formann_story_mellomposisjon_002",
+          "mail_type": "story",
+          "mail_family": "gulvets_mellomposisjon",
+          "role_scope": "formann",
+          "phase": "mid",
+          "priority": 58,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Det er sjelden noen takker deg for spennet du holder samlet",
+          "situation": [
+            "Når dagen fungerer, blir mye av formannsarbeidet usynlig fordi det nettopp besto i å hindre at sprikene ble tydelige nok til å bli husket.",
+            "Rollen blir ofte mest synlig når noe glipper, ikke når noe blir holdt sammen.",
+            "Det gir en slags stillferdig ensomhet i ansvaret."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Akseptere usynligheten som en del av faget",
+              "effect": 1,
+              "tags": ["craft", "process"],
+              "feedback": "Du lar verdi finnes også der den ikke får applaus."
+            },
+            {
+              "id": "B",
+              "label": "Søke litt mer synlighet for det som faktisk bæres",
+              "effect": 0,
+              "tags": ["visibility", "risk"],
+              "feedback": "Du prøver å gi mellomarbeidet navn før det bare forsvinner i resultatene."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ansvar_uten_herredomme",
+      "mails": [
+        {
+          "id": "formann_story_ansvar_001",
+          "mail_type": "story",
+          "mail_family": "ansvar_uten_herredomme",
+          "role_scope": "formann",
+          "phase": "mid",
+          "priority": 60,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Du har ansvar for mye mer enn du faktisk kan bestemme alene",
+          "situation": [
+            "Som formann blir du holdt nær konsekvensene av beslutninger du ikke fullt ut eier, og du må likevel få dagen til å bære dem.",
+            "Det er en rolle med nærhet til ansvaret og begrenset suverenitet over rammene.",
+            "Derfor blir formannsarbeid ofte en kunst i å få noe til å holde uten å ha full herredømme over vilkårene."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Bære dette som et eget premiss i rollen",
+              "effect": 1,
+              "tags": ["legitimacy", "craft"],
+              "feedback": "Du gjør begrensningen til en del av forståelsen, ikke bare frustrasjonen."
+            },
+            {
+              "id": "B",
+              "label": "Fokusere mest på det du faktisk kan styre direkte",
+              "effect": 0,
+              "tags": ["control", "distance"],
+              "feedback": "Du snevrer inn rollen og beskytter deg mot noe av det større ansvaret rundt den."
+            }
+          ]
+        },
+        {
+          "id": "formann_story_ansvar_002",
+          "mail_type": "story",
+          "mail_family": "ansvar_uten_herredomme",
+          "role_scope": "formann",
+          "phase": "mid",
+          "priority": 57,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Ledelse på dette nivået handler ofte mer om å holde sammen enn å herske",
+          "situation": [
+            "Det du faktisk gjør er ofte å samle opp rytme, usikkerhet, små konflikter og de praktiske overgangene ingen høyere opp i systemet ser klart nok.",
+            "Rollen er derfor mindre majestetisk enn den høres ut og mer kroppslig, lokal og kontinuerlig.",
+            "Det gir formannsarbeidet en egen verdighet og en egen slitasje."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta denne formen for ledelse mer alvorlig som eget fag",
+              "effect": 1,
+              "tags": ["craft", "visibility"],
+              "feedback": "Du lar det nære ledelsesarbeidet få mer verdi i ditt eget blikk."
+            },
+            {
+              "id": "B",
+              "label": "Se det mest som et mellomtrinn mot større myndighet",
+              "effect": 0,
+              "tags": ["ambition", "distance"],
+              "feedback": "Du holder blikket lenger opp og mister noe av tyngden i nivået du faktisk står i nå."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
