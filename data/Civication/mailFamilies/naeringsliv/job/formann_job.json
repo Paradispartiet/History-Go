@@ -1,0 +1,231 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "category": "naeringsliv",
+  "role_scope": "formann",
+  "mail_type": "job",
+  "families": [
+    {
+      "id": "fordeling_av_skift",
+      "mails": [
+        {
+          "id": "formann_job_skift_001",
+          "mail_type": "job",
+          "mail_family": "fordeling_av_skift",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 63,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Skiftet settes før resten av dagen får språk",
+          "situation": [
+            "Som formann merker du at dagen ofte avgjøres i hvordan folk plasseres før arbeidet virkelig starter.",
+            "Fordelingen handler ikke bare om kompetanse, men om rytme, slit og hvem som tåler å bære hva akkurat i dag.",
+            "Du må velge om du går for maksimal flyt eller mer rettferdig belastning i laget."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Fordele laget etter flyt og kapasitet her og nå",
+              "effect": 1,
+              "tags": ["process", "control"],
+              "feedback": "Du prioriterer produksjonsro og gjør deg tydelig som styrende ledd på gulvet."
+            },
+            {
+              "id": "B",
+              "label": "Fordele mer jevnt for å beskytte laget over tid",
+              "effect": 0,
+              "tags": ["care", "legitimacy"],
+              "feedback": "Du bygger tillit i laget og risikerer samtidig mer friksjon i tempoet."
+            }
+          ]
+        },
+        {
+          "id": "formann_job_skift_002",
+          "mail_type": "job",
+          "mail_family": "fordeling_av_skift",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 60,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Ingen protesterer høyt, men alle leser plasseringen sin",
+          "situation": [
+            "Du kjenner hvordan folk oppfatter skiftplanen som et signal om verdi, tillit og rang i det stille.",
+            "En plassering kan oppleves som støtte, avlastning eller som at noen blir ofret for at dagen skal gå rundt.",
+            "Spørsmålet er om du skal forklare mer eller la planen tale for seg selv."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Forklare logikken bak plasseringene tydelig",
+              "effect": 1,
+              "tags": ["visibility", "legitimacy"],
+              "feedback": "Du bruker autoriteten til å gjøre fordelingen mindre taus og mer begrunnet."
+            },
+            {
+              "id": "B",
+              "label": "Holde planen kort og få folk raskt i gang",
+              "effect": 0,
+              "tags": ["process", "distance"],
+              "feedback": "Du får fart på starten og lar tolkningen leve videre mellom folk."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "produksjonsro",
+      "mails": [
+        {
+          "id": "formann_job_ro_001",
+          "mail_type": "job",
+          "mail_family": "produksjonsro",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 61,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Det du egentlig selger er ro nok til at arbeidet flyter",
+          "situation": [
+            "Mye av formannsrollen består i å stoppe små forstyrrelser før de sprer seg til hele linjen.",
+            "Når arbeidet flyter, ser ingen helt hva som ble avverget underveis.",
+            "Du må velge om du går tett på de små tegnene eller lar dagen gå mer av seg selv."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gå tett på og rydde opp i små forstyrrelser tidlig",
+              "effect": 1,
+              "tags": ["process", "craft"],
+              "feedback": "Du beskytter rytmen og gjør formannsrollen mer usynlig effektiv."
+            },
+            {
+              "id": "B",
+              "label": "La laget løse mer selv før du griper inn",
+              "effect": 0,
+              "tags": ["trust", "risk"],
+              "feedback": "Du gir mer rom og tåler samtidig et mer ujevnt bilde av kontroll."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "oppfolging_pa_gulvet",
+      "mails": [
+        {
+          "id": "formann_job_gulv_001",
+          "mail_type": "job",
+          "mail_family": "oppfolging_pa_gulvet",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 59,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Du kan ikke lede gulvet bare fra oversikten",
+          "situation": [
+            "Papiret sier én ting, men lyden, tempoet og blikkene på gulvet sier noe mer presist om hvordan dagen faktisk går.",
+            "Som formann må du være nær nok til å lese det som ikke blir sagt i rapportene.",
+            "Spørsmålet er om du blir stående i overblikket eller går mer fysisk inn i rommet."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Være mer til stede ute på gulvet gjennom økten",
+              "effect": 1,
+              "tags": ["visibility", "care"],
+              "feedback": "Du gjør deg mer tilgjengelig og mer ansvarlig for stemningen der arbeidet faktisk skjer."
+            },
+            {
+              "id": "B",
+              "label": "Holde deg mer i styringspunktet og følge helheten",
+              "effect": 0,
+              "tags": ["control", "distance"],
+              "feedback": "Du bevarer overblikket og mister noe av kontakten med detaljene på gulvet."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "stans_og_omdirigering",
+      "mails": [
+        {
+          "id": "formann_job_stans_001",
+          "mail_type": "job",
+          "mail_family": "stans_og_omdirigering",
+          "role_scope": "formann",
+          "phase": "early",
+          "priority": 66,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "stable_warning",
+          "subject": "Når noe stopper, er det du som må få bevegelsen til å finne ny vei",
+          "situation": [
+            "En mindre stans gjør at flere små ledd plutselig mister retning samtidig.",
+            "Ingen over deg er nær nok til å se hele øyeblikket slik du gjør, og de under deg trenger rask avklaring mer enn fine ord.",
+            "Du må velge om du skal omdirigere hardt eller bruke mer tid på å forankre endringen i laget."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Omdirigere raskt og samle avgjørelsen hos deg",
+              "effect": 1,
+              "tags": ["control", "visibility"],
+              "feedback": "Du skaper bevegelse fort og gjør ansvaret tydelig plassert hos deg."
+            },
+            {
+              "id": "B",
+              "label": "Bruke noen ekstra minutter på å forankre skiftet i laget",
+              "effect": 0,
+              "tags": ["care", "legitimacy"],
+              "feedback": "Du får mindre fart med én gang og mer bærekraft i hvordan folk følger deg."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ansvar_for_flyt",
+      "mails": [
+        {
+          "id": "formann_job_ansvar_001",
+          "mail_type": "job",
+          "mail_family": "ansvar_for_flyt",
+          "role_scope": "formann",
+          "phase": "early",
+          "priority": 64,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Flyten bæres av at noen gjør avgjørelsene før de blir behagelige",
+          "situation": [
+            "Du merker at rollen din blir skarpest når ingen andre helt vil eie de små, nødvendige inngrepene i tide.",
+            "Som formann er du nær nok til å se når nøling blir dyrt, men også nær nok til å få reaksjonene rett tilbake.",
+            "Du må velge hvor hardt du vil bruke den retten til å gripe inn."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta avgjørelsene raskt og stå i reaksjonene etterpå",
+              "effect": 1,
+              "tags": ["risk", "control"],
+              "feedback": "Du beskytter flyten og gjør deg mer synlig som den som faktisk styrer."
+            },
+            {
+              "id": "B",
+              "label": "Søke mer samtykke før du griper inn",
+              "effect": 0,
+              "tags": ["legitimacy", "process"],
+              "feedback": "Du bygger mer eierskap og åpner samtidig for at tempoet glipper."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
