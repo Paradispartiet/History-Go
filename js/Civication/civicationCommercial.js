@@ -2,6 +2,7 @@
    Civication Commercial (Shop) – stable runtime
    - Gir window.HG_CiviShop med getInv(), getPacks(), buyPack()
    - Lagrer inventory i localStorage
+   - Filtrerer synlige butikker/pakker via History Go → Civication access
    ============================================================ */
 
 (function () {
@@ -77,12 +78,13 @@
   }
 
   // ============================================================
-  // PACK LOADING
+  // DATA LOADING
   // ============================================================
 
   async function tryLoadPacks() {
 
     const paths = [
+      "data/Civication/commercial_packs.json",
       "data/civication_packs.json",
       "data/commercial_packs.json",
       "data/packs.json"
@@ -109,7 +111,33 @@
     return [];
   }
 
+  async function tryLoadStores() {
+    const paths = [
+      "data/Civication/stores.json",
+      "data/stores.json"
+    ];
+
+    for (const p of paths) {
+      try {
+        if (window.DataHub?.fetchJSON) {
+          const j = await window.DataHub.fetchJSON(p);
+          if (Array.isArray(j)) return j;
+          if (j && Array.isArray(j.stores)) return j.stores;
+        } else {
+          const r = await fetch(p, { cache: "no-store" });
+          if (!r.ok) continue;
+          const j = await r.json();
+          if (Array.isArray(j)) return j;
+          if (j && Array.isArray(j.stores)) return j.stores;
+        }
+      } catch {}
+    }
+
+    return [];
+  }
+
   let _packsPromise = null;
+  let _storesPromise = null;
 
   function getPacks() {
     if (!_packsPromise) {
@@ -118,13 +146,94 @@
     return _packsPromise;
   }
 
+  function getStores() {
+    if (!_storesPromise) {
+      _storesPromise = tryLoadStores();
+    }
+    return _storesPromise;
+  }
+
+  // ============================================================
+  // ACCESS FILTERING
+  // ============================================================
+
+  function getStoreAccessPool() {
+    const bridge = window.CivicationPlaceAccessBridge;
+    return bridge?.getBucket ? bridge.getBucket("store") : [];
+  }
+
+  function getHousingAccessPool() {
+    const bridge = window.CivicationPlaceAccessBridge;
+    return bridge?.getBucket ? bridge.getBucket("housing") : [];
+  }
+
+  function normalizeList(xs) {
+    return Array.isArray(xs) ? xs.map(String).filter(Boolean) : [];
+  }
+
+  function storeMatchesHistoryGoAccess(store) {
+    const pool = new Set(getStoreAccessPool().map(String));
+    const housing = new Set(getHousingAccessPool().map(String));
+
+    if (!pool.size && !housing.size) return true;
+
+    const storeType = String(store?.type || "").trim();
+    const storeId = String(store?.id || "").trim();
+
+    const mapping = {
+      street_shop_generic: ["clothing"],
+      work_shop_generic: ["equipment", "clothing"],
+      hifi_shop_generic: ["audio"],
+      car_dealer_generic: ["electronics", "equipment"],
+      housing_market: ["home"]
+    };
+
+    const wanted = mapping[storeId] || mapping[storeType] || [storeType];
+    if (storeId === "housing_market") {
+      return wanted.some((k) => housing.has(String(k)) || pool.has(String(k)));
+    }
+
+    return wanted.some((k) => pool.has(String(k)));
+  }
+
+  function hasRequiredNeighborhoodAccess(pack) {
+    const housing = new Set(getHousingAccessPool().map(String));
+    const required = normalizeList(pack?.gating?.requires_neighborhood_any);
+    if (!required.length) return true;
+
+    const translated = required.map((key) => {
+      if (key === "nabolag_basic_unlocked") return "stable_home";
+      if (key === "bilforhandler_distrikt") return "central_comfort";
+      return key;
+    });
+
+    return translated.some((key) => housing.has(String(key)));
+  }
+
+  async function getVisibleStores() {
+    const stores = await getStores();
+    return stores.filter(storeMatchesHistoryGoAccess);
+  }
+
+  async function getVisiblePacks() {
+    const [packs, visibleStores] = await Promise.all([getPacks(), getVisibleStores()]);
+    const allowedStoreIds = new Set(visibleStores.map((s) => String(s?.id || "")));
+
+    return packs.filter((pack) => {
+      const storeId = String(pack?.store_id || "");
+      if (storeId && !allowedStoreIds.has(storeId)) return false;
+      if (!hasRequiredNeighborhoodAccess(pack)) return false;
+      return true;
+    });
+  }
+
   // ============================================================
   // BUY PACK
   // ============================================================
 
   async function buyPack(packId) {
 
-    const packs = await getPacks();
+    const packs = await getVisiblePacks();
     const pack = packs.find(p => String(p.id) === String(packId));
 
     if (!pack) {
@@ -151,14 +260,14 @@
     if (!inv.packs) inv.packs = {};
     if (!inv.style_counts) inv.style_counts = {};
 
-    // Mark pack owned
     inv.packs[key] = true;
 
-    // Style / tag tracking
     const styles =
       Array.isArray(pack.styles)
         ? pack.styles
-        : (Array.isArray(pack.tags) ? pack.tags : []);
+        : (Array.isArray(pack.tags)
+            ? pack.tags
+            : (Array.isArray(pack.effects?.style_tags_gain) ? pack.effects.style_tags_gain : []));
 
     for (const s of styles) {
       const st = String(s);
@@ -167,7 +276,6 @@
         Number(inv.style_counts[st] || 0) + 1;
     }
 
-    // Deduct balance correctly
     wallet.balance = balance - price;
     setWallet(wallet);
 
@@ -189,6 +297,9 @@
   window.HG_CiviShop = {
     getInv,
     getPacks,
+    getStores,
+    getVisibleStores,
+    getVisiblePacks,
     buyPack
   };
 
