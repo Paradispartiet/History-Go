@@ -1,0 +1,226 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "category": "naeringsliv",
+  "role_scope": "formann",
+  "mail_type": "people",
+  "families": [
+    {
+      "id": "erfaren_som_tester_deg",
+      "mails": [
+        {
+          "id": "formann_people_erfaren_001",
+          "mail_type": "people",
+          "mail_family": "erfaren_som_tester_deg",
+          "role_scope": "formann",
+          "phase": "early",
+          "priority": 60,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Den erfarne ser om du bare har tittel eller faktisk rygg",
+          "situation": [
+            "En erfaren person i laget følger nøye med på hvordan du bruker rollen, men gjør det uten store ord eller åpne protester.",
+            "Det er ikke fiendtlighet så mye som en stille vurdering av om du tåler motstand, nyanser og faglig tyngde under deg.",
+            "Du må velge om du møter ham mer direkte eller lar arbeidet tale over tid."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gå i direkte samtale og invitere til tydelig faglig ærlighet",
+              "effect": 1,
+              "tags": ["care", "legitimacy"],
+              "feedback": "Du møter testen med åpenhet og gjør forholdet mindre rent hierarkisk."
+            },
+            {
+              "id": "B",
+              "label": "Holde deg i rollen og la praksisen gradvis bevise deg",
+              "effect": 0,
+              "tags": ["control", "distance"],
+              "feedback": "Du beskytter autoriteten og lar tilliten komme tregere."
+            }
+          ]
+        },
+        {
+          "id": "formann_people_erfaren_002",
+          "mail_type": "people",
+          "mail_family": "erfaren_som_tester_deg",
+          "role_scope": "formann",
+          "phase": "early",
+          "priority": 57,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Noen trenger ikke utfordre deg åpent for å prøve ledelsen din",
+          "situation": [
+            "Den erfarne i laget følger instrukser, men med små avvik i tone, timing og måten spørsmål stilles på.",
+            "Du skjønner at dette er en form for prøving: om du tåler å lese motstand før den blir til konflikt.",
+            "Spørsmålet er om du skal markere tydeligere eller vise at du faktisk forstår nyansen."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Vise at du ser nyansen og svare med presisjon heller enn makt",
+              "effect": 1,
+              "tags": ["craft", "legitimacy"],
+              "feedback": "Du gjør ledelse til lesning, ikke bare markering."
+            },
+            {
+              "id": "B",
+              "label": "Markere tydeligere for å stoppe prøvingen før den vokser",
+              "effect": 0,
+              "tags": ["control", "risk"],
+              "feedback": "Du setter grensen raskt og gjør rommet litt hardere."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nyansatt_som_folger_deg",
+      "mails": [
+        {
+          "id": "formann_people_ny_001",
+          "mail_type": "people",
+          "mail_family": "nyansatt_som_folger_deg",
+          "role_scope": "formann",
+          "phase": "early",
+          "priority": 58,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Den nyansatte lærer rollen din gjennom måten du beveger deg på",
+          "situation": [
+            "En ny person i laget ser mer på deg enn på systemet for å forstå hva som faktisk teller her.",
+            "Det gjør formannsrollen til et eksempel, ikke bare en funksjon.",
+            "Du må velge om du bruker tid på forklaring eller lar tempo og imitasjon bære opplæringen."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Bruke tid på å forklare både rytme og begrunnelser",
+              "effect": 1,
+              "tags": ["care", "process"],
+              "feedback": "Du gjør opplæringen saktere og dypere."
+            },
+            {
+              "id": "B",
+              "label": "La læringen skje gjennom tempo, observasjon og etteraping",
+              "effect": 0,
+              "tags": ["speed", "distance"],
+              "feedback": "Du holder farten oppe og lar noe av forståelsen bli tilfeldig."
+            }
+          ]
+        },
+        {
+          "id": "formann_people_ny_002",
+          "mail_type": "people",
+          "mail_family": "nyansatt_som_folger_deg",
+          "role_scope": "formann",
+          "phase": "early",
+          "priority": 56,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Du merker hvor fort usikkerhet smitter hvis ingen gir formen på dagen språk",
+          "situation": [
+            "Den nyansatte begynner å nøle i små overganger, og du ser hvordan slikt lett sprer seg hvis det ikke fanges tidlig.",
+            "Noe av formannsarbeidet består i å gi dagen nok form til at andre tør å henge seg på den.",
+            "Du må velge om du stopper opp og tar usikkerheten direkte eller bare strammer rytmen rundt den."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Stoppe opp og avklare usikkerheten eksplisitt",
+              "effect": 1,
+              "tags": ["care", "visibility"],
+              "feedback": "Du gjør læringsrommet tydeligere og tempoet mykere."
+            },
+            {
+              "id": "B",
+              "label": "Stramme rytmen og få vedkommende med gjennom bevegelse",
+              "effect": 0,
+              "tags": ["process", "risk"],
+              "feedback": "Du holder dagen sammen og lar noe av tvilen ligge under overflaten."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "taus_slitasje_i_laget",
+      "mails": [
+        {
+          "id": "formann_people_slitasje_001",
+          "mail_type": "people",
+          "mail_family": "taus_slitasje_i_laget",
+          "role_scope": "formann",
+          "phase": "mid",
+          "priority": 64,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "stable_warning",
+          "subject": "Ingen sier det rett ut, men laget begynner å gå litt lavere inn i dagen",
+          "situation": [
+            "Du ser det i tempo, i stillhet og i hvor lite ekstrarom folk har igjen mellom oppgavene.",
+            "Dette er ikke åpen konflikt, men den typen slitasje som gjør at små ting lettere blir store.",
+            "Du må velge om du setter ord på dette eller forsøker å bære laget gjennom uten å åpne det fullt ut."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Sette ord på slitasjen og justere forventningene tydelig",
+              "effect": 1,
+              "tags": ["care", "visibility"],
+              "feedback": "Du gir slit et språk og gjør ledelse mindre lik stilltiende pressing."
+            },
+            {
+              "id": "B",
+              "label": "Bære laget videre uten å gjøre slitasjen til eget tema",
+              "effect": 0,
+              "tags": ["strain", "control"],
+              "feedback": "Du kjøper arbeidsro og gjør trettheten mindre synlig enn den er."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "blikk_fra_ledelsen",
+      "mails": [
+        {
+          "id": "formann_people_ledelse_001",
+          "mail_type": "people",
+          "mail_family": "blikk_fra_ledelsen",
+          "role_scope": "formann",
+          "phase": "mid",
+          "priority": 62,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Ledelsen over deg ser på deg som tonen på gulvet i én kropp",
+          "situation": [
+            "Du kjenner at folk over deg ikke bare vurderer produksjonen, men også hva slags klima du skaper i laget.",
+            "Det betyr at du blir lest som både stemning, struktur og resultat samtidig.",
+            "Spørsmålet er om du tilpasser deg dette blikket eller fortsetter å prioritere laget slik du mener gulvet faktisk trenger."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Stå roligere i din egen vurdering av hva laget trenger",
+              "effect": 1,
+              "tags": ["legitimacy", "risk"],
+              "feedback": "Du lar ikke blikket ovenfra alene bestemme hvordan du leder nedenfra."
+            },
+            {
+              "id": "B",
+              "label": "Justere deg mer mot det ledelsen ser etter",
+              "effect": 0,
+              "tags": ["visibility", "control"],
+              "feedback": "Du blir lettere å lese oppover og litt fjernere å kjenne igjen på gulvet."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
