@@ -1,10 +1,32 @@
-function showToast(msg, ms = 2000) {
+function showToast(msg, ms = null) {
   const t = el.toast;
   if (!t) return;
-  t.textContent = msg;
-  t.style.display = "block";
+
   clearTimeout(t._hide);
-  t._hide = setTimeout(() => {
+  t._hide = null;
+
+  t.innerHTML = "";
+
+  const closeBtn = document.createElement("button");
+  closeBtn.type = "button";
+  closeBtn.className = "toast-close";
+  closeBtn.setAttribute("aria-label", "Lukk melding");
+  closeBtn.textContent = "×";
+  closeBtn.addEventListener("click", () => {
     t.style.display = "none";
-  }, ms);
+  });
+
+  const body = document.createElement("div");
+  body.className = "toast-body";
+  body.textContent = String(msg || "");
+
+  t.appendChild(closeBtn);
+  t.appendChild(body);
+  t.style.display = "block";
+
+  if (Number.isFinite(ms) && Number(ms) > 0) {
+    t._hide = setTimeout(() => {
+      t.style.display = "none";
+    }, Number(ms));
+  }
 }
