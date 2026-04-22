@@ -13,9 +13,7 @@
 
   const KEY = "hg_nature_unlocks_v2";
 
-  const MAP_URL   = "data/nature/nature_unlock_map.json";
-  const FLORA_URL = "data/nature/flora.json";
-  const FAUNA_URL = "data/nature/fauna.json";
+  const MAP_URL = "data/natur/nature_unlock_map.json";
 
   // ---------- storage ----------
   function loadDb() {
@@ -86,14 +84,19 @@
     if (_bioLoading) return _bioLoading;
 
     _bioLoading = (async () => {
-      let floraArr = [];
-      let faunaArr = [];
+      // Foretrekk globale window.FLORA/FAUNA satt av DataHub.loadNature().
+      // Hvis ikke lastet ennå, last via DataHub (manifest-basert).
+      let floraArr = Array.isArray(window.FLORA) ? window.FLORA : null;
+      let faunaArr = Array.isArray(window.FAUNA) ? window.FAUNA : null;
 
-      try { floraArr = await fetchJson(FLORA_URL); } catch { floraArr = []; }
-      try { faunaArr = await fetchJson(FAUNA_URL); } catch { faunaArr = []; }
+      if ((!floraArr || !faunaArr) && window.DataHub?.loadNature) {
+        try { await window.DataHub.loadNature(); } catch {}
+        floraArr = Array.isArray(window.FLORA) ? window.FLORA : [];
+        faunaArr = Array.isArray(window.FAUNA) ? window.FAUNA : [];
+      }
 
-      _floraIndex = toIndex(floraArr);
-      _faunaIndex = toIndex(faunaArr);
+      _floraIndex = toIndex(floraArr || []);
+      _faunaIndex = toIndex(faunaArr || []);
 
       return { flora: _floraIndex, fauna: _faunaIndex };
     })();

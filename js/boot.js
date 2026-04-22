@@ -232,11 +232,11 @@ async function boot() {
      INIT
   ============================== */
 
-  if (typeof loadNature === "function") {
+  if (window.DataHub?.loadNature) {
     try {
-      await loadNature();
+      await window.DataHub.loadNature();
     } catch (e) {
-      console.error(e);
+      console.error("[DataHub.loadNature]", e);
     }
   }
 

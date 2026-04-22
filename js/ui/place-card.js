@@ -210,18 +210,11 @@ if (!card) return;
     (typeof FLORA !== "undefined" && Array.isArray(FLORA)) ? FLORA :
     (Array.isArray(window.FLORA) ? window.FLORA : []);
 
-  // Hvis flora ikke er lastet globalt ennå: last fra fil én gang og cache på window.FLORA
-  if (!FLORA_LIST.length) {
+  // Hvis flora ikke er lastet globalt ennå: last via DataHub og cache på window.FLORA
+  if (!FLORA_LIST.length && window.DataHub?.loadNature) {
     try {
-      const url = new URL("data/nature/flora.json", document.baseURI).toString();
-      const r = await fetch(url, { cache: "no-store" });
-      if (r.ok) {
-        const arr = await r.json();
-        if (Array.isArray(arr)) {
-          window.FLORA = arr;
-          FLORA_LIST = arr;
-        }
-      }
+      await window.DataHub.loadNature();
+      if (Array.isArray(window.FLORA)) FLORA_LIST = window.FLORA;
     } catch {}
   }
 
