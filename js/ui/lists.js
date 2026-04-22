@@ -12,6 +12,7 @@ function renderNearbyPlaces() {
   const pos = window.getPos?.();
 
   const filterMode = window.HG_NEARBY_FILTER || "unvisited";
+  const freshPlaceId = String(window.HG_LAST_DISCOVERED_PLACE_ID || "").trim();
 
   let items = PLACES.map(p => ({
     ...p,
@@ -41,6 +42,10 @@ function renderNearbyPlaces() {
     const item = document.createElement("div");
     item.className = "nearby-item";
 
+    if (freshPlaceId && String(place.id || "").trim() === freshPlaceId) {
+      item.classList.add("is-fresh-discovery");
+    }
+
     item.innerHTML = `
       <div class="nearby-thumbWrap">
         <img class="nearby-thumb" src="${img}" alt="${place.name}">
@@ -54,6 +59,7 @@ function renderNearbyPlaces() {
         <div class="nearby-meta">
           ${place._d != null ? place._d + " m" : ""}
           ${visited[place.id] ? " • ✔" : ""}
+          ${freshPlaceId && String(place.id || "").trim() === freshPlaceId ? " • Ny" : ""}
         </div>
       </div>
     `;
