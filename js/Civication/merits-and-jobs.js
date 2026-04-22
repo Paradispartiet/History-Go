@@ -53,6 +53,70 @@ function hgPushJobOffer(badge, tier, newPoints) {
   }) || { ok: false, reason: "jobs_unavailable" };
 }
 
+async function rebuildJobOffersFromCurrentMerits() {
+  await ensureBadgesLoaded();
+
+  if (window.CivicationJobs?.canReceiveNewOffers &&
+      !window.CivicationJobs.canReceiveNewOffers()) {
+    return { ok: false, reason: "active_job" };
+  }
+
+  const existingOffers = window.CivicationJobs?.getOffers?.() || [];
+  const hasPending = existingOffers.some(function (o) {
+    return o && o.status === "pending";
+  });
+
+  if (hasPending) {
+    return { ok: true, reason: "pending_exists" };
+  }
+
+  const merits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
+  const badgeList = Array.isArray(window.BADGES) ? window.BADGES : [];
+
+  let bestCandidate = null;
+
+  for (const badge of badgeList) {
+    const badgeId = String(badge?.id || "").trim();
+    if (!badgeId) continue;
+
+    const points = Number(merits?.[badgeId]?.points || 0);
+    if (points <= 0) continue;
+
+    const tier = deriveTierFromPoints(badge, points);
+    if (!tier || !Number.isFinite(Number(tier.threshold))) continue;
+    if ((tier.tierIndex ?? 0) <= 0) continue;
+    if (!qualifiesForTierWithCross(badgeId, tier.tierIndex)) continue;
+
+    const candidate = {
+      badge,
+      tier,
+      points,
+      tierIndex: Number(tier.tierIndex || 0),
+      threshold: Number(tier.threshold || 0)
+    };
+
+    if (!bestCandidate) {
+      bestCandidate = candidate;
+      continue;
+    }
+
+    if (candidate.tierIndex > bestCandidate.tierIndex) {
+      bestCandidate = candidate;
+      continue;
+    }
+
+    if (candidate.tierIndex === bestCandidate.tierIndex &&
+        candidate.points > bestCandidate.points) {
+      bestCandidate = candidate;
+    }
+  }
+
+  if (!bestCandidate) {
+    return { ok: false, reason: "no_candidate" };
+  }
+
+  return hgPushJobOffer(bestCandidate.badge, bestCandidate.tier, bestCandidate.points);
+}
 
 // Oppdater "stilling" ved ny poengsum (tiers = karrierestige)
 async function updateMeritLevel(cat, oldPoints, newPoints) {
@@ -130,3 +194,10 @@ async function addCompletedQuizAndMaybePoint(categoryDisplay, quizId) {
 window.hgPushJobOffer = hgPushJobOffer;
 window.updateMeritLevel = updateMeritLevel;
 window.addCompletedQuizAndMaybePoint = addCompletedQuizAndMaybePoint;
+window.rebuildJobOffersFromCurrentMerits = rebuildJobOffersFromCurrentMerits;
+
+document.addEventListener("DOMContentLoaded", function () {
+  setTimeout(function () {
+    window.rebuildJobOffersFromCurrentMerits?.();
+  }, 0);
+});
