@@ -153,13 +153,150 @@ function getNatureUnlockedIds() {
   } catch { return new Set(); }
 }
 
+window.isNatureUnlocked = function (id) {
+  return getNatureUnlockedIds().has(String(id || "").trim());
+};
+
+// ---- Bildeopppslag --------------------------------------------------------
+// Prøver flere navnekonvensjoner før vi faller tilbake til emoji i UI.
+// For fauna har vi faktiske bilder under bilder/natur/insekter/; for flora
+// finnes ingen bilder ennå, og funksjonen returnerer "" så CSS viser emoji.
+const _natureImageCache = new Map();
+
+function natureImageCandidates(obj, kind) {
+  const cands = [];
+  const id = String(obj.id || "").trim();
+  const rel = String(obj.related_fauna_id || obj.related_flora_id || "").trim();
+
+  const strips = new Set();
+  if (id) {
+    strips.add(id);
+    strips.add(id.replace(/^emne_fauna_bille_/, ""));
+    strips.add(id.replace(/^emne_fauna_/, ""));
+    strips.add(id.replace(/^emne_flora_/, ""));
+    strips.add(id.replace(/^emne_kratt_/, ""));
+    strips.add(id.replace(/^emne_ved_/, ""));
+    strips.add(id.replace(/^emne_gress_/, ""));
+    strips.add(id.split("_").pop());
+  }
+  if (rel) {
+    strips.add(rel);
+    strips.add(rel.replace(/^fauna_/, ""));
+    strips.add(rel.replace(/^flora_/, ""));
+  }
+
+  const subdir = kind === "fauna" ? "insekter" : "flora";
+  for (const stem of strips) {
+    if (!stem) continue;
+    cands.push(`bilder/natur/${subdir}/${stem}.PNG`);
+    cands.push(`bilder/natur/${subdir}/${stem}.png`);
+  }
+  return cands;
+}
+
+async function probeImage(url) {
+  return new Promise(res => {
+    const img = new Image();
+    img.onload = () => res(true);
+    img.onerror = () => res(false);
+    img.src = url;
+  });
+}
+
+window.resolveNatureImage = function (obj, kind) {
+  if (!obj) return "";
+  const cached = _natureImageCache.get(obj.id);
+  if (cached !== undefined) return cached;
+  // Synkron best-effort: returner første kandidat og la <img onerror> fallback i UI.
+  const cands = natureImageCandidates(obj, kind || obj._kind);
+  const guess = cands[0] || "";
+  _natureImageCache.set(obj.id, guess);
+  return guess;
+};
+
+// ---- Distance-kobling (natur → steder via nature_unlock_map) --------------
+let _natureToPlaces = null;
+let _natureMapLoading = null;
+
+async function ensureNatureToPlacesMap() {
+  if (_natureToPlaces) return _natureToPlaces;
+  if (_natureMapLoading) return _natureMapLoading;
+
+  _natureMapLoading = (async () => {
+    const map = new Map(); // natureId → Set<placeId>
+    try {
+      const url = new URL("data/natur/nature_unlock_map.json", document.baseURI).toString();
+      const r = await fetch(url, { cache: "no-store" });
+      if (!r.ok) throw new Error(r.status);
+      const data = await r.json();
+      const PLACE_IDS = new Set((window.PLACES || []).map(p => String(p.id || "").trim()).filter(Boolean));
+      for (const [quizOrPlaceId, hit] of Object.entries(data || {})) {
+        // Nøkler i unlock_map ser ut som "<placeId>_quiz_<n>". Strip suffix.
+        const placeId = String(quizOrPlaceId).replace(/_quiz_\d+$/, "").trim();
+        if (!PLACE_IDS.has(placeId)) continue;
+        const ids = [...(hit?.flora || []), ...(hit?.fauna || [])];
+        for (const raw of ids) {
+          const id = String(raw || "").trim();
+          if (!id) continue;
+          if (!map.has(id)) map.set(id, new Set());
+          map.get(id).add(placeId);
+          // Legg også til "emne_"-prefiksvarianten hvis registerid er brukt rått.
+          if (!id.startsWith("emne_")) {
+            const pref = id.startsWith("fauna_") ? "emne_fauna_" :
+                         id.startsWith("flora_") ? "emne_flora_" : "";
+            if (pref) {
+              const alt = pref + id.replace(/^(fauna|flora)_/, "");
+              if (!map.has(alt)) map.set(alt, new Set());
+              map.get(alt).add(placeId);
+            }
+          }
+        }
+      }
+    } catch (e) {
+      if (window.DEBUG) console.warn("[natur] nature_unlock_map kunne ikke lastes:", e);
+    }
+    _natureToPlaces = map;
+    return map;
+  })();
+
+  return _natureMapLoading;
+}
+
+function nearestDistanceFor(obj, placesById, pos) {
+  if (!pos || !_natureToPlaces || !window.distMeters) return null;
+  const placeIds = _natureToPlaces.get(obj.id);
+  if (!placeIds || !placeIds.size) return null;
+  let min = Infinity;
+  for (const pid of placeIds) {
+    const p = placesById.get(pid);
+    if (!p || !Number.isFinite(p.lat) || !Number.isFinite(p.lon)) continue;
+    const d = window.distMeters(pos, { lat: p.lat, lon: p.lon });
+    if (Number.isFinite(d) && d < min) min = d;
+  }
+  return min === Infinity ? null : Math.round(min);
+}
+
+// ---- Filter -----------------------------------------------------------------
+// Gyldige verdier: "all" | "unlocked" | "flora" | "fauna"
+function getNatureFilter() {
+  return window.HG_NATURE_FILTER || "all";
+}
+
+function applyNatureFilter(list, filter, unlocked) {
+  if (filter === "unlocked") return list.filter(o => unlocked.has(o.id));
+  if (filter === "flora") return list.filter(o => o._kind === "flora");
+  if (filter === "fauna") return list.filter(o => o._kind === "fauna");
+  return list;
+}
+
+// ---- Render -----------------------------------------------------------------
 function renderNearbyNature() {
   const listEl = document.getElementById("leftNatureList");
   if (!listEl) return;
 
   const flora = flattenNatureEntries(window.FLORA, "flora");
   const fauna = flattenNatureEntries(window.FAUNA, "fauna");
-  const all = flora.concat(fauna);
+  let all = flora.concat(fauna);
 
   if (!all.length) {
     listEl.innerHTML = `<div class="muted" style="padding:12px;">Ingen natur-data lastet ennå.</div>`;
@@ -167,61 +304,78 @@ function renderNearbyNature() {
   }
 
   const unlocked = getNatureUnlockedIds();
+  all = applyNatureFilter(all, getNatureFilter(), unlocked);
 
-  // Sortering: låst opp først, deretter alfabetisk på tittel.
-  all.sort((a, b) => {
-    const au = unlocked.has(a.id) ? 0 : 1;
-    const bu = unlocked.has(b.id) ? 0 : 1;
+  // Prøv å laste mapping for distance-sort (ikke-blokkerende — re-render ved ferdigstilling).
+  ensureNatureToPlacesMap().then((m) => {
+    if (m && m.size && document.querySelector(".nearby-tab.is-active")?.getAttribute("data-leftmode") === "nature") {
+      // Re-render kun dersom vi ikke allerede har brukt mappingen (første gang).
+      if (!listEl.dataset.distMapApplied) {
+        listEl.dataset.distMapApplied = "1";
+        renderNearbyNature();
+      }
+    }
+  });
+
+  const placesById = new Map((window.PLACES || []).map(p => [String(p.id || "").trim(), p]));
+  const pos = window.getPos?.();
+
+  const decorated = all.map(obj => ({
+    obj,
+    _d: nearestDistanceFor(obj, placesById, pos)
+  }));
+
+  // Sortering: låst opp først, deretter avstand (hvis satt), så alfabetisk.
+  decorated.sort((a, b) => {
+    const au = unlocked.has(a.obj.id) ? 0 : 1;
+    const bu = unlocked.has(b.obj.id) ? 0 : 1;
     if (au !== bu) return au - bu;
-    return String(a.title || "").localeCompare(String(b.title || ""), "nb");
+    const ad = a._d ?? Infinity;
+    const bd = b._d ?? Infinity;
+    if (ad !== bd) return ad - bd;
+    return String(a.obj.title || "").localeCompare(String(b.obj.title || ""), "nb");
   });
 
   listEl.innerHTML = "";
 
-  all.forEach(obj => {
+  decorated.forEach(({ obj, _d }) => {
     const isUnlocked = unlocked.has(obj.id);
     const title = obj.title || obj.id || "";
     const latin = obj.latin || obj.taxonomy?.latin_navn || "";
     const kindIcon = obj._kind === "fauna" ? "🐞" : "🌿";
+    const imgSrc = window.resolveNatureImage(obj, obj._kind);
+    const distText = _d != null ? `${_d} m` : "";
 
     const item = document.createElement("div");
-    item.className = "nearby-item" + (isUnlocked ? " is-unlocked" : " is-locked");
+    item.className = "nearby-item" + (isUnlocked ? " is-unlocked" : " is-locked") + ` is-${obj._kind}`;
+
+    // Hvis bildet mangler på disk, faller vi tilbake til emoji via onerror.
+    const thumb = imgSrc
+      ? `<img class="nearby-thumb" src="${imgSrc}" alt="${title}"
+              onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'nearby-thumb nearby-thumb-icon',textContent:'${kindIcon}'}))">`
+      : `<div class="nearby-thumb nearby-thumb-icon">${kindIcon}</div>`;
 
     item.innerHTML = `
-      <div class="nearby-thumbWrap">
-        <div class="nearby-thumb" style="display:flex;align-items:center;justify-content:center;background:#e8efe6;font-size:22px;">
-          ${kindIcon}
-        </div>
-      </div>
+      <div class="nearby-thumbWrap">${thumb}</div>
       <div class="nearby-content">
         <div class="nearby-title">${title}</div>
         <div class="nearby-meta">
           ${latin ? `<em>${latin}</em>` : ""}
+          ${distText ? ` • ${distText}` : ""}
           ${isUnlocked ? " • ✔" : ""}
         </div>
       </div>
     `;
 
     item.addEventListener("click", () => {
-      window.openNatureCard?.(obj) || openNatureInfoToast(obj, isUnlocked);
+      if (typeof window.openNatureCard === "function") window.openNatureCard(obj);
+      else if (typeof window.showToast === "function") {
+        window.showToast(`${title}${latin ? ` (${latin})` : ""}`);
+      }
     });
 
     listEl.appendChild(item);
   });
-}
-
-function openNatureInfoToast(obj, isUnlocked) {
-  const parts = [];
-  parts.push(`${obj.title}${obj.latin ? ` (${obj.latin})` : ""}`);
-  if (!isUnlocked) parts.push("Ikke låst opp ennå — ta en quiz på riktig sted.");
-  if (Array.isArray(obj.kjennetegn) && obj.kjennetegn.length) {
-    parts.push("Kjennetegn: " + obj.kjennetegn.slice(0, 2).join("; "));
-  }
-  if (typeof window.showToast === "function") {
-    window.showToast(parts.join(" • "));
-  } else {
-    console.log("[nature]", parts.join(" • "));
-  }
 }
 
 function renderCollection() {
