@@ -3,7 +3,7 @@
    Oppdatert: 2026-04-22
    ============================================================ */
 
-const SW_VERSION = "hg-sw-2026-04-22-v1.4.0";
+const SW_VERSION = "hg-sw-2026-04-22-v1.5.0";
 
 const CACHE_STATIC  = `hg-static-${SW_VERSION}`;
 const CACHE_RUNTIME = `hg-runtime-${SW_VERSION}`;
@@ -34,6 +34,7 @@ const PRECACHE_URLS = [
   "css/search.css",
   "css/sheets.css",
   "css/theme.css",
+  "css/nature.css",
   "js/console/console.css",
 
   // Eksterne/støtte-loadere
@@ -106,6 +107,7 @@ const PRECACHE_URLS = [
   "js/ui/badges.js",
   "js/ui/badge-modal.js",
   "js/ui/mini-profile.js",
+  "js/ui/nature-card.js",
   "js/ui/geo-indicator.js",
 
   // Civication – core
