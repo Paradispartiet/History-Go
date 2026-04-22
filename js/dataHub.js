@@ -297,6 +297,11 @@ async function loadPlacesBase(opts = {}) {
     catch { window.FLORA = []; }
     try { window.FAUNA = await loadNatureGroup("natur/fauna"); }
     catch { window.FAUNA = []; }
+    try {
+      window.dispatchEvent(new CustomEvent("hg:nature-loaded", {
+        detail: { flora: window.FLORA.length, fauna: window.FAUNA.length }
+      }));
+    } catch {}
   }
   
   // ----------------------------
