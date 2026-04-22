@@ -5,6 +5,13 @@
 (function () {
   "use strict";
 
+  const TODAY_VISITED_KEY = "hg_today_visited_v1";
+  const WATCH_OPTIONS = {
+    enableHighAccuracy: true,
+    timeout: 15000,
+    maximumAge: 10000
+  };
+
   // ÉN state (ikke lag flere varianter)
   const HG_POS = (window.HG_POS = window.HG_POS || {
     status: "unknown", // unknown|requesting|granted|blocked|unsupported|test
@@ -13,13 +20,96 @@
     acc: null,
     ts: 0,
     reason: null,
-    lastError: null
+    lastError: null,
+    watchId: null
   });
 
   function emit(detail) {
     try {
       window.dispatchEvent(new CustomEvent("hg:geo", { detail }));
     } catch {}
+  }
+
+  function getTodayKey() {
+    const d = new Date();
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, "0");
+    const day = String(d.getDate()).padStart(2, "0");
+    return `${y}-${m}-${day}`;
+  }
+
+  function loadTodayVisited() {
+    try {
+      const raw = JSON.parse(localStorage.getItem(TODAY_VISITED_KEY) || "{}");
+      if (!raw || typeof raw !== "object") return { date: getTodayKey(), ids: [] };
+      const date = String(raw.date || "").trim() || getTodayKey();
+      const ids = Array.isArray(raw.ids) ? raw.ids.filter(Boolean).map(String) : [];
+      return { date, ids };
+    } catch {
+      return { date: getTodayKey(), ids: [] };
+    }
+  }
+
+  function saveTodayVisited(data) {
+    try {
+      localStorage.setItem(TODAY_VISITED_KEY, JSON.stringify(data));
+    } catch {}
+  }
+
+  function ensureTodayVisitedStore() {
+    const today = getTodayKey();
+    const state = loadTodayVisited();
+    if (state.date !== today) {
+      const fresh = { date: today, ids: [] };
+      saveTodayVisited(fresh);
+      return fresh;
+    }
+    return state;
+  }
+
+  function markPlaceVisitedToday(placeId) {
+    const id = String(placeId || "").trim();
+    if (!id) return false;
+
+    const state = ensureTodayVisitedStore();
+    if (state.ids.includes(id)) return false;
+
+    state.ids.push(id);
+    saveTodayVisited(state);
+
+    try {
+      window.dispatchEvent(new CustomEvent("hg:todayVisited", {
+        detail: { placeId: id, date: state.date }
+      }));
+    } catch {}
+
+    return true;
+  }
+
+  function autoUnlockPlacesFromPosition(lat, lon) {
+    const places = Array.isArray(window.PLACES) ? window.PLACES : [];
+    if (!places.length) return;
+    if (typeof window.distMeters !== "function") return;
+    if (typeof window.saveVisitedFromQuiz !== "function") return;
+
+    const userPos = { lat, lon };
+
+    for (const place of places) {
+      if (!place || place.hidden || place.stub) continue;
+
+      const placeLat = Number(place.lat);
+      const placeLon = Number(place.lon);
+      const radius = Number(place.r);
+
+      if (![placeLat, placeLon, radius].every(Number.isFinite)) continue;
+      if (radius <= 0) continue;
+
+      const d = window.distMeters(userPos, { lat: placeLat, lon: placeLon });
+      if (!Number.isFinite(d) || d > radius) continue;
+
+      markPlaceVisitedToday(place.id);
+      window.saveVisitedFromQuiz(place.id);
+    }
   }
 
   function getPos() {
@@ -49,6 +139,9 @@
     // kart
     if (window.HGMap?.setUser) window.HGMap.setUser(HG_POS.lat, HG_POS.lon);
 
+    // progresjon
+    autoUnlockPlacesFromPosition(HG_POS.lat, HG_POS.lon);
+
     // UI
     if (typeof window.renderNearbyPlaces === "function") window.renderNearbyPlaces();
   }
@@ -70,6 +163,33 @@
     if (typeof window.renderNearbyPlaces === "function") window.renderNearbyPlaces();
   }
 
+  function stopWatch() {
+    try {
+      if (HG_POS.watchId != null && navigator.geolocation?.clearWatch) {
+        navigator.geolocation.clearWatch(HG_POS.watchId);
+      }
+    } catch {}
+    HG_POS.watchId = null;
+  }
+
+  function startWatch(opts = {}) {
+    if (!navigator.geolocation?.watchPosition) return null;
+
+    stopWatch();
+
+    HG_POS.watchId = navigator.geolocation.watchPosition(
+      (g) => {
+        setPos(g.coords.latitude, g.coords.longitude, g.coords.accuracy);
+      },
+      (err) => {
+        HG_POS.lastError = { code: err?.code, message: err?.message };
+      },
+      { ...WATCH_OPTIONS, ...opts }
+    );
+
+    return HG_POS.watchId;
+  }
+
   function request(opts = {}) {
     if (!navigator.geolocation) {
       clearPos("unsupported");
@@ -82,9 +202,7 @@
     emit({ status: "requesting" });
 
     const options = {
-      enableHighAccuracy: true,
-      timeout: 15000,
-      maximumAge: 10000,
+      ...WATCH_OPTIONS,
       ...opts
     };
 
@@ -92,6 +210,7 @@
       navigator.geolocation.getCurrentPosition(
         (g) => {
           setPos(g.coords.latitude, g.coords.longitude, g.coords.accuracy);
+          startWatch(options);
           resolve(getPos());
         },
         (err) => {
@@ -110,6 +229,7 @@
     getPos,
     setPos,
     clearPos,
+    stopWatch,
     state: () => ({ ...HG_POS })
   };
 
