@@ -324,9 +324,72 @@ function makeDayEndEvent() {
   };
 }
 
-function getCareerStorePool(active) {
+function getAccessAwareStoreSignals(phaseTag) {
+  const bridge = window.CivicationPlaceAccessBridge;
+  if (!bridge?.getBucket) {
+    return {
+      work: [],
+      leisure: [],
+      store: []
+    };
+  }
+
+  return {
+    work: bridge.getBucket("work"),
+    leisure: bridge.getBucket("leisure"),
+    store: bridge.getBucket("store"),
+    phaseTag
+  };
+}
+
+function storeMatchesAccess(store, phaseTag, signals) {
+  const type = String(store?.type || "generic");
+  const work = Array.isArray(signals?.work) ? signals.work : [];
+  const leisure = Array.isArray(signals?.leisure) ? signals.leisure : [];
+  const storeAccess = Array.isArray(signals?.store) ? signals.store : [];
+
+  const map = {
+    clothing: {
+      lunch: ["business_style", "streetwear", "clothing"],
+      evening: ["streetwear", "shopping", "afterwork", "clothing"]
+    },
+    food: {
+      lunch: ["coffee", "kafe", "local_cafe", "afterwork"],
+      evening: ["afterwork", "kafe", "streetlife", "food"]
+    },
+    tech: {
+      lunch: ["audio", "electronics", "vitenskap", "music"],
+      evening: ["audio", "records", "music", "subculture"]
+    },
+    car: {
+      lunch: ["equipment", "naeringsliv", "eiendom"],
+      evening: ["status", "afterwork", "naeringsliv"]
+    },
+    housing: {
+      lunch: ["home", "bolig", "nabolag"],
+      evening: ["housing", "quiet_district", "family_friendly", "stable_home"]
+    },
+    generic: {
+      lunch: ["afterwork", "city_walk"],
+      evening: ["afterwork", "streetlife", "networking"]
+    }
+  };
+
+  const wanted = map?.[type]?.[phaseTag] || map.generic[phaseTag] || [];
+  const haystack = new Set([
+    ...work.map(String),
+    ...leisure.map(String),
+    ...storeAccess.map(String)
+  ]);
+
+  if (!haystack.size) return true;
+  return wanted.some((key) => haystack.has(String(key)));
+}
+
+function getCareerStorePool(active, phaseTag) {
   const careerId = String(active?.career_id || "").trim();
   const visitedCount = getVisitedPlacesCount();
+  const accessSignals = getAccessAwareStoreSignals(phaseTag);
 
   const allStores = [
     {
@@ -376,7 +439,7 @@ function getCareerStorePool(active) {
     }
   ];
 
-  const filtered = allStores.filter((store) => {
+  const careerFiltered = allStores.filter((store) => {
     const careerOk =
       !Array.isArray(store.careers) || store.careers.includes(careerId);
 
@@ -387,7 +450,13 @@ function getCareerStorePool(active) {
     return careerOk && visitOk;
   });
 
-  return filtered.length ? filtered : allStores.slice(0, 2);
+  const accessFiltered = careerFiltered.filter((store) =>
+    storeMatchesAccess(store, phaseTag, accessSignals)
+  );
+
+  if (accessFiltered.length) return accessFiltered;
+  if (careerFiltered.length) return careerFiltered;
+  return allStores.slice(0, 2);
 }
 
 function getDayEventHistory() {
@@ -433,7 +502,7 @@ function rememberDayEventStore(active, phaseTag, store) {
 }
 
 function pickStoreContext(active, phaseTag) {
-  const pool = getCareerStorePool(active);
+  const pool = getCareerStorePool(active, phaseTag);
   if (!pool.length) {
     return {
       id: "fallback_context",
