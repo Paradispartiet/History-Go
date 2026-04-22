@@ -2,6 +2,26 @@
 // CIVICATION: Jobbtilbud (offers) lagres i localStorage
 // ------------------------------------------------------------
 
+async function ensureCivicationBadgesLoaded() {
+  if (Array.isArray(window.BADGES) && window.BADGES.length) return;
+
+  if (typeof window.ensureBadgesLoaded === "function") {
+    await window.ensureBadgesLoaded();
+    return;
+  }
+
+  const paths = ["/History-Go/data/badges.json", "data/badges.json"];
+  for (const path of paths) {
+    try {
+      const data = await fetch(path, { cache: "no-store" }).then(r => r.json());
+      window.BADGES = Array.isArray(data?.badges) ? data.badges : [];
+      if (window.BADGES.length) return;
+    } catch {}
+  }
+
+  window.BADGES = Array.isArray(window.BADGES) ? window.BADGES : [];
+}
+
 function qualifiesForTierWithCross(careerId, tierIndex) {
   const career = Array.isArray(window.HG_CAREERS)
     ? window.HG_CAREERS.find(c => String(c.career_id) === String(careerId))
@@ -54,7 +74,7 @@ function hgPushJobOffer(badge, tier, newPoints) {
 }
 
 async function rebuildJobOffersFromCurrentMerits() {
-  await ensureBadgesLoaded();
+  await ensureCivicationBadgesLoaded();
 
   if (window.CivicationJobs?.canReceiveNewOffers &&
       !window.CivicationJobs.canReceiveNewOffers()) {
@@ -91,22 +111,12 @@ async function rebuildJobOffersFromCurrentMerits() {
       badge,
       tier,
       points,
-      tierIndex: Number(tier.tierIndex || 0),
-      threshold: Number(tier.threshold || 0)
+      tierIndex: Number(tier.tierIndex || 0)
     };
 
-    if (!bestCandidate) {
-      bestCandidate = candidate;
-      continue;
-    }
-
-    if (candidate.tierIndex > bestCandidate.tierIndex) {
-      bestCandidate = candidate;
-      continue;
-    }
-
-    if (candidate.tierIndex === bestCandidate.tierIndex &&
-        candidate.points > bestCandidate.points) {
+    if (!bestCandidate ||
+        candidate.tierIndex > bestCandidate.tierIndex ||
+        (candidate.tierIndex === bestCandidate.tierIndex && candidate.points > bestCandidate.points)) {
       bestCandidate = candidate;
     }
   }
@@ -120,7 +130,7 @@ async function rebuildJobOffersFromCurrentMerits() {
 
 // Oppdater "stilling" ved ny poengsum (tiers = karrierestige)
 async function updateMeritLevel(cat, oldPoints, newPoints) {
-  await ensureBadgesLoaded();
+  await ensureCivicationBadgesLoaded();
 
   const catId = String(cat || "").trim();
   const badge = BADGES.find(function (b) {
