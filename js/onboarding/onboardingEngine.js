@@ -119,6 +119,13 @@
     return !!window.CivicationState?.getActivePosition?.();
   }
 
+  function getPendingMailCount() {
+    const inbox = window.HG_CiviEngine?.getInbox?.() || [];
+    return inbox.filter(function (item) {
+      return String(item?.status || "") === "pending";
+    }).length;
+  }
+
   function hasDayEvent() {
     const inbox = window.HG_CiviEngine?.getInbox?.() || [];
     return inbox.some(function (item) {
@@ -174,6 +181,8 @@
         quizCount: progress.quizCount,
         visitedCount: progress.visitedCount,
         pendingOffer: !!progress.pendingOffer,
+        pendingOfferCount: Number(progress.pendingOfferCount || 0),
+        pendingMailCount: Number(progress.pendingMailCount || 0),
         peopleCount: Number(progress.peopleCount || 0),
         storeCount: Number(progress.storeCount || 0)
       }
@@ -188,7 +197,7 @@
     if (stepKey === "fifth_quiz_job_ready") {
       guidance.blocker = "quiz_for_job";
       guidance.detail = progress.pendingOffer
-        ? "Du har allerede et jobbtilbud klart. Gå inn i Civication og se rollen."
+        ? `Du har allerede ${progress.pendingOfferCount || 1} ventende jobbtilbud. Gå inn i Civication og se rollen.`
         : `Du trenger litt mer kunnskapsprogresjon før arbeidslivet åpner seg tydelig. Du har ${progress.quizCount} quizzer nå.`;
       return guidance;
     }
@@ -196,14 +205,16 @@
     if (stepKey === "first_job") {
       guidance.blocker = progress.pendingOffer ? "accept_job" : "job_offer_missing";
       guidance.detail = progress.pendingOffer
-        ? "Du har et pending jobbtilbud. Neste naturlige steg er å akseptere rollen i Civication."
+        ? `Du har ${progress.pendingOfferCount || 1} ventende jobbtilbud. Neste naturlige steg er å akseptere rollen i Civication.`
         : "Du mangler fortsatt selve rollevalget. Sjekk jobbtilbud og fortsett å bygge merit hvis tilbud ikke vises.";
       return guidance;
     }
 
     if (stepKey === "first_day_event") {
       guidance.blocker = "day_event";
-      guidance.detail = "Du har rolle, men mangler første tydelige hverdagsutslag. Gå inn i Civication og la dagen spille seg videre.";
+      guidance.detail = progress.pendingMailCount > 0
+        ? `Du har ${progress.pendingMailCount} ventende meldinger eller hendelser. Gå inn i Civication og la dagen spille seg videre.`
+        : "Du har rolle, men mangler første tydelige hverdagsutslag. Gå inn i Civication og la dagen spille seg videre.";
       return guidance;
     }
 
@@ -215,7 +226,9 @@
 
     if (stepKey === "first_debate") {
       guidance.blocker = "debate";
-      guidance.detail = "Du har kommet til punktet der kunnskap og rolle bør møte motstand. Neste milepæl er første debatt.";
+      guidance.detail = progress.pendingMailCount > 0
+        ? `Du har ${progress.pendingMailCount} ventende meldinger eller hendelser, men mangler fortsatt første debatt.`
+        : "Du har kommet til punktet der kunnskap og rolle bør møte motstand. Neste milepæl er første debatt.";
       return guidance;
     }
 
@@ -243,14 +256,16 @@
     }
     if (stepKey === "fifth_quiz_job_ready") {
       return progress.pendingOffer
-        ? "✨ Et jobbtilbud er klart. Gå inn i Civication og se hvilken rolle byen din nå åpner for deg."
+        ? `✨ Du har ${progress.pendingOfferCount || 1} ventende jobbtilbud. Gå inn i Civication og se hvilken rolle byen din nå åpner for deg.`
         : "✨ Arbeidslivet begynner å åpne seg. Nå er det verdt å bygge litt mer merit for å få første rolle.";
     }
     if (stepKey === "first_job") {
       return "✨ Første rolle valgt. Nå blir byen til arbeid, ansvar og et faktisk livslag i Civication.";
     }
     if (stepKey === "first_day_event") {
-      return "✨ Første day-event åpnet. Hverdagen din begynner nå å bli påvirket av steder du faktisk har lært.";
+      return progress.pendingMailCount > 0
+        ? `✨ Du har ${progress.pendingMailCount} ventende meldinger eller hendelser. Hverdagen din er i ferd med å begynne.`
+        : "✨ Første day-event åpnet. Hverdagen din begynner nå å bli påvirket av steder du faktisk har lært.";
     }
     if (stepKey === "first_person") {
       return `✨ Første mennesker åpnet. Du har nå ${progress.peopleCount} tydelige personer eller miljøfigurer i livsverdenen din.`;
@@ -273,6 +288,12 @@
     const debate = hasDebate();
     const store = await hasStore();
     const pendingOffer = !!window.CivicationJobs?.getLatestPendingOffer?.();
+    const pendingOfferCount = Array.isArray(window.CivicationJobs?.getOffers?.())
+      ? window.CivicationJobs.getOffers().filter(function (o) {
+          return String(o?.status || "") === "pending";
+        }).length
+      : 0;
+    const pendingMailCount = getPendingMailCount();
     const peopleCount = getPeopleCount();
     const storeCount = await getStoreCount();
 
@@ -303,6 +324,8 @@
       quizCount,
       visitedCount,
       pendingOffer,
+      pendingOfferCount,
+      pendingMailCount,
       unlocked,
       currentStep,
       peopleCount,
