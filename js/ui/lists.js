@@ -413,3 +413,41 @@ window.renderNearbyPlaces = renderNearbyPlaces;
 window.renderNearbyPeople = renderNearbyPeople;
 window.renderNearbyNature = renderNearbyNature;
 window.renderCollection = renderCollection;
+
+// Eksponeres for natur-kortet (map-kobling).
+// getNaturePlaces(id) → Promise<Array<{place, distance}>> sortert nærmest først.
+window.getNaturePlaces = async function (natureId) {
+  const map = await ensureNatureToPlacesMap();
+  const ids = map?.get(String(natureId || "").trim());
+  if (!ids || !ids.size) return [];
+  const placesById = new Map((window.PLACES || []).map(p => [String(p.id || "").trim(), p]));
+  const pos = window.getPos?.();
+  const out = [];
+  for (const pid of ids) {
+    const place = placesById.get(pid);
+    if (!place) continue;
+    const d = (pos && window.distMeters && Number.isFinite(place.lat) && Number.isFinite(place.lon))
+      ? Math.round(window.distMeters(pos, { lat: place.lat, lon: place.lon }))
+      : null;
+    out.push({ place, distance: d });
+  }
+  out.sort((a, b) => (a.distance ?? Infinity) - (b.distance ?? Infinity));
+  return out;
+};
+
+// flyToPlace(place) — sentrer kartet på et sted, lukker aktive modaler og
+// åpner place-card. Brukes av natur-kortet for "Vis på kart"-knappen.
+window.flyToPlace = function (place) {
+  if (!place || !Number.isFinite(place.lat) || !Number.isFinite(place.lon)) return false;
+  const map = window.HGMap?.getMap?.() || window.MAP;
+  if (map) {
+    map.flyTo({
+      center: [place.lon, place.lat],
+      zoom: Math.max(map.getZoom?.() || 13, 16),
+      speed: 1.1,
+      essential: true
+    });
+  }
+  setTimeout(() => { window.openPlaceCard?.(place); }, 820);
+  return true;
+};

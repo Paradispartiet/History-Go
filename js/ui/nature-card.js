@@ -154,11 +154,63 @@
         ["Observert typisk", obj.bykontekst?.oslo_observert_typisk],
       ])),
       sectionHTML("Observasjonstips", listHTML(obj.observasjonstips)),
+      `<section class="nature-card-section nature-card-places" data-places-slot>
+         <h3>${unlocked ? "Her samlet du den" : "Hvor du kan finne den"}</h3>
+         <div class="nature-places-loading muted">Leter etter steder …</div>
+       </section>`,
     ].filter(Boolean).join("");
 
     modal.style.display = "";
     modal.setAttribute("aria-hidden", "false");
     document.addEventListener("keydown", onKeyDown);
+
+    renderPlacesForNature(modal, obj.id, unlocked);
+  }
+
+  async function renderPlacesForNature(modal, natureId, unlocked) {
+    const slot = modal.querySelector("[data-places-slot]");
+    if (!slot) return;
+
+    let places = [];
+    try {
+      if (typeof window.getNaturePlaces === "function") {
+        places = await window.getNaturePlaces(natureId);
+      }
+    } catch {}
+
+    if (!places.length) {
+      slot.innerHTML = `
+        <h3>${unlocked ? "Her samlet du den" : "Hvor du kan finne den"}</h3>
+        <p class="muted">Ingen steder koblet til denne arten ennå.</p>
+      `;
+      return;
+    }
+
+    const items = places.slice(0, 6).map(({ place, distance }) => {
+      const distLabel = distance != null ? ` · ${distance} m` : "";
+      return `
+        <li class="nature-place-item" data-place-id="${escapeHtml(String(place.id))}">
+          <button type="button" class="nature-place-btn">
+            <span class="nature-place-title">${escapeHtml(place.name || place.id)}</span>
+            <span class="nature-place-meta">${escapeHtml(place.category || "")}${distLabel}</span>
+          </button>
+        </li>
+      `;
+    }).join("");
+
+    slot.innerHTML = `
+      <h3>${unlocked ? "Her samlet du den" : "Hvor du kan finne den"}</h3>
+      <ul class="nature-places-list">${items}</ul>
+    `;
+
+    slot.querySelectorAll(".nature-place-btn").forEach((btn, idx) => {
+      btn.addEventListener("click", () => {
+        const place = places[idx]?.place;
+        if (!place) return;
+        if (typeof window.flyToPlace === "function") window.flyToPlace(place);
+        closeNatureCard();
+      });
+    });
   }
 
   window.openNatureCard = openNatureCard;

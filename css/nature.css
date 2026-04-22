@@ -151,6 +151,65 @@
   font-size: 14px;
 }
 
+/* Koblede steder i natur-kortet */
+.nature-card-places .nature-places-loading {
+  font-size: 13px;
+  color: #7a7a6d;
+}
+
+.nature-places-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 6px;
+}
+
+.nature-place-item {
+  margin: 0;
+}
+
+.nature-place-btn {
+  width: 100%;
+  text-align: left;
+  background: #f5f4ec;
+  border: 1px solid #e0dfd2;
+  border-radius: 10px;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  transition: background 120ms ease, transform 100ms ease;
+}
+
+.nature-place-btn:hover {
+  background: #ece9d9;
+}
+
+.nature-place-btn:active {
+  transform: scale(0.98);
+}
+
+.nature-place-title {
+  font-weight: 600;
+  flex: 1;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.nature-place-meta {
+  font-size: 12px;
+  color: #5c6b52;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
 /* ============================================================
    NATURE LIST — horisontal strip (speiler #nearbyList.nearby-strip)
 ============================================================ */
