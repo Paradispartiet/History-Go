@@ -756,6 +756,71 @@ button.primary.small:hover{
   line-height: 1.35;
 }
 
+/* ------------------------------------------------------------
+   Concepts-seksjon (fra hg_insights_events_v1 via HGInsights)
+------------------------------------------------------------ */
+.concepts-list{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.concept-chip{
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  font-size: 13px;
+  line-height: 1.2;
+  color: inherit;
+}
+
+.concept-chip .concept-label{
+  font-weight: 600;
+}
+
+.concept-chip .concept-count{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.12);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.concept-chip.is-strong{
+  background: rgba(130, 200, 120, 0.16);
+  border-color: rgba(130, 200, 120, 0.35);
+}
+
+.concept-chip.is-strong .concept-count{
+  background: rgba(130, 200, 120, 0.35);
+}
+
+.concepts-empty{
+  margin-top: 12px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.04);
+  border: 1px dashed rgba(255,255,255,0.18);
+  font-size: 13px;
+  opacity: 0.85;
+  line-height: 1.45;
+}
+
+.concepts-empty em{
+  font-style: italic;
+  opacity: 0.9;
+}
+
 #civicationSection .latest-knowledge-box{
   border-radius: 14px;
   padding: 14px;

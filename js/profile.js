@@ -523,6 +523,57 @@ function renderCollectionCards() {
   });
 }
 // ------------------------------------------------------------
+// BEGREPER DU HAR LÆRT (HGInsights → hg_insights_events_v1)
+// ------------------------------------------------------------
+function renderConcepts() {
+  const listEl = document.getElementById("conceptsList");
+  const emptyEl = document.getElementById("conceptsEmpty");
+  const metaEl = document.getElementById("conceptsMeta");
+  if (!listEl) return;
+
+  const concepts = (typeof window.HGInsights?.getUserConcepts === "function")
+    ? window.HGInsights.getUserConcepts("anon")
+    : [];
+
+  listEl.innerHTML = "";
+
+  if (!concepts.length) {
+    if (emptyEl) emptyEl.style.display = "";
+    if (metaEl) metaEl.textContent = "Ingen begreper logget ennå";
+    return;
+  }
+
+  if (emptyEl) emptyEl.style.display = "none";
+
+  const total = concepts.reduce((sum, c) => sum + (c.count || 0), 0);
+  if (metaEl) metaEl.textContent = `${concepts.length} begreper · ${total} riktige svar`;
+
+  const MAX = 40;
+  const shown = concepts.slice(0, MAX);
+  const frag = document.createDocumentFragment();
+
+  shown.forEach(c => {
+    const chip = document.createElement("span");
+    const strong = (c.count || 0) >= 3;
+    chip.className = "concept-chip" + (strong ? " is-strong" : "");
+    chip.title = `${c.label} – ${c.count} riktige svar`;
+    chip.innerHTML = `<span class="concept-label"></span><span class="concept-count"></span>`;
+    chip.querySelector(".concept-label").textContent = c.label;
+    chip.querySelector(".concept-count").textContent = String(c.count);
+    frag.appendChild(chip);
+  });
+
+  if (concepts.length > MAX) {
+    const more = document.createElement("span");
+    more.className = "concept-chip";
+    more.textContent = `+${concepts.length - MAX} til`;
+    frag.appendChild(more);
+  }
+
+  listEl.appendChild(frag);
+}
+
+// ------------------------------------------------------------
 // SISTE KUNNSKAP
 // ------------------------------------------------------------
 function renderLatestKnowledge() {
@@ -741,6 +792,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     safeCall("renderCollectionCards", renderCollectionCards);
     safeCall("renderLatestKnowledge", renderLatestKnowledge);
     safeCall("renderLatestTrivia", renderLatestTrivia);
+    safeCall("renderConcepts", renderConcepts);
     safeCall("renderNextWhy", renderNextWhy);
     safeCall("renderAhaSummary", renderAhaSummary);
 
@@ -768,6 +820,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       safeCall("renderCollectionCards", renderCollectionCards);
       safeCall("renderLatestKnowledge", renderLatestKnowledge);
       safeCall("renderLatestTrivia", renderLatestTrivia);
+      safeCall("renderConcepts", renderConcepts);
       safeCall("renderNextWhy", renderNextWhy);
       safeCall("renderAhaSummary", renderAhaSummary);
       safeCall("updateProfileMarkers", updateProfileMarkers);
