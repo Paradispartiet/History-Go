@@ -6,6 +6,7 @@
   "use strict";
 
   const TODAY_VISITED_KEY = "hg_today_visited_v1";
+  const DISCOVERY_COOLDOWN_MS = 15000;
   const WATCH_OPTIONS = {
     enableHighAccuracy: true,
     timeout: 15000,
@@ -23,6 +24,8 @@
     lastError: null,
     watchId: null
   });
+
+  const discoveryCooldowns = new Map();
 
   function emit(detail) {
     try {
@@ -86,6 +89,69 @@
     return true;
   }
 
+  function isInDiscoveryCooldown(placeId) {
+    const id = String(placeId || "").trim();
+    if (!id) return false;
+
+    const lastTs = discoveryCooldowns.get(id);
+    if (!Number.isFinite(lastTs)) return false;
+
+    return (Date.now() - lastTs) < DISCOVERY_COOLDOWN_MS;
+  }
+
+  function markDiscoveryCooldown(placeId) {
+    const id = String(placeId || "").trim();
+    if (!id) return;
+    discoveryCooldowns.set(id, Date.now());
+  }
+
+  function shouldAutoOpenPlace(place) {
+    if (!place?.id) return false;
+
+    const card = document.getElementById("placeCard");
+    const currentPlaceId = String(card?.dataset?.currentPlaceId || "").trim();
+    const nextPlaceId = String(place.id || "").trim();
+    const cardVisible = card?.getAttribute("aria-hidden") === "false";
+
+    if (!cardVisible) return true;
+    if (!currentPlaceId) return true;
+    if (currentPlaceId === nextPlaceId) return false;
+
+    return true;
+  }
+
+  function announceDiscovery(place, { isNewUnlock = false, isNewToday = false } = {}) {
+    if (!place?.id || isInDiscoveryCooldown(place.id)) return;
+
+    markDiscoveryCooldown(place.id);
+    window.HG_LAST_DISCOVERED_PLACE_ID = String(place.id || "").trim();
+
+    if (typeof window.showToast === "function") {
+      const prefix = isNewUnlock ? "📍 Låst opp" : "📍 Besøkt";
+      const suffix = isNewToday && !isNewUnlock ? " i dag" : "";
+      window.showToast(`${prefix}: ${place.name}${suffix}`, 2600);
+    }
+
+    if (typeof window.renderNearbyPlaces === "function") {
+      window.renderNearbyPlaces();
+    }
+
+    if (shouldAutoOpenPlace(place) && typeof window.openPlaceCard === "function") {
+      setTimeout(() => {
+        window.openPlaceCard(place);
+      }, 450);
+    }
+
+    window.dispatchEvent(new CustomEvent("hg:placeDiscovered", {
+      detail: {
+        placeId: String(place.id || "").trim(),
+        name: place.name || "",
+        isNewUnlock: !!isNewUnlock,
+        isNewToday: !!isNewToday
+      }
+    }));
+  }
+
   function autoUnlockPlacesFromPosition(lat, lon) {
     const places = Array.isArray(window.PLACES) ? window.PLACES : [];
     if (!places.length) return;
@@ -107,8 +173,18 @@
       const d = window.distMeters(userPos, { lat: placeLat, lon: placeLon });
       if (!Number.isFinite(d) || d > radius) continue;
 
-      markPlaceVisitedToday(place.id);
-      window.saveVisitedFromQuiz(place.id);
+      const wasVisited = !!window.visited?.[place.id];
+      const isNewToday = markPlaceVisitedToday(place.id);
+
+      if (!wasVisited) {
+        window.saveVisitedFromQuiz(place.id);
+        announceDiscovery(place, { isNewUnlock: true, isNewToday: true });
+        continue;
+      }
+
+      if (isNewToday) {
+        announceDiscovery(place, { isNewUnlock: false, isNewToday: true });
+      }
     }
   }
 
