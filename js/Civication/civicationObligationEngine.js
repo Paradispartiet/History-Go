@@ -519,8 +519,7 @@
   }
 
   function getQuizCountLastWeek(careerId) {
-    const history =
-      JSON.parse(localStorage.getItem("quiz_history") || "[]");
+    const history = window.HGLearningLog?.getQuizHistory?.() ?? [];
 
     if (!Array.isArray(history)) {
       return 0;

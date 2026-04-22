@@ -16,6 +16,8 @@
 //
 // ============================================================
 
+// Migrer gammel quiz_history inn i hg_learning_log_v1 (én-gangs).
+try { window.HGLearningLog?.migrateLegacy?.(); } catch {}
 
 
 function getUnlockState() {
@@ -60,7 +62,7 @@ function ls(name, fallback = {}) {
 
 function getCompletedQuizUnitCount() {
   const quizProgress = ls("quiz_progress", {});
-  const quizHistory = ls("quiz_history", []);
+  const quizHistory = (window.HGLearningLog?.getQuizHistory?.() ?? []);
 
   const ids = new Set();
 
@@ -260,8 +262,7 @@ function openBadgeModal(badge) {
   }
 
   // --- QUIZ-HISTORIKK (STRICT) ---
-  const historyRaw = JSON.parse(localStorage.getItem("quiz_history") || "[]");
-  const history = Array.isArray(historyRaw) ? historyRaw : [];
+  const history = (window.HGLearningLog?.getQuizHistory?.() ?? []);
 
   const catId = String(badge.id || "").trim();
 

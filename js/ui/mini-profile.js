@@ -10,7 +10,7 @@ function initMiniProfile() {
 
   const visitedLS    = JSON.parse(localStorage.getItem("visited_places") || "{}");
   const meritsLS     = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
-  const quizHist     = JSON.parse(localStorage.getItem("quiz_history") || "[]");
+  const quizHist     = (window.HGLearningLog?.getQuizHistory?.() ?? []);
 
   const visitedCount = Object.keys(visitedLS).length;
   const badgeCount   = Object.keys(meritsLS).length;

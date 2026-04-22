@@ -60,18 +60,16 @@
       }
     }
 
-    // quiz_history: accept optional fields if present (non-breaking)
-    const hist = safeJsonParse(localStorage.getItem("quiz_history") || "[]", []);
-    if (Array.isArray(hist)) {
-      for (const h of hist) {
-        if (!h) continue;
-        const list = Array.isArray(h.unlocked_concepts)
-          ? h.unlocked_concepts
-          : (Array.isArray(h.concepts) ? h.concepts : []);
-        for (const c of list) {
-          const t = normLc(c);
-          if (t) unlocked.add("topic:" + t);
-        }
+    // quiz-events (via HGLearningLog): accept optional fields if present
+    const hist = window.HGLearningLog?.getEvents?.() ?? [];
+    for (const h of hist) {
+      if (!h) continue;
+      const list = Array.isArray(h.unlocked_concepts)
+        ? h.unlocked_concepts
+        : (Array.isArray(h.concepts) ? h.concepts : []);
+      for (const c of list) {
+        const t = normLc(c);
+        if (t) unlocked.add("topic:" + t);
       }
     }
 

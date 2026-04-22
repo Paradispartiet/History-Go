@@ -1,7 +1,7 @@
 // js/quizzes.js — QuizEngine (manifest + ID-basert + STRICT kontrakt)
 // - Leser: data/quiz/manifest.json (m.files[] = paths til quiz_*.json)
 // - KUN riktige svar trigger: knowledge + trivia + concepts/meta
-// - Perfekt quiz (correct===total) gir progresjon (quiz_history, quiz_progress, merits, unlocks)
+// - Perfekt quiz (correct===total) gir progresjon (hg_learning_log_v1, quiz_progress, merits, unlocks)
 // - INGEN normalisering. Kun trim + strict schema.
 // - Debug styres av window.DEBUG
 
@@ -13,11 +13,9 @@
   // ============================================================
   const QUIZ_MANIFEST_PATH = "data/quiz/manifest.json";
 
-  const QUIZ_HISTORY_KEY = "quiz_history";          // badge-modal leser dette
   const QUIZ_PROGRESS_KEY = "quiz_progress";        // progresjon per kategori
-  const HG_LEARNING_LOG_KEY = "hg_learning_log_v1"; // fremtid: kurs/diplom (append-only)
+  const HG_LEARNING_LOG_KEY = "hg_learning_log_v1"; // eneste sannhet: quiz + observasjoner
 
-  const QUIZ_HISTORY_SCHEMA = 2;
   const HG_LEARNING_SCHEMA = 1;
 
   let QUIZ_FEEDBACK_MS = 700;
@@ -138,28 +136,8 @@ function findNextSet(setList, currentSetId) {
     safeWrite(key, list);
   }
 
-  // Strict + complete (badge-modal relies on this)
-  function saveQuizHistory(entry) {
-    try {
-      if (!entry || typeof entry !== "object") throw new Error("entry missing");
-      if (!s(entry.categoryId)) throw new Error("categoryId missing");
-      if (!s(entry.targetId)) throw new Error("targetId missing");
-      if (!s(entry.name)) throw new Error("name missing");
-      if (!s(entry.date)) throw new Error("date missing");
-
-      if (!Number.isFinite(entry.correctCount)) throw new Error("correctCount invalid");
-      if (!Number.isFinite(entry.total)) throw new Error("total invalid");
-      if (!Array.isArray(entry.correctAnswers)) throw new Error("correctAnswers must be array");
-
-      appendToArrayKey(QUIZ_HISTORY_KEY, entry);
-      return true;
-    } catch (e) {
-      dwarn("saveQuizHistory rejected:", e, entry);
-      return false;
-    }
-  }
-
-  // New system: append-only learning log (for kurs/diplom later)
+  // Append-only læringslogg — eneste sannhet for quiz + observasjoner.
+  // Leses via window.HGLearningLog (getQuizHistory + getEvents).
   function appendLearningEvent(evt) {
     try {
       if (!evt || typeof evt !== "object") throw new Error("evt missing");
@@ -919,29 +897,21 @@ if (setList.length) {
        source: "quiz_set_complete"
       });
 
-        saveQuizHistory({
-          schema: QUIZ_HISTORY_SCHEMA,
-          id: compositeSetId,
-          targetId: compositeSetId,
-          categoryId,
-          name: displayName,
-          image,
-          date: new Date().toISOString(),
-          correctCount: correct,
-          total,
-          correctAnswers: Array.isArray(meta?.correctAnswers) ? meta.correctAnswers : []
-        });
-
         appendLearningEvent({
           schema: HG_LEARNING_SCHEMA,
           type: "quiz_set_complete",
           ts: Date.now(),
+          date: new Date().toISOString(),
+          id: compositeSetId,
           targetId: compositeSetId,
           parentTargetId: tid,
           setId: s(setMeta.set_id),
           categoryId,
+          name: displayName,
+          image,
           correctCount: correct,
           total,
+          correctAnswers: Array.isArray(meta?.correctAnswers) ? meta.correctAnswers : [],
           concepts: Array.isArray(meta?.conceptsCorrect) ? meta.conceptsCorrect : [],
           related_emner: Array.isArray(meta?.emnerTouched) ? meta.emnerTouched : []
         });
@@ -1041,28 +1011,22 @@ if (perfect) {
   }
 
   const ca = Array.isArray(meta?.correctAnswers) ? meta.correctAnswers : [];
-            // 1) badge-modal kontrakt (STRICT)
-            saveQuizHistory({
-              schema: QUIZ_HISTORY_SCHEMA,
-              id: tid,        // bakoverkompat
-              targetId: tid,  // tydelig kontrakt
-              categoryId,
-              name: person ? person.name : (place ? place.name : "Quiz"),
-              date: new Date().toISOString(),
-              correctCount: correct,
-              total,
-              correctAnswers: ca
-            });
+  const displayName = person ? person.name : (place ? place.name : "Quiz");
+  const image = s(place?.image || person?.image || "");
 
-            // 2) fremtid: læringslogg (kurs/diplom)
             appendLearningEvent({
               schema: HG_LEARNING_SCHEMA,
               type: "quiz_perfect",
               ts: Date.now(),
+              date: new Date().toISOString(),
+              id: tid,
               targetId: tid,
               categoryId,
+              name: displayName,
+              image,
               correctCount: correct,
               total,
+              correctAnswers: ca,
               concepts: Array.isArray(meta?.conceptsCorrect) ? meta.conceptsCorrect : [],
               related_emner: Array.isArray(meta?.emnerTouched) ? meta.emnerTouched : []
             });
@@ -1157,8 +1121,8 @@ if (perfect) {
 
     const legacy = (_byTarget && _byTarget.get(tid)) || [];
     if (legacy.length) {
-      const history = safeParse(QUIZ_HISTORY_KEY, []);
-      const isComplete = Array.isArray(history) && history.some(h => s(h?.id || h?.targetId) === tid);
+      const history = (window.HGLearningLog?.getQuizHistory?.() ?? []);
+      const isComplete = history.some(h => s(h?.id || h?.targetId) === tid);
       return {
         targetId: tid,
         mode: "legacy",

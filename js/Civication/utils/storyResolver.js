@@ -175,7 +175,7 @@
   }
 
   function collectQuizCategoryIds() {
-    const hist = readLS("quiz_history", []);
+    const hist = window.HGLearningLog?.getQuizHistory?.() ?? [];
     if (!Array.isArray(hist)) return [];
 
     return uniq(
