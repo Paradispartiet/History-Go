@@ -1,0 +1,308 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "category": "naeringsliv",
+  "role_scope": "formann",
+  "mail_type": "conflict",
+  "families": [
+    {
+      "id": "tempo_mot_forsvarlighet_intro",
+      "thread_binding": {
+        "conflict_id": "tempo_mot_forsvarlighet",
+        "conflict_phase": "intro"
+      },
+      "mails": [
+        {
+          "id": "formann_conflict_tempo_intro_001",
+          "mail_type": "conflict",
+          "mail_family": "tempo_mot_forsvarlighet_intro",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 64,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Tempoet du blir målt på er ikke alltid det samme som det laget ditt tåler",
+          "situation": [
+            "Presset ovenfra kommer som forventning om flyt, output og minst mulig stans i kjeden.",
+            "Samtidig ser du på gulvet at små tegn til slitasje og glipp allerede begynner å koste mer enn de ser ut som på papiret.",
+            "Du må velge om du justerer tempoet tydelig eller forsøker å få folk gjennom med det systemet nå krever."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Markere tydelig at forsvarlighet må gå foran ren fart",
+              "effect": 1,
+              "tags": ["craft", "risk"],
+              "feedback": "Du gjør tempo til et lederansvar og ikke bare et mål."
+            },
+            {
+              "id": "B",
+              "label": "Holde trykket oppe og håpe at laget bærer det gjennom",
+              "effect": 0,
+              "tags": ["control", "strain"],
+              "feedback": "Du kjøper flyt nå og legger mer slit inn i laget."
+            }
+          ]
+        },
+        {
+          "id": "formann_conflict_tempo_intro_002",
+          "mail_type": "conflict",
+          "mail_family": "tempo_mot_forsvarlighet_intro",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 61,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Det er lett å kalle det flyt når kostnaden bæres nedenfra",
+          "situation": [
+            "Det som oppover ser ut som effektivitet, merkes nedenfra som mindre pust og mer improvisert risiko.",
+            "Som formann står du midt i oversettelsen mellom systemets språk og kroppene som faktisk må bære det.",
+            "Spørsmålet er om du gjør kostnaden synlig eller lar den fortsette å være innbakt i hverdagen."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Synliggjøre kostnaden tydelig før den blir vane",
+              "effect": 1,
+              "tags": ["visibility", "care"],
+              "feedback": "Du lar ikke tempoets pris forbli taus."
+            },
+            {
+              "id": "B",
+              "label": "Absorbere spennet og holde dagen jevn på utsiden",
+              "effect": 0,
+              "tags": ["avoidance", "legitimacy"],
+              "feedback": "Du redder overflaten og gjør trykket tyngre inni laget."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lojalitet_mot_laget_intro",
+      "thread_binding": {
+        "conflict_id": "lojalitet_mot_laget",
+        "conflict_phase": "intro"
+      },
+      "mails": [
+        {
+          "id": "formann_conflict_lojalitet_intro_001",
+          "mail_type": "conflict",
+          "mail_family": "lojalitet_mot_laget_intro",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 63,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Laget ditt leser raskt hvem du egentlig står nærmest",
+          "situation": [
+            "Som formann er du nærmere folk enn ledelsen over deg, men også mer bundet til styringslinjen enn de under deg gjerne vil tro.",
+            "Det gjør hver liten avgjørelse til et tegn på hvilken side av spennet du faktisk handler fra.",
+            "Du må velge om du markerer nærhet til laget eller tydeliggjør at rollen din først og fremst er å holde linjen."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Markere at du står nær laget og vil bære deres virkelighet videre",
+              "effect": 1,
+              "tags": ["care", "visibility"],
+              "feedback": "Du gjør lojalitet nedenfra mer eksplisitt."
+            },
+            {
+              "id": "B",
+              "label": "Markere rollen tydeligere og holde mer avstand",
+              "effect": 0,
+              "tags": ["legitimacy", "distance"],
+              "feedback": "Du blir enklere å lese oppover og hardere å lese nedenfra."
+            }
+          ]
+        },
+        {
+          "id": "formann_conflict_lojalitet_intro_002",
+          "mail_type": "conflict",
+          "mail_family": "lojalitet_mot_laget_intro",
+          "role_scope": "formann",
+          "phase": "intro",
+          "priority": 60,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Du merker hvor fort tillit glir over i prøving av grensene dine",
+          "situation": [
+            "Noen i laget begynner å ta deg mer i fortrolighet, og det er både et tegn på tillit og en test av hvor langt de kan trekke rollen din mot seg.",
+            "Hvis du blir for mye av deres mann, blir styringslinjen svakere. Hvis du holder for mye igjen, mister du noe av grepet på gulvet.",
+            "Du må finne ut hva slags nærhet som fortsatt lar deg lede."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta nærheten imot, men tydeliggjøre rammene for den",
+              "effect": 1,
+              "tags": ["legitimacy", "care"],
+              "feedback": "Du prøver å gjøre tillit brukbar uten å miste rollegrensen."
+            },
+            {
+              "id": "B",
+              "label": "Trekke deg litt tilbake for å bevare autoriteten renere",
+              "effect": 0,
+              "tags": ["distance", "control"],
+              "feedback": "Du blir tydeligere som rolle og mindre tilgjengelig som menneske i laget."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tempo_mot_forsvarlighet_early",
+      "thread_binding": {
+        "conflict_id": "tempo_mot_forsvarlighet",
+        "conflict_phase": "early"
+      },
+      "mails": [
+        {
+          "id": "formann_conflict_tempo_early_001",
+          "mail_type": "conflict",
+          "mail_family": "tempo_mot_forsvarlighet_early",
+          "role_scope": "formann",
+          "phase": "early",
+          "priority": 68,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "stable_warning",
+          "subject": "Du ser at små snarveier begynner å ligne struktur",
+          "situation": [
+            "Det som først virket som unntak under press, begynner å feste seg som hverdagspraksis i laget.",
+            "Når snarveier blir repeterbare, er det ofte fordi tempoet allerede har fått forrang over det folk egentlig vet er forsvarlig.",
+            "Du må velge om du stopper denne glidningen nå eller lar den bære dagen videre en stund til."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Stanse glidningen og gjøre den tydelig som problem",
+              "effect": 1,
+              "tags": ["craft", "visibility"],
+              "feedback": "Du prøver å hindre at tempoet skriver ny norm i det stille."
+            },
+            {
+              "id": "B",
+              "label": "La det gå litt til for å holde produksjonen oppe",
+              "effect": 0,
+              "tags": ["shortcut", "strain"],
+              "feedback": "Du holder linjen varm og lar risikoen bli mer innarbeidet."
+            }
+          ]
+        },
+        {
+          "id": "formann_conflict_tempo_early_002",
+          "mail_type": "conflict",
+          "mail_family": "tempo_mot_forsvarlighet_early",
+          "role_scope": "formann",
+          "phase": "early",
+          "priority": 65,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "stable_warning",
+          "subject": "Det du tillater én gang, må du snart forholde deg til som mønster",
+          "situation": [
+            "Som formann vet du at praksis ofte formes av det du lar passere når dagen er mest presset.",
+            "Det gjør deg mindre til kontrollør og mer til arkitekt for hva som i praksis blir tålt på gulvet.",
+            "Du må velge om du griper inn hardere nå eller lar mønsteret sette seg litt tydeligere før du tar det."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gripe inn nå og tåle at dagen mister noe fart",
+              "effect": 1,
+              "tags": ["risk", "care"],
+              "feedback": "Du beskytter nivået før vanen får full makt."
+            },
+            {
+              "id": "B",
+              "label": "Vente og ta det når presset er lavere",
+              "effect": 0,
+              "tags": ["avoidance", "process"],
+              "feedback": "Du utsetter oppgjøret og lar praksisen lære laget noe imens."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lojalitet_mot_laget_early",
+      "thread_binding": {
+        "conflict_id": "lojalitet_mot_laget",
+        "conflict_phase": "early"
+      },
+      "mails": [
+        {
+          "id": "formann_conflict_lojalitet_early_001",
+          "mail_type": "conflict",
+          "mail_family": "lojalitet_mot_laget_early",
+          "role_scope": "formann",
+          "phase": "early",
+          "priority": 67,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "stable_warning",
+          "subject": "Laget begynner å regne deg som sin, men rollen trekker andre veier",
+          "situation": [
+            "Jo mer folk stoler på deg, desto mer forventer de også at du skal beskytte dem mot trykket ovenfra.",
+            "Samtidig vet du at rollen din ikke bare er å skjerme, men også å få systemet til å virke gjennom dem.",
+            "Du må velge om du skal bære mer av belastningen selv eller gjøre det tydeligere hvor grensen for din lojalitet går."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Bære mer av trykket selv for å skjerme laget",
+              "effect": 1,
+              "tags": ["care", "strain"],
+              "feedback": "Du forsterker båndet nedenfra og gjør deg tyngre som bærer."
+            },
+            {
+              "id": "B",
+              "label": "Tydeliggjøre at laget også må bære mer av systemets krav",
+              "effect": 0,
+              "tags": ["control", "distance"],
+              "feedback": "Du renser rollen og gjør nærheten mindre varm."
+            }
+          ]
+        },
+        {
+          "id": "formann_conflict_lojalitet_early_002",
+          "mail_type": "conflict",
+          "mail_family": "lojalitet_mot_laget_early",
+          "role_scope": "formann",
+          "phase": "early",
+          "priority": 64,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "stable_warning",
+          "subject": "Du kan ikke være både buffer, kamerat og styringsledd fullt ut samtidig",
+          "situation": [
+            "Rollen begynner å vise sine grenser: det som gir deg tillit nedenfra, kan gjøre deg svakere oppover, og det som gjør deg tydelig oppover, kan koste deg noe i laget.",
+            "Du kjenner at de tre posisjonene ikke lenger lar seg holde samlet uten tap.",
+            "Nå må du bestemme hvilken side av rollen som skal være mest synlig i denne fasen."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Stå tydeligere frem som buffer og bærer for laget",
+              "effect": 1,
+              "tags": ["visibility", "care"],
+              "feedback": "Du gjør solidariteten mer synlig og styringslinjen mer anspent."
+            },
+            {
+              "id": "B",
+              "label": "Stå tydeligere frem som styringsledd med klare grenser",
+              "effect": 0,
+              "tags": ["legitimacy", "control"],
+              "feedback": "Du gjør rollen klarere og forholdet til laget kjøligere."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
