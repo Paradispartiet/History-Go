@@ -305,3 +305,139 @@
   z-index: 3;
   font-weight: 700;
 }
+
+/* ============================================================
+   NATURE UNLOCK TOAST — feirende popup når quiz gir unlock
+============================================================ */
+.nature-unlock-stack {
+  position: fixed;
+  left: 50%;
+  bottom: 32px;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 10px;
+  z-index: 2500;
+  pointer-events: none;
+  width: min(360px, calc(100vw - 32px));
+}
+
+.nature-unlock-card {
+  pointer-events: auto;
+  position: relative;
+  display: grid;
+  grid-template-columns: 56px 1fr auto;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px 10px 10px;
+  border-radius: 16px;
+  background: #fff;
+  color: #1c2016;
+  box-shadow: 0 14px 32px rgba(0,0,0,0.28), 0 2px 6px rgba(0,0,0,0.12);
+  transform: translateY(20px) scale(0.96);
+  opacity: 0;
+  transition: transform 280ms cubic-bezier(0.2, 0.9, 0.25, 1.2),
+              opacity 220ms ease-out;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.nature-unlock-card.is-visible {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+.nature-unlock-card.is-leaving {
+  transform: translateY(10px) scale(0.98);
+  opacity: 0;
+}
+
+.nature-unlock-card.is-flora {
+  background: linear-gradient(135deg, #eef5e6 0%, #fff 70%);
+  border-left: 4px solid #6aa63d;
+}
+
+.nature-unlock-card.is-fauna {
+  background: linear-gradient(135deg, #f5eed6 0%, #fff 70%);
+  border-left: 4px solid #c69a2a;
+}
+
+.nature-unlock-card.is-more {
+  grid-template-columns: 1fr;
+  background: rgba(34, 38, 30, 0.92);
+  color: #fff;
+  text-align: center;
+  padding: 8px 14px;
+  font-weight: 600;
+}
+
+.nature-unlock-thumb {
+  width: 56px;
+  height: 56px;
+  border-radius: 10px;
+  object-fit: cover;
+  display: block;
+}
+
+.nature-unlock-thumb-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  background: rgba(0,0,0,0.06);
+}
+
+.nature-unlock-body {
+  min-width: 0;
+}
+
+.nature-unlock-kicker {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #5c6b52;
+  margin-bottom: 2px;
+}
+
+.nature-unlock-card.is-fauna .nature-unlock-kicker {
+  color: #7b5f16;
+}
+
+.nature-unlock-title {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.15;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.nature-unlock-latin {
+  font-size: 12px;
+  font-style: italic;
+  color: #5c6b52;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 2px;
+}
+
+.nature-unlock-close {
+  background: transparent;
+  border: 0;
+  font-size: 15px;
+  color: #7a7a6d;
+  padding: 4px 6px;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nature-unlock-close:hover {
+  background: rgba(0,0,0,0.06);
+}

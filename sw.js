@@ -3,7 +3,7 @@
    Oppdatert: 2026-04-22
    ============================================================ */
 
-const SW_VERSION = "hg-sw-2026-04-22-v1.5.1";
+const SW_VERSION = "hg-sw-2026-04-22-v1.6.0";
 
 const CACHE_STATIC  = `hg-static-${SW_VERSION}`;
 const CACHE_RUNTIME = `hg-runtime-${SW_VERSION}`;
@@ -108,6 +108,7 @@ const PRECACHE_URLS = [
   "js/ui/badge-modal.js",
   "js/ui/mini-profile.js",
   "js/ui/nature-card.js",
+  "js/ui/nature-unlock-toast.js",
   "js/ui/geo-indicator.js",
 
   // Civication – core
