@@ -692,10 +692,26 @@ if (canTag) {
   // HOOKS (kun ved riktig): insights + knowledge + trivia
   // ------------------------------------------------------------
 
-  // HGInsights hook (valgfritt)
-  if (typeof API?.logCorrectQuizAnswer === "function") {
-    try { API.logCorrectQuizAnswer(tid, q); }
-    catch (e) { dwarn("logCorrectQuizAnswer failed", e); }
+  // HGInsights hook (valgfritt) — API-override har prioritet, ellers
+  // fall tilbake til global HGInsights hvis scriptet er lastet.
+  const logInsight =
+    (typeof API?.logCorrectQuizAnswer === "function")
+      ? API.logCorrectQuizAnswer
+      : (typeof window.HGInsights?.logCorrectQuizAnswer === "function")
+        ? window.HGInsights.logCorrectQuizAnswer.bind(window.HGInsights)
+        : null;
+
+  if (logInsight) {
+    try {
+      logInsight(null, {
+        id: quizId,
+        categoryId,
+        personId: q.personId || null,
+        placeId: q.placeId || tid,
+        topic: q.topic || null,
+        core_concepts: Array.isArray(q.core_concepts) ? q.core_concepts : []
+      });
+    } catch (e) { dwarn("logCorrectQuizAnswer failed", e); }
   }
 
   const saveKnowledge =
