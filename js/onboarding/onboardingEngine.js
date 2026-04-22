@@ -76,11 +76,12 @@
         ? {
             announced: parsed.announced && typeof parsed.announced === "object" ? parsed.announced : {},
             current_step: parsed.current_step || null,
-            updated_at: parsed.updated_at || null
+            updated_at: parsed.updated_at || null,
+            current_guidance: parsed.current_guidance && typeof parsed.current_guidance === "object" ? parsed.current_guidance : null
           }
-        : { announced: {}, current_step: null, updated_at: null };
+        : { announced: {}, current_step: null, updated_at: null, current_guidance: null };
     } catch {
-      return { announced: {}, current_step: null, updated_at: null };
+      return { announced: {}, current_step: null, updated_at: null, current_guidance: null };
     }
   }
 
@@ -144,6 +145,88 @@
     }
   }
 
+  function getPeopleCount() {
+    const people = window.CivicationPeopleEngine?.getAvailablePeople?.() || [];
+    return Array.isArray(people) ? people.length : 0;
+  }
+
+  async function getStoreCount() {
+    try {
+      const stores = await window.HG_CiviShop?.getVisibleStores?.();
+      return Array.isArray(stores) ? stores.length : 0;
+    } catch {
+      return 0;
+    }
+  }
+
+  function buildGuidance(progress) {
+    const stepKey = progress.currentStep;
+    const meta = STEP_META[stepKey] || null;
+    const guidance = {
+      stepKey,
+      title: meta?.title || "Neste steg",
+      nextText: meta?.nextText || "Fortsett å utforske byen og la Civication reagere.",
+      unlockText: meta?.unlockText || "Dette steget bygger bro mellom History Go og Civication.",
+      blocker: null,
+      detail: null,
+      stats: {
+        quizCount: progress.quizCount,
+        visitedCount: progress.visitedCount,
+        pendingOffer: !!progress.pendingOffer,
+        peopleCount: Number(progress.peopleCount || 0),
+        storeCount: Number(progress.storeCount || 0)
+      }
+    };
+
+    if (stepKey === "first_quiz" || stepKey === "second_quiz" || stepKey === "third_quiz_signal" || stepKey === "fourth_quiz_world") {
+      guidance.blocker = "quiz";
+      guidance.detail = `Du mangler først og fremst flere quizzer. Du har ${progress.quizCount} fullførte quizzer og ${progress.visitedCount} åpne steder.`;
+      return guidance;
+    }
+
+    if (stepKey === "fifth_quiz_job_ready") {
+      guidance.blocker = "quiz_for_job";
+      guidance.detail = progress.pendingOffer
+        ? "Du har allerede et jobbtilbud klart. Gå inn i Civication og se rollen."
+        : `Du trenger litt mer kunnskapsprogresjon før arbeidslivet åpner seg tydelig. Du har ${progress.quizCount} quizzer nå.`;
+      return guidance;
+    }
+
+    if (stepKey === "first_job") {
+      guidance.blocker = progress.pendingOffer ? "accept_job" : "job_offer_missing";
+      guidance.detail = progress.pendingOffer
+        ? "Du har et pending jobbtilbud. Neste naturlige steg er å akseptere rollen i Civication."
+        : "Du mangler fortsatt selve rollevalget. Sjekk jobbtilbud og fortsett å bygge merit hvis tilbud ikke vises.";
+      return guidance;
+    }
+
+    if (stepKey === "first_day_event") {
+      guidance.blocker = "day_event";
+      guidance.detail = "Du har rolle, men mangler første tydelige hverdagsutslag. Gå inn i Civication og la dagen spille seg videre.";
+      return guidance;
+    }
+
+    if (stepKey === "first_person") {
+      guidance.blocker = "people";
+      guidance.detail = `Du mangler fortsatt tydelige mennesker i livsverdenen. Akkurat nå har du ${progress.peopleCount} personer åpne.`;
+      return guidance;
+    }
+
+    if (stepKey === "first_debate") {
+      guidance.blocker = "debate";
+      guidance.detail = "Du har kommet til punktet der kunnskap og rolle bør møte motstand. Neste milepæl er første debatt.";
+      return guidance;
+    }
+
+    if (stepKey === "first_store") {
+      guidance.blocker = "store";
+      guidance.detail = `Du mangler fortsatt tydelig butikkverden i Civication. Akkurat nå har du ${progress.storeCount} synlige butikker.`;
+      return guidance;
+    }
+
+    return guidance;
+  }
+
   async function evaluateProgress() {
     const quizCount = getQuizCount();
     const visitedCount = getVisitedCount();
@@ -153,6 +236,8 @@
     const debate = hasDebate();
     const store = await hasStore();
     const pendingOffer = !!window.CivicationJobs?.getLatestPendingOffer?.();
+    const peopleCount = getPeopleCount();
+    const storeCount = await getStoreCount();
 
     const unlocked = {
       first_quiz: quizCount >= 1 || visitedCount >= 1,
@@ -177,26 +262,31 @@
 
     if (!currentStep) currentStep = "first_store";
 
-    return {
+    const progress = {
       quizCount,
       visitedCount,
       pendingOffer,
       unlocked,
-      currentStep
+      currentStep,
+      peopleCount,
+      storeCount
     };
+
+    progress.guidance = buildGuidance(progress);
+    return progress;
   }
 
-  function setNextUp(stepKey, progress) {
+  function setNextUp(guidance) {
     const el = document.getElementById("mpNextUp");
     if (!el) return;
-    const meta = STEP_META[stepKey];
-    if (!meta) {
+    if (!guidance) {
       el.textContent = "";
       return;
     }
 
-    const quizInfo = progress?.quizCount ? ` · Quizzer: ${progress.quizCount}` : "";
-    el.textContent = `Neste steg: ${meta.nextText}${quizInfo}`;
+    const parts = [guidance.nextText];
+    if (guidance?.detail) parts.push(guidance.detail);
+    el.textContent = `Neste steg: ${parts.join(" ")}`;
   }
 
   function announceStep(stepKey, state) {
@@ -223,9 +313,10 @@
     }
 
     state.current_step = progress.currentStep;
+    state.current_guidance = progress.guidance;
     state.updated_at = new Date().toISOString();
     writeState(state);
-    setNextUp(progress.currentStep, progress);
+    setNextUp(progress.guidance);
 
     return {
       state,
@@ -240,6 +331,9 @@
     getCurrentStepMeta: function () {
       const state = readState();
       return STEP_META[state.current_step] || null;
+    },
+    getCurrentGuidance: function () {
+      return readState().current_guidance || null;
     }
   };
 
