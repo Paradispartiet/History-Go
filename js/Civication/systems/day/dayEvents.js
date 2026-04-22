@@ -60,6 +60,7 @@ async function makeLunchEvent(active) {
     stage: "stable",
     source: "Civication",
     phase_tag: "lunch",
+    semantic_event_key: `lunch:${store.id}`,
     subject: `Lunsjpause – ${store.name}`,
     situation: [
       `${ctx.line1} I dag trekkes du mot ${store.name}.`,
@@ -165,6 +166,7 @@ async function makeEveningEvent(active) {
     stage: "stable",
     source: "Civication",
     phase_tag: "evening",
+    semantic_event_key: `evening:${store.id}`,
     subject: `Kveld – ${store.name}`,
     situation: [
       line1,
@@ -388,6 +390,48 @@ function getCareerStorePool(active) {
   return filtered.length ? filtered : allStores.slice(0, 2);
 }
 
+function getDayEventHistory() {
+  try {
+    const raw = localStorage.getItem("hg_day_event_history_v1");
+    const parsed = JSON.parse(raw || "[]");
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [];
+  }
+}
+
+function setDayEventHistory(history) {
+  try {
+    localStorage.setItem(
+      "hg_day_event_history_v1",
+      JSON.stringify(Array.isArray(history) ? history.slice(-30) : [])
+    );
+  } catch {}
+}
+
+function getRecentDayEventKeys(phaseTag, careerId) {
+  return getDayEventHistory()
+    .filter((entry) => {
+      return String(entry?.phaseTag || "") === String(phaseTag || "") &&
+        String(entry?.careerId || "") === String(careerId || "");
+    })
+    .slice(-3)
+    .map((entry) => String(entry?.storeId || "").trim())
+    .filter(Boolean);
+}
+
+function rememberDayEventStore(active, phaseTag, store) {
+  const history = getDayEventHistory();
+  history.push({
+    at: new Date().toISOString(),
+    careerId: String(active?.career_id || "").trim(),
+    phaseTag: String(phaseTag || "").trim(),
+    storeId: String(store?.id || "").trim(),
+    storeName: String(store?.name || "").trim()
+  });
+  setDayEventHistory(history);
+}
+
 function pickStoreContext(active, phaseTag) {
   const pool = getCareerStorePool(active);
   if (!pool.length) {
@@ -406,7 +450,13 @@ function pickStoreContext(active, phaseTag) {
     (phaseTag === "evening" ? 1 : 0) +
     visitedCount;
 
-  const chosen = pool[idxBase % pool.length];
+  const careerId = String(active?.career_id || "").trim();
+  const recentStoreIds = new Set(getRecentDayEventKeys(phaseTag, careerId));
+  const rotated = pool.slice(idxBase % pool.length).concat(pool.slice(0, idxBase % pool.length));
+  const nonRecent = rotated.filter((store) => !recentStoreIds.has(String(store?.id || "").trim()));
+  const chosen = nonRecent[0] || rotated[0] || pool[0];
+
+  rememberDayEventStore(active, phaseTag, chosen);
 
   return {
     ...chosen,
