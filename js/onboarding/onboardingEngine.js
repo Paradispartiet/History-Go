@@ -169,6 +169,7 @@
       unlockText: meta?.unlockText || "Dette steget bygger bro mellom History Go og Civication.",
       blocker: null,
       detail: null,
+      toastText: null,
       stats: {
         quizCount: progress.quizCount,
         visitedCount: progress.visitedCount,
@@ -225,6 +226,42 @@
     }
 
     return guidance;
+  }
+
+  function buildToastText(stepKey, progress) {
+    if (stepKey === "first_quiz") {
+      return "✨ Første sted åpnet. Dette gir deg ditt første faktiske fotfeste i byen.";
+    }
+    if (stepKey === "second_quiz") {
+      return `✨ Kunnskapen din begynner å få retning. Du har nå ${progress.quizCount} quizzer som bygger videre på hverandre.`;
+    }
+    if (stepKey === "third_quiz_signal") {
+      return "✨ Civication begynner å reagere. Flere av stedene dine kan nå prege miljøer og hverdagsliv.";
+    }
+    if (stepKey === "fourth_quiz_world") {
+      return `✨ Livsverdenen din blir større. Du har nå ${progress.visitedCount} åpne steder som kan gi flere miljøer og mennesker.`;
+    }
+    if (stepKey === "fifth_quiz_job_ready") {
+      return progress.pendingOffer
+        ? "✨ Et jobbtilbud er klart. Gå inn i Civication og se hvilken rolle byen din nå åpner for deg."
+        : "✨ Arbeidslivet begynner å åpne seg. Nå er det verdt å bygge litt mer merit for å få første rolle.";
+    }
+    if (stepKey === "first_job") {
+      return "✨ Første rolle valgt. Nå blir byen til arbeid, ansvar og et faktisk livslag i Civication.";
+    }
+    if (stepKey === "first_day_event") {
+      return "✨ Første day-event åpnet. Hverdagen din begynner nå å bli påvirket av steder du faktisk har lært.";
+    }
+    if (stepKey === "first_person") {
+      return `✨ Første mennesker åpnet. Du har nå ${progress.peopleCount} tydelige personer eller miljøfigurer i livsverdenen din.`;
+    }
+    if (stepKey === "first_debate") {
+      return "✨ Første debatt åpnet. Nå kan du bruke kunnskap, kapital, identitet og psyke mot andre.";
+    }
+    if (stepKey === "first_store") {
+      return `✨ Første butikkverden åpnet. Du har nå ${progress.storeCount} synlige butikker som faktisk springer ut av byen din.`;
+    }
+    return null;
   }
 
   async function evaluateProgress() {
@@ -289,7 +326,7 @@
     el.textContent = `Neste steg: ${parts.join(" ")}`;
   }
 
-  function announceStep(stepKey, state) {
+  function announceStep(stepKey, state, progress) {
     const meta = STEP_META[stepKey];
     if (!meta) return;
     if (state.announced?.[stepKey]) return;
@@ -298,7 +335,8 @@
     writeState(state);
 
     if (typeof window.showToast === "function") {
-      window.showToast(`✨ ${meta.title}: ${meta.unlockText}`);
+      const specific = buildToastText(stepKey, progress);
+      window.showToast(specific || `✨ ${meta.title}: ${meta.unlockText}`);
     }
   }
 
@@ -308,7 +346,7 @@
 
     for (const step of STEP_ORDER) {
       if (progress.unlocked[step]) {
-        announceStep(step, state);
+        announceStep(step, state, progress);
       }
     }
 
