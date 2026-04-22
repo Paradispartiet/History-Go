@@ -267,17 +267,37 @@ async function loadPlacesBase(opts = {}) {
   }
 
 
-  async function loadNature() {
-  try {
-    const r1 = await fetch("data/nature/flora.json", { cache: "no-store" });
-    window.FLORA = r1.ok ? await r1.json() : [];
-  } catch { window.FLORA = []; }
+  // Manifest-basert natur-lasting. Slår sammen alle underfiler under
+  // data/natur/flora/ og data/natur/fauna/. Hopper graciously over filer
+  // som ikke parser (noen eldre filer har ugyldig JSON – må fikses separat).
+  async function loadNatureGroup(groupPath) {
+    const manifestUrl = pData(`${groupPath}/manifest.json`);
+    let manifest;
+    try {
+      manifest = await fetchJSON(manifestUrl);
+    } catch {
+      return [];
+    }
+    const files = Array.isArray(manifest?.files) ? manifest.files : [];
+    const out = [];
+    for (const file of files) {
+      try {
+        const data = await fetchJSON(pData(`${groupPath}/${file}`));
+        if (Array.isArray(data)) out.push(...data);
+        else if (data && typeof data === "object") out.push(data);
+      } catch (e) {
+        console.warn(`[DataHub] natur: hoppet over ${file}:`, e?.message || e);
+      }
+    }
+    return out;
+  }
 
-  try {
-    const r2 = await fetch("data/nature/fauna.json", { cache: "no-store" });
-    window.FAUNA = r2.ok ? await r2.json() : [];
-  } catch { window.FAUNA = []; }
-}
+  async function loadNature() {
+    try { window.FLORA = await loadNatureGroup("natur/flora"); }
+    catch { window.FLORA = []; }
+    try { window.FAUNA = await loadNatureGroup("natur/fauna"); }
+    catch { window.FAUNA = []; }
+  }
   
   // ----------------------------
   // Quiz: /data/quiz/quiz_<categoryId>.json
@@ -320,6 +340,10 @@ async function loadPlacesBase(opts = {}) {
 
     // quiz
     loadQuizCategory,
+
+    // natur
+    loadNature,
+    loadNatureGroup,
 
     // tags
     normalizeTags,

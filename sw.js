@@ -1,21 +1,26 @@
 /* ============================================================
-   History Go – Service Worker (precache fra index.html)
-   Oppdatert: 2026-02-10
+   History Go – Service Worker (precache synkronisert mot index.html)
+   Oppdatert: 2026-04-22
    ============================================================ */
 
-const SW_VERSION = "hg-sw-2026-02-10-v1.2.418";
+const SW_VERSION = "hg-sw-2026-04-22-v1.3.0";
 
 const CACHE_STATIC  = `hg-static-${SW_VERSION}`;
 const CACHE_RUNTIME = `hg-runtime-${SW_VERSION}`;
 
-// ✅ Dette er alle lokale assets jeg fant referert i index (129).html
+// Kun filer som faktisk eksisterer og lastes av index.html / Civication.html.
 const PRECACHE_URLS = [
   "./",
   "./index.html",
+  "Civication.html",
+  "manifest.json",
 
+  // CSS
   "css/base.css",
+  "css/civi.css",
   "css/components.css",
   "css/effects.css",
+  "css/footer.css",
   "css/layout.css",
   "css/map.css",
   "css/merits.css",
@@ -26,26 +31,31 @@ const PRECACHE_URLS = [
   "css/popups.css",
   "css/profile.css",
   "css/quiz.css",
-  "css/routes.css",
   "css/search.css",
-  "css/wonderkammer.css",
+  "css/sheets.css",
+  "css/theme.css",
   "js/console/console.css",
 
-  "js/sw-register.js",
+  // Eksterne/støtte-loadere
+  "js/events/events_loader.js",
+  "js/brands/brands_loader.js",
 
+  // UI popup + place card
   "js/ui/popup-utils.js",
   "js/ui/place-card.js",
   "js/hgchips.js",
 
+  // Knowledge / trivia / insight / data
   "js/knowledge.js",
   "js/knowledge_component.js",
   "js/trivia.js",
   "js/hgInsights.js",
   "js/dataHub.js",
 
-  "js/domainRegistry.js",
+  "js/DomainRegistry.js",
   "js/domainHealthReport.js",
 
+  // Dev / console
   "js/console/init.js",
   "js/console/verify.js",
   "js/console/diagnosticConsole.js",
@@ -54,30 +64,38 @@ const PRECACHE_URLS = [
 
   "js/audits/missingImages.audit.js",
 
+  // Observations
   "js/observations.js",
   "js/observationsView.js",
 
-  "js/core/state.js",
-  "js/core/persistence.js",
-  "js/core/openmode.js",
+  // State
+  "js/state/state.js",
+  "js/state/persistence.js",
+  "js/state/openmode.js",
+
+  // Core
   "js/core/core.js",
   "js/core/categories.js",
-  "js/core/badges.js",
-  "js/core/tiersCivi.js",
-  "js/core/geo.js",
-  "js/core/pos.js",
+  "js/core/knowledgeLearningState.js",
+  "js/core/learningEvents.js",
   "js/core/viewportManager.js",
   "js/core/layerManager.js",
   "js/core/bottomSheetController.js",
+  "js/core/geo.js",
+  "js/core/pos.js",
 
+  // Geo / map / ruter
   "js/map.js",
-  "js/ors-config.js",
+  "js/orsConfig.js",
   "js/navRoutes.js",
 
+  // Game / progression
   "js/hg_unlocks.js",
+  "js/hg_nature_unlocks.js",
   "js/quizzes.js",
   "js/quiz-audit.js",
 
+  // UI
   "js/ui/dom.js",
   "js/ui/toast.js",
   "js/ui/events.js",
@@ -87,23 +105,67 @@ const PRECACHE_URLS = [
   "js/ui/badges.js",
   "js/ui/badge-modal.js",
   "js/ui/mini-profile.js",
-  "js/ui/civication-inbox.js",
   "js/ui/geo-indicator.js",
 
-  "js/boot.js",
-  "js/app.js",
+  // Civication – core
+  "js/Civication/core/civicationState.js",
+  "js/Civication/core/civicationJobs.js",
+  "js/Civication/core/civicationEconomyEngine.js",
+  "js/Civication/core/civicationEventEngine.js",
+  "js/Civication/core/CivicationPsyche.js",
+  "js/Civication/core/civicationCalendar.js",
+  "js/Civication/core/civicationTaskEngine.js",
 
-// ---------------- Civication ----------------
-  "Civication.html",
-  "js/Civication/civicationEngine.js",
-  "js/Civication/CivicationUI.js",
-  "js/Civication/CivicationMap.js",
-  "js/Civication/CivicationHome.js",
+  // Civication – rot
+  "js/Civication/tiersCivi.js",
+  "js/Civication/merits-and-jobs.js",
+  "js/Civication/civicationObligationEngine.js",
   "js/Civication/capitalEngine.js",
   "js/Civication/capitalMaintenanceEngine.js",
+  "js/Civication/identityCore.js",
+  "js/Civication/identityCompass.js",
+  "js/Civication/identityEngine.js",
+  "js/Civication/civiLifestyle.js",
+  "js/Civication/civicationCommercial.js",
+  "js/Civication/roleStoryletBridge.js",
+  "js/Civication/roleThreadResolver.js",
+  "js/Civication/CivicationBoot.js",
 
-  // Career data
-  "data/hg_careers.json",
+  // Civication – ui
+  "js/Civication/ui/CivicationHome.js",
+  "js/Civication/ui/CivicationPublicLayer.js",
+  "js/Civication/ui/CivicationMap.js",
+  "js/Civication/ui/CivicationUI.js",
+
+  // Civication – utils / systems
+  "js/Civication/utils/storyResolver.js",
+  "js/Civication/utils/conflictLoader.js",
+  "js/Civication/systems/civicationMailPlanPatchRuntime.js",
+  "js/Civication/systems/civicationMailPlanDebug.js",
+  "js/Civication/systems/day/dayCalendarBridge.js",
+  "js/Civication/systems/day/dayHistoryGoContexts.js",
+  "js/Civication/systems/day/dayCarryover.js",
+  "js/Civication/systems/day/dayWeeklyReview.js",
+  "js/Civication/systems/day/dayContacts.js",
+  "js/Civication/systems/day/dayKnowledge.js",
+  "js/Civication/systems/day/dayEvents.js",
+  "js/Civication/systems/day/dayPatches.js",
+
+  // Stories
+  "js/stories/stories_loader.js",
+  "js/stories/stories_utils.js",
+  "js/stories/story_source_collector.js",
+  "js/stories/story_episode_extractor.js",
+  "js/stories/story_scoring.js",
+  "js/stories/story_dedupe.js",
+  "js/stories/story_generator_engine.js",
+  "js/stories/story_quiz_generator.js",
+  "js/stories/story_graph_engine.js",
+
+  // Boot + app
+  "js/boot.js",
+  "js/app.js",
+  "js/routes.js",
 ];
 
 // -------------------- helpers --------------------
