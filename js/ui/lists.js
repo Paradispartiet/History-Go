@@ -355,15 +355,15 @@ function renderNearbyNature() {
               onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'nearby-thumb nearby-thumb-icon',textContent:'${kindIcon}'}))">`
       : `<div class="nearby-thumb nearby-thumb-icon">${kindIcon}</div>`;
 
+    const metaParts = [];
+    if (latin) metaParts.push(`<em>${latin}</em>`);
+    if (distText) metaParts.push(distText);
+
     item.innerHTML = `
       <div class="nearby-thumbWrap">${thumb}</div>
       <div class="nearby-content">
         <div class="nearby-title">${title}</div>
-        <div class="nearby-meta">
-          ${latin ? `<em>${latin}</em>` : ""}
-          ${distText ? ` • ${distText}` : ""}
-          ${isUnlocked ? " • ✔" : ""}
-        </div>
+        ${metaParts.length ? `<div class="nearby-meta">${metaParts.join(" · ")}</div>` : ""}
       </div>
     `;
 
