@@ -52,6 +52,10 @@ function setLeftPanelMode(mode) {
     renderNearbyNature();
   }
 
+  if (typeof window.updateNearbyFilterButton === "function") {
+    window.updateNearbyFilterButton();
+  }
+
   if (mode === "routes" && typeof renderLeftRoutesList === "function") {
     renderLeftRoutesList();
   }
@@ -127,6 +131,9 @@ function initLeftPanel() {
     window.HG_NEARBY_FILTER =
       localStorage.getItem("hg_nearby_filter_v1") || "unvisited";
 
+    window.HG_NATURE_FILTER =
+      localStorage.getItem("hg_nature_filter_v1") || "all";
+
   let saved = null;
   try { saved = localStorage.getItem("hg_leftpanel_mode_v1"); } catch {}
 
@@ -185,32 +192,44 @@ function initLeftPanel() {
 
   const btn = document.getElementById("nearbyFilterBtn");
 
-  function updateFilterButton() {
-  const icons = {
-    unvisited: "🎯",  // Gjenstår
-    unlocked: "🔓",   // Besøkt / låst opp
-    all: "🌍"         // Alle
-  };
+  const PLACES_ICONS = { unvisited: "🎯", unlocked: "🔓", all: "🌍" };
+  const PLACES_ORDER = ["unvisited", "all", "unlocked"];
 
-  if (btn) {
-    btn.textContent = icons[window.HG_NEARBY_FILTER] || "🎯";
+  const NATURE_ICONS = { all: "🌍", unlocked: "🔓", flora: "🌿", fauna: "🐞" };
+  const NATURE_ORDER = ["all", "unlocked", "flora", "fauna"];
+
+  function activeMode() {
+    return document.querySelector(".nearby-tab.is-active")?.getAttribute("data-leftmode") || "nearby";
   }
-}
+
+  function updateFilterButton() {
+    if (!btn) return;
+    const mode = activeMode();
+    if (mode === "nature") {
+      btn.textContent = NATURE_ICONS[window.HG_NATURE_FILTER] || "🌍";
+      btn.title = `Natur-filter: ${window.HG_NATURE_FILTER}`;
+    } else {
+      btn.textContent = PLACES_ICONS[window.HG_NEARBY_FILTER] || "🎯";
+      btn.title = `Filter: ${window.HG_NEARBY_FILTER}`;
+    }
+  }
+  window.updateNearbyFilterButton = updateFilterButton;
 
   if (btn) {
     btn.addEventListener("click", () => {
-      const order = ["unvisited", "all", "unlocked"];
-      const i = order.indexOf(window.HG_NEARBY_FILTER);
-      window.HG_NEARBY_FILTER = order[(i + 1) % order.length];
-
-      try {
-        localStorage.setItem("hg_nearby_filter_v1", window.HG_NEARBY_FILTER);
-      } catch {}
-
-      updateFilterButton();
-
-      if (typeof renderNearbyPlaces === "function") {
-        renderNearbyPlaces();
+      const mode = activeMode();
+      if (mode === "nature") {
+        const i = NATURE_ORDER.indexOf(window.HG_NATURE_FILTER);
+        window.HG_NATURE_FILTER = NATURE_ORDER[(i + 1) % NATURE_ORDER.length];
+        try { localStorage.setItem("hg_nature_filter_v1", window.HG_NATURE_FILTER); } catch {}
+        updateFilterButton();
+        if (typeof renderNearbyNature === "function") renderNearbyNature();
+      } else {
+        const i = PLACES_ORDER.indexOf(window.HG_NEARBY_FILTER);
+        window.HG_NEARBY_FILTER = PLACES_ORDER[(i + 1) % PLACES_ORDER.length];
+        try { localStorage.setItem("hg_nearby_filter_v1", window.HG_NEARBY_FILTER); } catch {}
+        updateFilterButton();
+        if (typeof renderNearbyPlaces === "function") renderNearbyPlaces();
       }
     });
 

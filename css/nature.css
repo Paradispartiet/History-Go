@@ -1,0 +1,187 @@
+/* css/nature.css — Natur: kort-modal og liste-item-stil */
+
+/* ============================================================
+   NATURE CARD MODAL
+============================================================ */
+.nature-card-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 2000;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 32px 16px;
+  overflow-y: auto;
+}
+
+.nature-card-inner {
+  position: relative;
+  background: #fff;
+  max-width: 600px;
+  width: 100%;
+  border-radius: 14px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+  font-size: 15px;
+  line-height: 1.45;
+  color: #222;
+}
+
+.nature-card-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 0;
+  background: rgba(255, 255, 255, 0.9);
+  font-size: 16px;
+  cursor: pointer;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nature-card-image-wrap {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: linear-gradient(135deg, #dfe8d8, #c9dbbe);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.nature-card-inner[data-kind="fauna"] .nature-card-image-wrap {
+  background: linear-gradient(135deg, #efe7c8, #d8c88a);
+}
+
+.nature-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.nature-card-icon {
+  font-size: 72px;
+}
+
+.nature-card-body {
+  padding: 18px 20px 22px;
+}
+
+.nature-card-head h2 {
+  margin: 0 0 2px;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.nature-card-latin {
+  margin: 0;
+  font-style: italic;
+  color: #5c6b52;
+}
+
+.nature-card-family {
+  margin: 4px 0 0;
+  font-size: 13px;
+}
+
+.nature-card-unlocked-hint {
+  margin: 12px 0 0;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+}
+
+.nature-card-unlocked-hint.is-unlocked {
+  background: #e2f0d9;
+  color: #2d5a1a;
+}
+
+.nature-card-unlocked-hint.is-locked {
+  background: #f2eedc;
+  color: #7a6a3a;
+}
+
+.nature-card-sections {
+  margin-top: 16px;
+  display: grid;
+  gap: 14px;
+}
+
+.nature-card-section h3 {
+  margin: 0 0 6px;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #5c6b52;
+}
+
+.nature-card-section ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.nature-card-section li {
+  margin: 2px 0;
+}
+
+.nature-dl {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 4px 12px;
+  margin: 0;
+}
+
+.nature-dl dt {
+  font-weight: 600;
+  color: #5c6b52;
+  font-size: 13px;
+}
+
+.nature-dl dd {
+  margin: 0;
+  font-size: 14px;
+}
+
+/* ============================================================
+   NATURE LIST (i venstre panel)
+============================================================ */
+#leftNatureList .nearby-item {
+  cursor: pointer;
+}
+
+#leftNatureList .nearby-thumb-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  background: #e8efe6;
+}
+
+#leftNatureList .nearby-item.is-fauna .nearby-thumb-icon {
+  background: #f1ead0;
+}
+
+#leftNatureList .nearby-item.is-locked {
+  opacity: 0.7;
+}
+
+#leftNatureList .nearby-item.is-locked .nearby-title {
+  color: #777;
+}
+
+#leftNatureList .nearby-meta em {
+  font-style: italic;
+  color: #5c6b52;
+}
