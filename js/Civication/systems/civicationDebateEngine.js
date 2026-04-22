@@ -19,6 +19,7 @@
           theme: "Arbeidsliv",
           description: "Du blir presset på at laget må øke tempoet, selv om flere små tegn peker mot at sikkerhetsmarginen allerede er for tynn.",
           relevant_categories: ["naeringsliv", "politikk"],
+          required_access_debate: ["arbeidsliv"],
           opponent_profile: { economic: 74, symbolic: 56, political: 52, social: 40 },
           strategies: ["fakta", "sosial", "prinsipp", "politisk"]
         },
@@ -29,6 +30,7 @@
           theme: "Bemanning",
           description: "Det argumenteres for mer innleie for å holde kostnader nede. Du vet at erfaring, opplæring og ansvar glipper når folk byttes for raskt ut.",
           relevant_categories: ["naeringsliv", "politikk", "historie"],
+          required_access_debate: ["arbeidsliv", "klasse"],
           opponent_profile: { economic: 68, symbolic: 48, political: 58, social: 46 },
           strategies: ["fakta", "okonomisk", "sosial", "politisk"]
         }
@@ -41,6 +43,7 @@
           theme: "Faglig standard",
           description: "Du ser at standarden er i ferd med å tøyes for å få ting unna raskere. Motparten kaller det pragmatisme.",
           relevant_categories: ["naeringsliv", "vitenskap"],
+          required_access_debate: ["arbeidsliv"],
           opponent_profile: { economic: 66, symbolic: 58, political: 44, social: 42 },
           strategies: ["fakta", "prinsipp", "symbolsk", "okonomisk"]
         },
@@ -51,6 +54,7 @@
           theme: "Kompetanse",
           description: "Det forventes at du lærer opp nye folk uten at det gis rom for det i produksjonen. Du må argumentere for hvorfor kvalitet i opplæring faktisk er en del av driften.",
           relevant_categories: ["naeringsliv", "vitenskap", "politikk"],
+          required_access_debate: ["arbeidsliv", "kultur"],
           opponent_profile: { economic: 61, symbolic: 49, political: 47, social: 50 },
           strategies: ["fakta", "sosial", "prinsipp", "politisk"]
         }
@@ -63,6 +67,7 @@
           theme: "Ledelse",
           description: "Du presses til å roe ned kritikken fra teamet ditt og presentere situasjonen penere oppover enn den faktisk er.",
           relevant_categories: ["naeringsliv", "politikk", "psykologi"],
+          required_access_debate: ["arbeidsliv", "makt"],
           opponent_profile: { economic: 64, symbolic: 66, political: 63, social: 45 },
           strategies: ["politisk", "symbolsk", "sosial", "prinsipp"]
         },
@@ -73,6 +78,7 @@
           theme: "Styring",
           description: "Tallene ser pene ut, men du vet at de skjuler slitasje og utsatte problemer som snart vil koste mer enn de sparer.",
           relevant_categories: ["naeringsliv", "politikk", "by"],
+          required_access_debate: ["arbeidsliv", "byutvikling"],
           opponent_profile: { economic: 72, symbolic: 52, political: 58, social: 36 },
           strategies: ["fakta", "okonomisk", "politisk", "prinsipp"]
         }
@@ -85,6 +91,7 @@
           theme: "Produksjon",
           description: "Du ser at tempoet ovenfra blir solgt inn som nødvendig effektivitet, men på gulvet merkes det som innarbeidet risiko. Du må forsvare laget uten å miste styring i rommet.",
           relevant_categories: ["naeringsliv", "politikk", "vitenskap"],
+          required_access_debate: ["arbeidsliv", "makt"],
           opponent_profile: { economic: 78, symbolic: 62, political: 59, social: 38 },
           strategies: ["fakta", "okonomisk", "sosial", "politisk", "prinsipp"]
         },
@@ -95,6 +102,7 @@
           theme: "Arbeidsmiljø",
           description: "Motparten hevder at bemanningen er forsvarlig fordi tallene fortsatt holder. Du vet at slit og stillhet på gulvet ikke synes i rapporten før det er for sent.",
           relevant_categories: ["naeringsliv", "psykologi", "politikk"],
+          required_access_debate: ["arbeidsliv", "livskvalitet"],
           opponent_profile: { economic: 67, symbolic: 55, political: 61, social: 47 },
           strategies: ["fakta", "sosial", "symbolsk", "prinsipp", "politisk"]
         }
@@ -275,10 +283,25 @@
     };
   }
 
+  function hasScenarioAccess(scenario) {
+    const required = Array.isArray(scenario?.required_access_debate)
+      ? scenario.required_access_debate
+      : [];
+
+    if (!required.length) return true;
+
+    const bridge = window.CivicationPlaceAccessBridge;
+    if (!bridge?.hasAccess) return true;
+
+    return required.some((key) => bridge.hasAccess("debate", key));
+  }
+
   function getScenarioPool(active) {
     const category = String(active?.career_id || "").trim();
     const roleScope = normalizeRoleScope(active);
-    return SCENARIOS?.[category]?.[roleScope] || [];
+    const pool = SCENARIOS?.[category]?.[roleScope] || [];
+    const filtered = pool.filter(hasScenarioAccess);
+    return filtered.length ? filtered : pool;
   }
 
   function getRecentScenarioIds(history, active) {
@@ -315,7 +338,8 @@
     if (
       state.current &&
       String(state.current.role_scope || "") === roleScope &&
-      String(state.current.career_id || "") === careerId
+      String(state.current.career_id || "") === careerId &&
+      hasScenarioAccess(state.current.scenario)
     ) {
       return state.current;
     }
