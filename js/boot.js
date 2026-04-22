@@ -6,6 +6,9 @@ async function boot() {
   if (window.CoreEngine) CoreEngine.init();
   if (window.HGEngine) HGEngine.init();
 
+  // Migrer gammel quiz_history inn i hg_learning_log_v1 (én-gangs).
+  try { window.HGLearningLog?.migrateLegacy?.(); } catch {}
+
   /* ==============================
      BASE PATH (GitHub Pages safe)
   ============================== */

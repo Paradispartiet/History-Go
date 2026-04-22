@@ -9,7 +9,6 @@
 
   const KEY = "civi_home_v1";
   const CAPITAL_KEY = "hg_capital_v1";
-  const QUIZ_HISTORY_KEY = "quiz_history";
   const MERITS_KEY = "merits_by_category";
 
   // ----------------------------------------------------------
@@ -60,13 +59,10 @@
   }
 
   function hasCompletedPlace(placeId) {
-    const history =
-      JSON.parse(localStorage.getItem(QUIZ_HISTORY_KEY) || "[]");
-
-    if (!Array.isArray(history)) return false;
+    const history = window.HGLearningLog?.getQuizHistory?.() ?? [];
 
     return history.some(q =>
-      String(q.placeId || "").trim() === String(placeId).trim()
+      String(q.targetId || q.id || "").trim() === String(placeId).trim()
     );
   }
 

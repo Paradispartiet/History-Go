@@ -1,11 +1,7 @@
 function checkTierUpgrades(onlyCareerId) {
 
   function getLastQuizCategoryId() {
-    let raw = null;
-    try { raw = JSON.parse(localStorage.getItem("quiz_history") || "[]"); }
-    catch { raw = []; }
-
-    const hist = Array.isArray(raw) ? raw : [];
+    const hist = window.HGLearningLog?.getQuizHistory?.() ?? [];
     if (!hist.length) return null;
 
     // Finn siste på dato (robust hvis array ikke er append)

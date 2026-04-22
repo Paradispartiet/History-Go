@@ -201,8 +201,7 @@ if (!offer) {
       return;
     }
 
-    const historyRaw = JSON.parse(localStorage.getItem("quiz_history") || "[]");
-    const history = Array.isArray(historyRaw) ? historyRaw : [];
+    const history = window.HGLearningLog?.getQuizHistory?.() ?? [];
 
     let best = null;
 

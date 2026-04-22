@@ -557,8 +557,8 @@ function matchesQuizTarget(historyItem, targetId) {
 
 function hasCompletedQuiz(targetId) {
   try {
-    const hist = JSON.parse(localStorage.getItem("quiz_history") || "[]");
-    return Array.isArray(hist) && hist.some(h => matchesQuizTarget(h, targetId));
+    const hist = window.HGLearningLog?.getQuizHistory?.() ?? [];
+    return hist.some(h => matchesQuizTarget(h, targetId));
   } catch {
     return false;
   }
@@ -566,10 +566,8 @@ function hasCompletedQuiz(targetId) {
 
 function getLastQuizCategoryId(targetId) {
   try {
-    const hist = JSON.parse(localStorage.getItem("quiz_history") || "[]");
-    const last = Array.isArray(hist)
-      ? [...hist].reverse().find(h => matchesQuizTarget(h, targetId))
-      : null;
+    const hist = window.HGLearningLog?.getQuizHistory?.() ?? [];
+    const last = [...hist].reverse().find(h => matchesQuizTarget(h, targetId));
     return last?.categoryId || null;
   } catch {
     return null;
