@@ -2,6 +2,7 @@
 (function () {
   const LS_OFFERS = "hg_job_offers_v1";
   const LS_FIRST_JOB_SEQ = "hg_first_job_sequence_v1";
+  const LS_RECOVERY = "hg_civi_recovery_v1";
   const DEFAULT_OBLIGATION_IDS = [
     "weekly_login",
     "event_response",
@@ -20,6 +21,80 @@
       .replace(/[^a-z0-9]+/g, "_")
       .replace(/^_+|_+$/g, "")
       .slice(0, 64);
+  }
+
+  function getRecoveryState() {
+    const raw = safeParse(localStorage.getItem(LS_RECOVERY) || "{}", {});
+    return raw && typeof raw === "object"
+      ? raw
+      : { active: false, reason: null, progress: 0, target: 3, previous_role: null };
+  }
+
+  function setRecoveryState(next) {
+    const safeNext = next && typeof next === "object"
+      ? next
+      : { active: false, reason: null, progress: 0, target: 3, previous_role: null };
+    localStorage.setItem(LS_RECOVERY, JSON.stringify(safeNext));
+    return safeNext;
+  }
+
+  function startRecovery(reason, active) {
+    const state = {
+      active: true,
+      reason: String(reason || "setback"),
+      progress: 0,
+      target: 3,
+      started_at: new Date().toISOString(),
+      previous_role: active ? {
+        career_id: active.career_id || null,
+        career_name: active.career_name || null,
+        title: active.title || null,
+        threshold: active.threshold ?? null
+      } : null
+    };
+
+    setRecoveryState(state);
+
+    if (typeof window.showToast === "function") {
+      window.showToast("🛠️ Du er i en gjenoppbyggingsfase. Vis stabilitet før nye roller åpner seg igjen.");
+    }
+
+    window.dispatchEvent(new Event("updateProfile"));
+    return state;
+  }
+
+  function clearRecovery() {
+    return setRecoveryState({
+      active: false,
+      reason: null,
+      progress: 0,
+      target: 3,
+      previous_role: null,
+      started_at: null,
+      completed_at: new Date().toISOString()
+    });
+  }
+
+  function advanceRecovery() {
+    const current = getRecoveryState();
+    if (!current.active) return current;
+
+    const next = {
+      ...current,
+      progress: Math.min(Number(current.target || 3), Number(current.progress || 0) + 1)
+    };
+
+    if (next.progress >= Number(next.target || 3)) {
+      const done = clearRecovery();
+      if (typeof window.showToast === "function") {
+        window.showToast("✅ Du har bygget deg opp igjen. Karriereveier åpner seg på nytt.");
+      }
+      return done;
+    }
+
+    setRecoveryState(next);
+    window.dispatchEvent(new Event("updateProfile"));
+    return next;
   }
 
   function getOffers() {
@@ -119,6 +194,7 @@
     const hasStagnationRisk = stagnationRisk.some((flag) => flags.includes(flag));
 
     if (currentTitle === "formann" && hasSevereRisk) {
+      startRecovery("demotion_after_risk", active);
       removeActivePosition("demoted_after_risk_path");
       if (typeof window.showToast === "function") {
         window.showToast("⚠️ Du mistet tillit i rollen. Formannsansvaret ble trukket tilbake.");
@@ -128,6 +204,7 @@
     }
 
     if (currentTitle === "mellomleder" && hasSevereRisk) {
+      startRecovery("lost_lead_role", active);
       removeActivePosition("lost_lead_role_after_risk_path");
       if (typeof window.showToast === "function") {
         window.showToast("⚠️ Rollen som mellomleder holdt ikke. Du falt ut av lederløpet.");
@@ -147,6 +224,12 @@
   }
 
   function maybeOfferCareerProgression(active) {
+    const recovery = getRecoveryState();
+    if (recovery.active) {
+      advanceRecovery();
+      return { ok: false, reason: "recovery_active", recovery: getRecoveryState() };
+    }
+
     const negative = maybeApplyNegativeCareerOutcome(active);
     if (negative?.type === "demotion" || negative?.type === "role_loss") {
       return negative;
@@ -445,6 +528,8 @@
       complete: false
     });
 
+    clearRecovery();
+
     if (window.CivicationObligationEngine?.activateJob) {
       window.CivicationObligationEngine.activateJob(
         offer.career_id,
@@ -508,7 +593,12 @@
     hasActiveEmployment,
     canReceiveNewOffers,
     maybeOfferCareerProgression,
-    maybeApplyNegativeCareerOutcome
+    maybeApplyNegativeCareerOutcome,
+    getRecoveryState,
+    setRecoveryState,
+    startRecovery,
+    clearRecovery,
+    advanceRecovery
   };
 
   window.hgGetJobOffers = getOffers;
