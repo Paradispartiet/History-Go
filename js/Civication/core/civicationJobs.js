@@ -75,10 +75,86 @@
     window.HG_CiviEngine?.setInbox?.(next);
   }
 
-  function maybeOfferCareerProgression(active) {
+  function removeActivePosition(reason) {
+    const active = window.CivicationState?.getActivePosition?.();
+    if (active) {
+      window.CivicationState?.appendJobHistoryEnded?.(active, reason || "ended");
+    }
+
+    window.CivicationState?.setActivePosition?.(null);
+    window.CivicationState?.setState?.({
+      active_role_key: null,
+      career: {
+        activeJob: null,
+        obligations: [],
+        reputation: 50,
+        salaryModifier: 1
+      }
+    });
+  }
+
+  function maybeApplyNegativeCareerOutcome(active) {
     const currentTitle = String(active?.title || "").trim().toLowerCase();
     const currentCareerId = String(active?.career_id || "").trim();
     if (currentCareerId !== "naeringsliv") return null;
+
+    const branch = window.CivicationState?.getMailBranchState?.() || {};
+    const flags = Array.isArray(branch.flags) ? branch.flags : [];
+
+    const severeRisk = [
+      "midlertidig_redning",
+      "hurtig_lukking",
+      "glattet_fortelling"
+    ];
+
+    const stagnationRisk = [
+      "glidende_standard",
+      "systembevarer",
+      "barer_videre",
+      "flat_produksjonslogikk",
+      "systemtilpasning"
+    ];
+
+    const hasSevereRisk = severeRisk.some((flag) => flags.includes(flag));
+    const hasStagnationRisk = stagnationRisk.some((flag) => flags.includes(flag));
+
+    if (currentTitle === "formann" && hasSevereRisk) {
+      removeActivePosition("demoted_after_risk_path");
+      if (typeof window.showToast === "function") {
+        window.showToast("⚠️ Du mistet tillit i rollen. Formannsansvaret ble trukket tilbake.");
+      }
+      window.dispatchEvent(new Event("updateProfile"));
+      return { ok: true, type: "demotion", reason: "severe_risk_formann" };
+    }
+
+    if (currentTitle === "mellomleder" && hasSevereRisk) {
+      removeActivePosition("lost_lead_role_after_risk_path");
+      if (typeof window.showToast === "function") {
+        window.showToast("⚠️ Rollen som mellomleder holdt ikke. Du falt ut av lederløpet.");
+      }
+      window.dispatchEvent(new Event("updateProfile"));
+      return { ok: true, type: "role_loss", reason: "severe_risk_mellomleder" };
+    }
+
+    if (currentTitle === "fagarbeider" && hasStagnationRisk) {
+      if (typeof window.showToast === "function") {
+        window.showToast("📉 Du holder deg i arbeid, men utviklingen stagnerer. Ingen ny rolle åpner seg ennå.");
+      }
+      return { ok: true, type: "stagnation", reason: "stagnation_path" };
+    }
+
+    return null;
+  }
+
+  function maybeOfferCareerProgression(active) {
+    const negative = maybeApplyNegativeCareerOutcome(active);
+    if (negative?.type === "demotion" || negative?.type === "role_loss") {
+      return negative;
+    }
+
+    const currentTitle = String(active?.title || "").trim().toLowerCase();
+    const currentCareerId = String(active?.career_id || "").trim();
+    if (currentCareerId !== "naeringsliv") return negative || null;
 
     const branch = window.CivicationState?.getMailBranchState?.() || {};
     const flags = Array.isArray(branch.flags) ? branch.flags : [];
@@ -92,7 +168,7 @@
         "krisefaglighet"
       ].some((flag) => flags.includes(flag));
 
-      if (!qualifiesForMellomleder) return null;
+      if (!qualifiesForMellomleder) return negative || null;
 
       return pushOffer({
         career_id: currentCareerId,
@@ -111,7 +187,7 @@
         "sprik_synliggjort"
       ].some((flag) => flags.includes(flag));
 
-      if (!qualifiesForFormann) return null;
+      if (!qualifiesForFormann) return negative || null;
 
       return pushOffer({
         career_id: currentCareerId,
@@ -122,7 +198,7 @@
       });
     }
 
-    return null;
+    return negative || null;
   }
 
   function buildFirstJobIntroMail(offer) {
@@ -431,7 +507,8 @@
     declineOffer,
     hasActiveEmployment,
     canReceiveNewOffers,
-    maybeOfferCareerProgression
+    maybeOfferCareerProgression,
+    maybeApplyNegativeCareerOutcome
   };
 
   window.hgGetJobOffers = getOffers;
