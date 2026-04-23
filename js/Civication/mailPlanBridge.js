@@ -118,6 +118,60 @@
       : {};
   }
 
+  function getPlanProgress(state) {
+    const progress =
+      state?.mail_plan_progress && typeof state.mail_plan_progress === "object"
+        ? state.mail_plan_progress
+        : {};
+
+    return {
+      role_plan_id: normStr(progress.role_plan_id),
+      step_index: Number(progress.step_index || 0),
+      current_step_type: normStr(progress.current_step_type)
+    };
+  }
+
+  function setPlanProgress(plan, step) {
+    const next = {
+      role_plan_id: normStr(plan?.id),
+      step_index: Math.max(0, Number(step?.step || 0) - 1),
+      current_step_type: normStr(step?.type)
+    };
+
+    window.CivicationState?.setState?.({
+      mail_plan_progress: next
+    });
+
+    return next;
+  }
+
+  function advancePlanProgress(plan) {
+    const state = window.CivicationState?.getState?.() || {};
+    const current = getPlanProgress(state);
+    const sequence = Array.isArray(plan?.sequence) ? plan.sequence : [];
+    if (!sequence.length) return current;
+
+    const nextIndex = Math.min(
+      sequence.length - 1,
+      Math.max(0, Number(current.step_index || 0)) + 1
+    );
+
+    const nextStep = sequence[nextIndex] || sequence[sequence.length - 1] || null;
+    if (!nextStep) return current;
+
+    return setPlanProgress(plan, nextStep);
+  }
+
+  function getCurrentStep(plan, state) {
+    const sequence = Array.isArray(plan?.sequence) ? plan.sequence : [];
+    if (!sequence.length) return null;
+
+    const progress = getPlanProgress(state);
+    const samePlan = progress.role_plan_id && progress.role_plan_id === normStr(plan?.id);
+    const idx = samePlan ? Math.max(0, Number(progress.step_index || 0)) : 0;
+    return sequence[Math.min(idx, sequence.length - 1)] || sequence[0] || null;
+  }
+
   function normalizeChoices(choices) {
     return (Array.isArray(choices) ? choices : [])
       .filter(Boolean)
@@ -282,14 +336,30 @@
     }
 
     const consumed = getConsumedMap(state);
-    const sortedSteps = [...plan.sequence]
+    const currentStep = getCurrentStep(plan, state);
+    if (!currentStep) return [];
+
+    const samePlan = getPlanProgress(state).role_plan_id === normStr(plan?.id);
+    if (!samePlan) {
+      setPlanProgress(plan, currentStep);
+    }
+
+    const candidates = await getCandidatesForStep(active, plan, currentStep, consumed);
+    if (candidates.length) {
+      return candidates;
+    }
+
+    const sequence = [...plan.sequence]
       .filter(Boolean)
       .sort((a, b) => Number(a?.step || 0) - Number(b?.step || 0));
 
-    for (const step of sortedSteps) {
-      const candidates = await getCandidatesForStep(active, plan, step, consumed);
-      if (candidates.length) {
-        return candidates;
+    const currentStepNum = Number(currentStep?.step || 0);
+    for (const step of sequence) {
+      if (Number(step?.step || 0) === currentStepNum) continue;
+      const fallbackCandidates = await getCandidatesForStep(active, plan, step, consumed);
+      if (fallbackCandidates.length) {
+        setPlanProgress(plan, step);
+        return fallbackCandidates;
       }
     }
 
@@ -301,6 +371,10 @@
     getPlanPath,
     getFamilyPath,
     resolveRoleScope,
+    getPlanProgress,
+    setPlanProgress,
+    advancePlanProgress,
+    getCurrentStep,
     makeCandidateMailsForActiveRole
   };
 })();
