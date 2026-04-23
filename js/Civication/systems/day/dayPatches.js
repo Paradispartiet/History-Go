@@ -236,14 +236,38 @@ function patchEventEngine() {
     const phase = window.CivicationCalendar?.getPhase?.() || "morning";
     const state = this.getState ? this.getState() : {};
 
-    if (phase === "morning") {
-      const carryover = getNextDayCarryover();
-      applyMorningCarryoverEffects(carryover);
-      const morningMode = getMorningModeFromCarryover(carryover);
+if (phase === "morning") {
+  const carryover = getNextDayCarryover();
+  applyMorningCarryoverEffects(carryover);
+  const morningMode = getMorningModeFromCarryover(carryover);
 
-      if (legacyOnAppOpen) {
-        const res = await legacyOnAppOpen.call(this, { ...opts, force: true });
-        const tagged = retagPendingEvent(this, "morning");
+  const roleKey =
+    typeof this.resolveRoleKey === "function"
+      ? this.resolveRoleKey()
+      : null;
+
+  const pool =
+    typeof this.buildMailPool === "function"
+      ? await this.buildMailPool(active, state, roleKey)
+      : null;
+
+  const selected =
+    pool && typeof this.pickEventFromPack === "function"
+      ? this.pickEventFromPack(pool, state)
+      : null;
+
+  const evBase =
+    selected || this.makeGenericCareerEvent?.(active, state, "fallback_no_mail");
+
+  if (evBase) {
+    const evPrepared =
+      typeof this.decorateWorkMail === "function"
+        ? this.decorateWorkMail(evBase, active, "day_phase_morning")
+        : evBase;
+
+    this.enqueueEvent?.(evPrepared);
+
+    const tagged = retagPendingEvent(this, "morning");
 
         if (tagged?.event) {
           const ev = applyMorningModeToEvent(tagged.event, morningMode);
@@ -376,7 +400,7 @@ if (carryover.fatigue > 1 && adjustedChoices.length) {
                 fatigue: 0
               });
 
-              return { ...(res || {}), event: inbox[idx].event };
+              return { enqueued: true, type: "morning", event: inbox[idx].event };
             }
           }
 
@@ -386,7 +410,7 @@ if (carryover.fatigue > 1 && adjustedChoices.length) {
             fatigue: 0
           });
 
-          return { ...(res || {}), event: tagged.event };
+          return { enqueued: true, type: "morning", event: tagged.event };
         }
       }
 
