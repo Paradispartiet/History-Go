@@ -24,6 +24,10 @@
   unemployed_since_week: null,
   version: 1,
 
+  onboarding: {
+    by_role: {}
+  },
+
   career: {
     activeJob: null,
     obligations: [],
@@ -109,6 +113,96 @@ function setPulse(p) {
       LS_ACTIVE_POS,
       JSON.stringify(pos)
     );
+  }
+
+  function getOnboardingRoleKey(active) {
+    const roleId = String(active?.role_id || "").trim();
+    if (roleId) return roleId;
+
+    const roleKey = String(active?.role_key || "").trim();
+    if (roleKey) return roleKey;
+
+    return null;
+  }
+
+  function getOnboardingState(active) {
+    const state = getState();
+    const roleKey = getOnboardingRoleKey(active);
+    if (!roleKey) return null;
+
+    const byRole =
+      state?.onboarding?.by_role &&
+      typeof state.onboarding.by_role === "object"
+        ? state.onboarding.by_role
+        : {};
+
+    return byRole[roleKey] || null;
+  }
+
+  function ensureOnboardingState(active) {
+    const roleKey = getOnboardingRoleKey(active);
+    if (!roleKey) return null;
+
+    const current = getOnboardingState(active);
+    if (current) return current;
+
+    const fresh = {
+      intro_done: false,
+      first_day_done: false,
+      complete: false
+    };
+
+    const state = getState();
+    const byRole =
+      state?.onboarding?.by_role &&
+      typeof state.onboarding.by_role === "object"
+        ? state.onboarding.by_role
+        : {};
+
+    setState({
+      onboarding: {
+        by_role: {
+          ...byRole,
+          [roleKey]: fresh
+        }
+      }
+    });
+
+    return fresh;
+  }
+
+  function setOnboardingState(active, patch) {
+    const roleKey = getOnboardingRoleKey(active);
+    if (!roleKey) return null;
+
+    const current = ensureOnboardingState(active) || {
+      intro_done: false,
+      first_day_done: false,
+      complete: false
+    };
+
+    const state = getState();
+    const byRole =
+      state?.onboarding?.by_role &&
+      typeof state.onboarding.by_role === "object"
+        ? state.onboarding.by_role
+        : {};
+
+    const next = {
+      ...current,
+      ...(patch || {})
+    };
+
+    setState({
+      onboarding: {
+        by_role: {
+          ...byRole,
+          [roleKey]: next
+        }
+      }
+    });
+
+    return next;
   }
 
   function getWallet() {
@@ -234,7 +328,11 @@ window.weeksPassedBetweenWeekKeys = weeksPassedBetweenWeekKeys;
   getPulse,
   setPulse,
   getWallet,
-  updateWallet
+  updateWallet,
+  getOnboardingRoleKey,
+  getOnboardingState,
+  ensureOnboardingState,
+  setOnboardingState
 };
 
 })();
