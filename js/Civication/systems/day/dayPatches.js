@@ -48,6 +48,35 @@ function rerenderCivicationUiNow() {
   } catch {}
 }
 
+function isOnboardingEvent(eventObj) {
+  return String(eventObj?.mail_class || "").trim() === "onboarding";
+}
+
+function isOnboardingComplete(active) {
+  const onboarding = window.CivicationState?.getOnboardingState?.(active);
+  return !!onboarding?.complete;
+}
+
+function updateOnboardingFromEvent(active, eventObj) {
+  const tag = String(eventObj?.onboarding_tag || "").trim();
+  if (!active || !tag) return null;
+
+  if (tag === "first_job_intro") {
+    return window.CivicationState?.setOnboardingState?.(active, {
+      intro_done: true
+    });
+  }
+
+  if (tag === "first_job_day") {
+    return window.CivicationState?.setOnboardingState?.(active, {
+      first_day_done: true,
+      complete: true
+    });
+  }
+
+  return null;
+}
+
 function getTaskCapitalPlan(phaseTag, pendingEvent, choice, result) {
   const tags = Array.isArray(choice?.tags) ? choice.tags.map(String) : [];
   const careerId =
@@ -72,9 +101,6 @@ function getTaskCapitalPlan(phaseTag, pendingEvent, choice, result) {
     plan.push({ type, amount: n });
   }
 
-  // ------------------------------------------
-  // Svak base fra faktisk arbeid
-  // ------------------------------------------
   if (phaseTag === "afternoon" || pendingEvent?.task_id || taskKind === "work_case") {
     push("institutional", 0.15);
     push("economic", 0.08);
@@ -95,9 +121,6 @@ function getTaskCapitalPlan(phaseTag, pendingEvent, choice, result) {
     push("institutional", 0.05);
   }
 
-  // ------------------------------------------
-  // Choice tags → små drypp
-  // ------------------------------------------
   if (tags.includes("craft")) {
     push("cultural", 0.12);
     push("institutional", 0.08);
@@ -141,9 +164,6 @@ function getTaskCapitalPlan(phaseTag, pendingEvent, choice, result) {
     push("institutional", -0.02);
   }
 
-  // ------------------------------------------
-  // Svak karrierefarging
-  // ------------------------------------------
   if (careerId === "naeringsliv") {
     push("economic", 0.05);
     push("institutional", 0.03);
@@ -231,6 +251,11 @@ function patchEventEngine() {
     const pending = this.getPendingEvent ? this.getPendingEvent() : null;
     if (pending?.event) {
       return { enqueued: false, reason: "pending_exists" };
+    }
+
+    const onboarding = window.CivicationState?.getOnboardingState?.(active);
+    if (onboarding && onboarding.complete !== true) {
+      return { enqueued: false, reason: "onboarding_incomplete" };
     }
 
     const phase = window.CivicationCalendar?.getPhase?.() || "morning";
@@ -475,6 +500,8 @@ if (carryover.fatigue > 1 && adjustedChoices.length) {
     proto.answer = async function (eventId, choiceId) {
       const pending = this.getPendingEvent ? this.getPendingEvent() : null;
       const pendingEventId = String(pending?.event?.id || eventId || "").trim();
+      const active = window.CivicationState?.getActivePosition?.();
+      const onboardingEvent = pending?.event && isOnboardingEvent(pending.event);
 
       const inferredPhaseTag =
         pending?.event?.phase_tag ||
@@ -501,7 +528,25 @@ if (carryover.fatigue > 1 && adjustedChoices.length) {
         this.enqueueImmediateFollowupEvent = originalFollowup;
       }
 
-      if (!result?.ok || !phaseTag) return result;
+      if (!result?.ok) return result;
+
+      if (onboardingEvent) {
+        updateOnboardingFromEvent(active, pending.event);
+        clearPendingEventById(this, pendingEventId);
+
+        try {
+          const onboarding = window.CivicationState?.getOnboardingState?.(active);
+          if (onboarding?.complete === true) {
+            await this.onAppOpen?.({ force: true });
+          }
+        } catch {}
+
+        rerenderCivicationUiNow();
+        window.dispatchEvent(new Event("updateProfile"));
+        return result;
+      }
+
+      if (!phaseTag) return result;
 
       const choice =
        Array.isArray(pending?.event?.choices)
