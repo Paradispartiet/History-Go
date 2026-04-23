@@ -253,64 +253,66 @@
     const parts = [];
 
     if (progress.quizCount > 0 || progress.visitedCount > 0) {
-      parts.push("Velkommen tilbake. Ta en quiz og se hvor den fører deg.");
+      parts.push("Velkommen tilbake. Ta en quiz og se hvor den fører deg videre. History Go handler ikke bare om riktige svar, men om at byen gradvis åpner seg som kunnskap, steder og livsbaner.");
     } else {
-      parts.push("Velkommen. Ta en quiz og se hvor den fører deg.");
+      parts.push("Velkommen. Ta en quiz og se hvor den fører deg. Start med et sted i nærheten, og bruk det som inngang til hele byen.");
     }
 
     if (progress.visitedCount > 0) {
-      parts.push(`Du har allerede åpnet ${progress.visitedCount} steder.`);
+      parts.push(`Du har allerede åpnet ${progress.visitedCount} steder, så du har et faktisk utgangspunkt å bygge videre fra.`);
     }
 
     if (progress.nearbyVisibleCount > 0) {
-      parts.push(`Du har ${progress.nearbyVisibleCount} steder i nærheten akkurat nå.`);
+      parts.push(`Akkurat nå har du ${progress.nearbyVisibleCount} steder i nærheten som kan være neste naturlige steg.`);
     }
 
     if (progress.pendingOfferCount > 0) {
-      parts.push(`Du har ${progress.pendingOfferCount} ventende jobbtilbud i Civication.`);
+      parts.push(`Du har ${progress.pendingOfferCount} ventende jobbtilbud i Civication. De ligger der og venter til du vil gå videre fra kunnskap til rolle.`);
     }
 
     if (progress.pendingMailCount > 0) {
-      parts.push(`Du har ${progress.pendingMailCount} ventende meldinger eller hendelser.`);
+      parts.push(`Du har også ${progress.pendingMailCount} ventende meldinger eller hendelser som kan drive livet ditt videre når du åpner Civication.`);
     }
+
+    parts.push("Velg ett sted, ta en quiz, og la resten av systemet reagere på det du faktisk lærer.");
 
     return parts.join(" ");
   }
 
   function buildToastText(stepKey, progress) {
     if (stepKey === "first_quiz") {
-      return "✨ Første sted åpnet. Dette gir deg ditt første faktiske fotfeste i byen.";
+      return "✨ Første sted åpnet. Dette gir deg ditt første faktiske fotfeste i byen. Nå er målet å ta ett sted til, slik at kunnskapen begynner å få retning i stedet for å stå alene.";
     }
     if (stepKey === "second_quiz") {
-      return `✨ Kunnskapen din begynner å få retning. Du har nå ${progress.quizCount} quizzer som bygger videre på hverandre.`;
+      return `✨ Kunnskapen din begynner å få retning. Du har nå ${progress.quizCount} quizzer som bygger videre på hverandre. Fortsetter du litt til, begynner Civication å reagere tydeligere på hva du faktisk har åpnet.`;
     }
     if (stepKey === "third_quiz_signal") {
-      return "✨ Civication begynner å reagere. Flere av stedene dine kan nå prege miljøer og hverdagsliv.";
+      return "✨ Civication begynner å reagere. Flere av stedene dine kan nå prege miljøer, hverdagsliv og hvilke typer situasjoner du etter hvert får tilgang til.";
     }
     if (stepKey === "fourth_quiz_world") {
-      return `✨ Livsverdenen din blir større. Du har nå ${progress.visitedCount} åpne steder som kan gi flere miljøer og mennesker.`;
+      return `✨ Livsverdenen din blir større. Du har nå ${progress.visitedCount} åpne steder som kan gi flere miljøer, mennesker og små hverdagssignaler. Ett sted til kan være nok til at arbeidslivet åpner seg tydelig.`;
     }
     if (stepKey === "fifth_quiz_job_ready") {
       return progress.pendingOffer
-        ? `✨ Du har ${progress.pendingOfferCount || 1} ventende jobbtilbud. Gå inn i Civication og se hvilken rolle byen din nå åpner for deg.`
-        : "✨ Arbeidslivet begynner å åpne seg. Nå er det verdt å bygge litt mer merit for å få første rolle.";
+        ? `✨ Du har ${progress.pendingOfferCount || 1} ventende jobbtilbud. Gå inn i Civication og se hvilken rolle byen din nå åpner for deg. Dette er punktet der quizkunnskap begynner å bli til faktisk liv og arbeid.`
+        : "✨ Arbeidslivet begynner å åpne seg. Nå er det verdt å bygge litt mer merit for å få første rolle, slik at byen kan bli til arbeid, ansvar og hverdag.";
     }
     if (stepKey === "first_job") {
-      return "✨ Første rolle valgt. Nå blir byen til arbeid, ansvar og et faktisk livslag i Civication.";
+      return "✨ Første rolle valgt. Nå blir byen til arbeid, ansvar og et faktisk livslag i Civication. Det betyr at valgene dine ikke bare handler om steder, men også om hvem du holder på å bli.";
     }
     if (stepKey === "first_day_event") {
       return progress.pendingMailCount > 0
-        ? `✨ Du har ${progress.pendingMailCount} ventende meldinger eller hendelser. Hverdagen din er i ferd med å begynne.`
-        : "✨ Første day-event åpnet. Hverdagen din begynner nå å bli påvirket av steder du faktisk har lært.";
+        ? `✨ Du har ${progress.pendingMailCount} ventende meldinger eller hendelser. Hverdagen din er i ferd med å begynne, og det er nå Civication for alvor begynner å speile det du har åpnet i byen.`
+        : "✨ Første day-event åpnet. Hverdagen din begynner nå å bli påvirket av steder du faktisk har lært. Det er her byen går fra kart til levd erfaring.";
     }
     if (stepKey === "first_person") {
-      return `✨ Første mennesker åpnet. Du har nå ${progress.peopleCount} tydelige personer eller miljøfigurer i livsverdenen din.`;
+      return `✨ Første mennesker åpnet. Du har nå ${progress.peopleCount} tydelige personer eller miljøfigurer i livsverdenen din. Det betyr at byen ikke lenger bare er steder, men også relasjoner og typer du faktisk krysser med.`;
     }
     if (stepKey === "first_debate") {
-      return "✨ Første debatt åpnet. Nå kan du bruke kunnskap, kapital, identitet og psyke mot andre.";
+      return "✨ Første debatt åpnet. Nå kan du bruke kunnskap, kapital, identitet og psyke mot andre. Dette er første tydelige punkt der det du har lært får sosial og strategisk betydning.";
     }
     if (stepKey === "first_store") {
-      return `✨ Første butikkverden åpnet. Du har nå ${progress.storeCount} synlige butikker som faktisk springer ut av byen din.`;
+      return `✨ Første butikkverden åpnet. Du har nå ${progress.storeCount} synlige butikker som faktisk springer ut av byen din. Det betyr at også ting, stil og miljø begynner å kobles til stedene du har åpnet.`;
     }
     return null;
   }
