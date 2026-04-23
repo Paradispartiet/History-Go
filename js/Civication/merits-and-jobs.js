@@ -144,6 +144,20 @@ async function updateMeritLevel(cat, oldPoints, newPoints) {
 
   if ((next.tierIndex ?? 0) <= (prev.tierIndex ?? 0)) return;
 
+  // Feir tier-oppnåelse uavhengig av jobb-kø eller kvalifikasjon.
+  // Selve milepælen er å ha fått nok poeng i kategorien.
+  try {
+    window.dispatchEvent(new CustomEvent("hg:badge-tier-unlock", { detail: {
+      categoryId: badge.id,
+      categoryName: badge.name,
+      badgeImage: `bilder/merker/${badge.id}.PNG`,
+      prevTierIndex: prev.tierIndex ?? 0,
+      nextTierIndex: next.tierIndex ?? 0,
+      newTierLabel: String(next.label || "").trim(),
+      points: Number(newPoints || 0)
+    }}));
+  } catch {}
+
   if (!qualifiesForTierWithCross(badge.id, next.tierIndex)) {
     showToast("🔒 Du trenger bredere erfaring før denne toppstillingen.");
     return;
