@@ -316,34 +316,45 @@ async buildMailPool(active, state, role_key) {
   const packFile = this.resolvePackFile(active, role_key);
   const pack = await this.loadPack(packFile);
 
-  const packMails = Array.isArray(pack?.mails)
-    ? pack.mails.map((m) => ({
-        ...m,
-        source_type: m?.source_type || "pack"
-      }))
-    : [];
+const packMails = Array.isArray(pack?.mails)
+  ? pack.mails.map((m) => ({
+      ...m,
+      source_type: "pack"
+    }))
+  : [];
 
-  const roleMails =
-    await window.CiviRoleStoryletBridge?.makeCandidateMailsForActiveRole?.(
-      active,
-      state
-    ) || [];
+// 🔥 NY: plan/family som hovedkilde
+const plannedMails =
+  await window.CiviMailPlanBridge?.makeCandidateMailsForActiveRole?.(
+    active,
+    state
+  ) || [];
 
-  const taggedRoleMails = roleMails.map((m) => ({
-    ...m,
-    source_type: "role"
-  }));
+// 🔁 gammel role bridge (fallback)
+const roleMails =
+  await window.CiviRoleStoryletBridge?.makeCandidateMailsForActiveRole?.(
+    active,
+    state
+  ) || [];
 
-  return {
-    role: pack?.role || active?.career_id || null,
-    tag_rules: pack?.tag_rules || {
-      max_tags_per_choice: 2,
-      memory_window: 12
-    },
-    tracks: Array.isArray(pack?.tracks) ? pack.tracks : [],
-    mails: [...packMails, ...taggedRoleMails]
-  };
-}
+const taggedRoleMails = roleMails.map((m) => ({
+  ...m,
+  source_type: "role"
+}));
+
+return {
+  role: pack?.role || active?.career_id || null,
+  tag_rules: pack?.tag_rules || {
+    max_tags_per_choice: 2,
+    memory_window: 12
+  },
+  tracks: Array.isArray(pack?.tracks) ? pack.tracks : [],
+  mails: [
+    ...plannedMails,      // 🔥 først
+    ...taggedRoleMails,  // fallback
+    ...packMails         // siste fallback
+  ]
+};}
   
   // -------- event selection --------
 
@@ -412,6 +423,9 @@ async buildMailPool(active, state, role_key) {
       };
 
       const sourceType = String(m?.source_type || "pack").trim();
+       if (sourceType === "planned") {
+        score += 50;
+       }
       const turnIndex = Number(director.turn_index || 0);
       const consecutiveRoleMails = Number(director.consecutive_role_mails || 0);
       const lastSourceType = String(director.last_source_type || "").trim();
