@@ -20,6 +20,22 @@ function retagPendingEvent(engine, phaseTag) {
     return inbox[idx];
   }
 
+function clearPendingEventById(engine, eventId) {
+  if (!engine || !eventId) return false;
+
+  const inbox = engine.getInbox ? engine.getInbox() : [];
+  if (!Array.isArray(inbox) || !inbox.length) return false;
+
+  const nextInbox = inbox.filter((item) => {
+    return String(item?.event?.id || "") !== String(eventId);
+  });
+
+  if (nextInbox.length === inbox.length) return false;
+
+  engine.setInbox?.(nextInbox);
+  return true;
+}
+
 function getTaskCapitalPlan(phaseTag, pendingEvent, choice, result) {
   const tags = Array.isArray(choice?.tags) ? choice.tags.map(String) : [];
   const careerId =
@@ -422,6 +438,8 @@ if (carryover.fatigue > 1 && adjustedChoices.length) {
 
     proto.answer = function (eventId, choiceId) {
       const pending = this.getPendingEvent ? this.getPendingEvent() : null;
+      const pendingEventId = String(pending?.event?.id || eventId || "").trim();
+
       const inferredPhaseTag =
         pending?.event?.phase_tag ||
         (window.CivicationCalendar?.getPhase?.() === "morning" ? "morning" : null);
@@ -506,8 +524,11 @@ maybeCreateContactFromChoice(phaseTag, pending?.event, choice, result);
        cal.resetForNewDay?.();
      }
 
+      clearPendingEventById(this, pendingEventId);
+
       setTimeout(() => {
         try {
+          clearPendingEventById(this, pendingEventId);
           window.HG_CiviEngine?.onAppOpen?.({ force: true });
           window.dispatchEvent(new Event("updateProfile"));
         } catch {}
