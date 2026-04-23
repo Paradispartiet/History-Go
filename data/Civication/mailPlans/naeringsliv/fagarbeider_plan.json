@@ -1,9 +1,9 @@
 {
   "schema": "civication_mail_plan_v1",
-  "id": "fagarbeider_naeringsliv_v1",
+  "id": "fagarbeider_naeringsliv_v2",
   "category": "naeringsliv",
   "role_scope": "fagarbeider",
-  "description": "Fast dramaturgisk plan for Fagarbeider i Næringsliv & industri.",
+  "description": "Utvidet dramaturgisk plan for Fagarbeider i Næringsliv & industri, fra intro til post-mastery.",
   "sequence": [
     {
       "step": 1,
@@ -16,64 +16,148 @@
       "step": 2,
       "type": "job",
       "phase": "intro",
-      "allowed_families": ["opplaering_av_andre", "faglig_presisjon"],
+      "allowed_families": ["fagarbeider_ansvar", "dokumentasjon_og_spor"],
       "fallback_types": ["conflict", "people"]
     },
     {
       "step": 3,
+      "type": "job",
+      "phase": "intro",
+      "allowed_families": ["opplaering_av_andre", "faglig_presisjon"],
+      "fallback_types": ["conflict", "people"]
+    },
+    {
+      "step": 4,
       "type": "conflict",
       "phase": "intro",
       "allowed_families": ["faglig_integritet_intro", "ansvar_uten_myndighet_intro"],
       "fallback_types": ["job"]
     },
     {
-      "step": 4,
+      "step": 5,
       "type": "people",
-      "phase": "early",
+      "phase": "intro",
       "allowed_families": ["uformell_mentor", "kollega_med_snarveier"],
       "fallback_types": ["job", "conflict"]
     },
     {
-      "step": 5,
+      "step": 6,
       "type": "job",
       "phase": "early",
       "allowed_families": ["koordinering_i_press", "forbedring_uten_mandat_fag"],
       "fallback_types": ["people", "conflict"]
     },
     {
-      "step": 6,
+      "step": 7,
+      "type": "job",
+      "phase": "early",
+      "allowed_families": ["dokumentasjon_og_spor", "opplaering_av_andre"],
+      "fallback_types": ["people", "conflict"]
+    },
+    {
+      "step": 8,
       "type": "conflict",
       "phase": "early",
       "allowed_families": ["faglig_integritet_early", "ansvar_uten_myndighet_early"],
       "fallback_types": ["job"]
     },
     {
-      "step": 7,
+      "step": 9,
+      "type": "people",
+      "phase": "early",
+      "allowed_families": ["taus_fagrespekt", "ansvar_som_glir"],
+      "fallback_types": ["job", "conflict"]
+    },
+    {
+      "step": 10,
       "type": "story",
       "phase": "mid",
       "allowed_families": ["kunnskapens_usynlighet", "industriell_stolthet"],
       "fallback_types": ["conflict", "people", "job"]
     },
     {
-      "step": 8,
+      "step": 11,
       "type": "job",
       "phase": "mid",
-      "allowed_families": ["koordinering_i_press", "opplaering_av_andre"],
+      "allowed_families": ["koordinering_i_press", "forbedring_uten_mandat_fag"],
       "fallback_types": ["people", "conflict"]
     },
     {
-      "step": 9,
+      "step": 12,
+      "type": "job",
+      "phase": "advanced",
+      "allowed_families": ["sikkerhet_mot_produksjon", "snarveier_i_kulturen"],
+      "fallback_types": ["conflict", "people", "job"]
+    },
+    {
+      "step": 13,
+      "type": "conflict",
+      "phase": "advanced",
+      "allowed_families": ["faglig_integritet_early", "ansvar_uten_myndighet_early"],
+      "fallback_types": ["job", "people"]
+    },
+    {
+      "step": 14,
       "type": "people",
-      "phase": "mid",
-      "allowed_families": ["taus_fagrespekt", "ansvar_som_glir"],
+      "phase": "advanced",
+      "allowed_families": ["kollega_med_snarveier", "taus_fagrespekt"],
       "fallback_types": ["job", "conflict"]
     },
     {
-      "step": 10,
+      "step": 15,
       "type": "event",
-      "phase": "climax",
+      "phase": "advanced",
       "allowed_families": ["kritisk_avvik", "revisjon_av_rutine"],
       "fallback_types": ["conflict", "job"]
+    },
+    {
+      "step": 16,
+      "type": "job",
+      "phase": "mastery",
+      "allowed_families": ["mastery_kompleks_situasjon", "mastery_ansvar_uten_myndighet"],
+      "fallback_types": ["event", "conflict", "job"]
+    },
+    {
+      "step": 17,
+      "type": "story",
+      "phase": "mastery",
+      "allowed_families": ["industriell_stolthet", "kunnskapens_usynlighet"],
+      "fallback_types": ["event", "people", "job"]
+    },
+    {
+      "step": 18,
+      "type": "event",
+      "phase": "mastery",
+      "allowed_families": ["kritisk_avvik", "revisjon_av_rutine"],
+      "fallback_types": ["conflict", "job"]
+    },
+    {
+      "step": 19,
+      "type": "job",
+      "phase": "post_mastery",
+      "allowed_families": ["post_mastery_fake_effektivisering", "post_mastery_lojalitetstest"],
+      "fallback_types": ["people", "event", "story"]
+    },
+    {
+      "step": 20,
+      "type": "people",
+      "phase": "post_mastery",
+      "allowed_families": ["kollega_med_snarveier", "ansvar_som_glir"],
+      "fallback_types": ["job", "story"]
+    },
+    {
+      "step": 21,
+      "type": "story",
+      "phase": "post_mastery",
+      "allowed_families": ["industriell_stolthet", "kunnskapens_usynlighet"],
+      "fallback_types": ["event", "job", "people"]
+    },
+    {
+      "step": 22,
+      "type": "event",
+      "phase": "post_mastery",
+      "allowed_families": ["revisjon_av_rutine", "kritisk_avvik"],
+      "fallback_types": ["job", "conflict", "story"]
     }
   ]
 }
