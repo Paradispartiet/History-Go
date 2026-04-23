@@ -8,7 +8,7 @@
       "id": "driftskrise",
       "mails": [
         {
-          "id": "ml_event_001",
+          "id": "ml_core_010",
           "mail_type": "event",
           "phase": "advanced",
           "subject": "Produksjonen stopper",
@@ -16,28 +16,18 @@
             "En kritisk feil stopper flyten.",
             "Alle ser på deg.",
             "Du har få gode alternativer."
-          ]
-        },
-        {
-          "id": "ml_event_002",
-          "mail_type": "event",
-          "phase": "advanced",
-          "subject": "Du må velge hva som får stoppe og hva som må gå videre",
-          "situation": [
-            "Alt kan ikke reddes samtidig.",
-            "Noe må prioriteres bort for at noe annet skal overleve.",
-            "Valget ditt avgjør hvor smerten treffer hardest."
-          ]
-        },
-        {
-          "id": "ml_event_003",
-          "mail_type": "event",
-          "phase": "advanced",
-          "subject": "Du får én sjanse til å gjenopprette kontroll",
-          "situation": [
-            "Folk venter på retning.",
-            "Hvis du nøler, sprer usikkerheten seg raskt.",
-            "Hvis du handler, kan du ta feil – men du vil eie situasjonen."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta styring raskt og eie konsekvensene av valget",
+              "effect": 1
+            },
+            {
+              "id": "B",
+              "label": "Prøve å vinne tid og håpe at situasjonen løser seg delvis selv",
+              "effect": 0
+            }
           ]
         }
       ]
