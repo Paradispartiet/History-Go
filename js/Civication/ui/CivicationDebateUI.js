@@ -32,6 +32,9 @@
           <div class="lk-category">Strategi: ${last.strategy_label || "—"}</div>
           <div class="lk-category">Utfall: ${formatOutcome(last.outcome)}</div>
           <div class="lk-text">${last.text || "—"}</div>
+          <div class="lk-text" style="margin-top:10px;">
+            ${last.is_first_debate ? "Dette var første gang du brukte hele Civication-profilen din i en konflikt. Neste debatter bygger videre på den samme logikken, men vil kjennes mer som en del av et løp enn som introduksjon." : "Neste debatt vil bruke samme grunnlogikk, men med nytt tema, ny motpart og nye strategiske styrker."}
+          </div>
           <div class="profile-subaction" style="margin-top:10px;">
             <button id="civiDebateNextBtn" class="btn">Neste debatt</button>
           </div>
@@ -54,15 +57,18 @@
     const scenario = current.scenario;
     const options = engine.getStrategyOptions?.(scenario) || [];
     const knowledge = engine.getKnowledgeScore?.(scenario.relevant_categories || []) || 0;
+    const intro = engine.getIntroText?.(active) || "";
 
     host.innerHTML = `
       <div class="latest-knowledge-box">
-        <div class="lk-topic">${scenario.title || "Debatt"}</div>
+        <div class="lk-topic">${current.is_first_debate ? "Første debatt" : (scenario.title || "Debatt")}</div>
         <div class="lk-category">Motpart: ${scenario.opponent || "—"}</div>
         <div class="lk-category">Tema: ${scenario.theme || "—"}</div>
         <div class="lk-text">${scenario.description || "—"}</div>
+        <div class="lk-text" style="margin-top:10px;">${intro}</div>
         <div class="lk-category" style="margin-top:10px;">Relevant kunnskapsscore: <strong>${knowledge}</strong></div>
         <div class="lk-category">Kategorier: ${(scenario.relevant_categories || []).join(", ")}</div>
+        <div class="lk-category" style="margin-top:8px;">Velg strategi ut fra hva slags styrke du vil bruke i rommet, ikke bare hva som høres riktig ut.</div>
       </div>
 
       <div id="civiDebateChoices" class="profile-subaction" style="display:flex;flex-direction:column;gap:8px;margin-top:10px;"></div>
@@ -86,13 +92,13 @@
       btn.addEventListener("mouseenter", function () {
         const preview = engine.previewStrategy?.(active, option.id);
         if (!previewEl || !preview) return;
-        previewEl.textContent = `Trykk: ${preview.total} · Motstand: ${preview.resistance} · Sannsynlig utfall: ${formatOutcome(preview.outcome)}`;
+        previewEl.textContent = `Trykk: ${preview.total} · Motstand: ${preview.resistance} · Sannsynlig utfall: ${formatOutcome(preview.outcome)}. Dette bygger særlig på ${option.label.toLowerCase()}.`;
       });
 
       btn.addEventListener("focus", function () {
         const preview = engine.previewStrategy?.(active, option.id);
         if (!previewEl || !preview) return;
-        previewEl.textContent = `Trykk: ${preview.total} · Motstand: ${preview.resistance} · Sannsynlig utfall: ${formatOutcome(preview.outcome)}`;
+        previewEl.textContent = `Trykk: ${preview.total} · Motstand: ${preview.resistance} · Sannsynlig utfall: ${formatOutcome(preview.outcome)}. Dette bygger særlig på ${option.label.toLowerCase()}.`;
       });
 
       choiceBox?.appendChild(btn);
