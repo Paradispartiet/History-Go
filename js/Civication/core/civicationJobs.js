@@ -27,23 +27,99 @@
     const raw = safeParse(localStorage.getItem(LS_RECOVERY) || "{}", {});
     return raw && typeof raw === "object"
       ? raw
-      : { active: false, reason: null, progress: 0, target: 3, previous_role: null };
+      : {
+          active: false,
+          reason: null,
+          progress: 0,
+          target: 3,
+          previous_role: null,
+          preferred_rebuild_flags: [],
+          blocked_flags: []
+        };
   }
 
   function setRecoveryState(next) {
     const safeNext = next && typeof next === "object"
       ? next
-      : { active: false, reason: null, progress: 0, target: 3, previous_role: null };
+      : {
+          active: false,
+          reason: null,
+          progress: 0,
+          target: 3,
+          previous_role: null,
+          preferred_rebuild_flags: [],
+          blocked_flags: []
+        };
     localStorage.setItem(LS_RECOVERY, JSON.stringify(safeNext));
     return safeNext;
   }
 
+  function getRecoveryProfile(reason) {
+    const key = String(reason || "setback").trim();
+
+    if (key === "demotion_after_risk") {
+      return {
+        target: 4,
+        preferred_rebuild_flags: [
+          "systemsannhet",
+          "ansvarssporing",
+          "laringslinje",
+          "signaturansvar"
+        ],
+        blocked_flags: [
+          "midlertidig_redning",
+          "hurtig_lukking",
+          "glattet_fortelling"
+        ]
+      };
+    }
+
+    if (key === "lost_lead_role") {
+      return {
+        target: 4,
+        preferred_rebuild_flags: [
+          "uformell_ledelse",
+          "systemsannhet",
+          "krisefaglighet",
+          "ansvarssporing"
+        ],
+        blocked_flags: [
+          "midlertidig_redning",
+          "hurtig_lukking",
+          "glattet_fortelling"
+        ]
+      };
+    }
+
+    return {
+      target: 3,
+      preferred_rebuild_flags: [
+        "systemsannhet",
+        "erkjent_usynlig_kunnskap",
+        "mentorlinje"
+      ],
+      blocked_flags: [
+        "glidende_standard",
+        "systemtilpasning",
+        "flat_produksjonslogikk"
+      ]
+    };
+  }
+
   function startRecovery(reason, active) {
+    const profile = getRecoveryProfile(reason);
+
     const state = {
       active: true,
       reason: String(reason || "setback"),
       progress: 0,
-      target: 3,
+      target: Number(profile.target || 3),
+      preferred_rebuild_flags: Array.isArray(profile.preferred_rebuild_flags)
+        ? profile.preferred_rebuild_flags
+        : [],
+      blocked_flags: Array.isArray(profile.blocked_flags)
+        ? profile.blocked_flags
+        : [],
       started_at: new Date().toISOString(),
       previous_role: active ? {
         career_id: active.career_id || null,
@@ -70,19 +146,54 @@
       progress: 0,
       target: 3,
       previous_role: null,
+      preferred_rebuild_flags: [],
+      blocked_flags: [],
       started_at: null,
       completed_at: new Date().toISOString()
     });
+  }
+
+  function getBranchFlags() {
+    const branch = window.CivicationState?.getMailBranchState?.() || {};
+    return Array.isArray(branch.flags) ? branch.flags : [];
   }
 
   function advanceRecovery() {
     const current = getRecoveryState();
     if (!current.active) return current;
 
+    const flags = getBranchFlags();
+    const preferred = Array.isArray(current.preferred_rebuild_flags)
+      ? current.preferred_rebuild_flags
+      : [];
+    const blocked = Array.isArray(current.blocked_flags)
+      ? current.blocked_flags
+      : [];
+
+    const matchedPreferred = preferred.filter((flag) => flags.includes(flag)).length;
+    const matchedBlocked = blocked.filter((flag) => flags.includes(flag)).length;
+
+    let delta = 0;
+    if (matchedPreferred > 0) delta += 1;
+    if (matchedPreferred >= 2) delta += 1;
+    if (matchedBlocked > 0) delta -= 1;
+
+    const nextProgress = Math.max(
+      0,
+      Math.min(Number(current.target || 3), Number(current.progress || 0) + delta)
+    );
+
     const next = {
       ...current,
-      progress: Math.min(Number(current.target || 3), Number(current.progress || 0) + 1)
+      progress: nextProgress,
+      last_delta: delta,
+      last_flags_snapshot: flags.slice(0, 12),
+      last_progress_at: new Date().toISOString()
     };
+
+    if (delta <= 0 && typeof window.showToast === "function") {
+      window.showToast("🧩 Gjenoppbygging krever andre valg. Du står ikke helt støtt ennå.");
+    }
 
     if (next.progress >= Number(next.target || 3)) {
       const done = clearRecovery();
@@ -173,8 +284,7 @@
     const currentCareerId = String(active?.career_id || "").trim();
     if (currentCareerId !== "naeringsliv") return null;
 
-    const branch = window.CivicationState?.getMailBranchState?.() || {};
-    const flags = Array.isArray(branch.flags) ? branch.flags : [];
+    const flags = getBranchFlags();
 
     const severeRisk = [
       "midlertidig_redning",
@@ -239,8 +349,7 @@
     const currentCareerId = String(active?.career_id || "").trim();
     if (currentCareerId !== "naeringsliv") return negative || null;
 
-    const branch = window.CivicationState?.getMailBranchState?.() || {};
-    const flags = Array.isArray(branch.flags) ? branch.flags : [];
+    const flags = getBranchFlags();
 
     if (currentTitle === "fagarbeider") {
       const qualifiesForMellomleder = [
@@ -598,7 +707,8 @@
     setRecoveryState,
     startRecovery,
     clearRecovery,
-    advanceRecovery
+    advanceRecovery,
+    getRecoveryProfile
   };
 
   window.hgGetJobOffers = getOffers;
