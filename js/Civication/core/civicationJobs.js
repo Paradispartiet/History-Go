@@ -75,6 +75,56 @@
     window.HG_CiviEngine?.setInbox?.(next);
   }
 
+  function maybeOfferCareerProgression(active) {
+    const currentTitle = String(active?.title || "").trim().toLowerCase();
+    const currentCareerId = String(active?.career_id || "").trim();
+    if (currentCareerId !== "naeringsliv") return null;
+
+    const branch = window.CivicationState?.getMailBranchState?.() || {};
+    const flags = Array.isArray(branch.flags) ? branch.flags : [];
+
+    if (currentTitle === "fagarbeider") {
+      const qualifiesForMellomleder = [
+        "uformell_ledelse",
+        "styrer_uten_tittel",
+        "systemsannhet",
+        "ansvarssporing",
+        "krisefaglighet"
+      ].some((flag) => flags.includes(flag));
+
+      if (!qualifiesForMellomleder) return null;
+
+      return pushOffer({
+        career_id: currentCareerId,
+        career_name: String(active?.career_name || "Næringsliv").trim(),
+        title: "Mellomleder",
+        threshold: Number(active?.threshold || 0) + 1,
+        points_at_offer: Number(active?.threshold || 0) + 1
+      });
+    }
+
+    if (currentTitle === "mellomleder") {
+      const qualifiesForFormann = [
+        "systemsannhet",
+        "krisefaglighet",
+        "verdighetslinje",
+        "sprik_synliggjort"
+      ].some((flag) => flags.includes(flag));
+
+      if (!qualifiesForFormann) return null;
+
+      return pushOffer({
+        career_id: currentCareerId,
+        career_name: String(active?.career_name || "Næringsliv").trim(),
+        title: "Formann",
+        threshold: Number(active?.threshold || 0) + 1,
+        points_at_offer: Number(active?.threshold || 0) + 1
+      });
+    }
+
+    return null;
+  }
+
   function buildFirstJobIntroMail(offer) {
     const roleName = String(offer?.title || offer?.career_name || "rollen").trim() || "rollen";
     const careerName = String(offer?.career_name || "faget").trim() || "faget";
@@ -380,7 +430,8 @@
     acceptOffer,
     declineOffer,
     hasActiveEmployment,
-    canReceiveNewOffers
+    canReceiveNewOffers,
+    maybeOfferCareerProgression
   };
 
   window.hgGetJobOffers = getOffers;
