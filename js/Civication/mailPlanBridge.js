@@ -172,6 +172,19 @@
     return sequence[Math.min(idx, sequence.length - 1)] || sequence[0] || null;
   }
 
+  function getBranchState(state) {
+    const branch =
+      state?.mail_branch_state && typeof state.mail_branch_state === "object"
+        ? state.mail_branch_state
+        : {};
+
+    return {
+      preferred_types: Array.isArray(branch.preferred_types) ? branch.preferred_types.map(normStr).filter(Boolean) : [],
+      preferred_families: Array.isArray(branch.preferred_families) ? branch.preferred_families.map(normStr).filter(Boolean) : [],
+      flags: Array.isArray(branch.flags) ? branch.flags.map(normStr).filter(Boolean) : []
+    };
+  }
+
   function normalizeChoices(choices) {
     return (Array.isArray(choices) ? choices : [])
       .filter(Boolean)
@@ -180,7 +193,20 @@
         label: normStr(c.label),
         effect: Number(c.effect || 0),
         tags: Array.isArray(c.tags) ? c.tags.map(normStr).filter(Boolean) : [],
-        feedback: normStr(c.feedback)
+        feedback: normStr(c.feedback),
+        next_bias: c?.next_bias && typeof c.next_bias === "object"
+          ? {
+              prefer_mail_types: Array.isArray(c.next_bias.prefer_mail_types)
+                ? c.next_bias.prefer_mail_types.map(normStr).filter(Boolean)
+                : [],
+              prefer_families: Array.isArray(c.next_bias.prefer_families)
+                ? c.next_bias.prefer_families.map(normStr).filter(Boolean)
+                : [],
+              set_flags: Array.isArray(c.next_bias.set_flags)
+                ? c.next_bias.set_flags.map(normStr).filter(Boolean)
+                : []
+            }
+          : null
       }))
       .filter((c) => c.id && c.label);
   }
@@ -211,6 +237,31 @@
   function isConsumed(mailId, consumed) {
     const id = normStr(mailId);
     return !!(id && consumed && consumed[id]);
+  }
+
+  function scoreBranchBias(mail, branchState) {
+    let score = 0;
+    const type = normStr(mail?.mail_type);
+    const family = normStr(mail?.mail_family || mail?.__family_id);
+    const mailFlags = Array.isArray(mail?.branch_flags)
+      ? mail.branch_flags.map(normStr).filter(Boolean)
+      : [];
+
+    if (branchState.preferred_types.includes(type)) {
+      score += 10;
+    }
+
+    if (branchState.preferred_families.includes(family)) {
+      score += 20;
+    }
+
+    if (branchState.flags.length && mailFlags.length) {
+      branchState.flags.forEach((flag) => {
+        if (mailFlags.includes(flag)) score += 5;
+      });
+    }
+
+    return score;
   }
 
   function toMail(active, roleScope, step, mail) {
@@ -271,6 +322,9 @@
       tier_label: roleLabel,
       career_id: category,
       source_type: sourceType,
+      branch_flags: Array.isArray(mail?.branch_flags)
+        ? mail.branch_flags.map(normStr).filter(Boolean)
+        : [],
       mail_plan_meta: {
         plan_id: normStr(step?.plan_id),
         role_scope: roleScope,
@@ -302,7 +356,7 @@
       });
   }
 
-  async function getCandidatesForStep(active, plan, step, consumed) {
+  async function getCandidatesForStep(active, plan, step, consumed, state) {
     const decoratedStep = {
       ...step,
       plan_id: normStr(plan?.id)
@@ -323,7 +377,11 @@
     }
 
     const roleScope = resolveRoleScope(active);
-    return mails.map((mail) => toMail(active, roleScope, decoratedStep, mail));
+    const branchState = getBranchState(state);
+
+    return mails
+      .map((mail) => toMail(active, roleScope, decoratedStep, mail))
+      .sort((a, b) => scoreBranchBias(b, branchState) - scoreBranchBias(a, branchState));
   }
 
   async function makeCandidateMailsForActiveRole(active, state) {
@@ -344,7 +402,7 @@
       setPlanProgress(plan, currentStep);
     }
 
-    const candidates = await getCandidatesForStep(active, plan, currentStep, consumed);
+    const candidates = await getCandidatesForStep(active, plan, currentStep, consumed, state);
     if (candidates.length) {
       return candidates;
     }
@@ -356,7 +414,7 @@
     const currentStepNum = Number(currentStep?.step || 0);
     for (const step of sequence) {
       if (Number(step?.step || 0) === currentStepNum) continue;
-      const fallbackCandidates = await getCandidatesForStep(active, plan, step, consumed);
+      const fallbackCandidates = await getCandidatesForStep(active, plan, step, consumed, state);
       if (fallbackCandidates.length) {
         setPlanProgress(plan, step);
         return fallbackCandidates;
