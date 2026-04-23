@@ -195,6 +195,41 @@
     return Array.isArray(latest) ? latest : [];
   }
 
+  function getNpcCharacterState() {
+    const api = window.CivicationNpcCharacterThreads;
+    if (!api || typeof api.getActiveCharacters !== "function") {
+      return [];
+    }
+    const chars = api.getActiveCharacters();
+    return Array.isArray(chars) ? chars : [];
+  }
+
+  function getPsycheState(active) {
+    const careerId = normStr(active?.career_id);
+    const snap = window.CivicationPsyche?.getSnapshot?.(careerId) || null;
+    return snap && typeof snap === "object" ? snap : {};
+  }
+
+  function getCapitalState() {
+    try {
+      const raw = JSON.parse(localStorage.getItem("hg_capital_v1") || "{}");
+      return raw && typeof raw === "object" ? raw : {};
+    } catch {
+      return {};
+    }
+  }
+
+  function buildWorldState(active, state) {
+    return {
+      active,
+      branch: getBranchState(state),
+      npcReactions: getNpcReactionState(),
+      npcCharacters: getNpcCharacterState(),
+      psyche: getPsycheState(active),
+      capital: getCapitalState()
+    };
+  }
+
   function normalizeChoices(choices) {
     return (Array.isArray(choices) ? choices : [])
       .filter(Boolean)
@@ -249,7 +284,29 @@
     return !!(id && consumed && consumed[id]);
   }
 
-  function scoreNpcBias(mail, npcReactions) {
+  function scoreBranchComponent(mail, worldState) {
+    let score = 0;
+    const type = normStr(mail?.mail_type);
+    const family = normStr(mail?.mail_family || mail?.__family_id);
+    const mailFlags = Array.isArray(mail?.branch_flags)
+      ? mail.branch_flags.map(normStr).filter(Boolean)
+      : [];
+    const branch = worldState?.branch || { preferred_types: [], preferred_families: [], flags: [] };
+
+    if (branch.preferred_types.includes(type)) score += 10;
+    if (branch.preferred_families.includes(family)) score += 20;
+
+    if (branch.flags.length && mailFlags.length) {
+      branch.flags.forEach((flag) => {
+        if (mailFlags.includes(flag)) score += 5;
+      });
+    }
+
+    return score;
+  }
+
+  function scoreNpcReactionComponent(mail, worldState) {
+    const npcReactions = worldState?.npcReactions || [];
     if (!Array.isArray(npcReactions) || !npcReactions.length) return 0;
 
     const family = normStr(mail?.mail_family || mail?.__family_id);
@@ -291,31 +348,85 @@
     return score;
   }
 
-  function scoreBranchBias(mail, branchState, npcReactions) {
-    let score = 0;
-    const type = normStr(mail?.mail_type);
+  function scoreNpcCharacterComponent(mail, worldState) {
+    const chars = worldState?.npcCharacters || [];
+    if (!Array.isArray(chars) || !chars.length) return 0;
+
     const family = normStr(mail?.mail_family || mail?.__family_id);
-    const mailFlags = Array.isArray(mail?.branch_flags)
-      ? mail.branch_flags.map(normStr).filter(Boolean)
-      : [];
+    let score = 0;
 
-    if (branchState.preferred_types.includes(type)) {
-      score += 10;
-    }
+    chars.forEach((char) => {
+      const trustScore = Number(char?.trust_score || 0);
+      const status = normStr(char?.status);
+      const focusFamilies = Array.isArray(char?.focus_families) ? char.focus_families.map(normStr) : [];
 
-    if (branchState.preferred_families.includes(family)) {
-      score += 20;
-    }
+      if (focusFamilies.includes(family)) {
+        score += 8 + Math.min(6, Math.abs(trustScore));
+      }
 
-    if (branchState.flags.length && mailFlags.length) {
-      branchState.flags.forEach((flag) => {
-        if (mailFlags.includes(flag)) score += 5;
-      });
-    }
+      if (status === "motspiller" && family === "krysspress") {
+        score += 4;
+      }
 
-    score += scoreNpcBias(mail, npcReactions);
+      if (status === "alliert" && family === "mellomleder_identitet") {
+        score += 3;
+      }
+    });
 
     return score;
+  }
+
+  function scorePsycheComponent(mail, worldState) {
+    const psyche = worldState?.psyche || {};
+    const family = normStr(mail?.mail_family || mail?.__family_id);
+    const type = normStr(mail?.mail_type);
+    const trustValue = Number(psyche?.trust?.value || 0);
+    const integrity = Number(psyche?.integrity || 0);
+    const visibility = Number(psyche?.visibility || 0);
+    const autonomy = Number(psyche?.autonomy || 0);
+
+    let score = 0;
+
+    if (trustValue < 45 && family === "sliten_nokkelperson") score += 5;
+    if (trustValue < 40 && family === "krysspress") score += 4;
+    if (integrity < 45 && type === "story") score += 3;
+    if (visibility > 70 && family === "driftskrise") score += 4;
+    if (autonomy < 35 && family === "mellomleder_mastery") score += 5;
+
+    return score;
+  }
+
+  function scoreCapitalComponent(mail, worldState) {
+    const capital = worldState?.capital || {};
+    const family = normStr(mail?.mail_family || mail?.__family_id);
+    let score = 0;
+
+    const economic = Number(capital?.economic || capital?.economic_capital || 0);
+    const social = Number(capital?.social || capital?.social_capital || 0);
+    const institutional = Number(capital?.institutional || capital?.institutional_capital || 0);
+
+    if (economic < 20 && family === "mellomleder_planlegging") score += 3;
+    if (social < 20 && family === "sliten_nokkelperson") score += 5;
+    if (institutional < 20 && family === "krysspress") score += 3;
+
+    return score;
+  }
+
+  function scoreCandidateMail(mail, worldState) {
+    const breakdown = {
+      branch: scoreBranchComponent(mail, worldState),
+      npc_reactions: scoreNpcReactionComponent(mail, worldState),
+      npc_characters: scoreNpcCharacterComponent(mail, worldState),
+      psyche: scorePsycheComponent(mail, worldState),
+      capital: scoreCapitalComponent(mail, worldState)
+    };
+
+    const total = Object.values(breakdown).reduce((sum, n) => sum + Number(n || 0), 0);
+
+    return {
+      total,
+      breakdown
+    };
   }
 
   function toMail(active, roleScope, step, mail) {
@@ -431,12 +542,19 @@
     }
 
     const roleScope = resolveRoleScope(active);
-    const branchState = getBranchState(state);
-    const npcReactions = getNpcReactionState();
+    const worldState = buildWorldState(active, state);
 
     return mails
-      .map((mail) => toMail(active, roleScope, decoratedStep, mail))
-      .sort((a, b) => scoreBranchBias(b, branchState, npcReactions) - scoreBranchBias(a, branchState, npcReactions));
+      .map((mail) => {
+        const shaped = toMail(active, roleScope, decoratedStep, mail);
+        const score = scoreCandidateMail(shaped, worldState);
+        return {
+          ...shaped,
+          _score_total: score.total,
+          _score_breakdown: score.breakdown
+        };
+      })
+      .sort((a, b) => Number(b._score_total || 0) - Number(a._score_total || 0));
   }
 
   async function makeCandidateMailsForActiveRole(active, state) {
@@ -488,6 +606,7 @@
     setPlanProgress,
     advancePlanProgress,
     getCurrentStep,
+    scoreCandidateMail,
     makeCandidateMailsForActiveRole
   };
 })();
