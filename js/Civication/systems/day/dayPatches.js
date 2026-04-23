@@ -594,6 +594,10 @@ window.CivicationTaskEngine?.completeByMail?.(
 );
 
 maybeCreateContactFromChoice(phaseTag, pending?.event, choice, result);    
+
+      try {
+        window.CivicationJobs?.maybeOfferCareerProgression?.(active);
+      } catch {}
         
       const cal = window.CivicationCalendar;
       if (!cal) return result;
