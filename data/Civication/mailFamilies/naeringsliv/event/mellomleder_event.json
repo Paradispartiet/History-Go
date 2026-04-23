@@ -5,143 +5,17 @@
   "mail_type": "event",
   "families": [
     {
-      "id": "driftsbrudd",
+      "id": "driftskrise",
       "mails": [
         {
-          "id": "mellomleder_event_driftsbrudd_001",
+          "id": "ml_event_001",
           "mail_type": "event",
-          "mail_family": "driftsbrudd",
-          "role_scope": "mellomleder",
-          "phase": "climax",
-          "priority": 80,
-          "cooldown": 5,
-          "repeatable": false,
-          "stage": "warning",
-          "subject": "Et driftsbrudd gjør alle små svakheter synlige samtidig",
+          "phase": "advanced",
+          "subject": "Produksjonen stopper",
           "situation": [
-            "Når driften faktisk bryter, blir det tydelig hvor mye som til vanlig holdes sammen av improvisasjon og mellomarbeid.",
-            "Nå trengs både beslutning, ro og evne til å prioritere hvem og hva som skal skjermes først.",
-            "Du må lede i et øyeblikk hvor ingen lenger kan late som alt bare flyter."
-          ],
-          "choices": [
-            {
-              "id": "A",
-              "label": "Ta tydelig styring og gjøre prioriteringene synlige",
-              "effect": 1,
-              "tags": ["control", "visibility"],
-              "feedback": "Du gjør ledelsen tydelig når systemet trenger form mer enn trøst."
-            },
-            {
-              "id": "B",
-              "label": "Prøve å roe alt ned og holde bildet samlet først",
-              "effect": 0,
-              "tags": ["legitimacy", "avoidance"],
-              "feedback": "Du kjøper ro og risikerer at avgjørelsene blir for sene eller for uklare."
-            }
-          ]
-        },
-        {
-          "id": "mellomleder_event_driftsbrudd_002",
-          "mail_type": "event",
-          "mail_family": "driftsbrudd",
-          "role_scope": "mellomleder",
-          "phase": "climax",
-          "priority": 78,
-          "cooldown": 5,
-          "repeatable": false,
-          "stage": "warning",
-          "subject": "Bruddet er under kontroll, men tilliten er ikke det",
-          "situation": [
-            "Det akutte er delvis håndtert, men folk rundt deg leser fortsatt situasjonen ulikt og usikkert.",
-            "Du merker at ledelse nå ikke bare handler om drift, men om å samle virkelighetsforståelsen fort nok til at laget ikke splittes.",
-            "Spørsmålet er om du først skal stabilisere fortellingen eller fordele ansvaret klart."
-          ],
-          "choices": [
-            {
-              "id": "A",
-              "label": "Samle en felles forklaring før usikkerheten setter seg dypere",
-              "effect": 1,
-              "tags": ["process", "control"],
-              "feedback": "Du leder ikke bare hendelsen, men tolkningen av den."
-            },
-            {
-              "id": "B",
-              "label": "Gå rett på ansvar og roller mens trykket fortsatt er høyt",
-              "effect": 0,
-              "tags": ["visibility", "risk"],
-              "feedback": "Du skaper klarhet fort og også mer åpen friksjon i øyeblikket."
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "gransking_av_avdeling",
-      "mails": [
-        {
-          "id": "mellomleder_event_gransking_001",
-          "mail_type": "event",
-          "mail_family": "gransking_av_avdeling",
-          "role_scope": "mellomleder",
-          "phase": "climax",
-          "priority": 77,
-          "cooldown": 5,
-          "repeatable": false,
-          "stage": "stable_warning",
-          "subject": "Avdelingen blir gransket som om den alltid var oversiktlig",
-          "situation": [
-            "En gjennomgang utenfra forventer klare linjer, rene rutiner og forklarbare avvik.",
-            "Du vet at virkeligheten er mer sammensatt: mye holdes oppe av lokale tilpasninger og taus koordinering.",
-            "Du må velge om du skal levere et pent bilde eller et sant et."
-          ],
-          "choices": [
-            {
-              "id": "A",
-              "label": "Forklare hvordan avdelingen faktisk holdes sammen",
-              "effect": 1,
-              "tags": ["process", "visibility"],
-              "feedback": "Du gjør organisasjonen mindre pen og mer forståelig."
-            },
-            {
-              "id": "B",
-              "label": "Tilpasse framstillingen til hvordan systemet ønsker å se det",
-              "effect": 0,
-              "tags": ["legitimacy", "avoidance"],
-              "feedback": "Du gjør granskingen smidigere og sannheten mer ordentlig enn den er."
-            }
-          ]
-        },
-        {
-          "id": "mellomleder_event_gransking_002",
-          "mail_type": "event",
-          "mail_family": "gransking_av_avdeling",
-          "role_scope": "mellomleder",
-          "phase": "climax",
-          "priority": 75,
-          "cooldown": 5,
-          "repeatable": false,
-          "stage": "stable_warning",
-          "subject": "Granskingen spør etter struktur der du vet at mye bæres av skjønn",
-          "situation": [
-            "Det eksterne blikket vil vite hvem som gjør hva, når og hvorfor, som om alle viktige valg alltid var fullt definerte.",
-            "Du vet at mye av avdelingens faktiske styrke ligger i vurderinger, mellomrom og rask lokal koordinering.",
-            "Nå må du avgjøre om du vil gjøre skjønnet synlig eller skjule det bak et penere kart."
-          ],
-          "choices": [
-            {
-              "id": "A",
-              "label": "Beskrive hvordan skjønn og lokal styring faktisk holder avdelingen oppe",
-              "effect": 1,
-              "tags": ["visibility", "legitimacy"],
-              "feedback": "Du gir et sannere bilde av ledelse og drift enn systemet kanskje ønsket."
-            },
-            {
-              "id": "B",
-              "label": "Stramme presentasjonen så alt framstår mer lineært og ryddig",
-              "effect": 0,
-              "tags": ["avoidance", "process"],
-              "feedback": "Du gjør fortellingen tryggere og virkeligheten flatere."
-            }
+            "En kritisk feil stopper flyten.",
+            "Alle ser på deg.",
+            "Du har få gode alternativer."
           ]
         }
       ]
