@@ -123,19 +123,6 @@
       .map((c) => c.id);
 
     writeState(state);
-
-    try {
-      const activeChars = state.active_ids.map((charId) => state.characters[charId]).filter(Boolean);
-      const preferredFamilies = activeChars.flatMap((c) => Array.isArray(c.focus_families) ? c.focus_families : []).slice(-8);
-      const flags = activeChars.map((c) => `npc_${c.status}_${c.id}`).slice(-8);
-      const currentBranch = window.CivicationState?.getMailBranchState?.() || { preferred_types: [], preferred_families: [], flags: [] };
-      window.CivicationState?.setMailBranchState?.({
-        preferred_types: currentBranch.preferred_types || [],
-        preferred_families: Array.from(new Set([...(currentBranch.preferred_families || []), ...preferredFamilies])).slice(-8),
-        flags: Array.from(new Set([...(currentBranch.flags || []), ...flags])).slice(-16)
-      });
-    } catch {}
-
     window.dispatchEvent(new Event("updateProfile"));
     return nextChar;
   }
