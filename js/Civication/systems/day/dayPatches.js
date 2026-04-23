@@ -52,6 +52,135 @@ function isOnboardingEvent(eventObj) {
   return String(eventObj?.mail_class || "").trim() === "onboarding";
 }
 
+function isRecoveryEvent(eventObj) {
+  return String(eventObj?.mail_class || "").trim() === "recovery";
+}
+
+function makeRecoveryEvent(active) {
+  const recovery = window.CivicationJobs?.getRecoveryState?.() || {};
+  const reason = String(recovery.reason || "setback");
+  const title = String(recovery?.previous_role?.title || active?.title || "rollen");
+
+  const profiles = {
+    demotion_after_risk: {
+      subject: `Etterspillet etter at du falt ut av ${title}`,
+      situation: [
+        `Du står uten ${title}-rollen og kjenner at systemet ser annerledes på deg enn før.`,
+        "Det viktigste nå er ikke å skinne, men å vise at du kan bygge tillit igjen gjennom presisjon, struktur og ansvar.",
+        "Gjenoppbygging handler om hva du gjør når ingen lenger antar at du har kontroll."
+      ],
+      choices: [
+        {
+          id: "A",
+          label: "Ta ansvar for det som faktisk kan ryddes opp nå",
+          effect: 1,
+          tags: ["process", "legitimacy"],
+          feedback: "Du bygger tilbake troverdighet gjennom tydelighet og arbeid.",
+          next_bias: {
+            prefer_mail_types: ["story", "people"],
+            prefer_families: ["kunnskapens_usynlighet", "taus_fagrespekt"],
+            set_flags: ["systemsannhet", "ansvarssporing"]
+          }
+        },
+        {
+          id: "B",
+          label: "Prøve å komme deg raskt tilbake ved å pynte på det som skjedde",
+          effect: 0,
+          tags: ["visibility", "shortcut"],
+          feedback: "Du leter etter snarvei ut av fallet og står fortsatt ustøtt.",
+          next_bias: {
+            prefer_mail_types: ["people"],
+            prefer_families: ["ansvar_som_glir"],
+            set_flags: ["glattet_fortelling"]
+          }
+        }
+      ]
+    },
+    lost_lead_role: {
+      subject: `Du må finne ny tyngde etter ${title}`,
+      situation: [
+        "Det er ikke lenger rollen som bærer deg. Nå må handlingene dine gjøre det alene.",
+        "Folk ser fortsatt hva du gjør, men de lytter annerledes når tittelen er borte.",
+        "Gjenoppbygging krever at du tåler å være mindre synlig og mer presis."
+      ],
+      choices: [
+        {
+          id: "A",
+          label: "Bygge deg opp igjen gjennom konkret ansvar og rolig ledelse",
+          effect: 1,
+          tags: ["process", "craft"],
+          feedback: "Du lar substans komme før status.",
+          next_bias: {
+            prefer_mail_types: ["story", "conflict"],
+            prefer_families: ["industriell_stolthet", "faglig_integritet_early"],
+            set_flags: ["uformell_ledelse", "krisefaglighet"]
+          }
+        },
+        {
+          id: "B",
+          label: "Lete etter en rask vei tilbake til synlighet",
+          effect: 0,
+          tags: ["visibility", "risk"],
+          feedback: "Du prøver å hoppe over mellomleddet der tillit faktisk bygges.",
+          next_bias: {
+            prefer_mail_types: ["people"],
+            prefer_families: ["kollega_med_snarveier"],
+            set_flags: ["midlertidig_redning"]
+          }
+        }
+      ]
+    },
+    setback: {
+      subject: "Du prøver å finne fotfeste igjen",
+      situation: [
+        "Noe i arbeidslivet har glidd, og du kjenner at neste periode handler om å bli mer hel igjen enn å rykke fram.",
+        "Spørsmålet er ikke bare hva du kan, men hva slags rytme du velger når du skal bygge noe opp på nytt.",
+        "Små valg teller mer enn store ord akkurat nå."
+      ],
+      choices: [
+        {
+          id: "A",
+          label: "Velge det stabile og langsomme sporet tilbake",
+          effect: 1,
+          tags: ["process", "legitimacy"],
+          feedback: "Du velger å bygge før du prøver å vinne.",
+          next_bias: {
+            prefer_mail_types: ["story"],
+            prefer_families: ["kunnskapens_usynlighet"],
+            set_flags: ["mentorlinje", "erkjent_usynlig_kunnskap"]
+          }
+        },
+        {
+          id: "B",
+          label: "Prøve å presse fram fart uten å være klar",
+          effect: 0,
+          tags: ["risk", "shortcut"],
+          feedback: "Du vil videre før grunnlaget er der.",
+          next_bias: {
+            prefer_mail_types: ["people"],
+            prefer_families: ["ansvar_som_glir"],
+            set_flags: ["systemtilpasning"]
+          }
+        }
+      ]
+    }
+  };
+
+  const profile = profiles[reason] || profiles.setback;
+
+  return {
+    id: `recovery_${reason}_${Date.now()}`,
+    source: "Civication",
+    subject: profile.subject,
+    stage: "stable",
+    situation: profile.situation,
+    choices: profile.choices,
+    mail_class: "recovery",
+    recovery_reason: reason,
+    phase_tag: "morning"
+  };
+}
+
 function isOnboardingComplete(active) {
   const onboarding = window.CivicationState?.getOnboardingState?.(active);
   return !!onboarding?.complete;
@@ -255,8 +384,9 @@ function patchEventEngine() {
 
   proto.onAppOpen = async function (opts = {}) {
     const active = window.CivicationState?.getActivePosition?.();
+    const recovery = window.CivicationJobs?.getRecoveryState?.() || {};
 
-    if (!active) {
+    if (!active && !recovery.active) {
       return legacyOnAppOpen
         ? legacyOnAppOpen.call(this, opts)
         : { enqueued: false, reason: "no_active_job" };
@@ -265,6 +395,12 @@ function patchEventEngine() {
     const pending = this.getPendingEvent ? this.getPendingEvent() : null;
     if (pending?.event) {
       return { enqueued: false, reason: "pending_exists" };
+    }
+
+    if (recovery.active) {
+      const recoveryEvent = makeRecoveryEvent(active || recovery.previous_role || {});
+      this.enqueueEvent?.(recoveryEvent);
+      return { enqueued: true, type: "recovery", event: recoveryEvent };
     }
 
     const onboarding = window.CivicationState?.getOnboardingState?.(active);
@@ -516,6 +652,7 @@ if (carryover.fatigue > 1 && adjustedChoices.length) {
       const pendingEventId = String(pending?.event?.id || eventId || "").trim();
       const active = window.CivicationState?.getActivePosition?.();
       const onboardingEvent = pending?.event && isOnboardingEvent(pending.event);
+      const recoveryEvent = pending?.event && isRecoveryEvent(pending.event);
 
       const inferredPhaseTag =
         pending?.event?.phase_tag ||
@@ -598,6 +735,16 @@ maybeCreateContactFromChoice(phaseTag, pending?.event, choice, result);
       try {
         window.CivicationJobs?.maybeOfferCareerProgression?.(active);
       } catch {}
+
+      if (recoveryEvent) {
+        clearPendingEventById(this, pendingEventId);
+        try {
+          await this.onAppOpen?.({ force: true });
+        } catch {}
+        rerenderCivicationUiNow();
+        window.dispatchEvent(new Event("updateProfile"));
+        return result;
+      }
         
       const cal = window.CivicationCalendar;
       if (!cal) return result;
