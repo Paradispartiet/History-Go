@@ -185,6 +185,16 @@
     };
   }
 
+  function getNpcReactionState() {
+    const api = window.CivicationNpcReactions;
+    if (!api || typeof api.getLatest !== "function") {
+      return [];
+    }
+
+    const latest = api.getLatest(6);
+    return Array.isArray(latest) ? latest : [];
+  }
+
   function normalizeChoices(choices) {
     return (Array.isArray(choices) ? choices : [])
       .filter(Boolean)
@@ -239,7 +249,49 @@
     return !!(id && consumed && consumed[id]);
   }
 
-  function scoreBranchBias(mail, branchState) {
+  function scoreNpcBias(mail, npcReactions) {
+    if (!Array.isArray(npcReactions) || !npcReactions.length) return 0;
+
+    const family = normStr(mail?.mail_family || mail?.__family_id);
+    const type = normStr(mail?.mail_type);
+    let score = 0;
+
+    npcReactions.forEach((reaction) => {
+      const trustDelta = Number(reaction?.trustDelta || 0);
+      const title = normStr(reaction?.title).toLowerCase();
+      const line = normStr(reaction?.line).toLowerCase();
+
+      if (trustDelta > 0) {
+        if (family === "sliten_nokkelperson") score += 8;
+        if (family === "mellomleder_identitet") score += 6;
+        if (family === "driftskrise") score += 4;
+        if (type === "story") score += 2;
+      }
+
+      if (trustDelta < 0) {
+        if (family === "krysspress") score += 8;
+        if (family === "sliten_nokkelperson") score += 4;
+        if (type === "conflict") score += 3;
+      }
+
+      if (title.includes("mål") || line.includes("målbare") || line.includes("systemet")) {
+        if (family === "krysspress") score += 5;
+      }
+
+      if (title.includes("slitasje") || line.includes("slitasje") || line.includes("bæreevne")) {
+        if (family === "sliten_nokkelperson") score += 6;
+      }
+
+      if (title.includes("styring") || line.includes("kontroll") || line.includes("rattet")) {
+        if (family === "driftskrise") score += 5;
+        if (family === "mellomleder_mastery") score += 5;
+      }
+    });
+
+    return score;
+  }
+
+  function scoreBranchBias(mail, branchState, npcReactions) {
     let score = 0;
     const type = normStr(mail?.mail_type);
     const family = normStr(mail?.mail_family || mail?.__family_id);
@@ -260,6 +312,8 @@
         if (mailFlags.includes(flag)) score += 5;
       });
     }
+
+    score += scoreNpcBias(mail, npcReactions);
 
     return score;
   }
@@ -378,10 +432,11 @@
 
     const roleScope = resolveRoleScope(active);
     const branchState = getBranchState(state);
+    const npcReactions = getNpcReactionState();
 
     return mails
       .map((mail) => toMail(active, roleScope, decoratedStep, mail))
-      .sort((a, b) => scoreBranchBias(b, branchState) - scoreBranchBias(a, branchState));
+      .sort((a, b) => scoreBranchBias(b, branchState, npcReactions) - scoreBranchBias(a, branchState, npcReactions));
   }
 
   async function makeCandidateMailsForActiveRole(active, state) {
