@@ -28,6 +28,12 @@
     by_role: {}
   },
 
+  mail_branch_state: {
+    preferred_types: [],
+    preferred_families: [],
+    flags: []
+  },
+
   career: {
     activeJob: null,
     obligations: [],
@@ -205,6 +211,49 @@ function setPulse(p) {
     return next;
   }
 
+  function getMailBranchState() {
+    const state = getState();
+    const branch =
+      state?.mail_branch_state && typeof state.mail_branch_state === "object"
+        ? state.mail_branch_state
+        : {};
+
+    return {
+      preferred_types: Array.isArray(branch.preferred_types) ? branch.preferred_types : [],
+      preferred_families: Array.isArray(branch.preferred_families) ? branch.preferred_families : [],
+      flags: Array.isArray(branch.flags) ? branch.flags : []
+    };
+  }
+
+  function setMailBranchState(patch) {
+    const current = getMailBranchState();
+    const next = {
+      preferred_types: Array.isArray(patch?.preferred_types)
+        ? patch.preferred_types
+        : current.preferred_types,
+      preferred_families: Array.isArray(patch?.preferred_families)
+        ? patch.preferred_families
+        : current.preferred_families,
+      flags: Array.isArray(patch?.flags)
+        ? patch.flags
+        : current.flags
+    };
+
+    setState({
+      mail_branch_state: next
+    });
+
+    return next;
+  }
+
+  function clearMailBranchState() {
+    return setMailBranchState({
+      preferred_types: [],
+      preferred_families: [],
+      flags: []
+    });
+  }
+
   function getWallet() {
   return safeParse(
     localStorage.getItem(LS_WALLET),
@@ -332,7 +381,10 @@ window.weeksPassedBetweenWeekKeys = weeksPassedBetweenWeekKeys;
   getOnboardingRoleKey,
   getOnboardingState,
   ensureOnboardingState,
-  setOnboardingState
+  setOnboardingState,
+  getMailBranchState,
+  setMailBranchState,
+  clearMailBranchState
 };
 
 })();
