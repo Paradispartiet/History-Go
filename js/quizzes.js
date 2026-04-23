@@ -934,9 +934,27 @@ if (setList.length) {
           if (person) {
             API.savePeopleCollected(tid);
             API.showRewardPerson(person);
+            try {
+              window.dispatchEvent(new CustomEvent("hg:target-unlock", { detail: {
+                kind: "person", id: person.id,
+                name: person.name,
+                image: person.cardImage || person.image || "",
+                quizId: tid,
+                categoryId
+              }}));
+            } catch {}
           } else if (place) {
             if (typeof API.saveVisitedFromQuiz === "function") API.saveVisitedFromQuiz(tid);
             API.showRewardPlace(place);
+            try {
+              window.dispatchEvent(new CustomEvent("hg:target-unlock", { detail: {
+                kind: "place", id: place.id,
+                name: place.name,
+                image: place.cardImage || place.image || "",
+                quizId: tid,
+                categoryId
+              }}));
+            } catch {}
           }
         }
       }
@@ -1070,10 +1088,28 @@ if (perfect) {
             if (person) {
             API.savePeopleCollected(tid);
              API.showRewardPerson(person);
+             try {
+               window.dispatchEvent(new CustomEvent("hg:target-unlock", { detail: {
+                 kind: "person", id: person.id,
+                 name: person.name,
+                 image: person.cardImage || person.image || "",
+                 quizId: tid,
+                 categoryId
+               }}));
+             } catch {}
             } else if (place) {
                 // ✅ dette var manglende linje
             if (typeof API.saveVisitedFromQuiz === "function") API.saveVisitedFromQuiz(tid);
             API.showRewardPlace(place);
+            try {
+              window.dispatchEvent(new CustomEvent("hg:target-unlock", { detail: {
+                kind: "place", id: place.id,
+                name: place.name,
+                image: place.cardImage || place.image || "",
+                quizId: tid,
+                categoryId
+              }}));
+            } catch {}
             }
 
             API.showToast(`Perfekt! ${total}/${total} 🎯`);
