@@ -968,6 +968,71 @@ window.showBrandPopup = async function (brandId, place = null) {
 };
 
 // ============================================================
+// EVENTS SECTION (kun steds-popup — events er sted-baserte)
+// ============================================================
+function renderEventsSection(events) {
+  if (!Array.isArray(events) || !events.length) return "";
+
+  // Sortér: ongoing først, så upcoming (nærmest i tid), så past (nyest først).
+  const now = Date.now();
+  const withMeta = events.map(evt => {
+    const startMs = evt?.start ? Date.parse(evt.start) : NaN;
+    const endMs = evt?.end ? Date.parse(evt.end) : NaN;
+    let phase = "other";
+    if (evt?.status === "ongoing") phase = "ongoing";
+    else if (Number.isFinite(startMs) && startMs > now) phase = "upcoming";
+    else if (Number.isFinite(endMs) && endMs < now) phase = "past";
+    else if (Number.isFinite(startMs) && startMs <= now && (!Number.isFinite(endMs) || endMs >= now)) phase = "ongoing";
+    return { evt, startMs, endMs, phase };
+  });
+
+  const order = { ongoing: 0, upcoming: 1, past: 2, other: 3 };
+  withMeta.sort((a, b) => {
+    if (order[a.phase] !== order[b.phase]) return order[a.phase] - order[b.phase];
+    if (a.phase === "past") return (b.startMs || 0) - (a.startMs || 0);
+    return (a.startMs || Infinity) - (b.startMs || Infinity);
+  });
+
+  const items = withMeta.slice(0, 6).map(({ evt, startMs, phase }) => {
+    const title = wkEsc(String(evt.title || "Uten tittel"));
+    const dateStr = Number.isFinite(startMs)
+      ? new Date(startMs).toLocaleString("nb-NO", { day: "2-digit", month: "short", hour: "2-digit", minute: "2-digit" })
+      : "";
+    const organizer = evt.organizer ? wkEsc(String(evt.organizer)) : "";
+    const category = evt.category ? wkEsc(String(evt.category)) : "";
+    const description = evt.description ? wkEsc(String(evt.description)) : "";
+    const sourceUrl = evt.source_url ? String(evt.source_url) : "";
+    const phaseLabel = { ongoing: "Pågår nå", upcoming: "Kommer", past: "Tidligere" }[phase] || "";
+
+    return `
+      <article class="pc-event is-${phase}">
+        <div class="pc-event-top">
+          <span class="pc-event-phase">${wkEsc(phaseLabel)}</span>
+          ${dateStr ? `<span class="pc-event-date">${wkEsc(dateStr)}</span>` : ""}
+        </div>
+        <div class="pc-event-title">${title}</div>
+        ${category || organizer ? `<div class="pc-event-meta">
+          ${category ? `<span class="pc-event-category">${category}</span>` : ""}
+          ${organizer ? `<span class="pc-event-organizer">${organizer}</span>` : ""}
+        </div>` : ""}
+        ${description ? `<div class="pc-event-desc">${description}</div>` : ""}
+        ${sourceUrl ? `<a href="${wkEsc(sourceUrl)}" target="_blank" rel="noopener" class="pc-event-source">Les mer →</a>` : ""}
+      </article>
+    `;
+  }).join("");
+
+  const more = withMeta.length > 6 ? `<div class="pc-events-more">+${withMeta.length - 6} flere</div>` : "";
+
+  return `
+    <div class="hg-section hg-section-events">
+      <h3>Det skjer her</h3>
+      <div class="pc-events-list">${items}</div>
+      ${more}
+    </div>
+  `;
+}
+
+// ============================================================
 // STORIES SECTION (felles for person- og steds-popup)
 // ============================================================
 function renderStoriesSection(stories) {
@@ -1323,6 +1388,9 @@ const peopleHere = (typeof getPeopleForPlace === "function")
           `
           : ""
       }
+
+      <!-- Events -->
+      ${renderEventsSection(window.HGEvents?.getByPlace?.(place.id) || [])}
 
       <!-- Fortellinger -->
       ${renderStoriesSection(window.HGStories?.getByPlace?.(place.id) || [])}
