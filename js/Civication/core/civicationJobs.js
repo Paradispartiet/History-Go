@@ -1,6 +1,7 @@
 // js/Civication/civicationJobs.js
 (function () {
   const LS_OFFERS = "hg_job_offers_v1";
+  const LS_FIRST_JOB_SEQ = "hg_first_job_sequence_v1";
   const DEFAULT_OBLIGATION_IDS = [
     "weekly_login",
     "event_response",
@@ -31,6 +32,127 @@
       LS_OFFERS,
       JSON.stringify(Array.isArray(arr) ? arr : [])
     );
+  }
+
+  function getFirstJobSequenceState() {
+    return safeParse(localStorage.getItem(LS_FIRST_JOB_SEQ) || "{}", {});
+  }
+
+  function setFirstJobSequenceState(obj) {
+    localStorage.setItem(LS_FIRST_JOB_SEQ, JSON.stringify(obj && typeof obj === "object" ? obj : {}));
+  }
+
+  function markFirstJobSequenceDone(offerKey) {
+    const current = getFirstJobSequenceState();
+    current[String(offerKey || "")] = new Date().toISOString();
+    setFirstJobSequenceState(current);
+  }
+
+  function hasFirstJobSequenceRun(offerKey) {
+    const current = getFirstJobSequenceState();
+    return !!current[String(offerKey || "")];
+  }
+
+  function makeInboxEnvelope(eventObj) {
+    return {
+      status: "pending",
+      createdAt: Date.now(),
+      event: eventObj
+    };
+  }
+
+  function prependInboxEvents(events) {
+    const valid = Array.isArray(events) ? events.filter(Boolean) : [];
+    if (!valid.length) return;
+
+    const existing = window.HG_CiviEngine?.getInbox?.() || [];
+    const existingIds = new Set(existing.map(x => String(x?.event?.id || "")).filter(Boolean));
+    const next = valid
+      .filter(ev => !existingIds.has(String(ev.id || "")))
+      .map(makeInboxEnvelope)
+      .concat(existing);
+
+    window.HG_CiviEngine?.setInbox?.(next);
+  }
+
+  function buildFirstJobIntroMail(offer) {
+    const roleName = String(offer?.title || offer?.career_name || "rollen").trim() || "rollen";
+    const careerName = String(offer?.career_name || "faget").trim() || "faget";
+    return {
+      id: `job_intro_${slugify(offer?.offer_key || roleName)}_${Date.now()}`,
+      source: "Civication",
+      subject: `Velkommen inn i ${roleName}`,
+      situation: [
+        `Du går nå inn i ${roleName}. Dette er den første tydelige overgangen fra quizkunnskap til faktisk rolleliv i Civication.`,
+        `Det du har lært i ${careerName} er grunnen til at denne stillingen finnes for deg i det hele tatt.`,
+        "Målet nå er ikke bare å svare riktig, men å finne rytmen i rollen og se hvordan byen begynner å forme hverdagen din.",
+        "Når du åpner neste meldinger og hendelser, vil du se hvordan arbeid, miljø og personer begynner å henge sammen."
+      ],
+      choices: [
+        {
+          id: "A",
+          label: "Gå inn i rollen og se hva den krever",
+          effect: 1,
+          tags: ["role_entry", "legitimacy"],
+          feedback: "Du går inn i rollen med åpenhet. Nå begynner spillet å få en faktisk sosial retning."
+        }
+      ],
+      feedback: "Du har tatt steget inn i rollen.",
+      onboarding_tag: "first_job_intro"
+    };
+  }
+
+  function buildFirstJobDayEvent(offer) {
+    const roleName = String(offer?.title || offer?.career_name || "rollen").trim() || "rollen";
+    return {
+      id: `phase_first_day_${slugify(offer?.offer_key || roleName)}_${Date.now()}`,
+      source: "Civication",
+      subject: `Første dag i ${roleName}`,
+      stage: "stable",
+      situation: [
+        `Dette er første dag i ${roleName}. Ingen forventer at du kan alt ennå, men de merker fort hvilken holdning du går inn med.`,
+        "Det viktige nå er å finne tempoet, lese rommet og forstå hva slags person rollen faktisk belønner.",
+        "Valget ditt her setter tonen for de neste meldingene, møtene og konfliktene du får."
+      ],
+      choices: [
+        {
+          id: "A",
+          label: "Observer først og bygg forståelse",
+          effect: 1,
+          tags: ["craft", "process"],
+          feedback: "Du går rolig inn i rytmen og begynner å forstå feltet før du prøver å markere deg."
+        },
+        {
+          id: "B",
+          label: "Ta initiativ tidlig og gjør deg synlig",
+          effect: 0,
+          tags: ["visibility", "initiative"],
+          feedback: "Du gjør deg raskt synlig. Det kan gi fart, men også mer friksjon om du leser situasjonen feil."
+        },
+        {
+          id: "C",
+          label: "Hold lav profil og kom deg gjennom dagen",
+          effect: 0,
+          tags: ["caution", "self_protection"],
+          feedback: "Du tar minst mulig plass. Det kjøper ro, men gir mindre eierskap til rollen."
+        }
+      ],
+      feedback: "Første dag er satt i bevegelse.",
+      onboarding_tag: "first_job_day"
+    };
+  }
+
+  function ensureCuratedFirstJobSequence(offer) {
+    if (!offer?.offer_key) return;
+    if (hasFirstJobSequenceRun(offer.offer_key)) return;
+
+    const events = [
+      buildFirstJobDayEvent(offer),
+      buildFirstJobIntroMail(offer)
+    ];
+
+    prependInboxEvents(events);
+    markFirstJobSequenceDone(offer.offer_key);
   }
 
   function isExpired(o) {
@@ -243,6 +365,16 @@
       window.HG_CiviEngine?.onAppOpen?.({ force: true });
     } catch (e) {
       console.warn("Initial job mail trigger failed", e);
+    }
+
+    try {
+      ensureCuratedFirstJobSequence(offer);
+    } catch (e) {
+      console.warn("Curated first job sequence failed", e);
+    }
+
+    if (typeof window.showToast === "function") {
+      window.showToast(`💼 Du har gått inn i ${offer.title}. I inboxen ligger nå en første introduksjon og en første dagshendelse som setter tonen for rollen.`);
     }
 
     window.dispatchEvent(new Event("updateProfile"));
