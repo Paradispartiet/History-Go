@@ -98,7 +98,8 @@
         }
       ],
       feedback: "Du har tatt steget inn i rollen.",
-      onboarding_tag: "first_job_intro"
+      onboarding_tag: "first_job_intro",
+      mail_class: "onboarding"
     };
   }
 
@@ -138,7 +139,8 @@
         }
       ],
       feedback: "Første dag er satt i bevegelse.",
-      onboarding_tag: "first_job_day"
+      onboarding_tag: "first_job_day",
+      mail_class: "onboarding"
     };
   }
 
@@ -309,53 +311,22 @@
       brand_name: String(offer.brand_name || "").trim() || null
     });
 
+    const active = window.CivicationState?.getActivePosition?.();
+    window.CivicationState?.ensureOnboardingState?.(active);
+    window.CivicationState?.setOnboardingState?.(active, {
+      intro_done: false,
+      first_day_done: false,
+      complete: false
+    });
+
     if (window.CivicationObligationEngine?.activateJob) {
       window.CivicationObligationEngine.activateJob(
         offer.career_id,
         DEFAULT_OBLIGATION_IDS
       );
-    } else {
-      const now = Date.now();
-
-      window.CivicationState?.setState?.({
-        stability: "STABLE",
-        warning_used: false,
-        unemployed_since_week: null,
-        active_role_key: role_key,
-        career: {
-          activeJob: offer.career_id,
-          reputation: 70,
-          salaryModifier: 1,
-          obligations: DEFAULT_OBLIGATION_IDS.map(function (id) {
-            return {
-              id: id,
-              lastCompleted: now,
-              periodStart: now,
-              progress: 0,
-              status: "ok"
-            };
-          }),
-          contract: {
-            startedAt: now,
-            mailsPerDay: 3,
-            warningAfterDays: 7,
-            fireAfterDays: 14,
-            minCompletionRate: 0.30
-          },
-          progress: {
-            expectedCount: 0,
-            answeredCount: 0,
-            completionRate: 1,
-            daysSinceStart: 0,
-            daysSinceLogin: 0,
-            lastEvaluatedAt: now
-          }
-        }
-      });
     }
 
     try {
-      const active = window.CivicationState?.getActivePosition?.();
       window.CivicationCalendar?.startShiftForJob?.(active);
     } catch (e) {
       console.warn("Calendar shift start failed", e);
