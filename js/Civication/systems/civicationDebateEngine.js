@@ -2,6 +2,7 @@
   "use strict";
 
   const LS_DEBATE = "hg_civi_debate_v1";
+  const LS_FIRST_DEBATE = "hg_civi_first_debate_v1";
 
   const DEFAULT_STATE = {
     current: null,
@@ -212,6 +213,22 @@
     return next;
   }
 
+  function readFirstDebateState() {
+    try {
+      const parsed = JSON.parse(localStorage.getItem(LS_FIRST_DEBATE) || "{}");
+      return parsed && typeof parsed === "object" ? parsed : {};
+    } catch {
+      return {};
+    }
+  }
+
+  function writeFirstDebateState(next) {
+    try {
+      localStorage.setItem(LS_FIRST_DEBATE, JSON.stringify(next && typeof next === "object" ? next : {}));
+    } catch {}
+    return next;
+  }
+
   function normalizeRoleScope(active) {
     const raw = String(
       active?.role_scope || active?.role_key || active?.title || ""
@@ -317,9 +334,34 @@
       .filter(Boolean);
   }
 
+  function getFirstDebateKey(active) {
+    return `${String(active?.career_id || "").trim()}::${String(normalizeRoleScope(active) || "")}`;
+  }
+
+  function hasSeenFirstDebate(active) {
+    const key = getFirstDebateKey(active);
+    if (!key) return true;
+    return !!readFirstDebateState()[key];
+  }
+
+  function markFirstDebateSeen(active, scenarioId) {
+    const key = getFirstDebateKey(active);
+    if (!key) return;
+    const state = readFirstDebateState();
+    state[key] = {
+      seen_at: new Date().toISOString(),
+      scenario_id: String(scenarioId || "")
+    };
+    writeFirstDebateState(state);
+  }
+
   function pickScenario(active, state) {
     const pool = getScenarioPool(active);
     if (!pool.length) return null;
+
+    if (!hasSeenFirstDebate(active)) {
+      return pool[0] || null;
+    }
 
     const recentIds = new Set(getRecentScenarioIds(state?.history, active));
     const filtered = pool.filter((scenario) => !recentIds.has(String(scenario.id || "")));
@@ -353,6 +395,7 @@
       career_id: careerId,
       role_scope: roleScope,
       created_at: new Date().toISOString(),
+      is_first_debate: !hasSeenFirstDebate(active),
       scenario
     };
 
@@ -491,7 +534,8 @@
       margin: breakdown.margin,
       total: breakdown.total,
       resistance: breakdown.resistance,
-      text: getOutcomeText(breakdown.outcome, current.scenario, breakdown.strategy)
+      text: getOutcomeText(breakdown.outcome, current.scenario, breakdown.strategy),
+      is_first_debate: !!current.is_first_debate
     };
 
     state.history.push(result);
@@ -499,6 +543,13 @@
     state.last_result = result;
     state.current = null;
     writeState(state);
+
+    if (current.is_first_debate) {
+      markFirstDebateSeen(active, current.scenario_id);
+      if (typeof window.showToast === "function") {
+        window.showToast("🗣️ Første debatt er gjennomført. Nå har du brukt kunnskap, kapital, identitet og psyke i samme situasjon, og det er dette som gjør Civication til mer enn bare et quizspill.");
+      }
+    }
 
     window.dispatchEvent(new Event("updateProfile"));
 
@@ -534,6 +585,18 @@
     return buildArgumentBreakdown(active, current.scenario, strategyId);
   }
 
+  function getIntroText(activeArg) {
+    const active = activeArg || window.CivicationState?.getActivePosition?.();
+    const current = getCurrentDebate(active);
+    if (!current?.scenario) return null;
+
+    if (current.is_first_debate) {
+      return "Dette er den første debatten din. Her handler det ikke bare om å ha rett, men om å bruke det du har bygget opp i rollen din. Kunnskapsscoren viser hva du faktisk kan om temaet, mens kapital, identitet og psyke avgjør hvor sterkt argumentet ditt bærer sosialt.";
+    }
+
+    return "Debatter er stedet der kunnskap, kapital, identitet og psyke møtes. Strategien du velger avgjør hva slags styrke du prøver å bruke i rommet.";
+  }
+
   window.CivicationDebateEngine = {
     getCurrentDebate,
     getLastResult,
@@ -542,6 +605,8 @@
     previewStrategy,
     resolveCurrentDebate,
     getKnowledgeScore,
-    buildArgumentBreakdown
+    buildArgumentBreakdown,
+    getIntroText,
+    hasSeenFirstDebate
   };
 })();
