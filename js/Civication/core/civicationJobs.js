@@ -23,33 +23,32 @@
       .slice(0, 64);
   }
 
+  function defaultRecoveryState() {
+    return {
+      active: false,
+      reason: null,
+      progress: 0,
+      target: 3,
+      previous_role: null,
+      preferred_rebuild_flags: [],
+      blocked_flags: [],
+      arc_stage: "entry",
+      arc_order: ["entry", "reckoning", "rebuild", "return"],
+      completed_stages: []
+    };
+  }
+
   function getRecoveryState() {
     const raw = safeParse(localStorage.getItem(LS_RECOVERY) || "{}", {});
     return raw && typeof raw === "object"
-      ? raw
-      : {
-          active: false,
-          reason: null,
-          progress: 0,
-          target: 3,
-          previous_role: null,
-          preferred_rebuild_flags: [],
-          blocked_flags: []
-        };
+      ? { ...defaultRecoveryState(), ...raw }
+      : defaultRecoveryState();
   }
 
   function setRecoveryState(next) {
     const safeNext = next && typeof next === "object"
-      ? next
-      : {
-          active: false,
-          reason: null,
-          progress: 0,
-          target: 3,
-          previous_role: null,
-          preferred_rebuild_flags: [],
-          blocked_flags: []
-        };
+      ? { ...defaultRecoveryState(), ...next }
+      : defaultRecoveryState();
     localStorage.setItem(LS_RECOVERY, JSON.stringify(safeNext));
     return safeNext;
   }
@@ -70,7 +69,8 @@
           "midlertidig_redning",
           "hurtig_lukking",
           "glattet_fortelling"
-        ]
+        ],
+        arc_order: ["entry", "reckoning", "rebuild", "return"]
       };
     }
 
@@ -87,7 +87,8 @@
           "midlertidig_redning",
           "hurtig_lukking",
           "glattet_fortelling"
-        ]
+        ],
+        arc_order: ["entry", "reckoning", "rebuild", "return"]
       };
     }
 
@@ -102,7 +103,8 @@
         "glidende_standard",
         "systemtilpasning",
         "flat_produksjonslogikk"
-      ]
+      ],
+      arc_order: ["entry", "reckoning", "rebuild", "return"]
     };
   }
 
@@ -120,6 +122,11 @@
       blocked_flags: Array.isArray(profile.blocked_flags)
         ? profile.blocked_flags
         : [],
+      arc_stage: "entry",
+      arc_order: Array.isArray(profile.arc_order) && profile.arc_order.length
+        ? profile.arc_order
+        : ["entry", "reckoning", "rebuild", "return"],
+      completed_stages: [],
       started_at: new Date().toISOString(),
       previous_role: active ? {
         career_id: active.career_id || null,
@@ -148,6 +155,9 @@
       previous_role: null,
       preferred_rebuild_flags: [],
       blocked_flags: [],
+      arc_stage: "entry",
+      arc_order: ["entry", "reckoning", "rebuild", "return"],
+      completed_stages: [],
       started_at: null,
       completed_at: new Date().toISOString()
     });
@@ -156,6 +166,43 @@
   function getBranchFlags() {
     const branch = window.CivicationState?.getMailBranchState?.() || {};
     return Array.isArray(branch.flags) ? branch.flags : [];
+  }
+
+  function getRecoveryArcStage() {
+    const state = getRecoveryState();
+    return String(state.arc_stage || "entry");
+  }
+
+  function advanceRecoveryArc() {
+    const current = getRecoveryState();
+    if (!current.active) return current;
+
+    const arcOrder = Array.isArray(current.arc_order) && current.arc_order.length
+      ? current.arc_order
+      : ["entry", "reckoning", "rebuild", "return"];
+
+    const currentStage = String(current.arc_stage || arcOrder[0] || "entry");
+    const currentIndex = Math.max(0, arcOrder.indexOf(currentStage));
+    const nextIndex = Math.min(arcOrder.length - 1, currentIndex + 1);
+    const nextStage = arcOrder[nextIndex] || currentStage;
+    const completed = Array.isArray(current.completed_stages)
+      ? current.completed_stages.slice()
+      : [];
+
+    if (!completed.includes(currentStage)) {
+      completed.push(currentStage);
+    }
+
+    const next = {
+      ...current,
+      arc_stage: nextStage,
+      completed_stages: completed,
+      last_arc_transition_at: new Date().toISOString()
+    };
+
+    setRecoveryState(next);
+    window.dispatchEvent(new Event("updateProfile"));
+    return next;
   }
 
   function advanceRecovery() {
@@ -196,11 +243,22 @@
     }
 
     if (next.progress >= Number(next.target || 3)) {
-      const done = clearRecovery();
-      if (typeof window.showToast === "function") {
-        window.showToast("✅ Du har bygget deg opp igjen. Karriereveier åpner seg på nytt.");
+      const advanced = advanceRecoveryArc();
+      const updated = getRecoveryState();
+      if (String(updated.arc_stage) === "return") {
+        const done = clearRecovery();
+        if (typeof window.showToast === "function") {
+          window.showToast("✅ Du har bygget deg opp igjen. Karriereveier åpner seg på nytt.");
+        }
+        return done;
       }
-      return done;
+
+      setRecoveryState({
+        ...advanced,
+        progress: 0,
+        target: Number(current.target || 3)
+      });
+      return getRecoveryState();
     }
 
     setRecoveryState(next);
@@ -708,7 +766,9 @@
     startRecovery,
     clearRecovery,
     advanceRecovery,
-    getRecoveryProfile
+    getRecoveryProfile,
+    getRecoveryArcStage,
+    advanceRecoveryArc
   };
 
   window.hgGetJobOffers = getOffers;
