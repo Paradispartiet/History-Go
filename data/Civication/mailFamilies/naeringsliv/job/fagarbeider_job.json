@@ -29,14 +29,24 @@
               "label": "Ta ansvaret fullt og sikre at det blir riktig",
               "effect": 1,
               "tags": ["craft", "legitimacy"],
-              "feedback": "Du bærer faget slik andre bærer tempoet."
+              "feedback": "Du bærer faget slik andre bærer tempoet.",
+              "next_bias": {
+                "prefer_mail_types": ["conflict"],
+                "prefer_families": ["faglig_integritet_intro"],
+                "set_flags": ["faglig_integritet"]
+              }
             },
             {
               "id": "B",
               "label": "Avgrense deg og holde deg til det som faktisk er ditt",
               "effect": 0,
               "tags": ["process", "risk"],
-              "feedback": "Du beskytter kapasiteten din, men lar også noe falle utenfor deg."
+              "feedback": "Du beskytter kapasiteten din, men lar også noe falle utenfor deg.",
+              "next_bias": {
+                "prefer_mail_types": ["people"],
+                "prefer_families": ["ansvar_som_glir"],
+                "set_flags": ["ansvarsgrense"]
+              }
             }
           ]
         },
@@ -62,14 +72,24 @@
               "label": "Bruke fagautoriteten din uten å vente på alt formelt",
               "effect": 1,
               "tags": ["craft", "visibility"],
-              "feedback": "Du lar kompetansen gripe inn der strukturen er treg."
+              "feedback": "Du lar kompetansen gripe inn der strukturen er treg.",
+              "next_bias": {
+                "prefer_mail_types": ["conflict", "people"],
+                "prefer_families": ["ansvar_uten_myndighet_intro", "taus_fagrespekt"],
+                "set_flags": ["uformell_autoritet"]
+              }
             },
             {
               "id": "B",
               "label": "Holde deg til mandatet selv om du ser mer enn det rommer",
               "effect": 0,
               "tags": ["legitimacy", "avoidance"],
-              "feedback": "Du holder deg renere formelt, men lar også en kjent mangel stå."
+              "feedback": "Du holder deg renere formelt, men lar også en kjent mangel stå.",
+              "next_bias": {
+                "prefer_mail_types": ["people"],
+                "prefer_families": ["ansvar_som_glir"],
+                "set_flags": ["mandatlojal"]
+              }
             }
           ]
         }
@@ -100,14 +120,24 @@
               "label": "Stanser arbeidet for å rette presist",
               "effect": 1,
               "tags": ["craft", "risk"],
-              "feedback": "Du lar kvalitet definere rytmen, ikke omvendt."
+              "feedback": "Du lar kvalitet definere rytmen, ikke omvendt.",
+              "next_bias": {
+                "prefer_mail_types": ["conflict"],
+                "prefer_families": ["faglig_integritet_intro"],
+                "set_flags": ["presisjon_forst"]
+              }
             },
             {
               "id": "B",
               "label": "Lar avviket passere fordi helheten ellers flyter",
               "effect": 0,
               "tags": ["shortcut", "visibility"],
-              "feedback": "Du redder flyten og lar det faglige regnskapet vokse i bakgrunnen."
+              "feedback": "Du redder flyten og lar det faglige regnskapet vokse i bakgrunnen.",
+              "next_bias": {
+                "prefer_mail_types": ["people"],
+                "prefer_families": ["kollega_med_snarveier"],
+                "set_flags": ["flyt_forst"]
+              }
             }
           ]
         },
@@ -133,14 +163,24 @@
               "label": "Varsle tidlig og ta diskusjonen med én gang",
               "effect": 1,
               "tags": ["process", "visibility"],
-              "feedback": "Du flytter problemet fram i tid mens det ennå kan styres."
+              "feedback": "Du flytter problemet fram i tid mens det ennå kan styres.",
+              "next_bias": {
+                "prefer_mail_types": ["conflict"],
+                "prefer_families": ["ansvar_uten_myndighet_intro"],
+                "set_flags": ["tidlig_inngrep"]
+              }
             },
             {
               "id": "B",
               "label": "Observere litt til før du gjør det til en sak",
               "effect": 0,
               "tags": ["craft", "avoidance"],
-              "feedback": "Du kjøper mer sikkerhet, men også mindre handlingsrom."
+              "feedback": "Du kjøper mer sikkerhet, men også mindre handlingsrom.",
+              "next_bias": {
+                "prefer_mail_types": ["people"],
+                "prefer_families": ["uformell_mentor"],
+                "set_flags": ["stille_observasjon"]
+              }
             }
           ]
         }
@@ -171,14 +211,24 @@
               "label": "Bruke tid på å lære bort ordentlig",
               "effect": 1,
               "tags": ["process", "legitimacy"],
-              "feedback": "Du gjør fremtidig drift mindre sårbar."
+              "feedback": "Du gjør fremtidig drift mindre sårbar.",
+              "next_bias": {
+                "prefer_mail_types": ["people"],
+                "prefer_families": ["uformell_mentor"],
+                "set_flags": ["mentorlinje"]
+              }
             },
             {
               "id": "B",
               "label": "Gi bare det minimale så dagen holder",
               "effect": 0,
               "tags": ["shortcut", "avoidance"],
-              "feedback": "Dagen reddes. Avhengigheten blir værende."
+              "feedback": "Dagen reddes. Avhengigheten blir værende.",
+              "next_bias": {
+                "prefer_mail_types": ["people", "conflict"],
+                "prefer_families": ["kollega_med_snarveier", "faglig_integritet_intro"],
+                "set_flags": ["produksjonspress"]
+              }
             }
           ]
         }
@@ -209,14 +259,24 @@
               "label": "Ta styringen uformelt og holde linjene samlet",
               "effect": 1,
               "tags": ["process", "visibility"],
-              "feedback": "Du gjør usynlig ledelse uten å få den som posisjon."
+              "feedback": "Du gjør usynlig ledelse uten å få den som posisjon.",
+              "next_bias": {
+                "prefer_mail_types": ["people", "conflict"],
+                "prefer_families": ["taus_fagrespekt", "ansvar_uten_myndighet_early"],
+                "set_flags": ["uformell_ledelse"]
+              }
             },
             {
               "id": "B",
               "label": "Holde deg til eget ledd og la resten finne seg selv",
               "effect": 0,
               "tags": ["legitimacy", "avoidance"],
-              "feedback": "Du beskytter rollen din, men lar helheten bli mer skjør."
+              "feedback": "Du beskytter rollen din, men lar helheten bli mer skjør.",
+              "next_bias": {
+                "prefer_mail_types": ["people"],
+                "prefer_families": ["ansvar_som_glir"],
+                "set_flags": ["rolleavgrensning"]
+              }
             }
           ]
         }
@@ -247,14 +307,24 @@
               "label": "Formulere forbedringen så konkret at den blir vanskelig å overse",
               "effect": 1,
               "tags": ["process", "legitimacy"],
-              "feedback": "Du prøver å gjøre erfaring til styrbar kunnskap."
+              "feedback": "Du prøver å gjøre erfaring til styrbar kunnskap.",
+              "next_bias": {
+                "prefer_mail_types": ["conflict", "people"],
+                "prefer_families": ["ansvar_uten_myndighet_early", "taus_fagrespekt"],
+                "set_flags": ["forbedringslinje"]
+              }
             },
             {
               "id": "B",
               "label": "Bare justere lokalt der du selv kan",
               "effect": 0,
               "tags": ["craft", "avoidance"],
-              "feedback": "Du forbedrer praksis uten å få systemet med deg."
+              "feedback": "Du forbedrer praksis uten å få systemet med deg.",
+              "next_bias": {
+                "prefer_mail_types": ["people"],
+                "prefer_families": ["uformell_mentor"],
+                "set_flags": ["lokal_tilpasning"]
+              }
             }
           ]
         }
