@@ -362,12 +362,6 @@
     }
 
     try {
-      window.HG_CiviEngine?.onAppOpen?.({ force: true });
-    } catch (e) {
-      console.warn("Initial job mail trigger failed", e);
-    }
-
-    try {
       ensureCuratedFirstJobSequence(offer);
     } catch (e) {
       console.warn("Curated first job sequence failed", e);
