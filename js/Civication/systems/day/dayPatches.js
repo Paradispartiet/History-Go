@@ -36,6 +36,18 @@ function clearPendingEventById(engine, eventId) {
   return true;
 }
 
+function rerenderCivicationUiNow() {
+  try {
+    window.renderCivicationInbox?.();
+    window.renderWorkdayPanel?.();
+  } catch {}
+
+  try {
+    window.CivicationUI?.renderCivicationInbox?.();
+    window.CivicationUI?.renderWorkdayPanel?.();
+  } catch {}
+}
+
 function getTaskCapitalPlan(phaseTag, pendingEvent, choice, result) {
   const tags = Array.isArray(choice?.tags) ? choice.tags.map(String) : [];
   const careerId =
@@ -436,7 +448,7 @@ if (carryover.fatigue > 1 && adjustedChoices.length) {
     return { enqueued: false, reason: "unknown_phase" };
   };
 
-    proto.answer = function (eventId, choiceId) {
+    proto.answer = async function (eventId, choiceId) {
       const pending = this.getPendingEvent ? this.getPendingEvent() : null;
       const pendingEventId = String(pending?.event?.id || eventId || "").trim();
 
@@ -458,7 +470,7 @@ if (carryover.fatigue > 1 && adjustedChoices.length) {
       }
 
       const result = legacyAnswer
-        ? legacyAnswer.call(this, eventId, choiceId)
+        ? await legacyAnswer.call(this, eventId, choiceId)
         : { ok: false };
 
       if (originalFollowup) {
@@ -526,13 +538,13 @@ maybeCreateContactFromChoice(phaseTag, pending?.event, choice, result);
 
       clearPendingEventById(this, pendingEventId);
 
-      setTimeout(() => {
-        try {
-          clearPendingEventById(this, pendingEventId);
-          window.HG_CiviEngine?.onAppOpen?.({ force: true });
-          window.dispatchEvent(new Event("updateProfile"));
-        } catch {}
-      }, 0);
+      try {
+        clearPendingEventById(this, pendingEventId);
+        await this.onAppOpen?.({ force: true });
+      } catch {}
+
+      rerenderCivicationUiNow();
+      window.dispatchEvent(new Event("updateProfile"));
 
       return result;
     };
