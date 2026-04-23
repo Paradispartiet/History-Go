@@ -395,7 +395,12 @@ function checkBurnout() {
     100
   );
 
-  if (state.burnoutActive) return false;
+  if (state.burnoutActive) {
+    return {
+      triggered: false,
+      reason: "already_active"
+    };
+  }
 
   const lifestyle = window.getPrimaryLifestyle?.() || window.HG_Lifestyle?.getStamp?.();
 
@@ -428,11 +433,24 @@ function checkBurnout() {
       );
     });
 
-    processCollapse();
-    return true;
+    const active = window.CivicationState?.getActivePosition?.();
+    let careerOutcome = null;
+
+    try {
+      careerOutcome = window.CivicationJobs?.maybeApplyNegativeCareerOutcome?.(active) || null;
+    } catch {}
+
+    return {
+      triggered: true,
+      type: "burnout",
+      careerOutcome
+    };
   }
 
-  return false;
+  return {
+    triggered: false,
+    reason: "threshold_not_met"
+  };
 }
 
 function isBurnoutActive() {
@@ -519,6 +537,15 @@ function processCollapse() {
     s.lastCollapseAt = Date.now();
   });
 
+  const active = window.CivicationState?.getActivePosition?.();
+  let careerOutcome = null;
+
+  if (type === "career") {
+    try {
+      careerOutcome = window.CivicationJobs?.maybeApplyNegativeCareerOutcome?.(active) || null;
+    } catch {}
+  }
+
   window.HG_CivicationPublic?.announceCollapse({
     type,
     playerId: "local",
@@ -526,7 +553,10 @@ function processCollapse() {
     timestamp: Date.now()
   });
 
-  return type;
+  return {
+    type,
+    careerOutcome
+  };
 }
 
   
@@ -599,7 +629,8 @@ function getLifestyleTrustModifier() {
       economicRoom: getEconomicRoom(),
       autonomy: getAutonomy(activeCareerId),
       trust: activeTrust,
-      trustSummary
+      trustSummary,
+      burnoutActive: isBurnoutActive()
     };
   }
 
