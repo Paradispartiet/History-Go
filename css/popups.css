@@ -776,6 +776,108 @@
   text-underline-offset: 2px;
 }
 
+/* ===== Events-seksjon ===== */
+.hg-section-events .pc-events-list{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.hg-section-events .pc-event{
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-left: 3px solid rgba(255,255,255,0.18);
+}
+
+.hg-section-events .pc-event.is-ongoing{
+  border-left-color: #6cd46c;
+  background: rgba(80, 180, 80, 0.10);
+}
+
+.hg-section-events .pc-event.is-upcoming{
+  border-left-color: #6ca6d4;
+}
+
+.hg-section-events .pc-event.is-past{
+  opacity: 0.72;
+  border-left-color: rgba(255,255,255,0.2);
+}
+
+.hg-section-events .pc-event-top{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  opacity: 0.78;
+}
+
+.hg-section-events .pc-event-phase{
+  font-weight: 700;
+}
+
+.hg-section-events .pc-event.is-ongoing .pc-event-phase{
+  color: #8fe88f;
+}
+
+.hg-section-events .pc-event-date{
+  font-variant-numeric: tabular-nums;
+  opacity: 0.9;
+}
+
+.hg-section-events .pc-event-title{
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.hg-section-events .pc-event-meta{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  font-size: 12px;
+  opacity: 0.75;
+}
+
+.hg-section-events .pc-event-category{
+  text-transform: capitalize;
+}
+
+.hg-section-events .pc-event-organizer::before{
+  content: "·";
+  margin-right: 8px;
+  opacity: 0.5;
+}
+
+.hg-section-events .pc-event-desc{
+  font-size: 13px;
+  line-height: 1.45;
+  opacity: 0.85;
+}
+
+.hg-section-events .pc-event-source{
+  align-self: flex-start;
+  font-size: 12px;
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  margin-top: 2px;
+}
+
+.hg-section-events .pc-events-more{
+  margin-top: 8px;
+  font-size: 12px;
+  opacity: 0.65;
+  text-align: center;
+}
+
 /* =====================================================
    WONDERKAMMER / STORE / EVENTS / LEKSIKON / ROUTES
    ===================================================== */
