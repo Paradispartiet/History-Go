@@ -433,9 +433,6 @@ base.appendChild(districtLine(`
   }
 
   // Mini-bygg dispatcher (replicaer + generisk fallback)
-  function createMiniBuilding(options = {}) {
-
-     const capital =
     function createMiniBuilding(options = {}) {
 
   const capital =
@@ -498,6 +495,7 @@ wrapper.setAttribute(
         return wrapper;
     }
   }
+}
 
   // Replica-bygninger (enkle SVG-ikoner)
   function buildOpera() {

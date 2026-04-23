@@ -1,5 +1,5 @@
 (function () {
-  const EVENTS_MANIFEST_PATH = "/data/events/events_manifest.json";
+  const EVENTS_MANIFEST_PATH = "data/events/events_manifest.json";
 
   function ensureArray(value) {
     return Array.isArray(value) ? value : [];

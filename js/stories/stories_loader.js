@@ -1,5 +1,5 @@
 (function () {
-  const MANIFEST_PATH = "/data/stories/stories_manifest.json";
+  const MANIFEST_PATH = "data/stories/stories_manifest.json";
 
   function ensureArray(value) {
     return Array.isArray(value) ? value : [];
