@@ -968,6 +968,46 @@ window.showBrandPopup = async function (brandId, place = null) {
 };
 
 // ============================================================
+// STORIES SECTION (felles for person- og steds-popup)
+// ============================================================
+function renderStoriesSection(stories) {
+  if (!Array.isArray(stories) || !stories.length) return "";
+
+  const items = stories.map(st => {
+    const type = st.type || "story";
+    const year = st.year ? `<span class="pc-story-year">${wkEsc(String(st.year))}</span>` : "";
+    const summary = st.summary || st.story || "";
+    const sources = Array.isArray(st.sources) ? st.sources : [];
+    const sourceLinks = sources.slice(0, 3).map(src => {
+      const url = src?.url || "";
+      const title = src?.title || src?.author || url;
+      return url
+        ? `<a href="${wkEsc(url)}" target="_blank" rel="noopener" class="pc-story-source">${wkEsc(title)}</a>`
+        : `<span class="pc-story-source">${wkEsc(title)}</span>`;
+    }).join(" · ");
+
+    return `
+      <article class="pc-story" data-story-id="${wkEsc(String(st.id || ""))}">
+        <div class="pc-story-top">
+          <span class="pc-story-type">${wkEsc(String(type))}</span>
+          ${year}
+        </div>
+        <div class="pc-story-title">${wkEsc(String(st.title || ""))}</div>
+        <div class="pc-story-text">${wkEsc(String(summary))}</div>
+        ${sourceLinks ? `<div class="pc-story-sources">${sourceLinks}</div>` : ""}
+      </article>
+    `;
+  }).join("");
+
+  return `
+    <div class="hg-section hg-section-stories">
+      <h3>Fortellinger</h3>
+      <div class="pc-stories-list">${items}</div>
+    </div>
+  `;
+}
+
+// ============================================================
 // 3. PERSON-POPUP
 // ============================================================
 window.showPersonPopup = function(person) {
@@ -1040,6 +1080,9 @@ window.showPersonPopup = function(person) {
             : `<p class="hg-muted">Ingen stedstilknytning.</p>`
         }
       </div>
+
+      <!-- Fortellinger -->
+      ${renderStoriesSection(window.HGStories?.getByPerson?.(person.id) || [])}
 
       <!-- Samtale & notat -->
       <div class="hg-section">
@@ -1280,6 +1323,9 @@ const peopleHere = (typeof getPeopleForPlace === "function")
           `
           : ""
       }
+
+      <!-- Fortellinger -->
+      ${renderStoriesSection(window.HGStories?.getByPlace?.(place.id) || [])}
 
       <div class="hg-section">
         <h3>Observasjoner</h3>
