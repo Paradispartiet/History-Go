@@ -1,0 +1,35 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "category": "naeringsliv",
+  "role_scope": "mellomleder",
+  "mail_type": "faction_choice",
+  "families": [
+    {
+      "id": "mellomleder_fraksjonsvalg",
+      "mails": [
+        {
+          "id": "ml_faction_001",
+          "mail_type": "faction_choice",
+          "mail_family": "mellomleder_fraksjonsvalg",
+          "phase": "early",
+          "priority": 100,
+          "subject": "Du kan ikke stå nøytral lenger",
+          "situation": [
+            "Du merker at alle drar i deg.",
+            "Noen vil bygge.",
+            "Noen vil kontrollere.",
+            "Noen vil beskytte systemet.",
+            "Noen vil beskytte menneskene.",
+            "Du må velge hvem du faktisk står med."
+          ],
+          "choices": [
+            { "id": "industri", "label": "Støtt bygging og produksjon" },
+            { "id": "kontroll", "label": "Støtt styring og kontroll" },
+            { "id": "institusjon", "label": "Bevar systemet" },
+            { "id": "menneske", "label": "Beskytt menneskene" }
+          ]
+        }
+      ]
+    }
+  ]
+}
