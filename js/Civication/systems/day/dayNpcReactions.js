@@ -21,6 +21,14 @@
     return Array.isArray(rows) ? rows : [];
   }
 
+  function findExplicitPerson(eventObj) {
+    const peopleRef = normStr(eventObj?.people_ref);
+    if (!peopleRef) return null;
+
+    const people = getPeople();
+    return people.find((person) => normStr(person?.id) === peopleRef) || null;
+  }
+
   function scoreByMailFamily(person, family) {
     let score = 0;
 
@@ -32,29 +40,25 @@
     const name = normStr(person?.name).toLowerCase();
 
     if (family === "sliten_nokkelperson") {
-      if (knowledge.includes("baereevne")) score += 10;
+      if (knowledge.includes("baereevne") || knowledge.includes("bæreevne")) score += 10;
       if (knowledge.includes("teamrytme")) score += 8;
       if (knowledge.includes("gulvrealitet")) score += 6;
-      if (roles.includes("nokkelperson")) score += 10;
+      if (roles.includes("nokkelperson") || roles.includes("nøkkelperson")) score += 10;
       if (roles.includes("realitetsanker")) score += 5;
       if (events.includes("driftskrise")) score += 3;
       if (style === "social") score += 3;
-      if (name === "kari") score += 8;
-      if (name === "farid") score += 5;
     }
 
     if (family === "krysspress") {
       if (knowledge.includes("system")) score += 9;
       if (knowledge.includes("rapportering")) score += 8;
-      if (knowledge.includes("maling")) score += 8;
+      if (knowledge.includes("maling") || knowledge.includes("måling")) score += 8;
       if (knowledge.includes("budsjetter")) score += 6;
       if (roles.includes("motspiller")) score += 8;
       if (roles.includes("kritisk_motpart")) score += 7;
       if (badges.includes("styring")) score += 6;
-      if (events.includes("ledermote")) score += 4;
+      if (events.includes("ledermote") || events.includes("ledermøte")) score += 4;
       if (style === "institutional" || style === "economic") score += 3;
-      if (name === "ali") score += 8;
-      if (name === "solveig") score += 5;
     }
 
     if (family === "mellomleder_planlegging") {
@@ -64,26 +68,20 @@
       if (knowledge.includes("rytme")) score += 5;
       if (knowledge.includes("budsjetter")) score += 4;
       if (roles.includes("mentor")) score += 4;
-      if (roles.includes("noktern_vekt")) score += 5;
+      if (roles.includes("noktern_vekt") || roles.includes("nøktern_vekt")) score += 5;
       if (badges.includes("drift")) score += 4;
       if (badges.includes("kvalitet")) score += 4;
-      if (name === "kari") score += 5;
-      if (name === "lise") score += 6;
-      if (name === "solveig") score += 5;
     }
 
     if (family === "driftskrise") {
       if (knowledge.includes("produksjon")) score += 8;
       if (knowledge.includes("gulvrealitet")) score += 8;
-      if (knowledge.includes("baereevne")) score += 6;
+      if (knowledge.includes("baereevne") || knowledge.includes("bæreevne")) score += 6;
       if (knowledge.includes("system")) score += 5;
       if (roles.includes("realitetsanker")) score += 7;
-      if (roles.includes("nokkelperson")) score += 7;
+      if (roles.includes("nokkelperson") || roles.includes("nøkkelperson")) score += 7;
       if (events.includes("driftskrise")) score += 8;
       if (style === "social") score += 3;
-      if (name === "farid") score += 7;
-      if (name === "kari") score += 6;
-      if (name === "ali") score += 3;
     }
 
     if (family === "mellomleder_identitet") {
@@ -94,9 +92,6 @@
       if (roles.includes("institusjonell_speiler")) score += 6;
       if (roles.includes("fremtidig_rival")) score += 5;
       if (style === "cultural" || style === "institutional" || style === "symbolic") score += 2;
-      if (name === "lise") score += 7;
-      if (name === "ali") score += 5;
-      if (name === "jonas") score += 4;
     }
 
     return score;
@@ -136,6 +131,9 @@
   }
 
   function choosePerson(eventObj) {
+    const explicit = findExplicitPerson(eventObj);
+    if (explicit) return explicit;
+
     const people = getPeople();
     if (!people.length) return null;
 
