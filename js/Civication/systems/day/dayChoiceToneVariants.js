@@ -94,6 +94,31 @@
       : `${characterName}: Dette valget kommer ikke til å forsvinne av seg selv.`;
   }
 
+  function buildCharacterReplyOption(choice, speaker, index) {
+    const originalLabel = normStr(choice?.original_label || choice?.label);
+    const speech = buildCharacterSpeech(choice, speaker);
+    const tone = normStr(speaker?.tone || "spent");
+    const characterName = normStr(speaker?.character_name || "Person");
+
+    let replyLabel = `Svar ${characterName}`;
+    if (tone === "støttende") replyLabel = `Svar ${characterName}: stå i ansvaret`;
+    if (tone === "kritisk") replyLabel = `Svar ${characterName}: forsvar valget`;
+    if (tone === "ambivalent") replyLabel = `Svar ${characterName}: bygg tillit`;
+    if (tone === "spent") replyLabel = `Svar ${characterName}: ta presset`;
+
+    return {
+      id: `${normStr(choice?.id) || "choice"}__character_${index + 1}_${normStr(speaker?.character_id)}`,
+      base_choice_id: normStr(choice?.id),
+      character_id: normStr(speaker?.character_id),
+      character_name: characterName,
+      tone,
+      label: replyLabel,
+      speech,
+      original_choice_label: originalLabel,
+      effect: Number(choice?.effect || 0)
+    };
+  }
+
   function buildChoiceToneVariant(choice, mail, speakers) {
     const fallbackTone = mail?.tone_context || mail?.tone_variant || null;
     const activeSpeakers = Array.isArray(speakers) && speakers.length ? speakers : (fallbackTone ? [fallbackTone] : []);
@@ -107,6 +132,7 @@
     if (!speechLines.length) return null;
 
     const primary = activeSpeakers[0] || fallbackTone || {};
+    const splitOptions = activeSpeakers.map((speaker, index) => buildCharacterReplyOption(choice, speaker, index));
 
     return {
       character_id: normStr(primary.character_id),
@@ -115,6 +141,7 @@
       speakers: activeSpeakers,
       speech_lines: speechLines,
       speech_label: speechLines.join(" / "),
+      character_choice_options: splitOptions,
       original_label: label
     };
   }
@@ -137,7 +164,8 @@
           label: choiceTone.speech_label,
           choice_tone_context: choiceTone,
           character_speech_lines: choiceTone.speech_lines,
-          character_speech_label: choiceTone.speech_label
+          character_speech_label: choiceTone.speech_label,
+          character_choice_options: choiceTone.character_choice_options
         };
       })
     };
@@ -168,6 +196,7 @@
     applyChoiceToneVariants,
     buildChoiceToneVariant,
     buildCharacterSpeech,
+    buildCharacterReplyOption,
     rankSpeakingCharacters,
     patchMailPlanBridge
   };
