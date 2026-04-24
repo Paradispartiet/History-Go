@@ -4,6 +4,7 @@
   const LS_KEY = "hg_civi_people_v1";
   let peopleMapCache = null;
   const rolePeopleCache = new Map();
+  const categoryPeopleCache = new Map();
 
   async function loadPeopleMap() {
     if (Array.isArray(peopleMapCache)) return peopleMapCache;
@@ -20,6 +21,32 @@
     } catch {
       peopleMapCache = [];
       return peopleMapCache;
+    }
+  }
+
+  async function loadCategoryPeople(active) {
+    const careerId = String(active?.career_id || "").trim();
+    if (!careerId) return [];
+
+    if (categoryPeopleCache.has(careerId)) {
+      return categoryPeopleCache.get(careerId) || [];
+    }
+
+    const path = `data/people/people_${careerId}.json`;
+
+    try {
+      const res = await fetch(path, { cache: "no-store" });
+      if (!res.ok) {
+        categoryPeopleCache.set(careerId, []);
+        return [];
+      }
+      const json = await res.json();
+      const people = Array.isArray(json) ? json : Array.isArray(json?.people) ? json.people : [];
+      categoryPeopleCache.set(careerId, people);
+      return people;
+    } catch {
+      categoryPeopleCache.set(careerId, []);
+      return [];
     }
   }
 
@@ -104,6 +131,17 @@
     return bridge?.getBucket ? bridge.getBucket("people") : [];
   }
 
+  function getPlaceAccess() {
+    const bridge = window.CivicationPlaceAccessBridge;
+    const buckets = ["places", "work", "people", "leisure"];
+    const out = [];
+    buckets.forEach((bucket) => {
+      const rows = bridge?.getBucket ? bridge.getBucket(bucket) : [];
+      if (Array.isArray(rows)) out.push(...rows.map(String));
+    });
+    return Array.from(new Set(out));
+  }
+
   function getLeisureAccess() {
     const bridge = window.CivicationPlaceAccessBridge;
     return bridge?.getBucket ? bridge.getBucket("leisure") : [];
@@ -122,6 +160,20 @@
     if (!required.length) return true;
 
     const accessSet = new Set((peopleAccess || []).map(String));
+    return required.some((id) => accessSet.has(id));
+  }
+
+  function matchesPlaceAccess(entry, placeAccess) {
+    const sourcePlaceId = String(entry?.source_place_id || "").trim();
+    const unlockRequiresPlace = String(entry?.unlock_requires_place || "").trim();
+    const requiredPlaces = Array.isArray(entry?.required_place_access)
+      ? entry.required_place_access.map(String).filter(Boolean)
+      : [];
+
+    const required = [sourcePlaceId, unlockRequiresPlace, ...requiredPlaces].filter(Boolean);
+    if (!required.length) return true;
+
+    const accessSet = new Set((placeAccess || []).map(String));
     return required.some((id) => accessSet.has(id));
   }
 
@@ -184,10 +236,15 @@
       type: entry.type || "person",
       name: entry.name,
       description: entry.description || "",
+      source_place_id: entry.source_place_id,
+      unlock_requires_place: entry.unlock_requires_place,
+      role_function: entry.role_function,
+      historical_title: entry.historical_title,
       social_style: entry.social_style,
       score,
       preferred_roles: entry.preferred_roles,
       required_people_access: entry.required_people_access,
+      required_place_access: entry.required_place_access,
       role_scopes: entry.role_scopes,
       badge_scope: entry.badge_scope,
       knowledge_tags: entry.knowledge_tags,
@@ -212,13 +269,27 @@
 
     const mapEntries = await loadPeopleMap();
     const roleEntries = await loadRolePeopleBase(active);
+    const categoryEntries = await loadCategoryPeople(active);
     const peopleAccess = getPeopleAccess();
+    const placeAccess = getPlaceAccess();
     const leisureAccess = getLeisureAccess();
     const workAccess = getWorkAccess();
     const identity = getIdentityProfile();
 
+    const scoredCategoryEntries = categoryEntries
+      .filter((entry) => matchesRoleBase(entry, active))
+      .filter((entry) => matchesPlaceAccess(entry, placeAccess))
+      .map((entry) => ({
+        entry,
+        source: "category_people",
+        score: scoreEntry(entry, active, identity, peopleAccess, leisureAccess, workAccess) + 14
+      }));
+
+    const categoryIds = new Set(scoredCategoryEntries.map((row) => String(row.entry?.id || "").trim()).filter(Boolean));
+
     const scoredRoleEntries = roleEntries
       .filter((entry) => matchesRoleBase(entry, active))
+      .filter((entry) => !categoryIds.has(String(entry?.id || "").trim()))
       .map((entry) => ({
         entry,
         source: "role_base",
@@ -226,17 +297,18 @@
       }));
 
     const roleIds = new Set(scoredRoleEntries.map((row) => String(row.entry?.id || "").trim()).filter(Boolean));
+    const existingIds = new Set([...categoryIds, ...roleIds]);
 
     const scoredMapEntries = mapEntries
       .filter((entry) => matchesAccess(entry, peopleAccess))
-      .filter((entry) => !roleIds.has(String(entry?.id || "").trim()))
+      .filter((entry) => !existingIds.has(String(entry?.id || "").trim()))
       .map((entry) => ({
         entry,
         source: "access_map",
         score: scoreEntry(entry, active, identity, peopleAccess, leisureAccess, workAccess)
       }));
 
-    const scored = [...scoredRoleEntries, ...scoredMapEntries]
+    const scored = [...scoredCategoryEntries, ...scoredRoleEntries, ...scoredMapEntries]
       .sort((a, b) => Number(b.score || 0) - Number(a.score || 0))
       .slice(0, 8)
       .map(({ entry, source, score }) => shapeEntry(entry, score, source));
