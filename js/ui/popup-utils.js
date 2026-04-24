@@ -49,6 +49,24 @@ window.showPlaceCardRoundPopup = function ({
     };
   });
 
+  currentPopup.querySelectorAll("[data-story-quiz]").forEach(btn => {
+    btn.onclick = () => {
+      const storyId = String(btn.dataset.storyQuiz || "").trim();
+      const story = window.HGStories?.getById?.(storyId);
+      if (!story || typeof window.openStoryQuiz !== "function") return;
+      let entityLabel = story.title || "";
+      if (story.place_id) {
+        const pl = (Array.isArray(window.PLACES) ? window.PLACES : []).find(x => String(x.id).trim() === String(story.place_id).trim());
+        if (pl?.name) entityLabel = pl.name;
+      } else if (story.person_id) {
+        const pr = (Array.isArray(window.PEOPLE) ? window.PEOPLE : []).find(x => String(x.id).trim() === String(story.person_id).trim());
+        if (pr?.name) entityLabel = pr.name;
+      }
+      const peopleNames = (Array.isArray(window.PEOPLE) ? window.PEOPLE : []).map(p => p.name).filter(Boolean);
+      window.openStoryQuiz(story, entityLabel, peopleNames);
+    };
+  });
+
   currentPopup.querySelectorAll("[data-place]").forEach(btn => {
     btn.onclick = () => {
       const placeId = String(btn.dataset.place || "").trim();
@@ -1060,6 +1078,9 @@ function renderStoriesSection(stories) {
         <div class="pc-story-title">${wkEsc(String(st.title || ""))}</div>
         <div class="pc-story-text">${wkEsc(String(summary))}</div>
         ${sourceLinks ? `<div class="pc-story-sources">${sourceLinks}</div>` : ""}
+        <div class="pc-story-actions">
+          <button type="button" class="pc-story-quiz-btn" data-story-quiz="${wkEsc(String(st.id || ""))}">📖 Test meg på dette</button>
+        </div>
       </article>
     `;
   }).join("");
