@@ -5,118 +5,39 @@
   "mail_type": "job",
   "families": [
     {
-      "id": "mellomleder_rolleforstaelse",
+      "id": "mellomleder_fraksjonsvalg",
       "mails": [
         {
-          "id": "ml_core_001",
-          "mail_type": "job",
-          "mail_family": "mellomleder_rolleforstaelse",
-          "role_scope": "mellomleder",
-          "phase": "intro",
-          "priority": 80,
-          "subject": "Du er ikke lenger den som gjør jobben – du er den som får den til å fungere",
+          "id": "ml_faction_001",
+          "mail_type": "faction_choice",
+          "mail_family": "mellomleder_fraksjonsvalg",
+          "phase": "early",
+          "priority": 100,
+          "subject": "Du kan ikke stå nøytral lenger",
           "situation": [
-            "Du merker raskt at du ikke lenger måles på hva du selv produserer.",
-            "Det du nå måles på er om andre får det til – og om det henger sammen.",
-            "Rollen har flyttet seg fra kontroll til koordinering."
+            "Du merker at alle drar i deg.",
+            "Noen vil bygge.",
+            "Noen vil kontrollere.",
+            "Noen vil beskytte systemet.",
+            "Noen vil beskytte menneskene.",
+            "Du må velge hvem du faktisk står med."
           ],
           "choices": [
-            {
-              "id": "A",
-              "label": "Bruke tid på å forstå helheten før du handler",
-              "effect": 1
-            },
-            {
-              "id": "B",
-              "label": "Markere tydelig retning med en gang",
-              "effect": 0
-            }
-          ]
-        },
-        {
-          "id": "ml_core_002",
-          "mail_type": "job",
-          "mail_family": "mellomleder_rolleforstaelse",
-          "role_scope": "mellomleder",
-          "phase": "intro",
-          "priority": 81,
-          "subject": "Alle forventer at du skal se det ingen andre ser",
-          "situation": [
-            "Feilene er små hver for seg.",
-            "Men du ser at de henger sammen i et mønster som kan bli stort hvis ingen samler det opp.",
-            "Du må velge om du vil bruke tid på det usynlige eller bare ta det som brenner først."
-          ],
-          "choices": [
-            {
-              "id": "A",
-              "label": "Ta tak i mønsteret før det blir en synlig krise",
-              "effect": 1
-            },
-            {
-              "id": "B",
-              "label": "La de små tingene ligge og konsentrere deg om det mest akutte",
-              "effect": 0
-            }
+            { "id": "industri", "label": "Støtt bygging og produksjon" },
+            { "id": "kontroll", "label": "Støtt styring og kontroll" },
+            { "id": "institusjon", "label": "Bevar systemet" },
+            { "id": "menneske", "label": "Beskytt menneskene" }
           ]
         }
       ]
     },
     {
+      "id": "mellomleder_rolleforstaelse",
+      "mails": []
+    },
+    {
       "id": "mellomleder_planlegging",
-      "mails": [
-        {
-          "id": "ml_core_003",
-          "mail_type": "job",
-          "mail_family": "mellomleder_planlegging",
-          "role_scope": "mellomleder",
-          "phase": "early",
-          "priority": 82,
-          "subject": "Planen holder bare hvis folk overpresterer",
-          "situation": [
-            "Planen er god på papiret.",
-            "Men du ser at den krever mer kapasitet enn folk faktisk har.",
-            "Du må velge om du vil justere eller gamble."
-          ],
-          "choices": [
-            {
-              "id": "A",
-              "label": "Justere planen før det smeller",
-              "effect": 1
-            },
-            {
-              "id": "B",
-              "label": "La planen stå og håpe det går",
-              "effect": 0
-            }
-          ]
-        },
-        {
-          "id": "ml_core_004",
-          "mail_type": "job",
-          "mail_family": "mellomleder_planlegging",
-          "role_scope": "mellomleder",
-          "phase": "early",
-          "priority": 83,
-          "subject": "Tidslinjen ser pen ut fordi den skjuler friksjonen",
-          "situation": [
-            "Du får presentert en fremdriftsplan som ser ryddig og gjennomførbar ut.",
-            "Men du vet at planen ikke viser avbrudd, opplæring, sykdom eller alt som i praksis spiser tid.",
-            "Du må velge om du vil ta kampen om realismen nå eller leve på lånt håp litt til."
-          ],
-          "choices": [
-            {
-              "id": "A",
-              "label": "Gjøre planen mer realistisk selv om den ser svakere ut",
-              "effect": 1
-            },
-            {
-              "id": "B",
-              "label": "Beholde den stramme planen for å holde trykket oppe",
-              "effect": 0
-            }
-          ]
-        }
-      ]
+      "mails": []
     }
   ]
 }
