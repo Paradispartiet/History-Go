@@ -341,6 +341,36 @@
     return ranked[0] || null;
   }
 
+  function buildToneVariant(mail, toneContext) {
+    if (!toneContext) return null;
+
+    const name = normStr(toneContext.character_name || "Denne personen");
+    const tone = normStr(toneContext.tone || "spent");
+    const subject = normStr(mail?.subject);
+    const base = Array.isArray(mail?.situation) ? mail.situation.map(normStr).filter(Boolean) : [];
+
+    let intro = `${name} preger hvordan denne situasjonen lander.`;
+
+    if (tone === "støttende") {
+      intro = `${name} kjenner igjen dilemmaet og møter deg med en viss tillit.`;
+    } else if (tone === "kritisk") {
+      intro = `${name} leser situasjonen med skepsis og legger press på valget ditt.`;
+    } else if (tone === "ambivalent") {
+      intro = `${name} er ikke sikker på om du kommer til å bære dette riktig.`;
+    } else if (tone === "spent") {
+      intro = `${name} følger med, og det gjør situasjonen mer ladet.`;
+    }
+
+    return {
+      tone,
+      character_id: normStr(toneContext.character_id),
+      character_name: name,
+      subject,
+      situation: [intro, ...base],
+      intro
+    };
+  }
+
   function scoreNpcCharacterComponent(mail, worldState) {
     const chars = worldState?.npcCharacters || [];
     if (!Array.isArray(chars) || !chars.length) return 0;
@@ -420,6 +450,7 @@
     const familyId = normStr(mail?.mail_family || mail?.__family_id);
     const sourceType = "planned";
     const toneContext = resolveCharacterTone(mail, worldState);
+    const toneVariant = buildToneVariant(mail, toneContext);
 
     return {
       id: mailId,
@@ -432,6 +463,7 @@
       source_place_ref: normStr(mail?.source_place_ref),
       learning_focus: Array.isArray(mail?.learning_focus) ? mail.learning_focus.map(normStr).filter(Boolean) : [],
       tone_context: toneContext,
+      tone_variant: toneVariant,
       mail_type: normStr(mail?.mail_type || step?.type),
       mail_family: familyId,
       mail_tags: ["planned_mail", slugify(category), slugify(roleScope), slugify(normStr(step?.type)), slugify(familyId), slugify(normStr(step?.phase))].filter(Boolean),
@@ -458,6 +490,7 @@
         source_place_ref: normStr(mail?.source_place_ref),
         learning_focus: Array.isArray(mail?.learning_focus) ? mail.learning_focus.map(normStr).filter(Boolean) : [],
         tone_context: toneContext,
+        tone_variant: toneVariant,
         primary_conflict: normStr(mail?.primary_conflict),
         secondary_conflict: normStr(mail?.secondary_conflict),
         capital_bias: Array.isArray(mail?.capital_bias) ? mail.capital_bias : [],
