@@ -8,7 +8,7 @@
       "id": "sliten_nokkelperson",
       "mails": [
         {
-          "id": "ml_core_005",
+          "id": "ml_people_bjercke_001",
           "mail_type": "people",
           "mail_family": "sliten_nokkelperson",
           "phase": "mid",
@@ -27,20 +27,12 @@
             "Men systemet fungerer nettopp fordi denne personen bærer det."
           ],
           "choices": [
-            {
-              "id": "A",
-              "label": "Avlaste personen selv om det svekker kortsiktig drift",
-              "effect": 1
-            },
-            {
-              "id": "B",
-              "label": "La det fortsette siden det fungerer",
-              "effect": 0
-            }
+            { "id": "A", "label": "Avlaste personen selv om det svekker kortsiktig drift", "effect": 1 },
+            { "id": "B", "label": "La det fortsette siden det fungerer", "effect": 0 }
           ]
         },
         {
-          "id": "ml_core_006",
+          "id": "ml_people_eyde_001",
           "mail_type": "people",
           "mail_family": "sliten_nokkelperson",
           "phase": "mid",
@@ -59,16 +51,336 @@
             "Hvis du ikke griper inn, vet du at du ofrer én person for å holde kollektivet behagelig litt lenger."
           ],
           "choices": [
-            {
-              "id": "A",
-              "label": "Fordele byrden ut selv om det skaper uro og synlig svakhet i laget",
-              "effect": 1
-            },
-            {
-              "id": "B",
-              "label": "La den sterkeste fortsette å bære fordi alternativet er for dyrt akkurat nå",
-              "effect": 0
-            }
+            { "id": "A", "label": "Fordele byrden ut selv om det skaper uro og synlig svakhet i laget", "effect": 1 },
+            { "id": "B", "label": "La den sterkeste fortsette å bære fordi alternativet er for dyrt akkurat nå", "effect": 0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rapportering_og_styring",
+      "mails": [
+        {
+          "id": "ml_people_jahn_001",
+          "mail_type": "people",
+          "mail_family": "rapportering_og_styring",
+          "phase": "mid",
+          "people_ref": "gunnar_jahn_statistikk_og_styring",
+          "source_place_ref": "den_gamle_norges_bank",
+          "learning_focus": [
+            "rapportering",
+            "statistikk",
+            "styring",
+            "ansvar"
+          ],
+          "subject": "Tallene viser ikke det samme som folk forteller deg",
+          "situation": [
+            "Rapporten sier at avdelingen er innenfor rammen.",
+            "Samtidig forteller folk deg at trykket er høyere enn før.",
+            "Du må velge om du stoler mest på målingen eller på det målingen ikke klarer å vise."
+          ],
+          "choices": [
+            { "id": "A", "label": "Bruke tallene som utgangspunkt, men undersøke avviket i praksis", "effect": 1 },
+            { "id": "B", "label": "Legge rapporten til grunn og lukke saken", "effect": 0 }
+          ]
+        },
+        {
+          "id": "ml_people_jahn_002",
+          "mail_type": "people",
+          "mail_family": "rapportering_og_styring",
+          "phase": "advanced",
+          "people_ref": "gunnar_jahn_statistikk_og_styring",
+          "source_place_ref": "den_gamle_norges_bank",
+          "learning_focus": [
+            "rapportering",
+            "tillit",
+            "måling",
+            "institusjonell_tillit"
+          ],
+          "subject": "Du kan pynte på rapporten uten å lyve direkte",
+          "situation": [
+            "Du blir bedt om å presentere status så kort og ryddig som mulig.",
+            "Hvis du tar med alt du vet, ser det verre ut enn ledelsen ønsker.",
+            "Hvis du utelater noe, blir rapporten penere, men mindre sann."
+          ],
+          "choices": [
+            { "id": "A", "label": "Ta med det ubehagelige avviket selv om rapporten blir mindre pen", "effect": 1 },
+            { "id": "B", "label": "Presentere det som formelt sett kan forsvares", "effect": 0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "institusjonell_krise",
+      "mails": [
+        {
+          "id": "ml_people_rygg_001",
+          "mail_type": "people",
+          "mail_family": "institusjonell_krise",
+          "phase": "advanced",
+          "people_ref": "nicolai_rygg_sentralbank",
+          "source_place_ref": "den_gamle_norges_bank",
+          "learning_focus": [
+            "institusjon",
+            "kriseledelse",
+            "tillit",
+            "prinsipp"
+          ],
+          "subject": "Du må holde roen uten å skjule krisen",
+          "situation": [
+            "Situasjonen er mer alvorlig enn den ser ut utenfra.",
+            "Hvis du sier alt, kan tilliten falle raskt.",
+            "Hvis du sier for lite, bygger du ro på et svakt grunnlag."
+          ],
+          "choices": [
+            { "id": "A", "label": "Være tydelig om risikoen, men gi en plan for å håndtere den", "effect": 1 },
+            { "id": "B", "label": "Dempe alvoret for å hindre uro", "effect": 0 }
+          ]
+        },
+        {
+          "id": "ml_people_rygg_002",
+          "mail_type": "people",
+          "mail_family": "institusjonell_krise",
+          "phase": "mastery",
+          "people_ref": "nicolai_rygg_sentralbank",
+          "source_place_ref": "den_gamle_norges_bank",
+          "learning_focus": [
+            "kriseledelse",
+            "institusjonell_styring",
+            "legitimitet",
+            "ansvar"
+          ],
+          "subject": "Alle vil at du skal ta ansvar uten å få fullmakt",
+          "situation": [
+            "Du får ansvaret for å holde situasjonen samlet.",
+            "Men du får ikke reell myndighet til å endre det som skaper problemet.",
+            "Du må velge om du aksepterer et ansvar uten makt."
+          ],
+          "choices": [
+            { "id": "A", "label": "Kreve tydelig mandat før du tar ansvaret", "effect": 1 },
+            { "id": "B", "label": "Ta ansvaret likevel for å hindre at alt stopper", "effect": 0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "modernisering_og_marked",
+      "mails": [
+        {
+          "id": "ml_people_schweigaard_001",
+          "mail_type": "people",
+          "mail_family": "modernisering_og_marked",
+          "phase": "mid",
+          "people_ref": "anton_martin_schweigaard_okonomi",
+          "source_place_ref": "den_gamle_norges_bank",
+          "learning_focus": [
+            "modernisering",
+            "handel",
+            "infrastruktur",
+            "økonomisk_tenkning"
+          ],
+          "subject": "Effektiviseringen ser fornuftig ut, men flytter makt",
+          "situation": [
+            "Et nytt system vil gjøre arbeidet raskere og mer målbart.",
+            "Det vil også gjøre enkelte erfaringer og lokale løsninger mindre viktige.",
+            "Du må velge om moderniseringen skal innføres som standard eller forhandles med dem som rammes."
+          ],
+          "choices": [
+            { "id": "A", "label": "Innføre endringen gradvis og ta lokal kunnskap med inn", "effect": 1 },
+            { "id": "B", "label": "Rulle ut standarden raskt for å få effekt", "effect": 0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "industri_og_systembygging",
+      "mails": [
+        {
+          "id": "ml_people_eyde_002",
+          "mail_type": "people",
+          "mail_family": "industri_og_systembygging",
+          "phase": "advanced",
+          "people_ref": "sam_eyde_industriutbygger",
+          "source_place_ref": "akerselva_industriomrade",
+          "learning_focus": [
+            "industri",
+            "kapital",
+            "organisering",
+            "systembygging"
+          ],
+          "subject": "Visjonen er større enn kapasiteten",
+          "situation": [
+            "Prosjektet kan bli viktig hvis det lykkes.",
+            "Men det krever mer kapital, mer koordinering og mer utholdenhet enn organisasjonen har akkurat nå.",
+            "Du må velge om du skal skalere ned eller presse systemet opp til visjonen."
+          ],
+          "choices": [
+            { "id": "A", "label": "Bygge et mindre system som faktisk kan bære seg selv", "effect": 1 },
+            { "id": "B", "label": "Holde på den store visjonen og presse alle hardere", "effect": 0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "teknologi_og_risiko",
+      "mails": [
+        {
+          "id": "ml_people_birkeland_001",
+          "mail_type": "people",
+          "mail_family": "teknologi_og_risiko",
+          "phase": "mid",
+          "people_ref": "kristian_birkeland_teknologi_og_industri",
+          "source_place_ref": "akerselva_industriomrade",
+          "learning_focus": [
+            "innovasjon",
+            "teknologi",
+            "risiko",
+            "oversettelse"
+          ],
+          "subject": "Oppfinnelsen virker, men driften skjønner den ikke",
+          "situation": [
+            "En ny teknisk løsning kan forbedre arbeidet betydelig.",
+            "Men folkene som skal bruke den, forstår ikke hvorfor den er trygg eller nødvendig.",
+            "Du må velge om innovasjonen skal presses inn eller oversettes langsomt."
+          ],
+          "choices": [
+            { "id": "A", "label": "Bruke tid på å gjøre teknologien forståelig før den innføres", "effect": 1 },
+            { "id": "B", "label": "Innføre løsningen raskt fordi den teknisk sett fungerer", "effect": 0 }
+          ]
+        },
+        {
+          "id": "ml_people_birkeland_002",
+          "mail_type": "people",
+          "mail_family": "teknologi_og_risiko",
+          "phase": "advanced",
+          "people_ref": "kristian_birkeland_teknologi_og_industri",
+          "source_place_ref": "akerselva_industriomrade",
+          "learning_focus": [
+            "vitenskap_i_industri",
+            "innovasjon",
+            "risiko",
+            "ansvar"
+          ],
+          "subject": "Alle elsker idéen før den møter drift",
+          "situation": [
+            "På presentasjonen virker løsningen elegant.",
+            "I hverdagen vil den skape feil, opplæringsbehov og ny avhengighet.",
+            "Du må velge om du vil være den som demper entusiasmen."
+          ],
+          "choices": [
+            { "id": "A", "label": "Påpeke driftsrisikoen før beslutningen tas", "effect": 1 },
+            { "id": "B", "label": "La entusiasmen drive prosjektet videre", "effect": 0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "handel_og_lokal_produksjon",
+      "mails": [
+        {
+          "id": "ml_people_christen_smith_001",
+          "mail_type": "people",
+          "mail_family": "handel_og_lokal_produksjon",
+          "phase": "mid",
+          "people_ref": "christen_smith_schous_bryggeri",
+          "source_place_ref": "schous_bryggeri",
+          "learning_focus": [
+            "handel",
+            "produksjon",
+            "lokal_industri",
+            "arbeidsdeling"
+          ],
+          "subject": "Det lokale leddet taper på den ryddige avtalen",
+          "situation": [
+            "En ny avtale gjør innkjøp og leveranse enklere.",
+            "Men den presser ut en lokal leverandør som kjenner driften bedre enn systemet gjør.",
+            "Du må velge om effektivitet skal veie tyngre enn lokal kunnskap."
+          ],
+          "choices": [
+            { "id": "A", "label": "Beholde lokal kunnskap selv om avtalen blir mindre strømlinjeformet", "effect": 1 },
+            { "id": "B", "label": "Velge den ryddigste avtalen og akseptere tapet", "effect": 0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bedrift_og_symbolsk_kapital",
+      "mails": [
+        {
+          "id": "ml_people_ringnes_001",
+          "mail_type": "people",
+          "mail_family": "bedrift_og_symbolsk_kapital",
+          "phase": "mid",
+          "people_ref": "ellef_ringnes_bryggeri_og_ledelse",
+          "source_place_ref": "ringnes_bryggeri",
+          "learning_focus": [
+            "bedriftsledelse",
+            "symbolsk_kapital",
+            "organisasjon",
+            "byutvikling"
+          ],
+          "subject": "Bedriften vil bli sett som mer enn en arbeidsplass",
+          "situation": [
+            "Ledelsen vil at avdelingen skal bidra til et synlig samfunnsprosjekt.",
+            "Det kan gi status og goodwill, men stjeler tid fra pressede folk.",
+            "Du må velge om symbolsk verdi er verdt den praktiske kostnaden."
+          ],
+          "choices": [
+            { "id": "A", "label": "Delta bare hvis det ikke skjuler belastningen internt", "effect": 1 },
+            { "id": "B", "label": "Prioritere synligheten fordi den styrker bedriftens posisjon", "effect": 0 }
+          ]
+        },
+        {
+          "id": "ml_people_ringnes_002",
+          "mail_type": "people",
+          "mail_family": "bedrift_og_symbolsk_kapital",
+          "phase": "advanced",
+          "people_ref": "ellef_ringnes_bryggeri_og_ledelse",
+          "source_place_ref": "ringnes_bryggeri",
+          "learning_focus": [
+            "ledelse",
+            "symbolsk_kapital",
+            "tillit",
+            "offentlighet"
+          ],
+          "subject": "Omdømmet er godt, men innsiden knaker",
+          "situation": [
+            "Utenfra ser avdelingen sterk og velorganisert ut.",
+            "Internt vet du at flere små problemer er i ferd med å bli strukturelle.",
+            "Du må velge om du vil beskytte omdømmet eller åpne for ubehagelig vedlikehold."
+          ],
+          "choices": [
+            { "id": "A", "label": "Ta tak i innsiden før fasaden bestemmer sannheten", "effect": 1 },
+            { "id": "B", "label": "Beskytte omdømmet og håndtere problemene stille", "effect": 0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "administrasjon_og_hverdagsmakt",
+      "mails": [
+        {
+          "id": "ml_people_christian_schweigaard_001",
+          "mail_type": "people",
+          "mail_family": "administrasjon_og_hverdagsmakt",
+          "phase": "mid",
+          "people_ref": "christian_schweigaard_post_og_administrasjon",
+          "source_place_ref": "oslo_posthus",
+          "learning_focus": [
+            "administrasjon",
+            "styring",
+            "rutiner",
+            "ansvarslinjer"
+          ],
+          "subject": "En liten rutineendring flytter ansvaret nedover",
+          "situation": [
+            "Endringen blir presentert som administrativ forenkling.",
+            "I praksis betyr den at flere feil vil havne hos folk med mindre myndighet.",
+            "Du må velge om du vil godta en ryddigere rutine som flytter risikoen."
+          ],
+          "choices": [
+            { "id": "A", "label": "Stanse rutinen til ansvar og myndighet henger sammen", "effect": 1 },
+            { "id": "B", "label": "Innføre rutinen fordi den gjør systemet enklere å styre", "effect": 0 }
           ]
         }
       ]
