@@ -673,36 +673,114 @@
    STORIES
    ========================= */
 
+#placeCard #pcStoriesList{
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
 #placeCard #pcStoriesList .pc-story{
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  padding: 10px 12px;
-  border-radius: 12px;
-  background: rgba(255,255,255,0.06);
+  gap: 10px;
+  padding: 18px 18px 16px;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.04);
   border: 1px solid rgba(255,255,255,0.08);
 }
 
-#placeCard #pcStoriesList .pc-story-top{
+#placeCard #pcStoriesList .pc-story-header{
   display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  font-size: 12px;
-  opacity: .7;
+  align-items: baseline;
+  gap: 12px;
+}
+
+#placeCard #pcStoriesList .pc-story-year-badge{
+  font-size: 13px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.55);
+  font-variant-numeric: tabular-nums;
+  flex: 0 0 auto;
 }
 
 #placeCard #pcStoriesList .pc-story-title{
-  font-size: 15px;
+  margin: 0;
+  font-size: 18px;
   font-weight: 700;
+  line-height: 1.25;
   color: #fff;
-  line-height: 1.2;
+  letter-spacing: -0.01em;
 }
 
-#placeCard #pcStoriesList .pc-story-text{
+#placeCard #pcStoriesList .pc-story-lede{
+  margin: 0;
   font-size: 14px;
-  line-height: 1.35;
+  line-height: 1.45;
+  font-style: italic;
+  color: rgba(255,255,255,0.72);
+  padding-left: 12px;
+  border-left: 2px solid rgba(255,255,255,0.18);
+}
+
+#placeCard #pcStoriesList .pc-story-body{
+  font-size: 15px;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.92);
+  white-space: pre-wrap;
+}
+
+#placeCard #pcStoriesList .pc-story-related{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 2px;
+}
+
+#placeCard #pcStoriesList .pc-story-chip{
+  background: rgba(255,255,255,0.08);
   color: #fff;
-  opacity: .92;
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 999px;
+  padding: 4px 11px;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 120ms ease, border-color 120ms ease;
+}
+
+#placeCard #pcStoriesList .pc-story-chip:hover{
+  background: rgba(255,255,255,0.16);
+  border-color: rgba(255,255,255,0.22);
+}
+
+#placeCard #pcStoriesList .pc-story-tags{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+}
+
+#placeCard #pcStoriesList .pc-story-tag{
+  font-size: 11px;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 0.02em;
+}
+
+#placeCard #pcStoriesList .pc-story-sources{
+  font-size: 11px;
+  color: rgba(255,255,255,0.55);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+  margin-top: 4px;
+  padding-top: 8px;
+  border-top: 1px dashed rgba(255,255,255,0.1);
+}
+
+#placeCard #pcStoriesList .pc-story-source{
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
 /* =========================

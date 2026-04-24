@@ -413,18 +413,91 @@ if (storiesEl) {
     console.warn("[stories]", err);
   }
 
+  const esc = (s) => String(s ?? "").replace(/[&<>"']/g, c => ({
+    "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"
+  }[c]));
+
+  const PEOPLE_LIST = Array.isArray(window.PEOPLE) ? window.PEOPLE : [];
+  const PLACES_LIST = Array.isArray(window.PLACES) ? window.PLACES : [];
+
+  const peopleChip = (pid) => {
+    const p = PEOPLE_LIST.find(x => String(x?.id || "").trim() === String(pid).trim());
+    const label = p?.name || pid;
+    return `<button type="button" class="pc-story-chip" data-person="${esc(String(pid))}">${esc(label)}</button>`;
+  };
+  const placeChip = (plid) => {
+    const p = PLACES_LIST.find(x => String(x?.id || "").trim() === String(plid).trim());
+    const label = p?.name || plid;
+    return `<button type="button" class="pc-story-chip" data-place="${esc(String(plid))}">${esc(label)}</button>`;
+  };
+
   storiesEl.innerHTML = stories.length
-    ? stories.map(st => `
-        <article class="pc-story" data-story="${st.id}">
-          <div class="pc-story-top">
-            <span class="pc-story-type">${st.type || "story"}</span>
-            ${st.year ? `<span class="pc-story-year">${st.year}</span>` : ""}
-          </div>
-          <div class="pc-story-title">${st.title || ""}</div>
-          <div class="pc-story-text">${st.summary || st.story || ""}</div>
-        </article>
-      `).join("")
+    ? stories.map(st => {
+        const fullStory = String(st.story || "").trim();
+        const summary = String(st.summary || "").trim();
+        const hasBoth = fullStory && summary && summary !== fullStory;
+        const bodyText = fullStory || summary;
+
+        const year = st.year ? `<div class="pc-story-year-badge">${esc(String(st.year))}</div>` : "";
+
+        const related = [];
+        (Array.isArray(st.related_people) ? st.related_people : []).forEach(pid => {
+          if (pid) related.push(peopleChip(pid));
+        });
+        (Array.isArray(st.related_places) ? st.related_places : []).forEach(plid => {
+          if (plid) related.push(placeChip(plid));
+        });
+
+        const tags = Array.isArray(st.tags) ? st.tags.filter(Boolean) : [];
+        const tagsHtml = tags.length
+          ? `<div class="pc-story-tags">${tags.map(t => `<span class="pc-story-tag">#${esc(String(t))}</span>`).join("")}</div>`
+          : "";
+
+        const sources = Array.isArray(st.sources) ? st.sources : [];
+        const sourceLinks = sources.slice(0, 3).map(src => {
+          const url = src?.url || "";
+          const title = src?.title || src?.author || url;
+          return url
+            ? `<a href="${esc(url)}" target="_blank" rel="noopener" class="pc-story-source">${esc(title)}</a>`
+            : `<span class="pc-story-source">${esc(title)}</span>`;
+        }).join(" · ");
+
+        return `
+          <article class="pc-story" data-story-id="${esc(String(st.id || ""))}">
+            <header class="pc-story-header">
+              ${year}
+              <h4 class="pc-story-title">${esc(String(st.title || ""))}</h4>
+            </header>
+            ${hasBoth ? `<p class="pc-story-lede">${esc(summary)}</p>` : ""}
+            <div class="pc-story-body">${esc(bodyText)}</div>
+            ${related.length ? `<div class="pc-story-related">${related.join("")}</div>` : ""}
+            ${tagsHtml}
+            ${sourceLinks ? `<footer class="pc-story-sources">${sourceLinks}</footer>` : ""}
+          </article>
+        `;
+      }).join("")
     : `<div class="pc-empty">Ingen historier ennå</div>`;
+
+  // Klikk på chips → åpne person/sted-popup (event-delegation).
+  storiesEl.addEventListener("click", (e) => {
+    const chip = e.target.closest(".pc-story-chip");
+    if (!chip) return;
+    e.preventDefault();
+    e.stopPropagation();
+    const pid = chip.dataset.person?.trim();
+    const plid = chip.dataset.place?.trim();
+    if (pid) {
+      const pr = PEOPLE_LIST.find(x => String(x.id).trim() === pid);
+      if (pr && typeof window.showPersonPopup === "function") window.showPersonPopup(pr);
+    } else if (plid) {
+      const pl = PLACES_LIST.find(x => String(x.id).trim() === plid);
+      if (pl) {
+        if (typeof window.flyToPlace === "function") window.flyToPlace(pl);
+        else if (typeof window.showPlacePopup === "function") window.showPlacePopup(pl);
+        else if (typeof window.openPlaceCard === "function") window.openPlaceCard(pl);
+      }
+    }
+  }, { once: false });
 
   setRoundLabel(storiesIcon, "📖", stories.length);
 }
