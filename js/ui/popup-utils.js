@@ -490,6 +490,18 @@ function makePopup(html, extraClass = "", onClose = null) {
     };
   });
 
+  // klikkbare steder (chips i stories-seksjon m.m.)
+  el.querySelectorAll("[data-place]").forEach(btn => {
+    btn.onclick = () => {
+      const plid = String(btn.dataset.place || "").trim();
+      const pl = (Array.isArray(window.PLACES) ? window.PLACES : []).find(x => String(x.id).trim() === plid);
+      if (pl) {
+        closePopup();
+        window.showPlacePopup(pl);
+      }
+    };
+  });
+
   // klikkbare Wonderkammer-entries
 el.querySelectorAll("[data-wk]").forEach(btn => {
   btn.onclick = () => {
@@ -1033,15 +1045,50 @@ function renderEventsSection(events) {
 }
 
 // ============================================================
-// STORIES SECTION (felles for person- og steds-popup)
+// STORIES SECTION — korte historier knyttet til steder og folk.
+// Designintensjon: la historiene leses. Ingen quiz, ingen gaming.
+// Full prosa, år i fokus, og klikkbare relasjonschips til andre
+// popups. Små kule historier, rett på.
 // ============================================================
 function renderStoriesSection(stories) {
   if (!Array.isArray(stories) || !stories.length) return "";
 
+  const PEOPLE = Array.isArray(window.PEOPLE) ? window.PEOPLE : [];
+  const PLACES = Array.isArray(window.PLACES) ? window.PLACES : [];
+
+  function peopleChip(pid) {
+    const p = PEOPLE.find(x => String(x?.id || "").trim() === String(pid).trim());
+    const label = p?.name || pid;
+    return `<button type="button" class="pc-story-chip" data-person="${wkEsc(String(pid))}">${wkEsc(label)}</button>`;
+  }
+
+  function placeChip(plid) {
+    const p = PLACES.find(x => String(x?.id || "").trim() === String(plid).trim());
+    const label = p?.name || plid;
+    return `<button type="button" class="pc-story-chip" data-place="${wkEsc(String(plid))}">${wkEsc(label)}</button>`;
+  }
+
   const items = stories.map(st => {
-    const type = st.type || "story";
-    const year = st.year ? `<span class="pc-story-year">${wkEsc(String(st.year))}</span>` : "";
-    const summary = st.summary || st.story || "";
+    // Foretrekk full story-prosa. Bruk summary som intro-blurb kun når
+    // den skiller seg fra story (ellers vil vi ikke dobbel-vise).
+    const fullStory = String(st.story || "").trim();
+    const summary = String(st.summary || "").trim();
+    const hasBoth = fullStory && summary && summary !== fullStory;
+    const bodyText = fullStory || summary;
+
+    const year = st.year ? `<div class="pc-story-year-badge">${wkEsc(String(st.year))}</div>` : "";
+
+    const related = [];
+    const relPeople = Array.isArray(st.related_people) ? st.related_people : [];
+    const relPlaces = Array.isArray(st.related_places) ? st.related_places : [];
+    relPeople.forEach(pid => { if (pid) related.push(peopleChip(pid)); });
+    relPlaces.forEach(plid => { if (plid) related.push(placeChip(plid)); });
+
+    const tags = Array.isArray(st.tags) ? st.tags.filter(Boolean) : [];
+    const tagsHtml = tags.length
+      ? `<div class="pc-story-tags">${tags.map(t => `<span class="pc-story-tag">#${wkEsc(String(t))}</span>`).join("")}</div>`
+      : "";
+
     const sources = Array.isArray(st.sources) ? st.sources : [];
     const sourceLinks = sources.slice(0, 3).map(src => {
       const url = src?.url || "";
@@ -1053,13 +1100,15 @@ function renderStoriesSection(stories) {
 
     return `
       <article class="pc-story" data-story-id="${wkEsc(String(st.id || ""))}">
-        <div class="pc-story-top">
-          <span class="pc-story-type">${wkEsc(String(type))}</span>
+        <header class="pc-story-header">
           ${year}
-        </div>
-        <div class="pc-story-title">${wkEsc(String(st.title || ""))}</div>
-        <div class="pc-story-text">${wkEsc(String(summary))}</div>
-        ${sourceLinks ? `<div class="pc-story-sources">${sourceLinks}</div>` : ""}
+          <h4 class="pc-story-title">${wkEsc(String(st.title || ""))}</h4>
+        </header>
+        ${hasBoth ? `<p class="pc-story-lede">${wkEsc(summary)}</p>` : ""}
+        <div class="pc-story-body">${wkEsc(bodyText)}</div>
+        ${related.length ? `<div class="pc-story-related">${related.join("")}</div>` : ""}
+        ${tagsHtml}
+        ${sourceLinks ? `<footer class="pc-story-sources">${sourceLinks}</footer>` : ""}
       </article>
     `;
   }).join("");

@@ -717,57 +717,108 @@
 .hg-section-stories .pc-stories-list{
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 16px;
 }
 
+/* Hvert "story"-kort skal føles som en artikkel, ikke et datakort */
 .hg-section-stories .pc-story{
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  padding: 12px 14px;
-  border-radius: 14px;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.10);
-}
-
-.hg-section-stories .pc-story-top{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   gap: 10px;
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  opacity: 0.7;
+  padding: 18px 18px 16px;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
 }
 
-.hg-section-stories .pc-story-type{
+.hg-section-stories .pc-story-header{
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.hg-section-stories .pc-story-year-badge{
+  font-size: 13px;
   font-weight: 700;
-}
-
-.hg-section-stories .pc-story-year{
+  color: rgba(255,255,255,0.55);
   font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+  flex: 0 0 auto;
 }
 
 .hg-section-stories .pc-story-title{
-  font-size: 15px;
+  margin: 0;
+  font-size: 18px;
   font-weight: 700;
   line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: #fff;
 }
 
-.hg-section-stories .pc-story-text{
-  font-size: 13px;
+.hg-section-stories .pc-story-lede{
+  margin: 0;
+  font-size: 14px;
   line-height: 1.45;
-  opacity: 0.9;
+  font-style: italic;
+  color: rgba(255,255,255,0.72);
+  padding-left: 12px;
+  border-left: 2px solid rgba(255,255,255,0.18);
+}
+
+/* Hoveddelen: la teksten ha plass til å puste */
+.hg-section-stories .pc-story-body{
+  font-size: 15px;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.92);
+  white-space: pre-wrap;
+}
+
+.hg-section-stories .pc-story-related{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 2px;
+}
+
+.hg-section-stories .pc-story-chip{
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 999px;
+  padding: 4px 11px;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 120ms ease, border-color 120ms ease;
+}
+
+.hg-section-stories .pc-story-chip:hover{
+  background: rgba(255,255,255,0.16);
+  border-color: rgba(255,255,255,0.22);
+}
+
+.hg-section-stories .pc-story-tags{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+}
+
+.hg-section-stories .pc-story-tag{
+  font-size: 11px;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 0.02em;
 }
 
 .hg-section-stories .pc-story-sources{
   font-size: 11px;
-  opacity: 0.6;
+  color: rgba(255,255,255,0.55);
   display: flex;
   flex-wrap: wrap;
   gap: 4px 8px;
-  margin-top: 2px;
+  margin-top: 4px;
+  padding-top: 8px;
+  border-top: 1px dashed rgba(255,255,255,0.1);
 }
 
 .hg-section-stories .pc-story-source{
