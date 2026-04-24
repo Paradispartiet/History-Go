@@ -353,23 +353,38 @@
     if (!Array.isArray(chars) || !chars.length) return 0;
 
     const family = normStr(mail?.mail_family || mail?.__family_id);
+    const type = normStr(mail?.mail_type);
+    const peopleRef = normStr(mail?.people_ref);
     let score = 0;
 
     chars.forEach((char) => {
+      const charId = normStr(char?.id);
       const trustScore = Number(char?.trust_score || 0);
+      const appearances = Number(char?.appearances || 0);
       const status = normStr(char?.status);
       const focusFamilies = Array.isArray(char?.focus_families) ? char.focus_families.map(normStr) : [];
+      const established = appearances >= 2 || Math.abs(trustScore) >= 3;
+
+      if (!established) return;
+
+      if (peopleRef && peopleRef === charId) {
+        score += 24 + Math.min(10, appearances * 2) + Math.min(10, Math.abs(trustScore) * 2);
+      }
 
       if (focusFamilies.includes(family)) {
-        score += 8 + Math.min(6, Math.abs(trustScore));
+        score += 12 + Math.min(8, Math.abs(trustScore)) + Math.min(6, appearances);
+      }
+
+      if (type === "people" && focusFamilies.includes(family)) {
+        score += 6;
       }
 
       if (status === "motspiller" && family === "krysspress") {
-        score += 4;
+        score += 8;
       }
 
-      if (status === "alliert" && family === "mellomleder_identitet") {
-        score += 3;
+      if (status === "alliert" && (family === "sliten_nokkelperson" || family === "mellomleder_identitet")) {
+        score += 8;
       }
     });
 
@@ -447,6 +462,9 @@
         Array.isArray(mail?.situation) && mail.situation.length
           ? mail.situation.map(normStr).filter(Boolean)
           : [normStr(mail?.summary)].filter(Boolean),
+      people_ref: normStr(mail?.people_ref),
+      source_place_ref: normStr(mail?.source_place_ref),
+      learning_focus: Array.isArray(mail?.learning_focus) ? mail.learning_focus.map(normStr).filter(Boolean) : [],
       mail_type: normStr(mail?.mail_type || step?.type),
       mail_family: familyId,
       mail_tags: [
@@ -478,6 +496,9 @@
         progress_tags: Array.isArray(mail?.progress_tags)
           ? mail.progress_tags.map(normStr).filter(Boolean)
           : [],
+        people_ref: normStr(mail?.people_ref),
+        source_place_ref: normStr(mail?.source_place_ref),
+        learning_focus: Array.isArray(mail?.learning_focus) ? mail.learning_focus.map(normStr).filter(Boolean) : [],
         primary_conflict: normStr(mail?.primary_conflict),
         secondary_conflict: normStr(mail?.secondary_conflict),
         capital_bias: Array.isArray(mail?.capital_bias) ? mail.capital_bias : [],
