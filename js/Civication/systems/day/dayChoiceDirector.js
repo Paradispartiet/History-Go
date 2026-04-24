@@ -37,6 +37,22 @@
     return results;
   }
 
+  function factionChoiceHandler(ctx) {
+    const mailType = normStr(ctx?.eventObj?.mail_type);
+    if (mailType !== "faction_choice") return null;
+
+    const choiceId = normStr(ctx?.choiceId);
+    const state = window.CivicationState?.getState?.() || {};
+
+    state.activeFaction = choiceId;
+
+    if (window.CivicationState?.setState) {
+      window.CivicationState.setState(state);
+    }
+
+    return { activeFaction: choiceId };
+  }
+
   function patchAnswer() {
     const proto = window.CivicationEventEngine?.prototype;
     if (!proto || proto.__dayChoiceDirectorPatched || typeof proto.answer !== "function") return;
@@ -81,6 +97,8 @@
 
       return result;
     };
+
+    registerHandler("faction_choice", factionChoiceHandler, 10);
   }
 
   window.CivicationChoiceDirector = {
