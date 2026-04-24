@@ -69,3 +69,15 @@ function saveMerits() {
 }
 
 window.saveMerits = saveMerits;
+window.saveVisitedFromQuiz = saveVisitedFromQuiz;
+
+// Eksponert for QuizEngine-rewards: marker person som samlet + persistér.
+window.savePeopleCollected = function (personId) {
+  const id = String(personId ?? "").trim();
+  if (!id) return;
+  if (typeof peopleCollected !== "object" || peopleCollected == null) return;
+  if (peopleCollected[id]) return;
+  peopleCollected[id] = true;
+  savePeople();
+  window.dispatchEvent(new Event("updateProfile"));
+};

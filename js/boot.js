@@ -268,12 +268,39 @@ async function boot() {
   }
 
   if (window.QuizEngine) {
+    // Wrappere late-binder til window.* så funksjoner definert senere
+    // (showRewardPerson, saveVisitedFromQuiz osv.) alltid plukkes opp
+    // ved kall-tid, ikke ved init-tid.
+    const bind = (fn) => (typeof fn === "function") ? fn : undefined;
+    const lazy = (name) => (...args) => {
+      const f = window[name];
+      if (typeof f === "function") return f(...args);
+    };
+
     QuizEngine.init({
       getPersonById: (id) => (window.PEOPLE || []).find((p) => p.id === id),
       getPlaceById: (id) => (window.PLACES || []).find((p) => p.id === id),
       getVisited: () => (window.visited || {}),
       isTestMode: () => !!window.OPEN_MODE,
-      showToast
+      showToast,
+
+      // --- Reward-modaler (definert i popup-utils.js) ---
+      showRewardPerson: lazy("showRewardPerson"),
+      showRewardPlace: lazy("showRewardPlace"),
+
+      // --- Popups (for "åpne etter unlock"-scenarier) ---
+      showPersonPopup: lazy("showPersonPopup"),
+      showPlacePopup: lazy("showPlacePopup"),
+
+      // --- Persistens etter unlock ---
+      savePeopleCollected: lazy("savePeopleCollected"),
+      saveVisitedFromQuiz: lazy("saveVisitedFromQuiz"),
+
+      // --- Progresjon (merits + jobb-tilbud) ---
+      addCompletedQuizAndMaybePoint: lazy("addCompletedQuizAndMaybePoint"),
+
+      // --- Innsikt (HGInsights) — blir konsumert i profil-chips ---
+      logCorrectQuizAnswer: bind(window.HGInsights?.logCorrectQuizAnswer?.bind(window.HGInsights)),
     });
   }
 
