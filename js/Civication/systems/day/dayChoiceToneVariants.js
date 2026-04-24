@@ -5,6 +5,35 @@
     return String(v || "").trim();
   }
 
+  function buildCharacterSpeech(choice, tone) {
+    const characterName = normStr(tone?.character_name || tone?.characterName || "Denne personen");
+    const toneType = normStr(tone?.tone || "spent");
+    const effect = Number(choice?.effect || 0);
+    const constructive = effect >= 1;
+
+    if (toneType === "støttende") {
+      return constructive
+        ? `${characterName}: Dette er det ansvarlige valget.`
+        : `${characterName}: Dette kan holde systemet gående, men det koster folk noe.`;
+    }
+
+    if (toneType === "kritisk") {
+      return constructive
+        ? `${characterName}: Det høres riktig ut. Nå må du vise at det holder.`
+        : `${characterName}: Dette bekrefter akkurat det jeg var redd for.`;
+    }
+
+    if (toneType === "ambivalent") {
+      return constructive
+        ? `${characterName}: Kanskje dette kan gå, hvis du følger det opp.`
+        : `${characterName}: Jeg er ikke sikker på om du ser hva dette gjør med resten.`;
+    }
+
+    return constructive
+      ? `${characterName}: Du må stå i dette hvis du først velger det.`
+      : `${characterName}: Dette valget kommer ikke til å forsvinne av seg selv.`;
+  }
+
   function buildChoiceToneVariant(choice, mail) {
     const tone = mail?.tone_context || mail?.tone_variant || null;
     if (!tone) return null;
@@ -48,12 +77,15 @@
         : `${label} — ${characterName} merker at dette kan skape avstand`;
     }
 
+    const speechLabel = buildCharacterSpeech(choice, tone);
+
     return {
       character_id: normStr(tone.character_id),
       character_name: characterName,
       tone: toneType,
       stance,
       label: variantLabel,
+      speech_label: speechLabel,
       original_label: label
     };
   }
@@ -69,8 +101,11 @@
         if (!choiceTone) return choice;
         return {
           ...choice,
+          original_label: normStr(choice?.original_label || choice?.label),
+          label: choiceTone.speech_label,
           choice_tone_context: choiceTone,
-          tone_variant_label: choiceTone.label
+          tone_variant_label: choiceTone.label,
+          character_speech_label: choiceTone.speech_label
         };
       })
     };
@@ -100,6 +135,7 @@
   window.CivicationChoiceToneVariants = {
     applyChoiceToneVariants,
     buildChoiceToneVariant,
+    buildCharacterSpeech,
     patchMailPlanBridge
   };
 })();
