@@ -29,6 +29,44 @@
     return people.find((person) => normStr(person?.id) === peopleRef) || null;
   }
 
+  function findEstablishedCharacterPerson(eventObj) {
+    const family = normStr(eventObj?.mail_family);
+    const people = getPeople();
+    const chars = getActiveCharacters();
+    if (!people.length || !chars.length) return null;
+
+    const ranked = chars
+      .map((char) => {
+        const appearances = Number(char?.appearances || 0);
+        const trustScore = Number(char?.trust_score || 0);
+        const focusFamilies = listify(char?.focus_families);
+        const established = appearances >= 2 || Math.abs(trustScore) >= 3;
+        if (!established) return null;
+
+        let score = 0;
+        if (focusFamilies.includes(family)) score += 20;
+        score += Math.min(10, appearances * 2);
+        score += Math.min(10, Math.abs(trustScore) * 2);
+
+        const status = normStr(char?.status);
+        if (status === "alliert" && family === "sliten_nokkelperson") score += 4;
+        if (status === "motspiller" && family === "krysspress") score += 4;
+
+        return {
+          char,
+          score
+        };
+      })
+      .filter(Boolean)
+      .filter((row) => row.score >= 8)
+      .sort((a, b) => Number(b.score || 0) - Number(a.score || 0));
+
+    const winner = ranked[0]?.char || null;
+    if (!winner) return null;
+
+    return people.find((person) => normStr(person?.id) === normStr(winner.id)) || null;
+  }
+
   function scoreByMailFamily(person, family) {
     let score = 0;
 
@@ -37,7 +75,6 @@
     const events = listify(person?.event_affinity);
     const badges = listify(person?.badge_scope);
     const style = normStr(person?.social_style);
-    const name = normStr(person?.name).toLowerCase();
 
     if (family === "sliten_nokkelperson") {
       if (knowledge.includes("baereevne") || knowledge.includes("bæreevne")) score += 10;
@@ -131,6 +168,9 @@
   }
 
   function choosePerson(eventObj) {
+    const established = findEstablishedCharacterPerson(eventObj);
+    if (established) return established;
+
     const explicit = findExplicitPerson(eventObj);
     if (explicit) return explicit;
 
