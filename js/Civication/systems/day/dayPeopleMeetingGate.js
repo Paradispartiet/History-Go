@@ -33,7 +33,7 @@
     const trust = Number(character.trust_score || 0);
 
     if (meeting === 2) return appearances >= 1;
-    if (meeting >= 3) return appearances >= 2 && Math.abs(trust) >= 1;
+    if (meeting >= 3) return appearances >= 2 && (trust >= 2 || trust <= -2);
 
     return true;
   }
