@@ -3,7 +3,7 @@
    Oppdatert: 2026-04-22
    ============================================================ */
 
-const SW_VERSION = "hg-sw-2026-04-22-v1.18.3";
+const SW_VERSION = "hg-sw-2026-04-22-v1.20.0";
 
 const CACHE_STATIC  = `hg-static-${SW_VERSION}`;
 const CACHE_RUNTIME = `hg-runtime-${SW_VERSION}`;
@@ -18,6 +18,7 @@ const PRECACHE_URLS = [
   // CSS
   "css/base.css",
   "css/civi.css",
+  "css/civi-refresh.css",
   "css/components.css",
   "css/effects.css",
   "css/footer.css",
