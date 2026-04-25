@@ -28,6 +28,7 @@
       },
       mellomleder: {
         job: "data/Civication/mailFamilies/naeringsliv/job/mellomleder_job.json",
+        faction_choice: "data/Civication/mailFamilies/naeringsliv/faction_choice/mellomleder_faction_choice.json",
         story: "data/Civication/mailFamilies/naeringsliv/story/mellomleder_story.json",
         event: "data/Civication/mailFamilies/naeringsliv/event/mellomleder_event.json",
         people: "data/Civication/mailFamilies/naeringsliv/people/mellomleder_people.json",
