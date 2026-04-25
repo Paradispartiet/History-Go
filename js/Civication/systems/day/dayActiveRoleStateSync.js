@@ -44,6 +44,36 @@
     };
   }
 
+  function syncMailPlanProgressFromMailSystem() {
+    const stateApi = window.CivicationState;
+    if (!stateApi || typeof stateApi.getState !== "function" || typeof stateApi.setState !== "function") return null;
+
+    const state = stateApi.getState() || {};
+    const mailSystem = defaultMailSystem(state.mail_system);
+    const planId = normStr(mailSystem.role_plan_id);
+    if (!planId) return null;
+
+    const progress = state.mail_plan_progress && typeof state.mail_plan_progress === "object"
+      ? state.mail_plan_progress
+      : {};
+
+    const next = {
+      role_plan_id: planId,
+      step_index: Math.max(0, Number(mailSystem.step_index || 0)),
+      current_step_type: normStr(progress.current_step_type)
+    };
+
+    const same =
+      normStr(progress.role_plan_id) === next.role_plan_id &&
+      Number(progress.step_index || 0) === next.step_index;
+
+    if (!same) {
+      stateApi.setState({ mail_plan_progress: next });
+    }
+
+    return next;
+  }
+
   function deriveBinding(mail) {
     const binding = mail?.thread_binding && typeof mail.thread_binding === "object" ? { ...mail.thread_binding } : {};
     const familyId = normStr(mail?.mail_family);
@@ -83,7 +113,10 @@
     const state = stateApi.getState() || {};
     const current = defaultMailSystem(state.mail_system);
     const id = normStr(eventObj.id);
-    if (current.consumed_mail_ids.includes(id)) return current;
+    if (current.consumed_mail_ids.includes(id)) {
+      syncMailPlanProgressFromMailSystem();
+      return current;
+    }
 
     const mailType = normStr(eventObj.mail_type) || null;
     const mailFamily = normStr(eventObj.mail_family) || null;
@@ -149,7 +182,14 @@
       next.active_event_phase = nextPhase(phase);
     }
 
-    stateApi.setState({ mail_system: next });
+    stateApi.setState({
+      mail_system: next,
+      mail_plan_progress: {
+        role_plan_id: normStr(next.role_plan_id),
+        step_index: Number(next.step_index || 0),
+        current_step_type: ""
+      }
+    });
     return next;
   }
 
@@ -188,11 +228,15 @@
     const active = stateApi.getActivePosition() || null;
     if (!active) return null;
 
+    syncMailPlanProgressFromMailSystem();
+
     const targetEngine = engine || window.HG_CiviEngine || null;
     if (!targetEngine || typeof targetEngine.ensureMailSystemState !== "function") return null;
 
     try {
-      return await targetEngine.ensureMailSystemState(active);
+      const res = await targetEngine.ensureMailSystemState(active);
+      syncMailPlanProgressFromMailSystem();
+      return res;
     } catch (err) {
       console.warn("[activeRoleStateSync] ensureMailSystemState failed", err);
       return null;
@@ -232,10 +276,12 @@
     if (typeof originalOnAppOpen === "function") {
       proto.onAppOpen = async function patchedOnAppOpen(opts) {
         syncActiveRoleState();
+        syncMailPlanProgressFromMailSystem();
         await ensureMailSystemForActiveRole(this);
         clearNavPendingWhenActiveRoleExists();
         const res = await originalOnAppOpen.call(this, opts || {});
         syncActiveRoleState();
+        syncMailPlanProgressFromMailSystem();
         await ensureMailSystemForActiveRole(this);
         clearNavPendingWhenActiveRoleExists();
         return res;
@@ -246,10 +292,12 @@
     if (typeof originalFollowup === "function") {
       proto.enqueueImmediateFollowupEvent = async function patchedEnqueueImmediateFollowupEvent() {
         syncActiveRoleState();
+        syncMailPlanProgressFromMailSystem();
         await ensureMailSystemForActiveRole(this);
         clearNavPendingWhenActiveRoleExists();
         const res = await originalFollowup.call(this);
         syncActiveRoleState();
+        syncMailPlanProgressFromMailSystem();
         await ensureMailSystemForActiveRole(this);
         clearNavPendingWhenActiveRoleExists();
         return res;
@@ -264,6 +312,7 @@
         const res = await originalAnswer.call(this, eventId, choiceId);
         if (res?.ok && pendingEvent) {
           registerAnsweredMail(pendingEvent);
+          syncMailPlanProgressFromMailSystem();
           await ensureMailSystemForActiveRole(this);
         }
         return res;
@@ -276,6 +325,7 @@
 
   async function boot() {
     syncActiveRoleState();
+    syncMailPlanProgressFromMailSystem();
     await ensureMailSystemForActiveRole();
     clearNavPendingWhenActiveRoleExists();
     patchEngine();
@@ -291,10 +341,12 @@
   window.addEventListener("civi:booted", boot);
   window.addEventListener("updateProfile", () => {
     syncActiveRoleState();
+    syncMailPlanProgressFromMailSystem();
   });
 
   window.CivicationActiveRoleStateSync = {
     syncActiveRoleState,
+    syncMailPlanProgressFromMailSystem,
     ensureMailSystemForActiveRole,
     registerAnsweredMail,
     clearNavPendingWhenActiveRoleExists,
