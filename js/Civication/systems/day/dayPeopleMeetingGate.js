@@ -8,8 +8,14 @@
   function getCharacter(personId) {
     const id = normStr(personId);
     if (!id) return null;
-    const rows = window.CivicationNpcCharacterThreads?.getActiveCharacters?.() || [];
-    return Array.isArray(rows) ? rows.find((c) => normStr(c.id) === id) || null : null;
+
+    const api = window.CivicationNpcCharacterThreads;
+    const rows = api?.getActiveCharacters?.() || [];
+    const active = Array.isArray(rows) ? rows.find((c) => normStr(c.id) === id) || null : null;
+    if (active) return active;
+
+    const state = api?.getState?.() || {};
+    return state?.characters?.[id] || null;
   }
 
   function inferMeetingIndex(mail) {
