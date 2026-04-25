@@ -3,7 +3,7 @@
    Oppdatert: 2026-04-22
    ============================================================ */
 
-const SW_VERSION = "hg-sw-2026-04-22-v1.20.1";
+const SW_VERSION = "hg-sw-2026-04-22-v1.22.0";
 
 const CACHE_STATIC  = `hg-static-${SW_VERSION}`;
 const CACHE_RUNTIME = `hg-runtime-${SW_VERSION}`;
@@ -36,6 +36,7 @@ const PRECACHE_URLS = [
   "css/sheets.css",
   "css/theme.css",
   "css/nature.css",
+  "css/people.css",
   "css/onboarding.css",
   "js/console/console.css",
 

@@ -1,0 +1,115 @@
+/* css/people.css — Folk-strip i venstre panel */
+
+#leftPeopleList.nearby-strip {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding: 12px 2px 0;
+}
+#leftPeopleList.nearby-strip::-webkit-scrollbar { display: none; }
+
+#leftPeopleList.nearby-strip .nearby-item {
+  flex: 0 0 auto;
+  width: 220px;
+  height: 150px;
+  scroll-snap-align: start;
+  position: relative;
+  padding: 0;
+  border: 0;
+  border-radius: 20px;
+  background: #1a1d20;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+#leftPeopleList.nearby-strip .nearby-item.is-visited {
+  outline: 2px solid rgba(120, 200, 130, 0.5);
+}
+
+#leftPeopleList.nearby-strip .nearby-thumbWrap {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+#leftPeopleList.nearby-strip .nearby-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+
+#leftPeopleList.nearby-strip .nearby-thumb-icon {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 54px;
+  background: #2a2f35;
+}
+
+#leftPeopleList.nearby-strip .nearby-item::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(to bottom, transparent 45%, rgba(0,0,0,0.55) 100%);
+  pointer-events: none;
+  border-radius: 20px;
+}
+
+#leftPeopleList.nearby-strip .nearby-content {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  padding: 8px 12px 10px;
+  pointer-events: none;
+}
+
+#leftPeopleList.nearby-strip .nearby-title {
+  font-size: 14px;
+  font-weight: 800;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.1;
+}
+
+#leftPeopleList.nearby-strip .nearby-meta {
+  font-size: 11px;
+  color: rgba(255,255,255,0.85);
+  white-space: nowrap;
+  line-height: 1.1;
+  margin-top: 2px;
+}
+
+#leftPeopleList.nearby-strip .nearby-item.is-visited .nearby-thumbWrap::after {
+  content: "✓";
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  font-size: 14px;
+  background: rgba(60, 130, 40, 0.9);
+  color: #fff;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+  font-weight: 700;
+}
