@@ -5,6 +5,10 @@
     return String(v || "").trim();
   }
 
+  function unique(arr) {
+    return [...new Set((Array.isArray(arr) ? arr : []).map(norm).filter(Boolean))];
+  }
+
   function getPhase() {
     return norm(window.CivicationCalendar?.getPhase?.()) || "morning";
   }
@@ -16,6 +20,14 @@
   function setInbox(arr) {
     window.CivicationState?.setInbox?.(Array.isArray(arr) ? arr : []);
     window.dispatchEvent(new Event("updateProfile"));
+  }
+
+  function getState() {
+    return window.CivicationState?.getState?.() || {};
+  }
+
+  function setState(patch) {
+    return window.CivicationState?.setState?.(patch || {}) || null;
   }
 
   function hasActiveRole() {
@@ -111,6 +123,40 @@
     };
   }
 
+  function unmarkHiddenDirectorMail(ev) {
+    if (!isDirectorMail(ev)) return null;
+
+    const id = norm(ev?.id);
+    if (!id) return null;
+
+    const state = getState();
+    const director = state.mail_director_v2 && typeof state.mail_director_v2 === "object"
+      ? state.mail_director_v2
+      : null;
+
+    if (!director) return null;
+
+    const shown = unique(director.shown_ids).filter((x) => x !== id);
+    const blocked = unique(director.blocked_recent_ids).filter((x) => x !== id);
+    const answered = unique(director.answered_ids);
+
+    const next = {
+      ...director,
+      shown_ids: shown,
+      answered_ids: answered,
+      blocked_recent_ids: blocked,
+      last_event_id: norm(director.last_event_id) === id ? null : director.last_event_id,
+      last_mail_type: norm(director.last_event_id) === id ? null : director.last_mail_type,
+      last_family: norm(director.last_event_id) === id ? null : director.last_family,
+      last_phase: norm(director.last_event_id) === id ? null : director.last_phase,
+      turn_index: Math.max(0, Number(director.turn_index || 0) - 1),
+      updated_at: new Date().toISOString()
+    };
+
+    setState({ mail_director_v2: next });
+    return next;
+  }
+
   function cleanNonMorningDirectorMail() {
     const phase = getPhase();
     if (phase === "morning") return false;
@@ -121,7 +167,11 @@
     const idx = inbox.findIndex((item) => item && item.status === "pending" && shouldReplaceWithPhaseEvent(item.event));
     if (idx < 0) return false;
 
+    const oldEvent = inbox[idx].event || null;
     const fallback = makePhaseFallback(phase);
+
+    unmarkHiddenDirectorMail(oldEvent);
+
     inbox[idx] = {
       ...inbox[idx],
       event: fallback
@@ -173,6 +223,7 @@
   window.CivicationMailDirectorV2PhaseGuard = {
     boot,
     patchEngine,
-    cleanNonMorningDirectorMail
+    cleanNonMorningDirectorMail,
+    unmarkHiddenDirectorMail
   };
 })();
