@@ -7,26 +7,51 @@
     industri: {
       id: "industri",
       label: "Industri / bygging",
-      families: ["sliten_nokkelperson", "mellomleder_planlegging", "driftskrise"],
-      tags: ["produksjon", "industri", "organisering", "kvalitet", "teknologi"]
+      families: [
+        "mellomleder_planlegging",
+        "driftskrise",
+        "mellomleder_mastery",
+        "industri_og_systembygging",
+        "teknologi_og_risiko",
+        "kvalitet_og_standarder",
+        "modernisering_og_marked",
+        "handel_og_lokal_produksjon"
+      ],
+      tags: ["produksjon", "industri", "organisering", "kvalitet", "teknologi", "standard", "marked"]
     },
     kontroll: {
       id: "kontroll",
       label: "Kontroll / rapportering",
-      families: ["krysspress", "mellomleder_mastery"],
-      tags: ["rapportering", "styring", "måling", "okonomisk_styring", "institusjonell_styring"]
+      families: [
+        "rapportering_og_styring",
+        "administrasjon_og_hverdagsmakt",
+        "krysspress",
+        "mellomleder_mastery"
+      ],
+      tags: ["rapportering", "styring", "måling", "okonomisk_styring", "institusjonell_styring", "administrasjon"]
     },
     institusjon: {
       id: "institusjon",
       label: "Institusjon / tillit",
-      families: ["mellomleder_identitet", "krysspress"],
-      tags: ["institusjon", "institusjonell_tillit", "sentralbank", "kriseledelse", "administrasjon"]
+      families: [
+        "institusjonell_krise",
+        "bedrift_og_symbolsk_kapital",
+        "mellomleder_identitet",
+        "krysspress",
+        "rapportering_og_styring"
+      ],
+      tags: ["institusjon", "institusjonell_tillit", "sentralbank", "kriseledelse", "administrasjon", "symbolsk_kapital"]
     },
     menneske: {
       id: "menneske",
       label: "Mennesker / bæreevne",
-      families: ["sliten_nokkelperson", "mellomleder_identitet"],
-      tags: ["bæreevne", "teamrytme", "tillit", "faglig_integritet"]
+      families: [
+        "mellomleder_identitet",
+        "administrasjon_og_hverdagsmakt",
+        "institusjonell_krise",
+        "kvalitet_og_standarder"
+      ],
+      tags: ["bæreevne", "teamrytme", "tillit", "faglig_integritet", "mennesker", "folk"]
     }
   };
 
@@ -198,7 +223,8 @@
     rebuild,
     getState,
     getDominantConflict,
-    getPressureForFamily
+    getPressureForFamily,
+    FACTIONS
   };
 
   if (document.readyState === "loading") {
