@@ -23,10 +23,22 @@
             "Du må velge hvem du faktisk står med."
           ],
           "choices": [
-            { "id": "industri", "label": "Støtt bygging og produksjon" },
-            { "id": "kontroll", "label": "Støtt styring og kontroll" },
-            { "id": "institusjon", "label": "Bevar systemet" },
-            { "id": "menneske", "label": "Beskytt menneskene" }
+            {
+              "id": "industri",
+              "label": "Støtt bygging og produksjon"
+            },
+            {
+              "id": "kontroll",
+              "label": "Støtt styring og kontroll"
+            },
+            {
+              "id": "institusjon",
+              "label": "Bevar systemet"
+            },
+            {
+              "id": "menneske",
+              "label": "Beskytt menneskene"
+            }
           ]
         }
       ]
@@ -48,8 +60,16 @@
             "Rollen har flyttet seg fra kontroll til koordinering."
           ],
           "choices": [
-            { "id": "A", "label": "Bruke tid på å forstå helheten før du handler", "effect": 1 },
-            { "id": "B", "label": "Markere tydelig retning med en gang", "effect": 0 }
+            {
+              "id": "A",
+              "label": "Bruke tid på å forstå helheten før du handler",
+              "effect": 1
+            },
+            {
+              "id": "B",
+              "label": "Markere tydelig retning med en gang",
+              "effect": 0
+            }
           ]
         },
         {
@@ -66,8 +86,16 @@
             "Du må velge om du vil bruke tid på det usynlige eller bare ta det som brenner først."
           ],
           "choices": [
-            { "id": "A", "label": "Ta tak i mønsteret før det blir en synlig krise", "effect": 1 },
-            { "id": "B", "label": "La de små tingene ligge og konsentrere deg om det mest akutte", "effect": 0 }
+            {
+              "id": "A",
+              "label": "Ta tak i mønsteret før det blir en synlig krise",
+              "effect": 1
+            },
+            {
+              "id": "B",
+              "label": "La de små tingene ligge og konsentrere deg om det mest akutte",
+              "effect": 0
+            }
           ]
         }
       ]
@@ -89,8 +117,16 @@
             "Du må velge om du vil justere eller gamble."
           ],
           "choices": [
-            { "id": "A", "label": "Justere planen før det smeller", "effect": 1 },
-            { "id": "B", "label": "La planen stå og håpe det går", "effect": 0 }
+            {
+              "id": "A",
+              "label": "Justere planen før det smeller",
+              "effect": 1
+            },
+            {
+              "id": "B",
+              "label": "La planen stå og håpe det går",
+              "effect": 0
+            }
           ]
         },
         {
@@ -107,8 +143,100 @@
             "Du må velge om du vil ta kampen om realismen nå eller leve på lånt håp litt til."
           ],
           "choices": [
-            { "id": "A", "label": "Gjøre planen mer realistisk selv om den ser svakere ut", "effect": 1 },
-            { "id": "B", "label": "Beholde den stramme planen for å holde trykket oppe", "effect": 0 }
+            {
+              "id": "A",
+              "label": "Gjøre planen mer realistisk selv om den ser svakere ut",
+              "effect": 1
+            },
+            {
+              "id": "B",
+              "label": "Beholde den stramme planen for å holde trykket oppe",
+              "effect": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mellomleder_mastery",
+      "mails": [
+        {
+          "id": "ml_core_011",
+          "mail_type": "job",
+          "mail_family": "mellomleder_mastery",
+          "role_scope": "mellomleder",
+          "phase": "mastery",
+          "priority": 92,
+          "subject": "Du må holde alt samlet",
+          "situation": [
+            "Driften svikter.",
+            "Teamet mister tillit.",
+            "Ledelsen vil ha tall.",
+            "Du må velge hva du redder."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Balansere drift, mennesker og system",
+              "effect": 1
+            },
+            {
+              "id": "B",
+              "label": "Prioritere det som ser best ut oppover",
+              "effect": 0
+            }
+          ]
+        },
+        {
+          "id": "ml_core_012",
+          "mail_type": "job",
+          "mail_family": "mellomleder_mastery",
+          "role_scope": "mellomleder",
+          "phase": "mastery",
+          "priority": 93,
+          "subject": "Du må ta ansvaret ingen andre vil eie",
+          "situation": [
+            "Alle har bidratt litt til problemet.",
+            "Ingen kan alene klandres for at det har vokst seg stort.",
+            "Likevel må noen si høyt at systemet ikke lenger bærer seg selv."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta ansvaret og gjøre svikten synlig",
+              "effect": 1
+            },
+            {
+              "id": "B",
+              "label": "Fordele ansvaret så bredt at ingen må stå i det",
+              "effect": 0
+            }
+          ]
+        },
+        {
+          "id": "ml_core_013",
+          "mail_type": "job",
+          "mail_family": "mellomleder_mastery",
+          "role_scope": "mellomleder",
+          "phase": "mastery",
+          "priority": 94,
+          "subject": "Rollen har blitt større enn stillingen",
+          "situation": [
+            "Folk kommer til deg før de går til systemet.",
+            "Ledelsen bruker deg som filter før beslutninger blir synlige.",
+            "Du må velge om du vil være buffer, talsperson eller bare en ryddig mellomstasjon."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Bruke posisjonen til å oversette begge veier",
+              "effect": 1
+            },
+            {
+              "id": "B",
+              "label": "Holde rollen smal og bare sende informasjon videre",
+              "effect": 0
+            }
           ]
         }
       ]
