@@ -1,0 +1,375 @@
+/* ============================================================
+   CIVICATION – REFRESH
+   Legges etter civi.css. Gir hver seksjon visuell identitet og
+   et konsistent fargesystem, uten å endre HTML-strukturen.
+============================================================ */
+
+:root{
+  /* Konsistent fargepalett — accentene matcher History GO sine
+     unlock-toasts (natur/folk/sted/merke) og knytter de to appene
+     visuelt sammen. */
+  --civi-accent-onb:    #c69a2a;   /* gull — onboarding/neste steg */
+  --civi-accent-cap:    #4f9e6a;   /* grønn — kapital */
+  --civi-accent-id:     #6c8fb8;   /* blå — identitet */
+  --civi-accent-psy:    #a06bb5;   /* lilla — psyke */
+  --civi-accent-home:   #b87a3d;   /* terra — hjem */
+  --civi-accent-public: #4a8fa8;   /* turkis — offentlig */
+  --civi-accent-job:    #c69a2a;   /* gull — aktiv rolle */
+  --civi-accent-day:    #8aa84d;   /* mosegrønn — arbeidsdag */
+  --civi-accent-debate: #c66e6e;   /* korall — debatt */
+  --civi-accent-people: #6c8fb8;   /* blå — mennesker */
+  --civi-accent-store:  #b87a3d;   /* terra — butikk */
+  --civi-accent-track:  #c69a2a;   /* gull — track HUD */
+  --civi-accent-inbox:  #4f9e6a;   /* grønn — inbox */
+}
+
+/* ------------------------------------------------------------
+   GRUPPE-SKILLER (visuelle hint mellom logiske seksjoner)
+------------------------------------------------------------ */
+
+.civi-panels {
+  gap: 14px;
+}
+
+/* Mindre sub-divider mellom logiske grupper */
+#civiOnboardingSection { margin-bottom: 6px; }
+.civi-capital + .civi-identity,
+.civi-psyche + #civiHomeStatus,
+#civiPublicFeedSection + #activeJobSection,
+#civiPeopleSection + #civiStoreSection {
+  margin-top: 4px;
+}
+
+/* ------------------------------------------------------------
+   SEKSJON-KORT — venstrekant-accent + tighter typografi
+------------------------------------------------------------ */
+
+.civi-panels > section {
+  position: relative;
+  padding: 18px 18px 16px;
+  border-radius: 14px;
+  background: linear-gradient(180deg, rgba(28,28,30,0.96), rgba(20,20,22,0.96));
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 8px 22px rgba(0,0,0,0.35);
+}
+
+/* Venstre accent-kant per seksjon */
+.civi-panels > section::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 14px;
+  bottom: 14px;
+  width: 3px;
+  border-radius: 0 3px 3px 0;
+  background: rgba(255,255,255,0.18);
+}
+
+#civiOnboardingSection::before  { background: var(--civi-accent-onb); }
+.civi-capital::before           { background: var(--civi-accent-cap); }
+.civi-identity::before          { background: var(--civi-accent-id); }
+.civi-psyche::before            { background: var(--civi-accent-psy); }
+#civiHomeStatus::before         { background: var(--civi-accent-home); }
+#civiPublicFeedSection::before  { background: var(--civi-accent-public); }
+#activeJobSection::before       { background: var(--civi-accent-job); }
+#civiWorkdaySection::before     { background: var(--civi-accent-day); }
+#civiDebateSection::before      { background: var(--civi-accent-debate); }
+#civiPeopleSection::before      { background: var(--civi-accent-people); }
+#civiStoreSection::before       { background: var(--civi-accent-store); }
+#civiInboxSection::before       { background: var(--civi-accent-inbox); }
+
+/* ------------------------------------------------------------
+   H2 – tydelig hierarki + ikon
+------------------------------------------------------------ */
+
+.civi-panels h2 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 14px;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: rgba(255,255,255,0.92);
+  text-transform: uppercase;
+}
+
+.civi-panels h2::before {
+  content: "";
+  display: inline-block;
+  font-size: 18px;
+  width: 22px;
+  text-align: center;
+  font-weight: normal;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+#civiOnboardingSection h2::before  { content: "🎯"; }
+.civi-capital h2::before           { content: "💎"; }
+.civi-identity h2::before          { content: "🧭"; }
+.civi-psyche h2::before            { content: "🧠"; }
+#civiHomeStatus h2::before         { content: "🏠"; }
+#civiPublicFeedSection h2::before  { content: "📢"; }
+#activeJobSection h2::before       { content: "💼"; }
+#civiWorkdaySection h2::before     { content: "🕐"; }
+#civiDebateSection h2::before      { content: "💬"; }
+#civiPeopleSection h2::before      { content: "👥"; }
+#civiStoreSection h2::before       { content: "🛒"; }
+#civiInboxSection h2::before       { content: "📨"; }
+
+/* ------------------------------------------------------------
+   KAPITAL — tall som hovedfokus
+------------------------------------------------------------ */
+
+.civi-capital .capital-grid {
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+}
+
+.capital-item {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 10px;
+  padding: 10px 8px;
+  text-align: center;
+}
+
+.capital-label {
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.55);
+  margin-bottom: 4px;
+}
+
+.capital-value {
+  font-size: 22px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  color: #fff;
+}
+
+@media (max-width: 520px) {
+  .civi-capital .capital-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .civi-capital .capital-item:nth-child(n+4) {
+    /* La de to siste flyte naturlig på rad 2 */
+  }
+}
+
+/* ------------------------------------------------------------
+   PSYCHE — samme struktur som kapital, lilla highlight
+------------------------------------------------------------ */
+
+.civi-psyche .psyche-grid {
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.psyche-item {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 10px;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.psyche-item.highlight {
+  grid-column: span 2;
+  background: rgba(160, 107, 181, 0.14);
+  border-color: rgba(160, 107, 181, 0.32);
+}
+
+.psyche-label {
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: rgba(255,255,255,0.65);
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.psyche-value {
+  font-size: 18px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.psyche-collapses {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px dashed rgba(255,255,255,0.1);
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.psyche-collapses .psyche-label {
+  margin: 0;
+}
+
+#psyCollapseHistory {
+  font-size: 13px;
+  color: rgba(255,255,255,0.7);
+}
+
+.psyche-burnout {
+  margin-top: 10px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: rgba(198, 110, 110, 0.18);
+  border: 1px solid rgba(198, 110, 110, 0.4);
+  font-size: 13px;
+  color: rgba(255,220,220,0.95);
+}
+
+/* ------------------------------------------------------------
+   IDENTITET — kompass-knapp som sekundær handling
+------------------------------------------------------------ */
+
+#identityPerceptionBtn {
+  margin-top: 12px;
+  background: rgba(108, 143, 184, 0.16);
+  color: #d2dfee;
+  border: 1px solid rgba(108, 143, 184, 0.35);
+  border-radius: 10px;
+  padding: 8px 14px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 120ms ease;
+}
+
+#identityPerceptionBtn:hover {
+  background: rgba(108, 143, 184, 0.28);
+}
+
+#identityDominant {
+  font-size: 14px;
+  color: rgba(255,255,255,0.85);
+  margin-top: 8px;
+}
+
+#identityPerception {
+  margin-top: 10px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.78);
+  line-height: 1.5;
+}
+
+/* ------------------------------------------------------------
+   TRACK HUD — gul aktiv retning, plassert distinkt
+------------------------------------------------------------ */
+
+.civi-track-hud {
+  background: linear-gradient(135deg, rgba(198, 154, 42, 0.18), rgba(198, 154, 42, 0.06));
+  border: 1px solid rgba(198, 154, 42, 0.32);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin: 4px 0;
+  position: relative;
+}
+
+.civi-track-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(247, 220, 138, 0.9);
+  margin-bottom: 4px;
+}
+
+#civiTrackName {
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 2px;
+}
+
+#civiTrackProgress {
+  font-size: 12px;
+  color: rgba(255,255,255,0.6);
+}
+
+.civi-track-tags {
+  margin-top: 8px;
+  gap: 6px;
+}
+
+.civi-track-tags span {
+  background: rgba(198, 154, 42, 0.18);
+  color: rgba(247, 220, 138, 0.95);
+  border: 1px solid rgba(198, 154, 42, 0.3);
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* ------------------------------------------------------------
+   FOOTER-KNAPPER — mer distinkt med matchende accent-farger
+------------------------------------------------------------ */
+
+.civi-footer {
+  gap: 6px;
+  padding: 0 12px;
+}
+
+.civi-btn {
+  flex: 1;
+  max-width: 120px;
+  padding: 10px 8px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.civi-btn[data-scroll="#activeJobSection"] {
+  border-color: rgba(198, 154, 42, 0.3);
+  color: rgba(247, 220, 138, 0.92);
+}
+.civi-btn[data-scroll="#civiHomeStatus"] {
+  border-color: rgba(184, 122, 61, 0.3);
+  color: rgba(232, 180, 120, 0.92);
+}
+.civi-btn.primary {
+  background: var(--civi-accent-inbox);
+  color: #fff;
+  border-color: var(--civi-accent-inbox);
+}
+.civi-btn.primary:hover {
+  filter: brightness(1.1);
+}
+
+/* ------------------------------------------------------------
+   TOPBAR — ren, kompakt
+------------------------------------------------------------ */
+
+.app-title {
+  font-size: 17px;
+  letter-spacing: -0.01em;
+}
+
+.back-link {
+  font-size: 13px;
+  font-weight: 600;
+  opacity: 0.7;
+  text-decoration: none;
+}
+
+.back-link:hover { opacity: 1; }
+
+/* ------------------------------------------------------------
+   TOMME PANELER – mindre rotete enn "—"
+------------------------------------------------------------ */
+
+.civi-panels > section:has(:empty:only-child) {
+  /* Skjul ikke, men dem ned visuelt */
+  opacity: 0.65;
+}
