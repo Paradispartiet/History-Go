@@ -53,6 +53,45 @@
     return null;
   }
 
+  function variantChoiceLabel(choice, variant) {
+    const base = normStr(choice?.label);
+    const effect = Number(choice?.effect || 0);
+    const constructive = effect >= 1;
+    const name = normStr(variant?.character_name || "Personen");
+
+    if (variant?.relation === "ally") {
+      return constructive
+        ? `Stå sammen med ${name}: ${base}`
+        : `Skuff ${name}: ${base}`;
+    }
+
+    if (variant?.relation === "enemy") {
+      return constructive
+        ? `Møt ${name} åpent: ${base}`
+        : `Gå mot ${name}: ${base}`;
+    }
+
+    return base;
+  }
+
+  function applyVariantChoices(choices, variant) {
+    if (!Array.isArray(choices)) return choices;
+    return choices.map((choice) => {
+      const originalLabel = normStr(choice?.original_label || choice?.label);
+      return {
+        ...choice,
+        original_label: originalLabel,
+        label: variantChoiceLabel(choice, variant),
+        relationship_choice_variant: {
+          relation: normStr(variant?.relation),
+          character_id: normStr(variant?.character_id),
+          character_name: normStr(variant?.character_name),
+          original_label: originalLabel
+        }
+      };
+    });
+  }
+
   function applyRelationshipVariant(mail) {
     if (!mail || normStr(mail.mail_type) !== "people") return mail;
     if (inferMeetingIndex(mail) < 3) return mail;
@@ -67,6 +106,7 @@
       ...mail,
       relationship_variant: variant,
       situation: variant.situation,
+      choices: applyVariantChoices(mail.choices, variant),
       role_content_meta: {
         ...(mail.role_content_meta || {}),
         relationship_variant: variant
@@ -98,6 +138,8 @@
   window.CivicationPeopleMeetingRelationshipVariant = {
     applyRelationshipVariant,
     buildVariant,
+    applyVariantChoices,
+    variantChoiceLabel,
     patch
   };
 })();
