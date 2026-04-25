@@ -18,8 +18,19 @@
     window.dispatchEvent(new Event("updateProfile"));
   }
 
+  function hasActiveRole() {
+    const active = window.CivicationState?.getActivePosition?.();
+    const roleKey = norm(active?.role_key || active?.title || active?.role_id);
+    return !!roleKey;
+  }
+
   function isDirectorMail(ev) {
     return !!(ev && ev.director_v2 && norm(ev.mail_type));
+  }
+
+  function isNavEvent(ev) {
+    const id = norm(ev?.id);
+    return norm(ev?.source) === "NAV" || id.startsWith("nav_auto_") || norm(ev?.stage) === "unemployed";
   }
 
   function isNonMorningRoleMail(ev) {
@@ -27,6 +38,14 @@
     if (phase === "morning") return false;
     if (!isDirectorMail(ev)) return false;
     return ["job", "faction_choice", "people", "story", "conflict", "event"].includes(norm(ev.mail_type));
+  }
+
+  function shouldReplaceWithPhaseEvent(ev) {
+    const phase = getPhase();
+    if (phase === "morning") return false;
+    if (isNonMorningRoleMail(ev)) return true;
+    if (hasActiveRole() && isNavEvent(ev)) return true;
+    return false;
   }
 
   function makePhaseFallback(phase) {
@@ -99,7 +118,7 @@
     const inbox = getInbox();
     if (!Array.isArray(inbox) || !inbox.length) return false;
 
-    const idx = inbox.findIndex((item) => item && item.status === "pending" && isNonMorningRoleMail(item.event));
+    const idx = inbox.findIndex((item) => item && item.status === "pending" && shouldReplaceWithPhaseEvent(item.event));
     if (idx < 0) return false;
 
     const fallback = makePhaseFallback(phase);
