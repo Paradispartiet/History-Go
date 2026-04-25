@@ -34,6 +34,47 @@
     flags: []
   },
 
+  mail_system: {
+    role_plan_id: null,
+    step_index: 0,
+    current_cycle: 1,
+    last_mail_type: null,
+    active_conflict_id: null,
+    active_conflict_phase: "intro",
+    active_people_threads: [],
+    people_thread_phases: {},
+    active_story_threads: [],
+    story_thread_phases: {},
+    active_event_queue: [],
+    active_event_thread_id: null,
+    active_event_phase: null,
+    consumed_mail_ids: [],
+    consumed_families: [],
+    cooldowns: {},
+    history: []
+  },
+
+  mail_director: {
+    turn_index: 0,
+    last_source_type: null,
+    consecutive_role_mails: 0
+  },
+
+  conflict_state: {
+    category: null,
+    tier_label: null,
+    active_conflicts: [],
+    cycle_index: 0
+  },
+
+  story_state: {
+    generated_at: null,
+    snapshot: null,
+    story_flags: [],
+    story_tags: [],
+    threads: []
+  },
+
   career: {
     activeJob: null,
     obligations: [],
