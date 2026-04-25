@@ -1,6 +1,38 @@
 (function () {
   "use strict";
 
+  const FACTION_FAMILIES = {
+    industri: [
+      "mellomleder_planlegging",
+      "driftskrise",
+      "mellomleder_mastery",
+      "industri_og_systembygging",
+      "teknologi_og_risiko",
+      "kvalitet_og_standarder",
+      "modernisering_og_marked",
+      "handel_og_lokal_produksjon"
+    ],
+    kontroll: [
+      "rapportering_og_styring",
+      "administrasjon_og_hverdagsmakt",
+      "krysspress",
+      "mellomleder_mastery"
+    ],
+    institusjon: [
+      "institusjonell_krise",
+      "bedrift_og_symbolsk_kapital",
+      "mellomleder_identitet",
+      "krysspress",
+      "rapportering_og_styring"
+    ],
+    menneske: [
+      "mellomleder_identitet",
+      "administrasjon_og_hverdagsmakt",
+      "institusjonell_krise",
+      "kvalitet_og_standarder"
+    ]
+  };
+
   function normStr(v) {
     return String(v || "").trim();
   }
@@ -21,12 +53,9 @@
     if (!faction) return 0;
 
     const family = normStr(mail?.mail_family);
+    const preferred = FACTION_FAMILIES[faction] || [];
 
-    if (faction === "industri" && ["mellomleder_planlegging","driftskrise","sliten_nokkelperson"].includes(family)) return 20;
-    if (faction === "kontroll" && ["krysspress","mellomleder_mastery"].includes(family)) return 20;
-    if (faction === "institusjon" && ["mellomleder_identitet","krysspress"].includes(family)) return 20;
-    if (faction === "menneske" && ["sliten_nokkelperson","mellomleder_identitet"].includes(family)) return 20;
-
+    if (preferred.includes(family)) return 20;
     return -10;
   }
 
@@ -79,4 +108,10 @@
   } else {
     patch();
   }
+
+  window.CivicationFactionMailScoring = {
+    applyFactionPressure,
+    factionMatchScore,
+    FACTION_FAMILIES
+  };
 })();
