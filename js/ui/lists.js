@@ -305,12 +305,51 @@ function renderNearbyNature() {
   let all = flora.concat(fauna);
 
   if (!all.length) {
-    listEl.innerHTML = `<div class="muted" style="padding:12px;">Ingen natur-data lastet ennå.</div>`;
+    listEl.innerHTML = `
+      <div class="hg-empty-guide">
+        <div class="hg-empty-guide-icon">🌿</div>
+        <div class="hg-empty-guide-title">Natur lastes inn</div>
+        <div class="hg-empty-guide-text">Gi det et øyeblikk — flora og fauna for Oslo lastes i bakgrunnen.</div>
+      </div>
+    `;
     return;
   }
 
   const unlocked = getNatureUnlockedIds();
-  all = applyNatureFilter(all, getNatureFilter(), unlocked);
+  const filterMode = getNatureFilter();
+
+  // Spesiell empty-state: ingen samlet ennå, hjelp brukeren videre.
+  if (unlocked.size === 0 && filterMode === "all") {
+    listEl.innerHTML = `
+      <div class="hg-empty-guide">
+        <div class="hg-empty-guide-icon">🌿</div>
+        <div class="hg-empty-guide-title">Ingen arter samlet ennå</div>
+        <div class="hg-empty-guide-text">Ta en quiz på et naturrikt sted for å låse opp din første plante eller ditt første dyr. Vigelandsparken, Botanisk hage og Sognsvann er gode startsteder.</div>
+        <button type="button" class="hg-empty-guide-action" data-onb-action="open-places">Vis steder</button>
+      </div>
+    `;
+    listEl.querySelector('[data-onb-action="open-places"]')?.addEventListener("click", () => {
+      const placesTab = document.querySelector('[data-leftmode="nearby"]');
+      if (placesTab) placesTab.click();
+    });
+    return;
+  }
+
+  all = applyNatureFilter(all, filterMode, unlocked);
+
+  // Spesiell empty-state for filter med 0 treff
+  if (!all.length) {
+    const labels = { unlocked: "samlede arter", flora: "planter", fauna: "dyr" };
+    const label = labels[filterMode] || "arter";
+    listEl.innerHTML = `
+      <div class="hg-empty-guide">
+        <div class="hg-empty-guide-icon">🔍</div>
+        <div class="hg-empty-guide-title">Ingen ${label} her</div>
+        <div class="hg-empty-guide-text">Filteret ditt skjuler alle arter akkurat nå. Endre filter via 🎯-knappen for å se mer.</div>
+      </div>
+    `;
+    return;
+  }
 
   // Prøv å laste mapping for distance-sort (ikke-blokkerende — re-render ved ferdigstilling).
   ensureNatureToPlacesMap().then((m) => {

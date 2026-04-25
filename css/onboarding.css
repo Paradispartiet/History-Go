@@ -1,0 +1,189 @@
+/* css/onboarding.css — Førstegangs-velkomst + bedre empty-states */
+
+.hg-onboarding-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 2200;
+  background: rgba(8, 12, 18, 0.78);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+  overflow-y: auto;
+  backdrop-filter: blur(4px);
+  animation: hgOnbFade 0.25s ease-out;
+}
+
+@keyframes hgOnbFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.hg-onb-inner {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  background: #fff;
+  color: #1c2016;
+  border-radius: 18px;
+  padding: 28px 26px 24px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+  animation: hgOnbRise 0.3s cubic-bezier(0.2, 0.9, 0.3, 1);
+}
+
+@keyframes hgOnbRise {
+  from { opacity: 0; transform: translateY(20px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.hg-onb-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 0;
+  background: rgba(0,0,0,0.05);
+  color: #555;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.hg-onb-close:hover { background: rgba(0,0,0,0.1); }
+
+.hg-onb-head { margin-bottom: 20px; }
+
+.hg-onb-kicker {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #5c6b52;
+}
+
+.hg-onb-title {
+  margin: 4px 0 6px;
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.hg-onb-sub {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.45;
+  color: #5c6b52;
+}
+
+.hg-onb-steps {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.hg-onb-steps li {
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: 12px;
+  align-items: start;
+}
+
+.hg-onb-step-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #eef5e6;
+  font-size: 18px;
+  flex: 0 0 auto;
+}
+
+.hg-onb-steps li strong {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.hg-onb-steps li p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.4;
+  color: #5c6b52;
+}
+
+.hg-onb-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.hg-onb-primary {
+  background: #2d5a1a;
+  color: #fff;
+  border: 0;
+  border-radius: 10px;
+  padding: 12px 22px;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 120ms;
+}
+
+.hg-onb-primary:hover { background: #3a7022; }
+.hg-onb-primary:active { transform: scale(0.98); }
+
+/* ========== Bedre empty-states i venstre panel ========== */
+
+.hg-empty-guide {
+  padding: 24px 18px;
+  text-align: center;
+  color: rgba(255,255,255,0.85);
+  background: rgba(255,255,255,0.04);
+  border: 1px dashed rgba(255,255,255,0.18);
+  border-radius: 14px;
+  margin: 8px 4px;
+}
+
+.hg-empty-guide-icon {
+  font-size: 36px;
+  margin-bottom: 10px;
+  opacity: 0.85;
+}
+
+.hg-empty-guide-title {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: #fff;
+}
+
+.hg-empty-guide-text {
+  font-size: 13px;
+  line-height: 1.45;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 14px;
+}
+
+.hg-empty-guide-action {
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.22);
+  border-radius: 10px;
+  padding: 8px 16px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 120ms;
+}
+
+.hg-empty-guide-action:hover {
+  background: rgba(255,255,255,0.2);
+}
