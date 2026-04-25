@@ -20,7 +20,7 @@
 
   function inferMeetingIndex(mail) {
     const id = normStr(mail?.id);
-    const match = id.match(/_(\d{3})$/);
+    const match = id.match(/(\d{3})$/);
     if (!match) return 1;
     return Number(match[1] || 1);
   }
