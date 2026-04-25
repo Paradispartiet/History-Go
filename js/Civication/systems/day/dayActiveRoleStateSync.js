@@ -33,6 +33,24 @@
     };
   }
 
+  async function ensureMailSystemForActiveRole(engine) {
+    const stateApi = window.CivicationState;
+    if (!stateApi || typeof stateApi.getActivePosition !== "function") return null;
+
+    const active = stateApi.getActivePosition() || null;
+    if (!active) return null;
+
+    const targetEngine = engine || window.HG_CiviEngine || null;
+    if (!targetEngine || typeof targetEngine.ensureMailSystemState !== "function") return null;
+
+    try {
+      return await targetEngine.ensureMailSystemState(active);
+    } catch (err) {
+      console.warn("[activeRoleStateSync] ensureMailSystemState failed", err);
+      return null;
+    }
+  }
+
   function isNavPending(item) {
     const ev = item?.event || item || {};
     return normStr(ev.source) === "NAV" || normStr(ev.id).startsWith("nav_auto_") || normStr(ev.stage) === "unemployed";
@@ -66,9 +84,11 @@
     if (typeof originalOnAppOpen === "function") {
       proto.onAppOpen = async function patchedOnAppOpen(opts) {
         syncActiveRoleState();
+        await ensureMailSystemForActiveRole(this);
         clearNavPendingWhenActiveRoleExists();
         const res = await originalOnAppOpen.call(this, opts || {});
         syncActiveRoleState();
+        await ensureMailSystemForActiveRole(this);
         clearNavPendingWhenActiveRoleExists();
         return res;
       };
@@ -78,9 +98,11 @@
     if (typeof originalFollowup === "function") {
       proto.enqueueImmediateFollowupEvent = async function patchedEnqueueImmediateFollowupEvent() {
         syncActiveRoleState();
+        await ensureMailSystemForActiveRole(this);
         clearNavPendingWhenActiveRoleExists();
         const res = await originalFollowup.call(this);
         syncActiveRoleState();
+        await ensureMailSystemForActiveRole(this);
         clearNavPendingWhenActiveRoleExists();
         return res;
       };
@@ -90,8 +112,9 @@
     return true;
   }
 
-  function boot() {
+  async function boot() {
     syncActiveRoleState();
+    await ensureMailSystemForActiveRole();
     clearNavPendingWhenActiveRoleExists();
     patchEngine();
   }
@@ -110,6 +133,7 @@
 
   window.CivicationActiveRoleStateSync = {
     syncActiveRoleState,
+    ensureMailSystemForActiveRole,
     clearNavPendingWhenActiveRoleExists,
     patchEngine
   };
