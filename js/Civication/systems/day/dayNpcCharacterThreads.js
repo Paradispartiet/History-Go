@@ -7,14 +7,21 @@
     return String(v || "").trim();
   }
 
+  function normalizeState(raw) {
+    const src = raw && typeof raw === "object" ? raw : {};
+    return {
+      characters: src.characters && typeof src.characters === "object" ? src.characters : {},
+      active_ids: Array.isArray(src.active_ids) ? src.active_ids.map(normStr).filter(Boolean) : [],
+      updated_at: src.updated_at || null
+    };
+  }
+
   function readState() {
     try {
       const raw = JSON.parse(localStorage.getItem(LS_KEY) || "{}");
-      return raw && typeof raw === "object"
-        ? raw
-        : { characters: {}, active_ids: [], updated_at: null };
+      return normalizeState(raw);
     } catch {
-      return { characters: {}, active_ids: [], updated_at: null };
+      return normalizeState({});
     }
   }
 
