@@ -35,7 +35,9 @@
 
   function isPhaseEvent(ev) {
     const id = normStr(ev?.id);
-    return id.startsWith("phase_") || !!normStr(ev?.phase_tag);
+    const mailType = normStr(ev?.mail_type);
+    if (id.startsWith("phase_")) return true;
+    return !!normStr(ev?.phase_tag) && !mailType;
   }
 
   function isNavEvent(ev) {
@@ -46,7 +48,7 @@
     const id = normStr(ev?.id);
     const type = normStr(ev?.mail_type);
     if (!id || !type) return false;
-    if (isPhaseEvent(ev) || isNavEvent(ev)) return false;
+    if (isNavEvent(ev)) return false;
     return VALID_MAIL_TYPES.has(type);
   }
 
@@ -163,7 +165,7 @@
         },
         activeFaction: normStr(state.activeFaction),
         phase: p,
-        selected_at: new Date().toISOString(),
+        selected_at: mail?.director_v2?.selected_at || new Date().toISOString(),
         source_place_ref: normStr(mail?.source_place_ref),
         people_ref: normStr(mail?.people_ref),
         mail_family: normStr(mail?.mail_family),
@@ -180,17 +182,19 @@
 
   function markShown(eventObj) {
     if (!isCivicationMail(eventObj)) return null;
+    const id = normStr(eventObj.id);
     const state = getState();
     const d = getDirectorState(state);
+    const alreadyShown = d.shown_ids.includes(id);
     const next = {
       ...d,
-      shown_ids: unique([...d.shown_ids, eventObj.id]),
-      blocked_recent_ids: unique([...d.blocked_recent_ids, eventObj.id]).slice(-12),
-      last_event_id: normStr(eventObj.id),
+      shown_ids: unique([...d.shown_ids, id]),
+      blocked_recent_ids: unique([...d.blocked_recent_ids, id]).slice(-12),
+      last_event_id: id,
       last_mail_type: normStr(eventObj.mail_type),
       last_family: normStr(eventObj.mail_family),
       last_phase: normStr(eventObj.phase_tag || phase()),
-      turn_index: Number(d.turn_index || 0) + 1,
+      turn_index: alreadyShown ? Number(d.turn_index || 0) : Number(d.turn_index || 0) + 1,
       updated_at: new Date().toISOString()
     };
     setState({ [DIRECTOR_KEY]: next });
@@ -212,6 +216,38 @@
 
   function getPending() {
     return getInbox().find((item) => item && item.status === "pending") || null;
+  }
+
+  function replacePendingEvent(eventObj) {
+    const inbox = getInbox();
+    const idx = Array.isArray(inbox) ? inbox.findIndex((item) => item && item.status === "pending") : -1;
+    if (idx < 0) {
+      setInbox([{ status: "pending", enqueued_at: new Date().toISOString(), event: eventObj }]);
+      return eventObj;
+    }
+    inbox[idx] = {
+      ...inbox[idx],
+      event: eventObj
+    };
+    setInbox(inbox);
+    return eventObj;
+  }
+
+  function adoptPendingMail(pending, engine) {
+    const active = getActive();
+    const eventObj = pending?.event || null;
+    if (!active || !isCivicationMail(eventObj)) return null;
+
+    const nextEvent = eventObj?.director_v2
+      ? eventObj
+      : enrichMail(eventObj, getState(), active);
+
+    if (nextEvent !== eventObj) {
+      replacePendingEvent(nextEvent);
+    }
+
+    markShown(nextEvent);
+    return nextEvent;
   }
 
   async function ensureBase(engine, active) {
@@ -257,6 +293,11 @@
 
     const pending = getPending();
     const pendingEvent = pending?.event || null;
+
+    if (pendingEvent && isCivicationMail(pendingEvent) && opts.force !== true) {
+      return adoptPendingMail(pending, engine);
+    }
+
     const shouldReplacePending =
       opts.force === true ||
       !pendingEvent ||
@@ -351,6 +392,7 @@
     patchEngine,
     chooseNextMail,
     enqueueNext,
+    adoptPendingMail,
     markShown,
     markAnswered,
     getConsumedIds,
