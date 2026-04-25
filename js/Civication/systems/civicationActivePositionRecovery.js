@@ -1,6 +1,8 @@
 (function () {
   "use strict";
 
+  var BACKUP_KEY = "hg_civi_last_active_position_v1";
+
   var ROLES = {
     arbeider: {
       career_id: "naeringsliv",
@@ -47,6 +49,36 @@
     return norm(v).toLowerCase();
   }
 
+  function safeParse(raw, fallback) {
+    try {
+      return JSON.parse(raw);
+    } catch (e) {
+      return fallback;
+    }
+  }
+
+  function validActive(pos) {
+    return !!(pos && norm(pos.role_key || pos.title || pos.role_id));
+  }
+
+  function clone(obj) {
+    return obj ? JSON.parse(JSON.stringify(obj)) : obj;
+  }
+
+  function backupActivePosition(pos) {
+    if (!validActive(pos)) return null;
+    var backup = Object.assign({}, pos, {
+      backed_up_at: new Date().toISOString()
+    });
+    localStorage.setItem(BACKUP_KEY, JSON.stringify(backup));
+    return backup;
+  }
+
+  function getBackupActivePosition() {
+    var backup = safeParse(localStorage.getItem(BACKUP_KEY), null);
+    return validActive(backup) ? backup : null;
+  }
+
   function inferRoleKey(state) {
     var direct = lower(state && state.active_role_key);
     if (ROLES[direct]) return direct;
@@ -60,25 +92,54 @@
     return null;
   }
 
+  function roleFromState(state) {
+    var roleKey = inferRoleKey(state);
+    if (!roleKey || !ROLES[roleKey]) return null;
+    return Object.assign({}, ROLES[roleKey]);
+  }
+
+  function patchSetActivePosition() {
+    var api = window.CivicationState;
+    if (!api || typeof api.setActivePosition !== "function") return false;
+    if (api.__activePositionRecoveryPatched) return true;
+
+    var original = api.setActivePosition.bind(api);
+    api.setActivePosition = function patchedSetActivePosition(pos) {
+      var res = original(pos);
+      if (validActive(pos)) backupActivePosition(pos);
+      return res;
+    };
+
+    api.__activePositionRecoveryPatched = true;
+    return true;
+  }
+
   function recoverActivePosition() {
     var api = window.CivicationState;
     if (!api || typeof api.getActivePosition !== "function" || typeof api.setActivePosition !== "function") return null;
 
+    patchSetActivePosition();
+
     var active = api.getActivePosition();
-    if (active && norm(active.role_key || active.title || active.role_id)) return active;
+    if (validActive(active)) {
+      backupActivePosition(active);
+      return active;
+    }
 
     var state = api.getState ? api.getState() : {};
-    var roleKey = inferRoleKey(state);
-    if (!roleKey || !ROLES[roleKey]) return null;
+    var recovered = roleFromState(state) || getBackupActivePosition();
+    if (!validActive(recovered)) return null;
 
-    var recovered = Object.assign({}, ROLES[roleKey], {
-      recovered_from_state: true,
+    recovered = Object.assign({}, clone(recovered), {
+      recovered_from_state: !!roleFromState(state),
+      recovered_from_backup: !roleFromState(state),
       recovered_at: new Date().toISOString()
     });
 
     api.setActivePosition(recovered);
 
     if (typeof api.setState === "function") {
+      var roleKey = lower(recovered.role_key || recovered.title);
       api.setState({
         active_role_key: roleKey,
         unemployed_since_week: null,
@@ -86,10 +147,12 @@
       });
     }
 
+    backupActivePosition(recovered);
     return recovered;
   }
 
   function boot() {
+    patchSetActivePosition();
     recoverActivePosition();
   }
 
@@ -104,6 +167,8 @@
 
   window.CivicationActivePositionRecovery = {
     recoverActivePosition: recoverActivePosition,
+    backupActivePosition: backupActivePosition,
+    getBackupActivePosition: getBackupActivePosition,
     inferRoleKey: inferRoleKey,
     ROLES: ROLES,
     PLAN_TO_ROLE: PLAN_TO_ROLE
