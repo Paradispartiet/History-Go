@@ -253,8 +253,27 @@ function showRouteOverlay(routeId, startIndex = 0) {
   const r = ROUTES.find(x => x.id === routeId);
   if (!r) { _toast("Fant ikke rute."); return; }
 
-  try { focusRouteOnMap(routeId, startIndex); }
-  catch (e) { console.warn("[showRouteOverlay] focusRouteOnMap failed", e); }
+  // Bytt til kart-modus så brukeren faktisk ser ruten.
+  // Først prøv eksplisitt enterMapMode-funksjon, ellers trigg btnSeeMap-klikk.
+  try {
+    if (typeof window.enterMapMode === "function") {
+      window.enterMapMode();
+    } else if (typeof enterMapMode === "function") {
+      enterMapMode();
+    } else {
+      const btn = document.getElementById("btnSeeMap");
+      if (btn && btn.offsetParent !== null) btn.click();
+    }
+  } catch (e) {
+    if (window.DEBUG) console.warn("[routes] enterMapMode failed", e);
+  }
+
+  // Tegn ruten — etter en liten forsinkelse så map-modus får aktivert
+  // og kart-containeren har riktig størrelse for fitBounds.
+  setTimeout(() => {
+    try { focusRouteOnMap(routeId, startIndex); }
+    catch (e) { console.warn("[showRouteOverlay] focusRouteOnMap failed", e); }
+  }, 200);
 
   _toast(`${r.name || r.title || "Rute"} (${r.stops?.length || 0} stopp)`);
 }

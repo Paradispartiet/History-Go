@@ -90,38 +90,89 @@ function renderNearbyPeople() {
   if (!listEl) return;
 
   const PEOPLE = window.PEOPLE || [];
+  const PLACES = window.PLACES || [];
   const visited = window.visited || {};
   const REL = window.REL_BY_PLACE || {};
 
   listEl.innerHTML = "";
 
-  const visitedPlaceIds = Object.keys(visited).filter(id => visited[id]);
-  const relatedIds = new Set();
+  if (!PEOPLE.length) {
+    listEl.innerHTML = `
+      <div class="hg-empty-guide">
+        <div class="hg-empty-guide-icon">👤</div>
+        <div class="hg-empty-guide-title">Folk lastes inn</div>
+        <div class="hg-empty-guide-text">Personene som hører til Oslo lastes nå.</div>
+      </div>
+    `;
+    return;
+  }
 
+  // Bygg people-liste i tre lag:
+  // 1) Personer koblet til steder bruker har besøkt (alltid vises først)
+  // 2) Personer koblet til nærliggende steder (sortert etter avstand)
+  // 3) Resten (alfabetisk) — så fanen aldri er tom
+  const visitedPlaceIds = Object.keys(visited).filter(id => visited[id]);
+  const visitedRelatedIds = new Set();
   visitedPlaceIds.forEach(pid => {
-    const rels = REL[pid] || [];
-    rels.forEach(r => {
-      if (r.person) relatedIds.add(r.person);
-    });
+    (REL[pid] || []).forEach(r => { if (r.person) visitedRelatedIds.add(r.person); });
   });
 
-  const relatedPeople = PEOPLE.filter(p => relatedIds.has(p.id));
+  // Avstands-grunnlag
+  const pos = window.getPos?.();
+  const placesById = new Map(PLACES.map(p => [String(p.id || "").trim(), p]));
 
-  relatedPeople.forEach(person => {
+  function distanceForPerson(person) {
+    const placeIds = new Set();
+    if (person.placeId) placeIds.add(person.placeId);
+    (person.places || []).forEach(p => placeIds.add(p));
+    if (!placeIds.size || !pos || !window.distMeters) return Infinity;
+    let min = Infinity;
+    for (const pid of placeIds) {
+      const p = placesById.get(pid);
+      if (!p || !Number.isFinite(p.lat) || !Number.isFinite(p.lon)) continue;
+      const d = window.distMeters(pos, { lat: p.lat, lon: p.lon });
+      if (Number.isFinite(d) && d < min) min = d;
+    }
+    return min;
+  }
+
+  const decorated = PEOPLE.map(person => ({
+    person,
+    isVisited: visitedRelatedIds.has(person.id),
+    dist: distanceForPerson(person)
+  }));
+
+  decorated.sort((a, b) => {
+    if (a.isVisited !== b.isVisited) return a.isVisited ? -1 : 1;
+    if (a.dist !== b.dist) return a.dist - b.dist;
+    return String(a.person.name || "").localeCompare(String(b.person.name || ""), "nb");
+  });
+
+  decorated.forEach(({ person, isVisited, dist }) => {
     const img = person.cardImage || person.image || "";
+    const distText = Number.isFinite(dist) ? `${Math.round(dist)} m` : "";
 
     const item = document.createElement("div");
-    item.className = "nearby-item";
+    item.className = "nearby-item" + (isVisited ? " is-visited" : "");
+    item.dataset.personId = String(person.id || "").trim();
+
+    const thumb = img
+      ? `<img class="nearby-thumb" src="${img}" alt="${person.name || ""}"
+              onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'nearby-thumb nearby-thumb-icon',textContent:'👤'}))">`
+      : `<div class="nearby-thumb nearby-thumb-icon">👤</div>`;
 
     item.innerHTML = `
-      <div class="nearby-thumbWrap">
-        <img class="nearby-thumb" src="${img}" alt="${person.name}">
+      <div class="nearby-thumbWrap">${thumb}</div>
+      <div class="nearby-content">
+        <div class="nearby-title">${person.name || ""}</div>
+        ${distText || isVisited ? `<div class="nearby-meta">${distText}${isVisited ? " · ✔" : ""}</div>` : ""}
       </div>
-      <div class="nearby-title">${person.name}</div>
     `;
 
     item.addEventListener("click", () => {
-      if (typeof window.openPersonCard === "function") {
+      if (typeof window.showPersonPopup === "function") {
+        window.showPersonPopup(person);
+      } else if (typeof window.openPersonCard === "function") {
         window.openPersonCard(person);
       }
     });

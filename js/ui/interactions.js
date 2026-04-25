@@ -111,6 +111,11 @@ function exitMapMode() {
 el.btnSeeMap?.addEventListener("click", enterMapMode);
 el.btnExitMap?.addEventListener("click", exitMapMode);
 
+// Eksponer på window så routes.js og andre subsystemer kan bytte til
+// kart-modus før de tegner overlays/ruter.
+window.enterMapMode = enterMapMode;
+window.exitMapMode = exitMapMode;
+
 window.addEventListener("resize", () => {
   window.MAP?.resize?.();
 });
