@@ -53,22 +53,45 @@
     return null;
   }
 
-  function variantChoiceLabel(choice, variant) {
-    const base = normStr(choice?.label);
+  function npcChoiceLine(choice, variant) {
     const effect = Number(choice?.effect || 0);
     const constructive = effect >= 1;
     const name = normStr(variant?.character_name || "Personen");
 
     if (variant?.relation === "ally") {
       return constructive
-        ? `Stå sammen med ${name}: ${base}`
-        : `Skuff ${name}: ${base}`;
+        ? `${name}: Ikke svikt oss nå.`
+        : `${name}: Hvis du velger dette, vet jeg ikke lenger hvor vi står.`;
     }
 
     if (variant?.relation === "enemy") {
       return constructive
+        ? `${name}: Så du tør å stå for det likevel.`
+        : `${name}: Akkurat. Det var dette jeg ventet på.`;
+    }
+
+    return "";
+  }
+
+  function variantChoiceLabel(choice, variant) {
+    const base = normStr(choice?.label);
+    const effect = Number(choice?.effect || 0);
+    const constructive = effect >= 1;
+    const name = normStr(variant?.character_name || "Personen");
+    const line = npcChoiceLine(choice, variant);
+
+    if (variant?.relation === "ally") {
+      const action = constructive
+        ? `Stå sammen med ${name}: ${base}`
+        : `Skuff ${name}: ${base}`;
+      return line ? `${line} — ${action}` : action;
+    }
+
+    if (variant?.relation === "enemy") {
+      const action = constructive
         ? `Møt ${name} åpent: ${base}`
         : `Gå mot ${name}: ${base}`;
+      return line ? `${line} — ${action}` : action;
     }
 
     return base;
@@ -78,15 +101,18 @@
     if (!Array.isArray(choices)) return choices;
     return choices.map((choice) => {
       const originalLabel = normStr(choice?.original_label || choice?.label);
+      const line = npcChoiceLine(choice, variant);
       return {
         ...choice,
         original_label: originalLabel,
         label: variantChoiceLabel(choice, variant),
+        npc_choice_line: line,
         relationship_choice_variant: {
           relation: normStr(variant?.relation),
           character_id: normStr(variant?.character_id),
           character_name: normStr(variant?.character_name),
-          original_label: originalLabel
+          original_label: originalLabel,
+          npc_choice_line: line
         }
       };
     });
@@ -140,6 +166,7 @@
     buildVariant,
     applyVariantChoices,
     variantChoiceLabel,
+    npcChoiceLine,
     patch
   };
 })();
