@@ -944,7 +944,15 @@ function renderCivicationInbox() {
 
     const ev = pending.event;
 
-    subj.textContent = `📬 ${ev.subject || "—"}`;
+    // V2 blueprint: vis avsender (NPC) og sted hvis satt.
+    const npc = ev.from && window.CivicationNPCs?.lookup?.(ev.from);
+    const senderPrefix = npc ? `✉️ ${npc.name} · ${npc.title}` : "";
+    const placeLine = ev.place_id ? ` · 📍 ${ev.place_id.replace(/_/g, " ")}` : "";
+
+    subj.innerHTML = senderPrefix
+      ? `<span class="civi-mail-sender">${senderPrefix}${placeLine}</span><br>📬 ${ev.subject || "—"}`
+      : `📬 ${ev.subject || "—"}${placeLine}`;
+
     text.textContent =
       Array.isArray(ev.situation)
         ? ev.situation.join(" ")
@@ -964,6 +972,18 @@ function renderCivicationInbox() {
       btn.onclick = () => {
         const res = window.HG_CiviEngine?.answer?.(ev.id, id);
         if (!res?.ok) return;
+
+        // V2 blueprint: hvis valget har triggers_on_choice, enkø
+        // thread-mail i inbox (vises som "Re:"-oppfølger).
+        try {
+          const chosen = choices.find(c => String(c?.id) === String(id));
+          const tid = chosen?.triggers_on_choice;
+          if (tid && window.CivicationThreadBridge?.enqueueThread) {
+            window.CivicationThreadBridge.enqueueThread(tid, { triggeredBy: ev.id });
+          }
+        } catch (err) {
+          if (window.DEBUG) console.warn("[Civi] thread enqueue failed", err);
+        }
 
         fb.textContent = res.feedback || "—";
         fb.style.display = "";
@@ -1018,8 +1038,19 @@ function renderCivicationInbox() {
   const situation = Array.isArray(ev.situation) ? ev.situation.join(" ") : (ev.situation || "—");
   const choices = Array.isArray(ev.choices) ? ev.choices : [];
 
+  // V2 blueprint: avsender + sted
+  const npc = ev.from && window.CivicationNPCs?.lookup?.(ev.from);
+  const senderLine = npc
+    ? `<div class="civi-mail-sender">✉️ ${npc.name} · ${npc.title}</div>`
+    : "";
+  const placeLine = ev.place_id
+    ? `<div class="civi-mail-place">📍 ${String(ev.place_id).replace(/_/g, " ")}</div>`
+    : "";
+
   host.innerHTML = `
     <div>
+      ${senderLine}
+      ${placeLine}
       <div><strong>📬 ${ev.subject || "—"}</strong></div>
       <div style="margin-top:6px;">${situation}</div>
 
@@ -1062,6 +1093,16 @@ function renderCivicationInbox() {
     b.onclick = () => {
       const res = window.HG_CiviEngine?.answer?.(ev.id, id);
       if (!res?.ok) return;
+
+      // V2 blueprint: enkø thread-mail hvis choice har triggers_on_choice
+      try {
+        const tid = c?.triggers_on_choice;
+        if (tid && window.CivicationThreadBridge?.enqueueThread) {
+          window.CivicationThreadBridge.enqueueThread(tid, { triggeredBy: ev.id });
+        }
+      } catch (err) {
+        if (window.DEBUG) console.warn("[Civi] thread enqueue failed", err);
+      }
 
       if (choiceBox) choiceBox.innerHTML = "";
       showOk(res.feedback || "—");
