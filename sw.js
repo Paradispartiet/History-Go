@@ -3,7 +3,7 @@
    Oppdatert: 2026-04-22
    ============================================================ */
 
-const SW_VERSION = "hg-sw-2026-04-22-v1.34.0";
+const SW_VERSION = "hg-sw-2026-04-22-v1.35.0";
 
 const CACHE_STATIC  = `hg-static-${SW_VERSION}`;
 const CACHE_RUNTIME = `hg-runtime-${SW_VERSION}`;
@@ -146,6 +146,7 @@ const PRECACHE_URLS = [
   "js/Civication/ui/CivicationPublicLayer.js",
   "js/Civication/ui/CivicationMap.js",
   "js/Civication/ui/CivicationUI.js",
+  "js/Civication/ui/CivicationEmptyPanels.js",
 
   // Civication – utils / systems
   "js/Civication/utils/storyResolver.js",

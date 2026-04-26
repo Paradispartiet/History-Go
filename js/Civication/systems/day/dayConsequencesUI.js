@@ -54,11 +54,11 @@
     if (!delta) return "<div class=\"civi-cons-muted\">Ingen nylige utslag registrert ennå.</div>";
 
     const html = [
-      formatDelta("Trust", delta.trust),
-      formatDelta("Integrity", delta.integrity),
-      formatDelta("Visibility", delta.visibility),
-      formatDelta("Economic", delta.economicRoom),
-      formatDelta("Autonomy", delta.autonomy)
+      formatDelta("Tillit", delta.trust),
+      formatDelta("Integritet", delta.integrity),
+      formatDelta("Synlighet", delta.visibility),
+      formatDelta("Økonomisk", delta.economicRoom),
+      formatDelta("Selvstendighet", delta.autonomy)
     ].filter(Boolean).join("");
 
     return html || "<div class=\"civi-cons-muted\">Ingen målbare endringer i siste oppdatering.</div>";
