@@ -369,7 +369,35 @@
    TOMME PANELER – mindre rotete enn "—"
 ------------------------------------------------------------ */
 
-.civi-panels > section:has(:empty:only-child) {
-  /* Skjul ikke, men dem ned visuelt */
-  opacity: 0.65;
+/* ------------------------------------------------------------
+   TOMME PANELER — skjul når innholdet faktisk er tomt
+------------------------------------------------------------ */
+
+/* Generell regel: hvis hovedinnholdsdiv er tom OG ingen barn-noder
+   har innhold, skjul hele seksjonen. Dette er stabil moderne-CSS. */
+.civi-panels > section.is-empty {
+  display: none;
 }
+
+/* Spesifikt: skjul seksjoner der den primære innhold-containeren er
+   tom (ingen tekst, ingen barn). Dette dekker tilfeller der JS
+   ikke har rukket å sette is-empty enda. */
+#civiPeopleSection:has(#civiPeoplePanel:empty),
+#civiStoreSection:has(#civiStorePanel:empty),
+#civiDebateSection:has(#civiDebatePanel:empty),
+#civiPublicFeedSection:has(#civiPublicFeed:empty),
+#civiHomeStatus:has(#homeStatusContent:empty),
+#civiOnboardingSection:has(#civiOnboardingPanel:empty),
+#civiInboxSection:has(#civiInbox:empty) {
+  display: none;
+}
+
+/* Track HUD: skjul hvis ingen aktiv retning er satt */
+#civiTrackHUD:has(#civiTrackName:empty),
+#civiTrackHUD.is-empty {
+  display: none;
+}
+
+/* Tomme placeholder-strenger ("—", "–") teller som tomme.
+   JS-funksjonen civiMarkEmptyPanels (lagt til separat) håndterer
+   denne logikken og setter .is-empty. */
