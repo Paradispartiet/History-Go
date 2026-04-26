@@ -119,6 +119,11 @@
     return normStr(window.CivicationCalendar?.getPhase?.()) || "morning";
   }
 
+  function canSelectRoleMailNow(opts = {}) {
+    if (opts.allowNonMorningRoleMail === true) return true;
+    return phase() === "morning";
+  }
+
   function phaseLabel(p) {
     switch (normStr(p)) {
       case "morning": return "morgen";
@@ -182,6 +187,8 @@
 
   function markShown(eventObj) {
     if (!isCivicationMail(eventObj)) return null;
+    if (normStr(eventObj.phase_tag || phase()) !== "morning") return null;
+
     const id = normStr(eventObj.id);
     const state = getState();
     const d = getDirectorState(state);
@@ -237,6 +244,7 @@
     const active = getActive();
     const eventObj = pending?.event || null;
     if (!active || !isCivicationMail(eventObj)) return null;
+    if (!canSelectRoleMailNow()) return eventObj;
 
     const nextEvent = eventObj?.director_v2
       ? eventObj
@@ -261,6 +269,7 @@
   async function chooseNextMail(engine, opts = {}) {
     const active = getActive();
     if (!active) return null;
+    if (!canSelectRoleMailNow(opts)) return null;
     await ensureBase(engine, active);
 
     const state = stateWithMergedConsumed(getState());
@@ -293,6 +302,10 @@
 
     const pending = getPending();
     const pendingEvent = pending?.event || null;
+
+    if (!canSelectRoleMailNow(opts)) {
+      return pendingEvent || null;
+    }
 
     if (pendingEvent && isCivicationMail(pendingEvent) && opts.force !== true) {
       return adoptPendingMail(pending, engine);
@@ -398,6 +411,7 @@
     getConsumedIds,
     stateWithMergedConsumed,
     syncPlanProgressFromMailSystem,
-    getDirectorState
+    getDirectorState,
+    canSelectRoleMailNow
   };
 })();
