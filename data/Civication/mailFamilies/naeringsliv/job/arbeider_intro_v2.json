@@ -1,0 +1,294 @@
+{
+  "schema": "civication_mail_family_catalog_v2",
+  "category": "naeringsliv",
+  "role_scope": "arbeider",
+  "mail_type": "job",
+  "description": "Blueprint-versjon av arbeider_intro. Demonstrerer fire grep: navngitte avsendere (from), konkrete steder (place_id), Re:-kjeder via triggers_on_choice + threads, og subjects/choices skrevet som ekte mail-emner og replikker.",
+
+  "families": [
+    {
+      "id": "arbeider_intro_v2",
+      "description": "Første dager på Lilleborg fabrikker. Fra Egil, Marit og Roger.",
+
+      "mails": [
+        {
+          "id": "arbeider_intro_v2_001",
+          "mail_type": "job",
+          "mail_family": "arbeider_intro_v2",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 60,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+
+          "from": "egil_kontrollrom",
+          "place_id": "lilleborg_fabrikker",
+          "subject": "Re: Skiftet i morgen — Lilleborg",
+
+          "situation": [
+            "Egil sender en kort beskjed på slutten av dagen.",
+            "«Ser at du er på lista til 7-skiftet i morgen. Kom 06:45 så går vi runden før resten kommer. Vi tar fakta-tavla først.»",
+            "Det er morgendagens første reelle test."
+          ],
+
+          "choices": [
+            {
+              "id": "A",
+              "label": "Møt opp 06:45 med termos.",
+              "reply": "Møt opp 06:45 med termos.",
+              "tags": ["craft", "legitimacy"],
+              "effect": 0,
+              "feedback": "Egil ser deg komme før resten — det noteres uten et ord.",
+              "triggers_on_choice": "egil_thread_morning_a"
+            },
+            {
+              "id": "B",
+              "label": "«Hvordan starter dagen vanligvis?»",
+              "reply": "Hvordan starter dagen vanligvis?",
+              "tags": ["process", "visibility"],
+              "effect": 1,
+              "feedback": "Du skaper litt forventning før noe har skjedd.",
+              "triggers_on_choice": "egil_thread_morning_b"
+            }
+          ]
+        },
+
+        {
+          "id": "arbeider_intro_v2_002",
+          "mail_type": "job",
+          "mail_family": "arbeider_intro_v2",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 56,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+
+          "from": "marit_hr",
+          "place_id": "lilleborg_fabrikker",
+          "subject": "Spørsmål om rutine 4.2",
+
+          "situation": [
+            "Marit fra HR sender en formell men ikke uvennlig mail.",
+            "«Jeg ser at du ikke har bekreftet at du har lest rutine 4.2 om HMS-rapportering. Den må gjennomgås før uken er omme. Si fra hvis du trenger en kopi.»",
+            "Du vet ikke om Egil har sagt noe til henne — eller om dette er rutinemessig."
+          ],
+
+          "choices": [
+            {
+              "id": "A",
+              "label": "«Jeg leser meg opp. Får jeg dokumentet?»",
+              "reply": "Jeg leser meg opp. Får jeg dokumentet?",
+              "tags": ["process", "legitimacy"],
+              "effect": 0,
+              "feedback": "Du svarer det de venter at du skal svare. Trygg start.",
+              "triggers_on_choice": "marit_thread_rutine_a"
+            },
+            {
+              "id": "B",
+              "label": "«Egil tok meg gjennom det i går.»",
+              "reply": "Egil tok meg gjennom det i går.",
+              "tags": ["informal", "risk"],
+              "effect": 1,
+              "feedback": "Du bruker Egils navn som dekning. Marit vil sjekke det.",
+              "triggers_on_choice": "marit_thread_rutine_b"
+            }
+          ]
+        },
+
+        {
+          "id": "arbeider_intro_v2_003",
+          "mail_type": "job",
+          "mail_family": "arbeider_intro_v2",
+          "role_scope": "arbeider",
+          "phase": "intro",
+          "priority": 57,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+
+          "from": "roger_verneombud",
+          "place_id": "akerselva_industri",
+          "subject": "Litt obs på pause-tid",
+
+          "situation": [
+            "Roger sender en kort tekst etter skiftet.",
+            "«Hei. Så at dere holdt på til 12:18 i dag. Lunsj skal være 12:00–12:30 — det står i tariffavtalen. Ikke noe stort nå, men det er sånt som blir vane.»",
+            "Det er ikke en irettesettelse. Det er en advarsel om hvor varselsklokker går."
+          ],
+
+          "choices": [
+            {
+              "id": "A",
+              "label": "«Takk, jeg passer på det.»",
+              "reply": "Takk, jeg passer på det.",
+              "tags": ["legitimacy", "avoidance"],
+              "effect": 0,
+              "feedback": "Roger noterer deg som en som hører etter.",
+              "triggers_on_choice": "roger_thread_pause_a"
+            },
+            {
+              "id": "B",
+              "label": "«Egil ba oss kjøre ferdig batchen først.»",
+              "reply": "Egil ba oss kjøre ferdig batchen først.",
+              "tags": ["loyalty_to_leader", "risk"],
+              "effect": 1,
+              "feedback": "Du forklarer ledelsens valg. Roger registrerer hvor du står.",
+              "triggers_on_choice": "roger_thread_pause_b"
+            }
+          ]
+        }
+      ],
+
+      "threads": [
+        {
+          "id": "egil_thread_morning_a",
+          "from": "egil_kontrollrom",
+          "place_id": "lilleborg_fabrikker",
+          "subject": "Re: Re: Skiftet i morgen — Lilleborg",
+          "phase": "intro",
+          "priority": 70,
+          "cooldown": 0,
+          "situation": [
+            "Egil svarer kjapt.",
+            "«Bra. Da går vi gjennom B-linja først. Bjarne skulle vist deg den, men han er borte i morgen. Du kommer først til meg.»",
+            "Han skriver ikke mer enn nødvendig — det er hans måte å si at han allerede regner med deg."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "«Greit. Jeg er der.»",
+              "reply": "Greit. Jeg er der.",
+              "tags": ["legitimacy"],
+              "effect": 0,
+              "feedback": "Avtalen står. Ingenting mer å si."
+            }
+          ]
+        },
+        {
+          "id": "egil_thread_morning_b",
+          "from": "egil_kontrollrom",
+          "place_id": "lilleborg_fabrikker",
+          "subject": "Re: Re: Skiftet i morgen — Lilleborg",
+          "phase": "intro",
+          "priority": 70,
+          "cooldown": 0,
+          "situation": [
+            "Egil svarer etter en liten pause.",
+            "«Vanlig? Ingenting er vanlig her før klokka åtte. Kom 06:45 som jeg skrev, så viser jeg deg.»",
+            "Han har ikke tid til å skrive ned hva han vet."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "«OK. Beklager. Jeg er der 06:45.»",
+              "reply": "OK. Beklager. Jeg er der 06:45.",
+              "tags": ["legitimacy"],
+              "effect": 0,
+              "feedback": "Du retter opp uten å lage stor sak. Egil kvitterer ikke."
+            }
+          ]
+        },
+
+        {
+          "id": "marit_thread_rutine_a",
+          "from": "marit_hr",
+          "place_id": "lilleborg_fabrikker",
+          "subject": "Re: Spørsmål om rutine 4.2",
+          "phase": "intro",
+          "priority": 65,
+          "cooldown": 0,
+          "situation": [
+            "Marit svarer raskt og hyggelig.",
+            "«Sender det nå. Når du har lest, send meg en kort bekreftelse på at du har gjennomgått punkt 1–6. Ta det i din egen tid.»",
+            "Hun behandler deg som en voksen som klarer ting selv."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Bekreftelse blir sendt før helgen.",
+              "reply": "OK. Bekreftelse kommer før helgen.",
+              "tags": ["process"],
+              "effect": 0,
+              "feedback": "Du har en avtale du må holde. Greit."
+            }
+          ]
+        },
+        {
+          "id": "marit_thread_rutine_b",
+          "from": "marit_hr",
+          "place_id": "lilleborg_fabrikker",
+          "subject": "Re: Spørsmål om rutine 4.2",
+          "phase": "intro",
+          "priority": 65,
+          "cooldown": 0,
+          "situation": [
+            "Marit svarer med en tone som er litt kjøligere enn første gang.",
+            "«Det er mulig Egil tok deg gjennom hovedpunktene, men vi trenger din egen bekreftelse i systemet. Send meg en mail når du har lest gjennom dokumentet selv. Jeg sender det nå.»",
+            "Hun har lagt merke til at du brukte et navn for å slippe unna."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "«OK. Jeg leser og bekrefter.»",
+              "reply": "OK. Jeg leser og bekrefter.",
+              "tags": ["process", "humility"],
+              "effect": 0,
+              "feedback": "Du gir etter uten å forklare. Marit noterer."
+            }
+          ]
+        },
+
+        {
+          "id": "roger_thread_pause_a",
+          "from": "roger_verneombud",
+          "place_id": "akerselva_industri",
+          "subject": "Re: Litt obs på pause-tid",
+          "phase": "intro",
+          "priority": 65,
+          "cooldown": 0,
+          "situation": [
+            "Roger svarer kort.",
+            "«Bra. Det høres ut som lite, men det er der det starter. Si fra hvis ledelsen presser deg over tid uten å spørre — da hjelper jeg.»",
+            "Han har akkurat åpnet en linje du kan bruke senere."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "«Takk. Jeg sier fra.»",
+              "reply": "Takk. Jeg sier fra.",
+              "tags": ["loyalty_to_workers"],
+              "effect": 0,
+              "feedback": "Roger registrerer deg som en allierbar."
+            }
+          ]
+        },
+        {
+          "id": "roger_thread_pause_b",
+          "from": "roger_verneombud",
+          "place_id": "akerselva_industri",
+          "subject": "Re: Litt obs på pause-tid",
+          "phase": "intro",
+          "priority": 65,
+          "cooldown": 0,
+          "situation": [
+            "Roger svarer med en tone som er mer formell.",
+            "«Det er nettopp det jeg skrev om. Egil får ikke be dere kjøre over pause uten å føre overtid. Jeg tar det videre — du trenger ikke gjøre noe.»",
+            "Han sier at han vil håndtere det. Du har plassert deg på ledelsens side i hans bok."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "«Skjønner. Jeg sier ikke noe mer.»",
+              "reply": "Skjønner. Jeg sier ikke noe mer.",
+              "tags": ["loyalty_to_leader", "isolation"],
+              "effect": 0,
+              "feedback": "Du trekker deg tilbake. Roger har sin sak; du har Egils."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
