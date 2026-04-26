@@ -14,8 +14,10 @@
   }
 
   function safeParse(raw, fallback) {
+    if (raw == null || raw === "") return fallback;
     try {
-      return JSON.parse(raw);
+      var parsed = JSON.parse(raw);
+      return parsed == null ? fallback : parsed;
     } catch (e) {
       return fallback;
     }
@@ -27,12 +29,13 @@
   }
 
   function readTrace() {
-    return safeParse(localStorage.getItem(TRACE_KEY), []);
+    var rows = safeParse(localStorage.getItem(TRACE_KEY), []);
+    return Array.isArray(rows) ? rows : [];
   }
 
   function writeTrace(rows) {
     try {
-      localStorage.setItem(TRACE_KEY, JSON.stringify((rows || []).slice(-80)));
+      localStorage.setItem(TRACE_KEY, JSON.stringify((Array.isArray(rows) ? rows : []).slice(-80)));
     } catch (e) {}
   }
 
@@ -83,7 +86,7 @@
   }
 
   function clearTrace() {
-    localStorage.removeItem(TRACE_KEY);
+    writeTrace([]);
   }
 
   patchStorage();
