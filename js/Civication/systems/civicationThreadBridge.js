@@ -76,6 +76,10 @@
     return choices.find(choice => String(choice?.id || "").trim() === cid) || null;
   }
 
+  function answerExplicitlyFailed(res) {
+    return res && typeof res === "object" && res.ok === false;
+  }
+
   // Enkø en thread-mail i Civication-inboxen.
   async function enqueueThread(threadId, options = {}) {
     await load();
@@ -142,7 +146,7 @@
 
       const res = await originalAnswer.call(this, eventId, choiceId);
 
-      if (res?.ok && triggerId) {
+      if (triggerId && !answerExplicitlyFailed(res)) {
         await enqueueThread(triggerId, {
           triggeredBy: eventId,
           choiceId
