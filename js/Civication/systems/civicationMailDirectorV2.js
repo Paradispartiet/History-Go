@@ -12,6 +12,21 @@
     return [...new Set((Array.isArray(values) ? values : []).map(normStr).filter(Boolean))];
   }
 
+  function roleScopeFromActive(active) {
+    const roleId = normStr(active?.role_id);
+    if (roleId === "naer_arbeider") return "arbeider";
+    if (roleId === "naer_fagarbeider") return "fagarbeider";
+    if (roleId === "naer_mellomleder") return "mellomleder";
+
+    return normStr(active?.title)
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-z0-9]+/g, "_")
+      .replace(/^_+|_+$/g, "")
+      .slice(0, 80);
+  }
+
   function getState() {
     return window.CivicationState?.getState?.() || {};
   }
@@ -50,6 +65,37 @@
     if (!id || !type) return false;
     if (isNavEvent(ev)) return false;
     return VALID_MAIL_TYPES.has(type);
+  }
+
+  function isV2BlueprintMail(ev) {
+    if (!isCivicationMail(ev)) return false;
+    return !!(normStr(ev?.from) && normStr(ev?.place_id));
+  }
+
+  function shouldUpgradePendingToV2(ev, active) {
+    if (!isCivicationMail(ev)) return false;
+    if (isV2BlueprintMail(ev)) return false;
+    if (normStr(ev?.mail_type) !== "job") return false;
+
+    const roleScope = roleScopeFromActive(active);
+    const family = normStr(ev?.mail_family);
+    const phaseLike = normStr(ev?.mail_plan_meta?.phase || ev?.phase || "intro");
+    if (phaseLike && phaseLike !== "intro") return false;
+
+    if (roleScope === "arbeider") {
+      return ["arbeider_intro", "drift_basics"].includes(family);
+    }
+
+    if (roleScope === "fagarbeider") {
+      return [
+        "fagarbeider_ansvar",
+        "faglig_presisjon",
+        "dokumentasjon_og_spor",
+        "opplaering_av_andre"
+      ].includes(family);
+    }
+
+    return false;
   }
 
   function getDirectorState(state) {
@@ -173,6 +219,8 @@
         selected_at: mail?.director_v2?.selected_at || new Date().toISOString(),
         source_place_ref: normStr(mail?.source_place_ref),
         people_ref: normStr(mail?.people_ref),
+        from: normStr(mail?.from),
+        place_id: normStr(mail?.place_id),
         mail_family: normStr(mail?.mail_family),
         mail_type: normStr(mail?.mail_type)
       },
@@ -180,7 +228,9 @@
         ...(mail?.role_content_meta || {}),
         director_v2: true,
         phase: p,
-        activeFaction: normStr(state.activeFaction)
+        activeFaction: normStr(state.activeFaction),
+        from: normStr(mail?.from),
+        place_id: normStr(mail?.place_id)
       }
     };
   }
@@ -308,6 +358,19 @@
     }
 
     if (pendingEvent && isCivicationMail(pendingEvent) && opts.force !== true) {
+      if (shouldUpgradePendingToV2(pendingEvent, active)) {
+        const upgraded = await chooseNextMail(engine, { allowExhaustedFallback: false });
+        if (upgraded && isV2BlueprintMail(upgraded)) {
+          const eventObj = typeof engine?.decorateWorkMail === "function"
+            ? engine.decorateWorkMail(upgraded, active, "mail_director_v2")
+            : upgraded;
+
+          setInbox([{ status: "pending", enqueued_at: new Date().toISOString(), event: eventObj }]);
+          markShown(eventObj);
+          return eventObj;
+        }
+      }
+
       return adoptPendingMail(pending, engine);
     }
 
@@ -412,6 +475,8 @@
     stateWithMergedConsumed,
     syncPlanProgressFromMailSystem,
     getDirectorState,
-    canSelectRoleMailNow
+    canSelectRoleMailNow,
+    shouldUpgradePendingToV2,
+    isV2BlueprintMail
   };
 })();
