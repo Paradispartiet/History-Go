@@ -1,0 +1,152 @@
+{
+  "schema": "civication_role_model_v1",
+  "category": "naeringsliv",
+  "role_scope": "mellomleder",
+  "role_id": "naer_mellomleder",
+  "title": "Mellomleder",
+  "description": "Fagmodell for mellomlederrollen i Civication. Brukes som kilde for realistiske mailer, kompetanseakser og idealtypiske arbeidsproblemer.",
+  "education_basis": [
+    "organisasjonsforståelse",
+    "arbeidsmiljø og HMS",
+    "driftsplanlegging",
+    "konflikthåndtering",
+    "rapportering og dokumentasjon",
+    "økonomi og ressursprioritering",
+    "kommunikasjon mellom ledelse og ansatte",
+    "endringsledelse",
+    "kvalitetsarbeid og standardisering"
+  ],
+  "professional_description": [
+    "Mellomlederen står mellom strategisk ledelse og operativ drift.",
+    "Rollen handler ikke bare om å gi beskjeder, men om å oversette krav, beskytte kapasitet, prioritere realistisk og gjøre friksjon synlig før den blir krise.",
+    "En god mellomleder ser mønstre i små avvik, skiller mellom reell forbedring og pen rapportering, og forstår at tillit er en del av driften."
+  ],
+  "competence_axes": [
+    {
+      "id": "driftsforstaelse",
+      "label": "Driftsforståelse",
+      "description": "Evnen til å se hvordan mennesker, tid, produksjon, avvik og støttefunksjoner henger sammen i praksis."
+    },
+    {
+      "id": "arbeidsmiljo",
+      "label": "Arbeidsmiljø",
+      "description": "Evnen til å oppdage belastning, konflikt, slitasje og utrygghet før det blir formell sak eller varig skade."
+    },
+    {
+      "id": "styring_og_tillit",
+      "label": "Styring og tillit",
+      "description": "Balansen mellom kontroll, åpenhet, lojalitet, forankring og troverdighet i rollen."
+    },
+    {
+      "id": "rapportering",
+      "label": "Rapportering",
+      "description": "Evnen til å gjøre virkeligheten synlig uten å pynte, skjule, overdrive eller flytte problemet nedover."
+    },
+    {
+      "id": "prioritering",
+      "label": "Prioritering",
+      "description": "Evnen til å velge hva som må tas først når alt ikke kan løses samtidig."
+    },
+    {
+      "id": "konflikthandtering",
+      "label": "Konflikthåndtering",
+      "description": "Evnen til å håndtere uenighet, friksjon og uformell makt uten å gjøre konflikten større enn saken."
+    },
+    {
+      "id": "systemoversettelse",
+      "label": "Systemoversettelse",
+      "description": "Evnen til å oversette mellom ledelsens mål, systemets språk og arbeidshverdagens faktiske begrensninger."
+    }
+  ],
+  "ideal_type_problems": [
+    {
+      "id": "press_ovenfra_nedenfra",
+      "label": "Press ovenfra og nedenfra",
+      "description": "Ledelsen krever tall, mens ansatte trenger realistiske rammer, trygghet og forklaring.",
+      "mail_families": [
+        "mellomleder_rolleforstaelse",
+        "krysspress",
+        "rapportering_og_styring"
+      ]
+    },
+    {
+      "id": "plan_vs_kapasitet",
+      "label": "Plan mot faktisk kapasitet",
+      "description": "Planen ser riktig ut i systemet, men krever mer enn folk faktisk kan bære.",
+      "mail_families": [
+        "mellomleder_planlegging",
+        "driftskrise"
+      ]
+    },
+    {
+      "id": "uformell_makt",
+      "label": "Uformell makt",
+      "description": "Ansatte, formenn, sideledere eller nøkkelpersoner påvirker mer enn organisasjonskartet viser.",
+      "mail_families": [
+        "rapportering_og_styring",
+        "administrasjon_og_hverdagsmakt",
+        "sliten_nokkelperson"
+      ]
+    },
+    {
+      "id": "ansvar_uten_full_myndighet",
+      "label": "Ansvar uten full myndighet",
+      "description": "Mellomlederen må ta ansvar for problemer rollen ikke fullt ut kontrollerer.",
+      "mail_families": [
+        "mellomleder_mastery",
+        "institusjonell_krise"
+      ]
+    },
+    {
+      "id": "rapportering_vs_sannhet",
+      "label": "Rapportering mot sannhet",
+      "description": "Tall, planer og statusrapporter kan se bedre ut enn virkeligheten de skal beskrive.",
+      "mail_families": [
+        "mellomleder_rolleforstaelse",
+        "rapportering_og_styring",
+        "bedrift_og_symbolsk_kapital"
+      ]
+    },
+    {
+      "id": "lojalitet_vs_faglighet",
+      "label": "Lojalitet mot faglighet",
+      "description": "Mellomlederen må velge mellom å beskytte ledelsens linje, arbeidernes erfaring eller den faglige realiteten i situasjonen.",
+      "mail_families": [
+        "mellomleder_fraksjonsvalg",
+        "mellomleder_mastery",
+        "krysspress"
+      ]
+    },
+    {
+      "id": "kort_sikt_vs_lang_sikt",
+      "label": "Kort sikt mot lang sikt",
+      "description": "Raske løsninger kan redde tallene nå, men bygge større problemer i drift, tillit og arbeidsmiljø.",
+      "mail_families": [
+        "mellomleder_planlegging",
+        "driftskrise",
+        "mellomleder_mastery"
+      ]
+    }
+  ],
+  "quality_levels": [
+    {
+      "level": "svak",
+      "description": "Reagerer bare på det som brenner, flytter press nedover og lar rapporteringen dekke over friksjon."
+    },
+    {
+      "level": "middels",
+      "description": "Holder drift i gang og svarer på krav, men ser ikke alltid mønstrene før de blir synlige problemer."
+    },
+    {
+      "level": "god",
+      "description": "Gjør reell kapasitet, risiko, tillit og systemsvikt synlig tidlig nok til at organisasjonen kan handle før krisen låser seg."
+    }
+  ],
+  "mail_design_rules": [
+    "Mailene skal være konkrete arbeidssituasjoner, ikke abstrakte ledelsesbetraktninger.",
+    "Hver mail bør teste minst én kompetanseakse og ett idealtypisk problem.",
+    "Valgene bør skille mellom kortsiktig leveranse, faglig realisme, relasjonell tillit og systemlojalitet.",
+    "Gode valg skal ikke alltid gi umiddelbar gevinst; noen gode valg gjør situasjonen synlig og vanskeligere på kort sikt.",
+    "Dårlige valg skal ikke alltid være åpenbart onde; ofte er de fristende fordi de gir ro, tall eller kontroll akkurat nå."
+  ]
+}
