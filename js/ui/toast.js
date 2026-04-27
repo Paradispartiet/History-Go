@@ -33,7 +33,8 @@ function showToast(msg, ms = null) {
 
 // ============================================================
 // WONDERKAMMER ENTRY HANDLER
-// Datadrevet entry-visning for chambers i data/wonderkammer.json.
+// Datadrevet entry-visning for chambers i Wonderkammer-data.
+// Støtter hierarki: place/person → chambers → items.
 // Bruker eksisterende makePopup-mønster fra popup-utils.js.
 // ============================================================
 (function () {
@@ -54,8 +55,14 @@ function showToast(msg, ms = null) {
 
   function typeLabel(type) {
     const labels = {
+      play_zone: "Lekeområde",
+      open_play_area: "Åpent lekeområde",
+      exploration_zone: "Utforskingssone",
+      thing_to_see: "Ting å se",
+      quiet_zone: "Rolig sone",
       play_object: "Lekeobjekt",
       activity: "Aktivitet",
+      training_zone: "Treningssone",
       training: "Trening",
       media_concept: "Mediebegrep"
     };
@@ -78,6 +85,19 @@ function showToast(msg, ms = null) {
     return person?.name || norm(id);
   }
 
+  function findNestedEntry(list, id, parent = null) {
+    const key = norm(id);
+    for (const entry of (Array.isArray(list) ? list : [])) {
+      if (norm(entry?.id) === key) {
+        return { entry, parent };
+      }
+
+      const childHit = findNestedEntry(entry?.items, key, entry);
+      if (childHit) return childHit;
+    }
+    return null;
+  }
+
   function findEntry(entryId) {
     const id = norm(entryId);
     const wk = window.WONDERKAMMER;
@@ -85,12 +105,12 @@ function showToast(msg, ms = null) {
 
     const places = Array.isArray(wk.places) ? wk.places : [];
     for (const row of places) {
-      const chambers = Array.isArray(row?.chambers) ? row.chambers : [];
-      const hit = chambers.find(c => norm(c?.id) === id);
+      const hit = findNestedEntry(row?.chambers, id);
       if (hit) {
         const parentId = norm(row.place_id || row.place);
         return {
-          entry: hit,
+          entry: hit.entry,
+          parentEntry: hit.parent,
           parentType: "place",
           parentId,
           parentName: placeName(parentId)
@@ -100,12 +120,12 @@ function showToast(msg, ms = null) {
 
     const people = Array.isArray(wk.people) ? wk.people : [];
     for (const row of people) {
-      const chambers = Array.isArray(row?.chambers) ? row.chambers : [];
-      const hit = chambers.find(c => norm(c?.id) === id);
+      const hit = findNestedEntry(row?.chambers, id);
       if (hit) {
         const parentId = norm(row.person_id || row.person);
         return {
-          entry: hit,
+          entry: hit.entry,
+          parentEntry: hit.parent,
           parentType: "person",
           parentId,
           parentName: personName(parentId)
@@ -113,12 +133,13 @@ function showToast(msg, ms = null) {
       }
     }
 
-    const legacy = (Array.isArray(wk.chambers) ? wk.chambers : []).find(c => norm(c?.id) === id);
+    const legacy = findNestedEntry(wk.chambers, id);
     if (legacy) {
       const placeId = norm(wk.place_id || wk.place);
       const personId = norm(wk.person_id || wk.person);
       return {
-        entry: legacy,
+        entry: legacy.entry,
+        parentEntry: legacy.parent,
         parentType: placeId ? "place" : "person",
         parentId: placeId || personId,
         parentName: placeId ? placeName(placeId) : personName(personId)
@@ -126,6 +147,31 @@ function showToast(msg, ms = null) {
     }
 
     return null;
+  }
+
+  function childListHtml(entry) {
+    const items = Array.isArray(entry?.items) ? entry.items : [];
+    if (!items.length) return "";
+
+    return `
+      <section class="wk-entry-section">
+        <h3>Inne i dette nivået</h3>
+        <div class="pc-wk-chambers">
+          ${items.map(item => {
+            const id = norm(item?.id);
+            const title = norm(item?.title || item?.label || item?.name || id);
+            const type = typeLabel(item?.type);
+            if (!id) return "";
+            return `
+              <button class="pc-wk-entry" data-wk="${esc(id)}">
+                <span class="pc-wk-entry-title">${esc(title)}</span>
+                <span class="pc-wk-entry-type">${esc(type)}</span>
+              </button>
+            `;
+          }).join("")}
+        </div>
+      </section>
+    `;
   }
 
   function openEntry(entryId) {
@@ -141,14 +187,18 @@ function showToast(msg, ms = null) {
     const description = norm(entry.description || entry.desc);
     const activityText = norm(entry.activityText || entry.activity || entry.useText);
     const ageHint = norm(entry.ageHint || entry.age || entry.levelHint);
+    const parentTitle = norm(resolved.parentEntry?.title || "");
+
+    const context = [type, resolved.parentName, parentTitle].filter(Boolean).join(" · ");
 
     const html = `
       <article class="wk-entry-popup">
-        <div class="wk-entry-kicker">${esc(type)}${resolved.parentName ? ` · ${esc(resolved.parentName)}` : ""}</div>
+        <div class="wk-entry-kicker">${esc(context || "Wonderkammer")}</div>
         <h2 class="hg-popup-name">${esc(title)}</h2>
         ${description ? `<p class="hg-popup-desc">${esc(description)}</p>` : ""}
         ${activityText ? `<section class="wk-entry-section"><h3>Hva kan man gjøre her?</h3><p>${esc(activityText)}</p></section>` : ""}
         ${ageHint ? `<section class="wk-entry-section"><h3>Alder / nivå</h3><p>${esc(ageHint)}</p></section>` : ""}
+        ${childListHtml(entry)}
         <button class="reward-ok" data-close-popup>Lukk</button>
       </article>
     `;
