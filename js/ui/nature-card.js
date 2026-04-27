@@ -100,7 +100,7 @@
 
     root.dataset.kind = kind;
 
-    modal.querySelector(".nature-card-title").textContent = obj.title || obj.id || "";
+    modal.querySelector(".nature-card-title").textContent = obj.title || obj.name || obj.id || "";
     modal.querySelector(".nature-card-latin").textContent = obj.latin || obj.taxonomy?.latin_navn || "";
     modal.querySelector(".nature-card-family").textContent = obj.taxonomy?.familie ? `Familie: ${obj.taxonomy.familie}` : "";
 
@@ -213,6 +213,204 @@
     });
   }
 
+  // ------------------------------------------------------------
+  // PlaceCard bridge
+  // ------------------------------------------------------------
+  // PlaceCard sin Natur-runding leser legacy-feltet place.flora.
+  // Dette bygger feltet fra den kanoniske naturkilden:
+  // data/natur/nature_unlock_map.json.
+  // ------------------------------------------------------------
+
+  let natureMapPromise = null;
+  let natureIndexPromise = null;
+
+  function normId(value) {
+    return String(value || "").trim();
+  }
+
+  function quizKeyToPlaceId(key) {
+    return normId(key).replace(/_quiz_\d+$/, "");
+  }
+
+  async function loadNatureUnlockMap() {
+    if (natureMapPromise) return natureMapPromise;
+
+    natureMapPromise = (async () => {
+      const url = new URL("data/natur/nature_unlock_map.json", document.baseURI).toString();
+      const res = await fetch(url, { cache: "no-store" });
+      if (!res.ok) throw new Error(`Kunne ikke laste nature_unlock_map.json: ${res.status}`);
+      const data = await res.json();
+      return data && typeof data === "object" ? data : {};
+    })();
+
+    return natureMapPromise;
+  }
+
+  function flattenNatureEntriesForBridge(arr, kind) {
+    const out = [];
+
+    (Array.isArray(arr) ? arr : []).forEach(entry => {
+      if (!entry || typeof entry !== "object") return;
+
+      if (entry.kind === "emne_pack" && Array.isArray(entry.items)) {
+        entry.items.forEach(item => {
+          if (item && typeof item === "object" && item.id) out.push(normalizeNatureForPlaceCard(item, kind));
+        });
+        return;
+      }
+
+      if (entry.id) out.push(normalizeNatureForPlaceCard(entry, kind));
+    });
+
+    return out;
+  }
+
+  function normalizeNatureForPlaceCard(obj, kind) {
+    const title = obj.title || obj.name || obj.taxonomy?.norsk_navn || obj.id || "";
+    const desc =
+      obj.desc ||
+      obj.description ||
+      (Array.isArray(obj.kjennetegn) ? obj.kjennetegn.join(" · ") : "") ||
+      "";
+
+    return {
+      ...obj,
+      _kind: obj._kind || kind,
+      name: obj.name || title,
+      title,
+      desc,
+      image: obj.image || obj.imageCard || obj.img || "bilder/merker/natur.PNG"
+    };
+  }
+
+  async function ensureNatureIndexForPlaceCard() {
+    if (natureIndexPromise) return natureIndexPromise;
+
+    natureIndexPromise = (async () => {
+      if ((!Array.isArray(window.FLORA) || !Array.isArray(window.FAUNA)) && window.DataHub?.loadNature) {
+        try { await window.DataHub.loadNature(); } catch {}
+      }
+
+      const flora = flattenNatureEntriesForBridge(window.FLORA || [], "flora");
+      const fauna = flattenNatureEntriesForBridge(window.FAUNA || [], "fauna");
+
+      const floraById = Object.create(null);
+      const faunaById = Object.create(null);
+
+      flora.forEach(obj => { if (obj.id) floraById[normId(obj.id)] = obj; });
+      fauna.forEach(obj => { if (obj.id) faunaById[normId(obj.id)] = obj; });
+
+      // Normaliser globale naturdata uten å blande flora og fauna.
+      window.FLORA = flora;
+      window.FAUNA = fauna;
+
+      return { floraById, faunaById };
+    })();
+
+    return natureIndexPromise;
+  }
+
+  function idsForPlaceFromMap(map, placeId) {
+    const pid = normId(placeId);
+    const out = { flora: [], fauna: [] };
+    if (!pid) return out;
+
+    const floraSeen = new Set();
+    const faunaSeen = new Set();
+
+    for (const [quizOrPlaceId, hit] of Object.entries(map || {})) {
+      if (quizKeyToPlaceId(quizOrPlaceId) !== pid) continue;
+
+      (Array.isArray(hit?.flora) ? hit.flora : []).forEach(id => {
+        const x = normId(id);
+        if (x && !floraSeen.has(x)) {
+          floraSeen.add(x);
+          out.flora.push(x);
+        }
+      });
+
+      (Array.isArray(hit?.fauna) ? hit.fauna : []).forEach(id => {
+        const x = normId(id);
+        if (x && !faunaSeen.has(x)) {
+          faunaSeen.add(x);
+          out.fauna.push(x);
+        }
+      });
+    }
+
+    return out;
+  }
+
+  async function getNatureForPlace(placeId) {
+    const map = await loadNatureUnlockMap();
+    const { floraById, faunaById } = await ensureNatureIndexForPlaceCard();
+    const ids = idsForPlaceFromMap(map, placeId);
+
+    return [
+      ...ids.flora.map(id => floraById[id]).filter(Boolean),
+      ...ids.fauna.map(id => faunaById[id]).filter(Boolean)
+    ];
+  }
+
+  async function getNatureById(id) {
+    const key = normId(id);
+    if (!key) return null;
+
+    const { floraById, faunaById } = await ensureNatureIndexForPlaceCard();
+    return floraById[key] || faunaById[key] || null;
+  }
+
+  async function linkPlaceCardNatureFromMap() {
+    const places = Array.isArray(window.PLACES) ? window.PLACES : [];
+    if (!places.length) return;
+
+    const map = await loadNatureUnlockMap();
+    const { floraById } = await ensureNatureIndexForPlaceCard();
+
+    places.forEach(place => {
+      const ids = idsForPlaceFromMap(map, place?.id);
+      const floraIds = ids.flora.filter(id => floraById[id]);
+      if (!floraIds.length) return;
+
+      const existing = Array.isArray(place.flora) ? place.flora : [];
+      const next = [...new Set([...existing, ...floraIds].map(normId).filter(Boolean))];
+      place.flora = next;
+    });
+
+    try { window.dispatchEvent(new Event("hg:place-nature-linked")); } catch {}
+  }
+
+  function installNatureBridge() {
+    window.HGNatureUnlocks = window.HGNatureUnlocks || {};
+    window.HGNatureUnlocks.getForPlace = getNatureForPlace;
+    window.HGNatureUnlocks.getById = getNatureById;
+    window.HGNatureUnlocks.linkPlaceCardNatureFromMap = linkPlaceCardNatureFromMap;
+
+    const originalShowFloraPopup = window.showFloraPopup;
+    if (typeof originalShowFloraPopup === "function" && !originalShowFloraPopup.__hgNatureCardBridge) {
+      window.showFloraPopup = function showNatureObjectPopup(obj) {
+        if (obj && typeof window.openNatureCard === "function") {
+          return window.openNatureCard(obj);
+        }
+        return originalShowFloraPopup(obj);
+      };
+      window.showFloraPopup.__hgNatureCardBridge = true;
+    }
+
+    window.addEventListener("hg:nature-loaded", () => {
+      linkPlaceCardNatureFromMap().catch(e => console.warn("[place-card nature bridge]", e));
+    });
+
+    // Hvis naturdata allerede er lastet før event-listeneren kom på plass.
+    setTimeout(() => {
+      if (Array.isArray(window.PLACES) && Array.isArray(window.FLORA)) {
+        linkPlaceCardNatureFromMap().catch(e => console.warn("[place-card nature bridge]", e));
+      }
+    }, 0);
+  }
+
   window.openNatureCard = openNatureCard;
   window.closeNatureCard = closeNatureCard;
+
+  installNatureBridge();
 })();
