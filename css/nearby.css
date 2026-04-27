@@ -492,3 +492,57 @@
 .nearby-filter-icon:hover {
   background: rgba(255,255,255,0.15);
 }
+
+/* ============================================================
+   Nearby place-card tekst i horisontal bildekort-strip
+   Matcher markup fra js/ui/lists.js: .nearby-content/.nearby-title/.nearby-meta
+   ============================================================ */
+
+#nearbyList.nearby-strip .nearby-item::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+
+  background: linear-gradient(
+    to bottom,
+    transparent 45%,
+    rgba(0,0,0,0.55) 100%
+  );
+
+  pointer-events: none;
+  border-radius: 20px;
+}
+
+#nearbyList.nearby-strip .nearby-content {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+
+  padding: 8px 12px 10px;
+  pointer-events: none;
+}
+
+#nearbyList.nearby-strip .nearby-content .nearby-title {
+  font-size: 14px;
+  font-weight: 800;
+  color: #fff;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.1;
+}
+
+#nearbyList.nearby-strip .nearby-content .nearby-meta {
+  font-size: 11px;
+  color: rgba(255,255,255,0.85);
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.1;
+  margin-top: 2px;
+}
