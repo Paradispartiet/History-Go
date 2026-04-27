@@ -1,0 +1,145 @@
+{
+  "schema": "civication_life_mail_family_catalog_v1",
+  "id": "subkultur_skurk_life_v1",
+  "life_context": "subkultur_skurk",
+  "mail_type": "life",
+  "description": "Realistiske kantliv-/skurkemailer. Skal handle om press, status, risiko og utvei — ikke gi praktiske oppskrifter på lovbrudd.",
+  "families": [
+    {
+      "id": "status_og_gjeld",
+      "mails": [
+        {
+          "id": "subkultur_skurk_001",
+          "mail_family": "status_og_gjeld",
+          "priority": 90,
+          "repeatable": false,
+          "source": "Ukjent nummer",
+          "from": "ukjent_nummer",
+          "subject": "Du skylder fortsatt den tjenesten",
+          "purpose": "Vise hvordan uformell gjeld og status kan presse spilleren mot dårligere valg uten å beskrive kriminalitet operativt.",
+          "stakes": "Spilleren må velge mellom å bryte mønsteret tidlig eller bli dratt inn i mer uformell kontroll.",
+          "situation": [
+            "Meldingen er kort og uten navn.",
+            "«Du skylder fortsatt den tjenesten. Ikke gjør deg vanskelig.»",
+            "Det står ikke hva tjenesten er. Det trenger det heller ikke. Poenget er at noen mener de eier litt av tiden din."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Svar kort at du ikke gjør uavklarte tjenester lenger",
+              "reply": "Jeg gjør ikke uavklarte tjenester lenger. Ikke bruk meg som mellomledd.",
+              "tags": [
+                "boundary",
+                "exit_path",
+                "risk_reduction"
+              ],
+              "effect": 1,
+              "feedback": "Du setter en grense som kan koste status, men gir deg litt mer handlingsrom."
+            },
+            {
+              "id": "B",
+              "label": "Svar at du kan høre hva det gjelder først",
+              "reply": "Hva gjelder det? Jeg lover ingenting før jeg vet mer.",
+              "tags": [
+                "ambivalence",
+                "status_pressure",
+                "risk"
+              ],
+              "effect": 0,
+              "feedback": "Du holder døren på gløtt. Det er ofte nok til at folk fortsetter å bruke den."
+            }
+          ]
+        },
+        {
+          "id": "subkultur_skurk_002",
+          "mail_family": "status_og_gjeld",
+          "priority": 84,
+          "repeatable": false,
+          "source": "Crew-chat",
+          "from": "crew_chat",
+          "subject": "Alle kommer til å være der",
+          "purpose": "Gjøre subkulturelt press realistisk: tilhørighet, rykte og frykt for å falle ut.",
+          "stakes": "Spilleren må velge mellom å møte opp for status og å beskytte avstand fra et miljø som trekker feil vei.",
+          "situation": [
+            "Chatten fylles av korte meldinger, interne vitser og små stikk til dem som ikke dukker opp.",
+            "Det er ikke en invitasjon. Det er en test av om du fortsatt hører til.",
+            "Du kjenner hvor raskt tilhørighet kan bli en ordre forkledd som fellesskap."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Si at du ikke kommer og ikke forklar mer enn nødvendig",
+              "reply": "Jeg kommer ikke i kveld. Ikke noe drama, bare ikke i kveld.",
+              "tags": [
+                "boundary",
+                "self_respect",
+                "exit_path"
+              ],
+              "effect": 1,
+              "feedback": "Du mister litt varme i chatten. Du vinner en kveld som faktisk er din."
+            },
+            {
+              "id": "B",
+              "label": "Møt opp for å slippe spørsmålene",
+              "reply": "Kommer innom litt senere.",
+              "tags": [
+                "status_pressure",
+                "risk",
+                "belonging"
+              ],
+              "effect": -1,
+              "feedback": "Du slipper å forklare deg nå. Du går samtidig tilbake til et rom der andre setter tempoet."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "politi_og_omdomme",
+      "mails": [
+        {
+          "id": "subkultur_skurk_003",
+          "mail_family": "politi_og_omdomme",
+          "priority": 78,
+          "repeatable": false,
+          "source": "Civication",
+          "from": "nabolag_rykte",
+          "subject": "Folk har begynt å koble navnet ditt til bråk",
+          "purpose": "Vise rykte som sosial konsekvens, ikke bare juridisk risiko.",
+          "stakes": "Spilleren må velge mellom status i miljøet og gjenoppretting av tillit i vanlige rom.",
+          "situation": [
+            "Det er ikke én stor hendelse. Det er blikk, små kommentarer og folk som blir litt mer stille når du kommer inn.",
+            "Navnet ditt har begynt å henge sammen med bråk i andres munn.",
+            "Det er slik omdømme ofte starter: ikke som dom, men som lav summing."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta avstand fra bråket i praksis, ikke med store ord",
+              "reply": "Jeg holder meg unna det der fremover. Ikke bruk navnet mitt i sånne saker.",
+              "tags": [
+                "reputation_repair",
+                "exit_path",
+                "process"
+              ],
+              "effect": 1,
+              "feedback": "Folk tror ikke alt med én gang. Men de får noe nytt å observere."
+            },
+            {
+              "id": "B",
+              "label": "La ryktet jobbe for deg litt til",
+              "reply": "Folk kan si hva de vil. Det er ikke mitt problem.",
+              "tags": [
+                "status",
+                "risk",
+                "isolation"
+              ],
+              "effect": -1,
+              "feedback": "Ryktet gir en type beskyttelse. Det tar også vanlige rom fra deg."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
