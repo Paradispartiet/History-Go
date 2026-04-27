@@ -14,7 +14,8 @@
   border: 1px solid var(--panel-border, rgba(255,255,255,0.18));
   color: #fff;
 
-  font-size: 14px;
+  /* iOS zoomer ofte inputfelt under 16px og kan dermed forstyrre canvaset. */
+  font-size: 16px;
   line-height: 1;
   outline: none;
 
@@ -113,6 +114,20 @@
   text-transform: uppercase;
 
   color: rgba(255,255,255,0.7);
+}
+
+.search-empty{
+  padding: 12px 14px;
+  color: rgba(255,255,255,0.72);
+  font-size: 14px;
+}
+
+.sr-badge{
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+  vertical-align: -3px;
+  margin-right: 8px;
 }
 
 
