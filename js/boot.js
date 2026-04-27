@@ -116,7 +116,7 @@ async function boot() {
   }
 
   const relations = (await fetchJSON("data/relations.json")) || [];
-  const wonderkammer = await fetchJSON("data/wonderkammer_hierarchical.json");
+  const wonderkammer = await fetchJSON("data/wonderkammer.json");
   const tags = await fetchJSON("data/tags.json");
 
   /* ==============================
