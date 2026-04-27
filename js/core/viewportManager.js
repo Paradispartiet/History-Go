@@ -1,6 +1,6 @@
 (function () {
-  const DESIGN_WIDTH = 1000;
-  const DESIGN_HEIGHT = 1430;
+  const DESIGN_WIDTH = 900;
+  const DESIGN_HEIGHT = 1230;
 
   let shell = null;
   let mapLayer = null;
