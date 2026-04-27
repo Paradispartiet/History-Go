@@ -156,6 +156,13 @@ async function boot() {
     "data/places/places_vitenskap.json"
   ];
 
+  const WONDERKAMMER_FILES = [
+    "data/wonderkammer.json",
+    "data/wonderkammer_more.json",
+    "data/wonderkammer_playgrounds.json",
+    "data/wonderkammer_training.json"
+  ];
+
   let places = [];
 
   for (const url of PLACE_FILES) {
@@ -168,9 +175,14 @@ async function boot() {
   }
 
   const relations = (await fetchJSON("data/relations.json")) || [];
-  const wonderkammerBase = await fetchJSON("data/wonderkammer.json");
-  const wonderkammerMore = await fetchJSON("data/wonderkammer_more.json");
-  const wonderkammer = mergeWonderkammerData(wonderkammerBase, wonderkammerMore);
+
+  const wonderkammerSources = [];
+  for (const url of WONDERKAMMER_FILES) {
+    const data = await fetchJSON(url);
+    if (data) wonderkammerSources.push(data);
+  }
+  const wonderkammer = mergeWonderkammerData(...wonderkammerSources);
+
   const tags = await fetchJSON("data/tags.json");
 
   /* ==============================
