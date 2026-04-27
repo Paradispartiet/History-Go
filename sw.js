@@ -3,7 +3,7 @@
    Oppdatert: 2026-04-27
    ============================================================ */
 
-const SW_VERSION = "hg-sw-2026-04-27-v1.38.112";
+const SW_VERSION = "hg-sw-2026-04-27-v1.38.113";
 
 const CACHE_STATIC  = `hg-static-${SW_VERSION}`;
 const CACHE_RUNTIME = `hg-runtime-${SW_VERSION}`;
@@ -160,6 +160,8 @@ const PRECACHE_URLS = [
   "js/Civication/systems/civicationMailDirectorV2PhaseGuard.js",
   "js/Civication/systems/civicationMailDirectorV2ForceRoleMail.js",
   "js/Civication/systems/civicationMailDirectorV2RoleGuard.js",
+  "js/Civication/systems/civicationMailRuntime.js",
+  "js/Civication/systems/civicationLifeMailRuntime.js",
   "js/Civication/systems/day/dayActiveRoleStateSync.js",
   "js/Civication/systems/day/dayCalendarBridge.js",
   "js/Civication/systems/day/dayHistoryGoContexts.js",
@@ -169,6 +171,12 @@ const PRECACHE_URLS = [
   "js/Civication/systems/day/dayKnowledge.js",
   "js/Civication/systems/day/dayEvents.js",
   "js/Civication/systems/day/dayPatches.js",
+
+  // Civication – life mails
+  "data/Civication/lifeMails/life_manifest.json",
+  "data/Civication/lifeMails/arbeidsledig/arbeidsledig_life.json",
+  "data/Civication/lifeMails/alkohol/alkohol_risk_life.json",
+  "data/Civication/lifeMails/subkultur/subkultur_skurk_life.json",
 
   // Stories
   "js/stories/stories_loader.js",
