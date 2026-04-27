@@ -140,6 +140,10 @@
   object-fit: cover;
   display: block;
 
+  opacity: 1;
+  filter: none;
+  mix-blend-mode: normal;
+
   border: 0;
 }
 
@@ -347,8 +351,12 @@
 
   border: 0;
   border-radius: 20px;
-  background: transparent;
+  background: #000;
   overflow: hidden;
+
+  opacity: 1;
+  filter: none;
+  mix-blend-mode: normal;
 }
 
 /* Bildet fyller HELE kortet (FIX: cover + top) */
@@ -363,7 +371,11 @@
   overflow: hidden;
 
   padding: 0;
-  background: transparent;
+  background: #000;
+
+  opacity: 1;
+  filter: none;
+  mix-blend-mode: normal;
 }
 
 #nearbyList.nearby-strip .nearby-thumb{
@@ -376,6 +388,10 @@
   display: block;
   border: 0;
   border-radius: 0;
+
+  opacity: 1;
+  filter: none;
+  mix-blend-mode: normal;
 }
 
 /* Badge oppå bildet (liten, tydelig) */
@@ -450,6 +466,7 @@
   text-overflow: ellipsis;
   line-height: 1.05;
 
+  text-shadow: 0 2px 8px rgba(0,0,0,.9);
   pointer-events: none;
 }
 
@@ -463,10 +480,11 @@
   z-index: 2;
 
   font-size: 12px;
-  color: rgba(255,255,255,0.78);
+  color: rgba(255,255,255,0.88);
   white-space: nowrap;
   line-height: 1.05;
 
+  text-shadow: 0 2px 8px rgba(0,0,0,.9);
   pointer-events: none;
 }
 
@@ -506,8 +524,8 @@
 
   background: linear-gradient(
     to bottom,
-    transparent 45%,
-    rgba(0,0,0,0.55) 100%
+    transparent 72%,
+    rgba(0,0,0,0.32) 100%
   );
 
   pointer-events: none;
@@ -534,15 +552,19 @@
   overflow: hidden;
   text-overflow: ellipsis;
   line-height: 1.1;
+
+  text-shadow: 0 2px 8px rgba(0,0,0,.9);
 }
 
 #nearbyList.nearby-strip .nearby-content .nearby-meta {
   font-size: 11px;
-  color: rgba(255,255,255,0.85);
+  color: rgba(255,255,255,0.9);
 
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   line-height: 1.1;
   margin-top: 2px;
+
+  text-shadow: 0 2px 8px rgba(0,0,0,.9);
 }
