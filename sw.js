@@ -3,7 +3,7 @@
    Oppdatert: 2026-04-22
    ============================================================ */
 
-const SW_VERSION = "hg-sw-2026-04-22-v1.38.3";
+const SW_VERSION = "hg-sw-2026-04-22-v1.38.4";
 
 const CACHE_STATIC  = `hg-static-${SW_VERSION}`;
 const CACHE_RUNTIME = `hg-runtime-${SW_VERSION}`;
@@ -158,6 +158,7 @@ const PRECACHE_URLS = [
   "js/Civication/systems/civicationThreadBridge.js",
   "js/Civication/systems/civicationMailDirectorV2.js",
   "js/Civication/systems/civicationMailDirectorV2PhaseGuard.js",
+  "js/Civication/systems/civicationMailDirectorV2ForceRoleMail.js",
   "js/Civication/systems/civicationMailDirectorV2RoleGuard.js",
   "js/Civication/systems/day/dayActiveRoleStateSync.js",
   "js/Civication/systems/day/dayCalendarBridge.js",
