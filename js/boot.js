@@ -39,6 +39,58 @@ async function boot() {
     }
   };
 
+  const mergeWonderkammerData = (...sources) => {
+    const out = {
+      places: [],
+      people: []
+    };
+
+    const placeMap = Object.create(null);
+    const personMap = Object.create(null);
+
+    const mergeRows = (rows, map, target, idKeys) => {
+      for (const row of (Array.isArray(rows) ? rows : [])) {
+        const id = String(idKeys.map(key => row?.[key]).find(Boolean) || "").trim();
+        if (!id) continue;
+
+        if (!map[id]) {
+          map[id] = {
+            ...row,
+            chambers: []
+          };
+          target.push(map[id]);
+        }
+
+        const chambers = Array.isArray(row?.chambers) ? row.chambers : [];
+        map[id].chambers.push(...chambers);
+      }
+    };
+
+    for (const source of sources) {
+      if (!source) continue;
+
+      if (Array.isArray(source.places) || Array.isArray(source.people)) {
+        mergeRows(source.places, placeMap, out.places, ["place_id", "place"]);
+        mergeRows(source.people, personMap, out.people, ["person_id", "person"]);
+        continue;
+      }
+
+      const placeId = String(source.place_id || source.place || "").trim();
+      const personId = String(source.person_id || source.person || "").trim();
+      const chambers = Array.isArray(source.chambers) ? source.chambers : [];
+
+      if (placeId) {
+        mergeRows([{ place_id: placeId, chambers }], placeMap, out.places, ["place_id", "place"]);
+      }
+
+      if (personId) {
+        mergeRows([{ person_id: personId, chambers }], personMap, out.people, ["person_id", "person"]);
+      }
+    }
+
+    return out.places.length || out.people.length ? out : null;
+  };
+
   /* ==============================
      OPEN MODE
   ============================== */
@@ -116,7 +168,9 @@ async function boot() {
   }
 
   const relations = (await fetchJSON("data/relations.json")) || [];
-  const wonderkammer = await fetchJSON("data/wonderkammer.json");
+  const wonderkammerBase = await fetchJSON("data/wonderkammer.json");
+  const wonderkammerMore = await fetchJSON("data/wonderkammer_more.json");
+  const wonderkammer = mergeWonderkammerData(wonderkammerBase, wonderkammerMore);
   const tags = await fetchJSON("data/tags.json");
 
   /* ==============================
