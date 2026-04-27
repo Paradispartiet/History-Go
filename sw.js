@@ -3,7 +3,7 @@
    Oppdatert: 2026-04-22
    ============================================================ */
 
-const SW_VERSION = "hg-sw-2026-04-22-v1.38.0";
+const SW_VERSION = "hg-sw-2026-04-22-v1.38.1";
 
 const CACHE_STATIC  = `hg-static-${SW_VERSION}`;
 const CACHE_RUNTIME = `hg-runtime-${SW_VERSION}`;
@@ -139,6 +139,7 @@ const PRECACHE_URLS = [
   "js/Civication/civicationCommercial.js",
   "js/Civication/roleStoryletBridge.js",
   "js/Civication/roleThreadResolver.js",
+  "js/Civication/mailPlanBridge.js",
   "js/Civication/CivicationBoot.js",
 
   // Civication – ui
@@ -155,6 +156,10 @@ const PRECACHE_URLS = [
   "js/Civication/systems/civicationMailPlanDebug.js",
   "js/Civication/systems/civicationNPCs.js",
   "js/Civication/systems/civicationThreadBridge.js",
+  "js/Civication/systems/civicationMailDirectorV2.js",
+  "js/Civication/systems/civicationMailDirectorV2PhaseGuard.js",
+  "js/Civication/systems/civicationMailDirectorV2RoleGuard.js",
+  "js/Civication/systems/day/dayActiveRoleStateSync.js",
   "js/Civication/systems/day/dayCalendarBridge.js",
   "js/Civication/systems/day/dayHistoryGoContexts.js",
   "js/Civication/systems/day/dayCarryover.js",
