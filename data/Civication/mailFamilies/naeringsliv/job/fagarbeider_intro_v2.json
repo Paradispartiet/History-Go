@@ -1,0 +1,294 @@
+{
+  "schema": "civication_mail_family_catalog_v2",
+  "category": "naeringsliv",
+  "role_scope": "fagarbeider",
+  "mail_type": "job",
+  "description": "V2 fagarbeider_intro: tre intro-mails som etablerer fagarbeiderens nye rolle (mentor, kunnskapsbærer, ansvar uten myndighet). 6 thread-followups for samtale-oppførsel.",
+
+  "families": [
+    {
+      "id": "fagarbeider_intro_v2",
+      "description": "Første dager som fagarbeider. Tor (verksmester) gir mentor-oppdrag, Egil tester kompetanse, Liv (lærling) banker på.",
+
+      "mails": [
+        {
+          "id": "fagarbeider_intro_v2_001",
+          "mail_type": "job",
+          "mail_family": "fagarbeider_intro_v2",
+          "role_scope": "fagarbeider",
+          "phase": "intro",
+          "priority": 60,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+
+          "from": "tor_verksmester",
+          "place_id": "lilleborg_fabrikker",
+          "subject": "Opplæring av Liv — du tar den",
+
+          "situation": [
+            "Tor sender en kort, formell beskjed på morgenen.",
+            "«Liv går andre året på lærlingordningen. Hun har vært på kontrollrommet med Egil, men trenger å se B-linja fra fagarbeider-perspektiv. Du har ansvar fra mandag.»",
+            "Det er et signal — ledelsen regner med at du er kunnskapsbærer nå."
+          ],
+
+          "choices": [
+            {
+              "id": "A",
+              "label": "«Greit. Jeg lager en kjøreplan før mandag.»",
+              "reply": "Greit. Jeg lager en kjøreplan før mandag.",
+              "tags": ["craft", "process"],
+              "effect": 0,
+              "feedback": "Tor noterer deg som forutsigbar. Det er valuta her.",
+              "triggers_on_choice": "tor_thread_kjoreplan_a"
+            },
+            {
+              "id": "B",
+              "label": "«Greit. Jeg tar henne med på linja og forklarer underveis.»",
+              "reply": "Greit. Jeg tar henne med på linja og forklarer underveis.",
+              "tags": ["craft", "informal"],
+              "effect": 1,
+              "feedback": "Du foretrekker praksis. Tor sier ingenting, men registrerer det.",
+              "triggers_on_choice": "tor_thread_kjoreplan_b"
+            }
+          ]
+        },
+
+        {
+          "id": "fagarbeider_intro_v2_002",
+          "mail_type": "job",
+          "mail_family": "fagarbeider_intro_v2",
+          "role_scope": "fagarbeider",
+          "phase": "intro",
+          "priority": 56,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+
+          "from": "egil_kontrollrom",
+          "place_id": "lilleborg_fabrikker",
+          "subject": "Doseringen på linje C — husker du?",
+
+          "situation": [
+            "Egil skriver kort etter lunsj.",
+            "«Du jobbet på C i fjor. Jeg har en ny som ikke får doseringen til å sitte. Husker du om det er flyteverdien eller temperaturen som trenger justering først?»",
+            "Egil pleier ikke spørre. Det er en form for respekt — og et lite test."
+          ],
+
+          "choices": [
+            {
+              "id": "A",
+              "label": "«Temperaturen først. Stabiliser før du rører flyt.»",
+              "reply": "Temperaturen først. Stabiliser før du rører flyt.",
+              "tags": ["craft", "legitimacy"],
+              "effect": 0,
+              "feedback": "Du svarer presist. Egil har fått det han trengte.",
+              "triggers_on_choice": "egil_thread_dosering_a"
+            },
+            {
+              "id": "B",
+              "label": "«Avhenger av batchen. Vil du jeg skal komme bort?»",
+              "reply": "Avhenger av batchen. Vil du jeg skal komme bort?",
+              "tags": ["craft", "visibility"],
+              "effect": 1,
+              "feedback": "Du tar ansvar utover svaret. Egil takker.",
+              "triggers_on_choice": "egil_thread_dosering_b"
+            }
+          ]
+        },
+
+        {
+          "id": "fagarbeider_intro_v2_003",
+          "mail_type": "job",
+          "mail_family": "fagarbeider_intro_v2",
+          "role_scope": "fagarbeider",
+          "phase": "intro",
+          "priority": 57,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+
+          "from": "liv_laerling",
+          "place_id": "lilleborg_fabrikker",
+          "subject": "Et dumt spørsmål kanskje",
+
+          "situation": [
+            "Liv sender en mail på kvelden, åpenbart etter å ha tenkt seg om en stund.",
+            "«Hei. Jeg så at du justerte trykket på pumpen i dag uten å se på måleren. Hvordan vet du når noe er feil hvis du ikke leser av? Beklager hvis det er dumt å spørre.»",
+            "Det er ikke dumt. Det er presis det fagarbeideren skal lære videre."
+          ],
+
+          "choices": [
+            {
+              "id": "A",
+              "label": "«Det er ikke dumt. Lyden er den første måleren. Skal forklare i morgen.»",
+              "reply": "Det er ikke dumt. Lyden er den første måleren. Skal forklare i morgen.",
+              "tags": ["craft", "mentor"],
+              "effect": 0,
+              "feedback": "Du tar læreroppgaven seriøst. Liv skriver «Tusen takk!» tilbake.",
+              "triggers_on_choice": "liv_thread_pumpe_a"
+            },
+            {
+              "id": "B",
+              "label": "«Måleren skal alltid leses. Bare gjør det rutinemessig.»",
+              "reply": "Måleren skal alltid leses. Bare gjør det rutinemessig.",
+              "tags": ["process", "avoidance"],
+              "effect": 1,
+              "feedback": "Trygt råd, men du har gjemt din egen praksis. Liv lærer ikke det du faktisk gjør.",
+              "triggers_on_choice": "liv_thread_pumpe_b"
+            }
+          ]
+        }
+      ],
+
+      "threads": [
+        {
+          "id": "tor_thread_kjoreplan_a",
+          "from": "tor_verksmester",
+          "place_id": "lilleborg_fabrikker",
+          "subject": "Re: Opplæring av Liv — du tar den",
+          "phase": "intro",
+          "priority": 70,
+          "cooldown": 0,
+          "situation": [
+            "Tor svarer kjapt og tørt.",
+            "«Bra. Send planen til meg fredag. Hvis det er noe du trenger fra Egil eller Marit, si fra i forkant.»",
+            "Han har akkurat utvidet ditt mandat ved å nevne dem."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "«Skal gjøre det.»",
+              "reply": "Skal gjøre det.",
+              "tags": ["legitimacy"],
+              "effect": 0,
+              "feedback": "Avtalen står. Tor noterer."
+            }
+          ]
+        },
+        {
+          "id": "tor_thread_kjoreplan_b",
+          "from": "tor_verksmester",
+          "place_id": "lilleborg_fabrikker",
+          "subject": "Re: Opplæring av Liv — du tar den",
+          "phase": "intro",
+          "priority": 70,
+          "cooldown": 0,
+          "situation": [
+            "Tor svarer med en tone som er litt strammere.",
+            "«OK. Men hun trenger noe konkret å forholde seg til. Skriv ned hovedpunktene minst — bare en stikkordsliste, ikke noe formelt. Marit liker også en kopi.»",
+            "Han ber deg ikke om det formelle, bare om at det er sporbart."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "«OK. Stikkordsliste til fredag.»",
+              "reply": "OK. Stikkordsliste til fredag.",
+              "tags": ["humility", "process"],
+              "effect": 0,
+              "feedback": "Du finner kompromisset uten kamp."
+            }
+          ]
+        },
+
+        {
+          "id": "egil_thread_dosering_a",
+          "from": "egil_kontrollrom",
+          "place_id": "lilleborg_fabrikker",
+          "subject": "Re: Doseringen på linje C — husker du?",
+          "phase": "intro",
+          "priority": 65,
+          "cooldown": 0,
+          "situation": [
+            "Egil svarer etter en stund.",
+            "«Bra. Funket. Vedkommende sa å takke deg.»",
+            "En liten setning. Verdifull i Egils økonomi."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "«Si bare ifra hvis det går igjen.»",
+              "reply": "Si bare ifra hvis det går igjen.",
+              "tags": ["legitimacy", "relations"],
+              "effect": 0,
+              "feedback": "Du holder døra åpen. Egil minner seg om hvem han kan ringe."
+            }
+          ]
+        },
+        {
+          "id": "egil_thread_dosering_b",
+          "from": "egil_kontrollrom",
+          "place_id": "lilleborg_fabrikker",
+          "subject": "Re: Doseringen på linje C — husker du?",
+          "phase": "intro",
+          "priority": 65,
+          "cooldown": 0,
+          "situation": [
+            "Egil svarer på minutter.",
+            "«Ja takk. Kommer du bort en svipp er det fint. Linje C, plass 3.»",
+            "Han slo ned tilbudet ditt med en gang."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "«På vei.»",
+              "reply": "På vei.",
+              "tags": ["legitimacy", "visibility"],
+              "effect": 0,
+              "feedback": "Du dukker opp der du trengs. Det blir lagt merke til av flere enn Egil."
+            }
+          ]
+        },
+
+        {
+          "id": "liv_thread_pumpe_a",
+          "from": "liv_laerling",
+          "place_id": "lilleborg_fabrikker",
+          "subject": "Re: Et dumt spørsmål kanskje",
+          "phase": "intro",
+          "priority": 65,
+          "cooldown": 0,
+          "situation": [
+            "Liv svarer på sekunder.",
+            "«Tusen takk!! Skal gjøre meg klar til i morgen. Mente forresten at jeg har en notatbok hvor jeg skriver ned alt jeg lærer — hvis du gidder kunne du lese over den noen ganger?»",
+            "Hun har akkurat invitert deg inn i hennes faglige prosess. Det er ingen liten ting for henne."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "«Gjerne. Tar den fredag etter skiftet.»",
+              "reply": "Gjerne. Tar den fredag etter skiftet.",
+              "tags": ["mentor", "relations"],
+              "effect": 0,
+              "feedback": "Du sier ja. Liv har en mentor — for første gang."
+            }
+          ]
+        },
+        {
+          "id": "liv_thread_pumpe_b",
+          "from": "liv_laerling",
+          "place_id": "lilleborg_fabrikker",
+          "subject": "Re: Et dumt spørsmål kanskje",
+          "phase": "intro",
+          "priority": 65,
+          "cooldown": 0,
+          "situation": [
+            "Liv svarer kort.",
+            "«OK. Skjønner.»",
+            "Hun sender ikke noe mer den kvelden. Du har gitt henne den trygge formelen, men ikke den ekte kunnskapen. Det merker hun."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "«Si fra hvis du blir usikker på noe.»",
+              "reply": "Si fra hvis du blir usikker på noe.",
+              "tags": ["avoidance"],
+              "effect": 0,
+              "feedback": "Du holder døra på gløtt, men du har lukket et lite vindu."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
