@@ -27,6 +27,43 @@ async function ensureCiviCareerRulesLoaded() {
 
 window.ensureCiviCareerRulesLoaded = ensureCiviCareerRulesLoaded;
 
+function loadCivicationScriptOnce(src) {
+  return new Promise((resolve, reject) => {
+    if (!src) {
+      resolve(false);
+      return;
+    }
+
+    const existing = document.querySelector(`script[src="${src}"]`);
+    if (existing) {
+      resolve(true);
+      return;
+    }
+
+    const script = document.createElement("script");
+    script.src = src;
+    script.onload = () => resolve(true);
+    script.onerror = () => reject(new Error(`Kunne ikke laste ${src}`));
+    document.body.appendChild(script);
+  });
+}
+
+async function ensureCivicationRoleModelRuntimeLoaded() {
+  if (window.CivicationRoleModelRuntime?.boot) {
+    window.CivicationRoleModelRuntime.boot();
+    return true;
+  }
+
+  try {
+    await loadCivicationScriptOnce("js/Civication/systems/civicationRoleModelRuntime.js");
+    window.CivicationRoleModelRuntime?.boot?.();
+    return true;
+  } catch (error) {
+    console.warn("[CivicationBoot] role model runtime kunne ikke lastes", error);
+    return false;
+  }
+}
+
 async function loadCivicationData() {
   const [badgesRes, careersRes] = await Promise.all([
     fetch("data/badges.json"),
@@ -61,6 +98,8 @@ async function loadCivicationData() {
       by: "byCivic.json"
     }
   });
+
+    await ensureCivicationRoleModelRuntimeLoaded();
 
     if (window.CivicationEconomyEngine?.tickWeekly) {
       CivicationEconomyEngine.tickWeekly();
