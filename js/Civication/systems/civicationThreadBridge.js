@@ -59,6 +59,23 @@
     return _byId.get(key) || null;
   }
 
+  function getPendingEventFromEngine(engine) {
+    if (engine && typeof engine.getPendingEvent === "function") {
+      return engine.getPendingEvent();
+    }
+
+    const inbox = window.CivicationState?.getInbox?.() || [];
+    return Array.isArray(inbox)
+      ? inbox.find(item => item && item.status === "pending") || null
+      : null;
+  }
+
+  function findChoice(eventObj, choiceId) {
+    const cid = String(choiceId || "").trim();
+    const choices = Array.isArray(eventObj?.choices) ? eventObj.choices : [];
+    return choices.find(choice => String(choice?.id || "").trim() === cid) || null;
+  }
+
   // Enkø en thread-mail i Civication-inboxen.
   async function enqueueThread(threadId, options = {}) {
     await load();
@@ -90,7 +107,8 @@
       situation: t.situation,
       choices: t.choices,
       _is_thread: true,
-      _triggered_by: options.triggeredBy || null
+      _triggered_by: options.triggeredBy || null,
+      _triggered_choice: options.choiceId || null
     };
 
     inbox.unshift({
@@ -106,11 +124,56 @@
     return true;
   }
 
-  window.CivicationThreadBridge = { load, lookup, enqueueThread };
+  function patchEngineAnswer() {
+    const Engine = window.CivicationEventEngine;
+    if (!Engine || !Engine.prototype) return false;
+
+    const proto = Engine.prototype;
+    if (proto.__threadBridgeAnswerPatched) return true;
+    if (typeof proto.answer !== "function") return false;
+
+    const originalAnswer = proto.answer;
+
+    proto.answer = async function threadBridgeAnswer(eventId, choiceId) {
+      const pending = getPendingEventFromEngine(this);
+      const pendingEvent = pending?.event || null;
+      const choice = findChoice(pendingEvent, choiceId);
+      const triggerId = String(choice?.triggers_on_choice || "").trim();
+
+      const res = await originalAnswer.call(this, eventId, choiceId);
+
+      if (res?.ok && triggerId) {
+        await enqueueThread(triggerId, {
+          triggeredBy: eventId,
+          choiceId
+        });
+      }
+
+      return res;
+    };
+
+    proto.__threadBridgeAnswerPatched = true;
+    return true;
+  }
+
+  function boot() {
+    load();
+    patchEngineAnswer();
+  }
+
+  window.CivicationThreadBridge = {
+    load,
+    lookup,
+    enqueueThread,
+    patchEngineAnswer
+  };
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", () => { load(); });
+    document.addEventListener("DOMContentLoaded", boot, { once: true });
   } else {
-    load();
+    boot();
   }
+
+  window.addEventListener("civi:dataReady", boot);
+  window.addEventListener("civi:booted", boot);
 })();
