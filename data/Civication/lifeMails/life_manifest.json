@@ -1,0 +1,41 @@
+{
+  "schema": "civication_life_mail_manifest_v1",
+  "description": "Realistiske livssituasjonsmailer som kan vises utenfor vanlig jobbflyt eller ved eksplisitte life-tags.",
+  "packs": [
+    {
+      "id": "arbeidsledig",
+      "label": "Arbeidsledig",
+      "path": "data/Civication/lifeMails/arbeidsledig/arbeidsledig_life.json",
+      "priority": 100,
+      "when": {
+        "no_active_job": true
+      }
+    },
+    {
+      "id": "alkohol_risk",
+      "label": "Alkohol og sosial slitasje",
+      "path": "data/Civication/lifeMails/alkohol/alkohol_risk_life.json",
+      "priority": 120,
+      "when": {
+        "tags_any": [
+          "alcohol_risk",
+          "alkohol_risk",
+          "ruspress"
+        ]
+      }
+    },
+    {
+      "id": "subkultur_skurk",
+      "label": "Subkultur / kantliv",
+      "path": "data/Civication/lifeMails/subkultur/subkultur_skurk_life.json",
+      "priority": 115,
+      "when": {
+        "tags_any": [
+          "subkultur_skurk",
+          "skurk",
+          "subculture_edge"
+        ]
+      }
+    }
+  ]
+}
