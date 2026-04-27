@@ -1,0 +1,144 @@
+{
+  "schema": "civication_life_mail_family_catalog_v1",
+  "id": "alkohol_risk_life_v1",
+  "life_context": "alkohol_risk",
+  "mail_type": "life",
+  "description": "Realistiske mailer om alkohol, sosial slitasje og hjelpesøkende valg. Brukes bare ved eksplisitte tags.",
+  "families": [
+    {
+      "id": "ruspress_og_avtaler",
+      "mails": [
+        {
+          "id": "alkohol_risk_001",
+          "mail_family": "ruspress_og_avtaler",
+          "priority": 90,
+          "repeatable": false,
+          "source": "Venn",
+          "from": "marius_venn",
+          "subject": "Kommer du egentlig i kveld?",
+          "purpose": "Vise sosialt press rundt alkohol uten å gjøre situasjonen til moral eller karikatur.",
+          "stakes": "Spilleren må velge mellom tydelig grense og sosial unngåelse som kan holde mønsteret i gang.",
+          "situation": [
+            "Marius skriver tidlig på ettermiddagen.",
+            "Han spør om du kommer i kveld, men du hører det egentlige spørsmålet under: om dette blir en rolig kveld eller enda en kveld der du mister oversikten.",
+            "Det vanskelige er ikke å svare ja eller nei. Det vanskelige er å være presis nok til at kvelden faktisk blir annerledes."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Svar at du kommer en time, men ikke drikker",
+              "reply": "Jeg kommer en time, men jeg drikker ikke i kveld. Trenger at det er tydelig fra start.",
+              "tags": [
+                "boundary",
+                "honesty",
+                "social_trust"
+              ],
+              "effect": 1,
+              "feedback": "Du gjør kvelden mindre uklar før den begynner. Det koster litt stolthet og sparer mer uro."
+            },
+            {
+              "id": "B",
+              "label": "Skriv «ser an» og hold alle muligheter åpne",
+              "reply": "Ser an formen litt. Sier fra senere.",
+              "tags": [
+                "avoidance",
+                "risk",
+                "ambivalence"
+              ],
+              "effect": -1,
+              "feedback": "Du slipper å ta stilling nå. Det er ofte slik gamle mønstre får plass."
+            }
+          ]
+        },
+        {
+          "id": "alkohol_risk_002",
+          "mail_family": "ruspress_og_avtaler",
+          "priority": 82,
+          "repeatable": false,
+          "source": "Fastlegekontor",
+          "from": "fastlegekontor",
+          "subject": "Ledig time torsdag 09:20",
+          "purpose": "Gjøre hjelpesøking konkret og administrativt, ikke høytidelig eller melodramatisk.",
+          "stakes": "Spilleren må velge mellom tidlig profesjonell kontakt og å gjøre problemet privat igjen.",
+          "situation": [
+            "Fastlegekontoret har en ledig time torsdag morgen.",
+            "Det står ingenting om alkohol i meldingen. Bare dato, klokkeslett og en knapp for bekreftelse.",
+            "Likevel kjennes det som om hele saken plutselig er synlig."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Bekreft timen og skriv kort hva du vil ta opp",
+              "reply": "Jeg bekrefter timen. Jeg ønsker å snakke om alkoholbruk, søvn og hvordan jeg kan få bedre struktur.",
+              "tags": [
+                "help_seeking",
+                "process",
+                "health_boundary"
+              ],
+              "effect": 1,
+              "feedback": "Du gjør problemet håndterbart ved å gi det en avtale."
+            },
+            {
+              "id": "B",
+              "label": "Ikke bekreft ennå — vent til du er mer sikker",
+              "reply": "Jeg må sjekke om tidspunktet passer.",
+              "tags": [
+                "avoidance",
+                "shame",
+                "risk"
+              ],
+              "effect": -1,
+              "feedback": "Du kjøper tid. Problemet bruker ofte den tiden bedre enn du gjør."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "okonomi_og_tillit",
+      "mails": [
+        {
+          "id": "alkohol_risk_003",
+          "mail_family": "okonomi_og_tillit",
+          "priority": 76,
+          "repeatable": false,
+          "source": "Bank",
+          "from": "kortvarsling",
+          "subject": "Uvanlig mange småkjøp i natt",
+          "purpose": "Koble alkoholmønster til konkret økonomisk og praktisk konsekvens uten sensasjonalisme.",
+          "stakes": "Spilleren må velge mellom å se mønsteret i tallene og å normalisere utgiftene bort.",
+          "situation": [
+            "Bankappen viser ikke skam, bare transaksjoner.",
+            "Fem små beløp mellom 00:13 og 02:41. Ingen av dem er katastrofe alene. Samlet forteller de mer enn du ville sagt høyt.",
+            "Tallene spør ikke hvorfor. De viser bare at mønsteret finnes."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Sett kortgrense for kvelder og skriv ned nattkjøpene uten pynt",
+              "reply": "Jeg setter lavere kortgrense etter 20:00 og noterer nattkjøpene som de faktisk var.",
+              "tags": [
+                "economic_boundary",
+                "honesty",
+                "process"
+              ],
+              "effect": 1,
+              "feedback": "Du gjør økonomien til et rekkverk. Det løser ikke alt, men det gjør fallet kortere."
+            },
+            {
+              "id": "B",
+              "label": "Avskriv det som en uvanlig kveld",
+              "reply": "Dette var bare en dyr kveld. Ikke noe system i det.",
+              "tags": [
+                "denial",
+                "economic_risk"
+              ],
+              "effect": -1,
+              "feedback": "Forklaringen roer deg. Tallene endrer seg ikke."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
