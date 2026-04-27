@@ -33,7 +33,10 @@
         conflict: "data/Civication/mailFamilies/naeringsliv/conflict/fagarbeider_conflict.json"
       },
       mellomleder: {
-        job: "data/Civication/mailFamilies/naeringsliv/job/mellomleder_job.json",
+        job: [
+          "data/Civication/mailFamilies/naeringsliv/job/mellomleder_intro_v2.json",
+          "data/Civication/mailFamilies/naeringsliv/job/mellomleder_job.json"
+        ],
         faction_choice: "data/Civication/mailFamilies/naeringsliv/faction_choice/mellomleder_faction_choice.json",
         story: "data/Civication/mailFamilies/naeringsliv/story/mellomleder_story.json",
         event: "data/Civication/mailFamilies/naeringsliv/event/mellomleder_event.json",
