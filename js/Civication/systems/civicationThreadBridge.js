@@ -60,7 +60,9 @@
   }
 
   // Enkø en thread-mail i Civication-inboxen.
-  function enqueueThread(threadId, options = {}) {
+  async function enqueueThread(threadId, options = {}) {
+    await load();
+
     const t = lookup(threadId);
     if (!t) {
       if (window.DEBUG) console.warn("[ThreadBridge] ukjent thread:", threadId);
@@ -68,7 +70,8 @@
     }
 
     const inbox = window.CivicationState?.getInbox?.() || [];
-    if (inbox.some(it => String(it?.event?.id || "").trim() === String(t.id).trim())) {
+    const threadKey = String(t.id || "").trim();
+    if (inbox.some(it => String(it?.event?.id || it?.id || "").trim() === threadKey)) {
       return false;
     }
 
@@ -90,7 +93,13 @@
       _triggered_by: options.triggeredBy || null
     };
 
-    inbox.unshift({ event, queuedAt: Date.now() });
+    inbox.unshift({
+      status: "pending",
+      enqueued_at: new Date().toISOString(),
+      queuedAt: Date.now(),
+      event
+    });
+
     window.CivicationState?.setInbox?.(inbox);
     try { window.dispatchEvent(new Event("civi:inboxChanged")); } catch {}
     try { window.dispatchEvent(new Event("updateProfile")); } catch {}
