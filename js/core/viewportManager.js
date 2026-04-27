@@ -6,11 +6,39 @@
   let mapLayer = null;
   let rafId = null;
   let last = { scale: null, x: null, y: null, w: null, h: null };
+  let stableViewport = null;
 
-  function getViewport() {
+  function isTextInputActive() {
+    const el = document.activeElement;
+    if (!el) return false;
+
+    const tag = String(el.tagName || "").toUpperCase();
+    return (
+      tag === "INPUT" ||
+      tag === "TEXTAREA" ||
+      tag === "SELECT" ||
+      el.isContentEditable === true
+    );
+  }
+
+  function readViewport() {
     const vv = window.visualViewport;
     if (vv) return { w: vv.width, h: vv.height };
     return { w: window.innerWidth, h: window.innerHeight };
+  }
+
+  function getViewport() {
+    const current = readViewport();
+
+    // iOS/iPadOS krymper visualViewport når tastaturet åpnes.
+    // Appen vår bruker fast design-canvas, så den skal ikke reskaleres
+    // bare fordi et inputfelt får fokus.
+    if (isTextInputActive() && stableViewport) {
+      return stableViewport;
+    }
+
+    stableViewport = current;
+    return current;
   }
 
   function calculateScale(vw, vh) {
@@ -88,6 +116,13 @@
     rafId = requestAnimationFrame(update);
   }
 
+  function scheduleAfterKeyboardChange() {
+    setTimeout(() => {
+      stableViewport = null;
+      schedule();
+    }, 120);
+  }
+
   function init() {
     shell = document.querySelector(".app-shell");
     mapLayer = document.getElementById("mapLayer");
@@ -96,7 +131,10 @@
     update();
 
     window.addEventListener("resize", schedule, { passive: true });
-    window.addEventListener("orientationchange", schedule, { passive: true });
+    window.addEventListener("orientationchange", scheduleAfterKeyboardChange, { passive: true });
+
+    document.addEventListener("focusin", schedule, { passive: true });
+    document.addEventListener("focusout", scheduleAfterKeyboardChange, { passive: true });
 
     const vv = window.visualViewport;
     if (vv) {
