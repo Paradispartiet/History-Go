@@ -44,7 +44,13 @@
   height: var(--pc-height);
 
   z-index: 2000;
-  background: #000;
+  background: linear-gradient(
+    to bottom,
+    #000 0,
+    #000 300px,
+    rgba(0,0,0,.86) 300px,
+    rgba(0,0,0,.86) 100%
+  );
   box-shadow: 0 -12px 34px rgba(0,0,0,.40);
   overflow: hidden;
 
