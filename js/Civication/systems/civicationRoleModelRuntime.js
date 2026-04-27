@@ -1,0 +1,232 @@
+// js/Civication/systems/civicationRoleModelRuntime.js
+// Kobler Civication-mailer til eksplisitte yrkes-/fagmodeller.
+// Prinsipp:
+// - MailRuntime/EventEngine eier fortsatt mailflyten.
+// - Dette laget legger bare faglig metadata på mailene som allerede velges.
+// - Ingen økonomi, NAV, job offers eller UI endres her.
+
+(function () {
+  "use strict";
+
+  const PATCHED_FLAG = "__civicationRoleModelRuntimePatched";
+  const CACHE = new Map();
+
+  function norm(value) {
+    return String(value || "").trim();
+  }
+
+  function slugify(value) {
+    return norm(value)
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-z0-9]+/g, "_")
+      .replace(/^_+|_+$/g, "")
+      .slice(0, 80);
+  }
+
+  function uniqueStrings(values) {
+    return [...new Set((Array.isArray(values) ? values : []).map(norm).filter(Boolean))];
+  }
+
+  const ROLE_SCOPE_BY_ROLE_ID = {
+    naer_arbeider: "arbeider",
+    naer_fagarbeider: "fagarbeider",
+    naer_mellomleder: "mellomleder",
+    naer_formann: "formann"
+  };
+
+  const ROLE_SCOPE_BY_TITLE = {
+    arbeider: "arbeider",
+    fagarbeider: "fagarbeider",
+    mellomleder: "mellomleder",
+    formann: "formann"
+  };
+
+  function getActive() {
+    return window.CivicationState?.getActivePosition?.() || null;
+  }
+
+  function resolveRoleScope(active) {
+    const roleId = norm(active?.role_id);
+    if (ROLE_SCOPE_BY_ROLE_ID[roleId]) return ROLE_SCOPE_BY_ROLE_ID[roleId];
+
+    const titleKey = slugify(active?.title || "");
+    if (ROLE_SCOPE_BY_TITLE[titleKey]) return ROLE_SCOPE_BY_TITLE[titleKey];
+
+    const roleKey = slugify(active?.role_key || "");
+    if (roleKey === "naer_arbeider" || roleKey === "arbeider") return "arbeider";
+    if (roleKey === "naer_fagarbeider" || roleKey === "fagarbeider") return "fagarbeider";
+    if (roleKey === "naer_mellomleder" || roleKey === "mellomleder") return "mellomleder";
+    if (roleKey === "naer_formann" || roleKey === "formann") return "formann";
+
+    return titleKey;
+  }
+
+  function getRoleModelPath(active) {
+    const category = norm(active?.career_id);
+    const roleScope = resolveRoleScope(active);
+    if (!category || !roleScope) return null;
+    return `data/Civication/roleModels/${category}/${roleScope}.json`;
+  }
+
+  async function loadJson(path) {
+    const p = norm(path);
+    if (!p) return null;
+    if (CACHE.has(p)) return CACHE.get(p);
+
+    try {
+      const res = await fetch(p, { cache: "no-store" });
+      if (!res.ok) {
+        CACHE.set(p, null);
+        return null;
+      }
+
+      const json = await res.json();
+      CACHE.set(p, json);
+      return json;
+    } catch (error) {
+      if (window.DEBUG) console.warn("[CivicationRoleModelRuntime] kunne ikke laste", p, error);
+      CACHE.set(p, null);
+      return null;
+    }
+  }
+
+  async function loadRoleModel(active) {
+    const path = getRoleModelPath(active);
+    if (!path) return null;
+    return await loadJson(path);
+  }
+
+  function pickByIds(list, ids) {
+    const wanted = new Set(uniqueStrings(ids));
+    if (!wanted.size) return [];
+    return (Array.isArray(list) ? list : []).filter(item => wanted.has(norm(item?.id)));
+  }
+
+  function normalizeRoleModelRefs(refs) {
+    const src = refs && typeof refs === "object" ? refs : {};
+    return {
+      competence_axes: uniqueStrings(src.competence_axes),
+      ideal_type_problems: uniqueStrings(src.ideal_type_problems)
+    };
+  }
+
+  function buildRoleModelMeta(roleModel, refs) {
+    if (!roleModel) return null;
+
+    const normalizedRefs = normalizeRoleModelRefs(refs);
+
+    return {
+      schema: norm(roleModel.schema || "civication_role_model_v1"),
+      category: norm(roleModel.category),
+      role_scope: norm(roleModel.role_scope),
+      role_id: norm(roleModel.role_id),
+      title: norm(roleModel.title),
+      education_basis: Array.isArray(roleModel.education_basis)
+        ? roleModel.education_basis.map(norm).filter(Boolean)
+        : [],
+      professional_description: Array.isArray(roleModel.professional_description)
+        ? roleModel.professional_description.map(norm).filter(Boolean)
+        : [],
+      selected_competence_axes: pickByIds(roleModel.competence_axes, normalizedRefs.competence_axes),
+      selected_ideal_type_problems: pickByIds(roleModel.ideal_type_problems, normalizedRefs.ideal_type_problems),
+      refs: normalizedRefs
+    };
+  }
+
+  async function decorateMail(mail, active, roleModel) {
+    if (!mail || typeof mail !== "object") return mail;
+
+    const model = roleModel || await loadRoleModel(active);
+    if (!model) return mail;
+
+    const refs = normalizeRoleModelRefs(mail.role_model_refs);
+    const roleModelMeta = buildRoleModelMeta(model, refs);
+
+    return {
+      ...mail,
+      role_model_refs: refs,
+      role_model_meta: roleModelMeta,
+      mail_tags: uniqueStrings([
+        ...(Array.isArray(mail.mail_tags) ? mail.mail_tags : []),
+        roleModelMeta?.role_id,
+        ...(refs.competence_axes || []),
+        ...(refs.ideal_type_problems || [])
+      ])
+    };
+  }
+
+  async function decoratePack(pack, active) {
+    if (!pack || !Array.isArray(pack.mails) || !pack.mails.length) return pack;
+
+    const roleModel = await loadRoleModel(active);
+    if (!roleModel) return pack;
+
+    const mails = await Promise.all(
+      pack.mails.map(mail => decorateMail(mail, active, roleModel))
+    );
+
+    return {
+      ...pack,
+      mails,
+      __civication_role_model_runtime: true,
+      __role_model_path: getRoleModelPath(active),
+      __role_model_id: norm(roleModel.role_id)
+    };
+  }
+
+  function patchEventEngine() {
+    const proto = window.CivicationEventEngine?.prototype;
+    if (!proto) return false;
+    if (proto[PATCHED_FLAG] === true) return true;
+
+    const originalBuildMailPool = proto.buildMailPool;
+    if (typeof originalBuildMailPool !== "function") return false;
+
+    proto.buildMailPool = async function roleModelBuildMailPool(active, state, roleKey) {
+      const pack = await originalBuildMailPool.call(this, active, state, roleKey);
+      const resolvedActive = active || getActive();
+      return await decoratePack(pack, resolvedActive);
+    };
+
+    proto[PATCHED_FLAG] = true;
+    proto.__civicationRoleModelRuntimePatchedAt = new Date().toISOString();
+    return true;
+  }
+
+  function inspect() {
+    const active = getActive();
+    const proto = window.CivicationEventEngine?.prototype;
+    return {
+      active,
+      role_scope: active ? resolveRoleScope(active) : null,
+      role_model_path: active ? getRoleModelPath(active) : null,
+      patched: proto?.[PATCHED_FLAG] === true,
+      cache_size: CACHE.size
+    };
+  }
+
+  function boot() {
+    return patchEventEngine();
+  }
+
+  window.CivicationRoleModelRuntime = {
+    boot,
+    inspect,
+    loadRoleModel,
+    decorateMail,
+    decoratePack,
+    getRoleModelPath,
+    resolveRoleScope
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", boot, { once: true });
+  } else {
+    boot();
+  }
+
+  window.addEventListener("civi:dataReady", boot);
+  window.addEventListener("civi:booted", boot);
+})();
