@@ -60,6 +60,8 @@ function showToast(msg, ms = null) {
       exploration_zone: "Utforskingssone",
       thing_to_see: "Ting å se",
       quiet_zone: "Rolig sone",
+      water_play_zone: "Vannlek",
+      seasonal_activity_zone: "Sesongaktivitet",
       play_object: "Lekeobjekt",
       activity: "Aktivitet",
       training_zone: "Treningssone",
