@@ -1,0 +1,231 @@
+{
+  "schema": "civication_life_mail_family_catalog_v1",
+  "id": "arbeidsledig_life_v1",
+  "life_context": "arbeidsledig",
+  "mail_type": "life",
+  "description": "Realistiske arbeidsledig-mailer: NAV, økonomi, dokumentasjon, søknader, rytme og sosialt press.",
+  "families": [
+    {
+      "id": "nav_og_dokumentasjon",
+      "mails": [
+        {
+          "id": "arbeidsledig_nav_001",
+          "mail_family": "nav_og_dokumentasjon",
+          "priority": 90,
+          "repeatable": false,
+          "source": "NAV",
+          "from": "nav_veileder",
+          "subject": "Vi mangler fortsatt dokumentasjon",
+          "purpose": "Gjøre arbeidsledighet konkret gjennom dokumentasjon, frister og ufullstendig systemkontakt.",
+          "stakes": "Spilleren må velge mellom ryddig avklaring og utsettelse som kan gi mer økonomisk press.",
+          "situation": [
+            "Du får en kort melding fra NAV før lunsj.",
+            "Saken din står ikke stille, men den går heller ikke videre. De mangler arbeidsavtale, siste lønnsslipp og bekreftelse på hvorfor arbeidsforholdet tok slutt.",
+            "Det er ikke dramatisk ennå. Det er bare den typen stillhet som kan bli dyr hvis du lar den ligge."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Last opp alt nå, også det som er litt ubehagelig å sende",
+              "reply": "Jeg laster opp dokumentene i dag og skriver kort forklaring på arbeidsforholdet.",
+              "tags": [
+                "process",
+                "legitimacy",
+                "economic_stability"
+              ],
+              "effect": 1,
+              "feedback": "Saken blir ryddigere. Du har ikke fått penger ennå, men du har fjernet en grunn til forsinkelse."
+            },
+            {
+              "id": "B",
+              "label": "Utsett til du orker å samle alt riktig",
+              "reply": "Jeg sender dokumentasjonen når jeg har samlet alt.",
+              "tags": [
+                "avoidance",
+                "economic_risk"
+              ],
+              "effect": -1,
+              "feedback": "Det føles roligere i noen timer. Systemet registrerer bare at ingenting kom inn."
+            }
+          ]
+        },
+        {
+          "id": "arbeidsledig_nav_002",
+          "mail_family": "nav_og_dokumentasjon",
+          "priority": 86,
+          "repeatable": false,
+          "source": "NAV",
+          "from": "nav_meldekort",
+          "subject": "Meldekort må sendes innen fristen",
+          "purpose": "Vise at arbeidsledighet også er et administrativt arbeid med rytme og konsekvens.",
+          "stakes": "Spilleren må velge mellom lavstatus-presisjon og unnvikelse som kan stoppe utbetaling.",
+          "situation": [
+            "Telefonen minner deg på meldekortet mens du egentlig prøver å ikke tenke på penger.",
+            "Du må fylle ut timer, søknadsaktivitet og om du har vært tilgjengelig for arbeid.",
+            "Det er en liten handling, men hele systemet henger på at du gjør den riktig og tidsnok."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Fyll ut meldekortet nøkternt og send før du gjør noe annet",
+              "reply": "Meldekort sendt innen fristen.",
+              "tags": [
+                "process",
+                "routine",
+                "economic_stability"
+              ],
+              "effect": 1,
+              "feedback": "Du holder rytmen. Det er lite heroisk, men det beskytter økonomien din."
+            },
+            {
+              "id": "B",
+              "label": "Skyv det til kvelden og håp du husker det",
+              "reply": "Jeg tar det senere i dag.",
+              "tags": [
+                "avoidance",
+                "fatigue",
+                "economic_risk"
+              ],
+              "effect": -1,
+              "feedback": "Du slipper ubehaget nå. Fristen flytter seg ikke av den grunn."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "soknad_og_selvpresentasjon",
+      "mails": [
+        {
+          "id": "arbeidsledig_soknad_001",
+          "mail_family": "soknad_og_selvpresentasjon",
+          "priority": 82,
+          "repeatable": false,
+          "source": "Jobbsøk",
+          "from": "arbeidsgiver_auto",
+          "subject": "Kan du forklare hullet i CV-en?",
+          "purpose": "La arbeidsledighet bli en realistisk selrepresentasjonskonflikt, ikke bare fravær av jobb.",
+          "stakes": "Spilleren må velge mellom ærlig, kontrollert forklaring og pynting som kan virke bedre kortsiktig.",
+          "situation": [
+            "En arbeidsgiver svarer raskere enn forventet.",
+            "De liker erfaringen din, men spør direkte om perioden uten arbeid og hva du har gjort for å holde deg faglig oppdatert.",
+            "Du kjenner forskjellen mellom å forklare og å forsvare deg."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Svar ærlig, kort og vis hva du faktisk har gjort i perioden",
+              "reply": "Perioden har vært uavklart, men jeg har brukt den til å holde rutiner, søke bredt og oppdatere kompetanse.",
+              "tags": [
+                "honesty",
+                "legitimacy",
+                "self_respect"
+              ],
+              "effect": 1,
+              "feedback": "Du gjør hullet mindre farlig ved å gi det form."
+            },
+            {
+              "id": "B",
+              "label": "Pynt på perioden og få den til å høres mer planlagt ut",
+              "reply": "Jeg har hatt en fleksibel overgangsperiode og vurdert nye retninger.",
+              "tags": [
+                "visibility",
+                "shortcut",
+                "fragile_story"
+              ],
+              "effect": 0,
+              "feedback": "Det høres bedre ut. Du vet også at det tåler færre oppfølgingsspørsmål."
+            }
+          ]
+        },
+        {
+          "id": "arbeidsledig_soknad_002",
+          "mail_family": "soknad_og_selvpresentasjon",
+          "priority": 78,
+          "repeatable": false,
+          "source": "Bemanningsbyrå",
+          "from": "bemanning_konsulent",
+          "subject": "Kort oppdrag med rask oppstart",
+          "purpose": "Vise presset mellom økonomisk nødvendighet, verdighet og ustabil arbeidstilknytning.",
+          "stakes": "Spilleren må velge mellom rask inntekt og arbeid som kan spise tid fra bedre langsiktig retning.",
+          "situation": [
+            "Et bemanningsbyrå tilbyr et kort oppdrag med oppstart i morgen.",
+            "Lønnen er grei nok til å hjelpe denne måneden, men oppdraget er usikkert og ligger langt unna det du egentlig prøver å bygge deg mot.",
+            "Det er ikke et dårlig tilbud. Det er bare ikke et trygt svar på hele situasjonen."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta oppdraget, men sett en tydelig grense for hvor lenge det skal styre uken",
+              "reply": "Jeg kan ta oppdraget, men trenger avklart varighet og arbeidstid før jeg bekrefter.",
+              "tags": [
+                "economic_stability",
+                "boundary",
+                "process"
+              ],
+              "effect": 1,
+              "feedback": "Du tar inntekt uten å gi fra deg hele retningen."
+            },
+            {
+              "id": "B",
+              "label": "Si ja med en gang fordi kontoen trenger det",
+              "reply": "Jeg tar det. Send oppmøtedetaljer.",
+              "tags": [
+                "economic_pressure",
+                "short_term"
+              ],
+              "effect": 0,
+              "feedback": "Du får bevegelse raskt. Du vet ikke om det løser noe mer enn denne uken."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hverdagsrytme_og_press",
+      "mails": [
+        {
+          "id": "arbeidsledig_rytme_001",
+          "mail_family": "hverdagsrytme_og_press",
+          "priority": 74,
+          "repeatable": false,
+          "source": "Civication",
+          "from": "egen_kalender",
+          "subject": "Dagen flyter uten ramme",
+          "purpose": "Gjøre fravær av jobb til et styringsproblem: tid uten ytre struktur må organiseres aktivt.",
+          "stakes": "Spilleren må velge mellom enkel dagsstruktur og passiv oppløsning av rytme.",
+          "situation": [
+            "Klokken blir 11:17 før dagen egentlig begynner.",
+            "Ingen venter på deg noe sted, og det gjør tiden mer porøs enn fri. Tre små ting kan redde dagen: én søknad, én praktisk oppgave, én tur ut.",
+            "Det høres lite ut. Det er kanskje derfor det virker."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lag en liten dagsplan med tre konkrete punkter",
+              "reply": "Dagens plan: én søknad, én praktisk oppgave, én tur ut.",
+              "tags": [
+                "routine",
+                "self_respect",
+                "process"
+              ],
+              "effect": 1,
+              "feedback": "Dagen får kanter. Det gjør den lettere å stå i."
+            },
+            {
+              "id": "B",
+              "label": "La dagen være åpen og se om du får energi senere",
+              "reply": "Jeg tar det når jeg får litt mer energi.",
+              "tags": [
+                "fatigue",
+                "avoidance"
+              ],
+              "effect": -1,
+              "feedback": "Det føles mildere akkurat nå. Dagen begynner likevel å lekke."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
