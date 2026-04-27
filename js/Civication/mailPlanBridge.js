@@ -13,14 +13,20 @@
   const FAMILY_FILES = {
     naeringsliv: {
       arbeider: {
-        job: "data/Civication/mailFamilies/naeringsliv/job/arbeider_job.json",
+        job: [
+          "data/Civication/mailFamilies/naeringsliv/job/arbeider_intro_v2.json",
+          "data/Civication/mailFamilies/naeringsliv/job/arbeider_job.json"
+        ],
         story: "data/Civication/mailFamilies/naeringsliv/story/arbeider_story.json",
         event: "data/Civication/mailFamilies/naeringsliv/event/arbeider_event.json",
         people: "data/Civication/mailFamilies/naeringsliv/people/arbeider_people.json",
         conflict: "data/Civication/mailFamilies/naeringsliv/conflict/arbeider_conflict.json"
       },
       fagarbeider: {
-        job: "data/Civication/mailFamilies/naeringsliv/job/fagarbeider_job.json",
+        job: [
+          "data/Civication/mailFamilies/naeringsliv/job/fagarbeider_intro_v2.json",
+          "data/Civication/mailFamilies/naeringsliv/job/fagarbeider_job.json"
+        ],
         story: "data/Civication/mailFamilies/naeringsliv/story/fagarbeider_story.json",
         event: "data/Civication/mailFamilies/naeringsliv/event/fagarbeider_event.json",
         people: "data/Civication/mailFamilies/naeringsliv/people/fagarbeider_people.json",
@@ -103,10 +109,17 @@
   }
 
   function getFamilyPath(active, mailType) {
+    const paths = getFamilyPaths(active, mailType);
+    return paths[0] || null;
+  }
+
+  function getFamilyPaths(active, mailType) {
     const category = normStr(active?.career_id);
     const roleScope = resolveRoleScope(active);
     const mt = normStr(mailType);
-    return FAMILY_FILES?.[category]?.[roleScope]?.[mt] || null;
+    const value = FAMILY_FILES?.[category]?.[roleScope]?.[mt] || null;
+    if (Array.isArray(value)) return value.map(normStr).filter(Boolean);
+    return normStr(value) ? [normStr(value)] : [];
   }
 
   function getConsumedMap(state) {
@@ -204,20 +217,32 @@
   function normalizeChoices(choices) {
     return (Array.isArray(choices) ? choices : [])
       .filter(Boolean)
-      .map((c) => ({
-        id: normStr(c.id),
-        label: normStr(c.label),
-        effect: Number(c.effect || 0),
-        tags: Array.isArray(c.tags) ? c.tags.map(normStr).filter(Boolean) : [],
-        feedback: normStr(c.feedback),
-        next_bias: c?.next_bias && typeof c.next_bias === "object"
-          ? {
-              prefer_mail_types: Array.isArray(c.next_bias.prefer_mail_types) ? c.next_bias.prefer_mail_types.map(normStr).filter(Boolean) : [],
-              prefer_families: Array.isArray(c.next_bias.prefer_families) ? c.next_bias.prefer_families.map(normStr).filter(Boolean) : [],
-              set_flags: Array.isArray(c.next_bias.set_flags) ? c.next_bias.set_flags.map(normStr).filter(Boolean) : []
-            }
-          : null
-      }))
+      .map((c) => {
+        const out = {
+          ...c,
+          id: normStr(c.id),
+          label: normStr(c.label),
+          effect: Number(c.effect || 0),
+          tags: Array.isArray(c.tags) ? c.tags.map(normStr).filter(Boolean) : [],
+          feedback: normStr(c.feedback),
+          next_bias: c?.next_bias && typeof c.next_bias === "object"
+            ? {
+                prefer_mail_types: Array.isArray(c.next_bias.prefer_mail_types) ? c.next_bias.prefer_mail_types.map(normStr).filter(Boolean) : [],
+                prefer_families: Array.isArray(c.next_bias.prefer_families) ? c.next_bias.prefer_families.map(normStr).filter(Boolean) : [],
+                set_flags: Array.isArray(c.next_bias.set_flags) ? c.next_bias.set_flags.map(normStr).filter(Boolean) : []
+              }
+            : null
+        };
+
+        const reply = normStr(c.reply);
+        const threadId = normStr(c.triggers_on_choice);
+        if (reply) out.reply = reply;
+        else delete out.reply;
+        if (threadId) out.triggers_on_choice = threadId;
+        else delete out.triggers_on_choice;
+
+        return out;
+      })
       .filter((c) => c.id && c.label);
   }
 
@@ -452,6 +477,8 @@
     const sourceType = "planned";
     const toneContext = resolveCharacterTone(mail, worldState);
     const toneVariant = buildToneVariant(mail, toneContext);
+    const placeId = normStr(mail?.place_id);
+    const sourcePlaceRef = normStr(mail?.source_place_ref || placeId);
 
     return {
       id: mailId,
@@ -460,8 +487,10 @@
       subject: normStr(mail?.subject),
       summary: normStr(mail?.summary),
       situation: Array.isArray(mail?.situation) && mail.situation.length ? mail.situation.map(normStr).filter(Boolean) : [normStr(mail?.summary)].filter(Boolean),
+      from: normStr(mail?.from),
+      place_id: placeId,
       people_ref: normStr(mail?.people_ref),
-      source_place_ref: normStr(mail?.source_place_ref),
+      source_place_ref: sourcePlaceRef,
       learning_focus: Array.isArray(mail?.learning_focus) ? mail.learning_focus.map(normStr).filter(Boolean) : [],
       tone_context: toneContext,
       tone_variant: toneVariant,
@@ -487,8 +516,10 @@
         family_id: familyId,
         storylet_id: mailId,
         progress_tags: Array.isArray(mail?.progress_tags) ? mail.progress_tags.map(normStr).filter(Boolean) : [],
+        from: normStr(mail?.from),
+        place_id: placeId,
         people_ref: normStr(mail?.people_ref),
-        source_place_ref: normStr(mail?.source_place_ref),
+        source_place_ref: sourcePlaceRef,
         learning_focus: Array.isArray(mail?.learning_focus) ? mail.learning_focus.map(normStr).filter(Boolean) : [],
         tone_context: toneContext,
         tone_variant: toneVariant,
@@ -514,17 +545,25 @@
   }
 
   async function getMailsForType(active, step, mailType, consumed) {
-    const path = getFamilyPath(active, mailType);
-    if (!path) return [];
-    const catalog = await loadJson(path);
-    if (!catalog) return [];
+    const paths = getFamilyPaths(active, mailType);
+    if (!paths.length) return [];
+
     const allowedFamilies = buildAllowedFamilySet(step);
-    return flattenFamilyCatalog(catalog).filter((mail) => {
-      const familyId = normStr(mail?.mail_family || mail?.__family_id);
-      if (!familyId || !allowedFamilies.has(familyId)) return false;
-      if (isConsumed(mail?.id, consumed)) return false;
-      return true;
-    });
+    const out = [];
+
+    for (const path of paths) {
+      const catalog = await loadJson(path);
+      if (!catalog) continue;
+      const mails = flattenFamilyCatalog(catalog).filter((mail) => {
+        const familyId = normStr(mail?.mail_family || mail?.__family_id);
+        if (!familyId || !allowedFamilies.has(familyId)) return false;
+        if (isConsumed(mail?.id, consumed)) return false;
+        return true;
+      });
+      out.push(...mails);
+    }
+
+    return out;
   }
 
   async function getCandidatesForStep(active, plan, step, consumed, state) {
@@ -585,6 +624,7 @@
     loadJson,
     getPlanPath,
     getFamilyPath,
+    getFamilyPaths,
     resolveRoleScope,
     getPlanProgress,
     setPlanProgress,
