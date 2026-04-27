@@ -13,7 +13,8 @@
   // Utvid listen etter hvert som flere familier konverteres.
   const V2_FAMILY_FILES = [
     "data/Civication/mailFamilies/naeringsliv/job/arbeider_intro_v2.json",
-    "data/Civication/mailFamilies/naeringsliv/job/fagarbeider_intro_v2.json"
+    "data/Civication/mailFamilies/naeringsliv/job/fagarbeider_intro_v2.json",
+    "data/Civication/mailFamilies/naeringsliv/job/mellomleder_intro_v2.json"
   ];
 
   const _byId = new Map();
