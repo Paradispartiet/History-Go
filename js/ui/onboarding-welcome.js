@@ -95,13 +95,23 @@
     document.addEventListener("keydown", onKey);
   }
 
+  function afterAppReady(fn) {
+    if (window.__HG_APP_READY__ || document.body?.classList.contains("hg-loaded")) {
+      fn();
+      return;
+    }
+
+    window.addEventListener("hg:appReady", fn, { once: true });
+  }
+
   function maybeShowOnFirstVisit() {
     try {
       if (localStorage.getItem(FLAG_KEY) === "1") return;
     } catch { return; }
-    // Vent litt så kartet får lastes først, og overlay-en ikke blokkerer
-    // første visuelle inntrykket helt.
-    setTimeout(open, 1200);
+
+    afterAppReady(() => {
+      setTimeout(open, 250);
+    });
   }
 
   window.openOnboarding = open;
