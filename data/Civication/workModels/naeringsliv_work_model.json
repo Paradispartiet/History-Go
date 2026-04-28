@@ -1,0 +1,281 @@
+{
+  "schema": "civication_work_model_v1",
+  "version": 1,
+  "career_id": "naeringsliv",
+  "name": "Næringsliv & industri – arbeidsmodell",
+  "purpose": "Definerer arbeidsoppgaver, kompetanser, friksjoner og narrative buer for Civication-mail i Næringsliv. Mailene skal simulere reelle jobbsituasjoner, særlig på gulvet i de første trinnene.",
+  "internal_role_ladder": [
+    {
+      "role_scope": "ekspeditor",
+      "label": "Ekspeditør / butikkmedarbeider",
+      "tier_min": 1,
+      "tier_max": 1,
+      "description": "Første møte med arbeid på gulvet: kundemøte, kasse, varer, rydding, rutiner og tempo.",
+      "primary_contexts": ["kasse", "butikkgulv", "hylle", "lager", "kundeservice", "kampanjeområde"],
+      "primary_competencies": ["kundebehandling", "noyaktighet", "produktkunnskap", "vareflyt", "service", "prioritering"]
+    },
+    {
+      "role_scope": "erfaren_butikkmedarbeider",
+      "label": "Erfaren butikkmedarbeider",
+      "tier_min": 2,
+      "tier_max": 2,
+      "description": "Spilleren kan rutinen, ser avvik tidligere og får uformell tillit fra kollegaer.",
+      "primary_contexts": ["butikkgulv", "lager", "kundehenvendelser", "åpning", "lukking"],
+      "primary_competencies": ["situasjonslesing", "effektivitet", "kollegastotte", "rutineforstaelse", "svinnkontroll"]
+    },
+    {
+      "role_scope": "vareansvarlig",
+      "label": "Vareansvarlig / områdeansvarlig",
+      "tier_min": 3,
+      "tier_max": 3,
+      "description": "Spilleren får ansvar for en varegruppe, kampanjer, lagerstatus, bestilling og feil i vareflyten.",
+      "primary_contexts": ["varegruppe", "lager", "bestilling", "kampanje", "hylleplassering"],
+      "primary_competencies": ["vareanalyse", "bestilling", "kampanjegjennomforing", "lagerkontroll", "okonomisk_forstaelse"]
+    },
+    {
+      "role_scope": "skiftansvarlig",
+      "label": "Skiftansvarlig",
+      "tier_min": 4,
+      "tier_max": 4,
+      "description": "Spilleren koordinerer en vakt, fordeler oppgaver og håndterer fravær, kø, pauser og små konflikter.",
+      "primary_contexts": ["vaktplan", "butikkgulv", "bakrom", "kasse", "kundeservice"],
+      "primary_competencies": ["prioritering", "kommunikasjon", "ansvar", "konflikthandtering", "driftsrytme"]
+    },
+    {
+      "role_scope": "fagarbeider_salg_service",
+      "label": "Fagarbeider salg/service",
+      "tier_min": 5,
+      "tier_max": 5,
+      "description": "Spilleren har faglig trygghet, lærer opp andre og må balansere kvalitet, sikkerhet, tempo og dokumentasjon.",
+      "primary_contexts": ["opplaring", "rutine", "avvik", "kundeservice", "faglig vurdering"],
+      "primary_competencies": ["faglig_integritet", "opplaring", "dokumentasjon", "kvalitet", "ansvar_uten_myndighet"]
+    },
+    {
+      "role_scope": "assisterende_leder",
+      "label": "Assisterende leder / nestleder",
+      "tier_min": 6,
+      "tier_max": 6,
+      "description": "Spilleren står mellom gulvet og ledelsen, og må oversette praktisk virkelighet til styring.",
+      "primary_contexts": ["rapport", "vaktplan", "oppfolging", "kundeklage", "resultatmote"],
+      "primary_competencies": ["rapportering", "tillit", "lojalitet", "bemanning", "oversettelse_mellom_gulv_og_ledelse"]
+    },
+    {
+      "role_scope": "mellomleder",
+      "label": "Mellomleder",
+      "tier_min": 7,
+      "tier_max": 7,
+      "description": "Spilleren må håndtere press ovenfra, tillit nedenfra, tall, rapportering og konflikter mellom system og virkelighet.",
+      "primary_contexts": ["kontor", "rapportering", "personalmote", "driftsmote", "avvik"],
+      "primary_competencies": ["styring", "tillit", "rapportering", "konflikt", "prioritering", "integritet"]
+    },
+    {
+      "role_scope": "driftsleder_formann",
+      "label": "Driftsleder / formann",
+      "tier_min": 8,
+      "tier_max": 8,
+      "description": "Spilleren eier større driftsansvar og må håndtere bemanning, økonomi, avvik, tempo og langsiktig robusthet.",
+      "primary_contexts": ["drift", "bemanning", "okonomi", "produksjon", "revisjon"],
+      "primary_competencies": ["driftsledelse", "risikostyring", "okonomi", "systemforbedring", "ansvar"]
+    }
+  ],
+  "task_domains": [
+    {
+      "id": "kundemote",
+      "label": "Kundemøte",
+      "description": "Direkte møte med kunde: behov, konflikt, klage, veiledning, service og grenser.",
+      "floor_roles": ["ekspeditor", "erfaren_butikkmedarbeider", "vareansvarlig", "skiftansvarlig"],
+      "example_tasks": [
+        "kunde spør etter produkt du ikke kjenner",
+        "kunde klager på pris",
+        "kunde vil returnere uten kvittering",
+        "kunde er stresset og køen bygger seg opp",
+        "kunde trenger anbefaling, men den dyreste varen passer ikke best"
+      ]
+    },
+    {
+      "id": "kasse",
+      "label": "Kasse og betaling",
+      "description": "Pris, betaling, retur, kø, kontroll og tillit i kassepunktet.",
+      "floor_roles": ["ekspeditor", "erfaren_butikkmedarbeider", "skiftansvarlig"],
+      "example_tasks": [
+        "pris i kassa stemmer ikke med skiltet",
+        "gavekort virker ikke",
+        "kunde vil dele betaling",
+        "kasseoppgjør stemmer ikke",
+        "alderskontroll må håndteres rolig"
+      ]
+    },
+    {
+      "id": "varepafylling",
+      "label": "Varepåfylling og hylle",
+      "description": "Hyller, plassering, kampanje, datovarer, prioritering og fysisk arbeid.",
+      "floor_roles": ["ekspeditor", "erfaren_butikkmedarbeider", "vareansvarlig"],
+      "example_tasks": [
+        "tom hylle mens varen finnes på lager",
+        "kampanjeskilt henger igjen etter tilbudsperioden",
+        "datovarer må sjekkes før rush",
+        "tung varepall blokkerer bakrommet",
+        "varer står feil og skaper prisforvirring"
+      ]
+    },
+    {
+      "id": "lager_bestilling",
+      "label": "Lager og bestilling",
+      "description": "Lagerstatus, bestilling, avvik, mottak, svinn og vareflyt.",
+      "floor_roles": ["erfaren_butikkmedarbeider", "vareansvarlig", "skiftansvarlig", "fagarbeider_salg_service"],
+      "example_tasks": [
+        "systemet sier varen finnes, men hylla er tom",
+        "bestilling må justeres etter kampanje",
+        "leveranse kommer sent",
+        "returvarer står uregistrert",
+        "lagertelling avdekker avvik"
+      ]
+    },
+    {
+      "id": "svinn_kontroll",
+      "label": "Svinn og kontroll",
+      "description": "Å oppdage og håndtere tap, feil, åpnet emballasje, rutinebrudd og uformell praksis.",
+      "floor_roles": ["ekspeditor", "erfaren_butikkmedarbeider", "vareansvarlig", "skiftansvarlig"],
+      "example_tasks": [
+        "emballasje er åpnet i hylla",
+        "kollega ignorerer kontrollrutine",
+        "kunde oppfører seg mistenkelig uten at du vet nok",
+        "svinn må registreres selv om det ser dårlig ut",
+        "fristen frister til å pynte på tall"
+      ]
+    },
+    {
+      "id": "salg_veiledning",
+      "label": "Salg og veiledning",
+      "description": "Behovsavklaring, produktkunnskap, mersalg og etisk salg.",
+      "floor_roles": ["ekspeditor", "erfaren_butikkmedarbeider", "vareansvarlig", "fagarbeider_salg_service"],
+      "example_tasks": [
+        "kunde ber om anbefaling mellom billig og dyr vare",
+        "leder vil ha mersalg på kampanjeprodukt",
+        "du vet at kunden ikke trenger tilleggsvare",
+        "produktfordel må forklares enkelt",
+        "kundens behov er uklart"
+      ]
+    },
+    {
+      "id": "samarbeid",
+      "label": "Samarbeid og kollegaer",
+      "description": "Kollegastøtte, pause, opplæring, snarveier, status og uformell makt.",
+      "floor_roles": ["ekspeditor", "erfaren_butikkmedarbeider", "vareansvarlig", "skiftansvarlig", "fagarbeider_salg_service", "mellomleder"],
+      "example_tasks": [
+        "ny kollega spør deg mens du har dårlig tid",
+        "erfaren kollega viser deg en snarvei",
+        "noen må dekke pause",
+        "kollega tar æren for en oppgave",
+        "leder ber deg prioritere annerledes enn gulvet trenger"
+      ]
+    },
+    {
+      "id": "butikkstandard",
+      "label": "Butikkstandard og rytme",
+      "description": "Renhold, rydding, åpning, lukking, kampanje, skilt, køflyt og daglig orden.",
+      "floor_roles": ["ekspeditor", "erfaren_butikkmedarbeider", "skiftansvarlig"],
+      "example_tasks": [
+        "åpning nærmer seg og kampanjen er ikke klar",
+        "butikken ser ryddig ut foran, men bakrommet flyter",
+        "lukkingen må gjøres raskt uten å miste kontroll",
+        "skilt og pris stemmer ikke",
+        "kø og rydding konkurrerer om oppmerksomheten"
+      ]
+    }
+  ],
+  "competencies": [
+    { "id": "kundebehandling", "label": "Kundebehandling", "maps_to": ["social", "symbolic"] },
+    { "id": "noyaktighet", "label": "Nøyaktighet", "maps_to": ["cultural", "symbolic"] },
+    { "id": "tempo", "label": "Tempo", "maps_to": ["economic"] },
+    { "id": "produktkunnskap", "label": "Produktkunnskap", "maps_to": ["cultural", "symbolic"] },
+    { "id": "vareflyt", "label": "Vareflyt", "maps_to": ["economic", "cultural"] },
+    { "id": "service", "label": "Service", "maps_to": ["social"] },
+    { "id": "integritet", "label": "Integritet", "maps_to": ["psyche", "symbolic"] },
+    { "id": "samarbeid", "label": "Samarbeid", "maps_to": ["social"] },
+    { "id": "svinnkontroll", "label": "Svinnkontroll", "maps_to": ["economic", "risk"] },
+    { "id": "prioritering", "label": "Prioritering", "maps_to": ["psyche", "economic"] },
+    { "id": "opplaring", "label": "Opplæring", "maps_to": ["social", "symbolic"] },
+    { "id": "rapportering", "label": "Rapportering", "maps_to": ["symbolic", "political"] },
+    { "id": "ansvar", "label": "Ansvar", "maps_to": ["symbolic", "psyche"] }
+  ],
+  "pressures": [
+    "ko_bygger_seg_opp",
+    "kunde_er_stresset",
+    "leder_vil_ha_tempo",
+    "kollega_tar_snarvei",
+    "systemet_er_feil",
+    "lagerstatus_stemmer_ikke",
+    "kampanje_ma_ferdigstilles",
+    "svinn_ma_registreres",
+    "du_kan_ikke_alt_enna",
+    "du_far_ansvar_uten_formell_myndighet",
+    "tallene_ser_darlige_ut",
+    "du_vil_bli_likt",
+    "du_vil_vaere_effektiv"
+  ],
+  "choice_axes": [
+    { "id": "tempo_vs_korrekthet", "label": "Tempo vs korrekthet" },
+    { "id": "service_vs_regel", "label": "Service vs regel" },
+    { "id": "salg_vs_aerlighet", "label": "Salg vs ærlighet" },
+    { "id": "lojalitet_vs_integritet", "label": "Lojalitet vs integritet" },
+    { "id": "hjelpe_vs_egen_oppgave", "label": "Hjelpe andre vs holde egen oppgave" },
+    { "id": "synlighet_vs_arbeidsro", "label": "Synlighet vs arbeidsro" },
+    { "id": "snarvei_vs_rutine", "label": "Snarvei vs rutine" }
+  ],
+  "consequence_axes": [
+    { "id": "kundetillit", "label": "Kundetillit" },
+    { "id": "leder_tillit", "label": "Ledertillit" },
+    { "id": "kollega_tillit", "label": "Kollegatillit" },
+    { "id": "svinn_risiko", "label": "Svinnrisiko" },
+    { "id": "stress", "label": "Stress" },
+    { "id": "driftsflyt", "label": "Driftsflyt" },
+    { "id": "okonomisk_resultat", "label": "Økonomisk resultat" },
+    { "id": "faglig_rykte", "label": "Faglig rykte" },
+    { "id": "autonomi", "label": "Autonomi" },
+    { "id": "synlighet", "label": "Synlighet" }
+  ],
+  "narrative_arcs": [
+    {
+      "id": "forste_uke_pa_gulvet",
+      "label": "Første uke på gulvet",
+      "roles": ["ekspeditor"],
+      "beats": ["du_larer_hvor_varene_star", "du_larer_hvem_som_bestemmer_uformelt", "du_larer_hva_kundene_spor_om", "du_gjor_forste_feil"]
+    },
+    {
+      "id": "kundenes_blikk",
+      "label": "Kundenes blikk",
+      "roles": ["ekspeditor", "erfaren_butikkmedarbeider"],
+      "beats": ["service_er_situasjonslesing", "kunde_husker_deg", "du_setter_grense", "du_vinner_tillit"]
+    },
+    {
+      "id": "varene_som_system",
+      "label": "Varene som system",
+      "roles": ["erfaren_butikkmedarbeider", "vareansvarlig"],
+      "beats": ["hylle_lager_og_kasse_henger_sammen", "du_ser_avvik_tidlig", "du_far_ansvar_for_varegruppe"]
+    },
+    {
+      "id": "snarveien",
+      "label": "Snarveien",
+      "roles": ["ekspeditor", "erfaren_butikkmedarbeider", "skiftansvarlig"],
+      "beats": ["kollega_viser_snarvei", "snarvei_sparer_tid", "snarvei_skaper_risiko", "du_ma_velge_praksis"]
+    },
+    {
+      "id": "fra_ansatt_til_fagperson",
+      "label": "Fra ansatt til fagperson",
+      "roles": ["fagarbeider_salg_service", "assisterende_leder"],
+      "beats": ["du_larer_bort", "du_dokumenterer", "du_tar_ansvar_uten_full_myndighet", "du_blir_referansepunkt"]
+    },
+    {
+      "id": "mellom_gulv_og_ledelse",
+      "label": "Mellom gulv og ledelse",
+      "roles": ["assisterende_leder", "mellomleder"],
+      "beats": ["du_oversetter_gulvet_til_tall", "rapporten_presser_virkeligheten", "tillit_ovenfra_koster_tillit_nedenfra"]
+    }
+  ],
+  "mail_schema_requirements": {
+    "required_fields": ["id", "mail_type", "mail_family", "subject", "summary", "situation", "choices"],
+    "required_choice_fields": ["id", "label", "effect", "tags", "feedback"],
+    "recommended_fields": ["task_domain", "competency", "pressure", "choice_axis", "consequence_axis", "narrative_arc"]
+  }
+}
