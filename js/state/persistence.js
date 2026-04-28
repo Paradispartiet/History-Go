@@ -48,7 +48,6 @@ function saveVisitedFromQuiz(placeId) {
   if (!window.visited[id]) {
     window.visited[id] = true;
     saveVisited();
-    window.dispatchEvent(new Event("updateProfile"));
     window.renderNearbyPlaces?.();
   }
 }
