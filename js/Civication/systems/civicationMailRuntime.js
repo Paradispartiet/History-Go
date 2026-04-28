@@ -33,6 +33,7 @@
 
   const ROLE_SCOPE_BY_ROLE_ID = {
     naer_arbeider: "arbeider",
+    naer_ekspeditor: "ekspeditor",
     naer_fagarbeider: "fagarbeider",
     naer_mellomleder: "mellomleder",
     naer_formann: "formann"
@@ -40,6 +41,8 @@
 
   const ROLE_SCOPE_BY_TITLE = {
     arbeider: "arbeider",
+    ekspeditor: "ekspeditor",
+    ekspeditor_butikkmedarbeider: "ekspeditor",
     fagarbeider: "fagarbeider",
     mellomleder: "mellomleder",
     formann: "formann"
@@ -89,6 +92,12 @@
   }
 
   function resolveRoleScope(active) {
+    const externalResolver = window.CivicationCareerRoleResolver?.resolveCareerRoleScope;
+    if (typeof externalResolver === "function") {
+      const resolved = norm(externalResolver(active));
+      if (resolved && resolved !== "unknown") return resolved;
+    }
+
     const roleId = norm(active?.role_id);
     if (ROLE_SCOPE_BY_ROLE_ID[roleId]) return ROLE_SCOPE_BY_ROLE_ID[roleId];
 
@@ -96,6 +105,7 @@
     if (ROLE_SCOPE_BY_TITLE[titleKey]) return ROLE_SCOPE_BY_TITLE[titleKey];
 
     const roleKey = slugify(active?.role_key || "");
+    if (roleKey === "naer_ekspeditor" || roleKey === "ekspeditor" || roleKey.includes("ekspedit")) return "ekspeditor";
     if (roleKey === "naer_arbeider" || roleKey === "arbeider") return "arbeider";
     if (roleKey === "naer_fagarbeider" || roleKey === "fagarbeider") return "fagarbeider";
     if (roleKey === "naer_mellomleder" || roleKey === "mellomleder") return "mellomleder";

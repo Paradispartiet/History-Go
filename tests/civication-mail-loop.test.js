@@ -101,6 +101,7 @@ async function run() {
   loadScript('js/Civication/core/civicationEventEngine.js');
   loadScript('js/Civication/systems/day/dayPatches.js');
   loadScript('js/Civication/mailPlanBridge.js');
+  loadScript('js/Civication/systems/civicationCareerRoleResolver.js');
   loadScript('js/Civication/systems/civicationMailRuntime.js');
   loadScript('js/Civication/systems/civicationLifeMailRuntime.js');
 
@@ -109,9 +110,9 @@ async function run() {
 
   const seededPosition = {
     career_id: 'naeringsliv',
-    title: 'Fagarbeider',
-    role_key: 'fagarbeider',
-    role_id: 'naer_fagarbeider'
+    title: 'Ekspeditør / butikkmedarbeider',
+    role_key: 'ekspeditor',
+    role_id: 'naer_ekspeditor'
   };
 
   global.CivicationState.setActivePosition(seededPosition);
@@ -121,6 +122,28 @@ async function run() {
     true,
     'CivicationMailRuntime should patch EventEngine prototype'
   );
+
+  const mailRuntimeInspect = global.CivicationMailRuntime.inspect();
+  assert.strictEqual(mailRuntimeInspect.role_scope, 'ekspeditor', 'inspect role_scope should resolve to ekspeditor');
+  assert.strictEqual(
+    mailRuntimeInspect.plan_path,
+    'data/Civication/mailPlans/naeringsliv/ekspeditor_plan.json',
+    'inspect should point to ekspeditor plan path'
+  );
+  const expectedFamilies = [
+    'data/Civication/mailFamilies/naeringsliv/job/ekspeditor_job.json',
+    'data/Civication/mailFamilies/naeringsliv/people/ekspeditor_people.json',
+    'data/Civication/mailFamilies/naeringsliv/conflict/ekspeditor_conflict.json',
+    'data/Civication/mailFamilies/naeringsliv/story/ekspeditor_story.json',
+    'data/Civication/mailFamilies/naeringsliv/event/ekspeditor_event.json'
+  ];
+  expectedFamilies.forEach((familyPath) => {
+    assert(mailRuntimeInspect.family_paths.includes(familyPath), `Missing family path: ${familyPath}`);
+  });
+
+  const debugCandidates = await global.CivicationMailRuntime.debugCandidates();
+  const plannedCandidates = (Array.isArray(debugCandidates) ? debugCandidates : []).filter(c => c && String(c.id || '').startsWith('ekspeditor_'));
+  assert(plannedCandidates.length > 0, 'Expected at least one planned candidate from ekspeditor families');
 
   const beforePlannedState = global.CivicationState.getState();
   const beforeLifeRuntime = beforePlannedState.life_mail_runtime_v1 || null;

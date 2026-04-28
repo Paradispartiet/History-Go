@@ -1,9 +1,25 @@
 (function initCareerRoleResolver(globalScope) {
+  function normalize(value) {
+    return String(value || '').toLowerCase();
+  }
+
   function resolveCareerRoleScope(activePosition) {
-    const key = String(activePosition?.role_key || '').toLowerCase();
-    if (key.includes('ekspeditor') || key.includes('butikk')) return 'ekspeditor';
-    if (key.includes('fagarbeider')) return 'fagarbeider';
-    if (key.includes('arbeider')) return 'arbeider';
+    const careerId = normalize(activePosition?.career_id);
+    const roleKey = normalize(activePosition?.role_key);
+    const title = normalize(activePosition?.title);
+
+    if (careerId === 'naeringsliv') {
+      if (roleKey === 'ekspeditor' || roleKey.includes('ekspedit') || title.includes('ekspeditør / butikkmedarbeider') || title.includes('ekspeditor') || title.includes('ekspedit') || title === 'arbeider') return 'ekspeditor';
+      if (roleKey.includes('fagarbeider') || title.includes('fagarbeider')) return 'fagarbeider';
+      if (roleKey.includes('mellomleder') || title.includes('mellomleder')) return 'mellomleder';
+      if (roleKey.includes('formann') || title.includes('formann')) return 'formann';
+    }
+
+    if (roleKey.includes('ekspeditor') || roleKey.includes('butikk')) return 'ekspeditor';
+    if (roleKey.includes('fagarbeider')) return 'fagarbeider';
+    if (roleKey.includes('mellomleder')) return 'mellomleder';
+    if (roleKey.includes('formann')) return 'formann';
+    if (roleKey.includes('arbeider')) return 'arbeider';
     return 'unknown';
   }
 
