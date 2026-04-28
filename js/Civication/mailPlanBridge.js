@@ -95,6 +95,17 @@
     return json;
   }
 
+  function runtimeOwnsPlanProgress() {
+    const proto = window.CivicationEventEngine?.prototype;
+    if (proto?.__civicationMailRuntimePatched === true) return true;
+
+    try {
+      return window.CivicationMailRuntime?.inspect?.()?.patched === true;
+    } catch {
+      return false;
+    }
+  }
+
   function resolveRoleScope(active) {
     const roleId = normStr(active?.role_id);
     if (ROLE_SCOPE_BY_ROLE_ID[roleId]) return ROLE_SCOPE_BY_ROLE_ID[roleId];
@@ -151,6 +162,11 @@
   function advancePlanProgress(plan) {
     const state = window.CivicationState?.getState?.() || {};
     const current = getPlanProgress(state);
+
+    if (runtimeOwnsPlanProgress()) {
+      return current;
+    }
+
     const sequence = Array.isArray(plan?.sequence) ? plan.sequence : [];
     if (!sequence.length) return current;
     const nextIndex = Math.min(sequence.length - 1, Math.max(0, Number(current.step_index || 0)) + 1);
@@ -605,7 +621,7 @@
     if (!currentStep) return [];
 
     const samePlan = getPlanProgress(state).role_plan_id === normStr(plan?.id);
-    if (!samePlan) setPlanProgress(plan, currentStep);
+    if (!samePlan && !runtimeOwnsPlanProgress()) setPlanProgress(plan, currentStep);
 
     const candidates = await getCandidatesForStep(active, plan, currentStep, consumed, state);
     if (candidates.length) return candidates;
@@ -616,7 +632,7 @@
       if (Number(step?.step || 0) === currentStepNum) continue;
       const fallbackCandidates = await getCandidatesForStep(active, plan, step, consumed, state);
       if (fallbackCandidates.length) {
-        setPlanProgress(plan, step);
+        if (!runtimeOwnsPlanProgress()) setPlanProgress(plan, step);
         return fallbackCandidates;
       }
     }
@@ -634,6 +650,7 @@
     advancePlanProgress,
     getCurrentStep,
     scoreCandidateMail,
-    makeCandidateMailsForActiveRole
+    makeCandidateMailsForActiveRole,
+    runtimeOwnsPlanProgress
   };
 })();
