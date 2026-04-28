@@ -48,6 +48,22 @@ function loadCivicationScriptOnce(src) {
   });
 }
 
+async function ensureCivicationCareerRoleResolverLoaded() {
+  if (window.CivicationCareerRoleResolver?.boot) {
+    window.CivicationCareerRoleResolver.boot();
+    return true;
+  }
+
+  try {
+    await loadCivicationScriptOnce("js/Civication/systems/civicationCareerRoleResolver.js");
+    window.CivicationCareerRoleResolver?.boot?.();
+    return true;
+  } catch (error) {
+    console.warn("[CivicationBoot] career role resolver kunne ikke lastes", error);
+    return false;
+  }
+}
+
 async function ensureCivicationRoleModelRuntimeLoaded() {
   if (window.CivicationRoleModelRuntime?.boot) {
     window.CivicationRoleModelRuntime.boot();
@@ -85,6 +101,7 @@ async function loadCivicationData() {
 
     await loadCivicationData();
     await ensureCiviCareerRulesLoaded();
+    await ensureCivicationCareerRoleResolverLoaded();
 
     window.HG_CiviEngine =
   new CivicationEventEngine({
@@ -100,6 +117,7 @@ async function loadCivicationData() {
   });
 
     await ensureCivicationRoleModelRuntimeLoaded();
+    await ensureCivicationCareerRoleResolverLoaded();
 
     if (window.CivicationEconomyEngine?.tickWeekly) {
       CivicationEconomyEngine.tickWeekly();

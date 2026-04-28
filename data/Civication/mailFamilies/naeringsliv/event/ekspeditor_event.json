@@ -1,0 +1,98 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "naeringsliv",
+  "role_scope": "ekspeditor",
+  "mail_type": "event",
+  "families": [
+    {
+      "id": "travelt_gulv",
+      "mails": [
+        {
+          "id": "ekspeditor_event_apning_kampanje_ikke_klar_001",
+          "mail_type": "event",
+          "mail_family": "travelt_gulv",
+          "role_scope": "ekspeditor",
+          "subject": "Åpning nærmer seg og kampanjen er ikke klar",
+          "summary": "Butikken åpner snart, men kampanjeområdet mangler både skilt og varer.",
+          "situation": [
+            "Det er tjue minutter til åpning.",
+            "Kampanjeområdet mangler skilt, og halvparten av varene står fortsatt på pall.",
+            "Du kan gjøre området pent, gjøre det riktig, eller få nok på plass til at dagen ikke starter i kaos."
+          ],
+          "task_domain": "butikkstandard",
+          "competency": "prioritering",
+          "pressure": "kampanje_ma_ferdigstilles",
+          "choice_axis": "tempo_vs_korrekthet",
+          "consequence_axis": "driftsflyt",
+          "narrative_arc": "varene_som_system",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Prioriter riktige priser og nok varer fremfor perfekt uttrykk",
+              "effect": 1,
+              "tags": ["prioritering", "noyaktighet", "driftsflyt"],
+              "feedback": "Du velger det som hindrer flest problemer når dørene åpner."
+            },
+            {
+              "id": "B",
+              "label": "Gjør området pent først, selv om prisene må vente",
+              "effect": 0,
+              "tags": ["synlighet", "prisrisiko"],
+              "feedback": "Det ser bedre ut, men kan skape kasseproblemer."
+            },
+            {
+              "id": "C",
+              "label": "La kampanjen stå og ta kassa først",
+              "effect": -1,
+              "tags": ["tempo", "friksjon", "ansvar_minus"],
+              "feedback": "Du dekker ett behov, men lar kampanjen starte som feil."
+            }
+          ]
+        },
+        {
+          "id": "ekspeditor_event_kasse_og_hylle_kolliderer_001",
+          "mail_type": "event",
+          "mail_family": "travelt_gulv",
+          "role_scope": "ekspeditor",
+          "subject": "Kassa roper mens hylla blinker tom",
+          "summary": "Du må velge hva som er viktigst når to gulvoppgaver kolliderer.",
+          "situation": [
+            "Du er på vei til å fylle en tom hylle som tre kunder allerede har spurt om.",
+            "Da roper kassa etter hjelp fordi køen plutselig har vokst.",
+            "Begge behov er synlige. Bare ett av dem kan få deg først."
+          ],
+          "task_domain": "butikkstandard",
+          "competency": "prioritering",
+          "pressure": "ko_bygger_seg_opp",
+          "choice_axis": "tempo_vs_korrekthet",
+          "consequence_axis": "driftsflyt",
+          "narrative_arc": "forste_uke_pa_gulvet",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gå til kassa, men si fra om hylla før du går",
+              "effect": 1,
+              "tags": ["prioritering", "samarbeid", "driftsflyt"],
+              "feedback": "Du løser det mest akutte uten å la det andre problemet forsvinne."
+            },
+            {
+              "id": "B",
+              "label": "Fullfør hylla fordi det var oppgaven du fikk",
+              "effect": 0,
+              "tags": ["ansvar", "lav_fleksibilitet"],
+              "feedback": "Du fullfører oppgaven, men leser ikke hele gulvet."
+            },
+            {
+              "id": "C",
+              "label": "Løp til kassa uten å si fra om hylla",
+              "effect": -1,
+              "tags": ["tempo", "oppgave_lekkasje"],
+              "feedback": "Du slukker brann, men lar et kjent problem stå åpent."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

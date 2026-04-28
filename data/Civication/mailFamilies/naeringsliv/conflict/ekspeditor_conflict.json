@@ -1,0 +1,98 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "naeringsliv",
+  "role_scope": "ekspeditor",
+  "mail_type": "conflict",
+  "families": [
+    {
+      "id": "snarveier_og_rutine",
+      "mails": [
+        {
+          "id": "ekspeditor_conflict_kollega_larer_snarvei_001",
+          "mail_type": "conflict",
+          "mail_family": "snarveier_og_rutine",
+          "role_scope": "ekspeditor",
+          "subject": "Den raske måten alle gjør det på",
+          "summary": "En erfaren kollega viser deg en snarvei som ikke står i rutinen.",
+          "situation": [
+            "En erfaren kollega viser deg en raskere måte å registrere svinn på.",
+            "Han sier at alle gjør det slik når det er travelt.",
+            "Du ser at metoden sparer tid, men også at den gjør tallene mindre presise."
+          ],
+          "task_domain": "samarbeid",
+          "competency": "integritet",
+          "pressure": "kollega_tar_snarvei",
+          "choice_axis": "snarvei_vs_rutine",
+          "consequence_axis": "kollega_tillit",
+          "narrative_arc": "snarveien",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Spør hvorfor rutinen finnes før du bruker snarveien",
+              "effect": 1,
+              "tags": ["integritet", "laering", "svinnkontroll"],
+              "feedback": "Du gjør ikke kollegaen til fiende, men du gjør heller ikke snarveien usynlig."
+            },
+            {
+              "id": "B",
+              "label": "Bruk snarveien fordi det er slik kulturen fungerer",
+              "effect": -1,
+              "tags": ["snarvei", "svinn_risiko", "tilhorighet"],
+              "feedback": "Du passer inn raskere, men lærer en praksis som kan koste senere."
+            },
+            {
+              "id": "C",
+              "label": "Nekt å gjøre det og si at dette er feil",
+              "effect": 0,
+              "tags": ["integritet", "konflikt"],
+              "feedback": "Du markerer grense, men kan miste en mulighet til å forstå praksisen før du utfordrer den."
+            }
+          ]
+        },
+        {
+          "id": "ekspeditor_conflict_mersalg_eller_aerlighet_001",
+          "mail_type": "conflict",
+          "mail_family": "snarveier_og_rutine",
+          "role_scope": "ekspeditor",
+          "subject": "Mersalg på noe kunden ikke trenger",
+          "summary": "Leder minner dere på ukens kampanjemål, men kunden har et enklere behov.",
+          "situation": [
+            "Kunden spør etter en enkel løsning og virker prisbevisst.",
+            "På skjermen ser du kampanjevaren dere skal selge mer av denne uken.",
+            "Du vet at kampanjevaren gir bedre tall, men også at kunden ikke trenger den."
+          ],
+          "task_domain": "salg_veiledning",
+          "competency": "integritet",
+          "pressure": "leder_vil_ha_tempo",
+          "choice_axis": "salg_vs_aerlighet",
+          "consequence_axis": "kundetillit",
+          "narrative_arc": "kundenes_blikk",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Forklar kampanjevaren, men anbefal den enkle løsningen",
+              "effect": 1,
+              "tags": ["integritet", "salg", "kundetillit"],
+              "feedback": "Du viser produktkunnskap uten å gjøre kundens behov til salgspress."
+            },
+            {
+              "id": "B",
+              "label": "Selg kampanjevaren fordi målet er viktig denne uken",
+              "effect": -1,
+              "tags": ["salg", "integritet_minus", "kortsiktig"],
+              "feedback": "Du kan hjelpe tallene, men svekker grunnlaget for tillit."
+            },
+            {
+              "id": "C",
+              "label": "Unngå anbefaling og la kunden velge selv",
+              "effect": 0,
+              "tags": ["lavt_eierskap", "service_minus"],
+              "feedback": "Du unngår press, men gir heller ikke kunden faglig hjelp."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

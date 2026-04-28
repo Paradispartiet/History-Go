@@ -1,0 +1,318 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "naeringsliv",
+  "role_scope": "ekspeditor",
+  "mail_type": "job",
+  "families": [
+    {
+      "id": "kasse_og_pris",
+      "mails": [
+        {
+          "id": "ekspeditor_job_prisavvik_001",
+          "mail_type": "job",
+          "mail_family": "kasse_og_pris",
+          "role_scope": "ekspeditor",
+          "subject": "Prisavvik i kassa – kunden har sett tilbudsskiltet",
+          "summary": "Kassa viser høyere pris enn skiltet i hylla, og køen bygger seg opp.",
+          "situation": [
+            "En kunde kommer til kassa med en vare som går inn til høyere pris enn skiltet i hylla.",
+            "Bak kunden bygger køen seg opp, og du kjenner presset mot å bare få transaksjonen unna.",
+            "Du må velge mellom tempo, korrekthet og kundens opplevelse av å bli tatt på alvor."
+          ],
+          "task_domain": "kasse",
+          "competency": "noyaktighet",
+          "pressure": "ko_bygger_seg_opp",
+          "choice_axis": "tempo_vs_korrekthet",
+          "consequence_axis": "kundetillit",
+          "narrative_arc": "forste_uke_pa_gulvet",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Stopp opp, sjekk skiltet og korriger hvis kunden har rett",
+              "effect": 1,
+              "tags": ["noyaktighet", "kundetillit", "rutine"],
+              "feedback": "Du taper litt tempo, men beskytter både kunden og butikkens troverdighet."
+            },
+            {
+              "id": "B",
+              "label": "Si at kassa gjelder og send kunden videre til kundeservice",
+              "effect": -1,
+              "tags": ["tempo", "friksjon", "lav_service"],
+              "feedback": "Køen går raskere, men kunden opplever at problemet skyves bort."
+            },
+            {
+              "id": "C",
+              "label": "Gi rabatt uten å sjekke skiltet",
+              "effect": 0,
+              "tags": ["service", "svinn_risiko", "snarvei"],
+              "feedback": "Kunden blir fornøyd nå, men du lærer ikke om systemet eller skiltet faktisk er feil."
+            }
+          ]
+        },
+        {
+          "id": "ekspeditor_job_gavekort_feiler_001",
+          "mail_type": "job",
+          "mail_family": "kasse_og_pris",
+          "role_scope": "ekspeditor",
+          "subject": "Gavekortet virker ikke mens køen vokser",
+          "summary": "En kunde vil betale med gavekort, men terminalen avviser kortet.",
+          "situation": [
+            "En kunde legger gavekortet på disken og sier at det ble kjøpt i går.",
+            "Terminalen avviser kortet to ganger, og kunden begynner å bli synlig flau.",
+            "Bak kunden ser du at køen flytter vekten fra fot til fot."
+          ],
+          "task_domain": "kasse",
+          "competency": "noyaktighet",
+          "pressure": "ko_bygger_seg_opp",
+          "choice_axis": "tempo_vs_korrekthet",
+          "consequence_axis": "kundetillit",
+          "narrative_arc": "forste_uke_pa_gulvet",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Forklar rolig hva du sjekker, og be om hjelp før kunden mister ansikt",
+              "effect": 1,
+              "tags": ["kundebehandling", "noyaktighet", "kollega_tillit"],
+              "feedback": "Du holder kunden inne i prosessen og hindrer at teknisk feil blir sosial ydmykelse."
+            },
+            {
+              "id": "B",
+              "label": "Be kunden gå til siden mens du tar neste i køen",
+              "effect": 0,
+              "tags": ["tempo", "risiko_for_friksjon"],
+              "feedback": "Køen går videre, men kunden føler seg parkert med problemet alene."
+            },
+            {
+              "id": "C",
+              "label": "Si at gavekortet ikke fungerer og avslutt forsøket",
+              "effect": -1,
+              "tags": ["lav_service", "kundetillit_minus"],
+              "feedback": "Du avslutter saken raskt, men uten å undersøke om butikken faktisk kan løse den."
+            }
+          ]
+        },
+        {
+          "id": "ekspeditor_job_retur_uten_kvittering_001",
+          "mail_type": "job",
+          "mail_family": "kasse_og_pris",
+          "role_scope": "ekspeditor",
+          "subject": "Retur uten kvittering rett før vaktskifte",
+          "summary": "En kunde vil returnere en vare uten kvittering mens vaktskiftet nærmer seg.",
+          "situation": [
+            "Kunden sier varen er kjøpt her, men har ingen kvittering.",
+            "Du vet at returreglene finnes av en grunn, men du ser også at varen virker ubrukt.",
+            "Vaktskiftet nærmer seg, og den som skal ta over, venter allerede ved kassa."
+          ],
+          "task_domain": "kasse",
+          "competency": "noyaktighet",
+          "pressure": "ko_bygger_seg_opp",
+          "choice_axis": "tempo_vs_korrekthet",
+          "consequence_axis": "kundetillit",
+          "narrative_arc": "forste_uke_pa_gulvet",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Følg returprosedyren og forklar rolig hvilke alternativer kunden har",
+              "effect": 1,
+              "tags": ["regel", "kundebehandling", "noyaktighet"],
+              "feedback": "Du setter grense uten å gjøre kunden til motpart."
+            },
+            {
+              "id": "B",
+              "label": "Godta returen for å bli ferdig før vaktskiftet",
+              "effect": -1,
+              "tags": ["snarvei", "svinn_risiko", "tempo"],
+              "feedback": "Du løser øyeblikket, men svekker sporbarheten."
+            },
+            {
+              "id": "C",
+              "label": "Avvis kunden kort og vis til reglene",
+              "effect": 0,
+              "tags": ["regel", "lav_service"],
+              "feedback": "Du har regelen på din side, men gjør situasjonen hardere enn nødvendig."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kundemote_og_service",
+      "mails": [
+        {
+          "id": "ekspeditor_job_produkt_du_ikke_kjenner_001",
+          "mail_type": "job",
+          "mail_family": "kundemote_og_service",
+          "role_scope": "ekspeditor",
+          "subject": "Kunden spør etter noe du ikke kjenner",
+          "summary": "En kunde spør etter et produkt du ikke vet hvor står.",
+          "situation": [
+            "Kunden spør raskt og presist etter et produkt du ikke kjenner.",
+            "Du kjenner butikken bedre enn første dag, men ikke godt nok til å svare sikkert.",
+            "Du kan late som du vet, sende kunden videre eller bruke situasjonen til å lære kartet bedre."
+          ],
+          "task_domain": "kundemote",
+          "competency": "kundebehandling",
+          "pressure": "kunde_er_stresset",
+          "choice_axis": "service_vs_regel",
+          "consequence_axis": "kundetillit",
+          "narrative_arc": "kundenes_blikk",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Si at du skal finne det ut, og følg kunden til riktig person eller hylle",
+              "effect": 1,
+              "tags": ["kundebehandling", "produktkunnskap", "laering"],
+              "feedback": "Du viser at service også kan være å innrømme usikkerhet uten å slippe kunden."
+            },
+            {
+              "id": "B",
+              "label": "Pek i den retningen du tror varen står",
+              "effect": -1,
+              "tags": ["snarvei", "lav_service"],
+              "feedback": "Det går fort, men kunden kan ende med å lete etter din gjetning."
+            },
+            {
+              "id": "C",
+              "label": "Send kunden til kundeservice uten å undersøke mer",
+              "effect": 0,
+              "tags": ["rollegrense", "lavt_eierskap"],
+              "feedback": "Du sender saken videre, men lærer lite og eier ikke møtet."
+            }
+          ]
+        },
+        {
+          "id": "ekspeditor_job_dyr_vare_passer_ikke_001",
+          "mail_type": "job",
+          "mail_family": "kundemote_og_service",
+          "role_scope": "ekspeditor",
+          "subject": "Den dyreste varen passer ikke best",
+          "summary": "Kunden ber om anbefaling, men kampanjevaren er ikke det beste valget.",
+          "situation": [
+            "En kunde ber om hjelp til å velge mellom to produkter.",
+            "Den dyreste varen er på kampanje, og leder har minnet dere på mersalg denne uken.",
+            "Du hører på behovet og skjønner at den billigere varen faktisk passer bedre."
+          ],
+          "task_domain": "kundemote",
+          "competency": "kundebehandling",
+          "pressure": "kunde_er_stresset",
+          "choice_axis": "service_vs_regel",
+          "consequence_axis": "kundetillit",
+          "narrative_arc": "kundenes_blikk",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Anbefal varen som passer kundens behov best",
+              "effect": 1,
+              "tags": ["integritet", "kundetillit", "produktkunnskap"],
+              "feedback": "Du bygger tillit på riktig behovsavklaring, ikke bare høyere salg."
+            },
+            {
+              "id": "B",
+              "label": "Skyv kunden mot kampanjevaren fordi tallene teller denne uken",
+              "effect": -1,
+              "tags": ["salg", "integritet_minus", "kortsiktig"],
+              "feedback": "Du kan øke salget nå, men svekker den faglige troverdigheten."
+            },
+            {
+              "id": "C",
+              "label": "Forklar forskjellen og la kunden velge selv",
+              "effect": 1,
+              "tags": ["produktkunnskap", "service", "autonomi"],
+              "feedback": "Du gjør kunden i stand til å velge og beholder faglig ryddighet."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vareflyt_og_hylle",
+      "mails": [
+        {
+          "id": "ekspeditor_job_tom_hylle_varen_finnes_001",
+          "mail_type": "job",
+          "mail_family": "vareflyt_og_hylle",
+          "role_scope": "ekspeditor",
+          "subject": "Hylla er tom, men systemet sier at varen finnes",
+          "summary": "Lagerstatus og butikkgulv forteller to forskjellige historier.",
+          "situation": [
+            "En kunde spør etter en vare som systemet sier er på lager.",
+            "Hylla er tom, og bakrommet er fullt nok til at letingen kan spise mye tid.",
+            "Du må velge mellom å stole på systemet, stole på gulvet eller undersøke avviket."
+          ],
+          "task_domain": "varepafylling",
+          "competency": "vareflyt",
+          "pressure": "lagerstatus_stemmer_ikke",
+          "choice_axis": "tempo_vs_korrekthet",
+          "consequence_axis": "driftsflyt",
+          "narrative_arc": "varene_som_system",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Sjekk bakrommet og noter avviket hvis varen ikke finnes",
+              "effect": 1,
+              "tags": ["vareflyt", "noyaktighet", "driftsflyt"],
+              "feedback": "Du gjør mer enn å hjelpe én kunde; du forbedrer butikkens bilde av seg selv."
+            },
+            {
+              "id": "B",
+              "label": "Si at varen dessverre er utsolgt",
+              "effect": 0,
+              "tags": ["tempo", "lav_kontroll"],
+              "feedback": "Du sparer tid, men lar avviket leve videre."
+            },
+            {
+              "id": "C",
+              "label": "Send kunden til en annen avdeling uten å sjekke",
+              "effect": -1,
+              "tags": ["lav_service", "ansvar_minus"],
+              "feedback": "Du flytter problemet uten å finne ut om systemet eller hylla tar feil."
+            }
+          ]
+        },
+        {
+          "id": "ekspeditor_job_kampanjeskilt_feil_001",
+          "mail_type": "job",
+          "mail_family": "vareflyt_og_hylle",
+          "role_scope": "ekspeditor",
+          "subject": "Kampanjeskiltet henger fortsatt oppe",
+          "summary": "Et gammelt tilbudsskilt skaper feil forventning hos kundene.",
+          "situation": [
+            "Du ser at kampanjeskiltet fra forrige uke fortsatt henger ved hylla.",
+            "Det er travelt, og ingen har bedt deg ta skiltene nå.",
+            "Samtidig vet du at hvert minutt skiltet henger, kan bli en ny prisdiskusjon i kassa."
+          ],
+          "task_domain": "varepafylling",
+          "competency": "vareflyt",
+          "pressure": "lagerstatus_stemmer_ikke",
+          "choice_axis": "tempo_vs_korrekthet",
+          "consequence_axis": "driftsflyt",
+          "narrative_arc": "varene_som_system",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta ned skiltet og si fra til kassa om mulig prisforvirring",
+              "effect": 1,
+              "tags": ["vareflyt", "noyaktighet", "samarbeid"],
+              "feedback": "Du kobler hylle og kasse sammen før feilen blir kundens problem."
+            },
+            {
+              "id": "B",
+              "label": "La skiltet stå til noen med ansvar ser det",
+              "effect": -1,
+              "tags": ["ansvar_minus", "friksjon"],
+              "feedback": "Du holder deg til rollen, men lar en kjent feil fortsette."
+            },
+            {
+              "id": "C",
+              "label": "Ta et bilde og meld det etter rush",
+              "effect": 0,
+              "tags": ["observasjon", "utsettelse"],
+              "feedback": "Du dokumenterer feilen, men løser ikke den akutte kundeeffekten."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
