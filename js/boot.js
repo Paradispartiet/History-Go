@@ -95,8 +95,8 @@ async function boot() {
     const fallbackFiles = [
       "data/wonderkammer.json",
       "data/wonderkammer_more.json",
-      "data/wonderkammer_playgrounds.json",
-      "data/wonderkammer_training.json"
+      "data/wonderkammer/playgrounds.json",
+      "data/wonderkammer/training.json"
     ];
 
     const manifest = await fetchJSON("data/wonderkammer/index.json");
