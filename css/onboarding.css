@@ -1,5 +1,75 @@
 /* css/onboarding.css — Førstegangs-velkomst + bedre empty-states */
 
+/* ========== App loading gate ========== */
+
+body.hg-app:not(.hg-loaded) {
+  overflow: hidden;
+}
+
+body.hg-app:not(.hg-loaded) > * {
+  opacity: 0;
+  pointer-events: none;
+  user-select: none;
+}
+
+body.hg-app:not(.hg-loaded)::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 5000;
+  background:
+    radial-gradient(circle at 50% 35%, rgba(255,255,255,0.12), transparent 34%),
+    linear-gradient(180deg, #111827 0%, #0b1210 100%);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+body.hg-app:not(.hg-loaded)::after {
+  content: "Laster History Go";
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  z-index: 5001;
+  transform: translate(-50%, -50%);
+  min-width: 220px;
+  padding-top: 76px;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  text-align: center;
+  text-shadow: 0 2px 14px rgba(0,0,0,0.45);
+  opacity: 1;
+  pointer-events: none;
+}
+
+body.hg-app:not(.hg-loaded):not(.hg-load-failed)::after {
+  background:
+    radial-gradient(circle, transparent 54%, rgba(255,255,255,0.9) 56%, rgba(255,255,255,0.9) 62%, transparent 64%) center 0 / 52px 52px no-repeat;
+  animation: hgLoaderPulse 1.05s ease-in-out infinite;
+}
+
+body.hg-app.hg-load-failed::after {
+  content: "Appen kunne ikke lastes. Sjekk konsollen.";
+  max-width: 320px;
+  line-height: 1.35;
+  padding-top: 0;
+  color: #fff;
+  animation: none;
+}
+
+@keyframes hgLoaderPulse {
+  0%, 100% {
+    opacity: 0.72;
+    transform: translate(-50%, -50%) scale(0.985);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
 .hg-onboarding-modal {
   position: fixed;
   inset: 0;
