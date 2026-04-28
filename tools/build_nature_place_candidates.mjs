@@ -35,7 +35,6 @@ const CONFIG = {
   maxPrecisionM: 250,
   maxObservationsPerPlace: 2500,
   requestDelayMs: 450,
-  // Start forsiktig. Utvid etter at output er kontrollert.
   includeCategories: new Set(["natur", "by", "sport", "historie", "kunst", "subkultur"]),
   priorityPlaceIds: new Set([
     "botanisk_hage",
@@ -56,8 +55,51 @@ const CONFIG = {
   ])
 };
 
+function relNorm(p) {
+  return String(p || "").replaceAll("\\", "/").replace(/^\.\//, "");
+}
+
 function abs(relPath) {
   return path.join(ROOT, relPath);
+}
+
+async function exists(relPath) {
+  try {
+    await fs.access(abs(relPath));
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+async function resolveManifestFile(manifestPath, fileRef) {
+  const file = typeof fileRef === "string" ? fileRef : fileRef?.file || fileRef?.path;
+  if (!file) return null;
+
+  const clean = relNorm(file);
+  const baseDir = relNorm(path.dirname(manifestPath));
+  const dataDir = relNorm(path.dirname(baseDir));
+
+  const candidates = [];
+
+  if (clean.startsWith("data/")) candidates.push(clean);
+
+  // Vanlig manifest-format: filnavn relativt til manifestmappen.
+  candidates.push(relNorm(path.join(baseDir, clean)));
+
+  // History Go places-manifest bruker bl.a. "places/places_by.json".
+  // Det er relativt til data/, ikke til data/places/.
+  candidates.push(relNorm(path.join(dataDir, clean)));
+
+  // Ekstra fallback for rene filnavn i data/places-manifest.
+  candidates.push(relNorm(path.join("data", clean)));
+
+  for (const candidate of [...new Set(candidates)]) {
+    if (await exists(candidate)) return candidate;
+  }
+
+  console.warn(`[nature-map] fant ikke manifestfil: ${file} fra ${manifestPath}`);
+  return null;
 }
 
 async function readJson(relPath, fallback = null) {
@@ -112,13 +154,11 @@ function flattenManifestEntries(items) {
 async function loadFilesFromManifest(manifestPath) {
   const manifest = await readJson(manifestPath, []);
   const files = Array.isArray(manifest?.files) ? manifest.files : Array.isArray(manifest) ? manifest : [];
-  const baseDir = path.dirname(manifestPath);
   const all = [];
 
   for (const fileRef of files) {
-    const file = typeof fileRef === "string" ? fileRef : fileRef?.file || fileRef?.path;
-    if (!file) continue;
-    const rel = file.startsWith("data/") ? file : path.join(baseDir, file).replaceAll("\\", "/");
+    const rel = await resolveManifestFile(manifestPath, fileRef);
+    if (!rel) continue;
     const data = await readJson(rel, []);
     all.push(...flattenManifestEntries(data));
   }
@@ -132,14 +172,19 @@ async function loadPlaces() {
   const places = [];
 
   for (const fileRef of files) {
-    const file = typeof fileRef === "string" ? fileRef : fileRef?.file || fileRef?.path;
-    if (!file) continue;
-    const rel = file.startsWith("data/") ? file : path.join(path.dirname(CONFIG.placesManifest), file).replaceAll("\\", "/");
+    const rel = await resolveManifestFile(CONFIG.placesManifest, fileRef);
+    if (!rel) continue;
     const data = await readJson(rel, []);
     if (Array.isArray(data)) places.push(...data);
   }
 
-  return places.filter(p => p && p.id && Number.isFinite(Number(p.lat)) && Number.isFinite(Number(p.lon)));
+  const valid = places.filter(p => p && p.id && Number.isFinite(Number(p.lat)) && Number.isFinite(Number(p.lon)));
+
+  if (!valid.length) {
+    throw new Error("Ingen places ble lastet. Sjekk data/places/manifest.json og manifest-stier.");
+  }
+
+  return valid;
 }
 
 function indexSpecies(flora, fauna) {
@@ -285,6 +330,10 @@ async function main() {
   const speciesIndex = indexSpecies(flora, fauna);
   const targets = places.filter(shouldCheckPlace);
 
+  if (!targets.length) {
+    throw new Error("Ingen steder matchet prioriterte placeIds eller includeCategories.");
+  }
+
   const output = {
     meta: {
       generatedAt: new Date().toISOString(),
@@ -382,6 +431,7 @@ async function main() {
   }
 
   await writeJson(CONFIG.outPath, output);
+  console.log(`[nature-map] placesTotal=${places.length} placesChecked=${targets.length}`);
   console.log(`[nature-map] skrev ${CONFIG.outPath}`);
 }
 
