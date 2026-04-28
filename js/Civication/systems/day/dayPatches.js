@@ -206,20 +206,6 @@ function updateOnboardingFromEvent(active, eventObj) {
   return null;
 }
 
-async function advancePlanProgressFromEvent(active, eventObj) {
-  if (!active || String(eventObj?.source_type || "").trim() !== "planned") {
-    return null;
-  }
-
-  const planPath = window.CiviMailPlanBridge?.getPlanPath?.(active);
-  if (!planPath) return null;
-
-  const plan = await window.CiviMailPlanBridge?.loadJson?.(planPath);
-  if (!plan) return null;
-
-  return window.CiviMailPlanBridge?.advancePlanProgress?.(plan) || null;
-}
-
 function getTaskCapitalPlan(phaseTag, pendingEvent, choice, result) {
   const tags = Array.isArray(choice?.tags) ? choice.tags.map(String) : [];
   const careerId =
@@ -715,10 +701,6 @@ appendDayChoiceLog({
 
 applyPhaseChoiceEffects(phaseTag, choiceId, choice);
 applyTaskCapitalFromChoice(phaseTag, pending?.event, choice, result);
-
-      try {
-        await advancePlanProgressFromEvent(active, pending?.event);
-      } catch {}
 
 window.CivicationTaskEngine?.completeByMail?.(
   pending?.event?.id,

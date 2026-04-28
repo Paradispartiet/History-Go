@@ -323,13 +323,6 @@ const packMails = Array.isArray(pack?.mails)
     }))
   : [];
 
-// 🔥 NY: plan/family som hovedkilde
-const plannedMails =
-  await window.CiviMailPlanBridge?.makeCandidateMailsForActiveRole?.(
-    active,
-    state
-  ) || [];
-
 // 🔁 gammel role bridge (fallback)
 const roleMails =
   await window.CiviRoleStoryletBridge?.makeCandidateMailsForActiveRole?.(
@@ -350,7 +343,6 @@ return {
   },
   tracks: Array.isArray(pack?.tracks) ? pack.tracks : [],
   mails: [
-    ...plannedMails,      // 🔥 først
     ...taggedRoleMails,  // fallback
     ...packMails         // siste fallback
   ]

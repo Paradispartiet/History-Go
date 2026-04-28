@@ -1,9 +1,9 @@
 /* ============================================================
    History Go – Service Worker (precache synkronisert mot index.html)
-   Oppdatert: 2026-04-27
+   Oppdatert: 2026-04-28
    ============================================================ */
 
-const SW_VERSION = "hg-sw-2026-04-27-v1.38.123";
+const SW_VERSION = "hg-sw-2026-04-28-v1.38.124";
 
 const CACHE_STATIC  = `hg-static-${SW_VERSION}`;
 const CACHE_RUNTIME = `hg-runtime-${SW_VERSION}`;
@@ -152,14 +152,8 @@ const PRECACHE_URLS = [
   // Civication – utils / systems
   "js/Civication/utils/storyResolver.js",
   "js/Civication/utils/conflictLoader.js",
-  "js/Civication/systems/civicationMailPlanPatchRuntime.js",
   "js/Civication/systems/civicationMailPlanDebug.js",
   "js/Civication/systems/civicationNPCs.js",
-  "js/Civication/systems/civicationThreadBridge.js",
-  "js/Civication/systems/civicationMailDirectorV2.js",
-  "js/Civication/systems/civicationMailDirectorV2PhaseGuard.js",
-  "js/Civication/systems/civicationMailDirectorV2ForceRoleMail.js",
-  "js/Civication/systems/civicationMailDirectorV2RoleGuard.js",
   "js/Civication/systems/civicationMailRuntime.js",
   "js/Civication/systems/civicationLifeMailRuntime.js",
   "js/Civication/systems/day/dayActiveRoleStateSync.js",
