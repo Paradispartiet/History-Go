@@ -91,6 +91,28 @@ async function boot() {
     return out.places.length || out.people.length ? out : null;
   };
 
+  const loadWonderkammerManifest = async () => {
+    const fallbackFiles = [
+      "data/wonderkammer.json",
+      "data/wonderkammer_more.json",
+      "data/wonderkammer_playgrounds.json",
+      "data/wonderkammer_training.json"
+    ];
+
+    const manifest = await fetchJSON("data/wonderkammer/index.json");
+    const files = Array.isArray(manifest?.files) && manifest.files.length
+      ? manifest.files
+      : fallbackFiles;
+
+    const sources = [];
+    for (const url of files) {
+      const data = await fetchJSON(url);
+      if (data) sources.push(data);
+    }
+
+    return mergeWonderkammerData(...sources);
+  };
+
   /* ==============================
      OPEN MODE
   ============================== */
@@ -156,13 +178,6 @@ async function boot() {
     "data/places/places_vitenskap.json"
   ];
 
-  const WONDERKAMMER_FILES = [
-    "data/wonderkammer.json",
-    "data/wonderkammer_more.json",
-    "data/wonderkammer_playgrounds.json",
-    "data/wonderkammer_training.json"
-  ];
-
   let places = [];
 
   for (const url of PLACE_FILES) {
@@ -175,14 +190,7 @@ async function boot() {
   }
 
   const relations = (await fetchJSON("data/relations.json")) || [];
-
-  const wonderkammerSources = [];
-  for (const url of WONDERKAMMER_FILES) {
-    const data = await fetchJSON(url);
-    if (data) wonderkammerSources.push(data);
-  }
-  const wonderkammer = mergeWonderkammerData(...wonderkammerSources);
-
+  const wonderkammer = await loadWonderkammerManifest();
   const tags = await fetchJSON("data/tags.json");
 
   /* ==============================
