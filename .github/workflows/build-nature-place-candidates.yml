@@ -8,10 +8,14 @@ on:
     paths:
       - "tools/build_nature_place_candidates.mjs"
       - "tools/build_nature_place_candidates_v2.mjs"
+      - "tools/validate_nature_maps.mjs"
       - "data/places/manifest.json"
       - "data/places/**/*.json"
       - "data/natur/flora/**/*.json"
       - "data/natur/fauna/**/*.json"
+      - "data/natur/nature_place_map.json"
+      - "data/natur/nature_bird_place_map.json"
+      - "data/natur/nature_oslo_expansion_place_map.json"
       - ".github/workflows/build-nature-place-candidates.yml"
 
 jobs:
@@ -27,6 +31,9 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "22"
+
+      - name: Validate active nature maps
+        run: node tools/validate_nature_maps.mjs
 
       - name: Build candidates from Artskart
         run: node tools/build_nature_place_candidates_v2.mjs
