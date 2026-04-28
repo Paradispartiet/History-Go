@@ -3,6 +3,60 @@
 // Global-safe versjon
 // ============================================================
 
+function getActiveLeftBadgeFilter() {
+  return window.HG_NEARBY_BADGE_FILTER || "all";
+}
+
+function isLeftBadgeFilterActive() {
+  const f = getActiveLeftBadgeFilter();
+  return !!f && f !== "all";
+}
+
+function placeMatchesActiveBadge(place) {
+  if (!isLeftBadgeFilterActive()) return true;
+  if (!place) return false;
+  return String(place.category || "").trim() === String(getActiveLeftBadgeFilter()).trim();
+}
+
+function placesByIdMap() {
+  return new Map((window.PLACES || []).map(p => [String(p.id || "").trim(), p]));
+}
+
+function categoryNameForBadgeFilter() {
+  const id = getActiveLeftBadgeFilter();
+  const cats = Array.isArray(window.CATEGORY_LIST) ? window.CATEGORY_LIST : [];
+  const c = cats.find(x => String(x.id || "").trim() === String(id).trim());
+  return c?.name || id;
+}
+
+function personMatchesActiveBadge(person, placesById) {
+  if (!isLeftBadgeFilterActive()) return true;
+  if (!person) return false;
+
+  if (String(person.category || "").trim() === String(getActiveLeftBadgeFilter()).trim()) return true;
+
+  const ids = new Set();
+  if (person.placeId) ids.add(String(person.placeId).trim());
+  if (Array.isArray(person.places)) person.places.forEach(id => ids.add(String(id || "").trim()));
+
+  for (const id of ids) {
+    if (placeMatchesActiveBadge(placesById.get(id))) return true;
+  }
+
+  return false;
+}
+
+function renderBadgeFilterEmpty(listEl, noun) {
+  const label = categoryNameForBadgeFilter();
+  listEl.innerHTML = `
+    <div class="hg-empty-guide">
+      <div class="hg-empty-guide-icon">🏅</div>
+      <div class="hg-empty-guide-title">Ingen treff</div>
+      <div class="hg-empty-guide-text">Ingen ${noun} passer med badgefilteret ${label}. Trykk badgeknappen for å velge et annet badge eller alle.</div>
+    </div>
+  `;
+}
+
 function renderNearbyPlaces() {
   const listEl = document.getElementById("nearbyList");
   if (!listEl) return;
@@ -21,7 +75,7 @@ function renderNearbyPlaces() {
       : null
   }));
 
-  // 🔹 FILTER
+  // 🔹 FILTER: besøksstatus
   if (filterMode === "unvisited") {
     items = items.filter(p => !visited[p.id]);
   }
@@ -30,10 +84,20 @@ function renderNearbyPlaces() {
    items = items.filter(p => visited[p.id]);
   }
 
+  // 🔹 FILTER: badge/kategori
+  if (isLeftBadgeFilterActive()) {
+    items = items.filter(placeMatchesActiveBadge);
+  }
+
   // 🔹 SORT
   items.sort((a, b) => (a._d ?? 1e12) - (b._d ?? 1e12));
 
   listEl.innerHTML = "";
+
+  if (!items.length) {
+    renderBadgeFilterEmpty(listEl, "steder");
+    return;
+  }
 
   items.forEach(place => {
 
@@ -65,21 +129,21 @@ function renderNearbyPlaces() {
     `;
 
     item.addEventListener("click", () => {
-  const map = window.HGMap?.getMap?.() || window.MAP;
+      const map = window.HGMap?.getMap?.() || window.MAP;
 
-  if (map && Number.isFinite(place.lon) && Number.isFinite(place.lat)) {
-    map.flyTo({
-      center: [place.lon, place.lat],
-      zoom: Math.max(map.getZoom?.() || 13, 16),
-      speed: 1.1,
-      essential: true
+      if (map && Number.isFinite(place.lon) && Number.isFinite(place.lat)) {
+        map.flyTo({
+          center: [place.lon, place.lat],
+          zoom: Math.max(map.getZoom?.() || 13, 16),
+          speed: 1.1,
+          essential: true
+        });
+      }
+
+      setTimeout(() => {
+        window.openPlaceCard?.(place);
+      }, 820);
     });
-  }
-
-  setTimeout(() => {
-    window.openPlaceCard?.(place);
-  }, 820);
-});
 
     listEl.appendChild(item);
   });
@@ -107,17 +171,12 @@ function renderNearbyPeople() {
     return;
   }
 
-  // Bygg people-liste i tre lag:
-  // 1) Personer koblet til steder bruker har besøkt (alltid vises først)
-  // 2) Personer koblet til nærliggende steder (sortert etter avstand)
-  // 3) Resten (alfabetisk) — så fanen aldri er tom
   const visitedPlaceIds = Object.keys(visited).filter(id => visited[id]);
   const visitedRelatedIds = new Set();
   visitedPlaceIds.forEach(pid => {
     (REL[pid] || []).forEach(r => { if (r.person) visitedRelatedIds.add(r.person); });
   });
 
-  // Avstands-grunnlag
   const pos = window.getPos?.();
   const placesById = new Map(PLACES.map(p => [String(p.id || "").trim(), p]));
 
@@ -136,11 +195,20 @@ function renderNearbyPeople() {
     return min;
   }
 
-  const decorated = PEOPLE.map(person => ({
+  let decorated = PEOPLE.map(person => ({
     person,
     isVisited: visitedRelatedIds.has(person.id),
     dist: distanceForPerson(person)
   }));
+
+  if (isLeftBadgeFilterActive()) {
+    decorated = decorated.filter(({ person }) => personMatchesActiveBadge(person, placesById));
+  }
+
+  if (!decorated.length) {
+    renderBadgeFilterEmpty(listEl, "personer");
+    return;
+  }
 
   decorated.sort((a, b) => {
     if (a.isVisited !== b.isVisited) return a.isVisited ? -1 : 1;
@@ -183,7 +251,6 @@ function renderNearbyPeople() {
 
 // ============================================================
 // NATURE — flora + fauna fra window.FLORA / window.FAUNA
-// Flatter ut emne_pack-objekter (tar med .items) og viser som flat liste.
 // ============================================================
 
 function flattenNatureEntries(arr, kind) {
@@ -214,10 +281,6 @@ window.isNatureUnlocked = function (id) {
   return getNatureUnlockedIds().has(String(id || "").trim());
 };
 
-// ---- Bildeopppslag --------------------------------------------------------
-// Prøver flere navnekonvensjoner før vi faller tilbake til emoji i UI.
-// For fauna har vi faktiske bilder under bilder/natur/insekter/; for flora
-// finnes ingen bilder ennå, og funksjonen returnerer "" så CSS viser emoji.
 const _natureImageCache = new Map();
 
 function natureImageCandidates(obj, kind) {
@@ -264,14 +327,12 @@ window.resolveNatureImage = function (obj, kind) {
   if (!obj) return "";
   const cached = _natureImageCache.get(obj.id);
   if (cached !== undefined) return cached;
-  // Synkron best-effort: returner første kandidat og la <img onerror> fallback i UI.
   const cands = natureImageCandidates(obj, kind || obj._kind);
   const guess = cands[0] || "";
   _natureImageCache.set(obj.id, guess);
   return guess;
 };
 
-// ---- Distance-kobling (natur → steder via nature_unlock_map) --------------
 let _natureToPlaces = null;
 let _natureMapLoading = null;
 
@@ -280,7 +341,7 @@ async function ensureNatureToPlacesMap() {
   if (_natureMapLoading) return _natureMapLoading;
 
   _natureMapLoading = (async () => {
-    const map = new Map(); // natureId → Set<placeId>
+    const map = new Map();
     try {
       const url = new URL("data/natur/nature_unlock_map.json", document.baseURI).toString();
       const r = await fetch(url, { cache: "no-store" });
@@ -288,7 +349,6 @@ async function ensureNatureToPlacesMap() {
       const data = await r.json();
       const PLACE_IDS = new Set((window.PLACES || []).map(p => String(p.id || "").trim()).filter(Boolean));
       for (const [quizOrPlaceId, hit] of Object.entries(data || {})) {
-        // Nøkler i unlock_map ser ut som "<placeId>_quiz_<n>". Strip suffix.
         const placeId = String(quizOrPlaceId).replace(/_quiz_\d+$/, "").trim();
         if (!PLACE_IDS.has(placeId)) continue;
         const ids = [...(hit?.flora || []), ...(hit?.fauna || [])];
@@ -297,7 +357,6 @@ async function ensureNatureToPlacesMap() {
           if (!id) continue;
           if (!map.has(id)) map.set(id, new Set());
           map.get(id).add(placeId);
-          // Legg også til "emne_"-prefiksvarianten hvis registerid er brukt rått.
           if (!id.startsWith("emne_")) {
             const pref = id.startsWith("fauna_") ? "emne_fauna_" :
                          id.startsWith("flora_") ? "emne_flora_" : "";
@@ -333,8 +392,17 @@ function nearestDistanceFor(obj, placesById, pos) {
   return min === Infinity ? null : Math.round(min);
 }
 
-// ---- Filter -----------------------------------------------------------------
-// Gyldige verdier: "all" | "unlocked" | "flora" | "fauna"
+function natureMatchesActiveBadge(obj, placesById) {
+  if (!isLeftBadgeFilterActive()) return true;
+  if (!_natureToPlaces) return true;
+  const placeIds = _natureToPlaces.get(obj.id);
+  if (!placeIds || !placeIds.size) return false;
+  for (const pid of placeIds) {
+    if (placeMatchesActiveBadge(placesById.get(pid))) return true;
+  }
+  return false;
+}
+
 function getNatureFilter() {
   return window.HG_NATURE_FILTER || "all";
 }
@@ -346,7 +414,6 @@ function applyNatureFilter(list, filter, unlocked) {
   return list;
 }
 
-// ---- Render -----------------------------------------------------------------
 function renderNearbyNature() {
   const listEl = document.getElementById("leftNatureList");
   if (!listEl) return;
@@ -369,8 +436,7 @@ function renderNearbyNature() {
   const unlocked = getNatureUnlockedIds();
   const filterMode = getNatureFilter();
 
-  // Spesiell empty-state: ingen samlet ennå, hjelp brukeren videre.
-  if (unlocked.size === 0 && filterMode === "all") {
+  if (unlocked.size === 0 && filterMode === "all" && !isLeftBadgeFilterActive()) {
     listEl.innerHTML = `
       <div class="hg-empty-guide">
         <div class="hg-empty-guide-icon">🌿</div>
@@ -388,40 +454,32 @@ function renderNearbyNature() {
 
   all = applyNatureFilter(all, filterMode, unlocked);
 
-  // Spesiell empty-state for filter med 0 treff
-  if (!all.length) {
-    const labels = { unlocked: "samlede arter", flora: "planter", fauna: "dyr" };
-    const label = labels[filterMode] || "arter";
-    listEl.innerHTML = `
-      <div class="hg-empty-guide">
-        <div class="hg-empty-guide-icon">🔍</div>
-        <div class="hg-empty-guide-title">Ingen ${label} her</div>
-        <div class="hg-empty-guide-text">Filteret ditt skjuler alle arter akkurat nå. Endre filter via 🎯-knappen for å se mer.</div>
-      </div>
-    `;
-    return;
-  }
-
-  // Prøv å laste mapping for distance-sort (ikke-blokkerende — re-render ved ferdigstilling).
   ensureNatureToPlacesMap().then((m) => {
     if (m && m.size && document.querySelector(".nearby-tab.is-active")?.getAttribute("data-leftmode") === "nature") {
-      // Re-render kun dersom vi ikke allerede har brukt mappingen (første gang).
-      if (!listEl.dataset.distMapApplied) {
+      if (!listEl.dataset.distMapApplied || isLeftBadgeFilterActive()) {
         listEl.dataset.distMapApplied = "1";
         renderNearbyNature();
       }
     }
   });
 
-  const placesById = new Map((window.PLACES || []).map(p => [String(p.id || "").trim(), p]));
+  const placesById = placesByIdMap();
   const pos = window.getPos?.();
+
+  if (isLeftBadgeFilterActive() && _natureToPlaces) {
+    all = all.filter(obj => natureMatchesActiveBadge(obj, placesById));
+  }
+
+  if (!all.length) {
+    renderBadgeFilterEmpty(listEl, "naturfunn");
+    return;
+  }
 
   const decorated = all.map(obj => ({
     obj,
     _d: nearestDistanceFor(obj, placesById, pos)
   }));
 
-  // Sortering: låst opp først, deretter avstand (hvis satt), så alfabetisk.
   decorated.sort((a, b) => {
     const au = unlocked.has(a.obj.id) ? 0 : 1;
     const bu = unlocked.has(b.obj.id) ? 0 : 1;
@@ -445,7 +503,6 @@ function renderNearbyNature() {
     const item = document.createElement("div");
     item.className = "nearby-item" + (isUnlocked ? " is-unlocked" : " is-locked") + ` is-${obj._kind}`;
 
-    // Hvis bildet mangler på disk, faller vi tilbake til emoji via onerror.
     const thumb = imgSrc
       ? `<img class="nearby-thumb" src="${imgSrc}" alt="${title}"
               onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'nearby-thumb nearby-thumb-icon',textContent:'${kindIcon}'}))">`
@@ -504,19 +561,16 @@ function renderCollection() {
   });
 }
 
-// eksponer globalt
 window.renderNearbyPlaces = renderNearbyPlaces;
 window.renderNearbyPeople = renderNearbyPeople;
 window.renderNearbyNature = renderNearbyNature;
 window.renderCollection = renderCollection;
 
-// Eksponeres for natur-kortet (map-kobling).
-// getNaturePlaces(id) → Promise<Array<{place, distance}>> sortert nærmest først.
 window.getNaturePlaces = async function (natureId) {
   const map = await ensureNatureToPlacesMap();
   const ids = map?.get(String(natureId || "").trim());
   if (!ids || !ids.size) return [];
-  const placesById = new Map((window.PLACES || []).map(p => [String(p.id || "").trim(), p]));
+  const placesById = placesByIdMap();
   const pos = window.getPos?.();
   const out = [];
   for (const pid of ids) {
@@ -531,8 +585,6 @@ window.getNaturePlaces = async function (natureId) {
   return out;
 };
 
-// flyToPlace(place) — sentrer kartet på et sted, lukker aktive modaler og
-// åpner place-card. Brukes av natur-kortet for "Vis på kart"-knappen.
 window.flyToPlace = function (place) {
   if (!place || !Number.isFinite(place.lat) || !Number.isFinite(place.lon)) return false;
   const map = window.HGMap?.getMap?.() || window.MAP;
