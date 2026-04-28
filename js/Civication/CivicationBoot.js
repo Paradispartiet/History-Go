@@ -64,6 +64,18 @@ async function ensureCivicationRoleModelRuntimeLoaded() {
   }
 }
 
+
+async function ensureCivicationCareerRoleResolverLoaded() {
+  if (window.CivicationCareerRoleResolver?.resolveCareerRoleScope) return true;
+  try {
+    await loadCivicationScriptOnce("js/Civication/systems/civicationCareerRoleResolver.js");
+    return !!window.CivicationCareerRoleResolver?.resolveCareerRoleScope;
+  } catch (error) {
+    console.warn("[CivicationBoot] career role resolver kunne ikke lastes", error);
+    return false;
+  }
+}
+
 async function loadCivicationData() {
   const [badgesRes, careersRes] = await Promise.all([
     fetch("data/badges.json"),
@@ -100,6 +112,7 @@ async function loadCivicationData() {
   });
 
     await ensureCivicationRoleModelRuntimeLoaded();
+    await ensureCivicationCareerRoleResolverLoaded();
 
     if (window.CivicationEconomyEngine?.tickWeekly) {
       CivicationEconomyEngine.tickWeekly();
