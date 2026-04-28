@@ -354,57 +354,13 @@
     return GROUPS.find(group => group.types.includes(type)) || GROUPS[GROUPS.length - 1];
   }
 
-  function injectStyles() {
-    if (document.getElementById("wk-list-groups-style")) return;
+  function ensureWonderkammerStylesheet() {
+    if (document.querySelector('link[href="css/wonderkammer.css"]')) return;
 
-    const style = document.createElement("style");
-    style.id = "wk-list-groups-style";
-    style.textContent = `
-      .pc-wk-groups {
-        display: flex;
-        flex-direction: column;
-        gap: 14px;
-      }
-
-      .pc-wk-group {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-      }
-
-      .pc-wk-group-head {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 10px;
-        padding: 0 2px;
-      }
-
-      .pc-wk-group-title {
-        font-size: 0.88rem;
-        font-weight: 800;
-        letter-spacing: 0.04em;
-        text-transform: uppercase;
-        opacity: 0.86;
-      }
-
-      .pc-wk-group-count {
-        min-width: 1.7em;
-        padding: 2px 7px;
-        border-radius: 999px;
-        font-size: 0.78rem;
-        font-weight: 800;
-        text-align: center;
-        background: rgba(255, 255, 255, 0.12);
-      }
-
-      .pc-wk-group-list {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-      }
-    `;
-    document.head.appendChild(style);
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = "css/wonderkammer.css";
+    document.head.appendChild(link);
   }
 
   function entryButtonHtml(entry) {
@@ -461,7 +417,7 @@
 
     if (!chambers.length) return;
 
-    injectStyles();
+    ensureWonderkammerStylesheet();
 
     const buckets = new Map(GROUPS.map(group => [group.id, { group, entries: [] }]));
     for (const entry of chambers) {
