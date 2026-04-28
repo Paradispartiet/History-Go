@@ -33,9 +33,9 @@
   };
 
   var ROLE_TO_PLAN = {
-    arbeider: "arbeider_naeringsliv_v1",
-    fagarbeider: "fagarbeider_naeringsliv_v2",
-    mellomleder: "mellomleder_naeringsliv_v1",
+    arbeider: "arbeider_naeringsliv_v2",
+    fagarbeider: "fagarbeider_naeringsliv_v3",
+    mellomleder: "mellomleder_naeringsliv_v2",
     formann: "formann_naeringsliv_v1"
   };
 
@@ -69,6 +69,20 @@
     };
   }
 
+  function cleanMailRuntime(roleKey, planId) {
+    var role = ROLES[roleKey] || null;
+    return {
+      version: 1,
+      role_plan_id: planId,
+      role_scope: role ? role.role_key : roleKey,
+      career_id: role ? role.career_id : "naeringsliv",
+      step_index: 0,
+      consumed_ids: [],
+      history: [],
+      updated_at: new Date().toISOString()
+    };
+  }
+
   function startRole(roleKey, opts) {
     var api = window.CivicationState;
     roleKey = lower(roleKey);
@@ -85,6 +99,7 @@
         active_role_key: roleKey,
         unemployed_since_week: null,
         stability: state.stability || "STABLE",
+        mail_runtime_v1: cleanMailRuntime(roleKey, planId),
         mail_system: cleanMailSystem(planId),
         mail_plan_progress: {
           role_plan_id: planId,
