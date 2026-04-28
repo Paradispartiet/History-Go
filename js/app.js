@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", async () => {
   document.body?.classList.remove("hg-loaded", "hg-load-failed");
 
+  const releaseQueuedToasts = gateToastsUntilAppReady();
+
   try {
     await safeRun("boot", window.boot);
 
@@ -13,11 +15,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     await safeRun("initLeftPanel", window.initLeftPanel);
     await safeRun("HGRoutes.init", () => window.HGRoutes?.init?.());
 
-    if (window.HGPos?.request) {
-      await safeRun("HGPos.request", window.HGPos.request);
-    }
-
     markAppReady();
+    releaseQueuedToasts();
+
+    if (window.HGPos?.request) {
+      safeRun("HGPos.request", window.HGPos.request);
+    }
   } catch (e) {
     markAppFailed(e);
   }
@@ -45,6 +48,37 @@ function markAppFailed(error) {
   };
 
   document.body?.classList.add("hg-load-failed");
+}
+
+function gateToastsUntilAppReady() {
+  const originalShowToast = window.showToast;
+  const queue = [];
+  let released = false;
+
+  if (typeof originalShowToast !== "function") {
+    return function noop() {};
+  }
+
+  window.showToast = function queuedShowToast(...args) {
+    if (released || window.__HG_APP_READY__ || document.body?.classList.contains("hg-loaded")) {
+      return originalShowToast.apply(window, args);
+    }
+
+    queue.push(args);
+    return undefined;
+  };
+
+  return function releaseQueuedToasts() {
+    if (released) return;
+    released = true;
+    window.showToast = originalShowToast;
+
+    queue.forEach((args, index) => {
+      setTimeout(() => {
+        originalShowToast.apply(window, args);
+      }, 260 + index * 350);
+    });
+  };
 }
 
 function loadScriptOnce(src) {
