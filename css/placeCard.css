@@ -242,6 +242,7 @@
   box-shadow: 0 10px 30px rgba(0,0,0,.55);
   overflow: hidden;
 
+  color: #fff;
   text-align: left;
   display: flex;
   flex-direction: column;
@@ -249,16 +250,19 @@
   flex: 0 0 var(--pc-text-h);
 
   font-family:
-    "Palatino Linotype",
-    "Palatino",
-    "Book Antiqua",
-    Georgia,
-    serif;
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
 }
 
 /* Fjern default margins */
 #placeCard .pc-text > *{
   margin: 0;
+  color: #fff;
   text-align: left;
 }
 
@@ -267,6 +271,7 @@
 #placeCard #pcMeta,
 #placeCard #pcDesc{
   width: 100%;
+  color: #fff;
   text-align: left;
   align-self: stretch;
   justify-self: start;
@@ -276,28 +281,31 @@
 
 /* Tittel */
 #placeCard #pcTitle{
-  font-size: 36px;          /* Palatino tåler størrelse */
+  font-size: 35px;
   color: #fff;
-  line-height: 1.15;
-  font-weight: 600;
-  letter-spacing: 0;        /* viktig – ikke negativ */
+  line-height: 1.08;
+  font-weight: 850;
+  letter-spacing: -0.01em;
 }
 
 /* Meta */
 #placeCard #pcMeta{
   margin-top: 4px;
   margin-bottom: 8px;
-  font-size: var(--pc-desc);
+  font-size: 17px;
   line-height: 1.15;
-  opacity: .65;
+  font-weight: 700;
+  color: #fff;
+  opacity: .9;
 }
 
 /* Brødtekst */
 #placeCard #pcDesc{
   margin: 0;
   font-size: 23px;
-  line-height: 1.42;
-  color: var(--text);
+  line-height: 1.34;
+  color: #fff;
+  font-weight: 650;
 
   max-width: none;
 
