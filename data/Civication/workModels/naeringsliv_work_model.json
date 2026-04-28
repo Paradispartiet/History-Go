@@ -1,0 +1,1635 @@
+{
+  "model_id": "naeringsliv_work_model",
+  "version": "1.1.0",
+  "role_scope": "ekspeditor",
+  "mails": [
+    {
+      "id": "ekspeditor_001",
+      "mail_type": "job",
+      "mail_family": "kasse_og_pris",
+      "role_scope": "ekspeditor",
+      "subject": "Pris i hylle stemmer ikke",
+      "summary": "Pris i hylle stemmer ikke",
+      "situation": "En kunde viser bilde av hyllepris som er lavere enn kassen.",
+      "task_domain": "customer_service",
+      "competency": "nøyaktighet_under_press",
+      "pressure": "høy_kø",
+      "choice_axis": "faktasjekk_vs_flyt",
+      "consequence_axis": "tillit_vs_tempo",
+      "narrative_arc": "forste_uke_pa_gulvet",
+      "choices": [
+        {
+          "id": "A",
+          "label": "Sjekk hylle og korriger pris med forklaring",
+          "effect": 1,
+          "tags": [
+            "kvalitet",
+            "kunde"
+          ],
+          "feedback": "Du prioriterer sporbarhet og forklaring, selv om det tar tid i øyeblikket."
+        },
+        {
+          "id": "B",
+          "label": "Slå inn varen som registrert pris for å holde køen i gang",
+          "effect": -1,
+          "tags": [
+            "tempo",
+            "snarvei"
+          ],
+          "feedback": "Du løser presset raskt nå, men skyver risikoen videre til neste skift."
+        }
+      ]
+    },
+    {
+      "id": "ekspeditor_002",
+      "mail_type": "job",
+      "mail_family": "kasse_og_pris",
+      "role_scope": "ekspeditor",
+      "subject": "Terminalen faller ut i rush",
+      "summary": "Terminalen faller ut i rush",
+      "situation": "Kortterminalen mister kontakt mens fem kunder venter.",
+      "task_domain": "cash_desk",
+      "competency": "problemlosning",
+      "pressure": "teknisk_stopp",
+      "choice_axis": "manualrutine_vs_improvisasjon",
+      "consequence_axis": "ro_vs_kaos",
+      "narrative_arc": "kundenes_blikk",
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bytt til reservekasse og informer tydelig",
+          "effect": 1,
+          "tags": [
+            "kvalitet",
+            "kunde"
+          ],
+          "feedback": "Du prioriterer sporbarhet og forklaring, selv om det tar tid i øyeblikket."
+        },
+        {
+          "id": "B",
+          "label": "Be kundene prøve kortet flere ganger uten plan",
+          "effect": -1,
+          "tags": [
+            "tempo",
+            "snarvei"
+          ],
+          "feedback": "Du løser presset raskt nå, men skyver risikoen videre til neste skift."
+        }
+      ]
+    },
+    {
+      "id": "ekspeditor_003",
+      "mail_type": "job",
+      "mail_family": "kundemote_og_service",
+      "role_scope": "ekspeditor",
+      "subject": "Retur uten kvittering",
+      "summary": "Retur uten kvittering",
+      "situation": "Kunden vil returnere en blender uten kvittering.",
+      "task_domain": "returns",
+      "competency": "regelbruk_med_skjonn",
+      "pressure": "kundepress",
+      "choice_axis": "policy_vs_unntak",
+      "consequence_axis": "rettferdighet_vs_stoy",
+      "narrative_arc": "fra_ansatt_til_fagperson",
+      "choices": [
+        {
+          "id": "A",
+          "label": "Følg returprosedyre med sporbar løsning",
+          "effect": 1,
+          "tags": [
+            "kvalitet",
+            "kunde"
+          ],
+          "feedback": "Du prioriterer sporbarhet og forklaring, selv om det tar tid i øyeblikket."
+        },
+        {
+          "id": "B",
+          "label": "Avvis kort for å unngå tidkrevende vurdering",
+          "effect": -1,
+          "tags": [
+            "tempo",
+            "snarvei"
+          ],
+          "feedback": "Du løser presset raskt nå, men skyver risikoen videre til neste skift."
+        }
+      ]
+    },
+    {
+      "id": "ekspeditor_004",
+      "mail_type": "job",
+      "mail_family": "kundemote_og_service",
+      "role_scope": "ekspeditor",
+      "subject": "Kunden spør om produkt du ikke kan",
+      "summary": "Kunden spør om produkt du ikke kan",
+      "situation": "En kunde spør om forskjellen på to hudkremer du ikke kjenner.",
+      "task_domain": "product_guidance",
+      "competency": "faglig_nysgjerrighet",
+      "pressure": "kunnskapshull",
+      "choice_axis": "hente_hjelp_vs_late_som",
+      "consequence_axis": "treff_vs_mersalg",
+      "narrative_arc": "fra_ansatt_til_fagperson",
+      "choices": [
+        {
+          "id": "A",
+          "label": "Hent kollega/produktinfo før anbefaling",
+          "effect": 1,
+          "tags": [
+            "kvalitet",
+            "kunde"
+          ],
+          "feedback": "Du prioriterer sporbarhet og forklaring, selv om det tar tid i øyeblikket."
+        },
+        {
+          "id": "B",
+          "label": "Anbefal den dyreste for å komme videre",
+          "effect": -1,
+          "tags": [
+            "tempo",
+            "snarvei"
+          ],
+          "feedback": "Du løser presset raskt nå, men skyver risikoen videre til neste skift."
+        }
+      ]
+    },
+    {
+      "id": "ekspeditor_005",
+      "mail_type": "job",
+      "mail_family": "ny_kollega_og_tillit",
+      "role_scope": "ekspeditor",
+      "subject": "Ekspeditør-situasjon 5",
+      "summary": "Ekspeditør-situasjon 5",
+      "situation": "Du står i ny kollega og tillit og må ta et konkret valg i butikkdriften.",
+      "task_domain": "customer_service",
+      "competency": "prioritering",
+      "pressure": "tidspress",
+      "choice_axis": "kortsiktig_flyt_vs_langsiktig_kontroll",
+      "consequence_axis": "tempo_vs_tillit",
+      "narrative_arc": "forste_uke_pa_gulvet",
+      "choices": [
+        {
+          "id": "A",
+          "label": "Følg rutine og forklar valget tydelig",
+          "effect": 1,
+          "tags": [
+            "kvalitet",
+            "kunde"
+          ],
+          "feedback": "Du prioriterer sporbarhet og forklaring, selv om det tar tid i øyeblikket."
+        },
+        {
+          "id": "B",
+          "label": "Velg raskeste løsning og håp det går bra",
+          "effect": -1,
+          "tags": [
+            "tempo",
+            "snarvei"
+          ],
+          "feedback": "Du løser presset raskt nå, men skyver risikoen videre til neste skift."
+        }
+      ]
+    },
+    {
+      "id": "ekspeditor_006",
+      "mail_type": "job",
+      "mail_family": "forste_ansvar",
+      "role_scope": "ekspeditor",
+      "subject": "Ekspeditør-situasjon 6",
+      "summary": "Ekspeditør-situasjon 6",
+      "situation": "Du står i forste ansvar og må ta et konkret valg i butikkdriften.",
+      "task_domain": "cash_desk",
+      "competency": "kommunikasjon",
+      "pressure": "kollegapress",
+      "choice_axis": "unngå_konflikt_vs_ta_samtalen",
+      "consequence_axis": "synlighet_vs_presisjon",
+      "narrative_arc": "kundenes_blikk",
+      "choices": [
+        {
+          "id": "A",
+          "label": "Følg rutine og forklar valget tydelig",
+          "effect": 1,
+          "tags": [
+            "kvalitet",
+            "kunde"
+          ],
+          "feedback": "Du prioriterer sporbarhet og forklaring, selv om det tar tid i øyeblikket."
+        },
+        {
+          "id": "B",
+          "label": "Velg raskeste løsning og håp det går bra",
+          "effect": -1,
+          "tags": [
+            "tempo",
+            "snarvei"
+          ],
+          "feedback": "Du løser presset raskt nå, men skyver risikoen videre til neste skift."
+        }
+      ]
+    },
+    {
+      "id": "ekspeditor_007",
+      "mail_type": "job",
+      "mail_family": "apning_og_lukking",
+      "role_scope": "ekspeditor",
+      "subject": "Ekspeditør-situasjon 7",
+      "summary": "Ekspeditør-situasjon 7",
+      "situation": "Du står i apning og lukking og må ta et konkret valg i butikkdriften.",
+      "task_domain": "returns",
+      "competency": "kvalitet",
+      "pressure": "kundepress",
+      "choice_axis": "snarvei_vs_standard",
+      "consequence_axis": "komfort_vs_laring",
+      "narrative_arc": "varene_som_system",
+      "choices": [
+        {
+          "id": "A",
+          "label": "Følg rutine og forklar valget tydelig",
+          "effect": 1,
+          "tags": [
+            "kvalitet",
+            "kunde"
+          ],
+          "feedback": "Du prioriterer sporbarhet og forklaring, selv om det tar tid i øyeblikket."
+        },
+        {
+          "id": "B",
+          "label": "Velg raskeste løsning og håp det går bra",
+          "effect": -1,
+          "tags": [
+            "tempo",
+            "snarvei"
+          ],
+          "feedback": "Du løser presset raskt nå, men skyver risikoen videre til neste skift."
+        }
+      ]
+    },
+    {
+      "id": "ekspeditor_008",
+      "mail_type": "job",
+      "mail_family": "lager_og_bestilling",
+      "role_scope": "ekspeditor",
+      "subject": "Ekspeditør-situasjon 8",
+      "summary": "Ekspeditør-situasjon 8",
+      "situation": "Du står i lager og bestilling og må ta et konkret valg i butikkdriften.",
+      "task_domain": "stock_flow",
+      "competency": "samarbeid",
+      "pressure": "måltallspress",
+      "choice_axis": "kortsiktig_flyt_vs_langsiktig_kontroll",
+      "consequence_axis": "tempo_vs_tillit",
+      "narrative_arc": "snarveien",
+      "choices": [
+        {
+          "id": "A",
+          "label": "Følg rutine og forklar valget tydelig",
+          "effect": 1,
+          "tags": [
+            "kvalitet",
+            "kunde"
+          ],
+          "feedback": "Du prioriterer sporbarhet og forklaring, selv om det tar tid i øyeblikket."
+        },
+        {
+          "id": "B",
+          "label": "Velg raskeste løsning og håp det går bra",
+          "effect": -1,
+          "tags": [
+            "tempo",
+            "snarvei"
+          ],
+          "feedback": "Du løser presset raskt nå, men skyver risikoen videre til neste skift."
+        }
+      ]
+    },
+    {
+      "id": "ekspeditor_009",
+      "mail_type": "job",
+      "mail_family": "salg_og_veiledning",
+      "role_scope": "ekspeditor",
+      "subject": "Ekspeditør-situasjon 9",
+      "summary": "Ekspeditør-situasjon 9",
+      "situation": "Du står i salg og veiledning og må ta et konkret valg i butikkdriften.",
+      "task_domain": "campaign_setup",
+      "competency": "ansvar",
+      "pressure": "tidspress",
+      "choice_axis": "unngå_konflikt_vs_ta_samtalen",
+      "consequence_axis": "synlighet_vs_presisjon",
+      "narrative_arc": "fra_ansatt_til_fagperson",
+      "choices": [
+        {
+          "id": "A",
+          "label": "Følg rutine og forklar valget tydelig",
+          "effect": 1,
+          "tags": [
+            "kvalitet",
+            "kunde"
+          ],
+          "feedback": "Du prioriterer sporbarhet og forklaring, selv om det tar tid i øyeblikket."
+        },
+        {
+          "id": "B",
+          "label": "Velg raskeste løsning og håp det går bra",
+          "effect": -1,
+          "tags": [
+            "tempo",
+            "snarvei"
+          ],
+          "feedback": "Du løser presset raskt nå, men skyver risikoen videre til neste skift."
+        }
+      ]
+    },
+    {
+      "id": "ekspeditor_010",
+      "mail_type": "job",
+      "mail_family": "ny_kollega_og_tillit",
+      "role_scope": "ekspeditor",
+      "subject": "Ekspeditør-situasjon 10",
+      "summary": "Ekspeditør-situasjon 10",
+      "situation": "Du står i ny kollega og tillit og må ta et konkret valg i butikkdriften.",
+      "task_domain": "shrinkage_control",
+      "competency": "prioritering",
+      "pressure": "kollegapress",
+      "choice_axis": "snarvei_vs_standard",
+      "consequence_axis": "komfort_vs_laring",
+      "narrative_arc": "forste_uke_pa_gulvet",
+      "choices": [
+        {
+          "id": "A",
+          "label": "Følg rutine og forklar valget tydelig",
+          "effect": 1,
+          "tags": [
+            "kvalitet",
+            "kunde"
+          ],
+          "feedback": "Du prioriterer sporbarhet og forklaring, selv om det tar tid i øyeblikket."
+        },
+        {
+          "id": "B",
+          "label": "Velg raskeste løsning og håp det går bra",
+          "effect": -1,
+          "tags": [
+            "tempo",
+            "snarvei"
+          ],
+          "feedback": "Du løser presset raskt nå, men skyver risikoen videre til neste skift."
+        }
+      ]
+    },
+    {
+      "id": "ekspeditor_011",
+      "mail_type": "job",
+      "mail_family": "forste_ansvar",
+      "role_scope": "ekspeditor",
+      "subject": "Ekspeditør-situasjon 11",
+      "summary": "Ekspeditør-situasjon 11",
+      "situation": "Du står i forste ansvar og må ta et konkret valg i butikkdriften.",
+      "task_domain": "opening_closing",
+      "competency": "kommunikasjon",
+      "pressure": "kundepress",
+      "choice_axis": "kortsiktig_flyt_vs_langsiktig_kontroll",
+      "consequence_axis": "tempo_vs_tillit",
+      "narrative_arc": "kundenes_blikk",
+      "choices": [
+        {
+          "id": "A",
+          "label": "Følg rutine og forklar valget tydelig",
+          "effect": 1,
+          "tags": [
+            "kvalitet",
+            "kunde"
+          ],
+          "feedback": "Du prioriterer sporbarhet og forklaring, selv om det tar tid i øyeblikket."
+        },
+        {
+          "id": "B",
+          "label": "Velg raskeste løsning og håp det går bra",
+          "effect": -1,
+          "tags": [
+            "tempo",
+            "snarvei"
+          ],
+          "feedback": "Du løser presset raskt nå, men skyver risikoen videre til neste skift."
+        }
+      ]
+    },
+    {
+      "id": "ekspeditor_012",
+      "mail_type": "job",
+      "mail_family": "apning_og_lukking",
+      "role_scope": "ekspeditor",
+      "subject": "Ekspeditør-situasjon 12",
+      "summary": "Ekspeditør-situasjon 12",
+      "situation": "Du står i apning og lukking og må ta et konkret valg i butikkdriften.",
+      "task_domain": "customer_service",
+      "competency": "kvalitet",
+      "pressure": "måltallspress",
+      "choice_axis": "unngå_konflikt_vs_ta_samtalen",
+      "consequence_axis": "synlighet_vs_presisjon",
+      "narrative_arc": "varene_som_system",
+      "choices": [
+        {
+          "id": "A",
+          "label": "Følg rutine og forklar valget tydelig",
+          "effect": 1,
+          "tags": [
+            "kvalitet",
+            "kunde"
+          ],
+          "feedback": "Du prioriterer sporbarhet og forklaring, selv om det tar tid i øyeblikket."
+        },
+        {
+          "id": "B",
+          "label": "Velg raskeste løsning og håp det går bra",
+          "effect": -1,
+          "tags": [
+            "tempo",
+            "snarvei"
+          ],
+          "feedback": "Du løser presset raskt nå, men skyver risikoen videre til neste skift."
+        }
+      ]
+    },
+    {
+      "id": "ekspeditor_013",
+      "mail_type": "job",
+      "mail_family": "lager_og_bestilling",
+      "role_scope": "ekspeditor",
+      "subject": "Ekspeditør-situasjon 13",
+      "summary": "Ekspeditør-situasjon 13",
+      "situation": "Du står i lager og bestilling og må ta et konkret valg i butikkdriften.",
+      "task_domain": "cash_desk",
+      "competency": "samarbeid",
+      "pressure": "tidspress",
+      "choice_axis": "snarvei_vs_standard",
+      "consequence_axis": "komfort_vs_laring",
+      "narrative_arc": "snarveien",
+      "choices": [
+        {
+          "id": "A",
+          "label": "Følg rutine og forklar valget tydelig",
+          "effect": 1,
+          "tags": [
+            "kvalitet",
+            "kunde"
+          ],
+          "feedback": "Du prioriterer sporbarhet og forklaring, selv om det tar tid i øyeblikket."
+        },
+        {
+          "id": "B",
+          "label": "Velg raskeste løsning og håp det går bra",
+          "effect": -1,
+          "tags": [
+            "tempo",
+            "snarvei"
+          ],
+          "feedback": "Du løser presset raskt nå, men skyver risikoen videre til neste skift."
+        }
+      ]
+    },
+    {
+      "id": "ekspeditor_014",
+      "mail_type": "job",
+      "mail_family": "salg_og_veiledning",
+      "role_scope": "ekspeditor",
+      "subject": "Ekspeditør-situasjon 14",
+      "summary": "Ekspeditør-situasjon 14",
+      "situation": "Du står i salg og veiledning og må ta et konkret valg i butikkdriften.",
+      "task_domain": "returns",
+      "competency": "ansvar",
+      "pressure": "kollegapress",
+      "choice_axis": "kortsiktig_flyt_vs_langsiktig_kontroll",
+      "consequence_axis": "tempo_vs_tillit",
+      "narrative_arc": "fra_ansatt_til_fagperson",
+      "choices": [
+        {
+          "id": "A",
+          "label": "Følg rutine og forklar valget tydelig",
+          "effect": 1,
+          "tags": [
+            "kvalitet",
+            "kunde"
+          ],
+          "feedback": "Du prioriterer sporbarhet og forklaring, selv om det tar tid i øyeblikket."
+        },
+        {
+          "id": "B",
+          "label": "Velg raskeste løsning og håp det går bra",
+          "effect": -1,
+          "tags": [
+            "tempo",
+            "snarvei"
+          ],
+          "feedback": "Du løser presset raskt nå, men skyver risikoen videre til neste skift."
+        }
+      ]
+    },
+    {
+      "id": "ekspeditor_015",
+      "mail_type": "job",
+      "mail_family": "ny_kollega_og_tillit",
+      "role_scope": "ekspeditor",
+      "subject": "Ekspeditør-situasjon 15",
+      "summary": "Ekspeditør-situasjon 15",
+      "situation": "Du står i ny kollega og tillit og må ta et konkret valg i butikkdriften.",
+      "task_domain": "stock_flow",
+      "competency": "prioritering",
+      "pressure": "kundepress",
+      "choice_axis": "unngå_konflikt_vs_ta_samtalen",
+      "consequence_axis": "synlighet_vs_presisjon",
+      "narrative_arc": "forste_uke_pa_gulvet",
+      "choices": [
+        {
+          "id": "A",
+          "label": "Følg rutine og forklar valget tydelig",
+          "effect": 1,
+          "tags": [
+            "kvalitet",
+            "kunde"
+          ],
+          "feedback": "Du prioriterer sporbarhet og forklaring, selv om det tar tid i øyeblikket."
+        },
+        {
+          "id": "B",
+          "label": "Velg raskeste løsning og håp det går bra",
+          "effect": -1,
+          "tags": [
+            "tempo",
+            "snarvei"
+          ],
+          "feedback": "Du løser presset raskt nå, men skyver risikoen videre til neste skift."
+        }
+      ]
+    },
+    {
+      "id": "ekspeditor_016",
+      "mail_type": "job",
+      "mail_family": "forste_ansvar",
+      "role_scope": "ekspeditor",
+      "subject": "Ekspeditør-situasjon 16",
+      "summary": "Ekspeditør-situasjon 16",
+      "situation": "Du står i forste ansvar og må ta et konkret valg i butikkdriften.",
+      "task_domain": "campaign_setup",
+      "competency": "kommunikasjon",
+      "pressure": "måltallspress",
+      "choice_axis": "snarvei_vs_standard",
+      "consequence_axis": "komfort_vs_laring",
+      "narrative_arc": "kundenes_blikk",
+      "choices": [
+        {
+          "id": "A",
+          "label": "Følg rutine og forklar valget tydelig",
+          "effect": 1,
+          "tags": [
+            "kvalitet",
+            "kunde"
+          ],
+          "feedback": "Du prioriterer sporbarhet og forklaring, selv om det tar tid i øyeblikket."
+        },
+        {
+          "id": "B",
+          "label": "Velg raskeste løsning og håp det går bra",
+          "effect": -1,
+          "tags": [
+            "tempo",
+            "snarvei"
+          ],
+          "feedback": "Du løser presset raskt nå, men skyver risikoen videre til neste skift."
+        }
+      ]
+    },
+    {
+      "id": "ekspeditor_017",
+      "mail_type": "job",
+      "mail_family": "apning_og_lukking",
+      "role_scope": "ekspeditor",
+      "subject": "Ekspeditør-situasjon 17",
+      "summary": "Ekspeditør-situasjon 17",
+      "situation": "Du står i apning og lukking og må ta et konkret valg i butikkdriften.",
+      "task_domain": "shrinkage_control",
+      "competency": "kvalitet",
+      "pressure": "tidspress",
+      "choice_axis": "kortsiktig_flyt_vs_langsiktig_kontroll",
+      "consequence_axis": "tempo_vs_tillit",
+      "narrative_arc": "varene_som_system",
+      "choices": [
+        {
+          "id": "A",
+          "label": "Følg rutine og forklar valget tydelig",
+          "effect": 1,
+          "tags": [
+            "kvalitet",
+            "kunde"
+          ],
+          "feedback": "Du prioriterer sporbarhet og forklaring, selv om det tar tid i øyeblikket."
+        },
+        {
+          "id": "B",
+          "label": "Velg raskeste løsning og håp det går bra",
+          "effect": -1,
+          "tags": [
+            "tempo",
+            "snarvei"
+          ],
+          "feedback": "Du løser presset raskt nå, men skyver risikoen videre til neste skift."
+        }
+      ]
+    },
+    {
+      "id": "ekspeditor_018",
+      "mail_type": "job",
+      "mail_family": "lager_og_bestilling",
+      "role_scope": "ekspeditor",
+      "subject": "Ekspeditør-situasjon 18",
+      "summary": "Ekspeditør-situasjon 18",
+      "situation": "Du står i lager og bestilling og må ta et konkret valg i butikkdriften.",
+      "task_domain": "opening_closing",
+      "competency": "samarbeid",
+      "pressure": "kollegapress",
+      "choice_axis": "unngå_konflikt_vs_ta_samtalen",
+      "consequence_axis": "synlighet_vs_presisjon",
+      "narrative_arc": "snarveien",
+      "choices": [
+        {
+          "id": "A",
+          "label": "Følg rutine og forklar valget tydelig",
+          "effect": 1,
+          "tags": [
+            "kvalitet",
+            "kunde"
+          ],
+          "feedback": "Du prioriterer sporbarhet og forklaring, selv om det tar tid i øyeblikket."
+        },
+        {
+          "id": "B",
+          "label": "Velg raskeste løsning og håp det går bra",
+          "effect": -1,
+          "tags": [
+            "tempo",
+            "snarvei"
+          ],
+          "feedback": "Du løser presset raskt nå, men skyver risikoen videre til neste skift."
+        }
+      ]
+    },
+    {
+      "id": "ekspeditor_019",
+      "mail_type": "job",
+      "mail_family": "salg_og_veiledning",
+      "role_scope": "ekspeditor",
+      "subject": "Ekspeditør-situasjon 19",
+      "summary": "Ekspeditør-situasjon 19",
+      "situation": "Du står i salg og veiledning og må ta et konkret valg i butikkdriften.",
+      "task_domain": "customer_service",
+      "competency": "ansvar",
+      "pressure": "kundepress",
+      "choice_axis": "snarvei_vs_standard",
+      "consequence_axis": "komfort_vs_laring",
+      "narrative_arc": "fra_ansatt_til_fagperson",
+      "choices": [
+        {
+          "id": "A",
+          "label": "Følg rutine og forklar valget tydelig",
+          "effect": 1,
+          "tags": [
+            "kvalitet",
+            "kunde"
+          ],
+          "feedback": "Du prioriterer sporbarhet og forklaring, selv om det tar tid i øyeblikket."
+        },
+        {
+          "id": "B",
+          "label": "Velg raskeste løsning og håp det går bra",
+          "effect": -1,
+          "tags": [
+            "tempo",
+            "snarvei"
+          ],
+          "feedback": "Du løser presset raskt nå, men skyver risikoen videre til neste skift."
+        }
+      ]
+    },
+    {
+      "id": "ekspeditor_020",
+      "mail_type": "job",
+      "mail_family": "ny_kollega_og_tillit",
+      "role_scope": "ekspeditor",
+      "subject": "Ekspeditør-situasjon 20",
+      "summary": "Ekspeditør-situasjon 20",
+      "situation": "Du står i ny kollega og tillit og må ta et konkret valg i butikkdriften.",
+      "task_domain": "cash_desk",
+      "competency": "prioritering",
+      "pressure": "måltallspress",
+      "choice_axis": "kortsiktig_flyt_vs_langsiktig_kontroll",
+      "consequence_axis": "tempo_vs_tillit",
+      "narrative_arc": "forste_uke_pa_gulvet",
+      "choices": [
+        {
+          "id": "A",
+          "label": "Følg rutine og forklar valget tydelig",
+          "effect": 1,
+          "tags": [
+            "kvalitet",
+            "kunde"
+          ],
+          "feedback": "Du prioriterer sporbarhet og forklaring, selv om det tar tid i øyeblikket."
+        },
+        {
+          "id": "B",
+          "label": "Velg raskeste løsning og håp det går bra",
+          "effect": -1,
+          "tags": [
+            "tempo",
+            "snarvei"
+          ],
+          "feedback": "Du løser presset raskt nå, men skyver risikoen videre til neste skift."
+        }
+      ]
+    },
+    {
+      "id": "ekspeditor_021",
+      "mail_type": "job",
+      "mail_family": "forste_ansvar",
+      "role_scope": "ekspeditor",
+      "subject": "Ekspeditør-situasjon 21",
+      "summary": "Ekspeditør-situasjon 21",
+      "situation": "Du står i forste ansvar og må ta et konkret valg i butikkdriften.",
+      "task_domain": "returns",
+      "competency": "kommunikasjon",
+      "pressure": "tidspress",
+      "choice_axis": "unngå_konflikt_vs_ta_samtalen",
+      "consequence_axis": "synlighet_vs_presisjon",
+      "narrative_arc": "kundenes_blikk",
+      "choices": [
+        {
+          "id": "A",
+          "label": "Følg rutine og forklar valget tydelig",
+          "effect": 1,
+          "tags": [
+            "kvalitet",
+            "kunde"
+          ],
+          "feedback": "Du prioriterer sporbarhet og forklaring, selv om det tar tid i øyeblikket."
+        },
+        {
+          "id": "B",
+          "label": "Velg raskeste løsning og håp det går bra",
+          "effect": -1,
+          "tags": [
+            "tempo",
+            "snarvei"
+          ],
+          "feedback": "Du løser presset raskt nå, men skyver risikoen videre til neste skift."
+        }
+      ]
+    },
+    {
+      "id": "ekspeditor_022",
+      "mail_type": "job",
+      "mail_family": "apning_og_lukking",
+      "role_scope": "ekspeditor",
+      "subject": "Ekspeditør-situasjon 22",
+      "summary": "Ekspeditør-situasjon 22",
+      "situation": "Du står i apning og lukking og må ta et konkret valg i butikkdriften.",
+      "task_domain": "stock_flow",
+      "competency": "kvalitet",
+      "pressure": "kollegapress",
+      "choice_axis": "snarvei_vs_standard",
+      "consequence_axis": "komfort_vs_laring",
+      "narrative_arc": "varene_som_system",
+      "choices": [
+        {
+          "id": "A",
+          "label": "Følg rutine og forklar valget tydelig",
+          "effect": 1,
+          "tags": [
+            "kvalitet",
+            "kunde"
+          ],
+          "feedback": "Du prioriterer sporbarhet og forklaring, selv om det tar tid i øyeblikket."
+        },
+        {
+          "id": "B",
+          "label": "Velg raskeste løsning og håp det går bra",
+          "effect": -1,
+          "tags": [
+            "tempo",
+            "snarvei"
+          ],
+          "feedback": "Du løser presset raskt nå, men skyver risikoen videre til neste skift."
+        }
+      ]
+    },
+    {
+      "id": "ekspeditor_023",
+      "mail_type": "people",
+      "mail_family": "salg_og_veiledning",
+      "role_scope": "ekspeditor",
+      "subject": "Ekspeditør-situasjon 23",
+      "summary": "Ekspeditør-situasjon 23",
+      "situation": "Du står i salg og veiledning og må ta et konkret valg i butikkdriften.",
+      "task_domain": "customer_service",
+      "competency": "prioritering",
+      "pressure": "tidspress",
+      "choice_axis": "kortsiktig_flyt_vs_langsiktig_kontroll",
+      "consequence_axis": "tempo_vs_tillit",
+      "narrative_arc": "forste_uke_pa_gulvet",
+      "choices": [
+        {
+          "id": "A",
+          "label": "Følg rutine og forklar valget tydelig",
+          "effect": 1,
+          "tags": [
+            "kvalitet",
+            "kunde"
+          ],
+          "feedback": "Du prioriterer sporbarhet og forklaring, selv om det tar tid i øyeblikket."
+        },
+        {
+          "id": "B",
+          "label": "Velg raskeste løsning og håp det går bra",
+          "effect": -1,
+          "tags": [
+            "tempo",
+            "snarvei"
+          ],
+          "feedback": "Du løser presset raskt nå, men skyver risikoen videre til neste skift."
+        }
+      ]
+    },
+    {
+      "id": "ekspeditor_024",
+      "mail_type": "people",
+      "mail_family": "ny_kollega_og_tillit",
+      "role_scope": "ekspeditor",
+      "subject": "Ekspeditør-situasjon 24",
+      "summary": "Ekspeditør-situasjon 24",
+      "situation": "Du står i ny kollega og tillit og må ta et konkret valg i butikkdriften.",
+      "task_domain": "cash_desk",
+      "competency": "kommunikasjon",
+      "pressure": "kollegapress",
+      "choice_axis": "unngå_konflikt_vs_ta_samtalen",
+      "consequence_axis": "synlighet_vs_presisjon",
+      "narrative_arc": "kundenes_blikk",
+      "choices": [
+        {
+          "id": "A",
+          "label": "Følg rutine og forklar valget tydelig",
+          "effect": 1,
+          "tags": [
+            "kvalitet",
+            "kunde"
+          ],
+          "feedback": "Du prioriterer sporbarhet og forklaring, selv om det tar tid i øyeblikket."
+        },
+        {
+          "id": "B",
+          "label": "Velg raskeste løsning og håp det går bra",
+          "effect": -1,
+          "tags": [
+            "tempo",
+            "snarvei"
+          ],
+          "feedback": "Du løser presset raskt nå, men skyver risikoen videre til neste skift."
+        }
+      ]
+    },
+    {
+      "id": "ekspeditor_025",
+      "mail_type": "people",
+      "mail_family": "forste_ansvar",
+      "role_scope": "ekspeditor",
+      "subject": "Ekspeditør-situasjon 25",
+      "summary": "Ekspeditør-situasjon 25",
+      "situation": "Du står i forste ansvar og må ta et konkret valg i butikkdriften.",
+      "task_domain": "returns",
+      "competency": "kvalitet",
+      "pressure": "kundepress",
+      "choice_axis": "snarvei_vs_standard",
+      "consequence_axis": "komfort_vs_laring",
+      "narrative_arc": "varene_som_system",
+      "choices": [
+        {
+          "id": "A",
+          "label": "Følg rutine og forklar valget tydelig",
+          "effect": 1,
+          "tags": [
+            "kvalitet",
+            "kunde"
+          ],
+          "feedback": "Du prioriterer sporbarhet og forklaring, selv om det tar tid i øyeblikket."
+        },
+        {
+          "id": "B",
+          "label": "Velg raskeste løsning og håp det går bra",
+          "effect": -1,
+          "tags": [
+            "tempo",
+            "snarvei"
+          ],
+          "feedback": "Du løser presset raskt nå, men skyver risikoen videre til neste skift."
+        }
+      ]
+    },
+    {
+      "id": "ekspeditor_026",
+      "mail_type": "people",
+      "mail_family": "apning_og_lukking",
+      "role_scope": "ekspeditor",
+      "subject": "Ekspeditør-situasjon 26",
+      "summary": "Ekspeditør-situasjon 26",
+      "situation": "Du står i apning og lukking og må ta et konkret valg i butikkdriften.",
+      "task_domain": "stock_flow",
+      "competency": "samarbeid",
+      "pressure": "måltallspress",
+      "choice_axis": "kortsiktig_flyt_vs_langsiktig_kontroll",
+      "consequence_axis": "tempo_vs_tillit",
+      "narrative_arc": "snarveien",
+      "choices": [
+        {
+          "id": "A",
+          "label": "Følg rutine og forklar valget tydelig",
+          "effect": 1,
+          "tags": [
+            "kvalitet",
+            "kunde"
+          ],
+          "feedback": "Du prioriterer sporbarhet og forklaring, selv om det tar tid i øyeblikket."
+        },
+        {
+          "id": "B",
+          "label": "Velg raskeste løsning og håp det går bra",
+          "effect": -1,
+          "tags": [
+            "tempo",
+            "snarvei"
+          ],
+          "feedback": "Du løser presset raskt nå, men skyver risikoen videre til neste skift."
+        }
+      ]
+    },
+    {
+      "id": "ekspeditor_027",
+      "mail_type": "people",
+      "mail_family": "lager_og_bestilling",
+      "role_scope": "ekspeditor",
+      "subject": "Ekspeditør-situasjon 27",
+      "summary": "Ekspeditør-situasjon 27",
+      "situation": "Du står i lager og bestilling og må ta et konkret valg i butikkdriften.",
+      "task_domain": "campaign_setup",
+      "competency": "ansvar",
+      "pressure": "tidspress",
+      "choice_axis": "unngå_konflikt_vs_ta_samtalen",
+      "consequence_axis": "synlighet_vs_presisjon",
+      "narrative_arc": "fra_ansatt_til_fagperson",
+      "choices": [
+        {
+          "id": "A",
+          "label": "Følg rutine og forklar valget tydelig",
+          "effect": 1,
+          "tags": [
+            "kvalitet",
+            "kunde"
+          ],
+          "feedback": "Du prioriterer sporbarhet og forklaring, selv om det tar tid i øyeblikket."
+        },
+        {
+          "id": "B",
+          "label": "Velg raskeste løsning og håp det går bra",
+          "effect": -1,
+          "tags": [
+            "tempo",
+            "snarvei"
+          ],
+          "feedback": "Du løser presset raskt nå, men skyver risikoen videre til neste skift."
+        }
+      ]
+    },
+    {
+      "id": "ekspeditor_028",
+      "mail_type": "people",
+      "mail_family": "salg_og_veiledning",
+      "role_scope": "ekspeditor",
+      "subject": "Ekspeditør-situasjon 28",
+      "summary": "Ekspeditør-situasjon 28",
+      "situation": "Du står i salg og veiledning og må ta et konkret valg i butikkdriften.",
+      "task_domain": "shrinkage_control",
+      "competency": "prioritering",
+      "pressure": "kollegapress",
+      "choice_axis": "snarvei_vs_standard",
+      "consequence_axis": "komfort_vs_laring",
+      "narrative_arc": "forste_uke_pa_gulvet",
+      "choices": [
+        {
+          "id": "A",
+          "label": "Følg rutine og forklar valget tydelig",
+          "effect": 1,
+          "tags": [
+            "kvalitet",
+            "kunde"
+          ],
+          "feedback": "Du prioriterer sporbarhet og forklaring, selv om det tar tid i øyeblikket."
+        },
+        {
+          "id": "B",
+          "label": "Velg raskeste løsning og håp det går bra",
+          "effect": -1,
+          "tags": [
+            "tempo",
+            "snarvei"
+          ],
+          "feedback": "Du løser presset raskt nå, men skyver risikoen videre til neste skift."
+        }
+      ]
+    },
+    {
+      "id": "ekspeditor_029",
+      "mail_type": "conflict",
+      "mail_family": "apning_og_lukking",
+      "role_scope": "ekspeditor",
+      "subject": "Ekspeditør-situasjon 29",
+      "summary": "Ekspeditør-situasjon 29",
+      "situation": "Du står i apning og lukking og må ta et konkret valg i butikkdriften.",
+      "task_domain": "customer_service",
+      "competency": "prioritering",
+      "pressure": "tidspress",
+      "choice_axis": "kortsiktig_flyt_vs_langsiktig_kontroll",
+      "consequence_axis": "tempo_vs_tillit",
+      "narrative_arc": "forste_uke_pa_gulvet",
+      "choices": [
+        {
+          "id": "A",
+          "label": "Følg rutine og forklar valget tydelig",
+          "effect": 1,
+          "tags": [
+            "kvalitet",
+            "kunde"
+          ],
+          "feedback": "Du prioriterer sporbarhet og forklaring, selv om det tar tid i øyeblikket."
+        },
+        {
+          "id": "B",
+          "label": "Velg raskeste løsning og håp det går bra",
+          "effect": -1,
+          "tags": [
+            "tempo",
+            "snarvei"
+          ],
+          "feedback": "Du løser presset raskt nå, men skyver risikoen videre til neste skift."
+        }
+      ]
+    },
+    {
+      "id": "ekspeditor_030",
+      "mail_type": "conflict",
+      "mail_family": "lager_og_bestilling",
+      "role_scope": "ekspeditor",
+      "subject": "Ekspeditør-situasjon 30",
+      "summary": "Ekspeditør-situasjon 30",
+      "situation": "Du står i lager og bestilling og må ta et konkret valg i butikkdriften.",
+      "task_domain": "cash_desk",
+      "competency": "kommunikasjon",
+      "pressure": "kollegapress",
+      "choice_axis": "unngå_konflikt_vs_ta_samtalen",
+      "consequence_axis": "synlighet_vs_presisjon",
+      "narrative_arc": "kundenes_blikk",
+      "choices": [
+        {
+          "id": "A",
+          "label": "Følg rutine og forklar valget tydelig",
+          "effect": 1,
+          "tags": [
+            "kvalitet",
+            "kunde"
+          ],
+          "feedback": "Du prioriterer sporbarhet og forklaring, selv om det tar tid i øyeblikket."
+        },
+        {
+          "id": "B",
+          "label": "Velg raskeste løsning og håp det går bra",
+          "effect": -1,
+          "tags": [
+            "tempo",
+            "snarvei"
+          ],
+          "feedback": "Du løser presset raskt nå, men skyver risikoen videre til neste skift."
+        }
+      ]
+    },
+    {
+      "id": "ekspeditor_031",
+      "mail_type": "conflict",
+      "mail_family": "salg_og_veiledning",
+      "role_scope": "ekspeditor",
+      "subject": "Ekspeditør-situasjon 31",
+      "summary": "Ekspeditør-situasjon 31",
+      "situation": "Du står i salg og veiledning og må ta et konkret valg i butikkdriften.",
+      "task_domain": "returns",
+      "competency": "kvalitet",
+      "pressure": "kundepress",
+      "choice_axis": "snarvei_vs_standard",
+      "consequence_axis": "komfort_vs_laring",
+      "narrative_arc": "varene_som_system",
+      "choices": [
+        {
+          "id": "A",
+          "label": "Følg rutine og forklar valget tydelig",
+          "effect": 1,
+          "tags": [
+            "kvalitet",
+            "kunde"
+          ],
+          "feedback": "Du prioriterer sporbarhet og forklaring, selv om det tar tid i øyeblikket."
+        },
+        {
+          "id": "B",
+          "label": "Velg raskeste løsning og håp det går bra",
+          "effect": -1,
+          "tags": [
+            "tempo",
+            "snarvei"
+          ],
+          "feedback": "Du løser presset raskt nå, men skyver risikoen videre til neste skift."
+        }
+      ]
+    },
+    {
+      "id": "ekspeditor_032",
+      "mail_type": "conflict",
+      "mail_family": "ny_kollega_og_tillit",
+      "role_scope": "ekspeditor",
+      "subject": "Ekspeditør-situasjon 32",
+      "summary": "Ekspeditør-situasjon 32",
+      "situation": "Du står i ny kollega og tillit og må ta et konkret valg i butikkdriften.",
+      "task_domain": "stock_flow",
+      "competency": "samarbeid",
+      "pressure": "måltallspress",
+      "choice_axis": "kortsiktig_flyt_vs_langsiktig_kontroll",
+      "consequence_axis": "tempo_vs_tillit",
+      "narrative_arc": "snarveien",
+      "choices": [
+        {
+          "id": "A",
+          "label": "Følg rutine og forklar valget tydelig",
+          "effect": 1,
+          "tags": [
+            "kvalitet",
+            "kunde"
+          ],
+          "feedback": "Du prioriterer sporbarhet og forklaring, selv om det tar tid i øyeblikket."
+        },
+        {
+          "id": "B",
+          "label": "Velg raskeste løsning og håp det går bra",
+          "effect": -1,
+          "tags": [
+            "tempo",
+            "snarvei"
+          ],
+          "feedback": "Du løser presset raskt nå, men skyver risikoen videre til neste skift."
+        }
+      ]
+    },
+    {
+      "id": "ekspeditor_033",
+      "mail_type": "conflict",
+      "mail_family": "forste_ansvar",
+      "role_scope": "ekspeditor",
+      "subject": "Ekspeditør-situasjon 33",
+      "summary": "Ekspeditør-situasjon 33",
+      "situation": "Du står i forste ansvar og må ta et konkret valg i butikkdriften.",
+      "task_domain": "campaign_setup",
+      "competency": "ansvar",
+      "pressure": "tidspress",
+      "choice_axis": "unngå_konflikt_vs_ta_samtalen",
+      "consequence_axis": "synlighet_vs_presisjon",
+      "narrative_arc": "fra_ansatt_til_fagperson",
+      "choices": [
+        {
+          "id": "A",
+          "label": "Følg rutine og forklar valget tydelig",
+          "effect": 1,
+          "tags": [
+            "kvalitet",
+            "kunde"
+          ],
+          "feedback": "Du prioriterer sporbarhet og forklaring, selv om det tar tid i øyeblikket."
+        },
+        {
+          "id": "B",
+          "label": "Velg raskeste løsning og håp det går bra",
+          "effect": -1,
+          "tags": [
+            "tempo",
+            "snarvei"
+          ],
+          "feedback": "Du løser presset raskt nå, men skyver risikoen videre til neste skift."
+        }
+      ]
+    },
+    {
+      "id": "ekspeditor_034",
+      "mail_type": "conflict",
+      "mail_family": "apning_og_lukking",
+      "role_scope": "ekspeditor",
+      "subject": "Ekspeditør-situasjon 34",
+      "summary": "Ekspeditør-situasjon 34",
+      "situation": "Du står i apning og lukking og må ta et konkret valg i butikkdriften.",
+      "task_domain": "shrinkage_control",
+      "competency": "prioritering",
+      "pressure": "kollegapress",
+      "choice_axis": "snarvei_vs_standard",
+      "consequence_axis": "komfort_vs_laring",
+      "narrative_arc": "forste_uke_pa_gulvet",
+      "choices": [
+        {
+          "id": "A",
+          "label": "Følg rutine og forklar valget tydelig",
+          "effect": 1,
+          "tags": [
+            "kvalitet",
+            "kunde"
+          ],
+          "feedback": "Du prioriterer sporbarhet og forklaring, selv om det tar tid i øyeblikket."
+        },
+        {
+          "id": "B",
+          "label": "Velg raskeste løsning og håp det går bra",
+          "effect": -1,
+          "tags": [
+            "tempo",
+            "snarvei"
+          ],
+          "feedback": "Du løser presset raskt nå, men skyver risikoen videre til neste skift."
+        }
+      ]
+    },
+    {
+      "id": "ekspeditor_035",
+      "mail_type": "story",
+      "mail_family": "ny_kollega_og_tillit",
+      "role_scope": "ekspeditor",
+      "subject": "Ekspeditør-situasjon 35",
+      "summary": "Ekspeditør-situasjon 35",
+      "situation": "Du står i ny kollega og tillit og må ta et konkret valg i butikkdriften.",
+      "task_domain": "customer_service",
+      "competency": "prioritering",
+      "pressure": "tidspress",
+      "choice_axis": "kortsiktig_flyt_vs_langsiktig_kontroll",
+      "consequence_axis": "tempo_vs_tillit",
+      "narrative_arc": "forste_uke_pa_gulvet",
+      "choices": [
+        {
+          "id": "A",
+          "label": "Følg rutine og forklar valget tydelig",
+          "effect": 1,
+          "tags": [
+            "kvalitet",
+            "kunde"
+          ],
+          "feedback": "Du prioriterer sporbarhet og forklaring, selv om det tar tid i øyeblikket."
+        },
+        {
+          "id": "B",
+          "label": "Velg raskeste løsning og håp det går bra",
+          "effect": -1,
+          "tags": [
+            "tempo",
+            "snarvei"
+          ],
+          "feedback": "Du løser presset raskt nå, men skyver risikoen videre til neste skift."
+        }
+      ]
+    },
+    {
+      "id": "ekspeditor_036",
+      "mail_type": "story",
+      "mail_family": "forste_ansvar",
+      "role_scope": "ekspeditor",
+      "subject": "Ekspeditør-situasjon 36",
+      "summary": "Ekspeditør-situasjon 36",
+      "situation": "Du står i forste ansvar og må ta et konkret valg i butikkdriften.",
+      "task_domain": "cash_desk",
+      "competency": "kommunikasjon",
+      "pressure": "kollegapress",
+      "choice_axis": "unngå_konflikt_vs_ta_samtalen",
+      "consequence_axis": "synlighet_vs_presisjon",
+      "narrative_arc": "kundenes_blikk",
+      "choices": [
+        {
+          "id": "A",
+          "label": "Følg rutine og forklar valget tydelig",
+          "effect": 1,
+          "tags": [
+            "kvalitet",
+            "kunde"
+          ],
+          "feedback": "Du prioriterer sporbarhet og forklaring, selv om det tar tid i øyeblikket."
+        },
+        {
+          "id": "B",
+          "label": "Velg raskeste løsning og håp det går bra",
+          "effect": -1,
+          "tags": [
+            "tempo",
+            "snarvei"
+          ],
+          "feedback": "Du løser presset raskt nå, men skyver risikoen videre til neste skift."
+        }
+      ]
+    },
+    {
+      "id": "ekspeditor_037",
+      "mail_type": "story",
+      "mail_family": "apning_og_lukking",
+      "role_scope": "ekspeditor",
+      "subject": "Ekspeditør-situasjon 37",
+      "summary": "Ekspeditør-situasjon 37",
+      "situation": "Du står i apning og lukking og må ta et konkret valg i butikkdriften.",
+      "task_domain": "returns",
+      "competency": "kvalitet",
+      "pressure": "kundepress",
+      "choice_axis": "snarvei_vs_standard",
+      "consequence_axis": "komfort_vs_laring",
+      "narrative_arc": "varene_som_system",
+      "choices": [
+        {
+          "id": "A",
+          "label": "Følg rutine og forklar valget tydelig",
+          "effect": 1,
+          "tags": [
+            "kvalitet",
+            "kunde"
+          ],
+          "feedback": "Du prioriterer sporbarhet og forklaring, selv om det tar tid i øyeblikket."
+        },
+        {
+          "id": "B",
+          "label": "Velg raskeste løsning og håp det går bra",
+          "effect": -1,
+          "tags": [
+            "tempo",
+            "snarvei"
+          ],
+          "feedback": "Du løser presset raskt nå, men skyver risikoen videre til neste skift."
+        }
+      ]
+    },
+    {
+      "id": "ekspeditor_038",
+      "mail_type": "story",
+      "mail_family": "lager_og_bestilling",
+      "role_scope": "ekspeditor",
+      "subject": "Ekspeditør-situasjon 38",
+      "summary": "Ekspeditør-situasjon 38",
+      "situation": "Du står i lager og bestilling og må ta et konkret valg i butikkdriften.",
+      "task_domain": "stock_flow",
+      "competency": "samarbeid",
+      "pressure": "måltallspress",
+      "choice_axis": "kortsiktig_flyt_vs_langsiktig_kontroll",
+      "consequence_axis": "tempo_vs_tillit",
+      "narrative_arc": "snarveien",
+      "choices": [
+        {
+          "id": "A",
+          "label": "Følg rutine og forklar valget tydelig",
+          "effect": 1,
+          "tags": [
+            "kvalitet",
+            "kunde"
+          ],
+          "feedback": "Du prioriterer sporbarhet og forklaring, selv om det tar tid i øyeblikket."
+        },
+        {
+          "id": "B",
+          "label": "Velg raskeste løsning og håp det går bra",
+          "effect": -1,
+          "tags": [
+            "tempo",
+            "snarvei"
+          ],
+          "feedback": "Du løser presset raskt nå, men skyver risikoen videre til neste skift."
+        }
+      ]
+    },
+    {
+      "id": "ekspeditor_039",
+      "mail_type": "event",
+      "mail_family": "apning_og_lukking",
+      "role_scope": "ekspeditor",
+      "subject": "Ekspeditør-situasjon 39",
+      "summary": "Ekspeditør-situasjon 39",
+      "situation": "Du står i apning og lukking og må ta et konkret valg i butikkdriften.",
+      "task_domain": "customer_service",
+      "competency": "prioritering",
+      "pressure": "tidspress",
+      "choice_axis": "kortsiktig_flyt_vs_langsiktig_kontroll",
+      "consequence_axis": "tempo_vs_tillit",
+      "narrative_arc": "forste_uke_pa_gulvet",
+      "choices": [
+        {
+          "id": "A",
+          "label": "Følg rutine og forklar valget tydelig",
+          "effect": 1,
+          "tags": [
+            "kvalitet",
+            "kunde"
+          ],
+          "feedback": "Du prioriterer sporbarhet og forklaring, selv om det tar tid i øyeblikket."
+        },
+        {
+          "id": "B",
+          "label": "Velg raskeste løsning og håp det går bra",
+          "effect": -1,
+          "tags": [
+            "tempo",
+            "snarvei"
+          ],
+          "feedback": "Du løser presset raskt nå, men skyver risikoen videre til neste skift."
+        }
+      ]
+    },
+    {
+      "id": "ekspeditor_040",
+      "mail_type": "event",
+      "mail_family": "lager_og_bestilling",
+      "role_scope": "ekspeditor",
+      "subject": "Ekspeditør-situasjon 40",
+      "summary": "Ekspeditør-situasjon 40",
+      "situation": "Du står i lager og bestilling og må ta et konkret valg i butikkdriften.",
+      "task_domain": "cash_desk",
+      "competency": "kommunikasjon",
+      "pressure": "kollegapress",
+      "choice_axis": "unngå_konflikt_vs_ta_samtalen",
+      "consequence_axis": "synlighet_vs_presisjon",
+      "narrative_arc": "kundenes_blikk",
+      "choices": [
+        {
+          "id": "A",
+          "label": "Følg rutine og forklar valget tydelig",
+          "effect": 1,
+          "tags": [
+            "kvalitet",
+            "kunde"
+          ],
+          "feedback": "Du prioriterer sporbarhet og forklaring, selv om det tar tid i øyeblikket."
+        },
+        {
+          "id": "B",
+          "label": "Velg raskeste løsning og håp det går bra",
+          "effect": -1,
+          "tags": [
+            "tempo",
+            "snarvei"
+          ],
+          "feedback": "Du løser presset raskt nå, men skyver risikoen videre til neste skift."
+        }
+      ]
+    },
+    {
+      "id": "ekspeditor_041",
+      "mail_type": "event",
+      "mail_family": "salg_og_veiledning",
+      "role_scope": "ekspeditor",
+      "subject": "Ekspeditør-situasjon 41",
+      "summary": "Ekspeditør-situasjon 41",
+      "situation": "Du står i salg og veiledning og må ta et konkret valg i butikkdriften.",
+      "task_domain": "returns",
+      "competency": "kvalitet",
+      "pressure": "kundepress",
+      "choice_axis": "snarvei_vs_standard",
+      "consequence_axis": "komfort_vs_laring",
+      "narrative_arc": "varene_som_system",
+      "choices": [
+        {
+          "id": "A",
+          "label": "Følg rutine og forklar valget tydelig",
+          "effect": 1,
+          "tags": [
+            "kvalitet",
+            "kunde"
+          ],
+          "feedback": "Du prioriterer sporbarhet og forklaring, selv om det tar tid i øyeblikket."
+        },
+        {
+          "id": "B",
+          "label": "Velg raskeste løsning og håp det går bra",
+          "effect": -1,
+          "tags": [
+            "tempo",
+            "snarvei"
+          ],
+          "feedback": "Du løser presset raskt nå, men skyver risikoen videre til neste skift."
+        }
+      ]
+    },
+    {
+      "id": "ekspeditor_042",
+      "mail_type": "event",
+      "mail_family": "ny_kollega_og_tillit",
+      "role_scope": "ekspeditor",
+      "subject": "Ekspeditør-situasjon 42",
+      "summary": "Ekspeditør-situasjon 42",
+      "situation": "Du står i ny kollega og tillit og må ta et konkret valg i butikkdriften.",
+      "task_domain": "stock_flow",
+      "competency": "samarbeid",
+      "pressure": "måltallspress",
+      "choice_axis": "kortsiktig_flyt_vs_langsiktig_kontroll",
+      "consequence_axis": "tempo_vs_tillit",
+      "narrative_arc": "snarveien",
+      "choices": [
+        {
+          "id": "A",
+          "label": "Følg rutine og forklar valget tydelig",
+          "effect": 1,
+          "tags": [
+            "kvalitet",
+            "kunde"
+          ],
+          "feedback": "Du prioriterer sporbarhet og forklaring, selv om det tar tid i øyeblikket."
+        },
+        {
+          "id": "B",
+          "label": "Velg raskeste løsning og håp det går bra",
+          "effect": -1,
+          "tags": [
+            "tempo",
+            "snarvei"
+          ],
+          "feedback": "Du løser presset raskt nå, men skyver risikoen videre til neste skift."
+        }
+      ]
+    },
+    {
+      "id": "ekspeditor_043",
+      "mail_type": "event",
+      "mail_family": "forste_ansvar",
+      "role_scope": "ekspeditor",
+      "subject": "Ekspeditør-situasjon 43",
+      "summary": "Ekspeditør-situasjon 43",
+      "situation": "Du står i forste ansvar og må ta et konkret valg i butikkdriften.",
+      "task_domain": "campaign_setup",
+      "competency": "ansvar",
+      "pressure": "tidspress",
+      "choice_axis": "unngå_konflikt_vs_ta_samtalen",
+      "consequence_axis": "synlighet_vs_presisjon",
+      "narrative_arc": "fra_ansatt_til_fagperson",
+      "choices": [
+        {
+          "id": "A",
+          "label": "Følg rutine og forklar valget tydelig",
+          "effect": 1,
+          "tags": [
+            "kvalitet",
+            "kunde"
+          ],
+          "feedback": "Du prioriterer sporbarhet og forklaring, selv om det tar tid i øyeblikket."
+        },
+        {
+          "id": "B",
+          "label": "Velg raskeste løsning og håp det går bra",
+          "effect": -1,
+          "tags": [
+            "tempo",
+            "snarvei"
+          ],
+          "feedback": "Du løser presset raskt nå, men skyver risikoen videre til neste skift."
+        }
+      ]
+    },
+    {
+      "id": "ekspeditor_044",
+      "mail_type": "event",
+      "mail_family": "apning_og_lukking",
+      "role_scope": "ekspeditor",
+      "subject": "Ekspeditør-situasjon 44",
+      "summary": "Ekspeditør-situasjon 44",
+      "situation": "Du står i apning og lukking og må ta et konkret valg i butikkdriften.",
+      "task_domain": "shrinkage_control",
+      "competency": "prioritering",
+      "pressure": "kollegapress",
+      "choice_axis": "snarvei_vs_standard",
+      "consequence_axis": "komfort_vs_laring",
+      "narrative_arc": "forste_uke_pa_gulvet",
+      "choices": [
+        {
+          "id": "A",
+          "label": "Følg rutine og forklar valget tydelig",
+          "effect": 1,
+          "tags": [
+            "kvalitet",
+            "kunde"
+          ],
+          "feedback": "Du prioriterer sporbarhet og forklaring, selv om det tar tid i øyeblikket."
+        },
+        {
+          "id": "B",
+          "label": "Velg raskeste løsning og håp det går bra",
+          "effect": -1,
+          "tags": [
+            "tempo",
+            "snarvei"
+          ],
+          "feedback": "Du løser presset raskt nå, men skyver risikoen videre til neste skift."
+        }
+      ]
+    }
+  ]
+}
