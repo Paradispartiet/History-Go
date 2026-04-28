@@ -32,6 +32,101 @@ function getLunchContext(active) {
   };
 }
 
+function getPhaseFamilyByTag(phaseTag) {
+  if (phaseTag === "lunch") return "lunch_store";
+  if (phaseTag === "evening") return "evening_store";
+  if (phaseTag === "day_end") return "day_end";
+  if (phaseTag === "morning") return "morning_carryover";
+  if (phaseTag === "afternoon") return "afternoon_work";
+  return "phase_generic";
+}
+
+function getPhaseSubjectVariants(phaseTag, storeName) {
+  const safeName = String(storeName || "miljøet ditt");
+  if (phaseTag === "lunch") {
+    return [
+      `Lunsj – ${safeName}`,
+      `Lunsj – en pause ved ${safeName}`,
+      `Lunsj – småprat rundt ${safeName}`,
+      `Lunsj – rytme eller omvei ved ${safeName}`,
+      `Lunsj – ${safeName} som pusterom`
+    ];
+  }
+
+  if (phaseTag === "evening") {
+    return [
+      `Kveld – ${safeName}`,
+      `Kveld – blir du værende ved ${safeName}?`,
+      `Kveld – hjem eller en runde til ved ${safeName}?`,
+      `Kveld – småpraten rundt ${safeName}`,
+      `Kveld – ${safeName} som unnskyldning`,
+      `Kveld – etterarbeid rundt ${safeName}`
+    ];
+  }
+
+  return [safeName];
+}
+
+function selectPhaseSubject(active, phaseTag, store, semanticEventKey) {
+  const variants = getPhaseSubjectVariants(phaseTag, store?.name || "");
+  if (variants.length <= 1) {
+    return {
+      subject: variants[0] || String(store?.name || "Fase"),
+      variantId: `${phaseTag || "phase"}_v1`
+    };
+  }
+
+  const careerId = String(active?.career_id || "").trim();
+  const eventHistory = getDayEventHistory()
+    .filter((entry) => String(entry?.entryType || "") === "phase_event")
+    .filter((entry) => String(entry?.phaseTag || "") === String(phaseTag || ""))
+    .filter((entry) => String(entry?.careerId || "") === careerId)
+    .slice(-18);
+
+  const sameSemantic = eventHistory.filter((entry) => {
+    return String(entry?.semanticEventKey || "") === String(semanticEventKey || "");
+  });
+
+  const lastSubject = String(sameSemantic[sameSemantic.length - 1]?.subject || "");
+  const usedCounts = new Map();
+  sameSemantic.forEach((entry) => {
+    const subject = String(entry?.subject || "");
+    if (!subject) return;
+    usedCounts.set(subject, Number(usedCounts.get(subject) || 0) + 1);
+  });
+
+  const ranked = variants
+    .map((subject, idx) => ({
+      subject,
+      variantBase: `${phaseTag}_v${idx + 1}`,
+      useCount: Number(usedCounts.get(subject) || 0)
+    }))
+    .sort((a, b) => a.useCount - b.useCount);
+
+  const preferred = ranked.find((row) => row.subject !== lastSubject) || ranked[0];
+  return {
+    subject: preferred.subject,
+    variantId: `${preferred.variantBase}_r${preferred.useCount + 1}`
+  };
+}
+
+function buildPhaseContext({
+  phaseTag,
+  semanticEventKey,
+  store,
+  variantId
+}) {
+  return {
+    phase_tag: String(phaseTag || ""),
+    phase_family: getPhaseFamilyByTag(phaseTag),
+    semantic_event_key: String(semanticEventKey || ""),
+    store_id: String(store?.id || ""),
+    store_name: String(store?.name || ""),
+    store_type: String(store?.type || ""),
+    variant_id: String(variantId || "")
+  };
+}
+
 async function makeLunchEvent(active) {
   const ctx = getLunchContext(active);
   const store = pickStoreContext(active, "lunch");
@@ -55,13 +150,23 @@ async function makeLunchEvent(active) {
     ? `Bylivet ditt trekker også mot ${historyGoContext.lunch_text}.`
     : null;
 
+  const semanticEventKey = `lunch:${store.id}`;
+  const subjectMeta = selectPhaseSubject(
+    active,
+    "lunch",
+    store,
+    semanticEventKey
+  );
+
   const baseEvent = {
     id: `phase_lunch_${Date.now()}`,
     stage: "stable",
     source: "Civication",
+    source_type: "phase",
     phase_tag: "lunch",
-    semantic_event_key: `lunch:${store.id}`,
-    subject: `Lunsjpause – ${store.name}`,
+    phase_family: getPhaseFamilyByTag("lunch"),
+    semantic_event_key: semanticEventKey,
+    subject: subjectMeta.subject,
     situation: [
       `${ctx.line1} I dag trekkes du mot ${store.name}.`,
       `${store.blurb} ${ctx.line2}`,
@@ -79,6 +184,12 @@ async function makeLunchEvent(active) {
       history_go_context_label: historyGoContext?.label || null,
       history_go_match_count: Number(historyGoContext?.matchCount || 0)
     },
+    phase_context: buildPhaseContext({
+      phaseTag: "lunch",
+      semanticEventKey,
+      store,
+      variantId: subjectMeta.variantId
+    }),
     choices: [
       {
         id: "A",
@@ -115,7 +226,14 @@ async function makeLunchEvent(active) {
 
   const flavoredByStore = applyStoreTypeFlavor(baseEvent, "lunch", store);
   const flavoredByCareer = applyCareerFlavor(flavoredByStore, "lunch", active);
-  return applyContactBonusToEvent(flavoredByCareer, "lunch");
+  const finalEvent = applyContactBonusToEvent(flavoredByCareer, "lunch");
+  rememberDayEvent(active, "lunch", store, {
+    entryType: "phase_event",
+    semanticEventKey,
+    subject: finalEvent?.subject || subjectMeta.subject,
+    variantId: finalEvent?.phase_context?.variant_id || subjectMeta.variantId
+  });
+  return finalEvent;
 }
 
 async function makeEveningEvent(active) {
@@ -161,13 +279,23 @@ async function makeEveningEvent(active) {
       `${store.blurb} Kvelden handler om hva slags retning du vil gi dagen som helhet.`;
   }
 
+  const semanticEventKey = `evening:${store.id}`;
+  const subjectMeta = selectPhaseSubject(
+    active,
+    "evening",
+    store,
+    semanticEventKey
+  );
+
   const baseEvent = {
     id: `phase_evening_${Date.now()}`,
     stage: "stable",
     source: "Civication",
+    source_type: "phase",
     phase_tag: "evening",
-    semantic_event_key: `evening:${store.id}`,
-    subject: `Kveld – ${store.name}`,
+    phase_family: getPhaseFamilyByTag("evening"),
+    semantic_event_key: semanticEventKey,
+    subject: subjectMeta.subject,
     situation: [
       line1,
       line2,
@@ -184,6 +312,12 @@ async function makeEveningEvent(active) {
       history_go_context_label: historyGoContext?.label || null,
       history_go_match_count: Number(historyGoContext?.matchCount || 0)
     },
+    phase_context: buildPhaseContext({
+      phaseTag: "evening",
+      semanticEventKey,
+      store,
+      variantId: subjectMeta.variantId
+    }),
     choices: [
       {
         id: "A",
@@ -220,7 +354,14 @@ async function makeEveningEvent(active) {
 
   const flavoredByStore = applyStoreTypeFlavor(baseEvent, "evening", store);
   const flavoredByCareer = applyCareerFlavor(flavoredByStore, "evening", active);
-  return applyContactBonusToEvent(flavoredByCareer, "evening");
+  const finalEvent = applyContactBonusToEvent(flavoredByCareer, "evening");
+  rememberDayEvent(active, "evening", store, {
+    entryType: "phase_event",
+    semanticEventKey,
+    subject: finalEvent?.subject || subjectMeta.subject,
+    variantId: finalEvent?.phase_context?.variant_id || subjectMeta.variantId
+  });
+  return finalEvent;
 }
 
 function makeDayEndEvent() {
@@ -311,13 +452,23 @@ function makeDayEndEvent() {
           ? "Neste morgen kan bli mer ryddig og prosessorientert."
           : "Neste morgen starter uten tydelig etterslep.";
 
+  const semanticEventKey = `day_end:${summary.dayIndex}`;
   return {
     id: `phase_day_end_${Date.now()}`,
     stage: "stable",
     source: "Civication",
+    source_type: "phase",
     phase_tag: "day_end",
+    phase_family: getPhaseFamilyByTag("day_end"),
+    semantic_event_key: semanticEventKey,
     subject: `Dag ${summary.dayIndex} er over`,
     situation: [line1, line2, line3, line4],
+    phase_context: buildPhaseContext({
+      phaseTag: "day_end",
+      semanticEventKey,
+      store: null,
+      variantId: "day_end_v1"
+    }),
     day_end_context: summary,
     choices: [],
     feedback: "Dagen lukkes. En ny dag starter."
@@ -489,14 +640,19 @@ function getRecentDayEventKeys(phaseTag, careerId) {
     .filter(Boolean);
 }
 
-function rememberDayEventStore(active, phaseTag, store) {
+function rememberDayEvent(active, phaseTag, store, meta) {
+  const safeMeta = meta && typeof meta === "object" ? meta : {};
   const history = getDayEventHistory();
   history.push({
     at: new Date().toISOString(),
     careerId: String(active?.career_id || "").trim(),
     phaseTag: String(phaseTag || "").trim(),
     storeId: String(store?.id || "").trim(),
-    storeName: String(store?.name || "").trim()
+    storeName: String(store?.name || "").trim(),
+    subject: String(safeMeta?.subject || "").trim(),
+    variantId: String(safeMeta?.variantId || "").trim(),
+    semanticEventKey: String(safeMeta?.semanticEventKey || "").trim(),
+    entryType: String(safeMeta?.entryType || "store_pick").trim()
   });
   setDayEventHistory(history);
 }
@@ -525,7 +681,7 @@ function pickStoreContext(active, phaseTag) {
   const nonRecent = rotated.filter((store) => !recentStoreIds.has(String(store?.id || "").trim()));
   const chosen = nonRecent[0] || rotated[0] || pool[0];
 
-  rememberDayEventStore(active, phaseTag, chosen);
+  rememberDayEvent(active, phaseTag, chosen, { entryType: "store_pick" });
 
   return {
     ...chosen,

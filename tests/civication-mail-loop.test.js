@@ -220,6 +220,91 @@ async function run() {
     'sw.js precache should include current runtime scripts'
   );
 
+  global.getVisitedPlacesCount = () => 2;
+  global.getVisitedPlaceIds = () => [];
+  global.loadPlaceContexts = async () => [];
+  global.getMatchedHistoryGoContexts = () => [];
+  global.pickHistoryGoContext = () => null;
+  global.getContextFlavorForCareer = () => null;
+  global.getCiviContacts = () => [];
+  global.buildCarryoverFromChoiceLog = () => ({
+    fatigue: 0,
+    visibilityBias: 0,
+    processBias: 0
+  });
+
+  global.CivicationPlaceAccessBridge = {
+    getBucket(_type) {
+      return ['coffee', 'food'];
+    }
+  };
+
+  loadScript('js/Civication/systems/day/dayEvents.js');
+
+  const phaseRole = {
+    career_id: 'naeringsliv',
+    brand_name: 'Paradispartiet'
+  };
+
+  const eveningEvents = [];
+  for (let i = 0; i < 6; i += 1) {
+    // eslint-disable-next-line no-await-in-loop
+    const event = await global.makeEveningEvent(phaseRole);
+    eveningEvents.push(event);
+  }
+
+  assert.strictEqual(eveningEvents.length, 6, 'Expected 6 generated evening phase events');
+  eveningEvents.forEach((event) => {
+    assert.strictEqual(event.source_type, 'phase', 'Evening phase event must have source_type=phase');
+    assert.strictEqual(event.phase_family, 'evening_store', 'Evening phase event must have phase_family=evening_store');
+    assert(event.phase_context && typeof event.phase_context === 'object', 'Evening phase event must include phase_context');
+  });
+
+  const eveningSubjects = new Set(eveningEvents.map(event => event.subject));
+  assert(eveningSubjects.size > 1, 'Evening subjects should not all be identical');
+
+  const eveningSemanticSubjectPairs = new Set();
+  eveningEvents.forEach((event) => {
+    const key = `${event.semantic_event_key}|${event.subject}|${event.phase_context?.variant_id || ''}`;
+    assert(
+      !eveningSemanticSubjectPairs.has(key),
+      'Evening semantic_event_key repeats must vary by subject and/or variant'
+    );
+    eveningSemanticSubjectPairs.add(key);
+  });
+
+  const lunchEvents = [];
+  for (let i = 0; i < 6; i += 1) {
+    // eslint-disable-next-line no-await-in-loop
+    const event = await global.makeLunchEvent(phaseRole);
+    lunchEvents.push(event);
+  }
+
+  assert.strictEqual(lunchEvents.length, 6, 'Expected 6 generated lunch phase events');
+  lunchEvents.forEach((event) => {
+    assert.strictEqual(event.source_type, 'phase', 'Lunch phase event must have source_type=phase');
+    assert.strictEqual(event.phase_family, 'lunch_store', 'Lunch phase event must have phase_family=lunch_store');
+    assert(event.phase_context && typeof event.phase_context === 'object', 'Lunch phase event must include phase_context');
+  });
+
+  const lunchSubjects = new Set(lunchEvents.map(event => event.subject));
+  assert(lunchSubjects.size > 1, 'Lunch subjects should not all be identical');
+
+  const lunchSemanticSubjectPairs = new Set();
+  lunchEvents.forEach((event) => {
+    const key = `${event.semantic_event_key}|${event.subject}|${event.phase_context?.variant_id || ''}`;
+    assert(
+      !lunchSemanticSubjectPairs.has(key),
+      'Lunch semantic_event_key repeats must vary by subject and/or variant'
+    );
+    lunchSemanticSubjectPairs.add(key);
+  });
+
+  const dayEndEvent = global.makeDayEndEvent();
+  assert.strictEqual(dayEndEvent.source_type, 'phase', 'Day-end phase event must have source_type=phase');
+  assert.strictEqual(dayEndEvent.phase_family, 'day_end', 'Day-end phase event must have phase_family=day_end');
+  assert(dayEndEvent.phase_context && typeof dayEndEvent.phase_context === 'object', 'Day-end phase event must include phase_context');
+
   console.log('PASS: Civication mail runtime loop test completed.');
   console.log(`answered_planned_mail=${answeredMailId}`);
   console.log(`runtime_step_index=${runtimeAfterAnswer.step_index}`);
