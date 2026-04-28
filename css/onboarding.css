@@ -257,3 +257,96 @@ body.hg-app.hg-load-failed::after {
 .hg-empty-guide-action:hover {
   background: rgba(255,255,255,0.2);
 }
+
+/* ========== Toast-posisjon og størrelse ========== */
+
+body.hg-app #toast {
+  position: absolute;
+  top: auto;
+  bottom: 130px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: min(760px, 84%);
+  max-height: 369px;
+  height: auto;
+  overflow-y: auto;
+
+  display: none;
+  z-index: 30000;
+  padding: 30px 86px 30px 34px;
+  border-radius: 30px;
+
+  background: rgba(8, 8, 8, 0.9);
+  border: 1px solid rgba(255,255,255,0.18);
+  box-shadow: 0 18px 46px rgba(0,0,0,0.45);
+  color: #fff;
+}
+
+body.hg-app #toast .toast-body {
+  font-size: 42px;
+  line-height: 1.12;
+  font-weight: 850;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+body.hg-app #toast .toast-close {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  transform: none;
+
+  width: 50px;
+  height: 50px;
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 999px;
+
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+  font-size: 34px;
+  line-height: 1;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+body.hg-app .nature-unlock-stack {
+  bottom: 130px;
+  width: min(760px, 84%);
+  max-height: 369px;
+  overflow-y: auto;
+}
+
+body.hg-app .nature-unlock-card {
+  grid-template-columns: 86px 1fr auto;
+  gap: 18px;
+  padding: 22px 22px 22px 20px;
+  border-radius: 28px;
+}
+
+body.hg-app .nature-unlock-thumb {
+  width: 86px;
+  height: 86px;
+  border-radius: 18px;
+}
+
+body.hg-app .nature-unlock-kicker {
+  font-size: 18px;
+}
+
+body.hg-app .nature-unlock-title,
+body.hg-app .nature-unlock-card.is-badge .nature-unlock-title {
+  font-size: 34px;
+  line-height: 1.08;
+}
+
+body.hg-app .nature-unlock-latin,
+body.hg-app .nature-unlock-card.is-badge .nature-unlock-latin {
+  font-size: 22px;
+}
+
+body.hg-app .nature-unlock-close {
+  width: 48px;
+  height: 48px;
+  font-size: 26px;
+}
