@@ -119,3 +119,31 @@ window.exitMapMode = exitMapMode;
 window.addEventListener("resize", () => {
   window.MAP?.resize?.();
 });
+
+// ============================================================
+// PERSON-POPUP ANCHOR
+// Person-popup må ligge i samme skalerte app-shell som Nearby.
+// Hvis den blir appendet direkte på body, vil hardkodede top-verdier
+// bruke viewport-piksler og gi synlig mellomrom på iPad.
+// ============================================================
+
+function anchorPersonPopupToAppShell(node) {
+  if (!node || !node.classList?.contains("person-popup")) return;
+
+  const shell = document.querySelector(".app-shell");
+  if (!shell || node.parentElement === shell) return;
+
+  shell.appendChild(node);
+}
+
+const personPopupObserver = new MutationObserver(records => {
+  records.forEach(record => {
+    record.addedNodes.forEach(node => {
+      anchorPersonPopupToAppShell(node);
+    });
+  });
+});
+
+personPopupObserver.observe(document.body, {
+  childList: true
+});
