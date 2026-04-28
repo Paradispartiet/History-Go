@@ -1,0 +1,98 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "naeringsliv",
+  "role_scope": "ekspeditor",
+  "mail_type": "people",
+  "families": [
+    {
+      "id": "ny_kollega_og_tillit",
+      "mails": [
+        {
+          "id": "ekspeditor_people_ny_kollega_spor_001",
+          "mail_type": "people",
+          "mail_family": "ny_kollega_og_tillit",
+          "role_scope": "ekspeditor",
+          "subject": "Ny kollega spør deg mens du selv henger etter",
+          "summary": "En ny kollega trenger hjelp, men du har egne varer som skulle vært fylt på.",
+          "situation": [
+            "En ny kollega stopper deg og spør hvordan returer skal legges inn.",
+            "Du kan svaret, men du vet også at din egen hylle skulle vært ferdig før rush.",
+            "Situasjonen tester om du ser samarbeid som forstyrrelse eller som del av driften."
+          ],
+          "task_domain": "samarbeid",
+          "competency": "samarbeid",
+          "pressure": "du_kan_ikke_alt_enna",
+          "choice_axis": "hjelpe_vs_egen_oppgave",
+          "consequence_axis": "kollega_tillit",
+          "narrative_arc": "forste_uke_pa_gulvet",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Hjelp kort og presist, og si hva du må tilbake til etterpå",
+              "effect": 1,
+              "tags": ["samarbeid", "prioritering", "kollega_tillit"],
+              "feedback": "Du hjelper uten å miste egen oppgave helt av syne."
+            },
+            {
+              "id": "B",
+              "label": "Si at du ikke har tid og be henne spørre noen andre",
+              "effect": -1,
+              "tags": ["tempo", "kollega_tillit_minus"],
+              "feedback": "Du beskytter egen oppgave, men gjør terskelen høyere for neste spørsmål."
+            },
+            {
+              "id": "C",
+              "label": "Ta over hele returen for å få det riktig",
+              "effect": 0,
+              "tags": ["hjelp", "lav_opplaring", "tidspress"],
+              "feedback": "Du løser saken, men lærer ikke kollegaen å mestre den selv."
+            }
+          ]
+        },
+        {
+          "id": "ekspeditor_people_erfaren_kollega_001",
+          "mail_type": "people",
+          "mail_family": "ny_kollega_og_tillit",
+          "role_scope": "ekspeditor",
+          "subject": "Den erfarne kollegaen ser at du gjør det grundig",
+          "summary": "En erfaren kollega kommenterer at du bruker mer tid enn de andre på å gjøre ting riktig.",
+          "situation": [
+            "Mens du retter opp prismerking, sier en erfaren kollega at du er grundig, kanskje litt for grundig.",
+            "Det er sagt halvt som ros og halvt som advarsel.",
+            "Du skjønner at arbeidsplassen har en uformell standard som ikke alltid er identisk med rutinen."
+          ],
+          "task_domain": "samarbeid",
+          "competency": "samarbeid",
+          "pressure": "kollega_tar_snarvei",
+          "choice_axis": "snarvei_vs_rutine",
+          "consequence_axis": "kollega_tillit",
+          "narrative_arc": "snarveien",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Spør hvordan de erfarne skiller mellom viktig grundighet og unødvendig pirk",
+              "effect": 1,
+              "tags": ["laering", "kollega_tillit", "noyaktighet"],
+              "feedback": "Du beholder standarden, men viser at du vil forstå arbeidsrytmen."
+            },
+            {
+              "id": "B",
+              "label": "Le det bort og fortsett akkurat som før",
+              "effect": 0,
+              "tags": ["integritet", "lav_dialog"],
+              "feedback": "Du holder linjen, men går glipp av lokal kunnskap."
+            },
+            {
+              "id": "C",
+              "label": "Begynn å gjøre det raskere for å passe inn",
+              "effect": -1,
+              "tags": ["tilpasning", "noyaktighet_minus", "snarvei"],
+              "feedback": "Du glir lettere inn, men uten å vite hvilke deler av nøyaktigheten du ofrer."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
