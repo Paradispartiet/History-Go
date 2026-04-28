@@ -2,6 +2,12 @@ name: Build nature place candidates
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "tools/build_nature_place_candidates.mjs"
+      - ".github/workflows/build-nature-place-candidates.yml"
 
 jobs:
   build:
