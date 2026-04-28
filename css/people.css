@@ -113,3 +113,49 @@
   z-index: 3;
   font-weight: 700;
 }
+
+/* ============================================================
+   PERSON-POPUP
+   Skal starte under Nearby og dekke kartområdet under Nearby.
+   Header 74px + Nearby 260px = 334px.
+   ============================================================ */
+
+body.hg-app .hg-popup.person-popup{
+  position: absolute;
+  top: 334px;
+  left: 0;
+  right: 0;
+  bottom: 80px;
+  inset: 334px 0 80px 0;
+
+  width: auto;
+  height: auto;
+
+  z-index: 1800;
+  background: rgba(0,0,0,0.82);
+
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
+
+  padding: 0;
+  overflow: hidden;
+}
+
+body.hg-app .hg-popup.person-popup .hg-popup-inner{
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  max-height: none;
+
+  margin: 0;
+  border-radius: 0;
+  padding: 26px 28px 30px;
+
+  background: #000;
+  color: #fff;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
