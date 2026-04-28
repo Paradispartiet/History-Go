@@ -150,6 +150,10 @@
   }
 
   function setPlanProgress(plan, step) {
+    if (runtimeOwnsPlanProgress()) {
+      return getPlanProgress(window.CivicationState?.getState?.() || {});
+    }
+
     const next = {
       role_plan_id: normStr(plan?.id),
       step_index: Math.max(0, Number(step?.step || 0) - 1),
