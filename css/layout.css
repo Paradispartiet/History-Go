@@ -133,13 +133,16 @@ body.hg-app .app-footer{
 
 
 /* ============================================================
-   PLACE CARD LAYER (NO LOGIC HERE)
+   PLACE CARD LAYER
+   Starter rett under header + Nearby (74px + 260px = 334px)
    ============================================================ */
 
-#placeCard{
+body.hg-app #placeCard{
   position: absolute;
   left: 0;
   right: 0;
+  top: 334px;
   bottom: 80px; /* same as footer height */
+  height: auto;
   z-index: 100;
 }
