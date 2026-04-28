@@ -178,14 +178,50 @@ function showToast(msg, ms = null) {
             const title = norm(item?.title || item?.label || item?.name || id);
             const type = typeLabel(item?.type);
             if (!id) return "";
+            const desc = norm(item?.description || item?.desc);
             return `
-              <button class="pc-wk-entry" data-wk="${esc(id)}">
+              <button class="pc-wk-entry" type="button" data-wk-nav="${esc(id)}">
                 <span class="pc-wk-entry-title">${esc(title)}</span>
                 <span class="pc-wk-entry-type">${esc(type)}</span>
+                ${desc ? `<span class="pc-wk-entry-desc">${esc(desc)}</span>` : ""}
               </button>
             `;
           }).join("")}
         </div>
+      </section>
+    `;
+  }
+
+  function metaGridHtml(entry) {
+    const fields = [
+      ["safetyNote", "Trygghet"],
+      ["durationHint", "Varighet"],
+      ["intensity", "Intensitet"],
+      ["equipment", "Utstyr"],
+      ["season", "Sesong"],
+      ["adultRole", "Voksenrolle"],
+      ["playMode", "Lekemodus"],
+      ["socialMode", "Sosial modus"]
+    ];
+
+    const blocks = fields
+      .map(([key, label]) => {
+        const value = norm(entry?.[key]);
+        if (!value) return "";
+        return `
+          <div class="wk-entry-meta-item">
+            <h4>${esc(label)}</h4>
+            <p>${esc(value)}</p>
+          </div>
+        `;
+      })
+      .filter(Boolean)
+      .join("");
+
+    if (!blocks) return "";
+    return `
+      <section class="wk-entry-section">
+        <div class="wk-entry-meta-grid">${blocks}</div>
       </section>
     `;
   }
@@ -204,16 +240,19 @@ function showToast(msg, ms = null) {
     const activityText = norm(entry.activityText || entry.activity || entry.useText);
     const ageHint = norm(entry.ageHint || entry.age || entry.levelHint);
     const parentTitle = norm(resolved.parentEntry?.title || "");
-
-    const context = [type, resolved.parentName, parentTitle].filter(Boolean).join(" · ");
+    const parentEntryId = norm(resolved.parentEntry?.id || "");
+    const breadcrumb = [resolved.parentName, parentTitle, title].filter(Boolean).join(" \u2192 ");
 
     const html = `
       <article class="wk-entry-popup">
-        <div class="wk-entry-kicker">${esc(context || "Wonderkammer")}</div>
+        <div class="wk-entry-breadcrumb">${esc(breadcrumb || title)}</div>
+        <div class="wk-entry-type-chip">${esc(type)}</div>
+        ${parentEntryId ? `<button class="wk-entry-back" type="button" data-wk-nav="${esc(parentEntryId)}">← Tilbake til ${esc(parentTitle || "forrige nivå")}</button>` : ""}
         <h2 class="hg-popup-name">${esc(title)}</h2>
         ${description ? `<p class="hg-popup-desc">${esc(description)}</p>` : ""}
         ${activityText ? `<section class="wk-entry-section"><h3>Hva kan man gjøre her?</h3><p>${esc(activityText)}</p></section>` : ""}
         ${ageHint ? `<section class="wk-entry-section"><h3>Alder / nivå</h3><p>${esc(ageHint)}</p></section>` : ""}
+        ${metaGridHtml(entry)}
         ${childListHtml(entry)}
         <button class="reward-ok" data-close-popup>Lukk</button>
       </article>
@@ -222,6 +261,17 @@ function showToast(msg, ms = null) {
     const popupFn = window.makePopup || (typeof makePopup === "function" ? makePopup : null);
     if (typeof popupFn === "function") {
       popupFn(html, "wonderkammer-entry-popup");
+      const root = document.querySelector(".hg-popup.wonderkammer-entry-popup");
+      if (root && !root.dataset.wkNavBound) {
+        root.dataset.wkNavBound = "1";
+        root.addEventListener("click", (e) => {
+          const btn = e.target.closest("[data-wk-nav]");
+          if (!btn || !root.contains(btn)) return;
+          const nextId = norm(btn.dataset.wkNav);
+          if (!nextId) return;
+          openEntry(nextId);
+        });
+      }
       return;
     }
 
