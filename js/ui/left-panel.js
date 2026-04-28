@@ -8,7 +8,19 @@ function hg$(id) {
   return document.getElementById(id);
 }
 
+function hgActiveLeftPanelMode() {
+  return document.querySelector(".nearby-tab.is-active")?.getAttribute("data-leftmode") || "nearby";
+}
 
+function rerenderActiveLeftPanelMode() {
+  const mode = hgActiveLeftPanelMode();
+
+  if (mode === "nearby" && typeof renderNearbyPlaces === "function") renderNearbyPlaces();
+  if (mode === "people" && typeof renderNearbyPeople === "function") renderNearbyPeople();
+  if (mode === "nature" && typeof renderNearbyNature === "function") renderNearbyNature();
+  if (mode === "routes" && typeof renderLeftRoutesList === "function") renderLeftRoutesList();
+  if (mode === "badges" && typeof renderLeftBadges === "function") renderLeftBadges();
+}
 
 // ============================================================
 // LEFT PANEL MODES
@@ -39,19 +51,6 @@ function setLeftPanelMode(mode) {
     );
   });
 
-  // 🔹 Render riktig liste når mode byttes
-  if (mode === "nearby" && typeof renderNearbyPlaces === "function") {
-    renderNearbyPlaces();
-  }
-
-  if (mode === "people" && typeof renderNearbyPeople === "function") {
-    renderNearbyPeople();
-  }
-
-  if (mode === "nature" && typeof renderNearbyNature === "function") {
-    renderNearbyNature();
-  }
-
   if (typeof window.updateNearbyFilterButton === "function") {
     window.updateNearbyFilterButton();
   }
@@ -60,13 +59,7 @@ function setLeftPanelMode(mode) {
     window.updateNearbyBadgeFilterButton();
   }
 
-  if (mode === "routes" && typeof renderLeftRoutesList === "function") {
-    renderLeftRoutesList();
-  }
-
-  if (mode === "badges" && typeof renderLeftBadges === "function") {
-    renderLeftBadges();
-  }
+  rerenderActiveLeftPanelMode();
 
   window.HGMap?.resize?.();
   window.MAP?.resize?.();
@@ -99,6 +92,32 @@ function syncLeftPanelFrame() {
 }
 
 // ============================================================
+// BADGE FILTER HELPERS
+// ============================================================
+
+function getCategoryById(id) {
+  const cats = Array.isArray(window.CATEGORY_LIST) ? window.CATEGORY_LIST : [];
+  return cats.find(c => String(c.id || "").trim() === String(id || "").trim()) || null;
+}
+
+function getNearbyBadgeOptions() {
+  const cats = Array.isArray(window.CATEGORY_LIST) ? window.CATEGORY_LIST : [];
+  return ["all", ...cats.map(c => String(c.id || "").trim()).filter(Boolean)];
+}
+
+function getActiveBadgeFilter() {
+  return window.HG_NEARBY_BADGE_FILTER || "all";
+}
+
+function isBadgeFilterActive() {
+  const f = getActiveBadgeFilter();
+  return !!f && f !== "all";
+}
+
+window.HG_getActiveBadgeFilter = getActiveBadgeFilter;
+window.HG_isBadgeFilterActive = isBadgeFilterActive;
+
+// ============================================================
 // BADGES I VENSTRE PANEL
 // ============================================================
 
@@ -111,7 +130,25 @@ function renderLeftBadges() {
     return;
   }
 
-  box.innerHTML = window.CATEGORY_LIST.map(c => `
+  const activeBadge = getActiveBadgeFilter();
+  let categories = window.CATEGORY_LIST;
+
+  if (activeBadge !== "all") {
+    categories = categories.filter(c => String(c.id || "").trim() === String(activeBadge).trim());
+  }
+
+  if (!categories.length) {
+    box.innerHTML = `
+      <div class="hg-empty-guide">
+        <div class="hg-empty-guide-icon">🏅</div>
+        <div class="hg-empty-guide-title">Ingen merker</div>
+        <div class="hg-empty-guide-text">Badgefilteret skjuler alle merker akkurat nå. Trykk badgeknappen for å vise alle.</div>
+      </div>
+    `;
+    return;
+  }
+
+  box.innerHTML = categories.map(c => `
     <button class="chip ghost" data-badge-id="${c.id}"
       style="justify-content:flex-start;width:100%;">
       <img src="bilder/merker/${c.id}.PNG"
@@ -120,6 +157,15 @@ function renderLeftBadges() {
       ${c.name}
     </button>
   `).join("");
+
+  box.querySelectorAll("[data-badge-id]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      window.HG_NEARBY_BADGE_FILTER = btn.getAttribute("data-badge-id") || "all";
+      try { localStorage.setItem("hg_nearby_badge_filter_v1", window.HG_NEARBY_BADGE_FILTER); } catch {}
+      if (typeof window.updateNearbyBadgeFilterButton === "function") window.updateNearbyBadgeFilterButton();
+      renderLeftBadges();
+    });
+  });
 }
 
 // ============================================================
@@ -140,16 +186,6 @@ function ensureNearbyBadgeFilterButton(placeFilterBtn) {
 
   placeFilterBtn.insertAdjacentElement("afterend", btn);
   return btn;
-}
-
-function getNearbyBadgeOptions() {
-  const cats = Array.isArray(window.CATEGORY_LIST) ? window.CATEGORY_LIST : [];
-  return ["all", ...cats.map(c => String(c.id || "").trim()).filter(Boolean)];
-}
-
-function getCategoryById(id) {
-  const cats = Array.isArray(window.CATEGORY_LIST) ? window.CATEGORY_LIST : [];
-  return cats.find(c => String(c.id || "").trim() === String(id || "").trim()) || null;
 }
 
 // ============================================================
@@ -195,7 +231,7 @@ function initLeftPanel() {
 
   // Re-render natur når DataHub blir ferdig (hvis fanen allerede står åpen).
   window.addEventListener("hg:nature-loaded", () => {
-    const active = document.querySelector(".nearby-tab.is-active")?.getAttribute("data-leftmode");
+    const active = hgActiveLeftPanelMode();
     if (active === "nature" && typeof renderNearbyNature === "function") {
       renderNearbyNature();
     }
@@ -203,7 +239,7 @@ function initLeftPanel() {
 
   // Re-render natur når en unlock skjer fra quiz (HGNatureUnlocks dispatcher hg:nature).
   window.addEventListener("hg:nature", () => {
-    const active = document.querySelector(".nearby-tab.is-active")?.getAttribute("data-leftmode");
+    const active = hgActiveLeftPanelMode();
     if (active === "nature" && typeof renderNearbyNature === "function") {
       renderNearbyNature();
     }
@@ -219,8 +255,6 @@ function initLeftPanel() {
   }
 
 
-  
-  
   // =====================================
   // Nearby filter button
   // =====================================
@@ -234,17 +268,12 @@ function initLeftPanel() {
   const NATURE_ICONS = { all: "🌍", unlocked: "🔓", flora: "🌿", fauna: "🐞" };
   const NATURE_ORDER = ["all", "unlocked", "flora", "fauna"];
 
-  function activeMode() {
-    return document.querySelector(".nearby-tab.is-active")?.getAttribute("data-leftmode") || "nearby";
-  }
-
   function updateBadgeFilterButton() {
     if (!badgeBtn) return;
 
-    const mode = activeMode();
-    badgeBtn.style.display = mode === "nearby" ? "inline-flex" : "none";
+    badgeBtn.style.display = "inline-flex";
 
-    const filter = window.HG_NEARBY_BADGE_FILTER || "all";
+    const filter = getActiveBadgeFilter();
     const cat = getCategoryById(filter);
 
     if (!cat || filter === "all") {
@@ -262,7 +291,7 @@ function initLeftPanel() {
 
   function updateFilterButton() {
     if (!btn) return;
-    const mode = activeMode();
+    const mode = hgActiveLeftPanelMode();
     if (mode === "nature") {
       btn.textContent = NATURE_ICONS[window.HG_NATURE_FILTER] || "🌍";
       btn.title = `Natur-filter: ${window.HG_NATURE_FILTER}`;
@@ -277,7 +306,7 @@ function initLeftPanel() {
 
   if (btn) {
     btn.addEventListener("click", () => {
-      const mode = activeMode();
+      const mode = hgActiveLeftPanelMode();
       if (mode === "nature") {
         const i = NATURE_ORDER.indexOf(window.HG_NATURE_FILTER);
         window.HG_NATURE_FILTER = NATURE_ORDER[(i + 1) % NATURE_ORDER.length];
@@ -289,7 +318,7 @@ function initLeftPanel() {
         window.HG_NEARBY_FILTER = PLACES_ORDER[(i + 1) % PLACES_ORDER.length];
         try { localStorage.setItem("hg_nearby_filter_v1", window.HG_NEARBY_FILTER); } catch {}
         updateFilterButton();
-        if (typeof renderNearbyPlaces === "function") renderNearbyPlaces();
+        rerenderActiveLeftPanelMode();
       }
     });
   }
@@ -297,12 +326,12 @@ function initLeftPanel() {
   if (badgeBtn) {
     badgeBtn.addEventListener("click", () => {
       const order = getNearbyBadgeOptions();
-      const current = window.HG_NEARBY_BADGE_FILTER || "all";
+      const current = getActiveBadgeFilter();
       const i = order.indexOf(current);
       window.HG_NEARBY_BADGE_FILTER = order[(i + 1) % order.length] || "all";
       try { localStorage.setItem("hg_nearby_badge_filter_v1", window.HG_NEARBY_BADGE_FILTER); } catch {}
       updateBadgeFilterButton();
-      if (typeof renderNearbyPlaces === "function") renderNearbyPlaces();
+      rerenderActiveLeftPanelMode();
     });
   }
 
