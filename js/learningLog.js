@@ -151,6 +151,19 @@
     }
   }
 
+  function setPanelOpen(panel, btn, open) {
+    if (!panel || !btn) return;
+
+    panel.classList.toggle("is-open", open);
+    panel.setAttribute("aria-hidden", open ? "false" : "true");
+
+    // Direkte display-styring gjør knappen robust selv om gammel CSS ligger i cache.
+    panel.style.display = open ? "grid" : "none";
+
+    btn.classList.toggle("is-active", open);
+    btn.setAttribute("aria-expanded", open ? "true" : "false");
+  }
+
   function ensureFooterNextUp() {
     const footer = document.querySelector(".app-footer");
     if (!footer) return null;
@@ -164,7 +177,8 @@
       document.querySelector(".app-shell")?.appendChild(panel);
     }
 
-    panel.className = "app-nextup footer-nextup-panel";
+    // Ikke bruk app-nextup-klassen her. Den er gammel global linje og skjules av footer.css.
+    panel.className = "footer-nextup-panel";
     panel.setAttribute("aria-hidden", panel.classList.contains("is-open") ? "false" : "true");
 
     let btn = document.getElementById("pcNextUpBtn");
@@ -179,11 +193,20 @@
       footer.appendChild(btn);
     }
 
-    btn.onclick = () => {
-      const isOpen = panel.classList.toggle("is-open");
-      panel.setAttribute("aria-hidden", isOpen ? "false" : "true");
-      btn.classList.toggle("is-active", isOpen);
-    };
+    if (btn.dataset.nextupBound !== "1") {
+      btn.dataset.nextupBound = "1";
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const currentPanel = document.getElementById("mpNextUp");
+        const isOpen = !currentPanel?.classList.contains("is-open");
+        setPanelOpen(currentPanel, btn, isOpen);
+      });
+    }
+
+    const isOpen = panel.classList.contains("is-open");
+    setPanelOpen(panel, btn, isOpen);
 
     return panel;
   }
@@ -239,6 +262,8 @@
     const panel = ensureFooterNextUp();
     if (!panel) return;
 
+    const wasOpen = panel.classList.contains("is-open");
+
     tri = tri && typeof tri === "object" ? tri : {};
 
     const spatial = tri.spatial || null;
@@ -277,6 +302,9 @@
     `;
 
     bindNextUp(panel);
+
+    const btn = document.getElementById("pcNextUpBtn");
+    setPanelOpen(panel, btn, wasOpen);
   }
 
   function bootNextUpFooter() {
