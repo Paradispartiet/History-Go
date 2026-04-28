@@ -110,3 +110,44 @@
     KEYS: { LEARNING: LEARNING_KEY, LEGACY: LEGACY_KEY, MIGRATED_FLAG }
   };
 })(window);
+
+// ------------------------------------------------------------
+// NextUp persistence + profile-only renderer loader
+// ------------------------------------------------------------
+(function () {
+  "use strict";
+
+  window.addEventListener("hg:mpNextUp", (e) => {
+    const tri = e.detail?.tri || {};
+    const becauseLine = e.detail?.becauseLine || "";
+
+    try {
+      localStorage.setItem("hg_nextup_because", String(becauseLine || ""));
+      localStorage.setItem("hg_nextup_tri", JSON.stringify(tri || {}));
+    } catch {}
+  });
+
+  function loadProfileNextUp() {
+    if (!document.body || !document.body.classList.contains("profile-page")) return;
+
+    if (!document.querySelector('link[href="css/profile-nextup.css"]')) {
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = "css/profile-nextup.css";
+      document.head.appendChild(link);
+    }
+
+    if (!document.querySelector('script[src="js/ui/profile-nextup.js"]')) {
+      const script = document.createElement("script");
+      script.src = "js/ui/profile-nextup.js";
+      script.defer = true;
+      document.body.appendChild(script);
+    }
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", loadProfileNextUp);
+  } else {
+    loadProfileNextUp();
+  }
+})();
