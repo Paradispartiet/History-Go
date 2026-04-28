@@ -1,0 +1,91 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "naeringsliv",
+  "role_scope": "ekspeditor",
+  "mail_type": "story",
+  "families": [
+    {
+      "id": "yrkesidentitet_pa_gulvet",
+      "mails": [
+        {
+          "id": "ekspeditor_story_service_er_arbeid_001",
+          "mail_type": "story",
+          "mail_family": "yrkesidentitet_pa_gulvet",
+          "role_scope": "ekspeditor",
+          "subject": "Service er ikke å smile hele tiden",
+          "summary": "Du begynner å forstå at service er situasjonslesing, ikke bare høflighet.",
+          "situation": [
+            "Etter noen vakter merker du forskjell på kunder som trenger fart, kunder som trenger trygghet og kunder som trenger avstand.",
+            "Ingen av delene står tydelig i rutinene.",
+            "Likevel er det ofte akkurat denne vurderingen som avgjør om dagen flyter."
+          ],
+          "task_domain": "butikkstandard",
+          "competency": "service",
+          "pressure": "du_vil_vaere_effektiv",
+          "choice_axis": "synlighet_vs_arbeidsro",
+          "consequence_axis": "faglig_rykte",
+          "narrative_arc": "kundenes_blikk",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Bruk neste kundemøte til å lese behov før du foreslår løsning",
+              "effect": 1,
+              "tags": ["service", "kundebehandling", "situasjonslesing"],
+              "feedback": "Du begynner å se service som fag, ikke bare personlighet."
+            },
+            {
+              "id": "B",
+              "label": "Hold deg til samme høflige standard uansett kunde",
+              "effect": 0,
+              "tags": ["rutine", "begrenset_tilpasning"],
+              "feedback": "Det er trygt og ryddig, men ikke alltid presist."
+            },
+            {
+              "id": "C",
+              "label": "Fokuser på tempo og la kundene styre resten selv",
+              "effect": -1,
+              "tags": ["tempo", "lav_service"],
+              "feedback": "Du får unna køen, men mister noe av arbeidet som skjer mellom ordene."
+            }
+          ]
+        },
+        {
+          "id": "ekspeditor_story_gulvet_barer_butikken_001",
+          "mail_type": "story",
+          "mail_family": "yrkesidentitet_pa_gulvet",
+          "role_scope": "ekspeditor",
+          "subject": "Gulvet bærer butikken før tallene gjør det",
+          "summary": "Du ser hvordan små praktiske handlinger blir butikkens egentlige stabilitet.",
+          "situation": [
+            "Før tallene blir rapporter, finnes det ryddige hyller, riktige skilt, korte køer og kunder som finner frem.",
+            "Det meste av dette blir bare synlig når det ikke fungerer.",
+            "Du begynner å forstå at gulvarbeid er et system av små inngrep som holder dagen sammen."
+          ],
+          "task_domain": "butikkstandard",
+          "competency": "service",
+          "pressure": "du_vil_vaere_effektiv",
+          "choice_axis": "synlighet_vs_arbeidsro",
+          "consequence_axis": "faglig_rykte",
+          "narrative_arc": "varene_som_system",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Se etter én liten feil i flyten før den blir et kundeproblem",
+              "effect": 1,
+              "tags": ["driftsflyt", "observasjon", "ansvar"],
+              "feedback": "Du lærer å se butikken før den må rope på deg."
+            },
+            {
+              "id": "B",
+              "label": "Hold deg til oppgaven du fikk, selv om du ser andre småfeil",
+              "effect": 0,
+              "tags": ["rollegrense", "lavt_eierskap"],
+              "feedback": "Du gjør oppgaven, men bygger ikke blikket som gjør deg mer verdifull."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
