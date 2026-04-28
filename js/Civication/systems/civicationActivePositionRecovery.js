@@ -36,8 +36,11 @@
 
   var PLAN_TO_ROLE = {
     arbeider_naeringsliv_v1: "arbeider",
+    arbeider_naeringsliv_v2: "arbeider",
     fagarbeider_naeringsliv_v2: "fagarbeider",
+    fagarbeider_naeringsliv_v3: "fagarbeider",
     mellomleder_naeringsliv_v1: "mellomleder",
+    mellomleder_naeringsliv_v2: "mellomleder",
     formann_naeringsliv_v1: "formann"
   };
 
@@ -80,8 +83,14 @@
   }
 
   function inferRoleKey(state) {
+    var forced = lower(localStorage.getItem("hg_civi_forced_role_key_v1"));
+    if (ROLES[forced]) return forced;
+
     var direct = lower(state && state.active_role_key);
     if (ROLES[direct]) return direct;
+
+    var runtimePlan = norm(state && state.mail_runtime_v1 && state.mail_runtime_v1.role_plan_id);
+    if (PLAN_TO_ROLE[runtimePlan]) return PLAN_TO_ROLE[runtimePlan];
 
     var msPlan = norm(state && state.mail_system && state.mail_system.role_plan_id);
     if (PLAN_TO_ROLE[msPlan]) return PLAN_TO_ROLE[msPlan];
@@ -127,12 +136,13 @@
     }
 
     var state = api.getState ? api.getState() : {};
-    var recovered = roleFromState(state) || getBackupActivePosition();
+    var recoveredFromState = roleFromState(state);
+    var recovered = recoveredFromState || getBackupActivePosition();
     if (!validActive(recovered)) return null;
 
     recovered = Object.assign({}, clone(recovered), {
-      recovered_from_state: !!roleFromState(state),
-      recovered_from_backup: !roleFromState(state),
+      recovered_from_state: !!recoveredFromState,
+      recovered_from_backup: !recoveredFromState,
       recovered_at: new Date().toISOString()
     });
 
