@@ -1,5 +1,8 @@
 (function () {
   const LS_TASKS = "hg_civi_tasks_v1";
+  function dispatchProfileUpdate() {
+    try { window.dispatchEvent(new Event("updateProfile")); } catch {}
+  }
 
   function safeParse(raw, fallback) {
     try {
@@ -21,7 +24,11 @@
   }
 
   function setStore(next) {
-    localStorage.setItem(LS_TASKS, JSON.stringify(next || {}));
+    const nextRaw = JSON.stringify(next || {});
+    const prevRaw = localStorage.getItem(LS_TASKS);
+    if (prevRaw === nextRaw) return next;
+    localStorage.setItem(LS_TASKS, nextRaw);
+    dispatchProfileUpdate();
     return next;
   }
 

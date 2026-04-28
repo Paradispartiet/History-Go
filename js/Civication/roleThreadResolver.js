@@ -5,6 +5,9 @@
 
   const LS_ROLE_THREAD_STATE = "hg_role_thread_state_v1";
   const ROLE_THREAD_MANIFEST_URL = "data/Civication/roleThreads/rt_manifest.json";
+  function dispatchProfileUpdate() {
+    try { window.dispatchEvent(new Event("updateProfile")); } catch {}
+  }
 
   let THREADS_CACHE = null;
 
@@ -126,7 +129,12 @@
         : {}
     };
 
-    writeLS(LS_ROLE_THREAD_STATE, safe);
+    const nextRaw = JSON.stringify(safe);
+    const prevRaw = localStorage.getItem(LS_ROLE_THREAD_STATE);
+    if (prevRaw !== nextRaw) {
+      writeLS(LS_ROLE_THREAD_STATE, safe);
+      dispatchProfileUpdate();
+    }
     return safe;
   }
 
@@ -164,7 +172,12 @@
       tags: uniq((Array.isArray(evt?.tags) ? evt.tags : []).map(normStr).filter(Boolean))
     });
 
-    localStorage.setItem("hg_role_progress_log_v1", JSON.stringify(safe));
+    const nextRaw = JSON.stringify(safe);
+    const prevRaw = localStorage.getItem("hg_role_progress_log_v1");
+    if (prevRaw !== nextRaw) {
+      localStorage.setItem("hg_role_progress_log_v1", nextRaw);
+      dispatchProfileUpdate();
+    }
     return safe;
   }
 
