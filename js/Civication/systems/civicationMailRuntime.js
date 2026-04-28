@@ -2,10 +2,11 @@
 // CivicationMailRuntime — autoritativ mailmotor for Civication.
 //
 // Prinsipp:
-// - Én runtime eier mailflyten.
+// - Én runtime eier jobbmailflyten.
 // - Data bestemmer innholdet: mailPlans + mailFamilies.
 // - EventEngine beholder generisk ansvar: enqueue, answer, state.
 // - Day-systemet kan fortsatt kalle buildMailPool/pickEventFromPack, men kandidatene kommer herfra.
+// - Kun planned/thread-mails får skrive mail_runtime_v1.
 
 (function () {
   "use strict";
@@ -108,12 +109,6 @@
     return PHASE_ORDER.includes(phase) ? phase : "intro";
   }
 
-  function nextPhase(value) {
-    const phase = normalizePhase(value);
-    const idx = PHASE_ORDER.indexOf(phase);
-    return PHASE_ORDER[Math.min(idx + 1, PHASE_ORDER.length - 1)] || "climax";
-  }
-
   async function loadJson(path) {
     const p = norm(path);
     if (!p) return null;
@@ -150,7 +145,6 @@
 
     const paths = [];
 
-    // Jobb har både V2-intro og ordinær jobbkatalog.
     paths.push(`data/Civication/mailFamilies/${category}/job/${roleScope}_intro_v2.json`);
     paths.push(`data/Civication/mailFamilies/${category}/job/${roleScope}_job.json`);
 
@@ -450,6 +444,8 @@
 
     const isPlanned = norm(eventObj?.source_type) === "planned";
     const isThread = norm(eventObj?.source_type) === "thread" || eventObj?._is_thread === true;
+    if (!isPlanned && !isThread) return null;
+
     const planId = norm(eventObj?.mail_plan_meta?.plan_id || runtime.role_plan_id);
     const stepIndex = Math.max(0, Number(runtime.step_index || 0));
     const nextStepIndex = isPlanned && !isThread ? stepIndex + 1 : stepIndex;
@@ -526,7 +522,6 @@
     const key = norm(threadId);
     if (!key) return false;
 
-    // Sørg for at relevante V2-filer er indeksert før lookup.
     const active = getActive();
     if (active) {
       const catalogs = await loadCatalogs(active);
