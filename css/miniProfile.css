@@ -1,9 +1,6 @@
 /* ===================================================== */
 /* MINI-PROFIL + NEXTUP – HISTORY GO (SIDE-BY-SIDE)       */
-/* (REN FIL – uten duplikater)                            */
 /* ===================================================== */
-
-
 
 /* Mini-profil som klikkbart kort (bruk <a> eller div med onclick) */
 .mini-profile{
@@ -82,7 +79,6 @@
 
 /* ===================================================== */
 /* NEXTUP – egen liten boks ved siden av mini-profil      */
-/* (4 rader: goto / story / emne / fordi)                 */
 /* ===================================================== */
 
 #mpNextUp{
@@ -97,7 +93,6 @@
   box-shadow: 0 0 18px rgba(246,200,0,.03), inset 0 0 6px rgba(255,255,255,.035);
   transition: transform .25s ease, box-shadow .25s ease;
 
-  /* ✅ maks 2 tekstlinjer totalt */
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
@@ -114,7 +109,6 @@
   box-shadow: 0 0 22px rgba(246,200,0,.10), inset 0 0 10px rgba(255,255,255,.05);
 }
 
-/* ✅ gjør alle items inline, så de kan flyte i bredden */
 .mp-nextup-line,
 #mpNextUp .mp-nextup-because{
   display: inline;
@@ -123,7 +117,6 @@
   overflow: visible;
 }
 
-/* små separatorer mellom items */
 #mpNextUp .mp-nextup-line::after{
   content: " · ";
   opacity: .65;
@@ -132,7 +125,6 @@
   content: "";
 }
 
-/* knapp tar hele linja */
 #mpNextUp .mp-nextup-link{
   background: none;
   border: 0;
@@ -207,10 +199,8 @@
 }
 
 /* =====================================================
-
-/* =====================================================
-   MINI-PROFIL I TOPPLINJE – MINIMAL
-   Viser kun: #miniName + badge-ikon + #linkBadges (tall)
+   MINI-PROFIL I TOPPLINJE – STØRRE, TO LINJER
+   Viser: navn + merker / steder + quizzer
    ===================================================== */
 
 .site-header .top-actions{
@@ -218,127 +208,131 @@
   overflow: hidden;
 }
 
-.site-header .top-actions #miniProfile{
-  margin-left: auto;
-  display: inline-flex;
+body.hg-app .site-header .top-actions #miniProfile{
+  margin-left: 0;
+
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    "name badges"
+    "stats stats";
   align-items: center;
-  gap: 10px;
+  column-gap: 10px;
+  row-gap: 3px;
 
-  padding: 4px 10px;
-  border-radius: 999px;
+  width: 320px;
+  max-width: 320px;
+  height: 58px;
+  flex: 0 0 320px;
 
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.10);
+  padding: 7px 12px 8px;
+  border-radius: 16px;
+
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.12);
 
   text-decoration: none;
   color: #fff;
 
-  max-width: 420px;   /* fast verdi */
-  flex: 0 0 auto;
-
-  height: 36px;
   overflow: hidden;
 }
 
-.site-header .top-actions #miniProfile:hover{
+body.hg-app .site-header .top-actions #miniProfile:hover{
   transform: none;
   box-shadow: none;
 }
 
-/* Gjør innholdet kompakt og sørg for at navnet kuttes først */
-.site-header .top-actions #miniProfile .info{
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  min-width: 0;
-}
+body.hg-app .site-header .top-actions #miniProfile #miniName{
+  grid-area: name;
+  display: block;
 
-.site-header .top-actions #miniProfile .profile-top{
-  display: flex;
-  align-items: center;
   margin: 0;
   min-width: 0;
-  flex: 1 1 auto;
-}
 
-.site-header .top-actions #miniProfile #miniName{
-  margin: 0;
-  font-size: 13px;
-  line-height: 1;
-  font-weight: 800;
+  font-size: 15px;
+  line-height: 1.05;
+  font-weight: 850;
 
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+body.hg-app .site-header .top-actions #miniProfile .mpt-badges{
+  grid-area: badges;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 5px;
   min-width: 0;
-}
 
-/* Skjul alt annet i header */
-.site-header .top-actions #miniProfile #miniBadges,
-.site-header .top-actions #miniProfile #miniLastQuiz{
-  display: none !important;
-}
-
-.site-header .top-actions #miniProfile #linkPlaces,
-.site-header .top-actions #miniProfile #linkQuiz{
-  display: none !important;
-}
-
-/* Fjern " · " uten å endre HTML: font-size 0 på container */
-.site-header .top-actions #miniProfile #miniStats{
-  margin: 0;
-  display: inline-flex;
-  align-items: center;
-  font-size: 0;
+  font-size: 14px;
   line-height: 1;
-  white-space: nowrap;
-  flex: 0 0 auto;
+  font-weight: 850;
 }
 
-/* Vis badge-count som tall (JS bør allerede sette "12" eller "12 merker") */
-.site-header .top-actions #miniProfile #linkBadges{
-  font-size: 13px;
-  font-weight: 800;
-  color: #fff;
+body.hg-app .site-header .top-actions #miniProfile .mpt-badgeIcon{
+  width: 15px;
+  height: 15px;
+  flex: 0 0 auto;
+  background: url("../assets/icons/badge.png") center / contain no-repeat;
+}
+
+body.hg-app .site-header .top-actions #miniProfile #linkBadges{
   display: inline-flex;
   align-items: center;
-  flex: 0 0 auto;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 850;
+  line-height: 1;
 }
 
-/* Badge ikon foran tallet */
-.site-header .top-actions #miniProfile #linkBadges::before{
-  content: "";
-  display: inline-block;
-  width: 14px;
-  height: 14px;
-  margin-right: 6px;
-  vertical-align: -2px;
-  background: url("assets/icons/badge.png") center / contain no-repeat;
+body.hg-app .site-header .top-actions #miniProfile #linkBadges::before{
+  content: none;
+}
+
+body.hg-app .site-header .top-actions #miniProfile .mp-extra{
+  grid-area: stats;
+  display: block;
+  min-width: 0;
+  overflow: hidden;
+}
+
+body.hg-app .site-header .top-actions #miniProfile #miniStats{
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  font-size: 12px;
+  line-height: 1.05;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+body.hg-app .site-header .top-actions #miniProfile #linkPlaces,
+body.hg-app .site-header .top-actions #miniProfile #linkQuiz{
+  display: inline-flex !important;
+  color: #f6c800;
+  font-weight: 750;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+body.hg-app .site-header .top-actions #miniProfile #miniBadges,
+body.hg-app .site-header .top-actions #miniProfile #miniLastQuiz{
+  display: none !important;
 }
 
 /* MiniProfile – Civication-rolle (forside) */
-.miniProfileTop {
-  min-width: 0; /* KRITISK for flex-truncation */
+.miniProfileTop{
+  min-width: 0;
 }
 
 .miniProfileTop .mpt-name,
-.miniProfileTop .mpt-role {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
-/* FIX: Civication-rolle i toppheader (forside) */
-.site-header .top-actions #miniProfile {
-  min-width: 0;           /* KRITISK */
-}
-
-.site-header .top-actions #miniProfile .profile-top {
-  min-width: 0;
-  overflow: hidden;
-}
-
-.site-header .top-actions #miniProfile .profile-top * {
+.miniProfileTop .mpt-role{
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
