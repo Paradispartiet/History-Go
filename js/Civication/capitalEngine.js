@@ -18,7 +18,11 @@
 
   function writeStoredCapital(capital) {
     try {
-      localStorage.setItem(LS_CAPITAL_VALUES, JSON.stringify(capital || {}));
+      const next = JSON.stringify(capital || {});
+      const prev = localStorage.getItem(LS_CAPITAL_VALUES);
+      if (prev === next) return;
+      localStorage.setItem(LS_CAPITAL_VALUES, next);
+      window.dispatchEvent(new Event("updateProfile"));
     } catch {}
   }
 

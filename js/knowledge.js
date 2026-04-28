@@ -36,15 +36,19 @@ function saveKnowledgePoint(entry) {
   const list = uni[entry.category][entry.dimension];
 
   // Ikke legg til duplikater
+  let changed = false;
   if (!list.some(k => k.id === entry.id)) {
     list.push({
       id: entry.id,
       topic: entry.topic,
       text: entry.text
     });
+    changed = true;
   }
 
-    saveKnowledgeUniverse(uni);
+  if (!changed) return;
+
+  saveKnowledgeUniverse(uni);
 
   // Trigger oppdatering av profil (fast regel 101)
   window.dispatchEvent(new Event("updateProfile"));

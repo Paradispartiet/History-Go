@@ -12,6 +12,9 @@
   "use strict";
 
   const KEY = "hg_nature_unlocks_v2";
+  function dispatchProfileUpdate() {
+    try { window.dispatchEvent(new Event("updateProfile")); } catch {}
+  }
 
   const MAP_URL = "data/natur/nature_unlock_map.json";
 
@@ -171,12 +174,16 @@
     db.byPlace[pid].fauna = uniqPush(db.byPlace[pid].fauna, faunaAdd);
     db.byPlace[pid].quizzes = uniqPush(db.byPlace[pid].quizzes, [qid]);
 
-    saveDb(db);
-
     const added = {
       flora: db.collected.flora.slice(beforeFlora),
       fauna: db.collected.fauna.slice(beforeFauna)
     };
+
+    const changed = added.flora.length > 0 || added.fauna.length > 0;
+    if (changed) {
+      saveDb(db);
+      dispatchProfileUpdate();
+    }
 
     try { window.dispatchEvent(new CustomEvent("hg:nature", { detail: { quizId: qid, placeId: pid, added } })); } catch {}
     return { ok: true, quizId: qid, placeId: pid, added };

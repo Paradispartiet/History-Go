@@ -9,6 +9,9 @@
   "use strict";
 
   const KEY = "hg_unlocks_v1";
+  function dispatchProfileUpdate() {
+    try { window.dispatchEvent(new Event("updateProfile")); } catch {}
+  }
 
   function load() {
     try {
@@ -115,12 +118,27 @@
       [];
 
     // ---- merge (unik) ----
-    row.hooks = uniqPush(row.hooks, hooks);
-    row.concepts = uniqPush(row.concepts, concepts);
-    row.thinkers = uniqPush(row.thinkers, thinkers);
-    row.knowledge_ids = uniqPush(row.knowledge_ids, knowledgeIds);
-    row.trivia_ids = uniqPush(row.trivia_ids, triviaIds);
-    row.emne_ids = uniqPush(row.emne_ids, emneIds);
+    const nextHooks = uniqPush(row.hooks, hooks);
+    const nextConcepts = uniqPush(row.concepts, concepts);
+    const nextThinkers = uniqPush(row.thinkers, thinkers);
+    const nextKnowledgeIds = uniqPush(row.knowledge_ids, knowledgeIds);
+    const nextTriviaIds = uniqPush(row.trivia_ids, triviaIds);
+    const nextEmneIds = uniqPush(row.emne_ids, emneIds);
+
+    const changed =
+      nextHooks.length !== row.hooks.length ||
+      nextConcepts.length !== row.concepts.length ||
+      nextThinkers.length !== row.thinkers.length ||
+      nextKnowledgeIds.length !== row.knowledge_ids.length ||
+      nextTriviaIds.length !== row.trivia_ids.length ||
+      nextEmneIds.length !== row.emne_ids.length;
+
+    row.hooks = nextHooks;
+    row.concepts = nextConcepts;
+    row.thinkers = nextThinkers;
+    row.knowledge_ids = nextKnowledgeIds;
+    row.trivia_ids = nextTriviaIds;
+    row.emne_ids = nextEmneIds;
 
     // ---- “global index” for rask UI ----
     db.index = db.index || { hooks: [], concepts: [], thinkers: [] };
@@ -128,7 +146,10 @@
     db.index.concepts = uniqPush(db.index.concepts, row.concepts);
     db.index.thinkers = uniqPush(db.index.thinkers, row.thinkers);
 
-    save(db);
+    if (changed) {
+      save(db);
+      dispatchProfileUpdate();
+    }
 
     // ping UI
     try { window.dispatchEvent(new CustomEvent("hg:unlocks")); } catch {}

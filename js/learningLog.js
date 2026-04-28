@@ -19,6 +19,9 @@
   const LEARNING_KEY = "hg_learning_log_v1";
   const LEGACY_KEY = "quiz_history";
   const MIGRATED_FLAG = "hg_learning_log_migrated_v1";
+  function dispatchProfileUpdate() {
+    try { window.dispatchEvent(new Event("updateProfile")); } catch {}
+  }
 
   function safeParse(key, fallback) {
     try {
@@ -98,6 +101,7 @@
     safeWrite(LEARNING_KEY, existing.concat(extras));
     localStorage.setItem(MIGRATED_FLAG, "1");
     try { localStorage.removeItem(LEGACY_KEY); } catch {}
+    dispatchProfileUpdate();
 
     if (window.DEBUG) console.log(`[HGLearningLog] migrerte ${extras.length} quiz_history-oppføringer`);
     return { migrated: extras.length, skipped: false };

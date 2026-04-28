@@ -1720,14 +1720,21 @@ if (Array.isArray(ev.choices) && ev.choices.length) {
         try {
           const cur = JSON.parse(localStorage.getItem("hg_capital_v1") || "{}");
           const next = Object.assign({}, cur);
+          let changed = false;
 
           for (const k in capDelta) {
             const add = Number(capDelta[k] || 0);
             if (!Number.isFinite(add)) continue;
-            next[k] = Number(next[k] || 0) + add;
+            const prev = Number(next[k] || 0);
+            const after = prev + add;
+            if (after !== prev) changed = true;
+            next[k] = after;
           }
 
-          localStorage.setItem("hg_capital_v1", JSON.stringify(next));
+          if (changed) {
+            localStorage.setItem("hg_capital_v1", JSON.stringify(next));
+            window.dispatchEvent(new Event("updateProfile"));
+          }
         } catch (e) {}
       }
     })();

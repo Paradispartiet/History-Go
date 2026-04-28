@@ -3,6 +3,9 @@
   const LS_OFFERS = "hg_job_offers_v1";
   const LS_FIRST_JOB_SEQ = "hg_first_job_sequence_v1";
   const LS_RECOVERY = "hg_civi_recovery_v1";
+  function dispatchProfileUpdate() {
+    try { window.dispatchEvent(new Event("updateProfile")); } catch {}
+  }
   const DEFAULT_OBLIGATION_IDS = [
     "weekly_login",
     "event_response",
@@ -142,7 +145,7 @@
       window.showToast("🛠️ Du er i en gjenoppbyggingsfase. Vis stabilitet før nye roller åpner seg igjen.");
     }
 
-    window.dispatchEvent(new Event("updateProfile"));
+    dispatchProfileUpdate();
     return state;
   }
 
@@ -201,7 +204,7 @@
     };
 
     setRecoveryState(next);
-    window.dispatchEvent(new Event("updateProfile"));
+    dispatchProfileUpdate();
     return next;
   }
 
@@ -250,6 +253,7 @@
         if (typeof window.showToast === "function") {
           window.showToast("✅ Du har bygget deg opp igjen. Karriereveier åpner seg på nytt.");
         }
+        dispatchProfileUpdate();
         return done;
       }
 
@@ -258,11 +262,12 @@
         progress: 0,
         target: Number(current.target || 3)
       });
+      dispatchProfileUpdate();
       return getRecoveryState();
     }
 
     setRecoveryState(next);
-    window.dispatchEvent(new Event("updateProfile"));
+    dispatchProfileUpdate();
     return next;
   }
 
@@ -367,7 +372,7 @@
       if (typeof window.showToast === "function") {
         window.showToast("⚠️ Du mistet tillit i rollen. Formannsansvaret ble trukket tilbake.");
       }
-      window.dispatchEvent(new Event("updateProfile"));
+      dispatchProfileUpdate();
       return { ok: true, type: "demotion", reason: "severe_risk_formann" };
     }
 
@@ -377,7 +382,7 @@
       if (typeof window.showToast === "function") {
         window.showToast("⚠️ Rollen som mellomleder holdt ikke. Du falt ut av lederløpet.");
       }
-      window.dispatchEvent(new Event("updateProfile"));
+      dispatchProfileUpdate();
       return { ok: true, type: "role_loss", reason: "severe_risk_mellomleder" };
     }
 
@@ -628,6 +633,7 @@
 
     offers.unshift(offer);
     setOffers(offers);
+    dispatchProfileUpdate();
 
     return { ok: true, offer: offer };
   }
@@ -720,7 +726,7 @@
       window.showToast(`💼 Du har gått inn i ${offer.title}. I inboxen ligger nå en første introduksjon og en første dagshendelse som setter tonen for rollen.`);
     }
 
-    window.dispatchEvent(new Event("updateProfile"));
+    dispatchProfileUpdate();
     return { ok: true, offer: nextOffers[idx] };
   }
 
@@ -745,7 +751,7 @@
 
     setOffers(offers);
 
-    window.dispatchEvent(new Event("updateProfile"));
+    dispatchProfileUpdate();
     return { ok: true, offer: offers[idx] };
   }
 
