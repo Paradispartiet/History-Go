@@ -136,6 +136,14 @@
     return esc(value);
   }
 
+  function ensureCss(href) {
+    if (document.querySelector(`link[href="${href}"]`)) return;
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = href;
+    document.head.appendChild(link);
+  }
+
   function readTri() {
     try {
       const parsed = JSON.parse(localStorage.getItem("hg_nextup_tri") || "{}");
@@ -274,6 +282,8 @@
   function startPcNextUpObserver() {
     if (document.body?.classList.contains("profile-page")) return;
 
+    ensureCss("css/placecard-nextup.css");
+
     const oldStaticMount = document.querySelector(".app-shell > #mpNextUp.app-nextup, body > #mpNextUp.app-nextup");
     oldStaticMount?.remove();
 
@@ -306,17 +316,12 @@
     const isProfile = document.body?.classList.contains("profile-page");
 
     if (!isProfile) {
-      document.getElementById("mpNextUp")?.remove();
+      document.querySelector(".app-shell > #mpNextUp.app-nextup, body > #mpNextUp.app-nextup")?.remove();
       startPcNextUpObserver();
       return;
     }
 
-    if (!document.querySelector('link[href="css/profile-nextup.css"]')) {
-      const link = document.createElement("link");
-      link.rel = "stylesheet";
-      link.href = "css/profile-nextup.css";
-      document.head.appendChild(link);
-    }
+    ensureCss("css/profile-nextup.css");
 
     if (!document.querySelector('script[src="js/ui/profile-nextup.js"]')) {
       const script = document.createElement("script");
