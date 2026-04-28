@@ -1,19 +1,51 @@
 document.addEventListener("DOMContentLoaded", async () => {
-  await safeRun("boot", window.boot);
+  document.body?.classList.remove("hg-loaded", "hg-load-failed");
 
-  // Globalt søk lå i repoet, men var ikke lastet inn av index.html.
-  // Lastes etter boot slik at window.PLACES / window.PEOPLE / kategorier finnes.
-  await safeRun("loadGlobalSearch", () => loadScriptOnce("js/ui/search.js"));
+  try {
+    await safeRun("boot", window.boot);
 
-  await safeRun("initMiniProfile", window.initMiniProfile);
-  await safeRun("wireMiniProfileLinks", window.wireMiniProfileLinks);
-  await safeRun("initLeftPanel", window.initLeftPanel);
-  await safeRun("HGRoutes.init", () => window.HGRoutes?.init?.());
+    // Globalt søk lå i repoet, men var ikke lastet inn av index.html.
+    // Lastes etter boot slik at window.PLACES / window.PEOPLE / kategorier finnes.
+    await safeRun("loadGlobalSearch", () => loadScriptOnce("js/ui/search.js"));
 
-  if (window.HGPos?.request) {
-    await safeRun("HGPos.request", window.HGPos.request);
+    await safeRun("initMiniProfile", window.initMiniProfile);
+    await safeRun("wireMiniProfileLinks", window.wireMiniProfileLinks);
+    await safeRun("initLeftPanel", window.initLeftPanel);
+    await safeRun("HGRoutes.init", () => window.HGRoutes?.init?.());
+
+    if (window.HGPos?.request) {
+      await safeRun("HGPos.request", window.HGPos.request);
+    }
+
+    markAppReady();
+  } catch (e) {
+    markAppFailed(e);
   }
 });
+
+function markAppReady() {
+  document.body?.classList.remove("hg-load-failed");
+  document.body?.classList.add("hg-loaded");
+  window.__HG_APP_READY__ = true;
+
+  try {
+    window.dispatchEvent(new CustomEvent("hg:appReady", {
+      detail: { ready: true, ts: Date.now() }
+    }));
+  } catch {}
+}
+
+function markAppFailed(error) {
+  console.error("[app startup failed]", error);
+
+  window.__HG_APP_READY__ = false;
+  window.__HG_APP_LOAD_ERROR__ = {
+    message: String(error?.message || error),
+    stack: error?.stack || null
+  };
+
+  document.body?.classList.add("hg-load-failed");
+}
 
 function loadScriptOnce(src) {
   return new Promise((resolve, reject) => {
