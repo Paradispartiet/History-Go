@@ -7,6 +7,7 @@ on:
       - main
     paths:
       - "tools/build_nature_place_candidates.mjs"
+      - "tools/build_nature_place_candidates_v2.mjs"
       - ".github/workflows/build-nature-place-candidates.yml"
 
 jobs:
@@ -24,7 +25,7 @@ jobs:
           node-version: "22"
 
       - name: Build candidates from Artskart
-        run: node tools/build_nature_place_candidates.mjs
+        run: node tools/build_nature_place_candidates_v2.mjs
 
       - name: Upload candidate file
         uses: actions/upload-artifact@v4
