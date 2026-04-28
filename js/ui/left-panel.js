@@ -12,7 +12,10 @@ function hgActiveLeftPanelMode() {
   return document.querySelector(".nearby-tab.is-active")?.getAttribute("data-leftmode") || "nearby";
 }
 
-function rerenderActiveLeftPanelMode() {
+let _leftPanelRenderRaf = 0;
+let _leftPanelRenderTimer = 0;
+
+function renderActiveLeftPanelModeNow() {
   const mode = hgActiveLeftPanelMode();
 
   if (mode === "nearby" && typeof renderNearbyPlaces === "function") renderNearbyPlaces();
@@ -20,6 +23,26 @@ function rerenderActiveLeftPanelMode() {
   if (mode === "nature" && typeof renderNearbyNature === "function") renderNearbyNature();
   if (mode === "routes" && typeof renderLeftRoutesList === "function") renderLeftRoutesList();
   if (mode === "badges" && typeof renderLeftBadges === "function") renderLeftBadges();
+}
+
+function rerenderActiveLeftPanelMode() {
+  // Badgefilteret kan trykkes svært raskt på iPad/Safari.
+  // Ikke bygg hele Nearby/People/Nature/Routes-listen for hvert trykk.
+  // Samle flere raske trykk til én render i neste frame.
+  if (typeof window.requestAnimationFrame === "function") {
+    if (_leftPanelRenderRaf) window.cancelAnimationFrame(_leftPanelRenderRaf);
+    _leftPanelRenderRaf = window.requestAnimationFrame(() => {
+      _leftPanelRenderRaf = 0;
+      renderActiveLeftPanelModeNow();
+    });
+    return;
+  }
+
+  if (_leftPanelRenderTimer) window.clearTimeout(_leftPanelRenderTimer);
+  _leftPanelRenderTimer = window.setTimeout(() => {
+    _leftPanelRenderTimer = 0;
+    renderActiveLeftPanelModeNow();
+  }, 0);
 }
 
 // ============================================================
@@ -95,6 +118,15 @@ function syncLeftPanelFrame() {
 // BADGE FILTER HELPERS
 // ============================================================
 
+let _badgeFilterTapLockedUntil = 0;
+
+function badgeFilterTapIsLocked() {
+  const now = Date.now();
+  if (now < _badgeFilterTapLockedUntil) return true;
+  _badgeFilterTapLockedUntil = now + 120;
+  return false;
+}
+
 function getCategoryById(id) {
   const cats = Array.isArray(window.CATEGORY_LIST) ? window.CATEGORY_LIST : [];
   return cats.find(c => String(c.id || "").trim() === String(id || "").trim()) || null;
@@ -105,8 +137,37 @@ function getNearbyBadgeOptions() {
   return ["all", ...cats.map(c => String(c.id || "").trim()).filter(Boolean)];
 }
 
+function normalizeBadgeFilter(id) {
+  const raw = String(id || "all").trim() || "all";
+  if (raw === "all") return "all";
+  return getCategoryById(raw) ? raw : "all";
+}
+
 function getActiveBadgeFilter() {
-  return window.HG_NEARBY_BADGE_FILTER || "all";
+  return normalizeBadgeFilter(window.HG_NEARBY_BADGE_FILTER || "all");
+}
+
+function setActiveBadgeFilter(nextFilter, options = {}) {
+  const next = normalizeBadgeFilter(nextFilter);
+  const current = getActiveBadgeFilter();
+
+  window.HG_NEARBY_BADGE_FILTER = next;
+  try { localStorage.setItem("hg_nearby_badge_filter_v1", next); } catch {}
+
+  if (typeof window.updateNearbyBadgeFilterButton === "function") {
+    window.updateNearbyBadgeFilterButton();
+  }
+
+  const activeMode = hgActiveLeftPanelMode();
+
+  if (activeMode === "badges" || options.renderBadgesList) {
+    renderLeftBadges();
+    return;
+  }
+
+  if (next !== current || options.forceRender) {
+    rerenderActiveLeftPanelMode();
+  }
 }
 
 function isBadgeFilterActive() {
@@ -124,6 +185,18 @@ window.HG_isBadgeFilterActive = isBadgeFilterActive;
 function renderLeftBadges() {
   const box = hg$("leftBadgesList");
   if (!box) return;
+
+  if (box.dataset.hgBadgeDelegated !== "1") {
+    box.dataset.hgBadgeDelegated = "1";
+    box.addEventListener("click", (event) => {
+      const btn = event.target?.closest?.("[data-badge-id]");
+      if (!btn || !box.contains(btn)) return;
+      if (badgeFilterTapIsLocked()) return;
+
+      const next = btn.getAttribute("data-badge-id") || "all";
+      setActiveBadgeFilter(next, { renderBadgesList: true });
+    });
+  }
 
   if (!Array.isArray(window.CATEGORY_LIST) || !window.CATEGORY_LIST.length) {
     box.innerHTML = `<div class="muted">Ingen kategorier lastet.</div>`;
@@ -153,19 +226,12 @@ function renderLeftBadges() {
       style="justify-content:flex-start;width:100%;">
       <img src="bilder/merker/${c.id}.PNG"
            alt=""
+           loading="lazy"
+           decoding="async"
            style="width:18px;height:18px;margin-right:8px;border-radius:4px;">
       ${c.name}
     </button>
   `).join("");
-
-  box.querySelectorAll("[data-badge-id]").forEach(btn => {
-    btn.addEventListener("click", () => {
-      window.HG_NEARBY_BADGE_FILTER = btn.getAttribute("data-badge-id") || "all";
-      try { localStorage.setItem("hg_nearby_badge_filter_v1", window.HG_NEARBY_BADGE_FILTER); } catch {}
-      if (typeof window.updateNearbyBadgeFilterButton === "function") window.updateNearbyBadgeFilterButton();
-      renderLeftBadges();
-    });
-  });
 }
 
 // ============================================================
@@ -202,7 +268,7 @@ function initLeftPanel() {
       localStorage.getItem("hg_nearby_filter_v1") || "unvisited";
 
     window.HG_NEARBY_BADGE_FILTER =
-      localStorage.getItem("hg_nearby_badge_filter_v1") || "all";
+      normalizeBadgeFilter(localStorage.getItem("hg_nearby_badge_filter_v1") || "all");
 
     window.HG_NATURE_FILTER =
       localStorage.getItem("hg_nature_filter_v1") || "all";
@@ -283,7 +349,7 @@ function initLeftPanel() {
       return;
     }
 
-    badgeBtn.innerHTML = `<img src="bilder/merker/${cat.id}.PNG" alt="" style="width:22px;height:22px;object-fit:contain;display:block;">`;
+    badgeBtn.innerHTML = `<img src="bilder/merker/${cat.id}.PNG" alt="" loading="lazy" decoding="async" style="width:22px;height:22px;object-fit:contain;display:block;">`;
     badgeBtn.title = `Badgefilter: ${cat.name || cat.id}`;
     badgeBtn.setAttribute("aria-label", `Badgefilter: ${cat.name || cat.id}`);
   }
@@ -325,13 +391,14 @@ function initLeftPanel() {
 
   if (badgeBtn) {
     badgeBtn.addEventListener("click", () => {
+      if (badgeFilterTapIsLocked()) return;
+
       const order = getNearbyBadgeOptions();
       const current = getActiveBadgeFilter();
       const i = order.indexOf(current);
-      window.HG_NEARBY_BADGE_FILTER = order[(i + 1) % order.length] || "all";
-      try { localStorage.setItem("hg_nearby_badge_filter_v1", window.HG_NEARBY_BADGE_FILTER); } catch {}
-      updateBadgeFilterButton();
-      rerenderActiveLeftPanelMode();
+      const next = order[(i + 1) % order.length] || "all";
+
+      setActiveBadgeFilter(next, { forceRender: true });
     });
   }
 
