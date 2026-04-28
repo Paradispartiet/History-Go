@@ -4,13 +4,13 @@
 //  B) Tematiske ruter: routes.json (stops[]) + visning på kart + venstrepanel
 //
 // Krever (globals):
-//  - MAP (MapLibre map) i window.MAP
+//  - MapLibre map via window.MAP eller window.HGMap.getMap()
 //  - PLACES (array) i window.PLACES
 //  - getPos() (fra app.js) ELLER legacy userLat/userLon
 //  - showToast(msg) (valgfritt)
 //  - openPlaceCard(place) (valgfritt)
 //
-// HTML forventet (valgfritt):
+// HTML forventet:
 //  - #leftPanelMode select med value: nearby|routes|badges
 //  - #panelRoutes og #leftRoutesList
 // =====================================================
@@ -53,16 +53,174 @@ function _toast(msg) {
   if (typeof window.showToast === "function") window.showToast(msg);
 }
 
-function generateThemeRoutes() {
+function _getMap() {
+  const map = window.MAP || window.HGMap?.getMap?.() || null;
+  if (map && window.MAP !== map) window.MAP = map;
+  return map;
+}
 
+function _ensureMapReady() {
+  return !!_getMap();
+}
+
+function _escapeHTML(v) {
+  return String(v ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+function _allRoutes() {
+  const byId = new Map();
+  [...ROUTES, ...GENERATED_ROUTES].forEach(r => {
+    if (r?.id && !byId.has(r.id)) byId.set(r.id, r);
+  });
+  return [...byId.values()];
+}
+
+function _routeById(routeId) {
+  return _allRoutes().find(x => x.id === routeId) || null;
+}
+
+function _ensureRoutePanelStyles() {
+  if (document.getElementById("hg-route-strip-styles")) return;
+
+  const style = document.createElement("style");
+  style.id = "hg-route-strip-styles";
+  style.textContent = `
+    #panelRoutes.leftpanel-view{
+      padding:0 8px;
+      justify-content:flex-start;
+    }
+
+    #leftRoutesList{
+      margin-top:12px;
+      height:160px;
+      width:100%;
+      min-height:160px;
+      flex:0 0 auto;
+
+      display:flex;
+      align-items:center;
+      gap:12px;
+
+      overflow-x:auto;
+      overflow-y:hidden;
+      -webkit-overflow-scrolling:touch;
+      scrollbar-width:none;
+
+      padding:12px 2px 0;
+    }
+
+    #leftRoutesList::-webkit-scrollbar{ display:none; }
+
+    #leftRoutesList .left-route-item{
+      flex:0 0 220px;
+      width:220px;
+      height:150px;
+
+      position:relative;
+      overflow:hidden;
+      border:0;
+      border-radius:20px;
+      padding:14px;
+
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-end;
+      gap:6px;
+
+      background:
+        radial-gradient(circle at 18% 12%, rgba(255,255,255,.18), transparent 34%),
+        linear-gradient(135deg, rgba(52,199,89,.52), rgba(8,20,12,.96));
+      color:#fff;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.08);
+      scroll-snap-align:start;
+      cursor:pointer;
+    }
+
+    #leftRoutesList .left-route-item::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(to bottom, transparent 44%, rgba(0,0,0,.48) 100%);
+      pointer-events:none;
+    }
+
+    #leftRoutesList .left-route-title,
+    #leftRoutesList .left-route-meta{
+      position:relative;
+      z-index:1;
+      pointer-events:none;
+    }
+
+    #leftRoutesList .left-route-title{
+      font-size:16px;
+      line-height:1.08;
+      font-weight:900;
+      color:#fff;
+      text-shadow:0 2px 8px rgba(0,0,0,.78);
+    }
+
+    #leftRoutesList .left-route-meta{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-end;
+      gap:10px;
+      font-size:11px;
+      line-height:1.1;
+      color:rgba(255,255,255,.86);
+      text-shadow:0 2px 8px rgba(0,0,0,.78);
+    }
+
+    #leftRoutesList .left-route-stop{
+      min-width:0;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+
+    #leftRoutesList .left-route-dist{
+      flex:0 0 auto;
+      white-space:nowrap;
+      font-weight:800;
+    }
+  `;
+  document.head.appendChild(style);
+}
+
+function _enterRouteMapMode() {
+  document.body?.classList.add("map-only");
+
+  if (window.LayerManager?.setMode) {
+    window.LayerManager.setMode("map");
+  } else if (typeof window.enterMapMode === "function") {
+    window.enterMapMode();
+  }
+
+  const btnSeeMap = document.getElementById("btnSeeMap");
+  const btnExitMap = document.getElementById("btnExitMap");
+  if (btnSeeMap) btnSeeMap.style.display = "none";
+  if (btnExitMap) btnExitMap.style.display = "block";
+
+  window.setPlaceCardCollapsed?.(true);
+  window.setNearbyCollapsed?.(true);
+
+  window.HGMap?.resize?.();
+  _getMap()?.resize?.();
+}
+
+function generateThemeRoutes() {
   const routes = {};
   const places = window.PLACES || [];
 
   places.forEach(p => {
-    if (!Array.isArray(p.emner)) return;
+    const emner = Array.isArray(p.emner) ? p.emner : (Array.isArray(p.emne_ids) ? p.emne_ids : []);
+    if (!emner.length) return;
 
-    p.emner.forEach(emne => {
-
+    emner.forEach(emne => {
       if (!routes[emne]) {
         routes[emne] = {
           id: "theme_" + emne,
@@ -71,15 +229,11 @@ function generateThemeRoutes() {
         };
       }
 
-      routes[emne].stops.push({
-        placeId: p.id
-      });
-
+      routes[emne].stops.push({ placeId: p.id });
     });
   });
 
-  GENERATED_ROUTES = Object.values(routes);
-
+  GENERATED_ROUTES = Object.values(routes).filter(r => r.stops.length >= 2);
 }
 
 function getUserPos() {
@@ -100,10 +254,6 @@ function getUserPos() {
 
 function _placeById(id) {
   return (window.PLACES || []).find(p => p.id === id) || null;
-}
-
-function _ensureMapReady() {
-  return !!window.MAP;
 }
 
 function getActiveRouteBadgeFilter() {
@@ -160,142 +310,163 @@ async function loadRoutes() {
 // B) Tematic route drawing
 // =====================================================
 function clearThematicRoute() {
-  if (!_ensureMapReady()) return;
+  const map = _getMap();
+  if (!map) return;
+
   try {
-    if (MAP.getLayer(HG_ROUTE_STOPS)) MAP.removeLayer(HG_ROUTE_STOPS);
-    if (MAP.getLayer(HG_ROUTE_LINE))  MAP.removeLayer(HG_ROUTE_LINE);
-    if (MAP.getLayer(HG_ROUTE_GLOW))  MAP.removeLayer(HG_ROUTE_GLOW);
-    if (MAP.getSource(HG_ROUTE_SRC))  MAP.removeSource(HG_ROUTE_SRC);
+    if (map.getLayer(HG_ROUTE_STOPS)) map.removeLayer(HG_ROUTE_STOPS);
+    if (map.getLayer(HG_ROUTE_LINE))  map.removeLayer(HG_ROUTE_LINE);
+    if (map.getLayer(HG_ROUTE_GLOW))  map.removeLayer(HG_ROUTE_GLOW);
+    if (map.getSource(HG_ROUTE_SRC))  map.removeSource(HG_ROUTE_SRC);
   } catch (e) {}
 }
 
 function focusRouteOnMap(routeId, startIndex = 0) {
-  if (!_ensureMapReady()) return;
+  const map = _getMap();
+  if (!map) {
+    _toast("Kartet er ikke klart ennå.");
+    return;
+  }
 
-  const r = ROUTES.find(x => x.id === routeId);
-  if (!r?.stops?.length) return;
+  if (typeof map.isStyleLoaded === "function" && !map.isStyleLoaded()) {
+    map.once("load", () => focusRouteOnMap(routeId, startIndex));
+    return;
+  }
+
+  const r = _routeById(routeId);
+  if (!r?.stops?.length) {
+    _toast("Fant ikke rute.");
+    return;
+  }
 
   const places = r.stops
     .map(s => _placeById(s.placeId))
-    .filter(Boolean);
+    .filter(Boolean)
+    .filter(p => Number.isFinite(p.lat) && Number.isFinite(p.lon));
 
-  if (!places.length) return;
+  if (!places.length) {
+    _toast("Ruten har ingen gyldige stopp i PLACES.");
+    return;
+  }
 
   const sliced = places.slice(Math.max(0, startIndex));
-  const coords = sliced.map(p => [p.lon, p.lat]);
-  if (coords.length < 2) return;
+  const visiblePlaces = sliced.length ? sliced : places;
+  const coords = visiblePlaces.map(p => [Number(p.lon), Number(p.lat)]);
 
-  const geo = {
-    type: "FeatureCollection",
-    features: [
-      {
-        type: "Feature",
-        properties: { id: r.id, name: r.name || r.title || "Rute" },
-        geometry: { type: "LineString", coordinates: coords }
-      },
-      ...sliced.map((p, i) => ({
-        type: "Feature",
-        properties: { placeId: p.id, name: p.name, idx: i + startIndex },
-        geometry: { type: "Point", coordinates: [p.lon, p.lat] }
-      }))
-    ]
-  };
-
-  if (!MAP.getSource(HG_ROUTE_SRC)) {
-    MAP.addSource(HG_ROUTE_SRC, { type: "geojson", data: geo });
-  } else {
-    MAP.getSource(HG_ROUTE_SRC).setData(geo);
-  }
-
-  if (!MAP.getLayer(HG_ROUTE_GLOW)) {
-    MAP.addLayer({
-      id: HG_ROUTE_GLOW,
-      type: "line",
-      source: HG_ROUTE_SRC,
-      filter: ["==", ["geometry-type"], "LineString"],
-      paint: {
-        "line-color": "rgba(255,255,255,0.20)",
-        "line-width": ["interpolate", ["linear"], ["zoom"], 10, 4, 14, 7, 18, 12],
-        "line-blur": ["interpolate", ["linear"], ["zoom"], 10, 1.2, 14, 2.0, 18, 3.2],
-        "line-opacity": 0.7
-      }
+  const features = [];
+  if (coords.length >= 2) {
+    features.push({
+      type: "Feature",
+      properties: { id: r.id, name: r.name || r.title || "Rute" },
+      geometry: { type: "LineString", coordinates: coords }
     });
   }
 
-  if (!MAP.getLayer(HG_ROUTE_LINE)) {
-    MAP.addLayer({
-      id: HG_ROUTE_LINE,
-      type: "line",
-      source: HG_ROUTE_SRC,
-      filter: ["==", ["geometry-type"], "LineString"],
-      paint: {
-        "line-color": "#f6c800",
-        "line-width": ["interpolate", ["linear"], ["zoom"], 10, 2.5, 14, 4.5, 18, 7],
-        "line-opacity": 0.95
-      }
-    });
+  features.push(...visiblePlaces.map((p, i) => ({
+    type: "Feature",
+    properties: { placeId: p.id, name: p.name, idx: i + startIndex },
+    geometry: { type: "Point", coordinates: [Number(p.lon), Number(p.lat)] }
+  })));
+
+  const geo = { type: "FeatureCollection", features };
+
+  try {
+    if (!map.getSource(HG_ROUTE_SRC)) {
+      map.addSource(HG_ROUTE_SRC, { type: "geojson", data: geo });
+    } else {
+      map.getSource(HG_ROUTE_SRC).setData(geo);
+    }
+
+    if (!map.getLayer(HG_ROUTE_GLOW)) {
+      map.addLayer({
+        id: HG_ROUTE_GLOW,
+        type: "line",
+        source: HG_ROUTE_SRC,
+        filter: ["==", ["geometry-type"], "LineString"],
+        paint: {
+          "line-color": "rgba(255,255,255,0.20)",
+          "line-width": ["interpolate", ["linear"], ["zoom"], 10, 4, 14, 7, 18, 12],
+          "line-blur": ["interpolate", ["linear"], ["zoom"], 10, 1.2, 14, 2.0, 18, 3.2],
+          "line-opacity": 0.7
+        }
+      });
+    }
+
+    if (!map.getLayer(HG_ROUTE_LINE)) {
+      map.addLayer({
+        id: HG_ROUTE_LINE,
+        type: "line",
+        source: HG_ROUTE_SRC,
+        filter: ["==", ["geometry-type"], "LineString"],
+        paint: {
+          "line-color": "#f6c800",
+          "line-width": ["interpolate", ["linear"], ["zoom"], 10, 2.5, 14, 4.5, 18, 7],
+          "line-opacity": 0.95
+        }
+      });
+    }
+
+    if (!map.getLayer(HG_ROUTE_STOPS)) {
+      map.addLayer({
+        id: HG_ROUTE_STOPS,
+        type: "circle",
+        source: HG_ROUTE_SRC,
+        filter: ["==", ["geometry-type"], "Point"],
+        paint: {
+          "circle-radius": ["interpolate", ["linear"], ["zoom"], 10, 5, 14, 7, 18, 11],
+          "circle-color": "#ffffff",
+          "circle-stroke-color": "#000000",
+          "circle-stroke-width": 1.8
+        }
+      });
+    }
+
+    if (!map.__hgRouteStopsClickBound) {
+      map.on("click", HG_ROUTE_STOPS, (e) => {
+        const f = e.features && e.features[0];
+        if (!f) return;
+        const id = f.properties?.placeId;
+        const p = id ? _placeById(id) : null;
+        if (p && typeof window.openPlaceCard === "function") {
+          window.openPlaceCard(p);
+        }
+      });
+
+      map.__hgRouteStopsClickBound = true;
+    }
+
+    if (coords.length === 1) {
+      map.flyTo({
+        center: coords[0],
+        zoom: Math.max(map.getZoom() || 13, 15),
+        essential: true
+      });
+    } else {
+      const b = coords.reduce(
+        (bb, c) => bb.extend(c),
+        new maplibregl.LngLatBounds(coords[0], coords[0])
+      );
+
+      map.fitBounds(b, { padding: 70, maxZoom: 16 });
+    }
+
+    _toast(coords.length >= 2 ? "Rute vist på kartet" : "Rutestopp vist på kartet");
+  } catch (e) {
+    console.warn("[routes] thematic route draw failed", e);
+    _toast("Kunne ikke tegne ruten på kartet.");
   }
-
-  if (!MAP.getLayer(HG_ROUTE_STOPS)) {
-    MAP.addLayer({
-      id: HG_ROUTE_STOPS,
-      type: "circle",
-      source: HG_ROUTE_SRC,
-      filter: ["==", ["geometry-type"], "Point"],
-      paint: {
-        "circle-radius": ["interpolate", ["linear"], ["zoom"], 10, 4, 14, 6, 18, 10],
-        "circle-color": "#ffffff",
-        "circle-stroke-color": "#000000",
-        "circle-stroke-width": 1.4
-      }
-    });
-  }
-
-  if (!MAP.__hgRouteStopsClickBound) {
-    MAP.on("click", HG_ROUTE_STOPS, (e) => {
-      const f = e.features && e.features[0];
-      if (!f) return;
-      const id = f.properties?.placeId;
-      const p = id ? _placeById(id) : null;
-      if (p && typeof window.openPlaceCard === "function") {
-        window.openPlaceCard(p);
-      }
-    });
-
-    MAP.__hgRouteStopsClickBound = true;
-  }
-
-  const b = coords.reduce(
-    (bb, c) => bb.extend(c),
-    new maplibregl.LngLatBounds(coords[0], coords[0])
-  );
-
-  MAP.fitBounds(b, { padding: 60 });
-
-  _toast("Rute vist på kartet");
 }
 
 function showRouteOverlay(routeId, startIndex = 0) {
-  const r = ROUTES.find(x => x.id === routeId);
+  const r = _routeById(routeId);
   if (!r) { _toast("Fant ikke rute."); return; }
 
-  try {
-    if (typeof window.enterMapMode === "function") {
-      window.enterMapMode();
-    } else if (typeof enterMapMode === "function") {
-      enterMapMode();
-    } else {
-      const btn = document.getElementById("btnSeeMap");
-      if (btn && btn.offsetParent !== null) btn.click();
-    }
-  } catch (e) {
-    if (window.DEBUG) console.warn("[routes] enterMapMode failed", e);
-  }
+  _enterRouteMapMode();
 
   setTimeout(() => {
     try { focusRouteOnMap(routeId, startIndex); }
     catch (e) { console.warn("[showRouteOverlay] focusRouteOnMap failed", e); }
-  }, 200);
+  }, 160);
 
   _toast(`${r.name || r.title || "Rute"} (${r.stops?.length || 0} stopp)`);
 }
@@ -308,10 +479,12 @@ function closeRouteOverlay() {
 // C) ORS walking route (user -> place)
 // =====================================================
 function clearNavRoute() {
-  if (!_ensureMapReady()) return;
+  const map = _getMap();
+  if (!map) return;
+
   try {
-    if (MAP.getLayer(HG_NAV_LINE)) MAP.removeLayer(HG_NAV_LINE);
-    if (MAP.getSource(HG_NAV_SRC)) MAP.removeSource(HG_NAV_SRC);
+    if (map.getLayer(HG_NAV_LINE)) map.removeLayer(HG_NAV_LINE);
+    if (map.getSource(HG_NAV_SRC)) map.removeSource(HG_NAV_SRC);
   } catch (e) {}
 }
 
@@ -346,8 +519,14 @@ async function fetchORSRouteGeoJSON(from, to) {
 }
 
 async function showWalkingRouteToPlace(place) {
-  if (!_ensureMapReady()) return;
+  const map = _getMap();
+  if (!map) return;
   if (!place || !Number.isFinite(place.lat) || !Number.isFinite(place.lon)) return;
+
+  if (typeof map.isStyleLoaded === "function" && !map.isStyleLoaded()) {
+    map.once("load", () => showWalkingRouteToPlace(place));
+    return;
+  }
 
   const pos = getUserPos();
   if (!pos) { _toast("Fant ikke posisjon ennå."); return; }
@@ -366,25 +545,31 @@ async function showWalkingRouteToPlace(place) {
     return;
   }
 
-  MAP.addSource(HG_NAV_SRC, { type: "geojson", data: out.geojson });
+  try {
+    map.addSource(HG_NAV_SRC, { type: "geojson", data: out.geojson });
 
-  MAP.addLayer({
-    id: HG_NAV_LINE,
-    type: "line",
-    source: HG_NAV_SRC,
-    paint: {
-      "line-color": "#00d4ff",
-      "line-width": ["interpolate", ["linear"], ["zoom"], 10, 3, 14, 5, 18, 8],
-      "line-opacity": 0.95
-    }
-  });
+    map.addLayer({
+      id: HG_NAV_LINE,
+      type: "line",
+      source: HG_NAV_SRC,
+      paint: {
+        "line-color": "#00d4ff",
+        "line-width": ["interpolate", ["linear"], ["zoom"], 10, 3, 14, 5, 18, 8],
+        "line-opacity": 0.95
+      }
+    });
+  } catch (e) {
+    console.warn("[ORS route] draw failed", e);
+    _toast("Kunne ikke tegne gangruten.");
+    return;
+  }
 
   const coords = out.geojson.features[0].geometry.coordinates;
   const b = coords.reduce(
     (bb, c) => bb.extend(c),
     new maplibregl.LngLatBounds(coords[0], coords[0])
   );
-  MAP.fitBounds(b, { padding: 60 });
+  map.fitBounds(b, { padding: 60 });
 
   if (Number.isFinite(out.distance_m) && Number.isFinite(out.duration_s)) {
     const km = (out.distance_m / 1000).toFixed(1);
@@ -439,7 +624,7 @@ function computeNearestStop(route, userPosObj, visitedMap = null) {
   return pool[0];
 }
 
-function getNearbyRoutesSorted(userPosObj, visitedMap = null, sourceRoutes = ROUTES) {
+function getNearbyRoutesSorted(userPosObj, visitedMap = null, sourceRoutes = _allRoutes()) {
   if (!Array.isArray(sourceRoutes) || !sourceRoutes.length) return [];
   return sourceRoutes
     .map(r => {
@@ -451,6 +636,7 @@ function getNearbyRoutesSorted(userPosObj, visitedMap = null, sourceRoutes = ROU
         _nearestStopName: n ? (n.place?.name || "") : ""
       };
     })
+    .filter(r => r._nearestDistM != null)
     .sort((a, b) => (a._nearestDistM ?? 1e12) - (b._nearestDistM ?? 1e12));
 }
 
@@ -458,15 +644,19 @@ async function renderLeftRoutesList() {
   const box = document.getElementById("leftRoutesList");
   if (!box) return;
 
+  _ensureRoutePanelStyles();
+
   await loadRoutes();
   generateThemeRoutes();
 
-  if (!ROUTES.length) {
+  const availableRoutes = _allRoutes();
+
+  if (!availableRoutes.length) {
     box.innerHTML = `<div class="muted">Ingen ruter lastet (routes.json tom / feil path).</div>`;
     return;
   }
 
-  const learningFilteredRoutes = ROUTES.filter(r => {
+  const learningFilteredRoutes = availableRoutes.filter(r => {
     if (!r.unlock_emne) return true;
     if (!window.KnowledgeLearning) return true;
     return window.KnowledgeLearning.isUnderstood?.(r.unlock_emne);
@@ -484,7 +674,7 @@ async function renderLeftRoutesList() {
       <div class="hg-empty-guide">
         <div class="hg-empty-guide-icon">🏅</div>
         <div class="hg-empty-guide-title">Ingen ruter</div>
-        <div class="hg-empty-guide-text">Ingen ruter har stopp i ${activeBadgeNameForRoutes()}. Trykk badgeknappen for å velge et annet badge eller alle.</div>
+        <div class="hg-empty-guide-text">Ingen ruter har stopp i ${_escapeHTML(activeBadgeNameForRoutes())}. Trykk badgeknappen for å velge et annet badge eller alle.</div>
       </div>
     `;
     return;
@@ -499,18 +689,23 @@ async function renderLeftRoutesList() {
   const visitedMap = (typeof window.visited !== "undefined" && window.visited) ? window.visited : {};
   const list = getNearbyRoutesSorted(pos, visitedMap, badgeFilteredRoutes);
 
+  if (!list.length) {
+    box.innerHTML = `<div class="muted">Ingen ruter har gyldige stopp i kartdataene.</div>`;
+    return;
+  }
+
   box.innerHTML = list.slice(0, 12).map(r => {
     const title = r.title || r.name || "Rute";
     const dist = formatDist(r._nearestDistM);
     const stop = r._nearestStopName || "";
     return `
-      <div class="left-route-item" data-route="${r.id}">
-        <div class="left-route-title">${title}</div>
-        <div class="left-route-meta muted">
-          <div>${stop}</div>
-          <div>${dist}</div>
+      <button class="left-route-item" type="button" data-route="${_escapeHTML(r.id)}">
+        <div class="left-route-title">${_escapeHTML(title)}</div>
+        <div class="left-route-meta">
+          <div class="left-route-stop">${_escapeHTML(stop)}</div>
+          <div class="left-route-dist">${_escapeHTML(dist)}</div>
         </div>
-      </div>
+      </button>
     `;
   }).join("");
 
@@ -522,7 +717,7 @@ async function renderLeftRoutesList() {
 
     const pos = getUserPos();
     const visitedMap = (typeof window.visited !== "undefined" && window.visited) ? window.visited : {};
-    const r = ROUTES.find(x => x.id === routeId);
+    const r = _routeById(routeId);
     const n = (r && pos) ? computeNearestStop(r, pos, visitedMap) : null;
     const idx = n ? n.stopIndex : 0;
 
@@ -531,6 +726,8 @@ async function renderLeftRoutesList() {
 }
 
 function initLeftRoutesPanel() {
+  _ensureRoutePanelStyles();
+
   const sel = document.getElementById("leftPanelMode");
   if (!sel) return;
 
@@ -551,6 +748,7 @@ window.HGRoutes = {
 
   init() {
     loadRoutes();
+    _ensureRoutePanelStyles();
     initLeftRoutesPanel();
   },
 
@@ -575,6 +773,11 @@ window.HGRoutes = {
     clearThematicRoute();
   }
 };
+
+window.renderLeftRoutesList = renderLeftRoutesList;
+window.focusRouteOnMap = focusRouteOnMap;
+window.showRouteOverlay = showRouteOverlay;
+window.clearThematicRoute = clearThematicRoute;
 
 window.showRouteToPlace = (place) => window.HGRoutes.showToPlace(place);
 window.showRouteTo = function(place) {
