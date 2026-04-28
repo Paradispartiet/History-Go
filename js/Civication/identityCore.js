@@ -30,7 +30,11 @@
 }
 
   function saveIdentity(identity) {
-    localStorage.setItem(LS_IDENTITY, JSON.stringify(identity));
+    const next = JSON.stringify(identity);
+    const prev = localStorage.getItem(LS_IDENTITY);
+    if (prev === next) return;
+    localStorage.setItem(LS_IDENTITY, next);
+    window.dispatchEvent(new Event("updateProfile"));
   }
 
   function getIdentity() {

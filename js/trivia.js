@@ -34,11 +34,15 @@ function saveTriviaPoint(entry) {
   const list = uni[entry.category][entry.id];
 
   // Hindrer duplikater
+  let changed = false;
   if (!list.includes(entry.trivia)) {
     list.push(entry.trivia);
+    changed = true;
   }
 
-    saveTriviaUniverse(uni);
+  if (!changed) return;
+
+  saveTriviaUniverse(uni);
   
   // Live-oppdatering i profil
   window.dispatchEvent(new Event("updateProfile"));

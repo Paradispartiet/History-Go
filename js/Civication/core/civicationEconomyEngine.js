@@ -1,4 +1,7 @@
 function checkTierUpgrades(onlyCareerId) {
+  function dispatchProfileUpdate() {
+    try { window.dispatchEvent(new Event("updateProfile")); } catch {}
+  }
 
   function getLastQuizCategoryId() {
     const hist = window.HGLearningLog?.getQuizHistory?.() ?? [];
@@ -130,10 +133,14 @@ function checkTierUpgrades(onlyCareerId) {
     newTierState[badge.id] = tierIndex;
   }
 
-  localStorage.setItem(
-    "hg_badge_tiers_v1",
-    JSON.stringify(newTierState)
-  );
+  const tierStateChanged = JSON.stringify(newTierState) !== JSON.stringify(tierState);
+  if (tierStateChanged) {
+    localStorage.setItem(
+      "hg_badge_tiers_v1",
+      JSON.stringify(newTierState)
+    );
+    dispatchProfileUpdate();
+  }
 }
 
 window.checkTierUpgrades = checkTierUpgrades;

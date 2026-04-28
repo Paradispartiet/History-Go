@@ -41,7 +41,11 @@
   }
 
   function saveState(next) {
+    const prevRaw = localStorage.getItem(LS_LIFE);
+    const nextRaw = JSON.stringify(next);
+    if (prevRaw === nextRaw) return next;
     lsSet(LS_LIFE, next);
+    try { window.dispatchEvent(new Event("updateProfile")); } catch {}
     return next;
   }
 
