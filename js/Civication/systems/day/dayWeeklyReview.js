@@ -1,5 +1,8 @@
 
 const CIVI_WEEKLY_REVIEW_KEY = "hg_civi_weekly_review_v1";
+function dispatchProfileUpdate() {
+  try { window.dispatchEvent(new Event("updateProfile")); } catch {}
+}
 
 function getWeekKey(date = new Date()) {
   const d = new Date(date);
@@ -59,7 +62,11 @@ function saveWeeklyReview(review) {
     applied: !!review?.applied
   };
 
-  localStorage.setItem(CIVI_WEEKLY_REVIEW_KEY, JSON.stringify(safeReview));
+  const nextRaw = JSON.stringify(safeReview);
+  const prevRaw = localStorage.getItem(CIVI_WEEKLY_REVIEW_KEY);
+  if (prevRaw === nextRaw) return safeReview;
+  localStorage.setItem(CIVI_WEEKLY_REVIEW_KEY, nextRaw);
+  dispatchProfileUpdate();
   return safeReview;
 }
 

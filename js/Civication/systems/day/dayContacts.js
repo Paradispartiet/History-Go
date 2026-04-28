@@ -1,4 +1,7 @@
 const CIVI_CONTACTS_KEY = "hg_civi_contacts_v1";
+function dispatchProfileUpdate() {
+  try { window.dispatchEvent(new Event("updateProfile")); } catch {}
+}
 
 function getCiviContacts() {
   try {
@@ -11,7 +14,11 @@ function getCiviContacts() {
 
 function saveCiviContacts(contacts) {
   const safe = Array.isArray(contacts) ? contacts : [];
-  localStorage.setItem(CIVI_CONTACTS_KEY, JSON.stringify(safe));
+  const nextRaw = JSON.stringify(safe);
+  const prevRaw = localStorage.getItem(CIVI_CONTACTS_KEY);
+  if (prevRaw === nextRaw) return safe;
+  localStorage.setItem(CIVI_CONTACTS_KEY, nextRaw);
+  dispatchProfileUpdate();
   return safe;
 }
 
@@ -158,4 +165,3 @@ function buildContactsHtml() {
     </div>
   `;
 }
-
