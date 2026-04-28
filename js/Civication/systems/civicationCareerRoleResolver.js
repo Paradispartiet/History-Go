@@ -35,7 +35,6 @@
     ekspeditor: "ekspeditor",
     butikkmedarbeider: "ekspeditor",
     ekspeditor_butikkmedarbeider: "ekspeditor",
-    ekspedit_r_butikkmedarbeider: "ekspeditor",
     naer_arbeider: "ekspeditor",
     naer_ekspeditor: "ekspeditor",
 
@@ -69,6 +68,19 @@
     nestleder: "assisterende_leder",
     naer_assisterende_leder: "assisterende_leder"
   };
+
+  // Temporary content fallback until every floor role has its own full mail package.
+  // This prevents badge offers from resolving to empty inboxes.
+  const MAIL_CONTENT_SCOPE_FALLBACK = {
+    erfaren_butikkmedarbeider: "ekspeditor",
+    vareansvarlig: "ekspeditor",
+    skiftansvarlig: "ekspeditor",
+    fagarbeider_salg_service: "fagarbeider",
+    assisterende_leder: "mellomleder",
+    driftsleder_formann: "formann"
+  };
+
+  const NATIVE_RUNTIME_SCOPES = new Set(["arbeider", "fagarbeider", "mellomleder", "formann"]);
 
   function norm(value) {
     return String(value || "").trim();
@@ -109,16 +121,23 @@
     return ROLE_ALIASES[fallback] || fallback;
   }
 
+  function resolveContentScope(activeOrTitle, maybeCareerId) {
+    const roleScope = resolveRoleScope(activeOrTitle, maybeCareerId);
+    return MAIL_CONTENT_SCOPE_FALLBACK[roleScope] || roleScope;
+  }
+
   function resolveRoleMeta(activeOrTitle, maybeCareerId) {
     const active = activeOrTitle && typeof activeOrTitle === "object" ? activeOrTitle : null;
     const careerId = norm(active?.career_id || maybeCareerId);
     const roleScope = resolveRoleScope(activeOrTitle, maybeCareerId);
+    const contentScope = resolveContentScope(activeOrTitle, maybeCareerId);
     const tier = careerId === "naeringsliv"
       ? NAERINGSLIV_TIERS.find(row => row.role_scope === roleScope) || null
       : null;
 
     return {
       role_scope: roleScope,
+      content_scope: contentScope,
       role_key: roleScope,
       role_id: tier?.role_id || (careerId === "naeringsliv" ? `naer_${roleScope}` : roleScope),
       label: tier?.label || norm(active?.title || activeOrTitle)
@@ -140,7 +159,8 @@
       label: row.label,
       threshold: row.threshold,
       role_scope: row.role_scope,
-      role_id: row.role_id
+      role_id: row.role_id,
+      content_scope: MAIL_CONTENT_SCOPE_FALLBACK[row.role_scope] || row.role_scope
     }));
 
     return true;
@@ -168,6 +188,7 @@
       ...offer,
       title: meta.label || offer.title,
       role_scope: meta.role_scope,
+      content_scope: meta.content_scope,
       role_key: meta.role_key,
       role_id: meta.role_id
     };
@@ -196,6 +217,7 @@
               ...active,
               title: meta.label || active.title,
               role_scope: meta.role_scope,
+              content_scope: meta.content_scope,
               role_key: meta.role_key,
               role_id: meta.role_id
             });
@@ -217,23 +239,23 @@
 
   function getPlanPath(active) {
     const category = norm(active?.career_id);
-    const roleScope = resolveRoleScope(active);
-    if (!category || !roleScope) return null;
-    return `data/Civication/mailPlans/${category}/${roleScope}_plan.json`;
+    const contentScope = resolveContentScope(active);
+    if (!category || !contentScope) return null;
+    return `data/Civication/mailPlans/${category}/${contentScope}_plan.json`;
   }
 
   function getFamilyPaths(active) {
     const category = norm(active?.career_id);
-    const roleScope = resolveRoleScope(active);
-    if (!category || !roleScope) return [];
+    const contentScope = resolveContentScope(active);
+    if (!category || !contentScope) return [];
     return [
-      `data/Civication/mailFamilies/${category}/job/${roleScope}_intro_v2.json`,
-      `data/Civication/mailFamilies/${category}/job/${roleScope}_job.json`,
-      `data/Civication/mailFamilies/${category}/faction_choice/${roleScope}_faction_choice.json`,
-      `data/Civication/mailFamilies/${category}/people/${roleScope}_people.json`,
-      `data/Civication/mailFamilies/${category}/story/${roleScope}_story.json`,
-      `data/Civication/mailFamilies/${category}/conflict/${roleScope}_conflict.json`,
-      `data/Civication/mailFamilies/${category}/event/${roleScope}_event.json`
+      `data/Civication/mailFamilies/${category}/job/${contentScope}_intro_v2.json`,
+      `data/Civication/mailFamilies/${category}/job/${contentScope}_job.json`,
+      `data/Civication/mailFamilies/${category}/faction_choice/${contentScope}_faction_choice.json`,
+      `data/Civication/mailFamilies/${category}/people/${contentScope}_people.json`,
+      `data/Civication/mailFamilies/${category}/story/${contentScope}_story.json`,
+      `data/Civication/mailFamilies/${category}/conflict/${contentScope}_conflict.json`,
+      `data/Civication/mailFamilies/${category}/event/${contentScope}_event.json`
     ];
   }
 
@@ -254,7 +276,7 @@
           mail_type: norm(mail.mail_type || catalogType || "job"),
           mail_family: norm(mail.mail_family || familyId),
           category: norm(catalog?.category),
-          role_scope: norm(mail.role_scope || catalog?.role_scope)
+          source_role_scope: norm(mail.role_scope || catalog?.role_scope)
         });
       }
     }
@@ -314,6 +336,9 @@
       role_id: meta.role_id,
       career_id: norm(active?.career_id),
       tier_label: meta.label || norm(active?.title),
+      role_scope: meta.role_scope,
+      content_scope: meta.content_scope,
+      source_role_scope: norm(mail.source_role_scope || mail.role_scope),
       mail_type: mailType,
       mail_family: family,
       phase: norm(mail.phase || step?.phase || "intro"),
@@ -321,6 +346,8 @@
         ...(mail.role_content_meta || {}),
         role_id: meta.role_id,
         role_scope: meta.role_scope,
+        content_scope: meta.content_scope,
+        source_role_scope: norm(mail.source_role_scope || mail.role_scope),
         plan_id: norm(plan.id),
         plan_step: Number(step?.step || 0),
         plan_step_index: stepIndex,
@@ -330,6 +357,7 @@
       mail_plan_meta: {
         plan_id: norm(plan.id),
         role_scope: meta.role_scope,
+        content_scope: meta.content_scope,
         step: Number(step?.step || 0),
         step_index: stepIndex,
         phase: norm(step?.phase),
@@ -340,6 +368,7 @@
         "planned_mail",
         norm(active?.career_id),
         meta.role_scope,
+        meta.content_scope,
         mailType,
         family,
         norm(step?.phase)
@@ -351,8 +380,8 @@
     if (!active || norm(active.career_id) !== "naeringsliv") return [];
 
     const roleScope = resolveRoleScope(active);
-    const nativeScopes = new Set(["arbeider", "fagarbeider", "mellomleder", "formann"]);
-    if (nativeScopes.has(roleScope)) return [];
+    const contentScope = resolveContentScope(active);
+    if (NATIVE_RUNTIME_SCOPES.has(roleScope) && contentScope === roleScope) return [];
 
     const planPath = getPlanPath(active);
     const plan = await loadJson(planPath);
@@ -440,7 +469,8 @@
             window.CivicationState?.setState?.({
               mail_runtime_v1: {
                 ...state.mail_runtime_v1,
-                role_scope: meta.role_scope
+                role_scope: meta.role_scope,
+                content_scope: meta.content_scope
               }
             });
           }
@@ -468,6 +498,7 @@
             ...position,
             title: meta.label || position.title,
             role_scope: meta.role_scope,
+            content_scope: meta.content_scope,
             role_key: meta.role_key,
             role_id: meta.role_id
           });
@@ -497,7 +528,12 @@
       jobs_patched: window.CivicationJobs?.__careerRoleResolverPatched === true,
       state_patched: window.CivicationState?.__careerRoleResolverStatePatched === true,
       event_engine_patched: window.CivicationEventEngine?.prototype?.[PATCHED_FLAG] === true,
-      naeringsliv_tiers: NAERINGSLIV_TIERS.map(row => ({ label: row.label, threshold: row.threshold, role_scope: row.role_scope }))
+      naeringsliv_tiers: NAERINGSLIV_TIERS.map(row => ({
+        label: row.label,
+        threshold: row.threshold,
+        role_scope: row.role_scope,
+        content_scope: MAIL_CONTENT_SCOPE_FALLBACK[row.role_scope] || row.role_scope
+      }))
     };
   }
 
@@ -506,10 +542,12 @@
     inspect,
     slugify,
     resolveRoleScope,
+    resolveContentScope,
     resolveRoleMeta,
     applyBadgeOverrides,
     makeCandidateMailsForActiveRole,
-    NAERINGSLIV_TIERS
+    NAERINGSLIV_TIERS,
+    MAIL_CONTENT_SCOPE_FALLBACK
   };
 
   if (document.readyState === "loading") {
