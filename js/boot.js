@@ -93,8 +93,8 @@ async function boot() {
 
   const loadWonderkammerManifest = async () => {
     const fallbackFiles = [
-      "data/wonderkammer.json",
-      "data/wonderkammer_more.json",
+      "data/wonderkammer/base.json",
+      "data/wonderkammer/urban_culture.json",
       "data/wonderkammer/playgrounds.json",
       "data/wonderkammer/training.json"
     ];
