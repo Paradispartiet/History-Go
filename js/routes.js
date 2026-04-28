@@ -1,54 +1,33 @@
 // =====================================================
 // routes.js — History GO
 //  A) Ekte gangrute: brukerposisjon -> valgt sted (ORS)
-//  B) Tematiske ruter: routes.json (stops[]) + visning på kart + venstrepanel
-//
-// Krever (globals):
-//  - MapLibre map via window.MAP eller window.HGMap.getMap()
-//  - PLACES (array) i window.PLACES
-//  - getPos() (fra app.js) ELLER legacy userLat/userLon
-//  - showToast(msg) (valgfritt)
-//  - openPlaceCard(place) (valgfritt)
-//
-// HTML forventet:
-//  - #leftPanelMode select med value: nearby|routes|badges
-//  - #panelRoutes og #leftRoutesList
+//  B) Tematiske ruter: KUN data/routes.json + visning på kart + Nearby/rutefane
 // =====================================================
 
 console.log("routes.js start");
 
-// -------------------- Config --------------------
 const HG_ORS = {
   baseUrl: "https://api.openrouteservice.org",
   apiKey: "eyJvcmciOiI1YjNjZTM1OTc4NTExMTAwMDFjZjYyNDgiLCJpZCI6Ijg1NjAxMzZmNDg0ZDQ0NzM4OTFlMWU1ODJjMjE5NzZlIiwiaCI6Im11cm11cjY0In0=",
   profile: "foot-walking"
 };
 
-// Eksponer ORS-config globalt (navRoutes.js / popup-utils forventer dette)
 window.HG_ORS = window.HG_ORS || {};
 window.HG_ORS.baseUrl = HG_ORS.baseUrl;
 window.HG_ORS.apiKey  = HG_ORS.apiKey;
 window.HG_ORS.profile = HG_ORS.profile;
 
-// -------------------- State --------------------
 let ROUTES = [];
 let routesLoaded = false;
-let GENERATED_ROUTES = [];
 
-// -------------------- MapLibre IDs --------------------
-// Tematiske ruter
 const HG_ROUTE_SRC   = "hg-thematic-route";
 const HG_ROUTE_GLOW  = "hg-thematic-route-glow";
 const HG_ROUTE_LINE  = "hg-thematic-route-line";
 const HG_ROUTE_STOPS = "hg-thematic-route-stops";
 
-// Navigasjon: gangrute (ORS)
 const HG_NAV_SRC  = "hg-nav-route";
 const HG_NAV_LINE = "hg-nav-route-line";
 
-// =====================================================
-// Helpers
-// =====================================================
 function _toast(msg) {
   if (typeof window.showToast === "function") window.showToast(msg);
 }
@@ -57,10 +36,6 @@ function _getMap() {
   const map = window.MAP || window.HGMap?.getMap?.() || null;
   if (map && window.MAP !== map) window.MAP = map;
   return map;
-}
-
-function _ensureMapReady() {
-  return !!_getMap();
 }
 
 function _escapeHTML(v) {
@@ -72,16 +47,61 @@ function _escapeHTML(v) {
     .replaceAll("'", "&#039;");
 }
 
-function _allRoutes() {
-  const byId = new Map();
-  [...ROUTES, ...GENERATED_ROUTES].forEach(r => {
-    if (r?.id && !byId.has(r.id)) byId.set(r.id, r);
-  });
-  return [...byId.values()];
+function _validRoutes() {
+  return ROUTES.filter(r => r?.id && Array.isArray(r.stops) && r.stops.length);
 }
 
 function _routeById(routeId) {
-  return _allRoutes().find(x => x.id === routeId) || null;
+  return _validRoutes().find(x => x.id === routeId) || null;
+}
+
+function _placeById(id) {
+  return (window.PLACES || []).find(p => p.id === id) || null;
+}
+
+function getUserPos() {
+  if (typeof window.getPos === "function") {
+    const p = window.getPos();
+    if (p && Number.isFinite(p.lat) && Number.isFinite(p.lon)) return p;
+  }
+
+  if (Number.isFinite(window.userLat) && Number.isFinite(window.userLon)) {
+    return { lat: window.userLat, lon: window.userLon };
+  }
+
+  if (Number.isFinite(window.userLat) && Number.isFinite(window.userLng)) {
+    return { lat: window.userLat, lon: window.userLng };
+  }
+
+  return null;
+}
+
+function getActiveRouteBadgeFilter() {
+  return window.HG_getActiveBadgeFilter?.() || window.HG_NEARBY_BADGE_FILTER || "all";
+}
+
+function isRouteBadgeFilterActive() {
+  const f = getActiveRouteBadgeFilter();
+  return !!f && f !== "all";
+}
+
+function routeMatchesActiveBadge(route) {
+  if (!isRouteBadgeFilterActive()) return true;
+
+  const badge = String(getActiveRouteBadgeFilter()).trim();
+  if (!route?.stops?.length) return false;
+
+  return route.stops.some(stop => {
+    const p = _placeById(stop.placeId);
+    return p && String(p.category || "").trim() === badge;
+  });
+}
+
+function activeBadgeNameForRoutes() {
+  const id = getActiveRouteBadgeFilter();
+  const cats = Array.isArray(window.CATEGORY_LIST) ? window.CATEGORY_LIST : [];
+  const c = cats.find(x => String(x.id || "").trim() === String(id).trim());
+  return c?.name || id;
 }
 
 function _ensureRoutePanelStyles() {
@@ -120,7 +140,6 @@ function _ensureRoutePanelStyles() {
       flex:0 0 220px;
       width:220px;
       height:150px;
-
       position:relative;
       overflow:hidden;
       border:0;
@@ -136,9 +155,10 @@ function _ensureRoutePanelStyles() {
         radial-gradient(circle at 18% 12%, rgba(255,255,255,.18), transparent 34%),
         linear-gradient(135deg, rgba(52,199,89,.52), rgba(8,20,12,.96));
       color:#fff;
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,.08);
+      box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);
       scroll-snap-align:start;
       cursor:pointer;
+      text-align:left;
     }
 
     #leftRoutesList .left-route-item::before{
@@ -212,90 +232,17 @@ function _enterRouteMapMode() {
   _getMap()?.resize?.();
 }
 
-function generateThemeRoutes() {
-  const routes = {};
-  const places = window.PLACES || [];
-
-  places.forEach(p => {
-    const emner = Array.isArray(p.emner) ? p.emner : (Array.isArray(p.emne_ids) ? p.emne_ids : []);
-    if (!emner.length) return;
-
-    emner.forEach(emne => {
-      if (!routes[emne]) {
-        routes[emne] = {
-          id: "theme_" + emne,
-          name: emne,
-          stops: []
-        };
-      }
-
-      routes[emne].stops.push({ placeId: p.id });
-    });
-  });
-
-  GENERATED_ROUTES = Object.values(routes).filter(r => r.stops.length >= 2);
-}
-
-function getUserPos() {
-  // Ny standard: HG_POS via getPos()
-  if (typeof window.getPos === "function") {
-    const p = window.getPos();
-    if (p && Number.isFinite(p.lat) && Number.isFinite(p.lon)) return p;
-  }
-  // Legacy fallback
-  if (Number.isFinite(window.userLat) && Number.isFinite(window.userLon)) {
-    return { lat: window.userLat, lon: window.userLon };
-  }
-  if (Number.isFinite(window.userLat) && Number.isFinite(window.userLng)) {
-    return { lat: window.userLat, lon: window.userLng };
-  }
-  return null;
-}
-
-function _placeById(id) {
-  return (window.PLACES || []).find(p => p.id === id) || null;
-}
-
-function getActiveRouteBadgeFilter() {
-  return window.HG_getActiveBadgeFilter?.() || window.HG_NEARBY_BADGE_FILTER || "all";
-}
-
-function isRouteBadgeFilterActive() {
-  const f = getActiveRouteBadgeFilter();
-  return !!f && f !== "all";
-}
-
-function routeMatchesActiveBadge(route) {
-  if (!isRouteBadgeFilterActive()) return true;
-  const badge = String(getActiveRouteBadgeFilter()).trim();
-  if (!route?.stops?.length) return false;
-
-  return route.stops.some(stop => {
-    const p = _placeById(stop.placeId);
-    return p && String(p.category || "").trim() === badge;
-  });
-}
-
-function activeBadgeNameForRoutes() {
-  const id = getActiveRouteBadgeFilter();
-  const cats = Array.isArray(window.CATEGORY_LIST) ? window.CATEGORY_LIST : [];
-  const c = cats.find(x => String(x.id || "").trim() === String(id).trim());
-  return c?.name || id;
-}
-
-// =====================================================
-// A) Load thematic routes
-// =====================================================
 async function loadRoutes() {
   if (routesLoaded) return ROUTES;
 
   try {
     const res = await fetch("data/routes.json", { cache: "no-store" });
     if (!res.ok) throw new Error("routes.json http " + res.status);
-    const data = await res.json();
 
+    const data = await res.json();
     ROUTES = Array.isArray(data) ? data : [];
     routesLoaded = true;
+
     if (window.DEBUG) console.log("[routes] loaded:", ROUTES.length);
     return ROUTES;
   } catch (e) {
@@ -306,9 +253,6 @@ async function loadRoutes() {
   }
 }
 
-// =====================================================
-// B) Tematic route drawing
-// =====================================================
 function clearThematicRoute() {
   const map = _getMap();
   if (!map) return;
@@ -354,6 +298,7 @@ function focusRouteOnMap(routeId, startIndex = 0) {
   const coords = visiblePlaces.map(p => [Number(p.lon), Number(p.lat)]);
 
   const features = [];
+
   if (coords.length >= 2) {
     features.push({
       type: "Feature",
@@ -425,8 +370,10 @@ function focusRouteOnMap(routeId, startIndex = 0) {
       map.on("click", HG_ROUTE_STOPS, (e) => {
         const f = e.features && e.features[0];
         if (!f) return;
+
         const id = f.properties?.placeId;
         const p = id ? _placeById(id) : null;
+
         if (p && typeof window.openPlaceCard === "function") {
           window.openPlaceCard(p);
         }
@@ -459,25 +406,24 @@ function focusRouteOnMap(routeId, startIndex = 0) {
 
 function showRouteOverlay(routeId, startIndex = 0) {
   const r = _routeById(routeId);
-  if (!r) { _toast("Fant ikke rute."); return; }
+  if (!r) {
+    _toast("Fant ikke rute.");
+    return;
+  }
 
   _enterRouteMapMode();
 
   setTimeout(() => {
-    try { focusRouteOnMap(routeId, startIndex); }
-    catch (e) { console.warn("[showRouteOverlay] focusRouteOnMap failed", e); }
+    try {
+      focusRouteOnMap(routeId, startIndex);
+    } catch (e) {
+      console.warn("[showRouteOverlay] focusRouteOnMap failed", e);
+    }
   }, 160);
 
   _toast(`${r.name || r.title || "Rute"} (${r.stops?.length || 0} stopp)`);
 }
 
-function closeRouteOverlay() {
-  // placeholder — hvis du senere lager et faktisk overlay
-}
-
-// =====================================================
-// C) ORS walking route (user -> place)
-// =====================================================
 function clearNavRoute() {
   const map = _getMap();
   if (!map) return;
@@ -504,6 +450,7 @@ async function fetchORSRouteGeoJSON(from, to) {
       "Accept": "application/geo+json,application/json"
     }
   });
+
   if (!r.ok) throw new Error(`ORS directions HTTP ${r.status}`);
 
   const geojson = await r.json();
@@ -529,7 +476,10 @@ async function showWalkingRouteToPlace(place) {
   }
 
   const pos = getUserPos();
-  if (!pos) { _toast("Fant ikke posisjon ennå."); return; }
+  if (!pos) {
+    _toast("Fant ikke posisjon ennå.");
+    return;
+  }
 
   const from = [pos.lon, pos.lat];
   const to   = [place.lon, place.lat];
@@ -569,6 +519,7 @@ async function showWalkingRouteToPlace(place) {
     (bb, c) => bb.extend(c),
     new maplibregl.LngLatBounds(coords[0], coords[0])
   );
+
   map.fitBounds(b, { padding: 60 });
 
   if (Number.isFinite(out.distance_m) && Number.isFinite(out.duration_s)) {
@@ -580,15 +531,16 @@ async function showWalkingRouteToPlace(place) {
   }
 }
 
-// =====================================================
-// D) Left panel list (nearest routes)
-// =====================================================
 function formatDist(m) {
   if (m == null) return "";
   const mm = Math.round(m);
   return mm < 1000 ? `${mm} m` : `${(mm / 1000).toFixed(1)} km`;
 }
-function toRad(d) { return (d * Math.PI) / 180; }
+
+function toRad(d) {
+  return (d * Math.PI) / 180;
+}
+
 function distanceMeters(lat1, lon1, lat2, lon2) {
   const R = 6371000;
   const dLat = toRad(lat2 - lat1);
@@ -598,6 +550,7 @@ function distanceMeters(lat1, lon1, lat2, lon2) {
   const x =
     Math.sin(dLat / 2) ** 2 +
     Math.cos(a1) * Math.cos(a2) * Math.sin(dLon / 2) ** 2;
+
   return 2 * R * Math.asin(Math.sqrt(x));
 }
 
@@ -621,11 +574,13 @@ function computeNearestStop(route, userPosObj, visitedMap = null) {
   const unvisited = candidates.filter(c => !c.isVisited);
   const pool = unvisited.length ? unvisited : candidates;
   pool.sort((a, b) => a.distM - b.distM);
+
   return pool[0];
 }
 
-function getNearbyRoutesSorted(userPosObj, visitedMap = null, sourceRoutes = _allRoutes()) {
+function getNearbyRoutesSorted(userPosObj, visitedMap = null, sourceRoutes = _validRoutes()) {
   if (!Array.isArray(sourceRoutes) || !sourceRoutes.length) return [];
+
   return sourceRoutes
     .map(r => {
       const n = computeNearestStop(r, userPosObj, visitedMap);
@@ -645,14 +600,12 @@ async function renderLeftRoutesList() {
   if (!box) return;
 
   _ensureRoutePanelStyles();
-
   await loadRoutes();
-  generateThemeRoutes();
 
-  const availableRoutes = _allRoutes();
+  const availableRoutes = _validRoutes();
 
   if (!availableRoutes.length) {
-    box.innerHTML = `<div class="muted">Ingen ruter lastet (routes.json tom / feil path).</div>`;
+    box.innerHTML = `<div class="muted">Ingen ruter lastet fra routes.json.</div>`;
     return;
   }
 
@@ -698,6 +651,7 @@ async function renderLeftRoutesList() {
     const title = r.title || r.name || "Rute";
     const dist = formatDist(r._nearestDistM);
     const stop = r._nearestStopName || "";
+
     return `
       <button class="left-route-item" type="button" data-route="${_escapeHTML(r.id)}">
         <div class="left-route-title">${_escapeHTML(title)}</div>
@@ -712,6 +666,7 @@ async function renderLeftRoutesList() {
   box.onclick = (e) => {
     const item = e.target.closest(".left-route-item");
     if (!item) return;
+
     const routeId = item.getAttribute("data-route");
     if (!routeId) return;
 
@@ -740,9 +695,6 @@ function initLeftRoutesPanel() {
   setLeftPanelMode(sel.value || "nearby");
 }
 
-// =====================================================
-// Public API (clean) + Compat for popup-utils
-// =====================================================
 window.HGRoutes = {
   load: loadRoutes,
 
