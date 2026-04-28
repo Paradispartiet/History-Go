@@ -1,0 +1,81 @@
+{
+  "schema": "civication_mail_plan_v1",
+  "version": 1,
+  "id": "ekspeditor_naeringsliv_v1",
+  "category": "naeringsliv",
+  "role_scope": "ekspeditor",
+  "title": "Ekspeditør / butikkmedarbeider",
+  "purpose": "Første Næringsliv-plan: konkrete arbeidssituasjoner på gulvet før spilleren får mer ansvar.",
+  "sequence": [
+    {
+      "step": 1,
+      "phase": "intro",
+      "type": "job",
+      "allowed_families": ["kasse_og_pris"],
+      "fallback_types": ["people", "story"]
+    },
+    {
+      "step": 2,
+      "phase": "early",
+      "type": "job",
+      "allowed_families": ["kundemote_og_service"],
+      "fallback_types": ["people", "conflict"]
+    },
+    {
+      "step": 3,
+      "phase": "early",
+      "type": "people",
+      "allowed_families": ["ny_kollega_og_tillit"],
+      "fallback_types": ["job", "story"]
+    },
+    {
+      "step": 4,
+      "phase": "early",
+      "type": "job",
+      "allowed_families": ["vareflyt_og_hylle"],
+      "fallback_types": ["conflict", "event"]
+    },
+    {
+      "step": 5,
+      "phase": "mid",
+      "type": "conflict",
+      "allowed_families": ["snarveier_og_rutine"],
+      "fallback_types": ["job", "people"]
+    },
+    {
+      "step": 6,
+      "phase": "mid",
+      "type": "story",
+      "allowed_families": ["yrkesidentitet_pa_gulvet"],
+      "fallback_types": ["job", "people"]
+    },
+    {
+      "step": 7,
+      "phase": "mid",
+      "type": "event",
+      "allowed_families": ["travelt_gulv"],
+      "fallback_types": ["job", "conflict"]
+    },
+    {
+      "step": 8,
+      "phase": "advanced",
+      "type": "job",
+      "allowed_families": ["kasse_og_pris", "kundemote_og_service", "vareflyt_og_hylle"],
+      "fallback_types": ["people", "conflict"]
+    },
+    {
+      "step": 9,
+      "phase": "advanced",
+      "type": "people",
+      "allowed_families": ["ny_kollega_og_tillit"],
+      "fallback_types": ["story", "job"]
+    },
+    {
+      "step": 10,
+      "phase": "mastery",
+      "type": "event",
+      "allowed_families": ["travelt_gulv"],
+      "fallback_types": ["conflict", "story"]
+    }
+  ]
+}
