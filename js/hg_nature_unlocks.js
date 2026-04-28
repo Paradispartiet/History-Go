@@ -157,19 +157,26 @@
     const beforeFlora = db.collected.flora.length;
     const beforeFauna = db.collected.fauna.length;
 
+    const quizWasNew = !db.byQuiz[qid];
+    const placeWasNew = !db.byPlace[pid];
+    const beforeQuizFlora = quizWasNew ? 0 : (Array.isArray(db.byQuiz[qid].flora) ? db.byQuiz[qid].flora.length : 0);
+    const beforeQuizFauna = quizWasNew ? 0 : (Array.isArray(db.byQuiz[qid].fauna) ? db.byQuiz[qid].fauna.length : 0);
+    const beforeQuizPlaces = quizWasNew ? 0 : (Array.isArray(db.byQuiz[qid].places) ? db.byQuiz[qid].places.length : 0);
+    const beforePlaceFlora = placeWasNew ? 0 : (Array.isArray(db.byPlace[pid].flora) ? db.byPlace[pid].flora.length : 0);
+    const beforePlaceFauna = placeWasNew ? 0 : (Array.isArray(db.byPlace[pid].fauna) ? db.byPlace[pid].fauna.length : 0);
+    const beforePlaceQuizzes = placeWasNew ? 0 : (Array.isArray(db.byPlace[pid].quizzes) ? db.byPlace[pid].quizzes.length : 0);
+
     db.collected.flora = uniqPush(db.collected.flora, floraAdd);
     db.collected.fauna = uniqPush(db.collected.fauna, faunaAdd);
 
     // audit per quiz
     db.byQuiz[qid] = db.byQuiz[qid] || { quizId: qid, ts_first: Date.now(), ts_last: Date.now(), flora: [], fauna: [], places: [] };
-    db.byQuiz[qid].ts_last = Date.now();
     db.byQuiz[qid].flora = uniqPush(db.byQuiz[qid].flora, floraAdd);
     db.byQuiz[qid].fauna = uniqPush(db.byQuiz[qid].fauna, faunaAdd);
     db.byQuiz[qid].places = uniqPush(db.byQuiz[qid].places, [pid]);
 
     // audit per place
     db.byPlace[pid] = db.byPlace[pid] || { placeId: pid, ts_first: Date.now(), ts_last: Date.now(), flora: [], fauna: [], quizzes: [] };
-    db.byPlace[pid].ts_last = Date.now();
     db.byPlace[pid].flora = uniqPush(db.byPlace[pid].flora, floraAdd);
     db.byPlace[pid].fauna = uniqPush(db.byPlace[pid].fauna, faunaAdd);
     db.byPlace[pid].quizzes = uniqPush(db.byPlace[pid].quizzes, [qid]);
@@ -179,8 +186,21 @@
       fauna: db.collected.fauna.slice(beforeFauna)
     };
 
-    const changed = added.flora.length > 0 || added.fauna.length > 0;
+    const changed =
+      added.flora.length > 0 ||
+      added.fauna.length > 0 ||
+      quizWasNew ||
+      placeWasNew ||
+      db.byQuiz[qid].flora.length !== beforeQuizFlora ||
+      db.byQuiz[qid].fauna.length !== beforeQuizFauna ||
+      db.byQuiz[qid].places.length !== beforeQuizPlaces ||
+      db.byPlace[pid].flora.length !== beforePlaceFlora ||
+      db.byPlace[pid].fauna.length !== beforePlaceFauna ||
+      db.byPlace[pid].quizzes.length !== beforePlaceQuizzes;
     if (changed) {
+      const now = Date.now();
+      db.byQuiz[qid].ts_last = now;
+      db.byPlace[pid].ts_last = now;
       saveDb(db);
       dispatchProfileUpdate();
     }

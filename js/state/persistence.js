@@ -61,10 +61,11 @@ function savePeople() {
 }
 
 function saveMerits() {
-  localStorage.setItem(
-    "merits_by_category",
-    JSON.stringify(merits)
-  );
+  const nextRaw = JSON.stringify(merits);
+  const prevRaw = localStorage.getItem("merits_by_category");
+  if (prevRaw === nextRaw) return;
+  localStorage.setItem("merits_by_category", nextRaw);
+  window.dispatchEvent(new Event("updateProfile"));
 }
 
 window.saveMerits = saveMerits;
