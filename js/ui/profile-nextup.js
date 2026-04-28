@@ -152,13 +152,19 @@
     });
   }
 
-  window.renderProfileNextUp = renderProfileNextUp;
-
-  document.addEventListener("DOMContentLoaded", () => {
+  function bootProfileNextUp() {
     renderProfileNextUp();
     window.setTimeout(renderProfileNextUp, 250);
     window.setTimeout(renderProfileNextUp, 900);
-  });
+  }
+
+  window.renderProfileNextUp = renderProfileNextUp;
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", bootProfileNextUp);
+  } else {
+    bootProfileNextUp();
+  }
 
   window.addEventListener("load", renderProfileNextUp);
   window.addEventListener("updateProfile", renderProfileNextUp);
