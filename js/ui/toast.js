@@ -66,7 +66,21 @@ function showToast(msg, ms = null) {
       activity: "Aktivitet",
       training_zone: "Treningssone",
       training: "Trening",
-      media_concept: "Mediebegrep"
+      media_concept: "Mediebegrep",
+      art_zone: "Kunstsone",
+      artwork: "Kunstverk",
+      sculpture: "Skulptur",
+      public_art: "Offentlig kunst",
+      street_art_zone: "Gatekunst",
+      mural: "Veggmaleri",
+      graffiti_piece: "Graffiti",
+      street_art_detail: "Gatekunst-detalj",
+      architecture_zone: "Arkitektursone",
+      architectural_feature: "Arkitekturdetalj",
+      facade_detail: "Fasadedetalj",
+      material_study: "Materialstudie",
+      viewpoint: "Utsiktspunkt",
+      urban_space: "Byrom"
     };
     const t = norm(type);
     return labels[t] || t || "Wonderkammer";
