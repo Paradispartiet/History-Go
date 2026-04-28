@@ -114,11 +114,14 @@
 // ------------------------------------------------------------
 // NextUp persistence + footer-toggle
 // - NextUp er kontekstuell for sist åpne placeCard
-// - Den vises ikke som permanent linje
-// - Footeren får en liten pilknapp; trykk åpner/lukker raden
+// - Knappen ligger i footeren
+// - Raden ligger i eget isolert panel: #footerNextUpPanel
 // ------------------------------------------------------------
 (function () {
   "use strict";
+
+  const PANEL_ID = "footerNextUpPanel";
+  const BUTTON_ID = "pcNextUpBtn";
 
   function esc(value) {
     return String(value ?? "").replace(/[&<>"']/g, ch => ({
@@ -151,62 +154,89 @@
     }
   }
 
-  function setPanelOpen(panel, btn, open) {
-    if (!panel || !btn) return;
+  function forcePanelState(panel, open) {
+    if (!panel) return;
 
     panel.classList.toggle("is-open", open);
     panel.setAttribute("aria-hidden", open ? "false" : "true");
 
-    // Direkte display-styring gjør knappen robust selv om gammel CSS ligger i cache.
+    // Direkte inline-styring for at åpning skal fungere selv ved cachet/overstyrende CSS.
     panel.style.display = open ? "grid" : "none";
+    panel.style.opacity = open ? "1" : "0";
+    panel.style.visibility = open ? "visible" : "hidden";
+    panel.style.pointerEvents = open ? "auto" : "none";
+    panel.style.transform = open ? "translateY(0)" : "translateY(10px)";
+  }
+
+  function forceButtonState(btn, open) {
+    if (!btn) return;
 
     btn.classList.toggle("is-active", open);
     btn.setAttribute("aria-expanded", open ? "true" : "false");
   }
 
+  function setOpen(open) {
+    const panel = document.getElementById(PANEL_ID);
+    const btn = document.getElementById(BUTTON_ID);
+
+    forcePanelState(panel, open);
+    forceButtonState(btn, open);
+  }
+
+  function toggleFooterNextUp() {
+    const panel = ensureFooterNextUp();
+    const btn = document.getElementById(BUTTON_ID);
+    const open = !panel.classList.contains("is-open");
+
+    forcePanelState(panel, open);
+    forceButtonState(btn, open);
+  }
+
   function ensureFooterNextUp() {
     const footer = document.querySelector(".app-footer");
-    if (!footer) return null;
+    const shell = document.querySelector(".app-shell");
+    if (!footer || !shell) return null;
 
     ensureCss("css/footer-nextup.css");
 
-    let panel = document.getElementById("mpNextUp");
+    // Gammel permanente NextUp-linje skal ikke brukes som panel lenger.
+    const oldMpNextUp = document.getElementById("mpNextUp");
+    if (oldMpNextUp) oldMpNextUp.remove();
+
+    let panel = document.getElementById(PANEL_ID);
     if (!panel) {
       panel = document.createElement("div");
-      panel.id = "mpNextUp";
-      document.querySelector(".app-shell")?.appendChild(panel);
+      panel.id = PANEL_ID;
+      panel.className = "footer-nextup-panel";
+      shell.appendChild(panel);
     }
 
-    // Ikke bruk app-nextup-klassen her. Den er gammel global linje og skjules av footer.css.
-    panel.className = "footer-nextup-panel";
-    panel.setAttribute("aria-hidden", panel.classList.contains("is-open") ? "false" : "true");
-
-    let btn = document.getElementById("pcNextUpBtn");
+    let btn = document.getElementById(BUTTON_ID);
     if (!btn) {
       btn = document.createElement("button");
-      btn.id = "pcNextUpBtn";
+      btn.id = BUTTON_ID;
       btn.className = "iconbtn pc-nextup-btn";
       btn.type = "button";
       btn.setAttribute("aria-label", "Neste");
+      btn.setAttribute("aria-expanded", "false");
       btn.title = "Neste";
       btn.textContent = "➜";
       footer.appendChild(btn);
     }
 
-    if (btn.dataset.nextupBound !== "1") {
-      btn.dataset.nextupBound = "1";
-      btn.addEventListener("click", (e) => {
-        e.preventDefault();
-        e.stopPropagation();
+    // Bruk onclick direkte i tillegg til global funksjon. Dette er enklere og mer robust på iPad/Safari.
+    btn.onclick = function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      toggleFooterNextUp();
+      return false;
+    };
 
-        const currentPanel = document.getElementById("mpNextUp");
-        const isOpen = !currentPanel?.classList.contains("is-open");
-        setPanelOpen(currentPanel, btn, isOpen);
-      });
+    window.toggleFooterNextUp = toggleFooterNextUp;
+
+    if (!panel.classList.contains("is-open")) {
+      setOpen(false);
     }
-
-    const isOpen = panel.classList.contains("is-open");
-    setPanelOpen(panel, btn, isOpen);
 
     return panel;
   }
@@ -233,7 +263,7 @@
           } else if (typeof window.openWonderkammerEntry === "function") {
             window.openWonderkammerEntry(id);
           } else {
-            console.warn("[mpNextUp] No Wonderkammer open handler found for", id);
+            console.warn("[NextUp] No Wonderkammer open handler found for", id);
             window.showToast?.("Fant ikke Wonderkammer-visning");
           }
           return;
@@ -302,9 +332,7 @@
     `;
 
     bindNextUp(panel);
-
-    const btn = document.getElementById("pcNextUpBtn");
-    setPanelOpen(panel, btn, wasOpen);
+    setOpen(wasOpen);
   }
 
   function bootNextUpFooter() {
