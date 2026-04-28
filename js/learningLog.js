@@ -112,15 +112,13 @@
 })(window);
 
 // ------------------------------------------------------------
-// NextUp persistence + plassering
-// - Forside: NextUp rendres inni På stedet-boksen (#pcEventsBox)
-// - Profil: profile-nextup.js kan vise sist lagrede NextUp
+// NextUp persistence + footer-toggle
+// - NextUp er kontekstuell for sist åpne placeCard
+// - Den vises ikke som permanent linje
+// - Footeren får en liten pilknapp; trykk åpner/lukker raden
 // ------------------------------------------------------------
 (function () {
   "use strict";
-
-  let renderingPcNextUp = false;
-  let pcEventsObserver = null;
 
   function esc(value) {
     return String(value ?? "").replace(/[&<>"']/g, ch => ({
@@ -153,29 +151,45 @@
     }
   }
 
-  function ensurePcNextUpMount() {
-    const box = document.getElementById("pcEventsBox");
-    if (!box) return null;
+  function ensureFooterNextUp() {
+    const footer = document.querySelector(".app-footer");
+    if (!footer) return null;
 
-    let mount = box.querySelector("#mpNextUp");
-    if (mount) return mount;
+    ensureCss("css/footer-nextup.css");
 
-    mount = document.createElement("div");
-    mount.id = "mpNextUp";
-    mount.className = "pc-nextup";
-
-    const head = box.querySelector(".pc-events-head");
-    if (head) {
-      head.insertAdjacentElement("afterend", mount);
-    } else {
-      box.prepend(mount);
+    let panel = document.getElementById("mpNextUp");
+    if (!panel) {
+      panel = document.createElement("div");
+      panel.id = "mpNextUp";
+      document.querySelector(".app-shell")?.appendChild(panel);
     }
 
-    return mount;
+    panel.className = "app-nextup footer-nextup-panel";
+    panel.setAttribute("aria-hidden", panel.classList.contains("is-open") ? "false" : "true");
+
+    let btn = document.getElementById("pcNextUpBtn");
+    if (!btn) {
+      btn = document.createElement("button");
+      btn.id = "pcNextUpBtn";
+      btn.className = "iconbtn pc-nextup-btn";
+      btn.type = "button";
+      btn.setAttribute("aria-label", "Neste");
+      btn.title = "Neste";
+      btn.textContent = "➜";
+      footer.appendChild(btn);
+    }
+
+    btn.onclick = () => {
+      const isOpen = panel.classList.toggle("is-open");
+      panel.setAttribute("aria-hidden", isOpen ? "false" : "true");
+      btn.classList.toggle("is-active", isOpen);
+    };
+
+    return panel;
   }
 
-  function bindPcNextUp(mount) {
-    mount.querySelectorAll("[data-mp]").forEach((btn) => {
+  function bindNextUp(panel) {
+    panel.querySelectorAll("[data-mp]").forEach((btn) => {
       btn.onclick = () => {
         const t = btn.dataset.mp;
 
@@ -219,11 +233,11 @@
     });
   }
 
-  function renderPcNextUpFromTri(tri) {
+  function renderFooterNextUp(tri = readTri()) {
     if (document.body?.classList.contains("profile-page")) return;
 
-    const mount = ensurePcNextUpMount();
-    if (!mount) return;
+    const panel = ensureFooterNextUp();
+    if (!panel) return;
 
     tri = tri && typeof tri === "object" ? tri : {};
 
@@ -232,70 +246,56 @@
     const concept = tri.concept || null;
     const wk = tri.wk || null;
 
-    mount.innerHTML = `
+    panel.innerHTML = `
       <div class="mp-nextup-line">
         <button class="mp-nextup-link" data-mp="goto"
           ${spatial ? `data-place="${attr(spatial.place_id)}"` : "disabled"}>
-          🧭 <b>Neste Sted:</b> ${spatial ? esc(spatial.label) : "—"}
+          🧭 <b>Neste sted</b><span>${spatial ? esc(spatial.label) : "—"}</span>
         </button>
       </div>
 
       <div class="mp-nextup-line">
         <button class="mp-nextup-link" data-mp="wk"
           ${wk ? `data-wk="${attr(wk.entry_id)}" title="${attr(wk.because || "")}"` : "disabled"}>
-          🗃️ <b>Wonderkammer:</b> ${wk ? esc(wk.label) : "—"}
+          🗃️ <b>Wonderkammer</b><span>${wk ? esc(wk.label) : "—"}</span>
         </button>
       </div>
 
       <div class="mp-nextup-line">
         <button class="mp-nextup-link" data-mp="story"
           ${narrative ? `data-nextplace="${attr(narrative.next_place_id)}"` : "disabled"}>
-          📖 <b>Neste Scene:</b> ${narrative ? esc(narrative.label) : "—"}
+          📖 <b>Neste scene</b><span>${narrative ? esc(narrative.label) : "—"}</span>
         </button>
       </div>
 
       <div class="mp-nextup-line">
         <button class="mp-nextup-link" data-mp="emne"
           ${concept ? `data-emne="${attr(concept.emne_id)}"` : "disabled"}>
-          🧠 <b>Forstå:</b> ${concept ? esc(concept.label) : "—"}
+          🧠 <b>Forstå</b><span>${concept ? esc(concept.label) : "—"}</span>
         </button>
       </div>
     `;
 
-    bindPcNextUp(mount);
+    bindNextUp(panel);
   }
 
-  function renderPcNextUpFromStorage() {
-    if (renderingPcNextUp) return;
-    renderingPcNextUp = true;
+  function bootNextUpFooter() {
+    if (document.body?.classList.contains("profile-page")) {
+      ensureCss("css/profile-nextup.css");
 
-    try {
-      renderPcNextUpFromTri(readTri());
-    } finally {
-      renderingPcNextUp = false;
+      if (!document.querySelector('script[src="js/ui/profile-nextup.js"]')) {
+        const script = document.createElement("script");
+        script.src = "js/ui/profile-nextup.js";
+        script.defer = true;
+        document.body.appendChild(script);
+      }
+      return;
     }
+
+    renderFooterNextUp(readTri());
   }
 
-  function startPcNextUpObserver() {
-    if (document.body?.classList.contains("profile-page")) return;
-
-    ensureCss("css/placecard-nextup.css");
-
-    const oldStaticMount = document.querySelector(".app-shell > #mpNextUp.app-nextup, body > #mpNextUp.app-nextup");
-    oldStaticMount?.remove();
-
-    const box = document.getElementById("pcEventsBox");
-    if (!box || pcEventsObserver) return;
-
-    pcEventsObserver = new MutationObserver(() => {
-      window.setTimeout(renderPcNextUpFromStorage, 0);
-    });
-
-    pcEventsObserver.observe(box, { childList: true });
-    renderPcNextUpFromStorage();
-  }
-
-  window.renderPcNextUpFromStorage = renderPcNextUpFromStorage;
+  window.renderFooterNextUp = renderFooterNextUp;
 
   window.addEventListener("hg:mpNextUp", (e) => {
     const tri = e.detail?.tri || {};
@@ -306,33 +306,14 @@
       localStorage.setItem("hg_nextup_tri", JSON.stringify(tri || {}));
     } catch {}
 
-    window.setTimeout(renderPcNextUpFromStorage, 0);
+    window.setTimeout(() => renderFooterNextUp(tri), 0);
   });
 
-  function normalizeNextUpPlacement() {
-    const isProfile = document.body?.classList.contains("profile-page");
-
-    if (!isProfile) {
-      document.querySelector(".app-shell > #mpNextUp.app-nextup, body > #mpNextUp.app-nextup")?.remove();
-      startPcNextUpObserver();
-      return;
-    }
-
-    ensureCss("css/profile-nextup.css");
-
-    if (!document.querySelector('script[src="js/ui/profile-nextup.js"]')) {
-      const script = document.createElement("script");
-      script.src = "js/ui/profile-nextup.js";
-      script.defer = true;
-      document.body.appendChild(script);
-    }
-  }
-
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", normalizeNextUpPlacement);
+    document.addEventListener("DOMContentLoaded", bootNextUpFooter);
   } else {
-    normalizeNextUpPlacement();
+    bootNextUpFooter();
   }
 
-  window.addEventListener("load", startPcNextUpObserver);
+  window.addEventListener("load", bootNextUpFooter);
 })();
