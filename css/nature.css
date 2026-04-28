@@ -371,29 +371,29 @@
 .nature-unlock-stack {
   position: fixed;
   left: 50%;
-  bottom: 32px;
+  bottom: calc(40px + env(safe-area-inset-bottom));
   transform: translateX(-50%);
   display: flex;
   flex-direction: column-reverse;
-  gap: 10px;
-  z-index: 2500;
+  gap: 16px;
+  z-index: 20001;
   pointer-events: none;
-  width: min(360px, calc(100vw - 32px));
+  width: min(820px, calc(100vw - 40px));
 }
 
 .nature-unlock-card {
   pointer-events: auto;
   position: relative;
   display: grid;
-  grid-template-columns: 56px 1fr auto;
+  grid-template-columns: 92px 1fr auto;
   align-items: center;
-  gap: 12px;
-  padding: 10px 12px 10px 10px;
-  border-radius: 16px;
+  gap: 20px;
+  padding: 24px 24px 24px 22px;
+  border-radius: 28px;
   background: #fff;
   color: #1c2016;
-  box-shadow: 0 14px 32px rgba(0,0,0,0.28), 0 2px 6px rgba(0,0,0,0.12);
-  transform: translateY(20px) scale(0.96);
+  box-shadow: 0 18px 44px rgba(0,0,0,0.34), 0 3px 10px rgba(0,0,0,0.14);
+  transform: translateY(28px) scale(0.96);
   opacity: 0;
   transition: transform 280ms cubic-bezier(0.2, 0.9, 0.25, 1.2),
               opacity 220ms ease-out;
@@ -407,28 +407,28 @@
 }
 
 .nature-unlock-card.is-leaving {
-  transform: translateY(10px) scale(0.98);
+  transform: translateY(16px) scale(0.98);
   opacity: 0;
 }
 
 .nature-unlock-card.is-flora {
   background: linear-gradient(135deg, #eef5e6 0%, #fff 70%);
-  border-left: 4px solid #6aa63d;
+  border-left: 8px solid #6aa63d;
 }
 
 .nature-unlock-card.is-fauna {
   background: linear-gradient(135deg, #f5eed6 0%, #fff 70%);
-  border-left: 4px solid #c69a2a;
+  border-left: 8px solid #c69a2a;
 }
 
 .nature-unlock-card.is-person {
   background: linear-gradient(135deg, #e6ecf5 0%, #fff 70%);
-  border-left: 4px solid #3d6aa6;
+  border-left: 8px solid #3d6aa6;
 }
 
 .nature-unlock-card.is-place {
   background: linear-gradient(135deg, #f5e3e3 0%, #fff 70%);
-  border-left: 4px solid #a64343;
+  border-left: 8px solid #a64343;
 }
 
 .nature-unlock-card.is-person .nature-unlock-kicker { color: #1e3d72; }
@@ -436,8 +436,8 @@
 
 .nature-unlock-card.is-badge {
   background: linear-gradient(135deg, #fff7d9 0%, #fff 70%);
-  border-left: 4px solid #d4a72c;
-  box-shadow: 0 14px 32px rgba(192, 140, 20, 0.35), 0 2px 6px rgba(0,0,0,0.12);
+  border-left: 8px solid #d4a72c;
+  box-shadow: 0 18px 44px rgba(192, 140, 20, 0.38), 0 3px 10px rgba(0,0,0,0.14);
 }
 
 .nature-unlock-card.is-badge .nature-unlock-kicker {
@@ -446,20 +446,20 @@
 }
 
 .nature-unlock-card.is-badge .nature-unlock-title {
-  font-size: 18px;
+  font-size: 32px;
 }
 
 .nature-unlock-card.is-badge .nature-unlock-latin {
   font-style: normal;
-  font-size: 13px;
+  font-size: 20px;
   color: #8a6f2c;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .nature-unlock-thumb-badge {
   object-fit: contain !important;
   background: #f7ecc5;
-  padding: 4px;
+  padding: 8px;
 }
 
 .nature-unlock-card.is-more {
@@ -467,14 +467,15 @@
   background: rgba(34, 38, 30, 0.92);
   color: #fff;
   text-align: center;
-  padding: 8px 14px;
-  font-weight: 600;
+  padding: 22px 28px;
+  font-size: 28px;
+  font-weight: 800;
 }
 
 .nature-unlock-thumb {
-  width: 56px;
-  height: 56px;
-  border-radius: 10px;
+  width: 92px;
+  height: 92px;
+  border-radius: 18px;
   object-fit: cover;
   display: block;
 }
@@ -483,7 +484,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 28px;
+  font-size: 48px;
   background: rgba(0,0,0,0.06);
 }
 
@@ -492,12 +493,12 @@
 }
 
 .nature-unlock-kicker {
-  font-size: 11px;
-  font-weight: 700;
+  font-size: 18px;
+  font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: #5c6b52;
-  margin-bottom: 2px;
+  margin-bottom: 6px;
 }
 
 .nature-unlock-card.is-fauna .nature-unlock-kicker {
@@ -505,34 +506,34 @@
 }
 
 .nature-unlock-title {
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 1.15;
+  font-size: 30px;
+  font-weight: 800;
+  line-height: 1.12;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .nature-unlock-latin {
-  font-size: 12px;
+  font-size: 20px;
   font-style: italic;
   color: #5c6b52;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  margin-top: 2px;
+  margin-top: 6px;
 }
 
 .nature-unlock-close {
   background: transparent;
   border: 0;
-  font-size: 15px;
+  font-size: 24px;
   color: #7a7a6d;
   padding: 4px 6px;
   cursor: pointer;
   border-radius: 50%;
-  width: 28px;
-  height: 28px;
+  width: 44px;
+  height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
