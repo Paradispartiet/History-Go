@@ -127,8 +127,13 @@
     } catch {}
   });
 
-  function loadProfileNextUp() {
-    if (!document.body || !document.body.classList.contains("profile-page")) return;
+  function normalizeNextUpPlacement() {
+    const isProfile = document.body?.classList.contains("profile-page");
+
+    if (!isProfile) {
+      document.getElementById("mpNextUp")?.remove();
+      return;
+    }
 
     if (!document.querySelector('link[href="css/profile-nextup.css"]')) {
       const link = document.createElement("link");
@@ -146,8 +151,8 @@
   }
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", loadProfileNextUp);
+    document.addEventListener("DOMContentLoaded", normalizeNextUpPlacement);
   } else {
-    loadProfileNextUp();
+    normalizeNextUpPlacement();
   }
 })();
