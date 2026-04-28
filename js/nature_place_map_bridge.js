@@ -1,12 +1,16 @@
 // js/nature_place_map_bridge.js
 // ------------------------------------------------------------
-// Kobler data/natur/nature_place_map.json til PlaceCard/Natur-rundingen.
+// Kobler data/natur/nature_place_map.json og supplerende
+// naturkart til PlaceCard/Natur-rundingen.
 // Endrer ikke HGNatureUnlocks eller quiz-unlock-logikken.
 // ------------------------------------------------------------
 (function () {
   "use strict";
 
-  const MAP_URL = "data/natur/nature_place_map.json";
+  const MAP_URLS = [
+    "data/natur/nature_place_map.json",
+    "data/natur/nature_bird_place_map.json"
+  ];
 
   let _map = null;
   let _mapLoading = null;
@@ -17,6 +21,32 @@
 
   function uniq(xs) {
     return [...new Set((Array.isArray(xs) ? xs : []).map(s).filter(Boolean))];
+  }
+
+  function mergeEntry(base, extra) {
+    const out = { ...(base || {}) };
+    out.flora = uniq([...(Array.isArray(base?.flora) ? base.flora : []), ...(Array.isArray(extra?.flora) ? extra.flora : [])]);
+    out.fauna = uniq([...(Array.isArray(base?.fauna) ? base.fauna : []), ...(Array.isArray(extra?.fauna) ? extra.fauna : [])]);
+
+    if (extra?.sourceQuizIds || base?.sourceQuizIds) {
+      out.sourceQuizIds = uniq([...(Array.isArray(base?.sourceQuizIds) ? base.sourceQuizIds : []), ...(Array.isArray(extra?.sourceQuizIds) ? extra.sourceQuizIds : [])]);
+    }
+
+    if (base?.placeStatus || extra?.placeStatus) out.placeStatus = extra?.placeStatus || base?.placeStatus;
+    if (base?.artskartCandidateSource || extra?.artskartCandidateSource) out.artskartCandidateSource = extra?.artskartCandidateSource || base?.artskartCandidateSource;
+
+    return out;
+  }
+
+  function mergeMaps(maps) {
+    const merged = Object.create(null);
+    for (const map of maps) {
+      if (!map || typeof map !== "object") continue;
+      for (const [placeId, entry] of Object.entries(map)) {
+        merged[placeId] = mergeEntry(merged[placeId], entry);
+      }
+    }
+    return merged;
   }
 
   function flattenNature(list) {
@@ -55,8 +85,13 @@
     if (_mapLoading) return _mapLoading;
 
     _mapLoading = (async () => {
-      const raw = await fetchJson(MAP_URL).catch(() => ({}));
-      _map = raw && typeof raw === "object" ? (raw.places || raw) : {};
+      const maps = [];
+      for (const url of MAP_URLS) {
+        const raw = await fetchJson(url).catch(() => ({}));
+        const map = raw && typeof raw === "object" ? (raw.places || raw) : {};
+        maps.push(map);
+      }
+      _map = mergeMaps(maps);
       window.NATURE_PLACE_MAP = _map;
       return _map;
     })();
@@ -107,6 +142,14 @@
     return s(item?.imageCard || item?.cardImage || item?.image || item?.img || item?.icon);
   }
 
+  function faunaEmoji(item) {
+    const klass = s(item?.taxonomy?.klasse || item?.taxonomy?.klass || item?.klass).toLowerCase();
+    const family = s(item?.taxonomy?.familie || item?.family).toLowerCase();
+    const latin = latinOf(item).toLowerCase();
+    if (klass.includes("aves") || family.includes("laridae") || family.includes("corvidae") || latin.includes("passer") || latin.includes("corvus") || latin.includes("larus") || latin.includes("anas") || latin.includes("columba") || latin.includes("turdus") || latin.includes("parus") || latin.includes("cyanistes") || latin.includes("pica")) return "🐦";
+    return "🐝";
+  }
+
   function renderNatureButton(item, kind) {
     const id = s(item?.id);
     if (!id) return "";
@@ -114,10 +157,11 @@
     const latin = latinOf(item);
     const img = imgOf(item);
     const attr = kind === "fauna" ? "data-fauna" : "data-flora";
+    const emoji = kind === "fauna" ? faunaEmoji(item) : "🌿";
 
     return `
       <button class="pc-flora pc-nature-entry pc-nature-entry-${kind}" ${attr}="${id}" aria-label="${title}">
-        ${img ? `<img src="${img}" class="pc-person-img" alt="">` : `<span class="pc-nature-emoji">${kind === "fauna" ? "🐝" : "🌿"}</span>`}
+        ${img ? `<img src="${img}" class="pc-person-img" alt="">` : `<span class="pc-nature-emoji">${emoji}</span>`}
         <span class="pc-nature-name">${title}</span>
         ${latin ? `<span class="pc-nature-latin">${latin}</span>` : ""}
       </button>
@@ -183,7 +227,7 @@
       } else {
         natureIcon.innerHTML = `
           <div class="pc-round-label">
-            <span class="pc-round-emoji">🌿</span>
+            <span class="pc-round-emoji">${nature.faunaItems.length && !nature.floraItems.length ? "🐦" : "🌿"}</span>
             <span class="pc-round-count">${count}</span>
           </div>
         `;
