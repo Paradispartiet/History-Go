@@ -35,6 +35,7 @@ const CONFIG = {
   maxPrecisionM: 250,
   maxObservationsPerPlace: 2500,
   requestDelayMs: 450,
+  maxDebugSamples: 12,
   includeCategories: new Set(["natur", "by", "sport", "historie", "kunst", "subkultur"]),
   priorityPlaceIds: new Set([
     "botanisk_hage",
@@ -83,15 +84,8 @@ async function resolveManifestFile(manifestPath, fileRef) {
   const candidates = [];
 
   if (clean.startsWith("data/")) candidates.push(clean);
-
-  // Vanlig manifest-format: filnavn relativt til manifestmappen.
   candidates.push(relNorm(path.join(baseDir, clean)));
-
-  // History Go places-manifest bruker bl.a. "places/places_by.json".
-  // Det er relativt til data/, ikke til data/places/.
   candidates.push(relNorm(path.join(dataDir, clean)));
-
-  // Ekstra fallback for rene filnavn i data/places-manifest.
   candidates.push(relNorm(path.join("data", clean)));
 
   for (const candidate of [...new Set(candidates)]) {
@@ -230,13 +224,75 @@ function squareWktWebMercator(lon, lat, radiusM) {
   return `POLYGON((${p1},${p2},${p3},${p4},${p1}))`;
 }
 
+function isObservationLike(obj) {
+  if (!obj || typeof obj !== "object" || Array.isArray(obj)) return false;
+  return Boolean(
+    obj.ScientificName || obj.scientificName || obj.ValidScientificName ||
+    obj.Name || obj.vernacularName || obj.TaxonName || obj.taxonName ||
+    obj.TaxonId || obj.taxonId || obj.Latitude || obj.latitude || obj.Longitude || obj.longitude
+  );
+}
+
+function findObservationArray(payload, depth = 0) {
+  if (Array.isArray(payload)) {
+    if (!payload.length) return payload;
+    if (payload.some(isObservationLike)) return payload;
+  }
+
+  if (!payload || typeof payload !== "object" || depth > 4) return [];
+
+  const preferredKeys = [
+    "Results", "results", "Items", "items", "Observations", "observations",
+    "Data", "data", "Rows", "rows", "Records", "records", "Result", "result"
+  ];
+
+  for (const key of preferredKeys) {
+    if (key in payload) {
+      const found = findObservationArray(payload[key], depth + 1);
+      if (found.length || Array.isArray(payload[key])) return found;
+    }
+  }
+
+  let best = [];
+  for (const value of Object.values(payload)) {
+    const found = findObservationArray(value, depth + 1);
+    if (found.length > best.length) best = found;
+  }
+  return best;
+}
+
+function summarizePayloadShape(payload) {
+  if (Array.isArray(payload)) {
+    return {
+      type: "array",
+      length: payload.length,
+      firstKeys: payload[0] && typeof payload[0] === "object" ? Object.keys(payload[0]).slice(0, 40) : []
+    };
+  }
+
+  if (!payload || typeof payload !== "object") {
+    return { type: typeof payload };
+  }
+
+  const keys = Object.keys(payload);
+  const arrayKeys = keys
+    .filter(key => Array.isArray(payload[key]))
+    .map(key => ({ key, length: payload[key].length }));
+
+  const objectKeys = keys
+    .filter(key => payload[key] && typeof payload[key] === "object" && !Array.isArray(payload[key]))
+    .slice(0, 20);
+
+  return {
+    type: "object",
+    keys: keys.slice(0, 40),
+    arrayKeys,
+    objectKeys
+  };
+}
+
 function extractObservationList(payload) {
-  if (Array.isArray(payload)) return payload;
-  if (Array.isArray(payload?.Results)) return payload.Results;
-  if (Array.isArray(payload?.Items)) return payload.Items;
-  if (Array.isArray(payload?.observations)) return payload.observations;
-  if (Array.isArray(payload?.data)) return payload.data;
-  return [];
+  return findObservationArray(payload);
 }
 
 function getObsYear(obs) {
@@ -252,7 +308,7 @@ function getObsPrecision(obs) {
   return Number.isFinite(num) ? num : null;
 }
 
-function getObsNameKeys(obs) {
+function getObsNameRaw(obs) {
   return unique([
     obs?.ScientificName,
     obs?.scientificName,
@@ -262,7 +318,11 @@ function getObsNameKeys(obs) {
     obs?.species,
     obs?.TaxonName,
     obs?.taxonName
-  ].map(x => norm(x)));
+  ].map(x => String(x ?? "").trim()).filter(Boolean));
+}
+
+function getObsNameKeys(obs) {
+  return getObsNameRaw(obs).map(x => norm(x));
 }
 
 function isUsefulObservation(obs) {
@@ -288,7 +348,8 @@ function matchObservation(obs, speciesIndex) {
 async function fetchArtskartForPlace(place) {
   const radius = Number(place.r || CONFIG.defaultRadiusM);
   const wkt = squareWktWebMercator(place.lon, place.lat, radius);
-  const url = new URL(CONFIG.artskartEndpoint);
+  const endpoint = CONFIG.artskartEndpoint;
+  const url = new URL(endpoint);
   url.searchParams.set("gmWktPolygon", wkt);
 
   const res = await fetch(url, {
@@ -302,7 +363,17 @@ async function fetchArtskartForPlace(place) {
   }
 
   const payload = await res.json();
-  return extractObservationList(payload).slice(0, CONFIG.maxObservationsPerPlace);
+  const observations = extractObservationList(payload).slice(0, CONFIG.maxObservationsPerPlace);
+
+  return {
+    observations,
+    diagnostic: {
+      requestUrl: url.toString(),
+      payloadShape: summarizePayloadShape(payload),
+      extractedObservationCount: observations.length,
+      firstObservationKeys: observations[0] && typeof observations[0] === "object" ? Object.keys(observations[0]).slice(0, 50) : []
+    }
+  };
 }
 
 function scoreCandidate(stats) {
@@ -358,13 +429,29 @@ async function main() {
     console.log(`[nature-map] ${place.id} – ${place.name}`);
 
     const statsById = new Map();
+    const unmatchedNames = new Set();
+    let diagnostic = null;
+    let usefulObservationCount = 0;
+    let matchedObservationCount = 0;
+
     try {
-      const observations = await fetchArtskartForPlace(place);
+      const fetched = await fetchArtskartForPlace(place);
+      const observations = fetched.observations;
+      diagnostic = fetched.diagnostic;
 
       for (const obs of observations) {
         if (!isUsefulObservation(obs)) continue;
+        usefulObservationCount += 1;
+
         const match = matchObservation(obs, speciesIndex);
-        if (!match) continue;
+        if (!match) {
+          for (const name of getObsNameRaw(obs)) {
+            if (unmatchedNames.size < CONFIG.maxDebugSamples) unmatchedNames.add(name);
+          }
+          continue;
+        }
+
+        matchedObservationCount += 1;
 
         const current = statsById.get(match.id) || {
           id: match.id,
@@ -409,6 +496,12 @@ async function main() {
         radiusM: Number(place.r || CONFIG.defaultRadiusM),
         category: place.category || "",
         status: "candidate_from_artskart",
+        diagnostic: {
+          ...diagnostic,
+          usefulObservationCount,
+          matchedObservationCount,
+          unmatchedNameSamples: [...unmatchedNames]
+        },
         flora: candidates.filter(x => x.kind === "flora"),
         fauna: candidates.filter(x => x.kind === "fauna")
       };
@@ -421,6 +514,7 @@ async function main() {
         category: place.category || "",
         status: "error",
         error: err.message,
+        diagnostic,
         flora: [],
         fauna: []
       };
