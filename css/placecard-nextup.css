@@ -1,0 +1,52 @@
+/* ============================================================
+   PLACE CARD NEXTUP
+   Kontekstuell NextUp inne i På stedet-boksen.
+   ============================================================ */
+
+#placeCard #pcEventsBox .pc-nextup {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  margin: 2px 0 4px;
+}
+
+#placeCard #pcEventsBox .mp-nextup-line {
+  min-width: 0;
+}
+
+#placeCard #pcEventsBox .mp-nextup-link {
+  width: 100%;
+  min-height: 34px;
+  padding: 7px 8px;
+  border-radius: 10px;
+
+  display: block;
+
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: #fff;
+
+  font-size: 11px;
+  line-height: 1.2;
+  text-align: left;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#placeCard #pcEventsBox .mp-nextup-link b {
+  font-size: 10px;
+  opacity: 0.74;
+  font-weight: 700;
+}
+
+#placeCard #pcEventsBox .mp-nextup-link:disabled {
+  opacity: 0.45;
+}
+
+@media (max-width: 640px) {
+  #placeCard #pcEventsBox .pc-nextup {
+    grid-template-columns: 1fr;
+  }
+}
