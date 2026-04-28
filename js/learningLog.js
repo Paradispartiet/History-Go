@@ -153,10 +153,6 @@
     }
   }
 
-  function hasTriContent(tri) {
-    return !!(tri && (tri.spatial || tri.wk || tri.narrative || tri.concept));
-  }
-
   function ensurePcNextUpMount() {
     const box = document.getElementById("pcEventsBox");
     if (!box) return null;
@@ -225,10 +221,11 @@
 
   function renderPcNextUpFromTri(tri) {
     if (document.body?.classList.contains("profile-page")) return;
-    if (!hasTriContent(tri)) return;
 
     const mount = ensurePcNextUpMount();
     if (!mount) return;
+
+    tri = tri && typeof tri === "object" ? tri : {};
 
     const spatial = tri.spatial || null;
     const narrative = tri.narrative || null;
