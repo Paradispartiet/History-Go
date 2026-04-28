@@ -1,35 +1,47 @@
 {
   "schema": "civication_mail_plan_v1",
-  "id": "arbeider_naeringsliv_v1",
+  "id": "arbeider_naeringsliv_v2",
   "category": "naeringsliv",
   "role_scope": "arbeider",
-  "description": "Fast dramaturgisk plan for Arbeider i Næringsliv & industri.",
+  "description": "Dramaturgisk plan for Arbeider i Næringsliv & industri: fra ny på gulvet til en arbeider som forstår rytme, vern, lojalitet, kvalitet og usynlig ansvar.",
+  "arc": {
+    "from": "Ny på gulvet. Spilleren må lære tempo, rutiner, blikk, uformell autoritet og sikkerhet uten å forstå hele systemet ennå.",
+    "to": "En arbeider som forstår at arbeid ikke bare er oppgaver, men også rytme, lojalitet, vern, kvalitet, taus kunnskap og grenser.",
+    "core_questions": [
+      "Hører du etter før du prøver å synes?",
+      "Når følger du rytmen, og når stopper du opp?",
+      "Hvem beskytter deg når tempoet blir press?",
+      "Når er lojalitet fellesskap, og når blir det selvutslettelse?",
+      "Hva slags arbeider blir du når små feil får store konsekvenser?"
+    ]
+  },
   "sequence": [
     {
       "step": 1,
       "type": "job",
       "phase": "intro",
+      "step_goal": "Etablere første møte med gulvet: oppmøte, rytme, Egil, Marit, Roger og de første tegnene på hva som teller.",
       "allowed_families": [
         "arbeider_intro_v2",
-        "arbeider_intro",
-        "drift_basics"
+        "arbeider_intro"
       ],
       "fallback_types": [
-        "people",
-        "conflict"
+        "job",
+        "people"
       ]
     },
     {
       "step": 2,
       "type": "job",
       "phase": "intro",
+      "step_goal": "La spilleren kjenne drift som summen av småting: rutine, oppgaveflyt og hull i systemet.",
       "allowed_families": [
-        "arbeider_intro_v2",
+        "drift_basics",
         "oppgaveflyt",
-        "drift_basics"
+        "arbeider_intro_v2"
       ],
       "fallback_types": [
-        "conflict",
+        "job",
         "people"
       ]
     },
@@ -37,21 +49,25 @@
       "step": 3,
       "type": "conflict",
       "phase": "intro",
+      "step_goal": "Introdusere første grunnkonflikt: tempo mot kvalitet eller lojalitet mot selvoppholdelse.",
       "allowed_families": [
         "tempo_vs_kvalitet_intro",
         "lojalitet_vs_selvoppholdelse_intro"
       ],
       "fallback_types": [
-        "job"
+        "job",
+        "people"
       ]
     },
     {
       "step": 4,
       "type": "people",
       "phase": "early",
+      "step_goal": "Gjøre arbeidsplassen sosial: spilleren blir lest av kolleger, uformelle ledere og folk som har egne behov.",
       "allowed_families": [
         "uformell_leder_intro",
-        "kollega_press_intro"
+        "kollega_press_intro",
+        "taus_lojalitet"
       ],
       "fallback_types": [
         "job",
@@ -62,31 +78,37 @@
       "step": 5,
       "type": "job",
       "phase": "early",
+      "step_goal": "Øke driftspresset: spilleren må velge mellom flyt, kvalitet og små forbedringer uten mandat.",
       "allowed_families": [
         "drift_press",
-        "forbedring_uten_mandat"
+        "forbedring_uten_mandat",
+        "oppgaveflyt"
       ],
       "fallback_types": [
         "people",
-        "conflict"
+        "conflict",
+        "job"
       ]
     },
     {
       "step": 6,
       "type": "conflict",
       "phase": "early",
+      "step_goal": "La tidligere mønstre komme tilbake: snarveier, skjult kostnad og lojalitet som begynner å koste.",
       "allowed_families": [
         "tempo_vs_kvalitet_early",
         "lojalitet_vs_selvoppholdelse_early"
       ],
       "fallback_types": [
-        "job"
+        "job",
+        "people"
       ]
     },
     {
       "step": 7,
       "type": "story",
       "phase": "mid",
+      "step_goal": "Løfte blikket fra enkeltoppgaver til arbeidets usynlighet, industrihistorie og hva slags liv rytmen skaper.",
       "allowed_families": [
         "industrihistorisk_ekko",
         "arbeidets_usynlighet"
@@ -101,38 +123,76 @@
       "step": 8,
       "type": "job",
       "phase": "mid",
+      "step_goal": "Teste om spilleren bruker erfaring til bedre struktur, eller bare tåler mer press.",
       "allowed_families": [
         "drift_press",
-        "oppgaveflyt"
+        "oppgaveflyt",
+        "forbedring_uten_mandat"
       ],
       "fallback_types": [
         "people",
-        "conflict"
+        "conflict",
+        "job"
       ]
     },
     {
       "step": 9,
       "type": "people",
       "phase": "mid",
+      "step_goal": "La sosial gjeld bli synlig: kollegaskyld, taus lojalitet og hvem som bærer restene etter andre.",
       "allowed_families": [
         "taus_lojalitet",
         "kollega_skyld"
       ],
       "fallback_types": [
         "job",
-        "conflict"
+        "conflict",
+        "story"
       ]
     },
     {
       "step": 10,
       "type": "event",
-      "phase": "climax",
+      "phase": "advanced",
+      "step_goal": "Utløse ytre press: feil, inspeksjon eller ansvarsforskyvning som gjør arbeidets små valg større.",
       "allowed_families": [
         "feil_i_linja",
         "inspeksjon",
         "ansvarsforskyvning"
       ],
       "fallback_types": [
+        "conflict",
+        "job",
+        "people"
+      ]
+    },
+    {
+      "step": 11,
+      "type": "conflict",
+      "phase": "mastery",
+      "step_goal": "La spilleren bruke erfaringen sin i en moden konflikt: kvalitet, ansvar og grenser er ikke lenger abstrakte.",
+      "allowed_families": [
+        "tempo_vs_kvalitet_early",
+        "lojalitet_vs_selvoppholdelse_early",
+        "tempo_vs_kvalitet_intro"
+      ],
+      "fallback_types": [
+        "event",
+        "job",
+        "people"
+      ]
+    },
+    {
+      "step": 12,
+      "type": "story",
+      "phase": "climax",
+      "step_goal": "Avrunde arbeiderbuen: hva har spilleren lært om arbeidets usynlige kostnader og sin egen plass i laget?",
+      "allowed_families": [
+        "arbeidets_usynlighet",
+        "industrihistorisk_ekko"
+      ],
+      "fallback_types": [
+        "event",
         "conflict",
         "job"
       ]
