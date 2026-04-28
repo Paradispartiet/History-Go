@@ -57,6 +57,7 @@
     const cat = normId(categoryId || item?.categoryId || item?.category_id || item?.category || "");
 
     db.byQuiz = db.byQuiz || {};
+    const rowWasNew = !db.byQuiz[qid];
     db.byQuiz[qid] = db.byQuiz[qid] || {
       quizId: qid,
       categoryId: cat || null,
@@ -71,8 +72,11 @@
     };
 
     const row = db.byQuiz[qid];
-    row.ts_last = Date.now();
-    if (!row.categoryId && cat) row.categoryId = cat;
+    let categoryChanged = false;
+    if (!row.categoryId && cat) {
+      row.categoryId = cat;
+      categoryChanged = true;
+    }
 
     // ---- hent ting fra item (støtter flere feltnavn) ----
     const hooks =
@@ -125,7 +129,7 @@
     const nextTriviaIds = uniqPush(row.trivia_ids, triviaIds);
     const nextEmneIds = uniqPush(row.emne_ids, emneIds);
 
-    const changed =
+    const metadataChanged =
       nextHooks.length !== row.hooks.length ||
       nextConcepts.length !== row.concepts.length ||
       nextThinkers.length !== row.thinkers.length ||
@@ -142,11 +146,20 @@
 
     // ---- “global index” for rask UI ----
     db.index = db.index || { hooks: [], concepts: [], thinkers: [] };
+    const beforeIndexHooks = Array.isArray(db.index.hooks) ? db.index.hooks.length : 0;
+    const beforeIndexConcepts = Array.isArray(db.index.concepts) ? db.index.concepts.length : 0;
+    const beforeIndexThinkers = Array.isArray(db.index.thinkers) ? db.index.thinkers.length : 0;
     db.index.hooks = uniqPush(db.index.hooks, row.hooks);
     db.index.concepts = uniqPush(db.index.concepts, row.concepts);
     db.index.thinkers = uniqPush(db.index.thinkers, row.thinkers);
+    const indexChanged =
+      db.index.hooks.length !== beforeIndexHooks ||
+      db.index.concepts.length !== beforeIndexConcepts ||
+      db.index.thinkers.length !== beforeIndexThinkers;
 
+    const changed = rowWasNew || categoryChanged || metadataChanged || indexChanged;
     if (changed) {
+      row.ts_last = Date.now();
       save(db);
       dispatchProfileUpdate();
     }
