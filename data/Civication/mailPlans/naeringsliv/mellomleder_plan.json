@@ -1,43 +1,62 @@
 {
   "schema": "civication_mail_plan_v1",
-  "id": "mellomleder_naeringsliv_v1",
+  "id": "mellomleder_naeringsliv_v2",
   "category": "naeringsliv",
   "role_scope": "mellomleder",
-  "description": "Fast dramaturgisk plan for Mellomleder i Næringsliv & industri.",
+  "description": "Dramaturgisk plan for Mellomleder i Næringsliv & industri: fra klemt operativ leder til strategisk oversetter mellom tall, gulv, sidestilte allianser og institusjonelt ansvar.",
+  "arc": {
+    "from": "Forfremmet eller etablert mellomleder som står mellom ledelsens tall, sidestilte lederes politikk og gulvets krav om trygghet og rettferdighet.",
+    "to": "Strategisk ansvarsbærer som forstår rapportering, allianser, formell styring, uformell tillit, kriser og hva slags makt som ligger i å oversette mellom nivåer.",
+    "core_questions": [
+      "Hvem beskytter du når tallene faller?",
+      "Hva rapporterer du oppover, og hva lar du bli igjen på gulvet?",
+      "Når er en allianse samarbeid, og når er den posisjonering?",
+      "Hvordan bruker du makt uten å gjøre menneskene usynlige?",
+      "Hvilken virkelighet blir sann når rapporten og folkene sier ulike ting?"
+    ]
+  },
   "sequence": [
     {
       "step": 1,
       "type": "job",
       "phase": "intro",
+      "step_goal": "Etablere mellomlederens tre grunntrykk: tall ovenfra, allianse sidelengs og krav nedenfra.",
       "allowed_families": [
         "mellomleder_intro_v2",
         "mellomleder_rolleforstaelse"
       ],
       "fallback_types": [
         "people",
-        "conflict"
+        "conflict",
+        "job"
       ]
     },
     {
       "step": 2,
+      "type": "job",
+      "phase": "intro",
+      "step_goal": "La spilleren kjenne rollen som praktisk planlegging og ansvar før det blir ren konflikt.",
+      "allowed_families": [
+        "mellomleder_intro_v2",
+        "mellomleder_planlegging",
+        "mellomleder_rolleforstaelse"
+      ],
+      "fallback_types": [
+        "people",
+        "conflict",
+        "job"
+      ]
+    },
+    {
+      "step": 3,
       "type": "faction_choice",
       "phase": "early",
+      "step_goal": "Tvinge frem første tydelige posisjonering: hvem lytter spilleren til, og hvem får vente?",
       "allowed_families": [
         "mellomleder_fraksjonsvalg"
       ],
       "fallback_types": [
         "job",
-        "people"
-      ]
-    },
-    {
-      "step": 3,
-      "type": "job",
-      "phase": "early",
-      "allowed_families": [
-        "mellomleder_planlegging"
-      ],
-      "fallback_types": [
         "people",
         "conflict"
       ]
@@ -45,69 +64,186 @@
     {
       "step": 4,
       "type": "people",
-      "phase": "mid",
+      "phase": "early",
+      "step_goal": "Bygge relasjonell lesning av rollen: rapportering, styring, administrasjon og tillit begynner å få ansikter.",
       "allowed_families": [
         "rapportering_og_styring",
-        "institusjonell_krise",
-        "industri_og_systembygging",
-        "teknologi_og_risiko",
-        "kvalitet_og_standarder",
-        "bedrift_og_symbolsk_kapital",
         "administrasjon_og_hverdagsmakt",
-        "modernisering_og_marked",
-        "handel_og_lokal_produksjon"
+        "kvalitet_og_standarder"
       ],
       "fallback_types": [
         "job",
-        "conflict"
+        "conflict",
+        "story"
       ]
     },
     {
       "step": 5,
-      "type": "story",
-      "phase": "mid",
+      "type": "job",
+      "phase": "early",
+      "step_goal": "Gjør styring hverdagslig: planlegging, prioritering og tall må oversettes til drift.",
       "allowed_families": [
-        "mellomleder_identitet"
+        "mellomleder_planlegging",
+        "mellomleder_rolleforstaelse"
       ],
       "fallback_types": [
         "people",
+        "conflict",
         "job"
       ]
     },
     {
       "step": 6,
       "type": "conflict",
-      "phase": "advanced",
+      "phase": "mid",
+      "step_goal": "Etablere krysspresset som hovedkonflikt: ledelsens krav, gulvets tillit og mellomlederens ansvar kolliderer.",
       "allowed_families": [
         "krysspress"
       ],
       "fallback_types": [
         "job",
-        "people"
+        "people",
+        "story"
       ]
     },
     {
       "step": 7,
+      "type": "people",
+      "phase": "mid",
+      "step_goal": "Utvide mellomlederens perspektiv: industri, kvalitet, systembygging, teknologi og lokal produksjon viser ulike typer ledelsesansvar.",
+      "allowed_families": [
+        "industri_og_systembygging",
+        "teknologi_og_risiko",
+        "kvalitet_og_standarder",
+        "handel_og_lokal_produksjon"
+      ],
+      "fallback_types": [
+        "conflict",
+        "job",
+        "story"
+      ]
+    },
+    {
+      "step": 8,
+      "type": "story",
+      "phase": "mid",
+      "step_goal": "Flytte spørsmålet fra oppgave til identitet: hva slags mellomleder er spilleren i ferd med å bli?",
+      "allowed_families": [
+        "mellomleder_identitet"
+      ],
+      "fallback_types": [
+        "people",
+        "job",
+        "conflict"
+      ]
+    },
+    {
+      "step": 9,
+      "type": "people",
+      "phase": "advanced",
+      "step_goal": "Gjøre makt og institusjon mer eksplisitt: rapporter, krise, offentlighet, omdømme og administrasjon blir styringsverktøy.",
+      "allowed_families": [
+        "rapportering_og_styring",
+        "institusjonell_krise",
+        "bedrift_og_symbolsk_kapital",
+        "administrasjon_og_hverdagsmakt",
+        "modernisering_og_marked"
+      ],
+      "fallback_types": [
+        "conflict",
+        "event",
+        "job"
+      ]
+    },
+    {
+      "step": 10,
       "type": "event",
       "phase": "advanced",
+      "step_goal": "Utløse en ytre driftskrise som tester om spilleren kan bruke makt, rapportering og relasjoner samtidig.",
       "allowed_families": [
         "driftskrise"
       ],
       "fallback_types": [
         "conflict",
+        "job",
+        "people"
+      ]
+    },
+    {
+      "step": 11,
+      "type": "conflict",
+      "phase": "advanced",
+      "step_goal": "La krisen bli sosial og politisk: hvem får skylden, hvem får beskyttelse, og hva blir dokumentert?",
+      "allowed_families": [
+        "krysspress"
+      ],
+      "fallback_types": [
+        "event",
+        "people",
         "job"
       ]
     },
     {
-      "step": 8,
-      "type": "job",
+      "step": 12,
+      "type": "people",
       "phase": "mastery",
+      "step_goal": "Sette spilleren opp mot modne autoritetsfigurer: Jahn, Rygg, Eyde, Bjercke, Ringnes og Schweigaard speiler ulike lederformer.",
       "allowed_families": [
-        "mellomleder_mastery"
+        "rapportering_og_styring",
+        "institusjonell_krise",
+        "industri_og_systembygging",
+        "kvalitet_og_standarder",
+        "bedrift_og_symbolsk_kapital",
+        "administrasjon_og_hverdagsmakt"
       ],
       "fallback_types": [
+        "story",
         "event",
         "conflict"
+      ]
+    },
+    {
+      "step": 13,
+      "type": "job",
+      "phase": "mastery",
+      "step_goal": "Gi spilleren en moden lederoppgave der plan, tall, tillit og risiko må holdes sammen.",
+      "allowed_families": [
+        "mellomleder_mastery",
+        "mellomleder_planlegging",
+        "mellomleder_rolleforstaelse"
+      ],
+      "fallback_types": [
+        "people",
+        "event",
+        "conflict"
+      ]
+    },
+    {
+      "step": 14,
+      "type": "story",
+      "phase": "mastery",
+      "step_goal": "Avrunde identitetsbuen: spilleren må se hvilken type makt og ansvar de faktisk har lært å bruke.",
+      "allowed_families": [
+        "mellomleder_identitet"
+      ],
+      "fallback_types": [
+        "people",
+        "event",
+        "job"
+      ]
+    },
+    {
+      "step": 15,
+      "type": "event",
+      "phase": "climax",
+      "step_goal": "La en større drifts- eller institusjonell hendelse avgjøre om spilleren fungerer som oversetter, beskytter, administrator eller ren resultatmaskin.",
+      "allowed_families": [
+        "driftskrise"
+      ],
+      "fallback_types": [
+        "conflict",
+        "people",
+        "story"
       ]
     }
   ]
