@@ -1,17 +1,17 @@
 # Place Data Audit
 
-Generert: 2026-04-29T16:42:46.840Z
+Generert: 2026-04-29T19:34:57.890Z
 
 ## Totalsammendrag
 
 - Place-filer i manifest: **18**
 - Totalt antall places: **228**
 - Steder med manglende obligatoriske felt: **72**
-- Steder med manglende popupDesc: **154**
+- Steder med manglende popupDesc: **138**
 - Steder med manglende image: **136**
 - Steder med manglende cardImage: **136**
-- Steder med manglende emne_ids: **174**
-- Steder med manglende quiz_profile: **174**
+- Steder med manglende emne_ids: **157**
+- Steder med manglende quiz_profile: **157**
 - Steder som bruker imageCard-felt: **0**
 - Steder med stub:true eller hidden:true: **0**
 - Antall ødelagte asset paths: **120**
@@ -83,31 +83,25 @@ Generert: 2026-04-29T16:42:46.840Z
 ### data/places/places_historie.json
 
 - Antall places: 10
-- Places med funn: 10
+- Places med funn: 4
 
-- middelalder_oslo (Middelalderparken): mangler popupDesc | mangler emne_ids | mangler quiz_profile
-- oslo_domkirke (Oslo domkirke): mangler popupDesc | mangler emne_ids | mangler quiz_profile
-- damstredet_telthusbakken (Damstredet og Telthusbakken): mangler popupDesc | mangler emne_ids | mangler quiz_profile
-- gamle_trikkestallen (Gamle trikkestallen på Sagene): mangler popupDesc | mangler emne_ids | mangler quiz_profile | ødelagte paths: cardImage=bilder/kort/places/Trikkestallen.PNG
-- nobelinstituttet (Nobelinstituttet): mangler popupDesc | mangler emne_ids | mangler quiz_profile
-- observatoriet (Observatoriet): mangler popupDesc | mangler emne_ids | mangler quiz_profile
-- slottet (Det kongelige slott): mangler popupDesc | mangler emne_ids | mangler quiz_profile
-- sofienberg_kirke (Sofienberg kirke): mangler emne_ids | mangler quiz_profile | ødelagte paths: cardImage=bilder/kort/places/sofienberg_kirke.PNG
-- gamlebyen_gravlund (Gamlebyen gravlund): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- akerhus_slott (Akerhus Slott): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- gamle_trikkestallen (Gamle trikkestallen på Sagene): ødelagte paths: cardImage=bilder/kort/places/Trikkestallen.PNG
+- sofienberg_kirke (Sofienberg kirke): ødelagte paths: cardImage=bilder/kort/places/sofienberg_kirke.PNG
+- gamlebyen_gravlund (Gamlebyen gravlund): mangler image | mangler cardImage
+- akerhus_slott (Akerhus Slott): mangler image | mangler cardImage
 
 ### data/places/places_kunst.json
 
 - Antall places: 7
 - Places med funn: 7
 
-- nasjonalmuseet (Nasjonalmuseet): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- munch_museet (MUNCH): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- astrup_fearnley (Astrup Fearnley Museet): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- vigelandsparken (Vigelandsparken): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- ekebergparken (Ekebergparken skulpturpark): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- tjuvholmen (Tjuvholmen): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- barcode (Barcode): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- nasjonalmuseet (Nasjonalmuseet): mangler image | mangler cardImage
+- munch_museet (MUNCH): mangler image | mangler cardImage
+- astrup_fearnley (Astrup Fearnley Museet): mangler image | mangler cardImage
+- vigelandsparken (Vigelandsparken): mangler image | mangler cardImage
+- ekebergparken (Ekebergparken skulpturpark): mangler image | mangler cardImage
+- tjuvholmen (Tjuvholmen): mangler image | mangler cardImage
+- barcode (Barcode): mangler image | mangler cardImage
 
 ### data/places/places_litteratur.json
 
