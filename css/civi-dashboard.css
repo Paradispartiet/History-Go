@@ -1,0 +1,489 @@
+/* ============================================================
+   CIVICATION – DASHBOARD LAYOUT V2
+   Hensikt:
+   - Gir Civication tydelig hierarki: situasjon først, systemer etterpå.
+   - Bruker bare Civication-prefiks/ID-er.
+   - Rører ikke History Go app-shell, kart, Nearby eller PlaceCard.
+============================================================ */
+
+:root {
+  --civi-page-max: 1180px;
+  --civi-gap: 14px;
+  --civi-hero-radius: 24px;
+  --civi-card-radius: 18px;
+  --civi-soft-line: rgba(255,255,255,0.10);
+  --civi-soft-line-2: rgba(255,255,255,0.16);
+  --civi-panel-bg: linear-gradient(180deg, rgba(28,28,31,0.92), rgba(15,15,18,0.94));
+  --civi-panel-bg-soft: rgba(255,255,255,0.045);
+  --civi-gold: #d6aa3a;
+  --civi-green: #5fb879;
+  --civi-blue: #7fa7d6;
+  --civi-red: #d98282;
+}
+
+body.civi-app {
+  background:
+    radial-gradient(circle at 22% 0%, rgba(214,170,58,0.16), transparent 32%),
+    radial-gradient(circle at 85% 10%, rgba(127,167,214,0.13), transparent 34%),
+    radial-gradient(circle at 48% 100%, rgba(95,184,121,0.09), transparent 30%),
+    #050506;
+}
+
+body.civi-app::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background:
+    linear-gradient(180deg, rgba(0,0,0,0.28), transparent 26%, rgba(0,0,0,0.52)),
+    radial-gradient(circle at center, transparent 0, rgba(0,0,0,0.34) 78%);
+}
+
+body.civi-app .topbar,
+body.civi-app .civi-footer,
+body.civi-app .civi-panels {
+  position: relative;
+}
+
+body.civi-app .topbar,
+body.civi-app .civi-footer {
+  z-index: 90;
+}
+
+body.civi-app .civi-panels {
+  z-index: 20;
+  width: min(var(--civi-page-max), calc(100vw - 24px));
+  max-width: var(--civi-page-max);
+  padding: 22px 0 calc(var(--footer-h) + 28px);
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--civi-gap);
+  align-items: start;
+}
+
+body.civi-app .civi-panels > section,
+body.civi-app .civi-track-hud {
+  min-width: 0;
+  margin: 0;
+  border-radius: var(--civi-card-radius);
+  background: var(--civi-panel-bg);
+  border: 1px solid var(--civi-soft-line);
+  box-shadow: 0 18px 44px rgba(0,0,0,0.32);
+  overflow: hidden;
+}
+
+body.civi-app .civi-panels > section::before {
+  top: 18px;
+  bottom: 18px;
+  width: 4px;
+  opacity: 0.95;
+}
+
+body.civi-app .civi-panels h2 {
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  margin-bottom: 12px;
+  color: rgba(255,255,255,0.72);
+}
+
+/* ------------------------------------------------------------
+   NY TOPP: SITUASJONSDASHBOARD
+------------------------------------------------------------ */
+
+#civiDashboardSection {
+  order: 1;
+  grid-column: 1 / -1;
+  padding: 22px;
+  border-radius: var(--civi-hero-radius);
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(360px, 0.95fr);
+  gap: 18px;
+  align-items: stretch;
+  background:
+    linear-gradient(135deg, rgba(214,170,58,0.22), rgba(255,255,255,0.045) 42%, rgba(95,184,121,0.10)),
+    rgba(16,16,18,0.96);
+  border-color: rgba(214,170,58,0.22);
+}
+
+#civiDashboardSection::before {
+  display: none;
+}
+
+.civi-dashboard-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 172px;
+}
+
+.civi-dashboard-kicker {
+  width: max-content;
+  max-width: 100%;
+  padding: 6px 10px;
+  margin-bottom: 12px;
+  border-radius: 999px;
+  background: rgba(214,170,58,0.16);
+  border: 1px solid rgba(214,170,58,0.26);
+  color: rgba(255,230,160,0.96);
+  font-size: 11px;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+#civiDashRole {
+  margin: 0;
+  max-width: 760px;
+  font-size: clamp(32px, 5vw, 58px);
+  line-height: 0.94;
+  letter-spacing: -0.055em;
+  font-weight: 950;
+}
+
+#civiDashSummary {
+  margin: 12px 0 0;
+  max-width: 720px;
+  color: rgba(255,255,255,0.72);
+  font-size: 15px;
+  line-height: 1.48;
+}
+
+.civi-dashboard-focus {
+  margin-top: 16px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: rgba(0,0,0,0.22);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.civi-dashboard-focus-label {
+  margin-bottom: 4px;
+  color: rgba(255,255,255,0.48);
+  font-size: 10px;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+#civiDashFocus {
+  color: rgba(255,255,255,0.88);
+  font-size: 14px;
+  font-weight: 760;
+}
+
+.civi-dashboard-metrics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.civi-dashboard-metric {
+  min-height: 98px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.055);
+  border: 1px solid rgba(255,255,255,0.09);
+}
+
+.civi-dashboard-metric span {
+  color: rgba(255,255,255,0.54);
+  font-size: 10px;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.civi-dashboard-metric strong {
+  margin-top: 9px;
+  color: #fff;
+  font-size: clamp(21px, 3vw, 34px);
+  line-height: 1;
+  font-weight: 920;
+  letter-spacing: -0.04em;
+  font-variant-numeric: tabular-nums;
+}
+
+.civi-dashboard-metric small {
+  margin-top: 7px;
+  color: rgba(255,255,255,0.62);
+  font-size: 12px;
+  line-height: 1.25;
+}
+
+.civi-dashboard-metric.is-primary {
+  background: linear-gradient(135deg, rgba(214,170,58,0.22), rgba(214,170,58,0.06));
+  border-color: rgba(214,170,58,0.24);
+}
+
+.civi-dashboard-metric.is-status {
+  background: linear-gradient(135deg, rgba(127,167,214,0.18), rgba(127,167,214,0.045));
+  border-color: rgba(127,167,214,0.22);
+}
+
+.civi-dashboard-metric.is-inbox {
+  background: linear-gradient(135deg, rgba(95,184,121,0.18), rgba(95,184,121,0.045));
+  border-color: rgba(95,184,121,0.22);
+}
+
+/* ------------------------------------------------------------
+   GRID-HIERARKI: VIKTIGST ØVERST
+------------------------------------------------------------ */
+
+#activeJobSection       { order: 2;  grid-column: span 5; }
+#civiWorkdaySection     { order: 3;  grid-column: span 7; }
+#civiInboxSection       { order: 4;  grid-column: span 7; }
+#civiHomeStatus         { order: 5;  grid-column: span 5; }
+#civiOnboardingSection  { order: 6;  grid-column: span 12; }
+.civi-capital           { order: 7;  grid-column: span 6; }
+.civi-psyche            { order: 8;  grid-column: span 6; }
+.civi-identity          { order: 9;  grid-column: span 6; }
+#civiTrackHUD           { order: 10; grid-column: span 6; }
+#civiPublicFeedSection  { order: 11; grid-column: span 6; }
+#civiDebateSection      { order: 12; grid-column: span 6; }
+#civiPeopleSection      { order: 13; grid-column: span 6; }
+#civiStoreSection       { order: 14; grid-column: span 6; }
+
+#activeJobSection,
+#civiWorkdaySection,
+#civiInboxSection,
+#civiHomeStatus {
+  border-color: var(--civi-soft-line-2);
+}
+
+#activeJobSection {
+  background:
+    linear-gradient(180deg, rgba(214,170,58,0.12), transparent 42%),
+    var(--civi-panel-bg);
+}
+
+#civiWorkdaySection {
+  background:
+    linear-gradient(180deg, rgba(95,184,121,0.10), transparent 42%),
+    var(--civi-panel-bg);
+}
+
+#civiInboxSection {
+  background:
+    linear-gradient(180deg, rgba(95,184,121,0.12), transparent 42%),
+    var(--civi-panel-bg);
+}
+
+#civiHomeStatus {
+  background:
+    linear-gradient(180deg, rgba(184,122,61,0.12), transparent 42%),
+    var(--civi-panel-bg);
+}
+
+/* Gjør hovedkortene mer lesbare uten å endre JS-output. */
+#activeJobCard > div,
+#homeStatusContent > div,
+#civiInbox > div,
+#civiPublicFeed > div,
+#civiOnboardingPanel > div,
+#civiDebatePanel > div,
+#civiPeoplePanel > div,
+#civiStorePanel > div {
+  border-radius: 14px;
+}
+
+#activeJobCard strong,
+#homeStatusContent strong {
+  font-size: 18px;
+  letter-spacing: -0.02em;
+}
+
+#activeJobCard hr {
+  border-top-color: rgba(255,255,255,0.10) !important;
+}
+
+.home-homeless p,
+.home-settled p {
+  margin: 0 0 10px;
+}
+
+#buyDistrictBtn,
+#changeDistrictBtn,
+#identityPerceptionBtn,
+.civi-task-open-btn {
+  min-height: 42px;
+  border-radius: 12px;
+}
+
+/* ------------------------------------------------------------
+   SEKUNDÆRKORT: STRAMMERE, MINDRE ROT
+------------------------------------------------------------ */
+
+.civi-capital .capital-grid {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.capital-item,
+.psyche-item,
+.civi-workday-clock,
+.civi-workday-meta,
+.civi-workday-card,
+.civi-workday-empty,
+.civi-task-box {
+  background: var(--civi-panel-bg-soft);
+  border-color: rgba(255,255,255,0.085);
+}
+
+.capital-value,
+.psyche-value,
+.civi-workday-big,
+.civi-workday-time {
+  letter-spacing: -0.035em;
+}
+
+.civi-workday-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.civi-workday-top {
+  grid-template-columns: minmax(150px, 0.62fr) minmax(0, 1fr);
+}
+
+.civi-workday-row {
+  align-items: center;
+  border-bottom: 1px solid rgba(255,255,255,0.055);
+}
+
+.civi-workday-row:last-child {
+  border-bottom: 0;
+}
+
+.muted,
+.civi-workday-sub,
+.civi-workday-task-desc,
+.civi-feed-time {
+  color: rgba(255,255,255,0.58) !important;
+}
+
+/* ------------------------------------------------------------
+   FOOTER: MER APP-NAVIGASJON, MINDRE SYSTEMKNAPPER
+------------------------------------------------------------ */
+
+.civi-footer {
+  height: 72px;
+  padding: 10px max(12px, env(safe-area-inset-left)) max(10px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-right));
+  background: rgba(5,5,6,0.74);
+}
+
+.civi-btn {
+  min-height: 46px;
+  max-width: 150px;
+  border-radius: 999px;
+}
+
+/* ------------------------------------------------------------
+   RESPONSIVT: MOBIL = ÉN GOD KOLONNE
+------------------------------------------------------------ */
+
+@media (max-width: 920px) {
+  body.civi-app .civi-panels {
+    width: min(100vw - 20px, 720px);
+    grid-template-columns: 1fr;
+    padding-top: 14px;
+  }
+
+  #civiDashboardSection,
+  #activeJobSection,
+  #civiWorkdaySection,
+  #civiInboxSection,
+  #civiHomeStatus,
+  #civiOnboardingSection,
+  .civi-capital,
+  .civi-psyche,
+  .civi-identity,
+  #civiTrackHUD,
+  #civiPublicFeedSection,
+  #civiDebateSection,
+  #civiPeopleSection,
+  #civiStoreSection {
+    grid-column: 1 / -1;
+  }
+
+  #civiDashboardSection {
+    grid-template-columns: 1fr;
+    padding: 18px;
+  }
+
+  .civi-dashboard-copy {
+    min-height: 0;
+  }
+
+  .civi-dashboard-metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  body.civi-app .topbar {
+    padding: 10px 12px;
+  }
+
+  body.civi-app .civi-panels {
+    width: min(100vw - 16px, 520px);
+    gap: 12px;
+    padding-bottom: calc(82px + env(safe-area-inset-bottom));
+  }
+
+  body.civi-app .civi-panels > section,
+  body.civi-app .civi-track-hud {
+    border-radius: 16px;
+  }
+
+  #civiDashboardSection {
+    border-radius: 20px;
+  }
+
+  #civiDashRole {
+    font-size: 36px;
+  }
+
+  .civi-dashboard-metrics,
+  .civi-workday-grid,
+  .civi-psyche .psyche-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .civi-dashboard-metric {
+    min-height: 86px;
+  }
+
+  .civi-capital .capital-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .psyche-item.highlight {
+    grid-column: span 1;
+  }
+
+  .civi-footer {
+    gap: 7px;
+    height: 78px;
+  }
+
+  .civi-btn {
+    min-height: 48px;
+    padding-inline: 8px;
+    font-size: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  body.civi-app .civi-panels > section,
+  body.civi-app .civi-track-hud {
+    transition: transform 140ms ease, border-color 140ms ease, background-color 140ms ease;
+  }
+
+  body.civi-app .civi-panels > section:hover,
+  body.civi-app .civi-track-hud:hover {
+    transform: translateY(-1px);
+    border-color: rgba(255,255,255,0.18);
+  }
+}
