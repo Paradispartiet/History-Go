@@ -1,6 +1,7 @@
 // integration/aha.js
 
 function exportHistoryGoData() {
+  const debug = Boolean(window.DEBUG);
   let knowledge = {};
   try {
     if (typeof getKnowledgeUniverse === "function") {
@@ -11,11 +12,11 @@ function exportHistoryGoData() {
       );
     }
   } catch (e) {
-    if (DEBUG) console.warn("Kunne ikke lese knowledge_universe", e);
+    if (debug) console.warn("Kunne ikke lese knowledge_universe", e);
   }
 
-  const notes   = Array.isArray(userNotes) ? userNotes : [];
-  const dialogs = Array.isArray(personDialogs) ? personDialogs : [];
+  const notes = typeof userNotes !== "undefined" && Array.isArray(userNotes) ? userNotes : [];
+  const dialogs = typeof personDialogs !== "undefined" && Array.isArray(personDialogs) ? personDialogs : [];
   let learningLog = [];
   let insightsEvents = [];
   let nextUpTri = {};
@@ -59,16 +60,17 @@ function exportHistoryGoData() {
   };
 
   const json = JSON.stringify(payload, null, 2);
-  if (DEBUG) console.log("HistoryGo → AHA export oppdatert i localStorage.");
+  if (debug) console.log("HistoryGo → AHA export oppdatert i localStorage.");
 
   localStorage.setItem("aha_import_payload_v1", json);
   return json;
 }
 
 function syncHistoryGoToAHA() {
+  const debug = Boolean(window.DEBUG);
   try {
     exportHistoryGoData();
   } catch (e) {
-    if (DEBUG) console.warn("Klarte ikke å synce til AHA:", e);
+    if (debug) console.warn("Klarte ikke å synce til AHA:", e);
   }
 }

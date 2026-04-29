@@ -801,7 +801,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // UI-knapper
     document.getElementById("editProfileBtn")?.addEventListener("click", openProfileModal);
-    document.getElementById("btnOpenAHA")?.addEventListener("click", () => window.open("aha/index.html", "_blank"));
+    document.getElementById("btnOpenAHA")?.addEventListener("click", () => window.open("AHA/index.html", "_blank"));
 
     // Sync etter quiz / endringer
     window.addEventListener("updateProfile", () => {

@@ -176,23 +176,6 @@ function buildAIStateForTheme(themeId) {
     }
   }
 
-let conceptsForTheme = [];
-  if (
-    typeof MetaInsightsEngine !== "undefined" &&
-    typeof MetaInsightsEngine.buildConceptIndexForTheme === "function"
-  ) {
-    try {
-      conceptsForTheme = MetaInsightsEngine.buildConceptIndexForTheme(
-        chamber,
-        SUBJECT_ID,
-        themeId
-      );
-    } catch (e) {
-      console.warn("Kunne ikke bygge begrepsindex for tema", e);
-    }
-  }
-
-  
   const topInsights = (insights || [])
     .slice()
     .sort(
@@ -242,10 +225,10 @@ let conceptsForTheme = [];
     insights,                 // råliste med innsikter
     semantic_summary: sem,    // alias til topic_semantics
     dimensions_summary: dims, // alias til topic_dimensions
-    narrative_summary: narrative // alias til topic_narrative
+    narrative_summary: narrative, // alias til topic_narrative
     // 🔹 NYTT: konseptlag for dette temaet
     concepts: conceptsForTheme
-    };
+  };
 }
 
 
@@ -1701,140 +1684,75 @@ function showMetaProfileForUser() {
   }
 }
 
-  // Toppbegreper – enkel liste
-  if (profile.concepts && profile.concepts.length > 0) {
-    log("\nToppbegreper på tvers av tema:");
-    profile.concepts.slice(0, 20).forEach((c) => {
-      const themeStr = (c.themes || []).join(", ");
-      log(
-        "• " +
-          c.key +
-          " (" +
-          c.total_count +
-          ") – tema: " +
-          themeStr
-      );
-    });
-  } else {
-    log("\nIngen begreper registrert ennå (skriv litt mer tekst).");
-  }
-}
-
 // ── Import fra History Go (delt localStorage) ─────────────────
 
 // Tar inn payload fra History Go og lager signaler i AHA-kammeret
 function importHistoryGoData(payload) {
-  if (!payload) return;
+  if (!payload || typeof payload !== "object") {
+    return { importedSignals: 0, importedTextItems: 0 };
+  }
 
   const chamber = loadChamberFromStorage();
   const subjectId = "sub_historygo";
+  let importedSignals = 0;
+  let importedTextItems = 0;
+
+  function addSignal(text, themeId, timestamp) {
+    const safeText = String(text || "").trim();
+    if (!safeText) return;
+    const sig = InsightsEngine.createSignalFromMessage(
+      safeText,
+      subjectId,
+      themeId || "ukjent"
+    );
+    sig.timestamp = timestamp || payload.exported_at || sig.timestamp;
+    InsightsEngine.addSignalToChamber(chamber, sig);
+    importedSignals += 1;
+    importedTextItems += 1;
+  }
 
   const notes = Array.isArray(payload.notes) ? payload.notes : [];
-  const dialogs = Array.isArray(payload.dialogs) ? payload.dialogs : [];
-
-  // 1) Notater → signaler
   notes.forEach((n) => {
-    if (!n.text) return;
-    const themeId = n.categoryId || n.category || "ukjent";
-
-    const sig = InsightsEngine.createSignalFromMessage(
-      n.text,
-      subjectId,
-      themeId
-    );
-    // Overstyr timestamp hvis vi har noe bedre
-    sig.timestamp = n.createdAt || payload.exported_at || sig.timestamp;
-    InsightsEngine.addSignalToChamber(chamber, sig);
+    addSignal(n?.text, n?.categoryId || n?.category, n?.createdAt);
   });
 
-  // 2) Dialoger → bare bruker-tekst inn
+  const dialogs = Array.isArray(payload.dialogs) ? payload.dialogs : [];
   dialogs.forEach((dlg) => {
     const themeId = dlg.categoryId || "ukjent";
-
     (dlg.turns || [])
       .filter((t) => t.from === "user" && t.text)
       .forEach((t) => {
-        const sig = InsightsEngine.createSignalFromMessage(
-          t.text,
-          subjectId,
-          themeId
-        );
-        sig.timestamp = dlg.created_at || payload.exported_at || sig.timestamp;
-        InsightsEngine.addSignalToChamber(chamber, sig);
+        addSignal(t.text, themeId, dlg.created_at);
       });
   });
 
-  saveChamberToStorage(chamber);
-}
-
-// Leser buffer fra lokalStorage og kaller importHistoryGoData
-function importHistoryGoDataFromSharedStorage() {
-  clearOutput();
-  const raw = localStorage.getItem("aha_import_payload_v1");
-  if (!raw) {
-    log(
-      "Fant ingen History Go-data å importere (aha_import_payload_v1 er tom)."
-    );
-    return;
-  }
-
-  try {
-    const payload = JSON.parse(raw);
-    importHistoryGoData(payload);
-    log("Importerte History Go-data fra lokal storage.");
-    if (payload.exported_at) {
-      log("Eksportert fra History Go: " + payload.exported_at);
+  const universe = payload.knowledge_universe && typeof payload.knowledge_universe === "object"
+    ? payload.knowledge_universe
+    : {};
+  Object.entries(universe).forEach(([themeId, value]) => {
+    if (typeof value === "string") {
+      addSignal(value, themeId, payload.exported_at);
+      return;
     }
-  } catch (e) {
-    log("Klarte ikke å lese History Go-data: " + e.message);
-  }
-}
-
-// ── Import fra History Go (delt localStorage) ─────────────────
-
-// Tar inn payload fra History Go og lager signaler i AHA-kammeret
-function importHistoryGoData(payload) {
-  if (!payload) return;
-
-  const chamber = loadChamberFromStorage();
-  const subjectId = "sub_historygo";
-
-  const notes = Array.isArray(payload.notes) ? payload.notes : [];
-  const dialogs = Array.isArray(payload.dialogs) ? payload.dialogs : [];
-
-  // 1) Notater → signaler
-  notes.forEach((n) => {
-    if (!n.text) return;
-    const themeId = n.categoryId || n.category || "ukjent";
-
-    const sig = InsightsEngine.createSignalFromMessage(
-      n.text,
-      subjectId,
-      themeId
-    );
-    // Overstyr timestamp hvis vi har noe bedre
-    sig.timestamp = n.createdAt || payload.exported_at || sig.timestamp;
-    InsightsEngine.addSignalToChamber(chamber, sig);
+    if (value && typeof value === "object") {
+      addSignal(value.text || value.content || value.summary, themeId, value.updatedAt || value.createdAt);
+    }
   });
 
-  // 2) Dialoger → bare bruker-tekst inn
-  dialogs.forEach((dlg) => {
-    const themeId = dlg.categoryId || "ukjent";
+  const learningLog = Array.isArray(payload.hg_learning_log_v1) ? payload.hg_learning_log_v1 : [];
+  learningLog.forEach((entry) => {
+    const themeId = entry?.categoryId || entry?.topic || entry?.id || "learning_log";
+    addSignal(entry?.text || entry?.summary || entry?.note, themeId, entry?.createdAt || entry?.timestamp);
+  });
 
-    (dlg.turns || [])
-      .filter((t) => t.from === "user" && t.text)
-      .forEach((t) => {
-        const sig = InsightsEngine.createSignalFromMessage(
-          t.text,
-          subjectId,
-          themeId
-        );
-        sig.timestamp = dlg.created_at || payload.exported_at || sig.timestamp;
-        InsightsEngine.addSignalToChamber(chamber, sig);
-      });
+  const insightsEvents = Array.isArray(payload.hg_insights_events_v1) ? payload.hg_insights_events_v1 : [];
+  insightsEvents.forEach((event) => {
+    const themeId = event?.categoryId || event?.topic || event?.theme_id || "insight_event";
+    addSignal(event?.text || event?.message || event?.insight, themeId, event?.createdAt || event?.timestamp);
   });
 
   saveChamberToStorage(chamber);
+  return { importedSignals, importedTextItems };
 }
 
 // Leser buffer fra lokalStorage og kaller importHistoryGoData
@@ -1850,8 +1768,14 @@ function importHistoryGoDataFromSharedStorage() {
 
   try {
     const payload = JSON.parse(raw);
-    importHistoryGoData(payload);
-    log("Importerte History Go-data fra lokal storage.");
+    const result = importHistoryGoData(payload);
+    log(
+      "Importerte History Go-data fra lokal storage. " +
+        result.importedSignals +
+        " signaler fra " +
+        result.importedTextItems +
+        " tekstbiter."
+    );
     if (payload.exported_at) {
       log("Eksportert fra History Go: " + payload.exported_at);
     }
