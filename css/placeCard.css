@@ -315,6 +315,53 @@
   overflow: hidden;
 }
 
+body.hg-app.hg-phone #placeCard{
+  --pc-round-size: 82px;
+  --pc-round-gap: 8px;
+  --pc-text-inset: 12px;
+  --pc-text-h: 168px;
+}
+
+body.hg-app.hg-phone #placeCard .pc-grid{
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  column-gap: 10px;
+  row-gap: 8px;
+  padding: 8px 12px 12px;
+}
+
+body.hg-app.hg-phone .pc-frontcard{
+  border-radius: 12px;
+}
+
+body.hg-app.hg-phone .pc-cardimage{
+  margin-top: 8px;
+  border-radius: 10px;
+}
+
+body.hg-app.hg-phone .pc-icons-quad{
+  transform: none;
+  width: 100%;
+}
+
+body.hg-app.hg-phone .pc-events-quad{
+  margin-top: 8px;
+  min-height: 110px;
+  padding: 8px;
+}
+
+body.hg-app.hg-phone #placeCard #pcTitle{
+  font-size: 24px;
+}
+
+body.hg-app.hg-phone #placeCard #pcMeta{
+  font-size: 14px;
+}
+
+body.hg-app.hg-phone #placeCard #pcDesc{
+  font-size: 17px;
+  -webkit-line-clamp: 4;
+}
+
 
 
 

@@ -1,12 +1,16 @@
 (function () {
-  const DESIGN_WIDTH = 900;
-  const DESIGN_HEIGHT = 1230;
+  const TABLET_DESIGN_WIDTH = 900;
+  const TABLET_DESIGN_HEIGHT = 1230;
+  const PHONE_DESIGN_WIDTH = 430;
+  const PHONE_BREAKPOINT = 520;
+  const PHONE_MIN_DESIGN_HEIGHT = 820;
 
   let shell = null;
   let mapLayer = null;
   let rafId = null;
   let last = { scale: null, x: null, y: null, w: null, h: null };
   let stableViewport = null;
+  let lastMode = null;
 
   function isTextInputActive() {
     const el = document.activeElement;
@@ -41,17 +45,28 @@
     return current;
   }
 
-  function calculateScale(vw, vh) {
-    const sx = vw / DESIGN_WIDTH;
-    const sy = vh / DESIGN_HEIGHT;
+  function getLayout(vw, vh) {
+    const isPhone = vw <= PHONE_BREAKPOINT;
+    const mode = isPhone ? "phone" : "tablet";
+    const designWidth = isPhone ? PHONE_DESIGN_WIDTH : TABLET_DESIGN_WIDTH;
+    const designHeight = isPhone
+      ? Math.max(PHONE_MIN_DESIGN_HEIGHT, vh)
+      : TABLET_DESIGN_HEIGHT;
+    return { mode, designWidth, designHeight };
+  }
+
+  function calculateScale(vw, vh, designWidth, designHeight) {
+    const sx = vw / designWidth;
+    const sy = vh / designHeight;
     return Math.min(sx, sy);
   }
 
-  function apply(scale, vw, vh) {
+  function apply(scale, vw, vh, layout) {
     if (!shell) return;
 
-    const scaledW = DESIGN_WIDTH * scale;
-    const scaledH = DESIGN_HEIGHT * scale;
+    const { mode, designWidth, designHeight } = layout;
+    const scaledW = designWidth * scale;
+    const scaledH = designHeight * scale;
 
     const x = Math.max(0, (vw - scaledW) / 2);
     const y = 0;
@@ -68,13 +83,19 @@
     }
 
     // UI-skallet: fortsatt design-canvas som skaleres
-    shell.style.width = DESIGN_WIDTH + "px";
-    shell.style.height = DESIGN_HEIGHT + "px";
+    shell.style.width = designWidth + "px";
+    shell.style.height = designHeight + "px";
     shell.style.position = "fixed";
     shell.style.top = "0";
     shell.style.left = "0";
     shell.style.transformOrigin = "top left";
     shell.style.transform = `translate3d(${x}px, ${y}px, 0) scale(${scale})`;
+
+    if (lastMode !== mode) {
+      document.body.classList.toggle("hg-phone", mode === "phone");
+      document.body.classList.toggle("hg-tablet", mode === "tablet");
+      lastMode = mode;
+    }
 
     // Kartlaget: IKKE scale-transform, bare samme synlige rektangel
     if (mapLayer) {
@@ -91,8 +112,9 @@
       scale,
       x,
       y,
-      designWidth: DESIGN_WIDTH,
-      designHeight: DESIGN_HEIGHT,
+      mode,
+      designWidth,
+      designHeight,
       visibleWidth: scaledW,
       visibleHeight: scaledH
     };
@@ -107,8 +129,9 @@
   function update() {
     rafId = null;
     const { w, h } = getViewport();
-    const scale = calculateScale(w, h);
-    apply(scale, w, h);
+    const layout = getLayout(w, h);
+    const scale = calculateScale(w, h, layout.designWidth, layout.designHeight);
+    apply(scale, w, h, layout);
   }
 
   function schedule() {
