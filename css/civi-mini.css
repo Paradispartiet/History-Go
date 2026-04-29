@@ -1,0 +1,332 @@
+/* ============================================================
+   CIVICATION – MINI MODE
+   Hensikt:
+   - Civication-siden viser miniversjoner av seksjonene som standard.
+   - Seksjonene kan åpnes/lukkes uten å endre underliggende motor.
+   - Hvite flater/knapper overstyres til mørkt tema.
+============================================================ */
+
+:root {
+  --civi-mini-bg: rgba(12,12,15,0.94);
+  --civi-mini-bg-2: rgba(255,255,255,0.055);
+  --civi-mini-bg-3: rgba(255,255,255,0.085);
+  --civi-mini-border: rgba(255,255,255,0.11);
+  --civi-mini-border-strong: rgba(255,255,255,0.18);
+  --civi-mini-text: rgba(255,255,255,0.92);
+  --civi-mini-muted: rgba(255,255,255,0.58);
+  --civi-mini-gold: #d6aa3a;
+  --civi-mini-green: #5fb879;
+  --civi-mini-blue: #7fa7d6;
+  --civi-mini-purple: #b482ce;
+  --civi-mini-orange: #d9914f;
+  --civi-mini-red: #d98282;
+}
+
+body.civi-app.civi-mini-mode .civi-panels {
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 12px;
+}
+
+/* ------------------------------------------------------------
+   Dashboardet gjøres kompakt – ikke en stor hero.
+------------------------------------------------------------ */
+
+body.civi-app.civi-mini-mode #civiDashboardSection {
+  grid-column: 1 / -1;
+  padding: 14px;
+  min-height: 0;
+  border-radius: 20px;
+  grid-template-columns: minmax(0, 1fr) minmax(420px, 0.95fr);
+  gap: 12px;
+}
+
+body.civi-app.civi-mini-mode .civi-dashboard-copy {
+  min-height: 0;
+  justify-content: flex-start;
+}
+
+body.civi-app.civi-mini-mode .civi-dashboard-kicker {
+  margin-bottom: 8px;
+  padding: 5px 9px;
+  font-size: 10px;
+}
+
+body.civi-app.civi-mini-mode #civiDashRole {
+  font-size: clamp(24px, 3.8vw, 38px);
+  line-height: 1;
+}
+
+body.civi-app.civi-mini-mode #civiDashSummary {
+  margin-top: 7px;
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+body.civi-app.civi-mini-mode .civi-dashboard-focus {
+  margin-top: 10px;
+  padding: 9px 11px;
+}
+
+body.civi-app.civi-mini-mode .civi-dashboard-metrics {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+
+body.civi-app.civi-mini-mode .civi-dashboard-metric {
+  min-height: 76px;
+  padding: 10px;
+  border-radius: 14px;
+}
+
+body.civi-app.civi-mini-mode .civi-dashboard-metric strong {
+  font-size: clamp(17px, 2vw, 24px);
+}
+
+body.civi-app.civi-mini-mode .civi-dashboard-metric small {
+  font-size: 11px;
+}
+
+/* ------------------------------------------------------------
+   Alle ordinære Civication-seksjoner som minikort.
+------------------------------------------------------------ */
+
+body.civi-app.civi-mini-mode .civi-panels > section:not(#civiDashboardSection),
+body.civi-app.civi-mini-mode #civiTrackHUD {
+  grid-column: span 4;
+  min-height: 106px;
+  padding: 0;
+  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(24,24,28,0.96), rgba(12,12,15,0.96));
+  border: 1px solid var(--civi-mini-border);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.28);
+}
+
+body.civi-app.civi-mini-mode .civi-panels > section.is-expanded,
+body.civi-app.civi-mini-mode #civiTrackHUD.is-expanded {
+  grid-column: 1 / -1;
+}
+
+body.civi-app.civi-mini-mode .civi-mini-head {
+  width: 100%;
+  min-height: 104px;
+  padding: 13px 14px 12px 16px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: start;
+  border: 0;
+  background: transparent;
+  color: var(--civi-mini-text);
+  text-align: left;
+  cursor: pointer;
+}
+
+body.civi-app.civi-mini-mode .civi-mini-title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+body.civi-app.civi-mini-mode .civi-mini-title-row h2,
+body.civi-app.civi-mini-mode #civiTrackHUD .civi-mini-title-row .civi-track-title {
+  margin: 0;
+  color: rgba(255,255,255,0.86);
+  font-size: 12px;
+  font-weight: 850;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+body.civi-app.civi-mini-mode .civi-mini-summary {
+  margin-top: 8px;
+  color: var(--civi-mini-muted);
+  font-size: 13px;
+  line-height: 1.32;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+body.civi-app.civi-mini-mode .civi-mini-count {
+  margin-top: 9px;
+  width: max-content;
+  max-width: 100%;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.065);
+  border: 1px solid rgba(255,255,255,0.09);
+  color: rgba(255,255,255,0.68);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+body.civi-app.civi-mini-mode .civi-mini-toggle {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.10);
+  color: rgba(255,255,255,0.8);
+  font-size: 18px;
+  line-height: 1;
+}
+
+body.civi-app.civi-mini-mode .is-expanded .civi-mini-toggle {
+  background: rgba(214,170,58,0.16);
+  border-color: rgba(214,170,58,0.34);
+  color: rgba(255,230,160,0.96);
+}
+
+body.civi-app.civi-mini-mode .civi-section-body {
+  display: none;
+  padding: 0 14px 14px 14px;
+}
+
+body.civi-app.civi-mini-mode .is-expanded > .civi-section-body {
+  display: block;
+}
+
+body.civi-app.civi-mini-mode .civi-panels > section:not(#civiDashboardSection)::before {
+  top: 14px;
+  bottom: 14px;
+  width: 3px;
+}
+
+body.civi-app.civi-mini-mode .civi-panels > section:not(#civiDashboardSection) > h2,
+body.civi-app.civi-mini-mode .civi-panels > section:not(#civiDashboardSection) > :not(.civi-mini-head):not(.civi-section-body),
+body.civi-app.civi-mini-mode #civiTrackHUD > :not(.civi-mini-head):not(.civi-section-body) {
+  display: none;
+}
+
+/* ------------------------------------------------------------
+   Fargede aksenter – mørkt tema, men ikke flatt.
+------------------------------------------------------------ */
+
+body.civi-app.civi-mini-mode #activeJobSection { border-color: rgba(214,170,58,0.20); }
+body.civi-app.civi-mini-mode #civiWorkdaySection { border-color: rgba(95,184,121,0.20); }
+body.civi-app.civi-mini-mode #civiInboxSection { border-color: rgba(95,184,121,0.22); }
+body.civi-app.civi-mini-mode #civiHomeStatus { border-color: rgba(217,145,79,0.22); }
+body.civi-app.civi-mini-mode .civi-capital { border-color: rgba(95,184,121,0.18); }
+body.civi-app.civi-mini-mode .civi-psyche { border-color: rgba(180,130,206,0.20); }
+body.civi-app.civi-mini-mode .civi-identity { border-color: rgba(127,167,214,0.20); }
+body.civi-app.civi-mini-mode #civiDebateSection { border-color: rgba(217,130,130,0.20); }
+body.civi-app.civi-mini-mode #civiPeopleSection { border-color: rgba(127,167,214,0.18); }
+body.civi-app.civi-mini-mode #civiStoreSection { border-color: rgba(217,145,79,0.18); }
+
+/* ------------------------------------------------------------
+   Fjern hvite bokser/knapper. Civication skal være mørkt.
+------------------------------------------------------------ */
+
+body.civi-app button,
+body.civi-app .civi-btn,
+body.civi-app .civi-btn.primary,
+body.civi-app #buyDistrictBtn,
+body.civi-app #changeDistrictBtn,
+body.civi-app #identityPerceptionBtn,
+body.civi-app .civi-task-open-btn,
+body.civi-app .district-card button,
+body.civi-app .civi-modal-close,
+body.civi-app .civi-task-actions button {
+  background: linear-gradient(180deg, rgba(255,255,255,0.105), rgba(255,255,255,0.055)) !important;
+  color: rgba(255,255,255,0.92) !important;
+  border: 1px solid rgba(255,255,255,0.14) !important;
+  box-shadow: none !important;
+}
+
+body.civi-app .civi-btn.primary,
+body.civi-app #buyDistrictBtn,
+body.civi-app #changeDistrictBtn {
+  background: linear-gradient(135deg, rgba(214,170,58,0.24), rgba(214,170,58,0.09)) !important;
+  border-color: rgba(214,170,58,0.32) !important;
+  color: rgba(255,232,170,0.98) !important;
+}
+
+body.civi-app button:hover,
+body.civi-app .civi-btn:hover,
+body.civi-app .civi-btn.primary:hover,
+body.civi-app .district-card button:hover {
+  background: linear-gradient(180deg, rgba(255,255,255,0.15), rgba(255,255,255,0.075)) !important;
+  filter: none !important;
+}
+
+body.civi-app input,
+body.civi-app select,
+body.civi-app textarea {
+  background: rgba(255,255,255,0.07) !important;
+  color: #fff !important;
+  border: 1px solid rgba(255,255,255,0.16) !important;
+}
+
+body.civi-app [style*="background:#fff"],
+body.civi-app [style*="background: #fff"],
+body.civi-app [style*="background:white"],
+body.civi-app [style*="background: white"],
+body.civi-app [style*="background-color:#fff"],
+body.civi-app [style*="background-color: #fff"],
+body.civi-app [style*="background-color:white"],
+body.civi-app [style*="background-color: white"] {
+  background: rgba(255,255,255,0.075) !important;
+  color: rgba(255,255,255,0.92) !important;
+  border-color: rgba(255,255,255,0.14) !important;
+}
+
+body.civi-app .capital-item,
+body.civi-app .psyche-item,
+body.civi-app .civi-workday-clock,
+body.civi-app .civi-workday-meta,
+body.civi-app .civi-workday-card,
+body.civi-app .civi-workday-empty,
+body.civi-app .civi-task-box,
+body.civi-app .district-card {
+  background: rgba(255,255,255,0.055) !important;
+  border-color: rgba(255,255,255,0.10) !important;
+  color: rgba(255,255,255,0.90) !important;
+}
+
+/* ------------------------------------------------------------
+   Responsivt.
+------------------------------------------------------------ */
+
+@media (max-width: 1040px) {
+  body.civi-app.civi-mini-mode .civi-panels > section:not(#civiDashboardSection),
+  body.civi-app.civi-mini-mode #civiTrackHUD {
+    grid-column: span 6;
+  }
+}
+
+@media (max-width: 820px) {
+  body.civi-app.civi-mini-mode #civiDashboardSection {
+    grid-template-columns: 1fr;
+  }
+
+  body.civi-app.civi-mini-mode .civi-dashboard-metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  body.civi-app.civi-mini-mode .civi-panels > section:not(#civiDashboardSection),
+  body.civi-app.civi-mini-mode #civiTrackHUD,
+  body.civi-app.civi-mini-mode .civi-panels > section.is-expanded,
+  body.civi-app.civi-mini-mode #civiTrackHUD.is-expanded {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 520px) {
+  body.civi-app.civi-mini-mode .civi-dashboard-metrics {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  body.civi-app.civi-mini-mode .civi-dashboard-metric {
+    min-height: 68px;
+    padding: 9px;
+  }
+
+  body.civi-app.civi-mini-mode .civi-mini-head {
+    min-height: 92px;
+    padding: 12px;
+  }
+}
