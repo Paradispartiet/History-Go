@@ -3,7 +3,7 @@
    Oppdatert: 2026-04-29
    ============================================================ */
 
-const SW_VERSION = "hg-sw-2026-04-29-v1.39.153";
+const SW_VERSION = "hg-sw-2026-04-29-v1.39.154";
 
 const CACHE_STATIC  = `hg-static-${SW_VERSION}`;
 const CACHE_RUNTIME = `hg-runtime-${SW_VERSION}`;
@@ -20,6 +20,7 @@ const PRECACHE_URLS = [
   "css/civi.css",
   "css/civi-refresh.css",
   "css/civi-dashboard.css",
+  "css/civi-mini.css",
   "css/components.css",
   "css/effects.css",
   "css/footer.css",
@@ -149,6 +150,7 @@ const PRECACHE_URLS = [
   "js/Civication/ui/CivicationMap.js",
   "js/Civication/ui/CivicationUI.js",
   "js/Civication/ui/CivicationDashboardUI.js",
+  "js/Civication/ui/CivicationMiniSectionsUI.js",
   "js/Civication/ui/CivicationEmptyPanels.js",
 
   // Civication – utils / systems
