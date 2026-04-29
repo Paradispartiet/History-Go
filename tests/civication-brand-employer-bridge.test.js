@@ -1,12 +1,23 @@
 #!/usr/bin/env node
 const assert = require('assert');
 
-global.localStorage = { getItem() { return null; }, setItem() {} };
+const storage = {};
+global.localStorage = {
+  getItem(k) { return Object.prototype.hasOwnProperty.call(storage, k) ? storage[k] : null; },
+  setItem(k, v) { storage[k] = String(v); }
+};
 
-const state = { active: null };
+const state = { active: null, inbox: [] };
 global.CivicationState = {
   setActivePosition(pos) { state.active = { ...pos }; },
-  getActivePosition() { return state.active; }
+  getActivePosition() { return state.active; },
+  getInbox() { return state.inbox; },
+  setInbox(next) { state.inbox = Array.isArray(next) ? next : []; }
+};
+
+global.HG_CiviEngine = {
+  getInbox() { return state.inbox; },
+  setInbox(next) { state.inbox = Array.isArray(next) ? next : []; }
 };
 
 const offers = [];
@@ -27,65 +38,67 @@ global.CivicationJobs = {
 global.CivicationBrandAccess = {
   getUnlockedBrandEmployers() {
     employerCalls += 1;
-    return [{
-      brand_id: 'narvesen',
-      brand_name: 'Narvesen',
-      brand_type: 'retail',
-      brand_group: 'convenience',
-      sector: 'kiosk',
-      place_id: 'place_x',
-      employer_context: { source: 'HGBrands', brand_id: 'narvesen' }
-    }];
+    return [];
   }
 };
 
+require('../js/Civication/systems/civicationBlockedJobMessages.js');
 const bridge = require('../js/Civication/systems/civicationBrandEmployerBridge.js');
 bridge.boot();
 
-// A no unlocked employer blocks ekspeditør offer
-global.CivicationBrandAccess.getUnlockedBrandEmployers = function () { employerCalls += 1; return []; };
+// A Blocking enqueues message and does not store offer
+offers.length = 0;
+state.inbox = [];
 const blocked = global.CivicationJobs.pushOffer({ career_id: 'naeringsliv', title: 'Ekspeditør / butikkmedarbeider', threshold: 1, points_at_offer: 1 });
-assert.deepStrictEqual(blocked, {
-  ok: false,
-  reason: 'no_unlocked_brand_employer',
-  career_id: 'naeringsliv',
-  role_scope: 'ekspeditor'
-});
+assert.deepStrictEqual(blocked, { ok: false, reason: 'no_unlocked_brand_employer', career_id: 'naeringsliv', role_scope: 'ekspeditor' });
 assert.strictEqual(offers.length, 0);
+assert.strictEqual(state.inbox.length, 1);
+assert.strictEqual(state.inbox[0].source_type, 'blocked_job');
+assert.strictEqual(state.inbox[0].mail_class, 'opportunity_blocked');
+assert.strictEqual(state.inbox[0].career_id, 'naeringsliv');
+assert.strictEqual(state.inbox[0].role_scope, 'ekspeditor');
 
-// B unlocked employer enriches and stores offer
-global.CivicationBrandAccess.getUnlockedBrandEmployers = function () {
-  employerCalls += 1;
-  return [{
-    brand_id: 'narvesen',
-    brand_name: 'Narvesen',
-    brand_type: 'retail',
-    brand_group: 'convenience',
-    sector: 'kiosk',
-    place_id: 'place_x',
-    access_source: 'unlocked_place',
-    employer_context: { source: 'HGBrands', brand_id: 'narvesen' }
-  }];
-};
-const pushed = global.CivicationJobs.pushOffer({ career_id: 'naeringsliv', title: 'Ekspeditør / butikkmedarbeider', threshold: 1, points_at_offer: 1 });
-assert.strictEqual(pushed.ok, true);
-assert.strictEqual(pushed.offer.brand_id, 'narvesen');
-assert.strictEqual(pushed.offer.brand_name, 'Narvesen');
-assert.strictEqual(pushed.offer.employer_context.source, 'HGBrands');
+// B Cooldown/pending prevents spam
+const blockedAgain = global.CivicationJobs.pushOffer({ career_id: 'naeringsliv', title: 'Ekspeditør / butikkmedarbeider', threshold: 1, points_at_offer: 1 });
+assert.strictEqual(blockedAgain.ok, false);
+assert.strictEqual(state.inbox.length, 1);
 
-// E active position persistence
-const accepted = global.CivicationJobs.acceptOffer('naeringsliv:1');
-assert.strictEqual(accepted.ok, true);
-const active = global.CivicationState.getActivePosition();
-assert.strictEqual(active.brand_id, 'narvesen');
-assert.strictEqual(active.brand_name, 'Narvesen');
-assert.strictEqual(active.employer_context.source, 'HGBrands');
+// C Existing pending blocked message prevents duplicate
+state.inbox = [{
+  id: 'existing', status: 'pending', source_type: 'blocked_job', mail_class: 'opportunity_blocked',
+  career_id: 'naeringsliv', role_scope: 'ekspeditor', reason: 'no_unlocked_brand_employer'
+}];
+const blockedPending = global.CivicationJobs.pushOffer({ career_id: 'naeringsliv', title: 'Ekspeditør / butikkmedarbeider', threshold: 1, points_at_offer: 1 });
+assert.strictEqual(blockedPending.ok, false);
+assert.strictEqual(state.inbox.length, 1);
+assert.strictEqual(state.inbox[0].id, 'existing');
 
-// C non-ekspeditør passes without employer requirement
+// D Non-ekspeditør unaffected
 const callsBefore = employerCalls;
 const nonEksp = global.CivicationJobs.pushOffer({ career_id: 'naeringsliv', title: 'Fagarbeider', threshold: 2, points_at_offer: 2 });
 assert.strictEqual(nonEksp.ok, true);
 assert.strictEqual(nonEksp.offer.title, 'Fagarbeider');
 assert.strictEqual(employerCalls, callsBefore);
+assert.strictEqual(state.inbox.filter(m => m.source_type === 'blocked_job').length, 1);
+
+// E Unlocked employer succeeds without blocked message
+global.CivicationBrandAccess.getUnlockedBrandEmployers = function () {
+  employerCalls += 1;
+  return [{
+    brand_id: 'narvesen', brand_name: 'Narvesen', brand_type: 'retail', brand_group: 'convenience',
+    sector: 'kiosk', place_id: 'place_x', access_source: 'unlocked_place', employer_context: { source: 'HGBrands', brand_id: 'narvesen' }
+  }];
+};
+state.inbox = [];
+const pushed = global.CivicationJobs.pushOffer({ career_id: 'naeringsliv', title: 'Ekspeditør / butikkmedarbeider', threshold: 1, points_at_offer: 1 });
+assert.strictEqual(pushed.ok, true);
+assert.strictEqual(pushed.offer.brand_id, 'narvesen');
+assert.strictEqual(state.inbox.length, 0);
+
+// active position persistence
+const accepted = global.CivicationJobs.acceptOffer('naeringsliv:1');
+assert.strictEqual(accepted.ok, true);
+const active = global.CivicationState.getActivePosition();
+assert.strictEqual(active.brand_id, 'narvesen');
 
 console.log('civication brand employer bridge ok');

@@ -83,6 +83,9 @@
       const pick = selectEmployer(source);
       if (!pick.ok) {
         globalScope.console?.info?.('[CivicationBrandEmployerBridge] Blocked ekspeditør offer: no unlocked brand employer.');
+        if (pick.reason === 'no_unlocked_brand_employer') {
+          globalScope.CivicationBlockedJobMessages?.enqueueNoUnlockedBrandEmployerMessage?.(pick);
+        }
         return pick;
       }
       return originalPushOffer.call(this, pick.offer);
