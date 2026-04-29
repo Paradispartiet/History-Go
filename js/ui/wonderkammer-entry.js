@@ -49,7 +49,15 @@
       facade_detail: "Fasadedetalj",
       material_study: "Materialstudie",
       viewpoint: "Utsiktspunkt",
-      urban_space: "Byrom"
+      urban_space: "Byrom",
+      museum_zone: "Museumssone",
+      library_zone: "Biblioteksone",
+      knowledge_zone: "Kunnskapssone",
+      collection_activity: "Samlingsaktivitet",
+      reading_activity: "Leseaktivitet",
+      observation_activity: "Observasjon",
+      archive_trace: "Arkivspor",
+      research_trace: "Forskningsspor",
     };
     const t = norm(type);
     return labels[t] || t || "Wonderkammer";
@@ -306,7 +314,15 @@
       facade_detail: "Fasadedetalj",
       material_study: "Materialstudie",
       viewpoint: "Utsiktspunkt",
-      urban_space: "Byrom"
+      urban_space: "Byrom",
+      museum_zone: "Museumssone",
+      library_zone: "Biblioteksone",
+      knowledge_zone: "Kunnskapssone",
+      collection_activity: "Samlingsaktivitet",
+      reading_activity: "Leseaktivitet",
+      observation_activity: "Observasjon",
+      archive_trace: "Arkivspor",
+      research_trace: "Forskningsspor",
     };
     const t = norm(type);
     return labels[t] || t || "Wonderkammer";
@@ -342,6 +358,11 @@
       id: "architecture",
       title: "Arkitektur",
       types: ["architecture_zone", "architectural_feature", "facade_detail"]
+    },
+    {
+      id: "knowledge",
+      title: "Kunnskap",
+      types: ["museum_zone", "library_zone", "knowledge_zone", "collection_activity", "reading_activity", "observation_activity", "archive_trace", "research_trace"]
     },
     {
       id: "explore",
