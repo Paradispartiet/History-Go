@@ -1,0 +1,138 @@
+/* Civication brand job state — presentasjonslag */
+
+.civi-brand-job-state {
+  margin-top: 14px;
+  padding: 14px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.055);
+  border: 1px solid rgba(255,255,255,0.10);
+}
+
+.civi-brand-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.civi-brand-head span,
+.civi-brand-milestone span {
+  display: block;
+  margin-bottom: 4px;
+  color: rgba(255,255,255,0.52);
+  font-size: 10px;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.civi-brand-head strong {
+  display: block;
+  color: #fff;
+  font-size: 18px;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+}
+
+.civi-brand-head small {
+  flex: 0 0 auto;
+  max-width: 46%;
+  color: rgba(255,255,255,0.58);
+  font-size: 12px;
+  line-height: 1.25;
+  text-align: right;
+}
+
+.civi-brand-metrics {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.civi-brand-metric {
+  min-width: 0;
+  padding: 10px;
+  border-radius: 13px;
+  background: rgba(0,0,0,0.18);
+  border: 1px solid rgba(255,255,255,0.075);
+}
+
+.civi-brand-metric span {
+  display: block;
+  margin-bottom: 7px;
+  color: rgba(255,255,255,0.52);
+  font-size: 10px;
+  font-weight: 760;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.civi-brand-metric strong {
+  color: #fff;
+  font-size: 24px;
+  line-height: 1;
+  font-weight: 920;
+  font-variant-numeric: tabular-nums;
+}
+
+.civi-brand-metric.is-high {
+  border-color: rgba(95,184,121,0.34);
+  background: rgba(95,184,121,0.12);
+}
+
+.civi-brand-metric.is-low,
+.civi-brand-metric.is-negative {
+  border-color: rgba(217,130,130,0.34);
+  background: rgba(217,130,130,0.10);
+}
+
+.civi-brand-metric.is-positive {
+  border-color: rgba(214,170,58,0.22);
+  background: rgba(214,170,58,0.09);
+}
+
+.civi-brand-milestone {
+  margin-top: 12px;
+  padding: 12px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(214,170,58,0.13), rgba(255,255,255,0.04));
+  border: 1px solid rgba(214,170,58,0.20);
+}
+
+.civi-brand-milestone strong {
+  display: block;
+  color: rgba(255,255,255,0.94);
+  font-size: 14px;
+  line-height: 1.25;
+  text-transform: none;
+}
+
+.civi-brand-milestone small {
+  display: block;
+  margin-top: 6px;
+  color: rgba(255,255,255,0.58);
+  font-size: 12px;
+  line-height: 1.25;
+}
+
+.civi-brand-milestone.is-empty {
+  background: rgba(0,0,0,0.16);
+  border-color: rgba(255,255,255,0.075);
+}
+
+@media (max-width: 720px) {
+  .civi-brand-metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .civi-brand-head {
+    flex-direction: column;
+  }
+
+  .civi-brand-head small {
+    max-width: 100%;
+    text-align: left;
+  }
+}
