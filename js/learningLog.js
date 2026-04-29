@@ -283,7 +283,12 @@
 
         if (t === "emne") {
           const emneId = btn.dataset.emne;
+          const knowledgeHref = btn.dataset.knowledgeHref;
           if (!emneId) return;
+          if (knowledgeHref) {
+            window.location.href = knowledgeHref;
+            return;
+          }
           window.location.href = `knowledge_by.html#${encodeURIComponent(emneId)}`;
         }
       };
@@ -329,7 +334,7 @@
 
       <div class="mp-nextup-line">
         <button class="mp-nextup-link" data-mp="emne"
-          ${concept ? `data-emne="${attr(concept.emne_id)}"` : "disabled"}>
+          ${concept ? `data-emne="${attr(concept.emne_id)}" data-knowledge-href="${attr(concept.knowledge_href || "")}"` : "disabled"}>
           🧠 <b>Forstå</b><span>${concept ? esc(concept.label) : "—"}</span>
         </button>
       </div>

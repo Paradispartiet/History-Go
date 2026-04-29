@@ -189,9 +189,11 @@
 
     label = s(place?.quiz_profile?.primary_angles?.[0]) || s(place?.quiz_profile?.subtype) || first;
 
+    const subject = categoryOf(place);
     return {
       emne_id: first,
-      subject_id: categoryOf(place),
+      subject_id: subject,
+      knowledge_href: `knowledge/knowledge_${encodeURIComponent(subject)}.html#${encodeURIComponent(first)}`,
       label,
       because: "Stedet er koblet til dette emnet"
     };

@@ -16,12 +16,31 @@ function exportHistoryGoData() {
 
   const notes   = Array.isArray(userNotes) ? userNotes : [];
   const dialogs = Array.isArray(personDialogs) ? personDialogs : [];
+  let learningLog = [];
+  let insightsEvents = [];
+  let nextUpTri = {};
+  let nextUpBecause = "";
+  let merits = {};
+  let visitedPlaces = {};
+
+  try { learningLog = JSON.parse(localStorage.getItem("hg_learning_log_v1") || "[]"); } catch {}
+  try { insightsEvents = JSON.parse(localStorage.getItem("hg_insights_events_v1") || "[]"); } catch {}
+  try { nextUpTri = JSON.parse(localStorage.getItem("hg_nextup_tri") || "{}"); } catch {}
+  try { merits = JSON.parse(localStorage.getItem("merits_by_category") || "{}"); } catch {}
+  try { visitedPlaces = JSON.parse(localStorage.getItem("visited_places") || "{}"); } catch {}
+  nextUpBecause = String(localStorage.getItem("hg_nextup_because") || "");
 
   const payload = {
     user_id: localStorage.getItem("user_id") || "local_user",
     source: "historygo",
     exported_at: new Date().toISOString(),
     knowledge_universe: knowledge,
+    hg_learning_log_v1: Array.isArray(learningLog) ? learningLog : [],
+    hg_insights_events_v1: Array.isArray(insightsEvents) ? insightsEvents : [],
+    merits_by_category: merits && typeof merits === "object" ? merits : {},
+    visited_places: visitedPlaces && typeof visitedPlaces === "object" ? visitedPlaces : {},
+    hg_nextup_tri: nextUpTri && typeof nextUpTri === "object" ? nextUpTri : {},
+    hg_nextup_because: nextUpBecause,
     notes,
     dialogs
   };

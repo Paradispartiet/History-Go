@@ -131,7 +131,7 @@
       ` : ""}
 
       ${concept ? `
-        <a class="profile-nextup-item" href="knowledge_by.html#${encodeURIComponent(concept.emne_id || "")}">
+        <a class="profile-nextup-item" href="${concept.knowledge_href || `knowledge_by.html#${encodeURIComponent(concept.emne_id || "")}`}">
           <span class="profile-nextup-icon">🧠</span>
           <span class="profile-nextup-copy">
             <strong>Forstå</strong>
