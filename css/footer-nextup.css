@@ -36,7 +36,7 @@
   z-index: 2300;
 
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(132px, 1fr));
   gap: 8px;
 
   padding: 10px;
@@ -65,19 +65,19 @@
   min-width: 0;
 }
 
-/* Skjul Neste scene når Stories-systemet ikke har ekte narrativ kobling. */
+/* Legacy-støtte: skjul Neste scene når gamle renderer gir disabled story. */
 .footer-nextup-panel .mp-nextup-line:has(.mp-nextup-link[data-mp="story"]:disabled) {
   display: none;
 }
 
 .footer-nextup-panel .mp-nextup-link {
   width: 100%;
-  min-height: 54px;
+  min-height: 64px;
   padding: 8px 9px;
   border-radius: 13px;
 
   display: grid;
-  grid-template-rows: auto auto;
+  grid-template-rows: auto auto auto;
   gap: 3px;
 
   background: rgba(255,255,255,0.07);
@@ -101,6 +101,17 @@
 .footer-nextup-panel .mp-nextup-link span {
   min-width: 0;
   display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.footer-nextup-panel .mp-nextup-link small {
+  min-width: 0;
+  display: block;
+  opacity: 0.58;
+  font-size: 10px;
+  line-height: 1.1;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
