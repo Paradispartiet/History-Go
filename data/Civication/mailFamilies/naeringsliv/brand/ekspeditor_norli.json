@@ -1,0 +1,144 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "naeringsliv",
+  "role_scope": "ekspeditor",
+  "mail_type": "job",
+  "families": [
+    {
+      "id": "kasse_og_pris",
+      "mails": [
+        {
+          "id": "ekspeditor_norli_001",
+          "mail_type": "job",
+          "mail_family": "kasse_og_pris",
+          "role_scope": "ekspeditor",
+          "brand_id": "norli",
+          "brand_name": "Norli",
+          "brand_role": "bokhandler",
+          "subject": "Prisavvik på ny roman i kassa",
+          "summary": "Hyllepris og kassepris stemmer ikke på en nyutgivelse.",
+          "situation": ["En kunde viser hylleetikett med kampanjepris på en roman, men kassa viser ordinær pris."],
+          "task_domain": "cash_desk",
+          "competency": "noyaktighet_under_press",
+          "pressure": "hoy_ko",
+          "choice_axis": "faktasjekk_vs_flyt",
+          "consequence_axis": "tillit_vs_tempo",
+          "narrative_arc": "forste_uke_pa_gulvet",
+          "choices": [
+            { "id": "A", "label": "Sjekk kampanjeark og korriger pris i kassa", "effect": 1, "tags": ["kvalitet", "kunde"], "feedback": "Du sikrer riktig pris og bygger tillit hos kunden." },
+            { "id": "B", "label": "Ta ordinær pris for å få køen raskere videre", "effect": -1, "tags": ["tempo", "snarvei"], "feedback": "Du sparer tid nå, men skaper misnøye og mulig reklamasjon." }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kundemote_og_service",
+      "mails": [
+        {
+          "id": "ekspeditor_norli_002",
+          "mail_type": "job",
+          "mail_family": "kundemote_og_service",
+          "role_scope": "ekspeditor",
+          "brand_id": "norli",
+          "brand_name": "Norli",
+          "brand_role": "bokhandler",
+          "subject": "Kunde ber om leseforslag til ungdom",
+          "summary": "Du må gi trygg og relevant bokveiledning.",
+          "situation": ["En foresatt spør etter en bok til en 13-åring som ikke liker å lese."],
+          "task_domain": "product_guidance",
+          "competency": "kundedialog",
+          "pressure": "forventning",
+          "choice_axis": "kartlegging_vs_hurtigforslag",
+          "consequence_axis": "treffsikkerhet_vs_tempo",
+          "narrative_arc": "fra_ansatt_til_fagperson",
+          "choices": [
+            { "id": "A", "label": "Still spørsmål om interesser før du anbefaler", "effect": 1, "tags": ["kvalitet", "kunde"], "feedback": "Du finner en bok som passer bedre og øker sjansen for leseglede." },
+            { "id": "B", "label": "Pek på bestselgerhyllen uten avklaring", "effect": -1, "tags": ["tempo", "snarvei"], "feedback": "Raskt levert, men rådet kan bomme på behovet." }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ny_kollega_og_tillit",
+      "mails": [
+        {
+          "id": "ekspeditor_norli_003",
+          "mail_type": "people",
+          "mail_family": "ny_kollega_og_tillit",
+          "role_scope": "ekspeditor",
+          "brand_id": "norli",
+          "brand_name": "Norli",
+          "brand_role": "bokhandler",
+          "subject": "Ny kollega roter i alfabetiseringen",
+          "summary": "Du må balansere tempo og opplæring i bokavdelingen.",
+          "situation": ["En ny kollega plasserer flere titler feil i skjønnlitteraturveggen midt i ettermiddagsrush."],
+          "task_domain": "teamwork",
+          "competency": "veiledning",
+          "pressure": "tidspress",
+          "choice_axis": "rette_opp_selv_vs_lare_bort",
+          "consequence_axis": "kortsiktig_flyt_vs_langsiktig_kvalitet",
+          "narrative_arc": "forste_uke_pa_gulvet",
+          "choices": [
+            { "id": "A", "label": "Vis systemet kort og rett opp sammen", "effect": 1, "tags": ["kollega", "kvalitet"], "feedback": "Du investerer i læring og færre feil senere." },
+            { "id": "B", "label": "Rydd i stillhet og la kollega fortsette", "effect": -1, "tags": ["tempo", "snarvei"], "feedback": "Du løser situasjonen nå, men feilen gjentas lett." }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "salg_og_veiledning",
+      "mails": [
+        {
+          "id": "ekspeditor_norli_004",
+          "mail_type": "story",
+          "mail_family": "salg_og_veiledning",
+          "role_scope": "ekspeditor",
+          "brand_id": "norli",
+          "brand_name": "Norli",
+          "brand_role": "bokhandler",
+          "subject": "Anbefalningstabell for pensum og tilleggsbok",
+          "summary": "Kunde vil ha pensumbok, du vurderer ekstra anbefaling.",
+          "situation": ["En student kjøper pensumbok og spør om noe lettlest for pauser i eksamensperioden."],
+          "task_domain": "sales_dialog",
+          "competency": "behovsavdekking",
+          "pressure": "kundeflyt",
+          "choice_axis": "relevant_merverdi_vs_pushe_salg",
+          "consequence_axis": "omdomme_vs_kortsiktig_omsetning",
+          "narrative_arc": "fra_ansatt_til_fagperson",
+          "choices": [
+            { "id": "A", "label": "Gi ett målrettet forslag med begrunnelse", "effect": 1, "tags": ["kunde", "fag"], "feedback": "Rådet oppleves relevant og bygger tillit." },
+            { "id": "B", "label": "Legg til tilfeldig kampanjebok ved kassa", "effect": -1, "tags": ["tempo", "salg"], "feedback": "Du forsøker mersalg, men risikoen for bom er høy." }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "yrkesidentitet_pa_gulvet",
+      "mails": [
+        {
+          "id": "ekspeditor_norli_005",
+          "mail_type": "event",
+          "mail_family": "yrkesidentitet_pa_gulvet",
+          "role_scope": "ekspeditor",
+          "brand_id": "norli",
+          "brand_name": "Norli",
+          "brand_role": "bokhandler",
+          "subject": "Forfatterbesøk rett før stengetid",
+          "summary": "Du velger hvordan du representerer rollen når det er travelt.",
+          "situation": ["Butikken får et spontant forfatterbesøk mens du håndterer kø, rydding og spørsmål."],
+          "task_domain": "frontline_operations",
+          "competency": "rolleforstaelse",
+          "pressure": "travelt_gulv",
+          "choice_axis": "vertskap_vs_kun_drift",
+          "consequence_axis": "opplevelse_vs_tempo",
+          "narrative_arc": "yrkesstolthet_i_hverdagen",
+          "choices": [
+            { "id": "A", "label": "Koordiner kort møtepunkt og informer kunder", "effect": 1, "tags": ["vertskap", "kunde"], "feedback": "Du løfter butikkopplevelsen uten å miste kontroll." },
+            { "id": "B", "label": "Ignorer besøket og fortsett som vanlig", "effect": -1, "tags": ["tempo", "drift"], "feedback": "Driften går, men du mister en god relasjonsmulighet." }
+          ]
+        }
+      ]
+    }
+  ]
+}

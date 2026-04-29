@@ -163,6 +163,11 @@
       paths.push(`data/Civication/mailFamilies/${category}/${type}/${roleScope}_${type}.json`);
     }
 
+    const brandId = slugify(active?.brand_id || "");
+    if (brandId) {
+      paths.push(`data/Civication/mailFamilies/${category}/brand/${roleScope}_${brandId}.json`);
+    }
+
     return paths;
   }
 
