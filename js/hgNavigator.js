@@ -72,6 +72,15 @@
     }
   }
 
+  const MODE_KEY = "hg_nextup_mode_v1";
+  const MODES = {
+    nearest: { mode: "nearest", label: "Nærmest" },
+    learn: { mode: "learn", label: "Lær mest" },
+    story: { mode: "story", label: "Fortsett historien" },
+    wonder: { mode: "wonder", label: "Oppdag noe rart" },
+    complete: { mode: "complete", label: "Fullfør merket" }
+  };
+
   function getNextUpHistory() {
     try {
       const v = JSON.parse(localStorage.getItem("hg_nextup_history_v1") || "[]");
@@ -347,6 +356,16 @@
     return angle || subtype || emneId;
   }
 
+  function readActiveMode() {
+    try {
+      const raw = JSON.parse(localStorage.getItem(MODE_KEY) || "{}");
+      const mode = s(raw?.mode || "nearest");
+      return MODES[mode] || MODES.nearest;
+    } catch {
+      return MODES.nearest;
+    }
+  }
+
   function buildConceptSuggestion(place) {
     const ids = emneIds(place);
     if (!ids.length) return null;
@@ -434,6 +453,45 @@
     return null;
   }
 
+  function applyModeWeights(suggestion, mode, currentPlace) {
+    if (!suggestion) return null;
+
+    const clone = { ...suggestion, meta: { ...(suggestion.meta || {}) } };
+    const categoryMatch = clone.meta?.category_id && categoryOf(currentPlace) === clone.meta.category_id;
+    const incompleteBoost = clone.meta?.incomplete ? 25 : 0;
+
+    if (mode === "nearest") {
+      if (clone.type === "spatial") clone.score += 25;
+      if (clone.type === "spatial" && Number.isFinite(clone.meta?.distance_m)) {
+        clone.score += Math.max(0, 20 - Math.round(clone.meta.distance_m / 120));
+      }
+    }
+
+    if (mode === "learn") {
+      if (clone.type === "concept") clone.score += 30;
+      if (clone.type === "concept") clone.score += Math.max(0, 15 - Math.min(15, Number(clone.meta?.hit_count || 0) * 3));
+    }
+
+    if (mode === "story") {
+      if (clone.type === "narrative" && clone.meta?.story_id) clone.score += 35;
+      if (clone.type === "narrative" && !clone.meta?.story_id) clone.score -= 30;
+    }
+
+    if (mode === "wonder") {
+      if (clone.type === "wonderkammer") clone.score += 35;
+    }
+
+    if (mode === "complete") {
+      if (clone.type === "quiz" || clone.type === "spatial") clone.score += incompleteBoost;
+      if (categoryMatch) clone.score += 10;
+      if (clone.type === "concept" && Number(clone.meta?.hit_count || 0) <= 1) clone.score += 6;
+    }
+
+    clone.score = clamp(clone.score, 0, 100);
+    clone.meta.mode = mode;
+    return clone;
+  }
+
   async function buildForPlace(place, context = {}) {
     if (!place) return {};
 
@@ -444,15 +502,20 @@
     const narrativeSuggestion = buildNarrativeSuggestion(place);
     const conceptSuggestion = buildConceptSuggestion(place);
 
+    const activeMode = readActiveMode();
+
     const suggestions = [
       spatialSuggestion,
       wkSuggestion,
       narrativeSuggestion,
       conceptSuggestion
-    ].filter(Boolean).sort((a, b) => b.score - a.score);
+    ].filter(Boolean)
+      .map(sug => applyModeWeights(sug, activeMode.mode, place))
+      .sort((a, b) => b.score - a.score);
 
     return {
-      schema: "hg_nextup_v2",
+      schema: "hg_nextup_v3",
+      mode: activeMode,
       current_place_id: placeId(place),
       current_place_label: placeLabel(place),
       category_id: categoryOf(place),
