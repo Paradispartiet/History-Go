@@ -345,9 +345,17 @@
     return s(story?.title || story?.summary || "Neste scene");
   }
 
-  function storyPlaces(story) {
+  function storyNextScenes(story) {
+    return arr(story?.next_scenes)
+      .map(sc => ({
+        place_id: s(sc?.place_id || sc?.target_id || sc?.id),
+        reason: s(sc?.reason)
+      }))
+      .filter(sc => sc.place_id);
+  }
+
+  function storyRelatedPlaces(story) {
     return [
-      ...arr(story?.next_scenes).map(sc => sc?.place_id || sc?.target_id || sc?.id),
       ...arr(story?.related_places),
       ...arr(story?.next_places),
       ...arr(story?.place_ids),
@@ -366,7 +374,7 @@
       : "Stories-systemet peker videre til et relatert sted.";
   }
 
-  function makeNarrativeSuggestion(story, nextId, direction) {
+  function makeNarrativeSuggestion(story, nextId, direction, source = "related_places") {
     const nextPlace = findPlace(nextId);
     if (!nextId || !nextPlace) return null;
 
@@ -387,6 +395,7 @@
       meta: {
         next_place_id: nextId,
         story_id: s(story?.id),
+        source_type: source,
         direction,
         story_type: s(story?.type)
       }
@@ -402,8 +411,10 @@
         const storiesHere = arr(window.HGStories.getByPlace(currentId));
 
         for (const story of storiesHere) {
-          const nextId = storyPlaces(story).find(id => id && id !== currentId && findPlace(id));
-          const result = makeNarrativeSuggestion(story, nextId, "direct");
+          const explicit = storyNextScenes(story).find(sc => sc.place_id && sc.place_id !== currentId && findPlace(sc.place_id));
+          const nextId = explicit?.place_id || storyRelatedPlaces(story).find(id => id && id !== currentId && findPlace(id));
+          const source = explicit ? "next_scenes" : "related_places";
+          const result = makeNarrativeSuggestion(story, nextId, "direct", source);
           if (result) return result;
         }
       }
@@ -413,10 +424,10 @@
         const primaryPlaceId = s(story?.place_id);
         if (!primaryPlaceId || primaryPlaceId === currentId) continue;
 
-        const related = storyPlaces(story);
+        const related = storyRelatedPlaces(story);
         if (!related.includes(currentId)) continue;
 
-        const result = makeNarrativeSuggestion(story, primaryPlaceId, "reverse");
+        const result = makeNarrativeSuggestion(story, primaryPlaceId, "reverse", "reverse_related");
         if (result) return result;
       }
     } catch (e) {

@@ -19,6 +19,23 @@
     return true;
   }
 
+  function normalizeNextScenes(nextScenes) {
+    return ensureArray(nextScenes)
+      .map(scene => {
+        if (typeof scene === "string") {
+          return { place_id: scene.trim(), reason: "" };
+        }
+        if (!scene || typeof scene !== "object") return null;
+        const placeId = String(scene.place_id ?? scene.target_id ?? scene.id ?? "").trim();
+        if (!placeId) return null;
+        return {
+          place_id: placeId,
+          reason: String(scene.reason ?? "").trim()
+        };
+      })
+      .filter(Boolean);
+  }
+
   function sortStories(list) {
     list.sort((a, b) => {
       const scoreA = a?.score?.total ?? -1;
@@ -69,6 +86,9 @@
 
           for (const story of stories) {
             if (!isValidStory(story)) continue;
+            if ("next_scenes" in story) {
+              story.next_scenes = normalizeNextScenes(story.next_scenes);
+            }
             loadedStories.push(story);
           }
         } catch (err) {
