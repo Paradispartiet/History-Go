@@ -1,6 +1,6 @@
 // ============================================================
 // CIVICATION MINI SECTIONS UI
-// Gjør Civication-seksjoner til lukkede minikort som standard.
+// Gjør Civication-seksjoner til funksjonelle minikort som standard.
 // Ingen state-mutasjon: kun DOM-struktur og presentasjon.
 // ============================================================
 
@@ -209,7 +209,7 @@
           <h2>${config.label || "Seksjon"}</h2>
         </div>
         <div class="civi-mini-summary" data-civi-mini-summary>—</div>
-        <div class="civi-mini-count" data-civi-mini-count>Trykk for å åpne</div>
+        <div class="civi-mini-count" data-civi-mini-count>Kan brukes direkte</div>
       </div>
       <span class="civi-mini-toggle" aria-hidden="true">+</span>
     `;
@@ -263,12 +263,14 @@
 
       const childCount = source ? source.children.length : 0;
       const hasText = source ? String(source.textContent || "").trim().length > 0 : false;
-      const count = childCount > 0
-        ? `${childCount} element${childCount === 1 ? "" : "er"}`
-        : (hasText ? "Har innhold" : "Miniversjon");
+      const count = section.classList.contains("is-expanded")
+        ? "Full visning"
+        : (childCount > 0
+            ? `${childCount} element${childCount === 1 ? "" : "er"} · direkte valg`
+            : (hasText ? "Direkte innhold" : "Miniversjon"));
 
       if (summaryEl) summaryEl.textContent = summary;
-      if (countEl) countEl.textContent = section.classList.contains("is-expanded") ? "Åpen" : count;
+      if (countEl) countEl.textContent = count;
     });
   }
 
