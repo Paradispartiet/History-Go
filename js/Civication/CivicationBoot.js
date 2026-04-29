@@ -65,6 +65,18 @@ async function ensureCivicationRoleModelRuntimeLoaded() {
 }
 
 
+
+async function ensureCivicationBlockedJobMessagesLoaded() {
+  if (window.CivicationBlockedJobMessages?.enqueueNoUnlockedBrandEmployerMessage) return true;
+  try {
+    await loadCivicationScriptOnce("js/Civication/systems/civicationBlockedJobMessages.js");
+    return !!window.CivicationBlockedJobMessages?.enqueueNoUnlockedBrandEmployerMessage;
+  } catch (error) {
+    console.warn("[CivicationBoot] blocked job messages kunne ikke lastes", error);
+    return false;
+  }
+}
+
 async function ensureCivicationCareerRoleResolverLoaded() {
   if (window.CivicationCareerRoleResolver?.resolveCareerRoleScope) return true;
   try {
@@ -113,6 +125,7 @@ async function loadCivicationData() {
 
     await ensureCivicationRoleModelRuntimeLoaded();
     await ensureCivicationCareerRoleResolverLoaded();
+    await ensureCivicationBlockedJobMessagesLoaded();
 
     if (window.CivicationEconomyEngine?.tickWeekly) {
       CivicationEconomyEngine.tickWeekly();
