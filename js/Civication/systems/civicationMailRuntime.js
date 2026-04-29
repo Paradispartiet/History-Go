@@ -671,6 +671,10 @@
 
         const result = await originalAnswer.call(this, eventId, choiceId);
 
+        if (result?.ok !== false && eventObj && choice) {
+          window.CivicationBrandJobState?.applyChoiceConsequences?.(eventObj, choice);
+        }
+
         if (result?.ok !== false && triggerId) {
           await enqueueThread(triggerId, {
             triggeredBy: eventId,
