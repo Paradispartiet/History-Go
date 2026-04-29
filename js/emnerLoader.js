@@ -20,13 +20,21 @@
 window.Emner = (function () {
   const DEBUG = !!window.DEBUG;
 
+  // Prosjektrot beregnet fra denne scriptfilen, ikke fra HTML-siden.
+  // Dette gjør loaderen trygg både fra index.html og fra /knowledge/*.html.
+  const PROJECT_ROOT = (() => {
+    const src = document.currentScript?.src || "";
+    if (src) return new URL("../", src).toString();
+    return new URL("./", location.href).toString();
+  })();
+
   // Kart over alle emne-filer per fagfelt / merke-id
   // historie og vitenskap ligger direkte i data/fag/, resten i underfolder.
   // populaerkultur er alias for popkultur (fysisk fil).
   const EMNER_INDEX = {
     historie:       "data/fag/emner_historie.json",
     vitenskap:      "data/fag/emner_vitenskap.json",
-    by:             "data/fag/by/emner_by.json",
+    by:             "data/fag/by/emners_by.json",
     kunst:          "data/fag/kunst/emner_kunst.json",
     musikk:         "data/fag/musikk/emner_musikk.json",
     natur:          "data/fag/natur/emner_natur.json",
@@ -49,7 +57,7 @@ window.Emner = (function () {
 
   async function loadForSubject(subjectId) {
     const sid = _norm(subjectId);
-    const url = EMNER_INDEX[sid];
+    const url = EMNERS_INDEX_COMPAT(sid);
 
     if (!url) {
       if (DEBUG) console.warn("[Emner] Ingen emne-fil definert for subjectId:", sid);
@@ -60,7 +68,7 @@ window.Emner = (function () {
     if (cache[sid]) return cache[sid];
 
     try {
-      const abs = new URL(url, document.baseURI).toString();
+      const abs = new URL(url, PROJECT_ROOT).toString();
       const res = await fetch(abs, { cache: "no-store" });
       if (!res.ok) {
         if (DEBUG) console.warn("[Emner] Kunne ikke laste emner for", sid, res.status, url);
@@ -77,6 +85,12 @@ window.Emner = (function () {
     }
   }
 
+  function EMNERS_INDEX_COMPAT(sid) {
+    // Historisk skrivefeilbeskyttelse: by-filen finnes som emner_by.json.
+    if (sid === "by") return "data/fag/by/emner_by.json";
+    return EMNERS_INDEX[sid] || EMNER_INDEX[sid];
+  }
+
   async function loadForSubjects(subjectIds = []) {
     const result = {};
     for (const id of subjectIds) {
@@ -88,17 +102,6 @@ window.Emner = (function () {
   function listSubjects() {
     return Object.keys(EMNER_INDEX);
   }
-
-  // ============================================================
-  // Helpers (mål + milepæler)
-  // Støtter både:
-  // - emne.learning_goals[]  (din nye struktur)
-  // - emne.goals[]           (kompat)
-  //
-  // Checkpoints:
-  // - emne.checkpoints[] (flat) med related_goals: [goal_id...]
-  // - (kompat) nested goals[].checkpoints[] med goal_id
-  // ============================================================
 
   function _findInCache(subjectId, emne_id) {
     const sid = _norm(subjectId);
@@ -134,7 +137,6 @@ window.Emner = (function () {
 
     const gid = goal_id != null ? _norm(goal_id) : null;
 
-    // A) Flat checkpoints (DIN struktur): checkpoints[] + related_goals[]
     if (Array.isArray(emne.checkpoints)) {
       const all = emne.checkpoints;
       if (!gid) return all;
@@ -145,7 +147,6 @@ window.Emner = (function () {
       );
     }
 
-    // B) Nested (kompat): goals[].checkpoints[]
     const goals = Array.isArray(emne.learning_goals)
       ? emne.learning_goals
       : (Array.isArray(emne.goals) ? emne.goals : []);
@@ -153,7 +154,6 @@ window.Emner = (function () {
     const nested = goals.flatMap(g => Array.isArray(g.checkpoints) ? g.checkpoints : []);
     if (!gid) return nested;
 
-    // Nested kan ha cp.goal_id eller cp.related_goals – støtt begge
     return nested.filter(cp => {
       const direct = _norm(cp?.goal_id);
       if (direct && direct === gid) return true;
@@ -162,7 +162,6 @@ window.Emner = (function () {
     });
   }
 
-  // (valgfritt men praktisk) Finn checkpoint ved id
   async function getCheckpoint(emne_id, subjectId, cp_id) {
     const cps = await getCheckpoints(emne_id, subjectId);
     const cid = _norm(cp_id);
@@ -173,11 +172,10 @@ window.Emner = (function () {
     loadForSubject,
     loadForSubjects,
     listSubjects,
-
-    // helpers
     getEmne,
     getGoals,
     getCheckpoints,
-    getCheckpoint
+    getCheckpoint,
+    PROJECT_ROOT
   };
 })();
