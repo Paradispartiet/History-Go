@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="nb">
+<head>
+  <meta charset="utf-8">
+  <title>History Go – Kunnskap by</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <script>
+    const hash = window.location.hash || "";
+    window.location.replace("knowledge/knowledge_by.html" + hash);
+  </script>
+</head>
+<body>
+  <p>Åpner kunnskapssiden for By & arkitektur…</p>
+  <p><a id="fallbackLink" href="knowledge/knowledge_by.html">Gå videre</a></p>
+  <script>
+    document.getElementById("fallbackLink").href = "knowledge/knowledge_by.html" + (window.location.hash || "");
+  </script>
+</body>
+</html>
