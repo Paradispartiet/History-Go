@@ -169,7 +169,7 @@ async function boot() {
      LAST BASISDATA
   ============================== */
 
-  const PLACE_FILES = [
+  const PLACE_FILES_FALLBACK = [
     "data/places/places_by.json",
     "data/places/places_historie.json",
     "data/places/places_kunst.json",
@@ -185,12 +185,25 @@ async function boot() {
 
   let places = [];
 
-  for (const url of PLACE_FILES) {
-    const data = await fetchJSON(url);
-    if (Array.isArray(data)) {
-      places.push(...data);
-    } else if (Array.isArray(data?.places)) {
-      places.push(...data.places);
+  if (window.DataHub?.loadPlacesBase) {
+    try {
+      const loaded = await window.DataHub.loadPlacesBase({ cache: "no-store" });
+      if (Array.isArray(loaded) && loaded.length) {
+        places = loaded;
+      }
+    } catch (e) {
+      console.error("[DataHub.loadPlacesBase]", e);
+    }
+  }
+
+  if (!Array.isArray(places) || !places.length) {
+    for (const url of PLACE_FILES_FALLBACK) {
+      const data = await fetchJSON(url);
+      if (Array.isArray(data)) {
+        places.push(...data);
+      } else if (Array.isArray(data?.places)) {
+        places.push(...data.places);
+      }
     }
   }
 
