@@ -140,7 +140,7 @@ try {
 
   <div class="mp-nextup-line">
     <button class="mp-nextup-link" data-mp="emne"
-      ${concept ? `data-emne="${hgEscAttr(concept.emne_id)}"` : "disabled"}>
+      ${concept ? `data-emne="${hgEscAttr(concept.emne_id)}" data-knowledge-href="${hgEscAttr(concept.knowledge_href || "")}"` : "disabled"}>
       🧠 <b>Forstå:</b> ${concept ? hgEsc(concept.label) : "—"}
     </button>
   </div>
@@ -186,7 +186,12 @@ try {
 
       if (t === "emne") {
         const emneId = btn.dataset.emne;
+        const knowledgeHref = btn.dataset.knowledgeHref;
         if (!emneId) return;
+        if (knowledgeHref) {
+          window.location.href = knowledgeHref;
+          return;
+        }
         window.location.href = `knowledge_by.html#${encodeURIComponent(emneId)}`;
       }
     };

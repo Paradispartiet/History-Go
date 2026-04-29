@@ -84,6 +84,7 @@
       entry.seen = true;
       entry.seen_at = new Date().toISOString();
       save(state);
+      try { window.dispatchEvent(new Event("updateProfile")); } catch {}
     }
   }
 
@@ -102,6 +103,7 @@
       entry.understood = true;
       entry.understood_at = new Date().toISOString();
       save(state);
+      try { window.dispatchEvent(new Event("updateProfile")); } catch {}
     }
   }
 
@@ -117,6 +119,7 @@
       entry.applied = true;
       entry.applied_at = new Date().toISOString();
       save(state);
+      try { window.dispatchEvent(new Event("updateProfile")); } catch {}
     }
   }
 
