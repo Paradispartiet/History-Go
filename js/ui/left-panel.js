@@ -182,6 +182,16 @@ window.HG_isBadgeFilterActive = isBadgeFilterActive;
 // BADGES I VENSTRE PANEL
 // ============================================================
 
+function getCollectedBadgeCount() {
+  try {
+    const merits = JSON.parse(localStorage.getItem("merits_by_category") || "{}");
+    if (!merits || typeof merits !== "object" || Array.isArray(merits)) return 0;
+    return Object.keys(merits).length;
+  } catch {
+    return 0;
+  }
+}
+
 function renderLeftBadges() {
   const box = hg$("leftBadgesList");
   if (!box) return;
@@ -198,8 +208,12 @@ function renderLeftBadges() {
     });
   }
 
+  const collectedBadgeCount = getCollectedBadgeCount();
+  const collectedBadgeText = `${collectedBadgeCount} ${collectedBadgeCount === 1 ? "merke" : "merker"} samlet`;
+  const summaryHtml = `<div class="muted" style="font-size:13px;margin:0 0 8px;padding:0 2px;">${collectedBadgeText}</div>`;
+
   if (!Array.isArray(window.CATEGORY_LIST) || !window.CATEGORY_LIST.length) {
-    box.innerHTML = `<div class="muted">Ingen kategorier lastet.</div>`;
+    box.innerHTML = `${summaryHtml}<div class="muted">Ingen kategorier lastet.</div>`;
     return;
   }
 
@@ -212,6 +226,7 @@ function renderLeftBadges() {
 
   if (!categories.length) {
     box.innerHTML = `
+      ${summaryHtml}
       <div class="hg-empty-guide">
         <div class="hg-empty-guide-icon">🏅</div>
         <div class="hg-empty-guide-title">Ingen merker</div>
@@ -221,7 +236,7 @@ function renderLeftBadges() {
     return;
   }
 
-  box.innerHTML = categories.map(c => `
+  box.innerHTML = summaryHtml + categories.map(c => `
     <button class="chip ghost" data-badge-id="${c.id}"
       style="justify-content:flex-start;width:100%;">
       <img src="bilder/merker/${c.id}.PNG"
