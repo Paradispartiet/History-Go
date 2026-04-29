@@ -1,0 +1,299 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "naeringsliv",
+  "role_scope": "ekspeditor",
+  "brand_id": "norli",
+  "brand_name": "Norli",
+  "mail_type": "brand",
+  "families": [
+    {
+      "id": "kundemote_og_service",
+      "mails": [
+        {
+          "id": "ekspeditor_norli_kundemote_roman_001",
+          "mail_type": "job",
+          "mail_family": "kundemote_og_service",
+          "role_scope": "ekspeditor",
+          "brand_id": "norli",
+          "brand_name": "Norli",
+          "brand_role": "bokhandler",
+          "subject": "Kunden vil ha en Oslo-roman, ikke bare en bestselger",
+          "summary": "En kunde spør etter en roman som passer til byen, men kampanjebordet presser deg mot ukens store tittel.",
+          "situation": [
+            "En kunde sier at hun vil lese noe som faktisk føles som Oslo, ikke bare det som ligger øverst på bestselgerbordet.",
+            "Du ser at kampanjeboka er lettest å selge, men du vet også om to smalere titler som passer bedre.",
+            "Norli-jobben tester om du bruker bokkunnskap eller bare følger bordet foran deg."
+          ],
+          "task_domain": "salg_veiledning",
+          "competency": "faglig_veiledning",
+          "pressure": "salgspress",
+          "choice_axis": "faglighet_vs_kampanje",
+          "consequence_axis": "kundetillit",
+          "narrative_arc": "fra_ansatt_til_fagperson",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Spør hva hun mener med Oslo og anbefal én kampanjetittel og én mer presis bok",
+              "effect": 1,
+              "tags": ["faglighet", "kundetillit", "salg"],
+              "feedback": "Du bruker kampanjen uten å la den erstatte leserens behov."
+            },
+            {
+              "id": "B",
+              "label": "Pek raskt på kampanjeboka fordi den selger godt",
+              "effect": -1,
+              "tags": ["salgspress", "lav_faglighet"],
+              "feedback": "Du gjør salget enkelt, men reduserer bokhandlerrollen til vareplassering."
+            },
+            {
+              "id": "C",
+              "label": "Gi henne tre smale forslag uten å nevne kampanjen",
+              "effect": 0,
+              "tags": ["faglighet", "lav_kommersiell_lesing"],
+              "feedback": "Du viser kunnskap, men mister også noe av butikkens kommersielle rytme."
+            }
+          ]
+        },
+        {
+          "id": "ekspeditor_norli_kundemote_barn_001",
+          "mail_type": "job",
+          "mail_family": "kundemote_og_service",
+          "role_scope": "ekspeditor",
+          "brand_id": "norli",
+          "brand_name": "Norli",
+          "brand_role": "bokhandler",
+          "subject": "Forelderen vil ha en bok barnet faktisk leser ferdig",
+          "summary": "En forelder spør etter en barnebok, men beskriver barnet mer presist enn sjangeren.",
+          "situation": [
+            "En forelder sier at barnet liker morsomme lydbøker, men blir fort lei av vanlige bøker.",
+            "Hylla har både trygge serier, prisvinnere og bøker som selger fordi de står på riktig bord.",
+            "Du må oversette barnets vaner til et valg som ikke bare er et produkt."
+          ],
+          "task_domain": "salg_veiledning",
+          "competency": "situasjonslesing",
+          "pressure": "kundens_usikkerhet",
+          "choice_axis": "lytte_vs_selge",
+          "consequence_axis": "kundetillit",
+          "narrative_arc": "kundenes_blikk",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Spør om alder, humor og lesevaner før du anbefaler én konkret serie",
+              "effect": 1,
+              "tags": ["kundetillit", "barnebok", "situasjonslesing"],
+              "feedback": "Du behandler spørsmålet som leserveiledning, ikke bare hylleplass."
+            },
+            {
+              "id": "B",
+              "label": "Velg den mest synlige barneboka på bordet for å spare tid",
+              "effect": -1,
+              "tags": ["tempo", "generisk_salg"],
+              "feedback": "Du får kunden videre, men hjelper ikke med det egentlige problemet."
+            },
+            {
+              "id": "C",
+              "label": "Anbefal en prisvinner fordi den har høy kvalitet",
+              "effect": 0,
+              "tags": ["kvalitet", "begrenset_tilpasning"],
+              "feedback": "Kvalitet hjelper, men bare hvis den møter barnet der barnet faktisk er."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "salg_og_veiledning",
+      "mails": [
+        {
+          "id": "ekspeditor_norli_salg_bestselger_001",
+          "mail_type": "conflict",
+          "mail_family": "salg_og_veiledning",
+          "role_scope": "ekspeditor",
+          "brand_id": "norli",
+          "brand_name": "Norli",
+          "brand_role": "bokhandler",
+          "subject": "Bestselgeren er feil bok for kunden foran deg",
+          "summary": "Kunden ber om en gave, men den mest salgbare boka passer dårlig med det hun forteller.",
+          "situation": [
+            "Kunden vil kjøpe en gave til en leser som misliker hype og store kampanjer.",
+            "Samtidig har dere tydelig beskjed om å løfte den store bestselgeren denne uka.",
+            "Du står mellom synlig salg og det som faktisk bygger tillit til Norli som bokhandel."
+          ],
+          "task_domain": "salg_veiledning",
+          "competency": "integritet",
+          "pressure": "kampanjepress",
+          "choice_axis": "salg_vs_aerlighet",
+          "consequence_axis": "faglig_rykte",
+          "narrative_arc": "snarveien",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Forklar bestselgeren kort, men anbefal en mindre opplagt gave",
+              "effect": 1,
+              "tags": ["integritet", "faglighet", "kundetillit"],
+              "feedback": "Du viser at salg kan være faglig uten å bli passivt."
+            },
+            {
+              "id": "B",
+              "label": "Selg bestselgeren fordi den er trygg og lett å forklare",
+              "effect": -1,
+              "tags": ["kampanje", "kortsiktig_salg"],
+              "feedback": "Du får et enklere salg, men du gjør kundens presise informasjon mindre viktig."
+            },
+            {
+              "id": "C",
+              "label": "Gi kunden fem alternativer og la henne velge selv",
+              "effect": 0,
+              "tags": ["service", "beslutningsstoy"],
+              "feedback": "Du viser bredde, men overfører for mye av vurderingen tilbake til kunden."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ny_kollega_og_tillit",
+      "mails": [
+        {
+          "id": "ekspeditor_norli_people_frontbord_001",
+          "mail_type": "people",
+          "mail_family": "ny_kollega_og_tillit",
+          "role_scope": "ekspeditor",
+          "brand_id": "norli",
+          "brand_name": "Norli",
+          "brand_role": "bokhandler",
+          "subject": "Kollegaen spør hvorfor du flyttet en bok fra frontbordet",
+          "summary": "Du har justert frontbordet etter kundespørsmål, men en erfaren kollega mener du roter med kampanjeplanen.",
+          "situation": [
+            "Etter tre kunder spør etter samme tema, flytter du en relevant bok nærmere fronten.",
+            "En erfaren kollega stopper deg og sier at frontbordet følger en plan fra kjeden.",
+            "Du må vise dømmekraft uten å late som du eier butikken."
+          ],
+          "task_domain": "butikkstandard",
+          "competency": "samarbeid",
+          "pressure": "brandstandard",
+          "choice_axis": "lokal_observasjon_vs_kjedestandard",
+          "consequence_axis": "kollega_tillit",
+          "narrative_arc": "forste_ansvar",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Forklar kundemønsteret og spør om boka kan få en mindre plass ved siden av planen",
+              "effect": 1,
+              "tags": ["samarbeid", "brandstandard", "observasjon"],
+              "feedback": "Du gjør observasjonen nyttig uten å gjøre kollegaen til motstander."
+            },
+            {
+              "id": "B",
+              "label": "Flytt boka tilbake og si at du bare prøvde noe",
+              "effect": 0,
+              "tags": ["tilpasning", "lavt_eierskap"],
+              "feedback": "Du unngår konflikt, men lar en relevant observasjon forsvinne."
+            },
+            {
+              "id": "C",
+              "label": "Si at kunder betyr mer enn planogram og la boka stå",
+              "effect": -1,
+              "tags": ["konflikt", "standardbrudd"],
+              "feedback": "Du har et poeng, men gjør det vanskeligere å stole på deg i felles drift."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "yrkesidentitet_pa_gulvet",
+      "mails": [
+        {
+          "id": "ekspeditor_norli_story_bokhandler_001",
+          "mail_type": "story",
+          "mail_family": "yrkesidentitet_pa_gulvet",
+          "role_scope": "ekspeditor",
+          "brand_id": "norli",
+          "brand_name": "Norli",
+          "brand_role": "bokhandler",
+          "subject": "Du merker forskjellen på ekspeditør og bokhandler",
+          "summary": "Etter noen vakter ser du at Norli-jobben ikke bare handler om å selge bøker, men om å oversette mennesker til lesing.",
+          "situation": [
+            "Du har stått i kassa, ryddet bord, hentet bøker og svart på spørsmål du ikke kunne svaret på.",
+            "Likevel er det én ting som skiller vaktene: øyeblikket der en kunde går ut med noe de faktisk fikk lyst til å lese.",
+            "Det er fortsatt en lavstatusjobb på gulvet, men den kan romme en faglighet som nesten ikke synes i stillingstittelen."
+          ],
+          "task_domain": "yrkesidentitet",
+          "competency": "faglig_refleksjon",
+          "pressure": "lav_status",
+          "choice_axis": "rutine_vs_fagperson",
+          "consequence_axis": "faglig_rykte",
+          "narrative_arc": "fra_ansatt_til_fagperson",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Begynn å notere hvilke anbefalinger som faktisk treffer kunder",
+              "effect": 1,
+              "tags": ["faglighet", "laering", "yrkesidentitet"],
+              "feedback": "Du gjør gulverfaring om til faglig hukommelse."
+            },
+            {
+              "id": "B",
+              "label": "Hold deg til rutinen og la interessen være privat",
+              "effect": 0,
+              "tags": ["rutine", "lav_synlighet"],
+              "feedback": "Du gjør jobben, men bygger ikke noe som kan løfte deg ut av ren ekspedisjon."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "travelt_gulv",
+      "mails": [
+        {
+          "id": "ekspeditor_norli_event_signering_001",
+          "mail_type": "event",
+          "mail_family": "travelt_gulv",
+          "role_scope": "ekspeditor",
+          "brand_id": "norli",
+          "brand_name": "Norli",
+          "brand_role": "bokhandler",
+          "subject": "Forfatteren kommer før signeringsbordet er klart",
+          "summary": "En liten signering kolliderer med kø, bokstabler og en kunde som allerede venter på hjelp.",
+          "situation": [
+            "Forfatteren kommer ti minutter tidlig, og bordet mangler både plakater og riktig bunke bøker.",
+            "Kassa har begynt å bygge kø, og en kunde står med en bok du lovet å finne på lageret.",
+            "Norli-dagen viser seg som kulturarrangement, butikk og logistikk på samme gulv."
+          ],
+          "task_domain": "arrangement_og_drift",
+          "competency": "prioritering",
+          "pressure": "tidspress",
+          "choice_axis": "synlighet_vs_drift",
+          "consequence_axis": "driftsflyt",
+          "narrative_arc": "varene_som_system",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Sett fram minimumsbordet, varsle kollega om kassa og hent lagerboka etterpå",
+              "effect": 1,
+              "tags": ["prioritering", "samarbeid", "arrangement"],
+              "feedback": "Du redder det mest synlige uten å miste de andre åpne oppgavene."
+            },
+            {
+              "id": "B",
+              "label": "Gjør signeringsbordet pent først, siden forfatteren ser det",
+              "effect": 0,
+              "tags": ["synlighet", "ko_risiko"],
+              "feedback": "Det ser profesjonelt ut, men gulvflyten kan knekke rundt deg."
+            },
+            {
+              "id": "C",
+              "label": "Ta kassa og la signeringen vente på ansvarlig leder",
+              "effect": -1,
+              "tags": ["tempo", "lavt_eierskap"],
+              "feedback": "Du løser køen, men lar butikkens kulturansikt stå uforberedt."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
