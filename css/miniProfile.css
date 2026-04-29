@@ -200,7 +200,7 @@
 
 /* =====================================================
    MINI-PROFIL I TOPPLINJE – STØRRE, TO LINJER
-   Viser: navn + merker / steder + quizzer
+   Viser: navn / steder + quizzer
    ===================================================== */
 
 .site-header .top-actions{
@@ -212,21 +212,21 @@ body.hg-app .site-header .top-actions #miniProfile{
   margin-left: 0;
 
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr);
   grid-template-rows: auto auto;
   grid-template-areas:
-    "name badges"
-    "stats stats";
+    "name"
+    "stats";
   align-items: center;
-  column-gap: 10px;
+  column-gap: 0;
   row-gap: 3px;
 
-  width: 280px;
-  max-width: 280px;
+  width: 230px;
+  max-width: 230px;
   height: 58px;
-  flex: 0 0 280px;
+  flex: 0 0 230px;
 
-  padding: 7px 12px 8px;
+  padding: 7px 10px 8px;
   border-radius: 16px;
 
   background: rgba(255,255,255,0.07);
@@ -260,16 +260,7 @@ body.hg-app .site-header .top-actions #miniProfile #miniName{
 }
 
 body.hg-app .site-header .top-actions #miniProfile .mpt-badges{
-  grid-area: badges;
-  display: inline-flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 5px;
-  min-width: 0;
-
-  font-size: 14px;
-  line-height: 1;
-  font-weight: 850;
+  display: none !important;
 }
 
 body.hg-app .site-header .top-actions #miniProfile .mpt-badgeIcon{
