@@ -34,7 +34,7 @@ window.Emner = (function () {
   const EMNER_INDEX = {
     historie:       "data/fag/emner_historie.json",
     vitenskap:      "data/fag/emner_vitenskap.json",
-    by:             "data/fag/by/emners_by.json",
+    by:             "data/fag/by/emner_by.json",
     kunst:          "data/fag/kunst/emner_kunst.json",
     musikk:         "data/fag/musikk/emner_musikk.json",
     natur:          "data/fag/natur/emner_natur.json",
@@ -55,9 +55,13 @@ window.Emner = (function () {
     return String(x || "").trim();
   }
 
+  function getEmnerUrl(subjectId) {
+    return EMNER_INDEX[_norm(subjectId)] || "";
+  }
+
   async function loadForSubject(subjectId) {
     const sid = _norm(subjectId);
-    const url = EMNERS_INDEX_COMPAT(sid);
+    const url = getEmnersUrlSafe(sid);
 
     if (!url) {
       if (DEBUG) console.warn("[Emner] Ingen emne-fil definert for subjectId:", sid);
@@ -85,10 +89,8 @@ window.Emner = (function () {
     }
   }
 
-  function EMNERS_INDEX_COMPAT(sid) {
-    // Historisk skrivefeilbeskyttelse: by-filen finnes som emner_by.json.
-    if (sid === "by") return "data/fag/by/emner_by.json";
-    return EMNERS_INDEX[sid] || EMNER_INDEX[sid];
+  function getEmnersUrlSafe(sid) {
+    return EMNER_INDEX[_norm(sid)] || "";
   }
 
   async function loadForSubjects(subjectIds = []) {
@@ -176,6 +178,7 @@ window.Emner = (function () {
     getGoals,
     getCheckpoints,
     getCheckpoint,
+    getEmnerUrl,
     PROJECT_ROOT
   };
 })();
