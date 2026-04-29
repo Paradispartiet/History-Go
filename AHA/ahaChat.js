@@ -8,6 +8,7 @@ const DEBUG = false;
 
 const SUBJECT_ID = "sub_laring";
 const STORAGE_KEY = "aha_insight_chamber_v1";
+const AHA_AGENT_ENDPOINT = window.AHA_AGENT_ENDPOINT || "/api/aha-agent";
 
 // Enkel debug-hjelper som skriver JSON til debug-tekstfeltet i UI
 function ahaDebug(obj, label) {
@@ -1789,66 +1790,42 @@ function importHistoryGoDataFromSharedStorage() {
 function renderAHAAgentResponse(res) {
   clearOutput();
 
-  if (!res) {
+  if (!res || !res.reply) {
     log("AHA-AI: Fikk ikke noe svar.");
     return;
   }
 
-  log("AHA-AI for tema " + (res.theme_id || getCurrentThemeId()) + ":");
+  log("AHA-agent svar:");
   log("");
-
-  if (res.summary) {
-    log("SAMMENDRAG:");
-    log(res.summary);
-    log("");
-  }
-
-  if (Array.isArray(res.what_i_see) && res.what_i_see.length > 0) {
-    log("DET JEG SER:");
-    res.what_i_see.forEach((line, idx) => {
-      log("  " + (idx + 1) + ". " + line);
-    });
-    log("");
-  }
-
-  if (Array.isArray(res.next_steps) && res.next_steps.length > 0) {
-    log("NESTE STEG:");
-    res.next_steps.forEach((line, idx) => {
-      log("  " + (idx + 1) + ". " + line);
-    });
-    log("");
-  }
-
-  if (res.one_question) {
-    log("SPØRSMÅL TIL DEG:");
-    log(res.one_question);
-    log("");
-  }
-
-  if (res.tone) {
-    log("(Tone: " + res.tone + ")");
-  }
+  log(res.reply);
 }
 
 // ── Kall AHA-AI for gjeldende tema ───────────────────────
 
 async function callAHAAgentForCurrentTopic() {
+  const txt = document.getElementById("msg");
+  const message = (txt && txt.value ? txt.value : "").trim();
+
+  if (!message) {
+    log("Skriv en melding først før du trykker AHA-AI.");
+    return;
+  }
+
   const themeId = getCurrentThemeId();
-  const state = buildAIStateForTheme(themeId);
+  const aiState = buildAIStateForTheme(themeId);
 
   clearOutput();
-  log("AHA-AI: Leser innsiktskammeret for tema " + themeId + " …");
-  log("");
+  log("AHA-AI: tenker …");
 
-  const API_BASE = ""; // samme origin
   try {
-    ahaDebug(state, "AHA-AI request payload (state)");
-    const res = await fetch(API_BASE + "/api/aha-agent", {
+    ahaDebug({ message, ai_state: aiState }, "AHA-AI request payload");
+
+    const res = await fetch(AHA_AGENT_ENDPOINT, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(state),
+      body: JSON.stringify({ message, ai_state: aiState }),
     });
 
     if (!res.ok) {
@@ -1858,10 +1835,8 @@ async function callAHAAgentForCurrentTopic() {
     const data = await res.json();
     renderAHAAgentResponse(data);
   } catch (e) {
+    log("AHA-agent backend er ikke tilgjengelig ennå.");
     log("Feil ved kall til AHA-AI: " + e.message);
-    log("");
-    log("DEBUG – state som ble sendt:");
-    log(JSON.stringify(state, null, 2));
   }
 }
 
