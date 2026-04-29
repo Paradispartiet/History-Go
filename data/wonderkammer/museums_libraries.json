@@ -4,62 +4,72 @@
       "place_id": "nasjonalmuseet",
       "chambers": [
         {
-          "id": "wk_ml_nasjonalmuseet_samlinger_som_kart",
+          "id": "wk_ml_nasjonalmuseet_samlingene_som_kart",
           "title": "Samlingene som kart",
           "type": "museum_zone",
-          "description": "Nasjonalmuseet kan leses som et kart over kunst, design og håndverk på tvers av epoker og uttrykk.",
-          "activityText": "Velg én rute gjennom huset: finn ett verk, ett møbel, ett objekt og ett materiale som kan kobles i samme fortelling.",
+          "description": "Samlingene kan leses som et kart over tid, smak og samfunn i Norge og Europa.",
+          "activityText": "Lag en rute som kobler ett maleri, ett møbel og ett bruksting til samme historiske periode.",
           "ageHint": "barn/voksen",
           "items": [
             {
-              "id": "wk_ml_nasjonalmuseet_materialjakt",
+              "id": "wk_ml_nasjonalmuseet_se_med_materialer",
               "title": "Se med materialer",
-              "type": "material_study",
-              "description": "Forskjeller i tre, tekstil, metall og maling gjør samlingen konkret å utforske.",
-              "activityText": "Finn to verk som bruker ulike materialer og sammenlign hva materialet gjør med uttrykket.",
-              "ageHint": "5 år+"
-            },
-            {
-              "id": "wk_ml_nasjonalmuseet_sporjakt",
-              "title": "Sporjakt i detaljene",
-              "type": "observation_activity",
-              "description": "Detaljer i rommet kan leses som spor etter bruk, prioriteringer og historie.",
-              "activityText": "Finn tre små detaljer og forklar hva de forteller om stedet.",
-              "ageHint": "7 år+"
-            },
-            {
-              "id": "wk_ml_nasjonalmuseet_sammenlign_to_rom",
-              "title": "Sammenlign to rom",
-              "type": "comparison_task",
-              "description": "Å sammenligne soner gjør det lettere å se hvordan funksjon og form henger sammen.",
-              "activityText": "Velg to rom med ulik stemning og noter forskjeller i lys, lyd og møblering.",
+              "type": "collection_activity",
+              "description": "Materialet endrer hvordan vi leser form og funksjon.",
+              "activityText": "Velg ett verk i metall og ett i tekstil, og sammenlign hva materialet gjør med uttrykket.",
               "ageHint": "8 år+"
+            },
+            {
+              "id": "wk_ml_nasjonalmuseet_farge_som_historisk_sprak",
+              "title": "Farge som historisk språk",
+              "type": "observation_activity",
+              "description": "Farger kan markere tid, stil og sosial status.",
+              "activityText": "Finn en farge som går igjen i ulike saler og tolk hva den signaliserer i hver sammenheng.",
+              "ageHint": "10 år+"
             }
           ]
         },
         {
-          "id": "wk_ml_nasjonalmuseet_fordypning_og_dialog",
-          "title": "Fordypning og dialog",
-          "type": "museum_zone",
-          "description": "Denne sonen inviterer til roligere fordypning og samtale om hva stedet formidler.",
-          "activityText": "Bruk fem minutter i stillhet før dere deler én innsikt hver om stedet.",
+          "id": "wk_ml_nasjonalmuseet_materialer_og_handverk",
+          "title": "Materialer og håndverk",
+          "type": "material_study",
+          "description": "Tre, tekstil, metall og pigment viser hvordan håndverk former uttrykk og verdi.",
+          "activityText": "Stopp ved tre verk og noter hvilke materialvalg som gjør at de virker robuste, skjøre eller luksuriøse.",
           "ageHint": "barn/voksen",
           "items": [
             {
-              "id": "wk_ml_nasjonalmuseet_sporsmal_fra_kilder",
-              "title": "Spørsmål fra kilder",
-              "type": "source_work",
-              "description": "Gode spørsmål hjelper dere å koble opplevelse til kunnskap og kontekst.",
-              "activityText": "Formuler to spørsmål dere kunne undersøkt videre med bøker, arkiv eller nettsøk.",
-              "ageHint": "10 år+"
+              "id": "wk_ml_nasjonalmuseet_forskjell_kunstverk_bruksgjenstand",
+              "title": "Kunstverk eller bruksgjenstand?",
+              "type": "thing_to_see",
+              "description": "Grensen mellom kunst og design er ofte flytende.",
+              "activityText": "Pek ut ett objekt du ville brukt hjemme og ett du kun ville stilt ut, og begrunn valget.",
+              "ageHint": "7 år+"
             },
             {
-              "id": "wk_ml_nasjonalmuseet_del_en_tolkning",
-              "title": "Del en tolkning",
-              "type": "dialog_activity",
-              "description": "Ulike tolkninger av samme sted gir bedre forståelse av perspektiver.",
-              "activityText": "En person beskriver stedet som inspirerende, en annen som krevende — begrunn begge syn.",
-              "ageHint": "9 år+"
+              "id": "wk_ml_nasjonalmuseet_klaer_mobler_design_samfunnsspor",
+              "title": "Klær, møbler og samfunnsspor",
+              "type": "research_trace",
+              "description": "Design viser normer for kropp, hjem og arbeid i sin tid.",
+              "activityText": "Sammenlign et klesplagg og et møbel fra samme periode: hva sier de om hverdagsliv?",
+              "ageHint": "11 år+"
+            }
+          ]
+        },
+        {
+          "id": "wk_ml_nasjonalmuseet_kunst_design_hverdagsobjekter",
+          "title": "Kunst, design og hverdagsobjekter",
+          "type": "knowledge_zone",
+          "description": "I samme hus møtes høy kunst og ting laget for daglig bruk.",
+          "activityText": "Sammenlign en stol, et servise og et kunstverk: hva er laget for bruk, og hva er laget for blikket?",
+          "ageHint": "barn/voksen",
+          "items": [
+            {
+              "id": "wk_ml_nasjonalmuseet_ett_verk_lenge",
+              "title": "Ett verk lenge",
+              "type": "quiet_zone",
+              "description": "Langsom observasjon avdekker detaljer som forsvinner i rask rundgang.",
+              "activityText": "Bruk fem minutter foran ett verk og noter tre detaljer du ikke så første minutt.",
+              "ageHint": "6 år+"
             }
           ]
         }
@@ -72,59 +82,69 @@
           "id": "wk_ml_munch_museet_ansikt_og_uro",
           "title": "Ansikt og uro",
           "type": "museum_zone",
-          "description": "MUNCH er egnet for å lese følelser gjennom blikk, kropp og farge i Munchs verk.",
-          "activityText": "Velg få verk og bruk god tid: beskriv stemning før dere tolker motiv og historie.",
+          "description": "Munchs figurer viser sårbarhet, angst og nærvær gjennom ansikt, hender og kroppsstilling.",
+          "activityText": "Velg to portretter og beskriv hvordan blikkretning og kropp gjør stemningen urolig eller rolig.",
           "ageHint": "barn/voksen",
           "items": [
             {
-              "id": "wk_ml_munch_museet_farge_som_stemning",
-              "title": "Farge som stemning",
-              "type": "artwork",
-              "description": "Fargene i Munchs bilder bærer ofte følelsesladde kontraster.",
-              "activityText": "Finn ett rolig og ett urolig verk, og forklar forskjellen med bare fargeord.",
-              "ageHint": "6 år+"
-            },
-            {
-              "id": "wk_ml_munch_museet_sporjakt",
-              "title": "Sporjakt i detaljene",
-              "type": "observation_activity",
-              "description": "Detaljer i rommet kan leses som spor etter bruk, prioriteringer og historie.",
-              "activityText": "Finn tre små detaljer og forklar hva de forteller om stedet.",
-              "ageHint": "7 år+"
-            },
-            {
-              "id": "wk_ml_munch_museet_sammenlign_to_rom",
-              "title": "Sammenlign to rom",
-              "type": "comparison_task",
-              "description": "Å sammenligne soner gjør det lettere å se hvordan funksjon og form henger sammen.",
-              "activityText": "Velg to rom med ulik stemning og noter forskjeller i lys, lyd og møblering.",
+              "id": "wk_ml_munch_museet_se_fa_verk_langsomt",
+              "title": "Se få verk langsomt",
+              "type": "quiet_zone",
+              "description": "Munchs malerier endrer seg når du står lenge nok til å se lag og penselretning.",
+              "activityText": "Velg to verk i samme rom og bruk tre minutter på hvert før du sammenligner følelsen de gir.",
               "ageHint": "8 år+"
+            },
+            {
+              "id": "wk_ml_munch_museet_kropp_og_blikk",
+              "title": "Kropp og blikk",
+              "type": "observation_activity",
+              "description": "Ansikter, skuldre og hender brukes som emosjonelle signaler i motivene.",
+              "activityText": "Finn et motiv der blikket vender bort og ett der blikket møter deg, og noter forskjellen.",
+              "ageHint": "9 år+"
             }
           ]
         },
         {
-          "id": "wk_ml_munch_museet_fordypning_og_dialog",
-          "title": "Fordypning og dialog",
-          "type": "museum_zone",
-          "description": "Denne sonen inviterer til roligere fordypning og samtale om hva stedet formidler.",
-          "activityText": "Bruk fem minutter i stillhet før dere deler én innsikt hver om stedet.",
+          "id": "wk_ml_munch_museet_farge_som_stemning",
+          "title": "Farge som stemning",
+          "type": "artwork",
+          "description": "Fargene hos Munch bærer emosjon like tydelig som motivet.",
+          "activityText": "Finn ett motiv i varme toner og ett i kalde toner, og sammenlign hvordan trykk og tempo endres.",
           "ageHint": "barn/voksen",
           "items": [
             {
-              "id": "wk_ml_munch_museet_sporsmal_fra_kilder",
-              "title": "Spørsmål fra kilder",
-              "type": "source_work",
-              "description": "Gode spørsmål hjelper dere å koble opplevelse til kunnskap og kontekst.",
-              "activityText": "Formuler to spørsmål dere kunne undersøkt videre med bøker, arkiv eller nettsøk.",
-              "ageHint": "10 år+"
+              "id": "wk_ml_munch_museet_gjentatte_motiver",
+              "title": "Gjentatte motiver",
+              "type": "research_trace",
+              "description": "Munch vender tilbake til lignende motiver i ulike perioder og teknikker.",
+              "activityText": "Se etter varianter av samme motiv og diskuter hva som er beholdt og hva som er endret.",
+              "ageHint": "11 år+"
             },
             {
-              "id": "wk_ml_munch_museet_del_en_tolkning",
-              "title": "Del en tolkning",
-              "type": "dialog_activity",
-              "description": "Ulike tolkninger av samme sted gir bedre forståelse av perspektiver.",
-              "activityText": "En person beskriver stedet som inspirerende, en annen som krevende — begrunn begge syn.",
-              "ageHint": "9 år+"
+              "id": "wk_ml_munch_museet_farge_som_lyd_trykk",
+              "title": "Farge som lyd/trykk",
+              "type": "artwork",
+              "description": "Sterke kontraster kan oppleves som visuell støy eller press i kroppen.",
+              "activityText": "Pek ut et område med hard kontrast og beskriv om fargen kjennes som ro, støy eller trykk.",
+              "ageHint": "10 år+"
+            }
+          ]
+        },
+        {
+          "id": "wk_ml_munch_museet_bygget_og_utsikten",
+          "title": "Bygget og utsikten",
+          "type": "viewpoint",
+          "description": "Museets høyde og vinduer trekker Bjørvika inn i opplevelsen av kunsten.",
+          "activityText": "Gå til utsiktspunktet, se mot fjorden og spør hvordan byrommet påvirker tolkningen av verkene.",
+          "ageHint": "barn/voksen",
+          "items": [
+            {
+              "id": "wk_ml_munch_museet_utsikt_mot_bjorvika",
+              "title": "Utsikt mot Bjørvika",
+              "type": "viewpoint",
+              "description": "Bjørvika-utsikten setter kunstmøtet inn i en moderne by i bevegelse.",
+              "activityText": "Ta inn utsikten fra museet og sammenlign byens tempo med stemningen i et valgt verk.",
+              "ageHint": "6 år+"
             }
           ]
         }
@@ -137,59 +157,69 @@
           "id": "wk_ml_deichman_bjorvika_biblioteket_som_indre_by",
           "title": "Biblioteket som indre by",
           "type": "library_zone",
-          "description": "Deichman Bjørvika fungerer som et offentlig byrom med nivåer, verksteder, lesesoner og utsikt.",
-          "activityText": "Beveg dere mellom et travelt område og et stille område, og sammenlign hvordan huset styrer tempo og oppmerksomhet.",
+          "description": "Deichman er bygget som en liten by med gater, nivåer og møteplasser for ulike former for kunnskap.",
+          "activityText": "Følg én trappelinje gjennom flere etasjer og noter hvor rommene inviterer til prat versus fordypning.",
           "ageHint": "barn/voksen",
           "items": [
             {
-              "id": "wk_ml_deichman_bjorvika_leserommet",
-              "title": "Leserom og ro",
-              "type": "reading_activity",
-              "description": "Lesesonene gir konsentrasjon midt i et åpent kulturhus.",
-              "activityText": "Velg en bok eller tekst og les i 10 minutter uten avbrudd, før dere noterer hva rommet gjorde med fokus.",
-              "ageHint": "7 år+"
-            },
-            {
-              "id": "wk_ml_deichman_bjorvika_sporjakt",
-              "title": "Sporjakt i detaljene",
+              "id": "wk_ml_deichman_bjorvika_trapper_og_nivaer",
+              "title": "Trapper og nivåer",
               "type": "observation_activity",
-              "description": "Detaljer i rommet kan leses som spor etter bruk, prioriteringer og historie.",
-              "activityText": "Finn tre små detaljer og forklar hva de forteller om stedet.",
-              "ageHint": "7 år+"
+              "description": "Trapper binder soner for lek, læring og arbeid i et sammenhengende kunnskapsrom.",
+              "activityText": "Følg en trapp fra inngang til øvre etasje og noter hva slags aktivitet som dominerer på hvert nivå.",
+              "ageHint": "6 år+"
             },
             {
-              "id": "wk_ml_deichman_bjorvika_sammenlign_to_rom",
-              "title": "Sammenlign to rom",
-              "type": "comparison_task",
-              "description": "Å sammenligne soner gjør det lettere å se hvordan funksjon og form henger sammen.",
-              "activityText": "Velg to rom med ulik stemning og noter forskjeller i lys, lyd og møblering.",
-              "ageHint": "8 år+"
+              "id": "wk_ml_deichman_bjorvika_lesepause_med_utsikt",
+              "title": "Lesepause med utsikt",
+              "type": "reading_activity",
+              "description": "Utsikten mot fjord og by brukes aktivt i bibliotekets leseopplevelse.",
+              "activityText": "Finn en sitteplass ved vindu og les fem minutter; noter hvordan utsikten påvirker konsentrasjonen.",
+              "ageHint": "7 år+"
             }
           ]
         },
         {
-          "id": "wk_ml_deichman_bjorvika_fordypning_og_dialog",
-          "title": "Fordypning og dialog",
-          "type": "library_zone",
-          "description": "Denne sonen inviterer til roligere fordypning og samtale om hva stedet formidler.",
-          "activityText": "Bruk fem minutter i stillhet før dere deler én innsikt hver om stedet.",
+          "id": "wk_ml_deichman_bjorvika_leserom_og_ro",
+          "title": "Leserom og ro",
+          "type": "quiet_zone",
+          "description": "Stille soner, lesesaler og utsiktspunkter gir ulike former for konsentrasjon.",
+          "activityText": "Ta en kort lesepause i to ulike soner og sammenlign hva slags ro hver sone skaper.",
           "ageHint": "barn/voksen",
           "items": [
             {
-              "id": "wk_ml_deichman_bjorvika_sporsmal_fra_kilder",
-              "title": "Spørsmål fra kilder",
-              "type": "source_work",
-              "description": "Gode spørsmål hjelper dere å koble opplevelse til kunnskap og kontekst.",
-              "activityText": "Formuler to spørsmål dere kunne undersøkt videre med bøker, arkiv eller nettsøk.",
-              "ageHint": "10 år+"
+              "id": "wk_ml_deichman_bjorvika_finne_bok_via_tema",
+              "title": "Finne en bok via tema",
+              "type": "library_zone",
+              "description": "Temabasert leting viser hvordan katalog og hyllesystem leder fra spørsmål til kilde.",
+              "activityText": "Start med et temaord i søk og finn én fysisk bok som utdyper det.",
+              "ageHint": "9 år+"
             },
             {
-              "id": "wk_ml_deichman_bjorvika_del_en_tolkning",
-              "title": "Del en tolkning",
-              "type": "dialog_activity",
-              "description": "Ulike tolkninger av samme sted gir bedre forståelse av perspektiver.",
-              "activityText": "En person beskriver stedet som inspirerende, en annen som krevende — begrunn begge syn.",
-              "ageHint": "9 år+"
+              "id": "wk_ml_deichman_bjorvika_barneavdeling_utforsking",
+              "title": "Barneavdeling / utforsking",
+              "type": "collection_activity",
+              "description": "Barneområdet kobler lesing, lek og oppdagelse med lav terskel.",
+              "activityText": "La et barn velge én bok og ett objekt i rommet, og snakk om hvorfor de hører sammen.",
+              "ageHint": "5 år+"
+            }
+          ]
+        },
+        {
+          "id": "wk_ml_deichman_bjorvika_verksted_scene_aktivitet",
+          "title": "Verksted, scene og aktivitet",
+          "type": "knowledge_zone",
+          "description": "Biblioteket rommer også skapende arbeid, debatt og formidling på scene.",
+          "activityText": "Finn et verkstedområde og en scene: se hvordan kunnskap her både produseres og deles offentlig.",
+          "ageHint": "barn/voksen",
+          "items": [
+            {
+              "id": "wk_ml_deichman_bjorvika_stille_og_sosial_kunnskap",
+              "title": "Stille og sosial kunnskap",
+              "type": "knowledge_zone",
+              "description": "I Deichman finnes både stille fordypning og sosial læring side om side.",
+              "activityText": "Sammenlign en stillesone og en møteplass: hvilken type kunnskap støtter de best?",
+              "ageHint": "10 år+"
             }
           ]
         }
@@ -199,62 +229,72 @@
       "place_id": "botanisk_hage",
       "chambers": [
         {
-          "id": "wk_ml_botanisk_hage_vitenskapelig_samling",
+          "id": "wk_ml_botanisk_hage_vitenskapelig_samling_i_live",
           "title": "Vitenskapelig samling i live",
           "type": "knowledge_zone",
-          "description": "Botanisk hage viser planter som levende samlinger for forskning, systematikk og formidling.",
-          "activityText": "Undersøk hvordan skilting, bedstruktur og drivhus gjør planter til kunnskapsobjekter, ikke bare pynt.",
+          "description": "Hagen er en levende samling der arter dokumenteres, navngis og bevares over tid.",
+          "activityText": "Velg tre planter med skilt og les hvordan navn, opprinnelse og familie gjør dem sammenlignbare.",
           "ageHint": "barn/voksen",
           "items": [
             {
               "id": "wk_ml_botanisk_hage_plantesystemer",
               "title": "Plantesystemer",
-              "type": "research_trace",
-              "description": "Inndelingen av planter gjør biologisk klassifisering synlig i terrenget.",
-              "activityText": "Finn to områder med ulike planteslekter og noter hvilke kjennetegn som brukes for å skille dem.",
+              "type": "knowledge_zone",
+              "description": "Bedene organiseres etter slektskap, geografi eller økologi for å gjøre botanikk lesbar.",
+              "activityText": "Velg to naboplanter og finn ut om de står sammen på grunn av familie eller klima.",
               "ageHint": "8 år+"
             },
             {
-              "id": "wk_ml_botanisk_hage_sporjakt",
-              "title": "Sporjakt i detaljene",
-              "type": "observation_activity",
-              "description": "Detaljer i rommet kan leses som spor etter bruk, prioriteringer og historie.",
-              "activityText": "Finn tre små detaljer og forklar hva de forteller om stedet.",
+              "id": "wk_ml_botanisk_hage_skilt_som_kunnskapsnokler",
+              "title": "Skilt som kunnskapsnøkler",
+              "type": "thing_to_see",
+              "description": "Skiltene gir latinske navn, opprinnelse og bruksinfo som åpner samlingen faglig.",
+              "activityText": "Les tre skilt og forklar hvordan informasjonen hjelper deg å skille plantene.",
               "ageHint": "7 år+"
-            },
-            {
-              "id": "wk_ml_botanisk_hage_sammenlign_to_rom",
-              "title": "Sammenlign to rom",
-              "type": "comparison_task",
-              "description": "Å sammenligne soner gjør det lettere å se hvordan funksjon og form henger sammen.",
-              "activityText": "Velg to rom med ulik stemning og noter forskjeller i lys, lyd og møblering.",
-              "ageHint": "8 år+"
             }
           ]
         },
         {
-          "id": "wk_ml_botanisk_hage_fordypning_og_dialog",
-          "title": "Fordypning og dialog",
-          "type": "knowledge_zone",
-          "description": "Denne sonen inviterer til roligere fordypning og samtale om hva stedet formidler.",
-          "activityText": "Bruk fem minutter i stillhet før dere deler én innsikt hver om stedet.",
+          "id": "wk_ml_botanisk_hage_drivhus_og_klima",
+          "title": "Drivhus og klima",
+          "type": "observation_activity",
+          "description": "Drivhusene er klimamaskiner som gjør ulike økosystemer synlige på kort avstand.",
+          "activityText": "Gå mellom to drivhus og kjenn forskjell i luftfuktighet, temperatur og plantetyper.",
           "ageHint": "barn/voksen",
           "items": [
             {
-              "id": "wk_ml_botanisk_hage_sporsmal_fra_kilder",
-              "title": "Spørsmål fra kilder",
-              "type": "source_work",
-              "description": "Gode spørsmål hjelper dere å koble opplevelse til kunnskap og kontekst.",
-              "activityText": "Formuler to spørsmål dere kunne undersøkt videre med bøker, arkiv eller nettsøk.",
-              "ageHint": "10 år+"
+              "id": "wk_ml_botanisk_hage_drivhus_som_klimamaskin",
+              "title": "Drivhus som klima-maskin",
+              "type": "observation_activity",
+              "description": "Drivhusene styrer varme og fuktighet for å gjenskape tropiske og tørre miljøer.",
+              "activityText": "Kjenn temperaturbyttet ved inngangene og noter hvilke planter som følger klimaendringen.",
+              "ageHint": "6 år+"
             },
             {
-              "id": "wk_ml_botanisk_hage_del_en_tolkning",
-              "title": "Del en tolkning",
-              "type": "dialog_activity",
-              "description": "Ulike tolkninger av samme sted gir bedre forståelse av perspektiver.",
-              "activityText": "En person beskriver stedet som inspirerende, en annen som krevende — begrunn begge syn.",
-              "ageHint": "9 år+"
+              "id": "wk_ml_botanisk_hage_bladformer",
+              "title": "Bladformer",
+              "type": "material_study",
+              "description": "Bladform og overflate viser tilpasning til lys, vann og vind.",
+              "activityText": "Finn ett bredt og ett smalt blad og foreslå hvilket miljø hver form passer for.",
+              "ageHint": "5 år+"
+            }
+          ]
+        },
+        {
+          "id": "wk_ml_botanisk_hage_planter_som_system",
+          "title": "Planter som system",
+          "type": "material_study",
+          "description": "Blad, stengel, blomster og frø viser hvordan planter kan klassifiseres og forstås som system.",
+          "activityText": "Finn to planter med ulik bladform og forklar hvordan formen henger sammen med miljøet.",
+          "ageHint": "barn/voksen",
+          "items": [
+            {
+              "id": "wk_ml_botanisk_hage_sansing_uten_a_plukke",
+              "title": "Sansing uten å plukke",
+              "type": "quiet_zone",
+              "description": "Hagen inviterer til nærvær med lukt, farge og tekstur uten å skade samlingen.",
+              "activityText": "Stans ved en plante, beskriv med tre sanseord, men la planten stå urørt.",
+              "ageHint": "4 år+"
             }
           ]
         }
@@ -267,59 +307,69 @@
           "id": "wk_ml_observatoriet_tid_og_himmel",
           "title": "Tid og himmel",
           "type": "knowledge_zone",
-          "description": "Observatoriet var et nasjonalt punkt for måling av stjerner, retning og presis tid.",
-          "activityText": "Se bygget som et instrument: finn hvor observasjon, retning og måling har preget arkitekturen.",
+          "description": "Observatoriet knytter himmelobservasjon til måling av tid i byen.",
+          "activityText": "Se etter hvordan sol, stjerner og jordrotasjon ble brukt for å fastsette klokketid.",
           "ageHint": "barn/voksen",
           "items": [
             {
-              "id": "wk_ml_observatoriet_stjerner_maling_retting",
+              "id": "wk_ml_observatoriet_stjerner_maling_og_retning",
               "title": "Stjerner, måling og retning",
-              "type": "observation_activity",
-              "description": "Historisk astronomi her handlet om systematisk observasjon framfor raske blikk.",
-              "activityText": "Velg ett punkt med utsyn og beskriv hvordan stedet kunne brukes til å kalibrere tid eller retning.",
+              "type": "research_trace",
+              "description": "Stjerneposisjoner ga referanser for retning, kart og navigasjon.",
+              "activityText": "Prøv å peke ut himmelretninger fra stedet og knytt dem til hvordan observasjoner ble notert.",
+              "ageHint": "10 år+"
+            },
+            {
+              "id": "wk_ml_observatoriet_observasjon_som_metode",
+              "title": "Observasjon som metode",
+              "type": "knowledge_zone",
+              "description": "Observatoriet viser at vitenskap bygger på gjentatt måling, ikke enkeltinntrykk.",
+              "activityText": "Noter samme punkt to ganger med noen minutters mellomrom og diskuter presisjon.",
+              "ageHint": "11 år+"
+            }
+          ]
+        },
+        {
+          "id": "wk_ml_observatoriet_bygget_som_instrument",
+          "title": "Bygget som instrument",
+          "type": "museum_zone",
+          "description": "Arkitekturen er laget for presise observasjoner, ikke bare for representasjon.",
+          "activityText": "Finn akser og åpninger i bygget som peker mot konkrete retninger på himmelen.",
+          "ageHint": "barn/voksen",
+          "items": [
+            {
+              "id": "wk_ml_observatoriet_tid_for_digitale_klokker",
+              "title": "Tid før digitale klokker",
+              "type": "thing_to_see",
+              "description": "Før digital tid var astronomiske målinger grunnlag for nøyaktig klokketid.",
+              "activityText": "Forklar hvordan sol og stjerner kunne brukes til å synkronisere byens tid.",
               "ageHint": "9 år+"
             },
             {
-              "id": "wk_ml_observatoriet_sporjakt",
-              "title": "Sporjakt i detaljene",
-              "type": "observation_activity",
-              "description": "Detaljer i rommet kan leses som spor etter bruk, prioriteringer og historie.",
-              "activityText": "Finn tre små detaljer og forklar hva de forteller om stedet.",
-              "ageHint": "7 år+"
-            },
-            {
-              "id": "wk_ml_observatoriet_sammenlign_to_rom",
-              "title": "Sammenlign to rom",
-              "type": "comparison_task",
-              "description": "Å sammenligne soner gjør det lettere å se hvordan funksjon og form henger sammen.",
-              "activityText": "Velg to rom med ulik stemning og noter forskjeller i lys, lyd og møblering.",
+              "id": "wk_ml_observatoriet_bygningens_orientering",
+              "title": "Bygningens orientering",
+              "type": "museum_zone",
+              "description": "Byggets plassering og akser er valgt for å støtte himmelobservasjon.",
+              "activityText": "Se på byggets retning i terrenget og vurder hvorfor nettopp denne orienteringen er nyttig.",
               "ageHint": "8 år+"
             }
           ]
         },
         {
-          "id": "wk_ml_observatoriet_fordypning_og_dialog",
-          "title": "Fordypning og dialog",
-          "type": "knowledge_zone",
-          "description": "Denne sonen inviterer til roligere fordypning og samtale om hva stedet formidler.",
-          "activityText": "Bruk fem minutter i stillhet før dere deler én innsikt hver om stedet.",
+          "id": "wk_ml_observatoriet_maling_retning_presisjon",
+          "title": "Måling, retning og presisjon",
+          "type": "research_trace",
+          "description": "Stedet viser hvordan vitenskapelig nøyaktighet bygger på repeterbar observasjon.",
+          "activityText": "Prøv en enkel retningsmåling fra området og sammenlign med kartretning nord-sør.",
           "ageHint": "barn/voksen",
           "items": [
             {
-              "id": "wk_ml_observatoriet_sporsmal_fra_kilder",
-              "title": "Spørsmål fra kilder",
-              "type": "source_work",
-              "description": "Gode spørsmål hjelper dere å koble opplevelse til kunnskap og kontekst.",
-              "activityText": "Formuler to spørsmål dere kunne undersøkt videre med bøker, arkiv eller nettsøk.",
-              "ageHint": "10 år+"
-            },
-            {
-              "id": "wk_ml_observatoriet_del_en_tolkning",
-              "title": "Del en tolkning",
-              "type": "dialog_activity",
-              "description": "Ulike tolkninger av samme sted gir bedre forståelse av perspektiver.",
-              "activityText": "En person beskriver stedet som inspirerende, en annen som krevende — begrunn begge syn.",
-              "ageHint": "9 år+"
+              "id": "wk_ml_observatoriet_byen_fra_vitenskapens_punkt",
+              "title": "Byen fra vitenskapens punkt",
+              "type": "viewpoint",
+              "description": "Utsynet viser hvordan vitenskapsinstitusjoner lå i dialog med byen rundt.",
+              "activityText": "Se over byen fra observatoriet og diskuter hvorfor målinger måtte knyttes til et fast sted.",
+              "ageHint": "7 år+"
             }
           ]
         }
@@ -332,59 +382,69 @@
           "id": "wk_ml_nobelinstituttet_fredsprisens_arbeidsrom",
           "title": "Fredsprisens arbeidsrom",
           "type": "knowledge_zone",
-          "description": "Nobelinstituttet synliggjør hvordan fredsprisen forvaltes gjennom komitéarbeid, dokumentasjon og institusjonelle ritualer.",
-          "activityText": "Undersøk hvordan bygningens formelle uttrykk signaliserer autoritet, troverdighet og internasjonal symbolkraft.",
-          "ageHint": "ungdom/voksen",
+          "description": "Instituttet er et arbeidssted for dokumentasjon, analyse og formidling rundt fredsprisen.",
+          "activityText": "Let etter spor av hvordan forskning, møter og formidling kobles i samme institusjon.",
+          "ageHint": "barn/voksen",
           "items": [
             {
-              "id": "wk_ml_nobelinstituttet_arkiv_og_komite",
-              "title": "Arkiv, komité og beslutning",
+              "id": "wk_ml_nobelinstituttet_arkivspor",
+              "title": "Arkivspor",
               "type": "archive_trace",
-              "description": "Fredsprisens legitimitet bygges gjennom sporbar dokumentasjon og langvarige vurderinger.",
-              "activityText": "Diskuter hvilke typer dokumentasjon en institusjon trenger for at en historisk beslutning skal kunne etterprøves.",
+              "description": "Korrespondanse og dokumenter viser hvordan nominasjoner blir historiske spor.",
+              "activityText": "Finn beskrivelser av arkivarbeid og pek ut hva som gjør et dokument relevant senere.",
               "ageHint": "12 år+"
             },
             {
-              "id": "wk_ml_nobelinstituttet_sporjakt",
-              "title": "Sporjakt i detaljene",
-              "type": "observation_activity",
-              "description": "Detaljer i rommet kan leses som spor etter bruk, prioriteringer og historie.",
-              "activityText": "Finn tre små detaljer og forklar hva de forteller om stedet.",
-              "ageHint": "7 år+"
-            },
-            {
-              "id": "wk_ml_nobelinstituttet_sammenlign_to_rom",
-              "title": "Sammenlign to rom",
-              "type": "comparison_task",
-              "description": "Å sammenligne soner gjør det lettere å se hvordan funksjon og form henger sammen.",
-              "activityText": "Velg to rom med ulik stemning og noter forskjeller i lys, lyd og møblering.",
-              "ageHint": "8 år+"
+              "id": "wk_ml_nobelinstituttet_komitearbeid",
+              "title": "Komitéarbeid",
+              "type": "research_trace",
+              "description": "Prisvurdering skjer gjennom kollektiv drøfting, ikke enkeltavgjørelser.",
+              "activityText": "Beskriv hvilke typer argumenter en komité må veie når kandidater sammenlignes.",
+              "ageHint": "12 år+"
             }
           ]
         },
         {
-          "id": "wk_ml_nobelinstituttet_fordypning_og_dialog",
-          "title": "Fordypning og dialog",
-          "type": "knowledge_zone",
-          "description": "Denne sonen inviterer til roligere fordypning og samtale om hva stedet formidler.",
-          "activityText": "Bruk fem minutter i stillhet før dere deler én innsikt hver om stedet.",
-          "ageHint": "ungdom/voksen",
+          "id": "wk_ml_nobelinstituttet_arkiv_komite_beslutning",
+          "title": "Arkiv, komité og beslutning",
+          "type": "archive_trace",
+          "description": "Beslutninger om pris krever kilder, vurderinger og historisk kontekst.",
+          "activityText": "Undersøk hvordan arkivspor og komitéprosesser gjør vurderinger etterprøvbare over tid.",
+          "ageHint": "barn/voksen",
           "items": [
             {
-              "id": "wk_ml_nobelinstituttet_sporsmal_fra_kilder",
-              "title": "Spørsmål fra kilder",
-              "type": "source_work",
-              "description": "Gode spørsmål hjelper dere å koble opplevelse til kunnskap og kontekst.",
-              "activityText": "Formuler to spørsmål dere kunne undersøkt videre med bøker, arkiv eller nettsøk.",
-              "ageHint": "10 år+"
+              "id": "wk_ml_nobelinstituttet_symbolmakt",
+              "title": "Symbolmakt",
+              "type": "knowledge_zone",
+              "description": "Fredsprisen virker gjennom global oppmerksomhet og institusjonell legitimitet.",
+              "activityText": "Diskuter hvorfor et symbol kan påvirke politikk selv uten juridisk makt.",
+              "ageHint": "11 år+"
             },
             {
-              "id": "wk_ml_nobelinstituttet_del_en_tolkning",
-              "title": "Del en tolkning",
-              "type": "dialog_activity",
-              "description": "Ulike tolkninger av samme sted gir bedre forståelse av perspektiver.",
-              "activityText": "En person beskriver stedet som inspirerende, en annen som krevende — begrunn begge syn.",
-              "ageHint": "9 år+"
+              "id": "wk_ml_nobelinstituttet_dokumentasjon_etterprovbarhet",
+              "title": "Dokumentasjon og etterprøvbarhet",
+              "type": "archive_trace",
+              "description": "Institusjonell troverdighet krever sporbar dokumentasjon over tid.",
+              "activityText": "Let etter praksiser som viser hvordan vurderinger kan etterprøves i etterkant.",
+              "ageHint": "12 år+"
+            }
+          ]
+        },
+        {
+          "id": "wk_ml_nobelinstituttet_fred_som_institusjon",
+          "title": "Fred som institusjon",
+          "type": "research_trace",
+          "description": "Fredsprisen er også et offentlig ritual med symbolmakt i internasjonal politikk.",
+          "activityText": "Diskuter hvordan seremonier, taler og medier gjør fred til noe institusjoner forvalter.",
+          "ageHint": "barn/voksen",
+          "items": [
+            {
+              "id": "wk_ml_nobelinstituttet_fred_som_offentlig_ritual",
+              "title": "Fred som offentlig ritual",
+              "type": "observation_activity",
+              "description": "Seremonier og taler gjør fred til en delt offentlig hendelse.",
+              "activityText": "Sammenlign ritualer rundt prisen med andre offentlige markeringer du kjenner.",
+              "ageHint": "10 år+"
             }
           ]
         }
@@ -394,62 +454,72 @@
       "place_id": "nasjonalbiblioteket",
       "chambers": [
         {
-          "id": "wk_ml_nasjonalbiblioteket_pliktavlevering_og_hukommelse",
-          "title": "Pliktavlevering og nasjonal hukommelse",
+          "id": "wk_ml_nasjonalbiblioteket_nasjonal_hukommelse",
+          "title": "Nasjonal hukommelse",
           "type": "library_zone",
-          "description": "Nasjonalbiblioteket samler, bevarer og tilgjengeliggjør norsk publisert materiale som felles kunnskapsgrunnlag.",
-          "activityText": "Snakk om hvordan et land bygger kollektiv hukommelse gjennom systematisk innsamling av bøker, aviser, lyd og bilder.",
-          "ageHint": "ungdom/voksen",
+          "description": "Nasjonalbiblioteket samler materiale som felles hukommelse på tvers av medier og epoker.",
+          "activityText": "Finn eksempler på hvordan samme historiske hendelse finnes som bok, avis og foto.",
+          "ageHint": "barn/voksen",
           "items": [
             {
-              "id": "wk_ml_nasjonalbiblioteket_lesing_som_kildearbeid",
-              "title": "Lesing som kildearbeid",
-              "type": "reading_activity",
-              "description": "Biblioteket gjør lesing til metode for å etterprøve fortellinger om samfunn og historie.",
-              "activityText": "Velg to kilder fra ulike perioder om samme tema og noter hva som er likt og hva som skifter.",
+              "id": "wk_ml_nasjonalbiblioteket_pliktavlevering",
+              "title": "Pliktavlevering",
+              "type": "archive_trace",
+              "description": "Pliktavlevering sikrer at utgivelser bevares som del av nasjonal dokumentasjon.",
+              "activityText": "Forklar hvordan én levert bok kan bli en fremtidig kilde for forskning.",
               "ageHint": "10 år+"
             },
             {
-              "id": "wk_ml_nasjonalbiblioteket_sporjakt",
-              "title": "Sporjakt i detaljene",
-              "type": "observation_activity",
-              "description": "Detaljer i rommet kan leses som spor etter bruk, prioriteringer og historie.",
-              "activityText": "Finn tre små detaljer og forklar hva de forteller om stedet.",
-              "ageHint": "7 år+"
-            },
-            {
-              "id": "wk_ml_nasjonalbiblioteket_sammenlign_to_rom",
-              "title": "Sammenlign to rom",
-              "type": "comparison_task",
-              "description": "Å sammenligne soner gjør det lettere å se hvordan funksjon og form henger sammen.",
-              "activityText": "Velg to rom med ulik stemning og noter forskjeller i lys, lyd og møblering.",
-              "ageHint": "8 år+"
+              "id": "wk_ml_nasjonalbiblioteket_sammenligne_gamle_nye_kilder",
+              "title": "Sammenligne gamle og nye kilder",
+              "type": "reading_activity",
+              "description": "Kildekritikk styrkes når eldre og nyere framstillinger leses side om side.",
+              "activityText": "Velg to kilder om samme tema fra ulike tiår og noter hva som er likt og ulikt.",
+              "ageHint": "11 år+"
             }
           ]
         },
         {
-          "id": "wk_ml_nasjonalbiblioteket_fordypning_og_dialog",
-          "title": "Fordypning og dialog",
-          "type": "library_zone",
-          "description": "Denne sonen inviterer til roligere fordypning og samtale om hva stedet formidler.",
-          "activityText": "Bruk fem minutter i stillhet før dere deler én innsikt hver om stedet.",
-          "ageHint": "ungdom/voksen",
+          "id": "wk_ml_nasjonalbiblioteket_lesing_som_kildearbeid",
+          "title": "Lesing som kildearbeid",
+          "type": "reading_activity",
+          "description": "Her er lesing også metode: sammenligne kilder, språk og perspektiver.",
+          "activityText": "Velg en eldre og en nyere tekst om samme tema og noter hva som er endret i ordvalg og vinkling.",
+          "ageHint": "barn/voksen",
           "items": [
             {
-              "id": "wk_ml_nasjonalbiblioteket_sporsmal_fra_kilder",
-              "title": "Spørsmål fra kilder",
-              "type": "source_work",
-              "description": "Gode spørsmål hjelper dere å koble opplevelse til kunnskap og kontekst.",
-              "activityText": "Formuler to spørsmål dere kunne undersøkt videre med bøker, arkiv eller nettsøk.",
-              "ageHint": "10 år+"
+              "id": "wk_ml_nasjonalbiblioteket_aviser_som_tidsmaskin",
+              "title": "Aviser som tidsmaskin",
+              "type": "collection_activity",
+              "description": "Avisarkiver viser dag-til-dag språk, konflikter og prioriteringer i samtiden.",
+              "activityText": "Finn forsider fra to årstall og sammenlign hvilke saker som dominerer.",
+              "ageHint": "9 år+"
             },
             {
-              "id": "wk_ml_nasjonalbiblioteket_del_en_tolkning",
-              "title": "Del en tolkning",
-              "type": "dialog_activity",
-              "description": "Ulike tolkninger av samme sted gir bedre forståelse av perspektiver.",
-              "activityText": "En person beskriver stedet som inspirerende, en annen som krevende — begrunn begge syn.",
-              "ageHint": "9 år+"
+              "id": "wk_ml_nasjonalbiblioteket_forfatterarkiver",
+              "title": "Forfatterarkiver",
+              "type": "archive_trace",
+              "description": "Utkast, brev og notater viser skriveprosessen bak publiserte verk.",
+              "activityText": "Beskriv forskjellen mellom et ferdig verk og sporene i arbeidsarkivet.",
+              "ageHint": "12 år+"
+            }
+          ]
+        },
+        {
+          "id": "wk_ml_nasjonalbiblioteket_arkiv_lyd_og_bilde",
+          "title": "Arkiv, lyd og bilde",
+          "type": "archive_trace",
+          "description": "Samlingene rommer aviser, lydopptak, fotografi og forfatterarkiv i samme kunnskapsinfrastruktur.",
+          "activityText": "Finn ett lydspor og ett fotografi som belyser samme periode, og sammenlign hva de viser ulikt.",
+          "ageHint": "barn/voksen",
+          "items": [
+            {
+              "id": "wk_ml_nasjonalbiblioteket_fotografier_og_lydspor",
+              "title": "Fotografier og lydspor",
+              "type": "material_study",
+              "description": "Foto og lyd lagrer stemning og stemmer som tekst alene ikke fanger.",
+              "activityText": "Koble et bilde og et lydklipp til samme periode og noter hva hvert medium tilfører.",
+              "ageHint": "8 år+"
             }
           ]
         }
@@ -462,59 +532,69 @@
           "id": "wk_ml_universitetets_gamle_hovedbygning_kunnskap_og_offentlighet",
           "title": "Kunnskap og offentlighet",
           "type": "knowledge_zone",
-          "description": "Universitetets gamle hovedbygning viser hvordan akademisk kunnskap gis en monumental plass i hovedstaden.",
-          "activityText": "Les fasade, trapper og plassering som et budskap om hvem kunnskap var for, og hvordan den ble iscenesatt offentlig.",
-          "ageHint": "ungdom/voksen",
+          "description": "Bygget viser hvordan universitetet både er faglig institusjon og offentlig scene.",
+          "activityText": "Se etter rom der forelesning, debatt og seremoni gjør kunnskap synlig for flere enn fagmiljøet.",
+          "ageHint": "barn/voksen",
           "items": [
             {
-              "id": "wk_ml_universitetets_gamle_hovedbygning_bygget_som_argument",
-              "title": "Bygget som argument",
+              "id": "wk_ml_universitetets_gamle_hovedbygning_fasade_og_autoritet",
+              "title": "Fasade og autoritet",
               "type": "thing_to_see",
-              "description": "Arkitekturen fungerer som et visuelt argument for lærdom, stat og autoritet.",
-              "activityText": "Finn tre arkitektoniske grep som signaliserer tyngde eller troverdighet, og begrunn valgene.",
-              "ageHint": "12 år+"
-            },
-            {
-              "id": "wk_ml_universitetets_gamle_hovedbygning_sporjakt",
-              "title": "Sporjakt i detaljene",
-              "type": "observation_activity",
-              "description": "Detaljer i rommet kan leses som spor etter bruk, prioriteringer og historie.",
-              "activityText": "Finn tre små detaljer og forklar hva de forteller om stedet.",
-              "ageHint": "7 år+"
-            },
-            {
-              "id": "wk_ml_universitetets_gamle_hovedbygning_sammenlign_to_rom",
-              "title": "Sammenlign to rom",
-              "type": "comparison_task",
-              "description": "Å sammenligne soner gjør det lettere å se hvordan funksjon og form henger sammen.",
-              "activityText": "Velg to rom med ulik stemning og noter forskjeller i lys, lyd og møblering.",
+              "description": "Monumental fasade signaliserer at kunnskap har offentlig betydning og rang.",
+              "activityText": "Studer søyler og inngang og forklar hvordan arkitekturen uttrykker autoritet.",
               "ageHint": "8 år+"
+            },
+            {
+              "id": "wk_ml_universitetets_gamle_hovedbygning_trapper_og_seremoni",
+              "title": "Trapper og seremoni",
+              "type": "observation_activity",
+              "description": "Trapper brukes som overgang mellom hverdag og formelle akademiske ritualer.",
+              "activityText": "Følg hovedtrappen og se hvordan romfølelsen endres mot de mer seremonielle sonene.",
+              "ageHint": "7 år+"
             }
           ]
         },
         {
-          "id": "wk_ml_universitetets_gamle_hovedbygning_fordypning_og_dialog",
-          "title": "Fordypning og dialog",
-          "type": "knowledge_zone",
-          "description": "Denne sonen inviterer til roligere fordypning og samtale om hva stedet formidler.",
-          "activityText": "Bruk fem minutter i stillhet før dere deler én innsikt hver om stedet.",
-          "ageHint": "ungdom/voksen",
+          "id": "wk_ml_universitetets_gamle_hovedbygning_bygget_som_argument",
+          "title": "Bygget som argument",
+          "type": "museum_zone",
+          "description": "Fasade, søyler og trapper argumenterer for autoritet, orden og varighet.",
+          "activityText": "Studer inngangspartiet og forklar hvordan arkitekturen kommuniserer hvem som inviteres inn.",
+          "ageHint": "barn/voksen",
           "items": [
             {
-              "id": "wk_ml_universitetets_gamle_hovedbygning_sporsmal_fra_kilder",
-              "title": "Spørsmål fra kilder",
-              "type": "source_work",
-              "description": "Gode spørsmål hjelper dere å koble opplevelse til kunnskap og kontekst.",
-              "activityText": "Formuler to spørsmål dere kunne undersøkt videre med bøker, arkiv eller nettsøk.",
-              "ageHint": "10 år+"
+              "id": "wk_ml_universitetets_gamle_hovedbygning_hvem_kunnskapen_var_for",
+              "title": "Hvem kunnskapen var for",
+              "type": "research_trace",
+              "description": "Bygget minner om perioder da høyere utdanning var tilgjengelig for få.",
+              "activityText": "Diskuter hvilke grupper som historisk hadde adgang, og hvem som sto utenfor.",
+              "ageHint": "12 år+"
             },
             {
-              "id": "wk_ml_universitetets_gamle_hovedbygning_del_en_tolkning",
-              "title": "Del en tolkning",
-              "type": "dialog_activity",
-              "description": "Ulike tolkninger av samme sted gir bedre forståelse av perspektiver.",
-              "activityText": "En person beskriver stedet som inspirerende, en annen som krevende — begrunn begge syn.",
+              "id": "wk_ml_universitetets_gamle_hovedbygning_universitetet_i_byen",
+              "title": "Universitetet i byen",
+              "type": "viewpoint",
+              "description": "Plasseringen viser samspillet mellom campus, politikk og byliv i sentrum.",
+              "activityText": "Se ut mot byen og noter hvordan institusjonen er vevd inn i offentlige rom.",
               "ageHint": "9 år+"
+            }
+          ]
+        },
+        {
+          "id": "wk_ml_universitetets_gamle_hovedbygning_universitetet_som_nasjonal_institusjon",
+          "title": "Universitetet som nasjonal institusjon",
+          "type": "research_trace",
+          "description": "Stedet knytter vitenskap til stat, embetsverk og utviklingen av offentligheten i Norge.",
+          "activityText": "Finn spor i bygget eller området som viser koblingen mellom akademia, politikk og byliv.",
+          "ageHint": "barn/voksen",
+          "items": [
+            {
+              "id": "wk_ml_universitetets_gamle_hovedbygning_vitenskap_stat_offentlighet",
+              "title": "Vitenskap, stat og offentlighet",
+              "type": "knowledge_zone",
+              "description": "Universitetet har vært bindeledd mellom forskning, embetsverk og samfunnsdebatt.",
+              "activityText": "Finn tegn på hvordan akademisk kunnskap brukes i offentlig styring og debatt.",
+              "ageHint": "11 år+"
             }
           ]
         }
