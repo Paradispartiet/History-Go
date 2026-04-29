@@ -3,7 +3,7 @@
    Oppdatert: 2026-04-28
    ============================================================ */
 
-const SW_VERSION = "hg-sw-2026-04-28-v1.38.145";
+const SW_VERSION = "hg-sw-2026-04-28-v1.38.146";
 
 const CACHE_STATIC  = `hg-static-${SW_VERSION}`;
 const CACHE_RUNTIME = `hg-runtime-${SW_VERSION}`;
