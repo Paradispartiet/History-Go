@@ -591,7 +591,12 @@
     threshold,
     points_at_offer,
     brand_id,
-    brand_name
+    brand_name,
+    brand_type,
+    brand_group,
+    sector,
+    place_id,
+    employer_context
   }) {
     if (!canReceiveNewOffers()) {
       return { ok: false, reason: "active_job" };
@@ -626,6 +631,11 @@
       points_at_offer: Number(points_at_offer || 0),
       brand_id: String(brand_id || "").trim() || null,
       brand_name: String(brand_name || "").trim() || null,
+      brand_type: String(brand_type || "").trim() || null,
+      brand_group: String(brand_group || "").trim() || null,
+      sector: String(sector || "").trim() || null,
+      place_id: String(place_id || "").trim() || null,
+      employer_context: employer_context && typeof employer_context === "object" ? employer_context : null,
       status: "pending",
       created_iso: now.toISOString(),
       expires_iso: expires.toISOString()
@@ -690,7 +700,12 @@
       achieved_at: nowIso,
       role_key: role_key,
       brand_id: String(offer.brand_id || "").trim() || null,
-      brand_name: String(offer.brand_name || "").trim() || null
+      brand_name: String(offer.brand_name || "").trim() || null,
+      brand_type: String(offer.brand_type || "").trim() || null,
+      brand_group: String(offer.brand_group || "").trim() || null,
+      sector: String(offer.sector || "").trim() || null,
+      place_id: String(offer.place_id || "").trim() || null,
+      employer_context: offer.employer_context && typeof offer.employer_context === "object" ? offer.employer_context : null
     });
 
     const active = window.CivicationState?.getActivePosition?.();
