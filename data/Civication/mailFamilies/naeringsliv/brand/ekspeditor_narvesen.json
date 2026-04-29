@@ -1,0 +1,144 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "naeringsliv",
+  "role_scope": "ekspeditor",
+  "mail_type": "job",
+  "families": [
+    {
+      "id": "kasse_og_pris",
+      "mails": [
+        {
+          "id": "ekspeditor_narvesen_001",
+          "mail_type": "job",
+          "mail_family": "kasse_og_pris",
+          "role_scope": "ekspeditor",
+          "brand_id": "narvesen",
+          "brand_name": "Narvesen",
+          "brand_role": "kioskmedarbeider",
+          "subject": "Kampanjepris på pølsekombo slår ikke inn",
+          "summary": "Kassa viser feil pris i lunsjrush.",
+          "situation": ["En kunde peker på kombo-plakaten, men kassa registrerer fullpris på pølse og drikke."],
+          "task_domain": "cash_desk",
+          "competency": "noyaktighet_under_press",
+          "pressure": "hoy_ko",
+          "choice_axis": "faktasjekk_vs_flyt",
+          "consequence_axis": "tillit_vs_tempo",
+          "narrative_arc": "forste_uke_pa_gulvet",
+          "choices": [
+            { "id": "A", "label": "Bekreft kampanjen og korriger manuelt", "effect": 1, "tags": ["kunde", "kvalitet"], "feedback": "Du løser feilen tydelig og beholder flyt i køen." },
+            { "id": "B", "label": "Ta fullpris for å holde linjen i gang", "effect": -1, "tags": ["tempo", "snarvei"], "feedback": "Raskt nå, men skaper irritasjon og mulig klage." }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kundemote_og_service",
+      "mails": [
+        {
+          "id": "ekspeditor_narvesen_002",
+          "mail_type": "job",
+          "mail_family": "kundemote_og_service",
+          "role_scope": "ekspeditor",
+          "brand_id": "narvesen",
+          "brand_name": "Narvesen",
+          "brand_role": "kioskmedarbeider",
+          "subject": "Morgenkunde vil ha raskt allergisvar",
+          "summary": "Du må svare presist under tidspress.",
+          "situation": ["En pendler spør om en wrap inneholder nøtter mens flere står i kø bak."],
+          "task_domain": "customer_service",
+          "competency": "presis_kommunikasjon",
+          "pressure": "rush",
+          "choice_axis": "dobbeltsjekk_vs_gjett",
+          "consequence_axis": "trygghet_vs_tempo",
+          "narrative_arc": "kundenes_blikk",
+          "choices": [
+            { "id": "A", "label": "Sjekk ingredienslisten før svar", "effect": 1, "tags": ["kvalitet", "kunde"], "feedback": "Du prioriterer trygghet og korrekt informasjon." },
+            { "id": "B", "label": "Svar etter antakelse for å spare tid", "effect": -1, "tags": ["tempo", "snarvei"], "feedback": "Raskt levert, men med unødvendig risiko." }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ny_kollega_og_tillit",
+      "mails": [
+        {
+          "id": "ekspeditor_narvesen_003",
+          "mail_type": "people",
+          "mail_family": "ny_kollega_og_tillit",
+          "role_scope": "ekspeditor",
+          "brand_id": "narvesen",
+          "brand_name": "Narvesen",
+          "brand_role": "kioskmedarbeider",
+          "subject": "Ny kollega glemmer påfyll av småvarer",
+          "summary": "Du velger mellom å ta alt selv eller bygge rutine.",
+          "situation": ["Småvarer ved kassa er tomme i ettermiddagsrush fordi ny kollega ikke kjenner sjekklisten."],
+          "task_domain": "teamwork",
+          "competency": "veiledning",
+          "pressure": "travelt_gulv",
+          "choice_axis": "fikse_selv_vs_lare_bort",
+          "consequence_axis": "kortsiktig_flyt_vs_langsiktig_stabilitet",
+          "narrative_arc": "forste_uke_pa_gulvet",
+          "choices": [
+            { "id": "A", "label": "Forklar sjekklisten og fordel oppgaver", "effect": 1, "tags": ["kollega", "kvalitet"], "feedback": "Du styrker laget og reduserer gjentatte stopp." },
+            { "id": "B", "label": "Fyll opp i skjul og si ingenting", "effect": -1, "tags": ["tempo", "snarvei"], "feedback": "Du redder øyeblikket, men lærer ikke bort rutinen." }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "salg_og_veiledning",
+      "mails": [
+        {
+          "id": "ekspeditor_narvesen_004",
+          "mail_type": "story",
+          "mail_family": "salg_og_veiledning",
+          "role_scope": "ekspeditor",
+          "brand_id": "narvesen",
+          "brand_name": "Narvesen",
+          "brand_role": "kioskmedarbeider",
+          "subject": "Frokostkunde trenger rask pakkeløsning",
+          "summary": "Du vurderer relevant mersalg i farta.",
+          "situation": ["En kunde ber om kaffe to go og noe raskt å spise før toget går."],
+          "task_domain": "sales_dialog",
+          "competency": "behovsavdekking",
+          "pressure": "rush",
+          "choice_axis": "relevans_vs_pushing",
+          "consequence_axis": "tillit_vs_kortsiktig_omsetning",
+          "narrative_arc": "kundenes_blikk",
+          "choices": [
+            { "id": "A", "label": "Anbefal ferdig kombo som sparer tid", "effect": 1, "tags": ["kunde", "salg"], "feedback": "Forslaget oppleves nyttig og situasjonstilpasset." },
+            { "id": "B", "label": "Tilby tilfeldig ekstra uten behovsavklaring", "effect": -1, "tags": ["tempo", "salg"], "feedback": "Du forsøker mersalg, men med lav treffsikkerhet." }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "travelt_gulv",
+      "mails": [
+        {
+          "id": "ekspeditor_narvesen_005",
+          "mail_type": "event",
+          "mail_family": "travelt_gulv",
+          "role_scope": "ekspeditor",
+          "brand_id": "narvesen",
+          "brand_name": "Narvesen",
+          "brand_role": "kioskmedarbeider",
+          "subject": "Tre samtidige forespørsler ved disken",
+          "summary": "Du må prioritere tydelig under høyt trykk.",
+          "situation": ["Kaffemaskin stanser, en kunde vil betale tobakk, og en annen spør etter pakkelevering samtidig."],
+          "task_domain": "frontline_operations",
+          "competency": "prioritering",
+          "pressure": "travelt_gulv",
+          "choice_axis": "struktur_vs_reaksjon",
+          "consequence_axis": "kontroll_vs_kaos",
+          "narrative_arc": "yrkesstolthet_i_hverdagen",
+          "choices": [
+            { "id": "A", "label": "Kommuniser kørekkefølge og deleger kort", "effect": 1, "tags": ["kunde", "drift"], "feedback": "Du skaper ro og fremdrift i en presset situasjon." },
+            { "id": "B", "label": "Hopp mellom oppgaver uten plan", "effect": -1, "tags": ["tempo", "snarvei"], "feedback": "Det går fort i starten, men skaper fort mer forvirring." }
+          ]
+        }
+      ]
+    }
+  ]
+}
