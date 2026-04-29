@@ -1,8 +1,9 @@
 /* ============================================================
    CIVICATION – MINI MODE
    Hensikt:
-   - Civication-siden viser miniversjoner av seksjonene som standard.
-   - Seksjonene kan åpnes/lukkes uten å endre underliggende motor.
+   - Civication-siden viser funksjonelle miniversjoner av seksjonene.
+   - Valg/knapper skal kunne brukes direkte fra miniene.
+   - +/– styrer full høyde, ikke om innholdet finnes.
    - Hvite flater/knapper overstyres til mørkt tema.
 ============================================================ */
 
@@ -87,15 +88,16 @@ body.civi-app.civi-mini-mode .civi-dashboard-metric small {
 }
 
 /* ------------------------------------------------------------
-   Alle ordinære Civication-seksjoner som minikort.
+   Alle ordinære Civication-seksjoner som funksjonelle minikort.
+   Standard: innholdet er synlig i kompakt scroll, slik at valg kan tas.
 ------------------------------------------------------------ */
 
 body.civi-app.civi-mini-mode .civi-panels > section:not(#civiDashboardSection),
 body.civi-app.civi-mini-mode #civiTrackHUD {
-  grid-column: span 4;
-  min-height: 106px;
+  grid-column: span 6;
+  min-height: 220px;
   padding: 0;
-  border-radius: 16px;
+  border-radius: 18px;
   background: linear-gradient(180deg, rgba(24,24,28,0.96), rgba(12,12,15,0.96));
   border: 1px solid var(--civi-mini-border);
   box-shadow: 0 12px 28px rgba(0,0,0,0.28);
@@ -108,13 +110,14 @@ body.civi-app.civi-mini-mode #civiTrackHUD.is-expanded {
 
 body.civi-app.civi-mini-mode .civi-mini-head {
   width: 100%;
-  min-height: 104px;
-  padding: 13px 14px 12px 16px;
+  min-height: 74px;
+  padding: 13px 14px 10px 16px;
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   gap: 10px;
   align-items: start;
   border: 0;
+  border-bottom: 1px solid rgba(255,255,255,0.075);
   background: transparent;
   color: var(--civi-mini-text);
   text-align: left;
@@ -139,18 +142,18 @@ body.civi-app.civi-mini-mode #civiTrackHUD .civi-mini-title-row .civi-track-titl
 }
 
 body.civi-app.civi-mini-mode .civi-mini-summary {
-  margin-top: 8px;
+  margin-top: 6px;
   color: var(--civi-mini-muted);
-  font-size: 13px;
-  line-height: 1.32;
+  font-size: 12px;
+  line-height: 1.28;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
 body.civi-app.civi-mini-mode .civi-mini-count {
-  margin-top: 9px;
+  margin-top: 7px;
   width: max-content;
   max-width: 100%;
   padding: 4px 8px;
@@ -182,12 +185,28 @@ body.civi-app.civi-mini-mode .is-expanded .civi-mini-toggle {
 }
 
 body.civi-app.civi-mini-mode .civi-section-body {
-  display: none;
-  padding: 0 14px 14px 14px;
+  display: block;
+  max-height: 260px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  padding: 12px 14px 14px 14px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.22) transparent;
+}
+
+body.civi-app.civi-mini-mode .civi-section-body::-webkit-scrollbar {
+  width: 7px;
+}
+
+body.civi-app.civi-mini-mode .civi-section-body::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.22);
+  border-radius: 999px;
 }
 
 body.civi-app.civi-mini-mode .is-expanded > .civi-section-body {
-  display: block;
+  max-height: none;
+  overflow: visible;
 }
 
 body.civi-app.civi-mini-mode .civi-panels > section:not(#civiDashboardSection)::before {
@@ -200,6 +219,88 @@ body.civi-app.civi-mini-mode .civi-panels > section:not(#civiDashboardSection) >
 body.civi-app.civi-mini-mode .civi-panels > section:not(#civiDashboardSection) > :not(.civi-mini-head):not(.civi-section-body),
 body.civi-app.civi-mini-mode #civiTrackHUD > :not(.civi-mini-head):not(.civi-section-body) {
   display: none;
+}
+
+/* ------------------------------------------------------------
+   Gjør innholdet inni miniene tett nok til å være handlingsbart.
+------------------------------------------------------------ */
+
+body.civi-app.civi-mini-mode .civi-section-body p {
+  margin-top: 0;
+}
+
+body.civi-app.civi-mini-mode .civi-section-body button,
+body.civi-app.civi-mini-mode .civi-section-body .civi-btn,
+body.civi-app.civi-mini-mode .civi-section-body .civi-task-open-btn {
+  min-height: 38px;
+  padding: 8px 10px;
+  border-radius: 11px;
+  font-size: 13px;
+}
+
+body.civi-app.civi-mini-mode .civi-section-body [style*="display:flex"],
+body.civi-app.civi-mini-mode .civi-section-body .civi-task-actions {
+  flex-wrap: wrap;
+}
+
+body.civi-app.civi-mini-mode .civi-workday-top,
+body.civi-app.civi-mini-mode .civi-workday-grid {
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+
+body.civi-app.civi-mini-mode .is-expanded .civi-workday-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+body.civi-app.civi-mini-mode .civi-workday-clock,
+body.civi-app.civi-mini-mode .civi-workday-meta,
+body.civi-app.civi-mini-mode .civi-workday-card,
+body.civi-app.civi-mini-mode .civi-workday-empty {
+  padding: 10px;
+  border-radius: 12px;
+}
+
+body.civi-app.civi-mini-mode .civi-workday-time,
+body.civi-app.civi-mini-mode .civi-workday-big {
+  font-size: 20px;
+}
+
+body.civi-app.civi-mini-mode .civi-workday-task-title {
+  font-size: 14px;
+}
+
+body.civi-app.civi-mini-mode .civi-workday-task-desc {
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+body.civi-app.civi-mini-mode .capital-grid,
+body.civi-app.civi-mini-mode .civi-capital .capital-grid,
+body.civi-app.civi-mini-mode .psyche-grid,
+body.civi-app.civi-mini-mode .civi-psyche .psyche-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+body.civi-app.civi-mini-mode .capital-item,
+body.civi-app.civi-mini-mode .psyche-item {
+  min-height: 56px;
+  padding: 8px;
+}
+
+body.civi-app.civi-mini-mode .capital-label,
+body.civi-app.civi-mini-mode .psyche-label {
+  font-size: 10px;
+}
+
+body.civi-app.civi-mini-mode .capital-value,
+body.civi-app.civi-mini-mode .psyche-value {
+  font-size: 17px;
+}
+
+body.civi-app.civi-mini-mode .psyche-item.highlight {
+  grid-column: span 2;
 }
 
 /* ------------------------------------------------------------
@@ -326,7 +427,15 @@ body.civi-app .district-card {
   }
 
   body.civi-app.civi-mini-mode .civi-mini-head {
-    min-height: 92px;
+    min-height: 70px;
     padding: 12px;
+  }
+
+  body.civi-app.civi-mini-mode .civi-section-body {
+    max-height: 300px;
+  }
+
+  body.civi-app.civi-mini-mode .psyche-item.highlight {
+    grid-column: span 1;
   }
 }
