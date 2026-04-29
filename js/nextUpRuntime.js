@@ -476,6 +476,7 @@
     const panel = document.getElementById(PANEL_ID);
     const btn = document.getElementById(BUTTON_ID);
 
+    const narrativeSuggestion = suggestions.find(x => x.type === "narrative") || null;
     const result = {
       HGNavigator: typeof window.HGNavigator,
       buildForPlace: typeof window.HGNavigator?.buildForPlace,
@@ -490,6 +491,12 @@
       modeStorageValue: readJSON(MODE_KEY, {}),
       suggestions,
       topSuggestion: suggestions[0] || null,
+      narrativeDebug: narrativeSuggestion ? {
+        source: s(narrativeSuggestion.meta?.source_type || "related_places"),
+        story_id: s(narrativeSuggestion.meta?.story_id),
+        next_place_id: s(narrativeSuggestion.meta?.next_place_id || narrativeSuggestion.target_id),
+        reason: s(narrativeSuggestion.reason)
+      } : null,
       missing: {
         spatial: !suggestions.some(x => x.type === "spatial"),
         wonderkammer: !suggestions.some(x => x.type === "wonderkammer"),
