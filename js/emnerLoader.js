@@ -182,3 +182,20 @@ window.Emner = (function () {
     PROJECT_ROOT
   };
 })();
+
+// ------------------------------------------------------------
+// Compatibility bridge
+// Enkelte knowledge-komponenter forventer DataHub.loadEmner().
+// Når full DataHub ikke er lastet, bruk Emner-loaderen som fallback.
+// ------------------------------------------------------------
+(function () {
+  "use strict";
+
+  window.DataHub = window.DataHub || {};
+
+  if (typeof window.DataHub.loadEmner !== "function") {
+    window.DataHub.loadEmner = function loadEmnerViaEmner(subjectId, opts = {}) {
+      return window.Emner.loadForSubject(subjectId, opts);
+    };
+  }
+})();
