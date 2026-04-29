@@ -75,3 +75,34 @@
 .app-nextup:not(.footer-nextup-panel){
   display: none;
 }
+
+body.hg-app.hg-phone .app-footer{
+  gap: 6px;
+  padding: 6px 8px;
+}
+
+body.hg-app.hg-phone .app-actions{
+  justify-content: flex-start;
+  gap: 7px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+body.hg-app.hg-phone .app-actions::-webkit-scrollbar{
+  display: none;
+}
+
+body.hg-app.hg-phone .app-actions button{
+  height: 50px;
+  padding: 0 13px;
+  font-size: 14px;
+  flex: 0 0 auto;
+}
+
+body.hg-app.hg-phone #pcRoute,
+body.hg-app.hg-phone #pcObserve,
+body.hg-app.hg-phone #pcNote{
+  width: 42px;
+  height: 42px;
+}
