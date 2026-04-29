@@ -1,7 +1,7 @@
 // ============================================================
 // HISTORY GO – NextUp Runtime v2
-// Renderer HGNavigator suggestions[] og logger visninger/klikk.
-// Legges oppå eksisterende footer-toggle uten å bryte legacy tri.
+// Eier hele NextUp-panelet: knapp, rendering, åpne/lukke, historikk og debug.
+// Anbefalingslogikken eies av js/hgNavigator.js.
 // ============================================================
 
 (function () {
@@ -30,6 +30,15 @@
 
   function attr(value) {
     return esc(value);
+  }
+
+  function ensureCss(href) {
+    if (document.querySelector(`link[href="${href}"]`)) return;
+
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = href;
+    document.head.appendChild(link);
   }
 
   function readJSON(key, fallback) {
@@ -180,16 +189,45 @@
       .sort((a, b) => b.score - a.score);
   }
 
+  function setOpen(open) {
+    const panel = document.getElementById(PANEL_ID);
+    const btn = document.getElementById(BUTTON_ID);
+    if (!panel || !btn) return;
+
+    panel.classList.toggle("is-open", !!open);
+    panel.setAttribute("aria-hidden", open ? "false" : "true");
+    panel.style.display = open ? "grid" : "none";
+    panel.style.opacity = open ? "1" : "0";
+    panel.style.visibility = open ? "visible" : "hidden";
+    panel.style.pointerEvents = open ? "auto" : "none";
+    panel.style.transform = open ? "translateY(0)" : "translateY(10px)";
+
+    btn.classList.toggle("is-active", !!open);
+    btn.setAttribute("aria-expanded", open ? "true" : "false");
+  }
+
+  function toggleNextUp() {
+    const panel = ensurePanel();
+    if (!panel) return;
+
+    setOpen(!panel.classList.contains("is-open"));
+  }
+
   function ensurePanel() {
+    if (document.body?.classList.contains("profile-page")) return null;
+
     const footer = document.querySelector(".app-footer");
     const shell = document.querySelector(".app-shell");
     if (!footer || !shell) return null;
+
+    ensureCss("css/footer-nextup.css");
 
     let panel = document.getElementById(PANEL_ID);
     if (!panel) {
       panel = document.createElement("div");
       panel.id = PANEL_ID;
       panel.className = "footer-nextup-panel";
+      panel.setAttribute("aria-hidden", "true");
       shell.appendChild(panel);
     }
 
@@ -206,24 +244,18 @@
       footer.appendChild(btn);
     }
 
+    btn.onclick = function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      toggleNextUp();
+      return false;
+    };
+
+    if (!panel.classList.contains("is-open")) {
+      setOpen(false);
+    }
+
     return panel;
-  }
-
-  function setOpen(open) {
-    const panel = document.getElementById(PANEL_ID);
-    const btn = document.getElementById(BUTTON_ID);
-    if (!panel || !btn) return;
-
-    panel.classList.toggle("is-open", !!open);
-    panel.setAttribute("aria-hidden", open ? "false" : "true");
-    panel.style.display = open ? "grid" : "none";
-    panel.style.opacity = open ? "1" : "0";
-    panel.style.visibility = open ? "visible" : "hidden";
-    panel.style.pointerEvents = open ? "auto" : "none";
-    panel.style.transform = open ? "translateY(0)" : "translateY(10px)";
-
-    btn.classList.toggle("is-active", !!open);
-    btn.setAttribute("aria-expanded", open ? "true" : "false");
   }
 
   function openPlace(placeId) {
@@ -286,7 +318,24 @@
     if (sug.type === "concept") return openConcept(sug);
   }
 
-  function renderNextUpV2(tri = readTri()) {
+  function logShow(tri, suggestions) {
+    if (!suggestions.length) return;
+
+    appendHistory({
+      event: "show",
+      place_id: s(tri?.current_place_id),
+      category_id: s(tri?.category_id),
+      shown: suggestions.map(sug => ({
+        type: sug.type,
+        target_id: sug.target_id,
+        label: sug.label,
+        score: sug.score,
+        source: sug.source
+      }))
+    });
+  }
+
+  function renderNextUpV2(tri = readTri(), options = {}) {
     if (document.body?.classList.contains("profile-page")) return;
 
     const panel = ensurePanel();
@@ -326,29 +375,60 @@
       });
     });
 
-    appendHistory({
-      event: "show",
-      place_id: s(tri?.current_place_id),
-      category_id: s(tri?.category_id),
-      shown: suggestions.map(sug => ({
-        type: sug.type,
-        target_id: sug.target_id,
-        label: sug.label,
-        score: sug.score,
-        source: sug.source
-      }))
-    });
+    if (options.logShow !== false) {
+      logShow(tri, suggestions);
+    }
 
     setOpen(wasOpen);
+  }
+
+  function debugNextUp() {
+    const tri = readTri();
+    const suggestions = normalizeSuggestions(tri);
+    const panel = document.getElementById(PANEL_ID);
+    const btn = document.getElementById(BUTTON_ID);
+
+    const result = {
+      HGNavigator: typeof window.HGNavigator,
+      buildForPlace: typeof window.HGNavigator?.buildForPlace,
+      runtime: "nextUpRuntime.js",
+      panelExists: !!panel,
+      buttonExists: !!btn,
+      panelOpen: !!panel?.classList.contains("is-open"),
+      schema: s(tri?.schema || "legacy/empty"),
+      current_place_id: s(tri?.current_place_id),
+      category_id: s(tri?.category_id),
+      suggestions,
+      missing: {
+        spatial: !suggestions.some(x => x.type === "spatial"),
+        wonderkammer: !suggestions.some(x => x.type === "wonderkammer"),
+        narrative: !suggestions.some(x => x.type === "narrative"),
+        concept: !suggestions.some(x => x.type === "concept")
+      },
+      because: localStorage.getItem(BECAUSE_KEY) || "",
+      recentHistory: readHistory().slice(0, 5)
+    };
+
+    console.table(suggestions.map(x => ({
+      type: x.type,
+      label: x.label,
+      score: x.score,
+      source: x.source,
+      target: x.target_id
+    })));
+    console.log("[History Go] debugNextUp", result);
+    return result;
   }
 
   function boot() {
     if (document.body?.classList.contains("profile-page")) return;
     ensurePanel();
-    window.setTimeout(() => renderNextUpV2(readTri()), 40);
+    window.setTimeout(() => renderNextUpV2(readTri(), { logShow: false }), 40);
   }
 
   window.renderNextUpV2 = renderNextUpV2;
+  window.toggleFooterNextUp = toggleNextUp;
+  window.debugNextUp = debugNextUp;
   window.getNextUpHistory = readHistory;
 
   window.addEventListener("hg:mpNextUp", (e) => {
@@ -360,9 +440,7 @@
       localStorage.setItem(BECAUSE_KEY, String(becauseLine || ""));
     } catch {}
 
-    // Legacy-renderer i learningLog.js lytter også på hg:mpNextUp.
-    // Rendér v2 litt etterpå slik at suggestions[] alltid blir siste visning.
-    window.setTimeout(() => renderNextUpV2(tri), 40);
+    window.setTimeout(() => renderNextUpV2(tri), 0);
   });
 
   if (document.readyState === "loading") {
