@@ -1,3 +1,12 @@
+// Early support loader: HGNavigator must exist before place cards emit NextUp.
+(function () {
+  "use strict";
+
+  if (!document.querySelector('script[src="js/hgNavigator.js"]')) {
+    document.write('<script src="js/hgNavigator.js"><\/script>');
+  }
+})();
+
 (function () {
   const EVENTS_MANIFEST_PATH = "data/events/events_manifest.json";
 
