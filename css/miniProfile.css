@@ -329,6 +329,55 @@ body.hg-app .site-header .top-actions #miniProfile #miniLastQuiz{
   display: none !important;
 }
 
+/* =====================================================
+   HEADER – MOBILKOMPRESJON
+   Hindrer at høyre ikoner faller ut etter midtstilling.
+   ===================================================== */
+
+body.hg-app.hg-phone .site-header .top-actions{
+  gap: 5px;
+  max-width: calc(100% - 10px);
+}
+
+body.hg-app.hg-phone .site-header .top-actions #miniProfile{
+  width: 170px;
+  max-width: 170px;
+  flex: 0 0 170px;
+  height: 52px;
+  padding: 6px 8px 7px;
+}
+
+body.hg-app.hg-phone .site-header .top-actions #miniProfile #miniName{
+  font-size: 13px;
+}
+
+body.hg-app.hg-phone .site-header .top-actions #miniProfile #miniStats{
+  gap: 6px;
+  font-size: 10px;
+}
+
+body.hg-app.hg-phone #globalSearch{
+  flex: 0 0 90px;
+  max-width: 90px;
+  height: 30px;
+  padding: 0 8px;
+}
+
+body.hg-app.hg-phone .site-header .top-actions .iconbtn{
+  width: 30px;
+  height: 30px;
+  font-size: 14px;
+}
+
+body.hg-app.hg-phone #geoStatus{
+  width: 18px;
+}
+
+body.hg-app.hg-phone .site-header .top-actions .toggle{
+  transform: scale(0.86);
+  transform-origin: center;
+}
+
 /* MiniProfile – Civication-rolle (forside) */
 .miniProfileTop{
   min-width: 0;
