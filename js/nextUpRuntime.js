@@ -13,6 +13,15 @@
   const BECAUSE_KEY = "hg_nextup_because";
   const HISTORY_KEY = "hg_nextup_history_v1";
   const MAX_HISTORY = 200;
+  const MODE_KEY = "hg_nextup_mode_v1";
+  const NEXTUP_MODES = [
+    { mode: "nearest", label: "Nærmest", chip: "Nærmest" },
+    { mode: "learn", label: "Lær mest", chip: "Lær mest" },
+    { mode: "story", label: "Fortsett historien", chip: "Historie" },
+    { mode: "wonder", label: "Oppdag noe rart", chip: "Rart" },
+    { mode: "complete", label: "Fullfør merket", chip: "Fullfør" }
+  ];
+  const MODE_BY_KEY = Object.fromEntries(NEXTUP_MODES.map(m => [m.mode, m]));
 
   function s(value) {
     return String(value ?? "").trim();
@@ -80,6 +89,27 @@
     ].slice(0, MAX_HISTORY);
 
     writeJSON(HISTORY_KEY, next);
+  }
+
+  function readActiveMode() {
+    const raw = readJSON(MODE_KEY, {});
+    const mode = s(raw?.mode || "nearest");
+    const picked = MODE_BY_KEY[mode] || MODE_BY_KEY.nearest;
+    return { mode: picked.mode, label: picked.label, updated_at: s(raw?.updated_at) || "" };
+  }
+
+  function persistMode(modeKey) {
+    const picked = MODE_BY_KEY[s(modeKey)] || MODE_BY_KEY.nearest;
+    const payload = { mode: picked.mode, label: picked.label, updated_at: new Date().toISOString() };
+    writeJSON(MODE_KEY, payload);
+    appendHistory({ event: "mode_change", mode: payload.mode, label: payload.label });
+    return payload;
+  }
+
+  function ensureModeStored() {
+    const active = readActiveMode();
+    if (!active.updated_at) return persistMode(active.mode);
+    return active;
   }
 
   function dispatchProfileUpdate() {
@@ -344,8 +374,17 @@
     const wasOpen = panel.classList.contains("is-open");
     const suggestions = normalizeSuggestions(tri);
 
+    const activeMode = ensureModeStored();
+    const modeRow = `
+      <div class="nextup-mode-row" role="tablist" aria-label="NextUp-modus">
+        ${NEXTUP_MODES.map((m) => `
+          <button type="button" class="nextup-mode-chip ${m.mode === activeMode.mode ? "is-active" : ""}" data-nextup-mode="${attr(m.mode)}">${esc(m.chip)}</button>
+        `).join("")}
+      </div>
+    `;
+
     if (!suggestions.length) {
-      panel.innerHTML = `
+      panel.innerHTML = modeRow + `
         <div class="mp-nextup-line mp-nextup-empty">
           <button class="mp-nextup-link" disabled>
             ➜ <b>Neste</b><span>Ingen forslag ennå</span>
@@ -356,7 +395,7 @@
       return;
     }
 
-    panel.innerHTML = suggestions.map((sug, index) => `
+    panel.innerHTML = modeRow + suggestions.map((sug, index) => `
       <div class="mp-nextup-line" data-nextup-type="${attr(sug.type)}">
         <button class="mp-nextup-link" type="button" data-nextup-index="${index}" title="${attr(sug.reason)}">
           ${suggestionIcon(sug.type)} <b>${esc(suggestionTitle(sug.type))}</b>
@@ -365,6 +404,19 @@
         </button>
       </div>
     `).join("");
+
+    panel.querySelectorAll("[data-nextup-mode]").forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const modeKey = s(btn.dataset.nextupMode);
+        const active = readActiveMode();
+        if (modeKey === active.mode) return;
+        persistMode(modeKey);
+        rebuildFromCurrentPlace();
+        window.dispatchEvent(new CustomEvent("hg:nextupModeChanged", { detail: { mode: modeKey } }));
+      });
+    });
 
     panel.querySelectorAll("[data-nextup-index]").forEach(btn => {
       btn.addEventListener("click", (e) => {
@@ -380,6 +432,25 @@
     }
 
     setOpen(wasOpen);
+  }
+
+
+  async function rebuildFromCurrentPlace() {
+    const tri = readTri();
+    const placeId = s(tri?.current_place_id);
+    const place = (window.PLACES || []).find(p => s(p?.id) === placeId);
+    if (!place || typeof window.HGNavigator?.buildForPlace !== "function") {
+      renderNextUpV2(tri, { logShow: false });
+      return;
+    }
+
+    try {
+      const nextTri = await window.HGNavigator.buildForPlace(place, { nearbyPlaces: window.NEARBY_PLACES || [] });
+      localStorage.setItem(TRI_KEY, JSON.stringify(nextTri || {}));
+      renderNextUpV2(nextTri, { logShow: false });
+    } catch {
+      renderNextUpV2(tri, { logShow: false });
+    }
   }
 
   function debugNextUp() {
@@ -398,7 +469,10 @@
       schema: s(tri?.schema || "legacy/empty"),
       current_place_id: s(tri?.current_place_id),
       category_id: s(tri?.category_id),
+      activeMode: readActiveMode(),
+      modeStorageValue: readJSON(MODE_KEY, {}),
       suggestions,
+      topSuggestion: suggestions[0] || null,
       missing: {
         spatial: !suggestions.some(x => x.type === "spatial"),
         wonderkammer: !suggestions.some(x => x.type === "wonderkammer"),
@@ -406,7 +480,8 @@
         concept: !suggestions.some(x => x.type === "concept")
       },
       because: localStorage.getItem(BECAUSE_KEY) || "",
-      recentHistory: readHistory().slice(0, 5)
+      recentHistory: readHistory().slice(0, 5),
+      recentModeChanges: readHistory().filter(x => x?.event === "mode_change").slice(0, 5)
     };
 
     console.table(suggestions.map(x => ({
@@ -423,6 +498,7 @@
   function boot() {
     if (document.body?.classList.contains("profile-page")) return;
     ensurePanel();
+    ensureModeStored();
     window.setTimeout(() => renderNextUpV2(readTri(), { logShow: false }), 40);
   }
 

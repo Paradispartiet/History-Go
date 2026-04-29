@@ -126,3 +126,28 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+
+.nextup-mode-row {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 2px;
+}
+
+.nextup-mode-chip {
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.05);
+  color: rgba(255,255,255,0.88);
+  border-radius: 999px;
+  padding: 5px 10px;
+  font-size: 11px;
+  line-height: 1;
+}
+
+.nextup-mode-chip.is-active {
+  background: rgba(246,200,0,0.95);
+  border-color: rgba(246,200,0,1);
+  color: #111;
+  font-weight: 700;
+}
