@@ -88,6 +88,12 @@
     return out;
   }
 
+  function findPlace(id) {
+    const key = s(id);
+    if (!key) return null;
+    return arr(window.PLACES).find(p => placeId(p) === key) || null;
+  }
+
   function buildSpatial(currentPlace, nearbyPlaces = []) {
     const visited = getVisited();
     const currentCategory = categoryOf(currentPlace);
@@ -133,40 +139,69 @@
     };
   }
 
-  function buildNarrative(place, nearbyPlaces = []) {
-    const currentId = placeId(place);
+  function storyTitle(story) {
+    return s(story?.title || story?.summary || "Neste scene");
+  }
 
-    try {
-      if (window.HGStories && typeof window.HGStories.getByPlace === "function") {
-        const stories = arr(window.HGStories.getByPlace(currentId));
-        const storyWithPlace = stories.find(st => {
-          const ids = arr(st?.place_ids || st?.places || st?.next_places);
-          return ids.some(id => s(id) && s(id) !== currentId);
-        });
+  function storyPlaces(story) {
+    return [
+      ...arr(story?.related_places),
+      ...arr(story?.next_places),
+      ...arr(story?.place_ids),
+      ...arr(story?.places)
+    ].map(s).filter(Boolean);
+  }
 
-        if (storyWithPlace) {
-          const ids = arr(storyWithPlace.place_ids || storyWithPlace.places || storyWithPlace.next_places);
-          const nextId = s(ids.find(id => s(id) && s(id) !== currentId));
-          const nextPlace = arr(window.PLACES).find(p => placeId(p) === nextId);
-          if (nextId) {
-            return {
-              next_place_id: nextId,
-              label: s(storyWithPlace.title || storyWithPlace.summary || placeLabel(nextPlace) || "Neste fortelling"),
-              because: "Fortellingen peker videre til et annet sted"
-            };
-          }
-        }
-      }
-    } catch {}
-
-    const spatial = buildSpatial(place, nearbyPlaces);
-    if (!spatial) return null;
+  function makeNarrativeResult(story, nextId, direction) {
+    const nextPlace = findPlace(nextId);
+    if (!nextId || !nextPlace) return null;
 
     return {
-      next_place_id: spatial.place_id,
-      label: spatial.label,
-      because: "Neste sted kan fungere som neste scene"
+      next_place_id: nextId,
+      story_id: s(story?.id),
+      label: `${storyTitle(story)} → ${placeLabel(nextPlace)}`,
+      because: direction === "reverse"
+        ? "En story et annet sted peker tilbake hit som relatert sted"
+        : "Stories-systemet peker videre til et relatert sted"
     };
+  }
+
+  function buildNarrative(place) {
+    const currentId = placeId(place);
+    if (!currentId || !window.HGStories) return null;
+
+    try {
+      // 1) Direkte story på dette stedet: bruk ekte related_places/next_places.
+      if (typeof window.HGStories.getByPlace === "function") {
+        const storiesHere = arr(window.HGStories.getByPlace(currentId));
+
+        for (const story of storiesHere) {
+          const nextId = storyPlaces(story).find(id => id && id !== currentId && findPlace(id));
+          const result = makeNarrativeResult(story, nextId, "direct");
+          if (result) return result;
+        }
+      }
+
+      // 2) Reverse-kobling: stories på andre steder som har currentId i related_places.
+      // Dette gjør at f.eks. Bjørvika kan få en scene tilbake til Barcode hvis Barcode-story peker til Bjørvika.
+      const allStories = arr(window.HGStories.all);
+      for (const story of allStories) {
+        const primaryPlaceId = s(story?.place_id);
+        if (!primaryPlaceId || primaryPlaceId === currentId) continue;
+
+        const related = storyPlaces(story);
+        if (!related.includes(currentId)) continue;
+
+        const result = makeNarrativeResult(story, primaryPlaceId, "reverse");
+        if (result) return result;
+      }
+    } catch (e) {
+      if (window.DEBUG) console.warn("[HGNavigator] buildNarrative failed", e);
+    }
+
+    // Viktig: ingen geografisk fallback her.
+    // Hvis Stories ikke har ekte kobling, skal Neste scene ikke vises.
+    return null;
   }
 
   function buildConcept(place) {
@@ -207,7 +242,7 @@
     return {
       spatial: buildSpatial(place, nearbyPlaces),
       wk: buildWonderkammer(place),
-      narrative: buildNarrative(place, nearbyPlaces),
+      narrative: buildNarrative(place),
       concept: buildConcept(place)
     };
   }
