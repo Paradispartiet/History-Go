@@ -6,15 +6,15 @@ const CACHE_NAME = "aha-chat-v4.0.111";
 
 // Filer vi gjerne vil ha tilgjengelig offline (app-shell)
 const ASSETS = [
-  "/",
-  "/index.html",
-  "/aha-chat.css",
-  "/insightsChamber.js",
-  "/metaInsightsEngine.js",
-  "/ahaFieldProfiles.js",
-  "/ahaChat.js",
-  "/emnerLoader.js",
-  "/ahaEmneMatcher.js"
+  "./",
+  "./index.html",
+  "./aha-chat.css",
+  "./insightsChamber.js",
+  "./metaInsightsEngine.js",
+  "./ahaFieldProfiles.js",
+  "./ahaChat.js",
+  "../js/emnerLoader.js",
+  "./ahaEmneMatcher.js"
 ];
 
 // Install – legg basisfilene i cache
