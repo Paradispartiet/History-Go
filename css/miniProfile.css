@@ -203,9 +203,21 @@
    Viser: navn / steder + quizzer
    ===================================================== */
 
+body.hg-app header.site-header{
+  justify-content: center;
+}
+
 .site-header .top-actions{
   flex-wrap: nowrap;
   overflow: hidden;
+}
+
+body.hg-app .site-header .top-actions{
+  justify-content: center;
+  margin-left: 0;
+  margin-right: 0;
+  flex: 0 1 auto;
+  max-width: calc(100% - 24px);
 }
 
 body.hg-app .site-header .top-actions #miniProfile{
