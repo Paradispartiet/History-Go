@@ -23,6 +23,9 @@
     const labels = {
       play_zone: "Lekeområde",
       open_play_area: "Åpent lekeområde",
+      landscape_zone: "Landskapssone",
+      nature_discovery: "Naturutforsking",
+      sensory_zone: "Sansesone",
       exploration_zone: "Utforskingssone",
       thing_to_see: "Ting å se",
       quiet_zone: "Rolig sone",
@@ -277,6 +280,9 @@
     const labels = {
       play_zone: "Lekeområde",
       open_play_area: "Åpent lekeområde",
+      landscape_zone: "Landskapssone",
+      nature_discovery: "Naturutforsking",
+      sensory_zone: "Sansesone",
       exploration_zone: "Utforskingssone",
       thing_to_see: "Ting å se",
       quiet_zone: "Rolig sone",
@@ -310,7 +316,12 @@
     {
       id: "play",
       title: "Lek",
-      types: ["play_zone", "play_object", "open_play_area", "water_play_zone", "seasonal_activity_zone"]
+      types: ["play_zone", "play_object", "open_play_area"]
+    },
+    {
+      id: "nature",
+      title: "Natur",
+      types: ["landscape_zone", "nature_discovery", "sensory_zone", "water_play_zone", "seasonal_activity_zone"]
     },
     {
       id: "training",
