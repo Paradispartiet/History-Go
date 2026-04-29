@@ -1,17 +1,17 @@
 # Place Data Audit
 
-Generert: 2026-04-29T20:49:37.780Z
+Generert: 2026-04-29T21:51:23.753Z
 
 ## Totalsammendrag
 
 - Place-filer i manifest: **18**
 - Totalt antall places: **228**
 - Steder med manglende obligatoriske felt: **72**
-- Steder med manglende popupDesc: **126**
+- Steder med manglende popupDesc: **122**
 - Steder med manglende image: **136**
 - Steder med manglende cardImage: **136**
-- Steder med manglende emne_ids: **133**
-- Steder med manglende quiz_profile: **133**
+- Steder med manglende emne_ids: **128**
+- Steder med manglende quiz_profile: **128**
 - Steder som bruker imageCard-felt: **0**
 - Steder med stub:true eller hidden:true: **0**
 - Antall ødelagte asset paths: **120**
@@ -216,13 +216,10 @@ Generert: 2026-04-29T20:49:37.780Z
 ### data/places/places_vitenskap.json
 
 - Antall places: 5
-- Places med funn: 5
+- Places med funn: 2
 
-- universitetets_gamle_hovedbygning (Universitetets gamle hovedbygning): mangler popupDesc | mangler emne_ids | mangler quiz_profile | ødelagte paths: image=bilder/places/univers_gamle.PNG; cardImage=bilder/kort/places/universitetets_gamle_hovedbygning.PNG
-- universitetets_gamle_kjemi (Universitetets gamle kjemibygning): mangler popupDesc | mangler emne_ids | mangler quiz_profile
-- tvergastein (Tvergastein): mangler popupDesc | mangler emne_ids | mangler quiz_profile
-- gamlebyen_skole (Gamlebyen skole): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- abelhaugen (Abelhaugen): mangler emne_ids | mangler quiz_profile
+- universitetets_gamle_hovedbygning (Universitetets gamle hovedbygning): ødelagte paths: image=bilder/places/univers_gamle.PNG; cardImage=bilder/kort/places/universitetets_gamle_hovedbygning.PNG
+- gamlebyen_skole (Gamlebyen skole): mangler image | mangler cardImage
 
 ### data/places/oslo/places_oslo_natur_akerselvarute.json
 
