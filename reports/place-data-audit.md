@@ -1,17 +1,17 @@
 # Place Data Audit
 
-Generert: 2026-04-29T19:34:57.890Z
+Generert: 2026-04-29T20:49:37.780Z
 
 ## Totalsammendrag
 
 - Place-filer i manifest: **18**
 - Totalt antall places: **228**
 - Steder med manglende obligatoriske felt: **72**
-- Steder med manglende popupDesc: **138**
+- Steder med manglende popupDesc: **126**
 - Steder med manglende image: **136**
 - Steder med manglende cardImage: **136**
-- Steder med manglende emne_ids: **157**
-- Steder med manglende quiz_profile: **157**
+- Steder med manglende emne_ids: **133**
+- Steder med manglende quiz_profile: **133**
 - Steder som bruker imageCard-felt: **0**
 - Steder med stub:true eller hidden:true: **0**
 - Antall ødelagte asset paths: **120**
@@ -106,32 +106,21 @@ Generert: 2026-04-29T19:34:57.890Z
 ### data/places/places_litteratur.json
 
 - Antall places: 24
-- Places med funn: 24
+- Places med funn: 13
 
-- ibsen_quotes (Ibsen sitater): mangler popupDesc | mangler emne_ids | mangler quiz_profile
-- nasjonalbiblioteket (Nasjonalbiblioteket): mangler popupDesc | mangler emne_ids | mangler quiz_profile
-- voienvolden (Vøienvolden gård): mangler popupDesc | mangler emne_ids | mangler quiz_profile
-- camilla_collett_statue (Camilla Collett-statuen): mangler popupDesc | mangler emne_ids | mangler quiz_profile | ødelagte paths: cardImage=bilder/kort/places/camilla_collett_statue_kort.PNG
-- henrik_wergeland_statue (Henrik Wergeland-statuen): mangler popupDesc | mangler emne_ids | mangler quiz_profile | ødelagte paths: image=bilder/places/henrik_wergeland_statue.PNG; cardImage=bilder/kort/places/henrik_wergeland_statue_kort.PNG
-- grotta (Grotten): mangler popupDesc | mangler emne_ids | mangler quiz_profile
-- nationaltheatret (Nationaltheatret): mangler popupDesc | mangler emne_ids | mangler quiz_profile
-- deichman_bjorvika (Deichman Bjørvika): mangler popupDesc | mangler emne_ids | mangler quiz_profile
-- litteraturhuset (Litteraturhuset): mangler popupDesc | mangler emne_ids | mangler quiz_profile
-- tronsmo_bokhandel (Tronsmo Bokhandel): mangler popupDesc | mangler emne_ids | mangler quiz_profile | ødelagte paths: cardImage=bilder/kort/places/tronsmo_bokhandel_kort.PNG
-- eldorado_bokhandel (Eldorado Bokhandel): mangler popupDesc | mangler emne_ids | mangler quiz_profile
-- gamle_deichman (Gamle Deichman): mangler emne_ids | mangler quiz_profile | ødelagte paths: cardImage=bilder/kort/places/gamle_deichman.PNG
-- deichman_grunerlokka (Deichman Grünerløkka): mangler emne_ids | mangler quiz_profile
-- kulturkirken_jakob_litteratur (Kulturkirken Jakob): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- norli_universitetsgata (Norli Universitetsgata): mangler emne_ids | mangler quiz_profile
-- ullevål_hageby (Ullevål Hageby): mangler emne_ids | mangler quiz_profile
-- sigrid_undset_statue (Sigrid Undset-statuen): mangler emne_ids | mangler quiz_profile | ødelagte paths: cardImage=bilder/kort/places/sigrid_undset_statue.PNG
-- ruth_maier_minne (Ruth Maier-minnesmerke): mangler emne_ids | mangler quiz_profile | ødelagte paths: cardImage=bilder/kort/places/ruth_maier_minne.PNG
-- alf_proysen_statue_nittedal (Alf Prøysen-statuen – Nittedal kulturhus): mangler emne_ids | mangler quiz_profile | ødelagte paths: cardImage=bilder/kort/places/alf_proysen_statue_nittedal.PNG
-- proysenhuset_rudshogda (Prøysenhuset – Rudshøgda): mangler emne_ids | mangler quiz_profile | ødelagte paths: cardImage=bilder/kort/places/proysenhuset_rudshogda.PNG
-- inger_hagerups_plass (Inger Hagerups plass): mangler emne_ids | mangler quiz_profile | ødelagte paths: cardImage=bilder/kort/places/inger_hagerups_plass.PNG
-- var_frelsers_gravlund (Vår Frelsers gravlund): mangler emne_ids | mangler quiz_profile | ødelagte paths: cardImage=bilder/kort/places/var_frelsers_gravlund.PNG
-- oscar_braaten_statuen (Oscar Braaten-statuen): mangler emne_ids | mangler quiz_profile | ødelagte paths: cardImage=bilder/kort/places/oscar_braaten_statuen.PNG
-- alexander_kiellands_plass (Alexander Kiellands plass): mangler emne_ids | mangler quiz_profile | ødelagte paths: image=bilder/places/aleksander_kiellands_plass.WEBPr
+- camilla_collett_statue (Camilla Collett-statuen): ødelagte paths: cardImage=bilder/kort/places/camilla_collett_statue_kort.PNG
+- henrik_wergeland_statue (Henrik Wergeland-statuen): ødelagte paths: image=bilder/places/henrik_wergeland_statue.PNG; cardImage=bilder/kort/places/henrik_wergeland_statue_kort.PNG
+- tronsmo_bokhandel (Tronsmo Bokhandel): ødelagte paths: cardImage=bilder/kort/places/tronsmo_bokhandel_kort.PNG
+- gamle_deichman (Gamle Deichman): ødelagte paths: cardImage=bilder/kort/places/gamle_deichman.PNG
+- kulturkirken_jakob_litteratur (Kulturkirken Jakob): mangler image | mangler cardImage
+- sigrid_undset_statue (Sigrid Undset-statuen): ødelagte paths: cardImage=bilder/kort/places/sigrid_undset_statue.PNG
+- ruth_maier_minne (Ruth Maier-minnesmerke): ødelagte paths: cardImage=bilder/kort/places/ruth_maier_minne.PNG
+- alf_proysen_statue_nittedal (Alf Prøysen-statuen – Nittedal kulturhus): ødelagte paths: cardImage=bilder/kort/places/alf_proysen_statue_nittedal.PNG
+- proysenhuset_rudshogda (Prøysenhuset – Rudshøgda): ødelagte paths: cardImage=bilder/kort/places/proysenhuset_rudshogda.PNG
+- inger_hagerups_plass (Inger Hagerups plass): ødelagte paths: cardImage=bilder/kort/places/inger_hagerups_plass.PNG
+- var_frelsers_gravlund (Vår Frelsers gravlund): ødelagte paths: cardImage=bilder/kort/places/var_frelsers_gravlund.PNG
+- oscar_braaten_statuen (Oscar Braaten-statuen): ødelagte paths: cardImage=bilder/kort/places/oscar_braaten_statuen.PNG
+- alexander_kiellands_plass (Alexander Kiellands plass): ødelagte paths: image=bilder/places/aleksander_kiellands_plass.WEBPr
 
 ### data/places/places_musikk.json
 
