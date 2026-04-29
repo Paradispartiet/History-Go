@@ -345,7 +345,7 @@
   function boot() {
     if (document.body?.classList.contains("profile-page")) return;
     ensurePanel();
-    renderNextUpV2(readTri());
+    window.setTimeout(() => renderNextUpV2(readTri()), 40);
   }
 
   window.renderNextUpV2 = renderNextUpV2;
@@ -360,7 +360,9 @@
       localStorage.setItem(BECAUSE_KEY, String(becauseLine || ""));
     } catch {}
 
-    window.setTimeout(() => renderNextUpV2(tri), 0);
+    // Legacy-renderer i learningLog.js lytter også på hg:mpNextUp.
+    // Rendér v2 litt etterpå slik at suggestions[] alltid blir siste visning.
+    window.setTimeout(() => renderNextUpV2(tri), 40);
   });
 
   if (document.readyState === "loading") {
