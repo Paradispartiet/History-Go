@@ -8,6 +8,7 @@ const modelPath = path.resolve(__dirname, '../data/Civication/workModels/naering
 const required = ['id','mail_type','mail_family','role_scope','subject','summary','situation','task_domain','competency','pressure','choice_axis','consequence_axis','narrative_arc','choices'];
 const ids = new Set();
 const domains = new Set();
+const brandCounts = new Map();
 let ekspeditorCount = 0;
 
 function collectJsonFiles(dir) {
@@ -20,8 +21,12 @@ function collectJsonFiles(dir) {
   return out;
 }
 
+function isEkspeditorRuntimeCatalog(file) {
+  return file.includes('/naeringsliv/') && /ekspeditor_.*\.json$/.test(file);
+}
+
 for (const file of collectJsonFiles(familiesRoot)) {
-  if (!file.includes('/naeringsliv/') || !/ekspeditor_.*\.json$/.test(file)) continue;
+  if (!isEkspeditorRuntimeCatalog(file)) continue;
   const raw = fs.readFileSync(file, 'utf8');
   const catalog = JSON.parse(raw);
   assert(Array.isArray(catalog.families) && catalog.families.length > 0, `Catalog families missing: ${file}`);
@@ -42,6 +47,10 @@ for (const file of collectJsonFiles(familiesRoot)) {
       if (mail.role_scope === 'ekspeditor') {
         ekspeditorCount += 1;
         domains.add(mail.task_domain);
+        if (mail.brand_id) {
+          assert(mail.brand_name !== undefined && String(mail.brand_name).trim().length > 0, `brand_name missing in ${mail.id}`);
+          brandCounts.set(mail.brand_id, (brandCounts.get(mail.brand_id) || 0) + 1);
+        }
       }
     }
   }
@@ -49,7 +58,10 @@ for (const file of collectJsonFiles(familiesRoot)) {
 
 assert(ekspeditorCount >= 44, `Need >=44 ekspeditor mails, got ${ekspeditorCount}`);
 assert(domains.size >= 5, `Need >=5 task domains among ekspeditor mails, got ${domains.size}`);
+assert((brandCounts.get('norli') || 0) >= 1, 'Need at least one Norli brand-specific ekspeditor mail');
+assert((brandCounts.get('narvesen') || 0) >= 1, 'Need at least one Narvesen brand-specific ekspeditor mail');
 const model = JSON.parse(fs.readFileSync(modelPath, 'utf8'));
 assert(!Object.prototype.hasOwnProperty.call(model, 'mails'), 'work model must not include top-level mails');
 
-console.log(`Validation OK: ${ids.size} mails total, ${ekspeditorCount} ekspeditor mails, ${domains.size} ekspeditor task domains.`);
+const brandSummary = [...brandCounts.entries()].map(([brand, count]) => `${brand}:${count}`).join(', ') || 'none';
+console.log(`Validation OK: ${ids.size} mails total, ${ekspeditorCount} ekspeditor mails, ${domains.size} ekspeditor task domains, brand mails ${brandSummary}.`);
