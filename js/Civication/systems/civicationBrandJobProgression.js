@@ -261,6 +261,20 @@
     return { ok: true, enqueued: true };
   }
 
+  function makeTriggeredEntry(rule, value, source) {
+    return {
+      at: new Date().toISOString(),
+      mail_id: rule.mail_id,
+      brand_id: rule.brand_id,
+      brand_name: rule.brand_name,
+      role_scope: rule.role_scope,
+      metric: rule.metric,
+      threshold: rule.threshold,
+      value,
+      source: source || "enqueued"
+    };
+  }
+
   function evaluateEntry(entry) {
     if (!entry || !entry.brand_id || !entry.role_scope || !entry.metrics) {
       return { ok: false, changed: false, reason: "invalid_entry", triggered: [] };
@@ -280,18 +294,9 @@
       if (next.triggered[key]) continue;
 
       const enqueued = enqueueMilestone(rule, entry);
-      if (!enqueued.ok || enqueued.reason === "already_pending") continue;
+      if (!enqueued.ok) continue;
 
-      next.triggered[key] = {
-        at: new Date().toISOString(),
-        mail_id: rule.mail_id,
-        brand_id: rule.brand_id,
-        brand_name: rule.brand_name,
-        role_scope: rule.role_scope,
-        metric: rule.metric,
-        threshold: rule.threshold,
-        value
-      };
+      next.triggered[key] = makeTriggeredEntry(rule, value, enqueued.reason === "already_pending" ? "already_pending" : "enqueued");
       triggered.push(key);
     }
 
