@@ -49,9 +49,18 @@
     const isPhone = vw <= PHONE_BREAKPOINT;
     const mode = isPhone ? "phone" : "tablet";
     const designWidth = isPhone ? PHONE_DESIGN_WIDTH : TABLET_DESIGN_WIDTH;
-    const designHeight = isPhone
-      ? Math.max(PHONE_MIN_DESIGN_HEIGHT, vh)
-      : TABLET_DESIGN_HEIGHT;
+
+    let designHeight;
+    if (isPhone) {
+      const widthScale = vw / PHONE_DESIGN_WIDTH;
+      designHeight = Math.max(
+        PHONE_MIN_DESIGN_HEIGHT,
+        Math.ceil(vh / widthScale)
+      );
+    } else {
+      designHeight = TABLET_DESIGN_HEIGHT;
+    }
+
     return { mode, designWidth, designHeight };
   }
 
