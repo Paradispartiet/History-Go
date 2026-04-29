@@ -289,6 +289,34 @@ body.hg-app.hg-phone #nearbyList:not(.nearby-strip) .nearby-dist{
   font-size: 12px;
 }
 
+
+body.hg-app.hg-phone #nearbyListContainer .nearby-tabs{
+  justify-content: flex-start;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+body.hg-app.hg-phone #nearbyListContainer .nearby-tabs::-webkit-scrollbar{
+  display: none;
+}
+
+body.hg-app.hg-phone #nearbyListContainer .nearby-tab{
+  padding: 8px 11px;
+  font-size: 14px;
+  min-height: 38px;
+  flex: 0 0 auto;
+}
+
+body.hg-app.hg-phone .nearby-row2{
+  height: 140px;
+  margin-top: 8px;
+}
+
+body.hg-app.hg-phone #nearbyList.nearby-strip .nearby-item{
+  width: 180px;
+  height: 128px;
+}
+
 /* Farger per tab (bakgrunn = farge) */
 .nearby-tab[data-leftmode="nearby"]{ background: rgba(0,122,255,0.40); }  /* blå */
 .nearby-tab[data-leftmode="routes"]{ background: rgba(52,199,89,0.40); }  /* grønn */
