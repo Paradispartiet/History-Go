@@ -29,15 +29,7 @@
     if (typeof item === "string") return str(item);
     if (!isObject(item)) return "";
 
-    const title = firstText(item, [
-      "topic",
-      "title",
-      "question",
-      "name",
-      "label",
-      "id"
-    ]);
-
+    const title = firstText(item, ["topic", "title", "question", "name", "label", "id"]);
     const body = firstText(item, [
       "text",
       "knowledge",
@@ -56,11 +48,9 @@
   }
 
   function createContext(categoryId, path, item) {
-    const cleanPath = Array.isArray(path)
-      ? path.map(str).filter(Boolean)
-      : [];
-
+    const cleanPath = Array.isArray(path) ? path.map(str).filter(Boolean) : [];
     const emner = [];
+
     if (isObject(item)) {
       const directEmner = Array.isArray(item.emner)
         ? item.emner
@@ -88,14 +78,7 @@
   function extractTimestamp(item, fallback) {
     if (!isObject(item)) return fallback || null;
     return (
-      firstText(item, [
-        "createdAt",
-        "created_at",
-        "updatedAt",
-        "updated_at",
-        "timestamp",
-        "date"
-      ]) ||
+      firstText(item, ["createdAt", "created_at", "updatedAt", "updated_at", "timestamp", "date"]) ||
       fallback ||
       null
     );
@@ -242,28 +225,13 @@
 
     const chamber = global.loadChamberFromStorage();
     const fallbackTimestamp = payload.exported_at || new Date().toISOString();
-
     let importedSignals = 0;
 
     importedSignals += collectNotes(chamber, payload.notes, fallbackTimestamp);
     importedSignals += collectDialogs(chamber, payload.dialogs, fallbackTimestamp);
-    importedSignals += collectKnowledgeSignals(
-      chamber,
-      payload.knowledge_universe,
-      fallbackTimestamp
-    );
-    importedSignals += collectFlatEvents(
-      chamber,
-      payload.hg_learning_log_v1,
-      "learning_log",
-      fallbackTimestamp
-    );
-    importedSignals += collectFlatEvents(
-      chamber,
-      payload.hg_insights_events_v1,
-      "insight_event",
-      fallbackTimestamp
-    );
+    importedSignals += collectKnowledgeSignals(chamber, payload.knowledge_universe, fallbackTimestamp);
+    importedSignals += collectFlatEvents(chamber, payload.hg_learning_log_v1, "learning_log", fallbackTimestamp);
+    importedSignals += collectFlatEvents(chamber, payload.hg_insights_events_v1, "insight_event", fallbackTimestamp);
 
     global.saveChamberToStorage(chamber);
     if (typeof global.refreshThemePicker === "function") {
@@ -279,11 +247,9 @@
   function importHistoryGoDataFromSharedStorage() {
     if (typeof global.clearOutput === "function") global.clearOutput();
 
-    const write = typeof global.log === "function"
-      ? global.log
-      : (msg) => console.log(msg);
-
+    const write = typeof global.log === "function" ? global.log : (msg) => console.log(msg);
     const raw = localStorage.getItem(IMPORT_STORAGE_KEY);
+
     if (!raw) {
       write("Fant ingen History Go-data å importere (aha_import_payload_v1 er tom).");
       return { importedSignals: 0, importedTextItems: 0 };
@@ -309,14 +275,34 @@
     }
   }
 
+  function bindImportButton() {
+    const btn = document.getElementById("btn-import-hg");
+    if (!btn || btn.dataset.ahaHgImportAdapterBound === "1") return;
+
+    btn.dataset.ahaHgImportAdapterBound = "1";
+    btn.addEventListener(
+      "click",
+      (event) => {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        importHistoryGoDataFromSharedStorage();
+      },
+      true
+    );
+  }
+
   global.AHAHistoryGoImport = {
     importHistoryGoData,
     importHistoryGoDataFromSharedStorage,
     collectKnowledgeSignals
   };
 
-  // Bevisst global override: ahaChat.js har allerede UI-handleren,
-  // og handleren skal bruke denne mer presise importadapteren.
   global.importHistoryGoData = importHistoryGoData;
   global.importHistoryGoDataFromSharedStorage = importHistoryGoDataFromSharedStorage;
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", bindImportButton);
+  } else {
+    bindImportButton();
+  }
 })(this);
