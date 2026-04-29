@@ -1,0 +1,344 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "naeringsliv",
+  "role_scope": "ekspeditor",
+  "brand_id": "narvesen",
+  "brand_name": "Narvesen",
+  "mail_type": "brand",
+  "families": [
+    {
+      "id": "kasse_og_pris",
+      "mails": [
+        {
+          "id": "ekspeditor_narvesen_kasse_ko_001",
+          "mail_type": "job",
+          "mail_family": "kasse_og_pris",
+          "role_scope": "ekspeditor",
+          "brand_id": "narvesen",
+          "brand_name": "Narvesen",
+          "brand_role": "kioskmedarbeider",
+          "subject": "Køen vokser mens kunden leter etter kupongen",
+          "summary": "En kunde mener hun har rabatt, men køen bak henne vokser raskt.",
+          "situation": [
+            "En kunde holder opp telefonen og sier at Narvesen-kupongen skal gi rabatt på kaffe og bolle.",
+            "Appen laster tregt, kortterminalen venter, og tre kunder bak henne begynner å flytte på seg.",
+            "Kioskjobben tester hvor mye service du klarer når hele butikken måles i sekunder."
+          ],
+          "task_domain": "kasse",
+          "competency": "tempo_og_noyaktighet",
+          "pressure": "ko_bygger_seg_opp",
+          "choice_axis": "tempo_vs_service",
+          "consequence_axis": "driftsflyt",
+          "narrative_arc": "kundenes_blikk",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Be kunden åpne kupongen ved siden av kassa mens du tar neste kunde først",
+              "effect": 1,
+              "tags": ["tempo", "service", "kohaandtering"],
+              "feedback": "Du holder flyten uten å avvise kundens krav."
+            },
+            {
+              "id": "B",
+              "label": "Vent til appen laster og la køen stå",
+              "effect": 0,
+              "tags": ["service", "ko_risiko"],
+              "feedback": "Du viser tålmodighet, men mister Narvesen-rytmen rundt deg."
+            },
+            {
+              "id": "C",
+              "label": "Si at du ikke kan bruke kupongen hvis den ikke vises nå",
+              "effect": -1,
+              "tags": ["tempo", "kundetillit_minus"],
+              "feedback": "Du får køen videre, men kunden opplever at systemet blir ditt problemfrie skjold."
+            }
+          ]
+        },
+        {
+          "id": "ekspeditor_narvesen_kasse_pris_001",
+          "mail_type": "job",
+          "mail_family": "kasse_og_pris",
+          "role_scope": "ekspeditor",
+          "brand_id": "narvesen",
+          "brand_name": "Narvesen",
+          "brand_role": "kioskmedarbeider",
+          "subject": "Kampanjeskiltet sier to for én, kassa gjør ikke det",
+          "summary": "Et gammelt kampanjeskilt skaper prisfeil midt i morgenrushet.",
+          "situation": [
+            "En kunde peker på skiltet ved kjøledisken: to for én på drikke.",
+            "Kassa slår inn full pris, og du ser at skiltet egentlig skulle vært tatt ned i går kveld.",
+            "Feilen er ikke din, men du står foran kunden og må eie den."
+          ],
+          "task_domain": "pris_og_kampanje",
+          "competency": "ansvar",
+          "pressure": "brandstandard",
+          "choice_axis": "kundetillit_vs_regel",
+          "consequence_axis": "kundetillit",
+          "narrative_arc": "varene_som_system",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gi kunden skiltprisen, fjern skiltet og noter avviket",
+              "effect": 1,
+              "tags": ["kundetillit", "avvik", "noyaktighet"],
+              "feedback": "Du retter både kundens situasjon og årsaken til neste feil."
+            },
+            {
+              "id": "B",
+              "label": "Forklar at kassa bestemmer prisen og slå inn full pris",
+              "effect": -1,
+              "tags": ["regel", "kundetillit_minus"],
+              "feedback": "Du beskytter systemet, men kunden møtte skiltet før hun møtte deg."
+            },
+            {
+              "id": "C",
+              "label": "Gi rabatt, men la skiltet stå til senere",
+              "effect": 0,
+              "tags": ["kundeservice", "gjentakelsesrisiko"],
+              "feedback": "Du løser kunden foran deg, men lar samme feil vente på neste."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "salg_og_veiledning",
+      "mails": [
+        {
+          "id": "ekspeditor_narvesen_salg_mersalg_001",
+          "mail_type": "conflict",
+          "mail_family": "salg_og_veiledning",
+          "role_scope": "ekspeditor",
+          "brand_id": "narvesen",
+          "brand_name": "Narvesen",
+          "brand_role": "kioskmedarbeider",
+          "subject": "Mersalget ligger klart ved kassa",
+          "summary": "Du skal spørre om kunden vil ha noe ekstra, men kunden virker stresset og vil bare videre.",
+          "situation": [
+            "Kunden kjøper én kaffe og ser hele tiden mot døra til kollektivknutepunktet.",
+            "Ved kassa ligger kampanjevaren som alle skal tilby denne uka.",
+            "Narvesen-språket er raskt, men ikke alle kunder tåler samme salgsrytme."
+          ],
+          "task_domain": "salg_veiledning",
+          "competency": "situasjonslesing",
+          "pressure": "mersalgspress",
+          "choice_axis": "salg_vs_flyt",
+          "consequence_axis": "kundetillit",
+          "narrative_arc": "kundenes_blikk",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Spør kort og konkret, uten å bremse betalingen",
+              "effect": 1,
+              "tags": ["mersalg", "tempo", "situasjonslesing"],
+              "feedback": "Du følger kampanjen uten å gjøre kunden fanget i kassa."
+            },
+            {
+              "id": "B",
+              "label": "Dropp spørsmålet og få kunden raskt videre",
+              "effect": 0,
+              "tags": ["tempo", "salg_minus"],
+              "feedback": "Du leser kunden riktig, men trener ikke på å gjøre salg uten friksjon."
+            },
+            {
+              "id": "C",
+              "label": "Gi full kampanjepitch fordi dere må nå målet",
+              "effect": -1,
+              "tags": ["salgspress", "kundestress"],
+              "feedback": "Du følger måltallet, men overser situasjonen som står rett foran deg."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "svinn_og_kontroll",
+      "mails": [
+        {
+          "id": "ekspeditor_narvesen_svinn_alder_001",
+          "mail_type": "event",
+          "mail_family": "svinn_og_kontroll",
+          "role_scope": "ekspeditor",
+          "brand_id": "narvesen",
+          "brand_name": "Narvesen",
+          "brand_role": "kioskmedarbeider",
+          "subject": "Energidrikk og et blikk som ber deg la være å spørre",
+          "summary": "En kunde ser ung ut, køen er lang, og varen krever at du vurderer alder og ansvar.",
+          "situation": [
+            "En kunde legger energidrikk på disken og holder kortet klart før du rekker å si noe.",
+            "Køen bak er lang, og kunden virker forberedt på at du bare skal slå varen gjennom.",
+            "Det lille kontrollpunktet er en del av jobben, selv når hele rommet vil videre."
+          ],
+          "task_domain": "kontroll",
+          "competency": "regeltrygghet",
+          "pressure": "ko_bygger_seg_opp",
+          "choice_axis": "tempo_vs_ansvar",
+          "consequence_axis": "risiko",
+          "narrative_arc": "snarveien",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Be rolig om legitimasjon før du slår inn varen",
+              "effect": 1,
+              "tags": ["regeltrygghet", "risiko_minus", "ansvar"],
+              "feedback": "Du lar ikke køpresset definere hva som er forsvarlig."
+            },
+            {
+              "id": "B",
+              "label": "Slå varen gjennom fordi kunden sikkert er gammel nok",
+              "effect": -1,
+              "tags": ["snarvei", "risiko", "tempo"],
+              "feedback": "Du sparer sekunder, men gjør kontrollen til en stemning i stedet for en rutine."
+            },
+            {
+              "id": "C",
+              "label": "Spør en kollega høyt om du må sjekke legitimasjon",
+              "effect": 0,
+              "tags": ["usikkerhet", "kollegastotte"],
+              "feedback": "Du søker støtte, men gjør kunden mer synlig enn nødvendig."
+            }
+          ]
+        },
+        {
+          "id": "ekspeditor_narvesen_svinn_varmvarer_001",
+          "mail_type": "job",
+          "mail_family": "svinn_og_kontroll",
+          "role_scope": "ekspeditor",
+          "brand_id": "narvesen",
+          "brand_name": "Narvesen",
+          "brand_role": "kioskmedarbeider",
+          "subject": "Varmvaren har ligget for lenge",
+          "summary": "Du ser at en varm matvare burde tas ut, men det er fristende å la den ligge gjennom rushen.",
+          "situation": [
+            "Varmdisken ser full ut, men du vet at noen varer nærmer seg grensa for hvor lenge de skal ligge.",
+            "Hvis du tar dem ut nå, ser disken tommere ut midt i salget.",
+            "Hvis du lar dem ligge, ser alt fint ut helt til kvaliteten blir kundens problem."
+          ],
+          "task_domain": "butikkstandard",
+          "competency": "kvalitetskontroll",
+          "pressure": "salg_vs_standard",
+          "choice_axis": "synlighet_vs_kvalitet",
+          "consequence_axis": "brand_tillit",
+          "narrative_arc": "varene_som_system",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta ut varene, registrer svinn og fyll på det du faktisk kan stå inne for",
+              "effect": 1,
+              "tags": ["kvalitet", "svinnkontroll", "brand_tillit"],
+              "feedback": "Du lar ikke en full disk være viktigere enn det brandet lover kunden."
+            },
+            {
+              "id": "B",
+              "label": "La varene ligge til rushen er over",
+              "effect": -1,
+              "tags": ["snarvei", "kvalitet_minus", "salg"],
+              "feedback": "Det ser bedre ut nå, men du skyver risikoen over på kunden og neste vakt."
+            },
+            {
+              "id": "C",
+              "label": "Spør leder om lov før du gjør noe",
+              "effect": 0,
+              "tags": ["usikkerhet", "ansvar_delt"],
+              "feedback": "Du unngår feil, men viser også at du ennå ikke eier standarden."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "yrkesidentitet_pa_gulvet",
+      "mails": [
+        {
+          "id": "ekspeditor_narvesen_story_frontlinje_001",
+          "mail_type": "story",
+          "mail_family": "yrkesidentitet_pa_gulvet",
+          "role_scope": "ekspeditor",
+          "brand_id": "narvesen",
+          "brand_name": "Narvesen",
+          "brand_role": "kioskmedarbeider",
+          "subject": "Du står i fronten av en jobb som nesten er designet for å forsvinne",
+          "summary": "Etter noen vakter merker du hvor mye av Narvesen-jobben handler om tempo, små salg og oppgaver maskiner gradvis overtar.",
+          "situation": [
+            "Selvbetjening, apper og automater gjør allerede deler av jobben rundt deg.",
+            "Likevel er det fortsatt du som får blikkene når køen stopper, prisen er feil eller kunden ikke forstår systemet.",
+            "Jobben har lav status og lite makt, men den lærer deg hvor friksjonen i hverdagsøkonomien faktisk oppstår."
+          ],
+          "task_domain": "yrkesidentitet",
+          "competency": "faglig_refleksjon",
+          "pressure": "automatiseringspress",
+          "choice_axis": "overleve_vakt_vs_laere_system",
+          "consequence_axis": "yrkesforstaelse",
+          "narrative_arc": "fra_ansatt_til_fagperson",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Begynn å legge merke til hvilke problemer maskinene ikke løser",
+              "effect": 1,
+              "tags": ["systemforstaelse", "yrkesidentitet", "laering"],
+              "feedback": "Du gjør en utskiftbar jobb til et blikk på hvordan service faktisk fungerer."
+            },
+            {
+              "id": "B",
+              "label": "Gjør vaktene raskest mulig og tenk minst mulig på jobben",
+              "effect": 0,
+              "tags": ["overlevelse", "lav_refleksjon"],
+              "feedback": "Det er forståelig, men da blir jobben bare timer du kommer deg gjennom."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "travelt_gulv",
+      "mails": [
+        {
+          "id": "ekspeditor_narvesen_event_terminal_001",
+          "mail_type": "event",
+          "mail_family": "travelt_gulv",
+          "role_scope": "ekspeditor",
+          "brand_id": "narvesen",
+          "brand_name": "Narvesen",
+          "brand_role": "kioskmedarbeider",
+          "subject": "Terminalen går ned midt i morgenrushet",
+          "summary": "Kortterminalen henger, kundene skal rekke tog og du må holde situasjonen tydelig.",
+          "situation": [
+            "Terminalen fryser etter første pip, og kunden sier at hun allerede har dårlig tid.",
+            "To nye kunder kommer inn, én spør etter kaffe, og en annen legger avisen på disken uten å forstå at systemet står stille.",
+            "Når teknikken svikter, blir du plutselig hele grensesnittet mellom kunden og brandet."
+          ],
+          "task_domain": "driftsavvik",
+          "competency": "kriseprioritering",
+          "pressure": "teknisk_avvik",
+          "choice_axis": "kontroll_vs_paniktempo",
+          "consequence_axis": "driftsflyt",
+          "narrative_arc": "travelt_gulv",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Stopp nye salg kort, forklar rolig og start terminalen på nytt før du tar køen videre",
+              "effect": 1,
+              "tags": ["driftsavvik", "kommunikasjon", "kontroll"],
+              "feedback": "Du gjør avviket synlig og håndterbart i stedet for å late som alt går."
+            },
+            {
+              "id": "B",
+              "label": "Prøv å slå inn neste kunde mens terminalen henger",
+              "effect": -1,
+              "tags": ["panikk", "feilrisiko"],
+              "feedback": "Du holder bevegelse i overflaten, men bygger flere feil på samme problem."
+            },
+            {
+              "id": "C",
+              "label": "Rop etter leder og vent uten å forklare kundene noe",
+              "effect": 0,
+              "tags": ["lederstotte", "lav_kommunikasjon"],
+              "feedback": "Du får hjelp, men kundene blir stående i et tomrom du kunne ha fylt."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
