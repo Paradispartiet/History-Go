@@ -1,21 +1,21 @@
 # Place Data Audit
 
-Generert: 2026-04-29T15:58:46.673Z
+Generert: 2026-04-29T16:34:09.875Z
 
 ## Totalsammendrag
 
 - Place-filer i manifest: **18**
 - Totalt antall places: **220**
-- Steder med manglende obligatoriske felt: **73**
+- Steder med manglende obligatoriske felt: **72**
 - Steder med manglende popupDesc: **146**
 - Steder med manglende image: **128**
 - Steder med manglende cardImage: **128**
 - Steder med manglende emne_ids: **166**
 - Steder med manglende quiz_profile: **166**
 - Steder som bruker imageCard-felt: **0**
-- Steder med stub:true eller hidden:true: **1**
+- Steder med stub:true eller hidden:true: **0**
 - Antall ødelagte asset paths: **120**
-- Antall place-referanser til ikke-eksisterende id-er: **61**
+- Antall place-referanser til ikke-eksisterende id-er: **8**
 
 ## Funn per fil
 
@@ -93,7 +93,7 @@ Generert: 2026-04-29T15:58:46.673Z
 - slottet (Det kongelige slott): mangler popupDesc | mangler emne_ids | mangler quiz_profile
 - sofienberg_kirke (Sofienberg kirke): mangler emne_ids | mangler quiz_profile | ødelagte paths: cardImage=bilder/kort/places/sofienberg_kirke.PNG
 - gamlebyen_gravlund (Gamlebyen gravlund): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- akerhus_slott (Akerhus Slott): mangler felt: r, year | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile | stub:true | hidden:true
+- akerhus_slott (Akerhus Slott): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
 
 ### data/places/places_kunst.json
 
@@ -483,67 +483,14 @@ Generert: 2026-04-29T15:58:46.673Z
 
 ## Referanser til place-id-er som ikke finnes
 
-- data/people.json :: [6].places -> bøker_i_byen
-- data/people.json :: [7].places -> bjornson_bolig
-- data/people.json :: [7].places -> ibsen_bjornson_graver
-- data/people.json :: [8].places -> wergelandsveien_15
-- data/people.json :: [8].places -> henrik_wergeland_park
-- data/people.json :: [8].places -> wergeland_barndom
-- data/people.json :: [8].places -> wergeland_grav
-- data/people.json :: [8].places -> bøker_i_byen
-- data/people.json :: [9].places -> henrik_wergeland_park
-- data/people.json :: [9].places -> collett_barndom
-- data/people.json :: [9].places -> collett_monument
-- data/people.json :: [10].places -> grotten_utsikt
-- data/people.json :: [11].places -> grotten_utsikt
-- data/people.json :: [11].places -> inger_hagerup_minne
-- data/people.json :: [12].places -> grotten_utsikt
-- data/people.json :: [20].places -> sofienberg_poesipark
-- data/people.json :: [23].places -> sofienberg_poesipark
-- data/people.json :: [26].placeId -> collett_monument
-- data/people.json :: [26].places -> collett_monument
-- data/people.json :: [28].placeId -> alf_prøysen_statue
-- data/people.json :: [28].places -> alf_prøysen_statue
-- data/people.json :: [29].placeId -> sofienberg_poesipark
-- data/people.json :: [29].places -> sofienberg_poesipark
-- data/people.json :: [30].placeId -> rolf_jacobsen_minne
-- data/people.json :: [30].places -> rolf_jacobsen_minne
-- data/people.json :: [31].placeId -> oskar_braaten_statue
-- data/people.json :: [31].places -> oskar_braaten_statue
-- data/people.json :: [45].placeId -> operaen
-- data/people.json :: [45].places -> operaen
-- data/people.json :: [46].placeId -> operaen
-- data/people.json :: [46].places -> operaen
-- data/people.json :: [50].placeId -> vulkan
-- data/people.json :: [50].places -> vulkan
-- data/people.json :: [54].placeId -> operaen
-- data/people.json :: [54].places -> operaen
-- data/people.json :: [61].placeId -> vulkan
-- data/people.json :: [61].places -> vulkan
-- data/people.json :: [88].placeId -> universitetet
-- data/people.json :: [88].places -> universitetet
-- data/routes.json :: [2].stops[3].placeId -> operaen
-- data/routes_walks.json :: [4].stops[1].placeId -> operaen
-- data/routes_walks.json :: [11].stops[1].placeId -> operaen
-- data/Civication/place_contexts.json :: contexts[0].matches_place_ids -> operaen
-- data/Civication/place_contexts.json :: contexts[0].matches_place_ids -> munch
 - data/Civication/place_contexts.json :: contexts[0].matches_place_ids -> det_norske_teatret
-- data/Civication/place_contexts.json :: contexts[1].matches_place_ids -> vulkan
 - data/Civication/place_contexts.json :: contexts[2].matches_place_ids -> blaa
 - data/Civication/place_contexts.json :: contexts[2].matches_place_ids -> rockefeller
 - data/Civication/place_contexts.json :: contexts[2].matches_place_ids -> john_dee
 - data/Civication/place_contexts.json :: contexts[2].matches_place_ids -> sentrum_scene
-- data/Civication/place_contexts.json :: contexts[3].matches_place_ids -> radhuset
 - data/Civication/place_contexts.json :: contexts[3].matches_place_ids -> tinghuset
 - data/Civication/place_contexts.json :: contexts[3].matches_place_ids -> regjeringskvartalet
-- data/Civication/place_contexts.json :: contexts[5].matches_place_ids -> majorstua
-- data/Civication/place_contexts.json :: contexts[5].matches_place_ids -> frogner
-- data/Civication/place_contexts.json :: contexts[6].matches_place_ids -> grunerlokka
 - data/Civication/place_contexts.json :: contexts[6].matches_place_ids -> schous_plass
-- data/Civication/place_contexts.json :: contexts[7].matches_place_ids -> st_hanshaugen
-- data/Civication/place_contexts.json :: contexts[7].matches_place_ids -> sagene
-- data/Civication/place_contexts.json :: contexts[7].matches_place_ids -> torshov
-- data/Civication/place_contexts.json :: contexts[7].matches_place_ids -> kampen
 
 ## Anbefalt rekkefølge for ferdigstilling
 
