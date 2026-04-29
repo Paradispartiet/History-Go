@@ -7,6 +7,7 @@
 
   <link rel="stylesheet" href="css/civi.css" />
   <link rel="stylesheet" href="css/civi-refresh.css" />
+  <link rel="stylesheet" href="css/civi-dashboard.css" />
 </head>
 
 <body class="civi-app">
@@ -27,6 +28,45 @@
     </div>
 
     <div class="civi-panels">
+
+      <section id="civiDashboardSection" class="civi-dashboard" aria-label="Civication oversikt">
+        <div class="civi-dashboard-copy">
+          <div class="civi-dashboard-kicker">Min situasjon</div>
+          <h1 id="civiDashRole">Ingen aktiv rolle</h1>
+          <p id="civiDashSummary">Ta quiz og åpne jobbtilbud for å starte et livsløp.</p>
+
+          <div class="civi-dashboard-focus">
+            <div class="civi-dashboard-focus-label">Neste fokus</div>
+            <div id="civiDashFocus">Ingen åpne hendelser</div>
+          </div>
+        </div>
+
+        <div class="civi-dashboard-metrics" aria-label="Civication nøkkeltall">
+          <div class="civi-dashboard-metric is-primary">
+            <span>PC</span>
+            <strong id="civiDashWallet">0 PC</strong>
+            <small id="civiDashIncome">Ingen ukeinntekt</small>
+          </div>
+
+          <div class="civi-dashboard-metric is-status">
+            <span>Status</span>
+            <strong id="civiDashStatus">Stabil</strong>
+            <small id="civiDashStatusMeta">Startfase</small>
+          </div>
+
+          <div class="civi-dashboard-metric is-inbox">
+            <span>Inbox</span>
+            <strong id="civiDashInbox">0</strong>
+            <small id="civiDashInboxMeta">åpne hendelser</small>
+          </div>
+
+          <div class="civi-dashboard-metric">
+            <span>Hjem</span>
+            <strong id="civiDashHome">Ikke valgt</strong>
+            <small id="civiDashHomeMeta">Velg nabolag</small>
+          </div>
+        </div>
+      </section>
 
       <section id="civiOnboardingSection">
         <h2>Neste steg</h2>
@@ -201,6 +241,7 @@
   <!-- UI support -->
   <script src="js/Civication/systems/civicationNPCs.js"></script>
   <script src="js/Civication/ui/CivicationUI.js"></script>
+  <script src="js/Civication/ui/CivicationDashboardUI.js"></script>
   <script src="js/Civication/ui/CivicationEmptyPanels.js"></script>
   <script src="js/Civication/ui/CivicationDebateUI.js"></script>
   <script src="js/Civication/ui/CivicationPeopleUI.js"></script>
