@@ -99,7 +99,8 @@ async function boot() {
       "data/wonderkammer/training.json",
       "data/wonderkammer/art.json",
       "data/wonderkammer/street_art.json",
-      "data/wonderkammer/architecture.json"
+      "data/wonderkammer/architecture.json",
+      "data/wonderkammer/parks_nature.json"
     ];
 
     const manifest = await fetchJSON("data/wonderkammer/index.json");
