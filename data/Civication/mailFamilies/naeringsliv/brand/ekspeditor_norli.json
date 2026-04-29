@@ -8,6 +8,56 @@
   "mail_type": "brand",
   "families": [
     {
+      "id": "kasse_og_pris",
+      "mails": [
+        {
+          "id": "ekspeditor_norli_kasse_medlemspris_001",
+          "mail_type": "job",
+          "mail_family": "kasse_og_pris",
+          "role_scope": "ekspeditor",
+          "brand_id": "norli",
+          "brand_name": "Norli",
+          "brand_role": "bokhandler",
+          "subject": "Medlemsprisen vises ikke når kunden står med boka i hånda",
+          "summary": "En kunde forventer medlemspris på en bok fra kampanjebordet, men kassa viser full pris.",
+          "situation": [
+            "Kunden har tatt boka fra et bord merket med medlemspris og sier hun allerede er registrert hos Norli.",
+            "Kassa viser full pris, køen bak henne vokser, og du vet at feil pris ofte skyldes både medlemskap, kampanjeperiode og bordmerking.",
+            "Norli-jobben tester om du klarer å håndtere prisfeil uten å redusere bokhandelen til et rent kassapunkt."
+          ],
+          "task_domain": "kasse",
+          "competency": "noyaktighet",
+          "pressure": "ko_bygger_seg_opp",
+          "choice_axis": "tempo_vs_korrekthet",
+          "consequence_axis": "kundetillit",
+          "narrative_arc": "varene_som_system",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Sjekk medlemskap og kampanjebord før du avgjør prisen",
+              "effect": 1,
+              "tags": ["noyaktighet", "kundetillit", "brandstandard"],
+              "feedback": "Du behandler prisfeilen som del av systemet, ikke som kundens forstyrrelse."
+            },
+            {
+              "id": "B",
+              "label": "Slå inn full pris fordi kassa er fasiten",
+              "effect": -1,
+              "tags": ["tempo", "kundetillit_minus"],
+              "feedback": "Du får køen videre, men lar butikkens egen skilting miste verdi."
+            },
+            {
+              "id": "C",
+              "label": "Gi medlemspris uten å sjekke hvorfor feilen oppsto",
+              "effect": 0,
+              "tags": ["service", "avvik_ikke_lost"],
+              "feedback": "Du hjelper kunden foran deg, men lar neste kunde møte samme feil."
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "kundemote_og_service",
       "mails": [
         {
