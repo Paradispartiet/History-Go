@@ -1,28 +1,28 @@
 # Place Data Audit
 
-Generert: 2026-04-29T16:34:09.875Z
+Generert: 2026-04-29T16:42:46.840Z
 
 ## Totalsammendrag
 
 - Place-filer i manifest: **18**
-- Totalt antall places: **220**
+- Totalt antall places: **228**
 - Steder med manglende obligatoriske felt: **72**
-- Steder med manglende popupDesc: **146**
-- Steder med manglende image: **128**
-- Steder med manglende cardImage: **128**
-- Steder med manglende emne_ids: **166**
-- Steder med manglende quiz_profile: **166**
+- Steder med manglende popupDesc: **154**
+- Steder med manglende image: **136**
+- Steder med manglende cardImage: **136**
+- Steder med manglende emne_ids: **174**
+- Steder med manglende quiz_profile: **174**
 - Steder som bruker imageCard-felt: **0**
 - Steder med stub:true eller hidden:true: **0**
 - Antall ødelagte asset paths: **120**
-- Antall place-referanser til ikke-eksisterende id-er: **8**
+- Antall place-referanser til ikke-eksisterende id-er: **0**
 
 ## Funn per fil
 
 ### data/places/places_by.json
 
-- Antall places: 54
-- Places med funn: 54
+- Antall places: 55
+- Places med funn: 55
 
 - torggata (Torggata): ødelagte paths: image=bilder/places/torggata_IMG.JPG; cardImage=bilder/kort/places/by/torggata_CardImage.PNG
 - bispelokket (Bispelokket / Trafikkmaskinen): ødelagte paths: image=bilder/places/bispelokket_IMG.JPG; cardImage=bilder/kort/places/by/bispelokket_CardImage.PNG
@@ -78,6 +78,7 @@ Generert: 2026-04-29T16:34:09.875Z
 - vigelandsparken (Vigelandsparken): ødelagte paths: image=bilder/places/vigelandsparken.PNG; cardImage=bilder/kort/places/vigelandsparken.PNG
 - voienvolden (Voienvolden): ødelagte paths: image=bilder/places/voienvolden.PNG
 - carl_berner_plass (Carl Berners plass): ødelagte paths: image=bilder/places/carl_berner_plass.PNG; cardImage=bilder/kort/places/carl_berner_plass.PNG
+- schous_plass (Schous plass): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
 
 ### data/places/places_historie.json
 
@@ -140,10 +141,15 @@ Generert: 2026-04-29T16:34:09.875Z
 
 ### data/places/places_musikk.json
 
-- Antall places: 1
-- Places med funn: 1
+- Antall places: 6
+- Places med funn: 6
 
 - salt (SALT): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- det_norske_teatret (Det Norske Teatret): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- blaa (Blå): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- rockefeller (Rockefeller Music Hall): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- john_dee (John Dee): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- sentrum_scene (Sentrum Scene): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
 
 ### data/places/places_naeringsliv.json
 
@@ -194,13 +200,15 @@ Generert: 2026-04-29T16:34:09.875Z
 
 ### data/places/places_politikk.json
 
-- Antall places: 4
-- Places med funn: 4
+- Antall places: 6
+- Places med funn: 6
 
 - stortinget (Stortinget): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
 - youngstorget (Youngstorget): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
 - oslo_radhus (Oslo rådhus): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
 - eidsvolls_plass (Eidsvolls plass): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- tinghuset (Oslo tinghus): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- regjeringskvartalet (Regjeringskvartalet): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
 
 ### data/places/places_sport.json
 
@@ -483,14 +491,7 @@ Generert: 2026-04-29T16:34:09.875Z
 
 ## Referanser til place-id-er som ikke finnes
 
-- data/Civication/place_contexts.json :: contexts[0].matches_place_ids -> det_norske_teatret
-- data/Civication/place_contexts.json :: contexts[2].matches_place_ids -> blaa
-- data/Civication/place_contexts.json :: contexts[2].matches_place_ids -> rockefeller
-- data/Civication/place_contexts.json :: contexts[2].matches_place_ids -> john_dee
-- data/Civication/place_contexts.json :: contexts[2].matches_place_ids -> sentrum_scene
-- data/Civication/place_contexts.json :: contexts[3].matches_place_ids -> tinghuset
-- data/Civication/place_contexts.json :: contexts[3].matches_place_ids -> regjeringskvartalet
-- data/Civication/place_contexts.json :: contexts[6].matches_place_ids -> schous_plass
+- Ingen ugyldige place-referanser i people/badges/routes/wonderkammer/civication-filer som ble sjekket.
 
 ## Anbefalt rekkefølge for ferdigstilling
 
