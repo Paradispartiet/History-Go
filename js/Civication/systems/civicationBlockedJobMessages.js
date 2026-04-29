@@ -42,7 +42,10 @@
     const key = historyKey(params);
     return getInbox().some(function (msg) {
       if (!msg || lower(msg.status || 'pending') !== 'pending') return false;
-      return historyKey(msg) === key;
+      const payload = msg && typeof msg === 'object' && msg.event && typeof msg.event === 'object'
+        ? msg.event
+        : msg;
+      return historyKey(payload) === key;
     });
   }
 
@@ -64,8 +67,6 @@
       source: 'Civication',
       source_type: 'blocked_job',
       mail_class: 'opportunity_blocked',
-      status: 'pending',
-      created_at: nowIso,
       career_id: lower(params?.career_id) || 'naeringsliv',
       role_scope: lower(params?.role_scope) || 'ekspeditor',
       reason: 'no_unlocked_brand_employer',
@@ -98,13 +99,17 @@
 
     const inbox = getInbox().slice();
     const message = buildMessage(normalized);
-    inbox.unshift(message);
+    inbox.unshift({
+      status: 'pending',
+      createdAt: Date.now(),
+      event: message
+    });
     setInbox(inbox);
 
     const key = historyKey(normalized);
     const history = loadHistory();
     const prevCount = Number(history[key]?.count || 0);
-    history[key] = { last_iso: message.created_at, count: prevCount + 1 };
+    history[key] = { last_iso: new Date().toISOString(), count: prevCount + 1 };
     saveHistory(history);
     return { ok: true, enqueued: true, id: message.id };
   }

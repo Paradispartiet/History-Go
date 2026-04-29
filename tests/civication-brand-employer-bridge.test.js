@@ -53,10 +53,11 @@ const blocked = global.CivicationJobs.pushOffer({ career_id: 'naeringsliv', titl
 assert.deepStrictEqual(blocked, { ok: false, reason: 'no_unlocked_brand_employer', career_id: 'naeringsliv', role_scope: 'ekspeditor' });
 assert.strictEqual(offers.length, 0);
 assert.strictEqual(state.inbox.length, 1);
-assert.strictEqual(state.inbox[0].source_type, 'blocked_job');
-assert.strictEqual(state.inbox[0].mail_class, 'opportunity_blocked');
-assert.strictEqual(state.inbox[0].career_id, 'naeringsliv');
-assert.strictEqual(state.inbox[0].role_scope, 'ekspeditor');
+assert.strictEqual(state.inbox[0].status, 'pending');
+assert.strictEqual(state.inbox[0].event.source_type, 'blocked_job');
+assert.strictEqual(state.inbox[0].event.mail_class, 'opportunity_blocked');
+assert.strictEqual(state.inbox[0].event.career_id, 'naeringsliv');
+assert.strictEqual(state.inbox[0].event.role_scope, 'ekspeditor');
 
 // B Cooldown/pending prevents spam
 const blockedAgain = global.CivicationJobs.pushOffer({ career_id: 'naeringsliv', title: 'Ekspeditør / butikkmedarbeider', threshold: 1, points_at_offer: 1 });
@@ -65,13 +66,22 @@ assert.strictEqual(state.inbox.length, 1);
 
 // C Existing pending blocked message prevents duplicate
 state.inbox = [{
-  id: 'existing', status: 'pending', source_type: 'blocked_job', mail_class: 'opportunity_blocked',
-  career_id: 'naeringsliv', role_scope: 'ekspeditor', reason: 'no_unlocked_brand_employer'
+  id: 'existing-envelope',
+  status: 'pending',
+  createdAt: Date.now(),
+  event: {
+    id: 'existing',
+    source_type: 'blocked_job',
+    mail_class: 'opportunity_blocked',
+    career_id: 'naeringsliv',
+    role_scope: 'ekspeditor',
+    reason: 'no_unlocked_brand_employer'
+  }
 }];
 const blockedPending = global.CivicationJobs.pushOffer({ career_id: 'naeringsliv', title: 'Ekspeditør / butikkmedarbeider', threshold: 1, points_at_offer: 1 });
 assert.strictEqual(blockedPending.ok, false);
 assert.strictEqual(state.inbox.length, 1);
-assert.strictEqual(state.inbox[0].id, 'existing');
+assert.strictEqual(state.inbox[0].event.id, 'existing');
 
 // D Non-ekspeditør unaffected
 const callsBefore = employerCalls;
@@ -79,7 +89,7 @@ const nonEksp = global.CivicationJobs.pushOffer({ career_id: 'naeringsliv', titl
 assert.strictEqual(nonEksp.ok, true);
 assert.strictEqual(nonEksp.offer.title, 'Fagarbeider');
 assert.strictEqual(employerCalls, callsBefore);
-assert.strictEqual(state.inbox.filter(m => m.source_type === 'blocked_job').length, 1);
+assert.strictEqual(state.inbox.filter(m => m?.event?.source_type === 'blocked_job').length, 1);
 
 // E Unlocked employer succeeds without blocked message
 global.CivicationBrandAccess.getUnlockedBrandEmployers = function () {
