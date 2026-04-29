@@ -14,6 +14,10 @@
   function uniq(values) {
     return [...new Set(asArray(values).map(normalize).filter(Boolean))];
   }
+  const IGNORED_PLACE_KEYS = new Set([
+    'points', 'score', 'count', 'total', 'version', 'updated_at', 'created_at',
+    'ts', 'ts_last', 'category', 'categories', 'id', 'name', 'title', 'label'
+  ]);
 
   function readStorageJson(key) {
     try {
@@ -23,7 +27,8 @@
     }
   }
 
-  function collectPlaceIdsFromAnyShape(raw, bucket) {
+  function collectPlaceIdsFromAnyShape(raw, bucket, context) {
+    const mode = context?.mode || 'generic';
     if (!raw) return;
     if (typeof raw === 'string' || typeof raw === 'number') {
       const id = normalize(raw);
@@ -31,33 +36,54 @@
       return;
     }
     if (Array.isArray(raw)) {
-      raw.forEach(function (item) { collectPlaceIdsFromAnyShape(item, bucket); });
+      raw.forEach(function (item) { collectPlaceIdsFromAnyShape(item, bucket, context); });
       return;
     }
     if (typeof raw === 'object') {
       Object.entries(raw).forEach(function ([k, v]) {
+        const key = normalize(k);
+        if (!key) return;
+        if (mode === 'generic' && IGNORED_PLACE_KEYS.has(normLower(key))) return;
         if (typeof v === 'boolean') {
-          if (v) bucket.add(normalize(k));
+          if (v) bucket.add(key);
           return;
         }
         if (typeof v === 'number') {
-          if (v > 0) bucket.add(normalize(k));
+          if (v > 0) bucket.add(key);
           return;
         }
         if (v && typeof v === 'object' && (v.visited || v.unlocked || v.completed || Number(v.points) > 0)) {
-          bucket.add(normalize(k));
+          bucket.add(key);
         }
-        collectPlaceIdsFromAnyShape(v, bucket);
+        collectPlaceIdsFromAnyShape(v, bucket, context);
       });
     }
   }
 
-  function getUnlockedPlaceIds() {
-    const ids = new Set();
-    ['visited_places', 'hg_unlocks_v1', 'quiz_progress', 'merits_by_category'].forEach(function (key) {
-      collectPlaceIdsFromAnyShape(readStorageJson(key), ids);
+  function collectPlaceAccess() {
+    const bySource = {
+      completed_place_quiz: new Set(),
+      unlocked_place: new Set(),
+      visited_place: new Set(),
+      place_progress: new Set()
+    };
+    collectPlaceIdsFromAnyShape(readStorageJson('quiz_progress'), bySource.completed_place_quiz, { mode: 'generic' });
+    collectPlaceIdsFromAnyShape(readStorageJson('hg_unlocks_v1'), bySource.unlocked_place, { mode: 'generic' });
+    collectPlaceIdsFromAnyShape(readStorageJson('visited_places'), bySource.visited_place, { mode: 'generic' });
+    collectPlaceIdsFromAnyShape(readStorageJson('merits_by_category'), bySource.place_progress, { mode: 'generic' });
+    return bySource;
+  }
+
+  function getPlaceAccessIndex() {
+    const bySource = collectPlaceAccess();
+    const priority = ['completed_place_quiz', 'unlocked_place', 'visited_place', 'place_progress'];
+    const index = new Map();
+    priority.forEach(function (source) {
+      bySource[source].forEach(function (placeId) {
+        if (!index.has(placeId)) index.set(placeId, source);
+      });
     });
-    return ids;
+    return { bySource, index };
   }
 
   function getPlacesForBrand(brand) {
@@ -120,7 +146,7 @@
   function getUnlockedBrandEmployers(options) {
     const role_scope = normalize(options?.role_scope || 'ekspeditor');
     const career_id = normalize(options?.career_id || 'naeringsliv');
-    const unlockedPlaces = getUnlockedPlaceIds();
+    const access = getPlaceAccessIndex();
 
     if (normLower(career_id) !== 'naeringsliv' || normLower(role_scope) !== 'ekspeditor') return [];
 
@@ -128,9 +154,9 @@
       if (!canUseBrandAsEmployer(brand, { role_scope, career_id })) return null;
       const connectedPlaces = getPlacesForBrand(brand);
       if (!connectedPlaces.length) return null;
-      const place_id = connectedPlaces.find(function (pid) { return unlockedPlaces.has(pid); });
+      const place_id = connectedPlaces.find(function (pid) { return access.index.has(pid); });
       if (!place_id) return null;
-      const access_source = 'place_progress';
+      const access_source = access.index.get(place_id) || 'place_progress';
       return {
         brand_id: normalize(brand.id),
         brand_name: normalize(brand.name),
@@ -156,8 +182,10 @@
   }
 
   function inspect(options) {
+    const access = getPlaceAccessIndex();
     return {
-      unlocked_places: [...getUnlockedPlaceIds()],
+      unlocked_places: [...access.index.keys()],
+      place_access: access.bySource,
       employers: getUnlockedBrandEmployers(options)
     };
   }

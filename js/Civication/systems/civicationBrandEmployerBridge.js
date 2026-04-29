@@ -8,14 +8,54 @@
     return careerId === 'naeringsliv' && (title.includes('ekspedit') || title.includes('butikkmedarbeider'));
   }
 
+  function toHashSeed(offer) {
+    return normalize(offer?.offer_key || offer?.title || offer?.threshold || 'naeringsliv-ekspeditor');
+  }
+
+  function hashString(input) {
+    let hash = 0;
+    const str = normalize(input);
+    for (let i = 0; i < str.length; i += 1) hash = ((hash << 5) - hash) + str.charCodeAt(i);
+    return Math.abs(hash);
+  }
+
+  function selectBestEmployer(employers, offer) {
+    const role = lower(offer?.title);
+    const relevanceOrder = ['kiosk', 'retail', 'books', 'fashion', 'beauty', 'coffee', 'design', 'jewelry', 'sports_retail'];
+    const accessOrder = ['completed_place_quiz', 'unlocked_place', 'visited_place', 'place_progress'];
+    const seed = hashString(toHashSeed(offer));
+
+    function rank(employer) {
+      const text = [employer.brand_type, employer.brand_group, employer.sector, employer.brand_name].map(lower).join(' ');
+      const roleFit = role.includes('ekspedit') || role.includes('butikkmedarbeider') ? 1 : 0;
+      const relevance = relevanceOrder.findIndex(function (token) { return text.includes(token); });
+      const relevanceScore = relevance === -1 ? 99 : relevance;
+      const historicalPenalty = lower(employer?.status) === 'historical' || lower(employer?.state) === 'historical' ? 1 : 0;
+      const verifiedBonus = employer?.verified === true || lower(employer?.catalog_status) === 'verified' ? 1 : 0;
+      const accessScore = Math.max(0, accessOrder.indexOf(lower(employer?.access_source)));
+      const stableTie = hashString([seed, employer.brand_id, employer.place_id].join(':'));
+      return [-roleFit, relevanceScore, historicalPenalty, -verifiedBonus, accessScore, stableTie];
+    }
+
+    return employers.slice().sort(function (a, b) {
+      const ar = rank(a);
+      const br = rank(b);
+      for (let i = 0; i < ar.length; i += 1) {
+        if (ar[i] !== br[i]) return ar[i] - br[i];
+      }
+      return lower(a.brand_id).localeCompare(lower(b.brand_id));
+    })[0];
+  }
+
   function selectEmployer(offer) {
     const employers = globalScope.CivicationBrandAccess?.getUnlockedBrandEmployers?.({
       career_id: offer.career_id,
       role_scope: 'ekspeditor'
     }) || [];
-    if (!employers.length) return { offer, reason: 'no_unlocked_brand_employer' };
-    const selected = employers[0];
+    if (!employers.length) return { ok: false, reason: 'no_unlocked_brand_employer', career_id: 'naeringsliv', role_scope: 'ekspeditor' };
+    const selected = selectBestEmployer(employers, offer);
     return {
+      ok: true,
       offer: {
         ...offer,
         brand_id: selected.brand_id,
@@ -41,6 +81,10 @@
       const source = payload || {};
       if (!isEkspeditorOffer(source)) return originalPushOffer.call(this, source);
       const pick = selectEmployer(source);
+      if (!pick.ok) {
+        globalScope.console?.info?.('[CivicationBrandEmployerBridge] Blocked ekspeditør offer: no unlocked brand employer.');
+        return pick;
+      }
       return originalPushOffer.call(this, pick.offer);
     };
 
@@ -68,7 +112,7 @@
     return true;
   }
 
-  const api = { boot, selectEmployer };
+  const api = { boot, selectEmployer, selectBestEmployer };
   globalScope.CivicationBrandEmployerBridge = api;
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   boot();
