@@ -1,17 +1,19 @@
 // ============================================================
 // CIVICATION MINI SECTIONS UI
-// Gjør Civication-seksjoner til funksjonelle minikort som standard.
+// Forsiden viser bare det nødvendige: status + valgknapp.
+// Fullt innhold og alle valg åpnes i mørk popup.
 // Ingen state-mutasjon: kun DOM-struktur og presentasjon.
 // ============================================================
 
 (function () {
-  const STORAGE_KEY = "hg_civi_expanded_sections_v1";
-
   const SECTION_CONFIG = {
     activeJobSection: {
       label: "Aktiv rolle",
       accent: "💼",
       source: "activeJobCard",
+      empty: "Ingen aktiv rolle ennå.",
+      action: "Åpne rolle",
+      urgentAction: "Svar på tilbud",
       summary: function () {
         const active = window.CivicationState?.getActivePosition?.();
         if (!active) return "Ingen aktiv rolle ennå.";
@@ -22,6 +24,9 @@
       label: "Arbeidsdag",
       accent: "🕐",
       source: "civiWorkdayPanel",
+      empty: "Ingen arbeidsdag uten aktiv rolle.",
+      action: "Åpne arbeidsdag",
+      urgentAction: "Åpne oppgave",
       summary: function () {
         const pending = window.HG_CiviEngine?.getPendingEvent?.();
         const ev = pending?.event || null;
@@ -34,6 +39,12 @@
       label: "Innkommende",
       accent: "📨",
       source: "civiInbox",
+      empty: "Ingen åpne hendelser.",
+      action: "Åpne inbox",
+      urgentAction: "Svar nå",
+      forceUrgent: function () {
+        return getInbox().length > 0;
+      },
       summary: function () {
         const inbox = getInbox();
         if (!inbox.length) return "Ingen åpne hendelser.";
@@ -46,6 +57,13 @@
       label: "Hjem",
       accent: "🏠",
       source: "homeStatusContent",
+      empty: "Ikke valgt nabolag.",
+      action: "Åpne hjem",
+      urgentAction: "Velg nabolag",
+      forceUrgent: function () {
+        const home = window.CivicationHome?.getState?.()?.home || null;
+        return home?.status !== "settled";
+      },
       summary: function () {
         const home = window.CivicationHome?.getState?.()?.home || null;
         if (home?.status === "settled") return `Bosatt: ${home.district || "valgt nabolag"}`;
@@ -56,6 +74,9 @@
       label: "Neste steg",
       accent: "🎯",
       source: "civiOnboardingPanel",
+      empty: "Ingen neste steg akkurat nå.",
+      action: "Åpne neste steg",
+      urgentAction: "Fortsett",
       summary: function () {
         return firstText("civiOnboardingPanel") || "Neste anbefalte Civication-steg.";
       }
@@ -65,6 +86,8 @@
       label: "Kapital",
       accent: "💎",
       source: "capEconomic",
+      empty: "Kapitalverdier ikke beregnet ennå.",
+      action: "Se kapital",
       summary: function () {
         const values = [
           ["Øk", textOf("capEconomic")],
@@ -83,6 +106,8 @@
       label: "Psyke",
       accent: "🧠",
       source: "psyAutonomy",
+      empty: "Psykeverdier ikke beregnet ennå.",
+      action: "Se psyke",
       summary: function () {
         const auto = textOf("psyAutonomy");
         const trust = textOf("psyTrust");
@@ -95,6 +120,8 @@
       label: "Identitet",
       accent: "🧭",
       source: "identityDominant",
+      empty: "Identitet ikke beregnet ennå.",
+      action: "Se identitet",
       summary: function () {
         return firstText("identityDominant") || "Identitet og hvordan du blir oppfattet.";
       }
@@ -103,6 +130,8 @@
       label: "Offentlig",
       accent: "📢",
       source: "civiPublicFeed",
+      empty: "Ingen offentlig feed akkurat nå.",
+      action: "Åpne offentlig",
       summary: function () {
         return firstText("civiPublicFeed") || "Ingen offentlig feed akkurat nå.";
       }
@@ -111,6 +140,9 @@
       label: "Debatt",
       accent: "💬",
       source: "civiDebatePanel",
+      empty: "Ingen aktiv debatt.",
+      action: "Åpne debatt",
+      urgentAction: "Svar i debatt",
       summary: function () {
         return firstText("civiDebatePanel") || "Ingen aktiv debatt.";
       }
@@ -119,6 +151,9 @@
       label: "Mennesker",
       accent: "👥",
       source: "civiPeoplePanel",
+      empty: "Ingen aktive møter.",
+      action: "Se mennesker",
+      urgentAction: "Svar person",
       summary: function () {
         return firstText("civiPeoplePanel") || "Ingen aktive møter.";
       }
@@ -127,6 +162,8 @@
       label: "Butikker",
       accent: "🛒",
       source: "civiStorePanel",
+      empty: "Ingen åpne butikker eller pakker.",
+      action: "Åpne butikk",
       summary: function () {
         return firstText("civiStorePanel") || "Ingen åpne butikker eller pakker.";
       }
@@ -135,6 +172,8 @@
       label: "Aktiv retning",
       accent: "🎯",
       source: "civiTrackName",
+      empty: "Ingen aktiv retning.",
+      action: "Se retning",
       summary: function () {
         const name = firstText("civiTrackName");
         const progress = firstText("civiTrackProgress");
@@ -143,6 +182,9 @@
       }
     }
   };
+
+  let activeModalSection = null;
+  let activeModalBody = null;
 
   function getInbox() {
     const fromState = window.CivicationState?.getInbox?.();
@@ -166,27 +208,120 @@
     return String(el.textContent || "").replace(/\s+/g, " ").trim().slice(0, 140);
   }
 
-  function loadExpanded() {
-    try {
-      const arr = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
-      return new Set(Array.isArray(arr) ? arr : []);
-    } catch {
-      return new Set();
-    }
-  }
-
-  function saveExpanded(set) {
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(Array.from(set)));
-    } catch {}
-  }
-
   function resolveSection(key, config) {
     if (config.selector) return document.querySelector(config.selector);
     return document.getElementById(key);
   }
 
-  function ensureMiniStructure(section, key, config, expandedSet) {
+  function getSectionSource(section, config) {
+    if (!section || !config?.source) return null;
+    return document.getElementById(config.source);
+  }
+
+  function hasActionRequired(section, config) {
+    if (!section) return false;
+
+    if (typeof config.forceUrgent === "function") {
+      try {
+        if (config.forceUrgent()) return true;
+      } catch {}
+    }
+
+    const body = section.querySelector(":scope > .civi-section-body");
+    if (!body) return false;
+
+    const selector = [
+      "button:not(.civi-mini-action):not(.civi-popup-close):not([disabled])",
+      "input:not([type='hidden']):not([disabled])",
+      "select:not([disabled])",
+      "textarea:not([disabled])"
+    ].join(",");
+
+    return !!body.querySelector(selector);
+  }
+
+  function ensureModal() {
+    let modal = document.getElementById("civiSectionPopup");
+    if (modal) return modal;
+
+    modal = document.createElement("div");
+    modal.id = "civiSectionPopup";
+    modal.className = "civi-section-popup";
+    modal.setAttribute("aria-hidden", "true");
+    modal.innerHTML = `
+      <div class="civi-section-popup-backdrop" data-civi-popup-close></div>
+      <div class="civi-section-popup-panel" role="dialog" aria-modal="true" aria-labelledby="civiSectionPopupTitle">
+        <div class="civi-section-popup-head">
+          <div>
+            <div class="civi-section-popup-kicker">Civication</div>
+            <h2 id="civiSectionPopupTitle">Seksjon</h2>
+          </div>
+          <button type="button" class="civi-popup-close" data-civi-popup-close>×</button>
+        </div>
+        <div id="civiSectionPopupBody" class="civi-section-popup-body"></div>
+      </div>
+    `;
+
+    document.body.appendChild(modal);
+
+    modal.querySelectorAll("[data-civi-popup-close]").forEach(function (el) {
+      el.addEventListener("click", closePopup);
+    });
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape" && modal.classList.contains("is-open")) {
+        closePopup();
+      }
+    });
+
+    return modal;
+  }
+
+  function openPopup(section, config) {
+    if (!section || !config) return;
+
+    const body = section.querySelector(":scope > .civi-section-body");
+    if (!body) return;
+
+    closePopup();
+
+    const modal = ensureModal();
+    const title = modal.querySelector("#civiSectionPopupTitle");
+    const host = modal.querySelector("#civiSectionPopupBody");
+
+    activeModalSection = section;
+    activeModalBody = body;
+
+    if (title) title.textContent = `${config.accent || ""} ${config.label || "Seksjon"}`.trim();
+    if (host) host.appendChild(body);
+
+    body.classList.add("is-in-popup");
+    modal.classList.add("is-open");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.classList.add("civi-popup-open");
+  }
+
+  function closePopup() {
+    const modal = document.getElementById("civiSectionPopup");
+
+    if (activeModalSection && activeModalBody) {
+      activeModalBody.classList.remove("is-in-popup");
+      activeModalSection.appendChild(activeModalBody);
+    }
+
+    activeModalSection = null;
+    activeModalBody = null;
+
+    if (modal) {
+      modal.classList.remove("is-open");
+      modal.setAttribute("aria-hidden", "true");
+    }
+
+    document.body.classList.remove("civi-popup-open");
+    window.CivicationMiniSectionsUI?.refresh?.();
+  }
+
+  function ensureMiniStructure(section, key, config) {
     if (!section || section.dataset.civiMiniReady === "1") return;
     if (section.id === "civiDashboardSection") return;
 
@@ -197,52 +332,34 @@
       body.appendChild(node);
     });
 
-    const head = document.createElement("button");
-    head.type = "button";
-    head.className = "civi-mini-head";
-    head.setAttribute("aria-expanded", "false");
+    const card = document.createElement("div");
+    card.className = "civi-mini-card";
+    card.setAttribute("role", "group");
 
-    head.innerHTML = `
-      <div class="civi-mini-main">
-        <div class="civi-mini-title-row">
-          <span class="civi-mini-accent" aria-hidden="true">${config.accent || "•"}</span>
-          <h2>${config.label || "Seksjon"}</h2>
-        </div>
-        <div class="civi-mini-summary" data-civi-mini-summary>—</div>
-        <div class="civi-mini-count" data-civi-mini-count>Kan brukes direkte</div>
+    card.innerHTML = `
+      <div class="civi-mini-title-row">
+        <span class="civi-mini-accent" aria-hidden="true">${config.accent || "•"}</span>
+        <h2>${config.label || "Seksjon"}</h2>
       </div>
-      <span class="civi-mini-toggle" aria-hidden="true">+</span>
+      <div class="civi-mini-summary" data-civi-mini-summary>—</div>
+      <div class="civi-mini-status" data-civi-mini-status>Ingen valg</div>
+      <button type="button" class="civi-mini-action" data-civi-mini-open>Åpne</button>
     `;
 
-    section.appendChild(head);
+    section.appendChild(card);
     section.appendChild(body);
     section.dataset.civiMiniReady = "1";
     section.dataset.civiMiniKey = key;
 
-    const shouldExpand = expandedSet.has(key);
-    setExpanded(section, shouldExpand, false);
-
-    head.addEventListener("click", function () {
-      const next = !section.classList.contains("is-expanded");
-      setExpanded(section, next, true);
+    card.addEventListener("click", function (event) {
+      const target = event.target;
+      if (target && target.closest("button")) return;
+      openPopup(section, config);
     });
-  }
 
-  function setExpanded(section, expanded, persist) {
-    const head = section.querySelector(":scope > .civi-mini-head");
-    const toggle = section.querySelector(":scope > .civi-mini-head .civi-mini-toggle");
-    const key = section.dataset.civiMiniKey;
-
-    section.classList.toggle("is-expanded", expanded);
-    if (head) head.setAttribute("aria-expanded", expanded ? "true" : "false");
-    if (toggle) toggle.textContent = expanded ? "–" : "+";
-
-    if (persist && key) {
-      const set = loadExpanded();
-      if (expanded) set.add(key);
-      else set.delete(key);
-      saveExpanded(set);
-    }
+    card.querySelector("[data-civi-mini-open]")?.addEventListener("click", function () {
+      openPopup(section, config);
+    });
   }
 
   function refreshSummaries() {
@@ -250,37 +367,48 @@
       const section = resolveSection(key, config);
       if (!section || section.dataset.civiMiniReady !== "1") return;
 
-      const summaryEl = section.querySelector(":scope > .civi-mini-head [data-civi-mini-summary]");
-      const countEl = section.querySelector(":scope > .civi-mini-head [data-civi-mini-count]");
-      const source = config.source ? document.getElementById(config.source) : null;
+      const summaryEl = section.querySelector(":scope > .civi-mini-card [data-civi-mini-summary]");
+      const statusEl = section.querySelector(":scope > .civi-mini-card [data-civi-mini-status]");
+      const actionEl = section.querySelector(":scope > .civi-mini-card [data-civi-mini-open]");
+      const source = getSectionSource(section, config);
 
       let summary = "—";
       try {
-        summary = config.summary?.() || "—";
+        summary = config.summary?.() || config.empty || "—";
       } catch {
-        summary = "—";
+        summary = config.empty || "—";
       }
 
       const childCount = source ? source.children.length : 0;
       const hasText = source ? String(source.textContent || "").trim().length > 0 : false;
-      const count = section.classList.contains("is-expanded")
-        ? "Full visning"
-        : (childCount > 0
-            ? `${childCount} element${childCount === 1 ? "" : "er"} · direkte valg`
-            : (hasText ? "Direkte innhold" : "Miniversjon"));
+      const urgent = hasActionRequired(section, config);
+
+      section.classList.toggle("needs-feedback", urgent);
 
       if (summaryEl) summaryEl.textContent = summary;
-      if (countEl) countEl.textContent = count;
+
+      if (statusEl) {
+        if (urgent) statusEl.textContent = "Krever tilbakemelding";
+        else if (childCount > 0) statusEl.textContent = `${childCount} element${childCount === 1 ? "" : "er"}`;
+        else if (hasText) statusEl.textContent = "Har innhold";
+        else statusEl.textContent = "Ingen handling nå";
+      }
+
+      if (actionEl) {
+        actionEl.textContent = urgent
+          ? (config.urgentAction || "Svar nå")
+          : (config.action || "Åpne");
+      }
     });
   }
 
   function bootMiniSections() {
     document.body.classList.add("civi-mini-mode");
-    const expandedSet = loadExpanded();
+    ensureModal();
 
     Object.entries(SECTION_CONFIG).forEach(function ([key, config]) {
       const section = resolveSection(key, config);
-      ensureMiniStructure(section, key, config, expandedSet);
+      ensureMiniStructure(section, key, config);
     });
 
     refreshSummaries();
@@ -297,7 +425,9 @@
 
   window.CivicationMiniSectionsUI = {
     boot: bootMiniSections,
-    refresh: refreshSummaries
+    refresh: refreshSummaries,
+    openPopup,
+    closePopup
   };
 
   document.addEventListener("DOMContentLoaded", scheduleRefresh);
