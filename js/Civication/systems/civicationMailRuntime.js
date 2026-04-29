@@ -114,6 +114,10 @@
     return titleKey;
   }
 
+  function normalizeBrandId(active) {
+    return slugify(active?.brand_id || active?.employer_context?.brand_id || "");
+  }
+
   function normalizePhase(value) {
     const phase = slugify(value || "intro");
     return PHASE_ORDER.includes(phase) ? phase : "intro";
@@ -163,6 +167,11 @@
       paths.push(`data/Civication/mailFamilies/${category}/${type}/${roleScope}_${type}.json`);
     }
 
+    const brandId = normalizeBrandId(active);
+    if (brandId) {
+      paths.push(`data/Civication/mailFamilies/${category}/brand/${roleScope}_${brandId}.json`);
+    }
+
     return paths;
   }
 
@@ -210,10 +219,15 @@
     ]);
   }
 
-  function flattenCatalog(catalog) {
+  function flattenCatalog(catalog, active = null) {
     const out = [];
     const families = Array.isArray(catalog?.families) ? catalog.families : [];
     const catalogType = norm(catalog?.mail_type);
+    const catalogBrandId = slugify(catalog?.brand_id || "");
+    const activeBrandId = normalizeBrandId(active);
+
+    if (catalogBrandId && activeBrandId && catalogBrandId !== activeBrandId) return out;
+    if (catalogBrandId && !activeBrandId) return out;
 
     for (const family of families) {
       const familyId = norm(family?.id);
@@ -233,6 +247,9 @@
           mail_family: norm(mail?.mail_family || familyId),
           role_scope: norm(mail?.role_scope || catalog?.role_scope),
           category: norm(catalog?.category),
+          brand_id: norm(mail?.brand_id || catalog?.brand_id),
+          brand_name: norm(mail?.brand_name || catalog?.brand_name),
+          brand_role: norm(mail?.brand_role || catalog?.brand_role),
           thread_binding: {
             ...familyBinding,
             ...(mail?.thread_binding && typeof mail.thread_binding === "object" ? mail.thread_binding : {})
@@ -252,6 +269,8 @@
           mail_family: norm(thread?.mail_family || familyId),
           role_scope: norm(thread?.role_scope || catalog?.role_scope),
           category: norm(catalog?.category),
+          brand_id: norm(thread?.brand_id || catalog?.brand_id),
+          brand_name: norm(thread?.brand_name || catalog?.brand_name),
           source_type: "thread"
         });
       }
@@ -306,6 +325,8 @@
     const mailType = norm(mail?.mail_type || step?.type || "job");
     const mailFamily = norm(mail?.mail_family);
     const phase = norm(mail?.phase || step?.phase || "intro");
+    const brandId = norm(mail?.brand_id || active?.brand_id);
+    const brandName = norm(mail?.brand_name || active?.brand_name);
 
     return {
       ...mail,
@@ -318,31 +339,38 @@
       situation: Array.isArray(mail?.situation) ? mail.situation.map(norm).filter(Boolean) : [norm(mail?.summary)].filter(Boolean),
       choices: normalizeChoices(mail?.choices),
       from: norm(mail?.from),
-      place_id: norm(mail?.place_id),
+      place_id: norm(mail?.place_id || active?.place_id),
       people_ref: norm(mail?.people_ref),
-      source_place_ref: norm(mail?.source_place_ref || mail?.place_id),
+      source_place_ref: norm(mail?.source_place_ref || mail?.place_id || active?.place_id),
       role_id: norm(active?.role_id),
       career_id: norm(active?.career_id),
       tier_label: norm(active?.title || roleScope),
+      brand_id: brandId,
+      brand_name: brandName,
+      brand_role: norm(mail?.brand_role),
       mail_type: mailType,
       mail_family: mailFamily,
       phase,
-      priority: Number(mail?.priority || 1),
+      priority: Number(mail?.priority || (brandId ? 8 : 1)),
       role_content_meta: {
         ...(mail?.role_content_meta || {}),
         role_id: norm(active?.role_id),
         role_scope: roleScope,
+        brand_id: brandId,
+        brand_name: brandName,
+        brand_role: norm(mail?.brand_role),
         plan_id: norm(plan?.id),
         plan_step: Number(step?.step || 0),
         plan_step_index: sourceStepIndex,
         family_id: mailFamily,
         storylet_id: norm(mail?.id),
         from: norm(mail?.from),
-        place_id: norm(mail?.place_id)
+        place_id: norm(mail?.place_id || active?.place_id)
       },
       mail_plan_meta: {
         plan_id: norm(plan?.id),
         role_scope: roleScope,
+        brand_id: brandId,
         step: Number(step?.step || 0),
         step_index: sourceStepIndex,
         phase: norm(step?.phase),
@@ -353,6 +381,8 @@
         "planned_mail",
         norm(active?.career_id),
         roleScope,
+        brandId ? "brand_mail" : "generic_mail",
+        brandId,
         mailType,
         mailFamily,
         norm(step?.phase)
@@ -386,6 +416,7 @@
     const recentFamilies = history.slice(-4).map(row => norm(row?.mail_family));
     if (recentFamilies.includes(norm(mail?.mail_family))) score -= 12;
 
+    if (norm(mail?.brand_id)) score += 18;
     if (norm(mail?.mail_type) === "faction_choice") score += 8;
     return score;
   }
@@ -405,7 +436,7 @@
 
     const runtime = getPlanProgress(state, plan);
     const catalogs = await loadCatalogs(active);
-    const mails = catalogs.flatMap(flattenCatalog);
+    const mails = catalogs.flatMap(catalog => flattenCatalog(catalog, active));
     if (!mails.length) return [];
 
     const consumedIds = new Set(getConsumedIds(state));
@@ -469,6 +500,7 @@
         source_type: norm(eventObj?.source_type),
         mail_type: norm(eventObj?.mail_type),
         mail_family: norm(eventObj?.mail_family),
+        brand_id: norm(eventObj?.brand_id),
         plan_id: planId || null,
         step_index: Number(eventObj?.mail_plan_meta?.step_index ?? stepIndex),
         at: new Date().toISOString()
@@ -495,6 +527,7 @@
         id,
         mail_type: norm(eventObj?.mail_type),
         mail_family: norm(eventObj?.mail_family),
+        brand_id: norm(eventObj?.brand_id),
         source_type: norm(eventObj?.source_type),
         at: new Date().toISOString()
       }
@@ -507,6 +540,7 @@
         role_plan_id: planId || null,
         role_scope: resolveRoleScope(active),
         career_id: norm(active?.career_id),
+        brand_id: norm(active?.brand_id),
         step_index: nextStepIndex,
         consumed_ids: consumedIds,
         history,
@@ -535,7 +569,7 @@
     const active = getActive();
     if (active) {
       const catalogs = await loadCatalogs(active);
-      catalogs.forEach(flattenCatalog);
+      catalogs.forEach(catalog => flattenCatalog(catalog, active));
     }
 
     const thread = threadIndex.get(key);
@@ -592,6 +626,7 @@
             role_plan_id: null,
             role_scope: null,
             career_id: null,
+            brand_id: null,
             step_index: 0,
             consumed_ids: [],
             history: [],
@@ -693,6 +728,7 @@
     return {
       active,
       role_scope: active ? resolveRoleScope(active) : null,
+      brand_id: active ? normalizeBrandId(active) : null,
       plan_path: active ? getPlanPath(active) : null,
       family_paths: active ? getFamilyPaths(active) : [],
       phase: window.CivicationCalendar?.getPhase?.() || null,
