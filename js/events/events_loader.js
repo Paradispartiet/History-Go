@@ -1,9 +1,13 @@
-// Early support loader: HGNavigator must exist before place cards emit NextUp.
+// Early support loader: HGNavigator + NextUpRuntime must exist before place cards emit NextUp.
 (function () {
   "use strict";
 
   if (!document.querySelector('script[src="js/hgNavigator.js"]')) {
     document.write('<script src="js/hgNavigator.js"><\/script>');
+  }
+
+  if (!document.querySelector('script[src="js/nextUpRuntime.js"]')) {
+    document.write('<script src="js/nextUpRuntime.js"><\/script>');
   }
 })();
 
