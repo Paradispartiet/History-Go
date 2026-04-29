@@ -65,6 +65,11 @@
   min-width: 0;
 }
 
+/* Skjul Neste scene når Stories-systemet ikke har ekte narrativ kobling. */
+.footer-nextup-panel .mp-nextup-line:has(.mp-nextup-link[data-mp="story"]:disabled) {
+  display: none;
+}
+
 .footer-nextup-panel .mp-nextup-link {
   width: 100%;
   min-height: 54px;
