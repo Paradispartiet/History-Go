@@ -10,7 +10,8 @@
   const MAP_URLS = [
     "data/natur/nature_place_map.json",
     "data/natur/nature_bird_place_map.json",
-    "data/natur/nature_oslo_expansion_place_map.json"
+    "data/natur/nature_oslo_expansion_place_map.json",
+    "data/natur/nature_routes_place_map.json"
   ];
 
   let _map = null;
