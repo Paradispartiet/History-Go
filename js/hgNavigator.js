@@ -1,10 +1,15 @@
 // ============================================================
-// HISTORY GO – HGNavigator
+// HISTORY GO – HGNavigator v2
 // Bygger kontekstuell NextUp for sist åpne placeCard.
 //
-// Kontrakt brukt av js/ui/place-card.js:
+// Ny kontrakt:
 // window.HGNavigator.buildForPlace(place, { nearbyPlaces, personsHere })
-// -> { spatial, wk, narrative, concept }
+// -> {
+//      current_place_id,
+//      generated_at,
+//      suggestions: [{ type, target_id, label, reason, score, source, href, meta }],
+//      spatial, wk, narrative, concept // bakoverkompatibilitet
+//    }
 // ============================================================
 
 (function () {
@@ -16,6 +21,10 @@
 
   function arr(value) {
     return Array.isArray(value) ? value : [];
+  }
+
+  function clamp(n, min, max) {
+    return Math.max(min, Math.min(max, n));
   }
 
   function placeId(place) {
@@ -30,12 +39,45 @@
     return s(place?.categoryId || place?.category || place?.subject_id || "by");
   }
 
+  function findPlace(id) {
+    const key = s(id);
+    if (!key) return null;
+    return arr(window.PLACES).find(p => placeId(p) === key) || null;
+  }
+
   function getVisited() {
     try {
       const v = JSON.parse(localStorage.getItem("visited_places") || "{}");
       return v && typeof v === "object" ? v : {};
     } catch {
       return {};
+    }
+  }
+
+  function getLearningLog() {
+    try {
+      const v = JSON.parse(localStorage.getItem("hg_learning_log_v1") || "[]");
+      return Array.isArray(v) ? v : [];
+    } catch {
+      return [];
+    }
+  }
+
+  function getInsightsEvents() {
+    try {
+      const v = JSON.parse(localStorage.getItem("hg_insights_events_v1") || "[]");
+      return Array.isArray(v) ? v : [];
+    } catch {
+      return [];
+    }
+  }
+
+  function getNextUpHistory() {
+    try {
+      const v = JSON.parse(localStorage.getItem("hg_nextup_history_v1") || "[]");
+      return Array.isArray(v) ? v : [];
+    } catch {
+      return [];
     }
   }
 
@@ -69,6 +111,16 @@
     }
   }
 
+  function emneIds(place) {
+    return arr(place?.emne_ids).map(s).filter(Boolean);
+  }
+
+  function sharedEmneCount(a, b) {
+    const aIds = new Set(emneIds(a));
+    if (!aIds.size) return 0;
+    return emneIds(b).filter(id => aIds.has(id)).length;
+  }
+
   function getCandidatePlaces(currentPlace, nearbyPlaces = []) {
     const currentId = placeId(currentPlace);
     const seen = new Set();
@@ -88,55 +140,106 @@
     return out;
   }
 
-  function findPlace(id) {
-    const key = s(id);
-    if (!key) return null;
-    return arr(window.PLACES).find(p => placeId(p) === key) || null;
+  function scoreSpatialCandidate(currentPlace, candidate, visited) {
+    const d = distanceFromCurrent(candidate);
+    const sameCategory = categoryOf(candidate) === categoryOf(currentPlace);
+    const shared = sharedEmneCount(currentPlace, candidate);
+    const isVisited = !!visited[placeId(candidate)];
+    const completed = hasAnyCompletedSetForPlace(candidate);
+
+    let score = 30;
+
+    if (Number.isFinite(d)) {
+      score += clamp(35 - Math.round(d / 60), 0, 35);
+    }
+
+    if (sameCategory) score += 16;
+    if (shared) score += Math.min(24, shared * 12);
+    if (!isVisited) score += 14;
+    if (!completed) score += 8;
+    if (arr(window.WK_BY_PLACE?.[placeId(candidate)]).length) score += 4;
+
+    return clamp(score, 0, 100);
   }
 
-  function buildSpatial(currentPlace, nearbyPlaces = []) {
-    const visited = getVisited();
-    const currentCategory = categoryOf(currentPlace);
-
-    const candidates = getCandidatePlaces(currentPlace, nearbyPlaces)
-      .map(place => ({ place, d: distanceFromCurrent(place) }))
-      .sort((a, b) => a.d - b.d);
-
-    const preferred =
-      candidates.find(x => !visited[placeId(x.place)] && categoryOf(x.place) === currentCategory) ||
-      candidates.find(x => !visited[placeId(x.place)]) ||
-      candidates.find(x => categoryOf(x.place) === currentCategory) ||
-      candidates[0];
-
-    if (!preferred?.place) return null;
-
-    const label = Number.isFinite(preferred.d)
-      ? `${placeLabel(preferred.place)} · ${Math.round(preferred.d)} m`
-      : placeLabel(preferred.place);
+  function makeSuggestion({ type, target_id, label, reason, score, source, href = "", meta = {} }) {
+    const safeType = s(type);
+    const safeTarget = s(target_id);
+    const safeLabel = s(label);
+    if (!safeType || !safeTarget || !safeLabel) return null;
 
     return {
-      place_id: placeId(preferred.place),
-      label,
-      because: "Nærmeste relevante sted videre fra dette kortet"
+      type: safeType,
+      target_id: safeTarget,
+      label: safeLabel,
+      reason: s(reason),
+      score: clamp(Number(score) || 0, 0, 100),
+      source: s(source),
+      href: s(href),
+      meta: meta && typeof meta === "object" ? meta : {}
     };
   }
 
-  function buildWonderkammer(place) {
+  function buildSpatialSuggestion(currentPlace, nearbyPlaces = []) {
+    const visited = getVisited();
+    const candidates = getCandidatePlaces(currentPlace, nearbyPlaces)
+      .map(place => ({
+        place,
+        d: distanceFromCurrent(place),
+        score: scoreSpatialCandidate(currentPlace, place, visited)
+      }))
+      .sort((a, b) => b.score - a.score || a.d - b.d);
+
+    const preferred = candidates[0];
+    if (!preferred?.place) return null;
+
+    const dText = Number.isFinite(preferred.d) ? `${Math.round(preferred.d)} m` : "";
+    const shared = sharedEmneCount(currentPlace, preferred.place);
+
+    const reason = shared
+      ? `Deler ${shared} emne${shared === 1 ? "" : "r"} med dette stedet${dText ? ` og ligger ${dText} unna` : ""}.`
+      : `Relevant sted videre${dText ? `, ${dText} unna` : ""}.`;
+
+    return makeSuggestion({
+      type: "spatial",
+      target_id: placeId(preferred.place),
+      label: dText ? `${placeLabel(preferred.place)} · ${dText}` : placeLabel(preferred.place),
+      reason,
+      score: preferred.score,
+      source: "places",
+      meta: {
+        place_id: placeId(preferred.place),
+        distance_m: Number.isFinite(preferred.d) ? Math.round(preferred.d) : null,
+        shared_emne_count: shared,
+        category_id: categoryOf(preferred.place)
+      }
+    });
+  }
+
+  function buildWonderkammerSuggestion(place) {
     const id = placeId(place);
     const chambers = arr(window.WK_BY_PLACE?.[id]);
     if (!chambers.length) return null;
 
     const first = chambers.find(c => s(c?.id || c?.entry_id || c?.title || c?.label || c?.name)) || chambers[0];
-    const entryId = s(first?.id || first?.entry_id || first?.slug || "");
+    const entryId = s(first?.id || first?.entry_id || first?.slug || first?.title || first?.label || "");
     const label = s(first?.title || first?.label || first?.name || entryId || "Wonderkammer");
 
     if (!entryId && !label) return null;
 
-    return {
-      entry_id: entryId,
+    return makeSuggestion({
+      type: "wonderkammer",
+      target_id: entryId || label,
       label,
-      because: "Dette stedet har Wonderkammer-innhold"
-    };
+      reason: "Dette stedet har Wonderkammer-innhold du kan åpne som detalj eller objekt.",
+      score: clamp(68 + Math.min(20, chambers.length * 4), 0, 100),
+      source: "wonderkammer",
+      meta: {
+        entry_id: entryId,
+        place_id: id,
+        chamber_count: chambers.length
+      }
+    });
   }
 
   function storyTitle(story) {
@@ -145,6 +248,7 @@
 
   function storyPlaces(story) {
     return [
+      ...arr(story?.next_scenes).map(sc => sc?.place_id || sc?.target_id || sc?.id),
       ...arr(story?.related_places),
       ...arr(story?.next_places),
       ...arr(story?.place_ids),
@@ -152,38 +256,55 @@
     ].map(s).filter(Boolean);
   }
 
-  function makeNarrativeResult(story, nextId, direction) {
+  function nextSceneReason(story, nextId, direction) {
+    const explicit = arr(story?.next_scenes)
+      .find(sc => s(sc?.place_id || sc?.target_id || sc?.id) === s(nextId));
+
+    if (explicit?.reason) return s(explicit.reason);
+
+    return direction === "reverse"
+      ? "En story et annet sted peker tilbake hit som relatert sted."
+      : "Stories-systemet peker videre til et relatert sted.";
+  }
+
+  function makeNarrativeSuggestion(story, nextId, direction) {
     const nextPlace = findPlace(nextId);
     if (!nextId || !nextPlace) return null;
 
-    return {
-      next_place_id: nextId,
-      story_id: s(story?.id),
+    const base = direction === "reverse" ? 72 : 82;
+    const storyScore = Number(story?.score?.total || 0);
+
+    return makeSuggestion({
+      type: "narrative",
+      target_id: nextId,
       label: `${storyTitle(story)} → ${placeLabel(nextPlace)}`,
-      because: direction === "reverse"
-        ? "En story et annet sted peker tilbake hit som relatert sted"
-        : "Stories-systemet peker videre til et relatert sted"
-    };
+      reason: nextSceneReason(story, nextId, direction),
+      score: clamp(base + Math.min(18, Math.round(storyScore / 2)), 0, 100),
+      source: "stories",
+      meta: {
+        next_place_id: nextId,
+        story_id: s(story?.id),
+        direction,
+        story_type: s(story?.type)
+      }
+    });
   }
 
-  function buildNarrative(place) {
+  function buildNarrativeSuggestion(place) {
     const currentId = placeId(place);
     if (!currentId || !window.HGStories) return null;
 
     try {
-      // 1) Direkte story på dette stedet: bruk ekte related_places/next_places.
       if (typeof window.HGStories.getByPlace === "function") {
         const storiesHere = arr(window.HGStories.getByPlace(currentId));
 
         for (const story of storiesHere) {
           const nextId = storyPlaces(story).find(id => id && id !== currentId && findPlace(id));
-          const result = makeNarrativeResult(story, nextId, "direct");
+          const result = makeNarrativeSuggestion(story, nextId, "direct");
           if (result) return result;
         }
       }
 
-      // 2) Reverse-kobling: stories på andre steder som har currentId i related_places.
-      // Dette gjør at f.eks. Bjørvika kan få en scene tilbake til Barcode hvis Barcode-story peker til Bjørvika.
       const allStories = arr(window.HGStories.all);
       for (const story of allStories) {
         const primaryPlaceId = s(story?.place_id);
@@ -192,46 +313,125 @@
         const related = storyPlaces(story);
         if (!related.includes(currentId)) continue;
 
-        const result = makeNarrativeResult(story, primaryPlaceId, "reverse");
+        const result = makeNarrativeSuggestion(story, primaryPlaceId, "reverse");
         if (result) return result;
       }
     } catch (e) {
-      if (window.DEBUG) console.warn("[HGNavigator] buildNarrative failed", e);
+      if (window.DEBUG) console.warn("[HGNavigator] buildNarrativeSuggestion failed", e);
     }
 
-    // Viktig: ingen geografisk fallback her.
-    // Hvis Stories ikke har ekte kobling, skal Neste scene ikke vises.
     return null;
   }
 
-  function buildConcept(place) {
-    const ids = arr(place?.emne_ids).map(s).filter(Boolean);
-    const first = ids[0];
-    if (!first) return null;
+  function countConceptHits(emneId) {
+    const key = s(emneId);
+    if (!key) return 0;
 
-    let label = first;
+    const insightsHits = getInsightsEvents().filter(evt =>
+      s(evt?.emne_id) === key ||
+      arr(evt?.related_emner).map(s).includes(key)
+    ).length;
 
-    try {
-      const subject = categoryOf(place);
-      // Synkron cache finnes ikke garantert, så label kan senere forbedres av knowledge-siden.
-      // Her holder emne_id som robust fallback.
-      if (window.Emner && typeof window.Emner.getEmne === "function") {
-        window.Emner.getEmne(first, subject).then(emne => {
-          // Ingen DOM-mutasjon her: NextUp re-renderes ikke bare for label.
-        }).catch(() => {});
-      }
-    } catch {}
+    const learningHits = getLearningLog().filter(evt =>
+      s(evt?.emne_id) === key ||
+      arr(evt?.related_emner).map(s).includes(key) ||
+      arr(evt?.correctAnswers).some(ans => s(ans?.emne_id) === key)
+    ).length;
 
-    label = s(place?.quiz_profile?.primary_angles?.[0]) || s(place?.quiz_profile?.subtype) || first;
+    return insightsHits + learningHits;
+  }
+
+  function conceptLabel(place, emneId) {
+    const angle = s(place?.quiz_profile?.primary_angles?.[0]);
+    const subtype = s(place?.quiz_profile?.subtype);
+    return angle || subtype || emneId;
+  }
+
+  function buildConceptSuggestion(place) {
+    const ids = emneIds(place);
+    if (!ids.length) return null;
+
+    const scored = ids.map(id => {
+      const hits = countConceptHits(id);
+      // Lav dekning får høyere prioritet, men helt ukjente emner beholdes høyt.
+      const score = clamp(88 - Math.min(30, hits * 6), 45, 95);
+      return { id, hits, score };
+    }).sort((a, b) => b.score - a.score);
+
+    const picked = scored[0];
+    if (!picked) return null;
 
     const subject = categoryOf(place);
-    return {
-      emne_id: first,
-      subject_id: subject,
-      knowledge_href: `knowledge/knowledge_${encodeURIComponent(subject)}.html#${encodeURIComponent(first)}`,
-      label,
-      because: "Stedet er koblet til dette emnet"
-    };
+    const href = `knowledge/knowledge_${encodeURIComponent(subject)}.html#${encodeURIComponent(picked.id)}`;
+
+    const reason = picked.hits
+      ? `Du har møtt dette emnet ${picked.hits} gang${picked.hits === 1 ? "" : "er"}; her kan du styrke forståelsen.`
+      : "Stedet er koblet til dette emnet, men du har lite lagret dekning ennå.";
+
+    return makeSuggestion({
+      type: "concept",
+      target_id: picked.id,
+      label: conceptLabel(place, picked.id),
+      reason,
+      score: picked.score,
+      source: "knowledge",
+      href,
+      meta: {
+        emne_id: picked.id,
+        subject_id: subject,
+        hit_count: picked.hits,
+        place_id: placeId(place)
+      }
+    });
+  }
+
+  function toLegacyShape(suggestion) {
+    if (!suggestion) return null;
+
+    if (suggestion.type === "spatial") {
+      return {
+        place_id: suggestion.meta.place_id || suggestion.target_id,
+        label: suggestion.label,
+        because: suggestion.reason,
+        score: suggestion.score,
+        source: suggestion.source
+      };
+    }
+
+    if (suggestion.type === "wonderkammer") {
+      return {
+        entry_id: suggestion.meta.entry_id || suggestion.target_id,
+        label: suggestion.label,
+        because: suggestion.reason,
+        score: suggestion.score,
+        source: suggestion.source
+      };
+    }
+
+    if (suggestion.type === "narrative") {
+      return {
+        next_place_id: suggestion.meta.next_place_id || suggestion.target_id,
+        story_id: suggestion.meta.story_id || "",
+        label: suggestion.label,
+        because: suggestion.reason,
+        score: suggestion.score,
+        source: suggestion.source
+      };
+    }
+
+    if (suggestion.type === "concept") {
+      return {
+        emne_id: suggestion.meta.emne_id || suggestion.target_id,
+        subject_id: suggestion.meta.subject_id || "",
+        knowledge_href: suggestion.href,
+        label: suggestion.label,
+        because: suggestion.reason,
+        score: suggestion.score,
+        source: suggestion.source
+      };
+    }
+
+    return null;
   }
 
   async function buildForPlace(place, context = {}) {
@@ -239,21 +439,40 @@
 
     const nearbyPlaces = arr(context.nearbyPlaces);
 
+    const spatialSuggestion = buildSpatialSuggestion(place, nearbyPlaces);
+    const wkSuggestion = buildWonderkammerSuggestion(place);
+    const narrativeSuggestion = buildNarrativeSuggestion(place);
+    const conceptSuggestion = buildConceptSuggestion(place);
+
+    const suggestions = [
+      spatialSuggestion,
+      wkSuggestion,
+      narrativeSuggestion,
+      conceptSuggestion
+    ].filter(Boolean).sort((a, b) => b.score - a.score);
+
     return {
-      spatial: buildSpatial(place, nearbyPlaces),
-      wk: buildWonderkammer(place),
-      narrative: buildNarrative(place),
-      concept: buildConcept(place)
+      schema: "hg_nextup_v2",
+      current_place_id: placeId(place),
+      current_place_label: placeLabel(place),
+      category_id: categoryOf(place),
+      generated_at: new Date().toISOString(),
+      suggestions,
+      spatial: toLegacyShape(spatialSuggestion),
+      wk: toLegacyShape(wkSuggestion),
+      narrative: toLegacyShape(narrativeSuggestion),
+      concept: toLegacyShape(conceptSuggestion)
     };
   }
 
   window.HGNavigator = {
     buildForPlace,
     _debug: {
-      buildSpatial,
-      buildWonderkammer,
-      buildNarrative,
-      buildConcept
+      buildSpatialSuggestion,
+      buildWonderkammerSuggestion,
+      buildNarrativeSuggestion,
+      buildConceptSuggestion,
+      getNextUpHistory
     }
   };
 })();
