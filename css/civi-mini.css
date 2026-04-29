@@ -1,10 +1,9 @@
 /* ============================================================
-   CIVICATION – MINI MODE
+   CIVICATION – MINI MODE + POPUPS
    Hensikt:
-   - Civication-siden viser funksjonelle miniversjoner av seksjonene.
-   - Valg/knapper skal kunne brukes direkte fra miniene.
-   - +/– styrer full høyde, ikke om innholdet finnes.
-   - Hvite flater/knapper overstyres til mørkt tema.
+   - Civication-forsiden viser bare nødvendig status og valgknapp.
+   - Alt innhold/alle valg åpnes i mørke popups.
+   - Forsiden holdes ryddig, mørk og handlingsorientert.
 ============================================================ */
 
 :root {
@@ -29,7 +28,7 @@ body.civi-app.civi-mini-mode .civi-panels {
 }
 
 /* ------------------------------------------------------------
-   Dashboardet gjøres kompakt – ikke en stor hero.
+   Dashboard kompakt.
 ------------------------------------------------------------ */
 
 body.civi-app.civi-mini-mode #civiDashboardSection {
@@ -88,39 +87,28 @@ body.civi-app.civi-mini-mode .civi-dashboard-metric small {
 }
 
 /* ------------------------------------------------------------
-   Alle ordinære Civication-seksjoner som funksjonelle minikort.
-   Standard: innholdet er synlig i kompakt scroll, slik at valg kan tas.
+   Forsidekort: bare nødvendig info + knapp.
 ------------------------------------------------------------ */
 
 body.civi-app.civi-mini-mode .civi-panels > section:not(#civiDashboardSection),
 body.civi-app.civi-mini-mode #civiTrackHUD {
-  grid-column: span 6;
-  min-height: 220px;
+  grid-column: span 4;
+  min-height: 154px;
   padding: 0;
   border-radius: 18px;
   background: linear-gradient(180deg, rgba(24,24,28,0.96), rgba(12,12,15,0.96));
   border: 1px solid var(--civi-mini-border);
   box-shadow: 0 12px 28px rgba(0,0,0,0.28);
+  overflow: hidden;
 }
 
-body.civi-app.civi-mini-mode .civi-panels > section.is-expanded,
-body.civi-app.civi-mini-mode #civiTrackHUD.is-expanded {
-  grid-column: 1 / -1;
-}
-
-body.civi-app.civi-mini-mode .civi-mini-head {
-  width: 100%;
-  min-height: 74px;
-  padding: 13px 14px 10px 16px;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 10px;
-  align-items: start;
-  border: 0;
-  border-bottom: 1px solid rgba(255,255,255,0.075);
-  background: transparent;
-  color: var(--civi-mini-text);
-  text-align: left;
+body.civi-app.civi-mini-mode .civi-mini-card {
+  height: 100%;
+  min-height: 154px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
   cursor: pointer;
 }
 
@@ -131,10 +119,9 @@ body.civi-app.civi-mini-mode .civi-mini-title-row {
   min-width: 0;
 }
 
-body.civi-app.civi-mini-mode .civi-mini-title-row h2,
-body.civi-app.civi-mini-mode #civiTrackHUD .civi-mini-title-row .civi-track-title {
+body.civi-app.civi-mini-mode .civi-mini-title-row h2 {
   margin: 0;
-  color: rgba(255,255,255,0.86);
+  color: rgba(255,255,255,0.88);
   font-size: 12px;
   font-weight: 850;
   letter-spacing: 0.07em;
@@ -142,18 +129,17 @@ body.civi-app.civi-mini-mode #civiTrackHUD .civi-mini-title-row .civi-track-titl
 }
 
 body.civi-app.civi-mini-mode .civi-mini-summary {
-  margin-top: 6px;
+  min-height: 35px;
   color: var(--civi-mini-muted);
-  font-size: 12px;
-  line-height: 1.28;
+  font-size: 13px;
+  line-height: 1.34;
   display: -webkit-box;
-  -webkit-line-clamp: 1;
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
-body.civi-app.civi-mini-mode .civi-mini-count {
-  margin-top: 7px;
+body.civi-app.civi-mini-mode .civi-mini-status {
   width: max-content;
   max-width: 100%;
   padding: 4px 8px;
@@ -165,48 +151,25 @@ body.civi-app.civi-mini-mode .civi-mini-count {
   font-weight: 700;
 }
 
-body.civi-app.civi-mini-mode .civi-mini-toggle {
-  width: 34px;
-  height: 34px;
-  display: grid;
-  place-items: center;
-  border-radius: 999px;
-  background: rgba(255,255,255,0.07);
-  border: 1px solid rgba(255,255,255,0.10);
-  color: rgba(255,255,255,0.8);
-  font-size: 18px;
-  line-height: 1;
+body.civi-app.civi-mini-mode .civi-mini-action {
+  margin-top: auto;
+  width: 100%;
+  min-height: 40px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 800;
 }
 
-body.civi-app.civi-mini-mode .is-expanded .civi-mini-toggle {
+body.civi-app.civi-mini-mode .needs-feedback .civi-mini-status {
   background: rgba(214,170,58,0.16);
-  border-color: rgba(214,170,58,0.34);
-  color: rgba(255,230,160,0.96);
+  border-color: rgba(214,170,58,0.32);
+  color: rgba(255,232,170,0.98);
 }
 
-body.civi-app.civi-mini-mode .civi-section-body {
-  display: block;
-  max-height: 260px;
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  -webkit-overflow-scrolling: touch;
-  padding: 12px 14px 14px 14px;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(255,255,255,0.22) transparent;
-}
-
-body.civi-app.civi-mini-mode .civi-section-body::-webkit-scrollbar {
-  width: 7px;
-}
-
-body.civi-app.civi-mini-mode .civi-section-body::-webkit-scrollbar-thumb {
-  background: rgba(255,255,255,0.22);
-  border-radius: 999px;
-}
-
-body.civi-app.civi-mini-mode .is-expanded > .civi-section-body {
-  max-height: none;
-  overflow: visible;
+body.civi-app.civi-mini-mode .needs-feedback .civi-mini-action {
+  background: linear-gradient(135deg, rgba(214,170,58,0.30), rgba(214,170,58,0.12)) !important;
+  border-color: rgba(214,170,58,0.42) !important;
+  color: rgba(255,236,180,0.98) !important;
 }
 
 body.civi-app.civi-mini-mode .civi-panels > section:not(#civiDashboardSection)::before {
@@ -215,111 +178,129 @@ body.civi-app.civi-mini-mode .civi-panels > section:not(#civiDashboardSection)::
   width: 3px;
 }
 
+/* Originalt innhold skjules på forsiden. Det flyttes inn i popup ved åpning. */
+body.civi-app.civi-mini-mode .civi-section-body {
+  display: none;
+}
+
+body.civi-app.civi-mini-mode .civi-section-body.is-in-popup {
+  display: block;
+}
+
 body.civi-app.civi-mini-mode .civi-panels > section:not(#civiDashboardSection) > h2,
-body.civi-app.civi-mini-mode .civi-panels > section:not(#civiDashboardSection) > :not(.civi-mini-head):not(.civi-section-body),
-body.civi-app.civi-mini-mode #civiTrackHUD > :not(.civi-mini-head):not(.civi-section-body) {
+body.civi-app.civi-mini-mode .civi-panels > section:not(#civiDashboardSection) > :not(.civi-mini-card):not(.civi-section-body),
+body.civi-app.civi-mini-mode #civiTrackHUD > :not(.civi-mini-card):not(.civi-section-body) {
   display: none;
 }
 
 /* ------------------------------------------------------------
-   Gjør innholdet inni miniene tett nok til å være handlingsbart.
+   Popup for Civication-seksjoner.
 ------------------------------------------------------------ */
 
-body.civi-app.civi-mini-mode .civi-section-body p {
-  margin-top: 0;
+body.civi-popup-open {
+  overflow: hidden;
 }
 
-body.civi-app.civi-mini-mode .civi-section-body button,
-body.civi-app.civi-mini-mode .civi-section-body .civi-btn,
-body.civi-app.civi-mini-mode .civi-section-body .civi-task-open-btn {
-  min-height: 38px;
-  padding: 8px 10px;
-  border-radius: 11px;
-  font-size: 13px;
+.civi-section-popup {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: none;
 }
 
-body.civi-app.civi-mini-mode .civi-section-body [style*="display:flex"],
-body.civi-app.civi-mini-mode .civi-section-body .civi-task-actions {
-  flex-wrap: wrap;
+.civi-section-popup.is-open {
+  display: block;
 }
 
-body.civi-app.civi-mini-mode .civi-workday-top,
-body.civi-app.civi-mini-mode .civi-workday-grid {
-  grid-template-columns: 1fr;
-  gap: 8px;
+.civi-section-popup-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.66);
+  backdrop-filter: blur(10px);
 }
 
-body.civi-app.civi-mini-mode .is-expanded .civi-workday-grid {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+.civi-section-popup-panel {
+  position: absolute;
+  left: 50%;
+  bottom: max(14px, env(safe-area-inset-bottom));
+  transform: translateX(-50%);
+  width: min(920px, calc(100vw - 22px));
+  max-height: min(82vh, 860px);
+  display: flex;
+  flex-direction: column;
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at 18% 0%, rgba(214,170,58,0.16), transparent 28%),
+    linear-gradient(180deg, rgba(26,26,30,0.985), rgba(9,9,12,0.99));
+  border: 1px solid rgba(255,255,255,0.13);
+  box-shadow: 0 28px 90px rgba(0,0,0,0.62);
+  overflow: hidden;
 }
 
-body.civi-app.civi-mini-mode .civi-workday-clock,
-body.civi-app.civi-mini-mode .civi-workday-meta,
-body.civi-app.civi-mini-mode .civi-workday-card,
-body.civi-app.civi-mini-mode .civi-workday-empty {
-  padding: 10px;
-  border-radius: 12px;
+.civi-section-popup-head {
+  padding: 18px 20px 14px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  border-bottom: 1px solid rgba(255,255,255,0.09);
 }
 
-body.civi-app.civi-mini-mode .civi-workday-time,
-body.civi-app.civi-mini-mode .civi-workday-big {
-  font-size: 20px;
-}
-
-body.civi-app.civi-mini-mode .civi-workday-task-title {
-  font-size: 14px;
-}
-
-body.civi-app.civi-mini-mode .civi-workday-task-desc {
-  font-size: 12px;
-  line-height: 1.35;
-}
-
-body.civi-app.civi-mini-mode .capital-grid,
-body.civi-app.civi-mini-mode .civi-capital .capital-grid,
-body.civi-app.civi-mini-mode .psyche-grid,
-body.civi-app.civi-mini-mode .civi-psyche .psyche-grid {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 8px;
-}
-
-body.civi-app.civi-mini-mode .capital-item,
-body.civi-app.civi-mini-mode .psyche-item {
-  min-height: 56px;
-  padding: 8px;
-}
-
-body.civi-app.civi-mini-mode .capital-label,
-body.civi-app.civi-mini-mode .psyche-label {
+.civi-section-popup-kicker {
+  margin-bottom: 5px;
+  color: rgba(214,170,58,0.95);
   font-size: 10px;
+  font-weight: 850;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
 }
 
-body.civi-app.civi-mini-mode .capital-value,
-body.civi-app.civi-mini-mode .psyche-value {
-  font-size: 17px;
+#civiSectionPopupTitle {
+  margin: 0;
+  color: rgba(255,255,255,0.94);
+  font-size: clamp(22px, 3vw, 34px);
+  line-height: 1.02;
+  letter-spacing: -0.04em;
 }
 
-body.civi-app.civi-mini-mode .psyche-item.highlight {
-  grid-column: span 2;
+.civi-popup-close {
+  width: 42px;
+  height: 42px;
+  flex: 0 0 auto;
+  border-radius: 999px;
+  font-size: 24px;
+  line-height: 1;
+}
+
+.civi-section-popup-body {
+  padding: 16px 20px 22px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.civi-section-popup-body .civi-section-body {
+  display: block;
+  padding: 0;
+}
+
+.civi-section-popup-body h2:first-child {
+  display: none;
+}
+
+/* Popup-innhold skal være brukbart og mørkt. */
+.civi-section-popup-body button,
+.civi-section-popup-body .civi-btn,
+.civi-section-popup-body .civi-task-open-btn {
+  min-height: 44px;
+  border-radius: 13px;
+}
+
+.civi-section-popup-body .civi-workday-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 /* ------------------------------------------------------------
-   Fargede aksenter – mørkt tema, men ikke flatt.
------------------------------------------------------------- */
-
-body.civi-app.civi-mini-mode #activeJobSection { border-color: rgba(214,170,58,0.20); }
-body.civi-app.civi-mini-mode #civiWorkdaySection { border-color: rgba(95,184,121,0.20); }
-body.civi-app.civi-mini-mode #civiInboxSection { border-color: rgba(95,184,121,0.22); }
-body.civi-app.civi-mini-mode #civiHomeStatus { border-color: rgba(217,145,79,0.22); }
-body.civi-app.civi-mini-mode .civi-capital { border-color: rgba(95,184,121,0.18); }
-body.civi-app.civi-mini-mode .civi-psyche { border-color: rgba(180,130,206,0.20); }
-body.civi-app.civi-mini-mode .civi-identity { border-color: rgba(127,167,214,0.20); }
-body.civi-app.civi-mini-mode #civiDebateSection { border-color: rgba(217,130,130,0.20); }
-body.civi-app.civi-mini-mode #civiPeopleSection { border-color: rgba(127,167,214,0.18); }
-body.civi-app.civi-mini-mode #civiStoreSection { border-color: rgba(217,145,79,0.18); }
-
-/* ------------------------------------------------------------
-   Fjern hvite bokser/knapper. Civication skal være mørkt.
+   Mørkt tema: fjern hvitt i knapper, felt og kort.
 ------------------------------------------------------------ */
 
 body.civi-app button,
@@ -331,7 +312,8 @@ body.civi-app #identityPerceptionBtn,
 body.civi-app .civi-task-open-btn,
 body.civi-app .district-card button,
 body.civi-app .civi-modal-close,
-body.civi-app .civi-task-actions button {
+body.civi-app .civi-task-actions button,
+body.civi-app .civi-popup-close {
   background: linear-gradient(180deg, rgba(255,255,255,0.105), rgba(255,255,255,0.055)) !important;
   color: rgba(255,255,255,0.92) !important;
   border: 1px solid rgba(255,255,255,0.14) !important;
@@ -409,10 +391,18 @@ body.civi-app .district-card {
   }
 
   body.civi-app.civi-mini-mode .civi-panels > section:not(#civiDashboardSection),
-  body.civi-app.civi-mini-mode #civiTrackHUD,
-  body.civi-app.civi-mini-mode .civi-panels > section.is-expanded,
-  body.civi-app.civi-mini-mode #civiTrackHUD.is-expanded {
+  body.civi-app.civi-mini-mode #civiTrackHUD {
     grid-column: 1 / -1;
+  }
+
+  .civi-section-popup-panel {
+    width: calc(100vw - 16px);
+    max-height: 86vh;
+    border-radius: 22px 22px 18px 18px;
+  }
+
+  .civi-section-popup-body .civi-workday-grid {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -426,16 +416,15 @@ body.civi-app .district-card {
     padding: 9px;
   }
 
-  body.civi-app.civi-mini-mode .civi-mini-head {
-    min-height: 70px;
-    padding: 12px;
+  body.civi-app.civi-mini-mode .civi-mini-card {
+    min-height: 146px;
   }
 
-  body.civi-app.civi-mini-mode .civi-section-body {
-    max-height: 300px;
+  .civi-section-popup-head {
+    padding: 16px 16px 12px;
   }
 
-  body.civi-app.civi-mini-mode .psyche-item.highlight {
-    grid-column: span 1;
+  .civi-section-popup-body {
+    padding: 14px 16px 20px;
   }
 }
