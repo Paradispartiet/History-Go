@@ -6,6 +6,22 @@ document.addEventListener("DOMContentLoaded", async () => {
   try {
     await safeRun("boot", window.boot);
 
+    // boot.js har historisk brukt en hardkodet place-liste.
+    // DataHub.loadPlacesBase() er manifest-basert og inkluderer nye Oslo-/Akerselva-filer.
+    // Denne kjører før søk/left panel init, slik at UI bruker komplett window.PLACES.
+    await safeRun("refreshPlacesFromManifest", async () => {
+      if (!window.DataHub?.loadPlacesBase) return;
+      const places = await window.DataHub.loadPlacesBase({ cache: "no-store" });
+      if (!Array.isArray(places) || !places.length) return;
+
+      window.PLACES = places;
+
+      if (window.HGMap?.setPlaces) {
+        window.HGMap.setPlaces(window.PLACES);
+        window.HGMap.refreshMarkers?.();
+      }
+    });
+
     // Globalt søk lå i repoet, men var ikke lastet inn av index.html.
     // Lastes etter boot slik at window.PLACES / window.PEOPLE / kategorier finnes.
     await safeRun("loadGlobalSearch", () => loadScriptOnce("js/ui/search.js"));
