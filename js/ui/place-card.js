@@ -659,16 +659,16 @@ if (leksikonEl) {
 
 // --- ROUTES LIST + ROUTES ICON ---
 if (routesEl) {
-  const allRoutes = Array.isArray(window.ROUTES) ? window.ROUTES : [];
+  const allRoutes = (window.HGRoutes?.load ? await window.HGRoutes.load() : (Array.isArray(window.ROUTES) ? window.ROUTES : [])) || [];
   const placeRoutes = allRoutes.filter(route =>
-    Array.isArray(route?.place_ids) && route.place_ids.includes(place.id)
+    Array.isArray(route?.stops) && route.stops.some(stop => String(stop?.placeId || "").trim() === String(place.id || "").trim())
   );
 
   routesEl.innerHTML = placeRoutes.length
     ? placeRoutes.map(route => `
         <button class="pc-route-entry" data-route="${route.id}">
-          <span class="pc-route-entry-title">${route.title || route.id}</span>
-          ${Array.isArray(route.place_ids) ? `<span class="pc-route-entry-meta">${route.place_ids.length} stopp</span>` : ""}
+          <span class="pc-route-entry-title">${route.title || route.name || route.id}</span>
+          ${Array.isArray(route.stops) ? `<span class="pc-route-entry-meta">${route.stops.length} stopp</span>` : ""}
         </button>
       `).join("")
     : `<div class="pc-empty">Ingen ruter ennå</div>`;
@@ -677,9 +677,13 @@ if (routesEl) {
     btn.onclick = () => {
       const id = String(btn.dataset.route || "").trim();
       if (!id) return;
+      const route = placeRoutes.find(r => String(r.id || "").trim() === id);
+      const stopIndex = Array.isArray(route?.stops)
+        ? route.stops.findIndex(s => String(s?.placeId || "").trim() === String(place.id || "").trim())
+        : -1;
 
-      if (typeof window.loadRoutes === "function" && typeof window.focusRouteOnMap === "function") {
-        window.loadRoutes().then(() => window.focusRouteOnMap(id));
+      if (typeof window.showRouteOverlay === "function") {
+        window.showRouteOverlay(id, stopIndex >= 0 ? stopIndex : 0);
       } else {
         window.showToast?.("Rute-funksjon ikke lastet");
       }

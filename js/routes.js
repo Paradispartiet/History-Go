@@ -235,22 +235,76 @@ function _enterRouteMapMode() {
 async function loadRoutes() {
   if (routesLoaded) return ROUTES;
 
-  try {
-    const res = await fetch("data/routes.json", { cache: "no-store" });
-    if (!res.ok) throw new Error("routes.json http " + res.status);
+  const sources = ["data/routes.json", "data/routes_walks.json"];
+  const loaded = [];
+  const seenIds = new Map();
 
-    const data = await res.json();
-    ROUTES = Array.isArray(data) ? data : [];
-    routesLoaded = true;
+  const normalizeRoute = (route) => {
+    if (!route || typeof route !== "object") return null;
 
-    if (window.DEBUG) console.log("[routes] loaded:", ROUTES.length);
-    return ROUTES;
-  } catch (e) {
-    routesLoaded = true;
-    ROUTES = [];
-    console.warn("[routes] load failed:", e);
-    return ROUTES;
+    let stops = Array.isArray(route.stops) ? route.stops : [];
+    if (!stops.length && Array.isArray(route.place_ids)) {
+      stops = route.place_ids
+        .map(pid => ({ placeId: pid }))
+        .filter(s => s.placeId);
+    }
+
+    const normalizedStops = stops
+      .map((stop) => {
+        if (!stop || typeof stop !== "object") return null;
+        const placeId = String(stop.placeId || stop.place_id || "").trim();
+        if (!placeId) return null;
+        return {
+          placeId,
+          title: stop.title || "",
+          info: stop.info || "",
+          ...(stop.wonderkammerEntryId ? { wonderkammerEntryId: stop.wonderkammerEntryId } : {})
+        };
+      })
+      .filter(Boolean);
+
+    return {
+      ...route,
+      id: String(route.id || "").trim(),
+      name: route.name || route.title || "",
+      title: route.title || route.name || "",
+      category: route.category || "",
+      desc: route.desc || "",
+      kind: route.kind || "route",
+      theme: route.theme || "",
+      stops: normalizedStops
+    };
+  };
+
+  for (const src of sources) {
+    try {
+      const res = await fetch(src, { cache: "no-store" });
+      if (!res.ok) throw new Error(`${src} http ${res.status}`);
+      const data = await res.json();
+      const arr = Array.isArray(data) ? data : [];
+      loaded.push(...arr);
+    } catch (e) {
+      console.warn("[routes] load failed:", src, e);
+    }
   }
+
+  ROUTES = loaded
+    .map(normalizeRoute)
+    .filter(route => route?.id && Array.isArray(route.stops) && route.stops.length)
+    .filter(route => {
+      if (!seenIds.has(route.id)) {
+        seenIds.set(route.id, true);
+        return true;
+      }
+      console.warn("[routes] duplicate id skipped:", route.id);
+      return false;
+    });
+
+  routesLoaded = true;
+  window.ROUTES = ROUTES;
+
+  if (window.DEBUG) console.log("[routes] loaded merged:", ROUTES.length);
+  return ROUTES;
 }
 
 function clearThematicRoute() {
