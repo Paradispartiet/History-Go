@@ -162,7 +162,7 @@
     return clamp(score, 0, 100);
   }
 
-  function makeSuggestion({ type, target_id, label, reason, score, source, href = "", meta = {} }) {
+  function makeSuggestion({ type, target_id, label, reason, deep_reason = "", evidence = [], score, source, href = "", meta = {} }) {
     const safeType = s(type);
     const safeTarget = s(target_id);
     const safeLabel = s(label);
@@ -173,10 +173,90 @@
       target_id: safeTarget,
       label: safeLabel,
       reason: s(reason),
+      deep_reason: s(deep_reason),
+      evidence: arr(evidence).map(s).filter(Boolean),
       score: clamp(Number(score) || 0, 0, 100),
       source: s(source),
       href: s(href),
       meta: meta && typeof meta === "object" ? meta : {}
+    };
+  }
+
+  function buildSpatialReason(currentPlace, candidatePlace, meta = {}) {
+    const distance = Number.isFinite(meta.distance_m) ? `${Math.round(meta.distance_m)} m` : "";
+    const shared = Number(meta.shared_emne_count || 0);
+    const sameCategory = !!meta.same_category;
+    const unvisited = !!meta.unvisited;
+    const quizIncomplete = !!meta.quiz_incomplete;
+    const category = categoryOf(candidatePlace);
+
+    const reason = shared
+      ? `Deler ${shared} emne${shared === 1 ? "" : "r"} med dette stedet.`
+      : "Nærliggende sted som passer videre i løypa.";
+
+    const parts = [];
+    if (distance) parts.push(`${placeLabel(candidatePlace)} ligger ${distance} unna`);
+    else parts.push(`${placeLabel(candidatePlace)} ligger som et naturlig neste stopp`);
+    if (sameCategory) parts.push(`og deler kategori (${category})`);
+    if (shared > 0) parts.push(`med ${shared} felles emne${shared === 1 ? "" : "r"}`);
+    if (unvisited) parts.push("Stedet er ubesøkt");
+    if (quizIncomplete) parts.push("quizen der er ikke fullført");
+
+    return {
+      reason,
+      deep_reason: `${parts.join(", ")}.`,
+      evidence: [
+        "distance_m",
+        "place.categoryId",
+        "place.emne_ids",
+        "visited_places",
+        "hg_quiz_sets_v1"
+      ]
+    };
+  }
+
+  function buildWonderkammerReason(place, entry, meta = {}) {
+    const count = Number(meta.chamber_count || 0);
+    const title = s(entry?.title || entry?.label || entry?.name || "objekt");
+    const entryType = s(entry?.type);
+    const reason = "Dette stedet har Wonderkammer-innhold du kan åpne.";
+    const deep_reason = `${placeLabel(place)} har ${count || "flere"} Wonderkammer-oppføring${count === 1 ? "" : "er"}, blant annet “${title}”${entryType ? ` (${entryType})` : ""}, knyttet til place_id ${placeId(place)}.`;
+    return {
+      reason,
+      deep_reason,
+      evidence: ["WK_BY_PLACE", "wonderkammer.entry", "place.id"]
+    };
+  }
+
+  function buildNarrativeReason(story, nextPlace, direction) {
+    const title = storyTitle(story);
+    const summary = s(story?.summary);
+    const explicit = arr(story?.next_scenes)
+      .find(sc => s(sc?.place_id || sc?.target_id || sc?.id) === placeId(nextPlace));
+    const sceneReason = s(explicit?.reason);
+    const fallback = direction === "reverse"
+      ? "Koblingen kommer via related_places."
+      : "Koblingen kommer via storyens stedsliste.";
+
+    return {
+      reason: sceneReason || "Denne scenen følger en eksisterende fortelling.",
+      deep_reason: `Forslaget følger historien “${title}”${summary ? `: ${summary}` : ""}. Neste sted er ${placeLabel(nextPlace)}${sceneReason ? ` fordi ${sceneReason}` : ` (${fallback})`}.`,
+      evidence: ["HGStories", "story.title", "story.summary", "story.next_scenes", "story.related_places"]
+    };
+  }
+
+  function buildConceptReason(place, emneId, meta = {}) {
+    const hits = Number(meta.hit_count || 0);
+    const lowCoverage = !!meta.low_coverage;
+    const angle = s(place?.quiz_profile?.primary_angles?.[0]);
+    const reason = "Stedet er koblet til dette emnet.";
+    const deep_reason = hits
+      ? `Emnet ${emneId} går igjen på ${placeLabel(place)}${angle ? ` med vinkel “${angle}”` : ""}. Du har ${hits} treff i learning-log/insights${lowCoverage ? ", men dekningen er fortsatt lav" : ""}, så dette er et godt fordypningspunkt.`
+      : `Emnet ${emneId} er koblet til ${placeLabel(place)}${angle ? ` og quiz-vinkelen “${angle}”` : ""}, men mangler treff i learning-log/insights. Derfor foreslås det for å bygge dekning tidlig.`;
+    return {
+      reason,
+      deep_reason,
+      evidence: ["place.emne_ids", "quiz_profile.primary_angles", "hg_learning_log_v1", "hg_insights_events_v1", "emne_coverage"]
     };
   }
 
@@ -196,15 +276,21 @@
     const dText = Number.isFinite(preferred.d) ? `${Math.round(preferred.d)} m` : "";
     const shared = sharedEmneCount(currentPlace, preferred.place);
 
-    const reason = shared
-      ? `Deler ${shared} emne${shared === 1 ? "" : "r"} med dette stedet${dText ? ` og ligger ${dText} unna` : ""}.`
-      : `Relevant sted videre${dText ? `, ${dText} unna` : ""}.`;
+    const reasonMeta = buildSpatialReason(currentPlace, preferred.place, {
+      distance_m: Number.isFinite(preferred.d) ? Math.round(preferred.d) : null,
+      shared_emne_count: shared,
+      same_category: categoryOf(preferred.place) === categoryOf(currentPlace),
+      unvisited: !visited[placeId(preferred.place)],
+      quiz_incomplete: !hasAnyCompletedSetForPlace(preferred.place)
+    });
 
     return makeSuggestion({
       type: "spatial",
       target_id: placeId(preferred.place),
       label: dText ? `${placeLabel(preferred.place)} · ${dText}` : placeLabel(preferred.place),
-      reason,
+      reason: reasonMeta.reason,
+      deep_reason: reasonMeta.deep_reason,
+      evidence: reasonMeta.evidence,
       score: preferred.score,
       source: "places",
       meta: {
@@ -227,11 +313,15 @@
 
     if (!entryId && !label) return null;
 
+    const reasonMeta = buildWonderkammerReason(place, first, { chamber_count: chambers.length });
+
     return makeSuggestion({
       type: "wonderkammer",
       target_id: entryId || label,
       label,
-      reason: "Dette stedet har Wonderkammer-innhold du kan åpne som detalj eller objekt.",
+      reason: reasonMeta.reason,
+      deep_reason: reasonMeta.deep_reason,
+      evidence: reasonMeta.evidence,
       score: clamp(68 + Math.min(20, chambers.length * 4), 0, 100),
       source: "wonderkammer",
       meta: {
@@ -274,11 +364,15 @@
     const base = direction === "reverse" ? 72 : 82;
     const storyScore = Number(story?.score?.total || 0);
 
+    const reasonMeta = buildNarrativeReason(story, nextPlace, direction);
+
     return makeSuggestion({
       type: "narrative",
       target_id: nextId,
       label: `${storyTitle(story)} → ${placeLabel(nextPlace)}`,
-      reason: nextSceneReason(story, nextId, direction),
+      reason: reasonMeta.reason,
+      deep_reason: reasonMeta.deep_reason,
+      evidence: reasonMeta.evidence,
       score: clamp(base + Math.min(18, Math.round(storyScore / 2)), 0, 100),
       source: "stories",
       meta: {
@@ -364,15 +458,18 @@
     const subject = categoryOf(place);
     const href = `knowledge/knowledge_${encodeURIComponent(subject)}.html#${encodeURIComponent(picked.id)}`;
 
-    const reason = picked.hits
-      ? `Du har møtt dette emnet ${picked.hits} gang${picked.hits === 1 ? "" : "er"}; her kan du styrke forståelsen.`
-      : "Stedet er koblet til dette emnet, men du har lite lagret dekning ennå.";
+    const reasonMeta = buildConceptReason(place, picked.id, {
+      hit_count: picked.hits,
+      low_coverage: picked.hits < 2
+    });
 
     return makeSuggestion({
       type: "concept",
       target_id: picked.id,
       label: conceptLabel(place, picked.id),
-      reason,
+      reason: reasonMeta.reason,
+      deep_reason: reasonMeta.deep_reason,
+      evidence: reasonMeta.evidence,
       score: picked.score,
       source: "knowledge",
       href,
@@ -393,6 +490,8 @@
         place_id: suggestion.meta.place_id || suggestion.target_id,
         label: suggestion.label,
         because: suggestion.reason,
+        deep_reason: suggestion.deep_reason,
+        evidence: suggestion.evidence,
         score: suggestion.score,
         source: suggestion.source
       };
@@ -403,6 +502,8 @@
         entry_id: suggestion.meta.entry_id || suggestion.target_id,
         label: suggestion.label,
         because: suggestion.reason,
+        deep_reason: suggestion.deep_reason,
+        evidence: suggestion.evidence,
         score: suggestion.score,
         source: suggestion.source
       };
@@ -414,6 +515,8 @@
         story_id: suggestion.meta.story_id || "",
         label: suggestion.label,
         because: suggestion.reason,
+        deep_reason: suggestion.deep_reason,
+        evidence: suggestion.evidence,
         score: suggestion.score,
         source: suggestion.source
       };
@@ -426,6 +529,8 @@
         knowledge_href: suggestion.href,
         label: suggestion.label,
         because: suggestion.reason,
+        deep_reason: suggestion.deep_reason,
+        evidence: suggestion.evidence,
         score: suggestion.score,
         source: suggestion.source
       };

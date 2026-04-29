@@ -117,6 +117,8 @@
         target_id: s(tri.spatial.place_id),
         label: s(tri.spatial.label),
         reason: s(tri.spatial.because),
+        deep_reason: s(tri.spatial.deep_reason),
+        evidence: Array.isArray(tri.spatial.evidence) ? tri.spatial.evidence : [],
         score: Number(tri.spatial.score || 60),
         source: s(tri.spatial.source || "places"),
         meta: { place_id: s(tri.spatial.place_id) }
@@ -129,6 +131,8 @@
         target_id: s(tri.wk.entry_id),
         label: s(tri.wk.label),
         reason: s(tri.wk.because),
+        deep_reason: s(tri.wk.deep_reason),
+        evidence: Array.isArray(tri.wk.evidence) ? tri.wk.evidence : [],
         score: Number(tri.wk.score || 55),
         source: s(tri.wk.source || "wonderkammer"),
         meta: { entry_id: s(tri.wk.entry_id) }
@@ -141,6 +145,8 @@
         target_id: s(tri.narrative.next_place_id),
         label: s(tri.narrative.label),
         reason: s(tri.narrative.because),
+        deep_reason: s(tri.narrative.deep_reason),
+        evidence: Array.isArray(tri.narrative.evidence) ? tri.narrative.evidence : [],
         score: Number(tri.narrative.score || 70),
         source: s(tri.narrative.source || "stories"),
         meta: {
@@ -156,6 +162,8 @@
         target_id: s(tri.concept.emne_id),
         label: s(tri.concept.label),
         reason: s(tri.concept.because),
+        deep_reason: s(tri.concept.deep_reason),
+        evidence: Array.isArray(tri.concept.evidence) ? tri.concept.evidence : [],
         score: Number(tri.concept.score || 65),
         source: s(tri.concept.source || "knowledge"),
         href: s(tri.concept.knowledge_href),
@@ -181,6 +189,8 @@
         target_id: s(sug.target_id),
         label: s(sug.label),
         reason: s(sug.reason),
+        deep_reason: s(sug.deep_reason),
+        evidence: Array.isArray(sug.evidence) ? sug.evidence.map(s).filter(Boolean) : [],
         score: Number(sug.score || 0),
         source: s(sug.source),
         href: s(sug.href),
@@ -308,6 +318,9 @@
       score: sug.score,
       source: sug.source,
       reason: sug.reason
+      ,
+      deep_reason: sug.deep_reason,
+      evidence: sug.evidence
     });
 
     dispatchProfileUpdate();
@@ -331,6 +344,10 @@
         label: sug.label,
         score: sug.score,
         source: sug.source
+        ,
+        reason: sug.reason,
+        deep_reason: sug.deep_reason,
+        evidence: sug.evidence
       }))
     });
   }
@@ -358,7 +375,7 @@
 
     panel.innerHTML = suggestions.map((sug, index) => `
       <div class="mp-nextup-line" data-nextup-type="${attr(sug.type)}">
-        <button class="mp-nextup-link" type="button" data-nextup-index="${index}" title="${attr(sug.reason)}">
+        <button class="mp-nextup-link" type="button" data-nextup-index="${index}" title="${attr(sug.deep_reason || sug.reason)}" data-deep-reason="${attr(sug.deep_reason)}">
           ${suggestionIcon(sug.type)} <b>${esc(suggestionTitle(sug.type))}</b>
           <span>${esc(sug.label)}</span>
           <small>${Math.round(sug.score)} · ${esc(sug.source || "system")}</small>
@@ -414,7 +431,10 @@
       label: x.label,
       score: x.score,
       source: x.source,
-      target: x.target_id
+      target: x.target_id,
+      reason: x.reason,
+      deep_reason: x.deep_reason,
+      evidence: (x.evidence || []).join(", ")
     })));
     console.log("[History Go] debugNextUp", result);
     return result;
