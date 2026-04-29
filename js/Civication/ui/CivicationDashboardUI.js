@@ -2,6 +2,7 @@
 // CIVICATION DASHBOARD UI
 // Leser eksisterende Civication-state og fyller toppdashboardet.
 // Ingen state-mutasjon her: kun presentasjon.
+// Laster også Civication Mini Mode som presentasjonslag.
 // ============================================================
 
 (function () {
@@ -28,6 +29,41 @@
   function asNumber(value, fallback) {
     const n = Number(value);
     return Number.isFinite(n) ? n : fallback;
+  }
+
+  function loadStyleOnce(href) {
+    if (!href || document.querySelector(`link[href="${href}"]`)) return;
+
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = href;
+    document.head.appendChild(link);
+  }
+
+  function loadScriptOnce(src) {
+    if (!src) return Promise.resolve(false);
+    if (document.querySelector(`script[src="${src}"]`)) return Promise.resolve(true);
+
+    return new Promise(function (resolve, reject) {
+      const script = document.createElement("script");
+      script.src = src;
+      script.onload = function () { resolve(true); };
+      script.onerror = function () { reject(new Error(`Kunne ikke laste ${src}`)); };
+      document.body.appendChild(script);
+    });
+  }
+
+  function ensureMiniModeLoaded() {
+    loadStyleOnce("css/civi-mini.css");
+
+    loadScriptOnce("js/Civication/ui/CivicationMiniSectionsUI.js")
+      .then(function () {
+        window.CivicationMiniSectionsUI?.boot?.();
+        window.CivicationMiniSectionsUI?.refresh?.();
+      })
+      .catch(function (error) {
+        console.warn("[CivicationDashboardUI] Mini mode kunne ikke lastes", error);
+      });
   }
 
   function getWalletPC() {
@@ -129,6 +165,8 @@
   }
 
   function render() {
+    ensureMiniModeLoaded();
+
     const active = getActivePosition();
     const state = getCiviState();
     const inbox = getInbox();
@@ -160,9 +198,12 @@
 
     document.body.classList.toggle("civi-has-active-role", !!active);
     document.body.classList.toggle("civi-has-inbox", inbox.length > 0);
+
+    window.CivicationMiniSectionsUI?.refresh?.();
   }
 
   function scheduleRender() {
+    ensureMiniModeLoaded();
     window.setTimeout(render, 0);
     window.setTimeout(render, 120);
   }
