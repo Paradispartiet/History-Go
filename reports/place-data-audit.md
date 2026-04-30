@@ -1,17 +1,17 @@
 # Place Data Audit
 
-Generert: 2026-04-30T05:01:32.156Z
+Generert: 2026-04-30T05:21:50.274Z
 
 ## Totalsammendrag
 
 - Place-filer i manifest: **18**
 - Totalt antall places: **228**
 - Steder med manglende obligatoriske felt: **72**
-- Steder med manglende popupDesc: **110**
+- Steder med manglende popupDesc: **107**
 - Steder med manglende image: **136**
 - Steder med manglende cardImage: **136**
-- Steder med manglende emne_ids: **116**
-- Steder med manglende quiz_profile: **116**
+- Steder med manglende emne_ids: **113**
+- Steder med manglende quiz_profile: **113**
 - Steder som bruker imageCard-felt: **0**
 - Steder med stub:true eller hidden:true: **0**
 - Antall ødelagte asset paths: **120**
@@ -198,9 +198,9 @@ Generert: 2026-04-30T05:01:32.156Z
 - Antall places: 3
 - Places med funn: 3
 
-- ullevaal_stadion (Ullevaal stadion): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- valle_hovin (Intility Arena (Vålerenga)): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- holmenkollen (Holmenkollen skimuseum & hopptårn): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- ullevaal_stadion (Ullevaal stadion): mangler image | mangler cardImage
+- valle_hovin (Intility Arena (Vålerenga)): mangler image | mangler cardImage
+- holmenkollen (Holmenkollen skimuseum & hopptårn): mangler image | mangler cardImage
 
 ### data/places/places_subkultur.json
 
