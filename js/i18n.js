@@ -160,7 +160,7 @@
           icon.setAttribute("aria-hidden", "true");
           el.appendChild(icon);
         }
-        icon.textContent = "🗺️";
+        icon.textContent = "📍";
         return;
       }
 
