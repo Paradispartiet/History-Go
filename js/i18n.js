@@ -30,6 +30,7 @@
   let currentLang = HG_FALLBACK_LANG;
   let currentDict = {};
   let fallbackDict = {};
+  let currentPlaceDict = {};
 
   function isRtl(lang) {
     return lang === "ar" || lang === "ur";
@@ -58,6 +59,26 @@
     return res.json();
   }
 
+  async function loadContentJson(type, lang) {
+    const url = `data/i18n/content/${encodeURIComponent(type)}/${encodeURIComponent(lang)}.json`;
+    const res = await fetch(url, { cache: "no-cache" });
+    if (!res.ok) throw new Error(`Failed loading ${type}/${lang}: ${res.status}`);
+    return res.json();
+  }
+
+  async function loadPlaceTranslations(lang) {
+    const normalized = normalizeLang(lang);
+    if (normalized === HG_FALLBACK_LANG) return {};
+
+    try {
+      const data = await loadContentJson("places", normalized);
+      return data && typeof data === "object" ? data : {};
+    } catch (err) {
+      console.warn(`[HG_I18N] Missing place content file for '${normalized}', using original place data.`, err);
+      return {};
+    }
+  }
+
   async function load(lang) {
     const normalized = normalizeLang(lang);
 
@@ -67,6 +88,8 @@
       fallbackDict = {};
       console.warn("[HG_I18N] Could not load fallback language file (nb).", err);
     }
+
+    currentPlaceDict = await loadPlaceTranslations(normalized);
 
     if (normalized === HG_FALLBACK_LANG) {
       currentDict = fallbackDict;
@@ -88,6 +111,28 @@
     if (Object.prototype.hasOwnProperty.call(currentDict, key)) return currentDict[key];
     if (Object.prototype.hasOwnProperty.call(fallbackDict, key)) return fallbackDict[key];
     return fallback ?? key;
+  }
+
+  function localizePlace(place) {
+    if (!place || typeof place !== "object") return place;
+    const id = String(place.id || "").trim();
+    if (!id) return place;
+
+    const tr = currentPlaceDict && currentPlaceDict[id];
+    if (!tr || typeof tr !== "object") return place;
+
+    const out = { ...place };
+
+    if (typeof tr.name === "string" && tr.name.trim()) out.name = tr.name;
+    if (typeof tr.desc === "string" && tr.desc.trim()) out.desc = tr.desc;
+    if (typeof tr.popupDesc === "string" && tr.popupDesc.trim()) out.popupDesc = tr.popupDesc;
+    if (typeof tr.popupdesc === "string" && tr.popupdesc.trim()) out.popupdesc = tr.popupdesc;
+
+    return out;
+  }
+
+  function localizePlaces(list) {
+    return Array.isArray(list) ? list.map(localizePlace) : list;
   }
 
   function apply(root) {
@@ -127,6 +172,95 @@
     });
   }
 
+  function rerenderLocalizedSurfaces() {
+    try {
+      if (typeof window.renderNearbyPlaces === "function") window.renderNearbyPlaces();
+    } catch (err) {
+      console.warn("[HG_I18N] Could not rerender nearby places after language change.", err);
+    }
+
+    try {
+      if (typeof window.renderCollection === "function") window.renderCollection();
+    } catch (err) {
+      console.warn("[HG_I18N] Could not rerender collection after language change.", err);
+    }
+
+    try {
+      const card = document.getElementById("placeCard");
+      const placeId = String(card?.dataset?.currentPlaceId || "").trim();
+      const isOpen = card && placeId && card.getAttribute("aria-hidden") !== "true";
+      if (!isOpen || typeof window.openPlaceCard !== "function") return;
+
+      const place = (Array.isArray(window.PLACES) ? window.PLACES : []).find(
+        p => String(p?.id || "").trim() === placeId
+      );
+      if (place) window.openPlaceCard(place);
+    } catch (err) {
+      console.warn("[HG_I18N] Could not rerender open place card after language change.", err);
+    }
+  }
+
+  function patchContentRenderers() {
+    if (window.__HG_I18N_CONTENT_PATCHED === "1") return;
+
+    let didPatch = false;
+
+    if (typeof window.openPlaceCard === "function" && window.openPlaceCard.__hgI18nWrapped !== true) {
+      const originalOpenPlaceCard = window.openPlaceCard;
+      const wrappedOpenPlaceCard = function (place, ...rest) {
+        return originalOpenPlaceCard.call(this, localizePlace(place), ...rest);
+      };
+      wrappedOpenPlaceCard.__hgI18nWrapped = true;
+      window.openPlaceCard = wrappedOpenPlaceCard;
+      didPatch = true;
+    }
+
+    if (typeof window.renderNearbyPlaces === "function" && window.renderNearbyPlaces.__hgI18nWrapped !== true) {
+      const originalRenderNearbyPlaces = window.renderNearbyPlaces;
+      const wrappedRenderNearbyPlaces = function (...args) {
+        const originalPlaces = window.PLACES;
+        if (Array.isArray(originalPlaces)) window.PLACES = localizePlaces(originalPlaces);
+        try {
+          return originalRenderNearbyPlaces.apply(this, args);
+        } finally {
+          window.PLACES = originalPlaces;
+        }
+      };
+      wrappedRenderNearbyPlaces.__hgI18nWrapped = true;
+      window.renderNearbyPlaces = wrappedRenderNearbyPlaces;
+      didPatch = true;
+    }
+
+    if (typeof window.renderCollection === "function" && window.renderCollection.__hgI18nWrapped !== true) {
+      const originalRenderCollection = window.renderCollection;
+      const wrappedRenderCollection = function (...args) {
+        const originalPlaces = window.PLACES;
+        if (Array.isArray(originalPlaces)) window.PLACES = localizePlaces(originalPlaces);
+        try {
+          return originalRenderCollection.apply(this, args);
+        } finally {
+          window.PLACES = originalPlaces;
+        }
+      };
+      wrappedRenderCollection.__hgI18nWrapped = true;
+      window.renderCollection = wrappedRenderCollection;
+      didPatch = true;
+    }
+
+    if (didPatch) window.__HG_I18N_CONTENT_PATCHED = "1";
+  }
+
+  function startContentPatchLoop() {
+    let tries = 0;
+    const timer = window.setInterval(() => {
+      tries += 1;
+      patchContentRenderers();
+      if (window.__HG_I18N_CONTENT_PATCHED === "1" || tries > 80) {
+        window.clearInterval(timer);
+      }
+    }, 100);
+  }
+
   async function setLang(lang) {
     const normalized = normalizeLang(lang);
     const loaded = await load(normalized);
@@ -142,6 +276,8 @@
     document.documentElement.dir = isRtl(normalized) ? "rtl" : "ltr";
 
     apply(document);
+    patchContentRenderers();
+    rerenderLocalizedSurfaces();
     window.dispatchEvent(new Event("hg:langchange"));
     window.dispatchEvent(new Event("updateProfile"));
 
@@ -176,8 +312,10 @@
 
     await setLang(preferred);
     initLanguageSelect();
+    startContentPatchLoop();
     document.addEventListener("DOMContentLoaded", () => {
       initLanguageSelect();
+      patchContentRenderers();
       apply(document);
     });
   }
@@ -188,6 +326,8 @@
     t,
     apply,
     load,
+    localizePlace,
+    localizePlaces,
     supportedLangs: HG_SUPPORTED_LANGS,
     languageLabels: HG_LANGUAGE_LABELS
   };
