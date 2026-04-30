@@ -316,6 +316,11 @@
 
   function getTopAction() {
     const split = splitInbox();
+    const milestonePending = (split.milestones || []).find(function (item) { return item && item.status === "pending"; });
+    if (milestonePending) {
+      const ev = milestonePending.event || milestonePending;
+      return { mode: "urgent", tone: "milestone", title: "Ny milepæl", summary: ev?.subject || "Du har låst opp en milepæl.", action: "Se milepæl", sectionKey: "civiInboxSection" };
+    }
     const inbox = (split.messages || []).concat(split.unknown || []);
     if (inbox.length) {
       const first = inbox[0]?.event || inbox[0] || null;
@@ -388,9 +393,10 @@
     const next = getTopAction();
     card.classList.toggle("is-urgent", next.mode === "urgent");
     card.classList.toggle("is-calm", next.mode !== "urgent");
+    card.classList.toggle("is-milestone", next.tone === "milestone");
     card.querySelector(".civi-top-action-title").textContent = next.title;
     card.querySelector(".civi-top-action-summary").textContent = next.summary;
-    card.querySelector(".civi-top-action-chip").textContent = next.mode === "urgent" ? "Krever svar" : "Stabilt";
+    card.querySelector(".civi-top-action-chip").textContent = next.tone === "milestone" ? "Milepæl" : (next.mode === "urgent" ? "Krever svar" : "Stabilt");
     const actionBtn = card.querySelector("[data-civi-top-action]");
     actionBtn.textContent = next.action;
     actionBtn.onclick = function () {

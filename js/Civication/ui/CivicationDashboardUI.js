@@ -170,12 +170,11 @@
 
     if (!event) return "Ingen åpne hendelser";
 
-    return String(
-      event.subject ||
-      event.title ||
-      event.kind ||
-      "Åpen hendelse"
-    );
+    const channel = window.CivicationEventChannels?.classifyEvent?.(event) || "";
+    const subject = String(event.subject || event.title || event.kind || "Åpen hendelse");
+    if (channel === "milestone") return `Ny milepæl: ${subject}`;
+
+    return subject;
   }
 
   function render() {

@@ -34,7 +34,7 @@
   }
 
   function makeDefault() {
-    return { version: VERSION, byBrandRole: {}, updated_at: null };
+    return { version: VERSION, byBrandRole: {}, last_change: null, updated_at: null };
   }
 
   function getState() {
@@ -46,6 +46,7 @@
       return {
         version: VERSION,
         byBrandRole: parsed.byBrandRole && typeof parsed.byBrandRole === "object" ? parsed.byBrandRole : {},
+        last_change: parsed.last_change && typeof parsed.last_change === "object" ? parsed.last_change : null,
         updated_at: parsed.updated_at || null
       };
     } catch {
@@ -187,10 +188,24 @@
     const nextState = {
       version: VERSION,
       byBrandRole: { ...state.byBrandRole, [key]: entry },
+      last_change: {
+        at: new Date().toISOString(),
+        key,
+        brand_id: eventBrandId,
+        brand_name: norm(eventObj?.brand_name || active?.brand_name),
+        role_scope: roleScope,
+        mail_id: mailId,
+        choice_id: choiceId,
+        delta
+      },
       updated_at: new Date().toISOString()
     };
     const saved = setState(nextState);
     return { ok: true, changed: saved.changed, key, delta };
+  }
+
+  function getLastChange() {
+    return getState()?.last_change || null;
   }
 
   function inspect() {
@@ -198,5 +213,5 @@
     return { storage_key: STORAGE_KEY, state };
   }
 
-  window.CivicationBrandJobState = { getState, setState, reset, applyChoiceConsequences, inspect };
+  window.CivicationBrandJobState = { getState, setState, reset, applyChoiceConsequences, getLastChange, inspect };
 })();
