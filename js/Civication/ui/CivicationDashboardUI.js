@@ -66,6 +66,19 @@
       });
   }
 
+  function ensureBrandJobUILoaded() {
+    loadStyleOnce("css/civi-brand-job.css");
+
+    loadScriptOnce("js/Civication/ui/CivicationBrandJobUI.js")
+      .then(function () {
+        window.CivicationBrandJobUI?.boot?.();
+        window.CivicationBrandJobUI?.refresh?.();
+      })
+      .catch(function (error) {
+        console.warn("[CivicationDashboardUI] Brand job UI kunne ikke lastes", error);
+      });
+  }
+
   function getWalletPC() {
     if (typeof window.getPCWallet === "function") {
       const fromFn = asNumber(window.getPCWallet(), NaN);
@@ -166,6 +179,7 @@
 
   function render() {
     ensureMiniModeLoaded();
+    ensureBrandJobUILoaded();
 
     const active = getActivePosition();
     const state = getCiviState();
@@ -200,10 +214,12 @@
     document.body.classList.toggle("civi-has-inbox", inbox.length > 0);
 
     window.CivicationMiniSectionsUI?.refresh?.();
+    window.CivicationBrandJobUI?.refresh?.();
   }
 
   function scheduleRender() {
     ensureMiniModeLoaded();
+    ensureBrandJobUILoaded();
     window.setTimeout(render, 0);
     window.setTimeout(render, 120);
   }
@@ -216,6 +232,7 @@
     "civi:dataReady",
     "civi:booted",
     "updateProfile",
+    "civi:inboxChanged",
     "civi:homeChanged",
     "civiPublicUpdated"
   ].forEach(function (eventName) {
