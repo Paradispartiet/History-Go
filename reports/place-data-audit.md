@@ -1,17 +1,17 @@
 # Place Data Audit
 
-Generert: 2026-04-30T06:04:04.222Z
+Generert: 2026-04-30T06:19:51.559Z
 
 ## Totalsammendrag
 
 - Place-filer i manifest: **18**
 - Totalt antall places: **228**
 - Steder med manglende obligatoriske felt: **72**
-- Steder med manglende popupDesc: **103**
+- Steder med manglende popupDesc: **101**
 - Steder med manglende image: **136**
 - Steder med manglende cardImage: **136**
-- Steder med manglende emne_ids: **108**
-- Steder med manglende quiz_profile: **108**
+- Steder med manglende emne_ids: **106**
+- Steder med manglende quiz_profile: **106**
 - Steder som bruker imageCard-felt: **0**
 - Steder med stub:true eller hidden:true: **0**
 - Antall ødelagte asset paths: **120**
@@ -178,8 +178,8 @@ Generert: 2026-04-30T06:04:04.222Z
 - Antall places: 2
 - Places med funn: 2
 
-- botanisk_hage (Botanisk hage, Tøyen): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- sognsvann (Sognsvann): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- botanisk_hage (Botanisk hage, Tøyen): mangler image | mangler cardImage
+- sognsvann (Sognsvann): mangler image | mangler cardImage
 
 ### data/places/places_politikk.json
 
