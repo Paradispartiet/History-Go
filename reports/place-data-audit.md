@@ -1,17 +1,17 @@
 # Place Data Audit
 
-Generert: 2026-04-29T22:14:16.605Z
+Generert: 2026-04-30T05:01:32.156Z
 
 ## Totalsammendrag
 
 - Place-filer i manifest: **18**
 - Totalt antall places: **228**
 - Steder med manglende obligatoriske felt: **72**
-- Steder med manglende popupDesc: **116**
+- Steder med manglende popupDesc: **110**
 - Steder med manglende image: **136**
 - Steder med manglende cardImage: **136**
-- Steder med manglende emne_ids: **122**
-- Steder med manglende quiz_profile: **122**
+- Steder med manglende emne_ids: **116**
+- Steder med manglende quiz_profile: **116**
 - Steder som bruker imageCard-felt: **0**
 - Steder med stub:true eller hidden:true: **0**
 - Antall ødelagte asset paths: **120**
@@ -127,12 +127,12 @@ Generert: 2026-04-29T22:14:16.605Z
 - Antall places: 6
 - Places med funn: 6
 
-- salt (SALT): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- det_norske_teatret (Det Norske Teatret): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- blaa (Blå): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- rockefeller (Rockefeller Music Hall): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- john_dee (John Dee): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- sentrum_scene (Sentrum Scene): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- salt (SALT): mangler image | mangler cardImage
+- det_norske_teatret (Det Norske Teatret): mangler image | mangler cardImage
+- blaa (Blå): mangler image | mangler cardImage
+- rockefeller (Rockefeller Music Hall): mangler image | mangler cardImage
+- john_dee (John Dee): mangler image | mangler cardImage
+- sentrum_scene (Sentrum Scene): mangler image | mangler cardImage
 
 ### data/places/places_naeringsliv.json
 
