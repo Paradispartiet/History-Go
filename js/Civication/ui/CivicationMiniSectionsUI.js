@@ -1,12 +1,15 @@
 // ============================================================
 // CIVICATION MINI SECTIONS UI
-// Forsiden viser bare det nødvendige: status + valgknapp.
-// Fullt innhold og alle valg åpnes i mørk popup.
-// Ingen state-mutasjon: kun DOM-struktur og presentasjon.
+// Civication Home:
+// - Forsiden viser livsområder, kort status og én handlingsknapp.
+// - Mail/Inbox vises ikke som eget kort; det brukes som global "Krever svar".
+// - Fullt innhold og alle valg åpnes i mørk popup.
+// - Ingen state-mutasjon: kun DOM-struktur og presentasjon.
 // ============================================================
 
 (function () {
   const CATEGORY_STORAGE_KEY = "hg_civi_selected_life_category_v1";
+
   const CATEGORY_CONFIG = {
     personlig: { label: "Personlig" },
     karriere: { label: "Karriere" },
@@ -30,6 +33,7 @@
         return String(active.title || active.career_name || active.career_id || "Aktiv rolle");
       }
     },
+
     civiWorkdaySection: {
       category: "karriere",
       label: "Arbeidsdag",
@@ -52,8 +56,12 @@
         return active ? "Arbeidsdag, oppgaver og kontraktspress." : "Ingen arbeidsdag uten aktiv rolle.";
       }
     },
+
+    // Systemseksjon: skal IKKE vises som eget kort i kategorigridet.
+    // Den åpnes kun via toppkortet "Krever svar".
     civiInboxSection: {
       category: "system",
+      hideFromGrid: true,
       label: "Innkommende",
       accent: "📨",
       source: "civiInbox",
@@ -62,17 +70,18 @@
       urgentAction: "Svar nå",
       forceUrgent: function () {
         const split = splitInbox();
-        return ((split.messages || []).length + (split.unknown || []).length) > 0;
+        return ((split.messages || []).length + (split.unknown || []).length + (split.milestones || []).length) > 0;
       },
       summary: function () {
         const split = splitInbox();
-        const inbox = (split.messages || []).concat(split.unknown || []);
+        const inbox = (split.messages || []).concat(split.unknown || [], split.milestones || []);
         if (!inbox.length) return "Ingen åpne meldinger.";
         const first = inbox[0]?.event || inbox[0] || null;
         const title = first?.subject || first?.title || first?.kind || "Åpen hendelse";
         return `${inbox.length} melding${inbox.length === 1 ? "" : "er"} · ${title}`;
       }
     },
+
     civiHomeStatus: {
       category: "personlig",
       label: "Hjem",
@@ -91,6 +100,7 @@
         return "Ikke valgt nabolag.";
       }
     },
+
     civiOnboardingSection: {
       category: "karriere",
       label: "Neste steg",
@@ -103,6 +113,7 @@
         return firstText("civiOnboardingPanel") || "Neste anbefalte Civication-steg.";
       }
     },
+
     civiCapital: {
       category: "kultur",
       selector: ".civi-capital",
@@ -124,6 +135,7 @@
         return values.map(function (pair) { return `${pair[0]} ${pair[1]}`; }).join(" · ");
       }
     },
+
     civiPsyche: {
       category: "personlig",
       selector: ".civi-psyche",
@@ -139,6 +151,7 @@
         return "Psykeverdier ikke beregnet ennå.";
       }
     },
+
     civiIdentity: {
       category: "personlig",
       selector: ".civi-identity",
@@ -151,6 +164,7 @@
         return firstText("identityDominant") || "Identitet og hvordan du blir oppfattet.";
       }
     },
+
     civiPublicFeedSection: {
       category: "kultur",
       label: "Offentlig",
@@ -162,6 +176,7 @@
         return firstText("civiPublicFeed") || "Ingen offentlig feed akkurat nå.";
       }
     },
+
     civiDebateSection: {
       category: "kultur",
       label: "Debatt",
@@ -177,6 +192,7 @@
         return firstText("civiDebatePanel") || "Ingen aktiv debatt.";
       }
     },
+
     civiPeopleSection: {
       category: "personlig",
       label: "Mennesker",
@@ -192,6 +208,7 @@
         return firstText("civiPeoplePanel") || "Ingen aktive møter.";
       }
     },
+
     civiStoreSection: {
       category: "kommers",
       label: "Butikker",
@@ -203,6 +220,7 @@
         return firstText("civiStorePanel") || "Ingen åpne butikker eller pakker.";
       }
     },
+
     civiTrackHUD: {
       category: "karriere",
       label: "Aktiv retning",
@@ -237,7 +255,9 @@
   function setSelectedCategory(category) {
     const next = CATEGORY_CONFIG[category] ? category : getPreferredDefaultCategory();
     selectedCategory = next;
-    localStorage.setItem(CATEGORY_STORAGE_KEY, next);
+    try {
+      localStorage.setItem(CATEGORY_STORAGE_KEY, next);
+    } catch {}
   }
 
   function getInbox() {
@@ -246,13 +266,21 @@
 
     const fromState = window.CivicationState?.getInbox?.();
     if (Array.isArray(fromState)) return fromState;
-    return [];
+
+    try {
+      const stored = JSON.parse(localStorage.getItem("hg_civi_inbox_v1") || "[]");
+      return Array.isArray(stored) ? stored : [];
+    } catch {
+      return [];
+    }
   }
 
   function splitInbox() {
     const inbox = getInbox();
     const splitter = window.CivicationEventChannels?.splitInbox;
-    if (typeof splitter !== "function") return { messages: inbox, workday: [], milestones: [], system: [], unknown: [] };
+    if (typeof splitter !== "function") {
+      return { messages: inbox, workday: [], milestones: [], system: [], unknown: [] };
+    }
     return splitter(inbox);
   }
 
@@ -268,10 +296,9 @@
   }
 
   function resolveSection(key, config) {
-    if (config.selector) return document.querySelector(config.selector);
+    if (config?.selector) return document.querySelector(config.selector);
     return document.getElementById(key);
   }
-
 
   function hasBodyAction(sectionId) {
     const section = document.getElementById(sectionId);
@@ -313,45 +340,120 @@
     return !!body.querySelector(selector);
   }
 
-
   function getTopAction() {
     const split = splitInbox();
-    const milestonePending = (split.milestones || []).find(function (item) { return item && item.status === "pending"; });
+
+    const milestonePending = (split.milestones || []).find(function (item) {
+      return item && item.status === "pending";
+    });
     if (milestonePending) {
       const ev = milestonePending.event || milestonePending;
-      return { mode: "urgent", tone: "milestone", title: "Ny milepæl", summary: ev?.subject || "Du har låst opp en milepæl.", action: "Se milepæl", sectionKey: "civiInboxSection" };
+      return {
+        mode: "urgent",
+        tone: "milestone",
+        title: "Ny milepæl",
+        summary: ev?.subject || "Du har låst opp en milepæl.",
+        action: "Se milepæl",
+        sectionKey: "civiInboxSection"
+      };
     }
+
     const inbox = (split.messages || []).concat(split.unknown || []);
     if (inbox.length) {
       const first = inbox[0]?.event || inbox[0] || null;
-      return { mode: "urgent", title: "Krever svar", summary: first?.subject || first?.title || "Du har en åpen hendelse i inbox.", action: "Svar nå", sectionKey: "civiInboxSection" };
+      return {
+        mode: "urgent",
+        title: "Krever svar",
+        summary: first?.subject || first?.title || "Du har en åpen hendelse i inbox.",
+        action: "Svar nå",
+        sectionKey: "civiInboxSection"
+      };
     }
+
     const home = window.CivicationHome?.getState?.()?.home || null;
-    if (home?.status !== "settled") return { mode: "urgent", title: "Neste handling", summary: "Du må velge nabolag før hverdagen stabiliseres.", action: "Velg nabolag", sectionKey: "civiHomeStatus" };
-    if (hasBodyAction("civiWorkdaySection")) return { mode: "urgent", title: "Neste handling", summary: "Arbeidsdagen inneholder en oppgave som venter på deg.", action: "Åpne oppgave", sectionKey: "civiWorkdaySection" };
-    if (hasBodyAction("civiDebateSection")) return { mode: "urgent", title: "Neste handling", summary: "Debatten trenger svar for å holde momentum.", action: "Åpne hendelse", sectionKey: "civiDebateSection" };
-    if (hasBodyAction("civiPeopleSection")) return { mode: "urgent", title: "Neste handling", summary: "En relasjon venter på et valg fra deg.", action: "Åpne hendelse", sectionKey: "civiPeopleSection" };
-    return { mode: "calm", title: "Ingen handling krever svar nå", summary: "Du kan utforske valgt livsområde i roligere tempo.", action: "Se dashboard", sectionKey: null };
+    if (home?.status !== "settled") {
+      return {
+        mode: "urgent",
+        title: "Neste handling",
+        summary: "Du må velge nabolag før hverdagen stabiliseres.",
+        action: "Velg nabolag",
+        sectionKey: "civiHomeStatus"
+      };
+    }
+
+    if (hasBodyAction("civiWorkdaySection")) {
+      return {
+        mode: "urgent",
+        title: "Neste handling",
+        summary: "Arbeidsdagen inneholder en oppgave som venter på deg.",
+        action: "Åpne oppgave",
+        sectionKey: "civiWorkdaySection"
+      };
+    }
+
+    if (hasBodyAction("civiDebateSection")) {
+      return {
+        mode: "urgent",
+        title: "Neste handling",
+        summary: "Debatten trenger svar for å holde momentum.",
+        action: "Åpne hendelse",
+        sectionKey: "civiDebateSection"
+      };
+    }
+
+    if (hasBodyAction("civiPeopleSection")) {
+      return {
+        mode: "urgent",
+        title: "Neste handling",
+        summary: "En relasjon venter på et valg fra deg.",
+        action: "Åpne hendelse",
+        sectionKey: "civiPeopleSection"
+      };
+    }
+
+    return {
+      mode: "calm",
+      title: "Ingen handling krever svar nå",
+      summary: "Du kan utforske valgt livsområde i roligere tempo.",
+      action: "Se dashboard",
+      sectionKey: null
+    };
   }
 
   function ensureHomeControls() {
     const dashboard = document.getElementById("civiDashboardSection");
     if (!dashboard || !dashboard.parentElement) return null;
+
     let controls = document.getElementById("civiLifeHomeControls");
     if (!controls) {
       controls = document.createElement("section");
       controls.id = "civiLifeHomeControls";
       controls.className = "civi-home-controls";
-      controls.innerHTML = `<article id="civiTopActionCard" class="civi-top-action-card is-calm"><div class="civi-top-action-head"><p class="civi-top-action-title">Neste handling</p><span class="civi-top-action-chip">Rolig</span></div><p class="civi-top-action-summary">Ingen handling krever svar nå.</p><button type="button" class="civi-top-action-button" data-civi-top-action>Se dashboard</button></article><nav class="civi-category-nav" aria-label="Civication livsområder"></nav>`;
+      controls.innerHTML = `
+        <article id="civiTopActionCard" class="civi-top-action-card is-calm">
+          <div class="civi-top-action-head">
+            <p class="civi-top-action-title">Neste handling</p>
+            <span class="civi-top-action-chip">Rolig</span>
+          </div>
+          <p class="civi-top-action-summary">Ingen handling krever svar nå.</p>
+          <button type="button" class="civi-top-action-button" data-civi-top-action>Se dashboard</button>
+        </article>
+        <nav class="civi-category-nav" aria-label="Civication livsområder"></nav>
+      `;
       dashboard.insertAdjacentElement("afterend", controls);
     }
-    if (controls.previousElementSibling !== dashboard) dashboard.insertAdjacentElement("afterend", controls);
+
+    if (controls.previousElementSibling !== dashboard) {
+      dashboard.insertAdjacentElement("afterend", controls);
+    }
+
     return controls;
   }
 
   function refreshCategoryNav() {
     const nav = ensureHomeControls()?.querySelector(".civi-category-nav");
     if (!nav) return;
+
     nav.innerHTML = "";
     Object.entries(CATEGORY_CONFIG).forEach(function ([key, item]) {
       const btn = document.createElement("button");
@@ -361,20 +463,31 @@
       btn.textContent = item.label;
       btn.addEventListener("click", function () {
         setSelectedCategory(key);
-        applyCategoryFilter();
         refreshCategoryNav();
+        applyCategoryFilter();
+        refreshSummaries();
       });
       nav.appendChild(btn);
     });
   }
 
   function applyCategoryFilter() {
+    if (!selectedCategory) selectedCategory = getSelectedCategory();
+
     Object.entries(SECTION_CONFIG).forEach(function ([key, config]) {
-      if (config.category === "system") return;
       const section = resolveSection(key, config);
-      if (section) section.classList.toggle("civi-hidden-by-category", config.category !== selectedCategory);
+      if (!section) return;
+
+      const shouldHide = config.hideFromGrid || config.category === "system" || config.category !== selectedCategory;
+      section.classList.toggle("civi-hidden-by-category", shouldHide);
+      section.dataset.civiLifeCategory = config.category || "system";
     });
-    const hasVisible = Object.entries(SECTION_CONFIG).some(function ([key, config]) { return config.category === selectedCategory && !!resolveSection(key, config); });
+
+    const hasVisible = Object.entries(SECTION_CONFIG).some(function ([key, config]) {
+      if (config.hideFromGrid || config.category === "system") return false;
+      return config.category === selectedCategory && !!resolveSection(key, config);
+    });
+
     const controls = ensureHomeControls();
     let empty = document.getElementById("civiCategoryEmptyCard");
     if (!empty) {
@@ -384,19 +497,23 @@
       empty.innerHTML = "<h3>Ingen aktive fritidsvalg akkurat nå.</h3><p>Fritid kan senere kobles til sport, natur, steder og aktiviteter.</p>";
       controls?.insertAdjacentElement("afterend", empty);
     }
+
     empty.classList.toggle("is-visible", selectedCategory === "fritid" && !hasVisible);
   }
 
   function refreshTopActionCard() {
     const card = ensureHomeControls()?.querySelector("#civiTopActionCard");
     if (!card) return;
+
     const next = getTopAction();
     card.classList.toggle("is-urgent", next.mode === "urgent");
     card.classList.toggle("is-calm", next.mode !== "urgent");
     card.classList.toggle("is-milestone", next.tone === "milestone");
+
     card.querySelector(".civi-top-action-title").textContent = next.title;
     card.querySelector(".civi-top-action-summary").textContent = next.summary;
     card.querySelector(".civi-top-action-chip").textContent = next.tone === "milestone" ? "Milepæl" : (next.mode === "urgent" ? "Krever svar" : "Stabilt");
+
     const actionBtn = card.querySelector("[data-civi-top-action]");
     actionBtn.textContent = next.action;
     actionBtn.onclick = function () {
@@ -516,6 +633,7 @@
     section.appendChild(body);
     section.dataset.civiMiniReady = "1";
     section.dataset.civiMiniKey = key;
+    section.dataset.civiLifeCategory = config.category || "system";
 
     card.addEventListener("click", function (event) {
       const target = event.target;
@@ -568,6 +686,7 @@
           : (config.action || "Åpne");
       }
     });
+
     refreshTopActionCard();
     applyCategoryFilter();
   }
@@ -575,6 +694,8 @@
   function bootMiniSections() {
     document.body.classList.add("civi-mini-mode");
     ensureModal();
+    ensureHomeControls();
+
     if (!selectedCategory) setSelectedCategory(getSelectedCategory());
 
     Object.entries(SECTION_CONFIG).forEach(function ([key, config]) {
@@ -582,9 +703,9 @@
       ensureMiniStructure(section, key, config);
     });
 
-    refreshSummaries();
     refreshTopActionCard();
     refreshCategoryNav();
+    refreshSummaries();
     applyCategoryFilter();
   }
 
