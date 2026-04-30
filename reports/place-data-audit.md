@@ -1,6 +1,6 @@
 # Place Data Audit
 
-Generert: 2026-04-30T19:01:54.330Z
+Generert: 2026-04-30T19:35:42.901Z
 
 ## Totalsammendrag
 
@@ -8,8 +8,8 @@ Generert: 2026-04-30T19:01:54.330Z
 - Totalt antall places: **215**
 - Steder med manglende obligatoriske felt: **35**
 - Steder med manglende popupDesc: **36**
-- Steder med manglende image: **123**
-- Steder med manglende cardImage: **122**
+- Steder med manglende image: **122**
+- Steder med manglende cardImage: **121**
 - Steder med manglende emne_ids: **36**
 - Steder med manglende quiz_profile: **36**
 - Steder som bruker imageCard-felt: **0**
@@ -92,9 +92,8 @@ Generert: 2026-04-30T19:01:54.330Z
 ### data/places/places_kunst.json
 
 - Antall places: 7
-- Places med funn: 7
+- Places med funn: 6
 
-- nasjonalmuseet (Nasjonalmuseet): mangler image | mangler cardImage
 - munch_museet (MUNCH): mangler image | mangler cardImage
 - astrup_fearnley (Astrup Fearnley Museet): mangler image | mangler cardImage
 - vigelandsparken (Vigelandsparken): mangler image | mangler cardImage
