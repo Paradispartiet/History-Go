@@ -27,6 +27,11 @@
       empty: "Ingen arbeidsdag uten aktiv rolle.",
       action: "Åpne arbeidsdag",
       urgentAction: "Åpne oppgave",
+      forceUrgent: function () {
+        const pending = window.HG_CiviEngine?.getPendingEvent?.();
+        if (pending?.event) return true;
+        return hasBodyAction("civiWorkdaySection");
+      },
       summary: function () {
         const pending = window.HG_CiviEngine?.getPendingEvent?.();
         const ev = pending?.event || null;
@@ -142,7 +147,10 @@
       source: "civiDebatePanel",
       empty: "Ingen aktiv debatt.",
       action: "Åpne debatt",
-      urgentAction: "Svar i debatt",
+      urgentAction: "Svar nå",
+      forceUrgent: function () {
+        return hasBodyAction("civiDebateSection");
+      },
       summary: function () {
         return firstText("civiDebatePanel") || "Ingen aktiv debatt.";
       }
@@ -153,7 +161,10 @@
       source: "civiPeoplePanel",
       empty: "Ingen aktive møter.",
       action: "Se mennesker",
-      urgentAction: "Svar person",
+      urgentAction: "Svar nå",
+      forceUrgent: function () {
+        return hasBodyAction("civiPeopleSection");
+      },
       summary: function () {
         return firstText("civiPeoplePanel") || "Ingen aktive møter.";
       }
@@ -211,6 +222,20 @@
   function resolveSection(key, config) {
     if (config.selector) return document.querySelector(config.selector);
     return document.getElementById(key);
+  }
+
+
+  function hasBodyAction(sectionId) {
+    const section = document.getElementById(sectionId);
+    if (!section) return false;
+    const body = section.querySelector(":scope > .civi-section-body") || section;
+    const selector = [
+      "button:not(.civi-mini-action):not(.civi-popup-close):not([disabled])",
+      "input:not([type='hidden']):not([disabled])",
+      "select:not([disabled])",
+      "textarea:not([disabled])"
+    ].join(",");
+    return !!body.querySelector(selector);
   }
 
   function getSectionSource(section, config) {
@@ -384,6 +409,8 @@
       const urgent = hasActionRequired(section, config);
 
       section.classList.toggle("needs-feedback", urgent);
+      section.classList.toggle("is-info", !urgent && hasText);
+      section.classList.toggle("is-empty", !urgent && !hasText);
 
       if (summaryEl) summaryEl.textContent = summary;
 
