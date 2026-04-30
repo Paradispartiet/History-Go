@@ -23,6 +23,7 @@ function exportHistoryGoData() {
   let nextUpHistory = [];
   let nextUpBecause = "";
   let nextUpMode = {};
+  let activePath = {};
   let merits = {};
   let visitedPlaces = {};
 
@@ -31,6 +32,7 @@ function exportHistoryGoData() {
   try { nextUpTri = JSON.parse(localStorage.getItem("hg_nextup_tri") || "{}"); } catch {}
   try { nextUpHistory = JSON.parse(localStorage.getItem("hg_nextup_history_v1") || "[]"); } catch {}
   try { nextUpMode = JSON.parse(localStorage.getItem("hg_nextup_mode_v1") || "{}"); } catch {}
+  try { activePath = JSON.parse(localStorage.getItem("hg_active_path_v1") || "{}"); } catch {}
   try { merits = JSON.parse(localStorage.getItem("merits_by_category") || "{}"); } catch {}
   try { visitedPlaces = JSON.parse(localStorage.getItem("visited_places") || "{}"); } catch {}
   nextUpBecause = String(localStorage.getItem("hg_nextup_because") || "");
@@ -49,12 +51,17 @@ function exportHistoryGoData() {
       because: nextUpBecause,
       history: Array.isArray(nextUpHistory) ? nextUpHistory : [],
       schema: nextUpTri?.schema || "legacy",
-      mode: nextUpMode && typeof nextUpMode === "object" ? nextUpMode : {}
+      mode: nextUpMode && typeof nextUpMode === "object" ? nextUpMode : {},
+      active_path: activePath && typeof activePath === "object" ? activePath : {}
     },
     hg_nextup_tri: nextUpTri && typeof nextUpTri === "object" ? nextUpTri : {},
     hg_nextup_history_v1: Array.isArray(nextUpHistory) ? nextUpHistory : [],
     hg_nextup_because: nextUpBecause,
     hg_nextup_mode_v1: nextUpMode && typeof nextUpMode === "object" ? nextUpMode : {},
+    hg_active_path_v1: activePath && typeof activePath === "object" ? activePath : {},
+    nextup_profile: {
+      active_path_summary: activePath?.summary && typeof activePath.summary === "object" ? activePath.summary : {}
+    },
     notes,
     dialogs
   };
