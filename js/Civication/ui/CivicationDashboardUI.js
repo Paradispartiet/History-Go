@@ -2,7 +2,7 @@
 // CIVICATION DASHBOARD UI
 // Leser eksisterende Civication-state og fyller toppdashboardet.
 // Ingen state-mutasjon her: kun presentasjon.
-// Laster også Civication Mini Mode som presentasjonslag.
+// Laster også Civication Mini Mode og brand-jobbstatus som presentasjonslag.
 // ============================================================
 
 (function () {
@@ -64,6 +64,24 @@
       .catch(function (error) {
         console.warn("[CivicationDashboardUI] Mini mode kunne ikke lastes", error);
       });
+  }
+
+  function ensureBrandJobUILoaded() {
+    loadStyleOnce("css/civi-brand-job.css");
+
+    loadScriptOnce("js/Civication/ui/CivicationBrandJobUI.js")
+      .then(function () {
+        window.CivicationBrandJobUI?.boot?.();
+        window.CivicationBrandJobUI?.refresh?.();
+      })
+      .catch(function (error) {
+        console.warn("[CivicationDashboardUI] Brand-jobbstatus kunne ikke lastes", error);
+      });
+  }
+
+  function ensurePresentationLayersLoaded() {
+    ensureMiniModeLoaded();
+    ensureBrandJobUILoaded();
   }
 
   function getWalletPC() {
@@ -165,7 +183,7 @@
   }
 
   function render() {
-    ensureMiniModeLoaded();
+    ensurePresentationLayersLoaded();
 
     const active = getActivePosition();
     const state = getCiviState();
@@ -200,10 +218,11 @@
     document.body.classList.toggle("civi-has-inbox", inbox.length > 0);
 
     window.CivicationMiniSectionsUI?.refresh?.();
+    window.CivicationBrandJobUI?.refresh?.();
   }
 
   function scheduleRender() {
-    ensureMiniModeLoaded();
+    ensurePresentationLayersLoaded();
     window.setTimeout(render, 0);
     window.setTimeout(render, 120);
   }
@@ -217,7 +236,8 @@
     "civi:booted",
     "updateProfile",
     "civi:homeChanged",
-    "civiPublicUpdated"
+    "civiPublicUpdated",
+    "civi:inboxChanged"
   ].forEach(function (eventName) {
     window.addEventListener(eventName, scheduleRender);
   });
