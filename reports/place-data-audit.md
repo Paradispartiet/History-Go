@@ -1,17 +1,17 @@
 # Place Data Audit
 
-Generert: 2026-04-30T06:19:51.559Z
+Generert: 2026-04-30T06:32:05.765Z
 
 ## Totalsammendrag
 
 - Place-filer i manifest: **18**
 - Totalt antall places: **228**
 - Steder med manglende obligatoriske felt: **72**
-- Steder med manglende popupDesc: **101**
+- Steder med manglende popupDesc: **73**
 - Steder med manglende image: **136**
 - Steder med manglende cardImage: **136**
-- Steder med manglende emne_ids: **106**
-- Steder med manglende quiz_profile: **106**
+- Steder med manglende emne_ids: **73**
+- Steder med manglende quiz_profile: **73**
 - Steder som bruker imageCard-felt: **0**
 - Steder med stub:true eller hidden:true: **0**
 - Antall ødelagte asset paths: **120**
@@ -137,41 +137,38 @@ Generert: 2026-04-30T06:19:51.559Z
 ### data/places/places_naeringsliv.json
 
 - Antall places: 33
-- Places med funn: 33
+- Places med funn: 30
 
-- oslo_gassverk (Oslo Gassverk): mangler emne_ids | mangler quiz_profile
-- havnelageret (Oslo Havnelager): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- tollbukaia (Tollbukaia): mangler emne_ids | mangler quiz_profile | ødelagte paths: image=bilder/kort/places/Tollboden.JPG; cardImage=bilder/kort/places/tollbukaia.PNG
-- oslo_posthus (Oslo Posthus): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- telegrafbygningen (Telegrafbygningen): mangler popupDesc | mangler emne_ids | mangler quiz_profile | ødelagte paths: image=bilder/places/telegrafbygningen.PNG
-- vinmonopolet_lager (Vinmonopolets hovedlager): mangler emne_ids | mangler quiz_profile
-- nrk_marienlyst (NRK Marienlyst): mangler emne_ids | mangler quiz_profile
-- jernbaneverkstedet_lodalen (Lodalen jernbaneverksted): mangler emne_ids | mangler quiz_profile | ødelagte paths: cardImage=bilder/kort/places/Lodalen_jernbaneverkstred.JPG
-- grunnlovsbygget_bankplassen (Den gamle Norges Bank): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- akershus_kaier (Akershuskaiene): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- fornebu_teknologipark (Fornebu Teknologipark): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- ulven_handelspark (Ulven handelspark): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- akershus_energi (Akershus Energi Varme): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- sagene_kvernhus (Sagene mølle og kvernhus): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- ovre_foss (Øvre Foss – Hjula Veveri): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- oslo_mek (Oslo Mekaniske Verksted): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- schous_bryggeri (Schous bryggeri): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- ringnes_bryggeri (Ringnes bryggeri): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- st_halvard_bryggeri (St. Halvard bryggeri): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- oslo_kornmagasin (Christiania kornmagasin): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- akershus_slott_bakeriet (Bakeriet ved Akershus): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- jernbanetorget_trafikknutepunkt (Jernbanetorget – handelsknutepunktet): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- oslo_kraftselskap (Oslo Lysverker): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- grensen_kjopesenter (Grensen – handelens sentrum): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- vippetangen_fisketorg (Vippetangen fisketorg): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- frysja_industriomrade (Frysja industriområde): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- norges_varemesse (Norges Varemesse): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- bryn_industriomrade (Bryn industriområde): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- gronlikaia (Grønlikaia): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- myrens_verksted (Myrens Verksted): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- christiania_seildugsfabrik (Christiania Seildugsfabrik): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- lilleborg_fabrikker (Lilleborg Fabrikker): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- akerselva_industri (Akerselva industriområde): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- havnelageret (Oslo Havnelager): mangler image | mangler cardImage
+- tollbukaia (Tollbukaia): ødelagte paths: image=bilder/kort/places/Tollboden.JPG; cardImage=bilder/kort/places/tollbukaia.PNG
+- oslo_posthus (Oslo Posthus): mangler image | mangler cardImage
+- telegrafbygningen (Telegrafbygningen): ødelagte paths: image=bilder/places/telegrafbygningen.PNG
+- jernbaneverkstedet_lodalen (Lodalen jernbaneverksted): ødelagte paths: cardImage=bilder/kort/places/Lodalen_jernbaneverkstred.JPG
+- grunnlovsbygget_bankplassen (Den gamle Norges Bank): mangler image | mangler cardImage
+- akershus_kaier (Akershuskaiene): mangler image | mangler cardImage
+- fornebu_teknologipark (Fornebu Teknologipark): mangler image | mangler cardImage
+- ulven_handelspark (Ulven handelspark): mangler image | mangler cardImage
+- akershus_energi (Akershus Energi Varme): mangler image | mangler cardImage
+- sagene_kvernhus (Sagene mølle og kvernhus): mangler image | mangler cardImage
+- ovre_foss (Øvre Foss – Hjula Veveri): mangler image | mangler cardImage
+- oslo_mek (Oslo Mekaniske Verksted): mangler image | mangler cardImage
+- schous_bryggeri (Schous bryggeri): mangler image | mangler cardImage
+- ringnes_bryggeri (Ringnes bryggeri): mangler image | mangler cardImage
+- st_halvard_bryggeri (St. Halvard bryggeri): mangler image | mangler cardImage
+- oslo_kornmagasin (Christiania kornmagasin): mangler image | mangler cardImage
+- akershus_slott_bakeriet (Bakeriet ved Akershus): mangler image | mangler cardImage
+- jernbanetorget_trafikknutepunkt (Jernbanetorget – handelsknutepunktet): mangler image | mangler cardImage
+- oslo_kraftselskap (Oslo Lysverker): mangler image | mangler cardImage
+- grensen_kjopesenter (Grensen – handelens sentrum): mangler image | mangler cardImage
+- vippetangen_fisketorg (Vippetangen fisketorg): mangler image | mangler cardImage
+- frysja_industriomrade (Frysja industriområde): mangler image | mangler cardImage
+- norges_varemesse (Norges Varemesse): mangler image | mangler cardImage
+- bryn_industriomrade (Bryn industriområde): mangler image | mangler cardImage
+- gronlikaia (Grønlikaia): mangler image | mangler cardImage
+- myrens_verksted (Myrens Verksted): mangler image | mangler cardImage
+- christiania_seildugsfabrik (Christiania Seildugsfabrik): mangler image | mangler cardImage
+- lilleborg_fabrikker (Lilleborg Fabrikker): mangler image | mangler cardImage
+- akerselva_industri (Akerselva industriområde): mangler image | mangler cardImage
 
 ### data/places/places_natur.json
 
