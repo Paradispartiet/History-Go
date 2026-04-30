@@ -23,9 +23,12 @@
       tri = {};
     }
 
+    let activePath = {};
+    try { activePath = JSON.parse(localStorage.getItem("hg_active_path_v1") || "{}"); } catch {}
     return {
       tri: tri && typeof tri === "object" ? tri : {},
-      because: String(localStorage.getItem("hg_nextup_because") || "").trim()
+      because: String(localStorage.getItem("hg_nextup_because") || "").trim(),
+      activePath: activePath && typeof activePath === "object" ? activePath : {}
     };
   }
 
@@ -84,7 +87,7 @@
     const mount = document.getElementById("profileNextUp");
     if (!section || !mount) return;
 
-    const { tri, because } = readNextUp();
+    const { tri, because, activePath } = readNextUp();
 
     const spatial = tri.spatial || null;
     const wk = tri.wk || null;
@@ -143,6 +146,11 @@
       ${because ? `
         <div class="profile-nextup-why">
           Fordi: ${esc(because)}
+        </div>
+      ` : ""}
+      ${activePath?.summary?.step_count >= 2 ? `
+        <div class="profile-nextup-why">
+          Pågående rute: ${esc(activePath.summary.title || "Rute i utvikling")} · Steg: ${Number(activePath.summary.step_count || 0)}
         </div>
       ` : ""}
     `;

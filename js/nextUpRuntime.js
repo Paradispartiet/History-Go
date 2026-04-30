@@ -12,7 +12,9 @@
   const TRI_KEY = "hg_nextup_tri";
   const BECAUSE_KEY = "hg_nextup_because";
   const HISTORY_KEY = "hg_nextup_history_v1";
+  const ACTIVE_PATH_KEY = "hg_active_path_v1";
   const MAX_HISTORY = 200;
+  const MAX_PATH_STEPS = 12;
   const MODE_KEY = "hg_nextup_mode_v1";
   const NEXTUP_MODES = [
     { mode: "nearest", label: "Nærmest", chip: "Nærmest" },
@@ -76,6 +78,104 @@
   function readHistory() {
     const history = readJSON(HISTORY_KEY, []);
     return Array.isArray(history) ? history : [];
+  }
+
+  function getActiveNextUpPath() {
+    const path = readJSON(ACTIVE_PATH_KEY, {});
+    if (!path || typeof path !== "object") return null;
+    return path;
+  }
+
+  function saveActiveNextUpPath(path) {
+    const safePath = path && typeof path === "object" ? path : {};
+    const ok = writeJSON(ACTIVE_PATH_KEY, safePath);
+    if (ok) dispatchProfileUpdate();
+    return ok;
+  }
+
+  function clearActiveNextUpPath() {
+    try { localStorage.removeItem(ACTIVE_PATH_KEY); } catch {}
+    dispatchProfileUpdate();
+    return true;
+  }
+
+  function summarizeActiveNextUpPath(path = getActiveNextUpPath()) {
+    const steps = Array.isArray(path?.steps) ? path.steps : [];
+    const types = {};
+    const sources = {};
+    const placeIds = new Set();
+    const emneIds = new Set();
+    const storyIds = new Set();
+    const lowerEmne = [];
+    steps.forEach((step) => {
+      const type = s(step?.type);
+      const source = s(step?.source);
+      if (type) types[type] = (types[type] || 0) + 1;
+      if (source) sources[source] = (sources[source] || 0) + 1;
+      [step?.place_id, step?.target_id, step?.meta?.place_id, step?.meta?.next_place_id].map(s).filter(Boolean).forEach(id => placeIds.add(id));
+      [step?.meta?.emne_id, step?.emne_id].map(s).filter(Boolean).forEach(id => { emneIds.add(id); lowerEmne.push(id.toLowerCase()); });
+      [step?.meta?.story_id, step?.story_id].map(s).filter(Boolean).forEach(id => storyIds.add(id));
+      const place = (window.PLACES || []).find(p => s(p?.id) === s(step?.target_id));
+      (Array.isArray(place?.emne_ids) ? place.emne_ids : []).map(s).filter(Boolean).forEach(id => { emneIds.add(id); lowerEmne.push(id.toLowerCase()); });
+    });
+    const dominant_types = Object.entries(types).sort((a, b) => b[1] - a[1]).map(x => x[0]).slice(0, 3);
+    const dominant_sources = Object.entries(sources).sort((a, b) => b[1] - a[1]).map(x => x[0]).slice(0, 3);
+    let title = "Rute i utvikling";
+    if (lowerEmne.some(x => x.includes("mobilitet")) && lowerEmne.some(x => x.includes("transformasjon"))) title = "Rute om mobilitet og bytransformasjon";
+    else if (dominant_types[0] === "concept") title = "Rute for å forstå byens begreper";
+    else if (dominant_types[0] === "narrative") title = "Fortellingsrute gjennom byen";
+    else if (dominant_types[0] === "spatial") title = "Utforskningsrute i nærheten";
+    const description = steps.length >= 4
+      ? "Du er i gang med en læringssti som holder tråden mellom steder, emner og fortellinger."
+      : "Du følger en rute der transport, byrom og offentlighet henger sammen.";
+    return {
+      place_ids: Array.from(placeIds).slice(0, 20),
+      emne_ids: Array.from(emneIds).slice(0, 20),
+      story_ids: Array.from(storyIds).slice(0, 20),
+      dominant_types,
+      dominant_sources,
+      title,
+      description,
+      step_count: steps.length,
+      last_updated: s(path?.updated_at || steps[0]?.iso)
+    };
+  }
+
+  function appendNextUpPathStep(suggestion, context = {}) {
+    const sug = suggestion || {};
+    const now = Date.now();
+    const iso = new Date(now).toISOString();
+    const tri = context.tri || readTri();
+    const target_id = s(sug.target_id);
+    const type = s(sug.type);
+    if (!type || !target_id) return null;
+    const existing = getActiveNextUpPath();
+    const steps = Array.isArray(existing?.steps) ? existing.steps.slice() : [];
+    const last = steps[steps.length - 1];
+    if (s(last?.type) === type && s(last?.target_id) === target_id) return existing;
+    const step = {
+      ts: now, iso, type,
+      place_id: s(tri?.current_place_id || context.current_place_id),
+      target_id,
+      label: s(sug.label),
+      source: s(sug.source),
+      score: Number(sug.score || 0),
+      reason: s(sug.reason),
+      story_id: s(sug.meta?.story_id),
+      emne_id: s(sug.meta?.emne_id),
+      meta: sug.meta && typeof sug.meta === "object" ? { ...sug.meta } : {}
+    };
+    const path = {
+      id: s(existing?.id) || `path_${now}`,
+      started_at: s(existing?.started_at) || iso,
+      updated_at: iso,
+      status: "active",
+      source: "nextup",
+      steps: [...steps, step].slice(-MAX_PATH_STEPS)
+    };
+    path.summary = summarizeActiveNextUpPath(path);
+    saveActiveNextUpPath(path);
+    return path;
   }
 
   function appendHistory(entry) {
@@ -339,9 +439,10 @@
   }
 
   function handleSuggestionClick(sug) {
+    const tri = readTri();
     appendHistory({
       event: "click",
-      place_id: s(readTri()?.current_place_id),
+      place_id: s(tri?.current_place_id),
       type: sug.type,
       target_id: sug.target_id,
       label: sug.label,
@@ -352,6 +453,7 @@
       deep_reason: sug.deep_reason,
       evidence: sug.evidence
     });
+    appendNextUpPathStep(sug, { tri });
 
     dispatchProfileUpdate();
 
@@ -400,6 +502,14 @@
       </div>
     `;
 
+    const activePath = getActiveNextUpPath();
+    const summary = activePath?.summary || summarizeActiveNextUpPath(activePath);
+    const pathStatus = summary?.step_count >= 4
+      ? `<div class="nextup-path-status"><div class="nextup-path-title">Du er i gang med en rute · Fortsett?</div><div class="nextup-path-meta">${esc(summary.title || "")} · ${summary.step_count} steg</div><button class="nextup-path-clear" type="button" data-nextup-path-clear>Nullstill</button></div>`
+      : summary?.step_count >= 2
+        ? `<div class="nextup-path-status"><div class="nextup-path-title">Rute startet: ${summary.step_count} steg</div><div class="nextup-path-meta">Tema: ${esc((summary.emne_ids || []).slice(0,2).join(" / ") || (summary.dominant_types || []).join(" / "))}</div><button class="nextup-path-clear" type="button" data-nextup-path-clear>Nullstill</button></div>`
+        : `<div class="nextup-path-status"><div class="nextup-path-meta">NextUp kan bygge en rute når du følger flere forslag.</div></div>`;
+
     if (!suggestions.length) {
       panel.innerHTML = modeRow + `
         <div class="mp-nextup-line mp-nextup-empty">
@@ -407,7 +517,7 @@
             ➜ <b>Neste</b><span>Ingen forslag ennå</span>
           </button>
         </div>
-      `;
+      ` + pathStatus;
       setOpen(wasOpen);
       return;
     }
@@ -420,7 +530,8 @@
           <small>${Math.round(sug.score)} · ${esc(sug.source || "system")}</small>
         </button>
       </div>
-    `).join("");
+    `).join("") + pathStatus;
+    panel.querySelector("[data-nextup-path-clear]")?.addEventListener("click", () => { clearActiveNextUpPath(); renderNextUpV2(readTri(), { logShow: false }); });
 
     panel.querySelectorAll("[data-nextup-mode]").forEach(btn => {
       btn.addEventListener("click", (e) => {
@@ -504,6 +615,8 @@
         concept: !suggestions.some(x => x.type === "concept")
       },
       because: localStorage.getItem(BECAUSE_KEY) || "",
+      activePath: getActiveNextUpPath(),
+      activePathSummary: summarizeActiveNextUpPath(getActiveNextUpPath()),
       recentHistory: readHistory().slice(0, 5),
       recentModeChanges: readHistory().filter(x => x?.event === "mode_change").slice(0, 5)
     };
@@ -533,6 +646,19 @@
   window.toggleFooterNextUp = toggleNextUp;
   window.debugNextUp = debugNextUp;
   window.getNextUpHistory = readHistory;
+  window.getActiveNextUpPath = getActiveNextUpPath;
+  window.saveActiveNextUpPath = saveActiveNextUpPath;
+  window.clearActiveNextUpPath = clearActiveNextUpPath;
+  window.appendNextUpPathStep = appendNextUpPathStep;
+  window.summarizeActiveNextUpPath = summarizeActiveNextUpPath;
+  window.clearNextUpPath = clearActiveNextUpPath;
+  window.debugNextUpPath = function () {
+    const activePath = getActiveNextUpPath();
+    const summary = summarizeActiveNextUpPath(activePath);
+    const steps = Array.isArray(activePath?.steps) ? activePath.steps : [];
+    console.table(steps.map((step, index) => ({ index, type: step.type, target_id: step.target_id, label: step.label, source: step.source, score: step.score })));
+    return { activePath, summary, step_count: summary.step_count, dominant_types: summary.dominant_types, emne_ids: summary.emne_ids, place_ids: summary.place_ids, last_step: steps[steps.length - 1] || null };
+  };
 
   window.addEventListener("hg:mpNextUp", (e) => {
     const tri = e.detail?.tri || {};

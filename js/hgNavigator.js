@@ -89,6 +89,14 @@
       return [];
     }
   }
+  function getActivePathSummary() {
+    try {
+      const path = JSON.parse(localStorage.getItem("hg_active_path_v1") || "{}");
+      return path?.summary && typeof path.summary === "object" ? path.summary : {};
+    } catch {
+      return {};
+    }
+  }
 
   function getQuizSets() {
     try {
@@ -608,6 +616,25 @@
     return clone;
   }
 
+  function applyRouteBoost(suggestion) {
+    if (!suggestion) return null;
+    const clone = { ...suggestion, meta: { ...(suggestion.meta || {}) } };
+    const summary = getActivePathSummary();
+    const emneSet = new Set(arr(summary?.emne_ids).map(s).filter(Boolean));
+    const dominantType = s(arr(summary?.dominant_types)[0]);
+    let boost = 0;
+    const targetPlace = findPlace(clone.meta?.place_id || clone.meta?.next_place_id || clone.target_id);
+    const targetEmner = new Set([...(targetPlace?.emne_ids || []), s(clone.meta?.emne_id)].map(s).filter(Boolean));
+    if (emneSet.size && Array.from(targetEmner).some(id => emneSet.has(id))) boost += 8;
+    if (dominantType === "concept" && clone.type === "concept") boost += 6;
+    if (dominantType === "narrative" && clone.type === "narrative") boost += 8;
+    if (dominantType === "spatial" && clone.type === "spatial") boost += 5;
+    boost = clamp(boost, 0, 12);
+    clone.score = clamp(clone.score + boost, 0, 100);
+    clone.meta.route_boost = boost;
+    return clone;
+  }
+
   async function buildForPlace(place, context = {}) {
     if (!place) return {};
 
@@ -627,6 +654,7 @@
       conceptSuggestion
     ].filter(Boolean)
       .map(sug => applyModeWeights(sug, activeMode.mode, place))
+      .map(sug => applyRouteBoost(sug))
       .sort((a, b) => b.score - a.score);
 
     return {
