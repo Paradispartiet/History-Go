@@ -17,6 +17,35 @@ body.profile-page{
   --profile-dashboard-radius: 24px;
 }
 
+.profile-dashboard-v2 a.btn,
+.profile-dashboard-v2 a.secondary{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:42px;
+  padding:10px 17px;
+  border-radius:999px;
+  text-decoration:none;
+  font-weight:800;
+  line-height:1;
+  cursor:pointer;
+  transition:background .2s ease, transform .15s ease, opacity .2s ease;
+}
+
+.profile-dashboard-v2 a.btn{
+  color:#000;
+}
+
+.profile-dashboard-v2 a.secondary{
+  background:rgba(255,255,255,0.08);
+  color:#fff;
+  border:1px solid rgba(255,255,255,0.12);
+}
+
+.profile-dashboard-v2 a.secondary:hover{
+  background:rgba(255,255,255,0.14);
+}
+
 .profile-dashboard-v2 .profile-shell{
   width:100%;
   display:grid;
