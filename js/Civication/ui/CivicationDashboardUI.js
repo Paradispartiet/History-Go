@@ -184,11 +184,13 @@
     const active = getActivePosition();
     const state = getCiviState();
     const inbox = getInbox();
+    const split = window.CivicationEventChannels?.splitInbox?.(inbox) || { messages: inbox, unknown: [], workday: [] };
+    const inboxCount = (split.messages || []).length + (split.unknown || []).length;
     const walletPC = getWalletPC();
     const weeklyIncome = getWeeklyIncome(active);
     const statusLabel = getStatusLabel(state);
     const homeLabel = getHomeLabel();
-    const pendingLabel = getPendingLabel(inbox);
+    const pendingLabel = getPendingLabel((split.messages || []).concat(split.unknown || []));
 
     const roleTitle = active?.title ? String(active.title) : "Ingen aktiv rolle";
     const roleField = active
@@ -204,14 +206,14 @@
     );
     setText("civiDashStatus", statusLabel);
     setText("civiDashStatusMeta", active ? "Aktiv situasjon" : "Startfase");
-    setText("civiDashInbox", String(inbox.length));
-    setText("civiDashInboxMeta", inbox.length === 1 ? "åpen hendelse" : "åpne hendelser");
+    setText("civiDashInbox", String(inboxCount));
+    setText("civiDashInboxMeta", inboxCount === 1 ? "åpen melding" : "åpne meldinger");
     setText("civiDashHome", homeLabel);
     setText("civiDashHomeMeta", homeLabel === "Ikke valgt" ? "Velg nabolag" : "Bosatt");
     setText("civiDashFocus", pendingLabel);
 
     document.body.classList.toggle("civi-has-active-role", !!active);
-    document.body.classList.toggle("civi-has-inbox", inbox.length > 0);
+    document.body.classList.toggle("civi-has-inbox", inboxCount > 0);
 
     window.CivicationMiniSectionsUI?.refresh?.();
     window.CivicationBrandJobUI?.refresh?.();

@@ -28,12 +28,13 @@
       action: "Åpne arbeidsdag",
       urgentAction: "Åpne oppgave",
       forceUrgent: function () {
-        const pending = window.HG_CiviEngine?.getPendingEvent?.();
-        if (pending?.event) return true;
+        const split = splitInbox();
+        if ((split.workday || []).some(function (item) { return item && item.status === "pending"; })) return true;
         return hasBodyAction("civiWorkdaySection");
       },
       summary: function () {
-        const pending = window.HG_CiviEngine?.getPendingEvent?.();
+        const split = splitInbox();
+        const pending = (split.workday || []).find(function (item) { return item && item.status === "pending"; });
         const ev = pending?.event || null;
         if (ev?.subject) return String(ev.subject);
         const active = window.CivicationState?.getActivePosition?.();
@@ -48,14 +49,16 @@
       action: "Åpne inbox",
       urgentAction: "Svar nå",
       forceUrgent: function () {
-        return getInbox().length > 0;
+        const split = splitInbox();
+        return ((split.messages || []).length + (split.unknown || []).length) > 0;
       },
       summary: function () {
-        const inbox = getInbox();
-        if (!inbox.length) return "Ingen åpne hendelser.";
+        const split = splitInbox();
+        const inbox = (split.messages || []).concat(split.unknown || []);
+        if (!inbox.length) return "Ingen åpne meldinger.";
         const first = inbox[0]?.event || inbox[0] || null;
         const title = first?.subject || first?.title || first?.kind || "Åpen hendelse";
-        return `${inbox.length} åpen${inbox.length === 1 ? "" : "e"} · ${title}`;
+        return `${inbox.length} melding${inbox.length === 1 ? "" : "er"} · ${title}`;
       }
     },
     civiHomeStatus: {
@@ -206,6 +209,13 @@
     } catch {
       return [];
     }
+  }
+
+  function splitInbox() {
+    const inbox = getInbox();
+    const splitter = window.CivicationEventChannels?.splitInbox;
+    if (typeof splitter !== "function") return { messages: inbox, workday: [], milestones: [], system: [], unknown: [] };
+    return splitter(inbox);
   }
 
   function textOf(id) {
