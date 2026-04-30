@@ -740,12 +740,12 @@ function renderWorkdayPanel() {
 
     <div class="civi-workday-grid">
       <div class="civi-workday-card">
-        <div class="civi-workday-label">Aktiv oppgave</div>
+        <div class="civi-workday-label">Situasjon</div>
         <div class="civi-workday-task-title">${taskTitle}</div>
         <div class="civi-workday-task-desc">${taskDesc}</div>
         ${
           ev?.id
-            ? `<button class="civi-task-open-btn" data-open-task="${ev.id}">Åpne oppgave</button>`
+            ? `<button class="civi-task-open-btn" data-open-task="${ev.id}">Hva gjør du?</button>`
             : ``
         }
       </div>
@@ -912,6 +912,22 @@ function closeTaskModal() {
 }
 
 
+
+function getChannelBuckets() {
+  const inbox = window.CivicationState?.getInbox?.() || [];
+  const splitter = window.CivicationEventChannels?.splitInbox;
+  if (typeof splitter !== "function") {
+    return { messages: inbox, workday: [], milestones: [], system: [], unknown: [] };
+  }
+  return splitter(inbox);
+}
+
+function findPendingFromItems(items) {
+  if (!Array.isArray(items)) return null;
+  const pendingItem = items.find(function (item) { return item && item.status === "pending"; });
+  return pendingItem?.event || null;
+}
+
 // ============================================================
 // INBOX
 // ============================================================
@@ -1027,14 +1043,14 @@ function renderCivicationInbox() {
   const host = document.getElementById("civiInbox");
   if (!host) return;
 
-  const pending = window.HG_CiviEngine?.getPendingEvent?.();
+  const buckets = getChannelBuckets();
+  const messageItems = buckets.messages.concat(buckets.unknown);
+  const ev = findPendingFromItems(messageItems);
 
-  if (!pending?.event) {
+  if (!ev) {
     host.innerHTML = `<div>Ingen meldinger akkurat nå.</div>`;
     return;
   }
-
-  const ev = pending.event;
   const situation = Array.isArray(ev.situation) ? ev.situation.join(" ") : (ev.situation || "—");
   const choices = Array.isArray(ev.choices) ? ev.choices : [];
 
