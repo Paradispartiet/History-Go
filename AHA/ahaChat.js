@@ -1752,6 +1752,27 @@ function importHistoryGoData(payload) {
     addSignal(event?.text || event?.message || event?.insight, themeId, event?.createdAt || event?.timestamp);
   });
 
+  const nextUpLearningSignal = payload?.nextup_learning_signal && typeof payload.nextup_learning_signal === "object"
+    ? payload.nextup_learning_signal
+    : payload?.nextup?.learning_signal && typeof payload.nextup.learning_signal === "object"
+    ? payload.nextup.learning_signal
+    : null;
+
+  if (nextUpLearningSignal) {
+    const interpretationTexts = Array.isArray(nextUpLearningSignal.interpretation_texts)
+      ? nextUpLearningSignal.interpretation_texts.filter(Boolean)
+      : [];
+    interpretationTexts.forEach((text) => {
+      addSignal(text, "historygo_nextup_learning_signal", payload.exported_at);
+    });
+
+    addSignal(
+      "NextUp læringssignal: " + JSON.stringify(nextUpLearningSignal),
+      "historygo_nextup_learning_signal",
+      payload.exported_at
+    );
+  }
+
   saveChamberToStorage(chamber);
   return { importedSignals, importedTextItems };
 }
