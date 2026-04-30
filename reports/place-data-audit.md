@@ -1,17 +1,17 @@
 # Place Data Audit
 
-Generert: 2026-04-30T06:32:05.765Z
+Generert: 2026-04-30T06:45:02.003Z
 
 ## Totalsammendrag
 
 - Place-filer i manifest: **18**
 - Totalt antall places: **228**
-- Steder med manglende obligatoriske felt: **72**
-- Steder med manglende popupDesc: **73**
+- Steder med manglende obligatoriske felt: **48**
+- Steder med manglende popupDesc: **49**
 - Steder med manglende image: **136**
 - Steder med manglende cardImage: **136**
-- Steder med manglende emne_ids: **73**
-- Steder med manglende quiz_profile: **73**
+- Steder med manglende emne_ids: **49**
+- Steder med manglende quiz_profile: **49**
 - Steder som bruker imageCard-felt: **0**
 - Steder med stub:true eller hidden:true: **0**
 - Antall ødelagte asset paths: **120**
@@ -223,30 +223,30 @@ Generert: 2026-04-30T06:32:05.765Z
 - Antall places: 24
 - Places med funn: 24
 
-- frysjadammen (Frysjadammen): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- frysja_industriomrade (Frysja industriområde): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- nydalen_industristed (Nydalen industristed): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- seilduksfabrikken_nydalen (Seilduksfabrikken (Nydalen)): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- nydalsdammen (Nydalsdammen): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- stilla_nydalen (Stilla ved Nydalen): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- bjoelsenfossen (Bjølsenfossen): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- bjoelsenparken_elvenaer (Bjølsenparken (elvenær del)): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- glads_molle (Glads mølle): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- voienfossen (Vøienfossen): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- voien_gard_voienvolden (Vøien gård / Vøienvolden): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- myralokka (Myraløkka): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- kuba_parken (Kuba-parken): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- beierbrua (Beierbrua): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- nedre_foss (Nedre Foss): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- vulkan_industriomrade (Vulkan industriområde): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- elvestrekning_bla_brenneriveien (Elvestrekning ved Blå (Brenneriveien)): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- fossveien_elvestrekning (Fossveien – elvestrekning): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- hausmannsbrua (Hausmannsbrua): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- hausmannsomradet_elvelop (Hausmannsområdet (elveløp)): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- ankerbrua (Ankerbrua): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- nybrua_vaterlandsparken (Nybrua / Vaterlandsparken): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- vaterland_historisk_elvelop (Vaterland – historisk elveløp): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- akerselva_utlop_bjorvika (Akerselvas utløp mot fjorden (Bjørvika)): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- frysjadammen (Frysjadammen): mangler image | mangler cardImage
+- frysja_industriomrade (Frysja industriområde): mangler image | mangler cardImage
+- nydalen_industristed (Nydalen industristed): mangler image | mangler cardImage
+- seilduksfabrikken_nydalen (Seilduksfabrikken (Nydalen)): mangler image | mangler cardImage
+- nydalsdammen (Nydalsdammen): mangler image | mangler cardImage
+- stilla_nydalen (Stilla ved Nydalen): mangler image | mangler cardImage
+- bjoelsenfossen (Bjølsenfossen): mangler image | mangler cardImage
+- bjoelsenparken_elvenaer (Bjølsenparken (elvenær del)): mangler image | mangler cardImage
+- glads_molle (Glads mølle): mangler image | mangler cardImage
+- voienfossen (Vøienfossen): mangler image | mangler cardImage
+- voien_gard_voienvolden (Vøien gård / Vøienvolden): mangler image | mangler cardImage
+- myralokka (Myraløkka): mangler image | mangler cardImage
+- kuba_parken (Kuba-parken): mangler image | mangler cardImage
+- beierbrua (Beierbrua): mangler image | mangler cardImage
+- nedre_foss (Nedre Foss): mangler image | mangler cardImage
+- vulkan_industriomrade (Vulkan industriområde): mangler image | mangler cardImage
+- elvestrekning_bla_brenneriveien (Elvestrekning ved Blå (Brenneriveien)): mangler image | mangler cardImage
+- fossveien_elvestrekning (Fossveien – elvestrekning): mangler image | mangler cardImage
+- hausmannsbrua (Hausmannsbrua): mangler image | mangler cardImage
+- hausmannsomradet_elvelop (Hausmannsområdet (elveløp)): mangler image | mangler cardImage
+- ankerbrua (Ankerbrua): mangler image | mangler cardImage
+- nybrua_vaterlandsparken (Nybrua / Vaterlandsparken): mangler image | mangler cardImage
+- vaterland_historisk_elvelop (Vaterland – historisk elveløp): mangler image | mangler cardImage
+- akerselva_utlop_bjorvika (Akerselvas utløp mot fjorden (Bjørvika)): mangler image | mangler cardImage
 
 ### data/places/oslo/places_oslo_natur_hovedsteder.json
 
