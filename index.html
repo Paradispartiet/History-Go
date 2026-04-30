@@ -173,22 +173,27 @@
 
           <button class="nearby-tab is-active"
                   data-leftmode="nearby"
+                  data-i18n="ui.tabs.places"
                   type="button">Steder</button>
 
           <button class="nearby-tab"
                   data-leftmode="people"
+                  data-i18n="ui.tabs.people"
                   type="button">Folk</button>
 
           <button class="nearby-tab"
                   data-leftmode="nature"
+                  data-i18n="ui.tabs.nature"
                   type="button">Natur</button>
 
           <button class="nearby-tab"
                   data-leftmode="routes"
+                  data-i18n="ui.tabs.routes"
                   type="button">Ruter</button>
 
           <button class="nearby-tab"
                   data-leftmode="badges"
+                  data-i18n="ui.tabs.badges"
                   type="button">Merker</button>
 
         </div>
@@ -198,10 +203,10 @@
                 aria-label="Velg visning"
                 style="display:none">
           <option value="nearby" selected>Nærmeste</option>
-          <option value="people">Folk</option>
-          <option value="nature">Natur</option>
-          <option value="routes">Ruter</option>
-          <option value="badges">Merker</option>
+          <option value="people" data-i18n="ui.tabs.people">Folk</option>
+          <option value="nature" data-i18n="ui.tabs.nature">Natur</option>
+          <option value="routes" data-i18n="ui.tabs.routes">Ruter</option>
+          <option value="badges" data-i18n="ui.tabs.badges">Merker</option>
         </select>
 
       </div>
@@ -325,9 +330,9 @@
 
   <!-- 🔹 ACTIONS -->
   <div class="app-actions">
-    <button id="pcInfo" class="secondary">Mer info</button>
-    <button id="pcQuiz" class="primary">Ta quiz</button>
-    <button id="pcUnlock" class="primary">Lås opp</button>
+    <button id="pcInfo" class="secondary" data-i18n="ui.place.moreInfo">Mer info</button>
+    <button id="pcQuiz" class="primary" data-i18n="ui.place.takeQuiz">Ta quiz</button>
+    <button id="pcUnlock" class="primary" data-i18n="ui.place.unlock">Lås opp</button>
 
     <button id="pcRoute" class="iconbtn" aria-label="Rute"></button>
     <button id="pcObserve" class="iconbtn" aria-label="Observer"></button>

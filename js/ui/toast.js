@@ -1,4 +1,5 @@
 function showToast(msg, ms = null) {
+  const tt = (key, fallback) => window.HG_I18N?.t?.(key, fallback) || fallback;
   const t = el.toast;
   if (!t) return;
 
@@ -10,7 +11,7 @@ function showToast(msg, ms = null) {
   const closeBtn = document.createElement("button");
   closeBtn.type = "button";
   closeBtn.className = "toast-close";
-  closeBtn.setAttribute("aria-label", "Lukk melding");
+  closeBtn.setAttribute("aria-label", tt("ui.toast.closeMessage", "Lukk melding"));
   closeBtn.textContent = "×";
   closeBtn.addEventListener("click", () => {
     t.style.display = "none";
