@@ -337,6 +337,26 @@ if (natureIcon) {
 }
 
 
+function getBadgeForPlace(place, badgesSource) {
+  const badges = Array.isArray(badgesSource)
+    ? badgesSource
+    : ((typeof BADGES !== "undefined" && Array.isArray(BADGES)) ? BADGES : (Array.isArray(window.BADGES) ? window.BADGES : []));
+
+  const categoryId = String(place?.category || "").trim();
+  if (!categoryId || !badges.length) return null;
+
+  return badges.find(b => String(b?.id || "").trim() === categoryId) || null;
+}
+
+function formatSubcategoryLabel(rawValue) {
+  const raw = String(rawValue || "").trim();
+  if (!raw) return "";
+  return raw
+    .replace(/_/g, " ")
+    .replace(/\s+/g, " ")
+    .replace(/\b\w/g, c => c.toUpperCase());
+}
+
 // --- BADGES LIST + BADGES ICON ---
 if (badgesEl) {
   const BADGES_LIST =
@@ -380,20 +400,31 @@ if (badgesEl) {
     .map(id => BADGES_LIST.find(b => String(b.id).trim() === String(id).trim()))
     .filter(Boolean);
 
-  badgesEl.innerHTML = badges.length
-    ? badges.map(b => `
-        <button class="pc-badge" data-badge="${b.id}">
-          <img src="${b.image || b.icon || ""}" class="pc-person-img" alt="">
-          <span>${b.name || b.title || b.id}</span>
-        </button>
-      `).join("")
-    : `<div class="pc-empty">Ingen merker ennå</div>`;
+  const placeBadge = getBadgeForPlace(place, BADGES_LIST);
+  const badgeSubcategories = Array.isArray(placeBadge?.sub) ? placeBadge.sub : [];
+
+  badgesEl.innerHTML = placeBadge
+    ? `
+      <div class="pc-badge-header">
+        <strong>${placeBadge.name || placeBadge.title || placeBadge.id || "Badge"}</strong>
+      </div>
+      ${
+        badgeSubcategories.length
+          ? badgeSubcategories.map(sub => `
+            <div class="pc-badge">
+              <span>${formatSubcategoryLabel(sub)}</span>
+            </div>
+          `).join("")
+          : `<div class="pc-empty">Ingen underkategorier definert for ${placeBadge.name || placeBadge.id}</div>`
+      }
+    `
+    : `<div class="pc-empty">Badges.json mangler badge for category: ${String(place?.category || "ukjent").trim() || "ukjent"}</div>`;
 
   if (badgesIcon) {
-    const b0 = badges.find(b => (b.image || b.icon));
-    const img = b0 ? (b0.image || b0.icon || "") : "";
+    const img = placeBadge ? (placeBadge.image || placeBadge.icon || "") : "";
     if (img) {
-      badgesIcon.innerHTML = `<img src="${img}" class="pc-person-img" alt="">`;
+      const label = placeBadge?.name || placeBadge?.title || placeBadge?.id || "Badge";
+      badgesIcon.innerHTML = `<img src="${img}" class="pc-person-img" alt="${label}" title="${label}">`;
     } else {
       setRoundLabel(badgesIcon, "🏅", badges.length);
     }
