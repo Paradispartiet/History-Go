@@ -1,67 +1,295 @@
 {
   "meta": {
-    "version": "0.1.0",
-    "purpose": "Supplerende naturkoblinger for nye Oslo-naturruter med konservative, eksisterende repo-arter.",
-    "rule": "Kun arter som allerede finnes i fauna/flora-data og i eksisterende naturkart for nærliggende hovedsteder/ruter."
+    "version": "0.2.0",
+    "created_from": "data/natur/nature_place_map_candidates.json",
+    "candidate_file_generated_at": "2026-04-30T05:01:47.426Z",
+    "purpose": "Supplerende naturkoblinger for nye Oslo-naturruter. Lastes sammen med øvrige naturkart i Natur-rundingen.",
+    "rule": "Kun eksisterende repo-arter med medium/high confidence i siste Artskart-kandidatfil er lagt inn. Low confidence og externalTaxa er ikke lagt inn aktivt."
   },
   "places": {
+    "alnsjoen_alna_kilde": {
+      "flora": [
+        "emne_flora_mahonia"
+      ],
+      "artskartCandidateSource": {
+        "candidateFileGeneratedAt": "2026-04-30T05:01:47.426Z",
+        "rule": "added_existing_repo_species_with_medium_or_high_confidence_only",
+        "usefulObservationCount": 127,
+        "matchedObservationCount": 14
+      }
+    },
+    "alnaparken": {
+      "flora": [
+        "emne_flora_kanadagullris"
+      ],
+      "artskartCandidateSource": {
+        "candidateFileGeneratedAt": "2026-04-30T05:01:47.426Z",
+        "rule": "added_existing_repo_species_with_medium_or_high_confidence_only",
+        "usefulObservationCount": 5,
+        "matchedObservationCount": 4
+      }
+    },
+    "groruddammen": {
+      "flora": [
+        "emne_gress_aakerkvein"
+      ],
+      "fauna": [
+        "emne_fauna_stokkand"
+      ],
+      "artskartCandidateSource": {
+        "candidateFileGeneratedAt": "2026-04-30T05:01:47.426Z",
+        "rule": "added_existing_repo_species_with_medium_or_high_confidence_only",
+        "usefulObservationCount": 12,
+        "matchedObservationCount": 5
+      }
+    },
+    "svartdalen": {
+      "flora": [
+        "emne_flora_kjempebjornkjeks"
+      ],
+      "artskartCandidateSource": {
+        "candidateFileGeneratedAt": "2026-04-30T05:01:47.426Z",
+        "rule": "added_existing_repo_species_with_medium_or_high_confidence_only",
+        "usefulObservationCount": 13,
+        "matchedObservationCount": 7
+      }
+    },
     "alna_utlop_bjorvika": {
-      "fauna": ["emne_fauna_stokkand", "emne_fauna_fiskemaake", "emne_fauna_graamaake"]
+      "fauna": [
+        "emne_fauna_hettemaake",
+        "emne_fauna_graamaake",
+        "emne_fauna_graagas",
+        "emne_fauna_fiskemaake",
+        "emne_fauna_kraake",
+        "emne_fauna_sildemaake",
+        "emne_fauna_stokkand",
+        "emne_fauna_linerle",
+        "emne_fauna_knoppsvane",
+        "emne_fauna_skjaere",
+        "emne_fauna_graatrost",
+        "emne_fauna_ringdue",
+        "emne_fauna_blaameis",
+        "emne_fauna_graaspurv",
+        "emne_fauna_storskarv",
+        "emne_fauna_kjottmeis",
+        "emne_fauna_svarttrost",
+        "emne_fauna_gronnfink",
+        "emne_fauna_graahegre",
+        "emne_fauna_toppand"
+      ],
+      "artskartCandidateSource": {
+        "candidateFileGeneratedAt": "2026-04-30T05:01:47.426Z",
+        "rule": "added_existing_repo_species_with_medium_or_high_confidence_only",
+        "usefulObservationCount": 1500,
+        "matchedObservationCount": 921
+      }
     },
     "ljanselva_skullerud": {
-      "fauna": ["emne_fauna_kjottmeis", "emne_fauna_blaameis", "emne_fauna_svarttrost"]
-    },
-    "ljanselva_hauketo": {
-      "fauna": ["emne_fauna_kraake", "emne_fauna_skjaere", "emne_fauna_graaspurv"]
+      "fauna": [
+        "emne_fauna_graaspurv"
+      ],
+      "artskartCandidateSource": {
+        "candidateFileGeneratedAt": "2026-04-30T05:01:47.426Z",
+        "rule": "added_existing_repo_species_with_medium_or_high_confidence_only",
+        "usefulObservationCount": 58,
+        "matchedObservationCount": 12
+      }
     },
     "ljanselva_ljan": {
-      "flora": ["emne_ved_hassel", "emne_kratt_bringebaer"],
-      "fauna": ["emne_fauna_svarttrost", "emne_fauna_kjottmeis"]
+      "fauna": [
+        "emne_fauna_skjaere",
+        "emne_fauna_kjottmeis",
+        "emne_fauna_blaameis",
+        "emne_fauna_flaggspett",
+        "emne_fauna_kraake",
+        "emne_fauna_graaspurv",
+        "emne_fauna_graatrost",
+        "emne_fauna_spettmeis",
+        "emne_fauna_graamaake",
+        "emne_fauna_svarttrost"
+      ],
+      "artskartCandidateSource": {
+        "candidateFileGeneratedAt": "2026-04-30T05:01:47.426Z",
+        "rule": "added_existing_repo_species_with_medium_or_high_confidence_only",
+        "usefulObservationCount": 74,
+        "matchedObservationCount": 51
+      }
     },
     "ljanselva_fiskevollen": {
-      "fauna": ["emne_fauna_graamaake", "emne_fauna_stokkand"]
-    },
-    "ljanselva_bunnefjorden": {
-      "fauna": ["emne_fauna_graamaake", "emne_fauna_fiskemaake", "emne_fauna_stokkand"]
-    },
-    "noklevann_ljanselva_start": {
-      "flora": ["emne_flora_blaveis", "emne_flora_skogfiol"],
-      "fauna": ["emne_fauna_ringdue", "emne_fauna_blaameis"]
-    },
-    "skraperudtjern": {
-      "flora": ["emne_flora_blaveis", "emne_flora_tiriltunge"],
-      "fauna": ["emne_fauna_svarttrost", "emne_fauna_ringdue"]
+      "fauna": [
+        "emne_fauna_blaameis",
+        "emne_fauna_gronnfink",
+        "emne_fauna_kjottmeis",
+        "emne_fauna_spettmeis",
+        "emne_fauna_flaggspett",
+        "emne_fauna_graamaake",
+        "emne_fauna_graatrost",
+        "emne_fauna_kraake",
+        "emne_fauna_munk",
+        "emne_fauna_skjaere"
+      ],
+      "artskartCandidateSource": {
+        "candidateFileGeneratedAt": "2026-04-30T05:01:47.426Z",
+        "rule": "added_existing_repo_species_with_medium_or_high_confidence_only",
+        "usefulObservationCount": 51,
+        "matchedObservationCount": 28
+      }
     },
     "ostensjovannet_nord": {
-      "fauna": ["emne_fauna_stokkand", "emne_fauna_graamaake"]
+      "flora": [
+        "emne_flora_gulaks",
+        "emne_flora_jordreve",
+        "emne_flora_rodjonsokblom",
+        "emne_flora_gullsoleie",
+        "emne_flora_skogstorkenebb"
+      ],
+      "fauna": [
+        "emne_fauna_svarttrost",
+        "emne_fauna_graatrost",
+        "emne_fauna_kjottmeis",
+        "emne_fauna_blaameis",
+        "emne_fauna_munk",
+        "emne_fauna_rodstrupe",
+        "emne_fauna_skjaere",
+        "emne_fauna_blomsterflue_vanlig",
+        "emne_fauna_aakerhumle"
+      ],
+      "artskartCandidateSource": {
+        "candidateFileGeneratedAt": "2026-04-30T05:01:47.426Z",
+        "rule": "added_existing_repo_species_with_medium_or_high_confidence_only",
+        "usefulObservationCount": 256,
+        "matchedObservationCount": 75
+      }
     },
     "ostensjovannet_fugletarn": {
-      "fauna": ["emne_fauna_stokkand", "emne_fauna_fiskemaake", "emne_fauna_graamaake"]
+      "fauna": [
+        "emne_fauna_skjaere"
+      ],
+      "artskartCandidateSource": {
+        "candidateFileGeneratedAt": "2026-04-30T05:01:47.426Z",
+        "rule": "added_existing_repo_species_with_medium_or_high_confidence_only",
+        "usefulObservationCount": 54,
+        "matchedObservationCount": 9
+      }
     },
     "ostensjovannet_sivbelte": {
-      "fauna": ["emne_fauna_stokkand"]
+      "flora": [
+        "emne_flora_bekkeblom"
+      ],
+      "fauna": [
+        "emne_fauna_graagas",
+        "emne_fauna_linerle",
+        "emne_fauna_ringdue",
+        "emne_fauna_blaameis",
+        "emne_fauna_stokkand",
+        "emne_fauna_svarttrost",
+        "emne_fauna_fiskemaake",
+        "emne_fauna_graamaake",
+        "emne_fauna_graatrost",
+        "emne_fauna_kjottmeis",
+        "emne_fauna_knoppsvane",
+        "emne_fauna_rodstrupe",
+        "emne_fauna_sothone",
+        "emne_fauna_toppand"
+      ],
+      "artskartCandidateSource": {
+        "candidateFileGeneratedAt": "2026-04-30T05:01:47.426Z",
+        "rule": "added_existing_repo_species_with_medium_or_high_confidence_only",
+        "usefulObservationCount": 186,
+        "matchedObservationCount": 69
+      }
     },
     "ostensjovannet_sor": {
-      "fauna": ["emne_fauna_stokkand", "emne_fauna_ringdue"]
+      "flora": [
+        "emne_flora_hestehov"
+      ],
+      "fauna": [
+        "emne_fauna_knoppsvane",
+        "emne_fauna_sothone",
+        "emne_fauna_stokkand",
+        "emne_fauna_graagas",
+        "emne_fauna_blaameis",
+        "emne_fauna_fiskemaake",
+        "emne_fauna_gronnfink",
+        "emne_fauna_graamaake",
+        "emne_fauna_graatrost",
+        "emne_fauna_hettemaake",
+        "emne_fauna_kjottmeis",
+        "emne_fauna_kraake",
+        "emne_fauna_linerle",
+        "emne_fauna_ringdue",
+        "emne_fauna_skjaere",
+        "emne_fauna_svarttrost",
+        "emne_fauna_toppand"
+      ],
+      "artskartCandidateSource": {
+        "candidateFileGeneratedAt": "2026-04-30T05:01:47.426Z",
+        "rule": "added_existing_repo_species_with_medium_or_high_confidence_only",
+        "usefulObservationCount": 116,
+        "matchedObservationCount": 53
+      }
     },
     "bygdoy_kongeskogen": {
-      "flora": ["emne_flora_russesvalerot", "emne_flora_russekaal"],
-      "fauna": ["emne_fauna_skjaere", "emne_fauna_graaspurv"]
+      "flora": [
+        "emne_flora_mahonia"
+      ],
+      "artskartCandidateSource": {
+        "candidateFileGeneratedAt": "2026-04-30T05:01:47.426Z",
+        "rule": "added_existing_repo_species_with_medium_or_high_confidence_only",
+        "usefulObservationCount": 211,
+        "matchedObservationCount": 54
+      }
     },
     "bygdoy_dronningberget": {
-      "fauna": ["emne_fauna_skjaere", "emne_fauna_graamaake"]
-    },
-    "bygdoy_huk": {
-      "fauna": ["emne_fauna_graamaake", "emne_fauna_fiskemaake", "emne_fauna_stokkand"]
+      "flora": [
+        "emne_flora_gravbergknapp",
+        "emne_flora_syrin",
+        "emne_ved_ask",
+        "emne_flora_blodstorkenebb",
+        "emne_kratt_geitved"
+      ],
+      "artskartCandidateSource": {
+        "candidateFileGeneratedAt": "2026-04-30T05:01:47.426Z",
+        "rule": "added_existing_repo_species_with_medium_or_high_confidence_only",
+        "usefulObservationCount": 185,
+        "matchedObservationCount": 60
+      }
     },
     "bygdoy_paradisbukta": {
-      "fauna": ["emne_fauna_stokkand", "emne_fauna_graamaake"]
-    },
-    "bygdoy_bygdoynes": {
-      "fauna": ["emne_fauna_skjaere", "emne_fauna_graaspurv"]
+      "flora": [
+        "emne_flora_russekaal",
+        "emne_flora_burot"
+      ],
+      "fauna": [
+        "emne_fauna_blaameis",
+        "emne_fauna_flaggspett",
+        "emne_fauna_graaspurv",
+        "emne_fauna_spettmeis",
+        "emne_fauna_svarttrost",
+        "emne_fauna_kjottmeis",
+        "emne_fauna_rodstrupe",
+        "emne_fauna_skjaere",
+        "emne_fauna_kraake",
+        "emne_fauna_gronnfink",
+        "emne_fauna_ringdue"
+      ],
+      "artskartCandidateSource": {
+        "candidateFileGeneratedAt": "2026-04-30T05:01:47.426Z",
+        "rule": "added_existing_repo_species_with_medium_or_high_confidence_only",
+        "usefulObservationCount": 227,
+        "matchedObservationCount": 116
+      }
     },
     "bygdoy_roykenvika": {
-      "fauna": ["emne_fauna_stokkand", "emne_fauna_graamaake"]
+      "fauna": [
+        "emne_fauna_svarttrost"
+      ],
+      "artskartCandidateSource": {
+        "candidateFileGeneratedAt": "2026-04-30T05:01:47.426Z",
+        "rule": "added_existing_repo_species_with_medium_or_high_confidence_only",
+        "usefulObservationCount": 11,
+        "matchedObservationCount": 9
+      }
     }
   }
 }
