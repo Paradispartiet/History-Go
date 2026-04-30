@@ -1,17 +1,17 @@
 # Place Data Audit
 
-Generert: 2026-04-29T21:51:23.753Z
+Generert: 2026-04-29T22:14:16.605Z
 
 ## Totalsammendrag
 
 - Place-filer i manifest: **18**
 - Totalt antall places: **228**
 - Steder med manglende obligatoriske felt: **72**
-- Steder med manglende popupDesc: **122**
+- Steder med manglende popupDesc: **116**
 - Steder med manglende image: **136**
 - Steder med manglende cardImage: **136**
-- Steder med manglende emne_ids: **128**
-- Steder med manglende quiz_profile: **128**
+- Steder med manglende emne_ids: **122**
+- Steder med manglende quiz_profile: **122**
 - Steder som bruker imageCard-felt: **0**
 - Steder med stub:true eller hidden:true: **0**
 - Antall ødelagte asset paths: **120**
@@ -186,12 +186,12 @@ Generert: 2026-04-29T21:51:23.753Z
 - Antall places: 6
 - Places med funn: 6
 
-- stortinget (Stortinget): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- youngstorget (Youngstorget): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- oslo_radhus (Oslo rådhus): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- eidsvolls_plass (Eidsvolls plass): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- tinghuset (Oslo tinghus): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- regjeringskvartalet (Regjeringskvartalet): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- stortinget (Stortinget): mangler image | mangler cardImage
+- youngstorget (Youngstorget): mangler image | mangler cardImage
+- oslo_radhus (Oslo rådhus): mangler image | mangler cardImage
+- eidsvolls_plass (Eidsvolls plass): mangler image | mangler cardImage
+- tinghuset (Oslo tinghus): mangler image | mangler cardImage
+- regjeringskvartalet (Regjeringskvartalet): mangler image | mangler cardImage
 
 ### data/places/places_sport.json
 
