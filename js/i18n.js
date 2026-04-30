@@ -97,10 +97,30 @@
     nodes.forEach((el) => {
       const key = el.getAttribute("data-i18n");
       if (!key) return;
-      if (el.children && el.children.length > 0) return;
 
       const fallbackText = (el.textContent || "").trim();
       const translated = t(key, fallbackText);
+
+      if (el.id === "btnSeeMap" && el.classList.contains("iconbtn")) {
+        if (translated) {
+          el.setAttribute("aria-label", translated);
+          el.setAttribute("title", translated);
+        }
+
+        let icon = el.querySelector("[data-i18n-icon='map']");
+        if (!icon) {
+          el.textContent = "";
+          icon = document.createElement("span");
+          icon.setAttribute("data-i18n-icon", "map");
+          icon.setAttribute("aria-hidden", "true");
+          el.appendChild(icon);
+        }
+        icon.textContent = "🗺️";
+        return;
+      }
+
+      if (el.children && el.children.length > 0) return;
+
       if (translated && el.textContent !== translated) {
         el.textContent = translated;
       }
