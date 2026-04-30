@@ -245,20 +245,22 @@
     };
   }
 
-  function buildNarrativeReason(story, nextPlace, direction) {
+  function buildNarrativeReason(story, nextPlace, direction, sourceType = "related_places", explicitReason = "") {
     const title = storyTitle(story);
     const summary = s(story?.summary);
-    const explicit = arr(story?.next_scenes)
-      .find(sc => s(sc?.place_id || sc?.target_id || sc?.id) === placeId(nextPlace));
-    const sceneReason = s(explicit?.reason);
-    const fallback = direction === "reverse"
-      ? "Koblingen kommer via related_places."
-      : "Koblingen kommer via storyens stedsliste.";
+    const sceneReason = s(explicitReason);
+    const fallback = sourceType === "related_places"
+      ? "Tematisk kobling via related_places, ikke eksplisitt neste scene."
+      : direction === "reverse"
+        ? "Omvendt kobling via eksplisitt next_scenes fra en annen story."
+        : "Koblingen kommer via storyens stedsliste.";
 
     return {
-      reason: sceneReason || "Denne scenen følger en eksisterende fortelling.",
+      reason: sceneReason || (sourceType === "related_places"
+        ? "Tematisk kobling til et relatert sted."
+        : "Denne scenen følger en eksisterende fortelling."),
       deep_reason: `Forslaget følger historien “${title}”${summary ? `: ${summary}` : ""}. Neste sted er ${placeLabel(nextPlace)}${sceneReason ? ` fordi ${sceneReason}` : ` (${fallback})`}.`,
-      evidence: ["HGStories", "story.title", "story.summary", "story.next_scenes", "story.related_places"]
+      evidence: ["story.next_scenes", "story.title", "story.place_id", "story.summary", "story.related_places"]
     };
   }
 
@@ -362,10 +364,13 @@
       .filter(sc => sc.place_id);
   }
 
+  function storyNextPlaces(story) {
+    return arr(story?.next_places).map(s).filter(Boolean);
+  }
+
   function storyRelatedPlaces(story) {
     return [
       ...arr(story?.related_places),
-      ...arr(story?.next_places),
       ...arr(story?.place_ids),
       ...arr(story?.places)
     ].map(s).filter(Boolean);
@@ -382,14 +387,14 @@
       : "Stories-systemet peker videre til et relatert sted.";
   }
 
-  function makeNarrativeSuggestion(story, nextId, direction, source = "related_places") {
+  function makeNarrativeSuggestion(story, nextId, direction, source = "related_places", explicitReason = "") {
     const nextPlace = findPlace(nextId);
     if (!nextId || !nextPlace) return null;
 
-    const base = direction === "reverse" ? 72 : 82;
+    const base = source === "next_scenes" ? 90 : source === "next_places" ? 82 : source === "reverse_related" ? 66 : 70;
     const storyScore = Number(story?.score?.total || 0);
 
-    const reasonMeta = buildNarrativeReason(story, nextPlace, direction);
+    const reasonMeta = buildNarrativeReason(story, nextPlace, direction, source, explicitReason);
 
     return makeSuggestion({
       type: "narrative",
@@ -420,9 +425,19 @@
 
         for (const story of storiesHere) {
           const explicit = storyNextScenes(story).find(sc => sc.place_id && sc.place_id !== currentId && findPlace(sc.place_id));
-          const nextId = explicit?.place_id || storyRelatedPlaces(story).find(id => id && id !== currentId && findPlace(id));
-          const source = explicit ? "next_scenes" : "related_places";
-          const result = makeNarrativeSuggestion(story, nextId, "direct", source);
+          if (explicit) {
+            const result = makeNarrativeSuggestion(story, explicit.place_id, "direct", "next_scenes", explicit.reason);
+            if (result) return result;
+            continue;
+          }
+          const nextPlaceId = storyNextPlaces(story).find(id => id && id !== currentId && findPlace(id));
+          if (nextPlaceId) {
+            const result = makeNarrativeSuggestion(story, nextPlaceId, "direct", "next_places");
+            if (result) return result;
+            continue;
+          }
+          const relatedPlaceId = storyRelatedPlaces(story).find(id => id && id !== currentId && findPlace(id));
+          const result = makeNarrativeSuggestion(story, relatedPlaceId, "direct", "related_places");
           if (result) return result;
         }
       }
@@ -430,12 +445,10 @@
       const allStories = arr(window.HGStories.all);
       for (const story of allStories) {
         const primaryPlaceId = s(story?.place_id);
-        if (!primaryPlaceId || primaryPlaceId === currentId) continue;
-
-        const related = storyRelatedPlaces(story);
-        if (!related.includes(currentId)) continue;
-
-        const result = makeNarrativeSuggestion(story, primaryPlaceId, "reverse", "reverse_related");
+        if (!primaryPlaceId || primaryPlaceId === currentId || !findPlace(primaryPlaceId)) continue;
+        const backLink = storyNextScenes(story).find(sc => s(sc.place_id) === currentId);
+        if (!backLink) continue;
+        const result = makeNarrativeSuggestion(story, primaryPlaceId, "reverse", "reverse_related", backLink.reason);
         if (result) return result;
       }
     } catch (e) {

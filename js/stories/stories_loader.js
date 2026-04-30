@@ -86,9 +86,7 @@
 
           for (const story of stories) {
             if (!isValidStory(story)) continue;
-            if ("next_scenes" in story) {
-              story.next_scenes = normalizeNextScenes(story.next_scenes);
-            }
+            story.next_scenes = normalizeNextScenes(story.next_scenes);
             loadedStories.push(story);
           }
         } catch (err) {

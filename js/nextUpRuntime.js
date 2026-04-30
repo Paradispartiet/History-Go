@@ -705,7 +705,8 @@
         source: s(narrativeSuggestion.meta?.source_type || "related_places"),
         story_id: s(narrativeSuggestion.meta?.story_id),
         next_place_id: s(narrativeSuggestion.meta?.next_place_id || narrativeSuggestion.target_id),
-        reason: s(narrativeSuggestion.reason)
+        reason: s(narrativeSuggestion.reason),
+        deep_reason: s(narrativeSuggestion.deep_reason)
       } : null,
       missing: {
         spatial: !suggestions.some(x => x.type === "spatial"),
