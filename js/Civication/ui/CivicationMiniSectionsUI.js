@@ -241,14 +241,12 @@
   }
 
   function getInbox() {
+    const fromMailEngine = window.CivicationMailEngine?.getInbox?.();
+    if (Array.isArray(fromMailEngine)) return fromMailEngine;
+
     const fromState = window.CivicationState?.getInbox?.();
     if (Array.isArray(fromState)) return fromState;
-    try {
-      const stored = JSON.parse(localStorage.getItem("hg_civi_inbox_v1") || "[]");
-      return Array.isArray(stored) ? stored : [];
-    } catch {
-      return [];
-    }
+    return [];
   }
 
   function splitInbox() {

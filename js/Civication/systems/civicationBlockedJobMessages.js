@@ -6,8 +6,16 @@
   function lower(v) { return normalize(v).toLowerCase(); }
 
   function getInbox() {
-    if (globalScope.HG_CiviEngine?.getInbox) return globalScope.HG_CiviEngine.getInbox() || [];
-    if (globalScope.CivicationState?.getInbox) return globalScope.CivicationState.getInbox() || [];
+    const fromMailEngine = globalScope.CivicationMailEngine?.getInbox?.();
+    if (Array.isArray(fromMailEngine)) return fromMailEngine;
+    if (globalScope.HG_CiviEngine?.getInbox) {
+      const fromEngine = globalScope.HG_CiviEngine.getInbox();
+      if (Array.isArray(fromEngine)) return fromEngine;
+    }
+    if (globalScope.CivicationState?.getInbox) {
+      const fromState = globalScope.CivicationState.getInbox();
+      if (Array.isArray(fromState)) return fromState;
+    }
     return [];
   }
 

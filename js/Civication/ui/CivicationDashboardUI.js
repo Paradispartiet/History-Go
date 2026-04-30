@@ -96,11 +96,12 @@
   }
 
   function getInbox() {
+    const fromMailEngine = window.CivicationMailEngine?.getInbox?.();
+    if (Array.isArray(fromMailEngine)) return fromMailEngine;
+
     const fromState = window.CivicationState?.getInbox?.();
     if (Array.isArray(fromState)) return fromState;
-
-    const stored = safeJSON("hg_civi_inbox_v1", []);
-    return Array.isArray(stored) ? stored : [];
+    return [];
   }
 
   function getActivePosition() {
