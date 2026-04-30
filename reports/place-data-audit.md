@@ -1,21 +1,21 @@
 # Place Data Audit
 
-Generert: 2026-04-30T09:39:38.884Z
+Generert: 2026-04-30T12:18:36.200Z
 
 ## Totalsammendrag
 
-- Place-filer i manifest: **18**
-- Totalt antall places: **228**
-- Steder med manglende obligatoriske felt: **48**
-- Steder med manglende popupDesc: **49**
-- Steder med manglende image: **136**
-- Steder med manglende cardImage: **136**
-- Steder med manglende emne_ids: **49**
-- Steder med manglende quiz_profile: **49**
+- Place-filer i manifest: **17**
+- Totalt antall places: **215**
+- Steder med manglende obligatoriske felt: **35**
+- Steder med manglende popupDesc: **36**
+- Steder med manglende image: **123**
+- Steder med manglende cardImage: **122**
+- Steder med manglende emne_ids: **36**
+- Steder med manglende quiz_profile: **36**
 - Steder som bruker imageCard-felt: **0**
 - Steder med stub:true eller hidden:true: **0**
-- Antall ødelagte asset paths: **120**
-- Antall place-referanser til ikke-eksisterende id-er: **0**
+- Antall ødelagte asset paths: **117**
+- Antall place-referanser til ikke-eksisterende id-er: **2**
 
 ## Funn per fil
 
@@ -83,9 +83,8 @@ Generert: 2026-04-30T09:39:38.884Z
 ### data/places/places_historie.json
 
 - Antall places: 10
-- Places med funn: 4
+- Places med funn: 3
 
-- gamle_trikkestallen (Gamle trikkestallen på Sagene): ødelagte paths: cardImage=bilder/kort/places/Trikkestallen.PNG
 - sofienberg_kirke (Sofienberg kirke): ødelagte paths: cardImage=bilder/kort/places/sofienberg_kirke.PNG
 - gamlebyen_gravlund (Gamlebyen gravlund): mangler image | mangler cardImage
 - akerhus_slott (Akerhus Slott): mangler image | mangler cardImage
@@ -205,7 +204,7 @@ Generert: 2026-04-30T09:39:38.884Z
 - Places med funn: 5
 
 - sofienbergparken_subkultur (Sofienbergparken): ødelagte paths: cardImage=bilder/kort/places/sofienbergparken.PNG
-- hausmania (Hausmania): mangler image | mangler cardImage
+- hausmania (Hausmania): mangler image
 - skur13 (Skur 13): mangler image | mangler cardImage
 - torggata_blad (Torggata Blad): mangler image | mangler cardImage
 - stovnertarnet (Stovnertårnet): mangler image | mangler cardImage
@@ -213,9 +212,8 @@ Generert: 2026-04-30T09:39:38.884Z
 ### data/places/places_vitenskap.json
 
 - Antall places: 5
-- Places med funn: 2
+- Places med funn: 1
 
-- universitetets_gamle_hovedbygning (Universitetets gamle hovedbygning): ødelagte paths: image=bilder/places/univers_gamle.PNG; cardImage=bilder/kort/places/universitetets_gamle_hovedbygning.PNG
 - gamlebyen_skole (Gamlebyen skole): mangler image | mangler cardImage
 
 ### data/places/oslo/places_oslo_natur_akerselvarute.json
@@ -312,25 +310,6 @@ Generert: 2026-04-30T09:39:38.884Z
 - bygdoy_paradisbukta (Bygdøy Paradisbukta): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
 - bygdoy_bygdoynes (Bygdøy Bygdøynes): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
 - bygdoy_roykenvika (Bygdøy Røykensvika): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-
-### data/places/places_nature_aliases.json
-
-- Antall places: 13
-- Places med funn: 13
-
-- toyengata (Tøyengata): mangler felt: lat, lon, r, category, year, desc | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- vaterlandsparken (Vaterlandsparken): mangler felt: lat, lon, r, category, year, desc | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- lovisenberg_sykehus (Lovisenberg sykehus): mangler felt: lat, lon, r, category, year, desc | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- nya_bjorvika (Nye Bjørvika): mangler felt: lat, lon, r, category, year, desc | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- bjorvika_barcode (Bjørvika Barcode): mangler felt: lat, lon, r, category, year, desc | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- frognerbadet (Frognerbadet): mangler felt: lat, lon, r, category, year, desc | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- bjerke_travbane (Bjerke travbane): mangler felt: lat, lon, r, category, year, desc | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- fagerborg_kirke (Fagerborg kirke): mangler felt: lat, lon, r, category, year, desc | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- torshovparken (Torshovparken): mangler felt: lat, lon, r, category, year, desc | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- borregravfeltet (Borrehaugene): mangler felt: lat, lon, r, category, year, desc | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- munchs_hus_aasgardstrand (Munchs hus i Åsgårdstrand): mangler felt: lat, lon, r, category, year, desc | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- trosterud_skulpturpark (Trosterud skulpturpark): mangler felt: lat, lon, r, category, year, desc | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- kuben_yrkesarena (Kuben yrkesarena): mangler felt: lat, lon, r, category, year, desc | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
 
 ## Duplikate id-er
 
@@ -443,7 +422,6 @@ Generert: 2026-04-30T09:39:38.884Z
 - data/places/places_by.json :: voienvolden :: image -> bilder/places/voienvolden.PNG
 - data/places/places_by.json :: carl_berner_plass :: image -> bilder/places/carl_berner_plass.PNG
 - data/places/places_by.json :: carl_berner_plass :: cardImage -> bilder/kort/places/carl_berner_plass.PNG
-- data/places/places_historie.json :: gamle_trikkestallen :: cardImage -> bilder/kort/places/Trikkestallen.PNG
 - data/places/places_historie.json :: sofienberg_kirke :: cardImage -> bilder/kort/places/sofienberg_kirke.PNG
 - data/places/places_litteratur.json :: camilla_collett_statue :: cardImage -> bilder/kort/places/camilla_collett_statue_kort.PNG
 - data/places/places_litteratur.json :: henrik_wergeland_statue :: image -> bilder/places/henrik_wergeland_statue.PNG
@@ -463,12 +441,11 @@ Generert: 2026-04-30T09:39:38.884Z
 - data/places/places_naeringsliv.json :: telegrafbygningen :: image -> bilder/places/telegrafbygningen.PNG
 - data/places/places_naeringsliv.json :: jernbaneverkstedet_lodalen :: cardImage -> bilder/kort/places/Lodalen_jernbaneverkstred.JPG
 - data/places/places_subkultur.json :: sofienbergparken_subkultur :: cardImage -> bilder/kort/places/sofienbergparken.PNG
-- data/places/places_vitenskap.json :: universitetets_gamle_hovedbygning :: image -> bilder/places/univers_gamle.PNG
-- data/places/places_vitenskap.json :: universitetets_gamle_hovedbygning :: cardImage -> bilder/kort/places/universitetets_gamle_hovedbygning.PNG
 
 ## Referanser til place-id-er som ikke finnes
 
-- Ingen ugyldige place-referanser i people/badges/routes/wonderkammer/civication-filer som ble sjekket.
+- data/Civication/place_contexts.json :: contexts[5].matches_place_ids -> frognerbadet
+- data/Civication/place_contexts.json :: contexts[7].matches_place_ids -> torshovparken
 
 ## Anbefalt rekkefølge for ferdigstilling
 
