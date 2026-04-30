@@ -14,6 +14,16 @@ const rel = (p) => path.relative(root, p).replace(/\\/g, '/');
 const isNum = (v) => typeof v === 'number' && Number.isFinite(v);
 const round6 = (n) => Math.round(n * 1e6) / 1e6;
 
+const isArchivePath = (p) => /(^|\/)arkiv(\/|$)/i.test(p);
+const isBackupLike = (filePath) => {
+  const base = path.basename(filePath).toLowerCase();
+  return /(backup|kopi|copy|old|gammel|historisk)/i.test(filePath) ||
+    /~$/.test(base) ||
+    /\.(bak|backup|old)$/.test(base) ||
+    /\.(orig|tmp)$/.test(base) ||
+    /\(copy\)/i.test(base);
+};
+
 function findPlaceJsonFiles(dir) {
   const out = [];
   for (const name of fs.readdirSync(dir)) {
@@ -33,19 +43,28 @@ function toPlaces(data) {
 }
 
 const manifest = readJson(manifestPath);
-const usedByApp = new Set((manifest.files || []).map((f) => rel(path.join(root, 'data', f))));
+const manifestFiles = (manifest.files || []).map((f) => rel(path.join(root, 'data', f)));
+const activeManifestFiles = manifestFiles.filter((f) => !isArchivePath(f) && !isBackupLike(f));
+const usedByApp = new Set(activeManifestFiles);
 
-const allPlaceFiles = findPlaceJsonFiles(dataDir).filter((f) => !/\/quiz\//.test(f));
+const allPlaceFiles = findPlaceJsonFiles(dataDir)
+  .filter((f) => !/\/quiz\//.test(f))
+  .map((f) => rel(f));
+
+const candidateFiles = allPlaceFiles.filter((f) => !isArchivePath(f) && !isBackupLike(f));
+const inRepoButUnused = candidateFiles.filter((f) => !usedByApp.has(f)).sort();
+const activeFilesToRead = [...usedByApp].filter((f) => fs.existsSync(path.join(root, f)));
+const missingManifestFiles = [...usedByApp].filter((f) => !fs.existsSync(path.join(root, f)));
+
 const parseable = [];
 const parseErrors = [];
-
-for (const file of allPlaceFiles) {
+for (const file of activeFilesToRead) {
   try {
-    const json = readJson(file);
+    const json = readJson(path.join(root, file));
     const places = toPlaces(json);
-    if (places.length) parseable.push({ file: rel(file), full: file, places, json });
+    parseable.push({ file, places, json });
   } catch (e) {
-    parseErrors.push({ file: rel(file), error: String(e) });
+    parseErrors.push({ file, error: String(e) });
   }
 }
 
@@ -145,13 +164,10 @@ const hashGroups = new Map();
 for (const x of fileHashes) { if (!hashGroups.has(x.hash)) hashGroups.set(x.hash, []); hashGroups.get(x.hash).push(x.file); }
 const duplicateFiles = [...hashGroups.values()].filter((g) => g.length > 1);
 
-const knownSet = new Set(parseable.map((p) => p.file));
-const unused = [...knownSet].filter((f) => !usedByApp.has(f));
-
-const summary = {
+const activeSummary = {
   generatedAt: new Date().toISOString(),
-  placeFilesRead: parseable.length,
-  placesRead: rows.length,
+  activePlaceFilesRead: parseable.length,
+  activePlacesRead: rows.length,
   ok: rows.filter((r) => r.status === 'ok').length,
   needs_review: rows.filter((r) => r.status === 'needs_review').length,
   conflict: rows.filter((r) => r.status === 'conflict').length,
@@ -161,15 +177,19 @@ const summary = {
 };
 
 const report = {
-  ...summary,
-  usedByApp: [...usedByApp].filter((f) => knownSet.has(f)).sort(),
-  inRepoButUnused: unused.sort(),
+  ...activeSummary,
+  activeFilesDeclaredInManifest: [...usedByApp].sort(),
+  activeFilesRead: parseable.map((p) => p.file).sort(),
+  missingManifestFiles: missingManifestFiles.sort(),
+  secondaryFindings: {
+    inRepoButUnused,
+    duplicateFiles
+  },
   parseErrors,
-  duplicateFiles,
   highPriorityFindings: rows.filter((r) => ['invalid', 'conflict'].includes(r.status)),
   coordMetadataSuggestion: {
     fields: ['coordType', 'coordStatus', 'coordSource', 'coordPrecisionM', 'coordVerifiedAt'],
-    coordTypeValues: ['entrance','building_center','statue','square_center','park_center','area_center','street_midpoint','route_midpoint','historical_site','approximate']
+    coordTypeValues: ['entrance', 'building_center', 'statue', 'square_center', 'park_center', 'area_center', 'street_midpoint', 'route_midpoint', 'historical_site', 'approximate']
   },
   flaggedPlaces: rows.filter((r) => r.status !== 'ok')
 };
@@ -177,14 +197,14 @@ const report = {
 fs.mkdirSync(reportsDir, { recursive: true });
 fs.writeFileSync(path.join(reportsDir, 'place-coordinate-audit.json'), JSON.stringify(report, null, 2));
 
-let md = `# Place coordinate audit\n\nGenerert: ${report.generatedAt}\n\n`;
-md += `## Sammendrag\n- Place-filer lest: **${report.placeFilesRead}**\n- Steder lest: **${report.placesRead}**\n- ok: **${report.ok}**\n- needs_review: **${report.needs_review}**\n- conflict: **${report.conflict}**\n- invalid: **${report.invalid}**\n- duplicate: **${report.duplicate}**\n- outside_expected_area: **${report.outside_expected_area}**\n\n`;
-md += `## Filer brukt av appen\n${report.usedByApp.map((f) => `- ${f}`).join('\n')}\n\n`;
-md += `## Filer i repo som ikke ser ut brukt av appen\n${report.inRepoButUnused.map((f) => `- ${f}`).join('\n') || '- Ingen'}\n\n`;
-md += `## Mulige duplikatfiler\n${report.duplicateFiles.map((g) => `- ${g.join(' = ')}`).join('\n') || '- Ingen'}\n\n`;
-md += `## Høyprioriterte funn\n${report.highPriorityFindings.slice(0, 50).map((r) => `- ${r.file} | ${r.id} | ${r.name} | ${r.status} | ${r.reason}`).join('\n') || '- Ingen'}\n\n`;
-md += `## Flaggede steder\n\n| file | id | name | category | lat | lon | r | status | flags |\n|---|---|---|---|---:|---:|---:|---|---|\n`;
+let md = `# Place coordinate audit (active data only)\n\nGenerert: ${report.generatedAt}\n\n`;
+md += `## Aktiv hovedstatistikk\n- Aktive place-filer lest: **${report.activePlaceFilesRead}**\n- Aktive steder lest: **${report.activePlacesRead}**\n- ok: **${report.ok}**\n- needs_review: **${report.needs_review}**\n- conflict: **${report.conflict}**\n- invalid: **${report.invalid}**\n- duplicate: **${report.duplicate}**\n- outside_expected_area: **${report.outside_expected_area}**\n\n`;
+md += `## Aktive filer (fra manifest)\n${report.activeFilesRead.map((f) => `- ${f}`).join('\n') || '- Ingen'}\n\n`;
+md += `## Aktive steder som må rettes\n${report.highPriorityFindings.map((r) => `- ${r.file} | ${r.id} | ${r.name} | ${r.status} | ${r.reason}`).join('\n') || '- Ingen'}\n\n`;
+md += `## Flaggede aktive steder\n\n| file | id | name | category | lat | lon | r | status | flags |\n|---|---|---|---|---:|---:|---:|---|---|\n`;
 for (const r of report.flaggedPlaces) md += `| ${r.file} | ${r.id ?? ''} | ${r.name ?? ''} | ${r.category ?? ''} | ${r.lat ?? ''} | ${r.lon ?? ''} | ${r.r ?? ''} | ${r.status} | ${r.flags.join(', ')} |\n`;
+md += `\n## Sekundært: filer i repo men ikke i manifest (ikke med i hovedstatistikk)\n${report.secondaryFindings.inRepoButUnused.map((f) => `- ${f}`).join('\n') || '- Ingen'}\n\n`;
+md += `## Sekundært: mulige duplikatfiler (aktive filer)\n${report.secondaryFindings.duplicateFiles.map((g) => `- ${g.join(' = ')}`).join('\n') || '- Ingen'}\n`;
 
 fs.writeFileSync(path.join(reportsDir, 'place-coordinate-audit.md'), md);
-console.log(`Audit ferdig. Filer: ${summary.placeFilesRead}, steder: ${summary.placesRead}, flagget: ${report.flaggedPlaces.length}`);
+console.log(`Audit ferdig (aktive data). Filer: ${activeSummary.activePlaceFilesRead}, steder: ${activeSummary.activePlacesRead}, flagget: ${report.flaggedPlaces.length}`);
