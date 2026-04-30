@@ -8,7 +8,10 @@ async function init() {
   await window.ensureCiviCareerRulesLoaded?.();
 
   // 🔽 START-SEKVENS hvis systemet er tomt
-  const inbox = window.CivicationState.getInbox?.();
+  const inbox =
+    window.CivicationMailEngine?.getInbox?.() ||
+    window.CivicationState?.getInbox?.() ||
+    [];
   if (
     !window.CivicationState.getActivePosition() &&
     (!Array.isArray(inbox) || inbox.length === 0)
@@ -796,7 +799,10 @@ function openTaskModalByMailId(mailId) {
   const title = document.getElementById("civiTaskModalTitle");
   if (!modal || !body || !title) return;
 
-  const inbox = window.CivicationState.getInbox?.() || [];
+  const inbox =
+    window.CivicationMailEngine?.getInbox?.() ||
+    window.CivicationState?.getInbox?.() ||
+    [];
   const ev =
     inbox
       .map(function (item) { return item?.event || null; })

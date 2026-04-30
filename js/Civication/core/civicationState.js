@@ -135,13 +135,27 @@ function setPulse(p) {
   }
 
   function getInbox() {
-    return safeParse(
+    if (window.CivicationMailEngine?.getInbox) {
+      const engineInbox = window.CivicationMailEngine.getInbox();
+      return Array.isArray(engineInbox) ? engineInbox : [];
+    }
+
+    const legacy = safeParse(
       localStorage.getItem(LS_INBOX),
       []
     );
+
+    if (Array.isArray(legacy)) return legacy;
+    if (legacy && typeof legacy === "object" && Array.isArray(legacy.items)) return legacy.items;
+    return [];
   }
 
   function setInbox(arr) {
+    if (window.CivicationMailEngine?.replaceInbox) {
+      window.CivicationMailEngine.replaceInbox(Array.isArray(arr) ? arr : []);
+      return;
+    }
+
     localStorage.setItem(
       LS_INBOX,
       JSON.stringify(Array.isArray(arr) ? arr : [])

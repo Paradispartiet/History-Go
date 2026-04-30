@@ -190,7 +190,10 @@
   }
 
   function getInbox() {
-    return window.CivicationState?.getInbox?.() || [];
+    const fromEngine = window.CivicationMailEngine?.getInbox?.();
+    if (Array.isArray(fromEngine)) return fromEngine;
+    const fromState = window.CivicationState?.getInbox?.();
+    return Array.isArray(fromState) ? fromState : [];
   }
 
   function setInbox(inbox) {
