@@ -22,6 +22,7 @@
 
   function dlog(...args) { if (window.DEBUG) console.log("[QuizEngine]", ...args); }
   function dwarn(...args) { if (window.DEBUG) console.warn("[QuizEngine]", ...args); }
+  function tt(key, fallback) { return window.HG_I18N?.t?.(key, fallback) || fallback; }
 
   // ============================================================
   // URL / FETCH
@@ -784,7 +785,7 @@ if (canTag) {
         const visited = API.getVisited() || {};
 
         if (place && !visited[s(place.id)]) {
-          API.showToast("📍 Du må trykke Lås opp før du kan ta denne quizen.");
+          API.showToast(`📍 ${tt("ui.quiz.unlockFirstPlace", "Du må trykke Lås opp før du kan ta denne quizen.")}`);
           return;
         }
 
@@ -796,7 +797,7 @@ if (canTag) {
           if (candidates.length) {
             const ok = candidates.some((id) => !!visited[id]);
             if (!ok) {
-              API.showToast("📍 Du må trykke Lås opp på et av personens steder før du kan ta denne quizen.");
+              API.showToast(`📍 ${tt("ui.quiz.unlockFirstPersonPlace", "Du må trykke Lås opp på et av personens steder før du kan ta denne quizen.")}`);
               return;
             }
           }

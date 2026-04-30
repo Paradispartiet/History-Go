@@ -3,6 +3,7 @@
 // ============================================================
 window.openPlaceCard = async function (place) {
   if (!place) return;
+  const tt = (key, fallback) => window.HG_I18N?.t?.(key, fallback) || fallback;
 
   // 🎓 Learning: mark seen for place-emner
    if (window.KnowledgeLearning && Array.isArray(place.emne_ids)) {
@@ -156,20 +157,20 @@ const setRoundLabel = (el, emoji, count = 0) => {
 };
 
 if (isNarrow) {
-  setPcIcon(btnInfo,  "ℹ️", "Mer info");
-  setPcText(btnQuiz,  "Quiz");
-  setPcText(btnRoute, "Rute");
-  setPcIcon(btnObs,   "👁️", "Observasjon");
-  setPcIcon(btnNote,  "📝", "Notat");
-  setPcIcon(btnClose, "✕",  "Lukk");
+  setPcIcon(btnInfo,  "ℹ️", tt("ui.place.moreInfo", "Mer info"));
+  setPcText(btnQuiz,  tt("ui.place.takeQuiz", "Ta quiz"));
+  setPcText(btnRoute, tt("ui.place.route", "Rute"));
+  setPcIcon(btnObs,   "👁️", tt("ui.place.observe", "Observer"));
+  setPcIcon(btnNote,  "📝", tt("ui.place.note", "Notat"));
+  setPcIcon(btnClose, "✕",  tt("ui.quiz.close", "Lukk"));
 } else {
-  setPcText(btnInfo,  "Mer info");
-  setPcText(btnQuiz,  "Ta quiz");
+  setPcText(btnInfo,  tt("ui.place.moreInfo", "Mer info"));
+  setPcText(btnQuiz,  tt("ui.place.takeQuiz", "Ta quiz"));
   // btnUnlock settes lenger nede av unlock-UI – la den være
-  setPcText(btnRoute, "Rute");
-  setPcText(btnObs,   "Observasjon");
-  setPcText(btnNote,  "Notat");
-  setPcText(btnClose, "Lukk");
+  setPcText(btnRoute, tt("ui.place.route", "Rute"));
+  setPcText(btnObs,   tt("ui.place.observe", "Observer"));
+  setPcText(btnNote,  tt("ui.place.note", "Notat"));
+  setPcText(btnClose, tt("ui.quiz.close", "Lukk"));
 }
 
 if (!card) return;
@@ -798,12 +799,12 @@ function updateUnlockUI() {
   const isUnlocked = !!(window.visited && window.visited[place.id]);
 
   if (isUnlocked) {
-    setUnlockUI(true, "Låst opp ✅");
+    setUnlockUI(true, `${tt("ui.unlock.unlocked", "Låst opp")} ✅`);
     return;
   }
 
   if (window.TEST_MODE) {
-    setUnlockUI(false, "Lås opp (test)");
+    setUnlockUI(false, `${tt("ui.unlock.locked", "Lås opp")} (test)`);
     return;
   }
 
@@ -811,21 +812,21 @@ function updateUnlockUI() {
 
   if (!gate.ok) {
     if (gate.reason === "no_pos") {
-      setUnlockUI(true, "Aktiver posisjon");
+      setUnlockUI(true, tt("ui.position.loading", "Henter posisjon…"));
       return;
     }
 
     if (gate.d != null) {
       const left = Math.max(0, Math.ceil(gate.d - gate.r));
-      setUnlockUI(true, `Gå nærmere (${left} m)`);
+      setUnlockUI(true, `${tt("ui.unlock.goCloser", "Gå nærmere")} (${left} m)`);
       return;
     }
 
-    setUnlockUI(true, "Gå nærmere");
+    setUnlockUI(true, tt("ui.unlock.goCloser", "Gå nærmere"));
     return;
   }
 
-  setUnlockUI(false, "Lås opp");
+  setUnlockUI(false, tt("ui.unlock.locked", "Lås opp"));
 }
 
 updateUnlockUI();
@@ -841,11 +842,11 @@ if (btnUnlock) {
     const gate = canUnlockPlaceNow(place);
     if (!gate.ok) {
       if (gate.reason === "no_pos") {
-        window.showToast?.("Aktiver posisjon for å låse opp");
+        window.showToast?.(`${tt("ui.position.loading", "Henter posisjon…")} (${tt("ui.place.unlock", "Lås opp")})`);
         return;
       }
       const left = gate.d != null ? Math.max(0, Math.ceil(gate.d - gate.r)) : null;
-      window.showToast?.(left != null ? `Gå nærmere: ${left} m igjen` : "Gå nærmere for å låse opp");
+      window.showToast?.(left != null ? `${tt("ui.unlock.goCloser", "Gå nærmere")}: ${left} m` : `${tt("ui.unlock.goCloser", "Gå nærmere")} (${tt("ui.place.unlock", "Lås opp")})`);
       return;
     }
 
@@ -1025,3 +1026,13 @@ window.collapsePlaceCard = collapsePlaceCard;
 window.expandPlaceCard = expandPlaceCard;
 window.togglePlaceCard = togglePlaceCard;
 window.isPlaceCardCollapsed = isPlaceCardCollapsed;
+
+window.addEventListener("hg:langchange", () => {
+  const card = document.getElementById("placeCard");
+  const placeId = String(card?.dataset?.currentPlaceId || "").trim();
+  if (!placeId || !Array.isArray(window.PLACES)) return;
+  const place = window.PLACES.find((p) => String(p?.id || "").trim() === placeId);
+  if (place && typeof window.openPlaceCard === "function") {
+    window.openPlaceCard(place);
+  }
+});
