@@ -784,6 +784,40 @@ host.querySelectorAll("[data-open-task]").forEach(function (btn) {
 }
 
   
+
+function metricLabel(metricKey) {
+  const labels = {
+    kundetillit: "Kundetillit",
+    brand_tillit: "Arbeidsgivers tillit",
+    faglighet: "Faglighet",
+    driftsflyt: "Driftsflyt",
+    risiko: "Risiko",
+    stress: "Stress",
+    integritet: "Integritet"
+  };
+  if (labels[metricKey]) return labels[metricKey];
+  const text = String(metricKey || "").replace(/_/g, " ").trim();
+  if (!text) return "Ukjent";
+  return text.charAt(0).toUpperCase() + text.slice(1);
+}
+
+function buildBrandConsequenceText(answerResult) {
+  const delta = answerResult?.brand_consequence?.delta || answerResult?.delta || null;
+  const normalized = delta && typeof delta === "object" ? delta : null;
+  if (!normalized) return null;
+
+  const parts = Object.entries(normalized)
+    .map(function ([key, value]) {
+      const num = Number(value || 0);
+      if (!num) return null;
+      return `${metricLabel(key)} ${num > 0 ? `+${num}` : String(num)}`;
+    })
+    .filter(Boolean);
+
+  if (!parts.length) return null;
+  return `Konsekvens: ${parts.join(" · ")}`;
+}
+
 function getTaskWindowLabel(task, ev) {
   if (ev?.calendar_label) return ev.calendar_label;
 
@@ -1007,7 +1041,9 @@ function renderCivicationInbox() {
           if (window.DEBUG) console.warn("[Civi] thread enqueue failed", err);
         }
 
-        fb.textContent = res.feedback || "—";
+        fb.innerHTML = `<div>${res.feedback || "—"}</div>`;
+        const consequence = buildBrandConsequenceText(res);
+        if (consequence) { fb.innerHTML += `<div class="civi-choice-consequence">${consequence}</div>`; }
         fb.style.display = "";
 
         btnA.style.display = "none";
@@ -1088,7 +1124,12 @@ function renderCivicationInbox() {
   const ok = host.querySelector("#civiInboxOK");
 
   function showOk(txt) {
-    if (fb) { fb.textContent = txt || "—"; fb.style.display = ""; }
+    if (fb) {
+      fb.innerHTML = `<div>${txt || "—"}</div>`;
+      const consequence = buildBrandConsequenceText(arguments[1]);
+      if (consequence) { fb.innerHTML += `<div class="civi-choice-consequence">${consequence}</div>`; }
+      fb.style.display = "";
+    }
     if (ok) { ok.style.display = ""; ok.onclick = () => refreshCivicationAfterAnswer(ev.id); }
   }
 
@@ -1127,7 +1168,7 @@ function renderCivicationInbox() {
       }
 
       if (choiceBox) choiceBox.innerHTML = "";
-      showOk(res.feedback || "—");
+      showOk(res.feedback || "—", res);
     };
 
     choiceBox?.appendChild(b);

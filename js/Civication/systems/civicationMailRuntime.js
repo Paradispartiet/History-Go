@@ -675,7 +675,8 @@
         const result = await originalAnswer.call(this, eventId, choiceId);
 
         if (result?.ok !== false && eventObj && choice) {
-          window.CivicationBrandJobState?.applyChoiceConsequences?.(eventObj, choice);
+          const brandConsequence = window.CivicationBrandJobState?.applyChoiceConsequences?.(eventObj, choice) || null;
+          if (brandConsequence && result && typeof result === "object") result.brand_consequence = brandConsequence;
         }
 
         if (result?.ok !== false && triggerId) {
