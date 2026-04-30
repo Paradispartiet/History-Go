@@ -141,6 +141,43 @@ function renderPC() {
   el.textContent = pc;
 }
 
+function renderNextUpProfileCard() {
+  const card = document.getElementById("nextUpProfileCard");
+  if (!card) return;
+  const metaEl = document.getElementById("nextUpProfileMeta");
+  const choicesEl = document.getElementById("nextUpProfileChoices");
+  const pathEl = document.getElementById("nextUpProfilePath");
+  if (!metaEl || !choicesEl || !pathEl) return;
+
+  const summary = typeof window.getNextUpProfileSummary === "function"
+    ? window.getNextUpProfileSummary()
+    : null;
+
+  if (!summary) {
+    card.style.display = "none";
+    return;
+  }
+
+  const activeMode = summary.active_mode || "nearest";
+  const learningStyle = summary.learning_style || "Under utvikling";
+  const direction = summary.current_direction || "NextUp lærer retningen din når du bruker forslagene.";
+  const recentChoices = Array.isArray(summary.recent_choices) ? summary.recent_choices.slice(0, 3) : [];
+  const path = summary.active_path || null;
+
+  metaEl.innerHTML = `
+    <div><strong>Aktiv modus:</strong> ${_esc(activeMode)}</div>
+    <div><strong>Læringsstil:</strong> ${_esc(learningStyle)}</div>
+    <div><strong>Du følger for tiden:</strong> ${_esc(direction)}</div>
+  `;
+  choicesEl.innerHTML = recentChoices.length
+    ? `<strong>Siste NextUp-valg:</strong> ${_esc(recentChoices.join(" → "))}`
+    : `<strong>Siste NextUp-valg:</strong> Ingen valg logget ennå`;
+  pathEl.innerHTML = path
+    ? `<strong>Pågående rute:</strong> ${_esc(path.title || "Rute i utvikling")} · ${Number(path.step_count || 0)} steg`
+    : "";
+  card.style.display = "block";
+}
+
 
 
 
@@ -795,6 +832,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     safeCall("renderConcepts", renderConcepts);
     safeCall("renderNextWhy", renderNextWhy);
     safeCall("renderAhaSummary", renderAhaSummary);
+    safeCall("renderNextUpProfileCard", renderNextUpProfileCard);
 
     // Markører etter at PLACES er lastet
     safeCall("updateProfileMarkers", updateProfileMarkers);
@@ -823,6 +861,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       safeCall("renderConcepts", renderConcepts);
       safeCall("renderNextWhy", renderNextWhy);
       safeCall("renderAhaSummary", renderAhaSummary);
+      safeCall("renderNextUpProfileCard", renderNextUpProfileCard);
       safeCall("updateProfileMarkers", updateProfileMarkers);
     });
 

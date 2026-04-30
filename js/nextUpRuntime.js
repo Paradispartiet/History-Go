@@ -238,6 +238,104 @@
     }[type] || "Neste";
   }
 
+  function uniqTop(values = [], limit = 3) {
+    const seen = new Set();
+    const out = [];
+    values.forEach((value) => {
+      const key = s(value);
+      if (!key || seen.has(key)) return;
+      seen.add(key);
+      out.push(key);
+    });
+    return out.slice(0, limit);
+  }
+
+  function pickLearningStyle(dominantTypes = []) {
+    const top = uniqTop(dominantTypes, 2);
+    const has = (type) => top.includes(type);
+    if (has("concept") && has("narrative")) return "Begreper + fortellinger";
+    if (has("spatial") && has("wonderkammer")) return "Utforsking + detaljer";
+    if (has("concept")) return "Begrepsbasert";
+    if (has("narrative")) return "Fortellingsbasert";
+    if (has("spatial")) return "Utforskende";
+    if (has("wonderkammer")) return "Detalj- og objektbasert";
+    return "Under utvikling";
+  }
+
+  function buildCurrentDirection(pathSummary, suggestions = [], learningLog = [], insights = []) {
+    const labelMap = new Map();
+    const push = (id, label = "") => {
+      const key = s(id);
+      if (!key) return;
+      const text = s(label);
+      if (!labelMap.has(key)) labelMap.set(key, text || key);
+    };
+    (Array.isArray(pathSummary?.emne_ids) ? pathSummary.emne_ids : []).forEach(id => push(id, id));
+    suggestions.forEach((item) => push(item?.meta?.emne_id, item?.meta?.emne_id || item?.label));
+    learningLog.slice(0, 50).forEach((item) => push(item?.emne_id || item?.topic_id, item?.emne_id || item?.topic || item?.concept));
+    insights.slice(0, 50).forEach((item) => push(item?.emne_id || item?.topic_id, item?.topic || item?.label));
+    const topics = Array.from(labelMap.values()).map(x => s(x)).filter(Boolean).slice(0, 3);
+    if (!topics.length) return "NextUp lærer retningen din når du bruker forslagene.";
+    return topics.join(" · ");
+  }
+
+  function getNextUpProfileSummary() {
+    const history = readHistory();
+    const activeMode = readActiveMode();
+    const activePath = getActiveNextUpPath();
+    const pathSummary = summarizeActiveNextUpPath(activePath);
+    const tri = readTri();
+    const suggestions = normalizeSuggestions(tri);
+    const learningLog = readJSON("hg_learning_log_v1", []);
+    const insightsEvents = readJSON("hg_insights_events_v1", []);
+
+    const clickEvents = history.filter(item => s(item?.event) === "click");
+    const showEvents = history.filter(item => s(item?.event) === "show");
+    const modeChanges = history.filter(item => s(item?.event) === "mode_change");
+    const typeCount = {};
+    const sourceCount = {};
+    const choiceCount = {};
+    clickEvents.forEach((event) => {
+      const type = s(event?.type);
+      const source = s(event?.source);
+      const choice = s(suggestionTitle(type));
+      if (type) typeCount[type] = (typeCount[type] || 0) + 1;
+      if (source) sourceCount[source] = (sourceCount[source] || 0) + 1;
+      if (choice) choiceCount[choice] = (choiceCount[choice] || 0) + 1;
+    });
+    const dominant_types = Object.entries(typeCount).sort((a, b) => b[1] - a[1]).map(([name]) => name);
+    const dominant_sources = Object.entries(sourceCount).sort((a, b) => b[1] - a[1]).map(([name]) => name);
+    const recent_choices = clickEvents.slice(0, 5).map(item => suggestionTitle(s(item?.type))).filter(Boolean);
+    const followed_topics = uniqTop(pathSummary.emne_ids || [], 5);
+    const lastSuggestions = suggestions.slice(0, 3).map(item => ({ type: item.type, title: suggestionTitle(item.type), label: item.label }));
+    const learning_style = pickLearningStyle(dominant_types.length ? dominant_types : pathSummary.dominant_types);
+    const current_direction = buildCurrentDirection(pathSummary, suggestions, Array.isArray(learningLog) ? learningLog : [], Array.isArray(insightsEvents) ? insightsEvents : []);
+    const activePathTitle = s(activePath?.summary?.title || pathSummary?.title);
+    return {
+      active_mode: activeMode.mode,
+      active_path: activePath ? {
+        id: s(activePath?.id),
+        title: activePathTitle,
+        step_count: Number(pathSummary?.step_count || 0),
+        followed_topics,
+        recent_places: (pathSummary?.place_ids || []).slice(0, 3)
+      } : null,
+      dominant_types: dominant_types.slice(0, 4),
+      dominant_sources: dominant_sources.slice(0, 4),
+      recent_choices,
+      current_direction,
+      learning_style,
+      followed_topics,
+      last_suggestions: lastSuggestions,
+      counts: {
+        click_events: clickEvents.length,
+        show_events: showEvents.length,
+        mode_change_events: modeChanges.length,
+        unique_modes: uniqTop(modeChanges.map(item => item?.mode), 10).length
+      }
+    };
+  }
+
   function legacySuggestions(tri) {
     const out = [];
 
@@ -588,6 +686,7 @@
     const btn = document.getElementById(BUTTON_ID);
 
     const narrativeSuggestion = suggestions.find(x => x.type === "narrative") || null;
+    const profileSummary = getNextUpProfileSummary();
     const result = {
       HGNavigator: typeof window.HGNavigator,
       buildForPlace: typeof window.HGNavigator?.buildForPlace,
@@ -618,7 +717,12 @@
       activePath: getActiveNextUpPath(),
       activePathSummary: summarizeActiveNextUpPath(getActiveNextUpPath()),
       recentHistory: readHistory().slice(0, 5),
-      recentModeChanges: readHistory().filter(x => x?.event === "mode_change").slice(0, 5)
+      recentModeChanges: readHistory().filter(x => x?.event === "mode_change").slice(0, 5),
+      profileSummary,
+      learning_style: profileSummary.learning_style,
+      current_direction: profileSummary.current_direction,
+      active_path_title: profileSummary.active_path?.title || "",
+      recent_choices: profileSummary.recent_choices
     };
 
     console.table(suggestions.map(x => ({
@@ -645,6 +749,7 @@
   window.renderNextUpV2 = renderNextUpV2;
   window.toggleFooterNextUp = toggleNextUp;
   window.debugNextUp = debugNextUp;
+  window.getNextUpProfileSummary = getNextUpProfileSummary;
   window.getNextUpHistory = readHistory;
   window.getActiveNextUpPath = getActiveNextUpPath;
   window.saveActiveNextUpPath = saveActiveNextUpPath;
