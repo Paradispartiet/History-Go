@@ -274,6 +274,8 @@ function ensureNearbyBadgeFilterButton(placeFilterBtn) {
 // ============================================================
 
 function initLeftPanel() {
+  if (window.__HG_LEFT_PANEL_INIT_DONE__) return;
+  window.__HG_LEFT_PANEL_INIT_DONE__ = true;
 
   const panel = hg$("nearbyListContainer");
   const sel   = hg$("leftPanelMode");

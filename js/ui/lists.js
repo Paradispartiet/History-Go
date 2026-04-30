@@ -91,6 +91,7 @@ function renderNearbyPlaces() {
 
   // 🔹 SORT
   items.sort((a, b) => (a._d ?? 1e12) - (b._d ?? 1e12));
+  items = items.slice(0, 40);
 
   listEl.innerHTML = "";
 
@@ -112,7 +113,7 @@ function renderNearbyPlaces() {
 
     item.innerHTML = `
       <div class="nearby-thumbWrap">
-        <img class="nearby-thumb" src="${img}" alt="${place.name}">
+        <img class="nearby-thumb" src="${img}" alt="${place.name}" loading="lazy" decoding="async">
         <img class="nearby-badge"
              src="bilder/merker/${place.category}.PNG"
              alt="">
