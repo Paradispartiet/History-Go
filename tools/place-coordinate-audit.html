@@ -1,0 +1,15 @@
+<!doctype html><html lang="no"><meta charset="utf-8"><title>Place Coordinate Audit</title>
+<style>body{font-family:system-ui;margin:20px} table{border-collapse:collapse;width:100%}th,td{border:1px solid #ddd;padding:6px;font-size:12px}.ok{background:#e8f5e9}.needs_review{background:#fff8e1}.invalid,.conflict{background:#ffebee}.outside_expected_area{background:#e3f2fd}.duplicate{background:#f3e5f5}</style>
+<h1>Place coordinate audit QA</h1><p>Leser <code>reports/place-coordinate-audit.json</code>.</p>
+<label>Status <select id=s><option value="">Alle</option></select></label>
+<label>Kategori <select id=c><option value="">Alle</option></select></label>
+<div id=meta></div><table><thead><tr><th>file</th><th>id</th><th>name</th><th>category</th><th>lat</th><th>lon</th><th>r</th><th>status</th><th>flags</th><th>reason</th></tr></thead><tbody id=b></tbody></table>
+<script>
+const s=document.getElementById('s'),c=document.getElementById('c'),b=document.getElementById('b'); let rows=[];
+fetch('../reports/place-coordinate-audit.json').then(r=>r.json()).then(d=>{rows=d.flaggedPlaces||[];document.getElementById('meta').textContent=`Generert ${d.generatedAt} | flaggede ${rows.length}`;
+[...new Set(rows.map(x=>x.status))].sort().forEach(v=>s.add(new Option(v,v)));
+[...new Set(rows.map(x=>x.category).filter(Boolean))].sort().forEach(v=>c.add(new Option(v,v)));
+render();});
+function render(){const rs=rows.filter(r=>(!s.value||r.status===s.value)&&(!c.value||r.category===c.value));b.innerHTML=rs.map(r=>`<tr class="${r.status}"><td>${r.file}</td><td>${r.id??''}</td><td>${r.name??''}</td><td>${r.category??''}</td><td>${r.lat??''}</td><td>${r.lon??''}</td><td>${r.r??''}</td><td>${r.status}</td><td>${(r.flags||[]).join(', ')}</td><td>${r.reason||''}</td></tr>`).join('');}
+s.onchange=render;c.onchange=render;
+</script></html>
