@@ -39,13 +39,32 @@
     };
   }
 
+  function ensureMeta(store) {
+    if (!store.meta || typeof store.meta !== "object") store.meta = {};
+    if (!store.meta.delivery || typeof store.meta.delivery !== "object") {
+      store.meta.delivery = { byKey: {}, byWeek: {}, byType: {} };
+    }
+    const d = store.meta.delivery;
+    if (!d.byKey || typeof d.byKey !== "object") d.byKey = {};
+    if (!d.byWeek || typeof d.byWeek !== "object") d.byWeek = {};
+    if (!d.byType || typeof d.byType !== "object") d.byType = {};
+  }
+
+  function normalizeStoreShape(store) {
+    const next = (store && typeof store === "object") ? store : { version: 1, items: [] };
+    if (!Array.isArray(next.items)) next.items = [];
+    ensureMeta(next);
+    return next;
+  }
+
   function getStore() {
     const parsed = safeParse(localStorage.getItem(LS_MAIL), null);
-    if (parsed && Array.isArray(parsed.items)) return parsed;
-    return { version: 1, items: [] };
+    if (parsed && Array.isArray(parsed.items)) return normalizeStoreShape(parsed);
+    return normalizeStoreShape({ version: 1, items: [] });
   }
 
   function saveStore(store) {
+    ensureMeta(store);
     localStorage.setItem(LS_MAIL, JSON.stringify(store));
     const legacy = (store.items || [])
       .filter((m) => !m.deleted && !m.archived)
@@ -59,7 +78,7 @@
     if (Array.isArray(store.items) && store.items.length) return store;
     const legacy = getLegacyInbox();
     const items = legacy.map(normalizeEnvelope);
-    const next = { version: 1, items };
+    const next = normalizeStoreShape({ version: 1, items });
     saveStore(next);
     return next;
   }
@@ -80,16 +99,43 @@
       const store = migrateOldInboxIfNeeded();
       return (store.items || []).some((m) => m.key === key);
     },
-    canDeliver(mailKey) {
-      return !this.hasReceived(mailKey);
+    canDeliver(mailKey, options) {
+      const key = String(mailKey || "").trim();
+      const opts = options && typeof options === "object" ? options : {};
+      const store = migrateOldInboxIfNeeded();
+      ensureMeta(store);
+      if (key && this.hasReceived(key)) return false;
+
+      const guardType = String(opts.guardType || opts.type || "").trim();
+      const weekKey = String(opts.weekKey || "").trim();
+      const maxPending = Number(opts.maxPending || 0);
+
+      if (maxPending > 0 && guardType) {
+        const pending = (store.items || []).filter(function (m) {
+          return m && !m.archived && !m.deleted && m.status === "pending" && String(m.type || "") === guardType;
+        }).length;
+        if (pending >= maxPending) return false;
+      }
+
+      if (guardType && weekKey) {
+        const stamp = store.meta.delivery.byWeek[guardType + "::" + weekKey];
+        if (stamp) return false;
+      }
+      return true;
     },
     sendMail(mailOrEvent) {
       const event = mailOrEvent?.event || mailOrEvent;
       const key = String(event?.mail_key || event?.id || "").trim();
-      if (key && !this.canDeliver(key)) return { ok: false, reason: "duplicate_key" };
+      const guardType = String(event?.mail_type || event?.type || "system");
+      const guardWeek = String(event?.week_key || event?.calendar_week || "").trim();
+      if (key && !this.canDeliver(key, { guardType, weekKey: guardWeek })) return { ok: false, reason: "duplicate_key" };
       const store = migrateOldInboxIfNeeded();
       const envelope = normalizeEnvelope(mailOrEvent);
       store.items = [envelope].concat(store.items || []).slice(0, MAX_INBOX);
+      ensureMeta(store);
+      if (envelope.key) store.meta.delivery.byKey[envelope.key] = envelope.createdAt;
+      if (guardType) store.meta.delivery.byType[guardType] = envelope.createdAt;
+      if (guardType && guardWeek) store.meta.delivery.byWeek[guardType + "::" + guardWeek] = envelope.createdAt;
       saveStore(store);
       return { ok: true, mail: envelope };
     },
@@ -114,12 +160,19 @@
       saveStore(store);
     },
     answerMail(mailId, choiceId) {
-      if (window.HG_CiviEngine?.answer) return window.HG_CiviEngine.answer(mailId, choiceId);
+      const mail = this.getMail(mailId);
+      const eventId = mail?.event?.id || mailId;
+      if (window.HG_CiviEngine?.answer) return window.HG_CiviEngine.answer(eventId, choiceId);
       return { ok: false, reason: "no_event_engine" };
+    },
+    replaceInbox(items) {
+      const store = migrateOldInboxIfNeeded();
+      store.items = (Array.isArray(items) ? items : []).map(normalizeEnvelope).slice(0, MAX_INBOX);
+      saveStore(store);
+      return store.items;
     },
     migrateOldInboxIfNeeded
   };
 
   window.CivicationMailEngine = api;
 })();
-
