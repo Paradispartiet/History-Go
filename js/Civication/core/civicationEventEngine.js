@@ -151,6 +151,10 @@ resetForNewJob(role_key) {
   }
 
   setInbox(arr) {
+    if (window.CivicationMailEngine?.replaceInbox) {
+      window.CivicationMailEngine.replaceInbox(arr);
+      return;
+    }
     if (window.CivicationMailEngine?.migrateOldInboxIfNeeded) {
       window.CivicationMailEngine.migrateOldInboxIfNeeded();
     }
