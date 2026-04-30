@@ -179,7 +179,7 @@ function applyPlaceCardBadgeRound(place) {
   badgesIcon.title = badge ? badgeName : `Badges.json mangler badge for ${badgeText(place?.category) || "ukjent kategori"}`;
 
   if (img) {
-    badgesIcon.innerHTML = `<img src="${escapeBadgeHtml(img)}" class="pc-person-img" alt="${escapeBadgeHtml(badgeName)}" title="${escapeBadgeHtml(badgeName)}">`;
+    badgesIcon.innerHTML = `<img src="${escapeBadgeHtml(img)}" class="pc-badge-round-img" alt="${escapeBadgeHtml(badgeName)}" title="${escapeBadgeHtml(badgeName)}">`;
     return;
   }
 
