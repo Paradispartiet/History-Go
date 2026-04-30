@@ -654,6 +654,7 @@ function renderWorkdayPanel() {
     ev?.task_id && window.CivicationTaskEngine?.getTaskById
       ? window.CivicationTaskEngine.getTaskById(ev.task_id)
       : null;
+  const eventModel = ev ? buildCiviEventViewModel(ev, { activePosition: active }) : null;
 
   if (!active) {
     host.innerHTML = `
@@ -742,10 +743,15 @@ function renderWorkdayPanel() {
     </div>
 
     <div class="civi-workday-grid">
-      <div class="civi-workday-card">
-        <div class="civi-workday-label">Situasjon</div>
-        <div class="civi-workday-task-title">${taskTitle}</div>
-        <div class="civi-workday-task-desc">${taskDesc}</div>
+      <div class="civi-workday-card ${eventModel?.cssClass || ""}">
+        <div class="civi-workday-label">${eventModel?.kicker || "Situasjon"}</div>
+        <div class="civi-workday-task-title">${eventModel?.title || taskTitle}</div>
+        <div class="civi-workday-task-desc">${eventModel?.bodyText || taskDesc}</div>
+        ${
+          eventModel?.metaLines?.length
+            ? `<div class="civi-workday-sub">${eventModel.metaLines.join(" · ")}</div>`
+            : ""
+        }
         ${
           ev?.id
             ? `<button class="civi-task-open-btn" data-open-task="${ev.id}">Hva gjør du?</button>`
@@ -968,6 +974,86 @@ function findPendingFromItems(items) {
   return pendingItem?.event || null;
 }
 
+function normalizeDisplayText(value, fallback) {
+  const text = String(value || "").trim();
+  return text || fallback;
+}
+
+function buildCiviEventViewModel(event, options) {
+  const ev = event || {};
+  const opts = options || {};
+  const kind = window.CivicationEventChannels?.classifyEvent?.(ev) || "unknown";
+  const active = opts.activePosition || window.CivicationState?.getActivePosition?.() || null;
+  const npc = ev.from && window.CivicationNPCs?.lookup?.(ev.from);
+  const situation = Array.isArray(ev.situation) ? ev.situation.filter(Boolean).join(" ") : normalizeDisplayText(ev.situation, "");
+  const choices = Array.isArray(ev.choices) ? ev.choices.filter(Boolean) : [];
+
+  const model = {
+    kind: "fallback",
+    kicker: "Neste handling",
+    title: normalizeDisplayText(ev.subject || ev.title, "Oppdatering"),
+    metaLines: [],
+    bodyText: situation || normalizeDisplayText(ev.message || ev.feedback, "Åpne meldingen for detaljer."),
+    choices: choices,
+    cssClass: "civi-event-card is-fallback"
+  };
+
+  if (kind === "workday") {
+    model.kind = "workday";
+    model.kicker = "Dagens situasjon";
+    model.title = normalizeDisplayText(ev.subject || ev.title, "Arbeidsdag");
+    model.metaLines.push(`Rolle: ${normalizeDisplayText(active?.title, "—")}`);
+    if (active?.brand_name || ev?.brand_name) {
+      model.metaLines.push(`Sted: ${normalizeDisplayText(active?.brand_name || ev?.brand_name, "—")}`);
+    }
+    if (ev.pressure) {
+      const pressure = Array.isArray(ev.pressure) ? ev.pressure.join(", ") : ev.pressure;
+      model.metaLines.push(`Press: ${normalizeDisplayText(pressure, "—")}`);
+    }
+    model.bodyText = situation || "Du er på jobb, og et valg krever handling.";
+    model.cssClass = "civi-event-card is-workday";
+    return model;
+  }
+
+  if (kind === "message") {
+    model.kind = "message";
+    model.kicker = "Melding";
+    model.title = normalizeDisplayText(ev.subject || ev.title, "Ny melding");
+    if (npc?.name) {
+      model.metaLines.push(`Fra: ${npc.name}${npc?.title ? ` · ${npc.title}` : ""}`);
+    } else if (ev.from) {
+      model.metaLines.push(`Fra: ${ev.from}`);
+    }
+    if (ev.place_id) model.metaLines.push(`Sted: ${String(ev.place_id).replace(/_/g, " ")}`);
+    model.cssClass = "civi-event-card is-message";
+    return model;
+  }
+
+  if (kind === "milestone") {
+    model.kind = "milestone";
+    model.kicker = "Ny milepæl";
+    model.title = normalizeDisplayText(ev.subject || ev.title, "Ny milepæl");
+    model.bodyText = situation || "Du har låst opp et nytt steg i rollen din.";
+    if (ev.brand_name || active?.brand_name) model.metaLines.push(`Arbeidssted: ${normalizeDisplayText(ev.brand_name || active?.brand_name, "—")}`);
+    if (ev.feedback) model.metaLines.push(`Hvorfor: ${String(ev.feedback).trim()}`);
+    model.cssClass = "civi-event-card is-milestone";
+    return model;
+  }
+
+  if (kind === "system") {
+    model.kind = "system";
+    model.kicker = "Systembeskjed";
+    model.cssClass = "civi-event-card is-system";
+    return model;
+  }
+
+  model.kind = "fallback";
+  model.kicker = "Melding";
+  model.title = normalizeDisplayText(ev.subject || ev.title, "Oppdatering");
+  model.cssClass = "civi-event-card is-fallback";
+  return model;
+}
+
 // ============================================================
 // INBOX
 // ============================================================
@@ -1093,28 +1179,21 @@ function renderCivicationInbox() {
     host.innerHTML = `<div>Ingen meldinger akkurat nå.</div>`;
     return;
   }
-  const situation = Array.isArray(ev.situation) ? ev.situation.join(" ") : (ev.situation || "—");
-  const choices = Array.isArray(ev.choices) ? ev.choices : [];
-
-  // V2 blueprint: avsender + sted
-  const npc = ev.from && window.CivicationNPCs?.lookup?.(ev.from);
-  const senderLine = npc
-    ? `<div class="civi-mail-sender">✉️ ${npc.name} · ${npc.title}</div>`
-    : "";
-  const placeLine = ev.place_id
-    ? `<div class="civi-mail-place">📍 ${String(ev.place_id).replace(/_/g, " ")}</div>`
-    : "";
+  const model = buildCiviEventViewModel(ev);
+  const choices = model.choices;
+  const metaHtml = model.metaLines.map(function (line) {
+    return `<div class="civi-event-meta-line">${line}</div>`;
+  }).join("");
 
   host.innerHTML = `
-    <div>
-      ${senderLine}
-      ${placeLine}
-      <div><strong>📬 ${ev.subject || "—"}</strong></div>
-      <div style="margin-top:6px;">${situation}</div>
-
-      <div id="civiInboxChoices" style="display:flex;flex-direction:column;gap:8px;margin-top:10px;"></div>
-
-      <div id="civiInboxFeedback" style="display:none;margin-top:10px;"></div>
+    <div class="${model.cssClass}">
+      <div class="civi-event-kicker">${model.kicker}</div>
+      <div class="civi-event-title">${model.title}</div>
+      ${metaHtml ? `<div class="civi-event-meta">${metaHtml}</div>` : ""}
+      <div class="civi-event-body">${model.bodyText}</div>
+      ${choices.length ? `<div class="civi-event-next">Hva gjør du?</div>` : ""}
+      <div id="civiInboxChoices" class="civi-event-choices"></div>
+      <div id="civiInboxFeedback" class="civi-event-feedback" style="display:none;"></div>
       <button class="civi-btn primary" id="civiInboxOK" style="display:none;margin-top:10px;">OK</button>
     </div>
   `;
@@ -1275,5 +1354,6 @@ window.CivicationUI = {
   renderInbox: renderCivicationInbox,
   renderWorkdayPanel,
   renderCapital,
-  renderPerception
+  renderPerception,
+  buildCiviEventViewModel
 };
