@@ -21,6 +21,15 @@ function makeStorage() {
   };
 }
 
+function ensureInboxArray() {
+  const inbox = global.CivicationState?.getInbox?.();
+  if (!Array.isArray(inbox)) {
+    global.CivicationState?.setInbox?.([]);
+    return [];
+  }
+  return inbox;
+}
+
 function bootstrap(activePosition) {
   global.window = global;
   global.localStorage = makeStorage();
@@ -37,15 +46,16 @@ function bootstrap(activePosition) {
   loadScript('js/Civication/systems/civicationBrandJobProgression.js');
 
   global.CivicationState.setActivePosition(activePosition);
+  global.CivicationState.setInbox([]);
   return { events };
 }
 
 function countMilestones() {
-  return global.CivicationState.getInbox().filter((item) => item?.event?.source_type === 'brand_progression').length;
+  return ensureInboxArray().filter((item) => item?.event?.source_type === 'brand_progression').length;
 }
 
 function firstMilestone() {
-  return global.CivicationState.getInbox().find((item) => item?.event?.source_type === 'brand_progression')?.event || null;
+  return ensureInboxArray().find((item) => item?.event?.source_type === 'brand_progression')?.event || null;
 }
 
 function applyMail(id, tags, brand = 'norli') {
@@ -135,7 +145,7 @@ function applyMail(id, tags, brand = 'norli') {
   applyMail('norli_kunde_2', ['kunde']);
   applyMail('norli_kunde_3', ['kunde']);
 
-  const inbox = global.CivicationState.getInbox();
+  const inbox = ensureInboxArray();
   assert.strictEqual(inbox.filter((item) => item?.event?.id === 'brand_progress_norli_kundetillit_3').length, 1);
   assert(inbox[0].status === 'pending');
   assert(typeof inbox[0].createdAt === 'number');
