@@ -144,10 +144,16 @@ resetForNewJob(role_key) {
   // -------- inbox --------
 
   getInbox() {
+    if (window.CivicationMailEngine?.getInbox) {
+      return window.CivicationMailEngine.getInbox();
+    }
     return window.CivicationState.getInbox();
   }
 
   setInbox(arr) {
+    if (window.CivicationMailEngine?.migrateOldInboxIfNeeded) {
+      window.CivicationMailEngine.migrateOldInboxIfNeeded();
+    }
     window.CivicationState.setInbox(arr);
   }
 
@@ -1416,16 +1422,17 @@ registerChosenMail(eventObj) {
 }
   
   enqueueEvent(eventObj) {
+    if (window.CivicationMailEngine?.sendMail) {
+      const res = window.CivicationMailEngine.sendMail({
+        status: "pending",
+        enqueued_at: new Date().toISOString(),
+        event: eventObj
+      });
+      if (res?.ok) return;
+    }
     const inbox = this.getInbox();
-
-    const item = {
-      status: "pending",
-      enqueued_at: new Date().toISOString(),
-      event: eventObj
-    };
-
-    const next = [item].concat(inbox).slice(0, this.maxInbox);
-    this.setInbox(next);
+    const item = { status: "pending", enqueued_at: new Date().toISOString(), event: eventObj };
+    this.setInbox([item].concat(inbox).slice(0, this.maxInbox));
   }
 
 getStoredTaskResult(taskId) {
