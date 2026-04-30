@@ -88,9 +88,10 @@ body.civi-app.civi-mini-mode .civi-dashboard-metric small {
 
 /* ------------------------------------------------------------
    Forsidekort: bare nødvendig info + knapp.
+   NB: #civiLifeHomeControls er en egen home-sone, ikke et minikort.
 ------------------------------------------------------------ */
 
-body.civi-app.civi-mini-mode .civi-panels > section:not(#civiDashboardSection),
+body.civi-app.civi-mini-mode .civi-panels > section:not(#civiDashboardSection):not(#civiLifeHomeControls),
 body.civi-app.civi-mini-mode #civiTrackHUD {
   grid-column: span 4;
   min-height: 154px;
@@ -118,7 +119,6 @@ body.civi-app.civi-mini-mode .civi-mini-title-row {
   gap: 8px;
   min-width: 0;
 }
-
 
 body.civi-app.civi-mini-mode .civi-mini-accent {
   font-size: 15px;
@@ -192,7 +192,7 @@ body.civi-app.civi-mini-mode .needs-feedback .civi-mini-action {
   color: rgba(255,236,180,0.98) !important;
 }
 
-body.civi-app.civi-mini-mode .civi-panels > section:not(#civiDashboardSection)::before {
+body.civi-app.civi-mini-mode .civi-panels > section:not(#civiDashboardSection):not(#civiLifeHomeControls)::before {
   top: 14px;
   bottom: 14px;
   width: 3px;
@@ -207,8 +207,8 @@ body.civi-app.civi-mini-mode .civi-section-body.is-in-popup {
   display: block;
 }
 
-body.civi-app.civi-mini-mode .civi-panels > section:not(#civiDashboardSection) > h2,
-body.civi-app.civi-mini-mode .civi-panels > section:not(#civiDashboardSection) > :not(.civi-mini-card):not(.civi-section-body),
+body.civi-app.civi-mini-mode .civi-panels > section:not(#civiDashboardSection):not(#civiLifeHomeControls) > h2,
+body.civi-app.civi-mini-mode .civi-panels > section:not(#civiDashboardSection):not(#civiLifeHomeControls) > :not(.civi-mini-card):not(.civi-section-body),
 body.civi-app.civi-mini-mode #civiTrackHUD > :not(.civi-mini-card):not(.civi-section-body) {
   display: none;
 }
@@ -396,7 +396,7 @@ body.civi-app .district-card {
 ------------------------------------------------------------ */
 
 @media (max-width: 1040px) {
-  body.civi-app.civi-mini-mode .civi-panels > section:not(#civiDashboardSection),
+  body.civi-app.civi-mini-mode .civi-panels > section:not(#civiDashboardSection):not(#civiLifeHomeControls),
   body.civi-app.civi-mini-mode #civiTrackHUD {
     grid-column: span 6;
   }
@@ -411,7 +411,7 @@ body.civi-app .district-card {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  body.civi-app.civi-mini-mode .civi-panels > section:not(#civiDashboardSection),
+  body.civi-app.civi-mini-mode .civi-panels > section:not(#civiDashboardSection):not(#civiLifeHomeControls),
   body.civi-app.civi-mini-mode #civiTrackHUD {
     grid-column: 1 / -1;
   }
@@ -508,10 +508,10 @@ body.civi-app.civi-mini-mode .civi-category-empty h3 { margin:0 0 6px; color:var
 body.civi-app.civi-mini-mode .civi-category-empty p { margin:0; }
 
 @media (max-width: 900px) {
-  body.civi-app.civi-mini-mode .civi-panels > section:not(#civiDashboardSection),
+  body.civi-app.civi-mini-mode .civi-panels > section:not(#civiDashboardSection):not(#civiLifeHomeControls),
   body.civi-app.civi-mini-mode #civiTrackHUD { grid-column: span 6; }
 }
 @media (max-width: 680px) {
-  body.civi-app.civi-mini-mode .civi-panels > section:not(#civiDashboardSection),
+  body.civi-app.civi-mini-mode .civi-panels > section:not(#civiDashboardSection):not(#civiLifeHomeControls),
   body.civi-app.civi-mini-mode #civiTrackHUD { grid-column: 1 / -1; }
 }
