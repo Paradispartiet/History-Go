@@ -115,6 +115,40 @@ function bindPlaceDescriptionPopup() {
 
 bindPlaceDescriptionPopup();
 
+// ============================================================
+// PLACE POPUP: bruk popupDesc som fulltekst når den finnes
+// ============================================================
+(function patchPlacePopupDescriptionSource() {
+  const originalShowPlacePopup = window.showPlacePopup;
+  if (typeof originalShowPlacePopup !== "function") return;
+  if (originalShowPlacePopup.__usesPopupDesc === true) return;
+
+  function getPlacePopupDesc(place) {
+    return String(
+      place?.popupDesc ??
+      place?.popupdesc ??
+      place?.description ??
+      ""
+    ).trim();
+  }
+
+  window.showPlacePopup = function showPlacePopupWithPopupDesc(place, ...args) {
+    const popupDesc = getPlacePopupDesc(place);
+
+    if (place && typeof place === "object" && popupDesc) {
+      return originalShowPlacePopup.call(this, {
+        ...place,
+        desc: popupDesc,
+        popupDesc
+      }, ...args);
+    }
+
+    return originalShowPlacePopup.call(this, place, ...args);
+  };
+
+  window.showPlacePopup.__usesPopupDesc = true;
+})();
+
 
 
 // ==============================
