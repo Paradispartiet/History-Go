@@ -1,6 +1,6 @@
 # Place Data Audit
 
-Generert: 2026-04-30T12:18:36.200Z
+Generert: 2026-04-30T19:01:54.330Z
 
 ## Totalsammendrag
 
@@ -15,7 +15,7 @@ Generert: 2026-04-30T12:18:36.200Z
 - Steder som bruker imageCard-felt: **0**
 - Steder med stub:true eller hidden:true: **0**
 - Antall ødelagte asset paths: **117**
-- Antall place-referanser til ikke-eksisterende id-er: **2**
+- Antall place-referanser til ikke-eksisterende id-er: **0**
 
 ## Funn per fil
 
@@ -444,8 +444,7 @@ Generert: 2026-04-30T12:18:36.200Z
 
 ## Referanser til place-id-er som ikke finnes
 
-- data/Civication/place_contexts.json :: contexts[5].matches_place_ids -> frognerbadet
-- data/Civication/place_contexts.json :: contexts[7].matches_place_ids -> torshovparken
+- Ingen ugyldige place-referanser i people/badges/routes/wonderkammer/civication-filer som ble sjekket.
 
 ## Anbefalt rekkefølge for ferdigstilling
 
