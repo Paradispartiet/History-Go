@@ -69,6 +69,52 @@ function handlePlaceNote(place) {
   showToast(`Notat om ${place.name} lagret 📝`);
 }
 
+// ============================================================
+// PLACE CARD: trykk på beskrivelsen åpner full stedsbeskrivelse
+// ============================================================
+function getActivePlaceFromPlaceCard() {
+  const card = document.getElementById("placeCard");
+  const placeId = String(card?.dataset?.currentPlaceId || "").trim();
+  if (!placeId) return null;
+
+  const places = Array.isArray(window.PLACES) ? window.PLACES : [];
+  return places.find(p => String(p?.id || "").trim() === placeId) || null;
+}
+
+function openActivePlaceDescription(e) {
+  e.preventDefault();
+  e.stopPropagation();
+
+  const place = getActivePlaceFromPlaceCard();
+  if (!place) return;
+
+  if (typeof window.showPlacePopup === "function") {
+    window.showPlacePopup(place);
+  } else {
+    window.showToast?.("Stedsbeskrivelse ikke lastet");
+  }
+}
+
+function bindPlaceDescriptionPopup() {
+  const descEl = document.getElementById("pcDesc");
+  if (!descEl || descEl.dataset.fullTextPopupBound === "1") return;
+
+  descEl.dataset.fullTextPopupBound = "1";
+  descEl.setAttribute("role", "button");
+  descEl.setAttribute("tabindex", "0");
+  descEl.setAttribute("title", "Trykk for å lese hele teksten");
+  descEl.style.cursor = "pointer";
+
+  descEl.addEventListener("click", openActivePlaceDescription);
+  descEl.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      openActivePlaceDescription(e);
+    }
+  });
+}
+
+bindPlaceDescriptionPopup();
+
 
 
 // ==============================
