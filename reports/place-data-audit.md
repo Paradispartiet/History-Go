@@ -1,17 +1,17 @@
 # Place Data Audit
 
-Generert: 2026-04-30T05:21:50.274Z
+Generert: 2026-04-30T06:04:04.222Z
 
 ## Totalsammendrag
 
 - Place-filer i manifest: **18**
 - Totalt antall places: **228**
 - Steder med manglende obligatoriske felt: **72**
-- Steder med manglende popupDesc: **107**
+- Steder med manglende popupDesc: **103**
 - Steder med manglende image: **136**
 - Steder med manglende cardImage: **136**
-- Steder med manglende emne_ids: **113**
-- Steder med manglende quiz_profile: **113**
+- Steder med manglende emne_ids: **108**
+- Steder med manglende quiz_profile: **108**
 - Steder som bruker imageCard-felt: **0**
 - Steder med stub:true eller hidden:true: **0**
 - Antall ødelagte asset paths: **120**
@@ -207,11 +207,11 @@ Generert: 2026-04-30T05:21:50.274Z
 - Antall places: 5
 - Places med funn: 5
 
-- sofienbergparken_subkultur (Sofienbergparken): mangler emne_ids | mangler quiz_profile | ødelagte paths: cardImage=bilder/kort/places/sofienbergparken.PNG
-- hausmania (Hausmania): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- skur13 (Skur 13): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- torggata_blad (Torggata Blad): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- stovnertarnet (Stovnertårnet): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- sofienbergparken_subkultur (Sofienbergparken): ødelagte paths: cardImage=bilder/kort/places/sofienbergparken.PNG
+- hausmania (Hausmania): mangler image | mangler cardImage
+- skur13 (Skur 13): mangler image | mangler cardImage
+- torggata_blad (Torggata Blad): mangler image | mangler cardImage
+- stovnertarnet (Stovnertårnet): mangler image | mangler cardImage
 
 ### data/places/places_vitenskap.json
 
