@@ -1,4 +1,4 @@
-name: Build nature place candidates
+name: Nature data validation and candidates
 
 on:
   workflow_dispatch:
@@ -6,21 +6,18 @@ on:
     branches:
       - main
     paths:
-      - "tools/build_nature_place_candidates.mjs"
-      - "tools/build_nature_place_candidates_v2.mjs"
+      - "tools/build_nature_place_candidates*.mjs"
       - "tools/validate_nature_maps.mjs"
-      - "data/places/manifest.json"
-      - "data/places/**/*.json"
-      - "data/natur/flora/**/*.json"
-      - "data/natur/fauna/**/*.json"
-      - "data/natur/nature_place_map.json"
-      - "data/natur/nature_bird_place_map.json"
-      - "data/natur/nature_oslo_expansion_place_map.json"
-      - "data/natur/nature_routes_place_map.json"
+      - "data/places/**"
+      - "data/natur/**"
       - ".github/workflows/build-nature-place-candidates.yml"
+
+permissions:
+  contents: read
 
 jobs:
   build:
+    name: Validate maps and build Artskart candidates
     runs-on: ubuntu-latest
     timeout-minutes: 30
 
@@ -38,6 +35,21 @@ jobs:
 
       - name: Build candidates from Artskart
         run: node tools/build_nature_place_candidates_v2.mjs
+
+      - name: Print candidate summary
+        run: |
+          node - <<'NODE'
+          const fs = require('node:fs');
+          const p = 'data/natur/nature_place_map_candidates.json';
+          const data = JSON.parse(fs.readFileSync(p, 'utf8'));
+          const counts = data.meta?.counts || {};
+          const places = data.places || {};
+          const checked = Object.keys(places).length;
+          const withFlora = Object.values(places).filter(x => Array.isArray(x.flora) && x.flora.length).length;
+          const withFauna = Object.values(places).filter(x => Array.isArray(x.fauna) && x.fauna.length).length;
+          const withExternal = Object.values(places).filter(x => Array.isArray(x.externalTaxa) && x.externalTaxa.length).length;
+          console.log(JSON.stringify({ counts, checked, withFlora, withFauna, withExternal }, null, 2));
+          NODE
 
       - name: Upload candidate file
         uses: actions/upload-artifact@v4
