@@ -1,15 +1,15 @@
 # Place coordinate audit (active data only)
 
-Generert: 2026-04-30T09:51:40.894Z
+Generert: 2026-04-30T11:19:12.246Z
 
 ## Aktiv hovedstatistikk
-- Aktive place-filer lest: **18**
-- Aktive steder lest: **228**
+- Aktive place-filer lest: **17**
+- Aktive steder lest: **215**
 - ok: **129**
 - needs_review: **70**
-- conflict: **16**
-- invalid: **13**
-- duplicate: **0**
+- conflict: **0**
+- invalid: **0**
+- duplicate: **16**
 - outside_expected_area: **0**
 
 ## Aktive filer (fra manifest)
@@ -26,42 +26,13 @@ Generert: 2026-04-30T09:51:40.894Z
 - data/places/places_musikk.json
 - data/places/places_naeringsliv.json
 - data/places/places_natur.json
-- data/places/places_nature_aliases.json
 - data/places/places_politikk.json
 - data/places/places_sport.json
 - data/places/places_subkultur.json
 - data/places/places_vitenskap.json
 
 ## Aktive steder som må rettes
-- data/places/places_by.json | ullevål_hageby | Ullevål Hageby | conflict | duplicate_id, duplicate_id_different_coord, same_name_different_coord
-- data/places/places_by.json | tjuvholmen | Tjuvholmen | conflict | low_precision_coord, duplicate_id, duplicate_id_different_coord, same_name_different_coord
-- data/places/places_by.json | deichman_bjorvika | Deichman Bjørvika | conflict | duplicate_id, duplicate_id_different_coord, same_name_different_coord
-- data/places/places_by.json | barcode | Barcode | conflict | low_precision_coord, duplicate_id, duplicate_id_different_coord, same_name_different_coord
-- data/places/places_by.json | damstredet_telthusbakken | Damstredet og Telthusbakken | conflict | duplicate_id, duplicate_id_different_coord, same_name_different_coord
-- data/places/places_by.json | vigelandsparken | Vigelandsparken | conflict | low_precision_coord, area_or_park_needs_manual_review, duplicate_id, duplicate_id_different_coord, same_name_different_coord
-- data/places/places_by.json | voienvolden | Voienvolden | conflict | low_precision_coord, duplicate_id, duplicate_id_different_coord
-- data/places/places_historie.json | damstredet_telthusbakken | Damstredet og Telthusbakken | conflict | duplicate_id, duplicate_id_different_coord, same_name_different_coord
-- data/places/places_kunst.json | vigelandsparken | Vigelandsparken | conflict | low_precision_coord, area_or_park_needs_manual_review, duplicate_id, duplicate_id_different_coord, same_name_different_coord
-- data/places/places_kunst.json | tjuvholmen | Tjuvholmen | conflict | low_precision_coord, duplicate_id, duplicate_id_different_coord, same_name_different_coord
-- data/places/places_kunst.json | barcode | Barcode | conflict | duplicate_id, duplicate_id_different_coord, same_name_different_coord
-- data/places/places_litteratur.json | voienvolden | Vøienvolden gård | conflict | duplicate_id, duplicate_id_different_coord
-- data/places/places_litteratur.json | deichman_bjorvika | Deichman Bjørvika | conflict | duplicate_id, duplicate_id_different_coord, same_name_different_coord
-- data/places/places_litteratur.json | ullevål_hageby | Ullevål Hageby | conflict | duplicate_id, duplicate_id_different_coord, same_name_different_coord
-- data/places/places_naeringsliv.json | frysja_industriomrade | Frysja industriområde | conflict | area_or_park_needs_manual_review, duplicate_id, duplicate_id_different_coord, same_name_different_coord
-- data/places/oslo/places_oslo_natur_akerselvarute.json | frysja_industriomrade | Frysja industriområde | conflict | area_or_park_needs_manual_review, duplicate_id, duplicate_id_different_coord, same_name_different_coord
-- data/places/places_nature_aliases.json | toyengata | Tøyengata | invalid | missing_lat_lon, missing_radius
-- data/places/places_nature_aliases.json | vaterlandsparken | Vaterlandsparken | invalid | missing_lat_lon, missing_radius
-- data/places/places_nature_aliases.json | lovisenberg_sykehus | Lovisenberg sykehus | invalid | missing_lat_lon, missing_radius
-- data/places/places_nature_aliases.json | nya_bjorvika | Nye Bjørvika | invalid | missing_lat_lon, missing_radius
-- data/places/places_nature_aliases.json | bjorvika_barcode | Bjørvika Barcode | invalid | missing_lat_lon, missing_radius
-- data/places/places_nature_aliases.json | frognerbadet | Frognerbadet | invalid | missing_lat_lon, missing_radius
-- data/places/places_nature_aliases.json | bjerke_travbane | Bjerke travbane | invalid | missing_lat_lon, missing_radius
-- data/places/places_nature_aliases.json | fagerborg_kirke | Fagerborg kirke | invalid | missing_lat_lon, missing_radius
-- data/places/places_nature_aliases.json | torshovparken | Torshovparken | invalid | missing_lat_lon, missing_radius
-- data/places/places_nature_aliases.json | borregravfeltet | Borrehaugene | invalid | missing_lat_lon, missing_radius
-- data/places/places_nature_aliases.json | munchs_hus_aasgardstrand | Munchs hus i Åsgårdstrand | invalid | missing_lat_lon, missing_radius
-- data/places/places_nature_aliases.json | trosterud_skulpturpark | Trosterud skulpturpark | invalid | missing_lat_lon, missing_radius
-- data/places/places_nature_aliases.json | kuben_yrkesarena | Kuben yrkesarena | invalid | missing_lat_lon, missing_radius
+- Ingen
 
 ## Flaggede aktive steder
 
@@ -75,31 +46,31 @@ Generert: 2026-04-30T09:51:40.894Z
 | data/places/places_by.json | oslo_bussterminal | Oslo bussterminal | by | 59.9095 | 10.759 | 180 | needs_review | low_precision_coord |
 | data/places/places_by.json | bogstadveien | Bogstadveien | by | 59.9279 | 10.7157 | 220 | needs_review | street_or_route_as_single_point |
 | data/places/places_by.json | markveien | Markveien | by | 59.9235 | 10.7584 | 210 | needs_review | street_or_route_as_single_point |
-| data/places/places_by.json | ullevål_hageby | Ullevål Hageby | by | 59.9369 | 10.7317 | 240 | conflict | duplicate_id, duplicate_id_different_coord, same_name_different_coord |
+| data/places/places_by.json | ullevål_hageby | Ullevål Hageby | by | 59.9369 | 10.7317 | 240 | duplicate | duplicate_id |
 | data/places/places_by.json | christiania_torv | Christiania Torv | by | 59.9074 | 10.741 | 150 | needs_review | low_precision_coord |
 | data/places/places_by.json | slottsparken | Slottsparken | by | 59.9166 | 10.7278 | 250 | needs_review | area_or_park_needs_manual_review |
 | data/places/places_by.json | botsparken | Botsparken | by | 59.9053 | 10.769 | 170 | needs_review | low_precision_coord, area_or_park_needs_manual_review |
 | data/places/places_by.json | stensparken | Stensparken | by | 59.9268 | 10.7406 | 200 | needs_review | area_or_park_needs_manual_review |
-| data/places/places_by.json | tjuvholmen | Tjuvholmen | by | 59.9075 | 10.72 | 200 | conflict | low_precision_coord, duplicate_id, duplicate_id_different_coord, same_name_different_coord |
+| data/places/places_by.json | tjuvholmen | Tjuvholmen | by | 59.9066 | 10.7221 | 190 | duplicate | duplicate_id |
 | data/places/places_by.json | bislett | Bislett | by | 59.925 | 10.7328 | 200 | needs_review | low_precision_coord |
 | data/places/places_by.json | akerselva | Akerselva | by | 59.9225 | 10.7572 | 420 | needs_review | area_or_park_needs_manual_review |
 | data/places/places_by.json | universitetsplassen | Universitetsplassen | by | 59.915 | 10.7397 | 150 | needs_review | low_precision_coord |
 | data/places/places_by.json | operahuset | Operahuset | by | 59.9074 | 10.753 | 190 | needs_review | low_precision_coord |
-| data/places/places_by.json | deichman_bjorvika | Deichman Bjørvika | by | 59.9078 | 10.7546 | 180 | conflict | duplicate_id, duplicate_id_different_coord, same_name_different_coord |
-| data/places/places_by.json | barcode | Barcode | by | 59.91 | 10.7594 | 210 | conflict | low_precision_coord, duplicate_id, duplicate_id_different_coord, same_name_different_coord |
-| data/places/places_by.json | damstredet_telthusbakken | Damstredet og Telthusbakken | by | 59.9219 | 10.7468 | 180 | conflict | duplicate_id, duplicate_id_different_coord, same_name_different_coord |
-| data/places/places_by.json | vigelandsparken | Vigelandsparken | by | 59.927 | 10.7005 | 260 | conflict | low_precision_coord, area_or_park_needs_manual_review, duplicate_id, duplicate_id_different_coord, same_name_different_coord |
-| data/places/places_by.json | voienvolden | Voienvolden | by | 59.926 | 10.7435 | 170 | conflict | low_precision_coord, duplicate_id, duplicate_id_different_coord |
+| data/places/places_by.json | deichman_bjorvika | Deichman Bjørvika | by | 59.90782 | 10.75457 | 120 | duplicate | duplicate_id |
+| data/places/places_by.json | barcode | Barcode | by | 59.9101 | 10.758 | 240 | duplicate | low_precision_coord, duplicate_id |
+| data/places/places_by.json | damstredet_telthusbakken | Damstredet og Telthusbakken | by | 59.9236 | 10.7474 | 190 | duplicate | duplicate_id |
+| data/places/places_by.json | vigelandsparken | Vigelandsparken | by | 59.9271 | 10.7008 | 260 | duplicate | area_or_park_needs_manual_review, duplicate_id |
+| data/places/places_by.json | voienvolden | Voienvolden | by | 59.9292 | 10.7514 | 130 | duplicate | duplicate_id |
 | data/places/places_historie.json | middelalder_oslo | Middelalderparken | historie | 59.9048 | 10.7605 | 180 | needs_review | area_or_park_needs_manual_review |
-| data/places/places_historie.json | damstredet_telthusbakken | Damstredet og Telthusbakken | historie | 59.9295 | 10.7431 | 150 | conflict | duplicate_id, duplicate_id_different_coord, same_name_different_coord |
-| data/places/places_kunst.json | vigelandsparken | Vigelandsparken | kunst | 59.927 | 10.7003 | 200 | conflict | low_precision_coord, area_or_park_needs_manual_review, duplicate_id, duplicate_id_different_coord, same_name_different_coord |
+| data/places/places_historie.json | damstredet_telthusbakken | Damstredet og Telthusbakken | historie | 59.9236 | 10.7474 | 190 | duplicate | duplicate_id |
+| data/places/places_kunst.json | vigelandsparken | Vigelandsparken | kunst | 59.9271 | 10.7008 | 260 | duplicate | area_or_park_needs_manual_review, duplicate_id |
 | data/places/places_kunst.json | ekebergparken | Ekebergparken skulpturpark | kunst | 59.8997 | 10.7753 | 200 | needs_review | area_or_park_needs_manual_review |
-| data/places/places_kunst.json | tjuvholmen | Tjuvholmen | kunst | 59.907 | 10.7205 | 150 | conflict | low_precision_coord, duplicate_id, duplicate_id_different_coord, same_name_different_coord |
-| data/places/places_kunst.json | barcode | Barcode | kunst | 59.9093 | 10.7539 | 150 | conflict | duplicate_id, duplicate_id_different_coord, same_name_different_coord |
-| data/places/places_litteratur.json | voienvolden | Vøienvolden gård | litteratur | 59.9292 | 10.7514 | 150 | conflict | duplicate_id, duplicate_id_different_coord |
-| data/places/places_litteratur.json | deichman_bjorvika | Deichman Bjørvika | litteratur | 59.9079 | 10.7541 | 150 | conflict | duplicate_id, duplicate_id_different_coord, same_name_different_coord |
+| data/places/places_kunst.json | tjuvholmen | Tjuvholmen | kunst | 59.9066 | 10.7221 | 190 | duplicate | duplicate_id |
+| data/places/places_kunst.json | barcode | Barcode | kunst | 59.9101 | 10.758 | 240 | duplicate | low_precision_coord, duplicate_id |
+| data/places/places_litteratur.json | voienvolden | Vøienvolden gård | litteratur | 59.9292 | 10.7514 | 130 | duplicate | duplicate_id |
+| data/places/places_litteratur.json | deichman_bjorvika | Deichman Bjørvika | litteratur | 59.90782 | 10.75457 | 120 | duplicate | duplicate_id |
 | data/places/places_litteratur.json | litteraturhuset | Litteraturhuset | litteratur | 59.921 | 10.729 | 120 | needs_review | low_precision_coord |
-| data/places/places_litteratur.json | ullevål_hageby | Ullevål Hageby | litteratur | 59.9394 | 10.7463 | 200 | conflict | duplicate_id, duplicate_id_different_coord, same_name_different_coord |
+| data/places/places_litteratur.json | ullevål_hageby | Ullevål Hageby | litteratur | 59.9369 | 10.7317 | 240 | duplicate | duplicate_id |
 | data/places/places_litteratur.json | alf_proysen_statue_nittedal | Alf Prøysen-statuen – Nittedal kulturhus | litteratur | 60.062 | 10.875 | 120 | needs_review | low_precision_coord |
 | data/places/places_litteratur.json | oscar_braaten_statuen | Oscar Braaten-statuen | litteratur | 59.938 | 10.76 | 150 | needs_review | low_precision_coord |
 | data/places/places_litteratur.json | alexander_kiellands_plass | Alexander Kiellands plass | litteratur | 59.9245 | 10.766 | 120 | needs_review | low_precision_coord |
@@ -111,7 +82,7 @@ Generert: 2026-04-30T09:51:40.894Z
 | data/places/places_naeringsliv.json | ovre_foss | Øvre Foss – Hjula Veveri | naeringsliv | 59.9276 | 10.755 | 180 | needs_review | low_precision_coord |
 | data/places/places_naeringsliv.json | jernbanetorget_trafikknutepunkt | Jernbanetorget – handelsknutepunktet | naeringsliv | 59.911 | 10.7508 | 150 | needs_review | low_precision_coord |
 | data/places/places_naeringsliv.json | oslo_kraftselskap | Oslo Lysverker | naeringsliv | 59.919 | 10.7479 | 140 | needs_review | low_precision_coord |
-| data/places/places_naeringsliv.json | frysja_industriomrade | Frysja industriområde | naeringsliv | 59.9611 | 10.7645 | 240 | conflict | area_or_park_needs_manual_review, duplicate_id, duplicate_id_different_coord, same_name_different_coord |
+| data/places/places_naeringsliv.json | frysja_industriomrade | Frysja industriområde | naeringsliv | 59.9608 | 10.7726 | 260 | duplicate | area_or_park_needs_manual_review, duplicate_id |
 | data/places/places_naeringsliv.json | norges_varemesse | Norges Varemesse | naeringsliv | 59.953 | 10.7525 | 250 | needs_review | low_precision_coord |
 | data/places/places_naeringsliv.json | bryn_industriomrade | Bryn industriområde | naeringsliv | 59.9129 | 10.8251 | 250 | needs_review | area_or_park_needs_manual_review |
 | data/places/places_naeringsliv.json | akerselva_industri | Akerselva industriområde | naeringsliv | 59.9286 | 10.758 | 260 | needs_review | low_precision_coord, area_or_park_needs_manual_review |
@@ -120,7 +91,7 @@ Generert: 2026-04-30T09:51:40.894Z
 | data/places/places_subkultur.json | sofienbergparken_subkultur | Sofienbergparken | subkultur | 59.9229 | 10.763 | 180 | needs_review | low_precision_coord, area_or_park_needs_manual_review |
 | data/places/places_subkultur.json | torggata_blad | Torggata Blad | subkultur | 59.915 | 10.751 | 120 | needs_review | low_precision_coord |
 | data/places/places_vitenskap.json | universitetets_gamle_kjemi | Universitetets gamle kjemibygning | vitenskap | 59.911 | 10.7414 | 140 | needs_review | low_precision_coord |
-| data/places/oslo/places_oslo_natur_akerselvarute.json | frysja_industriomrade | Frysja industriområde | historie | 59.9695 | 10.7845 | 180 | conflict | area_or_park_needs_manual_review, duplicate_id, duplicate_id_different_coord, same_name_different_coord |
+| data/places/oslo/places_oslo_natur_akerselvarute.json | frysja_industriomrade | Frysja industriområde | historie | 59.9608 | 10.7726 | 260 | duplicate | area_or_park_needs_manual_review, duplicate_id |
 | data/places/oslo/places_oslo_natur_akerselvarute.json | nydalsdammen | Nydalsdammen | natur | 59.9458 | 10.766 | 120 | needs_review | low_precision_coord |
 | data/places/oslo/places_oslo_natur_akerselvarute.json | bjoelsenparken_elvenaer | Bjølsenparken (elvenær del) | natur | 59.9386 | 10.7588 | 160 | needs_review | area_or_park_needs_manual_review |
 | data/places/oslo/places_oslo_natur_akerselvarute.json | voien_gard_voienvolden | Vøien gård / Vøienvolden | historie | 59.935 | 10.7535 | 180 | needs_review | low_precision_coord |
@@ -153,19 +124,6 @@ Generert: 2026-04-30T09:51:40.894Z
 | data/places/oslo/places_oslo_natur_ostensjovannet.json | ostensjovannet_sivbelte | Østensjøvannet sivbelte | natur | 59.8859 | 10.8247 | 150 | needs_review | area_or_park_needs_manual_review |
 | data/places/oslo/places_oslo_natur_ostensjovannet.json | ostensjovannet_sor | Østensjøvannet sør | natur | 59.8834 | 10.8272 | 150 | needs_review | area_or_park_needs_manual_review |
 | data/places/oslo/places_oslo_natur_bygdoy.json | bygdoy_kongeskogen | Bygdøy Kongeskogen | natur | 59.9121 | 10.6758 | 170 | needs_review | area_or_park_needs_manual_review |
-| data/places/places_nature_aliases.json | toyengata | Tøyengata |  |  |  |  | invalid | missing_lat_lon, missing_radius |
-| data/places/places_nature_aliases.json | vaterlandsparken | Vaterlandsparken |  |  |  |  | invalid | missing_lat_lon, missing_radius |
-| data/places/places_nature_aliases.json | lovisenberg_sykehus | Lovisenberg sykehus |  |  |  |  | invalid | missing_lat_lon, missing_radius |
-| data/places/places_nature_aliases.json | nya_bjorvika | Nye Bjørvika |  |  |  |  | invalid | missing_lat_lon, missing_radius |
-| data/places/places_nature_aliases.json | bjorvika_barcode | Bjørvika Barcode |  |  |  |  | invalid | missing_lat_lon, missing_radius |
-| data/places/places_nature_aliases.json | frognerbadet | Frognerbadet |  |  |  |  | invalid | missing_lat_lon, missing_radius |
-| data/places/places_nature_aliases.json | bjerke_travbane | Bjerke travbane |  |  |  |  | invalid | missing_lat_lon, missing_radius |
-| data/places/places_nature_aliases.json | fagerborg_kirke | Fagerborg kirke |  |  |  |  | invalid | missing_lat_lon, missing_radius |
-| data/places/places_nature_aliases.json | torshovparken | Torshovparken |  |  |  |  | invalid | missing_lat_lon, missing_radius |
-| data/places/places_nature_aliases.json | borregravfeltet | Borrehaugene |  |  |  |  | invalid | missing_lat_lon, missing_radius |
-| data/places/places_nature_aliases.json | munchs_hus_aasgardstrand | Munchs hus i Åsgårdstrand |  |  |  |  | invalid | missing_lat_lon, missing_radius |
-| data/places/places_nature_aliases.json | trosterud_skulpturpark | Trosterud skulpturpark |  |  |  |  | invalid | missing_lat_lon, missing_radius |
-| data/places/places_nature_aliases.json | kuben_yrkesarena | Kuben yrkesarena |  |  |  |  | invalid | missing_lat_lon, missing_radius |
 
 ## Sekundært: filer i repo men ikke i manifest (ikke med i hovedstatistikk)
 - data/Civication/place_access_map.json
@@ -187,6 +145,7 @@ Generert: 2026-04-30T09:51:40.894Z
 - data/places/oslo/wonderkammer/wk_places_alna.json
 - data/places/oslo_places.json
 - data/places/places_by_22_with_quiz_profiles_v2_refined.json
+- data/places/places_nature_aliases.json
 - data/places_baseskjema.json
 - data/places_musikk.json
 - data/stories/places_by.json
