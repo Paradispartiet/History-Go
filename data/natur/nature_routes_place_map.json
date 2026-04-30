@@ -1,10 +1,11 @@
 {
   "meta": {
-    "version": "0.2.0",
+    "version": "0.3.0",
     "created_from": "data/natur/nature_place_map_candidates.json",
     "candidate_file_generated_at": "2026-04-30T05:01:47.426Z",
     "purpose": "Supplerende naturkoblinger for nye Oslo-naturruter. Lastes sammen med øvrige naturkart i Natur-rundingen.",
-    "rule": "Kun eksisterende repo-arter med medium/high confidence i siste Artskart-kandidatfil er lagt inn. Low confidence og externalTaxa er ikke lagt inn aktivt."
+    "rule": "Kun eksisterende repo-arter og nye repo-arter opprettet fra siste Artskart-kandidatfil med medium/high confidence er lagt inn. Low confidence og uopprettede externalTaxa er ikke lagt inn aktivt.",
+    "new_fauna_source": "data/natur/fauna/artsdatabanken_oslo_fauna.json"
   },
   "places": {
     "alnsjoen_alna_kilde": {
@@ -75,22 +76,31 @@
         "emne_fauna_svarttrost",
         "emne_fauna_gronnfink",
         "emne_fauna_graahegre",
-        "emne_fauna_toppand"
+        "emne_fauna_toppand",
+        "emne_fauna_hvitkinngaas",
+        "emne_fauna_pilfink",
+        "emne_fauna_staer",
+        "emne_fauna_tjeld",
+        "emne_fauna_kvinand",
+        "emne_fauna_stillits",
+        "emne_fauna_kaie",
+        "emne_fauna_taarnseiler"
       ],
       "artskartCandidateSource": {
         "candidateFileGeneratedAt": "2026-04-30T05:01:47.426Z",
-        "rule": "added_existing_repo_species_with_medium_or_high_confidence_only",
+        "rule": "added_existing_and_new_repo_species_with_medium_or_high_confidence_only",
         "usefulObservationCount": 1500,
         "matchedObservationCount": 921
       }
     },
     "ljanselva_skullerud": {
       "fauna": [
-        "emne_fauna_graaspurv"
+        "emne_fauna_graaspurv",
+        "emne_fauna_pilfink"
       ],
       "artskartCandidateSource": {
         "candidateFileGeneratedAt": "2026-04-30T05:01:47.426Z",
-        "rule": "added_existing_repo_species_with_medium_or_high_confidence_only",
+        "rule": "added_existing_and_new_repo_species_with_medium_or_high_confidence_only",
         "usefulObservationCount": 58,
         "matchedObservationCount": 12
       }
@@ -106,11 +116,13 @@
         "emne_fauna_graatrost",
         "emne_fauna_spettmeis",
         "emne_fauna_graamaake",
-        "emne_fauna_svarttrost"
+        "emne_fauna_svarttrost",
+        "emne_fauna_pilfink",
+        "emne_fauna_ekorn"
       ],
       "artskartCandidateSource": {
         "candidateFileGeneratedAt": "2026-04-30T05:01:47.426Z",
-        "rule": "added_existing_repo_species_with_medium_or_high_confidence_only",
+        "rule": "added_existing_and_new_repo_species_with_medium_or_high_confidence_only",
         "usefulObservationCount": 74,
         "matchedObservationCount": 51
       }
@@ -152,11 +164,13 @@
         "emne_fauna_rodstrupe",
         "emne_fauna_skjaere",
         "emne_fauna_blomsterflue_vanlig",
-        "emne_fauna_aakerhumle"
+        "emne_fauna_aakerhumle",
+        "emne_fauna_ekorn",
+        "emne_fauna_taarnseiler"
       ],
       "artskartCandidateSource": {
         "candidateFileGeneratedAt": "2026-04-30T05:01:47.426Z",
-        "rule": "added_existing_repo_species_with_medium_or_high_confidence_only",
+        "rule": "added_existing_and_new_repo_species_with_medium_or_high_confidence_only",
         "usefulObservationCount": 256,
         "matchedObservationCount": 75
       }
@@ -190,11 +204,15 @@
         "emne_fauna_knoppsvane",
         "emne_fauna_rodstrupe",
         "emne_fauna_sothone",
-        "emne_fauna_toppand"
+        "emne_fauna_toppand",
+        "emne_fauna_hvitkinngaas",
+        "emne_fauna_pilfink",
+        "emne_fauna_staer",
+        "emne_fauna_kvinand"
       ],
       "artskartCandidateSource": {
         "candidateFileGeneratedAt": "2026-04-30T05:01:47.426Z",
-        "rule": "added_existing_repo_species_with_medium_or_high_confidence_only",
+        "rule": "added_existing_and_new_repo_species_with_medium_or_high_confidence_only",
         "usefulObservationCount": 186,
         "matchedObservationCount": 69
       }
@@ -220,11 +238,14 @@
         "emne_fauna_ringdue",
         "emne_fauna_skjaere",
         "emne_fauna_svarttrost",
-        "emne_fauna_toppand"
+        "emne_fauna_toppand",
+        "emne_fauna_hvitkinngaas",
+        "emne_fauna_pilfink",
+        "emne_fauna_stillits"
       ],
       "artskartCandidateSource": {
         "candidateFileGeneratedAt": "2026-04-30T05:01:47.426Z",
-        "rule": "added_existing_repo_species_with_medium_or_high_confidence_only",
+        "rule": "added_existing_and_new_repo_species_with_medium_or_high_confidence_only",
         "usefulObservationCount": 116,
         "matchedObservationCount": 53
       }
@@ -271,11 +292,14 @@
         "emne_fauna_skjaere",
         "emne_fauna_kraake",
         "emne_fauna_gronnfink",
-        "emne_fauna_ringdue"
+        "emne_fauna_ringdue",
+        "emne_fauna_ekorn",
+        "emne_fauna_pilfink",
+        "emne_fauna_stillits"
       ],
       "artskartCandidateSource": {
         "candidateFileGeneratedAt": "2026-04-30T05:01:47.426Z",
-        "rule": "added_existing_repo_species_with_medium_or_high_confidence_only",
+        "rule": "added_existing_and_new_repo_species_with_medium_or_high_confidence_only",
         "usefulObservationCount": 227,
         "matchedObservationCount": 116
       }
