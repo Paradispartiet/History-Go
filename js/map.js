@@ -5,6 +5,9 @@
 
   let MAP = null;
   let mapReady = false;
+  let mapStyleMode = "standard";
+  let pendingStyleMode = null;
+  let isApplyingStyle = false;
 
   let START = { lat: 59.9139, lon: 10.7522, zoom: 13 };
 
@@ -14,6 +17,10 @@
   let onPlaceClick = () => {};
 
   let userMarker = null;
+  const STYLE_STORAGE_KEY = "hg_map_style_mode";
+  const STYLE_MODE_STANDARD = "standard";
+  const STYLE_MODE_SATELLITE = "satellite";
+  const STYLE_URL_STANDARD = "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json";
 
   // ---- helpers ----
   function num(v) {
@@ -47,11 +54,11 @@
     const el = document.getElementById(containerId);
     if (!el) return null;
 
-    const STYLE_URL = "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json";
+    mapStyleMode = getSavedMapStyleMode();
 
     MAP = new maplibregl.Map({
       container: containerId,
-      style: STYLE_URL,
+      style: getStyleUrlForMode(mapStyleMode),
       center: [START.lon, START.lat],
       zoom: START.zoom,
       pitch: 0,
@@ -66,6 +73,7 @@
 
     MAP.on("load", () => {
       mapReady = true;
+      ensureMapStyleToggle(containerId);
       drawPlaceMarkers(); // ← tegn så snart kartet er klart
       MAP.resize();
     });
@@ -104,6 +112,110 @@
   function setDataReady(_) {
     // Beholdt for kompat, men vi trenger ikke gate lenger
     // (markører tegnes når kart + places finnes)
+  }
+
+  function getSavedMapStyleMode() {
+    try {
+      const raw = localStorage.getItem(STYLE_STORAGE_KEY);
+      if (raw === STYLE_MODE_STANDARD || raw === STYLE_MODE_SATELLITE) return raw;
+    } catch {}
+    return STYLE_MODE_STANDARD;
+  }
+
+  function saveMapStyleMode(mode) {
+    try { localStorage.setItem(STYLE_STORAGE_KEY, mode); } catch {}
+  }
+
+  function getMapTilerKey() {
+    const key = String(window.HG_MAPTILER_KEY || window.MAPTILER_KEY || "").trim();
+    return key || "";
+  }
+
+  function getStyleUrlForMode(mode) {
+    if (mode !== STYLE_MODE_SATELLITE) return STYLE_URL_STANDARD;
+    const key = getMapTilerKey();
+    if (!key) return null;
+    return `https://api.maptiler.com/maps/hybrid/style.json?key=${encodeURIComponent(key)}`;
+  }
+
+  function applyMapStyle(nextMode) {
+    if (!MAP || isApplyingStyle) return;
+    const desired = nextMode === STYLE_MODE_SATELLITE ? STYLE_MODE_SATELLITE : STYLE_MODE_STANDARD;
+    const styleUrl = getStyleUrlForMode(desired);
+    if (!styleUrl) {
+      if (desired === STYLE_MODE_SATELLITE) {
+        console.warn("[HGMap] Naturtro kart krever MAPTILER_KEY/HG_MAPTILER_KEY. Beholder standardkart.");
+      }
+      mapStyleMode = STYLE_MODE_STANDARD;
+      saveMapStyleMode(mapStyleMode);
+      renderMapStyleToggle();
+      return;
+    }
+
+    isApplyingStyle = true;
+    pendingStyleMode = desired;
+    MAP.once("styledata", () => {
+      mapStyleMode = pendingStyleMode || STYLE_MODE_STANDARD;
+      pendingStyleMode = null;
+      isApplyingStyle = false;
+      mapReady = true;
+      drawPlaceMarkers();
+      MAP.resize();
+      renderMapStyleToggle();
+    });
+    MAP.once("error", () => {
+      if (!isApplyingStyle) return;
+      console.warn("[HGMap] Kunne ikke laste valgt kartstil. Faller tilbake til standardkart.");
+      isApplyingStyle = false;
+      pendingStyleMode = null;
+      if (mapStyleMode !== STYLE_MODE_STANDARD) {
+        mapStyleMode = STYLE_MODE_STANDARD;
+        saveMapStyleMode(mapStyleMode);
+      }
+      renderMapStyleToggle();
+      if (MAP && MAP.getStyle && MAP.getStyle()?.sprite) return;
+      MAP.setStyle(STYLE_URL_STANDARD);
+    });
+    MAP.setStyle(styleUrl);
+    saveMapStyleMode(desired);
+  }
+
+  function ensureMapStyleToggle(containerId) {
+    const controls = document.querySelector(".map-controls");
+    if (!controls || controls.querySelector(".hg-map-style-toggle")) {
+      renderMapStyleToggle();
+      return;
+    }
+    const wrap = document.createElement("div");
+    wrap.className = "hg-map-style-toggle";
+    wrap.innerHTML = `
+      <button type="button" class="hg-map-style-btn" data-mode="standard" aria-pressed="false">Kart</button>
+      <button type="button" class="hg-map-style-btn" data-mode="satellite" aria-pressed="false">Naturtro</button>
+    `;
+    wrap.addEventListener("click", (ev) => {
+      const btn = ev.target?.closest?.(".hg-map-style-btn");
+      if (!btn) return;
+      applyMapStyle(btn.dataset.mode);
+    });
+    controls.insertBefore(wrap, controls.firstChild);
+    renderMapStyleToggle();
+
+    const mapEl = document.getElementById(containerId);
+    if (mapEl && !mapEl.__hgResizeBound) {
+      window.addEventListener("orientationchange", resize, { passive: true });
+      window.addEventListener("resize", resize, { passive: true });
+      mapEl.__hgResizeBound = true;
+    }
+  }
+
+  function renderMapStyleToggle() {
+    const wrap = document.querySelector(".hg-map-style-toggle");
+    if (!wrap) return;
+    wrap.querySelectorAll(".hg-map-style-btn").forEach((btn) => {
+      const isActive = btn.dataset.mode === mapStyleMode;
+      btn.classList.toggle("is-active", isActive);
+      btn.setAttribute("aria-pressed", isActive ? "true" : "false");
+    });
   }
 
   // ---- user ----
