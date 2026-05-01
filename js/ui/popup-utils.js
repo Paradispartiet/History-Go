@@ -680,6 +680,59 @@ function getInlineTriviaFor(categoryId, targetId) {
 // - TEST_MODE: bypass
 // - Live: krever getPos() + distMeters()
 // ============================================================
+function getPlaceUnlockAnchors(place) {
+  const placeLat = Number(place?.lat);
+  const placeLon = Number(place?.lon);
+  const placeRadius = Number(place?.r || 150);
+  const fallbackRadius = Number.isFinite(placeRadius) && placeRadius > 0 ? placeRadius : 150;
+
+  const validAnchorTypes = new Set([
+    "unlock_anchor",
+    "route_point",
+    "entrance",
+    "viewpoint",
+    "area_anchor",
+    "midpoint"
+  ]);
+
+  const anchors = Array.isArray(place?.anchors) ? place.anchors : [];
+  const normalized = anchors
+    .map((anchor, idx) => {
+      const lat = Number(anchor?.lat);
+      const lon = Number(anchor?.lon);
+      const r = Number(anchor?.r);
+      const type = String(anchor?.type || "").trim();
+      if (!Number.isFinite(lat) || !Number.isFinite(lon)) return null;
+      if (!Number.isFinite(r) || r <= 0) return null;
+      if (!validAnchorTypes.has(type)) return null;
+      return {
+        id: String(anchor?.id || `anchor_${idx + 1}`),
+        name: String(anchor?.name || place?.name || `Anchor ${idx + 1}`),
+        lat,
+        lon,
+        r,
+        type,
+        note: String(anchor?.note || "")
+      };
+    })
+    .filter(Boolean);
+
+  if (normalized.length) return normalized;
+  if (!Number.isFinite(placeLat) || !Number.isFinite(placeLon)) return [];
+
+  return [{
+    id: String(place?.id || "place"),
+    name: String(place?.name || "Place"),
+    lat: placeLat,
+    lon: placeLon,
+    r: fallbackRadius,
+    type: "unlock_anchor",
+    note: "fallback_from_place_lat_lon_r"
+  }];
+}
+
+window.getPlaceUnlockAnchors = getPlaceUnlockAnchors;
+
 function canUnlockPlaceNow(place) {
   const r = Number(place?.r || 150);
 
@@ -694,8 +747,19 @@ function canUnlockPlaceNow(place) {
     return { ok: false, d: null, r, reason: "no_pos" };
   }
 
-  const d = window.distMeters(pos, { lat: place.lat, lon: place.lon });
-  return { ok: d <= r, d, r };
+  const anchors = getPlaceUnlockAnchors(place);
+  if (!anchors.length) return { ok: false, d: null, r, reason: "no_anchor" };
+
+  let nearest = null;
+  for (const anchor of anchors) {
+    const d = window.distMeters(pos, { lat: anchor.lat, lon: anchor.lon });
+    if (!Number.isFinite(d)) continue;
+    if (!nearest || d < nearest.d) nearest = { d, r: anchor.r };
+    if (d <= anchor.r) return { ok: true, d, r: anchor.r };
+  }
+
+  if (!nearest) return { ok: false, d: null, r, reason: "no_anchor" };
+  return { ok: false, d: nearest.d, r: nearest.r };
 }
 
 function fmtDist(m) {
