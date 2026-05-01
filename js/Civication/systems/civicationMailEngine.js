@@ -6,11 +6,13 @@
   const MAX_INBOX = 80;
 
   function safeParse(raw, fallback) {
+    if (raw === null || raw === undefined || raw === "") return fallback;
     try { return JSON.parse(raw); } catch { return fallback; }
   }
 
   function getLegacyInbox() {
-    return safeParse(localStorage.getItem(LS_INBOX), []);
+    const parsed = safeParse(localStorage.getItem(LS_INBOX), []);
+    return Array.isArray(parsed) ? parsed : [];
   }
 
   function setLegacyInbox(items) {
