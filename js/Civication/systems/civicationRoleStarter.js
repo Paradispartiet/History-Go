@@ -2,10 +2,17 @@
   "use strict";
 
   var ROLES = {
+    ekspeditor: {
+      career_id: "naeringsliv",
+      career_name: "Næringsliv & industri",
+      title: "Ekspeditør / butikkmedarbeider",
+      role_key: "ekspeditor",
+      role_id: "naer_ekspeditor"
+    },
     arbeider: {
       career_id: "naeringsliv",
       career_name: "Næringsliv & industri",
-      title: "Arbeider",
+      title: "Lager- og driftsmedarbeider",
       role_key: "arbeider",
       role_id: "naer_arbeider"
     },
@@ -26,13 +33,14 @@
     formann: {
       career_id: "naeringsliv",
       career_name: "Næringsliv & industri",
-      title: "Formann",
+      title: "Formann / arbeidsleder",
       role_key: "formann",
       role_id: "naer_formann"
     }
   };
 
   var ROLE_TO_PLAN = {
+    ekspeditor: "ekspeditor_naeringsliv_v1",
     arbeider: "arbeider_naeringsliv_v2",
     fagarbeider: "fagarbeider_naeringsliv_v3",
     mellomleder: "mellomleder_naeringsliv_v2",
