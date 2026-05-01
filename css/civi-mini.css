@@ -225,7 +225,7 @@ body.civi-popup-open {
   position: fixed;
   inset: 0;
   z-index: 10000;
-  padding-top: max(10px, env(safe-area-inset-top));
+  padding: max(10px, env(safe-area-inset-top)) 0 max(10px, env(safe-area-inset-bottom));
   display: none;
 }
 
@@ -243,10 +243,11 @@ body.civi-popup-open {
 .civi-section-popup-panel {
   position: absolute;
   left: 50%;
-  bottom: max(14px, env(safe-area-inset-bottom));
-  transform: translateX(-50%);
+  top: 50%;
+  transform: translate(-50%, -50%);
   width: min(920px, calc(100vw - 22px));
-  max-height: min(calc(100vh - 26px - env(safe-area-inset-top) - env(safe-area-inset-bottom)), 860px);
+  height: min(75dvh, calc(100dvh - 28px - env(safe-area-inset-top) - env(safe-area-inset-bottom)));
+  max-height: 860px;
   display: flex;
   flex-direction: column;
   border-radius: 24px;
@@ -265,6 +266,7 @@ body.civi-popup-open {
   justify-content: space-between;
   gap: 18px;
   border-bottom: 1px solid rgba(255,255,255,0.09);
+  flex: 0 0 auto;
 }
 
 .civi-section-popup-kicker {
@@ -294,6 +296,8 @@ body.civi-popup-open {
 }
 
 .civi-section-popup-body {
+  flex: 1 1 auto;
+  min-height: 0;
   padding: 16px 20px 22px;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
@@ -418,8 +422,8 @@ body.civi-app .district-card {
 
   .civi-section-popup-panel {
     width: calc(100vw - 16px);
-    max-height: 86vh;
-    border-radius: 22px 22px 18px 18px;
+    height: min(75dvh, calc(100dvh - 18px - env(safe-area-inset-top) - env(safe-area-inset-bottom)));
+    border-radius: 22px;
   }
 
   .civi-section-popup-body .civi-workday-grid {
