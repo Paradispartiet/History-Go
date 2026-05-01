@@ -4,10 +4,17 @@
   var BACKUP_KEY = "hg_civi_last_active_position_v1";
 
   var ROLES = {
+    ekspeditor: {
+      career_id: "naeringsliv",
+      career_name: "Næringsliv & industri",
+      title: "Ekspeditør / butikkmedarbeider",
+      role_key: "ekspeditor",
+      role_id: "naer_ekspeditor"
+    },
     arbeider: {
       career_id: "naeringsliv",
       career_name: "Næringsliv & industri",
-      title: "Arbeider",
+      title: "Lager- og driftsmedarbeider",
       role_key: "arbeider",
       role_id: "naer_arbeider"
     },
@@ -28,13 +35,14 @@
     formann: {
       career_id: "naeringsliv",
       career_name: "Næringsliv & industri",
-      title: "Formann",
+      title: "Formann / arbeidsleder",
       role_key: "formann",
       role_id: "naer_formann"
     }
   };
 
   var PLAN_TO_ROLE = {
+    ekspeditor_naeringsliv_v1: "ekspeditor",
     arbeider_naeringsliv_v1: "arbeider",
     arbeider_naeringsliv_v2: "arbeider",
     fagarbeider_naeringsliv_v2: "fagarbeider",
