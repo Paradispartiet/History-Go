@@ -13,6 +13,7 @@ const readJson = (p) => JSON.parse(fs.readFileSync(p, 'utf8'));
 const rel = (p) => path.relative(root, p).replace(/\\/g, '/');
 const isNum = (v) => typeof v === 'number' && Number.isFinite(v);
 const round6 = (n) => Math.round(n * 1e6) / 1e6;
+const validAnchorTypes = new Set(['unlock_anchor', 'route_point', 'entrance', 'viewpoint', 'area_anchor', 'midpoint']);
 
 const isArchivePath = (p) => /(^|\/)arkiv(\/|$)/i.test(p);
 const isBackupLike = (filePath) => {
@@ -95,8 +96,22 @@ for (const pf of parseable) {
     if ((row.lat != null && typeof row.lat !== 'number') || (row.lon != null && typeof row.lon !== 'number')) row.flags.push('non_numeric_lat_lon');
     if (isNum(row.lat) && isNum(row.lon) && (row.lat < -90 || row.lat > 90 || row.lon < -180 || row.lon > 180)) row.flags.push('invalid_lat_lon');
     if (row.r == null) row.flags.push('missing_radius');
+
+    const anchors = Array.isArray(p?.anchors) ? p.anchors : null;
+    const hasCoordExplanation = typeof p?.coordNote === 'string' || typeof p?.coordStatus === 'string';
+    if (anchors) {
+      if (anchors.length === 0) row.flags.push('invalid_anchor');
+      const seenAnchorIds = new Set();
+      for (const a of anchors) {
+        const missingRequired = !a || !a.id || !a.name || !isNum(a.lat) || !isNum(a.lon) || !isNum(a.r) || !a.type;
+        const badType = a?.type && !validAnchorTypes.has(a.type);
+        const badRadius = isNum(a?.r) && a.r < 40;
+        if (missingRequired || badType || badRadius) row.flags.push('invalid_anchor');
+        if (a?.id) { if (seenAnchorIds.has(a.id)) row.flags.push('invalid_anchor'); seenAnchorIds.add(a.id); }
+      }
+    }
     if (isNum(row.r) && row.r < 40) row.flags.push('suspicious_radius_low');
-    if (isNum(row.r) && row.r > 500) row.flags.push('suspicious_radius_high');
+    if (isNum(row.r) && row.r > 500 && !hasCoordExplanation) row.flags.push('suspicious_radius_high');
     if (isNum(row.lat) && isNum(row.lon)) {
       const latPrec = String(row.lat).split('.')[1]?.length || 0;
       const lonPrec = String(row.lon).split('.')[1]?.length || 0;
@@ -107,7 +122,11 @@ for (const pf of parseable) {
       if (!inOslo && /places_by|oslo\//i.test(row.file)) row.flags.push('outside_expected_area');
     }
     const text = `${row.name ?? ''} ${row.category ?? ''}`.toLowerCase();
-    if (/(gate|vei|veien|rute|route|ring\s*\d)/.test(text) && isNum(row.r) && row.r <= 300) row.flags.push('street_or_route_as_single_point');
+    const linearPattern = /(gate|vei|veien|rute|route|ring\s*\d|elv|elva|trikk)/;
+    if (linearPattern.test(text)) {
+      if (!anchors || anchors.length === 0) row.flags.push('needs_multiple_anchors');
+      else if (isNum(row.r) && row.r <= 300) row.flags.push('street_or_route_as_single_point');
+    }
     if (/(park|parken|skog|marka|område|fjord|elva|vann)/.test(text) && isNum(row.r) && row.r < 500) row.flags.push('area_or_park_needs_manual_review');
     if (isNum(row.r) && row.r > 250 && /(statue|statuen|kirke|museum|bygning|minnesmerke|opera|teater)/.test(text)) row.flags.push('area_or_park_needs_manual_review');
 
@@ -155,6 +174,7 @@ for (const r of rows) {
   else if (r.flags.some((f) => conflictFlags.has(f))) r.status = 'conflict';
   else if (r.flags.includes('duplicate_id')) r.status = 'duplicate';
   else if (r.flags.includes('outside_expected_area') || r.flags.includes('outside_oslo_possible_intended')) r.status = 'outside_expected_area';
+  if (r.flags.includes('invalid_anchor')) r.status = 'invalid';
   else if (r.flags.length) r.status = 'needs_review';
   r.reason = r.flags.join(', ');
 }
