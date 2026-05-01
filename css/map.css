@@ -60,7 +60,15 @@
   border: 1px solid var(--panel-border);
   box-shadow: var(--shadow);
   pointer-events: auto;
-  z-index: 1;
+  touch-action: manipulation;
+  z-index: 30;
+}
+
+.hg-map-style-toggle::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
 }
 
 .hg-map-style-toggle::before{
@@ -73,7 +81,7 @@
 
 .hg-map-style-toggle .hg-map-style-btn{
   position: relative;
-  z-index: 1;
+  z-index: 2;
   width: auto;
   min-width: 84px;
   height: 36px;
@@ -83,6 +91,8 @@
   padding: 0 10px;
   background: transparent;
   pointer-events: auto;
+  touch-action: manipulation;
+  cursor: pointer;
 }
 
 .hg-map-style-toggle .hg-map-style-btn.is-active{
