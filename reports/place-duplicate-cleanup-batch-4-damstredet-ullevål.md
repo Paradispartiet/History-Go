@@ -10,58 +10,41 @@ Dato: 2026-05-01
 - `damstredet_telthusbakken`: master i `data/places/places_historie.json`.
 - `ullevål_hageby`: master i `data/places/places_by.json`.
 
-## Fjernede sekundærentries
-- Fjernet `damstredet_telthusbakken` fra `data/places/places_by.json`.
-- Fjernet `ullevål_hageby` fra `data/places/places_litteratur.json`.
+## Sekundærentries fjernet
+- `ullevål_hageby` fjernet fra `data/places/oslo_places.json` (duplikat med litteraturvinkel i kategori `litteratur`).
+- Ingen sekundær top-level entry med `id: "damstredet_telthusbakken"` ble funnet i `places_by.json` eller `places_litteratur.json` i denne batchen; historiefilen sto allerede som eneste top-level place-entry.
 
 ## Bevarte perspektiver
 ### `damstredet_telthusbakken`
-- Historie-master beholdt som hovednode for trehusmiljø, bevaring og historiske lag.
-- Byperspektiv flettet inn: bystruktur, materialitet, småskala gateforløp og kontrast mot moderne byutvikling.
+- Historisk trehusmiljø, bevaringscase og bystruktur er bevart i historie-master.
+- Byperspektiv (småskala gateforløp, materialitet, bevaring, kontrast mot moderne byutvikling) er bevart i `popupDesc` og `quiz_profile`-felt.
 
 ### `ullevål_hageby`
-- By-master beholdt med kategori `by` og hovedvekt på hageby, boligmodell og planleggingscase.
-- Litteraturperspektiv fra sekundærpost bevart gjennom tekst og quiz-vinkling (Sigrid Undset-kobling og kulturhistorisk boligmiljø).
+- By-master med `category: "by"` beholdt.
+- Litteraturperspektiv er bevart i mastertekst og quiz-vinkel (kobling til Sigrid Undset, kulturhistorisk boligmiljø, sted/person-kobling).
 
 ## Fletting av `emne_ids`
-Ja.
-- `damstredet_telthusbakken`: beholdt historiske emner og la til manglende by-emne (`em_by_materialitet_og_sanseerfaring`).
-- `ullevål_hageby`: litteraturpostens emner ble slått sammen med by-master uten å miste eksisterende emner.
+- Ingen nye `emne_ids` måtte flettes i denne batchen; relevante vinkler var allerede dekket i masterentries.
 
 ## Fletting av `quiz_profile`
-Ja, for begge steder. Følgende felt ble flettet der relevant:
-- `signature_features`
-- `primary_angles`
-- `question_families`
-- `avoid_angles`
-- `must_include`
-- `contrast_targets`
-- `notes`
+- Ingen eksplisitt feltfletting nødvendig i denne batchen; relevante by- og litteraturvinkler var allerede representert i master for `ullevål_hageby`.
+- For `damstredet_telthusbakken` var ønskede by-/bevaringsvinkler allerede representert i historie-masterens `quiz_profile`.
 
-## Duplicate IDs som gjenstår (modell-A-listen)
+## Duplicate IDs som fortsatt gjenstår
+Semantiske duplikater etter denne batchen:
 - `deichman_bjorvika`
 - `var_frelsers_gravlund`
 - `vigelandsparken`
 - `voienvolden`
 
-Semantisk duplicate count for modell-A-listen gikk fra 6 til 4.
-
 ## i18n-konsekvens
-Kjøring av `node scripts/i18n-audit-places.js en` etter batchen viser:
-- `ullevål_hageby` som `Stale` i `en` (forventet pga. endret mastertekst/sourceHash).
-- øvrige missing translations finnes fortsatt (forventet).
-- Ingen i18n-filer er endret i denne batchen.
-
-`sourceHash` kan derfor være stale for berørte IDs til egen i18n-sync-batch kjøres.
+- Endringer i place-datasett kan gjøre `_sourceHash`-status stale/missing for berørte IDs i oversettelser.
+- Dette er akseptabelt i denne batchen og rettes ikke her.
 
 ## Kontroll av avgrensning
-Bekreftet i denne batchen:
+Bekreftet:
 - Ingen endringer i runtime JS
 - Ingen endringer i CSS
 - Ingen endringer i `js/boot.js`
 - Ingen endringer i `data/places/manifest.json`
-- Ingen endringer i i18n-runtime
-- Ingen endringer i quiz-resultatlogikk
-- Ingen endringer i unlock/progresjon
-- Ingen endringer i kartlogikk
-- Ingen endringer i service worker
+- Ingen endringer i i18n-filer
