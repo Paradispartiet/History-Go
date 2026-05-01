@@ -1,6 +1,6 @@
 # Place coordinate audit (active data only)
 
-Generert: 2026-05-01T20:16:33.032Z
+Generert: 2026-05-01T21:02:16.245Z
 
 ## Aktiv hovedstatistikk
 - Aktive place-filer lest: **17**

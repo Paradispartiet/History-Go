@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Place coordinate visual QA</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; margin: 0; }
+    .wrap { display: grid; grid-template-columns: 360px 1fr; min-height: 100vh; }
+    .panel { padding: 12px; border-right: 1px solid #ddd; overflow: auto; }
+    #map { min-height: 100vh; }
+    label { display: block; margin: 8px 0 4px; font-size: 13px; }
+    select, input { width: 100%; padding: 6px; }
+    .meta { font-size: 12px; color: #444; margin: 8px 0 12px; }
+    .row { font-size: 12px; border-top: 1px solid #eee; padding: 8px 0; }
+    .chip { display: inline-block; padding: 2px 6px; border-radius: 10px; font-size: 11px; margin-right: 6px; }
+    .ok { background: #2e7d32; color: #fff; }
+    .anchor { background: #1565c0; color: #fff; }
+    .warn { background: #f9a825; color: #111; }
+    .err { background: #c62828; color: #fff; }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <aside class="panel">
+    <h2>Visual QA</h2>
+    <div class="meta" id="meta">Laster aktive steder…</div>
+
+    <label>Kategori</label>
+    <select id="category"><option value="">Alle</option></select>
+
+    <label>coordStatus</label>
+    <select id="coordStatus"><option value="">Alle</option></select>
+
+    <label>Anchor-filter</label>
+    <select id="anchorFilter">
+      <option value="all">Alle</option>
+      <option value="with">Kun med anchors</option>
+      <option value="without">Kun uten anchors</option>
+    </select>
+
+    <label>Audit-filter</label>
+    <select id="auditFilter">
+      <option value="all">Alle</option>
+      <option value="warn">Warnings</option>
+      <option value="error">Errors</option>
+    </select>
+
+    <div id="list"></div>
+  </aside>
+  <main id="map"></main>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+<script>
+const manifestUrl = "../data/places/manifest.json";
+const qualityUrl = "../reports/place-coordinate-quality-gate.md";
+const map = L.map('map').setView([59.9139, 10.7522], 11);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  maxZoom: 19,
+  attribution: '&copy; OpenStreetMap'
+}).addTo(map);
+
+const layers = L.layerGroup().addTo(map);
+const state = { rows: [], warnings: new Set(), errors: new Set() };
+
+const colors = {
+  verified: '#2e7d32',
+  ok: '#2e7d32',
+  semantic_anchor: '#1565c0',
+  needs_review: '#f9a825',
+  invalid: '#c62828'
+};
+
+function statusColor(place, flags) {
+  if (flags.error) return colors.invalid;
+  if ((place.coordStatus || '').toLowerCase() === 'semantic_anchor') return colors.semantic_anchor;
+  if (flags.warn || (place.coordStatus || '').toLowerCase() === 'needs_review') return colors.needs_review;
+  return colors.verified;
+}
+
+function parseGate(md) {
+  const lines = md.split('\n').map(l => l.trim());
+  let mode = '';
+  for (const line of lines) {
+    if (line.startsWith('## Harde feil')) { mode = 'error'; continue; }
+    if (line.startsWith('## Varsler')) { mode = 'warn'; continue; }
+    if (line.startsWith('##')) { mode = ''; continue; }
+    if (!line.startsWith('- ')) continue;
+    const item = line.slice(2);
+    const match = item.match(/^(data\/places\/[^#\s]+)#([^:]+)/);
+    if (!match) continue;
+    const key = `${match[1]}#${match[2]}`;
+    if (mode === 'error') state.errors.add(key);
+    if (mode === 'warn') state.warnings.add(key);
+  }
+}
+
+async function loadActivePlaces() {
+  const manifest = await (await fetch(manifestUrl)).json();
+  const files = (manifest.files || []).map(f => `../data/${f}`);
+  const payloads = await Promise.all(files.map(f => fetch(f).then(r => r.json()).then(j => ({ file: f.replace('../', ''), data: Array.isArray(j) ? j : (j.places || j.items || []) }))));
+  const out = [];
+  for (const p of payloads) {
+    for (const place of p.data) out.push({ ...place, __file: p.file });
+  }
+  return out;
+}
+
+function populateFilters(rows) {
+  const category = document.getElementById('category');
+  const coordStatus = document.getElementById('coordStatus');
+  [...new Set(rows.map(r => r.category).filter(Boolean))].sort().forEach(v => category.add(new Option(v, v)));
+  [...new Set(rows.map(r => r.coordStatus).filter(Boolean))].sort().forEach(v => coordStatus.add(new Option(v, v)));
+}
+
+function getFilteredRows() {
+  const c = document.getElementById('category').value;
+  const s = document.getElementById('coordStatus').value;
+  const a = document.getElementById('anchorFilter').value;
+  const q = document.getElementById('auditFilter').value;
+
+  return state.rows.filter(r => {
+    if (c && r.category !== c) return false;
+    if (s && r.coordStatus !== s) return false;
+    const hasAnchors = Array.isArray(r.anchors) && r.anchors.length > 0;
+    if (a === 'with' && !hasAnchors) return false;
+    if (a === 'without' && hasAnchors) return false;
+    const key = `${r.__file}#${r.id}`;
+    const hasWarn = state.warnings.has(key);
+    const hasErr = state.errors.has(key);
+    if (q === 'warn' && !hasWarn) return false;
+    if (q === 'error' && !hasErr) return false;
+    return true;
+  });
+}
+
+function render() {
+  layers.clearLayers();
+  const rows = getFilteredRows();
+  const list = document.getElementById('list');
+  const bounds = [];
+
+  list.innerHTML = rows.map(r => {
+    const key = `${r.__file}#${r.id}`;
+    const flags = { warn: state.warnings.has(key), error: state.errors.has(key) };
+    const hasAnchors = Array.isArray(r.anchors) && r.anchors.length > 0;
+    const color = statusColor(r, flags);
+
+    if (Number.isFinite(r.lat) && Number.isFinite(r.lon)) {
+      bounds.push([r.lat, r.lon]);
+      L.circle([r.lat, r.lon], { radius: Number(r.r) || 120, color, weight: 2, fillOpacity: 0.08 }).addTo(layers)
+        .bindPopup(`<b>${r.name || r.id}</b><br>Hovedpunkt<br>${r.lat}, ${r.lon} · r=${r.r}`);
+      L.circleMarker([r.lat, r.lon], { radius: 5, color, fillOpacity: 1 }).addTo(layers);
+    }
+
+    if (hasAnchors) {
+      r.anchors.forEach(a => {
+        if (!Number.isFinite(a.lat) || !Number.isFinite(a.lon)) return;
+        bounds.push([a.lat, a.lon]);
+        L.circle([a.lat, a.lon], { radius: Number(a.r) || 80, color: colors.semantic_anchor, weight: 1, fillOpacity: 0.06 }).addTo(layers)
+          .bindPopup(`<b>${r.name || r.id}</b><br>Anchor: ${a.name || a.id}<br>${a.lat}, ${a.lon} · r=${a.r}`);
+        L.circleMarker([a.lat, a.lon], { radius: 4, color: colors.semantic_anchor, fillOpacity: 1 }).addTo(layers);
+      });
+    }
+
+    return `<div class="row">
+      <span class="chip ${flags.error ? 'err' : flags.warn ? 'warn' : ((r.coordStatus||'').toLowerCase() === 'semantic_anchor' ? 'anchor' : 'ok')}">${r.coordStatus || 'ok'}</span>
+      <strong>${r.name || r.id}</strong><br>
+      <span>${r.__file}</span><br>
+      <span>${hasAnchors ? `anchors: ${r.anchors.length}` : 'ingen anchors (fallback lat/lon/r)'}</span>
+    </div>`;
+  }).join('');
+
+  if (bounds.length) map.fitBounds(bounds, { padding: [30, 30], maxZoom: 15 });
+  document.getElementById('meta').textContent = `Aktive steder: ${state.rows.length} | Viser: ${rows.length} | Warnings: ${state.warnings.size} | Errors: ${state.errors.size}`;
+}
+
+(async function init(){
+  try {
+    const [rows, gateMd] = await Promise.all([
+      loadActivePlaces(),
+      fetch(qualityUrl).then(r => r.text()).catch(() => '')
+    ]);
+    state.rows = rows;
+    if (gateMd) parseGate(gateMd);
+    populateFilters(rows);
+    ['category','coordStatus','anchorFilter','auditFilter'].forEach(id => document.getElementById(id).addEventListener('change', render));
+    render();
+  } catch (e) {
+    document.getElementById('meta').textContent = `Feil ved lasting: ${e}`;
+  }
+})();
+</script>
+</body>
+</html>
