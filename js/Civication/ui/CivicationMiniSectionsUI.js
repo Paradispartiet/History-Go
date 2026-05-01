@@ -725,7 +725,11 @@
     closePopup
   };
 
-  document.addEventListener("DOMContentLoaded", scheduleRefresh);
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", scheduleRefresh);
+  } else {
+    scheduleRefresh();
+  }
 
   [
     "civi:dataReady",
