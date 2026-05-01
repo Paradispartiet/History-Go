@@ -55,6 +55,12 @@
     if (!el) return null;
 
     mapStyleMode = getSavedMapStyleMode();
+    const initialStyleUrl = getStyleUrlForMode(mapStyleMode);
+    if (!initialStyleUrl) {
+      console.warn("[HGMap] Naturtro kart krever window.HG_MAPTILER_KEY. Beholder standardkart.");
+      mapStyleMode = STYLE_MODE_STANDARD;
+      saveMapStyleMode(mapStyleMode);
+    }
 
     MAP = new maplibregl.Map({
       container: containerId,
@@ -139,22 +145,31 @@
   }
 
   function applyMapStyle(nextMode) {
-    if (!MAP || isApplyingStyle) return;
+    console.debug("[HGMap] set style start", nextMode);
+    if (!MAP || typeof MAP.setStyle !== "function") {
+      console.warn("[HGMap] MapLibre map not ready for style switch");
+      return;
+    }
+    if (isApplyingStyle) return;
     const desired = nextMode === STYLE_MODE_SATELLITE ? STYLE_MODE_SATELLITE : STYLE_MODE_STANDARD;
+    const key = getMapTilerKey();
+    console.debug("[HGMap] key present", Boolean(key));
     const styleUrl = getStyleUrlForMode(desired);
+    console.debug("[HGMap] style url", styleUrl);
     if (!styleUrl) {
       if (desired === STYLE_MODE_SATELLITE) {
-        console.warn("[HGMap] Naturtro kart krever MAPTILER_KEY/HG_MAPTILER_KEY. Beholder standardkart.");
+        console.warn("[HGMap] Naturtro kart krever window.HG_MAPTILER_KEY. Beholder standardkart.");
       }
-      mapStyleMode = STYLE_MODE_STANDARD;
-      saveMapStyleMode(mapStyleMode);
+      if (mapStyleMode !== STYLE_MODE_STANDARD) {
+        mapStyleMode = STYLE_MODE_STANDARD;
+      }
       renderMapStyleToggle();
       return;
     }
 
     isApplyingStyle = true;
     pendingStyleMode = desired;
-    MAP.once("styledata", () => {
+    const onStyleData = () => {
       mapStyleMode = pendingStyleMode || STYLE_MODE_STANDARD;
       pendingStyleMode = null;
       isApplyingStyle = false;
@@ -163,20 +178,31 @@
       drawPlaceMarkers();
       MAP.resize();
       renderMapStyleToggle();
-    });
-    MAP.once("error", () => {
+      console.debug("[HGMap] style loaded", mapStyleMode);
+      MAP.off("error", onError);
+    };
+    const onError = (error) => {
       if (!isApplyingStyle) return;
-      console.warn("[HGMap] Kunne ikke laste valgt kartstil. Faller tilbake til standardkart.");
+      const message = error?.error?.message || error?.message || "unknown error";
+      console.warn("[HGMap] style failed", message, error?.error || error);
       isApplyingStyle = false;
       pendingStyleMode = null;
-      if (mapStyleMode !== STYLE_MODE_STANDARD) {
-        mapStyleMode = STYLE_MODE_STANDARD;
-        saveMapStyleMode(mapStyleMode);
-      }
+      mapStyleMode = STYLE_MODE_STANDARD;
+      saveMapStyleMode(mapStyleMode);
       renderMapStyleToggle();
-      if (MAP && MAP.getStyle && MAP.getStyle()?.sprite) return;
-      MAP.setStyle(STYLE_URL_STANDARD);
-    });
+      MAP.off("styledata", onStyleData);
+      if (MAP) {
+        try {
+          MAP.setStyle(STYLE_URL_STANDARD);
+          console.debug("[HGMap] setStyle called");
+        } catch (fallbackError) {
+          console.warn("[HGMap] style failed", fallbackError);
+        }
+      }
+    };
+    MAP.once("styledata", onStyleData);
+    MAP.once("error", onError);
+    console.debug("[HGMap] setStyle called");
     MAP.setStyle(styleUrl);
   }
 
