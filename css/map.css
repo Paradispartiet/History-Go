@@ -21,6 +21,7 @@
 /* Kartknapper: alltid klikkbare (over placeCard) */
 .map-controls{
   position: absolute;
+  top: auto;
   right: 12px;
 
   /* ligger over placecard-høyden */
@@ -31,8 +32,14 @@
 
   display: grid;
   gap: 8px;
-  pointer-events: auto;
+  pointer-events: none;
   touch-action: manipulation;
+  width: max-content;
+}
+
+
+.map-controls > *{
+  pointer-events: auto;
 }
 
 .map-controls button{

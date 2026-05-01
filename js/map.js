@@ -158,6 +158,7 @@
       mapStyleMode = pendingStyleMode || STYLE_MODE_STANDARD;
       pendingStyleMode = null;
       isApplyingStyle = false;
+      saveMapStyleMode(mapStyleMode);
       mapReady = true;
       drawPlaceMarkers();
       MAP.resize();
@@ -177,7 +178,6 @@
       MAP.setStyle(STYLE_URL_STANDARD);
     });
     MAP.setStyle(styleUrl);
-    saveMapStyleMode(desired);
   }
 
   function ensureMapStyleToggle(containerId) {

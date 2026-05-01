@@ -7,6 +7,10 @@
 
   <script>
   window.__lastRejection = null;
+  // Optional MapTiler key for Naturtro (satellite) map mode.
+  // Set in local/dev environment only; do not commit a real key.
+  // window.HG_MAPTILER_KEY = "<MAPTILER_KEY_HERE>";
+
 
   window.addEventListener("unhandledrejection", (e) => {
     window.__lastRejection = e;
