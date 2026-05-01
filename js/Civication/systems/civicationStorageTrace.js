@@ -6,7 +6,8 @@
     hg_active_position_v1: true,
     hg_civi_last_active_position_v1: true,
     hg_civi_state_v1: true,
-    hg_civi_inbox_v1: true
+    hg_civi_inbox_v1: true,
+    hg_civi_mail_v1: true
   };
 
   function isCritical(key) {
@@ -20,6 +21,35 @@
       return parsed == null ? fallback : parsed;
     } catch (e) {
       return fallback;
+    }
+  }
+
+  function normalizeCivicationStorageBeforeEngines() {
+    try {
+      var legacyRaw = localStorage.getItem("hg_civi_inbox_v1");
+      var legacy = safeParse(legacyRaw, []);
+      if (!Array.isArray(legacy)) {
+        localStorage.setItem("hg_civi_inbox_v1", "[]");
+      }
+    } catch (e) {
+      try { localStorage.setItem("hg_civi_inbox_v1", "[]"); } catch (_) {}
+    }
+
+    try {
+      var mailRaw = localStorage.getItem("hg_civi_mail_v1");
+      if (mailRaw === "null" || mailRaw === "undefined") {
+        localStorage.removeItem("hg_civi_mail_v1");
+        return;
+      }
+
+      if (mailRaw) {
+        var mail = safeParse(mailRaw, null);
+        if (!mail || typeof mail !== "object" || !Array.isArray(mail.items)) {
+          localStorage.removeItem("hg_civi_mail_v1");
+        }
+      }
+    } catch (e) {
+      try { localStorage.removeItem("hg_civi_mail_v1"); } catch (_) {}
     }
   }
 
@@ -89,11 +119,13 @@
     writeTrace([]);
   }
 
+  normalizeCivicationStorageBeforeEngines();
   patchStorage();
 
   window.CivicationStorageTrace = {
     getTrace: getTrace,
     clearTrace: clearTrace,
-    patchStorage: patchStorage
+    patchStorage: patchStorage,
+    normalizeCivicationStorageBeforeEngines: normalizeCivicationStorageBeforeEngines
   };
 })();
