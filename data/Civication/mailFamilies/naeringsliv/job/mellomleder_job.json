@@ -28,33 +28,36 @@
             "Se at mellomlederrollen aldri er nøytral når flere lojaliteter trekker samtidig.",
             "Velg hvilken type legitimitet rollen skal bygge på: produksjon, kontroll, institusjon eller menneskelig bæreevne."
           ],
-          "subject": "Du kan ikke stå nøytral lenger",
+          "subject": "Hvem er du når presset drar i hver retning?",
           "situation": [
-            "Du merker at alle drar i deg.",
-            "Noen vil bygge.",
-            "Noen vil kontrollere.",
-            "Noen vil beskytte systemet.",
-            "Noen vil beskytte menneskene.",
-            "Du må velge hvem du faktisk står med."
+            "Hei,",
+            "Inger ber deg velge hvordan du vil lede neste kvartal før budsjettmøtet.",
+            "Produksjon vil ha tempo, HR vil ha ro, økonomi vil ha kontroll og gulvet vil ha forutsigbarhet.",
+            "Valget ditt blir lagt merke til av alle, og brukt mot deg av noen."
           ],
           "choices": [
             {
-              "id": "industri",
-              "label": "Støtt bygging og produksjon"
+              "id": "A",
+              "label": "Stå med produksjon: leveranse først, resten etterpå",
+              "effect": 1
             },
             {
-              "id": "kontroll",
-              "label": "Støtt styring og kontroll"
+              "id": "B",
+              "label": "Stå med kontroll: rutiner, avvik og rapportering først",
+              "effect": 0
             },
             {
-              "id": "institusjon",
-              "label": "Bevar systemet"
+              "id": "C",
+              "label": "Stå med institusjonen: beskytte systemet mot brå kast",
+              "effect": 0
             },
             {
-              "id": "menneske",
-              "label": "Beskytt menneskene"
+              "id": "D",
+              "label": "Stå med menneskene: kapasitet og bærekraft først",
+              "effect": 1
             }
-          ]
+          ],
+          "from": "inger_avdelingsleder"
         }
       ]
     },
@@ -83,24 +86,36 @@
             "Forstå overgangen fra selv å produsere til å få andre menneskers arbeid til å henge sammen.",
             "Se at rollen måler koordinering, oversettelse og tillit, ikke bare egen innsats."
           ],
-          "subject": "Du er ikke lenger den som gjør jobben – du er den som får den til å fungere",
+          "subject": "Kveldsvakt igjen — bare hvis du har mulighet",
           "situation": [
-            "Du merker raskt at du ikke lenger måles på hva du selv produserer.",
-            "Det du nå måles på er om andre får det til – og om det henger sammen.",
-            "Rollen har flyttet seg fra kontroll til koordinering."
+            "Hei,",
+            "Vi mangler folk på kveldsvakten igjen.",
+            "Du står egentlig ikke på lista, men du har jo vist at du er fleksibel.",
+            "Det hadde vært veldig fint om du kunne stille. Ikke noe press, altså."
           ],
           "choices": [
             {
               "id": "A",
-              "label": "Bruke tid på å forstå helheten før du handler",
+              "label": "Ta vakten og dekke hullet i kveld",
               "effect": 1
             },
             {
               "id": "B",
-              "label": "Markere tydelig retning med en gang",
+              "label": "Si nei høflig og holde på fridagen",
+              "effect": 0
+            },
+            {
+              "id": "C",
+              "label": "Spørre hvorfor det alltid havner hos deg",
+              "effect": 1
+            },
+            {
+              "id": "D",
+              "label": "Ikke svare før vakta nesten starter",
               "effect": 0
             }
-          ]
+          ],
+          "from": "anita_avdelingsleder"
         },
         {
           "id": "ml_core_002",
@@ -124,24 +139,36 @@
             "Oppdage mønstre i små avvik før de blir store nok til å havne i rapporteringen.",
             "Skille mellom akutte branner og strukturelle tegn på at systemet begynner å gli."
           ],
-          "subject": "Alle forventer at du skal se det ingen andre ser",
+          "subject": "\"Du er så pålitelig\" — kan du ta onboarding også?",
           "situation": [
-            "Feilene er små hver for seg.",
-            "Men du ser at de henger sammen i et mønster som kan bli stort hvis ingen samler det opp.",
-            "Du må velge om du vil bruke tid på det usynlige eller bare ta det som brenner først."
+            "Hei,",
+            "Du får ros i møtene for å være den som alltid leverer.",
+            "Derfor vil Anita at du også tar onboarding av to nye denne uka, i tillegg til egne mål.",
+            "Hun skriver at det «kan være fint for utviklingssporet ditt»."
           ],
           "choices": [
             {
               "id": "A",
-              "label": "Ta tak i mønsteret før det blir en synlig krise",
+              "label": "Ta ekstraansvaret uten diskusjon",
               "effect": 1
             },
             {
               "id": "B",
-              "label": "La de små tingene ligge og konsentrere deg om det mest akutte",
+              "label": "Be om avklart tid eller kompensasjon før du sier ja",
+              "effect": 1
+            },
+            {
+              "id": "C",
+              "label": "Foreslå at ansvaret fordeles i teamet",
+              "effect": 0
+            },
+            {
+              "id": "D",
+              "label": "Si tydelig at dette ligger utenfor rollen din nå",
               "effect": 0
             }
-          ]
+          ],
+          "from": "anita_avdelingsleder"
         }
       ]
     },
@@ -170,24 +197,36 @@
             "Se forskjellen mellom en plan som ser riktig ut og en plan mennesker faktisk kan gjennomføre.",
             "Vurdere når en justering er faglig styrke, selv om planen ser svakere ut på papiret."
           ],
-          "subject": "Planen holder bare hvis folk overpresterer",
+          "subject": "\"Vi må alle bidra litt ekstra\" denne perioden",
           "situation": [
-            "Planen er god på papiret.",
-            "Men du ser at den krever mer kapasitet enn folk faktisk har.",
-            "Du må velge om du vil justere eller gamble."
+            "Hei,",
+            "Inger skriver at avdelingen må være «løsningsorientert» de neste ukene.",
+            "Det står ikke hvem «alle» er, eller hvor lenge ekstra betyr ekstra.",
+            "Du ser at teamet allerede går varmt."
           ],
           "choices": [
             {
               "id": "A",
-              "label": "Justere planen før det smeller",
+              "label": "Si ja og dra i gang ekstra innsats med en gang",
               "effect": 1
             },
             {
               "id": "B",
-              "label": "La planen stå og håpe det går",
+              "label": "Be om konkret plan med varighet og prioritering",
+              "effect": 1
+            },
+            {
+              "id": "C",
+              "label": "Svare at belastning må fordeles rettferdig, ikke tilfeldig",
+              "effect": 0
+            },
+            {
+              "id": "D",
+              "label": "Forholde deg stille og la andre definere nivået",
               "effect": 0
             }
-          ]
+          ],
+          "from": "inger_avdelingsleder"
         },
         {
           "id": "ml_core_004",
@@ -211,24 +250,36 @@
             "Lese hva en tidslinje skjuler: opplæring, sykdom, avbrudd og uformell koordinering.",
             "Velge mellom en pen plan som gir ro oppover og en realistisk plan som viser friksjonen tidlig."
           ],
-          "subject": "Tidslinjen ser pen ut fordi den skjuler friksjonen",
+          "subject": "Det ble \"litt stemning\" i pauserommet",
           "situation": [
-            "Du får presentert en fremdriftsplan som ser ryddig og gjennomførbar ut.",
-            "Men du vet at planen ikke viser avbrudd, opplæring, sykdom eller alt som i praksis spiser tid.",
-            "Du må velge om du vil ta kampen om realismen nå eller leve på lånt håp litt til."
+            "Hei,",
+            "Anita skriver at hun har fått signaler om tone i pauserommet ditt skift.",
+            "Ingen navn nevnes, men hun ber deg «ta eierskap til kulturen».",
+            "Dette er ikke en formell advarsel, men hun vil høre hvordan du ser situasjonen."
           ],
           "choices": [
             {
               "id": "A",
-              "label": "Gjøre planen mer realistisk selv om den ser svakere ut",
+              "label": "Ta ansvar for tonen og varsle tiltak",
               "effect": 1
             },
             {
               "id": "B",
-              "label": "Beholde den stramme planen for å holde trykket oppe",
+              "label": "Be om konkretisering: hva, når og hvem gjelder det",
+              "effect": 1
+            },
+            {
+              "id": "C",
+              "label": "Kalle det en misforståelse og tone ned alvoret",
+              "effect": 0
+            },
+            {
+              "id": "D",
+              "label": "Gå i forsvar og peke på at presset kommer ovenfra",
               "effect": 0
             }
-          ]
+          ],
+          "from": "anita_avdelingsleder"
         }
       ]
     },
@@ -259,25 +310,36 @@
             "Teste om spilleren kan holde drift, mennesker og system synlige samtidig.",
             "Skille mellom det som ser best ut oppover og det som faktisk gjør organisasjonen bærekraftig."
           ],
-          "subject": "Du må holde alt samlet",
+          "subject": "Mer fast rolle kan åpne seg — hvis du viser eierskap nå",
           "situation": [
-            "Driften svikter.",
-            "Teamet mister tillit.",
-            "Ledelsen vil ha tall.",
-            "Du må velge hva du redder."
+            "Hei,",
+            "Inger lufter at det «kan åpne seg noe mer fast etter hvert».",
+            "Samtidig ber hun deg ta helgeoppfølging av KPI uten ekstra tid i planen.",
+            "Ingen avtale, bare en gulrot og en forventning."
           ],
           "choices": [
             {
               "id": "A",
-              "label": "Balansere drift, mennesker og system",
+              "label": "Spille med og levere ekstra for å styrke posisjon",
               "effect": 1
             },
             {
               "id": "B",
-              "label": "Prioritere det som ser best ut oppover",
+              "label": "Be om konkret avtale før du binder deg",
+              "effect": 1
+            },
+            {
+              "id": "C",
+              "label": "Si at uklare løfter ikke er nok for mer belastning",
+              "effect": 0
+            },
+            {
+              "id": "D",
+              "label": "Svare diplomatisk ja nå, men med tydelige grenser",
               "effect": 0
             }
-          ]
+          ],
+          "from": "inger_avdelingsleder"
         },
         {
           "id": "ml_core_012",
@@ -301,24 +363,36 @@
             "Teste evnen til å eie systemsvikt uten å gjøre den til personlig skyld hos én person.",
             "Velge mellom tydelig ansvar og ansvarsfordeling som gjør problemet usynlig."
           ],
-          "subject": "Du må ta ansvaret ingen andre vil eie",
+          "subject": "Vi må ta en prat om lojalitet i teamet",
           "situation": [
-            "Alle har bidratt litt til problemet.",
-            "Ingen kan alene klandres for at det har vokst seg stort.",
-            "Likevel må noen si høyt at systemet ikke lenger bærer seg selv."
+            "Hei,",
+            "I ledermøtet ble det nevnt at noen ikke drar i samme retning.",
+            "Anita skriver at hun stoler på dømmekraften din og ber om navn på «motstand».",
+            "Det fremstilles som kulturarbeid, men du vet det også er en lojalitetstest."
           ],
           "choices": [
             {
               "id": "A",
-              "label": "Ta ansvaret og gjøre svikten synlig",
-              "effect": 1
+              "label": "Gi konkrete navn for å vise handlekraft",
+              "effect": 0
             },
             {
               "id": "B",
-              "label": "Fordele ansvaret så bredt at ingen må stå i det",
+              "label": "Beskrive mønstre uten å peke ut personer",
+              "effect": 1
+            },
+            {
+              "id": "C",
+              "label": "Avvise navnejakt og be om åpne kriterier",
+              "effect": 1
+            },
+            {
+              "id": "D",
+              "label": "Utsette svaret og håpe temaet dør ut",
               "effect": 0
             }
-          ]
+          ],
+          "from": "anita_avdelingsleder"
         },
         {
           "id": "ml_core_013",
@@ -343,24 +417,36 @@
             "Se hvordan mellomlederrollen kan bli større enn stillingsbeskrivelsen når folk bruker deg som buffer.",
             "Velge om rollen skal oversette mellom nivåer eller bare sende informasjon videre."
           ],
-          "subject": "Rollen har blitt større enn stillingen",
+          "subject": "Rykter om utbrenthet sprer seg i skiftet",
           "situation": [
-            "Folk kommer til deg før de går til systemet.",
-            "Ledelsen bruker deg som filter før beslutninger blir synlige.",
-            "Du må velge om du vil være buffer, talsperson eller bare en ryddig mellomstasjon."
+            "Hei,",
+            "To ansatte har meldt at tempoet ikke holder gjennom måneden.",
+            "Inger vil unngå at dette blir «fortellingen» om avdelingen før neste gjennomgang.",
+            "Hun ber deg håndtere det raskt og helst uten støy."
           ],
           "choices": [
             {
               "id": "A",
-              "label": "Bruke posisjonen til å oversette begge veier",
+              "label": "Ta en åpen runde om belastning og justere planen",
               "effect": 1
             },
             {
               "id": "B",
-              "label": "Holde rollen smal og bare sende informasjon videre",
+              "label": "Kjøre individuelle samtaler og dempe saken internt",
               "effect": 0
+            },
+            {
+              "id": "C",
+              "label": "Skru opp innsatsen kortsiktig for å redde tallene",
+              "effect": 0
+            },
+            {
+              "id": "D",
+              "label": "Løfte risikoen oppover skriftlig med en gang",
+              "effect": 1
             }
-          ]
+          ],
+          "from": "inger_avdelingsleder"
         }
       ]
     }
