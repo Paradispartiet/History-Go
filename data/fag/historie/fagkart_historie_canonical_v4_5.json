@@ -1,0 +1,1900 @@
+{
+  "subject_id": "historie",
+  "subject_title": "Historie",
+  "scope": "oslo_og_omegn",
+  "type": "fagkart",
+  "version": "v4.5-canonical-draft-1",
+  "updated_at": "2026-05-01",
+  "principles": {
+    "locked_categories": true,
+    "dev_happens_through": [
+      "emner",
+      "metoder",
+      "steder",
+      "personer",
+      "quiz",
+      "observasjoner",
+      "eksterne_kilder"
+    ],
+    "no_new_main_categories": true,
+    "style": [
+      "stedlig historie først",
+      "kildekritisk presisjon",
+      "spor før abstraksjon",
+      "teori som tolkningsramme",
+      "makt, minne og blindsoner synliggjøres",
+      "eksterne kilder dominerer faktainnholdet"
+    ],
+    "core_rule": "Historie-spørsmål skal starte i dokumenterbare spor, hendelser, kilder eller steder, og bruke teori/metode til å skjerpe tolkningen."
+  },
+  "categories": [
+    {
+      "id": "his_tid_periodisering",
+      "title": "Historisk tid og periodisering",
+      "tagline": "Hvordan tid deles inn og får mening",
+      "definition": "Dette området handler om hvordan fortiden ordnes i epoker, brudd, kontinuiteter og samtidige tidslag. Historisk tid er ikke bare kalenderår, men måter å forstå endring, rytme, langsom utvikling og dramatiske vendepunkter på.",
+      "focus": [
+        "epoker og periodisering",
+        "brudd og kontinuitet",
+        "samtidens blikk vs ettertidens fortelling",
+        "tidslag i byrom og institusjoner"
+      ],
+      "topic_hooks": [
+        {
+          "id": "his_periodisering_epoker",
+          "title": "Periodisering og epoker",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "reinhart_koselleck",
+                "name": "Reinhart Koselleck",
+                "why": "Begrepshistorie, historisk tid og forholdet mellom erfaringsrom og forventningshorisont",
+                "tier": "advanced",
+                "works": [
+                  "Futures Past"
+                ]
+              },
+              {
+                "id": "fernand_braudel",
+                "name": "Fernand Braudel",
+                "why": "Lang varighet, strukturer og forskjellen mellom hendelse og dypt historisk tidslag",
+                "tier": "core",
+                "works": [
+                  "The Mediterranean and the Mediterranean World"
+                ]
+              },
+              {
+                "id": "jacques_le_goff",
+                "name": "Jacques Le Goff",
+                "why": "Middelalderens tidsforståelse og hvordan epoker konstrueres",
+                "tier": "advanced",
+                "works": [
+                  "Time, Work, and Culture in the Middle Ages"
+                ]
+              },
+              {
+                "id": "knut_kjeldstadli",
+                "name": "Knut Kjeldstadli",
+                "why": "Norsk historiefaglig formidling av tid, samfunnsendring og hverdagslige strukturer",
+                "tier": "core",
+                "works": [
+                  "Fortida er ikke hva den en gang var"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_tid_periodisering_epoker",
+            "em_his_historiske_lag_i_byrom",
+            "em_his_samtid_ettertid_fortelling"
+          ],
+          "best_place_types": [
+            "kulturmiljo",
+            "ruinomrade",
+            "institusjonsbygg",
+            "gate",
+            "plass",
+            "omrade"
+          ],
+          "avoid_place_types": [
+            "ren_natur",
+            "kommersielt_sted_uten_historisk_spor"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "fact-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Hvilken epoke passer best uten stedlig belegg",
+            "Hva er periodisering generelt"
+          ],
+          "preferred_question_moves": [
+            "connect dated fact to broader period",
+            "compare continuity and rupture",
+            "read visible layer as historical time",
+            "separate event from long-term structure"
+          ],
+          "comparison_pairs": [
+            [
+              "reinhart_koselleck",
+              "fernand_braudel"
+            ],
+            [
+              "jacques_le_goff",
+              "knut_kjeldstadli"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "knut_kjeldstadli"
+          ],
+          "recommended_oslo_cases": [
+            "Middelalderbyen Oslo",
+            "Gamle Aker kirke",
+            "Akershus festning",
+            "Bjørvika"
+          ],
+          "recommended_method_ids": [
+            "met_periodisering",
+            "met_for_etter_historisk",
+            "met_sporlesning"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true
+          }
+        },
+        {
+          "id": "his_brudd_kontinuitet",
+          "title": "Brudd og kontinuitet",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "marc_bloch",
+                "name": "Marc Bloch",
+                "why": "Sammenlignende historie og kritisk arbeid med endring over tid",
+                "tier": "core",
+                "works": [
+                  "The Historian's Craft"
+                ]
+              },
+              {
+                "id": "eric_hobsbawm",
+                "name": "Eric Hobsbawm",
+                "why": "Modernisering, revolusjon, tradisjon og historiske brudd i samfunnsendring",
+                "tier": "core",
+                "works": [
+                  "The Age of Revolution",
+                  "The Invention of Tradition"
+                ]
+              },
+              {
+                "id": "paul_ricoeur",
+                "name": "Paul Ricoeur",
+                "why": "Fortelling, tid og hvordan historie gis narrativ sammenheng",
+                "tier": "advanced",
+                "works": [
+                  "Time and Narrative"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_brudd_kontinuitet",
+            "em_his_modernisering_1800",
+            "em_his_samtidshistorie_brudd"
+          ],
+          "best_place_types": [
+            "transformasjonsomrade",
+            "institusjonsbygg",
+            "minnested",
+            "gate",
+            "omrade"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_endring"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "place-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Er dette et brudd eller kontinuitet uten konkret hendelse"
+          ],
+          "preferred_question_moves": [
+            "identify what changed and what remained",
+            "connect event to institutional consequence",
+            "compare before and after",
+            "use material trace to show continuity"
+          ],
+          "comparison_pairs": [
+            [
+              "marc_bloch",
+              "eric_hobsbawm"
+            ],
+            [
+              "paul_ricoeur",
+              "reinhart_koselleck"
+            ]
+          ],
+          "norwegian_thinker_ids": [],
+          "recommended_oslo_cases": [
+            "Regjeringskvartalet",
+            "Bispelokket",
+            "Aker Brygge",
+            "Møllergata 19"
+          ],
+          "recommended_method_ids": [
+            "met_for_etter_historisk",
+            "met_institusjonshistorisk_analyse",
+            "met_arkivlesning"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "his_kilder_arkiv_spor",
+      "title": "Kilder, arkiv og spor",
+      "tagline": "Hvordan fortid blir etterprøvbar",
+      "definition": "Dette området handler om kildekritikk, arkiv, dokumenter, fotografier, kart, bygninger, gjenstander og andre spor som gjør fortiden mulig å undersøke. Det spør hvem som har etterlatt seg materiale, hvem som mangler, og hvordan spor blir gjort til historie.",
+      "focus": [
+        "kildekritikk",
+        "arkiv og dokumentasjon",
+        "materielle og digitale spor",
+        "taushet, tap og blindsoner"
+      ],
+      "topic_hooks": [
+        {
+          "id": "his_kildekritikk",
+          "title": "Kildekritikk",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "leopold_von_ranke",
+                "name": "Leopold von Ranke",
+                "why": "Klassisk kildeorientert historiefag og vekt på dokumenterbarhet",
+                "tier": "background",
+                "works": [
+                  "Histories of the Latin and Germanic Nations"
+                ]
+              },
+              {
+                "id": "e_h_carr",
+                "name": "E.H. Carr",
+                "why": "Kritikk av naive faktaforestillinger og vekt på forholdet mellom historiker og fakta",
+                "tier": "core",
+                "works": [
+                  "What Is History?"
+                ]
+              },
+              {
+                "id": "marc_bloch",
+                "name": "Marc Bloch",
+                "why": "Kildekritisk håndverk, spørsmål til kilden og historikerens metode",
+                "tier": "core",
+                "works": [
+                  "The Historian's Craft"
+                ]
+              },
+              {
+                "id": "knut_kjeldstadli",
+                "name": "Knut Kjeldstadli",
+                "why": "Norsk historiefaglig metode, kildearbeid og samfunnshistorisk lesning",
+                "tier": "core",
+                "works": [
+                  "Fortida er ikke hva den en gang var"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_kildekritikk_arkiv_spor",
+            "em_his_arkiv_og_dokumentasjon",
+            "em_his_kilder_taushet_blindsoner"
+          ],
+          "best_place_types": [
+            "arkiv",
+            "bibliotek",
+            "museum",
+            "institusjonsbygg",
+            "minnested",
+            "kulturmiljo"
+          ],
+          "avoid_place_types": [
+            "sted_uten_kildespor"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "source-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Hva er kildekritikk generelt",
+            "Hvilken kilde er best uten å nevne avsender, tid eller formål"
+          ],
+          "preferred_question_moves": [
+            "ask who produced the source",
+            "test source against place trace",
+            "compare official and unofficial source",
+            "identify silence or missing perspective"
+          ],
+          "comparison_pairs": [
+            [
+              "leopold_von_ranke",
+              "e_h_carr"
+            ],
+            [
+              "marc_bloch",
+              "knut_kjeldstadli"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "knut_kjeldstadli"
+          ],
+          "recommended_oslo_cases": [
+            "Gamle Deichman på Hammersborg",
+            "Riksarkivet",
+            "Oslo byarkiv",
+            "Vår Frelsers gravlund"
+          ],
+          "recommended_method_ids": [
+            "met_kildekritikk",
+            "met_arkivlesning",
+            "met_sporlesning"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true
+          }
+        },
+        {
+          "id": "his_spor_materialitet",
+          "title": "Spor og materialitet",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "michel_foucault",
+                "name": "Michel Foucault",
+                "why": "Arkiv, diskurs, institusjoner og hvordan kunnskap ordnes",
+                "tier": "core",
+                "works": [
+                  "The Archaeology of Knowledge"
+                ]
+              },
+              {
+                "id": "arlette_farge",
+                "name": "Arlette Farge",
+                "why": "Arkivets konkrete materialitet og fragmenter av hverdagsliv",
+                "tier": "advanced",
+                "works": [
+                  "The Allure of the Archives"
+                ]
+              },
+              {
+                "id": "michel_rolph_trouillot",
+                "name": "Michel-Rolph Trouillot",
+                "why": "Makt, taushet og produksjonen av historisk kunnskap",
+                "tier": "advanced",
+                "works": [
+                  "Silencing the Past"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_spor_materialitet",
+            "em_his_ruiner_rester_ombruk",
+            "em_his_taushet_og_manglende_kilder"
+          ],
+          "best_place_types": [
+            "ruinomrade",
+            "gravlund",
+            "historical_site",
+            "bygg",
+            "teknisk_anlegg",
+            "minnested"
+          ],
+          "avoid_place_types": [
+            "sted_uten_synlig_spor_og_uten_kilder"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "visible-trace-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Hva symboliserer stedet uten konkret spor"
+          ],
+          "preferred_question_moves": [
+            "read ruin or building as evidence",
+            "connect material detail to institution or conflict",
+            "ask what trace makes visible",
+            "ask what trace hides"
+          ],
+          "comparison_pairs": [
+            [
+              "michel_foucault",
+              "michel_rolph_trouillot"
+            ],
+            [
+              "arlette_farge",
+              "marc_bloch"
+            ]
+          ],
+          "norwegian_thinker_ids": [],
+          "recommended_oslo_cases": [
+            "Hovedøya kloster",
+            "Gamle Aker kirke",
+            "Middelalderbyen Oslo",
+            "Møllergata 19"
+          ],
+          "recommended_method_ids": [
+            "met_sporlesning",
+            "met_arkivlesning",
+            "met_kildekritikk"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_fact_or_history_anchor": true,
+            "require_visible_trace": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "his_makt_stat_institusjoner",
+      "title": "Makt, stat og institusjoner",
+      "tagline": "Hvordan makt får rom, regler og bygninger",
+      "definition": "Dette området handler om kongemakt, stat, lov, forvaltning, politi, rettsvesen, fengsel og institusjoner. Historien leses gjennom hvordan makt organiseres, legitimeres, håndheves og møter motstand.",
+      "focus": [
+        "stat og forvaltning",
+        "lov og rett",
+        "fengsel, politi og kontroll",
+        "institusjonell kontinuitet og krise"
+      ],
+      "topic_hooks": [
+        {
+          "id": "his_stat_institusjon",
+          "title": "Stat og institusjonsbygging",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "max_weber",
+                "name": "Max Weber",
+                "why": "Stat, byråkrati, legitimitet og institusjonell rasjonalitet",
+                "tier": "core",
+                "works": [
+                  "Economy and Society"
+                ]
+              },
+              {
+                "id": "charles_tilly",
+                "name": "Charles Tilly",
+                "why": "Statsdannelse, krig, skatt og organisering av makt",
+                "tier": "advanced",
+                "works": [
+                  "Coercion, Capital, and European States"
+                ]
+              },
+              {
+                "id": "francis_sejersted",
+                "name": "Francis Sejersted",
+                "why": "Norsk modernisering, rettsstat, demokrati og historisk institusjonsforståelse",
+                "tier": "core",
+                "works": [
+                  "Demokratisk kapitalisme"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_stat_institusjoner",
+            "em_his_embetsstat_forvaltning",
+            "em_his_styring_krise_kontinuitet"
+          ],
+          "best_place_types": [
+            "institusjonsbygg",
+            "slott",
+            "festning",
+            "rådhus",
+            "rettsbygning",
+            "departementsomrade"
+          ],
+          "avoid_place_types": [
+            "privat_sted_uten_institusjonsrolle"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "institution-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Hva er staten generelt uten stedlig institusjon"
+          ],
+          "preferred_question_moves": [
+            "connect building to state function",
+            "show how institution changes over time",
+            "compare symbolic and practical power",
+            "read crisis through institutional continuity"
+          ],
+          "comparison_pairs": [
+            [
+              "max_weber",
+              "charles_tilly"
+            ],
+            [
+              "francis_sejersted",
+              "reinhart_koselleck"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "francis_sejersted"
+          ],
+          "recommended_oslo_cases": [
+            "Akershus festning",
+            "Stortinget",
+            "Regjeringskvartalet",
+            "Oslo rådhus"
+          ],
+          "recommended_method_ids": [
+            "met_institusjonshistorisk_analyse",
+            "met_arkivlesning",
+            "met_for_etter_historisk"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true
+          }
+        },
+        {
+          "id": "his_rett_kontroll",
+          "title": "Rett, politi og kontroll",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "michel_foucault",
+                "name": "Michel Foucault",
+                "why": "Fengsel, disiplin, overvåkning og institusjonell kontroll",
+                "tier": "core",
+                "works": [
+                  "Discipline and Punish"
+                ]
+              },
+              {
+                "id": "nils_christie",
+                "name": "Nils Christie",
+                "why": "Straff, konflikt, institusjoner og kontrollkritikk i norsk og internasjonal kriminologi",
+                "tier": "core",
+                "works": [
+                  "Limits to Pain",
+                  "Conflict as Property"
+                ]
+              },
+              {
+                "id": "david_garland",
+                "name": "David Garland",
+                "why": "Straff, kontrollkultur og moderne rettsstat",
+                "tier": "advanced",
+                "works": [
+                  "The Culture of Control"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_rett_politi_fengsel",
+            "em_his_kontroll_overvakning",
+            "em_his_rettsoppgjor"
+          ],
+          "best_place_types": [
+            "fengsel",
+            "politistasjon",
+            "rettsbygning",
+            "minnested",
+            "institusjonsbygg"
+          ],
+          "avoid_place_types": [
+            "ren_seremoniplass_uten_kontrollhistorie"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "place-first_then_named_theorist",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Sensasjonalisert vold eller tortur",
+            "Generisk fengselshistorie uten sted"
+          ],
+          "preferred_question_moves": [
+            "connect institution to control practice",
+            "compare legal and coercive power",
+            "read site through ordinary routines",
+            "ask how memory treats punishment"
+          ],
+          "comparison_pairs": [
+            [
+              "michel_foucault",
+              "nils_christie"
+            ],
+            [
+              "david_garland",
+              "michel_foucault"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "nils_christie"
+          ],
+          "recommended_oslo_cases": [
+            "Møllergata 19",
+            "Grini fangeleir",
+            "Akershus festning",
+            "Botsfengselet"
+          ],
+          "recommended_method_ids": [
+            "met_institusjonshistorisk_analyse",
+            "met_kildekritikk",
+            "met_minneanalyse"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "his_middelalder_kirke_kongemakt",
+      "title": "Middelalder, kirke og kongemakt",
+      "tagline": "Byens eldste maktlag",
+      "definition": "Dette området handler om middelalderens Oslo og omland: kongemakt, kirke, klostre, handel, bygrunnleggelse, eiendom, tro og landskap. Det undersøker hvordan religion og politisk makt ble materialisert i bygg, ruiner, veier og minnesteder.",
+      "focus": [
+        "middelalderbyen",
+        "kirke og kloster",
+        "kongemakt og rikssamling",
+        "eiendom, jord og fjordlandskap"
+      ],
+      "topic_hooks": [
+        {
+          "id": "his_middelalder_by_kirke",
+          "title": "Middelalderbyen og kirkemakten",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "sverre_bagge",
+                "name": "Sverre Bagge",
+                "why": "Norsk middelalder, kongemakt, kirke og politisk kultur",
+                "tier": "core",
+                "works": [
+                  "From Viking Stronghold to Christian Kingdom"
+                ]
+              },
+              {
+                "id": "knut_helle",
+                "name": "Knut Helle",
+                "why": "Norsk middelalder, byutvikling og statsdannelse",
+                "tier": "core",
+                "works": [
+                  "Norge blir en stat 1130–1319"
+                ]
+              },
+              {
+                "id": "jacques_le_goff",
+                "name": "Jacques Le Goff",
+                "why": "Europeisk middelalder, kirkelig tid og mentalitetshistorie",
+                "tier": "advanced",
+                "works": [
+                  "Medieval Civilization"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_middelalder_oslo",
+            "em_his_kirke_kloster_middelalder",
+            "em_his_kongemakt_kirke_konflikt"
+          ],
+          "best_place_types": [
+            "ruinomrade",
+            "kirke",
+            "kloster",
+            "kulturmiljo",
+            "festning",
+            "historical_site"
+          ],
+          "avoid_place_types": [
+            "modernisert_sted_uten_middelalderspor"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "fact-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Generisk middelalder uten Oslo-spor",
+            "Konge/kirke som myte uten konkret sted"
+          ],
+          "preferred_question_moves": [
+            "anchor ruler or institution in place",
+            "read ruin/church as power structure",
+            "compare religious and royal authority",
+            "connect local Oslo trace to national state formation"
+          ],
+          "comparison_pairs": [
+            [
+              "sverre_bagge",
+              "knut_helle"
+            ],
+            [
+              "jacques_le_goff",
+              "sverre_bagge"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "sverre_bagge",
+            "knut_helle"
+          ],
+          "recommended_oslo_cases": [
+            "Middelalderbyen Oslo",
+            "Gamle Aker kirke",
+            "Hovedøya kloster",
+            "Akershus festning"
+          ],
+          "recommended_method_ids": [
+            "met_sporlesning",
+            "met_kildekritikk",
+            "met_periodisering"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "his_1814_statsdannelse",
+      "title": "1814, grunnlov og statsdannelse",
+      "tagline": "Da politiske ideer fikk hus, tekst og institusjoner",
+      "definition": "Dette området handler om 1814, Grunnloven, Eidsvoll, embetsstat, demokratisering, union, Stortinget og de institusjonene som gjorde statsmakten konkret. Det leser statsdannelse som både tekst, sted, forhandling og symbol.",
+      "focus": [
+        "Grunnloven og Eidsvoll",
+        "embetsstat og parlamentarisk offentlighet",
+        "nasjonal symbolikk",
+        "demokratisering og representasjon"
+      ],
+      "topic_hooks": [
+        {
+          "id": "his_grunnlov_rom_tekst",
+          "title": "Grunnlov som rom og tekst",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "benedict_anderson",
+                "name": "Benedict Anderson",
+                "why": "Nasjonen som forestilt fellesskap og tekstlig/medial konstruksjon",
+                "tier": "core",
+                "works": [
+                  "Imagined Communities"
+                ]
+              },
+              {
+                "id": "jorunn_sem_fure",
+                "name": "Jorunn Sem Fure",
+                "why": "Norsk okkupasjons- og demokrati-/institusjonshistorie, relevant for statens legitimitet over tid",
+                "tier": "advanced",
+                "works": [
+                  "Universitetet i kamp"
+                ]
+              },
+              {
+                "id": "oyvind_osterud",
+                "name": "Øyvind Østerud",
+                "why": "Norsk stat, demokrati, maktutredning og politisk utvikling",
+                "tier": "core",
+                "works": [
+                  "Statsvitenskap"
+                ]
+              },
+              {
+                "id": "francis_sejersted",
+                "name": "Francis Sejersted",
+                "why": "Norsk demokratisk kapitalisme og institusjonell modernisering",
+                "tier": "core",
+                "works": [
+                  "Sosialdemokratiets tidsalder"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_1814_grunnlov_statsdannelse",
+            "em_his_embetsstat_demokratisering",
+            "em_his_nasjonal_identitet_fortellinger"
+          ],
+          "best_place_types": [
+            "institusjonsbygg",
+            "symbolsted",
+            "plass",
+            "historical_site",
+            "herregard"
+          ],
+          "avoid_place_types": [
+            "sted_uten_kobling_til_statsdannelse"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "place-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Generisk 1814 uten stedlig anker",
+            "Nasjonalromantisk formulering uten kildegrunnlag"
+          ],
+          "preferred_question_moves": [
+            "connect room to constitutional event",
+            "show how private house becomes national symbol",
+            "read institution as materialized law",
+            "compare symbol and political process"
+          ],
+          "comparison_pairs": [
+            [
+              "benedict_anderson",
+              "francis_sejersted"
+            ],
+            [
+              "oyvind_osterud",
+              "francis_sejersted"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "francis_sejersted",
+            "oyvind_osterud",
+            "jorunn_sem_fure"
+          ],
+          "recommended_oslo_cases": [
+            "Eidsvollsbygningen",
+            "Stortinget",
+            "Eidsvolls plass",
+            "Bogstad gård"
+          ],
+          "recommended_method_ids": [
+            "met_institusjonshistorisk_analyse",
+            "met_kildekritikk",
+            "met_symbol_og_minneanalyse"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "his_industri_arbeid_sosialhistorie",
+      "title": "Industri, arbeid og sosialhistorie",
+      "tagline": "Hvordan arbeid endret byen og hverdagslivet",
+      "definition": "Dette området handler om industrialisering, fabrikklandskap, arbeiderliv, klasse, fagorganisering, boligforhold og sosial endring. Det undersøker hvordan produksjon og arbeidsliv formet byens rom, kropper, konflikter og institusjoner.",
+      "focus": [
+        "industrialisering",
+        "arbeiderliv og klasse",
+        "fagorganisering",
+        "arbeiderboliger og helse",
+        "sosial reform"
+      ],
+      "topic_hooks": [
+        {
+          "id": "his_industriby_arbeiderliv",
+          "title": "Industriby og arbeiderliv",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "e_p_thompson",
+                "name": "E.P. Thompson",
+                "why": "Arbeiderklassens tilblivelse, erfaring og sosialhistorisk perspektiv nedenfra",
+                "tier": "core",
+                "works": [
+                  "The Making of the English Working Class"
+                ]
+              },
+              {
+                "id": "eric_hobsbawm",
+                "name": "Eric Hobsbawm",
+                "why": "Industrialisering, klasse og modernitet i lang historisk sammenheng",
+                "tier": "core",
+                "works": [
+                  "Industry and Empire"
+                ]
+              },
+              {
+                "id": "gro_hagemann",
+                "name": "Gro Hagemann",
+                "why": "Norsk arbeidslivs-, kjønns- og sosialhistorie",
+                "tier": "core",
+                "works": [
+                  "Kjønn og industrialisering"
+                ]
+              },
+              {
+                "id": "knut_kjeldstadli",
+                "name": "Knut Kjeldstadli",
+                "why": "Arbeiderhistorie, sosialhistorie og byhistorisk perspektiv i Norge",
+                "tier": "core",
+                "works": [
+                  "Arbeider, bonde, våre hære"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_industriby_1900",
+            "em_his_arbeiderbevegelse_folkedannelse",
+            "em_his_sosialhistorie_hverdagsliv"
+          ],
+          "best_place_types": [
+            "industrianlegg",
+            "arbeiderbydel",
+            "gate",
+            "foreningslokale",
+            "skole",
+            "institusjonsbygg"
+          ],
+          "avoid_place_types": [
+            "ren_finansinstitusjon",
+            "ren_representasjonsbygning_uten_arbeidsliv"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "fact-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Generisk industri uten arbeidere eller sted",
+            "Ren næringslivsvinkel uten sosialhistorie"
+          ],
+          "preferred_question_moves": [
+            "connect production to living conditions",
+            "compare worker and owner perspectives",
+            "read factory trace as social relation",
+            "connect organization to public space"
+          ],
+          "comparison_pairs": [
+            [
+              "e_p_thompson",
+              "eric_hobsbawm"
+            ],
+            [
+              "gro_hagemann",
+              "knut_kjeldstadli"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "gro_hagemann",
+            "knut_kjeldstadli"
+          ],
+          "recommended_oslo_cases": [
+            "Akerselva",
+            "Sagene skole",
+            "Arbeidersamfunnets plass",
+            "Hjula Væveri"
+          ],
+          "recommended_method_ids": [
+            "met_sporlesning",
+            "met_arkivlesning",
+            "met_mikrohistorisk_analyse",
+            "met_for_etter_historisk"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "his_krig_okkupasjon_motstand",
+      "title": "Krig, okkupasjon og motstand",
+      "tagline": "Når byrommet blir kontroll, fare og motstand",
+      "definition": "Dette området handler om krig, okkupasjon, motstand, samarbeid, fangenskap, overvåkning, deportasjon, rettsoppgjør og etterkrigstidens minnearbeid. Det legger vekt på konkrete steder og hverdagsvalg, ikke bare heltefortellinger.",
+      "focus": [
+        "okkupasjonshverdag",
+        "motstandsnettverk",
+        "fengsel og kontroll",
+        "militær beslutning",
+        "etterkrigsoppgjør og minnekultur"
+      ],
+      "topic_hooks": [
+        {
+          "id": "his_okkupasjon_byrom_kontroll",
+          "title": "Okkupasjon som byrom og kontroll",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "hannah_arendt",
+                "name": "Hannah Arendt",
+                "why": "Totalitarisme, ansvar, ondskapens banalitet og politisk handling",
+                "tier": "core",
+                "works": [
+                  "The Origins of Totalitarianism",
+                  "Eichmann in Jerusalem"
+                ]
+              },
+              {
+                "id": "michel_foucault",
+                "name": "Michel Foucault",
+                "why": "Overvåkning, disiplin og kontrollinstitusjoner",
+                "tier": "core",
+                "works": [
+                  "Discipline and Punish"
+                ]
+              },
+              {
+                "id": "jorunn_sem_fure",
+                "name": "Jorunn Sem Fure",
+                "why": "Norsk okkupasjonshistorie, institusjoner og motstand",
+                "tier": "core",
+                "works": [
+                  "Universitetet i kamp"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_okkupasjon_motstand",
+            "em_his_fangenskap_kontroll",
+            "em_his_rettsoppgjor_etterkrig"
+          ],
+          "best_place_types": [
+            "fengsel",
+            "festning",
+            "fangeleir",
+            "minnested",
+            "institusjonsbygg",
+            "militaeranlegg"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_krigskobling"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "fact-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Sensasjonalisert krigsvold",
+            "Heltefortelling uten gråsoner eller institusjonell kontekst"
+          ],
+          "preferred_question_moves": [
+            "connect place to control function",
+            "show resistance as network",
+            "separate myth from documented event",
+            "read memorial as postwar interpretation"
+          ],
+          "comparison_pairs": [
+            [
+              "hannah_arendt",
+              "michel_foucault"
+            ],
+            [
+              "jorunn_sem_fure",
+              "knut_kjeldstadli"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "jorunn_sem_fure"
+          ],
+          "recommended_oslo_cases": [
+            "Grini fangeleir",
+            "Møllergata 19",
+            "Oscarsborg festning",
+            "Villa Grande"
+          ],
+          "recommended_method_ids": [
+            "met_kildekritikk",
+            "met_minneanalyse",
+            "met_institusjonshistorisk_analyse",
+            "met_muntlig_historie"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "his_velferd_rett_hverdagsliv",
+      "title": "Velferd, rett og hverdagsliv",
+      "tagline": "Fra veldedighet til rettigheter og livsløp",
+      "definition": "Dette området handler om skole, helse, omsorg, fattigvesen, trygd, barn, alderdom og hvordan staten gradvis griper inn i hverdagsliv og kropp. Det undersøker velferd som institusjonshistorie, sosialhistorie og livsløpshistorie.",
+      "focus": [
+        "skole og folkedannelse",
+        "helse og omsorg",
+        "fattigvesen og trygd",
+        "normalbiografi og livsløp",
+        "velferdsstatens institusjoner"
+      ],
+      "topic_hooks": [
+        {
+          "id": "his_velferd_institusjoner",
+          "title": "Velferdsinstitusjoner og livsløp",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "gosta_esping_andersen",
+                "name": "Gøsta Esping-Andersen",
+                "why": "Velferdsregimer og forholdet mellom stat, marked og familie",
+                "tier": "core",
+                "works": [
+                  "The Three Worlds of Welfare Capitalism"
+                ]
+              },
+              {
+                "id": "michel_foucault",
+                "name": "Michel Foucault",
+                "why": "Biopolitikk, institusjoner, normalisering og styring av liv",
+                "tier": "core",
+                "works": [
+                  "The History of Sexuality, Vol. 1"
+                ]
+              },
+              {
+                "id": "anne_lise_seip",
+                "name": "Anne-Lise Seip",
+                "why": "Norsk velferdsstatshistorie og omsorgsstatens utvikling",
+                "tier": "core",
+                "works": [
+                  "Sosialhjelpstaten blir til"
+                ]
+              },
+              {
+                "id": "gro_hagemann",
+                "name": "Gro Hagemann",
+                "why": "Kjønn, arbeid, skole og sosialhistorie i Norge",
+                "tier": "core",
+                "works": [
+                  "Skolefolk"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_velferd_hverdagsliv",
+            "em_his_skole_folkedannelse",
+            "em_his_helse_omsorg_institusjoner"
+          ],
+          "best_place_types": [
+            "skole",
+            "hospital",
+            "institusjonsbygg",
+            "omsorgssted",
+            "bydel",
+            "arkiv"
+          ],
+          "avoid_place_types": [
+            "privat_sted_uten_velferdskobling"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "institution-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Generisk velferdsstat uten konkret institusjon",
+            "Moralsk vurdering uten historisk kilde"
+          ],
+          "preferred_question_moves": [
+            "connect institution to right or obligation",
+            "compare charity and entitlement",
+            "read school or hospital as social reform",
+            "show who falls outside standard life course"
+          ],
+          "comparison_pairs": [
+            [
+              "gosta_esping_andersen",
+              "anne_lise_seip"
+            ],
+            [
+              "michel_foucault",
+              "gro_hagemann"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "anne_lise_seip",
+            "gro_hagemann"
+          ],
+          "recommended_oslo_cases": [
+            "Sagene skole",
+            "Oslo Hospital",
+            "Gamle Deichman på Hammersborg",
+            "Arbeidersamfunnets plass"
+          ],
+          "recommended_method_ids": [
+            "met_institusjonshistorisk_analyse",
+            "met_arkivlesning",
+            "met_mikrohistorisk_analyse",
+            "met_muntlig_historie"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "his_migrasjon_minoritet_tilhorighet",
+      "title": "Migrasjon, minoritet og tilhørighet",
+      "tagline": "Hvem får høre hjemme i historien",
+      "definition": "Dette området handler om migrasjon, interne flyttestrømmer, minoriteter, tilhørighet, grensepraksiser, diaspora, integrasjon og ekskludering. Det legger vekt på både synlige spor i byen og historier som sjelden får monumenter.",
+      "focus": [
+        "migrasjonsbølger",
+        "minoritetshistorie",
+        "diaspora og transnasjonale nettverk",
+        "tilhørighet og ekskludering",
+        "historiske blindsoner"
+      ],
+      "topic_hooks": [
+        {
+          "id": "his_migrasjon_tilhorighet",
+          "title": "Migrasjon og tilhørighet",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "benedict_anderson",
+                "name": "Benedict Anderson",
+                "why": "Nasjon, fellesskap og hvem som forestilles som del av historien",
+                "tier": "core",
+                "works": [
+                  "Imagined Communities"
+                ]
+              },
+              {
+                "id": "stuart_hall",
+                "name": "Stuart Hall",
+                "why": "Identitet, diaspora, representasjon og kulturell tilhørighet",
+                "tier": "core",
+                "works": [
+                  "Cultural Identity and Diaspora"
+                ]
+              },
+              {
+                "id": "avtar_brah",
+                "name": "Avtar Brah",
+                "why": "Diaspora, hjem, tilhørighet og migrasjonserfaring",
+                "tier": "advanced",
+                "works": [
+                  "Cartographies of Diaspora"
+                ]
+              },
+              {
+                "id": "knut_kjeldstadli",
+                "name": "Knut Kjeldstadli",
+                "why": "Norsk migrasjons-, arbeider- og sosialhistorisk perspektiv",
+                "tier": "core",
+                "works": [
+                  "Norsk innvandringshistorie"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_migrasjon_mangfold",
+            "em_his_minoritetshistorie",
+            "em_his_tilhorighet_ekskludering"
+          ],
+          "best_place_types": [
+            "gate",
+            "bydel",
+            "moteplass",
+            "institusjonsbygg",
+            "minnested",
+            "handelsmiljo"
+          ],
+          "avoid_place_types": [
+            "sted_uten_migrasjonsspor_eller_kilder"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "place-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Mangfold som pynt uten historisk prosess",
+            "Generisk innvandringsspørsmål uten sted/kilde"
+          ],
+          "preferred_question_moves": [
+            "read street change as migration history",
+            "compare majority and minority memory",
+            "connect shops, language or institutions to migration",
+            "ask what becomes visible and what remains undocumented"
+          ],
+          "comparison_pairs": [
+            [
+              "stuart_hall",
+              "avtar_brah"
+            ],
+            [
+              "benedict_anderson",
+              "knut_kjeldstadli"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "knut_kjeldstadli"
+          ],
+          "recommended_oslo_cases": [
+            "Grønland",
+            "Tøyen",
+            "Villa Grande",
+            "Jødisk museum"
+          ],
+          "recommended_method_ids": [
+            "met_muntlig_historie",
+            "met_arkivlesning",
+            "met_sporlesning",
+            "met_minneanalyse"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "his_minne_kulturarv_historiebruk",
+      "title": "Minne, kulturarv og historiebruk",
+      "tagline": "Hvordan fortiden brukes, bevares og bestrides",
+      "definition": "Dette området handler om minnesteder, monumenter, gravlunder, museer, kulturminner, jubileer, navngivning og debatter om hva som skal bevares eller fjernes. Det undersøker historie som offentlig bruk, symbolsk makt og konflikt om representasjon.",
+      "focus": [
+        "minnesteder og monumenter",
+        "museer og kulturarv",
+        "historiebruk",
+        "kanon og blindsoner",
+        "bevaring, riving og omtolking"
+      ],
+      "topic_hooks": [
+        {
+          "id": "his_historiebruk_minne",
+          "title": "Historiebruk og minnekultur",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "pierre_nora",
+                "name": "Pierre Nora",
+                "why": "Minnesteder og forholdet mellom levende minne og historisk representasjon",
+                "tier": "core",
+                "works": [
+                  "Realms of Memory"
+                ]
+              },
+              {
+                "id": "maurice_halbwachs",
+                "name": "Maurice Halbwachs",
+                "why": "Kollektivt minne og sosiale rammer for erindring",
+                "tier": "core",
+                "works": [
+                  "On Collective Memory"
+                ]
+              },
+              {
+                "id": "jan_assmann",
+                "name": "Jan Assmann",
+                "why": "Kulturelt minne og institusjonalisert erindring",
+                "tier": "advanced",
+                "works": [
+                  "Cultural Memory and Early Civilization"
+                ]
+              },
+              {
+                "id": "anne_eriksen",
+                "name": "Anne Eriksen",
+                "why": "Norsk minnekultur, museum, jubileer og historiebruk",
+                "tier": "core",
+                "works": [
+                  "Det var noe annet under krigen"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_minnesteder_historiebruk",
+            "em_his_kulturminner_bevaring",
+            "em_his_monumenter_kontrovers"
+          ],
+          "best_place_types": [
+            "minnested",
+            "monument",
+            "gravlund",
+            "museum",
+            "kulturmiljo",
+            "ruinomrade",
+            "plass"
+          ],
+          "avoid_place_types": [
+            "sted_uten_minnebruk_eller_historisk_representasjon"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "place-first_then_named_theorist",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Hva symboliserer dette generelt",
+            "Ren hyllest uten å spørre hva som utelates"
+          ],
+          "preferred_question_moves": [
+            "read monument as argument",
+            "ask who is remembered and who is absent",
+            "compare official and unofficial memory",
+            "connect museum or grave to canon formation"
+          ],
+          "comparison_pairs": [
+            [
+              "pierre_nora",
+              "maurice_halbwachs"
+            ],
+            [
+              "jan_assmann",
+              "anne_eriksen"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "anne_eriksen"
+          ],
+          "recommended_oslo_cases": [
+            "Vår Frelsers gravlund",
+            "HL-senteret / Villa Grande",
+            "Eidsvollsbygningen",
+            "22. juli-senteret"
+          ],
+          "recommended_method_ids": [
+            "met_minneanalyse",
+            "met_symbol_og_minneanalyse",
+            "met_sporlesning",
+            "met_kildekritikk"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "his_byhistorie_stedsendring",
+      "title": "Byhistorie og stedsendring",
+      "tagline": "Hvordan steder endrer funksjon, verdi og fortelling",
+      "definition": "Dette området handler om byutvidelser, sanering, gentrifisering, byfornyelse, riving, ombruk og endret hverdagsliv. Det brukes bare når hovedpoenget er historisk stedsendring; rene byform- og urbanismeemner hører til byfaget.",
+      "focus": [
+        "byutvidelse",
+        "sanering og byfornyelse",
+        "gentrifisering som historisk prosess",
+        "riving, bevaring og ombruk",
+        "stedstap og ny bruk"
+      ],
+      "topic_hooks": [
+        {
+          "id": "his_stedsendring_for_etter",
+          "title": "Stedsendring før og etter",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "sharon_zukin",
+                "name": "Sharon Zukin",
+                "why": "Autentisitet, kultur, kapital og endring i urbane nabolag",
+                "tier": "core",
+                "works": [
+                  "Naked City"
+                ]
+              },
+              {
+                "id": "david_harvey",
+                "name": "David Harvey",
+                "why": "Kapital, byutvikling og romlig omforming",
+                "tier": "core",
+                "works": [
+                  "Social Justice and the City"
+                ]
+              },
+              {
+                "id": "tone_huse",
+                "name": "Tone Huse",
+                "why": "Norsk by- og gentrifiseringsforskning med stedlig og sosial presisjon",
+                "tier": "core",
+                "works": [
+                  "Everyday Life in the Gentrifying City"
+                ]
+              },
+              {
+                "id": "knut_kjeldstadli",
+                "name": "Knut Kjeldstadli",
+                "why": "Sosialhistorisk byperspektiv og historisk endring nedenfra",
+                "tier": "core",
+                "works": [
+                  "Oslo bys historie"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_byutvidelse_gentrifisering",
+            "em_his_sanering_byfornyelse",
+            "em_his_riving_ombruk_bevaring"
+          ],
+          "best_place_types": [
+            "omrade",
+            "gate",
+            "transformasjonsomrade",
+            "arbeiderbydel",
+            "havneomrade",
+            "boligomrade"
+          ],
+          "avoid_place_types": [
+            "ren_byform_uten_historisk_kilde",
+            "kommersielt_sted_uten_for_etter"
+          ],
+          "set_phase_fit": [
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "before-after-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Generisk gentrifisering uten lokal tidslinje",
+            "Ren byanalyse som egentlig hører til byfaget"
+          ],
+          "preferred_question_moves": [
+            "compare former and current function",
+            "show who gains and who loses through change",
+            "connect material change to social history",
+            "separate historical process from present impression"
+          ],
+          "comparison_pairs": [
+            [
+              "sharon_zukin",
+              "david_harvey"
+            ],
+            [
+              "tone_huse",
+              "knut_kjeldstadli"
+            ]
+          ],
+          "norwegian_thinker_ids": [
+            "tone_huse",
+            "knut_kjeldstadli"
+          ],
+          "recommended_oslo_cases": [
+            "Bjørvika",
+            "Aker Brygge",
+            "Vulkan",
+            "Torggata"
+          ],
+          "recommended_method_ids": [
+            "met_for_etter_historisk",
+            "met_sporlesning",
+            "met_arkivlesning",
+            "met_komparativ_historie"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "his_katastrofer_brudd_ulykker",
+      "title": "Katastrofer, branner, ulykker og historiske brudd",
+      "tagline": "Når hendelser river opp normaliteten",
+      "definition": "Dette området handler om branner, ulykker, terror, katastrofer og andre brudd som endrer byrom, institusjoner og kollektivt minne. Slike hendelser skal behandles nøkternt som historiske brudd, ikke som sensasjon.",
+      "focus": [
+        "branner og byomforming",
+        "ulykker og tekniske systemer",
+        "terror og demokratisk sårbarhet",
+        "krise, gjenoppbygging og minne"
+      ],
+      "topic_hooks": [
+        {
+          "id": "his_krise_gjenoppbygging",
+          "title": "Krise, brudd og gjenoppbygging",
+          "canon": {
+            "thinkers": [
+              {
+                "id": "ulrich_beck",
+                "name": "Ulrich Beck",
+                "why": "Risikosamfunn, modernitet og institusjonell håndtering av fare",
+                "tier": "advanced",
+                "works": [
+                  "Risk Society"
+                ]
+              },
+              {
+                "id": "kai_erikson",
+                "name": "Kai Erikson",
+                "why": "Kollektivt traume og samfunn etter katastrofer",
+                "tier": "advanced",
+                "works": [
+                  "Everything in Its Path"
+                ]
+              },
+              {
+                "id": "pierre_nora",
+                "name": "Pierre Nora",
+                "why": "Hvordan kriser blir til minnesteder og offentlig erindring",
+                "tier": "core",
+                "works": [
+                  "Realms of Memory"
+                ]
+              }
+            ]
+          },
+          "emne_ids": [
+            "em_his_branner_ulykker_brudd",
+            "em_his_terror_samtidshistorie",
+            "em_his_gjenoppbygging_minne"
+          ],
+          "best_place_types": [
+            "minnested",
+            "katastrofested",
+            "institusjonsomrade",
+            "gate",
+            "bygningskompleks",
+            "teknisk_anlegg"
+          ],
+          "avoid_place_types": [
+            "sted_uten_dokumentert_hendelse"
+          ],
+          "set_phase_fit": [
+            "facts",
+            "bridge_facts_theory",
+            "late_theory"
+          ],
+          "question_surface_mode": "event-place-first",
+          "fact_anchor_required": true,
+          "history_anchor_required": true,
+          "avoid_surface_forms": [
+            "Sensasjonalisert katastrofespråk",
+            "Detaljert skade/vold uten historisk funksjon",
+            "Moraliserende spørsmål uten kildegrunnlag"
+          ],
+          "preferred_question_moves": [
+            "connect event to institutional change",
+            "ask how place is rebuilt or memorialized",
+            "compare immediate event and long-term consequence",
+            "read crisis as rupture in everyday order"
+          ],
+          "comparison_pairs": [
+            [
+              "ulrich_beck",
+              "kai_erikson"
+            ],
+            [
+              "pierre_nora",
+              "maurice_halbwachs"
+            ]
+          ],
+          "norwegian_thinker_ids": [],
+          "recommended_oslo_cases": [
+            "Regjeringskvartalet",
+            "22. juli-senteret",
+            "Oslo brannhistoriske steder",
+            "Filipstadulykken"
+          ],
+          "recommended_method_ids": [
+            "met_minneanalyse",
+            "met_kildekritikk",
+            "met_for_etter_historisk",
+            "met_institusjonshistorisk_analyse"
+          ],
+          "canonical_status": "canonical",
+          "registry_version": "historiepensum_v4_5",
+          "min_recommended_oslo_cases": 2,
+          "min_recommended_methods": 1,
+          "case_gate_required": true,
+          "method_gate_required": true,
+          "theory_rotation_required": true,
+          "canonical_file_role": "active",
+          "generator_constraints": {
+            "min_case_count": 2,
+            "min_method_count": 1,
+            "require_fact_or_history_anchor": true,
+            "require_external_claim_basis": true,
+            "rotate_theorists": true
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,814 @@
+{
+  "version": "v4.5-canonical-draft-1",
+  "subject_id": "historie",
+  "subject_title": "Historie",
+  "scope": "oslo_og_omegn",
+  "type": "methods",
+  "purpose": "Metodekatalog for historiefaget i History Go, brukt av fagkart, emner, mapping og quizgenerator. Metodene skal sikre at historiske spørsmål starter i kilder, spor, steder, hendelser og dokumenterbar lokalhistorie før teori brukes som tolkningsramme.",
+  "updated_at": "2026-05-01",
+  "principles": {
+    "source_first": true,
+    "external_claim_basis_required": true,
+    "place_and_trace_before_theory": true,
+    "avoid_generic_history_questions": true,
+    "method_role": [
+      "forankre spørsmål i kilder og spor",
+      "skille dokumentert historie fra myte og minne",
+      "koble konkrete steder til historiske prosesser",
+      "synliggjøre blindsoner og manglende kilder",
+      "styre progresjon fra fakta til analyse"
+    ]
+  },
+  "methods": [
+    {
+      "method_id": "met_kildekritikk",
+      "title": "Kildekritikk",
+      "short_label": "Kildekritikk",
+      "description": "Systematisk vurdering av hvem som har laget en kilde, når den ble laget, for hvilket formål, hvilke interesser den bærer, og hva den kan eller ikke kan brukes til å si.",
+      "best_for_emne_kinds": [
+        "historisk",
+        "metodisk",
+        "analytisk"
+      ],
+      "data_forms": [
+        "brev",
+        "protokoll",
+        "avisartikkel",
+        "offentlig dokument",
+        "foto",
+        "plakett",
+        "museumsformidling",
+        "institusjonsside"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "kilder_arkiv_spor",
+        "krig_okkupasjon_motstand",
+        "makt_stat_institusjoner",
+        "minne_kulturarv_historiebruk"
+      ],
+      "progression_stage": "full_ladder",
+      "good_for_place_types": [
+        "arkiv",
+        "bibliotek",
+        "museum",
+        "institusjonsbygg",
+        "minnested",
+        "gravlund",
+        "fengsel",
+        "historical_site",
+        "ruinomrade"
+      ],
+      "question_moves": [
+        "ask who produced the source",
+        "test source purpose against historical claim",
+        "compare official and unofficial accounts",
+        "identify missing perspective or bias"
+      ],
+      "hook_affinities": [
+        "his_kildekritikk",
+        "his_spor_materialitet",
+        "his_okkupasjon_byrom_kontroll",
+        "his_historiebruk_minne",
+        "his_grunnlov_rom_tekst"
+      ],
+      "recommended_oslo_cases": [
+        "Gamle Deichman på Hammersborg",
+        "Møllergata 19",
+        "Vår Frelsers gravlund",
+        "Eidsvollsbygningen"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "historiepensum_v4_5",
+      "canonical_file_role": "active",
+      "min_recommended_oslo_cases": 2,
+      "case_gate_required": true,
+      "method_use_note": "Brukes når et spørsmål trenger sikker avgrensning mellom dokumentert kilde, senere tolkning og offentlig minne.",
+      "rotation_note": "Bør brukes ofte i tidlige og midtre sett, men ikke som eneste metode i en quizhale."
+    },
+    {
+      "method_id": "met_arkivlesning",
+      "title": "Arkivlesning",
+      "short_label": "Arkiv",
+      "description": "Lesning av arkivmateriale som ordnede spor: hva som er samlet inn, hvordan det er katalogisert, hvilke grupper som er synlige, og hvilke erfaringer som mangler.",
+      "best_for_emne_kinds": [
+        "historisk",
+        "metodisk",
+        "institusjonell"
+      ],
+      "data_forms": [
+        "arkivprotokoll",
+        "saksmappe",
+        "kart",
+        "fotoarkiv",
+        "avisarkiv",
+        "kommunalt vedtak",
+        "register"
+      ],
+      "course_level_fit": [
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "kilder_arkiv_spor",
+        "velferd_rett_hverdagsliv",
+        "migrasjon_minoritet_tilhorighet",
+        "byhistorie_stedsendring"
+      ],
+      "progression_stage": "advanced",
+      "good_for_place_types": [
+        "arkiv",
+        "bibliotek",
+        "rådhus",
+        "institusjonsbygg",
+        "skole",
+        "hospital",
+        "bydel",
+        "historical_site"
+      ],
+      "question_moves": [
+        "connect archival record to place",
+        "ask what the archive makes visible",
+        "ask what was not archived",
+        "use record type to explain institution"
+      ],
+      "hook_affinities": [
+        "his_kildekritikk",
+        "his_spor_materialitet",
+        "his_velferd_institusjoner",
+        "his_migrasjon_tilhorighet",
+        "his_stedsendring_for_etter"
+      ],
+      "recommended_oslo_cases": [
+        "Oslo byarkiv",
+        "Gamle Deichman på Hammersborg",
+        "Sagene skole",
+        "Oslo Hospital"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "historiepensum_v4_5",
+      "canonical_file_role": "active",
+      "min_recommended_oslo_cases": 2,
+      "case_gate_required": true,
+      "method_use_note": "Brukes når generatoren trenger materiale som viser institusjoner, personer eller stedshistorie gjennom dokumenterte arkivspor.",
+      "rotation_note": "Varier med sporlesning og kildekritikk for å unngå at alle spørsmål blir dokumentorienterte."
+    },
+    {
+      "method_id": "met_sporlesning",
+      "title": "Sporlesning",
+      "short_label": "Spor",
+      "description": "Lesning av bygninger, ruiner, gravminner, gatenavn, monumenter, materialer og landskap som konkrete historiske spor.",
+      "best_for_emne_kinds": [
+        "historisk",
+        "analytisk",
+        "stedlig"
+      ],
+      "data_forms": [
+        "bygg",
+        "ruin",
+        "gravminne",
+        "monument",
+        "gatenavn",
+        "materialdetalj",
+        "bygningsrest",
+        "kartspor"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "kilder_arkiv_spor",
+        "middelalder_kirke_kongemakt",
+        "minne_kulturarv_historiebruk",
+        "byhistorie_stedsendring"
+      ],
+      "progression_stage": "full_ladder",
+      "good_for_place_types": [
+        "ruinomrade",
+        "kirke",
+        "kloster",
+        "gravlund",
+        "festning",
+        "kulturmiljo",
+        "industrianlegg",
+        "minnested",
+        "gate",
+        "plass"
+      ],
+      "question_moves": [
+        "read visible trace as evidence",
+        "connect material trace to historical process",
+        "ask what survives and what disappeared",
+        "compare physical trace and later interpretation"
+      ],
+      "hook_affinities": [
+        "his_spor_materialitet",
+        "his_middelalder_by_kirke",
+        "his_historiebruk_minne",
+        "his_stedsendring_for_etter",
+        "his_periodisering_epoker"
+      ],
+      "recommended_oslo_cases": [
+        "Hovedøya kloster",
+        "Gamle Aker kirke",
+        "Vår Frelsers gravlund",
+        "Akershus festning"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "historiepensum_v4_5",
+      "canonical_file_role": "active",
+      "min_recommended_oslo_cases": 2,
+      "case_gate_required": true,
+      "method_use_note": "Brukes når stedet selv skal fungere som historisk kilde.",
+      "rotation_note": "Særlig egnet i sett 1–5, der stedlig forankring skal dominere før teori løftes inn."
+    },
+    {
+      "method_id": "met_periodisering",
+      "title": "Periodisering",
+      "short_label": "Periodisering",
+      "description": "Analyse av hvordan historien deles inn i epoker, faser, brudd og kontinuiteter, og hvordan slike inndelinger påvirker tolkningen av et sted eller en hendelse.",
+      "best_for_emne_kinds": [
+        "historisk",
+        "analytisk",
+        "teoretisk"
+      ],
+      "data_forms": [
+        "tidslinje",
+        "epoketabell",
+        "kart fra ulike perioder",
+        "før/etter-materiale",
+        "institusjonell tidslinje"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "historisk_tid_periodisering",
+        "middelalder_kirke_kongemakt",
+        "1814_statsdannelse",
+        "krig_okkupasjon_motstand"
+      ],
+      "progression_stage": "full_ladder",
+      "good_for_place_types": [
+        "kulturmiljo",
+        "institusjonsbygg",
+        "historical_site",
+        "ruinomrade",
+        "festning",
+        "gate",
+        "omrade"
+      ],
+      "question_moves": [
+        "connect date to broader epoch",
+        "separate event from long-term structure",
+        "ask what marks a historical break",
+        "compare period labels and lived continuity"
+      ],
+      "hook_affinities": [
+        "his_periodisering_epoker",
+        "his_brudd_kontinuitet",
+        "his_middelalder_by_kirke",
+        "his_grunnlov_rom_tekst"
+      ],
+      "recommended_oslo_cases": [
+        "Middelalderbyen Oslo",
+        "Eidsvollsbygningen",
+        "Gamle Aker kirke",
+        "Regjeringskvartalet"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "historiepensum_v4_5",
+      "canonical_file_role": "active",
+      "min_recommended_oslo_cases": 2,
+      "case_gate_required": true,
+      "method_use_note": "Brukes for å hindre at et sted bare blir ett årstall; skal vise hvilken historisk fase stedet tilhører og hvorfor.",
+      "rotation_note": "Brukes best sammen med før/etter-analyse eller sporlesning."
+    },
+    {
+      "method_id": "met_for_etter_historisk",
+      "title": "Historisk før/etter-analyse",
+      "short_label": "Før/etter",
+      "description": "Sammenligning av et sted, en institusjon eller et byrom før og etter et historisk brudd, en reform, en okkupasjon, en sanering, en transformasjon eller en katastrofe.",
+      "best_for_emne_kinds": [
+        "historisk",
+        "analytisk",
+        "stedlig"
+      ],
+      "data_forms": [
+        "historiske foto",
+        "kart",
+        "planer",
+        "avisoppslag",
+        "bygningshistorikk",
+        "før/etter-beskrivelse"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "historisk_tid_periodisering",
+        "byhistorie_stedsendring",
+        "katastrofer_brudd_ulykker",
+        "minne_kulturarv_historiebruk"
+      ],
+      "progression_stage": "full_ladder",
+      "good_for_place_types": [
+        "transformasjonsomrade",
+        "gate",
+        "plass",
+        "institusjonsbygg",
+        "industrianlegg",
+        "minnested",
+        "omrade"
+      ],
+      "question_moves": [
+        "identify what changed",
+        "identify what remained",
+        "connect physical change to social consequence",
+        "compare planned change and lived effect"
+      ],
+      "hook_affinities": [
+        "his_brudd_kontinuitet",
+        "his_stedsendring_for_etter",
+        "his_krise_gjenoppbygging",
+        "his_stat_institusjon"
+      ],
+      "recommended_oslo_cases": [
+        "Bjørvika",
+        "Aker Brygge",
+        "Regjeringskvartalet",
+        "Møllergata 19"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "historiepensum_v4_5",
+      "canonical_file_role": "active",
+      "min_recommended_oslo_cases": 2,
+      "case_gate_required": true,
+      "method_use_note": "Brukes når historisk endring må være synlig og stedfestet, ikke bare beskrevet abstrakt.",
+      "rotation_note": "Bør roteres med arkivlesning og sporlesning i byhistoriske quizer."
+    },
+    {
+      "method_id": "met_muntlig_historie",
+      "title": "Muntlig historie",
+      "short_label": "Muntlig historie",
+      "description": "Bruk av intervjuer, minner, vitnesbyrd og fortellinger for å forstå erfaringer som ikke alltid finnes i offisielle arkiver.",
+      "best_for_emne_kinds": [
+        "historisk",
+        "sosialhistorisk",
+        "minneanalytisk"
+      ],
+      "data_forms": [
+        "intervju",
+        "vitnesbyrd",
+        "minnefortelling",
+        "lydopptak",
+        "lokalhistorisk fortelling",
+        "familiehistorie"
+      ],
+      "course_level_fit": [
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "migrasjon_minoritet_tilhorighet",
+        "krig_okkupasjon_motstand",
+        "velferd_rett_hverdagsliv",
+        "minne_kulturarv_historiebruk"
+      ],
+      "progression_stage": "advanced",
+      "good_for_place_types": [
+        "bydel",
+        "minnested",
+        "arbeiderbydel",
+        "fangeleir",
+        "skole",
+        "institusjonsbygg",
+        "gate",
+        "moteplass"
+      ],
+      "question_moves": [
+        "surface lived experience",
+        "compare memory and official record",
+        "ask whose voice is missing",
+        "connect biography to place"
+      ],
+      "hook_affinities": [
+        "his_migrasjon_tilhorighet",
+        "his_okkupasjon_byrom_kontroll",
+        "his_velferd_institusjoner",
+        "his_historiebruk_minne"
+      ],
+      "recommended_oslo_cases": [
+        "Grønland",
+        "Tøyen",
+        "Grini fangeleir",
+        "Sagene skole"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "historiepensum_v4_5",
+      "canonical_file_role": "active",
+      "min_recommended_oslo_cases": 2,
+      "case_gate_required": true,
+      "method_use_note": "Brukes når levd erfaring eller minoritetsperspektiv trengs for å balansere institusjonelle kilder.",
+      "rotation_note": "Bør ikke brukes alene; kombiner med kildekritikk fordi minner også er tolkninger."
+    },
+    {
+      "method_id": "met_minneanalyse",
+      "title": "Minneanalyse",
+      "short_label": "Minneanalyse",
+      "description": "Analyse av hvordan et sted, en person eller en hendelse huskes offentlig: gjennom monumenter, ritualer, museer, gravlunder, markeringer, navn og jubileer.",
+      "best_for_emne_kinds": [
+        "historisk",
+        "analytisk",
+        "minneanalytisk"
+      ],
+      "data_forms": [
+        "monument",
+        "plakett",
+        "gravminne",
+        "museumsutstilling",
+        "seremoni",
+        "navngivning",
+        "jubileumstekst"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "minne_kulturarv_historiebruk",
+        "krig_okkupasjon_motstand",
+        "katastrofer_brudd_ulykker",
+        "makt_stat_institusjoner"
+      ],
+      "progression_stage": "full_ladder",
+      "good_for_place_types": [
+        "minnested",
+        "gravlund",
+        "monument",
+        "museum",
+        "symbolsted",
+        "plass",
+        "festning",
+        "historical_site"
+      ],
+      "question_moves": [
+        "read memorial as argument",
+        "ask who is remembered",
+        "ask who is absent",
+        "compare event and later memory"
+      ],
+      "hook_affinities": [
+        "his_historiebruk_minne",
+        "his_okkupasjon_byrom_kontroll",
+        "his_krise_gjenoppbygging",
+        "his_rett_kontroll"
+      ],
+      "recommended_oslo_cases": [
+        "Vår Frelsers gravlund",
+        "Villa Grande",
+        "Regjeringskvartalet",
+        "Akershus festning"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "historiepensum_v4_5",
+      "canonical_file_role": "active",
+      "min_recommended_oslo_cases": 2,
+      "case_gate_required": true,
+      "method_use_note": "Brukes når spørsmålet handler om ettertidens bruk av historien, ikke bare selve hendelsen.",
+      "rotation_note": "Egner seg særlig fra sett 4 og oppover, når fakta allerede er etablert."
+    },
+    {
+      "method_id": "met_symbol_og_minneanalyse",
+      "title": "Symbol- og minneanalyse",
+      "short_label": "Symbol/minne",
+      "description": "Analyse av hvordan bygg, monumenter, nasjonale rom og institusjoner bærer symbolsk makt og historisk mening.",
+      "best_for_emne_kinds": [
+        "historisk",
+        "analytisk",
+        "teoretisk"
+      ],
+      "data_forms": [
+        "symbolbygg",
+        "monument",
+        "nasjonal plass",
+        "seremonirom",
+        "gravlund",
+        "museum",
+        "navn"
+      ],
+      "course_level_fit": [
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "1814_statsdannelse",
+        "minne_kulturarv_historiebruk",
+        "makt_stat_institusjoner"
+      ],
+      "progression_stage": "advanced",
+      "good_for_place_types": [
+        "symbolsted",
+        "institusjonsbygg",
+        "plass",
+        "monument",
+        "gravlund",
+        "museum",
+        "slott",
+        "festning"
+      ],
+      "question_moves": [
+        "connect symbol to institution",
+        "ask how place legitimizes power",
+        "compare practical function and symbolic meaning",
+        "identify public memory encoded in design"
+      ],
+      "hook_affinities": [
+        "his_grunnlov_rom_tekst",
+        "his_historiebruk_minne",
+        "his_stat_institusjon"
+      ],
+      "recommended_oslo_cases": [
+        "Eidsvollsbygningen",
+        "Stortinget",
+        "Karl Johans gate",
+        "Vår Frelsers gravlund"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "historiepensum_v4_5",
+      "canonical_file_role": "active",
+      "min_recommended_oslo_cases": 2,
+      "case_gate_required": true,
+      "method_use_note": "Brukes når historien handler om representasjon, nasjon, institusjon og offentlig symbolsk orden.",
+      "rotation_note": "Må alltid ha konkret stedlig eller kildebasert anker, ellers blir analysen for abstrakt."
+    },
+    {
+      "method_id": "met_institusjonshistorisk_analyse",
+      "title": "Institusjonshistorisk analyse",
+      "short_label": "Institusjon",
+      "description": "Analyse av hvordan institusjoner oppstår, endrer funksjon, håndhever makt, skaper rettigheter eller organiserer hverdagsliv over tid.",
+      "best_for_emne_kinds": [
+        "historisk",
+        "institusjonell",
+        "analytisk"
+      ],
+      "data_forms": [
+        "institusjonshistorikk",
+        "lovtekst",
+        "reglement",
+        "årsrapport",
+        "bygg",
+        "saksdokument",
+        "organisasjonskart"
+      ],
+      "course_level_fit": [
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "makt_stat_institusjoner",
+        "velferd_rett_hverdagsliv",
+        "krig_okkupasjon_motstand",
+        "1814_statsdannelse"
+      ],
+      "progression_stage": "advanced",
+      "good_for_place_types": [
+        "institusjonsbygg",
+        "skole",
+        "hospital",
+        "fengsel",
+        "politistasjon",
+        "departementsomrade",
+        "rådhus",
+        "bibliotek"
+      ],
+      "question_moves": [
+        "connect institution to function",
+        "trace institutional change over time",
+        "ask who is regulated or served",
+        "compare formal purpose and lived consequence"
+      ],
+      "hook_affinities": [
+        "his_stat_institusjon",
+        "his_rett_kontroll",
+        "his_velferd_institusjoner",
+        "his_grunnlov_rom_tekst"
+      ],
+      "recommended_oslo_cases": [
+        "Møllergata 19",
+        "Sagene skole",
+        "Regjeringskvartalet",
+        "Gamle Deichman på Hammersborg"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "historiepensum_v4_5",
+      "canonical_file_role": "active",
+      "min_recommended_oslo_cases": 2,
+      "case_gate_required": true,
+      "method_use_note": "Brukes når et sted må forklares gjennom funksjonen til en institusjon og dens historiske endring.",
+      "rotation_note": "God i sett 3–8, spesielt når spørsmål skal løftes fra fakta til struktur."
+    },
+    {
+      "method_id": "met_komparativ_historie",
+      "title": "Komparativ historie",
+      "short_label": "Komparativ",
+      "description": "Sammenligning av steder, perioder, institusjoner, grupper eller hendelser for å vise likheter, forskjeller og forklarende mønstre.",
+      "best_for_emne_kinds": [
+        "historisk",
+        "analytisk",
+        "teoretisk"
+      ],
+      "data_forms": [
+        "to steder",
+        "to perioder",
+        "to institusjoner",
+        "to aktørperspektiver",
+        "to kildetyper"
+      ],
+      "course_level_fit": [
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "historisk_tid_periodisering",
+        "byhistorie_stedsendring",
+        "migrasjon_minoritet_tilhorighet",
+        "industri_arbeid_sosialhistorie"
+      ],
+      "progression_stage": "advanced",
+      "good_for_place_types": [
+        "omrade",
+        "gate",
+        "institusjonsbygg",
+        "minnested",
+        "industrianlegg",
+        "kirke",
+        "festning"
+      ],
+      "question_moves": [
+        "compare two cases",
+        "separate superficial similarity from structural similarity",
+        "test theory against two places",
+        "compare actor perspectives"
+      ],
+      "hook_affinities": [
+        "his_brudd_kontinuitet",
+        "his_stedsendring_for_etter",
+        "his_industriby_arbeiderliv",
+        "his_migrasjon_tilhorighet"
+      ],
+      "recommended_oslo_cases": [
+        "Gamle Aker kirke / Hovedøya kloster",
+        "Grini fangeleir / Møllergata 19",
+        "Bogstad gård / Eidsvollsbygningen",
+        "Akerselva / Aker Brygge"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "historiepensum_v4_5",
+      "canonical_file_role": "active",
+      "min_recommended_oslo_cases": 2,
+      "case_gate_required": true,
+      "method_use_note": "Brukes når generatoren skal unngå isolerte fakta og heller vise historiske mønstre gjennom kontrast.",
+      "rotation_note": "Bør brukes i senere sett etter at grunnfakta er etablert."
+    },
+    {
+      "method_id": "met_mikrohistorisk_analyse",
+      "title": "Mikrohistorisk analyse",
+      "short_label": "Mikrohistorie",
+      "description": "Analyse av små steder, enkeltpersoner, konkrete hendelser eller hverdagslige spor som inngang til større historiske strukturer.",
+      "best_for_emne_kinds": [
+        "historisk",
+        "sosialhistorisk",
+        "stedlig"
+      ],
+      "data_forms": [
+        "personfortelling",
+        "lokal hendelse",
+        "hverdagsspor",
+        "enkeltbygg",
+        "lokal avisnotis",
+        "rettsdokument",
+        "minnefortelling"
+      ],
+      "course_level_fit": [
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "industri_arbeid_sosialhistorie",
+        "velferd_rett_hverdagsliv",
+        "migrasjon_minoritet_tilhorighet",
+        "kilder_arkiv_spor"
+      ],
+      "progression_stage": "advanced",
+      "good_for_place_types": [
+        "gate",
+        "skole",
+        "arbeiderbydel",
+        "institusjonsbygg",
+        "moteplass",
+        "gravlund",
+        "historical_site"
+      ],
+      "question_moves": [
+        "use small trace to reveal large structure",
+        "connect biography to institution",
+        "ask how ordinary life shows historical change",
+        "turn local detail into analytical clue"
+      ],
+      "hook_affinities": [
+        "his_industriby_arbeiderliv",
+        "his_velferd_institusjoner",
+        "his_migrasjon_tilhorighet",
+        "his_spor_materialitet"
+      ],
+      "recommended_oslo_cases": [
+        "Sagene skole",
+        "Arbeidersamfunnets plass",
+        "Grønland",
+        "Vår Frelsers gravlund"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "historiepensum_v4_5",
+      "canonical_file_role": "active",
+      "min_recommended_oslo_cases": 2,
+      "case_gate_required": true,
+      "method_use_note": "Brukes når en person eller et lite sted skal åpne en større samfunnshistorisk sammenheng.",
+      "rotation_note": "God metode for people-kort, men må kobles til dokumentert sted og ekstern kilde."
+    },
+    {
+      "method_id": "met_begrepshistorie",
+      "title": "Begrepshistorie",
+      "short_label": "Begrepshistorie",
+      "description": "Analyse av hvordan historiske begreper endrer betydning over tid, og hvordan ord som folk, nasjon, arbeid, velferd, frihet eller sikkerhet brukes forskjellig i ulike epoker.",
+      "best_for_emne_kinds": [
+        "historisk",
+        "teoretisk",
+        "analytisk"
+      ],
+      "data_forms": [
+        "tale",
+        "lovtekst",
+        "avisdebatt",
+        "politisk program",
+        "plakat",
+        "institusjonstekst",
+        "museumsformidling"
+      ],
+      "course_level_fit": [
+        "avansert"
+      ],
+      "coverage_domains": [
+        "historisk_tid_periodisering",
+        "1814_statsdannelse",
+        "makt_stat_institusjoner",
+        "minne_kulturarv_historiebruk"
+      ],
+      "progression_stage": "advanced",
+      "good_for_place_types": [
+        "institusjonsbygg",
+        "symbolsted",
+        "plass",
+        "museum",
+        "arkiv",
+        "historical_site"
+      ],
+      "question_moves": [
+        "ask how a key word changed meaning",
+        "connect term to political context",
+        "compare old and new use of same word",
+        "read concept as historical evidence"
+      ],
+      "hook_affinities": [
+        "his_periodisering_epoker",
+        "his_grunnlov_rom_tekst",
+        "his_stat_institusjon",
+        "his_historiebruk_minne"
+      ],
+      "recommended_oslo_cases": [
+        "Eidsvollsbygningen",
+        "Stortinget",
+        "Regjeringskvartalet",
+        "Gamle Deichman på Hammersborg"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "historiepensum_v4_5",
+      "canonical_file_role": "active",
+      "min_recommended_oslo_cases": 2,
+      "case_gate_required": true,
+      "method_use_note": "Brukes i avanserte sett når historisk språk og begreper skal forklare endring i tenkning, stat eller offentlighet.",
+      "rotation_note": "Bør brukes sparsomt og bare med tydelig tekstlig kildegrunnlag."
+    }
+  ]
+}
