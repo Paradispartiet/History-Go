@@ -3,7 +3,7 @@
    Oppdatert: 2026-05-01
    ============================================================ */
 
-const SW_VERSION = "hg-sw-2026-05-01-v1.39.173";
+const SW_VERSION = "hg-sw-2026-05-01-v1.39.174";
 
 const CACHE_STATIC  = `hg-static-${SW_VERSION}`;
 const CACHE_RUNTIME = `hg-runtime-${SW_VERSION}`;
@@ -249,7 +249,16 @@ async function networkFirst(req, cacheName) {
     if (res && res.ok) cache.put(req, res.clone());
     return res;
   } catch {
-    return (await cache.match(req)) || new Response("", { status: 504 });
+    const cached = await cache.match(req);
+    if (cached) return cached;
+    const accept = req.headers.get("accept") || "";
+    if (accept.includes("application/json") || req.url.includes("/data/") || req.url.endsWith(".json")) {
+      return new Response(JSON.stringify({ error: "offline_or_network_error" }), {
+        status: 503,
+        headers: { "Content-Type": "application/json; charset=utf-8" }
+      });
+    }
+    return new Response("", { status: 504 });
   }
 }
 

@@ -102,45 +102,77 @@ async function loadCivicationData() {
 }
 
 (function () {
+  function showBootError(error) {
+    const message = error?.message || String(error || "Ukjent feil");
+    const host = document.body || document.documentElement;
+    if (!host) return;
+
+    let box = document.getElementById("civiBootError");
+    if (!box) {
+      box = document.createElement("div");
+      box.id = "civiBootError";
+      box.setAttribute("role", "alert");
+      box.style.cssText = [
+        "position:fixed",
+        "left:12px",
+        "right:12px",
+        "bottom:12px",
+        "padding:12px 14px",
+        "border-radius:10px",
+        "background:#2b0b12",
+        "border:1px solid #c54",
+        "color:#fff",
+        "font:14px/1.4 system-ui,-apple-system,sans-serif",
+        "z-index:9999"
+      ].join(";");
+      host.appendChild(box);
+    }
+
+    box.innerHTML = `<strong>Civication kunne ikke starte.</strong><br>${message}`;
+  }
 
   async function start() {
+    try {
+      console.log("Civication boot start");
 
-    console.log("Civication boot start");
+      await loadCivicationData();
+      await ensureCiviCareerRulesLoaded();
 
-    await loadCivicationData();
-    await ensureCiviCareerRulesLoaded();
-
-    window.HG_CiviEngine =
-  new CivicationEventEngine({
-    packBasePath: "data/Civication",
-    maxInbox: 1,
-    packMap: {
+      window.HG_CiviEngine =
+    new CivicationEventEngine({
+      packBasePath: "data/Civication",
+      maxInbox: 1,
+      packMap: {
       naering: "jobbmails/naeringsliv/naeringslivCivic.json",
       naeringsliv: "jobbmails/naeringsliv/naeringslivCivic.json",
-      vitenskap: "vitenskapCivic.json",
-      media: "mediaCivic.json",
-      by: "byCivic.json"
+      vitenskap: "jobbmails/vitenskapCivic.json",
+      media: "jobbmails/mediaCivic.json",
+      by: "jobbmails/byCivic.json"
+      }
+    });
+
+      await ensureCivicationRoleModelRuntimeLoaded();
+      await ensureCivicationCareerRoleResolverLoaded();
+      await ensureCivicationBlockedJobMessagesLoaded();
+
+      if (window.CivicationEconomyEngine?.tickWeekly) {
+        CivicationEconomyEngine.tickWeekly();
+      }
+
+      if (window.CivicationObligationEngine?.evaluate) {
+        CivicationObligationEngine.evaluate();
+      }
+
+      window.CivicationUI?.init?.();
+
+      await window.HG_CiviEngine?.onAppOpen?.();
+
+      window.dispatchEvent(new Event("civi:dataReady"));
+      window.dispatchEvent(new Event("civi:booted"));
+    } catch (error) {
+      console.error("[CivicationBoot] start feilet", error);
+      showBootError(error);
     }
-  });
-
-    await ensureCivicationRoleModelRuntimeLoaded();
-    await ensureCivicationCareerRoleResolverLoaded();
-    await ensureCivicationBlockedJobMessagesLoaded();
-
-    if (window.CivicationEconomyEngine?.tickWeekly) {
-      CivicationEconomyEngine.tickWeekly();
-    }
-
-    if (window.CivicationObligationEngine?.evaluate) {
-      CivicationObligationEngine.evaluate();
-    }
-
-    window.CivicationUI?.init?.();
-
-    window.HG_CiviEngine?.onAppOpen?.();
-
-    window.dispatchEvent(new Event("civi:dataReady"));
-    window.dispatchEvent(new Event("civi:booted"));
   }
 
   document.addEventListener("DOMContentLoaded", start);
