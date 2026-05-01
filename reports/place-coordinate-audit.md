@@ -1,16 +1,16 @@
 # Place coordinate audit (active data only)
 
-Generert: 2026-04-30T11:19:12.246Z
+Generert: 2026-05-01T09:13:44.334Z
 
 ## Aktiv hovedstatistikk
 - Aktive place-filer lest: **17**
-- Aktive steder lest: **215**
-- ok: **129**
-- needs_review: **70**
-- conflict: **0**
+- Aktive steder lest: **229**
+- ok: **138**
+- needs_review: **71**
+- conflict: **2**
 - invalid: **0**
 - duplicate: **16**
-- outside_expected_area: **0**
+- outside_expected_area: **2**
 
 ## Aktive filer (fra manifest)
 - data/places/oslo/places_oslo_natur_akerselvarute.json
@@ -32,7 +32,8 @@ Generert: 2026-04-30T11:19:12.246Z
 - data/places/places_vitenskap.json
 
 ## Aktive steder som må rettes
-- Ingen
+- data/places/places_historie.json | var_frelsers_gravlund | Vår Frelsers gravlund | conflict | duplicate_id, duplicate_id_different_coord, same_name_different_coord
+- data/places/places_litteratur.json | var_frelsers_gravlund | Vår Frelsers gravlund | conflict | duplicate_id, duplicate_id_different_coord, same_name_different_coord
 
 ## Flaggede aktive steder
 
@@ -63,19 +64,24 @@ Generert: 2026-04-30T11:19:12.246Z
 | data/places/places_by.json | voienvolden | Voienvolden | by | 59.9292 | 10.7514 | 130 | duplicate | duplicate_id |
 | data/places/places_historie.json | middelalder_oslo | Middelalderparken | historie | 59.9048 | 10.7605 | 180 | needs_review | area_or_park_needs_manual_review |
 | data/places/places_historie.json | damstredet_telthusbakken | Damstredet og Telthusbakken | historie | 59.9236 | 10.7474 | 190 | duplicate | duplicate_id |
+| data/places/places_historie.json | var_frelsers_gravlund | Vår Frelsers gravlund | historie | 59.9215 | 10.7435 | 220 | conflict | duplicate_id, duplicate_id_different_coord, same_name_different_coord |
+| data/places/places_historie.json | eidsvollsbygningen | Eidsvollsbygningen | historie | 60.3304 | 11.2617 | 250 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/places_historie.json | oscarsborg_festning | Oscarsborg festning | historie | 59.6759 | 10.6068 | 300 | outside_expected_area | outside_oslo_possible_intended |
+| data/places/places_historie.json | trefoldighetskirken | Trefoldighetskirken | historie | 59.9167 | 10.745 | 150 | needs_review | low_precision_coord |
 | data/places/places_kunst.json | vigelandsparken | Vigelandsparken | kunst | 59.9271 | 10.7008 | 260 | duplicate | area_or_park_needs_manual_review, duplicate_id |
 | data/places/places_kunst.json | ekebergparken | Ekebergparken skulpturpark | kunst | 59.8997 | 10.7753 | 200 | needs_review | area_or_park_needs_manual_review |
 | data/places/places_kunst.json | tjuvholmen | Tjuvholmen | kunst | 59.9066 | 10.7221 | 190 | duplicate | duplicate_id |
 | data/places/places_kunst.json | barcode | Barcode | kunst | 59.9101 | 10.758 | 240 | duplicate | low_precision_coord, duplicate_id |
 | data/places/places_litteratur.json | voienvolden | Vøienvolden gård | litteratur | 59.9292 | 10.7514 | 130 | duplicate | duplicate_id |
 | data/places/places_litteratur.json | deichman_bjorvika | Deichman Bjørvika | litteratur | 59.90782 | 10.75457 | 120 | duplicate | duplicate_id |
-| data/places/places_litteratur.json | litteraturhuset | Litteraturhuset | litteratur | 59.921 | 10.729 | 120 | needs_review | low_precision_coord |
+| data/places/places_litteratur.json | litteraturhuset | Litteraturhuset | litteratur | 59.92096 | 10.72936 | 30 | needs_review | suspicious_radius_low |
 | data/places/places_litteratur.json | ullevål_hageby | Ullevål Hageby | litteratur | 59.9369 | 10.7317 | 240 | duplicate | duplicate_id |
 | data/places/places_litteratur.json | alf_proysen_statue_nittedal | Alf Prøysen-statuen – Nittedal kulturhus | litteratur | 60.062 | 10.875 | 120 | needs_review | low_precision_coord |
+| data/places/places_litteratur.json | var_frelsers_gravlund | Vår Frelsers gravlund | litteratur | 59.9186 | 10.7483 | 200 | conflict | duplicate_id, duplicate_id_different_coord, same_name_different_coord |
 | data/places/places_litteratur.json | oscar_braaten_statuen | Oscar Braaten-statuen | litteratur | 59.938 | 10.76 | 150 | needs_review | low_precision_coord |
 | data/places/places_litteratur.json | alexander_kiellands_plass | Alexander Kiellands plass | litteratur | 59.9245 | 10.766 | 120 | needs_review | low_precision_coord |
-| data/places/places_musikk.json | det_norske_teatret | Det Norske Teatret | musikk | 59.913 | 10.7418 | 140 | needs_review | low_precision_coord |
-| data/places/places_naeringsliv.json | grunnlovsbygget_bankplassen | Den gamle Norges Bank | naeringsliv | 59.9107 | 10.742 | 120 | needs_review | low_precision_coord |
+| data/places/places_musikk.json | det_norske_teatret | Det Norske Teatret | musikk | 59.91376 | 10.74092 | 30 | needs_review | suspicious_radius_low |
+| data/places/places_naeringsliv.json | grunnlovsbygget_bankplassen | Den gamle Norges Bank | naeringsliv | 59.91086 | 10.74178 | 30 | needs_review | suspicious_radius_low |
 | data/places/places_naeringsliv.json | fornebu_teknologipark | Fornebu Teknologipark | naeringsliv | 59.8939 | 10.6262 | 400 | needs_review | area_or_park_needs_manual_review |
 | data/places/places_naeringsliv.json | ulven_handelspark | Ulven handelspark | naeringsliv | 59.9229 | 10.8215 | 200 | needs_review | area_or_park_needs_manual_review |
 | data/places/places_naeringsliv.json | akershus_energi | Akershus Energi Varme | naeringsliv | 59.947 | 10.8355 | 300 | needs_review | low_precision_coord |
@@ -87,7 +93,7 @@ Generert: 2026-04-30T11:19:12.246Z
 | data/places/places_naeringsliv.json | bryn_industriomrade | Bryn industriområde | naeringsliv | 59.9129 | 10.8251 | 250 | needs_review | area_or_park_needs_manual_review |
 | data/places/places_naeringsliv.json | akerselva_industri | Akerselva industriområde | naeringsliv | 59.9286 | 10.758 | 260 | needs_review | low_precision_coord, area_or_park_needs_manual_review |
 | data/places/places_natur.json | sognsvann | Sognsvann | natur | 59.9717 | 10.7331 | 200 | needs_review | area_or_park_needs_manual_review |
-| data/places/places_politikk.json | tinghuset | Oslo tinghus | politikk | 59.9167 | 10.741 | 140 | needs_review | low_precision_coord |
+| data/places/places_politikk.json | tinghuset | Oslo tinghus | politikk | 59.91653 | 10.74136 | 30 | needs_review | suspicious_radius_low |
 | data/places/places_subkultur.json | sofienbergparken_subkultur | Sofienbergparken | subkultur | 59.9229 | 10.763 | 180 | needs_review | low_precision_coord, area_or_park_needs_manual_review |
 | data/places/places_subkultur.json | torggata_blad | Torggata Blad | subkultur | 59.915 | 10.751 | 120 | needs_review | low_precision_coord |
 | data/places/places_vitenskap.json | universitetets_gamle_kjemi | Universitetets gamle kjemibygning | vitenskap | 59.911 | 10.7414 | 140 | needs_review | low_precision_coord |
