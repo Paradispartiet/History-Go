@@ -116,6 +116,42 @@ function bindPlaceDescriptionPopup() {
 bindPlaceDescriptionPopup();
 
 // ============================================================
+// PLACE POPUP: større og mer lesbar tekst i steds-popupen
+// ============================================================
+function ensurePlacePopupReadableCss() {
+  if (document.getElementById("hg-place-popup-readable-css")) return;
+
+  const style = document.createElement("style");
+  style.id = "hg-place-popup-readable-css";
+  style.textContent = `
+    .hg-popup.place-popup .hg-popup-name,
+    .hg-popup.place-popup .hg-popup-title{
+      font-size: 28px;
+      line-height: 1.15;
+    }
+
+    .hg-popup.place-popup .hg-popupdesc{
+      font-size: 20px;
+      line-height: 1.65;
+    }
+
+    .hg-popup.place-popup .hg-wiki{
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    .hg-popup.place-popup .hg-section h3{
+      font-size: 19px;
+      line-height: 1.25;
+    }
+  `;
+
+  document.head.appendChild(style);
+}
+
+ensurePlacePopupReadableCss();
+
+// ============================================================
 // PLACE POPUP: bruk popupDesc som fulltekst når den finnes
 // ============================================================
 (function patchPlacePopupDescriptionSource() {
