@@ -192,10 +192,30 @@
       <button type="button" class="hg-map-style-btn" data-mode="standard" aria-pressed="false">Kart</button>
       <button type="button" class="hg-map-style-btn" data-mode="satellite" aria-pressed="false">Naturtro</button>
     `;
-    wrap.addEventListener("click", (ev) => {
+    const onStyleTogglePress = (ev) => {
       const btn = ev.target?.closest?.(".hg-map-style-btn");
       if (!btn) return;
+      if (typeof ev.preventDefault === "function") ev.preventDefault();
+      if (typeof ev.stopPropagation === "function") ev.stopPropagation();
+
+      if (typeof console !== "undefined" && typeof console.debug === "function") {
+        const rect = btn.getBoundingClientRect();
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+        const topEl = document.elementFromPoint(cx, cy);
+        console.debug("[HGMap] map style hit test", {
+          mode: btn.dataset.mode,
+          rect: { left: rect.left, top: rect.top, width: rect.width, height: rect.height },
+          topElement: topEl?.className || topEl?.id || topEl?.tagName || null
+        });
+      }
+
       applyMapStyle(btn.dataset.mode);
+    };
+
+    wrap.addEventListener("click", onStyleTogglePress);
+    wrap.querySelectorAll(".hg-map-style-btn").forEach((btn) => {
+      btn.addEventListener("touchend", onStyleTogglePress, { passive: false });
     });
     controls.insertBefore(wrap, controls.firstChild);
     renderMapStyleToggle();
