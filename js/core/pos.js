@@ -163,15 +163,23 @@
     for (const place of places) {
       if (!place || place.hidden || place.stub) continue;
 
-      const placeLat = Number(place.lat);
-      const placeLon = Number(place.lon);
-      const radius = Number(place.r);
+      const getAnchors = (typeof window.getPlaceUnlockAnchors === "function")
+        ? window.getPlaceUnlockAnchors
+        : null;
+      const anchors = getAnchors
+        ? getAnchors(place)
+        : [{ lat: Number(place.lat), lon: Number(place.lon), r: Number(place.r) }];
 
-      if (![placeLat, placeLon, radius].every(Number.isFinite)) continue;
-      if (radius <= 0) continue;
-
-      const d = window.distMeters(userPos, { lat: placeLat, lon: placeLon });
-      if (!Number.isFinite(d) || d > radius) continue;
+      const canUnlock = anchors.some((anchor) => {
+        const aLat = Number(anchor?.lat);
+        const aLon = Number(anchor?.lon);
+        const aR = Number(anchor?.r);
+        if (![aLat, aLon, aR].every(Number.isFinite)) return false;
+        if (aR <= 0) return false;
+        const d = window.distMeters(userPos, { lat: aLat, lon: aLon });
+        return Number.isFinite(d) && d <= aR;
+      });
+      if (!canUnlock) continue;
 
       const wasVisited = !!window.visited?.[place.id];
       const isNewToday = markPlaceVisitedToday(place.id);
