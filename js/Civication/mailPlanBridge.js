@@ -3,6 +3,7 @@
 
   const PLAN_FILES = {
     naeringsliv: {
+      ekspeditor: "data/Civication/mailPlans/naeringsliv/ekspeditor_plan.json",
       arbeider: "data/Civication/mailPlans/naeringsliv/arbeider_plan.json",
       fagarbeider: "data/Civication/mailPlans/naeringsliv/fagarbeider_plan.json",
       mellomleder: "data/Civication/mailPlans/naeringsliv/mellomleder_plan.json",
@@ -12,6 +13,17 @@
 
   const FAMILY_FILES = {
     naeringsliv: {
+      ekspeditor: {
+        job: "data/Civication/mailFamilies/naeringsliv/job/ekspeditor_job.json",
+        brand: [
+          "data/Civication/mailFamilies/naeringsliv/brand/ekspeditor_norli.json",
+          "data/Civication/mailFamilies/naeringsliv/brand/ekspeditor_narvesen.json"
+        ],
+        story: "data/Civication/mailFamilies/naeringsliv/story/ekspeditor_story.json",
+        event: "data/Civication/mailFamilies/naeringsliv/event/ekspeditor_event.json",
+        people: "data/Civication/mailFamilies/naeringsliv/people/ekspeditor_people.json",
+        conflict: "data/Civication/mailFamilies/naeringsliv/conflict/ekspeditor_conflict.json"
+      },
       arbeider: {
         job: [
           "data/Civication/mailFamilies/naeringsliv/job/arbeider_intro_v2.json",
@@ -54,16 +66,42 @@
   };
 
   const ROLE_SCOPE_BY_ROLE_ID = {
+    naer_ekspeditor: "ekspeditor",
     naer_arbeider: "arbeider",
     naer_fagarbeider: "fagarbeider",
-    naer_mellomleder: "mellomleder"
+    naer_mellomleder: "mellomleder",
+    naer_formann: "formann"
   };
 
   const ROLE_SCOPE_BY_TITLE = {
+    ekspeditor: "ekspeditor",
+    butikkmedarbeider: "ekspeditor",
+    ekspeditor_butikkmedarbeider: "ekspeditor",
     arbeider: "arbeider",
+    lager_og_driftsmedarbeider: "arbeider",
     fagarbeider: "fagarbeider",
-    mellomleder: "mellomleder",
-    formann: "formann"
+    skiftleder: "formann",
+    formann: "formann",
+    arbeidsleder: "formann",
+    formann_arbeidsleder: "formann",
+    okonomi_og_administrasjonsmedarbeider: "mellomleder",
+    controller: "mellomleder",
+    avdelingsleder: "mellomleder",
+    driftsleder: "mellomleder",
+    finansanalytiker: "mellomleder",
+    produksjonsleder: "mellomleder",
+    butikksjef_enhetsleder: "mellomleder",
+    okonomi_og_finanssjef: "mellomleder",
+    daglig_leder: "mellomleder",
+    finansdirektor: "mellomleder",
+    grunder: "mellomleder",
+    bedriftseier: "mellomleder",
+    konserndirektor: "mellomleder",
+    konsernsjef: "mellomleder",
+    investor: "mellomleder",
+    kapitalforvalter: "mellomleder",
+    industribygger: "mellomleder",
+    industrieier: "mellomleder"
   };
 
   const JSON_CACHE = {};
@@ -107,6 +145,12 @@
   }
 
   function resolveRoleScope(active) {
+    const externalResolver = window.CivicationCareerRoleResolver?.resolveCareerRoleScope;
+    if (typeof externalResolver === "function") {
+      const resolved = normStr(externalResolver(active));
+      if (resolved && resolved !== "unknown") return resolved;
+    }
+
     const roleId = normStr(active?.role_id);
     if (ROLE_SCOPE_BY_ROLE_ID[roleId]) return ROLE_SCOPE_BY_ROLE_ID[roleId];
 
