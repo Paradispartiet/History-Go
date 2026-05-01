@@ -1,0 +1,296 @@
+{
+  "schema": "civication_mail_family_catalog_v2",
+  "category": "naeringsliv",
+  "role_scope": "ekspeditor",
+  "mail_type": "job",
+  "description": "Intro-versjon for Ekspeditør / butikkmedarbeider. Bruker konkrete avsendere, butikkgulv, kasse/pris, kundemøte og Re:-tråder via triggers_on_choice + threads.",
+  "families": [
+    {
+      "id": "kasse_og_pris",
+      "description": "Første dager i butikk. Spilleren lærer at lavtlønnet førstelinjearbeid også handler om presisjon, rolleforståelse og tillit under tidspress.",
+      "mails": [
+        {
+          "id": "ekspeditor_intro_v2_001",
+          "mail_type": "job",
+          "mail_family": "kasse_og_pris",
+          "role_scope": "ekspeditor",
+          "phase": "intro",
+          "priority": 70,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "sara_butikksjef",
+          "place_id": "grensen_kjopesenter",
+          "subject": "Første kassevakt i ettermiddagsrushet",
+          "purpose": "Etablere ekspeditørrollen som konkret førstelinjearbeid der små avvik i pris, kø og forklaring avgjør om kunden stoler på butikken.",
+          "stakes": "Spilleren må velge mellom korrekt prisarbeid og rask flyt. Begge valg påvirker hvordan butikksjefen leser dem fra starten.",
+          "situation": [
+            "Sara sender en kort beskjed før vakten.",
+            "«Du tar kasse to fra 15:00. Hvis hyllepris og kassepris ikke stemmer, stopper du opp og sjekker — ikke bare skyv kunden videre. Det er ofte der tilliten ryker.»",
+            "Dette er første gang du står alene i ettermiddagsrushet."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Sjekk hyllepris og forklar kunden hva du gjør.",
+              "reply": "Jeg sjekker hyllepris og forklarer kunden hva jeg gjør.",
+              "tags": ["kvalitet", "kunde", "legitimacy"],
+              "effect": 1,
+              "feedback": "Du senker tempoet litt, men bygger troverdighet i køen.",
+              "triggers_on_choice": "sara_thread_kassepris_a"
+            },
+            {
+              "id": "B",
+              "label": "Slå inn registrert pris for å holde køen i gang.",
+              "reply": "Jeg holder køen i gang og bruker registrert pris.",
+              "tags": ["tempo", "snarvei", "risk"],
+              "effect": -1,
+              "feedback": "Køen går raskere, men avviket blir liggende som en feil noen andre må forklare.",
+              "triggers_on_choice": "sara_thread_kassepris_b"
+            }
+          ]
+        },
+        {
+          "id": "ekspeditor_intro_v2_002",
+          "mail_type": "job",
+          "mail_family": "kasse_og_pris",
+          "role_scope": "ekspeditor",
+          "phase": "intro",
+          "priority": 66,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "jonas_skiftleder",
+          "place_id": "grensen_kjopesenter",
+          "subject": "Terminalen pleier å fryse rundt 17",
+          "purpose": "Vise at ekspeditørarbeid handler om drift og beredskap, ikke bare høflighet i kassa.",
+          "stakes": "Spilleren må velge mellom reserveprosedyre og improvisert køhåndtering når teknikken svikter.",
+          "situation": [
+            "Jonas sender deg en melding før rushet begynner.",
+            "«Bare så du vet det: kortterminalen på kasse to kan fryse når køen er lang. Reservekassa står klar, men du må si fra tidlig. Ikke vent til folk begynner å sukke.»",
+            "Det er et lite teknisk problem, men det kan bli hele kundebildet av vakten din."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Varsle Jonas tidlig og bytt til reservekasse ved første tegn.",
+              "reply": "Jeg varsler deg tidlig og går over til reservekasse hvis den fryser.",
+              "tags": ["process", "drift", "kunde"],
+              "effect": 1,
+              "feedback": "Du behandler teknikk som drift, ikke som personlig panikk.",
+              "triggers_on_choice": "jonas_thread_terminal_a"
+            },
+            {
+              "id": "B",
+              "label": "Prøv å løse terminalen alene mens kundene venter.",
+              "reply": "Jeg prøver å løse terminalen selv først.",
+              "tags": ["visibility", "risk", "snarvei"],
+              "effect": -1,
+              "feedback": "Du virker handlekraftig i starten, men køen gjør feilen større for hvert minutt.",
+              "triggers_on_choice": "jonas_thread_terminal_b"
+            }
+          ]
+        },
+        {
+          "id": "ekspeditor_intro_v2_003",
+          "mail_type": "job",
+          "mail_family": "kasse_og_pris",
+          "role_scope": "ekspeditor",
+          "phase": "intro",
+          "priority": 64,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "amir_kollega",
+          "place_id": "grensen_kjopesenter",
+          "subject": "Lite tips om kampanjehylla",
+          "purpose": "Etablere kollegial læring på butikkgulvet og vise at informasjonsflyt mellom ansatte avgjør både salg og feilrate.",
+          "stakes": "Spilleren må velge mellom å ta imot uformell kunnskap eller stå alene og late som de har oversikt.",
+          "situation": [
+            "Amir skriver fra lagergangen.",
+            "«Kampanjehylla ble flyttet i går, men skiltene henger fortsatt litt feil. Kundene kommer til å spørre deg. Si fra hvis du vil at jeg viser deg systemet før dørene åpner.»",
+            "Det er en enkel invitasjon, men også en test på om du tåler å ikke kunne alt."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Be Amir vise deg kampanjehylla før åpning.",
+              "reply": "Ja, vis meg kampanjehylla før åpning.",
+              "tags": ["kollega", "learning", "kvalitet"],
+              "effect": 1,
+              "feedback": "Du gjør deg mindre alene og reduserer feil før de oppstår.",
+              "triggers_on_choice": "amir_thread_kampanje_a"
+            },
+            {
+              "id": "B",
+              "label": "Svar at du finner ut av det selv.",
+              "reply": "Jeg finner ut av det selv.",
+              "tags": ["autonomy", "risk", "visibility"],
+              "effect": 0,
+              "feedback": "Du beholder fasaden, men mister en enkel snarvei til faktisk oversikt.",
+              "triggers_on_choice": "amir_thread_kampanje_b"
+            }
+          ]
+        }
+      ],
+      "threads": [
+        {
+          "id": "sara_thread_kassepris_a",
+          "from": "sara_butikksjef",
+          "place_id": "grensen_kjopesenter",
+          "subject": "Re: Første kassevakt i ettermiddagsrushet",
+          "phase": "intro",
+          "priority": 72,
+          "cooldown": 0,
+          "purpose": "Bekrefte at nøyaktighet i lavstatusarbeid gir tidlig tillit fra leder.",
+          "stakes": "Spilleren får en liten tillitsgevinst, men også forventning om å holde standarden videre.",
+          "situation": [
+            "Sara svarer etter vakten.",
+            "«Bra. Kunden kom faktisk tilbake og sa at du forklarte rolig. Det er sånn vi unngår at små feil blir store saker.»",
+            "Hun har sett mer enn du trodde."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "«Skjønner. Jeg fortsetter sånn.»",
+              "reply": "Skjønner. Jeg fortsetter sånn.",
+              "tags": ["legitimacy", "kunde"],
+              "effect": 0,
+              "feedback": "Standarden er satt."
+            }
+          ]
+        },
+        {
+          "id": "sara_thread_kassepris_b",
+          "from": "sara_butikksjef",
+          "place_id": "grensen_kjopesenter",
+          "subject": "Re: Første kassevakt i ettermiddagsrushet",
+          "phase": "intro",
+          "priority": 72,
+          "cooldown": 0,
+          "purpose": "Korrigere spilleren uten dramatikk og vise at tempo uten sporbarhet skaper merarbeid.",
+          "stakes": "Spilleren mister ikke rollen, men lederen registrerer at de må følges tettere opp.",
+          "situation": [
+            "Sara svarer kort etter vakten.",
+            "«Neste gang stopper du og sjekker. Kunden ringte inn, og nå må vi rydde i både hylle og kassesystem. Kø er ikke grunn til å slippe avvik videre.»",
+            "Det er ikke en katastrofe. Det er en markering."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "«Forstått. Jeg sjekker neste gang.»",
+              "reply": "Forstått. Jeg sjekker neste gang.",
+              "tags": ["process", "humility"],
+              "effect": 0,
+              "feedback": "Du tar korreksjonen uten å lage mer støy."
+            }
+          ]
+        },
+        {
+          "id": "jonas_thread_terminal_a",
+          "from": "jonas_skiftleder",
+          "place_id": "grensen_kjopesenter",
+          "subject": "Re: Terminalen pleier å fryse rundt 17",
+          "phase": "intro",
+          "priority": 68,
+          "cooldown": 0,
+          "purpose": "Bekrefte at god førstelinjedrift handler om å varsle før problemene blir synlige for alle.",
+          "stakes": "Spilleren får status som en som kan inngå i drift, ikke bare utføre ordre.",
+          "situation": [
+            "Jonas svarer etter stengetid.",
+            "«Bra varslet. Vi fikk byttet før køen vokste. Det er sånne småting som gjør at gulvet holder.»",
+            "Han skriver ikke mye, men det er første gang han omtaler deg som del av gulvet."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "«Bra. Da vet jeg rutinen.»",
+              "reply": "Bra. Da vet jeg rutinen.",
+              "tags": ["drift", "process"],
+              "effect": 0,
+              "feedback": "Rutinen sitter litt bedre."
+            }
+          ]
+        },
+        {
+          "id": "jonas_thread_terminal_b",
+          "from": "jonas_skiftleder",
+          "place_id": "grensen_kjopesenter",
+          "subject": "Re: Terminalen pleier å fryse rundt 17",
+          "phase": "intro",
+          "priority": 68,
+          "cooldown": 0,
+          "purpose": "Vise at synlig handlekraft uten rutine kan skape mer press for resten av skiftet.",
+          "stakes": "Spilleren lærer at ikke alt skal løses alene i en driftsrolle.",
+          "situation": [
+            "Jonas svarer uten pynt.",
+            "«Neste gang roper du tidligere. Terminalfeil er ikke eksamen i å være flink alene. Det er drift, og drift må deles.»",
+            "Det svir litt fordi han har rett."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "«Skjønner. Jeg varsler tidligere.»",
+              "reply": "Skjønner. Jeg varsler tidligere.",
+              "tags": ["humility", "drift"],
+              "effect": 0,
+              "feedback": "Du får en tydeligere plass i systemet."
+            }
+          ]
+        },
+        {
+          "id": "amir_thread_kampanje_a",
+          "from": "amir_kollega",
+          "place_id": "grensen_kjopesenter",
+          "subject": "Re: Lite tips om kampanjehylla",
+          "phase": "intro",
+          "priority": 66,
+          "cooldown": 0,
+          "purpose": "Etablere kollegaen som lavterskel læringskanal og gjøre butikkgulvet sosialt lesbart.",
+          "stakes": "Spilleren får en alliert i hverdagsdriften og lærer at kompetanse ofte overføres muntlig.",
+          "situation": [
+            "Amir svarer med én gang.",
+            "«Kom før åpning. Det tar fem minutter. Skiltet ser logisk ut bare hvis du vet hva de prøvde å gjøre.»",
+            "Han gir deg ikke bare informasjon. Han gir deg et blikk for hvordan feil oppstår."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "«Jeg kommer.»",
+              "reply": "Jeg kommer.",
+              "tags": ["kollega", "learning"],
+              "effect": 0,
+              "feedback": "Du får en inngang til den uformelle kunnskapen på gulvet."
+            }
+          ]
+        },
+        {
+          "id": "amir_thread_kampanje_b",
+          "from": "amir_kollega",
+          "place_id": "grensen_kjopesenter",
+          "subject": "Re: Lite tips om kampanjehylla",
+          "phase": "intro",
+          "priority": 66,
+          "cooldown": 0,
+          "purpose": "Vise at selvstendighet uten lokalkunnskap kan isolere spilleren unødvendig tidlig.",
+          "stakes": "Spilleren mister ikke Amir, men åpningen blir mindre varm neste gang.",
+          "situation": [
+            "Amir svarer etter en stund.",
+            "«Greit. Bare ikke bli overrasket når tre kunder spør om det samme. Rop hvis det stopper seg.»",
+            "Han lar døren stå på gløtt, men han går ikke inn gjennom den for deg."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "«Jeg roper hvis jeg står fast.»",
+              "reply": "Jeg roper hvis jeg står fast.",
+              "tags": ["autonomy", "kollega"],
+              "effect": 0,
+              "feedback": "Du beholder litt stolthet og litt avstand."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
