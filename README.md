@@ -560,3 +560,22 @@ Status, funksjonslag og videre plan
 	•	Ingen “magiske” unlocks
 
 
+
+---
+
+## Kartkonfigurasjon (MapTiler Naturtro)
+
+Naturtro-kart bruker `window.HG_MAPTILER_KEY`.
+
+- Eksempelfil: `js/config.example.js`
+- Runtime-fil som lastes av appen: `js/config.js` (trygg standard uten ekte nøkkel)
+
+For lokal bruk:
+1. Sett nøkkel i `js/config.js` (eller injiser `window.HG_MAPTILER_KEY` før app-skript lastes).
+2. Bruk format:
+   `window.HG_MAPTILER_KEY = "DIN_MAPTILER_KEY";`
+
+Viktig:
+- Ikke commit privat nøkkel.
+- For offentlig repo/GitHub Pages må nøkkelen være en offentlig browser-key med domene-restriksjoner.
+- Hvis nøkkel mangler, beholder appen standardkart og logger tydelig `console.warn`.

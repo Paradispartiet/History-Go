@@ -5,13 +5,10 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
   <title>History Go</title>
 
+  <script src="js/config.js"></script>
+
   <script>
   window.__lastRejection = null;
-  // Optional MapTiler key for Naturtro (satellite) map mode.
-  // Set in local/dev environment only; do not commit a real key.
-  // window.HG_MAPTILER_KEY = "<MAPTILER_KEY_HERE>";
-
-
   window.addEventListener("unhandledrejection", (e) => {
     window.__lastRejection = e;
 
