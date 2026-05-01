@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-04-30T11:19:12.246Z",
+  "generatedAt": "2026-05-01T09:13:44.334Z",
   "activePlaceFilesRead": 17,
-  "activePlacesRead": 215,
-  "ok": 129,
-  "needs_review": 70,
-  "conflict": 0,
+  "activePlacesRead": 229,
+  "ok": 138,
+  "needs_review": 71,
+  "conflict": 2,
   "invalid": 0,
   "duplicate": 16,
-  "outside_expected_area": 0,
+  "outside_expected_area": 2,
   "activeFilesDeclaredInManifest": [
     "data/places/oslo/places_oslo_natur_akerselvarute.json",
     "data/places/oslo/places_oslo_natur_alnaelva_rute.json",
@@ -76,7 +76,46 @@
     "duplicateFiles": []
   },
   "parseErrors": [],
-  "highPriorityFindings": [],
+  "highPriorityFindings": [
+    {
+      "file": "data/places/places_historie.json",
+      "id": "var_frelsers_gravlund",
+      "name": "Vår Frelsers gravlund",
+      "category": "historie",
+      "lat": 59.9215,
+      "lon": 10.7435,
+      "r": 220,
+      "image": "bilder/places/var_frelsers_gravlund.PNG",
+      "cardImage": "bilder/kort/places/var_frelsers_gravlund.PNG",
+      "frontImage": null,
+      "status": "conflict",
+      "flags": [
+        "duplicate_id",
+        "duplicate_id_different_coord",
+        "same_name_different_coord"
+      ],
+      "reason": "duplicate_id, duplicate_id_different_coord, same_name_different_coord"
+    },
+    {
+      "file": "data/places/places_litteratur.json",
+      "id": "var_frelsers_gravlund",
+      "name": "Vår Frelsers gravlund",
+      "category": "litteratur",
+      "lat": 59.9186,
+      "lon": 10.7483,
+      "r": 200,
+      "image": "bilder/places/var_frelsers_gravlund.JPG",
+      "cardImage": "bilder/kort/places/var_frelsers_gravlund.PNG",
+      "frontImage": null,
+      "status": "conflict",
+      "flags": [
+        "duplicate_id",
+        "duplicate_id_different_coord",
+        "same_name_different_coord"
+      ],
+      "reason": "duplicate_id, duplicate_id_different_coord, same_name_different_coord"
+    }
+  ],
   "coordMetadataSuggestion": {
     "fields": [
       "coordType",
@@ -528,6 +567,76 @@
       "reason": "duplicate_id"
     },
     {
+      "file": "data/places/places_historie.json",
+      "id": "var_frelsers_gravlund",
+      "name": "Vår Frelsers gravlund",
+      "category": "historie",
+      "lat": 59.9215,
+      "lon": 10.7435,
+      "r": 220,
+      "image": "bilder/places/var_frelsers_gravlund.PNG",
+      "cardImage": "bilder/kort/places/var_frelsers_gravlund.PNG",
+      "frontImage": null,
+      "status": "conflict",
+      "flags": [
+        "duplicate_id",
+        "duplicate_id_different_coord",
+        "same_name_different_coord"
+      ],
+      "reason": "duplicate_id, duplicate_id_different_coord, same_name_different_coord"
+    },
+    {
+      "file": "data/places/places_historie.json",
+      "id": "eidsvollsbygningen",
+      "name": "Eidsvollsbygningen",
+      "category": "historie",
+      "lat": 60.3304,
+      "lon": 11.2617,
+      "r": 250,
+      "image": "bilder/places/eidsvollsbygningen.PNG",
+      "cardImage": "bilder/kort/places/eidsvollsbygningen.PNG",
+      "frontImage": null,
+      "status": "outside_expected_area",
+      "flags": [
+        "outside_oslo_possible_intended"
+      ],
+      "reason": "outside_oslo_possible_intended"
+    },
+    {
+      "file": "data/places/places_historie.json",
+      "id": "oscarsborg_festning",
+      "name": "Oscarsborg festning",
+      "category": "historie",
+      "lat": 59.6759,
+      "lon": 10.6068,
+      "r": 300,
+      "image": "bilder/places/oscarsborg_festning.PNG",
+      "cardImage": "bilder/kort/places/oscarsborg_festning.PNG",
+      "frontImage": null,
+      "status": "outside_expected_area",
+      "flags": [
+        "outside_oslo_possible_intended"
+      ],
+      "reason": "outside_oslo_possible_intended"
+    },
+    {
+      "file": "data/places/places_historie.json",
+      "id": "trefoldighetskirken",
+      "name": "Trefoldighetskirken",
+      "category": "historie",
+      "lat": 59.9167,
+      "lon": 10.745,
+      "r": 150,
+      "image": "bilder/places/trefoldighetskirken.PNG",
+      "cardImage": "bilder/kort/places/trefoldighetskirken.PNG",
+      "frontImage": null,
+      "status": "needs_review",
+      "flags": [
+        "low_precision_coord"
+      ],
+      "reason": "low_precision_coord"
+    },
+    {
       "file": "data/places/places_kunst.json",
       "id": "vigelandsparken",
       "name": "Vigelandsparken",
@@ -636,17 +745,17 @@
       "id": "litteraturhuset",
       "name": "Litteraturhuset",
       "category": "litteratur",
-      "lat": 59.921,
-      "lon": 10.729,
-      "r": 120,
+      "lat": 59.92096,
+      "lon": 10.72936,
+      "r": 30,
       "image": "bilder/places/Litteraturhuset.PNG",
       "cardImage": "bilder/kort/places/Litteraturhuset.PNG",
       "frontImage": null,
       "status": "needs_review",
       "flags": [
-        "low_precision_coord"
+        "suspicious_radius_low"
       ],
-      "reason": "low_precision_coord"
+      "reason": "suspicious_radius_low"
     },
     {
       "file": "data/places/places_litteratur.json",
@@ -681,6 +790,25 @@
         "low_precision_coord"
       ],
       "reason": "low_precision_coord"
+    },
+    {
+      "file": "data/places/places_litteratur.json",
+      "id": "var_frelsers_gravlund",
+      "name": "Vår Frelsers gravlund",
+      "category": "litteratur",
+      "lat": 59.9186,
+      "lon": 10.7483,
+      "r": 200,
+      "image": "bilder/places/var_frelsers_gravlund.JPG",
+      "cardImage": "bilder/kort/places/var_frelsers_gravlund.PNG",
+      "frontImage": null,
+      "status": "conflict",
+      "flags": [
+        "duplicate_id",
+        "duplicate_id_different_coord",
+        "same_name_different_coord"
+      ],
+      "reason": "duplicate_id, duplicate_id_different_coord, same_name_different_coord"
     },
     {
       "file": "data/places/places_litteratur.json",
@@ -721,34 +849,34 @@
       "id": "det_norske_teatret",
       "name": "Det Norske Teatret",
       "category": "musikk",
-      "lat": 59.913,
-      "lon": 10.7418,
-      "r": 140,
+      "lat": 59.91376,
+      "lon": 10.74092,
+      "r": 30,
       "image": null,
       "cardImage": null,
       "frontImage": null,
       "status": "needs_review",
       "flags": [
-        "low_precision_coord"
+        "suspicious_radius_low"
       ],
-      "reason": "low_precision_coord"
+      "reason": "suspicious_radius_low"
     },
     {
       "file": "data/places/places_naeringsliv.json",
       "id": "grunnlovsbygget_bankplassen",
       "name": "Den gamle Norges Bank",
       "category": "naeringsliv",
-      "lat": 59.9107,
-      "lon": 10.742,
-      "r": 120,
+      "lat": 59.91086,
+      "lon": 10.74178,
+      "r": 30,
       "image": null,
       "cardImage": null,
       "frontImage": null,
       "status": "needs_review",
       "flags": [
-        "low_precision_coord"
+        "suspicious_radius_low"
       ],
-      "reason": "low_precision_coord"
+      "reason": "suspicious_radius_low"
     },
     {
       "file": "data/places/places_naeringsliv.json",
@@ -944,17 +1072,17 @@
       "id": "tinghuset",
       "name": "Oslo tinghus",
       "category": "politikk",
-      "lat": 59.9167,
-      "lon": 10.741,
-      "r": 140,
+      "lat": 59.91653,
+      "lon": 10.74136,
+      "r": 30,
       "image": null,
       "cardImage": null,
       "frontImage": null,
       "status": "needs_review",
       "flags": [
-        "low_precision_coord"
+        "suspicious_radius_low"
       ],
-      "reason": "low_precision_coord"
+      "reason": "suspicious_radius_low"
     },
     {
       "file": "data/places/places_subkultur.json",
