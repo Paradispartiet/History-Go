@@ -98,7 +98,8 @@ for (const pf of parseable) {
     if (row.r == null) row.flags.push('missing_radius');
 
     const anchors = Array.isArray(p?.anchors) ? p.anchors : null;
-    const hasCoordExplanation = typeof p?.coordNote === 'string' || typeof p?.coordStatus === 'string';
+    const coordStatus = typeof p?.coordStatus === 'string' ? p.coordStatus : null;
+    const hasCoordExplanation = typeof p?.coordNote === 'string' || !!coordStatus;
     if (anchors) {
       if (anchors.length === 0) row.flags.push('invalid_anchor');
       const seenAnchorIds = new Set();
@@ -115,7 +116,7 @@ for (const pf of parseable) {
     if (isNum(row.lat) && isNum(row.lon)) {
       const latPrec = String(row.lat).split('.')[1]?.length || 0;
       const lonPrec = String(row.lon).split('.')[1]?.length || 0;
-      if (Math.min(latPrec, lonPrec) < 4) row.flags.push('low_precision_coord');
+      if (Math.min(latPrec, lonPrec) < 4 && !hasCoordExplanation) row.flags.push('low_precision_coord');
       const inOslo = row.lat >= osloBox.minLat && row.lat <= osloBox.maxLat && row.lon >= osloBox.minLon && row.lon <= osloBox.maxLon;
       const osloish = /oslo|akershus|by|historie|kunst|musikk|sport|politikk|natur/i.test(`${row.file} ${row.category ?? ''} ${row.name ?? ''}`);
       if (!inOslo && osloish) row.flags.push('outside_oslo_possible_intended');
@@ -125,9 +126,8 @@ for (const pf of parseable) {
     const linearPattern = /(gate|vei|veien|rute|route|ring\s*\d|elv|elva|trikk)/;
     if (linearPattern.test(text)) {
       if (!anchors || anchors.length === 0) row.flags.push('needs_multiple_anchors');
-      else if (isNum(row.r) && row.r <= 300) row.flags.push('street_or_route_as_single_point');
     }
-    if (/(park|parken|skog|marka|område|fjord|elva|vann)/.test(text) && isNum(row.r) && row.r < 500) row.flags.push('area_or_park_needs_manual_review');
+    if (/(park|parken|skog|marka|område|fjord|elva|vann)/.test(text) && isNum(row.r) && row.r < 500 && !hasCoordExplanation && !(anchors && anchors.length > 0)) row.flags.push('area_or_park_needs_manual_review');
     if (isNum(row.r) && row.r > 250 && /(statue|statuen|kirke|museum|bygning|minnesmerke|opera|teater)/.test(text)) row.flags.push('area_or_park_needs_manual_review');
 
     if (row.id) {
