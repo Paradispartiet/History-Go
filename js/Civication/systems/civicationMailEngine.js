@@ -59,29 +59,52 @@
     return next;
   }
 
+  function getRawMailStore() {
+    return localStorage.getItem(LS_MAIL);
+  }
+
   function getStore() {
-    const parsed = safeParse(localStorage.getItem(LS_MAIL), null);
+    const parsed = safeParse(getRawMailStore(), null);
     if (parsed && Array.isArray(parsed.items)) return normalizeStoreShape(parsed);
     return normalizeStoreShape({ version: 1, items: [] });
   }
 
-  function saveStore(store) {
+  function saveStore(store, options) {
+    const opts = options && typeof options === "object" ? options : {};
     ensureMeta(store);
     localStorage.setItem(LS_MAIL, JSON.stringify(store));
     const legacy = (store.items || [])
       .filter((m) => !m.deleted && !m.archived)
       .map((m) => ({ status: m.status, enqueued_at: m.createdAt, event: m.event }));
     setLegacyInbox(legacy.slice(0, MAX_INBOX));
-    try { window.dispatchEvent(new Event("civi:inboxChanged")); } catch {}
+    if (!opts.silent) {
+      try { window.dispatchEvent(new Event("civi:inboxChanged")); } catch {}
+    }
   }
 
   function migrateOldInboxIfNeeded() {
-    const store = getStore();
-    if (Array.isArray(store.items) && store.items.length) return store;
+    const rawMailStore = getRawMailStore();
+    const parsedMailStore = safeParse(rawMailStore, null);
+
+    // If the new mail store already exists, even with an empty items array,
+    // this is not a migration case. Returning here prevents read-only calls
+    // from repeatedly saving an empty store and dispatching civi:inboxChanged.
+    if (parsedMailStore && typeof parsedMailStore === "object" && Array.isArray(parsedMailStore.items)) {
+      return normalizeStoreShape(parsedMailStore);
+    }
+
     const legacy = getLegacyInbox();
+
+    // No new store and no legacy inbox means there is nothing to migrate.
+    // Return an empty normalized store without writing or dispatching events.
+    // This avoids a render → getInbox → saveStore → inboxChanged → render loop.
+    if (!legacy.length) {
+      return normalizeStoreShape({ version: 1, items: [] });
+    }
+
     const items = legacy.map(normalizeEnvelope);
     const next = normalizeStoreShape({ version: 1, items });
-    saveStore(next);
+    saveStore(next, { silent: true });
     return next;
   }
 
