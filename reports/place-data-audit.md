@@ -1,28 +1,28 @@
 # Place Data Audit
 
-Generert: 2026-04-30T19:35:42.901Z
+Generert: 2026-05-01T21:42:43.197Z
 
 ## Totalsammendrag
 
 - Place-filer i manifest: **17**
-- Totalt antall places: **215**
-- Steder med manglende obligatoriske felt: **35**
-- Steder med manglende popupDesc: **36**
-- Steder med manglende image: **122**
-- Steder med manglende cardImage: **121**
-- Steder med manglende emne_ids: **36**
-- Steder med manglende quiz_profile: **36**
+- Totalt antall places: **221**
+- Steder med manglende obligatoriske felt: **26**
+- Steder med manglende popupDesc: **27**
+- Steder med manglende image: **119**
+- Steder med manglende cardImage: **118**
+- Steder med manglende emne_ids: **27**
+- Steder med manglende quiz_profile: **27**
 - Steder som bruker imageCard-felt: **0**
 - Steder med stub:true eller hidden:true: **0**
-- Antall ødelagte asset paths: **117**
+- Antall ødelagte asset paths: **144**
 - Antall place-referanser til ikke-eksisterende id-er: **0**
 
 ## Funn per fil
 
 ### data/places/places_by.json
 
-- Antall places: 55
-- Places med funn: 55
+- Antall places: 54
+- Places med funn: 54
 
 - torggata (Torggata): ødelagte paths: image=bilder/places/torggata_IMG.JPG; cardImage=bilder/kort/places/by/torggata_CardImage.PNG
 - bispelokket (Bispelokket / Trafikkmaskinen): ødelagte paths: image=bilder/places/bispelokket_IMG.JPG; cardImage=bilder/kort/places/by/bispelokket_CardImage.PNG
@@ -74,37 +74,48 @@ Generert: 2026-04-30T19:35:42.901Z
 - operahuset (Operahuset): ødelagte paths: image=bilder/places/operahuset.PNG; cardImage=bilder/kort/places/operahuset.PNG
 - deichman_bjorvika (Deichman Bjørvika): ødelagte paths: image=bilder/places/deichman_bjorvika.PNG; cardImage=bilder/kort/places/deichman_bjorvika.PNG
 - barcode (Barcode): ødelagte paths: image=bilder/places/barcode.PNG; cardImage=bilder/kort/places/barcode.PNG
-- damstredet_telthusbakken (Damstredet og Telthusbakken): ødelagte paths: image=bilder/places/damstredet_telthusbakken.PNG
 - vigelandsparken (Vigelandsparken): ødelagte paths: image=bilder/places/vigelandsparken.PNG; cardImage=bilder/kort/places/vigelandsparken.PNG
-- voienvolden (Voienvolden): ødelagte paths: image=bilder/places/voienvolden.PNG
+- voienvolden (Vøienvolden): ødelagte paths: image=bilder/places/voienvolden.PNG
 - carl_berner_plass (Carl Berners plass): ødelagte paths: image=bilder/places/carl_berner_plass.PNG; cardImage=bilder/kort/places/carl_berner_plass.PNG
 - schous_plass (Schous plass): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
 
 ### data/places/places_historie.json
 
-- Antall places: 10
-- Places med funn: 3
+- Antall places: 24
+- Places med funn: 18
 
+- damstredet_telthusbakken (Damstredet og Telthusbakken): ødelagte paths: image=bilder/places/damstredet_telthusbakken.PNG
 - sofienberg_kirke (Sofienberg kirke): ødelagte paths: cardImage=bilder/kort/places/sofienberg_kirke.PNG
 - gamlebyen_gravlund (Gamlebyen gravlund): mangler image | mangler cardImage
 - akerhus_slott (Akerhus Slott): mangler image | mangler cardImage
+- gamle_aker_kirke (Gamle Aker kirke): ødelagte paths: image=bilder/places/gamle_aker_kirke.PNG; cardImage=bilder/kort/places/gamle_aker_kirke.PNG
+- var_frelsers_gravlund (Vår Frelsers gravlund): ødelagte paths: image=bilder/places/var_frelsers_gravlund.PNG; cardImage=bilder/kort/places/var_frelsers_gravlund.PNG
+- hovedoya_kloster (Hovedøya kloster): ødelagte paths: image=bilder/places/hovedoya_kloster.PNG; cardImage=bilder/kort/places/hovedoya_kloster.PNG
+- eidsvollsbygningen (Eidsvollsbygningen): ødelagte paths: image=bilder/places/eidsvollsbygningen.PNG; cardImage=bilder/kort/places/eidsvollsbygningen.PNG
+- oscarsborg_festning (Oscarsborg festning): ødelagte paths: image=bilder/places/oscarsborg_festning.PNG; cardImage=bilder/kort/places/oscarsborg_festning.PNG
+- grini_fangeleir (Grini fangeleir): ødelagte paths: image=bilder/places/grini_fangeleir.PNG; cardImage=bilder/kort/places/grini_fangeleir.PNG
+- villa_grande (Villa Grande): ødelagte paths: image=bilder/places/villa_grande.PNG; cardImage=bilder/kort/places/villa_grande.PNG
+- bogstad_gard (Bogstad gård): ødelagte paths: image=bilder/places/bogstad_gard.PNG; cardImage=bilder/kort/places/bogstad_gard.PNG
+- mollergata_19 (Møllergata 19): ødelagte paths: image=bilder/places/mollergata_19.PNG; cardImage=bilder/kort/places/mollergata_19.PNG
+- arbeidersamfunnets_plass (Arbeidersamfunnets plass): ødelagte paths: image=bilder/places/arbeidersamfunnets_plass.PNG; cardImage=bilder/kort/places/arbeidersamfunnets_plass.PNG
+- toyen_hovedgard (Tøyen hovedgård): ødelagte paths: image=bilder/places/toyen_hovedgard.PNG; cardImage=bilder/kort/places/toyen_hovedgard.PNG
+- sagene_skole (Sagene skole): ødelagte paths: image=bilder/places/sagene_skole.PNG; cardImage=bilder/kort/places/sagene_skole.PNG
+- trefoldighetskirken (Trefoldighetskirken): ødelagte paths: image=bilder/places/trefoldighetskirken.PNG; cardImage=bilder/kort/places/trefoldighetskirken.PNG
+- gamle_deichman_hammersborg (Gamle Deichman på Hammersborg): ødelagte paths: image=bilder/places/gamle_deichman_hammersborg.PNG; cardImage=bilder/kort/places/gamle_deichman_hammersborg.PNG
 
 ### data/places/places_kunst.json
 
-- Antall places: 7
-- Places med funn: 6
+- Antall places: 4
+- Places med funn: 3
 
 - munch_museet (MUNCH): mangler image | mangler cardImage
 - astrup_fearnley (Astrup Fearnley Museet): mangler image | mangler cardImage
-- vigelandsparken (Vigelandsparken): mangler image | mangler cardImage
 - ekebergparken (Ekebergparken skulpturpark): mangler image | mangler cardImage
-- tjuvholmen (Tjuvholmen): mangler image | mangler cardImage
-- barcode (Barcode): mangler image | mangler cardImage
 
 ### data/places/places_litteratur.json
 
-- Antall places: 24
-- Places med funn: 13
+- Antall places: 20
+- Places med funn: 12
 
 - camilla_collett_statue (Camilla Collett-statuen): ødelagte paths: cardImage=bilder/kort/places/camilla_collett_statue_kort.PNG
 - henrik_wergeland_statue (Henrik Wergeland-statuen): ødelagte paths: image=bilder/places/henrik_wergeland_statue.PNG; cardImage=bilder/kort/places/henrik_wergeland_statue_kort.PNG
@@ -116,7 +127,6 @@ Generert: 2026-04-30T19:35:42.901Z
 - alf_proysen_statue_nittedal (Alf Prøysen-statuen – Nittedal kulturhus): ødelagte paths: cardImage=bilder/kort/places/alf_proysen_statue_nittedal.PNG
 - proysenhuset_rudshogda (Prøysenhuset – Rudshøgda): ødelagte paths: cardImage=bilder/kort/places/proysenhuset_rudshogda.PNG
 - inger_hagerups_plass (Inger Hagerups plass): ødelagte paths: cardImage=bilder/kort/places/inger_hagerups_plass.PNG
-- var_frelsers_gravlund (Vår Frelsers gravlund): ødelagte paths: cardImage=bilder/kort/places/var_frelsers_gravlund.PNG
 - oscar_braaten_statuen (Oscar Braaten-statuen): ødelagte paths: cardImage=bilder/kort/places/oscar_braaten_statuen.PNG
 - alexander_kiellands_plass (Alexander Kiellands plass): ødelagte paths: image=bilder/places/aleksander_kiellands_plass.WEBPr
 
@@ -250,15 +260,15 @@ Generert: 2026-04-30T19:35:42.901Z
 - Antall places: 9
 - Places med funn: 9
 
-- ostensjovannet (Østensjøvannet): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- hovedoya (Hovedøya): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- gressholmen (Gressholmen): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- bygdoy_natur (Bygdøy natur- og kulturmiljø): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- alnaelva (Alnaelva): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- ljanselva (Ljanselva): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- maerradalen (Mærradalen): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- maridalsvannet (Maridalsvannet): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- noklevann (Nøklevann): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- ostensjovannet (Østensjøvannet): mangler image | mangler cardImage
+- hovedoya (Hovedøya): mangler image | mangler cardImage
+- gressholmen (Gressholmen): mangler image | mangler cardImage
+- bygdoy_natur (Bygdøy natur- og kulturmiljø): mangler image | mangler cardImage
+- alnaelva (Alnaelva): mangler image | mangler cardImage
+- ljanselva (Ljanselva): mangler image | mangler cardImage
+- maerradalen (Mærradalen): mangler image | mangler cardImage
+- maridalsvannet (Maridalsvannet): mangler image | mangler cardImage
+- noklevann (Nøklevann): mangler image | mangler cardImage
 
 ### data/places/oslo/places_oslo_natur_alnaelva_rute.json
 
@@ -312,13 +322,6 @@ Generert: 2026-04-30T19:35:42.901Z
 
 ## Duplikate id-er
 
-- ullevål_hageby: data/places/places_by.json (Ullevål Hageby) ; data/places/places_litteratur.json (Ullevål Hageby)
-- tjuvholmen: data/places/places_by.json (Tjuvholmen) ; data/places/places_kunst.json (Tjuvholmen)
-- deichman_bjorvika: data/places/places_by.json (Deichman Bjørvika) ; data/places/places_litteratur.json (Deichman Bjørvika)
-- barcode: data/places/places_by.json (Barcode) ; data/places/places_kunst.json (Barcode)
-- damstredet_telthusbakken: data/places/places_by.json (Damstredet og Telthusbakken) ; data/places/places_historie.json (Damstredet og Telthusbakken)
-- vigelandsparken: data/places/places_by.json (Vigelandsparken) ; data/places/places_kunst.json (Vigelandsparken)
-- voienvolden: data/places/places_by.json (Voienvolden) ; data/places/places_litteratur.json (Vøienvolden gård)
 - frysja_industriomrade: data/places/places_naeringsliv.json (Frysja industriområde) ; data/places/oslo/places_oslo_natur_akerselvarute.json (Frysja industriområde)
 
 ## Ødelagte asset paths
@@ -415,13 +418,41 @@ Generert: 2026-04-30T19:35:42.901Z
 - data/places/places_by.json :: deichman_bjorvika :: cardImage -> bilder/kort/places/deichman_bjorvika.PNG
 - data/places/places_by.json :: barcode :: image -> bilder/places/barcode.PNG
 - data/places/places_by.json :: barcode :: cardImage -> bilder/kort/places/barcode.PNG
-- data/places/places_by.json :: damstredet_telthusbakken :: image -> bilder/places/damstredet_telthusbakken.PNG
 - data/places/places_by.json :: vigelandsparken :: image -> bilder/places/vigelandsparken.PNG
 - data/places/places_by.json :: vigelandsparken :: cardImage -> bilder/kort/places/vigelandsparken.PNG
 - data/places/places_by.json :: voienvolden :: image -> bilder/places/voienvolden.PNG
 - data/places/places_by.json :: carl_berner_plass :: image -> bilder/places/carl_berner_plass.PNG
 - data/places/places_by.json :: carl_berner_plass :: cardImage -> bilder/kort/places/carl_berner_plass.PNG
+- data/places/places_historie.json :: damstredet_telthusbakken :: image -> bilder/places/damstredet_telthusbakken.PNG
 - data/places/places_historie.json :: sofienberg_kirke :: cardImage -> bilder/kort/places/sofienberg_kirke.PNG
+- data/places/places_historie.json :: gamle_aker_kirke :: image -> bilder/places/gamle_aker_kirke.PNG
+- data/places/places_historie.json :: gamle_aker_kirke :: cardImage -> bilder/kort/places/gamle_aker_kirke.PNG
+- data/places/places_historie.json :: var_frelsers_gravlund :: image -> bilder/places/var_frelsers_gravlund.PNG
+- data/places/places_historie.json :: var_frelsers_gravlund :: cardImage -> bilder/kort/places/var_frelsers_gravlund.PNG
+- data/places/places_historie.json :: hovedoya_kloster :: image -> bilder/places/hovedoya_kloster.PNG
+- data/places/places_historie.json :: hovedoya_kloster :: cardImage -> bilder/kort/places/hovedoya_kloster.PNG
+- data/places/places_historie.json :: eidsvollsbygningen :: image -> bilder/places/eidsvollsbygningen.PNG
+- data/places/places_historie.json :: eidsvollsbygningen :: cardImage -> bilder/kort/places/eidsvollsbygningen.PNG
+- data/places/places_historie.json :: oscarsborg_festning :: image -> bilder/places/oscarsborg_festning.PNG
+- data/places/places_historie.json :: oscarsborg_festning :: cardImage -> bilder/kort/places/oscarsborg_festning.PNG
+- data/places/places_historie.json :: grini_fangeleir :: image -> bilder/places/grini_fangeleir.PNG
+- data/places/places_historie.json :: grini_fangeleir :: cardImage -> bilder/kort/places/grini_fangeleir.PNG
+- data/places/places_historie.json :: villa_grande :: image -> bilder/places/villa_grande.PNG
+- data/places/places_historie.json :: villa_grande :: cardImage -> bilder/kort/places/villa_grande.PNG
+- data/places/places_historie.json :: bogstad_gard :: image -> bilder/places/bogstad_gard.PNG
+- data/places/places_historie.json :: bogstad_gard :: cardImage -> bilder/kort/places/bogstad_gard.PNG
+- data/places/places_historie.json :: mollergata_19 :: image -> bilder/places/mollergata_19.PNG
+- data/places/places_historie.json :: mollergata_19 :: cardImage -> bilder/kort/places/mollergata_19.PNG
+- data/places/places_historie.json :: arbeidersamfunnets_plass :: image -> bilder/places/arbeidersamfunnets_plass.PNG
+- data/places/places_historie.json :: arbeidersamfunnets_plass :: cardImage -> bilder/kort/places/arbeidersamfunnets_plass.PNG
+- data/places/places_historie.json :: toyen_hovedgard :: image -> bilder/places/toyen_hovedgard.PNG
+- data/places/places_historie.json :: toyen_hovedgard :: cardImage -> bilder/kort/places/toyen_hovedgard.PNG
+- data/places/places_historie.json :: sagene_skole :: image -> bilder/places/sagene_skole.PNG
+- data/places/places_historie.json :: sagene_skole :: cardImage -> bilder/kort/places/sagene_skole.PNG
+- data/places/places_historie.json :: trefoldighetskirken :: image -> bilder/places/trefoldighetskirken.PNG
+- data/places/places_historie.json :: trefoldighetskirken :: cardImage -> bilder/kort/places/trefoldighetskirken.PNG
+- data/places/places_historie.json :: gamle_deichman_hammersborg :: image -> bilder/places/gamle_deichman_hammersborg.PNG
+- data/places/places_historie.json :: gamle_deichman_hammersborg :: cardImage -> bilder/kort/places/gamle_deichman_hammersborg.PNG
 - data/places/places_litteratur.json :: camilla_collett_statue :: cardImage -> bilder/kort/places/camilla_collett_statue_kort.PNG
 - data/places/places_litteratur.json :: henrik_wergeland_statue :: image -> bilder/places/henrik_wergeland_statue.PNG
 - data/places/places_litteratur.json :: henrik_wergeland_statue :: cardImage -> bilder/kort/places/henrik_wergeland_statue_kort.PNG
@@ -432,7 +463,6 @@ Generert: 2026-04-30T19:35:42.901Z
 - data/places/places_litteratur.json :: alf_proysen_statue_nittedal :: cardImage -> bilder/kort/places/alf_proysen_statue_nittedal.PNG
 - data/places/places_litteratur.json :: proysenhuset_rudshogda :: cardImage -> bilder/kort/places/proysenhuset_rudshogda.PNG
 - data/places/places_litteratur.json :: inger_hagerups_plass :: cardImage -> bilder/kort/places/inger_hagerups_plass.PNG
-- data/places/places_litteratur.json :: var_frelsers_gravlund :: cardImage -> bilder/kort/places/var_frelsers_gravlund.PNG
 - data/places/places_litteratur.json :: oscar_braaten_statuen :: cardImage -> bilder/kort/places/oscar_braaten_statuen.PNG
 - data/places/places_litteratur.json :: alexander_kiellands_plass :: image -> bilder/places/aleksander_kiellands_plass.WEBPr
 - data/places/places_naeringsliv.json :: tollbukaia :: image -> bilder/kort/places/Tollboden.JPG
