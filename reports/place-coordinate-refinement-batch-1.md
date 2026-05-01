@@ -7,21 +7,23 @@ Denne batchen gjør bare sikre kildedata-endringer. Brede steder som gater, elve
 
 ## Endrede filer
 - `data/places/places_politikk.json`
+- `data/places/places_musikk.json`
 
 ## Rettede steder
 
 | id | navn | fil | gammel lat/lon/r | ny lat/lon/r | coordType | status |
 |---|---|---|---|---|---|---|
 | `tinghuset` | Oslo tinghus | `data/places/places_politikk.json` | `59.9167, 10.741, 140` | `59.915634, 10.741291, 100` | `building_center` | verified |
+| `det_norske_teatret` | Det Norske Teatret | `data/places/places_musikk.json` | `59.913, 10.7418, 140` | `59.915, 10.738611, 100` | `building_center` | verified |
 
 ## Metadata lagt til
-For `tinghuset` er følgende metadata lagt til:
+For rettede byggpunkter er følgende metadata lagt til:
 
 ```json
 "coordType": "building_center",
 "coordStatus": "verified",
-"coordSource": "manual_map_check",
-"coordPrecisionM": 20,
+"coordSource": "manual_map_check" / "wikidata_manual_check",
+"coordPrecisionM": 20-25,
 "coordVerifiedAt": "2026-04-30"
 ```
 
