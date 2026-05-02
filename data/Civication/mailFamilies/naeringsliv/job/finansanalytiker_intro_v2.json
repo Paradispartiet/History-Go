@@ -1,0 +1,101 @@
+{
+  "schema": "civication_mail_family_catalog_v2",
+  "category": "naeringsliv",
+  "role_scope": "finansanalytiker",
+  "mail_type": "job",
+  "description": "Intro for Finansanalytiker: datagrunnlag, modellversjon og første investeringsnotat.",
+  "families": [
+    {
+      "id": "finansanalytiker_intro_v2",
+      "description": "Første dager som finansanalytiker. Spilleren lærer at en modell er en strukturert påstand om fremtidig verdi.",
+      "mails": [
+        {
+          "id": "finansanalytiker_intro_v2_001",
+          "mail_type": "job",
+          "mail_family": "finansanalytiker_intro_v2",
+          "role_scope": "finansanalytiker",
+          "phase": "intro",
+          "priority": 72,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "elin_portefoljeansvarlig",
+          "subject": "Første utkast til investeringsnotat",
+          "summary": "Du må levere et kort notat basert på modell og usikre antakelser.",
+          "situation": [
+            "Elin sender deg modellen for et mulig investeringscase.",
+            "Omsetningsveksten ser sterk ut, men datagrunnlaget er blandet mellom rapporterte tall og ledelsens egne estimater.",
+            "Hun vil ha et første notat før møtet i morgen."
+          ],
+          "task_domain": "investment_memo",
+          "competency": "antakelsesdisciplin",
+          "pressure": "kort_frist",
+          "choice_axis": "datakritikk_vs_rask_anbefaling",
+          "consequence_axis": "integritet_vs_tempo",
+          "narrative_arc": "forste_modell",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Skill tydelig mellom rapporterte tall og ledelsens estimater.",
+              "reply": "Jeg skiller rapporterte tall og estimater tydelig i notatet.",
+              "effect": 1,
+              "tags": ["integritet", "kvalitet", "analyse"],
+              "feedback": "Du gjør notatet mindre glatt, men mer etterprøvbart."
+            },
+            {
+              "id": "B",
+              "label": "Bruk estimatene direkte for å få en tydelig anbefaling.",
+              "reply": "Jeg bruker estimatene direkte for å få frem hovedcaset.",
+              "effect": -1,
+              "tags": ["tempo", "risk", "visibility"],
+              "feedback": "Caset blir tydeligere, men usikkerheten flyttes inn i modellen uten merking."
+            }
+          ]
+        },
+        {
+          "id": "finansanalytiker_intro_v2_002",
+          "mail_type": "job",
+          "mail_family": "finansanalytiker_intro_v2",
+          "role_scope": "finansanalytiker",
+          "phase": "intro",
+          "priority": 68,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "theo_senioranalytiker",
+          "subject": "Modellversjon før vi sender den videre",
+          "summary": "Senioranalytiker ber deg rydde modellversjon og sensitivitet før deling.",
+          "situation": [
+            "Theo skriver at modellen din regner riktig, men at versjonene er rotete.",
+            "Sensitivitetsfanen bruker gamle marginforutsetninger, mens hovedfanen er oppdatert.",
+            "Hvis modellen sendes nå, kan mottakeren trekke feil konklusjon."
+          ],
+          "task_domain": "financial_modeling",
+          "competency": "modellkontroll",
+          "pressure": "deling_med_ledelse",
+          "choice_axis": "versjonskontroll_vs_framdrift",
+          "consequence_axis": "presisjon_vs_tempo",
+          "narrative_arc": "modellen_som_argument",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Rydd versjonene og merk sensitiviteten før sending.",
+              "reply": "Jeg rydder versjonene og merker sensitiviteten før vi sender.",
+              "effect": 1,
+              "tags": ["process", "kvalitet", "analyse"],
+              "feedback": "Du gjør modellen til et dokument andre faktisk kan stole på."
+            },
+            {
+              "id": "B",
+              "label": "Send modellen med en kort advarsel i mailen.",
+              "reply": "Jeg sender modellen nå og legger inn en kort advarsel i mailen.",
+              "effect": -1,
+              "tags": ["tempo", "risk"],
+              "feedback": "Advarselen ligger utenfor modellen. Den kan forsvinne når filen deles videre."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
