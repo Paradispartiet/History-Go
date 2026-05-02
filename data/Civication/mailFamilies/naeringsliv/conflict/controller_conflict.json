@@ -7,30 +7,52 @@
   "families": [
     {
       "id": "avvik_og_forklaring",
+      "description": "Konflikter der controllerens analyse møter driftens erfaring og organisasjonens behov for ansvarsplassering.",
       "mails": [
         {
           "id": "controller_conflict_001",
           "mail_type": "conflict",
           "mail_family": "avvik_og_forklaring",
           "role_scope": "controller",
-          "subject": "Driften mener avviket ditt er feil",
-          "summary": "Driftsleder bestrider forklaringen i månedsrapporten.",
-          "situation": ["Driftsleder skriver at rapporten din får avdelingen til å se uansvarlig ut, og ber deg endre teksten før ledermøtet."],
+          "subject": "Driften mener avviket ditt gjør dem skyldige",
+          "summary": "Driftsleder bestrider forklaringen i månedsrapporten og mener økonomi gjør et komplekst problem til en enkel skyldmarkør.",
+          "purpose": "Simulere controllerens konfliktrolle: tall må være presise uten å bli sosialt blinde.",
+          "stakes": "Hvis du myker opp rapporten for mye, mister den verdi; hvis du skriver den for hardt, kan den ødelegge tilliten du trenger for senere forklaringer.",
+          "situation": [
+            "Driftsleder skriver før ledermøtet: «Dette får oss til å se ut som vi ikke har kontroll. Du skriver ingenting om leverandørforsinkelsen eller at kampanjen ble bestemt over hodet på oss.»",
+            "Du leser rapportlinjen på nytt. Den er teknisk korrekt, men den er tynn: «Varekostnad over budsjett grunnet avvik i butikkdrift.»",
+            "I organisasjoner blir tall ofte brukt som sosial snarvei. De kan åpne en undersøkelse, men de kan også lukke den ved å peke på noen.",
+            "Nå må du avgjøre om rapporten skal presiseres med motdokumentasjon, eller tones ned for å bevare samarbeidsklimaet."
+          ],
           "task_domain": "variance_explanation",
           "competency": "konflikthandtering",
           "pressure": "lederpress",
           "choice_axis": "presisjon_vs_relationsfred",
           "consequence_axis": "tillit_vs_kontroll",
           "narrative_arc": "tall_som_makt",
+          "learning_focus": ["avviksforklaring", "ansvarsplassering", "organisasjonssosiologi", "tillit"],
           "choices": [
-            { "id": "A", "label": "Be om konkret motdokumentasjon og juster bare hvis den holder.", "effect": 1, "tags": ["process", "integritet"], "feedback": "Du lar rapporten være åpen for fakta, ikke for press." },
-            { "id": "B", "label": "Myk opp teksten for å bevare samarbeidsklimaet.", "effect": -1, "tags": ["avoidance", "risk"], "feedback": "Konflikten dempes, men rapporten mister presisjon." }
+            {
+              "id": "A",
+              "label": "Be om konkret motdokumentasjon og juster rapporten bare der fakta krever det.",
+              "effect": 1,
+              "tags": ["process", "integritet", "drift"],
+              "feedback": "Du lar rapporten være åpen for virkelighet, ikke for press. Driften får forklare, men ikke omskrive bort avviket."
+            },
+            {
+              "id": "B",
+              "label": "Myk opp teksten for å bevare samarbeidsklimaet før møtet.",
+              "effect": -1,
+              "tags": ["avoidance", "risk"],
+              "feedback": "Konflikten dempes, men rapporten mister presisjon. Neste gang blir det lettere å forhandle med tallene enn å forklare dem."
+            }
           ]
         }
       ]
     },
     {
       "id": "etikk_og_presisjon",
+      "description": "Etiske konflikter der periodisering, resultatpress og intern kontroll møter ønsket om et penere bilde.",
       "mails": [
         {
           "id": "controller_conflict_002",
@@ -38,17 +60,37 @@
           "mail_family": "etikk_og_presisjon",
           "role_scope": "controller",
           "subject": "Kan vi vente med å synliggjøre tapet?",
-          "summary": "En leder ber deg skyve et tap til neste periode.",
-          "situation": ["En leder skriver at tapet er reelt, men at det vil skape uro hvis det vises denne måneden."],
+          "summary": "En leder ber deg skyve et reelt tap til neste periode for å unngå uro før kvartalsslutt.",
+          "purpose": "Vise forskjellen mellom legitim periodisering og resultatpynt, og la spilleren kjenne presset i gråsonen.",
+          "stakes": "Feil periodisering kan gjøre tallene mer behagelige nå, men svekke tillit, revisjonsspor og beslutningskvalitet senere.",
+          "situation": [
+            "En leder skriver: «Tapet er reelt, men hvis vi synliggjør det denne måneden, skaper det unødvendig uro. Kan vi vente til neste periode?»",
+            "Spørsmålet er formulert som praktisk timing, ikke som manipulasjon. Det er slik mange kontrollproblemer faktisk starter: ikke som svindel, men som bekvemmelighet.",
+            "Du vet at regnskap tåler periodisering når den har substans. Det tåler ikke at resultatet pyntes fordi måneden ser bedre ut uten sannheten.",
+            "Controllerrollen er ikke å være moralpoliti. Den er å holde grensen der organisasjonen begynner å lyve for seg selv."
+          ],
           "task_domain": "financial_ethics",
           "competency": "integritet",
           "pressure": "resultatpress",
           "choice_axis": "periodisering_vs_resultatpynt",
           "consequence_axis": "tillit_vs_manipulasjon",
           "narrative_arc": "kontrollens_grense",
+          "learning_focus": ["periodisering", "resultatstyring", "internkontroll", "etikk"],
           "choices": [
-            { "id": "A", "label": "Krev regnskapsmessig begrunnelse før noe flyttes.", "effect": 1, "tags": ["integritet", "kvalitet"], "feedback": "Du skiller mellom lovlig periodisering og kosmetisk flytting." },
-            { "id": "B", "label": "Flytt posten midlertidig og ta diskusjonen senere.", "effect": -1, "tags": ["risk", "snarvei"], "feedback": "Du kjøper ro nå, men gjør neste periode tyngre." }
+            {
+              "id": "A",
+              "label": "Krev regnskapsmessig begrunnelse før noe flyttes.",
+              "effect": 1,
+              "tags": ["integritet", "kvalitet", "kontroll"],
+              "feedback": "Du skiller mellom lovlig periodisering og kosmetisk flytting. Det gjør deg mindre bekvem, men mer nødvendig."
+            },
+            {
+              "id": "B",
+              "label": "Flytt posten midlertidig og ta diskusjonen senere.",
+              "effect": -1,
+              "tags": ["risk", "snarvei"],
+              "feedback": "Du kjøper ro nå, men gjør neste periode tyngre. Tallene husker det organisasjonen prøver å utsette."
+            }
           ]
         }
       ]
