@@ -22,6 +22,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: nature-place-candidates-main
+  cancel-in-progress: false
+
 jobs:
   build:
     name: Validate maps and build Artskart candidates
@@ -99,7 +103,6 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git fetch origin main
           git add data/natur/nature_place_map_candidates.json
 
           if git diff --cached --quiet; then
@@ -108,8 +111,22 @@ jobs:
           fi
 
           git commit -m "Update nature place map candidates from Artskart"
-          git pull --rebase origin main
-          git push origin HEAD:main
+
+          for attempt in 1 2 3; do
+            echo "Push attempt ${attempt}"
+            git pull --rebase origin main
+
+            if git push origin HEAD:main; then
+              echo "Pushed candidate file to main."
+              exit 0
+            fi
+
+            echo "Push failed, retrying after refetch."
+            sleep 2
+          done
+
+          echo "Failed to push after 3 attempts."
+          exit 1
 
       - name: Upload candidate file
         uses: actions/upload-artifact@v4
