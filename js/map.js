@@ -169,17 +169,10 @@
 
     isApplyingStyle = true;
     pendingStyleMode = desired;
-    const onStyleData = () => {
-      mapStyleMode = pendingStyleMode || STYLE_MODE_STANDARD;
-      pendingStyleMode = null;
-      isApplyingStyle = false;
-      saveMapStyleMode(mapStyleMode);
-      mapReady = true;
-      drawPlaceMarkers();
-      MAP.resize();
-      renderMapStyleToggle();
-      console.debug("[HGMap] style loaded", mapStyleMode);
+    const onStyleLoaded = () => {
+      console.debug("[HGMap] style loaded", pendingStyleMode);
       MAP.off("error", onError);
+      redrawPlacesAfterStyleLoad(pendingStyleMode || STYLE_MODE_STANDARD);
     };
     const onError = (error) => {
       if (!isApplyingStyle) return;
@@ -190,20 +183,47 @@
       mapStyleMode = STYLE_MODE_STANDARD;
       saveMapStyleMode(mapStyleMode);
       renderMapStyleToggle();
-      MAP.off("styledata", onStyleData);
+      MAP.off("style.load", onStyleLoaded);
       if (MAP) {
         try {
           MAP.setStyle(STYLE_URL_STANDARD);
+          redrawPlacesAfterStyleLoad(STYLE_MODE_STANDARD);
           console.debug("[HGMap] setStyle called");
         } catch (fallbackError) {
           console.warn("[HGMap] style failed", fallbackError);
         }
       }
     };
-    MAP.once("styledata", onStyleData);
+    MAP.once("style.load", onStyleLoaded);
     MAP.once("error", onError);
     console.debug("[HGMap] setStyle called");
     MAP.setStyle(styleUrl);
+  }
+
+  function redrawPlacesAfterStyleLoad(mode) {
+    if (!MAP) return;
+    const resolvedMode = mode === STYLE_MODE_SATELLITE ? STYLE_MODE_SATELLITE : STYLE_MODE_STANDARD;
+    const run = () => {
+      mapStyleMode = resolvedMode;
+      pendingStyleMode = null;
+      isApplyingStyle = false;
+      saveMapStyleMode(mapStyleMode);
+      mapReady = true;
+      console.debug("[HGMap] redrawing place markers after style switch");
+      drawPlaceMarkers();
+      moveMarkersOnTop();
+      MAP.resize();
+      renderMapStyleToggle();
+      console.debug("[HGMap] place layers restored");
+    };
+    if (typeof MAP.isStyleLoaded === "function" && MAP.isStyleLoaded()) {
+      run();
+      return;
+    }
+    MAP.once("style.load", () => {
+      console.debug("[HGMap] style loaded", resolvedMode);
+      run();
+    });
   }
 
   function ensureMapStyleToggle(containerId) {
@@ -428,7 +448,21 @@
       }
     });
 
-if (!MAP.__hgPlacesBound) {
+    bindPlaceLayerHandlers();
+    console.debug("[HGMap] place layers restored");
+    moveMarkersOnTop();
+  }
+
+  function bindPlaceLayerHandlers() {
+    if (!MAP || !MAP.getLayer(L_HIT)) return;
+    if (MAP.__hgPlaceHandlers) {
+      const prev = MAP.__hgPlaceHandlers;
+      MAP.off("mouseenter", L_HIT, prev.setPointer);
+      MAP.off("mouseleave", L_HIT, prev.clearPointer);
+      MAP.off("click", L_HIT, prev.handlePlaceClick);
+      MAP.off("touchend", L_HIT, prev.handlePlaceClick);
+    }
+
   const canvas = MAP.getCanvas();
 
   const setPointer = () => {
@@ -450,15 +484,11 @@ if (!MAP.__hgPlacesBound) {
     onPlaceClick(id);
   };
 
-  MAP.on("mouseenter", L_HIT, setPointer);
-  MAP.on("mouseleave", L_HIT, clearPointer);
-
-  MAP.on("click", L_HIT, handlePlaceClick);
-  MAP.on("touchend", L_HIT, handlePlaceClick);
-  
-  MAP.__hgPlacesBound = true;
-}
-    moveMarkersOnTop();
+    MAP.__hgPlaceHandlers = { setPointer, clearPointer, handlePlaceClick };
+    MAP.on("mouseenter", L_HIT, setPointer);
+    MAP.on("mouseleave", L_HIT, clearPointer);
+    MAP.on("click", L_HIT, handlePlaceClick);
+    MAP.on("touchend", L_HIT, handlePlaceClick);
   }
 
   function moveMarkersOnTop() {
