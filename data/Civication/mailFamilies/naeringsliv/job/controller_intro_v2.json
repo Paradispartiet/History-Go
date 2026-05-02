@@ -3,11 +3,11 @@
   "category": "naeringsliv",
   "role_scope": "controller",
   "mail_type": "job",
-  "description": "Intro for Controller: månedsrapport, avstemming og første økonomiske avvik.",
+  "description": "Intro for Controller: spilleren lærer stillingen gjennom månedsrapport, avstemming, driftsforklaringer og første møte med tall som sosial makt.",
   "families": [
     {
       "id": "controller_intro_v2",
-      "description": "Første dager som controller. Spilleren lærer at tall må kontrolleres, forklares og forankres.",
+      "description": "Første dager som controller. Tallene er ikke bare tall; de er spor etter arbeid, svinn, periodiseringer, rutiner og beslutninger som noen må eie.",
       "mails": [
         {
           "id": "controller_intro_v2_001",
@@ -15,17 +15,20 @@
           "mail_family": "controller_intro_v2",
           "role_scope": "controller",
           "phase": "intro",
-          "priority": 70,
+          "priority": 76,
           "cooldown": 1,
           "repeatable": false,
           "stage": "stable",
           "from": "ingrid_okonomisjef",
-          "subject": "Månedsrapporten mangler forklaring på varekost",
-          "summary": "Varekostnaden avviker fra budsjett, men driften har ikke forklart hvorfor.",
+          "subject": "Månedsrapporten: varekostnaden har begynt å fortelle en historie",
+          "summary": "Varekostnaden avviker fra budsjett, og du må avgjøre om rapporten skal sendes raskt eller forstås først.",
+          "purpose": "Etablere controllerens kjerne: å oversette avvik til forklaring uten å gjøre rapportering til ren fristproduksjon.",
+          "stakes": "Hvis du sender tall uten forklaring, blir rapporten rask, men driften mister muligheten til å forklare virkeligheten bak avviket.",
           "situation": [
-            "Ingrid sender deg månedsrapporten før ledermøtet.",
-            "Varekostnaden ligger høyere enn budsjett, men kommentarfeltet fra drift er tomt.",
-            "Rapporten kan sendes nå, men da blir tallet stående uten forklaring."
+            "Ingrid, økonomisjefen, sender deg månedspakken før ledermøtet.",
+            "Varekostnaden ligger 4,8 prosentpoeng over budsjett. I regnearket ser det ut som et tørt avvik; i driftssystemet ligger det spor av kampanjer, feilplukk, svinn og innkjøp som ble tatt inn før prisendringen.",
+            "Kommentarfeltet fra drift er tomt. Rapporten kan sendes nå, men da blir tallet stående som forklaring i seg selv.",
+            "Dette er første controllerprøve: om du behandler tall som fasit, eller som et spørsmål som må undersøkes."
           ],
           "task_domain": "management_accounting",
           "competency": "avviksanalyse",
@@ -33,22 +36,23 @@
           "choice_axis": "forklaring_vs_frist",
           "consequence_axis": "sporbarhet_vs_tempo",
           "narrative_arc": "forste_rapport",
+          "learning_focus": ["avviksanalyse", "periodisering", "driftsforklaring", "styringsinformasjon"],
           "choices": [
             {
               "id": "A",
               "label": "Kontakt driftsleder og be om kort forklaring før innsending.",
-              "reply": "Jeg henter en kort forklaring fra drift før vi sender rapporten.",
+              "reply": "Jeg henter forklaring fra drift før vi sender rapporten.",
               "effect": 1,
               "tags": ["kvalitet", "process", "drift"],
-              "feedback": "Du forsinker rapporten litt, men gjør avviket lesbart."
+              "feedback": "Du forsinker rapporten litt, men gjør avviket styrbart. Tallet får en årsak, ikke bare en fargekode."
             },
             {
               "id": "B",
-              "label": "Send rapporten med tallet som det står.",
-              "reply": "Jeg sender rapporten nå og lar tallet stå foreløpig.",
+              "label": "Send rapporten nå og la avviket stå uten kommentar.",
+              "reply": "Jeg sender rapporten nå, så tar vi forklaringen senere.",
               "effect": -1,
               "tags": ["tempo", "risk", "snarvei"],
-              "feedback": "Fristen holdes, men ledelsen får et tall uten årsak."
+              "feedback": "Fristen holdes, men avviket blir en dom før det blir en analyse. Driften må forsvare seg mot et tall de ikke fikk forklare."
             }
           ]
         },
@@ -58,17 +62,20 @@
           "mail_family": "controller_intro_v2",
           "role_scope": "controller",
           "phase": "intro",
-          "priority": 68,
+          "priority": 72,
           "cooldown": 1,
           "repeatable": false,
           "stage": "stable",
           "from": "marius_regnskap",
-          "subject": "Avstemming: konto 4300 går ikke opp",
-          "summary": "En innkjøpskonto har differanse mot underlaget.",
+          "subject": "Avstemming: konto 4300 og den lille differansen som ikke er liten",
+          "summary": "En innkjøpskonto har differanse mot underlaget, og du må velge mellom dokumentasjon og antakelse.",
+          "purpose": "Lære spilleren at avstemming er institusjonalisert hukommelse: tall skal kunne gjenfinnes, forklares og forsvares.",
+          "stakes": "En liten udokumentert differanse kan bli et mønster når den gjentas gjennom perioder og beslutninger.",
           "situation": [
-            "Marius sender deg en avstemming rett før lunsj.",
-            "Konto 4300 har en differanse som ikke stemmer med fakturagrunnlaget.",
-            "Det er sannsynligvis en periodisering, men ingen har dokumentert det."
+            "Marius fra regnskap sender deg en avstemming rett før lunsj.",
+            "Konto 4300 har en differanse mot fakturagrunnlaget. Summen er ikke stor nok til å skape panikk, men den er stor nok til at noen senere kan spørre hvorfor den ble godkjent.",
+            "Det kan være en periodisering. Det kan være en feilført faktura. Det kan være en vareleveranse som ikke er mottatt i systemet.",
+            "Controllerrollen begynner ofte akkurat her: i skillet mellom «sikkert nok» og «etterprøvbart»."
           ],
           "task_domain": "account_reconciliation",
           "competency": "dokumentasjon",
@@ -76,22 +83,23 @@
           "choice_axis": "dokumentere_vs_anta",
           "consequence_axis": "kontroll_vs_flyt",
           "narrative_arc": "sporbarhet_i_tallene",
+          "learning_focus": ["avstemming", "internkontroll", "periodisering", "revisjonsspor"],
           "choices": [
             {
               "id": "A",
-              "label": "Be om faktura og periodiseringsnotat før du godkjenner.",
+              "label": "Be om faktura og periodiseringsnotat før godkjenning.",
               "reply": "Jeg trenger faktura og periodiseringsnotat før jeg godkjenner avstemmingen.",
               "effect": 1,
               "tags": ["process", "kvalitet", "kontroll"],
-              "feedback": "Du gjør avstemmingen tregere, men den blir etterprøvbar."
+              "feedback": "Du gjør avstemmingen tregere, men du bygger et revisjonsspor. Det er slik kontroll blir tillit."
             },
             {
               "id": "B",
-              "label": "Godkjenn som sannsynlig periodisering.",
+              "label": "Godkjenn som sannsynlig periodisering og gå videre.",
               "reply": "Jeg godkjenner dette som sannsynlig periodisering foreløpig.",
               "effect": -1,
               "tags": ["tempo", "risk"],
-              "feedback": "Du rydder skjemaet, men ikke årsaken."
+              "feedback": "Du rydder skjemaet, men ikke årsaken. Differansen blir en liten gjeld til fremtidig deg."
             }
           ]
         }
