@@ -194,8 +194,17 @@ if (!card) return;
   // (valgfritt men nyttig): beregn avstand live for NextUp hvis mulig
   try {
     const pos = (typeof window.getPos === "function") ? window.getPos() : null;
-    if (pos && typeof window.distMeters === "function" && place.lat != null && place.lon != null) {
-      place._d = window.distMeters(pos, { lat: place.lat, lon: place.lon });
+    if (pos && typeof window.distMeters === "function") {
+      const getTargets = (typeof window.getPlaceDistanceTargets === "function")
+        ? window.getPlaceDistanceTargets
+        : null;
+      const targets = getTargets ? getTargets(place) : [{ lat: place.lat, lon: place.lon }];
+      let best = Infinity;
+      for (const target of targets) {
+        const d = window.distMeters(pos, { lat: target.lat, lon: target.lon });
+        if (Number.isFinite(d) && d < best) best = d;
+      }
+      if (Number.isFinite(best)) place._d = best;
     }
   } catch {}
 

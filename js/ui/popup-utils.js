@@ -733,6 +733,21 @@ function getPlaceUnlockAnchors(place) {
 
 window.getPlaceUnlockAnchors = getPlaceUnlockAnchors;
 
+function getPlaceDistanceTargets(place) {
+  const targets = getPlaceUnlockAnchors(place);
+  if (!Array.isArray(targets) || !targets.length) return [];
+  return targets.map((target, idx) => ({
+    id: String(target?.id || `target_${idx + 1}`),
+    name: String(target?.name || place?.name || `Target ${idx + 1}`),
+    lat: Number(target?.lat),
+    lon: Number(target?.lon),
+    r: Number(target?.r),
+    type: String(target?.type || "unlock_anchor")
+  })).filter(t => Number.isFinite(t.lat) && Number.isFinite(t.lon) && Number.isFinite(t.r) && t.r > 0);
+}
+
+window.getPlaceDistanceTargets = getPlaceDistanceTargets;
+
 function canUnlockPlaceNow(place) {
   const r = Number(place?.r || 150);
 
@@ -747,15 +762,15 @@ function canUnlockPlaceNow(place) {
     return { ok: false, d: null, r, reason: "no_pos" };
   }
 
-  const anchors = getPlaceUnlockAnchors(place);
-  if (!anchors.length) return { ok: false, d: null, r, reason: "no_anchor" };
+  const targets = getPlaceDistanceTargets(place);
+  if (!targets.length) return { ok: false, d: null, r, reason: "no_anchor" };
 
   let nearest = null;
-  for (const anchor of anchors) {
-    const d = window.distMeters(pos, { lat: anchor.lat, lon: anchor.lon });
+  for (const target of targets) {
+    const d = window.distMeters(pos, { lat: target.lat, lon: target.lon });
     if (!Number.isFinite(d)) continue;
-    if (!nearest || d < nearest.d) nearest = { d, r: anchor.r };
-    if (d <= anchor.r) return { ok: true, d, r: anchor.r };
+    if (!nearest || d < nearest.d) nearest = { d, r: target.r };
+    if (d <= target.r) return { ok: true, d, r: target.r };
   }
 
   if (!nearest) return { ok: false, d: null, r, reason: "no_anchor" };
