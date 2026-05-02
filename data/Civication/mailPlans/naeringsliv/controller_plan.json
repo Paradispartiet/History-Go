@@ -1,0 +1,85 @@
+{
+  "schema": "civication_mail_plan_v1",
+  "version": 1,
+  "id": "controller_naeringsliv_v1",
+  "category": "naeringsliv",
+  "role_scope": "controller",
+  "title": "Controller",
+  "description": "Dramaturgisk plan for Controller i Næringsliv & industri: fra kontroll av avvik og månedsrapportering til en rolle som oversetter økonomiske signaler til ansvarlige beslutninger.",
+  "arc": {
+    "from": "En økonomifaglig kontrollrolle som arbeider tett på tall, rapporter, budsjettavvik og driftens forklaringer.",
+    "to": "En controller som forstår at tall ikke bare er kontroll, men også styring, tillit, presisjon og etikk.",
+    "core_questions": [
+      "Hva viser tallene, og hva skjuler de?",
+      "Når er et avvik en feil, og når er det et symptom?",
+      "Hvem får forklare virkeligheten bak rapporten?",
+      "Når blir kontroll støtte, og når blir den mistillit?"
+    ]
+  },
+  "sequence": [
+    {
+      "step": 1,
+      "type": "job",
+      "phase": "intro",
+      "step_goal": "Etablere controllerrollen gjennom månedsrapport, avstemming og første møte med driftsforklaringer.",
+      "allowed_families": ["controller_intro_v2"],
+      "fallback_types": ["job", "conflict", "story"]
+    },
+    {
+      "step": 2,
+      "type": "job",
+      "phase": "early",
+      "step_goal": "La spilleren bruke økonomisk presisjon uten å miste kontakten med driften.",
+      "allowed_families": ["avstemming_og_rapport", "prognose_og_budsjett"],
+      "fallback_types": ["conflict", "story", "event"]
+    },
+    {
+      "step": 3,
+      "type": "conflict",
+      "phase": "early",
+      "step_goal": "Introdusere første konflikt mellom tempo i rapporteringen og nøyaktig forklaring av avvik.",
+      "allowed_families": ["avvik_og_forklaring"],
+      "fallback_types": ["job", "event", "story"]
+    },
+    {
+      "step": 4,
+      "type": "story",
+      "phase": "mid",
+      "step_goal": "Løfte controllerrollen fra regneark til styringsmakt: tall former hva ledelsen ser.",
+      "allowed_families": ["tall_og_tillit"],
+      "fallback_types": ["job", "conflict", "event"]
+    },
+    {
+      "step": 5,
+      "type": "event",
+      "phase": "mid",
+      "step_goal": "Utløse frist, revisjon eller ledelsesmøte som tester prioritering og dokumentasjon.",
+      "allowed_families": ["rapportfrist_og_revisjon"],
+      "fallback_types": ["job", "conflict", "story"]
+    },
+    {
+      "step": 6,
+      "type": "job",
+      "phase": "advanced",
+      "step_goal": "Gi spilleren mer ansvar for prognose, budsjett og økonomisk styringsinformasjon.",
+      "allowed_families": ["prognose_og_budsjett", "avstemming_og_rapport"],
+      "fallback_types": ["conflict", "event", "story"]
+    },
+    {
+      "step": 7,
+      "type": "conflict",
+      "phase": "mastery",
+      "step_goal": "La controlleren møte et etisk press: pynte på tempoet eller bevare sporbarheten.",
+      "allowed_families": ["etikk_og_presisjon"],
+      "fallback_types": ["job", "event", "story"]
+    },
+    {
+      "step": 8,
+      "type": "story",
+      "phase": "climax",
+      "step_goal": "Avrunde controllerbuen: spilleren ser hvilken type økonomisk makt de har lært å bruke.",
+      "allowed_families": ["controller_identitet"],
+      "fallback_types": ["event", "conflict", "job"]
+    }
+  ]
+}
