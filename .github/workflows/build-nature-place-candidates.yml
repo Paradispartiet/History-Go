@@ -2,6 +2,12 @@ name: Nature data validation and candidates
 
 on:
   workflow_dispatch:
+    inputs:
+      commit_output:
+        description: "Commit data/natur/nature_place_map_candidates.json back to the repo when output is valid"
+        required: false
+        type: boolean
+        default: false
   push:
     branches:
       - main
@@ -10,10 +16,11 @@ on:
       - "tools/validate_nature_maps.mjs"
       - "data/places/**"
       - "data/natur/**"
+      - "!data/natur/nature_place_map_candidates.json"
       - ".github/workflows/build-nature-place-candidates.yml"
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   build:
@@ -24,6 +31,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -44,15 +53,65 @@ jobs:
           const data = JSON.parse(fs.readFileSync(p, 'utf8'));
           const counts = data.meta?.counts || {};
           const places = data.places || {};
+          const values = Object.values(places);
           const checked = Object.keys(places).length;
-          const withFlora = Object.values(places).filter(x => Array.isArray(x.flora) && x.flora.length).length;
-          const withFauna = Object.values(places).filter(x => Array.isArray(x.fauna) && x.fauna.length).length;
-          const withExternal = Object.values(places).filter(x => Array.isArray(x.externalTaxa) && x.externalTaxa.length).length;
-          console.log(JSON.stringify({ counts, checked, withFlora, withFauna, withExternal }, null, 2));
+          const errors = values.filter(x => x?.status === 'error').length;
+          const candidateFromArtskart = values.filter(x => x?.status === 'candidate_from_artskart').length;
+          const withFlora = values.filter(x => Array.isArray(x.flora) && x.flora.length).length;
+          const withFauna = values.filter(x => Array.isArray(x.fauna) && x.fauna.length).length;
+          const withExternal = values.filter(x => Array.isArray(x.externalTaxa) && x.externalTaxa.length).length;
+          console.log(JSON.stringify({ counts, checked, errors, candidateFromArtskart, withFlora, withFauna, withExternal }, null, 2));
           NODE
+
+      - name: Validate candidate output
+        run: |
+          node - <<'NODE'
+          const fs = require('node:fs');
+          const p = 'data/natur/nature_place_map_candidates.json';
+          const data = JSON.parse(fs.readFileSync(p, 'utf8'));
+          const places = data.places || {};
+          const values = Object.values(places);
+          const errors = values.filter(x => x?.status === 'error');
+          const candidateFromArtskart = values.filter(x => x?.status === 'candidate_from_artskart').length;
+
+          if (!values.length) {
+            throw new Error('Candidate file has no places. Refusing to continue.');
+          }
+
+          if (errors.length) {
+            const sample = errors.slice(0, 10).map(x => `${x.name || 'unknown'}: ${x.error || 'unknown error'}`).join('\n');
+            throw new Error(`Candidate file contains ${errors.length} error entries. Refusing to upload/commit failed output.\n${sample}`);
+          }
+
+          if (candidateFromArtskart !== values.length) {
+            throw new Error(`Expected all places to have status candidate_from_artskart, got ${candidateFromArtskart}/${values.length}.`);
+          }
+
+          console.log(`Candidate output valid: ${candidateFromArtskart}/${values.length} candidate_from_artskart, 0 errors.`);
+          NODE
+
+      - name: Commit candidate file
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.commit_output == true }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add data/natur/nature_place_map_candidates.json
+
+          if git diff --cached --quiet; then
+            echo "No candidate file changes to commit."
+            exit 0
+          fi
+
+          git commit -m "Update nature place map candidates from Artskart"
+          git push
 
       - name: Upload candidate file
         uses: actions/upload-artifact@v4
         with:
           name: nature-place-map-candidates
           path: data/natur/nature_place_map_candidates.json
+          if-no-files-found: error
