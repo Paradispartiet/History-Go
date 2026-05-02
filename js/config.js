@@ -1,6 +1,7 @@
 // Lim inn MapTiler browser-key her, ikke hele style-URL-en.
 window.HG_MAPTILER_KEY = "Yi8j8sLhEo4Ny";
 
-// Bruk MapTiler mapId her, f.eks. "hybrid", "streets-v4", "outdoor-v2" eller en egen style-id fra MapTiler.
+// Detaljert kartstil: bruk MapTiler style-id her, f.eks. "streets-v4", "outdoor-v2" eller "basic-v2".
 // Ikke legg API-key her.
-window.HG_NATURTRO_STYLE_ID = "hybrid";
+// Ikke legg viewer-URL her.
+window.HG_NATURTRO_STYLE_ID = "streets-v4";
