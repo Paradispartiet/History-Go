@@ -1,0 +1,33 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "naeringsliv",
+  "role_scope": "finansanalytiker",
+  "mail_type": "event",
+  "families": [
+    {
+      "id": "markedsnyhet_og_presentasjon",
+      "mails": [
+        {
+          "id": "finansanalytiker_event_001",
+          "mail_type": "event",
+          "mail_family": "markedsnyhet_og_presentasjon",
+          "role_scope": "finansanalytiker",
+          "subject": "Ny markedsnyhet før presentasjonen",
+          "summary": "En konkurrent melder svakere marginer rett før du skal presentere caset.",
+          "situation": ["En konkurrent offentliggjør svakere marginer i samme segment to timer før investeringskomiteen møtes."],
+          "task_domain": "market_update",
+          "competency": "modelloppdatering_under_press",
+          "pressure": "presentasjonsfrist",
+          "choice_axis": "oppdatere_case_vs_fortsette_plan",
+          "consequence_axis": "relevans_vs_tempo",
+          "narrative_arc": "markedet_bryter_inn",
+          "choices": [
+            { "id": "A", "label": "Oppdater sensitiviteten og vis effekten på caset.", "effect": 1, "tags": ["analyse", "risiko"], "feedback": "Du gjør presentasjonen mer aktuell, selv om den blir mindre glatt." },
+            { "id": "B", "label": "Nevn nyheten muntlig, men behold modellen uendret.", "effect": -1, "tags": ["tempo", "risk"], "feedback": "Du sparer tid, men modellen blir liggende et skritt bak markedet." }
+          ]
+        }
+      ]
+    }
+  ]
+}
