@@ -519,7 +519,13 @@
   };
 
   const handlePlaceClick = (e) => {
-    const f = e?.features?.[0];
+    let f = e?.features?.[0] || null;
+
+    if (!f && e?.point && typeof MAP?.queryRenderedFeatures === "function") {
+      const hits = MAP.queryRenderedFeatures(e.point, { layers: [L_HIT] });
+      f = Array.isArray(hits) ? (hits[0] || null) : null;
+    }
+
     const id = f?.properties?.id;
     if (!id) return;
 
