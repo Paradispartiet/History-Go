@@ -7,6 +7,7 @@
   "families": [
     {
       "id": "markedsnyhet_og_presentasjon",
+      "description": "Hendelser der markedet bryter inn i modellen og tester om analytikeren oppdaterer virkeligheten eller beskytter en pen presentasjon.",
       "mails": [
         {
           "id": "finansanalytiker_event_001",
@@ -15,16 +16,36 @@
           "role_scope": "finansanalytiker",
           "subject": "Ny markedsnyhet før presentasjonen",
           "summary": "En konkurrent melder svakere marginer rett før du skal presentere caset.",
-          "situation": ["En konkurrent offentliggjør svakere marginer i samme segment to timer før investeringskomiteen møtes."],
+          "purpose": "Simulere markedsrisiko i praksis: modellen må kunne oppdateres når ny informasjon endrer premissene.",
+          "stakes": "Hvis du beholder modellen uendret, presenterer du en virkelighet markedet allerede har begynt å korrigere.",
+          "situation": [
+            "To timer før investeringskomiteen møtes, melder en konkurrent svakere marginer i samme segment.",
+            "Nyheten er ikke identisk med selskapet du analyserer, men den treffer én av hovedantakelsene dine: at marginpresset i markedet er midlertidig.",
+            "Presentasjonen er ferdig. Grafene er pene. Hovedcaset flyter godt. Men markedet har akkurat lagt inn en setning du ikke kan late som ikke finnes.",
+            "Nå må du velge om modellen oppdateres, eller om nyheten bare nevnes muntlig som en mulig risiko."
+          ],
           "task_domain": "market_update",
           "competency": "modelloppdatering_under_press",
           "pressure": "presentasjonsfrist",
           "choice_axis": "oppdatere_case_vs_fortsette_plan",
           "consequence_axis": "relevans_vs_tempo",
           "narrative_arc": "markedet_bryter_inn",
+          "learning_focus": ["markedsnyhet", "marginpress", "modelloppdatering", "presentasjonsrisiko", "relevans"],
           "choices": [
-            { "id": "A", "label": "Oppdater sensitiviteten og vis effekten på caset.", "effect": 1, "tags": ["analyse", "risiko"], "feedback": "Du gjør presentasjonen mer aktuell, selv om den blir mindre glatt." },
-            { "id": "B", "label": "Nevn nyheten muntlig, men behold modellen uendret.", "effect": -1, "tags": ["tempo", "risk"], "feedback": "Du sparer tid, men modellen blir liggende et skritt bak markedet." }
+            {
+              "id": "A",
+              "label": "Oppdater sensitiviteten og vis effekten på caset.",
+              "effect": 1,
+              "tags": ["analyse", "risiko", "kvalitet"],
+              "feedback": "Du gjør presentasjonen mer aktuell, selv om den blir mindre glatt. Modellen viser at den lytter til markedet."
+            },
+            {
+              "id": "B",
+              "label": "Nevn nyheten muntlig, men behold modellen uendret.",
+              "effect": -1,
+              "tags": ["tempo", "risk"],
+              "feedback": "Du sparer tid, men modellen blir liggende et skritt bak markedet. En muntlig advarsel er svakere enn en oppdatert analyse."
+            }
           ]
         }
       ]
