@@ -31,6 +31,14 @@
         const active = window.CivicationState?.getActivePosition?.();
         if (!active) return "Ingen aktiv rolle ennå.";
         return String(active.title || active.career_name || active.career_id || "Aktiv rolle");
+      },
+      details: function () {
+        const active = window.CivicationState?.getActivePosition?.() || {};
+        return [
+          active.workplace ? `Arbeidssted: ${active.workplace}` : null,
+          active.weekly_income ? `Ukeinntekt: ${active.weekly_income}` : null,
+          active.status ? `Status: ${active.status}` : null
+        ];
       }
     },
 
@@ -98,6 +106,14 @@
         const home = window.CivicationHome?.getState?.()?.home || null;
         if (home?.status === "settled") return `Bosatt: ${home.district || "valgt nabolag"}`;
         return "Ikke valgt nabolag.";
+      },
+      details: function () {
+        const home = window.CivicationHome?.getState?.()?.home || null;
+        return [
+          home?.district ? `Nabolag: ${home.district}` : "Nabolag ikke valgt",
+          home?.status ? `Bostatus: ${home.status}` : null,
+          home?.cost ? `Kostnad: ${home.cost}` : null
+        ];
       }
     },
 
@@ -149,6 +165,13 @@
         const trust = textOf("psyTrust");
         if (auto && auto !== "—") return `Selvstendighet ${auto}${trust && trust !== "—" ? ` · Tillit ${trust}` : ""}`;
         return "Psykeverdier ikke beregnet ennå.";
+      },
+      details: function () {
+        return [
+          `Selvstendighet: ${textOf("psyAutonomy") || "—"}`,
+          `Tillit: ${textOf("psyTrust") || "—"}`,
+          textOf("psyBurnout") ? `Burnout/stress: ${textOf("psyBurnout")}` : null
+        ];
       }
     },
 
@@ -364,7 +387,7 @@
       return {
         mode: "urgent",
         title: "Krever svar",
-        summary: first?.subject || first?.title || "Du har en åpen hendelse i inbox.",
+        summary: `${first?.subject || first?.title || "Du har en åpen hendelse i inbox."} · ${first?.kind || "Innkommende"}`,
         action: "Svar nå",
         sectionKey: "civiInboxSection"
       };
@@ -516,10 +539,18 @@
 
     const actionBtn = card.querySelector("[data-civi-top-action]");
     actionBtn.textContent = next.action;
-    actionBtn.onclick = function () {
+
+    const openFromTopCard = function () {
       if (!next.sectionKey) return;
       const section = resolveSection(next.sectionKey, SECTION_CONFIG[next.sectionKey]);
       if (section) openPopup(section, SECTION_CONFIG[next.sectionKey]);
+    };
+
+    actionBtn.onclick = openFromTopCard;
+    card.onclick = function (event) {
+      const target = event.target;
+      if (target && target.closest("button")) return;
+      openFromTopCard();
     };
   }
 
@@ -625,6 +656,7 @@
         <h2>${config.label || "Seksjon"}</h2>
       </div>
       <div class="civi-mini-summary" data-civi-mini-summary>—</div>
+      <div class="civi-mini-details" data-civi-mini-details></div>
       <div class="civi-mini-status" data-civi-mini-status>Ingen valg</div>
       <button type="button" class="civi-mini-action" data-civi-mini-open>Åpne</button>
     `;
@@ -652,6 +684,7 @@
       if (!section || section.dataset.civiMiniReady !== "1") return;
 
       const summaryEl = section.querySelector(":scope > .civi-mini-card [data-civi-mini-summary]");
+      const detailsEl = section.querySelector(":scope > .civi-mini-card [data-civi-mini-details]");
       const statusEl = section.querySelector(":scope > .civi-mini-card [data-civi-mini-status]");
       const actionEl = section.querySelector(":scope > .civi-mini-card [data-civi-mini-open]");
       const source = getSectionSource(section, config);
@@ -672,6 +705,25 @@
       section.classList.toggle("is-empty", !urgent && !hasText);
 
       if (summaryEl) summaryEl.textContent = summary;
+
+      const detailLines = (() => {
+        try {
+          const lines = typeof config.details === "function" ? config.details() : [];
+          return Array.isArray(lines) ? lines.filter(Boolean).slice(0, 4).map(function (line) { return String(line); }) : [];
+        } catch {
+          return [];
+        }
+      })();
+
+      if (detailsEl) {
+        detailsEl.innerHTML = "";
+        detailLines.forEach(function (line) {
+          const row = document.createElement("div");
+          row.className = "civi-mini-detail-line";
+          row.textContent = line;
+          detailsEl.appendChild(row);
+        });
+      }
 
       if (statusEl) {
         if (urgent) statusEl.textContent = "Krever tilbakemelding";
