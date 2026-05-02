@@ -1,0 +1,138 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "naeringsliv",
+  "role_scope": "okonomi_og_finanssjef",
+  "mail_type": "job",
+  "families": [
+    {
+      "id": "budsjett_og_prioritering",
+      "description": "Økonomi- og finanssjefen bruker budsjett som styringsmakt: hvem får kapital, hvem må vente, og hvilke forutsetninger tåler planen?",
+      "mails": [
+        {
+          "id": "okonomi_og_finanssjef_job_001",
+          "mail_type": "job",
+          "mail_family": "budsjett_og_prioritering",
+          "role_scope": "okonomi_og_finanssjef",
+          "subject": "Tre avdelinger ber om samme investeringsrom",
+          "summary": "Drift, marked og teknologi ber om investeringer som samlet overstiger årets kapitalramme.",
+          "purpose": "Simulere kapitalprioritering som lederoppgave: budsjett er fordeling av fremtidig handlingsrom.",
+          "stakes": "Hvis alt prioriteres, prioriteres ingenting. Hvis du kutter uten forklaring, mister økonomifunksjonen tillit.",
+          "situation": [
+            "Drift ber om nytt utstyr for å redusere feilrate. Marked ber om kampanjemidler for å hente vekstmålet. Teknologi ber om systemoppgradering fordi gammel infrastruktur skaper manuelle feil.",
+            "Hver avdeling har et godt argument. Samlet sprenger de kapitalrammen.",
+            "Som økonomi- og finanssjef må du gjøre knapphet synlig uten å gjøre den til ren nei-kultur.",
+            "Du må foreslå prioritering før ledermøtet. Det du velger, blir et signal om hva virksomheten tror mest på."
+          ],
+          "task_domain": "capital_allocation",
+          "competency": "kapitalprioritering",
+          "pressure": "begrenset_kapital",
+          "choice_axis": "strategisk_prioritering_vs_relationsbalanse",
+          "consequence_axis": "handlingsrom_vs_tillit",
+          "narrative_arc": "budsjett_som_makt",
+          "learning_focus": ["kapitalprioritering", "investeringsramme", "budsjettmakt", "ledergruppe"],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Prioriter tiltak etter dokumentert risiko og effekt, og forklar resten som utsatt beslutning.",
+              "effect": 1,
+              "tags": ["styring", "kapitaldisiplin", "integritet"],
+              "feedback": "Du gjør knapphet til metode. Avdelingene får ikke alt, men de får en forståelig prioriteringslogikk."
+            },
+            {
+              "id": "B",
+              "label": "Fordel rammen jevnt for å bevare ro mellom avdelingene.",
+              "effect": -1,
+              "tags": ["relationsfred", "risk", "snarvei"],
+              "feedback": "Alle får litt, men ingen får nok. Du kjøper ro, men svekker budsjettets evne til å skape faktisk endring."
+            }
+          ]
+        },
+        {
+          "id": "okonomi_og_finanssjef_job_002",
+          "mail_type": "job",
+          "mail_family": "budsjett_og_prioritering",
+          "role_scope": "okonomi_og_finanssjef",
+          "subject": "Kostnadskutt: tallene peker på mennesker",
+          "summary": "Budsjettet krever kostnadskutt, men de største postene er bemanning, åpningstid og kvalitetstiltak.",
+          "purpose": "Vise at økonomiledelse ikke bare er reduksjon av kostnader, men vurdering av hvilke evner virksomheten mister når den kutter.",
+          "stakes": "Et raskt kutt kan bedre resultatet kortsiktig, men svekke drift, kvalitet og tillit senere.",
+          "situation": [
+            "Du får beskjed om å finne kutt før neste styrepakke. De enkle postene er allerede tatt. Nå ligger de store summene i bemanning, åpningstid, kvalitetstiltak og opplæring.",
+            "Regnearket gjør kuttene flate. Virkeligheten gjør dem ujevne. Noen kutt reduserer sløsing. Andre fjerner organisasjonens evne til å levere.",
+            "Økonomifunksjonen kan virke brutal når den ser bare beløp. Samtidig er det ditt ansvar å vise hvor virksomheten faktisk bruker mer enn den tåler.",
+            "Du må foreslå kutt som ikke bare er raske, men intelligente."
+          ],
+          "task_domain": "cost_management",
+          "competency": "budsjettledelse",
+          "pressure": "resultatkrav",
+          "choice_axis": "flate_kutt_vs_evnebasert_prioritering",
+          "consequence_axis": "kort_resultat_vs_lang_kapasitet",
+          "narrative_arc": "kostnadens_menneskelige_form",
+          "learning_focus": ["kostnadsstyring", "bemanning", "kapasitet", "kvalitet", "strategiske kutt"],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Foreslå kutt etter effekt på kapasitet, risiko og kvalitet.",
+              "effect": 1,
+              "tags": ["analyse", "styring", "ansvar"],
+              "feedback": "Du gjør kuttene vanskeligere å forklare, men mer ansvarlige. Tallene mister sin falske flathet."
+            },
+            {
+              "id": "B",
+              "label": "Legg frem prosentvise flate kutt for alle avdelinger.",
+              "effect": -1,
+              "tags": ["tempo", "risk", "relationsbalanse"],
+              "feedback": "Forslaget virker rettferdig, men rammer ulikt. Lik prosent betyr ikke lik konsekvens."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "team_og_kontroll",
+      "description": "Økonomi- og finanssjefen leder økonomifunksjonen: kontroll må bli læring, ikke bare press nedover i teamet.",
+      "mails": [
+        {
+          "id": "okonomi_og_finanssjef_job_003",
+          "mail_type": "job",
+          "mail_family": "team_og_kontroll",
+          "role_scope": "okonomi_og_finanssjef",
+          "subject": "Controlleren fant et avvik som gjør planen svakere",
+          "summary": "En controller under deg har funnet en feil i forutsetningene bak ledergruppens plan.",
+          "purpose": "Simulere personal- og fagledelse: økonomisjefen må beskytte kvaliteten i teamets funn selv når funnet er politisk ubehagelig.",
+          "stakes": "Hvis du demper funnet for å beskytte ledelsen, lærer teamet at presisjon er mindre viktig enn ro. Hvis du løfter det hardt, kan du miste handlingsrom i ledergruppen.",
+          "situation": [
+            "Ingrid kommer innom med en stille, alvorlig mine. Hun har funnet at vekstplanen bruker gamle marginforutsetninger i ett datagrunnlag.",
+            "Feilen endrer ikke alt, men den gjør hovedscenariet svakere. Ledergruppen har allerede begynt å bruke planen i interne presentasjoner.",
+            "Dette er et typisk økonomiledelsesøyeblikk: du leder ikke bare tallene, du leder den personen som våger å komme med et ubeleilig tall.",
+            "Du må avgjøre om funnet løftes tydelig eller pakkes mykere inn."
+          ],
+          "task_domain": "finance_team_leadership",
+          "competency": "okonomiledelse",
+          "pressure": "politisk_ro",
+          "choice_axis": "faglig_lojalitet_vs_ledelsesro",
+          "consequence_axis": "integritet_vs_handlingsrom",
+          "narrative_arc": "teamets_tillit",
+          "learning_focus": ["teamledelse", "faglig integritet", "marginforutsetninger", "ledergruppe"],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Løft funnet tydelig og gi controlleren faglig støtte.",
+              "effect": 1,
+              "tags": ["integritet", "team", "kvalitet"],
+              "feedback": "Du beskytter økonomifunksjonens faglige ryggrad. Ledergruppen får en vanskeligere, men sannere plan."
+            },
+            {
+              "id": "B",
+              "label": "Pakk funnet inn som et mulig justeringspunkt for ikke å svekke planen for brått.",
+              "effect": -1,
+              "tags": ["politikk", "risk", "avoidance"],
+              "feedback": "Du kjøper tid i ledergruppen, men teamet lærer at presisjon må forhandles før den får stå."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
