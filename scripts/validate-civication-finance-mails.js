@@ -5,7 +5,7 @@ const assert = require('assert');
 
 const root = path.resolve(__dirname, '..');
 const category = 'naeringsliv';
-const roleScopes = ['controller', 'finansanalytiker'];
+const roleScopes = ['controller', 'finansanalytiker', 'okonomi_og_finanssjef'];
 const requiredMailFields = [
   'id',
   'mail_type',
@@ -104,4 +104,4 @@ for (const roleScope of roleScopes) {
   assert(mails.length >= 8, `Expected at least 8 mails for ${roleScope}, got ${mails.length}`);
 }
 
-console.log('Finance Civication mail validation OK: controller and finansanalytiker plans/families are coherent.');
+console.log('Finance Civication mail validation OK: controller, finansanalytiker and okonomi_og_finanssjef plans/families are coherent.');
