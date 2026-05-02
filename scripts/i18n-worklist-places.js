@@ -20,24 +20,13 @@
 const fs = require("fs");
 const path = require("path");
 const crypto = require("crypto");
+const { createPlaceManifestLoader } = require("./i18n-place-manifest-loader");
 
 const ROOT = path.resolve(__dirname, "..");
 const DEFAULT_LANG = "en";
 const DEFAULT_ONLY = new Set(["missing", "stale", "missingSourceHash"]);
+const placeManifestLoader = createPlaceManifestLoader(ROOT, "i18n-worklist");
 
-const PLACE_FILES = [
-  "data/places/places_by.json",
-  "data/places/places_historie.json",
-  "data/places/places_kunst.json",
-  "data/places/places_litteratur.json",
-  "data/places/places_musikk.json",
-  "data/places/places_naeringsliv.json",
-  "data/places/places_natur.json",
-  "data/places/places_politikk.json",
-  "data/places/places_sport.json",
-  "data/places/places_subkultur.json",
-  "data/places/places_vitenskap.json"
-];
 
 function parseArgs(argv) {
   const args = {
@@ -136,9 +125,10 @@ function extractRows(data, relativePath) {
 function loadMasterPlaces() {
   const byId = new Map();
   const duplicateIds = [];
+  const placeFiles = placeManifestLoader.loadManifestPlaceFiles();
 
-  for (const relativePath of PLACE_FILES) {
-    const data = readJson(relativePath);
+  for (const relativePath of placeFiles) {
+    const data = placeManifestLoader.readJson(relativePath);
     const rows = extractRows(data, relativePath);
 
     for (const place of rows) {
@@ -221,7 +211,7 @@ function buildWorklist(lang, only, limit) {
     generatedAt: new Date().toISOString(),
     lang,
     sourceLanguage: "nb",
-    master: "data/places/*.json",
+    master: placeManifestLoader.manifestPath,
     translationFile: translationPath,
     policy: {
       norwegianIsMaster: true,

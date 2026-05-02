@@ -15,23 +15,12 @@
 const fs = require("fs");
 const path = require("path");
 const crypto = require("crypto");
+const { createPlaceManifestLoader } = require("./i18n-place-manifest-loader");
 
 const ROOT = path.resolve(__dirname, "..");
 const DEFAULT_LANGS = ["en"];
+const placeManifestLoader = createPlaceManifestLoader(ROOT, "i18n-stamp");
 
-const PLACE_FILES = [
-  "data/places/places_by.json",
-  "data/places/places_historie.json",
-  "data/places/places_kunst.json",
-  "data/places/places_litteratur.json",
-  "data/places/places_musikk.json",
-  "data/places/places_naeringsliv.json",
-  "data/places/places_natur.json",
-  "data/places/places_politikk.json",
-  "data/places/places_sport.json",
-  "data/places/places_subkultur.json",
-  "data/places/places_vitenskap.json"
-];
 
 function readJson(relativePath) {
   const filePath = path.join(ROOT, relativePath);
@@ -76,9 +65,10 @@ function extractRows(data, relativePath) {
 
 function loadMasterPlaces() {
   const byId = new Map();
+  const placeFiles = placeManifestLoader.loadManifestPlaceFiles();
 
-  for (const relativePath of PLACE_FILES) {
-    const data = readJson(relativePath);
+  for (const relativePath of placeFiles) {
+    const data = placeManifestLoader.readJson(relativePath);
     const rows = extractRows(data, relativePath);
 
     for (const place of rows) {
