@@ -1,0 +1,101 @@
+{
+  "schema": "civication_mail_family_catalog_v2",
+  "category": "naeringsliv",
+  "role_scope": "controller",
+  "mail_type": "job",
+  "description": "Intro for Controller: månedsrapport, avstemming og første økonomiske avvik.",
+  "families": [
+    {
+      "id": "controller_intro_v2",
+      "description": "Første dager som controller. Spilleren lærer at tall må kontrolleres, forklares og forankres.",
+      "mails": [
+        {
+          "id": "controller_intro_v2_001",
+          "mail_type": "job",
+          "mail_family": "controller_intro_v2",
+          "role_scope": "controller",
+          "phase": "intro",
+          "priority": 70,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "ingrid_okonomisjef",
+          "subject": "Månedsrapporten mangler forklaring på varekost",
+          "summary": "Varekostnaden avviker fra budsjett, men driften har ikke forklart hvorfor.",
+          "situation": [
+            "Ingrid sender deg månedsrapporten før ledermøtet.",
+            "Varekostnaden ligger høyere enn budsjett, men kommentarfeltet fra drift er tomt.",
+            "Rapporten kan sendes nå, men da blir tallet stående uten forklaring."
+          ],
+          "task_domain": "management_accounting",
+          "competency": "avviksanalyse",
+          "pressure": "rapportfrist",
+          "choice_axis": "forklaring_vs_frist",
+          "consequence_axis": "sporbarhet_vs_tempo",
+          "narrative_arc": "forste_rapport",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Kontakt driftsleder og be om kort forklaring før innsending.",
+              "reply": "Jeg henter en kort forklaring fra drift før vi sender rapporten.",
+              "effect": 1,
+              "tags": ["kvalitet", "process", "drift"],
+              "feedback": "Du forsinker rapporten litt, men gjør avviket lesbart."
+            },
+            {
+              "id": "B",
+              "label": "Send rapporten med tallet som det står.",
+              "reply": "Jeg sender rapporten nå og lar tallet stå foreløpig.",
+              "effect": -1,
+              "tags": ["tempo", "risk", "snarvei"],
+              "feedback": "Fristen holdes, men ledelsen får et tall uten årsak."
+            }
+          ]
+        },
+        {
+          "id": "controller_intro_v2_002",
+          "mail_type": "job",
+          "mail_family": "controller_intro_v2",
+          "role_scope": "controller",
+          "phase": "intro",
+          "priority": 68,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "marius_regnskap",
+          "subject": "Avstemming: konto 4300 går ikke opp",
+          "summary": "En innkjøpskonto har differanse mot underlaget.",
+          "situation": [
+            "Marius sender deg en avstemming rett før lunsj.",
+            "Konto 4300 har en differanse som ikke stemmer med fakturagrunnlaget.",
+            "Det er sannsynligvis en periodisering, men ingen har dokumentert det."
+          ],
+          "task_domain": "account_reconciliation",
+          "competency": "dokumentasjon",
+          "pressure": "manglende_underlag",
+          "choice_axis": "dokumentere_vs_anta",
+          "consequence_axis": "kontroll_vs_flyt",
+          "narrative_arc": "sporbarhet_i_tallene",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Be om faktura og periodiseringsnotat før du godkjenner.",
+              "reply": "Jeg trenger faktura og periodiseringsnotat før jeg godkjenner avstemmingen.",
+              "effect": 1,
+              "tags": ["process", "kvalitet", "kontroll"],
+              "feedback": "Du gjør avstemmingen tregere, men den blir etterprøvbar."
+            },
+            {
+              "id": "B",
+              "label": "Godkjenn som sannsynlig periodisering.",
+              "reply": "Jeg godkjenner dette som sannsynlig periodisering foreløpig.",
+              "effect": -1,
+              "tags": ["tempo", "risk"],
+              "feedback": "Du rydder skjemaet, men ikke årsaken."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
