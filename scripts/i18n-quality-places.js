@@ -11,24 +11,13 @@
 const fs = require("fs");
 const path = require("path");
 const crypto = require("crypto");
+const { createPlaceManifestLoader } = require("./i18n-place-manifest-loader");
 
 const ROOT = path.resolve(__dirname, "..");
 const lang = (process.argv.find(a => !a.startsWith("--") && a !== __filename && a !== process.argv[0]) || "en").trim();
 const failOnWarning = process.argv.includes("--fail-on-warning");
+const placeManifestLoader = createPlaceManifestLoader(ROOT, "i18n-quality");
 
-const PLACE_FILES = [
-  "data/places/places_by.json",
-  "data/places/places_historie.json",
-  "data/places/places_kunst.json",
-  "data/places/places_litteratur.json",
-  "data/places/places_musikk.json",
-  "data/places/places_naeringsliv.json",
-  "data/places/places_natur.json",
-  "data/places/places_politikk.json",
-  "data/places/places_sport.json",
-  "data/places/places_subkultur.json",
-  "data/places/places_vitenskap.json"
-];
 
 function readJson(rel) {
   return JSON.parse(fs.readFileSync(path.join(ROOT, rel), "utf8"));
@@ -72,8 +61,9 @@ function rows(data) {
 
 function loadMaster() {
   const map = new Map();
-  for (const file of PLACE_FILES) {
-    for (const p of rows(readJson(file))) {
+  const placeFiles = placeManifestLoader.loadManifestPlaceFiles();
+  for (const file of placeFiles) {
+    for (const p of rows(placeManifestLoader.readJson(file))) {
       const id = norm(p && p.id);
       if (!id || p.hidden === true || p.stub === true || map.has(id)) continue;
       map.set(id, { id, file, hash: hash(p), source: payload(p) });
