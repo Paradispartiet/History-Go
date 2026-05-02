@@ -1,0 +1,57 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "naeringsliv",
+  "role_scope": "controller",
+  "mail_type": "job",
+  "families": [
+    {
+      "id": "avstemming_og_rapport",
+      "mails": [
+        {
+          "id": "controller_job_001",
+          "mail_type": "job",
+          "mail_family": "avstemming_og_rapport",
+          "role_scope": "controller",
+          "subject": "Tallene fra lager og regnskap er ulike",
+          "summary": "Lagerverdien i driftssystemet stemmer ikke med regnskapet.",
+          "situation": ["Du ser at lagerverdien i driftssystemet ligger høyere enn bokført verdi i regnskapet."],
+          "task_domain": "inventory_accounting",
+          "competency": "avstemming",
+          "pressure": "månedsslutt",
+          "choice_axis": "rotarsak_vs_manuell_justering",
+          "consequence_axis": "kvalitet_vs_tempo",
+          "narrative_arc": "sporbarhet_i_tallene",
+          "choices": [
+            { "id": "A", "label": "Spor differansen til varegruppe og dato før justering.", "effect": 1, "tags": ["kvalitet", "process"], "feedback": "Du finner mønsteret før du flytter tallet." },
+            { "id": "B", "label": "Legg inn en midlertidig manuell korreksjon.", "effect": -1, "tags": ["tempo", "snarvei"], "feedback": "Rapporten går opp, men differansen er ikke forstått." }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "prognose_og_budsjett",
+      "mails": [
+        {
+          "id": "controller_job_002",
+          "mail_type": "job",
+          "mail_family": "prognose_og_budsjett",
+          "role_scope": "controller",
+          "subject": "Ny prognose før ledermøtet",
+          "summary": "Du må oppdatere prognosen etter svakere salg enn ventet.",
+          "situation": ["Salget ligger under forventning, men kampanjekostnaden er allerede brukt. Ledelsen vil ha ny prognose før klokken 14."],
+          "task_domain": "forecasting",
+          "competency": "prognosearbeid",
+          "pressure": "ledermote",
+          "choice_axis": "realistisk_scenario_vs_optimistisk_glatting",
+          "consequence_axis": "tillit_vs_behag",
+          "narrative_arc": "budsjettets_grenser",
+          "choices": [
+            { "id": "A", "label": "Lag realistisk prognose med tydelige forutsetninger.", "effect": 1, "tags": ["kvalitet", "integritet"], "feedback": "Du gjør det ubehagelige tydelig nok til at det kan styres." },
+            { "id": "B", "label": "Glatt ut avviket med forventet innhenting senere.", "effect": -1, "tags": ["visibility", "risk"], "feedback": "Prognosen ser roligere ut, men risikoen er flyttet fremover." }
+          ]
+        }
+      ]
+    }
+  ]
+}
