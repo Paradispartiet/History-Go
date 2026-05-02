@@ -7,6 +7,7 @@
   "families": [
     {
       "id": "anbefaling_og_usikkerhet",
+      "description": "Konflikter der investeringskomiteens behov for klarhet møter modellens faktiske usikkerhet.",
       "mails": [
         {
           "id": "finansanalytiker_conflict_001",
@@ -15,40 +16,81 @@
           "role_scope": "finansanalytiker",
           "subject": "Komiteen vil ha en klar anbefaling",
           "summary": "Investeringskomiteen ber deg konkludere tydeligere enn datagrunnlaget tåler.",
-          "situation": ["Komiteen ønsker kjøp/ikke kjøp. Du mener datagrunnlaget fortsatt har for stor usikkerhet rundt margin og vekst."],
+          "purpose": "Simulere presset i finansanalyse: beslutninger krever klarhet, men faglig integritet krever synlig usikkerhet.",
+          "stakes": "En skarp anbefaling kan flytte kapital raskt, men hvis usikkerheten tones ned, flyttes også risikoen til dem som stoler på notatet ditt.",
+          "situation": [
+            "Komiteen vil ha kjøp eller ikke kjøp. Du har en modell som peker mot oppside, men datakvaliteten er svak rundt margin og vekst.",
+            "En porteføljeforvalter skriver: «Vi kan ikke gå inn i møtet med kanskje. Hva mener du faktisk?»",
+            "Det er et legitimt spørsmål. Kapital kan ikke vente på full sikkerhet. Men analyse er heller ikke teater der usikkerhet må fjernes for at noen skal tørre å handle.",
+            "Du må formulere en anbefaling som kan brukes uten å late som modellen vet mer enn den vet."
+          ],
           "task_domain": "investment_recommendation",
           "competency": "usikkerhetsformidling",
           "pressure": "beslutningspress",
           "choice_axis": "betinget_anbefaling_vs_skarp_konklusjon",
           "consequence_axis": "ansvar_vs_beslutningskraft",
           "narrative_arc": "analyse_under_press",
+          "learning_focus": ["anbefaling", "usikkerhet", "beslutningspress", "kapitalallokering"],
           "choices": [
-            { "id": "A", "label": "Gi betinget anbefaling med tydelige usikkerhetsdrivere.", "effect": 1, "tags": ["integritet", "analyse"], "feedback": "Du gir komiteen en beslutning, men lar usikkerheten stå synlig." },
-            { "id": "B", "label": "Gi en klar kjøpsanbefaling og tone ned forbeholdene.", "effect": -1, "tags": ["visibility", "risk"], "feedback": "Anbefalingen blir sterkere, men du eier mer av usikkerheten enn modellen egentlig tåler." }
+            {
+              "id": "A",
+              "label": "Gi betinget anbefaling med tydelige usikkerhetsdrivere.",
+              "effect": 1,
+              "tags": ["integritet", "analyse", "risiko"],
+              "feedback": "Du gir komiteen en beslutning, men lar usikkerheten stå synlig. Det er mindre dramatisk, men mer ansvarlig."
+            },
+            {
+              "id": "B",
+              "label": "Gi en klar kjøpsanbefaling og tone ned forbeholdene.",
+              "effect": -1,
+              "tags": ["visibility", "risk"],
+              "feedback": "Anbefalingen blir sterkere, men du eier mer av usikkerheten enn modellen egentlig tåler. Klarhet kan også være en form for forenkling."
+            }
           ]
         }
       ]
     },
     {
       "id": "konklusjon_og_integritet",
+      "description": "Konflikter der metode, intern posisjonering og ønsket investeringshistorie trekker analysen i ulike retninger.",
       "mails": [
         {
           "id": "finansanalytiker_conflict_002",
           "mail_type": "conflict",
           "mail_family": "konklusjon_og_integritet",
           "role_scope": "finansanalytiker",
-          "subject": "Partner vil bruke den høyeste multiplen",
+          "subject": "Partner vil bruke den høyeste multippelen",
           "summary": "En senior ber deg bruke den mest fordelaktige multippelen i presentasjonen.",
-          "situation": ["Partneren skriver at caset trenger et tydelig oppsidebilde, og foreslår at du bruker øvre kvartil som hovedmultiple."],
+          "purpose": "Lære spilleren at metodeintegritet ofte testes i små presentasjonsvalg, ikke bare i store skandaler.",
+          "stakes": "Hvis øvre kvartil gjøres til base case, ser caset bedre ut enn metoden forsvarer. Det kan endre både pris, risikoappetitt og tillit til analysen.",
+          "situation": [
+            "Partneren skriver at caset trenger et tydelig oppsidebilde. Han foreslår å bruke øvre kvartil i peer-gruppen som hovedmultiple.",
+            "Det er ikke et tilfeldig tall. Det finnes i markedet. Problemet er at det representerer de beste sammenlignbare selskapene, ikke nødvendigvis dette selskapet.",
+            "Dette er en vanlig metodisk fristelse: å velge et legitimt datapunkt fordi det gir ønsket konklusjon.",
+            "Du kan vise øvre kvartil som sensitivitet, eller gjøre den til sentrum i historien. Forskjellen er liten i lysbildet, men stor i ansvaret."
+          ],
           "task_domain": "valuation_ethics",
           "competency": "metodeintegritet",
           "pressure": "intern_posisjonering",
           "choice_axis": "metode_vs_onsket_resultat",
           "consequence_axis": "troverdighet_vs_salgbarhet",
           "narrative_arc": "modellens_grense",
+          "learning_focus": ["verdsettelsesetikk", "multipler", "sensitivitet", "metodevalg"],
           "choices": [
-            { "id": "A", "label": "Vis øvre kvartil som sensitivitet, ikke base case.", "effect": 1, "tags": ["integritet", "kvalitet"], "feedback": "Du lar oppsiden finnes uten å gjøre den til normaltilstand." },
-            { "id": "B", "label": "Bruk øvre kvartil som hovedcase for å støtte anbefalingen.", "effect": -1, "tags": ["risk", "visibility"], "feedback": "Presentasjonen blir mer overbevisende, men mindre balansert." }
+            {
+              "id": "A",
+              "label": "Vis øvre kvartil som sensitivitet, ikke base case.",
+              "effect": 1,
+              "tags": ["integritet", "kvalitet", "analyse"],
+              "feedback": "Du lar oppsiden finnes uten å gjøre den til normaltilstand. Metoden holder selv om historien blir mindre salgsvennlig."
+            },
+            {
+              "id": "B",
+              "label": "Bruk øvre kvartil som hovedcase for å støtte anbefalingen.",
+              "effect": -1,
+              "tags": ["risk", "visibility"],
+              "feedback": "Presentasjonen blir mer overbevisende, men mindre balansert. Du har ikke funnet sannere verdi; du har valgt en mer nyttig sammenligning."
+            }
           ]
         }
       ]
