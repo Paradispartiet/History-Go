@@ -141,7 +141,7 @@
     if (mode !== STYLE_MODE_SATELLITE) return STYLE_URL_STANDARD;
     const key = getMapTilerKey();
     if (!key) return null;
-    return `https://api.maptiler.com/maps/hybrid/style.json?key=${encodeURIComponent(key)}`;
+    return `https://api.maptiler.com/maps/satellite-v4/style.json?key=${encodeURIComponent(key)}`;
   }
 
   function applyMapStyle(nextMode) {
