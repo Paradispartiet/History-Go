@@ -141,7 +141,16 @@
     if (mode !== STYLE_MODE_SATELLITE) return STYLE_URL_STANDARD;
     const key = getMapTilerKey();
     if (!key) return null;
-    return `https://api.maptiler.com/maps/satellite-v4/style.json?key=${encodeURIComponent(key)}`;
+
+    const customStyleUrl = String(window.HG_NATURTRO_STYLE_URL || "").trim();
+    if (customStyleUrl) {
+      if (/([?&])key=/.test(customStyleUrl)) return customStyleUrl;
+      const sep = customStyleUrl.includes("?") ? "&" : "?";
+      return `${customStyleUrl}${sep}key=${encodeURIComponent(key)}`;
+    }
+
+    const styleId = String(window.HG_NATURTRO_STYLE_ID || "hybrid").trim() || "hybrid";
+    return `https://api.maptiler.com/maps/${encodeURIComponent(styleId)}/style.json?key=${encodeURIComponent(key)}`;
   }
 
   function applyMapStyle(nextMode) {
@@ -177,7 +186,7 @@
     const onError = (error) => {
       if (!isApplyingStyle) return;
       const message = error?.error?.message || error?.message || "unknown error";
-      console.warn("[HGMap] style failed", message, error?.error || error);
+      console.warn("[HGMap] Naturtro style failed", message, error?.error || error);
       isApplyingStyle = false;
       pendingStyleMode = null;
       mapStyleMode = STYLE_MODE_STANDARD;
@@ -190,7 +199,7 @@
           redrawPlacesAfterStyleLoad(STYLE_MODE_STANDARD);
           console.debug("[HGMap] setStyle called");
         } catch (fallbackError) {
-          console.warn("[HGMap] style failed", fallbackError);
+          console.warn("[HGMap] Naturtro style failed", fallbackError);
         }
       }
     };
@@ -217,12 +226,20 @@
       console.debug("[HGMap] place layers restored");
     };
     if (typeof MAP.isStyleLoaded === "function" && MAP.isStyleLoaded()) {
-      run();
+      if (typeof MAP.once === "function") {
+        MAP.once("idle", run);
+      } else {
+        run();
+      }
       return;
     }
     MAP.once("style.load", () => {
       console.debug("[HGMap] style loaded", resolvedMode);
-      run();
+      if (typeof MAP.once === "function") {
+        MAP.once("idle", run);
+      } else {
+        run();
+      }
     });
   }
 
