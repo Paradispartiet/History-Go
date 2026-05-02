@@ -1,0 +1,256 @@
+{
+  "version": "v5.1-source-priority-patch-historie",
+  "subject_id": "historie",
+  "subject_title": "Historie",
+  "scope": "oslo_og_omegn",
+  "purpose": "Tighten the History Go quiz generator for historiefaget so external source-bearing history dominates visible question content, while fagkart_historie, methods_historie, emner_historie, emnemapping_historie and historiepensum guide structure, progression, method and theory selection.",
+  "canonical_inputs": {
+    "fagkart": "fagkart_historie_canonical_v4_5.json",
+    "methods": "methods_historie_canonical_v4_5.json",
+    "emner": "emner_historie_canonical_v4_5.json",
+    "emnemapping": "emnemapping_historie_canonical_v4_5.json",
+    "pensum": "historiepensum_canonical_v4_5.json",
+    "domain_count": 12,
+    "emne_count": 45,
+    "method_count": 12,
+    "mapping_count": 45
+  },
+  "hard_rules": {
+    "source_dominance_rule": "External historical/local sources must dominate the factual substance of every history quiz. Canonical files may guide emne choice, method choice, theory choice, set progression and risk control, but may not be the main source of visible question content.",
+    "canonical_files_are_guides_not_content": true,
+    "external_history_first_all_sets": true,
+    "minimum_external_source_ratio_by_set": {
+      "1": 0.85,
+      "2": 0.85,
+      "3": 0.7,
+      "4": 0.8,
+      "5": 0.7,
+      "6": 0.75,
+      "7": 0.75,
+      "8": 0.75
+    },
+    "internal_file_only_questions_max_per_quiz": 0.05,
+    "internal_file_only_questions_allowed_only_for": [
+      "pure on-site observation questions about visible trace, material, building, ruin, monument or placement",
+      "question-layer/metadata validation",
+      "fallback when no external coverage exists and this is explicitly logged"
+    ],
+    "question_seed_priority": [
+      "external local history sources",
+      "official museum / archive / institution pages",
+      "municipal or state heritage pages",
+      "local history encyclopedia / Oslo byleksikon / Store norske leksikon",
+      "books, scholarly literature, archival references and museum catalogues",
+      "verified journalism only when used as source to a concrete historical claim",
+      "place profile source fields",
+      "canonical fagkart/emner/emnemapping/methods/pensum as guidance only"
+    ],
+    "history_question_must_start_from": [
+      "documented event",
+      "visible trace",
+      "institutional function",
+      "named source or source type",
+      "dated change",
+      "historical actor anchored to place",
+      "later memory or history use anchored to place"
+    ],
+    "forbidden_generation_patterns": [
+      "Do not generate visible questions directly from emne labels, hook names, method names or theory lists.",
+      "Do not ask generic history-theory questions without a concrete Oslo/place claim.",
+      "Do not make a place historical only because it is old.",
+      "Do not classify media, business, sport, art or politics as historie when history is only a secondary layer.",
+      "Do not use em_by_*, em_media_*, em_naering_* or em_pol_* as emne_ids in places_historie or people_historie."
+    ],
+    "required_emne_prefix": "em_his_",
+    "blocked_emne_prefixes_for_history_files": [
+      "em_by_",
+      "em_media_",
+      "em_naering_",
+      "em_pol_",
+      "em_vit_",
+      "em_kunst_"
+    ],
+    "people_historie_rule": "people_historie should contain people whose primary historical role concerns state formation, medieval power, 1814, institutions, war/occupation/resistance, social history, welfare history, migration/minority history or memory/history use. People whose main role is sport, media, business, music, theatre, art or politics should primarily belong to those category files, with history as tag only.",
+    "places_historie_rule": "places_historie should contain places whose primary category is historical trace, event, institution, memory, medieval layer, war/occupation, state formation or social-historical site. Places whose primary function is press, finance, business, contemporary politics, sport, art, media or urban design should not be forced into history."
+  },
+  "soft_preferences": {
+    "preferred_external_source_mix_per_place": [
+      "at least one local history / encyclopedia source",
+      "at least one official institution / archive / museum / heritage source",
+      "at least one complementary source such as scholarly article, book, catalogue, verified journalism or archival reference"
+    ],
+    "preferred_question_build_path": "external source -> concrete historical claim -> place/person/story unit -> method/emne guidance -> question",
+    "preferred_role_of_canonical_files": [
+      "help choose what kind of historical question to ask",
+      "help choose which em_his_* fits the place",
+      "help choose which historical method fits",
+      "help choose which theory/thinker can sharpen the late-set interpretation",
+      "help spread cases, methods and thinkers",
+      "help avoid overlap, category drift and theory overreach"
+    ],
+    "preferred_history_surface": [
+      "source-first",
+      "visible-trace-first",
+      "institution-first",
+      "event-place-first",
+      "before-after-first",
+      "place-first_then_named_theorist"
+    ],
+    "preferred_norwegian_theory_path": "When the emne has relevant Norwegian thinkers, prefer at least one Norwegian thinker path in later sets if it genuinely clarifies the place."
+  },
+  "set_guidance": {
+    "1": {
+      "name": "grunnfakta_og_sted",
+      "dominant_driver": "external local history and concrete place/person facts",
+      "canonical_role": "light guidance only",
+      "allowed_methods": [
+        "met_kildekritikk",
+        "met_sporlesning",
+        "met_periodisering"
+      ],
+      "question_style": "simple factual recognition, dated event, visible trace, name/function, place/person relation"
+    },
+    "2": {
+      "name": "tidslag_og_funksjon",
+      "dominant_driver": "external history, former function, visible traces and documented change",
+      "canonical_role": "light guidance only",
+      "allowed_methods": [
+        "met_sporlesning",
+        "met_periodisering",
+        "met_for_etter_historisk",
+        "met_institusjonshistorisk_analyse"
+      ],
+      "question_style": "what changed, what function the place had, which period or institution it belongs to"
+    },
+    "3": {
+      "name": "kilde_spor_og_metode",
+      "dominant_driver": "external sources plus stronger historical method guidance",
+      "canonical_role": "high method/emne guidance allowed",
+      "allowed_methods": [
+        "met_kildekritikk",
+        "met_arkivlesning",
+        "met_sporlesning",
+        "met_mikrohistorisk_analyse"
+      ],
+      "question_style": "source criticism, visible trace, archive logic, whose perspective appears or is missing"
+    },
+    "4": {
+      "name": "institusjon_og_makt",
+      "dominant_driver": "external facts about institutions, power, conflict and formal function",
+      "canonical_role": "medium guidance",
+      "allowed_methods": [
+        "met_institusjonshistorisk_analyse",
+        "met_kildekritikk",
+        "met_for_etter_historisk",
+        "met_minneanalyse"
+      ],
+      "question_style": "connect institution to power, regulation, legal function, crisis or social consequence"
+    },
+    "5": {
+      "name": "historisk_endring_og_hverdagsliv",
+      "dominant_driver": "external history plus strong emne guidance for social history and change",
+      "canonical_role": "high guidance allowed",
+      "allowed_methods": [
+        "met_mikrohistorisk_analyse",
+        "met_muntlig_historie",
+        "met_for_etter_historisk",
+        "met_komparativ_historie"
+      ],
+      "question_style": "ordinary life, social change, who gained/lost, before/after, everyday trace"
+    },
+    "6": {
+      "name": "minne_historiebruk_og_blindsoner",
+      "dominant_driver": "external sources still dominate; emner and memory theory organise interpretation",
+      "canonical_role": "medium-high guidance",
+      "allowed_methods": [
+        "met_minneanalyse",
+        "met_symbol_og_minneanalyse",
+        "met_kildekritikk",
+        "met_muntlig_historie"
+      ],
+      "question_style": "who is remembered, who is absent, official memory, museum/monument/gravlund/history use"
+    },
+    "7": {
+      "name": "teori_sammenligning",
+      "dominant_driver": "external sources and literature plus controlled theory comparison",
+      "canonical_role": "medium-high guidance",
+      "allowed_methods": [
+        "met_komparativ_historie",
+        "met_begrepshistorie",
+        "met_minneanalyse",
+        "met_institusjonshistorisk_analyse"
+      ],
+      "question_style": "compare two historical interpretations, cases, thinkers or methods, anchored in source-bearing place claims"
+    },
+    "8": {
+      "name": "begrep_dybde_og_kritikk",
+      "dominant_driver": "external sources and literature plus concept clarification and theory tail",
+      "canonical_role": "medium-high guidance",
+      "allowed_methods": [
+        "met_begrepshistorie",
+        "met_komparativ_historie",
+        "met_minneanalyse",
+        "met_kildekritikk"
+      ],
+      "question_style": "advanced concept, meaning shift, memory conflict, historical argument, but always anchored in place/source"
+    }
+  },
+  "history_category_guardrails": {
+    "accept_as_history_primary_when": [
+      "the place is a documented historical site or visible trace",
+      "the main learning value is historical event, institution, source, memory or period",
+      "the person is historically central because of state, war, institution, social movement, welfare, migration/minority history or memory/history use",
+      "the quiz can be built from historical sources rather than present-day function"
+    ],
+    "do_not_accept_as_history_primary_when": [
+      "the place primarily represents media, business, sport, art, theatre, music, science, psychology, politics or urban design",
+      "the only reason for inclusion is that the person is old or famous",
+      "the main story belongs better to another badge/category and history is only background"
+    ],
+    "secondary_history_tag_allowed": true
+  },
+  "validator_additions": [
+    "Reject a history quiz if early sets are mostly paraphrases of uploaded canonical structure files rather than externally grounded historical/place claims.",
+    "Reject a question if it can be traced only to emne/hook/method/theory names and not to a concrete source-bearing claim, visible trace or documented observation.",
+    "Reject questions in places_historie or people_historie that use non-history emne_ids unless the field is explicitly secondary and not used as the main emne_ids field.",
+    "Flag any person/place whose primary category appears to be media, næringsliv, politikk, sport, kunst, musikk, teater, film_tv, psykologi or vitenskap rather than historie.",
+    "Log per-question source_origin as one of: external, mixed, observed_trace, internal_only.",
+    "Flag any quiz where internal_only exceeds 5 percent.",
+    "Flag theory overreach when a named theorist appears before the place fact/source has been established.",
+    "Flag memory/history-use questions that become pure symbolism without a documented memory practice, monument, source or public use."
+  ],
+  "generation_metadata_additions": {
+    "required_per_question_fields_recommended": [
+      "source_origin",
+      "claim_basis",
+      "guidance_basis",
+      "method_id",
+      "emne_id",
+      "history_anchor_type",
+      "source_note"
+    ],
+    "source_origin_values": [
+      "external",
+      "mixed",
+      "observed_trace",
+      "internal_only"
+    ],
+    "history_anchor_type_values": [
+      "dated_event",
+      "visible_trace",
+      "institutional_function",
+      "archival_source",
+      "material_source",
+      "person_place_link",
+      "memory_practice",
+      "before_after_change"
+    ],
+    "claim_basis_definition": "The concrete historical/place/person claim from an external, archival, institutional, literature or observed source.",
+    "guidance_basis_definition": "Which em_his_*/hook/method/theory helped shape the question without supplying the visible factual content.",
+    "method_id_definition": "One method_id from methods_historie_canonical_v4_5.json used to shape the question.",
+    "emne_id_definition": "One em_his_* from emner_historie_canonical_v4_5.json used as the main history emne.",
+    "source_note_definition": "Short source note naming the type of source used, not a raw unverifiable claim."
+  },
+  "diagnosis_note": "When many files are uploaded, the model must not over-weight canonical system files simply because they are numerous. For history, source-bearing external material, institution pages, local history literature, archives, museums and visible traces must dominate the visible quiz content. Fagkart, methods, emner, emnemapping and pensum are steering files only.",
+  "migration_note": "Existing places_historie and people_historie entries should be migrated from em_by_* to em_his_* only after checking that each new em_his_* is supported by the place/person's actual story, category and sources."
+}

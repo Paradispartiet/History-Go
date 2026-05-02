@@ -1,0 +1,128 @@
+{
+  "id": "gamle_aker_kirke_quiz_1",
+  "quiz_id": "historie_gamle_aker_kirke_set_1_q1",
+  "categoryId": "historie",
+  "placeId": "gamle_aker_kirke",
+  "personId": "",
+  "natureId": "",
+  "targetId": "gamle_aker_kirke",
+  "question_scope": "place",
+  "question": "Hva gjør Gamle Aker kirke særlig viktig i Oslos historie?",
+  "options": [
+    "Den er Oslos eldste stående bygning",
+    "Den var byens første rådhus",
+    "Den ble reist som børsbygning"
+  ],
+  "answer": "Den er Oslos eldste stående bygning",
+  "answerIndex": 0,
+  "dimension": "historie",
+  "topic": "Middelalder og spor",
+  "knowledge": "Gamle Aker kirke er et konkret middelalderspor i dagens Oslo og brukes her som eksempel på hvordan et bygg kan fungere som historisk kilde.",
+  "trivia": [],
+  "difficulty": 1,
+  "question_type": "fact",
+  "question_layer": "fakta_sted",
+  "year": 1150,
+  "epoke_id": "middelalder",
+  "epoke_domain": "historie",
+  "emne_id": "em_his_middelalder_oslo",
+  "related_emner": [
+    "em_his_kirke_kloster_middelalder",
+    "em_his_spor_materialitet",
+    "em_his_historiske_lag_i_byrom"
+  ],
+  "core_concepts": [
+    "middelalderby",
+    "kirke",
+    "materielt spor",
+    "historiske lag",
+    "stedlig kilde"
+  ],
+  "concept_focus": [
+    "materielt spor",
+    "middelalder"
+  ],
+  "learning_paths": [
+    "fra synlig bygg til historisk tidslag",
+    "fra stedlig fakta til kilde- og sporlesning"
+  ],
+  "tags": [
+    "fakta",
+    "sted",
+    "historie",
+    "middelalder",
+    "kirke",
+    "spor",
+    "gamle_aker_kirke"
+  ],
+  "required_tags": [
+    "external_source",
+    "history_anchor",
+    "em_his"
+  ],
+  "source": [
+    {
+      "type": "external_local_history",
+      "name": "Oslo byleksikon / tilsvarende lokalhistorisk kilde",
+      "role": "verifiserer alder, sted og historisk hovedpåstand",
+      "required": true
+    },
+    {
+      "type": "official_or_heritage_source",
+      "name": "kirkelig/kulturminnefaglig kilde",
+      "role": "verifiserer bygnings- og kulturminnestatus",
+      "required": true
+    }
+  ],
+  "source_origin": "mixed",
+  "claim_basis": "Ekstern lokalhistorisk kilde skal verifisere at Gamle Aker kirke er Oslos eldste stående bygning og et middelalderspor.",
+  "guidance_basis": {
+    "fagkart_category_id": "his_middelalder_kirke_kongemakt",
+    "topic_hook": "his_middelalder_by_kirke",
+    "emne_id": "em_his_middelalder_oslo",
+    "method_id": "met_sporlesning",
+    "canonical_files_used_as_guidance_only": [
+      "fagkart_historie_canonical_v4_5.json",
+      "methods_historie_canonical_v4_5.json",
+      "emner_historie_canonical_v4_5.json",
+      "emnemapping_historie_canonical_v4_5.json",
+      "historiepensum_canonical_v4_5.json"
+    ]
+  },
+  "method_id": "met_sporlesning",
+  "history_anchor_type": "visible_trace",
+  "source_note": "Spørsmålet skal bygges fra ekstern lokalhistorisk og/eller kulturminnefaglig kilde; fagfilene styrer bare metode og emnevalg.",
+  "external_source_ratio_target": 0.85,
+  "internal_file_only_allowed": false,
+  "requires_history_anchor": true,
+  "requires_external_claim_basis": true,
+  "requires_visible_trace": true,
+  "generator_guardrails": {
+    "do_not_generate_from_emne_label_only": true,
+    "do_not_use_non_history_emne_id": true,
+    "required_emne_prefix": "em_his_",
+    "blocked_emne_prefixes": [
+      "em_by_",
+      "em_media_",
+      "em_naering_",
+      "em_pol_",
+      "em_vit_",
+      "em_kunst_"
+    ],
+    "place_first_then_theory": true,
+    "source_first": true
+  },
+  "validation": {
+    "emne_id_exists_in_emner_historie": true,
+    "method_id_exists_in_methods_historie": true,
+    "mapping_exists_in_emnemapping_historie": true,
+    "category_matches_badge": true,
+    "schema_extends_generic_supersetQUIZMAL": true
+  },
+  "template_notes": {
+    "template_role": "history_superset_quiz_object",
+    "generic_template_source": "supersetQUIZMAL (10).json",
+    "content_policy": "Dette er en mal/eksempelobjekt. Produksjonsquizer skal fylle source med konkrete kilder og ikke bruke fagfilene som hovedkilde til faktapåstander.",
+    "next_use": "Bruk som grunnmal for historiequiz-spørsmål før generatoren lager mange spørsmål per sted/person."
+  }
+}
