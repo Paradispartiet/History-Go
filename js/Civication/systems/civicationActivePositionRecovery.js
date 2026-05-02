@@ -25,19 +25,33 @@
       role_key: "fagarbeider",
       role_id: "naer_fagarbeider"
     },
-    mellomleder: {
-      career_id: "naeringsliv",
-      career_name: "Næringsliv & industri",
-      title: "Mellomleder",
-      role_key: "mellomleder",
-      role_id: "naer_mellomleder"
-    },
     formann: {
       career_id: "naeringsliv",
       career_name: "Næringsliv & industri",
       title: "Formann / arbeidsleder",
       role_key: "formann",
       role_id: "naer_formann"
+    },
+    controller: {
+      career_id: "naeringsliv",
+      career_name: "Næringsliv & industri",
+      title: "Controller",
+      role_key: "controller",
+      role_id: "naer_controller"
+    },
+    finansanalytiker: {
+      career_id: "naeringsliv",
+      career_name: "Næringsliv & industri",
+      title: "Finansanalytiker",
+      role_key: "finansanalytiker",
+      role_id: "naer_finansanalytiker"
+    },
+    mellomleder: {
+      career_id: "naeringsliv",
+      career_name: "Næringsliv & industri",
+      title: "Mellomleder",
+      role_key: "mellomleder",
+      role_id: "naer_mellomleder"
     }
   };
 
@@ -47,9 +61,11 @@
     arbeider_naeringsliv_v2: "arbeider",
     fagarbeider_naeringsliv_v2: "fagarbeider",
     fagarbeider_naeringsliv_v3: "fagarbeider",
+    formann_naeringsliv_v1: "formann",
+    controller_naeringsliv_v1: "controller",
+    finansanalytiker_naeringsliv_v1: "finansanalytiker",
     mellomleder_naeringsliv_v1: "mellomleder",
-    mellomleder_naeringsliv_v2: "mellomleder",
-    formann_naeringsliv_v1: "formann"
+    mellomleder_naeringsliv_v2: "mellomleder"
   };
 
   function norm(v) {
