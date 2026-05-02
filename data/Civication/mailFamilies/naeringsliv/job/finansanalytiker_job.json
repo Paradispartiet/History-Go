@@ -1,0 +1,81 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "naeringsliv",
+  "role_scope": "finansanalytiker",
+  "mail_type": "job",
+  "families": [
+    {
+      "id": "modell_og_antakelser",
+      "mails": [
+        {
+          "id": "finansanalytiker_job_001",
+          "mail_type": "job",
+          "mail_family": "modell_og_antakelser",
+          "role_scope": "finansanalytiker",
+          "subject": "EBITDA-marginen hopper uten forklaring",
+          "summary": "Modellen viser marginløft som ikke er begrunnet i driftstallene.",
+          "situation": ["Du oppdager at EBITDA-marginen øker kraftig i prognoseåret uten at kostnadsbasen er endret."],
+          "task_domain": "financial_modeling",
+          "competency": "antakelsestesting",
+          "pressure": "tydelig_case",
+          "choice_axis": "teste_antakelse_vs_beholde_oppside",
+          "consequence_axis": "troverdighet_vs_avkastningsbilde",
+          "narrative_arc": "modellen_som_argument",
+          "choices": [
+            { "id": "A", "label": "Kjør sensitivitet og forklar marginløftet eksplisitt.", "effect": 1, "tags": ["analyse", "integritet"], "feedback": "Du gjør oppsiden betinget, ikke magisk." },
+            { "id": "B", "label": "Behold marginløftet som ledelsens base case.", "effect": -1, "tags": ["risk", "visibility"], "feedback": "Caset ser sterkere ut, men modellen bærer en umerket antakelse." }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "marked_og_sammenligning",
+      "mails": [
+        {
+          "id": "finansanalytiker_job_002",
+          "mail_type": "job",
+          "mail_family": "marked_og_sammenligning",
+          "role_scope": "finansanalytiker",
+          "subject": "Sammenlignbare selskaper spriker",
+          "summary": "Peer-gruppen gir svært ulike multipler.",
+          "situation": ["Du sammenligner selskapet med fem peers, men to av dem har helt annen vekst, risiko og kapitalstruktur."],
+          "task_domain": "valuation_comparables",
+          "competency": "sammenligningskritikk",
+          "pressure": "presentasjon",
+          "choice_axis": "ren_peergruppe_vs_bredt_snitt",
+          "consequence_axis": "presisjon_vs_enkelhet",
+          "narrative_arc": "markedets_speil",
+          "choices": [
+            { "id": "A", "label": "Rens peer-gruppen og vis hvorfor noen utelates.", "effect": 1, "tags": ["kvalitet", "analyse"], "feedback": "Verdsettelsen blir smalere, men mer forklarbar." },
+            { "id": "B", "label": "Bruk hele snittet for å få et enkelt tall.", "effect": -1, "tags": ["tempo", "snarvei"], "feedback": "Tallet blir lett å presentere, men vanskeligere å forsvare." }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "scenario_og_risiko",
+      "mails": [
+        {
+          "id": "finansanalytiker_job_003",
+          "mail_type": "job",
+          "mail_family": "scenario_og_risiko",
+          "role_scope": "finansanalytiker",
+          "subject": "Nedsidescenario mangler i notatet",
+          "summary": "Investeringsnotatet har base og upside, men ingen tydelig downside.",
+          "situation": ["Notatet ditt har en ryddig base case og et sterkt upside case. Nedsiden er bare nevnt i en setning."],
+          "task_domain": "risk_analysis",
+          "competency": "scenarioanalyse",
+          "pressure": "investeringskomite",
+          "choice_axis": "risikobilde_vs_salgbar_anbefaling",
+          "consequence_axis": "ansvar_vs_appetitt",
+          "narrative_arc": "risikoens_eier",
+          "choices": [
+            { "id": "A", "label": "Legg inn eksplisitt nedsidescenario med utløsende faktorer.", "effect": 1, "tags": ["integritet", "risiko"], "feedback": "Du gjør anbefalingen mer ansvarlig, selv om den blir mindre blank." },
+            { "id": "B", "label": "Hold nedsiden kort for ikke å svekke hovedcaset.", "effect": -1, "tags": ["visibility", "risk"], "feedback": "Hovedcaset står sterkere, men risikoen blir underkommunisert." }
+          ]
+        }
+      ]
+    }
+  ]
+}
