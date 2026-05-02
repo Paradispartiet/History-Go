@@ -31,17 +31,30 @@
   }
 
   const ROLE_SCOPE_BY_ROLE_ID = {
+    naer_ekspeditor: "ekspeditor",
     naer_arbeider: "arbeider",
     naer_fagarbeider: "fagarbeider",
-    naer_mellomleder: "mellomleder",
-    naer_formann: "formann"
+    naer_formann: "formann",
+    naer_controller: "controller",
+    naer_finansanalytiker: "finansanalytiker",
+    naer_okonomi_og_finanssjef: "okonomi_og_finanssjef",
+    naer_mellomleder: "mellomleder"
   };
 
   const ROLE_SCOPE_BY_TITLE = {
+    ekspeditor: "ekspeditor",
+    butikkmedarbeider: "ekspeditor",
+    ekspeditor_butikkmedarbeider: "ekspeditor",
     arbeider: "arbeider",
+    lager_og_driftsmedarbeider: "arbeider",
     fagarbeider: "fagarbeider",
-    mellomleder: "mellomleder",
-    formann: "formann"
+    formann: "formann",
+    arbeidsleder: "formann",
+    formann_arbeidsleder: "formann",
+    controller: "controller",
+    finansanalytiker: "finansanalytiker",
+    okonomi_og_finanssjef: "okonomi_og_finanssjef",
+    mellomleder: "mellomleder"
   };
 
   function getActive() {
@@ -56,10 +69,8 @@
     if (ROLE_SCOPE_BY_TITLE[titleKey]) return ROLE_SCOPE_BY_TITLE[titleKey];
 
     const roleKey = slugify(active?.role_key || "");
-    if (roleKey === "naer_arbeider" || roleKey === "arbeider") return "arbeider";
-    if (roleKey === "naer_fagarbeider" || roleKey === "fagarbeider") return "fagarbeider";
-    if (roleKey === "naer_mellomleder" || roleKey === "mellomleder") return "mellomleder";
-    if (roleKey === "naer_formann" || roleKey === "formann") return "formann";
+    if (ROLE_SCOPE_BY_ROLE_ID[roleKey]) return ROLE_SCOPE_BY_ROLE_ID[roleKey];
+    if (ROLE_SCOPE_BY_TITLE[roleKey]) return ROLE_SCOPE_BY_TITLE[roleKey];
 
     return "";
   }
@@ -114,7 +125,7 @@
           category,
           role_scope: legacyRoleScope,
           path: legacyPath,
-          strategy: "legacy_mapping",
+          strategy: "explicit_mapping",
           manifest_has_path: true
         };
       }
