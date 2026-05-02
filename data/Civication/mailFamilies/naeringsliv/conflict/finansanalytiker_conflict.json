@@ -1,0 +1,57 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "naeringsliv",
+  "role_scope": "finansanalytiker",
+  "mail_type": "conflict",
+  "families": [
+    {
+      "id": "anbefaling_og_usikkerhet",
+      "mails": [
+        {
+          "id": "finansanalytiker_conflict_001",
+          "mail_type": "conflict",
+          "mail_family": "anbefaling_og_usikkerhet",
+          "role_scope": "finansanalytiker",
+          "subject": "Komiteen vil ha en klar anbefaling",
+          "summary": "Investeringskomiteen ber deg konkludere tydeligere enn datagrunnlaget tåler.",
+          "situation": ["Komiteen ønsker kjøp/ikke kjøp. Du mener datagrunnlaget fortsatt har for stor usikkerhet rundt margin og vekst."],
+          "task_domain": "investment_recommendation",
+          "competency": "usikkerhetsformidling",
+          "pressure": "beslutningspress",
+          "choice_axis": "betinget_anbefaling_vs_skarp_konklusjon",
+          "consequence_axis": "ansvar_vs_beslutningskraft",
+          "narrative_arc": "analyse_under_press",
+          "choices": [
+            { "id": "A", "label": "Gi betinget anbefaling med tydelige usikkerhetsdrivere.", "effect": 1, "tags": ["integritet", "analyse"], "feedback": "Du gir komiteen en beslutning, men lar usikkerheten stå synlig." },
+            { "id": "B", "label": "Gi en klar kjøpsanbefaling og tone ned forbeholdene.", "effect": -1, "tags": ["visibility", "risk"], "feedback": "Anbefalingen blir sterkere, men du eier mer av usikkerheten enn modellen egentlig tåler." }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "konklusjon_og_integritet",
+      "mails": [
+        {
+          "id": "finansanalytiker_conflict_002",
+          "mail_type": "conflict",
+          "mail_family": "konklusjon_og_integritet",
+          "role_scope": "finansanalytiker",
+          "subject": "Partner vil bruke den høyeste multiplen",
+          "summary": "En senior ber deg bruke den mest fordelaktige multippelen i presentasjonen.",
+          "situation": ["Partneren skriver at caset trenger et tydelig oppsidebilde, og foreslår at du bruker øvre kvartil som hovedmultiple."],
+          "task_domain": "valuation_ethics",
+          "competency": "metodeintegritet",
+          "pressure": "intern_posisjonering",
+          "choice_axis": "metode_vs_onsket_resultat",
+          "consequence_axis": "troverdighet_vs_salgbarhet",
+          "narrative_arc": "modellens_grense",
+          "choices": [
+            { "id": "A", "label": "Vis øvre kvartil som sensitivitet, ikke base case.", "effect": 1, "tags": ["integritet", "kvalitet"], "feedback": "Du lar oppsiden finnes uten å gjøre den til normaltilstand." },
+            { "id": "B", "label": "Bruk øvre kvartil som hovedcase for å støtte anbefalingen.", "effect": -1, "tags": ["risk", "visibility"], "feedback": "Presentasjonen blir mer overbevisende, men mindre balansert." }
+          ]
+        }
+      ]
+    }
+  ]
+}
