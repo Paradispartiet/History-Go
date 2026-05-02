@@ -1,0 +1,85 @@
+{
+  "schema": "civication_mail_plan_v1",
+  "version": 1,
+  "id": "finansanalytiker_naeringsliv_v1",
+  "category": "naeringsliv",
+  "role_scope": "finansanalytiker",
+  "title": "Finansanalytiker",
+  "description": "Dramaturgisk plan for Finansanalytiker i Næringsliv & industri: fra datagrunnlag, modell og verdsettelse til risiko, anbefaling og kapitalbeslutning.",
+  "arc": {
+    "from": "En analytiker som bygger modeller, sjekker datagrunnlag og forsøker å forstå hva tallene sier om fremtidig verdi.",
+    "to": "En finansanalytiker som forstår at anbefalinger flytter kapital, risiko og ansvar mellom mennesker, selskaper og tid.",
+    "core_questions": [
+      "Hva er en antakelse, og hva er faktisk observert?",
+      "Når blir en modell et argument?",
+      "Hvem bærer risikoen når anbefalingen din blir fulgt?",
+      "Hva skjuler verdsettelsen når den ser presis ut?"
+    ]
+  },
+  "sequence": [
+    {
+      "step": 1,
+      "type": "job",
+      "phase": "intro",
+      "step_goal": "Etablere finansanalytikerrollen gjennom datasett, modellversjon og første investeringsnotat.",
+      "allowed_families": ["finansanalytiker_intro_v2"],
+      "fallback_types": ["job", "conflict", "story"]
+    },
+    {
+      "step": 2,
+      "type": "job",
+      "phase": "early",
+      "step_goal": "La spilleren håndtere datakvalitet, multipler og dokumenterte antakelser.",
+      "allowed_families": ["modell_og_antakelser", "marked_og_sammenligning"],
+      "fallback_types": ["conflict", "story", "event"]
+    },
+    {
+      "step": 3,
+      "type": "conflict",
+      "phase": "early",
+      "step_goal": "Introdusere presset mellom tydelig anbefaling og usikker datakvalitet.",
+      "allowed_families": ["anbefaling_og_usikkerhet"],
+      "fallback_types": ["job", "event", "story"]
+    },
+    {
+      "step": 4,
+      "type": "story",
+      "phase": "mid",
+      "step_goal": "Løfte rollen fra regneark til kapitalfortelling: modellen skaper et bilde av fremtiden.",
+      "allowed_families": ["kapitalfortelling"],
+      "fallback_types": ["job", "conflict", "event"]
+    },
+    {
+      "step": 5,
+      "type": "event",
+      "phase": "mid",
+      "step_goal": "Utløse markedsnyhet, presentasjon eller databrudd som tester modellens robusthet.",
+      "allowed_families": ["markedsnyhet_og_presentasjon"],
+      "fallback_types": ["job", "conflict", "story"]
+    },
+    {
+      "step": 6,
+      "type": "job",
+      "phase": "advanced",
+      "step_goal": "Gi spilleren ansvar for scenarioanalyse, sensitivitet og risikobilde.",
+      "allowed_families": ["scenario_og_risiko", "modell_og_antakelser"],
+      "fallback_types": ["conflict", "event", "story"]
+    },
+    {
+      "step": 7,
+      "type": "conflict",
+      "phase": "mastery",
+      "step_goal": "Teste analytikerens integritet når en ønsket konklusjon kolliderer med usikkerheten i modellen.",
+      "allowed_families": ["konklusjon_og_integritet"],
+      "fallback_types": ["job", "event", "story"]
+    },
+    {
+      "step": 8,
+      "type": "story",
+      "phase": "climax",
+      "step_goal": "Avrunde finansanalytikerbuen: spilleren ser at analyse er en form for ansvarlig framtidsfortelling.",
+      "allowed_families": ["analytiker_identitet"],
+      "fallback_types": ["event", "conflict", "job"]
+    }
+  ]
+}
