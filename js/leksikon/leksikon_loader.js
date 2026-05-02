@@ -70,6 +70,17 @@
     `;
   }
 
+  function paragraphBlockHtml(value, className = "") {
+    const values = Array.isArray(value) ? value : [value];
+    const paragraphs = values
+      .map(v => norm(v))
+      .filter(Boolean)
+      .map(v => `<p${className ? ` class="${esc(className)}"` : ""}>${esc(v)}</p>`)
+      .join("");
+
+    return paragraphs;
+  }
+
   function renderArticle(article) {
     if (!article) return `<div class="pc-empty">Ingen leksikonartikkel funnet</div>`;
 
@@ -145,6 +156,7 @@
         ${summary.one_liner ? `<p class="pc-leksikon-one-liner">${esc(summary.one_liner)}</p>` : ""}
         ${tagListHtml(summary.themes)}
         ${article.popupDesc ? `<p class="hg-popup-desc">${esc(article.popupDesc)}</p>` : ""}
+        ${section("Artikkel", paragraphBlockHtml(article.wikiText, "pc-leksikon-wiki-text"))}
         ${section("Fakta", factsHtml)}
         ${section("Tidslinje", chronologyHtml)}
         ${section("Bygd miljø og funksjon", functionHtml)}
