@@ -72,8 +72,6 @@ function unique(values) {
   return [...new Set(values.filter(Boolean))];
 }
 
-
-
 function makeDiagnostics() {
   return {
     wikidataSearchCalls: 0,
@@ -88,6 +86,12 @@ function makeDiagnostics() {
     commonsTextCalls: 0,
     commonsTextErrors: []
   };
+}
+
+function incDiag(diagnostics, key, by = 1) {
+  if (!diagnostics || typeof diagnostics !== "object") return;
+  const current = Number(diagnostics[key] || 0);
+  diagnostics[key] = current + by;
 }
 
 function pushDiag(list, value, max = 40) {
@@ -182,10 +186,9 @@ function normalizeImageInfo(title, page, info) {
 }
 
 async function commonsImageInfo(fileTitle, diagnostics = null) {
-  if (diagnostics) diagnostics.commonsImageInfoCalls += 1;
+  incDiag(diagnostics, "commonsImageInfoCalls");
   const title = commonsFileTitle(fileTitle);
   if (!title) return null;
-  diagnostics.commonsGeoCalls += 1;
   let data;
   try {
     data = await fetchJson(apiUrl(COMMONS_API, {
@@ -199,7 +202,7 @@ async function commonsImageInfo(fileTitle, diagnostics = null) {
     iiextmetadatafilter: "Artist|Credit|ObjectName|LicenseShortName|LicenseUrl|UsageTerms"
   }));
   } catch (err) {
-    if (diagnostics) pushDiag(diagnostics.commonsImageInfoErrors, String(err?.message || err));
+    pushDiag(diagnostics?.commonsImageInfoErrors, String(err?.message || err));
     throw err;
   }
   const page = data?.query?.pages?.[0];
@@ -297,7 +300,7 @@ async function wikidataCandidates(place, diagnostics) {
 
   for (const search of searches) {
     for (const language of ["nb", "en"]) {
-      diagnostics.wikidataSearchCalls += 1;
+      incDiag(diagnostics, "wikidataSearchCalls");
       let data;
       try {
         data = await fetchJson(apiUrl(WIKIDATA_API, {
@@ -310,7 +313,7 @@ async function wikidataCandidates(place, diagnostics) {
         search
       }));
       } catch (err) {
-        pushDiag(diagnostics.wikidataSearchErrors, `${search} (${language}): ${String(err?.message || err)}`);
+        pushDiag(diagnostics?.wikidataSearchErrors, `${search} (${language}): ${String(err?.message || err)}`);
         if (DEBUG) console.log(`[debug] wikidata search fail for ${place.id}: ${search} (${language}) => ${err.message}`);
         continue;
       }
@@ -324,7 +327,7 @@ async function wikidataCandidates(place, diagnostics) {
 
   if (!ids.size) return [];
 
-  diagnostics.wikidataEntitiesCalls += 1;
+  incDiag(diagnostics, "wikidataEntitiesCalls");
   let data;
   try {
     data = await fetchJson(apiUrl(WIKIDATA_API, {
@@ -335,7 +338,7 @@ async function wikidataCandidates(place, diagnostics) {
     languages: "nb|nn|en"
   }));
   } catch (err) {
-    pushDiag(diagnostics.commonsGeoErrors, String(err?.message || err));
+    pushDiag(diagnostics?.wikidataEntitiesErrors, String(err?.message || err));
     return [];
   }
 
@@ -343,7 +346,7 @@ async function wikidataCandidates(place, diagnostics) {
   for (const entity of Object.values(data?.entities || {})) {
     const file = entity?.claims?.P18?.[0]?.mainsnak?.datavalue?.value;
     if (!file) continue;
-    diagnostics.wikidataEntitiesWithP18 += 1;
+    incDiag(diagnostics, "wikidataEntitiesWithP18");
     const label = entity?.labels?.nb?.value || entity?.labels?.nn?.value || entity?.labels?.en?.value || "";
     const coord = entity?.claims?.P625?.[0]?.mainsnak?.datavalue?.value;
     const distanceM = coord ? distMeters(place.lat, place.lon, coord.latitude, coord.longitude) : null;
@@ -365,6 +368,7 @@ async function wikidataCandidates(place, diagnostics) {
 async function commonsGeoCandidates(place, diagnostics) {
   if (!Number.isFinite(Number(place.lat)) || !Number.isFinite(Number(place.lon))) return [];
   const radius = Math.min(2500, Math.max(650, Number(place.r || 0) * 3 || 650));
+  incDiag(diagnostics, "commonsGeoCalls");
   let data;
   try {
     data = await fetchJson(apiUrl(COMMONS_API, {
@@ -382,7 +386,7 @@ async function commonsGeoCandidates(place, diagnostics) {
     iiextmetadatafilter: "Artist|Credit|ObjectName|LicenseShortName|LicenseUrl|UsageTerms"
   }));
   } catch (err) {
-    pushDiag(diagnostics.wikidataEntitiesErrors, String(err?.message || err));
+    pushDiag(diagnostics?.commonsGeoErrors, String(err?.message || err));
     return [];
   }
 
@@ -408,23 +412,24 @@ async function commonsTextCandidates(place, diagnostics) {
   const out = [];
   const searches = unique([`"${place.name}"`, `${place.name} Oslo`, `${place.name} Norway`]);
   for (const search of searches) {
+    incDiag(diagnostics, "commonsTextCalls");
     let data;
-  try {
-    data = await fetchJson(apiUrl(COMMONS_API, {
-      action: "query",
-      format: "json",
-      formatversion: "2",
-      generator: "search",
-      gsrsearch: search,
-      gsrnamespace: 6,
-      gsrlimit: 15,
-      prop: "imageinfo",
-      iiprop: "url|mime|size|extmetadata",
-      iiurlwidth: 900,
-      iiextmetadatafilter: "Artist|Credit|ObjectName|LicenseShortName|LicenseUrl|UsageTerms"
-    }));
+    try {
+      data = await fetchJson(apiUrl(COMMONS_API, {
+        action: "query",
+        format: "json",
+        formatversion: "2",
+        generator: "search",
+        gsrsearch: search,
+        gsrnamespace: 6,
+        gsrlimit: 15,
+        prop: "imageinfo",
+        iiprop: "url|mime|size|extmetadata",
+        iiurlwidth: 900,
+        iiextmetadatafilter: "Artist|Credit|ObjectName|LicenseShortName|LicenseUrl|UsageTerms"
+      }));
     } catch (err) {
-      pushDiag(diagnostics.commonsTextErrors, `${search}: ${String(err?.message || err)}`);
+      pushDiag(diagnostics?.commonsTextErrors, `${search}: ${String(err?.message || err)}`);
       if (DEBUG) console.log(`[debug] commons text fail ${place.id}: ${search} => ${err.message}`);
       continue;
     }
