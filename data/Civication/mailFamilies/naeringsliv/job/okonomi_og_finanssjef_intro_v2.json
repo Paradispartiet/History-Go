@@ -1,0 +1,105 @@
+{
+  "schema": "civication_mail_family_catalog_v2",
+  "category": "naeringsliv",
+  "role_scope": "okonomi_og_finanssjef",
+  "mail_type": "job",
+  "description": "Intro for Økonomi- og finanssjef: spilleren overtar økonomifunksjonen og møter budsjettmakt, likviditet og ledergruppens behov for en økonomisk fortelling.",
+  "families": [
+    {
+      "id": "okonomi_og_finanssjef_intro_v2",
+      "description": "Første dager som økonomi- og finanssjef. Rollen etableres som ledelse av tall, kapital, mennesker og strategisk risiko.",
+      "mails": [
+        {
+          "id": "okonomi_og_finanssjef_intro_v2_001",
+          "mail_type": "job",
+          "mail_family": "okonomi_og_finanssjef_intro_v2",
+          "role_scope": "okonomi_og_finanssjef",
+          "phase": "intro",
+          "priority": 78,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "nora_daglig_leder",
+          "subject": "Første ledermøte: budsjettet skal være både realistisk og modig",
+          "summary": "Daglig leder vil ha et offensivt budsjett, mens tallene viser at vekstplanen bygger på stramme forutsetninger.",
+          "purpose": "Etablere økonomi- og finanssjefens kjerne: å gjøre ambisjon styrbar uten å forvandle budsjettet til ønsketenkning.",
+          "stakes": "Hvis du gir ledergruppen et for optimistisk budsjett, kan organisasjonen bemanne, investere og love mer enn kontantstrømmen tåler.",
+          "situation": [
+            "Nora, daglig leder, sender deg budsjettutkastet før første ledermøte i rollen.",
+            "Salgsveksten er satt høyt, kostnadsbasen er strammet inn, og investeringsrammen ligger på grensen av det likviditetsmodellen tåler. Planen ser offensiv ut. Den ser også skjør ut.",
+            "Markedsleder mener vekstmålet er nødvendig for å motivere organisasjonen. Driftsleder sier bemanningen allerede er for knapp. Banken vil se en plan som virker kontrollert.",
+            "Du må velge om du gjør budsjettet mer realistisk før møtet, eller lar ambisjonen stå og markerer risikoen som forutsetning."
+          ],
+          "task_domain": "budget_leadership",
+          "competency": "budsjettledelse",
+          "pressure": "vekstambisjon",
+          "choice_axis": "realisme_vs_ambisjon",
+          "consequence_axis": "tillit_vs_motivasjon",
+          "narrative_arc": "budsjett_som_makt",
+          "learning_focus": ["budsjett", "vekstforutsetninger", "kapitaldisiplin", "ledergruppe"],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Stram inn budsjettet og vis hvilke forutsetninger som må endres.",
+              "effect": 1,
+              "tags": ["integritet", "styring", "kapitaldisiplin"],
+              "feedback": "Du gjør planen mindre imponerende, men mer styrbar. Ambisjon får en økonomisk kropp i stedet for bare en overskrift."
+            },
+            {
+              "id": "B",
+              "label": "La vekstbudsjettet stå og marker risikoen i et eget forutsetningsnotat.",
+              "effect": 0,
+              "tags": ["ambisjon", "risk", "ledergruppe"],
+              "feedback": "Du beskytter vekstfortellingen, men legger ansvaret i fotnotene. Det kan fungere hvis ledergruppen faktisk leser dem."
+            }
+          ]
+        },
+        {
+          "id": "okonomi_og_finanssjef_intro_v2_002",
+          "mail_type": "job",
+          "mail_family": "okonomi_og_finanssjef_intro_v2",
+          "role_scope": "okonomi_og_finanssjef",
+          "phase": "intro",
+          "priority": 74,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "ingrid_controller",
+          "subject": "Teamet spør hva slags økonomifunksjon vi skal være",
+          "summary": "Controlleren under deg trenger retning: skal økonomifunksjonen være kontrollør, støttefunksjon eller strategisk partner?",
+          "purpose": "Etablere lederansvaret internt i økonomifunksjonen: spilleren må definere hvordan kontroll, læring og beslutningsstøtte skal henge sammen.",
+          "stakes": "Hvis økonomifunksjonen bare oppleves som kontroll, skjuler drift problemer. Hvis den bare blir service, mister tallene autoritet.",
+          "situation": [
+            "Ingrid, controlleren i teamet ditt, sender en ærlig melding etter et krevende avviksmøte.",
+            "Hun spør om økonomifunksjonen skal presse hardere på avvik, eller bruke mer tid på å hjelpe drift med forklaringer før rapportering.",
+            "Du kjenner begge farene: kontroll uten støtte skaper frykt; støtte uten krav skaper slapp styring.",
+            "Som økonomi- og finanssjef må du ikke bare levere tall. Du må lede kulturen som produserer dem."
+          ],
+          "task_domain": "finance_team_leadership",
+          "competency": "okonomiledelse",
+          "pressure": "teamretning",
+          "choice_axis": "kontroll_vs_stotte",
+          "consequence_axis": "tillit_vs_presisjon",
+          "narrative_arc": "okonomifunksjonens_form",
+          "learning_focus": ["teamledelse", "internkontroll", "læring", "økonomifunksjon"],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Definer økonomifunksjonen som beslutningsstøtte med tydelige kontrollkrav.",
+              "effect": 1,
+              "tags": ["ledelse", "learning", "kontroll"],
+              "feedback": "Du gir teamet en krevende, men sunn rolle: hjelp drift å forstå tallene, men ikke la forklaring bli unnskyldning."
+            },
+            {
+              "id": "B",
+              "label": "Be teamet prioritere raskere rapportering og tydeligere avvikspress.",
+              "effect": -1,
+              "tags": ["tempo", "kontroll", "risk"],
+              "feedback": "Rapportene blir strammere, men du risikerer at drift begynner å forklare mindre før tallene låses."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
