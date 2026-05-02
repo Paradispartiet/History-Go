@@ -24,6 +24,14 @@ function isLinearPlace(text) {
 function isLargeAreaPlace(text, radius) {
   return radius >= 250 && /(park|parken|skog|marka|område|fjord|elva|vann|øy|dal)/i.test(text);
 }
+function isWideExtentPlace(text) {
+  return /(park|parken|område|gate|vei|veien|rute|route|elv|elva|vann|fjord|dal|strekning)/i.test(text);
+}
+function hasLowCoordPrecision(value) {
+  if (!isNum(value)) return false;
+  const decimals = String(value).split('.')[1]?.length ?? 0;
+  return decimals < 4;
+}
 
 const hardErrors = [];
 const warnings = [];
@@ -62,6 +70,10 @@ for (const absFile of activeManifestFiles) {
     const r = p?.r;
     const anchors = Array.isArray(p?.anchors) ? p.anchors : null;
     const hasCoordMeta = typeof p?.coordNote === 'string' || typeof p?.coordStatus === 'string';
+    const coordStatus = typeof p?.coordStatus === 'string' ? p.coordStatus : null;
+    const coordSource = typeof p?.coordSource === 'string' ? p.coordSource.trim() : '';
+    const hasCoordPrecision = isNum(p?.coordPrecisionM);
+    const hasCoordNote = typeof p?.coordNote === 'string' && p.coordNote.trim().length > 0;
 
     const missingCore = [];
     if (!id) missingCore.push('id');
@@ -108,6 +120,18 @@ for (const absFile of activeManifestFiles) {
     }
     if (isLargeAreaPlace(text, isNum(r) ? r : -1) && !hasCoordMeta) {
       warnings.push(`${file}#${id ?? '(mangler-id)'}: stort område uten coordNote/coordStatus`);
+    }
+    if (coordStatus === 'verified' && !coordSource) {
+      warnings.push(`${file}#${id ?? '(mangler-id)'}: coordStatus=verified uten coordSource`);
+    }
+    if (coordStatus === 'verified' && !hasCoordPrecision) {
+      warnings.push(`${file}#${id ?? '(mangler-id)'}: coordStatus=verified uten coordPrecisionM`);
+    }
+    if (coordStatus === 'verified' && isWideExtentPlace(text) && !hasCoordNote) {
+      warnings.push(`${file}#${id ?? '(mangler-id)'}: coordStatus=verified uten coordNote for område/gate/rute`);
+    }
+    if (hasLowCoordPrecision(lat) || hasLowCoordPrecision(lon)) {
+      warnings.push(`${file}#${id ?? '(mangler-id)'}: lav koordinatpresisjon (<4 desimaler)`);
     }
   }
 }
