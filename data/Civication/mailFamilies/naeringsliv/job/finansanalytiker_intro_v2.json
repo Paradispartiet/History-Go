@@ -3,11 +3,11 @@
   "category": "naeringsliv",
   "role_scope": "finansanalytiker",
   "mail_type": "job",
-  "description": "Intro for Finansanalytiker: datagrunnlag, modellversjon og første investeringsnotat.",
+  "description": "Intro for Finansanalytiker: spilleren lærer stillingen gjennom datakritikk, modellversjon, antakelser, verdsettelse og første møte med kapital som beslutningsmakt.",
   "families": [
     {
       "id": "finansanalytiker_intro_v2",
-      "description": "Første dager som finansanalytiker. Spilleren lærer at en modell er en strukturert påstand om fremtidig verdi.",
+      "description": "Første dager som finansanalytiker. En modell er ikke bare regning; den er en påstand om fremtiden som kan flytte kapital, risiko og ansvar.",
       "mails": [
         {
           "id": "finansanalytiker_intro_v2_001",
@@ -15,40 +15,44 @@
           "mail_family": "finansanalytiker_intro_v2",
           "role_scope": "finansanalytiker",
           "phase": "intro",
-          "priority": 72,
+          "priority": 76,
           "cooldown": 1,
           "repeatable": false,
           "stage": "stable",
           "from": "elin_portefoljeansvarlig",
-          "subject": "Første utkast til investeringsnotat",
-          "summary": "Du må levere et kort notat basert på modell og usikre antakelser.",
+          "subject": "Første investeringsnotat: tallene ser rene ut, men kildene gjør ikke det",
+          "summary": "Du må levere et investeringsnotat der rapporterte tall og ledelsens estimater er blandet i samme modell.",
+          "purpose": "Etablere finansanalytikerens kjerne: å skille observasjon fra antakelse før modellen blir en anbefaling.",
+          "stakes": "Hvis du lar estimater se ut som historiske tall, kan en tilsynelatende presis modell flytte risiko over på beslutningstakere som ikke ser forbeholdene.",
           "situation": [
-            "Elin sender deg modellen for et mulig investeringscase.",
-            "Omsetningsveksten ser sterk ut, men datagrunnlaget er blandet mellom rapporterte tall og ledelsens egne estimater.",
-            "Hun vil ha et første notat før møtet i morgen."
+            "Elin, porteføljeansvarlig, sender deg modellen for et mulig investeringscase.",
+            "Omsetningsveksten ser sterk ut. Men regnearket blander rapporterte historiske tall med ledelsens egne estimater for neste tolv måneder. Det er ikke feil i seg selv; problemet er at modellen ikke markerer forskjellen.",
+            "I finansanalyse er dette et grunnskille: historikk, guiding, scenario og håp kan ikke ligge i samme farge og late som de har samme tyngde.",
+            "Elin vil ha et første notat før møtet i morgen. Det du skriver nå, kan bli måten investeringskomiteen ser hele selskapet på."
           ],
           "task_domain": "investment_memo",
-          "competency": "antakelsesdisciplin",
+          "competency": "antakelsesdisiplin",
           "pressure": "kort_frist",
           "choice_axis": "datakritikk_vs_rask_anbefaling",
           "consequence_axis": "integritet_vs_tempo",
           "narrative_arc": "forste_modell",
+          "learning_focus": ["datakvalitet", "antakelser", "investeringsnotat", "kildekritikk", "kapitalbeslutning"],
           "choices": [
             {
               "id": "A",
-              "label": "Skill tydelig mellom rapporterte tall og ledelsens estimater.",
-              "reply": "Jeg skiller rapporterte tall og estimater tydelig i notatet.",
+              "label": "Skill tydelig mellom rapporterte tall, guiding og egne antakelser.",
+              "reply": "Jeg skiller rapporterte tall, guiding og egne antakelser tydelig i notatet.",
               "effect": 1,
               "tags": ["integritet", "kvalitet", "analyse"],
-              "feedback": "Du gjør notatet mindre glatt, men mer etterprøvbart."
+              "feedback": "Du gjør notatet mindre glatt, men mer sant. Modellen får flere lag, og derfor mer verdi."
             },
             {
               "id": "B",
-              "label": "Bruk estimatene direkte for å få en tydelig anbefaling.",
+              "label": "Bruk estimatene direkte for å få frem et tydelig hovedcase.",
               "reply": "Jeg bruker estimatene direkte for å få frem hovedcaset.",
               "effect": -1,
               "tags": ["tempo", "risk", "visibility"],
-              "feedback": "Caset blir tydeligere, men usikkerheten flyttes inn i modellen uten merking."
+              "feedback": "Caset blir tydeligere, men usikkerheten flyttes inn i modellen uten merking. Det som burde vært forbehold, begynner å ligne fakta."
             }
           ]
         },
@@ -58,17 +62,20 @@
           "mail_family": "finansanalytiker_intro_v2",
           "role_scope": "finansanalytiker",
           "phase": "intro",
-          "priority": 68,
+          "priority": 72,
           "cooldown": 1,
           "repeatable": false,
           "stage": "stable",
           "from": "theo_senioranalytiker",
-          "subject": "Modellversjon før vi sender den videre",
-          "summary": "Senioranalytiker ber deg rydde modellversjon og sensitivitet før deling.",
+          "subject": "Modellversjon: én gammel marginantakelse kan endre hele caset",
+          "summary": "Senioranalytiker ber deg rydde modellversjon og sensitivitet før modellen sendes videre.",
+          "purpose": "Lære spilleren at modellkontroll er en faglig og etisk praksis: feil versjon kan bli feil beslutning.",
+          "stakes": "Når en modell sendes videre, løsriver den seg fra forklaringene rundt den. Da må selve filen bære metode, forbehold og versjonshistorikk.",
           "situation": [
-            "Theo skriver at modellen din regner riktig, men at versjonene er rotete.",
-            "Sensitivitetsfanen bruker gamle marginforutsetninger, mens hovedfanen er oppdatert.",
-            "Hvis modellen sendes nå, kan mottakeren trekke feil konklusjon."
+            "Theo, senioranalytikeren, skriver at modellen din regner riktig, men at den ikke er trygg å sende.",
+            "Hovedfanen bruker oppdatert margin. Sensitivitetsfanen bruker gamle forutsetninger. I én celle ligger et marginløft fra et tidligere scenario fortsatt igjen som om det var base case.",
+            "Dette er klassisk modellrisiko: feilen er ikke dramatisk å se på, men den kan gjøre en anbefaling mer optimistisk enn analysen egentlig tilsier.",
+            "Filen skal deles med ledelsen. Etter det kan den bli videresendt uten mailforklaringen din. Modellen må derfor forklare seg selv."
           ],
           "task_domain": "financial_modeling",
           "competency": "modellkontroll",
@@ -76,22 +83,23 @@
           "choice_axis": "versjonskontroll_vs_framdrift",
           "consequence_axis": "presisjon_vs_tempo",
           "narrative_arc": "modellen_som_argument",
+          "learning_focus": ["modellrisiko", "sensitivitetsanalyse", "versjonskontroll", "marginantakelser"],
           "choices": [
             {
               "id": "A",
-              "label": "Rydd versjonene og merk sensitiviteten før sending.",
-              "reply": "Jeg rydder versjonene og merker sensitiviteten før vi sender.",
+              "label": "Rydd versjoner, merk sensitivitet og dokumenter marginantakelsen.",
+              "reply": "Jeg rydder versjonene, merker sensitiviteten og dokumenterer marginantakelsen før vi sender.",
               "effect": 1,
               "tags": ["process", "kvalitet", "analyse"],
-              "feedback": "Du gjør modellen til et dokument andre faktisk kan stole på."
+              "feedback": "Du gjør modellen til et dokument andre faktisk kan stole på. Det er mindre spektakulært enn en skarp konklusjon, men mer profesjonelt."
             },
             {
               "id": "B",
-              "label": "Send modellen med en kort advarsel i mailen.",
+              "label": "Send modellen nå med en kort advarsel i mailen.",
               "reply": "Jeg sender modellen nå og legger inn en kort advarsel i mailen.",
               "effect": -1,
               "tags": ["tempo", "risk"],
-              "feedback": "Advarselen ligger utenfor modellen. Den kan forsvinne når filen deles videre."
+              "feedback": "Advarselen ligger utenfor modellen. Når filen vandrer videre, kan forbeholdet falle av mens tallet blir stående."
             }
           ]
         }
