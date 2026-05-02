@@ -7,6 +7,7 @@
   "families": [
     {
       "id": "kapitalfortelling",
+      "description": "Fortellinger der finansanalytikeren oppdager at modellen ikke bare regner verdi, men forteller markedet hvilken fremtid som virker troverdig.",
       "mails": [
         {
           "id": "finansanalytiker_story_001",
@@ -15,22 +16,43 @@
           "role_scope": "finansanalytiker",
           "subject": "Modellen lager en fortelling om fremtiden",
           "summary": "Du ser hvordan modellens struktur gjør én fremtid mer sannsynlig enn andre.",
-          "situation": ["Når du endrer vekst, margin og terminalverdi, forandrer ikke bare verdien seg. Hele fortellingen om selskapet forandrer seg."],
+          "purpose": "Gi finansanalytikerrollen mening: analyse er ikke bare teknikk, men en disiplinert fortelling om mulig fremtidig verdi.",
+          "stakes": "Når modellen presenterer én fremtid som hovedcase, blir andre mulige fremtider mindre synlige. Det påvirker kapital, risiko og beslutninger.",
+          "situation": [
+            "Du sitter alene etter møtet og endrer vekst, margin og terminalverdi. Hver justering forandrer ikke bare verdien; den forandrer historien om selskapet.",
+            "Med høyere vekst blir selskapet en skalerbar vinner. Med lavere margin blir det et godt produkt med svak forhandlingsmakt. Med høyere terminalverdi blir fremtiden plutselig mer verdt enn nåtiden.",
+            "Finansmodellen ser matematisk ut, men den er også narrativ. Den velger hvilke drivere som får være årsaker, hvilke farer som blir fotnoter, og hvilken fremtid som får mest plass.",
+            "Du skal lage et sammendrag til investeringskomiteen. Spørsmålet er om du viser hvordan verdien endres med antakelsene, eller om du forteller én stram historie som er lettere å kjøpe."
+          ],
           "task_domain": "investment_narrative",
           "competency": "modellforstaelse",
           "pressure": "kapitalfortelling",
           "choice_axis": "vise_antakelser_vs_skjule_kompleksitet",
           "consequence_axis": "forstaelse_vs_overbevisning",
           "narrative_arc": "kapitalens_sprak",
+          "learning_focus": ["terminalverdi", "driveranalyse", "kapitalfortelling", "framtidsscenario", "modellforståelse"],
           "choices": [
-            { "id": "A", "label": "Vis hvordan verdien endres når nøkkelantakelser endres.", "effect": 1, "tags": ["analyse", "learning"], "feedback": "Du gjør modellen til et rom for forståelse, ikke bare konklusjon." },
-            { "id": "B", "label": "Presenter bare hovedscenariet for å holde historien stram.", "effect": 0, "tags": ["visibility", "tempo"], "feedback": "Historien blir tydelig, men den skjuler hvor mye den bygger på." }
+            {
+              "id": "A",
+              "label": "Vis hvordan verdien endres når nøkkelantakelser endres.",
+              "effect": 1,
+              "tags": ["analyse", "learning", "integritet"],
+              "feedback": "Du gjør modellen til et rom for forståelse, ikke bare konklusjon. Komiteen ser ikke bare tallet, men hva tallet er avhengig av."
+            },
+            {
+              "id": "B",
+              "label": "Presenter bare hovedscenariet for å holde historien stram.",
+              "effect": 0,
+              "tags": ["visibility", "tempo"],
+              "feedback": "Historien blir tydelig, men den skjuler hvor mye den bygger på. Det er lett å følge, men vanskeligere å etterprøve."
+            }
           ]
         }
       ]
     },
     {
       "id": "analytiker_identitet",
+      "description": "Avsluttende rollefortellinger om presisjon, status, kapitalmakt og ansvarlig analyse.",
       "mails": [
         {
           "id": "finansanalytiker_story_002",
@@ -39,16 +61,36 @@
           "role_scope": "finansanalytiker",
           "subject": "Hva slags analytiker blir du?",
           "summary": "Finansanalytikerrollen avrundes som spørsmål om presisjon, ansvar og kapitalmakt.",
-          "situation": ["Du merker at én setning i notatet kan flytte mer kapital enn en hel arbeidsuke på gulvet. Det gjør presisjon til et moralsk spørsmål."],
+          "purpose": "Avrunde finansanalytikerens identitet: rollen handler om å gjøre usikker fremtid analyserbar uten å gjøre den falskt sikker.",
+          "stakes": "En analytiker kan få status ved å konkludere skarpt, men hvis presisjonen ofres, flyttes risiko til mennesker og institusjoner som stoler på analysen.",
+          "situation": [
+            "Du merker at én setning i notatet kan flytte mer kapital enn en hel arbeidsuke på gulvet. Det gjør presisjon til et moralsk spørsmål.",
+            "I starten trodde du jobben handlet om å være smart nok med Excel. Nå ser du at det også handler om å vite hva man ikke vet, og skrive det uten å miste autoritet.",
+            "Kapitalmarkedet liker klare historier. Men verden er ikke alltid klar. Marginer faller, renter skifter, ledelser overdriver, markeder misforstår og modeller glemmer det de ikke kan måle.",
+            "Du må velge hvilken type analytiker du blir: den som høres sikker ut, eller den som gjør usikkerheten presis nok til at andre kan ta ansvarlige valg."
+          ],
           "task_domain": "role_identity",
           "competency": "ansvarlig_analyse",
           "pressure": "rollemodning",
           "choice_axis": "noyaktighet_vs_innflytelse",
           "consequence_axis": "ansvar_vs_status",
           "narrative_arc": "analytikerens_ansvar",
+          "learning_focus": ["rolleidentitet", "kapitalmakt", "analytisk integritet", "usikkerhet", "ansvar"],
           "choices": [
-            { "id": "A", "label": "La presisjon og forbehold være en del av autoriteten din.", "effect": 1, "tags": ["integritet", "analyse"], "feedback": "Du gjør grundighet til styrke, ikke svakhet." },
-            { "id": "B", "label": "Bygg autoritet gjennom skarpe konklusjoner.", "effect": 0, "tags": ["visibility", "autoritet"], "feedback": "Du blir lettere å høre på, men vanskeligere å etterprøve." }
+            {
+              "id": "A",
+              "label": "La presisjon og forbehold være en del av autoriteten din.",
+              "effect": 1,
+              "tags": ["integritet", "analyse", "risiko"],
+              "feedback": "Du gjør grundighet til styrke, ikke svakhet. Analysen blir mindre selgende, men mer verdt å stole på."
+            },
+            {
+              "id": "B",
+              "label": "Bygg autoritet gjennom skarpe konklusjoner.",
+              "effect": 0,
+              "tags": ["visibility", "autoritet"],
+              "feedback": "Du blir lettere å høre på, men vanskeligere å etterprøve. Statusen øker raskere enn metodegrunnlaget."
+            }
           ]
         }
       ]
