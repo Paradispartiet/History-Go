@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   try {
     await safeRun("boot", window.boot);
+    await safeRun("wireMapPlacePopupInMapMode", wireMapPlacePopupInMapMode);
 
     // Globalt søk lå i repoet, men var ikke lastet inn av index.html.
     // Lastes etter boot slik at window.PLACES / window.PEOPLE / kategorier finnes.
@@ -79,6 +80,37 @@ function gateToastsUntilAppReady() {
       }, 260 + index * 350);
     });
   };
+}
+
+function wireMapPlacePopupInMapMode() {
+  if (!window.HGMap || typeof window.HGMap.setOnPlaceClick !== "function") return;
+
+  window.HGMap.setOnPlaceClick((id) => {
+    const place = (Array.isArray(window.PLACES) ? window.PLACES : []).find(
+      (p) => String(p?.id || "").trim() === String(id || "").trim()
+    );
+
+    if (!place || typeof window.openPlaceCard !== "function") return;
+
+    const isMapMode = window.LayerManager?.getMode?.() === "map";
+    const card = document.getElementById("placeCard");
+
+    if (isMapMode) {
+      window.LayerManager?.show?.("placeCard");
+
+      if (card) {
+        card.style.display = "";
+        card.style.pointerEvents = "";
+        card.setAttribute("aria-hidden", "false");
+      }
+    }
+
+    const opened = window.openPlaceCard(place);
+
+    Promise.resolve(opened).finally(() => {
+      window.bottomSheetController?.open?.();
+    });
+  });
 }
 
 function loadScriptOnce(src) {
