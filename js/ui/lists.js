@@ -68,10 +68,22 @@ function renderNearbyPlaces() {
   const filterMode = window.HG_NEARBY_FILTER || "unvisited";
   const freshPlaceId = String(window.HG_LAST_DISCOVERED_PLACE_ID || "").trim();
 
+  const getTargets = (typeof window.getPlaceDistanceTargets === "function")
+    ? window.getPlaceDistanceTargets
+    : null;
+
   let items = PLACES.map(p => ({
     ...p,
-    _d: pos && typeof window.distMeters === "function"
-      ? Math.round(window.distMeters(pos, { lat: p.lat, lon: p.lon }))
+    _d: (pos && typeof window.distMeters === "function")
+      ? (() => {
+          const targets = getTargets ? getTargets(p) : [{ lat: p.lat, lon: p.lon }];
+          let best = Infinity;
+          for (const target of targets) {
+            const d = window.distMeters(pos, { lat: target.lat, lon: target.lon });
+            if (Number.isFinite(d) && d < best) best = d;
+          }
+          return Number.isFinite(best) ? Math.round(best) : null;
+        })()
       : null
   }));
 
