@@ -26,7 +26,11 @@ const MANIFEST_PATH = "data/places/manifest.json";
 const OUT_PATH = "data/places/place_image_candidates.json";
 const COMMONS_API = "https://commons.wikimedia.org/w/api.php";
 const WIKIDATA_API = "https://www.wikidata.org/w/api.php";
-const INCLUDE_EXISTING = process.argv.includes("--include-existing");
+const argv = process.argv.slice(2);
+const INCLUDE_EXISTING = argv.includes("--include-existing");
+const DEBUG = argv.includes("--debug");
+const LIMIT_ARG = argv.find(arg => arg.startsWith("--limit="));
+const LIMIT = LIMIT_ARG ? Math.max(0, Number(LIMIT_ARG.split("=")[1]) || 0) : null;
 const MAX_CANDIDATES = 5;
 const REQUEST_DELAY_MS = 160;
 const USER_AGENT = "HistoryGoImageCandidateBot/1.0 (https://github.com/Paradispartiet/History-Go)";
@@ -66,6 +70,28 @@ function norm(value) {
 
 function unique(values) {
   return [...new Set(values.filter(Boolean))];
+}
+
+
+
+function makeDiagnostics() {
+  return {
+    wikidataSearchCalls: 0,
+    wikidataSearchErrors: [],
+    wikidataEntitiesCalls: 0,
+    wikidataEntitiesErrors: [],
+    wikidataEntitiesWithP18: 0,
+    commonsImageInfoCalls: 0,
+    commonsImageInfoErrors: [],
+    commonsGeoCalls: 0,
+    commonsGeoErrors: [],
+    commonsTextCalls: 0,
+    commonsTextErrors: []
+  };
+}
+
+function pushDiag(list, value, max = 40) {
+  if (Array.isArray(list) && list.length < max) list.push(value);
 }
 
 function apiUrl(base, params) {
@@ -155,10 +181,14 @@ function normalizeImageInfo(title, page, info) {
   };
 }
 
-async function commonsImageInfo(fileTitle) {
+async function commonsImageInfo(fileTitle, diagnostics = null) {
+  if (diagnostics) diagnostics.commonsImageInfoCalls += 1;
   const title = commonsFileTitle(fileTitle);
   if (!title) return null;
-  const data = await fetchJson(apiUrl(COMMONS_API, {
+  diagnostics.commonsGeoCalls += 1;
+  let data;
+  try {
+    data = await fetchJson(apiUrl(COMMONS_API, {
     action: "query",
     format: "json",
     formatversion: "2",
@@ -168,6 +198,10 @@ async function commonsImageInfo(fileTitle) {
     iiurlwidth: 900,
     iiextmetadatafilter: "Artist|Credit|ObjectName|LicenseShortName|LicenseUrl|UsageTerms"
   }));
+  } catch (err) {
+    if (diagnostics) pushDiag(diagnostics.commonsImageInfoErrors, String(err?.message || err));
+    throw err;
+  }
   const page = data?.query?.pages?.[0];
   const info = page?.imageinfo?.[0];
   return info?.url ? normalizeImageInfo(title, page, info) : null;
@@ -257,13 +291,16 @@ function rank(candidates) {
     .slice(0, MAX_CANDIDATES);
 }
 
-async function wikidataCandidates(place) {
+async function wikidataCandidates(place, diagnostics) {
   const ids = new Set();
   const searches = unique([place.name, `${place.name} Oslo`, `${place.name} Norway`]);
 
   for (const search of searches) {
     for (const language of ["nb", "en"]) {
-      const data = await fetchJson(apiUrl(WIKIDATA_API, {
+      diagnostics.wikidataSearchCalls += 1;
+      let data;
+      try {
+        data = await fetchJson(apiUrl(WIKIDATA_API, {
         action: "wbsearchentities",
         format: "json",
         language,
@@ -272,6 +309,12 @@ async function wikidataCandidates(place) {
         limit: 8,
         search
       }));
+      } catch (err) {
+        pushDiag(diagnostics.wikidataSearchErrors, `${search} (${language}): ${String(err?.message || err)}`);
+        if (DEBUG) console.log(`[debug] wikidata search fail for ${place.id}: ${search} (${language}) => ${err.message}`);
+        continue;
+      }
+      if (DEBUG) console.log(`[debug] wikidata search ${place.id}: "${search}" (${language}) => ${data?.search?.length || 0} treff`);
       for (const item of data?.search || []) {
         if (item?.id) ids.add(item.id);
       }
@@ -281,22 +324,30 @@ async function wikidataCandidates(place) {
 
   if (!ids.size) return [];
 
-  const data = await fetchJson(apiUrl(WIKIDATA_API, {
+  diagnostics.wikidataEntitiesCalls += 1;
+  let data;
+  try {
+    data = await fetchJson(apiUrl(WIKIDATA_API, {
     action: "wbgetentities",
     format: "json",
     ids: [...ids].slice(0, 25).join("|"),
     props: "labels|claims",
     languages: "nb|nn|en"
   }));
+  } catch (err) {
+    pushDiag(diagnostics.commonsGeoErrors, String(err?.message || err));
+    return [];
+  }
 
   const out = [];
   for (const entity of Object.values(data?.entities || {})) {
     const file = entity?.claims?.P18?.[0]?.mainsnak?.datavalue?.value;
     if (!file) continue;
+    diagnostics.wikidataEntitiesWithP18 += 1;
     const label = entity?.labels?.nb?.value || entity?.labels?.nn?.value || entity?.labels?.en?.value || "";
     const coord = entity?.claims?.P625?.[0]?.mainsnak?.datavalue?.value;
     const distanceM = coord ? distMeters(place.lat, place.lon, coord.latitude, coord.longitude) : null;
-    const imageInfo = await commonsImageInfo(file);
+    const imageInfo = await commonsImageInfo(file, diagnostics);
     await sleep(REQUEST_DELAY_MS);
     if (!imageInfo) continue;
     out.push(makeCandidate({
@@ -311,10 +362,12 @@ async function wikidataCandidates(place) {
   return out;
 }
 
-async function commonsGeoCandidates(place) {
+async function commonsGeoCandidates(place, diagnostics) {
   if (!Number.isFinite(Number(place.lat)) || !Number.isFinite(Number(place.lon))) return [];
   const radius = Math.min(2500, Math.max(650, Number(place.r || 0) * 3 || 650));
-  const data = await fetchJson(apiUrl(COMMONS_API, {
+  let data;
+  try {
+    data = await fetchJson(apiUrl(COMMONS_API, {
     action: "query",
     format: "json",
     formatversion: "2",
@@ -328,6 +381,10 @@ async function commonsGeoCandidates(place) {
     iiurlwidth: 900,
     iiextmetadatafilter: "Artist|Credit|ObjectName|LicenseShortName|LicenseUrl|UsageTerms"
   }));
+  } catch (err) {
+    pushDiag(diagnostics.wikidataEntitiesErrors, String(err?.message || err));
+    return [];
+  }
 
   const out = [];
   for (const page of data?.query?.pages || []) {
@@ -347,11 +404,13 @@ async function commonsGeoCandidates(place) {
   return out;
 }
 
-async function commonsTextCandidates(place) {
+async function commonsTextCandidates(place, diagnostics) {
   const out = [];
   const searches = unique([`"${place.name}"`, `${place.name} Oslo`, `${place.name} Norway`]);
   for (const search of searches) {
-    const data = await fetchJson(apiUrl(COMMONS_API, {
+    let data;
+  try {
+    data = await fetchJson(apiUrl(COMMONS_API, {
       action: "query",
       format: "json",
       formatversion: "2",
@@ -364,6 +423,12 @@ async function commonsTextCandidates(place) {
       iiurlwidth: 900,
       iiextmetadatafilter: "Artist|Credit|ObjectName|LicenseShortName|LicenseUrl|UsageTerms"
     }));
+    } catch (err) {
+      pushDiag(diagnostics.commonsTextErrors, `${search}: ${String(err?.message || err)}`);
+      if (DEBUG) console.log(`[debug] commons text fail ${place.id}: ${search} => ${err.message}`);
+      continue;
+    }
+    if (DEBUG) console.log(`[debug] commons text ${place.id}: "${search}" => ${data?.query?.pages?.length || 0} sider`);
 
     for (const page of data?.query?.pages || []) {
       const info = page?.imageinfo?.[0];
@@ -381,11 +446,11 @@ async function commonsTextCandidates(place) {
   return out;
 }
 
-async function candidatesFor(place) {
+async function candidatesFor(place, diagnostics) {
   const all = [];
   for (const fn of [wikidataCandidates, commonsGeoCandidates, commonsTextCandidates]) {
     try {
-      all.push(...await fn(place));
+      all.push(...await fn(place, diagnostics));
     } catch (err) {
       console.warn(`[${place.id}] ${err.message}`);
     }
@@ -413,11 +478,14 @@ async function loadPlaces() {
 
 async function main() {
   const { entries, places } = await loadPlaces();
-  const targets = places.filter(({ place }) => {
+  const filtered = places.filter(({ place }) => {
     if (!place || !place.id || place.hidden || place.stub) return false;
     if (INCLUDE_EXISTING) return true;
     return !hasText(place.image) || !hasText(place.cardImage);
   });
+
+  const targets = LIMIT !== null ? filtered.slice(0, LIMIT) : filtered;
+  const diagnostics = makeDiagnostics();
 
   const output = {
     schema: "historygo_place_image_candidates_v1",
@@ -427,6 +495,7 @@ async function main() {
       structure: "new_only_data_places_category_city",
       sources: ["wikidata_p18", "commons_geosearch", "commons_text_search"],
       note: "Kontroller kandidatene manuelt. Marker én kandidat per sted med approved: true før apply-scriptet kjøres.",
+      diagnostics,
       counts: {
         manifestFiles: entries.length,
         placesTotal: places.length,
@@ -438,7 +507,8 @@ async function main() {
 
   for (const { place, sourceFile } of targets) {
     console.log(`[image-candidates] ${place.id} – ${place.name}`);
-    const candidates = await candidatesFor(place);
+    const candidates = await candidatesFor(place, diagnostics);
+    if (DEBUG) console.log(`[debug] ${place.id}: ${candidates.length} kandidater`);
     output.places.push({
       id: place.id,
       name: place.name,
