@@ -64,6 +64,33 @@ const roles = [
       'nedsiden_som_fotnote',
       'modellen_som_salg'
     ]
+  },
+  {
+    roleScope: 'okonomi_og_finanssjef',
+    roleId: 'naer_okonomi_og_finanssjef',
+    title: 'Økonomi- og finanssjef',
+    requiredFamilies: [
+      'okonomi_og_finanssjef_intro_v2',
+      'budsjett_og_prioritering',
+      'likviditet_og_kapital',
+      'styre_og_rapportering',
+      'team_og_kontroll',
+      'finanssjef_identitet',
+      'bank_og_covenant'
+    ],
+    requiredCompetenceAxes: [
+      'budsjettledelse',
+      'likviditetsstyring',
+      'kapitalprioritering',
+      'styrekommunikasjon',
+      'okonomiledelse'
+    ],
+    requiredProblems: [
+      'det_offensive_budsjettet',
+      'den_pene_resultatfortellingen',
+      'styrepakken_uten_risiko',
+      'teamet_som_blir_skviset'
+    ]
   }
 ];
 
@@ -158,4 +185,4 @@ for (const role of roles) {
   assertSetContainsAll(recommendedFamilies, [...planFamilies], `${role.roleScope}.recommended families vs plan allowed_families`);
 }
 
-console.log('Finance Civication roleModel validation OK: controller and finansanalytiker roleModels match plans and mailFamilies.');
+console.log('Finance Civication roleModel validation OK: controller, finansanalytiker and okonomi_og_finanssjef roleModels match plans and mailFamilies.');
