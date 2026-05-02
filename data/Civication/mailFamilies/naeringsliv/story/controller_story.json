@@ -1,0 +1,57 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "naeringsliv",
+  "role_scope": "controller",
+  "mail_type": "story",
+  "families": [
+    {
+      "id": "tall_og_tillit",
+      "mails": [
+        {
+          "id": "controller_story_001",
+          "mail_type": "story",
+          "mail_family": "tall_og_tillit",
+          "role_scope": "controller",
+          "subject": "Tallene er ikke nøytrale når de sendes videre",
+          "summary": "Du må formulere hva rapporten faktisk gjør med organisasjonen.",
+          "situation": ["Etter flere avvik ser du at rapporten ikke bare beskriver driften. Den avgjør hvem som blir trodd i neste møte."],
+          "task_domain": "management_reporting",
+          "competency": "rolleforstaelse",
+          "pressure": "symbolsk_makt",
+          "choice_axis": "synliggjore_usikkerhet_vs_skrive_sikkert",
+          "consequence_axis": "tillit_vs_autoritet",
+          "narrative_arc": "tall_som_fortelling",
+          "choices": [
+            { "id": "A", "label": "Skriv tydelig hva som er kjent, og hva som fortsatt er usikkert.", "effect": 1, "tags": ["integritet", "kvalitet"], "feedback": "Du lar rapporten bære både presisjon og usikkerhet." },
+            { "id": "B", "label": "Skriv konklusjonen stramt uten forbehold.", "effect": 0, "tags": ["visibility", "autoritet"], "feedback": "Rapporten virker sterk, men den tåler færre spørsmål." }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "controller_identitet",
+      "mails": [
+        {
+          "id": "controller_story_002",
+          "mail_type": "story",
+          "mail_family": "controller_identitet",
+          "role_scope": "controller",
+          "subject": "Hva slags kontroll utøver du?",
+          "summary": "Controllerrollen avrundes som spørsmål om kontroll, støtte og ansvar.",
+          "situation": ["Du merker at folk skjerper seg når du ber om tall. Spørsmålet er om de skjerper seg fordi de forstår mer, eller fordi de frykter rapporten."],
+          "task_domain": "role_identity",
+          "competency": "etisk_styring",
+          "pressure": "rollemodning",
+          "choice_axis": "stotte_vs_overvaking",
+          "consequence_axis": "læring_vs_frykt",
+          "narrative_arc": "kontrollens_form",
+          "choices": [
+            { "id": "A", "label": "Bruk kontrollen til å gjøre feil forståelige og reparerbare.", "effect": 1, "tags": ["learning", "integritet"], "feedback": "Du gjør kontrollen til et styringsverktøy, ikke bare et våpen." },
+            { "id": "B", "label": "Bruk rapporten hardt for å få raske forbedringer.", "effect": 0, "tags": ["kontroll", "visibility"], "feedback": "Du får effekt, men ikke nødvendigvis tillit." }
+          ]
+        }
+      ]
+    }
+  ]
+}
