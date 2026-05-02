@@ -21,7 +21,7 @@
   const STYLE_MODE_STANDARD = "standard";
   // Historisk navn: "satellite" brukes internt for sekundær/detaljert kartmodus.
   const STYLE_MODE_SATELLITE = "satellite";
-  const STYLE_URL_STANDARD = "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json";
+  const STYLE_URL_STANDARD = "https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json";
 
   // ---- helpers ----
   function num(v) {
