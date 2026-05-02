@@ -1,0 +1,93 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "naeringsliv",
+  "role_scope": "okonomi_og_finanssjef",
+  "mail_type": "conflict",
+  "families": [
+    {
+      "id": "styre_og_rapportering",
+      "description": "Konflikter der styre, daglig leder og økonomifunksjon kjemper om hvor tydelig risikoen skal vises.",
+      "mails": [
+        {
+          "id": "okonomi_og_finanssjef_conflict_001",
+          "mail_type": "conflict",
+          "mail_family": "styre_og_rapportering",
+          "role_scope": "okonomi_og_finanssjef",
+          "subject": "Styreleder vil ha mindre usikkerhet i pakken",
+          "summary": "Styrepakken er faglig presis, men styreleder mener usikkerheten gjør beslutningen vanskeligere enn nødvendig.",
+          "purpose": "Simulere styrekommunikasjon: økonomilederen må gi klarhet uten å skjule risiko.",
+          "stakes": "Hvis risikoen fjernes for å gjøre beslutningen enklere, svekkes styrets reelle ansvar. Hvis alt problematiseres, mister ledelsen beslutningskraft.",
+          "situation": [
+            "Styreleder svarer på utkastet til styrepakke: «Dette er grundig, men kan vi stramme inn risikodelen? Vi trenger en klar anbefaling, ikke tre mulige utfall.»",
+            "Du forstår behovet. Styret skal beslutte, ikke lese en lærebok. Samtidig er risikodelen nettopp det som viser hva beslutningen er avhengig av.",
+            "Det vanskelige er ikke å skrive mer eller mindre. Det vanskelige er å skrive så presist at usikkerheten blir styrbar.",
+            "Du må velge om du strammer pakken rundt ett anbefalt scenario, eller beholder risikoen tydelig som beslutningsgrunnlag."
+          ],
+          "task_domain": "board_reporting",
+          "competency": "styrekommunikasjon",
+          "pressure": "beslutningsklarhet",
+          "choice_axis": "klarhet_vs_fullstendighet",
+          "consequence_axis": "beslutningskraft_vs_ansvar",
+          "narrative_arc": "styrets_bilde",
+          "learning_focus": ["styrepakke", "risiko", "beslutningsgrunnlag", "governance"],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Behold risikoen, men skriv den som tre konkrete beslutningsdrivere.",
+              "effect": 1,
+              "tags": ["governance", "integritet", "styring"],
+              "feedback": "Du gjør risikoen kortere, ikke svakere. Styret får klarhet uten at ansvaret pakkes bort."
+            },
+            {
+              "id": "B",
+              "label": "Stram pakken rundt ett scenario og legg risikoen i vedlegg.",
+              "effect": -1,
+              "tags": ["visibility", "risk", "snarvei"],
+              "feedback": "Anbefalingen blir lettere å vedta, men vanskeligere å eie hvis forutsetningene svikter."
+            }
+          ]
+        },
+        {
+          "id": "okonomi_og_finanssjef_conflict_002",
+          "mail_type": "conflict",
+          "mail_family": "styre_og_rapportering",
+          "role_scope": "okonomi_og_finanssjef",
+          "subject": "Daglig leder vil presentere vekstplanen før tallene er kvalitetssikret",
+          "summary": "Daglig leder ønsker å bruke foreløpige tall i en strategipresentasjon.",
+          "purpose": "Vise konflikten mellom strategisk momentum og økonomifunksjonens krav til kvalitetssikring.",
+          "stakes": "Foreløpige tall kan skape retning, men også låse organisasjonen til en plan økonomifunksjonen ikke kan forsvare.",
+          "situation": [
+            "Nora skriver: «Vi trenger energi nå. Jeg vil bruke vekstcaset i allmøtet fredag, selv om økonomi ikke er helt ferdig med kvalitetssikringen.»",
+            "Tallene ser lovende ut, men to forutsetninger mangler kontroll: innkjøpspris og bemanningskostnad i høysesong.",
+            "Som økonomi- og finanssjef kan du ikke stoppe all strategi til alt er perfekt. Men du kan heller ikke la foreløpige tall bli intern sannhet fordi de kom først på scenen.",
+            "Du må velge hvordan økonomifunksjonen skal svare."
+          ],
+          "task_domain": "executive_finance_support",
+          "competency": "strategisk_beslutningsstotte",
+          "pressure": "strategisk_momentum",
+          "choice_axis": "kvalitetssikring_vs_momentum",
+          "consequence_axis": "tillit_vs_fart",
+          "narrative_arc": "strategi_for_tallene_holder",
+          "learning_focus": ["kvalitetssikring", "strategi", "ledelse", "foreløpige tall"],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Tillat presentasjon bare med tydelig merking av foreløpige tall og åpne forutsetninger.",
+              "effect": 1,
+              "tags": ["integritet", "ledelse", "kvalitet"],
+              "feedback": "Du bremser ikke strategien, men nekter tallene å kle seg ut som ferdige."
+            },
+            {
+              "id": "B",
+              "label": "La tallene brukes for å skape momentum, og kvalitetssikre etterpå.",
+              "effect": -1,
+              "tags": ["tempo", "risk", "politikk"],
+              "feedback": "Allmøtet får energi, men økonomifunksjonen må senere rydde i et bilde folk allerede har begynt å tro på."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
