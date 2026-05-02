@@ -1,0 +1,99 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "naeringsliv",
+  "role_scope": "okonomi_og_finanssjef",
+  "mail_type": "event",
+  "families": [
+    {
+      "id": "likviditet_og_kapital",
+      "description": "Hendelser der kontantstrøm og kapitalbinding tvinger økonomi- og finanssjefen til å prioritere overlevelse fremfor pen resultatfortelling.",
+      "mails": [
+        {
+          "id": "okonomi_og_finanssjef_event_001",
+          "mail_type": "event",
+          "mail_family": "likviditet_og_kapital",
+          "role_scope": "okonomi_og_finanssjef",
+          "subject": "Resultatet ser greit ut, men kontantstrømmen strammer seg til",
+          "summary": "Resultatrapporten ser akseptabel ut, men likviditetsprognosen viser at investeringer må utsettes eller finansiering reforhandles.",
+          "purpose": "Simulere forskjellen mellom resultat og likviditet: virksomheter kan overleve svake resultater, men ikke tom kasse.",
+          "stakes": "Hvis du prioriterer resultatfortellingen, kan styret undervurdere kontantbehovet. Hvis du prioriterer likviditet, må vekstplanen justeres tidligere.",
+          "situation": [
+            "Månedsresultatet er ikke godt, men heller ikke dramatisk. Det er likviditetsprognosen som gjør deg urolig.",
+            "Kundefordringene kommer tregere inn, varelageret binder mer kapital, og investeringsplanen forutsetter at banken aksepterer samme vilkår som før.",
+            "Daglig leder vil helst snakke om resultatforbedringen. Du vet at kontantstrømmen er mer presserende enn resultatlinjen akkurat nå.",
+            "Du må velge hva som løftes først i ledergruppen."
+          ],
+          "task_domain": "cash_flow_management",
+          "competency": "likviditetsstyring",
+          "pressure": "kontantstramhet",
+          "choice_axis": "kontantdisiplin_vs_resultatro",
+          "consequence_axis": "overlevelse_vs_status",
+          "narrative_arc": "likviditet_for_resultat",
+          "learning_focus": ["likviditet", "arbeidskapital", "kontantstrøm", "investering", "bankvilkår"],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Løft likviditetsrisikoen først og foreslå investeringsbrems.",
+              "effect": 1,
+              "tags": ["likviditet", "risiko", "styring"],
+              "feedback": "Du gjør møtet mindre optimistisk, men mer ansvarlig. Kontanter er ikke en detalj; de er virksomhetens oksygen."
+            },
+            {
+              "id": "B",
+              "label": "Presenter resultatforbedringen først og legg likviditet i risikodelen.",
+              "effect": -1,
+              "tags": ["visibility", "risk", "status"],
+              "feedback": "Fortellingen blir penere, men prioriteringen blir svakere. Det mest akutte havner bak det mest behagelige."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bank_og_covenant",
+      "description": "Bank- og covenant-hendelser der finanssjefen må velge mellom tidlig åpenhet og sen, mer dramatisk forklaring.",
+      "mails": [
+        {
+          "id": "okonomi_og_finanssjef_event_002",
+          "mail_type": "event",
+          "mail_family": "bank_og_covenant",
+          "role_scope": "okonomi_og_finanssjef",
+          "subject": "Banken spør om covenant før du er klar",
+          "summary": "Bankkontakten ser svakere nøkkeltall og ber om oppdatert forklaring på finansieringsvilkår.",
+          "purpose": "Simulere ekstern finansiell tillit: banken vurderer ikke bare tall, men hvor tidlig og presist ledelsen varsler risiko.",
+          "stakes": "Hvis banken får en glattet forklaring nå, kan tilliten svekkes når de ser hele bildet senere. Hvis du varsler tidlig, skaper du uro, men beholder troverdighet.",
+          "situation": [
+            "Bankkontakten skriver at de ser svakere nøkkeltall i siste rapportpakke og ber om oppdatert vurdering av covenant-rommet.",
+            "Du har ikke alle tallene ferdige, men trenden er tydelig nok til at spørsmålet er legitimt.",
+            "Nora spør om dere kan vente med å svare til budsjettet er revidert. Du forstår ønsket: et mer komplett svar gir mindre uro.",
+            "Men banker hører også på timing. Sen informasjon kan leses som svak kontroll, ikke bare som forsinket presisjon."
+          ],
+          "task_domain": "bank_reporting",
+          "competency": "finansiell_risikoforstaelse",
+          "pressure": "ekstern_tillit",
+          "choice_axis": "tidlig_apenhet_vs_sen_kontrollert_fortelling",
+          "consequence_axis": "troverdighet_vs_ro",
+          "narrative_arc": "bankens_tillit",
+          "learning_focus": ["covenant", "bankdialog", "finansiering", "tillit", "risikorapportering"],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Svar tidlig med foreløpig bilde, tiltak og når endelig tall kommer.",
+              "effect": 1,
+              "tags": ["tillit", "risiko", "styring"],
+              "feedback": "Du skaper kontrollert uro, men viser at økonomifunksjonen ser risiko før banken må forklare den for deg."
+            },
+            {
+              "id": "B",
+              "label": "Vent til budsjettet er revidert og send én samlet forklaring senere.",
+              "effect": -1,
+              "tags": ["avoidance", "risk", "ro"],
+              "feedback": "Svaret blir penere, men senere. Banken kan lese stillheten som at dere ikke har kontroll på utviklingen."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
