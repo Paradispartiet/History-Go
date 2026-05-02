@@ -7,48 +7,90 @@
   "families": [
     {
       "id": "avstemming_og_rapport",
+      "description": "Controlleren lærer hvordan avstemming, lagerverdi og rapportering binder driftens fysiske verden til regnskapets tall.",
       "mails": [
         {
           "id": "controller_job_001",
           "mail_type": "job",
           "mail_family": "avstemming_og_rapport",
           "role_scope": "controller",
-          "subject": "Tallene fra lager og regnskap er ulike",
-          "summary": "Lagerverdien i driftssystemet stemmer ikke med regnskapet.",
-          "situation": ["Du ser at lagerverdien i driftssystemet ligger høyere enn bokført verdi i regnskapet."],
+          "subject": "Lagerverdien stemmer ikke: paller, svinn og et tall som er blitt for pent",
+          "summary": "Lagerverdien i driftssystemet stemmer ikke med regnskapet, og du må finne om feilen ligger i fysisk vareflyt eller bokført verdi.",
+          "purpose": "Simulere controllerens arbeid med å koble regnskap til fysisk drift: varer, lager, svinn, mottak, feilplukk og manuelle justeringer.",
+          "stakes": "En manuell korreksjon kan få rapporten til å gå opp, men hvis rotårsaken er i vareflyten, vil feilen gjenta seg og skjule et driftsproblem.",
+          "situation": [
+            "Du får to tall på skjermen: lagerverdien i driftssystemet og bokført verdi i regnskapet. De skulle vært like. Det er de ikke.",
+            "På gulvet handler dette om paller, mottak, kampanjevarer, returer og svinn. I regnskapet ser det bare ut som en differanse.",
+            "Driftsleder mener det sikkert er en timingfeil. Regnskap vil ha rapporten låst. Du ser at differansen følger én bestemt varegruppe og én bestemt leveringsdato.",
+            "Nå må du avgjøre om du gjør rapporten pen, eller om du følger sporet tilbake til den fysiske virkeligheten tallene kommer fra."
+          ],
           "task_domain": "inventory_accounting",
           "competency": "avstemming",
           "pressure": "månedsslutt",
           "choice_axis": "rotarsak_vs_manuell_justering",
           "consequence_axis": "kvalitet_vs_tempo",
           "narrative_arc": "sporbarhet_i_tallene",
+          "learning_focus": ["lagerverdi", "svinn", "vareflyt", "rotårsaksanalyse", "internkontroll"],
           "choices": [
-            { "id": "A", "label": "Spor differansen til varegruppe og dato før justering.", "effect": 1, "tags": ["kvalitet", "process"], "feedback": "Du finner mønsteret før du flytter tallet." },
-            { "id": "B", "label": "Legg inn en midlertidig manuell korreksjon.", "effect": -1, "tags": ["tempo", "snarvei"], "feedback": "Rapporten går opp, men differansen er ikke forstått." }
+            {
+              "id": "A",
+              "label": "Spor differansen til varegruppe, mottaksdato og fysisk beholdning før justering.",
+              "effect": 1,
+              "tags": ["kvalitet", "process", "drift"],
+              "feedback": "Du finner at én kampanjeleveranse er mottatt fysisk, men ikke periodisert riktig. Rapporten blir senere, men årsaken forsvinner ikke inn i en manuell post."
+            },
+            {
+              "id": "B",
+              "label": "Legg inn en midlertidig manuell korreksjon og noter at differansen undersøkes senere.",
+              "effect": -1,
+              "tags": ["tempo", "snarvei", "risk"],
+              "feedback": "Rapporten går opp, men differansen er ikke forstått. Du har ikke løst problemet; du har gitt det et penere navn."
+            }
           ]
         }
       ]
     },
     {
       "id": "prognose_og_budsjett",
+      "description": "Controlleren arbeider med prognoser, scenarioer og budsjett som sosialt forhandlet styringsinformasjon, ikke bare matematisk fremskriving.",
       "mails": [
         {
           "id": "controller_job_002",
           "mail_type": "job",
           "mail_family": "prognose_og_budsjett",
           "role_scope": "controller",
-          "subject": "Ny prognose før ledermøtet",
-          "summary": "Du må oppdatere prognosen etter svakere salg enn ventet.",
-          "situation": ["Salget ligger under forventning, men kampanjekostnaden er allerede brukt. Ledelsen vil ha ny prognose før klokken 14."],
+          "subject": "Ny prognose før ledermøtet: budsjettet møter virkeligheten",
+          "summary": "Du må oppdatere prognosen etter svakere salg, brukte kampanjekostnader og press om å beholde et optimistisk bilde.",
+          "purpose": "Vise hvordan prognosearbeid handler om antakelser, usikkerhet og styring, ikke bare å fylle inn nye tall i budsjettet.",
+          "stakes": "En for optimistisk prognose beskytter stemningen i møtet, men gjør at virksomheten reagerer for sent på sviktende salg.",
+          "situation": [
+            "Salget ligger under forventning, men kampanjekostnaden er allerede brukt. Markedssjefen mener effekten kommer neste uke. Driftsleder sier bemanningen allerede er satt opp etter det gamle budsjettet.",
+            "Ledergruppen vil ha ny prognose før klokken 14. De spør ikke bare om hva som skjer; de spør indirekte hvem som må endre planene sine.",
+            "En prognose er en modell av fremtiden, men også et sosialt dokument. Den fordeler ansvar før fremtiden har skjedd.",
+            "Du må velge om du lager en realistisk prognose med tydelige forutsetninger, eller glatter ut avviket for å gi organisasjonen litt mer ro."
+          ],
           "task_domain": "forecasting",
           "competency": "prognosearbeid",
           "pressure": "ledermote",
           "choice_axis": "realistisk_scenario_vs_optimistisk_glatting",
           "consequence_axis": "tillit_vs_behag",
           "narrative_arc": "budsjettets_grenser",
+          "learning_focus": ["prognose", "scenario", "budsjettavvik", "forutsetninger", "styringssignal"],
           "choices": [
-            { "id": "A", "label": "Lag realistisk prognose med tydelige forutsetninger.", "effect": 1, "tags": ["kvalitet", "integritet"], "feedback": "Du gjør det ubehagelige tydelig nok til at det kan styres." },
-            { "id": "B", "label": "Glatt ut avviket med forventet innhenting senere.", "effect": -1, "tags": ["visibility", "risk"], "feedback": "Prognosen ser roligere ut, men risikoen er flyttet fremover." }
+            {
+              "id": "A",
+              "label": "Lag realistisk prognose med base, downside og tydelige forutsetninger.",
+              "effect": 1,
+              "tags": ["kvalitet", "integritet", "analyse"],
+              "feedback": "Du gjør det ubehagelige tydelig nok til at det kan styres. Prognosen blir ikke populær, men den blir brukbar."
+            },
+            {
+              "id": "B",
+              "label": "Glatt ut avviket med forventet innhenting senere i måneden.",
+              "effect": -1,
+              "tags": ["visibility", "risk", "tempo"],
+              "feedback": "Prognosen ser roligere ut, og møtet blir enklere. Men organisasjonen mister tid til å reagere hvis salget ikke kommer tilbake."
+            }
           ]
         }
       ]
