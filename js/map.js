@@ -369,6 +369,7 @@
   const L_HIT  = "hg-places-hit";
   const L_DOTS = "hg-places-dots";
   const L_LAB  = "hg-places-label";
+  const PLACE_LABEL_MIN_ZOOM = 13.8;
 
   function removeIfExists() {
     if (!MAP) return;
@@ -489,7 +490,12 @@
         "text-halo-color": "rgba(255,255,255,0.95)",
         "text-halo-width": 1.4,
         "text-halo-blur": 0.25,
-        "text-opacity": ["interpolate", ["linear"], ["zoom"], 10, 0.0, 12, 0.55, 14, 1.0]
+        "text-opacity": [
+          "interpolate", ["linear"], ["zoom"],
+          PLACE_LABEL_MIN_ZOOM, 0.0,
+          PLACE_LABEL_MIN_ZOOM + 1.2, 0.55,
+          PLACE_LABEL_MIN_ZOOM + 2.0, 1.0
+        ]
       }
     });
 
