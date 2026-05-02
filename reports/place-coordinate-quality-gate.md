@@ -1,12 +1,12 @@
 # Place coordinate quality gate
 
-Generert: 2026-05-02T21:19:56.500Z
+Generert: 2026-05-02T22:15:50.460Z
 
 ## Oppsummering
 - Aktive filer validert: **30**
 - Antall steder validert: **282**
 - Harde feil: **0**
-- Varsler: **86**
+- Varsler: **85**
 
 ## Aktive filer validert
 - data/places/by/oslo/places_by.json
@@ -100,7 +100,6 @@ Generert: 2026-05-02T21:19:56.500Z
 - data/places/natur/oslo/places_oslo_natur_akerselvarute.json#stilla_nydalen: lineært sted uten anchors
 - data/places/natur/oslo/places_oslo_natur_akerselvarute.json#bjoelsenparken_elvenaer: lineært sted uten anchors
 - data/places/natur/oslo/places_oslo_natur_akerselvarute.json#voien_gard_voienvolden: lav koordinatpresisjon (<4 desimaler)
-- data/places/natur/oslo/places_oslo_natur_akerselvarute.json#kuba_parken: lav koordinatpresisjon (<4 desimaler)
 - data/places/natur/oslo/places_oslo_natur_akerselvarute.json#elvestrekning_bla_brenneriveien: coordStatus=verified uten coordNote for område/gate/rute
 - data/places/natur/oslo/places_oslo_natur_akerselvarute.json#elvestrekning_bla_brenneriveien: lav koordinatpresisjon (<4 desimaler)
 - data/places/natur/oslo/places_oslo_natur_akerselvarute.json#fossveien_elvestrekning: coordStatus=verified uten coordNote for område/gate/rute
