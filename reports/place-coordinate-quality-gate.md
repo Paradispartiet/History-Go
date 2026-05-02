@@ -1,56 +1,135 @@
 # Place coordinate quality gate
 
-Generert: 2026-05-01T21:02:16.193Z
+Generert: 2026-05-02T21:19:56.500Z
 
 ## Oppsummering
-- Aktive filer validert: **17**
-- Antall steder validert: **221**
+- Aktive filer validert: **30**
+- Antall steder validert: **282**
 - Harde feil: **0**
-- Varsler: **20**
+- Varsler: **86**
 
 ## Aktive filer validert
-- data/places/places_by.json
-- data/places/places_historie.json
-- data/places/places_kunst.json
-- data/places/places_litteratur.json
-- data/places/places_musikk.json
-- data/places/places_naeringsliv.json
-- data/places/places_natur.json
-- data/places/places_politikk.json
-- data/places/places_sport.json
-- data/places/places_subkultur.json
-- data/places/places_vitenskap.json
-- data/places/oslo/places_oslo_natur_akerselvarute.json
-- data/places/oslo/places_oslo_natur_hovedsteder.json
-- data/places/oslo/places_oslo_natur_alnaelva_rute.json
-- data/places/oslo/places_oslo_natur_ljanselva_rute.json
-- data/places/oslo/places_oslo_natur_ostensjovannet.json
-- data/places/oslo/places_oslo_natur_bygdoy.json
+- data/places/by/oslo/places_by.json
+- data/places/film/oslo/places_oslo_film.json
+- data/places/historie/oslo/places_historie.json
+- data/places/kunst/oslo/places_kunst.json
+- data/places/litteratur/oslo/places_litteratur.json
+- data/places/media/oslo/places_oslo_media.json
+- data/places/musikk/oslo/places_musikk.json
+- data/places/naeringsliv/oslo/places_naeringsliv.json
+- data/places/natur/oslo/places_oslo_alna.json
+- data/places/natur/oslo/places_oslo_natur_akerselvarute.json
+- data/places/natur/oslo/places_oslo_natur_alnaelva_rute.json
+- data/places/natur/oslo/places_oslo_natur_bygdoy.json
+- data/places/natur/oslo/places_oslo_natur_hovedsteder.json
+- data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json
+- data/places/natur/oslo/places_oslo_natur_ostensjovannet.json
+- data/places/politikk/oslo/places_politikk.json
+- data/places/popkultur/oslo/places_oslo_populaerkultur.json
+- data/places/sport/oslo/places_sport.json
+- data/places/subkultur/oslo/places_subkultur.json
+- data/places/vitenskap/oslo/places_vitenskap.json
+- data/places/vitenskap/oslo/places_vitenskap_historiske_institusjoner.json
+- data/places/by/europe/portugal/lisbon/places_lisbon_by.json
+- data/places/historie/europe/portugal/lisbon/places_lisbon_historie.json
+- data/places/politikk/europe/portugal/lisbon/places_lisbon_politikk.json
+- data/places/kunst/europe/portugal/lisbon/places_lisbon_kunst.json
+- data/places/litteratur/europe/portugal/lisbon/places_lisbon_litteratur.json
+- data/places/musikk/europe/portugal/lisbon/places_lisbon_musikk.json
+- data/places/subkultur/europe/portugal/lisbon/places_lisbon_subkultur.json
+- data/places/naeringsliv/europe/portugal/lisbon/places_lisbon_naeringsliv.json
+- data/places/sport/europe/portugal/lisbon/places_lisbon_sport.json
 
 ## Harde feil
 - Ingen
 
 ## Varsler
-- data/places/places_by.json#christiania_torv: lineært sted uten anchors
-- data/places/places_by.json#slottsparken: stort område uten coordNote/coordStatus
-- data/places/places_by.json#nydalen: stort område uten coordNote/coordStatus
-- data/places/places_historie.json#nobelinstituttet: lineært sted uten anchors
-- data/places/places_naeringsliv.json#fornebu_teknologipark: stort område uten coordNote/coordStatus
-- data/places/places_naeringsliv.json#oslo_kornmagasin: lineært sted uten anchors
-- data/places/places_naeringsliv.json#bryn_industriomrade: stort område uten coordNote/coordStatus
-- data/places/places_naeringsliv.json#christiania_seildugsfabrik: lineært sted uten anchors
-- data/places/places_naeringsliv.json#akerselva_industri: lineært sted uten anchors
-- data/places/places_naeringsliv.json#akerselva_industri: stort område uten coordNote/coordStatus
-- data/places/oslo/places_oslo_natur_akerselvarute.json#stilla_nydalen: lineært sted uten anchors
-- data/places/oslo/places_oslo_natur_akerselvarute.json#bjoelsenparken_elvenaer: lineært sted uten anchors
-- data/places/oslo/places_oslo_natur_akerselvarute.json#vaterland_historisk_elvelop: lineært sted uten anchors
-- data/places/oslo/places_oslo_natur_hovedsteder.json#hovedoya: stort område uten coordNote/coordStatus
-- data/places/oslo/places_oslo_natur_ljanselva_rute.json#noklevann_ljanselva_start: lineært sted uten anchors
-- data/places/oslo/places_oslo_natur_ljanselva_rute.json#ljanselva_skullerud: lineært sted uten anchors
-- data/places/oslo/places_oslo_natur_ljanselva_rute.json#ljanselva_hauketo: lineært sted uten anchors
-- data/places/oslo/places_oslo_natur_ljanselva_rute.json#ljanselva_ljan: lineært sted uten anchors
-- data/places/oslo/places_oslo_natur_ljanselva_rute.json#ljanselva_fiskevollen: lineært sted uten anchors
-- data/places/oslo/places_oslo_natur_ljanselva_rute.json#ljanselva_bunnefjorden: lineært sted uten anchors
+- data/places/by/oslo/places_by.json#karl_johan: coordStatus=verified uten coordNote for område/gate/rute
+- data/places/by/oslo/places_by.json#ring_3: lav koordinatpresisjon (<4 desimaler)
+- data/places/by/oslo/places_by.json#trikk_17_18: lav koordinatpresisjon (<4 desimaler)
+- data/places/by/oslo/places_by.json#oslo_s: lav koordinatpresisjon (<4 desimaler)
+- data/places/by/oslo/places_by.json#oslo_bussterminal: lav koordinatpresisjon (<4 desimaler)
+- data/places/by/oslo/places_by.json#bogstadveien: coordStatus=verified uten coordNote for område/gate/rute
+- data/places/by/oslo/places_by.json#markveien: coordStatus=verified uten coordNote for område/gate/rute
+- data/places/by/oslo/places_by.json#ullevål_hageby: coordStatus=verified uten coordPrecisionM
+- data/places/by/oslo/places_by.json#christiania_torv: lineært sted uten anchors
+- data/places/by/oslo/places_by.json#christiania_torv: lav koordinatpresisjon (<4 desimaler)
+- data/places/by/oslo/places_by.json#slottsparken: stort område uten coordNote/coordStatus
+- data/places/by/oslo/places_by.json#botsparken: lav koordinatpresisjon (<4 desimaler)
+- data/places/by/oslo/places_by.json#nydalen: stort område uten coordNote/coordStatus
+- data/places/by/oslo/places_by.json#tjuvholmen: coordStatus=verified uten coordPrecisionM
+- data/places/by/oslo/places_by.json#bislett: lav koordinatpresisjon (<4 desimaler)
+- data/places/by/oslo/places_by.json#universitetsplassen: lav koordinatpresisjon (<4 desimaler)
+- data/places/by/oslo/places_by.json#operahuset: lav koordinatpresisjon (<4 desimaler)
+- data/places/by/oslo/places_by.json#deichman_bjorvika: coordStatus=verified uten coordPrecisionM
+- data/places/by/oslo/places_by.json#barcode: coordStatus=verified uten coordPrecisionM
+- data/places/by/oslo/places_by.json#barcode: lav koordinatpresisjon (<4 desimaler)
+- data/places/by/oslo/places_by.json#vigelandsparken: coordStatus=verified uten coordPrecisionM
+- data/places/by/oslo/places_by.json#vigelandsparken: coordStatus=verified uten coordNote for område/gate/rute
+- data/places/by/oslo/places_by.json#voienvolden: coordStatus=verified uten coordPrecisionM
+- data/places/historie/oslo/places_historie.json#damstredet_telthusbakken: coordStatus=verified uten coordPrecisionM
+- data/places/litteratur/oslo/places_litteratur.json#alf_proysen_statue_nittedal: lav koordinatpresisjon (<4 desimaler)
+- data/places/litteratur/oslo/places_litteratur.json#oscar_braaten_statuen: lav koordinatpresisjon (<4 desimaler)
+- data/places/litteratur/oslo/places_litteratur.json#alexander_kiellands_plass: lav koordinatpresisjon (<4 desimaler)
+- data/places/naeringsliv/oslo/places_naeringsliv.json#fornebu_teknologipark: stort område uten coordNote/coordStatus
+- data/places/naeringsliv/oslo/places_naeringsliv.json#akershus_energi: lav koordinatpresisjon (<4 desimaler)
+- data/places/naeringsliv/oslo/places_naeringsliv.json#ovre_foss: lav koordinatpresisjon (<4 desimaler)
+- data/places/naeringsliv/oslo/places_naeringsliv.json#oslo_kornmagasin: lineært sted uten anchors
+- data/places/naeringsliv/oslo/places_naeringsliv.json#jernbanetorget_trafikknutepunkt: lav koordinatpresisjon (<4 desimaler)
+- data/places/naeringsliv/oslo/places_naeringsliv.json#oslo_kraftselskap: lav koordinatpresisjon (<4 desimaler)
+- data/places/naeringsliv/oslo/places_naeringsliv.json#frysja_industriomrade: coordStatus=verified uten coordPrecisionM
+- data/places/naeringsliv/oslo/places_naeringsliv.json#frysja_industriomrade: coordStatus=verified uten coordNote for område/gate/rute
+- data/places/naeringsliv/oslo/places_naeringsliv.json#norges_varemesse: lav koordinatpresisjon (<4 desimaler)
+- data/places/naeringsliv/oslo/places_naeringsliv.json#bryn_industriomrade: stort område uten coordNote/coordStatus
+- data/places/naeringsliv/oslo/places_naeringsliv.json#christiania_seildugsfabrik: lineært sted uten anchors
+- data/places/naeringsliv/oslo/places_naeringsliv.json#akerselva_industri: lineært sted uten anchors
+- data/places/naeringsliv/oslo/places_naeringsliv.json#akerselva_industri: stort område uten coordNote/coordStatus
+- data/places/naeringsliv/oslo/places_naeringsliv.json#akerselva_industri: lav koordinatpresisjon (<4 desimaler)
+- data/places/natur/oslo/places_oslo_alna.json#alnaelva: lav koordinatpresisjon (<4 desimaler)
+- data/places/natur/oslo/places_oslo_alna.json#alnaelvstien: lineært sted uten anchors
+- data/places/natur/oslo/places_oslo_alna.json#alnaelvstien: lav koordinatpresisjon (<4 desimaler)
+- data/places/natur/oslo/places_oslo_alna.json#loelva_historisk: lineært sted uten anchors
+- data/places/natur/oslo/places_oslo_alna.json#loelva_historisk: stort område uten coordNote/coordStatus
+- data/places/natur/oslo/places_oslo_alna.json#loelva_historisk: lav koordinatpresisjon (<4 desimaler)
+- data/places/natur/oslo/places_oslo_alna.json#trosterud_friomrade: lav koordinatpresisjon (<4 desimaler)
+- data/places/natur/oslo/places_oslo_alna.json#furuset_haugerud_skogbelte: stort område uten coordNote/coordStatus
+- data/places/natur/oslo/places_oslo_alna.json#furuset_haugerud_skogbelte: lav koordinatpresisjon (<4 desimaler)
+- data/places/natur/oslo/places_oslo_alna.json#alnabru_jernbane_og_logistikk: lineært sted uten anchors
+- data/places/natur/oslo/places_oslo_alna.json#alnabru_jernbane_og_logistikk: lav koordinatpresisjon (<4 desimaler)
+- data/places/natur/oslo/places_oslo_natur_akerselvarute.json#nydalsdammen: lav koordinatpresisjon (<4 desimaler)
+- data/places/natur/oslo/places_oslo_natur_akerselvarute.json#stilla_nydalen: lineært sted uten anchors
+- data/places/natur/oslo/places_oslo_natur_akerselvarute.json#bjoelsenparken_elvenaer: lineært sted uten anchors
+- data/places/natur/oslo/places_oslo_natur_akerselvarute.json#voien_gard_voienvolden: lav koordinatpresisjon (<4 desimaler)
+- data/places/natur/oslo/places_oslo_natur_akerselvarute.json#kuba_parken: lav koordinatpresisjon (<4 desimaler)
+- data/places/natur/oslo/places_oslo_natur_akerselvarute.json#elvestrekning_bla_brenneriveien: coordStatus=verified uten coordNote for område/gate/rute
+- data/places/natur/oslo/places_oslo_natur_akerselvarute.json#elvestrekning_bla_brenneriveien: lav koordinatpresisjon (<4 desimaler)
+- data/places/natur/oslo/places_oslo_natur_akerselvarute.json#fossveien_elvestrekning: coordStatus=verified uten coordNote for område/gate/rute
+- data/places/natur/oslo/places_oslo_natur_akerselvarute.json#hausmannsomradet_elvelop: coordStatus=verified uten coordNote for område/gate/rute
+- data/places/natur/oslo/places_oslo_natur_akerselvarute.json#nybrua_vaterlandsparken: coordStatus=verified uten coordNote for område/gate/rute
+- data/places/natur/oslo/places_oslo_natur_akerselvarute.json#nybrua_vaterlandsparken: lav koordinatpresisjon (<4 desimaler)
+- data/places/natur/oslo/places_oslo_natur_akerselvarute.json#vaterland_historisk_elvelop: lineært sted uten anchors
+- data/places/natur/oslo/places_oslo_natur_akerselvarute.json#akerselva_utlop_bjorvika: coordStatus=verified uten coordNote for område/gate/rute
+- data/places/natur/oslo/places_oslo_natur_alnaelva_rute.json#alnaparken: lav koordinatpresisjon (<4 desimaler)
+- data/places/natur/oslo/places_oslo_natur_alnaelva_rute.json#alna_smalvoll: lav koordinatpresisjon (<4 desimaler)
+- data/places/natur/oslo/places_oslo_natur_alnaelva_rute.json#alna_bryn: lav koordinatpresisjon (<4 desimaler)
+- data/places/natur/oslo/places_oslo_natur_hovedsteder.json#hovedoya: stort område uten coordNote/coordStatus
+- data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json#noklevann_ljanselva_start: lineært sted uten anchors
+- data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json#noklevann_ljanselva_start: lav koordinatpresisjon (<4 desimaler)
+- data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json#ljanselva_skullerud: lineært sted uten anchors
+- data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json#ljanselva_hauketo: lineært sted uten anchors
+- data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json#ljanselva_hauketo: lav koordinatpresisjon (<4 desimaler)
+- data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json#ljanselva_ljan: lineært sted uten anchors
+- data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json#ljanselva_fiskevollen: lineært sted uten anchors
+- data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json#ljanselva_bunnefjorden: lineært sted uten anchors
+- data/places/popkultur/oslo/places_oslo_populaerkultur.json#house_of_nerds: lav koordinatpresisjon (<4 desimaler)
+- data/places/subkultur/oslo/places_subkultur.json#sofienbergparken_subkultur: lav koordinatpresisjon (<4 desimaler)
+- data/places/subkultur/oslo/places_subkultur.json#torggata_blad: lav koordinatpresisjon (<4 desimaler)
+- data/places/vitenskap/oslo/places_vitenskap_historiske_institusjoner.json#nobelinstituttet: lineært sted uten anchors
+- data/places/by/europe/portugal/lisbon/places_lisbon_by.json#lisbon_alfama: lav koordinatpresisjon (<4 desimaler)
+- data/places/historie/europe/portugal/lisbon/places_lisbon_historie.json#lisbon_torre_de_belem: lav koordinatpresisjon (<4 desimaler)
+- data/places/historie/europe/portugal/lisbon/places_lisbon_historie.json#lisbon_se_de_lisboa: lav koordinatpresisjon (<4 desimaler)
+- data/places/kunst/europe/portugal/lisbon/places_lisbon_kunst.json#lisbon_centro_cultural_de_belem: lav koordinatpresisjon (<4 desimaler)
+- data/places/naeringsliv/europe/portugal/lisbon/places_lisbon_naeringsliv.json#lisbon_parque_das_nacoes: lav koordinatpresisjon (<4 desimaler)
 
 ## Anbefalt kommando
 - `node tools/place-coordinate-quality-gate.mjs`
