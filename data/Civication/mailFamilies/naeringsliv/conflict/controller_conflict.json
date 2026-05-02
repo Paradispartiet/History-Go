@@ -1,0 +1,57 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "naeringsliv",
+  "role_scope": "controller",
+  "mail_type": "conflict",
+  "families": [
+    {
+      "id": "avvik_og_forklaring",
+      "mails": [
+        {
+          "id": "controller_conflict_001",
+          "mail_type": "conflict",
+          "mail_family": "avvik_og_forklaring",
+          "role_scope": "controller",
+          "subject": "Driften mener avviket ditt er feil",
+          "summary": "Driftsleder bestrider forklaringen i månedsrapporten.",
+          "situation": ["Driftsleder skriver at rapporten din får avdelingen til å se uansvarlig ut, og ber deg endre teksten før ledermøtet."],
+          "task_domain": "variance_explanation",
+          "competency": "konflikthandtering",
+          "pressure": "lederpress",
+          "choice_axis": "presisjon_vs_relationsfred",
+          "consequence_axis": "tillit_vs_kontroll",
+          "narrative_arc": "tall_som_makt",
+          "choices": [
+            { "id": "A", "label": "Be om konkret motdokumentasjon og juster bare hvis den holder.", "effect": 1, "tags": ["process", "integritet"], "feedback": "Du lar rapporten være åpen for fakta, ikke for press." },
+            { "id": "B", "label": "Myk opp teksten for å bevare samarbeidsklimaet.", "effect": -1, "tags": ["avoidance", "risk"], "feedback": "Konflikten dempes, men rapporten mister presisjon." }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "etikk_og_presisjon",
+      "mails": [
+        {
+          "id": "controller_conflict_002",
+          "mail_type": "conflict",
+          "mail_family": "etikk_og_presisjon",
+          "role_scope": "controller",
+          "subject": "Kan vi vente med å synliggjøre tapet?",
+          "summary": "En leder ber deg skyve et tap til neste periode.",
+          "situation": ["En leder skriver at tapet er reelt, men at det vil skape uro hvis det vises denne måneden."],
+          "task_domain": "financial_ethics",
+          "competency": "integritet",
+          "pressure": "resultatpress",
+          "choice_axis": "periodisering_vs_resultatpynt",
+          "consequence_axis": "tillit_vs_manipulasjon",
+          "narrative_arc": "kontrollens_grense",
+          "choices": [
+            { "id": "A", "label": "Krev regnskapsmessig begrunnelse før noe flyttes.", "effect": 1, "tags": ["integritet", "kvalitet"], "feedback": "Du skiller mellom lovlig periodisering og kosmetisk flytting." },
+            { "id": "B", "label": "Flytt posten midlertidig og ta diskusjonen senere.", "effect": -1, "tags": ["risk", "snarvei"], "feedback": "Du kjøper ro nå, men gjør neste periode tyngre." }
+          ]
+        }
+      ]
+    }
+  ]
+}
