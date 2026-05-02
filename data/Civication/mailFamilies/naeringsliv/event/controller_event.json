@@ -7,6 +7,7 @@
   "families": [
     {
       "id": "rapportfrist_og_revisjon",
+      "description": "Hendelser der frist, revisjon, dokumentasjon og organisatorisk stress tester om controllerens kontroll faktisk holder.",
       "mails": [
         {
           "id": "controller_event_001",
@@ -15,16 +16,36 @@
           "role_scope": "controller",
           "subject": "Revisor spør etter underlaget nå",
           "summary": "Revisor ber om dokumentasjon på et avvik like før rapporten skal låses.",
-          "situation": ["Revisor ber om underlag for en post du egentlig hadde tenkt å forklare muntlig i ledermøtet."],
+          "purpose": "Simulere en reell kontrollhendelse: rapporten er ikke ferdig før dokumentasjonen tåler ekstern lesning.",
+          "stakes": "Hvis underlaget ikke finnes når revisor spør, blir rapporten sårbar. Ikke fordi tallet nødvendigvis er feil, men fordi organisasjonen ikke kan vise hvorfor det er riktig.",
+          "situation": [
+            "Revisor ber om underlag for en post du egentlig hadde tenkt å forklare muntlig i ledermøtet.",
+            "Fristen for å låse rapporten er om én time. I chatten spør noen om dette virkelig er nødvendig akkurat nå. Du ser hvorfor de spør: alle vil videre.",
+            "Men revisjon handler ikke bare om mistanke. Det handler om etterprøvbarhet. En organisasjon som ikke kan vise hvorfor et tall står der, må be om å bli trodd.",
+            "Du har rapporten klar, men ikke underlaget samlet. Nå må du velge mellom å låse tempoet eller styrke sporet."
+          ],
           "task_domain": "audit_support",
           "competency": "dokumentasjon_under_press",
           "pressure": "revisjonsfrist",
           "choice_axis": "sporbarhet_vs_muntlig_forklaring",
           "consequence_axis": "tillit_vs_sarbarhet",
           "narrative_arc": "rapportens_prøve",
+          "learning_focus": ["revisjon", "dokumentasjon", "etterprøvbarhet", "rapportfrist"],
           "choices": [
-            { "id": "A", "label": "Samle underlag og lås rapporten først når dokumentasjonen er klar.", "effect": 1, "tags": ["process", "kvalitet"], "feedback": "Du gjør rapporten tregere, men sterkere." },
-            { "id": "B", "label": "Send rapporten og ettersend underlaget senere.", "effect": -1, "tags": ["tempo", "risk"], "feedback": "Fristen holdes, men revisjonssporet blir svakere." }
+            {
+              "id": "A",
+              "label": "Samle underlag og lås rapporten først når dokumentasjonen er klar.",
+              "effect": 1,
+              "tags": ["process", "kvalitet", "kontroll"],
+              "feedback": "Du gjør rapporten tregere, men sterkere. Når noen spør, finnes svaret i underlaget og ikke bare i hukommelsen din."
+            },
+            {
+              "id": "B",
+              "label": "Send rapporten og ettersend underlaget senere.",
+              "effect": -1,
+              "tags": ["tempo", "risk"],
+              "feedback": "Fristen holdes, men revisjonssporet blir svakere. Du har gjort rapporten ferdig før beviset for den er ferdig."
+            }
           ]
         }
       ]
