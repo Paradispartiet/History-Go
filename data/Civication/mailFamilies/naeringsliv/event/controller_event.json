@@ -1,0 +1,33 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "naeringsliv",
+  "role_scope": "controller",
+  "mail_type": "event",
+  "families": [
+    {
+      "id": "rapportfrist_og_revisjon",
+      "mails": [
+        {
+          "id": "controller_event_001",
+          "mail_type": "event",
+          "mail_family": "rapportfrist_og_revisjon",
+          "role_scope": "controller",
+          "subject": "Revisor spør etter underlaget nå",
+          "summary": "Revisor ber om dokumentasjon på et avvik like før rapporten skal låses.",
+          "situation": ["Revisor ber om underlag for en post du egentlig hadde tenkt å forklare muntlig i ledermøtet."],
+          "task_domain": "audit_support",
+          "competency": "dokumentasjon_under_press",
+          "pressure": "revisjonsfrist",
+          "choice_axis": "sporbarhet_vs_muntlig_forklaring",
+          "consequence_axis": "tillit_vs_sarbarhet",
+          "narrative_arc": "rapportens_prøve",
+          "choices": [
+            { "id": "A", "label": "Samle underlag og lås rapporten først når dokumentasjonen er klar.", "effect": 1, "tags": ["process", "kvalitet"], "feedback": "Du gjør rapporten tregere, men sterkere." },
+            { "id": "B", "label": "Send rapporten og ettersend underlaget senere.", "effect": -1, "tags": ["tempo", "risk"], "feedback": "Fristen holdes, men revisjonssporet blir svakere." }
+          ]
+        }
+      ]
+    }
+  ]
+}
