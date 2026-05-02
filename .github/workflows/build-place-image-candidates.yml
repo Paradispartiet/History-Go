@@ -1,25 +1,26 @@
-name: Build Place Image Candidates
+name: Build place image candidates
 
 on:
   workflow_dispatch:
     inputs:
       limit:
-        description: 'Optional limit for test runs (e.g. 10). Use 0 or empty for no limit.'
+        description: "Optional limit for test runs, for example 10. Use 0 or empty for no limit."
         required: false
-        default: '0'
+        default: "10"
       debug:
-        description: 'Enable debug output'
+        description: "Enable debug output"
         required: false
         type: boolean
         default: true
       include_existing:
-        description: 'Include places that already have image entries'
+        description: "Include places that already have image/cardImage"
         required: false
         type: boolean
         default: false
 
 jobs:
   build-place-image-candidates:
+    name: Build place image candidates
     runs-on: ubuntu-latest
 
     steps:
@@ -29,7 +30,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: "20"
 
       - name: Check builder script syntax
         run: node --check tools/build_place_image_candidates.mjs
@@ -41,31 +42,47 @@ jobs:
 
           cmd=(node tools/build_place_image_candidates.mjs)
 
-          if [[ "${{ inputs.debug }}" == 'true' ]]; then
+          if [[ "${{ inputs.debug }}" == "true" ]]; then
             cmd+=(--debug)
           fi
 
-          if [[ "${{ inputs.include_existing }}" == 'true' ]]; then
+          if [[ "${{ inputs.include_existing }}" == "true" ]]; then
             cmd+=(--include-existing)
           fi
 
-          if [[ -n "${{ inputs.limit }}" ]] && [[ "${{ inputs.limit }}" =~ ^[0-9]+$ ]] && (( ${{ inputs.limit }} > 0 )); then
-            cmd+=("--limit=${{ inputs.limit }}")
+          limit_value="${{ inputs.limit }}"
+          if [[ -n "$limit_value" ]] && [[ "$limit_value" =~ ^[0-9]+$ ]] && (( limit_value > 0 )); then
+            cmd+=("--limit=${limit_value}")
           fi
 
           echo "Running: ${cmd[*]}"
           "${cmd[@]}"
 
       - name: Verify output file exists
-        run: |
-          test -f data/places/place_image_candidates.json
+        run: test -f data/places/place_image_candidates.json
 
       - name: Print summary
         run: |
-          node -e "const fs = require('fs'); const p = 'data/places/place_image_candidates.json'; const data = JSON.parse(fs.readFileSync(p, 'utf8')); const out = { schema: data.schema ?? null, manifestFiles: Array.isArray(data.manifestFiles) ? data.manifestFiles.length : 0, placesTotal: data.placesTotal ?? 0, placesChecked: data.placesChecked ?? 0, placesWithCandidates: data.placesWithCandidates ?? 0, candidatesTotal: data.candidatesTotal ?? 0, diagnostics: data.diagnostics ?? {} }; console.log(JSON.stringify(out, null, 2));"
+          node <<'NODE'
+          const fs = require("fs");
+          const file = "data/places/place_image_candidates.json";
+          const data = JSON.parse(fs.readFileSync(file, "utf8"));
+          const counts = data.meta?.counts || {};
+          const diagnostics = data.meta?.diagnostics || {};
+          const summary = {
+            schema: data.schema || null,
+            manifestFiles: counts.manifestFiles ?? null,
+            placesTotal: counts.placesTotal ?? null,
+            placesChecked: counts.placesChecked ?? null,
+            placesWithCandidates: counts.placesWithCandidates ?? null,
+            candidatesTotal: counts.candidatesTotal ?? null,
+            diagnostics
+          };
+          console.log(JSON.stringify(summary, null, 2));
+          NODE
 
       - name: Upload candidate artifact
-        # Artifact must be downloaded and reviewed manually before running tools/apply_place_image_candidates.mjs.
+        # Download and review this artifact manually before running tools/apply_place_image_candidates.mjs.
         uses: actions/upload-artifact@v4
         with:
           name: place-image-candidates
