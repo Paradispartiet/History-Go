@@ -1,0 +1,54 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "naeringsliv",
+  "role_scope": "okonomi_og_finanssjef",
+  "mail_type": "story",
+  "families": [
+    {
+      "id": "finanssjef_identitet",
+      "description": "Fortellinger der økonomi- og finanssjefen oppdager at rollen handler om å forene kontroll, kapital og tillit.",
+      "mails": [
+        {
+          "id": "okonomi_og_finanssjef_story_001",
+          "mail_type": "story",
+          "mail_family": "finanssjef_identitet",
+          "role_scope": "okonomi_og_finanssjef",
+          "subject": "Hva slags økonomisk leder blir du?",
+          "summary": "Rollen avrundes som spørsmål om hvordan økonomifunksjonen skal bruke makten sin: som bremse, kompass eller pyntemaskin.",
+          "purpose": "Avrunde stillingens identitet: økonomi- og finanssjefen må gjøre kapital, kontroll og tillit til ett ansvar.",
+          "stakes": "Hvis økonomifunksjonen bare sier nei, mister den organisasjonen. Hvis den bare hjelper ledelsen å fortelle penere historier, mister den sannheten.",
+          "situation": [
+            "Etter flere ledermøter ser du mønsteret. Alle kommer til økonomi når de vil ha rom til å handle, og alle blir frustrerte når tallene viser at rommet er mindre enn ønsket.",
+            "Controlleren trenger at du beskytter presisjonen. Daglig leder trenger at du skaper beslutningskraft. Styret trenger risikoen synlig nok til å eie den. Banken trenger tegn på kontroll før krisen blir tydelig.",
+            "Du skjønner at økonomi- og finanssjefens arbeid ikke er å være den strengeste personen i rommet. Det er å gjøre virkeligheten tydelig nok til at andre kan handle ansvarlig.",
+            "Nå må du velge hvilken økonomisk kultur du bygger."
+          ],
+          "task_domain": "finance_leadership_identity",
+          "competency": "okonomiledelse",
+          "pressure": "rollemodning",
+          "choice_axis": "kompass_vs_brems",
+          "consequence_axis": "tillit_vs_beslutningsmakt",
+          "narrative_arc": "finanssjefens_ansvar",
+          "learning_focus": ["økonomiledelse", "kapitaldisiplin", "tillit", "beslutningsstøtte", "rolleidentitet"],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Bygg økonomifunksjonen som kompass: tydelig, krevende og hjelpsom.",
+              "effect": 1,
+              "tags": ["ledelse", "tillit", "integritet"],
+              "feedback": "Du gjør økonomi til beslutningsstøtte med ryggrad. Organisasjonen får ikke alltid svaret den ønsker, men oftere svaret den trenger."
+            },
+            {
+              "id": "B",
+              "label": "Bygg økonomifunksjonen som hard kontroll for å sikre disiplin raskt.",
+              "effect": 0,
+              "tags": ["kontroll", "status", "risk"],
+              "feedback": "Disiplinen øker, men terskelen for å melde problemer øker også. Du får orden, men må passe på at orden ikke blir stillhet."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
