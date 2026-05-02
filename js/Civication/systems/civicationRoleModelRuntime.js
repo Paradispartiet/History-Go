@@ -10,6 +10,7 @@
 
   const PATCHED_FLAG = "__civicationRoleModelRuntimePatched";
   const CACHE = new Map();
+  const MANIFEST_PATH = "data/Civication/roleModels/manifest.json";
 
   function norm(value) {
     return String(value || "").trim();
@@ -47,7 +48,7 @@
     return window.CivicationState?.getActivePosition?.() || null;
   }
 
-  function resolveRoleScope(active) {
+  function resolveLegacyRoleScope(active) {
     const roleId = norm(active?.role_id);
     if (ROLE_SCOPE_BY_ROLE_ID[roleId]) return ROLE_SCOPE_BY_ROLE_ID[roleId];
 
@@ -60,14 +61,11 @@
     if (roleKey === "naer_mellomleder" || roleKey === "mellomleder") return "mellomleder";
     if (roleKey === "naer_formann" || roleKey === "formann") return "formann";
 
-    return titleKey;
+    return "";
   }
 
-  function getRoleModelPath(active) {
-    const category = norm(active?.career_id);
-    const roleScope = resolveRoleScope(active);
-    if (!category || !roleScope) return null;
-    return `data/Civication/roleModels/${category}/${roleScope}.json`;
+  function resolveSluggedRoleScope(active) {
+    return slugify(active?.title || active?.tier_label || active?.role_key || "");
   }
 
   async function loadJson(path) {
@@ -92,10 +90,60 @@
     }
   }
 
+  async function loadManifestSet() {
+    const manifest = await loadJson(MANIFEST_PATH);
+    const files = Array.isArray(manifest?.files) ? manifest.files.map(norm).filter(Boolean) : [];
+    return new Set(files);
+  }
+
+  async function resolveRoleModelPath(active) {
+    const category = norm(active?.career_id);
+    if (!category) {
+      return { category: "", role_scope: "", path: null, strategy: "none", manifest_has_path: false };
+    }
+
+    const legacyRoleScope = resolveLegacyRoleScope(active);
+    const legacyPath = legacyRoleScope
+      ? `data/Civication/roleModels/${category}/${legacyRoleScope}.json`
+      : null;
+
+    if (legacyPath) {
+      const legacyModel = await loadJson(legacyPath);
+      if (legacyModel) {
+        return {
+          category,
+          role_scope: legacyRoleScope,
+          path: legacyPath,
+          strategy: "legacy_mapping",
+          manifest_has_path: true
+        };
+      }
+    }
+
+    const slugRoleScope = resolveSluggedRoleScope(active);
+    const path = slugRoleScope
+      ? `data/Civication/roleModels/${category}/${slugRoleScope}.json`
+      : null;
+
+    let manifestHasPath = false;
+    if (path) {
+      const manifestSet = await loadManifestSet();
+      manifestHasPath = manifestSet.has(path);
+    }
+
+    return {
+      category,
+      role_scope: slugRoleScope,
+      path,
+      strategy: "badge_tier_slug",
+      manifest_has_path: manifestHasPath
+    };
+  }
+
   async function loadRoleModel(active) {
-    const path = getRoleModelPath(active);
-    if (!path) return null;
-    return await loadJson(path);
+    const resolved = await resolveRoleModelPath(active);
+    if (!resolved.path) return null;
+    return await loadJson(resolved.path);
   }
 
   function pickByIds(list, ids) {
@@ -160,7 +208,8 @@
   async function decoratePack(pack, active) {
     if (!pack || !Array.isArray(pack.mails) || !pack.mails.length) return pack;
 
-    const roleModel = await loadRoleModel(active);
+    const resolved = await resolveRoleModelPath(active);
+    const roleModel = resolved.path ? await loadJson(resolved.path) : null;
     if (!roleModel) return pack;
 
     const mails = await Promise.all(
@@ -171,7 +220,7 @@
       ...pack,
       mails,
       __civication_role_model_runtime: true,
-      __role_model_path: getRoleModelPath(active),
+      __role_model_path: resolved.path,
       __role_model_id: norm(roleModel.role_id)
     };
   }
@@ -195,13 +244,22 @@
     return true;
   }
 
-  function inspect() {
+  async function inspect() {
     const active = getActive();
     const proto = window.CivicationEventEngine?.prototype;
+    const resolved = active
+      ? await resolveRoleModelPath(active)
+      : { category: "", role_scope: "", path: null, strategy: "none", manifest_has_path: false };
+    const loaded = resolved.path ? Boolean(await loadJson(resolved.path)) : false;
+
     return {
       active,
-      role_scope: active ? resolveRoleScope(active) : null,
-      role_model_path: active ? getRoleModelPath(active) : null,
+      category_or_career_id: resolved.category || null,
+      role_scope: resolved.role_scope || null,
+      role_model_path: resolved.path,
+      strategy: resolved.strategy,
+      manifest_has_path: resolved.manifest_has_path,
+      file_loaded: loaded,
       patched: proto?.[PATCHED_FLAG] === true,
       cache_size: CACHE.size
     };
@@ -217,8 +275,9 @@
     loadRoleModel,
     decorateMail,
     decoratePack,
-    getRoleModelPath,
-    resolveRoleScope
+    resolveRoleModelPath,
+    resolveLegacyRoleScope,
+    resolveSluggedRoleScope
   };
 
   if (document.readyState === "loading") {
