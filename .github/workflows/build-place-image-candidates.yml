@@ -17,6 +17,14 @@ on:
         required: false
         type: boolean
         default: false
+      commit_output:
+        description: "Commit data/places/place_image_candidates.json back to the repo"
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
 
 jobs:
   build-place-image-candidates:
@@ -26,6 +34,8 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -80,6 +90,25 @@ jobs:
           };
           console.log(JSON.stringify(summary, null, 2));
           NODE
+
+      - name: Commit candidate file
+        if: ${{ inputs.commit_output == true }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add data/places/place_image_candidates.json
+
+          if git diff --cached --quiet; then
+            echo "No candidate file changes to commit."
+            exit 0
+          fi
+
+          git commit -m "Update place image candidate review file"
+          git push
 
       - name: Upload candidate artifact
         # Download and review this artifact manually before running tools/apply_place_image_candidates.mjs.
