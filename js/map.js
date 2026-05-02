@@ -19,6 +19,7 @@
   let userMarker = null;
   const STYLE_STORAGE_KEY = "hg_map_style_mode";
   const STYLE_MODE_STANDARD = "standard";
+  // Historisk navn: "satellite" brukes internt for sekundær/detaljert kartmodus.
   const STYLE_MODE_SATELLITE = "satellite";
   const STYLE_URL_STANDARD = "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json";
 
@@ -149,8 +150,23 @@
       return `${customStyleUrl}${sep}key=${encodeURIComponent(key)}`;
     }
 
-    const styleId = String(window.HG_NATURTRO_STYLE_ID || "hybrid").trim() || "hybrid";
+    const styleId = String(window.HG_NATURTRO_STYLE_ID || "streets-v4").trim() || "streets-v4";
     return `https://api.maptiler.com/maps/${encodeURIComponent(styleId)}/style.json?key=${encodeURIComponent(key)}`;
+  }
+
+  function runWhenStyleReady(fn) {
+    if (!MAP || typeof fn !== "function") return;
+    if (typeof MAP.isStyleLoaded === "function" && MAP.isStyleLoaded()) {
+      fn();
+      return;
+    }
+    MAP.once("style.load", () => {
+      if (typeof MAP.once === "function") {
+        MAP.once("idle", fn);
+      } else {
+        fn();
+      }
+    });
   }
 
   function applyMapStyle(nextMode) {
@@ -159,8 +175,18 @@
       console.warn("[HGMap] MapLibre map not ready for style switch");
       return;
     }
-    if (isApplyingStyle) return;
     const desired = nextMode === STYLE_MODE_SATELLITE ? STYLE_MODE_SATELLITE : STYLE_MODE_STANDARD;
+    if (isApplyingStyle) {
+      console.debug("[HGMap] style switch already in progress");
+      return;
+    }
+    if (desired === mapStyleMode && !isApplyingStyle) {
+      console.debug("[HGMap] style already active", desired);
+      renderMapStyleToggle();
+      drawPlaceMarkers();
+      return;
+    }
+
     const key = getMapTilerKey();
     console.debug("[HGMap] key present", Boolean(key));
     const styleUrl = getStyleUrlForMode(desired);
@@ -169,47 +195,49 @@
       if (desired === STYLE_MODE_SATELLITE) {
         console.warn("[HGMap] Naturtro kart krever window.HG_MAPTILER_KEY. Beholder standardkart.");
       }
-      if (mapStyleMode !== STYLE_MODE_STANDARD) {
-        mapStyleMode = STYLE_MODE_STANDARD;
-      }
       renderMapStyleToggle();
       return;
     }
 
     isApplyingStyle = true;
     pendingStyleMode = desired;
-    const onStyleLoaded = () => {
-      console.debug("[HGMap] style loaded", pendingStyleMode);
-      MAP.off("error", onError);
-      redrawPlacesAfterStyleLoad(pendingStyleMode || STYLE_MODE_STANDARD);
+    const onStyleReady = () => {
+      if (!MAP) return;
+      const resolvedMode = pendingStyleMode === STYLE_MODE_SATELLITE ? STYLE_MODE_SATELLITE : STYLE_MODE_STANDARD;
+      mapStyleMode = resolvedMode;
+      pendingStyleMode = null;
+      isApplyingStyle = false;
+      saveMapStyleMode(mapStyleMode);
+      mapReady = true;
+      drawPlaceMarkers();
+      moveMarkersOnTop();
+      MAP.resize();
+      renderMapStyleToggle();
+      console.debug("[HGMap] place layers restored", {
+        source: Boolean(MAP.getSource("hg-places")),
+        glow: Boolean(MAP.getLayer("hg-places-glow")),
+        hit: Boolean(MAP.getLayer("hg-places-hit")),
+        dots: Boolean(MAP.getLayer("hg-places-dots")),
+        label: Boolean(MAP.getLayer("hg-places-label"))
+      });
     };
-    const onError = (error) => {
-      if (!isApplyingStyle) return;
-      const message = error?.error?.message || error?.message || "unknown error";
-      console.warn("[HGMap] Naturtro style failed", message, error?.error || error);
+
+    try {
+      MAP.setStyle(styleUrl);
+      runWhenStyleReady(onStyleReady);
+      console.debug("[HGMap] setStyle called");
+    } catch (error) {
+      const message = error?.message || "unknown error";
+      console.warn("[HGMap] Naturtro style failed", message, error);
       isApplyingStyle = false;
       pendingStyleMode = null;
-      mapStyleMode = STYLE_MODE_STANDARD;
-      saveMapStyleMode(mapStyleMode);
       renderMapStyleToggle();
-      MAP.off("style.load", onStyleLoaded);
-      if (MAP) {
-        try {
-          MAP.setStyle(STYLE_URL_STANDARD);
-          redrawPlacesAfterStyleLoad(STYLE_MODE_STANDARD);
-          console.debug("[HGMap] setStyle called");
-        } catch (fallbackError) {
-          console.warn("[HGMap] Naturtro style failed", fallbackError);
-        }
-      }
-    };
-    MAP.once("style.load", onStyleLoaded);
-    MAP.once("error", onError);
-    console.debug("[HGMap] setStyle called");
-    MAP.setStyle(styleUrl);
+    }
   }
 
   function redrawPlacesAfterStyleLoad(mode) {
+    // Deprecated path kept for compatibility.
+
     if (!MAP) return;
     const resolvedMode = mode === STYLE_MODE_SATELLITE ? STYLE_MODE_SATELLITE : STYLE_MODE_STANDARD;
     const run = () => {
@@ -253,7 +281,7 @@
     wrap.className = "hg-map-style-toggle";
     wrap.innerHTML = `
       <button type="button" class="hg-map-style-btn" data-mode="standard" aria-pressed="false">Kart</button>
-      <button type="button" class="hg-map-style-btn" data-mode="satellite" aria-pressed="false">Naturtro</button>
+      <button type="button" class="hg-map-style-btn" data-mode="satellite" aria-pressed="false">Detaljert</button>
     `;
     const onStyleTogglePress = (ev) => {
       const btn = ev.target?.closest?.(".hg-map-style-btn");
@@ -354,8 +382,8 @@
     if (!MAP) return;
     if (!Array.isArray(PLACES) || PLACES.length === 0) return;
 
-    if (!MAP.isStyleLoaded()) {
-      MAP.once("load", drawPlaceMarkers);
+    if (typeof MAP.isStyleLoaded === "function" && !MAP.isStyleLoaded()) {
+      runWhenStyleReady(drawPlaceMarkers);
       return;
     }
 
