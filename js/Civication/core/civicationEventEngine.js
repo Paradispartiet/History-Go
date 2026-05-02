@@ -235,31 +235,39 @@ resetForNewJob(role_key) {
     return null;
   }
 
-  const rk = this.resolveRoleKey();
+  const resolver = window.CivicationCareerRoleResolver;
+  const resolved = typeof resolver?.resolveCareerRole === "function"
+    ? resolver.resolveCareerRole(active)
+    : null;
+
+  const fallbackRoleKey = this.resolveRoleKey();
+  const roleKey = String(resolved?.role_key || fallbackRoleKey || "").trim() || null;
+  const roleId = String(resolved?.role_id || "").trim() || null;
   const st = this.getState();
 
-  const ROLE_ID_BY_TITLE = {
-    "Arbeider": "naer_arbeider",
-    "Fagarbeider": "naer_fagarbeider",
-    "Mellomleder": "naer_mellomleder"
-  };
+  const nextActive = { ...active };
+  let shouldWriteActive = false;
 
-  const title = String(active?.title || "").trim();
-  const roleId = ROLE_ID_BY_TITLE[title] || null;
-
-  if ((!active?.role_key && rk) || (!active?.role_id && roleId)) {
-    window.CivicationState.setActivePosition({
-      ...active,
-      role_key: active?.role_key || rk,
-      role_id: active?.role_id || roleId
-    });
+  if (roleKey && roleKey !== active?.role_key) {
+    nextActive.role_key = roleKey;
+    shouldWriteActive = true;
   }
 
-  if (rk && rk !== st.active_role_key) {
-    this.resetForNewJob(rk);
+  if (roleId && roleId !== active?.role_id) {
+    nextActive.role_id = roleId;
+    shouldWriteActive = true;
   }
 
-  return rk;
+  if (shouldWriteActive) {
+    window.CivicationState.setActivePosition(nextActive);
+  }
+
+  const currentStateRoleKey = String(st?.active_role_key || "").trim() || null;
+  if (roleKey && roleKey !== currentStateRoleKey) {
+    this.resetForNewJob(roleKey);
+  }
+
+  return roleKey;
 }
   // -------- pulse gating --------
 

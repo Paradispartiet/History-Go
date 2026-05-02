@@ -6,11 +6,19 @@
   function slugify(value) {
     return normalize(value)
       .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[̀-ͯ]/g, '')
       .replace(/[^a-z0-9]+/g, '_')
       .replace(/^_+|_+$/g, '')
       .slice(0, 80);
   }
+
+  const ROLE_ID_BY_SCOPE = {
+    ekspeditor: 'naer_ekspeditor',
+    arbeider: 'naer_arbeider',
+    fagarbeider: 'naer_fagarbeider',
+    formann: 'naer_formann',
+    mellomleder: 'naer_mellomleder'
+  };
 
   const NAERINGSLIV_ROLE_SCOPE_BY_TITLE = {
     arbeider: 'arbeider',
@@ -87,7 +95,39 @@
     return 'unknown';
   }
 
-  const api = { resolveCareerRoleScope };
+  function resolveCareerRoleId(activePosition) {
+    const roleScope = resolveCareerRoleScope(activePosition);
+    if (ROLE_ID_BY_SCOPE[roleScope]) return ROLE_ID_BY_SCOPE[roleScope];
+
+    const roleKey = slugify(activePosition?.role_key);
+    if (roleKey && ROLE_ID_BY_SCOPE[roleKey]) return ROLE_ID_BY_SCOPE[roleKey];
+
+    if (roleKey.startsWith('naer_')) return roleKey;
+
+    return null;
+  }
+
+  function resolveCareerRole(activePosition) {
+    const role_scope = resolveCareerRoleScope(activePosition);
+    const role_id = resolveCareerRoleId(activePosition);
+
+    let role_key = null;
+    if (role_id) {
+      role_key = role_id;
+    } else if (role_scope && role_scope !== 'unknown') {
+      role_key = role_scope;
+    } else {
+      role_key = slugify(activePosition?.role_key || activePosition?.title || '');
+    }
+
+    return {
+      role_scope,
+      role_id,
+      role_key: role_key || null
+    };
+  }
+
+  const api = { resolveCareerRoleScope, resolveCareerRoleId, resolveCareerRole };
   globalScope.CivicationCareerRoleResolver = api;
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
 })(typeof window !== 'undefined' ? window : globalThis);
