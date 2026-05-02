@@ -7,6 +7,7 @@
   "families": [
     {
       "id": "tall_og_tillit",
+      "description": "Fortellinger der controlleren oppdager at rapporter ikke bare beskriver organisasjonen, men også endrer den.",
       "mails": [
         {
           "id": "controller_story_001",
@@ -14,23 +15,44 @@
           "mail_family": "tall_og_tillit",
           "role_scope": "controller",
           "subject": "Tallene er ikke nøytrale når de sendes videre",
-          "summary": "Du må formulere hva rapporten faktisk gjør med organisasjonen.",
-          "situation": ["Etter flere avvik ser du at rapporten ikke bare beskriver driften. Den avgjør hvem som blir trodd i neste møte."],
+          "summary": "Du må formulere en rapport som både er presis og ærlig om usikkerheten den bygger på.",
+          "purpose": "Gi controllerrollen mening: rapportering er en form for institusjonell fortelling der presisjon, usikkerhet og makt møtes.",
+          "stakes": "En rapport som virker mer sikker enn den er, kan gi ledelsen handlekraft, men også skape feil trygghet og urettferdig ansvarsplassering.",
+          "situation": [
+            "Etter flere avvik ser du mønsteret: rapporten beskriver ikke bare driften. Den avgjør hvem som blir trodd i neste møte.",
+            "Et rødt tall gjør noen defensive. Et grønt tall gjør noen usynlige. Et kommentarfelt på tre linjer kan bestemme om problemet forstås som marked, ledelse, svinn, bemanning eller slurv.",
+            "Du tenker på rapporten som en slags organisasjonsminne. Den er ikke objektiv bare fordi den har tall; den blir objektiv først når premisser, usikkerhet og kilder er synlige.",
+            "Nå må du formulere rapportteksten. Den skal være kort nok til å brukes, men sann nok til at den tåler å bli brukt."
+          ],
           "task_domain": "management_reporting",
           "competency": "rolleforstaelse",
           "pressure": "symbolsk_makt",
           "choice_axis": "synliggjore_usikkerhet_vs_skrive_sikkert",
           "consequence_axis": "tillit_vs_autoritet",
           "narrative_arc": "tall_som_fortelling",
+          "learning_focus": ["styringsinformasjon", "organisasjonsminne", "usikkerhet", "rapportering"],
           "choices": [
-            { "id": "A", "label": "Skriv tydelig hva som er kjent, og hva som fortsatt er usikkert.", "effect": 1, "tags": ["integritet", "kvalitet"], "feedback": "Du lar rapporten bære både presisjon og usikkerhet." },
-            { "id": "B", "label": "Skriv konklusjonen stramt uten forbehold.", "effect": 0, "tags": ["visibility", "autoritet"], "feedback": "Rapporten virker sterk, men den tåler færre spørsmål." }
+            {
+              "id": "A",
+              "label": "Skriv tydelig hva som er kjent, hva som er antatt, og hva som fortsatt må undersøkes.",
+              "effect": 1,
+              "tags": ["integritet", "kvalitet", "learning"],
+              "feedback": "Du lar rapporten bære både presisjon og usikkerhet. Det gjør den mindre bastant, men mer brukbar."
+            },
+            {
+              "id": "B",
+              "label": "Skriv konklusjonen stramt uten forbehold, så ledergruppen får et tydelig signal.",
+              "effect": 0,
+              "tags": ["visibility", "autoritet"],
+              "feedback": "Rapporten virker sterk, men den tåler færre spørsmål. Du får autoritet på bekostning av nyanser."
+            }
           ]
         }
       ]
     },
     {
       "id": "controller_identitet",
+      "description": "Avsluttende rollefortellinger om kontroll som støtte, overvåking, læring og ansvar.",
       "mails": [
         {
           "id": "controller_story_002",
@@ -39,16 +61,36 @@
           "role_scope": "controller",
           "subject": "Hva slags kontroll utøver du?",
           "summary": "Controllerrollen avrundes som spørsmål om kontroll, støtte og ansvar.",
-          "situation": ["Du merker at folk skjerper seg når du ber om tall. Spørsmålet er om de skjerper seg fordi de forstår mer, eller fordi de frykter rapporten."],
+          "purpose": "Avrunde stillingens identitet: controlleren er ikke bare den som finner avvik, men den som former hvordan organisasjonen lærer av dem.",
+          "stakes": "Kontroll kan skape læring, men også frykt. Rollen din avgjør om folk kommer tidligere med problemer eller skjuler dem til rapporten finner dem.",
+          "situation": [
+            "Du merker at folk skjerper seg når du ber om tall. Noen blir ryddigere. Andre blir stille.",
+            "En erfaren driftsleder sier det i forbifarten: «Det er forskjell på kontroll som hjelper oss å se, og kontroll som bare ser etter feil.»",
+            "Setningen blir hengende. Du har fått mer makt enn du først trodde. Ikke beslutningsmakt på papiret, men definisjonsmakt: evnen til å gjøre noe synlig som avvik, risiko eller forklaring.",
+            "Nå handler ikke rollen bare om å finne riktig tall. Den handler om hvilken organisasjon tallene dine lærer opp."
+          ],
           "task_domain": "role_identity",
           "competency": "etisk_styring",
           "pressure": "rollemodning",
           "choice_axis": "stotte_vs_overvaking",
           "consequence_axis": "læring_vs_frykt",
           "narrative_arc": "kontrollens_form",
+          "learning_focus": ["rolleidentitet", "tillit", "læring", "kontrollkultur"],
           "choices": [
-            { "id": "A", "label": "Bruk kontrollen til å gjøre feil forståelige og reparerbare.", "effect": 1, "tags": ["learning", "integritet"], "feedback": "Du gjør kontrollen til et styringsverktøy, ikke bare et våpen." },
-            { "id": "B", "label": "Bruk rapporten hardt for å få raske forbedringer.", "effect": 0, "tags": ["kontroll", "visibility"], "feedback": "Du får effekt, men ikke nødvendigvis tillit." }
+            {
+              "id": "A",
+              "label": "Bruk kontrollen til å gjøre feil forståelige og reparerbare.",
+              "effect": 1,
+              "tags": ["learning", "integritet", "tillit"],
+              "feedback": "Du gjør kontrollen til et styringsverktøy, ikke bare et våpen. Folk kommer tidligere med problemer når de tror tallene kan hjelpe."
+            },
+            {
+              "id": "B",
+              "label": "Bruk rapporten hardt for å få raske forbedringer.",
+              "effect": 0,
+              "tags": ["kontroll", "visibility"],
+              "feedback": "Du får effekt, men ikke nødvendigvis tillit. Organisasjonen lærer å se ryddig ut før den lærer å bli ryddig."
+            }
           ]
         }
       ]
