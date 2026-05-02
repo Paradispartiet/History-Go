@@ -89,3 +89,24 @@
 
   window.auditWonderkammer = auditWonderkammer;
 })();
+
+// Leksikon-rundingen bruker egne JSON-artikler. Last runtime tidlig uten å
+// omskrive index.html eller blande leksikondata inn i places-manifestet.
+(function () {
+  "use strict";
+
+  if (window.__hgLeksikonRuntimeRequested) return;
+  window.__hgLeksikonRuntimeRequested = true;
+
+  const script = document.createElement("script");
+  script.src = "js/leksikon/leksikon_loader.js";
+  script.defer = false;
+  script.onload = () => {
+    try { window.HGLeksikon?.patchPlaceCard?.(); } catch (err) {
+      console.warn("[HGLeksikon bootstrap]", err);
+    }
+  };
+  script.onerror = () => console.warn("[HGLeksikon bootstrap] kunne ikke laste leksikon_loader.js");
+
+  document.head.appendChild(script);
+})();
