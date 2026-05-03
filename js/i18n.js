@@ -160,7 +160,7 @@
           icon.setAttribute("aria-hidden", "true");
           el.appendChild(icon);
         }
-        icon.textContent = "📍";
+        icon.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="3.2"></circle><path d="M12 3v5M12 16v5M3 12h5M16 12h5"></path></svg>`;
         return;
       }
 
