@@ -63,6 +63,13 @@ function setLeftPanelMode(mode) {
     el.style.display = (key === mode) ? "" : "none";
   });
 
+  if (mode === "nature") {
+    window.HG_NEARBY_BADGE_FILTER = "all";
+    try {
+      localStorage.setItem("hg_nearby_badge_filter_v1", "all");
+    } catch {}
+  }
+
   try {
     localStorage.setItem("hg_leftpanel_mode_v1", mode);
   } catch {}
@@ -353,6 +360,10 @@ function initLeftPanel() {
 
   function updateBadgeFilterButton() {
     if (!badgeBtn) return;
+    if (hgActiveLeftPanelMode() === "nature") {
+      badgeBtn.style.display = "none";
+      return;
+    }
 
     badgeBtn.style.display = "inline-flex";
 
