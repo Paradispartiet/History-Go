@@ -1,0 +1,93 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "naeringsliv",
+  "role_scope": "finansdirektor",
+  "mail_type": "event",
+  "families": [
+    {
+      "id": "bank_og_refinansiering",
+      "description": "Hendelser der bank, rente, vilkår og refinansiering endrer selskapets kapitalrom.",
+      "mails": [
+        {
+          "id": "finansdirektor_event_001",
+          "mail_type": "event",
+          "mail_family": "bank_og_refinansiering",
+          "role_scope": "finansdirektor",
+          "subject": "Renten flytter seg før refinansieringsmøtet",
+          "summary": "Renteøkning gjør refinansieringen dyrere og svekker vekstplanens buffer.",
+          "purpose": "Simulere hvordan ekstern markedsendring kan endre kapitalstrategien før selskapet rekker å endre ambisjonen.",
+          "stakes": "Hvis modellen ikke oppdateres, presenterer du en kapitalstrategi som allerede er litt utdatert.",
+          "situation": [
+            "Samme morgen som refinansieringsmøtet kommer ny renteinformasjon. Effekten er ikke dramatisk, men den er nok til å redusere marginen i planen.",
+            "Banken kommer til å se det. Styret kommer til å spørre om handlingsrommet fortsatt holder. Daglig leder vil helst ikke endre budskapet nå.",
+            "Finansdirektørens arbeid er ofte dette: verden flytter én variabel, og plutselig må hele kapitalfortellingen tåle en ny tyngde.",
+            "Du må avgjøre om du oppdaterer modellen og svekker vekstcaset før møtet, eller holder presentasjonen og håndterer renteendringen muntlig."
+          ],
+          "task_domain": "refinancing",
+          "competency": "finansiering_og_bank",
+          "pressure": "markedsendring",
+          "choice_axis": "oppdatere_modell_vs_beholde_budskap",
+          "consequence_axis": "troverdighet_vs_tempo",
+          "narrative_arc": "markedet_endrer_kapitalrommet",
+          "learning_focus": ["rente", "refinansiering", "bankdialog", "kapitalrom", "modelloppdatering"],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Oppdater modellen og vis effekten på buffer og lånerom.",
+              "effect": 1,
+              "tags": ["tillit", "finansiering", "risiko"],
+              "feedback": "Du gjør møtet vanskeligere, men mer reelt. Banken ser at dere følger kapitalrommet, ikke bare fortellingen."
+            },
+            {
+              "id": "B",
+              "label": "Behold presentasjonen og forklar renteeffekten muntlig.",
+              "effect": -1,
+              "tags": ["tempo", "risk", "kapitalfortelling"],
+              "feedback": "Flyten bevares, men modellen ligger bak markedet. En muntlig forklaring veier mindre enn et oppdatert tall."
+            }
+          ]
+        },
+        {
+          "id": "finansdirektor_event_002",
+          "mail_type": "event",
+          "mail_family": "bank_og_refinansiering",
+          "role_scope": "finansdirektor",
+          "subject": "Banken ber om beredskapsplan",
+          "summary": "Banken vil se hva selskapet gjør hvis vekstscenarioet ikke slår inn.",
+          "purpose": "Lære spilleren at finansiering også handler om beredskap, ikke bare hovedscenario.",
+          "stakes": "Uten beredskapsplan kan banken lese vekststrategien som avhengig av at alt går riktig.",
+          "situation": [
+            "Banken ber om en konkret beredskapsplan: hvilke investeringer kan utsettes, hvilke kostnader kan justeres, og hvor raskt kan arbeidskapital frigjøres hvis salget svikter?",
+            "Daglig leder synes spørsmålet er defensivt. Eierrepresentanten frykter at en beredskapsplan sender feil signal.",
+            "Du vet at banker ofte stoler mer på ledelser som har tenkt gjennom det de håper å slippe.",
+            "Du må velge om beredskapsplanen skal være tydelig og operativ, eller holdes overordnet for å beskytte vekstbildet."
+          ],
+          "task_domain": "liquidity_contingency",
+          "competency": "strategisk_risiko",
+          "pressure": "bankkrav",
+          "choice_axis": "beredskap_vs_signalrisiko",
+          "consequence_axis": "tillit_vs_status",
+          "narrative_arc": "robusthet_som_tillit",
+          "learning_focus": ["beredskap", "arbeidskapital", "investering", "banktillit", "downside"],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lag operativ beredskapsplan med konkrete triggere.",
+              "effect": 1,
+              "tags": ["beredskap", "tillit", "risiko"],
+              "feedback": "Du viser banken at selskapet ikke bare har en plan for oppside. Det har også disiplin for motvind."
+            },
+            {
+              "id": "B",
+              "label": "Hold planen overordnet for ikke å svekke vekstsignalet.",
+              "effect": -1,
+              "tags": ["visibility", "risk", "status"],
+              "feedback": "Budskapet blir mer offensivt, men mindre robust. Banken får færre grunner til å tro at dere tåler avvik."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
