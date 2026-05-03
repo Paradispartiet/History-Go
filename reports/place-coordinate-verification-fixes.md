@@ -1,8 +1,20 @@
 # Place coordinate verification fixes
 
-- Endrede datafiler: ingen koordinatfiler ble endret i denne runden.
-- Kuba-parken: satt til manual QA i rapport (ikke rettet uten konkret kartverifikasjon).
-- St. Hanshaugen park: satt til manual QA i rapport (ikke rettet uten konkret kartverifikasjon).
-- Metadataregler skjerpet i quality gate: warnings for verified uten kilde/presisjon/notat og lav koordinatpresisjon.
-- Antall steder med claimed_verified_no_source: 22.
-- Antall steder som må manuell kontroll (needs_manual_visual_qa + unverified): 260.
+Generert: 2026-05-03
+
+## Endrede datafiler
+- Ingen coordinate-verdier ble endret i denne batchen.
+
+## Brukerrapporterte steder
+- Kuba / Kuba-parken: satt til manuell QA i rapport (ikke koordinatendret).
+- St. Hanshaugen park: satt til manuell QA i rapport (ikke koordinatendret).
+
+## Skjerpede metadataregler
+- coordStatus=verified uten coordSource gir varsel i quality gate.
+- coordStatus=verified uten coordPrecisionM gir varsel i quality gate.
+- coordStatus=verified uten coordNote for område/gate/rute gir varsel i quality gate.
+- Lav koordinatpresisjon (<4 desimaler) gir varsel i quality gate.
+
+## Nøkkeltall
+- claimed_verified_no_source: 22
+- må gjennom manuell kontroll (unverified + needs_manual_visual_qa): 290

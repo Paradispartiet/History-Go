@@ -1,37 +1,39 @@
 # Place coordinate manual review queue
 
-## P0
-- karl_johan (Karl Johans gate) — data/places/by/oslo/places_by.json — trust=claimed_verified_no_source, problem=likely_guessed
+Generert: 2026-05-03
+
+## P0 (67)
+- karl_johan (Karl Johans gate) — data/places/by/oslo/places_by.json — trust=claimed_verified_no_source, problem=source_missing
 - ring_3 (Ring 3) — data/places/by/oslo/places_by.json — trust=unverified, problem=too_rounded
 - trikk_17_18 (Trikkelinje 17/18) — data/places/by/oslo/places_by.json — trust=unverified, problem=too_rounded
 - st_hanshaugen_park (St. Hanshaugen park) — data/places/by/oslo/places_by.json — trust=needs_manual_visual_qa, problem=wrong_location_reported_by_user
 - oslo_s (Oslo S) — data/places/by/oslo/places_by.json — trust=unverified, problem=too_rounded
 - oslo_bussterminal (Oslo bussterminal) — data/places/by/oslo/places_by.json — trust=unverified, problem=too_rounded
-- bogstadveien (Bogstadveien) — data/places/by/oslo/places_by.json — trust=claimed_verified_no_source, problem=likely_guessed
-- markveien (Markveien) — data/places/by/oslo/places_by.json — trust=claimed_verified_no_source, problem=likely_guessed
-- ullevål_hageby (Ullevål Hageby) — data/places/by/oslo/places_by.json — trust=claimed_verified_no_source, problem=likely_guessed
+- bogstadveien (Bogstadveien) — data/places/by/oslo/places_by.json — trust=claimed_verified_no_source, problem=source_missing
+- markveien (Markveien) — data/places/by/oslo/places_by.json — trust=claimed_verified_no_source, problem=source_missing
+- ullevål_hageby (Ullevål Hageby) — data/places/by/oslo/places_by.json — trust=claimed_verified_no_source, problem=source_missing
 - christiania_torv (Christiania Torv) — data/places/by/oslo/places_by.json — trust=unverified, problem=too_rounded
 - botsparken (Botsparken) — data/places/by/oslo/places_by.json — trust=needs_manual_visual_qa, problem=too_rounded
-- tjuvholmen (Tjuvholmen) — data/places/by/oslo/places_by.json — trust=claimed_verified_no_source, problem=likely_guessed
+- tjuvholmen (Tjuvholmen) — data/places/by/oslo/places_by.json — trust=claimed_verified_no_source, problem=source_missing
 - bislett (Bislett) — data/places/by/oslo/places_by.json — trust=unverified, problem=too_rounded
 - universitetsplassen (Universitetsplassen) — data/places/by/oslo/places_by.json — trust=unverified, problem=too_rounded
 - operahuset (Operahuset) — data/places/by/oslo/places_by.json — trust=unverified, problem=too_rounded
-- deichman_bjorvika (Deichman Bjørvika) — data/places/by/oslo/places_by.json — trust=claimed_verified_no_source, problem=likely_guessed
+- deichman_bjorvika (Deichman Bjørvika) — data/places/by/oslo/places_by.json — trust=claimed_verified_no_source, problem=source_missing
 - barcode (Barcode) — data/places/by/oslo/places_by.json — trust=claimed_verified_no_source, problem=too_rounded
-- vigelandsparken (Vigelandsparken) — data/places/by/oslo/places_by.json — trust=claimed_verified_no_source, problem=likely_guessed
-- voienvolden (Vøienvolden) — data/places/by/oslo/places_by.json — trust=claimed_verified_no_source, problem=likely_guessed
-- damstredet_telthusbakken (Damstredet og Telthusbakken) — data/places/historie/oslo/places_historie.json — trust=claimed_verified_no_source, problem=likely_guessed
-- litteraturhuset (Litteraturhuset) — data/places/litteratur/oslo/places_litteratur.json — trust=claimed_verified_no_source, problem=likely_guessed
-- alf_proysen_statue_nittedal (Alf Prøysen-statuen – Nittedal kulturhus) — data/places/litteratur/oslo/places_litteratur.json — trust=unverified, problem=too_rounded
+- vigelandsparken (Vigelandsparken) — data/places/by/oslo/places_by.json — trust=claimed_verified_no_source, problem=source_missing
+- voienvolden (Vøienvolden) — data/places/by/oslo/places_by.json — trust=claimed_verified_no_source, problem=source_missing
+- damstredet_telthusbakken (Damstredet og Telthusbakken) — data/places/historie/oslo/places_historie.json — trust=claimed_verified_no_source, problem=source_missing
+- litteraturhuset (Litteraturhuset) — data/places/litteratur/oslo/places_litteratur.json — trust=claimed_verified_no_source, problem=source_missing
+- alf_proysen_statue_nittedal (Alf Prøysen-statuen – Nittedal kulturhus) — data/places/litteratur/oslo/places_litteratur.json — trust=needs_manual_visual_qa, problem=too_rounded
 - oscar_braaten_statuen (Oscar Braaten-statuen) — data/places/litteratur/oslo/places_litteratur.json — trust=unverified, problem=too_rounded
 - alexander_kiellands_plass (Alexander Kiellands plass) — data/places/litteratur/oslo/places_litteratur.json — trust=unverified, problem=too_rounded
-- det_norske_teatret (Det Norske Teatret) — data/places/musikk/oslo/places_musikk.json — trust=claimed_verified_no_source, problem=likely_guessed
-- grunnlovsbygget_bankplassen (Den gamle Norges Bank) — data/places/naeringsliv/oslo/places_naeringsliv.json — trust=claimed_verified_no_source, problem=likely_guessed
+- det_norske_teatret (Det Norske Teatret) — data/places/musikk/oslo/places_musikk.json — trust=claimed_verified_no_source, problem=source_missing
+- grunnlovsbygget_bankplassen (Den gamle Norges Bank) — data/places/naeringsliv/oslo/places_naeringsliv.json — trust=claimed_verified_no_source, problem=source_missing
 - akershus_energi (Akershus Energi Varme) — data/places/naeringsliv/oslo/places_naeringsliv.json — trust=unverified, problem=too_rounded
 - ovre_foss (Øvre Foss – Hjula Veveri) — data/places/naeringsliv/oslo/places_naeringsliv.json — trust=unverified, problem=too_rounded
 - jernbanetorget_trafikknutepunkt (Jernbanetorget – handelsknutepunktet) — data/places/naeringsliv/oslo/places_naeringsliv.json — trust=unverified, problem=too_rounded
 - oslo_kraftselskap (Oslo Lysverker) — data/places/naeringsliv/oslo/places_naeringsliv.json — trust=unverified, problem=too_rounded
-- frysja_industriomrade (Frysja industriområde) — data/places/naeringsliv/oslo/places_naeringsliv.json — trust=claimed_verified_no_source, problem=likely_guessed
+- frysja_industriomrade (Frysja industriområde) — data/places/naeringsliv/oslo/places_naeringsliv.json — trust=claimed_verified_no_source, problem=source_missing
 - norges_varemesse (Norges Varemesse) — data/places/naeringsliv/oslo/places_naeringsliv.json — trust=unverified, problem=too_rounded
 - akerselva_industri (Akerselva industriområde) — data/places/naeringsliv/oslo/places_naeringsliv.json — trust=needs_manual_visual_qa, problem=too_rounded
 - alnaelva (Alnaelva) — data/places/natur/oslo/places_oslo_alna.json — trust=unverified, problem=too_rounded
@@ -40,44 +42,90 @@
 - trosterud_friomrade (Trosterud friområde) — data/places/natur/oslo/places_oslo_alna.json — trust=needs_manual_visual_qa, problem=too_rounded
 - furuset_haugerud_skogbelte (Furuset–Haugerud skogbelte) — data/places/natur/oslo/places_oslo_alna.json — trust=unverified, problem=too_rounded
 - alnabru_jernbane_og_logistikk (Alnabru – jernbane og logistikk) — data/places/natur/oslo/places_oslo_alna.json — trust=unverified, problem=too_rounded
-- nydalsdammen (Nydalsdammen) — data/places/natur/oslo/places_oslo_natur_akerselvarute.json — trust=unverified, problem=too_rounded
+- nydalsdammen (Nydalsdammen) — data/places/natur/oslo/places_oslo_natur_akerselvarute.json — trust=needs_manual_visual_qa, problem=too_rounded
 - voien_gard_voienvolden (Vøien gård / Vøienvolden) — data/places/natur/oslo/places_oslo_natur_akerselvarute.json — trust=unverified, problem=too_rounded
 - kuba_parken (Kuba-parken) — data/places/natur/oslo/places_oslo_natur_akerselvarute.json — trust=needs_manual_visual_qa, problem=wrong_location_reported_by_user
 - elvestrekning_bla_brenneriveien (Elvestrekning ved Blå (Brenneriveien)) — data/places/natur/oslo/places_oslo_natur_akerselvarute.json — trust=claimed_verified_no_source, problem=too_rounded
-- fossveien_elvestrekning (Fossveien – elvestrekning) — data/places/natur/oslo/places_oslo_natur_akerselvarute.json — trust=claimed_verified_no_source, problem=likely_guessed
-- hausmannsomradet_elvelop (Hausmannsområdet (elveløp)) — data/places/natur/oslo/places_oslo_natur_akerselvarute.json — trust=claimed_verified_no_source, problem=likely_guessed
+- fossveien_elvestrekning (Fossveien – elvestrekning) — data/places/natur/oslo/places_oslo_natur_akerselvarute.json — trust=claimed_verified_no_source, problem=source_missing
+- hausmannsomradet_elvelop (Hausmannsområdet (elveløp)) — data/places/natur/oslo/places_oslo_natur_akerselvarute.json — trust=claimed_verified_no_source, problem=source_missing
 - nybrua_vaterlandsparken (Nybrua / Vaterlandsparken) — data/places/natur/oslo/places_oslo_natur_akerselvarute.json — trust=claimed_verified_no_source, problem=too_rounded
-- akerselva_utlop_bjorvika (Akerselvas utløp mot fjorden (Bjørvika)) — data/places/natur/oslo/places_oslo_natur_akerselvarute.json — trust=claimed_verified_no_source, problem=likely_guessed
+- akerselva_utlop_bjorvika (Akerselvas utløp mot fjorden (Bjørvika)) — data/places/natur/oslo/places_oslo_natur_akerselvarute.json — trust=claimed_verified_no_source, problem=source_missing
 - alnaparken (Alnaparken) — data/places/natur/oslo/places_oslo_natur_alnaelva_rute.json — trust=needs_manual_visual_qa, problem=too_rounded
 - alna_smalvoll (Alna ved Smalvoll) — data/places/natur/oslo/places_oslo_natur_alnaelva_rute.json — trust=unverified, problem=too_rounded
 - alna_bryn (Alna ved Bryn) — data/places/natur/oslo/places_oslo_natur_alnaelva_rute.json — trust=unverified, problem=too_rounded
-- alna_utlop_bjorvika (Alna utløp i Bjørvika) — data/places/natur/oslo/places_oslo_natur_alnaelva_rute.json — trust=claimed_verified_no_source, problem=likely_guessed
-- ostensjovannet (Østensjøvannet) — data/places/natur/oslo/places_oslo_natur_hovedsteder.json — trust=unverified, problem=anchor_needs_review
+- alna_utlop_bjorvika (Alna utløp i Bjørvika) — data/places/natur/oslo/places_oslo_natur_alnaelva_rute.json — trust=claimed_verified_no_source, problem=source_missing
+- ostensjovannet (Østensjøvannet) — data/places/natur/oslo/places_oslo_natur_hovedsteder.json — trust=needs_manual_visual_qa, problem=anchor_needs_review
 - noklevann_ljanselva_start (Nøklevann (Ljanselva start)) — data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json — trust=needs_manual_visual_qa, problem=too_rounded
 - ljanselva_hauketo (Ljanselva ved Hauketo) — data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json — trust=needs_manual_visual_qa, problem=too_rounded
-- tinghuset (Oslo tinghus) — data/places/politikk/oslo/places_politikk.json — trust=claimed_verified_no_source, problem=likely_guessed
+- tinghuset (Oslo tinghus) — data/places/politikk/oslo/places_politikk.json — trust=claimed_verified_no_source, problem=source_missing
 - house_of_nerds (House of Nerds) — data/places/popkultur/oslo/places_oslo_populaerkultur.json — trust=unverified, problem=too_rounded
 - sofienbergparken_subkultur (Sofienbergparken) — data/places/subkultur/oslo/places_subkultur.json — trust=needs_manual_visual_qa, problem=too_rounded
 - torggata_blad (Torggata Blad) — data/places/subkultur/oslo/places_subkultur.json — trust=unverified, problem=too_rounded
-- universitetets_gamle_kjemi (Universitetets gamle kjemibygning) — data/places/vitenskap/oslo/places_vitenskap.json — trust=claimed_verified_no_source, problem=likely_guessed
+- universitetets_gamle_kjemi (Universitetets gamle kjemibygning) — data/places/vitenskap/oslo/places_vitenskap.json — trust=claimed_verified_no_source, problem=source_missing
 - lisbon_alfama (Alfama) — data/places/by/europe/portugal/lisbon/places_lisbon_by.json — trust=unverified, problem=too_rounded
 - lisbon_torre_de_belem (Torre de Belém) — data/places/historie/europe/portugal/lisbon/places_lisbon_historie.json — trust=unverified, problem=too_rounded
 - lisbon_se_de_lisboa (Sé de Lisboa) — data/places/historie/europe/portugal/lisbon/places_lisbon_historie.json — trust=unverified, problem=too_rounded
+- lisbon_palacio_fronteira (Palácio dos Marqueses de Fronteira) — data/places/historie/europe/portugal/lisbon/places_lisbon_historie.json — trust=unverified, problem=too_rounded
+- lisbon_praca_marques_de_pombal (Praça Marquês de Pombal) — data/places/politikk/europe/portugal/lisbon/places_lisbon_politikk.json — trust=unverified, problem=too_rounded
 - lisbon_centro_cultural_de_belem (Centro Cultural de Belém) — data/places/kunst/europe/portugal/lisbon/places_lisbon_kunst.json — trust=unverified, problem=too_rounded
+- lisbon_museu_do_oriente (Museu do Oriente) — data/places/kunst/europe/portugal/lisbon/places_lisbon_kunst.json — trust=unverified, problem=too_rounded
 - lisbon_parque_das_nacoes (Parque das Nações) — data/places/naeringsliv/europe/portugal/lisbon/places_lisbon_naeringsliv.json — trust=unverified, problem=too_rounded
 
-## P1
+## P1 (15)
+- tigeren (Tigerstatuen) — data/places/by/oslo/places_by.json — trust=unverified, problem=source_missing
+- gronland_kirke (Grønland kirke) — data/places/by/oslo/places_by.json — trust=unverified, problem=source_missing
+- kampen_kirke (Kampen kirke) — data/places/by/oslo/places_by.json — trust=unverified, problem=source_missing
+- oslo_domkirke (Oslo domkirke) — data/places/historie/oslo/places_historie.json — trust=unverified, problem=source_missing
+- sofienberg_kirke (Sofienberg kirke) — data/places/historie/oslo/places_historie.json — trust=unverified, problem=source_missing
+- gamle_aker_kirke (Gamle Aker kirke) — data/places/historie/oslo/places_historie.json — trust=unverified, problem=source_missing
+- eidsvollsbygningen (Eidsvollsbygningen) — data/places/historie/oslo/places_historie.json — trust=unverified, problem=source_missing
+- camilla_collett_statue (Camilla Collett-statuen) — data/places/litteratur/oslo/places_litteratur.json — trust=unverified, problem=source_missing
+- henrik_wergeland_statue (Henrik Wergeland-statuen) — data/places/litteratur/oslo/places_litteratur.json — trust=unverified, problem=source_missing
+- kulturkirken_jakob_litteratur (Kulturkirken Jakob) — data/places/litteratur/oslo/places_litteratur.json — trust=unverified, problem=source_missing
+- sigrid_undset_statue (Sigrid Undset-statuen) — data/places/litteratur/oslo/places_litteratur.json — trust=unverified, problem=source_missing
+- ruth_maier_minne (Ruth Maier-minnesmerke) — data/places/litteratur/oslo/places_litteratur.json — trust=unverified, problem=source_missing
+- telegrafbygningen (Telegrafbygningen) — data/places/naeringsliv/oslo/places_naeringsliv.json — trust=unverified, problem=source_missing
+- holmenkollen (Holmenkollen skimuseum & hopptårn) — data/places/sport/oslo/places_sport.json — trust=unverified, problem=source_missing
+- universitetets_gamle_hovedbygning (Universitetets gamle hovedbygning) — data/places/vitenskap/oslo/places_vitenskap.json — trust=unverified, problem=source_missing
+
+## P2 (28)
+- torggata (Torggata) — data/places/by/oslo/places_by.json — trust=unverified, problem=source_missing
+- radhusplassen (Rådhusplassen) — data/places/by/oslo/places_by.json — trust=unverified, problem=source_missing
+- toyen_torg (Tøyen torg) — data/places/by/oslo/places_by.json — trust=unverified, problem=source_missing
+- jernbanetorget (Jernbanetorget) — data/places/by/oslo/places_by.json — trust=unverified, problem=source_missing
+- storgata (Storgata) — data/places/by/oslo/places_by.json — trust=unverified, problem=source_missing
+- bankplassen (Bankplassen) — data/places/by/oslo/places_by.json — trust=unverified, problem=source_missing
+- slottsparken (Slottsparken) — data/places/by/oslo/places_by.json — trust=needs_manual_visual_qa, problem=source_missing
+- stensparken (Stensparken) — data/places/by/oslo/places_by.json — trust=needs_manual_visual_qa, problem=source_missing
+- olaf_ryes_plass (Olaf Ryes plass) — data/places/by/oslo/places_by.json — trust=unverified, problem=source_missing
+- carl_berner_plass (Carl Berners plass) — data/places/by/oslo/places_by.json — trust=unverified, problem=source_missing
+- schous_plass (Schous plass) — data/places/by/oslo/places_by.json — trust=unverified, problem=source_missing
+- kampen_film (Kampen (film- og serieområde)) — data/places/film/oslo/places_oslo_film.json — trust=needs_manual_visual_qa, problem=source_missing
+- middelalder_oslo (Middelalderparken) — data/places/historie/oslo/places_historie.json — trust=needs_manual_visual_qa, problem=source_missing
+- ekebergparken (Ekebergparken skulpturpark) — data/places/kunst/oslo/places_kunst.json — trust=needs_manual_visual_qa, problem=source_missing
+- inger_hagerups_plass (Inger Hagerups plass) — data/places/litteratur/oslo/places_litteratur.json — trust=unverified, problem=source_missing
+- fornebu_teknologipark (Fornebu Teknologipark) — data/places/naeringsliv/oslo/places_naeringsliv.json — trust=needs_manual_visual_qa, problem=source_missing
+- ulven_handelspark (Ulven handelspark) — data/places/naeringsliv/oslo/places_naeringsliv.json — trust=needs_manual_visual_qa, problem=source_missing
+- vippetangen_fisketorg (Vippetangen fisketorg) — data/places/naeringsliv/oslo/places_naeringsliv.json — trust=unverified, problem=source_missing
+- bryn_industriomrade (Bryn industriområde) — data/places/naeringsliv/oslo/places_naeringsliv.json — trust=needs_manual_visual_qa, problem=source_missing
+- bjoelsenparken_elvenaer (Bjølsenparken (elvenær del)) — data/places/natur/oslo/places_oslo_natur_akerselvarute.json — trust=needs_manual_visual_qa, problem=source_missing
+- vulkan_industriomrade (Vulkan industriområde) — data/places/natur/oslo/places_oslo_natur_akerselvarute.json — trust=needs_manual_visual_qa, problem=source_missing
+- youngstorget (Youngstorget) — data/places/politikk/oslo/places_politikk.json — trust=unverified, problem=source_missing
+- eidsvolls_plass (Eidsvolls plass) — data/places/politikk/oslo/places_politikk.json — trust=unverified, problem=source_missing
+- toyen_torg_pop (Tøyen torg) — data/places/popkultur/oslo/places_oslo_populaerkultur.json — trust=unverified, problem=source_missing
+- oslo_s_pop (Oslo S / Jernbanetorget) — data/places/popkultur/oslo/places_oslo_populaerkultur.json — trust=unverified, problem=source_missing
+- radhusplassen_pop (Rådhusplassen) — data/places/popkultur/oslo/places_oslo_populaerkultur.json — trust=unverified, problem=source_missing
+- slottsplassen_pop (Slottsplassen) — data/places/popkultur/oslo/places_oslo_populaerkultur.json — trust=unverified, problem=source_missing
+- youngstorget_pop (Youngstorget) — data/places/popkultur/oslo/places_oslo_populaerkultur.json — trust=unverified, problem=source_missing
+
+## P3 (202)
 - bispelokket (Bispelokket / Trafikkmaskinen) — data/places/by/oslo/places_by.json — trust=unverified, problem=source_missing
 - gronland_basarene (Grønland basarene) — data/places/by/oslo/places_by.json — trust=unverified, problem=source_missing
-- radhusplassen (Rådhusplassen) — data/places/by/oslo/places_by.json — trust=unverified, problem=source_missing
 - bjorvika (Bjørvika) — data/places/by/oslo/places_by.json — trust=unverified, problem=source_missing
 - grunerlokka_helgesens_tm (Grünerløkka – Helgesens / Thorvald Meyers) — data/places/by/oslo/places_by.json — trust=unverified, problem=source_missing
 - majorstuen_krysset (Majorstuen krysset) — data/places/by/oslo/places_by.json — trust=unverified, problem=source_missing
 - vulkan_energisentral (Vulkan energisentral) — data/places/by/oslo/places_by.json — trust=unverified, problem=source_missing
 - aker_brygge (Aker Brygge) — data/places/by/oslo/places_by.json — trust=unverified, problem=source_missing
-- tigeren (Tigerstatuen) — data/places/by/oslo/places_by.json — trust=unverified, problem=source_missing
-- gronland_kirke (Grønland kirke) — data/places/by/oslo/places_by.json — trust=unverified, problem=source_missing
-- kampen_kirke (Kampen kirke) — data/places/by/oslo/places_by.json — trust=unverified, problem=source_missing
 - helsfyr (Helsfyr) — data/places/by/oslo/places_by.json — trust=unverified, problem=source_missing
 - gronlandsleiret (Grønlandsleiret) — data/places/by/oslo/places_by.json — trust=unverified, problem=source_missing
 - romsaås (Romsås) — data/places/by/oslo/places_by.json — trust=unverified, problem=source_missing
@@ -86,26 +134,19 @@
 - vinderen (Vinderen) — data/places/by/oslo/places_by.json — trust=unverified, problem=source_missing
 - ullern (Ullern) — data/places/by/oslo/places_by.json — trust=unverified, problem=source_missing
 - spikersuppa (Spikersuppa) — data/places/by/oslo/places_by.json — trust=unverified, problem=source_missing
-- bankplassen (Bankplassen) — data/places/by/oslo/places_by.json — trust=unverified, problem=source_missing
-- nydalen (Nydalen) — data/places/by/oslo/places_by.json — trust=unverified, problem=source_missing
+- nydalen (Nydalen) — data/places/by/oslo/places_by.json — trust=needs_manual_visual_qa, problem=source_missing
 - sorenga (Sørenga) — data/places/by/oslo/places_by.json — trust=unverified, problem=source_missing
 - majorstuen_tbanestasjon (Majorstuen T-banestasjon) — data/places/by/oslo/places_by.json — trust=unverified, problem=source_missing
 - nationaltheatret_stasjon (Nationaltheatret stasjon) — data/places/by/oslo/places_by.json — trust=unverified, problem=source_missing
-- olaf_ryes_plass (Olaf Ryes plass) — data/places/by/oslo/places_by.json — trust=unverified, problem=source_missing
 - birkelunden (Birkelunden) — data/places/by/oslo/places_by.json — trust=unverified, problem=source_missing
-- carl_berner_plass (Carl Berners plass) — data/places/by/oslo/places_by.json — trust=unverified, problem=source_missing
-- schous_plass (Schous plass) — data/places/by/oslo/places_by.json — trust=unverified, problem=source_missing
+- akerselva (Akerselva) — data/places/by/oslo/places_by.json — trust=unverified, problem=source_missing
 - sagene_film (Sagene (filmbydel)) — data/places/film/oslo/places_oslo_film.json — trust=unverified, problem=source_missing
-- oslo_domkirke (Oslo domkirke) — data/places/historie/oslo/places_historie.json — trust=unverified, problem=source_missing
 - gamle_trikkestallen (Gamle trikkestallen på Sagene) — data/places/historie/oslo/places_historie.json — trust=unverified, problem=source_missing
 - slottet (Det kongelige slott) — data/places/historie/oslo/places_historie.json — trust=unverified, problem=source_missing
-- sofienberg_kirke (Sofienberg kirke) — data/places/historie/oslo/places_historie.json — trust=unverified, problem=source_missing
 - gamlebyen_gravlund (Gamlebyen gravlund) — data/places/historie/oslo/places_historie.json — trust=unverified, problem=source_missing
 - akerhus_slott (Akerhus Slott) — data/places/historie/oslo/places_historie.json — trust=unverified, problem=source_missing
-- gamle_aker_kirke (Gamle Aker kirke) — data/places/historie/oslo/places_historie.json — trust=unverified, problem=source_missing
 - var_frelsers_gravlund (Vår Frelsers gravlund) — data/places/historie/oslo/places_historie.json — trust=unverified, problem=source_missing
 - hovedoya_kloster (Hovedøya kloster) — data/places/historie/oslo/places_historie.json — trust=unverified, problem=source_missing
-- eidsvollsbygningen (Eidsvollsbygningen) — data/places/historie/oslo/places_historie.json — trust=unverified, problem=source_missing
 - oscarsborg_festning (Oscarsborg festning) — data/places/historie/oslo/places_historie.json — trust=unverified, problem=source_missing
 - grini_fangeleir (Grini fangeleir) — data/places/historie/oslo/places_historie.json — trust=unverified, problem=source_missing
 - villa_grande (Villa Grande) — data/places/historie/oslo/places_historie.json — trust=unverified, problem=source_missing
@@ -116,20 +157,14 @@
 - astrup_fearnley (Astrup Fearnley Museet) — data/places/kunst/oslo/places_kunst.json — trust=unverified, problem=source_missing
 - ibsen_quotes (Ibsen sitater) — data/places/litteratur/oslo/places_litteratur.json — trust=unverified, problem=source_missing
 - nasjonalbiblioteket (Nasjonalbiblioteket) — data/places/litteratur/oslo/places_litteratur.json — trust=unverified, problem=source_missing
-- camilla_collett_statue (Camilla Collett-statuen) — data/places/litteratur/oslo/places_litteratur.json — trust=unverified, problem=source_missing
-- henrik_wergeland_statue (Henrik Wergeland-statuen) — data/places/litteratur/oslo/places_litteratur.json — trust=unverified, problem=source_missing
 - grotta (Grotten) — data/places/litteratur/oslo/places_litteratur.json — trust=unverified, problem=source_missing
 - nationaltheatret (Nationaltheatret) — data/places/litteratur/oslo/places_litteratur.json — trust=unverified, problem=source_missing
 - tronsmo_bokhandel (Tronsmo Bokhandel) — data/places/litteratur/oslo/places_litteratur.json — trust=unverified, problem=source_missing
 - eldorado_bokhandel (Eldorado Bokhandel) — data/places/litteratur/oslo/places_litteratur.json — trust=unverified, problem=source_missing
 - gamle_deichman (Gamle Deichman) — data/places/litteratur/oslo/places_litteratur.json — trust=unverified, problem=source_missing
 - deichman_grunerlokka (Deichman Grünerløkka) — data/places/litteratur/oslo/places_litteratur.json — trust=unverified, problem=source_missing
-- kulturkirken_jakob_litteratur (Kulturkirken Jakob) — data/places/litteratur/oslo/places_litteratur.json — trust=unverified, problem=source_missing
 - norli_universitetsgata (Norli Universitetsgata) — data/places/litteratur/oslo/places_litteratur.json — trust=unverified, problem=source_missing
-- sigrid_undset_statue (Sigrid Undset-statuen) — data/places/litteratur/oslo/places_litteratur.json — trust=unverified, problem=source_missing
-- ruth_maier_minne (Ruth Maier-minnesmerke) — data/places/litteratur/oslo/places_litteratur.json — trust=unverified, problem=source_missing
 - proysenhuset_rudshogda (Prøysenhuset – Rudshøgda) — data/places/litteratur/oslo/places_litteratur.json — trust=unverified, problem=source_missing
-- inger_hagerups_plass (Inger Hagerups plass) — data/places/litteratur/oslo/places_litteratur.json — trust=unverified, problem=source_missing
 - eldorado_esport (Eldorado Esport & Gaming) — data/places/media/oslo/places_oslo_media.json — trust=unverified, problem=source_missing
 - good_game_redaksjon (Good Game-redaksjonen (NRK)) — data/places/media/oslo/places_oslo_media.json — trust=unverified, problem=source_missing
 - vg_huset (VG-huset) — data/places/media/oslo/places_oslo_media.json — trust=unverified, problem=source_missing
@@ -144,10 +179,9 @@
 - havnelageret (Oslo Havnelager) — data/places/naeringsliv/oslo/places_naeringsliv.json — trust=unverified, problem=source_missing
 - tollbukaia (Tollbukaia) — data/places/naeringsliv/oslo/places_naeringsliv.json — trust=unverified, problem=source_missing
 - oslo_posthus (Oslo Posthus) — data/places/naeringsliv/oslo/places_naeringsliv.json — trust=unverified, problem=source_missing
-- telegrafbygningen (Telegrafbygningen) — data/places/naeringsliv/oslo/places_naeringsliv.json — trust=unverified, problem=source_missing
 - vinmonopolet_lager (Vinmonopolets hovedlager) — data/places/naeringsliv/oslo/places_naeringsliv.json — trust=unverified, problem=source_missing
 - nrk_marienlyst (NRK Marienlyst) — data/places/naeringsliv/oslo/places_naeringsliv.json — trust=unverified, problem=source_missing
-- jernbaneverkstedet_lodalen (Lodalen jernbaneverksted) — data/places/naeringsliv/oslo/places_naeringsliv.json — trust=unverified, problem=source_missing
+- jernbaneverkstedet_lodalen (Lodalen jernbaneverksted) — data/places/naeringsliv/oslo/places_naeringsliv.json — trust=needs_manual_visual_qa, problem=source_missing
 - akershus_kaier (Akershuskaiene) — data/places/naeringsliv/oslo/places_naeringsliv.json — trust=unverified, problem=source_missing
 - sagene_kvernhus (Sagene mølle og kvernhus) — data/places/naeringsliv/oslo/places_naeringsliv.json — trust=unverified, problem=source_missing
 - oslo_mek (Oslo Mekaniske Verksted) — data/places/naeringsliv/oslo/places_naeringsliv.json — trust=unverified, problem=source_missing
@@ -163,9 +197,9 @@
 - lilleborg_fabrikker (Lilleborg Fabrikker) — data/places/naeringsliv/oslo/places_naeringsliv.json — trust=unverified, problem=source_missing
 - hellerud_gard (Hellerud gård) — data/places/natur/oslo/places_oslo_alna.json — trust=unverified, problem=source_missing
 - frysjadammen (Frysjadammen) — data/places/natur/oslo/places_oslo_natur_akerselvarute.json — trust=unverified, problem=source_missing
-- nydalen_industristed (Nydalen industristed) — data/places/natur/oslo/places_oslo_natur_akerselvarute.json — trust=unverified, problem=source_missing
-- seilduksfabrikken_nydalen (Seilduksfabrikken (Nydalen)) — data/places/natur/oslo/places_oslo_natur_akerselvarute.json — trust=unverified, problem=source_missing
-- stilla_nydalen (Stilla ved Nydalen) — data/places/natur/oslo/places_oslo_natur_akerselvarute.json — trust=unverified, problem=source_missing
+- nydalen_industristed (Nydalen industristed) — data/places/natur/oslo/places_oslo_natur_akerselvarute.json — trust=needs_manual_visual_qa, problem=source_missing
+- seilduksfabrikken_nydalen (Seilduksfabrikken (Nydalen)) — data/places/natur/oslo/places_oslo_natur_akerselvarute.json — trust=needs_manual_visual_qa, problem=source_missing
+- stilla_nydalen (Stilla ved Nydalen) — data/places/natur/oslo/places_oslo_natur_akerselvarute.json — trust=needs_manual_visual_qa, problem=source_missing
 - bjoelsenfossen (Bjølsenfossen) — data/places/natur/oslo/places_oslo_natur_akerselvarute.json — trust=unverified, problem=source_missing
 - glads_molle (Glads mølle) — data/places/natur/oslo/places_oslo_natur_akerselvarute.json — trust=unverified, problem=source_missing
 - voienfossen (Vøienfossen) — data/places/natur/oslo/places_oslo_natur_akerselvarute.json — trust=unverified, problem=source_missing
@@ -174,9 +208,10 @@
 - nedre_foss (Nedre Foss) — data/places/natur/oslo/places_oslo_natur_akerselvarute.json — trust=unverified, problem=source_missing
 - hausmannsbrua (Hausmannsbrua) — data/places/natur/oslo/places_oslo_natur_akerselvarute.json — trust=unverified, problem=source_missing
 - ankerbrua (Ankerbrua) — data/places/natur/oslo/places_oslo_natur_akerselvarute.json — trust=unverified, problem=source_missing
+- vaterland_historisk_elvelop (Vaterland – historisk elveløp) — data/places/natur/oslo/places_oslo_natur_akerselvarute.json — trust=needs_manual_visual_qa, problem=source_missing
 - alnsjoen_alna_kilde (Alnsjøen (Alna-kilde)) — data/places/natur/oslo/places_oslo_natur_alnaelva_rute.json — trust=unverified, problem=source_missing
 - groruddammen (Groruddammen) — data/places/natur/oslo/places_oslo_natur_alnaelva_rute.json — trust=unverified, problem=source_missing
-- svartdalen (Svartdalen) — data/places/natur/oslo/places_oslo_natur_alnaelva_rute.json — trust=unverified, problem=source_missing
+- svartdalen (Svartdalen) — data/places/natur/oslo/places_oslo_natur_alnaelva_rute.json — trust=needs_manual_visual_qa, problem=source_missing
 - kvaernerbyen_alna (Kværnerbyen ved Alna) — data/places/natur/oslo/places_oslo_natur_alnaelva_rute.json — trust=unverified, problem=source_missing
 - bygdoy_kongeskogen (Bygdøy Kongeskogen) — data/places/natur/oslo/places_oslo_natur_bygdoy.json — trust=unverified, problem=source_missing
 - bygdoy_dronningberget (Bygdøy Dronningberget) — data/places/natur/oslo/places_oslo_natur_bygdoy.json — trust=unverified, problem=source_missing
@@ -187,12 +222,22 @@
 - hovedoya (Hovedøya) — data/places/natur/oslo/places_oslo_natur_hovedsteder.json — trust=unverified, problem=source_missing
 - gressholmen (Gressholmen) — data/places/natur/oslo/places_oslo_natur_hovedsteder.json — trust=unverified, problem=source_missing
 - bygdoy_natur (Bygdøy natur- og kulturmiljø) — data/places/natur/oslo/places_oslo_natur_hovedsteder.json — trust=unverified, problem=source_missing
+- ljanselva (Ljanselva) — data/places/natur/oslo/places_oslo_natur_hovedsteder.json — trust=unverified, problem=source_missing
 - maerradalen (Mærradalen) — data/places/natur/oslo/places_oslo_natur_hovedsteder.json — trust=unverified, problem=source_missing
+- maridalsvannet (Maridalsvannet) — data/places/natur/oslo/places_oslo_natur_hovedsteder.json — trust=unverified, problem=source_missing
+- noklevann (Nøklevann) — data/places/natur/oslo/places_oslo_natur_hovedsteder.json — trust=unverified, problem=source_missing
 - skraperudtjern (Skraperudtjern) — data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json — trust=unverified, problem=source_missing
+- ljanselva_skullerud (Ljanselva ved Skullerud) — data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json — trust=needs_manual_visual_qa, problem=source_missing
+- ljanselva_ljan (Ljanselva ved Ljan) — data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json — trust=needs_manual_visual_qa, problem=source_missing
+- ljanselva_fiskevollen (Ljanselva ved Fiskevollen) — data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json — trust=needs_manual_visual_qa, problem=source_missing
+- ljanselva_bunnefjorden (Ljanselva ut i Bunnefjorden) — data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json — trust=needs_manual_visual_qa, problem=source_missing
+- ostensjovannet_nord (Østensjøvannet nord) — data/places/natur/oslo/places_oslo_natur_ostensjovannet.json — trust=needs_manual_visual_qa, problem=source_missing
+- ostensjovannet_fugletarn (Østensjøvannet fugletårn) — data/places/natur/oslo/places_oslo_natur_ostensjovannet.json — trust=needs_manual_visual_qa, problem=source_missing
+- ostensjovannet_sivbelte (Østensjøvannet sivbelte) — data/places/natur/oslo/places_oslo_natur_ostensjovannet.json — trust=needs_manual_visual_qa, problem=source_missing
+- ostensjovannet_sor (Østensjøvannet sør) — data/places/natur/oslo/places_oslo_natur_ostensjovannet.json — trust=needs_manual_visual_qa, problem=source_missing
 - bogerudmyra (Bøler/Bogerudmyra) — data/places/natur/oslo/places_oslo_natur_ostensjovannet.json — trust=unverified, problem=source_missing
 - stortinget (Stortinget) — data/places/politikk/oslo/places_politikk.json — trust=unverified, problem=source_missing
 - oslo_radhus (Oslo rådhus) — data/places/politikk/oslo/places_politikk.json — trust=unverified, problem=source_missing
-- eidsvolls_plass (Eidsvolls plass) — data/places/politikk/oslo/places_politikk.json — trust=unverified, problem=source_missing
 - regjeringskvartalet (Regjeringskvartalet) — data/places/politikk/oslo/places_politikk.json — trust=unverified, problem=source_missing
 - cinemateket_oslo (Cinemateket i Oslo) — data/places/popkultur/oslo/places_oslo_populaerkultur.json — trust=unverified, problem=source_missing
 - colosseum_kino (Colosseum kino) — data/places/popkultur/oslo/places_oslo_populaerkultur.json — trust=unverified, problem=source_missing
@@ -205,17 +250,13 @@
 - grand_hotel_pop (Grand Hotel) — data/places/popkultur/oslo/places_oslo_populaerkultur.json — trust=unverified, problem=source_missing
 - vaterland_pop (Vaterland) — data/places/popkultur/oslo/places_oslo_populaerkultur.json — trust=unverified, problem=source_missing
 - gronlandsleiret_pop (Grønlandsleiret) — data/places/popkultur/oslo/places_oslo_populaerkultur.json — trust=unverified, problem=source_missing
-- radhusplassen_pop (Rådhusplassen) — data/places/popkultur/oslo/places_oslo_populaerkultur.json — trust=unverified, problem=source_missing
-- slottsplassen_pop (Slottsplassen) — data/places/popkultur/oslo/places_oslo_populaerkultur.json — trust=unverified, problem=source_missing
 - barcode_pop (Barcode) — data/places/popkultur/oslo/places_oslo_populaerkultur.json — trust=unverified, problem=source_missing
 - bjørvika_pop (Bjørvika (mediebakgrunn)) — data/places/popkultur/oslo/places_oslo_populaerkultur.json — trust=unverified, problem=source_missing
 - ullevaal_stadion (Ullevaal stadion) — data/places/sport/oslo/places_sport.json — trust=unverified, problem=source_missing
 - valle_hovin (Intility Arena (Vålerenga)) — data/places/sport/oslo/places_sport.json — trust=unverified, problem=source_missing
-- holmenkollen (Holmenkollen skimuseum & hopptårn) — data/places/sport/oslo/places_sport.json — trust=unverified, problem=source_missing
 - hausmania (Hausmania) — data/places/subkultur/oslo/places_subkultur.json — trust=unverified, problem=source_missing
 - skur13 (Skur 13) — data/places/subkultur/oslo/places_subkultur.json — trust=unverified, problem=source_missing
 - stovnertarnet (Stovnertårnet) — data/places/subkultur/oslo/places_subkultur.json — trust=unverified, problem=source_missing
-- universitetets_gamle_hovedbygning (Universitetets gamle hovedbygning) — data/places/vitenskap/oslo/places_vitenskap.json — trust=unverified, problem=source_missing
 - tvergastein (Tvergastein) — data/places/vitenskap/oslo/places_vitenskap.json — trust=unverified, problem=source_missing
 - gamlebyen_skole (Gamlebyen skole) — data/places/vitenskap/oslo/places_vitenskap.json — trust=unverified, problem=source_missing
 - abelhaugen (Abelhaugen) — data/places/vitenskap/oslo/places_vitenskap.json — trust=unverified, problem=source_missing
@@ -230,63 +271,54 @@
 - lisbon_parque_eduardo_vii (Parque Eduardo VII) — data/places/by/europe/portugal/lisbon/places_lisbon_by.json — trust=unverified, problem=source_missing
 - lisbon_cais_do_sodre (Cais do Sodré) — data/places/by/europe/portugal/lisbon/places_lisbon_by.json — trust=unverified, problem=source_missing
 - lisbon_principe_real (Príncipe Real) — data/places/by/europe/portugal/lisbon/places_lisbon_by.json — trust=unverified, problem=source_missing
+- lisbon_baixa_pombalina (Baixa Pombalina) — data/places/by/europe/portugal/lisbon/places_lisbon_by.json — trust=unverified, problem=source_missing
+- lisbon_bica (Bica) — data/places/by/europe/portugal/lisbon/places_lisbon_by.json — trust=unverified, problem=source_missing
+- lisbon_graca (Graça) — data/places/by/europe/portugal/lisbon/places_lisbon_by.json — trust=unverified, problem=source_missing
+- lisbon_belem_bydel (Belém) — data/places/by/europe/portugal/lisbon/places_lisbon_by.json — trust=unverified, problem=source_missing
+- lisbon_alcantara (Alcântara) — data/places/by/europe/portugal/lisbon/places_lisbon_by.json — trust=unverified, problem=source_missing
+- lisbon_intendente (Intendente) — data/places/by/europe/portugal/lisbon/places_lisbon_by.json — trust=unverified, problem=source_missing
 - lisbon_mosteiro_dos_jeronimos (Mosteiro dos Jerónimos) — data/places/historie/europe/portugal/lisbon/places_lisbon_historie.json — trust=unverified, problem=source_missing
 - lisbon_castelo_de_sao_jorge (Castelo de São Jorge) — data/places/historie/europe/portugal/lisbon/places_lisbon_historie.json — trust=unverified, problem=source_missing
 - lisbon_aqueduto_das_aguas_livres (Aqueduto das Águas Livres) — data/places/historie/europe/portugal/lisbon/places_lisbon_historie.json — trust=unverified, problem=source_missing
 - lisbon_convento_do_carmo (Convento do Carmo) — data/places/historie/europe/portugal/lisbon/places_lisbon_historie.json — trust=unverified, problem=source_missing
 - lisbon_padrao_dos_descobrimentos (Padrão dos Descobrimentos) — data/places/historie/europe/portugal/lisbon/places_lisbon_historie.json — trust=unverified, problem=source_missing
 - lisbon_estacao_do_rossio (Estação do Rossio) — data/places/historie/europe/portugal/lisbon/places_lisbon_historie.json — trust=unverified, problem=source_missing
+- lisbon_teatro_romano (Ruínas do Teatro Romano) — data/places/historie/europe/portugal/lisbon/places_lisbon_historie.json — trust=unverified, problem=source_missing
+- lisbon_panteao_nacional (Panteão Nacional (Igreja de Santa Engrácia)) — data/places/historie/europe/portugal/lisbon/places_lisbon_historie.json — trust=unverified, problem=source_missing
+- lisbon_sao_vicente_de_fora (Igreja e Mosteiro de São Vicente de Fora) — data/places/historie/europe/portugal/lisbon/places_lisbon_historie.json — trust=unverified, problem=source_missing
+- lisbon_palacio_ajuda (Palácio Nacional da Ajuda) — data/places/historie/europe/portugal/lisbon/places_lisbon_historie.json — trust=unverified, problem=source_missing
+- lisbon_museu_de_lisboa (Museu de Lisboa (Palácio Pimenta)) — data/places/historie/europe/portugal/lisbon/places_lisbon_historie.json — trust=unverified, problem=source_missing
 - lisbon_assembleia_da_republica (Assembleia da República) — data/places/politikk/europe/portugal/lisbon/places_lisbon_politikk.json — trust=unverified, problem=source_missing
 - lisbon_largo_do_carmo (Largo do Carmo) — data/places/politikk/europe/portugal/lisbon/places_lisbon_politikk.json — trust=unverified, problem=source_missing
+- lisbon_praca_dos_restauradores (Praça dos Restauradores) — data/places/politikk/europe/portugal/lisbon/places_lisbon_politikk.json — trust=unverified, problem=source_missing
 - lisbon_museu_nacional_do_azulejo (Museu Nacional do Azulejo) — data/places/kunst/europe/portugal/lisbon/places_lisbon_kunst.json — trust=unverified, problem=source_missing
 - lisbon_fundacao_calouste_gulbenkian (Fundação Calouste Gulbenkian) — data/places/kunst/europe/portugal/lisbon/places_lisbon_kunst.json — trust=unverified, problem=source_missing
 - lisbon_maat (MAAT / Tejo-kraftstasjonen) — data/places/kunst/europe/portugal/lisbon/places_lisbon_kunst.json — trust=unverified, problem=source_missing
 - lisbon_museu_nacional_de_arte_antiga (Museu Nacional de Arte Antiga) — data/places/kunst/europe/portugal/lisbon/places_lisbon_kunst.json — trust=unverified, problem=source_missing
+- lisbon_mac_ccb_berardo (MAC/CCB (tidligere Museu Coleção Berardo)) — data/places/kunst/europe/portugal/lisbon/places_lisbon_kunst.json — trust=unverified, problem=source_missing
 - lisbon_casa_dos_bicos (Casa dos Bicos / Fundação José Saramago) — data/places/litteratur/europe/portugal/lisbon/places_lisbon_litteratur.json — trust=unverified, problem=source_missing
 - lisbon_a_brasileira (A Brasileira / Fernando Pessoa) — data/places/litteratur/europe/portugal/lisbon/places_lisbon_litteratur.json — trust=unverified, problem=source_missing
 - lisbon_livraria_bertrand (Livraria Bertrand (Chiado)) — data/places/litteratur/europe/portugal/lisbon/places_lisbon_litteratur.json — trust=unverified, problem=source_missing
+- lisbon_casa_fernando_pessoa (Casa Fernando Pessoa) — data/places/litteratur/europe/portugal/lisbon/places_lisbon_litteratur.json — trust=unverified, problem=source_missing
+- lisbon_biblioteca_nacional_de_portugal (Biblioteca Nacional de Portugal) — data/places/litteratur/europe/portugal/lisbon/places_lisbon_litteratur.json — trust=unverified, problem=source_missing
+- lisbon_cemiterio_dos_prazeres (Cemitério dos Prazeres) — data/places/litteratur/europe/portugal/lisbon/places_lisbon_litteratur.json — trust=unverified, problem=source_missing
 - lisbon_mouraria_fado (Mouraria / fado) — data/places/musikk/europe/portugal/lisbon/places_lisbon_musikk.json — trust=unverified, problem=source_missing
 - lisbon_hot_clube_de_portugal (Hot Clube de Portugal) — data/places/musikk/europe/portugal/lisbon/places_lisbon_musikk.json — trust=unverified, problem=source_missing
+- lisbon_museu_do_fado (Museu do Fado) — data/places/musikk/europe/portugal/lisbon/places_lisbon_musikk.json — trust=unverified, problem=source_missing
 - lisbon_bairro_alto (Bairro Alto) — data/places/subkultur/europe/portugal/lisbon/places_lisbon_subkultur.json — trust=unverified, problem=source_missing
 - lisbon_pink_street (Rua Nova do Carvalho / Pink Street) — data/places/subkultur/europe/portugal/lisbon/places_lisbon_subkultur.json — trust=unverified, problem=source_missing
+- lisbon_galeria_ze_dos_bois (Galeria Zé dos Bois (ZDB)) — data/places/subkultur/europe/portugal/lisbon/places_lisbon_subkultur.json — trust=unverified, problem=source_missing
+- lisbon_musicbox (Musicbox Lisboa) — data/places/subkultur/europe/portugal/lisbon/places_lisbon_subkultur.json — trust=unverified, problem=source_missing
+- lisbon_fabrica_braco_de_prata (Fábrica Braço de Prata) — data/places/subkultur/europe/portugal/lisbon/places_lisbon_subkultur.json — trust=unverified, problem=source_missing
 - lisbon_lx_factory (LX Factory) — data/places/naeringsliv/europe/portugal/lisbon/places_lisbon_naeringsliv.json — trust=unverified, problem=source_missing
 - lisbon_mercado_da_ribeira (Mercado da Ribeira / Time Out Market) — data/places/naeringsliv/europe/portugal/lisbon/places_lisbon_naeringsliv.json — trust=unverified, problem=source_missing
+- lisbon_cordoaria_nacional (Cordoaria Nacional) — data/places/naeringsliv/europe/portugal/lisbon/places_lisbon_naeringsliv.json — trust=unverified, problem=source_missing
+- lisbon_doca_de_alcantara (Doca de Alcântara) — data/places/naeringsliv/europe/portugal/lisbon/places_lisbon_naeringsliv.json — trust=unverified, problem=source_missing
 - lisbon_estadio_da_luz (Estádio da Luz) — data/places/sport/europe/portugal/lisbon/places_lisbon_sport.json — trust=unverified, problem=source_missing
 - lisbon_estadio_jose_alvalade (Estádio José Alvalade) — data/places/sport/europe/portugal/lisbon/places_lisbon_sport.json — trust=unverified, problem=source_missing
-
-## P2
-- torggata (Torggata) — data/places/by/oslo/places_by.json — trust=unverified, problem=source_missing
-- toyen_torg (Tøyen torg) — data/places/by/oslo/places_by.json — trust=unverified, problem=source_missing
-- jernbanetorget (Jernbanetorget) — data/places/by/oslo/places_by.json — trust=unverified, problem=source_missing
-- storgata (Storgata) — data/places/by/oslo/places_by.json — trust=unverified, problem=source_missing
-- slottsparken (Slottsparken) — data/places/by/oslo/places_by.json — trust=needs_manual_visual_qa, problem=source_missing
-- stensparken (Stensparken) — data/places/by/oslo/places_by.json — trust=needs_manual_visual_qa, problem=source_missing
-- kampen_film (Kampen (film- og serieområde)) — data/places/film/oslo/places_oslo_film.json — trust=needs_manual_visual_qa, problem=source_missing
-- middelalder_oslo (Middelalderparken) — data/places/historie/oslo/places_historie.json — trust=needs_manual_visual_qa, problem=source_missing
-- ekebergparken (Ekebergparken skulpturpark) — data/places/kunst/oslo/places_kunst.json — trust=needs_manual_visual_qa, problem=source_missing
-- fornebu_teknologipark (Fornebu Teknologipark) — data/places/naeringsliv/oslo/places_naeringsliv.json — trust=needs_manual_visual_qa, problem=source_missing
-- ulven_handelspark (Ulven handelspark) — data/places/naeringsliv/oslo/places_naeringsliv.json — trust=needs_manual_visual_qa, problem=source_missing
-- vippetangen_fisketorg (Vippetangen fisketorg) — data/places/naeringsliv/oslo/places_naeringsliv.json — trust=unverified, problem=source_missing
-- bryn_industriomrade (Bryn industriområde) — data/places/naeringsliv/oslo/places_naeringsliv.json — trust=needs_manual_visual_qa, problem=source_missing
-- bjoelsenparken_elvenaer (Bjølsenparken (elvenær del)) — data/places/natur/oslo/places_oslo_natur_akerselvarute.json — trust=needs_manual_visual_qa, problem=source_missing
-- vulkan_industriomrade (Vulkan industriområde) — data/places/natur/oslo/places_oslo_natur_akerselvarute.json — trust=needs_manual_visual_qa, problem=source_missing
-- youngstorget (Youngstorget) — data/places/politikk/oslo/places_politikk.json — trust=unverified, problem=source_missing
-- toyen_torg_pop (Tøyen torg) — data/places/popkultur/oslo/places_oslo_populaerkultur.json — trust=unverified, problem=source_missing
-- oslo_s_pop (Oslo S / Jernbanetorget) — data/places/popkultur/oslo/places_oslo_populaerkultur.json — trust=unverified, problem=source_missing
-- youngstorget_pop (Youngstorget) — data/places/popkultur/oslo/places_oslo_populaerkultur.json — trust=unverified, problem=source_missing
-
-## P3
-- akerselva (Akerselva) — data/places/by/oslo/places_by.json — trust=unverified, problem=source_missing
-- vaterland_historisk_elvelop (Vaterland – historisk elveløp) — data/places/natur/oslo/places_oslo_natur_akerselvarute.json — trust=needs_manual_visual_qa, problem=source_missing
-- ljanselva (Ljanselva) — data/places/natur/oslo/places_oslo_natur_hovedsteder.json — trust=unverified, problem=source_missing
-- maridalsvannet (Maridalsvannet) — data/places/natur/oslo/places_oslo_natur_hovedsteder.json — trust=unverified, problem=source_missing
-- noklevann (Nøklevann) — data/places/natur/oslo/places_oslo_natur_hovedsteder.json — trust=unverified, problem=source_missing
-- ljanselva_skullerud (Ljanselva ved Skullerud) — data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json — trust=needs_manual_visual_qa, problem=source_missing
-- ljanselva_ljan (Ljanselva ved Ljan) — data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json — trust=needs_manual_visual_qa, problem=source_missing
-- ljanselva_fiskevollen (Ljanselva ved Fiskevollen) — data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json — trust=needs_manual_visual_qa, problem=source_missing
-- ljanselva_bunnefjorden (Ljanselva ut i Bunnefjorden) — data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json — trust=needs_manual_visual_qa, problem=source_missing
-- ostensjovannet_nord (Østensjøvannet nord) — data/places/natur/oslo/places_oslo_natur_ostensjovannet.json — trust=needs_manual_visual_qa, problem=source_missing
-- ostensjovannet_fugletarn (Østensjøvannet fugletårn) — data/places/natur/oslo/places_oslo_natur_ostensjovannet.json — trust=needs_manual_visual_qa, problem=source_missing
-- ostensjovannet_sivbelte (Østensjøvannet sivbelte) — data/places/natur/oslo/places_oslo_natur_ostensjovannet.json — trust=needs_manual_visual_qa, problem=source_missing
-- ostensjovannet_sor (Østensjøvannet sør) — data/places/natur/oslo/places_oslo_natur_ostensjovannet.json — trust=needs_manual_visual_qa, problem=source_missing
+- lisbon_jardim_botanico (Jardim Botânico de Lisboa) — data/places/natur/europe/portugal/lisbon/places_lisbon_natur.json — trust=unverified, problem=source_missing
+- lisbon_tapada_das_necessidades (Tapada das Necessidades) — data/places/natur/europe/portugal/lisbon/places_lisbon_natur.json — trust=unverified, problem=source_missing
+- lisbon_miradouro_sao_pedro_de_alcantara (Miradouro de São Pedro de Alcântara) — data/places/natur/europe/portugal/lisbon/places_lisbon_natur.json — trust=unverified, problem=source_missing
+- lisbon_miradouro_da_graca (Miradouro da Graça (Sophia de Mello Breyner Andresen)) — data/places/natur/europe/portugal/lisbon/places_lisbon_natur.json — trust=unverified, problem=source_missing
+- lisbon_monsanto (Parque Florestal de Monsanto) — data/places/natur/europe/portugal/lisbon/places_lisbon_natur.json — trust=unverified, problem=source_missing
 

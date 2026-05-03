@@ -1,12 +1,12 @@
 # Place coordinate quality gate
 
-Generert: 2026-05-02T22:15:50.460Z
+Generert: 2026-05-03T06:07:41.047Z
 
 ## Oppsummering
-- Aktive filer validert: **30**
-- Antall steder validert: **282**
+- Aktive filer validert: **31**
+- Antall steder validert: **312**
 - Harde feil: **0**
-- Varsler: **85**
+- Varsler: **88**
 
 ## Aktive filer validert
 - data/places/by/oslo/places_by.json
@@ -39,6 +39,7 @@ Generert: 2026-05-02T22:15:50.460Z
 - data/places/subkultur/europe/portugal/lisbon/places_lisbon_subkultur.json
 - data/places/naeringsliv/europe/portugal/lisbon/places_lisbon_naeringsliv.json
 - data/places/sport/europe/portugal/lisbon/places_lisbon_sport.json
+- data/places/natur/europe/portugal/lisbon/places_lisbon_natur.json
 
 ## Harde feil
 - Ingen
@@ -127,7 +128,10 @@ Generert: 2026-05-02T22:15:50.460Z
 - data/places/by/europe/portugal/lisbon/places_lisbon_by.json#lisbon_alfama: lav koordinatpresisjon (<4 desimaler)
 - data/places/historie/europe/portugal/lisbon/places_lisbon_historie.json#lisbon_torre_de_belem: lav koordinatpresisjon (<4 desimaler)
 - data/places/historie/europe/portugal/lisbon/places_lisbon_historie.json#lisbon_se_de_lisboa: lav koordinatpresisjon (<4 desimaler)
+- data/places/historie/europe/portugal/lisbon/places_lisbon_historie.json#lisbon_palacio_fronteira: lav koordinatpresisjon (<4 desimaler)
+- data/places/politikk/europe/portugal/lisbon/places_lisbon_politikk.json#lisbon_praca_marques_de_pombal: lav koordinatpresisjon (<4 desimaler)
 - data/places/kunst/europe/portugal/lisbon/places_lisbon_kunst.json#lisbon_centro_cultural_de_belem: lav koordinatpresisjon (<4 desimaler)
+- data/places/kunst/europe/portugal/lisbon/places_lisbon_kunst.json#lisbon_museu_do_oriente: lav koordinatpresisjon (<4 desimaler)
 - data/places/naeringsliv/europe/portugal/lisbon/places_lisbon_naeringsliv.json#lisbon_parque_das_nacoes: lav koordinatpresisjon (<4 desimaler)
 
 ## Anbefalt kommando
