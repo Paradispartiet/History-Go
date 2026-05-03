@@ -41,6 +41,9 @@ const DEFAULTS = {
 };
 
   const _cache = new Map();
+  const _fullPlaceCache = new Map();
+  let _placeManifestFilesPromise = null;
+  let _placeFileByIdPromise = null;
 
   function joinPath(base, path) {
     return `${base}/${path}`.replace(/\/+/g, "/");
@@ -133,25 +136,67 @@ const DEFAULTS = {
     return fetchJSON(pData("tags.json"), opts);
   }
 async function loadPlacesBase(opts = {}) {
+  try {
+    const index = await fetchJSON(pData("places/places_index.json"), opts);
+    if (Array.isArray(index) && index.length) return index;
+  } catch {}
 
   const manifest = await fetchJSON(pData("places/manifest.json"), opts);
-
   const places = [];
 
   for (const file of manifest.files) {
-
     const data = await fetchJSON(pData(file), opts);
-
-    if (Array.isArray(data)) {
-      places.push(...data);
-    } else if (Array.isArray(data?.places)) {
-      places.push(...data.places);
-    }
-
+    if (Array.isArray(data)) places.push(...data);
+    else if (Array.isArray(data?.places)) places.push(...data.places);
   }
-
   return places;
 }
+
+  async function loadPlaceManifestFiles(opts = {}) {
+    if (!_placeManifestFilesPromise) {
+      _placeManifestFilesPromise = fetchJSON(pData("places/manifest.json"), opts)
+        .then((manifest) => Array.isArray(manifest?.files) ? manifest.files : []);
+    }
+    return _placeManifestFilesPromise;
+  }
+
+  async function loadPlaceFileById(opts = {}) {
+    if (_placeFileByIdPromise) return _placeFileByIdPromise;
+
+    _placeFileByIdPromise = (async () => {
+      const files = await loadPlaceManifestFiles(opts);
+      const map = new Map();
+
+      for (const file of files) {
+        const data = await fetchJSON(pData(file), opts);
+        const places = Array.isArray(data) ? data : (Array.isArray(data?.places) ? data.places : []);
+        for (const p of places) {
+          const id = String(p?.id || "").trim();
+          if (id && !map.has(id)) map.set(id, file);
+        }
+      }
+      return map;
+    })();
+
+    return _placeFileByIdPromise;
+  }
+
+  async function loadFullPlace(placeId, opts = {}) {
+    const id = String(placeId || "").trim();
+    if (!id) return null;
+    if (_fullPlaceCache.has(id)) return _fullPlaceCache.get(id);
+
+    const byId = await loadPlaceFileById(opts);
+    const file = byId.get(id);
+    if (!file) return null;
+
+    const data = await fetchJSON(pData(file), opts);
+    const places = Array.isArray(data) ? data : (Array.isArray(data?.places) ? data.places : []);
+    const fullPlace = places.find((p) => String(p?.id || "").trim() === id) || null;
+
+    if (fullPlace) _fullPlaceCache.set(id, fullPlace);
+    return fullPlace;
+  }
   
 
   function loadPeopleBase(opts = {}) {
@@ -330,6 +375,7 @@ async function loadPlacesBase(opts = {}) {
     loadPeopleBase,
     loadBadges,
     loadRoutes,
+    loadFullPlace,
 
     // overlays/enriched
     loadPlaceOverlays,

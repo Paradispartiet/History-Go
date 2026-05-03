@@ -176,6 +176,7 @@ const PRECACHE_URLS = [
   "data/Civication/lifeMails/arbeidsledig/arbeidsledig_life.json",
   "data/Civication/lifeMails/alkohol/alkohol_risk_life.json",
   "data/Civication/lifeMails/subkultur/subkultur_skurk_life.json",
+  "data/places/places_index.json",
 
   // Stories
   "js/stories/stories_loader.js",
@@ -303,6 +304,10 @@ self.addEventListener("fetch", (event) => {
 
     // Data (JSON) – network-first under utvikling
     if (path.startsWith("/History-Go/data/") || path.includes("/data/")) {
+      if (path.endsWith("/data/places/places_index.json") || path.includes("/data/places/")) {
+        event.respondWith(cacheFirst(req, CACHE_RUNTIME));
+        return;
+      }
       event.respondWith(networkFirst(req, CACHE_RUNTIME));
       return;
     }
