@@ -1,0 +1,105 @@
+{
+  "schema": "civication_mail_family_catalog_v2",
+  "category": "naeringsliv",
+  "role_scope": "finansdirektor",
+  "mail_type": "job",
+  "description": "Intro for Finansdirektør: spilleren overtar kapitalstrategi, finansiering, bankdialog og styrets risikobilde.",
+  "families": [
+    {
+      "id": "finansdirektor_intro_v2",
+      "description": "Første dager som finansdirektør. Rollen etableres som ansvar for kapital, risiko, ekstern tillit og selskapets finansielle bæreevne.",
+      "mails": [
+        {
+          "id": "finansdirektor_intro_v2_001",
+          "mail_type": "job",
+          "mail_family": "finansdirektor_intro_v2",
+          "role_scope": "finansdirektor",
+          "phase": "intro",
+          "priority": 80,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "styreleder",
+          "subject": "Første kapitalstrategi: veksten kan finansieres, men bufferen blir tynn",
+          "summary": "Styret ber deg vurdere en vekstplan som kan finansieres, men som reduserer selskapets økonomiske buffer.",
+          "purpose": "Etablere finansdirektørens kjerne: kapital er ikke bare drivstoff for strategi, men en grense for hvor mye risiko selskapet kan bære.",
+          "stakes": "Hvis du støtter finansieringen uten tydelig risikobilde, kan styret tro at veksten er tryggere enn den faktisk er.",
+          "situation": [
+            "Styreleder sender deg første kapitalstrategiutkast etter at du har overtatt rollen.",
+            "Vekstplanen kan finansieres med ny låneramme og noe frigjort arbeidskapital. På papiret går det. I sensitivitetsfanen ser du at renteøkning eller svakere margin raskt spiser bufferen.",
+            "Daglig leder vil ha tempo. Eierne vil se vekst. Banken vil se kontroll. Styret vil ha en anbefaling de kan eie.",
+            "Dette er finansdirektørens første prøve: å skille finansierbar vekst fra robust vekst."
+          ],
+          "task_domain": "capital_strategy",
+          "competency": "kapitalstruktur",
+          "pressure": "vekstambisjon",
+          "choice_axis": "vekst_vs_soliditet",
+          "consequence_axis": "oppside_vs_overlevelse",
+          "narrative_arc": "kapital_som_baereevne",
+          "learning_focus": ["kapitalstruktur", "låneramme", "buffer", "renter", "styreansvar"],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Anbefal vekstplanen bare med tydelig bufferkrav og downside-scenario.",
+              "effect": 1,
+              "tags": ["kapitalstruktur", "risiko", "governance"],
+              "feedback": "Du lar veksten leve, men nekter den å late som den er gratis. Styret får både mulighet og bæreevne i samme bilde."
+            },
+            {
+              "id": "B",
+              "label": "Støtt finansieringen nå og håndter bufferkravet i neste runde.",
+              "effect": -1,
+              "tags": ["vekst", "risk", "tempo"],
+              "feedback": "Du gir strategien fart, men gjør robustheten til et senere problem. Kapitalrommet blir brukt før det er forstått."
+            }
+          ]
+        },
+        {
+          "id": "finansdirektor_intro_v2_002",
+          "mail_type": "job",
+          "mail_family": "finansdirektor_intro_v2",
+          "role_scope": "finansdirektor",
+          "phase": "intro",
+          "priority": 76,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "bankkontakt",
+          "subject": "Banken vil forstå hva dere egentlig finansierer",
+          "summary": "Bankkontakten ber om en tydelig forklaring på om ny finansiering går til varig kapasitetsløft eller kortsiktig pressavlastning.",
+          "purpose": "Vise at ekstern finansiering krever troverdig fortelling om bruk av kapital, ikke bare pene nøkkeltall.",
+          "stakes": "Hvis banken oppfatter finansieringen som dekning av driftspress forkledd som vekst, svekkes tilliten til hele kapitalstrategien.",
+          "situation": [
+            "Bankkontakten sender en kort, men presis melding: «Vi trenger å forstå om lånebehovet skyldes vekstinvesteringer eller svakere kontantstrøm enn planlagt.»",
+            "Begge deler er delvis sant. Selskapet investerer for vekst, men arbeidskapitalen er også strammere enn budsjettet innrømmet.",
+            "En finansdirektør kan formulere dette som en sterk vekstfortelling. Men banken leser også hva som ikke sies.",
+            "Du må velge hvor åpen du er om at finansieringen både skal muliggjøre vekst og kjøpe tid."
+          ],
+          "task_domain": "bank_reporting",
+          "competency": "finansiering_og_bank",
+          "pressure": "ekstern_tillit",
+          "choice_axis": "apenhet_vs_kapitalfortelling",
+          "consequence_axis": "troverdighet_vs_forhandlingsrom",
+          "narrative_arc": "bankens_blikk",
+          "learning_focus": ["bankdialog", "arbeidskapital", "finansieringsbehov", "tillit"],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Forklar begge sider: vekstinvestering og midlertidig arbeidskapitalpress.",
+              "effect": 1,
+              "tags": ["tillit", "finansiering", "integritet"],
+              "feedback": "Du gjør fortellingen mindre blank, men mer bankbar. Tillit bygges ofte av det du tør å si før du blir spurt."
+            },
+            {
+              "id": "B",
+              "label": "Presenter lånebehovet som ren vekstfinansiering.",
+              "effect": -1,
+              "tags": ["risk", "kapitalfortelling", "status"],
+              "feedback": "Historien er sterkere, men banken kan se sprekken hvis kontantstrømmen ikke bedres raskt."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
