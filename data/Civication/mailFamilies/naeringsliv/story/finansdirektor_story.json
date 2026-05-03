@@ -1,0 +1,54 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "naeringsliv",
+  "role_scope": "finansdirektor",
+  "mail_type": "story",
+  "families": [
+    {
+      "id": "finansdirektor_identitet",
+      "description": "Fortellinger der finansdirektøren oppdager at rollen handler om å gjøre kapital, risiko og tillit til strategisk ansvar.",
+      "mails": [
+        {
+          "id": "finansdirektor_story_001",
+          "mail_type": "story",
+          "mail_family": "finansdirektor_identitet",
+          "role_scope": "finansdirektor",
+          "subject": "Hva slags finansdirektør blir du?",
+          "summary": "Rollen avrundes som spørsmål om kapital skal være vekstmotor, vern eller fortelling.",
+          "purpose": "Avrunde finansdirektørens identitet: rollen handler om selskapets bæreevne, ikke bare finansiering av strategien.",
+          "stakes": "Hvis finansdirektøren blir vekstfortellingens tjener, mister selskapet varsleren som skal se når kapitalrommet blir for trangt.",
+          "situation": [
+            "Etter flere styremøter ser du mønsteret. Alle vil ha kapital når strategien trenger den, men færre vil snakke om hva kapitalen gjør med risikoen.",
+            "Daglig leder trenger fart. Eierne trenger oppside. Banken trenger tillit. Styret trenger ansvar. Organisasjonen trenger at noen spør hvor mye den faktisk tåler.",
+            "Du forstår at finansdirektørens oppgave ikke er å gjøre alle planer mulige. Det er å gjøre mulige planer ansvarlige.",
+            "Nå må du velge hvilken kapitalrolle du bygger: vekstmotor, brems eller kompass."
+          ],
+          "task_domain": "cfo_identity",
+          "competency": "styre_og_eierkommunikasjon",
+          "pressure": "rollemodning",
+          "choice_axis": "vekstmotor_vs_kompass",
+          "consequence_axis": "finansiell_makt_vs_tillit",
+          "narrative_arc": "finansdirektorens_ansvar",
+          "learning_focus": ["kapitalstrategi", "risiko", "tillit", "styre", "rolleidentitet"],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Bygg rollen som kompass: finansier vekst bare når bæreevnen er synlig.",
+              "effect": 1,
+              "tags": ["integritet", "kapitalstruktur", "tillit"],
+              "feedback": "Du gjør kapital til styring, ikke bare drivstoff. Selskapet får vekst med grenser, og grenser med begrunnelse."
+            },
+            {
+              "id": "B",
+              "label": "Bygg rollen som vekstmotor og bruk finansfunksjonen til å åpne mest mulig handlingsrom.",
+              "effect": 0,
+              "tags": ["vekst", "status", "risk"],
+              "feedback": "Du får fart og innflytelse, men må hele tiden passe på at handlingsrom ikke blir skjørhet med bedre språk."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
