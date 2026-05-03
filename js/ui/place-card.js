@@ -3,6 +3,20 @@
 // ============================================================
 window.openPlaceCard = async function (place) {
   if (!place) return;
+  const placeId = String(place.id || "").trim();
+  if (placeId && window.DataHub?.loadFullPlace) {
+    try {
+      const fullPlace = await window.DataHub.loadFullPlace(placeId, { cache: "default" });
+      if (fullPlace && typeof fullPlace === "object") {
+        place = { ...place, ...fullPlace };
+        const placesArr = Array.isArray(window.PLACES) ? window.PLACES : [];
+        const idx = placesArr.findIndex((p) => String(p?.id || "").trim() === placeId);
+        if (idx >= 0) placesArr[idx] = place;
+      }
+    } catch (e) {
+      console.warn("[openPlaceCard.loadFullPlace]", e);
+    }
+  }
   const tt = (key, fallback) => window.HG_I18N?.t?.(key, fallback) || fallback;
 
   // 🎓 Learning: mark seen for place-emner
