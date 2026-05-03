@@ -1,5 +1,5 @@
-// js/map.js — History GO — MARKERS STABLE (v1)
-// (MapLibre + places markers + labels)
+// js/map.js — History GO — MARKERS STABLE (v2)
+// MapLibre + places markers + labels + robust touch/click hit-testing.
 (function () {
   "use strict";
 
@@ -19,11 +19,17 @@
   let userMarker = null;
   const STYLE_STORAGE_KEY = "hg_map_style_mode";
   const STYLE_MODE_STANDARD = "standard";
-  // Historisk navn: "satellite" brukes internt for sekundær/detaljert kartmodus.
   const STYLE_MODE_SATELLITE = "satellite";
   const STYLE_URL_STANDARD = "https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json";
 
-  // ---- helpers ----
+  const SRC = "hg-places";
+  const L_GLOW = "hg-places-glow";
+  const L_HIT  = "hg-places-hit";
+  const L_DOTS = "hg-places-dots";
+  const L_LAB  = "hg-places-label";
+  const PLACE_LABEL_MIN_ZOOM = 13.8;
+  const PLACE_HIT_LAYERS = [L_HIT, L_DOTS, L_LAB];
+
   function num(v) {
     const n = Number(v);
     return Number.isFinite(n) ? n : null;
@@ -49,11 +55,10 @@
     return `rgb(${r},${g},${b})`;
   }
 
-  // ---- init ----
   function initMap({ containerId = "map", start = START } = {}) {
     START = start || START;
     const el = document.getElementById(containerId);
-    if (!el) return null;
+    if (!el || !window.maplibregl) return null;
 
     mapStyleMode = getSavedMapStyleMode();
     const initialStyleUrl = getStyleUrlForMode(mapStyleMode);
@@ -81,7 +86,7 @@
     MAP.on("load", () => {
       mapReady = true;
       ensureMapStyleToggle(containerId);
-      drawPlaceMarkers(); // ← tegn så snart kartet er klart
+      drawPlaceMarkers();
       MAP.resize();
     });
 
@@ -96,7 +101,6 @@
     return MAP;
   }
 
-  // ---- setters ----
   function setPlaces(arr) {
     PLACES = Array.isArray(arr) ? arr : [];
     if (mapReady) drawPlaceMarkers();
@@ -117,8 +121,7 @@
   }
 
   function setDataReady(_) {
-    // Beholdt for kompat, men vi trenger ikke gate lenger
-    // (markører tegnes når kart + places finnes)
+    // Beholdt for kompatibilitet.
   }
 
   function getSavedMapStyleMode() {
@@ -161,11 +164,8 @@
       return;
     }
     MAP.once("style.load", () => {
-      if (typeof MAP.once === "function") {
-        MAP.once("idle", fn);
-      } else {
-        fn();
-      }
+      if (typeof MAP.once === "function") MAP.once("idle", fn);
+      else fn();
     });
   }
 
@@ -175,11 +175,13 @@
       console.warn("[HGMap] MapLibre map not ready for style switch");
       return;
     }
+
     const desired = nextMode === STYLE_MODE_SATELLITE ? STYLE_MODE_SATELLITE : STYLE_MODE_STANDARD;
     if (isApplyingStyle) {
       console.debug("[HGMap] style switch already in progress");
       return;
     }
+
     if (desired === mapStyleMode && !isApplyingStyle) {
       console.debug("[HGMap] style already active", desired);
       renderMapStyleToggle();
@@ -201,6 +203,7 @@
 
     isApplyingStyle = true;
     pendingStyleMode = desired;
+
     const onStyleReady = () => {
       if (!MAP) return;
       const resolvedMode = pendingStyleMode === STYLE_MODE_SATELLITE ? STYLE_MODE_SATELLITE : STYLE_MODE_STANDARD;
@@ -214,11 +217,11 @@
       MAP.resize();
       renderMapStyleToggle();
       console.debug("[HGMap] place layers restored", {
-        source: Boolean(MAP.getSource("hg-places")),
-        glow: Boolean(MAP.getLayer("hg-places-glow")),
-        hit: Boolean(MAP.getLayer("hg-places-hit")),
-        dots: Boolean(MAP.getLayer("hg-places-dots")),
-        label: Boolean(MAP.getLayer("hg-places-label"))
+        source: Boolean(MAP.getSource(SRC)),
+        glow: Boolean(MAP.getLayer(L_GLOW)),
+        hit: Boolean(MAP.getLayer(L_HIT)),
+        dots: Boolean(MAP.getLayer(L_DOTS)),
+        label: Boolean(MAP.getLayer(L_LAB))
       });
     };
 
@@ -236,8 +239,6 @@
   }
 
   function redrawPlacesAfterStyleLoad(mode) {
-    // Deprecated path kept for compatibility.
-
     if (!MAP) return;
     const resolvedMode = mode === STYLE_MODE_SATELLITE ? STYLE_MODE_SATELLITE : STYLE_MODE_STANDARD;
     const run = () => {
@@ -253,21 +254,17 @@
       renderMapStyleToggle();
       console.debug("[HGMap] place layers restored");
     };
+
     if (typeof MAP.isStyleLoaded === "function" && MAP.isStyleLoaded()) {
-      if (typeof MAP.once === "function") {
-        MAP.once("idle", run);
-      } else {
-        run();
-      }
+      if (typeof MAP.once === "function") MAP.once("idle", run);
+      else run();
       return;
     }
+
     MAP.once("style.load", () => {
       console.debug("[HGMap] style loaded", resolvedMode);
-      if (typeof MAP.once === "function") {
-        MAP.once("idle", run);
-      } else {
-        run();
-      }
+      if (typeof MAP.once === "function") MAP.once("idle", run);
+      else run();
     });
   }
 
@@ -277,30 +274,19 @@
       renderMapStyleToggle();
       return;
     }
+
     const wrap = document.createElement("div");
     wrap.className = "hg-map-style-toggle";
     wrap.innerHTML = `
       <button type="button" class="hg-map-style-btn" data-mode="standard" aria-pressed="false">Kart</button>
       <button type="button" class="hg-map-style-btn" data-mode="satellite" aria-pressed="false">Detaljert</button>
     `;
+
     const onStyleTogglePress = (ev) => {
       const btn = ev.target?.closest?.(".hg-map-style-btn");
       if (!btn) return;
-      if (typeof ev.preventDefault === "function") ev.preventDefault();
-      if (typeof ev.stopPropagation === "function") ev.stopPropagation();
-
-      if (typeof console !== "undefined" && typeof console.debug === "function") {
-        const rect = btn.getBoundingClientRect();
-        const cx = rect.left + rect.width / 2;
-        const cy = rect.top + rect.height / 2;
-        const topEl = document.elementFromPoint(cx, cy);
-        console.debug("[HGMap] map style hit test", {
-          mode: btn.dataset.mode,
-          rect: { left: rect.left, top: rect.top, width: rect.width, height: rect.height },
-          topElement: topEl?.className || topEl?.id || topEl?.tagName || null
-        });
-      }
-
+      ev.preventDefault?.();
+      ev.stopPropagation?.();
       applyMapStyle(btn.dataset.mode);
     };
 
@@ -308,6 +294,7 @@
     wrap.querySelectorAll(".hg-map-style-btn").forEach((btn) => {
       btn.addEventListener("touchend", onStyleTogglePress, { passive: false });
     });
+
     controls.insertBefore(wrap, controls.firstChild);
     renderMapStyleToggle();
 
@@ -329,51 +316,42 @@
     });
   }
 
-  // ---- user ----
   function setUser(lat, lon, { fly = false } = {}) {
-  lat = num(lat); lon = num(lon);
-  if (lat == null || lon == null) return;
-  if (!MAP) return;
+    lat = num(lat);
+    lon = num(lon);
+    if (lat == null || lon == null || !MAP) return;
 
-  const ll = [lon, lat];
+    const ll = [lon, lat];
 
-  if (!userMarker) {
-    const dot = document.createElement("div");
-    dot.className = "hg-user-dot";
-    dot.style.width = "14px";
-    dot.style.height = "14px";
-    dot.style.borderRadius = "50%";
-    dot.style.background = "rgba(0,0,0,0.85)";
-    dot.style.border = "2px solid rgba(255,255,255,0.95)";
-    dot.style.boxShadow = "0 0 10px rgba(0,0,0,0.35)";
+    if (!userMarker) {
+      const dot = document.createElement("div");
+      dot.className = "hg-user-dot";
+      dot.style.width = "14px";
+      dot.style.height = "14px";
+      dot.style.borderRadius = "50%";
+      dot.style.background = "rgba(0,0,0,0.85)";
+      dot.style.border = "2px solid rgba(255,255,255,0.95)";
+      dot.style.boxShadow = "0 0 10px rgba(0,0,0,0.35)";
 
-    userMarker = new maplibregl.Marker({ element: dot, anchor: "center" })
-      .setLngLat(ll)
-      .addTo(MAP);
-  } else {
-    userMarker.setLngLat(ll);
+      userMarker = new maplibregl.Marker({ element: dot, anchor: "center" })
+        .setLngLat(ll)
+        .addTo(MAP);
+    } else {
+      userMarker.setLngLat(ll);
+    }
+
+    if (fly) {
+      MAP.flyTo({
+        center: ll,
+        zoom: Math.max(MAP.getZoom() || 13, 15),
+        speed: 1.2
+      });
+    }
   }
-
-  if (fly) {
-    MAP.flyTo({
-      center: ll,
-      zoom: Math.max(MAP.getZoom() || 13, 15),
-      speed: 1.2
-    });
-  }
-}
-
-  // ---- markers ----
-  const SRC = "hg-places";
-  const L_GLOW = "hg-places-glow";
-  const L_HIT  = "hg-places-hit";
-  const L_DOTS = "hg-places-dots";
-  const L_LAB  = "hg-places-label";
-  const PLACE_LABEL_MIN_ZOOM = 13.8;
 
   function removeIfExists() {
     if (!MAP) return;
-    [L_LAB, L_DOTS, L_HIT, L_GLOW].forEach(id => {
+    [L_LAB, L_HIT, L_DOTS, L_GLOW].forEach(id => {
       if (MAP.getLayer(id)) MAP.removeLayer(id);
     });
     if (MAP.getSource(SRC)) MAP.removeSource(SRC);
@@ -412,12 +390,9 @@
       });
     }
 
-    // Hvis ingen gyldige coords: ikke tegn
     if (!features.length) return;
 
     const fc = { type: "FeatureCollection", features };
-
-    // Hvis source finnes: oppdater data
     const src = MAP.getSource(SRC);
     if (src) {
       src.setData(fc);
@@ -425,9 +400,7 @@
       return;
     }
 
-    // Clean start (unngå rester fra gamle lag)
     removeIfExists();
-
     MAP.addSource(SRC, { type: "geojson", data: fc });
 
     MAP.addLayer({
@@ -438,17 +411,6 @@
         "circle-radius": ["interpolate", ["linear"], ["zoom"], 10, 2, 12, 3, 14, 5, 16, 9, 18, 14],
         "circle-color": "rgba(0,0,0,0.12)",
         "circle-blur": 0.8
-      }
-    });
-
-    MAP.addLayer({
-      id: L_HIT,
-      type: "circle",
-      source: SRC,
-      paint: {
-        "circle-radius": ["interpolate", ["linear"], ["zoom"], 10, 10, 12, 12, 14, 14, 16, 18, 18, 24],
-        "circle-color": "rgba(0,0,0,0)",
-        "circle-opacity": 0
       }
     });
 
@@ -464,7 +426,7 @@
           14, ["+", 4.8, ["*", 0.9, ["get", "visited"]]],
           16, ["+", 7.2, ["*", 1.2, ["get", "visited"]]],
           18, ["+", 10.5, ["*", 1.5, ["get", "visited"]]]
-         ],
+        ],
         "circle-color": ["get", "fill"],
         "circle-stroke-color": ["get", "border"],
         "circle-stroke-width": 1.8,
@@ -499,58 +461,112 @@
       }
     });
 
+    MAP.addLayer({
+      id: L_HIT,
+      type: "circle",
+      source: SRC,
+      paint: {
+        "circle-radius": ["interpolate", ["linear"], ["zoom"], 10, 16, 12, 20, 14, 24, 16, 30, 18, 38],
+        "circle-color": "rgba(0,0,0,0.01)",
+        "circle-opacity": 0.01
+      }
+    });
+
     bindPlaceLayerHandlers();
-    console.debug("[HGMap] place layers restored");
     moveMarkersOnTop();
+    console.debug("[HGMap] place layers restored");
+  }
+
+  function hasLayer(id) {
+    return !!(MAP && MAP.getLayer(id));
+  }
+
+  function getPointFromOriginalEvent(originalEvent) {
+    if (!MAP || !originalEvent) return null;
+    const canvas = MAP.getCanvas?.();
+    const rect = canvas?.getBoundingClientRect?.();
+    if (!rect) return null;
+
+    const touch = originalEvent.changedTouches?.[0] || originalEvent.touches?.[0] || null;
+    const clientX = touch ? touch.clientX : originalEvent.clientX;
+    const clientY = touch ? touch.clientY : originalEvent.clientY;
+
+    if (!Number.isFinite(clientX) || !Number.isFinite(clientY)) return null;
+    return { x: clientX - rect.left, y: clientY - rect.top };
+  }
+
+  function getPlaceFeatureFromEvent(e) {
+    const direct = Array.isArray(e?.features) ? e.features.find(f => f?.properties?.id) : null;
+    if (direct) return direct;
+
+    if (!MAP || typeof MAP.queryRenderedFeatures !== "function") return null;
+
+    const layers = PLACE_HIT_LAYERS.filter(hasLayer);
+    if (!layers.length) return null;
+
+    const point = e?.point || getPointFromOriginalEvent(e?.originalEvent);
+    if (!point) return null;
+
+    const features = MAP.queryRenderedFeatures(point, { layers });
+    return Array.isArray(features) ? features.find(f => f?.properties?.id) : null;
   }
 
   function bindPlaceLayerHandlers() {
-    if (!MAP || !MAP.getLayer(L_HIT)) return;
+    if (!MAP || !hasLayer(L_HIT)) return;
+
     if (MAP.__hgPlaceHandlers) {
       const prev = MAP.__hgPlaceHandlers;
       MAP.off("mouseenter", L_HIT, prev.setPointer);
       MAP.off("mouseleave", L_HIT, prev.clearPointer);
-      MAP.off("click", L_HIT, prev.handlePlaceClick);
-      MAP.off("touchend", L_HIT, prev.handlePlaceClick);
+      MAP.off("click", prev.handlePlaceClick);
+      MAP.off("touchend", prev.handlePlaceClick);
+      [L_HIT, L_DOTS, L_LAB].forEach((layerId) => {
+        if (!hasLayer(layerId)) return;
+        MAP.off("click", layerId, prev.handlePlaceClick);
+        MAP.off("touchend", layerId, prev.handlePlaceClick);
+      });
     }
 
-  const canvas = MAP.getCanvas();
+    const canvas = MAP.getCanvas();
 
-  const setPointer = () => {
-    canvas.style.cursor = "pointer";
-  };
+    const setPointer = () => {
+      canvas.style.cursor = "pointer";
+    };
 
-  const clearPointer = () => {
-    canvas.style.cursor = "";
-  };
+    const clearPointer = () => {
+      canvas.style.cursor = "";
+    };
 
-  const handlePlaceClick = (e) => {
-    let f = e?.features?.[0] || null;
+    const handlePlaceClick = (e) => {
+      const feature = getPlaceFeatureFromEvent(e);
+      const id = feature?.properties?.id;
+      if (!id) return;
 
-    if (!f && e?.point && typeof MAP?.queryRenderedFeatures === "function") {
-      const hits = MAP.queryRenderedFeatures(e.point, { layers: [L_HIT] });
-      f = Array.isArray(hits) ? (hits[0] || null) : null;
-    }
+      e?.preventDefault?.();
+      e?.originalEvent?.preventDefault?.();
+      e?.originalEvent?.stopPropagation?.();
 
-    const id = f?.properties?.id;
-    if (!id) return;
-
-    e?.originalEvent?.preventDefault?.();
-    e?.originalEvent?.stopPropagation?.();
-
-    onPlaceClick(id);
-  };
+      onPlaceClick(id);
+    };
 
     MAP.__hgPlaceHandlers = { setPointer, clearPointer, handlePlaceClick };
+
     MAP.on("mouseenter", L_HIT, setPointer);
     MAP.on("mouseleave", L_HIT, clearPointer);
-    MAP.on("click", L_HIT, handlePlaceClick);
-    MAP.on("touchend", L_HIT, handlePlaceClick);
+
+    MAP.on("click", handlePlaceClick);
+    MAP.on("touchend", handlePlaceClick);
+
+    [L_HIT, L_DOTS, L_LAB].forEach((layerId) => {
+      if (!hasLayer(layerId)) return;
+      MAP.on("click", layerId, handlePlaceClick);
+      MAP.on("touchend", layerId, handlePlaceClick);
+    });
   }
 
   function moveMarkersOnTop() {
     if (!MAP) return;
-    [L_GLOW, L_DOTS, L_HIT, L_LAB].forEach(id => {
+    [L_GLOW, L_DOTS, L_LAB, L_HIT].forEach(id => {
       if (MAP.getLayer(id)) MAP.moveLayer(id);
     });
   }
@@ -558,7 +574,6 @@
   function maybeDrawMarkers() { drawPlaceMarkers(); }
   function refreshMarkers() { drawPlaceMarkers(); }
 
-  // ---- expose ----
   window.HGMap = {
     initMap,
     getMap,
