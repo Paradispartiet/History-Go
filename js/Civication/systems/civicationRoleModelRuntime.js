@@ -38,6 +38,7 @@
     naer_controller: "controller",
     naer_finansanalytiker: "finansanalytiker",
     naer_okonomi_og_finanssjef: "okonomi_og_finanssjef",
+    naer_finansdirektor: "finansdirektor",
     naer_mellomleder: "mellomleder"
   };
 
@@ -54,6 +55,7 @@
     controller: "controller",
     finansanalytiker: "finansanalytiker",
     okonomi_og_finanssjef: "okonomi_og_finanssjef",
+    finansdirektor: "finansdirektor",
     mellomleder: "mellomleder"
   };
 
