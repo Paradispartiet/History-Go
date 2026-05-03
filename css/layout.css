@@ -8,6 +8,15 @@ body.hg-app{
   background: #000;
 }
 
+
+html.map-scroll-locked,
+body.hg-app.mode-map,
+body.hg-app.map-scroll-locked{
+  overflow: hidden;
+  height: 100%;
+  overscroll-behavior: none;
+}
+
 /* ============================================================
    APP CANVAS (Fixed Design Model)
    ============================================================ */

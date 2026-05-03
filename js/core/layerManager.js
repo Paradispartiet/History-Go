@@ -88,6 +88,24 @@ function hideEl(el) {
   }
 
   
+
+  function syncMapViewportLock(isMap) {
+    const docEl = document.documentElement;
+    const body = document.body;
+    if (!docEl || !body) return;
+
+    if (isMap) {
+      window.scrollTo(0, 0);
+      docEl.scrollTop = 0;
+      body.scrollTop = 0;
+      docEl.classList.add("map-scroll-locked");
+      body.classList.add("map-scroll-locked");
+    } else {
+      docEl.classList.remove("map-scroll-locked");
+      body.classList.remove("map-scroll-locked");
+    }
+  }
+
 function applyMode(mode) {
   state.mode = mode;
 
@@ -119,6 +137,7 @@ function applyMode(mode) {
   }
 
   document.body.classList.toggle("mode-map", isMap);
+  syncMapViewportLock(isMap);
 }
 
   
