@@ -1,0 +1,93 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "naeringsliv",
+  "role_scope": "finansdirektor",
+  "mail_type": "conflict",
+  "families": [
+    {
+      "id": "styre_og_eiere",
+      "description": "Konflikter der styre, eiere og daglig leder ønsker en sterkere kapitalfortelling enn risikoen tåler.",
+      "mails": [
+        {
+          "id": "finansdirektor_conflict_001",
+          "mail_type": "conflict",
+          "mail_family": "styre_og_eiere",
+          "role_scope": "finansdirektor",
+          "subject": "Eierne vil ha vekstfortellingen før finansieringen er trygg",
+          "summary": "Eierrepresentanten ønsker en sterk vekstpresentasjon, men finansieringen er ikke avklart.",
+          "purpose": "Simulere finansdirektørens konflikt mellom eierforventning og selskapets faktiske finansielle bæreevne.",
+          "stakes": "Hvis vekstfortellingen går foran finansieringsrisikoen, kan selskapet låse forventninger det ikke har kapitalrom til å innfri.",
+          "situation": [
+            "Eierrepresentanten ber om en tydelig vekstpresentasjon før neste eiermøte.",
+            "Du vet at finansieringen fortsatt ikke er landet. Rentenivået er høyere enn i forrige modell, og risikorommet er smalere enn styreutkastet antyder.",
+            "Daglig leder sier at organisasjonen trenger selvtillit. Du tenker at selvtillit uten finansiering ofte blir dyrt.",
+            "Du må velge om du støtter den sterke vekstfortellingen, eller krever at finansieringsrisikoen løftes inn i hovedbildet."
+          ],
+          "task_domain": "owner_communication",
+          "competency": "styre_og_eierkommunikasjon",
+          "pressure": "eierforventning",
+          "choice_axis": "kapitalfortelling_vs_baereevne",
+          "consequence_axis": "status_vs_tillit",
+          "narrative_arc": "markedets_forventning",
+          "learning_focus": ["eierkommunikasjon", "finansiering", "risiko", "kapitalfortelling"],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Krev at finansieringsrisikoen inngår i hovedpresentasjonen.",
+              "effect": 1,
+              "tags": ["integritet", "eierstyring", "risiko"],
+              "feedback": "Du gjør vekstfortellingen mindre salgbar, men mer troverdig. Eierne får se hva strategien faktisk hviler på."
+            },
+            {
+              "id": "B",
+              "label": "Støtt vekstfortellingen og legg finansieringsrisikoen i bakgrunnsmaterialet.",
+              "effect": -1,
+              "tags": ["visibility", "risk", "kapitalfortelling"],
+              "feedback": "Presentasjonen får kraft, men risikoen havner der få leser først. Du har gjort usikkerheten mindre synlig uten å gjøre den mindre reell."
+            }
+          ]
+        },
+        {
+          "id": "finansdirektor_conflict_002",
+          "mail_type": "conflict",
+          "mail_family": "styre_og_eiere",
+          "role_scope": "finansdirektor",
+          "subject": "Styreleder vil beslutte oppkjøpet før finansieringsrammen er klar",
+          "summary": "Styreleder vil ikke miste tempo i et oppkjøp, men finansieringsrammen mangler.",
+          "purpose": "Vise at finansdirektøren må beskytte beslutningskvalitet når transaksjonstempo presser styret fremover.",
+          "stakes": "En beslutning før finansieringen er klar kan gi posisjon, men også binde selskapet til forutsetninger som ikke finnes ennå.",
+          "situation": [
+            "Styreleder skriver at prosessen krever rask avklaring. Hvis dere venter for lenge, kan muligheten glippe.",
+            "Du har muntlige signaler, men ikke endelige vilkår. Finansieringen kan bli dyrere enn modellen forutsetter.",
+            "Oppkjøpet kan være riktig. Men riktig strategi med uavklart finansiering kan fortsatt bli feil beslutningstidspunkt.",
+            "Du må gi styret råd om de skal beslutte nå, eller vente på en tydeligere finansieringsramme."
+          ],
+          "task_domain": "transaction_governance",
+          "competency": "strategisk_risiko",
+          "pressure": "transaksjonsfrist",
+          "choice_axis": "momentum_vs_finansieringsklarhet",
+          "consequence_axis": "posisjon_vs_sarbarhet",
+          "narrative_arc": "beslutning_for_kapital",
+          "learning_focus": ["oppkjøp", "finansieringsramme", "styrebeslutning", "risiko"],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Anbefal betinget beslutning innenfor en definert risikoramme.",
+              "effect": 1,
+              "tags": ["governance", "risiko", "m_a"],
+              "feedback": "Du gir styret fremdrift uten å gi bort grensen. Beslutningen får vilkår, ikke bare vilje."
+            },
+            {
+              "id": "B",
+              "label": "Anbefal beslutning nå for å bevare posisjonen.",
+              "effect": -1,
+              "tags": ["tempo", "risk", "prestisje"],
+              "feedback": "Du bevarer momentum, men lar kapitalen komme etter strategien. Det kan bli dyrt hvis vilkårene strammer seg inn."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
