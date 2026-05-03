@@ -2,8 +2,8 @@
   {
     "id": "torggata",
     "name": "Torggata",
-    "lat": 59.91495,
-    "lon": 10.75218,
+    "lat": 59.9149,
+    "lon": 10.7519,
     "r": 220,
     "category": "by",
     "year": 1850,
@@ -52,12 +52,41 @@
     },
     "coordType": "street_midpoint",
     "coordStatus": "verified",
-    "coordSource": "osm_nominatim",
-    "coordSourceId": "way/24120540",
-    "coordSourceUrl": "https://nominatim.openstreetmap.org/ui/details.html?osmtype=W&osmid=24120540",
-    "coordPrecisionM": 20,
+    "coordSource": "manual_map_patch",
+    "coordSourceId": "Torggata street midpoint",
+    "coordSourceUrl": "",
+    "coordPrecisionM": 60,
     "coordVerifiedAt": "2026-05-03",
-    "coordNote": "Koordinat satt etter kildebasert retting av feilplassering."
+    "coordNote": "Koordinat satt etter eksplisitt koordinatpatch for feilplasserte Oslo-prikker.",
+    "anchors": [
+      {
+        "id": "torggata_sor",
+        "name": "Torggata sør",
+        "lat": 59.91375,
+        "lon": 10.74895,
+        "r": 90,
+        "type": "route_point",
+        "note": "Sørlig del av Torggata ved Youngstorget/Eldorado."
+      },
+      {
+        "id": "torggata_mid",
+        "name": "Torggata midt",
+        "lat": 59.91504,
+        "lon": 10.75326,
+        "r": 90,
+        "type": "route_point",
+        "note": "Midtre del av Torggata ved Torggata Blad-området."
+      },
+      {
+        "id": "torggata_nord",
+        "name": "Torggata nord",
+        "lat": 59.91615,
+        "lon": 10.7554,
+        "r": 90,
+        "type": "route_point",
+        "note": "Nordlig del av Torggata mot Hausmannsområdet."
+      }
+    ]
   },
   {
     "id": "bispelokket",
@@ -256,7 +285,7 @@
     "name": "Rådhusplassen",
     "lat": 59.9111,
     "lon": 10.7314,
-    "r": 220,
+    "r": 180,
     "category": "by",
     "year": 1950,
     "emne_ids": [
@@ -301,14 +330,22 @@
         "spikersuppa"
       ],
       "notes": "Skal spørres som åpen byscene med statlig og maritim bakside."
-    }
+    },
+    "coordType": "square_center",
+    "coordSource": "manual_map_patch",
+    "coordSourceId": "Rådhusplassen",
+    "coordSourceUrl": "",
+    "coordStatus": "verified",
+    "coordPrecisionM": 20,
+    "coordVerifiedAt": "2026-05-03",
+    "coordNote": "Koordinat satt etter eksplisitt koordinatpatch for feilplasserte Oslo-prikker."
   },
   {
     "id": "bjorvika",
     "name": "Bjørvika",
     "lat": 59.9075,
     "lon": 10.7531,
-    "r": 220,
+    "r": 250,
     "category": "by",
     "year": 2008,
     "emne_ids": [
@@ -353,7 +390,15 @@
         "sorenga"
       ],
       "notes": "Skal ikke bare spørres som ny bydel, men som modell for hele fjordbyprosjektet."
-    }
+    },
+    "coordType": "area_center",
+    "coordSource": "manual_map_patch",
+    "coordSourceId": "Bjørvika representative center",
+    "coordSourceUrl": "",
+    "coordStatus": "verified",
+    "coordPrecisionM": 60,
+    "coordVerifiedAt": "2026-05-03",
+    "coordNote": "Koordinat satt etter eksplisitt koordinatpatch for feilplasserte Oslo-prikker."
   },
   {
     "id": "ring_3",
@@ -743,9 +788,9 @@
   {
     "id": "oslo_s",
     "name": "Oslo S",
-    "lat": 59.911,
+    "lat": 59.9111,
     "lon": 10.7528,
-    "r": 200,
+    "r": 180,
     "category": "by",
     "year": 1980,
     "emne_ids": [
@@ -789,7 +834,15 @@
         "nationaltheatret_stasjon"
       ],
       "notes": "Skal spørres som systemisk byttemaskin og sosialt hovedrom samtidig."
-    }
+    },
+    "coordType": "building_center",
+    "coordSource": "manual_map_patch",
+    "coordSourceId": "Oslo S / Jernbanetorget station area",
+    "coordSourceUrl": "",
+    "coordStatus": "verified",
+    "coordPrecisionM": 20,
+    "coordVerifiedAt": "2026-05-03",
+    "coordNote": "Koordinat satt etter eksplisitt koordinatpatch for feilplasserte Oslo-prikker."
   },
   {
     "id": "vulkan_energisentral",
@@ -847,7 +900,7 @@
     "name": "Aker Brygge",
     "lat": 59.9097,
     "lon": 10.7256,
-    "r": 180,
+    "r": 190,
     "category": "by",
     "year": 1989,
     "emne_ids": [
@@ -891,7 +944,15 @@
         "tjuvholmen"
       ],
       "notes": "Skal spørres som pionercase for fjordby og kommersialisert offentlighet."
-    }
+    },
+    "coordType": "area_center",
+    "coordSource": "manual_map_patch",
+    "coordSourceId": "Aker Brygge area center",
+    "coordSourceUrl": "",
+    "coordStatus": "verified",
+    "coordPrecisionM": 60,
+    "coordVerifiedAt": "2026-05-03",
+    "coordNote": "Koordinat satt etter eksplisitt koordinatpatch for feilplasserte Oslo-prikker."
   },
   {
     "id": "tigeren",
@@ -1045,7 +1106,7 @@
     "name": "Jernbanetorget",
     "lat": 59.9111,
     "lon": 10.7528,
-    "r": 180,
+    "r": 170,
     "category": "by",
     "year": 1854,
     "emne_ids": [
@@ -1089,7 +1150,15 @@
         "radhusplassen"
       ],
       "notes": "Skal spørres som forplass og overgangsrom, ikke som nøytralt torg."
-    }
+    },
+    "coordType": "square_center",
+    "coordSource": "manual_map_patch",
+    "coordSourceId": "Jernbanetorget square center",
+    "coordSourceUrl": "",
+    "coordStatus": "verified",
+    "coordPrecisionM": 20,
+    "coordVerifiedAt": "2026-05-03",
+    "coordNote": "Koordinat satt etter eksplisitt koordinatpatch for feilplasserte Oslo-prikker."
   },
   {
     "id": "oslo_bussterminal",
@@ -1418,9 +1487,9 @@
   {
     "id": "storgata",
     "name": "Storgata",
-    "lat": 59.91467,
-    "lon": 10.7509,
-    "r": 260,
+    "lat": 59.9147,
+    "lon": 10.752,
+    "r": 220,
     "category": "by",
     "year": 1850,
     "emne_ids": [
@@ -1467,12 +1536,41 @@
     },
     "coordType": "street_midpoint",
     "coordStatus": "verified",
-    "coordSource": "osm_nominatim",
-    "coordSourceId": "way/4072317",
-    "coordSourceUrl": "https://nominatim.openstreetmap.org/ui/details.html?osmtype=W&osmid=4072317",
-    "coordPrecisionM": 20,
+    "coordSource": "manual_map_patch",
+    "coordSourceId": "Storgata street midpoint",
+    "coordSourceUrl": "",
+    "coordPrecisionM": 60,
     "coordVerifiedAt": "2026-05-03",
-    "coordNote": "Koordinat satt etter kildebasert retting av feilplassering."
+    "coordNote": "Koordinat satt etter eksplisitt koordinatpatch for feilplasserte Oslo-prikker.",
+    "anchors": [
+      {
+        "id": "storgata_vest",
+        "name": "Storgata vest",
+        "lat": 59.9136,
+        "lon": 10.7483,
+        "r": 90,
+        "type": "route_point",
+        "note": "Vestlig del av Storgata ved Domkirke/Youngstorget-sonen."
+      },
+      {
+        "id": "storgata_mid",
+        "name": "Storgata midt",
+        "lat": 59.9146,
+        "lon": 10.752,
+        "r": 90,
+        "type": "route_point",
+        "note": "Midtre del av Storgata."
+      },
+      {
+        "id": "storgata_ost",
+        "name": "Storgata øst",
+        "lat": 59.9153,
+        "lon": 10.756,
+        "r": 90,
+        "type": "route_point",
+        "note": "Østlig del av Storgata mot Brugata/Vaterland."
+      }
+    ]
   },
   {
     "id": "ullevål_hageby",
@@ -1802,7 +1900,7 @@
     "name": "Spikersuppa",
     "lat": 59.9139,
     "lon": 10.7391,
-    "r": 160,
+    "r": 150,
     "category": "by",
     "year": 1930,
     "emne_ids": [
@@ -1846,14 +1944,22 @@
         "bankplassen"
       ],
       "notes": "Skal spørres som liten scene med sterk årstidsrytme."
-    }
+    },
+    "coordType": "square_center",
+    "coordSource": "manual_map_patch",
+    "coordSourceId": "Spikersuppa / Eidsvolls plass",
+    "coordSourceUrl": "",
+    "coordStatus": "verified",
+    "coordPrecisionM": 20,
+    "coordVerifiedAt": "2026-05-03",
+    "coordNote": "Koordinat satt etter eksplisitt koordinatpatch for feilplasserte Oslo-prikker."
   },
   {
     "id": "bankplassen",
     "name": "Bankplassen",
     "lat": 59.9077,
     "lon": 10.7419,
-    "r": 150,
+    "r": 130,
     "category": "by",
     "year": 1800,
     "emne_ids": [
@@ -1897,14 +2003,22 @@
         "spikersuppa"
       ],
       "notes": "Skal spørres som konsentrert historierom i tett sentrum."
-    }
+    },
+    "coordType": "square_center",
+    "coordSource": "manual_map_patch",
+    "coordSourceId": "Bankplassen",
+    "coordSourceUrl": "",
+    "coordStatus": "verified",
+    "coordPrecisionM": 20,
+    "coordVerifiedAt": "2026-05-03",
+    "coordNote": "Koordinat satt etter eksplisitt koordinatpatch for feilplasserte Oslo-prikker."
   },
   {
     "id": "christiania_torv",
     "name": "Christiania Torv",
     "lat": 59.9074,
     "lon": 10.741,
-    "r": 150,
+    "r": 130,
     "category": "by",
     "year": 1648,
     "emne_ids": [
@@ -1948,7 +2062,15 @@
         "toyen_torg"
       ],
       "notes": "Skal spørres som planhistorisk kjerne, ikke bare som uteserveringsplass."
-    }
+    },
+    "coordType": "square_center",
+    "coordSource": "manual_map_patch",
+    "coordSourceId": "Christiania Torv",
+    "coordSourceUrl": "",
+    "coordStatus": "verified",
+    "coordPrecisionM": 20,
+    "coordVerifiedAt": "2026-05-03",
+    "coordNote": "Koordinat satt etter eksplisitt koordinatpatch for feilplasserte Oslo-prikker."
   },
   {
     "id": "slottsparken",
@@ -1999,7 +2121,15 @@
         "vigelandsparken"
       ],
       "notes": "Skal spørres som landskapsramme rundt makt, ikke bare som park."
-    }
+    },
+    "coordType": "park_center",
+    "coordSource": "manual_map_patch",
+    "coordSourceId": "Slottsparken area center",
+    "coordSourceUrl": "",
+    "coordStatus": "verified",
+    "coordPrecisionM": 20,
+    "coordVerifiedAt": "2026-05-03",
+    "coordNote": "Koordinat satt etter eksplisitt koordinatpatch for feilplasserte Oslo-prikker."
   },
   {
     "id": "botsparken",
@@ -2157,9 +2287,9 @@
   {
     "id": "tjuvholmen",
     "name": "Tjuvholmen",
-    "lat": 59.9066,
-    "lon": 10.7221,
-    "r": 190,
+    "lat": 59.9075,
+    "lon": 10.72,
+    "r": 200,
     "category": "by",
     "year": 2010,
     "emne_ids": [
@@ -2224,15 +2354,19 @@
     },
     "coordType": "area_center",
     "coordStatus": "verified",
-    "coordSource": "manual_map_check",
-    "coordVerifiedAt": "2026-04-30"
+    "coordSource": "manual_map_patch",
+    "coordVerifiedAt": "2026-05-03",
+    "coordSourceId": "Tjuvholmen area center",
+    "coordSourceUrl": "",
+    "coordPrecisionM": 60,
+    "coordNote": "Koordinat satt etter eksplisitt koordinatpatch for feilplasserte Oslo-prikker."
   },
   {
     "id": "sorenga",
     "name": "Sørenga",
     "lat": 59.9029,
     "lon": 10.7586,
-    "r": 200,
+    "r": 220,
     "category": "by",
     "year": 2015,
     "emne_ids": [
@@ -2277,7 +2411,15 @@
         "bjorvika"
       ],
       "notes": "Skal spørres som badebydel, ikke bare som ny fjordbolig."
-    }
+    },
+    "coordType": "area_center",
+    "coordSource": "manual_map_patch",
+    "coordSourceId": "Sørenga area center",
+    "coordSourceUrl": "",
+    "coordStatus": "verified",
+    "coordPrecisionM": 60,
+    "coordVerifiedAt": "2026-05-03",
+    "coordNote": "Koordinat satt etter eksplisitt koordinatpatch for feilplasserte Oslo-prikker."
   },
   {
     "id": "majorstuen_tbanestasjon",
@@ -2726,9 +2868,9 @@
   {
     "id": "deichman_bjorvika",
     "name": "Deichman Bjørvika",
-    "lat": 59.90782,
-    "lon": 10.75457,
-    "r": 120,
+    "lat": 59.9079,
+    "lon": 10.7541,
+    "r": 130,
     "category": "by",
     "year": 2020,
     "emne_ids": [
@@ -2788,15 +2930,19 @@
     },
     "coordType": "building_center",
     "coordStatus": "verified",
-    "coordSource": "manual_map_check",
-    "coordVerifiedAt": "2026-04-30"
+    "coordSource": "manual_map_patch",
+    "coordVerifiedAt": "2026-05-03",
+    "coordSourceId": "Deichman Bjørvika",
+    "coordSourceUrl": "",
+    "coordPrecisionM": 20,
+    "coordNote": "Koordinat satt etter eksplisitt koordinatpatch for feilplasserte Oslo-prikker."
   },
   {
     "id": "barcode",
     "name": "Barcode",
-    "lat": 59.9101,
-    "lon": 10.758,
-    "r": 240,
+    "lat": 59.9093,
+    "lon": 10.7539,
+    "r": 180,
     "category": "by",
     "year": 2016,
     "emne_ids": [
@@ -2861,8 +3007,12 @@
     },
     "coordType": "area_center",
     "coordStatus": "verified",
-    "coordSource": "manual_map_check",
-    "coordVerifiedAt": "2026-04-30"
+    "coordSource": "manual_map_patch",
+    "coordVerifiedAt": "2026-05-03",
+    "coordSourceId": "Barcode Bjørvika",
+    "coordSourceUrl": "",
+    "coordPrecisionM": 60,
+    "coordNote": "Koordinat satt etter eksplisitt koordinatpatch for feilplasserte Oslo-prikker."
   },
   {
     "id": "vigelandsparken",
