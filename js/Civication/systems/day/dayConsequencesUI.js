@@ -98,15 +98,15 @@
     const style = document.createElement("style");
     style.id = "civiConsequencesStyle";
     style.textContent = `
-      .civi-cons-box{margin:0 0 12px 0;padding:12px;border:1px solid rgba(0,0,0,.12);border-radius:12px;background:rgba(255,255,255,.7)}
-      .civi-cons-head{font-weight:700;margin-bottom:8px}
-      .civi-cons-subhead{font-size:12px;opacity:.7;margin:10px 0 6px}
+      .civi-cons-box{margin:0 0 12px 0;padding:12px;border:1px solid rgba(255,255,255,.11);border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,.075),rgba(255,255,255,.045));color:rgba(255,255,255,.92);box-shadow:inset 0 1px 0 rgba(255,255,255,.06)}
+      .civi-cons-head{font-weight:800;margin-bottom:8px;color:rgba(255,255,255,.96)}
+      .civi-cons-subhead{font-size:12px;color:rgba(214,170,58,.82);margin:10px 0 6px}
       .civi-cons-row,.civi-cons-stats{display:flex;flex-wrap:wrap;gap:8px}
-      .civi-cons-chip,.civi-cons-flag{display:inline-flex;padding:4px 8px;border-radius:999px;font-size:12px;border:1px solid rgba(0,0,0,.12);background:#fff}
-      .civi-cons-chip.pos{background:rgba(50,140,80,.10)}
-      .civi-cons-chip.neg{background:rgba(180,70,70,.10)}
-      .civi-cons-muted{font-size:12px;opacity:.7}
-      .civi-cons-stats span{font-size:12px;padding:4px 8px;border-radius:8px;background:rgba(255,255,255,.85);border:1px solid rgba(0,0,0,.08)}
+      .civi-cons-chip,.civi-cons-flag{display:inline-flex;padding:4px 8px;border-radius:999px;font-size:12px;border:1px solid rgba(255,255,255,.13);background:rgba(255,255,255,.07);color:rgba(255,255,255,.82)}
+      .civi-cons-chip.pos{background:rgba(95,184,121,.14);border-color:rgba(95,184,121,.28);color:rgba(210,255,222,.92)}
+      .civi-cons-chip.neg{background:rgba(217,130,130,.14);border-color:rgba(217,130,130,.28);color:rgba(255,213,213,.92)}
+      .civi-cons-muted{font-size:12px;color:rgba(255,255,255,.62)}
+      .civi-cons-stats span{font-size:12px;padding:4px 8px;border-radius:8px;background:rgba(255,255,255,.065);border:1px solid rgba(255,255,255,.11);color:rgba(255,255,255,.78)}
     `;
     document.head.appendChild(style);
   }
