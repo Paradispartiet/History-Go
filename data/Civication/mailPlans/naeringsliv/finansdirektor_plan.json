@@ -1,0 +1,85 @@
+{
+  "schema": "civication_mail_plan_v1",
+  "version": 1,
+  "id": "finansdirektor_naeringsliv_v1",
+  "category": "naeringsliv",
+  "role_scope": "finansdirektor",
+  "title": "Finansdirektør",
+  "description": "Dramaturgisk plan for Finansdirektør: fra kapitalstruktur og finansiering til styre, eiere, bank, oppkjøp og strategisk risiko.",
+  "arc": {
+    "from": "En finansleder som overtar ansvar for selskapets kapitalstruktur, finansieringsstrategi og eksterne tillit.",
+    "to": "En finansdirektør som forstår at kapital ikke bare finansierer strategi, men bestemmer hvor mye risiko selskapet kan bære.",
+    "core_questions": [
+      "Hvor mye risiko tåler selskapet for å vokse?",
+      "Når er finansiering handlingsrom, og når blir den skjørhet?",
+      "Hva må styret, banken og eierne se før de kan stole på kapitalstrategien?",
+      "Når er et oppkjøp strategisk verdi, og når er det prestisje forkledd som vekst?"
+    ]
+  },
+  "sequence": [
+    {
+      "step": 1,
+      "type": "job",
+      "phase": "intro",
+      "step_goal": "Etablere finansdirektørrollen gjennom første kapitalstrategi og ansvar for selskapets finansielle handlingsrom.",
+      "allowed_families": ["finansdirektor_intro_v2"],
+      "fallback_types": ["job", "conflict", "story"]
+    },
+    {
+      "step": 2,
+      "type": "job",
+      "phase": "early",
+      "step_goal": "La spilleren vurdere kapitalstruktur, gjeld, egenkapital, buffer og vekstambisjon.",
+      "allowed_families": ["kapitalstruktur_og_finansiering"],
+      "fallback_types": ["event", "conflict", "story"]
+    },
+    {
+      "step": 3,
+      "type": "event",
+      "phase": "early",
+      "step_goal": "Utløse bank- eller refinansieringshendelse som tester tidlig varsling og troverdighet.",
+      "allowed_families": ["bank_og_refinansiering"],
+      "fallback_types": ["job", "conflict", "story"]
+    },
+    {
+      "step": 4,
+      "type": "conflict",
+      "phase": "mid",
+      "step_goal": "Konfrontere spilleren med styre/eierpress om vekstfortelling versus finansiell bæreevne.",
+      "allowed_families": ["styre_og_eiere"],
+      "fallback_types": ["job", "event", "story"]
+    },
+    {
+      "step": 5,
+      "type": "job",
+      "phase": "mid",
+      "step_goal": "Gi ansvar for oppkjøps-/investeringsvurdering der strategisk verdi må skilles fra prestisje.",
+      "allowed_families": ["oppkjop_og_investering"],
+      "fallback_types": ["conflict", "event", "story"]
+    },
+    {
+      "step": 6,
+      "type": "event",
+      "phase": "advanced",
+      "step_goal": "La rente, covenant eller bankvilkår endre kapitalrommet og teste beredskap.",
+      "allowed_families": ["bank_og_refinansiering", "kapitalstruktur_og_finansiering"],
+      "fallback_types": ["conflict", "job", "story"]
+    },
+    {
+      "step": 7,
+      "type": "conflict",
+      "phase": "mastery",
+      "step_goal": "Teste om finansdirektøren beskytter selskapets bæreevne når styret eller eierne ønsker en penere kapitalfortelling.",
+      "allowed_families": ["styre_og_eiere"],
+      "fallback_types": ["job", "event", "story"]
+    },
+    {
+      "step": 8,
+      "type": "story",
+      "phase": "climax",
+      "step_goal": "Avrunde rollen som finansdirektør: kapital, risiko, tillit og strategisk ansvar som samlet ledelsesform.",
+      "allowed_families": ["finansdirektor_identitet"],
+      "fallback_types": ["event", "conflict", "job"]
+    }
+  ]
+}
