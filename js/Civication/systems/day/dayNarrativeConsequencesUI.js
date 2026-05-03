@@ -141,12 +141,12 @@
     const style = document.createElement("style");
     style.id = "civiNarrativeConsequencesStyle";
     style.textContent = `
-      .civi-narr-box{margin:0 0 12px 0;padding:12px 14px;border:1px solid rgba(0,0,0,.12);border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,.92),rgba(248,248,248,.82))}
-      .civi-narr-head{font-size:12px;letter-spacing:.04em;text-transform:uppercase;opacity:.65;margin-bottom:6px}
-      .civi-narr-title{font-weight:700;margin-bottom:8px}
+      .civi-narr-box{margin:0 0 12px 0;padding:12px 14px;border:1px solid rgba(255,255,255,.11);border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,.075),rgba(255,255,255,.045));color:rgba(255,255,255,.92);box-shadow:inset 0 1px 0 rgba(255,255,255,.06)}
+      .civi-narr-head{font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:rgba(214,170,58,.88);margin-bottom:6px}
+      .civi-narr-title{font-weight:800;margin-bottom:8px;color:rgba(255,255,255,.96)}
       .civi-narr-lines{display:flex;flex-direction:column;gap:6px}
-      .civi-narr-line{font-size:14px;line-height:1.35}
-      .civi-narr-muted{font-size:13px;opacity:.7}
+      .civi-narr-line{font-size:14px;line-height:1.35;color:rgba(255,255,255,.78)}
+      .civi-narr-muted{font-size:13px;color:rgba(255,255,255,.62)}
     `;
     document.head.appendChild(style);
   }
