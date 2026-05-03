@@ -103,7 +103,6 @@ function renderNearbyPlaces() {
 
   // 🔹 SORT
   items.sort((a, b) => (a._d ?? 1e12) - (b._d ?? 1e12));
-  items = items.slice(0, 100);
 
   listEl.innerHTML = "";
 
