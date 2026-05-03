@@ -1,7 +1,7 @@
 // ============================================================
 // CIVICATION MINI SECTIONS UI
 // Civication Home:
-// - Forsiden viser livsområder, kort status og én handlingsknapp.
+// - Forsiden viser livsområder, rik status og viktigste handling.
 // - Mail/Inbox vises ikke som eget kort; det brukes som global "Krever svar".
 // - Fullt innhold og alle valg åpnes i mørk popup.
 // - Ingen state-mutasjon: kun DOM-struktur og presentasjon.
@@ -34,10 +34,14 @@
       },
       details: function () {
         const active = window.CivicationState?.getActivePosition?.() || {};
+        const wallet = firstText("civiDashWallet");
+        const income = firstText("civiDashIncome");
         return [
+          active.brand_name ? `Arbeidssted: ${active.brand_name}` : null,
           active.workplace ? `Arbeidssted: ${active.workplace}` : null,
-          active.weekly_income ? `Ukeinntekt: ${active.weekly_income}` : null,
-          active.status ? `Status: ${active.status}` : null
+          income && income !== "Ingen ukeinntekt" ? income : null,
+          wallet && wallet !== "0 PC" ? `Saldo: ${wallet}` : null,
+          active.status ? `Jobbstatus: ${active.status}` : null
         ];
       }
     },
@@ -62,6 +66,18 @@
         if (ev?.subject) return String(ev.subject);
         const active = window.CivicationState?.getActivePosition?.();
         return active ? "Arbeidsdag, oppgaver og kontraktspress." : "Ingen arbeidsdag uten aktiv rolle.";
+      },
+      details: function () {
+        const split = splitInbox();
+        const workday = (split.workday || []).filter(function (item) { return item && item.status === "pending"; });
+        const active = window.CivicationState?.getActivePosition?.() || null;
+        const first = workday[0]?.event || workday[0] || null;
+        return [
+          active?.title ? `Rolle: ${active.title}` : null,
+          workday.length ? `Ventende arbeidsvalg: ${workday.length}` : null,
+          first?.pressure ? `Press: ${Array.isArray(first.pressure) ? first.pressure.join(", ") : first.pressure}` : null,
+          first?.task_domain ? `Domene: ${String(first.task_domain).replace(/_/g, " ")}` : null
+        ];
       }
     },
 
@@ -127,6 +143,15 @@
       urgentAction: "Fortsett",
       summary: function () {
         return firstText("civiOnboardingPanel") || "Neste anbefalte Civication-steg.";
+      },
+      details: function () {
+        const host = document.getElementById("civiOnboardingPanel");
+        const buttons = host ? host.querySelectorAll("button:not([disabled])").length : 0;
+        return [
+          buttons ? `Mulige valg: ${buttons}` : null,
+          hasBodyAction("civiOnboardingSection") ? "Handling tilgjengelig" : null,
+          firstText("civiDashFocus") ? `Fokus: ${firstText("civiDashFocus")}` : null
+        ];
       }
     },
 
@@ -139,16 +164,22 @@
       empty: "Kapitalverdier ikke beregnet ennå.",
       action: "Se kapital",
       summary: function () {
-        const values = [
-          ["Øk", textOf("capEconomic")],
-          ["Kul", textOf("capCultural")],
-          ["Sos", textOf("capSocial")],
-          ["Sym", textOf("capSymbolic")],
-          ["Pol", textOf("capPolitical")]
-        ].filter(function (pair) { return pair[1] && pair[1] !== "—"; });
-
+        const values = capitalPairs().filter(function (pair) { return pair.value && pair.value !== "—"; });
         if (!values.length) return "Kapitalverdier ikke beregnet ennå.";
-        return values.map(function (pair) { return `${pair[0]} ${pair[1]}`; }).join(" · ");
+        return values.map(function (pair) { return `${pair.short} ${pair.value}`; }).join(" · ");
+      },
+      details: function () {
+        const values = capitalPairs().filter(function (pair) { return pair.value && pair.value !== "—"; });
+        const ranked = values
+          .map(function (pair) { return { ...pair, num: Number(String(pair.value).replace(",", ".")) }; })
+          .filter(function (pair) { return Number.isFinite(pair.num); })
+          .sort(function (a, b) { return b.num - a.num; });
+
+        return [
+          ranked[0] ? `Sterkest: ${ranked[0].label}` : null,
+          ranked.length > 1 ? `Svakest: ${ranked[ranked.length - 1].label}` : null,
+          values.length ? `Kapitalfelt: ${values.length}/5 aktive` : null
+        ];
       }
     },
 
@@ -168,8 +199,9 @@
       },
       details: function () {
         return [
-          `Selvstendighet: ${textOf("psyAutonomy") || "—"}`,
-          `Tillit: ${textOf("psyTrust") || "—"}`,
+          validText("psyIntegrity") ? `Integritet: ${textOf("psyIntegrity")}` : null,
+          validText("psyVisibility") ? `Synlighet: ${textOf("psyVisibility")}` : null,
+          validText("psyEconomic") ? `Handlingsrom: ${textOf("psyEconomic")}` : null,
           textOf("psyBurnout") ? `Burnout/stress: ${textOf("psyBurnout")}` : null
         ];
       }
@@ -185,6 +217,15 @@
       action: "Se identitet",
       summary: function () {
         return firstText("identityDominant") || "Identitet og hvordan du blir oppfattet.";
+      },
+      details: function () {
+        const compass = firstText("identityCompass");
+        const perception = firstText("identityPerception");
+        return [
+          compass ? `Kompass: ${compass}` : null,
+          perception ? `Persepsjon: ${perception}` : null,
+          document.getElementById("identityPerceptionBtn") ? "Kan vise hvordan andre oppfatter deg" : null
+        ];
       }
     },
 
@@ -197,6 +238,15 @@
       action: "Åpne offentlig",
       summary: function () {
         return firstText("civiPublicFeed") || "Ingen offentlig feed akkurat nå.";
+      },
+      details: function () {
+        const host = document.getElementById("civiPublicFeed");
+        const count = host ? host.children.length : 0;
+        return [
+          count ? `Offentlige elementer: ${count}` : null,
+          hasBodyAction("civiPublicFeedSection") ? "Handling tilgjengelig" : null,
+          count ? "Påvirker synlighet og omdømme" : null
+        ];
       }
     },
 
@@ -213,6 +263,15 @@
       },
       summary: function () {
         return firstText("civiDebatePanel") || "Ingen aktiv debatt.";
+      },
+      details: function () {
+        const host = document.getElementById("civiDebatePanel");
+        const buttons = host ? host.querySelectorAll("button:not([disabled])").length : 0;
+        return [
+          buttons ? `Svarvalg: ${buttons}` : null,
+          hasBodyAction("civiDebateSection") ? "Debatt krever valg" : null,
+          host?.children?.length ? `Debattelementer: ${host.children.length}` : null
+        ];
       }
     },
 
@@ -229,6 +288,15 @@
       },
       summary: function () {
         return firstText("civiPeoplePanel") || "Ingen aktive møter.";
+      },
+      details: function () {
+        const host = document.getElementById("civiPeoplePanel");
+        const buttons = host ? host.querySelectorAll("button:not([disabled])").length : 0;
+        return [
+          host?.children?.length ? `Møter/elementer: ${host.children.length}` : null,
+          buttons ? `Mulige svar: ${buttons}` : null,
+          hasBodyAction("civiPeopleSection") ? "Relasjon krever valg" : null
+        ];
       }
     },
 
@@ -241,6 +309,16 @@
       action: "Åpne butikk",
       summary: function () {
         return firstText("civiStorePanel") || "Ingen åpne butikker eller pakker.";
+      },
+      details: function () {
+        const host = document.getElementById("civiStorePanel");
+        const wallet = firstText("civiDashWallet");
+        const buttons = host ? host.querySelectorAll("button:not([disabled])").length : 0;
+        return [
+          wallet ? `PC: ${wallet}` : null,
+          host?.children?.length ? `Tilbud/elementer: ${host.children.length}` : null,
+          buttons ? `Kjøpsvalg: ${buttons}` : null
+        ];
       }
     },
 
@@ -256,6 +334,14 @@
         const progress = firstText("civiTrackProgress");
         if (!name || name === "–" || name === "-") return "Ingen aktiv retning.";
         return progress && progress !== "–" ? `${name} · ${progress}` : name;
+      },
+      details: function () {
+        const tags = firstText("civiTrackTags");
+        return [
+          validText("civiTrackProgress") ? `Fremdrift: ${firstText("civiTrackProgress")}` : null,
+          tags ? `Tagger: ${tags}` : null,
+          validText("civiTrackName") ? "Karriereretning aktiv" : null
+        ];
       }
     }
   };
@@ -316,6 +402,53 @@
     const el = document.getElementById(id);
     if (!el) return "";
     return String(el.textContent || "").replace(/\s+/g, " ").trim().slice(0, 140);
+  }
+
+  function validText(id) {
+    const value = textOf(id);
+    return !!value && value !== "—" && value !== "–" && value !== "-";
+  }
+
+  function capitalPairs() {
+    return [
+      { short: "Øk", label: "Økonomisk", value: textOf("capEconomic") },
+      { short: "Kul", label: "Kulturell", value: textOf("capCultural") },
+      { short: "Sos", label: "Sosial", value: textOf("capSocial") },
+      { short: "Sym", label: "Symbolsk", value: textOf("capSymbolic") },
+      { short: "Pol", label: "Politisk", value: textOf("capPolitical") }
+    ];
+  }
+
+  function normalizeUiLine(value) {
+    return String(value || "")
+      .toLowerCase()
+      .replace(/[•·:;,.!?()[\]{}"'«»]/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+  }
+
+  function uniqueDetailLines(lines, summary) {
+    const out = [];
+    const seen = new Set();
+    const summaryNorm = normalizeUiLine(summary);
+
+    (Array.isArray(lines) ? lines : []).forEach(function (line) {
+      const text = String(line || "").replace(/\s+/g, " ").trim();
+      const norm = normalizeUiLine(text);
+      if (!text || !norm || seen.has(norm)) return;
+
+      const duplicateOfSummary = summaryNorm && norm.length > 5 && (
+        norm === summaryNorm ||
+        summaryNorm.includes(norm) ||
+        norm.includes(summaryNorm)
+      );
+      if (duplicateOfSummary) return;
+
+      seen.add(norm);
+      out.push(text);
+    });
+
+    return out.slice(0, 4);
   }
 
   function resolveSection(key, config) {
@@ -709,7 +842,7 @@
       const detailLines = (() => {
         try {
           const lines = typeof config.details === "function" ? config.details() : [];
-          return Array.isArray(lines) ? lines.filter(Boolean).slice(0, 4).map(function (line) { return String(line); }) : [];
+          return uniqueDetailLines(lines, summary);
         } catch {
           return [];
         }
