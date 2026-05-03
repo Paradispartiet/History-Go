@@ -265,8 +265,48 @@ try {
 // --- PEOPLE LIST ---
 if (peopleEl) {
   const popupPersons = Array.isArray(persons) ? persons : [];
+  const personIdsInList = new Set(popupPersons.map(p => String(p?.id || "").trim()).filter(Boolean));
 
-  const peopleHtml = popupPersons
+  const relationPeopleById = new Map();
+  const relationTextRows = [];
+
+  const placeRels = (typeof getRelationsForPlace === "function") ? getRelationsForPlace(place.id) : [];
+  const curatedPlaceRels = (typeof filterCuratedRels === "function") ? filterCuratedRels(placeRels) : placeRels;
+
+  curatedPlaceRels.forEach(r => {
+    const personIds = (typeof getPersonIdsFromRel === "function")
+      ? getPersonIdsFromRel(r)
+      : [];
+
+    let hadKnownPerson = false;
+
+    personIds.forEach(pid => {
+      const id = String(pid || "").trim();
+      if (!id) return;
+
+      const personObj = PEOPLE_LIST.find(p => String(p?.id || "").trim() === id);
+      if (personObj) {
+        hadKnownPerson = true;
+        if (!personIdsInList.has(id)) {
+          relationPeopleById.set(id, personObj);
+        }
+      }
+    });
+
+    if (!hadKnownPerson) {
+      const type = String(r?.type || r?.rel || r?.kind || "relasjon").trim();
+      const why = String(r?.why || r?.reason || r?.desc || r?.note || "").trim();
+      const label = String(r?.label || r?.title || r?.name || "").trim();
+      const text = [type, label, why].filter(Boolean).join(" – ");
+      if (text) relationTextRows.push(text);
+    }
+  });
+
+  const relationPeople = [...relationPeopleById.values()];
+  const uniqueRelationTexts = [...new Set(relationTextRows)];
+  const allPeopleRows = [...popupPersons, ...relationPeople];
+
+  const peopleHtml = allPeopleRows
     .map(p => {
       const personDesc = String(p.popupdesc || p.desc || "").trim();
 
@@ -285,7 +325,18 @@ if (peopleEl) {
     })
     .join("");
 
-  peopleEl.innerHTML = peopleHtml || `<div class="pc-empty">Ingen personer ennå</div>`;
+  const relationTextHtml = uniqueRelationTexts.length
+    ? `
+      <div class="pc-people-reltext">
+        ${uniqueRelationTexts.map(t => `<div class="pc-rel-text">${t}</div>`).join("")}
+      </div>
+    `
+    : "";
+
+  peopleEl.innerHTML =
+    (peopleHtml || relationTextHtml)
+      ? `${peopleHtml}${relationTextHtml}`
+      : `<div class="pc-empty">Ingen personer ennå</div>`;
 
   peopleEl.querySelectorAll("[data-person]").forEach(btn => {
     btn.onclick = () => {
@@ -493,15 +544,8 @@ if (wonderkammerEl) {
     `
     : "";
 
-  const wkRelationsHtml =
-    (typeof window.wonderChambersForPlace === "function")
-      ? window.wonderChambersForPlace(place)
-      : "";
-
   wonderkammerEl.innerHTML =
-    (wkEntriesHtml || wkRelationsHtml)
-      ? `${wkEntriesHtml}${wkRelationsHtml}`
-      : `<div class="pc-empty">Ingen Wonderkammer-koblinger ennå</div>`;
+    wkEntriesHtml || `<div class="pc-empty">Ingen Wonderkammer-koblinger ennå</div>`;
 
   wonderkammerEl.querySelectorAll("[data-wk]").forEach(btn => {
     btn.onclick = () => {
@@ -518,10 +562,7 @@ if (wonderkammerEl) {
     };
   });
 
-  const wkCount =
-    wonderkammerEl.querySelectorAll("[data-wk]").length ||
-    wonderkammerEl.querySelectorAll(".hg-rel-link").length ||
-    0;
+  const wkCount = wonderkammerEl.querySelectorAll("[data-wk]").length || 0;
 
   setRoundLabel(wonderkammerIcon, "🗃️", wkCount);
 }
