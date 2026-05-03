@@ -1,13 +1,13 @@
 # Place coordinate verification status
 
-Generert: 2026-05-02
+Generert: 2026-05-03
 
 | file | id | name | category | lat | lon | r | coordStatus | coordSource | coordVerifiedAt | anchors | verificationTrust | problem | note |
 |---|---|---|---|---:|---:|---:|---|---|---|---|---|---|---|
 | data/places/by/oslo/places_by.json | torggata | Torggata | by | 59.9145 | 10.7539 | 180 |  |  |  |  | unverified | source_missing |  |
 | data/places/by/oslo/places_by.json | bispelokket | Bispelokket / Trafikkmaskinen | by | 59.9078 | 10.7538 | 220 |  |  |  |  | unverified | source_missing |  |
 | data/places/by/oslo/places_by.json | gronland_basarene | Grønland basarene | by | 59.9128 | 10.7645 | 160 |  |  |  |  | unverified | source_missing |  |
-| data/places/by/oslo/places_by.json | karl_johan | Karl Johans gate | by | 59.9139 | 10.7396 | 260 | verified | manual_map_check | 2026-05-01 | yes(3) | claimed_verified_no_source | likely_guessed |  |
+| data/places/by/oslo/places_by.json | karl_johan | Karl Johans gate | by | 59.9139 | 10.7396 | 260 | verified | manual_map_check | 2026-05-01 | yes(3) | claimed_verified_no_source | source_missing |  |
 | data/places/by/oslo/places_by.json | radhusplassen | Rådhusplassen | by | 59.9111 | 10.7314 | 220 |  |  |  |  | unverified | source_missing |  |
 | data/places/by/oslo/places_by.json | bjorvika | Bjørvika | by | 59.9075 | 10.7531 | 220 |  |  |  |  | unverified | source_missing |  |
 | data/places/by/oslo/places_by.json | ring_3 | Ring 3 | by | 59.931 | 10.792 | 400 | semantic_anchor | manual_map_check | 2026-05-01 | yes(3) | unverified | too_rounded |  |
@@ -15,7 +15,7 @@ Generert: 2026-05-02
 | data/places/by/oslo/places_by.json | grunerlokka_helgesens_tm | Grünerløkka – Helgesens / Thorvald Meyers | by | 59.9237 | 10.7576 | 220 |  |  |  |  | unverified | source_missing |  |
 | data/places/by/oslo/places_by.json | toyen_torg | Tøyen torg | by | 59.9154 | 10.7765 | 170 |  |  |  |  | unverified | source_missing |  |
 | data/places/by/oslo/places_by.json | majorstuen_krysset | Majorstuen krysset | by | 59.9295 | 10.7146 | 200 |  |  |  |  | unverified | source_missing |  |
-| data/places/by/oslo/places_by.json | st_hanshaugen_park | St. Hanshaugen park | by | 59.9234 | 10.7463 | 220 |  |  |  |  | needs_manual_visual_qa | wrong_location_reported_by_user | Bruker rapporterte feil plassering i kart. Må verifiseres visuelt før eventuell retting. |
+| data/places/by/oslo/places_by.json | st_hanshaugen_park | St. Hanshaugen park | by | 59.9271056 | 10.7410611 | 220 | verified | wikidata | 2026-05-02 |  | needs_manual_visual_qa | wrong_location_reported_by_user | Bruker rapporterte mulig feil plassering. Krever manuell kartkontroll før retting. |
 | data/places/by/oslo/places_by.json | oslo_s | Oslo S | by | 59.911 | 10.7528 | 200 |  |  |  |  | unverified | too_rounded |  |
 | data/places/by/oslo/places_by.json | vulkan_energisentral | Vulkan energisentral | by | 59.9233 | 10.7518 | 140 |  |  |  |  | unverified | source_missing |  |
 | data/places/by/oslo/places_by.json | aker_brygge | Aker Brygge | by | 59.9097 | 10.7256 | 180 |  |  |  |  | unverified | source_missing |  |
@@ -25,11 +25,11 @@ Generert: 2026-05-02
 | data/places/by/oslo/places_by.json | jernbanetorget | Jernbanetorget | by | 59.9111 | 10.7528 | 180 |  |  |  |  | unverified | source_missing |  |
 | data/places/by/oslo/places_by.json | oslo_bussterminal | Oslo bussterminal | by | 59.9095 | 10.759 | 180 |  |  |  |  | unverified | too_rounded |  |
 | data/places/by/oslo/places_by.json | helsfyr | Helsfyr | by | 59.9139 | 10.8015 | 200 |  |  |  |  | unverified | source_missing |  |
-| data/places/by/oslo/places_by.json | bogstadveien | Bogstadveien | by | 59.9239 | 10.7148 | 280 | verified | manual_map_check | 2026-05-01 | yes(3) | claimed_verified_no_source | likely_guessed |  |
-| data/places/by/oslo/places_by.json | markveien | Markveien | by | 59.9226 | 10.7578 | 240 | verified | manual_map_check | 2026-05-01 | yes(3) | claimed_verified_no_source | likely_guessed |  |
+| data/places/by/oslo/places_by.json | bogstadveien | Bogstadveien | by | 59.9239 | 10.7148 | 280 | verified | manual_map_check | 2026-05-01 | yes(3) | claimed_verified_no_source | source_missing |  |
+| data/places/by/oslo/places_by.json | markveien | Markveien | by | 59.9226 | 10.7578 | 240 | verified | manual_map_check | 2026-05-01 | yes(3) | claimed_verified_no_source | source_missing |  |
 | data/places/by/oslo/places_by.json | gronlandsleiret | Grønlandsleiret | by | 59.9124 | 10.7608 | 210 |  |  |  |  | unverified | source_missing |  |
 | data/places/by/oslo/places_by.json | storgata | Storgata | by | 59.9153 | 10.7521 | 230 |  |  |  |  | unverified | source_missing |  |
-| data/places/by/oslo/places_by.json | ullevål_hageby | Ullevål Hageby | by | 59.9369 | 10.7317 | 240 | verified | manual_map_check | 2026-04-30 |  | claimed_verified_no_source | likely_guessed |  |
+| data/places/by/oslo/places_by.json | ullevål_hageby | Ullevål Hageby | by | 59.9369 | 10.7317 | 240 | verified | manual_map_check | 2026-04-30 |  | claimed_verified_no_source | source_missing |  |
 | data/places/by/oslo/places_by.json | romsaås | Romsås | by | 59.9626 | 10.8842 | 300 |  |  |  |  | unverified | source_missing |  |
 | data/places/by/oslo/places_by.json | rodelokka | Rodeløkka | by | 59.9272 | 10.7704 | 220 |  |  |  |  | unverified | source_missing |  |
 | data/places/by/oslo/places_by.json | vaalerenga | Vålerenga | by | 59.9079 | 10.7891 | 240 |  |  |  |  | unverified | source_missing |  |
@@ -41,8 +41,8 @@ Generert: 2026-05-02
 | data/places/by/oslo/places_by.json | slottsparken | Slottsparken | by | 59.9166 | 10.7278 | 250 |  |  |  |  | needs_manual_visual_qa | source_missing |  |
 | data/places/by/oslo/places_by.json | botsparken | Botsparken | by | 59.9053 | 10.769 | 170 |  |  |  |  | needs_manual_visual_qa | too_rounded |  |
 | data/places/by/oslo/places_by.json | stensparken | Stensparken | by | 59.9268 | 10.7406 | 200 |  |  |  |  | needs_manual_visual_qa | source_missing |  |
-| data/places/by/oslo/places_by.json | nydalen | Nydalen | by | 59.9497 | 10.7675 | 260 |  |  |  |  | unverified | source_missing |  |
-| data/places/by/oslo/places_by.json | tjuvholmen | Tjuvholmen | by | 59.9066 | 10.7221 | 190 | verified | manual_map_check | 2026-04-30 |  | claimed_verified_no_source | likely_guessed |  |
+| data/places/by/oslo/places_by.json | nydalen | Nydalen | by | 59.9497 | 10.7675 | 260 |  |  |  |  | needs_manual_visual_qa | source_missing |  |
+| data/places/by/oslo/places_by.json | tjuvholmen | Tjuvholmen | by | 59.9066 | 10.7221 | 190 | verified | manual_map_check | 2026-04-30 |  | claimed_verified_no_source | source_missing |  |
 | data/places/by/oslo/places_by.json | sorenga | Sørenga | by | 59.9029 | 10.7586 | 200 |  |  |  |  | unverified | source_missing |  |
 | data/places/by/oslo/places_by.json | majorstuen_tbanestasjon | Majorstuen T-banestasjon | by | 59.9293 | 10.7146 | 170 |  |  |  |  | unverified | source_missing |  |
 | data/places/by/oslo/places_by.json | nationaltheatret_stasjon | Nationaltheatret stasjon | by | 59.9145 | 10.7319 | 170 |  |  |  |  | unverified | source_missing |  |
@@ -52,17 +52,17 @@ Generert: 2026-05-02
 | data/places/by/oslo/places_by.json | akerselva | Akerselva | by | 59.9228 | 10.7412 | 550 | semantic_anchor | manual_map_check | 2026-05-01 | yes(3) | unverified | source_missing |  |
 | data/places/by/oslo/places_by.json | universitetsplassen | Universitetsplassen | by | 59.915 | 10.7397 | 150 |  |  |  |  | unverified | too_rounded |  |
 | data/places/by/oslo/places_by.json | operahuset | Operahuset | by | 59.9074 | 10.753 | 190 |  |  |  |  | unverified | too_rounded |  |
-| data/places/by/oslo/places_by.json | deichman_bjorvika | Deichman Bjørvika | by | 59.90782 | 10.75457 | 120 | verified | manual_map_check | 2026-04-30 |  | claimed_verified_no_source | likely_guessed |  |
+| data/places/by/oslo/places_by.json | deichman_bjorvika | Deichman Bjørvika | by | 59.90782 | 10.75457 | 120 | verified | manual_map_check | 2026-04-30 |  | claimed_verified_no_source | source_missing |  |
 | data/places/by/oslo/places_by.json | barcode | Barcode | by | 59.9101 | 10.758 | 240 | verified | manual_map_check | 2026-04-30 |  | claimed_verified_no_source | too_rounded |  |
-| data/places/by/oslo/places_by.json | vigelandsparken | Vigelandsparken | by | 59.9271 | 10.7008 | 260 | verified | manual_map_check | 2026-04-30 |  | claimed_verified_no_source | likely_guessed |  |
-| data/places/by/oslo/places_by.json | voienvolden | Vøienvolden | by | 59.9292 | 10.7514 | 130 | verified | manual_map_check | 2026-04-30 |  | claimed_verified_no_source | likely_guessed |  |
+| data/places/by/oslo/places_by.json | vigelandsparken | Vigelandsparken | by | 59.9271 | 10.7008 | 260 | verified | manual_map_check | 2026-04-30 |  | claimed_verified_no_source | source_missing |  |
+| data/places/by/oslo/places_by.json | voienvolden | Vøienvolden | by | 59.9292 | 10.7514 | 130 | verified | manual_map_check | 2026-04-30 |  | claimed_verified_no_source | source_missing |  |
 | data/places/by/oslo/places_by.json | carl_berner_plass | Carl Berners plass | by | 59.9282 | 10.7819 | 180 |  |  |  |  | unverified | source_missing |  |
 | data/places/by/oslo/places_by.json | schous_plass | Schous plass | by | 59.9233 | 10.7596 | 180 |  |  |  |  | unverified | source_missing |  |
 | data/places/film/oslo/places_oslo_film.json | sagene_film | Sagene (filmbydel) | film_tv | 59.9372 | 10.7566 | 220 |  |  |  |  | unverified | source_missing |  |
 | data/places/film/oslo/places_oslo_film.json | kampen_film | Kampen (film- og serieområde) | film_tv | 59.9148 | 10.7895 | 200 |  |  |  |  | needs_manual_visual_qa | source_missing |  |
 | data/places/historie/oslo/places_historie.json | middelalder_oslo | Middelalderparken | historie | 59.9048 | 10.7605 | 180 |  |  |  |  | needs_manual_visual_qa | source_missing |  |
 | data/places/historie/oslo/places_historie.json | oslo_domkirke | Oslo domkirke | historie | 59.9129 | 10.7461 | 150 |  |  |  |  | unverified | source_missing |  |
-| data/places/historie/oslo/places_historie.json | damstredet_telthusbakken | Damstredet og Telthusbakken | historie | 59.9236 | 10.7474 | 190 | verified | manual_map_check | 2026-04-30 |  | claimed_verified_no_source | likely_guessed |  |
+| data/places/historie/oslo/places_historie.json | damstredet_telthusbakken | Damstredet og Telthusbakken | historie | 59.9236 | 10.7474 | 190 | verified | manual_map_check | 2026-04-30 |  | claimed_verified_no_source | source_missing |  |
 | data/places/historie/oslo/places_historie.json | gamle_trikkestallen | Gamle trikkestallen på Sagene | historie | 59.9396 | 10.7543 | 160 |  |  |  |  | unverified | source_missing |  |
 | data/places/historie/oslo/places_historie.json | slottet | Det kongelige slott | historie | 59.9169 | 10.7276 | 180 |  |  |  |  | unverified | source_missing |  |
 | data/places/historie/oslo/places_historie.json | sofienberg_kirke | Sofienberg kirke | historie | 59.9225 | 10.7604 | 150 |  |  |  |  | unverified | source_missing |  |
@@ -87,7 +87,7 @@ Generert: 2026-05-02
 | data/places/litteratur/oslo/places_litteratur.json | henrik_wergeland_statue | Henrik Wergeland-statuen | litteratur | 59.9156 | 10.7349 | 120 |  |  |  |  | unverified | source_missing |  |
 | data/places/litteratur/oslo/places_litteratur.json | grotta | Grotten | litteratur | 59.9169 | 10.7296 | 100 |  |  |  |  | unverified | source_missing |  |
 | data/places/litteratur/oslo/places_litteratur.json | nationaltheatret | Nationaltheatret | litteratur | 59.9146 | 10.7312 | 150 |  |  |  |  | unverified | source_missing |  |
-| data/places/litteratur/oslo/places_litteratur.json | litteraturhuset | Litteraturhuset | litteratur | 59.92096 | 10.72936 | 30 | verified | manual_map_check | 2026-05-01 |  | claimed_verified_no_source | likely_guessed |  |
+| data/places/litteratur/oslo/places_litteratur.json | litteraturhuset | Litteraturhuset | litteratur | 59.92096 | 10.72936 | 30 | verified | manual_map_check | 2026-05-01 |  | claimed_verified_no_source | source_missing |  |
 | data/places/litteratur/oslo/places_litteratur.json | tronsmo_bokhandel | Tronsmo Bokhandel | litteratur | 59.9191 | 10.7447 | 80 |  |  |  |  | unverified | source_missing |  |
 | data/places/litteratur/oslo/places_litteratur.json | eldorado_bokhandel | Eldorado Bokhandel | litteratur | 59.9138 | 10.7498 | 100 |  |  |  |  | unverified | source_missing |  |
 | data/places/litteratur/oslo/places_litteratur.json | gamle_deichman | Gamle Deichman | litteratur | 59.91472 | 10.73831 | 150 |  |  |  |  | unverified | source_missing |  |
@@ -96,7 +96,7 @@ Generert: 2026-05-02
 | data/places/litteratur/oslo/places_litteratur.json | norli_universitetsgata | Norli Universitetsgata | litteratur | 59.9181 | 10.7385 | 120 |  |  |  |  | unverified | source_missing |  |
 | data/places/litteratur/oslo/places_litteratur.json | sigrid_undset_statue | Sigrid Undset-statuen | litteratur | 59.9242 | 10.7297 | 120 |  |  |  |  | unverified | source_missing |  |
 | data/places/litteratur/oslo/places_litteratur.json | ruth_maier_minne | Ruth Maier-minnesmerke | litteratur | 59.9183 | 10.7427 | 120 |  |  |  |  | unverified | source_missing |  |
-| data/places/litteratur/oslo/places_litteratur.json | alf_proysen_statue_nittedal | Alf Prøysen-statuen – Nittedal kulturhus | litteratur | 60.062 | 10.875 | 120 |  |  |  |  | unverified | too_rounded |  |
+| data/places/litteratur/oslo/places_litteratur.json | alf_proysen_statue_nittedal | Alf Prøysen-statuen – Nittedal kulturhus | litteratur | 60.062 | 10.875 | 120 |  |  |  |  | needs_manual_visual_qa | too_rounded |  |
 | data/places/litteratur/oslo/places_litteratur.json | proysenhuset_rudshogda | Prøysenhuset – Rudshøgda | litteratur | 60.8827 | 10.9502 | 160 |  |  |  |  | unverified | source_missing |  |
 | data/places/litteratur/oslo/places_litteratur.json | inger_hagerups_plass | Inger Hagerups plass | litteratur | 59.9427 | 10.8553 | 130 |  |  |  |  | unverified | source_missing |  |
 | data/places/litteratur/oslo/places_litteratur.json | oscar_braaten_statuen | Oscar Braaten-statuen | litteratur | 59.938 | 10.76 | 150 |  |  |  |  | unverified | too_rounded |  |
@@ -107,7 +107,7 @@ Generert: 2026-05-02
 | data/places/media/oslo/places_oslo_media.json | monster_as | Monster (produksjonsselskap) | popkultur | 59.9172 | 10.7396 | 120 |  |  |  |  | unverified | source_missing |  |
 | data/places/media/oslo/places_oslo_media.json | nordisk_film_produksjon | Nordisk Film Production Oslo | popkultur | 59.9113 | 10.7506 | 140 |  |  |  |  | unverified | source_missing |  |
 | data/places/musikk/oslo/places_musikk.json | salt | SALT | musikk | 59.9078 | 10.7525 | 160 |  |  |  |  | unverified | source_missing |  |
-| data/places/musikk/oslo/places_musikk.json | det_norske_teatret | Det Norske Teatret | musikk | 59.91376 | 10.74092 | 30 | verified | manual_map_check | 2026-05-01 |  | claimed_verified_no_source | likely_guessed |  |
+| data/places/musikk/oslo/places_musikk.json | det_norske_teatret | Det Norske Teatret | musikk | 59.91376 | 10.74092 | 30 | verified | manual_map_check | 2026-05-01 |  | claimed_verified_no_source | source_missing |  |
 | data/places/musikk/oslo/places_musikk.json | blaa | Blå | musikk | 59.9223 | 10.7527 | 130 |  |  |  |  | unverified | source_missing |  |
 | data/places/musikk/oslo/places_musikk.json | rockefeller | Rockefeller Music Hall | musikk | 59.9147 | 10.7514 | 140 |  |  |  |  | unverified | source_missing |  |
 | data/places/musikk/oslo/places_musikk.json | john_dee | John Dee | musikk | 59.9146 | 10.7513 | 120 |  |  |  |  | unverified | source_missing |  |
@@ -119,8 +119,8 @@ Generert: 2026-05-02
 | data/places/naeringsliv/oslo/places_naeringsliv.json | telegrafbygningen | Telegrafbygningen | naeringsliv | 59.9105 | 10.7405 | 140 |  |  |  |  | unverified | source_missing |  |
 | data/places/naeringsliv/oslo/places_naeringsliv.json | vinmonopolet_lager | Vinmonopolets hovedlager | naeringsliv | 59.9247 | 10.7524 | 160 |  |  |  |  | unverified | source_missing |  |
 | data/places/naeringsliv/oslo/places_naeringsliv.json | nrk_marienlyst | NRK Marienlyst | naeringsliv | 59.9323 | 10.7182 | 200 |  |  |  |  | unverified | source_missing |  |
-| data/places/naeringsliv/oslo/places_naeringsliv.json | jernbaneverkstedet_lodalen | Lodalen jernbaneverksted | naeringsliv | 59.9037 | 10.7785 | 200 |  |  |  |  | unverified | source_missing |  |
-| data/places/naeringsliv/oslo/places_naeringsliv.json | grunnlovsbygget_bankplassen | Den gamle Norges Bank | naeringsliv | 59.91086 | 10.74178 | 25 | verified | manual_map_check | 2026-05-01 |  | claimed_verified_no_source | likely_guessed |  |
+| data/places/naeringsliv/oslo/places_naeringsliv.json | jernbaneverkstedet_lodalen | Lodalen jernbaneverksted | naeringsliv | 59.9037 | 10.7785 | 200 |  |  |  |  | needs_manual_visual_qa | source_missing |  |
+| data/places/naeringsliv/oslo/places_naeringsliv.json | grunnlovsbygget_bankplassen | Den gamle Norges Bank | naeringsliv | 59.91086 | 10.74178 | 25 | verified | manual_map_check | 2026-05-01 |  | claimed_verified_no_source | source_missing |  |
 | data/places/naeringsliv/oslo/places_naeringsliv.json | akershus_kaier | Akershuskaiene | naeringsliv | 59.9059 | 10.7423 | 200 |  |  |  |  | unverified | source_missing |  |
 | data/places/naeringsliv/oslo/places_naeringsliv.json | fornebu_teknologipark | Fornebu Teknologipark | naeringsliv | 59.8939 | 10.6262 | 400 |  |  |  |  | needs_manual_visual_qa | source_missing |  |
 | data/places/naeringsliv/oslo/places_naeringsliv.json | ulven_handelspark | Ulven handelspark | naeringsliv | 59.9229 | 10.8215 | 200 |  |  |  |  | needs_manual_visual_qa | source_missing |  |
@@ -137,7 +137,7 @@ Generert: 2026-05-02
 | data/places/naeringsliv/oslo/places_naeringsliv.json | oslo_kraftselskap | Oslo Lysverker | naeringsliv | 59.919 | 10.7479 | 140 |  |  |  |  | unverified | too_rounded |  |
 | data/places/naeringsliv/oslo/places_naeringsliv.json | grensen_kjopesenter | Grensen – handelens sentrum | naeringsliv | 59.9138 | 10.7441 | 120 |  |  |  |  | unverified | source_missing |  |
 | data/places/naeringsliv/oslo/places_naeringsliv.json | vippetangen_fisketorg | Vippetangen fisketorg | naeringsliv | 59.9012 | 10.7429 | 160 |  |  |  |  | unverified | source_missing |  |
-| data/places/naeringsliv/oslo/places_naeringsliv.json | frysja_industriomrade | Frysja industriområde | naeringsliv | 59.9608 | 10.7726 | 260 | verified | manual_map_check | 2026-04-30 |  | claimed_verified_no_source | likely_guessed |  |
+| data/places/naeringsliv/oslo/places_naeringsliv.json | frysja_industriomrade | Frysja industriområde | naeringsliv | 59.9608 | 10.7726 | 260 | verified | manual_map_check | 2026-04-30 |  | claimed_verified_no_source | source_missing |  |
 | data/places/naeringsliv/oslo/places_naeringsliv.json | norges_varemesse | Norges Varemesse | naeringsliv | 59.953 | 10.7525 | 250 |  |  |  |  | unverified | too_rounded |  |
 | data/places/naeringsliv/oslo/places_naeringsliv.json | bryn_industriomrade | Bryn industriområde | naeringsliv | 59.9129 | 10.8251 | 250 |  |  |  |  | needs_manual_visual_qa | source_missing |  |
 | data/places/naeringsliv/oslo/places_naeringsliv.json | gronlikaia | Grønlikaia | naeringsliv | 59.9001 | 10.7579 | 220 |  |  |  |  | unverified | source_missing |  |
@@ -153,43 +153,43 @@ Generert: 2026-05-02
 | data/places/natur/oslo/places_oslo_alna.json | hellerud_gard | Hellerud gård | historie | 59.9295 | 10.8485 | 160 |  |  |  |  | unverified | source_missing |  |
 | data/places/natur/oslo/places_oslo_alna.json | alnabru_jernbane_og_logistikk | Alnabru – jernbane og logistikk | by | 59.936 | 10.814 | 350 |  |  |  |  | unverified | too_rounded |  |
 | data/places/natur/oslo/places_oslo_natur_akerselvarute.json | frysjadammen | Frysjadammen | historie | 59.9723 | 10.7819 | 150 |  |  |  |  | unverified | source_missing |  |
-| data/places/natur/oslo/places_oslo_natur_akerselvarute.json | nydalen_industristed | Nydalen industristed | historie | 59.9476 | 10.7682 | 200 |  |  |  |  | unverified | source_missing |  |
-| data/places/natur/oslo/places_oslo_natur_akerselvarute.json | seilduksfabrikken_nydalen | Seilduksfabrikken (Nydalen) | historie | 59.9469 | 10.7671 | 150 |  |  |  |  | unverified | source_missing |  |
-| data/places/natur/oslo/places_oslo_natur_akerselvarute.json | nydalsdammen | Nydalsdammen | natur | 59.9458 | 10.766 | 120 |  |  |  |  | unverified | too_rounded |  |
-| data/places/natur/oslo/places_oslo_natur_akerselvarute.json | stilla_nydalen | Stilla ved Nydalen | natur | 59.9449 | 10.7654 | 120 |  |  |  |  | unverified | source_missing |  |
+| data/places/natur/oslo/places_oslo_natur_akerselvarute.json | nydalen_industristed | Nydalen industristed | historie | 59.9476 | 10.7682 | 200 |  |  |  |  | needs_manual_visual_qa | source_missing |  |
+| data/places/natur/oslo/places_oslo_natur_akerselvarute.json | seilduksfabrikken_nydalen | Seilduksfabrikken (Nydalen) | historie | 59.9469 | 10.7671 | 150 |  |  |  |  | needs_manual_visual_qa | source_missing |  |
+| data/places/natur/oslo/places_oslo_natur_akerselvarute.json | nydalsdammen | Nydalsdammen | natur | 59.9458 | 10.766 | 120 |  |  |  |  | needs_manual_visual_qa | too_rounded |  |
+| data/places/natur/oslo/places_oslo_natur_akerselvarute.json | stilla_nydalen | Stilla ved Nydalen | natur | 59.9449 | 10.7654 | 120 |  |  |  |  | needs_manual_visual_qa | source_missing |  |
 | data/places/natur/oslo/places_oslo_natur_akerselvarute.json | bjoelsenfossen | Bjølsenfossen | historie | 59.9398 | 10.7602 | 150 |  |  |  |  | unverified | source_missing |  |
 | data/places/natur/oslo/places_oslo_natur_akerselvarute.json | bjoelsenparken_elvenaer | Bjølsenparken (elvenær del) | natur | 59.9386 | 10.7588 | 160 |  |  |  |  | needs_manual_visual_qa | source_missing |  |
 | data/places/natur/oslo/places_oslo_natur_akerselvarute.json | glads_molle | Glads mølle | historie | 59.9375 | 10.7572 | 120 |  |  |  |  | unverified | source_missing |  |
 | data/places/natur/oslo/places_oslo_natur_akerselvarute.json | voienfossen | Vøienfossen | historie | 59.9359 | 10.7547 | 140 |  |  |  |  | unverified | source_missing |  |
 | data/places/natur/oslo/places_oslo_natur_akerselvarute.json | voien_gard_voienvolden | Vøien gård / Vøienvolden | historie | 59.935 | 10.7535 | 180 |  |  |  |  | unverified | too_rounded |  |
 | data/places/natur/oslo/places_oslo_natur_akerselvarute.json | myralokka | Myraløkka | natur | 59.9319 | 10.7504 | 200 |  |  |  |  | unverified | source_missing |  |
-| data/places/natur/oslo/places_oslo_natur_akerselvarute.json | kuba_parken | Kuba-parken | natur | 59.9298 | 10.748 | 180 |  |  |  |  | needs_manual_visual_qa | wrong_location_reported_by_user | Bruker rapporterte feil plassering i kart. Må verifiseres visuelt før eventuell retting. |
+| data/places/natur/oslo/places_oslo_natur_akerselvarute.json | kuba_parken | Kuba-parken | natur | 59.92472 | 10.75244 | 180 | verified | official_site_manual | 2026-05-02 |  | needs_manual_visual_qa | wrong_location_reported_by_user | Bruker rapporterte mulig feil plassering. Krever manuell kartkontroll før retting. |
 | data/places/natur/oslo/places_oslo_natur_akerselvarute.json | beierbrua | Beierbrua | by | 59.9283 | 10.7464 | 120 |  |  |  |  | unverified | source_missing |  |
 | data/places/natur/oslo/places_oslo_natur_akerselvarute.json | nedre_foss | Nedre Foss | historie | 59.9256 | 10.7435 | 140 |  |  |  |  | unverified | source_missing |  |
 | data/places/natur/oslo/places_oslo_natur_akerselvarute.json | vulkan_industriomrade | Vulkan industriområde | by | 59.9247 | 10.7424 | 180 |  |  |  |  | needs_manual_visual_qa | source_missing |  |
 | data/places/natur/oslo/places_oslo_natur_akerselvarute.json | elvestrekning_bla_brenneriveien | Elvestrekning ved Blå (Brenneriveien) | natur | 59.923 | 10.7407 | 130 | verified | manual_map_check | 2026-05-01 | yes(3) | claimed_verified_no_source | too_rounded |  |
-| data/places/natur/oslo/places_oslo_natur_akerselvarute.json | fossveien_elvestrekning | Fossveien – elvestrekning | natur | 59.9218 | 10.7391 | 130 | verified | manual_map_check | 2026-05-01 | yes(3) | claimed_verified_no_source | likely_guessed |  |
+| data/places/natur/oslo/places_oslo_natur_akerselvarute.json | fossveien_elvestrekning | Fossveien – elvestrekning | natur | 59.9218 | 10.7391 | 130 | verified | manual_map_check | 2026-05-01 | yes(3) | claimed_verified_no_source | source_missing |  |
 | data/places/natur/oslo/places_oslo_natur_akerselvarute.json | hausmannsbrua | Hausmannsbrua | by | 59.9205 | 10.7374 | 120 |  |  |  |  | unverified | source_missing |  |
-| data/places/natur/oslo/places_oslo_natur_akerselvarute.json | hausmannsomradet_elvelop | Hausmannsområdet (elveløp) | by | 59.9197 | 10.7364 | 170 | verified | manual_map_check | 2026-05-01 | yes(3) | claimed_verified_no_source | likely_guessed |  |
+| data/places/natur/oslo/places_oslo_natur_akerselvarute.json | hausmannsomradet_elvelop | Hausmannsområdet (elveløp) | by | 59.9197 | 10.7364 | 170 | verified | manual_map_check | 2026-05-01 | yes(3) | claimed_verified_no_source | source_missing |  |
 | data/places/natur/oslo/places_oslo_natur_akerselvarute.json | ankerbrua | Ankerbrua | by | 59.9185 | 10.7351 | 120 |  |  |  |  | unverified | source_missing |  |
 | data/places/natur/oslo/places_oslo_natur_akerselvarute.json | nybrua_vaterlandsparken | Nybrua / Vaterlandsparken | by | 59.9169 | 10.734 | 170 | verified | manual_map_check | 2026-05-01 | yes(3) | claimed_verified_no_source | too_rounded |  |
 | data/places/natur/oslo/places_oslo_natur_akerselvarute.json | vaterland_historisk_elvelop | Vaterland – historisk elveløp | historie | 59.9158 | 10.7332 | 180 |  |  |  |  | needs_manual_visual_qa | source_missing |  |
-| data/places/natur/oslo/places_oslo_natur_akerselvarute.json | akerselva_utlop_bjorvika | Akerselvas utløp mot fjorden (Bjørvika) | natur | 59.9118 | 10.7469 | 220 | verified | manual_map_check | 2026-05-01 | yes(3) | claimed_verified_no_source | likely_guessed |  |
+| data/places/natur/oslo/places_oslo_natur_akerselvarute.json | akerselva_utlop_bjorvika | Akerselvas utløp mot fjorden (Bjørvika) | natur | 59.9118 | 10.7469 | 220 | verified | manual_map_check | 2026-05-01 | yes(3) | claimed_verified_no_source | source_missing |  |
 | data/places/natur/oslo/places_oslo_natur_alnaelva_rute.json | alnsjoen_alna_kilde | Alnsjøen (Alna-kilde) | natur | 59.9549 | 10.8442 | 170 |  |  |  |  | unverified | source_missing |  |
 | data/places/natur/oslo/places_oslo_natur_alnaelva_rute.json | alnaparken | Alnaparken | natur | 59.9333 | 10.835 | 170 |  |  |  |  | needs_manual_visual_qa | too_rounded |  |
 | data/places/natur/oslo/places_oslo_natur_alnaelva_rute.json | groruddammen | Groruddammen | natur | 59.9541 | 10.8822 | 160 |  |  |  |  | unverified | source_missing |  |
 | data/places/natur/oslo/places_oslo_natur_alnaelva_rute.json | alna_smalvoll | Alna ved Smalvoll | natur | 59.9226 | 10.817 | 150 |  |  |  |  | unverified | too_rounded |  |
 | data/places/natur/oslo/places_oslo_natur_alnaelva_rute.json | alna_bryn | Alna ved Bryn | natur | 59.909 | 10.8015 | 150 |  |  |  |  | unverified | too_rounded |  |
-| data/places/natur/oslo/places_oslo_natur_alnaelva_rute.json | svartdalen | Svartdalen | natur | 59.9015 | 10.7899 | 190 |  |  |  |  | unverified | source_missing |  |
+| data/places/natur/oslo/places_oslo_natur_alnaelva_rute.json | svartdalen | Svartdalen | natur | 59.9015 | 10.7899 | 190 |  |  |  |  | needs_manual_visual_qa | source_missing |  |
 | data/places/natur/oslo/places_oslo_natur_alnaelva_rute.json | kvaernerbyen_alna | Kværnerbyen ved Alna | natur | 59.9048 | 10.7808 | 140 |  |  |  |  | unverified | source_missing |  |
-| data/places/natur/oslo/places_oslo_natur_alnaelva_rute.json | alna_utlop_bjorvika | Alna utløp i Bjørvika | natur | 59.9041 | 10.7638 | 190 | verified | manual_map_check | 2026-05-01 | yes(3) | claimed_verified_no_source | likely_guessed |  |
+| data/places/natur/oslo/places_oslo_natur_alnaelva_rute.json | alna_utlop_bjorvika | Alna utløp i Bjørvika | natur | 59.9041 | 10.7638 | 190 | verified | manual_map_check | 2026-05-01 | yes(3) | claimed_verified_no_source | source_missing |  |
 | data/places/natur/oslo/places_oslo_natur_bygdoy.json | bygdoy_kongeskogen | Bygdøy Kongeskogen | natur | 59.9121 | 10.6758 | 170 |  |  |  |  | unverified | source_missing |  |
 | data/places/natur/oslo/places_oslo_natur_bygdoy.json | bygdoy_dronningberget | Bygdøy Dronningberget | natur | 59.9088 | 10.6921 | 140 |  |  |  |  | unverified | source_missing |  |
 | data/places/natur/oslo/places_oslo_natur_bygdoy.json | bygdoy_huk | Bygdøy Huk | natur | 59.8994 | 10.6661 | 170 |  |  |  |  | unverified | source_missing |  |
 | data/places/natur/oslo/places_oslo_natur_bygdoy.json | bygdoy_paradisbukta | Bygdøy Paradisbukta | natur | 59.8975 | 10.6738 | 150 |  |  |  |  | unverified | source_missing |  |
 | data/places/natur/oslo/places_oslo_natur_bygdoy.json | bygdoy_bygdoynes | Bygdøy Bygdøynes | natur | 59.9072 | 10.6992 | 150 |  |  |  |  | unverified | source_missing |  |
 | data/places/natur/oslo/places_oslo_natur_bygdoy.json | bygdoy_roykenvika | Bygdøy Røykensvika | natur | 59.9028 | 10.6861 | 150 |  |  |  |  | unverified | source_missing |  |
-| data/places/natur/oslo/places_oslo_natur_hovedsteder.json | ostensjovannet | Østensjøvannet | natur | 59.88833 | 10.82694 | 450 |  |  |  | yes(3) | unverified | anchor_needs_review |  |
+| data/places/natur/oslo/places_oslo_natur_hovedsteder.json | ostensjovannet | Østensjøvannet | natur | 59.88833 | 10.82694 | 450 |  |  |  | yes(3) | needs_manual_visual_qa | anchor_needs_review | Anchors finnes uten dokumentert koordinatkilde. |
 | data/places/natur/oslo/places_oslo_natur_hovedsteder.json | hovedoya | Hovedøya | natur | 59.89512 | 10.7379 | 450 |  |  |  |  | unverified | source_missing |  |
 | data/places/natur/oslo/places_oslo_natur_hovedsteder.json | gressholmen | Gressholmen | natur | 59.8844 | 10.7226 | 420 |  |  |  |  | unverified | source_missing |  |
 | data/places/natur/oslo/places_oslo_natur_hovedsteder.json | bygdoy_natur | Bygdøy natur- og kulturmiljø | natur | 59.9048 | 10.6849 | 950 | semantic_anchor | manual_map_check | 2026-05-01 | yes(3) | unverified | source_missing |  |
@@ -213,7 +213,7 @@ Generert: 2026-05-02
 | data/places/politikk/oslo/places_politikk.json | youngstorget | Youngstorget | politikk | 59.9144 | 10.7528 | 160 |  |  |  |  | unverified | source_missing |  |
 | data/places/politikk/oslo/places_politikk.json | oslo_radhus | Oslo rådhus | politikk | 59.9129 | 10.7336 | 140 |  |  |  |  | unverified | source_missing |  |
 | data/places/politikk/oslo/places_politikk.json | eidsvolls_plass | Eidsvolls plass | politikk | 59.9157 | 10.7388 | 120 |  |  |  |  | unverified | source_missing |  |
-| data/places/politikk/oslo/places_politikk.json | tinghuset | Oslo tinghus | politikk | 59.91653 | 10.74136 | 30 | verified | manual_map_check | 2026-05-01 |  | claimed_verified_no_source | likely_guessed |  |
+| data/places/politikk/oslo/places_politikk.json | tinghuset | Oslo tinghus | politikk | 59.91653 | 10.74136 | 30 | verified | manual_map_check | 2026-05-01 |  | claimed_verified_no_source | source_missing |  |
 | data/places/politikk/oslo/places_politikk.json | regjeringskvartalet | Regjeringskvartalet | politikk | 59.9156 | 10.7451 | 200 |  |  |  |  | unverified | source_missing |  |
 | data/places/popkultur/oslo/places_oslo_populaerkultur.json | cinemateket_oslo | Cinemateket i Oslo | film_tv | 59.911868 | 10.741041 | 140 |  |  |  |  | unverified | source_missing |  |
 | data/places/popkultur/oslo/places_oslo_populaerkultur.json | colosseum_kino | Colosseum kino | film_tv | 59.9287549 | 10.7068625 | 160 |  |  |  |  | unverified | source_missing |  |
@@ -243,7 +243,7 @@ Generert: 2026-05-02
 | data/places/subkultur/oslo/places_subkultur.json | torggata_blad | Torggata Blad | subkultur | 59.915 | 10.751 | 120 |  |  |  |  | unverified | too_rounded |  |
 | data/places/subkultur/oslo/places_subkultur.json | stovnertarnet | Stovnertårnet | subkultur | 59.9705 | 10.9238 | 200 |  |  |  |  | unverified | source_missing |  |
 | data/places/vitenskap/oslo/places_vitenskap.json | universitetets_gamle_hovedbygning | Universitetets gamle hovedbygning | vitenskap | 59.9118 | 10.7411 | 150 |  |  |  |  | unverified | source_missing |  |
-| data/places/vitenskap/oslo/places_vitenskap.json | universitetets_gamle_kjemi | Universitetets gamle kjemibygning | vitenskap | 59.91456 | 10.73872 | 25 | verified | manual_map_check | 2026-05-01 |  | claimed_verified_no_source | likely_guessed |  |
+| data/places/vitenskap/oslo/places_vitenskap.json | universitetets_gamle_kjemi | Universitetets gamle kjemibygning | vitenskap | 59.91456 | 10.73872 | 25 | verified | manual_map_check | 2026-05-01 |  | claimed_verified_no_source | source_missing |  |
 | data/places/vitenskap/oslo/places_vitenskap.json | tvergastein | Tvergastein | vitenskap | 60.5322 | 8.1824 | 400 |  |  |  |  | unverified | source_missing |  |
 | data/places/vitenskap/oslo/places_vitenskap.json | gamlebyen_skole | Gamlebyen skole | vitenskap | 59.9036 | 10.7671 | 150 |  |  |  |  | unverified | source_missing |  |
 | data/places/vitenskap/oslo/places_vitenskap.json | abelhaugen | Abelhaugen | vitenskap | 59.9185 | 10.7294 | 150 |  |  |  |  | unverified | source_missing |  |
@@ -259,6 +259,12 @@ Generert: 2026-05-02
 | data/places/by/europe/portugal/lisbon/places_lisbon_by.json | lisbon_parque_eduardo_vii | Parque Eduardo VII | by | 38.7283 | -9.1517 | 350 |  |  |  |  | unverified | source_missing |  |
 | data/places/by/europe/portugal/lisbon/places_lisbon_by.json | lisbon_cais_do_sodre | Cais do Sodré | by | 38.7065 | -9.1444 | 300 |  |  |  |  | unverified | source_missing |  |
 | data/places/by/europe/portugal/lisbon/places_lisbon_by.json | lisbon_principe_real | Príncipe Real | by | 38.7158 | -9.1474 | 300 |  |  |  |  | unverified | source_missing |  |
+| data/places/by/europe/portugal/lisbon/places_lisbon_by.json | lisbon_baixa_pombalina | Baixa Pombalina | by | 38.7105 | -9.1389 | 450 |  |  |  |  | unverified | source_missing |  |
+| data/places/by/europe/portugal/lisbon/places_lisbon_by.json | lisbon_bica | Bica | by | 38.7095 | -9.1456 | 220 |  |  |  |  | unverified | source_missing |  |
+| data/places/by/europe/portugal/lisbon/places_lisbon_by.json | lisbon_graca | Graça | by | 38.7167 | -9.1311 | 400 |  |  |  |  | unverified | source_missing |  |
+| data/places/by/europe/portugal/lisbon/places_lisbon_by.json | lisbon_belem_bydel | Belém | by | 38.6975 | -9.2069 | 900 |  |  |  |  | unverified | source_missing |  |
+| data/places/by/europe/portugal/lisbon/places_lisbon_by.json | lisbon_alcantara | Alcântara | by | 38.7062 | -9.1763 | 700 |  |  |  |  | unverified | source_missing |  |
+| data/places/by/europe/portugal/lisbon/places_lisbon_by.json | lisbon_intendente | Intendente | by | 38.7222 | -9.1361 | 220 |  |  |  |  | unverified | source_missing |  |
 | data/places/historie/europe/portugal/lisbon/places_lisbon_historie.json | lisbon_torre_de_belem | Torre de Belém | historie | 38.6916 | -9.216 | 150 |  |  |  |  | unverified | too_rounded |  |
 | data/places/historie/europe/portugal/lisbon/places_lisbon_historie.json | lisbon_mosteiro_dos_jeronimos | Mosteiro dos Jerónimos | historie | 38.6979 | -9.2065 | 200 |  |  |  |  | unverified | source_missing |  |
 | data/places/historie/europe/portugal/lisbon/places_lisbon_historie.json | lisbon_castelo_de_sao_jorge | Castelo de São Jorge | historie | 38.7139 | -9.1334 | 250 |  |  |  |  | unverified | source_missing |  |
@@ -267,27 +273,46 @@ Generert: 2026-05-02
 | data/places/historie/europe/portugal/lisbon/places_lisbon_historie.json | lisbon_convento_do_carmo | Convento do Carmo | historie | 38.7117 | -9.1404 | 120 |  |  |  |  | unverified | source_missing |  |
 | data/places/historie/europe/portugal/lisbon/places_lisbon_historie.json | lisbon_padrao_dos_descobrimentos | Padrão dos Descobrimentos | historie | 38.6938 | -9.2057 | 150 |  |  |  |  | unverified | source_missing |  |
 | data/places/historie/europe/portugal/lisbon/places_lisbon_historie.json | lisbon_estacao_do_rossio | Estação do Rossio | historie | 38.7141 | -9.1408 | 120 |  |  |  |  | unverified | source_missing |  |
+| data/places/historie/europe/portugal/lisbon/places_lisbon_historie.json | lisbon_teatro_romano | Ruínas do Teatro Romano | historie | 38.7106 | -9.1325 | 80 |  |  |  |  | unverified | source_missing |  |
+| data/places/historie/europe/portugal/lisbon/places_lisbon_historie.json | lisbon_panteao_nacional | Panteão Nacional (Igreja de Santa Engrácia) | historie | 38.7155 | -9.1244 | 150 |  |  |  |  | unverified | source_missing |  |
+| data/places/historie/europe/portugal/lisbon/places_lisbon_historie.json | lisbon_sao_vicente_de_fora | Igreja e Mosteiro de São Vicente de Fora | historie | 38.7144 | -9.1267 | 180 |  |  |  |  | unverified | source_missing |  |
+| data/places/historie/europe/portugal/lisbon/places_lisbon_historie.json | lisbon_palacio_ajuda | Palácio Nacional da Ajuda | historie | 38.7064 | -9.1986 | 250 |  |  |  |  | unverified | source_missing |  |
+| data/places/historie/europe/portugal/lisbon/places_lisbon_historie.json | lisbon_palacio_fronteira | Palácio dos Marqueses de Fronteira | historie | 38.7445 | -9.19 | 200 |  |  |  |  | unverified | too_rounded |  |
+| data/places/historie/europe/portugal/lisbon/places_lisbon_historie.json | lisbon_museu_de_lisboa | Museu de Lisboa (Palácio Pimenta) | historie | 38.7585 | -9.1525 | 200 |  |  |  |  | unverified | source_missing |  |
 | data/places/politikk/europe/portugal/lisbon/places_lisbon_politikk.json | lisbon_assembleia_da_republica | Assembleia da República | politikk | 38.7126 | -9.1551 | 200 |  |  |  |  | unverified | source_missing |  |
 | data/places/politikk/europe/portugal/lisbon/places_lisbon_politikk.json | lisbon_largo_do_carmo | Largo do Carmo | politikk | 38.7115 | -9.1407 | 120 |  |  |  |  | unverified | source_missing |  |
+| data/places/politikk/europe/portugal/lisbon/places_lisbon_politikk.json | lisbon_praca_dos_restauradores | Praça dos Restauradores | politikk | 38.7167 | -9.1413 | 150 |  |  |  |  | unverified | source_missing |  |
+| data/places/politikk/europe/portugal/lisbon/places_lisbon_politikk.json | lisbon_praca_marques_de_pombal | Praça Marquês de Pombal | politikk | 38.725 | -9.15 | 200 |  |  |  |  | unverified | too_rounded |  |
 | data/places/kunst/europe/portugal/lisbon/places_lisbon_kunst.json | lisbon_museu_nacional_do_azulejo | Museu Nacional do Azulejo | kunst | 38.7253 | -9.1136 | 120 |  |  |  |  | unverified | source_missing |  |
 | data/places/kunst/europe/portugal/lisbon/places_lisbon_kunst.json | lisbon_fundacao_calouste_gulbenkian | Fundação Calouste Gulbenkian | kunst | 38.7375 | -9.1539 | 200 |  |  |  |  | unverified | source_missing |  |
 | data/places/kunst/europe/portugal/lisbon/places_lisbon_kunst.json | lisbon_maat | MAAT / Tejo-kraftstasjonen | kunst | 38.6953 | -9.1937 | 200 |  |  |  |  | unverified | source_missing |  |
 | data/places/kunst/europe/portugal/lisbon/places_lisbon_kunst.json | lisbon_museu_nacional_de_arte_antiga | Museu Nacional de Arte Antiga | kunst | 38.7045 | -9.1641 | 150 |  |  |  |  | unverified | source_missing |  |
 | data/places/kunst/europe/portugal/lisbon/places_lisbon_kunst.json | lisbon_centro_cultural_de_belem | Centro Cultural de Belém | kunst | 38.696 | -9.207 | 200 |  |  |  |  | unverified | too_rounded |  |
+| data/places/kunst/europe/portugal/lisbon/places_lisbon_kunst.json | lisbon_museu_do_oriente | Museu do Oriente | kunst | 38.706 | -9.1828 | 100 |  |  |  |  | unverified | too_rounded |  |
+| data/places/kunst/europe/portugal/lisbon/places_lisbon_kunst.json | lisbon_mac_ccb_berardo | MAC/CCB (tidligere Museu Coleção Berardo) | kunst | 38.6967 | -9.2069 | 100 |  |  |  |  | unverified | source_missing |  |
 | data/places/litteratur/europe/portugal/lisbon/places_lisbon_litteratur.json | lisbon_casa_dos_bicos | Casa dos Bicos / Fundação José Saramago | litteratur | 38.7102 | -9.1326 | 100 |  |  |  |  | unverified | source_missing |  |
 | data/places/litteratur/europe/portugal/lisbon/places_lisbon_litteratur.json | lisbon_a_brasileira | A Brasileira / Fernando Pessoa | litteratur | 38.7106 | -9.1413 | 100 |  |  |  |  | unverified | source_missing |  |
 | data/places/litteratur/europe/portugal/lisbon/places_lisbon_litteratur.json | lisbon_livraria_bertrand | Livraria Bertrand (Chiado) | litteratur | 38.7106 | -9.1422 | 80 |  |  |  |  | unverified | source_missing |  |
+| data/places/litteratur/europe/portugal/lisbon/places_lisbon_litteratur.json | lisbon_casa_fernando_pessoa | Casa Fernando Pessoa | litteratur | 38.7156 | -9.1572 | 80 |  |  |  |  | unverified | source_missing |  |
+| data/places/litteratur/europe/portugal/lisbon/places_lisbon_litteratur.json | lisbon_biblioteca_nacional_de_portugal | Biblioteca Nacional de Portugal | litteratur | 38.7521 | -9.1547 | 200 |  |  |  |  | unverified | source_missing |  |
+| data/places/litteratur/europe/portugal/lisbon/places_lisbon_litteratur.json | lisbon_cemiterio_dos_prazeres | Cemitério dos Prazeres | litteratur | 38.7188 | -9.1758 | 250 |  |  |  |  | unverified | source_missing |  |
 | data/places/musikk/europe/portugal/lisbon/places_lisbon_musikk.json | lisbon_mouraria_fado | Mouraria / fado | musikk | 38.7152 | -9.1351 | 300 |  |  |  |  | unverified | source_missing |  |
 | data/places/musikk/europe/portugal/lisbon/places_lisbon_musikk.json | lisbon_hot_clube_de_portugal | Hot Clube de Portugal | musikk | 38.7194 | -9.1469 | 80 |  |  |  |  | unverified | source_missing |  |
+| data/places/musikk/europe/portugal/lisbon/places_lisbon_musikk.json | lisbon_museu_do_fado | Museu do Fado | musikk | 38.7124 | -9.1264 | 80 |  |  |  |  | unverified | source_missing |  |
 | data/places/subkultur/europe/portugal/lisbon/places_lisbon_subkultur.json | lisbon_bairro_alto | Bairro Alto | subkultur | 38.7125 | -9.1457 | 400 |  |  |  |  | unverified | source_missing |  |
 | data/places/subkultur/europe/portugal/lisbon/places_lisbon_subkultur.json | lisbon_pink_street | Rua Nova do Carvalho / Pink Street | subkultur | 38.7062 | -9.1452 | 120 |  |  |  |  | unverified | source_missing |  |
+| data/places/subkultur/europe/portugal/lisbon/places_lisbon_subkultur.json | lisbon_galeria_ze_dos_bois | Galeria Zé dos Bois (ZDB) | subkultur | 38.7113 | -9.1453 | 60 |  |  |  |  | unverified | source_missing |  |
+| data/places/subkultur/europe/portugal/lisbon/places_lisbon_subkultur.json | lisbon_musicbox | Musicbox Lisboa | subkultur | 38.7077 | -9.1437 | 60 |  |  |  |  | unverified | source_missing |  |
+| data/places/subkultur/europe/portugal/lisbon/places_lisbon_subkultur.json | lisbon_fabrica_braco_de_prata | Fábrica Braço de Prata | subkultur | 38.7456 | -9.0961 | 200 |  |  |  |  | unverified | source_missing |  |
 | data/places/naeringsliv/europe/portugal/lisbon/places_lisbon_naeringsliv.json | lisbon_lx_factory | LX Factory | naeringsliv | 38.7026 | -9.1796 | 200 |  |  |  |  | unverified | source_missing |  |
 | data/places/naeringsliv/europe/portugal/lisbon/places_lisbon_naeringsliv.json | lisbon_mercado_da_ribeira | Mercado da Ribeira / Time Out Market | naeringsliv | 38.7068 | -9.1456 | 150 |  |  |  |  | unverified | source_missing |  |
 | data/places/naeringsliv/europe/portugal/lisbon/places_lisbon_naeringsliv.json | lisbon_parque_das_nacoes | Parque das Nações | naeringsliv | 38.7681 | -9.095 | 800 |  |  |  |  | unverified | too_rounded |  |
+| data/places/naeringsliv/europe/portugal/lisbon/places_lisbon_naeringsliv.json | lisbon_cordoaria_nacional | Cordoaria Nacional | naeringsliv | 38.6976 | -9.2008 | 250 |  |  |  |  | unverified | source_missing |  |
+| data/places/naeringsliv/europe/portugal/lisbon/places_lisbon_naeringsliv.json | lisbon_doca_de_alcantara | Doca de Alcântara | naeringsliv | 38.7036 | -9.1789 | 350 |  |  |  |  | unverified | source_missing |  |
 | data/places/sport/europe/portugal/lisbon/places_lisbon_sport.json | lisbon_estadio_da_luz | Estádio da Luz | sport | 38.7528 | -9.1849 | 350 |  |  |  |  | unverified | source_missing |  |
 | data/places/sport/europe/portugal/lisbon/places_lisbon_sport.json | lisbon_estadio_jose_alvalade | Estádio José Alvalade | sport | 38.7613 | -9.1607 | 300 |  |  |  |  | unverified | source_missing |  |
-
-## Oppsummering
-- unverified: 230
-- claimed_verified_no_source: 22
-- needs_manual_visual_qa: 30
+| data/places/natur/europe/portugal/lisbon/places_lisbon_natur.json | lisbon_jardim_botanico | Jardim Botânico de Lisboa | natur | 38.7178 | -9.1497 | 150 |  |  |  |  | unverified | source_missing |  |
+| data/places/natur/europe/portugal/lisbon/places_lisbon_natur.json | lisbon_tapada_das_necessidades | Tapada das Necessidades | natur | 38.7058 | -9.1722 | 250 |  |  |  |  | unverified | source_missing |  |
+| data/places/natur/europe/portugal/lisbon/places_lisbon_natur.json | lisbon_miradouro_sao_pedro_de_alcantara | Miradouro de São Pedro de Alcântara | natur | 38.7156 | -9.1444 | 80 |  |  |  |  | unverified | source_missing |  |
+| data/places/natur/europe/portugal/lisbon/places_lisbon_natur.json | lisbon_miradouro_da_graca | Miradouro da Graça (Sophia de Mello Breyner Andresen) | natur | 38.7156 | -9.1322 | 80 |  |  |  |  | unverified | source_missing |  |
+| data/places/natur/europe/portugal/lisbon/places_lisbon_natur.json | lisbon_monsanto | Parque Florestal de Monsanto | natur | 38.7314 | -9.1828 | 1500 |  |  |  |  | unverified | source_missing |  |
