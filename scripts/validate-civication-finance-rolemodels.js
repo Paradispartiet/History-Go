@@ -91,6 +91,32 @@ const roles = [
       'styrepakken_uten_risiko',
       'teamet_som_blir_skviset'
     ]
+  },
+  {
+    roleScope: 'finansdirektor',
+    roleId: 'naer_finansdirektor',
+    title: 'Finansdirektør',
+    requiredFamilies: [
+      'finansdirektor_intro_v2',
+      'kapitalstruktur_og_finansiering',
+      'styre_og_eiere',
+      'bank_og_refinansiering',
+      'oppkjop_og_investering',
+      'finansdirektor_identitet'
+    ],
+    requiredCompetenceAxes: [
+      'kapitalstruktur',
+      'finansiering_og_bank',
+      'styre_og_eierkommunikasjon',
+      'strategisk_risiko',
+      'm_a_og_investering'
+    ],
+    requiredProblems: [
+      'den_finansierte_overmodigheten',
+      'covenant_som_fotnote',
+      'styrepakken_som_salgsdokument',
+      'oppkjopets_prestisje'
+    ]
   }
 ];
 
@@ -185,4 +211,4 @@ for (const role of roles) {
   assertSetContainsAll(recommendedFamilies, [...planFamilies], `${role.roleScope}.recommended families vs plan allowed_families`);
 }
 
-console.log('Finance Civication roleModel validation OK: controller, finansanalytiker and okonomi_og_finanssjef roleModels match plans and mailFamilies.');
+console.log('Finance Civication roleModel validation OK: controller, finansanalytiker, okonomi_og_finanssjef and finansdirektor roleModels match plans and mailFamilies.');
