@@ -1,0 +1,99 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "naeringsliv",
+  "role_scope": "finansdirektor",
+  "mail_type": "job",
+  "families": [
+    {
+      "id": "kapitalstruktur_og_finansiering",
+      "description": "Finansdirektøren vurderer gjeld, egenkapital, buffer og vekst som samlet kapitalstruktur.",
+      "mails": [
+        {
+          "id": "finansdirektor_job_001",
+          "mail_type": "job",
+          "mail_family": "kapitalstruktur_og_finansiering",
+          "role_scope": "finansdirektor",
+          "subject": "Gjeld eller egenkapital: veksten trenger penger, men prisen er ulik",
+          "summary": "Selskapet kan finansiere ekspansjon med mer gjeld eller hente egenkapital, men begge valg endrer makt og risiko.",
+          "purpose": "Simulere kapitalstruktur som strategisk valg: finansiering bestemmer både oppside, kontroll og sårbarhet.",
+          "stakes": "Mer gjeld bevarer eiernes kontroll, men øker finansiell risiko. Ny egenkapital reduserer presset, men utvanner eksisterende eiere.",
+          "situation": [
+            "Ekspansjonsplanen trenger kapital innen seks måneder. Banken kan øke lånerammen, men covenant-rommet blir smalt. Eierne kan skyte inn egenkapital, men vil kreve lavere risiko og tydeligere styring.",
+            "Daglig leder foretrekker gjeld fordi det går raskere. Eierrepresentanten vil unngå utvanning. Styret spør hva selskapet faktisk tåler hvis markedet svekkes.",
+            "Kapitalstruktur er ikke bare finansmatematikk. Det er fordeling av kontroll, risiko og fremtidig frihet.",
+            "Du må anbefale finansieringsvei før styremøtet."
+          ],
+          "task_domain": "capital_structure",
+          "competency": "kapitalstruktur",
+          "pressure": "finansieringsvalg",
+          "choice_axis": "gjeld_vs_egenkapital",
+          "consequence_axis": "kontroll_vs_robusthet",
+          "narrative_arc": "kapitalens_pris",
+          "learning_focus": ["gjeld", "egenkapital", "utvanning", "covenant", "kapitalstruktur"],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Anbefal en balansert finansiering med mindre gjeld og noe egenkapital.",
+              "effect": 1,
+              "tags": ["kapitalstruktur", "risiko", "governance"],
+              "feedback": "Du gjør finansieringen mindre elegant, men mer robust. Eierne må dele oppsiden, men selskapet får mer luft."
+            },
+            {
+              "id": "B",
+              "label": "Anbefal økt låneramme for å unngå eierutvanning.",
+              "effect": -1,
+              "tags": ["gjeld", "risk", "vekst"],
+              "feedback": "Kontrollen bevares, men risikobufferen blir tynnere. Du har kjøpt vekst med mindre rom for feil."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "oppkjop_og_investering",
+      "description": "Finansdirektøren vurderer om investeringer og oppkjøp bygger reell strategisk verdi eller bare kapitalfortelling.",
+      "mails": [
+        {
+          "id": "finansdirektor_job_002",
+          "mail_type": "job",
+          "mail_family": "oppkjop_og_investering",
+          "role_scope": "finansdirektor",
+          "subject": "Oppkjøpet ser strategisk ut, men integrasjonen er dyrere enn lysbildene viser",
+          "summary": "Et mulig oppkjøp gir markedsadgang og status, men integrasjonskostnaden er underkommunisert.",
+          "purpose": "Lære spilleren å skille oppkjøp som strategisk verdi fra oppkjøp som prestisje og vekstfortelling.",
+          "stakes": "Hvis integrasjonsrisikoen undervurderes, kan transaksjonen se verdiskapende ut helt til organisasjonen må betale regningen i drift, systemer og kultur.",
+          "situation": [
+            "Daglig leder er begeistret for et oppkjøpscase. Selskapet vil få tilgang til nye kunder og et marked styret lenge har ønsket seg inn i.",
+            "Modellen viser positiv verdi, men bare hvis integrasjonen går raskt, kundene blir værende og systemkostnadene holder seg lave. Du ser at alle tre forutsetningene er optimistiske.",
+            "Oppkjøp har en egen energi. Det føles som handling. Men finansdirektøren må spørre om selskapet kjøper fremtidig styrke eller bare en større historie om seg selv.",
+            "Du må gi din anbefaling før neste forhandlingsrunde."
+          ],
+          "task_domain": "m_and_a_evaluation",
+          "competency": "m_a_og_investering",
+          "pressure": "transaksjonsmomentum",
+          "choice_axis": "strategisk_verdi_vs_prestisje",
+          "consequence_axis": "langsiktig_styrke_vs_kortsiktig_posisjon",
+          "narrative_arc": "oppkjopets_pris",
+          "learning_focus": ["M&A", "integrasjonsrisiko", "synergier", "oppkjøpspremie", "strategisk verdi"],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Anbefal videre prosess bare med tydelig integrasjonsbudsjett og downside-case.",
+              "effect": 1,
+              "tags": ["m_a", "risiko", "integritet"],
+              "feedback": "Du dreper ikke caset, men tvinger det til å tåle sin egen virkelighet. Oppkjøpet må bevise mer enn at det ser bra ut."
+            },
+            {
+              "id": "B",
+              "label": "Støtt caset nå for å bevare momentum i forhandlingene.",
+              "effect": -1,
+              "tags": ["tempo", "prestisje", "risk"],
+              "feedback": "Du holder transaksjonen varm, men integrasjonsrisikoen havner bak i prosessen. Der blir den ofte dyrere."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
