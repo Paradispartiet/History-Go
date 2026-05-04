@@ -90,26 +90,8 @@ function wireMapPlacePopupInMapMode() {
       (p) => String(p?.id || "").trim() === String(id || "").trim()
     );
 
-    if (!place || typeof window.openPlaceCard !== "function") return;
-
-    const isMapMode = window.LayerManager?.getMode?.() === "map";
-    const card = document.getElementById("placeCard");
-
-    if (isMapMode) {
-      window.LayerManager?.show?.("placeCard");
-
-      if (card) {
-        card.style.display = "";
-        card.style.pointerEvents = "";
-        card.setAttribute("aria-hidden", "false");
-      }
-    }
-
-    const opened = window.openPlaceCard(place);
-
-    Promise.resolve(opened).finally(() => {
-      window.bottomSheetController?.open?.();
-    });
+    if (!place || typeof window.showPlacePopup !== "function") return;
+    window.showPlacePopup(place);
   });
 }
 
