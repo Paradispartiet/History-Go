@@ -1,0 +1,11 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "category": "naeringsliv",
+  "role_scope": "avdelingsleder",
+  "mail_type": "event",
+  "families": [
+    {"id":"avdelingsleder_driftskrise","mails":[
+      {"id":"avdelingsleder_driftskrise_001","mail_type":"event","mail_family":"avdelingsleder_driftskrise","role_scope":"avdelingsleder","subject":"Driftsstans før leveringsvindu","summary":"Et teknisk avvik stopper leveransen rett før kritisk frist.","situation":["Kunder venter, teamet er allerede presset.","Du må velge om du skjuler risiko eller eskalerer tidlig."],"task_domain":"incident_response","competency":"prioritering","pressure":"krise_og_tid","choice_axis":"eskalere_tidlig_vs_holde_ro","consequence_axis":"tillit_vs_ansiktstap","narrative_arc":"driftskrise","choices":[{"id":"A","label":"Eskalér med tydelig risikobilde og alternativ plan.","effect":1,"tags":["transparency"],"feedback":"Du mister glans, men øker sjansen for reell støtte."},{"id":"B","label":"Forsøk å løse alt lokalt før du varsler oppover.","effect":0,"tags":["control"],"feedback":"Du beholder kontroll kortsiktig, men forsterker konsekvensen hvis det glipper."}]}
+    ]}
+  ]
+}
