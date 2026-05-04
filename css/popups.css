@@ -1168,3 +1168,59 @@
 .hg-modal-footer{
   padding: 10px 24px 22px;
 }
+
+
+/* Subtil modal-harmonisering på tvers av popup-varianter */
+.hg-popup.place-popup .hg-popup-inner,
+.hg-popup.person-popup .hg-popup-inner,
+.hg-popup.relations-popup .hg-popup-inner,
+.hg-popup.placecard-round-popup .hg-popup-inner,
+.hg-popup.wonderkammer-entry-popup .hg-popup-inner{
+  width: min(640px, calc(100vw - 32px));
+  max-height: min(84dvh, 820px);
+  border-radius: 22px;
+}
+
+.hg-popup{
+  padding: 12px;
+}
+
+.hg-popup .hg-modal-close{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: manipulation;
+}
+
+.hg-popup .hg-modal-header{
+  padding: 20px 24px 10px;
+}
+
+.hg-popup .hg-modal-title{
+  margin: 8px 0 4px;
+  line-height: 1.25;
+}
+
+.hg-popup .hg-modal-meta{
+  margin: 0;
+  line-height: 1.35;
+  color: rgba(230,238,249,.68);
+}
+
+.hg-popup .hg-modal-body{
+  padding: 10px 24px 20px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  line-height: 1.58;
+}
+
+.hg-popup .hg-modal-footer:empty{
+  display:none;
+}
+
+.hg-popup .hg-popup-desc,
+.hg-popup .hg-popupdesc,
+.hg-popup .hg-wiki{
+  line-height: 1.58;
+}
