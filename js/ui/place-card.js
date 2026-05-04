@@ -280,45 +280,81 @@ try {
 if (peopleEl) {
   const popupPersons = Array.isArray(persons) ? persons : [];
   const personIdsInList = new Set(popupPersons.map(p => String(p?.id || "").trim()).filter(Boolean));
-
-  const relationPeopleById = new Map();
-  const relationTextRows = [];
+  const placeId = String(place?.id || "").trim();
+  const peopleById = new Map(PEOPLE_LIST.map(p => [String(p?.id || "").trim(), p]).filter(([id]) => id));
+  const placesList = Array.isArray(window.PLACES) ? window.PLACES : [];
+  const placesById = new Map(placesList.map(p => [String(p?.id || "").trim(), p]).filter(([id]) => id));
 
   const placeRels = (typeof getRelationsForPlace === "function") ? getRelationsForPlace(place.id) : [];
   const curatedPlaceRels = (typeof filterCuratedRels === "function") ? filterCuratedRels(placeRels) : placeRels;
 
+  const renderRelationRow = (r) => {
+    const fromId = String(r?.fromId || r?.from_id || r?.sourceId || r?.source_id || "").trim();
+    const toId = String(r?.toId || r?.to_id || r?.targetId || r?.target_id || "").trim();
+    const fromType = String(r?.fromType || r?.from_type || "").trim();
+    const toType = String(r?.toType || r?.to_type || "").trim();
+    const placeRelId = String(r?.placeId || r?.place_id || r?.place || "").trim();
+    const personRelId = String(r?.personId || r?.person_id || r?.person || "").trim();
+
+    const resolveName = (id, typeHint = "") => {
+      const t = String(typeHint || "").trim();
+      if (!id) return "";
+      if (t === "person") return String(peopleById.get(id)?.name || "").trim();
+      if (t === "place") return String(placesById.get(id)?.name || "").trim();
+      return String(peopleById.get(id)?.name || placesById.get(id)?.name || "").trim();
+    };
+
+    let aId = fromId || placeId;
+    let bId = toId || personRelId || placeRelId;
+    let aName = resolveName(aId, fromType) || (aId === placeId ? String(place?.name || "").trim() : "");
+    let bName = resolveName(bId, toType);
+
+    if (!bName && personRelId) bName = resolveName(personRelId, "person");
+    if (!bName && placeRelId && placeRelId !== placeId) bName = resolveName(placeRelId, "place");
+
+    const label = String(r?.label || r?.title || r?.name || "").trim();
+    const displayName = label || ((aName && bName) ? `${aName} ↔ ${bName}` : ((bName && place?.name) ? `${place.name} → ${bName}` : "Relasjon"));
+
+    const meta = [
+      r?.type,
+      r?.relation,
+      r?.kind,
+      r?.category,
+      r?.note,
+      r?.description,
+      r?.why
+    ].map(v => String(v || "").trim()).filter(Boolean)[0] || "";
+
+    const fallbackDebug = (!aName && !bName)
+      ? [r?.id, fromId, toId, personRelId, placeRelId].map(v => String(v || "").trim()).filter(Boolean).join(" • ")
+      : "";
+
+    return `
+      <div class="pc-relation-row">
+        <div class="pc-relation-main">
+          <div class="pc-relation-name">${displayName}</div>
+          ${meta ? `<div class="pc-relation-meta">${meta}</div>` : ""}
+          ${fallbackDebug ? `<div class="pc-relation-meta pc-relation-debug">${fallbackDebug}</div>` : ""}
+        </div>
+      </div>
+    `;
+  };
+
+  const relationRows = [];
+  const relationSeen = new Set();
   curatedPlaceRels.forEach(r => {
-    const personIds = (typeof getPersonIdsFromRel === "function")
-      ? getPersonIdsFromRel(r)
-      : [];
-
-    let hadKnownPerson = false;
-
-    personIds.forEach(pid => {
-      const id = String(pid || "").trim();
-      if (!id) return;
-
-      const personObj = PEOPLE_LIST.find(p => String(p?.id || "").trim() === id);
-      if (personObj) {
-        hadKnownPerson = true;
-        if (!personIdsInList.has(id)) {
-          relationPeopleById.set(id, personObj);
-        }
-      }
-    });
-
-    if (!hadKnownPerson) {
-      const type = String(r?.type || r?.rel || r?.kind || "relasjon").trim();
-      const why = String(r?.why || r?.reason || r?.desc || r?.note || "").trim();
-      const label = String(r?.label || r?.title || r?.name || "").trim();
-      const text = [type, label, why].filter(Boolean).join(" – ");
-      if (text) relationTextRows.push(text);
-    }
+    const stableKey = String(r?.id || "").trim() || [
+      String(r?.fromId || r?.from_id || r?.sourceId || r?.source_id || "").trim(),
+      String(r?.toId || r?.to_id || r?.targetId || r?.target_id || "").trim(),
+      String(r?.type || r?.relation || r?.kind || "").trim(),
+      String(r?.label || r?.title || r?.name || "").trim()
+    ].join("|");
+    if (!stableKey || relationSeen.has(stableKey)) return;
+    relationSeen.add(stableKey);
+    relationRows.push(renderRelationRow(r));
   });
 
-  const relationPeople = [...relationPeopleById.values()];
-  const uniqueRelationTexts = [...new Set(relationTextRows)];
-  const allPeopleRows = [...popupPersons, ...relationPeople];
+  const allPeopleRows = [...popupPersons];
 
   const peopleHtml = allPeopleRows
     .map(p => {
@@ -339,10 +375,11 @@ if (peopleEl) {
     })
     .join("");
 
-  const relationTextHtml = uniqueRelationTexts.length
+  const relationTextHtml = relationRows.length
     ? `
-      <div class="pc-people-reltext">
-        ${uniqueRelationTexts.map(t => `<div class="pc-rel-text">${t}</div>`).join("")}
+      <div class="pc-relations-section">
+        <div class="pc-relations-title">Relasjoner</div>
+        ${relationRows.join("")}
       </div>
     `
     : "";
