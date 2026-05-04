@@ -85,12 +85,15 @@ function gateToastsUntilAppReady() {
 function wireMapPlacePopupInMapMode() {
   if (!window.HGMap || typeof window.HGMap.setOnPlaceClick !== "function") return;
 
+  console.log("[popup-debug] wireMapPlacePopupInMapMode: registering HGMap.setOnPlaceClick callback");
   window.HGMap.setOnPlaceClick((id) => {
+    console.log("[popup-debug] HGMap.onPlaceClick fired", { id });
     const place = (Array.isArray(window.PLACES) ? window.PLACES : []).find(
       (p) => String(p?.id || "").trim() === String(id || "").trim()
     );
 
     if (!place || typeof window.showPlacePopup !== "function") return;
+    console.log("[popup-debug] calling window.showPlacePopup from app.js", { id: place.id, name: place.name });
     window.showPlacePopup(place);
   });
 }

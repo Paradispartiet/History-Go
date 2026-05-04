@@ -169,6 +169,10 @@ ensurePlacePopupReadableCss();
   }
 
   window.showPlacePopup = function showPlacePopupWithPopupDesc(place, ...args) {
+    console.log("[popup-debug] patchPlacePopupDescriptionSource wrapper called", {
+      placeId: place?.id,
+      hasPopupDesc: Boolean(getPlacePopupDesc(place))
+    });
     const popupDesc = getPlacePopupDesc(place);
 
     if (place && typeof place === "object" && popupDesc) {
