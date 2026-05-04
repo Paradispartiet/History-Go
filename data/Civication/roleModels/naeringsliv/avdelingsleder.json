@@ -100,8 +100,16 @@
       "Næringsliv, handel, drift, administrasjon, industri, kvalitet, rapportering, arbeidsliv og ledelse.",
       "Hvordan små beslutninger om tid, ansvar og rapportering former organisasjonens faktiske kultur."
     ],
-    "history_go_badges": ["naeringsliv"],
-    "place_connections": ["vulkan", "barcode", "oslo_bors", "bankplassen", "aker_brygge"],
+    "history_go_badges": [
+      "naeringsliv"
+    ],
+    "place_connections": [
+      "vulkan",
+      "barcode",
+      "oslo_bors",
+      "bankplassen",
+      "aker_brygge"
+    ],
     "people_connections": []
   },
   "challenges": [
@@ -110,28 +118,45 @@
       "title": "Press ovenfra og nedenfra",
       "description": "Ledelsen vil ha tall og fremdrift, mens teamet trenger kapasitet, rettferdighet og forklaring.",
       "pressure": "leveranse_vs_baereevne",
-      "affects": ["trust", "status", "fatigue", "performance"]
+      "affects": [
+        "trust",
+        "status",
+        "fatigue",
+        "performance"
+      ]
     },
     {
       "id": "ansvar_uten_full_myndighet",
       "title": "Ansvar uten full myndighet",
       "description": "Du får ansvar for resultatet, men ikke alltid tid, budsjett eller mandat til å løse årsaken.",
       "pressure": "ansvar_vs_mandat",
-      "affects": ["stress", "legitimacy", "risk"]
+      "affects": [
+        "stress",
+        "legitimacy",
+        "risk"
+      ]
     },
     {
       "id": "rapportering_vs_sannhet",
       "title": "Rapportering mot sannhet",
       "description": "Rapporten må være kort og styrbar, men virkeligheten er mer sammensatt enn KPI-linjen viser.",
       "pressure": "styringssignal_vs_forklaring",
-      "affects": ["integrity", "trust", "decision_quality"]
+      "affects": [
+        "integrity",
+        "trust",
+        "decision_quality"
+      ]
     },
     {
       "id": "uformell_makt",
       "title": "Uformell makt",
       "description": "Noen får alltid mer slakk, noen tar alltid mer ansvar, og skjevheten blir kultur hvis ingen navngir mønsteret.",
       "pressure": "fred_vs_rettferdighet",
-      "affects": ["team", "legitimacy", "conflict"]
+      "affects": [
+        "team",
+        "legitimacy",
+        "conflict"
+      ]
     }
   ],
   "dilemmas": [
@@ -141,7 +166,11 @@
       "setup": "Du kan redde dagens tall ved å presse teamet, eller vise belastningen tidlig og risikere å se svakere ut oppover.",
       "choice_axis": "resultat_vs_kapasitet",
       "consequence_axis": "status_vs_tillit",
-      "mail_hooks": ["job", "micro", "consequence"]
+      "mail_hooks": [
+        "job",
+        "micro",
+        "consequence"
+      ]
     },
     {
       "id": "rapportere_pent_eller_sant",
@@ -149,7 +178,11 @@
       "setup": "Du kan gi ledelsen en rolig rapport eller vise friksjonen før den blir en formell krise.",
       "choice_axis": "ro_vs_sannhet",
       "consequence_axis": "beslutningskraft_vs_laring",
-      "mail_hooks": ["followup", "knowledge", "story"]
+      "mail_hooks": [
+        "followup",
+        "knowledge",
+        "story"
+      ]
     },
     {
       "id": "lojalitet_oppover_eller_rettferdighet_nedover",
@@ -157,7 +190,11 @@
       "setup": "En leder ber deg skjerme planen, mens teamet trenger at du dokumenterer hvor presset faktisk lander.",
       "choice_axis": "politisk_ro_vs_teamtillit",
       "consequence_axis": "karriere_vs_legitimitet",
-      "mail_hooks": ["people", "conflict", "consequence"]
+      "mail_hooks": [
+        "people",
+        "conflict",
+        "consequence"
+      ]
     }
   ],
   "related_people": [
@@ -183,7 +220,18 @@
   "mail_integration": {
     "role_scope": "avdelingsleder",
     "mail_profile": "naer_avdelingsleder",
-    "can_feed_mail_types": ["job", "story", "conflict", "event", "people", "micro", "followup", "consequence", "knowledge", "faction_choice"],
+    "can_feed_mail_types": [
+      "job",
+      "story",
+      "conflict",
+      "event",
+      "people",
+      "micro",
+      "followup",
+      "consequence",
+      "knowledge",
+      "faction_choice"
+    ],
     "mail_variables": {
       "role_title": "Avdelingsleder",
       "category": "naeringsliv",
@@ -193,9 +241,20 @@
       "knowledge_axis": "plan_til_drift"
     },
     "recommended_mail_families": [
+      "avdelingsleder_intro_v2",
+      "avdelingsleder_rolleforstaelse",
+      "avdelingsleder_planlegging",
+      "avdelingsleder_fraksjonsvalg",
+      "avdelingsleder_krysspress",
+      "avdelingsleder_driftskrise",
+      "avdelingsleder_identitet",
+      "avdelingsleder_mastery",
+      "avdelingsleder_rapportering_og_styring",
+      "avdelingsleder_administrasjon_og_hverdagsmakt",
       "avdelingsleder_micro"
     ],
-    "role_model_refs_supported": true
+    "role_model_refs_supported": true,
+    "plan": "avdelingsleder_naeringsliv_v1"
   },
   "competence_axes": [
     {

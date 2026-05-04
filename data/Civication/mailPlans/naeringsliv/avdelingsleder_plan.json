@@ -1,0 +1,27 @@
+{
+  "schema": "civication_mail_plan_v1",
+  "id": "avdelingsleder_naeringsliv_v1",
+  "category": "naeringsliv",
+  "role_scope": "avdelingsleder",
+  "title": "Avdelingsleder",
+  "description": "Dramaturgisk plan for Avdelingsleder i Næringsliv & industri: fra ny leder under krysspress til ansvarlig oversetter mellom drift, mennesker og styringslinjer.",
+  "arc": {
+    "from": "Ny eller nylig etablert avdelingsleder som står mellom KPI-press, bemanning, sidestilt politikk og teamets kapasitet.",
+    "to": "Avdelingsleder som bruker rapportering, prioritering og relasjonell ledelse til å holde både leveranse og bærekraft samlet.",
+    "core_questions": [
+      "Hvilken sannhet rapporterer du når tall og mennesker peker i ulike retninger?",
+      "Hvem får bære kostnaden når plan og kapasitet kolliderer?",
+      "Hvordan bygger du legitimitet uten å skyve alt ansvar nedover?"
+    ]
+  },
+  "sequence": [
+    {"step": 1, "type": "job", "phase": "intro", "allowed_families": ["avdelingsleder_intro_v2", "avdelingsleder_rolleforstaelse"], "fallback_types": ["people", "job"]},
+    {"step": 2, "type": "job", "phase": "early", "allowed_families": ["avdelingsleder_planlegging", "avdelingsleder_fraksjonsvalg"], "fallback_types": ["job", "conflict"]},
+    {"step": 3, "type": "people", "phase": "early", "allowed_families": ["avdelingsleder_rapportering_og_styring", "avdelingsleder_administrasjon_og_hverdagsmakt"], "fallback_types": ["job", "conflict"]},
+    {"step": 4, "type": "conflict", "phase": "mid", "allowed_families": ["avdelingsleder_krysspress"], "fallback_types": ["people", "event"]},
+    {"step": 5, "type": "story", "phase": "mid", "allowed_families": ["avdelingsleder_identitet"], "fallback_types": ["job", "people"]},
+    {"step": 6, "type": "event", "phase": "advanced", "allowed_families": ["avdelingsleder_driftskrise"], "fallback_types": ["conflict", "people"]},
+    {"step": 7, "type": "job", "phase": "advanced", "allowed_families": ["avdelingsleder_mastery"], "fallback_types": ["story", "micro"]},
+    {"step": 8, "type": "micro", "phase": "daily", "allowed_families": ["avdelingsleder_micro"], "fallback_types": ["job", "people"]}
+  ]
+}
