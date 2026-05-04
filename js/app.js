@@ -85,16 +85,32 @@ function gateToastsUntilAppReady() {
 function wireMapPlacePopupInMapMode() {
   if (!window.HGMap || typeof window.HGMap.setOnPlaceClick !== "function") return;
 
-  console.log("[popup-debug] wireMapPlacePopupInMapMode: registering HGMap.setOnPlaceClick callback");
   window.HGMap.setOnPlaceClick((id) => {
-    console.log("[popup-debug] HGMap.onPlaceClick fired", { id });
     const place = (Array.isArray(window.PLACES) ? window.PLACES : []).find(
       (p) => String(p?.id || "").trim() === String(id || "").trim()
     );
 
-    if (!place || typeof window.showPlacePopup !== "function") return;
-    console.log("[popup-debug] calling window.showPlacePopup from app.js", { id: place.id, name: place.name });
-    window.showPlacePopup(place);
+    if (!place) return;
+
+    const isMapMode =
+      window.LayerManager?.getMode?.() === "map" ||
+      document.body?.classList.contains("map-only") ||
+      document.body?.classList.contains("mode-map");
+
+    if (isMapMode) {
+      if (typeof window.showPlacePopup === "function") {
+        window.showPlacePopup(place);
+      }
+      return;
+    }
+
+    if (typeof window.openPlaceCard !== "function") return;
+
+    const opened = window.openPlaceCard(place);
+
+    Promise.resolve(opened).finally(() => {
+      window.bottomSheetController?.open?.();
+    });
   });
 }
 
