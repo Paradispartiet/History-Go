@@ -28,7 +28,9 @@
   const L_DOTS = "hg-places-dots";
   const L_LAB  = "hg-places-label";
   const PLACE_LABEL_MIN_ZOOM = 13.8;
-  const PLACE_HIT_LAYERS = [L_HIT, L_DOTS, L_LAB];
+  const PLACE_HIT_LAYERS = [L_HIT, L_DOTS, L_LAB, L_GLOW];
+  const PLACE_HIT_PRIORITY = [L_HIT, L_DOTS, L_LAB, L_GLOW];
+  const PLACE_TAP_TOLERANCE_PX = 28;
 
   function num(v) {
     const n = Number(v);
@@ -496,9 +498,6 @@
   }
 
   function getPlaceFeatureFromEvent(e) {
-    const direct = Array.isArray(e?.features) ? e.features.find(f => f?.properties?.id) : null;
-    if (direct) return direct;
-
     if (!MAP || typeof MAP.queryRenderedFeatures !== "function") return null;
 
     const layers = PLACE_HIT_LAYERS.filter(hasLayer);
@@ -507,8 +506,20 @@
     const point = e?.point || getPointFromOriginalEvent(e?.originalEvent);
     if (!point) return null;
 
-    const features = MAP.queryRenderedFeatures(point, { layers });
-    return Array.isArray(features) ? features.find(f => f?.properties?.id) : null;
+    const queryBox = [
+      [point.x - PLACE_TAP_TOLERANCE_PX, point.y - PLACE_TAP_TOLERANCE_PX],
+      [point.x + PLACE_TAP_TOLERANCE_PX, point.y + PLACE_TAP_TOLERANCE_PX]
+    ];
+
+    const features = MAP.queryRenderedFeatures(queryBox, { layers });
+    if (!Array.isArray(features) || !features.length) return null;
+
+    for (const layerId of PLACE_HIT_PRIORITY) {
+      const match = features.find((feature) => feature?.layer?.id === layerId && feature?.properties?.id);
+      if (match) return match;
+    }
+
+    return features.find((feature) => feature?.properties?.id) || null;
   }
 
   function bindPlaceLayerHandlers() {
