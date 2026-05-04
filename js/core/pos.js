@@ -210,6 +210,9 @@
         ts: override.ts ?? 0,
         source: override.source || "civication-location-picker",
         cityId: override.cityId || null,
+        cityLabel: override.cityLabel || null,
+        placeId: override.placeId || null,
+        label: override.label || null,
         mode: "manual"
       };
     }
@@ -245,6 +248,8 @@
     const payload = {
       mode: "manual",
       cityId: String(location?.cityId || "").trim(),
+      cityLabel: String(location?.cityLabel || "").trim() || String(location?.label || "").trim(),
+      placeId: String(location?.placeId || "").trim() || null,
       label: String(location?.label || "").trim() || "Valgt lokasjon",
       lat,
       lon,
@@ -261,7 +266,7 @@
 
     emit({ status: "test", mode: "manual", ...payload });
     autoUnlockPlacesFromPosition(payload.lat, payload.lon);
-    refreshGeoConsumers();
+    refreshGeoConsumers({ recenterMap: true });
     return true;
   }
 
@@ -269,14 +274,14 @@
     try {
       localStorage.removeItem(LOCATION_OVERRIDE_KEY);
     } catch {}
-    refreshGeoConsumers();
+    refreshGeoConsumers({ recenterMap: true });
   }
 
-  function refreshGeoConsumers() {
+  function refreshGeoConsumers({ recenterMap = false } = {}) {
     if (window.HGMap?.setUser) {
       const p = getPos();
       if (p?.lat != null && p?.lon != null) {
-        window.HGMap.setUser(p.lat, p.lon);
+        window.HGMap.setUser(p.lat, p.lon, { fly: recenterMap });
       }
     }
     if (typeof window.renderNearbyPlaces === "function") window.renderNearbyPlaces();
@@ -293,12 +298,23 @@
       .then((data) => {
         const locations = Array.isArray(data?.locations) ? data.locations : [];
         civicationLocationsCache = locations
-          .map((loc) => ({
+          .map((loc) => {
+            const places = Array.isArray(loc?.places) ? loc.places : [];
+            return {
             cityId: String(loc?.cityId || "").trim(),
             label: String(loc?.label || "").trim(),
             lat: Number(loc?.lat),
-            lon: Number(loc?.lon)
-          }))
+            lon: Number(loc?.lon),
+            places: places
+              .map((place) => ({
+                id: String(place?.id || "").trim(),
+                label: String(place?.label || "").trim(),
+                lat: Number(place?.lat),
+                lon: Number(place?.lon)
+              }))
+              .filter((place) => place.id && place.label && Number.isFinite(place.lat) && Number.isFinite(place.lon))
+          };
+          })
           .filter((loc) => loc.cityId && loc.label && Number.isFinite(loc.lat) && Number.isFinite(loc.lon));
         return civicationLocationsCache;
       })
@@ -327,7 +343,9 @@
       return `<button type="button" class="primary" data-location-city="${loc.cityId}" style="width:100%;text-align:left;display:flex;justify-content:space-between;align-items:center;"><span>${loc.label}</span><span style="opacity:.8">${isActive ? "Aktiv" : ""}</span></button>`;
     }).join("");
 
-    const activeLabel = active?.label || "Faktisk posisjon (GPS)";
+    const activeLabel = active
+      ? `${active.cityLabel || active.cityId || "Valgt by"} – ${active.label || "Valgt lokasjon"}`
+      : "Faktisk posisjon (GPS)";
     modal.innerHTML = `
       <div class="modal-body" style="max-width:420px;width:calc(100% - 24px);">
         <div class="modal-head">
@@ -335,8 +353,8 @@
           <button type="button" class="sheet-close" data-location-close>×</button>
         </div>
         <p class="muted" style="margin:0 0 10px 0;">Aktiv lokasjon: ${activeLabel}</p>
-        <div style="display:grid;gap:8px;">
-          ${optionsHtml}
+        <div id="locationPickerBody" style="display:grid;gap:8px;">
+          ${optionsHtml || '<div class="muted">Ingen byer tilgjengelig.</div>'}
           <button type="button" class="iconbtn" data-location-use-gps style="justify-content:flex-start;">Bruk faktisk posisjon</button>
         </div>
       </div>`;
@@ -350,14 +368,63 @@
       close();
       request();
     });
-    modal.querySelectorAll("[data-location-city]").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const cityId = btn.getAttribute("data-location-city");
-        const picked = locations.find((loc) => loc.cityId === cityId);
-        if (picked) setLocationOverride(picked);
+    const body = modal.querySelector("#locationPickerBody");
+    const renderCityOptions = () => {
+      if (!body) return;
+      body.innerHTML = `
+        ${optionsHtml || '<div class="muted">Ingen byer tilgjengelig.</div>'}
+        <button type="button" class="iconbtn" data-location-use-gps style="justify-content:flex-start;">Bruk faktisk posisjon</button>
+      `;
+      body.querySelector("[data-location-use-gps]")?.addEventListener("click", () => {
+        clearLocationOverride();
         close();
+        request();
       });
-    });
+      body.querySelectorAll("[data-location-city]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const cityId = btn.getAttribute("data-location-city");
+          const city = locations.find((loc) => loc.cityId === cityId);
+          if (!city) return;
+          const places = Array.isArray(city.places) ? city.places : [];
+          if (!places.length) {
+            setLocationOverride({
+              cityId: city.cityId,
+              cityLabel: city.label,
+              label: city.label,
+              lat: city.lat,
+              lon: city.lon
+            });
+            close();
+            return;
+          }
+          body.innerHTML = `
+            <button type="button" class="iconbtn" data-location-back style="justify-content:flex-start;">← Tilbake til byvalg</button>
+            ${places.map((place) => {
+              const isActivePlace = active?.placeId ? active.placeId === place.id : (active?.cityId === city.cityId && active?.label === place.label);
+              return `<button type="button" class="primary" data-location-place="${place.id}" style="width:100%;text-align:left;display:flex;justify-content:space-between;align-items:center;"><span>${place.label}</span><span style="opacity:.8">${isActivePlace ? "Aktiv" : ""}</span></button>`;
+            }).join("")}
+          `;
+          body.querySelector("[data-location-back]")?.addEventListener("click", renderCityOptions);
+          body.querySelectorAll("[data-location-place]").forEach((placeBtn) => {
+            placeBtn.addEventListener("click", () => {
+              const placeId = placeBtn.getAttribute("data-location-place");
+              const place = places.find((entry) => entry.id === placeId);
+              if (!place) return;
+              setLocationOverride({
+                cityId: city.cityId,
+                cityLabel: city.label,
+                placeId: place.id,
+                label: place.label,
+                lat: place.lat,
+                lon: place.lon
+              });
+              close();
+            });
+          });
+        });
+      });
+    };
+    renderCityOptions();
 
     document.body.appendChild(modal);
   }
