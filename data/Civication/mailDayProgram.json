@@ -1,0 +1,228 @@
+{
+  "schema": "civication_mail_day_program_v1",
+  "version": 1,
+  "description": "Daglig leserytme for Civication-mails. Målet er at en spilldag skal føles som en hel arbeidsdag og gi omtrent 60 minutters samlet lesing, vurdering og valg.",
+  "principle": [
+    "MailPlan styrer langsiktig rolleprogresjon.",
+    "MailDayProgram styrer hvor mye innhold som skal fylle én arbeidsdag.",
+    "En dag skal ikke bare ha én jobbmail. Den skal ha en rytme av hovedmailer, korte driftsmailer, konflikter, oppfølginger, phase-events og dagsoppsummering.",
+    "Målet er ikke flest mulig popup-varsler, men nok tekst, kontekst og valg til at arbeidsdagen tar omtrent én time å lese grundig."
+  ],
+  "reading_model": {
+    "target_total_minutes_per_day": 60,
+    "target_word_count_per_day_min": 8500,
+    "target_word_count_per_day_max": 12000,
+    "assumed_words_per_minute": 180,
+    "choice_thinking_multiplier": 1.25,
+    "notes": [
+      "Ren lesing på 180 ord/min gir 10 800 ord på 60 minutter.",
+      "Fordi spilleren også vurderer valg, konsekvenser og sammenheng, kan faktisk tekstmengde være lavere enn ren lesetid tilsier.",
+      "Målet bør derfor være 8 500–12 000 ord samlet tekst per spilldag, inkludert subject, summary, situation, choices og feedback."
+    ]
+  },
+  "day_structure": {
+    "phases": [
+      {
+        "id": "morning",
+        "label": "Morgen",
+        "clock_anchor": "08:00",
+        "target_minutes": 15,
+        "target_words_min": 2100,
+        "target_words_max": 3000,
+        "mail_slots": [
+          {
+            "slot": "morning_brief",
+            "type": "story_or_context",
+            "count": 1,
+            "purpose": "Åpne dagen med rolle, miljø, carryover eller større situasjon."
+          },
+          {
+            "slot": "primary_work_mail",
+            "type": "job",
+            "count": 1,
+            "purpose": "Dagens hovedoppgave. Skal være lang, konkret og faglig."
+          },
+          {
+            "slot": "operational_mail",
+            "type": "job_micro",
+            "count": 2,
+            "purpose": "Korte, konkrete drifts-/arbeidsmailer som gir volum og realisme."
+          },
+          {
+            "slot": "people_ping",
+            "type": "people",
+            "count": 1,
+            "purpose": "En person i miljøet reagerer, spør eller ber om avklaring."
+          }
+        ]
+      },
+      {
+        "id": "lunch",
+        "label": "Lunsj",
+        "clock_anchor": "12:00",
+        "target_minutes": 8,
+        "target_words_min": 1000,
+        "target_words_max": 1600,
+        "mail_slots": [
+          {
+            "slot": "phase_lunch",
+            "type": "phase",
+            "count": 1,
+            "purpose": "Lunsjhending med by-, butikk-, nettverk- eller History Go-kontekst."
+          },
+          {
+            "slot": "informal_people_mail",
+            "type": "people",
+            "count": 1,
+            "purpose": "Uformell reaksjon fra kollega, leder, bank, drift eller miljø."
+          },
+          {
+            "slot": "small_choice",
+            "type": "micro_choice",
+            "count": 1,
+            "purpose": "Lite valg som påvirker synlighet, tillit, stress eller læring."
+          }
+        ]
+      },
+      {
+        "id": "afternoon",
+        "label": "Ettermiddag",
+        "clock_anchor": "14:00",
+        "target_minutes": 22,
+        "target_words_min": 3200,
+        "target_words_max": 4400,
+        "mail_slots": [
+          {
+            "slot": "conflict_or_event",
+            "type": "conflict_or_event",
+            "count": 1,
+            "purpose": "Dagens hovedpress: konflikt, frist, bank, styre, drift eller risiko."
+          },
+          {
+            "slot": "analysis_followup",
+            "type": "followup",
+            "count": 2,
+            "purpose": "Oppfølginger som utdyper konsekvenser av dagens hovedmail."
+          },
+          {
+            "slot": "operational_batch",
+            "type": "job_micro",
+            "count": 3,
+            "purpose": "Arbeidsvolum: små saker, avklaringer, rapportlinjer, notater, telefoner."
+          },
+          {
+            "slot": "knowledge_mail",
+            "type": "knowledge",
+            "count": 1,
+            "purpose": "Faglig forklaring eller kort casehistorie fra stillingen/miljøet."
+          }
+        ]
+      },
+      {
+        "id": "evening",
+        "label": "Kveld",
+        "clock_anchor": "17:00",
+        "target_minutes": 10,
+        "target_words_min": 1400,
+        "target_words_max": 2200,
+        "mail_slots": [
+          {
+            "slot": "phase_evening",
+            "type": "phase",
+            "count": 1,
+            "purpose": "Kveldshending: blir du igjen, drar hjem, møter folk eller tar ekstra arbeid?"
+          },
+          {
+            "slot": "consequence_mail",
+            "type": "consequence",
+            "count": 1,
+            "purpose": "Konsekvens eller reaksjon på valg fra tidligere i dagen."
+          },
+          {
+            "slot": "relationship_or_status",
+            "type": "people_or_status",
+            "count": 1,
+            "purpose": "Hvordan dagen påvirker tillit, status, stress eller posisjon."
+          }
+        ]
+      },
+      {
+        "id": "day_end",
+        "label": "Dagslutt",
+        "clock_anchor": "19:00",
+        "target_minutes": 5,
+        "target_words_min": 600,
+        "target_words_max": 1000,
+        "mail_slots": [
+          {
+            "slot": "day_summary",
+            "type": "day_end",
+            "count": 1,
+            "purpose": "Oppsummer dagen, valg, konsekvenser, carryover og startpunkt for neste dag."
+          }
+        ]
+      }
+    ]
+  },
+  "daily_mail_volume": {
+    "target_total_items_per_day_min": 18,
+    "target_total_items_per_day_max": 26,
+    "recommended_total_items_per_day": 22,
+    "recommended_mix": {
+      "long_role_mails": 3,
+      "medium_followups_or_conflicts": 4,
+      "micro_operational_mails": 8,
+      "people_or_status_mails": 3,
+      "phase_events": 3,
+      "day_end_summary": 1
+    },
+    "notes": [
+      "Dette betyr ikke 22 store mailer. Dagen bør ha 3–5 store/medium mailer og mange små operative mailer.",
+      "Micro-mails bør være korte, men konkrete: et spørsmål, en rapportlinje, en avklaring, en reaksjon eller en liten konflikt.",
+      "Store role-mails skal fortsatt komme fra mailPlan/mailFamilies og drive rolleprogresjonen."
+    ]
+  },
+  "role_content_requirements": {
+    "minimum_days_per_role": 8,
+    "target_days_per_role": 12,
+    "future_target_days_per_role": 16,
+    "required_content_per_role_for_12_days": {
+      "long_role_mails_min": 36,
+      "medium_followups_min": 48,
+      "micro_operational_mails_min": 96,
+      "people_or_status_mails_min": 36,
+      "phase_or_dayend_generated": true
+    },
+    "notes": [
+      "De fire finansrollene har nå rolleprogresjon, men ikke nok mailvolum til 12 fulle dager per rolle.",
+      "Neste byggesteg bør ikke bare lage nye roller. Det bør utvide hver eksisterende rolle med micro-, followup-, people- og consequence-mails."
+    ]
+  },
+  "implementation_plan": [
+    {
+      "step": 1,
+      "title": "Behold mailPlan som hovedprogresjon",
+      "description": "Ikke gjør 60 plansteg per rolle. Planen skal fortsatt være dramaturgisk hovedløype."
+    },
+    {
+      "step": 2,
+      "title": "Legg til daily mail builder",
+      "description": "Bygg en egen runtime som samler dagens mailpakke fra rolePlan, roleModel, phase-events, life-mails, people-mails og micro-mails."
+    },
+    {
+      "step": 3,
+      "title": "Legg til micro- og followup-familier",
+      "description": "Hver rolle bør få egne micro- og followup-filer, for eksempel data/Civication/mailFamilies/naeringsliv/micro/controller_micro.json."
+    },
+    {
+      "step": 4,
+      "title": "Valider lesetid",
+      "description": "Lag validator som teller ord per rolle/dagprogram og varsler hvis rollen ikke kan fylle 60 minutter."
+    },
+    {
+      "step": 5,
+      "title": "UI skal vise dagsbunke",
+      "description": "Innboksen bør kunne vise dagens mailer som Morgen, Lunsj, Ettermiddag, Kveld og Dagslutt, ikke bare én pending mail."
+    }
+  ]
+}
