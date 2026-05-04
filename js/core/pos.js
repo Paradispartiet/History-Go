@@ -12,6 +12,10 @@
     timeout: 15000,
     maximumAge: 10000
   };
+  const LOCATION_OVERRIDE_KEY = "hg_location_override_v1";
+  const CIVICATION_LOCATION_MANIFEST_PATH = "data/Civication/locations/manifest.json";
+  let civicationLocationsCache = null;
+  let civicationLocationsPromise = null;
 
   // ÉN state (ikke lag flere varianter)
   const HG_POS = (window.HG_POS = window.HG_POS || {
@@ -197,10 +201,165 @@
   }
 
   function getPos() {
+    const override = getLocationOverride();
+    if (override && Number.isFinite(override.lat) && Number.isFinite(override.lon)) {
+      return {
+        lat: override.lat,
+        lon: override.lon,
+        acc: override.acc ?? null,
+        ts: override.ts ?? 0,
+        source: override.source || "civication-location-picker",
+        cityId: override.cityId || null,
+        mode: "manual"
+      };
+    }
+
     if (Number.isFinite(HG_POS.lat) && Number.isFinite(HG_POS.lon)) {
       return { lat: HG_POS.lat, lon: HG_POS.lon, acc: HG_POS.acc, ts: HG_POS.ts };
     }
     return null;
+  }
+
+  function getLocationOverride() {
+    try {
+      const raw = JSON.parse(localStorage.getItem(LOCATION_OVERRIDE_KEY) || "null");
+      if (!raw || raw.mode !== "manual") return null;
+      const lat = Number(raw.lat);
+      const lon = Number(raw.lon);
+      if (!Number.isFinite(lat) || !Number.isFinite(lon)) return null;
+      return {
+        ...raw,
+        lat,
+        lon
+      };
+    } catch {
+      return null;
+    }
+  }
+
+  function setLocationOverride(location) {
+    const lat = Number(location?.lat);
+    const lon = Number(location?.lon);
+    if (!Number.isFinite(lat) || !Number.isFinite(lon)) return false;
+
+    const payload = {
+      mode: "manual",
+      cityId: String(location?.cityId || "").trim(),
+      label: String(location?.label || "").trim() || "Valgt lokasjon",
+      lat,
+      lon,
+      acc: location?.acc ?? null,
+      source: "civication-location-picker",
+      ts: Date.now()
+    };
+
+    try {
+      localStorage.setItem(LOCATION_OVERRIDE_KEY, JSON.stringify(payload));
+    } catch {
+      return false;
+    }
+
+    emit({ status: "test", mode: "manual", ...payload });
+    autoUnlockPlacesFromPosition(payload.lat, payload.lon);
+    refreshGeoConsumers();
+    return true;
+  }
+
+  function clearLocationOverride() {
+    try {
+      localStorage.removeItem(LOCATION_OVERRIDE_KEY);
+    } catch {}
+    refreshGeoConsumers();
+  }
+
+  function refreshGeoConsumers() {
+    if (window.HGMap?.setUser) {
+      const p = getPos();
+      if (p?.lat != null && p?.lon != null) {
+        window.HGMap.setUser(p.lat, p.lon);
+      }
+    }
+    if (typeof window.renderNearbyPlaces === "function") window.renderNearbyPlaces();
+    window.dispatchEvent(new Event("updateProfile"));
+    window.dispatchEvent(new Event("hg:locationChanged"));
+  }
+
+  async function loadCivicationLocations() {
+    if (Array.isArray(civicationLocationsCache)) return civicationLocationsCache;
+    if (civicationLocationsPromise) return civicationLocationsPromise;
+
+    civicationLocationsPromise = fetch(CIVICATION_LOCATION_MANIFEST_PATH, { cache: "no-store" })
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        const locations = Array.isArray(data?.locations) ? data.locations : [];
+        civicationLocationsCache = locations
+          .map((loc) => ({
+            cityId: String(loc?.cityId || "").trim(),
+            label: String(loc?.label || "").trim(),
+            lat: Number(loc?.lat),
+            lon: Number(loc?.lon)
+          }))
+          .filter((loc) => loc.cityId && loc.label && Number.isFinite(loc.lat) && Number.isFinite(loc.lon));
+        return civicationLocationsCache;
+      })
+      .catch(() => {
+        civicationLocationsCache = [];
+        return civicationLocationsCache;
+      })
+      .finally(() => {
+        civicationLocationsPromise = null;
+      });
+
+    return civicationLocationsPromise;
+  }
+
+  async function openLocationPicker() {
+    const locations = await loadCivicationLocations();
+    const active = getLocationOverride();
+
+    const modal = document.createElement("div");
+    modal.className = "modal";
+    modal.setAttribute("aria-hidden", "false");
+    modal.id = "locationPickerModal";
+
+    const optionsHtml = locations.map((loc) => {
+      const isActive = active?.cityId === loc.cityId;
+      return `<button type="button" class="primary" data-location-city="${loc.cityId}" style="width:100%;text-align:left;display:flex;justify-content:space-between;align-items:center;"><span>${loc.label}</span><span style="opacity:.8">${isActive ? "Aktiv" : ""}</span></button>`;
+    }).join("");
+
+    const activeLabel = active?.label || "Faktisk posisjon (GPS)";
+    modal.innerHTML = `
+      <div class="modal-body" style="max-width:420px;width:calc(100% - 24px);">
+        <div class="modal-head">
+          <h3 style="margin:0;">Velg lokasjon</h3>
+          <button type="button" class="sheet-close" data-location-close>×</button>
+        </div>
+        <p class="muted" style="margin:0 0 10px 0;">Aktiv lokasjon: ${activeLabel}</p>
+        <div style="display:grid;gap:8px;">
+          ${optionsHtml}
+          <button type="button" class="iconbtn" data-location-use-gps style="justify-content:flex-start;">Bruk faktisk posisjon</button>
+        </div>
+      </div>`;
+
+    const close = () => modal.remove();
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal || e.target?.hasAttribute?.("data-location-close")) close();
+    });
+    modal.querySelector("[data-location-use-gps]")?.addEventListener("click", () => {
+      clearLocationOverride();
+      close();
+      request();
+    });
+    modal.querySelectorAll("[data-location-city]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const cityId = btn.getAttribute("data-location-city");
+        const picked = locations.find((loc) => loc.cityId === cityId);
+        if (picked) setLocationOverride(picked);
+        close();
+      });
+    });
+
+    document.body.appendChild(modal);
   }
 
   function setPos(lat, lon, acc) {
@@ -311,6 +470,10 @@
   window.HGPos = {
     request,
     getPos,
+    openLocationPicker,
+    getLocationOverride,
+    setLocationOverride,
+    clearLocationOverride,
     setPos,
     clearPos,
     stopWatch,
@@ -321,4 +484,13 @@
   window.getPos = getPos;
   window.setPos = setPos;
   window.clearPos = clearPos;
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const trigger = document.getElementById("geoStatus");
+    if (!trigger) return;
+    trigger.style.cursor = "pointer";
+    trigger.addEventListener("click", () => {
+      openLocationPicker();
+    });
+  });
 })();
