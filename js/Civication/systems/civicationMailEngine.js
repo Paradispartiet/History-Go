@@ -34,8 +34,8 @@
       read: !!input?.read,
       archived: !!input?.archived,
       deleted: !!input?.deleted,
-      resolved: !!input?.resolved,
-      resolvedAt: input?.resolvedAt || null,
+      resolved: !!input?.resolved || String(input?.status || "") === "resolved",
+      resolvedAt: input?.resolvedAt || input?.resolved_at || null,
       status: String(input?.status || "pending"),
       event
     };
@@ -75,7 +75,14 @@
     localStorage.setItem(LS_MAIL, JSON.stringify(store));
     const legacy = (store.items || [])
       .filter((m) => !m.deleted && !m.archived)
-      .map((m) => ({ status: m.status, enqueued_at: m.createdAt, event: m.event }));
+      .map((m) => ({
+        status: m.status,
+        read: !!m.read,
+        resolved: !!m.resolved,
+        resolvedAt: m.resolvedAt || null,
+        enqueued_at: m.createdAt,
+        event: m.event
+      }));
     setLegacyInbox(legacy.slice(0, MAX_INBOX));
     if (!opts.silent) {
       try { window.dispatchEvent(new Event("civi:inboxChanged")); } catch {}
@@ -108,15 +115,54 @@
     return next;
   }
 
+  function resolveMailMatch(m, mailId, eventId) {
+    const mid = String(mailId || "").trim();
+    const eid = String(eventId || "").trim();
+    return (
+      (mid && String(m?.id || "").trim() === mid) ||
+      (eid && String(m?.event?.id || "").trim() === eid) ||
+      (eid && String(m?.key || "").trim() === eid)
+    );
+  }
+
+  function markResolved(mailId, eventId, choiceId) {
+    const store = migrateOldInboxIfNeeded();
+    const now = new Date().toISOString();
+    let changed = false;
+
+    store.items = (store.items || []).map((m) => {
+      if (!resolveMailMatch(m, mailId, eventId)) return m;
+      changed = true;
+      return {
+        ...m,
+        read: true,
+        resolved: true,
+        resolvedAt: now,
+        status: "resolved",
+        answeredChoiceId: choiceId || m.answeredChoiceId || null
+      };
+    });
+
+    if (changed) saveStore(store);
+    return changed;
+  }
+
   const api = {
     getInbox() {
       const store = migrateOldInboxIfNeeded();
       return (store.items || []).filter((m) => !m.deleted && !m.archived)
-        .map((m) => ({ status: m.status, enqueued_at: m.createdAt, event: m.event }));
+        .map((m) => ({
+          status: m.status,
+          read: !!m.read,
+          resolved: !!m.resolved,
+          resolvedAt: m.resolvedAt || null,
+          enqueued_at: m.createdAt,
+          event: m.event
+        }));
     },
     getMail(mailId) {
       const store = migrateOldInboxIfNeeded();
-      return (store.items || []).find((m) => m.id === mailId) || null;
+      return (store.items || []).find((m) => m.id === mailId || m?.event?.id === mailId) || null;
     },
     hasReceived(mailKey) {
       const key = String(mailKey || "").trim();
@@ -137,7 +183,7 @@
 
       if (maxPending > 0 && guardType) {
         const pending = (store.items || []).filter(function (m) {
-          return m && !m.archived && !m.deleted && m.status === "pending" && String(m.type || "") === guardType;
+          return m && !m.archived && !m.deleted && !m.resolved && m.status === "pending" && String(m.type || "") === guardType;
         }).length;
         if (pending >= maxPending) return false;
       }
@@ -166,30 +212,38 @@
     },
     markRead(mailId) {
       const store = migrateOldInboxIfNeeded();
-      store.items = (store.items || []).map((m) => m.id === mailId ? { ...m, read: true } : m);
+      store.items = (store.items || []).map((m) => m.id === mailId || m?.event?.id === mailId ? { ...m, read: true } : m);
       saveStore(store);
     },
     markUnread(mailId) {
       const store = migrateOldInboxIfNeeded();
-      store.items = (store.items || []).map((m) => m.id === mailId ? { ...m, read: false } : m);
+      store.items = (store.items || []).map((m) => m.id === mailId || m?.event?.id === mailId ? { ...m, read: false } : m);
       saveStore(store);
     },
     archiveMail(mailId) {
       const store = migrateOldInboxIfNeeded();
-      store.items = (store.items || []).map((m) => m.id === mailId ? { ...m, archived: true } : m);
+      store.items = (store.items || []).map((m) => m.id === mailId || m?.event?.id === mailId ? { ...m, archived: true } : m);
       saveStore(store);
     },
     deleteMail(mailId) {
       const store = migrateOldInboxIfNeeded();
-      store.items = (store.items || []).map((m) => m.id === mailId ? { ...m, deleted: true } : m);
+      store.items = (store.items || []).map((m) => m.id === mailId || m?.event?.id === mailId ? { ...m, deleted: true } : m);
       saveStore(store);
     },
     answerMail(mailId, choiceId) {
       const mail = this.getMail(mailId);
       const eventId = mail?.event?.id || mailId;
-      if (window.HG_CiviEngine?.answer) return window.HG_CiviEngine.answer(eventId, choiceId);
-      return { ok: false, reason: "no_event_engine" };
+      const result = window.HG_CiviEngine?.answer
+        ? window.HG_CiviEngine.answer(eventId, choiceId)
+        : { ok: false, reason: "no_event_engine" };
+
+      if (result?.ok !== false) {
+        markResolved(mailId, eventId, choiceId);
+      }
+
+      return result;
     },
+    markResolved,
     replaceInbox(items) {
       const store = migrateOldInboxIfNeeded();
       store.items = (Array.isArray(items) ? items : []).map(normalizeEnvelope).slice(0, MAX_INBOX);
