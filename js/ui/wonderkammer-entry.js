@@ -235,8 +235,8 @@
     const html = `
       <article class="wk-entry-popup hg-modal">
         <header class="hg-modal-header">
-        <div class="wk-entry-breadcrumb">${esc(breadcrumb || title)}</div>
-        <div class="wk-entry-type-chip">${esc(type)}</div>
+        <p class="wk-entry-breadcrumb hg-modal-meta">${esc(breadcrumb || title)}</p>
+        <div class="wk-entry-type-chip hg-modal-meta">${esc(type)}</div>
         ${parentEntryId ? `<button class="wk-entry-back" type="button" data-wk-nav="${esc(parentEntryId)}">← Tilbake til ${esc(parentTitle || "forrige nivå")}</button>` : ""}
         <h2 class="hg-popup-name hg-modal-title">${esc(title)}</h2>
         </header>
