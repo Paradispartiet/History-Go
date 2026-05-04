@@ -26,6 +26,10 @@ concurrency:
   group: nature-place-candidates-main
   cancel-in-progress: false
 
+env:
+  NATURE_CANDIDATES_FINAL: data/natur/nature_place_map_candidates.json
+  NATURE_CANDIDATES_TMP: data/natur/.tmp_nature_place_map_candidates.json
+
 jobs:
   build:
     name: Validate maps and build Artskart candidates
@@ -46,14 +50,14 @@ jobs:
       - name: Validate active nature maps
         run: node tools/validate_nature_maps.mjs
 
-      - name: Build candidates from Artskart
-        run: node tools/build_nature_place_candidates_v2.mjs
+      - name: Build candidates from Artskart into temp file
+        run: node tools/build_nature_place_candidates_v2.mjs --out="$NATURE_CANDIDATES_TMP" --retries=4 --retry-base-delay-ms=1500
 
-      - name: Print candidate summary
+      - name: Print temp candidate summary
         run: |
           node - <<'NODE'
           const fs = require('node:fs');
-          const p = 'data/natur/nature_place_map_candidates.json';
+          const p = process.env.NATURE_CANDIDATES_TMP;
           const data = JSON.parse(fs.readFileSync(p, 'utf8'));
           const counts = data.meta?.counts || {};
           const places = data.places || {};
@@ -67,11 +71,11 @@ jobs:
           console.log(JSON.stringify({ counts, checked, errors, candidateFromArtskart, withFlora, withFauna, withExternal }, null, 2));
           NODE
 
-      - name: Validate candidate output
+      - name: Validate temp candidate output
         run: |
           node - <<'NODE'
           const fs = require('node:fs');
-          const p = 'data/natur/nature_place_map_candidates.json';
+          const p = process.env.NATURE_CANDIDATES_TMP;
           const data = JSON.parse(fs.readFileSync(p, 'utf8'));
           const places = data.places || {};
           const values = Object.values(places);
@@ -79,20 +83,23 @@ jobs:
           const candidateFromArtskart = values.filter(x => x?.status === 'candidate_from_artskart').length;
 
           if (!values.length) {
-            throw new Error('Candidate file has no places. Refusing to continue.');
+            throw new Error('Temp candidate file has no places. Refusing to continue.');
           }
 
           if (errors.length) {
             const sample = errors.slice(0, 10).map(x => `${x.name || 'unknown'}: ${x.error || 'unknown error'}`).join('\n');
-            throw new Error(`Candidate file contains ${errors.length} error entries. Refusing to upload/commit failed output.\n${sample}`);
+            throw new Error(`Temp candidate file contains ${errors.length} error entries. Refusing to replace final output.\n${sample}`);
           }
 
           if (candidateFromArtskart !== values.length) {
-            throw new Error(`Expected all places to have status candidate_from_artskart, got ${candidateFromArtskart}/${values.length}.`);
+            throw new Error(`Expected all temp places to have status candidate_from_artskart, got ${candidateFromArtskart}/${values.length}.`);
           }
 
-          console.log(`Candidate output valid: ${candidateFromArtskart}/${values.length} candidate_from_artskart, 0 errors.`);
+          console.log(`Temp candidate output valid: ${candidateFromArtskart}/${values.length} candidate_from_artskart, 0 errors.`);
           NODE
+
+      - name: Promote temp candidate file
+        run: cp "$NATURE_CANDIDATES_TMP" "$NATURE_CANDIDATES_FINAL"
 
       - name: Commit candidate file
         if: ${{ github.event_name == 'workflow_dispatch' && inputs.commit_output == true }}
@@ -103,7 +110,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add data/natur/nature_place_map_candidates.json
+          git add "$NATURE_CANDIDATES_FINAL"
 
           if git diff --cached --quiet; then
             echo "No candidate file changes to commit."
