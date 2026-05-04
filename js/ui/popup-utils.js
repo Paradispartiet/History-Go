@@ -23,15 +23,15 @@ window.showPlaceCardRoundPopup = function ({
 } = {}) {
   makePopup(
     `
-      <div class="pc-round-popup pc-round-popup-${kind || "generic"}">
-        <div class="pc-round-popup-head">
-          <h2 class="pc-round-popup-title">${hgEsc(title)}</h2>
-          ${subtitle ? `<p class="pc-round-popup-sub">${hgEsc(subtitle)}</p>` : ``}
-        </div>
-        <div class="pc-round-popup-body">
+      <article class="pc-round-popup pc-round-popup-${kind || "generic"} hg-modal">
+        <header class="pc-round-popup-head hg-modal-header">
+          <h2 class="pc-round-popup-title hg-modal-title">${hgEsc(title)}</h2>
+          ${subtitle ? `<p class="pc-round-popup-sub hg-modal-meta">${hgEsc(subtitle)}</p>` : ``}
+        </header>
+        <div class="pc-round-popup-body hg-modal-body">
           ${html || `<p class="hg-muted">Ingen innhold ennå.</p>`}
         </div>
-      </div>
+      </article>
     `,
     "placecard-round-popup"
   );

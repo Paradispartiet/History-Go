@@ -261,24 +261,21 @@
    PLACE-CARD ROUND POPUPS
    ===================================================== */
 
+.hg-popup.placecard-round-popup{
+  background: rgba(4, 8, 16, 0.66);
+}
+
 .hg-popup.placecard-round-popup .hg-popup-inner{
-  width: min(680px, 92vw);
-  max-height: 80vh;
-  padding: 22px 20px 18px;
-  background:
-    linear-gradient(180deg, rgba(24,24,30,0.98), rgba(12,12,16,0.98));
-  border-radius: 22px;
-  box-shadow:
-    0 24px 80px rgba(0,0,0,0.55),
-    0 0 0 1px rgba(255,255,255,0.05) inset;
-  overflow-y: auto;
-  overflow-x: hidden;
-  -webkit-overflow-scrolling: touch;
+  width: min(700px, calc(100vw - 28px));
+  max-height: min(86dvh, 860px);
+  padding: 0;
+  border-radius: 24px;
+  overflow: hidden;
 }
 
 .pc-round-popup-head{
-  margin-bottom: 16px;
-  padding-right: 42px;
+  margin: 0;
+  padding-right: 64px;
 }
 
 .pc-round-popup-title{
@@ -301,6 +298,7 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
+  padding-top: 6px;
 }
 
 .hg-popup.placecard-round-popup .pc-empty{
