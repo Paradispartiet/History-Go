@@ -1,0 +1,249 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "naeringsliv",
+  "role_scope": "mellomleder",
+  "mail_type": "micro",
+  "families": [
+    {
+      "id": "mellomleder_micro",
+      "description": "Korte operative mellomleder-mails som fyller arbeidsdagen med små avklaringer, friksjoner og rapportlinjer.",
+      "mails": [
+        {
+          "id": "mellomleder_micro_001",
+          "mail_type": "micro",
+          "mail_family": "mellomleder_micro",
+          "role_scope": "mellomleder",
+          "phase": "morning",
+          "subject": "Skiftbytte: to personer har byttet uten å si fra",
+          "summary": "Vaktplanen ser riktig ut, men faktisk bemanning er endret uformelt.",
+          "purpose": "Vise hvordan små uformelle endringer kan undergrave plan og rettferdighet.",
+          "stakes": "Hvis du lar det passere, kan fleksibilitet bli kultur for noen og ekstra belastning for andre.",
+          "situation": [
+            "Du åpner vaktplanen og ser at den stemmer på papiret.",
+            "På gulvet sier en ansatt at to personer har byttet internt fordi det «passet bedre sånn». Ingen har oppdatert systemet.",
+            "Det kan virke uskyldig, men du vet at usynlige bytter ofte skaper synlig irritasjon senere."
+          ],
+          "task_domain": "staffing",
+          "competency": "prioritering",
+          "pressure": "morgentrykk",
+          "choice_axis": "fleksibilitet_vs_sporbarhet",
+          "consequence_axis": "tillit_vs_uklarhet",
+          "narrative_arc": "hverdagsmakt",
+          "learning_focus": ["vaktplan", "uformell makt", "rettferdighet"],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Oppdater planen og be dem melde bytter formelt fremover.",
+              "effect": 1,
+              "tags": ["process", "fairness"],
+              "feedback": "Du gjør ikke byttet til en stor sak, men setter en grense for usynlig fleksibilitet."
+            },
+            {
+              "id": "B",
+              "label": "La byttet stå og fokusere på dagens leveranse.",
+              "effect": 0,
+              "tags": ["tempo", "risk"],
+              "feedback": "Dagen kommer raskere i gang, men systemet lærer at planen kan endres uten spor."
+            }
+          ]
+        },
+        {
+          "id": "mellomleder_micro_002",
+          "mail_type": "micro",
+          "mail_family": "mellomleder_micro",
+          "role_scope": "mellomleder",
+          "phase": "morning",
+          "subject": "KPI-linjen er grønn, men teamet sier noe annet",
+          "summary": "Dagens første KPI ser god ut, men stemningen på gulvet er sliten.",
+          "purpose": "Lære at styringstall kan være riktige og likevel utilstrekkelige.",
+          "stakes": "Hvis grønt tall betyr at du overser belastning, kan problemet vokse til tallene også blir røde.",
+          "situation": [
+            "Rapportlinjen for gårsdagen er grønn.",
+            "Samtidig sier to ansatte at tempoet var urimelig, og at dere bare klarte målet fordi pauser ble skjøvet på.",
+            "Tallene sier leveranse. Folkene sier belastning. Begge deler kan være sant."
+          ],
+          "task_domain": "kpi_followup",
+          "competency": "rapportering",
+          "pressure": "gront_tall",
+          "choice_axis": "tall_vs_erfaring",
+          "consequence_axis": "styring_vs_blindhet",
+          "narrative_arc": "rapportering_vs_sannhet",
+          "learning_focus": ["KPI", "arbeidsmiljø", "rapportering"],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Legg inn kommentar om belastning bak grønn KPI.",
+              "effect": 1,
+              "tags": ["integrity", "learning"],
+              "feedback": "Du gjør rapporten mindre blank, men mer styrbar."
+            },
+            {
+              "id": "B",
+              "label": "La KPI-en stå alene siden målet faktisk ble nådd.",
+              "effect": -1,
+              "tags": ["visibility", "risk"],
+              "feedback": "Rapporten ser god ut, men mister signalet som kunne forklart prisen på leveransen."
+            }
+          ]
+        },
+        {
+          "id": "mellomleder_micro_003",
+          "mail_type": "micro",
+          "mail_family": "mellomleder_micro",
+          "role_scope": "mellomleder",
+          "phase": "afternoon",
+          "subject": "En ansatt ber om fem minutter — igjen",
+          "summary": "En ansatt ber om en kort samtale midt i en travel periode.",
+          "purpose": "Vise hvordan menneskelig oppfølging ofte kommer på de minst praktiske tidspunktene.",
+          "stakes": "Hvis alt menneskelig skyves til senere, blir senere ofte aldri.",
+          "situation": [
+            "Du er på vei inn i en rapportfrist når en ansatt spør om fem minutter.",
+            "Det er tredje gang denne uka. Samtalen kan være liten, eller den kan være signal om noe større.",
+            "Du kjenner fristtrykket. Du kjenner også at tillit ofte bygges i slike upraktiske mellomrom."
+          ],
+          "task_domain": "people_followup",
+          "competency": "arbeidsmiljo",
+          "pressure": "rapportfrist",
+          "choice_axis": "tilgjengelighet_vs_frist",
+          "consequence_axis": "tillit_vs_tempo",
+          "narrative_arc": "mennesker_i_planen",
+          "learning_focus": ["oppfølging", "arbeidsmiljø", "prioritering"],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta fem minutter nå og avklar om det haster.",
+              "effect": 1,
+              "tags": ["trust", "people"],
+              "feedback": "Du mister litt tempo, men viser at mennesker ikke alltid må vente på systemet."
+            },
+            {
+              "id": "B",
+              "label": "Be om at dere tar det etter rapportfristen.",
+              "effect": 0,
+              "tags": ["process", "tempo"],
+              "feedback": "Du holder fristen, men skyver et mulig signal videre. Det krever at du faktisk følger opp."
+            }
+          ]
+        },
+        {
+          "id": "mellomleder_micro_004",
+          "mail_type": "micro",
+          "mail_family": "mellomleder_micro",
+          "role_scope": "mellomleder",
+          "phase": "afternoon",
+          "subject": "Avviket er lite nok til å ignorere",
+          "summary": "Et lite kvalitetsavvik kan lukkes raskt eller undersøkes som mønster.",
+          "purpose": "Lære at små avvik ofte er første tegn på systempress.",
+          "stakes": "Hvis små avvik alltid lukkes raskt, mister du tidlig varsling.",
+          "situation": [
+            "Kvalitetssystemet viser et lite avvik.",
+            "Ingen kunde har klaget, ingen leder har spurt, og avviket kan lukkes med en enkel kommentar.",
+            "Likevel ligner det på to små saker fra forrige uke."
+          ],
+          "task_domain": "quality_deviation",
+          "competency": "systemoversettelse",
+          "pressure": "smaavvik",
+          "choice_axis": "lukke_vs_lare",
+          "consequence_axis": "tempo_vs_laring",
+          "narrative_arc": "systemsignal",
+          "learning_focus": ["avvik", "kvalitet", "mønster"],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Koble avviket til de to forrige og be om mønstergjennomgang.",
+              "effect": 1,
+              "tags": ["learning", "quality"],
+              "feedback": "Du gjør et lite avvik til et nyttig signal. Det er slik systemer lærer før feilene vokser."
+            },
+            {
+              "id": "B",
+              "label": "Lukk avviket raskt med kort kommentar.",
+              "effect": 0,
+              "tags": ["tempo", "risk"],
+              "feedback": "Du sparer tid nå, men mister muligheten til å se om avviket er et mønster."
+            }
+          ]
+        },
+        {
+          "id": "mellomleder_micro_005",
+          "mail_type": "micro",
+          "mail_family": "mellomleder_micro",
+          "role_scope": "mellomleder",
+          "phase": "evening",
+          "subject": "En siste melding fra Anita",
+          "summary": "En sidestilt leder vil at du tar en liten ekstraoppgave før du logger av.",
+          "purpose": "Vise hvordan ekstraarbeid ofte kommer forkledd som små tjenester.",
+          "stakes": "Hvis du alltid sier ja på slutten av dagen, blir grensene dine en felles ressurs andre bruker.",
+          "situation": [
+            "Anita skriver: «Bare en liten ting før du går.»",
+            "Oppgaven er liten nok til å være vanskelig å avvise, men stor nok til å skyve kvelden din.",
+            "Du kjenner mønsteret: små tjenester er sjelden små når de alltid havner samme sted."
+          ],
+          "task_domain": "boundary_setting",
+          "competency": "styring_og_tillit",
+          "pressure": "kveldsgrense",
+          "choice_axis": "hjelpsomhet_vs_grense",
+          "consequence_axis": "synlighet_vs_slitasje",
+          "narrative_arc": "uformell_makt",
+          "learning_focus": ["grenser", "uformell makt", "ekstraarbeid"],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta oppgaven, men marker at dette må planlegges tidligere neste gang.",
+              "effect": 1,
+              "tags": ["diplomacy", "boundary"],
+              "feedback": "Du hjelper uten å gjøre grensene usynlige."
+            },
+            {
+              "id": "B",
+              "label": "Si at du tar den i morgen fordi arbeidsdagen er slutt.",
+              "effect": 0,
+              "tags": ["boundary", "process"],
+              "feedback": "Du beskytter kvelden, men risikerer at Anita leser det som lav fleksibilitet."
+            }
+          ]
+        },
+        {
+          "id": "mellomleder_micro_006",
+          "mail_type": "micro",
+          "mail_family": "mellomleder_micro",
+          "role_scope": "mellomleder",
+          "phase": "afternoon",
+          "subject": "En rapportlinje trenger et verb",
+          "summary": "Du må formulere et avvik slik at det peker mot handling, ikke bare skyld.",
+          "purpose": "Trene rapporteringsspråk: verb bestemmer om rapporten blir læring eller ansvarsplassering.",
+          "stakes": "En dårlig formulering kan gjøre systemsvikt til personsvikt.",
+          "situation": [
+            "Rapporten har feltet: «Årsak til forsinkelse». Markøren blinker.",
+            "Du kan skrive «manglende tempo i teamet», men du vet at bemanningen, opplæringen og planendringen også var medvirkende.",
+            "Noen ganger ligger makten i et eneste verb."
+          ],
+          "task_domain": "report_wording",
+          "competency": "rapportering",
+          "pressure": "kort_felt",
+          "choice_axis": "skyld_vs_system",
+          "consequence_axis": "rettferdighet_vs_enkelhet",
+          "narrative_arc": "rapportens_makt",
+          "learning_focus": ["rapportering", "språk", "systemansvar"],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Skriv at forsinkelsen skyldes kombinasjon av bemanning, opplæring og planendring.",
+              "effect": 1,
+              "tags": ["integrity", "system"],
+              "feedback": "Du gjør linjen lengre, men mer rettferdig. Rapporten peker mot årsak, ikke bare skyld."
+            },
+            {
+              "id": "B",
+              "label": "Skriv kort at teamet ikke holdt planlagt tempo.",
+              "effect": -1,
+              "tags": ["shortcut", "risk"],
+              "feedback": "Linjen blir enkel, men legger ansvaret lavere enn årsaken egentlig ligger."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
