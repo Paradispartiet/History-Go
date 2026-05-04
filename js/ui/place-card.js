@@ -2,6 +2,7 @@
 // 5. PLACE CARD (det store kortpanelet) — REN SAMLET VERSJON
 // ============================================================
 window.openPlaceCard = async function (place) {
+  console.trace("[placeCard] openPlaceCard", { placeId: place?.id, placeName: place?.name });
   if (!place) return;
   const placeId = String(place.id || "").trim();
   if (placeId && window.DataHub?.loadFullPlace) {
