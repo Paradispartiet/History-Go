@@ -18,6 +18,7 @@
     fagarbeider: 'naer_fagarbeider',
     formann: 'naer_formann',
     controller: 'naer_controller',
+    avdelingsleder: 'naer_avdelingsleder',
     finansanalytiker: 'naer_finansanalytiker',
     okonomi_og_finanssjef: 'naer_okonomi_og_finanssjef',
     finansdirektor: 'naer_finansdirektor',
@@ -30,6 +31,7 @@
     naer_fagarbeider: 'fagarbeider',
     naer_formann: 'formann',
     naer_controller: 'controller',
+    naer_avdelingsleder: 'avdelingsleder',
     naer_finansanalytiker: 'finansanalytiker',
     naer_okonomi_og_finanssjef: 'okonomi_og_finanssjef',
     naer_finansdirektor: 'finansdirektor',
@@ -52,11 +54,11 @@
 
     okonomi_og_administrasjonsmedarbeider: 'mellomleder',
     controller: 'controller',
+    avdelingsleder: 'avdelingsleder',
     finansanalytiker: 'finansanalytiker',
     okonomi_og_finanssjef: 'okonomi_og_finanssjef',
     finansdirektor: 'finansdirektor',
 
-    avdelingsleder: 'mellomleder',
     driftsleder: 'mellomleder',
     produksjonsleder: 'mellomleder',
     butikksjef_enhetsleder: 'mellomleder',
@@ -86,6 +88,7 @@
       if (roleKey === 'fagarbeider' || roleKey.includes('fagarbeider')) return 'fagarbeider';
       if (roleKey === 'formann' || roleKey.includes('formann') || roleKey.includes('arbeidsleder') || roleKey.includes('skiftleder')) return 'formann';
       if (roleKey === 'controller' || roleKey.includes('controller')) return 'controller';
+      if (roleKey === 'avdelingsleder' || roleKey.includes('avdelingsleder')) return 'avdelingsleder';
       if (roleKey === 'finansanalytiker' || roleKey.includes('finansanalytiker')) return 'finansanalytiker';
       if (roleKey === 'okonomi_og_finanssjef' || roleKey.includes('finanssjef')) return 'okonomi_og_finanssjef';
       if (roleKey === 'finansdirektor' || roleKey.includes('finansdirektor')) return 'finansdirektor';
@@ -98,6 +101,7 @@
       if (titleKey.includes('fagarbeider')) return 'fagarbeider';
       if (titleKey.includes('formann') || titleKey.includes('arbeidsleder') || titleKey.includes('skiftleder')) return 'formann';
       if (titleKey.includes('controller')) return 'controller';
+      if (titleKey.includes('avdelingsleder')) return 'avdelingsleder';
       if (titleKey.includes('finansanalytiker')) return 'finansanalytiker';
       if (titleKey.includes('finanssjef') || titleKey.includes('okonomi_og_finanssjef')) return 'okonomi_og_finanssjef';
       if (titleKey.includes('finansdirektor')) return 'finansdirektor';
@@ -120,6 +124,7 @@
     if (roleKey.includes('fagarbeider')) return 'fagarbeider';
     if (roleKey.includes('formann') || roleKey.includes('arbeidsleder') || roleKey.includes('skiftleder')) return 'formann';
     if (roleKey.includes('controller')) return 'controller';
+    if (roleKey.includes('avdelingsleder')) return 'avdelingsleder';
     if (roleKey.includes('finansanalytiker')) return 'finansanalytiker';
     if (roleKey.includes('finanssjef') || roleKey.includes('okonomi_og_finanssjef')) return 'okonomi_og_finanssjef';
     if (roleKey.includes('finansdirektor')) return 'finansdirektor';
