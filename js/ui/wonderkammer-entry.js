@@ -233,17 +233,23 @@
     const breadcrumb = [resolved.parentName, parentTitle, title].filter(Boolean).join(" \u2192 ");
 
     const html = `
-      <article class="wk-entry-popup">
+      <article class="wk-entry-popup hg-modal">
+        <header class="hg-modal-header">
         <div class="wk-entry-breadcrumb">${esc(breadcrumb || title)}</div>
         <div class="wk-entry-type-chip">${esc(type)}</div>
         ${parentEntryId ? `<button class="wk-entry-back" type="button" data-wk-nav="${esc(parentEntryId)}">← Tilbake til ${esc(parentTitle || "forrige nivå")}</button>` : ""}
-        <h2 class="hg-popup-name">${esc(title)}</h2>
+        <h2 class="hg-popup-name hg-modal-title">${esc(title)}</h2>
+        </header>
+        <div class="hg-modal-body">
         ${description ? `<p class="hg-popup-desc">${esc(description)}</p>` : ""}
         ${activityText ? `<section class="wk-entry-section"><h3>Hva kan man gjøre her?</h3><p>${esc(activityText)}</p></section>` : ""}
         ${ageHint ? `<section class="wk-entry-section"><h3>Alder / nivå</h3><p>${esc(ageHint)}</p></section>` : ""}
         ${metaGridHtml(entry)}
         ${childListHtml(entry)}
-        <button class="reward-ok" data-close-popup>Lukk</button>
+        </div>
+        <footer class="hg-modal-footer">
+          <button class="reward-ok" data-close-popup>Lukk</button>
+        </footer>
       </article>
     `;
 
