@@ -1,0 +1,142 @@
+{
+  "id": "bla_quiz_1",
+  "quiz_id": "musikk_bla_set_1_q1",
+  "categoryId": "musikk",
+  "placeId": "bla",
+  "personId": "",
+  "natureId": "",
+  "targetId": "bla",
+  "question_scope": "place",
+  "question": "Hva gjør Blå særlig relevant som musikksted?",
+  "options": [
+    "Det er en konsertscene og klubb som knytter live-musikk, publikum og byens musikkmiljø sammen",
+    "Det er et middelalderkloster med ruinspor etter cistercienserordenen",
+    "Det er en børsbygning knyttet til finanshistorie og verdipapirhandel"
+  ],
+  "answer": "Det er en konsertscene og klubb som knytter live-musikk, publikum og byens musikkmiljø sammen",
+  "answerIndex": 0,
+  "dimension": "musikk",
+  "topic": "Scene, live og publikum",
+  "knowledge": "Blå brukes her som eksempel på musikkens sceneinfrastruktur: konsertsted, klubb, publikum, live-energi og lokalt musikkmiljø.",
+  "trivia": [],
+  "difficulty": 1,
+  "question_type": "fact",
+  "question_layer": "fakta_sted_scene",
+  "year": null,
+  "epoke_id": "samtidsmusikk_klubb_og_sceneoffentlighet",
+  "epoke_domain": "musikk",
+  "emne_id": "em_musikk_klubb_scene_subkultur",
+  "related_emner": [
+    "em_musikk_scene_live_performativitet",
+    "em_musikk_publikum_fellesskap",
+    "em_musikk_festival_sceneinfrastruktur"
+  ],
+  "core_concepts": [
+    "konsertscene",
+    "klubb",
+    "live-musikk",
+    "publikum",
+    "musikkmiljø"
+  ],
+  "concept_focus": [
+    "scene",
+    "publikum"
+  ],
+  "learning_paths": [
+    "fra sted til sceneinfrastruktur",
+    "fra live-hendelse til publikum og fellesskap",
+    "fra klubbkultur til lokalt musikkmiljø"
+  ],
+  "tags": [
+    "musikk",
+    "sted",
+    "scene",
+    "klubb",
+    "live",
+    "publikum",
+    "musikkmiljø"
+  ],
+  "required_tags": [
+    "external_source",
+    "music_anchor",
+    "em_musikk"
+  ],
+  "source": [
+    {
+      "type": "official_venue_or_institution_source",
+      "name": "Blå / tilsvarende offisiell scene- eller institusjonskilde",
+      "role": "verifiserer stedets funksjon som konsertscene, klubb eller musikkarena",
+      "required": true
+    },
+    {
+      "type": "music_history_or_reception_source",
+      "name": "musikkhistorisk, kritisk, program-, arkiv- eller resepsjonskilde",
+      "role": "verifiserer stedets betydning for live-musikk, publikum, scenehistorie eller musikkmiljø",
+      "required": true
+    }
+  ],
+  "related_emners": [
+    "em_musikk_scene_live_performativitet",
+    "em_musikk_publikum_fellesskap",
+    "em_musikk_festival_sceneinfrastruktur"
+  ],
+  "source_origin": "mixed",
+  "claim_basis": "Ekstern scene-/institusjonskilde skal verifisere at Blå fungerer som konsertsted, klubb og musikkarena med betydning for live-musikk og byens musikkmiljø.",
+  "guidance_basis": {
+    "fagkart_category_id": "scene_kropp_framforing",
+    "topic_hook": "klubbkultur",
+    "emne_id": "em_musikk_klubb_scene_subkultur",
+    "method_id": "met_musikk_steds_og_miljoanalyse",
+    "canonical_files_used_as_guidance_only": [
+      "fagkart_musikk_canonical_v4_5.json",
+      "methods_musikk_canonical_v4_5.json",
+      "emner_musikk_canonical_v4_5.json",
+      "emnemapping_musikk_canonical_v4_5.json",
+      "musikkpensum_canonical_v4_5.json"
+    ]
+  },
+  "method_id": "met_musikk_steds_og_miljoanalyse",
+  "music_anchor_type": "scene",
+  "source_note": "Spørsmålet skal bygges fra ekstern scene-/musikkilde; fagfilene styrer bare metode, emne og spørsmålsflate.",
+  "external_source_ratio_target": 0.85,
+  "internal_file_only_allowed": false,
+  "requires_music_anchor": true,
+  "requires_external_claim_basis": true,
+  "requires_sound_artist_scene_or_institution_anchor": true,
+  "requires_audible_or_documented_music_context": true,
+  "generator_guardrails": {
+    "do_not_generate_from_emne_label_only": true,
+    "do_not_generate_from_method_label_only": true,
+    "do_not_use_non_musikk_emne_id": true,
+    "required_emne_prefix": "em_musikk_",
+    "blocked_emne_prefixes": [
+      "em_by_",
+      "em_his_",
+      "em_kunst_",
+      "em_lit_",
+      "em_media_",
+      "em_pop_",
+      "em_vit_",
+      "em_pol_",
+      "em_naering_"
+    ],
+    "sound_or_scene_first_then_theory": true,
+    "source_first": true,
+    "avoid_generic_music_theory_questions": true,
+    "avoid_pure_artist_biography_without_sound_scene_or_field": true,
+    "avoid_pure_taste_questions": true
+  },
+  "validation": {
+    "emne_id_exists_in_emner_musikk": true,
+    "method_id_exists_in_methods_musikk": true,
+    "mapping_exists_in_emnemapping_musikk": true,
+    "category_matches_badge": true,
+    "schema_extends_generic_supersetQUIZMAL": true
+  },
+  "template_notes": {
+    "template_role": "musikk_superset_quiz_object",
+    "generic_template_source": "supersetQUIZMAL (10).json",
+    "content_policy": "Dette er en mal/eksempelobjekt. Produksjonsquizer skal fylle source med konkrete kilder og ikke bruke fagfilene som hovedkilde til faktapåstander.",
+    "next_use": "Bruk som grunnmal for musikkquiz-spørsmål før generatoren lager mange spørsmål per sted/person."
+  }
+}

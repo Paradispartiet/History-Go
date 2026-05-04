@@ -1,0 +1,293 @@
+{
+  "version": "v5.1-source-priority-patch-musikk",
+  "subject_id": "musikk",
+  "subject_title": "Musikk & scenekunst",
+  "scope": "oslo_og_omegn",
+  "purpose": "Stramme inn quizgeneratoren for Musikk slik at konkrete låter, verk, artister, band, komponister, utøvere, opptak, scener, studioer, festivaler, sjangre, musikkmiljøer, publikumssituasjoner og dokumenterte musikkfaglige kilder dominerer synlig spørsmålsinnhold. Fagkart, methods, emner, emnemapping og pensum skal styre struktur, metode, teori og progresjon, men ikke fungere som hovedkilde til faktapåstander.",
+  "canonical_inputs": {
+    "fagkart": "fagkart_musikk_canonical_v4_5.json",
+    "methods": "methods_musikk_canonical_v4_5.json",
+    "emner": "emner_musikk_canonical_v4_5.json",
+    "emnemapping": "emnemapping_musikk_canonical_v4_5.json",
+    "pensum": "musikkpensum_canonical_v4_5.json",
+    "domain_count": 6,
+    "emne_count": 40,
+    "method_count": 27,
+    "mapping_count": 40,
+    "topic_hook_count": 60
+  },
+  "hard_rules": {
+    "source_dominance_rule": "Eksterne musikkfaglige kilder, konkrete låter, verk, artister, band, komponister, utøvere, opptak, liveopptredener, scener, studioer, festivaler, sjangre, musikkmiljøer, kritikk, resepsjon og dokumenterte publikumssituasjoner skal dominere det synlige faktainnholdet i musikkquizzer. Canonical-filene er styringsfiler, ikke faktakilde.",
+    "canonical_files_are_guides_not_content": true,
+    "external_music_source_first_all_sets": true,
+    "minimum_external_source_ratio_by_set": {
+      "1": 0.85,
+      "2": 0.85,
+      "3": 0.8,
+      "4": 0.75,
+      "5": 0.75,
+      "6": 0.7,
+      "7": 0.75,
+      "8": 0.75
+    },
+    "internal_file_only_questions_max_per_quiz": 0.05,
+    "internal_file_only_questions_allowed_only_for": [
+      "ren observasjon av synlig scene, instrument, studio, konsertrom, program, minneskilt, plateomslag eller dokumentert lydkilde",
+      "validering av metadata, kategori eller spørsmålslag",
+      "nødfallback når ekstern kilde ikke finnes, og dette loggføres eksplisitt"
+    ],
+    "question_seed_priority": [
+      "konkret låt, verk, artist, band, komponist, utøver, opptak, scene, studio, festival, sjanger eller musikkmiljø",
+      "offisiell scene-, festival-, institusjons-, musikkhøgskole-, kringkastings-, arkiv- eller plateselskapskilde",
+      "musikkhistorisk faglitteratur, plateomtale, kritikk, katalogtekst, arkivbeskrivelse, intervju eller program",
+      "utgivelseshistorie, opptakshistorie, liveopptreden, konsertprogram, produksjonsnotat eller dokumentert resepsjon",
+      "dokumentert musikalsk offentlighet: konserter, festivaler, radio, debatter, publikumspraksiser og scener",
+      "teknologisk kilde om studio, opptak, miks, mastering, instrument, lydsystem, plattform eller distribusjon",
+      "stedsdata/persondata i appen",
+      "fagkart, methods, emner, emnemapping og pensum som styring – ikke faktakilde"
+    ],
+    "musikk_question_must_start_from": [
+      "konkret lyd, låt, verk eller opptak",
+      "navngitt artist, band, komponist, produsent, utøver eller lydtekniker",
+      "scene, konsertrom, klubb, festival, studio, øvingsrom, radiostudio eller musikkhøgskole",
+      "utgivelse, plate, streamingkatalog, liveopptreden, program, kritikk eller resepsjon",
+      "hørbart trekk: rytme, groove, klang, stemme, instrument, form, arrangement, improvisasjon eller produksjonsvalg",
+      "sjanger, tradisjon, musikkmiljø, bydelsscene, subkultur eller publikumssituasjon med dokumentert musikkfaglig kobling",
+      "musikkteknologi, studioarbeid, lydsystem, plattform, radio, arkiv, metadata eller distribusjonsform",
+      "dokumentert offentlighet, kritikk, kulturpolitikk, støtteordning, festivaløkologi eller bransjestruktur"
+    ],
+    "forbidden_generation_patterns": [
+      "Ikke generer synlige spørsmål direkte fra emne-, hook-, metode- eller teorinavn.",
+      "Ikke spør generisk om musikkteori uten konkret lyd, låt, artist, scene, studio, festival, sjanger, publikum, institusjon eller kilde.",
+      "Ikke gjør et sted til musikk bare fordi konserter kan holdes der, uten dokumentert musikkhistorisk, scenisk, teknologisk eller miljømessig hovedkobling.",
+      "Ikke klassifiser teater/scenekunst, film/TV, media, kunst, litteratur, historie, byarkitektur, politikk, vitenskap, sport eller næringsliv som musikk når musikk bare er sekundærlag.",
+      "Ikke bruk em_by_*, em_his_*, em_kunst_*, em_lit_*, em_media_*, em_pop_*, em_vit_*, em_pol_* eller em_naering_* som hoved-emne_ids i places_musikk eller people_musikk.",
+      "Ikke lag rene smaksspørsmål av typen 'hva er best', 'hva passer best' eller 'hva føles mest riktig' uten hørbart, historisk eller kildedokumentert grunnlag."
+    ],
+    "required_emne_prefix": "em_musikk_",
+    "blocked_emne_prefixes_for_musikk_files": [
+      "em_by_",
+      "em_his_",
+      "em_kunst_",
+      "em_lit_",
+      "em_media_",
+      "em_pop_",
+      "em_vit_",
+      "em_pol_",
+      "em_naering_"
+    ],
+    "people_musikk_rule": "people_musikk skal inneholde personer der hovedrollen er artist, musiker, komponist, sanger, bandmedlem, produsent, lydtekniker, arrangør, dirigent, DJ, musikkritiker, musikkformidler, scene-/festivalbygger, plateselskapsaktør eller sentral aktør i musikkfeltet. Personer der hovedrollen er scenekunst uten musikkfaglig hovedpoeng, film, media, kunst, litteratur, politikk, vitenskap eller historie skal primært ligge i disse kategoriene, med musikk som sekundært tag bare der det er relevant.",
+    "places_musikk_rule": "places_musikk skal inneholde steder der hovedrollen er konsertscene, klubb, studio, øvingslokale, festivalområde, musikkhøgskole, radiostudio, plateselskap, platebutikk, musikkarkiv, konsertrom, kirke/korrom som musikksted, musikkmiljø eller bydelsscene. Rene teater-, film-, media-, kunst-, litteratur-, historie- eller byarkitektursteder skal ikke presses inn i musikk."
+  },
+  "soft_preferences": {
+    "preferred_external_source_mix_per_place": [
+      "minst én offisiell scene-, festival-, institusjons-, arkiv-, musikkhøgskole-, kringkastings- eller plateselskapskilde",
+      "minst én musikkhistorisk, kritisk, platehistorisk, program-, intervju-, arkiv- eller resepsjonskilde",
+      "minst én konkret låt-, artist-, opptak-, scene-, studio-, sjanger- eller publikumsrelatert kilde når quiz handler om verk eller person"
+    ],
+    "preferred_question_build_path": "musikkfaglig kilde eller konkret lyd/låt -> presist claim -> sted/person/artist/scene/studio/institusjon -> metode/emne -> teori",
+    "preferred_role_of_canonical_files": [
+      "velge riktig em_musikk_*",
+      "velge relevant musikkmetode",
+      "styre om spørsmålet bør starte i lyd, låt, artist, scene, studio, sjanger, teknologi, publikum eller felt",
+      "spre teorier, tenkere, sjangre, steder, artister og metoder",
+      "unngå kategorirot mellom musikk, scenekunst, film, media, kunst, litteratur, historie og by",
+      "unngå teorioverstyring der lyden, scenen, artisten eller musikkmiljøet blir borte"
+    ],
+    "preferred_question_surfaces": [
+      "sound-first",
+      "track-first",
+      "artist-first",
+      "scene-first",
+      "studio-first",
+      "genre-history-first",
+      "audience-public-first",
+      "sound-or-scene-first_then_named_theorist"
+    ],
+    "preferred_norwegian_theory_path": "Når relevant norsk musikkhistorisk, populærmusikkfaglig, lydteknologisk eller kulturpolitisk teori finnes, kan den brukes i senere sett, men bare etter at lyd, scene, artist, studio eller institusjon allerede er etablert."
+  },
+  "set_guidance": {
+    "1": {
+      "name": "grunnfakta_lyd_artist_scene",
+      "dominant_driver": "ekstern kilde, konkret låt, artist, band, scene, studio, festival, sjanger eller institusjon",
+      "canonical_role": "lett styring av emne og metode",
+      "allowed_methods": [
+        "met_musikk_lytteanalyse",
+        "met_musikk_scene_og_liveanalyse",
+        "met_musikk_steds_og_miljoanalyse",
+        "met_musikk_sjangerhistorisk_analyse"
+      ],
+      "question_style": "enkel gjenkjenning, artist/sted/scene, sjanger, institusjonsrolle, konkret lydlig eller scenisk kjennetegn"
+    },
+    "2": {
+      "name": "lyd_rytme_klang_form",
+      "dominant_driver": "konkret låt, lyd, opptak, rytme, groove, klang, instrument, stemme, form eller arrangement",
+      "canonical_role": "lett til middels metodeføring",
+      "allowed_methods": [
+        "met_musikk_lytteanalyse",
+        "met_musikk_rytme_og_klanganalyse",
+        "met_musikk_form_og_strukturanalyse",
+        "met_musikk_komposisjonsanalyse",
+        "met_musikk_arrangementsanalyse"
+      ],
+      "question_style": "hørbar observasjon, rytme, klang, struktur, stemme, instrument, form og arrangement uten ren smaksvurdering"
+    },
+    "3": {
+      "name": "scene_live_kropp_publikum",
+      "dominant_driver": "konkret konsert, scene, liveopptreden, publikum, rom, akustikk, kropp, energi eller fremføringspraksis",
+      "canonical_role": "høy metode- og emnestyring tillatt",
+      "allowed_methods": [
+        "met_musikk_performanceanalyse",
+        "met_musikk_scene_og_liveanalyse",
+        "met_musikk_kropp_og_affektanalyse",
+        "met_musikk_publikum_og_fellesskapsanalyse",
+        "met_musikk_lydlandskapsanalyse"
+      ],
+      "question_style": "musikk som hendelse: scene, kropp, rom, publikum, ritual, akustikk, liveform og kollektiv energi"
+    },
+    "4": {
+      "name": "studio_teknologi_produksjon",
+      "dominant_driver": "studio, opptak, instrument, mikrofon, miks, mastering, lydsystem, plattform, sampling eller digital produksjon",
+      "canonical_role": "middels til høy metodeføring",
+      "allowed_methods": [
+        "met_musikk_produksjonsanalyse",
+        "met_musikk_studio_og_opptaksanalyse",
+        "met_musikk_medie_og_plattformanalyse",
+        "met_musikk_lydlandskapsanalyse",
+        "met_musikk_tradisjons_og_arkivanalyse"
+      ],
+      "question_style": "musikk som teknisk og materiell produksjon: studio, opptak, format, plattform, metadata, sample, remiks og skjult lydarbeid"
+    },
+    "5": {
+      "name": "sjanger_tradisjon_historie",
+      "dominant_driver": "konkret sjanger, artistmiljø, scenehistorie, tradisjon, migrasjon, global impuls, epoke eller hybridform",
+      "canonical_role": "høy sjanger- og historieføring tillatt",
+      "allowed_methods": [
+        "met_musikk_sjangerhistorisk_analyse",
+        "met_musikk_komparativ_sjangeranalyse",
+        "met_musikk_tradisjons_og_arkivanalyse",
+        "met_musikk_migrasjons_og_globaliseringsanalyse",
+        "met_musikk_steds_og_miljoanalyse"
+      ],
+      "question_style": "sjangerkoder, lokale scener, global sirkulasjon, jazz, klassisk, hiphop, elektronika, folkemusikk, pop/rock og hybridformer"
+    },
+    "6": {
+      "name": "bransje_institusjon_kritikk",
+      "dominant_driver": "scener, festivaler, plateselskaper, radio, utdanning, priser, kritikk, kulturpolitikk, støtteordninger og musikkbransje",
+      "canonical_role": "høy felt- og institusjonsstyring tillatt",
+      "allowed_methods": [
+        "met_musikk_felt_og_bransjeanalyse",
+        "met_musikk_institusjonsanalyse",
+        "met_musikk_resepsjons_og_kritikkanalyse",
+        "met_musikk_kulturpolitisk_analyse",
+        "met_musikk_offentlighetsanalyse"
+      ],
+      "question_style": "hvordan musikk organiseres, finansieres, vurderes, kanoniseres, distribueres og gis offentlig verdi"
+    },
+    "7": {
+      "name": "identitet_subkultur_makt",
+      "dominant_driver": "konkrete scener, sjangre, artister, publikumsmiljøer, subkulturer, kjønn, klasse, minoritet, diaspora og representasjon",
+      "canonical_role": "høy teoristyring tillatt, men bare etter konkret musikkcase",
+      "allowed_methods": [
+        "met_musikk_identitets_og_subkulturanalyse",
+        "met_musikk_makt_og_representasjonsanalyse",
+        "met_musikk_migrasjons_og_globaliseringsanalyse",
+        "met_musikk_publikum_og_fellesskapsanalyse",
+        "met_musikk_steds_og_miljoanalyse"
+      ],
+      "question_style": "tilhørighet, subkultur, smak, klasse, kjønn, diaspora, motstand, fellesskap, nasjon og blindsoner"
+    },
+    "8": {
+      "name": "digital_sirkulasjon_plattform_teori",
+      "dominant_driver": "digital produksjon, streaming, radio, plattformer, metadata, remiks, sample, sirkulasjon, global distribusjon og kritisk teori",
+      "canonical_role": "høy teori tillatt, men med konkret lyd, plattform, opptak eller distribusjonscase",
+      "allowed_methods": [
+        "met_musikk_medie_og_plattformanalyse",
+        "met_musikk_produksjonsanalyse",
+        "met_musikk_felt_og_bransjeanalyse",
+        "met_musikk_resepsjons_og_kritikkanalyse",
+        "met_musikk_makt_og_representasjonsanalyse"
+      ],
+      "question_style": "digital produksjon, streaming, plattformmakt, metadata, remiks, sirkulasjon, synlighet, kritikk og teori"
+    }
+  },
+  "musikk_category_guardrails": {
+    "accept_as_musikk_primary_when": [
+      "stedet eller personen har musikkfaglig hovedrolle",
+      "det finnes konkret lyd, låt, artist, band, komponist, scene, studio, festival, opptak, publikum, sjanger eller musikkmiljø",
+      "spørsmål kan bygges fra lyd, opptak, scene, artist, studio, festival, program, kritikk, resepsjon, utgivelse eller musikkhistorisk kilde",
+      "musikkfeltets logikk er primær, ikke bare generell kulturarena, byutvikling, mediehistorie eller scenekunstbakgrunn"
+    ],
+    "do_not_accept_as_musikk_primary_when": [
+      "hovedrollen er scenekunst uten musikkfaglig hovedpoeng, film/TV, media, kunst, litteratur, historie, by, vitenskap, politikk, sport eller næringsliv",
+      "musikk bare er en aktivitet som kan skje på stedet uten dokumentert musikkhistorisk eller scenisk betydning",
+      "stedet er nevnt i musikkmiljø uten at stedet selv er viktig som scene, studio, festival, institusjon eller miljø",
+      "personen er kulturpersonlighet, men ikke musikkfeltaktør"
+    ],
+    "secondary_musikk_tag_allowed": true
+  },
+  "validator_additions": [
+    "Avvis musikkquiz hvis synlig innhold primært er parafrase av fagkart, emner, methods eller mapping.",
+    "Avvis spørsmål som kan spores bare til emne-/hook-/metodenavn og ikke til konkret lyd, låt, artist, scene, studio, festival, sjanger, publikum, institusjon, resepsjon eller ekstern kilde.",
+    "Avvis hoved-emne_ids i places_musikk eller people_musikk som ikke starter med em_musikk_*.",
+    "Flagg poster der hovedkategori ser ut til å være scenekunst, film/TV, media, kunst, litteratur, historie, by, vitenskap, politikk, sport eller næringsliv.",
+    "Logg per spørsmål source_origin som external, mixed, observed_sound, observed_scene, observed_recording, observed_instrument eller internal_only.",
+    "Flagg quiz der internal_only overstiger 5 prosent.",
+    "Flagg teorioverstyring når navngitt teoretiker kommer før lyd/låt/artist/scene/studio/institusjon er etablert.",
+    "Flagg lydanalyse som blir ren smaksvurdering uten hørbart trekk, låt, opptak, instrument, scene, kilde eller dokumentert observasjon.",
+    "Flagg biografiske spørsmål som ikke kobler person til lyd, verk, scene, studio, sjanger, publikum eller musikkfelt.",
+    "Flagg stedsbaserte spørsmål der koblingen til musikk bare er løs assosiasjon eller generell kulturarena."
+  ],
+  "generation_metadata_additions": {
+    "required_per_question_fields_recommended": [
+      "source_origin",
+      "claim_basis",
+      "guidance_basis",
+      "method_id",
+      "emne_id",
+      "music_anchor_type",
+      "source_note"
+    ],
+    "source_origin_values": [
+      "external",
+      "mixed",
+      "observed_sound",
+      "observed_scene",
+      "observed_recording",
+      "observed_instrument",
+      "internal_only"
+    ],
+    "music_anchor_type_values": [
+      "sound",
+      "track",
+      "work",
+      "artist",
+      "band",
+      "composer",
+      "performer",
+      "producer",
+      "venue",
+      "scene",
+      "studio",
+      "festival",
+      "genre",
+      "recording",
+      "release",
+      "instrument",
+      "technology",
+      "audience",
+      "music_public_sphere",
+      "music_institution",
+      "radio",
+      "platform",
+      "archive"
+    ],
+    "claim_basis_definition": "Den konkrete musikkfaglige påstanden fra ekstern kilde, lyd, låt, artist, scene, studio, festival, opptak, program, institusjon, kritikk eller dokumentert observasjon.",
+    "guidance_basis_definition": "Hvilket em_musikk_*, hook, metode eller teorispor som styrte spørsmålets form uten å levere faktapåstanden.",
+    "method_id_definition": "Én method_id fra methods_musikk_canonical_v4_5.json brukt til å forme spørsmålet.",
+    "emne_id_definition": "Én em_musikk_* fra emner_musikk_canonical_v4_5.json brukt som hovedemne.",
+    "source_note_definition": "Kort kildebeskrivelse som sier hvilken type musikkfaglig kilde som er brukt."
+  },
+  "diagnosis_note": "Når mange filer er opplastet, må modellen ikke overvekte canonical systemfiler bare fordi de er mange. For musikk skal konkrete låter, lyd, artister, scener, studioer, festivaler, sjangre, opptak, kritikk, resepsjon, publikumssituasjoner og musikkmiljøer dominere synlig quizinnhold. Fagkart, methods, emner, emnemapping og pensum er styring.",
+  "migration_note": "Eksisterende places_musikk og people_musikk bør migreres til em_musikk_* bare etter at hvert objekt er lest. Det må samtidig sjekkes at hovedkategori faktisk er musikk og ikke scenekunst, film, media, kunst, litteratur, historie, by eller annet fag."
+}
