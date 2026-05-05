@@ -31,6 +31,10 @@ const INCLUDE_EXISTING = argv.includes("--include-existing");
 const DEBUG = argv.includes("--debug");
 const LIMIT_ARG = argv.find(arg => arg.startsWith("--limit="));
 const LIMIT = LIMIT_ARG ? Math.max(0, Number(LIMIT_ARG.split("=")[1]) || 0) : null;
+const IDS_ARG = argv.find(arg => arg.startsWith("--ids="));
+const IDS_FILTER = IDS_ARG
+  ? new Set(IDS_ARG.split("=")[1].split(",").map(part => part.trim()).filter(Boolean))
+  : null;
 const MAX_CANDIDATES = 5;
 const REQUEST_DELAY_MS = 160;
 const USER_AGENT = "HistoryGoImageCandidateBot/1.0 (https://github.com/Paradispartiet/History-Go)";
@@ -484,6 +488,7 @@ async function loadPlaces() {
 async function main() {
   const { entries, places } = await loadPlaces();
   const filtered = places.filter(({ place }) => {
+    if (IDS_FILTER && !IDS_FILTER.has(place?.id)) return false;
     if (!place || !place.id || place.hidden || place.stub) return false;
     if (INCLUDE_EXISTING) return true;
     return !hasText(place.image) || !hasText(place.cardImage);
