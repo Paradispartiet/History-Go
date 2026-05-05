@@ -454,7 +454,6 @@ function wonderChambersForPerson(person) {
 // 1. LUKK POPUP
 // ============================================================
 function closePopup() {
-  console.log("[popup-debug] closePopup called", { hasCurrentPopup: Boolean(currentPopup) });
   console.trace("[popup] closePopup");
   if (currentPopup) {
     currentPopup.remove();
@@ -466,7 +465,6 @@ function closePopup() {
 // 2. GENERELL POPUP-GENERATOR
 // ============================================================
 function makePopup(html, extraClass = "", onClose = null) {
-  console.log("[popup-debug] makePopup called", { extraClass });
   closePopup();
 
   const el = document.createElement("div");
@@ -545,10 +543,6 @@ el.querySelectorAll("[data-wk]").forEach(btn => {
 
   document.body.appendChild(el);
   currentPopup = el;
-  console.log("[popup-debug] makePopup appended to body", {
-    className: el.className,
-    isConnected: el.isConnected
-  });
   requestAnimationFrame(() => el.classList.add("visible"));
 }
 
@@ -1435,10 +1429,6 @@ function renderWonderkammerDossier(doc) {
 }
 
 window.showPlacePopup = function(place) {
-  console.log("[popup-debug] window.showPlacePopup called", {
-    placeId: place?.id,
-    placeName: place?.name
-  });
   if (!place) return;
 
   // RIKTIG: kun stedsbilde
