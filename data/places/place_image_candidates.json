@@ -1,134 +1,61 @@
 {
   "schema": "historygo_place_image_candidates_v1",
   "meta": {
-    "generatedAt": "2026-05-05T04:59:57.976Z",
+    "generatedAt": "2026-05-05T15:37:58.285Z",
     "manifestPath": "data/places/manifest.json",
     "structure": "new_only_data_places_category_city",
     "sources": [
       "wikidata_p18",
       "commons_geosearch",
-      "commons_text_search"
+      "commons_text_search",
+      "manual_seed"
     ],
     "note": "Kontroller kandidatene manuelt. Marker én kandidat per sted med approved: true før apply-scriptet kjøres.",
     "diagnostics": {
-      "wikidataSearchCalls": 60,
+      "wikidataSearchCalls": 12,
       "wikidataSearchErrors": [
-        "Aker Brygge (nb): fetch failed",
-        "Aker Brygge (en): fetch failed",
-        "Aker Brygge Oslo (nb): fetch failed",
-        "Aker Brygge Oslo (en): fetch failed",
-        "Aker Brygge Norway (nb): fetch failed",
-        "Aker Brygge Norway (en): fetch failed",
-        "Tigerstatuen (nb): fetch failed",
-        "Tigerstatuen (en): fetch failed",
-        "Tigerstatuen Oslo (nb): fetch failed",
-        "Tigerstatuen Oslo (en): fetch failed",
-        "Tigerstatuen Norway (nb): fetch failed",
-        "Tigerstatuen Norway (en): fetch failed",
-        "Grønland kirke (nb): fetch failed",
-        "Grønland kirke (en): fetch failed",
-        "Grønland kirke Oslo (nb): fetch failed",
-        "Grønland kirke Oslo (en): fetch failed",
-        "Grønland kirke Norway (nb): fetch failed",
-        "Grønland kirke Norway (en): fetch failed",
-        "Kampen kirke (nb): fetch failed",
-        "Kampen kirke (en): fetch failed",
-        "Kampen kirke Oslo (nb): fetch failed",
-        "Kampen kirke Oslo (en): fetch failed",
-        "Kampen kirke Norway (nb): fetch failed",
-        "Kampen kirke Norway (en): fetch failed",
-        "Schous plass (nb): fetch failed",
-        "Schous plass (en): fetch failed",
-        "Schous plass Oslo (nb): fetch failed",
-        "Schous plass Oslo (en): fetch failed",
-        "Schous plass Norway (nb): fetch failed",
-        "Schous plass Norway (en): fetch failed",
-        "Akerhus Slott (nb): fetch failed",
-        "Akerhus Slott (en): fetch failed",
-        "Akerhus Slott Oslo (nb): fetch failed",
-        "Akerhus Slott Oslo (en): fetch failed",
-        "Akerhus Slott Norway (nb): fetch failed",
-        "Akerhus Slott Norway (en): fetch failed",
-        "MUNCH (nb): fetch failed",
-        "MUNCH (en): fetch failed",
-        "MUNCH Oslo (nb): fetch failed",
-        "MUNCH Oslo (en): fetch failed"
+        "Tigerstatuen (nb): TypeError: fetch failed code=ENETUNREACH url=https://www.wikidata.org/w/api.php?action=wbsearchentities&format=json&language=nb&uselang=nb&type=item&limit=8&search=Tigerstatuen",
+        "Tigerstatuen (en): TypeError: fetch failed code=ENETUNREACH url=https://www.wikidata.org/w/api.php?action=wbsearchentities&format=json&language=en&uselang=en&type=item&limit=8&search=Tigerstatuen",
+        "Tigerstatuen Oslo (nb): TypeError: fetch failed code=ENETUNREACH url=https://www.wikidata.org/w/api.php?action=wbsearchentities&format=json&language=nb&uselang=nb&type=item&limit=8&search=Tigerstatuen+Oslo",
+        "Tigerstatuen Oslo (en): TypeError: fetch failed code=ENETUNREACH url=https://www.wikidata.org/w/api.php?action=wbsearchentities&format=json&language=en&uselang=en&type=item&limit=8&search=Tigerstatuen+Oslo",
+        "Tigerstatuen Norway (nb): TypeError: fetch failed code=ENETUNREACH url=https://www.wikidata.org/w/api.php?action=wbsearchentities&format=json&language=nb&uselang=nb&type=item&limit=8&search=Tigerstatuen+Norway",
+        "Tigerstatuen Norway (en): TypeError: fetch failed code=ENETUNREACH url=https://www.wikidata.org/w/api.php?action=wbsearchentities&format=json&language=en&uselang=en&type=item&limit=8&search=Tigerstatuen+Norway",
+        "MUNCH (nb): TypeError: fetch failed code=ENETUNREACH url=https://www.wikidata.org/w/api.php?action=wbsearchentities&format=json&language=nb&uselang=nb&type=item&limit=8&search=MUNCH",
+        "MUNCH (en): TypeError: fetch failed code=ENETUNREACH url=https://www.wikidata.org/w/api.php?action=wbsearchentities&format=json&language=en&uselang=en&type=item&limit=8&search=MUNCH",
+        "MUNCH Oslo (nb): TypeError: fetch failed code=ENETUNREACH url=https://www.wikidata.org/w/api.php?action=wbsearchentities&format=json&language=nb&uselang=nb&type=item&limit=8&search=MUNCH+Oslo",
+        "MUNCH Oslo (en): TypeError: fetch failed code=ENETUNREACH url=https://www.wikidata.org/w/api.php?action=wbsearchentities&format=json&language=en&uselang=en&type=item&limit=8&search=MUNCH+Oslo",
+        "MUNCH Norway (nb): TypeError: fetch failed code=ENETUNREACH url=https://www.wikidata.org/w/api.php?action=wbsearchentities&format=json&language=nb&uselang=nb&type=item&limit=8&search=MUNCH+Norway",
+        "MUNCH Norway (en): TypeError: fetch failed code=ENETUNREACH url=https://www.wikidata.org/w/api.php?action=wbsearchentities&format=json&language=en&uselang=en&type=item&limit=8&search=MUNCH+Norway"
       ],
       "wikidataEntitiesCalls": 0,
       "wikidataEntitiesErrors": [],
       "wikidataEntitiesWithP18": 0,
       "commonsImageInfoCalls": 0,
       "commonsImageInfoErrors": [],
-      "commonsGeoCalls": 10,
+      "commonsGeoCalls": 2,
       "commonsGeoErrors": [
-        "fetch failed",
-        "fetch failed",
-        "fetch failed",
-        "fetch failed",
-        "fetch failed",
-        "fetch failed",
-        "fetch failed",
-        "fetch failed",
-        "fetch failed",
-        "fetch failed"
+        "TypeError: fetch failed code=ENETUNREACH url=https://commons.wikimedia.org/w/api.php?action=query&format=json&formatversion=2&generator=geosearch&ggscoord=59.9111%7C10.7528&ggsradius=650&ggslimit=25&ggsnamespace=6&prop=coordinates%7Cimageinfo&iiprop=url%7Cmime%7Csize%7Cextmetadata&iiurlwidth=900&iiextmetadatafilter=Artist%7CCredit%7CObjectName%7CLicenseShortName%7CLicenseUrl%7CUsageTerms",
+        "TypeError: fetch failed code=ENETUNREACH url=https://commons.wikimedia.org/w/api.php?action=query&format=json&formatversion=2&generator=geosearch&ggscoord=59.9057%7C10.7606&ggsradius=650&ggslimit=25&ggsnamespace=6&prop=coordinates%7Cimageinfo&iiprop=url%7Cmime%7Csize%7Cextmetadata&iiurlwidth=900&iiextmetadatafilter=Artist%7CCredit%7CObjectName%7CLicenseShortName%7CLicenseUrl%7CUsageTerms"
       ],
-      "commonsTextCalls": 30,
+      "commonsTextCalls": 6,
       "commonsTextErrors": [
-        "\"Aker Brygge\": fetch failed",
-        "Aker Brygge Oslo: fetch failed",
-        "Aker Brygge Norway: fetch failed",
-        "\"Tigerstatuen\": fetch failed",
-        "Tigerstatuen Oslo: fetch failed",
-        "Tigerstatuen Norway: fetch failed",
-        "\"Grønland kirke\": fetch failed",
-        "Grønland kirke Oslo: fetch failed",
-        "Grønland kirke Norway: fetch failed",
-        "\"Kampen kirke\": fetch failed",
-        "Kampen kirke Oslo: fetch failed",
-        "Kampen kirke Norway: fetch failed",
-        "\"Schous plass\": fetch failed",
-        "Schous plass Oslo: fetch failed",
-        "Schous plass Norway: fetch failed",
-        "\"Akerhus Slott\": fetch failed",
-        "Akerhus Slott Oslo: fetch failed",
-        "Akerhus Slott Norway: fetch failed",
-        "\"MUNCH\": fetch failed",
-        "MUNCH Oslo: fetch failed",
-        "MUNCH Norway: fetch failed",
-        "\"Astrup Fearnley Museet\": fetch failed",
-        "Astrup Fearnley Museet Oslo: fetch failed",
-        "Astrup Fearnley Museet Norway: fetch failed",
-        "\"Ekebergparken skulpturpark\": fetch failed",
-        "Ekebergparken skulpturpark Oslo: fetch failed",
-        "Ekebergparken skulpturpark Norway: fetch failed",
-        "\"Det Norske Teatret\": fetch failed",
-        "Det Norske Teatret Oslo: fetch failed",
-        "Det Norske Teatret Norway: fetch failed"
+        "\"Tigerstatuen\": TypeError: fetch failed code=ENETUNREACH url=https://commons.wikimedia.org/w/api.php?action=query&format=json&formatversion=2&generator=search&gsrsearch=%22Tigerstatuen%22&gsrnamespace=6&gsrlimit=15&prop=imageinfo&iiprop=url%7Cmime%7Csize%7Cextmetadata&iiurlwidth=900&iiextmetadatafilter=Artist%7CCredit%7CObjectName%7CLicenseShortName%7CLicenseUrl%7CUsageTerms",
+        "Tigerstatuen Oslo: TypeError: fetch failed code=ENETUNREACH url=https://commons.wikimedia.org/w/api.php?action=query&format=json&formatversion=2&generator=search&gsrsearch=Tigerstatuen+Oslo&gsrnamespace=6&gsrlimit=15&prop=imageinfo&iiprop=url%7Cmime%7Csize%7Cextmetadata&iiurlwidth=900&iiextmetadatafilter=Artist%7CCredit%7CObjectName%7CLicenseShortName%7CLicenseUrl%7CUsageTerms",
+        "Tigerstatuen Norway: TypeError: fetch failed code=ENETUNREACH url=https://commons.wikimedia.org/w/api.php?action=query&format=json&formatversion=2&generator=search&gsrsearch=Tigerstatuen+Norway&gsrnamespace=6&gsrlimit=15&prop=imageinfo&iiprop=url%7Cmime%7Csize%7Cextmetadata&iiurlwidth=900&iiextmetadatafilter=Artist%7CCredit%7CObjectName%7CLicenseShortName%7CLicenseUrl%7CUsageTerms",
+        "\"MUNCH\": TypeError: fetch failed code=ENETUNREACH url=https://commons.wikimedia.org/w/api.php?action=query&format=json&formatversion=2&generator=search&gsrsearch=%22MUNCH%22&gsrnamespace=6&gsrlimit=15&prop=imageinfo&iiprop=url%7Cmime%7Csize%7Cextmetadata&iiurlwidth=900&iiextmetadatafilter=Artist%7CCredit%7CObjectName%7CLicenseShortName%7CLicenseUrl%7CUsageTerms",
+        "MUNCH Oslo: TypeError: fetch failed code=ENETUNREACH url=https://commons.wikimedia.org/w/api.php?action=query&format=json&formatversion=2&generator=search&gsrsearch=MUNCH+Oslo&gsrnamespace=6&gsrlimit=15&prop=imageinfo&iiprop=url%7Cmime%7Csize%7Cextmetadata&iiurlwidth=900&iiextmetadatafilter=Artist%7CCredit%7CObjectName%7CLicenseShortName%7CLicenseUrl%7CUsageTerms",
+        "MUNCH Norway: TypeError: fetch failed code=ENETUNREACH url=https://commons.wikimedia.org/w/api.php?action=query&format=json&formatversion=2&generator=search&gsrsearch=MUNCH+Norway&gsrnamespace=6&gsrlimit=15&prop=imageinfo&iiprop=url%7Cmime%7Csize%7Cextmetadata&iiurlwidth=900&iiextmetadatafilter=Artist%7CCredit%7CObjectName%7CLicenseShortName%7CLicenseUrl%7CUsageTerms"
       ]
     },
     "counts": {
       "manifestFiles": 35,
-      "placesTotal": 395,
-      "placesChecked": 10,
+      "placesTotal": 407,
+      "placesChecked": 2,
       "placesWithCandidates": 0,
       "candidatesTotal": 0
     }
   },
   "places": [
-    {
-      "id": "aker_brygge",
-      "name": "Aker Brygge",
-      "category": "by",
-      "sourceFile": "data/places/by/oslo/places_by.json",
-      "lat": 59.9097,
-      "lon": 10.7256,
-      "missing": {
-        "image": true,
-        "cardImage": true
-      },
-      "status": "no_candidate_found",
-      "candidates": []
-    },
     {
       "id": "tigeren",
       "name": "Tigerstatuen",
@@ -144,110 +71,12 @@
       "candidates": []
     },
     {
-      "id": "gronland_kirke",
-      "name": "Grønland kirke",
-      "category": "by",
-      "sourceFile": "data/places/by/oslo/places_by.json",
-      "lat": 59.9125,
-      "lon": 10.7678,
-      "missing": {
-        "image": true,
-        "cardImage": true
-      },
-      "status": "no_candidate_found",
-      "candidates": []
-    },
-    {
-      "id": "kampen_kirke",
-      "name": "Kampen kirke",
-      "category": "by",
-      "sourceFile": "data/places/by/oslo/places_by.json",
-      "lat": 59.9167,
-      "lon": 10.7781,
-      "missing": {
-        "image": true,
-        "cardImage": true
-      },
-      "status": "no_candidate_found",
-      "candidates": []
-    },
-    {
-      "id": "schous_plass",
-      "name": "Schous plass",
-      "category": "by",
-      "sourceFile": "data/places/by/oslo/places_by.json",
-      "lat": 59.9233,
-      "lon": 10.7596,
-      "missing": {
-        "image": true,
-        "cardImage": true
-      },
-      "status": "no_candidate_found",
-      "candidates": []
-    },
-    {
-      "id": "akerhus_slott",
-      "name": "Akerhus Slott",
-      "category": "historie",
-      "sourceFile": "data/places/historie/oslo/places_historie.json",
-      "lat": 59.906611,
-      "lon": 10.73625,
-      "missing": {
-        "image": true,
-        "cardImage": true
-      },
-      "status": "no_candidate_found",
-      "candidates": []
-    },
-    {
       "id": "munch_museet",
       "name": "MUNCH",
       "category": "kunst",
       "sourceFile": "data/places/kunst/oslo/places_kunst.json",
       "lat": 59.9057,
       "lon": 10.7606,
-      "missing": {
-        "image": true,
-        "cardImage": true
-      },
-      "status": "no_candidate_found",
-      "candidates": []
-    },
-    {
-      "id": "astrup_fearnley",
-      "name": "Astrup Fearnley Museet",
-      "category": "kunst",
-      "sourceFile": "data/places/kunst/oslo/places_kunst.json",
-      "lat": 59.9071,
-      "lon": 10.7201,
-      "missing": {
-        "image": true,
-        "cardImage": true
-      },
-      "status": "no_candidate_found",
-      "candidates": []
-    },
-    {
-      "id": "ekebergparken",
-      "name": "Ekebergparken skulpturpark",
-      "category": "kunst",
-      "sourceFile": "data/places/kunst/oslo/places_kunst.json",
-      "lat": 59.8997,
-      "lon": 10.7753,
-      "missing": {
-        "image": true,
-        "cardImage": true
-      },
-      "status": "no_candidate_found",
-      "candidates": []
-    },
-    {
-      "id": "det_norske_teatret",
-      "name": "Det Norske Teatret",
-      "category": "musikk",
-      "sourceFile": "data/places/musikk/oslo/places_musikk.json",
-      "lat": 59.91376,
-      "lon": 10.74092,
       "missing": {
         "image": true,
         "cardImage": true
