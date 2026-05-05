@@ -1224,3 +1224,62 @@
 .hg-popup .hg-wiki{
   line-height: 1.58;
 }
+
+
+/* Scroll-regresjon etter modal-harmonisering
+   Holder én scroll-eier per popup-type:
+   - .hg-modal-body scroller for modal-strukturer
+   - .pc-round-popup-body scroller for PlaceCard-runding-popup
+   - eldre popup-varianter uten modal-body faller tilbake til .hg-popup-inner
+*/
+
+.hg-popup .hg-modal {
+  display: flex;
+  flex-direction: column;
+  max-height: inherit;
+  min-height: 0;
+}
+
+.hg-popup .hg-modal-header,
+.hg-popup .hg-modal-footer {
+  flex: 0 0 auto;
+}
+
+.hg-popup .hg-modal-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  max-height: calc(min(84dvh, 820px) - 136px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+.hg-popup.placecard-round-popup .pc-round-popup {
+  display: flex;
+  flex-direction: column;
+  max-height: min(84dvh, 820px);
+  min-height: 0;
+}
+
+.hg-popup.placecard-round-popup .pc-round-popup-head {
+  flex: 0 0 auto;
+}
+
+.hg-popup.placecard-round-popup .pc-round-popup-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  max-height: calc(min(84dvh, 820px) - 96px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+.hg-popup.relations-popup .hg-popup-inner,
+.hg-popup.brand-popup .hg-popup-inner {
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
