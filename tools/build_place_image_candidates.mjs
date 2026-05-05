@@ -240,6 +240,41 @@ function badTitle(title) {
   return ["locator_map", "location_map", "map_of", "karte", "coat_of_arms", "flag_of", "logo", "seal_of", "blank"].some(part => t.includes(part));
 }
 
+
+const GENERIC_TOKENS = new Set([
+  "oslo", "museum", "museet", "gate", "plass", "park", "kirke", "stadion",
+  "sentral", "stasjon", "the", "file"
+]);
+
+function tokenizeMeaningful(value) {
+  return unique(String(value ?? "")
+    .toLowerCase()
+    .normalize("NFKD")
+    .replace(/[̀-ͯ]/g, "")
+    .replace(/[^a-z0-9]+/g, " ")
+    .split(/\s+/)
+    .map(token => token.trim())
+    .filter(token => token.length >= 4 && !GENERIC_TOKENS.has(token)));
+}
+
+function semanticTokenOverlap(place, label, fileTitle, credit) {
+  const placeTokens = new Set([
+    ...tokenizeMeaningful(place?.name || ""),
+    ...tokenizeMeaningful(String(place?.id || "").replaceAll("_", " "))
+  ]);
+  if (!placeTokens.size) return 0;
+  const candidateTokens = new Set([
+    ...tokenizeMeaningful(label),
+    ...tokenizeMeaningful(fileTitle),
+    ...tokenizeMeaningful(credit)
+  ]);
+  let matches = 0;
+  for (const token of placeTokens) {
+    if (candidateTokens.has(token)) matches += 1;
+  }
+  return matches;
+}
+
 function labelScore(placeName, label, fileTitle) {
   const p = norm(placeName);
   const l = norm(label);
@@ -253,10 +288,16 @@ function labelScore(placeName, label, fileTitle) {
 
 function scoreCandidate(place, source, imageInfo, label, distanceM) {
   let score = 0;
+  const semanticMatches = semanticTokenOverlap(place, label, imageInfo.fileTitle, imageInfo.credit);
   if (source === "wikidata_p18") score += 82;
-  if (source === "commons_geosearch") score += 45;
+  if (source === "commons_geosearch") {
+    score += 45;
+    if (semanticMatches === 0) score -= 36;
+    else score += Math.min(12, semanticMatches * 5);
+  }
   if (source === "commons_text_search") score += 30;
   score += labelScore(place.name, label, imageInfo.fileTitle);
+  if (semanticMatches > 0 && source !== "commons_geosearch") score += Math.min(10, semanticMatches * 3);
   if (Number.isFinite(distanceM)) {
     if (distanceM <= 80) score += 22;
     else if (distanceM <= 200) score += 16;
