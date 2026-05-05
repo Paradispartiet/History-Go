@@ -139,7 +139,26 @@
     return paragraphs;
   }
 
-  function renderArticle(article) {
+  async function resolvePlaceForArticle(article) {
+    const articlePlaceId = norm(article?.place_id);
+    if (!articlePlaceId) return null;
+
+    const currentPlace = (Array.isArray(window.PLACES) ? window.PLACES : [])
+      .find((p) => norm(p?.id) === articlePlaceId);
+
+    if (typeof window.DataHub?.loadFullPlace !== "function") return currentPlace || null;
+
+    try {
+      const fullPlace = await window.DataHub.loadFullPlace(articlePlaceId, { cache: "no-store" });
+      if (fullPlace && typeof fullPlace === "object") return fullPlace;
+    } catch (err) {
+      console.warn("[HGLeksikon] full place lookup feilet", articlePlaceId, err);
+    }
+
+    return currentPlace || null;
+  }
+
+  async function renderArticle(article) {
     if (!article) return `<div class="pc-empty">Ingen leksikonartikkel funnet</div>`;
 
     const summary = article.summary || {};
@@ -147,8 +166,7 @@
     const interpretation = article.interpretation || {};
     const events = article.events || {};
     const classification = article.classification || {};
-    const place = (Array.isArray(window.PLACES) ? window.PLACES : [])
-      .find(p => norm(p?.id) === norm(article?.place_id));
+    const place = await resolvePlaceForArticle(article);
 
     const factsHtml = listHtml(article.facts, fact => `
       <article class="pc-leksikon-item">
@@ -247,13 +265,14 @@
     `;
   }
 
-  function openPlace(placeId, index = 0) {
+  async function openPlace(placeId, index = 0) {
     const articles = window.LEKSIKON_BY_PLACE?.[norm(placeId)] || [];
     const article = articles[Number(index) || 0];
 
     const popupFn = window.makePopup || (typeof makePopup === "function" ? makePopup : null);
     if (typeof popupFn === "function") {
-      popupFn(renderArticle(article), "leksikon-entry-popup");
+      const html = await renderArticle(article);
+      popupFn(html, "leksikon-entry-popup");
       return;
     }
 
@@ -336,7 +355,7 @@
     if (!btn) return;
     event.preventDefault();
     event.stopPropagation();
-    openPlace(btn.dataset.leksikonPlace, btn.dataset.leksikonIndex);
+    void openPlace(btn.dataset.leksikonPlace, btn.dataset.leksikonIndex);
   });
 
   window.HGLeksikon = {
