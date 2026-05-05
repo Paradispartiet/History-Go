@@ -1248,11 +1248,11 @@ window.showPersonPopup = function(person) {
   const html = `
     <article class="hg-modal">
       <header class="hg-modal-header">
-        <img src="${face}" class="hg-popup-face">
         <h2 class="hg-popup-name hg-modal-title">${person.name}</h2>
         ${kindLabel ? `<p class="hg-popup-cat hg-modal-meta">${kindLabel}</p>` : ``}
       </header>
       <div class="hg-modal-body">
+        <img src="${face}" class="hg-popup-face">
         <img src="${cardImg}" class="hg-popup-cardimg">
 
       <div class="hg-section">
@@ -1473,11 +1473,11 @@ const peopleHere = (typeof getPeopleForPlace === "function")
   const html = `
     <article class="hg-modal">
       <header class="hg-modal-header">
-      <img src="${img}" class="hg-popup-img">
       <h3 class="hg-popup-title hg-modal-title">${place.name}</h3>
       <p class="hg-popup-cat hg-modal-meta">${place.category || ""}</p>
       </header>
       <div class="hg-modal-body">
+      <img src="${img}" class="hg-popup-img">
       <p class="hg-popup-desc">${place.desc || ""}</p>
 
       <button class="hg-quiz-btn" data-quiz="${place.id}">Ta quiz</button>
