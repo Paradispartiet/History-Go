@@ -54,6 +54,64 @@
     return items.map(mapper).filter(Boolean).join("");
   }
 
+  function sanitizeExternalUrl(rawUrl) {
+    const value = norm(rawUrl);
+    if (!value) return "";
+    try {
+      const parsed = new URL(value, window.location.origin);
+      if (parsed.protocol !== "https:" && parsed.protocol !== "http:") return "";
+      return parsed.href;
+    } catch (_) {
+      return "";
+    }
+  }
+
+  function normalizeExternalLinks(place) {
+    if (!Array.isArray(place?.externalLinks)) return [];
+    return place.externalLinks
+      .map((link) => {
+        const type = norm(link?.type).toLowerCase();
+        const url = sanitizeExternalUrl(link?.url);
+        const label = norm(link?.label);
+        if (!url) return null;
+        return {
+          type,
+          url,
+          label: label || url
+        };
+      })
+      .filter(Boolean);
+  }
+
+  function renderExternalLinks(place) {
+    const links = normalizeExternalLinks(place);
+    if (!links.length) return `<section class="pc-leksikon-section"><h3>Eksterne lenker</h3><p>Ingen eksterne lenker ennå</p></section>`;
+
+    const groups = [
+      { title: "Statistikk/resultater", types: ["stats"] },
+      { title: "Offisiell nettside", types: ["official"] },
+      { title: "Wikipedia", types: ["wikipedia"] },
+      { title: "Andre kilder", types: ["source", "archive", "other"] }
+    ];
+
+    const parts = groups.map((group) => {
+      const rows = links.filter(link => group.types.includes(link.type));
+      if (!rows.length) return "";
+      return `
+        <article class="pc-leksikon-item">
+          <strong>${esc(group.title)}</strong>
+          <ul>
+            ${rows.map((link) => `
+              <li><a href="${esc(link.url)}" target="_blank" rel="noopener noreferrer">${esc(link.label)}</a></li>
+            `).join("")}
+          </ul>
+        </article>
+      `;
+    }).filter(Boolean).join("");
+
+    return section("Eksterne lenker", parts);
+  }
+
   function tagListHtml(values) {
     if (!Array.isArray(values) || !values.length) return "";
     return `<div class="pc-leksikon-tags">${values.map(v => `<span>${esc(v)}</span>`).join("")}</div>`;
@@ -89,6 +147,8 @@
     const interpretation = article.interpretation || {};
     const events = article.events || {};
     const classification = article.classification || {};
+    const place = (Array.isArray(window.PLACES) ? window.PLACES : [])
+      .find(p => norm(p?.id) === norm(article?.place_id));
 
     const factsHtml = listHtml(article.facts, fact => `
       <article class="pc-leksikon-item">
@@ -165,6 +225,7 @@
         ${section("Spor og objekter", artifactsHtml)}
         ${section("Tolkning", interpretationHtml)}
         ${section("Klassifikasjon", tagListHtml([...(classification.tags || []), ...(classification.knagger || [])]))}
+        ${renderExternalLinks(place)}
         <button class="reward-ok" data-close-popup>Lukk</button>
       </article>
     `;
