@@ -104,6 +104,17 @@ function pushDiag(list, value, max = 40) {
   if (Array.isArray(list) && list.length < max) list.push(value);
 }
 
+
+function formatFetchError(err, url = null) {
+  const name = err?.name || "Error";
+  const message = err?.message || String(err);
+  const cause = err?.cause;
+  const causeCode = cause?.code ? ` code=${cause.code}` : "";
+  const causeMessage = cause?.message ? ` cause=${cause.message}` : "";
+  const target = url ? ` url=${url}` : "";
+  return `${name}: ${message}${causeCode}${causeMessage}${target}`;
+}
+
 function apiUrl(base, params) {
   const url = new URL(base);
   for (const [key, value] of Object.entries(params)) {
@@ -113,13 +124,21 @@ function apiUrl(base, params) {
 }
 
 async function fetchJson(url) {
-  const res = await fetch(url, {
-    headers: {
-      Accept: "application/json",
-      "User-Agent": USER_AGENT
-    }
-  });
-  if (!res.ok) throw new Error(`${res.status} ${res.statusText} fra ${url.origin}`);
+  let res;
+  try {
+    res = await fetch(url, {
+      headers: {
+        Accept: "application/json",
+        "User-Agent": USER_AGENT
+      }
+    });
+  } catch (err) {
+    throw new Error(formatFetchError(err, url.toString()));
+  }
+  if (!res.ok) {
+    const snippet = (await res.text()).slice(0, 220).replace(/\s+/g, " ").trim();
+    throw new Error(`HTTP ${res.status} ${res.statusText} fra ${url.origin}; body=${snippet}`);
+  }
   return res.json();
 }
 
