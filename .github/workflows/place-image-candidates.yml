@@ -1,0 +1,79 @@
+name: Place image candidates (manual, safe)
+
+on:
+  workflow_dispatch:
+    inputs:
+      ids:
+        description: "comma-separated place IDs"
+        required: true
+        default: "tigeren,munch_museet"
+
+permissions:
+  contents: read
+
+jobs:
+  build-place-image-candidates:
+    name: Build place image candidates
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Build place image candidates for selected IDs
+        run: node tools/build_place_image_candidates.mjs --ids="${{ inputs.ids }}"
+
+      - name: Verify output file exists
+        run: test -f data/places/place_image_candidates.json
+
+      - name: Print and write summary
+        run: |
+          node <<'NODE'
+          const fs = require("node:fs");
+          const file = "data/places/place_image_candidates.json";
+          const data = JSON.parse(fs.readFileSync(file, "utf8"));
+          const meta = data.meta || {};
+          const counts = meta.counts || {};
+          const places = Array.isArray(data.places) ? data.places : [];
+
+          const header = [
+            `generatedAt: ${meta.generatedAt ?? ""}`,
+            `placesChecked: ${counts.placesChecked ?? 0}`,
+            `placesWithCandidates: ${counts.placesWithCandidates ?? 0}`,
+            `candidatesTotal: ${counts.candidatesTotal ?? 0}`
+          ];
+
+          const lines = places.map((place) => {
+            const candidates = Array.isArray(place.candidates) ? place.candidates : [];
+            const first = candidates[0] || {};
+            const firstUrl = first.originalUrl || first.thumbUrl || first.pageUrl || "";
+            return [
+              `- id=${place.id ?? ""}`,
+              `name=${place.name ?? ""}`,
+              `candidates=${candidates.length}`,
+              `missing.image=${Boolean(place.missing?.image)}`,
+              `missing.cardImage=${Boolean(place.missing?.cardImage)}`,
+              `firstSource=${first.source || ""}`,
+              `firstUrl=${firstUrl}`
+            ].join(" | ");
+          });
+
+          const output = ["Place image candidate summary", ...header, "", ...lines].join("\n");
+          console.log(output);
+
+          if (process.env.GITHUB_STEP_SUMMARY) {
+            fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, `${output}\n`, "utf8");
+          }
+          NODE
+
+      - name: Upload candidate artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: place-image-candidates
+          path: data/places/place_image_candidates.json
+          if-no-files-found: error
