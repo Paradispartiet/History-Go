@@ -35,6 +35,8 @@ const IDS_ARG = argv.find(arg => arg.startsWith("--ids="));
 const IDS_FILTER = IDS_ARG
   ? new Set(IDS_ARG.split("=")[1].split(",").map(part => part.trim()).filter(Boolean))
   : null;
+const SEED_FILE_ARG = argv.find(arg => arg.startsWith("--seed-file="));
+const SEED_FILE = SEED_FILE_ARG ? SEED_FILE_ARG.split("=")[1].trim() : "";
 const MAX_CANDIDATES = 5;
 const REQUEST_DELAY_MS = 160;
 const USER_AGENT = "HistoryGoImageCandidateBot/1.0 (https://github.com/Paradispartiet/History-Go)";
@@ -246,14 +248,14 @@ function scoreCandidate(place, source, imageInfo, label, distanceM) {
   return Math.max(0, Math.round(score));
 }
 
-function makeCandidate({ place, source, imageInfo, label = "", distanceM = null, wikidataItem = "" }) {
+function makeCandidate({ place, source, imageInfo, label = "", distanceM = null, wikidataItem = "", reasonOverride = "" }) {
   const ext = imageInfo.extension || "jpg";
   const imagePath = `bilder/places/auto/${place.id}.${ext}`;
   return {
     approved: false,
     source,
     score: scoreCandidate(place, source, imageInfo, label, distanceM),
-    reason: [
+    reason: reasonOverride || [
       source === "wikidata_p18" ? "bilde fra Wikidata P18" : "",
       source === "commons_geosearch" ? "Commons-fil med koordinater nær stedet" : "",
       source === "commons_text_search" ? "Commons-teksttreff på stedsnavn" : "",
@@ -455,8 +457,52 @@ async function commonsTextCandidates(place, diagnostics) {
   return out;
 }
 
+
+async function manualSeedCandidates(place, seedFile) {
+  if (!seedFile) return [];
+  const seedData = await readJson(seedFile);
+  const seeds = Array.isArray(seedData?.seeds) ? seedData.seeds : [];
+  const placeSeeds = seeds.filter(seed => seed?.place_id === place.id);
+
+  return placeSeeds.map(seed => {
+    const fileTitle = commonsFileTitle(seed.fileTitle || seed.pageUrl?.split("/").pop()?.replaceAll("_", " ") || "");
+    const originalUrl = String(seed.originalUrl || "").trim();
+    const pageUrl = String(seed.pageUrl || "").trim() || (fileTitle
+      ? `https://commons.wikimedia.org/wiki/${encodeURIComponent(fileTitle.replaceAll(" ", "_"))}`
+      : "");
+    const mime = String(seed.mime || "").trim();
+    const width = Number(seed.width || 0);
+    const height = Number(seed.height || 0);
+    const extension = extensionFrom(mime, originalUrl || pageUrl);
+
+    return makeCandidate({
+      place,
+      source: "manual_seed",
+      imageInfo: {
+        fileTitle,
+        originalUrl,
+        thumbUrl: originalUrl,
+        pageUrl,
+        mime,
+        width,
+        height,
+        extension,
+        objectName: "",
+        author: String(seed.author || "").trim(),
+        credit: String(seed.credit || "").trim(),
+        licenseShortName: String(seed.licenseShortName || "").trim(),
+        licenseUrl: String(seed.licenseUrl || "").trim()
+      },
+      label: String(seed.note || "").trim(),
+      reasonOverride: "manuelt seedet kandidat; krever manuell lisens- og bildesjekk"
+    });
+  });
+}
+
 async function candidatesFor(place, diagnostics) {
   const all = [];
+  const seedCandidates = await manualSeedCandidates(place, SEED_FILE);
+  if (seedCandidates.length) all.push(...seedCandidates);
   for (const fn of [wikidataCandidates, commonsGeoCandidates, commonsTextCandidates]) {
     try {
       all.push(...await fn(place, diagnostics));
@@ -503,7 +549,7 @@ async function main() {
       generatedAt: new Date().toISOString(),
       manifestPath: MANIFEST_PATH,
       structure: "new_only_data_places_category_city",
-      sources: ["wikidata_p18", "commons_geosearch", "commons_text_search"],
+      sources: ["wikidata_p18", "commons_geosearch", "commons_text_search", "manual_seed"],
       note: "Kontroller kandidatene manuelt. Marker én kandidat per sted med approved: true før apply-scriptet kjøres.",
       diagnostics,
       counts: {
