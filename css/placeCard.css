@@ -422,15 +422,13 @@ body.hg-app.hg-phone #placeCard #pcDesc{
 }
 
 #placeCard #pcPeopleList .pc-relations-section{
-  margin-top: 10px;
-  padding-top: 10px;
+  margin-top: 8px;
+  padding-top: 8px;
   border-top: 1px solid rgba(255,255,255,.10);
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
 }
 
-#placeCard #pcPeopleList .pc-relations-title{
+#placeCard #pcPeopleList .pc-relations-heading{
+  margin: 0 0 6px;
   font-size: 12px;
   font-weight: 700;
   letter-spacing: .04em;
@@ -438,16 +436,38 @@ body.hg-app.hg-phone #placeCard #pcDesc{
   color: rgba(255,255,255,.78);
 }
 
-#placeCard #pcPeopleList .pc-relation-row{
-  padding: 8px 10px;
-  border-radius: 10px;
-  background: rgba(255,255,255,.05);
-  border: 1px solid rgba(255,255,255,.08);
+#placeCard #pcPeopleList .pc-relations-list{
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
-#placeCard #pcPeopleList .pc-relation-name{
+#placeCard #pcPeopleList .pc-relation-card{
+  padding: 7px 9px 8px;
+  border-radius: 9px;
+  background: rgba(255,255,255,.045);
+  border: 1px solid rgba(255,255,255,.09);
+  text-align: left;
+}
+
+#placeCard #pcPeopleList .pc-relation-chip{
+  display: inline-block;
+  margin-bottom: 5px;
+  padding: 1px 7px;
+  font-size: 10px;
+  line-height: 1.5;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.88);
+  background: rgba(255,255,255,.11);
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 999px;
+}
+
+#placeCard #pcPeopleList .pc-relation-title{
   font-size: 13px;
-  line-height: 1.3;
+  line-height: 1.28;
   color: #fff;
   font-weight: 600;
 }
@@ -455,13 +475,8 @@ body.hg-app.hg-phone #placeCard #pcDesc{
 #placeCard #pcPeopleList .pc-relation-meta{
   margin-top: 2px;
   font-size: 12px;
-  line-height: 1.3;
+  line-height: 1.28;
   color: rgba(255,255,255,.70);
-}
-
-#placeCard #pcPeopleList .pc-relation-debug{
-  font-size: 11px;
-  color: rgba(255,255,255,.45);
 }
 
 

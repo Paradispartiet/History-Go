@@ -289,7 +289,34 @@ if (peopleEl) {
   const placeRels = (typeof getRelationsForPlace === "function") ? getRelationsForPlace(place.id) : [];
   const curatedPlaceRels = (typeof filterCuratedRels === "function") ? filterCuratedRels(placeRels) : placeRels;
 
-  const renderRelationRow = (r) => {
+  const readableValue = (value) => {
+    if (value === null || value === undefined) return "";
+    if (typeof value !== "string") return "";
+    const txt = value.trim();
+    if (!txt) return "";
+    const low = txt.toLowerCase();
+    if (low === "undefined" || low === "null" || low === "[object object]") return "";
+    return txt;
+  };
+
+  const prettifyToken = (value) => readableValue(value).replace(/[_-]+/g, " ").replace(/\s+/g, " ").trim();
+
+  const relationMetaValue = (r) => [
+    r?.description,
+    r?.note,
+    r?.why,
+    r?.type,
+    r?.kind,
+    r?.category,
+    r?.relation
+  ].map(prettifyToken).find(Boolean) || "";
+
+  const relationChipValue = (r) => {
+    const base = [r?.type, r?.kind, r?.category].map(prettifyToken).find(Boolean);
+    return base ? base.toUpperCase() : "RELASJON";
+  };
+
+  const getRelationDisplayModel = (r) => {
     const fromId = String(r?.fromId || r?.from_id || r?.sourceId || r?.source_id || "").trim();
     const toId = String(r?.toId || r?.to_id || r?.targetId || r?.target_id || "").trim();
     const fromType = String(r?.fromType || r?.from_type || "").trim();
@@ -313,47 +340,51 @@ if (peopleEl) {
     if (!bName && personRelId) bName = resolveName(personRelId, "person");
     if (!bName && placeRelId && placeRelId !== placeId) bName = resolveName(placeRelId, "place");
 
-    const label = String(r?.label || r?.title || r?.name || "").trim();
-    const displayName = label || ((aName && bName) ? `${aName} ↔ ${bName}` : ((bName && place?.name) ? `${place.name} → ${bName}` : "Relasjon"));
+    const label = [r?.label, r?.title, r?.name].map(readableValue).find(Boolean) || "";
+    const placeName = readableValue(place?.name) || "";
+    const title = label || ((aName && bName) ? `${aName} ↔ ${bName}` : ((placeName && bName) ? `${placeName} ↔ ${bName}` : ""));
+    const meta = relationMetaValue(r);
+    const chip = relationChipValue(r);
 
-    const meta = [
-      r?.type,
-      r?.relation,
-      r?.kind,
-      r?.category,
-      r?.note,
-      r?.description,
-      r?.why
-    ].map(v => String(v || "").trim()).filter(Boolean)[0] || "";
-
-    const fallbackDebug = (!aName && !bName)
-      ? [r?.id, fromId, toId, personRelId, placeRelId].map(v => String(v || "").trim()).filter(Boolean).join(" • ")
-      : "";
-
-    return `
-      <div class="pc-relation-row">
-        <div class="pc-relation-main">
-          <div class="pc-relation-name">${displayName}</div>
-          ${meta ? `<div class="pc-relation-meta">${meta}</div>` : ""}
-          ${fallbackDebug ? `<div class="pc-relation-meta pc-relation-debug">${fallbackDebug}</div>` : ""}
-        </div>
-      </div>
-    `;
-  };
-
-  const relationRows = [];
-  const relationSeen = new Set();
-  curatedPlaceRels.forEach(r => {
-    const stableKey = String(r?.id || "").trim() || [
+    const key = String(r?.id || "").trim() || [
       String(r?.fromId || r?.from_id || r?.sourceId || r?.source_id || "").trim(),
       String(r?.toId || r?.to_id || r?.targetId || r?.target_id || "").trim(),
       String(r?.type || r?.relation || r?.kind || "").trim(),
       String(r?.label || r?.title || r?.name || "").trim()
     ].join("|");
-    if (!stableKey || relationSeen.has(stableKey)) return;
-    relationSeen.add(stableKey);
-    relationRows.push(renderRelationRow(r));
-  });
+
+    return { key, title, meta, chip };
+  };
+
+  const renderRelationCard = (display) => `
+    <article class="pc-relation-card">
+      <div class="pc-relation-chip">${display.chip}</div>
+      <div class="pc-relation-title">${display.title}</div>
+      ${display.meta ? `<div class="pc-relation-meta">${display.meta}</div>` : ""}
+    </article>
+  `;
+
+  const renderRelationCards = () => {
+    const relationCards = [];
+    const relationSeen = new Set();
+
+    curatedPlaceRels.forEach(r => {
+      const display = getRelationDisplayModel(r);
+      if (!display.key || relationSeen.has(display.key) || !display.title) return;
+      relationSeen.add(display.key);
+      relationCards.push(renderRelationCard(display));
+    });
+
+    if (!relationCards.length) return "";
+    return `
+      <section class="pc-relations-section">
+        <h4 class="pc-relations-heading">Relasjoner</h4>
+        <div class="pc-relations-list">
+          ${relationCards.join("")}
+        </div>
+      </section>
+    `;
+  };
 
   const allPeopleRows = [...popupPersons];
 
@@ -376,14 +407,7 @@ if (peopleEl) {
     })
     .join("");
 
-  const relationTextHtml = relationRows.length
-    ? `
-      <div class="pc-relations-section">
-        <div class="pc-relations-title">Relasjoner</div>
-        ${relationRows.join("")}
-      </div>
-    `
-    : "";
+  const relationTextHtml = renderRelationCards();
 
   peopleEl.innerHTML =
     (peopleHtml || relationTextHtml)
