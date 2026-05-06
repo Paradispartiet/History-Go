@@ -1686,124 +1686,23 @@ function showMetaProfileForUser() {
 }
 
 // ── Import fra History Go (delt localStorage) ─────────────────
-
-// Tar inn payload fra History Go og lager signaler i AHA-kammeret
 function importHistoryGoData(payload) {
-  if (!payload || typeof payload !== "object") {
-    return { importedSignals: 0, importedTextItems: 0 };
+  if (window.AHAHistoryGoImport && typeof window.AHAHistoryGoImport.importHistoryGoData === "function") {
+    return window.AHAHistoryGoImport.importHistoryGoData(payload);
   }
-
-  const chamber = loadChamberFromStorage();
-  const subjectId = "sub_historygo";
-  let importedSignals = 0;
-  let importedTextItems = 0;
-
-  function addSignal(text, themeId, timestamp) {
-    const safeText = String(text || "").trim();
-    if (!safeText) return;
-    const sig = InsightsEngine.createSignalFromMessage(
-      safeText,
-      subjectId,
-      themeId || "ukjent"
-    );
-    sig.timestamp = timestamp || payload.exported_at || sig.timestamp;
-    InsightsEngine.addSignalToChamber(chamber, sig);
-    importedSignals += 1;
-    importedTextItems += 1;
-  }
-
-  const notes = Array.isArray(payload.notes) ? payload.notes : [];
-  notes.forEach((n) => {
-    addSignal(n?.text, n?.categoryId || n?.category, n?.createdAt);
-  });
-
-  const dialogs = Array.isArray(payload.dialogs) ? payload.dialogs : [];
-  dialogs.forEach((dlg) => {
-    const themeId = dlg.categoryId || "ukjent";
-    (dlg.turns || [])
-      .filter((t) => t.from === "user" && t.text)
-      .forEach((t) => {
-        addSignal(t.text, themeId, dlg.created_at);
-      });
-  });
-
-  const universe = payload.knowledge_universe && typeof payload.knowledge_universe === "object"
-    ? payload.knowledge_universe
-    : {};
-  Object.entries(universe).forEach(([themeId, value]) => {
-    if (typeof value === "string") {
-      addSignal(value, themeId, payload.exported_at);
-      return;
-    }
-    if (value && typeof value === "object") {
-      addSignal(value.text || value.content || value.summary, themeId, value.updatedAt || value.createdAt);
-    }
-  });
-
-  const learningLog = Array.isArray(payload.hg_learning_log_v1) ? payload.hg_learning_log_v1 : [];
-  learningLog.forEach((entry) => {
-    const themeId = entry?.categoryId || entry?.topic || entry?.id || "learning_log";
-    addSignal(entry?.text || entry?.summary || entry?.note, themeId, entry?.createdAt || entry?.timestamp);
-  });
-
-  const insightsEvents = Array.isArray(payload.hg_insights_events_v1) ? payload.hg_insights_events_v1 : [];
-  insightsEvents.forEach((event) => {
-    const themeId = event?.categoryId || event?.topic || event?.theme_id || "insight_event";
-    addSignal(event?.text || event?.message || event?.insight, themeId, event?.createdAt || event?.timestamp);
-  });
-
-  const nextUpLearningSignal = payload?.nextup_learning_signal && typeof payload.nextup_learning_signal === "object"
-    ? payload.nextup_learning_signal
-    : payload?.nextup?.learning_signal && typeof payload.nextup.learning_signal === "object"
-    ? payload.nextup.learning_signal
-    : null;
-
-  if (nextUpLearningSignal) {
-    const interpretationTexts = Array.isArray(nextUpLearningSignal.interpretation_texts)
-      ? nextUpLearningSignal.interpretation_texts.filter(Boolean)
-      : [];
-    interpretationTexts.forEach((text) => {
-      addSignal(text, "historygo_nextup_learning_signal", payload.exported_at);
-    });
-
-    addSignal(
-      "NextUp læringssignal: " + JSON.stringify(nextUpLearningSignal),
-      "historygo_nextup_learning_signal",
-      payload.exported_at
-    );
-  }
-
-  saveChamberToStorage(chamber);
-  return { importedSignals, importedTextItems };
+  return { importedSignals: 0 };
 }
 
-// Leser buffer fra lokalStorage og kaller importHistoryGoData
 function importHistoryGoDataFromSharedStorage() {
+  if (window.AHAHistoryGoImport && typeof window.AHAHistoryGoImport.importHistoryGoDataFromSharedStorage === "function") {
+    const result = window.AHAHistoryGoImport.importHistoryGoDataFromSharedStorage();
+    clearOutput();
+    log("Importerte History Go-data: " + JSON.stringify(result));
+    return result;
+  }
   clearOutput();
-  const raw = localStorage.getItem("aha_import_payload_v1");
-  if (!raw) {
-    log(
-      "Fant ingen History Go-data å importere (aha_import_payload_v1 er tom)."
-    );
-    return;
-  }
-
-  try {
-    const payload = JSON.parse(raw);
-    const result = importHistoryGoData(payload);
-    log(
-      "Importerte History Go-data fra lokal storage. " +
-        result.importedSignals +
-        " signaler fra " +
-        result.importedTextItems +
-        " tekstbiter."
-    );
-    if (payload.exported_at) {
-      log("Eksportert fra History Go: " + payload.exported_at);
-    }
-  } catch (e) {
-    log("Klarte ikke å lese History Go-data: " + e.message);
-  }
+  log("AHAHistoryGoImport er ikke tilgjengelig.");
+  return { importedSignals: 0 };
 }
 
 // ── Vis svar fra AHA-AI i panelet / loggen ───────────────
