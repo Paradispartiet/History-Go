@@ -7,9 +7,21 @@ on:
         description: "comma-separated place IDs"
         required: true
         default: "tigeren,munch_museet"
+      commit_candidates:
+        description: "Commit generated candidate file back to branch"
+        required: true
+        default: "false"
+        type: choice
+        options:
+          - "false"
+          - "true"
+      commit_branch:
+        description: "Branch to commit candidate file to"
+        required: false
+        default: "image-candidates-output"
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   build-place-image-candidates:
@@ -77,3 +89,22 @@ jobs:
           name: place-image-candidates
           path: data/places/place_image_candidates.json
           if-no-files-found: error
+
+      - name: Commit candidate file to branch
+        if: ${{ inputs.commit_candidates == 'true' }}
+        env:
+          TARGET_BRANCH: ${{ inputs.commit_branch }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git checkout -B "$TARGET_BRANCH"
+          git add data/places/place_image_candidates.json
+
+          if git diff --cached --quiet; then
+            echo "No changes in data/places/place_image_candidates.json; skipping commit and push."
+            exit 0
+          fi
+
+          git commit -m "chore(data): update place image candidates"
+          git push origin "$TARGET_BRANCH"
