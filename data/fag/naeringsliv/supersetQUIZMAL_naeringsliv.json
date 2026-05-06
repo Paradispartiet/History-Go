@@ -1,0 +1,142 @@
+{
+  "id": "oslo_bors_quiz_1",
+  "quiz_id": "naeringsliv_oslo_bors_set_1_q1",
+  "categoryId": "naeringsliv",
+  "placeId": "oslo_bors",
+  "personId": "",
+  "natureId": "",
+  "targetId": "oslo_bors",
+  "question_scope": "place",
+  "question": "Hva gjør Oslo Børs særlig relevant som næringslivssted?",
+  "options": [
+    "Det er en økonomisk institusjon knyttet til kapital, børs, eierskap og verdipapirhandel",
+    "Det er et middelalderkloster knyttet til cistercienserordenen",
+    "Det er en konsertscene og klubb for live-musikk og publikum"
+  ],
+  "answer": "Det er en økonomisk institusjon knyttet til kapital, børs, eierskap og verdipapirhandel",
+  "answerIndex": 0,
+  "dimension": "naeringsliv",
+  "topic": "Kapital, børs og økonomisk institusjon",
+  "knowledge": "Oslo Børs brukes her som eksempel på næringslivets finansielle infrastruktur: kapital, marked, eierskap, verdsetting, risiko og offentlig økonomisk synlighet.",
+  "trivia": [],
+  "difficulty": 1,
+  "question_type": "fact",
+  "question_layer": "fakta_sted_institusjon",
+  "year": null,
+  "epoke_id": "moderne_finans_og_kapitalmarked",
+  "epoke_domain": "naeringsliv",
+  "emne_id": "em_naering_bank_bors_forsikring",
+  "related_emner": [
+    "em_naering_kapital_finans",
+    "em_naering_bank_bors_forsikring",
+    "em_naering_verdsetting_pris_regnskap"
+  ],
+  "core_concepts": [
+    "børs",
+    "kapital",
+    "verdipapirhandel",
+    "eierskap",
+    "finansiell infrastruktur"
+  ],
+  "concept_focus": [
+    "børs",
+    "kapitalmarked"
+  ],
+  "learning_paths": [
+    "fra sted til økonomisk institusjon",
+    "fra børsbygning til kapitalmarked",
+    "fra handel med verdipapirer til eierskap og verdsetting"
+  ],
+  "tags": [
+    "naeringsliv",
+    "sted",
+    "børs",
+    "kapital",
+    "finans",
+    "eierskap",
+    "marked"
+  ],
+  "required_tags": [
+    "external_source",
+    "business_anchor",
+    "em_naering"
+  ],
+  "source": [
+    {
+      "type": "official_exchange_or_institution_source",
+      "name": "Oslo Børs / Euronext Oslo Børs / tilsvarende offisiell institusjonskilde",
+      "role": "verifiserer stedets funksjon som børs, markedsplass eller finansiell institusjon",
+      "required": true
+    },
+    {
+      "type": "economic_history_or_finance_source",
+      "name": "økonomihistorisk, finansfaglig, arkiv-, register- eller institusjonskilde",
+      "role": "verifiserer stedets betydning for kapitalmarked, verdipapirhandel, eierskap, verdsetting eller finanshistorie",
+      "required": true
+    }
+  ],
+  "related_emners": [
+    "em_naering_kapital_finans",
+    "em_naering_bank_bors_forsikring",
+    "em_naering_verdsetting_pris_regnskap"
+  ],
+  "source_origin": "mixed",
+  "claim_basis": "Ekstern børs-/institusjonskilde skal verifisere at Oslo Børs fungerer som økonomisk institusjon og markedsplass knyttet til kapital, verdipapirhandel og eierskap.",
+  "guidance_basis": {
+    "fagkart_category_id": "kapital_eierskap_finans",
+    "topic_hook": "bors_og_marked",
+    "emne_id": "em_naering_bank_bors_forsikring",
+    "method_id": "met_naering_kapital_og_finansanalyse",
+    "canonical_files_used_as_guidance_only": [
+      "fagkart_naeringsliv_canonical_v4_5.json",
+      "methods_naeringsliv_canonical_v4_5.json",
+      "emner_naeringsliv_canonical_v4_5.json",
+      "emnemapping_naeringsliv_canonical_v4_5.json",
+      "naeringslivpensum_canonical_v4_5.json"
+    ]
+  },
+  "method_id": "met_naering_kapital_og_finansanalyse",
+  "business_anchor_type": "stock_exchange",
+  "source_note": "Spørsmålet skal bygges fra ekstern børs-/finans-/institusjonskilde; fagfilene styrer bare metode, emne og spørsmålsflate.",
+  "external_source_ratio_target": 0.85,
+  "internal_file_only_allowed": false,
+  "requires_business_anchor": true,
+  "requires_external_claim_basis": true,
+  "requires_work_capital_firm_or_infrastructure_anchor": true,
+  "requires_documented_economic_context": true,
+  "generator_guardrails": {
+    "do_not_generate_from_emne_label_only": true,
+    "do_not_generate_from_method_label_only": true,
+    "do_not_use_non_naeringsliv_emne_id": true,
+    "required_emne_prefix": "em_naering_",
+    "blocked_emne_prefixes": [
+      "em_by_",
+      "em_his_",
+      "em_kunst_",
+      "em_lit_",
+      "em_media_",
+      "em_musikk_",
+      "em_pop_",
+      "em_vit_",
+      "em_pol_"
+    ],
+    "work_capital_place_first_then_theory": true,
+    "source_first": true,
+    "avoid_generic_economics_questions": true,
+    "avoid_pure_company_listing_without_work_capital_market_or_infrastructure": true,
+    "avoid_neutral_market_doxa_without_work_ownership_value_risk_or_regulation": true
+  },
+  "validation": {
+    "emne_id_exists_in_emner_naeringsliv": true,
+    "method_id_exists_in_methods_naeringsliv": true,
+    "mapping_exists_in_emnemapping_naeringsliv": true,
+    "category_matches_badge": true,
+    "schema_extends_generic_supersetQUIZMAL": true
+  },
+  "template_notes": {
+    "template_role": "naeringsliv_superset_quiz_object",
+    "generic_template_source": "supersetQUIZMAL (10).json",
+    "content_policy": "Dette er en mal/eksempelobjekt. Produksjonsquizer skal fylle source med konkrete kilder og ikke bruke fagfilene som hovedkilde til faktapåstander.",
+    "next_use": "Bruk som grunnmal for næringslivsquiz-spørsmål før generatoren lager mange spørsmål per sted/person."
+  }
+}
