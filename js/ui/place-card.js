@@ -203,7 +203,8 @@ if (!card) return;
    }
   
   if (titleEl) titleEl.textContent = place.name || "";
-  if (metaEl)  metaEl.textContent  = place.category || "";
+  const categoryLabel = (window.CATEGORY_LIST || []).find(c => String(c?.id || "").trim() === String(place.category || "").trim())?.name || place.category || "";
+  if (metaEl)  metaEl.textContent  = categoryLabel;
   if (descEl)  descEl.textContent  = place.desc || "";
 
   // (valgfritt men nyttig): beregn avstand live for NextUp hvis mulig
