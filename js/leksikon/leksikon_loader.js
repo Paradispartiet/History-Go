@@ -6,7 +6,10 @@
   "use strict";
 
   const MANIFEST_URL = "data/leksikon/manifest.json";
+  const SPRAK_MANIFEST_URL = "data/leksikon/sprak/manifest.json";
   let initPromise = null;
+  let sprakManifestPromise = null;
+  const sprakByPlace = Object.create(null);
 
   function esc(value) {
     return String(value ?? "")
@@ -131,6 +134,47 @@
     `;
   }
 
+  function renderSprakEntries(article) {
+    const entries = Array.isArray(article?.entries) ? article.entries : [];
+    if (!entries.length) {
+      return `<p>Ingen språkoppføringer ennå.</p>`;
+    }
+
+    return entries.map((entry) => `
+      <article class="pc-leksikon-item">
+        <strong>${esc(entry?.term || entry?.id || "Begrep")}</strong>
+        ${entry?.type ? `<p><em>${esc(entry.type)}</em></p>` : ""}
+        ${entry?.meaning ? `<p>${esc(entry.meaning)}</p>` : ""}
+        ${entry?.context ? `<p>${esc(entry.context)}</p>` : ""}
+      </article>
+    `).join("");
+  }
+
+  async function loadSprakManifest() {
+    if (sprakManifestPromise) return sprakManifestPromise;
+    sprakManifestPromise = fetchJSON(SPRAK_MANIFEST_URL).catch(() => ({ place_files: {} }));
+    return sprakManifestPromise;
+  }
+
+  async function loadSprakForPlace(placeId) {
+    const id = norm(placeId);
+    if (!id) return null;
+    if (Object.prototype.hasOwnProperty.call(sprakByPlace, id)) {
+      return sprakByPlace[id];
+    }
+
+    const manifest = await loadSprakManifest();
+    const file = manifest?.place_files?.[id];
+    if (!file) {
+      sprakByPlace[id] = null;
+      return null;
+    }
+
+    const article = await fetchJSON(file).catch(() => null);
+    sprakByPlace[id] = article && norm(article.place_id) === id ? article : null;
+    return sprakByPlace[id];
+  }
+
   function paragraphBlockHtml(value, className = "") {
     const values = Array.isArray(value) ? value : [value];
     const paragraphs = values
@@ -170,6 +214,7 @@
     const events = article.events || {};
     const classification = article.classification || {};
     const place = await resolvePlaceForArticle(article);
+    const sprakArticle = await loadSprakForPlace(article.place_id);
 
     const factsHtml = listHtml(article.facts, fact => `
       <article class="pc-leksikon-item">
@@ -247,6 +292,7 @@
         ${section("Tolkning", interpretationHtml)}
         ${section("Klassifikasjon", tagListHtml([...(classification.tags || []), ...(classification.knagger || [])]))}
         ${renderExternalLinks(place, article)}
+        ${section((sprakArticle?.title || "Språkleksikon"), renderSprakEntries(sprakArticle))}
         <button class="reward-ok" data-close-popup>Lukk</button>
       </article>
     `;
