@@ -11,7 +11,7 @@
   <p>Dette er History Go sin lokale innsiktsmotor. Den samler signaler fra steder, quiz, badges, personer, NextUp, learning log og knowledge universe, og kan eksportere ferdig History Go-materiale til AHA-EchoNet.</p>
 
   <div class="buttons">
-    <button id="btn-import-hg">Les aha_import_payload_v1</button>
+    <button id="btn-import-hg">Vis aha_import_payload_v1</button>
     <button id="btn-refresh-export" hidden>Oppdater eksportpayload</button>
     <a href="https://paradispartiet.github.io/AHA-EchoNet/" target="_blank" rel="noopener noreferrer"><button>Åpne AHA-EchoNet</button></a>
   </div>
@@ -31,7 +31,6 @@
   <pre id="out"></pre>
 
   <script src="../js/aha.js"></script>
-  <script src="ahaHistoryGoImport.js"></script>
   <script>
     function getStorageCount(key) {
       try {
@@ -67,16 +66,37 @@
       if (out) out.textContent += msg + '\n';
     }
 
-    const importBtn = document.getElementById('btn-import-hg');
-    importBtn.addEventListener('click', () => {
-      if (window.AHAHistoryGoImport && typeof window.AHAHistoryGoImport.importHistoryGoDataFromSharedStorage === 'function') {
-        const result = window.AHAHistoryGoImport.importHistoryGoDataFromSharedStorage();
-        log('History Go → AHA-bro import fullført: ' + JSON.stringify(result));
-        refreshCounts();
-      } else {
-        log('History Go/AHA-bro import er ikke tilgjengelig.');
+    function showAhaImportPayload() {
+      const raw = localStorage.getItem('aha_import_payload_v1');
+      if (!raw) {
+        log('Ingen aha_import_payload_v1 funnet. Trykk Oppdater eksportpayload først.');
+        return;
       }
-    });
+
+      try {
+        const payload = JSON.parse(raw);
+        const learningLogCount = Array.isArray(payload?.hg_learning_log_v1) ? payload.hg_learning_log_v1.length : 0;
+        const insightsEventsCount = Array.isArray(payload?.hg_insights_events_v1) ? payload.hg_insights_events_v1.length : 0;
+        const knowledgeUniverseCount = payload?.knowledge_universe && typeof payload.knowledge_universe === 'object' ? Object.keys(payload.knowledge_universe).length : 0;
+        const visitedPlacesCount = Array.isArray(payload?.visited_places) ? payload.visited_places.length : 0;
+        const meritsCount = payload?.merits_by_category && typeof payload.merits_by_category === 'object' ? Object.keys(payload.merits_by_category).length : 0;
+
+        log('History Go → AHA eksportpayload funnet');
+        log('source: ' + (payload?.source ?? 'ukjent'));
+        log('exported_at: ' + (payload?.exported_at ?? 'ukjent'));
+        log('hg_learning_log_v1: ' + learningLogCount);
+        log('hg_insights_events_v1: ' + insightsEventsCount);
+        log('knowledge_universe kategorier: ' + knowledgeUniverseCount);
+        log('visited_places: ' + visitedPlacesCount);
+        log('merits_by_category keys: ' + meritsCount);
+      } catch {
+        log('History Go → AHA eksportpayload funnet, men kunne ikke parses som JSON. Viser rådata (avkortet).');
+        log(raw.slice(0, 5000));
+      }
+    }
+
+    const importBtn = document.getElementById('btn-import-hg');
+    importBtn.addEventListener('click', showAhaImportPayload);
 
     const refreshBtn = document.getElementById('btn-refresh-export');
     if (typeof window.exportHistoryGoData === 'function') {
@@ -84,8 +104,9 @@
       refreshBtn.addEventListener('click', () => {
         try {
           window.exportHistoryGoData();
-          log('Export oppdatert: aha_import_payload_v1.');
+          log('Export oppdatert: aha_import_payload_v1');
           refreshCounts();
+          showAhaImportPayload();
         } catch (err) {
           log('Kunne ikke oppdatere eksportpayload: ' + (err && err.message ? err.message : String(err)));
         }
