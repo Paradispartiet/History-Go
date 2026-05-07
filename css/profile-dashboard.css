@@ -472,3 +472,36 @@ body.profile-page{
     grid-template-columns:1fr;
   }
 }
+
+.groundhopper-stat-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:10px;
+  margin-bottom:12px;
+}
+
+.groundhopper-stat-card{
+  padding:12px;
+  border-radius:14px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.12);
+}
+
+.groundhopper-stat-card span{
+  display:block;
+  font-size:28px;
+  font-weight:800;
+}
+
+.groundhopper-stat-card small{
+  color:rgba(255,255,255,.72);
+  font-weight:700;
+}
+
+.groundhopper-line{ margin:6px 0; }
+.groundhopper-recent-title{ margin-top:10px; font-weight:800; }
+
+#groundhopperRecentList{
+  margin:8px 0 0;
+  padding-left:18px;
+}

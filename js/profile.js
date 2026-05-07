@@ -182,6 +182,106 @@ function renderNextUpProfileCard() {
 
 
 
+
+function readGroundhopperStats() {
+  try {
+    const raw = localStorage.getItem("hg_groundhopper_stats_v1");
+    if (!raw) return null;
+    const data = JSON.parse(raw);
+    return data && typeof data === "object" ? data : null;
+  } catch {
+    return null;
+  }
+}
+
+function asCount(value) {
+  const n = Number(value);
+  return Number.isFinite(n) && n >= 0 ? n : 0;
+}
+
+function resolveGroundName(placeId) {
+  const id = String(placeId || "").trim();
+  if (!id) return "Ukjent sted";
+  const sources = [
+    Array.isArray(PLACES) ? PLACES : [],
+    Array.isArray(window.allPlaces) ? window.allPlaces : [],
+    Array.isArray(window.HGPlaces) ? window.HGPlaces : []
+  ];
+  for (const src of sources) {
+    const found = src.find((p) => String(p?.id || "").trim() === id);
+    if (found?.name) return found.name;
+  }
+  return id;
+}
+
+function getGroundhopperRecentVisits(stats) {
+  const keys = ["recent_visits", "recentVisited", "recent_places", "visited_places", "visits"];
+  for (const key of keys) {
+    const arr = stats?.[key];
+    if (Array.isArray(arr) && arr.length) return arr;
+  }
+  return [];
+}
+
+function renderGroundhopperProfilePanel() {
+  const panel = document.getElementById("groundhopperProfilePanel");
+  const emptyEl = document.getElementById("groundhopperEmpty");
+  const bodyEl = document.getElementById("groundhopperBody");
+  const gridEl = document.getElementById("groundhopperStatGrid");
+  const clubsEl = document.getElementById("groundhopperClubsLine");
+  const lastEl = document.getElementById("groundhopperLastVisited");
+  const recentListEl = document.getElementById("groundhopperRecentList");
+
+  if (!panel || !emptyEl || !bodyEl || !gridEl || !clubsEl || !lastEl || !recentListEl) return;
+
+  const stats = readGroundhopperStats();
+  const totalVisited = asCount(stats?.total_groundhopper_places_visited);
+
+  if (!stats || totalVisited <= 0) {
+    emptyEl.style.display = "block";
+    bodyEl.style.display = "none";
+    return;
+  }
+
+  const statRows = [
+    ["Steder besøkt", asCount(stats.total_groundhopper_places_visited)],
+    ["Fotballgrounds", asCount(stats.total_football_grounds_visited)],
+    ["Ishaller", asCount(stats.total_ice_arenas_visited)],
+    ["Friidrett", asCount(stats.total_athletics_venues_visited)],
+    ["Vintersport", asCount(stats.total_winter_sport_places_visited)],
+    ["Nasjonalarenaer", asCount(stats.total_national_arenas_visited)]
+  ];
+
+  gridEl.innerHTML = statRows
+    .map(([label, value]) => `<div class="groundhopper-stat-card"><span>${value}</span><small>${_esc(label)}</small></div>`)
+    .join("");
+
+  const clubsCollected = Array.isArray(stats.clubs_collected) ? stats.clubs_collected.length : 0;
+  clubsEl.textContent = `Klubber samlet: ${clubsCollected}`;
+
+  const visits = getGroundhopperRecentVisits(stats)
+    .map((entry) => {
+      if (typeof entry === "string") return { placeId: entry, visitedAt: 0 };
+      return {
+        placeId: String(entry?.placeId || entry?.place_id || entry?.id || "").trim(),
+        visitedAt: Number(entry?.visitedAt || entry?.visited_at || entry?.ts || entry?.timestamp || 0)
+      };
+    })
+    .filter((entry) => entry.placeId);
+
+  visits.sort((a, b) => b.visitedAt - a.visitedAt);
+  const latest = visits[0];
+  lastEl.textContent = `Sist besøkt: ${latest ? resolveGroundName(latest.placeId) : "—"}`;
+
+  const recent = visits.slice(0, 5);
+  recentListEl.innerHTML = recent.length
+    ? recent.map((entry) => `<li>${_esc(resolveGroundName(entry.placeId))}</li>`).join("")
+    : "<li>Ingen stedsliste tilgjengelig ennå.</li>";
+
+  emptyEl.style.display = "none";
+  bodyEl.style.display = "block";
+}
+
 // ------------------------------------------------------------
 // MERKER – GRID + MODAL (STRICT)
 // ------------------------------------------------------------
@@ -833,6 +933,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     safeCall("renderNextWhy", renderNextWhy);
     safeCall("renderAhaSummary", renderAhaSummary);
     safeCall("renderNextUpProfileCard", renderNextUpProfileCard);
+    safeCall("renderGroundhopperProfilePanel", renderGroundhopperProfilePanel);
 
     // Markører etter at PLACES er lastet
     safeCall("updateProfileMarkers", updateProfileMarkers);
@@ -862,6 +963,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       safeCall("renderNextWhy", renderNextWhy);
       safeCall("renderAhaSummary", renderAhaSummary);
       safeCall("renderNextUpProfileCard", renderNextUpProfileCard);
+      safeCall("renderGroundhopperProfilePanel", renderGroundhopperProfilePanel);
       safeCall("updateProfileMarkers", updateProfileMarkers);
     });
 
@@ -877,6 +979,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 let PROFILE_MAP = null;
 let PROFILE_LAYER = null;
 
+window.addEventListener("updateProfile", renderGroundhopperProfilePanel);
 window.addEventListener("updateProfile", updateProfileMarkers);
 
 function setupProfileMap() {
