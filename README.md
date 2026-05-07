@@ -68,6 +68,20 @@ Der finner du følgende hoveddokumenter:
 
 ---
 
+
+## Places index er build-output
+
+- `data/places/places_index.json` er en generert hurtigindeks/cache.
+- Filen skal aldri redigeres manuelt.
+- Source-filene under `data/places/...` er sannhetskilden.
+- Hvilke source-filer som inngår styres av `data/places/manifest.json`.
+- Ved endring av steder, koordinater, radius, navn, bilder eller lette kortfelt:
+  1. Endre riktig source-fil under `data/places/...`
+  2. Kjør `node tools/build_places_index.mjs`
+  3. Kjør `node tools/check_places_index_sync.mjs`
+  4. Merge bare hvis sync-checken er grønn.
+- Hvis `places_index.json` er ute av sync, skal den regenereres fra source, ikke håndrettes.
+
 ## 📌 Prinsipp
 
 - Denne forsiden er **kun en inngang**
