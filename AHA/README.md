@@ -1,4 +1,9 @@
-# AHA-modul (frontend + backend for AHA-agent)
+# History Go AHA-flate (lokal innsiktsmotor + eksport)
+
+`History-Go/AHA` er en lokal History Go-spesifikk innsiktsmotor/eksportflate for `aha_import_payload_v1`.
+Hoved-AHA (canonical AHA-motor og overbygning) ligger i `Paradispartiet/AHA-EchoNet`.
+
+> Merk: Backend/AHA-agent-oppsettet under er historisk/prototype-informasjon for lokal testing, ikke hovedretningen for History Go sin AHA-landingsflate.
 
 AHA kan fortsatt kjøres lokalt med innsiktsmotor/metamotor uten AI-backend.
 
