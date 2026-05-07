@@ -61,15 +61,16 @@
       setCount('count-merits', 'merits_by_category');
     }
 
-    function log(msg) {
+    function setOut(lines) {
       const out = document.getElementById('out');
-      if (out) out.textContent += msg + '\n';
+      if (!out) return;
+      out.textContent = lines.join('\n');
     }
 
     function showAhaImportPayload() {
       const raw = localStorage.getItem('aha_import_payload_v1');
       if (!raw) {
-        log('Ingen aha_import_payload_v1 funnet. Trykk Oppdater eksportpayload først.');
+        setOut(['Ingen aha_import_payload_v1 funnet. Trykk Oppdater eksportpayload først.']);
         return;
       }
 
@@ -78,20 +79,24 @@
         const learningLogCount = Array.isArray(payload?.hg_learning_log_v1) ? payload.hg_learning_log_v1.length : 0;
         const insightsEventsCount = Array.isArray(payload?.hg_insights_events_v1) ? payload.hg_insights_events_v1.length : 0;
         const knowledgeUniverseCount = payload?.knowledge_universe && typeof payload.knowledge_universe === 'object' ? Object.keys(payload.knowledge_universe).length : 0;
-        const visitedPlacesCount = Array.isArray(payload?.visited_places) ? payload.visited_places.length : 0;
+        const visitedPlacesCount = payload?.visited_places && typeof payload.visited_places === 'object' ? Object.keys(payload.visited_places).length : 0;
         const meritsCount = payload?.merits_by_category && typeof payload.merits_by_category === 'object' ? Object.keys(payload.merits_by_category).length : 0;
 
-        log('History Go → AHA eksportpayload funnet');
-        log('source: ' + (payload?.source ?? 'ukjent'));
-        log('exported_at: ' + (payload?.exported_at ?? 'ukjent'));
-        log('hg_learning_log_v1: ' + learningLogCount);
-        log('hg_insights_events_v1: ' + insightsEventsCount);
-        log('knowledge_universe kategorier: ' + knowledgeUniverseCount);
-        log('visited_places: ' + visitedPlacesCount);
-        log('merits_by_category keys: ' + meritsCount);
+        setOut([
+          'History Go → AHA eksportpayload funnet',
+          'source: ' + (payload?.source ?? 'ukjent'),
+          'exported_at: ' + (payload?.exported_at ?? 'ukjent'),
+          'hg_learning_log_v1: ' + learningLogCount,
+          'hg_insights_events_v1: ' + insightsEventsCount,
+          'knowledge_universe kategorier: ' + knowledgeUniverseCount,
+          'visited_places nøkler: ' + visitedPlacesCount,
+          'merits_by_category nøkler: ' + meritsCount
+        ]);
       } catch {
-        log('History Go → AHA eksportpayload funnet, men kunne ikke parses som JSON. Viser rådata (avkortet).');
-        log(raw.slice(0, 5000));
+        setOut([
+          'aha_import_payload_v1 finnes, men kunne ikke parses som JSON.',
+          raw.slice(0, 5000)
+        ]);
       }
     }
 
@@ -104,16 +109,16 @@
       refreshBtn.addEventListener('click', () => {
         try {
           window.exportHistoryGoData();
-          log('Export oppdatert: aha_import_payload_v1');
           refreshCounts();
           showAhaImportPayload();
+          const out = document.getElementById('out');
+          if (out) out.textContent = 'Export oppdatert: aha_import_payload_v1.\n' + out.textContent;
         } catch (err) {
-          log('Kunne ikke oppdatere eksportpayload: ' + (err && err.message ? err.message : String(err)));
+          setOut(['Kunne ikke oppdatere eksportpayload: ' + (err && err.message ? err.message : String(err))]);
         }
       });
     }
 
-    document.addEventListener('aha:ingested', refreshCounts);
     refreshCounts();
   </script>
 </body>
