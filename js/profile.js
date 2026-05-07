@@ -1060,3 +1060,25 @@ function lighten(hex, amount = 0.35) {
   let b = Math.min(255, (num & 255) + 255*amount);
   return `rgb(${r},${g},${b})`;
 }
+
+function initProfileTabs() {
+  const tabs = Array.from(document.querySelectorAll('.profile-tab'));
+  const panels = Array.from(document.querySelectorAll('.profile-tab-panel'));
+  if (!tabs.length || !panels.length) return;
+
+  const activate = (name) => {
+    tabs.forEach((tab) => {
+      const active = tab.dataset.tab === name;
+      tab.classList.toggle('is-active', active);
+      tab.setAttribute('aria-selected', active ? 'true' : 'false');
+    });
+    panels.forEach((panel) => {
+      panel.classList.toggle('is-active', panel.dataset.panel === name);
+    });
+  };
+
+  tabs.forEach((tab) => tab.addEventListener('click', () => activate(tab.dataset.tab)));
+  activate(tabs[0].dataset.tab);
+}
+
+document.addEventListener('DOMContentLoaded', initProfileTabs);
