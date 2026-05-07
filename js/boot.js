@@ -208,7 +208,23 @@ async function boot() {
     }
   }
 
-  const relations = (await fetchJSON("data/relations.json")) || [];
+  const RELATION_FILE_LIST = [
+    "data/relations.json",
+    "data/relations_philanthropy.json"
+  ];
+
+  let relations = [];
+
+  for (const url of RELATION_FILE_LIST) {
+    const data = await fetchJSON(url);
+
+    if (Array.isArray(data)) {
+      relations.push(...data);
+    } else if (Array.isArray(data?.relations)) {
+      relations.push(...data.relations);
+    }
+  }
+
   const wonderkammer = await loadWonderkammerManifest();
   const tags = await fetchJSON("data/tags.json");
 
@@ -223,6 +239,7 @@ async function boot() {
     "data/people/people_litteratur.json",
     "data/people/people_musikk.json",
     "data/people/people_naeringsliv.json",
+    "data/people/people_filantroper.json",
     "data/people/people_natur.json",
     "data/people/people_politikk.json",
     "data/people/people_sport.json",
