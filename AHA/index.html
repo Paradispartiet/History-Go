@@ -3,58 +3,63 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>AHA Dashboard</title>
+  <title>History Go Innsiktsmotor</title>
   <link rel="stylesheet" href="aha-chat.css" />
 </head>
 <body>
-  <h1>AHA Dashboard</h1>
-  <p>AHA er deg. EchoNet er overbygningen. Disse modulene sender innhold inn i samme AHA-motor.</p>
+  <h1>History Go Innsiktsmotor</h1>
+  <p>Dette er History Go sin lokale innsiktsmotor. Den samler signaler fra steder, quiz, badges, personer, NextUp, learning log og knowledge universe, og kan eksportere ferdig History Go-materiale til AHA-EchoNet.</p>
 
   <div class="buttons">
-    <a href="chat.html"><button>AHA Chat</button></a>
-    <a href="notes.html"><button>Notes</button></a>
-    <a href="gallery.html"><button>Galleri</button></a>
-    <a href="feed.html"><button>Feed / Twitter</button></a>
-    <a href="insta.html"><button>Insta</button></a>
-    <button id="btn-import-hg">Importer History Go</button>
+    <button id="btn-import-hg">Les aha_import_payload_v1</button>
+    <button id="btn-refresh-export" hidden>Oppdater eksportpayload</button>
+    <a href="https://paradispartiet.github.io/AHA-EchoNet/" target="_blank" rel="noopener noreferrer"><button>Åpne AHA-EchoNet</button></a>
   </div>
 
   <div id="panel">
-    <h3>Oversikt</h3>
+    <h3>History Go / AHA-bro status</h3>
     <ul>
-      <li>Source events: <span id="count-sources">0</span></li>
-      <li>Notes: <span id="count-notes">0</span></li>
-      <li>Galleri-items: <span id="count-gallery">0</span></li>
-      <li>Feed posts: <span id="count-feed">0</span></li>
-      <li>Insta posts: <span id="count-insta">0</span></li>
+      <li>aha_import_payload_v1: <span id="count-aha-import">0</span></li>
+      <li>hg_learning_log_v1: <span id="count-learning-log">0</span></li>
+      <li>hg_insights_events_v1: <span id="count-insights-events">0</span></li>
+      <li>knowledge_universe: <span id="count-knowledge">0</span></li>
+      <li>visited_places: <span id="count-visited-places">0</span></li>
+      <li>merits_by_category: <span id="count-merits">0</span></li>
     </ul>
   </div>
 
   <pre id="out"></pre>
 
-  <script src="insightsChamber.js"></script>
-  <script src="metaInsightsEngine.js"></script>
-  <script src="ahaFieldProfiles.js"></script>
-  <script src="ahaSources.js"></script>
-  <script src="ahaIngest.js"></script>
+  <script src="../js/aha.js"></script>
   <script src="ahaHistoryGoImport.js"></script>
   <script>
-    function setCount(id, key) {
-      const el = document.getElementById(id);
+    function getStorageCount(key) {
       try {
-        const value = JSON.parse(localStorage.getItem(key) || '[]');
-        el.textContent = Array.isArray(value) ? value.length : 0;
+        const raw = localStorage.getItem(key);
+        if (!raw) return 0;
+
+        const value = JSON.parse(raw);
+        if (Array.isArray(value)) return value.length;
+        if (value && typeof value === 'object') return Object.keys(value).length;
+        return 0;
       } catch {
-        el.textContent = '0';
+        return 0;
       }
     }
 
+    function setCount(id, key) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.textContent = String(getStorageCount(key));
+    }
+
     function refreshCounts() {
-      setCount('count-sources', 'aha_source_events_v1');
-      setCount('count-notes', 'aha_notes_v1');
-      setCount('count-gallery', 'aha_gallery_v1');
-      setCount('count-feed', 'aha_feed_posts_v1');
-      setCount('count-insta', 'aha_insta_posts_v1');
+      setCount('count-aha-import', 'aha_import_payload_v1');
+      setCount('count-learning-log', 'hg_learning_log_v1');
+      setCount('count-insights-events', 'hg_insights_events_v1');
+      setCount('count-knowledge', 'knowledge_universe');
+      setCount('count-visited-places', 'visited_places');
+      setCount('count-merits', 'merits_by_category');
     }
 
     function log(msg) {
@@ -62,15 +67,30 @@
       if (out) out.textContent += msg + '\n';
     }
 
-    document.getElementById('btn-import-hg').addEventListener('click', () => {
+    const importBtn = document.getElementById('btn-import-hg');
+    importBtn.addEventListener('click', () => {
       if (window.AHAHistoryGoImport && typeof window.AHAHistoryGoImport.importHistoryGoDataFromSharedStorage === 'function') {
         const result = window.AHAHistoryGoImport.importHistoryGoDataFromSharedStorage();
-        log('History Go import fullført: ' + JSON.stringify(result));
+        log('History Go → AHA-bro import fullført: ' + JSON.stringify(result));
         refreshCounts();
       } else {
-        log('AHAHistoryGoImport er ikke tilgjengelig.');
+        log('History Go/AHA-bro import er ikke tilgjengelig.');
       }
     });
+
+    const refreshBtn = document.getElementById('btn-refresh-export');
+    if (typeof window.exportHistoryGoData === 'function') {
+      refreshBtn.hidden = false;
+      refreshBtn.addEventListener('click', () => {
+        try {
+          window.exportHistoryGoData();
+          log('Export oppdatert: aha_import_payload_v1.');
+          refreshCounts();
+        } catch (err) {
+          log('Kunne ikke oppdatere eksportpayload: ' + (err && err.message ? err.message : String(err)));
+        }
+      });
+    }
 
     document.addEventListener('aha:ingested', refreshCounts);
     refreshCounts();
