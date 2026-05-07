@@ -66,9 +66,12 @@
     }
   }
 
-  function normalizeExternalLinks(place) {
-    if (!Array.isArray(place?.externalLinks)) return [];
-    return place.externalLinks
+  function normalizeExternalLinks(...containers) {
+    const rawLinks = containers.flatMap((container) => (
+      Array.isArray(container?.externalLinks) ? container.externalLinks : []
+    ));
+
+    return rawLinks
       .map((link) => {
         const type = norm(link?.type).toLowerCase();
         const url = sanitizeExternalUrl(link?.url);
@@ -83,12 +86,12 @@
       .filter(Boolean);
   }
 
-  function renderExternalLinks(place) {
-    const links = normalizeExternalLinks(place);
+  function renderExternalLinks(place, article) {
+    const links = normalizeExternalLinks(place, article);
     if (!links.length) return `<section class="pc-leksikon-section"><h3>Eksterne lenker</h3><p>Ingen eksterne lenker ennå</p></section>`;
 
     const groups = [
-      { title: "Statistikk/resultater", types: ["stats"] },
+      { title: "Statistikk/resultater", types: ["stats", "results"] },
       { title: "Offisiell nettside", types: ["official"] },
       { title: "Wikipedia", types: ["wikipedia"] },
       { title: "Andre kilder", types: ["source", "archive", "other"] }
@@ -243,7 +246,7 @@
         ${section("Spor og objekter", artifactsHtml)}
         ${section("Tolkning", interpretationHtml)}
         ${section("Klassifikasjon", tagListHtml([...(classification.tags || []), ...(classification.knagger || [])]))}
-        ${renderExternalLinks(place)}
+        ${renderExternalLinks(place, article)}
         <button class="reward-ok" data-close-popup>Lukk</button>
       </article>
     `;
