@@ -619,6 +619,106 @@
     };
   }
 
+
+
+  function getCachedNarrativeStreams() {
+    const manifest = jsonCache.get(NARRATIVE_MANIFEST_PATH);
+    const entries = Array.isArray(manifest?.streams) ? manifest.streams : [];
+    const streams = [];
+    for (const entry of entries) {
+      const path = norm(entry?.path);
+      if (!path) continue;
+      const stream = jsonCache.get(path);
+      if (stream?.schema === "civication_narrative_stream_v1") streams.push(stream);
+    }
+    return streams;
+  }
+
+  function phasePreferenceForStreamType(streamType) {
+    const type = slugify(streamType);
+    if (type === "conflict") return ["evening", "day_end"];
+    if (type === "leisure") return ["evening"];
+    if (type === "class_case" || type === "class_cases") return ["lunch", "afternoon"];
+    if (type === "work") return ["afternoon"];
+    return [];
+  }
+
+  function findInjectableStoryletForOpenedStreams(runtime, openedStreamIds, active, state) {
+    const items = Array.isArray(runtime?.items) ? runtime.items : [];
+    const narrativeState = getNarrativeState(state);
+    const streams = getCachedNarrativeStreams();
+    if (!streams.length) return null;
+
+    const existingKeys = new Set(items
+      .map(row => `${norm(row?.event?.narrative_stream_id)}::${norm(row?.event?.narrative_storylet_id)}`)
+      .filter(k => k !== "::"));
+
+    const answeredKeys = new Set(
+      Object.keys(narrativeState.stream_progress || {})
+        .filter(k => narrativeState.stream_progress[k]?.answered)
+        .map(k => `${norm(narrativeState.stream_progress[k]?.stream_id)}::${norm(narrativeState.stream_progress[k]?.storylet_id)}`)
+    );
+
+    for (const streamId of uniqueStrings(openedStreamIds)) {
+      const stream = streams.find(s => norm(s?.id) === streamId);
+      if (!stream) continue;
+      if (!streamMatches(stream, active, state, narrativeState)) continue;
+
+      const storylets = Array.isArray(stream?.storylets) ? stream.storylets : [];
+      const storylet = storylets.find(st => {
+        const key = `${norm(stream.id)}::${norm(st?.id)}`;
+        return norm(st?.id) && !existingKeys.has(key) && !answeredKeys.has(key);
+      });
+      if (!storylet) continue;
+
+      return {
+        stream,
+        storylet,
+        preferredPhases: phasePreferenceForStreamType(stream?.type)
+      };
+    }
+
+    return null;
+  }
+
+  function insertNarrativeStoryletAfterCurrent(runtime, storyletEvent, preferredPhases) {
+    const items = Array.isArray(runtime?.items) ? runtime.items : [];
+    if (!items.length || !storyletEvent) return { runtime, inserted: false };
+
+    const current = Math.max(0, Number(runtime?.current_index || 0));
+    let insertIndex = Math.min(items.length, current + 1);
+
+    const wanted = uniqueStrings(preferredPhases);
+    if (wanted.length) {
+      for (let i = current + 1; i < items.length; i += 1) {
+        const phase = norm(items[i]?.phase || items[i]?.event?.phase_tag);
+        if (wanted.includes(phase)) {
+          insertIndex = i;
+          break;
+        }
+      }
+    }
+
+    const nextItems = items.slice();
+    nextItems.splice(insertIndex, 0, {
+      status: "queued",
+      phase: norm(storyletEvent?.daily_mail_meta?.phase || storyletEvent?.phase_tag || "afternoon"),
+      slot: norm(storyletEvent?.daily_mail_meta?.slot || "injected_narrative"),
+      injected_by_choice: true,
+      injected_at: new Date().toISOString(),
+      event: storyletEvent
+    });
+
+    return {
+      runtime: {
+        ...runtime,
+        items: nextItems,
+        updated_at: new Date().toISOString()
+      },
+      inserted: true
+    };
+  }
+
   async function buildQueue(active, options = {}) {
     const state = getState();
     const date = norm(options.date || todayKey());
@@ -965,6 +1065,26 @@
         updated_at: new Date().toISOString()
       };
       setState({ [NARRATIVE_KEY]: updatedNarrative });
+
+      const openedStreamIds = uniqueStrings(rowEvent?.narrative_effects?.opens_streams || []);
+      if (openedStreamIds.length) {
+        const injectable = findInjectableStoryletForOpenedStreams(runtime, openedStreamIds, getActive(), getState());
+        if (injectable) {
+          const fallbackPhase = injectable.preferredPhases[0] || "afternoon";
+          const injectedEvent = storyletToEvent(getActive(), { id: fallbackPhase, label: fallbackPhase }, { slot: "injected_narrative" }, injectable.stream, injectable.storylet, Date.now());
+          injectedEvent.injected_by_choice = true;
+          injectedEvent.injected_at = new Date().toISOString();
+          injectedEvent.daily_mail_meta = {
+            ...(injectedEvent.daily_mail_meta || {}),
+            slot: "injected_narrative"
+          };
+          const injected = insertNarrativeStoryletAfterCurrent({ ...runtime, items }, injectedEvent, injectable.preferredPhases);
+          if (injected.inserted) {
+            items.splice(0, items.length, ...injected.runtime.items);
+          }
+        }
+      }
+
       try { window.dispatchEvent(new Event("updateProfile")); } catch {}
     }
 
