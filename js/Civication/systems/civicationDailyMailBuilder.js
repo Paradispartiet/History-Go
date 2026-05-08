@@ -620,6 +620,69 @@
     return -1;
   }
 
+
+
+  function getOpenTaskGateBlock(runtime) {
+    const items = Array.isArray(runtime?.items) ? runtime.items : [];
+    for (const row of items) {
+      const event = row?.event || null;
+      if (!event || norm(event.mail_type) !== "task_gate") continue;
+      if (norm(row?.status) !== "delivered" && norm(row?.status) !== "answered") continue;
+
+      const task = window.CivicationTaskEngine?.getTaskByMailId?.(event.id) || null;
+      if (task && norm(task.status) !== "completed") {
+        return {
+          blocked_by_open_task: true,
+          task,
+          task_id: norm(task.id),
+          mail_id: norm(event.id)
+        };
+      }
+    }
+
+    const openTasks = window.CivicationTaskEngine?.listOpenTasks?.() || [];
+    for (const task of (Array.isArray(openTasks) ? openTasks : [])) {
+      const mailId = norm(task?.mail_id);
+      if (!mailId) continue;
+      const row = items.find(x => norm(x?.event?.id) === mailId);
+      if (!row || norm(row?.event?.mail_type) !== "task_gate") continue;
+      if (norm(row?.status) !== "delivered" && norm(row?.status) !== "answered") continue;
+      return {
+        blocked_by_open_task: true,
+        task,
+        task_id: norm(task.id),
+        mail_id: mailId
+      };
+    }
+
+    return null;
+  }
+
+  function applyTaskGateBlock(runtime, block) {
+    if (!runtime) return runtime;
+    const base = { ...runtime };
+    if (block?.blocked_by_open_task) {
+      return {
+        ...base,
+        blocked_by_open_task: true,
+        blocked_task_id: norm(block.task_id),
+        blocked_mail_id: norm(block.mail_id),
+        blocked_at: new Date().toISOString(),
+        updated_at: new Date().toISOString()
+      };
+    }
+
+    if (!base.blocked_by_open_task && !base.blocked_task_id && !base.blocked_mail_id) return base;
+    return {
+      ...base,
+      blocked_by_open_task: false,
+      blocked_task_id: null,
+      blocked_mail_id: null,
+      blocked_at: null,
+      updated_at: new Date().toISOString()
+    };
+  }
+
   function enqueueEvent(engine, event) {
     if (!event) return false;
 
@@ -645,10 +708,26 @@
     if (!options.ignorePending && hasPending(engine)) return { enqueued: false, reason: "pending_exists" };
 
     const runtime = await ensureRuntime(active, options);
-    const idx = findNextIndex(runtime);
+
+    const block = getOpenTaskGateBlock(runtime);
+    const runtimeWithBlock = applyTaskGateBlock(runtime, block);
+    if (runtimeWithBlock !== runtime) setRuntime(runtimeWithBlock);
+
+    if (block?.blocked_by_open_task) {
+      return {
+        enqueued: false,
+        reason: "blocked_by_open_task",
+        task: block.task || null,
+        task_id: block.task_id,
+        mail_id: block.mail_id,
+        runtime: runtimeWithBlock
+      };
+    }
+
+    const idx = findNextIndex(runtimeWithBlock);
     if (idx < 0) return { enqueued: false, reason: "day_complete", runtime };
 
-    const item = runtime.items[idx];
+    const item = runtimeWithBlock.items[idx];
     const event = item?.event;
     if (!event) return { enqueued: false, reason: "missing_event", runtime };
 
@@ -665,10 +744,14 @@
     });
 
     const nextRuntime = {
-      ...runtime,
+      ...runtimeWithBlock,
       current_index: idx,
-      delivered_ids: uniqueStrings([...(Array.isArray(runtime.delivered_ids) ? runtime.delivered_ids : []), norm(event.id)]),
+      delivered_ids: uniqueStrings([...(Array.isArray(runtimeWithBlock.delivered_ids) ? runtimeWithBlock.delivered_ids : []), norm(event.id)]),
       items: nextItems,
+      blocked_by_open_task: false,
+      blocked_task_id: null,
+      blocked_mail_id: null,
+      blocked_at: null,
       updated_at: new Date().toISOString()
     };
 
@@ -795,6 +878,10 @@
 
     return {
       active: getActive(),
+      blocked_by_open_task: !!rt?.blocked_by_open_task,
+      blocked_task_id: rt?.blocked_task_id || null,
+      blocked_mail_id: rt?.blocked_mail_id || null,
+      open_tasks_count: (window.CivicationTaskEngine?.listOpenTasks?.() || []).length,
       runtime: rt,
       item_count: items.length,
       next_index: rt ? findNextIndex(rt) : -1,

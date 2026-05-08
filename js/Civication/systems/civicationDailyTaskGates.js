@@ -420,6 +420,10 @@
         task_gate_count: Array.isArray(rt?.items)
           ? rt.items.filter(row => norm(row?.event?.mail_type) === "task_gate").length
           : 0,
+        blocked_by_open_task: !!rt?.blocked_by_open_task,
+        blocked_task_id: rt?.blocked_task_id || null,
+        blocked_mail_id: rt?.blocked_mail_id || null,
+        open_tasks_count: (window.CivicationTaskEngine?.listOpenTasks?.() || []).length,
         patched_builder: !!window.CivicationDailyMailBuilder?.__dailyTaskGatesPatched,
         patched_engine: !!window.CivicationEventEngine?.prototype?.[PATCHED_FLAG]
       };
