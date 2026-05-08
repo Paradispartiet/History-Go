@@ -4,8 +4,16 @@
   "type": "conflict",
   "title": "Alkoholpress i nettverket",
   "sociological_theme": "risiko_og_normalisering",
-  "applies_when": { "requires_flags": ["alcohol_pressure", "pub_social_pressure"] },
-  "time_slots": ["conflict", "carryover"],
+  "applies_when": {
+    "requires_flags": [
+      "alcohol_pressure",
+      "pub_social_pressure"
+    ]
+  },
+  "time_slots": [
+    "conflict",
+    "carryover"
+  ],
   "storylets": [
     {
       "id": "late_night_invite",
@@ -19,12 +27,35 @@
         "Hvis du går nå, bryter du stemningen litt; hvis du blir, blir natta kort."
       ],
       "choices": [
-        { "id": "A", "label": "Smil, si du må rekke siste buss, og ta med deg samtalen ut døra.", "effect": 1, "tags": ["boundary", "social_skill"], "feedback": "Du setter grense uten å avvise folk, og kvelden avsluttes uten drama." },
-        { "id": "B", "label": "Bli på siste runde så ingen føler at du stikker for tidlig.", "effect": -1, "tags": ["loyalty_pressure", "fatigue"], "feedback": "Du holder fellesskapet varmt, men skyver belastningen til morgenen." }
+        {
+          "id": "A",
+          "label": "Smil, si du må rekke siste buss, og ta med deg samtalen ut døra.",
+          "effect": 1,
+          "tags": [
+            "boundary",
+            "social_skill"
+          ],
+          "feedback": "Du setter grense uten å avvise folk, og kvelden avsluttes uten drama."
+        },
+        {
+          "id": "B",
+          "label": "Bli på siste runde så ingen føler at du stikker for tidlig.",
+          "effect": -1,
+          "tags": [
+            "loyalty_pressure",
+            "fatigue"
+          ],
+          "feedback": "Du holder fellesskapet varmt, men skyver belastningen til morgenen."
+        }
       ],
       "opens_streams": [],
-      "adds_flags": ["pub_social_pressure", "fatigue_next_day"],
-      "risk_links": ["work_risk"],
+      "adds_flags": [
+        "pub_social_pressure",
+        "fatigue_next_day"
+      ],
+      "risk_links": [
+        "work_risk"
+      ],
       "links": []
     },
     {
@@ -39,12 +70,35 @@
         "Situasjonen er vennlig, men det blir synlig for alle om du tar imot eller setter grense."
       ],
       "choices": [
-        { "id": "A", "label": "Takk for gesten og bytt glasset til alkoholfritt i baren.", "effect": 1, "tags": ["boundary_set", "reciprocity"], "feedback": "Rune ler det bort og dere beholder tonen uten at du gir slipp på planen din." },
-        { "id": "B", "label": "Ta imot glasset for å vise at du ikke er utakknemlig.", "effect": 0, "tags": ["social_loyalty", "drinking_norm"], "feedback": "Gesten lander godt sosialt, men du merker at tempoet i kvelden øker." }
+        {
+          "id": "A",
+          "label": "Takk for gesten og bytt glasset til alkoholfritt i baren.",
+          "effect": 1,
+          "tags": [
+            "boundary_set",
+            "reciprocity"
+          ],
+          "feedback": "Rune ler det bort og dere beholder tonen uten at du gir slipp på planen din."
+        },
+        {
+          "id": "B",
+          "label": "Ta imot glasset for å vise at du ikke er utakknemlig.",
+          "effect": 0,
+          "tags": [
+            "social_loyalty",
+            "drinking_norm"
+          ],
+          "feedback": "Gesten lander godt sosialt, men du merker at tempoet i kvelden øker."
+        }
       ],
       "opens_streams": [],
-      "adds_flags": ["pub_social_pressure", "boundary_set"],
-      "risk_links": ["fatigue_risk"],
+      "adds_flags": [
+        "pub_social_pressure",
+        "boundary_set"
+      ],
+      "risk_links": [
+        "fatigue_risk"
+      ],
       "links": []
     },
     {
@@ -59,13 +113,44 @@
         "Samtidig vet du at søvnkontoen allerede er tynn før neste arbeidsdag."
       ],
       "choices": [
-        { "id": "A", "label": "Drikk vann, legg fram arbeidstøyet og gå rett til sengs.", "effect": 1, "tags": ["recovery", "self_care"], "feedback": "Morgenen blir fortsatt tung, men du gir kroppen en sjanse til å hente seg inn." },
-        { "id": "B", "label": "Bli sittende oppe med mobilen for å lande før du sovner.", "effect": -1, "tags": ["sleep_delay", "fatigue"], "feedback": "Du får et ekstra pusterom nå, men natta blir enda kortere." }
+        {
+          "id": "A",
+          "label": "Drikk vann, legg fram arbeidstøyet og gå rett til sengs.",
+          "effect": 1,
+          "tags": [
+            "recovery",
+            "self_care"
+          ],
+          "feedback": "Morgenen blir fortsatt tung, men du gir kroppen en sjanse til å hente seg inn."
+        },
+        {
+          "id": "B",
+          "label": "Bli sittende oppe med mobilen for å lande før du sovner.",
+          "effect": -1,
+          "tags": [
+            "sleep_delay",
+            "fatigue"
+          ],
+          "feedback": "Du får et ekstra pusterom nå, men natta blir enda kortere."
+        }
       ],
-      "opens_streams": ["working_class_shift_life"],
-      "adds_flags": ["recovery_chosen", "slept_poorly"],
-      "risk_links": ["fatigue_risk", "work_risk"],
-      "links": []
+      "opens_streams": [
+        "working_class_shift_life"
+      ],
+      "adds_flags": [
+        "recovery_chosen",
+        "slept_poorly"
+      ],
+      "risk_links": [
+        "fatigue_risk",
+        "work_risk"
+      ],
+      "links": [],
+      "weight_when": {
+        "flags_any": [
+          "pub_social_pressure"
+        ]
+      }
     },
     {
       "id": "morning_after_line_start",
@@ -79,13 +164,45 @@
         "Dette er øyeblikket der gårsdagens sosiale valg møter dagens produksjonsansvar."
       ],
       "choices": [
-        { "id": "A", "label": "Si fra at du trenger dobbelkontroll fra sidemann første halvtime.", "effect": 1, "tags": ["risk_management", "boundary_set"], "feedback": "Oppstarten går saktere, men dere fanger en feil før den blir dyr." },
-        { "id": "B", "label": "Nikk og kjør oppstarten alene som om alt er normalt.", "effect": -1, "tags": ["masking", "work_risk"], "feedback": "Du holder fasaden, men marginene blir farlig små i de første syklusene." }
+        {
+          "id": "A",
+          "label": "Si fra at du trenger dobbelkontroll fra sidemann første halvtime.",
+          "effect": 1,
+          "tags": [
+            "risk_management",
+            "boundary_set"
+          ],
+          "feedback": "Oppstarten går saktere, men dere fanger en feil før den blir dyr."
+        },
+        {
+          "id": "B",
+          "label": "Nikk og kjør oppstarten alene som om alt er normalt.",
+          "effect": -1,
+          "tags": [
+            "masking",
+            "work_risk"
+          ],
+          "feedback": "Du holder fasaden, men marginene blir farlig små i de første syklusene."
+        }
       ],
-      "opens_streams": ["fagarbeider_work_stream"],
-      "adds_flags": ["fatigue_next_day", "work_risk"],
-      "risk_links": ["work_risk"],
-      "links": []
+      "opens_streams": [
+        "fagarbeider_work_stream"
+      ],
+      "adds_flags": [
+        "fatigue_next_day",
+        "work_risk"
+      ],
+      "risk_links": [
+        "work_risk"
+      ],
+      "links": [],
+      "applies_when": {
+        "flags_any": [
+          "fatigue_next_day",
+          "slept_poorly",
+          "work_risk"
+        ]
+      }
     },
     {
       "id": "quiet_shame_breakroom",
@@ -99,13 +216,44 @@
         "Skammen ligger ikke i å ha vært ute, men i å være den som ikke holder rytmen dagen etter."
       ],
       "choices": [
-        { "id": "A", "label": "Si at du tar en rolig kveld i dag og spør hvem som vil gå tidlig hjem sammen.", "effect": 1, "tags": ["recovery", "collective_boundary"], "feedback": "Flere svarer lettet, og det blir enklere å velge ned tempo sammen." },
-        { "id": "B", "label": "Spøk det bort og bli med på snakket om ny runde i helga.", "effect": 0, "tags": ["normalization", "social_continuity"], "feedback": "Du holder tonen i rommet, men mønsteret gjentar seg nesten av seg selv." }
+        {
+          "id": "A",
+          "label": "Si at du tar en rolig kveld i dag og spør hvem som vil gå tidlig hjem sammen.",
+          "effect": 1,
+          "tags": [
+            "recovery",
+            "collective_boundary"
+          ],
+          "feedback": "Flere svarer lettet, og det blir enklere å velge ned tempo sammen."
+        },
+        {
+          "id": "B",
+          "label": "Spøk det bort og bli med på snakket om ny runde i helga.",
+          "effect": 0,
+          "tags": [
+            "normalization",
+            "social_continuity"
+          ],
+          "feedback": "Du holder tonen i rommet, men mønsteret gjentar seg nesten av seg selv."
+        }
       ],
-      "opens_streams": ["working_class_shift_life"],
-      "adds_flags": ["recovery_chosen", "pub_social_pressure"],
-      "risk_links": ["fatigue_risk"],
-      "links": []
+      "opens_streams": [
+        "working_class_shift_life"
+      ],
+      "adds_flags": [
+        "recovery_chosen",
+        "pub_social_pressure"
+      ],
+      "risk_links": [
+        "fatigue_risk"
+      ],
+      "links": [],
+      "weight_when": {
+        "flags_any": [
+          "pub_social_pressure",
+          "slept_poorly"
+        ]
+      }
     }
   ]
 }

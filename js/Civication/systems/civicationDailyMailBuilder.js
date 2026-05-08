@@ -554,6 +554,41 @@
     return roleOk && tagOk && flagOk;
   }
 
+
+  function matchesRule(rule, narrativeState, active, state) {
+    const cond = rule && typeof rule === "object" ? rule : null;
+    if (!cond) return true;
+
+    const flags = new Set(uniqueStrings([...(narrativeState?.flags || []), ...(Array.isArray(state?.mail_branch_state?.flags) ? state.mail_branch_state.flags : [])]).map(slugify));
+    const activeStreams = new Set(uniqueStrings(narrativeState?.active_streams || []).map(slugify));
+    const roleScope = slugify(resolveRoleScope(active));
+
+    const flagsAny = uniqueStrings(cond.flags_any).map(slugify);
+    if (flagsAny.length && !flagsAny.some(flag => flags.has(flag))) return false;
+
+    const flagsAll = uniqueStrings(cond.flags_all).map(slugify);
+    if (flagsAll.length && !flagsAll.every(flag => flags.has(flag))) return false;
+
+    const streamsAny = uniqueStrings(cond.active_streams_any).map(slugify);
+    if (streamsAny.length && !streamsAny.some(streamId => activeStreams.has(streamId))) return false;
+
+    const roleScopes = uniqueStrings(cond.role_scopes).map(slugify);
+    if (roleScopes.length && !roleScopes.includes(roleScope)) return false;
+
+    return true;
+  }
+
+  function storyletMatchesContext(storylet, stream, active, state, narrativeState) {
+    const appliesOk = matchesRule(storylet?.applies_when, narrativeState, active, state);
+    if (!appliesOk) return false;
+    const avoidHit = matchesRule(storylet?.avoid_when, narrativeState, active, state);
+    return !storylet?.avoid_when || !avoidHit;
+  }
+
+  function storyletWeight(storylet, narrativeState, active, state) {
+    return matchesRule(storylet?.weight_when, narrativeState, active, state) ? 1 : 0;
+  }
+
   async function loadNarrativeStreams() {
     const manifest = await loadJson(NARRATIVE_MANIFEST_PATH);
     const streams = [];
@@ -567,7 +602,7 @@
     return { manifest, streams };
   }
 
-  function storyletsForSlot(streams, phaseId, usedStorylets) {
+  function storyletsForSlot(streams, phaseId, usedStorylets, active, state, narrativeState) {
     const slotMap = { morning:["work","personal"], lunch:["people","class_case"], afternoon:["work","conflict"], evening:["leisure","conflict","personal"], day_end:["consequence","carryover"] };
     const allow = slotMap[phaseId] || [];
     const picks=[];
@@ -577,10 +612,12 @@
         const sid = `${stream.id}::${norm(st.id)}`;
         if (!norm(st.id) || usedStorylets.has(sid)) return false;
         const ts = uniqueStrings(Array.isArray(st.time_slot) ? st.time_slot : [st.time_slot]);
-        return ts.some(t => allow.includes(slugify(t)));
+        if (!ts.some(t => allow.includes(slugify(t)))) return false;
+        return storyletMatchesContext(st, stream, active, state, narrativeState);
       });
-      if (next) picks.push({ stream, storylet: next });
+      if (next) picks.push({ stream, storylet: next, weight: storyletWeight(next, narrativeState, active, state) });
     }
+    picks.sort((a, b) => b.weight - a.weight);
     return picks;
   }
 
@@ -673,10 +710,13 @@
       // opens_streams er en eksplisitt narrativ overgang og skal kunne injiseres samme dag.
 
       const storylets = Array.isArray(stream?.storylets) ? stream.storylets : [];
-      const storylet = storylets.find(st => {
-        const key = `${norm(stream.id)}::${norm(st?.id)}`;
-        return norm(st?.id) && !existingKeys.has(key) && !answeredKeys.has(key);
-      });
+      const storylet = storylets
+        .filter(st => {
+          const key = `${norm(stream.id)}::${norm(st?.id)}`;
+          return norm(st?.id) && !existingKeys.has(key) && !answeredKeys.has(key)
+            && storyletMatchesContext(st, stream, active, state, narrativeState);
+        })
+        .sort((a, b) => storyletWeight(b, narrativeState, active, state) - storyletWeight(a, narrativeState, active, state))[0];
       if (!storylet) continue;
 
       return {
@@ -784,7 +824,7 @@
           }
 
           const narrativeUsed = new Set([...answeredNarrativeStorylets, ...queuedNarrativeStorylets]);
-          const narrativeCandidates = storyletsForSlot(candidateStreams, norm(phase?.id), narrativeUsed);
+          const narrativeCandidates = storyletsForSlot(candidateStreams, norm(phase?.id), narrativeUsed, active, state, nextNarrativeState);
           const narrativePick = narrativeCandidates[0];
           if (narrativePick) {
             const event = storyletToEvent(active, phase, slot, narrativePick.stream, narrativePick.storylet, ordinal);
