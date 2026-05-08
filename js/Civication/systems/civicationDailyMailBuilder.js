@@ -11,6 +11,8 @@
 
   const DAY_RUNTIME_KEY = "mail_day_runtime_v1";
   const DAY_PROGRAM_PATH = "data/Civication/mailDayProgram.json";
+  const NARRATIVE_MANIFEST_PATH = "data/Civication/narratives/manifest.json";
+  const NARRATIVE_KEY = "narrative_state_v1";
   const PATCHED_FLAG = "__civicationDailyMailBuilderPatched";
 
   const EXTRA_MAIL_TYPES = [
@@ -491,6 +493,105 @@
     };
   }
 
+
+  function getNarrativeState(state) {
+    const src = state?.[NARRATIVE_KEY] && typeof state[NARRATIVE_KEY] === "object" ? state[NARRATIVE_KEY] : {};
+    return {
+      active_streams: uniqueStrings(src.active_streams),
+      stream_progress: src.stream_progress && typeof src.stream_progress === "object" ? src.stream_progress : {},
+      flags: uniqueStrings(src.flags),
+      choice_history: Array.isArray(src.choice_history) ? src.choice_history.slice(-120) : [],
+      updated_at: src.updated_at || null
+    };
+  }
+
+  function activeTags(active, state) {
+    return uniqueStrings([
+      ...(Array.isArray(active?.tags) ? active.tags : []),
+      ...(Array.isArray(active?.interests) ? active.interests : []),
+      ...(Array.isArray(state?.identity_tags) ? state.identity_tags : []),
+      norm(active?.role_id),
+      norm(active?.role_key),
+      norm(active?.title)
+    ]);
+  }
+
+  function streamMatches(stream, active, state, narrativeState) {
+    const cond = stream?.applies_when && typeof stream.applies_when === "object" ? stream.applies_when : {};
+    const roleScope = resolveRoleScope(active);
+    const tags = activeTags(active, state);
+    const flags = uniqueStrings([...(narrativeState.flags||[]), ...(Array.isArray(state?.mail_branch_state?.flags) ? state.mail_branch_state.flags : [])]);
+
+    const roleOk = !Array.isArray(cond.role_scopes) || !cond.role_scopes.length || cond.role_scopes.map(slugify).includes(slugify(roleScope));
+    const tagOk = !Array.isArray(cond.any_tags) || !cond.any_tags.length || cond.any_tags.some(t => tags.map(slugify).includes(slugify(t)));
+    const flagOk = !Array.isArray(cond.requires_flags) || cond.requires_flags.every(f => flags.map(slugify).includes(slugify(f)));
+    return roleOk && tagOk && flagOk;
+  }
+
+  async function loadNarrativeStreams() {
+    const manifest = await loadJson(NARRATIVE_MANIFEST_PATH);
+    const streams = [];
+    const entries = Array.isArray(manifest?.streams) ? manifest.streams : [];
+    for (const entry of entries) {
+      const path = norm(entry?.path);
+      if (!path) continue;
+      const stream = await loadJson(path);
+      if (stream?.schema === "civication_narrative_stream_v1") streams.push(stream);
+    }
+    return { manifest, streams };
+  }
+
+  function storyletsForSlot(streams, phaseId, usedStorylets) {
+    const slotMap = { morning:["work","personal"], lunch:["people","class_case"], afternoon:["work","conflict"], evening:["leisure","conflict","personal"], day_end:["consequence","carryover"] };
+    const allow = slotMap[phaseId] || [];
+    const picks=[];
+    for (const stream of streams) {
+      const storylets = Array.isArray(stream?.storylets) ? stream.storylets : [];
+      const next = storylets.find(st => {
+        const sid = `${stream.id}::${norm(st.id)}`;
+        if (!norm(st.id) || usedStorylets.has(sid)) return false;
+        const ts = uniqueStrings(Array.isArray(st.time_slot) ? st.time_slot : [st.time_slot]);
+        return ts.some(t => allow.includes(slugify(t)));
+      });
+      if (next) picks.push({ stream, storylet: next });
+    }
+    return picks;
+  }
+
+  function storyletToEvent(active, phase, slot, stream, storylet, ordinal) {
+    const date=todayKey();
+    return {
+      id: `${stream.id}__${norm(storylet.id)}__${date}__${ordinal}`,
+      source: norm(storylet.from || stream.title || "Narrative stream"),
+      source_type: "narrative_stream",
+      narrative_stream_id: norm(stream.id),
+      narrative_storylet_id: norm(storylet.id),
+      mail_type: norm(storylet.message_type || "story"),
+      mail_family: `narrative_${slugify(stream.type||"stream")}`,
+      mail_class: "daily_workday",
+      phase_tag: norm(phase?.id || "morning"),
+      role_scope: resolveRoleScope(active),
+      career_id: norm(active?.career_id),
+      role_id: norm(active?.role_id),
+      subject: norm(storylet.subject),
+      situation: Array.isArray(storylet.situation) ? storylet.situation.map(norm).filter(Boolean) : [norm(storylet.situation)].filter(Boolean),
+      choices: normalizeChoices(storylet.choices),
+      narrative_effects: {
+        opens_streams: uniqueStrings(storylet.opens_streams),
+        adds_flags: uniqueStrings(storylet.adds_flags),
+        risk_links: uniqueStrings(storylet.risk_links),
+        links: uniqueStrings(storylet.links)
+      },
+      daily_mail_meta: {
+        date,
+        phase: norm(phase?.id),
+        phase_label: phaseLabel(phase),
+        slot: norm(slot?.slot || slot?.type),
+        advances_role_plan: false
+      }
+    };
+  }
+
   async function buildQueue(active, options = {}) {
     const state = getState();
     const date = norm(options.date || todayKey());
@@ -498,6 +599,12 @@
     const program = await loadJson(DAY_PROGRAM_PATH) || defaultProgram();
     const plan = await loadJson(getPlanPath(active));
     const pool = await loadCatalogMails(active);
+    const { streams } = await loadNarrativeStreams();
+    const narrativeState = getNarrativeState(state);
+    const matchedStreams = streams.filter(stream => streamMatches(stream, active, state, narrativeState));
+    const activeStreamIds = uniqueStrings([...(narrativeState.active_streams||[]), ...matchedStreams.map(s => norm(s.id))]);
+    const nextNarrativeState = { ...narrativeState, active_streams: activeStreamIds, updated_at: new Date().toISOString() };
+    setState({ [NARRATIVE_KEY]: nextNarrativeState });
     const plannedPrimary = await getPlannedPrimary(active, state);
     const usedSourceIds = consumedSet(state);
     const items = [];
@@ -538,6 +645,16 @@
               slot: norm(slot?.slot || slot?.type),
               event: makeGeneratedEvent(active, phase, slot, ordinal)
             });
+            continue;
+          }
+
+          const narrativeUsed = new Set(Object.keys(nextNarrativeState.stream_progress || {}).filter(k => nextNarrativeState.stream_progress[k]?.answered).map(k => `${nextNarrativeState.stream_progress[k].stream_id}::${nextNarrativeState.stream_progress[k].storylet_id}`));
+          const narrativeCandidates = storyletsForSlot(matchedStreams.filter(st => activeStreamIds.includes(norm(st.id))), norm(phase?.id), narrativeUsed);
+          const narrativePick = narrativeCandidates[0];
+          if (narrativePick) {
+            const event = storyletToEvent(active, phase, slot, narrativePick.stream, narrativePick.storylet, ordinal);
+            usedSourceIds.add(`${norm(narrativePick.stream.id)}::${norm(narrativePick.storylet.id)}`);
+            items.push({ status: "queued", phase: norm(phase?.id || "morning"), slot: norm(slot?.slot || slot?.type), event });
             continue;
           }
 
@@ -784,6 +901,44 @@
 
     if (foundIndex < 0) return runtime;
 
+    let updatedNarrative = null;
+    if (norm(runtime.items?.[foundIndex]?.event?.source_type) === "narrative_stream") {
+      const rowEvent = runtime.items?.[foundIndex]?.event || {};
+      const state = getState();
+      const ns = getNarrativeState(state);
+      const progressKey = `${norm(rowEvent.narrative_stream_id)}::${norm(rowEvent.narrative_storylet_id)}`;
+      const chosen = (Array.isArray(rowEvent.choices) ? rowEvent.choices : []).find(c => norm(c.id) === norm(choiceId)) || {};
+      const choiceFlags = uniqueStrings([...(Array.isArray(chosen.tags) ? chosen.tags : []), ...(rowEvent?.narrative_effects?.adds_flags || [])]);
+      updatedNarrative = {
+        ...ns,
+        active_streams: uniqueStrings([...(ns.active_streams||[]), ...(rowEvent?.narrative_effects?.opens_streams || [])]),
+        flags: uniqueStrings([...(ns.flags||[]), ...choiceFlags, ...(rowEvent?.narrative_effects?.risk_links || [])]),
+        stream_progress: {
+          ...(ns.stream_progress || {}),
+          [progressKey]: {
+            stream_id: norm(rowEvent.narrative_stream_id),
+            storylet_id: norm(rowEvent.narrative_storylet_id),
+            answered: true,
+            choice_id: norm(choiceId),
+            updated_at: new Date().toISOString()
+          }
+        },
+        choice_history: [
+          ...(Array.isArray(ns.choice_history) ? ns.choice_history : []),
+          {
+            at: new Date().toISOString(),
+            stream_id: norm(rowEvent.narrative_stream_id),
+            storylet_id: norm(rowEvent.narrative_storylet_id),
+            choice_id: norm(choiceId),
+            tags: choiceFlags
+          }
+        ].slice(-120),
+        updated_at: new Date().toISOString()
+      };
+      setState({ [NARRATIVE_KEY]: updatedNarrative });
+      try { window.dispatchEvent(new Event("updateProfile")); } catch {}
+    }
+
     const next = {
       ...runtime,
       current_index: foundIndex + 1,
@@ -889,7 +1044,8 @@
       by_status: counts.byStatus,
       pending: getInbox(window.HG_CiviEngine).find(item => item?.status === "pending")?.event || null,
       patched: window.CivicationEventEngine?.prototype?.[PATCHED_FLAG] === true,
-      cache_size: jsonCache.size
+      cache_size: jsonCache.size,
+      narrative_state_v1: getNarrativeState(getState())
     };
   }
 
