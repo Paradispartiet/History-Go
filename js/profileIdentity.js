@@ -2,6 +2,7 @@
 // HISTORY GO – USER PROFILE IDENTITY ENGINE
 // Canonical owner for user name + profile color.
 // Keeps legacy keys (`user_name`, `user_color`) in sync so older UI code keeps working.
+// Adds AHA login button + popup on the profile page.
 // ============================================================
 
 (function () {
@@ -111,12 +112,19 @@
       .hg-profile-colors{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}.hg-profile-color{width:42px;height:42px;border-radius:999px;border:2px solid rgba(255,255,255,.26);cursor:pointer;box-shadow:inset 0 0 0 3px rgba(0,0,0,.18)}
       .hg-profile-color.is-active{border-color:#fff;transform:scale(1.08)}.hg-profile-actions{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap;margin-top:20px}
       .hg-profile-actions button{border:0;border-radius:999px;padding:11px 16px;font-weight:800;cursor:pointer}.hg-profile-save{background:var(--hg-user-color,#f6c800);color:#111}.hg-profile-cancel{background:rgba(255,255,255,.12);color:#fff}
+      .hg-auth-status{margin-top:10px;padding:10px 12px;border-radius:14px;background:rgba(255,255,255,.07);color:rgba(255,255,255,.82);font-size:.92rem;line-height:1.35}
+      .hg-auth-status.is-ok{background:rgba(130,255,170,.12);color:#d7ffe0}.hg-auth-status.is-error{background:rgba(255,100,100,.13);color:#ffd6d6}
+      #loginAhaBtn[data-signed-in="true"]{border-color:rgba(130,255,170,.55);color:#d7ffe0}
     `;
     document.head.appendChild(style);
   }
 
   function closeEditor() {
     document.getElementById("hgProfileEditorBackdrop")?.remove();
+  }
+
+  function closeLoginPopup() {
+    document.getElementById("hgAhaLoginBackdrop")?.remove();
   }
 
   function openEditor() {
@@ -181,6 +189,113 @@
     });
   }
 
+  function getHistoryGoRedirectUrl() {
+    const path = window.location.pathname.includes("/History-Go/")
+      ? window.location.pathname
+      : "/History-Go/profile.html";
+    return `${window.location.origin}${path}`;
+  }
+
+  async function refreshLoginButton() {
+    const btn = document.getElementById("loginAhaBtn");
+    if (!btn) return;
+    try {
+      const state = await window.HistoryGoAHAAuth?.refresh?.();
+      if (state?.signed_in) {
+        btn.textContent = "Innlogget";
+        btn.dataset.signedIn = "true";
+        btn.title = `Innlogget med AHA${state.email ? `: ${state.email}` : ""}`;
+      } else {
+        btn.textContent = "Logg inn";
+        btn.dataset.signedIn = "false";
+        btn.title = "Logg inn med AHA";
+      }
+    } catch {
+      btn.textContent = "Logg inn";
+      btn.dataset.signedIn = "false";
+    }
+  }
+
+  function setAuthStatus(message, type = "") {
+    const el = document.getElementById("hgAhaLoginStatus");
+    if (!el) return;
+    el.className = `hg-auth-status${type ? ` is-${type}` : ""}`;
+    el.textContent = message;
+  }
+
+  async function sendMagicLink(email) {
+    const cleanEmail = String(email || "").trim();
+    if (!cleanEmail || !cleanEmail.includes("@")) {
+      setAuthStatus("Skriv inn en gyldig e-postadresse.", "error");
+      return;
+    }
+
+    const client = await window.HistoryGoAHAAuth?.getClient?.();
+    if (!client?.auth?.signInWithOtp) {
+      setAuthStatus("AHA-login er ikke klar ennå. Prøv å åpne AHA direkte.", "error");
+      return;
+    }
+
+    setAuthStatus("Sender innloggingslenke …");
+
+    const { error } = await client.auth.signInWithOtp({
+      email: cleanEmail,
+      options: {
+        emailRedirectTo: getHistoryGoRedirectUrl(),
+        shouldCreateUser: true
+      }
+    });
+
+    if (error) {
+      setAuthStatus(error.message || "Kunne ikke sende innloggingslenke.", "error");
+      return;
+    }
+
+    setAuthStatus("Innloggingslenke sendt. Åpne e-posten på samme enhet, trykk lenken, og kom tilbake hit.", "ok");
+  }
+
+  async function openLoginPopup() {
+    injectStyles();
+    closeLoginPopup();
+
+    const session = await window.HistoryGoAHAAuth?.getSession?.();
+    const email = session?.user?.email || "";
+
+    const backdrop = document.createElement("div");
+    backdrop.id = "hgAhaLoginBackdrop";
+    backdrop.className = "hg-profile-editor-backdrop";
+    backdrop.innerHTML = `
+      <div class="hg-profile-editor" role="dialog" aria-modal="true" aria-labelledby="hgAhaLoginTitle">
+        <h2 id="hgAhaLoginTitle">Logg inn med AHA</h2>
+        <p>AHA er kontoen og profilen din. Når du er innlogget, kan History Go lagre progresjon på samme bruker.</p>
+        <div class="hg-profile-field">
+          <label for="hgAhaEmailInput">E-post</label>
+          <input id="hgAhaEmailInput" type="email" inputmode="email" autocomplete="email" placeholder="navn@eksempel.no" value="${email}">
+        </div>
+        <div id="hgAhaLoginStatus" class="hg-auth-status">${session?.user?.id ? "Du er allerede innlogget med AHA." : "Skriv inn e-post for å få innloggingslenke."}</div>
+        <div class="hg-profile-actions">
+          <button class="hg-profile-cancel" type="button" id="hgAhaLoginCancel">Lukk</button>
+          <button class="hg-profile-cancel" type="button" id="hgAhaOpenAha">Åpne AHA</button>
+          <button class="hg-profile-save" type="button" id="hgAhaSendLink">Send lenke</button>
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(backdrop);
+    const input = document.getElementById("hgAhaEmailInput");
+    input?.focus();
+
+    document.getElementById("hgAhaLoginCancel")?.addEventListener("click", closeLoginPopup);
+    document.getElementById("hgAhaOpenAha")?.addEventListener("click", () => window.HistoryGoAHAAuth?.openAhaLogin?.());
+    document.getElementById("hgAhaSendLink")?.addEventListener("click", () => sendMagicLink(input?.value));
+    input?.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") sendMagicLink(input.value);
+    });
+    backdrop.addEventListener("click", (event) => {
+      if (event.target === backdrop) closeLoginPopup();
+    });
+  }
+
   function bindProfileButtons() {
     ["editProfileBtn", "editProfileBtnBottom"].forEach((id) => {
       const btn = document.getElementById(id);
@@ -194,11 +309,34 @@
     });
   }
 
+  function bindLoginButton() {
+    const editBtn = document.getElementById("editProfileBtn");
+    if (!editBtn || document.getElementById("loginAhaBtn")) {
+      refreshLoginButton();
+      return;
+    }
+
+    const btn = document.createElement("button");
+    btn.id = "loginAhaBtn";
+    btn.className = editBtn.className || "btn";
+    btn.type = "button";
+    btn.textContent = "Logg inn";
+    btn.addEventListener("click", (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      openLoginPopup();
+    });
+
+    editBtn.insertAdjacentElement("afterend", btn);
+    refreshLoginButton();
+  }
+
   function init() {
     persistProfile(getProfile());
     injectStyles();
     applyProfileToDom();
     bindProfileButtons();
+    bindLoginButton();
   }
 
   window.HGUserProfile = {
@@ -206,6 +344,8 @@
     saveProfile: persistProfile,
     applyProfileToDom,
     openEditor,
+    openLoginPopup,
+    refreshLoginButton,
     initialsFromName,
     init
   };
@@ -216,6 +356,10 @@
     init();
   }
 
-  window.addEventListener("updateProfile", () => applyProfileToDom());
+  window.addEventListener("updateProfile", () => {
+    applyProfileToDom();
+    refreshLoginButton();
+  });
   window.addEventListener("historygo:aha-readback", () => applyProfileToDom());
+  window.addEventListener("aha:auth-ready", () => refreshLoginButton());
 })();
