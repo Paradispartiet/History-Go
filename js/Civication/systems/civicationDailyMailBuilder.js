@@ -669,7 +669,8 @@
     for (const streamId of uniqueStrings(openedStreamIds)) {
       const stream = streams.find(s => norm(s?.id) === streamId);
       if (!stream) continue;
-      if (!streamMatches(stream, active, state, narrativeState)) continue;
+      // applies_when styrer automatisk aktivering.
+      // opens_streams er en eksplisitt narrativ overgang og skal kunne injiseres samme dag.
 
       const storylets = Array.isArray(stream?.storylets) ? stream.storylets : [];
       const storylet = storylets.find(st => {
