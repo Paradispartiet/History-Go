@@ -1,1 +1,131 @@
-{ "schema":"civication_narrative_stream_v1","id":"working_class_shift_life","type":"class_case","title":"Skiftliv i arbeiderklassen","sociological_theme":"klasse_tidspress_og_omsorg","applies_when":{"role_scopes":["fagarbeider"]},"time_slots":["class_case","carryover"],"storylets":[{"id":"lunch_budget_talk","message_type":"story","time_slot":"class_case","from":"Kollega i kantina","subject":"Hvordan får du uka til å gå opp?","situation":["Samtalen handler om turnus, økonomi og slit."],"choices":[{"id":"A","label":"Del konkrete grep","effect":1,"tags":["solidarity"],"feedback":"Du bygger kollektiv støtte."},{"id":"B","label":"Hold det for deg selv","effect":0,"tags":["individualization"],"feedback":"Du skjermer deg, men mister fellesskap."}],"opens_streams":[],"adds_flags":["class_reflection"],"risk_links":[],"links":[]}]} 
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "working_class_shift_life",
+  "type": "class_case",
+  "title": "Skiftliv i arbeiderklassen",
+  "sociological_theme": "klasse_tidspress_og_omsorg",
+  "applies_when": { "role_scopes": ["fagarbeider"] },
+  "time_slots": ["class_case", "carryover"],
+  "storylets": [
+    {
+      "id": "lunch_budget_talk",
+      "message_type": "story",
+      "time_slot": "class_case",
+      "from": "Kollega i kantina",
+      "subject": "Hvordan får du uka til å gå opp?",
+      "situation": [
+        "I kantina sammenligner dere matpakker mens dagens varmrett koster mer enn sist måned.",
+        "To på bordet regner høyt på overtidstimer for å få dekka strømregninga.",
+        "Samtalen glir mellom oppskrifter, lønnslipp og hva som faktisk holder kroppen gående gjennom natt og tidligvakter."
+      ],
+      "choices": [
+        { "id": "A", "label": "Del hva du lager billig i store porsjoner til skiftuka.", "effect": 1, "tags": ["solidarity", "everyday_knowledge"], "feedback": "Praten blir konkret, og flere noterer seg tipsene dine på mobilen." },
+        { "id": "B", "label": "Si at du hopper over kantina og tar kaffe i stedet for mat.", "effect": 0, "tags": ["austerity", "silence"], "feedback": "Ingen dømmer deg, men slit blir normalisert uten at noen sier det høyt." }
+      ],
+      "opens_streams": [],
+      "adds_flags": ["class_reflection"],
+      "risk_links": ["fatigue_risk"],
+      "links": []
+    },
+    {
+      "id": "bus_connection_after_late_shift",
+      "message_type": "class_case",
+      "time_slot": "carryover",
+      "from": "Nabo på skift",
+      "subject": "Siste buss går før du er ferdig",
+      "situation": [
+        "Turnuslista flyttet sluttid med tjue minutter, og nå ryker bussforbindelsen hjem.",
+        "Naboen tilbyr samkjøring hvis du kan spleise på drivstoff, men da må du vente ute i kulda etter stempling.",
+        "Transporten føles som en ekstra arbeidsøkt ingen får lønn for."
+      ],
+      "choices": [
+        { "id": "A", "label": "Spleis på kjøringa og bruk ventetida til å planlegge neste skiftuke.", "effect": 1, "tags": ["collective_logistics", "planning"], "feedback": "Dere lager en fast ordning som demper stresset flere dager framover." },
+        { "id": "B", "label": "Bestill dyr taxi hjem for å få sove mest mulig før tidligvakt.", "effect": 0, "tags": ["economic_strain", "recovery"], "feedback": "Du får tid, men budsjettet får et nytt hull som merkes ved helga." }
+      ],
+      "opens_streams": [],
+      "adds_flags": ["transport_strain"],
+      "risk_links": ["fatigue_risk"],
+      "links": []
+    },
+    {
+      "id": "family_calendar_collision",
+      "message_type": "people",
+      "time_slot": "carryover",
+      "from": "Hjemmefronten",
+      "subject": "Henting, foreldremøte og kveldsskift",
+      "situation": [
+        "Familiekalenderen krasjer når du settes på kveldsskift samme dag som foreldremøte.",
+        "Partneren din spør om du kan bytte vakt, men alle på laget har allerede bytta én gang denne måneden.",
+        "Ingen stor krise alene, men summen av slike dager former hvem som alltid må improvisere hjemme."
+      ],
+      "choices": [
+        { "id": "A", "label": "Be kollega bytte mot at du tar hans lørdagsvakt senere.", "effect": 1, "tags": ["reciprocity", "family_logistics"], "feedback": "Kabalen går opp nå, men du skylder tid som tas fra neste helg." },
+        { "id": "B", "label": "Hold vakta og send melding om at du bare rekker digitalt møte fra pauserommet.", "effect": 0, "tags": ["work_priority", "distance"], "feedback": "Løsningen fungerer teknisk, men du kjenner avstanden i stemmen hjemme." }
+      ],
+      "opens_streams": [],
+      "adds_flags": ["family_schedule_pressure"],
+      "risk_links": ["fatigue_risk"],
+      "links": []
+    },
+    {
+      "id": "locker_room_quietness",
+      "message_type": "class_case",
+      "time_slot": "class_case",
+      "from": "Garderobeprat",
+      "subject": "Ingen snakker om håndleddene",
+      "situation": [
+        "I garderoben etter skiftet masserer flere håndledd og skuldre uten å si stort.",
+        "En nyansatt spør om dette er normalt, og får et kort «sånn er det» tilbake.",
+        "Tausheten fungerer som fellesskap, men også som en måte å skyve smerte ut av samtalen."
+      ],
+      "choices": [
+        { "id": "A", "label": "Si høyt at dere bør melde slitasjen samlet til verneombudet.", "effect": 1, "tags": ["collective_voice", "work_body"], "feedback": "To nikker og blir igjen for å skrive meldingen med deg." },
+        { "id": "B", "label": "Nikk bare tilbake og gå rett i dusjen som vanlig.", "effect": 0, "tags": ["normalization", "silence"], "feedback": "Rytmen bevares, men ingenting endres før neste verkerunde." }
+      ],
+      "opens_streams": [],
+      "adds_flags": ["wear_normalized"],
+      "risk_links": ["work_risk"],
+      "links": []
+    },
+    {
+      "id": "match_night_coordination",
+      "message_type": "story",
+      "time_slot": "carryover",
+      "from": "Skiftchatten",
+      "subject": "Kampkveld etter dagvakt",
+      "situation": [
+        "Tre fra laget planlegger å se kampen sammen etter dagvakt og spør om du blir med.",
+        "De beskriver det som ukas eneste sted der ingen trenger forklare hvorfor de er slitne.",
+        "Samtidig vet du at kampkveld ofte glir over i sein transport og kort natt før neste skift."
+      ],
+      "choices": [
+        { "id": "A", "label": "Bli med på kampen, men avtal hjemreise før avspark.", "effect": 1, "tags": ["belonging", "boundary"], "feedback": "Du holder på fellesskapet uten å gi fra deg hele natta." },
+        { "id": "B", "label": "Bli med hele kvelden og ta morgendagen som den kommer.", "effect": -1, "tags": ["social_pull", "fatigue"], "feedback": "Du får den fulle stemningen, men kjenner kostnaden før du har lagt deg." }
+      ],
+      "opens_streams": ["football_supporter_stream", "alcohol_pressure_stream"],
+      "adds_flags": ["football_evening", "pub_social_pressure"],
+      "risk_links": ["fatigue_risk"],
+      "links": []
+    },
+    {
+      "id": "payday_and_debt_rhythm",
+      "message_type": "class_case",
+      "time_slot": "carryover",
+      "from": "Kollega Rune",
+      "subject": "Lønning inn, trekk ut",
+      "situation": [
+        "På lønningsdag sjekker dere konto samtidig i garderoben, og halvparten av beløpet er allerede bundet i faste trekk.",
+        "Rune ler av det og sier at han kjenner måneden på pusten: lett første uke, tung tredje uke.",
+        "Du merker hvordan økonomi blir rytme i kroppen, ikke bare tall i en app."
+      ],
+      "choices": [
+        { "id": "A", "label": "Sett av litt til buffer med en gang og dropp impulsstopp på vei hjem.", "effect": 1, "tags": ["economic_planning", "self_control"], "feedback": "Det kjennes stramt nå, men gir et lite pusterom når neste uforutsette regning kommer." },
+        { "id": "B", "label": "Unn deg en kveld ute siden det endelig er lønningsdag.", "effect": 0, "tags": ["release", "social_spending"], "feedback": "Du får et avbrekk, men månedsrytmen blir enda brattere mot slutten." }
+      ],
+      "opens_streams": ["alcohol_pressure_stream"],
+      "adds_flags": ["pub_social_pressure"],
+      "risk_links": ["economic_risk", "fatigue_risk"],
+      "links": []
+    }
+  ]
+}
