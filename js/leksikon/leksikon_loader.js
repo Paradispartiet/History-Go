@@ -46,6 +46,9 @@
   }
 
   function articleTitle(article) {
+    const explicitTitle = norm(article?.title || article?.name || article?.label);
+    if (explicitTitle) return explicitTitle;
+
     const place = (Array.isArray(window.PLACES) ? window.PLACES : [])
       .find(p => norm(p?.id) === norm(article?.place_id));
 
