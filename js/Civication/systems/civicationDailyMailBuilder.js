@@ -643,10 +643,17 @@
     return [];
   }
 
-  function findInjectableStoryletForOpenedStreams(runtime, openedStreamIds, active, state) {
+  async function getAvailableNarrativeStreams() {
+    const cachedStreams = getCachedNarrativeStreams();
+    if (cachedStreams.length) return cachedStreams;
+    const loaded = await loadNarrativeStreams();
+    return Array.isArray(loaded?.streams) ? loaded.streams : [];
+  }
+
+  async function findInjectableStoryletForOpenedStreams(runtime, openedStreamIds, active, state) {
     const items = Array.isArray(runtime?.items) ? runtime.items : [];
     const narrativeState = getNarrativeState(state);
-    const streams = getCachedNarrativeStreams();
+    const streams = await getAvailableNarrativeStreams();
     if (!streams.length) return null;
 
     const existingKeys = new Set(items
@@ -1009,7 +1016,7 @@
     return { enqueued: true, event, index: idx, runtime: nextRuntime };
   }
 
-  function markAnswered(eventId, choiceId) {
+  async function markAnswered(eventId, choiceId) {
     const id = norm(eventId);
     if (!id) return null;
     const runtime = getRuntime();
@@ -1068,7 +1075,7 @@
 
       const openedStreamIds = uniqueStrings(rowEvent?.narrative_effects?.opens_streams || []);
       if (openedStreamIds.length) {
-        const injectable = findInjectableStoryletForOpenedStreams(runtime, openedStreamIds, getActive(), getState());
+        const injectable = await findInjectableStoryletForOpenedStreams(runtime, openedStreamIds, getActive(), getState());
         if (injectable) {
           const fallbackPhase = injectable.preferredPhases[0] || "afternoon";
           const injectedEvent = storyletToEvent(getActive(), { id: fallbackPhase, label: fallbackPhase }, { slot: "injected_narrative" }, injectable.stream, injectable.storylet, Date.now());
@@ -1133,7 +1140,7 @@
 
       // Mark before previousAnswer, because dayPatches calls onAppOpen inside its answer wrapper.
       // Without this, onAppOpen would see the same daily item as still active and re-enqueue it.
-      if (daily) markAnswered(eventObj?.id || eventId, choiceId);
+      if (daily) await markAnswered(eventObj?.id || eventId, choiceId);
 
       const result = await previousAnswer.call(this, eventId, choiceId);
 
