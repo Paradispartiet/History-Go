@@ -591,6 +591,29 @@
 }
 
 
+
+/* =====================================================
+   LEKSIKON ENTRY POPUP
+   ===================================================== */
+
+.hg-popup.leksikon-entry-popup {
+  overflow: hidden;
+}
+
+.hg-popup.leksikon-entry-popup .hg-popup-inner {
+  width: min(720px, calc(100vw - 28px));
+  max-height: min(86dvh, 860px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+.hg-popup.leksikon-entry-popup .pc-leksikon-article {
+  height: auto;
+  min-height: 0;
+}
+
 /* =====================================================
    NATURE
    ===================================================== */
