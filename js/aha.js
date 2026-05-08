@@ -1,11 +1,13 @@
 // integration/aha.js
 // History Go ⇄ AHA bridge.
 // localStorage remains fallback/cache. When AHA/Supabase auth exists, auth.uid() is the profile_id.
+// AHA owns the account display name. History Go only reads it.
 
 const HG_AHA_APP_URL = "https://paradispartiet.github.io/AHA-EchoNet/";
 const HG_AHA_SUPABASE_URL = "https://wshmybqyksrwkawqleiz.supabase.co";
 const HG_AHA_SUPABASE_PUBLISHABLE_KEY = "sb_publishable_fgfxuPJBpZ9CFcYufBBgjg_8YEmi13m";
 const HG_AHA_PROFILE_ID_KEY = "aha_profile_id";
+const HG_AHA_PROFILE_CACHE_KEY = "aha_profile_cache_v1";
 const HG_AHA_SYNC_STATUS_KEY = "historygo_aha_sync_status_v1";
 const HG_AHA_READBACK_STATUS_KEY = "historygo_aha_last_readback_v1";
 
@@ -113,19 +115,51 @@ async function getAhaSession() {
   return data?.session || null;
 }
 
-async function ensureAhaProfile(user) {
-  const client = await hgAhaGetClient();
-  if (!client || !user?.id) return { ok: false, reason: "not_ready" };
+function cacheAhaProfile(profile) {
+  const clean = profile && typeof profile === "object" ? {
+    id: profile.id || profile.profile_id || getAhaProfileIdSync(),
+    display_name: String(profile.display_name || profile.name || "").trim(),
+    updated_at: profile.updated_at || new Date().toISOString()
+  } : {};
 
-  const displayName = String(localStorage.getItem("user_name") || "").trim() || user.email || "History Go-bruker";
+  hgAhaWriteJson(HG_AHA_PROFILE_CACHE_KEY, clean);
+  if (clean.display_name) {
+    localStorage.setItem("user_name", clean.display_name);
+  }
+  return clean;
+}
+
+async function loadAhaProfile(userInput = null) {
+  const session = userInput?.id ? null : await getAhaSession();
+  const user = userInput?.id ? userInput : session?.user;
+  if (!user?.id) return { ok: false, reason: "not_signed_in" };
+
+  localStorage.setItem(HG_AHA_PROFILE_ID_KEY, user.id);
+  const client = await hgAhaGetClient();
+  if (!client) return { ok: false, reason: "not_configured" };
+
   const { data, error } = await client
     .from("aha_profiles")
-    .upsert({ id: user.id, display_name: displayName, updated_at: new Date().toISOString() }, { onConflict: "id" })
-    .select()
-    .single();
+    .select("id, display_name, updated_at")
+    .eq("id", user.id)
+    .maybeSingle();
 
-  if (error) return { ok: false, error };
-  return { ok: true, data };
+  if (error) {
+    return { ok: false, reason: "profile_read_error", error, profile_id: user.id };
+  }
+  if (!data || !String(data.display_name || "").trim()) {
+    cacheAhaProfile({ id: user.id, display_name: "" });
+    return { ok: false, reason: "no_aha_profile", profile_id: user.id };
+  }
+
+  const cached = cacheAhaProfile(data);
+  return { ok: true, data: cached, profile_id: user.id };
+}
+
+// Backwards-compatible name. It now ensures the AHA profile exists by reading it.
+// It never writes/overwrites AHA display_name from History Go localStorage.
+async function ensureAhaProfile(user) {
+  return loadAhaProfile(user);
 }
 
 function applyHistoryGoPayloadFromAha(payload, options = {}) {
@@ -161,6 +195,10 @@ function applyHistoryGoPayloadFromAha(payload, options = {}) {
   writeObject("hg_active_path_v1", payload.hg_active_path_v1);
   writeArray("hg_user_notes_v1", payload.notes);
   writeArray("hg_person_dialogs_v1", payload.dialogs);
+
+  if (payload.local_profile && typeof payload.local_profile === "object") {
+    writeObject("hg_user_profile_v1", payload.local_profile);
+  }
 
   if (typeof payload.hg_nextup_because === "string") {
     localStorage.setItem("hg_nextup_because", payload.hg_nextup_because);
@@ -234,19 +272,28 @@ async function refreshAhaAuthState() {
     const user = session?.user || null;
     if (!user?.id) {
       localStorage.removeItem(HG_AHA_PROFILE_ID_KEY);
+      cacheAhaProfile({});
       window.dispatchEvent(new CustomEvent("aha:auth-ready", { detail: { signed_in: false, profile_id: null, source_app: "historygo" } }));
       return { signed_in: false, profile_id: null };
     }
 
     localStorage.setItem(HG_AHA_PROFILE_ID_KEY, user.id);
-    await ensureAhaProfile(user);
+    const ahaProfile = await loadAhaProfile(user);
 
     let readback = null;
     if (!hasMeaningfulHistoryGoLocalState()) {
       readback = await loadLatestHistoryGoFromAha({ apply: true });
     }
 
-    const detail = { signed_in: true, profile_id: user.id, email: user.email || null, source_app: "historygo", readback };
+    const detail = {
+      signed_in: true,
+      profile_id: user.id,
+      email: user.email || null,
+      source_app: "historygo",
+      aha_profile_ready: Boolean(ahaProfile?.ok),
+      aha_profile: ahaProfile?.data || null,
+      readback
+    };
     window.dispatchEvent(new CustomEvent("aha:auth-ready", { detail }));
     return detail;
   } catch (error) {
@@ -265,17 +312,25 @@ async function syncHistoryGoPayloadToAha(payloadInput) {
   }
 
   localStorage.setItem(HG_AHA_PROFILE_ID_KEY, user.id);
-  await ensureAhaProfile(user);
+  const ahaProfile = await loadAhaProfile(user);
+  if (!ahaProfile?.ok) {
+    hgAhaStatus(HG_AHA_SYNC_STATUS_KEY, { ok: false, fallback: "localStorage", reason: ahaProfile?.reason || "no_aha_profile", profile_id: user.id });
+    return { ok: false, fallback: "localStorage", reason: ahaProfile?.reason || "no_aha_profile", profile_id: user.id };
+  }
+
   const client = await hgAhaGetClient();
   if (!client) {
     hgAhaStatus(HG_AHA_SYNC_STATUS_KEY, { ok: false, fallback: "localStorage", reason: "not_configured" });
     return { ok: false, fallback: "localStorage", reason: "not_configured" };
   }
 
+  const localProfile = hgAhaReadJson("hg_user_profile_v1", {});
   const enrichedPayload = {
     ...payload,
     user_id: user.id,
     profile_id: user.id,
+    aha_display_name: ahaProfile.data.display_name,
+    local_profile: localProfile && typeof localProfile === "object" ? localProfile : {},
     source: "historygo",
     auth_source: "supabase",
     synced_from_historygo_at: new Date().toISOString()
@@ -334,6 +389,7 @@ window.HistoryGoAHAAuth = {
   getSession: getAhaSession,
   getProfileIdSync: getAhaProfileIdSync,
   refresh: refreshAhaAuthState,
+  loadAhaProfile,
   ensureProfile: ensureAhaProfile,
   syncHistoryGoPayload: syncHistoryGoPayloadToAha,
   loadLatestHistoryGo: loadLatestHistoryGoFromAha,
@@ -520,6 +576,8 @@ function exportHistoryGoData() {
     trivia_universe: hgAhaReadJson("trivia_universe", {}),
     hg_groundhopper_stats_v1: hgAhaReadJson("hg_groundhopper_stats_v1", {}),
     hg_pc_wallet_v1: hgAhaReadJson("hg_pc_wallet_v1", {}),
+    local_profile: hgAhaReadJson("hg_user_profile_v1", {}),
+    aha_profile_cache: hgAhaReadJson(HG_AHA_PROFILE_CACHE_KEY, {}),
     nextup: {
       current: nextUpTri && typeof nextUpTri === "object" ? nextUpTri : {},
       because: nextUpBecause,

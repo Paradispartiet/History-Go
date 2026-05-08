@@ -1,33 +1,26 @@
 // ============================================================
 // HISTORY GO – USER PROFILE IDENTITY ENGINE
-// Canonical owner for user name + profile color.
-// Keeps legacy keys (`user_name`, `user_color`) in sync so older UI code keeps working.
-// Adds AHA login button + popup on the profile page.
+// AHA owns account display name.
+// History Go owns local profile preferences: color, nickname, place.
 // ============================================================
 
 (function () {
   const PROFILE_KEY = "hg_user_profile_v1";
+  const AHA_PROFILE_CACHE_KEY = "aha_profile_cache_v1";
   const LEGACY_NAME_KEY = "user_name";
   const LEGACY_COLOR_KEY = "user_color";
-  const DEFAULT_NAME = "Utforsker #182";
+  const DEFAULT_DISPLAY_NAME = "Logg inn med AHA";
   const DEFAULT_COLOR = "#f6c800";
   const COLOR_OPTIONS = ["#f6c800", "#8fd3ff", "#ff8fb3", "#a9f5b5", "#c7a7ff", "#ffb86b"];
 
-  function cleanName(value) {
-    const name = String(value || "").trim().replace(/\s+/g, " ");
-    return name || DEFAULT_NAME;
+  function cleanText(value, fallback = "") {
+    const text = String(value || "").trim().replace(/\s+/g, " ");
+    return text || fallback;
   }
 
   function cleanColor(value) {
     const color = String(value || "").trim();
     return /^#[0-9a-fA-F]{6}$/.test(color) ? color : DEFAULT_COLOR;
-  }
-
-  function initialsFromName(name) {
-    const parts = cleanName(name).replace(/#/g, "").split(/\s+/).filter(Boolean);
-    if (!parts.length) return "HG";
-    if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
-    return `${parts[0][0] || "H"}${parts[parts.length - 1][0] || "G"}`.toUpperCase();
   }
 
   function readJson(key, fallback) {
@@ -44,13 +37,37 @@
     try { localStorage.setItem(key, JSON.stringify(value)); } catch {}
   }
 
+  function getCachedAhaProfile() {
+    const cached = readJson(AHA_PROFILE_CACHE_KEY, {});
+    if (cached && typeof cached === "object") return cached;
+    return {};
+  }
+
+  function getAhaDisplayName() {
+    const cached = getCachedAhaProfile();
+    return cleanText(cached.display_name || cached.name || "", "");
+  }
+
+  function getDisplayName() {
+    return getAhaDisplayName() || DEFAULT_DISPLAY_NAME;
+  }
+
+  function initialsFromName(name) {
+    const parts = cleanText(name, "HG").replace(/#/g, "").split(/\s+/).filter(Boolean);
+    if (!parts.length) return "HG";
+    if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
+    return `${parts[0][0] || "H"}${parts[parts.length - 1][0] || "G"}`.toUpperCase();
+  }
+
   function getProfile() {
     const stored = readJson(PROFILE_KEY, {});
-    const legacyName = localStorage.getItem(LEGACY_NAME_KEY);
     const legacyColor = localStorage.getItem(LEGACY_COLOR_KEY);
     return {
-      version: 1,
-      name: cleanName(stored.name || legacyName || DEFAULT_NAME),
+      version: 2,
+      aha_display_name: getAhaDisplayName(),
+      display_name: getDisplayName(),
+      nickname: cleanText(stored.nickname || "", ""),
+      place: cleanText(stored.place || "", ""),
       color: cleanColor(stored.color || legacyColor || DEFAULT_COLOR),
       updated_at: stored.updated_at || null
     };
@@ -59,35 +76,50 @@
   function persistProfile(next) {
     const current = getProfile();
     const profile = {
-      version: 1,
-      name: cleanName(next?.name ?? current.name),
+      version: 2,
+      aha_display_name: current.aha_display_name || "",
+      nickname: cleanText(next?.nickname ?? current.nickname, ""),
+      place: cleanText(next?.place ?? current.place, ""),
       color: cleanColor(next?.color ?? current.color),
       updated_at: new Date().toISOString()
     };
 
     writeJson(PROFILE_KEY, profile);
-    localStorage.setItem(LEGACY_NAME_KEY, profile.name);
     localStorage.setItem(LEGACY_COLOR_KEY, profile.color);
-    return profile;
+
+    // Legacy name key is cache only. AHA remains owner of the name.
+    localStorage.setItem(LEGACY_NAME_KEY, profile.aha_display_name || DEFAULT_DISPLAY_NAME);
+    return getProfile();
   }
 
   function applyProfileToDom(profile = getProfile()) {
+    const displayName = profile.display_name || getDisplayName();
     document.documentElement.style.setProperty("--hg-user-color", profile.color);
+    localStorage.setItem(LEGACY_NAME_KEY, displayName);
+    localStorage.setItem(LEGACY_COLOR_KEY, profile.color);
 
     const miniName = document.getElementById("miniName");
     if (miniName) {
-      miniName.textContent = profile.name;
+      miniName.textContent = displayName;
       miniName.style.color = profile.color;
     }
 
     const profileName = document.getElementById("profileName");
     if (profileName) {
-      profileName.textContent = profile.name;
+      profileName.textContent = displayName;
       profileName.style.color = profile.color;
     }
 
+    const sub = document.querySelector(".profile-sub");
+    if (sub) {
+      const localBits = [profile.nickname ? `Kallenavn: ${profile.nickname}` : "", profile.place ? `Sted: ${profile.place}` : ""].filter(Boolean);
+      sub.textContent = localBits.length
+        ? localBits.join(" · ")
+        : "Din spillerprofil, kunnskapsreise og samling i ett kompakt dashboard.";
+    }
+
     document.querySelectorAll(".profile-avatar-orb").forEach((el) => {
-      el.textContent = initialsFromName(profile.name);
+      el.textContent = initialsFromName(displayName);
       el.style.background = `linear-gradient(135deg, ${profile.color}, rgba(255,255,255,.18))`;
       el.style.boxShadow = `0 0 0 2px ${profile.color}55, 0 18px 50px rgba(0,0,0,.22)`;
     });
@@ -138,11 +170,15 @@
     backdrop.className = "hg-profile-editor-backdrop";
     backdrop.innerHTML = `
       <div class="hg-profile-editor" role="dialog" aria-modal="true" aria-labelledby="hgProfileEditorTitle">
-        <h2 id="hgProfileEditorTitle">Endre profil</h2>
-        <p>Dette styrer navnet og fargen som vises i miniprofilen og på profilsiden.</p>
+        <h2 id="hgProfileEditorTitle">Endre History Go-profil</h2>
+        <p>Navnet hentes fra AHA. Her endrer du bare lokale History Go-valg.</p>
         <div class="hg-profile-field">
-          <label for="hgProfileNameInput">Navn</label>
-          <input id="hgProfileNameInput" type="text" maxlength="40" value="">
+          <label for="hgProfileNicknameInput">Kallenavn i History Go</label>
+          <input id="hgProfileNicknameInput" type="text" maxlength="40" placeholder="Valgfritt kallenavn" value="">
+        </div>
+        <div class="hg-profile-field">
+          <label for="hgProfilePlaceInput">Sted / hjemsted</label>
+          <input id="hgProfilePlaceInput" type="text" maxlength="60" placeholder="Valgfritt sted" value="">
         </div>
         <div class="hg-profile-field">
           <label>Profilfarge</label>
@@ -156,10 +192,11 @@
     `;
 
     document.body.appendChild(backdrop);
-    const input = document.getElementById("hgProfileNameInput");
-    input.value = profile.name;
-    input.focus();
-    input.select();
+    const nicknameInput = document.getElementById("hgProfileNicknameInput");
+    const placeInput = document.getElementById("hgProfilePlaceInput");
+    nicknameInput.value = profile.nickname || "";
+    placeInput.value = profile.place || "";
+    nicknameInput.focus();
 
     const colors = document.getElementById("hgProfileColorOptions");
     colors.innerHTML = COLOR_OPTIONS.map((color) => `
@@ -179,13 +216,13 @@
     });
 
     document.getElementById("hgProfileSave")?.addEventListener("click", () => {
-      const saved = persistProfile({ name: input.value, color: selectedColor });
+      const saved = persistProfile({ nickname: nicknameInput.value, place: placeInput.value, color: selectedColor });
       applyProfileToDom(saved);
       closeEditor();
       window.dispatchEvent(new CustomEvent("hg:user-profile-updated", { detail: saved }));
       window.dispatchEvent(new Event("updateProfile"));
       if (typeof window.syncHistoryGoToAHA === "function") window.syncHistoryGoToAHA();
-      window.showToast?.("Profil oppdatert");
+      window.showToast?.("Profilvalg oppdatert");
     });
   }
 
@@ -196,19 +233,41 @@
     return `${window.location.origin}${path}`;
   }
 
+  async function refreshAhaProfileCache() {
+    const loader = window.HistoryGoAHAAuth?.loadAhaProfile;
+    if (typeof loader !== "function") return null;
+    const result = await loader();
+    if (result?.ok && result.data) {
+      writeJson(AHA_PROFILE_CACHE_KEY, result.data);
+      persistProfile({});
+      applyProfileToDom();
+      return result.data;
+    }
+    if (result?.reason === "no_aha_profile") {
+      writeJson(AHA_PROFILE_CACHE_KEY, {});
+      applyProfileToDom();
+    }
+    return null;
+  }
+
   async function refreshLoginButton() {
     const btn = document.getElementById("loginAhaBtn");
     if (!btn) return;
     try {
       const state = await window.HistoryGoAHAAuth?.refresh?.();
       if (state?.signed_in) {
-        btn.textContent = "Innlogget";
-        btn.dataset.signedIn = "true";
-        btn.title = `Innlogget med AHA${state.email ? `: ${state.email}` : ""}`;
+        const ahaProfile = await refreshAhaProfileCache();
+        btn.textContent = ahaProfile?.display_name ? "Innlogget" : "Opprett AHA-profil";
+        btn.dataset.signedIn = ahaProfile?.display_name ? "true" : "missing-profile";
+        btn.title = ahaProfile?.display_name
+          ? `Innlogget med AHA: ${ahaProfile.display_name}`
+          : "Du er innlogget, men må opprette navn/profil i AHA først.";
       } else {
         btn.textContent = "Logg inn";
         btn.dataset.signedIn = "false";
         btn.title = "Logg inn med AHA";
+        writeJson(AHA_PROFILE_CACHE_KEY, {});
+        applyProfileToDom();
       }
     } catch {
       btn.textContent = "Logg inn";
@@ -260,6 +319,7 @@
 
     const session = await window.HistoryGoAHAAuth?.getSession?.();
     const email = session?.user?.email || "";
+    const ahaName = getAhaDisplayName();
 
     const backdrop = document.createElement("div");
     backdrop.id = "hgAhaLoginBackdrop";
@@ -267,12 +327,12 @@
     backdrop.innerHTML = `
       <div class="hg-profile-editor" role="dialog" aria-modal="true" aria-labelledby="hgAhaLoginTitle">
         <h2 id="hgAhaLoginTitle">Logg inn med AHA</h2>
-        <p>AHA er kontoen og profilen din. Når du er innlogget, kan History Go lagre progresjon på samme bruker.</p>
+        <p>AHA er kontoen og hovedprofilen din. Navn opprettes og endres i AHA.</p>
         <div class="hg-profile-field">
           <label for="hgAhaEmailInput">E-post</label>
           <input id="hgAhaEmailInput" type="email" inputmode="email" autocomplete="email" placeholder="navn@eksempel.no" value="${email}">
         </div>
-        <div id="hgAhaLoginStatus" class="hg-auth-status">${session?.user?.id ? "Du er allerede innlogget med AHA." : "Skriv inn e-post for å få innloggingslenke."}</div>
+        <div id="hgAhaLoginStatus" class="hg-auth-status">${session?.user?.id ? (ahaName ? `Innlogget som ${ahaName}.` : "Du er innlogget. Opprett navn/profil i AHA først.") : "Skriv inn e-post for å få innloggingslenke."}</div>
         <div class="hg-profile-actions">
           <button class="hg-profile-cancel" type="button" id="hgAhaLoginCancel">Lukk</button>
           <button class="hg-profile-cancel" type="button" id="hgAhaOpenAha">Åpne AHA</button>
@@ -297,15 +357,13 @@
   }
 
   function bindProfileButtons() {
-    ["editProfileBtn", "editProfileBtnBottom"].forEach((id) => {
-      const btn = document.getElementById(id);
-      if (!btn || btn.dataset.hgProfileBound === "true") return;
-      btn.dataset.hgProfileBound = "true";
-      btn.addEventListener("click", (event) => {
-        event.preventDefault();
-        event.stopPropagation();
-        openEditor();
-      });
+    const btn = document.getElementById("editProfileBtn");
+    if (!btn || btn.dataset.hgProfileBound === "true") return;
+    btn.dataset.hgProfileBound = "true";
+    btn.addEventListener("click", (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      openEditor();
     });
   }
 
@@ -331,20 +389,24 @@
     refreshLoginButton();
   }
 
-  function init() {
-    persistProfile(getProfile());
+  async function init() {
+    persistProfile({});
     injectStyles();
     applyProfileToDom();
     bindProfileButtons();
     bindLoginButton();
+    await refreshAhaProfileCache();
+    applyProfileToDom();
   }
 
   window.HGUserProfile = {
     getProfile,
+    getDisplayName,
     saveProfile: persistProfile,
     applyProfileToDom,
     openEditor,
     openLoginPopup,
+    refreshAhaProfileCache,
     refreshLoginButton,
     initialsFromName,
     init
@@ -361,5 +423,7 @@
     refreshLoginButton();
   });
   window.addEventListener("historygo:aha-readback", () => applyProfileToDom());
-  window.addEventListener("aha:auth-ready", () => refreshLoginButton());
+  window.addEventListener("aha:auth-ready", () => {
+    refreshAhaProfileCache().then(() => refreshLoginButton());
+  });
 })();
