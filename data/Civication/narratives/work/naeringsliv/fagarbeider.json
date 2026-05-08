@@ -4,8 +4,15 @@
   "type": "work",
   "title": "Fagarbeider i skift",
   "sociological_theme": "arbeidsrytme_og_ansvar",
-  "applies_when": { "role_scopes": ["fagarbeider"] },
-  "time_slots": ["work", "personal"],
+  "applies_when": {
+    "role_scopes": [
+      "fagarbeider"
+    ]
+  },
+  "time_slots": [
+    "work",
+    "personal"
+  ],
   "storylets": [
     {
       "id": "shift_start_followup",
@@ -19,12 +26,36 @@
         "To kollegaer ser på deg fordi du kan utstyret best, selv om du ikke har formell stoppmyndighet."
       ],
       "choices": [
-        { "id": "A", "label": "Stans linja i tre minutter og mål på nytt før oppstart.", "effect": 1, "tags": ["precision", "standard"], "feedback": "Oppstarten blir tregere, men dere finner at første innstilling var feil." },
-        { "id": "B", "label": "Kjør videre og noter at kontroll tas etter første batch.", "effect": 0, "tags": ["tempo", "production_pressure"], "feedback": "Dere tar igjen etterslep, men usikkerhet følger hele første time." }
+        {
+          "id": "A",
+          "label": "Stans linja i tre minutter og mål på nytt før oppstart.",
+          "effect": 1,
+          "tags": [
+            "precision",
+            "standard"
+          ],
+          "feedback": "Oppstarten blir tregere, men dere finner at første innstilling var feil."
+        },
+        {
+          "id": "B",
+          "label": "Kjør videre og noter at kontroll tas etter første batch.",
+          "effect": 0,
+          "tags": [
+            "tempo",
+            "production_pressure"
+          ],
+          "feedback": "Dere tar igjen etterslep, men usikkerhet følger hele første time."
+        }
       ],
-      "opens_streams": ["working_class_shift_life"],
-      "adds_flags": ["workday_started"],
-      "risk_links": ["work_risk"],
+      "opens_streams": [
+        "working_class_shift_life"
+      ],
+      "adds_flags": [
+        "workday_started"
+      ],
+      "risk_links": [
+        "work_risk"
+      ],
       "links": []
     },
     {
@@ -39,12 +70,36 @@
         "Hvis dere ikke følger opp nå, kan samme feil dukke opp når ettermiddagsskiftet tar over."
       ],
       "choices": [
-        { "id": "A", "label": "Send Egil avviket før du går i garderoben og legg ved bilde av ventilen.", "effect": 1, "tags": ["handover", "accountability"], "feedback": "Egil svarer kort, men legger kontrollpunktet inn i skiftplanen." },
-        { "id": "B", "label": "Ta muntlig overlevering i forbifarten og håp ettermiddagsskiftet ser det selv.", "effect": -1, "tags": ["silence", "risk"], "feedback": "Ingen protesterer der og da, men ansvaret blir hengende i lufta." }
+        {
+          "id": "A",
+          "label": "Send Egil avviket før du går i garderoben og legg ved bilde av ventilen.",
+          "effect": 1,
+          "tags": [
+            "handover",
+            "accountability"
+          ],
+          "feedback": "Egil svarer kort, men legger kontrollpunktet inn i skiftplanen."
+        },
+        {
+          "id": "B",
+          "label": "Ta muntlig overlevering i forbifarten og håp ettermiddagsskiftet ser det selv.",
+          "effect": -1,
+          "tags": [
+            "silence",
+            "risk"
+          ],
+          "feedback": "Ingen protesterer der og da, men ansvaret blir hengende i lufta."
+        }
       ],
-      "opens_streams": ["working_class_shift_life"],
-      "adds_flags": ["handover_responsibility"],
-      "risk_links": ["work_risk"],
+      "opens_streams": [
+        "working_class_shift_life"
+      ],
+      "adds_flags": [
+        "handover_responsibility"
+      ],
+      "risk_links": [
+        "work_risk"
+      ],
       "links": []
     },
     {
@@ -59,13 +114,50 @@
         "Det er en rutinejobb, men små feil her kan koste hele partiet senere på dagen."
       ],
       "choices": [
-        { "id": "A", "label": "Be lærlingen hente kaffe og kjør dobbeltsjekk punkt for punkt.", "effect": 1, "tags": ["self_management", "precision"], "feedback": "Det tar lenger tid, men tallene holder når revisjonsteamet kommer." },
-        { "id": "B", "label": "Ta en raskkalibrering og stol på at du kjenner maskinen.", "effect": -1, "tags": ["fatigue", "shortcut"], "feedback": "Du sparer minutter nå, men blir usikker på siste målepunkt." }
+        {
+          "id": "A",
+          "label": "Be lærlingen hente kaffe og kjør dobbeltsjekk punkt for punkt.",
+          "effect": 1,
+          "tags": [
+            "self_management",
+            "precision"
+          ],
+          "feedback": "Det tar lenger tid, men tallene holder når revisjonsteamet kommer."
+        },
+        {
+          "id": "B",
+          "label": "Ta en raskkalibrering og stol på at du kjenner maskinen.",
+          "effect": -1,
+          "tags": [
+            "fatigue",
+            "shortcut"
+          ],
+          "feedback": "Du sparer minutter nå, men blir usikker på siste målepunkt."
+        }
       ],
-      "opens_streams": ["alcohol_pressure_stream"],
-      "adds_flags": ["fatigue_next_day", "slept_poorly"],
-      "risk_links": ["fatigue_risk", "work_risk"],
-      "links": []
+      "opens_streams": [
+        "alcohol_pressure_stream"
+      ],
+      "adds_flags": [
+        "fatigue_next_day",
+        "slept_poorly"
+      ],
+      "risk_links": [
+        "fatigue_risk",
+        "work_risk"
+      ],
+      "links": [],
+      "applies_when": {
+        "flags_any": [
+          "fatigue_next_day",
+          "slept_poorly"
+        ]
+      },
+      "avoid_when": {
+        "flags_any": [
+          "recovery_chosen"
+        ]
+      }
     },
     {
       "id": "mentor_on_the_line",
@@ -79,12 +171,36 @@
         "Du vet at dårlig opplæring i dag blir din feil når Jonas gjør samme glipp alene neste uke."
       ],
       "choices": [
-        { "id": "A", "label": "Ta fem minutter ved panelet og la Jonas gjøre hvert trinn selv.", "effect": 1, "tags": ["mentor", "long_term_quality"], "feedback": "Tempoet faller litt nå, men Jonas spør mindre desperat resten av skiftet." },
-        { "id": "B", "label": "Si at han får se på mens du kjører omstillinga i full fart.", "effect": 0, "tags": ["tempo", "surface_training"], "feedback": "Dere holder linja i gang, men kunnskapen blir hengende hos deg alene." }
+        {
+          "id": "A",
+          "label": "Ta fem minutter ved panelet og la Jonas gjøre hvert trinn selv.",
+          "effect": 1,
+          "tags": [
+            "mentor",
+            "long_term_quality"
+          ],
+          "feedback": "Tempoet faller litt nå, men Jonas spør mindre desperat resten av skiftet."
+        },
+        {
+          "id": "B",
+          "label": "Si at han får se på mens du kjører omstillinga i full fart.",
+          "effect": 0,
+          "tags": [
+            "tempo",
+            "surface_training"
+          ],
+          "feedback": "Dere holder linja i gang, men kunnskapen blir hengende hos deg alene."
+        }
       ],
-      "opens_streams": ["working_class_shift_life"],
-      "adds_flags": ["mentor_role_active"],
-      "risk_links": ["work_risk"],
+      "opens_streams": [
+        "working_class_shift_life"
+      ],
+      "adds_flags": [
+        "mentor_role_active"
+      ],
+      "risk_links": [
+        "work_risk"
+      ],
       "links": []
     },
     {
@@ -99,12 +215,36 @@
         "Alle vet at slike kostnader ofte ender som press på neste bemanningsmøte."
       ],
       "choices": [
-        { "id": "A", "label": "Ta ansvar i møtet og krev ny sjekkrunde før utsending i kveld.", "effect": 1, "tags": ["accountability", "standard"], "feedback": "Du blir synlig for ledelsen, men også for dem som mener du sinker flyten." },
-        { "id": "B", "label": "Hold lav profil og la skiftleder avgjøre om saken tas videre.", "effect": 0, "tags": ["limited_authority", "avoidance"], "feedback": "Du slipper fronten nå, men usikker praksis blir stående." }
+        {
+          "id": "A",
+          "label": "Ta ansvar i møtet og krev ny sjekkrunde før utsending i kveld.",
+          "effect": 1,
+          "tags": [
+            "accountability",
+            "standard"
+          ],
+          "feedback": "Du blir synlig for ledelsen, men også for dem som mener du sinker flyten."
+        },
+        {
+          "id": "B",
+          "label": "Hold lav profil og la skiftleder avgjøre om saken tas videre.",
+          "effect": 0,
+          "tags": [
+            "limited_authority",
+            "avoidance"
+          ],
+          "feedback": "Du slipper fronten nå, men usikker praksis blir stående."
+        }
       ],
-      "opens_streams": ["working_class_shift_life"],
-      "adds_flags": ["cost_error_visible"],
-      "risk_links": ["work_risk"],
+      "opens_streams": [
+        "working_class_shift_life"
+      ],
+      "adds_flags": [
+        "cost_error_visible"
+      ],
+      "risk_links": [
+        "work_risk"
+      ],
       "links": []
     },
     {
@@ -119,12 +259,38 @@
         "Du kjenner både behovet for å lande sosialt og kroppen som trenger søvn før tidligvakt."
       ],
       "choices": [
-        { "id": "A", "label": "Bli med en time, bestill alkoholfritt først og gå før siste buss.", "effect": 1, "tags": ["boundary", "community"], "feedback": "Du er med i praten uten å gamble med neste skift." },
-        { "id": "B", "label": "Bli sittende så lenge de andre blir, så slipper du virke vanskelig.", "effect": -1, "tags": ["loyalty_pressure", "fatigue"], "feedback": "Kvelden blir varm, men morgendagen flytter seg allerede i kroppen." }
+        {
+          "id": "A",
+          "label": "Bli med en time, bestill alkoholfritt først og gå før siste buss.",
+          "effect": 1,
+          "tags": [
+            "boundary",
+            "community"
+          ],
+          "feedback": "Du er med i praten uten å gamble med neste skift."
+        },
+        {
+          "id": "B",
+          "label": "Bli sittende så lenge de andre blir, så slipper du virke vanskelig.",
+          "effect": -1,
+          "tags": [
+            "loyalty_pressure",
+            "fatigue"
+          ],
+          "feedback": "Kvelden blir varm, men morgendagen flytter seg allerede i kroppen."
+        }
       ],
-      "opens_streams": ["working_class_shift_life", "alcohol_pressure_stream"],
-      "adds_flags": ["pub_social_pressure"],
-      "risk_links": ["fatigue_risk", "work_risk"],
+      "opens_streams": [
+        "working_class_shift_life",
+        "alcohol_pressure_stream"
+      ],
+      "adds_flags": [
+        "pub_social_pressure"
+      ],
+      "risk_links": [
+        "fatigue_risk",
+        "work_risk"
+      ],
       "links": []
     }
   ]

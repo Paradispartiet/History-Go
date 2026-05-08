@@ -4,8 +4,15 @@
   "type": "class_case",
   "title": "Skiftliv i arbeiderklassen",
   "sociological_theme": "klasse_tidspress_og_omsorg",
-  "applies_when": { "role_scopes": ["fagarbeider"] },
-  "time_slots": ["class_case", "carryover"],
+  "applies_when": {
+    "role_scopes": [
+      "fagarbeider"
+    ]
+  },
+  "time_slots": [
+    "class_case",
+    "carryover"
+  ],
   "storylets": [
     {
       "id": "lunch_budget_talk",
@@ -19,12 +26,34 @@
         "Samtalen glir mellom oppskrifter, lønnslipp og hva som faktisk holder kroppen gående gjennom natt og tidligvakter."
       ],
       "choices": [
-        { "id": "A", "label": "Del hva du lager billig i store porsjoner til skiftuka.", "effect": 1, "tags": ["solidarity", "everyday_knowledge"], "feedback": "Praten blir konkret, og flere noterer seg tipsene dine på mobilen." },
-        { "id": "B", "label": "Si at du hopper over kantina og tar kaffe i stedet for mat.", "effect": 0, "tags": ["austerity", "silence"], "feedback": "Ingen dømmer deg, men slit blir normalisert uten at noen sier det høyt." }
+        {
+          "id": "A",
+          "label": "Del hva du lager billig i store porsjoner til skiftuka.",
+          "effect": 1,
+          "tags": [
+            "solidarity",
+            "everyday_knowledge"
+          ],
+          "feedback": "Praten blir konkret, og flere noterer seg tipsene dine på mobilen."
+        },
+        {
+          "id": "B",
+          "label": "Si at du hopper over kantina og tar kaffe i stedet for mat.",
+          "effect": 0,
+          "tags": [
+            "austerity",
+            "silence"
+          ],
+          "feedback": "Ingen dømmer deg, men slit blir normalisert uten at noen sier det høyt."
+        }
       ],
       "opens_streams": [],
-      "adds_flags": ["class_reflection"],
-      "risk_links": ["fatigue_risk"],
+      "adds_flags": [
+        "class_reflection"
+      ],
+      "risk_links": [
+        "fatigue_risk"
+      ],
       "links": []
     },
     {
@@ -39,12 +68,34 @@
         "Transporten føles som en ekstra arbeidsøkt ingen får lønn for."
       ],
       "choices": [
-        { "id": "A", "label": "Spleis på kjøringa og bruk ventetida til å planlegge neste skiftuke.", "effect": 1, "tags": ["collective_logistics", "planning"], "feedback": "Dere lager en fast ordning som demper stresset flere dager framover." },
-        { "id": "B", "label": "Bestill dyr taxi hjem for å få sove mest mulig før tidligvakt.", "effect": 0, "tags": ["economic_strain", "recovery"], "feedback": "Du får tid, men budsjettet får et nytt hull som merkes ved helga." }
+        {
+          "id": "A",
+          "label": "Spleis på kjøringa og bruk ventetida til å planlegge neste skiftuke.",
+          "effect": 1,
+          "tags": [
+            "collective_logistics",
+            "planning"
+          ],
+          "feedback": "Dere lager en fast ordning som demper stresset flere dager framover."
+        },
+        {
+          "id": "B",
+          "label": "Bestill dyr taxi hjem for å få sove mest mulig før tidligvakt.",
+          "effect": 0,
+          "tags": [
+            "economic_strain",
+            "recovery"
+          ],
+          "feedback": "Du får tid, men budsjettet får et nytt hull som merkes ved helga."
+        }
       ],
       "opens_streams": [],
-      "adds_flags": ["transport_strain"],
-      "risk_links": ["fatigue_risk"],
+      "adds_flags": [
+        "transport_strain"
+      ],
+      "risk_links": [
+        "fatigue_risk"
+      ],
       "links": []
     },
     {
@@ -59,12 +110,34 @@
         "Ingen stor krise alene, men summen av slike dager former hvem som alltid må improvisere hjemme."
       ],
       "choices": [
-        { "id": "A", "label": "Be kollega bytte mot at du tar hans lørdagsvakt senere.", "effect": 1, "tags": ["reciprocity", "family_logistics"], "feedback": "Kabalen går opp nå, men du skylder tid som tas fra neste helg." },
-        { "id": "B", "label": "Hold vakta og send melding om at du bare rekker digitalt møte fra pauserommet.", "effect": 0, "tags": ["work_priority", "distance"], "feedback": "Løsningen fungerer teknisk, men du kjenner avstanden i stemmen hjemme." }
+        {
+          "id": "A",
+          "label": "Be kollega bytte mot at du tar hans lørdagsvakt senere.",
+          "effect": 1,
+          "tags": [
+            "reciprocity",
+            "family_logistics"
+          ],
+          "feedback": "Kabalen går opp nå, men du skylder tid som tas fra neste helg."
+        },
+        {
+          "id": "B",
+          "label": "Hold vakta og send melding om at du bare rekker digitalt møte fra pauserommet.",
+          "effect": 0,
+          "tags": [
+            "work_priority",
+            "distance"
+          ],
+          "feedback": "Løsningen fungerer teknisk, men du kjenner avstanden i stemmen hjemme."
+        }
       ],
       "opens_streams": [],
-      "adds_flags": ["family_schedule_pressure"],
-      "risk_links": ["fatigue_risk"],
+      "adds_flags": [
+        "family_schedule_pressure"
+      ],
+      "risk_links": [
+        "fatigue_risk"
+      ],
       "links": []
     },
     {
@@ -79,12 +152,34 @@
         "Tausheten fungerer som fellesskap, men også som en måte å skyve smerte ut av samtalen."
       ],
       "choices": [
-        { "id": "A", "label": "Si høyt at dere bør melde slitasjen samlet til verneombudet.", "effect": 1, "tags": ["collective_voice", "work_body"], "feedback": "To nikker og blir igjen for å skrive meldingen med deg." },
-        { "id": "B", "label": "Nikk bare tilbake og gå rett i dusjen som vanlig.", "effect": 0, "tags": ["normalization", "silence"], "feedback": "Rytmen bevares, men ingenting endres før neste verkerunde." }
+        {
+          "id": "A",
+          "label": "Si høyt at dere bør melde slitasjen samlet til verneombudet.",
+          "effect": 1,
+          "tags": [
+            "collective_voice",
+            "work_body"
+          ],
+          "feedback": "To nikker og blir igjen for å skrive meldingen med deg."
+        },
+        {
+          "id": "B",
+          "label": "Nikk bare tilbake og gå rett i dusjen som vanlig.",
+          "effect": 0,
+          "tags": [
+            "normalization",
+            "silence"
+          ],
+          "feedback": "Rytmen bevares, men ingenting endres før neste verkerunde."
+        }
       ],
       "opens_streams": [],
-      "adds_flags": ["wear_normalized"],
-      "risk_links": ["work_risk"],
+      "adds_flags": [
+        "wear_normalized"
+      ],
+      "risk_links": [
+        "work_risk"
+      ],
       "links": []
     },
     {
@@ -99,13 +194,45 @@
         "Samtidig vet du at kampkveld ofte glir over i sein transport og kort natt før neste skift."
       ],
       "choices": [
-        { "id": "A", "label": "Bli med på kampen, men avtal hjemreise før avspark.", "effect": 1, "tags": ["belonging", "boundary"], "feedback": "Du holder på fellesskapet uten å gi fra deg hele natta." },
-        { "id": "B", "label": "Bli med hele kvelden og ta morgendagen som den kommer.", "effect": -1, "tags": ["social_pull", "fatigue"], "feedback": "Du får den fulle stemningen, men kjenner kostnaden før du har lagt deg." }
+        {
+          "id": "A",
+          "label": "Bli med på kampen, men avtal hjemreise før avspark.",
+          "effect": 1,
+          "tags": [
+            "belonging",
+            "boundary"
+          ],
+          "feedback": "Du holder på fellesskapet uten å gi fra deg hele natta."
+        },
+        {
+          "id": "B",
+          "label": "Bli med hele kvelden og ta morgendagen som den kommer.",
+          "effect": -1,
+          "tags": [
+            "social_pull",
+            "fatigue"
+          ],
+          "feedback": "Du får den fulle stemningen, men kjenner kostnaden før du har lagt deg."
+        }
       ],
-      "opens_streams": ["football_supporter_stream", "alcohol_pressure_stream"],
-      "adds_flags": ["football_evening", "pub_social_pressure"],
-      "risk_links": ["fatigue_risk"],
-      "links": []
+      "opens_streams": [
+        "football_supporter_stream",
+        "alcohol_pressure_stream"
+      ],
+      "adds_flags": [
+        "football_evening",
+        "pub_social_pressure"
+      ],
+      "risk_links": [
+        "fatigue_risk"
+      ],
+      "links": [],
+      "weight_when": {
+        "flags_any": [
+          "football_evening",
+          "supporter_belonging"
+        ]
+      }
     },
     {
       "id": "payday_and_debt_rhythm",
@@ -119,12 +246,37 @@
         "Du merker hvordan økonomi blir rytme i kroppen, ikke bare tall i en app."
       ],
       "choices": [
-        { "id": "A", "label": "Sett av litt til buffer med en gang og dropp impulsstopp på vei hjem.", "effect": 1, "tags": ["economic_planning", "self_control"], "feedback": "Det kjennes stramt nå, men gir et lite pusterom når neste uforutsette regning kommer." },
-        { "id": "B", "label": "Unn deg en kveld ute siden det endelig er lønningsdag.", "effect": 0, "tags": ["release", "social_spending"], "feedback": "Du får et avbrekk, men månedsrytmen blir enda brattere mot slutten." }
+        {
+          "id": "A",
+          "label": "Sett av litt til buffer med en gang og dropp impulsstopp på vei hjem.",
+          "effect": 1,
+          "tags": [
+            "economic_planning",
+            "self_control"
+          ],
+          "feedback": "Det kjennes stramt nå, men gir et lite pusterom når neste uforutsette regning kommer."
+        },
+        {
+          "id": "B",
+          "label": "Unn deg en kveld ute siden det endelig er lønningsdag.",
+          "effect": 0,
+          "tags": [
+            "release",
+            "social_spending"
+          ],
+          "feedback": "Du får et avbrekk, men månedsrytmen blir enda brattere mot slutten."
+        }
       ],
-      "opens_streams": ["alcohol_pressure_stream"],
-      "adds_flags": ["pub_social_pressure"],
-      "risk_links": ["economic_risk", "fatigue_risk"],
+      "opens_streams": [
+        "alcohol_pressure_stream"
+      ],
+      "adds_flags": [
+        "pub_social_pressure"
+      ],
+      "risk_links": [
+        "economic_risk",
+        "fatigue_risk"
+      ],
       "links": []
     }
   ]
