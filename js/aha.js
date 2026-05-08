@@ -1,5 +1,223 @@
 // integration/aha.js
 
+const HG_AHA_APP_URL = "https://paradispartiet.github.io/AHA-EchoNet/";
+const HG_AHA_SUPABASE_URL = "https://wshmybqyksrwkawqleiz.supabase.co";
+const HG_AHA_SUPABASE_PUBLISHABLE_KEY = "sb_publishable_fgfxuPJBpZ9CFcYufBBgjg_8YEmi13m";
+const HG_AHA_PROFILE_ID_KEY = "aha_profile_id";
+const HG_AHA_SYNC_STATUS_KEY = "historygo_aha_sync_status_v1";
+
+let hgAhaSupabaseClient = null;
+let hgAhaSdkPromise = null;
+
+function hgAhaSafeJsonParse(key, fallback) {
+  try {
+    const parsed = JSON.parse(localStorage.getItem(key) || "");
+    return parsed ?? fallback;
+  } catch {
+    return fallback;
+  }
+}
+
+function hgAhaSetSyncStatus(status) {
+  try {
+    localStorage.setItem(HG_AHA_SYNC_STATUS_KEY, JSON.stringify({
+      ...status,
+      updated_at: new Date().toISOString()
+    }));
+  } catch {}
+}
+
+function hgAhaLoadSupabaseSdk() {
+  if (window.supabase?.createClient) return Promise.resolve(window.supabase);
+  if (hgAhaSdkPromise) return hgAhaSdkPromise;
+
+  hgAhaSdkPromise = new Promise((resolve, reject) => {
+    const existing = document.querySelector('script[data-hg-aha-supabase="true"]');
+    if (existing) {
+      existing.addEventListener("load", () => resolve(window.supabase));
+      existing.addEventListener("error", reject);
+      return;
+    }
+
+    const script = document.createElement("script");
+    script.src = "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2";
+    script.async = true;
+    script.dataset.hgAhaSupabase = "true";
+    script.onload = () => resolve(window.supabase);
+    script.onerror = () => reject(new Error("Kunne ikke laste Supabase SDK for AHA."));
+    document.head.appendChild(script);
+  });
+
+  return hgAhaSdkPromise;
+}
+
+async function hgAhaGetClient() {
+  if (hgAhaSupabaseClient) return hgAhaSupabaseClient;
+  await hgAhaLoadSupabaseSdk();
+  if (!window.supabase?.createClient) return null;
+
+  hgAhaSupabaseClient = window.supabase.createClient(
+    HG_AHA_SUPABASE_URL,
+    HG_AHA_SUPABASE_PUBLISHABLE_KEY,
+    {
+      auth: {
+        persistSession: true,
+        autoRefreshToken: true
+      }
+    }
+  );
+
+  return hgAhaSupabaseClient;
+}
+
+function getAhaProfileIdSync() {
+  return String(localStorage.getItem(HG_AHA_PROFILE_ID_KEY) || "").trim() || null;
+}
+
+async function getAhaSession() {
+  const client = await hgAhaGetClient();
+  if (!client) return null;
+  const { data, error } = await client.auth.getSession();
+  if (error) {
+    if (window.DEBUG) console.warn("HistoryGoAHAAuth: kunne ikke hente session", error);
+    return null;
+  }
+  return data?.session || null;
+}
+
+async function ensureAhaProfile(user) {
+  const client = await hgAhaGetClient();
+  if (!client || !user?.id) return { ok: false, reason: "not_ready" };
+
+  const displayName =
+    String(localStorage.getItem("user_name") || "").trim() ||
+    user.email ||
+    "History Go-bruker";
+
+  const { data, error } = await client
+    .from("aha_profiles")
+    .upsert({
+      id: user.id,
+      display_name: displayName,
+      updated_at: new Date().toISOString()
+    }, { onConflict: "id" })
+    .select()
+    .single();
+
+  if (error) return { ok: false, error };
+  return { ok: true, data };
+}
+
+async function refreshAhaAuthState() {
+  try {
+    const session = await getAhaSession();
+    const user = session?.user || null;
+
+    if (!user?.id) {
+      localStorage.removeItem(HG_AHA_PROFILE_ID_KEY);
+      window.dispatchEvent(new CustomEvent("aha:auth-ready", {
+        detail: { signed_in: false, profile_id: null, source_app: "historygo" }
+      }));
+      return { signed_in: false, profile_id: null };
+    }
+
+    localStorage.setItem(HG_AHA_PROFILE_ID_KEY, user.id);
+    await ensureAhaProfile(user);
+
+    window.dispatchEvent(new CustomEvent("aha:auth-ready", {
+      detail: { signed_in: true, profile_id: user.id, email: user.email || null, source_app: "historygo" }
+    }));
+
+    return { signed_in: true, profile_id: user.id, email: user.email || null };
+  } catch (error) {
+    if (window.DEBUG) console.warn("HistoryGoAHAAuth: auth refresh feilet", error);
+    return { signed_in: false, profile_id: null, error };
+  }
+}
+
+async function syncHistoryGoPayloadToAha(payloadInput) {
+  const payload = typeof payloadInput === "string"
+    ? JSON.parse(payloadInput)
+    : (payloadInput && typeof payloadInput === "object" ? payloadInput : {});
+
+  const session = await getAhaSession();
+  const user = session?.user || null;
+  if (!user?.id) {
+    hgAhaSetSyncStatus({ ok: false, fallback: "localStorage", reason: "not_signed_in" });
+    return { ok: false, fallback: "localStorage", reason: "not_signed_in" };
+  }
+
+  localStorage.setItem(HG_AHA_PROFILE_ID_KEY, user.id);
+  await ensureAhaProfile(user);
+
+  const client = await hgAhaGetClient();
+  if (!client) {
+    hgAhaSetSyncStatus({ ok: false, fallback: "localStorage", reason: "not_configured" });
+    return { ok: false, fallback: "localStorage", reason: "not_configured" };
+  }
+
+  const enrichedPayload = {
+    ...payload,
+    user_id: user.id,
+    profile_id: user.id,
+    source: "historygo",
+    auth_source: "supabase",
+    synced_from_historygo_at: new Date().toISOString()
+  };
+
+  const record = {
+    id: `historygo_latest_${user.id}`,
+    profile_id: user.id,
+    source_app: "historygo",
+    payload: enrichedPayload,
+    counts: {
+      knowledge_categories: Object.keys(enrichedPayload.knowledge_universe || {}).length,
+      learning_log: Array.isArray(enrichedPayload.hg_learning_log_v1) ? enrichedPayload.hg_learning_log_v1.length : 0,
+      insight_events: Array.isArray(enrichedPayload.hg_insights_events_v1) ? enrichedPayload.hg_insights_events_v1.length : 0,
+      notes: Array.isArray(enrichedPayload.notes) ? enrichedPayload.notes.length : 0,
+      dialogs: Array.isArray(enrichedPayload.dialogs) ? enrichedPayload.dialogs.length : 0,
+      visited_places: Object.keys(enrichedPayload.visited_places || {}).length,
+      merit_categories: Object.keys(enrichedPayload.merits_by_category || {}).length
+    },
+    created_at: new Date().toISOString()
+  };
+
+  const { data, error } = await client
+    .from("aha_imports")
+    .upsert(record, { onConflict: "id" })
+    .select()
+    .single();
+
+  if (error) {
+    hgAhaSetSyncStatus({ ok: false, error: error.message || String(error), profile_id: user.id });
+    return { ok: false, error, profile_id: user.id };
+  }
+
+  hgAhaSetSyncStatus({ ok: true, profile_id: user.id, source_app: "historygo" });
+  return { ok: true, data, profile_id: user.id };
+}
+
+function openAhaLogin() {
+  window.location.href = HG_AHA_APP_URL;
+}
+
+window.HistoryGoAHAAuth = {
+  appUrl: HG_AHA_APP_URL,
+  getClient: hgAhaGetClient,
+  getSession: getAhaSession,
+  getProfileIdSync,
+  refresh: refreshAhaAuthState,
+  ensureProfile: ensureAhaProfile,
+  syncHistoryGoPayload: syncHistoryGoPayloadToAha,
+  openAhaLogin
+};
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", refreshAhaAuthState);
+} else {
+  refreshAhaAuthState();
+}
+
 function buildNextUpLearningSignal() {
   const TYPE_KEYS = ["concept", "narrative", "spatial", "wonderkammer"];
   const MODE_KEYS = ["learn", "story", "nearest", "wonder", "complete"];
@@ -166,6 +384,7 @@ window.debugNextUpLearningSignal = debugNextUpLearningSignal;
 
 function exportHistoryGoData() {
   const debug = Boolean(window.DEBUG);
+  const ahaProfileId = getAhaProfileIdSync();
   let knowledge = {};
   try {
     if (typeof getKnowledgeUniverse === "function") {
@@ -203,8 +422,10 @@ function exportHistoryGoData() {
   const nextUpLearningSignal = buildNextUpLearningSignal();
 
   const payload = {
-    user_id: localStorage.getItem("user_id") || "local_user",
+    user_id: ahaProfileId || localStorage.getItem("user_id") || "local_user",
+    profile_id: ahaProfileId,
     source: "historygo",
+    auth_source: ahaProfileId ? "supabase" : "localStorage",
     exported_at: new Date().toISOString(),
     knowledge_universe: knowledge,
     hg_learning_log_v1: Array.isArray(learningLog) ? learningLog : [],
@@ -237,6 +458,16 @@ function exportHistoryGoData() {
   if (debug) console.log("HistoryGo → AHA export oppdatert i localStorage.");
 
   localStorage.setItem("aha_import_payload_v1", json);
+
+  if (window.HistoryGoAHAAuth?.syncHistoryGoPayload) {
+    window.HistoryGoAHAAuth.syncHistoryGoPayload(payload).then((result) => {
+      if (debug) console.log("HistoryGo → AHA Supabase sync:", result);
+    }).catch((e) => {
+      if (debug) console.warn("HistoryGo → AHA Supabase sync feilet:", e);
+      hgAhaSetSyncStatus({ ok: false, error: e?.message || String(e) });
+    });
+  }
+
   return json;
 }
 
@@ -248,3 +479,6 @@ function syncHistoryGoToAHA() {
     if (debug) console.warn("Klarte ikke å synce til AHA:", e);
   }
 }
+
+window.exportHistoryGoData = exportHistoryGoData;
+window.syncHistoryGoToAHA = syncHistoryGoToAHA;
