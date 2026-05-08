@@ -639,12 +639,69 @@
     return true;
   }
 
+  function getOpenTaskBlock(runtime) {
+    const rt = runtime && typeof runtime === "object" ? runtime : getRuntime();
+    const items = Array.isArray(rt?.items) ? rt.items : [];
+    if (!items.length) return null;
+
+    for (const row of items) {
+      const event = row?.event || null;
+      const status = norm(row?.status);
+      if (!event || norm(event.mail_type) !== "task_gate") continue;
+      if (status !== "delivered" && status !== "answered") continue;
+
+      const mailId = norm(event.id);
+      if (!mailId) continue;
+      const task = window.CivicationTaskEngine?.getTaskByMailId?.(mailId) || null;
+      if (task && norm(task.status) !== "completed") {
+        return {
+          task,
+          mail_id: mailId
+        };
+      }
+    }
+
+    return null;
+  }
+
   async function enqueueNext(engine, options = {}) {
     const active = options.active || getActive();
     if (!active) return { enqueued: false, reason: "no_active_role" };
     if (!options.ignorePending && hasPending(engine)) return { enqueued: false, reason: "pending_exists" };
 
     const runtime = await ensureRuntime(active, options);
+    const openTaskBlock = getOpenTaskBlock(runtime);
+    if (openTaskBlock) {
+      const blockedAt = new Date().toISOString();
+      const blockedRuntime = {
+        ...runtime,
+        blocked_by_open_task: true,
+        blocked_task_id: norm(openTaskBlock.task?.id),
+        blocked_mail_id: norm(openTaskBlock.mail_id),
+        blocked_at: blockedAt,
+        updated_at: blockedAt
+      };
+      setRuntime(blockedRuntime);
+      return {
+        enqueued: false,
+        reason: "blocked_by_open_task",
+        task: openTaskBlock.task,
+        mail_id: openTaskBlock.mail_id,
+        runtime: blockedRuntime
+      };
+    }
+
+    if (runtime?.blocked_by_open_task) {
+      setRuntime({
+        ...runtime,
+        blocked_by_open_task: false,
+        blocked_task_id: null,
+        blocked_mail_id: null,
+        blocked_at: null,
+        updated_at: new Date().toISOString()
+      });
+    }
+
     const idx = findNextIndex(runtime);
     if (idx < 0) return { enqueued: false, reason: "day_complete", runtime };
 
@@ -796,6 +853,9 @@
     return {
       active: getActive(),
       runtime: rt,
+      blocked_by_open_task: rt?.blocked_by_open_task === true,
+      blocked_task_id: norm(rt?.blocked_task_id),
+      blocked_mail_id: norm(rt?.blocked_mail_id),
       item_count: items.length,
       next_index: rt ? findNextIndex(rt) : -1,
       by_phase: counts.byPhase,

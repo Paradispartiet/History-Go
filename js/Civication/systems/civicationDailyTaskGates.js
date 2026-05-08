@@ -339,6 +339,15 @@
     return task;
   }
 
+  function getBlockInfo(runtime) {
+    const rt = runtime && typeof runtime === "object" ? runtime : getRuntime();
+    return {
+      blocked_by_open_task: rt?.blocked_by_open_task === true,
+      blocked_task_id: norm(rt?.blocked_task_id),
+      blocked_mail_id: norm(rt?.blocked_mail_id)
+    };
+  }
+
   function patchDailyBuilder() {
     const builder = window.CivicationDailyMailBuilder;
     if (!builder || builder.__dailyTaskGatesPatched) return false;
@@ -366,6 +375,10 @@
           ...base,
           task_gates_version: rt?.task_gates_version || null,
           task_gates: rt?.task_gates || [],
+          ...getBlockInfo(rt),
+          open_tasks_count: Array.isArray(window.CivicationTaskEngine?.listOpenTasks?.())
+            ? window.CivicationTaskEngine.listOpenTasks().length
+            : 0,
           task_gate_count: Array.isArray(rt?.items)
             ? rt.items.filter(row => norm(row?.event?.mail_type) === "task_gate").length
             : 0
@@ -417,6 +430,10 @@
         runtime: rt,
         version: rt?.task_gates_version || null,
         task_gates: rt?.task_gates || [],
+        ...getBlockInfo(rt),
+        open_tasks_count: Array.isArray(window.CivicationTaskEngine?.listOpenTasks?.())
+          ? window.CivicationTaskEngine.listOpenTasks().length
+          : 0,
         task_gate_count: Array.isArray(rt?.items)
           ? rt.items.filter(row => norm(row?.event?.mail_type) === "task_gate").length
           : 0,
