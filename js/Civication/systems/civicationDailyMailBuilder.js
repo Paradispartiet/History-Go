@@ -1249,6 +1249,68 @@
     };
   }
 
+
+  function inspectNarratives() {
+    const state = getState();
+    const narrativeState = getNarrativeState(state);
+    const runtime = getRuntime();
+    const items = Array.isArray(runtime?.items) ? runtime.items : [];
+
+    const narrativeItems = items.filter(row => norm(row?.event?.source_type) === "narrative_stream");
+    const injectedItems = items.filter(row => row?.injected_by_choice === true || row?.event?.injected_by_choice === true);
+
+    const byStream = narrativeItems.reduce((acc, row) => {
+      const streamId = norm(row?.event?.narrative_stream_id || "unknown");
+      acc[streamId] = Number(acc[streamId] || 0) + 1;
+      return acc;
+    }, {});
+
+    const byPhase = narrativeItems.reduce((acc, row) => {
+      const phaseId = norm(row?.phase || row?.event?.phase_tag || "unknown");
+      acc[phaseId] = Number(acc[phaseId] || 0) + 1;
+      return acc;
+    }, {});
+
+    const currentIndex = Math.max(0, Number(runtime?.current_index || 0));
+    let nextPendingNarrativeItem = null;
+    for (let i = currentIndex; i < items.length; i += 1) {
+      const row = items[i];
+      if (norm(row?.status) === "answered") continue;
+      if (norm(row?.event?.source_type) !== "narrative_stream") continue;
+      nextPendingNarrativeItem = row;
+      break;
+    }
+
+    const cachedStreams = getCachedNarrativeStreams();
+    const storylets = cachedStreams.flatMap(stream => Array.isArray(stream?.storylets) ? stream.storylets : []);
+
+    return {
+      narrative_state_v1: narrativeState,
+      active_streams: narrativeState.active_streams,
+      flags: narrativeState.flags,
+      stream_progress: narrativeState.stream_progress,
+      choice_history: narrativeState.choice_history,
+      runtime_exists: !!runtime,
+      current_index: runtime ? currentIndex : null,
+      item_count: items.length,
+      narrative_items: narrativeItems,
+      injected_items: injectedItems,
+      by_stream: byStream,
+      by_phase: byPhase,
+      next_pending_narrative_item: nextPendingNarrativeItem,
+      storylet_rule_summary: {
+        storylets_with_applies_when: storylets.filter(st => st?.applies_when && typeof st.applies_when === "object").length,
+        storylets_with_avoid_when: storylets.filter(st => st?.avoid_when && typeof st.avoid_when === "object").length,
+        storylets_with_weight_when: storylets.filter(st => st?.weight_when && typeof st.weight_when === "object").length
+      }
+    };
+  }
+
+  function resetNarrativeStateForTest() {
+    setState({ [NARRATIVE_KEY]: null, [DAY_RUNTIME_KEY]: null });
+    return true;
+  }
+
   function resetToday() {
     setState({ [DAY_RUNTIME_KEY]: null });
     return true;
@@ -1262,6 +1324,8 @@
     DAY_RUNTIME_KEY,
     boot,
     inspect,
+    inspectNarratives,
+    resetNarrativeStateForTest,
     resetToday,
     startToday,
     buildQueue,
