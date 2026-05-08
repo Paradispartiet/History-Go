@@ -21,12 +21,45 @@ function pulseBadge(cat) {
   });
 }
 
-function getBadgesUrl() {
+function getBadgesUrl(path = "data/badges.json") {
   try {
-    return new URL("data/badges.json", window.location.href).toString();
+    return new URL(path, window.location.href).toString();
   } catch {
-    return "/History-Go/data/badges.json";
+    return `/History-Go/${path}`;
   }
+}
+
+async function loadBadgesFromIndex() {
+  const indexRes = await fetch(getBadgesUrl("data/badges/index.json"), { cache: "no-store" });
+  if (!indexRes.ok) throw new Error("badge index fetch failed");
+
+  const indexData = await indexRes.json();
+  if (!Array.isArray(indexData?.files) || !indexData.files.length) {
+    throw new Error("badge index files missing");
+  }
+
+  const files = indexData.files.map((file) => String(file || "").trim()).filter(Boolean);
+  if (!files.length) throw new Error("badge index files invalid");
+
+  const loaded = await Promise.all(files.map(async (file) => {
+    const res = await fetch(getBadgesUrl(file), { cache: "no-store" });
+    if (!res.ok) throw new Error(`badge file fetch failed: ${file}`);
+    return res.json();
+  }));
+
+  const badges = loaded.filter((badge) => badge && typeof badge === "object" && !Array.isArray(badge));
+  if (!badges.length || badges.length !== loaded.length) {
+    throw new Error("badge files invalid payload");
+  }
+
+  return badges;
+}
+
+async function loadBadgesFromLegacy() {
+  const res = await fetch(getBadgesUrl("data/badges.json"), { cache: "no-store" });
+  if (!res.ok) return [];
+  const data = await res.json();
+  return Array.isArray(data?.badges) ? data.badges : [];
 }
 
 async function ensureBadgesLoaded() {
@@ -38,10 +71,10 @@ async function ensureBadgesLoaded() {
     return __badgesLoadPromise;
   }
 
-  __badgesLoadPromise = fetch(getBadgesUrl(), { cache: "no-store" })
-    .then(r => r.ok ? r.json() : null)
-    .then(data => {
-      window.BADGES = Array.isArray(data?.badges) ? data.badges : [];
+  __badgesLoadPromise = loadBadgesFromIndex()
+    .catch(() => loadBadgesFromLegacy())
+    .then((badges) => {
+      window.BADGES = Array.isArray(badges) ? badges : [];
       return window.BADGES;
     })
     .catch(() => {
