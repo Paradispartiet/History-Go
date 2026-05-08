@@ -51,6 +51,32 @@
     return [...new Set((Array.isArray(values) ? values : []).map(norm).filter(Boolean))];
   }
 
+  function normalizeLinks(values) {
+    const list = Array.isArray(values) ? values : [];
+    const seen = new Set();
+    const out = [];
+    for (const entry of list) {
+      if (typeof entry === "string") {
+        const url = norm(entry);
+        if (!url) continue;
+        const key = `s:${url}`;
+        if (seen.has(key)) continue;
+        seen.add(key);
+        out.push(url);
+        continue;
+      }
+      if (!entry || typeof entry !== "object") continue;
+      const label = norm(entry.label);
+      const url = norm(entry.url);
+      if (!label && !url) continue;
+      const key = `o:${label}::${url}`;
+      if (seen.has(key)) continue;
+      seen.add(key);
+      out.push({ ...(label ? { label } : {}), ...(url ? { url } : {}) });
+    }
+    return out;
+  }
+
   function getState() {
     return window.CivicationState?.getState?.() || {};
   }
@@ -563,6 +589,7 @@
     return {
       id: `${stream.id}__${norm(storylet.id)}__${date}__${ordinal}`,
       source: norm(storylet.from || stream.title || "Narrative stream"),
+      from: norm(storylet.from),
       source_type: "narrative_stream",
       narrative_stream_id: norm(stream.id),
       narrative_storylet_id: norm(storylet.id),
@@ -580,7 +607,7 @@
         opens_streams: uniqueStrings(storylet.opens_streams),
         adds_flags: uniqueStrings(storylet.adds_flags),
         risk_links: uniqueStrings(storylet.risk_links),
-        links: uniqueStrings(storylet.links)
+        links: normalizeLinks(storylet.links)
       },
       daily_mail_meta: {
         date,
@@ -602,8 +629,12 @@
     const { streams } = await loadNarrativeStreams();
     const narrativeState = getNarrativeState(state);
     const matchedStreams = streams.filter(stream => streamMatches(stream, active, state, narrativeState));
-    const activeStreamIds = uniqueStrings([...(narrativeState.active_streams||[]), ...matchedStreams.map(s => norm(s.id))]);
-    const nextNarrativeState = { ...narrativeState, active_streams: activeStreamIds, updated_at: new Date().toISOString() };
+    const activeStreamIds = uniqueStrings(narrativeState.active_streams || []);
+    const candidateStreams = streams.filter(stream => {
+      const id = norm(stream?.id);
+      return !!id && (activeStreamIds.includes(id) || matchedStreams.some(ms => norm(ms?.id) === id));
+    });
+    const nextNarrativeState = { ...narrativeState, active_streams: uniqueStrings([...(narrativeState.active_streams||[]), ...matchedStreams.map(s => norm(s.id))]), updated_at: new Date().toISOString() };
     setState({ [NARRATIVE_KEY]: nextNarrativeState });
     const plannedPrimary = await getPlannedPrimary(active, state);
     const usedSourceIds = consumedSet(state);
@@ -614,6 +645,12 @@
 
     let plannedUsed = false;
     let ordinal = 0;
+    const queuedNarrativeStorylets = new Set();
+    const answeredNarrativeStorylets = new Set(
+      Object.keys(nextNarrativeState.stream_progress || {})
+        .filter(k => nextNarrativeState.stream_progress[k]?.answered)
+        .map(k => `${nextNarrativeState.stream_progress[k].stream_id}::${nextNarrativeState.stream_progress[k].storylet_id}`)
+    );
 
     for (const phase of phases) {
       const slots = Array.isArray(phase?.mail_slots) ? phase.mail_slots : [];
@@ -638,22 +675,13 @@
             continue;
           }
 
-          if (wanted.includes("__generated_phase") || wanted.includes("__generated_day_end")) {
-            items.push({
-              status: "queued",
-              phase: norm(phase?.id || "morning"),
-              slot: norm(slot?.slot || slot?.type),
-              event: makeGeneratedEvent(active, phase, slot, ordinal)
-            });
-            continue;
-          }
-
-          const narrativeUsed = new Set(Object.keys(nextNarrativeState.stream_progress || {}).filter(k => nextNarrativeState.stream_progress[k]?.answered).map(k => `${nextNarrativeState.stream_progress[k].stream_id}::${nextNarrativeState.stream_progress[k].storylet_id}`));
-          const narrativeCandidates = storyletsForSlot(matchedStreams.filter(st => activeStreamIds.includes(norm(st.id))), norm(phase?.id), narrativeUsed);
+          const narrativeUsed = new Set([...answeredNarrativeStorylets, ...queuedNarrativeStorylets]);
+          const narrativeCandidates = storyletsForSlot(candidateStreams, norm(phase?.id), narrativeUsed);
           const narrativePick = narrativeCandidates[0];
           if (narrativePick) {
             const event = storyletToEvent(active, phase, slot, narrativePick.stream, narrativePick.storylet, ordinal);
-            usedSourceIds.add(`${norm(narrativePick.stream.id)}::${norm(narrativePick.storylet.id)}`);
+            const storyletKey = `${norm(narrativePick.stream.id)}::${norm(narrativePick.storylet.id)}`;
+            queuedNarrativeStorylets.add(storyletKey);
             items.push({ status: "queued", phase: norm(phase?.id || "morning"), slot: norm(slot?.slot || slot?.type), event });
             continue;
           }
@@ -666,14 +694,15 @@
               slot: norm(slot?.slot || slot?.type),
               event: toDailyExtraMail(active, picked, phase, slot, ordinal)
             });
-          } else {
-            items.push({
-              status: "queued",
-              phase: norm(phase?.id || "morning"),
-              slot: norm(slot?.slot || slot?.type),
-              event: makeGeneratedEvent(active, phase, slot, ordinal)
-            });
+            continue;
           }
+
+          items.push({
+            status: "queued",
+            phase: norm(phase?.id || "morning"),
+            slot: norm(slot?.slot || slot?.type),
+            event: makeGeneratedEvent(active, phase, slot, ordinal)
+          });
         }
       }
     }
@@ -1045,7 +1074,10 @@
       pending: getInbox(window.HG_CiviEngine).find(item => item?.status === "pending")?.event || null,
       patched: window.CivicationEventEngine?.prototype?.[PATCHED_FLAG] === true,
       cache_size: jsonCache.size,
-      narrative_state_v1: getNarrativeState(getState())
+      narrative_state_v1: getNarrativeState(getState()),
+      narrative_active_streams: getNarrativeState(getState()).active_streams,
+      narrative_flags: getNarrativeState(getState()).flags,
+      narrative_streams_loaded: jsonCache.has(NARRATIVE_MANIFEST_PATH) && Array.isArray(jsonCache.get(NARRATIVE_MANIFEST_PATH)?.streams) ? jsonCache.get(NARRATIVE_MANIFEST_PATH).streams.length : null
     };
   }
 
