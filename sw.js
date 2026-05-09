@@ -3,7 +3,7 @@
    Oppdatert: 2026-05-02
    ============================================================ */
 
-const SW_VERSION = "hg-sw-2026-05-09-v1.39.277";
+const SW_VERSION = "hg-sw-2026-05-09-v1.39.278";
 
 const CACHE_STATIC  = `hg-static-${SW_VERSION}`;
 const CACHE_RUNTIME = `hg-runtime-${SW_VERSION}`;
@@ -191,7 +191,6 @@ const PRECACHE_URLS = [
   "js/stories/story_dedupe.js",
   "js/stories/story_generator_engine.js",
   "js/stories/story_quiz_generator.js",
-  "js/stories/story_graph_engine.js",
 
   // Boot + app
   "js/boot.js",
