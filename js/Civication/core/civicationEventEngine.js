@@ -170,6 +170,27 @@ resetForNewJob(role_key) {
     ) || null;
   }
 
+  syncAnsweredChoiceToMailHistory(eventId, choiceId) {
+    const resolvedEventId = String(eventId || "").trim();
+    const resolvedChoiceId = String(choiceId || "").trim();
+
+    if (!resolvedEventId || !resolvedChoiceId) return false;
+
+    try {
+      if (typeof window.CivicationMailEngine?.markResolved === "function") {
+        return !!window.CivicationMailEngine.markResolved(
+          resolvedEventId,
+          resolvedEventId,
+          resolvedChoiceId
+        );
+      }
+    } catch (e) {
+      return false;
+    }
+
+    return false;
+  }
+
   // -------- role_key resolution --------
 
   resolveRoleKey() {
@@ -1823,6 +1844,7 @@ if (Array.isArray(ev.choices) && ev.choices.length) {
     });
 
     this.setInbox(inbox);
+    this.syncAnsweredChoiceToMailHistory(ev.id || eventId, choiceId);
 
     this.setState({
       consumed: consumed,
