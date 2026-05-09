@@ -331,38 +331,57 @@ resetForNewJob(role_key) {
   }
 
 async buildMailPool(active, state, role_key) {
-  const packFile = this.resolvePackFile(active, role_key);
-  const pack = await this.loadPack(packFile);
+  const runtimeMails =
+    await window.CivicationMailRuntime?.makeCandidateMailsForActiveRole?.(
+      active,
+      state
+    ) || [];
 
-const packMails = Array.isArray(pack?.mails)
-  ? pack.mails.map((m) => ({
-      ...m,
-      source_type: "pack"
-    }))
-  : [];
+  const taggedRuntimeMails = runtimeMails.map((m) => ({
+    ...m,
+    source_type: m?.source_type || "planned"
+  }));
 
-// 🔁 gammel role bridge (fallback)
-const roleMails =
-  await window.CiviRoleStoryletBridge?.makeCandidateMailsForActiveRole?.(
-    active,
-    state
-  ) || [];
-
-const taggedRoleMails = roleMails.map((m) => ({
-  ...m,
-  source_type: "role"
-}));
-
-return {
-  role: pack?.role || active?.career_id || null,
-  tag_rules: pack?.tag_rules || {
+  let taggedLegacyMails = [];
+  let legacyRole = active?.career_id || null;
+  let legacyTagRules = {
     max_tags_per_choice: 2,
     memory_window: 12
-  },
-  tracks: Array.isArray(pack?.tracks) ? pack.tracks : [],
+  };
+  let legacyTracks = [];
+  if (!taggedRuntimeMails.length) {
+    const packFile = this.resolvePackFile(active, role_key);
+    const pack = await this.loadPack(packFile);
+    legacyRole = pack?.role || active?.career_id || null;
+    legacyTagRules = pack?.tag_rules || legacyTagRules;
+    legacyTracks = Array.isArray(pack?.tracks) ? pack.tracks : [];
+    const packMails = Array.isArray(pack?.mails)
+      ? pack.mails.map((m) => ({
+          ...m,
+          source_type: "legacy_pack"
+        }))
+      : [];
+
+    const roleMails =
+      await window.CiviRoleStoryletBridge?.makeCandidateMailsForActiveRole?.(
+        active,
+        state
+      ) || [];
+
+    const taggedRoleMails = roleMails.map((m) => ({
+      ...m,
+      source_type: m?.source_type || "role"
+    }));
+    taggedLegacyMails = [...taggedRoleMails, ...packMails];
+  }
+
+return {
+  role: legacyRole,
+  tag_rules: legacyTagRules,
+  tracks: legacyTracks,
   mails: [
-    ...taggedRoleMails,  // fallback
-    ...packMails         // siste fallback
+    ...taggedRuntimeMails,
+    ...taggedLegacyMails
   ]
 };}
   
