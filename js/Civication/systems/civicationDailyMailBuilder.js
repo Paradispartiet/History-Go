@@ -735,15 +735,23 @@
 
     const current = Math.max(0, Number(runtime?.current_index || 0));
     let insertIndex = Math.min(items.length, current + 1);
+    const phasesWithInjectedNarrative = injectedNarrativePhases(items);
 
     const wanted = uniqueStrings(preferredPhases);
     if (wanted.length) {
-      for (let i = current + 1; i < items.length; i += 1) {
-        const phase = norm(items[i]?.phase || items[i]?.event?.phase_tag);
-        if (wanted.includes(phase) && !phaseHasInjectedNarrative(items, phase)) {
-          insertIndex = i;
-          break;
+      const preferredIndex = findInsertIndexForPreferredPhase(items, current, wanted, phasesWithInjectedNarrative);
+      if (Number.isInteger(preferredIndex) && preferredIndex >= 0) {
+        insertIndex = preferredIndex;
+      } else {
+        const fallbackIndex = findFallbackInsertIndex(items, insertIndex, phasesWithInjectedNarrative);
+        if (Number.isInteger(fallbackIndex) && fallbackIndex >= 0) {
+          insertIndex = fallbackIndex;
         }
+      }
+    } else {
+      const fallbackIndex = findFallbackInsertIndex(items, insertIndex, phasesWithInjectedNarrative);
+      if (Number.isInteger(fallbackIndex) && fallbackIndex >= 0) {
+        insertIndex = fallbackIndex;
       }
     }
 
@@ -765,6 +773,51 @@
       },
       inserted: true
     };
+  }
+
+  function injectedNarrativePhases(items) {
+    const rows = Array.isArray(items) ? items : [];
+    return new Set(rows
+      .filter(row => row?.injected_by_choice === true || row?.event?.injected_by_choice === true)
+      .map(row => norm(row?.phase || row?.event?.phase_tag))
+      .filter(Boolean));
+  }
+
+  function findInsertIndexForPreferredPhase(items, currentIndex, preferredPhases, phasesWithInjectedNarrative) {
+    const rows = Array.isArray(items) ? items : [];
+    const current = Math.max(0, Number(currentIndex || 0));
+    const wanted = uniqueStrings(preferredPhases);
+    const injectedPhases = phasesWithInjectedNarrative instanceof Set
+      ? phasesWithInjectedNarrative
+      : injectedNarrativePhases(rows);
+
+    for (const phaseId of wanted) {
+      if (injectedPhases.has(phaseId)) continue;
+      for (let i = current + 1; i < rows.length; i += 1) {
+        const phase = norm(rows[i]?.phase || rows[i]?.event?.phase_tag);
+        if (phase === phaseId) return i;
+      }
+    }
+
+    return -1;
+  }
+
+  function findFallbackInsertIndex(items, defaultInsertIndex, phasesWithInjectedNarrative) {
+    const rows = Array.isArray(items) ? items : [];
+    const start = Math.max(0, Math.min(rows.length, Number(defaultInsertIndex || 0)));
+    const injectedPhases = phasesWithInjectedNarrative instanceof Set
+      ? phasesWithInjectedNarrative
+      : injectedNarrativePhases(rows);
+
+    const fallbackPhase = norm(rows[start]?.phase || rows[start]?.event?.phase_tag);
+    if (!fallbackPhase || !injectedPhases.has(fallbackPhase)) return start;
+
+    for (let i = start + 1; i < rows.length; i += 1) {
+      const phase = norm(rows[i]?.phase || rows[i]?.event?.phase_tag);
+      if (phase && !injectedPhases.has(phase)) return i;
+    }
+
+    return start;
   }
 
   function phaseHasInjectedNarrative(items, phaseId) {
