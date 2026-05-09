@@ -629,6 +629,7 @@
       from: norm(storylet.from),
       source_type: "narrative_stream",
       narrative_stream_id: norm(stream.id),
+      narrative_stream_type: norm(stream.type),
       narrative_storylet_id: norm(storylet.id),
       mail_type: norm(storylet.message_type || "story"),
       mail_family: `narrative_${slugify(stream.type||"stream")}`,
@@ -734,31 +735,33 @@
     if (!items.length || !storyletEvent) return { runtime, inserted: false };
 
     const current = Math.max(0, Number(runtime?.current_index || 0));
-    let insertIndex = Math.min(items.length, current + 1);
+    const defaultInsertIndex = Math.min(items.length, current + 1);
     const phasesWithInjectedNarrative = injectedNarrativePhases(items);
 
     const wanted = uniqueStrings(preferredPhases);
+    let insertIndex = defaultInsertIndex;
+    let fallbackUsed = false;
+
     if (wanted.length) {
-      const preferredIndex = findInsertIndexForPreferredPhase(items, current, wanted, phasesWithInjectedNarrative);
-      if (Number.isInteger(preferredIndex) && preferredIndex >= 0) {
-        insertIndex = preferredIndex;
+      const preferredPlacement = findInsertIndexForPreferredPhase(items, current, wanted, phasesWithInjectedNarrative);
+      if (preferredPlacement && Number.isInteger(preferredPlacement.insertIndex) && preferredPlacement.insertIndex >= 0) {
+        insertIndex = preferredPlacement.insertIndex;
       } else {
-        const fallbackIndex = findFallbackInsertIndex(items, insertIndex, phasesWithInjectedNarrative);
-        if (Number.isInteger(fallbackIndex) && fallbackIndex >= 0) {
-          insertIndex = fallbackIndex;
-        }
+        fallbackUsed = true;
+        const fallbackIndex = findFallbackInsertIndex(items, defaultInsertIndex, phasesWithInjectedNarrative);
+        if (Number.isInteger(fallbackIndex) && fallbackIndex >= 0) insertIndex = fallbackIndex;
       }
     } else {
-      const fallbackIndex = findFallbackInsertIndex(items, insertIndex, phasesWithInjectedNarrative);
-      if (Number.isInteger(fallbackIndex) && fallbackIndex >= 0) {
-        insertIndex = fallbackIndex;
-      }
+      fallbackUsed = true;
+      const fallbackIndex = findFallbackInsertIndex(items, defaultInsertIndex, phasesWithInjectedNarrative);
+      if (Number.isInteger(fallbackIndex) && fallbackIndex >= 0) insertIndex = fallbackIndex;
     }
 
+    const chosenPhase = norm(items[insertIndex]?.phase || items[insertIndex]?.event?.phase_tag || storyletEvent?.daily_mail_meta?.phase || storyletEvent?.phase_tag || "afternoon");
     const nextItems = items.slice();
     nextItems.splice(insertIndex, 0, {
       status: "queued",
-      phase: norm(storyletEvent?.daily_mail_meta?.phase || storyletEvent?.phase_tag || "afternoon"),
+      phase: chosenPhase,
       slot: norm(storyletEvent?.daily_mail_meta?.slot || "injected_narrative"),
       injected_by_choice: true,
       injected_at: new Date().toISOString(),
@@ -769,6 +772,15 @@
       runtime: {
         ...runtime,
         items: nextItems,
+        last_injection_debug: {
+          stream_id: norm(storyletEvent?.narrative_stream_id),
+          stream_type: norm(storyletEvent?.narrative_stream_type),
+          preferred_phases: wanted,
+          phases_with_injected: [...phasesWithInjectedNarrative],
+          chosen_insert_index: insertIndex,
+          chosen_phase: chosenPhase,
+          fallback_used: fallbackUsed
+        },
         updated_at: new Date().toISOString()
       },
       inserted: true
@@ -795,11 +807,13 @@
       if (injectedPhases.has(phaseId)) continue;
       for (let i = current + 1; i < rows.length; i += 1) {
         const phase = norm(rows[i]?.phase || rows[i]?.event?.phase_tag);
-        if (phase === phaseId) return i;
+        if (phase === phaseId) {
+          return { insertIndex: i, phase: phaseId };
+        }
       }
     }
 
-    return -1;
+    return null;
   }
 
   function findFallbackInsertIndex(items, defaultInsertIndex, phasesWithInjectedNarrative) {
@@ -1361,6 +1375,7 @@
       injected_items: injectedItems,
       by_stream: byStream,
       by_phase: byPhase,
+      last_injection_debug: runtime?.last_injection_debug || null,
       next_pending_narrative_item: nextPendingNarrativeItem,
       storylet_rule_summary: {
         storylets_with_applies_when: storylets.filter(st => st?.applies_when && typeof st.applies_when === "object").length,
