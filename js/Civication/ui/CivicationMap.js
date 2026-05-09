@@ -206,185 +206,125 @@
    addIsland(w*0.48, h*0.89, 8);
 
    
-// Sentrum-markering (svak tetthet)
-const sentrum = svgEl("circle");
-sentrum.setAttribute("cx", w*0.48);
-sentrum.setAttribute("cy", h*0.55);
-sentrum.setAttribute("r", 35);
-sentrum.setAttribute("fill", "rgba(0,0,0,0.08)");
-base.appendChild(sentrum);
 
+    const zones = getZones(w, h);
 
-    // Akershus / historisk sentrum
-const akershus = svgEl("polygon");
-akershus.setAttribute("points", `
-  ${w*0.50},${h*0.60}
-  ${w*0.52},${h*0.62}
-  ${w*0.49},${h*0.64}
-  ${w*0.47},${h*0.61}
-`);
-akershus.setAttribute("fill", "rgba(90,90,90,0.6)");
-akershus.setAttribute("stroke", "rgba(40,40,40,0.6)");
-akershus.setAttribute("stroke-width", "1");
-base.appendChild(akershus);
-
-    // Ekeberg-platå
-const ekeberg = svgEl("path");
-ekeberg.setAttribute("d", `
-  M ${w*0.60} ${h*0.62}
-  Q ${w*0.72} ${h*0.58}, ${w*0.78} ${h*0.68}
-  L ${w*0.72} ${h*0.74}
-  Q ${w*0.64} ${h*0.70}, ${w*0.60} ${h*0.62}
-  Z
-`);
-ekeberg.setAttribute("fill", "rgba(80,120,80,0.6)");
-ekeberg.setAttribute("stroke", "rgba(40,80,40,0.35)");
-ekeberg.setAttribute("stroke-width", "1.5");
-base.appendChild(ekeberg);
-
-    // Holmenkollen / vestlig høyde
-const holmen = svgEl("path");
-holmen.setAttribute("d", `
-  M ${w*0.22} ${h*0.38}
-  Q ${w*0.30} ${h*0.30}, ${w*0.40} ${h*0.32}
-  L ${w*0.35} ${h*0.40}
-  Q ${w*0.28} ${h*0.42}, ${w*0.22} ${h*0.38}
-  Z
-`);
-holmen.setAttribute("fill", "rgba(70,110,70,0.65)");
-holmen.setAttribute("stroke", "rgba(40,70,40,0.4)");
-holmen.setAttribute("stroke-width", "1.5");
-base.appendChild(holmen);
-
-
-function districtLine(d) {
-  const p = svgEl("path");
-  p.setAttribute("d", d);
-  p.setAttribute("fill", "none");
-  p.setAttribute("stroke", "rgba(0,0,0,0.18)");
-  p.setAttribute("stroke-width", "1");
-  p.setAttribute("stroke-dasharray", "4 6");
-  return p;
-}
-
-base.appendChild(districtLine(`
-  M ${w*0.40} ${h*0.40}
-  Q ${w*0.48} ${h*0.45}, ${w*0.52} ${h*0.55}
-`));
-
-base.appendChild(districtLine(`
-  M ${w*0.48} ${h*0.55}
-  Q ${w*0.60} ${h*0.60}, ${w*0.68} ${h*0.68}
-`));
-    
-    // Bymasse – stilisert Oslo-silhuett (ikke ellipse)
-    const city = svgEl("path");
-    city.setAttribute("d", `
-      M ${w*0.26} ${h*0.62}
-      Q ${w*0.28} ${h*0.48}, ${w*0.38} ${h*0.38}
-      Q ${w*0.50} ${h*0.28}, ${w*0.64} ${h*0.34}
-      Q ${w*0.74} ${h*0.40}, ${w*0.76} ${h*0.52}
-      Q ${w*0.77} ${h*0.62}, ${w*0.68} ${h*0.68}
-      Q ${w*0.58} ${h*0.74}, ${w*0.45} ${h*0.74}
-      Q ${w*0.32} ${h*0.72}, ${w*0.26} ${h*0.62}
-      Z
-    `);
-    city.setAttribute("fill", "url(#civiCityGrad)");
-    city.setAttribute("stroke", "rgba(40,60,40,0.22)");
-    city.setAttribute("stroke-width", "2.5");
-    city.setAttribute("filter", "url(#civiDrop)");
-    base.appendChild(city);
-
-    
-    // Nordmarka (skog/terreng)
-   const marka = svgEl("path");
-   marka.setAttribute("d", `
-     M ${w*0.20} ${h*0.20}
-     Q ${w*0.35} ${h*0.10}, ${w*0.55} ${h*0.12}
-     Q ${w*0.70} ${h*0.18}, ${w*0.80} ${h*0.30}
-     L ${w*0.20} ${h*0.30}
-     Z
-    `);
-    marka.setAttribute("fill", "rgba(60,90,60,0.55)");
-    marka.setAttribute("stroke", "rgba(40,70,40,0.25)");
-    marka.setAttribute("stroke-width", "2");
-    base.insertBefore(marka, city);
-
-    // Akerselva (lysere blågrønn, rund caps)
-    const elv = svgEl("line");
-    elv.setAttribute("x1", w * 0.46);
-    elv.setAttribute("y1", h * 0.20);
-    elv.setAttribute("x2", w * 0.50);
-    elv.setAttribute("y2", h * 0.72);
-    elv.setAttribute("stroke", "#2f86c6");
-    elv.setAttribute("stroke-width", "5");
-    elv.setAttribute("opacity", "0.72");
-    elv.setAttribute("stroke-linecap", "round");
-    base.appendChild(elv);
-
-    // -------------------------------------------------------
-    // Trikkelinjer (forenklet, realistisk Oslo-struktur)
-    // -------------------------------------------------------
-
-    const tram = svgEl("g");
-    tram.setAttribute("id", "civi-tram");
-
-    function tramLine(points) {
-      const path = svgEl("path");
-      path.setAttribute("d", points);
-      path.setAttribute("fill", "none");
-      path.setAttribute("stroke", "rgba(160,0,0,0.55)");
-      path.setAttribute("stroke-width", "2.2");
-      path.setAttribute("stroke-linecap", "round");
-      path.setAttribute("stroke-linejoin", "round");
-      return path;
+    function drawDistrictArea(id, points, style = {}) {
+      const zone = zones[id];
+      if (!zone) return;
+      const poly = svgEl("polygon");
+      poly.setAttribute("points", points.map(([px, py]) => `${w*px},${h*py}`).join(" "));
+      poly.setAttribute("fill", style.fill || "rgba(255,255,255,0.25)");
+      poly.setAttribute("stroke", style.stroke || "rgba(0,0,0,0.25)");
+      poly.setAttribute("stroke-width", style.strokeWidth || "1.2");
+      poly.setAttribute("opacity", style.opacity || "0.85");
+      base.appendChild(poly);
     }
 
-    // Vest–Sentrum–Øst
-    tram.appendChild(tramLine(`
-      M ${w*0.30} ${h*0.56}
-      Q ${w*0.40} ${h*0.54}, ${w*0.48} ${h*0.55}
-      Q ${w*0.58} ${h*0.58}, ${w*0.66} ${h*0.60}
-    `));
-
-    // Nord–Sentrum–Sør
-    tram.appendChild(tramLine(`
-      M ${w*0.46} ${h*0.32}
-      Q ${w*0.47} ${h*0.45}, ${w*0.48} ${h*0.55}
-      Q ${w*0.50} ${h*0.66}, ${w*0.52} ${h*0.75}
-    `));
-
-    base.appendChild(tram);
-
-    // -------------------------------------------------------
-    // Hovedveier (E6 / Ring 3 inspirert)
-    // -------------------------------------------------------
-
-    function drawRoadPath(d, strength = 1) {
-      const road = svgEl("path");
-      road.setAttribute("d", d);
-      road.setAttribute("fill", "none");
-      road.setAttribute("stroke", "rgba(80,80,80,0.45)");
-      road.setAttribute("stroke-width", 2 + strength);
-      road.setAttribute("stroke-linecap", "round");
-      return road;
+    function drawCityBlocks(id, cfg = {}) {
+      const zone = zones[id];
+      if (!zone) return;
+      const g = svgEl("g");
+      const cols = cfg.cols || 4;
+      const rows = cfg.rows || 3;
+      const cellW = cfg.cellW || 8;
+      const cellH = cfg.cellH || 6;
+      const gap = cfg.gap || 3;
+      const x0 = zone.x - ((cols * cellW + (cols - 1) * gap) / 2);
+      const y0 = zone.y - ((rows * cellH + (rows - 1) * gap) / 2);
+      for (let ry = 0; ry < rows; ry++) {
+        for (let cx = 0; cx < cols; cx++) {
+          if ((cx + ry + (cfg.seed || 0)) % (cfg.skipModulo || 7) === 0) continue;
+          const rect = svgEl("rect");
+          rect.setAttribute("x", x0 + cx * (cellW + gap));
+          rect.setAttribute("y", y0 + ry * (cellH + gap));
+          rect.setAttribute("width", cellW - (cx % 2));
+          rect.setAttribute("height", cellH - (ry % 2));
+          rect.setAttribute("fill", cfg.fill || "rgba(76,91,105,0.36)");
+          rect.setAttribute("stroke", "rgba(36,45,58,0.28)");
+          rect.setAttribute("stroke-width", "0.5");
+          g.appendChild(rect);
+        }
+      }
+      base.appendChild(g);
     }
 
-    // Ring 3-ish bue
-    base.appendChild(drawRoadPath(`
-      M ${w*0.35} ${h*0.40}
-      Q ${w*0.50} ${h*0.32}, ${w*0.65} ${h*0.45}
-      Q ${w*0.70} ${h*0.60}, ${w*0.55} ${h*0.70}
-    `, 1.2));
+    function drawInstitution(id, kind, dx = 0, dy = 0) {
+      const zone = zones[id];
+      if (!zone) return;
+      const g = svgEl("g");
+      g.setAttribute("transform", `translate(${zone.x + dx}, ${zone.y + dy})`);
+      const body = svgEl("rect");
+      body.setAttribute("x", -9); body.setAttribute("y", -10);
+      body.setAttribute("width", 18); body.setAttribute("height", 12);
+      body.setAttribute("rx", 1.5);
+      const roof = svgEl("polygon");
+      roof.setAttribute("points", "-10,-10 0,-16 10,-10");
+      if (kind === "rådhus") { body.setAttribute("fill", "#e7d1af"); }
+      else if (kind === "bibliotek") { body.setAttribute("fill", "#d6e5f3"); }
+      else if (kind === "kultur") { body.setAttribute("fill", "#d7c7e8"); }
+      else if (kind === "industri") { body.setAttribute("fill", "#b5b9bf"); }
+      else { body.setAttribute("fill", "#e8e8e8"); }
+      roof.setAttribute("fill", "rgba(60,60,60,0.55)");
+      g.appendChild(body); g.appendChild(roof); base.appendChild(g);
+    }
 
-    // E6 sør–nord
-    base.appendChild(drawRoadPath(`
-      M ${w*0.60} ${h*0.90}
-      Q ${w*0.58} ${h*0.70}, ${w*0.55} ${h*0.55}
-      Q ${w*0.52} ${h*0.40}, ${w*0.50} ${h*0.20}
-    `, 1.4));
+    function drawHousingCluster(id) { drawCityBlocks(id, { cols: 4, rows: 3, cellW: 9, cellH: 7, gap: 3, fill: "rgba(199,171,140,0.45)", skipModulo: 9 }); }
+    function drawCommercialCluster(id) { drawCityBlocks(id, { cols: 5, rows: 4, cellW: 7, cellH: 6, gap: 2, fill: "rgba(116,123,160,0.42)", seed: 2, skipModulo: 11 }); }
+    function drawGreenArea(id, rx = 22, ry = 14) {
+      const zone = zones[id]; if (!zone) return;
+      const park = svgEl("ellipse");
+      park.setAttribute("cx", zone.x); park.setAttribute("cy", zone.y);
+      park.setAttribute("rx", rx); park.setAttribute("ry", ry);
+      park.setAttribute("fill", "rgba(103,165,94,0.35)");
+      park.setAttribute("stroke", "rgba(58,102,51,0.35)");
+      park.setAttribute("stroke-width", "1");
+      base.appendChild(park);
+    }
+    function drawWorkZone(id) {
+      const zone = zones[id]; if (!zone) return;
+      const poly = svgEl("polygon");
+      poly.setAttribute("points", `${zone.x-16},${zone.y+8} ${zone.x+16},${zone.y+8} ${zone.x+10},${zone.y-8} ${zone.x-10},${zone.y-8}`);
+      poly.setAttribute("fill", "rgba(123,131,140,0.35)");
+      poly.setAttribute("stroke", "rgba(61,69,79,0.35)");
+      poly.setAttribute("stroke-width", "1");
+      base.appendChild(poly);
+    }
 
-    // -------------------------------------------------------
+    drawDistrictArea("sentrum", [[0.44,0.50],[0.50,0.49],[0.54,0.54],[0.50,0.60],[0.43,0.58]], { fill:"rgba(227,196,143,0.42)", stroke:"rgba(128,97,55,0.45)" });
+    drawDistrictArea("grunerlokka", [[0.42,0.41],[0.48,0.40],[0.50,0.45],[0.46,0.49],[0.41,0.46]], { fill:"rgba(196,158,189,0.36)" });
+    drawDistrictArea("frogner", [[0.30,0.50],[0.38,0.49],[0.40,0.56],[0.35,0.61],[0.29,0.58]], { fill:"rgba(182,200,226,0.35)" });
+    drawDistrictArea("sagene", [[0.40,0.30],[0.47,0.31],[0.48,0.37],[0.43,0.40],[0.39,0.36]], { fill:"rgba(164,196,173,0.36)" });
+    drawDistrictArea("gamle_oslo", [[0.49,0.56],[0.58,0.57],[0.60,0.63],[0.52,0.67],[0.47,0.62]], { fill:"rgba(196,184,168,0.4)" });
+    drawDistrictArea("alna", [[0.56,0.38],[0.65,0.37],[0.67,0.44],[0.61,0.49],[0.55,0.45]], { fill:"rgba(156,161,173,0.36)" });
+    drawDistrictArea("nordstrand", [[0.51,0.69],[0.61,0.71],[0.62,0.79],[0.54,0.82],[0.49,0.76]], { fill:"rgba(145,188,145,0.35)" });
+    drawDistrictArea("ullern", [[0.24,0.53],[0.31,0.54],[0.32,0.61],[0.26,0.65],[0.22,0.59]], { fill:"rgba(176,190,206,0.34)" });
+    drawDistrictArea("st_hanshaugen", [[0.36,0.44],[0.43,0.44],[0.44,0.49],[0.38,0.52],[0.35,0.48]], { fill:"rgba(211,180,146,0.36)" });
+    drawDistrictArea("stovner", [[0.61,0.17],[0.68,0.16],[0.70,0.23],[0.64,0.27],[0.59,0.22]], { fill:"rgba(151,178,148,0.34)" });
+
+    drawCommercialCluster("sentrum");
+    drawCommercialCluster("grunerlokka");
+    drawHousingCluster("frogner");
+    drawHousingCluster("sagene");
+    drawHousingCluster("nordstrand");
+    drawHousingCluster("ullern");
+    drawCityBlocks("gamle_oslo", { cols: 5, rows: 3, cellW: 8, cellH: 7, gap: 3, fill: "rgba(153,129,109,0.35)", seed: 1 });
+    drawCityBlocks("st_hanshaugen", { cols: 4, rows: 3, cellW: 8, cellH: 7, gap: 3, fill: "rgba(152,141,119,0.35)" });
+    drawWorkZone("alna");
+    drawCityBlocks("alna", { cols: 5, rows: 3, cellW: 10, cellH: 6, gap: 4, fill: "rgba(124,131,143,0.44)", seed: 3 });
+    drawWorkZone("gamle_oslo");
+
+    drawGreenArea("nordstrand", 25, 16);
+    drawGreenArea("stovner", 20, 14);
+    drawGreenArea("sagene", 16, 11);
+
+    drawInstitution("sentrum", "rådhus", -8, -12);
+    drawInstitution("st_hanshaugen", "bibliotek", 6, -8);
+    drawInstitution("grunerlokka", "kultur", 8, -10);
+    drawInstitution("alna", "industri", 10, -8);
+    drawInstitution("frogner", "handel", 8, -8);
+
+// -------------------------------------------------------
     // Ingen skyline – realistisk kart skal ikke ha kulisser
     // -------------------------------------------------------
 
@@ -393,8 +333,6 @@ base.appendChild(districtLine(`
     svg.appendChild(fx);
 
     host.appendChild(svg);
-
-    const zones = getZones(w, h);
 
     renderCommercialObjects(objects, fx, w, h);
     renderHomeObjects(objects, fx, zones);
