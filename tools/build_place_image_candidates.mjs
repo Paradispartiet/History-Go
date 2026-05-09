@@ -31,6 +31,12 @@ const INCLUDE_EXISTING = argv.includes("--include-existing");
 const DEBUG = argv.includes("--debug");
 const LIMIT_ARG = argv.find(arg => arg.startsWith("--limit="));
 const LIMIT = LIMIT_ARG ? Math.max(0, Number(LIMIT_ARG.split("=")[1]) || 0) : null;
+const IDS_ARG = argv.find(arg => arg.startsWith("--ids="));
+const IDS_FILTER = IDS_ARG
+  ? new Set(IDS_ARG.split("=")[1].split(",").map(part => part.trim()).filter(Boolean))
+  : null;
+const SEED_FILE_ARG = argv.find(arg => arg.startsWith("--seed-file="));
+const SEED_FILE = SEED_FILE_ARG ? SEED_FILE_ARG.split("=")[1].trim() : "";
 const MAX_CANDIDATES = 5;
 const REQUEST_DELAY_MS = 160;
 const USER_AGENT = "HistoryGoImageCandidateBot/1.0 (https://github.com/Paradispartiet/History-Go)";
@@ -98,6 +104,17 @@ function pushDiag(list, value, max = 40) {
   if (Array.isArray(list) && list.length < max) list.push(value);
 }
 
+
+function formatFetchError(err, url = null) {
+  const name = err?.name || "Error";
+  const message = err?.message || String(err);
+  const cause = err?.cause;
+  const causeCode = cause?.code ? ` code=${cause.code}` : "";
+  const causeMessage = cause?.message ? ` cause=${cause.message}` : "";
+  const target = url ? ` url=${url}` : "";
+  return `${name}: ${message}${causeCode}${causeMessage}${target}`;
+}
+
 function apiUrl(base, params) {
   const url = new URL(base);
   for (const [key, value] of Object.entries(params)) {
@@ -107,13 +124,21 @@ function apiUrl(base, params) {
 }
 
 async function fetchJson(url) {
-  const res = await fetch(url, {
-    headers: {
-      Accept: "application/json",
-      "User-Agent": USER_AGENT
-    }
-  });
-  if (!res.ok) throw new Error(`${res.status} ${res.statusText} fra ${url.origin}`);
+  let res;
+  try {
+    res = await fetch(url, {
+      headers: {
+        Accept: "application/json",
+        "User-Agent": USER_AGENT
+      }
+    });
+  } catch (err) {
+    throw new Error(formatFetchError(err, url.toString()));
+  }
+  if (!res.ok) {
+    const snippet = (await res.text()).slice(0, 220).replace(/\s+/g, " ").trim();
+    throw new Error(`HTTP ${res.status} ${res.statusText} fra ${url.origin}; body=${snippet}`);
+  }
   return res.json();
 }
 
@@ -215,6 +240,41 @@ function badTitle(title) {
   return ["locator_map", "location_map", "map_of", "karte", "coat_of_arms", "flag_of", "logo", "seal_of", "blank"].some(part => t.includes(part));
 }
 
+
+const GENERIC_TOKENS = new Set([
+  "oslo", "museum", "museet", "gate", "plass", "park", "kirke", "stadion",
+  "sentral", "stasjon", "the", "file"
+]);
+
+function tokenizeMeaningful(value) {
+  return unique(String(value ?? "")
+    .toLowerCase()
+    .normalize("NFKD")
+    .replace(/[̀-ͯ]/g, "")
+    .replace(/[^a-z0-9]+/g, " ")
+    .split(/\s+/)
+    .map(token => token.trim())
+    .filter(token => token.length >= 4 && !GENERIC_TOKENS.has(token)));
+}
+
+function semanticTokenOverlap(place, label, fileTitle, credit) {
+  const placeTokens = new Set([
+    ...tokenizeMeaningful(place?.name || ""),
+    ...tokenizeMeaningful(String(place?.id || "").replaceAll("_", " "))
+  ]);
+  if (!placeTokens.size) return 0;
+  const candidateTokens = new Set([
+    ...tokenizeMeaningful(label),
+    ...tokenizeMeaningful(fileTitle),
+    ...tokenizeMeaningful(credit)
+  ]);
+  let matches = 0;
+  for (const token of placeTokens) {
+    if (candidateTokens.has(token)) matches += 1;
+  }
+  return matches;
+}
+
 function labelScore(placeName, label, fileTitle) {
   const p = norm(placeName);
   const l = norm(label);
@@ -228,10 +288,16 @@ function labelScore(placeName, label, fileTitle) {
 
 function scoreCandidate(place, source, imageInfo, label, distanceM) {
   let score = 0;
+  const semanticMatches = semanticTokenOverlap(place, label, imageInfo.fileTitle, imageInfo.credit);
   if (source === "wikidata_p18") score += 82;
-  if (source === "commons_geosearch") score += 45;
+  if (source === "commons_geosearch") {
+    score += 45;
+    if (semanticMatches === 0) score -= 36;
+    else score += Math.min(12, semanticMatches * 5);
+  }
   if (source === "commons_text_search") score += 30;
   score += labelScore(place.name, label, imageInfo.fileTitle);
+  if (semanticMatches > 0 && source !== "commons_geosearch") score += Math.min(10, semanticMatches * 3);
   if (Number.isFinite(distanceM)) {
     if (distanceM <= 80) score += 22;
     else if (distanceM <= 200) score += 16;
@@ -242,14 +308,14 @@ function scoreCandidate(place, source, imageInfo, label, distanceM) {
   return Math.max(0, Math.round(score));
 }
 
-function makeCandidate({ place, source, imageInfo, label = "", distanceM = null, wikidataItem = "" }) {
+function makeCandidate({ place, source, imageInfo, label = "", distanceM = null, wikidataItem = "", reasonOverride = "" }) {
   const ext = imageInfo.extension || "jpg";
   const imagePath = `bilder/places/auto/${place.id}.${ext}`;
   return {
     approved: false,
     source,
     score: scoreCandidate(place, source, imageInfo, label, distanceM),
-    reason: [
+    reason: reasonOverride || [
       source === "wikidata_p18" ? "bilde fra Wikidata P18" : "",
       source === "commons_geosearch" ? "Commons-fil med koordinater nær stedet" : "",
       source === "commons_text_search" ? "Commons-teksttreff på stedsnavn" : "",
@@ -451,8 +517,52 @@ async function commonsTextCandidates(place, diagnostics) {
   return out;
 }
 
+
+async function manualSeedCandidates(place, seedFile) {
+  if (!seedFile) return [];
+  const seedData = await readJson(seedFile);
+  const seeds = Array.isArray(seedData?.seeds) ? seedData.seeds : [];
+  const placeSeeds = seeds.filter(seed => seed?.place_id === place.id);
+
+  return placeSeeds.map(seed => {
+    const fileTitle = commonsFileTitle(seed.fileTitle || seed.pageUrl?.split("/").pop()?.replaceAll("_", " ") || "");
+    const originalUrl = String(seed.originalUrl || "").trim();
+    const pageUrl = String(seed.pageUrl || "").trim() || (fileTitle
+      ? `https://commons.wikimedia.org/wiki/${encodeURIComponent(fileTitle.replaceAll(" ", "_"))}`
+      : "");
+    const mime = String(seed.mime || "").trim();
+    const width = Number(seed.width || 0);
+    const height = Number(seed.height || 0);
+    const extension = extensionFrom(mime, originalUrl || pageUrl);
+
+    return makeCandidate({
+      place,
+      source: "manual_seed",
+      imageInfo: {
+        fileTitle,
+        originalUrl,
+        thumbUrl: originalUrl,
+        pageUrl,
+        mime,
+        width,
+        height,
+        extension,
+        objectName: "",
+        author: String(seed.author || "").trim(),
+        credit: String(seed.credit || "").trim(),
+        licenseShortName: String(seed.licenseShortName || "").trim(),
+        licenseUrl: String(seed.licenseUrl || "").trim()
+      },
+      label: String(seed.note || "").trim(),
+      reasonOverride: "manuelt seedet kandidat; krever manuell lisens- og bildesjekk"
+    });
+  });
+}
+
 async function candidatesFor(place, diagnostics) {
   const all = [];
+  const seedCandidates = await manualSeedCandidates(place, SEED_FILE);
+  if (seedCandidates.length) all.push(...seedCandidates);
   for (const fn of [wikidataCandidates, commonsGeoCandidates, commonsTextCandidates]) {
     try {
       all.push(...await fn(place, diagnostics));
@@ -484,6 +594,7 @@ async function loadPlaces() {
 async function main() {
   const { entries, places } = await loadPlaces();
   const filtered = places.filter(({ place }) => {
+    if (IDS_FILTER && !IDS_FILTER.has(place?.id)) return false;
     if (!place || !place.id || place.hidden || place.stub) return false;
     if (INCLUDE_EXISTING) return true;
     return !hasText(place.image) || !hasText(place.cardImage);
@@ -498,7 +609,7 @@ async function main() {
       generatedAt: new Date().toISOString(),
       manifestPath: MANIFEST_PATH,
       structure: "new_only_data_places_category_city",
-      sources: ["wikidata_p18", "commons_geosearch", "commons_text_search"],
+      sources: ["wikidata_p18", "commons_geosearch", "commons_text_search", "manual_seed"],
       note: "Kontroller kandidatene manuelt. Marker én kandidat per sted med approved: true før apply-scriptet kjøres.",
       diagnostics,
       counts: {

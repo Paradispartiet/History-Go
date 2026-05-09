@@ -1,0 +1,2069 @@
+{
+  "version": "v4.5-canonical-draft-1",
+  "subject_id": "litteratur",
+  "subject_title": "Litteratur",
+  "scope": "oslo_og_omegn",
+  "type": "methods",
+  "purpose": "Metodekatalog for litteraturfaget i History Go. Metodene skal sikre at litteraturspørsmål starter i tekst, verk, forfatter, språk, sjanger, forlag, bibliotek, arkiv, lesing, offentlighet eller dokumenterte litteraturfaglige kilder før teori brukes som tolkningsramme.",
+  "updated_at": "2026-05-02",
+  "canonical_inputs": {
+    "fagkart": "fagkart_litteratur_canonical_v4_5.json",
+    "source_theory": "merke_litteratur (1).html"
+  },
+  "principles": {
+    "source_first": true,
+    "external_claim_basis_required": true,
+    "text_place_or_author_before_theory": true,
+    "avoid_generic_literature_questions": true,
+    "method_role": [
+      "forankre spørsmål i tekst, verk, forfatter, sted, institusjon, publikasjon, lesing eller litterær offentlighet",
+      "skille tekstobservasjon fra tolkning, biografi og generell teori",
+      "koble språk, form, sjanger, felt, materialitet, leser og offentlighet",
+      "synliggjøre kanon, institusjoner, oversettelse, blindsoner og litterær makt",
+      "styre progresjon fra tekstnær observasjon til feltanalyse og teori"
+    ],
+    "required_emne_prefix": "em_lit_",
+    "blocked_emne_prefixes": [
+      "em_by_",
+      "em_his_",
+      "em_kunst_",
+      "em_media_",
+      "em_musikk_",
+      "em_pop_",
+      "em_vit_",
+      "em_pol_",
+      "em_naering_"
+    ]
+  },
+  "methods": [
+    {
+      "method_id": "met_lit_arkiv_og_manuskriptanalyse",
+      "title": "Arkiv- og manuskriptanalyse",
+      "short_label": "Arkiv/manus",
+      "description": "Analyse av manuskript, utkast, brev, dagbøker, arkivmapper, marginalia og det som er bevart eller mangler i litterære arkiver.",
+      "best_for_emne_kinds": [
+        "arkivanalytisk",
+        "forfatterskapsanalytisk",
+        "materialanalytisk"
+      ],
+      "data_forms": [
+        "manuskript",
+        "utkast",
+        "brev",
+        "dagbok",
+        "arkiv",
+        "notat",
+        "digital fil"
+      ],
+      "course_level_fit": [
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "skriftkultur_materialitet",
+        "sprak_makt_identitet",
+        "tekst_form_fortelling"
+      ],
+      "progression_stage": "advanced",
+      "good_for_place_types": [
+        "arkiv",
+        "bibliotek",
+        "forfatterhjem",
+        "museum"
+      ],
+      "question_moves": [
+        "read draft as process",
+        "ask what is preserved",
+        "identify archival absence",
+        "connect manuscript to authorship"
+      ],
+      "method_use_note": "Brukes når arkivspor kan vise skriving, revisjon, sensur, taushet eller forfatterskapets arbeidsform.",
+      "rotation_note": "Krev konkret arkiv- eller manusgrunnlag; ikke gjetning.",
+      "hook_affinities": [
+        "arkivets_blindsoner",
+        "manuskript_og_arkiv",
+        "tause_stemmer"
+      ],
+      "emne_affinities": [
+        "em_lit_arkiv_manuskript_og_digital_tekst",
+        "em_lit_forfatterskap_verk_og_liv",
+        "em_lit_tause_stemmer_og_blindsoner"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "litteraturpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "text_place_author_or_institution_anchor_required": true,
+      "generator_constraints": {
+        "require_concrete_text_work_author_place_or_institution": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_lit_"
+      }
+    },
+    {
+      "method_id": "met_lit_biografisk_stedsanalyse",
+      "title": "Biografisk stedsanalyse",
+      "short_label": "Biografisk sted",
+      "description": "Analyse av hvordan forfatterliv, bosted, arbeidssted, miljø og biografiske spor kobles til verk uten å redusere teksten til livshistorie.",
+      "best_for_emne_kinds": [
+        "biografisk",
+        "stedlig",
+        "forfatterskapsanalytisk"
+      ],
+      "data_forms": [
+        "forfatterhjem",
+        "brev",
+        "dagbok",
+        "biografi",
+        "arbeidssted",
+        "minnested"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "sted_leser_offentlighet",
+        "tekst_form_fortelling",
+        "skriftkultur_materialitet"
+      ],
+      "progression_stage": "full_ladder",
+      "good_for_place_types": [
+        "forfatterhjem",
+        "museum",
+        "litteraert_sted",
+        "arkiv",
+        "bibliotek"
+      ],
+      "question_moves": [
+        "separate life and work",
+        "connect biography to place",
+        "identify authorship trace",
+        "avoid reductive biography"
+      ],
+      "method_use_note": "Brukes når person/sted-kobling er viktig, men teksten fortsatt må ha egen betydning.",
+      "rotation_note": "Ikke bruk som ren 'forfatter bodde her'-fakta uten verk- eller feltkobling.",
+      "hook_affinities": [
+        "forfatter_verk_stemme",
+        "litteraere_steder",
+        "manuskript_og_arkiv",
+        "minne_forfatterskap_sted"
+      ],
+      "emne_affinities": [
+        "em_lit_arkiv_manuskript_og_digital_tekst",
+        "em_lit_forfatterskap_verk_og_liv",
+        "em_lit_fortelling_perspektiv_stemme",
+        "em_lit_litteraere_steder_og_bytekst"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "litteraturpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "text_place_author_or_institution_anchor_required": true,
+      "generator_constraints": {
+        "require_concrete_text_work_author_place_or_institution": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_lit_"
+      }
+    },
+    {
+      "method_id": "met_lit_bokhistorisk_analyse",
+      "title": "Bokhistorisk analyse",
+      "short_label": "Bokhistorie",
+      "description": "Analyse av boken som materiell form: format, omslag, paratekst, trykk, opplag, distribusjon, lesing og bevaring.",
+      "best_for_emne_kinds": [
+        "materialanalytisk",
+        "bokhistorisk",
+        "institusjonell"
+      ],
+      "data_forms": [
+        "bok",
+        "omslag",
+        "tittelblad",
+        "opplag",
+        "trykk",
+        "paratekst",
+        "bibliotekeksemplar"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "skriftkultur_materialitet",
+        "felt_institusjon_kritikk"
+      ],
+      "progression_stage": "full_ladder",
+      "good_for_place_types": [
+        "bibliotek",
+        "forlag",
+        "bokhandel",
+        "arkiv",
+        "trykkeri"
+      ],
+      "question_moves": [
+        "read book as object",
+        "connect format to reading",
+        "identify paratext",
+        "trace book circulation"
+      ],
+      "method_use_note": "Brukes når litteraturens materielle form er læringspunktet.",
+      "rotation_note": "Må ha konkret bok, utgave, forlag, bibliotek eller arkivobjekt.",
+      "hook_affinities": [
+        "bok_som_objekt",
+        "paratekst",
+        "trykk_og_sirkulasjon"
+      ],
+      "emne_affinities": [
+        "em_lit_arkiv_manuskript_og_digital_tekst",
+        "em_lit_bokhistorie_trykk_forlag",
+        "em_lit_kanon_kritikk_symbolsk_makt",
+        "em_lit_litteraturfelt_institusjoner"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "litteraturpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "text_place_author_or_institution_anchor_required": true,
+      "generator_constraints": {
+        "require_concrete_text_work_author_place_or_institution": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_lit_"
+      }
+    },
+    {
+      "method_id": "met_lit_bytekst_analyse",
+      "title": "Bytekst-analyse",
+      "short_label": "Bytekst",
+      "description": "Analyse av hvordan byen fremstilles, struktureres og tolkes i litteratur, og hvordan litterære tekster gjør byrom, klasse, modernitet og hverdagsliv lesbart.",
+      "best_for_emne_kinds": [
+        "stedlig",
+        "sosiologisk",
+        "tekstanalytisk"
+      ],
+      "data_forms": [
+        "roman",
+        "dikt",
+        "bybeskrivelse",
+        "flanørtekst",
+        "litterært kart",
+        "stedsskildring"
+      ],
+      "course_level_fit": [
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "sted_leser_offentlighet",
+        "tekst_form_fortelling",
+        "sprak_makt_identitet"
+      ],
+      "progression_stage": "advanced",
+      "good_for_place_types": [
+        "byrom",
+        "gate",
+        "kafe",
+        "bibliotek",
+        "litteraert_sted",
+        "forfatterhjem"
+      ],
+      "question_moves": [
+        "read city in literature",
+        "compare real and literary place",
+        "connect urban space to voice",
+        "identify city as structure"
+      ],
+      "method_use_note": "Brukes når Oslo eller et annet sted ikke bare er bakgrunn, men del av tekstens tenkning.",
+      "rotation_note": "Krev konkret tekstlig stedsskildring.",
+      "hook_affinities": [
+        "oslo_som_tekst"
+      ],
+      "emne_affinities": [
+        "em_lit_litteraere_steder_og_bytekst",
+        "em_lit_realisme_modernisme_virkelighetsformer"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "litteraturpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "text_place_author_or_institution_anchor_required": true,
+      "generator_constraints": {
+        "require_concrete_text_work_author_place_or_institution": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_lit_"
+      }
+    },
+    {
+      "method_id": "met_lit_digital_tekst_og_plattformanalyse",
+      "title": "Digital tekst- og plattformanalyse",
+      "short_label": "Digital tekst",
+      "description": "Analyse av digital litteratur, nettplattform, e-bok, lydbok, tekstarkiv, sosiale medier, fanfiction, algoritmer og nye publiseringsformer.",
+      "best_for_emne_kinds": [
+        "digital",
+        "materialanalytisk",
+        "offentlighetsanalytisk"
+      ],
+      "data_forms": [
+        "digital tekst",
+        "plattform",
+        "nettarkiv",
+        "e-bok",
+        "lydbok",
+        "sosiale medier",
+        "fanfiction"
+      ],
+      "course_level_fit": [
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "skriftkultur_materialitet",
+        "sted_leser_offentlighet"
+      ],
+      "progression_stage": "advanced",
+      "good_for_place_types": [
+        "digital_plattform",
+        "bibliotek",
+        "forlag",
+        "nettarkiv"
+      ],
+      "question_moves": [
+        "read platform as form",
+        "identify digital materiality",
+        "compare screen and book",
+        "trace digital reader participation"
+      ],
+      "method_use_note": "Brukes når litteraturens digitale form og infrastruktur er hovedpoeng.",
+      "rotation_note": "Krev konkret digital case; ikke generelt spørsmål om internett.",
+      "hook_affinities": [
+        "digital_litteraer_offentlighet",
+        "digital_tekst",
+        "tekstteknologi"
+      ],
+      "emne_affinities": [
+        "em_lit_arkiv_manuskript_og_digital_tekst",
+        "em_lit_bokhistorie_trykk_forlag",
+        "em_lit_digital_litteratur_og_nye_uttrykk",
+        "em_lit_lesere_offentlighet_formidling"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "litteraturpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "text_place_author_or_institution_anchor_required": true,
+      "generator_constraints": {
+        "require_concrete_text_work_author_place_or_institution": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_lit_"
+      }
+    },
+    {
+      "method_id": "met_lit_diskursanalyse",
+      "title": "Diskursanalyse",
+      "short_label": "Diskurs",
+      "description": "Analyse av hvordan språk skaper makt, normer, identitet, moral, fellesskap og konflikt i litterære tekster og litterær offentlighet.",
+      "best_for_emne_kinds": [
+        "diskursiv",
+        "maktanalytisk",
+        "offentlighetsanalytisk"
+      ],
+      "data_forms": [
+        "tekst",
+        "debatt",
+        "kritikk",
+        "forord",
+        "polemikk",
+        "manifest",
+        "offentlig samtale"
+      ],
+      "course_level_fit": [
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "sprak_makt_identitet",
+        "felt_institusjon_kritikk",
+        "sted_leser_offentlighet"
+      ],
+      "progression_stage": "advanced",
+      "good_for_place_types": [
+        "litteraturhus",
+        "redaksjon",
+        "bibliotek",
+        "forlag",
+        "scene"
+      ],
+      "question_moves": [
+        "read language as power",
+        "identify discursive frame",
+        "connect text to public debate",
+        "ask what becomes sayable"
+      ],
+      "method_use_note": "Brukes når språket rundt eller i teksten former sosial virkelighet.",
+      "rotation_note": "Ikke bruk abstrakt; krev tekst, debatt eller dokumentert offentlig ytring.",
+      "hook_affinities": [
+        "ambivalens_ironi",
+        "diskurs_og_makt",
+        "essay_biografi_sakprosa",
+        "litteraturpolitikk",
+        "minoritet_og_tilhoring",
+        "paratekst",
+        "sensur_ytring_og_debatt",
+        "skeiv_litteratur",
+        "sprakpolitikk_normering"
+      ],
+      "emne_affinities": [
+        "em_lit_ambivalens_ironi_tvetydighet",
+        "em_lit_bokhistorie_trykk_forlag",
+        "em_lit_essay_biografi_sakprosa",
+        "em_lit_identitet_kjonn_klasse_minoritet",
+        "em_lit_kanon_kritikk_symbolsk_makt",
+        "em_lit_litteratur_etikk_og_erfaring",
+        "em_lit_litteratur_og_offentlig_debatt",
+        "em_lit_litteraturfelt_institusjoner",
+        "em_lit_naerlesning_stil_form",
+        "em_lit_sprak_makt_diskurs",
+        "em_lit_sprakpolitikk_normering",
+        "em_lit_tause_stemmer_og_blindsoner"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "litteraturpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "text_place_author_or_institution_anchor_required": true,
+      "generator_constraints": {
+        "require_concrete_text_work_author_place_or_institution": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_lit_"
+      }
+    },
+    {
+      "method_id": "met_lit_feltanalyse",
+      "title": "Litterær feltanalyse",
+      "short_label": "Felt",
+      "description": "Analyse av litteraturfeltets aktører, posisjoner, kapitalformer, priser, forlag, kritikere, redaktører, skoler og kanoniseringsprosesser.",
+      "best_for_emne_kinds": [
+        "feltanalytisk",
+        "institusjonell",
+        "sosiologisk"
+      ],
+      "data_forms": [
+        "forlag",
+        "pris",
+        "kritikk",
+        "tidsskrift",
+        "litteraturhus",
+        "bibliotek",
+        "forfattermiljø"
+      ],
+      "course_level_fit": [
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "felt_institusjon_kritikk",
+        "sprak_makt_identitet",
+        "sted_leser_offentlighet"
+      ],
+      "progression_stage": "advanced",
+      "good_for_place_types": [
+        "forlag",
+        "bibliotek",
+        "litteraturhus",
+        "redaksjon",
+        "akademi",
+        "bokhandel"
+      ],
+      "question_moves": [
+        "map field position",
+        "identify symbolic capital",
+        "connect recognition to institution",
+        "compare autonomy and market"
+      ],
+      "method_use_note": "Brukes når litteraturens sosiale system er hovedpoeng.",
+      "rotation_note": "God i sene sett. Må forankres i konkret institusjon, publisering, kritikk eller feltkonflikt.",
+      "hook_affinities": [
+        "bokhandel_og_marked",
+        "forfattermiljo",
+        "forlag_og_redaksjon",
+        "kritikk_og_anerkjennelse",
+        "litteraturpolitikk",
+        "oversetter_redaktor_kritiker",
+        "priser_og_kanon",
+        "tidsskrift_og_miljo"
+      ],
+      "emne_affinities": [
+        "em_lit_bokhistorie_trykk_forlag",
+        "em_lit_kanon_kritikk_symbolsk_makt",
+        "em_lit_litteraere_epoker_og_brudd",
+        "em_lit_litteraere_steder_og_bytekst",
+        "em_lit_litteratur_og_offentlig_debatt",
+        "em_lit_litteraturfelt_institusjoner",
+        "em_lit_oversettelse_verdenslitteratur"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "litteraturpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "text_place_author_or_institution_anchor_required": true,
+      "generator_constraints": {
+        "require_concrete_text_work_author_place_or_institution": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_lit_"
+      }
+    },
+    {
+      "method_id": "met_lit_feministisk_og_postkolonial_lesning",
+      "title": "Feministisk og postkolonial lesning",
+      "short_label": "Feministisk/postkolonial",
+      "description": "Analyse av kjønn, klasse, rase, kolonialitet, minoritetsposisjon, stemme, taushet, kropp, arbeid og representasjon i litteratur.",
+      "best_for_emne_kinds": [
+        "identitetsanalytisk",
+        "kritisk",
+        "maktanalytisk"
+      ],
+      "data_forms": [
+        "roman",
+        "dikt",
+        "essay",
+        "debatt",
+        "forfattertekst",
+        "minoritetstekst"
+      ],
+      "course_level_fit": [
+        "avansert"
+      ],
+      "coverage_domains": [
+        "sprak_makt_identitet",
+        "tekst_form_fortelling"
+      ],
+      "progression_stage": "advanced",
+      "good_for_place_types": [
+        "bibliotek",
+        "litteraturhus",
+        "forfatterhjem",
+        "minoritetsscene",
+        "redaksjon"
+      ],
+      "question_moves": [
+        "ask who speaks",
+        "identify center and margin",
+        "read gendered or colonial position",
+        "connect text to social constraint"
+      ],
+      "method_use_note": "Brukes når tekstens stemmer, maktforhold og representasjon må leses kritisk.",
+      "rotation_note": "Krev konkret tekstlig grunnlag; ikke legg identitet utenpå verket uten kilde.",
+      "hook_affinities": [
+        "kjonn_og_litteratur",
+        "minoritet_og_tilhoring",
+        "postkoloniale_stemmer"
+      ],
+      "emne_affinities": [
+        "em_lit_identitet_kjonn_klasse_minoritet",
+        "em_lit_litteratur_etikk_og_erfaring",
+        "em_lit_oversettelse_verdenslitteratur",
+        "em_lit_tause_stemmer_og_blindsoner"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "litteraturpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "text_place_author_or_institution_anchor_required": true,
+      "generator_constraints": {
+        "require_concrete_text_work_author_place_or_institution": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_lit_"
+      }
+    },
+    {
+      "method_id": "met_lit_formidlingsanalyse",
+      "title": "Formidlingsanalyse",
+      "short_label": "Formidling",
+      "description": "Analyse av hvordan litteratur formidles gjennom scene, opplesning, bibliotek, skole, festival, podkast, utstilling, bokhandel og digitale kanaler.",
+      "best_for_emne_kinds": [
+        "formidlingsanalytisk",
+        "resepsjonsanalytisk",
+        "institusjonell"
+      ],
+      "data_forms": [
+        "opplesning",
+        "utstilling",
+        "biblioteksarrangement",
+        "podkast",
+        "festival",
+        "skoleopplegg"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "sted_leser_offentlighet",
+        "felt_institusjon_kritikk",
+        "skriftkultur_materialitet"
+      ],
+      "progression_stage": "full_ladder",
+      "good_for_place_types": [
+        "bibliotek",
+        "litteraturhus",
+        "scene",
+        "bokhandel",
+        "festival",
+        "skole"
+      ],
+      "question_moves": [
+        "read literature as event",
+        "connect medium to audience",
+        "identify mediation",
+        "compare live and written literature"
+      ],
+      "method_use_note": "Brukes når formidlingen endrer hvordan litteraturen oppleves eller får verdi.",
+      "rotation_note": "Må knyttes til konkret formidlingspraksis.",
+      "hook_affinities": [
+        "bibliotek_og_lesesal",
+        "drama_og_scene",
+        "litteraturhus_og_festival",
+        "litteraturhus_scene",
+        "opplesning_og_stemme",
+        "skole_og_pensum"
+      ],
+      "emne_affinities": [
+        "em_lit_drama_scene_og_teatertekst",
+        "em_lit_kanon_kritikk_symbolsk_makt",
+        "em_lit_lesere_offentlighet_formidling",
+        "em_lit_litteratur_og_offentlig_debatt",
+        "em_lit_litteraturfelt_institusjoner",
+        "em_lit_lyrikk_rytme_og_sprak"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "litteraturpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "text_place_author_or_institution_anchor_required": true,
+      "generator_constraints": {
+        "require_concrete_text_work_author_place_or_institution": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_lit_"
+      }
+    },
+    {
+      "method_id": "met_lit_fortelleranalyse",
+      "title": "Fortelleranalyse",
+      "short_label": "Forteller",
+      "description": "Analyse av fortellerposisjon, synsvinkel, fokalisering, pålitelighet, distanse, stemme og forholdet mellom forfatter, forteller og karakter.",
+      "best_for_emne_kinds": [
+        "narratologisk",
+        "tekstanalytisk",
+        "etisk"
+      ],
+      "data_forms": [
+        "roman",
+        "novelle",
+        "drama",
+        "memoar",
+        "fortellerstemme",
+        "perspektiv"
+      ],
+      "course_level_fit": [
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "tekst_form_fortelling"
+      ],
+      "progression_stage": "advanced",
+      "good_for_place_types": [
+        "forfatterhjem",
+        "bibliotek",
+        "litteraert_sted",
+        "museum"
+      ],
+      "question_moves": [
+        "identify narrator position",
+        "separate author and narrator",
+        "connect perspective to meaning",
+        "read reliability"
+      ],
+      "method_use_note": "Brukes når spørsmålet handler om hvem som ser, forteller eller styrer leserens tilgang til verden.",
+      "rotation_note": "Krev konkret tekstlig situasjon. Ikke bruk fortelleranalyse på ren forfatterbiografi.",
+      "hook_affinities": [
+        "forfatter_verk_stemme",
+        "fortellerstemme_og_perspektiv",
+        "tid_og_komposisjon"
+      ],
+      "emne_affinities": [
+        "em_lit_ambivalens_ironi_tvetydighet",
+        "em_lit_forfatterskap_verk_og_liv",
+        "em_lit_fortelling_perspektiv_stemme",
+        "em_lit_litteraere_epoker_og_brudd"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "litteraturpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "text_place_author_or_institution_anchor_required": true,
+      "generator_constraints": {
+        "require_concrete_text_work_author_place_or_institution": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_lit_"
+      }
+    },
+    {
+      "method_id": "met_lit_intermedial_analyse",
+      "title": "Intermedial analyse",
+      "short_label": "Intermedial",
+      "description": "Analyse av forholdet mellom litteratur og andre medier: scene, lyd, bilde, film, digital form, musikk, performance og visuell kultur.",
+      "best_for_emne_kinds": [
+        "intermedial",
+        "sjangeranalytisk",
+        "digital"
+      ],
+      "data_forms": [
+        "dramatisering",
+        "lydbok",
+        "filmatisering",
+        "illustrert tekst",
+        "digital tekst",
+        "opplesning"
+      ],
+      "course_level_fit": [
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "skriftkultur_materialitet",
+        "sjanger_estetikk_tradisjon"
+      ],
+      "progression_stage": "advanced",
+      "good_for_place_types": [
+        "scene",
+        "litteraturhus",
+        "bibliotek",
+        "museum",
+        "digital_plattform"
+      ],
+      "question_moves": [
+        "compare media and form",
+        "identify what changes across media",
+        "connect performance to text",
+        "read adaptation"
+      ],
+      "method_use_note": "Brukes når litteratur møter lyd, scene, bilde, film eller digitalitet.",
+      "rotation_note": "Pass på kategorigrense: hvis hovedpoenget er teater, film eller musikk, er litteratur bare sekundærlag.",
+      "hook_affinities": [
+        "digital_tekst",
+        "hybridformer",
+        "tekstteknologi"
+      ],
+      "emne_affinities": [
+        "em_lit_arkiv_manuskript_og_digital_tekst",
+        "em_lit_bokhistorie_trykk_forlag",
+        "em_lit_digital_litteratur_og_nye_uttrykk",
+        "em_lit_hybridformer_og_sjangerbrudd"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "litteraturpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "text_place_author_or_institution_anchor_required": true,
+      "generator_constraints": {
+        "require_concrete_text_work_author_place_or_institution": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_lit_"
+      }
+    },
+    {
+      "method_id": "met_lit_kanon_og_institusjonsanalyse",
+      "title": "Kanon- og institusjonsanalyse",
+      "short_label": "Kanon/institusjon",
+      "description": "Analyse av hvordan skoler, biblioteker, forlag, priser, akademier og kritikk velger ut hvilke tekster som blir klassikere eller pensum.",
+      "best_for_emne_kinds": [
+        "institusjonell",
+        "kanonanalytisk",
+        "maktanalytisk"
+      ],
+      "data_forms": [
+        "pensum",
+        "samling",
+        "pris",
+        "bibliotek",
+        "forlagsliste",
+        "antologi",
+        "kanonliste"
+      ],
+      "course_level_fit": [
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "felt_institusjon_kritikk",
+        "sjanger_estetikk_tradisjon",
+        "skriftkultur_materialitet"
+      ],
+      "progression_stage": "advanced",
+      "good_for_place_types": [
+        "bibliotek",
+        "forlag",
+        "akademi",
+        "litteraturhus",
+        "museum"
+      ],
+      "question_moves": [
+        "read curriculum as canon",
+        "ask who is included",
+        "identify selection mechanism",
+        "compare recognition and visibility"
+      ],
+      "method_use_note": "Brukes når litterær verdi og tradisjon skal forstås som institusjonelt produsert.",
+      "rotation_note": "Må ikke bli ren liste over 'viktige forfattere'; spør om mekanismen.",
+      "hook_affinities": [
+        "bibliotek_og_lesesal",
+        "bibliotek_som_offentlighet",
+        "epoker_og_kanonfortelling",
+        "priser_og_kanon",
+        "skole_og_pensum",
+        "turisme_og_litteraturarv"
+      ],
+      "emne_affinities": [
+        "em_lit_kanon_kritikk_symbolsk_makt",
+        "em_lit_lesere_offentlighet_formidling",
+        "em_lit_litteraere_epoker_og_brudd",
+        "em_lit_litteraere_steder_og_bytekst",
+        "em_lit_litteraturfelt_institusjoner"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "litteraturpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "text_place_author_or_institution_anchor_required": true,
+      "generator_constraints": {
+        "require_concrete_text_work_author_place_or_institution": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_lit_"
+      }
+    },
+    {
+      "method_id": "met_lit_komparativ_tekstanalyse",
+      "title": "Komparativ tekstanalyse",
+      "short_label": "Komparativ tekst",
+      "description": "Sammenligning av tekster, verk, sjangre, perioder, forfatterskap eller oversettelser for å vise forskjeller i form, tema, språk og posisjon.",
+      "best_for_emne_kinds": [
+        "komparativ",
+        "verkbasert",
+        "litteraturhistorisk"
+      ],
+      "data_forms": [
+        "to tekster",
+        "to forfattere",
+        "to perioder",
+        "to oversettelser",
+        "to sjangre"
+      ],
+      "course_level_fit": [
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "sjanger_estetikk_tradisjon",
+        "tekst_form_fortelling",
+        "sprak_makt_identitet"
+      ],
+      "progression_stage": "advanced",
+      "good_for_place_types": [
+        "bibliotek",
+        "museum",
+        "forfatterhjem",
+        "litteraturhus"
+      ],
+      "question_moves": [
+        "compare two texts",
+        "separate surface similarity from structural similarity",
+        "connect comparison to period or field",
+        "identify difference in voice or form"
+      ],
+      "method_use_note": "Brukes når læring oppstår gjennom kontrast mellom tekster eller forfatterskap.",
+      "rotation_note": "Bør brukes etter at minst ett verk eller én forfatter er etablert.",
+      "hook_affinities": [
+        "originalitet_og_intertekst",
+        "realisme_modernisme"
+      ],
+      "emne_affinities": [
+        "em_lit_hybridformer_og_sjangerbrudd",
+        "em_lit_intertekstualitet_og_referanse",
+        "em_lit_litteraere_epoker_og_brudd",
+        "em_lit_realisme_modernisme_virkelighetsformer"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "litteraturpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "text_place_author_or_institution_anchor_required": true,
+      "generator_constraints": {
+        "require_concrete_text_work_author_place_or_institution": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_lit_"
+      }
+    },
+    {
+      "method_id": "met_lit_kritikk_og_resepsjonsanalyse",
+      "title": "Kritikk- og resepsjonsanalyse",
+      "short_label": "Kritikk/resepsjon",
+      "description": "Analyse av hvordan kritikere, lesere, aviser, tidsskrifter, debatter og institusjoner mottar og gir verdi til litteratur.",
+      "best_for_emne_kinds": [
+        "resepsjonsanalytisk",
+        "feltanalytisk",
+        "diskursiv"
+      ],
+      "data_forms": [
+        "anmeldelse",
+        "kritikk",
+        "debatt",
+        "leserrespons",
+        "prisomtale",
+        "tidsskrift"
+      ],
+      "course_level_fit": [
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "felt_institusjon_kritikk",
+        "sted_leser_offentlighet"
+      ],
+      "progression_stage": "advanced",
+      "good_for_place_types": [
+        "redaksjon",
+        "litteraturhus",
+        "bibliotek",
+        "forlag",
+        "bokhandel"
+      ],
+      "question_moves": [
+        "read review as legitimation",
+        "identify quality vocabulary",
+        "compare reception over time",
+        "connect criticism to canon"
+      ],
+      "method_use_note": "Brukes når mottakelsen er del av tekstens eller forfatterskapets betydning.",
+      "rotation_note": "Krev dokumentert kritikk eller resepsjon.",
+      "hook_affinities": [
+        "kritikk_og_anerkjennelse",
+        "litteraer_offentlighet"
+      ],
+      "emne_affinities": [
+        "em_lit_kanon_kritikk_symbolsk_makt",
+        "em_lit_lesere_offentlighet_formidling",
+        "em_lit_litteratur_og_offentlig_debatt",
+        "em_lit_litteraturfelt_institusjoner"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "litteraturpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "text_place_author_or_institution_anchor_required": true,
+      "generator_constraints": {
+        "require_concrete_text_work_author_place_or_institution": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_lit_"
+      }
+    },
+    {
+      "method_id": "met_lit_leser_og_resepsjonsanalyse",
+      "title": "Leser- og resepsjonsanalyse",
+      "short_label": "Leser/resepsjon",
+      "description": "Analyse av lesergrupper, tolkningsfellesskap, mottakelse, leserforventninger, tilgjengelighet og endrede lesninger over tid.",
+      "best_for_emne_kinds": [
+        "resepsjonsanalytisk",
+        "publikumsanalytisk",
+        "offentlighetsanalytisk"
+      ],
+      "data_forms": [
+        "leserrespons",
+        "kritikk",
+        "bokklubb",
+        "bibliotekbruk",
+        "skolelesing",
+        "publikumssamtale"
+      ],
+      "course_level_fit": [
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "sted_leser_offentlighet",
+        "felt_institusjon_kritikk"
+      ],
+      "progression_stage": "advanced",
+      "good_for_place_types": [
+        "bibliotek",
+        "litteraturhus",
+        "bokhandel",
+        "skole",
+        "festival"
+      ],
+      "question_moves": [
+        "identify reading public",
+        "connect reception to place",
+        "compare intended and received meaning",
+        "read access and exclusion"
+      ],
+      "method_use_note": "Brukes når leserne og mottakelsen er del av litteraturens betydning.",
+      "rotation_note": "Krev dokumentert resepsjon, leserpraksis eller tydelig formidlingssituasjon.",
+      "hook_affinities": [
+        "barn_ungdom_litteratur",
+        "lesere_og_fellesskap"
+      ],
+      "emne_affinities": [
+        "em_lit_lesere_offentlighet_formidling",
+        "em_lit_litteraturfelt_institusjoner",
+        "em_lit_sjanger_og_formtradisjon"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "litteraturpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "text_place_author_or_institution_anchor_required": true,
+      "generator_constraints": {
+        "require_concrete_text_work_author_place_or_institution": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_lit_"
+      }
+    },
+    {
+      "method_id": "met_lit_litteraer_stedsanalyse",
+      "title": "Litterær stedsanalyse",
+      "short_label": "Litterært sted",
+      "description": "Analyse av steder knyttet til verk, forfatterskap, lesing, skriving, litterære miljøer, scener, bibliotek og byens tekstlige betydning.",
+      "best_for_emne_kinds": [
+        "stedlig",
+        "biografisk",
+        "offentlighetsanalytisk"
+      ],
+      "data_forms": [
+        "forfattersted",
+        "litterært miljø",
+        "byrom",
+        "bibliotek",
+        "kafé",
+        "scene",
+        "tekststed"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "sted_leser_offentlighet",
+        "tekst_form_fortelling"
+      ],
+      "progression_stage": "full_ladder",
+      "good_for_place_types": [
+        "forfatterhjem",
+        "litteraturhus",
+        "bibliotek",
+        "kafe",
+        "bokhandel",
+        "scene",
+        "byrom"
+      ],
+      "question_moves": [
+        "connect place to text",
+        "read city as literary infrastructure",
+        "separate real place and literary place",
+        "identify literary memory"
+      ],
+      "method_use_note": "Kjernemetode for History Go-litteratur fordi den binder tekst og sted sammen.",
+      "rotation_note": "Må ha dokumenterbar kobling til tekst, forfatter, lesing eller litterær offentlighet.",
+      "hook_affinities": [
+        "forfattermiljo",
+        "litteraere_steder",
+        "minne_forfatterskap_sted",
+        "oslo_som_tekst",
+        "tidsskrift_og_miljo",
+        "turisme_og_litteraturarv"
+      ],
+      "emne_affinities": [
+        "em_lit_forfatterskap_verk_og_liv",
+        "em_lit_kanon_kritikk_symbolsk_makt",
+        "em_lit_litteraere_steder_og_bytekst",
+        "em_lit_litteraturfelt_institusjoner",
+        "em_lit_realisme_modernisme_virkelighetsformer"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "litteraturpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "text_place_author_or_institution_anchor_required": true,
+      "generator_constraints": {
+        "require_concrete_text_work_author_place_or_institution": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_lit_"
+      }
+    },
+    {
+      "method_id": "met_lit_litteraturhistorisk_kontekstualisering",
+      "title": "Litteraturhistorisk kontekstualisering",
+      "short_label": "Litteraturhistorie",
+      "description": "Analyse av verk og forfatterskap i forhold til epoker, tradisjoner, historiske brudd, litterære bevegelser og samtidige samfunnsforhold.",
+      "best_for_emne_kinds": [
+        "litteraturhistorisk",
+        "temporal",
+        "kontekstuell"
+      ],
+      "data_forms": [
+        "verk",
+        "forfatterskap",
+        "epoke",
+        "litterær bevegelse",
+        "publikasjonshistorie"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "sjanger_estetikk_tradisjon",
+        "tekst_form_fortelling",
+        "felt_institusjon_kritikk"
+      ],
+      "progression_stage": "full_ladder",
+      "good_for_place_types": [
+        "forfatterhjem",
+        "bibliotek",
+        "museum",
+        "scene",
+        "forlag"
+      ],
+      "question_moves": [
+        "connect work to period",
+        "identify break and continuity",
+        "question period label",
+        "anchor history in text or publication"
+      ],
+      "method_use_note": "Brukes når tekst eller forfatterskap må plasseres i litterær tid.",
+      "rotation_note": "Ikke la epoken bli selve svaret uten konkret tekst, verk eller institusjon.",
+      "hook_affinities": [
+        "epoker_og_kanonfortelling",
+        "realisme_modernisme",
+        "romanens_former",
+        "tekst_og_virkelighet"
+      ],
+      "emne_affinities": [
+        "em_lit_kanon_kritikk_symbolsk_makt",
+        "em_lit_litteraere_epoker_og_brudd",
+        "em_lit_litteratur_etikk_og_erfaring",
+        "em_lit_realisme_modernisme_virkelighetsformer",
+        "em_lit_roman_og_prosaformer"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "litteraturpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "text_place_author_or_institution_anchor_required": true,
+      "generator_constraints": {
+        "require_concrete_text_work_author_place_or_institution": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_lit_"
+      }
+    },
+    {
+      "method_id": "met_lit_motiv_symbol_analyse",
+      "title": "Motiv- og symbolanalyse",
+      "short_label": "Motiv/symbol",
+      "description": "Analyse av motiver, symboler, metaforer, bilder, allegorier, gjenstander og gjentatte betydningsfigurer i litterære tekster.",
+      "best_for_emne_kinds": [
+        "symbolanalytisk",
+        "tekstanalytisk",
+        "komparativ"
+      ],
+      "data_forms": [
+        "motiv",
+        "symbol",
+        "metafor",
+        "bildebruk",
+        "dikt",
+        "romanpassasje",
+        "drama"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "tekst_form_fortelling",
+        "sjanger_estetikk_tradisjon"
+      ],
+      "progression_stage": "full_ladder",
+      "good_for_place_types": [
+        "forfatterhjem",
+        "bibliotek",
+        "museum",
+        "litteraert_sted"
+      ],
+      "question_moves": [
+        "read symbol layers",
+        "connect motif to theme",
+        "compare motif across texts",
+        "avoid free association"
+      ],
+      "method_use_note": "Brukes når et konkret symbol eller motiv kan dokumenteres i tekst eller verk.",
+      "rotation_note": "Må forankres i tekst. Ikke gjør symbolanalyse til gjetning.",
+      "hook_affinities": [
+        "motiv_symbol_bilde",
+        "naerlesning_og_stil"
+      ],
+      "emne_affinities": [
+        "em_lit_motiv_symbol_bildebruk",
+        "em_lit_naerlesning_stil_form"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "litteraturpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "text_place_author_or_institution_anchor_required": true,
+      "generator_constraints": {
+        "require_concrete_text_work_author_place_or_institution": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_lit_"
+      }
+    },
+    {
+      "method_id": "met_lit_naerlesning",
+      "title": "Nærlesning",
+      "short_label": "Nærlesning",
+      "description": "Tett analyse av tekstens ordvalg, rytme, bilder, struktur, brudd, gjentakelser, motiver og betydningslag.",
+      "best_for_emne_kinds": [
+        "tekstanalytisk",
+        "verkbasert",
+        "formanalytisk"
+      ],
+      "data_forms": [
+        "romanpassasje",
+        "dikt",
+        "drama",
+        "essay",
+        "sitat",
+        "tekstutdrag"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "tekst_form_fortelling",
+        "sjanger_estetikk_tradisjon",
+        "sprak_makt_identitet"
+      ],
+      "progression_stage": "full_ladder",
+      "good_for_place_types": [
+        "forfatterhjem",
+        "bibliotek",
+        "litteraert_sted",
+        "museum",
+        "scene"
+      ],
+      "question_moves": [
+        "anchor interpretation in words",
+        "identify motif or image",
+        "connect form to meaning",
+        "separate observation and interpretation"
+      ],
+      "method_use_note": "Grunnmetode for litteraturquizzer. Brukes når spørsmålet skal starte i selve teksten og ikke i biografi eller generell teori.",
+      "rotation_note": "Bør brukes ofte, men må roteres med sjanger-, felt- og stedsanalyse slik at litteratur ikke reduseres til isolerte tekstutdrag.",
+      "hook_affinities": [
+        "ambivalens_ironi",
+        "bok_som_objekt",
+        "etikk_og_erfaring",
+        "klasse_og_erfaring",
+        "litteratur_og_moral",
+        "lyrikk_og_dikt",
+        "motiv_symbol_bilde",
+        "naerlesning_og_stil",
+        "originalitet_og_intertekst",
+        "tekst_og_virkelighet",
+        "tekstlig_rytme"
+      ],
+      "emne_affinities": [
+        "em_lit_ambivalens_ironi_tvetydighet",
+        "em_lit_arkiv_manuskript_og_digital_tekst",
+        "em_lit_bokhistorie_trykk_forlag",
+        "em_lit_fortelling_perspektiv_stemme",
+        "em_lit_hybridformer_og_sjangerbrudd",
+        "em_lit_identitet_kjonn_klasse_minoritet",
+        "em_lit_intertekstualitet_og_referanse",
+        "em_lit_litteratur_etikk_og_erfaring",
+        "em_lit_litteratur_og_offentlig_debatt",
+        "em_lit_lyrikk_rytme_og_sprak",
+        "em_lit_motiv_symbol_bildebruk",
+        "em_lit_naerlesning_stil_form",
+        "em_lit_realisme_modernisme_virkelighetsformer"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "litteraturpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "text_place_author_or_institution_anchor_required": true,
+      "generator_constraints": {
+        "require_concrete_text_work_author_place_or_institution": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_lit_"
+      }
+    },
+    {
+      "method_id": "met_lit_offentlighetsanalyse",
+      "title": "Offentlighetsanalyse",
+      "short_label": "Offentlighet",
+      "description": "Analyse av hvordan litteratur inngår i debatt, ytringsfrihet, moralstrid, festivaler, litteraturhus, aviser, bibliotek og offentlig samtale.",
+      "best_for_emne_kinds": [
+        "offentlighetsanalytisk",
+        "diskursiv",
+        "institusjonell"
+      ],
+      "data_forms": [
+        "debatt",
+        "opplesning",
+        "litteraturhus",
+        "bibliotek",
+        "avis",
+        "festival",
+        "offentlig samtale"
+      ],
+      "course_level_fit": [
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "sted_leser_offentlighet",
+        "felt_institusjon_kritikk",
+        "sprak_makt_identitet"
+      ],
+      "progression_stage": "advanced",
+      "good_for_place_types": [
+        "litteraturhus",
+        "bibliotek",
+        "redaksjon",
+        "scene",
+        "festival",
+        "bokhandel"
+      ],
+      "question_moves": [
+        "connect text to public debate",
+        "identify literary event",
+        "read conflict as public form",
+        "compare private reading and public discussion"
+      ],
+      "method_use_note": "Brukes når litteratur virker i offentligheten, ikke bare som privat lesning.",
+      "rotation_note": "God for Litteraturhuset, bibliotek, scener og debattsteder.",
+      "hook_affinities": [
+        "bibliotek_som_offentlighet",
+        "digital_litteraer_offentlighet",
+        "lesere_og_fellesskap",
+        "litteraer_offentlighet",
+        "litteratur_og_moral",
+        "litteraturhus_og_festival",
+        "litteraturhus_scene",
+        "sensur_ytring_og_debatt"
+      ],
+      "emne_affinities": [
+        "em_lit_digital_litteratur_og_nye_uttrykk",
+        "em_lit_lesere_offentlighet_formidling",
+        "em_lit_litteratur_etikk_og_erfaring",
+        "em_lit_litteratur_og_offentlig_debatt",
+        "em_lit_litteraturfelt_institusjoner",
+        "em_lit_sprak_makt_diskurs"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "litteraturpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "text_place_author_or_institution_anchor_required": true,
+      "generator_constraints": {
+        "require_concrete_text_work_author_place_or_institution": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_lit_"
+      }
+    },
+    {
+      "method_id": "met_lit_oversettelsesanalyse",
+      "title": "Oversettelsesanalyse",
+      "short_label": "Oversettelse",
+      "description": "Analyse av oversettelsesvalg, språklig forskyvning, verdenslitterær sirkulasjon, mottakelse og maktforhold mellom språk.",
+      "best_for_emne_kinds": [
+        "oversettelsesanalytisk",
+        "språkanalytisk",
+        "verdenslitterær"
+      ],
+      "data_forms": [
+        "oversettelse",
+        "originaltekst",
+        "forord",
+        "oversetterkommentar",
+        "utgivelseshistorikk"
+      ],
+      "course_level_fit": [
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "sprak_makt_identitet",
+        "skriftkultur_materialitet",
+        "sjanger_estetikk_tradisjon"
+      ],
+      "progression_stage": "advanced",
+      "good_for_place_types": [
+        "forlag",
+        "bibliotek",
+        "litteraturhus",
+        "bokhandel",
+        "redaksjon"
+      ],
+      "question_moves": [
+        "compare language versions",
+        "identify translation choice",
+        "connect translation to circulation",
+        "read language and identity"
+      ],
+      "method_use_note": "Brukes når litteratur beveger seg mellom språk, steder og leserfellesskap.",
+      "rotation_note": "Krev konkret oversettelse, originaltekst eller publiseringshistorie.",
+      "hook_affinities": [
+        "oversettelse_identitet",
+        "oversettelse_sirkulasjon",
+        "oversettelse_som_form",
+        "oversetter_redaktor_kritiker",
+        "postkoloniale_stemmer"
+      ],
+      "emne_affinities": [
+        "em_lit_bokhistorie_trykk_forlag",
+        "em_lit_identitet_kjonn_klasse_minoritet",
+        "em_lit_litteraturfelt_institusjoner",
+        "em_lit_oversettelse_verdenslitteratur",
+        "em_lit_sprakpolitikk_normering"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "litteraturpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "text_place_author_or_institution_anchor_required": true,
+      "generator_constraints": {
+        "require_concrete_text_work_author_place_or_institution": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_lit_"
+      }
+    },
+    {
+      "method_id": "met_lit_perspektiv_stemme_analyse",
+      "title": "Perspektiv- og stemmeanalyse",
+      "short_label": "Perspektiv/stemme",
+      "description": "Analyse av hvem som får tale, hvilken sosial eller språklig posisjon stemmen har, og hvordan perspektiv skaper etikk, identitet og makt.",
+      "best_for_emne_kinds": [
+        "tekstanalytisk",
+        "identitetsanalytisk",
+        "diskursiv"
+      ],
+      "data_forms": [
+        "fortellerstemme",
+        "dialog",
+        "diktstemme",
+        "karakterperspektiv",
+        "essaystemme"
+      ],
+      "course_level_fit": [
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "tekst_form_fortelling",
+        "sprak_makt_identitet"
+      ],
+      "progression_stage": "advanced",
+      "good_for_place_types": [
+        "forfatterhjem",
+        "litteraturhus",
+        "bibliotek",
+        "minoritetsscene"
+      ],
+      "question_moves": [
+        "ask who speaks",
+        "identify voice and position",
+        "connect perspective to power",
+        "read silence and absence"
+      ],
+      "method_use_note": "Brukes når stemme, perspektiv og sosial posisjon er sentralt.",
+      "rotation_note": "Må skille mellom forfatter, forteller og karakter.",
+      "hook_affinities": [
+        "dialog_og_drama",
+        "fortellerstemme_og_perspektiv"
+      ],
+      "emne_affinities": [
+        "em_lit_ambivalens_ironi_tvetydighet",
+        "em_lit_drama_scene_og_teatertekst",
+        "em_lit_fortelling_perspektiv_stemme"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "litteraturpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "text_place_author_or_institution_anchor_required": true,
+      "generator_constraints": {
+        "require_concrete_text_work_author_place_or_institution": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_lit_"
+      }
+    },
+    {
+      "method_id": "met_lit_publiserings_og_forlagsanalyse",
+      "title": "Publiserings- og forlagsanalyse",
+      "short_label": "Forlag/publisering",
+      "description": "Analyse av forlag, redaktører, serier, marked, publiseringskanaler, opplag, refusjon og litterær synlighet.",
+      "best_for_emne_kinds": [
+        "institusjonell",
+        "materialanalytisk",
+        "feltanalytisk"
+      ],
+      "data_forms": [
+        "forlag",
+        "redaksjon",
+        "bokserie",
+        "utgivelsesliste",
+        "kontrakt",
+        "bokmarked"
+      ],
+      "course_level_fit": [
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "skriftkultur_materialitet",
+        "felt_institusjon_kritikk"
+      ],
+      "progression_stage": "advanced",
+      "good_for_place_types": [
+        "forlag",
+        "redaksjon",
+        "bokhandel",
+        "litteraturhus"
+      ],
+      "question_moves": [
+        "trace publication route",
+        "connect editorial power to visibility",
+        "identify gatekeeping",
+        "compare commercial and symbolic value"
+      ],
+      "method_use_note": "Brukes når litteraturens vei fra manus til offentlig tekst er sentral.",
+      "rotation_note": "God for forlag og redaksjonsmiljøer; svakere for rene forfattersteder uten publiseringskobling.",
+      "hook_affinities": [
+        "bokhandel_og_marked",
+        "forlag_og_redaksjon"
+      ],
+      "emne_affinities": [
+        "em_lit_bokhistorie_trykk_forlag",
+        "em_lit_kanon_kritikk_symbolsk_makt",
+        "em_lit_litteraturfelt_institusjoner"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "litteraturpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "text_place_author_or_institution_anchor_required": true,
+      "generator_constraints": {
+        "require_concrete_text_work_author_place_or_institution": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_lit_"
+      }
+    },
+    {
+      "method_id": "met_lit_sirkulasjonsanalyse",
+      "title": "Sirkulasjonsanalyse",
+      "short_label": "Sirkulasjon",
+      "description": "Analyse av hvordan tekster beveger seg gjennom forlag, bokhandel, bibliotek, oversettelse, skole, kritikk, plattformer og leserfellesskap.",
+      "best_for_emne_kinds": [
+        "distribusjonsanalytisk",
+        "feltanalytisk",
+        "materialanalytisk"
+      ],
+      "data_forms": [
+        "utgivelseshistorikk",
+        "oversettelse",
+        "forlag",
+        "bokhandel",
+        "bibliotek",
+        "digital plattform",
+        "leserkrets"
+      ],
+      "course_level_fit": [
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "skriftkultur_materialitet",
+        "felt_institusjon_kritikk",
+        "sprak_makt_identitet"
+      ],
+      "progression_stage": "advanced",
+      "good_for_place_types": [
+        "forlag",
+        "bibliotek",
+        "bokhandel",
+        "litteraturhus",
+        "digital_plattform"
+      ],
+      "question_moves": [
+        "trace text circulation",
+        "connect distribution to visibility",
+        "compare local and global reading",
+        "identify mediation chain"
+      ],
+      "method_use_note": "Brukes når tekstens vei gjennom systemet er viktig for betydning eller kanonisering.",
+      "rotation_note": "God for forlag, bibliotek og oversettelsescases.",
+      "hook_affinities": [
+        "oversettelse_identitet",
+        "oversettelse_sirkulasjon",
+        "trykk_og_sirkulasjon"
+      ],
+      "emne_affinities": [
+        "em_lit_bokhistorie_trykk_forlag",
+        "em_lit_litteraturfelt_institusjoner",
+        "em_lit_oversettelse_verdenslitteratur",
+        "em_lit_sprakpolitikk_normering"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "litteraturpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "text_place_author_or_institution_anchor_required": true,
+      "generator_constraints": {
+        "require_concrete_text_work_author_place_or_institution": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_lit_"
+      }
+    },
+    {
+      "method_id": "met_lit_sjangeranalyse",
+      "title": "Sjangeranalyse",
+      "short_label": "Sjanger",
+      "description": "Analyse av roman, dikt, drama, essay, biografi, sakprosa og hybridformer som konvensjoner, forventninger og brudd.",
+      "best_for_emne_kinds": [
+        "sjangeranalytisk",
+        "kunsthistorisk",
+        "formanalytisk"
+      ],
+      "data_forms": [
+        "roman",
+        "dikt",
+        "drama",
+        "essay",
+        "biografi",
+        "hybridtekst"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "sjanger_estetikk_tradisjon",
+        "tekst_form_fortelling"
+      ],
+      "progression_stage": "full_ladder",
+      "good_for_place_types": [
+        "bibliotek",
+        "litteraturhus",
+        "teaterscene",
+        "forfatterhjem",
+        "bokhandel"
+      ],
+      "question_moves": [
+        "identify genre convention",
+        "read genre break",
+        "connect form to audience",
+        "compare genres"
+      ],
+      "method_use_note": "Brukes når teksten må forstås gjennom sjangerforventninger eller sjangerbrudd.",
+      "rotation_note": "God i tidlige sett, men bør ikke bli ren definisjonslære.",
+      "hook_affinities": [
+        "barn_ungdom_litteratur",
+        "dialog_og_drama",
+        "drama_og_scene",
+        "essay_biografi_sakprosa",
+        "hybridformer",
+        "romanens_former"
+      ],
+      "emne_affinities": [
+        "em_lit_digital_litteratur_og_nye_uttrykk",
+        "em_lit_drama_scene_og_teatertekst",
+        "em_lit_essay_biografi_sakprosa",
+        "em_lit_fortelling_perspektiv_stemme",
+        "em_lit_hybridformer_og_sjangerbrudd",
+        "em_lit_lesere_offentlighet_formidling",
+        "em_lit_litteratur_etikk_og_erfaring",
+        "em_lit_litteratur_og_offentlig_debatt",
+        "em_lit_realisme_modernisme_virkelighetsformer",
+        "em_lit_roman_og_prosaformer",
+        "em_lit_sjanger_og_formtradisjon"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "litteraturpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "text_place_author_or_institution_anchor_required": true,
+      "generator_constraints": {
+        "require_concrete_text_work_author_place_or_institution": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_lit_"
+      }
+    },
+    {
+      "method_id": "met_lit_sosiologisk_tekstanalyse",
+      "title": "Sosiologisk tekstanalyse",
+      "short_label": "Sosiologisk tekst",
+      "description": "Analyse av hvordan litterære tekster viser og former klasse, arbeid, familie, kjønn, byliv, institusjoner, normer og sosial erfaring.",
+      "best_for_emne_kinds": [
+        "sosiologisk",
+        "tekstanalytisk",
+        "kontekstuell"
+      ],
+      "data_forms": [
+        "roman",
+        "novelle",
+        "drama",
+        "essay",
+        "bytekst",
+        "arbeiderlitteratur"
+      ],
+      "course_level_fit": [
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "sprak_makt_identitet",
+        "tekst_form_fortelling",
+        "sted_leser_offentlighet"
+      ],
+      "progression_stage": "advanced",
+      "good_for_place_types": [
+        "litteraert_sted",
+        "bibliotek",
+        "forfatterhjem",
+        "byrom",
+        "litteraturhus"
+      ],
+      "question_moves": [
+        "read social experience in text",
+        "connect place to social world",
+        "avoid simple mirror reading",
+        "identify class or norm structure"
+      ],
+      "method_use_note": "Brukes når teksten må leses som sosial erfaring, ikke bare som estetisk form.",
+      "rotation_note": "Må balansere tekstnærhet og samfunnskontekst.",
+      "hook_affinities": [
+        "arkivets_blindsoner",
+        "etikk_og_erfaring",
+        "kjonn_og_litteratur",
+        "klasse_og_erfaring",
+        "skeiv_litteratur",
+        "tause_stemmer"
+      ],
+      "emne_affinities": [
+        "em_lit_arkiv_manuskript_og_digital_tekst",
+        "em_lit_fortelling_perspektiv_stemme",
+        "em_lit_identitet_kjonn_klasse_minoritet",
+        "em_lit_litteratur_etikk_og_erfaring",
+        "em_lit_realisme_modernisme_virkelighetsformer",
+        "em_lit_tause_stemmer_og_blindsoner"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "litteraturpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "text_place_author_or_institution_anchor_required": true,
+      "generator_constraints": {
+        "require_concrete_text_work_author_place_or_institution": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_lit_"
+      }
+    },
+    {
+      "method_id": "met_lit_sprakpolitisk_analyse",
+      "title": "Språkpolitisk analyse",
+      "short_label": "Språkpolitikk",
+      "description": "Analyse av språkvalg, normering, målform, dialekt, oversettelse, standardisering og språklig legitimitet i litteraturen.",
+      "best_for_emne_kinds": [
+        "språkanalytisk",
+        "maktanalytisk",
+        "identitetsanalytisk"
+      ],
+      "data_forms": [
+        "språkdebatt",
+        "målform",
+        "dialekt",
+        "oversettelse",
+        "forfattertekst",
+        "normeringskilde"
+      ],
+      "course_level_fit": [
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "sprak_makt_identitet",
+        "skriftkultur_materialitet"
+      ],
+      "progression_stage": "advanced",
+      "good_for_place_types": [
+        "bibliotek",
+        "forlag",
+        "litteraturhus",
+        "skole",
+        "akademi"
+      ],
+      "question_moves": [
+        "connect language norm to power",
+        "identify language choice",
+        "read standardization",
+        "compare written forms"
+      ],
+      "method_use_note": "Brukes når språkvalg er politisk, sosialt eller identitetsbærende.",
+      "rotation_note": "Må ha konkret tekst, språkdebatt, oversettelse eller institusjonell språkpraksis.",
+      "hook_affinities": [
+        "diskurs_og_makt",
+        "oversettelse_som_form",
+        "sprakpolitikk_normering"
+      ],
+      "emne_affinities": [
+        "em_lit_litteratur_og_offentlig_debatt",
+        "em_lit_oversettelse_verdenslitteratur",
+        "em_lit_sprak_makt_diskurs",
+        "em_lit_sprakpolitikk_normering"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "litteraturpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "text_place_author_or_institution_anchor_required": true,
+      "generator_constraints": {
+        "require_concrete_text_work_author_place_or_institution": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_lit_"
+      }
+    },
+    {
+      "method_id": "met_lit_stilistisk_analyse",
+      "title": "Stilistisk analyse",
+      "short_label": "Stil",
+      "description": "Analyse av språkføring, syntaks, ordvalg, rytme, klang, gjentakelser, setningslengde, register og stilnivå.",
+      "best_for_emne_kinds": [
+        "språkanalytisk",
+        "formanalytisk",
+        "verkbasert"
+      ],
+      "data_forms": [
+        "dikt",
+        "prosa",
+        "dialog",
+        "essay",
+        "opplesning",
+        "sitat"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "tekst_form_fortelling",
+        "sjanger_estetikk_tradisjon"
+      ],
+      "progression_stage": "full_ladder",
+      "good_for_place_types": [
+        "bibliotek",
+        "forfatterhjem",
+        "litteraturhus",
+        "scene"
+      ],
+      "question_moves": [
+        "read language as form",
+        "identify rhythm and sound",
+        "connect style to mood or position",
+        "compare two styles"
+      ],
+      "method_use_note": "Brukes når språket selv, ikke bare handlingen eller temaet, er læringspunktet.",
+      "rotation_note": "Krev konkret tekst eller sitat; ikke bruk som løs vurdering av at en forfatter har 'fin stil'.",
+      "hook_affinities": [
+        "lyrikk_og_dikt",
+        "naerlesning_og_stil",
+        "opplesning_og_stemme",
+        "tekstlig_rytme"
+      ],
+      "emne_affinities": [
+        "em_lit_lesere_offentlighet_formidling",
+        "em_lit_lyrikk_rytme_og_sprak",
+        "em_lit_motiv_symbol_bildebruk",
+        "em_lit_naerlesning_stil_form"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "litteraturpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "text_place_author_or_institution_anchor_required": true,
+      "generator_constraints": {
+        "require_concrete_text_work_author_place_or_institution": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_lit_"
+      }
+    },
+    {
+      "method_id": "met_lit_tidsstruktur_analyse",
+      "title": "Tidsstruktur-analyse",
+      "short_label": "Tid",
+      "description": "Analyse av kronologi, tilbakeblikk, frampek, repetisjon, minne, brudd, tempo og forholdet mellom fortalt tid og fortellertid.",
+      "best_for_emne_kinds": [
+        "narratologisk",
+        "temporalt",
+        "verkbasert"
+      ],
+      "data_forms": [
+        "roman",
+        "novelle",
+        "drama",
+        "memoar",
+        "fortellingsstruktur"
+      ],
+      "course_level_fit": [
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "tekst_form_fortelling",
+        "sjanger_estetikk_tradisjon"
+      ],
+      "progression_stage": "advanced",
+      "good_for_place_types": [
+        "bibliotek",
+        "forfatterhjem",
+        "litteraert_sted",
+        "scene"
+      ],
+      "question_moves": [
+        "read order and duration",
+        "identify memory structure",
+        "connect time to experience",
+        "compare chronology and composition"
+      ],
+      "method_use_note": "Brukes når tekstens tidsform er en del av betydningen.",
+      "rotation_note": "God for romaner, memoarer og modernistiske tekster; svakere for rene faktasteder uten konkret verk.",
+      "hook_affinities": [
+        "fortellerstemme_og_perspektiv",
+        "tid_og_komposisjon"
+      ],
+      "emne_affinities": [
+        "em_lit_ambivalens_ironi_tvetydighet",
+        "em_lit_fortelling_perspektiv_stemme",
+        "em_lit_litteraere_epoker_og_brudd"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "litteraturpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "text_place_author_or_institution_anchor_required": true,
+      "generator_constraints": {
+        "require_concrete_text_work_author_place_or_institution": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_lit_"
+      }
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "category": "naeringsliv",
+  "role_scope": "avdelingsleder",
+  "mail_type": "people",
+  "families": [
+    {"id":"avdelingsleder_rapportering_og_styring","mails":[
+      {"id":"avdelingsleder_people_001","mail_type":"people","mail_family":"avdelingsleder_rapportering_og_styring","role_scope":"avdelingsleder","subject":"Tallene er riktige, men virkeligheten er ufullstendig","summary":"Du må velge om rapporten skal vise friksjonen bak KPI-en.","situation":["En controller ber om kort avviksforklaring.","Du vet at ett tall skjuler et mønster av overtid."],"task_domain":"reporting_ethics","competency":"rapportering","pressure":"styringssignal_vs_sannhet","choice_axis":"kompakt_vs_forklarende","consequence_axis":"ro_vs_beslutningskvalitet","narrative_arc":"rapportering","choices":[{"id":"A","label":"Legg ved kort risikokommentar om overtid og kapasitet.","effect":1,"tags":["truth"],"feedback":"Du gjør beslutningsgrunnlaget mer robust."},{"id":"B","label":"Hold kommentaren minimal for å unngå støy.","effect":0,"tags":["politics"],"feedback":"Rapporten blir pen, men mindre nyttig."}]}
+    ]},
+    {"id":"avdelingsleder_administrasjon_og_hverdagsmakt","mails":[{"id":"avdelingsleder_people_002","mail_type":"people","mail_family":"avdelingsleder_administrasjon_og_hverdagsmakt","role_scope":"avdelingsleder","subject":"Små tjenester blir store mønstre","summary":"Du ser at ekstraoppgaver alltid havner hos samme to ansatte.","situation":["Ingen klager formelt.","Likevel bygger uformell skjevfordeling misnøye."],"task_domain":"workload_distribution","competency":"styring_og_tillit","pressure":"uformell_makt","choice_axis":"harmoni_vs_rettferdighet","consequence_axis":"fred_vs_langsiktig_tillit","narrative_arc":"hverdagsmakt","choices":[{"id":"A","label":"Synliggjør fordelingen og roter ansvar bevisst.","effect":1,"tags":["fairness"],"feedback":"Du lager friksjon nå, men forebygger større konflikt."},{"id":"B","label":"La det stå siden leveransen fortsatt holder.","effect":0,"tags":["avoidance"],"feedback":"Du kjøper ro i dag, men gjeld i tillit."}]}]}
+  ]
+}

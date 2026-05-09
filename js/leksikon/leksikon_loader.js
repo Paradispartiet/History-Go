@@ -6,7 +6,10 @@
   "use strict";
 
   const MANIFEST_URL = "data/leksikon/manifest.json";
+  const SPRAK_MANIFEST_URL = "data/leksikon/sprak/manifest.json";
   let initPromise = null;
+  let sprakManifestPromise = null;
+  const sprakByPlace = Object.create(null);
 
   function esc(value) {
     return String(value ?? "")
@@ -43,6 +46,9 @@
   }
 
   function articleTitle(article) {
+    const explicitTitle = norm(article?.title || article?.name || article?.label);
+    if (explicitTitle) return explicitTitle;
+
     const place = (Array.isArray(window.PLACES) ? window.PLACES : [])
       .find(p => norm(p?.id) === norm(article?.place_id));
 
@@ -52,6 +58,67 @@
   function listHtml(items, mapper) {
     if (!Array.isArray(items) || !items.length) return "";
     return items.map(mapper).filter(Boolean).join("");
+  }
+
+  function sanitizeExternalUrl(rawUrl) {
+    const value = norm(rawUrl);
+    if (!value) return "";
+    try {
+      const parsed = new URL(value, window.location.origin);
+      if (parsed.protocol !== "https:" && parsed.protocol !== "http:") return "";
+      return parsed.href;
+    } catch (_) {
+      return "";
+    }
+  }
+
+  function normalizeExternalLinks(...containers) {
+    const rawLinks = containers.flatMap((container) => (
+      Array.isArray(container?.externalLinks) ? container.externalLinks : []
+    ));
+
+    return rawLinks
+      .map((link) => {
+        const type = norm(link?.type).toLowerCase();
+        const url = sanitizeExternalUrl(link?.url);
+        const label = norm(link?.label);
+        if (!url) return null;
+        return {
+          type,
+          url,
+          label: label || url
+        };
+      })
+      .filter(Boolean);
+  }
+
+  function renderExternalLinks(place, article) {
+    const links = normalizeExternalLinks(place, article);
+    if (!links.length) return `<section class="pc-leksikon-section"><h3>Eksterne lenker</h3><p>Ingen eksterne lenker ennå</p></section>`;
+
+    const groups = [
+      { title: "Statistikk/resultater", types: ["stats", "results"] },
+      { title: "Offisiell nettside", types: ["official"] },
+      { title: "Wikipedia", types: ["wikipedia"] },
+      { title: "Andre kilder", types: ["source", "archive", "other"] }
+    ];
+
+    const parts = groups.map((group) => {
+      const rows = links.filter(link => group.types.includes(link.type));
+      if (!rows.length) return "";
+      return `
+        <article class="pc-leksikon-item">
+          <strong>${esc(group.title)}</strong>
+          <ul>
+            ${rows.map((link) => `
+              <li><a href="${esc(link.url)}" target="_blank" rel="noopener noreferrer">${esc(link.label)}</a></li>
+            `).join("")}
+          </ul>
+        </article>
+      `;
+    }).filter(Boolean).join("");
+
+    return section("Eksterne lenker", parts);
   }
 
   function tagListHtml(values) {
@@ -70,6 +137,47 @@
     `;
   }
 
+  function renderSprakEntries(article) {
+    const entries = Array.isArray(article?.entries) ? article.entries : [];
+    if (!entries.length) {
+      return `<p>Ingen språkoppføringer ennå.</p>`;
+    }
+
+    return entries.map((entry) => `
+      <article class="pc-leksikon-item">
+        <strong>${esc(entry?.term || entry?.id || "Begrep")}</strong>
+        ${entry?.type ? `<p><em>${esc(entry.type)}</em></p>` : ""}
+        ${entry?.meaning ? `<p>${esc(entry.meaning)}</p>` : ""}
+        ${entry?.context ? `<p>${esc(entry.context)}</p>` : ""}
+      </article>
+    `).join("");
+  }
+
+  async function loadSprakManifest() {
+    if (sprakManifestPromise) return sprakManifestPromise;
+    sprakManifestPromise = fetchJSON(SPRAK_MANIFEST_URL).catch(() => ({ place_files: {} }));
+    return sprakManifestPromise;
+  }
+
+  async function loadSprakForPlace(placeId) {
+    const id = norm(placeId);
+    if (!id) return null;
+    if (Object.prototype.hasOwnProperty.call(sprakByPlace, id)) {
+      return sprakByPlace[id];
+    }
+
+    const manifest = await loadSprakManifest();
+    const file = manifest?.place_files?.[id];
+    if (!file) {
+      sprakByPlace[id] = null;
+      return null;
+    }
+
+    const article = await fetchJSON(file).catch(() => null);
+    sprakByPlace[id] = article && norm(article.place_id) === id ? article : null;
+    return sprakByPlace[id];
+  }
+
   function paragraphBlockHtml(value, className = "") {
     const values = Array.isArray(value) ? value : [value];
     const paragraphs = values
@@ -81,7 +189,26 @@
     return paragraphs;
   }
 
-  function renderArticle(article) {
+  async function resolvePlaceForArticle(article) {
+    const articlePlaceId = norm(article?.place_id);
+    if (!articlePlaceId) return null;
+
+    const currentPlace = (Array.isArray(window.PLACES) ? window.PLACES : [])
+      .find((p) => norm(p?.id) === articlePlaceId);
+
+    if (typeof window.DataHub?.loadFullPlace !== "function") return currentPlace || null;
+
+    try {
+      const fullPlace = await window.DataHub.loadFullPlace(articlePlaceId, { cache: "no-store" });
+      if (fullPlace && typeof fullPlace === "object") return fullPlace;
+    } catch (err) {
+      console.warn("[HGLeksikon] full place lookup feilet", articlePlaceId, err);
+    }
+
+    return currentPlace || null;
+  }
+
+  async function renderArticle(article) {
     if (!article) return `<div class="pc-empty">Ingen leksikonartikkel funnet</div>`;
 
     const summary = article.summary || {};
@@ -89,6 +216,8 @@
     const interpretation = article.interpretation || {};
     const events = article.events || {};
     const classification = article.classification || {};
+    const place = await resolvePlaceForArticle(article);
+    const sprakArticle = await loadSprakForPlace(article.place_id);
 
     const factsHtml = listHtml(article.facts, fact => `
       <article class="pc-leksikon-item">
@@ -165,6 +294,8 @@
         ${section("Spor og objekter", artifactsHtml)}
         ${section("Tolkning", interpretationHtml)}
         ${section("Klassifikasjon", tagListHtml([...(classification.tags || []), ...(classification.knagger || [])]))}
+        ${renderExternalLinks(place, article)}
+        ${section((sprakArticle?.title || "Språkleksikon"), renderSprakEntries(sprakArticle))}
         <button class="reward-ok" data-close-popup>Lukk</button>
       </article>
     `;
@@ -186,13 +317,14 @@
     `;
   }
 
-  function openPlace(placeId, index = 0) {
+  async function openPlace(placeId, index = 0) {
     const articles = window.LEKSIKON_BY_PLACE?.[norm(placeId)] || [];
     const article = articles[Number(index) || 0];
 
     const popupFn = window.makePopup || (typeof makePopup === "function" ? makePopup : null);
     if (typeof popupFn === "function") {
-      popupFn(renderArticle(article), "leksikon-entry-popup");
+      const html = await renderArticle(article);
+      popupFn(html, "leksikon-entry-popup");
       return;
     }
 
@@ -275,7 +407,7 @@
     if (!btn) return;
     event.preventDefault();
     event.stopPropagation();
-    openPlace(btn.dataset.leksikonPlace, btn.dataset.leksikonIndex);
+    void openPlace(btn.dataset.leksikonPlace, btn.dataset.leksikonIndex);
   });
 
   window.HGLeksikon = {

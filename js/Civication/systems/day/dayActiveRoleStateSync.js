@@ -104,6 +104,23 @@
     return ["job", "faction_choice", "people", "story", "conflict", "event"].includes(mailType);
   }
 
+  function runtimeOwnsProgression() {
+    const inspect = window.CivicationMailRuntime?.inspect;
+    if (typeof inspect !== "function") return false;
+    try {
+      return inspect()?.patched === true;
+    } catch (_err) {
+      return false;
+    }
+  }
+
+  function shouldAdvanceRolePlan(eventObj) {
+    if (runtimeOwnsProgression()) return false;
+    const sourceType = normStr(eventObj?.source_type || eventObj?.role_content_meta?.source_type);
+    if (sourceType === "planned") return true;
+    return eventObj?.daily_mail_meta?.advances_role_plan === true;
+  }
+
   function registerAnsweredMail(eventObj) {
     if (!isMailSystemEvent(eventObj)) return null;
 
@@ -131,9 +148,10 @@
     const nextStoryThreads = uniqueStrings(current.active_story_threads);
     const nextStoryPhases = { ...current.story_thread_phases };
 
+    const advancesRolePlan = shouldAdvanceRolePlan(eventObj);
     const next = {
       ...current,
-      step_index: Number(current.step_index || 0) + 1,
+      step_index: Number(current.step_index || 0) + (advancesRolePlan ? 1 : 0),
       last_mail_type: mailType,
       consumed_mail_ids: consumedMailIds,
       consumed_families: consumedFamilies,
@@ -144,6 +162,7 @@
           mail_type: mailType,
           mail_family: mailFamily,
           source_type: normStr(eventObj.source_type || eventObj.role_content_meta?.source_type || "family") || null,
+          advances_role_plan: advancesRolePlan,
           conflict_id: normStr(binding?.conflict_id) || null,
           people_thread_id: normStr(binding?.people_thread_id) || null,
           story_thread_id: normStr(binding?.story_thread_id) || null,

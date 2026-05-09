@@ -1,0 +1,141 @@
+{
+  "id": "deichman_bjorvika_quiz_1",
+  "quiz_id": "litteratur_deichman_bjorvika_set_1_q1",
+  "categoryId": "litteratur",
+  "placeId": "deichman_bjorvika",
+  "personId": "",
+  "natureId": "",
+  "targetId": "deichman_bjorvika",
+  "question_scope": "place",
+  "question": "Hva gjør Deichman Bjørvika særlig relevant som litteratursted?",
+  "options": [
+    "Det er et offentlig bibliotek og lesested som samler bøker, formidling og litterær offentlighet",
+    "Det er et middelalderkloster knyttet til cistercienserordenen",
+    "Det er en kystfestning ved innseilingen til Oslofjorden"
+  ],
+  "answer": "Det er et offentlig bibliotek og lesested som samler bøker, formidling og litterær offentlighet",
+  "answerIndex": 0,
+  "dimension": "litteratur",
+  "topic": "Bibliotek, lesere og litterær offentlighet",
+  "knowledge": "Deichman Bjørvika brukes her som eksempel på litterær infrastruktur: bibliotek, lesing, formidling, offentlighet og tekstsirkulasjon i byen.",
+  "trivia": [],
+  "difficulty": 1,
+  "question_type": "fact",
+  "question_layer": "fakta_sted_institusjon",
+  "year": 2020,
+  "epoke_id": "samtidsbibliotek_litteraer_offentlighet",
+  "epoke_domain": "litteratur",
+  "emne_id": "em_lit_lesere_offentlighet_formidling",
+  "related_emner": [
+    "em_lit_litteraturfelt_institusjoner",
+    "em_lit_bokhistorie_trykk_forlag",
+    "em_lit_litteraere_steder_og_bytekst"
+  ],
+  "core_concepts": [
+    "bibliotek",
+    "lesere",
+    "litterær offentlighet",
+    "formidling",
+    "teksttilgang"
+  ],
+  "concept_focus": [
+    "bibliotek",
+    "leserfellesskap"
+  ],
+  "learning_paths": [
+    "fra sted til litterær infrastruktur",
+    "fra bibliotekrom til leser og offentlighet",
+    "fra bøker til formidling og tekstsirkulasjon"
+  ],
+  "tags": [
+    "litteratur",
+    "sted",
+    "bibliotek",
+    "deichman",
+    "lesere",
+    "offentlighet",
+    "formidling"
+  ],
+  "required_tags": [
+    "external_source",
+    "literature_anchor",
+    "em_lit"
+  ],
+  "source": [
+    {
+      "type": "official_library_or_institution_source",
+      "name": "Deichman / Oslo kommune / tilsvarende institusjonskilde",
+      "role": "verifiserer bibliotekets funksjon, sted og litterære offentlighetsrolle",
+      "required": true
+    },
+    {
+      "type": "literary_or_public_sphere_source",
+      "name": "litteraturfaglig, bibliotekfaglig eller formidlingsfaglig kilde",
+      "role": "verifiserer bibliotek, lesing, offentlighet, formidling eller teksttilgang",
+      "required": true
+    }
+  ],
+  "related_emners": [
+    "em_lit_litteraturfelt_institusjoner",
+    "em_lit_bokhistorie_trykk_forlag",
+    "em_lit_litteraere_steder_og_bytekst"
+  ],
+  "source_origin": "mixed",
+  "claim_basis": "Ekstern bibliotek-/institusjonskilde skal verifisere at Deichman Bjørvika fungerer som offentlig bibliotek, lesested og formidlingsarena for litteratur.",
+  "guidance_basis": {
+    "fagkart_category_id": "sted_leser_offentlighet",
+    "topic_hook": "bibliotek_som_offentlighet",
+    "emne_id": "em_lit_lesere_offentlighet_formidling",
+    "method_id": "met_lit_offentlighetsanalyse",
+    "canonical_files_used_as_guidance_only": [
+      "fagkart_litteratur_canonical_v4_5.json",
+      "methods_litteratur_canonical_v4_5.json",
+      "emner_litteratur_canonical_v4_5.json",
+      "emnemapping_litteratur_canonical_v4_5.json",
+      "litteraturpensum_canonical_v4_5.json"
+    ]
+  },
+  "method_id": "met_lit_offentlighetsanalyse",
+  "literature_anchor_type": "library",
+  "source_note": "Spørsmålet skal bygges fra ekstern bibliotek-/institusjonskilde; fagfilene styrer bare metode, emne og spørsmålsflate.",
+  "external_source_ratio_target": 0.85,
+  "internal_file_only_allowed": false,
+  "requires_text_anchor": true,
+  "requires_external_claim_basis": true,
+  "requires_text_place_author_or_institution_anchor": true,
+  "requires_visible_text_or_context": true,
+  "generator_guardrails": {
+    "do_not_generate_from_emne_label_only": true,
+    "do_not_generate_from_method_label_only": true,
+    "do_not_use_non_litteratur_emne_id": true,
+    "required_emne_prefix": "em_lit_",
+    "blocked_emne_prefixes": [
+      "em_by_",
+      "em_his_",
+      "em_kunst_",
+      "em_media_",
+      "em_musikk_",
+      "em_pop_",
+      "em_vit_",
+      "em_pol_",
+      "em_naering_"
+    ],
+    "text_or_place_first_then_theory": true,
+    "source_first": true,
+    "avoid_generic_literature_theory_questions": true,
+    "avoid_pure_author_biography_without_work_or_public_sphere": true
+  },
+  "validation": {
+    "emne_id_exists_in_emner_litteratur": true,
+    "method_id_exists_in_methods_litteratur": true,
+    "mapping_exists_in_emnemapping_litteratur": true,
+    "category_matches_badge": true,
+    "schema_extends_generic_supersetQUIZMAL": true
+  },
+  "template_notes": {
+    "template_role": "litteratur_superset_quiz_object",
+    "generic_template_source": "supersetQUIZMAL (10).json",
+    "content_policy": "Dette er en mal/eksempelobjekt. Produksjonsquizer skal fylle source med konkrete kilder og ikke bruke fagfilene som hovedkilde til faktapåstander.",
+    "next_use": "Bruk som grunnmal for litteraturquiz-spørsmål før generatoren lager mange spørsmål per sted/person."
+  }
+}

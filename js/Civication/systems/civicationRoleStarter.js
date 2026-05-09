@@ -58,6 +58,13 @@
       role_key: "finansdirektor",
       role_id: "naer_finansdirektor"
     },
+    avdelingsleder: {
+      career_id: "naeringsliv",
+      career_name: "Næringsliv & industri",
+      title: "Avdelingsleder",
+      role_key: "avdelingsleder",
+      role_id: "naer_avdelingsleder"
+    },
     mellomleder: {
       career_id: "naeringsliv",
       career_name: "Næringsliv & industri",
@@ -76,6 +83,7 @@
     finansanalytiker: "finansanalytiker_naeringsliv_v1",
     okonomi_og_finanssjef: "okonomi_og_finanssjef_naeringsliv_v1",
     finansdirektor: "finansdirektor_naeringsliv_v1",
+    avdelingsleder: "avdelingsleder_naeringsliv_v1",
     mellomleder: "mellomleder_naeringsliv_v2"
   };
 

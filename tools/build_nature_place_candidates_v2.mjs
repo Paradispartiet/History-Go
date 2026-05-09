@@ -13,7 +13,7 @@ const CFG = {
   placesManifest: "data/places/manifest.json",
   floraManifest: "data/natur/flora/manifest.json",
   faunaManifest: "data/natur/fauna/manifest.json",
-  outPath: "data/natur/nature_place_map_candidates.json",
+  outPath: process.env.NATURE_CANDIDATES_OUT || "data/natur/nature_place_map_candidates.json",
   endpoint: "https://artskart.artsdatabanken.no/publicapi/api/observations/list/",
   defaultRadiusM: 180,
   minYear: 2000,
@@ -22,6 +22,8 @@ const CFG = {
   maxPagesPerPlace: 8,
   maxObservationsPerPlace: 1500,
   requestDelayMs: 250,
+  requestRetries: Number(process.env.ARTSKART_RETRIES || 3),
+  retryBaseDelayMs: Number(process.env.ARTSKART_RETRY_BASE_DELAY_MS || 1000),
   maxExternalTaxaPerPlace: 40,
   includeCategories: new Set(["natur", "by", "sport", "historie", "kunst", "subkultur"]),
   priorityPlaceIds: new Set([
@@ -42,6 +44,22 @@ const CFG = {
     "nydalen"
   ])
 };
+
+function parseNonNegativeNumber(value, fallback) {
+  const n = Number(value);
+  return Number.isFinite(n) && n >= 0 ? n : fallback;
+}
+
+function parseArgs(argv) {
+  for (const arg of argv) {
+    if (arg.startsWith("--out=")) CFG.outPath = arg.slice("--out=".length);
+    else if (arg.startsWith("--retries=")) CFG.requestRetries = parseNonNegativeNumber(arg.slice("--retries=".length), CFG.requestRetries);
+    else if (arg.startsWith("--retry-base-delay-ms=")) CFG.retryBaseDelayMs = parseNonNegativeNumber(arg.slice("--retry-base-delay-ms=".length), CFG.retryBaseDelayMs);
+    else if (arg.startsWith("--request-delay-ms=")) CFG.requestDelayMs = parseNonNegativeNumber(arg.slice("--request-delay-ms=".length), CFG.requestDelayMs);
+  }
+}
+
+parseArgs(process.argv.slice(2));
 
 function rel(p) {
   return String(p || "").replaceAll("\\", "/").replace(/^\.\//, "");
@@ -76,6 +94,41 @@ async function writeJson(p, data) {
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function isRetryableFetchError(err) {
+  const msg = String(err?.message || err || "").toLowerCase();
+  if (/artskart (429|500|502|503|504)/i.test(String(err?.message || ""))) return true;
+  return [
+    "fetch failed",
+    "econnreset",
+    "etimedout",
+    "timeout",
+    "socket",
+    "network",
+    "temporarily unavailable",
+    "too many requests"
+  ].some(token => msg.includes(token));
+}
+
+async function withRetries(label, fn) {
+  const attempts = Math.max(1, Number(CFG.requestRetries || 0) + 1);
+  let lastError = null;
+
+  for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    try {
+      return await fn();
+    } catch (err) {
+      lastError = err;
+      if (attempt >= attempts || !isRetryableFetchError(err)) throw err;
+
+      const delay = Math.min(Number(CFG.retryBaseDelayMs || 1000) * 2 ** (attempt - 1), 10000);
+      console.warn(`[nature-map] ${label} failed attempt ${attempt}/${attempts}: ${err.message}; retrying in ${delay}ms`);
+      await sleep(delay);
+    }
+  }
+
+  throw lastError;
 }
 
 function norm(v) {
@@ -279,16 +332,18 @@ function pageInfo(payload) {
 }
 
 async function fetchArtskartPage(place, pageIndex) {
-  const radius = Number(place.r || CFG.defaultRadiusM);
-  const url = new URL(CFG.endpoint);
-  url.searchParams.set("gmWktPolygon", squareWktWebMercator(place.lon, place.lat, radius));
-  url.searchParams.set("PageIndex", String(pageIndex));
-  url.searchParams.set("PageSize", String(CFG.pageSize));
+  return withRetries(`Artskart ${place.id} page ${pageIndex}`, async () => {
+    const radius = Number(place.r || CFG.defaultRadiusM);
+    const url = new URL(CFG.endpoint);
+    url.searchParams.set("gmWktPolygon", squareWktWebMercator(place.lon, place.lat, radius));
+    url.searchParams.set("PageIndex", String(pageIndex));
+    url.searchParams.set("PageSize", String(CFG.pageSize));
 
-  const res = await fetch(url, { headers: { Accept: "application/json" } });
-  if (!res.ok) throw new Error(`Artskart ${res.status} for ${place.id}`);
-  const payload = await res.json();
-  return { url: url.toString(), payload, observations: findObservationArray(payload), info: pageInfo(payload) };
+    const res = await fetch(url, { headers: { Accept: "application/json" } });
+    if (!res.ok) throw new Error(`Artskart ${res.status} for ${place.id}`);
+    const payload = await res.json();
+    return { url: url.toString(), payload, observations: findObservationArray(payload), info: pageInfo(payload) };
+  });
 }
 
 async function fetchArtskartForPlace(place) {
@@ -398,7 +453,9 @@ async function main() {
         maxPrecisionM: CFG.maxPrecisionM,
         defaultRadiusM: CFG.defaultRadiusM,
         pageSize: CFG.pageSize,
-        maxPagesPerPlace: CFG.maxPagesPerPlace
+        maxPagesPerPlace: CFG.maxPagesPerPlace,
+        requestRetries: CFG.requestRetries,
+        retryBaseDelayMs: CFG.retryBaseDelayMs
       },
       counts: {
         placesTotal: places.length,

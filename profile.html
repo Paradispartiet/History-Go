@@ -94,17 +94,10 @@
       <div class="profile-hero-v2-inner">
         <div class="profile-identity-block">
           <div class="profile-avatar-orb" aria-hidden="true">HG</div>
-
           <div class="profile-hero-copy">
-            <div class="profile-kicker-row">
-              <span class="profile-pill gold">History Go</span>
-              <span class="profile-pill">Profil</span>
-            </div>
+            <div class="profile-kicker-row"><span class="profile-pill gold">History Go</span><span class="profile-pill">Profil</span></div>
             <h1 id="profileName">Utforsker #182</h1>
-            <p class="profile-sub">
-              Din spillerprofil, kunnskapsreise og samling gjennom byen. Her ser du status, retning, merker, personer, steder og Civication-lag samlet i ett dashboard.
-            </p>
-
+            <p class="profile-sub">Din spillerprofil, kunnskapsreise og samling i ett kompakt dashboard.</p>
             <div class="profile-hero-actions-v2">
               <button id="editProfileBtn" class="btn">Endre profil</button>
               <button id="btnOpenAHA" class="btn">Åpne AHA</button>
@@ -112,148 +105,71 @@
             </div>
           </div>
         </div>
-
         <aside class="profile-status-panel" aria-label="Profilstatus">
           <div class="profile-status-title">Status nå</div>
           <div class="profile-stat-row profile-stat-row-v2">
-            <div class="profile-stat-card">
-              <span id="statVisited">0</span>
-              <small id="statVisitedLabel">Steder</small>
-            </div>
-
-            <div class="profile-stat-card">
-              <span id="statQuizzes">0</span>
-              <small id="statQuizzesLabel">Quizsett</small>
-            </div>
-
-            <div class="profile-stat-card">
-              <span id="statStreak">0</span>
-              <small>Streak</small>
-            </div>
-
-            <div class="profile-stat-card profile-pc">
-              <img src="bilder/ui/pc-icon.svg" class="pc-icon" alt="">
-              <span id="pcValue">0</span>
-              <small>PC</small>
-            </div>
+            <div class="profile-stat-card"><span id="statVisited">0</span><small id="statVisitedLabel">Steder</small></div>
+            <div class="profile-stat-card"><span id="statQuizzes">0</span><small id="statQuizzesLabel">Quizsett</small></div>
+            <div class="profile-stat-card"><span id="statStreak">0</span><small>Streak</small></div>
+            <div class="profile-stat-card profile-pc"><img src="bilder/ui/pc-icon.svg" class="pc-icon" alt=""><span id="pcValue">0</span><small>PC</small></div>
           </div>
         </aside>
       </div>
     </section>
 
-    <div class="profile-dashboard-grid">
-      <section class="profile-section profile-focus-card" id="latestKnowledgeSection">
-        <div class="section-head">
-          <h2>Fortsett reisen</h2>
-          <span class="section-meta">Neste retning, siste kunnskap og AHA-spor samlet i én arbeidsflate.</span>
+    <nav class="profile-tabs" role="tablist" aria-label="Profilfaner">
+      <button class="profile-tab is-active" role="tab" aria-selected="true" data-tab="oversikt">Oversikt</button>
+      <button class="profile-tab" role="tab" aria-selected="false" data-tab="samling">Samling</button>
+      <button class="profile-tab" role="tab" aria-selected="false" data-tab="merker">Merker</button>
+      <button class="profile-tab" role="tab" aria-selected="false" data-tab="kunnskap">Kunnskap</button>
+      <button class="profile-tab" role="tab" aria-selected="false" data-tab="civication">Civication</button>
+      <button class="profile-tab" role="tab" aria-selected="false" data-tab="profilvalg">Profilvalg</button>
+    </nav>
+
+    <section class="profile-tab-panels">
+      <div class="profile-tab-panel is-active" data-panel="oversikt">
+        <div class="profile-dashboard-grid">
+          <section class="profile-section profile-focus-card" id="latestKnowledgeSection"> <div class="section-head"><h2>Fortsett reisen</h2><span class="section-meta">Neste retning, siste kunnskap og AHA-spor.</span></div>
+            <div class="profile-focus-body">
+              <div id="nextUpProfileCard" class="nextup-profile-card" style="display:none;"><div class="nextup-profile-title">Din retning nå</div><div id="nextUpProfileMeta" class="nextup-profile-meta"></div><div id="nextUpProfileChoices" class="nextup-profile-choice-row"></div><div id="nextUpProfilePath" class="nextup-profile-path"></div></div>
+              <div id="latestKnowledgeBox" class="latest-knowledge-box" style="display:none;"><div class="lk-topic" id="lkTopic"></div><div class="lk-text" id="lkText"></div><div class="lk-category" id="lkCategory"></div></div>
+              <div id="latestTriviaBox" class="latest-trivia-box" style="display:none;"><div class="lt-topic" id="ltTopic"></div><div class="lt-category" id="ltCategory"></div></div>
+              <div id="nextWhySection" class="latest-knowledge-box" style="display:none;"><div class="lk-topic">Hvorfor dette nå</div><div class="lk-text" id="nextWhyText"></div></div>
+              <div id="ahaSummary" class="latest-knowledge-box" style="display:none;"><div class="lk-topic" id="ahaTopConcept"></div><div class="lk-category" id="ahaTopMeta"></div></div>
+            </div>
+          </section>
+          <section class="profile-section" id="conceptsSection"><div class="section-head"><h2>Kunnskapsprofil</h2><span class="section-meta" id="conceptsMeta">Fra riktige quiz-svar</span></div><div id="conceptsList" class="concepts-list" aria-live="polite"></div><div id="conceptsEmpty" class="concepts-empty" style="display:none;">Ingen begreper logget ennå.</div></section>
         </div>
-
-        <div class="profile-focus-body">
-          <div id="nextUpProfileCard" class="nextup-profile-card" style="display:none;">
-            <div class="nextup-profile-title">Din retning nå</div>
-            <div id="nextUpProfileMeta" class="nextup-profile-meta"></div>
-            <div id="nextUpProfileChoices" class="nextup-profile-choice-row"></div>
-            <div id="nextUpProfilePath" class="nextup-profile-path"></div>
-          </div>
-
-          <div id="latestKnowledgeBox" class="latest-knowledge-box" style="display:none;">
-            <div class="lk-topic" id="lkTopic"></div>
-            <div class="lk-text" id="lkText"></div>
-            <div class="lk-category" id="lkCategory"></div>
-          </div>
-
-          <div id="latestTriviaBox" class="latest-trivia-box" style="display:none;">
-            <div class="lt-topic" id="ltTopic"></div>
-            <div class="lt-category" id="ltCategory"></div>
-          </div>
-
-          <div id="nextWhySection" class="latest-knowledge-box" style="display:none;">
-            <div class="lk-topic">Hvorfor dette nå</div>
-            <div class="lk-text" id="nextWhyText"></div>
-          </div>
-
-          <div id="ahaSummary" class="latest-knowledge-box" style="display:none;">
-            <div class="lk-topic" id="ahaTopConcept"></div>
-            <div class="lk-category" id="ahaTopMeta"></div>
-          </div>
-        </div>
-
-        <div class="profile-focus-actions">
-          <a href="index.html" class="btn">Gå til kartet</a>
-          <a href="knowledge.html" class="secondary">Se all kunnskap</a>
-          <a href="notater.html" class="secondary">Åpne notater</a>
-        </div>
-      </section>
-
-      <section class="profile-section" id="conceptsSection">
-        <div class="section-head">
-          <h2>Kunnskapsprofil</h2>
-          <span class="section-meta" id="conceptsMeta">Fra riktige quiz-svar</span>
-        </div>
-
-        <div id="conceptsList" class="concepts-list" aria-live="polite"></div>
-
-        <div id="conceptsEmpty" class="concepts-empty" style="display:none;">
-          Ingen begreper logget ennå. Hver gang du svarer riktig på en quiz som er knyttet til et kjernebegrep, dukker det opp her — som et personlig kunnskapskart over hva du har lært på reisen din.
-        </div>
-      </section>
-    </div>
-
-    <section class="profile-section profile-strip" id="timelineSection">
-      <div class="section-head">
-        <h2>Tidslinje</h2>
-        <div id="timelineProgressText" class="section-meta timeline-progress-text"></div>
       </div>
 
-      <div class="timeline-progress">
-        <div id="timelineProgressBar" class="timeline-progress-bar"></div>
+      <div class="profile-tab-panel" data-panel="samling">
+        <section class="profile-section profile-strip" id="timelineSection"><div class="section-head"><h2>Tidslinje</h2><div id="timelineProgressText" class="section-meta timeline-progress-text"></div></div><div class="timeline-progress"><div id="timelineProgressBar" class="timeline-progress-bar"></div></div><div id="timelineBody" class="timeline-body"></div></section>
+        <section class="profile-section profile-collection-showcase" id="collectionCardsSection"><div class="section-head"><h2>Kortsamling</h2></div><div id="collectionCardsBody" class="collection-cards-body"></div><details class="profile-detail-box"><summary>Vis detaljert stedsliste</summary><div id="collectionGrid" class="profile-detail-list"></div></details></section>
+        <div class="profile-grid-2">
+          <section class="profile-section"><div class="section-head"><h2>Steder</h2></div><div id="collectionGridCloneHint" class="muted">Detaljert stedsliste ligger i kortsamling over.</div></section>
+          <section class="profile-section"><div class="section-head"><h2>Personer</h2></div><div id="peopleGrid"></div></section>
+        </div>
       </div>
 
-      <div id="timelineBody" class="timeline-body"></div>
-    </section>
+      <div class="profile-tab-panel" data-panel="merker"><section class="profile-section"><div class="section-head"><h2>Mine merker</h2></div><div id="merits"></div><div class="profile-subaction"><a href="merker/merker.html" class="link-small">→ Se alle merke-kategorier</a></div></section></div>
 
-    <div class="profile-grid-2">
-      <section class="profile-section">
-        <div class="section-head">
-          <h2>Mine merker</h2>
-          <span class="section-meta">Kategorier du bygger opp gjennom steder og quiz.</span>
+      <div class="profile-tab-panel" data-panel="kunnskap">
+        <div class="profile-grid-2">
+          <section class="profile-section">
+            <div class="section-head"><h2>Kunnskapsprofil</h2></div>
+            <p class="muted">Kunnskapsprofil, begreper og siste innsikt vises i Oversikt-fanen for rask én-skjerms status.</p>
+            <div class="profile-subaction"><a href="knowledge.html" class="link-small">→ Åpne kunnskapssiden</a></div>
+          </section>
+          <section class="profile-section">
+            <div class="section-head"><h2>AHA og retning</h2></div>
+            <p class="muted">Siste kunnskap, trivia og neste retning holdes oppdatert automatisk i oversiktspanelet.</p>
+          </section>
         </div>
-
-        <div id="merits"></div>
-
-        <div class="profile-subaction">
-          <a href="merker/merker.html" class="link-small">
-            → Se alle merke-kategorier
-          </a>
-        </div>
-      </section>
-
-      <section class="profile-section">
-        <div class="section-head">
-          <h2>Personer</h2>
-          <span class="section-meta">Historiske personer og figurer du har låst opp.</span>
-        </div>
-
-        <div id="peopleGrid"></div>
-      </section>
-    </div>
-
-    <section class="profile-section profile-collection-showcase" id="collectionCardsSection">
-      <div class="section-head">
-        <h2>Kortsamling</h2>
-        <span class="section-meta">Et visuelt album over steder og personer du har samlet.</span>
       </div>
 
-      <div id="collectionCardsBody" class="collection-cards-body"></div>
-
-      <details class="profile-detail-box">
-        <summary>Vis detaljert stedsliste</summary>
-        <div id="collectionGrid" class="profile-detail-list"></div>
-      </details>
-    </section>
-
-    <div class="profile-grid-3">
-      <section class="profile-section" id="civicationSection">
+      <div class="profile-tab-panel" data-panel="civication">
+        <div class="profile-grid-2">
+          <section class="profile-section" id="civicationSection">
         <div class="section-head">
           <h2>🏛️ Civication</h2>
           <span class="section-meta">Rolle, økonomi og status som eget lag under History Go.</span>
@@ -313,65 +229,14 @@
           <button id="btnCiviWorld" class="btn" disabled>Min verden (kommer)</button>
         </div>
       </section>
+          <section class="profile-section groundhopper-profile-panel" id="groundhopperProfilePanel"><div class="section-head"><h2>Groundhopper</h2></div><p id="groundhopperEmpty" class="muted" style="display:none;">Du har ikke besøkt noen Groundhopper-steder ennå.</p><div id="groundhopperBody" style="display:none;"><div class="groundhopper-stat-grid" id="groundhopperStatGrid"></div><div class="groundhopper-line" id="groundhopperClubsLine">Klubber samlet: 0</div><div class="groundhopper-line" id="groundhopperLastVisited">Sist besøkt: —</div><div class="groundhopper-recent"><div class="groundhopper-recent-title">Siste grounds</div><ul id="groundhopperRecentList"></ul></div></div></section>
+        </div>
+      </div>
 
-      <section class="profile-section" id="notesSection">
-        <div class="section-head">
-          <h2>Mine notater</h2>
-          <span class="section-meta">Egne tanker fra reisen.</span>
-        </div>
-        <p class="muted">
-          Korte tanker du har skrevet underveis i History Go.
-        </p>
-        <div class="profile-subaction">
-          <a href="notater.html" class="link-small">
-            → Åpne notatboken
-          </a>
-        </div>
-      </section>
-
-      <section class="profile-section" id="languageSection">
-        <div class="section-head">
-          <h2 data-i18n="ui.language.label">Språk</h2>
-        </div>
-        <div class="profile-action-row">
-          <label for="languageSelect" data-i18n="ui.language.label">Språk</label>
-          <select id="languageSelect" aria-label="Language">
-            <option value="ar">العربية</option>
-            <option value="bn">বাংলা</option>
-            <option value="de">Deutsch</option>
-            <option value="en">English</option>
-            <option value="es">Español</option>
-            <option value="fr">Français</option>
-            <option value="hi">हिन्दी</option>
-            <option value="id">Bahasa Indonesia</option>
-            <option value="it">Italiano</option>
-            <option value="ja">日本語</option>
-            <option value="ko">한국어</option>
-            <option value="nb">Norsk</option>
-            <option value="pt">Português</option>
-            <option value="ru">Русский</option>
-            <option value="sw">Kiswahili</option>
-            <option value="tr">Türkçe</option>
-            <option value="ur">اردو</option>
-            <option value="zh-Hans">中文</option>
-          </select>
-        </div>
-      </section>
-
-      <section class="profile-section" id="actions">
-        <div class="section-head">
-          <h2>Profilvalg</h2>
-          <span class="section-meta">Eksport og kontroll.</span>
-        </div>
-
-        <div class="profile-action-row">
-          <button id="editProfileBtnBottom" class="btn" onclick="document.getElementById('editProfileBtn')?.click()">Endre profil</button>
-          <button id="exportProfileBtn" class="btn">Del profilkort</button>
-          <button id="resetProfileBtn" class="btn danger">Nullstill fremgang</button>
-        </div>
-      </section>
-    </div>
-
+      <div class="profile-tab-panel" data-panel="profilvalg"><div class="profile-grid-2"><section class="profile-section" id="notesSection"><div class="section-head"><h2>Mine notater</h2></div><div class="profile-subaction"><a href="notater.html" class="link-small">→ Åpne notatboken</a></div></section><section class="profile-section" id="languageSection"><div class="section-head"><h2 data-i18n="ui.language.label">Språk</h2></div><div class="profile-action-row"><label for="languageSelect" data-i18n="ui.language.label">Språk</label><select id="languageSelect" aria-label="Language">
+            <option value="ar">العربية</option><option value="bn">বাংলা</option><option value="de">Deutsch</option><option value="en">English</option><option value="es">Español</option><option value="fr">Français</option><option value="hi">हिन्दी</option><option value="id">Bahasa Indonesia</option><option value="it">Italiano</option><option value="ja">日本語</option><option value="ko">한국어</option><option value="nb">Norsk</option><option value="pt">Português</option><option value="ru">Русский</option><option value="sw">Kiswahili</option><option value="tr">Türkçe</option><option value="ur">اردو</option><option value="zh-Hans">中文</option>
+          </select></div></section></div><section class="profile-section" id="actions"><div class="section-head"><h2>Profilvalg</h2></div><div class="profile-action-row"><button id="editProfileBtnBottom" class="btn" onclick="document.getElementById('editProfileBtn')?.click()">Endre profil</button><button id="exportProfileBtn" class="btn">Del profilkort</button><button id="resetProfileBtn" class="btn danger">Nullstill fremgang</button></div></section></div>
+    </section>
   </div>
 </main>
 
@@ -391,6 +256,8 @@
 
 <script src="js/i18n.js"></script>
 <script src="js/learningLog.js"></script>
+<script src="js/aha.js"></script>
+<script src="js/profileIdentity.js"></script>
 <script src="js/knowledge.js"></script>
 <script src="js/trivia.js"></script>
 <script src="js/hgInsights.js"></script>

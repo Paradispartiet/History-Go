@@ -23,15 +23,15 @@ window.showPlaceCardRoundPopup = function ({
 } = {}) {
   makePopup(
     `
-      <div class="pc-round-popup pc-round-popup-${kind || "generic"}">
-        <div class="pc-round-popup-head">
-          <h2 class="pc-round-popup-title">${hgEsc(title)}</h2>
-          ${subtitle ? `<p class="pc-round-popup-sub">${hgEsc(subtitle)}</p>` : ``}
-        </div>
-        <div class="pc-round-popup-body">
+      <article class="pc-round-popup pc-round-popup-${kind || "generic"} hg-modal">
+        <header class="pc-round-popup-head hg-modal-header">
+          <h2 class="pc-round-popup-title hg-modal-title">${hgEsc(title)}</h2>
+          ${subtitle ? `<p class="pc-round-popup-sub hg-modal-meta">${hgEsc(subtitle)}</p>` : ``}
+        </header>
+        <div class="pc-round-popup-body hg-modal-body">
           ${html || `<p class="hg-muted">Ingen innhold ennå.</p>`}
         </div>
-      </div>
+      </article>
     `,
     "placecard-round-popup"
   );
@@ -454,6 +454,7 @@ function wonderChambersForPerson(person) {
 // 1. LUKK POPUP
 // ============================================================
 function closePopup() {
+  console.trace("[popup] closePopup");
   if (currentPopup) {
     currentPopup.remove();
     currentPopup = null;
@@ -470,8 +471,8 @@ function makePopup(html, extraClass = "", onClose = null) {
   el.className = `hg-popup ${extraClass}`;
 
   el.innerHTML = `
-    <div class="hg-popup-inner">
-      <button class="hg-popup-close" data-close-popup>✕</button>
+    <div class="hg-popup-inner hg-modal-card">
+      <button class="hg-popup-close hg-modal-close" data-close-popup aria-label="Lukk popup">✕</button>
       ${html}
     </div>
   `;
@@ -1239,10 +1240,14 @@ window.showPersonPopup = function(person) {
     : "";
   
   const html = `
-    <img src="${face}" class="hg-popup-face">
-    <h2 class="hg-popup-name">${person.name}</h2>
-    ${kindLabel ? `<p class="hg-popup-cat">${kindLabel}</p>` : ``}
-    <img src="${cardImg}" class="hg-popup-cardimg">
+    <article class="hg-modal">
+      <header class="hg-modal-header">
+        <h2 class="hg-popup-name hg-modal-title">${person.name}</h2>
+        ${kindLabel ? `<p class="hg-popup-cat hg-modal-meta">${kindLabel}</p>` : ``}
+      </header>
+      <div class="hg-modal-body">
+        <img src="${face}" class="hg-popup-face">
+        <img src="${cardImg}" class="hg-popup-cardimg">
 
       <div class="hg-section">
         <h3>Verk</h3>
@@ -1328,6 +1333,8 @@ window.showPersonPopup = function(person) {
           `
           : ""
       }
+      </div>
+    </article>
   `;
 
   makePopup(html, "person-popup");
@@ -1454,9 +1461,13 @@ const peopleHere = (typeof getPeopleForPlace === "function")
   : "";
   
   const html = `
+    <article class="hg-modal">
+      <header class="hg-modal-header">
+      <h3 class="hg-popup-title hg-modal-title">${place.name}</h3>
+      <p class="hg-popup-cat hg-modal-meta">${place.category || ""}</p>
+      </header>
+      <div class="hg-modal-body">
       <img src="${img}" class="hg-popup-img">
-      <h3 class="hg-popup-title">${place.name}</h3>
-      <p class="hg-popup-cat">${place.category || ""}</p>
       <p class="hg-popup-desc">${place.desc || ""}</p>
 
       <button class="hg-quiz-btn" data-quiz="${place.id}">Ta quiz</button>
@@ -1527,6 +1538,8 @@ const peopleHere = (typeof getPeopleForPlace === "function")
         <h3>Observasjoner</h3>
         ${obsHtml}
       </div>
+      </div>
+    </article>
   `;
   makePopup(html, "place-popup");
 

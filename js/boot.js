@@ -247,6 +247,8 @@ async function boot() {
   ============================== */
 
   window.PLACES = places;
+  window.HGPlaces = places;
+  window.allPlaces = places;
   window.PEOPLE = peopleAll;
   window.RELATIONS = relations;
   window.TAGS = tags || [];

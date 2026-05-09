@@ -90,20 +90,21 @@ function wireMapPlacePopupInMapMode() {
       (p) => String(p?.id || "").trim() === String(id || "").trim()
     );
 
-    if (!place || typeof window.openPlaceCard !== "function") return;
+    if (!place) return;
 
-    const isMapMode = window.LayerManager?.getMode?.() === "map";
-    const card = document.getElementById("placeCard");
+    const isMapMode =
+      window.LayerManager?.getMode?.() === "map" ||
+      document.body?.classList.contains("map-only") ||
+      document.body?.classList.contains("mode-map");
 
     if (isMapMode) {
-      window.LayerManager?.show?.("placeCard");
-
-      if (card) {
-        card.style.display = "";
-        card.style.pointerEvents = "";
-        card.setAttribute("aria-hidden", "false");
+      if (typeof window.showPlacePopup === "function") {
+        window.showPlacePopup(place);
       }
+      return;
     }
+
+    if (typeof window.openPlaceCard !== "function") return;
 
     const opened = window.openPlaceCard(place);
 

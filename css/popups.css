@@ -70,7 +70,7 @@
 .hg-popup{
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.65);
+  background: rgba(5,10,18,0.58);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -89,14 +89,14 @@
 
 .hg-popup-inner{
   position: relative;
-  width: 420px;
-  max-height: 720px;
-  overflow-y: auto;
-  background: rgba(15,15,20,0.95);
-  border-radius: 16px;
-  padding: 24px;
+  width: min(700px, calc(100vw - 28px));
+  max-height: min(86dvh, 860px);
+  overflow: hidden;
+  background: rgba(12,16,24,0.97);
+  border-radius: 24px;
+  padding: 0;
   color: #fff;
-  box-shadow: 0 0 35px rgba(0,0,0,0.6);
+  box-shadow: 0 18px 44px rgba(0,0,0,0.38);
 }
 
 /* Wider layouts */
@@ -108,10 +108,10 @@
 /* Close */
 .hg-popup-close{
   position: absolute;
-  top: 12px;
-  right: 12px;
-  width: 36px;
-  height: 36px;
+  top: 10px;
+  right: 10px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   border: 1px solid rgba(255,255,255,0.2);
   background: rgba(255,255,255,0.1);
@@ -123,7 +123,7 @@
 /* Titles */
 .hg-popup-name,
 .hg-popup-title{
-  text-align: center;
+  text-align: left;
   font-size: 22px;
   font-weight: 600;
   margin: 6px 0 12px;
@@ -137,7 +137,7 @@
   object-fit: cover;
   border-radius: 12px;
   display: block;
-  margin: 0 auto 12px;
+  margin: 0 0 12px;
 }
 
 .hg-popup-img{
@@ -149,7 +149,7 @@
 
 .hg-popup-cardimg{
   position: absolute;
-  bottom: 24px;
+  bottom: 12px;
   right: 24px;
   width: 90px;
   height: 90px;
@@ -261,24 +261,21 @@
    PLACE-CARD ROUND POPUPS
    ===================================================== */
 
+.hg-popup.placecard-round-popup{
+  background: rgba(4, 8, 16, 0.66);
+}
+
 .hg-popup.placecard-round-popup .hg-popup-inner{
-  width: min(680px, 92vw);
-  max-height: 80vh;
-  padding: 22px 20px 18px;
-  background:
-    linear-gradient(180deg, rgba(24,24,30,0.98), rgba(12,12,16,0.98));
-  border-radius: 22px;
-  box-shadow:
-    0 24px 80px rgba(0,0,0,0.55),
-    0 0 0 1px rgba(255,255,255,0.05) inset;
-  overflow-y: auto;
-  overflow-x: hidden;
-  -webkit-overflow-scrolling: touch;
+  width: min(700px, calc(100vw - 28px));
+  max-height: min(86dvh, 860px);
+  padding: 0;
+  border-radius: 24px;
+  overflow: hidden;
 }
 
 .pc-round-popup-head{
-  margin-bottom: 16px;
-  padding-right: 42px;
+  margin: 0;
+  padding-right: 64px;
 }
 
 .pc-round-popup-title{
@@ -301,6 +298,7 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
+  padding-top: 6px;
 }
 
 .hg-popup.placecard-round-popup .pc-empty{
@@ -592,6 +590,29 @@
   color: rgba(255,255,255,0.68);
 }
 
+
+
+/* =====================================================
+   LEKSIKON ENTRY POPUP
+   ===================================================== */
+
+.hg-popup.leksikon-entry-popup {
+  overflow: hidden;
+}
+
+.hg-popup.leksikon-entry-popup .hg-popup-inner {
+  width: min(720px, calc(100vw - 28px));
+  max-height: min(86dvh, 860px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+.hg-popup.leksikon-entry-popup .pc-leksikon-article {
+  height: auto;
+  min-height: 0;
+}
 
 /* =====================================================
    NATURE
@@ -1153,4 +1174,135 @@
 .hg-works li{
   padding: 4px 0;
   border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.hg-modal-header{
+  padding: 20px 24px 10px;
+}
+.hg-modal-title{ margin: 8px 0 4px; text-align:left; }
+.hg-modal-meta{ margin:0; color: rgba(230,238,249,.72); font-size: 14px; text-align:left; }
+.hg-modal-body{
+  padding: 8px 24px 22px;
+  overflow-y: auto;
+  max-height: calc(min(86dvh, 860px) - 150px);
+  -webkit-overflow-scrolling: touch;
+  line-height: 1.6;
+  font-size: 16px;
+}
+.hg-modal-footer{
+  padding: 10px 24px 22px;
+}
+
+
+/* Subtil modal-harmonisering på tvers av popup-varianter */
+.hg-popup.place-popup .hg-popup-inner,
+.hg-popup.person-popup .hg-popup-inner,
+.hg-popup.relations-popup .hg-popup-inner,
+.hg-popup.placecard-round-popup .hg-popup-inner,
+.hg-popup.wonderkammer-entry-popup .hg-popup-inner{
+  width: min(640px, calc(100vw - 32px));
+  max-height: min(84dvh, 820px);
+  border-radius: 22px;
+}
+
+.hg-popup{
+  padding: 12px;
+}
+
+.hg-popup .hg-modal-close{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: manipulation;
+}
+
+.hg-popup .hg-modal-header{
+  padding: 20px 24px 10px;
+}
+
+.hg-popup .hg-modal-title{
+  margin: 8px 0 4px;
+  line-height: 1.25;
+}
+
+.hg-popup .hg-modal-meta{
+  margin: 0;
+  line-height: 1.35;
+  color: rgba(230,238,249,.68);
+}
+
+.hg-popup .hg-modal-body{
+  padding: 10px 24px 20px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  line-height: 1.58;
+}
+
+.hg-popup .hg-modal-footer:empty{
+  display:none;
+}
+
+.hg-popup .hg-popup-desc,
+.hg-popup .hg-popupdesc,
+.hg-popup .hg-wiki{
+  line-height: 1.58;
+}
+
+
+/* Scroll-regresjon etter modal-harmonisering
+   Holder én scroll-eier per popup-type:
+   - .hg-modal-body scroller for modal-strukturer
+   - .pc-round-popup-body scroller for PlaceCard-runding-popup
+   - eldre popup-varianter uten modal-body faller tilbake til .hg-popup-inner
+*/
+
+.hg-popup .hg-modal {
+  display: flex;
+  flex-direction: column;
+  max-height: inherit;
+  min-height: 0;
+}
+
+.hg-popup .hg-modal-header,
+.hg-popup .hg-modal-footer {
+  flex: 0 0 auto;
+}
+
+.hg-popup .hg-modal-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  max-height: calc(min(84dvh, 820px) - 136px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+.hg-popup.placecard-round-popup .pc-round-popup {
+  display: flex;
+  flex-direction: column;
+  max-height: min(84dvh, 820px);
+  min-height: 0;
+}
+
+.hg-popup.placecard-round-popup .pc-round-popup-head {
+  flex: 0 0 auto;
+}
+
+.hg-popup.placecard-round-popup .pc-round-popup-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  max-height: calc(min(84dvh, 820px) - 96px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+.hg-popup.relations-popup .hg-popup-inner,
+.hg-popup.brand-popup .hg-popup-inner {
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
 }

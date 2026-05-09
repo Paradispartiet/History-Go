@@ -1,0 +1,116 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "football_supporter_stream",
+  "type": "leisure",
+  "title": "Fotballsupporter etter jobb",
+  "sociological_theme": "tilhorighet_og_fritidskapital",
+  "applies_when": { "any_tags": ["football", "fotball", "supporter"] },
+  "time_slots": ["leisure", "personal"],
+  "storylets": [
+    {
+      "id": "match_chat",
+      "message_type": "people",
+      "time_slot": "leisure",
+      "from": "Venn fra tribunen",
+      "subject": "Skal du se kampen i kveld?",
+      "situation": [
+        "Gruppechatten fyrer opp med laguttak, gamle memes og avtaler om hvem som holder av plass ved bordet.",
+        "Du har akkurat kommet hjem fra skift og kjenner at valget står mellom sofa og fellesskap.",
+        "Ingen kaller det omsorg, men de merker fort hvis du forsvinner over flere kampkvelder."
+      ],
+      "choices": [
+        { "id": "A", "label": "Svar at du kommer til avspark, men hopper over pubrunden før kamp.", "effect": 1, "tags": ["belonging", "boundary"], "feedback": "Du er fortsatt en del av gjengen, bare med en tydeligere ramme." },
+        { "id": "B", "label": "Skriv at du tar hele kvelden fra førkamp til siste sang.", "effect": 0, "tags": ["group_loyalty", "late_night"], "feedback": "Chatten eksploderer i tomler opp, og forventningene skrus opp." }
+      ],
+      "opens_streams": ["working_class_shift_life", "alcohol_pressure_stream"],
+      "adds_flags": ["football_evening", "pub_social_pressure"],
+      "risk_links": ["fatigue_risk"],
+      "links": []
+    },
+    {
+      "id": "pub_before_kickoff",
+      "message_type": "story",
+      "time_slot": "leisure",
+      "from": "Supportergruppa",
+      "subject": "Møtes på puben før avspark",
+      "situation": [
+        "På puben går praten om tabell og bortetur, men også om jobbskift, lønn og hvem som måtte bytte helg.",
+        "Runden kommer raskt til bordet, og det blir lagt merke til hvem som takker ja og nei.",
+        "Stemningen er varm, men lojaliteten måles i små handlinger alle ser."
+      ],
+      "choices": [
+        { "id": "A", "label": "Bli med på første skål, men bestill alkoholfritt i samme slengen.", "effect": 1, "tags": ["social_navigation", "boundary"], "feedback": "Du holder rytmen i gruppa uten å miste styring på kvelden." },
+        { "id": "B", "label": "Ta samme tempo som bordet og bli med på hver runde.", "effect": -1, "tags": ["pub", "pressure"], "feedback": "Du glir inn i fellesskapet, men flytter belastningen til neste morgen." }
+      ],
+      "opens_streams": ["alcohol_pressure_stream"],
+      "adds_flags": ["pub_social_pressure"],
+      "risk_links": ["work_risk", "fatigue_risk"],
+      "links": []
+    },
+    {
+      "id": "away_trip_logistics",
+      "message_type": "class_case",
+      "time_slot": "personal",
+      "from": "Groundhopper-Simen",
+      "subject": "Bortekamp med nattog?",
+      "situation": [
+        "Simen foreslår bortetur med billig nattog og retur rett før tidligvakt.",
+        "Han sier det er slik minner bygges: trang kupé, termoskaffe og kampprat med folk du ellers aldri møter.",
+        "For deg betyr turen både tilhørighet og et regnestykke av søvn, penger og turnus."
+      ],
+      "choices": [
+        { "id": "A", "label": "Bli med, men ta fri fra første timer på skiftet dagen etter.", "effect": 1, "tags": ["planning", "belonging"], "feedback": "Du prioriterer turen og gjør kostnaden synlig i planlegginga." },
+        { "id": "B", "label": "Stå over turen og foreslå felleskamp hjemme i stedet.", "effect": 0, "tags": ["economic_boundary", "local_community"], "feedback": "Du blir hjemme, men holder kontakten gjennom et alternativ gjengen kan samles om." }
+      ],
+      "opens_streams": ["working_class_shift_life"],
+      "adds_flags": ["leisure_planning_pressure"],
+      "risk_links": ["fatigue_risk", "economic_risk"],
+      "links": [
+        { "label": "Terminlister og kampprogram", "url": "https://www.fotball.no/turneringer" }
+      ]
+    },
+    {
+      "id": "post_match_debrief_feed",
+      "message_type": "people",
+      "time_slot": "personal",
+      "from": "Supporterchatten dagen derpå",
+      "subject": "Har du sett analysene i dag?",
+      "situation": [
+        "Morgenen etter kampen deles klipp, spillerbørs og lange lydmeldinger om dommeravgjørelser.",
+        "For noen er dette bare sport, for andre er det ukas viktigste samtale på vei til jobb.",
+        "Du bestemmer om du går inn i praten eller lar dagen starte stille."
+      ],
+      "choices": [
+        { "id": "A", "label": "Send en kort analyse i chatten før du går inn på skiftet.", "effect": 1, "tags": ["participation", "micro_belonging"], "feedback": "Du blir nevnt videre i tråden, og navnet ditt holder seg aktivt i fellesskapet." },
+        { "id": "B", "label": "Les alt, men la være å svare før arbeidsdagen er over.", "effect": 0, "tags": ["distance", "energy_saving"], "feedback": "Du sparer energi, men glipper litt av den kollektive rytmen i chatten." }
+      ],
+      "opens_streams": ["working_class_shift_life"],
+      "adds_flags": ["community_followup"],
+      "risk_links": [],
+      "links": [
+        { "label": "Fotballnyheter", "url": "https://www.nrk.no/sport/fotball/" },
+        { "label": "Norsk supporterkultur", "url": "https://snl.no/supporter" }
+      ]
+    },
+    {
+      "id": "silent_care_on_stands",
+      "message_type": "story",
+      "time_slot": "leisure",
+      "from": "Tribunegjengen",
+      "subject": "Plassen din er holdt av",
+      "situation": [
+        "Du kommer sent fra jobb og ser at noen allerede har holdt av plassen din på tribunen.",
+        "Ingen gjør et nummer ut av det, men de skyver seg til side så du får stå der du pleier.",
+        "Denne typen praktisk omtanke blir aldri kalt omsorg, men den gjør hverdagen mindre ensom."
+      ],
+      "choices": [
+        { "id": "A", "label": "Takke i chatten etter kampen og tilby å holde plass neste gang.", "effect": 1, "tags": ["reciprocity", "community"], "feedback": "Gesten blir registrert, og båndet i gruppa strammes litt til." },
+        { "id": "B", "label": "La det passere uten kommentar og gå rett hjem etter sluttsignalet.", "effect": 0, "tags": ["withdrawal", "fatigue"], "feedback": "Kvelden fungerer, men du glir litt ut av den uformelle gjensidigheten." }
+      ],
+      "opens_streams": ["working_class_shift_life"],
+      "adds_flags": ["supporter_belonging"],
+      "risk_links": [],
+      "links": []
+    }
+  ]
+}

@@ -1,0 +1,282 @@
+{
+  "version": "v5.1-source-priority-patch-litteratur",
+  "subject_id": "litteratur",
+  "subject_title": "Litteratur",
+  "scope": "oslo_og_omegn",
+  "purpose": "Stramme inn quizgeneratoren for Litteratur slik at konkrete tekster, verk, forfattere, forfatterskap, publikasjoner, bibliotek, forlag, arkiver, manuskripter, litterære steder, leserpraksiser og dokumenterte litteraturfaglige kilder dominerer synlig spørsmålsinnhold. Fagkart, methods, emner, emnemapping og pensum skal styre struktur, metode, teori og progresjon, men ikke fungere som hovedkilde til faktapåstander.",
+  "canonical_inputs": {
+    "fagkart": "fagkart_litteratur_canonical_v4_5.json",
+    "methods": "methods_litteratur_canonical_v4_5.json",
+    "emner": "emner_litteratur_canonical_v4_5.json",
+    "emnemapping": "emnemapping_litteratur_canonical_v4_5.json",
+    "pensum": "litteraturpensum_canonical_v4_5.json",
+    "domain_count": 6,
+    "emne_count": 28,
+    "method_count": 29,
+    "mapping_count": 28,
+    "topic_hook_count": 60
+  },
+  "hard_rules": {
+    "source_dominance_rule": "Eksterne litteraturfaglige kilder, konkrete tekster, verk, forfattere, forfatterskap, publikasjoner, bibliotek-, forlags-, arkiv- og institusjonskilder, manuskripter, kritikk, resepsjon og dokumenterte litterære offentligheter skal dominere det synlige faktainnholdet i litteraturquizzer. Canonical-filene er styringsfiler, ikke faktakilde.",
+    "canonical_files_are_guides_not_content": true,
+    "external_literature_source_first_all_sets": true,
+    "minimum_external_source_ratio_by_set": {
+      "1": 0.85,
+      "2": 0.85,
+      "3": 0.8,
+      "4": 0.75,
+      "5": 0.75,
+      "6": 0.7,
+      "7": 0.75,
+      "8": 0.75
+    },
+    "internal_file_only_questions_max_per_quiz": 0.05,
+    "internal_file_only_questions_allowed_only_for": [
+      "ren observasjon av synlig tekst, bok, omslag, manuskript, sitat, minneskilt, bibliotekrom eller litterært sted",
+      "validering av metadata, kategori eller spørsmålslag",
+      "nødfallback når ekstern kilde ikke finnes, og dette loggføres eksplisitt"
+    ],
+    "question_seed_priority": [
+      "konkret tekst, verk, forfatter, forfatterskap, publikasjon eller litterært sted",
+      "offisiell bibliotek-, museum-, forlag-, arkiv-, akademi- eller institusjonskilde",
+      "litteraturhistorisk faglitteratur, forfatterbiografi, katalogtekst, arkivbeskrivelse eller kritikk",
+      "manuskript, brev, dagbok, utgavehistorikk, paratekst eller dokumentert bokhistorisk kilde",
+      "dokumentert resepsjon, litterær debatt, opplesning, festival, tidsskrift eller offentlighet",
+      "oversettelses-, språkpolitisk eller publiseringshistorisk kilde",
+      "stedsdata/persondata i appen",
+      "fagkart, methods, emner, emnemapping og pensum som styring – ikke faktakilde"
+    ],
+    "litteratur_question_must_start_from": [
+      "konkret tekst eller tekstutdrag",
+      "navngitt verk eller publikasjon",
+      "navngitt forfatter, oversetter, kritiker, redaktør eller litterær feltaktør",
+      "forfatterskap knyttet til sted, verk, arkiv eller offentlighet",
+      "bibliotek, forlag, bokhandel, redaksjon, litteraturhus, lesesal eller arkiv",
+      "manuskript, brev, dagbok, bokobjekt, utgave, omslag eller paratekst",
+      "litterært sted, forfatterhjem, kafé, scene, byrom eller leserfellesskap med dokumentert litterær kobling",
+      "dokumentert kritikk, resepsjon, sensur, debatt, opplesning eller litterær offentlighet",
+      "språkvalg, oversettelse, sjanger, fortellerstemme eller litteraturhistorisk brudd forankret i konkret tekst"
+    ],
+    "forbidden_generation_patterns": [
+      "Ikke generer synlige spørsmål direkte fra emne-, hook-, metode- eller teorinavn.",
+      "Ikke spør generisk om litteraturteori uten konkret tekst, verk, forfatter, sted, institusjon, leserpraksis eller kilde.",
+      "Ikke gjør et sted til litteratur bare fordi en forfatter bodde der, besøkte det eller nevnte det, uten dokumentert verk-, steds- eller offentlighetskobling.",
+      "Ikke klassifiser teater/scenekunst, musikk, film/TV, media, kunst, historie, byarkitektur, politikk, vitenskap, sport eller næringsliv som litteratur når litteratur bare er sekundærlag.",
+      "Ikke bruk em_by_*, em_his_*, em_kunst_*, em_media_*, em_musikk_*, em_pop_*, em_vit_*, em_pol_* eller em_naering_* som hoved-emne_ids i places_litteratur eller people_litteratur."
+    ],
+    "required_emne_prefix": "em_lit_",
+    "blocked_emne_prefixes_for_litteratur_files": [
+      "em_by_",
+      "em_his_",
+      "em_kunst_",
+      "em_media_",
+      "em_musikk_",
+      "em_pop_",
+      "em_vit_",
+      "em_pol_",
+      "em_naering_"
+    ],
+    "people_litteratur_rule": "people_litteratur skal inneholde personer der hovedrollen er forfatter, poet, dramatiker som tekstforfatter, essayist, oversetter, kritiker, redaktør, forlegger, litteraturformidler eller sentral aktør i litteraturfeltet. Personer der hovedrollen er scenekunst, musikk, film, media, kunst, politikk, vitenskap eller historie skal primært ligge i disse kategoriene, med litteratur som sekundært tag bare der det er relevant.",
+    "places_litteratur_rule": "places_litteratur skal inneholde steder der hovedrollen er litterært verk, forfattersted, forfatterhjem, bibliotek, forlag, bokhandel, arkiv, manuskriptmiljø, redaksjon, litteraturhus, lesesal, litterær kafé, opplesningssted eller litterær offentlighet. Rene teater-, musikk-, film-, media-, kunst-, historie- eller byarkitektursteder skal ikke presses inn i litteratur."
+  },
+  "soft_preferences": {
+    "preferred_external_source_mix_per_place": [
+      "minst én offisiell bibliotek-, museum-, forlag-, arkiv-, akademi- eller institusjonskilde",
+      "minst én litteraturhistorisk, biografisk, kritisk, katalogmessig eller arkivbasert kilde",
+      "minst én konkret tekst-, verk-, publikasjon-, forfatter- eller resepsjonskilde når quiz handler om verk eller person"
+    ],
+    "preferred_question_build_path": "litteraturfaglig kilde eller konkret tekst -> presist claim -> sted/person/verk/institusjon -> metode/emne -> teori",
+    "preferred_role_of_canonical_files": [
+      "velge riktig em_lit_*",
+      "velge relevant litteraturmetode",
+      "styre om spørsmålet bør starte i tekst, sted, forfatter, publikasjon, institusjon, leser eller offentlighet",
+      "spre teorier, tenkere, verk, steder, sjangre og metoder",
+      "unngå kategorirot mellom litteratur, scenekunst, musikk, film, media, kunst, historie og by",
+      "unngå teorioverstyring der teksten, stedet eller verket blir borte"
+    ],
+    "preferred_question_surfaces": [
+      "text-first",
+      "work-first",
+      "author-place-first",
+      "institution-first",
+      "book-object-first",
+      "reader-public-first",
+      "text-or-place-first_then_named_theorist"
+    ],
+    "preferred_norwegian_theory_path": "Når relevant norsk litteraturhistorisk, litteratursosiologisk eller språkpolitisk teori finnes, kan den brukes i senere sett, men bare etter at tekst, sted, forfatter eller institusjon allerede er etablert."
+  },
+  "set_guidance": {
+    "1": {
+      "name": "grunnfakta_tekst_forfatter_sted",
+      "dominant_driver": "ekstern kilde, konkret tekst, verk, forfatter, sted, bibliotek, forlag eller litterær institusjon",
+      "canonical_role": "lett styring av emne og metode",
+      "allowed_methods": [
+        "met_lit_naerlesning",
+        "met_lit_litteraer_stedsanalyse",
+        "met_lit_biografisk_stedsanalyse",
+        "met_lit_litteraturhistorisk_kontekstualisering"
+      ],
+      "question_style": "enkel gjenkjenning, verk/sted/person, institusjonsrolle, tekstlig spor, forfatterskap eller publikasjon"
+    },
+    "2": {
+      "name": "sprak_form_stemme",
+      "dominant_driver": "konkret tekst, språkføring, motiv, symbol, stemme, synsvinkel, rytme eller fortellerstruktur",
+      "canonical_role": "lett til middels metodeføring",
+      "allowed_methods": [
+        "met_lit_naerlesning",
+        "met_lit_stilistisk_analyse",
+        "met_lit_motiv_symbol_analyse",
+        "met_lit_fortelleranalyse",
+        "met_lit_perspektiv_stemme_analyse"
+      ],
+      "question_style": "tekstnær observasjon, stil, motiv, symbol, perspektiv, stemme og form uten ren smaksdom"
+    },
+    "3": {
+      "name": "sjanger_epoke_tradisjon",
+      "dominant_driver": "konkret verk, sjanger, publiseringshistorie, litteraturhistorisk kilde, epoke og brudd",
+      "canonical_role": "høy metode- og emnestyring tillatt",
+      "allowed_methods": [
+        "met_lit_sjangeranalyse",
+        "met_lit_litteraturhistorisk_kontekstualisering",
+        "met_lit_komparativ_tekstanalyse",
+        "met_lit_tidsstruktur_analyse"
+      ],
+      "question_style": "roman, lyrikk, drama, essay, hybridform, modernisme/realisme, tradisjon, brudd og intertekst"
+    },
+    "4": {
+      "name": "bok_forlag_arkiv_materialitet",
+      "dominant_driver": "bokobjekt, manuskript, arkiv, forlag, redaksjon, bibliotek, bokhandel, utgave eller digital tekst",
+      "canonical_role": "middels til høy metodeføring",
+      "allowed_methods": [
+        "met_lit_bokhistorisk_analyse",
+        "met_lit_publiserings_og_forlagsanalyse",
+        "met_lit_arkiv_og_manuskriptanalyse",
+        "met_lit_sirkulasjonsanalyse",
+        "met_lit_digital_tekst_og_plattformanalyse"
+      ],
+      "question_style": "litteratur som materiell og institusjonell infrastruktur: bok, manus, forlag, arkiv, digitalitet og sirkulasjon"
+    },
+    "5": {
+      "name": "felt_kanon_kritikk",
+      "dominant_driver": "forlag, bibliotek, priser, kritikk, skoler, kanon, redaktører, oversettere og litterære institusjoner",
+      "canonical_role": "høy felt- og institusjonsstyring tillatt",
+      "allowed_methods": [
+        "met_lit_feltanalyse",
+        "met_lit_kanon_og_institusjonsanalyse",
+        "met_lit_kritikk_og_resepsjonsanalyse",
+        "met_lit_publiserings_og_forlagsanalyse"
+      ],
+      "question_style": "hvem får verdi, hvem publiseres, hvem leses, hvem kanoniseres, og hvilke institusjoner sorterer litteraturen"
+    },
+    "6": {
+      "name": "sprak_makt_identitet_blindsoner",
+      "dominant_driver": "konkrete tekster, språkvalg, minoritetsstemmer, kjønn, klasse, oversettelse, normering, diskurs og arkivfravær",
+      "canonical_role": "høy teoristyring tillatt, men bare etter konkret tekst eller kilde",
+      "allowed_methods": [
+        "met_lit_sprakpolitisk_analyse",
+        "met_lit_diskursanalyse",
+        "met_lit_feministisk_og_postkolonial_lesning",
+        "met_lit_sosiologisk_tekstanalyse",
+        "met_lit_oversettelsesanalyse"
+      ],
+      "question_style": "språk, makt, identitet, representasjon, marginalisering, oversettelse og tause stemmer"
+    },
+    "7": {
+      "name": "leser_offentlighet_formidling",
+      "dominant_driver": "bibliotek, litteraturhus, opplesninger, festivaler, kritikk, debatt, leserfellesskap og litterær offentlighet",
+      "canonical_role": "middels til høy teoriføring",
+      "allowed_methods": [
+        "met_lit_leser_og_resepsjonsanalyse",
+        "met_lit_offentlighetsanalyse",
+        "met_lit_formidlingsanalyse",
+        "met_lit_kritikk_og_resepsjonsanalyse"
+      ],
+      "question_style": "lesere, formidling, offentlig debatt, resepsjon, tilgjengelighet, sensur, ytring og litterær samtale"
+    },
+    "8": {
+      "name": "digital_sirkulasjon_sammenligning_teori",
+      "dominant_driver": "digitale tekster, plattformer, oversettelse, verdenslitteratur, intermedialitet, sirkulasjon og komparative cases",
+      "canonical_role": "høy teori tillatt, men med konkret tekst, plattform, oversettelse eller institusjonelt case",
+      "allowed_methods": [
+        "met_lit_digital_tekst_og_plattformanalyse",
+        "met_lit_intermedial_analyse",
+        "met_lit_sirkulasjonsanalyse",
+        "met_lit_komparativ_tekstanalyse",
+        "met_lit_oversettelsesanalyse"
+      ],
+      "question_style": "digital tekst, medieskifte, intermedialitet, verdenslitteratur, oversettelse, sirkulasjon og teori"
+    }
+  },
+  "litteratur_category_guardrails": {
+    "accept_as_litteratur_primary_when": [
+      "stedet eller personen har litteraturfaglig hovedrolle",
+      "det finnes konkret tekst, verk, forfatter, forfatterskap, publikasjon, bibliotek, forlag, arkiv, bokhandel, litteraturhus eller litterær offentlighet",
+      "spørsmål kan bygges fra tekst, språk, sjanger, publikasjon, institusjon, resepsjon, arkiv eller litteraturhistorisk kilde",
+      "litteraturfeltets logikk er primær, ikke bare historisk, arkitektonisk, teatralsk eller kulturell bakgrunn"
+    ],
+    "do_not_accept_as_litteratur_primary_when": [
+      "hovedrollen er scenekunst, musikk, film/TV, media, kunst, historie, by, vitenskap, politikk, sport eller næringsliv",
+      "litteratur bare er en aktivitet som skjer på stedet uten dokumentert stedlig eller institusjonell betydning",
+      "stedet er nevnt i et verk uten at stedet selv er viktig som litterær infrastruktur eller tolkning",
+      "personen er kulturpersonlighet, men ikke litterær feltaktør"
+    ],
+    "secondary_litteratur_tag_allowed": true
+  },
+  "validator_additions": [
+    "Avvis litteraturquiz hvis synlig innhold primært er parafrase av fagkart, emner, methods eller mapping.",
+    "Avvis spørsmål som kan spores bare til emne-/hook-/metodenavn og ikke til konkret tekst, verk, forfatter, sted, institusjon, publikasjon, leserpraksis, resepsjon eller ekstern kilde.",
+    "Avvis hoved-emne_ids i places_litteratur eller people_litteratur som ikke starter med em_lit_*.",
+    "Flagg poster der hovedkategori ser ut til å være scenekunst, musikk, film/TV, media, kunst, historie, by, vitenskap, politikk, sport eller næringsliv.",
+    "Logg per spørsmål source_origin som external, mixed, observed_text, observed_site, observed_book_object eller internal_only.",
+    "Flagg quiz der internal_only overstiger 5 prosent.",
+    "Flagg teorioverstyring når navngitt teoretiker kommer før tekst/sted/forfatter/institusjon er etablert.",
+    "Flagg tekstanalyse som blir ren smaksvurdering uten språk, form, sitat, verk, kilde eller tekstlig observasjon.",
+    "Flagg biografiske spørsmål som ikke skiller mellom forfatter, forteller og verk.",
+    "Flagg stedsbaserte spørsmål der koblingen til litteratur bare er løs assosiasjon."
+  ],
+  "generation_metadata_additions": {
+    "required_per_question_fields_recommended": [
+      "source_origin",
+      "claim_basis",
+      "guidance_basis",
+      "method_id",
+      "emne_id",
+      "literature_anchor_type",
+      "source_note"
+    ],
+    "source_origin_values": [
+      "external",
+      "mixed",
+      "observed_text",
+      "observed_site",
+      "observed_book_object",
+      "internal_only"
+    ],
+    "literature_anchor_type_values": [
+      "text",
+      "work",
+      "author",
+      "authorship",
+      "literary_place",
+      "library",
+      "publisher",
+      "bookstore",
+      "archive",
+      "manuscript",
+      "publication_history",
+      "reception",
+      "literary_public_sphere",
+      "translation",
+      "language_policy",
+      "reading_practice",
+      "digital_platform"
+    ],
+    "claim_basis_definition": "Den konkrete litteraturfaglige påstanden fra ekstern kilde, tekst, verk, forfatter, publikasjon, institusjon, arkiv, kritikk eller dokumentert observasjon.",
+    "guidance_basis_definition": "Hvilket em_lit_*, hook, metode eller teorispor som styrte spørsmålets form uten å levere faktapåstanden.",
+    "method_id_definition": "Én method_id fra methods_litteratur_canonical_v4_5.json brukt til å forme spørsmålet.",
+    "emne_id_definition": "Én em_lit_* fra emner_litteratur_canonical_v4_5.json brukt som hovedemne.",
+    "source_note_definition": "Kort kildebeskrivelse som sier hvilken type litteraturfaglig kilde som er brukt."
+  },
+  "diagnosis_note": "Når mange filer er opplastet, må modellen ikke overvekte canonical systemfiler bare fordi de er mange. For litteratur skal konkrete tekster, verk, forfattere, publikasjoner, institusjoner, arkiv, kritikk, resepsjon, leserpraksiser og litterære steder dominere synlig quizinnhold. Fagkart, methods, emner, emnemapping og pensum er styring.",
+  "migration_note": "Eksisterende places_litteratur og people_litteratur bør migreres til em_lit_* bare etter at hvert objekt er lest. Det må samtidig sjekkes at hovedkategori faktisk er litteratur og ikke scenekunst, musikk, film, media, kunst, historie, by eller annet fag."
+}

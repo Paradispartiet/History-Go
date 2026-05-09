@@ -33,16 +33,19 @@ switch(next){
   }
 
   function open(){
+    console.trace("[bottomSheetController] open");
     setState(STATES.OPEN);
     if (el) el.setAttribute("aria-hidden", "false");
   }
 
   function collapse(){
+  console.trace("[bottomSheetController] collapse");
   setState(STATES.COLLAPSED);
   if (el) el.setAttribute("aria-hidden", "true");
 }
 
 function hide(){
+  console.trace("[bottomSheetController] hide");
   setState(STATES.HIDDEN);
   if (el) el.setAttribute("aria-hidden", "true");
 }

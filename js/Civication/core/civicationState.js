@@ -75,6 +75,14 @@
     threads: []
   },
 
+  narrative_state_v1: {
+    active_streams: [],
+    stream_progress: {},
+    flags: [],
+    choice_history: [],
+    updated_at: null
+  },
+
   career: {
     activeJob: null,
     obligations: [],
