@@ -74,6 +74,50 @@
     return "unknown";
   }
 
+  function getMessageChannel(event) {
+    const ev = event || {};
+    const explicit = normalize(ev.channel || ev.messageChannel);
+    if (explicit === "job" || explicit === "jobmail") return "job";
+    if (explicit === "private" || explicit === "personal") return "private";
+
+    const type = normalize(ev.type || ev.kind || ev.mail_type);
+    const track = normalize(ev.track || ev.arc);
+    const slot = normalize(ev.slot || ev.timeSlot || ev.time_slot);
+    const sourceType = normalize(ev.source_type);
+    const mailClass = normalize(ev.mail_class);
+
+    if (
+      type === "job" ||
+      type === "jobmail" ||
+      track === "career" ||
+      track === "job" ||
+      slot === "work" ||
+      slot === "workday" ||
+      sourceType === "blocked_job" ||
+      sourceType === "workday" ||
+      mailClass === "job_message" ||
+      mailClass === "opportunity_blocked" ||
+      classifyEvent(ev) === "workday"
+    ) {
+      return "job";
+    }
+
+    if (
+      type === "private" ||
+      type === "personal" ||
+      slot === "evening" ||
+      slot === "free_time" ||
+      slot === "leisure" ||
+      slot === "personal" ||
+      sourceType === "life" ||
+      mailClass === "private_message"
+    ) {
+      return "private";
+    }
+
+    return "private";
+  }
+
   function splitInbox(inbox) {
     const list = Array.isArray(inbox) ? inbox : [];
     const buckets = { messages: [], workday: [], milestones: [], system: [], unknown: [] };
@@ -111,6 +155,7 @@
 
   window.CivicationEventChannels = {
     classifyEvent: classifyEvent,
+    getMessageChannel: getMessageChannel,
     splitInbox: splitInbox,
     isMessage: isMessage,
     isWorkdayEvent: isWorkdayEvent,
