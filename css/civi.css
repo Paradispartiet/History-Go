@@ -765,3 +765,17 @@ body.civi-mapmode .civi-panels{
 .civi-event-card.is-milestone{border-color:rgba(214,170,58,.4);background:rgba(214,170,58,.08);}
 .civi-event-card.is-workday{border-color:rgba(127,167,214,.4);}
 .civi-event-feedback{margin-top:10px;}
+
+/* Civication Map v2.1 legend + readability */
+.civi-map-legend{position:absolute;left:14px;bottom:82px;z-index:3;max-width:min(280px,58vw);border:1px solid rgba(255,255,255,.16);border-radius:12px;background:rgba(8,13,18,.72);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:#fff}
+.civi-map-legend-toggle{width:100%;padding:8px 10px;background:transparent;border:0;color:#fff;font-weight:800;text-align:left;font-size:12px;letter-spacing:.03em}
+.civi-map-legend-body{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;padding:0 10px 10px}
+.civi-map-legend.is-collapsed .civi-map-legend-body{display:none}
+.civi-map-legend-body span{display:block;padding:6px 8px;border-radius:8px;border:1px solid rgba(255,255,255,.12);font-size:11px}
+.civi-map-legend-body [data-kind="work"]{background:rgba(159,181,206,.22)}
+.civi-map-legend-body [data-kind="housing"]{background:rgba(220,191,151,.2)}
+.civi-map-legend-body [data-kind="store"]{background:rgba(131,174,222,.2)}
+.civi-map-legend-body [data-kind="debate"]{background:rgba(197,160,232,.2)}
+.civi-map-legend-body [data-kind="leisure"]{background:rgba(134,190,143,.22)}
+.civi-map-legend-body [data-kind="power"]{background:rgba(241,206,145,.2)}
+@media (max-width:740px){.civi-map-legend{left:10px;bottom:128px;max-width:66vw}.civi-map-legend-body{grid-template-columns:1fr;font-size:12px}}
