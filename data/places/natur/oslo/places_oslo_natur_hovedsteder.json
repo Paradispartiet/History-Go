@@ -15,13 +15,13 @@
       "habitat",
       "biodiversitet"
     ],
-    "sourceHint": "Bygd på eksisterende natur-hovedsted, ruteankre og naturreglene i fag/natur. Områdeanker lagt på vannets sentrale del; delankre følger stoppene rundt vannet.",
+    "sourceHint": "Bygd på eksisterende hovedobjekt og delpunktfila for Østensjøvannet. Hovedobjektet representerer hele våtmarksområdet, mens nord, sør, sivbelte, fugletårn og Bogerudmyra ligger som delpunkter.",
     "coordType": "area_center",
     "coordStatus": "semantic_anchor",
     "coordSource": "repo_synthesis_from_existing_natur_files",
     "coordPrecisionM": 120,
     "coordVerifiedAt": "2026-05-09",
-    "coordNote": "Bevisst hovedanker for hele våtmarksområdet; rute- og observasjonspunkter rundt vannet skal brukes som delankre.",
+    "coordNote": "Bevisst hovedanker for hele våtmarksområdet; observasjonspunkter og randsoner ligger i delpunktfila.",
     "anchors": [
       {
         "id": "ostensjovannet_nord",
@@ -42,15 +42,6 @@
         "note": "Observasjonspunkt mot våtmark og åpent vann for fugl gjennom året."
       },
       {
-        "id": "ostensjovannet_sivbelte",
-        "name": "Østensjøvannet sivbelte",
-        "lat": 59.8859,
-        "lon": 10.8247,
-        "r": 170,
-        "type": "area_anchor",
-        "note": "Sivdominert kantsonesone med viktig skjul- og hekkehabitat."
-      },
-      {
         "id": "ostensjovannet_sor",
         "name": "Østensjøvannet sør",
         "lat": 59.8834,
@@ -58,15 +49,6 @@
         "r": 120,
         "type": "area_anchor",
         "note": "Sørlig våtmarks- og vannkantområde med rik kantflora og vannfugl."
-      },
-      {
-        "id": "bogerudmyra",
-        "name": "Bøler/Bogerudmyra",
-        "lat": 59.8927,
-        "lon": 10.8438,
-        "r": 180,
-        "type": "area_anchor",
-        "note": "Myr- og fuktmarksnær randsone i grønnstrukturen rundt Østensjø-området."
       }
     ],
     "year": 1992,
@@ -244,92 +226,97 @@
     "lon": 10.6849,
     "r": 950,
     "category": "natur",
-    "desc": "Skogkledd halvøy med naturreservater, kulturlandskap, strender og store friluftsområder.",
+    "desc": "Bynær halvøy med kystnatur, skog, strandsoner, grønnstruktur og sterke overganger mellom natur, landskap og bruk.",
     "tags": [
-      "halvøy",
-      "kulturlandskap",
-      "naturreservat",
+      "halvoy",
+      "fjordnatur",
+      "skog",
       "strand",
-      "friluftsliv"
+      "gronnstruktur",
+      "kystnatur"
     ],
-    "sourceHint": "SNL beskriver Bygdøy som flat, skogkledd halvøy og viktig rekreasjonsområde, med naturreservater og fredet kulturmiljø. Koordinatet er et områdesenter.",
+    "sourceHint": "Bygd på eksisterende hovedobjekt og delpunktfila for Bygdøy. Hovedobjektet skal representere hele naturlandskapet, mens Kongeskogen, Huk, Paradisbukta og andre delpunkter ligger i egen sted-/rutefil.",
     "coordType": "area_center",
     "coordStatus": "semantic_anchor",
-    "coordSource": "manual_map_check",
+    "coordSource": "repo_synthesis_from_existing_natur_files",
     "coordPrecisionM": 120,
-    "coordVerifiedAt": "2026-05-01",
-    "coordNote": "Bevisst stort områdeanker for hele Bygdøy-halvøya.",
+    "coordVerifiedAt": "2026-05-09",
+    "coordNote": "Bevisst stort områdeanker for hele Bygdøy-halvøya; naturpunkter langs kyst og i skog ligger i delpunktfila.",
     "anchors": [
       {
+        "id": "bygdoy_kongeskogen",
+        "name": "Bygdøy Kongeskogen",
+        "lat": 59.9121,
+        "lon": 10.6758,
+        "r": 180,
+        "type": "area_anchor",
+        "note": "Skogpreget nordvestlig del med eldre løvtrær og stinett."
+      },
+      {
         "id": "bygdoy_huk",
-        "name": "Bygdøy – Huk",
+        "name": "Bygdøy Huk",
         "lat": 59.8994,
-        "lon": 10.6702,
-        "r": 220,
+        "lon": 10.6661,
+        "r": 130,
         "type": "area_anchor",
-        "note": "Ytre kyst- og strandsone på sørvestsiden."
+        "note": "Ytre kyst- og strandsone med svaberg, gruntvann og fjordkontakt."
       },
       {
-        "id": "bygdoy_folkemuseet",
-        "name": "Bygdøy – Folkemuseet",
-        "lat": 59.9053,
-        "lon": 10.6849,
-        "r": 220,
-        "type": "area_anchor",
-        "note": "Sentral del av kulturlandskap og stiaksene."
-      },
-      {
-        "id": "bygdoy_kongsgarden",
-        "name": "Bygdøy – Kongsgården",
-        "lat": 59.9131,
-        "lon": 10.6975,
-        "r": 220,
-        "type": "area_anchor",
-        "note": "Nordøstlig del nær jordbruks- og museumsområdene."
+        "id": "bygdoy_bygdoynes",
+        "name": "Bygdøy Bygdøynes",
+        "lat": 59.9072,
+        "lon": 10.6992,
+        "r": 120,
+        "type": "unlock_anchor",
+        "note": "Overgangssone mellom kystnatur, kantkratt og kulturpreget halvøylandskap."
       }
     ],
     "year": 2002,
-    "popupDesc": "Bygdøy er et samlet natur- og kulturmiljø med skog, strender, jordbrukslandskap, kongelige eiendommer og store museumsområder. Halvøya viser hvordan rekreasjon, vern og institusjonell bruk kan eksistere side om side i et bynært landskap.\n\nI History Go er Bygdøy viktig fordi stedet binder sammen naturhistorie, kulturmiljø og hovedstadens utvikling av friluftsområder. Spørsmål bør treffe både landskapsrommet, den kongelige og museale historien og hvordan området brukes av byens befolkning.",
+    "popupDesc": "Bygdøy bør i naturkategorien leses som et sammensatt kyst- og grønnstrukturlandskap, ikke bare som museumsområde eller sommerutflukt. Halvøya rommer skog, strandsoner, gruntvann, svaberg, kantkratt og bynær naturbruk, og fungerer som et tydelig møtested mellom fjord, vegetasjon, ferdsel og forvaltning.\n\nI History Go bør spørsmål om Bygdøy starte i kystnatur, skogstruktur, grønn korridor, strand- og gruntvannsmiljø og natur–bruk-friksjon. Kultur- og institusjonslag kan være sekundære spor, men naturankeret skal være tydelig først.",
     "emne_ids": [
-      "em_his_kulturminner_bevaring",
-      "em_nat_by_natur_motepunkt",
-      "em_by_offentlige_rom_motesteder"
+      "em_natur_kyst_fjord_og_strand",
+      "em_natur_gronnstruktur_korridorer",
+      "em_natur_urban_okologi_byrom",
+      "em_natur_sosial_naturforvaltning"
     ],
     "quiz_profile": {
       "place_type": "halvoy",
-      "subtype": "natur_og_kulturmiljo",
+      "subtype": "kyst_og_gronnstruktur_landskap",
       "signature_features": [
-        "skog og strand på bynær halvøy",
-        "kongelige landskapselementer og gårdsdrift",
-        "museumsklynge i samme friluftsområde"
+        "by-nær halvøy med kystnatur, skog og strandsoner",
+        "kombinerer fjordkontakt, stinett og variert naturbruk",
+        "har tydelige delområder som Kongeskogen, Huk og Paradisbukta"
       ],
       "primary_angles": [
-        "kulturmiljø",
-        "landskap",
-        "friluftsliv",
-        "institusjonell_bruk"
+        "kystnatur_og_strand",
+        "skog_og_gronnstruktur",
+        "urban_okologi",
+        "bruk_press_og_forvaltning"
       ],
       "question_families": [
-        "natur_kultur_kobling",
-        "landskapslesning",
-        "historisk_forvaltning",
-        "brukspress_og_tilgjengelighet"
+        "kyst_og_fjordkontakt",
+        "skog_og_habitat",
+        "gronnstruktur_og_tilgjengelighet",
+        "vern_bruk_og_slitasje"
       ],
       "avoid_angles": [
         "kun_museumsliste",
         "generisk_sommertur",
-        "uprøvbare_superlativer"
+        "ren_turisme_uten_naturanker",
+        "upresise_artspastander"
       ],
       "must_include": [
-        "kombinasjonen av naturreservater, kulturmiljø og offentlig bruk",
-        "rollen som bynært rekreasjonsområde over tid"
+        "Bygdøy som natur- og landskapssystem, ikke bare kulturmiljø",
+        "koblingen mellom kystsoner, skog, ferdsel og naturbruk",
+        "at delpunkter som Huk og Kongeskogen skal forstås som underlag til hovedstedet"
       ],
       "contrast_targets": [
         "hovedoya",
-        "maridalsvannet",
-        "slottsparken"
+        "gressholmen",
+        "ostensjovannet",
+        "maridalsvannet"
       ],
-      "notes": "Skal spørres som helhetlig landskap, ikke som enkeltattraksjoner."
+      "notes": "Bruk Bygdøy som natursted bare når natur, kyst, grønnstruktur og økologisk/forvaltningsmessig hovedvinkel er tydelig."
     }
   },
   {
@@ -339,92 +326,97 @@
     "lon": 10.7941,
     "r": 750,
     "category": "natur",
-    "desc": "Elv og grøntdrag fra Østmarka mot Bunnefjorden, med variert skog, kulturspor og biologisk mangfold.",
+    "desc": "Vassdrag fra Østmarka og Nøklevann-området til Bunnefjorden, med skog, raviner, kantvegetasjon og fjordnær overgang.",
     "tags": [
       "elv",
-      "grøntdrag",
-      "østmarka",
-      "biologisk_mangfold",
-      "bekk"
+      "vassdrag",
+      "grontdrag",
+      "ostmarka",
+      "fjordovergang",
+      "kantvegetasjon"
     ],
-    "sourceHint": "Oslo byleksikon og Skiforeningen beskriver Ljanselva som vassdrag fra Østmarka/Nøklevann-Skraperudtjern til Bunnefjorden. Koordinatet er et rute-/områdepunk.",
+    "sourceHint": "Bygd på eksisterende hovedobjekt og Ljanselva-rutefila. Hovedobjektet skal representere hele marka–fjord-vassdraget, mens delpunktene ligger i egen rute-fil.",
     "coordType": "route_midpoint",
     "coordStatus": "semantic_anchor",
-    "coordSource": "manual_map_check",
+    "coordSource": "repo_synthesis_from_existing_natur_files",
     "coordPrecisionM": 130,
-    "coordVerifiedAt": "2026-05-01",
-    "coordNote": "Representerer pedagogisk ankerpunkt for hele området/ruta.",
+    "coordVerifiedAt": "2026-05-09",
+    "coordNote": "Bevisst hovedanker for hele Ljanselva; delpunkter fra Nøklevann til Bunnefjorden ligger i rute-filen.",
     "anchors": [
       {
-        "id": "ljan_noklevann",
-        "name": "Ljanselva – Nøklevann",
-        "lat": 59.8819,
-        "lon": 10.8477,
-        "r": 180,
-        "type": "unlock_anchor",
-        "note": "Øvre vassdragsnært startpunkt."
+        "id": "ljanselva_start",
+        "name": "Ljanselva – start ved Nøklevann",
+        "lat": 59.8836,
+        "lon": 10.878,
+        "r": 150,
+        "type": "area_anchor",
+        "note": "Øvre vassdragsstart ved Nøklevann og Skraperudtjern-systemet."
       },
       {
-        "id": "ljan_hauketo",
+        "id": "ljanselva_hauketo",
         "name": "Ljanselva – Hauketo",
-        "lat": 59.8447,
-        "lon": 10.8055,
+        "lat": 59.8485,
+        "lon": 10.816,
         "r": 180,
-        "type": "midpoint",
-        "note": "Midtre del av Ljanselva-korridoren."
+        "type": "area_anchor",
+        "note": "Bynært midtre elvestrekk med kantvegetasjon og grøntdrag."
       },
       {
-        "id": "ljan_fiskevollen",
-        "name": "Ljanselva – Fiskevollen",
-        "lat": 59.8349,
-        "lon": 10.8028,
-        "r": 180,
-        "type": "viewpoint",
-        "note": "Nedre del nær utløpssonen."
+        "id": "ljanselva_utlop",
+        "name": "Ljanselva – utløp i Bunnefjorden",
+        "lat": 59.8288,
+        "lon": 10.8034,
+        "r": 120,
+        "type": "unlock_anchor",
+        "note": "Utløpsområde der vassdraget møter fjorden."
       }
     ],
     "year": 1977,
-    "popupDesc": "Ljanselva knytter Østmarka til Bunnefjorden gjennom et variert elveløp med raviner, skogpartier og kulturspor. Vassdraget fungerer både som økologisk korridor og som turdrag på tvers av bydeler.\n\nI History Go er Ljanselva viktig fordi den viser marka–fjord-forbindelsen i sørøstlige Oslo. Spørsmål bør handle om elvas landskapsform, økologiske betydning og hvordan byens utbygging møter et sårbart vassdrag.",
+    "popupDesc": "Ljanselva er et sammenhengende marka–fjord-vassdrag som binder Østmarka og innsjøsystemene i øst sammen med Bunnefjorden. Langs løpet veksler elva mellom skog, tjernnære partier, raviner, kantvegetasjon og mer bynære overgangssoner.\n\nI History Go bør Ljanselva leses som et naturfaglig hovedsted der vassdrag, grønn korridor, landskapsform og utløpssone står i sentrum. Spørsmål skal starte i vannsystem, kantvegetasjon, raviner, kilde–utløp-logikk og natur–by-overgang, ikke i generisk tursti eller løs bydelsgeografi.",
     "emne_ids": [
-      "em_nat_okologi_grenser",
-      "em_nat_by_natur_motepunkt",
-      "em_by_topografi_utsyn_hoydedrag"
+      "em_natur_elver_bekker_vassdrag",
+      "em_natur_gronnstruktur_korridorer",
+      "em_natur_dalforer_vannskiller_topografi",
+      "em_natur_kyst_fjord_og_strand"
     ],
     "quiz_profile": {
       "place_type": "elv",
       "subtype": "marka_fjord_vassdrag",
       "signature_features": [
-        "forbindelse mellom Østmarka og Bunnefjorden",
-        "ravinelandskap og varierte bekkepartier",
-        "kombinasjon av naturkorridor og nærturdrag"
+        "binder Nøklevann- og Østmarka-området til Bunnefjorden",
+        "varierer mellom tjernnære partier, skog, raviner og bynære strekk",
+        "har tydelig utløpssone mot fjorden"
       ],
       "primary_angles": [
-        "vassdragsgeografi",
-        "økologi",
-        "friluftsliv",
-        "landskapsforståelse"
+        "vassdrag_og_hydrologi",
+        "gronnkorridor",
+        "landskapsform_og_topografi",
+        "fjordovergang"
       ],
       "question_families": [
         "kilde_til_utlop",
-        "landskapsformer",
-        "bruk_og_vern",
-        "sammenligning_av_byelver"
+        "kantvegetasjon_og_korridor",
+        "marka_til_fjord",
+        "landskapsrom_og_bruk"
       ],
       "avoid_angles": [
         "generisk_skogstur",
-        "for_spesifikke_artspastander",
-        "kun_bydelsgrenser"
+        "kun_bydelsgrenser",
+        "for_spesifikke_artslister_uten_kilde",
+        "ren_rekreasjonsquiz"
       ],
       "must_include": [
         "marka–fjord-koblingen",
-        "elvas rolle som økologisk og sosial korridor"
+        "elvas rolle som økologisk og landskapelig korridor",
+        "at ruteobjektene er underlag til hovedstedet, ikke konkurrerende hovedposter"
       ],
       "contrast_targets": [
         "alnaelva",
-        "noklevann",
-        "maerradalen"
+        "akerselva",
+        "maridalsvannet",
+        "noklevann"
       ],
-      "notes": "Skal spørres som sammenhengende elveløp, ikke som enkeltpunkt."
+      "notes": "Bruk bare em_natur_* og naturankre. Spør Ljanselva som vassdrag og korridor, ikke som løs tursti."
     }
   },
   {
@@ -529,24 +521,25 @@
     "lon": 10.7789,
     "r": 1150,
     "category": "natur",
-    "desc": "Oslos største innsjø og hoveddrikkevannskilde, med Akerselva som avløp og store skog- og kulturlandskap rundt.",
+    "desc": "Oslos største innsjø og hoveddrikkevannskilde, med skog, kulturlandskap og Akerselvas utspring i sørenden.",
     "tags": [
-      "innsjø",
+      "innsjo",
       "drikkevann",
-      "akerselva",
+      "vannforsyning",
       "marka",
+      "vassdrag",
       "kulturlandskap"
     ],
-    "sourceHint": "Lokalhistoriewiki oppgir koordinater og beskriver Maridalsvannet som Oslos største innsjø og viktig drikkevannskilde.",
+    "sourceHint": "Bygd på eksisterende hovedobjekt. Maridalsvannet skal leses som natur- og vannsystem, ikke som blandet by/historie-objekt.",
     "coordType": "area_center",
     "coordStatus": "semantic_anchor",
-    "coordSource": "manual_map_check",
+    "coordSource": "repo_synthesis_from_existing_natur_files",
     "coordPrecisionM": 140,
-    "coordVerifiedAt": "2026-05-01",
-    "coordNote": "Bevisst stort områdeanker for hele vannflaten og drikkevannssonen.",
+    "coordVerifiedAt": "2026-05-09",
+    "coordNote": "Bevisst stort områdeanker for hele vannflaten og drikkevannssonen; delankre markerer øst, nord og sør.",
     "anchors": [
       {
-        "id": "maridal_ost",
+        "id": "maridalsvannet_ost",
         "name": "Maridalsvannet – østside",
         "lat": 59.9851,
         "lon": 10.7895,
@@ -555,7 +548,7 @@
         "note": "Østlig innsjøkant med lange sammenhengende vannflater."
       },
       {
-        "id": "maridal_sor",
+        "id": "maridalsvannet_sor",
         "name": "Maridalsvannet – sørenden",
         "lat": 59.9758,
         "lon": 10.7814,
@@ -564,7 +557,7 @@
         "note": "Sørlig del ved overgangen til Akerselvas utløp."
       },
       {
-        "id": "maridal_nord",
+        "id": "maridalsvannet_nord",
         "name": "Maridalsvannet – nordenden",
         "lat": 59.9934,
         "lon": 10.7707,
@@ -574,47 +567,51 @@
       }
     ],
     "year": 1867,
-    "popupDesc": "Maridalsvannet er Oslos største innsjø og har lenge vært kjernen i byens vannforsyning. Rundt vannet ligger et landskap der drikkevannshensyn, jordbrukshistorie, kirkeruiner og markaadkomst møtes.\n\nI History Go er stedet viktig fordi det knytter natur, infrastruktur og kulturhistorie i samme område. Spørsmål bør handle om vannforsyning, restriktiv forvaltning og hvordan Maridalen fungerer som porten mellom byen og Nordmarka.",
+    "popupDesc": "Maridalsvannet er Oslos største innsjø og kjernen i byens drikkevannsforsyning. Rundt vannet ligger et landskap der skog, kulturlandskap, vannrestriksjoner og vassdragslogikk møtes, med Akerselva som tydelig avløp i sørenden.\n\nI History Go bør Maridalsvannet leses som et naturfaglig hovedsted der vannsystem, drikkevann, forvaltning, sårbarhet og marka–by-overgang står i sentrum. Spørsmål skal starte i vannressurs, vannkvalitet, avrenning, restriktiv bruk og landskapsform, ikke i generell markaidyll eller kulturhistorie alene.",
     "emne_ids": [
-      "em_by_urban_metabolisme_vann_energi_avfall_mat",
-      "em_his_kulturminner_bevaring",
-      "em_nat_okologi_grenser"
+      "em_natur_elver_bekker_vassdrag",
+      "em_natur_vannkvalitet_forurensning",
+      "em_natur_vern_forvaltning_politikk",
+      "em_natur_dalforer_vannskiller_topografi"
     ],
     "quiz_profile": {
       "place_type": "innsjo",
-      "subtype": "drikkevannskilde_og_kulturlandskap",
+      "subtype": "drikkevannskilde_og_vannsystem",
       "signature_features": [
         "største innsjø i Oslo",
         "hovedkilde for kommunal drikkevannsforsyning",
-        "landskap med både jordbruksspor og kulturminner"
+        "markant kobling mellom innsjø, nedbørfelt og Akerselvas utspring"
       ],
       "primary_angles": [
-        "vannforsyning",
-        "landskap",
-        "kulturhistorie",
-        "markaovergang"
+        "drikkevann_og_forvaltning",
+        "vannsystem_og_vassdrag",
+        "marka_by_overgang",
+        "sårbarhet_og_restriksjon"
       ],
       "question_families": [
-        "ressursforvaltning",
-        "historiske_lag",
-        "restriksjoner_og_bruk",
-        "by_og_marka_forhold"
+        "vannressurs_og_bruk",
+        "kilde_til_avlop",
+        "forvaltning_og_restriksjon",
+        "landskap_og_vannlogikk"
       ],
       "avoid_angles": [
         "invitasjon_til_bading",
         "generisk_markafortelling",
+        "ren_kulturhistorie_uten_naturanker",
         "udokumenterte_tekniske_tall"
       ],
       "must_include": [
         "rollen som drikkevannskilde",
-        "koblingen mellom naturvern, kulturmiljø og byens infrastruktur"
+        "koblingen mellom vannflate, nedbørfelt og Akerselvas avløp",
+        "at stedet leses som natur- og forvaltningscase først"
       ],
       "contrast_targets": [
         "noklevann",
         "ostensjovannet",
+        "alnaelva",
         "akerselva"
       ],
-      "notes": "Skal spørres som kritisk vannressurs med historisk landskap rundt."
+      "notes": "Bruk bare em_natur_* og naturankre. Spør Maridalsvannet som vannsystem, ressurs og forvaltningscase."
     }
   },
   {
@@ -624,21 +621,22 @@
     "lon": 10.8782,
     "r": 950,
     "category": "natur",
-    "desc": "Stor innsjø i Østmarka, tidligere drikkevannskilde, nå et sentralt bade-, tur- og skogsnaturområde.",
+    "desc": "Stor innsjø i Østmarka med sterk kobling til skog, friluftsliv og Ljanselvas vassdragssystem.",
     "tags": [
-      "innsjø",
-      "østmarka",
-      "badeplass",
+      "innsjo",
+      "ostmarka",
       "skog",
+      "vassdrag",
+      "friluftsliv",
       "ljanselva"
     ],
-    "sourceHint": "SNL og Oslo byleksikon beskriver Nøklevann som innsjø i Østmarka, med avløp mot Ljanselva. Koordinater er fra badeplass-/kartkilde.",
+    "sourceHint": "Bygd på eksisterende hovedobjekt. Nøklevann skal leses som markavann og vannsystem, ikke bare bade- og tursted.",
     "coordType": "area_center",
     "coordStatus": "semantic_anchor",
-    "coordSource": "manual_map_check",
+    "coordSource": "repo_synthesis_from_existing_natur_files",
     "coordPrecisionM": 130,
-    "coordVerifiedAt": "2026-05-01",
-    "coordNote": "Bevisst stort områdeanker for hele Nøklevann med tur- og badesoner.",
+    "coordVerifiedAt": "2026-05-09",
+    "coordNote": "Bevisst stort områdeanker for hele Nøklevann; delankre markerer nord, øst og sørvest.",
     "anchors": [
       {
         "id": "noklevann_nord",
@@ -669,47 +667,151 @@
       }
     ],
     "year": 1923,
-    "popupDesc": "Nøklevann er et sentralt marka-vann i Østmarka med lang tradisjon for turer, bading og friluftsliv. Innsjøen ligger i et skoglandskap som brukes året rundt og har vært viktig i utviklingen av østlige utfartsområder.\n\nI History Go er Nøklevann viktig som eksempel på bynær markaidentitet i øst. Spørsmål bør koble vannet til friluftskultur, skoglandskap og vassdragssammenheng mot Ljanselva.",
+    "popupDesc": "Nøklevann er et stort markavann i Østmarka og inngår i et skog- og vassdragssystem som også henger sammen med Ljanselvas videre løp. Innsjøen er sterkt brukt til turer, bading og nært friluftsliv, men bør i naturkategorien leses som vannflate i et større landskaps- og vannsystem.\n\nI History Go bør spørsmål om Nøklevann starte i innsjø, marka, skogkontakt, avløp og vannforbindelser, og derfra kobles til brukspress og friluftsliv. Rekreasjon kan være med, men naturankeret skal komme først.",
     "emne_ids": [
-      "em_nat_by_natur_motepunkt",
-      "em_by_parker_som_sosial_infrastruktur",
-      "em_nat_okologi_grenser"
+      "em_natur_elver_bekker_vassdrag",
+      "em_natur_gronnstruktur_korridorer",
+      "em_natur_marka_skog_bygrense",
+      "em_natur_sosial_naturforvaltning"
     ],
     "quiz_profile": {
       "place_type": "innsjo",
-      "subtype": "markavann_for_friluftsliv",
+      "subtype": "markavann_med_vassdragskobling",
       "signature_features": [
         "stort vann i Østmarka nær boligområder",
-        "kjent for bade- og turkultur",
-        "koblet til Ljanselvas vassdragssystem"
+        "sterk kobling mellom innsjø, skog og friluftsliv",
+        "inngår i Ljanselvas vassdragssystem"
       ],
       "primary_angles": [
-        "markabruk",
-        "friluftsliv",
-        "landskap",
-        "vannforbindelser"
+        "markavann_og_landskap",
+        "vannforbindelser_og_avlop",
+        "skogkontakt_og_gronnstruktur",
+        "brukspress_og_friluftsliv"
       ],
       "question_families": [
-        "hverdagsbruk_i_marka",
-        "sesongvariasjon",
-        "orientering_og_ruter",
+        "innsjo_og_skogslandskap",
+        "vannsystem_og_forbindelser",
+        "bruk_og_forvaltning",
         "sammenligning_med_andre_oslovann"
       ],
       "avoid_angles": [
         "ren_badeguide",
         "generisk_skogsvann",
-        "påstander_uten_kildestøtte"
+        "ren_rekreasjonsquiz_uten_naturanker",
+        "påstander_uten_kildestotte"
       ],
       "must_include": [
-        "rollen i østlige marka som tilgjengelig friluftsområde",
-        "forbindelsen til større vassdrag og skoglandskap"
+        "rollen som markavann i øst",
+        "koblingen til Ljanselvas vassdragssystem",
+        "at natur- og vannsystemet kommer før ren bade- og turbruk"
       ],
       "contrast_targets": [
         "maridalsvannet",
         "ostensjovannet",
-        "ljanselva"
+        "ljanselva",
+        "alnaelva"
       ],
-      "notes": "Skal spørres som marka-vann med sosial og landskapsmessig betydning."
+      "notes": "Bruk bare em_natur_* og naturankre. Spør Nøklevann som markavann og del av større vassdragssystem."
+    }
+  },
+  {
+    "id": "alnaelva",
+    "name": "Alnaelva",
+    "lat": 59.9325,
+    "lon": 10.833,
+    "r": 500,
+    "category": "natur",
+    "desc": "Oslos lengste elv, med kilder i Lillomarka/Alnsjøen og utløp i Bjørvika, preget av både naturkorridor, inngrep og restaurering.",
+    "tags": [
+      "elv",
+      "vassdrag",
+      "byelv",
+      "grontdrag",
+      "restaurering",
+      "vannkvalitet"
+    ],
+    "sourceHint": "Bygd fra eksisterende Alna-hovedobjekt og Alna-rutefila. Hovedobjektet skal representere hele vassdraget, mens delpunkter ligger i egen rute-fil.",
+    "coordType": "route_midpoint",
+    "coordStatus": "semantic_anchor",
+    "coordSource": "repo_synthesis_from_existing_natur_files",
+    "coordPrecisionM": 130,
+    "coordVerifiedAt": "2026-05-09",
+    "coordNote": "Bevisst hovedanker for hele Alnaelva; delpunkter som Alnsjøen, Svartdalen, Bryn og utløpet i Bjørvika skal ligge i rute-filen.",
+    "anchors": [
+      {
+        "id": "alnaelva_kilde",
+        "name": "Alnaelva – kildeområde",
+        "lat": 59.96527,
+        "lon": 10.84704,
+        "r": 170,
+        "type": "area_anchor",
+        "note": "Kildesone ved Alnsjøen og øvre del av vassdraget."
+      },
+      {
+        "id": "alnaelva_svartdalen",
+        "name": "Alnaelva – Svartdalen",
+        "lat": 59.90417,
+        "lon": 10.79289,
+        "r": 180,
+        "type": "area_anchor",
+        "note": "Markant natur- og ravinedel i indre byrand."
+      },
+      {
+        "id": "alnaelva_utlop",
+        "name": "Alnaelva – utløp i Bjørvika",
+        "lat": 59.9041,
+        "lon": 10.7638,
+        "r": 190,
+        "type": "unlock_anchor",
+        "note": "Utløpssone der Alna møter Oslofjorden."
+      }
+    ],
+    "year": 2005,
+    "popupDesc": "Alnaelva er Oslos lengste elv og går gjennom skog, boligområder, industri- og logistikklandskap før den munner ut i Bjørvika. Langs elva finner man både lukkede og åpne partier, spor etter hard teknisk kontroll og nyere forsøk på restaurering, gjenåpning og styrking av blågrønne korridorer.\n\nI History Go bør Alnaelva leses som et naturfaglig hovedsted der vannsystem, grønnstruktur, forurensning, restaurering og natur–by-friksjon står i sentrum. Spørsmål skal starte i vassdrag, vannkvalitet, grønn korridor, inngrep, gjenåpning og forvaltning, ikke i generell turstiromantikk.",
+    "emne_ids": [
+      "em_natur_elver_bekker_vassdrag",
+      "em_natur_vannkvalitet_forurensning",
+      "em_natur_bekkeapning_overvann",
+      "em_natur_forstyrrelse_regenerasjon"
+    ],
+    "quiz_profile": {
+      "place_type": "elv",
+      "subtype": "byelv_med_inngrep_og_restaurering",
+      "signature_features": [
+        "Oslos lengste elv fra Alnsjøen til Bjørvika",
+        "kombinerer naturkorridor, industrispor og byutviklingspress",
+        "har både lukkede partier, åpne partier og restaureringsstrekninger"
+      ],
+      "primary_angles": [
+        "vassdrag_og_hydrologi",
+        "vannkvalitet_og_forurensning",
+        "restaurering_og_gjenapning",
+        "urban_okologi_og_gronnstruktur"
+      ],
+      "question_families": [
+        "kilde_til_utlop",
+        "inngrep_forurensning_og_restaurering",
+        "gronnkorridor_i_byen",
+        "vannsystem_og_forvaltning"
+      ],
+      "avoid_angles": [
+        "generisk_elveidyll",
+        "ren_industrihistorie_uten_naturanker",
+        "kun_tursti_og_rekreasjon",
+        "tekniske_paastander_uten_kilde"
+      ],
+      "must_include": [
+        "spennet mellom inngrep og restaurering",
+        "elvas rolle som sammenhengende natur- og vannsystem i Oslo",
+        "koblingen mellom byutvikling og sårbart vassdrag"
+      ],
+      "contrast_targets": [
+        "akerselva",
+        "ljanselva",
+        "ostensjovannet",
+        "maridalsvannet"
+      ],
+      "notes": "Bruk bare em_natur_* og naturankre. Spør Alna som vassdrag, vannsystem og restaureringscase, ikke som løs byhistorie."
     }
   }
 ]
