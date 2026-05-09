@@ -757,15 +757,27 @@
       if (Number.isInteger(fallbackIndex) && fallbackIndex >= 0) insertIndex = fallbackIndex;
     }
 
+    const injectedAt = new Date().toISOString();
     const chosenPhase = norm(items[insertIndex]?.phase || items[insertIndex]?.event?.phase_tag || storyletEvent?.daily_mail_meta?.phase || storyletEvent?.phase_tag || "afternoon");
+    const placedEvent = {
+      ...storyletEvent,
+      phase_tag: chosenPhase,
+      daily_mail_meta: {
+        ...(storyletEvent?.daily_mail_meta && typeof storyletEvent.daily_mail_meta === "object" ? storyletEvent.daily_mail_meta : {}),
+        phase: chosenPhase,
+        slot: norm(storyletEvent?.daily_mail_meta?.slot || "injected_narrative")
+      },
+      injected_by_choice: true,
+      injected_at: injectedAt
+    };
     const nextItems = items.slice();
     nextItems.splice(insertIndex, 0, {
       status: "queued",
       phase: chosenPhase,
-      slot: norm(storyletEvent?.daily_mail_meta?.slot || "injected_narrative"),
+      slot: "injected_narrative",
       injected_by_choice: true,
-      injected_at: new Date().toISOString(),
-      event: storyletEvent
+      injected_at: injectedAt,
+      event: placedEvent
     });
 
     return {
