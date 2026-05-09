@@ -15,6 +15,24 @@
       "Hva slags arbeider blir du når små feil får store konsekvenser?"
     ]
   },
+  "outcome_rules": {
+    "fired": {
+      "stability_values": ["FIRED"],
+      "strikes_gte": 3,
+      "score_lte": -3
+    },
+    "promoted": {
+      "completion_ratio_gte": 1,
+      "score_gte": 5,
+      "strikes_lte": 0,
+      "allow_warning": false
+    },
+    "stagnated": {
+      "autonomy_delta": -12,
+      "stability": "STAGNATED",
+      "add_branch_flags": ["career_stagnated", "evening_pressure", "morning_choices_expand", "worker_routine_loop"]
+    }
+  },
   "sequence": [
     {
       "step": 1,

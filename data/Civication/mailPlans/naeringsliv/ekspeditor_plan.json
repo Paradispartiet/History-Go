@@ -6,11 +6,40 @@
   "role_scope": "ekspeditor",
   "title": "Ekspeditør / butikkmedarbeider",
   "purpose": "Konkrete arbeidssituasjoner på butikkgulvet før spilleren får mer ansvar.",
+  "arc": {
+    "from": "Ny i butikkrollen, tett på kasse, kunder, prisfeil, lager, åpning og lukking.",
+    "to": "En butikkmedarbeider som enten får mer ansvar, blir stående fast i rutinearbeid, eller mister tillit fordi hverdagsansvaret ikke bæres godt nok.",
+    "core_questions": [
+      "Klarer du å holde tempo uten å miste kundemøtet?",
+      "Når retter du feil selv, og når sender du dem videre?",
+      "Blir du en trygg person på gulvet, eller bare en som får ting unna?",
+      "Hva skjer når små pris-, lager- og lukkevalg begynner å danne et mønster?"
+    ]
+  },
+  "outcome_rules": {
+    "fired": {
+      "stability_values": ["FIRED"],
+      "strikes_gte": 3,
+      "score_lte": -2
+    },
+    "promoted": {
+      "completion_ratio_gte": 1,
+      "score_gte": 4,
+      "strikes_lte": 0,
+      "allow_warning": false
+    },
+    "stagnated": {
+      "autonomy_delta": -10,
+      "stability": "STAGNATED",
+      "add_branch_flags": ["career_stagnated", "evening_pressure", "morning_choices_expand", "retail_routine_loop"]
+    }
+  },
   "sequence": [
     {
       "step": 1,
       "type": "job",
       "phase": "intro",
+      "step_goal": "Etablere kasse, pris og første tillit på gulvet.",
       "allowed_families": [
         "kasse_og_pris"
       ],
@@ -23,6 +52,7 @@
       "step": 2,
       "type": "job",
       "phase": "early",
+      "step_goal": "Teste kundemøte og service under moderat press.",
       "allowed_families": [
         "kundemote_og_service"
       ],
@@ -35,6 +65,7 @@
       "step": 3,
       "type": "people",
       "phase": "early",
+      "step_goal": "Bygge første sosial lesning: ny kollega, tillit og hvem som hjelper hvem.",
       "allowed_families": [
         "ny_kollega_og_tillit"
       ],
@@ -47,6 +78,7 @@
       "step": 4,
       "type": "job",
       "phase": "early",
+      "step_goal": "Gi ansvar for lager og bestilling som får konsekvens senere.",
       "allowed_families": [
         "lager_og_bestilling"
       ],
@@ -59,6 +91,7 @@
       "step": 5,
       "type": "conflict",
       "phase": "mid",
+      "step_goal": "Første tydelige ansvarskonflikt: gulvet merker om spilleren skjuler, løser eller løfter problemet.",
       "allowed_families": [
         "forste_ansvar"
       ],
@@ -71,6 +104,7 @@
       "step": 6,
       "type": "story",
       "phase": "mid",
+      "step_goal": "Koble salg og veiledning til rolleidentitet: hjelper du kunden eller bare flytter du varer?",
       "allowed_families": [
         "salg_og_veiledning"
       ],
@@ -83,6 +117,7 @@
       "step": 7,
       "type": "event",
       "phase": "mid",
+      "step_goal": "Bruke åpning/lukking som praktisk test på tillit og detaljansvar.",
       "allowed_families": [
         "apning_og_lukking"
       ],
@@ -95,6 +130,7 @@
       "step": 8,
       "type": "job",
       "phase": "advanced",
+      "step_goal": "Samle tidligere hverdagsvalg i en større vurdering av tempo, service og kontroll.",
       "allowed_families": [
         "kasse_og_pris",
         "kundemote_og_service",
@@ -109,11 +145,27 @@
       "step": 9,
       "type": "event",
       "phase": "mastery",
+      "step_goal": "Avslutte praktisk mestring: åpning/lukking viser om spilleren kan bære rollen uten tett oppfølging.",
       "allowed_families": [
         "apning_og_lukking"
       ],
       "fallback_types": [
         "story",
+        "conflict",
+        "job"
+      ]
+    },
+    {
+      "step": 10,
+      "type": "story",
+      "phase": "climax",
+      "step_goal": "Sluttvurdering: om butikkrollen blir springbrett, rutine eller brudd i tillit.",
+      "allowed_families": [
+        "salg_og_veiledning",
+        "forste_ansvar"
+      ],
+      "fallback_types": [
+        "event",
         "conflict",
         "job"
       ]

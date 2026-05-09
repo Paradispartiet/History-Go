@@ -44,6 +44,23 @@ function run() {
     }
   };
 
+  const careerOutcomeMail = {
+    status: 'pending',
+    event: {
+      id: 'ekspeditor_outcome_001',
+      source_type: 'role_outcome',
+      mail_type: 'job_outcome',
+      mail_class: 'career_outcome',
+      career_id: 'naeringsliv',
+      role_id: 'naer_ekspeditor',
+      career_outcome_meta: {
+        status: 'STAGNATED',
+        role_scope: 'ekspeditor',
+        role_plan_id: 'ekspeditor_naeringsliv_v1'
+      }
+    }
+  };
+
   const privateLifeMail = {
     status: 'pending',
     event: {
@@ -85,6 +102,12 @@ function run() {
   );
 
   assert.strictEqual(
+    global.CivicationEventChannels.getMessageChannel(careerOutcomeMail.event),
+    'job',
+    'career outcome mails must stay in Jobbmail'
+  );
+
+  assert.strictEqual(
     global.CivicationEventChannels.getMessageChannel(privateLifeMail.event),
     'private',
     'life/evening mails must be private messages'
@@ -99,24 +122,26 @@ function run() {
   const split = global.CivicationEventChannels.splitInboxByMessageChannel([
     plannedRoleMail,
     workdayMail,
+    careerOutcomeMail,
     privateLifeMail,
     explicitPrivateMail,
     systemMail
   ]);
 
-  assert.strictEqual(split.job.length, 2, 'Expected two jobmail items');
+  assert.strictEqual(split.job.length, 3, 'Expected three jobmail items');
   assert.strictEqual(split.private.length, 2, 'Expected two private message items');
   assert.strictEqual(split.system.length, 1, 'Expected one system item');
 
   const inspect = global.CivicationEventChannels.inspect([
     plannedRoleMail,
     workdayMail,
+    careerOutcomeMail,
     privateLifeMail,
     explicitPrivateMail,
     systemMail
   ]);
 
-  assert.strictEqual(inspect.counts.job, 2, 'Inspect should expose job channel count');
+  assert.strictEqual(inspect.counts.job, 3, 'Inspect should expose job channel count');
   assert.strictEqual(inspect.counts.private, 2, 'Inspect should expose private channel count');
 
   console.log('PASS: Civication inbox channel split test completed.');
