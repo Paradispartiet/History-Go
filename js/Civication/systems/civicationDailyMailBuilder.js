@@ -740,7 +740,7 @@
     if (wanted.length) {
       for (let i = current + 1; i < items.length; i += 1) {
         const phase = norm(items[i]?.phase || items[i]?.event?.phase_tag);
-        if (wanted.includes(phase)) {
+        if (wanted.includes(phase) && !phaseHasInjectedNarrative(items, phase)) {
           insertIndex = i;
           break;
         }
@@ -765,6 +765,17 @@
       },
       inserted: true
     };
+  }
+
+  function phaseHasInjectedNarrative(items, phaseId) {
+    const rows = Array.isArray(items) ? items : [];
+    const targetPhase = norm(phaseId);
+    if (!targetPhase) return false;
+    return rows.some(row => {
+      const phase = norm(row?.phase || row?.event?.phase_tag);
+      if (phase !== targetPhase) return false;
+      return row?.injected_by_choice === true || row?.event?.injected_by_choice === true;
+    });
   }
 
   async function buildQueue(active, options = {}) {
