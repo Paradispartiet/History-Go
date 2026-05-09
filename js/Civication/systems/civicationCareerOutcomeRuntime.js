@@ -74,6 +74,11 @@
     return Number(runtime?.step_index || 0) >= sequence.length;
   }
 
+  function isClosedForPlan(outcomeState, planId) {
+    return TERMINAL_STATUSES.includes(norm(outcomeState?.status)) &&
+      norm(outcomeState?.role_plan_id) === norm(planId);
+  }
+
   function countPositiveSignals(state, runtime) {
     const score = Number(state?.score || 0);
     const history = Array.isArray(runtime?.history) ? runtime.history : [];
@@ -259,30 +264,32 @@
     return setState(patch);
   }
 
-  async function makeTerminalCandidateIfNeeded(active, state) {
-    if (!active) return null;
+  async function getTerminalPlanState(active, state) {
+    if (!active) return { done: false, closed: false, mail: null };
     const runtimeApi = window.CivicationMailRuntime;
-    if (!runtimeApi?.getPlanPath || !runtimeApi?.loadJson) return null;
+    if (!runtimeApi?.getPlanPath || !runtimeApi?.loadJson) return { done: false, closed: false, mail: null };
 
     const planPath = runtimeApi.getPlanPath(active);
     const plan = await runtimeApi.loadJson(planPath);
-    if (!plan || !Array.isArray(plan.sequence)) return null;
+    if (!plan || !Array.isArray(plan.sequence)) return { done: false, closed: false, mail: null };
 
     const runtime = getRuntime(state);
     const planId = norm(plan.id);
     const runtimePlanId = norm(runtime.role_plan_id);
-    if (planId && runtimePlanId && planId !== runtimePlanId) return null;
-    if (!isPlanComplete(plan, runtime)) return null;
+    if (planId && runtimePlanId && planId !== runtimePlanId) return { done: false, closed: false, mail: null };
+    if (!isPlanComplete(plan, runtime)) return { done: false, closed: false, mail: null };
 
     const outcomeState = defaultOutcomeState(state);
-    const sameTerminal = TERMINAL_STATUSES.includes(outcomeState.status) &&
-      norm(outcomeState.role_plan_id) === planId;
-
-    if (sameTerminal) {
-      return null;
+    if (isClosedForPlan(outcomeState, planId)) {
+      return { done: true, closed: true, mail: null };
     }
 
-    return makeOutcomeMail(active, plan, runtime, state);
+    return { done: true, closed: false, mail: makeOutcomeMail(active, plan, runtime, state) };
+  }
+
+  async function makeTerminalCandidateIfNeeded(active, state) {
+    const terminal = await getTerminalPlanState(active, state || getState());
+    return terminal.mail || null;
   }
 
   function patchMailRuntime() {
@@ -294,8 +301,9 @@
 
     runtimeApi.makeCandidateMailsForActiveRole = async function outcomeAwareCandidates(active, state) {
       const currentState = state || getState();
-      const terminal = await makeTerminalCandidateIfNeeded(active, currentState);
-      if (terminal) return [terminal];
+      const terminal = await getTerminalPlanState(active, currentState);
+      if (terminal.mail) return [terminal.mail];
+      if (terminal.closed) return [];
       return original(active, currentState);
     };
 
@@ -353,6 +361,7 @@
     patchMailRuntime,
     patchEventEngineAnswer,
     makeTerminalCandidateIfNeeded,
+    getTerminalPlanState,
     applyOutcomeState,
     inspect() {
       return {
