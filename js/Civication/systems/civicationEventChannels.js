@@ -17,7 +17,8 @@
     "role",
     "legacy_pack",
     "workday",
-    "brand_progression"
+    "brand_progression",
+    "role_outcome"
   ]);
 
   const ROLE_BOUND_MAIL_TYPES = new Set([
@@ -30,7 +31,8 @@
     "event",
     "story",
     "people",
-    "faction_choice"
+    "faction_choice",
+    "job_outcome"
   ]);
 
   function normalize(value) {
@@ -47,6 +49,7 @@
     return !!(
       ev.role_content_meta ||
       ev.mail_plan_meta ||
+      ev.career_outcome_meta ||
       normalize(ev.role_scope) ||
       normalize(ev.role_id) ||
       normalize(ev.role_key) ||
@@ -65,8 +68,8 @@
     const explicit = normalize(ev.channel || ev.messageChannel);
 
     if (explicit === "job" || explicit === "jobmail") return true;
-    if (mailClass === "job_message" || mailClass === "opportunity_blocked") return true;
-    if (sourceType === "blocked_job" || sourceType === "workday" || sourceType === "brand_progression") return true;
+    if (mailClass === "job_message" || mailClass === "opportunity_blocked" || mailClass === "career_outcome") return true;
+    if (sourceType === "blocked_job" || sourceType === "workday" || sourceType === "brand_progression" || sourceType === "role_outcome") return true;
     if (ROLE_BOUND_SOURCE_TYPES.has(sourceType) && hasRoleBinding(ev)) return true;
     if (ROLE_BOUND_MAIL_TYPES.has(mailType) && hasRoleBinding(ev)) return true;
 
@@ -82,6 +85,9 @@
     const mailFamily = normalize(ev.mail_family);
 
     if (
+      sourceType === "role_outcome" ||
+      mailType === "job_outcome" ||
+      mailClass === "career_outcome" ||
       sourceType === "brand_progression" ||
       mailClass === "job_milestone" ||
       !!ev.brand_progression_meta
