@@ -1173,10 +1173,49 @@ function renderCivicationInbox() {
 
   const buckets = getChannelBuckets();
   const messageItems = buckets.messages.concat(buckets.unknown);
+  const toEvent = function (item) { return item?.event || item || null; };
+  const resolveChannel = window.CivicationEventChannels?.getMessageChannel;
+  const jobMails = messageItems.filter(function (item) {
+    const evItem = toEvent(item);
+    if (typeof resolveChannel !== "function") return false;
+    return resolveChannel(evItem) === "job";
+  });
+  const privateMessages = messageItems.filter(function (item) {
+    const evItem = toEvent(item);
+    if (typeof resolveChannel !== "function") return true;
+    return resolveChannel(evItem) === "private";
+  });
   const ev = findPendingFromItems(messageItems);
 
+  const renderMessageList = function (items) {
+    if (!Array.isArray(items) || !items.length) return "";
+    return items.map(function (item) {
+      const messageEvent = toEvent(item);
+      const vm = buildCiviEventViewModel(messageEvent);
+      const isPending = String(item?.status || "pending") === "pending";
+      return `
+        <article class="${vm.cssClass} civi-inbox-list-card${isPending ? " is-pending" : ""}">
+          <div class="civi-event-kicker">${vm.kicker}</div>
+          <div class="civi-event-title">${vm.title}</div>
+          <div class="civi-event-body">${vm.bodyText}</div>
+        </article>
+      `;
+    }).join("");
+  };
+
+  const sectionsHtml = `
+    <section class="civi-inbox-section civi-jobmail-section">
+      <h2>Jobbmail</h2>
+      <div id="civiJobMailList">${renderMessageList(jobMails) || '<div class="civi-inbox-empty">Ingen jobbmail akkurat nå.</div>'}</div>
+    </section>
+    <section class="civi-inbox-section civi-private-section">
+      <h2>Personlige meldinger</h2>
+      <div id="civiPrivateMessageList">${renderMessageList(privateMessages) || '<div class="civi-inbox-empty">Ingen personlige meldinger akkurat nå.</div>'}</div>
+    </section>
+  `;
+
   if (!ev) {
-    host.innerHTML = `<div>Ingen meldinger akkurat nå.</div>`;
+    host.innerHTML = `${sectionsHtml}<div>Ingen meldinger akkurat nå.</div>`;
     return;
   }
   const model = buildCiviEventViewModel(ev);
@@ -1186,6 +1225,7 @@ function renderCivicationInbox() {
   }).join("");
 
   host.innerHTML = `
+    ${sectionsHtml}
     <div class="${model.cssClass}">
       <div class="civi-event-kicker">${model.kicker}</div>
       <div class="civi-event-title">${model.title}</div>

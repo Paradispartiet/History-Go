@@ -1453,16 +1453,24 @@ registerChosenMail(eventObj) {
 }
   
   enqueueEvent(eventObj) {
+    const normalizedEvent = eventObj && typeof eventObj === "object"
+      ? Object.assign({}, eventObj)
+      : {};
+    const resolveChannel = window.CivicationEventChannels?.getMessageChannel;
+    if (!normalizedEvent.channel && typeof resolveChannel === "function") {
+      normalizedEvent.channel = resolveChannel(normalizedEvent);
+    }
+
     if (window.CivicationMailEngine?.sendMail) {
       const res = window.CivicationMailEngine.sendMail({
         status: "pending",
         enqueued_at: new Date().toISOString(),
-        event: eventObj
+        event: normalizedEvent
       });
       if (res?.ok) return;
     }
     const inbox = this.getInbox();
-    const item = { status: "pending", enqueued_at: new Date().toISOString(), event: eventObj };
+    const item = { status: "pending", enqueued_at: new Date().toISOString(), event: normalizedEvent };
     this.setInbox([item].concat(inbox).slice(0, this.maxInbox));
   }
 
