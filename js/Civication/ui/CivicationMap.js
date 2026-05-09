@@ -164,6 +164,15 @@
     sunlight.setAttribute("fill", "rgba(255, 235, 170, 0.35)");
     base.appendChild(sunlight);
 
+    const districtsLayer = svgEl("g");
+    districtsLayer.setAttribute("id", "civi-map-districts");
+    const blocksLayer = svgEl("g");
+    blocksLayer.setAttribute("id", "civi-map-blocks");
+    const landmarksLayer = svgEl("g");
+    landmarksLayer.setAttribute("id", "civi-map-landmarks");
+    const labelsLayer = svgEl("g");
+    labelsLayer.setAttribute("id", "civi-map-labels");
+
     const objects = svgEl("g");
     objects.setAttribute("id", "civi-map-objects");
 
@@ -218,7 +227,7 @@
       poly.setAttribute("stroke", style.stroke || "rgba(0,0,0,0.25)");
       poly.setAttribute("stroke-width", style.strokeWidth || "1.2");
       poly.setAttribute("opacity", style.opacity || "0.85");
-      base.appendChild(poly);
+      districtsLayer.appendChild(poly);
     }
 
     function drawCityBlocks(id, cfg = {}) {
@@ -246,7 +255,7 @@
           g.appendChild(rect);
         }
       }
-      base.appendChild(g);
+      blocksLayer.appendChild(g);
     }
 
     function drawInstitution(id, kind, dx = 0, dy = 0) {
@@ -255,22 +264,22 @@
       const g = svgEl("g");
       g.setAttribute("transform", `translate(${zone.x + dx}, ${zone.y + dy})`);
       const body = svgEl("rect");
-      body.setAttribute("x", -9); body.setAttribute("y", -10);
-      body.setAttribute("width", 18); body.setAttribute("height", 12);
-      body.setAttribute("rx", 1.5);
+      body.setAttribute("x", -12); body.setAttribute("y", -14);
+      body.setAttribute("width", 24); body.setAttribute("height", 18);
+      body.setAttribute("rx", 2.5);
       const roof = svgEl("polygon");
-      roof.setAttribute("points", "-10,-10 0,-16 10,-10");
+      roof.setAttribute("points", "-13,-14 0,-24 13,-14");
       if (kind === "rådhus") { body.setAttribute("fill", "#e7d1af"); }
       else if (kind === "bibliotek") { body.setAttribute("fill", "#d6e5f3"); }
       else if (kind === "kultur") { body.setAttribute("fill", "#d7c7e8"); }
       else if (kind === "industri") { body.setAttribute("fill", "#b5b9bf"); }
       else { body.setAttribute("fill", "#e8e8e8"); }
       roof.setAttribute("fill", "rgba(60,60,60,0.55)");
-      g.appendChild(body); g.appendChild(roof); base.appendChild(g);
+      g.appendChild(body); g.appendChild(roof); landmarksLayer.appendChild(g);
     }
 
-    function drawHousingCluster(id) { drawCityBlocks(id, { cols: 4, rows: 3, cellW: 9, cellH: 7, gap: 3, fill: "rgba(199,171,140,0.45)", skipModulo: 9 }); }
-    function drawCommercialCluster(id) { drawCityBlocks(id, { cols: 5, rows: 4, cellW: 7, cellH: 6, gap: 2, fill: "rgba(116,123,160,0.42)", seed: 2, skipModulo: 11 }); }
+    function drawHousingCluster(id) { drawCityBlocks(id, { cols: 6, rows: 4, cellW: 12, cellH: 9, gap: 4, fill: "rgba(197,156,110,0.68)", skipModulo: 17, seed: 2 }); }
+    function drawCommercialCluster(id) { drawCityBlocks(id, { cols: 7, rows: 5, cellW: 11, cellH: 8, gap: 3, fill: "rgba(95,119,165,0.7)", seed: 3, skipModulo: 13 }); }
     function drawGreenArea(id, rx = 22, ry = 14) {
       const zone = zones[id]; if (!zone) return;
       const park = svgEl("ellipse");
@@ -279,25 +288,53 @@
       park.setAttribute("fill", "rgba(103,165,94,0.35)");
       park.setAttribute("stroke", "rgba(58,102,51,0.35)");
       park.setAttribute("stroke-width", "1");
-      base.appendChild(park);
+      districtsLayer.appendChild(park);
     }
     function drawWorkZone(id) {
       const zone = zones[id]; if (!zone) return;
       const poly = svgEl("polygon");
       poly.setAttribute("points", `${zone.x-16},${zone.y+8} ${zone.x+16},${zone.y+8} ${zone.x+10},${zone.y-8} ${zone.x-10},${zone.y-8}`);
-      poly.setAttribute("fill", "rgba(123,131,140,0.35)");
-      poly.setAttribute("stroke", "rgba(61,69,79,0.35)");
-      poly.setAttribute("stroke-width", "1");
-      base.appendChild(poly);
+      poly.setAttribute("fill", "rgba(123,131,140,0.5)");
+      poly.setAttribute("stroke", "rgba(41,49,63,0.55)");
+      poly.setAttribute("stroke-width", "1.4");
+      blocksLayer.appendChild(poly);
     }
 
-    drawDistrictArea("sentrum", [[0.44,0.50],[0.50,0.49],[0.54,0.54],[0.50,0.60],[0.43,0.58]], { fill:"rgba(227,196,143,0.42)", stroke:"rgba(128,97,55,0.45)" });
-    drawDistrictArea("grunerlokka", [[0.42,0.41],[0.48,0.40],[0.50,0.45],[0.46,0.49],[0.41,0.46]], { fill:"rgba(196,158,189,0.36)" });
-    drawDistrictArea("frogner", [[0.30,0.50],[0.38,0.49],[0.40,0.56],[0.35,0.61],[0.29,0.58]], { fill:"rgba(182,200,226,0.35)" });
-    drawDistrictArea("sagene", [[0.40,0.30],[0.47,0.31],[0.48,0.37],[0.43,0.40],[0.39,0.36]], { fill:"rgba(164,196,173,0.36)" });
-    drawDistrictArea("gamle_oslo", [[0.49,0.56],[0.58,0.57],[0.60,0.63],[0.52,0.67],[0.47,0.62]], { fill:"rgba(196,184,168,0.4)" });
-    drawDistrictArea("alna", [[0.56,0.38],[0.65,0.37],[0.67,0.44],[0.61,0.49],[0.55,0.45]], { fill:"rgba(156,161,173,0.36)" });
-    drawDistrictArea("nordstrand", [[0.51,0.69],[0.61,0.71],[0.62,0.79],[0.54,0.82],[0.49,0.76]], { fill:"rgba(145,188,145,0.35)" });
+    function drawZoneLabel(id, text, dx = 0, dy = 0) {
+      const zone = zones[id];
+      if (!zone) return;
+      const g = svgEl("g");
+      g.setAttribute("transform", `translate(${zone.x + dx}, ${zone.y + dy})`);
+      const tag = svgEl("rect");
+      tag.setAttribute("x", -34);
+      tag.setAttribute("y", -10);
+      tag.setAttribute("width", 68);
+      tag.setAttribute("height", 18);
+      tag.setAttribute("rx", 8);
+      tag.setAttribute("fill", "rgba(23,30,38,0.74)");
+      tag.setAttribute("stroke", "rgba(255,255,255,0.48)");
+      tag.setAttribute("stroke-width", "1");
+      const label = svgEl("text");
+      label.textContent = text;
+      label.setAttribute("x", "0");
+      label.setAttribute("y", "3");
+      label.setAttribute("fill", "rgba(255,255,255,0.96)");
+      label.setAttribute("font-size", "10.5");
+      label.setAttribute("font-family", "system-ui, -apple-system, Segoe UI, sans-serif");
+      label.setAttribute("font-weight", "700");
+      label.setAttribute("text-anchor", "middle");
+      g.appendChild(tag);
+      g.appendChild(label);
+      labelsLayer.appendChild(g);
+    }
+
+    drawDistrictArea("sentrum", [[0.435,0.49],[0.505,0.48],[0.55,0.54],[0.505,0.615],[0.425,0.595]], { fill:"rgba(240,192,112,0.62)", stroke:"rgba(120,78,28,0.72)", strokeWidth:1.8, opacity:0.98 });
+    drawDistrictArea("grunerlokka", [[0.405,0.395],[0.485,0.39],[0.515,0.455],[0.46,0.505],[0.40,0.465]], { fill:"rgba(183,124,199,0.58)", stroke:"rgba(101,61,112,0.7)", strokeWidth:1.6, opacity:0.95 });
+    drawDistrictArea("frogner", [[0.285,0.49],[0.39,0.485],[0.41,0.565],[0.35,0.625],[0.275,0.59]], { fill:"rgba(136,175,225,0.58)", stroke:"rgba(55,86,126,0.72)", strokeWidth:1.6, opacity:0.95 });
+    drawDistrictArea("sagene", [[0.39,0.285],[0.48,0.30],[0.49,0.385],[0.43,0.415],[0.375,0.36]], { fill:"rgba(122,184,142,0.56)", stroke:"rgba(54,103,70,0.72)", strokeWidth:1.6, opacity:0.95 });
+    drawDistrictArea("gamle_oslo", [[0.475,0.55],[0.595,0.565],[0.615,0.64],[0.52,0.69],[0.46,0.625]], { fill:"rgba(209,158,124,0.58)", stroke:"rgba(116,73,43,0.72)", strokeWidth:1.7, opacity:0.96 });
+    drawDistrictArea("alna", [[0.545,0.36],[0.665,0.36],[0.685,0.45],[0.61,0.51],[0.54,0.455]], { fill:"rgba(131,144,172,0.58)", stroke:"rgba(61,73,96,0.72)", strokeWidth:1.7, opacity:0.96 });
+    drawDistrictArea("nordstrand", [[0.495,0.68],[0.62,0.705],[0.635,0.80],[0.54,0.84],[0.48,0.76]], { fill:"rgba(122,182,118,0.56)", stroke:"rgba(52,104,54,0.7)", strokeWidth:1.6, opacity:0.95 });
     drawDistrictArea("ullern", [[0.24,0.53],[0.31,0.54],[0.32,0.61],[0.26,0.65],[0.22,0.59]], { fill:"rgba(176,190,206,0.34)" });
     drawDistrictArea("st_hanshaugen", [[0.36,0.44],[0.43,0.44],[0.44,0.49],[0.38,0.52],[0.35,0.48]], { fill:"rgba(211,180,146,0.36)" });
     drawDistrictArea("stovner", [[0.61,0.17],[0.68,0.16],[0.70,0.23],[0.64,0.27],[0.59,0.22]], { fill:"rgba(151,178,148,0.34)" });
@@ -308,10 +345,10 @@
     drawHousingCluster("sagene");
     drawHousingCluster("nordstrand");
     drawHousingCluster("ullern");
-    drawCityBlocks("gamle_oslo", { cols: 5, rows: 3, cellW: 8, cellH: 7, gap: 3, fill: "rgba(153,129,109,0.35)", seed: 1 });
-    drawCityBlocks("st_hanshaugen", { cols: 4, rows: 3, cellW: 8, cellH: 7, gap: 3, fill: "rgba(152,141,119,0.35)" });
+    drawCityBlocks("gamle_oslo", { cols: 7, rows: 5, cellW: 11, cellH: 9, gap: 3, fill: "rgba(146,101,76,0.64)", seed: 1, skipModulo: 15 });
+    drawCityBlocks("st_hanshaugen", { cols: 5, rows: 4, cellW: 10, cellH: 8, gap: 3, fill: "rgba(151,130,93,0.58)", skipModulo: 14 });
     drawWorkZone("alna");
-    drawCityBlocks("alna", { cols: 5, rows: 3, cellW: 10, cellH: 6, gap: 4, fill: "rgba(124,131,143,0.44)", seed: 3 });
+    drawCityBlocks("alna", { cols: 7, rows: 4, cellW: 12, cellH: 8, gap: 4, fill: "rgba(99,112,133,0.62)", seed: 3, skipModulo: 16 });
     drawWorkZone("gamle_oslo");
 
     drawGreenArea("nordstrand", 25, 16);
@@ -323,13 +360,27 @@
     drawInstitution("grunerlokka", "kultur", 8, -10);
     drawInstitution("alna", "industri", 10, -8);
     drawInstitution("frogner", "handel", 8, -8);
+    drawInstitution("gamle_oslo", "kultur", -10, -7);
+    drawInstitution("nordstrand", "bibliotek", 12, -9);
+
+    drawZoneLabel("sentrum", "Sentrum", 0, -32);
+    drawZoneLabel("grunerlokka", "Grünerløkka", 0, -30);
+    drawZoneLabel("frogner", "Frogner", -2, -30);
+    drawZoneLabel("sagene", "Sagene", 0, -28);
+    drawZoneLabel("gamle_oslo", "Gamle Oslo", 6, -32);
+    drawZoneLabel("alna", "Alna", 2, -32);
+    drawZoneLabel("nordstrand", "Nordstrand", 3, -34);
 
 // -------------------------------------------------------
     // Ingen skyline – realistisk kart skal ikke ha kulisser
     // -------------------------------------------------------
 
     svg.appendChild(base);
+    svg.appendChild(districtsLayer);
+    svg.appendChild(blocksLayer);
+    svg.appendChild(landmarksLayer);
     svg.appendChild(objects);
+    svg.appendChild(labelsLayer);
     svg.appendChild(fx);
 
     host.appendChild(svg);
