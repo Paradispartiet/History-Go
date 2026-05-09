@@ -6,6 +6,7 @@ const manifestPath = path.join(root, 'data/places/manifest.json');
 const reportPath = path.join(root, 'reports/place-data-audit.md');
 
 const requiredFields = ['id', 'name', 'lat', 'lon', 'r', 'category', 'year', 'desc'];
+const PLACE_REF_KEYS = ['placeId', 'place_id', 'places', 'placeIds', 'place_ids', 'related_places', 'place'];
 
 function readJson(filePath) {
   return JSON.parse(fs.readFileSync(filePath, 'utf8'));
@@ -31,6 +32,39 @@ function fileExistsLikeAsset(rawPath) {
     path.join(root, cleaned.replace(/^\.\//, '')),
   ];
   return candidates.some((p) => fs.existsSync(p));
+}
+
+function listJsonFiles(dirPath) {
+  if (!fs.existsSync(dirPath)) return [];
+  const files = [];
+  const walk = (current) => {
+    for (const entry of fs.readdirSync(current, { withFileTypes: true })) {
+      const full = path.join(current, entry.name);
+      if (entry.isDirectory()) walk(full);
+      else if (entry.isFile() && full.endsWith('.json')) files.push(full);
+    }
+  };
+  walk(dirPath);
+  return files;
+}
+
+function collectRefsByKeys(node, keys, currentPath = '', refs = []) {
+  if (Array.isArray(node)) {
+    node.forEach((v, i) => collectRefsByKeys(v, keys, `${currentPath}[${i}]`, refs));
+    return refs;
+  }
+  if (!node || typeof node !== 'object') return refs;
+  for (const [k, v] of Object.entries(node)) {
+    const nextPath = currentPath ? `${currentPath}.${k}` : k;
+    if (keys.includes(k)) {
+      if (typeof v === 'string') refs.push({ key: nextPath, value: v });
+      if (Array.isArray(v)) {
+        for (const item of v) if (typeof item === 'string') refs.push({ key: nextPath, value: item });
+      }
+    }
+    collectRefsByKeys(v, keys, nextPath, refs);
+  }
+  return refs;
 }
 
 const manifest = readJson(manifestPath);
@@ -89,6 +123,39 @@ const duplicateIds = [...duplicatesMap.entries()].filter(([, arr]) => arr.length
 const validPlaceIds = new Set(
   allPlaces.map((x) => x.place?.id).filter((id) => typeof id === 'string' && id.trim() !== '')
 );
+
+const coverageSources = [
+  { name: 'quiz', files: listJsonFiles(path.join(root, 'data/quiz')), keys: ['placeId', 'place_id', 'place'] },
+  { name: 'people', files: [path.join(root, 'data/people.json')], keys: ['placeId', 'place_id', 'places', 'placeIds', 'related_places'] },
+  { name: 'nature', files: listJsonFiles(path.join(root, 'data/natur')), keys: ['placeId', 'place_id', 'places', 'placeIds'] },
+  { name: 'badges', files: [path.join(root, 'data/badges.json'), ...listJsonFiles(path.join(root, 'data/badges'))], keys: ['placeId', 'place_id', 'places', 'placeIds'] },
+  { name: 'wonderkammer', files: [path.join(root, 'data/wonderkammer/index.json'), ...listJsonFiles(path.join(root, 'data/wonderkammer'))], keys: ['placeId', 'place_id', 'places', 'placeIds'] },
+  { name: 'relations', files: listJsonFiles(path.join(root, 'data/relations')), keys: PLACE_REF_KEYS },
+  { name: 'leksikon', files: [...listJsonFiles(path.join(root, 'data/leksikon/places')), ...listJsonFiles(path.join(root, 'data/leksikon/sprak/places'))], keys: PLACE_REF_KEYS },
+  { name: 'external/offisielle lenker', files: listJsonFiles(path.join(root, 'data/external')), keys: PLACE_REF_KEYS },
+];
+
+const coverageBySource = {};
+for (const source of coverageSources) {
+  const seen = new Set();
+  const dangling = [];
+  for (const filePath of source.files) {
+    if (!fs.existsSync(filePath)) continue;
+    try {
+      const json = readJson(filePath);
+      const refs = collectRefsByKeys(json, source.keys);
+      for (const ref of refs) {
+        seen.add(ref.value);
+        if (!validPlaceIds.has(ref.value)) {
+          dangling.push({ file: path.relative(root, filePath).replace(/\\/g, '/'), key: ref.key, value: ref.value });
+        }
+      }
+    } catch {
+      // ignore parse errors for coverage sources
+    }
+  }
+  coverageBySource[source.name] = { seen, dangling, files: source.files.length };
+}
 
 const refTargets = [
   'data/people.json',
@@ -181,6 +248,28 @@ md += `- Steder som bruker imageCard-felt: **${totals.usesImageCard}**\n`;
 md += `- Steder med stub:true eller hidden:true: **${totals.stubOrHidden}**\n`;
 md += `- Antall ødelagte asset paths: **${totals.badAssetPaths}**\n`;
 md += `- Antall place-referanser til ikke-eksisterende id-er: **${danglingRefs.length}**\n\n`;
+md += '## Dekning per datasett (placeId/places)\n\n';
+for (const source of coverageSources) {
+  const cov = coverageBySource[source.name];
+  const covered = [...validPlaceIds].filter((id) => cov.seen.has(id)).length;
+  const missing = validPlaceIds.size - covered;
+  md += `- **${source.name}**: ${covered}/${validPlaceIds.size} steder dekket (mangler ${missing}, ugyldige refs ${cov.dangling.length})\n`;
+}
+md += '\n';
+
+const missingQuizCoverage = [...validPlaceIds].filter((id) => !coverageBySource.quiz.seen.has(id));
+const missingRounds = allPlaces
+  .map((x) => x.place)
+  .filter((p) => typeof p?.id === 'string')
+  .filter((p) => isMissing(p?.r))
+  .map((p) => p.id);
+
+md += '## Manglende rundinger og quizdekning\n\n';
+md += `- Manglende rundinger (r): **${missingRounds.length}**\n`;
+if (missingRounds.length) md += `  - ${missingRounds.slice(0, 100).join(', ')}${missingRounds.length > 100 ? ' ...' : ''}\n`;
+md += `- Manglende quizdekning: **${missingQuizCoverage.length}**\n`;
+if (missingQuizCoverage.length) md += `  - ${missingQuizCoverage.slice(0, 100).join(', ')}${missingQuizCoverage.length > 100 ? ' ...' : ''}\n`;
+md += '\n';
 
 md += '## Funn per fil\n\n';
 for (const f of perFile) {
@@ -247,6 +336,11 @@ md += '2. Fyll inn obligatoriske basisfelt (id, name, lat, lon, r, category, yea
 md += '3. Fyll inn popupDesc, emne_ids og quiz_profile på alle steder.\n';
 md += '4. Standardiser bilde-felter: bytt imageCard -> cardImage og fyll manglende image/cardImage.\n';
 md += '5. Korriger ødelagte asset paths og fjern/avklar stub:true og hidden:true.\n';
+md += '\n## Neste arbeid (prioritert)\n\n';
+md += `1. Lag quiz for ${missingQuizCoverage.length} steder uten quizdekning (start med steder som også mangler popupDesc/emne_ids).\n`;
+md += `2. Fyll inn rundinger (r) for ${missingRounds.length} steder som mangler dette feltet.\n`;
+md += '3. Rydd opp ugyldige place-referanser i datasett med høyest antall dangling refs (se dekningsseksjonen).\n';
+md += '4. Øk dekning i people/nature/badges/wonderkammer/leksikon/external ved å koble placeId/places mot eksisterende steder.\n';
 
 fs.mkdirSync(path.dirname(reportPath), { recursive: true });
 fs.writeFileSync(reportPath, md, 'utf8');
