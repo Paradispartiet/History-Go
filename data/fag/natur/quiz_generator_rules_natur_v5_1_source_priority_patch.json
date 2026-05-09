@@ -1,0 +1,302 @@
+{
+  "version": "v5.1-source-priority-patch-natur",
+  "subject_id": "natur",
+  "subject_title": "Natur & miljø",
+  "scope": "oslo_og_omegn",
+  "purpose": "Stramme inn quizgeneratoren for Natur & miljø slik at konkrete arter, habitater, økosystemer, vassdrag, parker, geologiske former, klimaeffekter, vannkvalitet, forurensning, restaurering, vern, forvaltning, feltmålinger, kartdata og dokumenterte naturfaglige kilder dominerer synlig spørsmålsinnhold. Fagkart, methods, emner, emnemapping og pensum skal styre struktur, metode, teori og progresjon, men ikke fungere som hovedkilde til faktapåstander.",
+  "canonical_inputs": {
+    "fagkart": "fagkart_natur_canonical_v4_5.json",
+    "methods": "methods_natur_canonical_v4_5.json",
+    "emner": "emner_natur_canonical_v4_5.json",
+    "emnemapping": "emnemapping_natur_canonical_v4_5.json",
+    "pensum": "naturpensum_canonical_v4_5.json",
+    "domain_count": 6,
+    "emne_count": 33,
+    "method_count": 30,
+    "mapping_count": 33,
+    "topic_hook_count": 60
+  },
+  "hard_rules": {
+    "source_dominance_rule": "Eksterne natur- og miljøfaglige kilder, konkrete arter, habitater, økosystemer, vassdrag, vannkvalitet, hydrologi, klima, geologi, jord, sedimenter, parker, grønnstruktur, forurensning, miljøgifter, restaurering, vern, forvaltning, artsdata, feltmålinger, kartdata og dokumenterte naturprosesser skal dominere det synlige faktainnholdet i naturquizzer. Canonical-filene er styringsfiler, ikke faktakilde.",
+    "canonical_files_are_guides_not_content": true,
+    "external_nature_source_first_all_sets": true,
+    "minimum_external_source_ratio_by_set": {
+      "1": 0.85,
+      "2": 0.85,
+      "3": 0.8,
+      "4": 0.75,
+      "5": 0.75,
+      "6": 0.7,
+      "7": 0.75,
+      "8": 0.75
+    },
+    "internal_file_only_questions_max_per_quiz": 0.05,
+    "internal_file_only_questions_allowed_only_for": [
+      "ren observasjon av synlig art, habitat, vegetasjon, vannspeil, elv, bekk, dam, våtmark, fjord, geologisk form, erosjonsspor, grønnstruktur, restaureringstiltak eller forvaltningsskilt",
+      "validering av metadata, kategori eller spørsmålslag",
+      "nødfallback når ekstern kilde ikke finnes, og dette loggføres eksplisitt"
+    ],
+    "question_seed_priority": [
+      "konkret art, habitat, økosystem, naturtype, vassdrag, park, geologisk form, klimarisiko, forurensningsspor, restaureringstiltak eller forvaltningscase",
+      "offisiell natur-, miljø-, kommune-, NVE-, Miljødirektoratet-, Artsdatabanken-, kart-, museum-, forsknings- eller forvaltningskilde",
+      "økologisk faglitteratur, hydrologiske data, vannkvalitetsdata, artskart, geologiske kart, klimadata, feltmålinger eller forskningsrapport",
+      "dokumentert naturprosess: kretsløp, energiflyt, erosjon, suksesjon, forstyrrelse, regenerasjon, tålegrense eller økologisk korridor",
+      "dokumentert miljøpåvirkning: forurensning, miljøgifter, mikroplast, arealinngrep, restaurering, vern, forvaltning, miljørettferdighet eller naturkonflikt",
+      "stedsdata/persondata i appen",
+      "fagkart, methods, emner, emnemapping og pensum som styring – ikke faktakilde"
+    ],
+    "natur_question_must_start_from": [
+      "konkret art, habitat, økosystem, naturtype, bestand, næringsnett, pollinering, jordliv eller biologisk mangfold",
+      "elv, bekk, innsjø, dam, våtmark, fjord, vannkvalitet, hydrologi, overvann, sediment eller kretsløp",
+      "klimaeffekt, karbon, energiflyt, urban varme, sårbarhet, resiliens, vippepunkt, ekstremvær eller klimatilpasning",
+      "geologi, berggrunn, landskapsform, topografi, dalføre, vannskille, erosjon, istid, strandlinje eller lang naturtid",
+      "park, bynatur, trær, grønnstruktur, økologisk korridor, elvekant, bydyr, kolonihage, marka eller natur–by-friksjon",
+      "forurensning, miljøgifter, mikroplast, naturinngrep, vern, restaurering, regenerasjon, miljødata, forvaltning eller økologisk rettferdighet",
+      "dokumentert kilde: artskart, feltmåling, vannkvalitetsdata, klimadata, hydrologiske data, geologisk kart, forvaltningsplan eller forskningskilde"
+    ],
+    "forbidden_generation_patterns": [
+      "Ikke generer synlige spørsmål direkte fra emne-, hook-, metode- eller teorinavn.",
+      "Ikke spør generisk om natur uten konkret art, habitat, vassdrag, klima, geologi, forurensning, forvaltning, sted eller kilde.",
+      "Ikke gjør et sted til natur bare fordi det er grønt, pent eller rekreativt, uten dokumentert økologisk, biologisk, hydrologisk, geologisk, klimatisk eller forvaltningsmessig hovedkobling.",
+      "Ikke klassifiser byarkitektur, historie, sport, kultur, politikk, næringsliv, kunst, litteratur, media, musikk, populærkultur eller vitenskap som natur når natur bare er sekundærlag.",
+      "Ikke bruk em_by_*, em_his_*, em_kunst_*, em_lit_*, em_media_*, em_musikk_*, em_pop_*, em_vit_*, em_pol_* eller em_naering_* som hoved-emne_ids i places_natur eller people_natur.",
+      "Ikke lag generelle naturskjønnhetsspørsmål der naturen fremstilles som dekor uten økologisk prosess, data, habitat, forvaltning eller miljøfaglig konflikt."
+    ],
+    "required_emne_prefix": "em_natur_",
+    "blocked_emne_prefixes_for_natur_files": [
+      "em_by_",
+      "em_his_",
+      "em_kunst_",
+      "em_lit_",
+      "em_media_",
+      "em_musikk_",
+      "em_pop_",
+      "em_vit_",
+      "em_pol_",
+      "em_naering_"
+    ],
+    "people_natur_rule": "people_natur skal inneholde personer der hovedrollen er naturforsker, biolog, økolog, geolog, hydrolog, klimaforsker, miljøforsker, naturforvalter, miljøaktivist, artskartlegger, naturfilosof, naturvernaktør, restaureringsaktør eller sentral aktør i natur- og miljøfeltet.",
+    "places_natur_rule": "places_natur skal inneholde steder der hovedrollen er naturreservat, vassdrag, elv, bekk, innsjø, dam, våtmark, fjord, strand, skog, marka, park som økosystem, grønnstruktur, økologisk korridor, habitat, geologisk form, klimatilpasningstiltak, overvannsanlegg, forurenset eller restaurert natursted, verneområde, forvaltningscase eller sted der naturprosess, økologi, klima, vann, geologi eller miljøpåvirkning er hovedpoenget."
+  },
+  "soft_preferences": {
+    "preferred_external_source_mix_per_place": [
+      "minst én offisiell natur-, miljø-, kommune-, NVE-, Miljødirektoratet-, Artsdatabanken-, kart-, museum-, forsknings- eller forvaltningskilde",
+      "minst én økologisk, hydrologisk, geologisk, klimafaglig, forurensningsfaglig, restaureringsfaglig eller forvaltningsbasert kilde",
+      "minst én konkret arts-, habitat-, vassdrag-, park-, geologi-, klima-, forurensnings-, restaurerings- eller miljødatakilde når quiz handler om sted eller person"
+    ],
+    "preferred_question_build_path": "naturfaglig kilde eller konkret art/habitat/vassdrag/klima/geologi -> presist claim -> sted/naturtype/forvaltningscase -> metode/emne -> teori",
+    "preferred_role_of_canonical_files": [
+      "velge riktig em_natur_*",
+      "velge relevant naturmetode",
+      "styre om spørsmålet bør starte i art, habitat, økosystem, vassdrag, klima, geologi, forurensning, restaurering, forvaltning eller grønnstruktur",
+      "spre teorier, tenkere, naturtyper, steder, metoder, miljøpåvirkninger og naturprosesser",
+      "unngå kategorirot mellom natur, by, historie, sport, kultur, politikk, næringsliv, vitenskap og andre fag",
+      "unngå teorioverstyring der arten, habitatet, vassdraget, geologien, klimaeffekten eller forvaltningscaset blir borte"
+    ],
+    "preferred_question_surfaces": [
+      "ecosystem-first",
+      "water-system-first",
+      "climate-risk-first",
+      "geology-landscape-first",
+      "urban-ecology-first",
+      "impact-management-first",
+      "nature-place-process-first_then_named_theorist"
+    ]
+  },
+  "set_guidance": {
+    "1": {
+      "name": "grunnfakta_art_habitat_sted",
+      "dominant_driver": "ekstern kilde, konkret art, habitat, økosystem, naturtype, vassdrag, park, våtmark, skog, fjord eller geologisk form",
+      "canonical_role": "lett styring av emne og metode",
+      "allowed_methods": [
+        "met_natur_okologisk_kartlegging",
+        "met_natur_habitat_og_biotopanalyse",
+        "met_natur_artsovervaking",
+        "met_natur_landskapslesning"
+      ],
+      "question_style": "enkel gjenkjenning, art/sted/funksjon, habitat, naturtype, synlig økologisk eller geologisk spor"
+    },
+    "2": {
+      "name": "okosystem_mangfold_habitat",
+      "dominant_driver": "konkret art, bestand, habitat, næringsnett, pollinering, jordliv, skogstruktur, våtmark eller biologisk mangfold",
+      "canonical_role": "lett til middels metodeføring",
+      "allowed_methods": [
+        "met_natur_okologisk_kartlegging",
+        "met_natur_okosystemanalyse",
+        "met_natur_biodiversitetsanalyse",
+        "met_natur_habitat_og_biotopanalyse",
+        "met_natur_vegetasjonsanalyse"
+      ],
+      "question_style": "arter, habitater, næringsnett, samspill, fremmede arter, suksesjon, økosystemtjenester og naturens egenverdi"
+    },
+    "3": {
+      "name": "vann_hydrologi_kretslop",
+      "dominant_driver": "konkret elv, bekk, vann, våtmark, fjord, overvann, vannkvalitet, sediment, hydrologi eller kretsløp",
+      "canonical_role": "høy metode- og emnestyring tillatt",
+      "allowed_methods": [
+        "met_natur_hydrologisk_analyse",
+        "met_natur_vannkvalitetsanalyse",
+        "met_natur_kretslopsanalyse",
+        "met_natur_jord_og_sedimentanalyse",
+        "met_natur_kyst_og_marinsystemanalyse"
+      ],
+      "question_style": "vassdrag, vannkvalitet, overvann, sedimenter, fjordøkologi, kretsløp, flom, erosjon, mikroplast og kjemi"
+    },
+    "4": {
+      "name": "klima_energi_resiliens",
+      "dominant_driver": "klimaeffekt, karbon, energiflyt, urban varme, ekstremvær, sårbarhet, vippepunkt, resiliens eller klimatilpasning",
+      "canonical_role": "middels til høy metodeføring",
+      "allowed_methods": [
+        "met_natur_klima_og_karbonanalyse",
+        "met_natur_klimamodellering",
+        "met_natur_mikroklimaanalyse",
+        "met_natur_resiliensanalyse",
+        "met_natur_risiko_og_sarbarhetsanalyse"
+      ],
+      "question_style": "klima, energi, karbon, varme, ekstremvær, vegetasjon som klimatiltak, naturbaserte løsninger og sårbarhet"
+    },
+    "5": {
+      "name": "geologi_landskap_tid",
+      "dominant_driver": "berggrunn, dalføre, vannskille, erosjon, jordprofil, strandlinje, øyøkologi, topografi, istid eller lang naturtid",
+      "canonical_role": "høy landskaps- og tidsstyring tillatt",
+      "allowed_methods": [
+        "met_natur_geologisk_analyse",
+        "met_natur_landskapslesning",
+        "met_natur_jord_og_sedimentanalyse",
+        "met_natur_endrings_og_tidsserieanalyse",
+        "met_natur_kyst_og_marinsystemanalyse"
+      ],
+      "question_style": "berggrunn, landskapsform, erosjon, strandlinjer, dalfører, topografi, istid, jord og langsom naturtid"
+    },
+    "6": {
+      "name": "urban_okologi_gronnstruktur",
+      "dominant_driver": "park, bynatur, trær, grønnstruktur, økologisk korridor, elvekant, bydyr, kolonihage, marka eller natur–by-friksjon",
+      "canonical_role": "høy urbanøkologisk og grønnstrukturell styring tillatt",
+      "allowed_methods": [
+        "met_natur_urban_okologi",
+        "met_natur_landskapsokologisk_analyse",
+        "met_natur_sosiookologisk_analyse",
+        "met_natur_okosystemtjenesteanalyse",
+        "met_natur_forvaltningsanalyse"
+      ],
+      "question_style": "bynatur, parker som økosystemer, grønne korridorer, trær, rekreasjon, marka, kolonihager, bydyr og økologisk friksjon"
+    },
+    "7": {
+      "name": "miljopavirkning_forvaltning_regenerasjon",
+      "dominant_driver": "forurensning, miljøgift, mikroplast, naturinngrep, vern, restaurering, regenerasjon, forvaltning, miljødata eller økologisk rettferdighet",
+      "canonical_role": "høy teoristyring tillatt, men bare etter konkret natur- eller miljøcase",
+      "allowed_methods": [
+        "met_natur_forurensningsanalyse",
+        "met_natur_forvaltningsanalyse",
+        "met_natur_restaureringsanalyse",
+        "met_natur_konflikt_og_forvaltningsanalyse",
+        "met_natur_miljorettferdighetsanalyse"
+      ],
+      "question_style": "forurensning, miljøgifter, naturinngrep, vern, restaurering, tålegrenser, forvaltning, aktivisme og miljørettferdighet"
+    },
+    "8": {
+      "name": "system_forvaltning_antropocen",
+      "dominant_driver": "konkret økologisk system, klimarisiko, naturkonflikt, forurensning, restaurering, forvaltning, tålegrense eller langtidseffekt",
+      "canonical_role": "høy teori tillatt, men med konkret art, habitat, vassdrag, klima, geologi, forurensning eller forvaltningscase",
+      "allowed_methods": [
+        "met_natur_okosystemanalyse",
+        "met_natur_resiliensanalyse",
+        "met_natur_risiko_og_sarbarhetsanalyse",
+        "met_natur_miljoetisk_analyse",
+        "met_natur_sosiookologisk_analyse"
+      ],
+      "question_style": "systemtenkning, antropocen, natur som aktør, tålegrenser, miljøetikk, økologisk rettferdighet, forstyrrelse og regenerasjon"
+    }
+  },
+  "natur_category_guardrails": {
+    "accept_as_natur_primary_when": [
+      "stedet eller personen har natur- eller miljøfaglig hovedrolle",
+      "det finnes konkret art, habitat, økosystem, vannsystem, klimaeffekt, geologi, grønnstruktur, forurensning, restaurering, vern eller forvaltning",
+      "spørsmål kan bygges fra naturfaglige kilder, artsdata, kart, feltmålinger, vannkvalitetsdata, klimadata, geologiske data eller forvaltningskilder",
+      "naturens systemlogikk er primær, ikke bare grønt byrom, rekreasjon, historie, arkitektur eller kultur"
+    ],
+    "do_not_accept_as_natur_primary_when": [
+      "hovedrollen er byarkitektur, historie, sport, kultur, politikk, næringsliv, kunst, litteratur, media, musikk, populærkultur eller vitenskap som institusjon",
+      "stedet er bare grønt, pent eller rekreativt uten dokumentert økologisk, biologisk, hydrologisk, geologisk, klimatisk eller forvaltningsmessig hovedrolle",
+      "stedet er bare en generell byutviklingscase uten konkret naturprosess, habitat, vassdrag, klima, geologi eller miljøpåvirkning",
+      "personen er offentlig kulturpersonlighet eller politiker uten hovedrolle som natur- eller miljøfaglig aktør"
+    ],
+    "secondary_natur_tag_allowed": true
+  },
+  "validator_additions": [
+    "Avvis naturquiz hvis synlig innhold primært er parafrase av fagkart, emner, methods eller mapping.",
+    "Avvis spørsmål som kan spores bare til emne-/hook-/metodenavn og ikke til konkret art, habitat, vassdrag, klima, geologi, forurensning, forvaltning eller ekstern kilde.",
+    "Avvis hoved-emne_ids i places_natur eller people_natur som ikke starter med em_natur_*.",
+    "Flagg poster der hovedkategori ser ut til å være by, historie, sport, kultur, politikk, næringsliv, kunst, litteratur, media, musikk, populærkultur eller vitenskap.",
+    "Logg per spørsmål source_origin som external, mixed, observed_species, observed_habitat, observed_water_system, observed_geology, observed_pollution, observed_management eller internal_only.",
+    "Flagg quiz der internal_only overstiger 5 prosent.",
+    "Flagg teorioverstyring når navngitt teoretiker kommer før art/habitat/vassdrag/klima/geologi/forurensning/forvaltning er etablert.",
+    "Flagg naturanalyse som blir ren naturskjønnhet uten økologisk prosess, data, habitat, forvaltning eller miljøfaglig konflikt.",
+    "Flagg biografiske spørsmål som ikke kobler person til konkret naturfaglig arbeid, miljøforvaltning, økologi, klima, geologi, art, habitat eller naturvern.",
+    "Flagg stedsbaserte spørsmål der koblingen til natur bare er løs assosiasjon, grønn dekor eller rekreasjon."
+  ],
+  "generation_metadata_additions": {
+    "required_per_question_fields_recommended": [
+      "source_origin",
+      "claim_basis",
+      "guidance_basis",
+      "method_id",
+      "emne_id",
+      "nature_anchor_type",
+      "source_note"
+    ],
+    "source_origin_values": [
+      "external",
+      "mixed",
+      "observed_species",
+      "observed_habitat",
+      "observed_water_system",
+      "observed_geology",
+      "observed_pollution",
+      "observed_management",
+      "internal_only"
+    ],
+    "nature_anchor_type_values": [
+      "species",
+      "habitat",
+      "ecosystem",
+      "biodiversity",
+      "wetland",
+      "forest",
+      "vegetation",
+      "river",
+      "stream",
+      "lake",
+      "fjord",
+      "water_quality",
+      "stormwater",
+      "soil",
+      "sediment",
+      "geology",
+      "landscape_form",
+      "climate",
+      "carbon",
+      "energy_flow",
+      "resilience",
+      "urban_ecology",
+      "green_corridor",
+      "park_ecosystem",
+      "pollution",
+      "microplastics",
+      "environmental_toxins",
+      "restoration",
+      "conservation",
+      "management",
+      "ecological_conflict",
+      "field_measurement",
+      "map_data"
+    ],
+    "claim_basis_definition": "Den konkrete natur- eller miljøfaglige påstanden fra ekstern kilde, artsdata, feltmåling, kart, vannkvalitetsdata, klimadata, geologisk data, forvaltningskilde eller dokumentert naturprosess.",
+    "guidance_basis_definition": "Hvilket em_natur_*, hook, metode eller teorispor som styrte spørsmålets form uten å levere faktapåstanden.",
+    "method_id_definition": "Én method_id fra methods_natur_canonical_v4_5.json brukt til å forme spørsmålet.",
+    "emne_id_definition": "Én em_natur_* fra emner_natur_canonical_v4_5.json brukt som hovedemne.",
+    "source_note_definition": "Kort kildebeskrivelse som sier hvilken type natur- eller miljøfaglig kilde som er brukt."
+  },
+  "diagnosis_note": "Når mange filer er opplastet, må modellen ikke overvekte canonical systemfiler bare fordi de er mange. For natur skal konkrete arter, habitater, vassdrag, klima, geologi, forurensning, restaurering, vern, forvaltning, artsdata, feltmålinger, kartdata, vannkvalitetsdata, klimadata og miljøfaglige kilder dominere synlig quizinnhold. Fagkart, methods, emner, emnemapping og pensum er styring.",
+  "migration_note": "Eksisterende places_natur og people_natur bør migreres til em_natur_* bare etter at hvert objekt er lest. Det må samtidig sjekkes at hovedkategori faktisk er natur og ikke by, historie, sport, kultur, politikk, næringsliv, vitenskap eller annet fag."
+}
