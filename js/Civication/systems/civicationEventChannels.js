@@ -11,6 +11,28 @@
   const WORKDAY_FAMILIES = new Set(["kasse_og_pris", "kundemote_og_service", "travelt_gulv"]);
   const MESSAGE_PLANNED_TYPES = new Set(["people", "story", "faction_choice"]);
 
+  const ROLE_BOUND_SOURCE_TYPES = new Set([
+    "planned",
+    "thread",
+    "role",
+    "legacy_pack",
+    "workday",
+    "brand_progression"
+  ]);
+
+  const ROLE_BOUND_MAIL_TYPES = new Set([
+    "job",
+    "job_micro",
+    "followup",
+    "knowledge",
+    "consequence",
+    "conflict",
+    "event",
+    "story",
+    "people",
+    "faction_choice"
+  ]);
+
   function normalize(value) {
     return String(value || "").trim().toLowerCase();
   }
@@ -18,6 +40,37 @@
   function includesPressure(value) {
     if (Array.isArray(value)) return value.some(function (v) { return WORKDAY_PRESSURE.has(normalize(v)); });
     return WORKDAY_PRESSURE.has(normalize(value));
+  }
+
+  function hasRoleBinding(event) {
+    const ev = event || {};
+    return !!(
+      ev.role_content_meta ||
+      ev.mail_plan_meta ||
+      normalize(ev.role_scope) ||
+      normalize(ev.role_id) ||
+      normalize(ev.role_key) ||
+      normalize(ev.career_id) ||
+      normalize(ev.tier_label) ||
+      normalize(ev.brand_id) ||
+      normalize(ev.brand_name)
+    );
+  }
+
+  function isRoleBoundJobMail(event) {
+    const ev = event || {};
+    const sourceType = normalize(ev.source_type);
+    const mailType = normalize(ev.mail_type || ev.type || ev.kind);
+    const mailClass = normalize(ev.mail_class);
+    const explicit = normalize(ev.channel || ev.messageChannel);
+
+    if (explicit === "job" || explicit === "jobmail") return true;
+    if (mailClass === "job_message" || mailClass === "opportunity_blocked") return true;
+    if (sourceType === "blocked_job" || sourceType === "workday" || sourceType === "brand_progression") return true;
+    if (ROLE_BOUND_SOURCE_TYPES.has(sourceType) && hasRoleBinding(ev)) return true;
+    if (ROLE_BOUND_MAIL_TYPES.has(mailType) && hasRoleBinding(ev)) return true;
+
+    return false;
   }
 
   function classifyEvent(event) {
@@ -82,37 +135,35 @@
 
     const type = normalize(ev.type || ev.kind || ev.mail_type);
     const track = normalize(ev.track || ev.arc);
-    const slot = normalize(ev.slot || ev.timeSlot || ev.time_slot);
+    const slot = normalize(ev.slot || ev.timeSlot || ev.time_slot || ev.phase_tag);
     const sourceType = normalize(ev.source_type);
     const mailClass = normalize(ev.mail_class);
 
     if (
+      sourceType === "life" ||
+      mailClass === "private_message" ||
+      type === "private" ||
+      type === "personal" ||
+      slot === "evening" ||
+      slot === "free_time" ||
+      slot === "leisure" ||
+      slot === "personal"
+    ) {
+      return "private";
+    }
+
+    if (
+      isRoleBoundJobMail(ev) ||
       type === "job" ||
       type === "jobmail" ||
       track === "career" ||
       track === "job" ||
       slot === "work" ||
       slot === "workday" ||
-      sourceType === "blocked_job" ||
-      sourceType === "workday" ||
-      mailClass === "job_message" ||
-      mailClass === "opportunity_blocked" ||
-      classifyEvent(ev) === "workday"
+      classifyEvent(ev) === "workday" ||
+      classifyEvent(ev) === "milestone"
     ) {
       return "job";
-    }
-
-    if (
-      type === "private" ||
-      type === "personal" ||
-      slot === "evening" ||
-      slot === "free_time" ||
-      slot === "leisure" ||
-      slot === "personal" ||
-      sourceType === "life" ||
-      mailClass === "private_message"
-    ) {
-      return "private";
     }
 
     return "private";
@@ -135,21 +186,49 @@
     return buckets;
   }
 
+  function splitInboxByMessageChannel(inbox) {
+    const list = Array.isArray(inbox) ? inbox : [];
+    const buckets = { job: [], private: [], system: [], unknown: [] };
+
+    list.forEach(function (item) {
+      const ev = item && item.event ? item.event : item;
+      const kind = classifyEvent(ev);
+
+      if (kind === "system") {
+        buckets.system.push(item);
+        return;
+      }
+
+      const channel = getMessageChannel(ev);
+      if (channel === "job") buckets.job.push(item);
+      else if (channel === "private") buckets.private.push(item);
+      else buckets.unknown.push(item);
+    });
+
+    return buckets;
+  }
+
   function isMessage(event) { return classifyEvent(event) === "message"; }
   function isWorkdayEvent(event) { return classifyEvent(event) === "workday"; }
   function isMilestone(event) { return classifyEvent(event) === "milestone"; }
+  function isJobMail(event) { return getMessageChannel(event) === "job"; }
+  function isPrivateMessage(event) { return getMessageChannel(event) === "private"; }
 
   function inspect(inbox) {
     const buckets = splitInbox(inbox);
+    const channels = splitInboxByMessageChannel(inbox);
     return {
       counts: {
         messages: buckets.messages.length,
         workday: buckets.workday.length,
         milestones: buckets.milestones.length,
         system: buckets.system.length,
-        unknown: buckets.unknown.length
+        unknown: buckets.unknown.length,
+        job: channels.job.length,
+        private: channels.private.length
       },
-      buckets: buckets
+      buckets: buckets,
+      channels: channels
     };
   }
 
@@ -157,9 +236,12 @@
     classifyEvent: classifyEvent,
     getMessageChannel: getMessageChannel,
     splitInbox: splitInbox,
+    splitInboxByMessageChannel: splitInboxByMessageChannel,
     isMessage: isMessage,
     isWorkdayEvent: isWorkdayEvent,
     isMilestone: isMilestone,
+    isJobMail: isJobMail,
+    isPrivateMessage: isPrivateMessage,
     inspect: inspect
   };
 })();
