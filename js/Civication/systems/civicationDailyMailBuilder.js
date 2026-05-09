@@ -1086,6 +1086,51 @@
     return true;
   }
 
+  function inboxHasEventId(eventId) {
+    const id = norm(eventId);
+    if (!id) return false;
+    const inbox = getInbox(window.HG_CiviEngine);
+    return inbox.some(item => norm(item?.event?.id || item?.id) === id);
+  }
+
+  function deliverRuntimeItemToInbox(runtimeRow, engine) {
+    const row = runtimeRow && typeof runtimeRow === "object" ? runtimeRow : null;
+    const event = row?.event && typeof row.event === "object" ? row.event : null;
+    if (!event) return { ok: false, reason: "missing_event" };
+
+    const eventId = norm(event.id);
+    if (!eventId) return { ok: false, reason: "missing_event_id" };
+    if (inboxHasEventId(eventId)) return { ok: false, reason: "duplicate_id" };
+
+    const deliveredEvent = {
+      ...event,
+      id: eventId,
+      status: norm(row?.status || event.status || "delivered"),
+      phase: norm(row?.phase || event.phase || event.phase_tag),
+      slot: norm(row?.slot || event.slot),
+      source_type: norm(event.source_type),
+      mail_type: norm(event.mail_type || event.type),
+      mail_family: norm(event.mail_family),
+      narrative_stream_id: norm(event.narrative_stream_id),
+      narrative_storylet_id: norm(event.narrative_storylet_id),
+      choices: Array.isArray(event.choices) ? event.choices : []
+    };
+
+    if (window.CivicationMailEngine?.sendMail) {
+      const sent = window.CivicationMailEngine.sendMail({
+        id: eventId,
+        status: "pending",
+        enqueued_at: new Date().toISOString(),
+        event: deliveredEvent
+      });
+      if (sent?.ok) return { ok: true, via: "mail_engine" };
+      if (sent?.reason === "duplicate_key") return { ok: false, reason: "duplicate_key" };
+    }
+
+    const enqueued = enqueueEvent(engine, deliveredEvent);
+    return { ok: !!enqueued, via: "engine_enqueue_fallback" };
+  }
+
   async function enqueueNext(engine, options = {}) {
     const active = options.active || getActive();
     if (!active) return { enqueued: false, reason: "no_active_role" };
@@ -1140,7 +1185,7 @@
     };
 
     setRuntime(nextRuntime);
-    enqueueEvent(engine, event);
+    deliverRuntimeItemToInbox(item, engine);
     try { window.dispatchEvent(new Event("civi:inboxChanged")); } catch {}
     try { window.dispatchEvent(new Event("updateProfile")); } catch {}
 
