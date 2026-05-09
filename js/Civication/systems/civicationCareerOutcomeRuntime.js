@@ -36,6 +36,10 @@
     return window.CivicationState?.setState?.(patch || {}) || null;
   }
 
+  function getActive() {
+    return window.CivicationState?.getActivePosition?.() || null;
+  }
+
   function resolveRoleScope(active) {
     const resolver = window.CivicationCareerRoleResolver?.resolveCareerRoleScope;
     if (typeof resolver === "function") {
@@ -292,6 +296,14 @@
     return terminal.mail || null;
   }
 
+  async function makeOutcomeAwareCandidates(original, active, state) {
+    const currentState = state || getState();
+    const terminal = await getTerminalPlanState(active, currentState);
+    if (terminal.mail) return [terminal.mail];
+    if (terminal.closed) return [];
+    return original(active, currentState);
+  }
+
   function patchMailRuntime() {
     const runtimeApi = window.CivicationMailRuntime;
     if (!runtimeApi || runtimeApi[PATCHED_FLAG] === true) return false;
@@ -300,11 +312,13 @@
     const original = runtimeApi.makeCandidateMailsForActiveRole.bind(runtimeApi);
 
     runtimeApi.makeCandidateMailsForActiveRole = async function outcomeAwareCandidates(active, state) {
-      const currentState = state || getState();
-      const terminal = await getTerminalPlanState(active, currentState);
-      if (terminal.mail) return [terminal.mail];
-      if (terminal.closed) return [];
-      return original(active, currentState);
+      return makeOutcomeAwareCandidates(original, active, state);
+    };
+
+    runtimeApi.debugCandidates = async function outcomeDebugCandidates() {
+      const active = getActive();
+      if (!active) return [];
+      return runtimeApi.makeCandidateMailsForActiveRole(active, getState());
     };
 
     const originalInspect = typeof runtimeApi.inspect === "function"
@@ -322,6 +336,35 @@
     };
 
     runtimeApi[PATCHED_FLAG] = true;
+    return true;
+  }
+
+  function patchEventEngineBuildMailPool() {
+    const proto = window.CivicationEventEngine?.prototype;
+    if (!proto || proto.__civicationCareerOutcomeBuildMailPoolPatched === true) return false;
+    if (typeof proto.buildMailPool !== "function") return false;
+
+    const original = proto.buildMailPool;
+    proto.buildMailPool = async function outcomeBuildMailPool(active, state, roleKey) {
+      const currentState = state || getState();
+      const terminal = await getTerminalPlanState(active, currentState);
+
+      if (terminal.mail || terminal.closed) {
+        return {
+          role: active?.career_id || null,
+          tag_rules: { max_tags_per_choice: 2, memory_window: 12 },
+          tracks: [],
+          mails: terminal.mail ? [terminal.mail] : [],
+          __civication_mail_runtime: true,
+          __career_outcome_runtime: true,
+          __runtime_candidate_count: terminal.mail ? 1 : 0
+        };
+      }
+
+      return original.call(this, active, currentState, roleKey);
+    };
+
+    proto.__civicationCareerOutcomeBuildMailPoolPatched = true;
     return true;
   }
 
@@ -352,6 +395,7 @@
 
   function boot() {
     patchMailRuntime();
+    patchEventEngineBuildMailPool();
     patchEventEngineAnswer();
   }
 
@@ -359,6 +403,7 @@
     STATE_KEY,
     boot,
     patchMailRuntime,
+    patchEventEngineBuildMailPool,
     patchEventEngineAnswer,
     makeTerminalCandidateIfNeeded,
     getTerminalPlanState,
@@ -366,6 +411,7 @@
     inspect() {
       return {
         patched: window.CivicationMailRuntime?.[PATCHED_FLAG] === true,
+        build_mail_pool_patched: window.CivicationEventEngine?.prototype?.__civicationCareerOutcomeBuildMailPoolPatched === true,
         answer_patched: window.CivicationEventEngine?.prototype?.__civicationCareerOutcomeAnswerPatched === true,
         state: defaultOutcomeState(getState())
       };
