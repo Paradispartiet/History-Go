@@ -1,0 +1,311 @@
+{
+  "version": "v5.1-source-priority-patch-politikk",
+  "subject_id": "politikk",
+  "subject_title": "Politikk & samfunn",
+  "scope": "oslo_og_omegn",
+  "purpose": "Stramme inn quizgeneratoren for Politikk & samfunn slik at konkrete institusjoner, lover, vedtak, reformer, offentlige rom, rettsbygg, forvaltningssteder, demokratiske arenaer, velferdstjenester, konflikter, proteststeder, normsystemer, fordelingsdata, rettskilder, budsjett, reguleringsplaner, statistikk og dokumenterte samfunnsfaglige kilder dominerer synlig spørsmålsinnhold. Fagkart, methods, emner, emnemapping og pensum skal styre struktur, metode, teori og progresjon, men ikke fungere som hovedkilde til faktapåstander.",
+  "canonical_inputs": {
+    "fagkart": "fagkart_politikk_canonical_v4_5.json",
+    "methods": "methods_politikk_canonical_v4_5.json",
+    "emner": "emner_politikk_canonical_v4_5.json",
+    "emnemapping": "emnemapping_politikk_canonical_v4_5.json",
+    "pensum": "politikkpensum_canonical_v4_5.json",
+    "domain_count": 6,
+    "emne_count": 59,
+    "method_count": 38,
+    "mapping_count": 59,
+    "topic_hook_count": 60
+  },
+  "hard_rules": {
+    "source_dominance_rule": "Eksterne politiske, rettslige, forvaltningsmessige, statistiske, historiske og samfunnsfaglige kilder, konkrete institusjoner, lover, reformer, vedtak, budsjett, reguleringsplaner, rettsbygg, offentlige tjenester, demokratiske arenaer, konflikter, protester, normsystemer, fordelingsdata, levekårsdata, demografi, arkiver, utredninger og dokumenterte samfunnsprosesser skal dominere det synlige faktainnholdet i politikkquizzer. Canonical-filene er styringsfiler, ikke faktakilde.",
+    "canonical_files_are_guides_not_content": true,
+    "external_politics_source_first_all_sets": true,
+    "minimum_external_source_ratio_by_set": {
+      "1": 0.85,
+      "2": 0.85,
+      "3": 0.8,
+      "4": 0.75,
+      "5": 0.75,
+      "6": 0.7,
+      "7": 0.75,
+      "8": 0.75
+    },
+    "internal_file_only_questions_max_per_quiz": 0.05,
+    "internal_file_only_questions_allowed_only_for": [
+      "ren observasjon av synlig institusjon, offentlig bygg, rettsbygg, demokratisk arena, forvaltningssted, velferdstjeneste, minnesmerke, demonstrasjonssted, valglokale eller politisk symbol",
+      "validering av metadata, kategori eller spørsmålslag",
+      "nødfallback når ekstern kilde ikke finnes, og dette loggføres eksplisitt"
+    ],
+    "question_seed_priority": [
+      "konkret institusjon, lov, reform, vedtak, offentlig tjeneste, demokratisk arena, rettsbygg, konflikt, protest, normsystem eller sosial prosess",
+      "offisiell kommune-, stat-, Storting-, domstol-, Lovdata-, SSB-, arkiv-, partiprogram-, utrednings-, rapport-, budsjett-, reguleringsplan- eller institusjonskilde",
+      "politisk historie, samfunnsfaglig forskning, rettskilde, NOU, stortingsmelding, kommunalt dokument, statistikk, levekårsdata, demografiske data eller forvaltningsdokument",
+      "dokumentert samfunnsprosess: styring, representasjon, fordeling, rettssikkerhet, regulering, konflikt, offentlighet, legitimitet, normalitet, sosial kontroll eller kollektiv beslutning",
+      "dokumentert politisk offentlighet: debatt, protest, organisering, partier, bevegelser, interessegrupper, sivilsamfunn, ytringsfrihet, polarisering eller demokratisk møteplass",
+      "stedsdata/persondata i appen",
+      "fagkart, methods, emner, emnemapping og pensum som styring – ikke faktakilde"
+    ],
+    "politikk_question_must_start_from": [
+      "konkret institusjon, offentlig bygg, forvaltningssted, rådhus, Storting, departement, tinghus, bydelshus, arkiv eller offentlig tjeneste",
+      "lov, rettighet, plikt, domstol, rettspraksis, rettssikkerhet, straff, kontroll, forvaltningsvedtak eller borger–stat-relasjon",
+      "valg, representasjon, parlamentarisme, lokaldemokrati, offentlighet, debattarena, politisk symbol, partier eller demokratiske møteplasser",
+      "fordeling, budsjett, velferdstjeneste, levekår, klasse, boligpolitikk, helsepolitikk, utdanning, demografi eller ulikhet",
+      "politisk konflikt, demonstrasjon, protest, sivilsamfunn, interessegruppe, organisasjon, bevegelse, arbeidslivspolitikk eller ideologisk konfliktlinje",
+      "norm, normalitet, majoritet, minoritet, identitet, kjønn, familie, migrasjon, integrering, hverdagsregel eller sosial kontroll",
+      "dokumentert kilde: lovtekst, vedtak, budsjett, reguleringsplan, NOU, stortingsmelding, SSB-data, rettskilde, arkiv, partiprogram, forvaltningsdokument eller samfunnsfaglig forskning"
+    ],
+    "forbidden_generation_patterns": [
+      "Ikke generer synlige spørsmål direkte fra emne-, hook-, metode- eller teorinavn.",
+      "Ikke spør generisk om politikk uten konkret institusjon, lov, vedtak, konflikt, fordeling, norm, offentlighet, sted eller kilde.",
+      "Ikke lag politiske holdningsspørsmål eller meningsspørsmål der fasiten blir ideologisk preferanse i stedet for dokumentert samfunnsfaglig påstand.",
+      "Ikke gjør et sted til politikk bare fordi det ligger nær et maktbygg eller har vag samfunnsvinkel, uten dokumentert institusjons-, lov-, fordelings-, konflikt-, norm-, offentlighets- eller forvaltningsmessig hovedkobling.",
+      "Ikke klassifiser byarkitektur, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur, vitenskap eller populærkultur som politikk når politikk bare er sekundærlag.",
+      "Ikke bruk em_by_*, em_his_*, em_kunst_*, em_lit_*, em_media_*, em_musikk_*, em_pop_*, em_vit_*, em_naering_* eller em_natur_* som hoved-emne_ids i places_politikk eller people_politikk.",
+      "Ikke lag generell samfunnsmoral uten institusjon, lov, data, rettighet, velferdstjeneste, offentlighet, konflikt, norm, kilde eller stedsspesifikk prosess."
+    ],
+    "required_emne_prefix": "em_pol_",
+    "blocked_emne_prefixes_for_politikk_files": [
+      "em_by_",
+      "em_his_",
+      "em_kunst_",
+      "em_lit_",
+      "em_media_",
+      "em_musikk_",
+      "em_pop_",
+      "em_vit_",
+      "em_naering_",
+      "em_natur_"
+    ],
+    "people_politikk_rule": "people_politikk skal inneholde personer der hovedrollen er politiker, statsråd, byråd, stortingsrepresentant, ordfører, samfunnsreformator, aktivist, organisasjonsleder, juridisk aktør, demokratiforkjemper, velferdspolitisk aktør, maktkritiker, samfunnsforsker med tydelig politisk/samfunnsfaglig hovedrolle eller sentral aktør i offentlig styring, fordeling, konflikt, rett, normer eller sivilsamfunn. Personer der hovedrollen er by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur, vitenskap eller populærkultur skal primært ligge i disse kategoriene, med politikk som sekundært tag bare der det er relevant.",
+    "places_politikk_rule": "places_politikk skal inneholde steder der hovedrollen er rådhus, Storting, departement, regjeringsbygg, tinghus, domstol, politisk plass, demonstrasjonssted, valglokale, bydelshus, offentlig tjeneste, velferdsinstitusjon, partikontor, organisasjonsbygg, minnessted for politisk kamp, forvaltningssted, offentlig arkiv, rettslig institusjon eller sted der styring, rett, fordeling, konflikt, representasjon, normer eller offentlighet er hovedpoenget."
+  },
+  "soft_preferences": {
+    "preferred_external_source_mix_per_place": [
+      "minst én offisiell kommune-, stat-, Storting-, domstol-, Lovdata-, SSB-, arkiv-, utrednings-, rapport-, budsjett-, reguleringsplan- eller institusjonskilde",
+      "minst én politisk-historisk, rettslig, samfunnsfaglig, levekårsfaglig, demokratifaglig, velferdsfaglig eller forvaltningsfaglig kilde",
+      "minst én konkret institusjons-, lov-, vedtaks-, konflikt-, fordelings-, norm-, offentlighets-, rettighets- eller prosesskilde når quiz handler om sted eller person"
+    ],
+    "preferred_question_build_path": "politisk/samfunnsfaglig kilde eller konkret institusjon/lov/konflikt/fordeling/norm -> presist claim -> sted/person/institusjon/prosess -> metode/emne -> teori",
+    "preferred_role_of_canonical_files": [
+      "velge riktig em_pol_*",
+      "velge relevant politikkmetode",
+      "styre om spørsmålet bør starte i institusjon, lov, reform, offentlig rom, fordeling, rettighet, konflikt, norm, velferdstjeneste eller sosial prosess",
+      "spre teorier, tenkere, institusjoner, kildetyper, steder, metoder, konfliktlinjer og samfunnsprosesser",
+      "unngå kategorirot mellom politikk, by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur og vitenskap",
+      "unngå teorioverstyring der institusjonen, loven, konflikten, fordelingscaset, normen eller samfunnsprosessen blir borte"
+    ],
+    "preferred_question_surfaces": [
+      "institution-governance-first",
+      "democracy-public-sphere-first",
+      "law-rights-first",
+      "welfare-distribution-first",
+      "conflict-power-first",
+      "norms-everyday-first",
+      "institution-law-conflict-process-first_then_named_theorist"
+    ],
+    "preferred_norwegian_theory_path": "Når relevant norsk politisk teori, sosiologi, rettsvitenskap, velferdsforskning, demokratiforskning, maktutredning eller samfunnsfaglig forskning finnes, kan den brukes i senere sett, men bare etter at institusjon, lov, konflikt, fordeling, norm eller sosial prosess allerede er etablert."
+  },
+  "set_guidance": {
+    "1": {
+      "name": "grunnfakta_institusjon_lov_sted",
+      "dominant_driver": "ekstern kilde, konkret institusjon, offentlig bygg, lov, vedtak, rettsbygg, politisk rom, forvaltningssted eller offentlig tjeneste",
+      "canonical_role": "lett styring av emne og metode",
+      "allowed_methods": [
+        "met_pol_institusjonsanalyse",
+        "met_pol_forvaltningsanalyse",
+        "met_pol_dokumentanalyse",
+        "met_pol_romlig_maktanalyse"
+      ],
+      "question_style": "enkel gjenkjenning, institusjon/sted/funksjon, offentlig rolle, lov, styring eller synlig politisk spor"
+    },
+    "2": {
+      "name": "styring_institusjoner_forvaltning",
+      "dominant_driver": "konkret institusjon, forvaltningsbygg, offentlig tjeneste, byråkrati, budsjett, reguleringsplan, administrativ praksis eller legitimitet",
+      "canonical_role": "lett til middels metodeføring",
+      "allowed_methods": [
+        "met_pol_institusjonsanalyse",
+        "met_pol_forvaltningsanalyse",
+        "met_pol_lokalpolitisk_analyse",
+        "met_pol_plan_og_reguleringsanalyse",
+        "met_pol_legitimitetsanalyse"
+      ],
+      "question_style": "styring, institusjoner, forvaltning, byråkrati, kommunal styring, offentlige tjenester, regulering og legitimitet"
+    },
+    "3": {
+      "name": "demokrati_representasjon_offentlighet",
+      "dominant_driver": "valg, representasjon, Storting, rådhus, offentlig debatt, demokratisk arena, politisk symbol, parti eller bevegelse",
+      "canonical_role": "høy metode- og emnestyring tillatt",
+      "allowed_methods": [
+        "met_pol_demokratianalyse",
+        "met_pol_representasjonsanalyse",
+        "met_pol_valg_og_deltakelsesanalyse",
+        "met_pol_offentlighetsanalyse",
+        "met_pol_parti_og_bevegelsesanalyse"
+      ],
+      "question_style": "demokrati, valg, representasjon, offentlighet, parlamentarisme, politiske symboler, partier, bevegelser og tillit"
+    },
+    "4": {
+      "name": "rett_lov_rettssikkerhet",
+      "dominant_driver": "lov, rettighet, domstol, rettspraksis, rettsstat, forvaltningsvedtak, politi, straff, kontroll eller borger–stat-relasjon",
+      "canonical_role": "middels til høy rettslig metodeføring",
+      "allowed_methods": [
+        "met_pol_rettslig_analyse",
+        "met_pol_rettighetsanalyse",
+        "met_pol_dokumentanalyse",
+        "met_pol_kontroll_og_sanksjonsanalyse",
+        "met_pol_kritisk_rettsanalyse"
+      ],
+      "question_style": "rettsstat, domstoler, lov, rettigheter, straff, kontroll, rettssikkerhet, forvaltningsvedtak og maktbegrensning"
+    },
+    "5": {
+      "name": "fordeling_velferd_ulikhet",
+      "dominant_driver": "budsjett, offentlig tjeneste, velferdsinstitusjon, levekårsdata, boligpolitikk, helsepolitikk, utdanning, demografi eller ulikhet",
+      "canonical_role": "høy fordelings- og velferdsstyring tillatt",
+      "allowed_methods": [
+        "met_pol_fordelingsanalyse",
+        "met_pol_budsjett_og_fordelingsanalyse",
+        "met_pol_velferdsstatlig_analyse",
+        "met_pol_statistikk_og_fordelingsanalyse",
+        "met_pol_levekarsanalyse"
+      ],
+      "question_style": "fordeling, velferdsstat, levekår, klasse, bolig, helse, utdanning, demografi, sosialpolitikk og legitimitet"
+    },
+    "6": {
+      "name": "konflikt_makt_sivilsamfunn",
+      "dominant_driver": "demonstrasjon, protest, offentlig plass, organisasjon, interessegruppe, bevegelse, ideologi, arbeidslivspolitikk eller konfliktlinje",
+      "canonical_role": "høy makt-, konflikt- og offentlighetsstyring tillatt",
+      "allowed_methods": [
+        "met_pol_makt_og_interesseanalyse",
+        "met_pol_konfliktanalyse",
+        "met_pol_protest_og_bevegelsesanalyse",
+        "met_pol_sivilsamfunnsanalyse",
+        "met_pol_ideologianalyse"
+      ],
+      "question_style": "makt, interesser, protest, sivilsamfunn, organisasjoner, ideologi, arbeidslivspolitikk, miljøpolitisk konflikt, polarisering og konfliktens rom"
+    },
+    "7": {
+      "name": "normer_identitet_hverdagsliv",
+      "dominant_driver": "norm, normalitet, minoritet, majoritet, kjønn, familie, migrasjon, integrering, sosial kontroll, skole, bydel eller offentlig tjeneste",
+      "canonical_role": "høy norm- og samfunnsteoristyring tillatt, men bare etter konkret sosial prosess",
+      "allowed_methods": [
+        "met_pol_normanalyse",
+        "met_pol_praksisanalyse",
+        "met_pol_minoritet_og_representasjonsanalyse",
+        "met_pol_integreringsanalyse",
+        "met_pol_likestillingsanalyse"
+      ],
+      "question_style": "normalitet, minoritet, majoritet, hverdagsliv, kjønn, familie, migrasjon, integrering, sosial kontroll, likeverd og samfunnets grenser"
+    },
+    "8": {
+      "name": "system_makt_legitimitet_samfunnsteori",
+      "dominant_driver": "konkret institusjon, rettskilde, fordelingscase, konflikt, offentlighet, normsystem, legitimitetskrise eller sosial prosess",
+      "canonical_role": "høy teori tillatt, men med konkret institusjon, lov, konflikt, fordeling, norm eller samfunnsprosess",
+      "allowed_methods": [
+        "met_pol_legitimitetsanalyse",
+        "met_pol_makt_og_ulikhetsanalyse",
+        "met_pol_diskursanalyse",
+        "met_pol_symbolanalyse",
+        "met_pol_romlig_maktanalyse"
+      ],
+      "question_style": "makt, legitimitet, doxa, symbolsk makt, strukturell vold, polarisering, rettferdighet, offentlighet og institusjonell orden"
+    }
+  },
+  "politikk_category_guardrails": {
+    "accept_as_politikk_primary_when": [
+      "stedet eller personen har politisk eller samfunnsfaglig hovedrolle",
+      "det finnes konkret institusjon, lov, vedtak, reform, rettighet, offentlig tjeneste, demokratisk arena, fordeling, konflikt, norm, offentlighet eller sosial prosess",
+      "spørsmål kan bygges fra politiske, rettslige, forvaltningsmessige, statistiske, historiske eller samfunnsfaglige kilder",
+      "politikkens og samfunnets systemlogikk er primær, ikke bare generell historie, arkitektur, kultur eller nærhet til maktbygg"
+    ],
+    "do_not_accept_as_politikk_primary_when": [
+      "hovedrollen er byarkitektur, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur, vitenskap eller populærkultur",
+      "stedet er bare nær et politisk bygg uten dokumentert politisk eller samfunnsfaglig hovedrolle",
+      "stedet er bare en generell byutviklingscase uten konkret institusjon, lov, fordeling, offentlighet, konflikt, norm eller sosial prosess",
+      "personen er kulturpersonlighet, næringslivsaktør, forsker, artist, idrettsutøver eller medieperson uten hovedrolle som politisk/samfunnsfaglig aktør"
+    ],
+    "secondary_politikk_tag_allowed": true
+  },
+  "validator_additions": [
+    "Avvis politikkquiz hvis synlig innhold primært er parafrase av fagkart, emner, methods eller mapping.",
+    "Avvis spørsmål som kan spores bare til emne-/hook-/metodenavn og ikke til konkret institusjon, lov, vedtak, konflikt, fordeling, norm, offentlighet, rettighet, tjeneste, sosial prosess eller ekstern kilde.",
+    "Avvis hoved-emne_ids i places_politikk eller people_politikk som ikke starter med em_pol_*.",
+    "Flagg poster der hovedkategori ser ut til å være by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur, vitenskap eller populærkultur.",
+    "Logg per spørsmål source_origin som external, mixed, observed_institution, observed_law_site, observed_public_sphere, observed_welfare_service, observed_conflict_site, observed_social_process eller internal_only.",
+    "Flagg quiz der internal_only overstiger 5 prosent.",
+    "Flagg teorioverstyring når navngitt teoretiker kommer før institusjon/lov/konflikt/fordeling/norm/offentlighet/sosial prosess er etablert.",
+    "Flagg politisk analyse som blir generisk holdning eller samfunnsmoral uten dokumentert institusjon, lov, data, rettighet, velferdstjeneste, offentlighet, konflikt, norm eller kilde.",
+    "Flagg biografiske spørsmål som ikke kobler person til konkret politisk rolle, institusjon, reform, konflikt, rettighet, organisasjon, forvaltning, velferd eller samfunnsprosess.",
+    "Flagg stedsbaserte spørsmål der koblingen til politikk bare er løs assosiasjon, nærhet til maktbygg eller generell samfunnsvinkel."
+  ],
+  "generation_metadata_additions": {
+    "required_per_question_fields_recommended": [
+      "source_origin",
+      "claim_basis",
+      "guidance_basis",
+      "method_id",
+      "emne_id",
+      "politics_anchor_type",
+      "source_note"
+    ],
+    "source_origin_values": [
+      "external",
+      "mixed",
+      "observed_institution",
+      "observed_law_site",
+      "observed_public_sphere",
+      "observed_welfare_service",
+      "observed_conflict_site",
+      "observed_social_process",
+      "internal_only"
+    ],
+    "politics_anchor_type_values": [
+      "institution",
+      "government_building",
+      "municipality",
+      "parliament",
+      "city_hall",
+      "court",
+      "law",
+      "legal_right",
+      "administrative_decision",
+      "public_service",
+      "welfare_service",
+      "budget",
+      "distribution",
+      "statistics",
+      "election",
+      "representation",
+      "public_sphere",
+      "debate_arena",
+      "political_symbol",
+      "party",
+      "movement",
+      "civil_society",
+      "protest",
+      "conflict",
+      "interest_group",
+      "norm",
+      "normality",
+      "minority",
+      "majority",
+      "identity",
+      "migration",
+      "integration",
+      "social_control",
+      "legitimacy",
+      "trust",
+      "urban_policy",
+      "regulation_plan",
+      "legal_source",
+      "archive",
+      "official_report"
+    ],
+    "claim_basis_definition": "Den konkrete politiske eller samfunnsfaglige påstanden fra ekstern kilde, institusjon, lovtekst, vedtak, budsjett, reguleringsplan, statistikk, arkiv, rettskilde, rapport, offentlig dokument eller dokumentert samfunnsprosess.",
+    "guidance_basis_definition": "Hvilket em_pol_*, hook, metode eller teorispor som styrte spørsmålets form uten å levere faktapåstanden.",
+    "method_id_definition": "Én method_id fra methods_politikk_canonical_v4_5.json brukt til å forme spørsmålet.",
+    "emne_id_definition": "Én em_pol_* fra emner_politikk_canonical_v4_5.json brukt som hovedemne.",
+    "source_note_definition": "Kort kildebeskrivelse som sier hvilken type politisk, rettslig, forvaltningsmessig, statistisk eller samfunnsfaglig kilde som er brukt."
+  },
+  "diagnosis_note": "Når mange filer er opplastet, må modellen ikke overvekte canonical systemfiler bare fordi de er mange. For politikk skal konkrete institusjoner, lover, vedtak, reformer, offentlige rom, rettsbygg, forvaltningssteder, demokratiske arenaer, velferdstjenester, konflikter, proteststeder, normsystemer, fordelingsdata, rettskilder, budsjett, reguleringsplaner, statistikk og samfunnsfaglige kilder dominere synlig quizinnhold. Fagkart, methods, emner, emnemapping og pensum er styring.",
+  "migration_note": "Eksisterende places_politikk og people_politikk bør migreres til em_pol_* bare etter at hvert objekt er lest. Det må samtidig sjekkes at hovedkategori faktisk er politikk og ikke by, historie, næringsliv, media, kunst, litteratur, musikk, sport, natur, vitenskap eller annet fag."
+}
