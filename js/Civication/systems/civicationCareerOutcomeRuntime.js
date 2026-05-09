@@ -6,6 +6,7 @@
 // - CivicationMailRuntime eier fortsatt jobbmailprogresjon.
 // - Denne filen gjør bare én ting: når rolePlan er ferdig, returneres én terminal outcome-mail
 //   i stedet for at EventEngine faller tilbake til gamle legacy-mails.
+// - Utfallet skal styres av rolePlan.outcome_rules når de finnes.
 
 (function () {
   "use strict";
@@ -13,6 +14,25 @@
   const STATE_KEY = "career_outcome_state";
   const PATCHED_FLAG = "__civicationCareerOutcomeRuntimePatched";
   const TERMINAL_STATUSES = ["PROMOTED", "STAGNATED", "FIRED"];
+
+  const DEFAULT_OUTCOME_RULES = {
+    fired: {
+      stability_values: ["FIRED"],
+      strikes_gte: 3,
+      score_lte: -3
+    },
+    promoted: {
+      completion_ratio_gte: 1,
+      score_gte: 4,
+      strikes_lte: 0,
+      allow_warning: false
+    },
+    stagnated: {
+      autonomy_delta: -12,
+      add_branch_flags: ["career_stagnated", "evening_pressure", "morning_choices_expand"],
+      stability: "STAGNATED"
+    }
+  };
 
   function norm(value) {
     return String(value || "").trim();
@@ -26,6 +46,12 @@
       .replace(/[^a-z0-9]+/g, "_")
       .replace(/^_+|_+$/g, "")
       .slice(0, 80);
+  }
+
+  function clampNumber(value, min, max, fallback) {
+    const n = Number(value);
+    if (!Number.isFinite(n)) return fallback;
+    return Math.max(min, Math.min(max, n));
   }
 
   function getState() {
@@ -62,7 +88,8 @@
       decided_at: current.decided_at || null,
       stagnation_level: Math.max(0, Number(current.stagnation_level || 0)),
       reason: norm(current.reason),
-      last_outcome_mail_id: norm(current.last_outcome_mail_id)
+      last_outcome_mail_id: norm(current.last_outcome_mail_id),
+      metrics: current.metrics && typeof current.metrics === "object" ? current.metrics : null
     };
   }
 
@@ -83,43 +110,91 @@
       norm(outcomeState?.role_plan_id) === norm(planId);
   }
 
-  function countPositiveSignals(state, runtime) {
+  function mergeObject(base, override) {
+    return {
+      ...(base && typeof base === "object" ? base : {}),
+      ...(override && typeof override === "object" ? override : {})
+    };
+  }
+
+  function getOutcomeRules(plan) {
+    const raw = plan?.outcome_rules && typeof plan.outcome_rules === "object"
+      ? plan.outcome_rules
+      : {};
+
+    return {
+      fired: mergeObject(DEFAULT_OUTCOME_RULES.fired, raw.fired),
+      promoted: mergeObject(DEFAULT_OUTCOME_RULES.promoted, raw.promoted || raw.promotion),
+      stagnated: mergeObject(DEFAULT_OUTCOME_RULES.stagnated, raw.stagnated || raw.stagnation)
+    };
+  }
+
+  function countOutcomeSignals(state, runtime, plan) {
+    const sequence = Array.isArray(plan?.sequence) ? plan.sequence : [];
+    const expectedSteps = Math.max(1, sequence.length);
     const score = Number(state?.score || 0);
     const history = Array.isArray(runtime?.history) ? runtime.history : [];
-    const plannedAnswers = history.filter(row => norm(row?.source_type) === "planned").length;
+    const plannedHistory = history.filter(row => norm(row?.source_type) === "planned");
+    const plannedAnswers = plannedHistory.length;
     const strikes = Number(state?.strikes || 0);
-    return { score, plannedAnswers, strikes };
+    const warningUsed = state?.warning_used === true;
+    const stability = norm(state?.stability || "STABLE").toUpperCase();
+    const completionRatio = Math.max(0, Math.min(1, plannedAnswers / expectedSteps));
+
+    return {
+      score,
+      plannedAnswers,
+      expectedSteps,
+      completionRatio,
+      strikes,
+      warningUsed,
+      stability
+    };
   }
 
   function decideOutcome(active, plan, runtime, state) {
-    const sequence = Array.isArray(plan?.sequence) ? plan.sequence : [];
-    const { score, plannedAnswers, strikes } = countPositiveSignals(state, runtime);
-    const stability = norm(state?.stability || "STABLE").toUpperCase();
-    const warningUsed = state?.warning_used === true;
+    const rules = getOutcomeRules(plan);
+    const metrics = countOutcomeSignals(state, runtime, plan);
 
-    if (stability === "FIRED" || strikes >= 3) {
+    const firedStabilityValues = Array.isArray(rules.fired?.stability_values)
+      ? rules.fired.stability_values.map(v => norm(v).toUpperCase()).filter(Boolean)
+      : ["FIRED"];
+
+    const firedByStability = firedStabilityValues.includes(metrics.stability);
+    const firedByStrikes = metrics.strikes >= Number(rules.fired?.strikes_gte ?? 3);
+    const firedByScore = metrics.score <= Number(rules.fired?.score_lte ?? -3);
+
+    if (firedByStability || firedByStrikes || firedByScore) {
       return {
         status: "FIRED",
         outcome: "fired",
-        reason: "For mange varsler/strikes eller FIRED-state."
+        reason: "Jobbsporet avsluttes fordi signalene har passert grensen for oppsigelse.",
+        metrics,
+        rules
       };
     }
 
-    const cleanCompletion = plannedAnswers >= Math.max(1, sequence.length - 1) && !warningUsed && strikes === 0;
-    const strongScore = score >= Math.max(3, Math.ceil(sequence.length * 0.4));
+    const completionOk = metrics.completionRatio >= Number(rules.promoted?.completion_ratio_gte ?? 1);
+    const scoreOk = metrics.score >= Number(rules.promoted?.score_gte ?? 4);
+    const strikesOk = metrics.strikes <= Number(rules.promoted?.strikes_lte ?? 0);
+    const warningOk = rules.promoted?.allow_warning === true || metrics.warningUsed !== true;
 
-    if (cleanCompletion || strongScore) {
+    if (completionOk && scoreOk && strikesOk && warningOk) {
       return {
         status: "PROMOTED",
         outcome: "promoted",
-        reason: "Planen er fullført med nok positive signaler til forfremmelse."
+        reason: "Jobbsporet er fullført med nok kvalitet, tillit og gjennomføring til forfremmelse.",
+        metrics,
+        rules
       };
     }
 
     return {
       status: "STAGNATED",
       outcome: "stagnated",
-      reason: "Planen er fullført, men signalene er ikke sterke nok til forfremmelse og ikke dårlige nok til sparken."
+      reason: "Jobbsporet er fullført, men signalene gir verken forfremmelse eller oppsigelse. Rollen går over i tydelig stagnasjon.",
+      metrics,
+      rules
     };
   }
 
@@ -129,10 +204,14 @@
     return `Vurdering: ${title} — du står fast i rollen`;
   }
 
-  function situationFor(status, title) {
+  function situationFor(status, title, decision) {
+    const metrics = decision?.metrics || {};
+    const resultLine = `Resultatgrunnlag: ${Number(metrics.plannedAnswers || 0)} av ${Number(metrics.expectedSteps || 0)} plansteg, score ${Number(metrics.score || 0)}, strikes ${Number(metrics.strikes || 0)}.`;
+
     if (status === "PROMOTED") {
       return [
         `Arbeidsperioden i rollen ${title} er vurdert.`,
+        resultLine,
         "Du har vist nok struktur, dømmekraft og gjennomføring til at systemet tilbyr deg mer ansvar.",
         "Dette avslutter dette jobbsporet som forfremmelse. Neste steg bør være ny rolle, høyere ansvar eller et tydelig tilbud."
       ];
@@ -141,6 +220,7 @@
     if (status === "FIRED") {
       return [
         `Arbeidsperioden i rollen ${title} er vurdert.`,
+        resultLine,
         "Mønsteret er for svakt til å fortsette i samme rolle. Varsler, feil eller manglende leveranse har fått konsekvens.",
         "Dette avslutter jobbsporet som sparken. Videre meldinger bør gå via NAV, livssituasjon eller ny jobbsøking."
       ];
@@ -148,8 +228,9 @@
 
     return [
       `Arbeidsperioden i rollen ${title} er vurdert.`,
+      resultLine,
       "Du får lønn og poeng videre, men rollen utvikler seg ikke. De samme sakene kommer tilbake fordi organisasjonen ikke lenger forventer reell vekst fra deg.",
-      "Stagnasjon skal merkes i spillet: lavere autonomi, flere morgenvalg og mer kveldspress. Repetisjon er nå et faresignal, ikke fallback."
+      "Stagnasjon merkes i spillet: lavere autonomi, flere morgenvalg og mer kveldspress. Repetisjon er nå et faresignal, ikke fallback."
     ];
   }
 
@@ -205,12 +286,14 @@
       repeatable: false,
       subject: subjectFor(decision.status, title),
       summary: decision.reason,
-      situation: situationFor(decision.status, title),
+      situation: situationFor(decision.status, title, decision),
       choices: [makeChoice(decision.status)],
       career_outcome_meta: {
         status: decision.status,
         outcome: decision.outcome,
         reason: decision.reason,
+        metrics: decision.metrics,
+        applied_rules: decision.rules,
         role_scope: roleScope,
         role_plan_id: planId,
         step_index: Number(runtime?.step_index || 0),
@@ -218,10 +301,77 @@
       },
       mail_tags: [
         "career_outcome",
+        "job_outcome",
         decision.status.toLowerCase(),
         roleScope,
         norm(active?.career_id)
       ].filter(Boolean)
+    };
+  }
+
+  function applyStagnationConsequences(state, meta, patch) {
+    const rules = meta?.applied_rules?.stagnated || DEFAULT_OUTCOME_RULES.stagnated;
+    const flags = Array.isArray(rules.add_branch_flags)
+      ? rules.add_branch_flags.map(norm).filter(Boolean)
+      : DEFAULT_OUTCOME_RULES.stagnated.add_branch_flags;
+
+    patch.stability = norm(rules.stability || "STAGNATED") || "STAGNATED";
+    patch.mail_branch_state = {
+      ...(state.mail_branch_state && typeof state.mail_branch_state === "object" ? state.mail_branch_state : {}),
+      flags: [...new Set([...(Array.isArray(state.mail_branch_state?.flags) ? state.mail_branch_state.flags : []), ...flags])]
+    };
+    patch.career = {
+      ...(state.career && typeof state.career === "object" ? state.career : {}),
+      stagnation: {
+        active: true,
+        role_plan_id: norm(meta.role_plan_id),
+        role_scope: norm(meta.role_scope),
+        started_at: meta.decided_at || new Date().toISOString(),
+        evening_pressure: flags.includes("evening_pressure"),
+        morning_choices_expand: flags.includes("morning_choices_expand")
+      }
+    };
+
+    const delta = Number(rules.autonomy_delta ?? -12);
+    if (Number.isFinite(delta) && window.CivicationPsyche?.getAutonomy && window.CivicationPsyche?.setAutonomyOverride) {
+      const active = getActive();
+      const current = Number(window.CivicationPsyche.getAutonomy(active?.career_id || null));
+      const next = clampNumber(current + delta, 0, 100, current);
+      window.CivicationPsyche.setAutonomyOverride(next);
+    }
+  }
+
+  function applyFiredConsequences(state, meta, patch) {
+    patch.stability = "FIRED";
+    patch.unemployed_since_week = typeof window.weekKey === "function" ? window.weekKey(new Date()) : null;
+    patch.career = {
+      ...(state.career && typeof state.career === "object" ? state.career : {}),
+      activeJob: null,
+      outcome: {
+        status: "FIRED",
+        role_plan_id: norm(meta.role_plan_id),
+        role_scope: norm(meta.role_scope),
+        at: meta.decided_at || new Date().toISOString()
+      }
+    };
+
+    const active = getActive();
+    try { window.CivicationState?.appendJobHistoryEnded?.(active, "fired"); } catch {}
+    try { window.CivicationState?.setActivePosition?.(null); } catch {}
+    try { window.CivicationPsyche?.registerCollapse?.(active?.career_id || meta.role_scope, "fired"); } catch {}
+  }
+
+  function applyPromotedConsequences(state, meta, patch) {
+    patch.stability = "PROMOTED";
+    patch.career = {
+      ...(state.career && typeof state.career === "object" ? state.career : {}),
+      promotion_ready: true,
+      outcome: {
+        status: "PROMOTED",
+        role_plan_id: norm(meta.role_plan_id),
+        role_scope: norm(meta.role_scope),
+        at: meta.decided_at || new Date().toISOString()
+      }
     };
   }
 
@@ -249,21 +399,14 @@
         decided_at: meta.decided_at || new Date().toISOString(),
         stagnation_level: stagnationLevel,
         reason: norm(meta.reason),
-        last_outcome_mail_id: norm(eventObj.id)
+        last_outcome_mail_id: norm(eventObj.id),
+        metrics: meta.metrics || null
       }
     };
 
-    if (status === "STAGNATED") {
-      patch.stability = "STAGNATED";
-      patch.mail_branch_state = {
-        ...(state.mail_branch_state && typeof state.mail_branch_state === "object" ? state.mail_branch_state : {}),
-        flags: [...new Set([...(Array.isArray(state.mail_branch_state?.flags) ? state.mail_branch_state.flags : []), "career_stagnated", "evening_pressure", "morning_choices_expand"])]
-      };
-    }
-
-    if (status === "FIRED") {
-      patch.stability = "FIRED";
-    }
+    if (status === "STAGNATED") applyStagnationConsequences(state, meta, patch);
+    if (status === "FIRED") applyFiredConsequences(state, meta, patch);
+    if (status === "PROMOTED") applyPromotedConsequences(state, meta, patch);
 
     return setState(patch);
   }
@@ -408,6 +551,8 @@
     makeTerminalCandidateIfNeeded,
     getTerminalPlanState,
     applyOutcomeState,
+    decideOutcome,
+    getOutcomeRules,
     inspect() {
       return {
         patched: window.CivicationMailRuntime?.[PATCHED_FLAG] === true,
