@@ -779,3 +779,23 @@ body.civi-mapmode .civi-panels{
 .civi-map-legend-body [data-kind="leisure"]{background:rgba(134,190,143,.22)}
 .civi-map-legend-body [data-kind="power"]{background:rgba(241,206,145,.2)}
 @media (max-width:740px){.civi-map-legend{left:10px;bottom:128px;max-width:66vw}.civi-map-legend-body{grid-template-columns:1fr;font-size:12px}}
+
+/* Civication Map v2.3 – Oslo-proporsjoner label readability */
+#civiMapWorld .civi-map-label{
+  paint-order:stroke;
+  stroke:rgba(0,0,0,.58);
+  stroke-width:2.4px;
+  letter-spacing:.2px;
+  text-shadow:0 2px 8px rgba(0,0,0,.45);
+}
+#civiMapWorld .civi-map-label-river{
+  fill:#e8f7ff;
+  font-size:18px;
+}
+#civiMapWorld .civi-map-label-water,
+#civiMapWorld .civi-map-label-terrain{
+  font-size:20px;
+}
+@media (min-width: 768px){
+  #civiMapWorld .civi-map-label{font-size:18px;}
+}
