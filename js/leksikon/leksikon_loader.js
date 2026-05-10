@@ -153,6 +153,137 @@
     `).join("");
   }
 
+  function detailRow(label, value) {
+    const text = norm(value);
+    if (!text) return "";
+    return `<p><strong>${esc(label)}:</strong> ${esc(text)}</p>`;
+  }
+
+  function normalizeSectionItems(article, place, sprakArticle) {
+    const persons = Array.isArray(article?.persons) ? article.persons : (Array.isArray(article?.people) ? article.people : []);
+    const objects = Array.isArray(article?.objects) ? article.objects : (Array.isArray(article?.artifacts) ? article.artifacts : []);
+    const sourceLinks = normalizeExternalLinks(place, article);
+    const sprakEntries = Array.isArray(sprakArticle?.entries) ? sprakArticle.entries : [];
+    return { persons, objects, sourceLinks, sprakEntries };
+  }
+
+  function renderOverview(article, place, sprakArticle) {
+    const sections = normalizeSectionItems(article, place, sprakArticle);
+    const { persons, objects, sourceLinks, sprakEntries } = sections;
+    return `
+      <article class="pc-leksikon-article">
+        <div class="pc-leksikon-kicker">Leksikon</div>
+        <h2 class="hg-popup-name">${esc(articleTitle(article))}</h2>
+        <section class="pc-leksikon-section">
+          <h3>Innhold</h3>
+          <div class="pc-leksikon-list">
+            <button class="pc-leksikon-entry" type="button" data-leksikon-detail="place">
+              <span class="pc-leksikon-entry-title">Sted</span>
+            </button>
+            <button class="pc-leksikon-entry" type="button" data-leksikon-detail="links">
+              <span class="pc-leksikon-entry-title">Kilder / lenker</span>
+              <span class="pc-leksikon-entry-meta">${sourceLinks.length ? `${sourceLinks.length} oppføringer` : "Ingen oppføringer ennå"}</span>
+            </button>
+            <div class="pc-leksikon-item">
+              <strong>Personer</strong>
+              <div class="pc-leksikon-list">
+                ${persons.length
+                  ? persons.map((person, idx) => `<button class="pc-leksikon-entry" type="button" data-leksikon-detail="person" data-leksikon-item-index="${idx}"><span class="pc-leksikon-entry-title">${esc(person?.name || person?.title || person?.id || "Person")}</span></button>`).join("")
+                  : `<p>Ingen personoppføringer ennå.</p>`}
+              </div>
+            </div>
+            <div class="pc-leksikon-item">
+              <strong>Objekter</strong>
+              <div class="pc-leksikon-list">
+                ${objects.length
+                  ? objects.map((object, idx) => `<button class="pc-leksikon-entry" type="button" data-leksikon-detail="object" data-leksikon-item-index="${idx}"><span class="pc-leksikon-entry-title">${esc(object?.title || object?.name || object?.label || object?.id || "Objekt")}</span></button>`).join("")
+                  : `<p>Ingen objektoppføringer ennå.</p>`}
+              </div>
+            </div>
+            <div class="pc-leksikon-item">
+              <strong>${esc(sprakArticle?.title || "Språkleksikon")}</strong>
+              <div class="pc-leksikon-list">
+                ${sprakEntries.length
+                  ? sprakEntries.map((entry, idx) => `<button class="pc-leksikon-entry" type="button" data-leksikon-detail="sprak" data-leksikon-item-index="${idx}"><span class="pc-leksikon-entry-title">${esc(entry?.term || entry?.id || "Begrep")}</span>${entry?.type ? `<span class="pc-leksikon-entry-meta">${esc(entry.type)}</span>` : ""}</button>`).join("")
+                  : `<p>Ingen språkoppføringer ennå.</p>`}
+              </div>
+            </div>
+          </div>
+        </section>
+        <button class="reward-ok" data-close-popup>Lukk</button>
+      </article>
+    `;
+  }
+
+  async function renderDetailPopup(article, place, sprakArticle, detailType, itemIndex) {
+    const sections = normalizeSectionItems(article, place, sprakArticle);
+    const idx = Number(itemIndex) || 0;
+
+    if (detailType === "person") {
+      const person = sections.persons[idx];
+      if (!person) return `<div class="pc-empty">Fant ikke personoppføringen.</div>`;
+      return `
+        <article class="pc-leksikon-article">
+          <div class="pc-leksikon-kicker">Person</div>
+          <h2 class="hg-popup-name">${esc(person?.name || person?.title || person?.id || "Person")}</h2>
+          ${person?.type ? `<p class="hg-popup-desc">${esc(person.type)}</p>` : ""}
+          ${paragraphBlockHtml(person?.desc || person?.description || person?.meaning)}
+          ${detailRow("Kontekst", person?.context)}
+          ${tagListHtml(person?.tags)}
+          <button class="reward-ok" data-leksikon-back="1">Tilbake til leksikon</button>
+        </article>
+      `;
+    }
+
+    if (detailType === "object") {
+      const object = sections.objects[idx];
+      if (!object) return `<div class="pc-empty">Fant ikke objektoppføringen.</div>`;
+      return `
+        <article class="pc-leksikon-article">
+          <div class="pc-leksikon-kicker">Objekt</div>
+          <h2 class="hg-popup-name">${esc(object?.title || object?.name || object?.label || object?.id || "Objekt")}</h2>
+          ${object?.type ? `<p class="hg-popup-desc">${esc(object.type)}</p>` : ""}
+          ${paragraphBlockHtml(object?.desc || object?.description || object?.meaning)}
+          ${detailRow("Hvor", object?.where)}
+          ${detailRow("Kontekst", object?.context)}
+          ${tagListHtml(object?.tags)}
+          <button class="reward-ok" data-leksikon-back="1">Tilbake til leksikon</button>
+        </article>
+      `;
+    }
+
+    if (detailType === "sprak") {
+      const entry = sections.sprakEntries[idx];
+      if (!entry) return `<div class="pc-empty">Fant ikke språkoppføringen.</div>`;
+      return `
+        <article class="pc-leksikon-article">
+          <div class="pc-leksikon-kicker">Språkleksikon</div>
+          <h2 class="hg-popup-name">${esc(entry?.term || entry?.id || "Begrep")}</h2>
+          ${entry?.type ? `<p class="hg-popup-desc">${esc(entry.type)}</p>` : ""}
+          ${entry?.meaning ? `<p>${esc(entry.meaning)}</p>` : ""}
+          ${detailRow("Kontekst", entry?.context)}
+          ${entry?.linked_to ? detailRow("Tilknyttet", `${entry.linked_to.kind || "ukjent"}: ${entry.linked_to.id || "ukjent"}`) : ""}
+          ${tagListHtml(entry?.tags)}
+          <button class="reward-ok" data-leksikon-back="1">Tilbake til leksikon</button>
+        </article>
+      `;
+    }
+
+    if (detailType === "links") {
+      return `
+        <article class="pc-leksikon-article">
+          <div class="pc-leksikon-kicker">Kilder / lenker</div>
+          <h2 class="hg-popup-name">${esc(articleTitle(article))}</h2>
+          ${renderExternalLinks(place, article)}
+          <button class="reward-ok" data-leksikon-back="1">Tilbake til leksikon</button>
+        </article>
+      `;
+    }
+
+    return renderArticle(article);
+  }
+
+
   async function loadSprakManifest() {
     if (sprakManifestPromise) return sprakManifestPromise;
     sprakManifestPromise = fetchJSON(SPRAK_MANIFEST_URL).catch(() => ({ place_files: {} }));
@@ -280,7 +411,7 @@
 
     return `
       <article class="pc-leksikon-article">
-        <div class="pc-leksikon-kicker">Leksikon</div>
+        <div class="pc-leksikon-kicker">Sted</div>
         <h2 class="hg-popup-name">${esc(articleTitle(article))}</h2>
         ${summary.one_liner ? `<p class="pc-leksikon-one-liner">${esc(summary.one_liner)}</p>` : ""}
         ${tagListHtml(summary.themes)}
@@ -294,9 +425,7 @@
         ${section("Spor og objekter", artifactsHtml)}
         ${section("Tolkning", interpretationHtml)}
         ${section("Klassifikasjon", tagListHtml([...(classification.tags || []), ...(classification.knagger || [])]))}
-        ${renderExternalLinks(place, article)}
-        ${section((sprakArticle?.title || "Språkleksikon"), renderSprakEntries(sprakArticle))}
-        <button class="reward-ok" data-close-popup>Lukk</button>
+        <button class="reward-ok" data-leksikon-back="1">Tilbake til leksikon</button>
       </article>
     `;
   }
@@ -317,13 +446,17 @@
     `;
   }
 
-  async function openPlace(placeId, index = 0) {
+  async function openPlace(placeId, index = 0, detailType = "", itemIndex = 0) {
     const articles = window.LEKSIKON_BY_PLACE?.[norm(placeId)] || [];
     const article = articles[Number(index) || 0];
 
     const popupFn = window.makePopup || (typeof makePopup === "function" ? makePopup : null);
     if (typeof popupFn === "function") {
-      const html = await renderArticle(article);
+      const place = await resolvePlaceForArticle(article);
+      const sprakArticle = await loadSprakForPlace(article?.place_id);
+      const html = detailType
+        ? await renderDetailPopup(article, place, sprakArticle, detailType, itemIndex)
+        : renderOverview(article, place, sprakArticle);
       popupFn(html, "leksikon-entry-popup");
       return;
     }
@@ -408,6 +541,31 @@
     event.preventDefault();
     event.stopPropagation();
     void openPlace(btn.dataset.leksikonPlace, btn.dataset.leksikonIndex);
+  });
+
+  document.addEventListener("click", (event) => {
+    const detailBtn = event.target.closest("[data-leksikon-detail]");
+    if (!detailBtn) return;
+    const placeBtn = document.querySelector("[data-leksikon-place][data-leksikon-index]");
+    if (!placeBtn) return;
+    event.preventDefault();
+    event.stopPropagation();
+    void openPlace(
+      placeBtn.dataset.leksikonPlace,
+      placeBtn.dataset.leksikonIndex,
+      detailBtn.dataset.leksikonDetail,
+      detailBtn.dataset.leksikonItemIndex
+    );
+  });
+
+  document.addEventListener("click", (event) => {
+    const backBtn = event.target.closest("[data-leksikon-back]");
+    if (!backBtn) return;
+    const placeBtn = document.querySelector("[data-leksikon-place][data-leksikon-index]");
+    if (!placeBtn) return;
+    event.preventDefault();
+    event.stopPropagation();
+    void openPlace(placeBtn.dataset.leksikonPlace, placeBtn.dataset.leksikonIndex);
   });
 
   window.HGLeksikon = {
