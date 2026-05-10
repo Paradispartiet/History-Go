@@ -756,21 +756,57 @@ if (b0?.logo) {
 }
 }
 
+
+async function loadPlaceSocialData(placeId) {
+  const id = String(placeId || "").trim();
+  if (!id) return null;
+
+  if (!window.__HG_PLACE_SOCIAL_CACHE__) window.__HG_PLACE_SOCIAL_CACHE__ = {};
+  if (Object.prototype.hasOwnProperty.call(window.__HG_PLACE_SOCIAL_CACHE__, id)) {
+    return window.__HG_PLACE_SOCIAL_CACHE__[id];
+  }
+
+  const url = `data/social/place_social/oslo/place_social.json`;
+  try {
+    const res = await fetch(url, { cache: "no-cache" });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const json = await res.json();
+    const matchesPlace = String(json?.place_id || "").trim() === id;
+    const out = matchesPlace ? json : null;
+    window.__HG_PLACE_SOCIAL_CACHE__[id] = out;
+    return out;
+  } catch (err) {
+    console.warn("[social] could not load place_social", err);
+    window.__HG_PLACE_SOCIAL_CACHE__[id] = null;
+    return null;
+  }
+}
+
+async function loadCanonicalSocialEvents() {
+  if (Array.isArray(window.__HG_CANONICAL_SOCIAL_EVENTS__)) {
+    return window.__HG_CANONICAL_SOCIAL_EVENTS__;
+  }
+
+  const url = `data/social/events/oslo/canonical_events.json`;
+  try {
+    const res = await fetch(url, { cache: "no-cache" });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const json = await res.json();
+    const list = Array.isArray(json) ? json : [json].filter(Boolean);
+    window.__HG_CANONICAL_SOCIAL_EVENTS__ = list;
+    return list;
+  } catch (err) {
+    console.warn("[social] could not load canonical events", err);
+    window.__HG_CANONICAL_SOCIAL_EVENTS__ = [];
+    return [];
+  }
+}
+
 // --- EVENTS BOX (ikke runding) ---
 if (eventsBox) {
-  const rawEvents = [
-    ...(Array.isArray(window.HGEvents?.getByPlace?.(place.id)) ? window.HGEvents.getByPlace(place.id) : []),
-    ...(Array.isArray(place.events) ? place.events : [])
-  ];
-
-  const events = rawEvents
-    .map((evt, i) => ({
-      id: String(evt?.id ?? `evt_${i}`).trim(),
-      title: String(evt?.title ?? evt?.name ?? "Event").trim(),
-      meta: String(evt?.start ?? evt?.date ?? evt?.time ?? "").trim(),
-      url: String(evt?.url ?? evt?.link ?? "").trim()
-    }))
-    .filter(evt => evt.title);
+  const socialData = await loadPlaceSocialData(place.id);
+  const canonicalEvents = await loadCanonicalSocialEvents();
+  const socialEnabled = !!socialData?.social_enabled;
 
   const head = `
     <div class="pc-events-head">
@@ -779,27 +815,61 @@ if (eventsBox) {
     </div>
   `;
 
-  const body = events.length
-    ? `
-      <div class="pc-events-list">
-        ${events.slice(0, 4).map(evt => `
-          <a class="pc-event-entry" href="${evt.url || "#"}" ${evt.url ? `target="_blank" rel="noopener"` : ""}>
-            <span class="pc-event-entry-title">${evt.title}</span>
-            ${evt.meta ? `<span class="pc-event-entry-meta">${evt.meta}</span>` : ""}
-          </a>
-        `).join("")}
+  let body = `<div class="pc-empty">Ingen aktivitet lagt til ennå</div>`;
+
+  if (socialEnabled) {
+    const peopleCount = Number(socialData?.people_count) || 0;
+    const friendsCount = Number(socialData?.friends_count) || 0;
+    const canonicalIds = Array.isArray(socialData?.canonical_event_ids)
+      ? socialData.canonical_event_ids.map(id => String(id || "").trim()).filter(Boolean)
+      : [];
+
+    const canonicalForPlace = canonicalEvents.filter(evt => {
+      const evtPlaceId = String(evt?.place_id || "").trim();
+      const evtId = String(evt?.id || "").trim();
+      const placeMatch = evtPlaceId === String(place.id || "").trim();
+      const idMatch = !canonicalIds.length || canonicalIds.includes(evtId);
+      return placeMatch && idMatch;
+    });
+
+    body = `
+      <div class="pc-events-section">
+        <div class="pc-event-entry-title">Her nå</div>
+        <div class="pc-events-row">Personer: ${peopleCount}</div>
+        <div class="pc-events-row">Venner: ${friendsCount}</div>
       </div>
-    `
-    : `<div class="pc-empty">Ingen events ennå</div>`;
+      <div class="pc-events-section">
+        <div class="pc-event-entry-title">Skjer her</div>
+        ${canonicalForPlace.length
+          ? canonicalForPlace.map(evt => `<div class="pc-events-row">${evt.title || evt.id || "Event"}</div>`).join("")
+          : `<div class="pc-events-row">Ingen aktivitet lagt til ennå</div>`
+        }
+      </div>
+      <div class="pc-events-section">
+        <div class="pc-event-entry-title">Sosialt</div>
+        <button class="pc-events-action" type="button" data-social-action="meetup">Avtal å møtes</button>
+        <button class="pc-events-action" type="button" data-social-action="message_game">Start meldingsspill</button>
+        <button class="pc-events-action" type="button" data-social-action="group_quiz">Ta quiz sammen</button>
+      </div>
+    `;
+  }
 
   eventsBox.innerHTML = head + body;
 
   const addBtn = document.getElementById("pcAddEvent");
   if (addBtn) {
     addBtn.onclick = () => {
-      window.showToast?.("Event-generator / event-innsending kommer her");
+      console.log("[social] add/forslag", place.id);
     };
   }
+
+  eventsBox.querySelectorAll("[data-social-action]").forEach(btn => {
+    btn.onclick = () => {
+      const action = String(btn.dataset.socialAction || "").trim();
+      if (!action) return;
+      console.log(`[social] ${action}`, place.id);
+    };
+  });
 }
 
 // --- LEKSIKON LIST + LEKSIKON ICON ---
