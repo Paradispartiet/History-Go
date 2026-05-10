@@ -233,7 +233,7 @@ Bruk en lokal webserver (anbefalt):
     metaInsightsEngine.js
     ahaEmneMatcher.js
     ahaFieldProfiles.js
-    ahaChat.js
+    ahaHistoryGoImport.js
 
 ---
 

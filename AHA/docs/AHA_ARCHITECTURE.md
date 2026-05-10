@@ -1,10 +1,8 @@
-# AHA Architecture
+# AHA Architecture (History Go avgrensing)
 
-- `insightsChamber.js` er canonical AHA-motor i AHA-EchoNet.
-- `metaInsightsEngine.js` er metanivå for mønstre på tvers av tema.
-- `ahaChat.js` kobler UI til eksisterende motor.
-- `ahaIngest.js` er broen fra kilder til motoren.
-- `ahaSources.js` er rå kildelogg (`aha_source_events_v1`).
-- `History-Go/AHA` er **ikke** hoved-AHA-dashboard; denne mappen er en History Go-spesifikk bro/eksportflate for `aha_import_payload_v1` og lokal statusvisning.
-- Notes/Galleri/Feed/Insta er ikke aktive moduler i History Go sin AHA-landingsflate, men kan eksistere som historiske/prototype-sider i repoet.
-- History Go har egen lokal innsiktsmotor og eksporterer ferdig materiale til AHA-EchoNet-import.
+- `AHA-EchoNet` er canonical AHA.
+- `History-Go/AHA` er kun lokal History Go-spesifikk innsikts-/eksportbro.
+- History Go eksporterer kun `aha_import_payload_v1`.
+- `js/aha.js` bygger eksportpayload, håndterer sync/readback og peker til AHA-EchoNet.
+- `AHA/ahaHistoryGoImport.js` beskriver/importerer History Go payload inn i AHA-systemet.
+- Full AHA-app-moduler (chat/feed/notes/gallery/insta) skal ikke ligge som lokal app i History-Go.
