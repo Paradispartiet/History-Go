@@ -1,15 +1,15 @@
 # Place Data Audit
 
-Generert: 2026-05-09T15:36:20.524Z
+Generert: 2026-05-10T09:49:33.442Z
 
 ## Totalsammendrag
 
 - Place-filer i manifest: **36**
-- Totalt antall places: **439**
+- Totalt antall places: **440**
 - Steder med manglende obligatoriske felt: **58**
 - Steder med manglende popupDesc: **68**
-- Steder med manglende image: **343**
-- Steder med manglende cardImage: **342**
+- Steder med manglende image: **344**
+- Steder med manglende cardImage: **343**
 - Steder med manglende emne_ids: **175**
 - Steder med manglende quiz_profile: **92**
 - Steder som bruker imageCard-felt: **0**
@@ -26,6 +26,7 @@ Generert: 2026-05-09T15:36:20.524Z
 - **wonderkammer**: 82/439 steder dekket (mangler 357, ugyldige refs 35)
 - **relations**: 0/439 steder dekket (mangler 439, ugyldige refs 0)
 - **leksikon**: 172/439 steder dekket (mangler 267, ugyldige refs 2)
+- **sprakleksikon**: 3/439 steder dekket (mangler 436, ugyldige refs 0)
 - **external/offisielle lenker**: 0/439 steder dekket (mangler 439, ugyldige refs 0)
 
 ## Manglende rundinger og quizdekning
@@ -286,8 +287,8 @@ Generert: 2026-05-09T15:36:20.524Z
 
 ### data/places/natur/oslo/places_oslo_natur_hovedsteder.json
 
-- Antall places: 8
-- Places med funn: 8
+- Antall places: 9
+- Places med funn: 9
 
 - ostensjovannet (Østensjøvannet): mangler image | mangler cardImage
 - hovedoya (Hovedøya): mangler image | mangler cardImage
@@ -297,6 +298,7 @@ Generert: 2026-05-09T15:36:20.524Z
 - maerradalen (Mærradalen): mangler image | mangler cardImage
 - maridalsvannet (Maridalsvannet): mangler image | mangler cardImage
 - noklevann (Nøklevann): mangler image | mangler cardImage
+- alnaelva (Alnaelva): mangler image | mangler cardImage
 
 ### data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json
 
@@ -670,7 +672,7 @@ Generert: 2026-05-09T15:36:20.524Z
 
 ## Duplikate id-er
 
-- Ingen duplikate id-er funnet.
+- alnaelva: data/places/natur/oslo/places_oslo_alna.json (Alnaelva) ; data/places/natur/oslo/places_oslo_natur_hovedsteder.json (Alnaelva)
 
 ## Ødelagte asset paths
 
@@ -843,3 +845,40 @@ Generert: 2026-05-09T15:36:20.524Z
 2. Fyll inn rundinger (r) for 0 steder som mangler dette feltet.
 3. Rydd opp ugyldige place-referanser i datasett med høyest antall dangling refs (se dekningsseksjonen).
 4. Øk dekning i people/nature/badges/wonderkammer/leksikon/external ved å koble placeId/places mot eksisterende steder.
+
+## Maskinlesbar arbeidsliste
+
+- Fil: `reports/place-data-worklist.json`
+- Antall steder klare for quiz: **162**
+- Antall steder klare for Wonderkammer: **299**
+- Antall steder klare for språkleksikon: **369**
+- Prioritet: critical **58**, high **294**, medium **88**, low **0**
+
+### Topp 25 anbefalte neste steder
+
+- lekeplass_birkelunden | Birkelunden lekeplass | sport | critical | Rett basisstruktur
+- lekeplass_botsparken | Botsparken lekeplass | sport | critical | Rett basisstruktur
+- lekeplass_kampen_park | Kampen park lekeplass | sport | critical | Rett basisstruktur
+- lekeplass_olaf_ryes_plass | Olaf Ryes plass lekeplass | sport | critical | Rett basisstruktur
+- lekeplass_sofienbergparken | Sofienbergparken lekeplass | sport | critical | Rett basisstruktur
+- lekeplass_st_hanshaugen | St. Hanshaugen lekeplass | sport | critical | Rett basisstruktur
+- lekeplass_stensparken | Stensparken lekeplass | sport | critical | Rett basisstruktur
+- treningssted_kampen_park | Kampen park treningssted | sport | critical | Rett basisstruktur
+- treningssted_skur13 | Skur 13 skate- og balansetrening | sport | critical | Rett basisstruktur
+- treningssted_sognsvann | Sognsvann treningsrunde | sport | critical | Rett basisstruktur
+- treningssted_torshovdalen | Torshovdalen trenings- og aktivitetspark | sport | critical | Rett basisstruktur
+- alnabru_jernbane_og_logistikk | Alnabru – jernbane og logistikk | by | critical | Rett basisstruktur
+- kampen_film | Kampen (film- og serieområde) | film_tv | critical | Rett basisstruktur
+- sagene_film | Sagene (filmbydel) | film_tv | critical | Rett basisstruktur
+- hellerud_gard | Hellerud gård | historie | critical | Rett basisstruktur
+- alna_bryn | Alna ved Bryn | natur | critical | Rett basisstruktur
+- alna_smalvoll | Alna ved Smalvoll | natur | critical | Rett basisstruktur
+- alna_utlop_bjorvika | Alna utløp i Bjørvika | natur | critical | Rett basisstruktur
+- alnaelvstien | Alnaelvstien | natur | critical | Rett basisstruktur
+- alnaparken | Alnaparken | natur | critical | Rett basisstruktur
+- alnsjoen_alna_kilde | Alnsjøen (Alna-kilde) | natur | critical | Rett basisstruktur
+- bogerudmyra | Bøler/Bogerudmyra | natur | critical | Rett basisstruktur
+- bygdoy_bygdoynes | Bygdøy Bygdøynes | natur | critical | Rett basisstruktur
+- bygdoy_dronningberget | Bygdøy Dronningberget | natur | critical | Rett basisstruktur
+- bygdoy_huk | Bygdøy Huk | natur | critical | Rett basisstruktur
+
