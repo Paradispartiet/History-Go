@@ -94,31 +94,19 @@
 
   function renderExternalLinks(place, article) {
     const links = normalizeExternalLinks(place, article);
-    if (!links.length) return `<section class="pc-leksikon-section"><h3>Eksterne lenker</h3><p>Ingen eksterne lenker ennå</p></section>`;
+    if (!links.length) return `<section class="pc-leksikon-section"><p>Ingen kilder eller lenker ennå.</p></section>`;
 
-    const groups = [
-      { title: "Statistikk/resultater", types: ["stats", "results"] },
-      { title: "Offisiell nettside", types: ["official"] },
-      { title: "Wikipedia", types: ["wikipedia"] },
-      { title: "Andre kilder", types: ["source", "archive", "other"] }
-    ];
-
-    const parts = groups.map((group) => {
-      const rows = links.filter(link => group.types.includes(link.type));
-      if (!rows.length) return "";
-      return `
-        <article class="pc-leksikon-item">
-          <strong>${esc(group.title)}</strong>
-          <ul>
-            ${rows.map((link) => `
-              <li><a href="${esc(link.url)}" target="_blank" rel="noopener noreferrer">${esc(link.label)}</a></li>
-            `).join("")}
-          </ul>
-        </article>
-      `;
-    }).filter(Boolean).join("");
-
-    return section("Eksterne lenker", parts);
+    return `
+      <section class="pc-leksikon-section">
+        <div class="pc-leksikon-list">
+          ${links.map((link) => `
+            <a class="pc-leksikon-entry" href="${esc(link.url)}" target="_blank" rel="noopener noreferrer">
+              <span class="pc-leksikon-entry-title">${esc(link.label)}</span>
+            </a>
+          `).join("")}
+        </div>
+      </section>
+    `;
   }
 
   function tagListHtml(values) {
@@ -175,49 +163,58 @@
         <div class="pc-leksikon-kicker">Leksikon</div>
         <h2 class="hg-popup-name">${esc(articleTitle(article))}</h2>
         <section class="pc-leksikon-section">
-          <h3>Innhold</h3>
           <div class="pc-leksikon-list">
-            <button class="pc-leksikon-entry" type="button" data-leksikon-detail="place">
-              <span class="pc-leksikon-entry-title">Sted</span>
-            </button>
-            <button class="pc-leksikon-entry" type="button" data-leksikon-detail="links">
-              <span class="pc-leksikon-entry-title">Kilder / lenker</span>
-              <span class="pc-leksikon-entry-meta">${sourceLinks.length ? `${sourceLinks.length} oppføringer` : "Ingen oppføringer ennå"}</span>
-            </button>
-            <div class="pc-leksikon-item">
-              <strong>Personer</strong>
-              <div class="pc-leksikon-list">
-                ${persons.length
-                  ? persons.map((person, idx) => `<button class="pc-leksikon-entry" type="button" data-leksikon-detail="person" data-leksikon-item-index="${idx}"><span class="pc-leksikon-entry-title">${esc(person?.name || person?.title || person?.id || "Person")}</span></button>`).join("")
-                  : `<p>Ingen personoppføringer ennå.</p>`}
-              </div>
-            </div>
-            <div class="pc-leksikon-item">
-              <strong>Objekter</strong>
-              <div class="pc-leksikon-list">
-                ${objects.length
-                  ? objects.map((object, idx) => `<button class="pc-leksikon-entry" type="button" data-leksikon-detail="object" data-leksikon-item-index="${idx}"><span class="pc-leksikon-entry-title">${esc(object?.title || object?.name || object?.label || object?.id || "Objekt")}</span></button>`).join("")
-                  : `<p>Ingen objektoppføringer ennå.</p>`}
-              </div>
-            </div>
-            <div class="pc-leksikon-item">
-              <strong>${esc(sprakArticle?.title || "Språkleksikon")}</strong>
-              <div class="pc-leksikon-list">
-                ${sprakEntries.length
-                  ? sprakEntries.map((entry, idx) => `<button class="pc-leksikon-entry" type="button" data-leksikon-detail="sprak" data-leksikon-item-index="${idx}"><span class="pc-leksikon-entry-title">${esc(entry?.term || entry?.id || "Begrep")}</span>${entry?.type ? `<span class="pc-leksikon-entry-meta">${esc(entry.type)}</span>` : ""}</button>`).join("")
-                  : `<p>Ingen språkoppføringer ennå.</p>`}
-              </div>
-            </div>
+            <button class="pc-leksikon-entry" type="button" data-leksikon-detail="place"><span class="pc-leksikon-entry-title">Sted</span></button>
+            <button class="pc-leksikon-entry" type="button" data-leksikon-detail="person-list"><span class="pc-leksikon-entry-title">Personer</span><span class="pc-leksikon-entry-meta">${persons.length} oppføringer</span></button>
+            <button class="pc-leksikon-entry" type="button" data-leksikon-detail="object-list"><span class="pc-leksikon-entry-title">Objekter</span><span class="pc-leksikon-entry-meta">${objects.length} oppføringer</span></button>
+            <button class="pc-leksikon-entry" type="button" data-leksikon-detail="sprak-list"><span class="pc-leksikon-entry-title">Språkleksikon</span><span class="pc-leksikon-entry-meta">${sprakEntries.length} oppføringer</span></button>
+            <button class="pc-leksikon-entry" type="button" data-leksikon-detail="links"><span class="pc-leksikon-entry-title">Kilder / lenker</span><span class="pc-leksikon-entry-meta">${sourceLinks.length} oppføringer</span></button>
           </div>
         </section>
-        <button class="reward-ok" data-close-popup>Lukk</button>
       </article>
     `;
+  }
+
+  function renderBackHeader() {
+    return `<button class="pc-leksikon-back" type="button" data-leksikon-back="1">← Leksikon</button>`;
   }
 
   async function renderDetailPopup(article, place, sprakArticle, detailType, itemIndex) {
     const sections = normalizeSectionItems(article, place, sprakArticle);
     const idx = Number(itemIndex) || 0;
+
+    if (detailType === "person-list") {
+      return `
+        <article class="pc-leksikon-article">
+          ${renderBackHeader()}
+          <div class="pc-leksikon-kicker">Personer</div>
+          <h2 class="hg-popup-name">${esc(articleTitle(article))}</h2>
+          <div class="pc-leksikon-list">${sections.persons.length ? sections.persons.map((person, idx) => `<button class="pc-leksikon-entry" type="button" data-leksikon-detail="person" data-leksikon-item-index="${idx}"><span class="pc-leksikon-entry-title">${esc(person?.name || person?.title || person?.id || "Person")}</span>${person?.type ? `<span class="pc-leksikon-entry-meta">${esc(person.type)}</span>` : ""}</button>`).join("") : "<p>Ingen personoppføringer ennå.</p>"}</div>
+        </article>
+      `;
+    }
+
+    if (detailType === "object-list") {
+      return `
+        <article class="pc-leksikon-article">
+          ${renderBackHeader()}
+          <div class="pc-leksikon-kicker">Objekter</div>
+          <h2 class="hg-popup-name">${esc(articleTitle(article))}</h2>
+          <div class="pc-leksikon-list">${sections.objects.length ? sections.objects.map((object, idx) => `<button class="pc-leksikon-entry" type="button" data-leksikon-detail="object" data-leksikon-item-index="${idx}"><span class="pc-leksikon-entry-title">${esc(object?.title || object?.name || object?.label || object?.id || "Objekt")}</span>${object?.type ? `<span class="pc-leksikon-entry-meta">${esc(object.type)}</span>` : ""}</button>`).join("") : "<p>Ingen objektoppføringer ennå.</p>"}</div>
+        </article>
+      `;
+    }
+
+    if (detailType === "sprak-list") {
+      return `
+        <article class="pc-leksikon-article">
+          ${renderBackHeader()}
+          <div class="pc-leksikon-kicker">Språkleksikon</div>
+          <h2 class="hg-popup-name">${esc(articleTitle(article))}</h2>
+          <div class="pc-leksikon-list">${sections.sprakEntries.length ? sections.sprakEntries.map((entry, idx) => `<button class="pc-leksikon-entry" type="button" data-leksikon-detail="sprak" data-leksikon-item-index="${idx}"><span class="pc-leksikon-entry-title">${esc(entry?.term || entry?.id || "Begrep")}</span>${entry?.type ? `<span class="pc-leksikon-entry-meta">${esc(entry.type)}</span>` : ""}</button>`).join("") : "<p>Ingen språkoppføringer ennå.</p>"}</div>
+        </article>
+      `;
+    }
 
     if (detailType === "person") {
       const person = sections.persons[idx];
@@ -230,7 +227,7 @@
           ${paragraphBlockHtml(person?.desc || person?.description || person?.meaning)}
           ${detailRow("Kontekst", person?.context)}
           ${tagListHtml(person?.tags)}
-          <button class="reward-ok" data-leksikon-back="1">Tilbake til leksikon</button>
+          ${renderBackHeader()}
         </article>
       `;
     }
@@ -247,7 +244,7 @@
           ${detailRow("Hvor", object?.where)}
           ${detailRow("Kontekst", object?.context)}
           ${tagListHtml(object?.tags)}
-          <button class="reward-ok" data-leksikon-back="1">Tilbake til leksikon</button>
+          ${renderBackHeader()}
         </article>
       `;
     }
@@ -264,7 +261,7 @@
           ${detailRow("Kontekst", entry?.context)}
           ${entry?.linked_to ? detailRow("Tilknyttet", `${entry.linked_to.kind || "ukjent"}: ${entry.linked_to.id || "ukjent"}`) : ""}
           ${tagListHtml(entry?.tags)}
-          <button class="reward-ok" data-leksikon-back="1">Tilbake til leksikon</button>
+          ${renderBackHeader()}
         </article>
       `;
     }
@@ -274,8 +271,8 @@
         <article class="pc-leksikon-article">
           <div class="pc-leksikon-kicker">Kilder / lenker</div>
           <h2 class="hg-popup-name">${esc(articleTitle(article))}</h2>
+          ${renderBackHeader()}
           ${renderExternalLinks(place, article)}
-          <button class="reward-ok" data-leksikon-back="1">Tilbake til leksikon</button>
         </article>
       `;
     }
@@ -425,7 +422,7 @@
         ${section("Spor og objekter", artifactsHtml)}
         ${section("Tolkning", interpretationHtml)}
         ${section("Klassifikasjon", tagListHtml([...(classification.tags || []), ...(classification.knagger || [])]))}
-        <button class="reward-ok" data-leksikon-back="1">Tilbake til leksikon</button>
+        ${renderBackHeader()}
       </article>
     `;
   }
