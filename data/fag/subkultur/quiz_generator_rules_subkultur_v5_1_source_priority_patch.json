@@ -1,0 +1,323 @@
+{
+  "version": "v5.1-source-priority-patch-subkultur",
+  "subject_id": "subkultur",
+  "subject_title": "Subkultur",
+  "scope": "oslo_og_omegn",
+  "purpose": "Stramme inn quizgeneratoren for Subkultur slik at konkrete scener, miljøer, ungdomshus, klubber, skateparker, graffitiflater, underganger, øvingsrom, platesjapper, spillbutikker, fanziner, plakater, stickers, digitale fellesskap, motkulturelle hendelser, dokumenterte praksiser, konflikter, kontrollformer, kommersialisering, kulturarv og arkivspor dominerer synlig spørsmålsinnhold. Fagkart, methods, emner, emnemapping og pensum skal styre struktur, metode, teori og progresjon, men ikke fungere som hovedkilde til faktapåstander.",
+  "canonical_inputs": {
+    "fagkart": "fagkart_subkultur_canonical_v4_5.json",
+    "methods": "methods_subkultur_canonical_v4_5.json",
+    "emner": "emner_subkultur_canonical_v4_5.json",
+    "emnemapping": "emnemapping_subkultur_canonical_v4_5.json",
+    "pensum": "subkulturpensum_canonical_v4_5.json",
+    "domain_count": 6,
+    "emne_count": 69,
+    "method_count": 71,
+    "mapping_count": 69,
+    "topic_hook_count": 60
+  },
+  "hard_rules": {
+    "source_dominance_rule": "Eksterne subkulturelle, scenehistoriske, byhistoriske, arkivmessige, forskningsmessige, etnografiske, dokumentasjonsmessige, lokale, mediemessige og institusjonelle kilder skal dominere det synlige faktainnholdet i subkulturquizzer. Canonical-filene er styringsfiler, ikke faktakilde.",
+    "canonical_files_are_guides_not_content": true,
+    "external_subculture_source_first_all_sets": true,
+    "minimum_external_source_ratio_by_set": {
+      "1": 0.85,
+      "2": 0.85,
+      "3": 0.8,
+      "4": 0.8,
+      "5": 0.75,
+      "6": 0.75,
+      "7": 0.75,
+      "8": 0.75
+    },
+    "internal_file_only_questions_max_per_quiz": 0.05,
+    "internal_file_only_questions_allowed_only_for": [
+      "ren observasjon av synlig scene, ungdomshus, klubb, skatepark, graffitiflate, undergang, øvingsrom, platesjappe, spillbutikk, sticker, plakat, fanzine, kleskode, symbol eller subkulturelt objekt",
+      "validering av metadata, kategori eller spørsmålslag",
+      "nødfallback når ekstern kilde ikke finnes, og dette loggføres eksplisitt"
+    ],
+    "question_seed_priority": [
+      "konkret scene, miljø, ungdomshus, klubb, skatepark, graffitiflate, undergang, øvingsrom, platesjappe, spillbutikk, fanzine, plakat, sticker, digitalt fellesskap, motkulturell hendelse eller dokumentert subkulturell praksis",
+      "offisiell arkiv-, museums-, bydel-, kommune-, kulturhus-, klubb-, festival-, organisasjons-, medie-, politirapport-, forsknings- eller institusjonskilde",
+      "subkulturforskning, ungdomskulturforskning, byforskning, kulturstudier, etnografi, intervjuer, arkiv, scenehistorie, dokumentasjon, avisomtale eller lokalhistorisk kilde",
+      "dokumentert subkulturell prosess: tilhørighet, stil, autentisitet, grensearbeid, ritual, avvik, kontroll, motstand, marginalisering, gentrifisering, kommersialisering eller historisering",
+      "dokumentert materiell og romlig praksis: klær, kropp, symboler, koder, tags, graffiti, skate, klubb, DIY, fanzine, LAN, cosplay, øvingsrom, uformelle møteplasser eller digitale rom",
+      "stedsdata/persondata i appen",
+      "fagkart, methods, emner, emnemapping og pensum som styring – ikke faktakilde"
+    ],
+    "subkultur_question_must_start_from": [
+      "scene, alternativt fellesskap, undergrunnsmiljø, ungdomskultur, portvokter, ritual, innvielse, dugnad, trygghet, eksklusjon eller deltakelse",
+      "stil, symbol, kode, klær, kropp, slang, autentisitet, smak, estetikk, visuell grense, patch, pin, tag, sticker eller remix av stil",
+      "subkulturelt sted, skatepark, undergang, graffitiflate, klubb, øvingsrom, okkupert rom, uformell møteplass, territorielle koder eller digitalt rom",
+      "motkultur, avvik, moralpanikk, politi, kontroll, kriminalisering, regulering, marginalisering, klasse, skeiv motstand eller retten til byen",
+      "fanzine, plakat, sticker, tag, graffiti, mixtape, vinyl, kassett, gaming, LAN, cosplay, DIY, uavhengige medier, samlerobjekt, nettforum eller meme",
+      "historisering, kommersialisering, kulturarv, revival, institusjonalisering, merkevarebygging, dokumentasjon, tapte steder eller historiemakt",
+      "dokumentert kilde: arkiv, forskningskilde, intervjuer, scenehistorie, dokumentasjon, lokalhistorie, mediekilde, organisasjonskilde, kommunekilde eller etnografi"
+    ],
+    "forbidden_generation_patterns": [
+      "Ikke generer synlige spørsmål direkte fra emne-, hook-, metode- eller teorinavn.",
+      "Ikke spør generisk om opprør, ungdom, stil eller annerledeshet uten konkret scene, miljø, stil, sted, objekt, praksis, konflikt, kontrollform eller kilde.",
+      "Ikke lag smaksspørsmål der fasiten blir personlig mening om hva som er kult, ekte, alternativt eller interessant.",
+      "Ikke gjør et sted til subkultur bare fordi det virker urbant, trendy, ungt, alternativt eller kommersielt, uten dokumentert subkulturell scene, praksis, miljø, konflikt, kode eller kilde.",
+      "Ikke klassifiser musikk som musikkfelt, populærkultur som massefenomen, media, kunst, litteratur, sport, næringsliv, politikk, historie, by, natur, psykologi eller vitenskap som subkultur når subkultur bare er sekundærlag.",
+      "Ikke bruk em_by_*, em_his_*, em_kunst_*, em_lit_*, em_media_*, em_musikk_*, em_pop_*, em_vit_*, em_pol_*, em_naering_*, em_natur_* eller em_psy_* som hoved-emne_ids i places_subkultur eller people_subkultur.",
+      "Ikke lag generelle lister over subkulturer uten sted, praksis, konflikt, objekt, kilde eller dokumentert miljø."
+    ],
+    "required_emne_prefix": "em_sub_",
+    "blocked_emne_prefixes_for_subkultur_files": [
+      "em_by_",
+      "em_his_",
+      "em_kunst_",
+      "em_lit_",
+      "em_media_",
+      "em_musikk_",
+      "em_pop_",
+      "em_vit_",
+      "em_pol_",
+      "em_naering_",
+      "em_natur_",
+      "em_psy_"
+    ],
+    "people_subkultur_rule": "people_subkultur skal inneholde personer der hovedrollen er subkulturell aktør, arrangør, aktivist, graffitimaler, skater, punk-/hardcore-/hiphop-/klubb-/rave-/gaming-/cosplay-/DIY-aktør, sceneorganisator, fanzine- eller uavhengig medieaktør, undergrunnsbygger, kulturhusaktør, rett-til-byen-aktør, motkulturell formidler eller sentral person i dokumentert subkulturell historie. Personer der hovedrollen er musikk, kunst, litteratur, media, sport, politikk, næringsliv, historie, by, natur, psykologi, vitenskap eller populærkultur skal primært ligge i disse kategoriene, med subkultur som sekundært tag bare der det er relevant.",
+    "places_subkultur_rule": "places_subkultur skal inneholde steder der hovedrollen er subkulturell scene, ungdomshus, undergrunnssted, skatepark, graffitiflate, okkupert rom, klubb, øvingsrom, uformell møteplass, platesjappe, spillbutikk, LAN-/gamingrom, cosplayarena, fanzine-/printsted, kulturhus, tapte steder, territorielt byrom eller konfliktsted der scene, stil, kode, praksis, motstand, kontroll, marginalisering, kommersialisering eller kulturarv er hovedpoenget."
+  },
+  "soft_preferences": {
+    "preferred_external_source_mix_per_place": [
+      "minst én arkiv-, museums-, bydel-, kommune-, kulturhus-, klubb-, festival-, organisasjons-, medie-, politirapport-, forsknings- eller institusjonskilde",
+      "minst én subkulturfaglig, ungdomskulturfaglig, byforsknings-, kulturstudie-, etnografisk, intervju-, scenehistorisk, dokumentasjons- eller lokalhistorisk kilde",
+      "minst én konkret scene-, stil-, steds-, objekt-, praksis-, konflikt-, kontroll-, kommersialiserings-, kulturarv- eller arkivkilde når quiz handler om sted eller person"
+    ],
+    "preferred_question_build_path": "subkulturell kilde eller konkret scene/stil/sted/praksis/konflikt -> presist claim -> sted/person/objekt/hendelse -> metode/emne -> teori",
+    "preferred_role_of_canonical_files": [
+      "velge riktig em_sub_*",
+      "velge relevant subkulturmetode",
+      "styre om spørsmålet bør starte i scene, miljø, stil, kode, ritual, sted, objekt, praksis, konflikt, kontrollform, kommersialisering, kulturarv eller dokumentert subkulturell kilde",
+      "spre teorier, tenkere, scener, steder, praksiser, objekter, konflikter, historiseringsspor og metoder",
+      "unngå kategorirot mellom subkultur, musikk, populærkultur, media, kunst, litteratur, sport, næringsliv, politikk, historie, by, natur, psykologi og vitenskap",
+      "unngå teorioverstyring der scenen, stilen, stedet, objektet, praksisen eller konflikten blir borte"
+    ],
+    "preferred_question_surfaces": [
+      "scene-community-first",
+      "style-symbol-code-first",
+      "place-territory-first",
+      "resistance-deviance-control-first",
+      "media-object-practice-first",
+      "history-commercialization-heritage-first",
+      "scene-style-place-practice-conflict-first_then_named_theorist"
+    ],
+    "preferred_norwegian_theory_path": "Når relevant norsk ungdomskulturforskning, subkulturforskning, byforskning, minoritetsforskning, musikk-/scenehistorie, graffiti-/skate-/klubb-/DIY-dokumentasjon eller lokalhistorie finnes, kan den brukes i senere sett, men bare etter at scene, stil, sted, objekt, praksis, konflikt eller kulturarv allerede er etablert."
+  },
+  "set_guidance": {
+    "1": {
+      "name": "grunnfakta_scene_stil_sted",
+      "dominant_driver": "ekstern kilde, konkret scene, ungdomshus, klubb, skatepark, graffitiflate, sted, stil, objekt eller dokumentert subkulturell praksis",
+      "canonical_role": "lett styring av emne og metode",
+      "allowed_methods": [
+        "met_sub_sceneanalyse",
+        "met_sub_stilanalyse",
+        "met_sub_stedsanalyse",
+        "met_sub_symbolanalyse"
+      ],
+      "question_style": "enkel gjenkjenning, sted/funksjon, scene, miljø, stil, symbol, praksis eller synlig subkulturelt spor"
+    },
+    "2": {
+      "name": "alternative_fellesskap_scener",
+      "dominant_driver": "scene, miljø, undergrunn, ungdomskultur, portvoktere, innvielse, dugnad, vennegjeng, trygghet, eksklusjon eller digitalt fellesskap",
+      "canonical_role": "lett til middels metodeføring",
+      "allowed_methods": [
+        "met_sub_sceneanalyse",
+        "met_sub_fellesskapsanalyse",
+        "met_sub_undergrunnsanalyse",
+        "met_sub_ungdomskulturanalyse",
+        "met_sub_deltakelsesanalyse"
+      ],
+      "question_style": "scener, fellesskap, undergrunn, ungdomskultur, portvoktere, arrangører, dugnad, lojalitet, konflikter, trygghet og deltakelse"
+    },
+    "3": {
+      "name": "stil_symboler_koder",
+      "dominant_driver": "stil, klær, kropp, symboler, språk, slang, autentisitet, smak, estetikk, visuelle grenser eller remix av stil",
+      "canonical_role": "høy stil-, symbol- og kodeføring tillatt",
+      "allowed_methods": [
+        "met_sub_stilanalyse",
+        "met_sub_semiotisk_analyse",
+        "met_sub_symbolanalyse",
+        "met_sub_sprakanalyse",
+        "met_sub_autentisitetsanalyse"
+      ],
+      "question_style": "stil som språk, klær og kropp, symboler, slang, autentisitet, smak, estetikk, kropp/modifikasjon, visuell grense og remix"
+    },
+    "4": {
+      "name": "steder_rom_territorier",
+      "dominant_driver": "skatepark, byrom, graffitiflate, klubb, natt, øvingsrom, okkupert rom, uformell møteplass, territorielle koder, gentrifisering eller digitalt rom",
+      "canonical_role": "middels til høy steds- og romstyring",
+      "allowed_methods": [
+        "met_sub_stedsanalyse",
+        "met_sub_romlig_praksisanalyse",
+        "met_sub_graffitianalyse",
+        "met_sub_klubbanalyse",
+        "met_sub_gentrifiseringsanalyse"
+      ],
+      "question_style": "sted som scene, skate og byrom, graffitiflater, klubb/natt, øvingsrom, okkuperte rom, møteplasser, territorielle koder og gentrifisering"
+    },
+    "5": {
+      "name": "motstand_avvik_kontroll",
+      "dominant_driver": "motkultur, avvik, moralpanikk, politi, kontroll, kriminalisering, regulering, eiendom, marginalisering, skeiv motstand, klasse eller retten til byen",
+      "canonical_role": "høy makt-, kontroll- og konfliktstyring tillatt",
+      "allowed_methods": [
+        "met_sub_motstandsanalyse",
+        "met_sub_avviksanalyse",
+        "met_sub_moralpanikkanalyse",
+        "met_sub_kontrollanalyse",
+        "met_sub_rett_til_byen_analyse"
+      ],
+      "question_style": "motkultur, avvik, moralpanikk, politi, kriminalisering, regulering, marginalisering, skeiv motstand, klasse og rett til byen"
+    },
+    "6": {
+      "name": "medier_objekter_praksiser",
+      "dominant_driver": "fanzine, plakat, sticker, tag, graffiti, mixtape, vinyl, kassett, gaming, LAN, cosplay, DIY, uavhengige medier, samlerobjekt eller nettforum",
+      "canonical_role": "høy objekt-, medie- og praksisstyring tillatt",
+      "allowed_methods": [
+        "met_sub_fanzineanalyse",
+        "met_sub_visuell_kulturanalyse",
+        "met_sub_graffitianalyse",
+        "met_sub_spillkulturanalyse",
+        "met_sub_diy_analyse"
+      ],
+      "question_style": "fanziner, plakater, stickers, tags, graffiti, mixtapes, gaming/LAN, cosplay, DIY, uavhengige medier, samlerobjekter og nettforum"
+    },
+    "7": {
+      "name": "historisering_kommersialisering_arv",
+      "dominant_driver": "undergrunn til mainstream, kommersialisering, autentisitetstap, nostalgi, revival, kulturarv, institusjonalisering, merkevare, arkiv, tapte steder eller historiemakt",
+      "canonical_role": "høy historiserings-, kommers- og kulturarvstyring tillatt",
+      "allowed_methods": [
+        "met_sub_mainstreaminganalyse",
+        "met_sub_kommersialiseringsanalyse",
+        "met_sub_revivalanalyse",
+        "met_sub_kulturarvsanalyse",
+        "met_sub_arkivanalyse"
+      ],
+      "question_style": "fra undergrunn til mainstream, kommersialisering, nostalgi, revival, kulturarv, institusjonalisering, merkevare, dokumentasjon og tapte steder"
+    },
+    "8": {
+      "name": "system_scene_kontroll_kulturarv",
+      "dominant_driver": "konkret scene, stil, sted, praksis, kontrollform, konflikt, kommersialisering, kulturarv, historiemakt eller rett til byen",
+      "canonical_role": "høy teori tillatt, men med konkret subkulturelt anker",
+      "allowed_methods": [
+        "met_sub_kulturkritisk_analyse",
+        "met_sub_maktanalyse",
+        "met_sub_romlig_maktanalyse",
+        "met_sub_historiemaktanalyse",
+        "met_sub_byutviklingsanalyse"
+      ],
+      "question_style": "scene, stil, sted, grensearbeid, motstand, kontroll, marginalisering, byutvikling, kommersialisering, kulturarv og historiemakt"
+    }
+  },
+  "subkultur_category_guardrails": {
+    "accept_as_subkultur_primary_when": [
+      "stedet eller personen har subkulturell hovedrolle",
+      "det finnes konkret scene, miljø, stil, kode, ritual, sted, objekt, praksis, konflikt, kontrollform, kommersialisering, kulturarv eller dokumentert subkulturell kilde",
+      "spørsmål kan bygges fra subkulturelle, scenehistoriske, byhistoriske, arkivmessige, forskningsmessige, etnografiske, dokumentasjonsmessige eller lokale kilder",
+      "subkulturell scene-, stil-, sted-, praksis- eller konfliktlogikk er primær, ikke bare generell musikk, populærkultur, byliv, trend eller kunstnerisk uttrykk"
+    ],
+    "do_not_accept_as_subkultur_primary_when": [
+      "hovedrollen er musikk som musikkfelt, populærkultur som massefenomen, media, kunst, litteratur, sport, næringsliv, politikk, historie, by, natur, psykologi eller vitenskap",
+      "stedet er bare trendy, urbant, alternativt, kommersielt eller ungdommelig uten dokumentert subkulturell hovedrolle",
+      "stedet er bare en generell by-, musikk-, kunst-, media- eller populærkulturcase uten konkret scene, stil, praksis, konflikt, kode, sted eller kilde",
+      "personen er artist, kunstner, forfatter, journalist, politiker, idrettsutøver, forsker eller næringslivsaktør uten hovedrolle som subkulturell aktør"
+    ],
+    "secondary_subkultur_tag_allowed": true
+  },
+  "validator_additions": [
+    "Avvis subkulturquiz hvis synlig innhold primært er parafrase av fagkart, emner, methods eller mapping.",
+    "Avvis spørsmål som kan spores bare til emne-/hook-/metodenavn og ikke til konkret scene, miljø, stil, kode, ritual, sted, objekt, praksis, konflikt, kontrollform, kulturarv eller ekstern kilde.",
+    "Avvis hoved-emne_ids i places_subkultur eller people_subkultur som ikke starter med em_sub_*.",
+    "Flagg poster der hovedkategori ser ut til å være musikk, populærkultur, media, kunst, litteratur, sport, næringsliv, politikk, historie, by, natur, psykologi eller vitenskap.",
+    "Logg per spørsmål source_origin som external, mixed, observed_scene, observed_style, observed_place, observed_object, observed_practice, observed_conflict_control, observed_heritage eller internal_only.",
+    "Flagg quiz der internal_only overstiger 5 prosent.",
+    "Flagg teorioverstyring når navngitt teoretiker kommer før scene/stil/sted/objekt/praksis/konflikt/kulturarv er etablert.",
+    "Flagg subkulturanalyse som blir ren smak, generisk opprør, løs ungdomsstil eller trend uten dokumentert miljø, praksis, konflikt, kode, sted eller kilde.",
+    "Flagg biografiske spørsmål som ikke kobler person til konkret subkulturell rolle, scene, praksis, konflikt, objekt, organisering eller dokumentert miljø.",
+    "Flagg stedsbaserte spørsmål der koblingen til subkultur bare er løs assosiasjon, urban stemning eller generell popularitet."
+  ],
+  "generation_metadata_additions": {
+    "required_per_question_fields_recommended": [
+      "source_origin",
+      "claim_basis",
+      "guidance_basis",
+      "method_id",
+      "emne_id",
+      "subculture_anchor_type",
+      "source_note"
+    ],
+    "source_origin_values": [
+      "external",
+      "mixed",
+      "observed_scene",
+      "observed_style",
+      "observed_place",
+      "observed_object",
+      "observed_practice",
+      "observed_conflict_control",
+      "observed_heritage",
+      "internal_only"
+    ],
+    "subculture_anchor_type_values": [
+      "scene",
+      "community",
+      "underground",
+      "youth_culture",
+      "gatekeeper",
+      "ritual",
+      "belonging",
+      "style",
+      "symbol",
+      "code",
+      "clothing",
+      "body",
+      "slang",
+      "authenticity",
+      "taste",
+      "visual_boundary",
+      "skatepark",
+      "graffiti_wall",
+      "club",
+      "rehearsal_room",
+      "occupied_space",
+      "informal_meeting_place",
+      "digital_space",
+      "counterculture",
+      "deviance",
+      "moral_panic",
+      "policing",
+      "control",
+      "criminalization",
+      "marginalization",
+      "right_to_the_city",
+      "fanzine",
+      "poster",
+      "sticker",
+      "tag",
+      "mixtape",
+      "vinyl",
+      "gaming",
+      "lan",
+      "cosplay",
+      "diy",
+      "independent_media",
+      "forum",
+      "heritage",
+      "commercialization",
+      "revival",
+      "archive",
+      "lost_place",
+      "scene_history"
+    ],
+    "claim_basis_definition": "Den konkrete subkulturelle påstanden fra ekstern kilde, arkiv, scenehistorie, dokumentasjon, forskningskilde, intervju, lokalhistorie, organisasjonskilde, mediekilde, kommunekilde eller etnografi.",
+    "guidance_basis_definition": "Hvilket em_sub_*, hook, metode eller teorispor som styrte spørsmålets form uten å levere faktapåstanden.",
+    "method_id_definition": "Én method_id fra methods_subkultur_canonical_v4_5.json brukt til å forme spørsmålet.",
+    "emne_id_definition": "Én em_sub_* fra emner_subkultur_canonical_v4_5.json brukt som hovedemne.",
+    "source_note_definition": "Kort kildebeskrivelse som sier hvilken type subkulturell, scenehistorisk, byhistorisk, arkivmessig, etnografisk, lokalhistorisk eller dokumentasjonsmessig kilde som er brukt."
+  },
+  "diagnosis_note": "Når mange filer er opplastet, må modellen ikke overvekte canonical systemfiler bare fordi de er mange. For subkultur skal konkrete scener, miljøer, ungdomshus, klubber, skateparker, graffitiflater, underganger, øvingsrom, platesjapper, spillbutikker, fanziner, plakater, stickers, digitale fellesskap, motkulturelle hendelser, dokumenterte praksiser, konflikter, kontrollformer, kommersialisering, kulturarv og arkivspor dominere synlig quizinnhold. Fagkart, methods, emner, emnemapping og pensum er styring.",
+  "migration_note": "Eksisterende places_subkultur og people_subkultur bør migreres til em_sub_* bare etter at hvert objekt er lest. Det må samtidig sjekkes at hovedkategori faktisk er subkultur og ikke musikk, populærkultur, media, kunst, litteratur, sport, næringsliv, politikk, historie, by, natur, psykologi, vitenskap eller annet fag."
+}
