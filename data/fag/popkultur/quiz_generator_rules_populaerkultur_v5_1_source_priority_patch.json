@@ -1,0 +1,317 @@
+{
+  "version": "v5.1-source-priority-patch-populaerkultur",
+  "subject_id": "populaerkultur",
+  "subject_title": "Populærkultur",
+  "scope": "oslo_og_omegn",
+  "purpose": "Stramme inn quizgeneratoren for Populærkultur slik at konkrete formater, filmer, TV-serier, radioprogrammer, spill, klipp, feeds, internettfenomener, memer, virale hendelser, kjendiser, karakterer, fandoms, plattformer, reklamer, merch, filmlokasjoner, kinoer, butikker, oppmerksomhetsdata, seertall, strømmetall, trenddata og dokumenterte popkulturelle kilder dominerer synlig spørsmålsinnhold. Fagkart, methods, emner, emnemapping og pensum skal styre struktur, metode, teori og progresjon, men ikke fungere som hovedkilde til faktapåstander.",
+  "canonical_inputs": {
+    "fagkart": "fagkart_populaerkultur_canonical_v4_5.json",
+    "methods": "methods_populaerkultur_canonical_v4_5.json",
+    "emner": "emner_populaerkultur_canonical_v4_5.json",
+    "emnemapping": "emnemapping_populaerkultur_canonical_v4_5.json",
+    "pensum": "populaerkulturpensum_canonical_v4_5.json",
+    "domain_count": 6,
+    "emne_count": 56,
+    "method_count": 48,
+    "mapping_count": 56,
+    "topic_hook_count": 60
+  },
+  "hard_rules": {
+    "source_dominance_rule": "Eksterne popkulturelle, mediehistoriske, bransjemessige, arkivmessige, resepsjonsmessige og plattformmessige kilder, konkrete formater, filmer, TV-serier, spill, klipp, memer, kjendiser, karakterer, fandoms, plattformer, reklamer, merch, steder, seertall, strømmetall, trenddata, klikk, likes, delinger og dokumentert sirkulasjon skal dominere det synlige faktainnholdet i populærkulturquizzer. Canonical-filene er styringsfiler, ikke faktakilde.",
+    "canonical_files_are_guides_not_content": true,
+    "external_popculture_source_first_all_sets": true,
+    "minimum_external_source_ratio_by_set": {
+      "1": 0.85,
+      "2": 0.85,
+      "3": 0.8,
+      "4": 0.75,
+      "5": 0.75,
+      "6": 0.7,
+      "7": 0.75,
+      "8": 0.75
+    },
+    "internal_file_only_questions_max_per_quiz": 0.05,
+    "internal_file_only_questions_allowed_only_for": [
+      "ren observasjon av synlig kino, studio, scene, butikk, reklameflate, filmlokasjon, fanobjekt, merch, karakter, plakat, maskot eller popkulturelt symbol",
+      "validering av metadata, kategori eller spørsmålslag",
+      "nødfallback når ekstern kilde ikke finnes, og dette loggføres eksplisitt"
+    ],
+    "question_seed_priority": [
+      "konkret format, film, TV-serie, radioprogram, spill, klipp, feed, internettfenomen, meme, viral hendelse, kjendis, karakter, fandom, plattform, reklame, merch, filmlokasjon eller popkulturell hendelse",
+      "offisiell medie-, produksjons-, studio-, kino-, plattform-, arkiv-, museum-, bransje-, publikums-, seertall-, strømme-, spill- eller institusjonskilde",
+      "mediehistorie, populærkulturforskning, resepsjonsdata, trenddata, seertall, klikk, likes, delinger, arkivbeskrivelser, intervjuer, bransjedata eller forskningskilde",
+      "dokumentert sirkulasjon: ikonisk øyeblikk, sitat, deling, fandom, representasjon, trend, viralt spor, plattformskifte, gjenkjennelse eller kollektiv referanse",
+      "dokumentert oppmerksomhetsøkonomi: hype, skandale, metrics, algoritmisk synlighet, plattformlogikk, reklame, kommers, samlerkultur eller merch",
+      "stedsdata/persondata i appen",
+      "fagkart, methods, emner, emnemapping og pensum som styring – ikke faktakilde"
+    ],
+    "populaerkultur_question_must_start_from": [
+      "konkret film, TV-serie, radioprogram, podcast, spill, serieformat, klipp, feed, streamingformat, studio, kino eller medieformat",
+      "ikon, kjendis, karakter, rollefigur, programleder, komiker, maskot, merkefigur, sitat, ikonisk scene eller kollektiv referanse",
+      "fans, fandom, smak, status, referansefellesskap, generasjonsminne, cosplay, deltakelse, remix, fanobjekt eller tilhørighet",
+      "meme, viralitet, plattform, algoritme, influencer, metrics, likes, delinger, kommentarfelt, trendbølge eller digital offentlighet",
+      "representasjon, norm, kropp, kjønn, humor, stereotypi, verdensbilde, suksessfantasi, kollektiv fantasi eller popkulturell doxa",
+      "filmlokasjon, kino, popkulturelt sted, butikk, merch, samlerkultur, reklameflate, opplevelsesøkonomi, hype-maskineri eller usynlig arbeid",
+      "dokumentert kilde: arkiv, mediekilde, produksjonskilde, bransjekilde, seertall, strømmetall, trenddata, plattformdata, intervju, resepsjonsdata eller forskningskilde"
+    ],
+    "forbidden_generation_patterns": [
+      "Ikke generer synlige spørsmål direkte fra emne-, hook-, metode- eller teorinavn.",
+      "Ikke spør generisk om underholdning uten konkret format, ikon, meme, fandom, plattform, sted, objekt, representasjon eller kilde.",
+      "Ikke lag smaksspørsmål eller preferansespørsmål der fasiten blir personlig mening i stedet for dokumentert popkulturell påstand.",
+      "Ikke gjør et sted til populærkultur bare fordi mange har vært der, uten dokumentert popkulturell sirkulasjon, medieformat, ikon, fandom, reklame, meme eller kollektiv referanse.",
+      "Ikke klassifiser media som journalistikk/institusjon, musikk som musikkfelt, kunst, litteratur, sport, næringsliv, politikk, historie, by, natur, vitenskap eller subkultur som populærkultur når populærkultur bare er sekundærlag.",
+      "Ikke bruk em_by_*, em_his_*, em_kunst_*, em_lit_*, em_media_*, em_musikk_*, em_vit_*, em_pol_*, em_naering_* eller em_natur_* som hoved-emne_ids i places_populaerkultur eller people_populaerkultur.",
+      "Ikke lag generell kjendisliste, nostalgiliste eller underholdningsmoral uten format, sirkulasjon, publikum, representasjon, objekt, plattform, sted eller dokumentert kilde."
+    ],
+    "required_emne_prefix": "em_pop_",
+    "blocked_emne_prefixes_for_populaerkultur_files": [
+      "em_by_",
+      "em_his_",
+      "em_kunst_",
+      "em_lit_",
+      "em_media_",
+      "em_musikk_",
+      "em_vit_",
+      "em_pol_",
+      "em_naering_",
+      "em_natur_"
+    ],
+    "people_populaerkultur_rule": "people_populaerkultur skal inneholde personer der hovedrollen er popkulturelt ikon, kjendis, programleder, komiker, skuespiller, karakter-/rollefigurprodusent, influencer, memeaktør, fan-/fandomaktør, popkulturell formidler, TV-/film-/spill-/internettskikkelse eller sentral aktør i massefenomen, sirkulasjon, populær gjenkjennelse, oppmerksomhetsøkonomi eller kollektiv referanse. Personer der hovedrollen er journalistikk/media, musikkfelt, kunst, litteratur, sport, politikk, næringsliv, historie, vitenskap, natur, by eller subkultur skal primært ligge i disse kategoriene, med populærkultur som sekundært tag bare der det er relevant.",
+    "places_populaerkultur_rule": "places_populaerkultur skal inneholde steder der hovedrollen er kino, TV-/film-/spill-/radiostudio, filmlokasjon, popkulturelt butikksted, samlerbutikk, reklameflate, scene som popkulturelt massefenomen, fan-/fandomsted, plattformmiljø, merchsted, ikonisk byrom, viral lokasjon eller sted der format, ikon, meme, fandom, plattform, representasjon, kommers eller kollektiv referanse er hovedpoenget."
+  },
+  "soft_preferences": {
+    "preferred_external_source_mix_per_place": [
+      "minst én offisiell medie-, produksjons-, studio-, kino-, plattform-, arkiv-, museum-, bransje-, publikums-, seertall-, strømme-, spill- eller institusjonskilde",
+      "minst én mediehistorisk, populærkulturfaglig, resepsjonsmessig, plattformmessig, trendmessig, bransjemessig eller arkivbasert kilde",
+      "minst én konkret format-, ikon-, meme-, fandom-, plattform-, representasjons-, objekt-, steds-, sirkulasjons- eller publikumsdatakilde når quiz handler om sted eller person"
+    ],
+    "preferred_question_build_path": "popkulturell kilde eller konkret format/ikon/meme/fandom/plattform/sted -> presist claim -> sted/person/objekt/hendelse -> metode/emne -> teori",
+    "preferred_role_of_canonical_files": [
+      "velge riktig em_pop_*",
+      "velge relevant popkulturmetode",
+      "styre om spørsmålet bør starte i format, ikon, meme, fandom, plattform, representasjon, sted, objekt, reklame, merch eller popkulturell hendelse",
+      "spre teorier, tenkere, formater, medietyper, fandoms, steder, objekter, plattformer, representasjoner og metoder",
+      "unngå kategorirot mellom populærkultur, media, musikk, kunst, litteratur, sport, næringsliv, politikk, historie, by, natur, vitenskap og subkultur",
+      "unngå teorioverstyring der formatet, ikonet, memet, fandomet, plattformen, stedet, objektet eller sirkulasjonen blir borte"
+    ],
+    "preferred_question_surfaces": [
+      "format-media-first",
+      "icon-character-first",
+      "fandom-identity-first",
+      "internet-platform-first",
+      "representation-fantasy-first",
+      "place-object-attention-first",
+      "format-icon-meme-fandom-place-first_then_named_theorist"
+    ],
+    "preferred_norwegian_theory_path": "Når relevant norsk medievitenskap, populærkulturforskning, kulturpolitikk, publikumsforskning, resepsjonsforskning eller plattformforskning finnes, kan den brukes i senere sett, men bare etter at format, ikon, meme, fandom, plattform, sted eller popkulturell hendelse allerede er etablert."
+  },
+  "set_guidance": {
+    "1": {
+      "name": "grunnfakta_format_ikon_sted",
+      "dominant_driver": "ekstern kilde, konkret format, film, TV-serie, spill, meme, ikon, karakter, kino, studio, butikk, reklameflate eller popkulturelt sted",
+      "canonical_role": "lett styring av emne og metode",
+      "allowed_methods": [
+        "met_pop_formatanalyse",
+        "met_pop_mediehistorisk_analyse",
+        "met_pop_steds_og_lokasjonsanalyse",
+        "met_pop_symbol_og_motivanalyse"
+      ],
+      "question_style": "enkel gjenkjenning, format/sted/funksjon, ikon, scene, karakter, sirkulasjon eller synlig popkulturelt spor"
+    },
+    "2": {
+      "name": "massemedier_formater_distribusjon",
+      "dominant_driver": "film, TV, radio, podcast, spill, streaming, klipp, feed, studio, distribusjon, format eller publikumsrytme",
+      "canonical_role": "lett til middels metodeføring",
+      "allowed_methods": [
+        "met_pop_formatanalyse",
+        "met_pop_mediehistorisk_analyse",
+        "met_pop_plattformanalyse",
+        "met_pop_distribusjonsanalyse",
+        "met_pop_publikumsanalyse"
+      ],
+      "question_style": "massemedier, formater, streaming, serier, spill, feeds, produksjonsapparat, sjanger og distribusjonsnettverk"
+    },
+    "3": {
+      "name": "ikoner_kjendiser_karakterer",
+      "dominant_driver": "kjendis, karakter, rollefigur, programleder, komiker, maskot, ikonisk scene, hype, skandale eller visuell slagkraft",
+      "canonical_role": "høy ikon-, persona- og gjenkjennelsesstyring tillatt",
+      "allowed_methods": [
+        "met_pop_kjendisanalyse",
+        "met_pop_persona_analyse",
+        "met_pop_karakteranalyse",
+        "met_pop_symbol_og_motivanalyse",
+        "met_pop_visuell_identitetsanalyse"
+      ],
+      "question_style": "kjendiser, karakterer, programledere, humorfigurer, maskoter, ikoniske scener, stjerneproduksjon og nostalgi"
+    },
+    "4": {
+      "name": "fandom_identitet_tilhorighet",
+      "dominant_driver": "fans, fandom, smak, status, referansefellesskap, generasjonsminne, cosplay, remix, fanobjekt eller tilhørighet",
+      "canonical_role": "middels til høy fandom- og identitetsstyring",
+      "allowed_methods": [
+        "met_pop_fandomanalyse",
+        "met_pop_fellesskapsanalyse",
+        "met_pop_smak_og_distinksjonsanalyse",
+        "met_pop_sitat_og_referanseanalyse",
+        "met_pop_deltakelsesanalyse"
+      ],
+      "question_style": "fans, fandom, smak, referanser, generasjonsminner, deltakelse, remix, fanobjekter og popkulturell sosialisering"
+    },
+    "5": {
+      "name": "internett_memer_plattformer",
+      "dominant_driver": "meme, viral hendelse, algoritme, plattform, influencer, likes, metrics, feed, kommentarfelt, trend eller moderering",
+      "canonical_role": "høy plattform-, algoritme- og sirkulasjonsstyring tillatt",
+      "allowed_methods": [
+        "met_pop_memetisk_analyse",
+        "met_pop_viralitet_og_spredningsanalyse",
+        "met_pop_algoritme_og_feedanalyse",
+        "met_pop_plattformanalyse",
+        "met_pop_metric_og_engasjementsanalyse"
+      ],
+      "question_style": "memer, viralitet, algoritmisk synlighet, influencerkultur, likes, feeds, plattformskifter, kommentarfelt og trendbølger"
+    },
+    "6": {
+      "name": "representasjon_normer_fantasi",
+      "dominant_driver": "representasjon, kropp, kjønn, relasjon, humor, stereotypi, verdensbilde, suksessfantasi, kollektiv fantasi eller doxa",
+      "canonical_role": "høy representasjons- og normstyring tillatt, men bare etter konkret format eller uttrykk",
+      "allowed_methods": [
+        "met_pop_representasjonsanalyse",
+        "met_pop_normanalyse",
+        "met_pop_fantasianalyse",
+        "met_pop_ideologikritisk_popanalyse",
+        "met_pop_synlighetsanalyse"
+      ],
+      "question_style": "representasjon, kroppsidealer, kjønn, humorgrenser, suksessfantasier, kollektiv fantasi, stereotypier, verdensbilder og letthetens makt"
+    },
+    "7": {
+      "name": "steder_objekter_kommers_oppmerksomhet",
+      "dominant_driver": "filmlokasjon, kino, butikk, merch, samlerkultur, reklameflate, opplevelsesøkonomi, hype, kommers eller usynlig arbeid",
+      "canonical_role": "høy steds-, objekt-, kommers- og oppmerksomhetsstyring tillatt",
+      "allowed_methods": [
+        "met_pop_steds_og_lokasjonsanalyse",
+        "met_pop_objekt_og_merchanalyse",
+        "met_pop_reklameanalyse",
+        "met_pop_kommers_og_oppmerksomhetsanalyse",
+        "met_pop_oppmerksomhetsanalyse"
+      ],
+      "question_style": "filmlokasjoner, kinoer, butikker, merch, reklameflater, opplevelsesøkonomi, hype, samlerkultur, byrom som scene og popkommers"
+    },
+    "8": {
+      "name": "system_sirkulasjon_oppmerksomhet_kulturindustri",
+      "dominant_driver": "konkret format, ikon, meme, fandom, plattform, representasjon, kommers, oppmerksomhetsøkonomi eller kollektiv fantasi",
+      "canonical_role": "høy teori tillatt, men med konkret popkulturelt anker",
+      "allowed_methods": [
+        "met_pop_sirkulasjonsanalyse",
+        "met_pop_oppmerksomhetsanalyse",
+        "met_pop_plattformanalyse",
+        "met_pop_ideologikritisk_popanalyse",
+        "met_pop_doxaanalyse"
+      ],
+      "question_style": "sirkulasjon, kulturindustri, oppmerksomhetsøkonomi, plattformmakt, doxa, representasjon, spektakel og kollektiv fantasi"
+    }
+  },
+  "populaerkultur_category_guardrails": {
+    "accept_as_populaerkultur_primary_when": [
+      "stedet eller personen har popkulturell hovedrolle",
+      "det finnes konkret format, ikon, karakter, meme, fandom, plattform, representasjon, objekt, sted, reklame, merch, sirkulasjon eller kollektiv referanse",
+      "spørsmål kan bygges fra popkulturelle, mediehistoriske, resepsjonsmessige, plattformmessige, bransjemessige eller dokumenterte sirkulasjonskilder",
+      "populærkulturell gjenkjennelse og sirkulasjon er primær, ikke bare generell media-, musikk-, kunst-, litteratur-, sport-, by- eller næringslivstilknytning"
+    ],
+    "do_not_accept_as_populaerkultur_primary_when": [
+      "hovedrollen er media som journalistikk/institusjon, musikk som musikkfelt, kunst, litteratur, sport, næringsliv, politikk, historie, by, natur, vitenskap eller subkultur",
+      "stedet er bare kjent, besøkt eller kommersielt uten dokumentert popkulturell hovedrolle",
+      "stedet er bare en generell by-, media-, musikk- eller kommerscase uten konkret format, ikon, meme, fandom, plattform, representasjon, objekt eller sirkulasjon",
+      "personen er artist, forfatter, journalist, politiker, idrettsutøver, kunstner eller næringslivsaktør uten hovedrolle som popkulturell aktør"
+    ],
+    "secondary_populaerkultur_tag_allowed": true
+  },
+  "validator_additions": [
+    "Avvis populærkulturquiz hvis synlig innhold primært er parafrase av fagkart, emner, methods eller mapping.",
+    "Avvis spørsmål som kan spores bare til emne-/hook-/metodenavn og ikke til konkret format, ikon, meme, fandom, plattform, representasjon, objekt, sted, sirkulasjon eller ekstern kilde.",
+    "Avvis hoved-emne_ids i places_populaerkultur eller people_populaerkultur som ikke starter med em_pop_*.",
+    "Flagg poster der hovedkategori ser ut til å være media, musikk, kunst, litteratur, sport, næringsliv, politikk, historie, by, natur, vitenskap eller subkultur.",
+    "Logg per spørsmål source_origin som external, mixed, observed_format, observed_icon, observed_meme, observed_fandom, observed_platform, observed_place_object, observed_representation eller internal_only.",
+    "Flagg quiz der internal_only overstiger 5 prosent.",
+    "Flagg teorioverstyring når navngitt teoretiker kommer før format/ikon/meme/fandom/plattform/sted/objekt/sirkulasjon er etablert.",
+    "Flagg popkulturanalyse som blir ren smak, preferanse eller nostalgiliste uten dokumentert format, publikum, sirkulasjon, representasjon, plattform, objekt eller kilde.",
+    "Flagg biografiske spørsmål som ikke kobler person til konkret popkulturell rolle, format, karakter, ikon, fandom, meme, plattform, oppmerksomhet eller kollektiv referanse.",
+    "Flagg stedsbaserte spørsmål der koblingen til populærkultur bare er løs assosiasjon, kommersielt preg eller generell popularitet."
+  ],
+  "generation_metadata_additions": {
+    "required_per_question_fields_recommended": [
+      "source_origin",
+      "claim_basis",
+      "guidance_basis",
+      "method_id",
+      "emne_id",
+      "popculture_anchor_type",
+      "source_note"
+    ],
+    "source_origin_values": [
+      "external",
+      "mixed",
+      "observed_format",
+      "observed_icon",
+      "observed_meme",
+      "observed_fandom",
+      "observed_platform",
+      "observed_place_object",
+      "observed_representation",
+      "internal_only"
+    ],
+    "popculture_anchor_type_values": [
+      "format",
+      "film",
+      "tv",
+      "series",
+      "radio",
+      "podcast",
+      "game",
+      "streaming",
+      "clip",
+      "feed",
+      "platform",
+      "algorithm",
+      "icon",
+      "celebrity",
+      "character",
+      "host",
+      "comedian",
+      "mascot",
+      "quote",
+      "meme",
+      "viral_event",
+      "influencer",
+      "fandom",
+      "fan_object",
+      "cosplay",
+      "remix",
+      "reference_community",
+      "representation",
+      "stereotype",
+      "body_norm",
+      "gender_norm",
+      "humor",
+      "collective_fantasy",
+      "cinema",
+      "film_location",
+      "shop",
+      "merch",
+      "advertising_surface",
+      "hype",
+      "scandal",
+      "attention_economy",
+      "metrics",
+      "archive",
+      "viewer_data",
+      "trend_data"
+    ],
+    "claim_basis_definition": "Den konkrete popkulturelle påstanden fra ekstern kilde, arkiv, seertall, strømmetall, bransjekilde, trenddata, plattformdata, intervju, resepsjonsdata, produksjonskilde eller dokumentert sirkulasjon.",
+    "guidance_basis_definition": "Hvilket em_pop_*, hook, metode eller teorispor som styrte spørsmålets form uten å levere faktapåstanden.",
+    "method_id_definition": "Én method_id fra methods_populaerkultur_canonical_v4_5.json brukt til å forme spørsmålet.",
+    "emne_id_definition": "Én em_pop_* fra emner_populaerkultur_canonical_v4_5.json brukt som hovedemne.",
+    "source_note_definition": "Kort kildebeskrivelse som sier hvilken type popkulturell, mediehistorisk, bransjemessig, plattformmessig, resepsjonsmessig eller arkivmessig kilde som er brukt."
+  },
+  "diagnosis_note": "Når mange filer er opplastet, må modellen ikke overvekte canonical systemfiler bare fordi de er mange. For populærkultur skal konkrete formater, filmer, TV-serier, spill, klipp, memer, kjendiser, karakterer, fandoms, plattformer, reklamer, merch, steder, seertall, strømmetall, trenddata, klikk, likes, delinger, resepsjonsdata og dokumenterte popkulturelle kilder dominere synlig quizinnhold. Fagkart, methods, emner, emnemapping og pensum er styring.",
+  "migration_note": "Eksisterende places_populaerkultur og people_populaerkultur bør migreres til em_pop_* bare etter at hvert objekt er lest. Det må samtidig sjekkes at hovedkategori faktisk er populærkultur og ikke media, musikk, kunst, litteratur, sport, næringsliv, politikk, historie, by, natur, vitenskap, subkultur eller annet fag."
+}
