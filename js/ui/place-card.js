@@ -771,8 +771,8 @@ async function loadPlaceSocialData(placeId) {
     const res = await fetch(url, { cache: "no-cache" });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const json = await res.json();
-    const matchesPlace = String(json?.place_id || "").trim() === id;
-    const out = matchesPlace ? json : null;
+    const list = Array.isArray(json) ? json : [json].filter(Boolean);
+    const out = list.find(item => String(item?.place_id || "").trim() === id) || null;
     window.__HG_PLACE_SOCIAL_CACHE__[id] = out;
     return out;
   } catch (err) {
