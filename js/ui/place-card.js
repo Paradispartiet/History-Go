@@ -806,7 +806,19 @@ async function loadCanonicalSocialEvents() {
 if (eventsBox) {
   const socialData = await loadPlaceSocialData(place.id);
   const canonicalEvents = await loadCanonicalSocialEvents();
-  const socialEnabled = !!socialData?.social_enabled;
+
+  const defaultSocialData = {
+    place_id: place.id,
+    social_enabled: true,
+    people_count: 0,
+    friends_count: 0,
+    active_event_ids: [],
+    canonical_event_ids: [],
+    social_modes: ["meetup", "message_game", "group_quiz"]
+  };
+
+  const social = socialData || defaultSocialData;
+  const socialEnabled = social?.social_enabled !== false;
 
   const head = `
     <div class="pc-events-head">
@@ -815,51 +827,66 @@ if (eventsBox) {
     </div>
   `;
 
-  let body = `<div class="pc-empty">Ingen aktivitet lagt til ennå</div>`;
+  const peopleCount = Number(social?.people_count) || 0;
+  const friendsCount = Number(social?.friends_count) || 0;
+  const canonicalIds = Array.isArray(social?.canonical_event_ids)
+    ? social.canonical_event_ids.map(id => String(id || "").trim()).filter(Boolean)
+    : [];
 
-  if (socialEnabled) {
-    const peopleCount = Number(socialData?.people_count) || 0;
-    const friendsCount = Number(socialData?.friends_count) || 0;
-    const canonicalIds = Array.isArray(socialData?.canonical_event_ids)
-      ? socialData.canonical_event_ids.map(id => String(id || "").trim()).filter(Boolean)
-      : [];
+  const canonicalForPlace = socialEnabled
+    ? canonicalEvents.filter(evt => {
+        const evtPlaceId = String(evt?.place_id || "").trim();
+        const evtId = String(evt?.id || "").trim();
+        const placeMatch = evtPlaceId === String(place.id || "").trim();
+        const idMatch = !canonicalIds.length || canonicalIds.includes(evtId);
+        return placeMatch && idMatch;
+      })
+    : [];
 
-    const canonicalForPlace = canonicalEvents.filter(evt => {
-      const evtPlaceId = String(evt?.place_id || "").trim();
-      const evtId = String(evt?.id || "").trim();
-      const placeMatch = evtPlaceId === String(place.id || "").trim();
-      const idMatch = !canonicalIds.length || canonicalIds.includes(evtId);
-      return placeMatch && idMatch;
-    });
+  const modes = new Set(
+    Array.isArray(social?.social_modes) && social.social_modes.length
+      ? social.social_modes
+      : defaultSocialData.social_modes
+  );
 
-    body = `
-      <div class="pc-events-section">
-        <div class="pc-event-entry-title">Her nå</div>
-        <div class="pc-events-row">Personer: ${peopleCount}</div>
-        <div class="pc-events-row">Venner: ${friendsCount}</div>
-      </div>
-      <div class="pc-events-section">
-        <div class="pc-event-entry-title">Skjer her</div>
-        ${canonicalForPlace.length
-          ? canonicalForPlace.map(evt => `<div class="pc-events-row">${evt.title || evt.id || "Event"}</div>`).join("")
-          : `<div class="pc-events-row">Ingen aktivitet lagt til ennå</div>`
-        }
-      </div>
-      <div class="pc-events-section">
-        <div class="pc-event-entry-title">Sosialt</div>
-        <button class="pc-events-action" type="button" data-social-action="meetup">Avtal å møtes</button>
-        <button class="pc-events-action" type="button" data-social-action="message_game">Start meldingsspill</button>
-        <button class="pc-events-action" type="button" data-social-action="group_quiz">Ta quiz sammen</button>
-      </div>
-    `;
-  }
+  const modeButtons = [
+    modes.has("meetup")
+      ? `<button class="pc-events-action" type="button" data-social-action="meetup">Avtal å møtes</button>`
+      : "",
+    modes.has("message_game")
+      ? `<button class="pc-events-action" type="button" data-social-action="message_game">Start meldingsspill</button>`
+      : "",
+    modes.has("group_quiz")
+      ? `<button class="pc-events-action" type="button" data-social-action="group_quiz">Ta quiz sammen</button>`
+      : ""
+  ].filter(Boolean).join("");
+
+  const body = `
+    <div class="pc-events-section">
+      <div class="pc-event-entry-title">Her nå</div>
+      <div class="pc-events-row">Personer: ${peopleCount}</div>
+      <div class="pc-events-row">Venner: ${friendsCount}</div>
+    </div>
+    <div class="pc-events-section">
+      <div class="pc-event-entry-title">Skjer her</div>
+      ${canonicalForPlace.length
+        ? canonicalForPlace.map(evt => `<div class="pc-events-row">${evt.title || evt.id || "Event"}</div>`).join("")
+        : `<div class="pc-events-row">Ingen kanoniserte hendelser lagt til ennå.</div>`
+      }
+    </div>
+    <div class="pc-events-section">
+      <div class="pc-event-entry-title">Sosialt</div>
+      ${modeButtons}
+    </div>
+  `;
 
   eventsBox.innerHTML = head + body;
 
   const addBtn = document.getElementById("pcAddEvent");
   if (addBtn) {
     addBtn.onclick = () => {
-      console.log("[social] add/forslag", place.id);
+      const currentPlaceId = String(document.getElementById("placeCard")?.dataset?.currentPlaceId || place.id || "").trim();
+      console.log("[social] add/forslag", currentPlaceId);
     };
   }
 
