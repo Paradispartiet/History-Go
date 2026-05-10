@@ -1,6 +1,6 @@
 # Place Data Audit
 
-Generert: 2026-05-10T09:49:33.442Z
+Generert: 2026-05-10T10:05:00.574Z
 
 ## Totalsammendrag
 
@@ -852,33 +852,33 @@ Generert: 2026-05-10T09:49:33.442Z
 - Antall steder klare for quiz: **162**
 - Antall steder klare for Wonderkammer: **299**
 - Antall steder klare for språkleksikon: **369**
-- Prioritet: critical **58**, high **294**, medium **88**, low **0**
+- Prioritet: critical **0**, high **352**, medium **88**, low **0**
 
 ### Topp 25 anbefalte neste steder
 
-- lekeplass_birkelunden | Birkelunden lekeplass | sport | critical | Rett basisstruktur
-- lekeplass_botsparken | Botsparken lekeplass | sport | critical | Rett basisstruktur
-- lekeplass_kampen_park | Kampen park lekeplass | sport | critical | Rett basisstruktur
-- lekeplass_olaf_ryes_plass | Olaf Ryes plass lekeplass | sport | critical | Rett basisstruktur
-- lekeplass_sofienbergparken | Sofienbergparken lekeplass | sport | critical | Rett basisstruktur
-- lekeplass_st_hanshaugen | St. Hanshaugen lekeplass | sport | critical | Rett basisstruktur
-- lekeplass_stensparken | Stensparken lekeplass | sport | critical | Rett basisstruktur
-- treningssted_kampen_park | Kampen park treningssted | sport | critical | Rett basisstruktur
-- treningssted_skur13 | Skur 13 skate- og balansetrening | sport | critical | Rett basisstruktur
-- treningssted_sognsvann | Sognsvann treningsrunde | sport | critical | Rett basisstruktur
-- treningssted_torshovdalen | Torshovdalen trenings- og aktivitetspark | sport | critical | Rett basisstruktur
-- alnabru_jernbane_og_logistikk | Alnabru – jernbane og logistikk | by | critical | Rett basisstruktur
-- kampen_film | Kampen (film- og serieområde) | film_tv | critical | Rett basisstruktur
-- sagene_film | Sagene (filmbydel) | film_tv | critical | Rett basisstruktur
-- hellerud_gard | Hellerud gård | historie | critical | Rett basisstruktur
-- alna_bryn | Alna ved Bryn | natur | critical | Rett basisstruktur
-- alna_smalvoll | Alna ved Smalvoll | natur | critical | Rett basisstruktur
-- alna_utlop_bjorvika | Alna utløp i Bjørvika | natur | critical | Rett basisstruktur
-- alnaelvstien | Alnaelvstien | natur | critical | Rett basisstruktur
-- alnaparken | Alnaparken | natur | critical | Rett basisstruktur
-- alnsjoen_alna_kilde | Alnsjøen (Alna-kilde) | natur | critical | Rett basisstruktur
-- bogerudmyra | Bøler/Bogerudmyra | natur | critical | Rett basisstruktur
-- bygdoy_bygdoynes | Bygdøy Bygdøynes | natur | critical | Rett basisstruktur
-- bygdoy_dronningberget | Bygdøy Dronningberget | natur | critical | Rett basisstruktur
-- bygdoy_huk | Bygdøy Huk | natur | critical | Rett basisstruktur
+- ankerbrua | Ankerbrua | by | high | Lag quiz
+- beierbrua | Beierbrua | by | high | Lag quiz
+- gronlandsleiret | Grønlandsleiret | by | high | Lag quiz
+- hausmannsbrua | Hausmannsbrua | by | high | Lag quiz
+- hausmannsomradet_elvelop | Hausmannsområdet (elveløp) | by | high | Lag quiz
+- helsfyr | Helsfyr | by | high | Lag quiz
+- lisbon_alcantara | Alcântara | by | high | Lag quiz
+- lisbon_alfama | Alfama | by | high | Lag quiz
+- lisbon_avenida_da_liberdade | Avenida da Liberdade | by | high | Lag quiz
+- lisbon_baixa_pombalina | Baixa Pombalina | by | high | Lag quiz
+- lisbon_belem_bydel | Belém | by | high | Lag quiz
+- lisbon_bica | Bica | by | high | Lag quiz
+- lisbon_cais_do_sodre | Cais do Sodré | by | high | Lag quiz
+- lisbon_city | Lisboa | by | high | Lag quiz
+- lisbon_elevador_de_santa_justa | Elevador de Santa Justa | by | high | Lag quiz
+- lisbon_graca | Graça | by | high | Lag quiz
+- lisbon_intendente | Intendente | by | high | Lag quiz
+- lisbon_parque_eduardo_vii | Parque Eduardo VII | by | high | Lag quiz
+- lisbon_ponte_25_de_abril | Ponte 25 de Abril | by | high | Lag quiz
+- lisbon_praca_do_comercio | Praça do Comércio | by | high | Lag quiz
+- lisbon_principe_real | Príncipe Real | by | high | Lag quiz
+- lisbon_rossio | Rossio (Praça Dom Pedro IV) | by | high | Lag quiz
+- majorstuen_tbanestasjon | Majorstuen T-banestasjon | by | high | Lag quiz
+- nybrua_vaterlandsparken | Nybrua / Vaterlandsparken | by | high | Lag quiz
+- nydalen | Nydalen | by | high | Lag quiz
 
