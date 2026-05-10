@@ -149,7 +149,7 @@ const workItems = allPlaces.map(({ file, place }) => {
   const readyForWonderkammer = core.hasId && core.hasName && core.hasCategory && core.hasDesc && core.hasPopupDesc && !coverage.hasWonderkammer;
   const readyForSprakleksikon = core.hasId && core.hasName && core.hasCategory && core.hasDesc && core.hasPopupDesc && !coverage.hasSprakleksikon;
 
-  const invalidBase = !core.hasId || !core.hasName || !core.hasCategory || !core.hasCoordinates || !core.hasRadius || !core.hasYear || !core.hasDesc;
+  const invalidBase = !core.hasId || !core.hasName || !core.hasCategory || !core.hasCoordinates || !core.hasRadius;
   let priority = 'low';
   if (invalidBase) priority = 'critical';
   else if (readyForQuiz || !core.hasPopupDesc || !core.hasEmneIds || !core.hasQuizProfile) priority = 'high';
