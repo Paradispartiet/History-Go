@@ -80,6 +80,31 @@ function run() {
     }
   };
 
+
+  const privateNarrativeStoryMail = {
+    status: 'pending',
+    event: {
+      id: 'working_class_story_001',
+      source_type: 'narrative_stream',
+      mail_type: 'story',
+      narrative_stream_id: 'working_class_shift_life',
+      role_id: 'naer_fagarbeider',
+      career_id: 'naeringsliv'
+    }
+  };
+
+  const jobNarrativePeopleMail = {
+    status: 'pending',
+    event: {
+      id: 'fagarbeider_people_001',
+      source_type: 'narrative_stream',
+      mail_type: 'people',
+      narrative_stream_id: 'fagarbeider_work_stream',
+      role_id: 'naer_fagarbeider',
+      career_id: 'naeringsliv'
+    }
+  };
+
   const systemMail = {
     status: 'pending',
     event: {
@@ -119,17 +144,32 @@ function run() {
     'explicit private channel must stay private'
   );
 
+
+  assert.strictEqual(
+    global.CivicationEventChannels.getMessageChannel(privateNarrativeStoryMail.event),
+    'private',
+    'working_class_shift_life story mails must stay private even with role/career metadata'
+  );
+
+  assert.strictEqual(
+    global.CivicationEventChannels.getMessageChannel(jobNarrativePeopleMail.event),
+    'job',
+    'fagarbeider_work_stream people mails must route to job channel'
+  );
+
   const split = global.CivicationEventChannels.splitInboxByMessageChannel([
     plannedRoleMail,
     workdayMail,
     careerOutcomeMail,
     privateLifeMail,
     explicitPrivateMail,
+    privateNarrativeStoryMail,
+    jobNarrativePeopleMail,
     systemMail
   ]);
 
-  assert.strictEqual(split.job.length, 3, 'Expected three jobmail items');
-  assert.strictEqual(split.private.length, 2, 'Expected two private message items');
+  assert.strictEqual(split.job.length, 4, 'Expected four jobmail items');
+  assert.strictEqual(split.private.length, 3, 'Expected three private message items');
   assert.strictEqual(split.system.length, 1, 'Expected one system item');
 
   const inspect = global.CivicationEventChannels.inspect([
@@ -138,11 +178,13 @@ function run() {
     careerOutcomeMail,
     privateLifeMail,
     explicitPrivateMail,
+    privateNarrativeStoryMail,
+    jobNarrativePeopleMail,
     systemMail
   ]);
 
-  assert.strictEqual(inspect.counts.job, 3, 'Inspect should expose job channel count');
-  assert.strictEqual(inspect.counts.private, 2, 'Inspect should expose private channel count');
+  assert.strictEqual(inspect.counts.job, 4, 'Inspect should expose job channel count');
+  assert.strictEqual(inspect.counts.private, 3, 'Inspect should expose private channel count');
 
   console.log('PASS: Civication inbox channel split test completed.');
 }
