@@ -1,6 +1,6 @@
 # People split vs legacy audit
 
-Generert: 2026-05-11T20:54:59.955Z
+Generert: 2026-05-11T21:20:03.194Z
 
 ## Sammendrag
 
@@ -12,8 +12,8 @@ Generert: 2026-05-11T20:54:59.955Z
 - Legacy unike ID-er: **98**
 - Split people: **176**
 - Split unike ID-er: **176**
-- Split-filer: **15**
-- Runtime-filer i boot.js: **15**
+- Split-filer: **13**
+- Runtime-filer i boot.js: **13**
 - ID-er i begge: **94**
 - ID-er bare i legacy: **0**
 - Legacy relation-only stubs: **4**
@@ -29,9 +29,7 @@ Generert: 2026-05-11T20:54:59.955Z
 |---|---:|---:|---:|---|
 | data/people/people_by.json | ja | 5 | 0 |  |
 | data/people/people_filantroper.json | ja | 4 | 0 |  |
-| data/people/people_historie_next_batch_01.json | ja | 8 | 0 |  |
-| data/people/people_historie_next_batch_02.json | ja | 6 | 0 |  |
-| data/people/people_historie.json | ja | 48 | 0 |  |
+| data/people/people_historie.json | ja | 62 | 0 |  |
 | data/people/people_kunst.json | ja | 7 | 0 |  |
 | data/people/people_litteratur.json | ja | 34 | 0 |  |
 | data/people/people_musikk.json | ja | 10 | 0 |  |
@@ -67,16 +65,16 @@ Generert: 2026-05-11T20:54:59.955Z
 - alexis_de_chateauneuf | Alexis de Chateauneuf | data/people/people_historie.json
 - alf_bjercke_industri_og_kvalitet | Alf Bjercke | data/people/people_naeringsliv.json
 - alfred_nobel | Alfred Nobel | data/people/people_filantroper.json
-- alv_erlingsson | Alv Erlingsson | data/people/people_historie_next_batch_02.json
+- alv_erlingsson | Alv Erlingsson | data/people/people_historie.json
 - anna_sethne | Anna Sethne | data/people/people_historie.json
 - anton_martin_schweigaard_okonomi | Anton Martin Schweigaard | data/people/people_naeringsliv.json
 - arne_korsmo | Arne Korsmo | data/people/people_by.json
 - arnulf_overland | Arnulf Øverland | data/people/people_historie.json
-- astrid_olavsdatter | Astrid Olavsdatter | data/people/people_historie_next_batch_02.json
+- astrid_olavsdatter | Astrid Olavsdatter | data/people/people_historie.json
 - bard_tufte_johansen | Bård Tufte Johansen | data/people/people_populaerkultur.json
 - bernt_anker | Bernt Anker | data/people/people_historie.json
 - birger_eriksen | Birger Eriksen | data/people/people_historie.json
-- biskop_nikolas_arnason | Biskop Nikolas Arnesson | data/people/people_historie_next_batch_01.json
+- biskop_nikolas_arnason | Biskop Nikolas Arnesson | data/people/people_historie.json
 - carl_deichman | Carl Deichman | data/people/people_filantroper.json
 - carsten_anker | Carsten Anker | data/people/people_historie.json
 - christen_smith_schous_bryggeri | Christen Smith | data/people/people_naeringsliv.json
@@ -93,14 +91,14 @@ Generert: 2026-05-11T20:54:59.955Z
 - einar_gerhardsen | Einar Gerhardsen | data/people/people_politikk.json
 - ellef_ringnes_bryggeri_og_ledelse | Ellef Ringnes | data/people/people_naeringsliv.json
 - else_kass_furuseth | Else Kåss Furuseth | data/people/people_populaerkultur.json
-- eufemia_av_rugen | Eufemia av Rügen | data/people/people_historie_next_batch_01.json
+- eufemia_av_rugen | Eufemia av Rügen | data/people/people_historie.json
 - georg_ossian_sars | Georg Ossian Sars | data/people/people_natur.json
 - georg_sverdrup | Georg Sverdrup | data/people/people_historie.json
 - gregers_gram | Gregers Gram | data/people/people_historie.json
 - gunnar_jahn_statistikk_og_styring | Gunnar Jahn | data/people/people_naeringsliv.json
 - gunnar_sonsteby | Gunnar Sønsteby | data/people/people_historie.json
-- gunnhild_kongsmor | Gunnhild kongsmor | data/people/people_historie_next_batch_02.json
-- hakon_vi_magnusson | Håkon VI Magnusson | data/people/people_historie_next_batch_01.json
+- gunnhild_kongsmor | Gunnhild kongsmor | data/people/people_historie.json
+- hakon_vi_magnusson | Håkon VI Magnusson | data/people/people_historie.json
 - hans_rasmus_astrup | Hans Rasmus Astrup | data/people/people_filantroper.json
 - harald_eia | Harald Eia | data/people/people_populaerkultur.json
 - harald_hals | Harald Hals | data/people/people_by.json
@@ -113,14 +111,14 @@ Generert: 2026-05-11T20:54:59.955Z
 - jens_esmark | Jens Esmark | data/people/people_natur.json
 - johan_nygaardsvold | Johan Nygaardsvold | data/people/people_politikk.json
 - kong_karl_johan | Karl Johan | data/people/people_historie.json
-- kong_olav_kyrre | Olav Kyrre | data/people/people_historie_next_batch_01.json
+- kong_olav_kyrre | Olav Kyrre | data/people/people_historie.json
 - kristian_birkeland_teknologi_og_industri | Kristian Birkeland | data/people/people_naeringsliv.json
 - kristine_bonnevie | Kristine Bonnevie | data/people/people_historie.json
 - kristoffer_olsen | Kristoffer Olsen | data/people/people_populaerkultur.json
-- magnus_den_gode | Magnus den gode | data/people/people_historie_next_batch_02.json
-- magnus_lagabote | Magnus Lagabøte | data/people/people_historie_next_batch_02.json
+- magnus_den_gode | Magnus den gode | data/people/people_historie.json
+- magnus_lagabote | Magnus Lagabøte | data/people/people_historie.json
 - marcus_thrane | Marcus Thrane | data/people/people_historie.json
-- margrete_valdemarsdatter | Margrete Valdemarsdatter | data/people/people_historie_next_batch_01.json
+- margrete_valdemarsdatter | Margrete Valdemarsdatter | data/people/people_historie.json
 - maria_quisling | Maria Quisling | data/people/people_historie.json
 - martin_tranmael | Martin Tranmæl | data/people/people_historie.json
 - michael_sars | Michael Sars | data/people/people_natur.json
@@ -130,14 +128,14 @@ Generert: 2026-05-11T20:54:59.955Z
 - olaf_rye | Olaf Rye | data/people/people_historie.json
 - oscar_i | Oscar I | data/people/people_historie.json
 - peder_anker | Peder Anker | data/people/people_historie.json
-- peder_clausson_friis | Peder Claussøn Friis | data/people/people_historie_next_batch_01.json
+- peder_clausson_friis | Peder Claussøn Friis | data/people/people_historie.json
 - peter_christen_asbjornsen | Peter Christen Asbjørnsen | data/people/people_natur.json
-- petter_moen | Petter Moen | data/people/people_historie_next_batch_01.json
+- petter_moen | Petter Moen | data/people/people_historie.json
 - rolf_wickstrom | Rolf Wickstrøm | data/people/people_historie.json
 - sam_eyde | Sam Eyde | data/people/people_historie.json
 - sam_eyde_industriutbygger | Sam Eyde | data/people/people_naeringsliv.json
-- sigurd_jorsalfare | Sigurd Jorsalfare | data/people/people_historie_next_batch_01.json
-- sigurd_ribbung | Sigurd Ribbung | data/people/people_historie_next_batch_02.json
+- sigurd_jorsalfare | Sigurd Jorsalfare | data/people/people_historie.json
+- sigurd_ribbung | Sigurd Ribbung | data/people/people_historie.json
 - st_hallvard | St. Hallvard | data/people/people_historie.json
 - thorvald_meyer | Thorvald Meyer | data/people/people_historie.json
 - trygve_bratteli | Trygve Bratteli | data/people/people_historie.json

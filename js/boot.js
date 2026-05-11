@@ -235,8 +235,6 @@ async function boot() {
   const PEOPLE_FILE_LIST = [
     "data/people/people_by.json",
     "data/people/people_historie.json",
-    "data/people/people_historie_next_batch_01.json",
-    "data/people/people_historie_next_batch_02.json",
     "data/people/people_kunst.json",
     "data/people/people_litteratur.json",
     "data/people/people_musikk.json",
