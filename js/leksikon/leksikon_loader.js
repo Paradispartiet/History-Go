@@ -211,13 +211,39 @@
     return "history";
   }
 
-  function groupLeksikonEntries(article, place, sprakArticle, allArticles) {
-    const sections = normalizeSectionItems(article, place, sprakArticle);
-    const placeId = norm(article?.place_id);
-    const entries = (Array.isArray(allArticles) ? allArticles : []).filter((row) => norm(row?.place_id) === placeId && row !== article);
+  function resolveMainLeksikonArticle(articles, place) {
+    const rows = Array.isArray(articles) ? articles.filter(Boolean) : [];
+    if (!rows.length) return null;
+    const placeName = norm(place?.name).toLowerCase();
+
+    const byPlaceName = rows.find((row) => {
+      const title = norm(row?.title || row?.name || row?.label).toLowerCase();
+      return placeName && title && title === placeName;
+    });
+    if (byPlaceName) return byPlaceName;
+
+    const mainSignals = ["main", "primary", "hoved", "hovedartikkel"];
+    const byMainKind = rows.find((row) => {
+      const signals = [
+        norm(row?.type),
+        norm(row?.kind),
+        norm(row?.category),
+        norm(row?.id)
+      ].map((v) => v.toLowerCase()).join(" ");
+      return mainSignals.some((keyword) => signals.includes(keyword));
+    });
+    if (byMainKind) return byMainKind;
+
+    return rows[0];
+  }
+
+  function groupLeksikonEntries(mainArticle, place, sprakArticle, allArticles) {
+    const sections = normalizeSectionItems(mainArticle, place, sprakArticle);
+    const placeId = norm(mainArticle?.place_id);
+    const entries = (Array.isArray(allArticles) ? allArticles : []).filter((row) => norm(row?.place_id) === placeId && row !== mainArticle);
 
     const groups = {
-      place: article ? [article] : [],
+      place: mainArticle ? [mainArticle] : [],
       persons: [...sections.persons],
       objects: [...sections.objects],
       events: [],
@@ -253,12 +279,12 @@
     `;
   }
 
-  function renderOverview(article, place, sprakArticle, allArticles) {
-    const groups = groupLeksikonEntries(article, place, sprakArticle, allArticles);
+  function renderOverview(mainArticle, place, sprakArticle, allArticles) {
+    const groups = groupLeksikonEntries(mainArticle, place, sprakArticle, allArticles);
     return `
       <article class="pc-leksikon-article">
         <div class="pc-leksikon-kicker">Leksikon</div>
-        <h2 class="hg-popup-name">${esc(articleTitle(article))}</h2>
+        <h2 class="hg-popup-name">${esc(articleTitle(mainArticle))}</h2>
         <section class="pc-leksikon-section">
           <div class="pc-leksikon-list">
             ${renderHubCard("Sted", "Hovedartikkel om stedet.", groups.place.length, "place", false)}
@@ -278,7 +304,7 @@
     return `<button class="pc-leksikon-back" type="button" data-leksikon-back="${esc(target)}">← ${esc(label)}</button>`;
   }
 
-  function renderSectionList(article, sectionType, groups) {
+  function renderSectionList(mainArticle, sectionType, groups) {
     const map = {
       events: { title: "Arrangementer / idrettshistorie", items: groups.events, source: "article" },
       history: { title: "Historie / bruksspor", items: groups.history, source: "article" },
@@ -294,7 +320,7 @@
       <article class="pc-leksikon-article">
         ${renderBackHeader("hub", "Leksikon")}
         <div class="pc-leksikon-kicker">${esc(config.title)}</div>
-        <h2 class="hg-popup-name">${esc(articleTitle(article))}</h2>
+        <h2 class="hg-popup-name">${esc(articleTitle(mainArticle))}</h2>
         <section class="pc-leksikon-section">
           <div class="pc-leksikon-list">
             ${items.length ? items.map((item, idx) => `<button class="pc-leksikon-entry" type="button" data-leksikon-detail="entry" data-leksikon-item-index="${idx}" data-leksikon-item-source="${esc(config.source)}"><span class="pc-leksikon-entry-title">${esc(item?.title || item?.name || item?.label || item?.term || item?.id || "Oppføring")}</span>${(item?.type || item?.kind || item?.category) ? `<span class="pc-leksikon-entry-meta">${esc(item?.type || item?.kind || item?.category)}</span>` : ""}${item?.summary?.one_liner ? `<span class="pc-leksikon-entry-meta">${esc(item.summary.one_liner)}</span>` : ""}</button>`).join("") : `<div class="pc-leksikon-entry"><span class="pc-leksikon-entry-title">Ingen oppføringer ennå</span></div>`}
@@ -304,12 +330,12 @@
     `;
   }
 
-  async function renderDetailPopup(article, place, sprakArticle, detailType, itemIndex, sectionType, allArticles, itemSource) {
-    const groups = groupLeksikonEntries(article, place, sprakArticle, allArticles);
+  async function renderDetailPopup(mainArticle, place, sprakArticle, detailType, itemIndex, sectionType, allArticles, itemSource) {
+    const groups = groupLeksikonEntries(mainArticle, place, sprakArticle, allArticles);
     const idx = Number(itemIndex) || 0;
 
     if (detailType === "section") {
-      return renderSectionList(article, sectionType, groups);
+      return renderSectionList(mainArticle, sectionType, groups);
     }
 
     if (detailType === "entry") {
@@ -323,7 +349,7 @@
       else detailType = "article";
 
       if (detailType === "article") {
-        return renderArticle(entry);
+        return renderArticle(entry, "section", "Til seksjon");
       }
 
       const backLabel = sectionType ? "Til seksjon" : "Leksikon";
@@ -375,7 +401,7 @@
     }
 
     if (detailType === "place") {
-      return renderArticle(article);
+      return renderArticle(mainArticle, "hub", "Leksikon");
     }
 
     if (detailType === "links") {
@@ -383,13 +409,13 @@
         <article class="pc-leksikon-article">
           ${renderBackHeader("hub", "Leksikon")}
           <div class="pc-leksikon-kicker">Kilder / lenker</div>
-          <h2 class="hg-popup-name">${esc(articleTitle(article))}</h2>
+          <h2 class="hg-popup-name">${esc(articleTitle(mainArticle))}</h2>
           ${renderExternalLinks(place, article)}
         </article>
       `;
     }
 
-    return renderArticle(article);
+    return renderArticle(mainArticle, "hub", "Leksikon");
   }
 
   async function loadSprakManifest() {
@@ -447,7 +473,7 @@
     return currentPlace || null;
   }
 
-  async function renderArticle(article) {
+  async function renderArticle(article, backTarget = "hub", backLabel = "Leksikon") {
     if (!article) return `<div class="pc-empty">Ingen leksikonartikkel funnet</div>`;
 
     const summary = article.summary || {};
@@ -519,7 +545,7 @@
 
     return `
       <article class="pc-leksikon-article">
-        ${renderBackHeader()}
+        ${renderBackHeader(backTarget, backLabel)}
         <div class="pc-leksikon-kicker">Sted</div>
         <h2 class="hg-popup-name">${esc(articleTitle(article))}</h2>
         ${summary.one_liner ? `<p class="pc-leksikon-one-liner">${esc(summary.one_liner)}</p>` : ""}
@@ -563,10 +589,11 @@
     const popupFn = window.makePopup || (typeof makePopup === "function" ? makePopup : null);
     if (typeof popupFn === "function") {
       const place = await resolvePlaceForArticle(article);
+      const mainArticle = resolveMainLeksikonArticle(articles, place) || article;
       const sprakArticle = await loadSprakForPlace(article?.place_id);
       const html = detailType
-        ? await renderDetailPopup(article, place, sprakArticle, detailType, itemIndex, sectionType, articles, itemSource)
-        : renderOverview(article, place, sprakArticle, articles);
+        ? await renderDetailPopup(mainArticle, place, sprakArticle, detailType, itemIndex, sectionType, articles, itemSource)
+        : renderOverview(mainArticle, place, sprakArticle, articles);
       popupFn(html, "leksikon-entry-popup");
       return;
     }
