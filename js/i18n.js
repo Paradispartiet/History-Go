@@ -201,9 +201,18 @@
   }
 
   function patchContentRenderers() {
-    if (window.__HG_I18N_CONTENT_PATCHED === "1") return;
-
     let didPatch = false;
+
+    if (window.DataHub && typeof window.DataHub.loadFullPlace === "function" && window.DataHub.loadFullPlace.__hgI18nWrapped !== true) {
+      const originalLoadFullPlace = window.DataHub.loadFullPlace;
+      const wrappedLoadFullPlace = async function (...args) {
+        const fullPlace = await originalLoadFullPlace.apply(this, args);
+        return localizePlace(fullPlace);
+      };
+      wrappedLoadFullPlace.__hgI18nWrapped = true;
+      window.DataHub.loadFullPlace = wrappedLoadFullPlace;
+      didPatch = true;
+    }
 
     if (typeof window.openPlaceCard === "function" && window.openPlaceCard.__hgI18nWrapped !== true) {
       const originalOpenPlaceCard = window.openPlaceCard;
@@ -255,7 +264,7 @@
     const timer = window.setInterval(() => {
       tries += 1;
       patchContentRenderers();
-      if (window.__HG_I18N_CONTENT_PATCHED === "1" || tries > 80) {
+      if (tries > 80) {
         window.clearInterval(timer);
       }
     }, 100);
