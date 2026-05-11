@@ -1,12 +1,13 @@
 # People split vs legacy audit
 
-Generert: 2026-05-11T12:30:15.953Z
+Generert: 2026-05-11T13:06:22.323Z
 
 ## Sammendrag
 
 - Legacy people-fil: data/people.json
 - People-mappe: data/people
 - Runtime-liste lest fra: js/boot.js
+- Relasjoner lest fra: data/relations.json
 - Legacy people: **98**
 - Legacy unike ID-er: **98**
 - Split people: **165**
@@ -14,7 +15,8 @@ Generert: 2026-05-11T12:30:15.953Z
 - Split-filer: **13**
 - Runtime-filer i boot.js: **12**
 - ID-er i begge: **88**
-- ID-er bare i legacy: **10**
+- ID-er bare i legacy: **6**
+- Legacy relation-only stubs: **4**
 - ID-er bare i split: **68**
 - Duplikate ID-er på tvers av split-filer: **9**
 - Split-filer ikke lastet av boot.js: **1**
@@ -51,14 +53,17 @@ Generert: 2026-05-11T12:30:15.953Z
 
 - arne_naess | Arne Næss | natur | ikke-stub
 - astrid_s | Astrid S | populærkultur | ikke-stub
-- geir_berdahl | Geir Berdahl |  | stub
 - haakon_vii | Haakon VII | politikk | ikke-stub
 - klanen | Klanen (VIF) | sport | ikke-stub
 - kong_christian_iv | Kong Christian IV | by | ikke-stub
 - per_petterson | Per Petterson |  | stub
-- terje_thorsen | Terje Thorsen |  | stub
-- trond_andreassen | Trond Andreassen |  | stub
-- unni_rustad | Unni Rustad |  | stub
+
+## Legacy relation-only stubs (skal ikke flyttes)
+
+- geir_berdahl | Geir Berdahl | stub
+- terje_thorsen | Terje Thorsen | stub
+- trond_andreassen | Trond Andreassen | stub
+- unni_rustad | Unni Rustad | stub
 
 ## ID-er bare i split-filene
 
