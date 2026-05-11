@@ -44,6 +44,7 @@ const DEFAULTS = {
   const _fullPlaceCache = new Map();
   let _placeManifestFilesPromise = null;
   let _placeFileByIdPromise = null;
+  let _fagManifestPromise = null;
 
   function joinPath(base, path) {
     return `${base}/${path}`.replace(/\/+/g, "/");
@@ -297,10 +298,50 @@ async function loadPlacesBase(opts = {}) {
 
     const nested = pData(`fag/${id}/emner_${id}.json`);
     const flat = pData(`fag/emner_${id}.json`);
-
-    return fetchJSON(nested, opts)
+    return loadFagFile(id, "emner", opts)
+      .then((data) => (Array.isArray(data) ? data : null))
+      .then((data) => data || fetchJSON(nested, opts))
       .catch(() => fetchJSON(flat, opts))
       .catch(() => []);
+  }
+
+  function loadFagManifest(opts = {}) {
+    if (!_fagManifestPromise || opts?.bust) {
+      _fagManifestPromise = fetchJSON(pData("fag/fag_manifest.json"), opts).catch(() => ({}));
+    }
+    return _fagManifestPromise;
+  }
+
+  async function loadFagFile(subjectId, fileType, opts = {}) {
+    if (!subjectId || !fileType) return null;
+    let id = String(subjectId).trim();
+    try {
+      if (window.DomainRegistry?.resolve) id = window.DomainRegistry.resolve(id);
+    } catch (e) { /* behold rå id ved ukjent domene */ }
+
+    try {
+      const manifest = await loadFagManifest(opts);
+      const relPath = manifest?.[id]?.[fileType];
+      if (typeof relPath === "string" && relPath.trim()) {
+        return await fetchJSON(pData(`fag/${relPath}`), opts);
+      }
+      return null;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function loadPensum(subjectId, opts = {}) {
+    return loadFagFile(subjectId, "pensum", opts);
+  }
+  function loadMethods(subjectId, opts = {}) {
+    return loadFagFile(subjectId, "methods", opts);
+  }
+  function loadSubjectFagkart(subjectId, opts = {}) {
+    return loadFagFile(subjectId, "fagkart", opts);
+  }
+  function loadSupersetQuizMal(subjectId, opts = {}) {
+    return loadFagFile(subjectId, "supersetQuizMal", opts);
   }
 
   function loadFagkart(opts = {}) {
@@ -385,6 +426,12 @@ async function loadPlacesBase(opts = {}) {
     loadEnrichedAll,
 
     // emner
+    loadFagManifest,
+    loadFagFile,
+    loadPensum,
+    loadMethods,
+    loadSubjectFagkart,
+    loadSupersetQuizMal,
     loadEmner,
     loadFagkart,
     loadFagkartMap,
