@@ -6,7 +6,9 @@ Denne rapporten gjelder de nye historie-batchene som er lagt inn som egne filer,
 
 - `data/people/people_historie_next_batch_01.json`
 - `data/people/people_historie_next_batch_02.json`
+- `data/people/people_historie_next_batch_03.json`
 - `data/places/historie/oslo/places_historie_next_batch_middelalder_01.json`
+- `data/places/historie/oslo/places_historie_next_batch_middelalder_02.json`
 - `data/places/historie/oslo/places_historie_next_batch_ruth_maier_01.json`
 
 ## Status
@@ -18,7 +20,7 @@ Batchene er lagt inn som separate arbeidsfiler. De er derfor ikke aktive i appen
 
 Anbefalt løsning er vanlig merge inn i hovedfilene etter kontroll.
 
-## Nye place-ID-er i middelalderbatchen
+## Nye place-ID-er i middelalderbatch 01
 
 Følgende nye steder ligger i:
 
@@ -55,6 +57,38 @@ Anbefalt sjekkerekkefølge:
 6. `nonneseter_kloster`
 
 Grunnen er at de fem første ligger tett i middelalderbyen og må skilles presist slik at prikkene ikke overlapper eller havner på feil ruinområde.
+
+## Nye place-ID-er i middelalderbatch 02
+
+Følgende nye steder ligger i:
+
+`data/places/historie/oslo/places_historie_next_batch_middelalder_02.json`
+
+- `olavsklosteret`
+- `korskirken`
+- `oslo_ladegard`
+
+Alle tre har:
+
+- `category: "historie"`
+- `coordStatus: "needs_manual_map_check"`
+- `coordSource: "approximate_manual_lookup"`
+
+### Vurdering
+
+Alle tre passer faglig godt i historie-kategorien. De styrker middelalderbyen med klosterorden, sognekirke, hverdagsliv, bispegårdslag, formidling og historiske tidslag.
+
+### Før merge
+
+Koordinater må kontrolleres visuelt før `coordStatus` endres til `verified`.
+
+Anbefalt sjekkerekkefølge:
+
+1. `oslo_ladegard`
+2. `olavsklosteret`
+3. `korskirken`
+
+`oslo_ladegard` bør sjekkes først fordi det er et eksisterende fysisk bygg og kan brukes som stabilt orienteringspunkt for de nærliggende ruinene.
 
 ## Ruth Maier-place
 
@@ -156,14 +190,45 @@ Personer som bruker nye batch-steder:
 - `sigurd_ribbung` -> `bispeborgen` i `places[]`
 - `alv_erlingsson` -> `kongsgarden_middelalder_oslo` i `places[]`
 
-### Anbefaling
+## People-batch 03
 
-Merge-rekkefølge:
+Filen:
 
-1. Merge og koordinatsjekk `places_historie_next_batch_middelalder_01.json` først.
-2. Merge/aktiver `places_historie_next_batch_ruth_maier_01.json`.
-3. Deretter merge `people_historie_next_batch_02.json`.
-4. Til slutt merge `people_historie_next_batch_01.json`.
+`data/people/people_historie_next_batch_03.json`
+
+Inneholder:
+
+- `ingebjorg_hakonsdatter`
+- `haakon_haakonsson`
+- `skule_baardsson`
+
+### Koblingsstatus
+
+Personer med eksisterende hovedanker:
+
+- `ingebjorg_hakonsdatter` -> `akerhus_slott`
+- `haakon_haakonsson` -> `oslo_domkirke`
+
+Personer som bruker nye batch-steder:
+
+- `ingebjorg_hakonsdatter` -> `mariakirken` i `places[]`
+- `haakon_haakonsson` -> `kongsgarden_middelalder_oslo` i `places[]`
+- `skule_baardsson` -> `bispeborgen`
+
+### Vurdering
+
+Batchen passer godt med historie-regelen: senmiddelalder, borgerkrigstid, kongemakt, dynasti, kirke, legitimitet og maktkamp.
+
+## Samlet anbefalt merge-rekkefølge
+
+1. Koordinatsjekk og merge `places_historie_next_batch_middelalder_01.json`.
+2. Koordinatsjekk og merge `places_historie_next_batch_middelalder_02.json`.
+3. Koordinatsjekk og merge `places_historie_next_batch_ruth_maier_01.json`.
+4. Merge `people_historie_next_batch_02.json`.
+5. Merge `people_historie_next_batch_03.json`.
+6. Merge `people_historie_next_batch_01.json`.
+7. Etter merge: kjør people-place coverage på nytt.
+8. Etter coverage: rydd eventuell Ruth Maier-duplikat i litteratur/legacy.
 
 ## Risiko og tiltak
 
@@ -194,13 +259,21 @@ Tiltak:
 - Behold/opprett `ruth_maier_minne` som historie-place.
 - Hvis Ruth Maier finnes i litteraturdata, rydd senere ved å flytte eller normalisere slik at hun ikke ligger dobbelt med ulik hovedkategori.
 
+### 4. Batch-steder må merges før personer som peker til dem
+
+People-batch 02 og 03 bruker steder som bare finnes i batchfiler ennå.
+
+Tiltak:
+
+- Merge/aktiver stedene først.
+- Kjør coverage etterpå.
+
 ## Klar for neste steg
 
 Tryggeste neste arbeidssteg:
 
-1. Sjekk om `ruth_maier` allerede finnes i `people_litteratur.json` eller legacy `data/people.json`.
-2. Koordinatsjekk `ruth_maier_minne` og de seks middelalderstedene.
-3. Merge middelaldersteder inn i `data/places/historie/oslo/places_historie.json`.
-4. Merge `ruth_maier_minne` inn i `data/places/historie/oslo/places_historie.json`.
-5. Merge people-batch 02.
-6. Merge people-batch 01.
+1. Koordinatsjekk de ni middelalderstedene og `ruth_maier_minne`.
+2. Merge place-batchene inn i `data/places/historie/oslo/places_historie.json`.
+3. Merge people-batch 02 og 03.
+4. Merge people-batch 01.
+5. Kjør coverage og duplicate-ID-kontroll.
