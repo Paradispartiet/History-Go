@@ -79,8 +79,20 @@
   // Pensum loader
   // --------------------------------------------
   async function loadPensum(subjectId) {
-    const sid = s(subjectId);
+    let sid = s(subjectId);
     if (!sid) throw new Error("subjectId missing");
+    try {
+      if (window.DomainRegistry?.resolve) sid = s(window.DomainRegistry.resolve(sid));
+    } catch (e) { /* behold rå id ved ukjent domene */ }
+
+    if (window.DataHub?.loadPensum) {
+      try {
+        const fromHub = await window.DataHub.loadPensum(sid);
+        if (fromHub && typeof fromHub === "object") return fromHub;
+      } catch (e) {
+        dwarn("DataHub.loadPensum failed for", sid, e);
+      }
+    }
 
     // primær: data/fag/<subjectId>/pensum_<subjectId>.json
     const primary = `data/fag/${sid}/pensum_${sid}.json`;

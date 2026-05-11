@@ -118,10 +118,18 @@ Eier:
 Rolle: **Datasentral + caching + enrichment**.
 Eier:
 - lasting av JSON og bygging av cache/indekser
+- lasting av fagfiler via `data/fag/fag_manifest.json` (aktive fagfiler per subject)
 - (evt) lasting av overlays/pensum/quiz via manifest/loader (der det er implementert) 
 
 Regel:
 - Ingen andre filer fetcher `/data/*.json` direkte **hvis dataHub tilbyr det**.
+
+Fagfil-kontrakt (manifest)
+- Aktiv kontrakt: `data/fag/fag_manifest.json`.
+- Manifestfelter per subject: `pensum`, `emner`, `fagkart`, `methods`, `supersetQuizMal`.
+- Canonical/versjonerte filnavn beholdes; runtime skal gå via manifestet.
+- Store fagfiler skal ikke renames/reformatteres for å bytte aktiv versjon.
+- Aktiv versjon byttes ved å endre manifestet.
 
 **Bevisst unntak (dokumentert):**
 - `notater.html` fetcher `data/people.json` og `data/places.json` direkte for å mappe id→navn.  [oai_citation:11‡app.js](sediment://file_00000000dc98720ca7dc44e6d53963bd)
