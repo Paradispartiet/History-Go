@@ -7,6 +7,7 @@ Denne rapporten gjelder de nye historie-batchene som er lagt inn som egne filer,
 - `data/people/people_historie_next_batch_01.json`
 - `data/people/people_historie_next_batch_02.json`
 - `data/places/historie/oslo/places_historie_next_batch_middelalder_01.json`
+- `data/places/historie/oslo/places_historie_next_batch_ruth_maier_01.json`
 
 ## Status
 
@@ -55,6 +56,28 @@ Anbefalt sjekkerekkefølge:
 
 Grunnen er at de fem første ligger tett i middelalderbyen og må skilles presist slik at prikkene ikke overlapper eller havner på feil ruinområde.
 
+## Ruth Maier-place
+
+Følgende sted ligger i:
+
+`data/places/historie/oslo/places_historie_next_batch_ruth_maier_01.json`
+
+- `ruth_maier_minne`
+
+### Vurdering
+
+`ruth_maier_minne` er faglig et historie-/minnested, ikke et litteratursted. Stedet er knyttet til Ruth Maiers plass, Dalsbergstien 3, snublestein, Holocaust, deportasjonen av norske jøder og dagbokhistorie.
+
+Stedet har:
+
+- `category: "historie"`
+- `coordStatus: "needs_manual_map_check"`
+- `coordSource: "approximate_manual_lookup"`
+
+### Før merge
+
+Koordinaten bør kontrolleres visuelt på kart før `coordStatus` endres til `verified`.
+
 ## People-batch 01
 
 Filen:
@@ -77,6 +100,8 @@ Inneholder:
 
 Batchen er ryddet for dobbeltføring: `dronning_margrete` ble fjernet fordi den dupliserte `margrete_valdemarsdatter`.
 
+`ruth_maier` skal beholdes som historieperson. Hvis Ruth Maier finnes i litteraturdata fra før, er det en kategoriseringsfeil eller en krysskategorisering som må ryddes senere. Hun bør ha historie som hovedkategori fordi den sentrale appfunksjonen hennes er Holocaust, okkupasjon, deportasjon, minne og dagbok som historisk kilde.
+
 ### Koblingsstatus
 
 Trygge eksisterende ankersteder:
@@ -89,13 +114,17 @@ Trygge eksisterende ankersteder:
 Koblinger som bør sjekkes før merge:
 
 - `mollergata_19` brukt av `petter_moen`
-- `ruth_maier_minne` brukt av `ruth_maier`
 - `christiania_torv` brukt av `peder_clausson_friis`
+
+Koblinger dekket av nye batch-steder:
+
+- `ruth_maier_minne` brukt av `ruth_maier`
 
 ### Anbefaling
 
 - `petter_moen` bør merges når `mollergata_19` er bekreftet som aktiv place-ID.
-- `ruth_maier` bør ikke merges før `ruth_maier_minne` finnes som aktivt sted, eller personen kobles til et eksisterende Holocaust-/okkupasjonsminnested.
+- `ruth_maier` kan merges etter at `ruth_maier_minne` er merget eller lastes aktivt.
+- Hvis `ruth_maier` allerede finnes i `people_litteratur.json`, bør hun flyttes/normaliseres til historie eller beholdes ett sted med tydelig historie-hovedkategori og eventuell litteraturtag.
 - Middelalderpersonene i batchen kan i hovedsak merges etter at hovedfilen tåler trygg innliming.
 
 ## People-batch 02
@@ -132,8 +161,9 @@ Personer som bruker nye batch-steder:
 Merge-rekkefølge:
 
 1. Merge og koordinatsjekk `places_historie_next_batch_middelalder_01.json` først.
-2. Deretter merge `people_historie_next_batch_02.json`.
-3. Til slutt merge `people_historie_next_batch_01.json`, men hold igjen `ruth_maier` til stedskoblingen er avklart.
+2. Merge/aktiver `places_historie_next_batch_ruth_maier_01.json`.
+3. Deretter merge `people_historie_next_batch_02.json`.
+4. Til slutt merge `people_historie_next_batch_01.json`.
 
 ## Risiko og tiltak
 
@@ -154,22 +184,23 @@ Tiltak:
 
 - Behold `needs_manual_map_check` til prikkene er testet visuelt.
 
-### 3. Ruth Maier trenger eget sted eller annen kobling
+### 3. Ruth Maier skal behandles som historie
 
-`ruth_maier_minne` er brukt som sted, men må bekreftes/opprettes før personen kan aktiveres.
+Ruth Maier kan være relevant for litteratur fordi dagbøkene er tekstlige kilder, men hovedkategorien bør være historie.
 
-Mulige løsninger:
+Tiltak:
 
-- opprette `ruth_maier_minne` som historisk/minnested-place
-- koble henne midlertidig til eksisterende okkupasjons-/minnested
-- holde henne i batch til place finnes
+- Behold `ruth_maier` i historie-batch.
+- Behold/opprett `ruth_maier_minne` som historie-place.
+- Hvis Ruth Maier finnes i litteraturdata, rydd senere ved å flytte eller normalisere slik at hun ikke ligger dobbelt med ulik hovedkategori.
 
 ## Klar for neste steg
 
 Tryggeste neste arbeidssteg:
 
-1. Lag en liten `ruth_maier_minne` place-batch hvis stedet ikke finnes.
-2. Koordinatsjekk de seks middelalderstedene.
+1. Sjekk om `ruth_maier` allerede finnes i `people_litteratur.json` eller legacy `data/people.json`.
+2. Koordinatsjekk `ruth_maier_minne` og de seks middelalderstedene.
 3. Merge middelaldersteder inn i `data/places/historie/oslo/places_historie.json`.
-4. Merge people-batch 02.
-5. Merge people-batch 01 med eventuell utsettelse av `ruth_maier`.
+4. Merge `ruth_maier_minne` inn i `data/places/historie/oslo/places_historie.json`.
+5. Merge people-batch 02.
+6. Merge people-batch 01.
