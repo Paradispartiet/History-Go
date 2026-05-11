@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-11T20:46:25.521Z",
+  "generatedAt": "2026-05-11T20:54:59.955Z",
   "sourceFiles": {
     "legacy": "data/people.json",
     "peopleDir": "data/people",
@@ -9,20 +9,20 @@
   "totals": {
     "legacyPeople": 98,
     "legacyUniqueIds": 98,
-    "splitPeople": 177,
+    "splitPeople": 176,
     "splitUniqueIds": 176,
     "splitFiles": 15,
-    "bootRuntimeFiles": 13,
+    "bootRuntimeFiles": 15,
     "inBoth": 94,
     "onlyInLegacy": 0,
     "relationOnlyLegacyStubs": 4,
     "onlyInSplit": 82,
-    "duplicateIdsAcrossSplitFiles": 1,
+    "duplicateIdsAcrossSplitFiles": 0,
     "duplicateIdsInLegacy": 0,
-    "splitFilesNotLoadedByBoot": 2,
+    "splitFilesNotLoadedByBoot": 0,
     "bootFilesMissingOnDisk": 0,
     "invalidJsonFiles": 0,
-    "fieldDifferences": 22
+    "fieldDifferences": 21
   },
   "files": [
     {
@@ -41,14 +41,14 @@
     },
     {
       "file": "data/people/people_historie_next_batch_01.json",
-      "loadedByBoot": false,
-      "peopleCount": 9,
+      "loadedByBoot": true,
+      "peopleCount": 8,
       "missingIdCount": 0,
       "duplicateIdsInsideFile": []
     },
     {
       "file": "data/people/people_historie_next_batch_02.json",
-      "loadedByBoot": false,
+      "loadedByBoot": true,
       "peopleCount": 6,
       "missingIdCount": 0,
       "duplicateIdsInsideFile": []
@@ -134,6 +134,8 @@
   "runtimeFiles": [
     "data/people/people_by.json",
     "data/people/people_filantroper.json",
+    "data/people/people_historie_next_batch_01.json",
+    "data/people/people_historie_next_batch_02.json",
     "data/people/people_historie.json",
     "data/people/people_kunst.json",
     "data/people/people_litteratur.json",
@@ -146,10 +148,7 @@
     "data/people/people_subkultur.json",
     "data/people/people_vitenskap.json"
   ],
-  "splitFilesNotLoadedByBoot": [
-    "data/people/people_historie_next_batch_01.json",
-    "data/people/people_historie_next_batch_02.json"
-  ],
+  "splitFilesNotLoadedByBoot": [],
   "bootFilesMissingOnDisk": [],
   "invalidJsonFiles": [],
   "onlyInLegacy": [],
@@ -1714,44 +1713,7 @@
     "viggo_tigeren",
     "vogt"
   ],
-  "duplicateIdsAcrossSplitFiles": [
-    {
-      "id": "ruth_maier",
-      "entries": [
-        {
-          "id": "ruth_maier",
-          "name": "Ruth Maier",
-          "category": "historie",
-          "tags": [
-            "historie",
-            "krig",
-            "minne"
-          ],
-          "placeId": "ruth_maier_minne",
-          "places": [
-            "ruth_maier_minne",
-            "oslo_radhus"
-          ],
-          "stub": false,
-          "sourceFile": "data/people/people_historie_next_batch_01.json"
-        },
-        {
-          "id": "ruth_maier",
-          "name": "Ruth Maier",
-          "category": "litteratur",
-          "tags": [
-            "litteratur"
-          ],
-          "placeId": "ruth_maier_minne",
-          "places": [
-            "ruth_maier_minne"
-          ],
-          "stub": false,
-          "sourceFile": "data/people/people_litteratur.json"
-        }
-      ]
-    }
-  ],
+  "duplicateIdsAcrossSplitFiles": [],
   "duplicateIdsInLegacy": [],
   "missingId": {
     "legacy": [],
@@ -1947,17 +1909,6 @@
       ],
       "changedFields": [
         "placeId"
-      ]
-    },
-    {
-      "id": "ruth_maier",
-      "name": "Ruth Maier",
-      "splitFiles": [
-        "data/people/people_historie_next_batch_01.json",
-        "data/people/people_litteratur.json"
-      ],
-      "changedFields": [
-        "category"
       ]
     },
     {

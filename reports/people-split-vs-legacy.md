@@ -1,6 +1,6 @@
 # People split vs legacy audit
 
-Generert: 2026-05-11T20:46:25.521Z
+Generert: 2026-05-11T20:54:59.955Z
 
 ## Sammendrag
 
@@ -10,16 +10,16 @@ Generert: 2026-05-11T20:46:25.521Z
 - Relasjoner lest fra: data/relations.json
 - Legacy people: **98**
 - Legacy unike ID-er: **98**
-- Split people: **177**
+- Split people: **176**
 - Split unike ID-er: **176**
 - Split-filer: **15**
-- Runtime-filer i boot.js: **13**
+- Runtime-filer i boot.js: **15**
 - ID-er i begge: **94**
 - ID-er bare i legacy: **0**
 - Legacy relation-only stubs: **4**
 - ID-er bare i split: **82**
-- Duplikate ID-er på tvers av split-filer: **1**
-- Split-filer ikke lastet av boot.js: **2**
+- Duplikate ID-er på tvers av split-filer: **0**
+- Split-filer ikke lastet av boot.js: **0**
 - Runtime-filer i boot.js som mangler på disk: **0**
 - JSON-filer med feil: **0**
 
@@ -29,8 +29,8 @@ Generert: 2026-05-11T20:46:25.521Z
 |---|---:|---:|---:|---|
 | data/people/people_by.json | ja | 5 | 0 |  |
 | data/people/people_filantroper.json | ja | 4 | 0 |  |
-| data/people/people_historie_next_batch_01.json | nei | 9 | 0 |  |
-| data/people/people_historie_next_batch_02.json | nei | 6 | 0 |  |
+| data/people/people_historie_next_batch_01.json | ja | 8 | 0 |  |
+| data/people/people_historie_next_batch_02.json | ja | 6 | 0 |  |
 | data/people/people_historie.json | ja | 48 | 0 |  |
 | data/people/people_kunst.json | ja | 7 | 0 |  |
 | data/people/people_litteratur.json | ja | 34 | 0 |  |
@@ -45,8 +45,7 @@ Generert: 2026-05-11T20:46:25.521Z
 
 ## Split-filer som ikke lastes av boot.js
 
-- data/people/people_historie_next_batch_01.json
-- data/people/people_historie_next_batch_02.json
+- Ingen.
 
 ## Boot-filer som mangler på disk
 
@@ -150,7 +149,7 @@ Generert: 2026-05-11T20:46:25.521Z
 
 ## Duplikate ID-er på tvers av split-filer
 
-- ruth_maier: data/people/people_historie_next_batch_01.json, data/people/people_litteratur.json
+- Ingen.
 
 ## Feltforskjeller for ID-er som finnes begge steder
 
@@ -173,7 +172,6 @@ Generert: 2026-05-11T20:46:25.521Z
 - roald_amundsen | Roald Amundsen | category | data/people/people_historie.json
 - rolf_jacobsen | Rolf Jacobsen | placeId | data/people/people_litteratur.json
 - ronny_deila | Ronny Deila | placeId | data/people/people_sport.json
-- ruth_maier | Ruth Maier | category | data/people/people_historie_next_batch_01.json, data/people/people_litteratur.json
 - therese_johaug | Therese Johaug | placeId | data/people/people_sport.json
 - ulrikke_brandstorp | Ulrikke Brandstorp | placeId | data/people/people_musikk.json
 
