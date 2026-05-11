@@ -29,10 +29,16 @@
     "consequence",
     "conflict",
     "event",
-    "story",
-    "people",
     "faction_choice",
     "job_outcome"
+  ]);
+
+  const PRIVATE_NARRATIVE_STREAMS = new Set([
+    "working_class_shift_life"
+  ]);
+
+  const JOB_NARRATIVE_STREAMS = new Set([
+    "fagarbeider_work_stream"
   ]);
 
   function normalize(value) {
@@ -42,6 +48,17 @@
   function includesPressure(value) {
     if (Array.isArray(value)) return value.some(function (v) { return WORKDAY_PRESSURE.has(normalize(v)); });
     return WORKDAY_PRESSURE.has(normalize(value));
+  }
+
+
+  function narrativeStreamId(event) {
+    const ev = event || {};
+    return normalize(
+      ev.narrative_stream_id ||
+      ev.stream ||
+      ev.stream_id ||
+      ev.story_stream
+    );
   }
 
   function hasRoleBinding(event) {
@@ -72,6 +89,11 @@
     if (sourceType === "blocked_job" || sourceType === "workday" || sourceType === "brand_progression" || sourceType === "role_outcome") return true;
     if (ROLE_BOUND_SOURCE_TYPES.has(sourceType) && hasRoleBinding(ev)) return true;
     if (ROLE_BOUND_MAIL_TYPES.has(mailType) && hasRoleBinding(ev)) return true;
+
+    const streamId = narrativeStreamId(ev);
+    if ((mailType === "story" || mailType === "people") && JOB_NARRATIVE_STREAMS.has(streamId) && hasRoleBinding(ev)) {
+      return true;
+    }
 
     return false;
   }
@@ -144,6 +166,10 @@
     const slot = normalize(ev.slot || ev.timeSlot || ev.time_slot || ev.phase_tag);
     const sourceType = normalize(ev.source_type);
     const mailClass = normalize(ev.mail_class);
+    const streamId = narrativeStreamId(ev);
+
+    if (PRIVATE_NARRATIVE_STREAMS.has(streamId)) return "private";
+    if (JOB_NARRATIVE_STREAMS.has(streamId)) return "job";
 
     if (
       sourceType === "life" ||
