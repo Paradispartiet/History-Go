@@ -1,0 +1,311 @@
+{
+  "version": "v5.1-source-priority-patch-film-tv",
+  "subject_id": "film_tv",
+  "subject_title": "Film & TV",
+  "scope": "oslo_og_omegn",
+  "purpose": "Stramme inn quizgeneratoren for Film & TV slik at konkrete filmer, TV-serier, episoder, dokumentarer, scener, kinoer, studioer, TV-hus, locations, festivaler, produksjoner, arkivopptak, skuespillere, regissører, produsenter, sjangre, formater, publikumsformer, kringkasting, filmarv og audiovisuelle kilder dominerer synlig spørsmålsinnhold. Fagkart, methods, emner, emnemapping og pensum skal styre struktur, metode, teori og progresjon, men ikke fungere som hovedkilde til faktapåstander.",
+  "canonical_inputs": {
+    "merke": "merke_film_tv.html",
+    "fagkart": "fagkart_film_tv_canonical_v4_5.json",
+    "methods": "methods_film_tv_canonical_v4_5.json",
+    "emner": "emner_film_tv_canonical_v4_5.json",
+    "emnemapping": "emnemapping_film_tv_canonical_v4_5.json",
+    "pensum": "film_tvpensum_canonical_v4_5.json",
+    "domain_count": 6,
+    "emne_count": 120,
+    "method_count": 107,
+    "mapping_count": 120,
+    "topic_hook_count": 60
+  },
+  "hard_rules": {
+    "source_dominance_rule": "Eksterne filmhistoriske, TV-historiske, produksjonsmessige, arkivmessige, programhistoriske, databasebaserte, institusjonelle, resepsjonsmessige, festival-, kino-, kringkastings-, produksjonsselskaps-, avis- og lokalhistoriske kilder skal dominere det synlige faktainnholdet i Film & TV-quizzer. Canonical-filene er styringsfiler, ikke faktakilde.",
+    "canonical_files_are_guides_not_content": true,
+    "external_film_tv_source_first_all_sets": true,
+    "minimum_external_source_ratio_by_set": {
+      "1": 0.85,
+      "2": 0.85,
+      "3": 0.8,
+      "4": 0.8,
+      "5": 0.75,
+      "6": 0.75,
+      "7": 0.75,
+      "8": 0.75
+    },
+    "internal_file_only_questions_max_per_quiz": 0.05,
+    "internal_file_only_questions_allowed_only_for": [
+      "ren observasjon av synlig kino, TV-hus, studio, location, filmhus, festivalsted, arkiv, plakat, stillbilde, kamera, skjerm eller visningsrom",
+      "validering av metadata, kategori eller spørsmålslag",
+      "nødfallback når ekstern kilde ikke finnes, og dette loggføres eksplisitt"
+    ],
+    "question_seed_priority": [
+      "konkret film, TV-serie, episode, dokumentar, scene, kino, studio, TV-hus, location, festival, produksjon, arkivopptak, skuespiller, regissør, produsent eller dokumentert audiovisuelt spor",
+      "offisiell film-, TV-, kringkastings-, kino-, festival-, arkiv-, institusjons-, produksjonsselskaps-, museums-, database-, avis- eller programkilde",
+      "filmhistorie, TV-historie, filmteori, TV-teori, produksjonsstudier, resepsjonsforskning, stjerneteori, dokumentarteori, sjangerteori, arkivhistorie eller lokalhistorisk kilde",
+      "dokumentert audiovisuell prosess: kamera, klipp, lyd, regi, manus, produksjon, location, visning, kringkasting, distribusjon, resepsjon, arkiv, representasjon eller format",
+      "dokumentert materiell og romlig praksis: kamera, mikrofon, lys, kulisse, rekvisitt, klippebord, lydstudio, kino, TV-hus, produksjonskontor, plakat, trailer, stillbilde eller arkivopptak",
+      "stedsdata/persondata i appen",
+      "fagkart, methods, emner, emnemapping og pensum som styring – ikke faktakilde"
+    ],
+    "film_tv_question_must_start_from": [
+      "filmverk, TV-serie, episode, dokumentar, scene, klipp, nyhetsbilde, arkivopptak eller audiovisuelt verk",
+      "kamera, klipp, lyd, lys, manus, dramaturgi, regi, produksjon, postproduksjon eller filmarbeid",
+      "kino, cinematek, filmklubb, festival, premiere, visningsrom, publikum, resepsjon, distribusjon eller seervaner",
+      "studio, TV-hus, produksjonsselskap, kringkasting, TV-redaksjon, filmhus, filmarkiv eller institusjon",
+      "location, innspillingssted, byrom som filmsted, gate, interiør, landskap, ikonisk filmsted eller dokumentarisk sted",
+      "sjanger, format, serieform, dokumentar, fiksjon, reality, nyhetsbilde, karakter, rollefigur, cliffhanger, sitcom eller krim",
+      "filmstjerne, TV-minne, filmarv, kanon, nostalgi, arkivbilder, fans, kultfilm, festivalminne eller audiovisuelle kulturminner",
+      "dokumentert kilde: programdatabase, film-/TV-arkiv, produksjonskilde, institusjonskilde, avisomtale, anmeldelse, intervju, filmhistorie, TV-historie eller lokalhistorisk kilde"
+    ],
+    "forbidden_generation_patterns": [
+      "Ikke generer synlige spørsmål direkte fra emne-, hook-, metode- eller teorinavn.",
+      "Ikke spør generisk om film eller TV uten verk, scene, location, produksjon, kino, studio, TV-hus, sjanger, format, publikum, arkiv eller kilde.",
+      "Ikke lag spørsmål der fasiten er personlig filmsmak, seriepreferanse eller løs kjendistrivia.",
+      "Ikke lag rene stjernespørsmål uten verk, rolle, produksjon, scene, institusjon, arkiv eller kilde.",
+      "Ikke gjør et sted til Film & TV bare fordi det er kjent fra skjermkultur, uten dokumentert film-/TV-verk, produksjon, visning, kringkasting, location eller audiovisuell kilde.",
+      "Ikke klassifiser media, teater, populærkultur, kunst, litteratur, musikk, by, politikk, næringsliv, historie, subkultur eller teknologi som Film & TV når Film & TV bare er sekundærlag.",
+      "Ikke bruk em_by_*, em_his_*, em_kunst_*, em_lit_*, em_media_*, em_musikk_*, em_pop_*, em_pol_*, em_naering_*, em_natur_*, em_psy_*, em_sub_*, em_vit_* eller em_sport_* som hoved-emne_ids i places_film_tv eller people_film_tv."
+    ],
+    "required_emne_prefix": "em_film_tv_",
+    "blocked_emne_prefixes_for_film_tv_files": [
+      "em_by_",
+      "em_his_",
+      "em_kunst_",
+      "em_lit_",
+      "em_media_",
+      "em_musikk_",
+      "em_pop_",
+      "em_pol_",
+      "em_naering_",
+      "em_natur_",
+      "em_psy_",
+      "em_sub_",
+      "em_vit_",
+      "em_sport_"
+    ],
+    "people_film_tv_rule": "people_film_tv skal inneholde personer der hovedrollen er regissør, skuespiller, produsent, filmfotograf, klipper, lydarbeider, manusforfatter, TV-skaper, programleder, filmkritiker, TV-produsent, animatør, dokumentarist, film-/TV-institusjonsbygger eller sentral aktør i dokumentert film- og TV-historie. Personer der hovedrollen er journalistikk, teater, musikk, litteratur, politikk, næringsliv eller populærkultur skal primært ligge i disse kategoriene, med Film & TV som sekundært tag bare der det er relevant.",
+    "places_film_tv_rule": "places_film_tv skal inneholde steder der hovedrollen er kino, cinematek, filmklubb, festivalsted, TV-hus, studio, produksjonskontor, filmhus, filmarkiv, location, innspillingssted, visningsrom, kringkastingsinstitusjon, plattform-/distribusjonssted eller dokumentert audiovisuelt kulturminne."
+  },
+  "soft_preferences": {
+    "preferred_external_source_mix_per_place": [
+      "minst én offisiell film-, TV-, kringkastings-, kino-, festival-, arkiv-, institusjons-, produksjonsselskaps-, museums-, database-, avis- eller programkilde",
+      "minst én filmhistorisk, TV-historisk, produksjonsmessig, resepsjonsmessig, arkivmessig, sjangerfaglig, dokumentarhistorisk, stjerne-/rollefigur- eller lokalhistorisk kilde",
+      "minst én konkret verk-, scene-, location-, produksjons-, visnings-, kringkastings-, publikums-, arkiv- eller audiovisuell kilde når quiz handler om sted eller person"
+    ],
+    "preferred_question_build_path": "audiovisuell kilde eller konkret verk/scene/kino/studio/TV-hus/location/produksjon/sjanger/format/publikum/arkiv -> presist claim -> sted/person/objekt/hendelse -> metode/emne -> teori",
+    "preferred_role_of_canonical_files": [
+      "velge riktig em_film_tv_*",
+      "velge relevant Film & TV-metode",
+      "styre om spørsmålet bør starte i verk, scene, kino, studio, TV-hus, location, produksjon, sjanger, format, publikum, arkiv, kringkasting eller dokumentert audiovisuell kilde",
+      "spre teorier, tenkere, norske film-/TV-figurer, kinoer, studioer, TV-hus, locations, verk, sjangre, formater, publikum, arkiver og metoder",
+      "unngå kategorirot mellom Film & TV, media, teater, populærkultur, kunst, litteratur, musikk, by, politikk, næringsliv, historie, subkultur og teknologi",
+      "unngå teorioverstyring der verket, scenen, locationen, produksjonen, visningen, kringkastingen eller arkivet blir borte"
+    ],
+    "preferred_question_surfaces": [
+      "cinema-screen-audience-first",
+      "production-studio-work-first",
+      "location-city-image-first",
+      "genre-format-narrative-first",
+      "institution-power-public-first",
+      "memory-star-heritage-first",
+      "screen-production-location-broadcast-first_then_named_theorist"
+    ]
+  },
+  "set_guidance": {
+    "1": {
+      "name": "grunnfakta_verk_sted_visning",
+      "dominant_driver": "ekstern kilde, konkret film/TV-verk, scene, kino, studio, TV-hus, location, produksjon, visning, kringkasting eller arkiv",
+      "canonical_role": "lett styring av emne og metode",
+      "allowed_methods": [
+        "met_film_tv_kinoanalyse",
+        "met_film_tv_stedsanalyse",
+        "met_film_tv_produksjonsanalyse",
+        "met_film_tv_arkivanalyse"
+      ],
+      "question_style": "enkel gjenkjenning, verk/sted/funksjon, kino, studio, TV-hus, location, scene, produksjon, publikum eller synlig audiovisuelt spor"
+    },
+    "2": {
+      "name": "kinoer_visningssteder_publikum",
+      "dominant_driver": "kino, cinematek, filmklubb, festival, premiere, TV-ritual, publikumsminne, distribusjon, tilgang, kinoarkitektur eller publikumsdata",
+      "canonical_role": "lett til middels visnings-, publikums- og resepsjonsføring",
+      "allowed_methods": [
+        "met_film_tv_kinoanalyse",
+        "met_film_tv_publikumsanalyse",
+        "met_film_tv_festivalanalyse",
+        "met_film_tv_distribusjonsanalyse",
+        "met_film_tv_resepsjonsanalyse"
+      ],
+      "question_style": "kino som fellesrom, cinematek, festival, filmklubb, TV-ritualer, strømming, publikumsminne, tilgang og visningsrom"
+    },
+    "3": {
+      "name": "produksjon_studio_arbeid",
+      "dominant_driver": "studio, kamera, bildearbeid, lys, lyd, klipp, montasje, manus, dramaturgi, produksjonsteam, produsent, finansiering, postproduksjon eller TV-hus",
+      "canonical_role": "høy produksjons-, bilde-, lyd- og arbeidslivsføring tillatt",
+      "allowed_methods": [
+        "met_film_tv_studioanalyse",
+        "met_film_tv_kameraanalyse",
+        "met_film_tv_lydanalyse",
+        "met_film_tv_klippanalyse",
+        "met_film_tv_manusanalyse"
+      ],
+      "question_style": "studio, kamera, lys, lyd, klipp, manus, dramaturgi, produksjonsteam, finansiering, postproduksjon, TV-hus og filmarbeid"
+    },
+    "4": {
+      "name": "locations_byrom_motiv",
+      "dominant_driver": "location, byrom, gate, kamera, leilighet, interiør, landskap, stemning, sted, identitet, ikonisk filmsted, dokumentarisk sted eller filmkart",
+      "canonical_role": "høy location-, byroms- og representasjonsføring tillatt",
+      "allowed_methods": [
+        "met_film_tv_locationanalyse",
+        "met_film_tv_bybildeanalyse",
+        "met_film_tv_stedsanalyse",
+        "met_film_tv_dokumentaranalyse",
+        "met_film_tv_representasjonsanalyse"
+      ],
+      "question_style": "locations, byrom, motiv, kulisser, dokumentariske steder, ikoniske filmsteder, filmturisme og audiovisuelle myter"
+    },
+    "5": {
+      "name": "sjanger_format_fortelling",
+      "dominant_driver": "sjanger, format, serieform, dokumentar, fiksjon, reality, nyhetsbilde, karakter, rollefigur, cliffhanger, humor, sitcom, krim eller spenning",
+      "canonical_role": "høy sjanger-, format- og dramaturgiføring tillatt",
+      "allowed_methods": [
+        "met_film_tv_sjangeranalyse",
+        "met_film_tv_serieanalyse",
+        "met_film_tv_dokumentaranalyse",
+        "met_film_tv_karakteranalyse",
+        "met_film_tv_dramaturgianalyse"
+      ],
+      "question_style": "sjanger, serieformat, dokumentar, fiksjon, reality, nyhetsbilde, karakter, rollefigur, cliffhanger, humor, krim og spenning"
+    },
+    "6": {
+      "name": "institusjoner_makt_offentlighet",
+      "dominant_driver": "kringkasting, filmstøtte, kulturpolitikk, sensur, arkiv, rettigheter, distribusjon, plattformmakt, offentlighet, representasjon, kommersialisering eller nasjonal fortelling",
+      "canonical_role": "høy institusjons-, makt- og offentlighetsføring tillatt",
+      "allowed_methods": [
+        "met_film_tv_kringkastingsanalyse",
+        "met_film_tv_kulturpolitisk_analyse",
+        "met_film_tv_sensuranalyse",
+        "met_film_tv_arkivanalyse",
+        "met_film_tv_plattformanalyse"
+      ],
+      "question_style": "kringkasting, filmstøtte, sensur, arkiv, plattformmakt, rettigheter, offentlighet, representasjon, marked og nasjonal fortelling"
+    },
+    "7": {
+      "name": "minne_stjerner_kulturarv",
+      "dominant_driver": "filmstjerne, rollefigur, sitat, TV-minne, filmarv, kanon, nostalgi, arkivbilder, fans, kultfilm, festivalminne eller tapte bilder",
+      "canonical_role": "høy minne-, stjerne-, arkiv- og kulturarvføring tillatt",
+      "allowed_methods": [
+        "met_film_tv_stjerneanalyse",
+        "met_film_tv_rollefiguranalyse",
+        "met_film_tv_tv_minneanalyse",
+        "met_film_tv_filmarvsanalyse",
+        "met_film_tv_arkivbildeanalyse"
+      ],
+      "question_style": "stjerner, rollefigurer, sitater, TV-minne, filmarv, kanon, nostalgi, arkivbilder, fans, kultfilm, festivalminne og tapte bilder"
+    },
+    "8": {
+      "name": "system_verk_sted_produksjon_offentlighet_minne",
+      "dominant_driver": "konkret film/TV-verk, scene, location, kino, studio, TV-hus, produksjon, sjanger, format, publikum, arkiv, offentlighet eller kulturarv",
+      "canonical_role": "høy teori tillatt, men med konkret audiovisuelt anker",
+      "allowed_methods": [
+        "met_film_tv_representasjonsanalyse",
+        "met_film_tv_produksjonskulturanalyse",
+        "met_film_tv_offentlighetsanalyse",
+        "met_film_tv_kollektiv_hukommelsesanalyse",
+        "met_film_tv_institusjonsanalyse"
+      ],
+      "question_style": "verk, bilde, produksjon, location, visning, offentlighet, representasjon, arkiv, stjerner, kulturarv og minne"
+    }
+  },
+  "film_tv_category_guardrails": {
+    "accept_as_film_tv_primary_when": [
+      "stedet eller personen har film-/TV-hovedrolle",
+      "det finnes konkret verk, scene, location, kino, studio, TV-hus, produksjon, sjanger, format, publikum, arkiv, kringkasting eller dokumentert audiovisuell kilde",
+      "spørsmål kan bygges fra filmhistoriske, TV-historiske, produksjonsmessige, arkivmessige, programhistoriske, databasebaserte, institusjonelle, resepsjonsmessige eller lokalhistoriske kilder",
+      "audiovisuell verk-, bilde-, produksjons-, visnings-, kringkastings-, location-, sjanger-, format-, publikum- eller arkivlogikk er primær, ikke bare generell media, teater, populærkultur eller kjendiskultur"
+    ],
+    "do_not_accept_as_film_tv_primary_when": [
+      "hovedrollen er journalistikk, presse, avis eller medieoffentlighet uten film-/TV-verk, produksjon, kringkasting eller audiovisuell form",
+      "hovedrollen er teater, scenekunst eller fysisk sceneopptreden uten kamera, klipp, TV-produksjon, filmverk eller audiovisuell distribusjon",
+      "hovedrollen er populærkultur, kjendiser, fandom eller massefenomen uten konkret film-/TV-verk, scene, produksjon, location, visning eller arkivkilde",
+      "hovedrollen er kunst, litteratur, musikk, by, politikk, næringsliv, historie, subkultur eller teknologi"
+    ],
+    "secondary_film_tv_tag_allowed": true
+  },
+  "validator_additions": [
+    "Avvis Film & TV-quiz hvis synlig innhold primært er parafrase av fagkart, emner, methods eller mapping.",
+    "Avvis spørsmål som kan spores bare til emne-/hook-/metodenavn og ikke til konkret verk, scene, kino, studio, TV-hus, location, produksjon, sjanger, format, publikum, arkiv eller ekstern audiovisuell kilde.",
+    "Avvis hoved-emne_ids i places_film_tv eller people_film_tv som ikke starter med em_film_tv_*.",
+    "Flagg poster der hovedkategori ser ut til å være media, teater, populærkultur, kunst, litteratur, musikk, by, politikk, næringsliv, historie, subkultur eller teknologi.",
+    "Logg per spørsmål source_origin som external, mixed, observed_screen_work, observed_scene, observed_production, observed_location, observed_broadcast, observed_cinema, observed_archive, observed_audience eller internal_only.",
+    "Flagg quiz der internal_only overstiger 5 prosent.",
+    "Flagg teorioverstyring når navngitt teoretiker kommer før verk/scene/location/produksjon/visning/kringkasting/arkiv er etablert.",
+    "Flagg Film & TV-analyse som blir ren smak, løs kjendistrivia eller generisk underholdningsprat uten dokumentert verk, sted, produksjon, visning, kringkasting eller kilde.",
+    "Flagg biografiske spørsmål som ikke kobler person til konkret film-/TV-rolle, verk, scene, produksjon, institusjon, teknisk arbeid, kringkasting eller dokumentert audiovisuelt arbeid.",
+    "Flagg stedsbaserte spørsmål der koblingen til Film & TV bare er løs assosiasjon, skjermkultur eller kjendiskultur uten verk, location, visning, produksjon eller arkivspor."
+  ],
+  "generation_metadata_additions": {
+    "required_per_question_fields_recommended": [
+      "source_origin",
+      "claim_basis",
+      "guidance_basis",
+      "method_id",
+      "emne_id",
+      "film_tv_anchor_type",
+      "source_note"
+    ],
+    "source_origin_values": [
+      "external",
+      "mixed",
+      "observed_screen_work",
+      "observed_scene",
+      "observed_production",
+      "observed_location",
+      "observed_broadcast",
+      "observed_cinema",
+      "observed_archive",
+      "observed_audience",
+      "internal_only"
+    ],
+    "film_tv_anchor_type_values": [
+      "film_work",
+      "tv_series",
+      "episode",
+      "documentary",
+      "scene",
+      "camera",
+      "editing",
+      "sound",
+      "script",
+      "production",
+      "studio",
+      "tv_house",
+      "cinema",
+      "cinematheque",
+      "film_club",
+      "festival",
+      "premiere",
+      "location",
+      "city_image",
+      "broadcast",
+      "genre",
+      "format",
+      "character",
+      "star",
+      "audience",
+      "reception",
+      "archive",
+      "platform",
+      "rights",
+      "censorship",
+      "film_heritage",
+      "tv_memory",
+      "audiovisual_source"
+    ],
+    "claim_basis_definition": "Den konkrete film-/TV-påstanden fra ekstern kilde, programdatabase, film-/TV-arkiv, produksjonskilde, institusjonskilde, avisomtale, anmeldelse, intervju, filmhistorie, TV-historie eller lokalhistorisk kilde.",
+    "guidance_basis_definition": "Hvilket em_film_tv_*, hook, metode eller teorispor som styrte spørsmålets form uten å levere faktapåstanden.",
+    "method_id_definition": "Én method_id fra methods_film_tv_canonical_v4_5.json brukt til å forme spørsmålet.",
+    "emne_id_definition": "Én em_film_tv_* fra emner_film_tv_canonical_v4_5.json brukt som hovedemne.",
+    "source_note_definition": "Kort kildebeskrivelse som sier hvilken type filmhistorisk, TV-historisk, produksjonsmessig, arkivmessig, programhistorisk, databasebasert, institusjonell, resepsjonsmessig eller lokalhistorisk kilde som er brukt."
+  },
+  "diagnosis_note": "Når mange filer er opplastet, må modellen ikke overvekte canonical systemfiler bare fordi de er mange. For Film & TV skal konkrete verk, scener, kinoer, studioer, TV-hus, locations, produksjoner, sjangre, formater, publikum, arkiver, kringkasting, filmarv og dokumenterte audiovisuelle kilder dominere synlig quizinnhold. Fagkart, methods, emner, emnemapping og pensum er styring.",
+  "migration_note": "Eksisterende places_film_tv og people_film_tv bør migreres til em_film_tv_* bare etter at hvert objekt er lest. Det må samtidig sjekkes at hovedkategori faktisk er Film & TV og ikke media, teater, populærkultur, kunst, litteratur, musikk, by, politikk, næringsliv, historie, subkultur eller teknologi."
+}
