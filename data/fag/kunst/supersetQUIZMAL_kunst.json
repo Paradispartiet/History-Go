@@ -1,0 +1,134 @@
+{
+  "id": "vigelandsparken_quiz_1",
+  "quiz_id": "kunst_vigelandsparken_set_1_q1",
+  "categoryId": "kunst",
+  "placeId": "vigelandsparken",
+  "personId": "",
+  "natureId": "",
+  "targetId": "vigelandsparken",
+  "question_scope": "place",
+  "question": "Hva gjør Vigelandsparken særlig relevant som kunststed?",
+  "options": [
+    "Den er et stort offentlig skulpturanlegg laget rundt Gustav Vigelands verk",
+    "Den er Oslos eldste astronomiske observatorium",
+    "Den var hovedbygningen der Grunnloven ble vedtatt"
+  ],
+  "answer": "Den er et stort offentlig skulpturanlegg laget rundt Gustav Vigelands verk",
+  "answerIndex": 0,
+  "dimension": "kunst",
+  "topic": "Offentlig kunst og byrom",
+  "knowledge": "Vigelandsparken brukes her som eksempel på offentlig kunst der verk, sted, kropp, publikum og parkrom må leses sammen.",
+  "trivia": [],
+  "difficulty": 1,
+  "question_type": "fact",
+  "question_layer": "fakta_sted_verk",
+  "year": 1940,
+  "epoke_id": "modernisme_offentlig_kunst",
+  "epoke_domain": "kunst",
+  "emne_id": "em_kunst_offentlig_kunst_monumenter",
+  "related_emner": [
+    "em_kunst_representasjon_og_abstraksjon",
+    "em_kunst_publikum_klasse_og_kapital",
+    "em_kunst_epoker_og_kunsthistorisk_narrativ"
+  ],
+  "core_concepts": [
+    "offentlig kunst",
+    "skulpturpark",
+    "stedsspesifikk kunst",
+    "publikumsmøte",
+    "representasjon"
+  ],
+  "concept_focus": [
+    "offentlig kunst",
+    "skulpturpark"
+  ],
+  "learning_paths": [
+    "fra synlig verk til offentlig rom",
+    "fra kunststed til publikum og resepsjon",
+    "fra skulptur til kunsthistorisk kontekst"
+  ],
+  "tags": [
+    "kunst",
+    "sted",
+    "offentlig_kunst",
+    "skulpturpark",
+    "vigelandsparken",
+    "gustav_vigeland",
+    "publikum"
+  ],
+  "required_tags": [
+    "external_source",
+    "art_anchor",
+    "em_kunst"
+  ],
+  "source": [
+    {
+      "type": "official_or_museum_source",
+      "name": "Vigelandmuseet / Oslo kommune / tilsvarende institusjonskilde",
+      "role": "verifiserer verk, kunstner, anlegg og offentlig kunst-kontekst",
+      "required": true
+    },
+    {
+      "type": "art_historical_source",
+      "name": "kunsthistorisk kilde, katalogtekst eller faglig omtale",
+      "role": "verifiserer kunsthistorisk kontekst, form og resepsjon",
+      "required": true
+    }
+  ],
+  "source_origin": "mixed",
+  "claim_basis": "Ekstern kunstfaglig eller institusjonell kilde skal verifisere at Vigelandsparken er et offentlig skulpturanlegg knyttet til Gustav Vigelands verk.",
+  "guidance_basis": {
+    "fagkart_category_id": "publikum_offentlighet",
+    "topic_hook": "offentlig_kunst_og_byrom",
+    "emne_id": "em_kunst_offentlig_kunst_monumenter",
+    "method_id": "met_kunst_offentlig_rom_analyse",
+    "canonical_files_used_as_guidance_only": [
+      "fagkart_kunst_canonical_v4_5.json",
+      "methods_kunst_canonical_v4_5.json",
+      "emner_kunst_canonical_v4_5.json",
+      "emnemapping_kunst_canonical_v4_5.json",
+      "kunstpensum_canonical_v4_5.json"
+    ]
+  },
+  "method_id": "met_kunst_offentlig_rom_analyse",
+  "art_anchor_type": "public_art_site",
+  "source_note": "Spørsmålet skal bygges fra ekstern kunstfaglig/institusjonell kilde; fagfilene styrer bare metode, emne og spørsmålsflate.",
+  "external_source_ratio_target": 0.85,
+  "internal_file_only_allowed": false,
+  "requires_art_anchor": true,
+  "requires_external_claim_basis": true,
+  "requires_work_place_person_or_institution_anchor": true,
+  "requires_visible_form_or_context": true,
+  "generator_guardrails": {
+    "do_not_generate_from_emne_label_only": true,
+    "do_not_generate_from_method_label_only": true,
+    "do_not_use_non_kunst_emne_id": true,
+    "required_emne_prefix": "em_kunst_",
+    "blocked_emne_prefixes": [
+      "em_by_",
+      "em_his_",
+      "em_media_",
+      "em_musikk_",
+      "em_pop_",
+      "em_vit_",
+      "em_pol_",
+      "em_naering_"
+    ],
+    "work_or_place_first_then_theory": true,
+    "source_first": true,
+    "avoid_generic_taste_questions": true
+  },
+  "validation": {
+    "emne_id_exists_in_emner_kunst": true,
+    "method_id_exists_in_methods_kunst": true,
+    "mapping_exists_in_emnemapping_kunst": true,
+    "category_matches_badge": true,
+    "schema_extends_generic_supersetQUIZMAL": true
+  },
+  "template_notes": {
+    "template_role": "kunst_superset_quiz_object",
+    "generic_template_source": "supersetQUIZMAL (10).json",
+    "content_policy": "Dette er en mal/eksempelobjekt. Produksjonsquizer skal fylle source med konkrete kilder og ikke bruke fagfilene som hovedkilde til faktapåstander.",
+    "next_use": "Bruk som grunnmal for kunstquiz-spørsmål før generatoren lager mange spørsmål per sted/person."
+  }
+}

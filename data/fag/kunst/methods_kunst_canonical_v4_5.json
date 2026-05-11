@@ -1,0 +1,1629 @@
+{
+  "version": "v4.5-canonical-draft-1",
+  "subject_id": "kunst",
+  "subject_title": "Kunst & kultur",
+  "scope": "oslo_og_omegn",
+  "type": "methods",
+  "purpose": "Metodekatalog for kunstfaget i History Go. Metodene skal sikre at kunstspørsmål starter i verk, form, materiale, institusjon, kunstnerisk praksis, offentlig rom, samling, resepsjon eller dokumenterte kunstfaglige kilder før teori brukes som tolkningsramme.",
+  "updated_at": "2026-05-02",
+  "canonical_inputs": {
+    "fagkart": "fagkart_kunst_canonical_v4_5.json",
+    "source_emner": "emner_kunst (4).json"
+  },
+  "principles": {
+    "source_first": true,
+    "external_claim_basis_required": true,
+    "work_place_or_institution_before_theory": true,
+    "avoid_generic_art_questions": true,
+    "method_role": [
+      "forankre spørsmål i konkret verk, sted, institusjon, person, samling eller praksis",
+      "skille formbeskrivelse fra tolkning og vurdering",
+      "koble estetiske valg til felt, institusjon, publikum og historisk kontekst",
+      "synliggjøre kanon, portvoktere, representasjon og blindsoner",
+      "styre progresjon fra observasjon og fakta til analyse og teori"
+    ],
+    "required_emne_prefix": "em_kunst_",
+    "blocked_emne_prefixes": [
+      "em_by_",
+      "em_his_",
+      "em_media_",
+      "em_musikk_",
+      "em_pop_",
+      "em_vit_",
+      "em_pol_",
+      "em_naering_"
+    ]
+  },
+  "methods": [
+    {
+      "method_id": "met_kunst_atelier_og_arbeidsanalyse",
+      "title": "Atelier- og arbeidsanalyse",
+      "short_label": "Atelier/arbeid",
+      "description": "Analyse av atelier, verksted, studio, produksjonsøkonomi, hverdagsarbeid og usynlig arbeid i kunstnerisk praksis.",
+      "best_for_emne_kinds": [
+        "produksjonsanalytisk",
+        "arbeidsanalytisk",
+        "sosial"
+      ],
+      "data_forms": [
+        "atelier",
+        "verksted",
+        "arbeidsfellesskap",
+        "kunstnerøkonomi",
+        "stipend",
+        "produksjonsrom"
+      ],
+      "course_level_fit": [
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "kunst_produksjon_praksis",
+        "kunst_felt_institusjon"
+      ],
+      "progression_stage": "advanced",
+      "good_for_place_types": [
+        "atelier",
+        "verksted",
+        "studio",
+        "kunstskole",
+        "kunstnerfellesskap"
+      ],
+      "question_moves": [
+        "identify artistic labor",
+        "connect workspace to practice",
+        "ask what is invisible in finished work",
+        "compare studio and exhibition context"
+      ],
+      "method_use_note": "Brukes når produksjonsrommet eller arbeidsformen er mer viktig enn utstillingsrommet.",
+      "rotation_note": "God til kunstnersteder, ikke til rene museer med mindre prosessen er dokumentert.",
+      "hook_affinities": [
+        "arbeidsvilkar_og_prekaritet",
+        "atelierlogikk_og_arbeidsformer",
+        "dokumentasjon_og_prosess",
+        "kollektiv_vs_individuell_praksis",
+        "kunstnerisk_risiko",
+        "materialvalg_som_metode",
+        "produksjonstempo_og_prosjektlogikk",
+        "tverrfaglighet_og_hybridformer"
+      ],
+      "emne_affinities": [
+        "em_kunst_arbeidsformer_og_prosess",
+        "em_kunst_kunstnerokonomi_og_prekaritet",
+        "em_kunst_teknologi_og_materialitet"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "kunstpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "artwork_or_institution_anchor_required": true,
+      "generator_constraints": {
+        "require_concrete_work_place_person_or_institution": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_kunst_"
+      }
+    },
+    {
+      "method_id": "met_kunst_digital_sirkulasjonsanalyse",
+      "title": "Digital sirkulasjonsanalyse",
+      "short_label": "Digital sirkulasjon",
+      "description": "Analyse av hvordan kunst sirkulerer gjennom digitale samlinger, sosiale medier, streaming, reproduksjon, plattformer og nettverk.",
+      "best_for_emne_kinds": [
+        "digital",
+        "distribusjonsanalytisk",
+        "resepsjonsanalytisk"
+      ],
+      "data_forms": [
+        "digital samling",
+        "nettutstilling",
+        "sosiale medier",
+        "plattform",
+        "reproduksjon",
+        "digitalt arkiv"
+      ],
+      "course_level_fit": [
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "kunst_publikum_offentlighet",
+        "kunst_felt_institusjon",
+        "kunst_produksjon_praksis"
+      ],
+      "progression_stage": "advanced",
+      "good_for_place_types": [
+        "digital_plattform",
+        "museum",
+        "kunstarkiv",
+        "mediekunstinstitusjon"
+      ],
+      "question_moves": [
+        "trace artwork circulation",
+        "compare physical and digital display",
+        "identify reproduction effect",
+        "read networked audience"
+      ],
+      "method_use_note": "Brukes når kunstens digitale spredning er en del av betydningen.",
+      "rotation_note": "Må ha konkret digital plattform, arkiv, reproduksjon eller resepsjon.",
+      "hook_affinities": [
+        "digital_offentlighet",
+        "distribusjonsinfrastruktur",
+        "plattformisering_og_digitale_institusjoner",
+        "remiks_og_reappropriasjon",
+        "teknologisk_produksjon"
+      ],
+      "emne_affinities": [
+        "em_kunst_digital_offentlighet_og_resepsjon",
+        "em_kunst_distribusjon_og_plattformisering",
+        "em_kunst_institusjoner_kanon",
+        "em_kunst_originalitet_og_referanse",
+        "em_kunst_publikum_klasse_og_kapital",
+        "em_kunst_representasjon_og_abstraksjon",
+        "em_kunst_teknologi_og_materialitet"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "kunstpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "artwork_or_institution_anchor_required": true,
+      "generator_constraints": {
+        "require_concrete_work_place_person_or_institution": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_kunst_"
+      }
+    },
+    {
+      "method_id": "met_kunst_feltanalyse",
+      "title": "Feltanalyse",
+      "short_label": "Felt",
+      "description": "Analyse av kunstfeltets aktører, posisjoner, kapitalformer, nettverk, portvoktere, konflikter og legitimeringskamper.",
+      "best_for_emne_kinds": [
+        "feltanalytisk",
+        "sosiologisk",
+        "maktanalytisk"
+      ],
+      "data_forms": [
+        "institusjonskart",
+        "kritikk",
+        "prisregime",
+        "finansiering",
+        "kunstnernettverk",
+        "utstillingshistorikk"
+      ],
+      "course_level_fit": [
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "kunst_felt_institusjon",
+        "kunst_makt_legitimitet",
+        "kunst_produksjon_praksis"
+      ],
+      "progression_stage": "advanced",
+      "good_for_place_types": [
+        "museum",
+        "kunsthall",
+        "galleri",
+        "kunstskole",
+        "atelierfellesskap",
+        "uavhengig visningsrom"
+      ],
+      "question_moves": [
+        "map field position",
+        "identify symbolic capital",
+        "compare institutional and independent scene",
+        "connect recognition to power"
+      ],
+      "method_use_note": "Brukes når spørsmålet skal forklare kunst som sosialt felt, ikke bare som enkeltverk.",
+      "rotation_note": "God i senere sett. Må forankres i konkret institusjon, kunstner, utstilling, støtteordning eller feltkonflikt.",
+      "hook_affinities": [
+        "autonomi_vs_avhengighet",
+        "distribusjonsinfrastruktur",
+        "diy_og_selvorganisering",
+        "estetisk_hegemoni",
+        "finansieringslogikk",
+        "identitet_og_representasjon",
+        "inkludering_og_ekskludering",
+        "institusjonell_legitimering",
+        "institusjonskritikk",
+        "kanonisering",
+        "kritikkens_rolle",
+        "kunstutdanning_og_rekruttering",
+        "kuratorisk_makt",
+        "kvalitetsregimer",
+        "markedets_estetiske_pavirkningskraft",
+        "nettverk_og_portvoktere",
+        "offentlig_vs_privat_kunststruktur",
+        "regional_vs_sentralisert_kunstfelt",
+        "symbolsk_kapital"
+      ],
+      "emne_affinities": [
+        "em_kunst_arbeidsformer_og_prosess",
+        "em_kunst_digital_offentlighet_og_resepsjon",
+        "em_kunst_distribusjon_og_plattformisering",
+        "em_kunst_epoker_og_kunsthistorisk_narrativ",
+        "em_kunst_institusjoner_kanon",
+        "em_kunst_institusjonskritikk_og_representasjon",
+        "em_kunst_kunstnerokonomi_og_prekaritet",
+        "em_kunst_kvalitet_kritikk_og_symbolsk_kapital",
+        "em_kunst_okonomi_og_finansiering",
+        "em_kunst_politisk_kunst_aktivisme",
+        "em_kunst_undergrunn_selvorganisert",
+        "em_kunst_utdanning_og_rekruttering"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "kunstpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "artwork_or_institution_anchor_required": true,
+      "generator_constraints": {
+        "require_concrete_work_place_person_or_institution": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_kunst_"
+      }
+    },
+    {
+      "method_id": "met_kunst_formanalyse",
+      "title": "Formanalyse",
+      "short_label": "Form",
+      "description": "Analyse av komposisjon, farge, linje, rom, rytme, tekstur, skala, balanse, kontrast, figurativitet og abstraksjon.",
+      "best_for_emne_kinds": [
+        "formal",
+        "verkbasert",
+        "estetisk"
+      ],
+      "data_forms": [
+        "maleri",
+        "skulptur",
+        "foto",
+        "installasjon",
+        "grafikk",
+        "offentlig kunst",
+        "designobjekt"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "kunst_estetisk_sprak_form",
+        "kunst_tid_transformasjon"
+      ],
+      "progression_stage": "full_ladder",
+      "good_for_place_types": [
+        "museum",
+        "galleri",
+        "skulpturpark",
+        "offentlig_kunst",
+        "samling"
+      ],
+      "question_moves": [
+        "anchor in visible form",
+        "describe without taste judgement",
+        "connect form to meaning",
+        "compare formal strategies"
+      ],
+      "method_use_note": "Grunnmetode for verkspørsmål. Skal hindre at spørsmål bare blir biografi eller institusjonsfakta.",
+      "rotation_note": "Bør brukes ofte i kunstquizer, særlig i tidlige sett.",
+      "hook_affinities": [
+        "estetisk_minimalisme",
+        "estetisk_overflod",
+        "formalisme_vs_kontekstualisme",
+        "konseptualitet",
+        "mediumspesifisitet",
+        "originalitet_vs_referanse",
+        "representasjon_vs_abstraksjon",
+        "sjangerkoder",
+        "stil_som_posisjonering",
+        "symbolbruk_og_ikonografi"
+      ],
+      "emne_affinities": [
+        "em_kunst_epoker_og_kunsthistorisk_narrativ",
+        "em_kunst_konseptkunst_og_formalisme",
+        "em_kunst_kvalitet_kritikk_og_symbolsk_kapital",
+        "em_kunst_offentlig_kunst_monumenter",
+        "em_kunst_originalitet_og_referanse",
+        "em_kunst_politisk_kunst_aktivisme",
+        "em_kunst_representasjon_og_abstraksjon",
+        "em_kunst_sjanger_stil_og_posisjonering",
+        "em_kunst_teknologi_og_materialitet"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "kunstpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "artwork_or_institution_anchor_required": true,
+      "generator_constraints": {
+        "require_concrete_work_place_person_or_institution": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_kunst_"
+      }
+    },
+    {
+      "method_id": "met_kunst_ikonografisk_analyse",
+      "title": "Ikonografisk analyse",
+      "short_label": "Ikonografi",
+      "description": "Analyse av tegn, symboler, motiver, allegorier, visuelle koder og kulturelle referanser i kunstverk.",
+      "best_for_emne_kinds": [
+        "symbolanalytisk",
+        "verkbasert",
+        "historisk"
+      ],
+      "data_forms": [
+        "maleri",
+        "skulptur",
+        "monument",
+        "utsmykning",
+        "veggmaleri",
+        "offentlig kunst"
+      ],
+      "course_level_fit": [
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "kunst_estetisk_sprak_form",
+        "kunst_publikum_offentlighet",
+        "kunst_tid_transformasjon"
+      ],
+      "progression_stage": "advanced",
+      "good_for_place_types": [
+        "museum",
+        "skulpturpark",
+        "monument",
+        "offentlig_kunst",
+        "kirkeutsmykning"
+      ],
+      "question_moves": [
+        "read symbol layers",
+        "separate documented iconography from interpretation",
+        "connect symbol to historical context",
+        "identify visual convention"
+      ],
+      "method_use_note": "Brukes når verkets motiver og symbolsystem er sentrale for spørsmålet.",
+      "rotation_note": "Krev konkret motiv/symbol. Unngå fri spekulasjon uten kontekst.",
+      "hook_affinities": [
+        "estetisk_minimalisme",
+        "estetisk_overflod",
+        "formalisme_vs_kontekstualisme",
+        "originalitet_vs_referanse",
+        "representasjon_vs_abstraksjon",
+        "sjangerkoder",
+        "stil_som_posisjonering",
+        "symbolbruk_og_ikonografi"
+      ],
+      "emne_affinities": [
+        "em_kunst_epoker_og_kunsthistorisk_narrativ",
+        "em_kunst_offentlig_kunst_monumenter",
+        "em_kunst_politisk_kunst_aktivisme",
+        "em_kunst_representasjon_og_abstraksjon",
+        "em_kunst_sjanger_stil_og_posisjonering"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "kunstpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "artwork_or_institution_anchor_required": true,
+      "generator_constraints": {
+        "require_concrete_work_place_person_or_institution": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_kunst_"
+      }
+    },
+    {
+      "method_id": "met_kunst_institusjonsanalyse",
+      "title": "Kunstinstitusjonsanalyse",
+      "short_label": "Institusjon",
+      "description": "Analyse av hvordan museer, gallerier, kunsthaller, akademier, samlinger og prisregimer gir kunst legitimitet og former hva som blir synlig i feltet.",
+      "best_for_emne_kinds": [
+        "institusjonell",
+        "feltanalytisk",
+        "kunsthistorisk"
+      ],
+      "data_forms": [
+        "museum",
+        "galleri",
+        "kunsthall",
+        "samling",
+        "arkiv",
+        "institusjonstekst",
+        "vedtekter",
+        "utstillingsprogram"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "kunst_felt_institusjon",
+        "kunst_makt_legitimitet",
+        "kunst_tid_transformasjon"
+      ],
+      "progression_stage": "full_ladder",
+      "good_for_place_types": [
+        "museum",
+        "galleri",
+        "kunsthall",
+        "kunstinstitusjon",
+        "akademi",
+        "samling"
+      ],
+      "question_moves": [
+        "connect place to institution",
+        "identify legitimation mechanism",
+        "compare collection and exhibition role",
+        "ask who is included or excluded"
+      ],
+      "method_use_note": "Brukes når stedet er en kunstinstitusjon eller når kunstfeltets makt må forklares gjennom organisatorisk plassering.",
+      "rotation_note": "Bør roteres med kuratorisk analyse og feltanalyse slik at institusjonsspørsmål ikke bare blir bygg- eller museumsfakta.",
+      "hook_affinities": [
+        "arkiv_og_minne",
+        "autonomi_vs_avhengighet",
+        "institusjonell_legitimering",
+        "kunstutdanning_og_rekruttering",
+        "nettverk_og_portvoktere",
+        "offentlig_vs_privat_kunststruktur",
+        "regional_vs_sentralisert_kunstfelt"
+      ],
+      "emne_affinities": [
+        "em_kunst_arbeidsformer_og_prosess",
+        "em_kunst_epoker_og_kunsthistorisk_narrativ",
+        "em_kunst_institusjoner_kanon",
+        "em_kunst_institusjonskritikk_og_representasjon",
+        "em_kunst_kvalitet_kritikk_og_symbolsk_kapital",
+        "em_kunst_offentlig_kunst_monumenter",
+        "em_kunst_utdanning_og_rekruttering"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "kunstpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "artwork_or_institution_anchor_required": true,
+      "generator_constraints": {
+        "require_concrete_work_place_person_or_institution": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_kunst_"
+      }
+    },
+    {
+      "method_id": "met_kunst_institusjonskritisk_analyse",
+      "title": "Institusjonskritisk analyse",
+      "short_label": "Institusjonskritikk",
+      "description": "Analyse av hvordan kunst eller kunstnere kritiserer museer, samlinger, marked, kanon, representasjon og kunstfeltets egne maktstrukturer.",
+      "best_for_emne_kinds": [
+        "maktanalytisk",
+        "kritisk",
+        "feltanalytisk"
+      ],
+      "data_forms": [
+        "institusjonskritisk verk",
+        "utstilling",
+        "kunstnertekst",
+        "museumskritikk",
+        "representasjonsdebatt"
+      ],
+      "course_level_fit": [
+        "avansert"
+      ],
+      "coverage_domains": [
+        "kunst_makt_legitimitet",
+        "kunst_felt_institusjon",
+        "kunst_publikum_offentlighet"
+      ],
+      "progression_stage": "advanced",
+      "good_for_place_types": [
+        "museum",
+        "kunsthall",
+        "galleri",
+        "offentlig_kunst",
+        "kritikkarena"
+      ],
+      "question_moves": [
+        "identify target of critique",
+        "separate work critique from structure critique",
+        "read inclusion and exclusion",
+        "ask whether critique is absorbed by institution"
+      ],
+      "method_use_note": "Brukes når kunstverket eller utstillingen selv utfordrer kunstfeltets makt.",
+      "rotation_note": "Ikke bruk metoden bare fordi et verk er politisk; institusjonskritikken må være konkret.",
+      "hook_affinities": [
+        "estetisk_hegemoni",
+        "identitet_og_representasjon",
+        "inkludering_og_ekskludering",
+        "institusjonskritikk",
+        "kritikkens_rolle",
+        "kvalitetsregimer",
+        "markedets_estetiske_pavirkningskraft",
+        "symbolsk_kapital"
+      ],
+      "emne_affinities": [
+        "em_kunst_institusjoner_kanon",
+        "em_kunst_institusjonskritikk_og_representasjon",
+        "em_kunst_kvalitet_kritikk_og_symbolsk_kapital",
+        "em_kunst_politisk_kunst_aktivisme"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "kunstpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "artwork_or_institution_anchor_required": true,
+      "generator_constraints": {
+        "require_concrete_work_place_person_or_institution": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_kunst_"
+      }
+    },
+    {
+      "method_id": "met_kunst_kanon_og_arkivanalyse",
+      "title": "Kanon- og arkivanalyse",
+      "short_label": "Kanon/arkiv",
+      "description": "Analyse av hvordan samlinger, arkiver, museer og historieskriving velger ut hva som blir bevart, vist, kjøpt inn og skrevet inn i kunsthistorien.",
+      "best_for_emne_kinds": [
+        "kunsthistorisk",
+        "institusjonell",
+        "maktanalytisk"
+      ],
+      "data_forms": [
+        "samling",
+        "arkiv",
+        "innkjøpshistorikk",
+        "utstillingshistorikk",
+        "katalog",
+        "kunsthistorisk narrativ"
+      ],
+      "course_level_fit": [
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "kunst_tid_transformasjon",
+        "kunst_felt_institusjon",
+        "kunst_makt_legitimitet"
+      ],
+      "progression_stage": "advanced",
+      "good_for_place_types": [
+        "museum",
+        "samling",
+        "arkiv",
+        "kunstinstitusjon",
+        "kunsthistorisk_sted"
+      ],
+      "question_moves": [
+        "read collection as canon",
+        "ask what is preserved",
+        "identify selection mechanisms",
+        "ask who or what is absent"
+      ],
+      "method_use_note": "Brukes når samling eller arkiv forstås som aktiv historisk seleksjon.",
+      "rotation_note": "God for museer og samlinger; svakere for enkeltverk uten arkiv-/kanonkontekst.",
+      "hook_affinities": [
+        "arkiv_og_minne",
+        "epokefortellinger",
+        "historisk_rekontekstualisering",
+        "kanonisering",
+        "kunsthistorisk_skriving",
+        "nostalgi_og_retromodernitet",
+        "sykluser_og_trender",
+        "temporale_estetiske_strategier",
+        "tradisjon_og_kontinuitet"
+      ],
+      "emne_affinities": [
+        "em_kunst_epoker_og_kunsthistorisk_narrativ",
+        "em_kunst_institusjoner_kanon",
+        "em_kunst_kvalitet_kritikk_og_symbolsk_kapital",
+        "em_kunst_offentlig_kunst_monumenter",
+        "em_kunst_originalitet_og_referanse"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "kunstpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "artwork_or_institution_anchor_required": true,
+      "generator_constraints": {
+        "require_concrete_work_place_person_or_institution": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_kunst_"
+      }
+    },
+    {
+      "method_id": "met_kunst_komparativ_institusjonsanalyse",
+      "title": "Komparativ institusjonsanalyse",
+      "short_label": "Institusjonskomparativ",
+      "description": "Sammenligning av to eller flere kunstinstitusjoner for å vise forskjeller i samling, publikum, legitimeringsstrategi, finansiering, kanon og kuratorisk profil.",
+      "best_for_emne_kinds": [
+        "institusjonell",
+        "komparativ",
+        "feltanalytisk"
+      ],
+      "data_forms": [
+        "to museer",
+        "to gallerier",
+        "programprofiler",
+        "samlingsprofiler",
+        "finansieringsformer"
+      ],
+      "course_level_fit": [
+        "avansert"
+      ],
+      "coverage_domains": [
+        "kunst_felt_institusjon",
+        "kunst_makt_legitimitet"
+      ],
+      "progression_stage": "advanced",
+      "good_for_place_types": [
+        "museum",
+        "galleri",
+        "kunsthall",
+        "kunstinstitusjon"
+      ],
+      "question_moves": [
+        "compare institutional roles",
+        "separate public and private logic",
+        "compare canon and contemporary profile",
+        "identify different audience strategies"
+      ],
+      "method_use_note": "Brukes når to institusjoner kan forklare hverandre gjennom kontrast.",
+      "rotation_note": "Bør brukes i sene sett etter at enkelttilfellene er etablert.",
+      "hook_affinities": [
+        "finansieringslogikk"
+      ],
+      "emne_affinities": [
+        "em_kunst_kunstnerokonomi_og_prekaritet",
+        "em_kunst_kvalitet_kritikk_og_symbolsk_kapital",
+        "em_kunst_okonomi_og_finansiering"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "kunstpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "artwork_or_institution_anchor_required": true,
+      "generator_constraints": {
+        "require_concrete_work_place_person_or_institution": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_kunst_"
+      }
+    },
+    {
+      "method_id": "met_kunst_komparativ_verkanalyse",
+      "title": "Komparativ verkanalyse",
+      "short_label": "Verkkomparativ",
+      "description": "Sammenligning av verk, medier, stilperioder, kunstnerskap eller representasjonsstrategier for å vise brudd, kontinuitet og forskjeller i form og kontekst.",
+      "best_for_emne_kinds": [
+        "komparativ",
+        "verkbasert",
+        "kunsthistorisk"
+      ],
+      "data_forms": [
+        "to verk",
+        "to kunstnere",
+        "to perioder",
+        "to medier",
+        "to utstillingskontekster"
+      ],
+      "course_level_fit": [
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "kunst_estetisk_sprak_form",
+        "kunst_tid_transformasjon",
+        "kunst_makt_legitimitet"
+      ],
+      "progression_stage": "advanced",
+      "good_for_place_types": [
+        "museum",
+        "galleri",
+        "samling",
+        "skulpturpark"
+      ],
+      "question_moves": [
+        "compare two works",
+        "identify formal difference",
+        "connect comparison to period or institution",
+        "test whether similarity is surface or structure"
+      ],
+      "method_use_note": "Brukes når kontrast mellom verk gir bedre læring enn enkel gjenkjenning.",
+      "rotation_note": "Bør brukes etter at minst ett verk eller én institusjon allerede er etablert.",
+      "hook_affinities": [
+        "avantgarde_og_brudd",
+        "epokefortellinger",
+        "estetisk_minimalisme",
+        "estetisk_overflod",
+        "formalisme_vs_kontekstualisme",
+        "historisk_rekontekstualisering",
+        "kunsthistorisk_skriving",
+        "mediumspesifisitet",
+        "nostalgi_og_retromodernitet",
+        "originalitet_vs_referanse",
+        "remiks_og_reappropriasjon",
+        "sjangerkoder",
+        "stil_som_posisjonering",
+        "sykluser_og_trender",
+        "temporale_estetiske_strategier",
+        "tradisjon_og_kontinuitet"
+      ],
+      "emne_affinities": [
+        "em_kunst_digital_offentlighet_og_resepsjon",
+        "em_kunst_epoker_og_kunsthistorisk_narrativ",
+        "em_kunst_institusjoner_kanon",
+        "em_kunst_konseptkunst_og_formalisme",
+        "em_kunst_originalitet_og_referanse",
+        "em_kunst_politisk_kunst_aktivisme",
+        "em_kunst_representasjon_og_abstraksjon",
+        "em_kunst_sjanger_stil_og_posisjonering",
+        "em_kunst_teknologi_og_materialitet"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "kunstpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "artwork_or_institution_anchor_required": true,
+      "generator_constraints": {
+        "require_concrete_work_place_person_or_institution": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_kunst_"
+      }
+    },
+    {
+      "method_id": "met_kunst_konseptanalyse",
+      "title": "Konseptanalyse",
+      "short_label": "Konsept",
+      "description": "Analyse av idé, instruksjon, ramme, kontekst, dokumentasjon og kunststatus når verkets konsept er sentralt.",
+      "best_for_emne_kinds": [
+        "konseptuell",
+        "verkbasert",
+        "teoretisk"
+      ],
+      "data_forms": [
+        "konseptkunst",
+        "instruksjon",
+        "kunstnertekst",
+        "dokumentasjon",
+        "installasjon",
+        "utstillingsramme"
+      ],
+      "course_level_fit": [
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "kunst_estetisk_sprak_form",
+        "kunst_makt_legitimitet"
+      ],
+      "progression_stage": "advanced",
+      "good_for_place_types": [
+        "museum",
+        "galleri",
+        "kunsthall",
+        "installasjon",
+        "samling"
+      ],
+      "question_moves": [
+        "separate object and concept",
+        "read frame as part of work",
+        "connect concept to institution",
+        "compare material and idea"
+      ],
+      "method_use_note": "Brukes når ideen, rammen eller instruksjonen er viktigere enn tradisjonell formbeskrivelse.",
+      "rotation_note": "Må knyttes til konkret verk eller dokumentasjon; ikke generisk 'idékunst'.",
+      "hook_affinities": [
+        "konseptualitet"
+      ],
+      "emne_affinities": [
+        "em_kunst_konseptkunst_og_formalisme",
+        "em_kunst_kvalitet_kritikk_og_symbolsk_kapital",
+        "em_kunst_originalitet_og_referanse"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "kunstpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "artwork_or_institution_anchor_required": true,
+      "generator_constraints": {
+        "require_concrete_work_place_person_or_institution": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_kunst_"
+      }
+    },
+    {
+      "method_id": "met_kunst_kontekstualisering",
+      "title": "Kontekstualisering",
+      "short_label": "Kontekst",
+      "description": "Analyse av hvordan verkets betydning formes av historisk, sosial, politisk, institusjonell, romlig eller teknologisk kontekst.",
+      "best_for_emne_kinds": [
+        "kontekstuell",
+        "kunsthistorisk",
+        "maktanalytisk"
+      ],
+      "data_forms": [
+        "verk",
+        "utstilling",
+        "kunstnerbiografi",
+        "institusjon",
+        "historisk situasjon",
+        "sted"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "kunst_estetisk_sprak_form",
+        "kunst_tid_transformasjon",
+        "kunst_makt_legitimitet"
+      ],
+      "progression_stage": "full_ladder",
+      "good_for_place_types": [
+        "museum",
+        "galleri",
+        "kunsthall",
+        "offentlig_kunst",
+        "kunsthistorisk_sted"
+      ],
+      "question_moves": [
+        "connect work to context",
+        "ask what changes outside context",
+        "separate form and frame",
+        "show why setting matters"
+      ],
+      "method_use_note": "Bred støttemetode når form, verk eller kunstnerskap må forstås gjennom ytre rammer.",
+      "rotation_note": "Bør ikke erstatte mer presise metoder når form-, institusjons- eller resepsjonsanalyse passer bedre.",
+      "hook_affinities": [
+        "konseptualitet"
+      ],
+      "emne_affinities": [
+        "em_kunst_konseptkunst_og_formalisme",
+        "em_kunst_kvalitet_kritikk_og_symbolsk_kapital",
+        "em_kunst_originalitet_og_referanse"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "kunstpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "artwork_or_institution_anchor_required": true,
+      "generator_constraints": {
+        "require_concrete_work_place_person_or_institution": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_kunst_"
+      }
+    },
+    {
+      "method_id": "met_kunst_kritikk_og_diskursanalyse",
+      "title": "Kritikk- og diskursanalyse",
+      "short_label": "Kritikk/diskurs",
+      "description": "Analyse av hvordan kritikk, katalogtekster, presse, kunstteori og institusjonsspråk gir verk verdi, posisjon og tolkningsramme.",
+      "best_for_emne_kinds": [
+        "diskursiv",
+        "maktanalytisk",
+        "resepsjonsanalytisk"
+      ],
+      "data_forms": [
+        "kunstkritikk",
+        "katalogtekst",
+        "pressemelding",
+        "kunstnertekst",
+        "debattinnlegg",
+        "jurytekst"
+      ],
+      "course_level_fit": [
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "kunst_makt_legitimitet",
+        "kunst_felt_institusjon",
+        "kunst_tid_transformasjon"
+      ],
+      "progression_stage": "advanced",
+      "good_for_place_types": [
+        "museum",
+        "galleri",
+        "kunsthall",
+        "kritikkarena",
+        "offentlig kunst"
+      ],
+      "question_moves": [
+        "read text as legitimation",
+        "identify quality vocabulary",
+        "separate description and evaluation",
+        "ask which assumptions guide interpretation"
+      ],
+      "method_use_note": "Brukes når språket rundt kunstverket eller institusjonen er en del av selve analysen.",
+      "rotation_note": "Bør kobles til konkret tekstkilde; ikke lag spørsmål om 'kritikk' uten sitat, katalogtekst eller dokumentert resepsjon.",
+      "hook_affinities": [
+        "avantgarde_og_brudd",
+        "diy_og_selvorganisering",
+        "estetisk_hegemoni",
+        "finansieringslogikk",
+        "identitet_og_representasjon",
+        "inkludering_og_ekskludering",
+        "institusjonskritikk",
+        "kanonisering",
+        "kritikkens_rolle",
+        "kunst_og_politikk",
+        "kuratorisk_makt",
+        "kvalitetsregimer",
+        "markedets_estetiske_pavirkningskraft",
+        "remiks_og_reappropriasjon",
+        "symbolsk_kapital"
+      ],
+      "emne_affinities": [
+        "em_kunst_digital_offentlighet_og_resepsjon",
+        "em_kunst_epoker_og_kunsthistorisk_narrativ",
+        "em_kunst_institusjoner_kanon",
+        "em_kunst_institusjonskritikk_og_representasjon",
+        "em_kunst_kunstnerokonomi_og_prekaritet",
+        "em_kunst_kvalitet_kritikk_og_symbolsk_kapital",
+        "em_kunst_offentlig_kunst_monumenter",
+        "em_kunst_okonomi_og_finansiering",
+        "em_kunst_originalitet_og_referanse",
+        "em_kunst_politisk_kunst_aktivisme",
+        "em_kunst_representasjon_og_abstraksjon",
+        "em_kunst_undergrunn_selvorganisert"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "kunstpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "artwork_or_institution_anchor_required": true,
+      "generator_constraints": {
+        "require_concrete_work_place_person_or_institution": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_kunst_"
+      }
+    },
+    {
+      "method_id": "met_kunst_kunsthistorisk_kontekstualisering",
+      "title": "Kunsthistorisk kontekstualisering",
+      "short_label": "Kunsthistorie",
+      "description": "Analyse av verk, kunstnere og institusjoner i forhold til epoker, stilretninger, avantgarde, kanon, brudd og kontinuitet.",
+      "best_for_emne_kinds": [
+        "kunsthistorisk",
+        "temporal",
+        "komparativ"
+      ],
+      "data_forms": [
+        "kunsthistorisk periode",
+        "verk",
+        "kunstnerskap",
+        "samling",
+        "katalog",
+        "utstillingshistorikk"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "kunst_tid_transformasjon",
+        "kunst_estetisk_sprak_form",
+        "kunst_felt_institusjon"
+      ],
+      "progression_stage": "full_ladder",
+      "good_for_place_types": [
+        "museum",
+        "samling",
+        "kunsthistorisk_sted",
+        "galleri",
+        "skulpturpark"
+      ],
+      "question_moves": [
+        "connect work to period",
+        "identify break and continuity",
+        "question period label",
+        "compare art historical narratives"
+      ],
+      "method_use_note": "Brukes når kunstverk eller institusjon må plasseres i kunsthistorisk tid.",
+      "rotation_note": "Pass på at epoker ikke blir fasit; vis alltid konkret verk, form eller institusjon.",
+      "hook_affinities": [
+        "arkiv_og_minne",
+        "avantgarde_og_brudd",
+        "epokefortellinger",
+        "historisk_rekontekstualisering",
+        "kunsthistorisk_skriving",
+        "nostalgi_og_retromodernitet",
+        "representasjon_vs_abstraksjon",
+        "sykluser_og_trender",
+        "symbolbruk_og_ikonografi",
+        "temporale_estetiske_strategier",
+        "tradisjon_og_kontinuitet"
+      ],
+      "emne_affinities": [
+        "em_kunst_epoker_og_kunsthistorisk_narrativ",
+        "em_kunst_institusjoner_kanon",
+        "em_kunst_offentlig_kunst_monumenter",
+        "em_kunst_originalitet_og_referanse",
+        "em_kunst_politisk_kunst_aktivisme",
+        "em_kunst_representasjon_og_abstraksjon",
+        "em_kunst_sjanger_stil_og_posisjonering"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "kunstpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "artwork_or_institution_anchor_required": true,
+      "generator_constraints": {
+        "require_concrete_work_place_person_or_institution": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_kunst_"
+      }
+    },
+    {
+      "method_id": "met_kunst_kuratorisk_analyse",
+      "title": "Kuratorisk analyse",
+      "short_label": "Kuratering",
+      "description": "Analyse av hvordan utvalg, plassering, utstillingstekst, romforløp og samlingsgrep skaper tolkning og legitimitet.",
+      "best_for_emne_kinds": [
+        "institusjonell",
+        "utstillingsanalytisk",
+        "diskursiv"
+      ],
+      "data_forms": [
+        "utstilling",
+        "veggtekst",
+        "katalog",
+        "romforløp",
+        "samlingspresentasjon",
+        "kuratoruttalelse"
+      ],
+      "course_level_fit": [
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "kunst_felt_institusjon",
+        "kunst_makt_legitimitet",
+        "kunst_publikum_offentlighet"
+      ],
+      "progression_stage": "advanced",
+      "good_for_place_types": [
+        "museum",
+        "galleri",
+        "kunsthall",
+        "samling",
+        "biennale",
+        "kunstfestival"
+      ],
+      "question_moves": [
+        "read exhibition as argument",
+        "identify curatorial selection",
+        "compare what is shown and omitted",
+        "connect wall text to field position"
+      ],
+      "method_use_note": "Brukes når spørsmålet handler om hvordan kunst presenteres og gjøres forståelig gjennom kuratoriske valg.",
+      "rotation_note": "Krev konkret utstilling, samling eller presentasjon; ikke bruk metoden rent abstrakt.",
+      "hook_affinities": [
+        "autonomi_vs_avhengighet",
+        "institusjonell_legitimering",
+        "kuratorisk_makt",
+        "nettverk_og_portvoktere",
+        "offentlig_vs_privat_kunststruktur",
+        "regional_vs_sentralisert_kunstfelt"
+      ],
+      "emne_affinities": [
+        "em_kunst_institusjoner_kanon",
+        "em_kunst_institusjonskritikk_og_representasjon",
+        "em_kunst_kvalitet_kritikk_og_symbolsk_kapital"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "kunstpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "artwork_or_institution_anchor_required": true,
+      "generator_constraints": {
+        "require_concrete_work_place_person_or_institution": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_kunst_"
+      }
+    },
+    {
+      "method_id": "met_kunst_materialitetsanalyse",
+      "title": "Materialitetsanalyse",
+      "short_label": "Materialitet",
+      "description": "Analyse av hvordan materiale, medium, teknologi, skala, overflate, tyngde, lyd, lys eller digital infrastruktur former verkets mening.",
+      "best_for_emne_kinds": [
+        "formal",
+        "materialanalytisk",
+        "teknologisk"
+      ],
+      "data_forms": [
+        "verk",
+        "materiale",
+        "medium",
+        "skulptur",
+        "installasjon",
+        "digitalt verk",
+        "lydverk",
+        "lysverk"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "kunst_produksjon_praksis",
+        "kunst_estetisk_sprak_form",
+        "kunst_publikum_offentlighet"
+      ],
+      "progression_stage": "full_ladder",
+      "good_for_place_types": [
+        "museum",
+        "galleri",
+        "skulpturpark",
+        "offentlig_kunst",
+        "verksted",
+        "atelier"
+      ],
+      "question_moves": [
+        "read medium as meaning",
+        "identify material constraint",
+        "connect technology to aesthetic effect",
+        "compare material and concept"
+      ],
+      "method_use_note": "Brukes når synlige eller sanselige egenskaper ved verket er hovedinngang.",
+      "rotation_note": "Må alltid vise til konkret form, materiale eller medium.",
+      "hook_affinities": [
+        "arbeidsvilkar_og_prekaritet",
+        "atelierlogikk_og_arbeidsformer",
+        "dokumentasjon_og_prosess",
+        "kollektiv_vs_individuell_praksis",
+        "kunstnerisk_risiko",
+        "materialvalg_som_metode",
+        "mediumspesifisitet",
+        "produksjonstempo_og_prosjektlogikk",
+        "teknologisk_produksjon",
+        "tverrfaglighet_og_hybridformer"
+      ],
+      "emne_affinities": [
+        "em_kunst_arbeidsformer_og_prosess",
+        "em_kunst_digital_offentlighet_og_resepsjon",
+        "em_kunst_distribusjon_og_plattformisering",
+        "em_kunst_konseptkunst_og_formalisme",
+        "em_kunst_kunstnerokonomi_og_prekaritet",
+        "em_kunst_representasjon_og_abstraksjon",
+        "em_kunst_teknologi_og_materialitet"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "kunstpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "artwork_or_institution_anchor_required": true,
+      "generator_constraints": {
+        "require_concrete_work_place_person_or_institution": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_kunst_"
+      }
+    },
+    {
+      "method_id": "met_kunst_offentlig_rom_analyse",
+      "title": "Offentlig rom-analyse",
+      "short_label": "Offentlig rom",
+      "description": "Analyse av kunst i byrom, parker, plasser og offentlige institusjoner som møte mellom estetikk, makt, publikum, minne og konflikt.",
+      "best_for_emne_kinds": [
+        "stedlig",
+        "publikumsanalytisk",
+        "maktanalytisk"
+      ],
+      "data_forms": [
+        "monument",
+        "offentlig kunst",
+        "skulpturpark",
+        "plass",
+        "park",
+        "byrom",
+        "utsmykning"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "kunst_publikum_offentlighet",
+        "kunst_makt_legitimitet",
+        "kunst_estetisk_sprak_form"
+      ],
+      "progression_stage": "full_ladder",
+      "good_for_place_types": [
+        "offentlig_kunst",
+        "skulpturpark",
+        "plass",
+        "park",
+        "monument",
+        "rådhus"
+      ],
+      "question_moves": [
+        "read art in public space",
+        "connect artwork to site and audience",
+        "identify memory or conflict",
+        "compare permanent and temporary public art"
+      ],
+      "method_use_note": "Brukes når kunstens plassering i offentlig rom er sentral.",
+      "rotation_note": "Må forankres i konkret verk, monument, sted eller publikumsmøte.",
+      "hook_affinities": [
+        "deltakende_praksiser",
+        "klasse_og_kulturell_kapital",
+        "kunst_og_politikk",
+        "kunst_som_sosial_moteplass",
+        "mot_offentligheter",
+        "offentlig_kunst_og_byrom",
+        "publikumssegmentering",
+        "resepsjon_og_fortolkning",
+        "subkulturell_legitimitet",
+        "tilgjengelighet_og_terskler"
+      ],
+      "emne_affinities": [
+        "em_kunst_institusjonskritikk_og_representasjon",
+        "em_kunst_offentlig_kunst_monumenter",
+        "em_kunst_politisk_kunst_aktivisme",
+        "em_kunst_publikum_klasse_og_kapital"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "kunstpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "artwork_or_institution_anchor_required": true,
+      "generator_constraints": {
+        "require_concrete_work_place_person_or_institution": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_kunst_"
+      }
+    },
+    {
+      "method_id": "met_kunst_plattformanalyse",
+      "title": "Plattformanalyse",
+      "short_label": "Plattform",
+      "description": "Analyse av hvordan digitale plattformer, algoritmer, synlighetslogikk og oppmerksomhetsøkonomi påvirker kunstens distribusjon og mottakelse.",
+      "best_for_emne_kinds": [
+        "digital",
+        "maktanalytisk",
+        "distribusjonsanalytisk"
+      ],
+      "data_forms": [
+        "plattform",
+        "algoritmisk feed",
+        "digital kuratering",
+        "sosiale medier",
+        "nettgalleri",
+        "visningsstatistikk"
+      ],
+      "course_level_fit": [
+        "avansert"
+      ],
+      "coverage_domains": [
+        "kunst_publikum_offentlighet",
+        "kunst_felt_institusjon"
+      ],
+      "progression_stage": "advanced",
+      "good_for_place_types": [
+        "digital_plattform",
+        "digitalt_kunstarkiv",
+        "mediekunstinstitusjon"
+      ],
+      "question_moves": [
+        "compare algorithmic and curatorial visibility",
+        "read platform as institution",
+        "identify attention economy",
+        "ask who becomes visible"
+      ],
+      "method_use_note": "Brukes når plattformen selv fungerer som kuratorisk eller distribusjonell struktur.",
+      "rotation_note": "Brukes sparsomt og bare med tydelig digital case.",
+      "hook_affinities": [
+        "digital_offentlighet",
+        "plattformisering_og_digitale_institusjoner"
+      ],
+      "emne_affinities": [
+        "em_kunst_digital_offentlighet_og_resepsjon",
+        "em_kunst_distribusjon_og_plattformisering",
+        "em_kunst_publikum_klasse_og_kapital",
+        "em_kunst_teknologi_og_materialitet"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "kunstpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "artwork_or_institution_anchor_required": true,
+      "generator_constraints": {
+        "require_concrete_work_place_person_or_institution": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_kunst_"
+      }
+    },
+    {
+      "method_id": "met_kunst_praksis_og_prosessanalyse",
+      "title": "Praksis- og prosessanalyse",
+      "short_label": "Praksis/prosess",
+      "description": "Analyse av hvordan kunst utvikles gjennom idéarbeid, skisser, prøving, dokumentasjon, verksted, prosess og kollektiv eller individuell praksis.",
+      "best_for_emne_kinds": [
+        "produksjonsanalytisk",
+        "metodisk",
+        "materialanalytisk"
+      ],
+      "data_forms": [
+        "skisser",
+        "atelier",
+        "verksted",
+        "prosessdokumentasjon",
+        "kunstnerintervju",
+        "produksjonsnotat"
+      ],
+      "course_level_fit": [
+        "grunnkurs",
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "kunst_produksjon_praksis",
+        "kunst_estetisk_sprak_form"
+      ],
+      "progression_stage": "full_ladder",
+      "good_for_place_types": [
+        "atelier",
+        "kunstskole",
+        "verksted",
+        "studio",
+        "kunstnerfellesskap",
+        "produksjonsrom"
+      ],
+      "question_moves": [
+        "read process before result",
+        "connect method to final form",
+        "identify invisible artistic labor",
+        "compare individual and collective practice"
+      ],
+      "method_use_note": "Brukes når kunstverket skal forstås som arbeid og prosess, ikke bare som ferdig objekt.",
+      "rotation_note": "Særlig nyttig for kunstnere, atelierer, kunstskoler og produksjonssteder.",
+      "hook_affinities": [
+        "arbeidsvilkar_og_prekaritet",
+        "atelierlogikk_og_arbeidsformer",
+        "diy_og_selvorganisering",
+        "dokumentasjon_og_prosess",
+        "kollektiv_vs_individuell_praksis",
+        "kunstnerisk_risiko",
+        "kunstutdanning_og_rekruttering",
+        "materialvalg_som_metode",
+        "produksjonstempo_og_prosjektlogikk",
+        "teknologisk_produksjon",
+        "tverrfaglighet_og_hybridformer"
+      ],
+      "emne_affinities": [
+        "em_kunst_arbeidsformer_og_prosess",
+        "em_kunst_digital_offentlighet_og_resepsjon",
+        "em_kunst_distribusjon_og_plattformisering",
+        "em_kunst_kunstnerokonomi_og_prekaritet",
+        "em_kunst_kvalitet_kritikk_og_symbolsk_kapital",
+        "em_kunst_politisk_kunst_aktivisme",
+        "em_kunst_teknologi_og_materialitet",
+        "em_kunst_undergrunn_selvorganisert",
+        "em_kunst_utdanning_og_rekruttering"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "kunstpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "artwork_or_institution_anchor_required": true,
+      "generator_constraints": {
+        "require_concrete_work_place_person_or_institution": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_kunst_"
+      }
+    },
+    {
+      "method_id": "met_kunst_resepsjonsanalyse",
+      "title": "Resepsjonsanalyse",
+      "short_label": "Resepsjon",
+      "description": "Analyse av hvordan publikum, kritikere, medier, digitale brukere eller lokalmiljøer mottar, tolker og forhandler betydningen av kunst.",
+      "best_for_emne_kinds": [
+        "publikumsanalytisk",
+        "diskursiv",
+        "sosial"
+      ],
+      "data_forms": [
+        "kritikk",
+        "publikumsrespons",
+        "debatt",
+        "kommentarer",
+        "besøkstall",
+        "formidlingstekst"
+      ],
+      "course_level_fit": [
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "kunst_publikum_offentlighet",
+        "kunst_makt_legitimitet"
+      ],
+      "progression_stage": "advanced",
+      "good_for_place_types": [
+        "museum",
+        "kunsthall",
+        "offentlig_kunst",
+        "skulpturpark",
+        "digital_plattform"
+      ],
+      "question_moves": [
+        "compare intended and received meaning",
+        "identify audience threshold",
+        "connect reception to place",
+        "read conflict in public response"
+      ],
+      "method_use_note": "Brukes når mottakelsen er en del av kunstens betydning.",
+      "rotation_note": "Krev dokumentert resepsjon eller tydelig publikumssituasjon.",
+      "hook_affinities": [
+        "deltakende_praksiser",
+        "digital_offentlighet",
+        "distribusjonsinfrastruktur",
+        "klasse_og_kulturell_kapital",
+        "kunst_og_politikk",
+        "kunst_som_sosial_moteplass",
+        "mot_offentligheter",
+        "offentlig_kunst_og_byrom",
+        "plattformisering_og_digitale_institusjoner",
+        "publikumssegmentering",
+        "resepsjon_og_fortolkning",
+        "subkulturell_legitimitet",
+        "tilgjengelighet_og_terskler"
+      ],
+      "emne_affinities": [
+        "em_kunst_digital_offentlighet_og_resepsjon",
+        "em_kunst_distribusjon_og_plattformisering",
+        "em_kunst_institusjoner_kanon",
+        "em_kunst_institusjonskritikk_og_representasjon",
+        "em_kunst_offentlig_kunst_monumenter",
+        "em_kunst_politisk_kunst_aktivisme",
+        "em_kunst_publikum_klasse_og_kapital",
+        "em_kunst_teknologi_og_materialitet"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "kunstpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "artwork_or_institution_anchor_required": true,
+      "generator_constraints": {
+        "require_concrete_work_place_person_or_institution": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_kunst_"
+      }
+    },
+    {
+      "method_id": "met_kunst_stedsspesifikk_analyse",
+      "title": "Stedsspesifikk analyse",
+      "short_label": "Stedsspesifikk",
+      "description": "Analyse av hvordan et kunstverk er laget for, påvirket av eller uløselig knyttet til et bestemt sted, rom, landskap eller institusjon.",
+      "best_for_emne_kinds": [
+        "stedlig",
+        "materialanalytisk",
+        "publikumsanalytisk"
+      ],
+      "data_forms": [
+        "site-specific verk",
+        "offentlig kunst",
+        "installasjon",
+        "skulpturpark",
+        "romlig verk",
+        "byrom"
+      ],
+      "course_level_fit": [
+        "mellomnivå",
+        "avansert"
+      ],
+      "coverage_domains": [
+        "kunst_publikum_offentlighet",
+        "kunst_produksjon_praksis",
+        "kunst_estetisk_sprak_form"
+      ],
+      "progression_stage": "advanced",
+      "good_for_place_types": [
+        "offentlig_kunst",
+        "skulpturpark",
+        "park",
+        "plass",
+        "museum",
+        "installasjon"
+      ],
+      "question_moves": [
+        "connect work to site",
+        "ask what changes if the work is moved",
+        "read landscape or room as part of work",
+        "compare site-specific and transferable art"
+      ],
+      "method_use_note": "Brukes når stedet ikke bare er visningsflate, men del av verkets mening.",
+      "rotation_note": "Ikke bruk for kunst som bare står et sted uten stedlig kobling.",
+      "hook_affinities": [
+        "deltakende_praksiser",
+        "klasse_og_kulturell_kapital",
+        "kunst_som_sosial_moteplass",
+        "mot_offentligheter",
+        "offentlig_kunst_og_byrom",
+        "publikumssegmentering",
+        "resepsjon_og_fortolkning",
+        "subkulturell_legitimitet",
+        "tilgjengelighet_og_terskler"
+      ],
+      "emne_affinities": [
+        "em_kunst_offentlig_kunst_monumenter",
+        "em_kunst_politisk_kunst_aktivisme",
+        "em_kunst_publikum_klasse_og_kapital"
+      ],
+      "canonical_status": "canonical",
+      "registry_version": "kunstpensum_v4_5",
+      "canonical_file_role": "active",
+      "case_gate_required": true,
+      "method_gate_required": true,
+      "external_claim_basis_required": true,
+      "artwork_or_institution_anchor_required": true,
+      "generator_constraints": {
+        "require_concrete_work_place_person_or_institution": true,
+        "require_external_claim_basis": true,
+        "do_not_generate_from_method_label_only": true,
+        "require_emne_prefix": "em_kunst_"
+      }
+    }
+  ]
+}

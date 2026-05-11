@@ -1,0 +1,268 @@
+{
+  "version": "v5.1-source-priority-patch-kunst",
+  "subject_id": "kunst",
+  "subject_title": "Kunst & kultur",
+  "scope": "oslo_og_omegn",
+  "purpose": "Stramme inn quizgeneratoren for Kunst & kultur slik at konkrete verk, kunstnere, institusjoner, utstillinger, samlinger, offentlig kunst, form, materiale og dokumenterte kunstfaglige kilder dominerer synlig spørsmålsinnhold. Fagkart, methods, emner, emnemapping og pensum skal styre struktur, metode, teori og progresjon, men ikke fungere som hovedkilde til faktapåstander.",
+  "canonical_inputs": {
+    "fagkart": "fagkart_kunst_canonical_v4_5.json",
+    "methods": "methods_kunst_canonical_v4_5.json",
+    "emner": "emner_kunst_canonical_v4_5.json",
+    "emnemapping": "emnemapping_kunst_canonical_v4_5.json",
+    "pensum": "kunstpensum_canonical_v4_5.json",
+    "domain_count": 6,
+    "emne_count": 20,
+    "method_count": 21,
+    "mapping_count": 20,
+    "topic_hook_count": 60
+  },
+  "hard_rules": {
+    "source_dominance_rule": "Eksterne kunstfaglige kilder, konkrete verk, institusjonssider, kataloger, samlingsdata, utstillingshistorikk, kunstnertekster, kritikk og dokumentert resepsjon skal dominere det synlige faktainnholdet i kunstquizzer. Canonical-filene er styringsfiler, ikke faktakilde.",
+    "canonical_files_are_guides_not_content": true,
+    "external_art_source_first_all_sets": true,
+    "minimum_external_source_ratio_by_set": {
+      "1": 0.85,
+      "2": 0.85,
+      "3": 0.75,
+      "4": 0.75,
+      "5": 0.7,
+      "6": 0.7,
+      "7": 0.75,
+      "8": 0.75
+    },
+    "internal_file_only_questions_max_per_quiz": 0.05,
+    "internal_file_only_questions_allowed_only_for": [
+      "ren observasjon av synlig verk, form, materiale, plassering eller offentlig kunst på stedet",
+      "validering av metadata, kategori eller spørsmålslag",
+      "nødfallback når ekstern kilde ikke finnes, og dette loggføres eksplisitt"
+    ],
+    "question_seed_priority": [
+      "konkrete verk, kunstnere, institusjoner, utstillinger, samlinger eller offentlig kunst",
+      "offisielle museum-, galleri-, akademi-, arkiv- eller institusjonssider",
+      "katalogtekster, veggtekster, samlingsnotater og kuratoriske tekster",
+      "kunsthistorisk faglitteratur, monografier, essays og forskningskilder",
+      "dokumentert kunstkritikk og resepsjon",
+      "kunstnertekster, intervjuer og prosessdokumentasjon",
+      "stedsdata/persondata i appen",
+      "fagkart, methods, emner, emnemapping og pensum som styring – ikke faktakilde"
+    ],
+    "kunst_question_must_start_from": [
+      "konkret kunstverk",
+      "navngitt kunstner eller kunstnergruppe",
+      "kunstinstitusjon, museum, galleri, kunsthall, akademi eller samling",
+      "utstilling, kuratorisk valg eller samlingspresentasjon",
+      "synlig form, materiale, medium, skala, symbol eller estetisk strategi",
+      "offentlig kunstverk, monument eller kunst i byrom",
+      "dokumentert kritikk, resepsjon, kontrovers eller publikumsmøte",
+      "kunsthistorisk epoke, brudd eller kanonisering forankret i verk/sted"
+    ],
+    "forbidden_generation_patterns": [
+      "Ikke generer synlige spørsmål direkte fra emne-, hook-, metode- eller teorinavn.",
+      "Ikke spør generisk om kunstteori uten konkret verk, sted, institusjon, kunstner eller kilde.",
+      "Ikke gjør et sted til kunst bare fordi det er pent, gammelt, estetisk eller kulturelt interessant.",
+      "Ikke klassifiser musikk, teater, film/TV, media, historie, byarkitektur, næringsliv eller politikk som kunst når kunst bare er sekundærlag.",
+      "Ikke bruk em_by_*, em_his_*, em_media_*, em_musikk_*, em_pop_*, em_vit_*, em_pol_* eller em_naering_* som hoved-emne_ids i places_kunst eller people_kunst."
+    ],
+    "required_emne_prefix": "em_kunst_",
+    "blocked_emne_prefixes_for_kunst_files": [
+      "em_by_",
+      "em_his_",
+      "em_media_",
+      "em_musikk_",
+      "em_pop_",
+      "em_vit_",
+      "em_pol_",
+      "em_naering_"
+    ],
+    "people_kunst_rule": "people_kunst skal inneholde personer der hovedrollen er kunstner, billedkunstner, skulptør, kurator, kunstkritiker, kunstinstitusjonsbygger, kunstteoretiker eller sentral aktør i kunstfeltet. Personer der hovedrollen er musikk, teater, film, litteratur, media, politikk eller vitenskap skal primært ligge i disse kategoriene, med kunst som sekundært tag bare der det er relevant.",
+    "places_kunst_rule": "places_kunst skal inneholde steder der hovedrollen er kunstverk, offentlig kunst, kunstmuseum, galleri, kunsthall, kunstskole, atelier, kunstnerisk produksjonssted, skulpturpark, samling eller kunstfaglig institusjon. Rene musikk-, teater-, film-, media-, historie- eller byarkitektursteder skal ikke presses inn i kunst."
+  },
+  "soft_preferences": {
+    "preferred_external_source_mix_per_place": [
+      "minst én offisiell institusjons-, museum-, galleri-, arkiv- eller samlingskilde",
+      "minst én kunsthistorisk, kuratorisk, katalog- eller kritikkilde",
+      "minst én konkret verk-/kunstner-/utstillingskilde når quiz handler om verk eller person"
+    ],
+    "preferred_question_build_path": "kunstfaglig kilde eller konkret verk -> presist claim -> sted/person/verk/institusjon -> metode/emne -> teori",
+    "preferred_role_of_canonical_files": [
+      "velge riktig em_kunst_*",
+      "velge relevant kunstmetode",
+      "styre om spørsmålet bør starte i verk, sted, institusjon, form, publikum eller felt",
+      "spre teorier, tenkere, verk, steder og metoder",
+      "unngå kategorirot mellom kunst, musikk, teater, film, media, historie og by",
+      "unngå teorioverstyring der kunstverket eller stedet blir borte"
+    ],
+    "preferred_question_surfaces": [
+      "work-first",
+      "institution-first",
+      "practice-first",
+      "public-first",
+      "history-of-art-first",
+      "work-or-place-first_then_named_theorist"
+    ],
+    "preferred_norwegian_theory_path": "Når relevant norsk kunsthistorisk eller kunstsosiologisk teori finnes, kan den brukes i senere sett, men bare etter at verk/sted/institusjon allerede er etablert."
+  },
+  "set_guidance": {
+    "1": {
+      "name": "grunnfakta_verk_sted_institusjon",
+      "dominant_driver": "ekstern kilde, konkret verk, institusjon, kunstner, sted eller synlig offentlig kunst",
+      "canonical_role": "lett styring av emne og metode",
+      "allowed_methods": [
+        "met_kunst_formanalyse",
+        "met_kunst_institusjonsanalyse",
+        "met_kunst_kunsthistorisk_kontekstualisering",
+        "met_kunst_offentlig_rom_analyse"
+      ],
+      "question_style": "enkel gjenkjenning, verk/sted/person, institusjonsrolle, synlig form, materiale, plassering"
+    },
+    "2": {
+      "name": "form_materiale_og_medium",
+      "dominant_driver": "konkret verk, synlig form, materiale, medium, skala, stil eller symbol",
+      "canonical_role": "lett til middels metodeføring",
+      "allowed_methods": [
+        "met_kunst_formanalyse",
+        "met_kunst_materialitetsanalyse",
+        "met_kunst_ikonografisk_analyse",
+        "met_kunst_kontekstualisering"
+      ],
+      "question_style": "formbeskrivelse, materiale/medium, symbol, representasjon/abstraksjon, kontekst uten ren smaksvurdering"
+    },
+    "3": {
+      "name": "institusjon_kuratering_og_samling",
+      "dominant_driver": "institusjonssider, samlingsdata, katalogtekst, utstilling og kuratorisk valg",
+      "canonical_role": "høy metode- og emnestyring tillatt",
+      "allowed_methods": [
+        "met_kunst_institusjonsanalyse",
+        "met_kunst_kuratorisk_analyse",
+        "met_kunst_kanon_og_arkivanalyse",
+        "met_kunst_feltanalyse"
+      ],
+      "question_style": "hvordan institusjon, samling, utstilling eller kuratorisk grep skaper synlighet og legitimitet"
+    },
+    "4": {
+      "name": "produksjon_praksis_og_arbeid",
+      "dominant_driver": "kunstnerisk praksis, atelier, verksted, materialvalg, teknologi, prosess og dokumentert produksjon",
+      "canonical_role": "middels til høy metodeføring",
+      "allowed_methods": [
+        "met_kunst_praksis_og_prosessanalyse",
+        "met_kunst_atelier_og_arbeidsanalyse",
+        "met_kunst_materialitetsanalyse",
+        "met_kunst_konseptanalyse"
+      ],
+      "question_style": "kunst som arbeid, prosess, usynlig produksjon, teknologi, metode og kunstnerisk valg"
+    },
+    "5": {
+      "name": "publikum_offentlighet_og_byrom",
+      "dominant_driver": "offentlig kunst, monument, museumsmøte, publikumsrom, resepsjon og stedsspesifikk kunst",
+      "canonical_role": "høy offentlighets- og resepsjonsstyring tillatt",
+      "allowed_methods": [
+        "met_kunst_offentlig_rom_analyse",
+        "met_kunst_stedsspesifikk_analyse",
+        "met_kunst_resepsjonsanalyse",
+        "met_kunst_kontekstualisering"
+      ],
+      "question_style": "kunst i offentlig rom, publikumsterskler, resepsjon, stedsspesifikk mening og konflikt"
+    },
+    "6": {
+      "name": "makt_kanon_representasjon",
+      "dominant_driver": "kilder om kanon, samling, kritikk, representasjon, institusjonskritikk, kvalitet og symbolsk kapital",
+      "canonical_role": "høy teoristyring tillatt, men bare etter konkret case",
+      "allowed_methods": [
+        "met_kunst_feltanalyse",
+        "met_kunst_institusjonskritisk_analyse",
+        "met_kunst_kritikk_og_diskursanalyse",
+        "met_kunst_kanon_og_arkivanalyse"
+      ],
+      "question_style": "hvem får legitimitet, hvem vises, hvem mangler, hva regnes som kvalitet, hvordan virker kanon"
+    },
+    "7": {
+      "name": "kunsthistorie_brudd_og_sammenligning",
+      "dominant_driver": "kunsthistoriske kilder, verk-/institusjonshistorie, epoker, avantgarde, brudd og referanser",
+      "canonical_role": "middels til høy teoriføring",
+      "allowed_methods": [
+        "met_kunst_kunsthistorisk_kontekstualisering",
+        "met_kunst_komparativ_verkanalyse",
+        "met_kunst_kanon_og_arkivanalyse",
+        "met_kunst_kritikk_og_diskursanalyse"
+      ],
+      "question_style": "sammenlign verk, epoker, kanon, brudd, tradisjon, referanse, originalitet og rekontekstualisering"
+    },
+    "8": {
+      "name": "digital_sirkulasjon_teori_og_kritikk",
+      "dominant_driver": "digitale kunstarkiver, plattformer, dokumentert digital resepsjon, mediekunst og distribusjonsformer",
+      "canonical_role": "høy teori tillatt, men med konkret digitalt eller institusjonelt case",
+      "allowed_methods": [
+        "met_kunst_digital_sirkulasjonsanalyse",
+        "met_kunst_plattformanalyse",
+        "met_kunst_resepsjonsanalyse",
+        "met_kunst_konseptanalyse"
+      ],
+      "question_style": "digital synlighet, algoritmisk/plattformbasert distribusjon, reproduksjon, remiks, resepsjon og nye institusjonsformer"
+    }
+  },
+  "kunst_category_guardrails": {
+    "accept_as_kunst_primary_when": [
+      "stedet eller personen har kunstfaglig hovedrolle",
+      "det finnes konkret kunstverk, samling, utstilling, museum, galleri, kunsthall, atelier, kunstskole eller offentlig kunst",
+      "spørsmål kan bygges fra verk, form, materiale, medium, institusjon, resepsjon eller kunsthistorisk kilde",
+      "kunstfeltets logikk er primær, ikke bare historisk, arkitektonisk eller kulturell bakgrunn"
+    ],
+    "do_not_accept_as_kunst_primary_when": [
+      "hovedrollen er musikk, scenekunst, film/TV, media, litteratur, sport, politikk, næringsliv, vitenskap, historie eller byarkitektur",
+      "kunst bare er dekor eller sekundærlag",
+      "stedet er estetisk pent, men ikke kunstfaglig dokumentert",
+      "personen er kulturpersonlighet, men ikke kunstfeltaktør"
+    ],
+    "secondary_kunst_tag_allowed": true
+  },
+  "validator_additions": [
+    "Avvis kunstquiz hvis synlig innhold primært er parafrase av fagkart, emner, methods eller mapping.",
+    "Avvis spørsmål som kan spores bare til emne-/hook-/metodenavn og ikke til konkret verk, sted, kunstner, institusjon, samling, resepsjon eller ekstern kilde.",
+    "Avvis hoved-emne_ids i places_kunst eller people_kunst som ikke starter med em_kunst_*.",
+    "Flagg poster der hovedkategori ser ut til å være musikk, teater, film/TV, media, historie, by, vitenskap, politikk, sport eller næringsliv.",
+    "Logg per spørsmål source_origin som external, mixed, observed_form, observed_site eller internal_only.",
+    "Flagg quiz der internal_only overstiger 5 prosent.",
+    "Flagg teorioverstyring når navngitt teoretiker kommer før verk/sted/institusjon/form er etablert.",
+    "Flagg formspørsmål som blir rene smaksspørsmål uten synlig form, materiale, medium eller kilde.",
+    "Flagg offentlig kunst-spørsmål som ikke nevner verk, sted, plassering, publikum eller konflikt."
+  ],
+  "generation_metadata_additions": {
+    "required_per_question_fields_recommended": [
+      "source_origin",
+      "claim_basis",
+      "guidance_basis",
+      "method_id",
+      "emne_id",
+      "art_anchor_type",
+      "source_note"
+    ],
+    "source_origin_values": [
+      "external",
+      "mixed",
+      "observed_form",
+      "observed_site",
+      "internal_only"
+    ],
+    "art_anchor_type_values": [
+      "artwork",
+      "artist",
+      "institution",
+      "collection",
+      "exhibition",
+      "public_art_site",
+      "material_or_medium",
+      "visible_form",
+      "curatorial_source",
+      "documented_reception",
+      "art_historical_source",
+      "digital_platform"
+    ],
+    "claim_basis_definition": "Den konkrete kunstfaglige påstanden fra ekstern kilde, verk, institusjon, samling, katalog, kritikk eller dokumentert observasjon.",
+    "guidance_basis_definition": "Hvilket em_kunst_*, hook, metode eller teorispor som styrte spørsmålets form uten å levere faktapåstanden.",
+    "method_id_definition": "Én method_id fra methods_kunst_canonical_v4_5.json brukt til å forme spørsmålet.",
+    "emne_id_definition": "Én em_kunst_* fra emner_kunst_canonical_v4_5.json brukt som hovedemne.",
+    "source_note_definition": "Kort kildebeskrivelse som sier hvilken type kunstfaglig kilde som er brukt."
+  },
+  "diagnosis_note": "Når mange filer er opplastet, må modellen ikke overvekte canonical systemfiler bare fordi de er mange. For kunst skal konkrete kunstfaglige kilder, verk, institusjoner, samlinger, kataloger, kritikk, resepsjon og synlig form dominere synlig quizinnhold. Fagkart, methods, emner, emnemapping og pensum er styring.",
+  "migration_note": "Eksisterende places_kunst og people_kunst bør migreres til em_kunst_* bare etter at hvert objekt er lest. Det må samtidig sjekkes at hovedkategori faktisk er kunst og ikke musikk, teater, film, media, historie, by eller annet fag."
+}
