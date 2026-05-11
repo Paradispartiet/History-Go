@@ -9,6 +9,7 @@
   const SPRAK_MANIFEST_URL = "data/leksikon/sprak/manifest.json";
   let initPromise = null;
   let sprakManifestPromise = null;
+  let currentLeksikonContext = null;
   const sprakByPlace = Object.create(null);
 
   function esc(value) {
@@ -94,31 +95,29 @@
 
   function renderExternalLinks(place, article) {
     const links = normalizeExternalLinks(place, article);
-    if (!links.length) return `<section class="pc-leksikon-section"><h3>Eksterne lenker</h3><p>Ingen eksterne lenker ennå</p></section>`;
+    if (!links.length) return `<section class="pc-leksikon-section"><p>Ingen kilder eller lenker ennå.</p></section>`;
+    const typeLabels = {
+      official: "Offisiell nettside",
+      wikipedia: "Wikipedia",
+      stats: "Statistikk",
+      results: "Resultater",
+      source: "Kilde",
+      archive: "Arkiv",
+      other: "Annen lenke"
+    };
 
-    const groups = [
-      { title: "Statistikk/resultater", types: ["stats", "results"] },
-      { title: "Offisiell nettside", types: ["official"] },
-      { title: "Wikipedia", types: ["wikipedia"] },
-      { title: "Andre kilder", types: ["source", "archive", "other"] }
-    ];
-
-    const parts = groups.map((group) => {
-      const rows = links.filter(link => group.types.includes(link.type));
-      if (!rows.length) return "";
-      return `
-        <article class="pc-leksikon-item">
-          <strong>${esc(group.title)}</strong>
-          <ul>
-            ${rows.map((link) => `
-              <li><a href="${esc(link.url)}" target="_blank" rel="noopener noreferrer">${esc(link.label)}</a></li>
-            `).join("")}
-          </ul>
-        </article>
-      `;
-    }).filter(Boolean).join("");
-
-    return section("Eksterne lenker", parts);
+    return `
+      <section class="pc-leksikon-section">
+        <div class="pc-leksikon-list">
+          ${links.map((link) => `
+            <a class="pc-leksikon-entry" href="${esc(link.url)}" target="_blank" rel="noopener noreferrer">
+              <span class="pc-leksikon-entry-title">${esc(link.label)}</span>
+              <span class="pc-leksikon-entry-meta">${esc(typeLabels[link.type] || "Ekstern lenke")}</span>
+            </a>
+          `).join("")}
+        </div>
+      </section>
+    `;
   }
 
   function tagListHtml(values) {
@@ -175,44 +174,26 @@
         <div class="pc-leksikon-kicker">Leksikon</div>
         <h2 class="hg-popup-name">${esc(articleTitle(article))}</h2>
         <section class="pc-leksikon-section">
-          <h3>Innhold</h3>
           <div class="pc-leksikon-list">
-            <button class="pc-leksikon-entry" type="button" data-leksikon-detail="place">
-              <span class="pc-leksikon-entry-title">Sted</span>
-            </button>
-            <button class="pc-leksikon-entry" type="button" data-leksikon-detail="links">
-              <span class="pc-leksikon-entry-title">Kilder / lenker</span>
-              <span class="pc-leksikon-entry-meta">${sourceLinks.length ? `${sourceLinks.length} oppføringer` : "Ingen oppføringer ennå"}</span>
-            </button>
-            <div class="pc-leksikon-item">
-              <strong>Personer</strong>
-              <div class="pc-leksikon-list">
-                ${persons.length
-                  ? persons.map((person, idx) => `<button class="pc-leksikon-entry" type="button" data-leksikon-detail="person" data-leksikon-item-index="${idx}"><span class="pc-leksikon-entry-title">${esc(person?.name || person?.title || person?.id || "Person")}</span></button>`).join("")
-                  : `<p>Ingen personoppføringer ennå.</p>`}
-              </div>
-            </div>
-            <div class="pc-leksikon-item">
-              <strong>Objekter</strong>
-              <div class="pc-leksikon-list">
-                ${objects.length
-                  ? objects.map((object, idx) => `<button class="pc-leksikon-entry" type="button" data-leksikon-detail="object" data-leksikon-item-index="${idx}"><span class="pc-leksikon-entry-title">${esc(object?.title || object?.name || object?.label || object?.id || "Objekt")}</span></button>`).join("")
-                  : `<p>Ingen objektoppføringer ennå.</p>`}
-              </div>
-            </div>
-            <div class="pc-leksikon-item">
-              <strong>${esc(sprakArticle?.title || "Språkleksikon")}</strong>
-              <div class="pc-leksikon-list">
-                ${sprakEntries.length
-                  ? sprakEntries.map((entry, idx) => `<button class="pc-leksikon-entry" type="button" data-leksikon-detail="sprak" data-leksikon-item-index="${idx}"><span class="pc-leksikon-entry-title">${esc(entry?.term || entry?.id || "Begrep")}</span>${entry?.type ? `<span class="pc-leksikon-entry-meta">${esc(entry.type)}</span>` : ""}</button>`).join("")
-                  : `<p>Ingen språkoppføringer ennå.</p>`}
-              </div>
-            </div>
+            <button class="pc-leksikon-entry" type="button" data-leksikon-detail="place"><span class="pc-leksikon-entry-title">Sted</span></button>
+            ${persons.length
+              ? persons.map((person, idx) => `<button class="pc-leksikon-entry" type="button" data-leksikon-detail="person" data-leksikon-item-index="${idx}"><span class="pc-leksikon-entry-title">Person: ${esc(person?.name || person?.title || person?.id || "Person")}</span>${person?.type ? `<span class="pc-leksikon-entry-meta">${esc(person.type)}</span>` : `<span class="pc-leksikon-entry-meta">Personer: ${persons.length} oppføringer</span>`}</button>`).join("")
+              : `<div class="pc-leksikon-entry"><span class="pc-leksikon-entry-title">Personer</span><span class="pc-leksikon-entry-meta">Ingen personoppføringer ennå</span></div>`}
+            ${objects.length
+              ? objects.map((object, idx) => `<button class="pc-leksikon-entry" type="button" data-leksikon-detail="object" data-leksikon-item-index="${idx}"><span class="pc-leksikon-entry-title">Objekt: ${esc(object?.title || object?.name || object?.label || object?.id || "Objekt")}</span>${object?.type ? `<span class="pc-leksikon-entry-meta">${esc(object.type)}</span>` : `<span class="pc-leksikon-entry-meta">Objekter: ${objects.length} oppføringer</span>`}</button>`).join("")
+              : `<div class="pc-leksikon-entry"><span class="pc-leksikon-entry-title">Objekter</span><span class="pc-leksikon-entry-meta">Ingen objektoppføringer ennå</span></div>`}
+            ${sprakEntries.length
+              ? sprakEntries.map((entry, idx) => `<button class="pc-leksikon-entry" type="button" data-leksikon-detail="sprak" data-leksikon-item-index="${idx}"><span class="pc-leksikon-entry-title">${esc(entry?.term || entry?.id || "Begrep")}</span>${entry?.type ? `<span class="pc-leksikon-entry-meta">${esc(entry.type)}</span>` : `<span class="pc-leksikon-entry-meta">Språkleksikon: ${sprakEntries.length} oppføringer</span>`}</button>`).join("")
+              : `<div class="pc-leksikon-entry"><span class="pc-leksikon-entry-title">Språkleksikon</span><span class="pc-leksikon-entry-meta">Ingen språkoppføringer ennå</span></div>`}
+            <button class="pc-leksikon-entry" type="button" data-leksikon-detail="links"><span class="pc-leksikon-entry-title">Kilder / lenker</span><span class="pc-leksikon-entry-meta">${sourceLinks.length} oppføringer</span></button>
           </div>
         </section>
-        <button class="reward-ok" data-close-popup>Lukk</button>
       </article>
     `;
+  }
+
+  function renderBackHeader() {
+    return `<button class="pc-leksikon-back" type="button" data-leksikon-back="1">← Leksikon</button>`;
   }
 
   async function renderDetailPopup(article, place, sprakArticle, detailType, itemIndex) {
@@ -224,13 +205,13 @@
       if (!person) return `<div class="pc-empty">Fant ikke personoppføringen.</div>`;
       return `
         <article class="pc-leksikon-article">
+          ${renderBackHeader()}
           <div class="pc-leksikon-kicker">Person</div>
           <h2 class="hg-popup-name">${esc(person?.name || person?.title || person?.id || "Person")}</h2>
           ${person?.type ? `<p class="hg-popup-desc">${esc(person.type)}</p>` : ""}
           ${paragraphBlockHtml(person?.desc || person?.description || person?.meaning)}
           ${detailRow("Kontekst", person?.context)}
           ${tagListHtml(person?.tags)}
-          <button class="reward-ok" data-leksikon-back="1">Tilbake til leksikon</button>
         </article>
       `;
     }
@@ -240,6 +221,7 @@
       if (!object) return `<div class="pc-empty">Fant ikke objektoppføringen.</div>`;
       return `
         <article class="pc-leksikon-article">
+          ${renderBackHeader()}
           <div class="pc-leksikon-kicker">Objekt</div>
           <h2 class="hg-popup-name">${esc(object?.title || object?.name || object?.label || object?.id || "Objekt")}</h2>
           ${object?.type ? `<p class="hg-popup-desc">${esc(object.type)}</p>` : ""}
@@ -247,7 +229,6 @@
           ${detailRow("Hvor", object?.where)}
           ${detailRow("Kontekst", object?.context)}
           ${tagListHtml(object?.tags)}
-          <button class="reward-ok" data-leksikon-back="1">Tilbake til leksikon</button>
         </article>
       `;
     }
@@ -257,6 +238,7 @@
       if (!entry) return `<div class="pc-empty">Fant ikke språkoppføringen.</div>`;
       return `
         <article class="pc-leksikon-article">
+          ${renderBackHeader()}
           <div class="pc-leksikon-kicker">Språkleksikon</div>
           <h2 class="hg-popup-name">${esc(entry?.term || entry?.id || "Begrep")}</h2>
           ${entry?.type ? `<p class="hg-popup-desc">${esc(entry.type)}</p>` : ""}
@@ -264,7 +246,6 @@
           ${detailRow("Kontekst", entry?.context)}
           ${entry?.linked_to ? detailRow("Tilknyttet", `${entry.linked_to.kind || "ukjent"}: ${entry.linked_to.id || "ukjent"}`) : ""}
           ${tagListHtml(entry?.tags)}
-          <button class="reward-ok" data-leksikon-back="1">Tilbake til leksikon</button>
         </article>
       `;
     }
@@ -272,10 +253,10 @@
     if (detailType === "links") {
       return `
         <article class="pc-leksikon-article">
+          ${renderBackHeader()}
           <div class="pc-leksikon-kicker">Kilder / lenker</div>
           <h2 class="hg-popup-name">${esc(articleTitle(article))}</h2>
           ${renderExternalLinks(place, article)}
-          <button class="reward-ok" data-leksikon-back="1">Tilbake til leksikon</button>
         </article>
       `;
     }
@@ -411,6 +392,7 @@
 
     return `
       <article class="pc-leksikon-article">
+        ${renderBackHeader()}
         <div class="pc-leksikon-kicker">Sted</div>
         <h2 class="hg-popup-name">${esc(articleTitle(article))}</h2>
         ${summary.one_liner ? `<p class="pc-leksikon-one-liner">${esc(summary.one_liner)}</p>` : ""}
@@ -425,7 +407,6 @@
         ${section("Spor og objekter", artifactsHtml)}
         ${section("Tolkning", interpretationHtml)}
         ${section("Klassifikasjon", tagListHtml([...(classification.tags || []), ...(classification.knagger || [])]))}
-        <button class="reward-ok" data-leksikon-back="1">Tilbake til leksikon</button>
       </article>
     `;
   }
@@ -449,6 +430,8 @@
   async function openPlace(placeId, index = 0, detailType = "", itemIndex = 0) {
     const articles = window.LEKSIKON_BY_PLACE?.[norm(placeId)] || [];
     const article = articles[Number(index) || 0];
+    const normalizedIndex = Number(index) || 0;
+    currentLeksikonContext = { placeId: norm(placeId), index: normalizedIndex };
 
     const popupFn = window.makePopup || (typeof makePopup === "function" ? makePopup : null);
     if (typeof popupFn === "function") {
@@ -546,13 +529,12 @@
   document.addEventListener("click", (event) => {
     const detailBtn = event.target.closest("[data-leksikon-detail]");
     if (!detailBtn) return;
-    const placeBtn = document.querySelector("[data-leksikon-place][data-leksikon-index]");
-    if (!placeBtn) return;
+    if (!currentLeksikonContext?.placeId) return;
     event.preventDefault();
     event.stopPropagation();
     void openPlace(
-      placeBtn.dataset.leksikonPlace,
-      placeBtn.dataset.leksikonIndex,
+      currentLeksikonContext.placeId,
+      currentLeksikonContext.index,
       detailBtn.dataset.leksikonDetail,
       detailBtn.dataset.leksikonItemIndex
     );
@@ -561,11 +543,10 @@
   document.addEventListener("click", (event) => {
     const backBtn = event.target.closest("[data-leksikon-back]");
     if (!backBtn) return;
-    const placeBtn = document.querySelector("[data-leksikon-place][data-leksikon-index]");
-    if (!placeBtn) return;
+    if (!currentLeksikonContext?.placeId) return;
     event.preventDefault();
     event.stopPropagation();
-    void openPlace(placeBtn.dataset.leksikonPlace, placeBtn.dataset.leksikonIndex);
+    void openPlace(currentLeksikonContext.placeId, currentLeksikonContext.index);
   });
 
   window.HGLeksikon = {
