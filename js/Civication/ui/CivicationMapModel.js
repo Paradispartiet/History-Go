@@ -24,11 +24,18 @@
 
   const CONNECTIONS = [["ullern","frogner"],["frogner","sentrum"],["sagene","grunerlokka"],["grunerlokka","sentrum"],["sentrum","gamle_oslo"],["gamle_oslo","alna"],["alna","stovner"],["sentrum","nordstrand"],["gamle_oslo","nordstrand"],["frogner","st_hanshaugen"],["st_hanshaugen","grunerlokka"],["grunerlokka","gamle_oslo"],["st_hanshaugen","sentrum"],["alna","sentrum"]];
   const LANDMARKS = [
-    {id:"radhus",kind:"power",district:"sentrum",offset:[-16,10]},{id:"oslo_s",kind:"transport",district:"sentrum",offset:[18,10]},{id:"akershus",kind:"fortress",district:"sentrum",offset:[-4,22]},
-    {id:"barcode",kind:"skyline",district:"gamle_oslo",offset:[15,4]},{id:"industri",kind:"industry",district:"alna",offset:[8,6]},{id:"logistikk",kind:"industry",district:"alna",offset:[-16,-8]},
-    {id:"ekeberg",kind:"green",district:"nordstrand",offset:[8,-2]},{id:"sagene_mill",kind:"industry",district:"sagene",offset:[10,8]},
-    {id:"kulturhus",kind:"culture",district:"grunerlokka",offset:[-12,10]},{id:"handelshus",kind:"commerce",district:"frogner",offset:[8,2]},
-    {id:"bibliotek",kind:"culture",district:"st_hanshaugen",offset:[8,4]},{id:"stovner_node",kind:"public",district:"stovner",offset:[-8,5]}
+    { id:"radhus", label:"Rådhus", kind:"power", visualType:"civic_twin_tower", district:"sentrum", offset:[-16,10], scale:1.18, priority:10, silhouette:"heavy_civic", material:"brick_stone", height:"mid", roof:"flat_twin", function:"public_power", landmarkClass:"major" },
+    { id:"oslo_s", label:"Oslo S", kind:"transport", visualType:"transport_hub", district:"sentrum", offset:[18,10], scale:1.12, priority:10, silhouette:"long_terminal", material:"steel_glass", height:"low", roof:"arched", function:"transit", landmarkClass:"major" },
+    { id:"akershus", label:"Akershus", kind:"fortress", visualType:"fortress", district:"sentrum", offset:[-4,22], scale:1.1, priority:9, silhouette:"fortified_low", material:"historic_stone", height:"low", roof:"bastion", function:"heritage_defense", landmarkClass:"major" },
+    { id:"barcode", label:"Barcode", kind:"skyline", visualType:"skyline_cluster", district:"gamle_oslo", offset:[15,4], scale:1.13, priority:9, silhouette:"vertical_cluster", material:"glass_office", height:"high", roof:"flat_modern", function:"commercial_core", landmarkClass:"major" },
+    { id:"industri", label:"Alna", kind:"industry", visualType:"industry_yard", district:"alna", offset:[8,6], scale:1.06, priority:8, silhouette:"hall_blocks", material:"steel_concrete", height:"low", roof:"sawtooth_mix", function:"industry", landmarkClass:"major" },
+    { id:"logistikk", label:"Alna", kind:"industry", visualType:"industry_yard", district:"alna", offset:[-16,-8], scale:0.95, priority:6, silhouette:"terminal", material:"steel_concrete", height:"low", roof:"flat", function:"logistics", landmarkClass:"minor" },
+    { id:"ekeberg", label:"Ekeberg", kind:"green", visualType:"green_ridge", district:"nordstrand", offset:[8,-2], scale:1.14, priority:8, silhouette:"terraced_green", material:"park_rock", height:"ridge", roof:"open", function:"green_relief", landmarkClass:"major" },
+    { id:"sagene_mill", label:"Sagene", kind:"industry", visualType:"old_industry_mill", district:"sagene", offset:[10,8], scale:1.0, priority:7, silhouette:"mill_chimney", material:"old_brick", height:"mid", roof:"pitched_factory", function:"heritage_industry", landmarkClass:"major" },
+    { id:"kulturhus", label:"Løkka", kind:"culture", visualType:"culture_building", district:"grunerlokka", offset:[-12,10], scale:0.96, priority:6, silhouette:"stage_house", material:"mixed_culture", height:"mid", roof:"angled", function:"culture_scene", landmarkClass:"minor" },
+    { id:"handelshus", label:"Frogner", kind:"commerce", visualType:"commerce_building", district:"frogner", offset:[8,2], scale:0.98, priority:6, silhouette:"classic_frontage", material:"plaster_stone", height:"mid", roof:"mansard_flat", function:"commerce", landmarkClass:"minor" },
+    { id:"bibliotek", label:"Bibliotek", kind:"culture", visualType:"public_node", district:"st_hanshaugen", offset:[8,4], scale:0.94, priority:5, silhouette:"calm_public", material:"civic_stone", height:"mid", roof:"gable_low", function:"library_culture", landmarkClass:"minor" },
+    { id:"stovner_node", label:"Stovner", kind:"public", visualType:"public_node", district:"stovner", offset:[-8,5], scale:0.95, priority:7, silhouette:"local_center", material:"civic_concrete", height:"low", roof:"flat", function:"public_local", landmarkClass:"major" }
   ];
 
   const OSLO_SKELETON = {
