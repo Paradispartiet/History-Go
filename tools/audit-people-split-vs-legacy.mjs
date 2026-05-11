@@ -4,9 +4,11 @@ import path from 'path';
 const root = process.cwd();
 const legacyPath = path.join(root, 'data/people.json');
 const peopleDir = path.join(root, 'data/people');
+const relationsPath = path.join(root, 'data/relations.json');
 const bootPath = path.join(root, 'js/boot.js');
 const reportJsonPath = path.join(root, 'reports/people-split-vs-legacy.json');
 const reportMdPath = path.join(root, 'reports/people-split-vs-legacy.md');
+const relationOnlyLegacyStubExclusions = new Set(['per_petterson']);
 
 function readText(filePath) {
   return fs.readFileSync(filePath, 'utf8');
@@ -100,6 +102,16 @@ function compareSimpleFields(legacyEntry, splitEntry) {
   return changed;
 }
 
+function extractRelationPersonIds() {
+  if (!fs.existsSync(relationsPath)) return new Set();
+  const relationRows = readJson(relationsPath);
+  if (!Array.isArray(relationRows)) return new Set();
+  const personIds = relationRows
+    .map((row) => row?.person || null)
+    .filter(Boolean);
+  return new Set(personIds);
+}
+
 function mdEscape(value) {
   return String(value ?? '').replace(/\|/g, '\\|');
 }
@@ -145,11 +157,23 @@ for (const row of splitRows) {
 
 const legacyIds = new Set(legacyIndex.byId.keys());
 const splitIds = new Set(splitById.keys());
+const relationPersonIds = extractRelationPersonIds();
 
-const onlyInLegacy = [...legacyIds]
+const onlyInLegacyCandidates = [...legacyIds]
   .filter((id) => !splitIds.has(id))
   .sort((a, b) => a.localeCompare(b, 'nb'))
   .map((id) => legacyIndex.byId.get(id)[0]);
+
+const relationOnlyLegacyStubs = onlyInLegacyCandidates.filter((person) => (
+  person.stub
+  && !person.category
+  && relationPersonIds.has(person.id)
+  && !relationOnlyLegacyStubExclusions.has(person.id)
+));
+
+const relationOnlyLegacyStubIds = new Set(relationOnlyLegacyStubs.map((person) => person.id));
+const onlyInLegacy = onlyInLegacyCandidates
+  .filter((person) => !relationOnlyLegacyStubIds.has(person.id));
 
 const onlyInSplit = [...splitIds]
   .filter((id) => !legacyIds.has(id))
@@ -196,6 +220,7 @@ const report = {
     legacy: fs.existsSync(legacyPath) ? 'data/people.json' : null,
     peopleDir: fs.existsSync(peopleDir) ? 'data/people' : null,
     boot: fs.existsSync(bootPath) ? 'js/boot.js' : null,
+    relations: fs.existsSync(relationsPath) ? 'data/relations.json' : null,
   },
   totals: {
     legacyPeople: legacyRows.length,
@@ -206,6 +231,7 @@ const report = {
     bootRuntimeFiles: runtimeFiles.length,
     inBoth: inBoth.length,
     onlyInLegacy: onlyInLegacy.length,
+    relationOnlyLegacyStubs: relationOnlyLegacyStubs.length,
     onlyInSplit: onlyInSplit.length,
     duplicateIdsAcrossSplitFiles: duplicateIdsAcrossSplitFiles.length,
     duplicateIdsInLegacy: duplicateIdsInLegacy.length,
@@ -220,6 +246,7 @@ const report = {
   bootFilesMissingOnDisk,
   invalidJsonFiles,
   onlyInLegacy,
+  relationOnlyLegacyStubs,
   onlyInSplit,
   inBoth,
   duplicateIdsAcrossSplitFiles,
@@ -237,6 +264,7 @@ md += '## Sammendrag\n\n';
 md += `- Legacy people-fil: ${report.sourceFiles.legacy || 'mangler'}\n`;
 md += `- People-mappe: ${report.sourceFiles.peopleDir || 'mangler'}\n`;
 md += `- Runtime-liste lest fra: ${report.sourceFiles.boot || 'mangler'}\n`;
+md += `- Relasjoner lest fra: ${report.sourceFiles.relations || 'mangler'}\n`;
 md += `- Legacy people: **${report.totals.legacyPeople}**\n`;
 md += `- Legacy unike ID-er: **${report.totals.legacyUniqueIds}**\n`;
 md += `- Split people: **${report.totals.splitPeople}**\n`;
@@ -245,6 +273,7 @@ md += `- Split-filer: **${report.totals.splitFiles}**\n`;
 md += `- Runtime-filer i boot.js: **${report.totals.bootRuntimeFiles}**\n`;
 md += `- ID-er i begge: **${report.totals.inBoth}**\n`;
 md += `- ID-er bare i legacy: **${report.totals.onlyInLegacy}**\n`;
+md += `- Legacy relation-only stubs: **${report.totals.relationOnlyLegacyStubs}**\n`;
 md += `- ID-er bare i split: **${report.totals.onlyInSplit}**\n`;
 md += `- Duplikate ID-er på tvers av split-filer: **${report.totals.duplicateIdsAcrossSplitFiles}**\n`;
 md += `- Split-filer ikke lastet av boot.js: **${report.totals.splitFilesNotLoadedByBoot}**\n`;
@@ -278,6 +307,15 @@ if (!onlyInLegacy.length) md += '- Ingen.\n\n';
 else {
   for (const person of onlyInLegacy) {
     md += `- ${person.id} | ${person.name || ''} | ${person.category || ''} | ${person.stub ? 'stub' : 'ikke-stub'}\n`;
+  }
+  md += '\n';
+}
+
+md += '## Legacy relation-only stubs (skal ikke flyttes)\n\n';
+if (!relationOnlyLegacyStubs.length) md += '- Ingen.\n\n';
+else {
+  for (const person of relationOnlyLegacyStubs) {
+    md += `- ${person.id} | ${person.name || ''} | ${person.stub ? 'stub' : 'ikke-stub'}\n`;
   }
   md += '\n';
 }
