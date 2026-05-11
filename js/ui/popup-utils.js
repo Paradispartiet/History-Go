@@ -134,18 +134,28 @@ window.showPlaceCardRoundPopup = function ({
   });
 
   currentPopup.querySelectorAll("[data-brand]").forEach(btn => {
-  btn.onclick = () => {
-    const brandId = String(btn.dataset.brand || "").trim();
-    if (!brandId) return;
+    btn.onclick = () => {
+      const brandId = String(btn.dataset.brand || "").trim();
+      if (!brandId) return;
 
-    if (typeof window.showBrandPopup === "function") {
-      closePopup();
-      window.showBrandPopup(brandId, place);
-    } else {
-      window.showToast?.("Brand-popup ikke lastet");
-    }
-  };
-});
+      if (typeof window.showBrandPopup === "function") {
+        closePopup();
+        window.showBrandPopup(brandId, place);
+      } else {
+        window.showToast?.("Brand-popup ikke lastet");
+      }
+    };
+  });
+
+  currentPopup.querySelectorAll("[data-social-action]").forEach(btn => {
+    btn.onclick = (e) => {
+      e.preventDefault();
+      const action = String(btn.dataset.socialAction || "").trim();
+      if (!action) return;
+      const placeId = String(place?.id || "").trim();
+      console.log(`[social] ${action}`, placeId);
+    };
+  });
 };
 
 
