@@ -1,6 +1,6 @@
 # People split vs legacy audit
 
-Generert: 2026-05-11T13:18:44.092Z
+Generert: 2026-05-11T13:48:04.888Z
 
 ## Sammendrag
 
@@ -10,12 +10,12 @@ Generert: 2026-05-11T13:18:44.092Z
 - Relasjoner lest fra: data/relations.json
 - Legacy people: **98**
 - Legacy unike ID-er: **98**
-- Split people: **165**
-- Split unike ID-er: **156**
+- Split people: **171**
+- Split unike ID-er: **162**
 - Split-filer: **13**
 - Runtime-filer i boot.js: **13**
-- ID-er i begge: **88**
-- ID-er bare i legacy: **6**
+- ID-er i begge: **94**
+- ID-er bare i legacy: **0**
 - Legacy relation-only stubs: **4**
 - ID-er bare i split: **68**
 - Duplikate ID-er på tvers av split-filer: **9**
@@ -27,17 +27,17 @@ Generert: 2026-05-11T13:18:44.092Z
 
 | Fil | Lastes av boot.js | People | Mangler ID | Duplikate ID-er i fil |
 |---|---:|---:|---:|---|
-| data/people/people_by.json | ja | 4 | 0 |  |
+| data/people/people_by.json | ja | 5 | 0 |  |
 | data/people/people_filantroper.json | ja | 4 | 0 |  |
 | data/people/people_historie.json | ja | 57 | 0 |  |
 | data/people/people_kunst.json | ja | 7 | 0 |  |
-| data/people/people_litteratur.json | ja | 33 | 0 |  |
+| data/people/people_litteratur.json | ja | 34 | 0 |  |
 | data/people/people_musikk.json | ja | 10 | 0 |  |
 | data/people/people_naeringsliv.json | ja | 9 | 0 |  |
-| data/people/people_natur.json | ja | 4 | 0 |  |
-| data/people/people_politikk.json | ja | 9 | 0 |  |
-| data/people/people_populaerkultur.json | ja | 6 | 0 |  |
-| data/people/people_sport.json | ja | 7 | 0 |  |
+| data/people/people_natur.json | ja | 5 | 0 |  |
+| data/people/people_politikk.json | ja | 10 | 0 |  |
+| data/people/people_populaerkultur.json | ja | 7 | 0 |  |
+| data/people/people_sport.json | ja | 8 | 0 |  |
 | data/people/people_subkultur.json | ja | 9 | 0 |  |
 | data/people/people_vitenskap.json | ja | 6 | 0 |  |
 
@@ -51,12 +51,7 @@ Generert: 2026-05-11T13:18:44.092Z
 
 ## ID-er bare i legacy `data/people.json`
 
-- arne_naess | Arne Næss | natur | ikke-stub
-- astrid_s | Astrid S | populærkultur | ikke-stub
-- haakon_vii | Haakon VII | politikk | ikke-stub
-- klanen | Klanen (VIF) | sport | ikke-stub
-- kong_christian_iv | Kong Christian IV | by | ikke-stub
-- per_petterson | Per Petterson |  | stub
+- Ingen.
 
 ## Legacy relation-only stubs (skal ikke flyttes)
 
@@ -152,6 +147,7 @@ Generert: 2026-05-11T13:18:44.092Z
 
 - alexander_rybak | Alexander Rybak | placeId | data/people/people_musikk.json
 - alf_proysen | Alf Prøysen | placeId | data/people/people_litteratur.json
+- astrid_s | Astrid S | category | data/people/people_populaerkultur.json
 - bjornstjerne_bjornson | Bjørnstjerne Bjørnson | category, placeId | data/people/people_historie.json, data/people/people_litteratur.json
 - camilla_collett | Camilla Collett | category, placeId | data/people/people_historie.json, data/people/people_litteratur.json
 - cecilie_loveid | Cecilie Løveid | placeId | data/people/people_litteratur.json
@@ -167,8 +163,10 @@ Generert: 2026-05-11T13:18:44.092Z
 - johan_sverdrup | Johan Sverdrup | category, placeId | data/people/people_historie.json, data/people/people_politikk.json
 - jonas_collett | Jonas Collett | placeId | data/people/people_litteratur.json
 - kirsten_flagstad | Kirsten Flagstad | placeId | data/people/people_musikk.json
+- klanen | Klanen (VIF) | placeId | data/people/people_sport.json
 - marit_bjorgen | Marit Bjørgen | placeId | data/people/people_sport.json
 - oskar_braaten | Oskar Braaten | placeId | data/people/people_litteratur.json
+- per_petterson | Per Petterson | category | data/people/people_litteratur.json
 - roald_amundsen | Roald Amundsen | category | data/people/people_historie.json
 - rolf_jacobsen | Rolf Jacobsen | placeId | data/people/people_litteratur.json
 - ronny_deila | Ronny Deila | placeId | data/people/people_sport.json
