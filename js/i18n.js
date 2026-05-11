@@ -113,15 +113,58 @@
     return fallback ?? key;
   }
 
+  function getOriginalPlaceText(place) {
+    const existing = place && place.__hgI18nOriginal;
+    if (existing && typeof existing === "object") return existing;
+
+    return {
+      name: place?.name,
+      desc: place?.desc,
+      popupDesc: place?.popupDesc,
+      popupdesc: place?.popupdesc
+    };
+  }
+
+  function applyOriginalPlaceText(out, original) {
+    if (!out || !original || typeof original !== "object") return out;
+
+    if (typeof original.name === "string" && original.name.trim()) out.name = original.name;
+    if (typeof original.desc === "string" && original.desc.trim()) out.desc = original.desc;
+    if (typeof original.popupDesc === "string" && original.popupDesc.trim()) out.popupDesc = original.popupDesc;
+    if (typeof original.popupdesc === "string" && original.popupdesc.trim()) out.popupdesc = original.popupdesc;
+
+    return out;
+  }
+
+  function attachOriginalPlaceText(out, original) {
+    if (!out || !original || typeof original !== "object") return out;
+
+    try {
+      Object.defineProperty(out, "__hgI18nOriginal", {
+        value: original,
+        enumerable: false,
+        configurable: true,
+        writable: true
+      });
+    } catch {
+      out.__hgI18nOriginal = original;
+    }
+
+    return out;
+  }
+
   function localizePlace(place) {
     if (!place || typeof place !== "object") return place;
     const id = String(place.id || "").trim();
     if (!id) return place;
 
+    const original = getOriginalPlaceText(place);
+    const out = attachOriginalPlaceText({ ...place }, original);
     const tr = currentPlaceDict && currentPlaceDict[id];
-    if (!tr || typeof tr !== "object") return place;
 
-    const out = { ...place };
+    if (!tr || typeof tr !== "object") {
+      return applyOriginalPlaceText(out, original);
+    }
 
     if (typeof tr.name === "string" && tr.name.trim()) out.name = tr.name;
     if (typeof tr.desc === "string" && tr.desc.trim()) out.desc = tr.desc;
