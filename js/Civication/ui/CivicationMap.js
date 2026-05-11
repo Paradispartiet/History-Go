@@ -38,10 +38,17 @@
       plaster_stone:{base:"#776756",face:"#c7b59b",roof:"#645340",window:"#f5e8d2"}, civic_stone:{base:"#5a5f68",face:"#98a1ab",roof:"#4b5058",window:"#dfe6ef"}, civic_concrete:{base:"#5d6661",face:"#9ca8a1",roof:"#4f5753",window:"#e3ece7"}
     };
     const shadow=(cx,cy,rx,ry)=>{const e=node("ellipse");e.setAttribute("cx",cx+1.8);e.setAttribute("cy",cy+ry+2.2);e.setAttribute("rx",rx);e.setAttribute("ry",ry);e.setAttribute("class","civi-map-building-shadow");shadowLayer.appendChild(e);};
-    const box=(cx,cy,wid,hei,p)=>{ const g=node("g"); const base=node("rect");base.setAttribute("x",cx-wid/2);base.setAttribute("y",cy-hei/2);base.setAttribute("width",wid);base.setAttribute("height",hei);base.setAttribute("fill",p.base);base.setAttribute("stroke","#1a2028");base.setAttribute("stroke-width","1"); const face=node("rect");face.setAttribute("x",cx-wid/2+1.6);face.setAttribute("y",cy-hei/2+1.8);face.setAttribute("width",wid-3.2);face.setAttribute("height",Math.max(hei*0.58,4));face.setAttribute("fill",p.face);face.setAttribute("opacity","0.92"); g.appendChild(base);g.appendChild(face); return g; };
+    
+    const detailLine=(x1,y1,x2,y2,klass="civi-map-building-detail")=>{const l=node("line");l.setAttribute("x1",x1);l.setAttribute("y1",y1);l.setAttribute("x2",x2);l.setAttribute("y2",y2);l.setAttribute("class",klass);return l;};
+    const windowRect=(x,y,w,h)=>{const r=node("rect");r.setAttribute("x",x);r.setAttribute("y",y);r.setAttribute("width",w);r.setAttribute("height",h);r.setAttribute("rx",0.8);r.setAttribute("class","civi-map-building-window");return r;};
+    const doorRect=(x,y,w,h)=>{const r=node("rect");r.setAttribute("x",x);r.setAttribute("y",y);r.setAttribute("width",w);r.setAttribute("height",h);r.setAttribute("class","civi-map-building-door");return r;};
+    const roofPath=(d)=>{const p=node("path");p.setAttribute("d",d);p.setAttribute("class","civi-map-building-roof");return p;};
+    const chimney=(x,y,w,h)=>{const c=node("rect");c.setAttribute("x",x);c.setAttribute("y",y);c.setAttribute("width",w);c.setAttribute("height",h);c.setAttribute("class","civi-map-chimney");return c;};
+    const awning=(d)=>{const a=node("path");a.setAttribute("d",d);a.setAttribute("class","civi-map-awning");return a;};
+const box=(cx,cy,wid,hei,p)=>{ const g=node("g"); const base=node("rect");base.setAttribute("x",cx-wid/2);base.setAttribute("y",cy-hei/2);base.setAttribute("width",wid);base.setAttribute("height",hei);base.setAttribute("fill",p.base);base.setAttribute("stroke","#1a2028");base.setAttribute("stroke-width","1"); const face=node("rect");face.setAttribute("x",cx-wid/2+1.6);face.setAttribute("y",cy-hei/2+1.8);face.setAttribute("width",wid-3.2);face.setAttribute("height",Math.max(hei*0.58,4));face.setAttribute("fill",p.face);face.setAttribute("opacity","0.92"); g.appendChild(base);g.appendChild(face); return g; };
     (window.CIVI_MAP_LANDMARKS||[]).slice().sort((a,b)=>(a.priority||0)-(b.priority||0)).forEach((m)=>{ const d=idx[m.district]; if(!d) return; const [dx,dy]=m.offset||[0,0]; const cx=d.center[0]*w+dx, cy=d.center[1]*h+dy; const sc=m.scale||1; const p=palette[m.material]||palette.civic_stone; const g=node("g"); g.setAttribute("class","civi-map-landmark"); g.setAttribute("data-landmark-id",m.id); g.setAttribute("data-visual-type",m.visualType||m.kind||"default");
       if(m.visualType==="civic_twin_tower"){ shadow(cx,cy,16*sc,5*sc); const body=box(cx,cy+4*sc,26*sc,12*sc,p); g.appendChild(body); [ -7.2,7.2 ].forEach((tx)=>{const t=box(cx+tx*sc,cy-3*sc,8*sc,18*sc,p);g.appendChild(t);}); }
-      else if(m.visualType==="transport_hub"){ shadow(cx,cy,18*sc,5*sc); g.appendChild(box(cx,cy+2*sc,30*sc,11*sc,p)); const roof=node("path");roof.setAttribute("d",`M ${cx-14*sc} ${cy-2*sc} Q ${cx} ${cy-10*sc} ${cx+14*sc} ${cy-2*sc} L ${cx+14*sc} ${cy+1*sc} L ${cx-14*sc} ${cy+1*sc} Z`);roof.setAttribute("fill",p.roof);g.appendChild(roof); }
+      else if(m.visualType==="transport_hub"){ shadow(cx,cy,18*sc,5*sc); g.appendChild(box(cx,cy+2*sc,30*sc,11*sc,p)); g.appendChild(roofPath(`M ${cx-14*sc} ${cy-2*sc} Q ${cx} ${cy-10*sc} ${cx+14*sc} ${cy-2*sc} L ${cx+14*sc} ${cy+1*sc} L ${cx-14*sc} ${cy+1*sc} Z`)); }
       else if(m.visualType==="fortress"){ shadow(cx,cy,15*sc,4*sc); const fort=node("path"); fort.setAttribute("d",`M ${cx-13*sc} ${cy+5*sc} L ${cx-8*sc} ${cy-4*sc} L ${cx+8*sc} ${cy-4*sc} L ${cx+13*sc} ${cy+5*sc} Z`); fort.setAttribute("fill",p.face); fort.setAttribute("stroke","#1a2028"); fort.setAttribute("stroke-width","1"); g.appendChild(fort);}
       else if(m.visualType==="skyline_cluster"){ shadow(cx,cy,16*sc,4*sc); [-12,-5,2,9].forEach((x,i)=>g.appendChild(box(cx+x*sc,cy-(i%2?6:3)*sc,6*sc,(16+i*2)*sc,p))); }
       else if(m.visualType==="industry_yard"){ shadow(cx,cy,19*sc,5*sc); [-10,0,10].forEach((x)=>g.appendChild(box(cx+x*sc,cy+1*sc,10*sc,9*sc,p))); }
@@ -50,6 +57,13 @@
       else if(m.visualType==="culture_building"){ shadow(cx,cy,12*sc,4*sc); g.appendChild(box(cx,cy+1*sc,18*sc,10*sc,p)); }
       else if(m.visualType==="commerce_building"){ shadow(cx,cy,12*sc,4*sc); g.appendChild(box(cx,cy+1*sc,19*sc,10*sc,p)); }
       else { shadow(cx,cy,11*sc,3*sc); g.appendChild(box(cx,cy+1*sc,17*sc,9*sc,p)); }
+      const wx=cx-6*sc, wy=cy-1*sc;
+      [-4,0,4].forEach((ox)=>g.appendChild(windowRect(wx+ox*sc,wy,2.4*sc,2.4*sc)));
+      g.appendChild(doorRect(cx-1.6*sc,cy+3.3*sc,3.2*sc,4.2*sc));
+      if(m.visualType==="industry_yard"){ g.appendChild(detailLine(cx-14*sc,cy+5*sc,cx+14*sc,cy+5*sc,"civi-map-rail")); g.appendChild(doorRect(cx+9*sc,cy+1*sc,5*sc,5*sc)).setAttribute("class","civi-map-loading-bay"); }
+      if(m.visualType==="green_ridge"){ g.appendChild(detailLine(cx-10*sc,cy+1*sc,cx+10*sc,cy+1*sc,"civi-map-ridge-line")); const t=node("circle");t.setAttribute("cx",cx-7*sc);t.setAttribute("cy",cy+2*sc);t.setAttribute("r",1.6*sc);t.setAttribute("class","civi-map-tree");g.appendChild(t); }
+      if(m.visualType==="old_industry_mill"){ g.appendChild(chimney(cx+7*sc,cy-14*sc,3*sc,3*sc)); g.appendChild(detailLine(cx+8.5*sc,cy-14*sc,cx+12*sc,cy-17*sc,"civi-map-building-detail")); }
+      if(m.visualType==="commerce_building"){ g.appendChild(awning(`M ${cx-9*sc} ${cy+2.5*sc} Q ${cx} ${cy+6*sc} ${cx+9*sc} ${cy+2.5*sc}`)); }
       layer.appendChild(g);
       if(labelIds.has(m.id)){ const t=node("text"); t.textContent=m.label||m.id; t.setAttribute("x",cx); t.setAttribute("y",cy+20*sc); t.setAttribute("class","civi-map-landmark-label"); labelLayer.appendChild(t); }
     });
