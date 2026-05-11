@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-11T13:48:04.888Z",
+  "generatedAt": "2026-05-11T20:46:25.521Z",
   "sourceFiles": {
     "legacy": "data/people.json",
     "peopleDir": "data/people",
@@ -9,20 +9,20 @@
   "totals": {
     "legacyPeople": 98,
     "legacyUniqueIds": 98,
-    "splitPeople": 171,
-    "splitUniqueIds": 162,
-    "splitFiles": 13,
+    "splitPeople": 177,
+    "splitUniqueIds": 176,
+    "splitFiles": 15,
     "bootRuntimeFiles": 13,
     "inBoth": 94,
     "onlyInLegacy": 0,
     "relationOnlyLegacyStubs": 4,
-    "onlyInSplit": 68,
-    "duplicateIdsAcrossSplitFiles": 9,
+    "onlyInSplit": 82,
+    "duplicateIdsAcrossSplitFiles": 1,
     "duplicateIdsInLegacy": 0,
-    "splitFilesNotLoadedByBoot": 0,
+    "splitFilesNotLoadedByBoot": 2,
     "bootFilesMissingOnDisk": 0,
     "invalidJsonFiles": 0,
-    "fieldDifferences": 27
+    "fieldDifferences": 22
   },
   "files": [
     {
@@ -40,9 +40,23 @@
       "duplicateIdsInsideFile": []
     },
     {
+      "file": "data/people/people_historie_next_batch_01.json",
+      "loadedByBoot": false,
+      "peopleCount": 9,
+      "missingIdCount": 0,
+      "duplicateIdsInsideFile": []
+    },
+    {
+      "file": "data/people/people_historie_next_batch_02.json",
+      "loadedByBoot": false,
+      "peopleCount": 6,
+      "missingIdCount": 0,
+      "duplicateIdsInsideFile": []
+    },
+    {
       "file": "data/people/people_historie.json",
       "loadedByBoot": true,
-      "peopleCount": 57,
+      "peopleCount": 48,
       "missingIdCount": 0,
       "duplicateIdsInsideFile": []
     },
@@ -132,7 +146,10 @@
     "data/people/people_subkultur.json",
     "data/people/people_vitenskap.json"
   ],
-  "splitFilesNotLoadedByBoot": [],
+  "splitFilesNotLoadedByBoot": [
+    "data/people/people_historie_next_batch_01.json",
+    "data/people/people_historie_next_batch_02.json"
+  ],
   "bootFilesMissingOnDisk": [],
   "invalidJsonFiles": [],
   "onlyInLegacy": [],
@@ -230,6 +247,24 @@
     ],
     [
       {
+        "id": "alv_erlingsson",
+        "name": "Alv Erlingsson",
+        "category": "historie",
+        "tags": [
+          "historie",
+          "middelalder"
+        ],
+        "placeId": "akerhus_slott",
+        "places": [
+          "akerhus_slott",
+          "kongsgarden_middelalder_oslo"
+        ],
+        "stub": false,
+        "sourceFile": "data/people/people_historie_next_batch_02.json"
+      }
+    ],
+    [
+      {
         "id": "anna_sethne",
         "name": "Anna Sethne",
         "category": "historie",
@@ -292,6 +327,24 @@
     ],
     [
       {
+        "id": "astrid_olavsdatter",
+        "name": "Astrid Olavsdatter",
+        "category": "historie",
+        "tags": [
+          "historie",
+          "middelalder"
+        ],
+        "placeId": "middelalder_oslo",
+        "places": [
+          "middelalder_oslo",
+          "oslo_domkirke"
+        ],
+        "stub": false,
+        "sourceFile": "data/people/people_historie_next_batch_02.json"
+      }
+    ],
+    [
+      {
         "id": "bard_tufte_johansen",
         "name": "Bård Tufte Johansen",
         "category": "populaerkultur",
@@ -345,6 +398,24 @@
     ],
     [
       {
+        "id": "biskop_nikolas_arnason",
+        "name": "Biskop Nikolas Arnesson",
+        "category": "historie",
+        "tags": [
+          "historie",
+          "middelalder"
+        ],
+        "placeId": "oslo_domkirke",
+        "places": [
+          "oslo_domkirke",
+          "middelalder_oslo"
+        ],
+        "stub": false,
+        "sourceFile": "data/people/people_historie_next_batch_01.json"
+      }
+    ],
+    [
+      {
         "id": "carl_deichman",
         "name": "Carl Deichman",
         "category": "litteratur",
@@ -361,23 +432,6 @@
         ],
         "stub": false,
         "sourceFile": "data/people/people_filantroper.json"
-      },
-      {
-        "id": "carl_deichman",
-        "name": "Carl Deichman",
-        "category": "historie",
-        "tags": [
-          "historie",
-          "litteratur",
-          "kunnskap"
-        ],
-        "placeId": "gamle_deichman_hammersborg",
-        "places": [
-          "gamle_deichman_hammersborg",
-          "bjorvika"
-        ],
-        "stub": false,
-        "sourceFile": "data/people/people_historie.json"
       }
     ],
     [
@@ -636,6 +690,25 @@
     ],
     [
       {
+        "id": "eufemia_av_rugen",
+        "name": "Eufemia av Rügen",
+        "category": "historie",
+        "tags": [
+          "historie",
+          "middelalder",
+          "litteratur"
+        ],
+        "placeId": "akerhus_slott",
+        "places": [
+          "akerhus_slott",
+          "middelalder_oslo"
+        ],
+        "stub": false,
+        "sourceFile": "data/people/people_historie_next_batch_01.json"
+      }
+    ],
+    [
+      {
         "id": "georg_ossian_sars",
         "name": "Georg Ossian Sars",
         "category": "natur",
@@ -715,6 +788,42 @@
         ],
         "stub": false,
         "sourceFile": "data/people/people_historie.json"
+      }
+    ],
+    [
+      {
+        "id": "gunnhild_kongsmor",
+        "name": "Gunnhild kongsmor",
+        "category": "historie",
+        "tags": [
+          "historie",
+          "vikingtid"
+        ],
+        "placeId": "akerhus_slott",
+        "places": [
+          "akerhus_slott",
+          "middelalder_oslo"
+        ],
+        "stub": false,
+        "sourceFile": "data/people/people_historie_next_batch_02.json"
+      }
+    ],
+    [
+      {
+        "id": "hakon_vi_magnusson",
+        "name": "Håkon VI Magnusson",
+        "category": "historie",
+        "tags": [
+          "historie",
+          "middelalder"
+        ],
+        "placeId": "akerhus_slott",
+        "places": [
+          "akerhus_slott",
+          "middelalder_oslo"
+        ],
+        "stub": false,
+        "sourceFile": "data/people/people_historie_next_batch_01.json"
       }
     ],
     [
@@ -927,6 +1036,24 @@
     ],
     [
       {
+        "id": "kong_olav_kyrre",
+        "name": "Olav Kyrre",
+        "category": "historie",
+        "tags": [
+          "historie",
+          "middelalder"
+        ],
+        "placeId": "middelalder_oslo",
+        "places": [
+          "middelalder_oslo",
+          "oslo_domkirke"
+        ],
+        "stub": false,
+        "sourceFile": "data/people/people_historie_next_batch_01.json"
+      }
+    ],
+    [
+      {
         "id": "kristian_birkeland_teknologi_og_industri",
         "name": "Kristian Birkeland",
         "category": "naeringsliv",
@@ -974,6 +1101,43 @@
     ],
     [
       {
+        "id": "magnus_den_gode",
+        "name": "Magnus den gode",
+        "category": "historie",
+        "tags": [
+          "historie",
+          "middelalder"
+        ],
+        "placeId": "middelalder_oslo",
+        "places": [
+          "middelalder_oslo",
+          "oslo_domkirke"
+        ],
+        "stub": false,
+        "sourceFile": "data/people/people_historie_next_batch_02.json"
+      }
+    ],
+    [
+      {
+        "id": "magnus_lagabote",
+        "name": "Magnus Lagabøte",
+        "category": "historie",
+        "tags": [
+          "historie",
+          "middelalder",
+          "rett"
+        ],
+        "placeId": "kongsgarden_middelalder_oslo",
+        "places": [
+          "kongsgarden_middelalder_oslo",
+          "akerhus_slott"
+        ],
+        "stub": false,
+        "sourceFile": "data/people/people_historie_next_batch_02.json"
+      }
+    ],
+    [
+      {
         "id": "marcus_thrane",
         "name": "Marcus Thrane",
         "category": "historie",
@@ -989,6 +1153,24 @@
         ],
         "stub": false,
         "sourceFile": "data/people/people_historie.json"
+      }
+    ],
+    [
+      {
+        "id": "margrete_valdemarsdatter",
+        "name": "Margrete Valdemarsdatter",
+        "category": "historie",
+        "tags": [
+          "historie",
+          "middelalder"
+        ],
+        "placeId": "akerhus_slott",
+        "places": [
+          "akerhus_slott",
+          "middelalder_oslo"
+        ],
+        "stub": false,
+        "sourceFile": "data/people/people_historie_next_batch_01.json"
       }
     ],
     [
@@ -1148,6 +1330,24 @@
     ],
     [
       {
+        "id": "peder_clausson_friis",
+        "name": "Peder Claussøn Friis",
+        "category": "historie",
+        "tags": [
+          "historie",
+          "kulturarv"
+        ],
+        "placeId": "oslo_domkirke",
+        "places": [
+          "oslo_domkirke",
+          "christiania_torv"
+        ],
+        "stub": false,
+        "sourceFile": "data/people/people_historie_next_batch_01.json"
+      }
+    ],
+    [
+      {
         "id": "peter_christen_asbjornsen",
         "name": "Peter Christen Asbjørnsen",
         "category": "natur",
@@ -1160,6 +1360,24 @@
         ],
         "stub": false,
         "sourceFile": "data/people/people_natur.json"
+      }
+    ],
+    [
+      {
+        "id": "petter_moen",
+        "name": "Petter Moen",
+        "category": "historie",
+        "tags": [
+          "historie",
+          "krig"
+        ],
+        "placeId": "mollergata_19",
+        "places": [
+          "mollergata_19",
+          "akershus_slott"
+        ],
+        "stub": false,
+        "sourceFile": "data/people/people_historie_next_batch_01.json"
       }
     ],
     [
@@ -1210,6 +1428,44 @@
         "places": [],
         "stub": false,
         "sourceFile": "data/people/people_naeringsliv.json"
+      }
+    ],
+    [
+      {
+        "id": "sigurd_jorsalfare",
+        "name": "Sigurd Jorsalfare",
+        "category": "historie",
+        "tags": [
+          "historie",
+          "middelalder"
+        ],
+        "placeId": "middelalder_oslo",
+        "places": [
+          "middelalder_oslo",
+          "oslo_domkirke"
+        ],
+        "stub": false,
+        "sourceFile": "data/people/people_historie_next_batch_01.json"
+      }
+    ],
+    [
+      {
+        "id": "sigurd_ribbung",
+        "name": "Sigurd Ribbung",
+        "category": "historie",
+        "tags": [
+          "historie",
+          "middelalder",
+          "borgerkrigstid"
+        ],
+        "placeId": "oslo_domkirke",
+        "places": [
+          "oslo_domkirke",
+          "middelalder_oslo",
+          "bispeborgen"
+        ],
+        "stub": false,
+        "sourceFile": "data/people/people_historie_next_batch_02.json"
       }
     ],
     [
@@ -1460,338 +1716,38 @@
   ],
   "duplicateIdsAcrossSplitFiles": [
     {
-      "id": "bjornstjerne_bjornson",
+      "id": "ruth_maier",
       "entries": [
         {
-          "id": "bjornstjerne_bjornson",
-          "name": "Bjørnstjerne Bjørnson",
+          "id": "ruth_maier",
+          "name": "Ruth Maier",
           "category": "historie",
           "tags": [
             "historie",
-            "litteratur",
-            "politikk"
+            "krig",
+            "minne"
           ],
-          "placeId": "var_frelsers_gravlund",
+          "placeId": "ruth_maier_minne",
           "places": [
-            "var_frelsers_gravlund",
-            "karl_johan"
+            "ruth_maier_minne",
+            "oslo_radhus"
           ],
           "stub": false,
-          "sourceFile": "data/people/people_historie.json"
+          "sourceFile": "data/people/people_historie_next_batch_01.json"
         },
         {
-          "id": "bjornstjerne_bjornson",
-          "name": "Bjørnstjerne Bjørnson",
+          "id": "ruth_maier",
+          "name": "Ruth Maier",
           "category": "litteratur",
           "tags": [
             "litteratur"
           ],
-          "placeId": "nasjonalbiblioteket",
+          "placeId": "ruth_maier_minne",
           "places": [
-            "nasjonalbiblioteket",
-            "nationaltheatret",
-            "bjornson_bolig",
-            "ibsen_bjornson_graver"
+            "ruth_maier_minne"
           ],
           "stub": false,
           "sourceFile": "data/people/people_litteratur.json"
-        }
-      ]
-    },
-    {
-      "id": "camilla_collett",
-      "entries": [
-        {
-          "id": "camilla_collett",
-          "name": "Camilla Collett",
-          "category": "historie",
-          "tags": [
-            "historie",
-            "litteratur"
-          ],
-          "placeId": "damstredet_telthusbakken",
-          "places": [
-            "damstredet_telthusbakken",
-            "slottet"
-          ],
-          "stub": false,
-          "sourceFile": "data/people/people_historie.json"
-        },
-        {
-          "id": "camilla_collett",
-          "name": "Camilla Collett",
-          "category": "litteratur",
-          "tags": [
-            "litteratur"
-          ],
-          "placeId": "camilla_collett_statue",
-          "places": [
-            "camilla_collett_statue",
-            "henrik_wergeland_park",
-            "collett_barndom",
-            "collett_monument"
-          ],
-          "stub": false,
-          "sourceFile": "data/people/people_litteratur.json"
-        }
-      ]
-    },
-    {
-      "id": "carl_berner",
-      "entries": [
-        {
-          "id": "carl_berner",
-          "name": "Carl Berner",
-          "category": "by",
-          "tags": [
-            "by"
-          ],
-          "placeId": "carl_berner_plass",
-          "places": [
-            "carl_berner_plass"
-          ],
-          "stub": false,
-          "sourceFile": "data/people/people_by.json"
-        },
-        {
-          "id": "carl_berner",
-          "name": "Carl Berner",
-          "category": "historie",
-          "tags": [
-            "historie",
-            "politikk"
-          ],
-          "placeId": "carl_berner_plass",
-          "places": [
-            "carl_berner_plass"
-          ],
-          "stub": false,
-          "sourceFile": "data/people/people_historie.json"
-        }
-      ]
-    },
-    {
-      "id": "carl_deichman",
-      "entries": [
-        {
-          "id": "carl_deichman",
-          "name": "Carl Deichman",
-          "category": "litteratur",
-          "tags": [
-            "filantrop",
-            "mesen",
-            "boksamling",
-            "bibliotek"
-          ],
-          "placeId": "gamle_deichman",
-          "places": [
-            "gamle_deichman",
-            "deichman_bjorvika"
-          ],
-          "stub": false,
-          "sourceFile": "data/people/people_filantroper.json"
-        },
-        {
-          "id": "carl_deichman",
-          "name": "Carl Deichman",
-          "category": "historie",
-          "tags": [
-            "historie",
-            "litteratur",
-            "kunnskap"
-          ],
-          "placeId": "gamle_deichman_hammersborg",
-          "places": [
-            "gamle_deichman_hammersborg",
-            "bjorvika"
-          ],
-          "stub": false,
-          "sourceFile": "data/people/people_historie.json"
-        }
-      ]
-    },
-    {
-      "id": "eilert_sundt",
-      "entries": [
-        {
-          "id": "eilert_sundt",
-          "name": "Eilert Sundt",
-          "category": "historie",
-          "tags": [
-            "historie",
-            "politikk",
-            "samfunn"
-          ],
-          "placeId": "arbeidersamfunnets_plass",
-          "places": [
-            "arbeidersamfunnets_plass",
-            "youngstorget"
-          ],
-          "stub": false,
-          "sourceFile": "data/people/people_historie.json"
-        },
-        {
-          "id": "eilert_sundt",
-          "name": "Eilert Sundt",
-          "category": "vitenskap",
-          "tags": [
-            "vitenskap"
-          ],
-          "placeId": "universitetet",
-          "places": [
-            "universitetet",
-            "oslo_domkirke"
-          ],
-          "stub": false,
-          "sourceFile": "data/people/people_vitenskap.json"
-        }
-      ]
-    },
-    {
-      "id": "gina_krog",
-      "entries": [
-        {
-          "id": "gina_krog",
-          "name": "Gina Krog",
-          "category": "historie",
-          "tags": [
-            "historie",
-            "politikk"
-          ],
-          "placeId": "var_frelsers_gravlund",
-          "places": [
-            "var_frelsers_gravlund",
-            "stortinget",
-            "karl_johan"
-          ],
-          "stub": false,
-          "sourceFile": "data/people/people_historie.json"
-        },
-        {
-          "id": "gina_krog",
-          "name": "Gina Krog",
-          "category": "politikk",
-          "tags": [
-            "politikk"
-          ],
-          "placeId": "stortinget",
-          "places": [
-            "stortinget",
-            "eidsvolls_plass"
-          ],
-          "stub": false,
-          "sourceFile": "data/people/people_politikk.json"
-        }
-      ]
-    },
-    {
-      "id": "gustav_vigeland",
-      "entries": [
-        {
-          "id": "gustav_vigeland",
-          "name": "Gustav Vigeland",
-          "category": "historie",
-          "tags": [
-            "historie",
-            "kunst"
-          ],
-          "placeId": "vigelandsparken",
-          "places": [
-            "vigelandsparken"
-          ],
-          "stub": false,
-          "sourceFile": "data/people/people_historie.json"
-        },
-        {
-          "id": "gustav_vigeland",
-          "name": "Gustav Vigeland",
-          "category": "kunst",
-          "tags": [
-            "kunst"
-          ],
-          "placeId": "vigelandsparken",
-          "places": [
-            "vigelandsparken"
-          ],
-          "stub": false,
-          "sourceFile": "data/people/people_kunst.json"
-        }
-      ]
-    },
-    {
-      "id": "henrik_wergeland",
-      "entries": [
-        {
-          "id": "henrik_wergeland",
-          "name": "Henrik Wergeland",
-          "category": "historie",
-          "tags": [
-            "historie",
-            "litteratur"
-          ],
-          "placeId": "damstredet_telthusbakken",
-          "places": [
-            "damstredet_telthusbakken",
-            "oslo_domkirke"
-          ],
-          "stub": false,
-          "sourceFile": "data/people/people_historie.json"
-        },
-        {
-          "id": "henrik_wergeland",
-          "name": "Henrik Wergeland",
-          "category": "litteratur",
-          "tags": [
-            "litteratur"
-          ],
-          "placeId": "voienvolden",
-          "places": [
-            "voienvolden",
-            "henrik_wergeland_statue",
-            "wergelandsveien_15",
-            "henrik_wergeland_park",
-            "wergeland_barndom",
-            "wergeland_grav",
-            "bøker_i_byen"
-          ],
-          "stub": false,
-          "sourceFile": "data/people/people_litteratur.json"
-        }
-      ]
-    },
-    {
-      "id": "johan_sverdrup",
-      "entries": [
-        {
-          "id": "johan_sverdrup",
-          "name": "Johan Sverdrup",
-          "category": "historie",
-          "tags": [
-            "historie",
-            "politikk"
-          ],
-          "placeId": "karl_johan",
-          "places": [
-            "karl_johan",
-            "universitetsplassen",
-            "slottet"
-          ],
-          "stub": false,
-          "sourceFile": "data/people/people_historie.json"
-        },
-        {
-          "id": "johan_sverdrup",
-          "name": "Johan Sverdrup",
-          "category": "politikk",
-          "tags": [
-            "politikk"
-          ],
-          "placeId": "stortinget",
-          "places": [
-            "stortinget"
-          ],
-          "stub": false,
-          "sourceFile": "data/people/people_politikk.json"
         }
       ]
     }
@@ -1833,30 +1789,6 @@
       ]
     },
     {
-      "id": "bjornstjerne_bjornson",
-      "name": "Bjørnstjerne Bjørnson",
-      "splitFiles": [
-        "data/people/people_historie.json",
-        "data/people/people_litteratur.json"
-      ],
-      "changedFields": [
-        "category",
-        "placeId"
-      ]
-    },
-    {
-      "id": "camilla_collett",
-      "name": "Camilla Collett",
-      "splitFiles": [
-        "data/people/people_historie.json",
-        "data/people/people_litteratur.json"
-      ],
-      "changedFields": [
-        "category",
-        "placeId"
-      ]
-    },
-    {
       "id": "cecilie_loveid",
       "name": "Cecilie Løveid",
       "splitFiles": [
@@ -1890,11 +1822,9 @@
       "id": "eilert_sundt",
       "name": "Eilert Sundt",
       "splitFiles": [
-        "data/people/people_historie.json",
         "data/people/people_vitenskap.json"
       ],
       "changedFields": [
-        "category",
         "placeId"
       ]
     },
@@ -1909,18 +1839,6 @@
       ]
     },
     {
-      "id": "gina_krog",
-      "name": "Gina Krog",
-      "splitFiles": [
-        "data/people/people_historie.json",
-        "data/people/people_politikk.json"
-      ],
-      "changedFields": [
-        "category",
-        "placeId"
-      ]
-    },
-    {
       "id": "grete_waitz",
       "name": "Grete Waitz",
       "splitFiles": [
@@ -1931,45 +1849,10 @@
       ]
     },
     {
-      "id": "gustav_vigeland",
-      "name": "Gustav Vigeland",
-      "splitFiles": [
-        "data/people/people_historie.json",
-        "data/people/people_kunst.json"
-      ],
-      "changedFields": [
-        "category"
-      ]
-    },
-    {
-      "id": "henrik_wergeland",
-      "name": "Henrik Wergeland",
-      "splitFiles": [
-        "data/people/people_historie.json",
-        "data/people/people_litteratur.json"
-      ],
-      "changedFields": [
-        "category",
-        "placeId"
-      ]
-    },
-    {
       "id": "herman_flesvig",
       "name": "Herman Flesvig",
       "splitFiles": [
         "data/people/people_populaerkultur.json"
-      ],
-      "changedFields": [
-        "category",
-        "placeId"
-      ]
-    },
-    {
-      "id": "johan_sverdrup",
-      "name": "Johan Sverdrup",
-      "splitFiles": [
-        "data/people/people_historie.json",
-        "data/people/people_politikk.json"
       ],
       "changedFields": [
         "category",
@@ -2064,6 +1947,17 @@
       ],
       "changedFields": [
         "placeId"
+      ]
+    },
+    {
+      "id": "ruth_maier",
+      "name": "Ruth Maier",
+      "splitFiles": [
+        "data/people/people_historie_next_batch_01.json",
+        "data/people/people_litteratur.json"
+      ],
+      "changedFields": [
+        "category"
       ]
     },
     {
