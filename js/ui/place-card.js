@@ -861,42 +861,58 @@ if (eventsBox) {
       : ""
   ].filter(Boolean).join("");
 
+  const compactStatus = `${peopleCount} her · ${friendsCount} venner`;
+  const compactEvents = canonicalForPlace.length
+    ? `${canonicalForPlace.length} ting skjer her`
+    : `Ingen hendelser`;
+
   const body = `
-    <div class="pc-events-section">
-      <div class="pc-event-entry-title">Her nå</div>
-      <div class="pc-events-row">Personer: ${peopleCount}</div>
-      <div class="pc-events-row">Venner: ${friendsCount}</div>
-    </div>
-    <div class="pc-events-section">
-      <div class="pc-event-entry-title">Skjer her</div>
-      ${canonicalForPlace.length
-        ? canonicalForPlace.map(evt => `<div class="pc-events-row">${evt.title || evt.id || "Event"}</div>`).join("")
-        : `<div class="pc-events-row">Ingen kanoniserte hendelser lagt til ennå.</div>`
-      }
-    </div>
-    <div class="pc-events-section">
-      <div class="pc-event-entry-title">Sosialt</div>
-      ${modeButtons}
-    </div>
+    <div class="pc-events-preview-line" title="${compactStatus}">${compactStatus}</div>
+    <div class="pc-events-preview-line" title="${compactEvents}">${compactEvents}</div>
   `;
 
   eventsBox.innerHTML = head + body;
 
   const addBtn = document.getElementById("pcAddEvent");
   if (addBtn) {
-    addBtn.onclick = () => {
+    addBtn.onclick = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
       const currentPlaceId = String(document.getElementById("placeCard")?.dataset?.currentPlaceId || place.id || "").trim();
       console.log("[social] add/forslag", currentPlaceId);
     };
   }
 
-  eventsBox.querySelectorAll("[data-social-action]").forEach(btn => {
-    btn.onclick = () => {
-      const action = String(btn.dataset.socialAction || "").trim();
-      if (!action) return;
-      console.log(`[social] ${action}`, place.id);
-    };
-  });
+  eventsBox.onclick = () => {
+    const socialPopupHtml = `
+      <section class="pc-events-section">
+        <div class="pc-event-entry-title">Her nå</div>
+        <div class="pc-events-row">Personer: ${peopleCount}</div>
+        <div class="pc-events-row">Venner: ${friendsCount}</div>
+      </section>
+      <section class="pc-events-section">
+        <div class="pc-event-entry-title">Skjer her</div>
+        ${canonicalForPlace.length
+          ? canonicalForPlace.map(evt => `<div class="pc-events-row">${evt.title || evt.id || "Event"}</div>`).join("")
+          : `<div class="pc-events-row">Ingen kanoniserte hendelser lagt til ennå.</div>`
+        }
+      </section>
+      <section class="pc-events-section">
+        <div class="pc-event-entry-title">Sosialt</div>
+        ${modeButtons}
+      </section>
+    `;
+
+    if (typeof window.showPlaceCardRoundPopup === "function") {
+      window.showPlaceCardRoundPopup({
+        title: "På stedet",
+        subtitle: place?.name || "",
+        html: socialPopupHtml,
+        place,
+        kind: "events"
+      });
+    }
+  };
 }
 
 // --- LEKSIKON LIST + LEKSIKON ICON ---
