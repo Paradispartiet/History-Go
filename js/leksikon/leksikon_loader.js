@@ -410,7 +410,7 @@
           ${renderBackHeader("hub", "Leksikon")}
           <div class="pc-leksikon-kicker">Kilder / lenker</div>
           <h2 class="hg-popup-name">${esc(articleTitle(mainArticle))}</h2>
-          ${renderExternalLinks(place, article)}
+          ${renderExternalLinks(place, mainArticle)}
         </article>
       `;
     }
@@ -570,12 +570,10 @@
 
     return `
       <div class="pc-leksikon-list">
-        ${articles.map((article, index) => `
-          <button class="pc-leksikon-entry" type="button" data-leksikon-place="${esc(article.place_id)}" data-leksikon-index="${index}">
-            <span class="pc-leksikon-entry-title">${esc(articleTitle(article))}</span>
-            ${article.summary?.one_liner ? `<span class="pc-leksikon-entry-meta">${esc(article.summary.one_liner)}</span>` : ""}
-          </button>
-        `).join("")}
+        <button class="pc-leksikon-entry" type="button" data-leksikon-open-hub data-leksikon-place="${esc(norm(placeId))}">
+          <span class="pc-leksikon-entry-title">Leksikon</span>
+          <span class="pc-leksikon-entry-meta">Åpne leksikon for dette stedet</span>
+        </button>
       </div>
     `;
   }
@@ -673,6 +671,14 @@
   }
 
   document.addEventListener("click", (event) => {
+    const openHubBtn = event.target.closest("[data-leksikon-open-hub]");
+    if (openHubBtn) {
+      event.preventDefault();
+      event.stopPropagation();
+      void openPlace(openHubBtn.dataset.leksikonPlace, 0);
+      return;
+    }
+
     const btn = event.target.closest("[data-leksikon-place]");
     if (!btn) return;
     event.preventDefault();
