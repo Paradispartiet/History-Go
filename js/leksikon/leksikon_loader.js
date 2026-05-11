@@ -9,6 +9,7 @@
   const SPRAK_MANIFEST_URL = "data/leksikon/sprak/manifest.json";
   let initPromise = null;
   let sprakManifestPromise = null;
+  let currentLeksikonContext = null;
   const sprakByPlace = Object.create(null);
 
   function esc(value) {
@@ -204,13 +205,13 @@
       if (!person) return `<div class="pc-empty">Fant ikke personoppføringen.</div>`;
       return `
         <article class="pc-leksikon-article">
+          ${renderBackHeader()}
           <div class="pc-leksikon-kicker">Person</div>
           <h2 class="hg-popup-name">${esc(person?.name || person?.title || person?.id || "Person")}</h2>
           ${person?.type ? `<p class="hg-popup-desc">${esc(person.type)}</p>` : ""}
           ${paragraphBlockHtml(person?.desc || person?.description || person?.meaning)}
           ${detailRow("Kontekst", person?.context)}
           ${tagListHtml(person?.tags)}
-          ${renderBackHeader()}
         </article>
       `;
     }
@@ -220,6 +221,7 @@
       if (!object) return `<div class="pc-empty">Fant ikke objektoppføringen.</div>`;
       return `
         <article class="pc-leksikon-article">
+          ${renderBackHeader()}
           <div class="pc-leksikon-kicker">Objekt</div>
           <h2 class="hg-popup-name">${esc(object?.title || object?.name || object?.label || object?.id || "Objekt")}</h2>
           ${object?.type ? `<p class="hg-popup-desc">${esc(object.type)}</p>` : ""}
@@ -227,7 +229,6 @@
           ${detailRow("Hvor", object?.where)}
           ${detailRow("Kontekst", object?.context)}
           ${tagListHtml(object?.tags)}
-          ${renderBackHeader()}
         </article>
       `;
     }
@@ -237,6 +238,7 @@
       if (!entry) return `<div class="pc-empty">Fant ikke språkoppføringen.</div>`;
       return `
         <article class="pc-leksikon-article">
+          ${renderBackHeader()}
           <div class="pc-leksikon-kicker">Språkleksikon</div>
           <h2 class="hg-popup-name">${esc(entry?.term || entry?.id || "Begrep")}</h2>
           ${entry?.type ? `<p class="hg-popup-desc">${esc(entry.type)}</p>` : ""}
@@ -244,7 +246,6 @@
           ${detailRow("Kontekst", entry?.context)}
           ${entry?.linked_to ? detailRow("Tilknyttet", `${entry.linked_to.kind || "ukjent"}: ${entry.linked_to.id || "ukjent"}`) : ""}
           ${tagListHtml(entry?.tags)}
-          ${renderBackHeader()}
         </article>
       `;
     }
@@ -252,9 +253,9 @@
     if (detailType === "links") {
       return `
         <article class="pc-leksikon-article">
+          ${renderBackHeader()}
           <div class="pc-leksikon-kicker">Kilder / lenker</div>
           <h2 class="hg-popup-name">${esc(articleTitle(article))}</h2>
-          ${renderBackHeader()}
           ${renderExternalLinks(place, article)}
         </article>
       `;
@@ -391,6 +392,7 @@
 
     return `
       <article class="pc-leksikon-article">
+        ${renderBackHeader()}
         <div class="pc-leksikon-kicker">Sted</div>
         <h2 class="hg-popup-name">${esc(articleTitle(article))}</h2>
         ${summary.one_liner ? `<p class="pc-leksikon-one-liner">${esc(summary.one_liner)}</p>` : ""}
@@ -405,7 +407,6 @@
         ${section("Spor og objekter", artifactsHtml)}
         ${section("Tolkning", interpretationHtml)}
         ${section("Klassifikasjon", tagListHtml([...(classification.tags || []), ...(classification.knagger || [])]))}
-        ${renderBackHeader()}
       </article>
     `;
   }
@@ -429,6 +430,8 @@
   async function openPlace(placeId, index = 0, detailType = "", itemIndex = 0) {
     const articles = window.LEKSIKON_BY_PLACE?.[norm(placeId)] || [];
     const article = articles[Number(index) || 0];
+    const normalizedIndex = Number(index) || 0;
+    currentLeksikonContext = { placeId: norm(placeId), index: normalizedIndex };
 
     const popupFn = window.makePopup || (typeof makePopup === "function" ? makePopup : null);
     if (typeof popupFn === "function") {
@@ -526,13 +529,12 @@
   document.addEventListener("click", (event) => {
     const detailBtn = event.target.closest("[data-leksikon-detail]");
     if (!detailBtn) return;
-    const placeBtn = document.querySelector("[data-leksikon-place][data-leksikon-index]");
-    if (!placeBtn) return;
+    if (!currentLeksikonContext?.placeId) return;
     event.preventDefault();
     event.stopPropagation();
     void openPlace(
-      placeBtn.dataset.leksikonPlace,
-      placeBtn.dataset.leksikonIndex,
+      currentLeksikonContext.placeId,
+      currentLeksikonContext.index,
       detailBtn.dataset.leksikonDetail,
       detailBtn.dataset.leksikonItemIndex
     );
@@ -541,11 +543,10 @@
   document.addEventListener("click", (event) => {
     const backBtn = event.target.closest("[data-leksikon-back]");
     if (!backBtn) return;
-    const placeBtn = document.querySelector("[data-leksikon-place][data-leksikon-index]");
-    if (!placeBtn) return;
+    if (!currentLeksikonContext?.placeId) return;
     event.preventDefault();
     event.stopPropagation();
-    void openPlace(placeBtn.dataset.leksikonPlace, placeBtn.dataset.leksikonIndex);
+    void openPlace(currentLeksikonContext.placeId, currentLeksikonContext.index);
   });
 
   window.HGLeksikon = {
