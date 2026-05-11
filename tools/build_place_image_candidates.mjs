@@ -38,12 +38,35 @@ const IDS_FILTER = IDS_ARG
 const SEED_FILE_ARG = argv.find(arg => arg.startsWith("--seed-file="));
 const SEED_FILE = SEED_FILE_ARG ? SEED_FILE_ARG.split("=")[1].trim() : "";
 const MAX_CANDIDATES = 5;
+const MANUAL_SEED_MIN_SCORE = 50;
 const REQUEST_DELAY_MS = 160;
 const USER_AGENT = "HistoryGoImageCandidateBot/1.0 (https://github.com/Paradispartiet/History-Go)";
 
 const abs = rel => path.join(ROOT, rel);
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 const hasText = value => typeof value === "string" && value.trim().length > 0;
+
+function loadSeedEntries(seedData) {
+  if (Array.isArray(seedData?.seeds)) return seedData.seeds;
+  if (Array.isArray(seedData)) return seedData;
+  if (seedData && typeof seedData === "object") {
+    return Object.entries(seedData)
+      .filter(([key]) => key !== "schema" && key !== "seeds")
+      .map(([place_id, value]) => ({ place_id, ...(value || {}) }));
+  }
+  return [];
+}
+
+function buildSeedIndex(seedData) {
+  const index = new Map();
+  for (const seed of loadSeedEntries(seedData)) {
+    const placeId = String(seed?.place_id || "").trim();
+    if (!placeId) continue;
+    if (!index.has(placeId)) index.set(placeId, []);
+    index.get(placeId).push(seed);
+  }
+  return index;
+}
 
 function resolvePlacePath(manifestEntry) {
   if (typeof manifestEntry !== "string" || !manifestEntry.startsWith("places/")) {
@@ -308,13 +331,13 @@ function scoreCandidate(place, source, imageInfo, label, distanceM) {
   return Math.max(0, Math.round(score));
 }
 
-function makeCandidate({ place, source, imageInfo, label = "", distanceM = null, wikidataItem = "", reasonOverride = "" }) {
+function makeCandidate({ place, source, imageInfo, label = "", distanceM = null, wikidataItem = "", reasonOverride = "", scoreBoost = 0 }) {
   const ext = imageInfo.extension || "jpg";
   const imagePath = `bilder/places/auto/${place.id}.${ext}`;
   return {
     approved: false,
     source,
-    score: scoreCandidate(place, source, imageInfo, label, distanceM),
+    score: Math.max(scoreCandidate(place, source, imageInfo, label, distanceM), Number(scoreBoost) || 0),
     reason: reasonOverride || [
       source === "wikidata_p18" ? "bilde fra Wikidata P18" : "",
       source === "commons_geosearch" ? "Commons-fil med koordinater nær stedet" : "",
@@ -350,7 +373,7 @@ function usable(candidate) {
 
 function rank(candidates) {
   const byUrl = new Map();
-  for (const candidate of candidates.filter(usable)) {
+  for (const candidate of candidates.filter(candidate => candidate?.source === "manual_seed" || usable(candidate))) {
     const key = candidate.originalUrl || candidate.fileTitle;
     const prev = byUrl.get(key);
     if (!prev || candidate.score > prev.score) byUrl.set(key, candidate);
@@ -518,11 +541,8 @@ async function commonsTextCandidates(place, diagnostics) {
 }
 
 
-async function manualSeedCandidates(place, seedFile) {
-  if (!seedFile) return [];
-  const seedData = await readJson(seedFile);
-  const seeds = Array.isArray(seedData?.seeds) ? seedData.seeds : [];
-  const placeSeeds = seeds.filter(seed => seed?.place_id === place.id);
+function manualSeedCandidates(place, seedIndex) {
+  const placeSeeds = seedIndex?.get(place.id) || [];
 
   return placeSeeds.map(seed => {
     const fileTitle = commonsFileTitle(seed.fileTitle || seed.pageUrl?.split("/").pop()?.replaceAll("_", " ") || "");
@@ -554,15 +574,17 @@ async function manualSeedCandidates(place, seedFile) {
         licenseUrl: String(seed.licenseUrl || "").trim()
       },
       label: String(seed.note || "").trim(),
+      scoreBoost: MANUAL_SEED_MIN_SCORE,
       reasonOverride: "manuelt seedet kandidat; krever manuell lisens- og bildesjekk"
     });
   });
 }
 
-async function candidatesFor(place, diagnostics) {
+async function candidatesFor(place, diagnostics, seedIndex, seedOnlyMode) {
   const all = [];
-  const seedCandidates = await manualSeedCandidates(place, SEED_FILE);
+  const seedCandidates = manualSeedCandidates(place, seedIndex);
   if (seedCandidates.length) all.push(...seedCandidates);
+  if (seedOnlyMode) return rank(all);
   for (const fn of [wikidataCandidates, commonsGeoCandidates, commonsTextCandidates]) {
     try {
       all.push(...await fn(place, diagnostics));
@@ -593,9 +615,14 @@ async function loadPlaces() {
 
 async function main() {
   const { entries, places } = await loadPlaces();
+  const seedData = SEED_FILE ? await readJson(SEED_FILE) : null;
+  const seedIndex = buildSeedIndex(seedData);
+  const seedOnlyMode = Boolean(SEED_FILE);
+
   const filtered = places.filter(({ place }) => {
     if (IDS_FILTER && !IDS_FILTER.has(place?.id)) return false;
     if (!place || !place.id || place.hidden || place.stub) return false;
+    if (seedOnlyMode) return seedIndex.has(place.id);
     if (INCLUDE_EXISTING) return true;
     return !hasText(place.image) || !hasText(place.cardImage);
   });
@@ -623,7 +650,7 @@ async function main() {
 
   for (const { place, sourceFile } of targets) {
     console.log(`[image-candidates] ${place.id} – ${place.name}`);
-    const candidates = await candidatesFor(place, diagnostics);
+    const candidates = await candidatesFor(place, diagnostics, seedIndex, seedOnlyMode);
     if (DEBUG) console.log(`[debug] ${place.id}: ${candidates.length} kandidater`);
     output.places.push({
       id: place.id,

@@ -1,7 +1,7 @@
 {
   "schema": "historygo_place_image_candidates_v1",
   "meta": {
-    "generatedAt": "2026-05-05T15:37:58.285Z",
+    "generatedAt": "2026-05-11T13:32:59.110Z",
     "manifestPath": "data/places/manifest.json",
     "structure": "new_only_data_places_category_city",
     "sources": [
@@ -12,50 +12,66 @@
     ],
     "note": "Kontroller kandidatene manuelt. Marker én kandidat per sted med approved: true før apply-scriptet kjøres.",
     "diagnostics": {
-      "wikidataSearchCalls": 12,
-      "wikidataSearchErrors": [
-        "Tigerstatuen (nb): TypeError: fetch failed code=ENETUNREACH url=https://www.wikidata.org/w/api.php?action=wbsearchentities&format=json&language=nb&uselang=nb&type=item&limit=8&search=Tigerstatuen",
-        "Tigerstatuen (en): TypeError: fetch failed code=ENETUNREACH url=https://www.wikidata.org/w/api.php?action=wbsearchentities&format=json&language=en&uselang=en&type=item&limit=8&search=Tigerstatuen",
-        "Tigerstatuen Oslo (nb): TypeError: fetch failed code=ENETUNREACH url=https://www.wikidata.org/w/api.php?action=wbsearchentities&format=json&language=nb&uselang=nb&type=item&limit=8&search=Tigerstatuen+Oslo",
-        "Tigerstatuen Oslo (en): TypeError: fetch failed code=ENETUNREACH url=https://www.wikidata.org/w/api.php?action=wbsearchentities&format=json&language=en&uselang=en&type=item&limit=8&search=Tigerstatuen+Oslo",
-        "Tigerstatuen Norway (nb): TypeError: fetch failed code=ENETUNREACH url=https://www.wikidata.org/w/api.php?action=wbsearchentities&format=json&language=nb&uselang=nb&type=item&limit=8&search=Tigerstatuen+Norway",
-        "Tigerstatuen Norway (en): TypeError: fetch failed code=ENETUNREACH url=https://www.wikidata.org/w/api.php?action=wbsearchentities&format=json&language=en&uselang=en&type=item&limit=8&search=Tigerstatuen+Norway",
-        "MUNCH (nb): TypeError: fetch failed code=ENETUNREACH url=https://www.wikidata.org/w/api.php?action=wbsearchentities&format=json&language=nb&uselang=nb&type=item&limit=8&search=MUNCH",
-        "MUNCH (en): TypeError: fetch failed code=ENETUNREACH url=https://www.wikidata.org/w/api.php?action=wbsearchentities&format=json&language=en&uselang=en&type=item&limit=8&search=MUNCH",
-        "MUNCH Oslo (nb): TypeError: fetch failed code=ENETUNREACH url=https://www.wikidata.org/w/api.php?action=wbsearchentities&format=json&language=nb&uselang=nb&type=item&limit=8&search=MUNCH+Oslo",
-        "MUNCH Oslo (en): TypeError: fetch failed code=ENETUNREACH url=https://www.wikidata.org/w/api.php?action=wbsearchentities&format=json&language=en&uselang=en&type=item&limit=8&search=MUNCH+Oslo",
-        "MUNCH Norway (nb): TypeError: fetch failed code=ENETUNREACH url=https://www.wikidata.org/w/api.php?action=wbsearchentities&format=json&language=nb&uselang=nb&type=item&limit=8&search=MUNCH+Norway",
-        "MUNCH Norway (en): TypeError: fetch failed code=ENETUNREACH url=https://www.wikidata.org/w/api.php?action=wbsearchentities&format=json&language=en&uselang=en&type=item&limit=8&search=MUNCH+Norway"
-      ],
+      "wikidataSearchCalls": 0,
+      "wikidataSearchErrors": [],
       "wikidataEntitiesCalls": 0,
       "wikidataEntitiesErrors": [],
       "wikidataEntitiesWithP18": 0,
       "commonsImageInfoCalls": 0,
       "commonsImageInfoErrors": [],
-      "commonsGeoCalls": 2,
-      "commonsGeoErrors": [
-        "TypeError: fetch failed code=ENETUNREACH url=https://commons.wikimedia.org/w/api.php?action=query&format=json&formatversion=2&generator=geosearch&ggscoord=59.9111%7C10.7528&ggsradius=650&ggslimit=25&ggsnamespace=6&prop=coordinates%7Cimageinfo&iiprop=url%7Cmime%7Csize%7Cextmetadata&iiurlwidth=900&iiextmetadatafilter=Artist%7CCredit%7CObjectName%7CLicenseShortName%7CLicenseUrl%7CUsageTerms",
-        "TypeError: fetch failed code=ENETUNREACH url=https://commons.wikimedia.org/w/api.php?action=query&format=json&formatversion=2&generator=geosearch&ggscoord=59.9057%7C10.7606&ggsradius=650&ggslimit=25&ggsnamespace=6&prop=coordinates%7Cimageinfo&iiprop=url%7Cmime%7Csize%7Cextmetadata&iiurlwidth=900&iiextmetadatafilter=Artist%7CCredit%7CObjectName%7CLicenseShortName%7CLicenseUrl%7CUsageTerms"
-      ],
-      "commonsTextCalls": 6,
-      "commonsTextErrors": [
-        "\"Tigerstatuen\": TypeError: fetch failed code=ENETUNREACH url=https://commons.wikimedia.org/w/api.php?action=query&format=json&formatversion=2&generator=search&gsrsearch=%22Tigerstatuen%22&gsrnamespace=6&gsrlimit=15&prop=imageinfo&iiprop=url%7Cmime%7Csize%7Cextmetadata&iiurlwidth=900&iiextmetadatafilter=Artist%7CCredit%7CObjectName%7CLicenseShortName%7CLicenseUrl%7CUsageTerms",
-        "Tigerstatuen Oslo: TypeError: fetch failed code=ENETUNREACH url=https://commons.wikimedia.org/w/api.php?action=query&format=json&formatversion=2&generator=search&gsrsearch=Tigerstatuen+Oslo&gsrnamespace=6&gsrlimit=15&prop=imageinfo&iiprop=url%7Cmime%7Csize%7Cextmetadata&iiurlwidth=900&iiextmetadatafilter=Artist%7CCredit%7CObjectName%7CLicenseShortName%7CLicenseUrl%7CUsageTerms",
-        "Tigerstatuen Norway: TypeError: fetch failed code=ENETUNREACH url=https://commons.wikimedia.org/w/api.php?action=query&format=json&formatversion=2&generator=search&gsrsearch=Tigerstatuen+Norway&gsrnamespace=6&gsrlimit=15&prop=imageinfo&iiprop=url%7Cmime%7Csize%7Cextmetadata&iiurlwidth=900&iiextmetadatafilter=Artist%7CCredit%7CObjectName%7CLicenseShortName%7CLicenseUrl%7CUsageTerms",
-        "\"MUNCH\": TypeError: fetch failed code=ENETUNREACH url=https://commons.wikimedia.org/w/api.php?action=query&format=json&formatversion=2&generator=search&gsrsearch=%22MUNCH%22&gsrnamespace=6&gsrlimit=15&prop=imageinfo&iiprop=url%7Cmime%7Csize%7Cextmetadata&iiurlwidth=900&iiextmetadatafilter=Artist%7CCredit%7CObjectName%7CLicenseShortName%7CLicenseUrl%7CUsageTerms",
-        "MUNCH Oslo: TypeError: fetch failed code=ENETUNREACH url=https://commons.wikimedia.org/w/api.php?action=query&format=json&formatversion=2&generator=search&gsrsearch=MUNCH+Oslo&gsrnamespace=6&gsrlimit=15&prop=imageinfo&iiprop=url%7Cmime%7Csize%7Cextmetadata&iiurlwidth=900&iiextmetadatafilter=Artist%7CCredit%7CObjectName%7CLicenseShortName%7CLicenseUrl%7CUsageTerms",
-        "MUNCH Norway: TypeError: fetch failed code=ENETUNREACH url=https://commons.wikimedia.org/w/api.php?action=query&format=json&formatversion=2&generator=search&gsrsearch=MUNCH+Norway&gsrnamespace=6&gsrlimit=15&prop=imageinfo&iiprop=url%7Cmime%7Csize%7Cextmetadata&iiurlwidth=900&iiextmetadatafilter=Artist%7CCredit%7CObjectName%7CLicenseShortName%7CLicenseUrl%7CUsageTerms"
-      ]
+      "commonsGeoCalls": 0,
+      "commonsGeoErrors": [],
+      "commonsTextCalls": 0,
+      "commonsTextErrors": []
     },
     "counts": {
-      "manifestFiles": 35,
-      "placesTotal": 407,
-      "placesChecked": 2,
-      "placesWithCandidates": 0,
-      "candidatesTotal": 0
+      "manifestFiles": 36,
+      "placesTotal": 440,
+      "placesChecked": 10,
+      "placesWithCandidates": 10,
+      "candidatesTotal": 10
     }
   },
   "places": [
+    {
+      "id": "aker_brygge",
+      "name": "Aker Brygge",
+      "category": "by",
+      "sourceFile": "data/places/by/oslo/places_by.json",
+      "lat": 59.9097,
+      "lon": 10.7256,
+      "missing": {
+        "image": true,
+        "cardImage": true
+      },
+      "status": "needs_review",
+      "candidates": [
+        {
+          "approved": false,
+          "source": "manual_seed",
+          "score": 50,
+          "reason": "manuelt seedet kandidat; krever manuell lisens- og bildesjekk",
+          "wikidataItem": "",
+          "label": "Manuelt funnet Commons-kandidat. Eksteriør/stedsbilde av Aker Brygge. Må lisens- og bildekontrolleres før approval.",
+          "fileTitle": "File:Aker Brygge, Oslo.jpg",
+          "originalUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Aker%20Brygge%2C%20Oslo.jpg",
+          "thumbUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Aker%20Brygge%2C%20Oslo.jpg",
+          "pageUrl": "https://commons.wikimedia.org/wiki/File:Aker_Brygge,_Oslo.jpg",
+          "mime": "image/jpeg",
+          "width": 5712,
+          "height": 4284,
+          "author": "Cbliu",
+          "credit": "Cbliu / Wikimedia Commons",
+          "licenseShortName": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "distanceM": null,
+          "suggested": {
+            "image": "bilder/places/auto/aker_brygge.jpg",
+            "cardImage": "bilder/places/auto/aker_brygge.jpg"
+          }
+        }
+      ]
+    },
     {
       "id": "tigeren",
       "name": "Tigerstatuen",
@@ -67,8 +83,189 @@
         "image": true,
         "cardImage": true
       },
-      "status": "no_candidate_found",
-      "candidates": []
+      "status": "needs_review",
+      "candidates": [
+        {
+          "approved": false,
+          "source": "manual_seed",
+          "score": 50,
+          "reason": "manuelt seedet kandidat; krever manuell lisens- og bildesjekk",
+          "wikidataItem": "",
+          "label": "Manuelt funnet Commons-kandidat. Viser Østbanehallen med tigerstatuen foran. Må lisens- og bildekontrolleres før approval.",
+          "fileTitle": "File:Østbanehallen med tiger foran, Oslo.jpg",
+          "originalUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/%C3%98stbanehallen%20med%20tiger%20foran%2C%20Oslo.jpg",
+          "thumbUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/%C3%98stbanehallen%20med%20tiger%20foran%2C%20Oslo.jpg",
+          "pageUrl": "https://commons.wikimedia.org/wiki/File:%C3%98stbanehallen_med_tiger_foran,_Oslo.jpg",
+          "mime": "image/jpeg",
+          "width": 4032,
+          "height": 3024,
+          "author": "Ssu",
+          "credit": "Ssu / Wikimedia Commons",
+          "licenseShortName": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "distanceM": null,
+          "suggested": {
+            "image": "bilder/places/auto/tigeren.jpg",
+            "cardImage": "bilder/places/auto/tigeren.jpg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "gronland_kirke",
+      "name": "Grønland kirke",
+      "category": "by",
+      "sourceFile": "data/places/by/oslo/places_by.json",
+      "lat": 59.9125,
+      "lon": 10.7678,
+      "missing": {
+        "image": true,
+        "cardImage": true
+      },
+      "status": "needs_review",
+      "candidates": [
+        {
+          "approved": false,
+          "source": "manual_seed",
+          "score": 50,
+          "reason": "manuelt seedet kandidat; krever manuell lisens- og bildesjekk",
+          "wikidataItem": "",
+          "label": "Manuelt funnet Commons-kandidat. Moderne eksteriørbilde av Grønland kirke. Må lisens- og bildekontrolleres før approval.",
+          "fileTitle": "File:Grønland kirke, Oslo 2023.jpg",
+          "originalUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Gr%C3%B8nland%20kirke%2C%20Oslo%202023.jpg",
+          "thumbUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Gr%C3%B8nland%20kirke%2C%20Oslo%202023.jpg",
+          "pageUrl": "https://commons.wikimedia.org/wiki/File:Gr%C3%B8nland_kirke,_Oslo_2023.jpg",
+          "mime": "image/jpeg",
+          "width": 4032,
+          "height": 3024,
+          "author": "Ssu",
+          "credit": "Ssu / Wikimedia Commons",
+          "licenseShortName": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "distanceM": null,
+          "suggested": {
+            "image": "bilder/places/auto/gronland_kirke.jpg",
+            "cardImage": "bilder/places/auto/gronland_kirke.jpg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "kampen_kirke",
+      "name": "Kampen kirke",
+      "category": "by",
+      "sourceFile": "data/places/by/oslo/places_by.json",
+      "lat": 59.9167,
+      "lon": 10.7781,
+      "missing": {
+        "image": true,
+        "cardImage": true
+      },
+      "status": "needs_review",
+      "candidates": [
+        {
+          "approved": false,
+          "source": "manual_seed",
+          "score": 50,
+          "reason": "manuelt seedet kandidat; krever manuell lisens- og bildesjekk",
+          "wikidataItem": "",
+          "label": "Manuelt funnet Commons-kandidat. Eksteriørbilde av Kampen kirke. Må lisens- og bildekontrolleres før approval.",
+          "fileTitle": "File:Kampen kirke.jpg",
+          "originalUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Kampen%20kirke.jpg",
+          "thumbUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Kampen%20kirke.jpg",
+          "pageUrl": "https://commons.wikimedia.org/wiki/File:Kampen_kirke.jpg",
+          "mime": "image/jpeg",
+          "width": 1000,
+          "height": 1504,
+          "author": "Thordivel",
+          "credit": "Thordivel / Wikimedia Commons",
+          "licenseShortName": "Public domain",
+          "licenseUrl": "",
+          "distanceM": null,
+          "suggested": {
+            "image": "bilder/places/auto/kampen_kirke.jpg",
+            "cardImage": "bilder/places/auto/kampen_kirke.jpg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "schous_plass",
+      "name": "Schous plass",
+      "category": "by",
+      "sourceFile": "data/places/by/oslo/places_by.json",
+      "lat": 59.9233,
+      "lon": 10.7596,
+      "missing": {
+        "image": true,
+        "cardImage": true
+      },
+      "status": "needs_review",
+      "candidates": [
+        {
+          "approved": false,
+          "source": "manual_seed",
+          "score": 50,
+          "reason": "manuelt seedet kandidat; krever manuell lisens- og bildesjekk",
+          "wikidataItem": "",
+          "label": "Manuelt funnet Commons-kandidat. Viser Schous plass/Schous kulturbryggeri-området. Må lisens- og bildekontrolleres før approval.",
+          "fileTitle": "File:Schous plass Kulturbryggeri Popsenteret Riksscenen Kulturstasjon bryggeri Schou Brewery ca 1821-1981 Oslo kommune Norway 2020-04-22 7104.jpg",
+          "originalUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Schous%20plass%20Kulturbryggeri%20Popsenteret%20Riksscenen%20Kulturstasjon%20bryggeri%20Schou%20Brewery%20ca%201821-1981%20Oslo%20kommune%20Norway%202020-04-22%207104.jpg",
+          "thumbUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Schous%20plass%20Kulturbryggeri%20Popsenteret%20Riksscenen%20Kulturstasjon%20bryggeri%20Schou%20Brewery%20ca%201821-1981%20Oslo%20kommune%20Norway%202020-04-22%207104.jpg",
+          "pageUrl": "https://commons.wikimedia.org/wiki/File:Schous_plass_Kulturbryggeri_Popsenteret_Riksscenen_Kulturstasjon_bryggeri_Schou_Brewery_ca_1821-1981_Oslo_kommune_Norway_2020-04-22_7104.jpg",
+          "mime": "image/jpeg",
+          "width": 5092,
+          "height": 3394,
+          "author": "Wolfmann",
+          "credit": "Wolfmann / Wikimedia Commons",
+          "licenseShortName": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "distanceM": null,
+          "suggested": {
+            "image": "bilder/places/auto/schous_plass.jpg",
+            "cardImage": "bilder/places/auto/schous_plass.jpg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "akerhus_slott",
+      "name": "Akerhus Slott",
+      "category": "historie",
+      "sourceFile": "data/places/historie/oslo/places_historie.json",
+      "lat": 59.906611,
+      "lon": 10.73625,
+      "missing": {
+        "image": true,
+        "cardImage": true
+      },
+      "status": "needs_review",
+      "candidates": [
+        {
+          "approved": false,
+          "source": "manual_seed",
+          "score": 50,
+          "reason": "manuelt seedet kandidat; krever manuell lisens- og bildesjekk",
+          "wikidataItem": "",
+          "label": "Manuelt funnet Commons-kandidat. Eksteriør/stedsbilde fra Akershus festning. Må lisens- og bildekontrolleres før approval.",
+          "fileTitle": "File:Akershus Fortress, Oslo, 13th cent. and after (9) (36297813802).jpg",
+          "originalUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Akershus%20Fortress%2C%20Oslo%2C%2013th%20cent.%20and%20after%20%289%29%20%2836297813802%29.jpg",
+          "thumbUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Akershus%20Fortress%2C%20Oslo%2C%2013th%20cent.%20and%20after%20%289%29%20%2836297813802%29.jpg",
+          "pageUrl": "https://commons.wikimedia.org/wiki/File:Akershus_Fortress,_Oslo,_13th_cent._and_after_(9)_(36297813802).jpg",
+          "mime": "image/jpeg",
+          "width": 5968,
+          "height": 3950,
+          "author": "Jorge Franganillo",
+          "credit": "Jorge Franganillo / Wikimedia Commons",
+          "licenseShortName": "CC BY-SA 2.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+          "distanceM": null,
+          "suggested": {
+            "image": "bilder/places/auto/akerhus_slott.jpg",
+            "cardImage": "bilder/places/auto/akerhus_slott.jpg"
+          }
+        }
+      ]
     },
     {
       "id": "munch_museet",
@@ -81,8 +278,150 @@
         "image": true,
         "cardImage": true
       },
-      "status": "no_candidate_found",
-      "candidates": []
+      "status": "needs_review",
+      "candidates": [
+        {
+          "approved": false,
+          "source": "manual_seed",
+          "score": 50,
+          "reason": "manuelt seedet kandidat; krever manuell lisens- og bildesjekk",
+          "wikidataItem": "",
+          "label": "Manuelt funnet Commons-kandidat. Eksteriørbilde av MUNCH i Bjørvika. Må lisens- og bildekontrolleres før approval.",
+          "fileTitle": "File:MUNCH in Bjørvika.jpg",
+          "originalUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/MUNCH%20in%20Bj%C3%B8rvika.jpg",
+          "thumbUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/MUNCH%20in%20Bj%C3%B8rvika.jpg",
+          "pageUrl": "https://commons.wikimedia.org/wiki/File:MUNCH_in_Bj%C3%B8rvika.jpg",
+          "mime": "image/jpeg",
+          "width": 4284,
+          "height": 5712,
+          "author": "Hanne Evensen",
+          "credit": "Hanne Evensen / Wikimedia Commons",
+          "licenseShortName": "CC BY 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+          "distanceM": null,
+          "suggested": {
+            "image": "bilder/places/auto/munch_museet.jpg",
+            "cardImage": "bilder/places/auto/munch_museet.jpg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "astrup_fearnley",
+      "name": "Astrup Fearnley Museet",
+      "category": "kunst",
+      "sourceFile": "data/places/kunst/oslo/places_kunst.json",
+      "lat": 59.9071,
+      "lon": 10.7201,
+      "missing": {
+        "image": true,
+        "cardImage": true
+      },
+      "status": "needs_review",
+      "candidates": [
+        {
+          "approved": false,
+          "source": "manual_seed",
+          "score": 50,
+          "reason": "manuelt seedet kandidat; krever manuell lisens- og bildesjekk",
+          "wikidataItem": "",
+          "label": "Manuelt funnet Commons-kandidat. Eksteriørbilde av Astrup Fearnley Museet. Må lisens- og bildekontrolleres før approval.",
+          "fileTitle": "File:Oslo Astrup Fearnley Museet.JPG",
+          "originalUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Oslo%20Astrup%20Fearnley%20Museet.JPG",
+          "thumbUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Oslo%20Astrup%20Fearnley%20Museet.JPG",
+          "pageUrl": "https://commons.wikimedia.org/wiki/File:Oslo_Astrup_Fearnley_Museet.JPG",
+          "mime": "image/jpeg",
+          "width": 6000,
+          "height": 4000,
+          "author": "Kvikk",
+          "credit": "Kvikk / Wikimedia Commons",
+          "licenseShortName": "CC BY-SA 3.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "distanceM": null,
+          "suggested": {
+            "image": "bilder/places/auto/astrup_fearnley.jpg",
+            "cardImage": "bilder/places/auto/astrup_fearnley.jpg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ekebergparken",
+      "name": "Ekebergparken skulpturpark",
+      "category": "kunst",
+      "sourceFile": "data/places/kunst/oslo/places_kunst.json",
+      "lat": 59.8997,
+      "lon": 10.7753,
+      "missing": {
+        "image": true,
+        "cardImage": true
+      },
+      "status": "needs_review",
+      "candidates": [
+        {
+          "approved": false,
+          "source": "manual_seed",
+          "score": 50,
+          "reason": "manuelt seedet kandidat; krever manuell lisens- og bildesjekk",
+          "wikidataItem": "",
+          "label": "Manuelt funnet Commons-kandidat. Åpent parklandskap i Ekebergparken skulpturpark. Må lisens- og bildekontrolleres før approval.",
+          "fileTitle": "File:Ekebergparken open park landscape.JPG",
+          "originalUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Ekebergparken%20open%20park%20landscape.JPG",
+          "thumbUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Ekebergparken%20open%20park%20landscape.JPG",
+          "pageUrl": "https://commons.wikimedia.org/wiki/File:Ekebergparken_open_park_landscape.JPG",
+          "mime": "image/jpeg",
+          "width": 3872,
+          "height": 2592,
+          "author": "Helge Høifødt",
+          "credit": "Helge Høifødt / Wikimedia Commons",
+          "licenseShortName": "CC BY-SA 3.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "distanceM": null,
+          "suggested": {
+            "image": "bilder/places/auto/ekebergparken.jpg",
+            "cardImage": "bilder/places/auto/ekebergparken.jpg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "det_norske_teatret",
+      "name": "Det Norske Teatret",
+      "category": "musikk",
+      "sourceFile": "data/places/musikk/oslo/places_musikk.json",
+      "lat": 59.91376,
+      "lon": 10.74092,
+      "missing": {
+        "image": true,
+        "cardImage": true
+      },
+      "status": "needs_review",
+      "candidates": [
+        {
+          "approved": false,
+          "source": "manual_seed",
+          "score": 50,
+          "reason": "manuelt seedet kandidat; krever manuell lisens- og bildesjekk",
+          "wikidataItem": "",
+          "label": "Manuelt funnet Commons-kandidat. Eksteriørbilde av Det Norske Teatret. Må lisens- og bildekontrolleres før approval.",
+          "fileTitle": "File:DetNorskeTeatret.JPG",
+          "originalUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/DetNorskeTeatret.JPG",
+          "thumbUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/DetNorskeTeatret.JPG",
+          "pageUrl": "https://commons.wikimedia.org/wiki/File:DetNorskeTeatret.JPG",
+          "mime": "image/jpeg",
+          "width": 2816,
+          "height": 2112,
+          "author": "Hans A. / Haros",
+          "credit": "Hans A. / Haros / Wikimedia Commons",
+          "licenseShortName": "CC BY-SA 2.5/GFDL",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.5/",
+          "distanceM": null,
+          "suggested": {
+            "image": "bilder/places/auto/det_norske_teatret.jpg",
+            "cardImage": "bilder/places/auto/det_norske_teatret.jpg"
+          }
+        }
+      ]
     }
   ]
 }
