@@ -1,0 +1,145 @@
+{
+  "id": "observatoriet_quiz_1",
+  "quiz_id": "vitenskap_observatoriet_set_1_q1",
+  "categoryId": "vitenskap",
+  "placeId": "observatoriet",
+  "personId": "",
+  "natureId": "",
+  "targetId": "observatoriet",
+  "question_scope": "place",
+  "question": "Hva gjør Observatoriet særlig relevant som vitenskapssted?",
+  "options": [
+    "Det er et kunnskapssted knyttet til observasjon, måling, instrumenter og vitenskapelig autoritet",
+    "Det er et rent konsertsted der sjanger, sceneprogram og liveframføring er hovedpoenget",
+    "Det er et våtmarksområde der fugleliv, vannspeil og habitat er hovedpoenget"
+  ],
+  "answer": "Det er et kunnskapssted knyttet til observasjon, måling, instrumenter og vitenskapelig autoritet",
+  "answerIndex": 0,
+  "dimension": "vitenskap",
+  "topic": "Observasjon, måling og vitenskapelig institusjon",
+  "knowledge": "Observatoriet brukes her som eksempel på vitenskapens materielle og metodiske form i byen: et sted der observasjon, instrumenter, måling, standardisering og institusjonell kunnskap kan undersøkes gjennom dokumenterte kilder.",
+  "trivia": [],
+  "difficulty": 1,
+  "question_type": "fact",
+  "question_layer": "fakta_sted_vitenskap",
+  "year": null,
+  "epoke_id": "moderne_vitenskap_og_observasjon",
+  "epoke_domain": "vitenskap",
+  "emne_id": "em_vit_observasjon_maling",
+  "related_emner": [
+    "em_vit_observasjon_maling",
+    "em_vit_instrumenter_maling",
+    "em_vit_institusjonell_autoritet"
+  ],
+  "core_concepts": [
+    "observasjon",
+    "måling",
+    "instrument",
+    "institusjon",
+    "vitenskapelig autoritet"
+  ],
+  "concept_focus": [
+    "observasjon",
+    "måling"
+  ],
+  "learning_paths": [
+    "fra sted til observasjon",
+    "fra instrument til måling",
+    "fra måling til vitenskapelig autoritet og kunnskapsproduksjon"
+  ],
+  "tags": [
+    "vitenskap",
+    "sted",
+    "observatorium",
+    "måling",
+    "instrument",
+    "kunnskap",
+    "forskning"
+  ],
+  "required_tags": [
+    "external_source",
+    "science_anchor",
+    "em_vit"
+  ],
+  "source": [
+    {
+      "type": "official_institution_or_archive_source",
+      "name": "Observatoriet / Universitetet i Oslo / Oslo byarkiv / tilsvarende offisiell institusjons-, arkiv- eller universitetskilde",
+      "role": "verifiserer stedets funksjon som observatorium, vitenskapelig institusjon, kunnskapssted eller historisk forskningssted",
+      "required": true
+    },
+    {
+      "type": "science_history_or_research_source",
+      "name": "vitenskapshistorisk, astronomihistorisk, observatoriehistorisk, museums-, forsknings- eller fagformidlingskilde",
+      "role": "verifiserer stedets betydning for observasjon, måling, instrumenter, forskningsmiljø, vitenskapelig praksis eller kunnskapsproduksjon",
+      "required": true
+    }
+  ],
+  "related_emners": [
+    "em_vit_observasjon_maling",
+    "em_vit_instrumenter_maling",
+    "em_vit_institusjonell_autoritet"
+  ],
+  "source_origin": "mixed",
+  "claim_basis": "Ekstern institusjons-, arkiv-, universitets- eller vitenskapshistorisk kilde skal verifisere at Observatoriet fungerer som vitenskapelig kunnskapssted knyttet til observasjon, måling og instrumentbruk.",
+  "guidance_basis": {
+    "fagkart_category_id": "institusjoner_laboratorier_kunnskapssteder",
+    "topic_hook": "observatorium_og_maling",
+    "emne_id": "em_vit_observasjon_maling",
+    "method_id": "met_vit_observasjonsanalyse",
+    "canonical_files_used_as_guidance_only": [
+      "fagkart_vitenskap_canonical_v4_5.json",
+      "methods_vitenskap_canonical_v4_5.json",
+      "emner_vitenskap_canonical_v4_5.json",
+      "emnemapping_vitenskap_canonical_v4_5.json",
+      "vitenskappensum_canonical_v4_5.json"
+    ]
+  },
+  "method_id": "met_vit_observasjonsanalyse",
+  "science_anchor_type": "observatory",
+  "source_note": "Spørsmålet skal bygges fra ekstern institusjons-, arkiv-, universitets-, museums- eller vitenskapshistorisk kilde; fagfilene styrer bare metode, emne og spørsmålsflate.",
+  "external_source_ratio_target": 0.85,
+  "internal_file_only_allowed": false,
+  "requires_science_anchor": true,
+  "requires_external_claim_basis": true,
+  "requires_institution_method_model_instrument_or_discovery_anchor": true,
+  "requires_documented_scientific_context": true,
+  "generator_guardrails": {
+    "do_not_generate_from_emne_label_only": true,
+    "do_not_generate_from_method_label_only": true,
+    "do_not_use_non_vitenskap_emne_id": true,
+    "required_emne_prefix": "em_vit_",
+    "blocked_emne_prefixes": [
+      "em_by_",
+      "em_his_",
+      "em_kunst_",
+      "em_lit_",
+      "em_media_",
+      "em_musikk_",
+      "em_pop_",
+      "em_pol_",
+      "em_naering_",
+      "em_natur_",
+      "em_psy_",
+      "em_sub_"
+    ],
+    "institution_method_model_instrument_discovery_first_then_theory": true,
+    "source_first": true,
+    "avoid_generic_science_questions": true,
+    "avoid_pure_invention_trivia": true,
+    "avoid_vague_science_angle_without_institution_method_instrument_model_discovery_or_source": true
+  },
+  "validation": {
+    "emne_id_exists_in_emner_vitenskap": true,
+    "method_id_exists_in_methods_vitenskap": true,
+    "mapping_exists_in_emnemapping_vitenskap": true,
+    "category_matches_badge": true,
+    "schema_extends_generic_supersetQUIZMAL": true
+  },
+  "template_notes": {
+    "template_role": "vitenskap_superset_quiz_object",
+    "generic_template_source": "supersetQUIZMAL (10).json",
+    "content_policy": "Dette er en mal/eksempelobjekt. Produksjonsquizer skal fylle source med konkrete kilder og ikke bruke fagfilene som hovedkilde til faktapåstander.",
+    "next_use": "Bruk som grunnmal for vitenskapsquiz-spørsmål før generatoren lager mange spørsmål per sted/person."
+  }
+}
