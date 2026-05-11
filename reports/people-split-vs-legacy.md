@@ -1,6 +1,6 @@
 # People split vs legacy audit
 
-Generert: 2026-05-11T13:06:22.323Z
+Generert: 2026-05-11T13:18:44.092Z
 
 ## Sammendrag
 
@@ -13,13 +13,13 @@ Generert: 2026-05-11T13:06:22.323Z
 - Split people: **165**
 - Split unike ID-er: **156**
 - Split-filer: **13**
-- Runtime-filer i boot.js: **12**
+- Runtime-filer i boot.js: **13**
 - ID-er i begge: **88**
 - ID-er bare i legacy: **6**
 - Legacy relation-only stubs: **4**
 - ID-er bare i split: **68**
 - Duplikate ID-er på tvers av split-filer: **9**
-- Split-filer ikke lastet av boot.js: **1**
+- Split-filer ikke lastet av boot.js: **0**
 - Runtime-filer i boot.js som mangler på disk: **0**
 - JSON-filer med feil: **0**
 
@@ -36,14 +36,14 @@ Generert: 2026-05-11T13:06:22.323Z
 | data/people/people_naeringsliv.json | ja | 9 | 0 |  |
 | data/people/people_natur.json | ja | 4 | 0 |  |
 | data/people/people_politikk.json | ja | 9 | 0 |  |
-| data/people/people_scenekunst.json | nei | 6 | 0 |  |
+| data/people/people_populaerkultur.json | ja | 6 | 0 |  |
 | data/people/people_sport.json | ja | 7 | 0 |  |
 | data/people/people_subkultur.json | ja | 9 | 0 |  |
 | data/people/people_vitenskap.json | ja | 6 | 0 |  |
 
 ## Split-filer som ikke lastes av boot.js
 
-- data/people/people_scenekunst.json
+- Ingen.
 
 ## Boot-filer som mangler på disk
 
@@ -74,7 +74,7 @@ Generert: 2026-05-11T13:06:22.323Z
 - anton_martin_schweigaard_okonomi | Anton Martin Schweigaard | data/people/people_naeringsliv.json
 - arne_korsmo | Arne Korsmo | data/people/people_by.json
 - arnulf_overland | Arnulf Øverland | data/people/people_historie.json
-- bard_tufte_johansen | Bård Tufte Johansen | data/people/people_scenekunst.json
+- bard_tufte_johansen | Bård Tufte Johansen | data/people/people_populaerkultur.json
 - bernt_anker | Bernt Anker | data/people/people_historie.json
 - birger_eriksen | Birger Eriksen | data/people/people_historie.json
 - carl_deichman | Carl Deichman | data/people/people_filantroper.json, data/people/people_historie.json
@@ -92,14 +92,14 @@ Generert: 2026-05-11T13:06:22.323Z
 - edvard_munch | Edvard Munch | data/people/people_historie.json
 - einar_gerhardsen | Einar Gerhardsen | data/people/people_politikk.json
 - ellef_ringnes_bryggeri_og_ledelse | Ellef Ringnes | data/people/people_naeringsliv.json
-- else_kass_furuseth | Else Kåss Furuseth | data/people/people_scenekunst.json
+- else_kass_furuseth | Else Kåss Furuseth | data/people/people_populaerkultur.json
 - georg_ossian_sars | Georg Ossian Sars | data/people/people_natur.json
 - georg_sverdrup | Georg Sverdrup | data/people/people_historie.json
 - gregers_gram | Gregers Gram | data/people/people_historie.json
 - gunnar_jahn_statistikk_og_styring | Gunnar Jahn | data/people/people_naeringsliv.json
 - gunnar_sonsteby | Gunnar Sønsteby | data/people/people_historie.json
 - hans_rasmus_astrup | Hans Rasmus Astrup | data/people/people_filantroper.json
-- harald_eia | Harald Eia | data/people/people_scenekunst.json
+- harald_eia | Harald Eia | data/people/people_populaerkultur.json
 - harald_hals | Harald Hals | data/people/people_by.json
 - harald_hardrade | Harald Hardråde | data/people/people_historie.json
 - henrik_bjelke | Henrik Bjelke | data/people/people_historie.json
@@ -112,12 +112,12 @@ Generert: 2026-05-11T13:06:22.323Z
 - kong_karl_johan | Karl Johan | data/people/people_historie.json
 - kristian_birkeland_teknologi_og_industri | Kristian Birkeland | data/people/people_naeringsliv.json
 - kristine_bonnevie | Kristine Bonnevie | data/people/people_historie.json
-- kristoffer_olsen | Kristoffer Olsen | data/people/people_scenekunst.json
+- kristoffer_olsen | Kristoffer Olsen | data/people/people_populaerkultur.json
 - marcus_thrane | Marcus Thrane | data/people/people_historie.json
 - maria_quisling | Maria Quisling | data/people/people_historie.json
 - martin_tranmael | Martin Tranmæl | data/people/people_historie.json
 - michael_sars | Michael Sars | data/people/people_natur.json
-- morten_ramm | Morten Ramm | data/people/people_scenekunst.json
+- morten_ramm | Morten Ramm | data/people/people_populaerkultur.json
 - nicolai_rygg_sentralbank | Nicolai Rygg | data/people/people_naeringsliv.json
 - oda_krohg | Oda Krohg | data/people/people_historie.json
 - olaf_rye | Olaf Rye | data/people/people_historie.json
@@ -163,7 +163,7 @@ Generert: 2026-05-11T13:06:22.323Z
 - grete_waitz | Grete Waitz | placeId | data/people/people_sport.json
 - gustav_vigeland | Gustav Vigeland | category | data/people/people_historie.json, data/people/people_kunst.json
 - henrik_wergeland | Henrik Wergeland | category, placeId | data/people/people_historie.json, data/people/people_litteratur.json
-- herman_flesvig | Herman Flesvig | category, placeId | data/people/people_scenekunst.json
+- herman_flesvig | Herman Flesvig | category, placeId | data/people/people_populaerkultur.json
 - johan_sverdrup | Johan Sverdrup | category, placeId | data/people/people_historie.json, data/people/people_politikk.json
 - jonas_collett | Jonas Collett | placeId | data/people/people_litteratur.json
 - kirsten_flagstad | Kirsten Flagstad | placeId | data/people/people_musikk.json
