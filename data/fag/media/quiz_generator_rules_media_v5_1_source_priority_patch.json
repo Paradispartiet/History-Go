@@ -1,0 +1,64 @@
+{
+  "version": "v5.1-source-priority-patch-media",
+  "subject_id": "media",
+  "subject_title": "Media",
+  "scope": "oslo_og_omegn",
+  "canonical_inputs": {
+    "fagkart": "fagkart_media_canonical_v4_5.json",
+    "methods": "methods_media_canonical_v4_5.json",
+    "emner": "emner_media_canonical_v4_5.json",
+    "emnemapping": "emnemapping_media_canonical_v4_5.json",
+    "pensum": "mediapensum_canonical_v4_5.json",
+    "domain_count": 6,
+    "emne_count": 118,
+    "method_count": 115,
+    "mapping_count": 118,
+    "topic_hook_count": 60
+  },
+  "hard_rules": {
+    "canonical_files_are_guides_not_content": true,
+    "external_media_source_first_all_sets": true,
+    "required_emne_prefix": "em_media_",
+    "minimum_external_source_ratio_by_set": {
+      "1": 0.85,
+      "2": 0.85,
+      "3": 0.8,
+      "4": 0.8,
+      "5": 0.75,
+      "6": 0.75,
+      "7": 0.75,
+      "8": 0.75
+    },
+    "forbidden_generation_patterns": [
+      "Ikke generer spørsmål direkte fra emne-, hook- eller metodenavn.",
+      "Ikke lag generiske spørsmål om media uten konkret redaksjon, sak, publisering eller kilde.",
+      "Ikke bruk andre em_* som hoved-emne_ids i mediafiler."
+    ]
+  },
+  "set_guidance": {
+    "1": {
+      "name": "grunnfakta_redaksjon_avis"
+    },
+    "2": {
+      "name": "offentlighet_etikk_tillit"
+    },
+    "3": {
+      "name": "kildekritikk_framing"
+    },
+    "4": {
+      "name": "plattformer_algoritmer"
+    },
+    "5": {
+      "name": "propaganda_desinformasjon"
+    },
+    "6": {
+      "name": "medieokonomi_eierskap"
+    },
+    "7": {
+      "name": "historie_arkiv_hukommelse"
+    },
+    "8": {
+      "name": "systemanalyse_media"
+    }
+  }
+}
