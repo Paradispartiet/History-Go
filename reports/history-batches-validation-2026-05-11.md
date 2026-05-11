@@ -10,6 +10,7 @@ Denne rapporten gjelder de nye historie-batchene som er lagt inn som egne filer,
 - `data/places/historie/oslo/places_historie_next_batch_middelalder_01.json`
 - `data/places/historie/oslo/places_historie_next_batch_middelalder_02.json`
 - `data/places/historie/oslo/places_historie_next_batch_ruth_maier_01.json`
+- `data/places/historie/oslo/places_historie_next_batch_tidlig_moderne_01.json`
 
 ## Status
 
@@ -89,6 +90,40 @@ Anbefalt sjekkerekkefølge:
 3. `korskirken`
 
 `oslo_ladegard` bør sjekkes først fordi det er et eksisterende fysisk bygg og kan brukes som stabilt orienteringspunkt for de nærliggende ruinene.
+
+## Tidlig moderne / sosialhistorisk place-batch
+
+Følgende nye steder ligger i:
+
+`data/places/historie/oslo/places_historie_next_batch_tidlig_moderne_01.json`
+
+- `gamle_radhus`
+- `galgeberg`
+- `oslo_hospital`
+- `tukthuset`
+
+Alle fire har:
+
+- `category: "historie"`
+- `coordStatus: "needs_manual_map_check"`
+- `coordSource: "approximate_manual_lookup"`
+
+### Vurdering
+
+Alle fire passer faglig godt i historie-kategorien. De utvider kategorien fra middelalder/kongemakt til tidlig moderne bystyre, rettshistorie, straff, fattigdom, omsorg, institusjoner og sosial kontroll.
+
+### Før merge
+
+Koordinater må kontrolleres visuelt før `coordStatus` endres til `verified`.
+
+Anbefalt sjekkerekkefølge:
+
+1. `gamle_radhus`
+2. `oslo_hospital`
+3. `tukthuset`
+4. `galgeberg`
+
+`gamle_radhus` og `oslo_hospital` bør være lettest å verifisere som fysiske steder. `galgeberg` er historisk område/stedsnavn og må sjekkes som områdepunkt, ikke bygningssenter.
 
 ## Ruth Maier-place
 
@@ -223,12 +258,13 @@ Batchen passer godt med historie-regelen: senmiddelalder, borgerkrigstid, kongem
 
 1. Koordinatsjekk og merge `places_historie_next_batch_middelalder_01.json`.
 2. Koordinatsjekk og merge `places_historie_next_batch_middelalder_02.json`.
-3. Koordinatsjekk og merge `places_historie_next_batch_ruth_maier_01.json`.
-4. Merge `people_historie_next_batch_02.json`.
-5. Merge `people_historie_next_batch_03.json`.
-6. Merge `people_historie_next_batch_01.json`.
-7. Etter merge: kjør people-place coverage på nytt.
-8. Etter coverage: rydd eventuell Ruth Maier-duplikat i litteratur/legacy.
+3. Koordinatsjekk og merge `places_historie_next_batch_tidlig_moderne_01.json`.
+4. Koordinatsjekk og merge `places_historie_next_batch_ruth_maier_01.json`.
+5. Merge `people_historie_next_batch_02.json`.
+6. Merge `people_historie_next_batch_03.json`.
+7. Merge `people_historie_next_batch_01.json`.
+8. Etter merge: kjør people-place coverage på nytt.
+9. Etter coverage: rydd eventuell Ruth Maier-duplikat i litteratur/legacy.
 
 ## Risiko og tiltak
 
@@ -243,7 +279,7 @@ Tiltak:
 
 ### 2. Koordinater må ikke merkes verified ennå
 
-Alle nye middelaldersteder ligger tett. De må kontrolleres i kart før status endres.
+Alle nye middelaldersteder og tidlig moderne steder må kontrolleres i kart før status endres.
 
 Tiltak:
 
@@ -272,7 +308,7 @@ Tiltak:
 
 Tryggeste neste arbeidssteg:
 
-1. Koordinatsjekk de ni middelalderstedene og `ruth_maier_minne`.
+1. Koordinatsjekk middelalderstedene, tidlig moderne-stedene og `ruth_maier_minne`.
 2. Merge place-batchene inn i `data/places/historie/oslo/places_historie.json`.
 3. Merge people-batch 02 og 03.
 4. Merge people-batch 01.
