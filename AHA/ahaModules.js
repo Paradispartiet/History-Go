@@ -39,6 +39,7 @@
   }
 
   global.AHAModules = {
+    historygo: "active",
     readJsonStorage,
     toArray,
     escapeHtml,

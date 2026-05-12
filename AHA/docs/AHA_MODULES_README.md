@@ -14,3 +14,9 @@
 ## Sikker rendering
 All storage-avledet tekst som gjengis via `innerHTML` escapes med `escapeHtml`.
 Dette gjelder tittel, summary, topic, concepts, source-felter og JSON-preview i meta/forslag.
+
+## Fase 3: History Go-status/importmodul
+- `historygo.html` er AHA sin History Go-status/importmodul.
+- Modulen viser `aha_import_payload_v1`, History Go localStorage-status og importerte AHA source events.
+- Import skjer bare manuelt ved knappetrykk.
+- Modulen bygger ikke History Go inn i AHA og lager ikke ny motor.

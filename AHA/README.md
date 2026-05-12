@@ -22,3 +22,5 @@ Canonical AHA-motor ligger i `Paradispartiet/AHA-EchoNet`.
 History-Go/AHA er ikke en full AHA-app. For canonical AHA-opplevelse, bruk:
 
 - https://paradispartiet.github.io/AHA-EchoNet/
+
+History Go-modulen i AHA viser nå importstatus, payload-oppsummering og importerte AHA source events uten automatisk import.
