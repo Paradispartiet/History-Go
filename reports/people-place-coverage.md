@@ -1,6 +1,6 @@
 # People-place coverage audit
 
-Generert: 2026-05-12T17:45:01.195Z
+Generert: 2026-05-12T18:00:23.002Z
 
 ## Sammendrag
 
@@ -29,13 +29,13 @@ Generert: 2026-05-12T17:45:01.195Z
 | media | 7 | 0 | 7 | 0 | 0 |
 | musikk | 13 | 1 | 12 | 2 | 2 |
 | naeringsliv | 41 | 1 | 40 | 1 | 1 |
-| natur | 59 | 0 | 59 | 0 | 0 |
+| natur | 59 | 1 | 58 | 1 | 1 |
 | politikk | 15 | 4 | 11 | 34 | 24 |
 | popkultur | 17 | 0 | 17 | 0 | 0 |
 | populaerkultur | 6 | 0 | 6 | 0 | 0 |
 | sport | 38 | 4 | 34 | 7 | 7 |
 | subkultur | 23 | 1 | 22 | 1 | 1 |
-| vitenskap | 17 | 4 | 13 | 11 | 11 |
+| vitenskap | 17 | 3 | 14 | 10 | 10 |
 
 ## People tags
 
