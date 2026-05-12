@@ -89,7 +89,7 @@ const validPlaceIds = new Set(allPlaces.map((x) => x.place?.id).filter((id) => t
 
 const coverageSources = [
   { name: 'quiz', files: listJsonFiles(path.join(root, 'data/quiz')), keys: ['placeId', 'place_id', 'place'] },
-  { name: 'people', files: loadManifestFiles(path.join(root, 'data/people/manifest.json')), keys: ['placeId', 'place_id', 'places', 'placeIds', 'place_ids', 'related_places', 'place'] },
+  { name: 'people', files: loadManifestFiles(path.join(root, 'data/people/manifest.json')), keys: PLACE_REF_KEYS },
   { name: 'nature', files: listJsonFiles(path.join(root, 'data/natur')), keys: ['placeId', 'place_id', 'places', 'placeIds'] },
   { name: 'badges', files: [path.join(root, 'data/badges.json'), ...listJsonFiles(path.join(root, 'data/badges'))], keys: ['placeId', 'place_id', 'places', 'placeIds'] },
   { name: 'wonderkammer', files: [path.join(root, 'data/wonderkammer/index.json'), ...listJsonFiles(path.join(root, 'data/wonderkammer'))], keys: ['placeId', 'place_id', 'places', 'placeIds'] },
@@ -112,7 +112,8 @@ for (const source of coverageSources) {
   coverageBySource[source.name] = { seen, dangling, files: source.files.length };
 }
 
-const refTargets = [...loadManifestFiles(path.join(root, 'data/people/manifest.json')), 'data/badges.json','data/routes.json','data/routes_walks.json','data/wonderkammer/index.json','data/Civication/place_access_map.json','data/Civication/place_contexts.json','data/Civication/people_access_map.json'].map((p) => path.isAbsolute(p) ? p : path.join(root, p));
+const peopleManifestFiles = loadManifestFiles(path.join(root, 'data/people/manifest.json'));
+const refTargets = ['data/badges.json','data/routes.json','data/routes_walks.json','data/wonderkammer/index.json','data/Civication/place_access_map.json','data/Civication/place_contexts.json','data/Civication/people_access_map.json'].map((p) => path.isAbsolute(p) ? p : path.join(root, p));
 
 function collectPlaceRefs(node, currentPath = '', refs = []) {
   if (Array.isArray(node)) { node.forEach((v, i) => collectPlaceRefs(v, `${currentPath}[${i}]`, refs)); return refs; }
@@ -129,6 +130,14 @@ function collectPlaceRefs(node, currentPath = '', refs = []) {
 }
 
 const danglingRefs = [];
+for (const filePath of peopleManifestFiles) {
+  if (!fs.existsSync(filePath)) continue;
+  try {
+    const refs = collectRefsByKeys(readJson(filePath), PLACE_REF_KEYS);
+    for (const ref of refs) if (!validPlaceIds.has(ref.value)) danglingRefs.push({ file: path.relative(root, filePath).replace(/\\/g, '/'), ...ref });
+  } catch {}
+}
+
 for (const filePath of refTargets) {
   if (!fs.existsSync(filePath)) continue;
   try {
