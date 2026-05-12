@@ -361,7 +361,7 @@ function makeCandidate({ place, source, imageInfo, label = "", distanceM = null,
     distanceM: Number.isFinite(distanceM) ? distanceM : null,
     suggested: {
       image: imagePath,
-      cardImage: imagePath
+      cardImage: null
     }
   };
 }
@@ -575,7 +575,7 @@ function manualSeedCandidates(place, seedIndex) {
       },
       label: String(seed.note || "").trim(),
       scoreBoost: MANUAL_SEED_MIN_SCORE,
-      reasonOverride: "manuelt seedet kandidat; krever manuell lisens- og bildesjekk"
+      reasonOverride: "manuelt seedet kandidat; krever manuell lisens- og bildesjekk; cardImage må lages separat som kortbilde"
     });
   });
 }
