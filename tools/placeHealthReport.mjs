@@ -2,7 +2,7 @@
 
 // tools/placeHealthReport.mjs
 // Read-only health report for data/places/manifest.json and all declared place files.
-// Reports structural errors and content/asset warnings without modifying source data.
+// Reports structural errors, content/asset warnings and canonical emne warnings without modifying source data.
 
 import fs from "node:fs";
 import path from "node:path";
@@ -10,6 +10,7 @@ import process from "node:process";
 
 const ROOT = process.cwd();
 const MANIFEST_PATH = path.join(ROOT, "data", "places", "manifest.json");
+const FAG_ROOT = path.join(ROOT, "data", "fag");
 
 const VALID_CATEGORIES = new Set([
   "historie",
@@ -29,26 +30,87 @@ const VALID_CATEGORIES = new Set([
   "media"
 ]);
 
+const CATEGORY_EMNE_PREFIX = {
+  historie: "em_his_",
+  vitenskap: "em_vit_",
+  kunst: "em_kunst_",
+  musikk: "em_musikk_",
+  natur: "em_natur_",
+  sport: "em_sport_",
+  by: "em_by_",
+  politikk: "em_pol_",
+  populaerkultur: "em_pop_",
+  subkultur: "em_sub_",
+  litteratur: "em_lit_",
+  naeringsliv: "em_naering_",
+  film: "em_film_tv_",
+  film_tv: "em_film_tv_",
+  media: "em_media_"
+};
+
 const errors = [];
 const warnings = [];
 const stats = {
   files: 0,
   places: 0,
   hidden: 0,
-  stubs: 0
+  stubs: 0,
+  emneIds: 0,
+  canonicalEmneIds: 0,
+  unknownEmneIds: 0,
+  wrongPrefixEmneIds: 0,
+  filesWithCanonicalEmner: 0
 };
 
 function rel(filePath) {
   return path.relative(ROOT, filePath).replaceAll(path.sep, "/");
 }
 
-function readJson(filePath) {
+function readJson(filePath, { reportError = true } = {}) {
   try {
     return JSON.parse(fs.readFileSync(filePath, "utf8"));
   } catch (error) {
-    errors.push(`${rel(filePath)}: could not read/parse JSON (${error.message})`);
+    if (reportError) {
+      errors.push(`${rel(filePath)}: could not read/parse JSON (${error.message})`);
+    }
     return null;
   }
+}
+
+function walkFiles(dirPath, predicate, found = []) {
+  if (!fs.existsSync(dirPath)) return found;
+  for (const entry of fs.readdirSync(dirPath, { withFileTypes: true })) {
+    const fullPath = path.join(dirPath, entry.name);
+    if (entry.isDirectory()) {
+      walkFiles(fullPath, predicate, found);
+    } else if (entry.isFile() && predicate(fullPath)) {
+      found.push(fullPath);
+    }
+  }
+  return found;
+}
+
+function loadCanonicalEmneRegistry() {
+  const registry = new Map();
+  const canonicalFiles = walkFiles(
+    FAG_ROOT,
+    (filePath) => /(^|\/)emner_.*_canonical_v4_5\.json$/.test(filePath.replaceAll(path.sep, "/"))
+  );
+
+  for (const filePath of canonicalFiles) {
+    const data = readJson(filePath, { reportError: false });
+    if (!Array.isArray(data)) continue;
+
+    stats.filesWithCanonicalEmners += 1;
+
+    for (const item of data) {
+      const emneId = String(item?.emne_id || "").trim();
+      if (!emneId) continue;
+      registry.set(emneId, rel(filePath));
+    }
+  }
+
+  return registry;
 }
 
 function resolveManifestEntry(entry) {
@@ -86,7 +148,46 @@ function validateTextField(place, field, context, { warnOnly = false } = {}) {
   }
 }
 
-function validatePlace(place, context, seenIds) {
+function validateEmneIds(place, context, canonicalEmneRegistry) {
+  if (place.emne_ids == null) return;
+
+  if (!Array.isArray(place.emne_ids)) {
+    warnings.push(`${context}: emne_ids should be an array when present`);
+    return;
+  }
+
+  const category = String(place.category || "").trim();
+  const expectedPrefix = CATEGORY_EMNE_PREFIX[category];
+
+  place.emne_ids.forEach((raw, index) => {
+    const emneId = String(raw || "").trim();
+    stats.emneIds += 1;
+
+    if (!emneId) {
+      warnings.push(`${context}: empty emne_ids[${index}]`);
+      return;
+    }
+
+    if (!emneId.startsWith("em_")) {
+      warnings.push(`${context}: emne_id "${emneId}" should start with em_`);
+      return;
+    }
+
+    if (expectedPrefix && !emneId.startsWith(expectedPrefix)) {
+      stats.wrongPrefixEmneIds += 1;
+      warnings.push(`${context}: emne_id "${emneId}" does not match category "${category}" expected prefix "${expectedPrefix}"`);
+    }
+
+    if (canonicalEmneRegistry.has(emneId)) {
+      stats.canonicalEmneIds += 1;
+    } else {
+      stats.unknownEmneIds += 1;
+      warnings.push(`${context}: emne_id "${emneId}" not found in canonical emner registry`);
+    }
+  });
+}
+
+function validatePlace(place, context, seenIds, canonicalEmneRegistry) {
   if (!place || typeof place !== "object" || Array.isArray(place)) {
     errors.push(`${context}: place entry must be an object`);
     return;
@@ -131,6 +232,8 @@ function validatePlace(place, context, seenIds) {
     warnings.push(`${context}: year should be numeric when present`);
   }
 
+  validateEmneIds(place, context, canonicalEmneRegistry);
+
   if (stub || hidden) return;
 
   validateTextField(place, "desc", context, { warnOnly: true });
@@ -155,15 +258,16 @@ function validatePlace(place, context, seenIds) {
   if (place.popupImage != null && !pathExistsFromRoot(place.popupImage)) {
     warnings.push(`${context}: popupImage file not found (${place.popupImage})`);
   }
-
-  if (place.emne_ids != null && !Array.isArray(place.emne_ids)) {
-    warnings.push(`${context}: emne_ids should be an array when present`);
-  }
 }
 
 function main() {
+  const canonicalEmneRegistry = loadCanonicalEmneRegistry();
   const manifest = readJson(MANIFEST_PATH);
   const files = Array.isArray(manifest?.files) ? manifest.files : [];
+
+  if (!canonicalEmneRegistry.size) {
+    warnings.push(`${rel(FAG_ROOT)}: no canonical emne registry files found`);
+  }
 
   if (!files.length) {
     errors.push(`${rel(MANIFEST_PATH)}: missing files[]`);
@@ -189,7 +293,7 @@ function main() {
 
     places.forEach((place, index) => {
       const id = place?.id ? `#${place.id}` : `[${index}]`;
-      validatePlace(place, `${rel(filePath)} ${id}`, seenIds);
+      validatePlace(place, `${rel(filePath)} ${id}`, seenIds, canonicalEmneRegistry);
     });
   }
 
@@ -198,6 +302,11 @@ function main() {
   console.log(`Places checked: ${stats.places}`);
   console.log(`Hidden places: ${stats.hidden}`);
   console.log(`Stub places: ${stats.stubs}`);
+  console.log(`Canonical emne files checked: ${stats.filesWithCanonicalEmners}`);
+  console.log(`emne_ids checked: ${stats.emneIds}`);
+  console.log(`Canonical emne_ids: ${stats.canonicalEmneIds}`);
+  console.log(`Unknown emne_ids: ${stats.unknownEmneIds}`);
+  console.log(`Wrong-prefix emne_ids: ${stats.wrongPrefixEmneIds}`);
   console.log(`Errors: ${errors.length}`);
   console.log(`Warnings: ${warnings.length}`);
 
