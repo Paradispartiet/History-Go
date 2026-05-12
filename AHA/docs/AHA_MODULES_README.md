@@ -14,3 +14,9 @@
 ## Sikker rendering
 All storage-avledet tekst som gjengis via `innerHTML` escapes med `escapeHtml`.
 Dette gjelder tittel, summary, topic, concepts, source-felter og JSON-preview i meta/forslag.
+
+
+## Fase 4B: Direkte kobling til Grupper / Sirkler
+- Innsikter, lister, stier og AHAavisa-utkast kan nå legges direkte i lokale grupper som referanser fra sine moduler.
+- Grupper lagrer fortsatt bare referansefeltene `source`, `type`, `refId`, `title` (eventuelt meta i UI-flyt), ikke fullobjekter.
+- Ingen ekte deling eller backend er bygget i denne fasen.
