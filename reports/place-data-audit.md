@@ -1,6 +1,6 @@
 # Place Data Audit
 
-Generert: 2026-05-12T12:57:04.680Z
+Generert: 2026-05-12T17:07:03.555Z
 
 ## Totalsammendrag
 
@@ -10,7 +10,7 @@ Generert: 2026-05-12T12:57:04.680Z
 - Steder med manglende popupDesc: **65**
 - Steder med manglende image: **341**
 - Steder med manglende cardImage: **340**
-- Steder med manglende emne_ids: **165**
+- Steder med manglende emne_ids: **157**
 - Steder med manglende quiz_profile: **89**
 - Steder som bruker imageCard-felt: **0**
 - Steder med stub:true eller hidden:true: **0**
@@ -110,8 +110,8 @@ Generert: 2026-05-12T12:57:04.680Z
 - Antall places: 2
 - Places med funn: 2
 
-- sagene_film (Sagene (filmbydel)): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- kampen_film (Kampen (film- og serieområde)): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- sagene_film (Sagene (filmbydel)): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler quiz_profile
+- kampen_film (Kampen (film- og serieområde)): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler quiz_profile
 
 ### data/places/historie/oslo/places_historie.json
 
@@ -621,12 +621,12 @@ Generert: 2026-05-12T12:57:04.680Z
 - Antall places: 6
 - Places med funn: 6
 
-- lisbon_cinemateca_portuguesa (Cinemateca Portuguesa): mangler image | mangler cardImage | mangler emne_ids
-- lisbon_cinema_sao_jorge (Cinema São Jorge): mangler image | mangler cardImage | mangler emne_ids
-- lisbon_cinema_ideal (Cinema Ideal): mangler image | mangler cardImage | mangler emne_ids
-- lisbon_cinema_nimas (Cinema Nimas): mangler image | mangler cardImage | mangler emne_ids
-- lisbon_tobis_portuguesa (Tobis Portuguesa): mangler image | mangler cardImage | mangler emne_ids
-- lisbon_doclisboa (Doclisboa – Festival Internacional de Cinema): mangler image | mangler cardImage | mangler emne_ids
+- lisbon_cinemateca_portuguesa (Cinemateca Portuguesa): mangler image | mangler cardImage
+- lisbon_cinema_sao_jorge (Cinema São Jorge): mangler image | mangler cardImage
+- lisbon_cinema_ideal (Cinema Ideal): mangler image | mangler cardImage
+- lisbon_cinema_nimas (Cinema Nimas): mangler image | mangler cardImage
+- lisbon_tobis_portuguesa (Tobis Portuguesa): mangler image | mangler cardImage
+- lisbon_doclisboa (Doclisboa – Festival Internacional de Cinema): mangler image | mangler cardImage
 
 ### data/places/media/europe/portugal/lisbon/places_lisbon_media.json
 
@@ -807,57 +807,57 @@ Generert: 2026-05-12T12:57:04.680Z
 
 ## Referanser til place-id-er som ikke finnes
 
-- data/people/people_by.json :: [1].places -> botanisk_hage
+- data/people/people_by.json :: [1].places[2] -> botanisk_hage
 - data/people/people_historie.json :: [41].placeId -> toyen_hovedgard
-- data/people/people_historie.json :: [41].places -> toyen_hovedgard
+- data/people/people_historie.json :: [41].places[0] -> toyen_hovedgard
 - data/people/people_historie.json :: [42].placeId -> toyen_hovedgard
-- data/people/people_historie.json :: [42].places -> toyen_hovedgard
+- data/people/people_historie.json :: [42].places[0] -> toyen_hovedgard
 - data/people/people_historie.json :: [43].placeId -> toyen_hovedgard
-- data/people/people_historie.json :: [43].places -> toyen_hovedgard
+- data/people/people_historie.json :: [43].places[0] -> toyen_hovedgard
 - data/people/people_historie.json :: [44].placeId -> sagene_skole
-- data/people/people_historie.json :: [44].places -> sagene_skole
+- data/people/people_historie.json :: [44].places[0] -> sagene_skole
 - data/people/people_historie.json :: [45].placeId -> trefoldighetskirken
-- data/people/people_historie.json :: [45].places -> trefoldighetskirken
+- data/people/people_historie.json :: [45].places[0] -> trefoldighetskirken
 - data/people/people_historie.json :: [46].placeId -> trefoldighetskirken
-- data/people/people_historie.json :: [46].places -> trefoldighetskirken
-- data/people/people_historie.json :: [48].places -> akershus_slott
+- data/people/people_historie.json :: [46].places[0] -> trefoldighetskirken
+- data/people/people_historie.json :: [48].places[1] -> akershus_slott
 - data/people/people_historie.json :: [58].placeId -> kongsgarden_middelalder_oslo
-- data/people/people_historie.json :: [58].places -> kongsgarden_middelalder_oslo
-- data/people/people_historie.json :: [60].places -> bispeborgen
-- data/people/people_historie.json :: [61].places -> kongsgarden_middelalder_oslo
-- data/people/people_litteratur.json :: [1].places -> bøker_i_byen
-- data/people/people_litteratur.json :: [2].places -> bjornson_bolig
-- data/people/people_litteratur.json :: [2].places -> ibsen_bjornson_graver
-- data/people/people_litteratur.json :: [3].places -> wergelandsveien_15
-- data/people/people_litteratur.json :: [3].places -> henrik_wergeland_park
-- data/people/people_litteratur.json :: [3].places -> wergeland_barndom
-- data/people/people_litteratur.json :: [3].places -> wergeland_grav
-- data/people/people_litteratur.json :: [3].places -> bøker_i_byen
-- data/people/people_litteratur.json :: [4].places -> henrik_wergeland_park
-- data/people/people_litteratur.json :: [4].places -> collett_barndom
-- data/people/people_litteratur.json :: [4].places -> collett_monument
-- data/people/people_litteratur.json :: [5].places -> grotten_utsikt
-- data/people/people_litteratur.json :: [6].places -> grotten_utsikt
-- data/people/people_litteratur.json :: [6].places -> inger_hagerup_minne
-- data/people/people_litteratur.json :: [7].places -> grotten_utsikt
-- data/people/people_litteratur.json :: [15].places -> sofienberg_poesipark
-- data/people/people_litteratur.json :: [18].places -> sofienberg_poesipark
+- data/people/people_historie.json :: [58].places[0] -> kongsgarden_middelalder_oslo
+- data/people/people_historie.json :: [60].places[2] -> bispeborgen
+- data/people/people_historie.json :: [61].places[1] -> kongsgarden_middelalder_oslo
+- data/people/people_litteratur.json :: [1].places[3] -> bøker_i_byen
+- data/people/people_litteratur.json :: [2].places[2] -> bjornson_bolig
+- data/people/people_litteratur.json :: [2].places[3] -> ibsen_bjornson_graver
+- data/people/people_litteratur.json :: [3].places[2] -> wergelandsveien_15
+- data/people/people_litteratur.json :: [3].places[3] -> henrik_wergeland_park
+- data/people/people_litteratur.json :: [3].places[4] -> wergeland_barndom
+- data/people/people_litteratur.json :: [3].places[5] -> wergeland_grav
+- data/people/people_litteratur.json :: [3].places[6] -> bøker_i_byen
+- data/people/people_litteratur.json :: [4].places[1] -> henrik_wergeland_park
+- data/people/people_litteratur.json :: [4].places[2] -> collett_barndom
+- data/people/people_litteratur.json :: [4].places[3] -> collett_monument
+- data/people/people_litteratur.json :: [5].places[1] -> grotten_utsikt
+- data/people/people_litteratur.json :: [6].places[1] -> grotten_utsikt
+- data/people/people_litteratur.json :: [6].places[2] -> inger_hagerup_minne
+- data/people/people_litteratur.json :: [7].places[1] -> grotten_utsikt
+- data/people/people_litteratur.json :: [15].places[3] -> sofienberg_poesipark
+- data/people/people_litteratur.json :: [18].places[1] -> sofienberg_poesipark
 - data/people/people_litteratur.json :: [21].placeId -> collett_monument
-- data/people/people_litteratur.json :: [21].places -> collett_monument
+- data/people/people_litteratur.json :: [21].places[0] -> collett_monument
 - data/people/people_litteratur.json :: [24].placeId -> sofienberg_poesipark
-- data/people/people_litteratur.json :: [24].places -> sofienberg_poesipark
+- data/people/people_litteratur.json :: [24].places[0] -> sofienberg_poesipark
 - data/people/people_litteratur.json :: [25].placeId -> rolf_jacobsen_minne
-- data/people/people_litteratur.json :: [25].places -> rolf_jacobsen_minne
+- data/people/people_litteratur.json :: [25].places[0] -> rolf_jacobsen_minne
 - data/people/people_musikk.json :: [5].placeId -> vulkan
-- data/people/people_musikk.json :: [5].places -> vulkan
+- data/people/people_musikk.json :: [5].places[0] -> vulkan
 - data/people/people_natur.json :: [0].placeId -> botanisk_hage
-- data/people/people_natur.json :: [0].places -> botanisk_hage
+- data/people/people_natur.json :: [0].places[0] -> botanisk_hage
 - data/people/people_natur.json :: [1].placeId -> botanisk_hage
-- data/people/people_natur.json :: [1].places -> botanisk_hage
+- data/people/people_natur.json :: [1].places[0] -> botanisk_hage
 - data/people/people_natur.json :: [2].placeId -> botanisk_hage
-- data/people/people_natur.json :: [2].places -> botanisk_hage
+- data/people/people_natur.json :: [2].places[0] -> botanisk_hage
 - data/people/people_vitenskap.json :: [5].placeId -> universitetet
-- data/people/people_vitenskap.json :: [5].places -> universitetet
+- data/people/people_vitenskap.json :: [5].places[0] -> universitetet
 - data/routes_walks.json :: [1].stops[0].placeId -> botanisk_hage
 - data/routes_walks.json :: [1].stops[1].placeId -> botanisk_hage
 - data/Civication/place_contexts.json :: contexts[4].matches_place_ids -> botanisk_hage
@@ -880,7 +880,7 @@ Generert: 2026-05-12T12:57:04.680Z
 ## Maskinlesbar arbeidsliste
 
 - Fil: `reports/place-data-worklist.json`
-- Antall steder klare for quiz: **167**
+- Antall steder klare for quiz: **173**
 - Antall steder klare for Wonderkammer: **299**
 - Antall steder klare for språkleksikon: **369**
 - Prioritet: critical **0**, high **349**, medium **88**, low **0**
