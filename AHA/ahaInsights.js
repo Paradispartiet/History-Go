@@ -2,7 +2,6 @@
   'use strict';
 
   const M = global.AHAModules;
-  const G = global.AHAGroups;
   if (!M) return;
 
   function formatDate(value) {
@@ -18,26 +17,6 @@
     if (Array.isArray(insight?.source_ids)) ids.push(...insight.source_ids);
     if (insight?.source_id) ids.push(insight.source_id);
     return Array.from(new Set(ids.filter(Boolean)));
-  }
-
-  function getInsightRefId(insight, index) {
-    return insight?.id || insight?.base?.id || insight?.source_event_id || insight?.sourceEventId || insight?.source_id || insight?.sourceId || insight?.event_id || insight?.eventId || `insight_idx_${index}`;
-  }
-
-  function buildGroupPicker(itemType, itemId, buttonText) {
-    if (!G || typeof G.getActiveGroups !== 'function') return '';
-    const groups = G.getActiveGroups();
-    if (!groups.length) {
-      return '<p class="statuslinje">Ingen grupper ennå. <a href="groups.html">Lag en gruppe først.</a></p>';
-    }
-    const options = groups.map((group) => `<option value="${M.escapeHtml(group.id)}">${M.escapeHtml(group.title || 'Uten navn')}</option>`).join('');
-    return `
-      <div class="group-linker" data-type="${M.escapeHtml(itemType)}" data-id="${M.escapeHtml(String(itemId))}">
-        <select class="gruppe-select">${options}</select>
-        <button type="button" class="gruppe-knapp">${M.escapeHtml(buttonText)}</button>
-        <div class="statuslinje" aria-live="polite"></div>
-      </div>
-    `;
   }
 
   function buildSourceMap(events) {
@@ -58,10 +37,10 @@
     const topicFilter = (document.getElementById('insight-topic-filter')?.value || '').trim();
     const withSourceOnly = Boolean(document.getElementById('insight-source-filter')?.checked);
 
-    const normalized = chamberInsights.map((insight, index) => {
+    const normalized = chamberInsights.map((insight) => {
       const sourceIds = getSourceIds(insight);
       const availableSources = sourceIds.map((id) => sourceMap.get(id)).filter(Boolean);
-      return { insight, sourceIds, availableSources, insightIndex: index, refId: getInsightRefId(insight, index) };
+      return { insight, sourceIds, availableSources };
     });
 
     let filtered = normalized.filter(({ insight, availableSources }) => {
@@ -87,7 +66,7 @@
       <div class="stat">Kilder: <strong>${sourceEvents.length}</strong></div>
     `;
 
-    const cardsHtml = filtered.map(({ insight, availableSources, refId, insightIndex }) => {
+    const cardsHtml = filtered.map(({ insight, availableSources }) => {
       const concepts = Array.isArray(insight?.concepts) ? insight.concepts : [];
       const strength = insight?.strength?.total_score ?? 0;
       const evidence = insight?.strength?.evidence_count ?? 0;
@@ -99,14 +78,13 @@
         : '<li>Ingen kildepreview tilgjengelig.</li>';
 
       return `
-        <article class="insight-card" data-insight-index="${M.escapeHtml(String(insightIndex))}">
+        <article class="insight-card">
           <h3>${M.escapeHtml(insight?.title || 'Uten tittel')}</h3>
           <p class="meta">${formatDate(M.getInsightTimestamp(insight))} · Tema: ${M.escapeHtml(insight?.theme_id || insight?.topic || 'ukjent')}</p>
           <p>${M.escapeHtml(insight?.summary || '')}</p>
           <p><strong>Styrke:</strong> ${M.escapeHtml(String(strength))} (${M.escapeHtml(String(evidence))} signaler)</p>
           <p><strong>Begreper:</strong> ${concepts.map((c) => M.escapeHtml(c)).join(', ') || 'Ingen'}</p>
           <ul>${sourcesHtml}</ul>
-          ${buildGroupPicker('insight', refId, 'Legg i gruppe')}
         </article>
       `;
     }).join('');
@@ -122,26 +100,5 @@
     document.getElementById('insight-meta').innerHTML = `<pre>${M.escapeHtml(JSON.stringify(metaPayload, null, 2))}</pre>`;
   }
 
-  function bindGroupActions() {
-    document.addEventListener('click', function (event) {
-      const btn = event.target.closest('.gruppe-knapp');
-      if (!btn || !G || typeof G.addReferenceToGroupByObject !== 'function') return;
-      const wrapper = btn.closest('.group-linker');
-      const card = btn.closest('.insight-card');
-      if (!wrapper || !card) return;
-      const select = wrapper.querySelector('.gruppe-select');
-      const status = wrapper.querySelector('.statuslinje');
-      const idx = Number(card.dataset.insightIndex);
-      const chamberRaw = M.readJsonStorage('aha_insight_chamber_v1', {});
-      const insight = M.toArray(chamberRaw?.insights)[idx];
-      if (!insight || !select?.value) return;
-      const result = G.addReferenceToGroupByObject(select.value, {
-        title: insight?.title || 'Uten tittel', type: 'insight', source: 'aha_insights', refId: wrapper.dataset.id, meta: insight?.meta || null
-      });
-      status.textContent = result?.duplicate ? 'Finnes allerede i gruppen' : (result?.ok ? 'Lagt i gruppen' : 'Kunne ikke legges i gruppen');
-    });
-  }
-
-  bindGroupActions();
   global.AHAInsights = { render };
 })(window);
