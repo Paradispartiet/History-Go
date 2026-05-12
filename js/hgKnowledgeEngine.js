@@ -218,10 +218,11 @@
         const seen = node.seen === true;
         const understood = node.understood === true;
         const applied = node.applied === true;
-        if (seen) seenEmner += 1;
+        const signalSeen = signals.emneSignals.has(eid);
+        if (seen || signalSeen) seenEmner += 1;
         if (understood) understoodEmner += 1;
         if (applied) appliedEmner += 1;
-        if (seen || understood || applied || signals.emneSignals.has(eid)) knownEmner += 1;
+        if (seen || understood || applied || signalSeen) knownEmner += 1;
       }
       const knownConcepts = signals.conceptSignals.size;
       const emnerCount = emnerAll.length;
