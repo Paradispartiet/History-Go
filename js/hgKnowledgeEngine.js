@@ -32,11 +32,12 @@
     return {
       learningLog: toArray(readJsonStorage("hg_learning_log_v1", [])),
       learningLogMigrated: toArray(readJsonStorage("hg_learning_log_migrated_v1", [])),
-      learningState: toObject(readJsonStorage("hg_learning_v1", {})),
+      knowledgeLearning: toObject(readJsonStorage("hg_learning_v1", {})),
       insightEvents: toArray(readJsonStorage("hg_insights_events_v1", [])),
       knowledgeUniverse: toArray(readJsonStorage("knowledge_universe", [])),
       quizProgress: toArray(readJsonStorage("quiz_progress", [])),
       visitedPlaces: toArray(readJsonStorage("visited_places", [])),
+      todayVisited: toArray(readJsonStorage("hg_today_visited_v1", [])),
       peopleCollected: toArray(readJsonStorage("people_collected", [])),
       meritsByCategory: toObject(readJsonStorage("merits_by_category", {})),
       historygoProgress: toObject(readJsonStorage("historygo_progress", {})),
@@ -102,17 +103,17 @@
       if (entry && (entry.quiz_id || entry.quizId || entry.score != null || entry.correct != null)) quizSignals += 1;
     }
 
-    const learningEntries = toObject(state.learningState?.learning);
-    Object.keys(learningEntries).forEach((emneId) => {
-      const eid = s(emneId);
-      if (!eid || !emneById.has(eid)) return;
-
-      const node = toObject(learningEntries[emneId]);
-      const signalStrength = (node.seen ? 1 : 0) + (node.understood ? 1 : 0) + (node.applied ? 1 : 0);
-      if (signalStrength > 0) {
-        emneSignals.set(eid, Math.max(emneSignals.get(eid) || 0, signalStrength));
-      }
-    });
+    const learningEntries = toObject(state.knowledgeLearning?.learning);
+    for (const emne of emnerAll) {
+      const eid = s(emne?.emne_id);
+      if (!eid || !emneById.has(eid)) continue;
+      const learned = toObject(learningEntries[eid]);
+      let score = 0;
+      if (learned.seen === true) score += 1;
+      if (learned.understood === true) score += 2;
+      if (learned.applied === true) score += 3;
+      if (score > 0) emneSignals.set(eid, (emneSignals.get(eid) || 0) + score);
+    }
 
     return { emneSignals, conceptSignals, quizSignals, visitedSignals, peopleSignals };
   }
@@ -143,7 +144,23 @@
       const domains = toArray(pensum.domains);
       const signals = collectSignalsForSubject(subjectId, emnerAll, state);
 
-      const knownEmner = signals.emneSignals.size;
+      const learningEntries = toObject(state.knowledgeLearning?.learning);
+      let seenEmner = 0;
+      let understoodEmner = 0;
+      let appliedEmner = 0;
+      let knownEmner = 0;
+      for (const emne of emnerAll) {
+        const eid = s(emne?.emne_id);
+        if (!eid) continue;
+        const node = toObject(learningEntries[eid]);
+        const seen = node.seen === true;
+        const understood = node.understood === true;
+        const applied = node.applied === true;
+        if (seen) seenEmner += 1;
+        if (understood) understoodEmner += 1;
+        if (applied) appliedEmner += 1;
+        if (seen || understood || applied || signals.emneSignals.has(eid)) knownEmner += 1;
+      }
       const knownConcepts = signals.conceptSignals.size;
       const emnerCount = emnerAll.length;
       const estimatedCoverage = Math.max(0, Math.min(100, Math.round(emnerCount > 0 ? (knownEmner / emnerCount) * 100 : 0)));
@@ -191,6 +208,9 @@
         },
         progress: {
           knownEmner: knownEmner,
+          seenEmner: seenEmner,
+          understoodEmner: understoodEmner,
+          appliedEmner: appliedEmner,
           knownConcepts: knownConcepts,
           quizSignals: signals.quizSignals,
           visitedSignals: signals.visitedSignals,
@@ -290,8 +310,10 @@
       recommendations: [],
       sourceState: {
         learningLogCount: toArray(analyzed.state.learningLog).length,
+        knowledgeLearningCount: Object.keys(toObject(analyzed.state.knowledgeLearning?.learning)).length,
         insightEventsCount: toArray(analyzed.state.insightEvents).length,
         visitedPlacesCount: toArray(analyzed.state.visitedPlaces).length,
+        todayVisitedCount: toArray(analyzed.state.todayVisited).length,
         peopleCollectedCount: toArray(analyzed.state.peopleCollected).length,
         quizProgressCount: toArray(analyzed.state.quizProgress).length
       },
