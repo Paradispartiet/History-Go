@@ -107,6 +107,48 @@
     throw new Error(`Fant ikke pensumfil: ${primary}`);
   }
 
+
+
+  function normalizePensumForCourses(pensum, subjectId) {
+    const source = (pensum && typeof pensum === "object") ? pensum : {};
+    const modules = arr(source.modules);
+    if (modules.length) return source;
+
+    const domains = arr(source.domains);
+    if (!domains.length) return source;
+
+    const sid = s(subjectId);
+    const mappedModules = domains.map((domain, index) => {
+      const originalDomainId = s(domain?.domain_id) || s(domain?.id) || "";
+      const moduleId = originalDomainId || `${sid || "subject"}_domain_${index + 1}`;
+      const title = s(domain?.title) || s(domain?.label) || s(domain?.name) || `Domain ${index + 1}`;
+
+      return {
+        module_id: moduleId,
+        title,
+        emner: arr(domain?.emne_ids),
+        methods: arr(domain?.method_ids),
+        hooks: arr(domain?.hook_ids),
+        cases: arr(domain?.recommended_oslo_cases).length
+          ? arr(domain?.recommended_oslo_cases)
+          : arr(domain?.recommended_cases),
+        description: s(domain?.description) || s(domain?.definition),
+        source: "domains_adapter",
+        domain_id: originalDomainId || null
+      };
+    });
+
+    return {
+      ...source,
+      modules: mappedModules,
+      course_adapter: {
+        source: "domains",
+        generated_modules: mappedModules.length,
+        reason: "pensum_has_domains_without_modules"
+      }
+    };
+  }
+
   // --------------------------------------------
   // Emne-dekning (bruk V2 hvis den finnes)
   // --------------------------------------------
@@ -283,7 +325,8 @@
 
   HGCourses.compute = async function ({ subjectId, emnerAll }) {
     const sid = s(subjectId);
-    const pensum = await loadPensum(sid);
+    const pensumRaw = await loadPensum(sid);
+    const pensum = normalizePensumForCourses(pensumRaw, sid);
 
     const log = getLearningLog();
     const idx = buildLearningIndex(log);
