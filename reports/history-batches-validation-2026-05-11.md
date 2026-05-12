@@ -133,11 +133,10 @@ Følgende nye steder ligger i:
 `data/places/historie/oslo/places_historie_next_batch_straff_sosial_01.json`
 
 - `botsfengselet`
-- `akershus_slaveri`
 - `prinds_christian_augusts_minde`
 - `anatomigarden`
 
-Alle fire har:
+Alle tre har:
 
 - `category: "historie"`
 - `coordStatus: "needs_manual_map_check"`
@@ -145,7 +144,9 @@ Alle fire har:
 
 ### Vurdering
 
-Alle fire passer faglig godt i historie-kategorien. De styrker retts-, straffe-, fengsels-, fattigomsorgs- og institusjonshistorien i appen. Batchen gjør historie-kategorien mindre kongerekke-tung og mer sosialhistorisk presis.
+Alle tre passer faglig godt i historie-kategorien. De styrker retts-, straffe-, fengsels-, fattigomsorgs- og institusjonshistorien i appen. Batchen gjør historie-kategorien mindre kongerekke-tung og mer sosialhistorisk presis.
+
+`akershus_slaveri` er fjernet som egen place. Fengsels-/slaverihistorien på Akershus skal eventuelt behandles som leksikon-, Wonderkammer- eller underinnhold under `akerhus_slott`, ikke som eget kartpunkt.
 
 ### Før merge
 
@@ -156,9 +157,6 @@ Anbefalt sjekkerekkefølge:
 1. `botsfengselet`
 2. `prinds_christian_augusts_minde`
 3. `anatomigarden`
-4. `akershus_slaveri`
-
-`akershus_slaveri` må sjekkes ekstra nøye fordi det ligger innenfor/overlapper `akerhus_slott`; det bør ikke lage en forvirrende dobbeltprikk uten tydelig faglig skille.
 
 ## Ruth Maier-place
 
@@ -344,7 +342,6 @@ Tiltak:
 
 Noen nye steder ligger tett på eller inne i eksisterende steder:
 
-- `akershus_slaveri` overlapper `akerhus_slott`
 - flere middelalderruiner overlapper `middelalder_oslo`
 - `anatomigarden` og `gamle_radhus` ligger tett ved `christiania_torv`
 
