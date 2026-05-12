@@ -33,3 +33,11 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Start adding JSDoc types to shared helpers and data normalization functions.
 - Migrate low-risk utility modules to `.ts` one by one.
 - Plan loader migration later when schemas and data contracts are stable.
+
+## Phase 2: Place schema alignment
+
+- `schemas/place.ts` is now aligned with stable fields used in existing place data (for example `name` and `lon` as primary coordinate/name keys).
+- Place loading in `js/boot.js` now has focused JSDoc typing for core place arrays and fallback file lists.
+- Runtime behavior is unchanged; this is type/schema groundwork only.
+- This reduces risk for the next loader-typing and validator steps by improving schema accuracy first.
+
