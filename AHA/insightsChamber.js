@@ -868,10 +868,44 @@ function createInsightFromSignal(signal) {
   // ── Tekst → setninger ──────────────────────
 
   function splitIntoSentences(text) {
-    return text
-      .split(/[.!?]/)
+    if (!text || typeof text !== "string") return [];
+
+    const fragments = text
+      .split(/[.!?…]+/g)
       .map((s) => s.trim())
-      .filter((s) => s.length >= 15);
+      .filter((s) => s.length >= 12);
+
+    if (!fragments.length) return [];
+
+    const grouped = [];
+    let current = "";
+
+    for (const fragment of fragments) {
+      if (!current) {
+        current = fragment;
+        continue;
+      }
+
+      if ((current + " " + fragment).length <= 220) {
+        current += " " + fragment;
+      } else {
+        grouped.push(current.trim());
+        current = fragment;
+      }
+    }
+
+    if (current) grouped.push(current.trim());
+
+    if (grouped.length <= 5) return grouped;
+
+    const target = 5;
+    const chunkSize = Math.ceil(grouped.length / target);
+    const merged = [];
+    for (let i = 0; i < grouped.length; i += chunkSize) {
+      merged.push(grouped.slice(i, i + chunkSize).join(" "));
+    }
+
+    return merged.slice(0, target);
   }
 
   // ── TopicStats: metning + tetthet ──────────
