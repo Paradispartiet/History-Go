@@ -1,5 +1,5 @@
 // js/hgKnowledgeEngine.js
-// History Go Knowledge Engine v1 (read-only analysis)
+// History Go Knowledge Engine v1.2 (read-only analysis)
 (function () {
   "use strict";
 
@@ -28,7 +28,40 @@
 
   function s(value) { return String(value == null ? "" : value).trim(); }
 
+
+  function normalizeIdCollection(value) {
+    const ids = new Set();
+
+    if (Array.isArray(value)) {
+      for (const item of value) {
+        if (typeof item === "string") {
+          const id = s(item);
+          if (id) ids.add(id);
+          continue;
+        }
+        if (!item || typeof item !== "object") continue;
+        const id = s(item.id || item.place_id || item.placeId || item.targetId);
+        if (id) ids.add(id);
+      }
+      return Array.from(ids);
+    }
+
+    if (value && typeof value === "object") {
+      for (const [key, raw] of Object.entries(value)) {
+        if (!raw) continue;
+        const id = s(key);
+        if (id) ids.add(id);
+      }
+    }
+
+    return Array.from(ids);
+  }
+
+
   function readState() {
+    const visitedPlacesRaw = readJsonStorage("visited_places", {});
+    const todayVisitedRaw = readJsonStorage("hg_today_visited_v1", []);
+
     return {
       learningLog: toArray(readJsonStorage("hg_learning_log_v1", [])),
       learningLogMigrated: toArray(readJsonStorage("hg_learning_log_migrated_v1", [])),
@@ -36,8 +69,12 @@
       insightEvents: toArray(readJsonStorage("hg_insights_events_v1", [])),
       knowledgeUniverse: toArray(readJsonStorage("knowledge_universe", [])),
       quizProgress: toArray(readJsonStorage("quiz_progress", [])),
-      visitedPlaces: toArray(readJsonStorage("visited_places", [])),
-      todayVisited: toArray(readJsonStorage("hg_today_visited_v1", [])),
+      visitedPlacesRaw: visitedPlacesRaw,
+      visitedPlaceIds: normalizeIdCollection(visitedPlacesRaw),
+      visitedPlaces: normalizeIdCollection(visitedPlacesRaw),
+      todayVisitedRaw: todayVisitedRaw,
+      todayVisitedIds: normalizeIdCollection(todayVisitedRaw),
+      todayVisited: normalizeIdCollection(todayVisitedRaw),
       peopleCollected: toArray(readJsonStorage("people_collected", [])),
       meritsByCategory: toObject(readJsonStorage("merits_by_category", {})),
       historygoProgress: toObject(readJsonStorage("historygo_progress", {})),
@@ -58,7 +95,7 @@
     return raw;
   }
 
-  function collectSignalsForSubject(subjectId, emnerAll, state) {
+  function collectSignalsForSubject(subjectId, emnerAll, state, placeById) {
     const emneById = new Map();
     const subjectConcepts = new Set();
 
@@ -103,6 +140,23 @@
       if (entry && (entry.quiz_id || entry.quizId || entry.score != null || entry.correct != null)) quizSignals += 1;
     }
 
+    const visitedEmneSignalKeys = new Set();
+    for (const placeId of toArray(state.visitedPlaceIds)) {
+      const normalizedPlaceId = s(placeId);
+      if (!normalizedPlaceId) continue;
+      const place = placeById?.get(normalizedPlaceId);
+      if (!place) continue;
+      for (const emneIdRaw of toArray(place?.emne_ids)) {
+        const emneId = s(emneIdRaw);
+        if (!emneId || !emneById.has(emneId)) continue;
+        const signalKey = normalizedPlaceId + ":" + emneId;
+        if (visitedEmneSignalKeys.has(signalKey)) continue;
+        visitedEmneSignalKeys.add(signalKey);
+        emneSignals.set(emneId, (emneSignals.get(emneId) || 0) + 1);
+        visitedSignals += 1;
+      }
+    }
+
     const learningEntries = toObject(state.knowledgeLearning?.learning);
     for (const emne of emnerAll) {
       const eid = s(emne?.emne_id);
@@ -123,6 +177,14 @@
     const state = readState();
     const manifest = window.DataHub?.loadFagManifest ? await window.DataHub.loadFagManifest(options) : {};
     const healthReport = window.FagHealthReport?.run ? await window.FagHealthReport.run(options) : null;
+    const placesAll = window.DataHub?.loadPlacesBase
+      ? toArray(await window.DataHub.loadPlacesBase(options))
+      : [];
+    const placeById = new Map();
+    for (const place of placesAll) {
+      const id = s(place?.id);
+      if (id) placeById.set(id, place);
+    }
 
     const subjectIds = Object.keys(toObject(manifest));
     const by = {};
@@ -142,7 +204,7 @@
 
       const modules = toArray(pensum.modules);
       const domains = toArray(pensum.domains);
-      const signals = collectSignalsForSubject(subjectId, emnerAll, state);
+      const signals = collectSignalsForSubject(subjectId, emnerAll, state, placeById);
 
       const learningEntries = toObject(state.knowledgeLearning?.learning);
       let seenEmner = 0;
@@ -156,10 +218,11 @@
         const seen = node.seen === true;
         const understood = node.understood === true;
         const applied = node.applied === true;
-        if (seen) seenEmner += 1;
+        const signalSeen = signals.emneSignals.has(eid);
+        if (seen || signalSeen) seenEmner += 1;
         if (understood) understoodEmner += 1;
         if (applied) appliedEmner += 1;
-        if (seen || understood || applied || signals.emneSignals.has(eid)) knownEmner += 1;
+        if (seen || understood || applied || signalSeen) knownEmner += 1;
       }
       const knownConcepts = signals.conceptSignals.size;
       const emnerCount = emnerAll.length;
@@ -223,7 +286,7 @@
       };
     }
 
-    return { by: by, healthReport: healthReport, manifest: manifest, state: state };
+    return { by: by, healthReport: healthReport, manifest: manifest, state: state, placesLoadedCount: placesAll.length };
   }
 
   function buildRecommendations(analysis) {
@@ -312,8 +375,9 @@
         learningLogCount: toArray(analyzed.state.learningLog).length,
         knowledgeLearningCount: Object.keys(toObject(analyzed.state.knowledgeLearning?.learning)).length,
         insightEventsCount: toArray(analyzed.state.insightEvents).length,
-        visitedPlacesCount: toArray(analyzed.state.visitedPlaces).length,
-        todayVisitedCount: toArray(analyzed.state.todayVisited).length,
+        visitedPlacesCount: toArray(analyzed.state.visitedPlaceIds).length,
+        todayVisitedCount: toArray(analyzed.state.todayVisitedIds).length,
+        placesLoadedCount: safeNumber(analyzed.placesLoadedCount),
         peopleCollectedCount: toArray(analyzed.state.peopleCollected).length,
         quizProgressCount: toArray(analyzed.state.quizProgress).length
       },
