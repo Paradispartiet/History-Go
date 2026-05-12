@@ -3,7 +3,7 @@
    Oppdatert: 2026-05-02
    ============================================================ */
 
-const SW_VERSION = "hg-sw-2026-05-11-v1.40.107";
+const SW_VERSION = "hg-sw-2026-05-11-v1.40.108";
 
 const CACHE_STATIC  = `hg-static-${SW_VERSION}`;
 const CACHE_RUNTIME = `hg-runtime-${SW_VERSION}`;
@@ -61,6 +61,7 @@ const PRECACHE_URLS = [
   "js/dataHub.js",
 
   "js/DomainRegistry.js",
+  "js/fagHealthReport.js",
   "js/domainHealthReport.js",
 
   // Dev / console
