@@ -11,6 +11,7 @@ Denne rapporten gjelder de nye historie-batchene som er lagt inn som egne filer,
 - `data/places/historie/oslo/places_historie_next_batch_middelalder_02.json`
 - `data/places/historie/oslo/places_historie_next_batch_ruth_maier_01.json`
 - `data/places/historie/oslo/places_historie_next_batch_tidlig_moderne_01.json`
+- `data/places/historie/oslo/places_historie_next_batch_straff_sosial_01.json`
 
 ## Status
 
@@ -124,6 +125,40 @@ Anbefalt sjekkerekkefølge:
 4. `galgeberg`
 
 `gamle_radhus` og `oslo_hospital` bør være lettest å verifisere som fysiske steder. `galgeberg` er historisk område/stedsnavn og må sjekkes som områdepunkt, ikke bygningssenter.
+
+## Straff og sosialhistorisk place-batch
+
+Følgende nye steder ligger i:
+
+`data/places/historie/oslo/places_historie_next_batch_straff_sosial_01.json`
+
+- `botsfengselet`
+- `akershus_slaveri`
+- `prinds_christian_augusts_minde`
+- `anatomigarden`
+
+Alle fire har:
+
+- `category: "historie"`
+- `coordStatus: "needs_manual_map_check"`
+- `coordSource: "approximate_manual_lookup"`
+
+### Vurdering
+
+Alle fire passer faglig godt i historie-kategorien. De styrker retts-, straffe-, fengsels-, fattigomsorgs- og institusjonshistorien i appen. Batchen gjør historie-kategorien mindre kongerekke-tung og mer sosialhistorisk presis.
+
+### Før merge
+
+Koordinater må kontrolleres visuelt før `coordStatus` endres til `verified`.
+
+Anbefalt sjekkerekkefølge:
+
+1. `botsfengselet`
+2. `prinds_christian_augusts_minde`
+3. `anatomigarden`
+4. `akershus_slaveri`
+
+`akershus_slaveri` må sjekkes ekstra nøye fordi det ligger innenfor/overlapper `akerhus_slott`; det bør ikke lage en forvirrende dobbeltprikk uten tydelig faglig skille.
 
 ## Ruth Maier-place
 
@@ -259,12 +294,13 @@ Batchen passer godt med historie-regelen: senmiddelalder, borgerkrigstid, kongem
 1. Koordinatsjekk og merge `places_historie_next_batch_middelalder_01.json`.
 2. Koordinatsjekk og merge `places_historie_next_batch_middelalder_02.json`.
 3. Koordinatsjekk og merge `places_historie_next_batch_tidlig_moderne_01.json`.
-4. Koordinatsjekk og merge `places_historie_next_batch_ruth_maier_01.json`.
-5. Merge `people_historie_next_batch_02.json`.
-6. Merge `people_historie_next_batch_03.json`.
-7. Merge `people_historie_next_batch_01.json`.
-8. Etter merge: kjør people-place coverage på nytt.
-9. Etter coverage: rydd eventuell Ruth Maier-duplikat i litteratur/legacy.
+4. Koordinatsjekk og merge `places_historie_next_batch_straff_sosial_01.json`.
+5. Koordinatsjekk og merge `places_historie_next_batch_ruth_maier_01.json`.
+6. Merge `people_historie_next_batch_02.json`.
+7. Merge `people_historie_next_batch_03.json`.
+8. Merge `people_historie_next_batch_01.json`.
+9. Etter merge: kjør people-place coverage på nytt.
+10. Etter coverage: rydd eventuell Ruth Maier-duplikat i litteratur/legacy.
 
 ## Risiko og tiltak
 
@@ -304,11 +340,24 @@ Tiltak:
 - Merge/aktiver stedene først.
 - Kjør coverage etterpå.
 
+### 5. Overlappende historiske steder må ha tydelig faglig skille
+
+Noen nye steder ligger tett på eller inne i eksisterende steder:
+
+- `akershus_slaveri` overlapper `akerhus_slott`
+- flere middelalderruiner overlapper `middelalder_oslo`
+- `anatomigarden` og `gamle_radhus` ligger tett ved `christiania_torv`
+
+Tiltak:
+
+- Behold dem bare hvis appen skal vise mer presise underpunkter.
+- Hvis kartet blir for tett, kan de heller behandles som leksikon-/Wonderkammer-objekter under hovedstedet.
+
 ## Klar for neste steg
 
 Tryggeste neste arbeidssteg:
 
-1. Koordinatsjekk middelalderstedene, tidlig moderne-stedene og `ruth_maier_minne`.
+1. Koordinatsjekk middelalderstedene, tidlig moderne-stedene, straff/sosial-stedene og `ruth_maier_minne`.
 2. Merge place-batchene inn i `data/places/historie/oslo/places_historie.json`.
 3. Merge people-batch 02 og 03.
 4. Merge people-batch 01.
