@@ -1,17 +1,17 @@
 # People-place coverage audit
 
-Generert: 2026-05-12T11:23:32.219Z
+Generert: 2026-05-12T17:45:01.195Z
 
 ## Sammendrag
 
 - People totalt: **176**
 - Places totalt: **437**
-- Places med people: **65**
-- Places uten people: **372**
-- People-place-lenker: **221**
-- People koblet til flere gyldige steder: **65**
-- People uten gyldig sted: **33**
-- Ugyldige place-referanser: **43**
+- Places med people: **68**
+- Places uten people: **369**
+- People-place-lenker: **231**
+- People koblet til flere gyldige steder: **69**
+- People uten gyldig sted: **27**
+- Ugyldige place-referanser: **33**
 - Duplikate place-referanser inne på people: **154**
 - People uten image: **16**
 - People uten cardImage: **16**
@@ -21,11 +21,11 @@ Generert: 2026-05-12T11:23:32.219Z
 
 | Kategori | Places | Med people | Uten people | People-lenker | Unike people |
 |---|---:|---:|---:|---:|---:|
-| by | 95 | 21 | 74 | 54 | 41 |
+| by | 95 | 22 | 73 | 57 | 44 |
 | film_tv | 10 | 0 | 10 | 0 | 0 |
-| historie | 47 | 11 | 36 | 73 | 49 |
+| historie | 47 | 11 | 36 | 76 | 49 |
 | kunst | 18 | 4 | 14 | 6 | 6 |
-| litteratur | 31 | 14 | 17 | 32 | 27 |
+| litteratur | 31 | 16 | 15 | 36 | 31 |
 | media | 7 | 0 | 7 | 0 | 0 |
 | musikk | 13 | 1 | 12 | 2 | 2 |
 | naeringsliv | 41 | 1 | 40 | 1 | 1 |
@@ -92,15 +92,15 @@ Generert: 2026-05-12T11:23:32.219Z
 
 ## Steder med flest people
 
-- middelalder_oslo (Middelalderparken) – 16
-- akerhus_slott (Akerhus Slott) – 15
+- middelalder_oslo (Middelalderparken) – 18
+- akerhus_slott (Akerhus Slott) – 16
 - oslo_domkirke (Oslo domkirke) – 15
 - stortinget (Stortinget) – 14
 - karl_johan (Karl Johans gate) – 10
+- gamle_deichman (Gamle Deichman) – 9
 - universitetsplassen (Universitetsplassen) – 9
 - oslo_radhus (Oslo rådhus) – 8
 - eidsvolls_plass (Eidsvolls plass) – 7
-- gamle_deichman (Gamle Deichman) – 7
 - var_frelsers_gravlund (Vår Frelsers gravlund) – 6
 - nobelinstituttet (Nobelinstituttet) – 5
 - slottet (Det kongelige slott) – 5
@@ -115,8 +115,8 @@ Generert: 2026-05-12T11:23:32.219Z
 - mollergata_19 (Møllergata 19) – 3
 - nasjonalbiblioteket (Nasjonalbiblioteket) – 3
 - observatoriet (Observatoriet) – 3
+- operahuset (Operahuset) – 3
 - tjuvholmen (Tjuvholmen) – 3
-- tronsmo_bokhandel (Tronsmo Bokhandel) – 3
 
 ## Ugyldige place-referanser
 
@@ -127,12 +127,7 @@ Generert: 2026-05-12T11:23:32.219Z
 - anna_sethne (Anna Sethne) -> sagene_skole
 - alexis_de_chateauneuf (Alexis de Chateauneuf) -> trefoldighetskirken
 - wilhelm_von_hanno (Wilhelm von Hanno) -> trefoldighetskirken
-- wilhelm_von_hanno (Wilhelm von Hanno) -> gamle_deichman_hammersborg
-- haakon_nyhuus (Haakon Nyhuus) -> gamle_deichman_hammersborg
-- petter_moen (Petter Moen) -> akershus_slott
-- magnus_lagabote (Magnus Lagabøte) -> kongsgarden_middelalder_oslo
 - sigurd_ribbung (Sigurd Ribbung) -> bispeborgen
-- alv_erlingsson (Alv Erlingsson) -> kongsgarden_middelalder_oslo
 - sigrid_undset (Sigrid Undset) -> bøker_i_byen
 - bjornstjerne_bjornson (Bjørnstjerne Bjørnson) -> bjornson_bolig
 - bjornstjerne_bjornson (Bjørnstjerne Bjørnson) -> ibsen_bjornson_graver
@@ -151,14 +146,9 @@ Generert: 2026-05-12T11:23:32.219Z
 - gro_dahle (Gro Dahle) -> sofienberg_poesipark
 - jan_erik_vold (Jan Erik Vold) -> sofienberg_poesipark
 - jonas_collett (Jonas Collett) -> collett_monument
-- alf_proysen (Alf Prøysen) -> alf_prøysen_statue
 - cecilie_loveid (Cecilie Løveid) -> sofienberg_poesipark
 - rolf_jacobsen (Rolf Jacobsen) -> rolf_jacobsen_minne
-- oskar_braaten (Oskar Braaten) -> oskar_braaten_statue
-- kirsten_flagstad (Kirsten Flagstad) -> operaen
-- alexander_rybak (Alexander Rybak) -> operaen
 - ulrikke_brandstorp (Ulrikke Brandstorp) -> vulkan
-- edvard_grieg (Edvard Grieg) -> operaen
 - peter_christen_asbjornsen (Peter Christen Asbjørnsen) -> botanisk_hage
 - michael_sars (Michael Sars) -> botanisk_hage
 - georg_ossian_sars (Georg Ossian Sars) -> botanisk_hage
@@ -217,7 +207,7 @@ Generert: 2026-05-12T11:23:32.219Z
 - anna_sethne (Anna Sethne) -> sagene_skole
 - alexis_de_chateauneuf (Alexis de Chateauneuf) -> trefoldighetskirken
 - wilhelm_von_hanno (Wilhelm von Hanno) -> trefoldighetskirken
-- haakon_nyhuus (Haakon Nyhuus) -> gamle_deichman_hammersborg
+- haakon_nyhuus (Haakon Nyhuus) -> gamle_deichman
 - petter_moen (Petter Moen) -> mollergata_19
 - biskop_nikolas_arnason (Biskop Nikolas Arnesson) -> oslo_domkirke
 - eufemia_av_rugen (Eufemia av Rügen) -> akerhus_slott
@@ -228,7 +218,7 @@ Generert: 2026-05-12T11:23:32.219Z
 - peder_clausson_friis (Peder Claussøn Friis) -> oslo_domkirke
 - astrid_olavsdatter (Astrid Olavsdatter) -> middelalder_oslo
 - magnus_den_gode (Magnus den gode) -> middelalder_oslo
-- magnus_lagabote (Magnus Lagabøte) -> kongsgarden_middelalder_oslo
+- magnus_lagabote (Magnus Lagabøte) -> middelalder_oslo
 - gunnhild_kongsmor (Gunnhild kongsmor) -> akerhus_slott
 - sigurd_ribbung (Sigurd Ribbung) -> oslo_domkirke
 - alv_erlingsson (Alv Erlingsson) -> akerhus_slott
@@ -262,10 +252,10 @@ Generert: 2026-05-12T11:23:32.219Z
 - lars_saabye_christensen (Lars Saabye Christensen) -> norli_universitetsgata
 - jonas_collett (Jonas Collett) -> collett_monument
 - ruth_maier (Ruth Maier) -> ruth_maier_minne
-- alf_proysen (Alf Prøysen) -> alf_prøysen_statue
+- alf_proysen (Alf Prøysen) -> alf_proysen_statue_nittedal
 - cecilie_loveid (Cecilie Løveid) -> sofienberg_poesipark
 - rolf_jacobsen (Rolf Jacobsen) -> rolf_jacobsen_minne
-- oskar_braaten (Oskar Braaten) -> oskar_braaten_statue
+- oskar_braaten (Oskar Braaten) -> oscar_braaten_statuen
 - ... 54 flere
 
 ## Anbefalt første people-batch

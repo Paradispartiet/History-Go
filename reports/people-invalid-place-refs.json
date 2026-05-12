@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-12T17:07:04.244Z",
+  "generatedAt": "2026-05-12T17:45:01.316Z",
   "input": {
     "placesManifest": "data/places/manifest.json",
     "peopleManifest": "data/people/manifest.json",
@@ -8,9 +8,9 @@
   "summary": {
     "peopleFilesRead": 13,
     "peopleRead": 176,
-    "peopleWithInvalidRefs": 28,
-    "invalidRefs": 51,
-    "uniqueInvalidPlaceIds": 22,
+    "peopleWithInvalidRefs": 25,
+    "invalidRefs": 47,
+    "uniqueInvalidPlaceIds": 20,
     "peopleWithoutValidPlace": 27,
     "duplicateInternalPlaceRefs": 154
   },
@@ -178,45 +178,6 @@
           ]
         },
         {
-          "personId": "petter_moen",
-          "personName": "Petter Moen",
-          "invalidPlaceIds": [
-            "akershus_slott"
-          ],
-          "invalidRefs": [
-            {
-              "sourceFile": "data/people/people_historie.json",
-              "personId": "petter_moen",
-              "personName": "Petter Moen",
-              "field": "places[1]",
-              "invalidPlaceId": "akershus_slott"
-            }
-          ]
-        },
-        {
-          "personId": "magnus_lagabote",
-          "personName": "Magnus Lagabøte",
-          "invalidPlaceIds": [
-            "kongsgarden_middelalder_oslo"
-          ],
-          "invalidRefs": [
-            {
-              "sourceFile": "data/people/people_historie.json",
-              "personId": "magnus_lagabote",
-              "personName": "Magnus Lagabøte",
-              "field": "placeId",
-              "invalidPlaceId": "kongsgarden_middelalder_oslo"
-            },
-            {
-              "sourceFile": "data/people/people_historie.json",
-              "personId": "magnus_lagabote",
-              "personName": "Magnus Lagabøte",
-              "field": "places[0]",
-              "invalidPlaceId": "kongsgarden_middelalder_oslo"
-            }
-          ]
-        },
-        {
           "personId": "sigurd_ribbung",
           "personName": "Sigurd Ribbung",
           "invalidPlaceIds": [
@@ -229,22 +190,6 @@
               "personName": "Sigurd Ribbung",
               "field": "places[2]",
               "invalidPlaceId": "bispeborgen"
-            }
-          ]
-        },
-        {
-          "personId": "alv_erlingsson",
-          "personName": "Alv Erlingsson",
-          "invalidPlaceIds": [
-            "kongsgarden_middelalder_oslo"
-          ],
-          "invalidRefs": [
-            {
-              "sourceFile": "data/people/people_historie.json",
-              "personId": "alv_erlingsson",
-              "personName": "Alv Erlingsson",
-              "field": "places[1]",
-              "invalidPlaceId": "kongsgarden_middelalder_oslo"
             }
           ]
         }
@@ -736,21 +681,6 @@
       "suggestions": []
     },
     {
-      "invalidPlaceId": "kongsgarden_middelalder_oslo",
-      "occurrences": 3,
-      "peopleCount": 2,
-      "sourceFiles": [
-        "data/people/people_historie.json"
-      ],
-      "classification": "likely_rename_to_existing_place",
-      "suggestions": [
-        {
-          "placeId": "middelalder_oslo",
-          "confidence": "medium"
-        }
-      ]
-    },
-    {
       "invalidPlaceId": "bøker_i_byen",
       "occurrences": 2,
       "peopleCount": 2,
@@ -847,33 +777,6 @@
         {
           "placeId": "vulkan_murvegger",
           "confidence": "medium"
-        }
-      ]
-    },
-    {
-      "invalidPlaceId": "akershus_slott",
-      "occurrences": 1,
-      "peopleCount": 1,
-      "sourceFiles": [
-        "data/people/people_historie.json"
-      ],
-      "classification": "likely_rename_to_existing_place",
-      "suggestions": [
-        {
-          "placeId": "akershus_slott_bakeriet",
-          "confidence": "medium"
-        },
-        {
-          "placeId": "akerhus_slott",
-          "confidence": "low"
-        },
-        {
-          "placeId": "akershus_energi",
-          "confidence": "low"
-        },
-        {
-          "placeId": "akershus_kaier",
-          "confidence": "low"
         }
       ]
     },
@@ -1869,7 +1772,7 @@
       "sourceFile": "data/people/people_historie.json",
       "personId": "magnus_lagabote",
       "personName": "Magnus Lagabøte",
-      "placeId": "kongsgarden_middelalder_oslo",
+      "placeId": "middelalder_oslo",
       "count": 2,
       "fields": [
         "placeId",
@@ -2926,17 +2829,6 @@
       "suggestions": []
     },
     {
-      "invalidPlaceId": "kongsgarden_middelalder_oslo",
-      "classification": "likely_rename_to_existing_place",
-      "occurrences": 3,
-      "suggestions": [
-        {
-          "placeId": "middelalder_oslo",
-          "confidence": "medium"
-        }
-      ]
-    },
-    {
       "invalidPlaceId": "bøker_i_byen",
       "classification": "missing_place_candidate",
       "occurrences": 2,
@@ -3013,30 +2905,19 @@
       ]
     },
     {
-      "invalidPlaceId": "akershus_slott",
-      "classification": "likely_rename_to_existing_place",
+      "invalidPlaceId": "bispeborgen",
+      "classification": "missing_place_candidate",
       "occurrences": 1,
-      "suggestions": [
-        {
-          "placeId": "akershus_slott_bakeriet",
-          "confidence": "medium"
-        },
-        {
-          "placeId": "akerhus_slott",
-          "confidence": "low"
-        },
-        {
-          "placeId": "akershus_energi",
-          "confidence": "low"
-        },
-        {
-          "placeId": "akershus_kaier",
-          "confidence": "low"
-        }
-      ]
+      "suggestions": []
     },
     {
-      "invalidPlaceId": "bispeborgen",
+      "invalidPlaceId": "bjornson_bolig",
+      "classification": "missing_place_candidate",
+      "occurrences": 1,
+      "suggestions": []
+    },
+    {
+      "invalidPlaceId": "collett_barndom",
       "classification": "missing_place_candidate",
       "occurrences": 1,
       "suggestions": []
