@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>History Go i AHA</title>
+  <link rel="stylesheet" href="aha-dashboard.css" />
+  <style>
+    .aha-status-card { border: 1px solid #ddd; border-radius: 8px; padding: 12px; margin: 10px 0; }
+    .aha-payload-list { margin: 0; padding-left: 18px; }
+    .aha-importevent-list { padding-left: 18px; }
+    .aha-status-controls { display: flex; gap: 8px; flex-wrap: wrap; margin: 12px 0; }
+    .aha-status-message { min-height: 1.2em; }
+  </style>
+</head>
+<body>
+  <main>
+    <p><a href="index.html">← Tilbake til AHA Home</a> · <a href="/History-Go/">Åpne History-Go</a></p>
+    <div class="aha-status-controls">
+      <button id="aha-historygo-refresh" type="button">Oppdater</button>
+      <button id="aha-historygo-import" type="button">Importer fra History Go</button>
+    </div>
+    <p id="aha-historygo-message" class="aha-status-message" aria-live="polite"></p>
+    <div id="aha-historygo-status-root"></div>
+  </main>
+
+  <script src="insightsChamber.js"></script>
+  <script src="ahaSources.js"></script>
+  <script src="ahaIngest.js"></script>
+  <script src="ahaHistoryGoImport.js"></script>
+  <script src="ahaHistoryGoStatus.js"></script>
+  <script>
+    (function () {
+      var messageEl = document.getElementById("aha-historygo-message");
+      function setMessage(text) {
+        messageEl.textContent = text || "";
+      }
+
+      function doRefresh() {
+        if (window.AHAHistoryGoStatus && typeof window.AHAHistoryGoStatus.refresh === "function") {
+          window.AHAHistoryGoStatus.refresh();
+        }
+      }
+
+      document.getElementById("aha-historygo-refresh").addEventListener("click", function () {
+        doRefresh();
+        setMessage("Status oppdatert.");
+      });
+
+      document.getElementById("aha-historygo-import").addEventListener("click", function () {
+        if (!window.AHAHistoryGoImport || typeof window.AHAHistoryGoImport.importHistoryGoDataFromSharedStorage !== "function") {
+          setMessage("Importadapter mangler.");
+          return;
+        }
+        var result = window.AHAHistoryGoImport.importHistoryGoDataFromSharedStorage();
+        if (result && result.error) {
+          setMessage("Import feilet: " + result.error);
+        } else {
+          setMessage("Import fullført. Importerte signaler: " + (result && result.importedSignals || 0));
+        }
+        doRefresh();
+      });
+
+      doRefresh();
+    })();
+  </script>
+</body>
+</html>

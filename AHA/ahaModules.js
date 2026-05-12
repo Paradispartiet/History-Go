@@ -38,10 +38,15 @@
     );
   }
 
+  const MODULE_STATUS = {
+    historygo: "active"
+  };
+
   global.AHAModules = {
     readJsonStorage,
     toArray,
     escapeHtml,
-    getInsightTimestamp
+    getInsightTimestamp,
+    MODULE_STATUS
   };
 })(window);
