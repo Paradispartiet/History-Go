@@ -22,6 +22,3 @@ Canonical AHA-motor ligger i `Paradispartiet/AHA-EchoNet`.
 History-Go/AHA er ikke en full AHA-app. For canonical AHA-opplevelse, bruk:
 
 - https://paradispartiet.github.io/AHA-EchoNet/
-
-
-Innsikter, lister, stier og AHAavisa-utkast kan nå legges direkte i lokale Grupper / Sirkler som referanser.
