@@ -3,7 +3,7 @@ import path from 'path';
 
 const root = process.cwd();
 const manifestPath = path.join(root, 'data/places/manifest.json');
-const peoplePath = path.join(root, 'data/people.json');
+const peopleManifestPath = path.join(root, 'data/people/manifest.json');
 const worklistPath = path.join(root, 'reports/place-data-worklist.json');
 const reportJsonPath = path.join(root, 'reports/people-place-coverage.json');
 const reportMdPath = path.join(root, 'reports/people-place-coverage.md');
@@ -82,6 +82,20 @@ function loadWorklist() {
   return new Map(rows.map((item) => [item.placeId, item]));
 }
 
+function loadPeopleFromManifest() {
+  const manifest = readJson(peopleManifestPath);
+  const rows = [];
+  for (const relPath of manifest.files || []) {
+    const filePath = path.join(root, 'data', relPath);
+    const sourceFile = path.relative(root, filePath).replace(/\\/g, '/');
+    const data = readJson(filePath);
+    for (const person of toArray(data)) {
+      rows.push({ ...person, sourceFile });
+    }
+  }
+  return rows;
+}
+
 function sortPlaceRows(a, b) {
   const aPriority = priorityRank[a.worklistPriority || 'unknown'] ?? priorityRank.unknown;
   const bPriority = priorityRank[b.worklistPriority || 'unknown'] ?? priorityRank.unknown;
@@ -97,7 +111,7 @@ const generatedAt = new Date().toISOString();
 const places = loadPlaces();
 const placeById = new Map(places.map((place) => [place.id, place]));
 const worklistByPlace = loadWorklist();
-const people = toArray(readJson(peoplePath));
+const people = loadPeopleFromManifest();
 
 const peopleByPlace = new Map();
 const peopleRows = [];
@@ -147,6 +161,7 @@ for (const person of people) {
   peopleRows.push({
     id: person?.id || '(mangler id)',
     name: person?.name || '(mangler name)',
+    sourceFile: person?.sourceFile || null,
     tags,
     category: category || null,
     primaryPlaceId: person?.placeId || person?.place_id || person?.place || null,
