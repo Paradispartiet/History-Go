@@ -31,6 +31,8 @@
   function readState() {
     return {
       learningLog: toArray(readJsonStorage("hg_learning_log_v1", [])),
+      learningLogMigrated: toArray(readJsonStorage("hg_learning_log_migrated_v1", [])),
+      learningState: toObject(readJsonStorage("hg_learning_v1", {})),
       insightEvents: toArray(readJsonStorage("hg_insights_events_v1", [])),
       knowledgeUniverse: toArray(readJsonStorage("knowledge_universe", [])),
       quizProgress: toArray(readJsonStorage("quiz_progress", [])),
@@ -73,6 +75,7 @@
 
     const streams = []
       .concat(toArray(state.learningLog))
+      .concat(toArray(state.learningLogMigrated))
       .concat(toArray(state.insightEvents))
       .concat(toArray(state.knowledgeUniverse))
       .concat(toArray(state.quizProgress))
@@ -98,6 +101,18 @@
       if (entry && (entry.person_id || entry.personId)) peopleSignals += 1;
       if (entry && (entry.quiz_id || entry.quizId || entry.score != null || entry.correct != null)) quizSignals += 1;
     }
+
+    const learningEntries = toObject(state.learningState?.learning);
+    Object.keys(learningEntries).forEach((emneId) => {
+      const eid = s(emneId);
+      if (!eid || !emneById.has(eid)) return;
+
+      const node = toObject(learningEntries[emneId]);
+      const signalStrength = (node.seen ? 1 : 0) + (node.understood ? 1 : 0) + (node.applied ? 1 : 0);
+      if (signalStrength > 0) {
+        emneSignals.set(eid, Math.max(emneSignals.get(eid) || 0, signalStrength));
+      }
+    });
 
     return { emneSignals, conceptSignals, quizSignals, visitedSignals, peopleSignals };
   }
