@@ -733,6 +733,7 @@ function createInsightFromSignal(signal) {
     person_id: signal.person_id || null,
     field_id: signal.field_id || null,
     emner: Array.isArray(signal.emner) ? signal.emner.slice() : [],
+    source_event_ids: signal.source_event_id ? [signal.source_event_id] : [],
 
     title,
     summary: text,
@@ -823,10 +824,18 @@ function createInsightFromSignal(signal) {
 
   // Bruk dybdescoren som "grunnfjell" + evidens
       const baseDepth = insight.depth_score || 0;
-    insight.strength.total_score = Math.min(
+  insight.strength.total_score = Math.min(
       100,
       insight.strength.evidence_count * 10 + baseDepth
     );
+
+  if (signal.source_event_id) {
+    const currentIds = Array.isArray(insight.source_event_ids)
+      ? insight.source_event_ids.slice()
+      : [];
+    currentIds.push(signal.source_event_id);
+    insight.source_event_ids = Array.from(new Set(currentIds));
+  }
 }
 
     function addSignalToChamber(chamber, signal) {

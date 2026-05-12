@@ -12,6 +12,7 @@ Canonical AHA-motor ligger i `Paradispartiet/AHA-EchoNet`.
 ## Hva finnes i denne mappen nå
 
 - `index.html`: side for **History Go innsiktsmotor** med lokal statusvisning.
+- `insights.html`: read-only innsiktsvisning for `aha_insight_chamber_v1` + `aha_source_events_v1`.
 - `aha-chat.css`: enkel stil for statusflaten.
 - `ahaHistoryGoImport.js`: importbro på AHA-siden (dokumentert her for kompatibilitet).
 - `insightsChamber.js`, `metaInsightsEngine.js`, `ahaIngest.js`, `ahaSources.js`, `ahaFieldProfiles.js`: historiske/motorrelaterte filer som brukes i import/innsiktsflyt.
