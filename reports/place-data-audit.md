@@ -1,39 +1,39 @@
 # Place Data Audit
 
-Generert: 2026-05-10T10:05:00.574Z
+Generert: 2026-05-12T10:53:02.911Z
 
 ## Totalsammendrag
 
 - Place-filer i manifest: **36**
-- Totalt antall places: **440**
+- Totalt antall places: **437**
 - Steder med manglende obligatoriske felt: **58**
-- Steder med manglende popupDesc: **68**
-- Steder med manglende image: **344**
-- Steder med manglende cardImage: **343**
-- Steder med manglende emne_ids: **175**
-- Steder med manglende quiz_profile: **92**
+- Steder med manglende popupDesc: **65**
+- Steder med manglende image: **341**
+- Steder med manglende cardImage: **340**
+- Steder med manglende emne_ids: **170**
+- Steder med manglende quiz_profile: **89**
 - Steder som bruker imageCard-felt: **0**
 - Steder med stub:true eller hidden:true: **0**
 - Antall ødelagte asset paths: **131**
-- Antall place-referanser til ikke-eksisterende id-er: **20**
+- Antall place-referanser til ikke-eksisterende id-er: **90**
 
 ## Dekning per datasett (placeId/places)
 
-- **quiz**: 91/439 steder dekket (mangler 348, ugyldige refs 569)
-- **people**: 55/439 steder dekket (mangler 384, ugyldige refs 12)
-- **nature**: 36/439 steder dekket (mangler 403, ugyldige refs 3)
-- **badges**: 0/439 steder dekket (mangler 439, ugyldige refs 0)
-- **wonderkammer**: 82/439 steder dekket (mangler 357, ugyldige refs 35)
-- **relations**: 0/439 steder dekket (mangler 439, ugyldige refs 0)
-- **leksikon**: 172/439 steder dekket (mangler 267, ugyldige refs 2)
-- **sprakleksikon**: 3/439 steder dekket (mangler 436, ugyldige refs 0)
-- **external/offisielle lenker**: 0/439 steder dekket (mangler 439, ugyldige refs 0)
+- **quiz**: 91/436 steder dekket (mangler 345, ugyldige refs 569)
+- **people**: 65/436 steder dekket (mangler 371, ugyldige refs 64)
+- **nature**: 36/436 steder dekket (mangler 400, ugyldige refs 3)
+- **badges**: 0/436 steder dekket (mangler 436, ugyldige refs 0)
+- **wonderkammer**: 82/436 steder dekket (mangler 354, ugyldige refs 35)
+- **relations**: 0/436 steder dekket (mangler 436, ugyldige refs 0)
+- **leksikon**: 172/436 steder dekket (mangler 264, ugyldige refs 2)
+- **sprakleksikon**: 3/436 steder dekket (mangler 433, ugyldige refs 0)
+- **external/offisielle lenker**: 0/436 steder dekket (mangler 436, ugyldige refs 0)
 
 ## Manglende rundinger og quizdekning
 
 - Manglende rundinger (r): **0**
-- Manglende quizdekning: **348**
-  - karl_johan, grunerlokka_helgesens_tm, majorstuen_krysset, oslo_bussterminal, helsfyr, gronlandsleiret, storgata, ullevål_hageby, romsaås, rodelokka, vaalerenga, vinderen, ullern, spikersuppa, bankplassen, christiania_torv, botsparken, stensparken, nydalen, sorenga, majorstuen_tbanestasjon, nationaltheatret_stasjon, olaf_ryes_plass, birkelunden, universitetsplassen, operahuset, schous_plass, vaterland, tullin, okern, skoyen, torshov, grorud, gamlebyen, frognerparken, kampen_park, sagene_film, kampen_film, sofienberg_kirke, akerhus_slott, gamle_aker_kirke, var_frelsers_gravlund, hovedoya_kloster, eidsvollsbygningen, oscarsborg_festning, grini_fangeleir, villa_grande, bogstad_gard, mollergata_19, camilla_collett_statue, henrik_wergeland_statue, grotta, gamle_deichman, sigrid_undset_statue, ruth_maier_minne, alf_proysen_statue_nittedal, proysenhuset_rudshogda, inger_hagerups_plass, oscar_braaten_statuen, alexander_kiellands_plass, eldorado_esport, good_game_redaksjon, vg_huset, monster_as, nordisk_film_produksjon, salt, det_norske_teatret, blaa, john_dee, sentrum_scene, ringnes_bryggeri, st_halvard_bryggeri, oslo_kornmagasin, akershus_slott_bakeriet, jernbanetorget_trafikknutepunkt, christiania_seildugsfabrik, alnaelva, alnaelvstien, loelva_historisk, trosterud_friomrade, furuset_haugerud_skogbelte, hellerud_gard, alnabru_jernbane_og_logistikk, frysjadammen, nydalen_industristed, seilduksfabrikken_nydalen, nydalsdammen, stilla_nydalen, bjoelsenfossen, bjoelsenparken_elvenaer, glads_molle, voienfossen, voien_gard_voienvolden, myralokka, kuba_parken, beierbrua, nedre_foss, vulkan_industriomrade, elvestrekning_bla_brenneriveien, fossveien_elvestrekning ...
+- Manglende quizdekning: **345**
+  - karl_johan, grunerlokka_helgesens_tm, majorstuen_krysset, oslo_bussterminal, helsfyr, gronlandsleiret, storgata, ullevål_hageby, romsaås, rodelokka, vaalerenga, vinderen, ullern, spikersuppa, bankplassen, christiania_torv, botsparken, stensparken, nydalen, sorenga, majorstuen_tbanestasjon, nationaltheatret_stasjon, olaf_ryes_plass, birkelunden, universitetsplassen, operahuset, schous_plass, vaterland, tullin, okern, skoyen, torshov, grorud, gamlebyen, frognerparken, kampen_park, sagene_film, kampen_film, sofienberg_kirke, akerhus_slott, gamle_aker_kirke, var_frelsers_gravlund, hovedoya_kloster, eidsvollsbygningen, oscarsborg_festning, grini_fangeleir, villa_grande, bogstad_gard, mollergata_19, camilla_collett_statue, henrik_wergeland_statue, grotta, gamle_deichman, sigrid_undset_statue, ruth_maier_minne, alf_proysen_statue_nittedal, proysenhuset_rudshogda, inger_hagerups_plass, oscar_braaten_statuen, alexander_kiellands_plass, good_game_redaksjon, vg_huset, salt, det_norske_teatret, blaa, john_dee, sentrum_scene, ringnes_bryggeri, st_halvard_bryggeri, oslo_kornmagasin, akershus_slott_bakeriet, jernbanetorget_trafikknutepunkt, christiania_seildugsfabrik, alnaelva, alnaelvstien, loelva_historisk, trosterud_friomrade, furuset_haugerud_skogbelte, hellerud_gard, alnabru_jernbane_og_logistikk, frysjadammen, nydalen_industristed, seilduksfabrikken_nydalen, nydalsdammen, stilla_nydalen, bjoelsenfossen, bjoelsenparken_elvenaer, glads_molle, voienfossen, voien_gard_voienvolden, myralokka, kuba_parken, beierbrua, nedre_foss, vulkan_industriomrade, elvestrekning_bla_brenneriveien, fossveien_elvestrekning, hausmannsbrua, hausmannsomradet_elvelop, ankerbrua ...
 
 ## Funn per fil
 
@@ -160,14 +160,11 @@ Generert: 2026-05-10T10:05:00.574Z
 
 ### data/places/media/oslo/places_oslo_media.json
 
-- Antall places: 5
-- Places med funn: 5
+- Antall places: 2
+- Places med funn: 2
 
-- eldorado_esport (Eldorado Esport & Gaming): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- good_game_redaksjon (Good Game-redaksjonen (NRK)): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- vg_huset (VG-huset): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- monster_as (Monster (produksjonsselskap)): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- nordisk_film_produksjon (Nordisk Film Production Oslo): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- good_game_redaksjon (Good Game-redaksjonen (NRK)): mangler popupDesc | mangler image | mangler cardImage | mangler quiz_profile
+- vg_huset (VG-huset): mangler popupDesc | mangler image | mangler cardImage | mangler quiz_profile
 
 ### data/places/musikk/oslo/places_musikk.json
 
@@ -810,18 +807,88 @@ Generert: 2026-05-10T10:05:00.574Z
 
 ## Referanser til place-id-er som ikke finnes
 
-- data/people.json :: [57].placeId -> valle_hovin
-- data/people.json :: [57].places -> valle_hovin
-- data/people.json :: [58].placeId -> holmenkollen
-- data/people.json :: [58].places -> holmenkollen
-- data/people.json :: [59].placeId -> holmenkollen
-- data/people.json :: [59].places -> holmenkollen
-- data/people.json :: [60].placeId -> botanisk_hage
-- data/people.json :: [60].places -> botanisk_hage
-- data/people.json :: [67].placeId -> valle_hovin
-- data/people.json :: [67].places -> valle_hovin
-- data/people.json :: [77].placeId -> botanisk_hage
-- data/people.json :: [77].places -> botanisk_hage
+- data/people/people_by.json :: [1].places -> botanisk_hage
+- data/people/people_historie.json :: [41].placeId -> toyen_hovedgard
+- data/people/people_historie.json :: [41].places -> toyen_hovedgard
+- data/people/people_historie.json :: [42].placeId -> toyen_hovedgard
+- data/people/people_historie.json :: [42].places -> toyen_hovedgard
+- data/people/people_historie.json :: [43].placeId -> toyen_hovedgard
+- data/people/people_historie.json :: [43].places -> toyen_hovedgard
+- data/people/people_historie.json :: [44].placeId -> sagene_skole
+- data/people/people_historie.json :: [44].places -> sagene_skole
+- data/people/people_historie.json :: [45].placeId -> trefoldighetskirken
+- data/people/people_historie.json :: [45].places -> trefoldighetskirken
+- data/people/people_historie.json :: [46].placeId -> trefoldighetskirken
+- data/people/people_historie.json :: [46].places -> trefoldighetskirken
+- data/people/people_historie.json :: [46].places -> gamle_deichman_hammersborg
+- data/people/people_historie.json :: [47].placeId -> gamle_deichman_hammersborg
+- data/people/people_historie.json :: [47].places -> gamle_deichman_hammersborg
+- data/people/people_historie.json :: [48].places -> akershus_slott
+- data/people/people_historie.json :: [58].placeId -> kongsgarden_middelalder_oslo
+- data/people/people_historie.json :: [58].places -> kongsgarden_middelalder_oslo
+- data/people/people_historie.json :: [60].places -> bispeborgen
+- data/people/people_historie.json :: [61].places -> kongsgarden_middelalder_oslo
+- data/people/people_litteratur.json :: [1].places -> bøker_i_byen
+- data/people/people_litteratur.json :: [2].places -> bjornson_bolig
+- data/people/people_litteratur.json :: [2].places -> ibsen_bjornson_graver
+- data/people/people_litteratur.json :: [3].places -> wergelandsveien_15
+- data/people/people_litteratur.json :: [3].places -> henrik_wergeland_park
+- data/people/people_litteratur.json :: [3].places -> wergeland_barndom
+- data/people/people_litteratur.json :: [3].places -> wergeland_grav
+- data/people/people_litteratur.json :: [3].places -> bøker_i_byen
+- data/people/people_litteratur.json :: [4].places -> henrik_wergeland_park
+- data/people/people_litteratur.json :: [4].places -> collett_barndom
+- data/people/people_litteratur.json :: [4].places -> collett_monument
+- data/people/people_litteratur.json :: [5].places -> grotten_utsikt
+- data/people/people_litteratur.json :: [6].places -> grotten_utsikt
+- data/people/people_litteratur.json :: [6].places -> inger_hagerup_minne
+- data/people/people_litteratur.json :: [7].places -> grotten_utsikt
+- data/people/people_litteratur.json :: [15].places -> sofienberg_poesipark
+- data/people/people_litteratur.json :: [18].places -> sofienberg_poesipark
+- data/people/people_litteratur.json :: [21].placeId -> collett_monument
+- data/people/people_litteratur.json :: [21].places -> collett_monument
+- data/people/people_litteratur.json :: [23].placeId -> alf_prøysen_statue
+- data/people/people_litteratur.json :: [23].places -> alf_prøysen_statue
+- data/people/people_litteratur.json :: [24].placeId -> sofienberg_poesipark
+- data/people/people_litteratur.json :: [24].places -> sofienberg_poesipark
+- data/people/people_litteratur.json :: [25].placeId -> rolf_jacobsen_minne
+- data/people/people_litteratur.json :: [25].places -> rolf_jacobsen_minne
+- data/people/people_litteratur.json :: [26].placeId -> oskar_braaten_statue
+- data/people/people_litteratur.json :: [26].places -> oskar_braaten_statue
+- data/people/people_musikk.json :: [0].placeId -> operaen
+- data/people/people_musikk.json :: [0].places -> operaen
+- data/people/people_musikk.json :: [1].placeId -> operaen
+- data/people/people_musikk.json :: [1].places -> operaen
+- data/people/people_musikk.json :: [5].placeId -> vulkan
+- data/people/people_musikk.json :: [5].places -> vulkan
+- data/people/people_musikk.json :: [9].placeId -> operaen
+- data/people/people_musikk.json :: [9].places -> operaen
+- data/people/people_naeringsliv.json :: [0].source_place_id -> den_gamle_norges_bank
+- data/people/people_naeringsliv.json :: [1].source_place_id -> den_gamle_norges_bank
+- data/people/people_naeringsliv.json :: [2].source_place_id -> den_gamle_norges_bank
+- data/people/people_naeringsliv.json :: [3].source_place_id -> akerselva_industriomrade
+- data/people/people_naeringsliv.json :: [4].source_place_id -> akerselva_industriomrade
+- data/people/people_natur.json :: [0].placeId -> botanisk_hage
+- data/people/people_natur.json :: [0].places -> botanisk_hage
+- data/people/people_natur.json :: [1].placeId -> botanisk_hage
+- data/people/people_natur.json :: [1].places -> botanisk_hage
+- data/people/people_natur.json :: [2].placeId -> botanisk_hage
+- data/people/people_natur.json :: [2].places -> botanisk_hage
+- data/people/people_vitenskap.json :: [5].placeId -> universitetet
+- data/people/people_vitenskap.json :: [5].places -> universitetet
+- data/people/people_populaerkultur.json :: [0].osloContext.placesHint -> TV-produksjon
+- data/people/people_populaerkultur.json :: [0].osloContext.placesHint -> scenekunst
+- data/people/people_populaerkultur.json :: [0].osloContext.placesHint -> mediemiljø
+- data/people/people_populaerkultur.json :: [1].osloContext.placesHint -> TV-miljø
+- data/people/people_populaerkultur.json :: [1].osloContext.placesHint -> medieoffentlighet
+- data/people/people_populaerkultur.json :: [2].osloContext.placesHint -> TV-produksjon
+- data/people/people_populaerkultur.json :: [2].osloContext.placesHint -> studioarbeid
+- data/people/people_populaerkultur.json :: [3].osloContext.placesHint -> mediemiljø
+- data/people/people_populaerkultur.json :: [3].osloContext.placesHint -> akademisk offentlighet
+- data/people/people_populaerkultur.json :: [4].osloContext.placesHint -> TV
+- data/people/people_populaerkultur.json :: [4].osloContext.placesHint -> offentlig debatt
+- data/people/people_populaerkultur.json :: [5].osloContext.placesHint -> standup-scener
+- data/people/people_populaerkultur.json :: [5].osloContext.placesHint -> klubbmiljø
 - data/routes_walks.json :: [0].stops[0].placeId -> sognsvann
 - data/routes_walks.json :: [1].stops[0].placeId -> botanisk_hage
 - data/routes_walks.json :: [1].stops[1].placeId -> botanisk_hage
@@ -841,7 +908,7 @@ Generert: 2026-05-10T10:05:00.574Z
 
 ## Neste arbeid (prioritert)
 
-1. Lag quiz for 348 steder uten quizdekning (start med steder som også mangler popupDesc/emne_ids).
+1. Lag quiz for 345 steder uten quizdekning (start med steder som også mangler popupDesc/emne_ids).
 2. Fyll inn rundinger (r) for 0 steder som mangler dette feltet.
 3. Rydd opp ugyldige place-referanser i datasett med høyest antall dangling refs (se dekningsseksjonen).
 4. Øk dekning i people/nature/badges/wonderkammer/leksikon/external ved å koble placeId/places mot eksisterende steder.
@@ -852,7 +919,7 @@ Generert: 2026-05-10T10:05:00.574Z
 - Antall steder klare for quiz: **162**
 - Antall steder klare for Wonderkammer: **299**
 - Antall steder klare for språkleksikon: **369**
-- Prioritet: critical **0**, high **352**, medium **88**, low **0**
+- Prioritet: critical **0**, high **349**, medium **88**, low **0**
 
 ### Topp 25 anbefalte neste steder
 
