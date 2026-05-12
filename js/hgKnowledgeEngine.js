@@ -192,7 +192,7 @@
   }
 
   function buildRecommendations(analysis) {
-    const subjects = Object.values(toObject(analysis?.subjects?.by));
+    const subjects = Object.values(toObject(analysis?.subjects));
     const recommendations = [];
 
     const sortedByCoverage = subjects.slice().sort((a, b) => safeNumber(a?.progress?.estimatedCoverage) - safeNumber(b?.progress?.estimatedCoverage));
@@ -271,7 +271,7 @@
         courseReadySubjects: subjects.filter((x) => x?.structure?.courseReady).length,
         domainAdaptedSubjects: subjects.filter((x) => x?.structure?.domainAdapted).length
       },
-      subjects: { by: by },
+      subjects: by,
       recommendations: [],
       sourceState: {
         learningLogCount: toArray(analyzed.state.learningLog).length,
