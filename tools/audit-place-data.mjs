@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import { PLACE_REF_KEYS, collectRefsByKeys, manifestFilesToPaths, readJson, toArray } from './lib/placeRefAuditUtils.mjs';
 
 const root = process.cwd();
 const manifestPath = path.join(root, 'data/places/manifest.json');
@@ -7,11 +8,8 @@ const reportPath = path.join(root, 'reports/place-data-audit.md');
 const worklistPath = path.join(root, 'reports/place-data-worklist.json');
 
 const requiredFields = ['id', 'name', 'lat', 'lon', 'r', 'category', 'year', 'desc'];
-const PLACE_REF_KEYS = ['placeId', 'place_id', 'places', 'placeIds', 'place_ids', 'related_places', 'place'];
 const priorityRank = { critical: 0, high: 1, medium: 2, low: 3 };
 
-function readJson(filePath) { return JSON.parse(fs.readFileSync(filePath, 'utf8')); }
-function toArray(data) { if (Array.isArray(data)) return data; if (data && Array.isArray(data.places)) return data.places; if (data && Array.isArray(data.items)) return data.items; return []; }
 function isMissing(v) { return v === undefined || v === null || (typeof v === 'string' && v.trim() === ''); }
 function hasCoordinates(p) { return !isMissing(p?.lat) && !isMissing(p?.lon); }
 function hasNonEmptyObject(v) { return !!(v && typeof v === 'object' && !Array.isArray(v) && Object.keys(v).length > 0); }
@@ -36,26 +34,6 @@ function listJsonFiles(dirPath) {
   return files;
 }
 
-function loadManifestFiles(manifestFilePath) {
-  if (!fs.existsSync(manifestFilePath)) return [];
-  const manifest = readJson(manifestFilePath);
-  if (!Array.isArray(manifest?.files)) return [];
-  return manifest.files.map((relPath) => path.join(root, 'data', relPath));
-}
-
-function collectRefsByKeys(node, keys, currentPath = '', refs = []) {
-  if (Array.isArray(node)) { node.forEach((v, i) => collectRefsByKeys(v, keys, `${currentPath}[${i}]`, refs)); return refs; }
-  if (!node || typeof node !== 'object') return refs;
-  for (const [k, v] of Object.entries(node)) {
-    const nextPath = currentPath ? `${currentPath}.${k}` : k;
-    if (keys.includes(k)) {
-      if (typeof v === 'string') refs.push({ key: nextPath, value: v });
-      if (Array.isArray(v)) for (const item of v) if (typeof item === 'string') refs.push({ key: nextPath, value: item });
-    }
-    collectRefsByKeys(v, keys, nextPath, refs);
-  }
-  return refs;
-}
 
 const generatedAt = new Date().toISOString();
 const manifest = readJson(manifestPath);
@@ -89,7 +67,7 @@ const validPlaceIds = new Set(allPlaces.map((x) => x.place?.id).filter((id) => t
 
 const coverageSources = [
   { name: 'quiz', files: listJsonFiles(path.join(root, 'data/quiz')), keys: ['placeId', 'place_id', 'place'] },
-  { name: 'people', files: loadManifestFiles(path.join(root, 'data/people/manifest.json')), keys: PLACE_REF_KEYS },
+  { name: 'people', files: manifestFilesToPaths(root, path.join(root, 'data/people/manifest.json')), keys: PLACE_REF_KEYS },
   { name: 'nature', files: listJsonFiles(path.join(root, 'data/natur')), keys: ['placeId', 'place_id', 'places', 'placeIds'] },
   { name: 'badges', files: [path.join(root, 'data/badges.json'), ...listJsonFiles(path.join(root, 'data/badges'))], keys: ['placeId', 'place_id', 'places', 'placeIds'] },
   { name: 'wonderkammer', files: [path.join(root, 'data/wonderkammer/index.json'), ...listJsonFiles(path.join(root, 'data/wonderkammer'))], keys: ['placeId', 'place_id', 'places', 'placeIds'] },
@@ -112,7 +90,7 @@ for (const source of coverageSources) {
   coverageBySource[source.name] = { seen, dangling, files: source.files.length };
 }
 
-const peopleManifestFiles = loadManifestFiles(path.join(root, 'data/people/manifest.json'));
+const peopleManifestFiles = manifestFilesToPaths(root, path.join(root, 'data/people/manifest.json'));
 const refTargets = ['data/badges.json','data/routes.json','data/routes_walks.json','data/wonderkammer/index.json','data/Civication/place_access_map.json','data/Civication/place_contexts.json','data/Civication/people_access_map.json'].map((p) => path.isAbsolute(p) ? p : path.join(root, p));
 
 function collectPlaceRefs(node, currentPath = '', refs = []) {

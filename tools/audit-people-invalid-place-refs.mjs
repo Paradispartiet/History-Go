@@ -1,33 +1,12 @@
 import fs from 'fs';
 import path from 'path';
+import { PLACE_REF_KEYS, buildActivePlaceIdSet, collectRefsByKeys, manifestFilesToPaths, readJson, toArray } from './lib/placeRefAuditUtils.mjs';
 
 const root = process.cwd();
 const placesManifestPath = path.join(root, 'data/places/manifest.json');
 const peopleManifestPath = path.join(root, 'data/people/manifest.json');
 const reportJsonPath = path.join(root, 'reports/people-invalid-place-refs.json');
 const reportMdPath = path.join(root, 'reports/people-invalid-place-refs.md');
-
-const PLACE_REF_FIELDS = new Set([
-  'placeId',
-  'place_id',
-  'place',
-  'places',
-  'placeIds',
-  'place_ids',
-  'related_places',
-]);
-
-function readJson(filePath) {
-  return JSON.parse(fs.readFileSync(filePath, 'utf8'));
-}
-
-function toArray(data) {
-  if (Array.isArray(data)) return data;
-  if (data && Array.isArray(data.items)) return data.items;
-  if (data && Array.isArray(data.people)) return data.people;
-  if (data && Array.isArray(data.places)) return data.places;
-  return [];
-}
 
 function normalizeId(value) {
   return String(value || '')
@@ -50,56 +29,8 @@ function similarity(a, b) {
   return inter / Math.max(at.size, bt.size);
 }
 
-function extractRefs(value, fieldPath) {
-  const refs = [];
-  if (typeof value === 'string' && value.trim()) {
-    refs.push({ placeId: value.trim(), field: fieldPath });
-    return refs;
-  }
-  if (Array.isArray(value)) {
-    value.forEach((entry, idx) => {
-      if (typeof entry === 'string' && entry.trim()) {
-        refs.push({ placeId: entry.trim(), field: `${fieldPath}[${idx}]` });
-      }
-    });
-  }
-  return refs;
-}
-
-function findPlaceRefs(node, currentPath = '') {
-  const refs = [];
-  if (!node || typeof node !== 'object') return refs;
-
-  if (Array.isArray(node)) {
-    node.forEach((item, idx) => {
-      refs.push(...findPlaceRefs(item, `${currentPath}[${idx}]`));
-    });
-    return refs;
-  }
-
-  for (const [key, value] of Object.entries(node)) {
-    const nextPath = currentPath ? `${currentPath}.${key}` : key;
-    if (PLACE_REF_FIELDS.has(key)) {
-      refs.push(...extractRefs(value, nextPath));
-    }
-    if (value && typeof value === 'object') {
-      refs.push(...findPlaceRefs(value, nextPath));
-    }
-  }
-  return refs;
-}
-
-const placeManifest = readJson(placesManifestPath);
 const peopleManifest = readJson(peopleManifestPath);
-
-const placeIds = new Set();
-for (const relPath of placeManifest.files || []) {
-  const filePath = path.join(root, 'data', relPath);
-  const rows = toArray(readJson(filePath));
-  for (const row of rows) {
-    if (typeof row?.id === 'string' && row.id.trim()) placeIds.add(row.id.trim());
-  }
-}
+const placeIds = buildActivePlaceIdSet(root, placesManifestPath);
 
 const validPlaceIds = [...placeIds].sort((a, b) => a.localeCompare(b, 'nb'));
 const validNormToIds = new Map();
@@ -115,16 +46,15 @@ const peopleWithoutValidPlace = [];
 const duplicatePlaceRefs = [];
 let peopleCount = 0;
 
-for (const relPath of peopleManifest.files || []) {
-  const filePath = path.join(root, 'data', relPath);
-  const sourceFile = `data/${relPath}`;
+for (const filePath of manifestFilesToPaths(root, peopleManifestPath)) {
+  const sourceFile = path.relative(root, filePath).replace(/\\/g, '/');
   const people = toArray(readJson(filePath));
 
   for (const person of people) {
     peopleCount += 1;
     const personId = person?.id || '(missing-id)';
     const personName = person?.name || '(missing-name)';
-    const refs = findPlaceRefs(person);
+    const refs = collectRefsByKeys(person, PLACE_REF_KEYS).map((ref) => ({ placeId: String(ref.value).trim(), field: ref.key })).filter((ref) => ref.placeId);
 
     const refValues = refs.map((r) => r.placeId);
     const validRefs = [...new Set(refValues.filter((pid) => placeIds.has(pid)))];
