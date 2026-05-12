@@ -1,6 +1,6 @@
 # Place Data Audit
 
-Generert: 2026-05-12T11:23:32.232Z
+Generert: 2026-05-12T12:57:04.680Z
 
 ## Totalsammendrag
 
@@ -15,12 +15,12 @@ Generert: 2026-05-12T11:23:32.232Z
 - Steder som bruker imageCard-felt: **0**
 - Steder med stub:true eller hidden:true: **0**
 - Antall ødelagte asset paths: **131**
-- Antall place-referanser til ikke-eksisterende id-er: **72**
+- Antall place-referanser til ikke-eksisterende id-er: **54**
 
 ## Dekning per datasett (placeId/places)
 
 - **quiz**: 91/436 steder dekket (mangler 345, ugyldige refs 569)
-- **people**: 65/436 steder dekket (mangler 371, ugyldige refs 64)
+- **people**: 68/436 steder dekket (mangler 368, ugyldige refs 51)
 - **nature**: 36/436 steder dekket (mangler 400, ugyldige refs 3)
 - **badges**: 0/436 steder dekket (mangler 436, ugyldige refs 0)
 - **wonderkammer**: 82/436 steder dekket (mangler 354, ugyldige refs 35)
@@ -820,9 +820,6 @@ Generert: 2026-05-12T11:23:32.232Z
 - data/people/people_historie.json :: [45].places -> trefoldighetskirken
 - data/people/people_historie.json :: [46].placeId -> trefoldighetskirken
 - data/people/people_historie.json :: [46].places -> trefoldighetskirken
-- data/people/people_historie.json :: [46].places -> gamle_deichman_hammersborg
-- data/people/people_historie.json :: [47].placeId -> gamle_deichman_hammersborg
-- data/people/people_historie.json :: [47].places -> gamle_deichman_hammersborg
 - data/people/people_historie.json :: [48].places -> akershus_slott
 - data/people/people_historie.json :: [58].placeId -> kongsgarden_middelalder_oslo
 - data/people/people_historie.json :: [58].places -> kongsgarden_middelalder_oslo
@@ -847,22 +844,12 @@ Generert: 2026-05-12T11:23:32.232Z
 - data/people/people_litteratur.json :: [18].places -> sofienberg_poesipark
 - data/people/people_litteratur.json :: [21].placeId -> collett_monument
 - data/people/people_litteratur.json :: [21].places -> collett_monument
-- data/people/people_litteratur.json :: [23].placeId -> alf_prøysen_statue
-- data/people/people_litteratur.json :: [23].places -> alf_prøysen_statue
 - data/people/people_litteratur.json :: [24].placeId -> sofienberg_poesipark
 - data/people/people_litteratur.json :: [24].places -> sofienberg_poesipark
 - data/people/people_litteratur.json :: [25].placeId -> rolf_jacobsen_minne
 - data/people/people_litteratur.json :: [25].places -> rolf_jacobsen_minne
-- data/people/people_litteratur.json :: [26].placeId -> oskar_braaten_statue
-- data/people/people_litteratur.json :: [26].places -> oskar_braaten_statue
-- data/people/people_musikk.json :: [0].placeId -> operaen
-- data/people/people_musikk.json :: [0].places -> operaen
-- data/people/people_musikk.json :: [1].placeId -> operaen
-- data/people/people_musikk.json :: [1].places -> operaen
 - data/people/people_musikk.json :: [5].placeId -> vulkan
 - data/people/people_musikk.json :: [5].places -> vulkan
-- data/people/people_musikk.json :: [9].placeId -> operaen
-- data/people/people_musikk.json :: [9].places -> operaen
 - data/people/people_natur.json :: [0].placeId -> botanisk_hage
 - data/people/people_natur.json :: [0].places -> botanisk_hage
 - data/people/people_natur.json :: [1].placeId -> botanisk_hage
@@ -871,14 +858,9 @@ Generert: 2026-05-12T11:23:32.232Z
 - data/people/people_natur.json :: [2].places -> botanisk_hage
 - data/people/people_vitenskap.json :: [5].placeId -> universitetet
 - data/people/people_vitenskap.json :: [5].places -> universitetet
-- data/routes_walks.json :: [0].stops[0].placeId -> sognsvann
 - data/routes_walks.json :: [1].stops[0].placeId -> botanisk_hage
 - data/routes_walks.json :: [1].stops[1].placeId -> botanisk_hage
-- data/routes_walks.json :: [3].stops[0].placeId -> holmenkollen
-- data/routes_walks.json :: [3].stops[1].placeId -> holmenkollen
 - data/Civication/place_contexts.json :: contexts[4].matches_place_ids -> botanisk_hage
-- data/Civication/place_contexts.json :: contexts[4].matches_place_ids -> sognsvann
-- data/Civication/place_contexts.json :: contexts[7].matches_place_ids -> bislett
 
 ## Anbefalt rekkefølge for ferdigstilling
 
