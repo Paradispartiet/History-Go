@@ -1,6 +1,6 @@
 # People invalid place refs audit
 
-Generated: 2026-05-12T17:45:01.316Z
+Generated: 2026-05-12T18:00:23.078Z
 
 ## Sammendrag
 - People-filer lest: **13**
@@ -292,7 +292,7 @@ Generated: 2026-05-12T17:45:01.316Z
 - data/people/people_natur.json :: michael_sars (Michael Sars) -> botanisk_hage x2
 - data/people/people_natur.json :: georg_ossian_sars (Georg Ossian Sars) -> botanisk_hage x2
 - data/people/people_natur.json :: jens_esmark (Jens Esmark) -> universitetsplassen x2
-- data/people/people_natur.json :: arne_naess (Arne Næss) -> tvergastein x2
+- data/people/people_natur.json :: arne_naess (Arne Næss) -> maerradalen x2
 - data/people/people_politikk.json :: gro_harlem_brundtland (Gro Harlem Brundtland) -> stortinget x2
 - data/people/people_politikk.json :: jens_stoltenberg (Jens Stoltenberg) -> stortinget x2
 - data/people/people_politikk.json :: johan_sverdrup (Johan Sverdrup) -> stortinget x2
