@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AHA Insights (read-only)</title>
+  <link rel="stylesheet" href="aha-insights.css" />
+</head>
+<body>
+  <h1>AHA Innsikter (read-only)</h1>
+  <p>Viser eksisterende data fra localStorage uten å skrive tilbake.</p>
+
+  <div class="filters">
+    <input id="insight-search" type="search" placeholder="Søk i tittel, summary, tema, begreper" />
+    <select id="insight-topic-filter"><option value="">Alle tema</option></select>
+    <label><input id="insight-source-filter" type="checkbox" /> Med kilde</label>
+    <button id="insight-refresh">Oppdater</button>
+  </div>
+
+  <section id="insight-stats"></section>
+  <section id="insight-cards"></section>
+
+  <h2>Meta / forslag</h2>
+  <section id="insight-meta"></section>
+
+  <script src="ahaModules.js"></script>
+  <script src="ahaInsights.js"></script>
+  <script>
+    const rerender = () => window.AHAInsights && window.AHAInsights.render();
+    document.getElementById('insight-search').addEventListener('input', rerender);
+    document.getElementById('insight-topic-filter').addEventListener('change', rerender);
+    document.getElementById('insight-source-filter').addEventListener('change', rerender);
+    document.getElementById('insight-refresh').addEventListener('click', rerender);
+    rerender();
+  </script>
+</body>
+</html>
