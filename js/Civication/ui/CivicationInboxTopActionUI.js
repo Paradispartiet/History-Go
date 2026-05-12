@@ -297,7 +297,18 @@
   function renderInboxSection(label, intro, items, emptyText) {
     const visible = (Array.isArray(items) ? items : [])
       .filter(function (item) { return item && item.deleted !== true && item.archived !== true; });
-    const pendingCount = visible.filter(isPending).length;
+
+    const openItems = visible.filter(function (item) {
+      const status = normalize(item?.status || "pending");
+      return (status === "pending" || status === "open") && item?.resolved !== true;
+    });
+
+    const resolvedItems = visible.filter(function (item) {
+      const status = normalize(item?.status);
+      return status === "resolved" || status === "answered" || item?.resolved === true;
+    });
+
+    const pendingCount = openItems.length;
 
     return `
       <section class="civi-inbox-channel-section">
@@ -309,9 +320,13 @@
           <strong>${pendingCount} åpne</strong>
         </div>
         <div class="civi-inbox-channel-list">
-          ${visible.length
-            ? visible.map(function (item) { return renderInboxCard(item, label); }).join("")
+          ${openItems.length
+            ? openItems.map(function (item) { return renderInboxCard(item, label); }).join("")
             : `<div class="civi-inbox-empty muted">${escapeHtml(emptyText)}</div>`
+          }
+          ${resolvedItems.length
+            ? `<h4 class="civi-inbox-subheading">Avklart</h4>${resolvedItems.map(function (item) { return renderInboxCard(item, label); }).join("")}`
+            : ""
           }
         </div>
       </section>
