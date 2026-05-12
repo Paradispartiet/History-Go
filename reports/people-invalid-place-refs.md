@@ -1,13 +1,13 @@
 # People invalid place refs audit
 
-Generated: 2026-05-12T17:07:04.244Z
+Generated: 2026-05-12T17:45:01.316Z
 
 ## Sammendrag
 - People-filer lest: **13**
 - People lest: **176**
-- People med ugyldige refs: **28**
-- Ugyldige refs: **51**
-- Unike ugyldige placeId-er: **22**
+- People med ugyldige refs: **25**
+- Ugyldige refs: **47**
+- Unike ugyldige placeId-er: **20**
 - People uten gyldig sted: **27**
 - Duplikate interne place-referanser: **154**
 
@@ -34,15 +34,8 @@ Generated: 2026-05-12T17:07:04.244Z
 - **wilhelm_von_hanno** (Wilhelm von Hanno)
   - trefoldighetskirken @ `placeId`
   - trefoldighetskirken @ `places[0]`
-- **petter_moen** (Petter Moen)
-  - akershus_slott @ `places[1]`
-- **magnus_lagabote** (Magnus Lagabøte)
-  - kongsgarden_middelalder_oslo @ `placeId`
-  - kongsgarden_middelalder_oslo @ `places[0]`
 - **sigurd_ribbung** (Sigurd Ribbung)
   - bispeborgen @ `places[2]`
-- **alv_erlingsson** (Alv Erlingsson)
-  - kongsgarden_middelalder_oslo @ `places[1]`
 ### data/people/people_litteratur.json
 - **sigrid_undset** (Sigrid Undset)
   - bøker_i_byen @ `places[3]`
@@ -111,8 +104,6 @@ Generated: 2026-05-12T17:07:04.244Z
   - missing_place_candidate
 - **grotten_utsikt** (missing_place_candidate, 3 treff)
   - missing_place_candidate
-- **kongsgarden_middelalder_oslo** (likely_rename_to_existing_place, 3 treff)
-  - middelalder_oslo (confidence: medium)
 - **bøker_i_byen** (missing_place_candidate, 2 treff)
   - missing_place_candidate
 - **henrik_wergeland_park** (needs_manual_review, 2 treff)
@@ -130,11 +121,6 @@ Generated: 2026-05-12T17:07:04.244Z
   - vulkan_energisentral (confidence: medium)
   - vulkan_industriomrade (confidence: medium)
   - vulkan_murvegger (confidence: medium)
-- **akershus_slott** (likely_rename_to_existing_place, 1 treff)
-  - akershus_slott_bakeriet (confidence: medium)
-  - akerhus_slott (confidence: low)
-  - akershus_energi (confidence: low)
-  - akershus_kaier (confidence: low)
 - **bispeborgen** (missing_place_candidate, 1 treff)
   - missing_place_candidate
 - **bjornson_bolig** (missing_place_candidate, 1 treff)
@@ -244,7 +230,7 @@ Generated: 2026-05-12T17:07:04.244Z
 - data/people/people_historie.json :: peder_clausson_friis (Peder Claussøn Friis) -> oslo_domkirke x2
 - data/people/people_historie.json :: astrid_olavsdatter (Astrid Olavsdatter) -> middelalder_oslo x2
 - data/people/people_historie.json :: magnus_den_gode (Magnus den gode) -> middelalder_oslo x2
-- data/people/people_historie.json :: magnus_lagabote (Magnus Lagabøte) -> kongsgarden_middelalder_oslo x2
+- data/people/people_historie.json :: magnus_lagabote (Magnus Lagabøte) -> middelalder_oslo x2
 - data/people/people_historie.json :: gunnhild_kongsmor (Gunnhild kongsmor) -> akerhus_slott x2
 - data/people/people_historie.json :: sigurd_ribbung (Sigurd Ribbung) -> oslo_domkirke x2
 - data/people/people_historie.json :: alv_erlingsson (Alv Erlingsson) -> akerhus_slott x2
@@ -344,12 +330,12 @@ Generated: 2026-05-12T17:07:04.244Z
 - trefoldighetskirken (missing_place_candidate, 4 treff)
 - collett_monument (missing_place_candidate, 3 treff)
 - grotten_utsikt (missing_place_candidate, 3 treff)
-- kongsgarden_middelalder_oslo (likely_rename_to_existing_place, 3 treff)
 - bøker_i_byen (missing_place_candidate, 2 treff)
 - henrik_wergeland_park (needs_manual_review, 2 treff)
 - rolf_jacobsen_minne (missing_place_candidate, 2 treff)
 - sagene_skole (needs_manual_review, 2 treff)
 - universitetet (likely_rename_to_existing_place, 2 treff)
 - vulkan (likely_rename_to_existing_place, 2 treff)
-- akershus_slott (likely_rename_to_existing_place, 1 treff)
 - bispeborgen (missing_place_candidate, 1 treff)
+- bjornson_bolig (missing_place_candidate, 1 treff)
+- collett_barndom (missing_place_candidate, 1 treff)

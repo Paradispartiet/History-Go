@@ -1,6 +1,6 @@
 # Place Data Audit
 
-Generert: 2026-05-12T17:07:03.555Z
+Generert: 2026-05-12T17:45:01.290Z
 
 ## Totalsammendrag
 
@@ -15,12 +15,12 @@ Generert: 2026-05-12T17:07:03.555Z
 - Steder som bruker imageCard-felt: **0**
 - Steder med stub:true eller hidden:true: **0**
 - Antall ødelagte asset paths: **131**
-- Antall place-referanser til ikke-eksisterende id-er: **54**
+- Antall place-referanser til ikke-eksisterende id-er: **50**
 
 ## Dekning per datasett (placeId/places)
 
 - **quiz**: 91/436 steder dekket (mangler 345, ugyldige refs 569)
-- **people**: 68/436 steder dekket (mangler 368, ugyldige refs 51)
+- **people**: 68/436 steder dekket (mangler 368, ugyldige refs 47)
 - **nature**: 36/436 steder dekket (mangler 400, ugyldige refs 3)
 - **badges**: 0/436 steder dekket (mangler 436, ugyldige refs 0)
 - **wonderkammer**: 82/436 steder dekket (mangler 354, ugyldige refs 35)
@@ -820,11 +820,7 @@ Generert: 2026-05-12T17:07:03.555Z
 - data/people/people_historie.json :: [45].places[0] -> trefoldighetskirken
 - data/people/people_historie.json :: [46].placeId -> trefoldighetskirken
 - data/people/people_historie.json :: [46].places[0] -> trefoldighetskirken
-- data/people/people_historie.json :: [48].places[1] -> akershus_slott
-- data/people/people_historie.json :: [58].placeId -> kongsgarden_middelalder_oslo
-- data/people/people_historie.json :: [58].places[0] -> kongsgarden_middelalder_oslo
 - data/people/people_historie.json :: [60].places[2] -> bispeborgen
-- data/people/people_historie.json :: [61].places[1] -> kongsgarden_middelalder_oslo
 - data/people/people_litteratur.json :: [1].places[3] -> bøker_i_byen
 - data/people/people_litteratur.json :: [2].places[2] -> bjornson_bolig
 - data/people/people_litteratur.json :: [2].places[3] -> ibsen_bjornson_graver
