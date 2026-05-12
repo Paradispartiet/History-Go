@@ -1,10 +1,8 @@
 export interface Place {
   id: string;
   name?: string;
-  title?: string;
   lat?: number;
   lon?: number;
-  lng?: number;
   r?: number;
   category?: string;
   year?: number;

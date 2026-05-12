@@ -3,6 +3,7 @@
 // app.js skal være eneste entry på index-siden.
 
 /** @typedef {import("../schemas/place").Place} Place */
+/** @typedef {{ files?: string[] }} PlacesManifest */
 
 async function boot() {
   if (window.CoreEngine) CoreEngine.init();
@@ -19,6 +20,7 @@ async function boot() {
   const isGitHubPages = location.hostname.includes("github.io");
   const BASE = isGitHubPages ? `/${REPO_NAME}/` : "/";
 
+  /** @param {string} url @returns {Promise<unknown | null>} */
   const fetchJSON = async (url) => {
     try {
       const res = await fetch(BASE + url, { cache: "no-store" });
@@ -107,6 +109,7 @@ async function boot() {
       "data/wonderkammer/seasonal.json"
     ];
 
+    /** @type {PlacesManifest | null} */
     const manifest = await fetchJSON("data/wonderkammer/index.json");
     const files = Array.isArray(manifest?.files) && manifest.files.length
       ? manifest.files
@@ -195,7 +198,7 @@ async function boot() {
       /** @type {unknown} */
       const loaded = await window.DataHub.loadPlacesBase({ cache: "no-store" });
       if (Array.isArray(loaded) && loaded.length) {
-        places = loaded;
+        places = /** @type {Place[]} */ (loaded);
       }
     } catch (e) {
       console.error("[DataHub.loadPlacesBase]", e);
@@ -218,6 +221,7 @@ async function boot() {
     "data/relations_philanthropy.json"
   ];
 
+  /** @type {unknown[]} */
   let relations = [];
 
   for (const url of RELATION_FILE_LIST) {
@@ -253,6 +257,7 @@ async function boot() {
     "data/people/people_populaerkultur.json"
   ];
 
+  /** @type {unknown[]} */
   let peopleAll = [];
 
   for (const url of PEOPLE_FILE_LIST) {
