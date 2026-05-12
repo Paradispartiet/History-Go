@@ -5,13 +5,16 @@ Denne rapporten gjelder de nye historie-batchene som er lagt inn som egne filer,
 ## Filer kontrollert
 
 - `data/people/people_historie_next_batch_01.json`
-- `data/people/people_historie_next_batch_02.json`
-- `data/people/people_historie_next_batch_03.json`
+- `data/people/people_historie_next_batch_02_normalized.json`
+- `data/people/people_historie_next_batch_03_normalized.json`
+- `data/people/people_historie_next_batch_02.json` — erstattet av normalisert batch
+- `data/people/people_historie_next_batch_03.json` — erstattet av normalisert batch
 - `data/places/historie/oslo/places_historie_next_batch_middelalder_01.json`
 - `data/places/historie/oslo/places_historie_next_batch_middelalder_02.json`
 - `data/places/historie/oslo/places_historie_next_batch_ruth_maier_01.json`
 - `data/places/historie/oslo/places_historie_next_batch_tidlig_moderne_01.json`
 - `data/places/historie/oslo/places_historie_next_batch_straff_sosial_01.json`
+- `data/leksikon/places/oslo/historie/leksikon_oslo_historie_underpunkter_next_batch_01.json`
 
 ## Status
 
@@ -21,6 +24,31 @@ Batchene er lagt inn som separate arbeidsfiler. De er derfor ikke aktive i appen
 2. legges til i relevant manifest/loader dersom batchfiler skal lastes direkte.
 
 Anbefalt løsning er vanlig merge inn i hovedfilene etter kontroll.
+
+## Viktig normalisering etter underpunkt-avgjørelse
+
+Følgende steder skal foreløpig ikke behandles som aktive `placeId`-er for people:
+
+- `mariakirken`
+- `clemenskirken`
+- `hallvardskatedralen`
+- `bispeborgen`
+- `kongsgarden_middelalder_oslo`
+- `korskirken`
+- `olavsklosteret`
+- `anatomigarden`
+
+Disse ligger nå som underpunkter i:
+
+`data/leksikon/places/oslo/historie/leksikon_oslo_historie_underpunkter_next_batch_01.json`
+
+People-batch 02 og 03 er derfor normalisert slik at `placeId` og `places[]` peker til aktive hovedsteder som:
+
+- `middelalder_oslo`
+- `oslo_domkirke`
+- `akerhus_slott`
+
+De gamle filene `people_historie_next_batch_02.json` og `people_historie_next_batch_03.json` skal ikke brukes videre uten denne normaliseringen.
 
 ## Nye place-ID-er i middelalderbatch 01
 
@@ -35,30 +63,15 @@ Følgende nye steder ligger i:
 - `bispeborgen`
 - `kongsgarden_middelalder_oslo`
 
-Alle seks har:
+### Aktiv merge-status
 
-- `category: "historie"`
-- `coordStatus: "needs_manual_map_check"`
-- `coordSource: "approximate_manual_lookup"`
+Kun `nonneseter_kloster` bør vurderes som eget place i første aktive merge.
 
-### Vurdering
-
-Alle seks passer faglig godt i historie-kategorien etter ny README-regel. De handler om middelalderbyen, kirke, kloster, kongemakt, bispemakt, ruiner og kulturarv.
+De øvrige i denne batchen bør foreløpig flyttes/holdes som underpunkter under `middelalder_oslo`.
 
 ### Før merge
 
-Koordinater bør finjusteres på kart før `coordStatus` endres til `verified`.
-
-Anbefalt sjekkerekkefølge:
-
-1. `mariakirken`
-2. `hallvardskatedralen`
-3. `clemenskirken`
-4. `bispeborgen`
-5. `kongsgarden_middelalder_oslo`
-6. `nonneseter_kloster`
-
-Grunnen er at de fem første ligger tett i middelalderbyen og må skilles presist slik at prikkene ikke overlapper eller havner på feil ruinområde.
+`nonneseter_kloster` må koordinatsjekkes visuelt før `coordStatus` endres til `verified`.
 
 ## Nye place-ID-er i middelalderbatch 02
 
@@ -70,27 +83,17 @@ Følgende nye steder ligger i:
 - `korskirken`
 - `oslo_ladegard`
 
-Alle tre har:
+### Aktiv merge-status
 
-- `category: "historie"`
-- `coordStatus: "needs_manual_map_check"`
-- `coordSource: "approximate_manual_lookup"`
+Kun `oslo_ladegard` bør vurderes som eget place i første aktive merge.
 
-### Vurdering
+`olavsklosteret` bør foreløpig være underpunkt under `oslo_ladegard` eller `middelalder_oslo`.
 
-Alle tre passer faglig godt i historie-kategorien. De styrker middelalderbyen med klosterorden, sognekirke, hverdagsliv, bispegårdslag, formidling og historiske tidslag.
+`korskirken` bør foreløpig være underpunkt under `middelalder_oslo`.
 
 ### Før merge
 
-Koordinater må kontrolleres visuelt før `coordStatus` endres til `verified`.
-
-Anbefalt sjekkerekkefølge:
-
-1. `oslo_ladegard`
-2. `olavsklosteret`
-3. `korskirken`
-
-`oslo_ladegard` bør sjekkes først fordi det er et eksisterende fysisk bygg og kan brukes som stabilt orienteringspunkt for de nærliggende ruinene.
+`oslo_ladegard` må koordinatsjekkes visuelt før `coordStatus` endres til `verified`.
 
 ## Tidlig moderne / sosialhistorisk place-batch
 
@@ -103,28 +106,23 @@ Følgende nye steder ligger i:
 - `oslo_hospital`
 - `tukthuset`
 
-Alle fire har:
+### Aktiv merge-status
 
-- `category: "historie"`
-- `coordStatus: "needs_manual_map_check"`
-- `coordSource: "approximate_manual_lookup"`
+Bør vurderes som egne places i første aktive merge:
 
-### Vurdering
+- `gamle_radhus`
+- `galgeberg`
+- `oslo_hospital`
 
-Alle fire passer faglig godt i historie-kategorien. De utvider kategorien fra middelalder/kongemakt til tidlig moderne bystyre, rettshistorie, straff, fattigdom, omsorg, institusjoner og sosial kontroll.
+Avvent:
+
+- `tukthuset`
+
+`tukthuset` må ha mer presis stedsavklaring før aktiv merge.
 
 ### Før merge
 
 Koordinater må kontrolleres visuelt før `coordStatus` endres til `verified`.
-
-Anbefalt sjekkerekkefølge:
-
-1. `gamle_radhus`
-2. `oslo_hospital`
-3. `tukthuset`
-4. `galgeberg`
-
-`gamle_radhus` og `oslo_hospital` bør være lettest å verifisere som fysiske steder. `galgeberg` er historisk område/stedsnavn og må sjekkes som områdepunkt, ikke bygningssenter.
 
 ## Straff og sosialhistorisk place-batch
 
@@ -136,27 +134,22 @@ Følgende nye steder ligger i:
 - `prinds_christian_augusts_minde`
 - `anatomigarden`
 
-Alle tre har:
+### Aktiv merge-status
 
-- `category: "historie"`
-- `coordStatus: "needs_manual_map_check"`
-- `coordSource: "approximate_manual_lookup"`
+Bør vurderes som egne places i første aktive merge:
 
-### Vurdering
+- `botsfengselet`
+- `prinds_christian_augusts_minde`
 
-Alle tre passer faglig godt i historie-kategorien. De styrker retts-, straffe-, fengsels-, fattigomsorgs- og institusjonshistorien i appen. Batchen gjør historie-kategorien mindre kongerekke-tung og mer sosialhistorisk presis.
+Bør holdes som underpunkt:
+
+- `anatomigarden` under `christiania_torv`
 
 `akershus_slaveri` er fjernet som egen place. Fengsels-/slaverihistorien på Akershus skal eventuelt behandles som leksikon-, Wonderkammer- eller underinnhold under `akerhus_slott`, ikke som eget kartpunkt.
 
 ### Før merge
 
 Koordinater må kontrolleres visuelt før `coordStatus` endres til `verified`.
-
-Anbefalt sjekkerekkefølge:
-
-1. `botsfengselet`
-2. `prinds_christian_augusts_minde`
-3. `anatomigarden`
 
 ## Ruth Maier-place
 
@@ -166,15 +159,11 @@ Følgende sted ligger i:
 
 - `ruth_maier_minne`
 
-### Vurdering
+### Aktiv merge-status
+
+Bør vurderes som eget place i første aktive merge.
 
 `ruth_maier_minne` er faglig et historie-/minnested, ikke et litteratursted. Stedet er knyttet til Ruth Maiers plass, Dalsbergstien 3, snublestein, Holocaust, deportasjonen av norske jøder og dagbokhistorie.
-
-Stedet har:
-
-- `category: "historie"`
-- `coordStatus: "needs_manual_map_check"`
-- `coordSource: "approximate_manual_lookup"`
 
 ### Før merge
 
@@ -229,11 +218,11 @@ Koblinger dekket av nye batch-steder:
 - Hvis `ruth_maier` allerede finnes i `people_litteratur.json`, bør hun flyttes/normaliseres til historie eller beholdes ett sted med tydelig historie-hovedkategori og eventuell litteraturtag.
 - Middelalderpersonene i batchen kan i hovedsak merges etter at hovedfilen tåler trygg innliming.
 
-## People-batch 02
+## People-batch 02 normalisert
 
 Filen:
 
-`data/people/people_historie_next_batch_02.json`
+`data/people/people_historie_next_batch_02_normalized.json`
 
 Inneholder:
 
@@ -246,23 +235,19 @@ Inneholder:
 
 ### Koblingsstatus
 
-Personer med bare eksisterende hovedanker:
+Alle `placeId` og `places[]` er normalisert til aktive hovedsteder:
 
-- `astrid_olavsdatter` -> `middelalder_oslo`, `oslo_domkirke`
-- `magnus_den_gode` -> `middelalder_oslo`, `oslo_domkirke`
-- `gunnhild_kongsmor` -> `akerhus_slott`, `middelalder_oslo`
+- `middelalder_oslo`
+- `oslo_domkirke`
+- `akerhus_slott`
 
-Personer som bruker nye batch-steder:
+Underpunkter som `bispeborgen` og `kongsgarden_middelalder_oslo` er fjernet fra `places[]` og omtalt i tekst/leksikon i stedet.
 
-- `magnus_lagabote` -> `kongsgarden_middelalder_oslo`
-- `sigurd_ribbung` -> `bispeborgen` i `places[]`
-- `alv_erlingsson` -> `kongsgarden_middelalder_oslo` i `places[]`
-
-## People-batch 03
+## People-batch 03 normalisert
 
 Filen:
 
-`data/people/people_historie_next_batch_03.json`
+`data/people/people_historie_next_batch_03_normalized.json`
 
 Inneholder:
 
@@ -272,33 +257,31 @@ Inneholder:
 
 ### Koblingsstatus
 
-Personer med eksisterende hovedanker:
+Alle `placeId` og `places[]` er normalisert til aktive hovedsteder:
 
-- `ingebjorg_hakonsdatter` -> `akerhus_slott`
-- `haakon_haakonsson` -> `oslo_domkirke`
+- `middelalder_oslo`
+- `oslo_domkirke`
+- `akerhus_slott`
 
-Personer som bruker nye batch-steder:
-
-- `ingebjorg_hakonsdatter` -> `mariakirken` i `places[]`
-- `haakon_haakonsson` -> `kongsgarden_middelalder_oslo` i `places[]`
-- `skule_baardsson` -> `bispeborgen`
-
-### Vurdering
-
-Batchen passer godt med historie-regelen: senmiddelalder, borgerkrigstid, kongemakt, dynasti, kirke, legitimitet og maktkamp.
+Underpunkter som `mariakirken`, `bispeborgen` og `kongsgarden_middelalder_oslo` er fjernet fra `places[]` og omtalt i tekst/leksikon i stedet.
 
 ## Samlet anbefalt merge-rekkefølge
 
-1. Koordinatsjekk og merge `places_historie_next_batch_middelalder_01.json`.
-2. Koordinatsjekk og merge `places_historie_next_batch_middelalder_02.json`.
-3. Koordinatsjekk og merge `places_historie_next_batch_tidlig_moderne_01.json`.
-4. Koordinatsjekk og merge `places_historie_next_batch_straff_sosial_01.json`.
-5. Koordinatsjekk og merge `places_historie_next_batch_ruth_maier_01.json`.
-6. Merge `people_historie_next_batch_02.json`.
-7. Merge `people_historie_next_batch_03.json`.
-8. Merge `people_historie_next_batch_01.json`.
-9. Etter merge: kjør people-place coverage på nytt.
-10. Etter coverage: rydd eventuell Ruth Maier-duplikat i litteratur/legacy.
+1. Koordinatsjekk og merge aktive place-kandidater:
+   - `nonneseter_kloster`
+   - `oslo_ladegard`
+   - `gamle_radhus`
+   - `galgeberg`
+   - `oslo_hospital`
+   - `botsfengselet`
+   - `prinds_christian_augusts_minde`
+   - `ruth_maier_minne`
+2. Hold/merge underpunktfilen som leksikon-/Wonderkammer-arbeid, ikke som place-manifest.
+3. Merge `people_historie_next_batch_02_normalized.json`.
+4. Merge `people_historie_next_batch_03_normalized.json`.
+5. Merge `people_historie_next_batch_01.json` etter koblingskontroll.
+6. Etter merge: kjør people-place coverage på nytt.
+7. Etter coverage: rydd eventuell Ruth Maier-duplikat i litteratur/legacy.
 
 ## Risiko og tiltak
 
@@ -313,7 +296,7 @@ Tiltak:
 
 ### 2. Koordinater må ikke merkes verified ennå
 
-Alle nye middelaldersteder og tidlig moderne steder må kontrolleres i kart før status endres.
+Alle nye steder må kontrolleres i kart før status endres.
 
 Tiltak:
 
@@ -329,33 +312,21 @@ Tiltak:
 - Behold/opprett `ruth_maier_minne` som historie-place.
 - Hvis Ruth Maier finnes i litteraturdata, rydd senere ved å flytte eller normalisere slik at hun ikke ligger dobbelt med ulik hovedkategori.
 
-### 4. Batch-steder må merges før personer som peker til dem
+### 4. Underpunkter må ikke brukes som `placeId` før de er aktive places
 
-People-batch 02 og 03 bruker steder som bare finnes i batchfiler ennå.
-
-Tiltak:
-
-- Merge/aktiver stedene først.
-- Kjør coverage etterpå.
-
-### 5. Overlappende historiske steder må ha tydelig faglig skille
-
-Noen nye steder ligger tett på eller inne i eksisterende steder:
-
-- flere middelalderruiner overlapper `middelalder_oslo`
-- `anatomigarden` og `gamle_radhus` ligger tett ved `christiania_torv`
+Middelalderruiner og detaljpunkter som ikke er aktive kartpunkter, skal ikke brukes som `placeId` eller `places[]` i people-data.
 
 Tiltak:
 
-- Behold dem bare hvis appen skal vise mer presise underpunkter.
-- Hvis kartet blir for tett, kan de heller behandles som leksikon-/Wonderkammer-objekter under hovedstedet.
+- Bruk normaliserte people-batcher.
+- Bruk underpunktfilen for Mariakirken, Bispeborgen, Kongsgården osv.
 
 ## Klar for neste steg
 
 Tryggeste neste arbeidssteg:
 
-1. Koordinatsjekk middelalderstedene, tidlig moderne-stedene, straff/sosial-stedene og `ruth_maier_minne`.
-2. Merge place-batchene inn i `data/places/historie/oslo/places_historie.json`.
-3. Merge people-batch 02 og 03.
-4. Merge people-batch 01.
+1. Lage en egen `places_historie_merge_candidates_01.json` med bare de aktive place-kandidatene.
+2. Koordinatsjekke disse kandidatene.
+3. Merge place-kandidater inn i `places_historie.json`.
+4. Merge normaliserte people-batcher.
 5. Kjør coverage og duplicate-ID-kontroll.
