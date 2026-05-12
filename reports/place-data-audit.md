@@ -1,6 +1,6 @@
 # Place Data Audit
 
-Generert: 2026-05-12T10:53:02.911Z
+Generert: 2026-05-12T11:23:32.232Z
 
 ## Totalsammendrag
 
@@ -10,12 +10,12 @@ Generert: 2026-05-12T10:53:02.911Z
 - Steder med manglende popupDesc: **65**
 - Steder med manglende image: **341**
 - Steder med manglende cardImage: **340**
-- Steder med manglende emne_ids: **170**
+- Steder med manglende emne_ids: **165**
 - Steder med manglende quiz_profile: **89**
 - Steder som bruker imageCard-felt: **0**
 - Steder med stub:true eller hidden:true: **0**
 - Antall ødelagte asset paths: **131**
-- Antall place-referanser til ikke-eksisterende id-er: **90**
+- Antall place-referanser til ikke-eksisterende id-er: **72**
 
 ## Dekning per datasett (placeId/places)
 
@@ -633,11 +633,11 @@ Generert: 2026-05-12T10:53:02.911Z
 - Antall places: 5
 - Places med funn: 5
 
-- lisbon_rtp (RTP – Rádio e Televisão de Portugal): mangler image | mangler cardImage | mangler emne_ids
-- lisbon_diario_de_noticias (Diário de Notícias-bygget): mangler image | mangler cardImage | mangler emne_ids
-- lisbon_lusa (Lusa – Agência de Notícias de Portugal): mangler image | mangler cardImage | mangler emne_ids
-- lisbon_antena_1_rdp (Antena 1 / RDP-radiohistorie): mangler image | mangler cardImage | mangler emne_ids
-- lisbon_arquivo_rtp (Arquivo RTP): mangler image | mangler cardImage | mangler emne_ids
+- lisbon_rtp (RTP – Rádio e Televisão de Portugal): mangler image | mangler cardImage
+- lisbon_diario_de_noticias (Diário de Notícias-bygget): mangler image | mangler cardImage
+- lisbon_lusa (Lusa – Agência de Notícias de Portugal): mangler image | mangler cardImage
+- lisbon_antena_1_rdp (Antena 1 / RDP-radiohistorie): mangler image | mangler cardImage
+- lisbon_arquivo_rtp (Arquivo RTP): mangler image | mangler cardImage
 
 ### data/places/vitenskap/europe/portugal/lisbon/places_lisbon_vitenskap.json
 
@@ -863,11 +863,6 @@ Generert: 2026-05-12T10:53:02.911Z
 - data/people/people_musikk.json :: [5].places -> vulkan
 - data/people/people_musikk.json :: [9].placeId -> operaen
 - data/people/people_musikk.json :: [9].places -> operaen
-- data/people/people_naeringsliv.json :: [0].source_place_id -> den_gamle_norges_bank
-- data/people/people_naeringsliv.json :: [1].source_place_id -> den_gamle_norges_bank
-- data/people/people_naeringsliv.json :: [2].source_place_id -> den_gamle_norges_bank
-- data/people/people_naeringsliv.json :: [3].source_place_id -> akerselva_industriomrade
-- data/people/people_naeringsliv.json :: [4].source_place_id -> akerselva_industriomrade
 - data/people/people_natur.json :: [0].placeId -> botanisk_hage
 - data/people/people_natur.json :: [0].places -> botanisk_hage
 - data/people/people_natur.json :: [1].placeId -> botanisk_hage
@@ -876,19 +871,6 @@ Generert: 2026-05-12T10:53:02.911Z
 - data/people/people_natur.json :: [2].places -> botanisk_hage
 - data/people/people_vitenskap.json :: [5].placeId -> universitetet
 - data/people/people_vitenskap.json :: [5].places -> universitetet
-- data/people/people_populaerkultur.json :: [0].osloContext.placesHint -> TV-produksjon
-- data/people/people_populaerkultur.json :: [0].osloContext.placesHint -> scenekunst
-- data/people/people_populaerkultur.json :: [0].osloContext.placesHint -> mediemiljø
-- data/people/people_populaerkultur.json :: [1].osloContext.placesHint -> TV-miljø
-- data/people/people_populaerkultur.json :: [1].osloContext.placesHint -> medieoffentlighet
-- data/people/people_populaerkultur.json :: [2].osloContext.placesHint -> TV-produksjon
-- data/people/people_populaerkultur.json :: [2].osloContext.placesHint -> studioarbeid
-- data/people/people_populaerkultur.json :: [3].osloContext.placesHint -> mediemiljø
-- data/people/people_populaerkultur.json :: [3].osloContext.placesHint -> akademisk offentlighet
-- data/people/people_populaerkultur.json :: [4].osloContext.placesHint -> TV
-- data/people/people_populaerkultur.json :: [4].osloContext.placesHint -> offentlig debatt
-- data/people/people_populaerkultur.json :: [5].osloContext.placesHint -> standup-scener
-- data/people/people_populaerkultur.json :: [5].osloContext.placesHint -> klubbmiljø
 - data/routes_walks.json :: [0].stops[0].placeId -> sognsvann
 - data/routes_walks.json :: [1].stops[0].placeId -> botanisk_hage
 - data/routes_walks.json :: [1].stops[1].placeId -> botanisk_hage
@@ -916,7 +898,7 @@ Generert: 2026-05-12T10:53:02.911Z
 ## Maskinlesbar arbeidsliste
 
 - Fil: `reports/place-data-worklist.json`
-- Antall steder klare for quiz: **162**
+- Antall steder klare for quiz: **167**
 - Antall steder klare for Wonderkammer: **299**
 - Antall steder klare for språkleksikon: **369**
 - Prioritet: critical **0**, high **349**, medium **88**, low **0**
