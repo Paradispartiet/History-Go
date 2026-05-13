@@ -3,6 +3,46 @@
 (function () {
   "use strict";
 
+  /**
+   * @typedef {import("../schemas/place").Place} KnowledgePlace
+   * @typedef {Record<string, unknown>} KnowledgeRecord
+   * @typedef {Map<string, KnowledgePlace>} KnowledgePlaceById
+   *
+   * @typedef {object} KnowledgeState
+   * @property {unknown[]} learningLog
+   * @property {unknown[]} learningLogMigrated
+   * @property {KnowledgeRecord} knowledgeLearning
+   * @property {unknown[]} insightEvents
+   * @property {unknown} knowledgeUniverse
+   * @property {unknown} quizProgress
+   * @property {unknown} visitedPlacesRaw
+   * @property {string[]} visitedPlaceIds
+   * @property {string[]} visitedPlaces
+   * @property {unknown} todayVisitedRaw
+   * @property {string[]} todayVisitedIds
+   * @property {string[]} todayVisited
+   * @property {unknown} peopleCollected
+   * @property {KnowledgeRecord} meritsByCategory
+   * @property {KnowledgeRecord} historygoProgress
+   * @property {unknown[]} unlocks
+   *
+   * @typedef {object} KnowledgeSubjectSignals
+   * @property {Map<string, number>} emneSignals
+   * @property {Map<string, number>} conceptSignals
+   * @property {number} quizSignals
+   * @property {number} visitedSignals
+   * @property {number} peopleSignals
+   * @property {KnowledgeRecord} signalBreakdown
+   *
+   * @typedef {object} KnowledgeAnalysisResult
+   * @property {KnowledgeRecord} by
+   * @property {unknown} healthReport
+   * @property {unknown} manifest
+   * @property {KnowledgeState} state
+   * @property {number} placesLoadedCount
+   * @property {number} fullVisitedPlacesLoadedCount
+   */
+
   function toArray(value) { return Array.isArray(value) ? value : []; }
   function toObject(value) { return value && typeof value === "object" && !Array.isArray(value) ? value : {}; }
   function toArrayLike(value) {
@@ -34,6 +74,10 @@
   function s(value) { return String(value == null ? "" : value).trim(); }
 
 
+  /**
+   * @param {unknown} value
+   * @returns {string[]}
+   */
   function normalizeIdCollection(value) {
     const ids = new Set();
 
@@ -63,6 +107,9 @@
   }
 
 
+  /**
+   * @returns {KnowledgeState}
+   */
   function readState() {
     const visitedPlacesRaw = readJsonStorage("visited_places", {});
     const todayVisitedRaw = readJsonStorage("hg_today_visited_v1", []);
@@ -103,11 +150,18 @@
     return raw;
   }
 
-  function collectSignalsForSubject(subjectId, emnerAll, state, placeById) {
+  /**
+   * @param {string} subjectId
+   * @param {unknown[]} emnersAll
+   * @param {KnowledgeState} state
+   * @param {KnowledgePlaceById} placeById
+   * @returns {KnowledgeSubjectSignals}
+   */
+  function collectSignalsForSubject(subjectId, emnersAll, state, placeById) {
     const emneById = new Map();
     const subjectConcepts = new Set();
 
-    for (const emne of emnerAll) {
+    for (const emne of emnersAll) {
       const eid = s(emne?.emne_id);
       if (eid) emneById.set(eid, emne);
       unique([].concat(toArray(emne?.core_concepts), toArray(emne?.keywords)).map(s)).forEach((c) => subjectConcepts.add(c));
@@ -196,7 +250,7 @@
     }
 
     const learningEntries = toObject(state.knowledgeLearning?.learning);
-    for (const emne of emnerAll) {
+    for (const emne of emnersAll) {
       const eid = s(emne?.emne_id);
       if (!eid || !emneById.has(eid)) continue;
       const learned = toObject(learningEntries[eid]);
@@ -220,14 +274,20 @@
     return { emneSignals, conceptSignals, quizSignals, visitedSignals, peopleSignals, signalBreakdown };
   }
 
+  /**
+   * @param {Record<string, unknown>=} opts
+   * @returns {Promise<KnowledgeAnalysisResult>}
+   */
   async function analyzeSubjects(opts) {
     const options = opts || {};
     const state = readState();
     const manifest = window.DataHub?.loadFagManifest ? await window.DataHub.loadFagManifest(options) : {};
     const healthReport = window.FagHealthReport?.run ? await window.FagHealthReport.run(options) : null;
+    /** @type {KnowledgePlace[]} */
     const placesAll = window.DataHub?.loadPlacesBase
       ? toArray(await window.DataHub.loadPlacesBase(options))
       : [];
+    /** @type {KnowledgePlaceById} */
     const placeById = new Map();
     for (const place of placesAll) {
       const id = s(place?.id);
@@ -261,28 +321,28 @@
     const by = {};
 
     for (const subjectId of subjectIds) {
-      const emnerAll = window.DataHub?.loadEmner ? toArray(await window.DataHub.loadEmner(subjectId, options)) : [];
+      const emnersAll = window.DataHub?.loadEmner ? toArray(await window.DataHub.loadEmner(subjectId, options)) : [];
       const pensum = window.DataHub?.loadPensum ? toObject(await window.DataHub.loadPensum(subjectId, options)) : {};
 
       let courseResult = null;
       if (window.HGCourses?.compute) {
         try {
-          courseResult = await window.HGCourses.compute({ subjectId: subjectId, emnerAll: emnerAll });
+          courseResult = await window.HGCourses.compute({ subjectId: subjectId, emnersAll: emnersAll });
         } catch (_e1) {
-          try { courseResult = await window.HGCourses.compute({ subjectId: subjectId, emnersAll: emnerAll }); } catch (_e2) { }
+          try { courseResult = await window.HGCourses.compute({ subjectId: subjectId, emnersAll: emnersAll }); } catch (_e2) { }
         }
       }
 
       const modules = toArray(pensum.modules);
       const domains = toArray(pensum.domains);
-      const signals = collectSignalsForSubject(subjectId, emnerAll, state, placeById);
+      const signals = collectSignalsForSubject(subjectId, emnersAll, state, placeById);
 
       const learningEntries = toObject(state.knowledgeLearning?.learning);
-      let seenEmner = 0;
-      let understoodEmner = 0;
-      let appliedEmner = 0;
-      let knownEmner = 0;
-      for (const emne of emnerAll) {
+      let seenEmners = 0;
+      let understoodEmners = 0;
+      let appliedEmners = 0;
+      let knownEmners = 0;
+      for (const emne of emnersAll) {
         const eid = s(emne?.emne_id);
         if (!eid) continue;
         const node = toObject(learningEntries[eid]);
@@ -290,26 +350,26 @@
         const understood = node.understood === true;
         const applied = node.applied === true;
         const signalSeen = signals.emneSignals.has(eid);
-        if (seen || signalSeen) seenEmner += 1;
-        if (understood) understoodEmner += 1;
-        if (applied) appliedEmner += 1;
-        if (seen || understood || applied || signalSeen) knownEmner += 1;
+        if (seen || signalSeen) seenEmners += 1;
+        if (understood) understoodEmners += 1;
+        if (applied) appliedEmners += 1;
+        if (seen || understood || applied || signalSeen) knownEmners += 1;
       }
       const knownConcepts = signals.conceptSignals.size;
-      const emnerCount = emnerAll.length;
-      const estimatedCoverage = Math.max(0, Math.min(100, Math.round(emnerCount > 0 ? (knownEmner / emnerCount) * 100 : 0)));
+      const emnersCount = emnersAll.length;
+      const estimatedCoverage = Math.max(0, Math.min(100, Math.round(emnersCount > 0 ? (knownEmners / emnersCount) * 100 : 0)));
 
       const emneStrengths = Array.from(signals.emneSignals.entries())
         .sort((a, b) => b[1] - a[1])
         .slice(0, 3)
-        .map(([id, n]) => ({ id: id, label: s(emnerAll.find(e => s(e?.emne_id) === id)?.title || id), signals: n, type: "emne" }));
+        .map(([id, n]) => ({ id: id, label: s(emnersAll.find(e => s(e?.emne_id) === id)?.title || id), signals: n, type: "emne" }));
 
       const conceptStrengths = Array.from(signals.conceptSignals.entries())
         .sort((a, b) => b[1] - a[1])
         .slice(0, 2)
         .map(([id, n]) => ({ id: id, label: id, signals: n, type: "concept" }));
 
-      const gaps = emnerAll
+      const gaps = emnersAll
         .filter((e) => !signals.emneSignals.has(s(e?.emne_id)))
         .slice(0, 5)
         .map((e) => ({
@@ -356,17 +416,17 @@
         health: { ok: fileErrors === 0, errors: fileErrors, warnings: fileWarnings },
         files: files,
         structure: {
-          emnerCount: emnerCount,
+          emnersCount: emnersCount,
           modulesCount: modules.length,
           domainsCount: domains.length,
           courseReady: !!(courseResult?.course?.total > 0 || modules.length > 0),
           domainAdapted: !!(pensum?.course_adapter || (!modules.length && domains.length))
         },
         progress: {
-          knownEmner: knownEmner,
-          seenEmner: seenEmner,
-          understoodEmner: understoodEmner,
-          appliedEmner: appliedEmner,
+          knownEmners: knownEmners,
+          seenEmners: seenEmners,
+          understoodEmners: understoodEmners,
+          appliedEmners: appliedEmners,
           knownConcepts: knownConcepts,
           quizSignals: signals.quizSignals,
           visitedSignals: signals.visitedSignals,
@@ -406,8 +466,8 @@
     }
 
     const largeLow = subjects
-      .filter((s0) => safeNumber(s0?.structure?.emnerCount) >= 10 && safeNumber(s0?.progress?.estimatedCoverage) <= 30)
-      .sort((a, b) => safeNumber(b?.structure?.emnerCount) - safeNumber(a?.structure?.emnerCount))[0];
+      .filter((s0) => safeNumber(s0?.structure?.emnersCount) >= 10 && safeNumber(s0?.progress?.estimatedCoverage) <= 30)
+      .sort((a, b) => safeNumber(b?.structure?.emnersCount) - safeNumber(a?.structure?.emnersCount))[0];
 
     if (largeLow && (!weakest || largeLow.subjectId !== weakest.subjectId)) {
       recommendations.push({
@@ -442,13 +502,17 @@
     return recommendations;
   }
 
+  /**
+   * @param {Record<string, unknown>=} opts
+   * @returns {Promise<KnowledgeRecord>}
+   */
   async function run(opts) {
     const analyzed = await analyzeSubjects(opts || {});
     const by = analyzed.by;
     const subjects = Object.values(by);
 
-    const totalEmner = subjects.reduce((a, s0) => a + safeNumber(s0?.structure?.emnerCount), 0);
-    const totalKnownEmner = subjects.reduce((a, s0) => a + safeNumber(s0?.progress?.knownEmner), 0);
+    const totalEmners = subjects.reduce((a, s0) => a + safeNumber(s0?.structure?.emnersCount), 0);
+    const totalKnownEmners = subjects.reduce((a, s0) => a + safeNumber(s0?.progress?.knownEmners), 0);
     const avgCoverage = subjects.length
       ? Math.round(subjects.reduce((a, s0) => a + safeNumber(s0?.progress?.estimatedCoverage), 0) / subjects.length)
       : 0;
@@ -463,8 +527,8 @@
         subjects: subjects.length,
         healthErrors: safeNumber(analyzed.healthReport?.summary?.errors),
         healthWarnings: safeNumber(analyzed.healthReport?.summary?.warnings),
-        totalEmner: totalEmner,
-        totalKnownEmner: totalKnownEmner,
+        totalEmners: totalEmners,
+        totalKnownEmners: totalKnownEmners,
         averageCoverage: Math.max(0, Math.min(100, avgCoverage)),
         strongestSubjects: strongestSubjects,
         weakestSubjects: weakestSubjects,
@@ -494,8 +558,8 @@
       console.group("[HGKnowledgeEngine]");
       console.table(subjects.map((item) => ({
         subjectId: item.subjectId,
-        emnerCount: item.structure.emnerCount,
-        knownEmner: item.progress.knownEmner,
+        emnersCount: item.structure.emnersCount,
+        knownEmners: item.progress.knownEmners,
         estimatedCoverage: item.progress.estimatedCoverage,
         modulesCount: item.structure.modulesCount,
         domainsCount: item.structure.domainsCount,
