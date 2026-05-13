@@ -1086,10 +1086,10 @@
     return true;
   }
 
-  function inboxHasEventId(eventId) {
+  function inboxHasEventId(engine, eventId) {
     const id = norm(eventId);
     if (!id) return false;
-    const inbox = getInbox(window.HG_CiviEngine);
+    const inbox = getInbox(engine);
     return inbox.some(item => norm(item?.event?.id || item?.id) === id);
   }
 
@@ -1100,7 +1100,7 @@
 
     const eventId = norm(event.id);
     if (!eventId) return { ok: false, reason: "missing_event_id" };
-    if (inboxHasEventId(eventId)) return { ok: false, reason: "duplicate_id" };
+    if (inboxHasEventId(engine, eventId)) return { ok: false, reason: "duplicate_id" };
 
     const deliveredEvent = {
       ...event,
