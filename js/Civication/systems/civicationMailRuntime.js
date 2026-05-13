@@ -631,12 +631,13 @@
         ? fallbackPack.mails.filter(mail => norm(mail?.source_type) !== "planned")
         : [];
 
+      const suppressFallback = runtimeCandidates?.__career_outcome_terminal_closed === true;
       return {
         ...(fallbackPack || {}),
         role: fallbackPack?.role || active?.career_id || null,
         tag_rules: fallbackPack?.tag_rules || { max_tags_per_choice: 2, memory_window: 12 },
         tracks: Array.isArray(fallbackPack?.tracks) ? fallbackPack.tracks : [],
-        mails: runtimeCandidates.length ? runtimeCandidates : fallbackMails,
+        mails: (runtimeCandidates.length || suppressFallback) ? runtimeCandidates : fallbackMails,
         __civication_mail_runtime: true,
         __runtime_candidate_count: runtimeCandidates.length
       };

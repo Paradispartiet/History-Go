@@ -443,7 +443,11 @@
     const currentState = state || getState();
     const terminal = await getTerminalPlanState(active, currentState);
     if (terminal.mail) return [terminal.mail];
-    if (terminal.closed) return [];
+    if (terminal.closed) {
+      const suppressed = [];
+      suppressed.__career_outcome_terminal_closed = true;
+      return suppressed;
+    }
     return original(active, currentState);
   }
 
@@ -521,6 +525,12 @@
       const pending = typeof this.getPendingEvent === "function" ? this.getPendingEvent() : null;
       const eventObj = pending?.event || null;
       const isOutcome = norm(eventObj?.source_type) === "role_outcome" || norm(eventObj?.mail_class) === "career_outcome";
+
+      const outcomeStatus = norm(eventObj?.career_outcome_meta?.status);
+      if (isOutcome && outcomeStatus === "FIRED") {
+        const current = getState();
+        setState({ stability: "FIRED", consumed: Number(current?.consumed || 0) });
+      }
 
       const result = await original.call(this, eventId, choiceId);
 
