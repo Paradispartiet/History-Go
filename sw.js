@@ -3,7 +3,7 @@
    Oppdatert: 2026-05-02
    ============================================================ */
 
-const SW_VERSION = "hg-sw-2026-05-13-v1.40.136";
+const SW_VERSION = "hg-sw-2026-05-13-v1.40.137";
 
 const CACHE_STATIC  = `hg-static-${SW_VERSION}`;
 const CACHE_RUNTIME = `hg-runtime-${SW_VERSION}`;
@@ -12,6 +12,7 @@ const CACHE_RUNTIME = `hg-runtime-${SW_VERSION}`;
 const PRECACHE_URLS = [
   "./",
   "./index.html",
+  "profile.html",
   "Civication.html",
   "manifest.json",
 
@@ -34,6 +35,7 @@ const PRECACHE_URLS = [
   "css/placeCard.css",
   "css/popups.css",
   "css/profile.css",
+  "css/profile-dashboard.css",
   "css/quiz.css",
   "css/search.css",
   "css/sheets.css",
@@ -59,6 +61,7 @@ const PRECACHE_URLS = [
   "js/trivia.js",
   "js/hgInsights.js",
   "js/dataHub.js",
+  "js/profile.js",
 
   "js/DomainRegistry.js",
   "js/fagHealthReport.js",

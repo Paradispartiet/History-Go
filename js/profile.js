@@ -783,14 +783,14 @@ async function renderKnowledgeEnginePanel() {
     }
 
     const summary = report?.summary || {};
-    const health = report?.health || {};
+    const sourceState = report?.sourceState || {};
     const summaryCards = [
-      [`${Number(summary.subjectsCount || 0)}`, "fag"],
+      [`${Number(summary.subjects || 0)}`, "fag"],
       [`${Number(summary.totalEmner || 0)}`, "emner"],
       [`${Number(summary.totalKnownEmner || 0)}`, "kjente emner"],
       [`${Number(summary.averageCoverage || 0)} %`, "snittdekning"],
-      [`${Number(summary.subjectsWithSignalsCount || 0)}`, "fag med signaler"],
-      [`${Number(health.errors || 0)} / ${Number(health.warnings || 0)}`, "feil / varsler"]
+      [`${Number(sourceState.subjectsWithSignalsCount || 0)}`, "fag med signaler"],
+      [`${Number(summary.healthErrors || 0)} / ${Number(summary.healthWarnings || 0)}`, "feil / varsler"]
     ];
     summaryEl.innerHTML = summaryCards
       .map(([value, label]) => `<div class="knowledge-engine-summary-card"><strong>${_esc(value)}</strong><span>${_esc(label)}</span></div>`)
@@ -860,8 +860,8 @@ async function renderKnowledgeEnginePanel() {
       const sid = String(subject?.subjectId || "");
       const breakdown = subject?.signals?.breakdown || {};
       const summarySig = subject?.signals?.summary || {};
-      const sourcePlaces = Array.isArray(subject?.signals?.sourcePlaceIds) ? subject.signals.sourcePlaceIds : [];
-      const sourceEmner = Array.isArray(subject?.signals?.sourceEmneIds) ? subject.signals.sourceEmneIds : [];
+      const sourcePlaces = Array.isArray(summarySig.sourcePlaceIds) ? summarySig.sourcePlaceIds : [];
+      const sourceEmner = Array.isArray(summarySig.sourceEmneIds) ? summarySig.sourceEmneIds : [];
       const visited = Array.isArray(breakdown.visitedPlaces) ? breakdown.visitedPlaces : [];
       const direct = Array.isArray(breakdown.directLearning) ? breakdown.directLearning.slice(0, 5) : [];
       return `<article class="knowledge-engine-signal-group">
@@ -879,7 +879,7 @@ async function renderKnowledgeEnginePanel() {
       </article>`;
     }).join("") : `<div class="muted">Ingen signalforklaring tilgjengelig ennå.</div>`;
 
-    metaEl.textContent = `Analysert ${Number(summary.subjectsCount || 0)} fag · ${Number(summary.totalEmner || 0)} emner`;
+    metaEl.textContent = `Analysert ${Number(summary.subjects || 0)} fag · ${Number(summary.totalEmner || 0)} emner`;
   } catch (e) {
     console.warn("[profile] Knowledge Engine panel failed", e);
     summaryEl.innerHTML = `<div class="muted">Kunnskapsmotoren kunne ikke lage rapport akkurat nå.</div>`;
