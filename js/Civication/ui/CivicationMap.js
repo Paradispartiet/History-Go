@@ -82,7 +82,7 @@ const box=(cx,cy,wid,hei,p)=>{ const g=node("g"); const base=node("rect");base.s
       else if(m.visualType==="commerce_building"){ shadow(cx,cy,12*sc,4*sc); g.appendChild(box(cx,cy+1*sc,19*sc,10*sc,p)); }
       else { shadow(cx,cy,11*sc,3*sc); g.appendChild(box(cx,cy+1*sc,17*sc,9*sc,p)); }
       const wx=cx-6*sc, wy=cy-1*sc;
-      [-4,0,4].forEach((ox)=>g.appendChild(windowRect(wx+ox*sc,wy,2.4*sc,2.4*sc)));
+      [-4,0,4].forEach((ox)=>{ const wr=windowRect(wx+ox*sc,wy,2.4*sc,2.4*sc); if(m.visualType==="fortress") wr.setAttribute("class","civi-map-fortress-aperture"); g.appendChild(wr); });
       g.appendChild(doorRect(cx-1.6*sc,cy+3.3*sc,3.2*sc,4.2*sc));
       if(m.visualType==="industry_yard"){ g.appendChild(detailLine(cx-14*sc,cy+5*sc,cx+14*sc,cy+5*sc,"civi-map-rail")); g.appendChild(doorRect(cx+9*sc,cy+1*sc,5*sc,5*sc)).setAttribute("class","civi-map-loading-bay"); }
       if(m.visualType==="green_ridge"){ g.appendChild(detailLine(cx-10*sc,cy+1*sc,cx+10*sc,cy+1*sc,"civi-map-ridge-line")); const t=node("circle");t.setAttribute("cx",cx-7*sc);t.setAttribute("cy",cy+2*sc);t.setAttribute("r",1.6*sc);t.setAttribute("class","civi-map-tree");g.appendChild(t); }
