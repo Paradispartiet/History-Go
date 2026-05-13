@@ -49,3 +49,10 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - `schemas/place.ts` includes the optional `sport_profile` field already used by Groundhopper logic.
 - This phase documents the existing storage contract only; it does not centralize, rename, migrate or normalize localStorage data.
 
+
+## Phase 4: Global/window typings for browser runtime contracts
+
+- Added `schemas/globals.d.ts` with minimal `Window` declarations for existing browser globals used by current JavaScript runtime.
+- Declarations reuse existing schema types (`Place`, `VisitedPlaces`, `MeritsByCategory`, `GroundhopperStats`) where relevant.
+- No runtime logic, script loading behavior, localStorage keys, or data files were changed.
+- This phase is declaration-only to reduce known global/window typecheck noise; the remaining broader typecheck baseline is still expected.
