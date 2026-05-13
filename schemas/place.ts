@@ -3,6 +3,11 @@ export interface Place {
   name?: string;
   lat?: number;
   lon?: number;
+  /**
+   * Temporary alias used by some in-flight TypeScript migrations.
+   * Prefer `lon` to match the repository's established data contract.
+   */
+  lng?: number;
   r?: number;
   category?: string;
   year?: number;
