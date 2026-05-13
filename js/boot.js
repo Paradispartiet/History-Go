@@ -2,7 +2,7 @@
 // Ren orchestrator: definerer boot(), men starter ikke appen selv.
 // app.js skal være eneste entry på index-siden.
 
-/** @typedef {import("../schemas/place").Place} Place */
+/** @typedef {import("../schemas/place").Place} BootPlace */
 /** @typedef {{ files?: string[] }} PlacesManifest */
 
 async function boot() {
@@ -190,7 +190,7 @@ async function boot() {
     "data/places/places_vitenskap.json"
   ];
 
-  /** @type {Place[]} */
+  /** @type {BootPlace[]} */
   let places = [];
 
   if (window.DataHub?.loadPlacesBase) {
@@ -198,7 +198,7 @@ async function boot() {
       /** @type {unknown} */
       const loaded = await window.DataHub.loadPlacesBase({ cache: "no-store" });
       if (Array.isArray(loaded) && loaded.length) {
-        places = /** @type {Place[]} */ (loaded);
+        places = /** @type {BootPlace[]} */ (loaded);
       }
     } catch (e) {
       console.error("[DataHub.loadPlacesBase]", e);

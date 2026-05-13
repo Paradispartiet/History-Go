@@ -56,3 +56,10 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Declarations reuse existing schema types (`Place`, `VisitedPlaces`, `MeritsByCategory`, `GroundhopperStats`) where relevant.
 - No runtime logic, script loading behavior, localStorage keys, or data files were changed.
 - This phase is declaration-only to reduce known global/window typecheck noise; the remaining broader typecheck baseline is still expected.
+
+## Phase 5: Stronger JSDoc typing in `js/boot.js`
+
+- `js/boot.js` now has stronger place-loading JSDoc annotations using a file-local alias (`BootPlace`) imported from `schemas/place`.
+- The central place arrays (`places`, including DataHub loader cast) are now explicitly typed with `BootPlace[]`.
+- Runtime behavior and loader/data flow are unchanged (no changes to fetch paths, fallbacks, DataHub logic, or startup flow).
+- Remaining `npm run typecheck` baseline outside this focused JSDoc update is still expected.
