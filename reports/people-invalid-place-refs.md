@@ -1,9 +1,9 @@
 # People invalid place refs audit
 
-Generated: 2026-05-13T08:39:59.141Z
+Generated: 2026-05-13T09:09:29.607Z
 
 ## Sammendrag
-- People-filer lest: **14**
+- People-filer lest: **15**
 - People lest: **181**
 - People med ugyldige refs: **22**
 - Ugyldige refs: **41**
@@ -310,10 +310,10 @@ Generated: 2026-05-13T08:39:59.141Z
 - data/people/people_subkultur.json :: stephen_butkus (Stephen Butkus) -> tjuvholmen x2
 - data/people/people_vitenskap.json :: eilert_sundt (Eilert Sundt) -> universitetet x2
 - data/people/people_populaerkultur.json :: astrid_s (Astrid S) -> sorenga x2
-- data/people/people_media.json :: torry_pedersen (Torry Pedersen) -> vg_huset x2
-- data/people/people_media.json :: jose_rodrigues_dos_santos (José Rodrigues dos Santos) -> lisbon_rtp x2
-- data/people/people_media.json :: catarina_furtado (Catarina Furtado) -> lisbon_rtp x2
-- data/people/people_media.json :: jose_alberto_carvalho (José Alberto Carvalho) -> lisbon_rtp x2
+- data/people/media/oslo/people_media_oslo.json :: torry_pedersen (Torry Pedersen) -> vg_huset x2
+- data/people/media/europe/portugal/lisbon/people_media_lisbon.json :: jose_rodrigues_dos_santos (José Rodrigues dos Santos) -> lisbon_rtp x2
+- data/people/media/europe/portugal/lisbon/people_media_lisbon.json :: catarina_furtado (Catarina Furtado) -> lisbon_rtp x2
+- data/people/media/europe/portugal/lisbon/people_media_lisbon.json :: jose_alberto_carvalho (José Alberto Carvalho) -> lisbon_rtp x2
 
 ## Anbefalt neste ryddebatch
 - toyen_hovedgard (needs_manual_review, 6 treff)

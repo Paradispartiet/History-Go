@@ -241,27 +241,30 @@ async function boot() {
      LAST PEOPLE (multi-file)
   ============================== */
 
-  const PEOPLE_FILE_LIST = [
-    "data/people/people_by.json",
-    "data/people/people_historie.json",
-    "data/people/people_kunst.json",
-    "data/people/people_litteratur.json",
-    "data/people/people_musikk.json",
-    "data/people/people_naeringsliv.json",
-    "data/people/people_filantroper.json",
-    "data/people/people_natur.json",
-    "data/people/people_politikk.json",
-    "data/people/people_sport.json",
-    "data/people/people_subkultur.json",
-    "data/people/people_vitenskap.json",
-    "data/people/people_populaerkultur.json",
-    "data/people/people_media.json"
-  ];
+  const normalizePeoplePath = (entry) => {
+    const raw = String(entry || "").trim().replace(/^\.?\//, "");
+    if (!raw) return null;
+    return raw.startsWith("data/") ? raw : `data/${raw}`;
+  };
+
+  const loadPeopleFileList = async () => {
+    const manifest = await fetchJSON("data/people/manifest.json");
+    if (!Array.isArray(manifest?.files) || !manifest.files.length) {
+      console.error("[boot] Missing or invalid people manifest: data/people/manifest.json");
+      return [];
+    }
+
+    return manifest.files
+      .map(normalizePeoplePath)
+      .filter(Boolean);
+  };
 
   /** @type {unknown[]} */
   let peopleAll = [];
 
-  for (const url of PEOPLE_FILE_LIST) {
+  const peopleFiles = await loadPeopleFileList();
+
+  for (const url of peopleFiles) {
     const data = await fetchJSON(url);
 
     if (Array.isArray(data)) {
