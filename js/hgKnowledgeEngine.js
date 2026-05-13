@@ -5,6 +5,11 @@
 
   function toArray(value) { return Array.isArray(value) ? value : []; }
   function toObject(value) { return value && typeof value === "object" && !Array.isArray(value) ? value : {}; }
+  function toArrayLike(value) {
+    if (Array.isArray(value)) return value;
+    if (value && typeof value === "object") return Object.values(value);
+    return [];
+  }
   function safeNumber(value, fallback) {
     const fb = Number.isFinite(fallback) ? fallback : 0;
     const n = Number(value);
@@ -70,15 +75,15 @@
       learningLogMigrated: toArray(readJsonStorage("hg_learning_log_migrated_v1", [])),
       knowledgeLearning: toObject(readJsonStorage("hg_learning_v1", {})),
       insightEvents: toArray(readJsonStorage("hg_insights_events_v1", [])),
-      knowledgeUniverse: toArray(readJsonStorage("knowledge_universe", [])),
-      quizProgress: toArray(readJsonStorage("quiz_progress", [])),
+      knowledgeUniverse: readJsonStorage("knowledge_universe", {}),
+      quizProgress: readJsonStorage("quiz_progress", {}),
       visitedPlacesRaw: visitedPlacesRaw,
       visitedPlaceIds: normalizeIdCollection(visitedPlacesRaw),
       visitedPlaces: normalizeIdCollection(visitedPlacesRaw),
       todayVisitedRaw: todayVisitedRaw,
       todayVisitedIds: normalizeIdCollection(todayVisitedSource),
       todayVisited: normalizeIdCollection(todayVisitedSource),
-      peopleCollected: toArray(readJsonStorage("people_collected", [])),
+      peopleCollected: readJsonStorage("people_collected", {}),
       meritsByCategory: toObject(readJsonStorage("merits_by_category", {})),
       historygoProgress: toObject(readJsonStorage("historygo_progress", {})),
       unlocks: toArray(readJsonStorage("hg_unlocks_v1", []))
@@ -118,8 +123,8 @@
       .concat(toArray(state.learningLog))
       .concat(toArray(state.learningLogMigrated))
       .concat(toArray(state.insightEvents))
-      .concat(toArray(state.knowledgeUniverse))
-      .concat(toArray(state.quizProgress))
+      .concat(toArrayLike(state.knowledgeUniverse))
+      .concat(toArrayLike(state.quizProgress))
       .concat(toArray(state.unlocks));
 
     for (const entry of streams) {
@@ -293,7 +298,8 @@
   }
 
   function buildRecommendations(analysis) {
-    const subjects = Object.values(toObject(analysis?.subjects));
+    const subjectsById = toObject(analysis?.subjects?.by || analysis?.by || analysis?.subjects);
+    const subjects = Object.values(subjectsById);
     const recommendations = [];
 
     const sortedByCoverage = subjects.slice().sort((a, b) => safeNumber(a?.progress?.estimatedCoverage) - safeNumber(b?.progress?.estimatedCoverage));
@@ -381,8 +387,8 @@
         visitedPlacesCount: toArray(analyzed.state.visitedPlaceIds).length,
         todayVisitedCount: toArray(analyzed.state.todayVisitedIds).length,
         placesLoadedCount: safeNumber(analyzed.placesLoadedCount),
-        peopleCollectedCount: toArray(analyzed.state.peopleCollected).length,
-        quizProgressCount: toArray(analyzed.state.quizProgress).length
+        peopleCollectedCount: toArrayLike(analyzed.state.peopleCollected).length,
+        quizProgressCount: toArrayLike(analyzed.state.quizProgress).length
       },
       healthReport: analyzed.healthReport
     };
