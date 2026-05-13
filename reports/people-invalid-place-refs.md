@@ -1,15 +1,15 @@
 # People invalid place refs audit
 
-Generated: 2026-05-13T07:40:01.383Z
+Generated: 2026-05-13T07:49:17.918Z
 
 ## Sammendrag
 - People-filer lest: **13**
-- People lest: **176**
+- People lest: **177**
 - People med ugyldige refs: **22**
 - Ugyldige refs: **41**
 - Unike ugyldige placeId-er: **20**
 - People uten gyldig sted: **24**
-- Duplikate interne place-referanser: **154**
+- Duplikate interne place-referanser: **155**
 
 ## Ugyldige refs gruppert per fil/person
 ### data/people/people_by.json
@@ -280,6 +280,7 @@ Generated: 2026-05-13T07:40:01.383Z
 - data/people/people_natur.json :: georg_ossian_sars (Georg Ossian Sars) -> hovedoya x2
 - data/people/people_natur.json :: jens_esmark (Jens Esmark) -> akerselva x2
 - data/people/people_natur.json :: arne_naess (Arne Næss) -> maerradalen x2
+- data/people/people_natur.json :: nils_faarlund (Nils Faarlund) -> maerradalen x2
 - data/people/people_politikk.json :: gro_harlem_brundtland (Gro Harlem Brundtland) -> stortinget x2
 - data/people/people_politikk.json :: jens_stoltenberg (Jens Stoltenberg) -> stortinget x2
 - data/people/people_politikk.json :: johan_sverdrup (Johan Sverdrup) -> stortinget x2

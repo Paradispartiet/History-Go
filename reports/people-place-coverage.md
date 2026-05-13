@@ -1,18 +1,18 @@
 # People-place coverage audit
 
-Generert: 2026-05-13T07:40:02.191Z
+Generert: 2026-05-13T07:49:18.691Z
 
 ## Sammendrag
 
-- People totalt: **176**
+- People totalt: **177**
 - Places totalt: **437**
 - Places med people: **72**
 - Places uten people: **365**
-- People-place-lenker: **234**
+- People-place-lenker: **235**
 - People koblet til flere gyldige steder: **69**
 - People uten gyldig sted: **24**
 - Ugyldige place-referanser: **30**
-- Duplikate place-referanser inne på people: **154**
+- Duplikate place-referanser inne på people: **155**
 - People uten image: **16**
 - People uten cardImage: **16**
 - People uten popupDesc: **21**
@@ -29,7 +29,7 @@ Generert: 2026-05-13T07:40:02.191Z
 | media | 7 | 0 | 7 | 0 | 0 |
 | musikk | 13 | 1 | 12 | 2 | 2 |
 | naeringsliv | 41 | 1 | 40 | 1 | 1 |
-| natur | 59 | 4 | 55 | 4 | 4 |
+| natur | 59 | 4 | 55 | 5 | 5 |
 | politikk | 15 | 4 | 11 | 34 | 24 |
 | populaerkultur | 23 | 0 | 23 | 0 | 0 |
 | sport | 38 | 4 | 34 | 7 | 7 |
@@ -48,8 +48,8 @@ Generert: 2026-05-13T07:40:02.191Z
 - middelalder: 11
 - musikk: 10
 - sport: 8
+- natur: 7
 - by: 6
-- natur: 6
 - arbeiderbevegelse: 4
 - filantrop: 4
 - naeringsliv: 4
@@ -252,7 +252,7 @@ Generert: 2026-05-13T07:40:02.191Z
 - cecilie_loveid (Cecilie Løveid) -> sofienberg_poesipark
 - rolf_jacobsen (Rolf Jacobsen) -> rolf_jacobsen_minne
 - oskar_braaten (Oskar Braaten) -> oscar_braaten_statuen
-- ... 54 flere
+- ... 55 flere
 
 ## Anbefalt første people-batch
 
