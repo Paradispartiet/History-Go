@@ -1,18 +1,18 @@
 # People-place coverage audit
 
-Generert: 2026-05-13T07:49:18.691Z
+Generert: 2026-05-13T08:40:00.012Z
 
 ## Sammendrag
 
-- People totalt: **177**
+- People totalt: **181**
 - Places totalt: **437**
-- Places med people: **72**
-- Places uten people: **365**
-- People-place-lenker: **235**
-- People koblet til flere gyldige steder: **69**
+- Places med people: **75**
+- Places uten people: **362**
+- People-place-lenker: **240**
+- People koblet til flere gyldige steder: **70**
 - People uten gyldig sted: **24**
 - Ugyldige place-referanser: **30**
-- Duplikate place-referanser inne på people: **155**
+- Duplikate place-referanser inne på people: **159**
 - People uten image: **16**
 - People uten cardImage: **16**
 - People uten popupDesc: **21**
@@ -26,7 +26,7 @@ Generert: 2026-05-13T07:49:18.691Z
 | historie | 47 | 11 | 36 | 76 | 49 |
 | kunst | 18 | 4 | 14 | 6 | 6 |
 | litteratur | 31 | 16 | 15 | 36 | 31 |
-| media | 7 | 0 | 7 | 0 | 0 |
+| media | 7 | 3 | 4 | 5 | 4 |
 | musikk | 13 | 1 | 12 | 2 | 2 |
 | naeringsliv | 41 | 1 | 40 | 1 | 1 |
 | natur | 59 | 4 | 55 | 5 | 5 |
@@ -52,12 +52,17 @@ Generert: 2026-05-13T07:49:18.691Z
 - by: 6
 - arbeiderbevegelse: 4
 - filantrop: 4
+- media: 4
 - naeringsliv: 4
 - mesen: 3
 - satire: 3
+- tv: 3
 - arkitektur: 2
+- journalistikk: 2
+- kringkasting: 2
 - militaerhistorie: 2
 - absurd humor: 1
+- avis: 1
 - bibliotek: 1
 - boksamling: 1
 - borgerkrigstid: 1
@@ -71,23 +76,18 @@ Generert: 2026-05-13T07:49:18.691Z
 - kunnskap: 1
 - kunstsamler: 1
 - nobel: 1
+- nyhetsformidling: 1
 - observasjonell humor: 1
 - parodi: 1
 - personlig humor: 1
 - populaerkultur: 1
+- presse: 1
+- publisering: 1
+- redaksjon: 1
 - rett: 1
 - samfunnsanalyse: 1
 - samfunnsengasjement: 1
 - samtidskunst: 1
-- selvironi: 1
-- situasjonskomikk: 1
-- skulpturpark: 1
-- sosial observasjon: 1
-- standup: 1
-- stifter: 1
-- tv-humor: 1
-- utdanning: 1
-- vikingtid: 1
 
 ## Steder med flest people
 
@@ -110,12 +110,12 @@ Generert: 2026-05-13T07:49:18.691Z
 - christiania_torv (Christiania Torv) – 3
 - grotta (Grotten) – 3
 - kulturkirken_jakob_litteratur (Kulturkirken Jakob) – 3
+- lisbon_rtp (RTP – Rádio e Televisão de Portugal) – 3
 - litteraturhuset (Litteraturhuset) – 3
 - mollergata_19 (Møllergata 19) – 3
 - nasjonalbiblioteket (Nasjonalbiblioteket) – 3
 - observatoriet (Observatoriet) – 3
 - operahuset (Operahuset) – 3
-- tjuvholmen (Tjuvholmen) – 3
 
 ## Ugyldige place-referanser
 
@@ -252,7 +252,7 @@ Generert: 2026-05-13T07:49:18.691Z
 - cecilie_loveid (Cecilie Løveid) -> sofienberg_poesipark
 - rolf_jacobsen (Rolf Jacobsen) -> rolf_jacobsen_minne
 - oskar_braaten (Oskar Braaten) -> oscar_braaten_statuen
-- ... 55 flere
+- ... 59 flere
 
 ## Anbefalt første people-batch
 
