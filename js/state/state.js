@@ -1,11 +1,11 @@
 // state.js
 
 /**
- * @typedef {import("../../schemas/storage").VisitedPlaces} VisitedPlaces
- * @typedef {import("../../schemas/storage").PeopleCollected} PeopleCollected
- * @typedef {import("../../schemas/storage").MeritsByCategory} MeritsByCategory
- * @typedef {import("../../schemas/storage").PersonDialogs} PersonDialogs
- * @typedef {import("../../schemas/storage").UserNotes} UserNotes
+ * @typedef {import("../../schemas/storage").VisitedPlaces} StateVisitedPlaces
+ * @typedef {import("../../schemas/storage").PeopleCollected} StatePeopleCollected
+ * @typedef {import("../../schemas/storage").MeritsByCategory} StateMeritsByCategory
+ * @typedef {import("../../schemas/storage").PersonDialogs} StatePersonDialogs
+ * @typedef {import("../../schemas/storage").UserNotes} StateUserNotes
  */
 
 // ==============================
@@ -23,17 +23,17 @@ let TAGS_REGISTRY = null;
 // ==============================
 // USER STATE (persisted)
 // ==============================
-/** @type {VisitedPlaces} */
+/** @type {StateVisitedPlaces} */
 window.visited = JSON.parse(
   localStorage.getItem("visited_places") || "{}"
 );
 
-/** @type {PeopleCollected} */
+/** @type {StatePeopleCollected} */
 const peopleCollected = JSON.parse(
   localStorage.getItem("people_collected") || "{}"
 );
 
-/** @type {MeritsByCategory} */
+/** @type {StateMeritsByCategory} */
 const merits = JSON.parse(
   localStorage.getItem("merits_by_category") || "{}"
 );
@@ -43,12 +43,12 @@ window.merits = merits;
 // ==============================
 // DIALOGER / NOTATER
 // ==============================
-/** @type {PersonDialogs} */
+/** @type {StatePersonDialogs} */
 const personDialogs = JSON.parse(
   localStorage.getItem("hg_person_dialogs_v1") || "[]"
 );
 
-/** @type {UserNotes} */
+/** @type {StateUserNotes} */
 const userNotes = JSON.parse(
   localStorage.getItem("hg_user_notes_v1") || "[]"
 );
