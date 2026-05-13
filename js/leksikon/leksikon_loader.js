@@ -304,13 +304,24 @@
     return `<button class="pc-leksikon-back" type="button" data-leksikon-back="${esc(target)}">← ${esc(label)}</button>`;
   }
 
+  function inferSectionItemSource(sectionType, item) {
+    if (sectionType === "objects") return "object";
+    if (sectionType === "persons") return "person";
+    if (sectionType === "sprak") return "sprak";
+
+    const hasSprakSignals = Boolean(norm(item?.term) || norm(item?.meaning) || item?.linked_to || norm(item?.context));
+    if (hasSprakSignals && !norm(item?.place_id)) return "sprak";
+
+    return "article";
+  }
+
   function renderSectionList(mainArticle, sectionType, groups) {
     const map = {
-      events: { title: "Arrangementer / idrettshistorie", items: groups.events, source: "article" },
-      history: { title: "Historie / bruksspor", items: groups.history, source: "article" },
-      objects: { title: "Objekter / anlegg", items: groups.objects, source: "object" },
-      persons: { title: "Personer", items: groups.persons, source: "person" },
-      sprak: { title: "Språkleksikon", items: groups.sprak, source: "sprak" }
+      events: { title: "Arrangementer / idrettshistorie", items: groups.events },
+      history: { title: "Historie / bruksspor", items: groups.history },
+      objects: { title: "Objekter / anlegg", items: groups.objects },
+      persons: { title: "Personer", items: groups.persons },
+      sprak: { title: "Språkleksikon", items: groups.sprak }
     };
     const config = map[sectionType];
     if (!config) return `<div class="pc-empty">Ukjent seksjon.</div>`;
@@ -323,7 +334,10 @@
         <h2 class="hg-popup-name">${esc(articleTitle(mainArticle))}</h2>
         <section class="pc-leksikon-section">
           <div class="pc-leksikon-list">
-            ${items.length ? items.map((item, idx) => `<button class="pc-leksikon-entry" type="button" data-leksikon-detail="entry" data-leksikon-item-index="${idx}" data-leksikon-item-source="${esc(config.source)}"><span class="pc-leksikon-entry-title">${esc(item?.title || item?.name || item?.label || item?.term || item?.id || "Oppføring")}</span>${(item?.type || item?.kind || item?.category) ? `<span class="pc-leksikon-entry-meta">${esc(item?.type || item?.kind || item?.category)}</span>` : ""}${item?.summary?.one_liner ? `<span class="pc-leksikon-entry-meta">${esc(item.summary.one_liner)}</span>` : ""}</button>`).join("") : `<div class="pc-leksikon-entry"><span class="pc-leksikon-entry-title">Ingen oppføringer ennå</span></div>`}
+            ${items.length ? items.map((item, idx) => {
+              const source = inferSectionItemSource(sectionType, item);
+              return `<button class="pc-leksikon-entry" type="button" data-leksikon-detail="entry" data-leksikon-item-index="${idx}" data-leksikon-item-source="${esc(source)}"><span class="pc-leksikon-entry-title">${esc(item?.title || item?.name || item?.label || item?.term || item?.id || "Oppføring")}</span>${(item?.type || item?.kind || item?.category) ? `<span class="pc-leksikon-entry-meta">${esc(item?.type || item?.kind || item?.category)}</span>` : ""}${item?.summary?.one_liner ? `<span class="pc-leksikon-entry-meta">${esc(item.summary.one_liner)}</span>` : ""}</button>`;
+            }).join("") : `<div class="pc-leksikon-entry"><span class="pc-leksikon-entry-title">Ingen oppføringer ennå</span></div>`}
           </div>
         </section>
       </article>
