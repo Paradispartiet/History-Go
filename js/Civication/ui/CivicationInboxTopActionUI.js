@@ -75,7 +75,13 @@
   }
 
   function isPending(item) {
-    return !!item && String(item.status || "pending") === "pending" && item.resolved !== true;
+    return isOpenItem(item);
+  }
+
+  function isOpenItem(item) {
+    if (!item) return false;
+    const status = normalize(item?.status || "pending");
+    return (status === "pending" || status === "open") && item.resolved !== true;
   }
 
   function hasChoices(item) {
@@ -136,20 +142,20 @@
     return (split.messages || [])
       .concat(split.unknown || [], split.workday || [])
       .filter(function (item) {
-        return isPending(item) && hasChoices(item);
+        return isOpenItem(item) && hasChoices(item);
       });
   }
 
   function pendingMilestones() {
     const split = splitInbox();
-    return (split.milestones || []).filter(isPending);
+    return (split.milestones || []).filter(isOpenItem);
   }
 
   function visibleMessages() {
     const split = splitInbox();
     return (split.messages || [])
       .concat(split.unknown || [], split.milestones || [], split.system || [])
-      .filter(isPending);
+      .filter(isOpenItem);
   }
 
   function openInboxPopup() {
@@ -248,7 +254,7 @@
   function renderChoiceButtons(item) {
     const ev = eventOf(item);
     const choices = Array.isArray(ev?.choices) ? ev.choices : [];
-    if (!isPending(item) || !choices.length) return "";
+    if (!isOpenItem(item) || !choices.length) return "";
 
     const mailId = mailIdOf(item);
     if (!mailId) return "";
@@ -274,7 +280,7 @@
 
   function renderInboxCard(item, channelLabel) {
     const lines = bodyLinesOf(item);
-    const pending = isPending(item);
+    const pending = isOpenItem(item);
 
     return `
       <article class="civi-inbox-card ${pending ? "is-pending" : "is-resolved"}">
@@ -303,10 +309,7 @@
     const visible = (Array.isArray(items) ? items : [])
       .filter(function (item) { return item && item.deleted !== true && item.archived !== true; });
 
-    const openItems = visible.filter(function (item) {
-      const status = normalize(item?.status || "pending");
-      return (status === "pending" || status === "open") && item?.resolved !== true;
-    });
+    const openItems = visible.filter(isOpenItem);
 
     const resolvedItems = visible.filter(isResolved);
     const pendingCount = openItems.length;
