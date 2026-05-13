@@ -1,5 +1,5 @@
 // js/hgKnowledgeEngine.js
-// History Go Knowledge Engine v1.2 (read-only analysis)
+// History Go Knowledge Engine v1.3 (read-only analysis)
 (function () {
   "use strict";
 
@@ -119,15 +119,24 @@
     let visitedSignals = 0;
     let peopleSignals = 0;
 
-    const streams = []
-      .concat(toArray(state.learningLog))
-      .concat(toArray(state.learningLogMigrated))
-      .concat(toArray(state.insightEvents))
-      .concat(toArrayLike(state.knowledgeUniverse))
-      .concat(toArrayLike(state.quizProgress))
-      .concat(toArray(state.unlocks));
+    const signalBreakdown = {
+      directLearning: [],
+      visitedPlaces: [],
+      streams: [],
+      concepts: []
+    };
 
-    for (const entry of streams) {
+    const streams = []
+      .concat(toArray(state.learningLog).map((entry) => ({ entry: entry, streamType: "learningLog" })))
+      .concat(toArray(state.learningLogMigrated).map((entry) => ({ entry: entry, streamType: "learningLogMigrated" })))
+      .concat(toArray(state.insightEvents).map((entry) => ({ entry: entry, streamType: "insightEvents" })))
+      .concat(toArrayLike(state.knowledgeUniverse).map((entry) => ({ entry: entry, streamType: "knowledgeUniverse" })))
+      .concat(toArrayLike(state.quizProgress).map((entry) => ({ entry: entry, streamType: "quizProgress" })))
+      .concat(toArray(state.unlocks).map((entry) => ({ entry: entry, streamType: "unlocks" })));
+
+    for (const item of streams) {
+      const entry = item?.entry;
+      const streamType = s(item?.streamType || "unknown") || "unknown";
       const sid = extractSubjectFromEntry(entry);
       if (sid && s(sid) !== s(subjectId)) continue;
 
@@ -135,12 +144,26 @@
       for (const eid of emneIds) {
         if (!eid || !emneById.has(eid)) continue;
         emneSignals.set(eid, (emneSignals.get(eid) || 0) + 1);
+        signalBreakdown.streams.push({
+          emne_id: eid,
+          source: "stream",
+          streamType: streamType,
+          score: 1
+        });
       }
 
       const concepts = unique([].concat(toArray(entry?.concepts), toArray(entry?.core_concepts)).map(s));
       for (const c of concepts) {
         if (!c) continue;
-        if (subjectConcepts.has(c)) conceptSignals.set(c, (conceptSignals.get(c) || 0) + 1);
+        if (subjectConcepts.has(c)) {
+          conceptSignals.set(c, (conceptSignals.get(c) || 0) + 1);
+          signalBreakdown.concepts.push({
+            concept: c,
+            source: "concept_overlap",
+            streamType: streamType,
+            score: 1
+          });
+        }
       }
 
       if (entry && (entry.place_id || entry.placeId)) visitedSignals += 1;
@@ -162,6 +185,13 @@
         visitedEmneSignalKeys.add(signalKey);
         emneSignals.set(emneId, (emneSignals.get(emneId) || 0) + 1);
         visitedSignals += 1;
+        signalBreakdown.visitedPlaces.push({
+          placeId: normalizedPlaceId,
+          placeName: s(place?.name || place?.title || place?.id || normalizedPlaceId),
+          emne_id: emneId,
+          source: "visited_places",
+          score: 1
+        });
       }
     }
 
@@ -174,10 +204,20 @@
       if (learned.seen === true) score += 1;
       if (learned.understood === true) score += 2;
       if (learned.applied === true) score += 3;
-      if (score > 0) emneSignals.set(eid, (emneSignals.get(eid) || 0) + score);
+      if (score > 0) {
+        emneSignals.set(eid, (emneSignals.get(eid) || 0) + score);
+        signalBreakdown.directLearning.push({
+          emne_id: eid,
+          source: "hg_learning_v1",
+          seen: learned.seen === true,
+          understood: learned.understood === true,
+          applied: learned.applied === true,
+          score: score
+        });
+      }
     }
 
-    return { emneSignals, conceptSignals, quizSignals, visitedSignals, peopleSignals };
+    return { emneSignals, conceptSignals, quizSignals, visitedSignals, peopleSignals, signalBreakdown };
   }
 
   async function analyzeSubjects(opts) {
@@ -289,6 +329,28 @@
         if (/warn|mismatch/i.test(st)) fileWarnings += 1;
       });
 
+      const signalBreakdown = toObject(signals.signalBreakdown);
+      const directLearningEntries = toArray(signalBreakdown.directLearning);
+      const visitedPlacesEntries = toArray(signalBreakdown.visitedPlaces);
+      const streamEntries = toArray(signalBreakdown.streams);
+      const conceptEntries = toArray(signalBreakdown.concepts);
+      const sourcePlaceIds = unique(visitedPlacesEntries.map((entry) => s(entry?.placeId)));
+      const sourceEmneIds = unique([].concat(
+        directLearningEntries.map((entry) => s(entry?.emne_id)),
+        visitedPlacesEntries.map((entry) => s(entry?.emne_id)),
+        streamEntries.map((entry) => s(entry?.emne_id))
+      ));
+
+      const signalSummary = {
+        directLearningSignals: directLearningEntries.length,
+        visitedPlaceSignals: visitedPlacesEntries.length,
+        streamSignals: streamEntries.length,
+        conceptSignals: conceptEntries.length,
+        totalSignals: directLearningEntries.length + visitedPlacesEntries.length + streamEntries.length + conceptEntries.length,
+        sourcePlaceIds: sourcePlaceIds,
+        sourceEmneIds: sourceEmneIds
+      };
+
       by[subjectId] = {
         subjectId: subjectId,
         health: { ok: fileErrors === 0, errors: fileErrors, warnings: fileWarnings },
@@ -311,6 +373,10 @@
           peopleSignals: signals.peopleSignals,
           estimatedCoverage: estimatedCoverage
         },
+        signals: {
+          summary: signalSummary,
+          breakdown: signalBreakdown
+        },
         strengths: unique([].concat(emneStrengths, conceptStrengths)).slice(0, 5),
         gaps: gaps,
         next: gaps.slice(0, 3)
@@ -332,7 +398,9 @@
         type: "subject_focus",
         subjectId: weakest.subjectId,
         title: "Jobb videre med " + weakest.subjectId,
-        reason: "Lav registrert dekning i faget.",
+        reason: safeNumber(weakest?.signals?.summary?.totalSignals) === 0
+          ? "Ingen læringssignal registrert i faget."
+          : "Noe læringssignal finnes, men dekningen er fortsatt lav.",
         priority: 1
       });
     }
@@ -346,7 +414,9 @@
         type: "subject_focus",
         subjectId: largeLow.subjectId,
         title: "Prioriter " + largeLow.subjectId,
-        reason: "Mange emner, lav registrert dekning.",
+        reason: safeNumber(largeLow?.signals?.summary?.totalSignals) === 0
+          ? "Ingen læringssignal registrert i faget."
+          : "Noe læringssignal finnes, men dekningen er fortsatt lav.",
         priority: 2
       });
     }
@@ -412,7 +482,8 @@
         placesLoadedCount: safeNumber(analyzed.placesLoadedCount),
         fullVisitedPlacesLoadedCount: safeNumber(analyzed.fullVisitedPlacesLoadedCount),
         peopleCollectedCount: toArrayLike(analyzed.state.peopleCollected).length,
-        quizProgressCount: toArrayLike(analyzed.state.quizProgress).length
+        quizProgressCount: toArrayLike(analyzed.state.quizProgress).length,
+        subjectsWithSignalsCount: subjects.filter((x) => safeNumber(x?.signals?.summary?.totalSignals) > 0).length
       },
       healthReport: analyzed.healthReport
     };
@@ -431,7 +502,11 @@
         courseReady: item.structure.courseReady,
         domainAdapted: item.structure.domainAdapted,
         gaps: toArray(item.gaps).length,
-        strengths: toArray(item.strengths).length
+        strengths: toArray(item.strengths).length,
+        directLearningSignals: item.signals?.summary?.directLearningSignals || 0,
+        visitedPlaceSignals: item.signals?.summary?.visitedPlaceSignals || 0,
+        streamSignals: item.signals?.summary?.streamSignals || 0,
+        conceptSignals: item.signals?.summary?.conceptSignals || 0
       })));
       console.groupEnd();
     }
