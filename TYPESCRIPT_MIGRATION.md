@@ -63,3 +63,11 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - The central place arrays (`places`, including DataHub loader cast) are now explicitly typed with `BootPlace[]`.
 - Runtime behavior and loader/data flow are unchanged (no changes to fetch paths, fallbacks, DataHub logic, or startup flow).
 - Remaining `npm run typecheck` baseline outside this focused JSDoc update is still expected.
+
+## Phase 6: DataHub global typing
+
+- `schemas/globals.d.ts` now includes a minimal `DataHubApi` declaration for the existing `window.DataHub` runtime object.
+- The declaration documents current DataHub loader contracts such as `loadPlacesBase`, `loadFullPlace`, `getPlaceEnriched`, `loadEnrichedAll`, fag loaders, quiz loaders and nature loaders.
+- Place-returning loaders reuse the existing `Place` schema where practical, while broader legacy loaders remain intentionally typed as `unknown`/`unknown[]` until their data contracts are stabilized.
+- This phase is declaration-only and does not change `js/dataHub.js`, fetch behavior, cache behavior, paths, localStorage or startup flow.
+- The broader `npm run typecheck` baseline is still expected to remain.
