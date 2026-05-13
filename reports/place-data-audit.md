@@ -1,6 +1,6 @@
 # Place Data Audit
 
-Generert: 2026-05-12T18:00:22.831Z
+Generert: 2026-05-13T05:43:10.923Z
 
 ## Totalsammendrag
 
@@ -15,24 +15,24 @@ Generert: 2026-05-12T18:00:22.831Z
 - Steder som bruker imageCard-felt: **0**
 - Steder med stub:true eller hidden:true: **0**
 - Antall ødelagte asset paths: **131**
-- Antall place-referanser til ikke-eksisterende id-er: **50**
+- Antall place-referanser til ikke-eksisterende id-er: **49**
 
 ## Dekning per datasett (placeId/places)
 
-- **quiz**: 91/436 steder dekket (mangler 345, ugyldige refs 569)
-- **people**: 68/436 steder dekket (mangler 368, ugyldige refs 47)
-- **nature**: 36/436 steder dekket (mangler 400, ugyldige refs 3)
-- **badges**: 0/436 steder dekket (mangler 436, ugyldige refs 0)
-- **wonderkammer**: 82/436 steder dekket (mangler 354, ugyldige refs 35)
-- **relations**: 0/436 steder dekket (mangler 436, ugyldige refs 0)
-- **leksikon**: 172/436 steder dekket (mangler 264, ugyldige refs 2)
-- **sprakleksikon**: 3/436 steder dekket (mangler 433, ugyldige refs 0)
-- **external/offisielle lenker**: 0/436 steder dekket (mangler 436, ugyldige refs 0)
+- **quiz**: 91/437 steder dekket (mangler 346, ugyldige refs 569)
+- **people**: 68/437 steder dekket (mangler 369, ugyldige refs 47)
+- **nature**: 36/437 steder dekket (mangler 401, ugyldige refs 3)
+- **badges**: 0/437 steder dekket (mangler 437, ugyldige refs 0)
+- **wonderkammer**: 82/437 steder dekket (mangler 355, ugyldige refs 35)
+- **relations**: 0/437 steder dekket (mangler 437, ugyldige refs 0)
+- **leksikon**: 172/437 steder dekket (mangler 265, ugyldige refs 2)
+- **sprakleksikon**: 3/437 steder dekket (mangler 434, ugyldige refs 0)
+- **external/offisielle lenker**: 0/437 steder dekket (mangler 437, ugyldige refs 0)
 
 ## Manglende rundinger og quizdekning
 
 - Manglende rundinger (r): **0**
-- Manglende quizdekning: **345**
+- Manglende quizdekning: **346**
   - karl_johan, grunerlokka_helgesens_tm, majorstuen_krysset, oslo_bussterminal, helsfyr, gronlandsleiret, storgata, ullevål_hageby, romsaås, rodelokka, vaalerenga, vinderen, ullern, spikersuppa, bankplassen, christiania_torv, botsparken, stensparken, nydalen, sorenga, majorstuen_tbanestasjon, nationaltheatret_stasjon, olaf_ryes_plass, birkelunden, universitetsplassen, operahuset, schous_plass, vaterland, tullin, okern, skoyen, torshov, grorud, gamlebyen, frognerparken, kampen_park, sagene_film, kampen_film, sofienberg_kirke, akerhus_slott, gamle_aker_kirke, var_frelsers_gravlund, hovedoya_kloster, eidsvollsbygningen, oscarsborg_festning, grini_fangeleir, villa_grande, bogstad_gard, mollergata_19, camilla_collett_statue, henrik_wergeland_statue, grotta, gamle_deichman, sigrid_undset_statue, ruth_maier_minne, alf_proysen_statue_nittedal, proysenhuset_rudshogda, inger_hagerups_plass, oscar_braaten_statuen, alexander_kiellands_plass, good_game_redaksjon, vg_huset, salt, det_norske_teatret, blaa, john_dee, sentrum_scene, ringnes_bryggeri, st_halvard_bryggeri, oslo_kornmagasin, akershus_slott_bakeriet, jernbanetorget_trafikknutepunkt, christiania_seildugsfabrik, alnaelva, alnaelvstien, loelva_historisk, trosterud_friomrade, furuset_haugerud_skogbelte, hellerud_gard, alnabru_jernbane_og_logistikk, frysjadammen, nydalen_industristed, seilduksfabrikken_nydalen, nydalsdammen, stilla_nydalen, bjoelsenfossen, bjoelsenparken_elvenaer, glads_molle, voienfossen, voien_gard_voienvolden, myralokka, kuba_parken, beierbrua, nedre_foss, vulkan_industriomrade, elvestrekning_bla_brenneriveien, fossveien_elvestrekning, hausmannsbrua, hausmannsomradet_elvelop, ankerbrua ...
 
 ## Funn per fil
@@ -295,7 +295,7 @@ Generert: 2026-05-12T18:00:22.831Z
 - maerradalen (Mærradalen): mangler image | mangler cardImage
 - maridalsvannet (Maridalsvannet): mangler image | mangler cardImage
 - noklevann (Nøklevann): mangler image | mangler cardImage
-- alnaelva (Alnaelva): mangler image | mangler cardImage
+- alnaelva_hovedsteder (Alnaelva): mangler image | mangler cardImage
 
 ### data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json
 
@@ -669,7 +669,7 @@ Generert: 2026-05-12T18:00:22.831Z
 
 ## Duplikate id-er
 
-- alnaelva: data/places/natur/oslo/places_oslo_alna.json (Alnaelva) ; data/places/natur/oslo/places_oslo_natur_hovedsteder.json (Alnaelva)
+- Ingen duplikate id-er funnet.
 
 ## Ødelagte asset paths
 
@@ -856,7 +856,6 @@ Generert: 2026-05-12T18:00:22.831Z
 - data/people/people_vitenskap.json :: [5].places[0] -> universitetet
 - data/routes_walks.json :: [1].stops[0].placeId -> botanisk_hage
 - data/routes_walks.json :: [1].stops[1].placeId -> botanisk_hage
-- data/Civication/place_contexts.json :: contexts[4].matches_place_ids -> botanisk_hage
 
 ## Anbefalt rekkefølge for ferdigstilling
 
@@ -868,7 +867,7 @@ Generert: 2026-05-12T18:00:22.831Z
 
 ## Neste arbeid (prioritert)
 
-1. Lag quiz for 345 steder uten quizdekning (start med steder som også mangler popupDesc/emne_ids).
+1. Lag quiz for 346 steder uten quizdekning (start med steder som også mangler popupDesc/emne_ids).
 2. Fyll inn rundinger (r) for 0 steder som mangler dette feltet.
 3. Rydd opp ugyldige place-referanser i datasett med høyest antall dangling refs (se dekningsseksjonen).
 4. Øk dekning i people/nature/badges/wonderkammer/leksikon/external ved å koble placeId/places mot eksisterende steder.
