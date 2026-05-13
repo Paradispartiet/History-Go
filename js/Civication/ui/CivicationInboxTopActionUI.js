@@ -254,10 +254,24 @@
   function renderChoiceButtons(item) {
     const ev = eventOf(item);
     const choices = Array.isArray(ev?.choices) ? ev.choices : [];
-    if (!isOpenItem(item) || !choices.length) return "";
+    if (!isOpenItem(item)) return "";
 
     const mailId = mailIdOf(item);
     if (!mailId) return "";
+
+    if (!choices.length) {
+      return `
+        <div class="civi-inbox-card-actions">
+          <button
+            class="civi-btn civi-inbox-answer-btn"
+            type="button"
+            data-civi-inbox-answer="1"
+            data-mail-id="${escapeHtml(mailId)}"
+            data-choice-id=""
+          >OK</button>
+        </div>
+      `;
+    }
 
     return `
       <div class="civi-inbox-card-actions">
@@ -339,8 +353,9 @@
 
   function answerFromInbox(button) {
     const mailId = String(button?.getAttribute("data-mail-id") || "").trim();
-    const choiceId = String(button?.getAttribute("data-choice-id") || "").trim();
-    if (!mailId || !choiceId) return;
+    const rawChoiceId = button?.getAttribute("data-choice-id");
+    const choiceId = rawChoiceId == null ? null : String(rawChoiceId).trim();
+    if (!mailId) return;
 
     button.disabled = true;
 
@@ -377,7 +392,7 @@
     const privateMessages = split.private || [];
     const systemMessages = split.system || [];
 
-    host.innerHTML = `
+    const markup = `
       <div class="civi-inbox-sections" data-civi-inbox-sections="1">
         ${renderInboxSection(
           "Jobbmail",
@@ -399,6 +414,13 @@
         ) : ""}
       </div>
     `;
+
+    const existing = host.querySelector("[data-civi-inbox-sections='1']");
+    if (existing) {
+      existing.outerHTML = markup;
+    } else {
+      host.insertAdjacentHTML("beforeend", markup);
+    }
 
     wireInboxResponses(host);
     return true;
