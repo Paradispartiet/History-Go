@@ -41,3 +41,11 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Runtime behavior is unchanged; this is type/schema groundwork only.
 - This reduces risk for the next loader-typing and validator steps by improving schema accuracy first.
 
+## Phase 3: Storage schema and JSDoc groundwork
+
+- `schemas/storage.ts` defines the current localStorage-backed shapes used by core History Go state, including visited places, collected people, merits, progress, dialogs, notes and Groundhopper stats.
+- `js/state/state.js` now has lightweight JSDoc annotations for persisted state reads.
+- `js/state/persistence.js` now has focused JSDoc annotations for persistence helpers and Groundhopper stats without changing storage keys or runtime behavior.
+- `schemas/place.ts` includes the optional `sport_profile` field already used by Groundhopper logic.
+- This phase documents the existing storage contract only; it does not centralize, rename, migrate or normalize localStorage data.
+
