@@ -154,6 +154,19 @@
       <div class="profile-tab-panel" data-panel="merker"><section class="profile-section"><div class="section-head"><h2>Mine merker</h2></div><div id="merits"></div><div class="profile-subaction"><a href="merker/merker.html" class="link-small">→ Se alle merke-kategorier</a></div></section></div>
 
       <div class="profile-tab-panel" data-panel="kunnskap">
+        <section class="profile-section knowledge-engine-panel" id="knowledgeEnginePanel">
+          <div class="section-head">
+            <h2>Kunnskapsmotor</h2>
+            <span class="section-meta" id="knowledgeEngineMeta">Analyserer fag, emner og progresjon</span>
+          </div>
+          <div id="knowledgeEngineSummary" class="knowledge-engine-summary"></div>
+          <div id="knowledgeEngineSubjects" class="knowledge-engine-subjects"></div>
+          <div id="knowledgeEngineRecommendations" class="knowledge-engine-recommendations"></div>
+          <details class="profile-detail-box knowledge-engine-details">
+            <summary>Vis signalforklaring</summary>
+            <div id="knowledgeEngineSignals" class="knowledge-engine-signals"></div>
+          </details>
+        </section>
         <div class="profile-grid-2">
           <section class="profile-section">
             <div class="section-head"><h2>Kunnskapsprofil</h2></div>
@@ -262,6 +275,10 @@
 <script src="js/trivia.js"></script>
 <script src="js/hgInsights.js"></script>
 <script src="js/dataHub.js"></script>
+<script src="js/DomainRegistry.js"></script>
+<script src="js/fagHealthReport.js"></script>
+<script src="js/courses.js"></script>
+<script src="js/hgKnowledgeEngine.js"></script>
 
 <!-- ===================================================== -->
 <!-- Civication system -->
