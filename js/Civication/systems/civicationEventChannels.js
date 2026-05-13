@@ -89,7 +89,7 @@
 
     if (explicit === "job" || explicit === "jobmail") return true;
     if (mailClass === "job_message" || mailClass === "opportunity_blocked" || mailClass === "career_outcome" || mailClass === "daily_workday") return true;
-    if (sourceType === "blocked_job" || sourceType === "workday" || sourceType === "daily_generated" || sourceType === "daily_extra" || sourceType === "narrative_stream" || sourceType === "brand_progression" || sourceType === "role_outcome") return true;
+    if (sourceType === "blocked_job" || sourceType === "workday" || sourceType === "daily_generated" || sourceType === "daily_extra" || sourceType === "brand_progression" || sourceType === "role_outcome") return true;
     if (ROLE_BOUND_SOURCE_TYPES.has(sourceType) && hasRoleBinding(ev)) return true;
     if (ROLE_BOUND_MAIL_TYPES.has(mailType) && hasRoleBinding(ev)) return true;
 
