@@ -38,6 +38,11 @@ function personSummary(person, sourceFile) {
     id: person?.id || null,
     name: person?.name || null,
     category: person?.category || null,
+    year: person?.year ?? null,
+    desc: person?.desc ?? null,
+    popupDesc: person?.popupDesc ?? null,
+    image: person?.image ?? null,
+    cardImage: person?.cardImage ?? null,
     tags: Array.isArray(person?.tags) ? person.tags : [],
     placeId: person?.placeId || person?.place_id || person?.place || null,
     places: Array.isArray(person?.places) ? person.places : [],
@@ -185,7 +190,7 @@ const inBoth = [...legacyIds]
   .sort((a, b) => a.localeCompare(b, 'nb'));
 
 const duplicateIdsAcrossSplitFiles = [...splitById.entries()]
-  .filter(([, entries]) => entries.length > 1)
+  .filter(([, entries]) => (new Set(entries.map((entry) => entry.sourceFile))).size > 1)
   .map(([id, entries]) => ({ id, entries }))
   .sort((a, b) => a.id.localeCompare(b.id, 'nb'));
 
