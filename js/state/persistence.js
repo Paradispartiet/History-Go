@@ -1,8 +1,8 @@
 // state/persistence.js
 
 /**
- * @typedef {import("../../schemas/place").Place} Place
- * @typedef {import("../../schemas/storage").GroundhopperStats} GroundhopperStats
+ * @typedef {import("../../schemas/place").Place} PersistencePlace
+ * @typedef {import("../../schemas/storage").GroundhopperStats} PersistenceGroundhopperStats
  */
 
 function savePersonDialogs() {
@@ -45,10 +45,10 @@ function normalizeArray(value) {
 }
 
 /**
- * @returns {GroundhopperStats}
+ * @returns {PersistenceGroundhopperStats}
  */
 function getGroundhopperStats() {
-  /** @type {GroundhopperStats} */
+  /** @type {PersistenceGroundhopperStats} */
   const fallback = {
     version: 1,
     visited_groundhopper_places: [],
@@ -78,14 +78,14 @@ function getGroundhopperStats() {
 }
 
 /**
- * @param {GroundhopperStats} stats
+ * @param {PersistenceGroundhopperStats} stats
  */
 function saveGroundhopperStats(stats) {
   localStorage.setItem(GROUNDHOPPER_STATS_KEY, JSON.stringify(stats));
 }
 
 /**
- * @param {Place | undefined | null} place
+ * @param {PersistencePlace | undefined | null} place
  * @returns {boolean}
  */
 function isGroundhopperPlace(place) {
@@ -93,8 +93,8 @@ function isGroundhopperPlace(place) {
 }
 
 /**
- * @param {GroundhopperStats} stats
- * @param {Record<string, Place>} placeLookup
+ * @param {PersistenceGroundhopperStats} stats
+ * @param {Record<string, PersistencePlace>} placeLookup
  */
 function recalculateGroundhopperTotals(stats, placeLookup) {
   const visitedIds = normalizeArray(stats?.visited_groundhopper_places);
@@ -121,7 +121,7 @@ function recalculateGroundhopperTotals(stats, placeLookup) {
 }
 
 /**
- * @param {Place | undefined | null} place
+ * @param {PersistencePlace | undefined | null} place
  */
 function updateGroundhopperFromPlace(place) {
   if (!place || !isGroundhopperPlace(place)) return;
@@ -156,7 +156,7 @@ function updateGroundhopperFromPlace(place) {
   stats.teams_collected = Array.from(new Set([...normalizeArray(stats.teams_collected), ...normalizeArray(profile.teams)]));
 
   const places = Array.isArray(window.PLACES) ? window.PLACES : [];
-  /** @type {Record<string, Place>} */
+  /** @type {Record<string, PersistencePlace>} */
   const placeLookup = Object.fromEntries(places.map((p) => [String(p?.id || ""), p]));
   placeLookup[placeId] = place;
   recalculateGroundhopperTotals(stats, placeLookup);
