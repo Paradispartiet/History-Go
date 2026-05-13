@@ -18,6 +18,16 @@
     return text || fallback;
   }
 
+
+  function escapeHtml(value) {
+    return String(value ?? "").replace(/[&<>"']/g, (char) => ({
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;"
+    }[char] || char));
+  }
   function cleanColor(value) {
     const color = String(value || "").trim();
     return /^#[0-9a-fA-F]{6}$/.test(color) ? color : DEFAULT_COLOR;
@@ -320,6 +330,8 @@
     const session = await window.HistoryGoAHAAuth?.getSession?.();
     const email = session?.user?.email || "";
     const ahaName = getAhaDisplayName();
+    const safeEmail = escapeHtml(email);
+    const safeAhaName = escapeHtml(ahaName);
 
     const backdrop = document.createElement("div");
     backdrop.id = "hgAhaLoginBackdrop";
@@ -330,9 +342,9 @@
         <p>AHA er kontoen og hovedprofilen din. Navn opprettes og endres i AHA.</p>
         <div class="hg-profile-field">
           <label for="hgAhaEmailInput">E-post</label>
-          <input id="hgAhaEmailInput" type="email" inputmode="email" autocomplete="email" placeholder="navn@eksempel.no" value="${email}">
+          <input id="hgAhaEmailInput" type="email" inputmode="email" autocomplete="email" placeholder="navn@eksempel.no" value="${safeEmail}">
         </div>
-        <div id="hgAhaLoginStatus" class="hg-auth-status">${session?.user?.id ? (ahaName ? `Innlogget som ${ahaName}.` : "Du er innlogget. Opprett navn/profil i AHA først.") : "Skriv inn e-post for å få innloggingslenke."}</div>
+        <div id="hgAhaLoginStatus" class="hg-auth-status">${session?.user?.id ? (ahaName ? `Innlogget som ${safeAhaName}.` : "Du er innlogget. Opprett navn/profil i AHA først.") : "Skriv inn e-post for å få innloggingslenke."}</div>
         <div class="hg-profile-actions">
           <button class="hg-profile-cancel" type="button" id="hgAhaLoginCancel">Lukk</button>
           <button class="hg-profile-cancel" type="button" id="hgAhaOpenAha">Åpne AHA</button>
