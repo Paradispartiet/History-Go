@@ -3,6 +3,7 @@
 
   const SHARED_KEY = "aha_import_payload_v1";
   const SUBJECT_ID = "sub_historygo";
+  const IMPORT_FINGERPRINT_KEY = "aha_historygo_import_fingerprint_v1";
 
   function addSignal(chamber, text, themeId, timestamp, context) {
     const safeText = String(text || "").trim();
@@ -80,8 +81,16 @@
   function importHistoryGoDataFromSharedStorage() {
     const raw = localStorage.getItem(SHARED_KEY);
     if (!raw) return { importedSignals: 0, error: "missing_payload" };
+
+    const previousFingerprint = localStorage.getItem(IMPORT_FINGERPRINT_KEY);
+    if (previousFingerprint && previousFingerprint === raw) {
+      return { importedSignals: 0, skipped: true, reason: "already_imported" };
+    }
+
     try {
-      return importHistoryGoData(JSON.parse(raw));
+      const result = importHistoryGoData(JSON.parse(raw));
+      if (!result.error) localStorage.setItem(IMPORT_FINGERPRINT_KEY, raw);
+      return result;
     } catch (error) {
       return { importedSignals: 0, error: error.message };
     }
