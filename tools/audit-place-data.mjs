@@ -93,20 +93,6 @@ for (const source of coverageSources) {
 const peopleManifestFiles = manifestFilesToPaths(root, path.join(root, 'data/people/manifest.json'));
 const refTargets = ['data/badges.json','data/routes.json','data/routes_walks.json','data/wonderkammer/index.json','data/Civication/place_access_map.json','data/Civication/place_contexts.json','data/Civication/people_access_map.json'].map((p) => path.isAbsolute(p) ? p : path.join(root, p));
 
-function collectPlaceRefs(node, currentPath = '', refs = []) {
-  if (Array.isArray(node)) { node.forEach((v, i) => collectPlaceRefs(v, `${currentPath}[${i}]`, refs)); return refs; }
-  if (node && typeof node === 'object') {
-    for (const [k, v] of Object.entries(node)) {
-      const nextPath = currentPath ? `${currentPath}.${k}` : k;
-      const keyLooksLikePlace = /place/i.test(k);
-      if (typeof v === 'string' && keyLooksLikePlace) refs.push({ key: nextPath, value: v });
-      if (Array.isArray(v) && keyLooksLikePlace) for (const item of v) if (typeof item === 'string') refs.push({ key: nextPath, value: item });
-      collectPlaceRefs(v, nextPath, refs);
-    }
-  }
-  return refs;
-}
-
 const danglingRefs = [];
 for (const filePath of peopleManifestFiles) {
   if (!fs.existsSync(filePath)) continue;
@@ -119,7 +105,7 @@ for (const filePath of peopleManifestFiles) {
 for (const filePath of refTargets) {
   if (!fs.existsSync(filePath)) continue;
   try {
-    const refs = collectPlaceRefs(readJson(filePath));
+    const refs = collectRefsByKeys(readJson(filePath), PLACE_REF_KEYS);
     for (const ref of refs) if (!validPlaceIds.has(ref.value)) danglingRefs.push({ file: path.relative(root, filePath).replace(/\\/g, '/'), ...ref });
   } catch {}
 }
