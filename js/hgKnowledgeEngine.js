@@ -61,6 +61,9 @@
   function readState() {
     const visitedPlacesRaw = readJsonStorage("visited_places", {});
     const todayVisitedRaw = readJsonStorage("hg_today_visited_v1", []);
+    const todayVisitedSource = (todayVisitedRaw && typeof todayVisitedRaw === "object" && !Array.isArray(todayVisitedRaw))
+      ? todayVisitedRaw.ids
+      : todayVisitedRaw;
 
     return {
       learningLog: toArray(readJsonStorage("hg_learning_log_v1", [])),
@@ -73,8 +76,8 @@
       visitedPlaceIds: normalizeIdCollection(visitedPlacesRaw),
       visitedPlaces: normalizeIdCollection(visitedPlacesRaw),
       todayVisitedRaw: todayVisitedRaw,
-      todayVisitedIds: normalizeIdCollection(todayVisitedRaw),
-      todayVisited: normalizeIdCollection(todayVisitedRaw),
+      todayVisitedIds: normalizeIdCollection(todayVisitedSource),
+      todayVisited: normalizeIdCollection(todayVisitedSource),
       peopleCollected: toArray(readJsonStorage("people_collected", [])),
       meritsByCategory: toObject(readJsonStorage("merits_by_category", {})),
       historygoProgress: toObject(readJsonStorage("historygo_progress", {})),
