@@ -529,7 +529,10 @@
       const outcomeStatus = norm(eventObj?.career_outcome_meta?.status);
       if (isOutcome && outcomeStatus === "FIRED") {
         const current = getState();
-        setState({ stability: "FIRED", consumed: Number(current?.consumed || 0) });
+        const consumed = (current && typeof current.consumed === "object" && current.consumed !== null)
+          ? { ...current.consumed }
+          : {};
+        setState({ stability: "FIRED", consumed });
       }
 
       const result = await original.call(this, eventId, choiceId);
