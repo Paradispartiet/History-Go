@@ -91,7 +91,7 @@
     if (ROLE_BOUND_MAIL_TYPES.has(mailType) && hasRoleBinding(ev)) return true;
 
     const streamId = narrativeStreamId(ev);
-    if ((mailType === "story" || mailType === "people") && JOB_NARRATIVE_STREAMS.has(streamId) && hasRoleBinding(ev)) {
+    if ((mailType === "story" || mailType === "people") && hasRoleBinding(ev) && !PRIVATE_NARRATIVE_STREAMS.has(streamId)) {
       return true;
     }
 
