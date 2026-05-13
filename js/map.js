@@ -503,15 +503,25 @@
     const layers = PLACE_HIT_LAYERS.filter(hasLayer);
     if (!layers.length) return null;
 
+    const eventFeatures = Array.isArray(e?.features) ? e.features : [];
+    for (const layerId of PLACE_HIT_PRIORITY) {
+      const match = eventFeatures.find((feature) => feature?.layer?.id === layerId && feature?.properties?.id);
+      if (match) return match;
+    }
+
     const point = e?.point || getPointFromOriginalEvent(e?.originalEvent);
     if (!point) return null;
 
-    const queryBox = [
-      [point.x - PLACE_TAP_TOLERANCE_PX, point.y - PLACE_TAP_TOLERANCE_PX],
-      [point.x + PLACE_TAP_TOLERANCE_PX, point.y + PLACE_TAP_TOLERANCE_PX]
-    ];
+    const originalEvent = e?.originalEvent;
+    const isTouch = !!(originalEvent?.changedTouches?.length || originalEvent?.touches?.length || originalEvent?.pointerType === "touch");
+    const queryArea = isTouch
+      ? [
+          [point.x - PLACE_TAP_TOLERANCE_PX, point.y - PLACE_TAP_TOLERANCE_PX],
+          [point.x + PLACE_TAP_TOLERANCE_PX, point.y + PLACE_TAP_TOLERANCE_PX]
+        ]
+      : point;
 
-    const features = MAP.queryRenderedFeatures(queryBox, { layers });
+    const features = MAP.queryRenderedFeatures(queryArea, { layers });
     if (!Array.isArray(features) || !features.length) return null;
 
     for (const layerId of PLACE_HIT_PRIORITY) {
