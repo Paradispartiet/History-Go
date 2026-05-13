@@ -194,6 +194,7 @@ const PRECACHE_URLS = [
   "js/stories/story_dedupe.js",
   "js/stories/story_generator_engine.js",
   "js/stories/story_quiz_generator.js",
+  "js/stories/story_graph_engine.js",
 
   // Boot + app
   "js/boot.js",
