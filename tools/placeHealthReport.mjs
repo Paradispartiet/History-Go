@@ -101,7 +101,7 @@ function loadCanonicalEmneRegistry() {
     const data = readJson(filePath, { reportError: false });
     if (!Array.isArray(data)) continue;
 
-    stats.filesWithCanonicalEmners += 1;
+    stats.filesWithCanonicalEmner += 1;
 
     for (const item of data) {
       const emneId = String(item?.emne_id || "").trim();
@@ -302,7 +302,7 @@ function main() {
   console.log(`Places checked: ${stats.places}`);
   console.log(`Hidden places: ${stats.hidden}`);
   console.log(`Stub places: ${stats.stubs}`);
-  console.log(`Canonical emne files checked: ${stats.filesWithCanonicalEmners}`);
+  console.log(`Canonical emne files checked: ${stats.filesWithCanonicalEmner}`);
   console.log(`emne_ids checked: ${stats.emneIds}`);
   console.log(`Canonical emne_ids: ${stats.canonicalEmneIds}`);
   console.log(`Unknown emne_ids: ${stats.unknownEmneIds}`);
