@@ -254,7 +254,8 @@ async function boot() {
     "data/people/people_sport.json",
     "data/people/people_subkultur.json",
     "data/people/people_vitenskap.json",
-    "data/people/people_populaerkultur.json"
+    "data/people/people_populaerkultur.json",
+    "data/people/people_media.json"
   ];
 
   /** @type {unknown[]} */
