@@ -194,6 +194,29 @@
       if (id) placeById.set(id, place);
     }
 
+    const fullVisitedPlaceIds = new Set();
+    let fullVisitedPlacesLoadedCount = 0;
+    for (const placeIdRaw of toArray(state.visitedPlaceIds)) {
+      const placeId = s(placeIdRaw);
+      if (!placeId) continue;
+
+      const current = placeById.get(placeId);
+      if (toArray(current?.emne_ids).length) continue;
+
+      if (window.DataHub?.loadFullPlace) {
+        try {
+          const fullPlace = await window.DataHub.loadFullPlace(placeId, options);
+          if (fullPlace) {
+            placeById.set(placeId, fullPlace);
+            if (toArray(fullPlace?.emne_ids).length && !fullVisitedPlaceIds.has(placeId)) {
+              fullVisitedPlaceIds.add(placeId);
+              fullVisitedPlacesLoadedCount += 1;
+            }
+          }
+        } catch (_e) { }
+      }
+    }
+
     const subjectIds = Object.keys(toObject(manifest));
     const by = {};
 
@@ -294,7 +317,7 @@
       };
     }
 
-    return { by: by, healthReport: healthReport, manifest: manifest, state: state, placesLoadedCount: placesAll.length };
+    return { by: by, healthReport: healthReport, manifest: manifest, state: state, placesLoadedCount: placesAll.length, fullVisitedPlacesLoadedCount: fullVisitedPlacesLoadedCount };
   }
 
   function buildRecommendations(analysis) {
@@ -387,6 +410,7 @@
         visitedPlacesCount: toArray(analyzed.state.visitedPlaceIds).length,
         todayVisitedCount: toArray(analyzed.state.todayVisitedIds).length,
         placesLoadedCount: safeNumber(analyzed.placesLoadedCount),
+        fullVisitedPlacesLoadedCount: safeNumber(analyzed.fullVisitedPlacesLoadedCount),
         peopleCollectedCount: toArrayLike(analyzed.state.peopleCollected).length,
         quizProgressCount: toArrayLike(analyzed.state.quizProgress).length
       },
