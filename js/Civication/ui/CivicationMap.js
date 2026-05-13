@@ -32,7 +32,8 @@
     route(["alna","stovner"],1.5);
     route(["sentrum","gamle_oslo","nordstrand"],6);
     route(["sagene","grunerlokka","sentrum"],-2,"civi-map-urban-spine");
-    if(anchors.cityCore){ const c=node("circle"); c.setAttribute("cx",anchors.cityCore[0]*w); c.setAttribute("cy",anchors.cityCore[1]*h); c.setAttribute("r","48"); c.setAttribute("class","civi-map-core-structure"); layer.appendChild(c); }
+    const coreAnchor = anchors.cityCore || anchors.sentrum;
+    if(coreAnchor){ const c=node("circle"); c.setAttribute("cx",coreAnchor[0]*w); c.setAttribute("cy",coreAnchor[1]*h); c.setAttribute("r","48"); c.setAttribute("class","civi-map-core-structure"); layer.appendChild(c); }
   }
   function renderFjordHarborEdges(svg,w,h){
     const layer=svg.querySelector("#civi-map-shoreline"); if(!layer) return;
