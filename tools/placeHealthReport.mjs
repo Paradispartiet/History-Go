@@ -96,18 +96,45 @@ function loadCanonicalEmneRegistry() {
     FAG_ROOT,
     (filePath) => /(^|\/)emner_.*_canonical_v4_5\.json$/.test(filePath.replaceAll(path.sep, "/"))
   );
+  const domainMatrixFiles = walkFiles(
+    FAG_ROOT,
+    (filePath) => /(?:pensum|matrix)\.json$/.test(path.basename(filePath))
+  );
 
   for (const filePath of canonicalFiles) {
     const data = readJson(filePath, { reportError: false });
     if (!Array.isArray(data)) continue;
 
-    stats.filesWithCanonicalEmner += 1;
+    let fileContributed = false;
 
     for (const item of data) {
       const emneId = String(item?.emne_id || "").trim();
       if (!emneId) continue;
+      fileContributed = true;
       registry.set(emneId, rel(filePath));
     }
+
+    if (fileContributed) stats.filesWithCanonicalEmner += 1;
+  }
+
+  for (const filePath of domainMatrixFiles) {
+    const data = readJson(filePath, { reportError: false });
+    if (!data || typeof data !== "object" || Array.isArray(data)) continue;
+    if (!Array.isArray(data.domains)) continue;
+
+    let fileContributed = false;
+
+    for (const domain of data.domains) {
+      if (!Array.isArray(domain?.emne_ids)) continue;
+      for (const raw of domain.emne_ids) {
+        const emneId = String(raw || "").trim();
+        if (!emneId) continue;
+        fileContributed = true;
+        registry.set(emneId, rel(filePath));
+      }
+    }
+
+    if (fileContributed) stats.filesWithCanonicalEmner += 1;
   }
 
   return registry;
