@@ -107,10 +107,20 @@
     }
   }
 
-  function validateManifest(manifest) {
+  function validateManifest(manifest, context) {
     if (!manifest || typeof manifest !== "object" || Array.isArray(manifest)) {
       return { ok: false, message: "Manifest må være et objekt." };
     }
+
+    if (Object.keys(manifest).length === 0) {
+      return {
+        ok: false,
+        message: context && context.fromDataHub
+          ? "Manifest er tomt (DataHub returnerte tomt objekt)."
+          : "Manifest er tomt."
+      };
+    }
+
     return { ok: true };
   }
 
@@ -119,8 +129,10 @@
     const report = createReport();
 
     let manifest;
+    const manifestContext = { fromDataHub: false };
     try {
       if (window.DataHub && typeof window.DataHub.loadFagManifest === "function") {
+        manifestContext.fromDataHub = true;
         manifest = await window.DataHub.loadFagManifest(options);
       } else {
         const res = await fetch("data/fag/fag_manifest.json", { cache: "no-store" });
@@ -135,7 +147,7 @@
       return report;
     }
 
-    const manifestValidation = validateManifest(manifest);
+    const manifestValidation = validateManifest(manifest, manifestContext);
     if (!manifestValidation.ok) {
       error(report, manifestValidation.message);
       return report;
