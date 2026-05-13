@@ -3,6 +3,46 @@
 (function () {
   "use strict";
 
+  /**
+   * @typedef {import("../schemas/place").Place} KnowledgePlace
+   * @typedef {Record<string, unknown>} KnowledgeRecord
+   * @typedef {Map<string, KnowledgePlace>} KnowledgePlaceById
+   *
+   * @typedef {object} KnowledgeState
+   * @property {unknown[]} learningLog
+   * @property {unknown[]} learningLogMigrated
+   * @property {KnowledgeRecord} knowledgeLearning
+   * @property {unknown[]} insightEvents
+   * @property {unknown} knowledgeUniverse
+   * @property {unknown} quizProgress
+   * @property {unknown} visitedPlacesRaw
+   * @property {string[]} visitedPlaceIds
+   * @property {string[]} visitedPlaces
+   * @property {unknown} todayVisitedRaw
+   * @property {string[]} todayVisitedIds
+   * @property {string[]} todayVisited
+   * @property {unknown} peopleCollected
+   * @property {KnowledgeRecord} meritsByCategory
+   * @property {KnowledgeRecord} historygoProgress
+   * @property {unknown[]} unlocks
+   *
+   * @typedef {object} KnowledgeSubjectSignals
+   * @property {Map<string, number>} emneSignals
+   * @property {Map<string, number>} conceptSignals
+   * @property {number} quizSignals
+   * @property {number} visitedSignals
+   * @property {number} peopleSignals
+   * @property {KnowledgeRecord} signalBreakdown
+   *
+   * @typedef {object} KnowledgeAnalysisResult
+   * @property {KnowledgeRecord} by
+   * @property {unknown} healthReport
+   * @property {unknown} manifest
+   * @property {KnowledgeState} state
+   * @property {number} placesLoadedCount
+   * @property {number} fullVisitedPlacesLoadedCount
+   */
+
   function toArray(value) { return Array.isArray(value) ? value : []; }
   function toObject(value) { return value && typeof value === "object" && !Array.isArray(value) ? value : {}; }
   function toArrayLike(value) {
@@ -34,6 +74,10 @@
   function s(value) { return String(value == null ? "" : value).trim(); }
 
 
+  /**
+   * @param {unknown} value
+   * @returns {string[]}
+   */
   function normalizeIdCollection(value) {
     const ids = new Set();
 
@@ -63,6 +107,9 @@
   }
 
 
+  /**
+   * @returns {KnowledgeState}
+   */
   function readState() {
     const visitedPlacesRaw = readJsonStorage("visited_places", {});
     const todayVisitedRaw = readJsonStorage("hg_today_visited_v1", []);
@@ -103,6 +150,13 @@
     return raw;
   }
 
+  /**
+   * @param {string} subjectId
+   * @param {unknown[]} emnerAll
+   * @param {KnowledgeState} state
+   * @param {KnowledgePlaceById} placeById
+   * @returns {KnowledgeSubjectSignals}
+   */
   function collectSignalsForSubject(subjectId, emnerAll, state, placeById) {
     const emneById = new Map();
     const subjectConcepts = new Set();
@@ -220,14 +274,20 @@
     return { emneSignals, conceptSignals, quizSignals, visitedSignals, peopleSignals, signalBreakdown };
   }
 
+  /**
+   * @param {Record<string, unknown>=} opts
+   * @returns {Promise<KnowledgeAnalysisResult>}
+   */
   async function analyzeSubjects(opts) {
     const options = opts || {};
     const state = readState();
     const manifest = window.DataHub?.loadFagManifest ? await window.DataHub.loadFagManifest(options) : {};
     const healthReport = window.FagHealthReport?.run ? await window.FagHealthReport.run(options) : null;
+    /** @type {KnowledgePlace[]} */
     const placesAll = window.DataHub?.loadPlacesBase
       ? toArray(await window.DataHub.loadPlacesBase(options))
       : [];
+    /** @type {KnowledgePlaceById} */
     const placeById = new Map();
     for (const place of placesAll) {
       const id = s(place?.id);
@@ -386,6 +446,10 @@
     return { by: by, healthReport: healthReport, manifest: manifest, state: state, placesLoadedCount: placesAll.length, fullVisitedPlacesLoadedCount: fullVisitedPlacesLoadedCount };
   }
 
+  /**
+   * @param {KnowledgeRecord} analysis
+   * @returns {KnowledgeRecord[]}
+   */
   function buildRecommendations(analysis) {
     const subjectsById = toObject(analysis?.subjects?.by || analysis?.by || analysis?.subjects);
     const subjects = Object.values(subjectsById);
@@ -442,6 +506,10 @@
     return recommendations;
   }
 
+  /**
+   * @param {Record<string, unknown>=} opts
+   * @returns {Promise<KnowledgeRecord>}
+   */
   async function run(opts) {
     const analyzed = await analyzeSubjects(opts || {});
     const by = analyzed.by;

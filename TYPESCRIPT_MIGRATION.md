@@ -71,3 +71,10 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Place-returning loaders reuse the existing `Place` schema where practical, while broader legacy loaders remain intentionally typed as `unknown`/`unknown[]` until their data contracts are stabilized.
 - This phase is declaration-only and does not change `js/dataHub.js`, fetch behavior, cache behavior, paths, localStorage or startup flow.
 - The broader `npm run typecheck` baseline is still expected to remain.
+
+## Phase 7: Knowledge Engine JSDoc groundwork
+
+- `js/hgKnowledgeEngine.js` now has focused JSDoc aliases for the read-only analysis flow, including `KnowledgePlace`, `KnowledgeState`, `KnowledgeSubjectSignals` and `KnowledgeAnalysisResult`.
+- The analysis documents its place lookup as `Map<string, KnowledgePlace>` and uses the existing `Place` schema for visited-place signal extraction.
+- Runtime behavior is unchanged: no changes were made to DataHub calls, scoring, signal collection, `fullVisitedPlacesLoadedCount`, localStorage keys or output structure.
+- Remaining `npm run typecheck` baseline outside this focused JSDoc update is still expected.
