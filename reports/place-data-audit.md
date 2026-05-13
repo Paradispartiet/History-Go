@@ -1,6 +1,6 @@
 # Place Data Audit
 
-Generert: 2026-05-13T05:43:10.923Z
+Generert: 2026-05-13T07:40:01.508Z
 
 ## Totalsammendrag
 
@@ -15,12 +15,12 @@ Generert: 2026-05-13T05:43:10.923Z
 - Steder som bruker imageCard-felt: **0**
 - Steder med stub:true eller hidden:true: **0**
 - Antall ødelagte asset paths: **131**
-- Antall place-referanser til ikke-eksisterende id-er: **49**
+- Antall place-referanser til ikke-eksisterende id-er: **43**
 
 ## Dekning per datasett (placeId/places)
 
 - **quiz**: 91/437 steder dekket (mangler 346, ugyldige refs 569)
-- **people**: 68/437 steder dekket (mangler 369, ugyldige refs 47)
+- **people**: 72/437 steder dekket (mangler 365, ugyldige refs 41)
 - **nature**: 36/437 steder dekket (mangler 401, ugyldige refs 3)
 - **badges**: 0/437 steder dekket (mangler 437, ugyldige refs 0)
 - **wonderkammer**: 82/437 steder dekket (mangler 355, ugyldige refs 35)
@@ -846,12 +846,6 @@ Generert: 2026-05-13T05:43:10.923Z
 - data/people/people_litteratur.json :: [25].places[0] -> rolf_jacobsen_minne
 - data/people/people_musikk.json :: [5].placeId -> vulkan
 - data/people/people_musikk.json :: [5].places[0] -> vulkan
-- data/people/people_natur.json :: [0].placeId -> botanisk_hage
-- data/people/people_natur.json :: [0].places[0] -> botanisk_hage
-- data/people/people_natur.json :: [1].placeId -> botanisk_hage
-- data/people/people_natur.json :: [1].places[0] -> botanisk_hage
-- data/people/people_natur.json :: [2].placeId -> botanisk_hage
-- data/people/people_natur.json :: [2].places[0] -> botanisk_hage
 - data/people/people_vitenskap.json :: [5].placeId -> universitetet
 - data/people/people_vitenskap.json :: [5].places[0] -> universitetet
 - data/routes_walks.json :: [1].stops[0].placeId -> botanisk_hage
