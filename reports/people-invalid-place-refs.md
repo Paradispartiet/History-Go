@@ -1,15 +1,15 @@
 # People invalid place refs audit
 
-Generated: 2026-05-12T18:00:23.078Z
+Generated: 2026-05-13T07:49:17.918Z
 
 ## Sammendrag
 - People-filer lest: **13**
-- People lest: **176**
-- People med ugyldige refs: **25**
-- Ugyldige refs: **47**
+- People lest: **177**
+- People med ugyldige refs: **22**
+- Ugyldige refs: **41**
 - Unike ugyldige placeId-er: **20**
-- People uten gyldig sted: **27**
-- Duplikate interne place-referanser: **154**
+- People uten gyldig sted: **24**
+- Duplikate interne place-referanser: **155**
 
 ## Ugyldige refs gruppert per fil/person
 ### data/people/people_by.json
@@ -76,24 +76,12 @@ Generated: 2026-05-12T18:00:23.078Z
 - **ulrikke_brandstorp** (Ulrikke Brandstorp)
   - vulkan @ `placeId`
   - vulkan @ `places[0]`
-### data/people/people_natur.json
-- **peter_christen_asbjornsen** (Peter Christen Asbjørnsen)
-  - botanisk_hage @ `placeId`
-  - botanisk_hage @ `places[0]`
-- **michael_sars** (Michael Sars)
-  - botanisk_hage @ `placeId`
-  - botanisk_hage @ `places[0]`
-- **georg_ossian_sars** (Georg Ossian Sars)
-  - botanisk_hage @ `placeId`
-  - botanisk_hage @ `places[0]`
 ### data/people/people_vitenskap.json
 - **eilert_sundt** (Eilert Sundt)
   - universitetet @ `placeId`
   - universitetet @ `places[0]`
 
 ## Unike ugyldige placeId-er og kandidatforslag
-- **botanisk_hage** (missing_place_candidate, 7 treff)
-  - missing_place_candidate
 - **toyen_hovedgard** (needs_manual_review, 6 treff)
   - toyen_torg (confidence: low)
 - **sofienberg_poesipark** (needs_manual_review, 4 treff)
@@ -124,6 +112,8 @@ Generated: 2026-05-12T18:00:23.078Z
 - **bispeborgen** (missing_place_candidate, 1 treff)
   - missing_place_candidate
 - **bjornson_bolig** (missing_place_candidate, 1 treff)
+  - missing_place_candidate
+- **botanisk_hage** (missing_place_candidate, 1 treff)
   - missing_place_candidate
 - **collett_barndom** (missing_place_candidate, 1 treff)
   - missing_place_candidate
@@ -157,9 +147,6 @@ Generated: 2026-05-12T18:00:23.078Z
 - data/people/people_naeringsliv.json :: ellef_ringnes_bryggeri_og_ledelse (Ellef Ringnes)
 - data/people/people_naeringsliv.json :: christian_schweigaard_post_og_administrasjon (Christian Schweigaard)
 - data/people/people_naeringsliv.json :: alf_bjercke_industri_og_kvalitet (Alf Bjercke)
-- data/people/people_natur.json :: peter_christen_asbjornsen (Peter Christen Asbjørnsen)
-- data/people/people_natur.json :: michael_sars (Michael Sars)
-- data/people/people_natur.json :: georg_ossian_sars (Georg Ossian Sars)
 - data/people/people_populaerkultur.json :: herman_flesvig (Herman Flesvig)
 - data/people/people_populaerkultur.json :: morten_ramm (Morten Ramm)
 - data/people/people_populaerkultur.json :: bard_tufte_johansen (Bård Tufte Johansen)
@@ -288,11 +275,12 @@ Generated: 2026-05-12T18:00:23.078Z
 - data/people/people_filantroper.json :: alfred_nobel (Alfred Nobel) -> nobelinstituttet x2
 - data/people/people_filantroper.json :: hans_rasmus_astrup (Hans Rasmus Astrup) -> astrup_fearnley x2
 - data/people/people_filantroper.json :: christian_ringnes (Christian Ringnes) -> ekebergparken x2
-- data/people/people_natur.json :: peter_christen_asbjornsen (Peter Christen Asbjørnsen) -> botanisk_hage x2
-- data/people/people_natur.json :: michael_sars (Michael Sars) -> botanisk_hage x2
-- data/people/people_natur.json :: georg_ossian_sars (Georg Ossian Sars) -> botanisk_hage x2
-- data/people/people_natur.json :: jens_esmark (Jens Esmark) -> universitetsplassen x2
+- data/people/people_natur.json :: peter_christen_asbjornsen (Peter Christen Asbjørnsen) -> maridalsvannet x2
+- data/people/people_natur.json :: michael_sars (Michael Sars) -> bygdoy_natur x2
+- data/people/people_natur.json :: georg_ossian_sars (Georg Ossian Sars) -> hovedoya x2
+- data/people/people_natur.json :: jens_esmark (Jens Esmark) -> akerselva x2
 - data/people/people_natur.json :: arne_naess (Arne Næss) -> maerradalen x2
+- data/people/people_natur.json :: nils_faarlund (Nils Faarlund) -> maerradalen x2
 - data/people/people_politikk.json :: gro_harlem_brundtland (Gro Harlem Brundtland) -> stortinget x2
 - data/people/people_politikk.json :: jens_stoltenberg (Jens Stoltenberg) -> stortinget x2
 - data/people/people_politikk.json :: johan_sverdrup (Johan Sverdrup) -> stortinget x2
@@ -324,7 +312,6 @@ Generated: 2026-05-12T18:00:23.078Z
 - data/people/people_populaerkultur.json :: astrid_s (Astrid S) -> sorenga x2
 
 ## Anbefalt neste ryddebatch
-- botanisk_hage (missing_place_candidate, 7 treff)
 - toyen_hovedgard (needs_manual_review, 6 treff)
 - sofienberg_poesipark (needs_manual_review, 4 treff)
 - trefoldighetskirken (missing_place_candidate, 4 treff)
@@ -338,4 +325,5 @@ Generated: 2026-05-12T18:00:23.078Z
 - vulkan (likely_rename_to_existing_place, 2 treff)
 - bispeborgen (missing_place_candidate, 1 treff)
 - bjornson_bolig (missing_place_candidate, 1 treff)
+- botanisk_hage (missing_place_candidate, 1 treff)
 - collett_barndom (missing_place_candidate, 1 treff)

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-12T18:00:23.078Z",
+  "generatedAt": "2026-05-13T07:49:17.918Z",
   "input": {
     "placesManifest": "data/places/manifest.json",
     "peopleManifest": "data/people/manifest.json",
@@ -7,12 +7,12 @@
   },
   "summary": {
     "peopleFilesRead": 13,
-    "peopleRead": 176,
-    "peopleWithInvalidRefs": 25,
-    "invalidRefs": 47,
+    "peopleRead": 177,
+    "peopleWithInvalidRefs": 22,
+    "invalidRefs": 41,
     "uniqueInvalidPlaceIds": 20,
-    "peopleWithoutValidPlace": 27,
-    "duplicateInternalPlaceRefs": 154
+    "peopleWithoutValidPlace": 24,
+    "duplicateInternalPlaceRefs": 155
   },
   "invalidRefsGrouped": [
     {
@@ -506,80 +506,6 @@
       ]
     },
     {
-      "sourceFile": "data/people/people_natur.json",
-      "people": [
-        {
-          "personId": "peter_christen_asbjornsen",
-          "personName": "Peter Christen Asbjørnsen",
-          "invalidPlaceIds": [
-            "botanisk_hage"
-          ],
-          "invalidRefs": [
-            {
-              "sourceFile": "data/people/people_natur.json",
-              "personId": "peter_christen_asbjornsen",
-              "personName": "Peter Christen Asbjørnsen",
-              "field": "placeId",
-              "invalidPlaceId": "botanisk_hage"
-            },
-            {
-              "sourceFile": "data/people/people_natur.json",
-              "personId": "peter_christen_asbjornsen",
-              "personName": "Peter Christen Asbjørnsen",
-              "field": "places[0]",
-              "invalidPlaceId": "botanisk_hage"
-            }
-          ]
-        },
-        {
-          "personId": "michael_sars",
-          "personName": "Michael Sars",
-          "invalidPlaceIds": [
-            "botanisk_hage"
-          ],
-          "invalidRefs": [
-            {
-              "sourceFile": "data/people/people_natur.json",
-              "personId": "michael_sars",
-              "personName": "Michael Sars",
-              "field": "placeId",
-              "invalidPlaceId": "botanisk_hage"
-            },
-            {
-              "sourceFile": "data/people/people_natur.json",
-              "personId": "michael_sars",
-              "personName": "Michael Sars",
-              "field": "places[0]",
-              "invalidPlaceId": "botanisk_hage"
-            }
-          ]
-        },
-        {
-          "personId": "georg_ossian_sars",
-          "personName": "Georg Ossian Sars",
-          "invalidPlaceIds": [
-            "botanisk_hage"
-          ],
-          "invalidRefs": [
-            {
-              "sourceFile": "data/people/people_natur.json",
-              "personId": "georg_ossian_sars",
-              "personName": "Georg Ossian Sars",
-              "field": "placeId",
-              "invalidPlaceId": "botanisk_hage"
-            },
-            {
-              "sourceFile": "data/people/people_natur.json",
-              "personId": "georg_ossian_sars",
-              "personName": "Georg Ossian Sars",
-              "field": "places[0]",
-              "invalidPlaceId": "botanisk_hage"
-            }
-          ]
-        }
-      ]
-    },
-    {
       "sourceFile": "data/people/people_vitenskap.json",
       "people": [
         {
@@ -609,17 +535,6 @@
     }
   ],
   "uniqueInvalidPlaceIds": [
-    {
-      "invalidPlaceId": "botanisk_hage",
-      "occurrences": 7,
-      "peopleCount": 4,
-      "sourceFiles": [
-        "data/people/people_by.json",
-        "data/people/people_natur.json"
-      ],
-      "classification": "missing_place_candidate",
-      "suggestions": []
-    },
     {
       "invalidPlaceId": "toyen_hovedgard",
       "occurrences": 6,
@@ -796,6 +711,16 @@
       "peopleCount": 1,
       "sourceFiles": [
         "data/people/people_litteratur.json"
+      ],
+      "classification": "missing_place_candidate",
+      "suggestions": []
+    },
+    {
+      "invalidPlaceId": "botanisk_hage",
+      "occurrences": 1,
+      "peopleCount": 1,
+      "sourceFiles": [
+        "data/people/people_by.json"
       ],
       "classification": "missing_place_candidate",
       "suggestions": []
@@ -1011,36 +936,6 @@
       "personName": "Alf Bjercke",
       "totalRefs": 0,
       "refs": []
-    },
-    {
-      "sourceFile": "data/people/people_natur.json",
-      "personId": "peter_christen_asbjornsen",
-      "personName": "Peter Christen Asbjørnsen",
-      "totalRefs": 2,
-      "refs": [
-        "botanisk_hage",
-        "botanisk_hage"
-      ]
-    },
-    {
-      "sourceFile": "data/people/people_natur.json",
-      "personId": "michael_sars",
-      "personName": "Michael Sars",
-      "totalRefs": 2,
-      "refs": [
-        "botanisk_hage",
-        "botanisk_hage"
-      ]
-    },
-    {
-      "sourceFile": "data/people/people_natur.json",
-      "personId": "georg_ossian_sars",
-      "personName": "Georg Ossian Sars",
-      "totalRefs": 2,
-      "refs": [
-        "botanisk_hage",
-        "botanisk_hage"
-      ]
     },
     {
       "sourceFile": "data/people/people_populaerkultur.json",
@@ -2410,7 +2305,7 @@
       "sourceFile": "data/people/people_natur.json",
       "personId": "peter_christen_asbjornsen",
       "personName": "Peter Christen Asbjørnsen",
-      "placeId": "botanisk_hage",
+      "placeId": "maridalsvannet",
       "count": 2,
       "fields": [
         "placeId",
@@ -2421,7 +2316,7 @@
       "sourceFile": "data/people/people_natur.json",
       "personId": "michael_sars",
       "personName": "Michael Sars",
-      "placeId": "botanisk_hage",
+      "placeId": "bygdoy_natur",
       "count": 2,
       "fields": [
         "placeId",
@@ -2432,7 +2327,7 @@
       "sourceFile": "data/people/people_natur.json",
       "personId": "georg_ossian_sars",
       "personName": "Georg Ossian Sars",
-      "placeId": "botanisk_hage",
+      "placeId": "hovedoya",
       "count": 2,
       "fields": [
         "placeId",
@@ -2443,7 +2338,7 @@
       "sourceFile": "data/people/people_natur.json",
       "personId": "jens_esmark",
       "personName": "Jens Esmark",
-      "placeId": "universitetsplassen",
+      "placeId": "akerselva",
       "count": 2,
       "fields": [
         "placeId",
@@ -2454,6 +2349,17 @@
       "sourceFile": "data/people/people_natur.json",
       "personId": "arne_naess",
       "personName": "Arne Næss",
+      "placeId": "maerradalen",
+      "count": 2,
+      "fields": [
+        "placeId",
+        "places[0]"
+      ]
+    },
+    {
+      "sourceFile": "data/people/people_natur.json",
+      "personId": "nils_faarlund",
+      "personName": "Nils Faarlund",
       "placeId": "maerradalen",
       "count": 2,
       "fields": [
@@ -2783,12 +2689,6 @@
   ],
   "recommendedNextBatch": [
     {
-      "invalidPlaceId": "botanisk_hage",
-      "classification": "missing_place_candidate",
-      "occurrences": 7,
-      "suggestions": []
-    },
-    {
       "invalidPlaceId": "toyen_hovedgard",
       "classification": "needs_manual_review",
       "occurrences": 6,
@@ -2912,6 +2812,12 @@
     },
     {
       "invalidPlaceId": "bjornson_bolig",
+      "classification": "missing_place_candidate",
+      "occurrences": 1,
+      "suggestions": []
+    },
+    {
+      "invalidPlaceId": "botanisk_hage",
       "classification": "missing_place_candidate",
       "occurrences": 1,
       "suggestions": []

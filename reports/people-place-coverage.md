@@ -1,18 +1,18 @@
 # People-place coverage audit
 
-Generert: 2026-05-12T18:00:23.002Z
+Generert: 2026-05-13T07:49:18.691Z
 
 ## Sammendrag
 
-- People totalt: **176**
+- People totalt: **177**
 - Places totalt: **437**
-- Places med people: **68**
-- Places uten people: **369**
-- People-place-lenker: **231**
+- Places med people: **72**
+- Places uten people: **365**
+- People-place-lenker: **235**
 - People koblet til flere gyldige steder: **69**
-- People uten gyldig sted: **27**
-- Ugyldige place-referanser: **33**
-- Duplikate place-referanser inne på people: **154**
+- People uten gyldig sted: **24**
+- Ugyldige place-referanser: **30**
+- Duplikate place-referanser inne på people: **155**
 - People uten image: **16**
 - People uten cardImage: **16**
 - People uten popupDesc: **21**
@@ -21,7 +21,7 @@ Generert: 2026-05-12T18:00:23.002Z
 
 | Kategori | Places | Med people | Uten people | People-lenker | Unike people |
 |---|---:|---:|---:|---:|---:|
-| by | 95 | 22 | 73 | 57 | 44 |
+| by | 95 | 23 | 72 | 57 | 44 |
 | film_tv | 10 | 0 | 10 | 0 | 0 |
 | historie | 47 | 11 | 36 | 76 | 49 |
 | kunst | 18 | 4 | 14 | 6 | 6 |
@@ -29,10 +29,9 @@ Generert: 2026-05-12T18:00:23.002Z
 | media | 7 | 0 | 7 | 0 | 0 |
 | musikk | 13 | 1 | 12 | 2 | 2 |
 | naeringsliv | 41 | 1 | 40 | 1 | 1 |
-| natur | 59 | 1 | 58 | 1 | 1 |
+| natur | 59 | 4 | 55 | 5 | 5 |
 | politikk | 15 | 4 | 11 | 34 | 24 |
-| popkultur | 17 | 0 | 17 | 0 | 0 |
-| populaerkultur | 6 | 0 | 6 | 0 | 0 |
+| populaerkultur | 23 | 0 | 23 | 0 | 0 |
 | sport | 38 | 4 | 34 | 7 | 7 |
 | subkultur | 23 | 1 | 22 | 1 | 1 |
 | vitenskap | 17 | 3 | 14 | 10 | 10 |
@@ -49,8 +48,8 @@ Generert: 2026-05-12T18:00:23.002Z
 - middelalder: 11
 - musikk: 10
 - sport: 8
+- natur: 7
 - by: 6
-- natur: 6
 - arbeiderbevegelse: 4
 - filantrop: 4
 - naeringsliv: 4
@@ -98,8 +97,8 @@ Generert: 2026-05-12T18:00:23.002Z
 - stortinget (Stortinget) – 14
 - karl_johan (Karl Johans gate) – 10
 - gamle_deichman (Gamle Deichman) – 9
-- universitetsplassen (Universitetsplassen) – 9
 - oslo_radhus (Oslo rådhus) – 8
+- universitetsplassen (Universitetsplassen) – 8
 - eidsvolls_plass (Eidsvolls plass) – 7
 - var_frelsers_gravlund (Vår Frelsers gravlund) – 6
 - nobelinstituttet (Nobelinstituttet) – 5
@@ -149,9 +148,6 @@ Generert: 2026-05-12T18:00:23.002Z
 - cecilie_loveid (Cecilie Løveid) -> sofienberg_poesipark
 - rolf_jacobsen (Rolf Jacobsen) -> rolf_jacobsen_minne
 - ulrikke_brandstorp (Ulrikke Brandstorp) -> vulkan
-- peter_christen_asbjornsen (Peter Christen Asbjørnsen) -> botanisk_hage
-- michael_sars (Michael Sars) -> botanisk_hage
-- georg_ossian_sars (Georg Ossian Sars) -> botanisk_hage
 - eilert_sundt (Eilert Sundt) -> universitetet
 
 ## Duplikate place-referanser inne på people
@@ -256,7 +252,7 @@ Generert: 2026-05-12T18:00:23.002Z
 - cecilie_loveid (Cecilie Løveid) -> sofienberg_poesipark
 - rolf_jacobsen (Rolf Jacobsen) -> rolf_jacobsen_minne
 - oskar_braaten (Oskar Braaten) -> oscar_braaten_statuen
-- ... 54 flere
+- ... 55 flere
 
 ## Anbefalt første people-batch
 
