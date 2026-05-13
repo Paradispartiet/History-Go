@@ -56,7 +56,6 @@ type DataHubApi = {
   APP_BASE_PATH?: string;
   DEFAULTS?: {
     DATA_BASE?: string;
-    EMNERS_BASE?: string;
     EMNER_BASE?: string;
     [key: string]: unknown;
   };
