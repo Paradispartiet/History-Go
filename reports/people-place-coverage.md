@@ -1,18 +1,18 @@
 # People-place coverage audit
 
-Generert: 2026-05-13T08:13:47.476Z
+Generert: 2026-05-13T08:40:00.012Z
 
 ## Sammendrag
 
-- People totalt: **182**
+- People totalt: **181**
 - Places totalt: **437**
-- Places med people: **76**
-- Places uten people: **361**
-- People-place-lenker: **241**
+- Places med people: **75**
+- Places uten people: **362**
+- People-place-lenker: **240**
 - People koblet til flere gyldige steder: **70**
 - People uten gyldig sted: **24**
 - Ugyldige place-referanser: **30**
-- Duplikate place-referanser inne på people: **160**
+- Duplikate place-referanser inne på people: **159**
 - People uten image: **16**
 - People uten cardImage: **16**
 - People uten popupDesc: **21**
@@ -26,7 +26,7 @@ Generert: 2026-05-13T08:13:47.476Z
 | historie | 47 | 11 | 36 | 76 | 49 |
 | kunst | 18 | 4 | 14 | 6 | 6 |
 | litteratur | 31 | 16 | 15 | 36 | 31 |
-| media | 7 | 4 | 3 | 6 | 5 |
+| media | 7 | 3 | 4 | 5 | 4 |
 | musikk | 13 | 1 | 12 | 2 | 2 |
 | naeringsliv | 41 | 1 | 40 | 1 | 1 |
 | natur | 59 | 4 | 55 | 5 | 5 |
@@ -50,16 +50,16 @@ Generert: 2026-05-13T08:13:47.476Z
 - sport: 8
 - natur: 7
 - by: 6
-- media: 5
 - arbeiderbevegelse: 4
 - filantrop: 4
+- media: 4
 - naeringsliv: 4
-- tv: 4
-- journalistikk: 3
-- kringkasting: 3
 - mesen: 3
 - satire: 3
+- tv: 3
 - arkitektur: 2
+- journalistikk: 2
+- kringkasting: 2
 - militaerhistorie: 2
 - absurd humor: 1
 - avis: 1
@@ -252,7 +252,7 @@ Generert: 2026-05-13T08:13:47.476Z
 - cecilie_loveid (Cecilie Løveid) -> sofienberg_poesipark
 - rolf_jacobsen (Rolf Jacobsen) -> rolf_jacobsen_minne
 - oskar_braaten (Oskar Braaten) -> oscar_braaten_statuen
-- ... 60 flere
+- ... 59 flere
 
 ## Anbefalt første people-batch
 

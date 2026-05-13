@@ -1,15 +1,15 @@
 # People invalid place refs audit
 
-Generated: 2026-05-13T08:13:46.550Z
+Generated: 2026-05-13T08:39:59.141Z
 
 ## Sammendrag
 - People-filer lest: **14**
-- People lest: **182**
+- People lest: **181**
 - People med ugyldige refs: **22**
 - Ugyldige refs: **41**
 - Unike ugyldige placeId-er: **20**
 - People uten gyldig sted: **24**
-- Duplikate interne place-referanser: **160**
+- Duplikate interne place-referanser: **159**
 
 ## Ugyldige refs gruppert per fil/person
 ### data/people/people_by.json
@@ -310,7 +310,6 @@ Generated: 2026-05-13T08:13:46.550Z
 - data/people/people_subkultur.json :: stephen_butkus (Stephen Butkus) -> tjuvholmen x2
 - data/people/people_vitenskap.json :: eilert_sundt (Eilert Sundt) -> universitetet x2
 - data/people/people_populaerkultur.json :: astrid_s (Astrid S) -> sorenga x2
-- data/people/people_media.json :: fredrik_skavlan (Fredrik Skavlan) -> good_game_redaksjon x2
 - data/people/people_media.json :: torry_pedersen (Torry Pedersen) -> vg_huset x2
 - data/people/people_media.json :: jose_rodrigues_dos_santos (José Rodrigues dos Santos) -> lisbon_rtp x2
 - data/people/people_media.json :: catarina_furtado (Catarina Furtado) -> lisbon_rtp x2
