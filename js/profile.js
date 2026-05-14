@@ -759,6 +759,21 @@ function renderLatestKnowledge() {
   box.style.display = "block";
 }
 
+/**
+ * @typedef {Record<string, unknown>} ProfileRecord
+ * @typedef {object} ProfileKnowledgeReport
+ * @property {boolean=} ok
+ * @property {ProfileRecord=} summary
+ * @property {ProfileRecord=} sourceState
+ * @property {ProfileRecord=} subjects
+ * @property {unknown[]=} recommendations
+ * @property {unknown=} healthReport
+ * @property {string=} generatedAt
+ */
+
+/**
+ * @returns {Promise<void>}
+ */
 async function renderKnowledgeEnginePanel() {
   const panel = document.getElementById("knowledgeEnginePanel");
   const metaEl = document.getElementById("knowledgeEngineMeta");
@@ -774,6 +789,7 @@ async function renderKnowledgeEnginePanel() {
   }
 
   try {
+    /** @type {ProfileKnowledgeReport | null} */
     const report = await window.HGKnowledgeEngine.run({ cache: "default" });
     window.hgKnowledgeReport = report;
 
@@ -782,7 +798,9 @@ async function renderKnowledgeEnginePanel() {
       return;
     }
 
+    /** @type {ProfileRecord} */
     const summary = report?.summary || {};
+    /** @type {ProfileRecord} */
     const sourceState = report?.sourceState || {};
     const summaryCards = [
       [`${Number(summary.subjects || 0)}`, "fag"],
@@ -796,6 +814,7 @@ async function renderKnowledgeEnginePanel() {
       .map(([value, label]) => `<div class="knowledge-engine-summary-card"><strong>${_esc(value)}</strong><span>${_esc(label)}</span></div>`)
       .join("");
 
+    /** @type {unknown[]} */
     const allSubjects = Object.values(report?.subjects || {});
     const eligible = allSubjects.filter((subject) => {
       const progress = subject?.progress || {};
@@ -851,6 +870,7 @@ async function renderKnowledgeEnginePanel() {
       `;
     }
 
+    /** @type {unknown[]} */
     const recs = Array.isArray(report?.recommendations) ? report.recommendations.slice(0, 3) : [];
     recsEl.innerHTML = recs.length
       ? recs.map((rec) => `<article class="knowledge-engine-recommendation"><strong>${_esc(rec?.title || "Anbefaling")}</strong><div>${_esc(rec?.reason || "")}</div><small>${_esc(rec?.subjectId ? `Fag: ${rec.subjectId}` : "")}</small></article>`).join("")
