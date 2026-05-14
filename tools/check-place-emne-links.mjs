@@ -26,20 +26,34 @@ function collectIdsDeep(node, out) {
   for (const value of Object.values(node)) collectIdsDeep(value, out);
 }
 
+function extractCanonicalIdFromEmnerPath(emnerRelPath) {
+  const base = path.basename(emnerRelPath);
+  const m = base.match(/^emner_(.+?)(?:_canonical.*)?\.json$/);
+  return m ? m[1] : null;
+}
+
+function loadEmnerIdsFromPath(emnerRelPath) {
+  const emnerPath = path.join(root, 'data/fag', emnerRelPath);
+  const emnerData = JSON.parse(fs.readFileSync(emnerPath, 'utf8'));
+  const emner = toArray(emnerData);
+  const ids = new Set();
+  collectIdsDeep(emner, ids);
+  return ids;
+}
+
 function buildSubjectEmneIndex() {
   const index = new Map();
 
   for (const [subjectId, cfg] of Object.entries(fagManifest)) {
     const emnerRel = cfg?.emner;
     if (!emnerRel) continue;
-    const emnerPath = path.join(root, 'data/fag', emnerRel);
-
-    const emnerData = JSON.parse(fs.readFileSync(emnerPath, 'utf8'));
-    const emner = toArray(emnerData);
-    const ids = new Set();
-    collectIdsDeep(emner, ids);
-
+    const ids = loadEmnerIdsFromPath(emnerRel);
     index.set(subjectId, ids);
+
+    const canonicalFromFile = extractCanonicalIdFromEmnerPath(emnerRel);
+    if (canonicalFromFile && canonicalFromFile !== subjectId && !index.has(canonicalFromFile)) {
+      index.set(canonicalFromFile, ids);
+    }
   }
 
   return index;
