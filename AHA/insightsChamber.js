@@ -710,6 +710,36 @@ function createInsightFromSignal(signal) {
   const dimensions = analyzeDimensions(text);
   const narrative = analyzeNarrative(text);
   const concepts = extractConcepts(text);
+
+  const candidateInputs = [];
+  if (Array.isArray(signal && signal.candidate_concepts)) {
+    candidateInputs.push.apply(candidateInputs, signal.candidate_concepts);
+  }
+
+  const layerConcepts = signal && signal.layers && signal.layers.concepts;
+  if (Array.isArray(layerConcepts)) {
+    candidateInputs.push.apply(candidateInputs, layerConcepts);
+  }
+
+  const candidateConcepts = candidateInputs
+    .map((item) => {
+      const rawLabel = typeof item === "string"
+        ? item
+        : item && typeof item === "object"
+        ? (item.label || item.key || "")
+        : "";
+      const label = String(rawLabel || "").trim();
+      const key = normalizeConceptLabelToKey(label);
+      if (!key) return null;
+      return { key, count: 1, examples: label ? [label] : [] };
+    })
+    .filter(Boolean);
+
+  const mergedConcepts = dedupeByKey(
+    mergeConcepts(concepts, candidateConcepts),
+    "key"
+  );
+
   const semiotic = analyzeSemioticSignals(text);
 
   const depthScore = computeDepthHeuristic(
@@ -748,7 +778,7 @@ function createInsightFromSignal(signal) {
     semantic,
     dimensions,
     narrative,
-    concepts,
+    concepts: mergedConcepts,
     semiotic,
 
     coherence: computeCoherence(signal.text),
@@ -919,6 +949,38 @@ function createInsightFromSignal(signal) {
 }
 
   // ── Begrepsmotor: enkle "concepts" per innsikt ─────────────
+
+
+function dedupeByKey(items, keyField) {
+  const map = new Map();
+  (items || []).forEach((item) => {
+    if (!item || !item[keyField]) return;
+    if (!map.has(item[keyField])) {
+      map.set(item[keyField], item);
+      return;
+    }
+
+    const prev = map.get(item[keyField]);
+    map.set(item[keyField], {
+      ...prev,
+      count: (prev.count || 0) + (item.count || 0),
+      examples: Array.from(
+        new Set([...(prev.examples || []), ...(item.examples || [])])
+      ).slice(0, 5),
+    });
+  });
+  return Array.from(map.values());
+}
+
+function normalizeConceptLabelToKey(label) {
+  const normalized = String(label || "")
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-zæøå0-9]+/g, "_")
+    .replace(/^_+|_+$/g, "");
+
+  return normalized;
+}
 
   // ── Begrepsanalyse per innsikt (fasit) ─────────────
 
