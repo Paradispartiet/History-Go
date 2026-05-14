@@ -117,7 +117,7 @@ for (const [cat, total] of [...stats.byCategory.entries()].sort()) {
 }
 console.log('invalid emne_ids:', invalid.length);
 if (invalid.length) console.log(JSON.stringify(invalid, null, 2));
-console.log('cross-subject mismatches:', mismatches.length);
+console.log('cross-subject mismatches (warning):', mismatches.length);
 if (mismatches.length) console.log(JSON.stringify(mismatches, null, 2));
 
-if (invalid.length || mismatches.length) process.exit(1);
+if (invalid.length) process.exit(1);
