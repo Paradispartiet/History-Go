@@ -1,15 +1,15 @@
 # People invalid place refs audit
 
-Generated: 2026-05-13T09:09:29.607Z
+Generated: 2026-05-13T10:18:39.684Z
 
 ## Sammendrag
-- People-filer lest: **15**
-- People lest: **181**
+- People-filer lest: **17**
+- People lest: **195**
 - People med ugyldige refs: **22**
 - Ugyldige refs: **41**
 - Unike ugyldige placeId-er: **20**
 - People uten gyldig sted: **24**
-- Duplikate interne place-referanser: **159**
+- Duplikate interne place-referanser: **173**
 
 ## Ugyldige refs gruppert per fil/person
 ### data/people/people_by.json
@@ -221,6 +221,15 @@ Generated: 2026-05-13T09:09:29.607Z
 - data/people/people_historie.json :: gunnhild_kongsmor (Gunnhild kongsmor) -> akerhus_slott x2
 - data/people/people_historie.json :: sigurd_ribbung (Sigurd Ribbung) -> oslo_domkirke x2
 - data/people/people_historie.json :: alv_erlingsson (Alv Erlingsson) -> akerhus_slott x2
+- data/people/people_historie_next_batch_02_normalized.json :: astrid_olavsdatter (Astrid Olavsdatter) -> middelalder_oslo x2
+- data/people/people_historie_next_batch_02_normalized.json :: magnus_den_gode (Magnus den gode) -> middelalder_oslo x2
+- data/people/people_historie_next_batch_02_normalized.json :: magnus_lagabote (Magnus Lagabøte) -> middelalder_oslo x2
+- data/people/people_historie_next_batch_02_normalized.json :: gunnhild_kongsmor (Gunnhild kongsmor) -> akerhus_slott x2
+- data/people/people_historie_next_batch_02_normalized.json :: sigurd_ribbung (Sigurd Ribbung) -> oslo_domkirke x2
+- data/people/people_historie_next_batch_02_normalized.json :: alv_erlingsson (Alv Erlingsson) -> akerhus_slott x2
+- data/people/people_historie_next_batch_03_normalized.json :: ingebjorg_hakonsdatter (Ingebjørg Håkonsdatter) -> akerhus_slott x2
+- data/people/people_historie_next_batch_03_normalized.json :: haakon_haakonsson (Håkon Håkonsson) -> oslo_domkirke x2
+- data/people/people_historie_next_batch_03_normalized.json :: skule_baardsson (Skule Bårdsson) -> middelalder_oslo x2
 - data/people/people_kunst.json :: munch (Edvard Munch) -> munch_museet x2
 - data/people/people_kunst.json :: harriet_backer (Harriet Backer) -> nasjonalmuseet x2
 - data/people/people_kunst.json :: gustav_vigeland (Gustav Vigeland) -> vigelandsparken x2
@@ -278,7 +287,7 @@ Generated: 2026-05-13T09:09:29.607Z
 - data/people/people_natur.json :: peter_christen_asbjornsen (Peter Christen Asbjørnsen) -> maridalsvannet x2
 - data/people/people_natur.json :: michael_sars (Michael Sars) -> bygdoy_natur x2
 - data/people/people_natur.json :: georg_ossian_sars (Georg Ossian Sars) -> hovedoya x2
-- data/people/people_natur.json :: jens_esmark (Jens Esmark) -> akerselva x2
+- data/people/people_natur.json :: jens_esmark (Jens Esmark) -> maridalsvannet x2
 - data/people/people_natur.json :: arne_naess (Arne Næss) -> maerradalen x2
 - data/people/people_natur.json :: nils_faarlund (Nils Faarlund) -> maerradalen x2
 - data/people/people_politikk.json :: gro_harlem_brundtland (Gro Harlem Brundtland) -> stortinget x2
@@ -311,6 +320,11 @@ Generated: 2026-05-13T09:09:29.607Z
 - data/people/people_vitenskap.json :: eilert_sundt (Eilert Sundt) -> universitetet x2
 - data/people/people_populaerkultur.json :: astrid_s (Astrid S) -> sorenga x2
 - data/people/media/oslo/people_media_oslo.json :: torry_pedersen (Torry Pedersen) -> vg_huset x2
+- data/people/media/oslo/people_media_oslo.json :: gard_steiro (Gard Steiro) -> vg_huset x2
+- data/people/media/oslo/people_media_oslo.json :: hanne_skartveit (Hanne Skartveit) -> vg_huset x2
+- data/people/media/oslo/people_media_oslo.json :: bernt_olufsen (Bernt Olufsen) -> vg_huset x2
+- data/people/media/oslo/people_media_oslo.json :: shabana_rehman (Shabana Rehman) -> vg_huset x2
+- data/people/media/oslo/people_media_oslo.json :: frode_hansen (Frode Hansen) -> vg_huset x2
 - data/people/media/europe/portugal/lisbon/people_media_lisbon.json :: jose_rodrigues_dos_santos (José Rodrigues dos Santos) -> lisbon_rtp x2
 - data/people/media/europe/portugal/lisbon/people_media_lisbon.json :: catarina_furtado (Catarina Furtado) -> lisbon_rtp x2
 - data/people/media/europe/portugal/lisbon/people_media_lisbon.json :: jose_alberto_carvalho (José Alberto Carvalho) -> lisbon_rtp x2

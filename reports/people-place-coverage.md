@@ -1,18 +1,18 @@
 # People-place coverage audit
 
-Generert: 2026-05-13T09:09:29.478Z
+Generert: 2026-05-13T10:18:39.612Z
 
 ## Sammendrag
 
-- People totalt: **181**
-- Places totalt: **437**
-- Places med people: **75**
-- Places uten people: **362**
-- People-place-lenker: **240**
-- People koblet til flere gyldige steder: **70**
+- People totalt: **195**
+- Places totalt: **444**
+- Places med people: **74**
+- Places uten people: **370**
+- People-place-lenker: **263**
+- People koblet til flere gyldige steder: **79**
 - People uten gyldig sted: **24**
 - Ugyldige place-referanser: **30**
-- Duplikate place-referanser inne på people: **159**
+- Duplikate place-referanser inne på people: **173**
 - People uten image: **16**
 - People uten cardImage: **16**
 - People uten popupDesc: **21**
@@ -21,15 +21,15 @@ Generert: 2026-05-13T09:09:29.478Z
 
 | Kategori | Places | Med people | Uten people | People-lenker | Unike people |
 |---|---:|---:|---:|---:|---:|
-| by | 95 | 23 | 72 | 57 | 44 |
+| by | 95 | 22 | 73 | 56 | 43 |
 | film_tv | 10 | 0 | 10 | 0 | 0 |
-| historie | 47 | 11 | 36 | 76 | 49 |
+| historie | 54 | 11 | 43 | 94 | 52 |
 | kunst | 18 | 4 | 14 | 6 | 6 |
 | litteratur | 31 | 16 | 15 | 36 | 31 |
-| media | 7 | 3 | 4 | 5 | 4 |
+| media | 7 | 3 | 4 | 10 | 9 |
 | musikk | 13 | 1 | 12 | 2 | 2 |
 | naeringsliv | 41 | 1 | 40 | 1 | 1 |
-| natur | 59 | 4 | 55 | 5 | 5 |
+| natur | 59 | 4 | 55 | 6 | 6 |
 | politikk | 15 | 4 | 11 | 34 | 24 |
 | populaerkultur | 23 | 0 | 23 | 0 | 0 |
 | sport | 38 | 4 | 34 | 7 | 7 |
@@ -38,34 +38,40 @@ Generert: 2026-05-13T09:09:29.478Z
 
 ## People tags
 
-- historie: 62
+- historie: 71
 - litteratur: 38
 - politikk: 27
+- middelalder: 19
 - subkultur: 13
 - vitenskap: 12
 - krig: 11
 - kunst: 11
-- middelalder: 11
 - musikk: 10
+- media: 9
 - sport: 8
+- journalistikk: 7
 - natur: 7
+- avis: 6
 - by: 6
+- presse: 6
+- redaksjon: 5
 - arbeiderbevegelse: 4
+- borgerkrigstid: 4
 - filantrop: 4
-- media: 4
 - naeringsliv: 4
 - mesen: 3
 - satire: 3
 - tv: 3
 - arkitektur: 2
-- journalistikk: 2
+- kommentarjournalistikk: 2
 - kringkasting: 2
 - militaerhistorie: 2
+- nettavis: 2
+- rett: 2
+- vikingtid: 2
 - absurd humor: 1
-- avis: 1
 - bibliotek: 1
 - boksamling: 1
-- borgerkrigstid: 1
 - byutvikling: 1
 - digital kultur: 1
 - eksperimentell underholdning: 1
@@ -75,25 +81,19 @@ Generert: 2026-05-13T09:09:29.478Z
 - kulturarv: 1
 - kunnskap: 1
 - kunstsamler: 1
+- medieledelse: 1
 - nobel: 1
 - nyhetsformidling: 1
 - observasjonell humor: 1
+- offentlighet: 1
 - parodi: 1
 - personlig humor: 1
-- populaerkultur: 1
-- presse: 1
-- publisering: 1
-- redaksjon: 1
-- rett: 1
-- samfunnsanalyse: 1
-- samfunnsengasjement: 1
-- samtidskunst: 1
 
 ## Steder med flest people
 
-- middelalder_oslo (Middelalderparken) – 18
-- akerhus_slott (Akerhus Slott) – 16
-- oslo_domkirke (Oslo domkirke) – 15
+- middelalder_oslo (Middelalderparken) – 27
+- akerhus_slott (Akerhus Slott) – 20
+- oslo_domkirke (Oslo domkirke) – 20
 - stortinget (Stortinget) – 14
 - karl_johan (Karl Johans gate) – 10
 - gamle_deichman (Gamle Deichman) – 9
@@ -101,6 +101,7 @@ Generert: 2026-05-13T09:09:29.478Z
 - universitetsplassen (Universitetsplassen) – 8
 - eidsvolls_plass (Eidsvolls plass) – 7
 - var_frelsers_gravlund (Vår Frelsers gravlund) – 6
+- vg_huset (VG-huset) – 6
 - nobelinstituttet (Nobelinstituttet) – 5
 - slottet (Det kongelige slott) – 5
 - youngstorget (Youngstorget) – 5
@@ -115,7 +116,6 @@ Generert: 2026-05-13T09:09:29.478Z
 - mollergata_19 (Møllergata 19) – 3
 - nasjonalbiblioteket (Nasjonalbiblioteket) – 3
 - observatoriet (Observatoriet) – 3
-- operahuset (Operahuset) – 3
 
 ## Ugyldige place-referanser
 
@@ -218,6 +218,15 @@ Generert: 2026-05-13T09:09:29.478Z
 - gunnhild_kongsmor (Gunnhild kongsmor) -> akerhus_slott
 - sigurd_ribbung (Sigurd Ribbung) -> oslo_domkirke
 - alv_erlingsson (Alv Erlingsson) -> akerhus_slott
+- astrid_olavsdatter (Astrid Olavsdatter) -> middelalder_oslo
+- magnus_den_gode (Magnus den gode) -> middelalder_oslo
+- magnus_lagabote (Magnus Lagabøte) -> middelalder_oslo
+- gunnhild_kongsmor (Gunnhild kongsmor) -> akerhus_slott
+- sigurd_ribbung (Sigurd Ribbung) -> oslo_domkirke
+- alv_erlingsson (Alv Erlingsson) -> akerhus_slott
+- ingebjorg_hakonsdatter (Ingebjørg Håkonsdatter) -> akerhus_slott
+- haakon_haakonsson (Håkon Håkonsson) -> oslo_domkirke
+- skule_baardsson (Skule Bårdsson) -> middelalder_oslo
 - munch (Edvard Munch) -> munch_museet
 - harriet_backer (Harriet Backer) -> nasjonalmuseet
 - gustav_vigeland (Gustav Vigeland) -> vigelandsparken
@@ -243,16 +252,7 @@ Generert: 2026-05-13T09:09:29.478Z
 - gro_dahle (Gro Dahle) -> tronsmo_bokhandel
 - helene_uri (Helene Uri) -> eldorado_bokhandel
 - ingvar_ambjornsen (Ingvar Ambjørnsen) -> deichman_grunerlokka
-- jan_erik_vold (Jan Erik Vold) -> kulturkirken_jakob_litteratur
-- pedro_carmona_alvarez (Pedro Carmona-Alvarez) -> kulturkirken_jakob_litteratur
-- lars_saabye_christensen (Lars Saabye Christensen) -> norli_universitetsgata
-- jonas_collett (Jonas Collett) -> collett_monument
-- ruth_maier (Ruth Maier) -> ruth_maier_minne
-- alf_proysen (Alf Prøysen) -> alf_proysen_statue_nittedal
-- cecilie_loveid (Cecilie Løveid) -> sofienberg_poesipark
-- rolf_jacobsen (Rolf Jacobsen) -> rolf_jacobsen_minne
-- oskar_braaten (Oskar Braaten) -> oscar_braaten_statuen
-- ... 59 flere
+- ... 73 flere
 
 ## Anbefalt første people-batch
 
