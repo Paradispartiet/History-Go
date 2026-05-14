@@ -812,6 +812,7 @@ async function renderKnowledgeEnginePanel() {
       const weakest = (Array.isArray(summary.weakestSubjects) ? summary.weakestSubjects : [])
         .slice(0, 3)
         .map((item) => {
+          if (typeof item === "string") return item;
           if (item && typeof item === "object" && item.subjectId) return item.subjectId;
           return "";
         })
