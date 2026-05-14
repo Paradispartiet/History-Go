@@ -101,6 +101,38 @@ function compareSets(name, oldValues, newValues) {
   return { name, ok, oldCount: oldSet.size, newCount: newSet.size, onlyOld, onlyNew };
 }
 
+function normalizePathFormat(key) {
+  return key.replace(/\[\d+\]/g, '');
+}
+
+function parseRefString(refString) {
+  const separator = ' -> ';
+  const splitIndex = refString.indexOf(separator);
+  if (splitIndex === -1) return { key: refString, value: '' };
+  return {
+    key: refString.slice(0, splitIndex),
+    value: refString.slice(splitIndex + separator.length),
+  };
+}
+
+function summarizeRefsByPathAndValue(refStrings) {
+  const summary = new Map();
+  for (const refString of refStrings) {
+    const { key, value } = parseRefString(refString);
+    const bucket = `${normalizePathFormat(key)} -> ${value}`;
+    summary.set(bucket, (summary.get(bucket) || 0) + 1);
+  }
+  return summary;
+}
+
+function mapsEqual(left, right) {
+  if (left.size !== right.size) return false;
+  for (const [key, value] of left.entries()) {
+    if (right.get(key) !== value) return false;
+  }
+  return true;
+}
+
 function loadPlaceFiles() {
   const manifest = readJson(placesManifestPath);
   return Array.isArray(manifest?.files) ? manifest.files.map((entry) => path.join(root, 'data', entry)) : [];
@@ -196,6 +228,16 @@ for (const item of peopleRefs) {
 }
 
 const genericPathOnlyDifferences = genericRefs.filter((item) => !item.refs.ok);
+const genericBlockingDifferences = [];
+
+for (const item of genericPathOnlyDifferences) {
+  const oldSummary = summarizeRefsByPathAndValue(item.refs.onlyOld);
+  const newSummary = summarizeRefsByPathAndValue(item.refs.onlyNew);
+  if (!mapsEqual(oldSummary, newSummary)) {
+    failures.push(`Generic refs changed in ${item.file}: ${item.refs.oldCount} -> ${item.refs.newCount}`);
+    genericBlockingDifferences.push(item.file);
+  }
+}
 
 console.log('Audit refactor equivalence check');
 console.log(`Place files checked: ${placeArrayChecks.length}`);
@@ -208,7 +250,8 @@ console.log(`Blocking failures: ${failures.length}`);
 if (genericPathOnlyDifferences.length) {
   console.log('\nExpected path-format differences in generic refs:');
   for (const item of genericPathOnlyDifferences) {
-    console.log(`- ${item.file}: old=${item.refs.oldCount} new=${item.refs.newCount}`);
+    const status = genericBlockingDifferences.includes(item.file) ? 'BLOCKING' : 'path-format only';
+    console.log(`- ${item.file}: old=${item.refs.oldCount} new=${item.refs.newCount} (${status})`);
     const exampleOld = item.refs.onlyOld.slice(0, 3).join(' | ');
     const exampleNew = item.refs.onlyNew.slice(0, 3).join(' | ');
     if (exampleOld) console.log(`  old examples: ${exampleOld}`);
