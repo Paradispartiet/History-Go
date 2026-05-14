@@ -93,3 +93,11 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - The local report typing remains intentionally broad (`Record<string, unknown>` and `unknown[]`) to match current runtime variability.
 - Runtime/rendering behavior is unchanged: no DOM structure, layout, profile metrics, Knowledge Engine logic, DataHub calls, localStorage keys, or output text were changed.
 - Remaining `npm run typecheck` baseline outside this focused annotation scope is still expected.
+
+## Phase 9: Read-only typecheck baseline reporting
+
+- Added a read-only baseline report script at `tools/typecheck-baseline-report.mjs`.
+- New command: `npm run typecheck:report`.
+- Report output path: `reports/typecheck-baseline-report.md`.
+- This phase performs no type fixes and no runtime/app behavior changes.
+- The report is used to prioritize future migration targets from the actual baseline distribution.
