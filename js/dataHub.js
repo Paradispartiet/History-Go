@@ -404,6 +404,10 @@ async function loadPlacesBase(opts = {}) {
     return list.map(t => legacyMap[t] || t).filter(Boolean);
   }
 
+  // legacy aliases (kept for backwards-compatible call sites)
+  function loadPlaces(opts = {}) { return loadPlacesBase(opts); }
+  function loadPeople(opts = {}) { return loadPeopleBase(opts); }
+
   // Expose
   window.DataHub = {
     // core
@@ -414,6 +418,8 @@ async function loadPlacesBase(opts = {}) {
     loadTags,
     loadPlacesBase,
     loadPeopleBase,
+    loadPlaces,
+    loadPeople,
     loadBadges,
     loadRoutes,
     loadFullPlace,
