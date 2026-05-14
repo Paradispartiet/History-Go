@@ -2,66 +2,57 @@ import fs from 'fs';
 import path from 'path';
 
 const root = process.cwd();
-const manifest = JSON.parse(fs.readFileSync(path.join(root, 'data/places/manifest.json'), 'utf8'));
+const placesManifest = JSON.parse(fs.readFileSync(path.join(root, 'data/places/manifest.json'), 'utf8'));
+const fagManifest = JSON.parse(fs.readFileSync(path.join(root, 'data/fag/fag_manifest.json'), 'utf8'));
 
-function collectJsonFiles(dir) {
-  const out = [];
-  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
-    if (entry.name.startsWith('.')) continue;
-    const full = path.join(dir, entry.name);
-    if (entry.isDirectory()) out.push(...collectJsonFiles(full));
-    else if (entry.isFile() && entry.name.endsWith('.json')) out.push(full);
-  }
-  return out;
+function toArray(data) {
+  if (Array.isArray(data)) return data;
+  if (data && Array.isArray(data.places)) return data.places;
+  if (data && Array.isArray(data.items)) return data.items;
+  return [];
 }
 
-function collectEmneIds(node, out) {
+function collectIdsDeep(node, out) {
   if (!node || typeof node !== 'object') return;
   if (Array.isArray(node)) {
-    for (const item of node) collectEmneIds(item, out);
+    for (const item of node) collectIdsDeep(item, out);
     return;
   }
-
-  if (typeof node.emne_id === 'string' && node.emne_id.trim()) out.add(node.emne_id.trim());
+  const directId = node.emne_id || node.id;
+  if (typeof directId === 'string' && directId.trim()) out.add(directId.trim());
   if (Array.isArray(node.emne_ids)) {
-    for (const id of node.emne_ids) if (typeof id === 'string' && id.trim()) out.add(id.trim());
+    for (const eid of node.emne_ids) if (typeof eid === 'string' && eid.trim()) out.add(eid.trim());
   }
-
-  for (const value of Object.values(node)) collectEmneIds(value, out);
+  for (const value of Object.values(node)) collectIdsDeep(value, out);
 }
 
 function buildSubjectEmneIndex() {
-  const fagRoot = path.join(root, 'data/fag');
   const index = new Map();
-  const unreadableJsonFiles = [];
 
-  for (const entry of fs.readdirSync(fagRoot, { withFileTypes: true })) {
-    if (!entry.isDirectory()) continue;
-    const subject = entry.name;
-    const subjectDir = path.join(fagRoot, subject);
+  for (const [subjectId, cfg] of Object.entries(fagManifest)) {
+    const emnerRel = cfg?.emner;
+    if (!emnerRel) continue;
+    const emnerPath = path.join(root, 'data/fag', emnerRel);
 
-    const jsonFiles = collectJsonFiles(subjectDir).filter((file) => !file.includes(`${path.sep}arkiv${path.sep}`));
-    if (!jsonFiles.length) continue;
-
+    const emnerData = JSON.parse(fs.readFileSync(emnerPath, 'utf8'));
+    const emner = toArray(emnerData);
     const ids = new Set();
-    for (const file of jsonFiles) {
-      try {
-        const data = JSON.parse(fs.readFileSync(file, 'utf8'));
-        collectEmneIds(data, ids);
-      } catch {
-        unreadableJsonFiles.push(path.relative(root, file));
-      }
-    }
+    collectIdsDeep(emner, ids);
 
-    if (ids.size) index.set(subject, ids);
-  }
-
-  if (unreadableJsonFiles.length) {
-    console.log(`skipped non-JSON files in data/fag: ${unreadableJsonFiles.length}`);
+    index.set(subjectId, ids);
   }
 
   return index;
 }
+
+function normalizeInputPath(inputPath) {
+  return inputPath.startsWith('data/') ? inputPath : path.join('data', inputPath);
+}
+
+const explicitFiles = process.argv.slice(2);
+const filesToValidate = explicitFiles.length
+  ? explicitFiles.map(normalizeInputPath)
+  : placesManifest.files.map((rel) => path.join('data', rel));
 
 const subjectEmner = buildSubjectEmneIndex();
 const allKnown = new Map();
@@ -76,9 +67,11 @@ const stats = { totalPlaces: 0, withEmneIds: 0, byCategory: new Map(), byCategor
 const invalid = [];
 const mismatches = [];
 
-for (const rel of manifest.files) {
-  const file = path.join(root, 'data', rel);
-  const places = JSON.parse(fs.readFileSync(file, 'utf8'));
+for (const rel of filesToValidate) {
+  const file = path.join(root, rel);
+  const placesData = JSON.parse(fs.readFileSync(file, 'utf8'));
+  const places = toArray(placesData);
+
   for (const p of places) {
     stats.totalPlaces++;
     const cat = p.category || 'unknown';
@@ -99,7 +92,8 @@ for (const rel of manifest.files) {
 }
 
 console.log('indexed subjects:', subjectEmner.size);
-console.log('total known emne_ids:', allKnown.size);
+console.log('total known active emne_ids:', allKnown.size);
+console.log('validated files:', filesToValidate.length);
 console.log('total places:', stats.totalPlaces);
 console.log('places with emne_ids:', stats.withEmneIds);
 console.log('count per category:');
@@ -109,7 +103,7 @@ for (const [cat, total] of [...stats.byCategory.entries()].sort()) {
 }
 console.log('invalid emne_ids:', invalid.length);
 if (invalid.length) console.log(JSON.stringify(invalid, null, 2));
-console.log('cross-subject mismatches (warning):', mismatches.length);
+console.log('cross-subject mismatches:', mismatches.length);
 if (mismatches.length) console.log(JSON.stringify(mismatches, null, 2));
 
-if (invalid.length) process.exit(1);
+if (invalid.length || mismatches.length) process.exit(1);
