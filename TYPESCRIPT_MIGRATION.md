@@ -86,3 +86,10 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - The declaration is intentionally broad around report internals (`Record<string, unknown>`) until a stable report schema is introduced.
 - Runtime behavior is unchanged: no profile rendering, DOM, metrics, DataHub calls, localStorage keys or output structure were modified.
 - Remaining `npm run typecheck` baseline is still expected.
+
+## Phase 8B: Focused profile JSDoc around Knowledge Engine panel
+
+- `js/profile.js` now has focused JSDoc around `renderKnowledgeEnginePanel`, including a file-local report alias and narrow local variable annotations for the Knowledge Engine report flow.
+- The local report typing remains intentionally broad (`Record<string, unknown>` and `unknown[]`) to match current runtime variability.
+- Runtime/rendering behavior is unchanged: no DOM structure, layout, profile metrics, Knowledge Engine logic, DataHub calls, localStorage keys, or output text were changed.
+- Remaining `npm run typecheck` baseline outside this focused annotation scope is still expected.
