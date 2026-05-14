@@ -1,15 +1,15 @@
 # People invalid place refs audit
 
-Generated: 2026-05-13T10:18:39.684Z
+Generated: 2026-05-14T05:26:58.952Z
 
 ## Sammendrag
 - People-filer lest: **17**
-- People lest: **195**
+- People lest: **194**
 - People med ugyldige refs: **22**
 - Ugyldige refs: **41**
 - Unike ugyldige placeId-er: **20**
 - People uten gyldig sted: **24**
-- Duplikate interne place-referanser: **173**
+- Duplikate interne place-referanser: **172**
 
 ## Ugyldige refs gruppert per fil/person
 ### data/people/people_by.json
@@ -324,7 +324,6 @@ Generated: 2026-05-13T10:18:39.684Z
 - data/people/media/oslo/people_media_oslo.json :: hanne_skartveit (Hanne Skartveit) -> vg_huset x2
 - data/people/media/oslo/people_media_oslo.json :: bernt_olufsen (Bernt Olufsen) -> vg_huset x2
 - data/people/media/oslo/people_media_oslo.json :: shabana_rehman (Shabana Rehman) -> vg_huset x2
-- data/people/media/oslo/people_media_oslo.json :: frode_hansen (Frode Hansen) -> vg_huset x2
 - data/people/media/europe/portugal/lisbon/people_media_lisbon.json :: jose_rodrigues_dos_santos (José Rodrigues dos Santos) -> lisbon_rtp x2
 - data/people/media/europe/portugal/lisbon/people_media_lisbon.json :: catarina_furtado (Catarina Furtado) -> lisbon_rtp x2
 - data/people/media/europe/portugal/lisbon/people_media_lisbon.json :: jose_alberto_carvalho (José Alberto Carvalho) -> lisbon_rtp x2

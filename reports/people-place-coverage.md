@@ -1,18 +1,18 @@
 # People-place coverage audit
 
-Generert: 2026-05-13T10:18:39.612Z
+Generert: 2026-05-14T05:26:58.847Z
 
 ## Sammendrag
 
-- People totalt: **195**
+- People totalt: **194**
 - Places totalt: **444**
 - Places med people: **74**
 - Places uten people: **370**
-- People-place-lenker: **263**
+- People-place-lenker: **262**
 - People koblet til flere gyldige steder: **79**
 - People uten gyldig sted: **24**
 - Ugyldige place-referanser: **30**
-- Duplikate place-referanser inne på people: **173**
+- Duplikate place-referanser inne på people: **172**
 - People uten image: **16**
 - People uten cardImage: **16**
 - People uten popupDesc: **21**
@@ -26,7 +26,7 @@ Generert: 2026-05-13T10:18:39.612Z
 | historie | 54 | 11 | 43 | 94 | 52 |
 | kunst | 18 | 4 | 14 | 6 | 6 |
 | litteratur | 31 | 16 | 15 | 36 | 31 |
-| media | 7 | 3 | 4 | 10 | 9 |
+| media | 7 | 3 | 4 | 9 | 8 |
 | musikk | 13 | 1 | 12 | 2 | 2 |
 | naeringsliv | 41 | 1 | 40 | 1 | 1 |
 | natur | 59 | 4 | 55 | 6 | 6 |
@@ -47,18 +47,18 @@ Generert: 2026-05-13T10:18:39.612Z
 - krig: 11
 - kunst: 11
 - musikk: 10
-- media: 9
+- media: 8
 - sport: 8
-- journalistikk: 7
 - natur: 7
-- avis: 6
 - by: 6
-- presse: 6
-- redaksjon: 5
+- journalistikk: 6
+- avis: 5
+- presse: 5
 - arbeiderbevegelse: 4
 - borgerkrigstid: 4
 - filantrop: 4
 - naeringsliv: 4
+- redaksjon: 4
 - mesen: 3
 - satire: 3
 - tv: 3
@@ -66,7 +66,6 @@ Generert: 2026-05-13T10:18:39.612Z
 - kommentarjournalistikk: 2
 - kringkasting: 2
 - militaerhistorie: 2
-- nettavis: 2
 - rett: 2
 - vikingtid: 2
 - absurd humor: 1
@@ -82,6 +81,7 @@ Generert: 2026-05-13T10:18:39.612Z
 - kunnskap: 1
 - kunstsamler: 1
 - medieledelse: 1
+- nettavis: 1
 - nobel: 1
 - nyhetsformidling: 1
 - observasjonell humor: 1
@@ -101,9 +101,9 @@ Generert: 2026-05-13T10:18:39.612Z
 - universitetsplassen (Universitetsplassen) – 8
 - eidsvolls_plass (Eidsvolls plass) – 7
 - var_frelsers_gravlund (Vår Frelsers gravlund) – 6
-- vg_huset (VG-huset) – 6
 - nobelinstituttet (Nobelinstituttet) – 5
 - slottet (Det kongelige slott) – 5
+- vg_huset (VG-huset) – 5
 - youngstorget (Youngstorget) – 5
 - deichman_bjorvika (Deichman Bjørvika) – 4
 - eidsvollsbygningen (Eidsvollsbygningen) – 4
@@ -252,7 +252,7 @@ Generert: 2026-05-13T10:18:39.612Z
 - gro_dahle (Gro Dahle) -> tronsmo_bokhandel
 - helene_uri (Helene Uri) -> eldorado_bokhandel
 - ingvar_ambjornsen (Ingvar Ambjørnsen) -> deichman_grunerlokka
-- ... 73 flere
+- ... 72 flere
 
 ## Anbefalt første people-batch
 
@@ -305,7 +305,7 @@ Første 50 steder uten people, sortert etter worklist-prioritet og videre innhol
 - lisbon_doclisboa | Doclisboa – Festival Internacional de Cinema | film_tv | high
 - lisbon_tobis_portuguesa | Tobis Portuguesa | film_tv | high
 - bjoelsenfossen | Bjølsenfossen | historie | high
+- botsfengselet | Botsfengselet | historie | high
 - frysjadammen | Frysjadammen | historie | high
-- gamle_aker_kirke | Gamle Aker kirke | historie | high
-- glads_molle | Glads mølle | historie | high
+- galgeberg | Galgeberg | historie | high
 
