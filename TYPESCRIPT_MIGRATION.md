@@ -78,3 +78,11 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - The analysis documents its place lookup as `Map<string, KnowledgePlace>` and uses the existing `Place` schema for visited-place signal extraction.
 - Runtime behavior is unchanged: no changes were made to DataHub calls, scoring, signal collection, `fullVisitedPlacesLoadedCount`, localStorage keys or output structure.
 - Remaining `npm run typecheck` baseline outside this focused JSDoc update is still expected.
+
+## Phase 8: Knowledge Engine globals for profile usage
+
+- Added `schemas/knowledge-engine-globals.d.ts` to document the existing `window.HGKnowledgeEngine` and `window.hgKnowledgeReport` browser globals used by profile-related UI.
+- This avoids touching the large and sensitive `js/profile.js` file while still making the Knowledge Engine profile contract visible to TypeScript.
+- The declaration is intentionally broad around report internals (`Record<string, unknown>`) until a stable report schema is introduced.
+- Runtime behavior is unchanged: no profile rendering, DOM, metrics, DataHub calls, localStorage keys or output structure were modified.
+- Remaining `npm run typecheck` baseline is still expected.
