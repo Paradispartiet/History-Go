@@ -1,10 +1,10 @@
 # Typecheck baseline report
 
 ## Metadata
-- Generated at (UTC): 2026-05-15T12:21:49.720Z
+- Generated at (UTC): 2026-05-15T13:09:45.912Z
 - Command: `npm run typecheck`
 - Typecheck exit code: 2
-- Total diagnostic lines found: 2117
+- Total diagnostic lines found: 2142
 - Files with diagnostics: 198
 - Groups with diagnostics: 11
 - Unparsed/unknown diagnostic lines: 0
@@ -14,7 +14,7 @@
 | --- | ---: | ---: | --- |
 | js/Civication/** | 85 | 792 | js/Civication/CivicationBoot.js<br>js/Civication/capitalEngine.js<br>js/Civication/capitalMaintenanceEngine.js |
 | other | 70 | 552 | js/DomainRegistry.js<br>js/aha.js<br>js/app.js |
-| js/ui/** | 20 | 475 | js/ui/badge-modal.js<br>js/ui/badge-unlock-toast.js<br>js/ui/badges.js |
+| js/ui/** | 20 | 500 | js/ui/badge-modal.js<br>js/ui/badge-unlock-toast.js<br>js/ui/badges.js |
 | js/profile.js | 1 | 84 | js/profile.js |
 | js/boot.js | 1 | 76 | js/boot.js |
 | scripts/** | 14 | 62 | scripts/generate-civication-mails.js<br>scripts/i18n-audit-places.js<br>scripts/i18n-place-manifest-loader.js |
@@ -27,7 +27,7 @@
 ## Top 20 files by diagnostic count
 | File | Diagnostic lines | Area |
 | --- | ---: | --- |
-| js/ui/place-card.js | 115 | js/ui/** |
+| js/ui/place-card.js | 140 | js/ui/** |
 | js/Civication/ui/CivicationUI.js | 107 | js/Civication/** |
 | js/Civication/core/civicationEventEngine.js | 97 | js/Civication/** |
 | js/profile.js | 84 | js/profile.js |
@@ -51,8 +51,8 @@
 ## Diagnostic types (TypeScript error code)
 | Error code | Count |
 | --- | ---: |
-| TS2339 | 1684 |
-| TS2551 | 217 |
+| TS2339 | 1707 |
+| TS2551 | 219 |
 | TS2304 | 86 |
 | TS2307 | 36 |
 | TS2322 | 19 |
@@ -72,7 +72,7 @@
 
 ## Priority recommendations (mechanical)
 1. Start with **js/Civication/** (792 diagnostics)** because it currently has the highest baseline volume.
-2. Focus first on concentrated hotspots: `js/ui/place-card.js` (115), `js/Civication/ui/CivicationUI.js` (107), `js/Civication/core/civicationEventEngine.js` (97), `js/profile.js` (84), `js/ui/popup-utils.js` (82).
+2. Focus first on concentrated hotspots: `js/ui/place-card.js` (140), `js/Civication/ui/CivicationUI.js` (107), `js/Civication/core/civicationEventEngine.js` (97), `js/profile.js` (84), `js/ui/popup-utils.js` (82).
 3. Defer broader/sensitive areas until hotspot reduction is complete: `other`, `js/ui/**`, `js/profile.js`.
 4. Keep this report read-only and rerun after each migration phase to validate trend direction.
 
