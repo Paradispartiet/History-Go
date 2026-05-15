@@ -126,3 +126,11 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Annotated central UI rendering/event handling helpers with minimal parameter/return typing.
 - No runtime logic, DOM structure, rendering, layout, CSS, UI text, localStorage keys, event-flow, choices/effects behavior, DataHub calls, or Civication data/JSON files were changed.
 - Remaining typecheck baseline outside this focused file is still expected.
+
+## Phase 13: Focused PlaceCard JSDoc
+
+- Added focused, file-local JSDoc typing in `js/ui/place-card.js`.
+- Added intentionally broad local aliases for place/place-related records (`PlaceCardPlace`, `PlaceCardRecord`, `PlaceCardPerson`, `PlaceCardBadge`, `PlaceCardRelation`) to support gradual typechecking without schema tightening.
+- Annotated central PlaceCard entry/helpers for place rendering, social-data loading, unlock UI updates, and bottom-sheet bridge helpers.
+- No runtime logic, DOM structure, rendering, layout, CSS, UI text, popup behavior, Nearby behavior, map behavior, unlock/quiz/state behavior, DataHub behavior, localStorage keys, or data/JSON files were changed.
+- Remaining typecheck baseline outside this focused file is still expected.

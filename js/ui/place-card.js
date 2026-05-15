@@ -1,6 +1,55 @@
 // ============================================================
 // 5. PLACE CARD (det store kortpanelet) — REN SAMLET VERSJON
 // ============================================================
+/**
+ * @typedef {import("../../schemas/place").Place} PlaceCardPlace
+ * @typedef {Record<string, unknown>} PlaceCardRecord
+ * @typedef {object} PlaceCardPerson
+ * @property {string=} id
+ * @property {string=} name
+ * @property {string=} title
+ * @property {string=} image
+ * @property {string=} portrait
+ * @property {string=} role
+ * @property {string=} desc
+ * @property {string[]=} places
+ * @property {string=} placeId
+ * @property {string[]=} place_ids
+ * @property {string[]=} categories
+ * @property {string[]=} tags
+ * @property {string[]=} emne_ids
+ * @property {unknown[]=} badges
+ * @property {unknown[]=} relations
+ * @property {PlaceCardRecord=} meta
+ * @property {unknown} [key]
+ *
+ * @typedef {object} PlaceCardBadge
+ * @property {string=} id
+ * @property {string=} title
+ * @property {string=} name
+ * @property {string=} icon
+ * @property {string=} image
+ * @property {string=} category
+ * @property {string=} desc
+ * @property {unknown[]=} sub
+ * @property {number=} points
+ * @property {unknown} [key]
+ *
+ * @typedef {object} PlaceCardRelation
+ * @property {string=} id
+ * @property {string=} type
+ * @property {string=} title
+ * @property {string=} label
+ * @property {string=} target_id
+ * @property {string=} source_id
+ * @property {string=} desc
+ * @property {unknown} [key]
+ */
+
+/**
+ * @param {PlaceCardPlace | null | undefined} place
+ * @returns {Promise<void>}
+ */
 window.openPlaceCard = async function (place) {
   console.trace("[placeCard] openPlaceCard", { placeId: place?.id, placeName: place?.name });
   if (!place) return;
@@ -475,6 +524,11 @@ if (natureIcon) {
 }
 
 
+/**
+ * @param {PlaceCardPlace | null | undefined} place
+ * @param {PlaceCardBadge[] | unknown} badgesSource
+ * @returns {PlaceCardBadge | null}
+ */
 function getBadgeForPlace(place, badgesSource) {
   const badges = Array.isArray(badgesSource)
     ? badgesSource
@@ -486,6 +540,10 @@ function getBadgeForPlace(place, badgesSource) {
   return badges.find(b => String(b?.id || "").trim() === categoryId) || null;
 }
 
+/**
+ * @param {unknown} rawValue
+ * @returns {string}
+ */
 function formatSubcategoryLabel(rawValue) {
   const raw = String(rawValue || "").trim();
   if (!raw) return "";
@@ -757,6 +815,10 @@ if (b0?.logo) {
 }
 
 
+/**
+ * @param {string | number | null | undefined} placeId
+ * @returns {Promise<PlaceCardRecord | null>}
+ */
 async function loadPlaceSocialData(placeId) {
   const id = String(placeId || "").trim();
   if (!id) return null;
@@ -782,6 +844,9 @@ async function loadPlaceSocialData(placeId) {
   }
 }
 
+/**
+ * @returns {Promise<PlaceCardRecord[]>}
+ */
 async function loadCanonicalSocialEvents() {
   if (Array.isArray(window.__HG_CANONICAL_SOCIAL_EVENTS__)) {
     return window.__HG_CANONICAL_SOCIAL_EVENTS__;
@@ -1024,6 +1089,11 @@ let _unlockTimer = null;
 let _lastUnlockText = null;
 let _lastUnlockDisabled = null;
 
+/**
+ * @param {boolean} disabled
+ * @param {string} text
+ * @returns {void}
+ */
 function setUnlockUI(disabled, text) {
   if (!btnUnlock) return;
   if (_lastUnlockDisabled === disabled && _lastUnlockText === text) return;
@@ -1033,6 +1103,9 @@ function setUnlockUI(disabled, text) {
   btnUnlock.textContent = text;
 }
 
+/**
+ * @returns {void}
+ */
 function updateUnlockUI() {
   if (!btnUnlock) return;
 
@@ -1152,6 +1225,10 @@ expandPlaceCard();
 // PLACE CARD – bottom sheet bridge (engine-controlled)
 // ============================================================
 
+/**
+ * @param {boolean} on
+ * @returns {void}
+ */
 function setPlaceCardMiniVisible(on){
   const mini = document.getElementById("pcMini");
   if (!mini) return;
@@ -1159,16 +1236,28 @@ function setPlaceCardMiniVisible(on){
   mini.setAttribute("aria-hidden", on ? "false" : "true");
 }
 
+/**
+ * @returns {HTMLElement | null}
+ */
 function getPlaceCardEl() {
   return hg$("placeCard");
 }
 
+/**
+ * @returns {boolean}
+ */
 function isPlaceCardCollapsed() {
   return !!getPlaceCardEl()?.classList.contains("is-collapsed");
 }
 
+/**
+ * @returns {void}
+ */
 function requestMapResize() {}
 
+/**
+ * @returns {void}
+ */
 function collapsePlaceCard() {
   const pc = getPlaceCardEl();
   if (!pc) return;
@@ -1192,6 +1281,9 @@ function collapsePlaceCard() {
  }
 }
 
+/**
+ * @returns {void}
+ */
 function expandPlaceCard() {
   const pc = getPlaceCardEl();
   if (!pc) return;
@@ -1214,10 +1306,16 @@ function expandPlaceCard() {
  }
 }
 
+/**
+ * @returns {void}
+ */
 function togglePlaceCard() {
   isPlaceCardCollapsed() ? expandPlaceCard() : collapsePlaceCard();
 }
 
+/**
+ * @returns {void}
+ */
 function initPlaceCardCollapse() {
   const pc = getPlaceCardEl();
   if (!pc) return;
