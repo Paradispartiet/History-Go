@@ -360,3 +360,75 @@ pre#out {
   opacity: 0.8;
   font-size: 0.8rem;
 }
+
+/* Begrepsnettverk v1 */
+.concept-network {
+  margin-top: 12px;
+  padding: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  background: rgba(12, 14, 18, 0.9);
+}
+
+.concept-network-title {
+  margin: 0 0 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: rgba(240, 246, 255, 0.95);
+}
+
+.concept-network-links {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.concept-network-link {
+  display: grid;
+  grid-template-columns: auto minmax(18px, 1fr) auto;
+  align-items: center;
+  gap: 8px;
+}
+
+.concept-node {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 178, 255, 0.45);
+  background: rgba(29, 38, 56, 0.85);
+  color: #e8f0ff;
+  font-size: 0.78rem;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.concept-network-line {
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(90deg, rgba(148, 178, 255, 0.45), rgba(148, 178, 255, 0.08));
+}
+
+.concept-network-empty {
+  margin-top: 8px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: rgba(12, 14, 18, 0.72);
+  color: rgba(222, 228, 236, 0.9);
+  font-size: 0.82rem;
+}
+
+@media (max-width: 768px) {
+  .concept-network-link {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .concept-network-line {
+    width: 24px;
+  }
+
+  .concept-node {
+    white-space: normal;
+  }
+}
