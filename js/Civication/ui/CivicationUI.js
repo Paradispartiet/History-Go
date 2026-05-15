@@ -2,6 +2,14 @@
 // CIVICATION UI
 // ============================================================
 
+/**
+ * @typedef {Record<string, unknown>} CiviUiRecord
+ * @typedef {{ id?: string, label?: string, triggers_on_choice?: string, [key: string]: unknown }} CiviUiChoice
+ * @typedef {{ id?: string, status?: string, type?: string, title?: string, subject?: string, body?: string, message?: string, feedback?: string, from?: string, place_id?: string, brand_name?: string, task_id?: string, task_kind?: string, calendar_label?: string, situation?: unknown, pressure?: unknown, choices?: CiviUiChoice[], [key: string]: unknown }} CiviUiEvent
+ * @typedef {{ status?: string, enqueued_at?: string, event?: CiviUiEvent, [key: string]: unknown }} CiviUiInboxItem
+ * @typedef {{ stability?: string, warning_used?: boolean, strikes?: number, score?: number, active_role_key?: string|null, consumed?: CiviUiRecord, identity_tags?: unknown[], tracks?: unknown[], track_progress?: CiviUiRecord, unemployed_since_week?: string|null, career?: CiviUiRecord, [key: string]: unknown }} CiviUiState
+ */
+
 async function init() {
 
   // Sørg for at careers er lastet

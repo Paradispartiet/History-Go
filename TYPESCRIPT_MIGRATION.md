@@ -118,3 +118,11 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Annotated central state/inbox/event handling methods and a few local variables for readability and gradual typecheck progress.
 - No runtime logic, event-flow, choice/effects behavior, localStorage keys, DataHub calls, app wiring, or Civication data/JSON files were changed.
 - Remaining typecheck baseline outside this focused file is still expected.
+
+## Phase 12: Focused Civication UI JSDoc
+
+- Added focused, file-local JSDoc typing in `js/Civication/ui/CivicationUI.js`.
+- Introduced intentionally broad UI/event/state/inbox aliases to support gradual typechecking in this hotspot without refactoring runtime behavior.
+- Annotated central UI rendering/event handling helpers with minimal parameter/return typing.
+- No runtime logic, DOM structure, rendering, layout, CSS, UI text, localStorage keys, event-flow, choices/effects behavior, DataHub calls, or Civication data/JSON files were changed.
+- Remaining typecheck baseline outside this focused file is still expected.
