@@ -134,3 +134,10 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Annotated central PlaceCard entry/helpers for place rendering, social-data loading, unlock UI updates, and bottom-sheet bridge helpers.
 - No runtime logic, DOM structure, rendering, layout, CSS, UI text, popup behavior, Nearby behavior, map behavior, unlock/quiz/state behavior, DataHub behavior, localStorage keys, or data/JSON files were changed.
 - Remaining typecheck baseline outside this focused file is still expected.
+
+## Phase 13B: PlaceCard JSDoc regression fix
+
+- Fixed the narrow `PlaceCardPlace` alias introduced in Phase 13.
+- Widened the file-local PlaceCard shape in `js/ui/place-card.js` to match runtime-used fields.
+- No runtime, layout, DOM, CSS, rendering, or data-contract behavior changes were made.
+- Regenerated `reports/typecheck-baseline-report.md` after the JSDoc-only adjustment.
