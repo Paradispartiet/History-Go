@@ -1,75 +1,77 @@
 type CiviRecord = Record<string, unknown>;
 
+type CiviFn = (...args: unknown[]) => unknown;
+
 type CiviMethodBag = {
-  get?: (...args: unknown[]) => unknown;
-  set?: (...args: unknown[]) => unknown;
-  load?: (...args: unknown[]) => unknown;
-  save?: (...args: unknown[]) => unknown;
-  init?: (...args: unknown[]) => unknown;
-  mount?: (...args: unknown[]) => unknown;
-  render?: (...args: unknown[]) => unknown;
-  refresh?: (...args: unknown[]) => unknown;
-  update?: (...args: unknown[]) => unknown;
-  tick?: (...args: unknown[]) => unknown;
-  answer?: (...args: unknown[]) => unknown;
-  enqueueEvent?: (...args: unknown[]) => unknown;
-  getState?: (...args: unknown[]) => unknown;
-  setState?: (...args: unknown[]) => unknown;
+  get?: CiviFn;
+  set?: CiviFn;
+  load?: CiviFn;
+  save?: CiviFn;
+  init?: CiviFn;
+  mount?: CiviFn;
+  render?: CiviFn;
+  refresh?: CiviFn;
+  update?: CiviFn;
+  tick?: CiviFn;
+  answer?: CiviFn;
+  enqueueEvent?: CiviFn;
+  getState?: CiviFn;
+  setState?: CiviFn;
 
-  boot?: (...args: unknown[]) => unknown;
-  evaluate?: (...args: unknown[]) => unknown;
-  tickWeekly?: (...args: unknown[]) => unknown;
-  registerLogin?: (...args: unknown[]) => unknown;
-  registerEventResponse?: (...args: unknown[]) => unknown;
+  boot?: CiviFn;
+  evaluate?: CiviFn;
+  tickWeekly?: CiviFn;
+  registerLogin?: CiviFn;
+  registerEventResponse?: CiviFn;
 
-  getWallet?: (...args: unknown[]) => unknown;
-  updateWallet?: (...args: unknown[]) => unknown;
-  getActivePosition?: (...args: unknown[]) => unknown;
-  setActivePosition?: (...args: unknown[]) => unknown;
-  appendJobHistoryEnded?: (...args: unknown[]) => unknown;
-  getInbox?: (...args: unknown[]) => unknown;
-  setInbox?: (...args: unknown[]) => unknown;
-  getPulse?: (...args: unknown[]) => unknown;
-  setPulse?: (...args: unknown[]) => unknown;
+  getWallet?: CiviFn;
+  updateWallet?: CiviFn;
+  getActivePosition?: CiviFn;
+  setActivePosition?: CiviFn;
+  appendJobHistoryEnded?: CiviFn;
+  getInbox?: CiviFn;
+  setInbox?: CiviFn;
+  getPulse?: CiviFn;
+  setPulse?: CiviFn;
 
-  resolveCareerRoleScope?: (...args: unknown[]) => unknown;
-  enqueueNoUnlockedBrandEmployerMessage?: (...args: unknown[]) => unknown;
+  resolveCareerRoleScope?: CiviFn;
+  enqueueNoUnlockedBrandEmployerMessage?: CiviFn;
 
-  getLatestPendingOffer?: (...args: unknown[]) => unknown;
-  acceptOffer?: (...args: unknown[]) => unknown;
-  declineOffer?: (...args: unknown[]) => unknown;
-  maybeApplyNegativeCareerOutcome?: (...args: unknown[]) => unknown;
-  pushOffer?: (...args: unknown[]) => unknown;
-  getOffers?: (...args: unknown[]) => unknown;
-  setOffers?: (...args: unknown[]) => unknown;
+  getLatestPendingOffer?: CiviFn;
+  acceptOffer?: CiviFn;
+  declineOffer?: CiviFn;
+  maybeApplyNegativeCareerOutcome?: CiviFn;
+  pushOffer?: CiviFn;
+  getOffers?: CiviFn;
+  setOffers?: CiviFn;
 
-  getHomeInfluence?: (...args: unknown[]) => unknown;
-  canPurchaseDistrict?: (...args: unknown[]) => unknown;
-  purchaseDistrict?: (...args: unknown[]) => unknown;
+  getHomeInfluence?: CiviFn;
+  canPurchaseDistrict?: CiviFn;
+  purchaseDistrict?: CiviFn;
 
-  getInv?: (...args: unknown[]) => unknown;
-  getPacks?: (...args: unknown[]) => unknown;
-  buyPack?: (...args: unknown[]) => unknown;
+  getInv?: CiviFn;
+  getPacks?: CiviFn;
+  buyPack?: CiviFn;
 
-  getStamp?: (...args: unknown[]) => unknown;
-  getPrimary?: (...args: unknown[]) => unknown;
-  addTags?: (...args: unknown[]) => unknown;
+  getStamp?: CiviFn;
+  getPrimary?: CiviFn;
+  addTags?: CiviFn;
 
-  getBoost?: (...args: unknown[]) => unknown;
-  shiftFocus?: (...args: unknown[]) => unknown;
-  getPsycheModifiers?: (...args: unknown[]) => unknown;
-  getProfile?: (...args: unknown[]) => unknown;
-  generatePerceptionProfile?: (...args: unknown[]) => unknown;
+  getBoost?: CiviFn;
+  shiftFocus?: CiviFn;
+  getPsycheModifiers?: CiviFn;
+  getProfile?: CiviFn;
+  generatePerceptionProfile?: CiviFn;
 
-  announceCollapse?: (...args: unknown[]) => unknown;
-  applyCareerCapital?: (...args: unknown[]) => unknown;
+  announceCollapse?: CiviFn;
+  applyCareerCapital?: CiviFn;
 
-  onAppOpen?: (...args: unknown[]) => unknown;
-  getPendingEvent?: (...args: unknown[]) => unknown;
-  getFeed?: (...args: unknown[]) => unknown;
+  onAppOpen?: CiviFn;
+  getPendingEvent?: CiviFn;
+  getFeed?: CiviFn;
 
 
-  [key: string]: unknown;
+  [key: string]: CiviFn | undefined;
 };
 
 type CiviEngineLike = CiviMethodBag;
@@ -110,12 +112,12 @@ declare global {
     HG_Lifestyle?: CiviMethodBag;
     HG_IdentityCore?: CiviMethodBag;
 
-    getPrimaryLifestyle?: (...args: unknown[]) => unknown;
-    getPCWallet?: (...args: unknown[]) => unknown;
-    savePCWallet?: (...args: unknown[]) => unknown;
-    ensureCiviCareerRulesLoaded?: (...args: unknown[]) => unknown;
-    checkTierUpgrades?: (...args: unknown[]) => unknown;
-    calculateWeeklySalary?: (...args: unknown[]) => unknown;
+    getPrimaryLifestyle?: CiviFn;
+    getPCWallet?: CiviFn;
+    savePCWallet?: CiviFn;
+    ensureCiviCareerRulesLoaded?: CiviFn;
+    checkTierUpgrades?: CiviFn;
+    calculateWeeklySalary?: CiviFn;
   }
 
   const CivicationState: CiviMethodBag;
