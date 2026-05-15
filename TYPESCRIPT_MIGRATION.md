@@ -101,3 +101,11 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Report output path: `reports/typecheck-baseline-report.md`.
 - This phase performs no type fixes and no runtime/app behavior changes.
 - The report is used to prioritize future migration targets from the actual baseline distribution.
+
+## Phase 10: Civication read-only global typings baseline
+
+- Added `schemas/civication-globals.d.ts` to document existing Civication browser globals that are already used at runtime.
+- Declarations are intentionally broad and defensive (`Record<string, unknown>`, `unknown[]`, broad function signatures) to avoid changing Civication runtime assumptions.
+- Added both `Window` properties and minimal global symbol declarations for legacy direct global usage (for example `CivicationState`, `CivicationEconomyEngine`, and `CivicationObligationEngine`).
+- No Civication runtime files were modified, and no changes were made to economy, obligations, inbox/state behavior, lifestyle/capital logic, localStorage keys, or JSON/data files.
+- This phase is declaration-only and intended to reduce typecheck baseline noise in `js/Civication/**` without refactoring Civication logic.
