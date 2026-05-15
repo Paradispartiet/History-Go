@@ -141,3 +141,10 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Widened the file-local PlaceCard shape in `js/ui/place-card.js` to match runtime-used fields.
 - No runtime, layout, DOM, CSS, rendering, or data-contract behavior changes were made.
 - Regenerated `reports/typecheck-baseline-report.md` after the JSDoc-only adjustment.
+
+## Phase 14: Focused popup-utils JSDoc
+
+- Added focused, file-local JSDoc typing in `js/ui/popup-utils.js`.
+- Popup builder/state/helper annotations remain intentionally broad to match current dynamic DOM and dataset usage.
+- No runtime logic, popup behavior, DOM structure, rendering, layout, CSS, z-index, UI text, PlaceCard, Nearby, map, unlock/quiz/state, localStorage keys, DataHub calls, or data/JSON files were changed.
+- Remaining `npm run typecheck` baseline outside this focused file is still expected.

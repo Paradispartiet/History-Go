@@ -11,9 +11,24 @@
 // NB: STRICT: ingen normalisering utover trim.
 // ============================================================
 
+/**
+ * @typedef {Record<string, unknown>} PopupUtilsRecord
+ * @typedef {PopupUtilsRecord & {
+ *   title?: string,
+ *   subtitle?: string,
+ *   html?: string,
+ *   place?: PopupUtilsRecord | null,
+ *   kind?: string
+ * }} PopupUtilsRoundPopupOptions
+ */
+
+/** @type {HTMLElement | null} */
 let currentPopup = null;
 
 
+/**
+ * @param {PopupUtilsRoundPopupOptions=} param0
+ */
 window.showPlaceCardRoundPopup = function ({
   title = "",
   subtitle = "",
@@ -463,6 +478,9 @@ function wonderChambersForPerson(person) {
 // ============================================================
 // 1. LUKK POPUP
 // ============================================================
+/**
+ * @returns {void}
+ */
 function closePopup() {
   console.trace("[popup] closePopup");
   if (currentPopup) {
@@ -474,6 +492,12 @@ function closePopup() {
 // ============================================================
 // 2. GENERELL POPUP-GENERATOR
 // ============================================================
+/**
+ * @param {string} html
+ * @param {string=} extraClass
+ * @param {Function | null=} onClose
+ * @returns {void}
+ */
 function makePopup(html, extraClass = "", onClose = null) {
   closePopup();
 
@@ -529,6 +553,7 @@ el.querySelectorAll("[data-wk]").forEach(btn => {
   };
 });
   
+  /** @returns {void} */
   function finishClose() {
     if (_closed) return;
     _closed = true;
