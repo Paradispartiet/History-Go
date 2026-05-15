@@ -173,6 +173,7 @@ const PRECACHE_URLS = [
   "js/Civication/systems/civicationLifeMailRuntime.js",
   "js/Civication/systems/day/dayActiveRoleStateSync.js",
   "js/Civication/systems/day/dayCalendarBridge.js",
+  "js/Civication/systems/day/dayProgressionController.js",
   "js/Civication/systems/day/dayHistoryGoContexts.js",
   "js/Civication/systems/day/dayCarryover.js",
   "js/Civication/systems/day/dayWeeklyReview.js",
