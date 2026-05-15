@@ -2,6 +2,17 @@
 // CIVICATION UI
 // ============================================================
 
+/**
+ * @typedef {Record<string, unknown>} CiviUiRecord
+ * @typedef {{ id?: string, label?: string, triggers_on_choice?: string, [key: string]: unknown }} CiviUiChoice
+ * @typedef {{ id?: string, status?: string, type?: string, title?: string, subject?: string, body?: string, message?: string, feedback?: string, from?: string, place_id?: string, brand_name?: string, task_id?: string, task_kind?: string, calendar_label?: string, situation?: unknown, pressure?: unknown, choices?: CiviUiChoice[], [key: string]: unknown }} CiviUiEvent
+ * @typedef {{ status?: string, enqueued_at?: string, event?: CiviUiEvent, [key: string]: unknown }} CiviUiInboxItem
+ * @typedef {{ stability?: string, warning_used?: boolean, strikes?: number, score?: number, active_role_key?: string|null, consumed?: CiviUiRecord, identity_tags?: unknown[], tracks?: unknown[], track_progress?: CiviUiRecord, unemployed_since_week?: string|null, career?: CiviUiRecord, [key: string]: unknown }} CiviUiState
+ */
+
+/**
+ * @returns {Promise<void>}
+ */
 async function init() {
 
   // Sørg for at careers er lastet
@@ -49,6 +60,10 @@ async function init() {
   window.addEventListener("civi:homeChanged", renderHomeStatus);
 }
 
+/**
+ * @param {string} previousEventId
+ * @returns {void}
+ */
 function refreshCivicationAfterAnswer(previousEventId) {
   function rerenderMailViews() {
     renderCivicationInbox();
@@ -114,6 +129,9 @@ function wireCivicationActions() {
 // ============================================================
 // RENDER MAIN CIVICATION PANEL
 // ============================================================
+/**
+ * @returns {Promise<void>}
+ */
 async function renderCivication() {
   await window.ensureCiviCareerRulesLoaded?.();
 
@@ -635,6 +653,9 @@ document.getElementById("closeDistrictModal")
   });
 
 
+/**
+ * @returns {void}
+ */
 function renderWorkdayPanel() {
   const host = document.getElementById("civiWorkdayPanel");
   if (!host) return;
@@ -833,6 +854,10 @@ function getTaskWindowLabel(task, ev) {
   return `${tw.startsAtLabel}–${tw.deadlineAtLabel}`;
 }
 
+/**
+ * @param {string} mailId
+ * @returns {void}
+ */
 function openTaskModalByMailId(mailId) {
   const modal = document.getElementById("civiTaskModal");
   const body = document.getElementById("civiTaskModalBody");
@@ -1058,6 +1083,9 @@ function buildCiviEventViewModel(event, options) {
 // INBOX
 // ============================================================
 
+/**
+ * @returns {void}
+ */
 function renderCivicationInbox() {
   // =========================
   // PROFILE-MODE (profile.html)
@@ -1295,6 +1323,9 @@ function renderCivicationInbox() {
 }
 
 
+/**
+ * @returns {void}
+ */
 function renderCapital() {
   const capital = JSON.parse(localStorage.getItem("hg_capital_v1")) || {};
 
@@ -1320,6 +1351,9 @@ function renderCapital() {
 // IDENTITY PERCEPTION
 // ============================================================
 
+/**
+ * @returns {void}
+ */
 function renderPerception() {
 
   const el = document.getElementById("identityPerception");
@@ -1349,6 +1383,9 @@ document.getElementById("identityPerceptionBtn")
     el.classList.toggle("open");
   });
 
+/**
+ * @returns {void}
+ */
 function renderTrackHUD() {
 
   const state = window.CivicationState.getState();
