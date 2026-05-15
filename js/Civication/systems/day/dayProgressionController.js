@@ -112,17 +112,6 @@
     calendar?.advancePhase?.();
     const toPhase = getCurrentPhase();
 
-    if (window.CivicationDailyMailBuilder?.enqueueNext) {
-      try {
-        await window.CivicationDailyMailBuilder.enqueueNext(window.HG_CiviEngine || null, {
-          ignorePending: true
-        });
-      } catch (error) {
-        if (window.DEBUG) {
-          console.warn("[CivicationDayProgression] enqueueNext feilet", error);
-        }
-      }
-    }
 
     try { window.dispatchEvent(new Event("civi:dayPhaseChanged")); } catch {}
     try { window.dispatchEvent(new Event("civi:inboxChanged")); } catch {}
