@@ -415,12 +415,7 @@
       </div>
     `;
 
-    const existing = host.querySelector("[data-civi-inbox-sections='1']");
-    if (existing) {
-      existing.outerHTML = markup;
-    } else {
-      host.insertAdjacentHTML("beforeend", markup);
-    }
+    host.innerHTML = markup;
 
     wireInboxResponses(host);
     return true;
