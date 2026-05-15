@@ -2,52 +2,79 @@
 // 5. PLACE CARD (det store kortpanelet) — REN SAMLET VERSJON
 // ============================================================
 /**
- * @typedef {import("../../schemas/place").Place} PlaceCardPlace
  * @typedef {Record<string, unknown>} PlaceCardRecord
- * @typedef {object} PlaceCardPerson
- * @property {string=} id
- * @property {string=} name
- * @property {string=} title
- * @property {string=} image
- * @property {string=} portrait
- * @property {string=} role
- * @property {string=} desc
- * @property {string[]=} places
- * @property {string=} placeId
- * @property {string[]=} place_ids
- * @property {string[]=} categories
- * @property {string[]=} tags
- * @property {string[]=} emne_ids
- * @property {unknown[]=} badges
- * @property {unknown[]=} relations
- * @property {PlaceCardRecord=} meta
- * @property {unknown} [key]
  *
- * @typedef {object} PlaceCardBadge
- * @property {string=} id
- * @property {string=} title
- * @property {string=} name
- * @property {string=} icon
- * @property {string=} image
- * @property {string=} category
- * @property {string=} desc
- * @property {unknown[]=} sub
- * @property {number=} points
- * @property {unknown} [key]
+ * @typedef {import("../../schemas/place").Place & PlaceCardRecord & {
+ *   id?: string,
+ *   name?: string,
+ *   title?: string,
+ *   category?: string,
+ *   categoryId?: string,
+ *   subcategory?: string,
+ *   subcategory_label?: string,
+ *   desc?: string,
+ *   popupDesc?: string,
+ *   image?: string,
+ *   cardImage?: string,
+ *   people?: unknown[],
+ *   badges?: unknown[],
+ *   relations?: unknown[],
+ *   nature?: unknown[],
+ *   tags?: string[],
+ *   wonderkammer?: unknown[],
+ *   emne_ids?: string[],
+ *   quiz_profile?: PlaceCardRecord,
+ *   social_profile?: PlaceCardRecord,
+ *   sport_profile?: PlaceCardRecord,
+ *   lat?: number,
+ *   lon?: number,
+ *   lng?: number
+ * }} PlaceCardPlace
  *
- * @typedef {object} PlaceCardRelation
- * @property {string=} id
- * @property {string=} type
- * @property {string=} title
- * @property {string=} label
- * @property {string=} target_id
- * @property {string=} source_id
- * @property {string=} desc
- * @property {unknown} [key]
+ * @typedef {PlaceCardRecord & {
+ *   id?: string,
+ *   name?: string,
+ *   title?: string,
+ *   image?: string,
+ *   portrait?: string,
+ *   role?: string,
+ *   desc?: string,
+ *   places?: string[],
+ *   placeId?: string,
+ *   place_ids?: string[],
+ *   categories?: string[],
+ *   tags?: string[],
+ *   emne_ids?: string[],
+ *   badges?: unknown[],
+ *   relations?: unknown[],
+ *   meta?: PlaceCardRecord
+ * }} PlaceCardPerson
+ *
+ * @typedef {PlaceCardRecord & {
+ *   id?: string,
+ *   title?: string,
+ *   name?: string,
+ *   icon?: string,
+ *   image?: string,
+ *   category?: string,
+ *   desc?: string,
+ *   sub?: unknown[],
+ *   points?: number
+ * }} PlaceCardBadge
+ *
+ * @typedef {PlaceCardRecord & {
+ *   id?: string,
+ *   type?: string,
+ *   title?: string,
+ *   label?: string,
+ *   target_id?: string,
+ *   source_id?: string,
+ *   desc?: string
+ * }} PlaceCardRelation
  */
 
 /**
- * @param {PlaceCardPlace | null | undefined} place
+ * @param {PlaceCardPlace | PlaceCardRecord | null | undefined} place
  * @returns {Promise<void>}
  */
 window.openPlaceCard = async function (place) {
@@ -525,7 +552,7 @@ if (natureIcon) {
 
 
 /**
- * @param {PlaceCardPlace | null | undefined} place
+ * @param {PlaceCardPlace | PlaceCardRecord | null | undefined} place
  * @param {PlaceCardBadge[] | unknown} badgesSource
  * @returns {PlaceCardBadge | null}
  */
