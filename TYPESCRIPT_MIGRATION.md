@@ -109,3 +109,12 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Added both `Window` properties and minimal global symbol declarations for legacy direct global usage (for example `CivicationState`, `CivicationEconomyEngine`, and `CivicationObligationEngine`).
 - No Civication runtime files were modified, and no changes were made to economy, obligations, inbox/state behavior, lifestyle/capital logic, localStorage keys, or JSON/data files.
 - This phase is declaration-only and intended to reduce typecheck baseline noise in `js/Civication/**` without refactoring Civication logic.
+
+
+## Phase 11: Focused Event Engine JSDoc
+
+- Added focused, file-local JSDoc typing in `js/Civication/core/civicationEventEngine.js`.
+- Introduced intentionally broad local aliases for event, inbox, state, choice and free-form record structures to reduce type friction without changing behavior.
+- Annotated central state/inbox/event handling methods and a few local variables for readability and gradual typecheck progress.
+- No runtime logic, event-flow, choice/effects behavior, localStorage keys, DataHub calls, app wiring, or Civication data/JSON files were changed.
+- Remaining typecheck baseline outside this focused file is still expected.
