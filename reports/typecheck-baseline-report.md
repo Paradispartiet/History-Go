@@ -1,18 +1,18 @@
 # Typecheck baseline report
 
 ## Metadata
-- Generated at (UTC): 2026-05-15T21:34:58.136Z
+- Generated at (UTC): 2026-05-16T06:16:30.265Z
 - Command: `npm run typecheck`
 - Typecheck exit code: 2
-- Total diagnostic lines found: 2125
-- Files with diagnostics: 198
+- Total diagnostic lines found: 2128
+- Files with diagnostics: 199
 - Groups with diagnostics: 11
 - Unparsed/unknown diagnostic lines: 0
 
 ## Summary by area
 | Area | Files | Diagnostic lines | Example files |
 | --- | ---: | ---: | --- |
-| js/Civication/** | 85 | 792 | js/Civication/CivicationBoot.js<br>js/Civication/capitalEngine.js<br>js/Civication/capitalMaintenanceEngine.js |
+| js/Civication/** | 86 | 795 | js/Civication/CivicationBoot.js<br>js/Civication/capitalEngine.js<br>js/Civication/capitalMaintenanceEngine.js |
 | other | 70 | 552 | js/DomainRegistry.js<br>js/aha.js<br>js/app.js |
 | js/ui/** | 20 | 483 | js/ui/badge-modal.js<br>js/ui/badge-unlock-toast.js<br>js/ui/badges.js |
 | js/profile.js | 1 | 84 | js/profile.js |
@@ -51,7 +51,7 @@
 ## Diagnostic types (TypeScript error code)
 | Error code | Count |
 | --- | ---: |
-| TS2339 | 1684 |
+| TS2339 | 1687 |
 | TS2551 | 217 |
 | TS2304 | 86 |
 | TS2307 | 36 |
@@ -73,7 +73,7 @@
 | TS2741 | 1 |
 
 ## Priority recommendations (mechanical)
-1. Start with **js/Civication/** (792 diagnostics)** because it currently has the highest baseline volume.
+1. Start with **js/Civication/** (795 diagnostics)** because it currently has the highest baseline volume.
 2. Focus first on concentrated hotspots: `js/ui/place-card.js` (123), `js/Civication/ui/CivicationUI.js` (107), `js/Civication/core/civicationEventEngine.js` (97), `js/profile.js` (84), `js/ui/popup-utils.js` (82).
 3. Defer broader/sensitive areas until hotspot reduction is complete: `other`, `js/ui/**`, `js/profile.js`.
 4. Keep this report read-only and rerun after each migration phase to validate trend direction.

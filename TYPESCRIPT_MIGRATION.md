@@ -148,3 +148,11 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Rolled back the problematic popup-utils annotations to preserve the post-Phase 13B baseline trend (no increase in total diagnostics/UI diagnostics).
 - This phase is therefore treated as JSDoc groundwork only, pending a later pass with broader cross-file/global typing support.
 - No runtime logic, popup behavior, DOM structure, rendering, layout, CSS, z-index, UI text, PlaceCard, Nearby, map, unlock/quiz/state, localStorage keys, DataHub calls, or data/JSON files were changed.
+
+## Phase 15: Profile JSDoc groundwork only (stability-adjusted)
+
+- Attempted focused, file-local JSDoc typing in `js/profile.js`, but the first annotation pass increased baseline diagnostics.
+- Rolled back the problematic profile annotations to preserve the post-Phase 14 baseline direction (no increase in total diagnostics).
+- This phase is therefore documented as groundwork only, pending a safer follow-up pass with broader typing support.
+- Baseline reflects current main after intervening Civication merges; Phase 15 leaves `js/profile.js` unchanged at 84 diagnostics.
+- No runtime logic, profile UI, DOM structure, rendering, layout, CSS, text, progression/badge/quiz logic, localStorage keys/contracts, Knowledge Engine runtime, DataHub calls, state/persistence contracts, or app/data files were changed.
