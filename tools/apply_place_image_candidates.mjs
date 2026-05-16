@@ -112,7 +112,13 @@ async function main() {
     assertNewSourceFile(entry.sourceFile);
     if (!candidate?.originalUrl) throw new Error(`${entry.id} mangler originalUrl`);
 
-    const imagePath = candidate?.suggested?.image;
+    const suggestedImage = candidate?.suggested?.image;
+    const suggestedCardImage = candidate?.suggested?.cardImage;
+    if (hasText(suggestedImage) && hasText(suggestedCardImage) && suggestedImage === suggestedCardImage) {
+      throw new Error(`${entry.id} har ugyldig kandidat: suggested.image og suggested.cardImage kan ikke være samme fil (${suggestedImage}).`);
+    }
+
+    const imagePath = suggestedImage;
     assertLocalImagePath(imagePath);
 
     if (!bySourceFile.has(entry.sourceFile)) {
@@ -131,8 +137,8 @@ async function main() {
       place.image = imagePath;
     }
 
-    if (OVERWRITE || !hasText(place.cardImage)) {
-      place.cardImage = candidate?.suggested?.cardImage || imagePath;
+    if ((OVERWRITE || !hasText(place.cardImage)) && hasText(suggestedCardImage)) {
+      place.cardImage = suggestedCardImage;
     }
 
     place.imageMeta = buildImageMeta(candidate);

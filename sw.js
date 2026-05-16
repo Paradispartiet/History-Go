@@ -3,7 +3,7 @@
    Oppdatert: 2026-05-02
    ============================================================ */
 
-const SW_VERSION = "hg-sw-2026-05-04-v1.39.257";
+const SW_VERSION = "hg-sw-2026-05-13-v1.41.146";
 
 const CACHE_STATIC  = `hg-static-${SW_VERSION}`;
 const CACHE_RUNTIME = `hg-runtime-${SW_VERSION}`;
@@ -12,6 +12,7 @@ const CACHE_RUNTIME = `hg-runtime-${SW_VERSION}`;
 const PRECACHE_URLS = [
   "./",
   "./index.html",
+  "profile.html",
   "Civication.html",
   "manifest.json",
 
@@ -21,6 +22,7 @@ const PRECACHE_URLS = [
   "css/civi-refresh.css",
   "css/civi-dashboard.css",
   "css/civi-mini.css",
+  "css/civi-system-map.css",
   "css/components.css",
   "css/effects.css",
   "css/footer.css",
@@ -33,6 +35,7 @@ const PRECACHE_URLS = [
   "css/placeCard.css",
   "css/popups.css",
   "css/profile.css",
+  "css/profile-dashboard.css",
   "css/quiz.css",
   "css/search.css",
   "css/sheets.css",
@@ -58,8 +61,12 @@ const PRECACHE_URLS = [
   "js/trivia.js",
   "js/hgInsights.js",
   "js/dataHub.js",
+  "js/profile.js",
 
   "js/DomainRegistry.js",
+  "js/fagHealthReport.js",
+  "js/courses.js",
+  "js/hgKnowledgeEngine.js",
   "js/domainHealthReport.js",
 
   // Dev / console
@@ -148,7 +155,9 @@ const PRECACHE_URLS = [
   // Civication – ui
   "js/Civication/ui/CivicationHome.js",
   "js/Civication/ui/CivicationPublicLayer.js",
+  "js/Civication/ui/CivicationMapModel.js",
   "js/Civication/ui/CivicationMap.js",
+  "js/Civication/ui/CivicationSystemMap.js",
   "js/Civication/ui/CivicationUI.js",
   "js/Civication/ui/CivicationDashboardUI.js",
   "js/Civication/ui/CivicationMiniSectionsUI.js",
@@ -164,6 +173,7 @@ const PRECACHE_URLS = [
   "js/Civication/systems/civicationLifeMailRuntime.js",
   "js/Civication/systems/day/dayActiveRoleStateSync.js",
   "js/Civication/systems/day/dayCalendarBridge.js",
+  "js/Civication/systems/day/dayProgressionController.js",
   "js/Civication/systems/day/dayHistoryGoContexts.js",
   "js/Civication/systems/day/dayCarryover.js",
   "js/Civication/systems/day/dayWeeklyReview.js",

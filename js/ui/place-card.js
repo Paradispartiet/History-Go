@@ -1,6 +1,82 @@
 // ============================================================
 // 5. PLACE CARD (det store kortpanelet) — REN SAMLET VERSJON
 // ============================================================
+/**
+ * @typedef {Record<string, unknown>} PlaceCardRecord
+ *
+ * @typedef {import("../../schemas/place").Place & PlaceCardRecord & {
+ *   id?: string,
+ *   name?: string,
+ *   title?: string,
+ *   category?: string,
+ *   categoryId?: string,
+ *   subcategory?: string,
+ *   subcategory_label?: string,
+ *   desc?: string,
+ *   popupDesc?: string,
+ *   image?: string,
+ *   cardImage?: string,
+ *   people?: unknown[],
+ *   badges?: unknown[],
+ *   relations?: unknown[],
+ *   nature?: unknown[],
+ *   tags?: string[],
+ *   wonderkammer?: unknown[],
+ *   emne_ids?: string[],
+ *   quiz_profile?: PlaceCardRecord,
+ *   social_profile?: PlaceCardRecord,
+ *   sport_profile?: PlaceCardRecord,
+ *   lat?: number,
+ *   lon?: number,
+ *   lng?: number
+ * }} PlaceCardPlace
+ *
+ * @typedef {PlaceCardRecord & {
+ *   id?: string,
+ *   name?: string,
+ *   title?: string,
+ *   image?: string,
+ *   portrait?: string,
+ *   role?: string,
+ *   desc?: string,
+ *   places?: string[],
+ *   placeId?: string,
+ *   place_ids?: string[],
+ *   categories?: string[],
+ *   tags?: string[],
+ *   emne_ids?: string[],
+ *   badges?: unknown[],
+ *   relations?: unknown[],
+ *   meta?: PlaceCardRecord
+ * }} PlaceCardPerson
+ *
+ * @typedef {PlaceCardRecord & {
+ *   id?: string,
+ *   title?: string,
+ *   name?: string,
+ *   icon?: string,
+ *   image?: string,
+ *   category?: string,
+ *   desc?: string,
+ *   sub?: unknown[],
+ *   points?: number
+ * }} PlaceCardBadge
+ *
+ * @typedef {PlaceCardRecord & {
+ *   id?: string,
+ *   type?: string,
+ *   title?: string,
+ *   label?: string,
+ *   target_id?: string,
+ *   source_id?: string,
+ *   desc?: string
+ * }} PlaceCardRelation
+ */
+
+/**
+ * @param {PlaceCardPlace | PlaceCardRecord | null | undefined} place
+ * @returns {Promise<void>}
+ */
 window.openPlaceCard = async function (place) {
   console.trace("[placeCard] openPlaceCard", { placeId: place?.id, placeName: place?.name });
   if (!place) return;
@@ -475,6 +551,11 @@ if (natureIcon) {
 }
 
 
+/**
+ * @param {PlaceCardPlace | PlaceCardRecord | null | undefined} place
+ * @param {PlaceCardBadge[] | unknown} badgesSource
+ * @returns {PlaceCardBadge | null}
+ */
 function getBadgeForPlace(place, badgesSource) {
   const badges = Array.isArray(badgesSource)
     ? badgesSource
@@ -486,6 +567,10 @@ function getBadgeForPlace(place, badgesSource) {
   return badges.find(b => String(b?.id || "").trim() === categoryId) || null;
 }
 
+/**
+ * @param {unknown} rawValue
+ * @returns {string}
+ */
 function formatSubcategoryLabel(rawValue) {
   const raw = String(rawValue || "").trim();
   if (!raw) return "";
@@ -756,21 +841,76 @@ if (b0?.logo) {
 }
 }
 
+
+/**
+ * @param {string | number | null | undefined} placeId
+ * @returns {Promise<PlaceCardRecord | null>}
+ */
+async function loadPlaceSocialData(placeId) {
+  const id = String(placeId || "").trim();
+  if (!id) return null;
+
+  if (!window.__HG_PLACE_SOCIAL_CACHE__) window.__HG_PLACE_SOCIAL_CACHE__ = {};
+  if (Object.prototype.hasOwnProperty.call(window.__HG_PLACE_SOCIAL_CACHE__, id)) {
+    return window.__HG_PLACE_SOCIAL_CACHE__[id];
+  }
+
+  const url = `data/social/place_social/oslo/place_social.json`;
+  try {
+    const res = await fetch(url, { cache: "no-cache" });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const json = await res.json();
+    const list = Array.isArray(json) ? json : [json].filter(Boolean);
+    const out = list.find(item => String(item?.place_id || "").trim() === id) || null;
+    window.__HG_PLACE_SOCIAL_CACHE__[id] = out;
+    return out;
+  } catch (err) {
+    console.warn("[social] could not load place_social", err);
+    window.__HG_PLACE_SOCIAL_CACHE__[id] = null;
+    return null;
+  }
+}
+
+/**
+ * @returns {Promise<PlaceCardRecord[]>}
+ */
+async function loadCanonicalSocialEvents() {
+  if (Array.isArray(window.__HG_CANONICAL_SOCIAL_EVENTS__)) {
+    return window.__HG_CANONICAL_SOCIAL_EVENTS__;
+  }
+
+  const url = `data/social/events/oslo/canonical_events.json`;
+  try {
+    const res = await fetch(url, { cache: "no-cache" });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const json = await res.json();
+    const list = Array.isArray(json) ? json : [json].filter(Boolean);
+    window.__HG_CANONICAL_SOCIAL_EVENTS__ = list;
+    return list;
+  } catch (err) {
+    console.warn("[social] could not load canonical events", err);
+    window.__HG_CANONICAL_SOCIAL_EVENTS__ = [];
+    return [];
+  }
+}
+
 // --- EVENTS BOX (ikke runding) ---
 if (eventsBox) {
-  const rawEvents = [
-    ...(Array.isArray(window.HGEvents?.getByPlace?.(place.id)) ? window.HGEvents.getByPlace(place.id) : []),
-    ...(Array.isArray(place.events) ? place.events : [])
-  ];
+  const socialData = await loadPlaceSocialData(place.id);
+  const canonicalEvents = await loadCanonicalSocialEvents();
 
-  const events = rawEvents
-    .map((evt, i) => ({
-      id: String(evt?.id ?? `evt_${i}`).trim(),
-      title: String(evt?.title ?? evt?.name ?? "Event").trim(),
-      meta: String(evt?.start ?? evt?.date ?? evt?.time ?? "").trim(),
-      url: String(evt?.url ?? evt?.link ?? "").trim()
-    }))
-    .filter(evt => evt.title);
+  const defaultSocialData = {
+    place_id: place.id,
+    social_enabled: true,
+    people_count: 0,
+    friends_count: 0,
+    active_event_ids: [],
+    canonical_event_ids: [],
+    social_modes: ["meetup", "message_game", "group_quiz"]
+  };
+
+  const social = socialData || defaultSocialData;
+  const socialEnabled = social?.social_enabled !== false;
 
   const head = `
     <div class="pc-events-head">
@@ -779,27 +919,92 @@ if (eventsBox) {
     </div>
   `;
 
-  const body = events.length
-    ? `
-      <div class="pc-events-list">
-        ${events.slice(0, 4).map(evt => `
-          <a class="pc-event-entry" href="${evt.url || "#"}" ${evt.url ? `target="_blank" rel="noopener"` : ""}>
-            <span class="pc-event-entry-title">${evt.title}</span>
-            ${evt.meta ? `<span class="pc-event-entry-meta">${evt.meta}</span>` : ""}
-          </a>
-        `).join("")}
-      </div>
-    `
-    : `<div class="pc-empty">Ingen events ennå</div>`;
+  const peopleCount = Number(social?.people_count) || 0;
+  const friendsCount = Number(social?.friends_count) || 0;
+  const canonicalIds = Array.isArray(social?.canonical_event_ids)
+    ? social.canonical_event_ids.map(id => String(id || "").trim()).filter(Boolean)
+    : [];
+
+  const canonicalForPlace = socialEnabled
+    ? canonicalEvents.filter(evt => {
+        const evtPlaceId = String(evt?.place_id || "").trim();
+        const evtId = String(evt?.id || "").trim();
+        const placeMatch = evtPlaceId === String(place.id || "").trim();
+        const idMatch = !canonicalIds.length || canonicalIds.includes(evtId);
+        return placeMatch && idMatch;
+      })
+    : [];
+
+  const modes = new Set(
+    Array.isArray(social?.social_modes) && social.social_modes.length
+      ? social.social_modes
+      : defaultSocialData.social_modes
+  );
+
+  const modeButtons = [
+    modes.has("meetup")
+      ? `<button class="pc-events-action" type="button" data-social-action="meetup">Avtal å møtes</button>`
+      : "",
+    modes.has("message_game")
+      ? `<button class="pc-events-action" type="button" data-social-action="message_game">Start meldingsspill</button>`
+      : "",
+    modes.has("group_quiz")
+      ? `<button class="pc-events-action" type="button" data-social-action="group_quiz">Ta quiz sammen</button>`
+      : ""
+  ].filter(Boolean).join("");
+
+  const compactStatus = `${peopleCount} her · ${friendsCount} venner`;
+  const compactEvents = canonicalForPlace.length
+    ? `${canonicalForPlace.length} ting skjer her`
+    : `Ingen hendelser`;
+
+  const body = `
+    <div class="pc-events-preview-line" title="${compactStatus}">${compactStatus}</div>
+    <div class="pc-events-preview-line" title="${compactEvents}">${compactEvents}</div>
+  `;
 
   eventsBox.innerHTML = head + body;
 
   const addBtn = document.getElementById("pcAddEvent");
   if (addBtn) {
-    addBtn.onclick = () => {
-      window.showToast?.("Event-generator / event-innsending kommer her");
+    addBtn.onclick = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const currentPlaceId = String(document.getElementById("placeCard")?.dataset?.currentPlaceId || place.id || "").trim();
+      console.log("[social] add/forslag", currentPlaceId);
     };
   }
+
+  eventsBox.onclick = () => {
+    const socialPopupHtml = `
+      <section class="pc-events-section">
+        <div class="pc-event-entry-title">Her nå</div>
+        <div class="pc-events-row">Personer: ${peopleCount}</div>
+        <div class="pc-events-row">Venner: ${friendsCount}</div>
+      </section>
+      <section class="pc-events-section">
+        <div class="pc-event-entry-title">Skjer her</div>
+        ${canonicalForPlace.length
+          ? canonicalForPlace.map(evt => `<div class="pc-events-row">${evt.title || evt.id || "Event"}</div>`).join("")
+          : `<div class="pc-events-row">Ingen kanoniserte hendelser lagt til ennå.</div>`
+        }
+      </section>
+      <section class="pc-events-section">
+        <div class="pc-event-entry-title">Sosialt</div>
+        ${modeButtons}
+      </section>
+    `;
+
+    if (typeof window.showPlaceCardRoundPopup === "function") {
+      window.showPlaceCardRoundPopup({
+        title: "På stedet",
+        subtitle: place?.name || "",
+        html: socialPopupHtml,
+        place,
+        kind: "events"
+      });
+    }
+  };
 }
 
 // --- LEKSIKON LIST + LEKSIKON ICON ---
@@ -911,6 +1116,11 @@ let _unlockTimer = null;
 let _lastUnlockText = null;
 let _lastUnlockDisabled = null;
 
+/**
+ * @param {boolean} disabled
+ * @param {string} text
+ * @returns {void}
+ */
 function setUnlockUI(disabled, text) {
   if (!btnUnlock) return;
   if (_lastUnlockDisabled === disabled && _lastUnlockText === text) return;
@@ -920,6 +1130,9 @@ function setUnlockUI(disabled, text) {
   btnUnlock.textContent = text;
 }
 
+/**
+ * @returns {void}
+ */
 function updateUnlockUI() {
   if (!btnUnlock) return;
 
@@ -1039,6 +1252,10 @@ expandPlaceCard();
 // PLACE CARD – bottom sheet bridge (engine-controlled)
 // ============================================================
 
+/**
+ * @param {boolean} on
+ * @returns {void}
+ */
 function setPlaceCardMiniVisible(on){
   const mini = document.getElementById("pcMini");
   if (!mini) return;
@@ -1046,16 +1263,28 @@ function setPlaceCardMiniVisible(on){
   mini.setAttribute("aria-hidden", on ? "false" : "true");
 }
 
+/**
+ * @returns {HTMLElement | null}
+ */
 function getPlaceCardEl() {
   return hg$("placeCard");
 }
 
+/**
+ * @returns {boolean}
+ */
 function isPlaceCardCollapsed() {
   return !!getPlaceCardEl()?.classList.contains("is-collapsed");
 }
 
+/**
+ * @returns {void}
+ */
 function requestMapResize() {}
 
+/**
+ * @returns {void}
+ */
 function collapsePlaceCard() {
   const pc = getPlaceCardEl();
   if (!pc) return;
@@ -1079,6 +1308,9 @@ function collapsePlaceCard() {
  }
 }
 
+/**
+ * @returns {void}
+ */
 function expandPlaceCard() {
   const pc = getPlaceCardEl();
   if (!pc) return;
@@ -1101,10 +1333,16 @@ function expandPlaceCard() {
  }
 }
 
+/**
+ * @returns {void}
+ */
 function togglePlaceCard() {
   isPlaceCardCollapsed() ? expandPlaceCard() : collapsePlaceCard();
 }
 
+/**
+ * @returns {void}
+ */
 function initPlaceCardCollapse() {
   const pc = getPlaceCardEl();
   if (!pc) return;

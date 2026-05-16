@@ -1,0 +1,345 @@
+# People invalid place refs audit
+
+Generated: 2026-05-14T05:27:28.981Z
+
+## Sammendrag
+- People-filer lest: **17**
+- People lest: **193**
+- People med ugyldige refs: **22**
+- Ugyldige refs: **41**
+- Unike ugyldige placeId-er: **20**
+- People uten gyldig sted: **24**
+- Duplikate interne place-referanser: **171**
+
+## Ugyldige refs gruppert per fil/person
+### data/people/people_by.json
+- **christian_heinrich_grosch** (Christian Heinrich Grosch)
+  - botanisk_hage @ `places[2]`
+### data/people/people_historie.json
+- **jens_bjelke** (Jens Bjelke)
+  - toyen_hovedgard @ `placeId`
+  - toyen_hovedgard @ `places[0]`
+- **henrik_bjelke** (Henrik Bjelke)
+  - toyen_hovedgard @ `placeId`
+  - toyen_hovedgard @ `places[0]`
+- **kristine_bonnevie** (Kristine Bonnevie)
+  - toyen_hovedgard @ `placeId`
+  - toyen_hovedgard @ `places[0]`
+- **anna_sethne** (Anna Sethne)
+  - sagene_skole @ `placeId`
+  - sagene_skole @ `places[0]`
+- **alexis_de_chateauneuf** (Alexis de Chateauneuf)
+  - trefoldighetskirken @ `placeId`
+  - trefoldighetskirken @ `places[0]`
+- **wilhelm_von_hanno** (Wilhelm von Hanno)
+  - trefoldighetskirken @ `placeId`
+  - trefoldighetskirken @ `places[0]`
+- **sigurd_ribbung** (Sigurd Ribbung)
+  - bispeborgen @ `places[2]`
+### data/people/people_litteratur.json
+- **sigrid_undset** (Sigrid Undset)
+  - bøker_i_byen @ `places[3]`
+- **bjornstjerne_bjornson** (Bjørnstjerne Bjørnson)
+  - bjornson_bolig @ `places[2]`
+  - ibsen_bjornson_graver @ `places[3]`
+- **henrik_wergeland** (Henrik Wergeland)
+  - bøker_i_byen @ `places[6]`
+  - henrik_wergeland_park @ `places[3]`
+  - wergeland_barndom @ `places[4]`
+  - wergeland_grav @ `places[5]`
+  - wergelandsveien_15 @ `places[2]`
+- **camilla_collett** (Camilla Collett)
+  - collett_barndom @ `places[2]`
+  - collett_monument @ `places[3]`
+  - henrik_wergeland_park @ `places[1]`
+- **andre_bjerke** (André Bjerke)
+  - grotten_utsikt @ `places[1]`
+- **inger_hagerup** (Inger Hagerup)
+  - grotten_utsikt @ `places[1]`
+  - inger_hagerup_minne @ `places[2]`
+- **jon_fosse** (Jon Fosse)
+  - grotten_utsikt @ `places[1]`
+- **gro_dahle** (Gro Dahle)
+  - sofienberg_poesipark @ `places[3]`
+- **jan_erik_vold** (Jan Erik Vold)
+  - sofienberg_poesipark @ `places[1]`
+- **jonas_collett** (Jonas Collett)
+  - collett_monument @ `placeId`
+  - collett_monument @ `places[0]`
+- **cecilie_loveid** (Cecilie Løveid)
+  - sofienberg_poesipark @ `placeId`
+  - sofienberg_poesipark @ `places[0]`
+- **rolf_jacobsen** (Rolf Jacobsen)
+  - rolf_jacobsen_minne @ `placeId`
+  - rolf_jacobsen_minne @ `places[0]`
+### data/people/people_musikk.json
+- **ulrikke_brandstorp** (Ulrikke Brandstorp)
+  - vulkan @ `placeId`
+  - vulkan @ `places[0]`
+### data/people/people_vitenskap.json
+- **eilert_sundt** (Eilert Sundt)
+  - universitetet @ `placeId`
+  - universitetet @ `places[0]`
+
+## Unike ugyldige placeId-er og kandidatforslag
+- **toyen_hovedgard** (needs_manual_review, 6 treff)
+  - toyen_torg (confidence: low)
+- **sofienberg_poesipark** (needs_manual_review, 4 treff)
+  - sofienberg_kirke (confidence: low)
+- **trefoldighetskirken** (missing_place_candidate, 4 treff)
+  - missing_place_candidate
+- **collett_monument** (missing_place_candidate, 3 treff)
+  - missing_place_candidate
+- **grotten_utsikt** (missing_place_candidate, 3 treff)
+  - missing_place_candidate
+- **bøker_i_byen** (missing_place_candidate, 2 treff)
+  - missing_place_candidate
+- **henrik_wergeland_park** (needs_manual_review, 2 treff)
+  - henrik_wergeland_statue (confidence: low)
+- **rolf_jacobsen_minne** (missing_place_candidate, 2 treff)
+  - missing_place_candidate
+- **sagene_skole** (needs_manual_review, 2 treff)
+  - gamlebyen_skole (confidence: low)
+  - sagene_film (confidence: low)
+  - sagene_kvernhus (confidence: low)
+- **universitetet** (likely_rename_to_existing_place, 2 treff)
+  - universitetets_gamle_hovedbygning (confidence: medium)
+  - universitetets_gamle_kjemi (confidence: medium)
+- **vulkan** (likely_rename_to_existing_place, 2 treff)
+  - vulkan_energisentral (confidence: medium)
+  - vulkan_industriomrade (confidence: medium)
+  - vulkan_murvegger (confidence: medium)
+- **bispeborgen** (missing_place_candidate, 1 treff)
+  - missing_place_candidate
+- **bjornson_bolig** (missing_place_candidate, 1 treff)
+  - missing_place_candidate
+- **botanisk_hage** (missing_place_candidate, 1 treff)
+  - missing_place_candidate
+- **collett_barndom** (missing_place_candidate, 1 treff)
+  - missing_place_candidate
+- **ibsen_bjornson_graver** (missing_place_candidate, 1 treff)
+  - missing_place_candidate
+- **inger_hagerup_minne** (missing_place_candidate, 1 treff)
+  - missing_place_candidate
+- **wergeland_barndom** (missing_place_candidate, 1 treff)
+  - missing_place_candidate
+- **wergeland_grav** (missing_place_candidate, 1 treff)
+  - missing_place_candidate
+- **wergelandsveien_15** (missing_place_candidate, 1 treff)
+  - missing_place_candidate
+
+## People uten gyldig sted
+- data/people/people_historie.json :: jens_bjelke (Jens Bjelke)
+- data/people/people_historie.json :: henrik_bjelke (Henrik Bjelke)
+- data/people/people_historie.json :: anna_sethne (Anna Sethne)
+- data/people/people_historie.json :: alexis_de_chateauneuf (Alexis de Chateauneuf)
+- data/people/people_litteratur.json :: jonas_collett (Jonas Collett)
+- data/people/people_litteratur.json :: cecilie_loveid (Cecilie Løveid)
+- data/people/people_litteratur.json :: rolf_jacobsen (Rolf Jacobsen)
+- data/people/people_litteratur.json :: per_petterson (Per Petterson)
+- data/people/people_musikk.json :: ulrikke_brandstorp (Ulrikke Brandstorp)
+- data/people/people_naeringsliv.json :: gunnar_jahn_statistikk_og_styring (Gunnar Jahn)
+- data/people/people_naeringsliv.json :: nicolai_rygg_sentralbank (Nicolai Rygg)
+- data/people/people_naeringsliv.json :: anton_martin_schweigaard_okonomi (Anton Martin Schweigaard)
+- data/people/people_naeringsliv.json :: sam_eyde_industriutbygger (Sam Eyde)
+- data/people/people_naeringsliv.json :: kristian_birkeland_teknologi_og_industri (Kristian Birkeland)
+- data/people/people_naeringsliv.json :: christen_smith_schous_bryggeri (Christen Smith)
+- data/people/people_naeringsliv.json :: ellef_ringnes_bryggeri_og_ledelse (Ellef Ringnes)
+- data/people/people_naeringsliv.json :: christian_schweigaard_post_og_administrasjon (Christian Schweigaard)
+- data/people/people_naeringsliv.json :: alf_bjercke_industri_og_kvalitet (Alf Bjercke)
+- data/people/people_populaerkultur.json :: herman_flesvig (Herman Flesvig)
+- data/people/people_populaerkultur.json :: morten_ramm (Morten Ramm)
+- data/people/people_populaerkultur.json :: bard_tufte_johansen (Bård Tufte Johansen)
+- data/people/people_populaerkultur.json :: harald_eia (Harald Eia)
+- data/people/people_populaerkultur.json :: else_kass_furuseth (Else Kåss Furuseth)
+- data/people/people_populaerkultur.json :: kristoffer_olsen (Kristoffer Olsen)
+
+## Duplikate place-referanser inne i people
+- data/people/people_by.json :: carl_berner (Carl Berner) -> carl_berner_plass x2
+- data/people/people_by.json :: christian_heinrich_grosch (Christian Heinrich Grosch) -> universitetsplassen x2
+- data/people/people_by.json :: harald_hals (Harald Hals) -> ullevål_hageby x2
+- data/people/people_by.json :: kong_christian_iv (Kong Christian IV) -> oslo_radhus x2
+- data/people/people_historie.json :: kong_sverre (Kong Sverre Sigurdsson) -> oslo_domkirke x2
+- data/people/people_historie.json :: haakon_vii_krigstid (Haakon VII (krigstiden)) -> oslo_radhus x2
+- data/people/people_historie.json :: olav_den_hellige (Olav den hellige) -> oslo_domkirke x2
+- data/people/people_historie.json :: harald_harfagre (Harald Hårfagre) -> akerhus_slott x2
+- data/people/people_historie.json :: max_manus (Max Manus) -> oslo_radhus x2
+- data/people/people_historie.json :: christian_frederik (Christian Frederik) -> stortinget x2
+- data/people/people_historie.json :: roald_amundsen (Roald Amundsen) -> nobelinstituttet x2
+- data/people/people_historie.json :: fridtjof_nansen (Fridtjof Nansen) -> nobelinstituttet x2
+- data/people/people_historie.json :: haakon_v_magnusson (Håkon V Magnusson) -> akerhus_slott x2
+- data/people/people_historie.json :: st_hallvard (St. Hallvard) -> middelalder_oslo x2
+- data/people/people_historie.json :: harald_hardrade (Harald Hardråde) -> middelalder_oslo x2
+- data/people/people_historie.json :: christian_iv (Christian IV) -> christiania_torv x2
+- data/people/people_historie.json :: christopher_hansteen (Christopher Hansteen) -> observatoriet x2
+- data/people/people_historie.json :: kong_karl_johan (Karl Johan) -> slottet x2
+- data/people/people_historie.json :: oscar_i (Oscar I) -> slottet x2
+- data/people/people_historie.json :: vidkun_quisling (Vidkun Quisling) -> akerhus_slott x2
+- data/people/people_historie.json :: gunnar_sonsteby (Gunnar Sønsteby) -> akerhus_slott x2
+- data/people/people_historie.json :: gregers_gram (Gregers Gram) -> akerhus_slott x2
+- data/people/people_historie.json :: henrik_ibsen (Henrik Ibsen) -> karl_johan x2
+- data/people/people_historie.json :: edvard_munch (Edvard Munch) -> karl_johan x2
+- data/people/people_historie.json :: oda_krohg (Oda Krohg) -> karl_johan x2
+- data/people/people_historie.json :: christian_krohg (Christian Krohg) -> karl_johan x2
+- data/people/people_historie.json :: thorvald_meyer (Thorvald Meyer) -> birkelunden x2
+- data/people/people_historie.json :: olaf_rye (Olaf Rye) -> olaf_ryes_plass x2
+- data/people/people_historie.json :: bernt_anker (Bernt Anker) -> bankplassen x2
+- data/people/people_historie.json :: georg_sverdrup (Georg Sverdrup) -> universitetsplassen x2
+- data/people/people_historie.json :: aasta_hansteen (Aasta Hansteen) -> karl_johan x2
+- data/people/people_historie.json :: christian_magnus_falsen (Christian Magnus Falsen) -> eidsvollsbygningen x2
+- data/people/people_historie.json :: wilhelm_f_k_christie (Wilhelm Frimann Koren Christie) -> eidsvollsbygningen x2
+- data/people/people_historie.json :: carsten_anker (Carsten Anker) -> eidsvollsbygningen x2
+- data/people/people_historie.json :: peder_anker (Peder Anker) -> bogstad_gard x2
+- data/people/people_historie.json :: birger_eriksen (Birger Eriksen) -> oscarsborg_festning x2
+- data/people/people_historie.json :: marcus_thrane (Marcus Thrane) -> var_frelsers_gravlund x2
+- data/people/people_historie.json :: martin_tranmael (Martin Tranmæl) -> var_frelsers_gravlund x2
+- data/people/people_historie.json :: cj_hambro (C.J. Hambro) -> var_frelsers_gravlund x2
+- data/people/people_historie.json :: viggo_hansteen (Viggo Hansteen) -> var_frelsers_gravlund x2
+- data/people/people_historie.json :: rolf_wickstrom (Rolf Wickstrøm) -> var_frelsers_gravlund x2
+- data/people/people_historie.json :: trygve_bratteli (Trygve Bratteli) -> grini_fangeleir x2
+- data/people/people_historie.json :: arnulf_overland (Arnulf Øverland) -> grini_fangeleir x2
+- data/people/people_historie.json :: sam_eyde (Sam Eyde) -> villa_grande x2
+- data/people/people_historie.json :: maria_quisling (Maria Quisling) -> villa_grande x2
+- data/people/people_historie.json :: jens_bjelke (Jens Bjelke) -> toyen_hovedgard x2
+- data/people/people_historie.json :: henrik_bjelke (Henrik Bjelke) -> toyen_hovedgard x2
+- data/people/people_historie.json :: kristine_bonnevie (Kristine Bonnevie) -> toyen_hovedgard x2
+- data/people/people_historie.json :: anna_sethne (Anna Sethne) -> sagene_skole x2
+- data/people/people_historie.json :: alexis_de_chateauneuf (Alexis de Chateauneuf) -> trefoldighetskirken x2
+- data/people/people_historie.json :: wilhelm_von_hanno (Wilhelm von Hanno) -> trefoldighetskirken x2
+- data/people/people_historie.json :: haakon_nyhuus (Haakon Nyhuus) -> gamle_deichman x2
+- data/people/people_historie.json :: petter_moen (Petter Moen) -> mollergata_19 x2
+- data/people/people_historie.json :: biskop_nikolas_arnason (Biskop Nikolas Arnesson) -> oslo_domkirke x2
+- data/people/people_historie.json :: eufemia_av_rugen (Eufemia av Rügen) -> akerhus_slott x2
+- data/people/people_historie.json :: hakon_vi_magnusson (Håkon VI Magnusson) -> akerhus_slott x2
+- data/people/people_historie.json :: margrete_valdemarsdatter (Margrete Valdemarsdatter) -> akerhus_slott x2
+- data/people/people_historie.json :: sigurd_jorsalfare (Sigurd Jorsalfare) -> middelalder_oslo x2
+- data/people/people_historie.json :: kong_olav_kyrre (Olav Kyrre) -> middelalder_oslo x2
+- data/people/people_historie.json :: peder_clausson_friis (Peder Claussøn Friis) -> oslo_domkirke x2
+- data/people/people_historie.json :: astrid_olavsdatter (Astrid Olavsdatter) -> middelalder_oslo x2
+- data/people/people_historie.json :: magnus_den_gode (Magnus den gode) -> middelalder_oslo x2
+- data/people/people_historie.json :: magnus_lagabote (Magnus Lagabøte) -> middelalder_oslo x2
+- data/people/people_historie.json :: gunnhild_kongsmor (Gunnhild kongsmor) -> akerhus_slott x2
+- data/people/people_historie.json :: sigurd_ribbung (Sigurd Ribbung) -> oslo_domkirke x2
+- data/people/people_historie.json :: alv_erlingsson (Alv Erlingsson) -> akerhus_slott x2
+- data/people/people_historie_next_batch_02_normalized.json :: astrid_olavsdatter (Astrid Olavsdatter) -> middelalder_oslo x2
+- data/people/people_historie_next_batch_02_normalized.json :: magnus_den_gode (Magnus den gode) -> middelalder_oslo x2
+- data/people/people_historie_next_batch_02_normalized.json :: magnus_lagabote (Magnus Lagabøte) -> middelalder_oslo x2
+- data/people/people_historie_next_batch_02_normalized.json :: gunnhild_kongsmor (Gunnhild kongsmor) -> akerhus_slott x2
+- data/people/people_historie_next_batch_02_normalized.json :: sigurd_ribbung (Sigurd Ribbung) -> oslo_domkirke x2
+- data/people/people_historie_next_batch_02_normalized.json :: alv_erlingsson (Alv Erlingsson) -> akerhus_slott x2
+- data/people/people_historie_next_batch_03_normalized.json :: ingebjorg_hakonsdatter (Ingebjørg Håkonsdatter) -> akerhus_slott x2
+- data/people/people_historie_next_batch_03_normalized.json :: haakon_haakonsson (Håkon Håkonsson) -> oslo_domkirke x2
+- data/people/people_historie_next_batch_03_normalized.json :: skule_baardsson (Skule Bårdsson) -> middelalder_oslo x2
+- data/people/people_kunst.json :: munch (Edvard Munch) -> munch_museet x2
+- data/people/people_kunst.json :: harriet_backer (Harriet Backer) -> nasjonalmuseet x2
+- data/people/people_kunst.json :: gustav_vigeland (Gustav Vigeland) -> vigelandsparken x2
+- data/people/people_kunst.json :: bjarne_melgaard (Bjarne Melgaard) -> tjuvholmen x2
+- data/people/people_kunst.json :: steinar_jakobsen (Steinar Jakobsen) -> astrup_fearnley x2
+- data/people/people_kunst.json :: cecilie_malm_brundtland (Cecilie Malm Brundtland) -> ekebergparken x2
+- data/people/people_kunst.json :: sonja (Dronning Sonja) -> slottet x2
+- data/people/people_litteratur.json :: linn_ullmann (Linn Ullmann) -> nasjonalbiblioteket x2
+- data/people/people_litteratur.json :: sigrid_undset (Sigrid Undset) -> nasjonalbiblioteket x2
+- data/people/people_litteratur.json :: bjornstjerne_bjornson (Bjørnstjerne Bjørnson) -> nasjonalbiblioteket x2
+- data/people/people_litteratur.json :: henrik_wergeland (Henrik Wergeland) -> voienvolden x2
+- data/people/people_litteratur.json :: camilla_collett (Camilla Collett) -> camilla_collett_statue x2
+- data/people/people_litteratur.json :: andre_bjerke (André Bjerke) -> grotta x2
+- data/people/people_litteratur.json :: inger_hagerup (Inger Hagerup) -> grotta x2
+- data/people/people_litteratur.json :: jon_fosse (Jon Fosse) -> grotta x2
+- data/people/people_litteratur.json :: vigdis_hjorth (Vigdis Hjorth) -> deichman_bjorvika x2
+- data/people/people_litteratur.json :: karl_ove_knausgard (Karl Ove Knausgård) -> deichman_bjorvika x2
+- data/people/people_litteratur.json :: dag_solstad (Dag Solstad) -> litteraturhuset x2
+- data/people/people_litteratur.json :: geir_gulliksen (Geir Gulliksen) -> litteraturhuset x2
+- data/people/people_litteratur.json :: cecilie_enger (Cecilie Enger) -> litteraturhuset x2
+- data/people/people_litteratur.json :: jens_bjorneboe (Jens Bjørneboe) -> tronsmo_bokhandel x2
+- data/people/people_litteratur.json :: tor_age_bringsvaerd (Tor Åge Bringsværd) -> tronsmo_bokhandel x2
+- data/people/people_litteratur.json :: gro_dahle (Gro Dahle) -> tronsmo_bokhandel x2
+- data/people/people_litteratur.json :: helene_uri (Helene Uri) -> eldorado_bokhandel x2
+- data/people/people_litteratur.json :: ingvar_ambjornsen (Ingvar Ambjørnsen) -> deichman_grunerlokka x2
+- data/people/people_litteratur.json :: jan_erik_vold (Jan Erik Vold) -> kulturkirken_jakob_litteratur x2
+- data/people/people_litteratur.json :: pedro_carmona_alvarez (Pedro Carmona-Alvarez) -> kulturkirken_jakob_litteratur x2
+- data/people/people_litteratur.json :: lars_saabye_christensen (Lars Saabye Christensen) -> norli_universitetsgata x2
+- data/people/people_litteratur.json :: jonas_collett (Jonas Collett) -> collett_monument x2
+- data/people/people_litteratur.json :: ruth_maier (Ruth Maier) -> ruth_maier_minne x2
+- data/people/people_litteratur.json :: alf_proysen (Alf Prøysen) -> alf_proysen_statue_nittedal x2
+- data/people/people_litteratur.json :: cecilie_loveid (Cecilie Løveid) -> sofienberg_poesipark x2
+- data/people/people_litteratur.json :: rolf_jacobsen (Rolf Jacobsen) -> rolf_jacobsen_minne x2
+- data/people/people_litteratur.json :: oskar_braaten (Oskar Braaten) -> oscar_braaten_statuen x2
+- data/people/people_litteratur.json :: vogt (Nils Collett Vogt) -> gamle_deichman x2
+- data/people/people_litteratur.json :: andersen (Tryggve Andersen) -> gamle_deichman x2
+- data/people/people_litteratur.json :: krag (Vilhelm Krag) -> gamle_deichman x2
+- data/people/people_litteratur.json :: obstfelder (Sigbjørn Obstfelder) -> gamle_deichman x2
+- data/people/people_litteratur.json :: hamsun (Knut Hamsun) -> gamle_deichman x2
+- data/people/people_litteratur.json :: garborg (Arne Garborg) -> gamle_deichman x2
+- data/people/people_musikk.json :: kirsten_flagstad (Kirsten Flagstad) -> operahuset x2
+- data/people/people_musikk.json :: alexander_rybak (Alexander Rybak) -> operahuset x2
+- data/people/people_musikk.json :: aurora (Aurora) -> salt x2
+- data/people/people_musikk.json :: sigrid (Sigrid) -> salt x2
+- data/people/people_musikk.json :: karpe (Karpe) -> sorenga x2
+- data/people/people_musikk.json :: ulrikke_brandstorp (Ulrikke Brandstorp) -> vulkan x2
+- data/people/people_musikk.json :: kygo (Kygo) -> barcode x2
+- data/people/people_musikk.json :: gabrielle (Gabrielle) -> barcode x2
+- data/people/people_musikk.json :: arif (Arif) -> stovnertarnet x2
+- data/people/people_musikk.json :: edvard_grieg (Edvard Grieg) -> operahuset x2
+- data/people/people_filantroper.json :: carl_deichman (Carl Deichman) -> gamle_deichman x2
+- data/people/people_filantroper.json :: alfred_nobel (Alfred Nobel) -> nobelinstituttet x2
+- data/people/people_filantroper.json :: hans_rasmus_astrup (Hans Rasmus Astrup) -> astrup_fearnley x2
+- data/people/people_filantroper.json :: christian_ringnes (Christian Ringnes) -> ekebergparken x2
+- data/people/people_natur.json :: peter_christen_asbjornsen (Peter Christen Asbjørnsen) -> maridalsvannet x2
+- data/people/people_natur.json :: michael_sars (Michael Sars) -> bygdoy_natur x2
+- data/people/people_natur.json :: georg_ossian_sars (Georg Ossian Sars) -> hovedoya x2
+- data/people/people_natur.json :: jens_esmark (Jens Esmark) -> maridalsvannet x2
+- data/people/people_natur.json :: arne_naess (Arne Næss) -> maerradalen x2
+- data/people/people_natur.json :: nils_faarlund (Nils Faarlund) -> maerradalen x2
+- data/people/people_politikk.json :: gro_harlem_brundtland (Gro Harlem Brundtland) -> stortinget x2
+- data/people/people_politikk.json :: jens_stoltenberg (Jens Stoltenberg) -> stortinget x2
+- data/people/people_politikk.json :: johan_sverdrup (Johan Sverdrup) -> stortinget x2
+- data/people/people_politikk.json :: ole_kopreitan (Ole Kopreitan) -> stortinget x2
+- data/people/people_politikk.json :: fredrikke_marie_qvam (Fredrikke Marie Qvam) -> stortinget x2
+- data/people/people_politikk.json :: gina_krog (Gina Krog) -> stortinget x2
+- data/people/people_politikk.json :: einar_gerhardsen (Einar Gerhardsen) -> youngstorget x2
+- data/people/people_politikk.json :: johan_nygaardsvold (Johan Nygaardsvold) -> stortinget x2
+- data/people/people_politikk.json :: christian_michelsen (Christian Michelsen) -> stortinget x2
+- data/people/people_politikk.json :: haakon_vii (Haakon VII) -> slottet x2
+- data/people/people_sport.json :: ada_hegerberg (Ada Hegerberg) -> ullevaal_stadion x2
+- data/people/people_sport.json :: erling_haaland (Erling Braut Haaland) -> ullevaal_stadion x2
+- data/people/people_sport.json :: ronny_deila (Ronny Deila) -> valle_hovin_stadion x2
+- data/people/people_sport.json :: marit_bjorgen (Marit Bjørgen) -> holmenkollen_nasjonalanlegg x2
+- data/people/people_sport.json :: therese_johaug (Therese Johaug) -> holmenkollen_nasjonalanlegg x2
+- data/people/people_sport.json :: grete_waitz (Grete Waitz) -> bislett_stadion x2
+- data/people/people_sport.json :: mats_zuccarello (Mats Zuccarello) -> vulkan_industriomrade x2
+- data/people/people_sport.json :: klanen (Klanen (VIF)) -> valle_hovin_stadion x2
+- data/people/people_subkultur.json :: kolapalsen (Køla-Pålsen) -> oslo_domkirke x2
+- data/people/people_subkultur.json :: snippmoller (Snipp-Møller) -> oslo_domkirke x2
+- data/people/people_subkultur.json :: lusefrants (Luse-Frants) -> middelalder_oslo x2
+- data/people/people_subkultur.json :: lisa_kristoffersen (Lisa Kristoffersen) -> voienvolden x2
+- data/people/people_subkultur.json :: advokat_hermansen (Advokat Hermansen) -> stortinget x2
+- data/people/people_subkultur.json :: ole_bjorn (Ole-Bjørn) -> oslo_domkirke x2
+- data/people/people_subkultur.json :: viggo_tigeren (Viggo (byen som tiger)) -> tigeren x2
+- data/people/people_subkultur.json :: tinashe_williamson (Tinashe Williamson) -> aker_brygge x2
+- data/people/people_subkultur.json :: stephen_butkus (Stephen Butkus) -> tjuvholmen x2
+- data/people/people_vitenskap.json :: eilert_sundt (Eilert Sundt) -> universitetet x2
+- data/people/people_populaerkultur.json :: astrid_s (Astrid S) -> sorenga x2
+- data/people/media/oslo/people_media_oslo.json :: torry_pedersen (Torry Pedersen) -> vg_huset x2
+- data/people/media/oslo/people_media_oslo.json :: gard_steiro (Gard Steiro) -> vg_huset x2
+- data/people/media/oslo/people_media_oslo.json :: hanne_skartveit (Hanne Skartveit) -> vg_huset x2
+- data/people/media/oslo/people_media_oslo.json :: bernt_olufsen (Bernt Olufsen) -> vg_huset x2
+- data/people/media/europe/portugal/lisbon/people_media_lisbon.json :: jose_rodrigues_dos_santos (José Rodrigues dos Santos) -> lisbon_rtp x2
+- data/people/media/europe/portugal/lisbon/people_media_lisbon.json :: catarina_furtado (Catarina Furtado) -> lisbon_rtp x2
+- data/people/media/europe/portugal/lisbon/people_media_lisbon.json :: jose_alberto_carvalho (José Alberto Carvalho) -> lisbon_rtp x2
+
+## Anbefalt neste ryddebatch
+- toyen_hovedgard (needs_manual_review, 6 treff)
+- sofienberg_poesipark (needs_manual_review, 4 treff)
+- trefoldighetskirken (missing_place_candidate, 4 treff)
+- collett_monument (missing_place_candidate, 3 treff)
+- grotten_utsikt (missing_place_candidate, 3 treff)
+- bøker_i_byen (missing_place_candidate, 2 treff)
+- henrik_wergeland_park (needs_manual_review, 2 treff)
+- rolf_jacobsen_minne (missing_place_candidate, 2 treff)
+- sagene_skole (needs_manual_review, 2 treff)
+- universitetet (likely_rename_to_existing_place, 2 treff)
+- vulkan (likely_rename_to_existing_place, 2 treff)
+- bispeborgen (missing_place_candidate, 1 treff)
+- bjornson_bolig (missing_place_candidate, 1 treff)
+- botanisk_hage (missing_place_candidate, 1 treff)
+- collett_barndom (missing_place_candidate, 1 treff)

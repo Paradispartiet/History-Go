@@ -759,6 +759,154 @@ function renderLatestKnowledge() {
   box.style.display = "block";
 }
 
+/**
+ * @typedef {Record<string, unknown>} ProfileRecord
+ * @typedef {object} ProfileKnowledgeReport
+ * @property {boolean=} ok
+ * @property {ProfileRecord=} summary
+ * @property {ProfileRecord=} sourceState
+ * @property {ProfileRecord=} subjects
+ * @property {unknown[]=} recommendations
+ * @property {unknown=} healthReport
+ * @property {string=} generatedAt
+ */
+
+/**
+ * @returns {Promise<void>}
+ */
+async function renderKnowledgeEnginePanel() {
+  const panel = document.getElementById("knowledgeEnginePanel");
+  const metaEl = document.getElementById("knowledgeEngineMeta");
+  const summaryEl = document.getElementById("knowledgeEngineSummary");
+  const subjectsEl = document.getElementById("knowledgeEngineSubjects");
+  const recsEl = document.getElementById("knowledgeEngineRecommendations");
+  const signalsEl = document.getElementById("knowledgeEngineSignals");
+  if (!panel || !metaEl || !summaryEl || !subjectsEl || !recsEl || !signalsEl) return;
+
+  if (typeof window.HGKnowledgeEngine?.run !== "function") {
+    summaryEl.innerHTML = `<div class="muted">Kunnskapsmotoren er ikke lastet ennå.</div>`;
+    return;
+  }
+
+  try {
+    /** @type {ProfileKnowledgeReport | null} */
+    const report = await window.HGKnowledgeEngine.run({ cache: "default" });
+    window.hgKnowledgeReport = report;
+
+    if (report?.ok !== true) {
+      summaryEl.innerHTML = `<div class="muted">Kunnskapsmotoren kunne ikke lage rapport akkurat nå.</div>`;
+      return;
+    }
+
+    /** @type {ProfileRecord} */
+    const summary = report?.summary || {};
+    /** @type {ProfileRecord} */
+    const sourceState = report?.sourceState || {};
+    const summaryCards = [
+      [`${Number(summary.subjects || 0)}`, "fag"],
+      [`${Number(summary.totalEmner || 0)}`, "emner"],
+      [`${Number(summary.totalKnownEmner || 0)}`, "kjente emner"],
+      [`${Number(summary.averageCoverage || 0)} %`, "snittdekning"],
+      [`${Number(sourceState.subjectsWithSignalsCount || 0)}`, "fag med signaler"],
+      [`${Number(summary.healthErrors || 0)} / ${Number(summary.healthWarnings || 0)}`, "feil / varsler"]
+    ];
+    summaryEl.innerHTML = summaryCards
+      .map(([value, label]) => `<div class="knowledge-engine-summary-card"><strong>${_esc(value)}</strong><span>${_esc(label)}</span></div>`)
+      .join("");
+
+    /** @type {unknown[]} */
+    const allSubjects = Object.values(report?.subjects || {});
+    const eligible = allSubjects.filter((subject) => {
+      const progress = subject?.progress || {};
+      const signals = subject?.signals?.summary || {};
+      return Number(progress.knownEmner || 0) > 0 || Number(signals.totalSignals || 0) > 0;
+    });
+    const strongest = eligible
+      .sort((a, b) => Number(b?.progress?.estimatedCoverage || 0) - Number(a?.progress?.estimatedCoverage || 0))
+      .slice(0, 5);
+
+    if (!strongest.length) {
+      subjectsEl.innerHTML = `<div class="muted">Du har ikke nok registrerte læringssignaler ennå.</div>`;
+    } else {
+      const weakest = (Array.isArray(summary.weakestSubjects) ? summary.weakestSubjects : [])
+        .slice(0, 3)
+        .map((item) => {
+          if (typeof item === "string") return item;
+          if (item && typeof item === "object" && item.subjectId) return item.subjectId;
+          return "";
+        })
+        .filter(Boolean);
+
+      const weakestFallback = allSubjects
+        .filter((s) => Number(s?.progress?.emnerCount || 0) >= 10)
+        .sort((a, b) => {
+          const cov = Number(a?.progress?.estimatedCoverage || 0) - Number(b?.progress?.estimatedCoverage || 0);
+          if (cov !== 0) return cov;
+          return Number(b?.progress?.emnerCount || 0) - Number(a?.progress?.emnerCount || 0);
+        })
+        .slice(0, 3)
+        .map((s) => String(s?.subjectId || ""));
+
+      const weakestIds = weakest.length ? weakest : weakestFallback;
+
+      subjectsEl.innerHTML = `
+        ${strongest.map((subject) => {
+          const sid = String(subject?.subjectId || "");
+          const p = subject?.progress || {};
+          const s = subject?.signals?.summary || {};
+          const coverage = Math.max(0, Math.min(100, Number(p.estimatedCoverage || 0)));
+          return `<article class="knowledge-engine-subject-card">
+            <div class="knowledge-engine-subject-title"><span>${_esc(sid)}</span><span>${_esc(`${Number(p.knownEmner || 0)} / ${Number(p.emnerCount || 0)} emner · ${coverage} %`)}</span></div>
+            <div class="knowledge-engine-bar"><div class="knowledge-engine-bar-fill" style="width:${coverage}%;"></div></div>
+            <div class="knowledge-engine-chip-row">
+              <span class="knowledge-engine-chip">Direkte læring: ${_esc(Number(s.directLearningSignals || 0))}</span>
+              <span class="knowledge-engine-chip">Besøkte steder: ${_esc(Number(s.visitedPlaceSignals || 0))}</span>
+              <span class="knowledge-engine-chip">Streams: ${_esc(Number(s.streamSignals || 0))}</span>
+              <span class="knowledge-engine-chip">Begreper: ${_esc(Number(s.conceptSignals || 0))}</span>
+            </div>
+          </article>`;
+        }).join("")}
+        <div class="knowledge-engine-summary-card"><strong>Svakeste fag nå:</strong> ${_esc(weakestIds.join(", ") || "Ingen tydelige kandidater ennå")}</div>
+      `;
+    }
+
+    /** @type {unknown[]} */
+    const recs = Array.isArray(report?.recommendations) ? report.recommendations.slice(0, 3) : [];
+    recsEl.innerHTML = recs.length
+      ? recs.map((rec) => `<article class="knowledge-engine-recommendation"><strong>${_esc(rec?.title || "Anbefaling")}</strong><div>${_esc(rec?.reason || "")}</div><small>${_esc(rec?.subjectId ? `Fag: ${rec.subjectId}` : "")}</small></article>`).join("")
+      : `<div class="muted">Ingen anbefalinger akkurat nå.</div>`;
+
+    const signalSubjects = allSubjects.filter((subject) => Number(subject?.signals?.summary?.totalSignals || 0) > 0);
+    signalsEl.innerHTML = signalSubjects.length ? signalSubjects.map((subject) => {
+      const sid = String(subject?.subjectId || "");
+      const breakdown = subject?.signals?.breakdown || {};
+      const summarySig = subject?.signals?.summary || {};
+      const sourcePlaces = Array.isArray(summarySig.sourcePlaceIds) ? summarySig.sourcePlaceIds : [];
+      const sourceEmner = Array.isArray(summarySig.sourceEmneIds) ? summarySig.sourceEmneIds : [];
+      const visited = Array.isArray(breakdown.visitedPlaces) ? breakdown.visitedPlaces : [];
+      const direct = Array.isArray(breakdown.directLearning) ? breakdown.directLearning.slice(0, 5) : [];
+      return `<article class="knowledge-engine-signal-group">
+        <div class="knowledge-engine-subject-title"><span>${_esc(sid)}</span><span>${_esc(`${Number(summarySig.totalSignals || 0)} signaler`)}</span></div>
+        <div class="knowledge-engine-chip-row">
+          <span class="knowledge-engine-chip">directLearning: ${_esc(Number(summarySig.directLearningSignals || 0))}</span>
+          <span class="knowledge-engine-chip">visitedPlaces: ${_esc(Number(summarySig.visitedPlaceSignals || 0))}</span>
+          <span class="knowledge-engine-chip">streams: ${_esc(Number(summarySig.streamSignals || 0))}</span>
+          <span class="knowledge-engine-chip">concepts: ${_esc(Number(summarySig.conceptSignals || 0))}</span>
+        </div>
+        <div class="muted">Kilde-steder: ${_esc(sourcePlaces.join(", ") || "—")}</div>
+        <div class="muted">Kilde-emner: ${_esc(sourceEmner.join(", ") || "—")}</div>
+        <div>${visited.map((v) => `${_esc(v.placeName || v.placeId || "Sted")} → ${_esc(v.emne_id || "ukjent emne")}`).join("<br>") || "Ingen stedskoblinger registrert."}</div>
+        <div style="margin-top:6px;">${direct.map((d) => `${_esc(d.emne_id || "")} · ${_esc(`${d.seen ? "seen" : "not-seen"}/${d.understood ? "understood" : "not-understood"}/${d.applied ? "applied" : "not-applied"}`)} · score ${_esc(Number(d.score || 0))}`).join("<br>") || "Ingen direkte læringssignal registrert."}</div>
+      </article>`;
+    }).join("") : `<div class="muted">Ingen signalforklaring tilgjengelig ennå.</div>`;
+
+    metaEl.textContent = `Analysert ${Number(summary.subjects || 0)} fag · ${Number(summary.totalEmner || 0)} emner`;
+  } catch (e) {
+    console.warn("[profile] Knowledge Engine panel failed", e);
+    summaryEl.innerHTML = `<div class="muted">Kunnskapsmotoren kunne ikke lage rapport akkurat nå.</div>`;
+  }
+}
+
 function renderLatestTrivia() {
   const elTopic = document.getElementById("ltTopic");
   const elCat   = document.getElementById("ltCategory");
@@ -934,13 +1082,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     safeCall("renderAhaSummary", renderAhaSummary);
     safeCall("renderNextUpProfileCard", renderNextUpProfileCard);
     safeCall("renderGroundhopperProfilePanel", renderGroundhopperProfilePanel);
+    safeCall("renderKnowledgeEnginePanel", renderKnowledgeEnginePanel);
 
     // Markører etter at PLACES er lastet
     safeCall("updateProfileMarkers", updateProfileMarkers);
 
     // UI-knapper
     document.getElementById("editProfileBtn")?.addEventListener("click", openProfileModal);
-    document.getElementById("btnOpenAHA")?.addEventListener("click", () => window.open("AHA/index.html", "_blank"));
+    document.getElementById("btnOpenAHA")?.addEventListener("click", () => window.open("https://paradispartiet.github.io/AHA-EchoNet/", "_blank"));
 
     // Sync etter quiz / endringer
     window.addEventListener("updateProfile", () => {
@@ -964,6 +1113,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       safeCall("renderAhaSummary", renderAhaSummary);
       safeCall("renderNextUpProfileCard", renderNextUpProfileCard);
       safeCall("renderGroundhopperProfilePanel", renderGroundhopperProfilePanel);
+      safeCall("renderKnowledgeEnginePanel", renderKnowledgeEnginePanel);
       safeCall("updateProfileMarkers", updateProfileMarkers);
     });
 

@@ -8,6 +8,14 @@ on:
         required: false
         type: boolean
         default: false
+  pull_request:
+    paths:
+      - "tools/build_nature_place_candidates*.mjs"
+      - "tools/validate_nature_maps.mjs"
+      - "data/places/**"
+      - "data/natur/**"
+      - "!data/natur/nature_place_map_candidates.json"
+      - ".github/workflows/build-nature-place-candidates.yml"
   push:
     branches:
       - main
@@ -23,7 +31,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: nature-place-candidates-main
+  group: nature-place-candidates-${{ github.event_name }}-${{ github.ref }}
   cancel-in-progress: false
 
 env:
@@ -47,13 +55,20 @@ jobs:
         with:
           node-version: "22"
 
+      - name: Check scripts
+        run: |
+          node --check tools/validate_nature_maps.mjs
+          node --check tools/build_nature_place_candidates_v2.mjs
+
       - name: Validate active nature maps
         run: node tools/validate_nature_maps.mjs
 
       - name: Build candidates from Artskart into temp file
+        if: ${{ github.event_name == 'workflow_dispatch' }}
         run: node tools/build_nature_place_candidates_v2.mjs --out="$NATURE_CANDIDATES_TMP" --retries=4 --retry-base-delay-ms=1500
 
       - name: Print temp candidate summary
+        if: ${{ github.event_name == 'workflow_dispatch' }}
         run: |
           node - <<'NODE'
           const fs = require('node:fs');
@@ -72,6 +87,7 @@ jobs:
           NODE
 
       - name: Validate temp candidate output
+        if: ${{ github.event_name == 'workflow_dispatch' }}
         run: |
           node - <<'NODE'
           const fs = require('node:fs');
@@ -99,6 +115,7 @@ jobs:
           NODE
 
       - name: Promote temp candidate file
+        if: ${{ github.event_name == 'workflow_dispatch' }}
         run: cp "$NATURE_CANDIDATES_TMP" "$NATURE_CANDIDATES_FINAL"
 
       - name: Commit candidate file
@@ -136,6 +153,7 @@ jobs:
           exit 1
 
       - name: Upload candidate file
+        if: ${{ github.event_name == 'workflow_dispatch' }}
         uses: actions/upload-artifact@v4
         with:
           name: nature-place-map-candidates

@@ -1,0 +1,348 @@
+{
+  "version": "v5.1-source-priority-patch-sport",
+  "subject_id": "sport",
+  "subject_title": "Sport & lek",
+  "scope": "oslo_og_omegn",
+  "purpose": "Stramme inn quizgeneratoren for Sport & lek slik at konkrete arenaer, stadioner, baner, haller, løkker, svømmehaller, skøytebaner, skibakker, klubbhus, idrettslag, turneringer, kamper, rekorder, spillere, trenere, supportere, lekeplasser, treningssteder, anlegg, frivillighet, idrettsorganisering, folkehelse, kroppslig praksis og Groundhopper-relevante steder dominerer synlig spørsmålsinnhold. Fagkart, methods, emner, emnemapping og pensum skal styre struktur, metode, teori og progresjon, men ikke fungere som hovedkilde til faktapåstander.",
+  "canonical_inputs": {
+    "merke": "merke_sport.html",
+    "fagkart": "fagkart_sport_canonical_v4_5.json",
+    "methods": "methods_sport_canonical_v4_5.json",
+    "emner": "emner_sport_canonical_v4_5.json",
+    "emnemapping": "emnemapping_sport_canonical_v4_5.json",
+    "pensum": "sportpensum_canonical_v4_5.json",
+    "domain_count": 6,
+    "emne_count": 116,
+    "method_count": 109,
+    "mapping_count": 116,
+    "topic_hook_count": 60
+  },
+  "hard_rules": {
+    "source_dominance_rule": "Eksterne idrettshistoriske, klubbhistoriske, kampdata-, statistikk-, arkiv-, forbunds-, kommune-, anleggs-, biografiske, treningsfaglige, folkehelse-, supporter-, arrangements- og lokalhistoriske kilder skal dominere det synlige faktainnholdet i sportquizzer. Canonical-filene er styringsfiler, ikke faktakilde.",
+    "canonical_files_are_guides_not_content": true,
+    "external_sport_source_first_all_sets": true,
+    "minimum_external_source_ratio_by_set": {
+      "1": 0.85,
+      "2": 0.85,
+      "3": 0.8,
+      "4": 0.8,
+      "5": 0.75,
+      "6": 0.75,
+      "7": 0.75,
+      "8": 0.75
+    },
+    "internal_file_only_questions_max_per_quiz": 0.05,
+    "internal_file_only_questions_allowed_only_for": [
+      "ren observasjon av synlig stadion, bane, hall, løkke, skøytebane, svømmehall, skibakke, klubbhus, treningssted, lekeplass, resultattavle, tribune, drakt, klubbmerke eller idrettsobjekt",
+      "validering av metadata, kategori eller spørsmålslag",
+      "nødfallback når ekstern kilde ikke finnes, og dette loggføres eksplisitt"
+    ],
+    "question_seed_priority": [
+      "konkret stadion, bane, hall, løkke, svømmehall, skøytebane, skibakke, klubbhus, idrettslag, turnering, kamp, rekord, spiller, trener, supporterobjekt, lekeplass eller dokumentert aktivitet",
+      "offisiell klubb-, forbunds-, kommune-, anleggs-, arkiv-, museums-, statistikk-, idrettshistorisk-, avis-, rapport- eller arrangementskilde",
+      "idrettshistorie, idrettssosiologi, kroppskultur, folkehelse, organisasjonsforskning, supporterforskning, treningslære, lekteori, biografier, kampdata eller lokalhistorisk kilde",
+      "dokumentert idrettslig prosess: trening, prestasjon, regelbruk, konkurranse, rekord, lagbygging, frivillighet, supporterkultur, inkludering, frafall, folkehelse eller lek",
+      "dokumentert materiell og romlig praksis: bane, mål, nett, linjer, tribune, garderobe, resultattavle, ball, ski, skøyter, sykkel, drakt, klubbmerke, medalje, billett, supporterutstyr eller treningsdata",
+      "stedsdata/persondata i appen",
+      "fagkart, methods, emner, emnemapping og pensum som styring – ikke faktakilde"
+    ],
+    "sport_question_must_start_from": [
+      "arena, stadion, bane, hall, løkke, skøytebane, svømmehall, skibakke, klubbhus, tribune, treningssted, lekeplass eller Groundhopper-relevant sted",
+      "klubb, lag, spiller, trener, frivillig, dommer, støtteapparat, breddeidrett, elite, lokalmiljø eller idrettsfamilie",
+      "regel, spillform, fair play, dommerautoritet, turnering, rekord, ranking, tabell, rivalisering, taktikk, kampformat eller konkurransestruktur",
+      "kropp, trening, teknikk, utholdenhet, belastning, restitusjon, talentutvikling, mestring, skade, prestasjonsdata eller idrettsteknologi",
+      "supporter, publikum, tribune, chant, ritual, helt, legende, lokal identitet, supporterobjekt, mediefortelling eller kampdag",
+      "barns lek, folkehelse, inkludering, kjønn, klasse, funksjonsevne, minoriteter, anleggspolitikk, frafall, byromslek eller uorganisert aktivitet",
+      "dokumentert kilde: klubbhistorie, forbundskilde, kampdata, statistikk, avisarkiv, anleggsdata, museums-/arkivkilde, biografi, lokalhistorie eller arrangementskilde"
+    ],
+    "forbidden_generation_patterns": [
+      "Ikke generer synlige spørsmål direkte fra emne-, hook-, metode- eller teorinavn.",
+      "Ikke spør generisk om sport uten konkret arena, klubb, regel, prestasjon, kamp, spiller, lek, supporter, anlegg, trening eller kilde.",
+      "Ikke lag spørsmål der fasiten er personlig supporterpreferanse eller smak.",
+      "Ikke lag rene resultat- eller rekordspørsmål uten sted, kontekst, idrettslig prosess eller kilde.",
+      "Ikke gjør et sted til sport bare fordi det er park, byrom eller helsested, uten dokumentert idrett, lek, trening, anlegg, konkurranse eller fysisk aktivitet som hovedvinkel.",
+      "Ikke klassifiser by, natur, politikk, næringsliv, media, populærkultur, subkultur, psykologi, vitenskap, musikk, kunst, litteratur eller historie som sport når sport bare er sekundærlag.",
+      "Ikke bruk em_by_*, em_his_*, em_kunst_*, em_lit_*, em_media_*, em_musikk_*, em_pop_*, em_pol_*, em_naering_*, em_natur_*, em_psy_*, em_sub_* eller em_vit_* som hoved-emne_ids i places_sport eller people_sport."
+    ],
+    "required_emne_prefix": "em_sport_",
+    "blocked_emne_prefixes_for_sport_files": [
+      "em_by_",
+      "em_his_",
+      "em_kunst_",
+      "em_lit_",
+      "em_media_",
+      "em_musikk_",
+      "em_pop_",
+      "em_pol_",
+      "em_naering_",
+      "em_natur_",
+      "em_psy_",
+      "em_sub_",
+      "em_vit_"
+    ],
+    "people_sport_rule": "people_sport skal inneholde personer der hovedrollen er idrettsutøver, trener, dommer, klubbbygger, idrettsleder, supporterprofil, frivillig nøkkelperson, idrettslegende, anleggspioner, folkehelse-/lek-aktør eller sentral aktør i dokumentert idrettshistorie. Personer der hovedrollen er politiker, artist, journalist, forsker, gründer, kunstner, forfatter eller kulturaktør skal primært ligge i disse kategoriene, med sport som sekundært tag bare der det er relevant.",
+    "places_sport_rule": "places_sport skal inneholde steder der hovedrollen er idrettsarena, stadion, bane, hall, ishall, skøytebane, svømmehall, skibakke, løkke, klubbhus, turneringsarena, treningssted, nærmiljøanlegg, lekeplass, fysisk aktivitetssted eller dokumentert Groundhopper-relevant idrettssted."
+  },
+  "groundhopper_rules": {
+    "sport_places_are_groundhopper_relevant_by_default": true,
+    "groundhopper_should_feed_profile_not_civication_fritid": true,
+    "profile_stat_name": "Groundhopper",
+    "place_unlock_can_collect": [
+      "historiske_spillere",
+      "lag",
+      "badges",
+      "arena_minne",
+      "kampdag_spor",
+      "klubbhistorie"
+    ],
+    "groundhopper_required_place_anchor": [
+      "stadion",
+      "bane",
+      "arena",
+      "hall",
+      "ishall",
+      "friidrettsbane",
+      "fotballbane",
+      "skibakke",
+      "svømmehall",
+      "løkke",
+      "klubbhus"
+    ],
+    "groundhopper_note": "Groundhopper er en History Go-samlings- og progresjonslogikk. Den skal ikke blandes inn som hovedvisning i Civication/Fritid, men kan sende unlocks, spillerkort og samlingsdata videre til profil/AHA."
+  },
+  "soft_preferences": {
+    "preferred_external_source_mix_per_place": [
+      "minst én offisiell klubb-, forbunds-, kommune-, anleggs-, museums-, arkiv-, statistikk-, arrangement- eller idrettshistorisk kilde",
+      "minst én idrettshistorisk, lokalhistorisk, biografisk, kampdata-, statistikk-, avis-, supporter-, folkehelse-, treningsfaglig eller organisasjonskilde",
+      "minst én konkret arena-, klubb-, regel-, prestasjons-, spiller-, supporter-, leke-, anleggs- eller Groundhopper-kilde når quiz handler om sted eller person"
+    ],
+    "preferred_question_build_path": "idrettskilde eller konkret arena/klubb/regel/prestasjon/spiller/lek/supporter/anlegg -> presist claim -> sted/person/objekt/hendelse -> metode/emne -> teori",
+    "preferred_role_of_canonical_files": [
+      "velge riktig em_sport_*",
+      "velge relevant sportmetode",
+      "styre om spørsmålet bør starte i arena, klubb, regel, prestasjon, spiller, lek, supporter, anlegg, trening, folkehelse eller dokumentert idrettskilde",
+      "spre teorier, tenkere, norske idrettsfigurer, arenaer, klubber, idretter, regler, prestasjoner, supporterkulturer, lekeformer og metoder",
+      "unngå kategorirot mellom sport, by, natur, politikk, næringsliv, media, populærkultur, subkultur, psykologi, vitenskap, musikk, kunst, litteratur og historie",
+      "unngå teorioverstyring der arenaen, klubben, regelen, prestasjonen, spilleren, leken eller supporterkulturen blir borte"
+    ],
+    "preferred_question_surfaces": [
+      "arena-place-groundhopper-first",
+      "rules-game-competition-first",
+      "body-training-performance-first",
+      "club-team-voluntary-work-first",
+      "supporter-public-culture-first",
+      "inclusion-health-play-society-first",
+      "arena-club-rule-body-play-first_then_named_theorist"
+    ]
+  },
+  "set_guidance": {
+    "1": {
+      "name": "grunnfakta_arena_klubb_sted",
+      "dominant_driver": "ekstern kilde, konkret arena, stadion, bane, hall, løkke, klubbhus, idrettslag, kamp, rekord, spiller, lekeplass eller idrettssted",
+      "canonical_role": "lett styring av emne og metode",
+      "allowed_methods": [
+        "met_sport_arenaanalyse",
+        "met_sport_idrettshistorisk_analyse",
+        "met_sport_stedsanalyse",
+        "met_sport_klubbanalyse"
+      ],
+      "question_style": "enkel gjenkjenning, sted/funksjon, arena, klubb, idrett, anlegg, kamp, rekord, spiller eller synlig sportsspor"
+    },
+    "2": {
+      "name": "arenaer_steder_groundhopper",
+      "dominant_driver": "stadion, bane, hall, løkke, svømmehall, skøytebane, skibakke, klubbhus, tribune, idrettskart eller Groundhopper-logikk",
+      "canonical_role": "lett til middels sted-, arena- og Groundhopper-føring",
+      "allowed_methods": [
+        "met_sport_arenaanalyse",
+        "met_sport_groundhopperanalyse",
+        "met_sport_lokkeanalyse",
+        "met_sport_hallanalyse",
+        "met_sport_idrettsgeografisk_analyse"
+      ],
+      "question_style": "stadion som minne, Groundhopper, løkker, haller, skibakker, svømmehaller, tribuner, arenaendring, klubbhus og idrettskart"
+    },
+    "3": {
+      "name": "regler_spill_konkurranse",
+      "dominant_driver": "regel, spillform, fair play, dommer, rekord, turnering, tabell, ranking, rivalisering, taktikk, spillflyt eller konkurransestruktur",
+      "canonical_role": "høy regel-, spill- og konkurranseføring tillatt",
+      "allowed_methods": [
+        "met_sport_regelanalyse",
+        "met_sport_spillanalyse",
+        "met_sport_fairplayanalyse",
+        "met_sport_rekordanalyse",
+        "met_sport_turneringsanalyse"
+      ],
+      "question_style": "regler, fair play, dommere, rekorder, turneringer, tabeller, rivalisering, taktikk, spillflyt og konkurranse"
+    },
+    "4": {
+      "name": "kropp_trening_prestasjon",
+      "dominant_driver": "kroppslig læring, trening, øving, teknikk, utholdenhet, belastning, restitusjon, talentutvikling, mestring, prestasjonsdata eller idrettsteknologi",
+      "canonical_role": "høy kropp-, trening- og prestasjonsføring tillatt",
+      "allowed_methods": [
+        "met_sport_kroppslig_laringsanalyse",
+        "met_sport_treningsanalyse",
+        "met_sport_teknikkanalyse",
+        "met_sport_prestasjonsdataanalyse",
+        "met_sport_teknologianalyse"
+      ],
+      "question_style": "kroppslig læring, trening, teknikk, utholdenhet, talentutvikling, mestring, data, teknologi, disiplin, skade og risiko"
+    },
+    "5": {
+      "name": "klubber_lag_frivillighet",
+      "dominant_driver": "klubb, lag, trener, frivillighet, dugnad, breddeidrett, elite, idrettsfamilier, dommere, lokalmiljø eller klubbidentitet",
+      "canonical_role": "høy klubb-, lag- og organisasjonsføring tillatt",
+      "allowed_methods": [
+        "met_sport_klubbanalyse",
+        "met_sport_laganalyse",
+        "met_sport_treneranalyse",
+        "met_sport_frivillighetsanalyse",
+        "met_sport_breddeidrettsanalyse"
+      ],
+      "question_style": "klubber, lag, roller, trenere, dugnad, breddeidrett, elite, idrettsfamilier, dommere, lokalmiljø og klubbidentitet"
+    },
+    "6": {
+      "name": "supportere_publikum_kultur",
+      "dominant_driver": "supporterkultur, publikum, tribune, chants, ritualer, helter, legender, lokal identitet, supporterobjekter, mediefortellinger, rivalisering eller kampdag",
+      "canonical_role": "høy supporter-, publikums- og kulturføring tillatt",
+      "allowed_methods": [
+        "met_sport_supporteranalyse",
+        "met_sport_publikumsanalyse",
+        "met_sport_ritualanalyse",
+        "met_sport_identitetsanalyse",
+        "met_sport_rivaliseringsanalyse"
+      ],
+      "question_style": "supporterkultur, chants, helter, lokal identitet, supporterobjekter, mediefortellinger, rivalisering, publikumsminne, kampdag og nasjon"
+    },
+    "7": {
+      "name": "inkludering_helse_lek_samfunn",
+      "dominant_driver": "barns lek, folkehelse, inkludering, kjønn, klasse, funksjonsevne, minoriteter, anleggspolitikk, frafall eller lek i byrom",
+      "canonical_role": "høy samfunns-, helse-, lek- og inkluderingsføring tillatt",
+      "allowed_methods": [
+        "met_sport_lekanalyse",
+        "met_sport_folkehelseanalyse",
+        "met_sport_inkluderingsanalyse",
+        "met_sport_kjonnsanalyse",
+        "met_sport_anleggspolitisk_analyse"
+      ],
+      "question_style": "barns lek, folkehelse, inkludering, kjønn, klasse, funksjonsevne, minoriteter, anleggspolitikk, frafall og byromslek"
+    },
+    "8": {
+      "name": "system_arena_kropp_fellesskap_samfunn",
+      "dominant_driver": "konkret arena, klubb, regel, prestasjon, spiller, trening, lek, supporter, anlegg, Groundhopper-spor, inkludering eller idrettens samfunnsrolle",
+      "canonical_role": "høy teori tillatt, men med konkret idrettsanker",
+      "allowed_methods": [
+        "met_sport_idrettshistorisk_analyse",
+        "met_sport_kulturanalyse",
+        "met_sport_organisasjonsanalyse",
+        "met_sport_klasseanalyse",
+        "met_sport_byutviklingsanalyse"
+      ],
+      "question_style": "arena, regler, kropp, klubb, supportere, lek, Groundhopper, inkludering, kommersialisering og samfunnsrolle"
+    }
+  },
+  "sport_category_guardrails": {
+    "accept_as_sport_primary_when": [
+      "stedet eller personen har idrettslig hovedrolle",
+      "det finnes konkret arena, klubb, lag, regel, kamp, prestasjon, spiller, trener, supporter, lekeplass, anlegg, treningsform eller dokumentert idrettskilde",
+      "spørsmål kan bygges fra idrettshistoriske, klubbhistoriske, kampdata-, statistikk-, arkiv-, forbunds-, kommune-, anleggs-, biografiske, treningsfaglige eller lokalhistoriske kilder",
+      "sport-, lek-, arena-, regel-, klubb-, kroppslig praksis- eller Groundhopper-logikk er primær, ikke bare generell park, byrom, helse, underholdning eller populærkultur"
+    ],
+    "do_not_accept_as_sport_primary_when": [
+      "hovedrollen er park, byrom eller natursted uten dokumentert idrett, lek, trening, anlegg, konkurranse eller fysisk aktivitet som hovedvinkel",
+      "hovedrollen er helse, psykologi, politikk, næringsliv, media, populærkultur, subkultur, vitenskap, musikk, kunst, litteratur, historie eller by",
+      "stedet er bare en generell park-, by-, helse-, skole- eller kulturcase uten konkret idrett, lek, konkurranse, anlegg, klubb eller fysisk aktivitetspraksis",
+      "personen er politiker, artist, journalist, forsker, gründer, kunstner, forfatter eller kulturaktør uten hovedrolle som idrettslig aktør"
+    ],
+    "secondary_sport_tag_allowed": true
+  },
+  "validator_additions": [
+    "Avvis sportquiz hvis synlig innhold primært er parafrase av fagkart, emner, methods eller mapping.",
+    "Avvis spørsmål som kan spores bare til emne-/hook-/metodenavn og ikke til konkret arena, klubb, regel, prestasjon, spiller, lek, supporter, anlegg eller ekstern idrettskilde.",
+    "Avvis hoved-emne_ids i places_sport eller people_sport som ikke starter med em_sport_*.",
+    "Flagg poster der hovedkategori ser ut til å være by, natur, politikk, næringsliv, media, populærkultur, subkultur, psykologi, vitenskap, musikk, kunst, litteratur eller historie.",
+    "Logg per spørsmål source_origin som external, mixed, observed_arena, observed_club, observed_rule, observed_performance, observed_player, observed_play, observed_supporter, observed_groundhopper eller internal_only.",
+    "Flagg quiz der internal_only overstiger 5 prosent.",
+    "Flagg teorioverstyring når navngitt teoretiker kommer før arena/klubb/regel/prestasjon/spiller/lek/supporter/anlegg er etablert.",
+    "Flagg sportanalyse som blir ren resultat-trivia, supporterpreferanse, generisk idrettsprat eller løs helsepåstand uten dokumentert arena, klubb, regel, prestasjon, lek eller kilde.",
+    "Flagg biografiske spørsmål som ikke kobler person til konkret idrettslig rolle, klubb, prestasjon, kamp, turnering, rekord, trenerrolle, frivillighet eller dokumentert idrettsarbeid.",
+    "Flagg stedsbaserte spørsmål der koblingen til sport bare er løs assosiasjon, parkbruk eller generell folkehelse uten idrettslig sted/praksis."
+  ],
+  "generation_metadata_additions": {
+    "required_per_question_fields_recommended": [
+      "source_origin",
+      "claim_basis",
+      "guidance_basis",
+      "method_id",
+      "emne_id",
+      "sport_anchor_type",
+      "source_note"
+    ],
+    "source_origin_values": [
+      "external",
+      "mixed",
+      "observed_arena",
+      "observed_club",
+      "observed_rule",
+      "observed_performance",
+      "observed_player",
+      "observed_play",
+      "observed_supporter",
+      "observed_groundhopper",
+      "internal_only"
+    ],
+    "sport_anchor_type_values": [
+      "arena",
+      "stadium",
+      "pitch",
+      "hall",
+      "rink",
+      "swimming_pool",
+      "ski_hill",
+      "clubhouse",
+      "groundhopper",
+      "club",
+      "team",
+      "player",
+      "coach",
+      "volunteer",
+      "rule",
+      "competition",
+      "match",
+      "tournament",
+      "record",
+      "ranking",
+      "tactic",
+      "body",
+      "training",
+      "technique",
+      "performance",
+      "mastery",
+      "injury",
+      "supporter",
+      "public",
+      "chant",
+      "ritual",
+      "rivalry",
+      "hero",
+      "legend",
+      "playground",
+      "play",
+      "public_health",
+      "inclusion",
+      "gender",
+      "class",
+      "access",
+      "para_sport",
+      "facility_policy",
+      "dropout",
+      "sport_source"
+    ],
+    "claim_basis_definition": "Den konkrete idrettslige påstanden fra ekstern kilde, klubbhistorie, forbundskilde, kampdata, statistikk, avisarkiv, anleggsdata, museums-/arkivkilde, biografi, lokalhistorie eller arrangementskilde.",
+    "guidance_basis_definition": "Hvilket em_sport_*, hook, metode eller teorispor som styrte spørsmålets form uten å levere faktapåstanden.",
+    "method_id_definition": "Én method_id fra methods_sport_canonical_v4_5.json brukt til å forme spørsmålet.",
+    "emne_id_definition": "Én em_sport_* fra emner_sport_canonical_v4_5.json brukt som hovedemne.",
+    "source_note_definition": "Kort kildebeskrivelse som sier hvilken type idrettshistorisk, klubbhistorisk, kampdata-, statistikk-, arkiv-, forbunds-, kommune-, anleggs-, biografisk, treningsfaglig eller lokalhistorisk kilde som er brukt."
+  },
+  "diagnosis_note": "Når mange filer er opplastet, må modellen ikke overvekte canonical systemfiler bare fordi de er mange. For sport skal konkrete arenaer, klubber, regler, kamper, prestasjoner, spillere, supportere, lekeplasser, anlegg, Groundhopper-spor, frivillighet, folkehelse og dokumenterte idrettskilder dominere synlig quizinnhold. Fagkart, methods, emner, emnemapping og pensum er styring.",
+  "migration_note": "Eksisterende places_sport og people_sport bør migreres til em_sport_* bare etter at hvert objekt er lest. Det må samtidig sjekkes at hovedkategori faktisk er sport og ikke by, natur, politikk, næringsliv, media, populærkultur, subkultur, psykologi, vitenskap, musikk, kunst, litteratur, historie eller annet fag."
+}

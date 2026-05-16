@@ -1,0 +1,145 @@
+{
+  "id": "blitz_quiz_1",
+  "quiz_id": "subkultur_blitz_set_1_q1",
+  "categoryId": "subkultur",
+  "placeId": "blitz",
+  "personId": "",
+  "natureId": "",
+  "targetId": "blitz",
+  "question_scope": "place",
+  "question": "Hva gjør Blitz særlig relevant som subkulturelt sted?",
+  "options": [
+    "Det er et dokumentert alternativt miljø og ungdomshus knyttet til scene, undergrunn, motstand, fellesskap og autonomi",
+    "Det er et rent finansielt hovedkontor der kapitalmarked og børsfunksjon er hovedpoenget",
+    "Det er et våtmarksområde der fugleliv, vannspeil og habitat er hovedpoenget"
+  ],
+  "answer": "Det er et dokumentert alternativt miljø og ungdomshus knyttet til scene, undergrunn, motstand, fellesskap og autonomi",
+  "answerIndex": 0,
+  "dimension": "subkultur",
+  "topic": "Alternativt fellesskap, scene og undergrunn",
+  "knowledge": "Blitz brukes her som eksempel på subkulturens romlige og sosiale form i byen: et sted der miljø, scene, deltakelse, autonomi, konflikt, motstand og tilhørighet kan undersøkes gjennom dokumenterte kilder.",
+  "trivia": [],
+  "difficulty": 1,
+  "question_type": "fact",
+  "question_layer": "fakta_sted_subkultur",
+  "year": null,
+  "epoke_id": "moderne_subkultur_og_ungdomshus",
+  "epoke_domain": "subkultur",
+  "emne_id": "em_sub_scene_fellesskap",
+  "related_emner": [
+    "em_sub_scene_fellesskap",
+    "em_sub_undergrunn_miljo",
+    "em_sub_autonomi_motstand"
+  ],
+  "core_concepts": [
+    "scene",
+    "undergrunn",
+    "fellesskap",
+    "autonomi",
+    "motstand"
+  ],
+  "concept_focus": [
+    "scene",
+    "fellesskap"
+  ],
+  "learning_paths": [
+    "fra sted til scene",
+    "fra ungdomshus til undergrunnsmiljø",
+    "fra fellesskap til autonomi, konflikt og subkulturell praksis"
+  ],
+  "tags": [
+    "subkultur",
+    "sted",
+    "scene",
+    "undergrunn",
+    "ungdomshus",
+    "fellesskap",
+    "motstand"
+  ],
+  "required_tags": [
+    "external_source",
+    "subculture_anchor",
+    "em_sub"
+  ],
+  "source": [
+    {
+      "type": "archive_or_institution_source",
+      "name": "Blitz / Oslo byarkiv / lokalhistorisk, kommunal, organisasjons- eller arkivbasert kilde",
+      "role": "verifiserer stedets funksjon som ungdomshus, alternativt miljø, scene, møteplass eller subkulturelt case",
+      "required": true
+    },
+    {
+      "type": "subculture_history_or_research_source",
+      "name": "subkulturfaglig, ungdomskulturfaglig, scenehistorisk, byhistorisk, dokumentasjons-, medie- eller forskningskilde",
+      "role": "verifiserer stedets betydning for undergrunn, motstand, fellesskap, autonomi, konflikt, grensearbeid eller subkulturell praksis",
+      "required": true
+    }
+  ],
+  "related_emners": [
+    "em_sub_scene_fellesskap",
+    "em_sub_undergrunn_miljo",
+    "em_sub_autonomi_motstand"
+  ],
+  "source_origin": "mixed",
+  "claim_basis": "Ekstern arkiv-, lokalhistorisk, scenehistorisk eller subkulturfaglig kilde skal verifisere at Blitz fungerer som alternativt miljø, ungdomshus og subkulturelt sted knyttet til scene, undergrunn, motstand og fellesskap.",
+  "guidance_basis": {
+    "fagkart_category_id": "alternative_fellesskap_scener",
+    "topic_hook": "scene_som_fellesskap",
+    "emne_id": "em_sub_scene_fellesskap",
+    "method_id": "met_sub_sceneanalyse",
+    "canonical_files_used_as_guidance_only": [
+      "fagkart_subkultur_canonical_v4_5.json",
+      "methods_subkultur_canonical_v4_5.json",
+      "emner_subkultur_canonical_v4_5.json",
+      "emnemapping_subkultur_canonical_v4_5.json",
+      "subkulturpensum_canonical_v4_5.json"
+    ]
+  },
+  "method_id": "met_sub_sceneanalyse",
+  "subculture_anchor_type": "scene",
+  "source_note": "Spørsmålet skal bygges fra ekstern arkiv-, scenehistorisk, lokalhistorisk, medie-, organisasjons- eller subkulturfaglig kilde; fagfilene styrer bare metode, emne og spørsmålsflate.",
+  "external_source_ratio_target": 0.85,
+  "internal_file_only_allowed": false,
+  "requires_subculture_anchor": true,
+  "requires_external_claim_basis": true,
+  "requires_scene_style_place_practice_or_conflict_anchor": true,
+  "requires_documented_subcultural_context": true,
+  "generator_guardrails": {
+    "do_not_generate_from_emne_label_only": true,
+    "do_not_generate_from_method_label_only": true,
+    "do_not_use_non_subkultur_emne_id": true,
+    "required_emne_prefix": "em_sub_",
+    "blocked_emne_prefixes": [
+      "em_by_",
+      "em_his_",
+      "em_kunst_",
+      "em_lit_",
+      "em_media_",
+      "em_musikk_",
+      "em_pop_",
+      "em_vit_",
+      "em_pol_",
+      "em_naering_",
+      "em_natur_",
+      "em_psy_"
+    ],
+    "scene_style_place_practice_conflict_first_then_theory": true,
+    "source_first": true,
+    "avoid_generic_rebellion_or_style_questions": true,
+    "avoid_personal_taste_as_default": true,
+    "avoid_vague_subculture_angle_without_scene_style_place_practice_conflict_or_source": true
+  },
+  "validation": {
+    "emne_id_exists_in_emner_subkultur": true,
+    "method_id_exists_in_methods_subkultur": true,
+    "mapping_exists_in_emnemapping_subkultur": true,
+    "category_matches_badge": true,
+    "schema_extends_generic_supersetQUIZMAL": true
+  },
+  "template_notes": {
+    "template_role": "subkultur_superset_quiz_object",
+    "generic_template_source": "supersetQUIZMAL (10).json",
+    "content_policy": "Dette er en mal/eksempelobjekt. Produksjonsquizer skal fylle source med konkrete kilder og ikke bruke fagfilene som hovedkilde til faktapåstander.",
+    "next_use": "Bruk som grunnmal for subkulturquiz-spørsmål før generatoren lager mange spørsmål per sted/person."
+  }
+}

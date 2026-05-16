@@ -147,6 +147,47 @@
     return changed;
   }
 
+
+  function mergeByIdPreserveHistory(existingItems, incomingItems) {
+    const existing = Array.isArray(existingItems) ? existingItems.slice() : [];
+    const incoming = Array.isArray(incomingItems) ? incomingItems : [];
+    if (!incoming.length) return existing.slice(0, MAX_INBOX);
+
+    const map = new Map();
+    existing.forEach((item) => {
+      const id = String(item?.id || item?.event?.id || '').trim();
+      if (id) map.set(id, item);
+    });
+
+    const mergedIncoming = [];
+    incoming.forEach((item) => {
+      const normalized = normalizeEnvelope(item);
+      const id = String(normalized?.id || normalized?.event?.id || '').trim();
+      if (!id) return;
+      const prev = map.get(id) || null;
+      const next = prev ? { ...prev, ...normalized, event: { ...(prev.event || {}), ...(normalized.event || {}) } } : normalized;
+      map.set(id, next);
+      mergedIncoming.push(next);
+    });
+
+    const seen = new Set();
+    const ordered = [];
+    for (const item of mergedIncoming) {
+      const id = String(item?.id || item?.event?.id || '').trim();
+      if (!id || seen.has(id)) continue;
+      seen.add(id);
+      ordered.push(item);
+    }
+    for (const item of existing) {
+      const id = String(item?.id || item?.event?.id || '').trim();
+      if (!id || seen.has(id)) continue;
+      seen.add(id);
+      ordered.push(item);
+    }
+
+    return ordered.slice(0, MAX_INBOX);
+  }
+
   const api = {
     getInbox() {
       const store = migrateOldInboxIfNeeded();
@@ -202,7 +243,7 @@
       if (key && !this.canDeliver(key, { guardType, weekKey: guardWeek })) return { ok: false, reason: "duplicate_key" };
       const store = migrateOldInboxIfNeeded();
       const envelope = normalizeEnvelope(mailOrEvent);
-      store.items = [envelope].concat(store.items || []).slice(0, MAX_INBOX);
+      store.items = mergeByIdPreserveHistory(store.items || [], [envelope]);
       ensureMeta(store);
       if (envelope.key) store.meta.delivery.byKey[envelope.key] = envelope.createdAt;
       if (guardType) store.meta.delivery.byType[guardType] = envelope.createdAt;
@@ -246,7 +287,7 @@
     markResolved,
     replaceInbox(items) {
       const store = migrateOldInboxIfNeeded();
-      store.items = (Array.isArray(items) ? items : []).map(normalizeEnvelope).slice(0, MAX_INBOX);
+      store.items = mergeByIdPreserveHistory(store.items || [], Array.isArray(items) ? items : []);
       saveStore(store);
       return store.items;
     },

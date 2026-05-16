@@ -3,12 +3,41 @@
   "id": "formann_naeringsliv_v1",
   "category": "naeringsliv",
   "role_scope": "formann",
-  "description": "Fast dramaturgisk plan for Formann i Næringsliv & industri.",
+  "description": "Fast dramaturgisk plan for Formann i Næringsliv & industri: fra lokal autoritet på gulvet til ansvarsbærer som må holde flyt, forsvarlighet og laget sammen.",
+  "arc": {
+    "from": "Lokal autoritet med ansvar for skift, folk, tempo og orden på gulvet.",
+    "to": "En formann som enten får mer systemansvar, stagnerer som ren kontrollør, eller mister rollen fordi laget og ledelsen ikke lenger stoler på dømmekraften.",
+    "core_questions": [
+      "Når blir erfaring til styring?",
+      "Når blir lojalitet til kontroll?",
+      "Når må du stoppe flyten for å beskytte laget?",
+      "Hvordan bruker du autoritet uten å bli bare ledelsens forlengede arm?"
+    ]
+  },
+  "outcome_rules": {
+    "fired": {
+      "stability_values": ["FIRED"],
+      "strikes_gte": 3,
+      "score_lte": -3
+    },
+    "promoted": {
+      "completion_ratio_gte": 1,
+      "score_gte": 6,
+      "strikes_lte": 0,
+      "allow_warning": false
+    },
+    "stagnated": {
+      "autonomy_delta": -14,
+      "stability": "STAGNATED",
+      "add_branch_flags": ["career_stagnated", "evening_pressure", "morning_choices_expand", "foreman_control_loop"]
+    }
+  },
   "sequence": [
     {
       "step": 1,
       "type": "job",
       "phase": "intro",
+      "step_goal": "Etablere fordeling av skift og første opplevelse av lokal autoritet.",
       "allowed_families": ["fordeling_av_skift", "produksjonsro"],
       "fallback_types": ["people", "conflict"]
     },
@@ -16,6 +45,7 @@
       "step": 2,
       "type": "job",
       "phase": "intro",
+      "step_goal": "Teste oppfølging på gulvet og hvordan spilleren bruker autoritet uten å overstyre.",
       "allowed_families": ["oppfolging_pa_gulvet", "produksjonsro"],
       "fallback_types": ["conflict", "people"]
     },
@@ -23,6 +53,7 @@
       "step": 3,
       "type": "conflict",
       "phase": "intro",
+      "step_goal": "Introdusere grunnkonflikten: tempo mot forsvarlighet og lojalitet mot laget.",
       "allowed_families": ["tempo_mot_forsvarlighet_intro", "lojalitet_mot_laget_intro"],
       "fallback_types": ["job"]
     },
@@ -30,6 +61,7 @@
       "step": 4,
       "type": "people",
       "phase": "early",
+      "step_goal": "La laget lese spilleren: den erfarne tester autoriteten, den nyansatte følger signalene.",
       "allowed_families": ["erfaren_som_tester_deg", "nyansatt_som_folger_deg"],
       "fallback_types": ["job", "conflict"]
     },
@@ -37,6 +69,7 @@
       "step": 5,
       "type": "job",
       "phase": "early",
+      "step_goal": "Gi ansvar for stans, omdirigering og flyt når små valg får praktiske konsekvenser.",
       "allowed_families": ["stans_og_omdirigering", "ansvar_for_flyt"],
       "fallback_types": ["people", "conflict"]
     },
@@ -44,6 +77,7 @@
       "step": 6,
       "type": "conflict",
       "phase": "early",
+      "step_goal": "La tidligere valg koste: tempo, forsvarlighet og lojalitet blir synlig for både laget og ledelsen.",
       "allowed_families": ["tempo_mot_forsvarlighet_early", "lojalitet_mot_laget_early"],
       "fallback_types": ["job"]
     },
@@ -51,6 +85,7 @@
       "step": 7,
       "type": "story",
       "phase": "mid",
+      "step_goal": "Flytte rollen fra drift til identitet: gulvets mellomposisjon og ansvar uten herredømme.",
       "allowed_families": ["gulvets_mellomposisjon", "ansvar_uten_herredomme"],
       "fallback_types": ["conflict", "people", "job"]
     },
@@ -58,6 +93,7 @@
       "step": 8,
       "type": "job",
       "phase": "mid",
+      "step_goal": "Teste moden styring av flyt, oppfølging og praktisk grensesetting.",
       "allowed_families": ["stans_og_omdirigering", "oppfolging_pa_gulvet"],
       "fallback_types": ["people", "conflict"]
     },
@@ -65,6 +101,7 @@
       "step": 9,
       "type": "people",
       "phase": "mid",
+      "step_goal": "Synliggjøre slitasje og blikk fra ledelsen: hvem opplever formannen som beskyttelse, og hvem opplever ham som kontroll?",
       "allowed_families": ["taus_slitasje_i_laget", "blikk_fra_ledelsen"],
       "fallback_types": ["job", "conflict"]
     },
@@ -72,6 +109,7 @@
       "step": 10,
       "type": "event",
       "phase": "climax",
+      "step_goal": "Sluttprøve: bemanningssprekk eller maskinstans avgjør om formannen kan bære ansvar uten å miste laget.",
       "allowed_families": ["kritisk_bemanningssprekk", "maskinstans_med_ansvar"],
       "fallback_types": ["conflict", "job"]
     }

@@ -1,0 +1,326 @@
+{
+  "version": "v5.1-source-priority-patch-psykologi",
+  "subject_id": "psykologi",
+  "subject_title": "Psykologi",
+  "scope": "oslo_og_omegn",
+  "purpose": "Stramme inn quizgeneratoren for Psykologi slik at konkrete institusjoner, klinikker, sykehus, fagmiljøer, behandlingsformer, diagnosehistorie, teorier, utviklingscase, kognitive prosesser, sosialpsykologiske prosesser, traume-, krise- og omsorgscase, forskningskilder, institusjonshistorie, kliniske praksiser og dokumenterte psykologiske prosesser dominerer synlig spørsmålsinnhold. Fagkart, methods, emner, emnemapping og pensum skal styre struktur, metode, teori og progresjon, men ikke fungere som hovedkilde til faktapåstander.",
+  "canonical_inputs": {
+    "fagkart": "fagkart_psykologi_canonical_v4_5.json",
+    "methods": "methods_psykologi_canonical_v4_5.json",
+    "emner": "emner_psykologi_canonical_v4_5.json",
+    "emnemapping": "emnemapping_psykologi_canonical_v4_5.json",
+    "pensum": "psykologipensum_canonical_v4_5.json",
+    "domain_count": 6,
+    "emne_count": 58,
+    "method_count": 58,
+    "mapping_count": 58,
+    "topic_hook_count": 60
+  },
+  "hard_rules": {
+    "source_dominance_rule": "Eksterne psykologifaglige, kliniske, institusjonshistoriske, forskningsmessige, behandlingsmessige, utviklingspsykologiske, kognitive, sosialpsykologiske, nevropsykologiske, traumefaglige og dokumenterte erfarings-/prosesskilder skal dominere det synlige faktainnholdet i psykologiquizzer. Canonical-filene er styringsfiler, ikke faktakilde.",
+    "canonical_files_are_guides_not_content": true,
+    "external_psychology_source_first_all_sets": true,
+    "minimum_external_source_ratio_by_set": {
+      "1": 0.85,
+      "2": 0.85,
+      "3": 0.8,
+      "4": 0.8,
+      "5": 0.75,
+      "6": 0.75,
+      "7": 0.75,
+      "8": 0.75
+    },
+    "internal_file_only_questions_max_per_quiz": 0.05,
+    "internal_file_only_questions_allowed_only_for": [
+      "ren observasjon av synlig klinikk, sykehus, institusjon, fagmiljø, universitet, helsebygg, behandlingssted, arkiv, minnessted eller offentlig tjeneste",
+      "validering av metadata, kategori eller spørsmålslag",
+      "nødfallback når ekstern kilde ikke finnes, og dette loggføres eksplisitt"
+    ],
+    "question_seed_priority": [
+      "konkret institusjon, klinikk, sykehus, fagmiljø, behandlingsform, diagnosehistorie, teori, utviklingscase, kognitiv prosess, sosialpsykologisk prosess, traume-, krise- eller omsorgscase",
+      "offisiell helse-, universitets-, institusjons-, arkiv-, museums-, fagmiljø-, forsknings-, behandlings-, rapport- eller historisk kilde",
+      "psykologihistorie, klinisk forskning, utviklingspsykologi, kognitiv psykologi, sosialpsykologi, nevropsykologi, traumeforskning, diagnosehistorie, behandlingsforskning eller psykologifaglig kilde",
+      "dokumentert psykologisk prosess: opplevelse, følelse, tenkning, handling, læring, utvikling, tilknytning, regulering, stigma, normalitet, mestring, krise, traume, sorg eller omsorg",
+      "dokumentert sosial og institusjonell kontekst: pasientrolle, omsorgssystem, velferd, offentlighet, stigma, skole, familie, gruppe, arbeidsplass, byrom eller tjenesteapparat",
+      "stedsdata/persondata i appen",
+      "fagkart, methods, emner, emnemapping og pensum som styring – ikke faktakilde"
+    ],
+    "psykologi_question_must_start_from": [
+      "psykisk helse, klinikk, sykehus, institusjon, behandling, terapi, omsorgssystem, pasientrolle eller krisehjelp",
+      "psykologisk teori, psykoanalyse, kognitiv psykologi, behaviorisme, humanistisk psykologi, nevropsykologi, diagnosehistorie eller psykometri",
+      "utvikling, tilknytning, barndom, familie, skole, læring, livsløp, oppvekstmiljø, sosial utvikling, risiko eller beskyttelse",
+      "persepsjon, oppmerksomhet, hukommelse, beslutning, følelse, affektregulering, stress, mestring, vaner, bias eller hverdagspsykologi",
+      "gruppe, rolle, norm, stigma, normalitet, identitet, fordommer, ensomhet, tilhørighet eller sosial kontroll",
+      "traume, krise, sorg, vold, regulering, resiliens, trygghet, omsorg, kollektiv krise eller sårbarhet",
+      "dokumentert kilde: institusjonshistorie, klinisk kilde, forskningskilde, arkiv, rapport, fagmiljø, behandlingskilde, historisk kilde eller dokumentert psykologisk prosess"
+    ],
+    "forbidden_generation_patterns": [
+      "Ikke generer synlige spørsmål direkte fra emne-, hook-, metode- eller teorinavn.",
+      "Ikke spør generisk om psykologi uten konkret institusjon, fagtradisjon, behandling, diagnosehistorie, utviklingscase, kognitiv prosess, sosialpsykologisk prosess, erfaring, norm, traume, omsorg, sted eller kilde.",
+      "Ikke lag selvhjelpsspørsmål, personlige følelsesspørsmål eller introspektive rådspørsmål som quizfasit.",
+      "Ikke diagnostiser historiske personer, nålevende personer, brukere eller navngitte enkeltpersoner.",
+      "Ikke gjør et sted til psykologi bare fordi det har helse-, skole-, byroms- eller samfunnstilknytning, uten dokumentert psykologifaglig hovedkobling.",
+      "Ikke klassifiser medisin som somatikk, politikk, historie, vitenskap, by, media, kunst, litteratur, sport, natur, næringsliv, musikk eller populærkultur som psykologi når psykologi bare er sekundærlag.",
+      "Ikke bruk em_by_*, em_his_*, em_kunst_*, em_lit_*, em_media_*, em_musikk_*, em_pop_*, em_vit_*, em_pol_*, em_naering_* eller em_natur_* som hoved-emne_ids i places_psykologi eller people_psykologi."
+    ],
+    "required_emne_prefix": "em_psy_",
+    "blocked_emne_prefixes_for_psykologi_files": [
+      "em_by_",
+      "em_his_",
+      "em_kunst_",
+      "em_lit_",
+      "em_media_",
+      "em_musikk_",
+      "em_pop_",
+      "em_vit_",
+      "em_pol_",
+      "em_naering_",
+      "em_natur_"
+    ],
+    "do_not_diagnose_people": true,
+    "people_psykologi_rule": "people_psykologi skal inneholde personer der hovedrollen er psykolog, psykiater, terapeut, psykoanalytiker, psykologiforsker, utviklingspsykolog, sosialpsykolog, traumeforsker, behandlingsreformator, institusjonskritiker, fagtradisjonsbygger eller sentral aktør i dokumentert psykologifaglig historie. Personer der hovedrollen er medisin som somatikk, politikk, historie, vitenskap bredt, by, media, kunst, litteratur, sport, natur, næringsliv, musikk eller populærkultur skal primært ligge i disse kategoriene, med psykologi som sekundært tag bare der det er relevant.",
+    "places_psykologi_rule": "places_psykologi skal inneholde steder der hovedrollen er klinikk, sykehus, psykiatrisk institusjon, poliklinikk, terapi- eller behandlingssted, psykologifaglig institutt, universitet/fagmiljø, forskningssted, familievernkontor, krisesenter, minnessted, skole-/oppvekstcase, omsorgstjeneste eller byrom med dokumentert psykisk helse-, normalitet-, stigma-, traume-, utviklings- eller omsorgshovedvinkel."
+  },
+  "soft_preferences": {
+    "preferred_external_source_mix_per_place": [
+      "minst én offisiell helse-, universitets-, institusjons-, arkiv-, museums-, fagmiljø-, forsknings-, behandlings-, rapport- eller historisk kilde",
+      "minst én psykologihistorisk, klinisk, utviklingspsykologisk, kognitiv, sosialpsykologisk, traumefaglig, diagnosehistorisk eller behandlingsfaglig kilde",
+      "minst én konkret institusjons-, teori-, behandlings-, diagnose-, utviklings-, atferds-, erfarings-, norm-, traume- eller omsorgskilde når quiz handler om sted eller person"
+    ],
+    "preferred_question_build_path": "psykologifaglig kilde eller konkret institusjon/teori/behandling/erfaring/prosess -> presist claim -> sted/person/institusjon/prosess -> metode/emne -> teori",
+    "preferred_role_of_canonical_files": [
+      "velge riktig em_psy_*",
+      "velge relevant psykologimetode",
+      "styre om spørsmålet bør starte i institusjon, fagtradisjon, behandling, diagnosehistorie, utviklingscase, kognitiv prosess, relasjon, norm, stigma, traume, omsorgssystem eller psykologisk kilde",
+      "spre teorier, tenkere, institusjoner, behandlingsformer, fagtradisjoner, psykologiske prosesser, steder og metoder",
+      "unngå kategorirot mellom psykologi, medisin/somatikk, politikk, historie, vitenskap, by, media, kunst, litteratur, sport, natur, næringsliv, musikk og populærkultur",
+      "unngå teorioverstyring der institusjonen, behandlingen, erfaringen, atferden, normen, traumet eller omsorgsprosessen blir borte"
+    ],
+    "preferred_question_surfaces": [
+      "mental-health-institution-first",
+      "theory-of-mind-first",
+      "development-learning-first",
+      "cognition-affect-behavior-first",
+      "social-psychology-norm-first",
+      "trauma-crisis-resilience-first",
+      "institution-theory-behavior-experience-treatment-first_then_named_theorist"
+    ],
+    "preferred_norwegian_theory_path": "Når relevant norsk psykologi, psykiatrihistorie, klinisk fagtradisjon, traumeforskning, velferdspsykologi, utviklingspsykologi eller psykologifaglig institusjonshistorie finnes, kan den brukes i senere sett, men bare etter at institusjon, teori, behandling, utviklingscase, erfaring, norm, traume eller omsorgssystem allerede er etablert."
+  },
+  "set_guidance": {
+    "1": {
+      "name": "grunnfakta_institusjon_teori_sted",
+      "dominant_driver": "ekstern kilde, konkret klinikk, sykehus, institusjon, fagmiljø, teori, behandlingsform, skole, krisesenter eller dokumentert psykologisk sted",
+      "canonical_role": "lett styring av emne og metode",
+      "allowed_methods": [
+        "met_psy_klinisk_analyse",
+        "met_psy_institusjonshistorisk_analyse",
+        "met_psy_steds_og_institusjonsanalyse",
+        "met_psy_vitenskapshistorisk_analyse"
+      ],
+      "question_style": "enkel gjenkjenning, sted/funksjon, institusjon, fagtradisjon, behandling, teori eller synlig psykologihistorisk spor"
+    },
+    "2": {
+      "name": "psykisk_helse_institusjoner_behandling",
+      "dominant_driver": "klinikk, sykehus, psykiatrisk institusjon, behandlingsform, terapi, pasientrolle, omsorgssystem eller psykisk helse i offentligheten",
+      "canonical_role": "lett til middels metodeføring",
+      "allowed_methods": [
+        "met_psy_klinisk_analyse",
+        "met_psy_institusjonshistorisk_analyse",
+        "met_psy_behandlingshistorisk_analyse",
+        "met_psy_makt_og_omsorgsanalyse",
+        "met_psy_velferdspsykologisk_analyse"
+      ],
+      "question_style": "psykisk helse, institusjoner, behandling, pasientrolle, omsorgssystem, terapirom, krisehjelp og omsorg/kontroll"
+    },
+    "3": {
+      "name": "fagtradisjoner_teori_sinnet",
+      "dominant_driver": "psykologisk teori, fagtradisjon, psykoanalyse, kognitiv psykologi, behaviorisme, humanistisk psykologi, nevropsykologi, diagnosemodell eller psykometri",
+      "canonical_role": "høy teori- og metodeføring tillatt, men med konkret fagtradisjon eller kilde",
+      "allowed_methods": [
+        "met_psy_psykoanalytisk_analyse",
+        "met_psy_kognitiv_analyse",
+        "met_psy_atferdsanalyse",
+        "met_psy_humanistisk_analyse",
+        "met_psy_nevropsykologisk_analyse"
+      ],
+      "question_style": "sinn, teori, psykoanalyse, kognisjon, atferd, humanistisk psykologi, nevropsykologi, personlighet, bevissthet og måling"
+    },
+    "4": {
+      "name": "utvikling_oppvekst_laring",
+      "dominant_driver": "barndom, tilknytning, oppvekstmiljø, skole, læring, familie, ungdom, identitet, livsløp, sosial utvikling eller risiko/beskyttelse",
+      "canonical_role": "middels til høy utviklings- og læringsstyring",
+      "allowed_methods": [
+        "met_psy_tilknytningsanalyse",
+        "met_psy_utviklingsanalyse",
+        "met_psy_laringsanalyse",
+        "met_psy_familiepsykologisk_analyse",
+        "met_psy_livslopsanalyse"
+      ],
+      "question_style": "tilknytning, barndom, skole, læring, familie, ungdom, motivasjon, hukommelse, livsløp, sosial utvikling og risiko/beskyttelse"
+    },
+    "5": {
+      "name": "kognisjon_folelser_atferd",
+      "dominant_driver": "persepsjon, oppmerksomhet, hukommelse, beslutning, følelse, affektregulering, stress, mestring, vaner, bias eller hverdagspsykologi",
+      "canonical_role": "høy kognitiv-, affekt- og atferdsstyring tillatt",
+      "allowed_methods": [
+        "met_psy_kognitiv_analyse",
+        "met_psy_persepsjonsanalyse",
+        "met_psy_hukommelsesanalyse",
+        "met_psy_beslutningsanalyse",
+        "met_psy_affektanalyse"
+      ],
+      "question_style": "kognisjon, følelser, atferd, oppmerksomhet, hukommelse, beslutninger, stress, vaner, bias, regulering og hverdagspsykologi"
+    },
+    "6": {
+      "name": "sosialpsykologi_normalitet_stigma",
+      "dominant_driver": "gruppe, rolle, norm, stigma, normalitet, avvik, identitet, fordommer, ensomhet, tilhørighet, sosial kontroll eller offentlig samtale",
+      "canonical_role": "høy sosialpsykologisk og normkritisk styring tillatt, men uten diagnostisering",
+      "allowed_methods": [
+        "met_psy_sosialpsykologisk_analyse",
+        "met_psy_gruppeanalyse",
+        "met_psy_normkritisk_analyse",
+        "met_psy_stigmaanalyse",
+        "met_psy_rolle_og_interaksjonsanalyse"
+      ],
+      "question_style": "grupper, roller, normalitet, stigma, identitet, fordommer, ensomhet, sosial kontroll, diagnose i hverdagen og offentlig samtale"
+    },
+    "7": {
+      "name": "traume_krise_resiliens_omsorg",
+      "dominant_driver": "traume, krise, sorg, vold, stress, regulering, resiliens, trygghet, kollektiv krise, omsorg etter belastning eller samfunnets sårbarhet",
+      "canonical_role": "høy traume-, krise- og omsorgsstyring tillatt",
+      "allowed_methods": [
+        "met_psy_traumeanalyse",
+        "met_psy_krisepsykologisk_analyse",
+        "met_psy_sorg_og_tapsanalyse",
+        "met_psy_risiko_og_resiliensanalyse",
+        "met_psy_kollektiv_traumeanalyse"
+      ],
+      "question_style": "traume, krise, sorg, vold, trygghet, resiliens, kollektiv krise, omsorg etter belastning, regulering og samfunnets sårbarhet"
+    },
+    "8": {
+      "name": "system_sinn_normalitet_omsorg_teori",
+      "dominant_driver": "konkret institusjon, teori, behandling, diagnosehistorie, utviklingscase, kognitiv prosess, norm, stigma, traume, omsorgssystem eller dokumentert psykologisk prosess",
+      "canonical_role": "høy teori tillatt, men med konkret psykologisk anker",
+      "allowed_methods": [
+        "met_psy_diskursanalyse",
+        "met_psy_normkritisk_analyse",
+        "met_psy_makt_og_omsorgsanalyse",
+        "met_psy_systemanalyse",
+        "met_psy_fenomenologisk_analyse"
+      ],
+      "question_style": "sinn, erfaring, normalitet, diagnose, makt, omsorg, stigma, institusjon, subjektivitet, regulering, krise og teori"
+    }
+  },
+  "psykologi_category_guardrails": {
+    "accept_as_psykologi_primary_when": [
+      "stedet eller personen har psykologifaglig hovedrolle",
+      "det finnes konkret institusjon, fagtradisjon, behandling, diagnosehistorie, utviklingsprosess, kognitiv prosess, sosialpsykologisk prosess, norm, stigma, traume, omsorg eller dokumentert psykologisk kilde",
+      "spørsmål kan bygges fra psykologifaglige, kliniske, institusjonshistoriske, forskningsmessige, behandlingsmessige, utviklingsmessige eller dokumenterte erfarings-/prosesskilder",
+      "psykologifaglig systemlogikk er primær, ikke bare generell helse, historie, vitenskap, politikk, by eller sosial tematikk"
+    ],
+    "do_not_accept_as_psykologi_primary_when": [
+      "hovedrollen er medisin som somatikk, politikk, historie, vitenskap, by, media, kunst, litteratur, sport, natur, næringsliv, musikk eller populærkultur",
+      "stedet er bare generell helseinstitusjon uten dokumentert psykologi- eller psykisk helse-hovedrolle",
+      "stedet er bare en generell sosial- eller bycase uten konkret psykologisk prosess, institusjon, fagtradisjon, behandling, diagnosehistorie, norm, stigma eller omsorg",
+      "personen er lege, forsker, politiker, kunstner, forfatter, journalist, idrettsutøver eller næringslivsaktør uten hovedrolle som psykologifaglig aktør"
+    ],
+    "secondary_psykologi_tag_allowed": true,
+    "do_not_diagnose_people": true
+  },
+  "validator_additions": [
+    "Avvis psykologiquiz hvis synlig innhold primært er parafrase av fagkart, emner, methods eller mapping.",
+    "Avvis spørsmål som kan spores bare til emne-/hook-/metodenavn og ikke til konkret institusjon, fagtradisjon, behandling, diagnosehistorie, utviklingscase, kognitiv prosess, erfaring, norm, traume, omsorg eller ekstern kilde.",
+    "Avvis hoved-emne_ids i places_psykologi eller people_psykologi som ikke starter med em_psy_*.",
+    "Flagg poster der hovedkategori ser ut til å være medisin/somatikk, politikk, historie, vitenskap, by, media, kunst, litteratur, sport, natur, næringsliv, musikk eller populærkultur.",
+    "Logg per spørsmål source_origin som external, mixed, observed_institution, observed_theory, observed_treatment, observed_development, observed_behavior, observed_experience, observed_trauma_care eller internal_only.",
+    "Flagg quiz der internal_only overstiger 5 prosent.",
+    "Flagg teorioverstyring når navngitt teoretiker kommer før institusjon/fagtradisjon/behandling/utviklingscase/atferd/erfaring/norm/traume/omsorg er etablert.",
+    "Flagg psykologisk analyse som blir selvhjelp, synsing, personlig følelsesråd eller diagnosegjetting uten dokumentert kilde.",
+    "Flagg biografiske spørsmål som diagnostiserer person eller bruker psykologi som karaktervurdering i stedet for faglig dokumentert rolle, teori, praksis eller institusjonshistorie.",
+    "Flagg stedsbaserte spørsmål der koblingen til psykologi bare er løs assosiasjon, generell helse eller vag sosial tematikk."
+  ],
+  "generation_metadata_additions": {
+    "required_per_question_fields_recommended": [
+      "source_origin",
+      "claim_basis",
+      "guidance_basis",
+      "method_id",
+      "emne_id",
+      "psychology_anchor_type",
+      "source_note"
+    ],
+    "source_origin_values": [
+      "external",
+      "mixed",
+      "observed_institution",
+      "observed_theory",
+      "observed_treatment",
+      "observed_development",
+      "observed_behavior",
+      "observed_experience",
+      "observed_trauma_care",
+      "internal_only"
+    ],
+    "psychology_anchor_type_values": [
+      "mental_health",
+      "clinic",
+      "hospital",
+      "institution",
+      "treatment",
+      "therapy",
+      "care_system",
+      "patient_role",
+      "psychological_theory",
+      "psychoanalysis",
+      "cognitive_psychology",
+      "behaviorism",
+      "humanistic_psychology",
+      "neuropsychology",
+      "diagnosis_history",
+      "psychometrics",
+      "development",
+      "attachment",
+      "childhood",
+      "family",
+      "school",
+      "learning",
+      "lifespan",
+      "perception",
+      "attention",
+      "memory",
+      "decision",
+      "emotion",
+      "affect_regulation",
+      "stress",
+      "coping",
+      "habit",
+      "bias",
+      "group",
+      "norm",
+      "stigma",
+      "normality",
+      "identity",
+      "loneliness",
+      "social_control",
+      "trauma",
+      "crisis",
+      "grief",
+      "violence",
+      "resilience",
+      "safety",
+      "care",
+      "archive",
+      "research_source",
+      "clinical_source",
+      "institution_history"
+    ],
+    "claim_basis_definition": "Den konkrete psykologifaglige påstanden fra ekstern kilde, institusjonshistorie, klinisk kilde, forskningskilde, arkiv, rapport, fagmiljø, behandlingskilde, historisk kilde eller dokumentert psykologisk prosess.",
+    "guidance_basis_definition": "Hvilket em_psy_*, hook, metode eller teorispor som styrte spørsmålets form uten å levere faktapåstanden.",
+    "method_id_definition": "Én method_id fra methods_psykologi_canonical_v4_5.json brukt til å forme spørsmålet.",
+    "emne_id_definition": "Én em_psy_* fra emner_psykologi_canonical_v4_5.json brukt som hovedemne.",
+    "source_note_definition": "Kort kildebeskrivelse som sier hvilken type psykologifaglig, klinisk, institusjonshistorisk, forskningsmessig, behandlingsmessig eller dokumentert prosesskilde som er brukt."
+  },
+  "diagnosis_note": "Når mange filer er opplastet, må modellen ikke overvekte canonical systemfiler bare fordi de er mange. For psykologi skal konkrete institusjoner, klinikker, sykehus, fagmiljøer, behandlingsformer, diagnosehistorie, teorier, utviklingscase, kognitive prosesser, sosialpsykologiske prosesser, traume-, krise- og omsorgscase, forskningskilder, institusjonshistorie, kliniske praksiser og dokumenterte psykologiske prosesser dominere synlig quizinnhold. Fagkart, methods, emner, emnemapping og pensum er styring.",
+  "migration_note": "Eksisterende places_psykologi og people_psykologi bør migreres til em_psy_* bare etter at hvert objekt er lest. Det må samtidig sjekkes at hovedkategori faktisk er psykologi og ikke medisin/somatikk, politikk, historie, vitenskap, by, media, kunst, litteratur, sport, natur, næringsliv, musikk, populærkultur eller annet fag."
+}

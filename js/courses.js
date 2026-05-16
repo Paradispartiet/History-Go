@@ -79,8 +79,20 @@
   // Pensum loader
   // --------------------------------------------
   async function loadPensum(subjectId) {
-    const sid = s(subjectId);
+    let sid = s(subjectId);
     if (!sid) throw new Error("subjectId missing");
+    try {
+      if (window.DomainRegistry?.resolve) sid = s(window.DomainRegistry.resolve(sid));
+    } catch (e) { /* behold rå id ved ukjent domene */ }
+
+    if (window.DataHub?.loadPensum) {
+      try {
+        const fromHub = await window.DataHub.loadPensum(sid);
+        if (fromHub && typeof fromHub === "object") return fromHub;
+      } catch (e) {
+        dwarn("DataHub.loadPensum failed for", sid, e);
+      }
+    }
 
     // primær: data/fag/<subjectId>/pensum_<subjectId>.json
     const primary = `data/fag/${sid}/pensum_${sid}.json`;
@@ -93,6 +105,48 @@
     }
 
     throw new Error(`Fant ikke pensumfil: ${primary}`);
+  }
+
+
+
+  function normalizePensumForCourses(pensum, subjectId) {
+    const source = (pensum && typeof pensum === "object") ? pensum : {};
+    const modules = arr(source.modules);
+    if (modules.length) return source;
+
+    const domains = arr(source.domains);
+    if (!domains.length) return source;
+
+    const sid = s(subjectId);
+    const mappedModules = domains.map((domain, index) => {
+      const originalDomainId = s(domain?.domain_id) || s(domain?.id) || "";
+      const moduleId = originalDomainId || `${sid || "subject"}_domain_${index + 1}`;
+      const title = s(domain?.title) || s(domain?.label) || s(domain?.name) || `Domain ${index + 1}`;
+
+      return {
+        module_id: moduleId,
+        title,
+        emner: arr(domain?.emne_ids),
+        methods: arr(domain?.method_ids),
+        hooks: arr(domain?.hook_ids),
+        cases: arr(domain?.recommended_oslo_cases).length
+          ? arr(domain?.recommended_oslo_cases)
+          : arr(domain?.recommended_cases),
+        description: s(domain?.description) || s(domain?.definition),
+        source: "domains_adapter",
+        domain_id: originalDomainId || null
+      };
+    });
+
+    return {
+      ...source,
+      modules: mappedModules,
+      course_adapter: {
+        source: "domains",
+        generated_modules: mappedModules.length,
+        reason: "pensum_has_domains_without_modules"
+      }
+    };
   }
 
   // --------------------------------------------
@@ -271,7 +325,8 @@
 
   HGCourses.compute = async function ({ subjectId, emnerAll }) {
     const sid = s(subjectId);
-    const pensum = await loadPensum(sid);
+    const pensumRaw = await loadPensum(sid);
+    const pensum = normalizePensumForCourses(pensumRaw, sid);
 
     const log = getLearningLog();
     const idx = buildLearningIndex(log);

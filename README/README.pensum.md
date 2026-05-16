@@ -200,3 +200,17 @@ Hva som er nytt siden eldre versjoner
 Hvordan du kobler alt sammen
 - Emner peker "nedover" til quiz via `related_emner`/`core_concepts`-logikk.
 - Courses peker "oppover" ved å oppsummere (modul/diplom) per merke og (eventuelt) per fagkart-node.
+
+Manifest-kontrakt for aktive fagfiler (2026-05)
+------------------------------------------------
+- Aktiv fagfilkontrakt er nå `data/fag/fag_manifest.json`.
+- Manifestet peker til aktive filer per `subjectId` for:
+  - `pensum`
+  - `emner`
+  - `fagkart`
+  - `methods`
+  - `supersetQuizMal`
+- Canonical/versjonerte filnavn kan beholdes uendret.
+- Runtime skal laste fagfiler via manifestet først, med eksisterende fallback-paths intakt.
+- Store fagfiler skal ikke renames for å bytte aktiv versjon.
+- Bytte av aktiv fagversjon gjøres ved å oppdatere manifestet.

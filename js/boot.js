@@ -2,6 +2,9 @@
 // Ren orchestrator: definerer boot(), men starter ikke appen selv.
 // app.js skal være eneste entry på index-siden.
 
+/** @typedef {import("../schemas/place").Place} BootPlace */
+/** @typedef {{ files?: string[] }} PlacesManifest */
+
 async function boot() {
   if (window.CoreEngine) CoreEngine.init();
   if (window.HGEngine) HGEngine.init();
@@ -17,6 +20,7 @@ async function boot() {
   const isGitHubPages = location.hostname.includes("github.io");
   const BASE = isGitHubPages ? `/${REPO_NAME}/` : "/";
 
+  /** @param {string} url @returns {Promise<unknown | null>} */
   const fetchJSON = async (url) => {
     try {
       const res = await fetch(BASE + url, { cache: "no-store" });
@@ -105,6 +109,7 @@ async function boot() {
       "data/wonderkammer/seasonal.json"
     ];
 
+    /** @type {PlacesManifest | null} */
     const manifest = await fetchJSON("data/wonderkammer/index.json");
     const files = Array.isArray(manifest?.files) && manifest.files.length
       ? manifest.files
@@ -170,6 +175,7 @@ async function boot() {
      LAST BASISDATA
   ============================== */
 
+  /** @type {string[]} */
   const PLACE_FILES_FALLBACK = [
     "data/places/places_by.json",
     "data/places/places_historie.json",
@@ -184,13 +190,15 @@ async function boot() {
     "data/places/places_vitenskap.json"
   ];
 
+  /** @type {BootPlace[]} */
   let places = [];
 
   if (window.DataHub?.loadPlacesBase) {
     try {
+      /** @type {unknown} */
       const loaded = await window.DataHub.loadPlacesBase({ cache: "no-store" });
       if (Array.isArray(loaded) && loaded.length) {
-        places = loaded;
+        places = /** @type {BootPlace[]} */ (loaded);
       }
     } catch (e) {
       console.error("[DataHub.loadPlacesBase]", e);
@@ -208,7 +216,24 @@ async function boot() {
     }
   }
 
-  const relations = (await fetchJSON("data/relations.json")) || [];
+  const RELATION_FILE_LIST = [
+    "data/relations.json",
+    "data/relations_philanthropy.json"
+  ];
+
+  /** @type {unknown[]} */
+  let relations = [];
+
+  for (const url of RELATION_FILE_LIST) {
+    const data = await fetchJSON(url);
+
+    if (Array.isArray(data)) {
+      relations.push(...data);
+    } else if (Array.isArray(data?.relations)) {
+      relations.push(...data.relations);
+    }
+  }
+
   const wonderkammer = await loadWonderkammerManifest();
   const tags = await fetchJSON("data/tags.json");
 
@@ -216,23 +241,30 @@ async function boot() {
      LAST PEOPLE (multi-file)
   ============================== */
 
-  const PEOPLE_FILE_LIST = [
-    "data/people/people_by.json",
-    "data/people/people_historie.json",
-    "data/people/people_kunst.json",
-    "data/people/people_litteratur.json",
-    "data/people/people_musikk.json",
-    "data/people/people_naeringsliv.json",
-    "data/people/people_natur.json",
-    "data/people/people_politikk.json",
-    "data/people/people_sport.json",
-    "data/people/people_subkultur.json",
-    "data/people/people_vitenskap.json"
-  ];
+  const normalizePeoplePath = (entry) => {
+    const raw = String(entry || "").trim().replace(/^\.?\//, "");
+    if (!raw) return null;
+    return raw.startsWith("data/") ? raw : `data/${raw}`;
+  };
 
+  const loadPeopleFileList = async () => {
+    const manifest = await fetchJSON("data/people/manifest.json");
+    if (!Array.isArray(manifest?.files) || !manifest.files.length) {
+      console.error("[boot] Missing or invalid people manifest: data/people/manifest.json");
+      return [];
+    }
+
+    return manifest.files
+      .map(normalizePeoplePath)
+      .filter(Boolean);
+  };
+
+  /** @type {unknown[]} */
   let peopleAll = [];
 
-  for (const url of PEOPLE_FILE_LIST) {
+  const peopleFiles = await loadPeopleFileList();
+
+  for (const url of peopleFiles) {
     const data = await fetchJSON(url);
 
     if (Array.isArray(data)) {

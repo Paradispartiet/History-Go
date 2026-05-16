@@ -1,0 +1,482 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>History Go – bildekandidat-review</title>
+  <style>
+    :root {
+      --bg: #111318;
+      --panel: #1b1f28;
+      --panel-2: #242a36;
+      --text: #f3f5f8;
+      --muted: #aeb6c5;
+      --line: rgba(255, 255, 255, 0.12);
+      --ok: #4ade80;
+      --bad: #fb7185;
+      --warn: #facc15;
+      --link: #93c5fd;
+      --shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      padding: 18px 20px;
+      background: rgba(17, 19, 24, 0.94);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(12px);
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(22px, 4vw, 34px);
+      line-height: 1.1;
+    }
+
+    .lead {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.45;
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-top: 14px;
+    }
+
+    button,
+    .link-button {
+      border: 1px solid var(--line);
+      background: var(--panel-2);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 9px 13px;
+      font: inherit;
+      font-size: 14px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    button:hover,
+    .link-button:hover {
+      border-color: rgba(255, 255, 255, 0.32);
+    }
+
+    button[data-action="approve"].active {
+      border-color: rgba(74, 222, 128, 0.85);
+      background: rgba(74, 222, 128, 0.16);
+    }
+
+    button[data-action="reject"].active {
+      border-color: rgba(251, 113, 133, 0.85);
+      background: rgba(251, 113, 133, 0.16);
+    }
+
+    button[data-action="maybe"].active {
+      border-color: rgba(250, 204, 21, 0.85);
+      background: rgba(250, 204, 21, 0.16);
+    }
+
+    main {
+      padding: 18px;
+      max-width: 1500px;
+      margin: 0 auto;
+    }
+
+    .status {
+      margin: 14px 0 18px;
+      padding: 12px 14px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: var(--panel);
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .image-wrap {
+      position: relative;
+      background: #05070a;
+      aspect-ratio: 16 / 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .image-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .orientation {
+      position: absolute;
+      left: 12px;
+      top: 12px;
+      padding: 5px 9px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.72);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      font-size: 12px;
+      color: white;
+    }
+
+    .orientation.landscape {
+      color: var(--ok);
+    }
+
+    .orientation.portrait {
+      color: var(--warn);
+    }
+
+    .body {
+      padding: 15px;
+    }
+
+    .title-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: flex-start;
+      margin-bottom: 8px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.2;
+    }
+
+    code {
+      color: #dbeafe;
+      background: rgba(147, 197, 253, 0.11);
+      border: 1px solid rgba(147, 197, 253, 0.18);
+      padding: 2px 5px;
+      border-radius: 7px;
+      font-size: 12px;
+      word-break: break-word;
+    }
+
+    .meta {
+      display: grid;
+      gap: 6px;
+      margin: 12px 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.35;
+    }
+
+    .meta strong {
+      color: var(--text);
+      font-weight: 650;
+    }
+
+    .warning {
+      margin: 12px 0;
+      padding: 10px;
+      border-radius: 14px;
+      background: rgba(250, 204, 21, 0.11);
+      border: 1px solid rgba(250, 204, 21, 0.25);
+      color: #fde68a;
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    a {
+      color: var(--link);
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 140px;
+      resize: vertical;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: #080a0f;
+      color: var(--text);
+      padding: 12px;
+      font: 13px/1.4 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+
+    dialog {
+      width: min(900px, calc(100vw - 28px));
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 0;
+      background: var(--panel);
+      color: var(--text);
+      box-shadow: var(--shadow);
+    }
+
+    dialog::backdrop {
+      background: rgba(0, 0, 0, 0.65);
+    }
+
+    .dialog-inner {
+      padding: 18px;
+    }
+
+    .dialog-inner h2 {
+      margin-bottom: 12px;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .small {
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Bildekandidat-review</h1>
+    <p class="lead">
+      Viser kandidater fra <code>data/places/place_image_candidates.json</code>. Dette verktøyet endrer ikke filer, kjører ikke apply og godkjenner ikke automatisk.
+      Valgene lagres bare i nettleserens localStorage og kan kopieres som review-liste.
+    </p>
+    <div class="toolbar">
+      <button id="copyApproved" type="button">Kopier approved-ID-er</button>
+      <button id="copyReview" type="button">Kopier full review</button>
+      <button id="clearReview" type="button">Nullstill lokal review</button>
+    </div>
+  </header>
+
+  <main>
+    <div id="status" class="status">Laster kandidater …</div>
+    <div id="grid" class="grid"></div>
+  </main>
+
+  <dialog id="copyDialog">
+    <div class="dialog-inner">
+      <h2>Kopier review</h2>
+      <p class="muted small">Dette er bare tekst. Ingen repo-filer er endret.</p>
+      <textarea id="copyText" readonly></textarea>
+      <div class="actions">
+        <button id="closeDialog" type="button">Lukk</button>
+      </div>
+    </div>
+  </dialog>
+
+  <script>
+    const CANDIDATE_PATH = "../data/places/place_image_candidates.json";
+    const STORAGE_KEY = "hg_place_image_review_v1";
+
+    const statusEl = document.getElementById("status");
+    const gridEl = document.getElementById("grid");
+    const dialogEl = document.getElementById("copyDialog");
+    const copyTextEl = document.getElementById("copyText");
+
+    let places = [];
+    let review = loadReview();
+
+    function loadReview() {
+      try {
+        return JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+      } catch {
+        return {};
+      }
+    }
+
+    function saveReview() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(review, null, 2));
+    }
+
+    function firstCandidate(place) {
+      return Array.isArray(place.candidates) ? place.candidates[0] : null;
+    }
+
+    function orientation(candidate) {
+      const w = Number(candidate?.width || 0);
+      const h = Number(candidate?.height || 0);
+      if (!w || !h) return { label: "ukjent format", className: "" };
+      if (w > h) return { label: "liggende image-kandidat", className: "landscape" };
+      if (h > w) return { label: "stående – bør ikke brukes som image", className: "portrait" };
+      return { label: "kvadratisk – vurder manuelt", className: "" };
+    }
+
+    function escapeHtml(value) {
+      return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
+    function setDecision(placeId, decision) {
+      review[placeId] = {
+        ...(review[placeId] || {}),
+        decision,
+        updatedAt: new Date().toISOString()
+      };
+      saveReview();
+      render();
+    }
+
+    function render() {
+      const total = places.length;
+      const approved = Object.values(review).filter(item => item.decision === "approve").length;
+      const rejected = Object.values(review).filter(item => item.decision === "reject").length;
+      const maybe = Object.values(review).filter(item => item.decision === "maybe").length;
+
+      statusEl.textContent = `${total} steder · ${approved} approve · ${rejected} reject · ${maybe} usikker · image skal være liggende · cardImage lages separat`;
+
+      gridEl.innerHTML = places.map(place => {
+        const candidate = firstCandidate(place);
+        const current = review[place.id]?.decision || "";
+        const orient = orientation(candidate);
+        const imageUrl = candidate?.thumbUrl || candidate?.originalUrl || "";
+        const isSame = candidate?.suggested?.image && candidate?.suggested?.cardImage && candidate.suggested.image === candidate.suggested.cardImage;
+        const needsLandscapeWarning = orient.className === "portrait";
+
+        return `
+          <article class="card" data-place-id="${escapeHtml(place.id)}">
+            <div class="image-wrap">
+              ${imageUrl ? `<img src="${escapeHtml(imageUrl)}" alt="${escapeHtml(place.name)}" loading="lazy" referrerpolicy="no-referrer" />` : `<span class="muted">Ingen bilde-URL</span>`}
+              <span class="orientation ${orient.className}">${escapeHtml(orient.label)}</span>
+            </div>
+            <div class="body">
+              <div class="title-row">
+                <div>
+                  <h2>${escapeHtml(place.name)}</h2>
+                  <div class="small"><code>${escapeHtml(place.id)}</code></div>
+                </div>
+                <div class="small muted">${escapeHtml(place.category)}</div>
+              </div>
+
+              ${needsLandscapeWarning ? `<div class="warning">Dette bildet er stående. Det kan være visuelt nyttig, men skal ikke godkjennes som <code>image</code> hvis regelen er liggende stedsbilde. Bruk heller senere som inspirasjon til eget kortbilde.</div>` : ""}
+              ${isSame ? `<div class="warning">FEIL: suggested.image og suggested.cardImage er like. Dette skal ikke godkjennes.</div>` : ""}
+
+              <div class="meta">
+                <div><strong>Fil:</strong> ${escapeHtml(candidate?.fileTitle || "")}</div>
+                <div><strong>Størrelse:</strong> ${escapeHtml(candidate?.width || "?")} × ${escapeHtml(candidate?.height || "?")} · ${escapeHtml(candidate?.mime || "")}</div>
+                <div><strong>Lisens:</strong> ${escapeHtml(candidate?.licenseShortName || "ukjent")} ${candidate?.licenseUrl ? `· <a href="${escapeHtml(candidate.licenseUrl)}" target="_blank" rel="noopener">lisens</a>` : ""}</div>
+                <div><strong>Author/credit:</strong> ${escapeHtml(candidate?.credit || candidate?.author || "")}</div>
+                <div><strong>Suggested image:</strong> <code>${escapeHtml(candidate?.suggested?.image || "")}</code></div>
+                <div><strong>Suggested cardImage:</strong> <code>${escapeHtml(candidate?.suggested?.cardImage || "null – lages separat")}</code></div>
+                <div><strong>Kilde:</strong> <a href="${escapeHtml(candidate?.pageUrl || imageUrl)}" target="_blank" rel="noopener">Commons-side</a></div>
+              </div>
+
+              <div class="actions">
+                <button type="button" data-action="approve" data-id="${escapeHtml(place.id)}" class="${current === "approve" ? "active" : ""}">Approve image</button>
+                <button type="button" data-action="maybe" data-id="${escapeHtml(place.id)}" class="${current === "maybe" ? "active" : ""}">Usikker</button>
+                <button type="button" data-action="reject" data-id="${escapeHtml(place.id)}" class="${current === "reject" ? "active" : ""}">Reject</button>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join("");
+    }
+
+    function reviewRows() {
+      return places.map(place => {
+        const candidate = firstCandidate(place);
+        return {
+          id: place.id,
+          name: place.name,
+          decision: review[place.id]?.decision || "unreviewed",
+          fileTitle: candidate?.fileTitle || "",
+          pageUrl: candidate?.pageUrl || "",
+          suggestedImage: candidate?.suggested?.image || "",
+          suggestedCardImage: candidate?.suggested?.cardImage || null,
+          license: candidate?.licenseShortName || "",
+          credit: candidate?.credit || candidate?.author || "",
+          width: candidate?.width || null,
+          height: candidate?.height || null
+        };
+      });
+    }
+
+    function showCopy(text) {
+      copyTextEl.value = text;
+      dialogEl.showModal();
+      copyTextEl.focus();
+      copyTextEl.select();
+    }
+
+    document.addEventListener("click", event => {
+      const button = event.target.closest("button[data-action]");
+      if (!button) return;
+      setDecision(button.dataset.id, button.dataset.action);
+    });
+
+    document.getElementById("copyApproved").addEventListener("click", () => {
+      const rows = reviewRows().filter(row => row.decision === "approve");
+      showCopy(JSON.stringify(rows, null, 2));
+    });
+
+    document.getElementById("copyReview").addEventListener("click", () => {
+      showCopy(JSON.stringify(reviewRows(), null, 2));
+    });
+
+    document.getElementById("clearReview").addEventListener("click", () => {
+      if (!confirm("Nullstille lokal review i denne nettleseren?")) return;
+      review = {};
+      saveReview();
+      render();
+    });
+
+    document.getElementById("closeDialog").addEventListener("click", () => {
+      dialogEl.close();
+    });
+
+    async function init() {
+      try {
+        const response = await fetch(CANDIDATE_PATH, { cache: "no-store" });
+        if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
+        const data = await response.json();
+        places = Array.isArray(data.places) ? data.places : [];
+        render();
+      } catch (error) {
+        statusEl.textContent = `Kunne ikke laste ${CANDIDATE_PATH}: ${error.message}`;
+      }
+    }
+
+    init();
+  </script>
+</body>
+</html>

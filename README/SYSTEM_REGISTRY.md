@@ -118,10 +118,18 @@ Eier:
 Rolle: **Datasentral + caching + enrichment**.
 Eier:
 - lasting av JSON og bygging av cache/indekser
+- lasting av fagfiler via `data/fag/fag_manifest.json` (aktive fagfiler per subject)
 - (evt) lasting av overlays/pensum/quiz via manifest/loader (der det er implementert) 
 
 Regel:
 - Ingen andre filer fetcher `/data/*.json` direkte **hvis dataHub tilbyr det**.
+
+Fagfil-kontrakt (manifest)
+- Aktiv kontrakt: `data/fag/fag_manifest.json`.
+- Manifestfelter per subject: `pensum`, `emner`, `fagkart`, `methods`, `supersetQuizMal`.
+- Canonical/versjonerte filnavn beholdes; runtime skal gå via manifestet.
+- Store fagfiler skal ikke renames/reformatteres for å bytte aktiv versjon.
+- Aktiv versjon byttes ved å endre manifestet.
 
 **Bevisst unntak (dokumentert):**
 - `notater.html` fetcher `data/people.json` og `data/places.json` direkte for å mappe id→navn.  [oai_citation:11‡app.js](sediment://file_00000000dc98720ca7dc44e6d53963bd)
@@ -401,21 +409,20 @@ Laster:
 Regel:
 - Hvis en side endrer CSS-lasterekkefølge eller legger til/fjerner CSS, skal denne seksjonen oppdateres (LOCKED).
 
-## 8) AHA (egen app)
+## 8) AHA (History Go lokal bro)
 
 Folder: `/AHA/`
 - `index.html`  [oai_citation:31‡index AHA.html](sediment://file_000000000ccc71f4a2b2d89bdd9ac09f)
-- `ahaChat.js`  [oai_citation:32‡ahaChat.js](sediment://file_00000000d53471f4a786fc85c56feb22)
+- `ahaHistoryGoImport.js`
 - `insightsChamber.js`  [oai_citation:33‡routes.js](sediment://file_00000000a990720aa80f64b91ee6b751)
 - `metaInsightsEngine.js`  [oai_citation:34‡metaInsightsEngine.js](sediment://file_00000000487871f48023ad7d767e6096)
 - `ahaEmneMatcher.js`  [oai_citation:35‡ahaEmneMatcher.js](sediment://file_000000004a78720ab78a7929271e8b15)
 - `ahaFieldProfiles.js`  [oai_citation:36‡ahaFieldProfiles.js](sediment://file_0000000086bc720a91836afbff47490e)
 - `aha-chat.css`
-- `sw.js` (AHA-scope)
 
 Kontrakt HG → AHA:
 - HG skriver `aha_import_payload_v1` (localStorage)
-- AHA importerer på brukerhandling (“Importer History Go”)  [oai_citation:37‡app.js](sediment://file_00000000dc98720ca7dc44e6d53963bd)  [oai_citation:38‡index AHA.html](sediment://file_000000000ccc71f4a2b2d89bdd9ac09f)
+- AHA-EchoNet importerer `aha_import_payload_v1` via History Go-importbroen.
 
 ---
 

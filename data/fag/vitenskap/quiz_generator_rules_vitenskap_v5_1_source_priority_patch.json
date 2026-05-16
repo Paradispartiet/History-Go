@@ -1,0 +1,321 @@
+{
+  "version": "v5.1-source-priority-patch-vitenskap",
+  "subject_id": "vitenskap",
+  "subject_title": "Vitenskap",
+  "scope": "oslo_og_omegn",
+  "purpose": "Stramme inn quizgeneratoren for Vitenskap slik at konkrete institusjoner, universiteter, laboratorier, observatorier, instrumenter, målinger, datasett, forskningsmiljøer, metoder, modeller, teknologiske systemer, medisinske case, miljømålinger, vitenskapelige gjennombrudd, forskningspublikasjoner, rapporter, arkiver og fagmiljøkilder dominerer synlig spørsmålsinnhold. Fagkart, methods, emner, emnemapping og pensum skal styre struktur, metode, teori og progresjon, men ikke fungere som hovedkilde til faktapåstander.",
+  "canonical_inputs": {
+    "fagkart": "fagkart_vitenskap_canonical_v4_5.json",
+    "methods": "methods_vitenskap_canonical_v4_5.json",
+    "emner": "emner_vitenskap_canonical_v4_5.json",
+    "emnemapping": "emnemapping_vitenskap_canonical_v4_5.json",
+    "pensum": "vitenskappensum_canonical_v4_5.json",
+    "domain_count": 6,
+    "emne_count": 80,
+    "method_count": 84,
+    "mapping_count": 80,
+    "topic_hook_count": 60
+  },
+  "hard_rules": {
+    "source_dominance_rule": "Eksterne vitenskapsfaglige, institusjonshistoriske, metodehistoriske, teknologihistoriske, medisinske, miljøfaglige, forskningsmessige, rapportbaserte, arkivbaserte og fagfellevurderte kilder skal dominere det synlige faktainnholdet i vitenskapsquizzer. Canonical-filene er styringsfiler, ikke faktakilde.",
+    "canonical_files_are_guides_not_content": true,
+    "external_science_source_first_all_sets": true,
+    "minimum_external_source_ratio_by_set": {
+      "1": 0.85,
+      "2": 0.85,
+      "3": 0.8,
+      "4": 0.8,
+      "5": 0.75,
+      "6": 0.75,
+      "7": 0.75,
+      "8": 0.75
+    },
+    "internal_file_only_questions_max_per_quiz": 0.05,
+    "internal_file_only_questions_allowed_only_for": [
+      "ren observasjon av synlig universitet, laboratorium, observatorium, institutt, museum, arkiv, sykehus, forskningssenter, instrument, sensor, datasett eller teknologibygg",
+      "validering av metadata, kategori eller spørsmålslag",
+      "nødfallback når ekstern kilde ikke finnes, og dette loggføres eksplisitt"
+    ],
+    "question_seed_priority": [
+      "konkret institusjon, universitet, laboratorium, observatorium, instrument, måling, datasett, forskningsmiljø, metode, modell, teknologisk system, medisinsk case, miljømåling eller vitenskapelig gjennombrudd",
+      "offisiell universitets-, museums-, institusjons-, arkiv-, forskningsråds-, sykehus-, observatorie-, laboratorie-, rapport-, datasett- eller fagmiljøkilde",
+      "vitenskapshistorie, vitenskapsfilosofi, STS, medisin-, teknologi- og naturvitenskapshistorie, forskningspublikasjon, rapport, arkiv, fagfellekilde eller dokumentert forskningsformidling",
+      "dokumentert vitenskapelig prosess: observasjon, måling, kalibrering, standardisering, replikasjon, modellering, testing, klassifikasjon, datainnsamling, simulering, evidens eller konsensus",
+      "dokumentert teknologi- og datainfrastruktur: sensorer, datasett, algoritmer, protokoller, beregning, visualisering, automatisering, datainfrastruktur eller standarder",
+      "stedsdata/persondata i appen",
+      "fagkart, methods, emner, emnemapping og pensum som styring – ikke faktakilde"
+    ],
+    "vitenskap_question_must_start_from": [
+      "vitenskapelig institusjon, universitet, laboratorium, observatorium, institutt, museum, arkiv, forskningsmiljø eller forskningsinfrastruktur",
+      "metode, hypotese, observasjon, eksperiment, variabel, instrument, kalibrering, standardisering, statistikk, modell, simulering eller fagfellekonsensus",
+      "paradigme, teori, evidens, objektivitet, sannhetsproduksjon, vitenskapelig revolusjon, blindsone, kausalitet eller vitenskapsfilosofi",
+      "teknologi, data, sensor, datasett, beregning, protokoll, algoritme, automatisering, datavisualisering, teknologisk infrastruktur eller digital vitenskap",
+      "naturvitenskap, medisin, biologi, klima, miljø, geologi, økologi, epidemiologi, prøver, feltarbeid eller vitenskapelig miljøovervåking",
+      "forskningsfinansiering, ekspertmakt, vitenskapsetikk, risiko, kontrovers, marginalisert felt, interessekonflikt, offentlighet, styring eller vitenskapens samfunnsendring",
+      "dokumentert kilde: forskningspublikasjon, rapport, fagfellekilde, arkiv, institusjonskilde, datasett, observasjonsserie, laboratoriekilde, sykehuskilde, museumskilde eller forskningsformidling"
+    ],
+    "forbidden_generation_patterns": [
+      "Ikke generer synlige spørsmål direkte fra emne-, hook-, metode- eller teorinavn.",
+      "Ikke spør generisk om vitenskap uten konkret institusjon, metode, instrument, modell, datasett, observasjon, gjennombrudd, konflikt eller kilde.",
+      "Ikke lag fremskrittsfortellinger der fasiten blir at vitenskap bare er nøytral forbedring.",
+      "Ikke gjør et sted til vitenskap bare fordi det har teknologi, natur, helse eller utdanning, uten dokumentert vitenskapelig metode, institusjon, instrument, modell, forskningsmiljø eller kilde.",
+      "Ikke klassifiser natur som opplevelse, teknologi som produkt, politikk, historie, by, media, kunst, litteratur, sport, musikk, populærkultur, subkultur, psykologi eller næringsliv som vitenskap når vitenskap bare er sekundærlag.",
+      "Ikke bruk em_by_*, em_his_*, em_kunst_*, em_lit_*, em_media_*, em_musikk_*, em_pop_*, em_pol_*, em_naering_*, em_natur_*, em_psy_* eller em_sub_* som hoved-emne_ids i places_vitenskap eller people_vitenskap.",
+      "Ikke lag rene triviafakta om oppfinnelser, personer eller teknologier uten å vise metode, instrument, institusjon, modell, observasjon, evidens eller kilde."
+    ],
+    "required_emne_prefix": "em_vit_",
+    "blocked_emne_prefixes_for_vitenskap_files": [
+      "em_by_",
+      "em_his_",
+      "em_kunst_",
+      "em_lit_",
+      "em_media_",
+      "em_musikk_",
+      "em_pop_",
+      "em_pol_",
+      "em_naering_",
+      "em_natur_",
+      "em_psy_",
+      "em_sub_"
+    ],
+    "people_vitenskap_rule": "people_vitenskap skal inneholde personer der hovedrollen er forsker, vitenskapsfilosof, matematiker, fysiker, biolog, legeforsker, teknolog, ingeniør, miljøforsker, data-/algoritmeforsker, forskningsformidler, institusjonsbygger eller sentral aktør i dokumentert vitenskapelig historie. Personer der hovedrollen er politiker, kunstner, forfatter, journalist, idrettsutøver, gründer, kulturaktør eller næringslivsaktør skal primært ligge i disse kategoriene, med vitenskap som sekundært tag bare der det er relevant.",
+    "places_vitenskap_rule": "places_vitenskap skal inneholde steder der hovedrollen er vitenskapelig institusjon, universitet, laboratorium, observatorium, institutt, museum, arkiv, sykehus som forskningssted, forskningspark, teknologibygg, datasenter, forskningsinfrastruktur, natur-/medisin-/miljøfaglig forskningssted, observasjonssted eller sted for dokumentert vitenskapelig gjennombrudd."
+  },
+  "soft_preferences": {
+    "preferred_external_source_mix_per_place": [
+      "minst én offisiell universitets-, museums-, institusjons-, arkiv-, forskningsråds-, sykehus-, observatorie-, laboratorie-, rapport-, datasett- eller fagmiljøkilde",
+      "minst én vitenskapshistorisk, vitenskapsfilosofisk, STS-, medisin-, teknologi-, naturvitenskaps-, miljøfaglig, fagfellevurdert eller forskningsformidlende kilde",
+      "minst én konkret institusjons-, metode-, instrument-, modell-, datasett-, observasjons-, gjennombrudds-, teknologi-, natur-/medisin-/miljø- eller kontroverskilde når quiz handler om sted eller person"
+    ],
+    "preferred_question_build_path": "vitenskapelig kilde eller konkret institusjon/metode/instrument/modell/datasett/gjennombrudd -> presist claim -> sted/person/institusjon/prosess -> metode/emne -> teori",
+    "preferred_role_of_canonical_files": [
+      "velge riktig em_vit_*",
+      "velge relevant vitenskapsmetode",
+      "styre om spørsmålet bør starte i institusjon, metode, instrument, modell, datasett, observasjon, gjennombrudd, teknologi, natur-/medisin-/miljøcase, kontrovers eller dokumentert vitenskapelig kilde",
+      "spre teorier, tenkere, institusjoner, metoder, instrumenter, modeller, datasett, teknologier, kontroverser, gjennombrudd, steder og metoder",
+      "unngå kategorirot mellom vitenskap, natur, by, politikk, næringsliv, psykologi, historie, media, kunst, litteratur, sport, musikk, populærkultur og subkultur",
+      "unngå teorioverstyring der institusjonen, metoden, instrumentet, modellen, datasettet eller observasjonen blir borte"
+    ],
+    "preferred_question_surfaces": [
+      "institution-lab-place-first",
+      "method-measurement-model-first",
+      "paradigm-theory-truth-first",
+      "technology-data-infrastructure-first",
+      "nature-medicine-environment-science-first",
+      "science-society-power-ethics-first",
+      "institution-method-model-instrument-discovery-first_then_named_theorist"
+    ],
+    "preferred_norwegian_theory_path": "Når relevant norsk vitenskapshistorie, forskningsinstitusjon, metodehistorie, teknologihistorie, miljøforskning, medisinsk forskning eller naturvitenskapelig gjennombrudd finnes, kan det brukes i senere sett, men bare etter at institusjon, metode, instrument, modell, datasett, observasjon eller gjennombrudd allerede er etablert."
+  },
+  "set_guidance": {
+    "1": {
+      "name": "grunnfakta_institusjon_metode_sted",
+      "dominant_driver": "ekstern kilde, konkret universitet, laboratorium, observatorium, institutt, museum, arkiv, sykehus, forskningssenter, instrument eller vitenskapelig sted",
+      "canonical_role": "lett styring av emne og metode",
+      "allowed_methods": [
+        "met_vit_institusjonsanalyse",
+        "met_vit_laboratorieanalyse",
+        "met_vit_observasjonsanalyse",
+        "met_vit_stedsanalyse"
+      ],
+      "question_style": "enkel gjenkjenning, sted/funksjon, institusjon, laboratorium, observatorium, instrument, metode eller synlig vitenskapelig spor"
+    },
+    "2": {
+      "name": "institusjoner_laboratorier_kunnskapssteder",
+      "dominant_driver": "universitet, laboratorium, observatorium, museum, arkiv, forskningspark, sykehus som forskningssted, fagmiljø, infrastruktur eller kunnskapskart",
+      "canonical_role": "lett til middels metodeføring",
+      "allowed_methods": [
+        "met_vit_institusjonsanalyse",
+        "met_vit_laboratorieanalyse",
+        "met_vit_arkivanalyse",
+        "met_vit_innovasjonsanalyse",
+        "met_vit_infrastrukturanalyse"
+      ],
+      "question_style": "institusjon, laboratorium, observatorium, arkiv, forskningspark, sykehus, fagmiljø, tillit, infrastruktur og kunnskapsgeografi"
+    },
+    "3": {
+      "name": "metoder_maling_modeller",
+      "dominant_driver": "hypotese, observasjon, eksperiment, variabel, instrument, kalibrering, standardisering, statistikk, modell, simulering, algoritme eller fagfellekonsensus",
+      "canonical_role": "høy metode-, måle- og modellføring tillatt",
+      "allowed_methods": [
+        "met_vit_hypoteseanalyse",
+        "met_vit_eksperimentanalyse",
+        "met_vit_maleinstrumentanalyse",
+        "met_vit_standardiseringsanalyse",
+        "met_vit_modellanalyse"
+      ],
+      "question_style": "hypotese, observasjon, eksperiment, variabler, instrumenter, kalibrering, standardisering, statistikk, modeller, algoritmer og feilkilder"
+    },
+    "4": {
+      "name": "paradigmer_teorier_sannhet",
+      "dominant_driver": "paradigmeskifte, teori, modell, objektivitet, evidens, sannhetsproduksjon, konsensus, doxa, blindsoner, kausalitet eller vitenskapsfilosofi",
+      "canonical_role": "høy teori- og epistemologiføring tillatt, men med konkret vitenskapelig anker",
+      "allowed_methods": [
+        "met_vit_paradigmeanalyse",
+        "met_vit_teorianalyse",
+        "met_vit_objektivitetsanalyse",
+        "met_vit_evidensanalyse",
+        "met_vit_vitenskapsfilosofisk_analyse"
+      ],
+      "question_style": "paradigmer, teorier, objektivitet, evidens, sannhet som praksis, konsensus, uenighet, doxa, blindsoner og kausalitet"
+    },
+    "5": {
+      "name": "teknologi_data_infrastruktur",
+      "dominant_driver": "sensor, datasett, beregning, protokoll, teknologisk presisjon, automatisering, datavisualisering, teknologisk usynlighet, industri eller digital vitenskap",
+      "canonical_role": "høy teknologi-, data- og infrastrukturstyring tillatt",
+      "allowed_methods": [
+        "met_vit_sensoranalyse",
+        "met_vit_datasettanalyse",
+        "met_vit_beregningsanalyse",
+        "met_vit_protokollanalyse",
+        "met_vit_algoritmeanalyse"
+      ],
+      "question_style": "sensorer, datasett, beregning, protokoller, teknologisk presisjon, automatisering, datavisualisering, industri og digital vitenskap"
+    },
+    "6": {
+      "name": "natur_medisin_miljo",
+      "dominant_driver": "biologi, klassifikasjon, medisin, evidens, epidemiologi, klima, miljøovervåking, geologi, økologi, feltarbeid, prøver eller miljøkunnskap",
+      "canonical_role": "høy natur-, medisin- og miljøvitenskapelig styring tillatt",
+      "allowed_methods": [
+        "met_vit_biologihistorisk_analyse",
+        "met_vit_medisinhistorisk_analyse",
+        "met_vit_epidemiologisk_analyse",
+        "met_vit_klimaanalyse",
+        "met_vit_okologisk_analyse"
+      ],
+      "question_style": "biologi, klassifikasjon, medisin, evidens, epidemiologi, klima, miljøovervåking, geologi, økologi, feltarbeid og prøver"
+    },
+    "7": {
+      "name": "samfunn_makt_etikk",
+      "dominant_driver": "forskningsfinansiering, ekspertmakt, vitenskapsetikk, risiko, kontroverser, marginaliserte felt, industri, offentlighet, standarder, styring eller samfunnsendring",
+      "canonical_role": "høy samfunns-, makt- og etikkstyring tillatt",
+      "allowed_methods": [
+        "met_vit_finansieringsanalyse",
+        "met_vit_ekspertmaktanalyse",
+        "met_vit_etisk_analyse",
+        "met_vit_risikoanalyse",
+        "met_vit_kontroversanalyse"
+      ],
+      "question_style": "finansiering, ekspertmakt, etikk, risiko, kontroverser, marginaliserte felt, interessekonflikt, offentlighet, standarder og samfunnsendring"
+    },
+    "8": {
+      "name": "system_metode_sannhet_samfunn",
+      "dominant_driver": "konkret institusjon, metode, instrument, modell, datasett, observasjon, gjennombrudd, teknologi, natur-/medisin-/miljøcase, kontrovers eller samfunnsmakt",
+      "canonical_role": "høy teori tillatt, men med konkret vitenskapelig anker",
+      "allowed_methods": [
+        "met_vit_kunnskapssosiologisk_analyse",
+        "met_vit_sannhetsproduksjonsanalyse",
+        "met_vit_teknologikritisk_analyse",
+        "met_vit_kritisk_epistemologisk_analyse",
+        "met_vit_samfunnsanalyse"
+      ],
+      "question_style": "institusjon, metode, instrument, modell, sannhet, teknologi, blindsoner, etikk, makt og samfunnsendring"
+    }
+  },
+  "vitenskap_category_guardrails": {
+    "accept_as_vitenskap_primary_when": [
+      "stedet eller personen har vitenskapelig hovedrolle",
+      "det finnes konkret institusjon, metode, instrument, modell, datasett, observasjon, gjennombrudd, kontrovers, forskningsmiljø eller dokumentert vitenskapelig kilde",
+      "spørsmål kan bygges fra vitenskapsfaglige, institusjonshistoriske, metodehistoriske, teknologihistoriske, medisinske, miljøfaglige, forskningsmessige, rapportbaserte eller fagfellevurderte kilder",
+      "vitenskapelig metode-, institusjons-, instrument-, modell-, data- eller evidenslogikk er primær, ikke bare generell teknologi, natur, historie, politikk eller utdanning"
+    ],
+    "do_not_accept_as_vitenskap_primary_when": [
+      "hovedrollen er natur som opplevelse, grøntområde eller økosystem uten vitenskapelig observasjon, måling, modell, metode eller forskningskilde",
+      "hovedrollen er teknologi som produkt, næringsliv eller infrastruktur uten forskningsspor, metode, instrument, modell eller vitenskapelig kilde",
+      "stedet er bare en generell skole-, by-, natur-, helse-, teknologi- eller institusjonscase uten konkret vitenskapelig metode, instrument, modell, datasett, gjennombrudd eller forskningskilde",
+      "personen er politiker, kunstner, forfatter, journalist, idrettsutøver, gründer, kulturaktør eller næringslivsaktør uten hovedrolle som vitenskapelig aktør"
+    ],
+    "secondary_vitenskap_tag_allowed": true
+  },
+  "validator_additions": [
+    "Avvis vitenskapsquiz hvis synlig innhold primært er parafrase av fagkart, emner, methods eller mapping.",
+    "Avvis spørsmål som kan spores bare til emne-/hook-/metodenavn og ikke til konkret institusjon, metode, instrument, modell, datasett, observasjon, gjennombrudd, teknologi, kontrovers eller ekstern kilde.",
+    "Avvis hoved-emne_ids i places_vitenskap eller people_vitenskap som ikke starter med em_vit_*.",
+    "Flagg poster der hovedkategori ser ut til å være natur, politikk, historie, by, media, kunst, litteratur, sport, musikk, populærkultur, subkultur, psykologi eller næringsliv.",
+    "Logg per spørsmål source_origin som external, mixed, observed_institution, observed_method, observed_instrument, observed_model, observed_dataset, observed_discovery, observed_technology, observed_science_society eller internal_only.",
+    "Flagg quiz der internal_only overstiger 5 prosent.",
+    "Flagg teorioverstyring når navngitt teoretiker kommer før institusjon/metode/instrument/modell/datasett/observasjon/gjennombrudd er etablert.",
+    "Flagg vitenskapsanalyse som blir generisk fremskritt, teknologibegeistring, ren oppfinnelsestrivia eller løs naturfakta uten dokumentert metode, instrument, modell, institusjon eller kilde.",
+    "Flagg biografiske spørsmål som ikke kobler person til konkret vitenskapelig rolle, forskningsmiljø, metode, teori, oppdagelse, instrument, institusjon eller dokumentert faglig arbeid.",
+    "Flagg stedsbaserte spørsmål der koblingen til vitenskap bare er løs assosiasjon, utdanningssted, teknologi eller generell helsekontekst."
+  ],
+  "generation_metadata_additions": {
+    "required_per_question_fields_recommended": [
+      "source_origin",
+      "claim_basis",
+      "guidance_basis",
+      "method_id",
+      "emne_id",
+      "science_anchor_type",
+      "source_note"
+    ],
+    "source_origin_values": [
+      "external",
+      "mixed",
+      "observed_institution",
+      "observed_method",
+      "observed_instrument",
+      "observed_model",
+      "observed_dataset",
+      "observed_discovery",
+      "observed_technology",
+      "observed_science_society",
+      "internal_only"
+    ],
+    "science_anchor_type_values": [
+      "institution",
+      "university",
+      "laboratory",
+      "observatory",
+      "archive",
+      "museum",
+      "research_environment",
+      "instrument",
+      "measurement",
+      "calibration",
+      "standardization",
+      "hypothesis",
+      "experiment",
+      "variable",
+      "replication",
+      "statistics",
+      "model",
+      "simulation",
+      "algorithm",
+      "dataset",
+      "sensor",
+      "protocol",
+      "data_infrastructure",
+      "evidence",
+      "paradigm",
+      "theory",
+      "objectivity",
+      "consensus",
+      "controversy",
+      "causality",
+      "medicine",
+      "biology",
+      "climate",
+      "environmental_monitoring",
+      "geology",
+      "ecology",
+      "fieldwork",
+      "sample",
+      "research_funding",
+      "expert_power",
+      "science_ethics",
+      "risk",
+      "public_trust",
+      "science_communication",
+      "research_policy",
+      "scientific_source"
+    ],
+    "claim_basis_definition": "Den konkrete vitenskapelige påstanden fra ekstern kilde, forskningspublikasjon, rapport, fagfellekilde, arkiv, institusjonskilde, datasett, observasjonsserie, laboratoriekilde, sykehuskilde, museumskilde eller forskningsformidling.",
+    "guidance_basis_definition": "Hvilket em_vit_*, hook, metode eller teorispor som styrte spørsmålets form uten å levere faktapåstanden.",
+    "method_id_definition": "Én method_id fra methods_vitenskap_canonical_v4_5.json brukt til å forme spørsmålet.",
+    "emne_id_definition": "Én em_vit_* fra emner_vitenskap_canonical_v4_5.json brukt som hovedemne.",
+    "source_note_definition": "Kort kildebeskrivelse som sier hvilken type vitenskapelig, institusjonshistorisk, metodehistorisk, teknologihistorisk, medisinsk, miljøfaglig, rapportbasert eller fagfellevurdert kilde som er brukt."
+  },
+  "diagnosis_note": "Når mange filer er opplastet, må modellen ikke overvekte canonical systemfiler bare fordi de er mange. For vitenskap skal konkrete institusjoner, universiteter, laboratorier, observatorier, instrumenter, målinger, datasett, forskningsmiljøer, metoder, modeller, teknologiske systemer, medisinske case, miljømålinger, vitenskapelige gjennombrudd, forskningspublikasjoner, rapporter, arkiver og fagmiljøkilder dominere synlig quizinnhold. Fagkart, methods, emner, emnemapping og pensum er styring.",
+  "migration_note": "Eksisterende places_vitenskap og people_vitenskap bør migreres til em_vit_* bare etter at hvert objekt er lest. Det må samtidig sjekkes at hovedkategori faktisk er vitenskap og ikke natur, politikk, historie, by, media, kunst, litteratur, sport, musikk, populærkultur, subkultur, psykologi, næringsliv eller annet fag."
+}

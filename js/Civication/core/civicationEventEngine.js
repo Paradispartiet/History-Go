@@ -1,3 +1,11 @@
+/**
+ * @typedef {Record<string, unknown>} CiviEventEngineRecord
+ * @typedef {{ id?: string, label?: string, text?: string, effect?: number|string, feedback?: string, tags?: unknown[], moral_flag?: boolean, [key: string]: unknown }} CiviEventEngineChoice
+ * @typedef {{ id?: string, stage?: string, status?: string, source?: string, subject?: string, situation?: unknown, choices?: CiviEventEngineChoice[], effect?: unknown, feedback?: string, source_type?: string, conflict_ids?: unknown[], role_content_meta?: CiviEventEngineRecord, task_id?: string|null, task_payload?: CiviEventEngineRecord, __pack?: CiviEventEngineRecord, [key: string]: unknown }} CiviEventEngineEvent
+ * @typedef {{ status?: string, enqueued_at?: string, event?: CiviEventEngineEvent, [key: string]: unknown }} CiviEventEngineInboxItem
+ * @typedef {{ stability?: string, warning_used?: boolean, strikes?: number, score?: number, active_role_key?: string|null, consumed?: CiviEventEngineRecord, identity_tags?: unknown[], tracks?: unknown[], track_progress?: CiviEventEngineRecord, unemployed_since_week?: string|null, mail_director?: CiviEventEngineRecord, conflict_state?: CiviEventEngineRecord, story_state?: CiviEventEngineRecord, [key: string]: unknown }} CiviEventEngineState
+ */
+
 function slugify(str) {
   return String(str || "")
     .toLowerCase()
@@ -105,10 +113,12 @@ class CivicationEventEngine {
 
   // -------- state --------
 
+  /** @returns {CiviEventEngineState} */
   getState() {
     return window.CivicationState.getState();
   }
 
+  /** @param {CiviEventEngineRecord} patch */
   setState(patch) {
     return window.CivicationState.setState(patch || {});
   }
@@ -143,6 +153,7 @@ resetForNewJob(role_key) {
   
   // -------- inbox --------
 
+  /** @returns {CiviEventEngineInboxItem[]} */
   getInbox() {
     if (window.CivicationMailEngine?.getInbox) {
       return window.CivicationMailEngine.getInbox();
@@ -150,6 +161,7 @@ resetForNewJob(role_key) {
     return window.CivicationState.getInbox();
   }
 
+  /** @param {CiviEventEngineInboxItem[]} arr */
   setInbox(arr) {
     if (window.CivicationMailEngine?.replaceInbox) {
       window.CivicationMailEngine.replaceInbox(arr);
@@ -161,13 +173,36 @@ resetForNewJob(role_key) {
     window.CivicationState.setInbox(arr);
   }
 
+  /** @returns {CiviEventEngineInboxItem|null} */
   getPendingEvent() {
+    /** @type {CiviEventEngineInboxItem[]} */
     const inbox = this.getInbox();
     if (!Array.isArray(inbox)) return null;
 
     return inbox.find(
       m => m && m.status === "pending"
     ) || null;
+  }
+
+  syncAnsweredChoiceToMailHistory(eventId, choiceId) {
+    const resolvedEventId = String(eventId || "").trim();
+    const resolvedChoiceId = String(choiceId || "").trim();
+
+    if (!resolvedEventId || !resolvedChoiceId) return false;
+
+    try {
+      if (typeof window.CivicationMailEngine?.markResolved === "function") {
+        return !!window.CivicationMailEngine.markResolved(
+          resolvedEventId,
+          resolvedEventId,
+          resolvedChoiceId
+        );
+      }
+    } catch (e) {
+      return false;
+    }
+
+    return false;
   }
 
   // -------- role_key resolution --------
@@ -387,6 +422,10 @@ return {
   
   // -------- event selection --------
 
+  /** @param {{mails?: CiviEventEngineEvent[]}|null|undefined} pack
+   * @param {CiviEventEngineState} state
+   * @returns {CiviEventEngineEvent|null}
+   */
   pickEventFromPack(pack, state) {
     if (!pack || !Array.isArray(pack.mails)) {
       return null;
@@ -1129,6 +1168,7 @@ async ensureConflictState(active) {
       console.warn("Login registration failed", e);
     }
 
+    /** @type {CiviEventEngineState} */
     const state = this.getState();
 
     const resolvedStoryState = await this.ensureStoryState();
@@ -1452,20 +1492,34 @@ registerChosenMail(eventObj) {
   });
 }
   
+  /** @param {CiviEventEngineEvent} eventObj
+   * @returns {void}
+   */
   enqueueEvent(eventObj) {
+    const normalizedEvent = eventObj && typeof eventObj === "object"
+      ? Object.assign({}, eventObj)
+      : {};
+    const resolveChannel = window.CivicationEventChannels?.getMessageChannel;
+    if (!normalizedEvent.channel && typeof resolveChannel === "function") {
+      normalizedEvent.channel = resolveChannel(normalizedEvent);
+    }
+
     if (window.CivicationMailEngine?.sendMail) {
       const res = window.CivicationMailEngine.sendMail({
         status: "pending",
         enqueued_at: new Date().toISOString(),
-        event: eventObj
+        event: normalizedEvent
       });
       if (res?.ok) return;
     }
     const inbox = this.getInbox();
-    const item = { status: "pending", enqueued_at: new Date().toISOString(), event: eventObj };
+    const item = { status: "pending", enqueued_at: new Date().toISOString(), event: normalizedEvent };
     this.setInbox([item].concat(inbox).slice(0, this.maxInbox));
   }
 
+/** @param {string} taskId
+ * @returns {CiviEventEngineRecord|null}
+ */
 getStoredTaskResult(taskId) {
   if (!taskId) return null;
 
@@ -1482,6 +1536,9 @@ getStoredTaskResult(taskId) {
   }
 }
 
+/** @param {CiviEventEngineEvent} ev
+ * @returns {{delta:number,state:string,feedbackSuffix:string}}
+ */
 getTaskResultModifier(ev) {
   const interaction = ev?.task_payload?.interaction || null;
 
@@ -1529,6 +1586,10 @@ getTaskResultModifier(ev) {
   };
 }
   
+  /** @param {string} eventId
+   * @param {string} choiceId
+   * @returns {CiviEventEngineRecord}
+   */
   answer(eventId, choiceId) {
     const inbox = this.getInbox();
 
@@ -1545,6 +1606,7 @@ getTaskResultModifier(ev) {
 
     const item = inbox[idx];
     const ev = item.event || {};
+    /** @type {CiviEventEngineState} */
     const state = this.getState();
 
     let effect = 0;
@@ -1815,6 +1877,7 @@ if (Array.isArray(ev.choices) && ev.choices.length) {
     });
 
     this.setInbox(inbox);
+    this.syncAnsweredChoiceToMailHistory(ev.id || eventId, choiceId);
 
     this.setState({
       consumed: consumed,

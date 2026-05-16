@@ -1,0 +1,143 @@
+{
+  "id": "ostensjovannet_quiz_1",
+  "quiz_id": "natur_ostensjovannet_set_1_q1",
+  "categoryId": "natur",
+  "placeId": "ostensjovannet",
+  "personId": "",
+  "natureId": "",
+  "targetId": "ostensjovannet",
+  "question_scope": "place",
+  "question": "Hva gjør Østensjøvannet særlig relevant som natursted?",
+  "options": [
+    "Det er et viktig våtmarks- og fuglehabitat der arter, vannspeil og økologiske samspill kan observeres",
+    "Det er en børsbygning knyttet til kapital, eierskap og verdipapirhandel",
+    "Det er en konsertscene og klubb for live-musikk og publikum"
+  ],
+  "answer": "Det er et viktig våtmarks- og fuglehabitat der arter, vannspeil og økologiske samspill kan observeres",
+  "answerIndex": 0,
+  "dimension": "natur",
+  "topic": "Våtmark, habitat og biologisk mangfold",
+  "knowledge": "Østensjøvannet brukes her som eksempel på naturens økologiske infrastruktur i byen: våtmark, vannspeil, fugleliv, habitat, artsmangfold og forvaltning.",
+  "trivia": [],
+  "difficulty": 1,
+  "question_type": "fact",
+  "question_layer": "fakta_sted_natur",
+  "year": null,
+  "epoke_id": "urban_okologi_vatmark_og_biomangfold",
+  "epoke_domain": "natur",
+  "emne_id": "em_natur_vatmark_vannspeil_habitat",
+  "related_emner": [
+    "em_natur_vatmark_vannspeil_habitat",
+    "em_natur_arter_habitat_mangfold",
+    "em_natur_biodiversitet_resiliens"
+  ],
+  "core_concepts": [
+    "våtmark",
+    "vannspeil",
+    "habitat",
+    "fugleliv",
+    "biologisk mangfold"
+  ],
+  "concept_focus": [
+    "våtmark",
+    "habitat"
+  ],
+  "learning_paths": [
+    "fra sted til habitat",
+    "fra vannspeil til økologisk samspill",
+    "fra fugleliv til biologisk mangfold og forvaltning"
+  ],
+  "tags": [
+    "natur",
+    "sted",
+    "våtmark",
+    "habitat",
+    "fugleliv",
+    "biomangfold",
+    "forvaltning"
+  ],
+  "required_tags": [
+    "external_source",
+    "nature_anchor",
+    "em_natur"
+  ],
+  "source": [
+    {
+      "type": "official_nature_or_management_source",
+      "name": "Oslo kommune / Miljødirektoratet / Artsdatabanken / tilsvarende offisiell natur- eller forvaltningskilde",
+      "role": "verifiserer stedets funksjon som våtmark, habitat, naturtype, verneområde eller økologisk forvaltningscase",
+      "required": true
+    },
+    {
+      "type": "ecology_or_species_data_source",
+      "name": "økologisk fagkilde, artsdata, fugleregistrering, feltmåling, kart- eller forvaltningskilde",
+      "role": "verifiserer stedets betydning for arter, habitat, vannmiljø, biologisk mangfold eller økologisk samspill",
+      "required": true
+    }
+  ],
+  "related_emners": [
+    "em_natur_vatmark_vannspeil_habitat",
+    "em_natur_arter_habitat_mangfold",
+    "em_natur_biodiversitet_resiliens"
+  ],
+  "source_origin": "mixed",
+  "claim_basis": "Ekstern natur-/forvaltningskilde skal verifisere at Østensjøvannet fungerer som våtmarksområde og habitat med betydning for fugleliv, arter, vannmiljø og biologisk mangfold.",
+  "guidance_basis": {
+    "fagkart_category_id": "okosystem_mangfold_habitat",
+    "topic_hook": "vatmark_habitat",
+    "emne_id": "em_natur_vatmark_vannspeil_habitat",
+    "method_id": "met_natur_habitat_og_biotopanalyse",
+    "canonical_files_used_as_guidance_only": [
+      "fagkart_natur_canonical_v4_5.json",
+      "methods_natur_canonical_v4_5.json",
+      "emner_natur_canonical_v4_5.json",
+      "emnemapping_natur_canonical_v4_5.json",
+      "naturpensum_canonical_v4_5.json"
+    ]
+  },
+  "method_id": "met_natur_habitat_og_biotopanalyse",
+  "nature_anchor_type": "wetland",
+  "source_note": "Spørsmålet skal bygges fra ekstern natur-, arts-, kart- eller forvaltningskilde; fagfilene styrer bare metode, emne og spørsmålsflate.",
+  "external_source_ratio_target": 0.85,
+  "internal_file_only_allowed": false,
+  "requires_nature_anchor": true,
+  "requires_external_claim_basis": true,
+  "requires_ecosystem_water_climate_or_place_anchor": true,
+  "requires_documented_ecological_context": true,
+  "generator_guardrails": {
+    "do_not_generate_from_emne_label_only": true,
+    "do_not_generate_from_method_label_only": true,
+    "do_not_use_non_natur_emne_id": true,
+    "required_emne_prefix": "em_natur_",
+    "blocked_emne_prefixes": [
+      "em_by_",
+      "em_his_",
+      "em_kunst_",
+      "em_lit_",
+      "em_media_",
+      "em_musikk_",
+      "em_pop_",
+      "em_vit_",
+      "em_pol_",
+      "em_naering_"
+    ],
+    "nature_place_process_first_then_theory": true,
+    "source_first": true,
+    "avoid_generic_nature_romanticism": true,
+    "avoid_green_decor_without_ecological_process": true,
+    "avoid_pure_recreation_question_without_species_habitat_water_climate_geology_or_management": true
+  },
+  "validation": {
+    "emne_id_exists_in_emner_natur": true,
+    "method_id_exists_in_methods_natur": true,
+    "mapping_exists_in_emnemapping_natur": true,
+    "category_matches_badge": true,
+    "schema_extends_generic_supersetQUIZMAL": true
+  },
+  "template_notes": {
+    "template_role": "natur_superset_quiz_object",
+    "generic_template_source": "supersetQUIZMAL (10).json",
+    "content_policy": "Dette er en mal/eksempelobjekt. Produksjonsquizer skal fylle source med konkrete kilder og ikke bruke fagfilene som hovedkilde til faktapåstander.",
+    "next_use": "Bruk som grunnmal for naturquiz-spørsmål før generatoren lager mange spørsmål per sted/person."
+  }
+}

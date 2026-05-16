@@ -1,5 +1,10 @@
 // state/persistence.js
 
+/**
+ * @typedef {import("../../schemas/place").Place} PersistencePlace
+ * @typedef {import("../../schemas/storage").GroundhopperStats} PersistenceGroundhopperStats
+ */
+
 function savePersonDialogs() {
   localStorage.setItem(
     "hg_person_dialogs_v1",
@@ -21,12 +26,17 @@ function saveUserNotes() {
 }
 
 // progress for “+1 poeng per 3 riktige”
+/** @type {import("../../schemas/storage").HistoryGoProgress} */
 const userProgress = JSON.parse(
   localStorage.getItem("historygo_progress") || "{}"
 );
 
 const GROUNDHOPPER_STATS_KEY = "hg_groundhopper_stats_v1";
 
+/**
+ * @param {unknown} value
+ * @returns {string[]}
+ */
 function normalizeArray(value) {
   if (!Array.isArray(value)) return [];
   return value
@@ -34,7 +44,11 @@ function normalizeArray(value) {
     .filter(Boolean);
 }
 
+/**
+ * @returns {PersistenceGroundhopperStats}
+ */
 function getGroundhopperStats() {
+  /** @type {PersistenceGroundhopperStats} */
   const fallback = {
     version: 1,
     visited_groundhopper_places: [],
@@ -63,14 +77,25 @@ function getGroundhopperStats() {
   }
 }
 
+/**
+ * @param {PersistenceGroundhopperStats} stats
+ */
 function saveGroundhopperStats(stats) {
   localStorage.setItem(GROUNDHOPPER_STATS_KEY, JSON.stringify(stats));
 }
 
+/**
+ * @param {PersistencePlace | undefined | null} place
+ * @returns {boolean}
+ */
 function isGroundhopperPlace(place) {
   return place?.category === "sport" && place?.sport_profile?.groundhopper_relevant !== false;
 }
 
+/**
+ * @param {PersistenceGroundhopperStats} stats
+ * @param {Record<string, PersistencePlace>} placeLookup
+ */
 function recalculateGroundhopperTotals(stats, placeLookup) {
   const visitedIds = normalizeArray(stats?.visited_groundhopper_places);
   let football = 0, ice = 0, athletics = 0, winter = 0, national = 0;
@@ -95,6 +120,9 @@ function recalculateGroundhopperTotals(stats, placeLookup) {
   stats.total_national_arenas_visited = national;
 }
 
+/**
+ * @param {PersistencePlace | undefined | null} place
+ */
 function updateGroundhopperFromPlace(place) {
   if (!place || !isGroundhopperPlace(place)) return;
   const placeId = String(place.id || "").trim();
@@ -128,6 +156,7 @@ function updateGroundhopperFromPlace(place) {
   stats.teams_collected = Array.from(new Set([...normalizeArray(stats.teams_collected), ...normalizeArray(profile.teams)]));
 
   const places = Array.isArray(window.PLACES) ? window.PLACES : [];
+  /** @type {Record<string, PersistencePlace>} */
   const placeLookup = Object.fromEntries(places.map((p) => [String(p?.id || ""), p]));
   placeLookup[placeId] = place;
   recalculateGroundhopperTotals(stats, placeLookup);
@@ -152,6 +181,9 @@ function saveVisited() {
   window.dispatchEvent(new Event("updateProfile"));
 }
 
+/**
+ * @param {string | number | null | undefined} placeId
+ */
 function saveVisitedFromQuiz(placeId) {
   const id = String(placeId ?? "");
   if (!id) return;

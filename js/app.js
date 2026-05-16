@@ -97,10 +97,8 @@ function wireMapPlacePopupInMapMode() {
       document.body?.classList.contains("map-only") ||
       document.body?.classList.contains("mode-map");
 
-    if (isMapMode) {
-      if (typeof window.showPlacePopup === "function") {
-        window.showPlacePopup(place);
-      }
+    if (isMapMode && typeof window.showPlacePopup === "function") {
+      window.showPlacePopup(place);
       return;
     }
 

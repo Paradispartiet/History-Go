@@ -629,6 +629,7 @@
       from: norm(storylet.from),
       source_type: "narrative_stream",
       narrative_stream_id: norm(stream.id),
+      narrative_stream_type: norm(stream.type),
       narrative_storylet_id: norm(storylet.id),
       mail_type: norm(storylet.message_type || "story"),
       mail_family: `narrative_${slugify(stream.type||"stream")}`,
@@ -734,37 +735,115 @@
     if (!items.length || !storyletEvent) return { runtime, inserted: false };
 
     const current = Math.max(0, Number(runtime?.current_index || 0));
-    let insertIndex = Math.min(items.length, current + 1);
+    const defaultInsertIndex = Math.min(items.length, current + 1);
+    const phasesWithInjectedNarrative = injectedNarrativePhases(items);
 
     const wanted = uniqueStrings(preferredPhases);
+    let insertIndex = defaultInsertIndex;
+    let fallbackUsed = false;
+
     if (wanted.length) {
-      for (let i = current + 1; i < items.length; i += 1) {
-        const phase = norm(items[i]?.phase || items[i]?.event?.phase_tag);
-        if (wanted.includes(phase) && !phaseHasInjectedNarrative(items, phase)) {
-          insertIndex = i;
-          break;
-        }
+      const preferredPlacement = findInsertIndexForPreferredPhase(items, current, wanted, phasesWithInjectedNarrative);
+      if (preferredPlacement && Number.isInteger(preferredPlacement.insertIndex) && preferredPlacement.insertIndex >= 0) {
+        insertIndex = preferredPlacement.insertIndex;
+      } else {
+        fallbackUsed = true;
+        const fallbackIndex = findFallbackInsertIndex(items, defaultInsertIndex, phasesWithInjectedNarrative);
+        if (Number.isInteger(fallbackIndex) && fallbackIndex >= 0) insertIndex = fallbackIndex;
       }
+    } else {
+      fallbackUsed = true;
+      const fallbackIndex = findFallbackInsertIndex(items, defaultInsertIndex, phasesWithInjectedNarrative);
+      if (Number.isInteger(fallbackIndex) && fallbackIndex >= 0) insertIndex = fallbackIndex;
     }
 
+    const injectedAt = new Date().toISOString();
+    const chosenPhase = norm(items[insertIndex]?.phase || items[insertIndex]?.event?.phase_tag || storyletEvent?.daily_mail_meta?.phase || storyletEvent?.phase_tag || "afternoon");
+    const placedEvent = {
+      ...storyletEvent,
+      phase_tag: chosenPhase,
+      daily_mail_meta: {
+        ...(storyletEvent?.daily_mail_meta && typeof storyletEvent.daily_mail_meta === "object" ? storyletEvent.daily_mail_meta : {}),
+        phase: chosenPhase,
+        slot: norm(storyletEvent?.daily_mail_meta?.slot || "injected_narrative")
+      },
+      injected_by_choice: true,
+      injected_at: injectedAt
+    };
     const nextItems = items.slice();
     nextItems.splice(insertIndex, 0, {
       status: "queued",
-      phase: norm(storyletEvent?.daily_mail_meta?.phase || storyletEvent?.phase_tag || "afternoon"),
-      slot: norm(storyletEvent?.daily_mail_meta?.slot || "injected_narrative"),
+      phase: chosenPhase,
+      slot: "injected_narrative",
       injected_by_choice: true,
-      injected_at: new Date().toISOString(),
-      event: storyletEvent
+      injected_at: injectedAt,
+      event: placedEvent
     });
 
     return {
       runtime: {
         ...runtime,
         items: nextItems,
+        last_injection_debug: {
+          stream_id: norm(storyletEvent?.narrative_stream_id),
+          stream_type: norm(storyletEvent?.narrative_stream_type),
+          preferred_phases: wanted,
+          phases_with_injected: [...phasesWithInjectedNarrative],
+          chosen_insert_index: insertIndex,
+          chosen_phase: chosenPhase,
+          fallback_used: fallbackUsed
+        },
         updated_at: new Date().toISOString()
       },
       inserted: true
     };
+  }
+
+  function injectedNarrativePhases(items) {
+    const rows = Array.isArray(items) ? items : [];
+    return new Set(rows
+      .filter(row => row?.injected_by_choice === true || row?.event?.injected_by_choice === true)
+      .map(row => norm(row?.phase || row?.event?.phase_tag))
+      .filter(Boolean));
+  }
+
+  function findInsertIndexForPreferredPhase(items, currentIndex, preferredPhases, phasesWithInjectedNarrative) {
+    const rows = Array.isArray(items) ? items : [];
+    const current = Math.max(0, Number(currentIndex || 0));
+    const wanted = uniqueStrings(preferredPhases);
+    const injectedPhases = phasesWithInjectedNarrative instanceof Set
+      ? phasesWithInjectedNarrative
+      : injectedNarrativePhases(rows);
+
+    for (const phaseId of wanted) {
+      if (injectedPhases.has(phaseId)) continue;
+      for (let i = current + 1; i < rows.length; i += 1) {
+        const phase = norm(rows[i]?.phase || rows[i]?.event?.phase_tag);
+        if (phase === phaseId) {
+          return { insertIndex: i, phase: phaseId };
+        }
+      }
+    }
+
+    return null;
+  }
+
+  function findFallbackInsertIndex(items, defaultInsertIndex, phasesWithInjectedNarrative) {
+    const rows = Array.isArray(items) ? items : [];
+    const start = Math.max(0, Math.min(rows.length, Number(defaultInsertIndex || 0)));
+    const injectedPhases = phasesWithInjectedNarrative instanceof Set
+      ? phasesWithInjectedNarrative
+      : injectedNarrativePhases(rows);
+
+    const fallbackPhase = norm(rows[start]?.phase || rows[start]?.event?.phase_tag);
+    if (!fallbackPhase || !injectedPhases.has(fallbackPhase)) return start;
+
+    for (let i = start + 1; i < rows.length; i += 1) {
+      const phase = norm(rows[i]?.phase || rows[i]?.event?.phase_tag);
+      if (phase && !injectedPhases.has(phase)) return i;
+    }
+
+    return start;
   }
 
   function phaseHasInjectedNarrative(items, phaseId) {
@@ -1007,6 +1086,51 @@
     return true;
   }
 
+  function inboxHasEventId(engine, eventId) {
+    const id = norm(eventId);
+    if (!id) return false;
+    const inbox = getInbox(engine);
+    return inbox.some(item => norm(item?.event?.id || item?.id) === id);
+  }
+
+  function deliverRuntimeItemToInbox(runtimeRow, engine) {
+    const row = runtimeRow && typeof runtimeRow === "object" ? runtimeRow : null;
+    const event = row?.event && typeof row.event === "object" ? row.event : null;
+    if (!event) return { ok: false, reason: "missing_event" };
+
+    const eventId = norm(event.id);
+    if (!eventId) return { ok: false, reason: "missing_event_id" };
+    if (inboxHasEventId(engine, eventId)) return { ok: false, reason: "duplicate_id" };
+
+    const deliveredEvent = {
+      ...event,
+      id: eventId,
+      status: norm(row?.status || event.status || "delivered"),
+      phase: norm(row?.phase || event.phase || event.phase_tag),
+      slot: norm(row?.slot || event.slot),
+      source_type: norm(event.source_type),
+      mail_type: norm(event.mail_type || event.type),
+      mail_family: norm(event.mail_family),
+      narrative_stream_id: norm(event.narrative_stream_id),
+      narrative_storylet_id: norm(event.narrative_storylet_id),
+      choices: Array.isArray(event.choices) ? event.choices : []
+    };
+
+    if (window.CivicationMailEngine?.sendMail) {
+      const sent = window.CivicationMailEngine.sendMail({
+        id: eventId,
+        status: "pending",
+        enqueued_at: new Date().toISOString(),
+        event: deliveredEvent
+      });
+      if (sent?.ok) return { ok: true, via: "mail_engine" };
+      if (sent?.reason === "duplicate_key") return { ok: false, reason: "duplicate_key" };
+    }
+
+    const enqueued = enqueueEvent(engine, deliveredEvent);
+    return { ok: !!enqueued, via: "engine_enqueue_fallback" };
+  }
+
   async function enqueueNext(engine, options = {}) {
     const active = options.active || getActive();
     if (!active) return { enqueued: false, reason: "no_active_role" };
@@ -1061,7 +1185,7 @@
     };
 
     setRuntime(nextRuntime);
-    enqueueEvent(engine, event);
+    deliverRuntimeItemToInbox(item, engine);
     try { window.dispatchEvent(new Event("civi:inboxChanged")); } catch {}
     try { window.dispatchEvent(new Event("updateProfile")); } catch {}
 
@@ -1308,6 +1432,7 @@
       injected_items: injectedItems,
       by_stream: byStream,
       by_phase: byPhase,
+      last_injection_debug: runtime?.last_injection_debug || null,
       next_pending_narrative_item: nextPendingNarrativeItem,
       storylet_rule_summary: {
         storylets_with_applies_when: storylets.filter(st => st?.applies_when && typeof st.applies_when === "object").length,

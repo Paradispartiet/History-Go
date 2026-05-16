@@ -1,106 +1,24 @@
-# History Go AHA-flate (lokal innsiktsmotor + eksport)
+# History Go AHA-flate (lokal innsiktsmotor + eksportbro)
 
-`History-Go/AHA` er en lokal History Go-spesifikk innsiktsmotor/eksportflate for `aha_import_payload_v1`.
-Hoved-AHA (canonical AHA-motor og overbygning) ligger i `Paradispartiet/AHA-EchoNet`.
+`History-Go/AHA` er kun History Go sin lokale innsiktsmotor og eksport-/statusflate for `aha_import_payload_v1`.
+Canonical AHA-motor ligger i `Paradispartiet/AHA-EchoNet`.
 
-> Merk: Backend/AHA-agent-oppsettet under er historisk/prototype-informasjon for lokal testing, ikke hovedretningen for History Go sin AHA-landingsflate.
+## Ansvarsdeling
 
-AHA kan fortsatt kjøres lokalt med innsiktsmotor/metamotor uten AI-backend.
+- **AHA-EchoNet** = canonical/personal AHA (chat, feed, notes, gallery, insta og øvrige personlige AHA-moduler).
+- **History Go** = samlings- og læringsunivers (quiz, steder, personer, progresjon, Civication, kart m.m.).
+- **History-Go/AHA** = lokal bro/statusflate som viser og eksporterer `aha_import_payload_v1` til AHA-EchoNet.
 
-## Deploy backend på Render
+## Hva finnes i denne mappen nå
 
-### Alternativ A: med `render.yaml` (anbefalt)
-Repoet inneholder `render.yaml` i roten. Opprett en ny **Blueprint** i Render mot dette repoet.
+- `index.html`: side for **History Go innsiktsmotor** med lokal statusvisning.
+- `insights.html`: read-only innsiktsvisning for `aha_insight_chamber_v1` + `aha_source_events_v1`.
+- `aha-chat.css`: enkel stil for statusflaten.
+- `ahaHistoryGoImport.js`: importbro på AHA-siden (dokumentert her for kompatibilitet).
+- `insightsChamber.js`, `metaInsightsEngine.js`, `ahaIngest.js`, `ahaSources.js`, `ahaFieldProfiles.js`: historiske/motorrelaterte filer som brukes i import/innsiktsflyt.
 
-Konfigurasjonen bruker:
-- `rootDir`: `AHA`
-- `buildCommand`: `npm install`
-- `startCommand`: `npm start`
-- `runtime`: Node
+## Viktig
 
-`OPENAI_API_KEY` er definert som env var med `sync: false`, som betyr at du må sette verdien manuelt i Render-dashboardet (ikke i repoet).
+History-Go/AHA er ikke en full AHA-app. For canonical AHA-opplevelse, bruk:
 
-### Alternativ B: manuell Render Web Service
-Hvis du ikke bruker Blueprint:
-1. Velg repo: `Paradispartiet/History-Go`
-2. **Root Directory**: `AHA`
-3. **Build Command**: `npm install`
-4. **Start Command**: `npm start`
-5. Legg til miljøvariabel:
-   - `OPENAI_API_KEY` = din OpenAI API-nøkkel (kun i Render)
-
-## Starte backend lokalt
-
-```bash
-cd AHA
-export OPENAI_API_KEY="din_openai_api_nokkel"
-npm install
-npm start
-```
-
-Backend kjører på `http://localhost:3000` (eller `PORT` hvis satt) og eksponerer:
-
-- `GET /health`
-- `POST /api/aha-agent`
-
-## Test backend-endepunkter
-
-### Health-check
-```bash
-curl https://DIN-BACKEND-URL/health
-```
-Forventet respons:
-```json
-{"ok":true}
-```
-
-### AHA-agent
-```bash
-curl -X POST https://DIN-BACKEND-URL/api/aha-agent \
-  -H "Content-Type: application/json" \
-  -d '{
-    "message":"Hva ser du i innsiktene mine?",
-    "ai_state":{"topic_id":"th_default","top_insights":[]}
-  }'
-```
-Forventet respons (forkortet):
-```json
-{
-  "reply": "...",
-  "raw": { "id": "...", "model": "..." }
-}
-```
-
-## Frontend endpoint-konfig (`AHA/ahaConfig.js`)
-
-`AHA/ahaConfig.js` er laget for trygg konfig uten hemmeligheter.
-
-Standard:
-```js
-window.AHA_AGENT_ENDPOINT = window.AHA_AGENT_ENDPOINT || "";
-```
-
-For ekstern backend, sett URL slik:
-```js
-window.AHA_AGENT_ENDPOINT = "https://DIN-BACKEND-URL/api/aha-agent";
-```
-
-Hvis filen ikke settes med ekstern URL, bruker `ahaChat.js` fallback:
-- `"/api/aha-agent"`
-
-## Test fra GitHub Pages (live)
-
-1. Deploy backend (Render/Railway) og bekreft `GET /health`.
-2. Sett backend-URL i `AHA/ahaConfig.js`:
-   - `window.AHA_AGENT_ENDPOINT = "https://DIN-BACKEND-URL/api/aha-agent";`
-3. Push til GitHub slik at Pages publiserer oppdatert frontend.
-4. Åpne AHA-siden i nettleser.
-5. Skriv en melding i chat-feltet.
-6. Trykk **AHA-AI**.
-7. Forvent et strukturert svar fra AHA-agenten i chat-loggen.
-
-## Viktig sikkerhet
-
-- Ikke legg `OPENAI_API_KEY` i frontend.
-- Ikke commit API-nøkler i repoet.
-- Sett `OPENAI_API_KEY` kun som miljøvariabel i backend-miljø (Render/Railway).
+- https://paradispartiet.github.io/AHA-EchoNet/

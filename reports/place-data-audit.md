@@ -1,28 +1,46 @@
 # Place Data Audit
 
-Generert: 2026-05-03T11:13:01.976Z
+Generert: 2026-05-14T05:27:28.682Z
 
 ## Totalsammendrag
 
-- Place-filer i manifest: **33**
-- Totalt antall places: **364**
-- Steder med manglende obligatoriske felt: **47**
-- Steder med manglende popupDesc: **59**
-- Steder med manglende image: **267**
-- Steder med manglende cardImage: **266**
-- Steder med manglende emne_ids: **111**
-- Steder med manglende quiz_profile: **59**
+- Place-filer i manifest: **37**
+- Totalt antall places: **444**
+- Steder med manglende obligatoriske felt: **58**
+- Steder med manglende popupDesc: **65**
+- Steder med manglende image: **341**
+- Steder med manglende cardImage: **340**
+- Steder med manglende emne_ids: **157**
+- Steder med manglende quiz_profile: **89**
 - Steder som bruker imageCard-felt: **0**
 - Steder med stub:true eller hidden:true: **0**
-- Antall ødelagte asset paths: **133**
-- Antall place-referanser til ikke-eksisterende id-er: **9**
+- Antall ødelagte asset paths: **145**
+- Antall place-referanser til ikke-eksisterende id-er: **43**
+
+## Dekning per datasett (placeId/places)
+
+- **quiz**: 91/444 steder dekket (mangler 353, ugyldige refs 569)
+- **people**: 74/444 steder dekket (mangler 370, ugyldige refs 41)
+- **nature**: 36/444 steder dekket (mangler 408, ugyldige refs 3)
+- **badges**: 0/444 steder dekket (mangler 444, ugyldige refs 0)
+- **wonderkammer**: 82/444 steder dekket (mangler 362, ugyldige refs 35)
+- **relations**: 0/444 steder dekket (mangler 444, ugyldige refs 0)
+- **leksikon**: 172/444 steder dekket (mangler 272, ugyldige refs 2)
+- **sprakleksikon**: 3/444 steder dekket (mangler 441, ugyldige refs 0)
+- **external/offisielle lenker**: 0/444 steder dekket (mangler 444, ugyldige refs 0)
+
+## Manglende rundinger og quizdekning
+
+- Manglende rundinger (r): **0**
+- Manglende quizdekning: **353**
+  - karl_johan, grunerlokka_helgesens_tm, majorstuen_krysset, oslo_bussterminal, helsfyr, gronlandsleiret, storgata, ullevål_hageby, romsaås, rodelokka, vaalerenga, vinderen, ullern, spikersuppa, bankplassen, christiania_torv, botsparken, stensparken, nydalen, sorenga, majorstuen_tbanestasjon, nationaltheatret_stasjon, olaf_ryes_plass, birkelunden, universitetsplassen, operahuset, schous_plass, vaterland, tullin, okern, skoyen, torshov, grorud, gamlebyen, frognerparken, kampen_park, sagene_film, kampen_film, sofienberg_kirke, akerhus_slott, gamle_aker_kirke, var_frelsers_gravlund, hovedoya_kloster, eidsvollsbygningen, oscarsborg_festning, grini_fangeleir, villa_grande, bogstad_gard, mollergata_19, nonneseter_kloster, oslo_ladegard, gamle_radhus, galgeberg, oslo_hospital, botsfengselet, prinds_christian_augusts_minde, camilla_collett_statue, henrik_wergeland_statue, grotta, gamle_deichman, sigrid_undset_statue, ruth_maier_minne, alf_proysen_statue_nittedal, proysenhuset_rudshogda, inger_hagerups_plass, oscar_braaten_statuen, alexander_kiellands_plass, good_game_redaksjon, vg_huset, salt, det_norske_teatret, blaa, john_dee, sentrum_scene, ringnes_bryggeri, st_halvard_bryggeri, oslo_kornmagasin, akershus_slott_bakeriet, jernbanetorget_trafikknutepunkt, christiania_seildugsfabrik, alnaelva, alnaelvstien, loelva_historisk, trosterud_friomrade, furuset_haugerud_skogbelte, hellerud_gard, alnabru_jernbane_og_logistikk, frysjadammen, nydalen_industristed, seilduksfabrikken_nydalen, nydalsdammen, stilla_nydalen, bjoelsenfossen, bjoelsenparken_elvenaer, glads_molle, voienfossen, voien_gard_voienvolden, myralokka, kuba_parken, beierbrua ...
 
 ## Funn per fil
 
 ### data/places/by/oslo/places_by.json
 
-- Antall places: 54
-- Places med funn: 54
+- Antall places: 62
+- Places med funn: 62
 
 - torggata (Torggata): ødelagte paths: image=bilder/places/torggata_IMG.JPG; cardImage=bilder/kort/places/by/torggata_CardImage.PNG
 - bispelokket (Bispelokket / Trafikkmaskinen): ødelagte paths: image=bilder/places/bispelokket_IMG.JPG; cardImage=bilder/kort/places/by/bispelokket_CardImage.PNG
@@ -66,7 +84,6 @@ Generert: 2026-05-03T11:13:01.976Z
 - sorenga (Sørenga): ødelagte paths: image=bilder/places/sorenga.JPG; cardImage=bilder/kort/places/sorenga.PNG
 - majorstuen_tbanestasjon (Majorstuen T-banestasjon): ødelagte paths: image=bilder/places/majorstuen_tbanestasjon.JPG; cardImage=bilder/kort/places/majorstuen_tbanestasjon.PNG
 - nationaltheatret_stasjon (Nationaltheatret stasjon): ødelagte paths: image=bilder/places/nationaltheatret_stasjon.JPG; cardImage=bilder/kort/places/nationaltheatret_stasjon.PNG
-- bislett (Bislett): ødelagte paths: image=bilder/places/bislett.JPG; cardImage=bilder/kort/places/bislett.PNG
 - olaf_ryes_plass (Olaf Ryes plass): ødelagte paths: image=bilder/places/olaf_ryes_plass.JPG; cardImage=bilder/kort/places/olaf_ryes_plass.PNG
 - birkelunden (Birkelunden): ødelagte paths: image=bilder/places/birkelunden.JPG; cardImage=bilder/kort/places/birkelunden.PNG
 - akerselva (Akerselva): ødelagte paths: image=bilder/places/akerselva.JPG; cardImage=bilder/kort/places/akerselva.PNG
@@ -78,14 +95,23 @@ Generert: 2026-05-03T11:13:01.976Z
 - voienvolden (Vøienvolden): ødelagte paths: image=bilder/places/voienvolden.PNG
 - carl_berner_plass (Carl Berners plass): ødelagte paths: image=bilder/places/carl_berner_plass.PNG; cardImage=bilder/kort/places/carl_berner_plass.PNG
 - schous_plass (Schous plass): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- vaterland (Vaterland): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- tullin (Tullin): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- okern (Økern): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- skoyen (Skøyen): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- torshov (Torshov): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- grorud (Grorud): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- gamlebyen (Gamlebyen): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- frognerparken (Frognerparken): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- kampen_park (Kampen park): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
 
 ### data/places/film/oslo/places_oslo_film.json
 
 - Antall places: 2
 - Places med funn: 2
 
-- sagene_film (Sagene (filmbydel)): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- kampen_film (Kampen (film- og serieområde)): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- sagene_film (Sagene (filmbydel)): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler quiz_profile
+- kampen_film (Kampen (film- og serieområde)): mangler felt: year | mangler popupDesc | mangler image | mangler cardImage | mangler quiz_profile
 
 ### data/places/historie/oslo/places_historie.json
 
@@ -104,6 +130,19 @@ Generert: 2026-05-03T11:13:01.976Z
 - villa_grande (Villa Grande): ødelagte paths: image=bilder/places/villa_grande.PNG; cardImage=bilder/kort/places/villa_grande.PNG
 - bogstad_gard (Bogstad gård): ødelagte paths: image=bilder/places/bogstad_gard.PNG; cardImage=bilder/kort/places/bogstad_gard.PNG
 - mollergata_19 (Møllergata 19): ødelagte paths: image=bilder/places/mollergata_19.PNG; cardImage=bilder/kort/places/mollergata_19.PNG
+
+### data/places/historie/oslo/places_historie_added_batch_01.json
+
+- Antall places: 7
+- Places med funn: 7
+
+- nonneseter_kloster (Nonneseter kloster): ødelagte paths: image=bilder/places/nonneseter_kloster.PNG; cardImage=bilder/kort/places/nonneseter_kloster.PNG
+- oslo_ladegard (Oslo ladegård): ødelagte paths: image=bilder/places/oslo_ladegard.PNG; cardImage=bilder/kort/places/oslo_ladegard.PNG
+- gamle_radhus (Gamle rådhus): ødelagte paths: image=bilder/places/gamle_radhus.PNG; cardImage=bilder/kort/places/gamle_radhus.PNG
+- galgeberg (Galgeberg): ødelagte paths: image=bilder/places/galgeberg.PNG; cardImage=bilder/kort/places/galgeberg.PNG
+- oslo_hospital (Oslo hospital): ødelagte paths: image=bilder/places/oslo_hospital.PNG; cardImage=bilder/kort/places/oslo_hospital.PNG
+- botsfengselet (Botsfengselet): ødelagte paths: image=bilder/places/botsfengselet.PNG; cardImage=bilder/kort/places/botsfengselet.PNG
+- prinds_christian_augusts_minde (Prinds Christian Augusts Minde): ødelagte paths: image=bilder/places/prinds_christian_augusts_minde.PNG; cardImage=bilder/kort/places/prinds_christian_augusts_minde.PNG
 
 ### data/places/kunst/oslo/places_kunst.json
 
@@ -134,14 +173,11 @@ Generert: 2026-05-03T11:13:01.976Z
 
 ### data/places/media/oslo/places_oslo_media.json
 
-- Antall places: 5
-- Places med funn: 5
+- Antall places: 2
+- Places med funn: 2
 
-- eldorado_esport (Eldorado Esport & Gaming): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- good_game_redaksjon (Good Game-redaksjonen (NRK)): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- vg_huset (VG-huset): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- monster_as (Monster (produksjonsselskap)): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
-- nordisk_film_produksjon (Nordisk Film Production Oslo): mangler popupDesc | mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- good_game_redaksjon (Good Game-redaksjonen (NRK)): mangler popupDesc | mangler image | mangler cardImage | mangler quiz_profile
+- vg_huset (VG-huset): mangler popupDesc | mangler image | mangler cardImage | mangler quiz_profile
 
 ### data/places/musikk/oslo/places_musikk.json
 
@@ -261,8 +297,8 @@ Generert: 2026-05-03T11:13:01.976Z
 
 ### data/places/natur/oslo/places_oslo_natur_hovedsteder.json
 
-- Antall places: 8
-- Places med funn: 8
+- Antall places: 9
+- Places med funn: 9
 
 - ostensjovannet (Østensjøvannet): mangler image | mangler cardImage
 - hovedoya (Hovedøya): mangler image | mangler cardImage
@@ -272,6 +308,7 @@ Generert: 2026-05-03T11:13:01.976Z
 - maerradalen (Mærradalen): mangler image | mangler cardImage
 - maridalsvannet (Maridalsvannet): mangler image | mangler cardImage
 - noklevann (Nøklevann): mangler image | mangler cardImage
+- alnaelva_hovedsteder (Alnaelva): mangler image | mangler cardImage
 
 ### data/places/natur/oslo/places_oslo_natur_ljanselva_rute.json
 
@@ -336,23 +373,65 @@ Generert: 2026-05-03T11:13:01.976Z
 
 ### data/places/sport/oslo/places_sport.json
 
-- Antall places: 3
-- Places med funn: 3
+- Antall places: 15
+- Places med funn: 15
 
-- ullevaal_stadion (Ullevaal stadion): mangler image | mangler cardImage
-- valle_hovin (Intility Arena (Vålerenga)): mangler image | mangler cardImage
-- holmenkollen (Holmenkollen skimuseum & hopptårn): mangler image | mangler cardImage
+- bislett_stadion (Bislett Stadion): mangler image | mangler cardImage | mangler emne_ids
+- ullevaal_stadion (Ullevaal Stadion): mangler image | mangler cardImage | mangler emne_ids
+- intility_arena (Intility Arena): mangler image | mangler cardImage | mangler emne_ids
+- jordal_amfi (Jordal Amfi): mangler image | mangler cardImage | mangler emne_ids
+- holmenkollen_nasjonalanlegg (Holmenkollen nasjonalanlegg): mangler image | mangler cardImage | mangler emne_ids
+- frogner_stadion (Frogner stadion): mangler image | mangler cardImage | mangler emne_ids
+- valle_hovin_stadion (Valle Hovin stadion): mangler image | mangler cardImage | mangler emne_ids
+- daelenenga_idrettspark (Dælenenga idrettspark): mangler image | mangler cardImage | mangler emne_ids
+- gressbanen (Gressbanen): mangler image | mangler cardImage | mangler emne_ids
+- ekebergsletta (Ekebergsletta): mangler image | mangler cardImage | mangler emne_ids
+- kfum_arena (KFUM Arena): mangler image | mangler cardImage | mangler emne_ids
+- nordre_aasen_idrettspark (Nordre Åsen idrettspark): mangler image | mangler cardImage | mangler emne_ids
+- vallhall_arena (Vallhall Arena): mangler image | mangler cardImage | mangler emne_ids
+- manglerudhallen (Manglerudhallen): mangler image | mangler cardImage | mangler emne_ids
+- furuset_forum (Furuset Forum): mangler image | mangler cardImage | mangler emne_ids
+
+### data/places/sport/oslo/places_oslo_lekeplasser_trening.json
+
+- Antall places: 15
+- Places med funn: 15
+
+- lekeplass_sofienbergparken (Sofienbergparken lekeplass): mangler felt: year | mangler image | mangler cardImage | mangler quiz_profile
+- lekeplass_st_hanshaugen (St. Hanshaugen lekeplass): mangler felt: year | mangler image | mangler cardImage | mangler quiz_profile
+- lekeplass_birkelunden (Birkelunden lekeplass): mangler felt: year | mangler image | mangler cardImage | mangler quiz_profile
+- lekeplass_olaf_ryes_plass (Olaf Ryes plass lekeplass): mangler felt: year | mangler image | mangler cardImage | mangler quiz_profile
+- lekeplass_botsparken (Botsparken lekeplass): mangler felt: year | mangler image | mangler cardImage | mangler quiz_profile
+- lekeplass_stensparken (Stensparken lekeplass): mangler felt: year | mangler image | mangler cardImage | mangler quiz_profile
+- lekeplass_kirsebarlunden (Kirsebærlunden lekeplass): mangler image | mangler cardImage | mangler quiz_profile
+- lekeplass_snippen (Snippen lekepark): mangler image | mangler cardImage | mangler quiz_profile
+- lekeplass_frognerborgen (Frognerborgen): mangler image | mangler cardImage | mangler quiz_profile
+- lekeplass_kampen_park (Kampen park lekeplass): mangler felt: year | mangler image | mangler cardImage | mangler quiz_profile
+- aktivitet_rudolf_nilsens_plass (Rudolf Nilsens plass aktivitetspark): mangler image | mangler cardImage | mangler quiz_profile
+- treningssted_torshovdalen (Torshovdalen trenings- og aktivitetspark): mangler felt: year | mangler image | mangler cardImage | mangler quiz_profile
+- treningssted_kampen_park (Kampen park treningssted): mangler felt: year | mangler image | mangler cardImage | mangler quiz_profile
+- treningssted_sognsvann (Sognsvann treningsrunde): mangler felt: year | mangler image | mangler cardImage | mangler quiz_profile
+- treningssted_skur13 (Skur 13 skate- og balansetrening): mangler felt: year | mangler image | mangler cardImage | mangler quiz_profile
 
 ### data/places/subkultur/oslo/places_subkultur.json
 
-- Antall places: 5
-- Places med funn: 5
+- Antall places: 14
+- Places med funn: 14
 
 - sofienbergparken_subkultur (Sofienbergparken): ødelagte paths: cardImage=bilder/kort/places/sofienbergparken.PNG
 - hausmania (Hausmania): mangler image
 - skur13 (Skur 13): mangler image | mangler cardImage
 - torggata_blad (Torggata Blad): mangler image | mangler cardImage
 - stovnertarnet (Stovnertårnet): mangler image | mangler cardImage
+- bla (Blå): mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- vulkan_murvegger (Vulkan murvegger og passasjer): mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- hausmannsgate_aksen (Hausmannsgate-aksen): mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- kolstadgata_toyen_vegger (Kolstadgata veggmiljø): mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- gronland_underganger (Grønland underganger): mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- nybrua_pilarrom (Nybrua pilarrom): mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- schweigaards_gate_lodalen (Schweigaards gate–Lodalen veggakse): mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- kuba_akselpassasjer (Kuba-passasjene ved Akerselva): mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
+- grunerlokka_bakgardsvegger (Grünerløkka bakgårdsvegger): mangler image | mangler cardImage | mangler emne_ids | mangler quiz_profile
 
 ### data/places/vitenskap/oslo/places_vitenskap.json
 
@@ -521,11 +600,17 @@ Generert: 2026-05-03T11:13:01.976Z
 
 ### data/places/sport/europe/portugal/lisbon/places_lisbon_sport.json
 
-- Antall places: 2
-- Places med funn: 2
+- Antall places: 8
+- Places med funn: 8
 
 - lisbon_estadio_da_luz (Estádio da Luz): mangler image | mangler cardImage
 - lisbon_estadio_jose_alvalade (Estádio José Alvalade): mangler image | mangler cardImage
+- lisbon_estadio_universitario (Estádio Universitário de Lisboa): mangler image | mangler cardImage | mangler emne_ids
+- lisbon_pavilhao_joao_rocha (Pavilhão João Rocha): mangler image | mangler cardImage | mangler emne_ids
+- lisbon_hipodromo_do_campo_grande (Hipódromo do Campo Grande): mangler image | mangler cardImage | mangler emne_ids
+- lisbon_centro_nautico_de_belem (Centro Náutico de Belém): mangler image | mangler cardImage | mangler emne_ids
+- lisbon_pista_moniz_pereira (Pista de Atletismo Professor Moniz Pereira): mangler image | mangler cardImage | mangler emne_ids
+- lisbon_complexo_desportivo_do_restelo (Estádio do Restelo (Complexo Desportivo do Restelo)): mangler image | mangler cardImage | mangler emne_ids
 
 ### data/places/natur/europe/portugal/lisbon/places_lisbon_natur.json
 
@@ -546,17 +631,54 @@ Generert: 2026-05-03T11:13:01.976Z
 
 ### data/places/film_tv/europe/portugal/lisbon/places_lisbon_film_tv.json
 
-- Antall places: 1
-- Places med funn: 1
+- Antall places: 6
+- Places med funn: 6
 
-- lisbon_cinemateca_portuguesa (Cinemateca Portuguesa): mangler image | mangler cardImage | mangler emne_ids
+- lisbon_cinemateca_portuguesa (Cinemateca Portuguesa): mangler image | mangler cardImage
+- lisbon_cinema_sao_jorge (Cinema São Jorge): mangler image | mangler cardImage
+- lisbon_cinema_ideal (Cinema Ideal): mangler image | mangler cardImage
+- lisbon_cinema_nimas (Cinema Nimas): mangler image | mangler cardImage
+- lisbon_tobis_portuguesa (Tobis Portuguesa): mangler image | mangler cardImage
+- lisbon_doclisboa (Doclisboa – Festival Internacional de Cinema): mangler image | mangler cardImage
 
 ### data/places/media/europe/portugal/lisbon/places_lisbon_media.json
 
-- Antall places: 1
-- Places med funn: 1
+- Antall places: 5
+- Places med funn: 5
 
-- lisbon_rtp (RTP – Rádio e Televisão de Portugal): mangler image | mangler cardImage | mangler emne_ids
+- lisbon_rtp (RTP – Rádio e Televisão de Portugal): mangler image | mangler cardImage
+- lisbon_diario_de_noticias (Diário de Notícias-bygget): mangler image | mangler cardImage
+- lisbon_lusa (Lusa – Agência de Notícias de Portugal): mangler image | mangler cardImage
+- lisbon_antena_1_rdp (Antena 1 / RDP-radiohistorie): mangler image | mangler cardImage
+- lisbon_arquivo_rtp (Arquivo RTP): mangler image | mangler cardImage
+
+### data/places/vitenskap/europe/portugal/lisbon/places_lisbon_vitenskap.json
+
+- Antall places: 10
+- Places med funn: 10
+
+- lisbon_museu_nacional_de_historia_natural_e_da_ciencia (Museu Nacional de História Natural e da Ciência): mangler image | mangler cardImage | mangler emne_ids
+- lisbon_observatorio_astronomico (Observatório Astronómico de Lisboa): mangler image | mangler cardImage | mangler emne_ids
+- lisbon_instituto_superior_tecnico (Instituto Superior Técnico): mangler image | mangler cardImage | mangler emne_ids
+- lisbon_faculdade_de_ciencias (Faculdade de Ciências da Universidade de Lisboa): mangler image | mangler cardImage | mangler emne_ids
+- lisbon_pavilhao_do_conhecimento (Pavilhão do Conhecimento): mangler image | mangler cardImage | mangler emne_ids
+- lisbon_jardim_botanico_tropical (Jardim Botânico Tropical): mangler image | mangler cardImage | mangler emne_ids
+- lisbon_instituto_higiene_medicina_tropical (Instituto de Higiene e Medicina Tropical): mangler image | mangler cardImage | mangler emne_ids
+- lisbon_laboratorio_nacional_engenharia_civil (Laboratório Nacional de Engenharia Civil): mangler image | mangler cardImage | mangler emne_ids
+- lisbon_instituto_ricardo_jorge (Instituto Nacional de Saúde Doutor Ricardo Jorge): mangler image | mangler cardImage | mangler emne_ids
+- lisbon_torre_do_tombo (Arquivo Nacional da Torre do Tombo): mangler image | mangler cardImage | mangler emne_ids
+
+### data/places/popkultur/europe/portugal/lisbon/places_lisbon_populaerkultur.json
+
+- Antall places: 6
+- Places med funn: 6
+
+- lisbon_casa_museu_amalia_rodrigues (Casa-Museu Amália Rodrigues): mangler image | mangler cardImage | mangler emne_ids
+- lisbon_tram_28 (Tram 28 (Eléctrico 28)): mangler image | mangler cardImage | mangler emne_ids
+- lisbon_marchas_populares (Marchas Populares de Lisboa): mangler image | mangler cardImage | mangler emne_ids
+- lisbon_feira_da_ladra (Feira da Ladra): mangler image | mangler cardImage | mangler emne_ids
+- lisbon_santo_antonio_festival (Santo António-festivalen i Lisboa): mangler image | mangler cardImage | mangler emne_ids
+- lisbon_feira_do_livro (Feira do Livro de Lisboa): mangler image | mangler cardImage | mangler emne_ids
 
 ## Duplikate id-er
 
@@ -640,8 +762,6 @@ Generert: 2026-05-03T11:13:01.976Z
 - data/places/by/oslo/places_by.json :: majorstuen_tbanestasjon :: cardImage -> bilder/kort/places/majorstuen_tbanestasjon.PNG
 - data/places/by/oslo/places_by.json :: nationaltheatret_stasjon :: image -> bilder/places/nationaltheatret_stasjon.JPG
 - data/places/by/oslo/places_by.json :: nationaltheatret_stasjon :: cardImage -> bilder/kort/places/nationaltheatret_stasjon.PNG
-- data/places/by/oslo/places_by.json :: bislett :: image -> bilder/places/bislett.JPG
-- data/places/by/oslo/places_by.json :: bislett :: cardImage -> bilder/kort/places/bislett.PNG
 - data/places/by/oslo/places_by.json :: olaf_ryes_plass :: image -> bilder/places/olaf_ryes_plass.JPG
 - data/places/by/oslo/places_by.json :: olaf_ryes_plass :: cardImage -> bilder/kort/places/olaf_ryes_plass.PNG
 - data/places/by/oslo/places_by.json :: birkelunden :: image -> bilder/places/birkelunden.JPG
@@ -680,6 +800,20 @@ Generert: 2026-05-03T11:13:01.976Z
 - data/places/historie/oslo/places_historie.json :: bogstad_gard :: cardImage -> bilder/kort/places/bogstad_gard.PNG
 - data/places/historie/oslo/places_historie.json :: mollergata_19 :: image -> bilder/places/mollergata_19.PNG
 - data/places/historie/oslo/places_historie.json :: mollergata_19 :: cardImage -> bilder/kort/places/mollergata_19.PNG
+- data/places/historie/oslo/places_historie_added_batch_01.json :: nonneseter_kloster :: image -> bilder/places/nonneseter_kloster.PNG
+- data/places/historie/oslo/places_historie_added_batch_01.json :: nonneseter_kloster :: cardImage -> bilder/kort/places/nonneseter_kloster.PNG
+- data/places/historie/oslo/places_historie_added_batch_01.json :: oslo_ladegard :: image -> bilder/places/oslo_ladegard.PNG
+- data/places/historie/oslo/places_historie_added_batch_01.json :: oslo_ladegard :: cardImage -> bilder/kort/places/oslo_ladegard.PNG
+- data/places/historie/oslo/places_historie_added_batch_01.json :: gamle_radhus :: image -> bilder/places/gamle_radhus.PNG
+- data/places/historie/oslo/places_historie_added_batch_01.json :: gamle_radhus :: cardImage -> bilder/kort/places/gamle_radhus.PNG
+- data/places/historie/oslo/places_historie_added_batch_01.json :: galgeberg :: image -> bilder/places/galgeberg.PNG
+- data/places/historie/oslo/places_historie_added_batch_01.json :: galgeberg :: cardImage -> bilder/kort/places/galgeberg.PNG
+- data/places/historie/oslo/places_historie_added_batch_01.json :: oslo_hospital :: image -> bilder/places/oslo_hospital.PNG
+- data/places/historie/oslo/places_historie_added_batch_01.json :: oslo_hospital :: cardImage -> bilder/kort/places/oslo_hospital.PNG
+- data/places/historie/oslo/places_historie_added_batch_01.json :: botsfengselet :: image -> bilder/places/botsfengselet.PNG
+- data/places/historie/oslo/places_historie_added_batch_01.json :: botsfengselet :: cardImage -> bilder/kort/places/botsfengselet.PNG
+- data/places/historie/oslo/places_historie_added_batch_01.json :: prinds_christian_augusts_minde :: image -> bilder/places/prinds_christian_augusts_minde.PNG
+- data/places/historie/oslo/places_historie_added_batch_01.json :: prinds_christian_augusts_minde :: cardImage -> bilder/kort/places/prinds_christian_augusts_minde.PNG
 - data/places/litteratur/oslo/places_litteratur.json :: camilla_collett_statue :: cardImage -> bilder/kort/places/camilla_collett_statue_kort.PNG
 - data/places/litteratur/oslo/places_litteratur.json :: henrik_wergeland_statue :: image -> bilder/places/henrik_wergeland_statue.PNG
 - data/places/litteratur/oslo/places_litteratur.json :: henrik_wergeland_statue :: cardImage -> bilder/kort/places/henrik_wergeland_statue_kort.PNG
@@ -700,15 +834,49 @@ Generert: 2026-05-03T11:13:01.976Z
 
 ## Referanser til place-id-er som ikke finnes
 
-- data/people.json :: [60].placeId -> botanisk_hage
-- data/people.json :: [60].places -> botanisk_hage
-- data/people.json :: [77].placeId -> botanisk_hage
-- data/people.json :: [77].places -> botanisk_hage
-- data/routes_walks.json :: [0].stops[0].placeId -> sognsvann
+- data/people/people_by.json :: [1].places[2] -> botanisk_hage
+- data/people/people_historie.json :: [41].placeId -> toyen_hovedgard
+- data/people/people_historie.json :: [41].places[0] -> toyen_hovedgard
+- data/people/people_historie.json :: [42].placeId -> toyen_hovedgard
+- data/people/people_historie.json :: [42].places[0] -> toyen_hovedgard
+- data/people/people_historie.json :: [43].placeId -> toyen_hovedgard
+- data/people/people_historie.json :: [43].places[0] -> toyen_hovedgard
+- data/people/people_historie.json :: [44].placeId -> sagene_skole
+- data/people/people_historie.json :: [44].places[0] -> sagene_skole
+- data/people/people_historie.json :: [45].placeId -> trefoldighetskirken
+- data/people/people_historie.json :: [45].places[0] -> trefoldighetskirken
+- data/people/people_historie.json :: [46].placeId -> trefoldighetskirken
+- data/people/people_historie.json :: [46].places[0] -> trefoldighetskirken
+- data/people/people_historie.json :: [60].places[2] -> bispeborgen
+- data/people/people_litteratur.json :: [1].places[3] -> bøker_i_byen
+- data/people/people_litteratur.json :: [2].places[2] -> bjornson_bolig
+- data/people/people_litteratur.json :: [2].places[3] -> ibsen_bjornson_graver
+- data/people/people_litteratur.json :: [3].places[2] -> wergelandsveien_15
+- data/people/people_litteratur.json :: [3].places[3] -> henrik_wergeland_park
+- data/people/people_litteratur.json :: [3].places[4] -> wergeland_barndom
+- data/people/people_litteratur.json :: [3].places[5] -> wergeland_grav
+- data/people/people_litteratur.json :: [3].places[6] -> bøker_i_byen
+- data/people/people_litteratur.json :: [4].places[1] -> henrik_wergeland_park
+- data/people/people_litteratur.json :: [4].places[2] -> collett_barndom
+- data/people/people_litteratur.json :: [4].places[3] -> collett_monument
+- data/people/people_litteratur.json :: [5].places[1] -> grotten_utsikt
+- data/people/people_litteratur.json :: [6].places[1] -> grotten_utsikt
+- data/people/people_litteratur.json :: [6].places[2] -> inger_hagerup_minne
+- data/people/people_litteratur.json :: [7].places[1] -> grotten_utsikt
+- data/people/people_litteratur.json :: [15].places[3] -> sofienberg_poesipark
+- data/people/people_litteratur.json :: [18].places[1] -> sofienberg_poesipark
+- data/people/people_litteratur.json :: [21].placeId -> collett_monument
+- data/people/people_litteratur.json :: [21].places[0] -> collett_monument
+- data/people/people_litteratur.json :: [24].placeId -> sofienberg_poesipark
+- data/people/people_litteratur.json :: [24].places[0] -> sofienberg_poesipark
+- data/people/people_litteratur.json :: [25].placeId -> rolf_jacobsen_minne
+- data/people/people_litteratur.json :: [25].places[0] -> rolf_jacobsen_minne
+- data/people/people_musikk.json :: [5].placeId -> vulkan
+- data/people/people_musikk.json :: [5].places[0] -> vulkan
+- data/people/people_vitenskap.json :: [5].placeId -> universitetet
+- data/people/people_vitenskap.json :: [5].places[0] -> universitetet
 - data/routes_walks.json :: [1].stops[0].placeId -> botanisk_hage
 - data/routes_walks.json :: [1].stops[1].placeId -> botanisk_hage
-- data/Civication/place_contexts.json :: contexts[4].matches_place_ids -> botanisk_hage
-- data/Civication/place_contexts.json :: contexts[4].matches_place_ids -> sognsvann
 
 ## Anbefalt rekkefølge for ferdigstilling
 
@@ -717,3 +885,47 @@ Generert: 2026-05-03T11:13:01.976Z
 3. Fyll inn popupDesc, emne_ids og quiz_profile på alle steder.
 4. Standardiser bilde-felter: bytt imageCard -> cardImage og fyll manglende image/cardImage.
 5. Korriger ødelagte asset paths og fjern/avklar stub:true og hidden:true.
+
+## Neste arbeid (prioritert)
+
+1. Lag quiz for 353 steder uten quizdekning (start med steder som også mangler popupDesc/emne_ids).
+2. Fyll inn rundinger (r) for 0 steder som mangler dette feltet.
+3. Rydd opp ugyldige place-referanser i datasett med høyest antall dangling refs (se dekningsseksjonen).
+4. Øk dekning i people/nature/badges/wonderkammer/leksikon/external ved å koble placeId/places mot eksisterende steder.
+
+## Maskinlesbar arbeidsliste
+
+- Fil: `reports/place-data-worklist.json`
+- Antall steder klare for quiz: **180**
+- Antall steder klare for Wonderkammer: **306**
+- Antall steder klare for språkleksikon: **376**
+- Prioritet: critical **0**, high **356**, medium **88**, low **0**
+
+### Topp 25 anbefalte neste steder
+
+- ankerbrua | Ankerbrua | by | high | Lag quiz
+- beierbrua | Beierbrua | by | high | Lag quiz
+- gronlandsleiret | Grønlandsleiret | by | high | Lag quiz
+- hausmannsbrua | Hausmannsbrua | by | high | Lag quiz
+- hausmannsomradet_elvelop | Hausmannsområdet (elveløp) | by | high | Lag quiz
+- helsfyr | Helsfyr | by | high | Lag quiz
+- lisbon_alcantara | Alcântara | by | high | Lag quiz
+- lisbon_alfama | Alfama | by | high | Lag quiz
+- lisbon_avenida_da_liberdade | Avenida da Liberdade | by | high | Lag quiz
+- lisbon_baixa_pombalina | Baixa Pombalina | by | high | Lag quiz
+- lisbon_belem_bydel | Belém | by | high | Lag quiz
+- lisbon_bica | Bica | by | high | Lag quiz
+- lisbon_cais_do_sodre | Cais do Sodré | by | high | Lag quiz
+- lisbon_city | Lisboa | by | high | Lag quiz
+- lisbon_elevador_de_santa_justa | Elevador de Santa Justa | by | high | Lag quiz
+- lisbon_graca | Graça | by | high | Lag quiz
+- lisbon_intendente | Intendente | by | high | Lag quiz
+- lisbon_parque_eduardo_vii | Parque Eduardo VII | by | high | Lag quiz
+- lisbon_ponte_25_de_abril | Ponte 25 de Abril | by | high | Lag quiz
+- lisbon_praca_do_comercio | Praça do Comércio | by | high | Lag quiz
+- lisbon_principe_real | Príncipe Real | by | high | Lag quiz
+- lisbon_rossio | Rossio (Praça Dom Pedro IV) | by | high | Lag quiz
+- majorstuen_tbanestasjon | Majorstuen T-banestasjon | by | high | Lag quiz
+- nybrua_vaterlandsparken | Nybrua / Vaterlandsparken | by | high | Lag quiz
+- nydalen | Nydalen | by | high | Lag quiz
+

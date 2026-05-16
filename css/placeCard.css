@@ -166,8 +166,9 @@
   flex-direction:column;
   gap:8px;
 
-  min-height: 140px;
+  min-height: 94px;
   margin-top: 14px;
+  cursor: pointer;
 }
 
 .pc-events-head{
@@ -189,6 +190,14 @@
   display:inline-flex;
   align-items:center;
   justify-content:center;
+}
+
+.pc-events-preview-line{
+  font-size: 14px;
+  opacity: .92;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .pc-events-list{
@@ -345,7 +354,7 @@ body.hg-app.hg-phone .pc-icons-quad{
 
 body.hg-app.hg-phone .pc-events-quad{
   margin-top: 8px;
-  min-height: 110px;
+  min-height: 90px;
   padding: 8px;
 }
 
@@ -1117,4 +1126,25 @@ body.hg-app.hg-phone #placeCard #pcDesc{
 .hg-popup-desc{
   opacity:0.92;
   line-height:1.35;
+}
+
+.pc-events-section{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+}
+
+.pc-events-row{
+  font-size:14px;
+  opacity:.92;
+}
+
+.pc-events-action{
+  width:100%;
+  text-align:left;
+  padding:6px 8px;
+  border-radius:10px;
+  border:1px solid rgba(255,255,255,0.12);
+  background:rgba(255,255,255,0.04);
+  color:inherit;
 }

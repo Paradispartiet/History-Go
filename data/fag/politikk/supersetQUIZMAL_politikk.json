@@ -1,0 +1,143 @@
+{
+  "id": "oslo_radhus_quiz_1",
+  "quiz_id": "politikk_oslo_radhus_set_1_q1",
+  "categoryId": "politikk",
+  "placeId": "oslo_radhus",
+  "personId": "",
+  "natureId": "",
+  "targetId": "oslo_radhus",
+  "question_scope": "place",
+  "question": "Hva gjør Oslo rådhus særlig relevant som politikk- og samfunnssted?",
+  "options": [
+    "Det er et sentralt kommunalt styringssted der lokaldemokrati, forvaltning og offentlige beslutninger blir synlige",
+    "Det er et våtmarksområde der fugleliv, vannspeil og habitat er hovedpoenget",
+    "Det er en børsbygning knyttet til kapital, eierskap og verdipapirhandel"
+  ],
+  "answer": "Det er et sentralt kommunalt styringssted der lokaldemokrati, forvaltning og offentlige beslutninger blir synlige",
+  "answerIndex": 0,
+  "dimension": "politikk",
+  "topic": "Kommunal styring, institusjon og lokaldemokrati",
+  "knowledge": "Oslo rådhus brukes her som eksempel på politikkens institusjonelle og materielle form i byen: kommunal styring, lokaldemokrati, offentlig forvaltning, representasjon og beslutningsmakt.",
+  "trivia": [],
+  "difficulty": 1,
+  "question_type": "fact",
+  "question_layer": "fakta_sted_institusjon",
+  "year": null,
+  "epoke_id": "moderne_lokaldemokrati_og_forvaltning",
+  "epoke_domain": "politikk",
+  "emne_id": "em_pol_institusjoner_styring",
+  "related_emner": [
+    "em_pol_kommune_byraadsmodell",
+    "em_pol_lokaldemokrati",
+    "em_pol_demokrati_representasjon"
+  ],
+  "core_concepts": [
+    "institusjon",
+    "kommunal styring",
+    "lokaldemokrati",
+    "forvaltning",
+    "offentlig beslutning"
+  ],
+  "concept_focus": [
+    "institusjon",
+    "lokaldemokrati"
+  ],
+  "learning_paths": [
+    "fra sted til institusjon",
+    "fra rådhusbygg til kommunal styring",
+    "fra offentlig rom til lokaldemokrati og beslutningsmakt"
+  ],
+  "tags": [
+    "politikk",
+    "sted",
+    "rådhus",
+    "lokaldemokrati",
+    "forvaltning",
+    "institusjon",
+    "styring"
+  ],
+  "required_tags": [
+    "external_source",
+    "politics_anchor",
+    "em_pol"
+  ],
+  "source": [
+    {
+      "type": "official_municipal_or_institution_source",
+      "name": "Oslo kommune / Oslo rådhus / tilsvarende offisiell kommunal eller institusjonell kilde",
+      "role": "verifiserer stedets funksjon som rådhus, kommunal institusjon, politisk møteplass eller offentlig styringssted",
+      "required": true
+    },
+    {
+      "type": "political_history_or_governance_source",
+      "name": "politisk-historisk, forvaltningsfaglig, kommunalhistorisk, arkiv- eller samfunnsfaglig kilde",
+      "role": "verifiserer stedets betydning for lokaldemokrati, forvaltning, representasjon, politiske beslutninger eller kommunal styring",
+      "required": true
+    }
+  ],
+  "related_emners": [
+    "em_pol_kommune_byraadsmodell",
+    "em_pol_lokaldemokrati",
+    "em_pol_demokrati_representasjon"
+  ],
+  "source_origin": "mixed",
+  "claim_basis": "Ekstern kommune-/institusjonskilde skal verifisere at Oslo rådhus fungerer som kommunalt styringssted knyttet til lokaldemokrati, forvaltning og offentlige beslutninger.",
+  "guidance_basis": {
+    "fagkart_category_id": "styring_institusjoner_forvaltning",
+    "topic_hook": "institusjon_som_maktform",
+    "emne_id": "em_pol_institusjoner_styring",
+    "method_id": "met_pol_institusjonsanalyse",
+    "canonical_files_used_as_guidance_only": [
+      "fagkart_politikk_canonical_v4_5.json",
+      "methods_politikk_canonical_v4_5.json",
+      "emner_politikk_canonical_v4_5.json",
+      "emnemapping_politikk_canonical_v4_5.json",
+      "politikkpensum_canonical_v4_5.json"
+    ]
+  },
+  "method_id": "met_pol_institusjonsanalyse",
+  "politics_anchor_type": "city_hall",
+  "source_note": "Spørsmålet skal bygges fra ekstern kommune-, institusjons-, arkiv- eller samfunnsfaglig kilde; fagfilene styrer bare metode, emne og spørsmålsflate.",
+  "external_source_ratio_target": 0.85,
+  "internal_file_only_allowed": false,
+  "requires_politics_anchor": true,
+  "requires_external_claim_basis": true,
+  "requires_institution_law_conflict_or_social_process_anchor": true,
+  "requires_documented_social_context": true,
+  "generator_guardrails": {
+    "do_not_generate_from_emne_label_only": true,
+    "do_not_generate_from_method_label_only": true,
+    "do_not_use_non_politikk_emne_id": true,
+    "required_emne_prefix": "em_pol_",
+    "blocked_emne_prefixes": [
+      "em_by_",
+      "em_his_",
+      "em_kunst_",
+      "em_lit_",
+      "em_media_",
+      "em_musikk_",
+      "em_pop_",
+      "em_vit_",
+      "em_naering_",
+      "em_natur_"
+    ],
+    "institution_law_conflict_process_first_then_theory": true,
+    "source_first": true,
+    "avoid_generic_political_opinion_questions": true,
+    "avoid_party_opinion_as_default": true,
+    "avoid_vague_society_angle_without_institution_law_conflict_distribution_norm_or_source": true
+  },
+  "validation": {
+    "emne_id_exists_in_emner_politikk": true,
+    "method_id_exists_in_methods_politikk": true,
+    "mapping_exists_in_emnemapping_politikk": true,
+    "category_matches_badge": true,
+    "schema_extends_generic_supersetQUIZMAL": true
+  },
+  "template_notes": {
+    "template_role": "politikk_superset_quiz_object",
+    "generic_template_source": "supersetQUIZMAL (10).json",
+    "content_policy": "Dette er en mal/eksempelobjekt. Produksjonsquizer skal fylle source med konkrete kilder og ikke bruke fagfilene som hovedkilde til faktapåstander.",
+    "next_use": "Bruk som grunnmal for politikkquiz-spørsmål før generatoren lager mange spørsmål per sted/person."
+  }
+}
