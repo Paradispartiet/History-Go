@@ -19,56 +19,7 @@
 // Migrer gammel quiz_history inn i hg_learning_log_v1 (én-gangs).
 try { window.HGLearningLog?.migrateLegacy?.(); } catch {}
 
-/**
- * @typedef {Record<string, unknown>} ProfileRecord
- * @typedef {object} ProfileUnlockState
- * @property {ProfileRecord} raw
- * @property {ProfileRecord} byQuiz
- * @property {string[]} quizIds
- * @property {number} visitedCount
- *
- * @typedef {object} ProfilePlace
- * @property {string=} id
- * @property {string=} name
- * @property {string=} title
- * @property {string=} category
- * @property {number=} year
- * @property {string=} image
- * @property {string=} imageCard
- * @property {string=} cardImage
- * @property {number=} lat
- * @property {number=} lon
- * @property {string=} desc
- *
- * @typedef {object} ProfilePerson
- * @property {string=} id
- * @property {string=} name
- * @property {number=} year
- * @property {string=} image
- * @property {string=} imageCard
- *
- * @typedef {object} ProfileBadge
- * @property {string=} id
- * @property {string=} name
- * @property {string=} image
- * @property {string=} icon
- * @property {string=} img
- * @property {string=} imageCard
- * @property {Array<{threshold?: number}>=} tiers
- *
- * @typedef {object} ProfileKnowledgeReport
- * @property {boolean=} ok
- * @property {ProfileRecord=} summary
- * @property {ProfileRecord=} sourceState
- * @property {ProfileRecord=} subjects
- * @property {unknown[]=} recommendations
- * @property {unknown=} healthReport
- * @property {string=} generatedAt
- */
 
-/**
- * @returns {ProfileUnlockState}
- */
 function getUnlockState() {
   const unlocks = JSON.parse(localStorage.getItem("hg_unlocks_v1") || "{}");
 
@@ -92,11 +43,8 @@ window.showPersonPopup = window.showPersonPopup || (() => {});
 window.showPlacePopup  = window.showPlacePopup  || (() => {});
 
 // GLOBALT
-/** @type {ProfilePerson[]} */
 let PEOPLE = [];
-/** @type {ProfilePlace[]} */
 let PLACES = [];
-/** @type {ProfileBadge[]} */
 let BADGES = [];
 
 
@@ -112,9 +60,6 @@ function ls(name, fallback = {}) {
 }
 
 
-/**
- * @returns {number}
- */
 function getCompletedQuizUnitCount() {
   const quizProgress = ls("quiz_progress", {});
   const quizHistory = (window.HGLearningLog?.getQuizHistory?.() ?? []);
@@ -141,9 +86,6 @@ function getCompletedQuizUnitCount() {
   return ids.size;
 }
 
-/**
- * @returns {number}
- */
 function getCompletedPlaceCount() {
   const { byQuiz } = getUnlockState();
   const unlockedIds = Object.keys(byQuiz || {});
@@ -155,9 +97,6 @@ function getCompletedPlaceCount() {
 // ------------------------------------------------------------
 // PROFILKORT
 // ------------------------------------------------------------
-/**
- * @returns {void}
- */
 function renderProfileCard() {
   const streak = Number(localStorage.getItem("user_streak") || 0);
   const userName = localStorage.getItem("user_name") || "Utforsker #182";
@@ -531,9 +470,6 @@ function closeBadgeModal() {
 // ------------------------------------------------------------
 // PERSONER
 // ------------------------------------------------------------
-/**
- * @returns {void}
- */
 function renderPeopleCollection() {
   const grid = document.getElementById("peopleGrid");
   if (!grid) return;
@@ -571,9 +507,6 @@ function renderPeopleCollection() {
 // ------------------------------------------------------------
 // STEDER
 // ------------------------------------------------------------
-/**
- * @returns {void}
- */
 function renderPlacesCollection() {
   const grid = document.getElementById("collectionGrid");
   if (!grid) return;
@@ -825,6 +758,18 @@ function renderLatestKnowledge() {
 
   box.style.display = "block";
 }
+
+/**
+ * @typedef {Record<string, unknown>} ProfileRecord
+ * @typedef {object} ProfileKnowledgeReport
+ * @property {boolean=} ok
+ * @property {ProfileRecord=} summary
+ * @property {ProfileRecord=} sourceState
+ * @property {ProfileRecord=} subjects
+ * @property {unknown[]=} recommendations
+ * @property {unknown=} healthReport
+ * @property {string=} generatedAt
+ */
 
 /**
  * @returns {Promise<void>}

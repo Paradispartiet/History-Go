@@ -149,10 +149,9 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - This phase is therefore treated as JSDoc groundwork only, pending a later pass with broader cross-file/global typing support.
 - No runtime logic, popup behavior, DOM structure, rendering, layout, CSS, z-index, UI text, PlaceCard, Nearby, map, unlock/quiz/state, localStorage keys, DataHub calls, or data/JSON files were changed.
 
-## Phase 15: Focused profile JSDoc
+## Phase 15: Profile JSDoc groundwork only (stability-adjusted)
 
-- Added focused, file-local JSDoc typing in `js/profile.js` for profile/progress/collection-related structures and Knowledge Engine report usage.
-- Introduced intentionally broad profile aliases (`ProfileRecord`, `ProfilePlace`, `ProfilePerson`, `ProfileBadge`, `ProfileUnlockState`, `ProfileKnowledgeReport`) to support incremental typechecking without changing runtime contracts.
-- Annotated central profile functions for state reading and profile rendering flow (including collection and statistics helpers) with minimal return/shape typing.
+- Attempted focused, file-local JSDoc typing in `js/profile.js`, but the first annotation pass increased baseline diagnostics.
+- Rolled back the problematic profile annotations to preserve the post-Phase 14 baseline direction (no increase in total diagnostics).
+- This phase is therefore documented as groundwork only, pending a safer follow-up pass with broader typing support.
 - No runtime logic, profile UI, DOM structure, rendering, layout, CSS, text, progression/badge/quiz logic, localStorage keys/contracts, Knowledge Engine runtime, DataHub calls, state/persistence contracts, or app/data files were changed.
-- Remaining typecheck baseline outside this focused file is still expected.
