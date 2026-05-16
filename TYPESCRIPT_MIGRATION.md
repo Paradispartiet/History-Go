@@ -156,3 +156,11 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - This phase is therefore documented as groundwork only, pending a safer follow-up pass with broader typing support.
 - Baseline reflects current main after intervening Civication merges; Phase 15 leaves `js/profile.js` unchanged at 84 diagnostics.
 - No runtime logic, profile UI, DOM structure, rendering, layout, CSS, text, progression/badge/quiz logic, localStorage keys/contracts, Knowledge Engine runtime, DataHub calls, state/persistence contracts, or app/data files were changed.
+
+## Phase 16: Focused day progression controller JSDoc
+
+- Added focused, file-local JSDoc typing in `js/Civication/systems/day/dayProgressionController.js`.
+- Added intentionally broad local day progression aliases for runtime item/mail event/inspection/advance result shapes to avoid runtime-coupled overtyping.
+- Annotated the central controller methods (`inspect`, `canAdvancePhase`, `advancePhaseIfReady`) and small phase/status helpers with minimal parameter/return typing.
+- No runtime logic, phase-flow/day progression behavior, mail-runtime, DailyMailBuilder, EventChannels dispatch names, Calendar behavior, UI/DOM/rendering/layout/CSS/text, localStorage keys/contracts, or data/JSON files were changed.
+- Remaining baseline diagnostics outside this focused JSDoc update are expected.
