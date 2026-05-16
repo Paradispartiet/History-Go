@@ -1,6 +1,43 @@
 (function () {
   "use strict";
 
+  /**
+   * @typedef {Record<string, unknown>} DayProgRecord
+   * @typedef {DayProgRecord & {
+   *  id?: string,
+   *  status?: string,
+   *  subject?: string,
+   *  phase?: string,
+   *  resolved?: boolean,
+   *  answered_at?: string,
+   *  answeredAt?: string,
+   *  event?: DayProgMailEvent
+   * }} DayProgRuntimeItem
+   * @typedef {DayProgRecord & {
+   *  id?: string,
+   *  subject?: string,
+   *  phase?: string,
+   *  phase_tag?: string,
+   *  daily_mail_meta?: DayProgRecord
+   * }} DayProgMailEvent
+   * @typedef {DayProgRecord & {
+   *  phase: string,
+   *  phaseLabel: string,
+   *  dayIndex: number,
+   *  openItemsInPhase: number,
+   *  openItemSubjects: string[],
+   *  nextPhase: string|null,
+   *  canAdvance: boolean,
+   *  reason: string
+   * }} DayProgInspection
+   * @typedef {DayProgRecord & {
+   *  advanced: boolean,
+   *  reason?: string,
+   *  fromPhase?: string,
+   *  toPhase?: string
+   * }} DayProgAdvanceResult
+   */
+
   const OPEN_STATUSES = new Set(["queued", "pending", "delivered", "open"]);
 
   function norm(value) {
@@ -15,6 +52,9 @@
     return window.CivicationDailyMailBuilder?.inspect?.() || null;
   }
 
+  /**
+   * @returns {DayProgRuntimeItem[]}
+   */
   function getRuntimeItems() {
     const inspected = getBuilderInspect();
     const runtime = inspected?.runtime;
@@ -36,17 +76,30 @@
     return Number(clock.dayIndex || 1);
   }
 
+  /**
+   * @param {DayProgRuntimeItem} row
+   * @returns {string}
+   */
   function getPhaseForRow(row) {
     if (!row || typeof row !== "object") return "";
     return norm(row.phase || row?.event?.phase_tag || row?.event?.daily_mail_meta?.phase);
   }
 
+  /**
+   * @param {DayProgRuntimeItem} row
+   * @param {string} phase
+   * @returns {boolean}
+   */
   function belongsToPhase(row, phase) {
     const wanted = norm(phase);
     if (!wanted) return false;
     return getPhaseForRow(row) === wanted;
   }
 
+  /**
+   * @param {DayProgRuntimeItem} row
+   * @returns {boolean}
+   */
   function isOpenRow(row) {
     if (!row || typeof row !== "object") return false;
     const status = norm(row.status || "queued").toLowerCase();
@@ -70,8 +123,12 @@
     return phases[idx + 1] || null;
   }
 
+  /**
+   * @returns {DayProgInspection}
+   */
   function inspect() {
     const phase = getCurrentPhase();
+    /** @type {DayProgRuntimeItem[]} */
     const items = getRuntimeItems();
     const openRows = items.filter((row) => belongsToPhase(row, phase) && isOpenRow(row));
     const nextPhase = getNextPhase(phase);
@@ -99,10 +156,16 @@
     };
   }
 
+  /**
+   * @returns {boolean}
+   */
   function canAdvancePhase() {
     return !!inspect().canAdvance;
   }
 
+  /**
+   * @returns {Promise<DayProgAdvanceResult>}
+   */
   async function advancePhaseIfReady() {
     const state = inspect();
     if (!state.canAdvance) return { advanced: false, reason: state.reason };
