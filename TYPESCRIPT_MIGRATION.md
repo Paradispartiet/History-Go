@@ -177,5 +177,6 @@ This supports gradual migration with no framework, bundler, or architecture chan
 
 - Added focused, file-local JSDoc typing in `js/Civication/core/civicationEconomyEngine.js`.
 - Added intentionally broad economy aliases for wallet/career/progress/rules/tick-result contracts to reduce hotspot type friction without tightening runtime-coupled dynamic behavior.
+- Declaration-level fixes for `deriveTierFromPoints` / `window.HGLearningLog` are intentionally deferred to a later, isolated globals pass to avoid baseline instability in this phase.
 - No runtime logic, economy logic, weekly tick/wallet/career/progression behavior, localStorage keys/contracts, UI/mail/day progression flow, or data/JSON files were changed.
 - Remaining typecheck baseline outside this focused update is expected.
