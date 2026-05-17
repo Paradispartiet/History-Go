@@ -77,7 +77,17 @@ type CiviMethodBag = {
 type CiviEngineLike = CiviMethodBag;
 type CiviUiLike = CiviMethodBag;
 
+
+
 declare global {
+  function deriveTierFromPoints(
+    badge: unknown,
+    points: number
+  ): {
+    tierIndex?: number;
+    label?: string;
+    [key: string]: unknown;
+  };
   interface Window {
     CIVI_CAREER_RULES?: unknown[] | CiviRecord;
     HG_CAREERS?: unknown[] | CiviRecord;
@@ -118,6 +128,15 @@ declare global {
     ensureCiviCareerRulesLoaded?: CiviFn;
     checkTierUpgrades?: CiviFn;
     calculateWeeklySalary?: CiviFn;
+
+    HGLearningLog?: {
+      add?: (...args: unknown[]) => unknown;
+      push?: (...args: unknown[]) => unknown;
+      log?: (...args: unknown[]) => unknown;
+      record?: (...args: unknown[]) => unknown;
+      getQuizHistory?: (...args: unknown[]) => any[];
+      [key: string]: unknown;
+    };
   }
 
   const CivicationState: CiviMethodBag;

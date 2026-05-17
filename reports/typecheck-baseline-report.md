@@ -1,21 +1,21 @@
 # Typecheck baseline report
 
 ## Metadata
-- Generated at (UTC): 2026-05-17T05:53:32.034Z
+- Generated at (UTC): 2026-05-17T17:18:24.574Z
 - Command: `npm run typecheck`
 - Typecheck exit code: 2
-- Total diagnostic lines found: 2128
-- Files with diagnostics: 199
+- Total diagnostic lines found: 2098
+- Files with diagnostics: 198
 - Groups with diagnostics: 11
 - Unparsed/unknown diagnostic lines: 0
 
 ## Summary by area
 | Area | Files | Diagnostic lines | Example files |
 | --- | ---: | ---: | --- |
-| js/Civication/** | 86 | 795 | js/Civication/CivicationBoot.js<br>js/Civication/capitalEngine.js<br>js/Civication/capitalMaintenanceEngine.js |
-| other | 70 | 552 | js/DomainRegistry.js<br>js/aha.js<br>js/app.js |
-| js/ui/** | 20 | 483 | js/ui/badge-modal.js<br>js/ui/badge-unlock-toast.js<br>js/ui/badges.js |
-| js/profile.js | 1 | 84 | js/profile.js |
+| js/Civication/** | 85 | 775 | js/Civication/CivicationBoot.js<br>js/Civication/capitalEngine.js<br>js/Civication/capitalMaintenanceEngine.js |
+| other | 70 | 550 | js/DomainRegistry.js<br>js/aha.js<br>js/app.js |
+| js/ui/** | 20 | 479 | js/ui/badge-modal.js<br>js/ui/badge-unlock-toast.js<br>js/ui/badges.js |
+| js/profile.js | 1 | 80 | js/profile.js |
 | js/boot.js | 1 | 76 | js/boot.js |
 | scripts/** | 14 | 62 | scripts/generate-civication-mails.js<br>scripts/i18n-audit-places.js<br>scripts/i18n-place-manifest-loader.js |
 | js/hgKnowledgeEngine.js | 1 | 43 | js/hgKnowledgeEngine.js |
@@ -28,20 +28,20 @@
 | File | Diagnostic lines | Area |
 | --- | ---: | --- |
 | js/ui/place-card.js | 123 | js/ui/** |
-| js/Civication/ui/CivicationUI.js | 107 | js/Civication/** |
-| js/Civication/core/civicationEventEngine.js | 97 | js/Civication/** |
-| js/profile.js | 84 | js/profile.js |
-| js/ui/popup-utils.js | 82 | js/ui/** |
+| js/Civication/ui/CivicationUI.js | 102 | js/Civication/** |
+| js/Civication/core/civicationEventEngine.js | 96 | js/Civication/** |
+| js/profile.js | 80 | js/profile.js |
+| js/ui/popup-utils.js | 80 | js/ui/** |
 | js/boot.js | 76 | js/boot.js |
 | js/routes.js | 47 | other |
 | js/ui/left-panel.js | 47 | js/ui/** |
-| js/Civication/core/civicationEconomyEngine.js | 43 | js/Civication/** |
 | js/hgKnowledgeEngine.js | 43 | js/hgKnowledgeEngine.js |
+| js/Civication/core/civicationEconomyEngine.js | 39 | js/Civication/** |
 | js/ui/lists.js | 37 | js/ui/** |
 | js/console/devConsole.js | 36 | other |
 | js/ui/nature-card.js | 36 | js/ui/** |
-| js/quizzes.js | 31 | other |
 | js/Civication/systems/day/dayPatches.js | 30 | js/Civication/** |
+| js/quizzes.js | 30 | other |
 | js/nextUpRuntime.js | 29 | other |
 | js/nature_place_map_bridge.js | 27 | other |
 | js/Civication/systems/civicationLifeMailRuntime.js | 23 | js/Civication/** |
@@ -51,13 +51,13 @@
 ## Diagnostic types (TypeScript error code)
 | Error code | Count |
 | --- | ---: |
-| TS2339 | 1687 |
-| TS2551 | 217 |
-| TS2304 | 86 |
+| TS2339 | 1684 |
+| TS2551 | 202 |
+| TS2304 | 71 |
 | TS2307 | 36 |
 | TS2322 | 21 |
+| TS2349 | 15 |
 | TS2580 | 13 |
-| TS2349 | 12 |
 | TS2550 | 11 |
 | TS2362 | 6 |
 | TS2345 | 6 |
@@ -73,8 +73,8 @@
 | TS2741 | 1 |
 
 ## Priority recommendations (mechanical)
-1. Start with **js/Civication/** (795 diagnostics)** because it currently has the highest baseline volume.
-2. Focus first on concentrated hotspots: `js/ui/place-card.js` (123), `js/Civication/ui/CivicationUI.js` (107), `js/Civication/core/civicationEventEngine.js` (97), `js/profile.js` (84), `js/ui/popup-utils.js` (82).
+1. Start with **js/Civication/** (775 diagnostics)** because it currently has the highest baseline volume.
+2. Focus first on concentrated hotspots: `js/ui/place-card.js` (123), `js/Civication/ui/CivicationUI.js` (102), `js/Civication/core/civicationEventEngine.js` (96), `js/profile.js` (80), `js/ui/popup-utils.js` (80).
 3. Defer broader/sensitive areas until hotspot reduction is complete: `other`, `js/ui/**`, `js/profile.js`.
 4. Keep this report read-only and rerun after each migration phase to validate trend direction.
 
@@ -122,7 +122,6 @@ js/Civication/civicationObligationEngine.js(394,19): error TS2339: Property 'war
 js/Civication/civicationObligationEngine.js(397,19): error TS2339: Property 'career' does not exist on type 'unknown'.
 js/Civication/civicationObligationEngine.js(485,24): error TS2339: Property 'achieved_at' does not exist on type 'unknown'.
 js/Civication/civicationObligationEngine.js(486,27): error TS2339: Property 'achieved_at' does not exist on type 'unknown'.
-js/Civication/civicationObligationEngine.js(522,28): error TS2551: Property 'HGLearningLog' does not exist on type 'Window & typeof globalThis'. Did you mean 'getLearningLog'?
 js/Civication/core/CivicationPsyche.js(334,40): error TS2339: Property 'autonomy' does not exist on type 'unknown'.
 js/Civication/core/CivicationPsyche.js(337,38): error TS2339: Property 'trust' does not exist on type 'unknown'.
 js/Civication/core/CivicationPsyche.js(409,18): error TS2339: Property 'economy_profile' does not exist on type 'unknown'.
@@ -134,11 +133,9 @@ js/Civication/core/CivicationPsyche.js(598,29): error TS2339: Property 'economy_
 js/Civication/core/CivicationPsyche.js(605,31): error TS2339: Property 'economy_profile' does not exist on type 'unknown'.
 js/Civication/core/CivicationPsyche.js(640,10): error TS2551: Property 'CivicationPsyche' does not exist on type 'Window & typeof globalThis'. Did you mean 'CivicationHome'?
 js/Civication/core/civicationCalendar.js(169,10): error TS2339: Property 'CivicationCalendar' does not exist on type 'Window & typeof globalThis'.
-js/Civication/core/civicationEconomyEngine.js(14,25): error TS2551: Property 'HGLearningLog' does not exist on type 'Window & typeof globalThis'. Did you mean 'getLearningLog'?
 js/Civication/core/civicationEconomyEngine.js(91,32): error TS2339: Property 'id' does not exist on type 'unknown'.
 js/Civication/core/civicationEconomyEngine.js(96,26): error TS2339: Property 'id' does not exist on type 'unknown'.
 js/Civication/core/civicationEconomyEngine.js(96,46): error TS2339: Property 'id' does not exist on type 'unknown'.
-js/Civication/core/civicationEconomyEngine.js(99,5): error TS2304: Cannot find name 'deriveTierFromPoints'.
 js/Civication/core/civicationEconomyEngine.js(104,28): error TS2339: Property 'id' does not exist on type 'unknown'.
 js/Civication/core/civicationEconomyEngine.js(113,22): error TS2339: Property 'career_id' does not exist on type 'unknown'.
 js/Civication/core/civicationEconomyEngine.js(113,50): error TS2339: Property 'id' does not exist on type 'unknown'.
@@ -157,7 +154,10 @@ js/Civication/core/civicationEconomyEngine.js(234,54): error TS2339: Property 'c
 js/Civication/core/civicationEconomyEngine.js(250,26): error TS2339: Property 'career_id' does not exist on type 'unknown'.
 js/Civication/core/civicationEconomyEngine.js(254,14): error TS2339: Property 'id' does not exist on type 'unknown'.
 js/Civication/core/civicationEconomyEngine.js(254,28): error TS2339: Property 'career_id' does not exist on type 'unknown'.
-js/Civication/core/civicationEconomyEngine.js(264,5): error TS2304: Cannot find name 'deriveTierFromPoints'.
 js/Civication/core/civicationEconomyEngine.js(276,20): error TS2339: Property 'economy' does not exist on type 'unknown'.
 js/Civication/core/civicationEconomyEngine.js(279,20): error TS2339: Property 'economy' does not exist on type 'unknown'.
+js/Civication/core/civicationEconomyEngine.js(287,15): error TS2339: Property 'world_logic' does not exist on type 'unknown'.
+js/Civication/core/civicationEconomyEngine.js(293,7): error TS2304: Cannot find name 'getQuizCountLastWeek'.
+js/Civication/core/civicationEconomyEngine.js(293,35): error TS2339: Property 'career_id' does not exist on type 'unknown'.
+js/Civication/core/civicationEconomyEngine.js(298,22): error TS2339: Property 'strikes' does not exist on type 'unknown'.
 ```

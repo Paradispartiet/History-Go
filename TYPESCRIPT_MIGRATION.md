@@ -180,3 +180,10 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Declaration-level fixes for `deriveTierFromPoints` / `window.HGLearningLog` are intentionally deferred to a later, isolated globals pass to avoid baseline instability in this phase.
 - No runtime logic, economy logic, weekly tick/wallet/career/progression behavior, localStorage keys/contracts, UI/mail/day progression flow, or data/JSON files were changed.
 - Remaining typecheck baseline outside this focused update is expected.
+
+
+## Phase 19: Civication globals-only declaration pass
+
+- Added globals-only declarations in `schemas/civication-globals.d.ts` for `deriveTierFromPoints` and `window.HGLearningLog` using intentionally broad, runtime-safe shapes.
+- Kept the pass declaration-only (no runtime/app code changes) and did not alter economy logic, weekly tick behavior, wallet/career/progression flow, localStorage contracts, UI/DOM/layout/CSS, mail flow, day progression, or data/JSON files.
+- Regenerated the typecheck baseline report to confirm baseline trend/expectations for remaining diagnostics.
