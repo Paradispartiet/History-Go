@@ -1,10 +1,10 @@
 # Typecheck baseline report
 
 ## Metadata
-- Generated at (UTC): 2026-05-17T17:22:40.388Z
+- Generated at (UTC): 2026-05-17T19:18:35.359Z
 - Command: `npm run typecheck`
 - Typecheck exit code: 2
-- Total diagnostic lines found: 2097
+- Total diagnostic lines found: 2092
 - Files with diagnostics: 198
 - Groups with diagnostics: 11
 - Unparsed/unknown diagnostic lines: 0
@@ -12,7 +12,7 @@
 ## Summary by area
 | Area | Files | Diagnostic lines | Example files |
 | --- | ---: | ---: | --- |
-| js/Civication/** | 85 | 775 | js/Civication/CivicationBoot.js<br>js/Civication/capitalEngine.js<br>js/Civication/capitalMaintenanceEngine.js |
+| js/Civication/** | 85 | 770 | js/Civication/CivicationBoot.js<br>js/Civication/capitalEngine.js<br>js/Civication/capitalMaintenanceEngine.js |
 | other | 70 | 551 | js/DomainRegistry.js<br>js/aha.js<br>js/app.js |
 | js/ui/** | 20 | 479 | js/ui/badge-modal.js<br>js/ui/badge-unlock-toast.js<br>js/ui/badges.js |
 | js/profile.js | 1 | 79 | js/profile.js |
@@ -29,7 +29,7 @@
 | --- | ---: | --- |
 | js/ui/place-card.js | 123 | js/ui/** |
 | js/Civication/ui/CivicationUI.js | 102 | js/Civication/** |
-| js/Civication/core/civicationEventEngine.js | 96 | js/Civication/** |
+| js/Civication/core/civicationEventEngine.js | 91 | js/Civication/** |
 | js/ui/popup-utils.js | 80 | js/ui/** |
 | js/profile.js | 79 | js/profile.js |
 | js/boot.js | 75 | js/boot.js |
@@ -51,7 +51,7 @@
 ## Diagnostic types (TypeScript error code)
 | Error code | Count |
 | --- | ---: |
-| TS2339 | 1684 |
+| TS2339 | 1679 |
 | TS2551 | 202 |
 | TS2304 | 71 |
 | TS2307 | 36 |
@@ -75,8 +75,8 @@
 | TS2741 | 1 |
 
 ## Priority recommendations (mechanical)
-1. Start with **js/Civication/** (775 diagnostics)** because it currently has the highest baseline volume.
-2. Focus first on concentrated hotspots: `js/ui/place-card.js` (123), `js/Civication/ui/CivicationUI.js` (102), `js/Civication/core/civicationEventEngine.js` (96), `js/ui/popup-utils.js` (80), `js/profile.js` (79).
+1. Start with **js/Civication/** (770 diagnostics)** because it currently has the highest baseline volume.
+2. Focus first on concentrated hotspots: `js/ui/place-card.js` (123), `js/Civication/ui/CivicationUI.js` (102), `js/Civication/core/civicationEventEngine.js` (91), `js/ui/popup-utils.js` (80), `js/profile.js` (79).
 3. Defer broader/sensitive areas until hotspot reduction is complete: `other`, `js/ui/**`, `js/profile.js`.
 4. Keep this report read-only and rerun after each migration phase to validate trend direction.
 
