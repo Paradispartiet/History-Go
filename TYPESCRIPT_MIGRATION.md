@@ -196,3 +196,12 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Added/adjusted method-level JSDoc on existing Event Engine helpers only (no new runtime helpers/functions introduced).
 - No runtime logic, event-flow, inbox-flow, jobmail/private-message-flow, choices/effects/task-result behavior, localStorage keys/contracts, UI/DOM/rendering/layout/CSS/text, or data/JSON contracts were changed.
 - Remaining baseline diagnostics are still expected as part of incremental migration.
+
+## Phase 21: Civication UI second JSDoc groundwork
+
+- Evaluated a second focused JSDoc pass for `js/Civication/ui/CivicationUI.js`.
+- The attempted annotations were not retained because this phase prioritized baseline stability and no safe reduction was identified.
+- `js/Civication/ui/CivicationUI.js` remains unchanged in this phase.
+- Regenerated the typecheck baseline report to confirm the baseline remains stable.
+- No runtime logic, UI rendering, DOM structure, layout, CSS, UI text, inbox/jobmail/private-message flow, choices/effects behavior, localStorage keys/contracts, or data/JSON contracts were changed.
+- Remaining typecheck baseline is still expected as part of gradual migration.
