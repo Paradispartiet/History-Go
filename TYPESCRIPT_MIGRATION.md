@@ -197,10 +197,11 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - No runtime logic, event-flow, inbox-flow, jobmail/private-message-flow, choices/effects/task-result behavior, localStorage keys/contracts, UI/DOM/rendering/layout/CSS/text, or data/JSON contracts were changed.
 - Remaining baseline diagnostics are still expected as part of incremental migration.
 
-## Phase 21: Civication UI second focused JSDoc pass
+## Phase 21: Civication UI second JSDoc groundwork
 
-- Added a second focused, JSDoc-only pass in `js/Civication/ui/CivicationUI.js`.
-- Reused and widened broad file-local UI/state/inbox/event/choice/render-input aliases to reduce type friction while preserving dynamic contracts.
-- Added/adjusted JSDoc annotations on existing Civication UI helpers only (no runtime helper additions or refactors).
+- Evaluated a second focused JSDoc pass for `js/Civication/ui/CivicationUI.js`.
+- The attempted annotations were not retained because this phase prioritized baseline stability and no safe reduction was identified.
+- `js/Civication/ui/CivicationUI.js` remains unchanged in this phase.
+- Regenerated the typecheck baseline report to confirm the baseline remains stable.
 - No runtime logic, UI rendering, DOM structure, layout, CSS, UI text, inbox/jobmail/private-message flow, choices/effects behavior, localStorage keys/contracts, or data/JSON contracts were changed.
 - Remaining typecheck baseline is still expected as part of gradual migration.
