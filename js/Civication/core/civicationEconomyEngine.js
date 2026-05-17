@@ -1,3 +1,10 @@
+/**
+ * @typedef {Record<string, any>} CiviEconomyRecord
+ * @typedef {CiviEconomyRecord & { balance?: number, pc?: number, last_tick_iso?: string | null }} CiviEconomyWallet
+ * @typedef {CiviEconomyRecord & { career_id?: string, id?: string, title?: string, name?: string, economy?: CiviEconomyRecord, world_logic?: CiviEconomyRecord }} CiviEconomyCareer
+ * @typedef {CiviEconomyRecord & { points?: number, completed?: any[], tierIndex?: number }} CiviEconomyProgress
+ * @typedef {CiviEconomyRecord & { ok?: boolean, balance?: number, delta?: number, weekly?: number, reason?: string, career?: CiviEconomyCareer | null, wallet?: CiviEconomyWallet }} CiviEconomyTickResult
+ */
 function checkTierUpgrades(onlyCareerId) {
   function dispatchProfileUpdate() {
     try { window.dispatchEvent(new Event("updateProfile")); } catch {}
@@ -149,7 +156,8 @@ window.checkTierUpgrades = checkTierUpgrades;
 
 (function () {
 
-  function tickPCIncomeWeekly() {
+/** @returns {void | CiviEconomyTickResult} */
+function tickPCIncomeWeekly() {
 
   const state = window.CivicationState.getState();
   let wallet = normalizeWallet(
@@ -359,6 +367,11 @@ window.checkTierUpgrades = checkTierUpgrades;
 }
   
 
+/**
+ * @param {CiviEconomyCareer | CiviEconomyRecord | null | undefined} career
+ * @param {number} tierIndex
+ * @returns {number}
+ */
 function calculateWeeklySalary(career, tierIndex) {
 
   const tier =
@@ -435,6 +448,7 @@ function payWeeklySalary(player, career, tierIndex) {
 
 
 
+/** @returns {CiviEconomyRecord} */
 function getCapital() {
 
   return JSON.parse(
@@ -444,6 +458,7 @@ function getCapital() {
 
 
 
+/** @param {CiviEconomyRecord} cap */
 function saveCapital(cap) {
 
   localStorage.setItem(
@@ -457,6 +472,11 @@ function saveCapital(cap) {
 }
 
 
+/**
+ * @param {string} careerId
+ * @param {number} points
+ * @returns {number | null}
+ */
 function getWeeklySalaryFromBadges(careerId, points) {
   if (!Array.isArray(window.BADGES) || !Array.isArray(window.CIVI_CAREER_RULES)) {
     return null;
@@ -477,6 +497,10 @@ function getWeeklySalaryFromBadges(careerId, points) {
 
   
 
+/**
+ * @param {CiviEconomyWallet | CiviEconomyRecord | null | undefined} w
+ * @returns {CiviEconomyWallet}
+ */
 function normalizeWallet(w) {
 
     if (!w || typeof w !== "object") {

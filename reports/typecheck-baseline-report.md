@@ -1,7 +1,7 @@
 # Typecheck baseline report
 
 ## Metadata
-- Generated at (UTC): 2026-05-17T05:05:45.999Z
+- Generated at (UTC): 2026-05-17T05:53:32.034Z
 - Command: `npm run typecheck`
 - Typecheck exit code: 2
 - Total diagnostic lines found: 2128
@@ -134,30 +134,30 @@ js/Civication/core/CivicationPsyche.js(598,29): error TS2339: Property 'economy_
 js/Civication/core/CivicationPsyche.js(605,31): error TS2339: Property 'economy_profile' does not exist on type 'unknown'.
 js/Civication/core/CivicationPsyche.js(640,10): error TS2551: Property 'CivicationPsyche' does not exist on type 'Window & typeof globalThis'. Did you mean 'CivicationHome'?
 js/Civication/core/civicationCalendar.js(169,10): error TS2339: Property 'CivicationCalendar' does not exist on type 'Window & typeof globalThis'.
-js/Civication/core/civicationEconomyEngine.js(7,25): error TS2551: Property 'HGLearningLog' does not exist on type 'Window & typeof globalThis'. Did you mean 'getLearningLog'?
-js/Civication/core/civicationEconomyEngine.js(84,32): error TS2339: Property 'id' does not exist on type 'unknown'.
-js/Civication/core/civicationEconomyEngine.js(89,26): error TS2339: Property 'id' does not exist on type 'unknown'.
-js/Civication/core/civicationEconomyEngine.js(89,46): error TS2339: Property 'id' does not exist on type 'unknown'.
-js/Civication/core/civicationEconomyEngine.js(92,5): error TS2304: Cannot find name 'deriveTierFromPoints'.
-js/Civication/core/civicationEconomyEngine.js(97,28): error TS2339: Property 'id' does not exist on type 'unknown'.
-js/Civication/core/civicationEconomyEngine.js(106,22): error TS2339: Property 'career_id' does not exist on type 'unknown'.
-js/Civication/core/civicationEconomyEngine.js(106,50): error TS2339: Property 'id' does not exist on type 'unknown'.
-js/Civication/core/civicationEconomyEngine.js(114,42): error TS2339: Property 'tiers' does not exist on type 'unknown'.
-js/Civication/core/civicationEconomyEngine.js(114,57): error TS2339: Property 'tiers' does not exist on type 'unknown'.
-js/Civication/core/civicationEconomyEngine.js(124,35): error TS2339: Property 'id' does not exist on type 'unknown'.
-js/Civication/core/civicationEconomyEngine.js(125,37): error TS2339: Property 'name' does not exist on type 'unknown'.
-js/Civication/core/civicationEconomyEngine.js(125,51): error TS2339: Property 'id' does not exist on type 'unknown'.
-js/Civication/core/civicationEconomyEngine.js(133,24): error TS2339: Property 'id' does not exist on type 'unknown'.
-js/Civication/core/civicationEconomyEngine.js(183,19): error TS2339: Property 'global_rules' does not exist on type 'unknown'.
-js/Civication/core/civicationEconomyEngine.js(185,19): error TS2339: Property 'global_rules' does not exist on type 'unknown'.
-js/Civication/core/civicationEconomyEngine.js(192,16): error TS2339: Property 'career_id' does not exist on type 'unknown'.
-js/Civication/core/civicationEconomyEngine.js(194,26): error TS2339: Property 'unemployed_since_week' does not exist on type 'unknown'.
-js/Civication/core/civicationEconomyEngine.js(226,25): error TS2339: Property 'career_id' does not exist on type 'unknown'.
-js/Civication/core/civicationEconomyEngine.js(226,54): error TS2339: Property 'career_id' does not exist on type 'unknown'.
-js/Civication/core/civicationEconomyEngine.js(242,26): error TS2339: Property 'career_id' does not exist on type 'unknown'.
-js/Civication/core/civicationEconomyEngine.js(246,14): error TS2339: Property 'id' does not exist on type 'unknown'.
-js/Civication/core/civicationEconomyEngine.js(246,28): error TS2339: Property 'career_id' does not exist on type 'unknown'.
-js/Civication/core/civicationEconomyEngine.js(256,5): error TS2304: Cannot find name 'deriveTierFromPoints'.
-js/Civication/core/civicationEconomyEngine.js(268,20): error TS2339: Property 'economy' does not exist on type 'unknown'.
-js/Civication/core/civicationEconomyEngine.js(271,20): error TS2339: Property 'economy' does not exist on type 'unknown'.
+js/Civication/core/civicationEconomyEngine.js(14,25): error TS2551: Property 'HGLearningLog' does not exist on type 'Window & typeof globalThis'. Did you mean 'getLearningLog'?
+js/Civication/core/civicationEconomyEngine.js(91,32): error TS2339: Property 'id' does not exist on type 'unknown'.
+js/Civication/core/civicationEconomyEngine.js(96,26): error TS2339: Property 'id' does not exist on type 'unknown'.
+js/Civication/core/civicationEconomyEngine.js(96,46): error TS2339: Property 'id' does not exist on type 'unknown'.
+js/Civication/core/civicationEconomyEngine.js(99,5): error TS2304: Cannot find name 'deriveTierFromPoints'.
+js/Civication/core/civicationEconomyEngine.js(104,28): error TS2339: Property 'id' does not exist on type 'unknown'.
+js/Civication/core/civicationEconomyEngine.js(113,22): error TS2339: Property 'career_id' does not exist on type 'unknown'.
+js/Civication/core/civicationEconomyEngine.js(113,50): error TS2339: Property 'id' does not exist on type 'unknown'.
+js/Civication/core/civicationEconomyEngine.js(121,42): error TS2339: Property 'tiers' does not exist on type 'unknown'.
+js/Civication/core/civicationEconomyEngine.js(121,57): error TS2339: Property 'tiers' does not exist on type 'unknown'.
+js/Civication/core/civicationEconomyEngine.js(131,35): error TS2339: Property 'id' does not exist on type 'unknown'.
+js/Civication/core/civicationEconomyEngine.js(132,37): error TS2339: Property 'name' does not exist on type 'unknown'.
+js/Civication/core/civicationEconomyEngine.js(132,51): error TS2339: Property 'id' does not exist on type 'unknown'.
+js/Civication/core/civicationEconomyEngine.js(140,24): error TS2339: Property 'id' does not exist on type 'unknown'.
+js/Civication/core/civicationEconomyEngine.js(191,19): error TS2339: Property 'global_rules' does not exist on type 'unknown'.
+js/Civication/core/civicationEconomyEngine.js(193,19): error TS2339: Property 'global_rules' does not exist on type 'unknown'.
+js/Civication/core/civicationEconomyEngine.js(200,16): error TS2339: Property 'career_id' does not exist on type 'unknown'.
+js/Civication/core/civicationEconomyEngine.js(202,26): error TS2339: Property 'unemployed_since_week' does not exist on type 'unknown'.
+js/Civication/core/civicationEconomyEngine.js(234,25): error TS2339: Property 'career_id' does not exist on type 'unknown'.
+js/Civication/core/civicationEconomyEngine.js(234,54): error TS2339: Property 'career_id' does not exist on type 'unknown'.
+js/Civication/core/civicationEconomyEngine.js(250,26): error TS2339: Property 'career_id' does not exist on type 'unknown'.
+js/Civication/core/civicationEconomyEngine.js(254,14): error TS2339: Property 'id' does not exist on type 'unknown'.
+js/Civication/core/civicationEconomyEngine.js(254,28): error TS2339: Property 'career_id' does not exist on type 'unknown'.
+js/Civication/core/civicationEconomyEngine.js(264,5): error TS2304: Cannot find name 'deriveTierFromPoints'.
+js/Civication/core/civicationEconomyEngine.js(276,20): error TS2339: Property 'economy' does not exist on type 'unknown'.
+js/Civication/core/civicationEconomyEngine.js(279,20): error TS2339: Property 'economy' does not exist on type 'unknown'.
 ```
