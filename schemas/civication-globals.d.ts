@@ -2,6 +2,8 @@ type CiviRecord = Record<string, unknown>;
 
 type CiviFn = (...args: unknown[]) => unknown;
 
+type CiviLearningLogFn = (...args: unknown[]) => unknown;
+
 type CiviMethodBag = {
   get?: CiviFn;
   set?: CiviFn;
@@ -77,7 +79,17 @@ type CiviMethodBag = {
 type CiviEngineLike = CiviMethodBag;
 type CiviUiLike = CiviMethodBag;
 
+
+
 declare global {
+  function deriveTierFromPoints(
+    badge: unknown,
+    points: number
+  ): {
+    tierIndex?: number;
+    label?: string;
+    [key: string]: unknown;
+  };
   interface Window {
     CIVI_CAREER_RULES?: unknown[] | CiviRecord;
     HG_CAREERS?: unknown[] | CiviRecord;
@@ -118,6 +130,15 @@ declare global {
     ensureCiviCareerRulesLoaded?: CiviFn;
     checkTierUpgrades?: CiviFn;
     calculateWeeklySalary?: CiviFn;
+
+    HGLearningLog?: {
+      add?: CiviLearningLogFn;
+      push?: CiviLearningLogFn;
+      log?: CiviLearningLogFn;
+      record?: CiviLearningLogFn;
+      getQuizHistory?: (...args: unknown[]) => any[];
+      [key: string]: CiviLearningLogFn | undefined;
+    };
   }
 
   const CivicationState: CiviMethodBag;
