@@ -23,17 +23,14 @@ async function ensureCiviCareerRulesLoaded() {
 
   try {
 
-    const data = await fetch(
+    const data = /** @type {CiviBootCareerPayload} */ (await fetch(
         "data/Civication/hg_careers.json",
       { cache: "no-store" }
-    ).then(r => r.json());
-
-    /** @type {CiviBootCareerPayload} */
-    const careersPayload = data && typeof data === "object" ? data : {};
+    ).then(r => r.json()));
 
     window.CIVI_CAREER_RULES =
-      Array.isArray(careersPayload.careers)
-        ? careersPayload.careers
+      Array.isArray(data?.careers)
+        ? data.careers
         : [];
 
   } catch {
@@ -123,16 +120,11 @@ async function loadCivicationData() {
     fetch("data/Civication/hg_careers.json")
   ]);
 
-  const badgesJson = await badgesRes.json();
-  const careersJson = await careersRes.json();
+  const badgesJson = /** @type {CiviBootBadgePayload} */ (await badgesRes.json());
+  const careersJson = /** @type {CiviBootCareerPayload} */ (await careersRes.json());
 
-  /** @type {CiviBootBadgePayload} */
-  const badgesPayload = badgesJson && typeof badgesJson === "object" ? badgesJson : {};
-  /** @type {CiviBootCareerPayload} */
-  const careersPayload = careersJson && typeof careersJson === "object" ? careersJson : {};
-
-  window.BADGES = Array.isArray(badgesPayload.badges) ? badgesPayload.badges : [];
-  window.HG_CAREERS = Array.isArray(careersPayload.careers) ? careersPayload.careers : [];
+  window.BADGES = badgesJson.badges;
+  window.HG_CAREERS = careersJson.careers;
 }
 
 (function () {
@@ -141,8 +133,7 @@ async function loadCivicationData() {
    * @returns {void}
    */
   function showBootError(error) {
-    const err = (error && typeof error === "object") ? /** @type {CiviBootRecord} */ (error) : {};
-    const message = String(err.message || error || "Ukjent feil");
+    const message = /** @type {{ message?: string }} */ (error)?.message || String(error || "Ukjent feil");
     const host = document.body || document.documentElement;
     if (!host) return;
 

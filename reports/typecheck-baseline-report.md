@@ -1,7 +1,7 @@
 # Typecheck baseline report
 
 ## Metadata
-- Generated at (UTC): 2026-05-17T04:34:11.722Z
+- Generated at (UTC): 2026-05-17T04:52:37.602Z
 - Command: `npm run typecheck`
 - Typecheck exit code: 2
 - Total diagnostic lines found: 2128
@@ -82,7 +82,7 @@
 ```
 > history-go@0.0.0 typecheck
 > tsc -p tsconfig.json
-js/Civication/CivicationBoot.js(181,7): error TS2322: Type 'CivicationEventEngine' is not assignable to type 'CiviMethodBag'.
+js/Civication/CivicationBoot.js(172,7): error TS2322: Type 'CivicationEventEngine' is not assignable to type 'CiviMethodBag'.
   Index signature for type 'string' is missing in type 'CivicationEventEngine'.
 js/Civication/capitalEngine.js(126,48): error TS2339: Property 'economic' does not exist on type 'unknown'.
 js/Civication/capitalEngine.js(127,48): error TS2339: Property 'cultural' does not exist on type 'unknown'.
