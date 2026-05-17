@@ -1,8 +1,8 @@
 /**
- * @typedef {Record<string, unknown>} CiviEventEngineRecord
- * @typedef {{ id?: string, label?: string, text?: string, effect?: number|string, feedback?: string, tags?: unknown[], moral_flag?: boolean, [key: string]: unknown }} CiviEventEngineChoice
- * @typedef {{ id?: string, stage?: string, status?: string, source?: string, subject?: string, situation?: unknown, choices?: CiviEventEngineChoice[], effect?: unknown, feedback?: string, source_type?: string, conflict_ids?: unknown[], role_content_meta?: CiviEventEngineRecord, task_id?: string|null, task_payload?: CiviEventEngineRecord, __pack?: CiviEventEngineRecord, [key: string]: unknown }} CiviEventEngineEvent
- * @typedef {{ status?: string, enqueued_at?: string, event?: CiviEventEngineEvent, [key: string]: unknown }} CiviEventEngineInboxItem
+ * @typedef {Record<string, any>} CiviEventEngineRecord
+ * @typedef {{ id?: string, label?: string, text?: string, value?: string, effect?: number|string, effects?: CiviEventEngineRecord, result?: CiviEventEngineRecord, next_event_id?: string, channel?: string, feedback?: string, tags?: unknown[], moral_flag?: boolean, [key: string]: any }} CiviEventEngineChoice
+ * @typedef {{ id?: string, stage?: string, status?: string, type?: string, channel?: string, phase?: string, phase_tag?: string, source?: string, source_type?: string, title?: string, subject?: string, body?: string, text?: string, situation?: unknown, choices?: CiviEventEngineChoice[], effect?: unknown, effects?: CiviEventEngineRecord, daily_mail_meta?: CiviEventEngineRecord, feedback?: string, conflict_ids?: unknown[], role_content_meta?: CiviEventEngineRecord, task_id?: string|null, task_payload?: CiviEventEngineRecord, created_at?: string, expires_at?: string, __pack?: CiviEventEngineRecord, [key: string]: any }} CiviEventEngineEvent
+ * @typedef {{ id?: string, event_id?: string, status?: string, type?: string, channel?: string, phase?: string, phase_tag?: string, enqueued_at?: string, created_at?: string, expires_at?: string, answered_at?: string, event?: CiviEventEngineEvent, choices?: CiviEventEngineChoice[], [key: string]: any }} CiviEventEngineInboxItem
  * @typedef {{ stability?: string, warning_used?: boolean, strikes?: number, score?: number, active_role_key?: string|null, consumed?: CiviEventEngineRecord, identity_tags?: unknown[], tracks?: unknown[], track_progress?: CiviEventEngineRecord, unemployed_since_week?: string|null, mail_director?: CiviEventEngineRecord, conflict_state?: CiviEventEngineRecord, story_state?: CiviEventEngineRecord, [key: string]: unknown }} CiviEventEngineState
  */
 
@@ -123,6 +123,7 @@ class CivicationEventEngine {
     return window.CivicationState.setState(patch || {});
   }
 
+/** @param {string|null|undefined} role_key */
 resetForNewJob(role_key) {
   const rk = role_key || null;
 
@@ -184,6 +185,10 @@ resetForNewJob(role_key) {
     ) || null;
   }
 
+  /** @param {string} eventId
+   * @param {string} choiceId
+   * @returns {boolean}
+   */
   syncAnsweredChoiceToMailHistory(eventId, choiceId) {
     const resolvedEventId = String(eventId || "").trim();
     const resolvedChoiceId = String(choiceId || "").trim();
@@ -207,6 +212,7 @@ resetForNewJob(role_key) {
 
   // -------- role_key resolution --------
 
+  /** @returns {string|null} */
   resolveRoleKey() {
     const active = window.CivicationState.getActivePosition();
     if (!active) return null;
@@ -1445,6 +1451,9 @@ if (!chosen) {
   }
 
 
+/** @param {CiviEventEngineEvent} eventObj
+ * @returns {void}
+ */
 registerChosenMail(eventObj) {
   const state = this.getState();
   const director =

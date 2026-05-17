@@ -188,3 +188,11 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Kept the pass declaration-only (no runtime/app code changes) and did not alter economy logic, weekly tick behavior, wallet/career/progression flow, localStorage contracts, UI/DOM/layout/CSS, mail flow, day progression, or data/JSON files.
 - Regenerated the typecheck baseline report to confirm baseline trend/expectations for remaining diagnostics.
 - Follow-up adjustment: `HGLearningLog` fallback index signature is callable (`CiviLearningLogFn | undefined`) to avoid TS2349 call regressions from `unknown` fallback members.
+
+## Phase 20: Civication Event Engine second focused JSDoc pass
+
+- Added a second focused, JSDoc-only pass in `js/Civication/core/civicationEventEngine.js`.
+- Reused and carefully widened existing file-local event/inbox/state/choice/task-result aliases to keep dynamic Civication runtime contracts broad and stable.
+- Added/adjusted method-level JSDoc on existing Event Engine helpers only (no new runtime helpers/functions introduced).
+- No runtime logic, event-flow, inbox-flow, jobmail/private-message-flow, choices/effects/task-result behavior, localStorage keys/contracts, UI/DOM/rendering/layout/CSS/text, or data/JSON contracts were changed.
+- Remaining baseline diagnostics are still expected as part of incremental migration.
