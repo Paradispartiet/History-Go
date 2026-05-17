@@ -133,7 +133,7 @@ async function loadCivicationData() {
    * @returns {void}
    */
   function showBootError(error) {
-    const message = /** @type {{ message?: string }} */ (error)?.message || String(error || "Ukjent feil");
+    const message = error?.message || String(error || "Ukjent feil");
     const host = document.body || document.documentElement;
     if (!host) return;
 
