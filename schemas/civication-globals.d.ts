@@ -2,6 +2,8 @@ type CiviRecord = Record<string, unknown>;
 
 type CiviFn = (...args: unknown[]) => unknown;
 
+type CiviLearningLogFn = (...args: unknown[]) => unknown;
+
 type CiviMethodBag = {
   get?: CiviFn;
   set?: CiviFn;
@@ -130,12 +132,12 @@ declare global {
     calculateWeeklySalary?: CiviFn;
 
     HGLearningLog?: {
-      add?: (...args: unknown[]) => unknown;
-      push?: (...args: unknown[]) => unknown;
-      log?: (...args: unknown[]) => unknown;
-      record?: (...args: unknown[]) => unknown;
+      add?: CiviLearningLogFn;
+      push?: CiviLearningLogFn;
+      log?: CiviLearningLogFn;
+      record?: CiviLearningLogFn;
       getQuizHistory?: (...args: unknown[]) => any[];
-      [key: string]: unknown;
+      [key: string]: CiviLearningLogFn | undefined;
     };
   }
 

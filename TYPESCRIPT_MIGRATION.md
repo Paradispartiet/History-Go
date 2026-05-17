@@ -187,3 +187,4 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Added globals-only declarations in `schemas/civication-globals.d.ts` for `deriveTierFromPoints` and `window.HGLearningLog` using intentionally broad, runtime-safe shapes.
 - Kept the pass declaration-only (no runtime/app code changes) and did not alter economy logic, weekly tick behavior, wallet/career/progression flow, localStorage contracts, UI/DOM/layout/CSS, mail flow, day progression, or data/JSON files.
 - Regenerated the typecheck baseline report to confirm baseline trend/expectations for remaining diagnostics.
+- Follow-up adjustment: `HGLearningLog` fallback index signature is callable (`CiviLearningLogFn | undefined`) to avoid TS2349 call regressions from `unknown` fallback members.

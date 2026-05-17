@@ -1,10 +1,10 @@
 # Typecheck baseline report
 
 ## Metadata
-- Generated at (UTC): 2026-05-17T17:18:24.574Z
+- Generated at (UTC): 2026-05-17T17:22:40.388Z
 - Command: `npm run typecheck`
 - Typecheck exit code: 2
-- Total diagnostic lines found: 2098
+- Total diagnostic lines found: 2097
 - Files with diagnostics: 198
 - Groups with diagnostics: 11
 - Unparsed/unknown diagnostic lines: 0
@@ -13,10 +13,10 @@
 | Area | Files | Diagnostic lines | Example files |
 | --- | ---: | ---: | --- |
 | js/Civication/** | 85 | 775 | js/Civication/CivicationBoot.js<br>js/Civication/capitalEngine.js<br>js/Civication/capitalMaintenanceEngine.js |
-| other | 70 | 550 | js/DomainRegistry.js<br>js/aha.js<br>js/app.js |
+| other | 70 | 551 | js/DomainRegistry.js<br>js/aha.js<br>js/app.js |
 | js/ui/** | 20 | 479 | js/ui/badge-modal.js<br>js/ui/badge-unlock-toast.js<br>js/ui/badges.js |
-| js/profile.js | 1 | 80 | js/profile.js |
-| js/boot.js | 1 | 76 | js/boot.js |
+| js/profile.js | 1 | 79 | js/profile.js |
+| js/boot.js | 1 | 75 | js/boot.js |
 | scripts/** | 14 | 62 | scripts/generate-civication-mails.js<br>scripts/i18n-audit-places.js<br>scripts/i18n-place-manifest-loader.js |
 | js/hgKnowledgeEngine.js | 1 | 43 | js/hgKnowledgeEngine.js |
 | sw.js | 1 | 12 | sw.js |
@@ -30,9 +30,9 @@
 | js/ui/place-card.js | 123 | js/ui/** |
 | js/Civication/ui/CivicationUI.js | 102 | js/Civication/** |
 | js/Civication/core/civicationEventEngine.js | 96 | js/Civication/** |
-| js/profile.js | 80 | js/profile.js |
 | js/ui/popup-utils.js | 80 | js/ui/** |
-| js/boot.js | 76 | js/boot.js |
+| js/profile.js | 79 | js/profile.js |
+| js/boot.js | 75 | js/boot.js |
 | js/routes.js | 47 | other |
 | js/ui/left-panel.js | 47 | js/ui/** |
 | js/hgKnowledgeEngine.js | 43 | js/hgKnowledgeEngine.js |
@@ -56,8 +56,8 @@
 | TS2304 | 71 |
 | TS2307 | 36 |
 | TS2322 | 21 |
-| TS2349 | 15 |
 | TS2580 | 13 |
+| TS2349 | 12 |
 | TS2550 | 11 |
 | TS2362 | 6 |
 | TS2345 | 6 |
@@ -70,11 +70,13 @@
 | TS2769 | 3 |
 | TS2698 | 2 |
 | TS2554 | 2 |
+| TS2488 | 1 |
+| TS2353 | 1 |
 | TS2741 | 1 |
 
 ## Priority recommendations (mechanical)
 1. Start with **js/Civication/** (775 diagnostics)** because it currently has the highest baseline volume.
-2. Focus first on concentrated hotspots: `js/ui/place-card.js` (123), `js/Civication/ui/CivicationUI.js` (102), `js/Civication/core/civicationEventEngine.js` (96), `js/profile.js` (80), `js/ui/popup-utils.js` (80).
+2. Focus first on concentrated hotspots: `js/ui/place-card.js` (123), `js/Civication/ui/CivicationUI.js` (102), `js/Civication/core/civicationEventEngine.js` (96), `js/ui/popup-utils.js` (80), `js/profile.js` (79).
 3. Defer broader/sensitive areas until hotspot reduction is complete: `other`, `js/ui/**`, `js/profile.js`.
 4. Keep this report read-only and rerun after each migration phase to validate trend direction.
 
