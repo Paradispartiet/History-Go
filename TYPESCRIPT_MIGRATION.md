@@ -164,3 +164,11 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Annotated the central controller methods (`inspect`, `canAdvancePhase`, `advancePhaseIfReady`) and small phase/status helpers with minimal parameter/return typing.
 - No runtime logic, phase-flow/day progression behavior, mail-runtime, DailyMailBuilder, EventChannels dispatch names, Calendar behavior, UI/DOM/rendering/layout/CSS/text, localStorage keys/contracts, or data/JSON files were changed.
 - Remaining baseline diagnostics outside this focused JSDoc update are expected.
+
+## Phase 17: Focused Civication boot JSDoc
+
+- Added focused, file-local JSDoc typing in `js/Civication/CivicationBoot.js`.
+- Added intentionally broad boot/UI/engine/global aliases to document boot/init contracts without tightening runtime-coupled dynamic behavior.
+- Annotated central boot helpers (`ensure*`, data load, boot start, and boot error handling) with minimal parameter/return typing.
+- No runtime logic, boot order, script loading, engine init, UI init, mail flow, day progression, localStorage keys/contracts, or data/JSON files were changed.
+- Remaining typecheck baseline outside this focused update is expected.

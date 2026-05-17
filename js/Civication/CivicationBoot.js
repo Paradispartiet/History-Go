@@ -2,6 +2,21 @@
 // CIVICATION BOOT – single orchestrator
 // ============================================================
 
+/**
+ * @typedef {Record<string, unknown>} CiviBootRecord
+ * @typedef {(value: unknown) => unknown} CiviBootFn
+ * @typedef {CiviBootRecord & {
+ *  boot?: CiviBootFn,
+ *  init?: CiviBootFn,
+ *  onAppOpen?: CiviBootFn,
+ *  resolveCareerRoleScope?: CiviBootFn,
+ *  enqueueNoUnlockedBrandEmployerMessage?: CiviBootFn
+ * }} CiviBootMethodBag
+ * @typedef {CiviBootRecord & { careers?: unknown[] }} CiviBootCareerPayload
+ * @typedef {CiviBootRecord & { badges?: unknown[] }} CiviBootBadgePayload
+ */
+
+/** @returns {Promise<void>} */
 async function ensureCiviCareerRulesLoaded() {
 
   if (Array.isArray(window.CIVI_CAREER_RULES)) return;
@@ -13,9 +28,12 @@ async function ensureCiviCareerRulesLoaded() {
       { cache: "no-store" }
     ).then(r => r.json());
 
+    /** @type {CiviBootCareerPayload} */
+    const careersPayload = data && typeof data === "object" ? data : {};
+
     window.CIVI_CAREER_RULES =
-      Array.isArray(data?.careers)
-        ? data.careers
+      Array.isArray(careersPayload.careers)
+        ? careersPayload.careers
         : [];
 
   } catch {
@@ -27,6 +45,10 @@ async function ensureCiviCareerRulesLoaded() {
 
 window.ensureCiviCareerRulesLoaded = ensureCiviCareerRulesLoaded;
 
+/**
+ * @param {string} src
+ * @returns {Promise<boolean>}
+ */
 function loadCivicationScriptOnce(src) {
   return new Promise((resolve, reject) => {
     if (!src) {
@@ -48,9 +70,13 @@ function loadCivicationScriptOnce(src) {
   });
 }
 
+/** @returns {Promise<boolean>} */
 async function ensureCivicationRoleModelRuntimeLoaded() {
-  if (window.CivicationRoleModelRuntime?.boot) {
-    window.CivicationRoleModelRuntime.boot();
+  /** @type {CiviBootMethodBag|undefined} */
+  const roleModelRuntime = window.CivicationRoleModelRuntime;
+
+  if (roleModelRuntime?.boot) {
+    roleModelRuntime.boot();
     return true;
   }
 
@@ -66,6 +92,7 @@ async function ensureCivicationRoleModelRuntimeLoaded() {
 
 
 
+/** @returns {Promise<boolean>} */
 async function ensureCivicationBlockedJobMessagesLoaded() {
   if (window.CivicationBlockedJobMessages?.enqueueNoUnlockedBrandEmployerMessage) return true;
   try {
@@ -77,6 +104,7 @@ async function ensureCivicationBlockedJobMessagesLoaded() {
   }
 }
 
+/** @returns {Promise<boolean>} */
 async function ensureCivicationCareerRoleResolverLoaded() {
   if (window.CivicationCareerRoleResolver?.resolveCareerRoleScope) return true;
   try {
@@ -88,6 +116,7 @@ async function ensureCivicationCareerRoleResolverLoaded() {
   }
 }
 
+/** @returns {Promise<void>} */
 async function loadCivicationData() {
   const [badgesRes, careersRes] = await Promise.all([
     fetch("data/badges.json"),
@@ -97,13 +126,23 @@ async function loadCivicationData() {
   const badgesJson = await badgesRes.json();
   const careersJson = await careersRes.json();
 
-  window.BADGES = badgesJson.badges;
-  window.HG_CAREERS = careersJson.careers;
+  /** @type {CiviBootBadgePayload} */
+  const badgesPayload = badgesJson && typeof badgesJson === "object" ? badgesJson : {};
+  /** @type {CiviBootCareerPayload} */
+  const careersPayload = careersJson && typeof careersJson === "object" ? careersJson : {};
+
+  window.BADGES = Array.isArray(badgesPayload.badges) ? badgesPayload.badges : [];
+  window.HG_CAREERS = Array.isArray(careersPayload.careers) ? careersPayload.careers : [];
 }
 
 (function () {
+  /**
+   * @param {unknown} error
+   * @returns {void}
+   */
   function showBootError(error) {
-    const message = error?.message || String(error || "Ukjent feil");
+    const err = (error && typeof error === "object") ? /** @type {CiviBootRecord} */ (error) : {};
+    const message = String(err.message || error || "Ukjent feil");
     const host = document.body || document.documentElement;
     if (!host) return;
 
@@ -131,6 +170,7 @@ async function loadCivicationData() {
     box.innerHTML = `<strong>Civication kunne ikke starte.</strong><br>${message}`;
   }
 
+  /** @returns {Promise<void>} */
   async function start() {
     try {
       console.log("Civication boot start");
@@ -163,9 +203,13 @@ async function loadCivicationData() {
         CivicationObligationEngine.evaluate();
       }
 
-      window.CivicationUI?.init?.();
+      /** @type {CiviBootMethodBag|undefined} */
+      const ui = window.CivicationUI;
+      ui?.init?.();
 
-      await window.HG_CiviEngine?.onAppOpen?.();
+      /** @type {CiviBootMethodBag|undefined} */
+      const engine = window.HG_CiviEngine;
+      await engine?.onAppOpen?.();
 
       window.dispatchEvent(new Event("civi:dataReady"));
       window.dispatchEvent(new Event("civi:booted"));
