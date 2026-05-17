@@ -129,7 +129,7 @@ async function loadCivicationData() {
 
 (function () {
   /**
-   * @param {unknown} error
+   * @param {any} error
    * @returns {void}
    */
   function showBootError(error) {

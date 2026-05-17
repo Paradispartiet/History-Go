@@ -1,10 +1,10 @@
 # Typecheck baseline report
 
 ## Metadata
-- Generated at (UTC): 2026-05-17T04:59:52.826Z
+- Generated at (UTC): 2026-05-17T05:05:45.999Z
 - Command: `npm run typecheck`
 - Typecheck exit code: 2
-- Total diagnostic lines found: 2129
+- Total diagnostic lines found: 2128
 - Files with diagnostics: 199
 - Groups with diagnostics: 11
 - Unparsed/unknown diagnostic lines: 0
@@ -12,7 +12,7 @@
 ## Summary by area
 | Area | Files | Diagnostic lines | Example files |
 | --- | ---: | ---: | --- |
-| js/Civication/** | 86 | 796 | js/Civication/CivicationBoot.js<br>js/Civication/capitalEngine.js<br>js/Civication/capitalMaintenanceEngine.js |
+| js/Civication/** | 86 | 795 | js/Civication/CivicationBoot.js<br>js/Civication/capitalEngine.js<br>js/Civication/capitalMaintenanceEngine.js |
 | other | 70 | 552 | js/DomainRegistry.js<br>js/aha.js<br>js/app.js |
 | js/ui/** | 20 | 483 | js/ui/badge-modal.js<br>js/ui/badge-unlock-toast.js<br>js/ui/badges.js |
 | js/profile.js | 1 | 84 | js/profile.js |
@@ -51,7 +51,7 @@
 ## Diagnostic types (TypeScript error code)
 | Error code | Count |
 | --- | ---: |
-| TS2339 | 1688 |
+| TS2339 | 1687 |
 | TS2551 | 217 |
 | TS2304 | 86 |
 | TS2307 | 36 |
@@ -73,7 +73,7 @@
 | TS2741 | 1 |
 
 ## Priority recommendations (mechanical)
-1. Start with **js/Civication/** (796 diagnostics)** because it currently has the highest baseline volume.
+1. Start with **js/Civication/** (795 diagnostics)** because it currently has the highest baseline volume.
 2. Focus first on concentrated hotspots: `js/ui/place-card.js` (123), `js/Civication/ui/CivicationUI.js` (107), `js/Civication/core/civicationEventEngine.js` (97), `js/profile.js` (84), `js/ui/popup-utils.js` (82).
 3. Defer broader/sensitive areas until hotspot reduction is complete: `other`, `js/ui/**`, `js/profile.js`.
 4. Keep this report read-only and rerun after each migration phase to validate trend direction.
@@ -82,7 +82,6 @@
 ```
 > history-go@0.0.0 typecheck
 > tsc -p tsconfig.json
-js/Civication/CivicationBoot.js(136,28): error TS2339: Property 'message' does not exist on type 'unknown'.
 js/Civication/CivicationBoot.js(172,7): error TS2322: Type 'CivicationEventEngine' is not assignable to type 'CiviMethodBag'.
   Index signature for type 'string' is missing in type 'CivicationEventEngine'.
 js/Civication/capitalEngine.js(126,48): error TS2339: Property 'economic' does not exist on type 'unknown'.
@@ -160,4 +159,5 @@ js/Civication/core/civicationEconomyEngine.js(246,14): error TS2339: Property 'i
 js/Civication/core/civicationEconomyEngine.js(246,28): error TS2339: Property 'career_id' does not exist on type 'unknown'.
 js/Civication/core/civicationEconomyEngine.js(256,5): error TS2304: Cannot find name 'deriveTierFromPoints'.
 js/Civication/core/civicationEconomyEngine.js(268,20): error TS2339: Property 'economy' does not exist on type 'unknown'.
+js/Civication/core/civicationEconomyEngine.js(271,20): error TS2339: Property 'economy' does not exist on type 'unknown'.
 ```
