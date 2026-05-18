@@ -5,8 +5,37 @@
 (function () {
   "use strict";
 
+  /**
+   * @typedef {Record<string, any>} CiviCapitalRecord
+   * @typedef {CiviCapitalRecord & {
+   *   economic?: number,
+   *   cultural?: number,
+   *   social?: number,
+   *   symbolic?: number,
+   *   political?: number,
+   *   institutional?: number,
+   *   subculture?: number
+   * }} CiviCapitalVector
+   * @typedef {CiviCapitalRecord & {
+   *   id?: string,
+   *   career_id?: string,
+   *   key?: string,
+   *   capital_base?: CiviCapitalRecord,
+   *   capital_effect?: CiviCapitalRecord,
+   *   capital_shift?: CiviCapitalRecord,
+   *   condition?: (user: CiviCapitalRuntimeUser) => boolean,
+   *   effect?: CiviCapitalRecord
+   * }} CiviCapitalEntry
+   * @typedef {CiviCapitalRecord & {
+   *   currentCareer?: string | null,
+   *   currentLifestyle?: string | null,
+   *   ownedItems?: string[]
+   * }} CiviCapitalRuntimeUser
+   */
+
   const LS_CAPITAL_VALUES = "hg_capital_v1";
 
+  /** @returns {CiviCapitalRecord} */
   function readStoredCapital() {
     try {
       const raw = JSON.parse(localStorage.getItem(LS_CAPITAL_VALUES) || "{}");
@@ -16,6 +45,7 @@
     }
   }
 
+  /** @param {CiviCapitalVector | CiviCapitalRecord | null | undefined} capital */
   function writeStoredCapital(capital) {
     try {
       const next = JSON.stringify(capital || {});
@@ -26,6 +56,7 @@
     } catch {}
   }
 
+  /** @returns {CiviCapitalVector} */
   function emptyCapital() {
     return {
       economic: 0,
@@ -38,6 +69,10 @@
     };
   }
 
+  /**
+   * @param {CiviCapitalVector | CiviCapitalRecord | null | undefined} capital
+   * @returns {CiviCapitalVector}
+   */
   function normalizeCapitalShape(capital) {
     const out = emptyCapital();
     const src = capital && typeof capital === "object" ? capital : {};
@@ -49,6 +84,11 @@
     return out;
   }
 
+  /**
+   * @param {CiviCapitalEntry[] | CiviCapitalRecord | null | undefined} collection
+   * @param {string | number | null | undefined} id
+   * @returns {CiviCapitalEntry | null}
+   */
   function resolveById(collection, id) {
     const key = String(id || "").trim();
     if (!key || !collection) return null;
@@ -70,6 +110,14 @@
     return null;
   }
 
+  /**
+   * @param {CiviCapitalRuntimeUser} user
+   * @param {CiviCapitalEntry[] | CiviCapitalRecord | null | undefined} CIVI_ITEMS
+   * @param {CiviCapitalEntry[] | null | undefined} CIVI_SYNERGIES
+   * @param {CiviCapitalEntry[] | CiviCapitalRecord | null | undefined} CAREERS
+   * @param {CiviCapitalEntry[] | CiviCapitalRecord | null | undefined} LIFESTYLES
+   * @returns {CiviCapitalVector}
+   */
   function calculateCapital(
     user,
     CIVI_ITEMS,
@@ -121,6 +169,7 @@
       });
     }
 
+    /** @type {CiviCapitalVector | null | undefined} */
     const homeInfluence = window.CivicationHome?.getHomeInfluence?.();
     if (homeInfluence) {
       capital.economic += Number(homeInfluence.economic || 0);
@@ -131,6 +180,12 @@
     return normalizeCapitalShape(capital);
   }
 
+  /**
+   * @param {CiviCapitalEntry | null | undefined} career
+   * @param {number} tier
+   * @param {CiviCapitalVector | CiviCapitalRecord | null | undefined} capitalState
+   * @returns {CiviCapitalVector}
+   */
   function applyCareerCapital(career, tier, capitalState) {
     if (!career || !career.capital_base) return normalizeCapitalShape(capitalState);
 
@@ -145,12 +200,16 @@
     return updated;
   }
 
+  /** @returns {string | null} */
   function getPrimaryLifestyleId() {
+    /** @type {{ id?: string | number } | null | undefined} */
     const stamp = window.getPrimaryLifestyle?.() || window.HG_Lifestyle?.getStamp?.();
     return stamp?.id ? String(stamp.id) : null;
   }
 
+  /** @returns {string[]} */
   function getOwnedItemIds() {
+    /** @type {{ ownedItems?: unknown[] } | null | undefined} */
     const inv = window.HG_CiviShop?.getInv?.();
     if (!inv || typeof inv !== "object") return [];
 
@@ -161,8 +220,11 @@
     return [];
   }
 
+  /** @returns {CiviCapitalRuntimeUser} */
   function buildRuntimeUser() {
+    /** @type {CiviCapitalRecord} */
     const active = window.CivicationState?.getActivePosition?.() || {};
+    /** @type {CiviCapitalRecord} */
     const state = window.CivicationState?.getState?.() || {};
 
     const currentCareer =
@@ -177,6 +239,13 @@
     };
   }
 
+  /**
+   * @param {CiviCapitalEntry[] | CiviCapitalRecord | null | undefined} CIVI_ITEMS
+   * @param {CiviCapitalEntry[] | null | undefined} CIVI_SYNERGIES
+   * @param {CiviCapitalEntry[] | CiviCapitalRecord | null | undefined} CAREERS
+   * @param {CiviCapitalEntry[] | CiviCapitalRecord | null | undefined} LIFESTYLES
+   * @returns {CiviCapitalVector}
+   */
   function getRuntimeCapital(CIVI_ITEMS, CIVI_SYNERGIES, CAREERS, LIFESTYLES) {
     const runtimeUser = buildRuntimeUser();
 
@@ -189,6 +258,13 @@
     );
   }
 
+  /**
+   * @param {CiviCapitalEntry[] | CiviCapitalRecord | null | undefined} [CIVI_ITEMS]
+   * @param {CiviCapitalEntry[] | null | undefined} [CIVI_SYNERGIES]
+   * @param {CiviCapitalEntry[] | CiviCapitalRecord | null | undefined} [CAREERS]
+   * @param {CiviCapitalEntry[] | CiviCapitalRecord | null | undefined} [LIFESTYLES]
+   * @returns {CiviCapitalVector}
+   */
   function syncRuntimeCapitalToStorage(CIVI_ITEMS, CIVI_SYNERGIES, CAREERS, LIFESTYLES) {
     const runtimeCapital = getRuntimeCapital(
       CIVI_ITEMS,
