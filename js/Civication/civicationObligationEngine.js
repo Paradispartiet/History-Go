@@ -7,6 +7,47 @@
    ============================================================ */
 
 (function () {
+  /**
+   * @typedef {Record<string, any>} CiviObligationRecord
+   *
+   * @typedef {CiviObligationRecord & {
+   *   career_id?: string,
+   *   role_key?: string,
+   *   title?: string,
+   *   career_name?: string,
+   *   achieved_at?: string
+   * }} CiviObligationActivePosition
+   *
+   * @typedef {CiviObligationRecord & {
+   *   id?: string,
+   *   lastCompleted?: number,
+   *   periodStart?: number,
+   *   progress?: number,
+   *   status?: string
+   * }} CiviObligationItem
+   *
+   * @typedef {CiviObligationRecord & {
+   *   startedAt?: number,
+   *   mailsPerDay?: number,
+   *   warningAfterDays?: number,
+   *   fireAfterDays?: number,
+   *   minCompletionRate?: number
+   * }} CiviObligationContract
+   *
+   * @typedef {CiviObligationRecord & {
+   *   activeJob?: string | null,
+   *   obligations?: CiviObligationItem[],
+   *   contract?: CiviObligationContract | null,
+   *   progress?: CiviObligationRecord | null,
+   *   reputation?: number,
+   *   salaryModifier?: number
+   * }} CiviObligationCareer
+   *
+   * @typedef {CiviObligationRecord & {
+   *   career?: CiviObligationCareer,
+   *   warning_used?: boolean
+   * }} CiviObligationState
+   */
 
   const DEFAULT_OBLIGATION_IDS = [
     "weekly_login",
@@ -43,19 +84,33 @@
     return Number.isFinite(n) ? n : Number(fallback || Date.now());
   }
 
+  /**
+   * @returns {CiviObligationState}
+   */
   function getState() {
-    return CivicationState.getState();
+    return /** @type {CiviObligationState} */ (CivicationState.getState());
   }
 
+  /**
+   * @returns {CiviObligationCareer}
+   */
   function getCareer() {
     const state = getState();
     return state && state.career ? state.career : {};
   }
 
+  /**
+   * @returns {CiviObligationActivePosition | null}
+   */
   function getActivePosition() {
-    return CivicationState.getActivePosition();
+    return /** @type {CiviObligationActivePosition | null} */ (CivicationState.getActivePosition());
   }
 
+  /**
+   * @param {number|string} startedAt
+   * @param {string[] | undefined} ids
+   * @returns {CiviObligationItem[]}
+   */
   function buildDefaultObligations(startedAt, ids) {
     const base = toMs(startedAt, Date.now());
 
@@ -71,6 +126,11 @@
       });
   }
 
+  /**
+   * @param {CiviObligationItem[] | unknown} obligations
+   * @param {string} id
+   * @returns {CiviObligationItem | null}
+   */
   function getObligation(obligations, id) {
     if (!Array.isArray(obligations)) return null;
 
@@ -79,6 +139,11 @@
     }) || null;
   }
 
+  /**
+   * @param {CiviObligationCareer | CiviObligationRecord | null | undefined} career
+   * @param {CiviObligationActivePosition | null | undefined} active
+   * @returns {CiviObligationContract}
+   */
   function getContract(career, active) {
     const achievedAt =
       active && active.achieved_at
@@ -96,6 +161,14 @@
     };
   }
 
+  /**
+   * @returns {{
+   *   state: CiviObligationState,
+   *   career: CiviObligationCareer,
+   *   active: CiviObligationActivePosition | null,
+   *   bootstrapped: boolean
+   * }}
+   */
   function ensureCareerBootstrapped() {
     const state = getState();
     const active = getActivePosition();
@@ -109,7 +182,7 @@
       };
     }
 
-    const career = state.career || {};
+    const career = /** @type {CiviObligationCareer} */ (state.career || {});
     let changed = false;
 
     const nextCareer = {
@@ -180,6 +253,11 @@
     };
   }
 
+  /**
+   * @param {CiviObligationContract} contract
+   * @param {number} now
+   * @returns {number}
+   */
   function computeExpectedTaskCount(contract, now) {
     const elapsedDays = Math.max(
       0,
@@ -189,11 +267,22 @@
     return elapsedDays * Number(contract.mailsPerDay || 3);
   }
 
+  /**
+   * @param {number} answered
+   * @param {number} expected
+   * @returns {number}
+   */
   function computeCompletionRate(answered, expected) {
     if (!Number.isFinite(expected) || expected <= 0) return 1;
     return Number(answered || 0) / expected;
   }
 
+  /**
+   * @param {CiviObligationCareer} career
+   * @param {CiviObligationActivePosition | null} active
+   * @param {number} now
+   * @returns {CiviObligationRecord}
+   */
   function makeCareerMetrics(career, active, now) {
     const contract = getContract(career, active);
     const obligations = Array.isArray(career.obligations)
@@ -230,6 +319,11 @@
     };
   }
 
+  /**
+   * @param {CiviObligationActivePosition | null} active
+   * @param {CiviObligationRecord} metrics
+   * @returns {CiviObligationRecord}
+   */
   function buildMailContext(active, metrics) {
     const rate = Number(metrics?.completionRate || 0);
 
@@ -263,6 +357,11 @@
     };
   }
 
+  /**
+   * @param {string} reason
+   * @param {number} reputation
+   * @returns {CiviObligationRecord}
+   */
   function fireCurrentEmployment(reason, reputation) {
     const prev = getActivePosition();
     const current = getState();
@@ -529,13 +628,15 @@
     const oneWeek = 7 * 24 * 60 * 60 * 1000;
 
     return history.filter(function (h) {
-      if (!h || !h.date) return false;
+      /** @type {CiviObligationRecord} */
+      const item = /** @type {CiviObligationRecord} */ (h || {});
+      if (!h || !item.date) return false;
 
-      if (String(h.categoryId) !== String(careerId)) {
+      if (String(item.categoryId) !== String(careerId)) {
         return false;
       }
 
-      const t = new Date(h.date).getTime();
+      const t = new Date(String(item.date)).getTime();
       return (now - t) <= oneWeek;
     }).length;
   }
