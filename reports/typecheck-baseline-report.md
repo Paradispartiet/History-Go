@@ -1,10 +1,10 @@
 # Typecheck baseline report
 
 ## Metadata
-- Generated at (UTC): 2026-05-18T09:45:13.152Z
+- Generated at (UTC): 2026-05-18T10:49:57.383Z
 - Command: `npm run typecheck`
 - Typecheck exit code: 2
-- Total diagnostic lines found: 2052
+- Total diagnostic lines found: 2030
 - Files with diagnostics: 194
 - Groups with diagnostics: 11
 - Unparsed/unknown diagnostic lines: 0
@@ -12,7 +12,7 @@
 ## Summary by area
 | Area | Files | Diagnostic lines | Example files |
 | --- | ---: | ---: | --- |
-| js/Civication/** | 81 | 730 | js/Civication/CivicationBoot.js<br>js/Civication/civicationCommercial.js<br>js/Civication/core/civicationCalendar.js |
+| js/Civication/** | 81 | 708 | js/Civication/CivicationBoot.js<br>js/Civication/civicationCommercial.js<br>js/Civication/core/civicationCalendar.js |
 | other | 70 | 551 | js/DomainRegistry.js<br>js/aha.js<br>js/app.js |
 | js/ui/** | 20 | 479 | js/ui/badge-modal.js<br>js/ui/badge-unlock-toast.js<br>js/ui/badges.js |
 | js/profile.js | 1 | 79 | js/profile.js |
@@ -36,7 +36,6 @@
 | js/routes.js | 47 | other |
 | js/ui/left-panel.js | 47 | js/ui/** |
 | js/hgKnowledgeEngine.js | 43 | js/hgKnowledgeEngine.js |
-| js/Civication/core/civicationEconomyEngine.js | 39 | js/Civication/** |
 | js/ui/lists.js | 37 | js/ui/** |
 | js/console/devConsole.js | 36 | other |
 | js/ui/nature-card.js | 36 | js/ui/** |
@@ -47,11 +46,12 @@
 | js/Civication/systems/civicationLifeMailRuntime.js | 23 | js/Civication/** |
 | js/Civication/systems/civicationCareerOutcomeRuntime.js | 22 | js/Civication/** |
 | js/Civication/ui/CivicationMiniSectionsUI.js | 22 | js/Civication/** |
+| js/ui/search.js | 22 | js/ui/** |
 
 ## Diagnostic types (TypeScript error code)
 | Error code | Count |
 | --- | ---: |
-| TS2339 | 1641 |
+| TS2339 | 1619 |
 | TS2551 | 201 |
 | TS2304 | 71 |
 | TS2307 | 36 |
@@ -75,7 +75,7 @@
 | TS2741 | 1 |
 
 ## Priority recommendations (mechanical)
-1. Start with **js/Civication/** (730 diagnostics)** because it currently has the highest baseline volume.
+1. Start with **js/Civication/** (708 diagnostics)** because it currently has the highest baseline volume.
 2. Focus first on concentrated hotspots: `js/ui/place-card.js` (123), `js/Civication/ui/CivicationUI.js` (102), `js/Civication/core/civicationEventEngine.js` (91), `js/ui/popup-utils.js` (80), `js/profile.js` (79).
 3. Defer broader/sensitive areas until hotspot reduction is complete: `other`, `js/ui/**`, `js/profile.js`.
 4. Keep this report read-only and rerun after each migration phase to validate trend direction.
@@ -95,49 +95,23 @@ js/Civication/civicationCommercial.js(230,47): error TS2339: Property 'map' does
 js/Civication/civicationCommercial.js(231,52): error TS2339: Property 'map' does not exist on type 'unknown'.
 js/Civication/civicationCommercial.js(259,52): error TS2339: Property 'map' does not exist on type 'unknown'.
 js/Civication/core/civicationCalendar.js(169,10): error TS2339: Property 'CivicationCalendar' does not exist on type 'Window & typeof globalThis'.
-js/Civication/core/civicationEconomyEngine.js(91,32): error TS2339: Property 'id' does not exist on type 'unknown'.
-js/Civication/core/civicationEconomyEngine.js(96,26): error TS2339: Property 'id' does not exist on type 'unknown'.
-js/Civication/core/civicationEconomyEngine.js(96,46): error TS2339: Property 'id' does not exist on type 'unknown'.
-js/Civication/core/civicationEconomyEngine.js(104,28): error TS2339: Property 'id' does not exist on type 'unknown'.
-js/Civication/core/civicationEconomyEngine.js(113,22): error TS2339: Property 'career_id' does not exist on type 'unknown'.
-js/Civication/core/civicationEconomyEngine.js(113,50): error TS2339: Property 'id' does not exist on type 'unknown'.
-js/Civication/core/civicationEconomyEngine.js(121,42): error TS2339: Property 'tiers' does not exist on type 'unknown'.
-js/Civication/core/civicationEconomyEngine.js(121,57): error TS2339: Property 'tiers' does not exist on type 'unknown'.
-js/Civication/core/civicationEconomyEngine.js(131,35): error TS2339: Property 'id' does not exist on type 'unknown'.
-js/Civication/core/civicationEconomyEngine.js(132,37): error TS2339: Property 'name' does not exist on type 'unknown'.
-js/Civication/core/civicationEconomyEngine.js(132,51): error TS2339: Property 'id' does not exist on type 'unknown'.
-js/Civication/core/civicationEconomyEngine.js(140,24): error TS2339: Property 'id' does not exist on type 'unknown'.
-js/Civication/core/civicationEconomyEngine.js(191,19): error TS2339: Property 'global_rules' does not exist on type 'unknown'.
-js/Civication/core/civicationEconomyEngine.js(193,19): error TS2339: Property 'global_rules' does not exist on type 'unknown'.
-js/Civication/core/civicationEconomyEngine.js(200,16): error TS2339: Property 'career_id' does not exist on type 'unknown'.
-js/Civication/core/civicationEconomyEngine.js(202,26): error TS2339: Property 'unemployed_since_week' does not exist on type 'unknown'.
-js/Civication/core/civicationEconomyEngine.js(234,25): error TS2339: Property 'career_id' does not exist on type 'unknown'.
-js/Civication/core/civicationEconomyEngine.js(234,54): error TS2339: Property 'career_id' does not exist on type 'unknown'.
-js/Civication/core/civicationEconomyEngine.js(250,26): error TS2339: Property 'career_id' does not exist on type 'unknown'.
-js/Civication/core/civicationEconomyEngine.js(254,14): error TS2339: Property 'id' does not exist on type 'unknown'.
-js/Civication/core/civicationEconomyEngine.js(254,28): error TS2339: Property 'career_id' does not exist on type 'unknown'.
-js/Civication/core/civicationEconomyEngine.js(276,20): error TS2339: Property 'economy' does not exist on type 'unknown'.
-js/Civication/core/civicationEconomyEngine.js(279,20): error TS2339: Property 'economy' does not exist on type 'unknown'.
-js/Civication/core/civicationEconomyEngine.js(287,15): error TS2339: Property 'world_logic' does not exist on type 'unknown'.
-js/Civication/core/civicationEconomyEngine.js(293,7): error TS2304: Cannot find name 'getQuizCountLastWeek'.
-js/Civication/core/civicationEconomyEngine.js(293,35): error TS2339: Property 'career_id' does not exist on type 'unknown'.
-js/Civication/core/civicationEconomyEngine.js(298,22): error TS2339: Property 'strikes' does not exist on type 'unknown'.
-js/Civication/core/civicationEconomyEngine.js(317,15): error TS2339: Property 'economy' does not exist on type 'unknown'.
-js/Civication/core/civicationEconomyEngine.js(331,14): error TS2551: Property 'CivicationPsyche' does not exist on type 'Window & typeof globalThis'. Did you mean 'CivicationHome'?
-js/Civication/core/civicationEconomyEngine.js(332,15): error TS2339: Property 'career_id' does not exist on type 'unknown'.
-js/Civication/core/civicationEconomyEngine.js(345,12): error TS2339: Property 'economy' does not exist on type 'unknown'.
-js/Civication/core/civicationEconomyEngine.js(409,25): error TS2339: Property 'global_rules' does not exist on type 'unknown[] | CiviRecord'.
-  Property 'global_rules' does not exist on type 'unknown[]'.
-js/Civication/core/civicationEconomyEngine.js(410,25): error TS2339: Property 'global_rules' does not exist on type 'unknown[] | CiviRecord'.
-  Property 'global_rules' does not exist on type 'unknown[]'.
-js/Civication/core/civicationEconomyEngine.js(411,25): error TS2339: Property 'global_rules' does not exist on type 'unknown[] | CiviRecord'.
-  Property 'global_rules' does not exist on type 'unknown[]'.
-js/Civication/core/civicationEconomyEngine.js(414,25): error TS2339: Property 'global_rules' does not exist on type 'unknown[] | CiviRecord'.
-  Property 'global_rules' does not exist on type 'unknown[]'.
-js/Civication/core/civicationEconomyEngine.js(485,43): error TS2339: Property 'id' does not exist on type 'unknown'.
-js/Civication/core/civicationEconomyEngine.js(491,54): error TS2339: Property 'career_id' does not exist on type 'unknown'.
-js/Civication/core/civicationEconomyEngine.js(492,24): error TS2339: Property 'economy' does not exist on type 'unknown'.
-js/Civication/core/civicationEconomyEngine.js(495,16): error TS2339: Property 'economy' does not exist on type 'unknown'.
+js/Civication/core/civicationEconomyEngine.js(196,19): error TS2339: Property 'global_rules' does not exist on type 'unknown'.
+js/Civication/core/civicationEconomyEngine.js(198,19): error TS2339: Property 'global_rules' does not exist on type 'unknown'.
+js/Civication/core/civicationEconomyEngine.js(205,16): error TS2339: Property 'career_id' does not exist on type 'unknown'.
+js/Civication/core/civicationEconomyEngine.js(239,25): error TS2339: Property 'career_id' does not exist on type 'unknown'.
+js/Civication/core/civicationEconomyEngine.js(239,54): error TS2339: Property 'career_id' does not exist on type 'unknown'.
+js/Civication/core/civicationEconomyEngine.js(255,26): error TS2339: Property 'career_id' does not exist on type 'unknown'.
+js/Civication/core/civicationEconomyEngine.js(259,14): error TS2339: Property 'id' does not exist on type 'unknown'.
+js/Civication/core/civicationEconomyEngine.js(259,28): error TS2339: Property 'career_id' does not exist on type 'unknown'.
+js/Civication/core/civicationEconomyEngine.js(281,20): error TS2339: Property 'economy' does not exist on type 'unknown'.
+js/Civication/core/civicationEconomyEngine.js(284,20): error TS2339: Property 'economy' does not exist on type 'unknown'.
+js/Civication/core/civicationEconomyEngine.js(292,15): error TS2339: Property 'world_logic' does not exist on type 'unknown'.
+js/Civication/core/civicationEconomyEngine.js(298,7): error TS2304: Cannot find name 'getQuizCountLastWeek'.
+js/Civication/core/civicationEconomyEngine.js(298,35): error TS2339: Property 'career_id' does not exist on type 'unknown'.
+js/Civication/core/civicationEconomyEngine.js(322,15): error TS2339: Property 'economy' does not exist on type 'unknown'.
+js/Civication/core/civicationEconomyEngine.js(336,14): error TS2551: Property 'CivicationPsyche' does not exist on type 'Window & typeof globalThis'. Did you mean 'CivicationHome'?
+js/Civication/core/civicationEconomyEngine.js(337,15): error TS2339: Property 'career_id' does not exist on type 'unknown'.
+js/Civication/core/civicationEconomyEngine.js(350,12): error TS2339: Property 'economy' does not exist on type 'unknown'.
 js/Civication/core/civicationEventEngine.js(41,8): error TS2362: The left-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
 js/Civication/core/civicationEventEngine.js(41,15): error TS2363: The right-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
 js/Civication/core/civicationEventEngine.js(86,39): error TS2339: Property 'HG_STATE' does not exist on type 'Window & typeof globalThis'.
@@ -162,4 +136,30 @@ js/Civication/core/civicationEventEngine.js(238,14): error TS2551: Property 'Civ
 js/Civication/core/civicationEventEngine.js(248,28): error TS2339: Property 'career_id' does not exist on type 'unknown'.
 js/Civication/core/civicationEventEngine.js(252,16): error TS2339: Property 'id' does not exist on type 'unknown'.
 js/Civication/core/civicationEventEngine.js(252,30): error TS2339: Property 'career_id' does not exist on type 'unknown'.
+js/Civication/core/civicationEventEngine.js(266,12): error TS2551: Property 'CivicationPsyche' does not exist on type 'Window & typeof globalThis'. Did you mean 'CivicationHome'?
+js/Civication/core/civicationEventEngine.js(285,36): error TS2339: Property 'role_key' does not exist on type 'unknown'.
+js/Civication/core/civicationEventEngine.js(286,35): error TS2339: Property 'role_id' does not exist on type 'unknown'.
+js/Civication/core/civicationEventEngine.js(289,24): error TS2698: Spread types may only be created from object types.
+js/Civication/core/civicationEventEngine.js(292,38): error TS2339: Property 'role_key' does not exist on type 'unknown'.
+js/Civication/core/civicationEventEngine.js(297,36): error TS2339: Property 'role_id' does not exist on type 'unknown'.
+js/Civication/core/civicationEventEngine.js(334,17): error TS2339: Property 'date' does not exist on type 'unknown'.
+js/Civication/core/civicationEventEngine.js(339,20): error TS2339: Property 'seen' does not exist on type 'unknown'.
+js/Civication/core/civicationEventEngine.js(348,20): error TS2339: Property 'seen' does not exist on type 'unknown'.
+js/Civication/core/civicationEventEngine.js(376,18): error TS2339: Property 'CivicationMailRuntime' does not exist on type 'Window & typeof globalThis'.
+js/Civication/core/civicationEventEngine.js(407,20): error TS2339: Property 'CiviRoleStoryletBridge' does not exist on type 'Window & typeof globalThis'.
+js/Civication/core/civicationEventEngine.js(445,14): error TS2551: Property 'CivicationPsyche' does not exist on type 'Window & typeof globalThis'. Did you mean 'CivicationHome'?
+js/Civication/core/civicationEventEngine.js(446,21): error TS2551: Property 'CivicationPsyche' does not exist on type 'Window & typeof globalThis'. Did you mean 'CivicationHome'?
+js/Civication/core/civicationEventEngine.js(447,18): error TS2551: Property 'CivicationPsyche' does not exist on type 'Window & typeof globalThis'. Did you mean 'CivicationHome'?
+js/Civication/core/civicationEventEngine.js(981,14): error TS2339: Property 'CivicationCalendar' does not exist on type 'Window & typeof globalThis'.
+js/Civication/core/civicationEventEngine.js(992,14): error TS2339: Property 'CivicationCalendar' does not exist on type 'Window & typeof globalThis'.
+js/Civication/core/civicationEventEngine.js(995,14): error TS2339: Property 'CivicationTaskEngine' does not exist on type 'Window & typeof globalThis'.
+js/Civication/core/civicationEventEngine.js(1021,18): error TS2339: Property 'CiviStoryResolver' does not exist on type 'Window & typeof globalThis'.
+js/Civication/core/civicationEventEngine.js(1022,29): error TS2339: Property 'CiviStoryResolver' does not exist on type 'Window & typeof globalThis'.
+js/Civication/core/civicationEventEngine.js(1082,39): error TS2339: Property 'CivicationConflicts' does not exist on type 'Window & typeof globalThis'.
+js/Civication/core/civicationEventEngine.js(1083,29): error TS2339: Property 'CivicationConflicts' does not exist on type 'Window & typeof globalThis'.
+js/Civication/core/civicationEventEngine.js(1142,18): error TS2551: Property 'CivicationPsyche' does not exist on type 'Window & typeof globalThis'. Did you mean 'CivicationHome'?
+js/Civication/core/civicationEventEngine.js(1143,25): error TS2551: Property 'CivicationPsyche' does not exist on type 'Window & typeof globalThis'. Did you mean 'CivicationHome'?
+js/Civication/core/civicationEventEngine.js(1145,18): error TS2551: Property 'CivicationPsyche' does not exist on type 'Window & typeof globalThis'. Did you mean 'CivicationHome'?
+js/Civication/core/civicationEventEngine.js(1160,7): error TS2739: Type '{}' is missing the following properties from type '{ ok: boolean; reason: string; }': ok, reason
+js/Civication/core/civicationEventEngine.js(1248,30): error TS2339: Property 'global_rules' does not exist on type 'unknown[] | CiviRecord'.
 ```

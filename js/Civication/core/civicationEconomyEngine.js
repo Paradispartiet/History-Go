@@ -1,8 +1,9 @@
 /**
  * @typedef {Record<string, any>} CiviEconomyRecord
- * @typedef {CiviEconomyRecord & { balance?: number, pc?: number, last_tick_iso?: string | null }} CiviEconomyWallet
- * @typedef {CiviEconomyRecord & { career_id?: string, id?: string, title?: string, name?: string, economy?: CiviEconomyRecord, world_logic?: CiviEconomyRecord }} CiviEconomyCareer
- * @typedef {CiviEconomyRecord & { points?: number, completed?: any[], tierIndex?: number }} CiviEconomyProgress
+ * @typedef {CiviEconomyRecord & { id?: string, name?: string, tiers?: CiviEconomyRecord[] }} CiviEconomyBadge
+ * @typedef {CiviEconomyRecord & { balance?: number, pc?: number, last_tick_iso?: string | null, lastTickIso?: string | null, weekly_income?: number, weeklyIncome?: number, history?: unknown[] }} CiviEconomyWallet
+ * @typedef {CiviEconomyRecord & { career_id?: string, id?: string, role_id?: string, badge_id?: string, title?: string, name?: string, tier?: number, salary?: number, base_salary?: number, career_mod?: number, curve?: string, status?: string, economy?: CiviEconomyRecord, world_logic?: CiviEconomyRecord }} CiviEconomyCareer
+ * @typedef {CiviEconomyRecord & { points?: number, completed?: any[], tierIndex?: number, badgeId?: string, badge_id?: string, label?: string, progress?: number }} CiviEconomyProgress
  * @typedef {CiviEconomyRecord & { ok?: boolean, balance?: number, delta?: number, weekly?: number, reason?: string, career?: CiviEconomyCareer | null, wallet?: CiviEconomyWallet }} CiviEconomyTickResult
  */
 function checkTierUpgrades(onlyCareerId) {
@@ -81,9 +82,10 @@ function checkTierUpgrades(onlyCareerId) {
 
   const newTierState = Object.assign({}, tierState);
 
+  /** @type {CiviEconomyBadge[]} */
   const badges =
     Array.isArray(window.BADGES)
-      ? window.BADGES
+      ? /** @type {CiviEconomyBadge[]} */ (window.BADGES)
       : [];
 
   // 2) Finn kun badge for targetCareerId (ikke loop alle)
@@ -105,11 +107,12 @@ function checkTierUpgrades(onlyCareerId) {
 
   if (tierIndex > previousTier) {
 
+    /** @type {CiviEconomyCareer | null} */
     let career = null;
 
     if (Array.isArray(window.HG_CAREERS)) {
       for (let j = 0; j < window.HG_CAREERS.length; j++) {
-        const c = window.HG_CAREERS[j];
+        const c = /** @type {CiviEconomyCareer} */ (window.HG_CAREERS[j]);
         if (String(c.career_id) === String(badge.id)) {
           career = c;
           break;
@@ -160,6 +163,8 @@ window.checkTierUpgrades = checkTierUpgrades;
 function tickPCIncomeWeekly() {
 
   const state = window.CivicationState.getState();
+  /** @type {CiviEconomyRecord} */
+  const stateView = /** @type {CiviEconomyRecord} */ (state);
   let wallet = normalizeWallet(
     window.CivicationState.getWallet()
   );
@@ -199,7 +204,7 @@ function tickPCIncomeWeekly() {
 
   if (!active?.career_id) {
 
-    const sinceW = state.unemployed_since_week;
+    const sinceW = stateView.unemployed_since_week;
 
     if (!sinceW) {
 
@@ -295,7 +300,7 @@ function tickPCIncomeWeekly() {
     if (done < minQuiz) {
 
       const strikes =
-        Number(state.strikes || 0) + 1;
+        Number(stateView.strikes || 0) + 1;
 
       let stability = "STABLE";
 
@@ -405,13 +410,17 @@ function calculateWeeklySalary(career, tierIndex) {
 
   let rounding = "nearest";
 
-  if (window.HG_CAREERS &&
-      window.HG_CAREERS.global_rules &&
-      window.HG_CAREERS.global_rules.salary &&
-      window.HG_CAREERS.global_rules.salary.rounding) {
+  /** @type {CiviEconomyRecord} */
+  const careersGlobalRules =
+    /** @type {CiviEconomyRecord} */ (window.HG_CAREERS);
+
+  if (careersGlobalRules &&
+      careersGlobalRules.global_rules &&
+      careersGlobalRules.global_rules.salary &&
+      careersGlobalRules.global_rules.salary.rounding) {
 
     rounding =
-      window.HG_CAREERS.global_rules.salary.rounding;
+      careersGlobalRules.global_rules.salary.rounding;
   }
 
   switch (rounding) {
@@ -482,13 +491,19 @@ function getWeeklySalaryFromBadges(careerId, points) {
     return null;
   }
 
-  const badge = window.BADGES.find(b => b.id === careerId);
+  const badge = /** @type {CiviEconomyBadge | undefined} */ (window.BADGES.find(
+    /** @param {CiviEconomyBadge} b */
+    b => b.id === careerId
+  ));
   if (!badge) return null;
 
   const { tierIndex } = deriveTierFromPoints(badge, points);
   if (!Number.isFinite(tierIndex)) return null;
 
-  const rules = window.CIVI_CAREER_RULES.find(c => c.career_id === careerId);
+  const rules = /** @type {CiviEconomyCareer | undefined} */ (window.CIVI_CAREER_RULES.find(
+    /** @param {CiviEconomyCareer} c */
+    c => c.career_id === careerId
+  ));
   if (!rules || !rules.economy?.salary_by_tier) return null;
 
   // tierIndex er 0-basert → +1

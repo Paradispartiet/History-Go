@@ -243,3 +243,11 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Annotated existing storage/state helpers and selected local lifestyle/identity variables only, with intentionally broad types.
 - No runtime, psyche, autonomy, trust, economy_profile, state/localStorage, UI/DOM, rendering, or data/JSON behavior was changed.
 - Remaining typecheck baseline outside this focused file is still expected.
+
+## Phase 27: Civication economy engine second focused JSDoc pass
+
+- Added a second focused, JSDoc-only pass in `js/Civication/core/civicationEconomyEngine.js`.
+- Reused and lightly extended existing broad file-local economy aliases for wallet/career/progress/tick-result contracts, plus a minimal broad badge alias to reduce remaining unknown-property noise.
+- Added narrow local variable/function-level JSDoc annotations in existing economy helpers only (no new runtime helpers, no flow refactors).
+- No runtime/economy/salary/weekly tick/wallet/balance/career/progression/badge/tier/`deriveTierFromPoints`/`window.HGLearningLog`/localStorage/UI/data behavior changed.
+- Remaining typecheck baseline outside this focused pass is expected.
