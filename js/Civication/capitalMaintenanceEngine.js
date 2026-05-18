@@ -1,6 +1,23 @@
 (function () {
   "use strict";
 
+
+/**
+ * @typedef {Record<string, any>} CiviCapitalMaintenanceRecord
+ * @typedef {CiviCapitalMaintenanceRecord & { maintenanceDays?: number, decayPerDay?: number }} CiviCapitalMaintenanceConfig
+ * @typedef {Record<string, CiviCapitalMaintenanceConfig>} CiviCapitalMaintenanceProfile
+ * @typedef {CiviCapitalMaintenanceRecord & {
+ *   economic?: number, cultural?: number, social?: number, symbolic?: number,
+ *   political?: number, institutional?: number, subculture?: number
+ * }} CiviCapitalMaintenanceVector
+ * @typedef {CiviCapitalMaintenanceRecord & {
+ *   version?: number,
+ *   lastAppliedAt?: number,
+ *   lastActive?: CiviCapitalMaintenanceRecord,
+ *   log?: any[]
+ * }} CiviCapitalMaintenanceMeta
+ */
+
   // Keys
   const LS_CAPITAL_VALUES = "hg_capital_v1";          // eksisterende (tall per kapital)
   const LS_MAINT_META     = "hg_capital_maint_v1";    // ny: lastActive + lastAppliedAt + log
@@ -29,12 +46,18 @@
 
   // Optional overrides:
   // window.CIVI_CAPITAL_MAINT_PROFILE = { economic:{maintenanceDays:..,decayPerDay:..}, ... }
+  /**
+   * @returns {CiviCapitalMaintenanceProfile}
+   */
   function getProfile() {
+    /** @type {CiviCapitalMaintenanceRecord | undefined} */
     const o = window.CIVI_CAPITAL_MAINT_PROFILE;
     if (!o || typeof o !== "object") return DEFAULT_PROFILE;
 
+    /** @type {CiviCapitalMaintenanceProfile} */
     const merged = { ...DEFAULT_PROFILE };
     Object.keys(o).forEach((k) => {
+      /** @type {CiviCapitalMaintenanceConfig | undefined} */
       const v = o[k];
       if (!v || typeof v !== "object") return;
       merged[k] = {
@@ -51,6 +74,11 @@
     return Math.max(0, x);
   }
 
+  /**
+   * @param {string | null} raw
+   * @param {CiviCapitalMaintenanceRecord} fallback
+   * @returns {CiviCapitalMaintenanceRecord}
+   */
   function safeParse(raw, fallback) {
     try {
       const v = JSON.parse(raw);
@@ -60,8 +88,12 @@
     }
   }
 
+  /**
+   * @returns {CiviCapitalMaintenanceVector}
+   */
   function loadCapitalValues() {
   const raw = localStorage.getItem(LS_CAPITAL_VALUES);
+  /** @type {CiviCapitalMaintenanceVector} */
   const v = safeParse(raw, {});
 
   // ensure keys (opprydding: én kapital-liste)
@@ -77,6 +109,9 @@
     try { localStorage.setItem(LS_CAPITAL_VALUES, JSON.stringify(obj || {})); } catch {}
   }
 
+  /**
+   * @returns {CiviCapitalMaintenanceMeta}
+   */
   function loadMeta() {
     const raw = localStorage.getItem(LS_MAINT_META);
     return safeParse(raw, {});
@@ -86,6 +121,11 @@
     try { localStorage.setItem(LS_MAINT_META, JSON.stringify(meta || {})); } catch {}
   }
 
+  /**
+   * @param {CiviCapitalMaintenanceRecord | null | undefined} meta
+   * @param {number} nowMs
+   * @returns {CiviCapitalMaintenanceMeta}
+   */
   function ensureMeta(meta, nowMs) {
     const m = meta && typeof meta === "object" ? meta : {};
     if (!m.version) m.version = 1;
@@ -188,6 +228,11 @@
   }
 
   // Maintain via quiz/purchase/etc.
+  /**
+   * @param {string} type
+   * @param {number} [delta=1]
+   * @param {CiviCapitalMaintenanceRecord} [opts={}]
+   */
   function maintain(type, delta = 1, opts = {}) {
   const nowMs = Number.isFinite(opts.nowMs) ? opts.nowMs : Date.now();
   const t = String(type || "").trim();
@@ -200,9 +245,10 @@
   const cur = Number(values[t] || 0);
 
   // 🔷 Identity boost
+  /** @type {number} */
   let boost = 1;
   if (window.HG_IdentityCore?.getBoost) {
-    boost = window.HG_IdentityCore.getBoost(t);
+    boost = Number(window.HG_IdentityCore.getBoost(t) || 1);
   }
 
   const effectiveDelta = Number(delta || 0) * boost;
