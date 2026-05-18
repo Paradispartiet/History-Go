@@ -235,3 +235,11 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Annotated existing obligation helpers around state access, career bootstrapping, contract/metrics computation and quiz-history filtering only.
 - No runtime, obligation logic, career/career_id flow, state contract, localStorage keys, UI/DOM, or data/JSON behavior was changed.
 - Remaining baseline diagnostics outside this focused file are still expected.
+
+## Phase 26: Focused CivicationPsyche JSDoc
+
+- Added focused, file-local JSDoc typing in `js/Civication/core/CivicationPsyche.js`.
+- Introduced broad local psyche aliases for record/state/profile/trust-meta contracts to reduce dynamic `autonomy`/`trust`/`economy_profile` type friction.
+- Annotated existing storage/state helpers and selected local lifestyle/identity variables only, with intentionally broad types.
+- No runtime, psyche, autonomy, trust, economy_profile, state/localStorage, UI/DOM, rendering, or data/JSON behavior was changed.
+- Remaining typecheck baseline outside this focused file is still expected.
