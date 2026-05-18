@@ -5,7 +5,9 @@
   "scripts": {
     "typecheck": "tsc -p tsconfig.json",
     "health:places": "node tools/placeHealthReport.mjs",
-    "typecheck:report": "node tools/typecheck-baseline-report.mjs"
+    "typecheck:report": "node tools/typecheck-baseline-report.mjs",
+    "health:data": "node tools/dataHealthReport.mjs",
+    "health": "npm run health:data"
   },
   "devDependencies": {
     "typescript": "^5.9.0"
