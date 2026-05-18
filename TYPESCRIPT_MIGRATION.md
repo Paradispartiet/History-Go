@@ -219,3 +219,11 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Introduced broad local maintenance aliases for record/profile/vector/meta/config contracts to keep runtime-coupled dynamic fields intentionally loose.
 - No runtime logic, capital maintenance behavior, decay behavior, `maintenanceDays`/`decayPerDay` logic, localStorage keys, UI/DOM/rendering, or data/JSON contracts were changed.
 - Remaining typecheck baseline outside this focused update is still expected.
+
+## Phase 24: Focused civicationCommercial JSDoc
+
+- Added focused, file-local JSDoc typing in `js/Civication/civicationCommercial.js`.
+- Introduced broad local commercial/shop aliases for record, wallet, inventory, pack and store contracts to reduce dynamic field type friction.
+- Annotated existing commercial helpers for wallet/inventory/data-loading/visibility/purchase flow without changing runtime behavior.
+- No runtime/shop/purchase/sell/refund/wallet/balance/packs/ownedItems/localStorage/UI/data logic was changed.
+- Remaining baseline diagnostics outside this focused file are still expected.

@@ -6,10 +6,22 @@
    ============================================================ */
 
 (function () {
+  /**
+   * @typedef {Record<string, any>} CiviCommercialRecord
+   * @typedef {CiviCommercialRecord & { balance?: number, last_tick_iso?: string | null }} CiviCommercialWallet
+   * @typedef {CiviCommercialRecord & { packs?: Record<string, boolean>, style_counts?: Record<string, number> }} CiviCommercialInventory
+   * @typedef {CiviCommercialRecord & { id?: string, store_id?: string, price_pc?: number, price?: number, styles?: unknown[], tags?: unknown[], effects?: CiviCommercialRecord }} CiviCommercialPack
+   * @typedef {CiviCommercialRecord & { id?: string, type?: string }} CiviCommercialStore
+   */
 
   const LS_INV = "hg_pc_inventory_v1";
   const LS_WALLET = "hg_pc_wallet_v1";
 
+  /**
+   * @param {string} k
+   * @param {any} fallback
+   * @returns {any}
+   */
   const readJSON = (k, fallback) => {
     try {
       const raw = localStorage.getItem(k);
@@ -19,6 +31,11 @@
     }
   };
 
+  /**
+   * @param {string} k
+   * @param {any} v
+   * @returns {void}
+   */
   const writeJSON = (k, v) =>
     localStorage.setItem(k, JSON.stringify(v));
 
@@ -26,6 +43,9 @@
   // WALLET
   // ============================================================
 
+  /**
+   * @returns {CiviCommercialWallet}
+   */
   function getWallet() {
 
     if (typeof window.getPCWallet === "function") {
@@ -33,6 +53,7 @@
       if (w && typeof w.balance === "number") return w;
     }
 
+    /** @type {CiviCommercialWallet | CiviCommercialRecord} */
     const w = readJSON(LS_WALLET, {
       balance: 0,
       last_tick_iso: null
@@ -44,6 +65,10 @@
     };
   }
 
+  /**
+   * @param {CiviCommercialWallet | CiviCommercialRecord | null | undefined} wallet
+   * @returns {void}
+   */
   function setWallet(wallet) {
 
     if (!wallet || typeof wallet.balance !== "number") {
@@ -62,8 +87,12 @@
   // INVENTORY
   // ============================================================
 
+  /**
+   * @returns {CiviCommercialInventory}
+   */
   function getInv() {
 
+    /** @type {CiviCommercialInventory | CiviCommercialRecord | null} */
     const inv = readJSON(LS_INV, null);
 
     if (inv && typeof inv === "object") return inv;
@@ -73,6 +102,10 @@
     return fresh;
   }
 
+  /**
+   * @param {CiviCommercialInventory | CiviCommercialRecord} inv
+   * @returns {void}
+   */
   function saveInv(inv) {
     writeJSON(LS_INV, inv);
   }
@@ -81,6 +114,9 @@
   // DATA LOADING
   // ============================================================
 
+  /**
+   * @returns {Promise<CiviCommercialPack[]>}
+   */
   async function tryLoadPacks() {
 
     const paths = [
@@ -111,6 +147,9 @@
     return [];
   }
 
+  /**
+   * @returns {Promise<CiviCommercialStore[]>}
+   */
   async function tryLoadStores() {
     const paths = [
       "data/Civication/stores.json",
@@ -136,9 +175,14 @@
     return [];
   }
 
+  /** @type {Promise<CiviCommercialPack[]> | null} */
   let _packsPromise = null;
+  /** @type {Promise<CiviCommercialStore[]> | null} */
   let _storesPromise = null;
 
+  /**
+   * @returns {Promise<CiviCommercialPack[]>}
+   */
   function getPacks() {
     if (!_packsPromise) {
       _packsPromise = tryLoadPacks();
@@ -146,6 +190,9 @@
     return _packsPromise;
   }
 
+  /**
+   * @returns {Promise<CiviCommercialStore[]>}
+   */
   function getStores() {
     if (!_storesPromise) {
       _storesPromise = tryLoadStores();
@@ -167,10 +214,18 @@
     return bridge?.getBucket ? bridge.getBucket("housing") : [];
   }
 
+  /**
+   * @param {unknown[]} xs
+   * @returns {string[]}
+   */
   function normalizeList(xs) {
     return Array.isArray(xs) ? xs.map(String).filter(Boolean) : [];
   }
 
+  /**
+   * @param {CiviCommercialStore | CiviCommercialRecord} store
+   * @returns {boolean}
+   */
   function storeMatchesHistoryGoAccess(store) {
     const pool = new Set(getStoreAccessPool().map(String));
     const housing = new Set(getHousingAccessPool().map(String));
@@ -196,6 +251,10 @@
     return wanted.some((k) => pool.has(String(k)));
   }
 
+  /**
+   * @param {CiviCommercialPack | CiviCommercialRecord} pack
+   * @returns {boolean}
+   */
   function hasRequiredNeighborhoodAccess(pack) {
     const housing = new Set(getHousingAccessPool().map(String));
     const required = normalizeList(pack?.gating?.requires_neighborhood_any);
@@ -210,11 +269,17 @@
     return translated.some((key) => housing.has(String(key)));
   }
 
+  /**
+   * @returns {Promise<CiviCommercialStore[]>}
+   */
   async function getVisibleStores() {
     const stores = await getStores();
     return stores.filter(storeMatchesHistoryGoAccess);
   }
 
+  /**
+   * @returns {Promise<CiviCommercialPack[]>}
+   */
   async function getVisiblePacks() {
     const [packs, visibleStores] = await Promise.all([getPacks(), getVisibleStores()]);
     const allowedStoreIds = new Set(visibleStores.map((s) => String(s?.id || "")));
@@ -231,10 +296,14 @@
   // BUY PACK
   // ============================================================
 
+  /**
+   * @param {string} packId
+   * @returns {Promise<CiviCommercialRecord>}
+   */
   async function buyPack(packId) {
 
     const packs = await getVisiblePacks();
-    const pack = packs.find(p => String(p.id) === String(packId));
+    const pack = packs.find((p) => String(p.id) === String(packId));
 
     if (!pack) {
       return { ok: false, reason: "PACK_NOT_FOUND" };
@@ -254,6 +323,7 @@
       };
     }
 
+    /** @type {CiviCommercialInventory} */
     const inv = getInv();
     const key = String(pack.id);
 
