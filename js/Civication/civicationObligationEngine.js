@@ -636,7 +636,7 @@
         return false;
       }
 
-      const t = new Date(String(item.date)).getTime();
+      const t = new Date(/** @type {any} */ (item.date)).getTime();
       return (now - t) <= oneWeek;
     }).length;
   }
