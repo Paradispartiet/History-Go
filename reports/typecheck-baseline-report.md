@@ -1,10 +1,10 @@
 # Typecheck baseline report
 
 ## Metadata
-- Generated at (UTC): 2026-05-18T03:39:52.998Z
+- Generated at (UTC): 2026-05-18T07:57:39.104Z
 - Command: `npm run typecheck`
 - Typecheck exit code: 2
-- Total diagnostic lines found: 2078
+- Total diagnostic lines found: 2075
 - Files with diagnostics: 196
 - Groups with diagnostics: 11
 - Unparsed/unknown diagnostic lines: 0
@@ -12,7 +12,7 @@
 ## Summary by area
 | Area | Files | Diagnostic lines | Example files |
 | --- | ---: | ---: | --- |
-| js/Civication/** | 83 | 756 | js/Civication/CivicationBoot.js<br>js/Civication/civicationCommercial.js<br>js/Civication/civicationObligationEngine.js |
+| js/Civication/** | 83 | 753 | js/Civication/CivicationBoot.js<br>js/Civication/civicationCommercial.js<br>js/Civication/civicationObligationEngine.js |
 | other | 70 | 551 | js/DomainRegistry.js<br>js/aha.js<br>js/app.js |
 | js/ui/** | 20 | 479 | js/ui/badge-modal.js<br>js/ui/badge-unlock-toast.js<br>js/ui/badges.js |
 | js/profile.js | 1 | 79 | js/profile.js |
@@ -51,7 +51,7 @@
 ## Diagnostic types (TypeScript error code)
 | Error code | Count |
 | --- | ---: |
-| TS2339 | 1666 |
+| TS2339 | 1663 |
 | TS2551 | 202 |
 | TS2304 | 71 |
 | TS2307 | 36 |
@@ -75,7 +75,7 @@
 | TS2741 | 1 |
 
 ## Priority recommendations (mechanical)
-1. Start with **js/Civication/** (756 diagnostics)** because it currently has the highest baseline volume.
+1. Start with **js/Civication/** (753 diagnostics)** because it currently has the highest baseline volume.
 2. Focus first on concentrated hotspots: `js/ui/place-card.js` (123), `js/Civication/ui/CivicationUI.js` (102), `js/Civication/core/civicationEventEngine.js` (91), `js/ui/popup-utils.js` (80), `js/profile.js` (79).
 3. Defer broader/sensitive areas until hotspot reduction is complete: `other`, `js/ui/**`, `js/profile.js`.
 4. Keep this report read-only and rerun after each migration phase to validate trend direction.
@@ -86,17 +86,14 @@
 > tsc -p tsconfig.json
 js/Civication/CivicationBoot.js(172,7): error TS2322: Type 'CivicationEventEngine' is not assignable to type 'CiviMethodBag'.
   Index signature for type 'string' is missing in type 'CivicationEventEngine'.
-js/Civication/civicationCommercial.js(33,25): error TS2339: Property 'balance' does not exist on type 'unknown'.
-js/Civication/civicationCommercial.js(99,36): error TS2339: Property 'packs' does not exist on type 'unknown'.
-js/Civication/civicationCommercial.js(99,53): error TS2339: Property 'packs' does not exist on type 'unknown'.
-js/Civication/civicationCommercial.js(125,36): error TS2339: Property 'stores' does not exist on type 'unknown'.
-js/Civication/civicationCommercial.js(125,54): error TS2339: Property 'stores' does not exist on type 'unknown'.
-js/Civication/civicationCommercial.js(175,47): error TS2339: Property 'map' does not exist on type 'unknown'.
-js/Civication/civicationCommercial.js(176,52): error TS2339: Property 'map' does not exist on type 'unknown'.
-js/Civication/civicationCommercial.js(200,52): error TS2339: Property 'map' does not exist on type 'unknown'.
-js/Civication/civicationCommercial.js(246,35): error TS2339: Property 'balance' does not exist on type 'unknown'.
-js/Civication/civicationCommercial.js(279,12): error TS2339: Property 'balance' does not exist on type 'unknown'.
-js/Civication/civicationCommercial.js(289,26): error TS2339: Property 'balance' does not exist on type 'unknown'.
+js/Civication/civicationCommercial.js(53,25): error TS2339: Property 'balance' does not exist on type 'unknown'.
+js/Civication/civicationCommercial.js(135,36): error TS2339: Property 'packs' does not exist on type 'unknown'.
+js/Civication/civicationCommercial.js(135,53): error TS2339: Property 'packs' does not exist on type 'unknown'.
+js/Civication/civicationCommercial.js(164,36): error TS2339: Property 'stores' does not exist on type 'unknown'.
+js/Civication/civicationCommercial.js(164,54): error TS2339: Property 'stores' does not exist on type 'unknown'.
+js/Civication/civicationCommercial.js(230,47): error TS2339: Property 'map' does not exist on type 'unknown'.
+js/Civication/civicationCommercial.js(231,52): error TS2339: Property 'map' does not exist on type 'unknown'.
+js/Civication/civicationCommercial.js(259,52): error TS2339: Property 'map' does not exist on type 'unknown'.
 js/Civication/civicationObligationEngine.js(52,27): error TS2339: Property 'career' does not exist on type 'unknown'.
 js/Civication/civicationObligationEngine.js(52,42): error TS2339: Property 'career' does not exist on type 'unknown'.
 js/Civication/civicationObligationEngine.js(103,28): error TS2339: Property 'career_id' does not exist on type 'unknown'.
@@ -162,4 +159,7 @@ js/Civication/core/civicationEconomyEngine.js(414,25): error TS2339: Property 'g
   Property 'global_rules' does not exist on type 'unknown[]'.
 js/Civication/core/civicationEconomyEngine.js(485,43): error TS2339: Property 'id' does not exist on type 'unknown'.
 js/Civication/core/civicationEconomyEngine.js(491,54): error TS2339: Property 'career_id' does not exist on type 'unknown'.
+js/Civication/core/civicationEconomyEngine.js(492,24): error TS2339: Property 'economy' does not exist on type 'unknown'.
+js/Civication/core/civicationEconomyEngine.js(495,16): error TS2339: Property 'economy' does not exist on type 'unknown'.
+js/Civication/core/civicationEventEngine.js(41,8): error TS2362: The left-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
 ```
