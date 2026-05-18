@@ -1,10 +1,10 @@
 # Typecheck baseline report
 
 ## Metadata
-- Generated at (UTC): 2026-05-18T10:41:32.076Z
+- Generated at (UTC): 2026-05-18T10:49:57.383Z
 - Command: `npm run typecheck`
 - Typecheck exit code: 2
-- Total diagnostic lines found: 2029
+- Total diagnostic lines found: 2030
 - Files with diagnostics: 194
 - Groups with diagnostics: 11
 - Unparsed/unknown diagnostic lines: 0
@@ -12,7 +12,7 @@
 ## Summary by area
 | Area | Files | Diagnostic lines | Example files |
 | --- | ---: | ---: | --- |
-| js/Civication/** | 81 | 707 | js/Civication/CivicationBoot.js<br>js/Civication/civicationCommercial.js<br>js/Civication/core/civicationCalendar.js |
+| js/Civication/** | 81 | 708 | js/Civication/CivicationBoot.js<br>js/Civication/civicationCommercial.js<br>js/Civication/core/civicationCalendar.js |
 | other | 70 | 551 | js/DomainRegistry.js<br>js/aha.js<br>js/app.js |
 | js/ui/** | 20 | 479 | js/ui/badge-modal.js<br>js/ui/badge-unlock-toast.js<br>js/ui/badges.js |
 | js/profile.js | 1 | 79 | js/profile.js |
@@ -51,7 +51,7 @@
 ## Diagnostic types (TypeScript error code)
 | Error code | Count |
 | --- | ---: |
-| TS2339 | 1618 |
+| TS2339 | 1619 |
 | TS2551 | 201 |
 | TS2304 | 71 |
 | TS2307 | 36 |
@@ -75,7 +75,7 @@
 | TS2741 | 1 |
 
 ## Priority recommendations (mechanical)
-1. Start with **js/Civication/** (707 diagnostics)** because it currently has the highest baseline volume.
+1. Start with **js/Civication/** (708 diagnostics)** because it currently has the highest baseline volume.
 2. Focus first on concentrated hotspots: `js/ui/place-card.js` (123), `js/Civication/ui/CivicationUI.js` (102), `js/Civication/core/civicationEventEngine.js` (91), `js/ui/popup-utils.js` (80), `js/profile.js` (79).
 3. Defer broader/sensitive areas until hotspot reduction is complete: `other`, `js/ui/**`, `js/profile.js`.
 4. Keep this report read-only and rerun after each migration phase to validate trend direction.
@@ -111,6 +111,7 @@ js/Civication/core/civicationEconomyEngine.js(298,35): error TS2339: Property 'c
 js/Civication/core/civicationEconomyEngine.js(322,15): error TS2339: Property 'economy' does not exist on type 'unknown'.
 js/Civication/core/civicationEconomyEngine.js(336,14): error TS2551: Property 'CivicationPsyche' does not exist on type 'Window & typeof globalThis'. Did you mean 'CivicationHome'?
 js/Civication/core/civicationEconomyEngine.js(337,15): error TS2339: Property 'career_id' does not exist on type 'unknown'.
+js/Civication/core/civicationEconomyEngine.js(350,12): error TS2339: Property 'economy' does not exist on type 'unknown'.
 js/Civication/core/civicationEventEngine.js(41,8): error TS2362: The left-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
 js/Civication/core/civicationEventEngine.js(41,15): error TS2363: The right-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
 js/Civication/core/civicationEventEngine.js(86,39): error TS2339: Property 'HG_STATE' does not exist on type 'Window & typeof globalThis'.
@@ -161,5 +162,4 @@ js/Civication/core/civicationEventEngine.js(1143,25): error TS2551: Property 'Ci
 js/Civication/core/civicationEventEngine.js(1145,18): error TS2551: Property 'CivicationPsyche' does not exist on type 'Window & typeof globalThis'. Did you mean 'CivicationHome'?
 js/Civication/core/civicationEventEngine.js(1160,7): error TS2739: Type '{}' is missing the following properties from type '{ ok: boolean; reason: string; }': ok, reason
 js/Civication/core/civicationEventEngine.js(1248,30): error TS2339: Property 'global_rules' does not exist on type 'unknown[] | CiviRecord'.
-  Property 'global_rules' does not exist on type 'unknown[]'.
 ```

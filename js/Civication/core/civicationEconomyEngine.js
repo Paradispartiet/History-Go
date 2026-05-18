@@ -164,7 +164,7 @@ function tickPCIncomeWeekly() {
 
   const state = window.CivicationState.getState();
   /** @type {CiviEconomyRecord} */
-  const safeState = (state && typeof state === "object") ? state : {};
+  const stateView = /** @type {CiviEconomyRecord} */ (state);
   let wallet = normalizeWallet(
     window.CivicationState.getWallet()
   );
@@ -204,7 +204,7 @@ function tickPCIncomeWeekly() {
 
   if (!active?.career_id) {
 
-    const sinceW = safeState.unemployed_since_week;
+    const sinceW = stateView.unemployed_since_week;
 
     if (!sinceW) {
 
@@ -300,7 +300,7 @@ function tickPCIncomeWeekly() {
     if (done < minQuiz) {
 
       const strikes =
-        Number(safeState.strikes || 0) + 1;
+        Number(stateView.strikes || 0) + 1;
 
       let stability = "STABLE";
 
@@ -347,7 +347,7 @@ function tickPCIncomeWeekly() {
   // 5️⃣ Capital
 
   const capitalState =
-    safeState?.economy?.capital || {};
+    state?.economy?.capital || {};
 
   if (window.CAPITAL_ENGINE?.applyCareerCapital) {
 
@@ -412,11 +412,10 @@ function calculateWeeklySalary(career, tierIndex) {
 
   /** @type {CiviEconomyRecord} */
   const careersGlobalRules =
-    (!Array.isArray(window.HG_CAREERS) && window.HG_CAREERS && typeof window.HG_CAREERS === "object")
-      ? window.HG_CAREERS
-      : {};
+    /** @type {CiviEconomyRecord} */ (window.HG_CAREERS);
 
-  if (careersGlobalRules.global_rules &&
+  if (careersGlobalRules &&
+      careersGlobalRules.global_rules &&
       careersGlobalRules.global_rules.salary &&
       careersGlobalRules.global_rules.salary.rounding) {
 
