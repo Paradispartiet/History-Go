@@ -248,7 +248,7 @@
   /** @type {number} */
   let boost = 1;
   if (window.HG_IdentityCore?.getBoost) {
-    boost = Number(window.HG_IdentityCore.getBoost(t) || 1);
+    boost = /** @type {number} */ (window.HG_IdentityCore.getBoost(t));
   }
 
   const effectiveDelta = Number(delta || 0) * boost;
