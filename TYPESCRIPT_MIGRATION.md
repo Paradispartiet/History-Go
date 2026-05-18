@@ -205,3 +205,10 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Regenerated the typecheck baseline report to confirm the baseline remains stable.
 - No runtime logic, UI rendering, DOM structure, layout, CSS, UI text, inbox/jobmail/private-message flow, choices/effects behavior, localStorage keys/contracts, or data/JSON contracts were changed.
 - Remaining typecheck baseline is still expected as part of gradual migration.
+
+## Phase 22: Focused capitalEngine JSDoc
+
+- Added focused, file-local JSDoc typing in `js/Civication/capitalEngine.js`.
+- Introduced broad local capital/state-oriented aliases (`CiviCapitalRecord`, `CiviCapitalVector`, `CiviCapitalEntry`, `CiviCapitalRuntimeUser`) and applied them on existing helpers only.
+- No runtime logic, capital calculation behavior, economic/cultural/social/symbolic logic, localStorage keys/contracts, UI/DOM/rendering, or data/JSON contracts were changed.
+- Remaining typecheck baseline outside this focused update is still expected.
