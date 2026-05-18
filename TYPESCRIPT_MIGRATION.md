@@ -212,3 +212,10 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Introduced broad local capital/state-oriented aliases (`CiviCapitalRecord`, `CiviCapitalVector`, `CiviCapitalEntry`, `CiviCapitalRuntimeUser`) and applied them on existing helpers only.
 - No runtime logic, capital calculation behavior, economic/cultural/social/symbolic logic, localStorage keys/contracts, UI/DOM/rendering, or data/JSON contracts were changed.
 - Remaining typecheck baseline outside this focused update is still expected.
+
+## Phase 23: Focused capitalMaintenanceEngine JSDoc
+
+- Added focused, file-local JSDoc typing in `js/Civication/capitalMaintenanceEngine.js`.
+- Introduced broad local maintenance aliases for record/profile/vector/meta/config contracts to keep runtime-coupled dynamic fields intentionally loose.
+- No runtime logic, capital maintenance behavior, decay behavior, `maintenanceDays`/`decayPerDay` logic, localStorage keys, UI/DOM/rendering, or data/JSON contracts were changed.
+- Remaining typecheck baseline outside this focused update is still expected.

@@ -1,18 +1,18 @@
 # Typecheck baseline report
 
 ## Metadata
-- Generated at (UTC): 2026-05-18T02:55:37.414Z
+- Generated at (UTC): 2026-05-18T03:39:52.998Z
 - Command: `npm run typecheck`
 - Typecheck exit code: 2
-- Total diagnostic lines found: 2083
-- Files with diagnostics: 197
+- Total diagnostic lines found: 2078
+- Files with diagnostics: 196
 - Groups with diagnostics: 11
 - Unparsed/unknown diagnostic lines: 0
 
 ## Summary by area
 | Area | Files | Diagnostic lines | Example files |
 | --- | ---: | ---: | --- |
-| js/Civication/** | 84 | 761 | js/Civication/CivicationBoot.js<br>js/Civication/capitalMaintenanceEngine.js<br>js/Civication/civicationCommercial.js |
+| js/Civication/** | 83 | 756 | js/Civication/CivicationBoot.js<br>js/Civication/civicationCommercial.js<br>js/Civication/civicationObligationEngine.js |
 | other | 70 | 551 | js/DomainRegistry.js<br>js/aha.js<br>js/app.js |
 | js/ui/** | 20 | 479 | js/ui/badge-modal.js<br>js/ui/badge-unlock-toast.js<br>js/ui/badges.js |
 | js/profile.js | 1 | 79 | js/profile.js |
@@ -51,11 +51,11 @@
 ## Diagnostic types (TypeScript error code)
 | Error code | Count |
 | --- | ---: |
-| TS2339 | 1670 |
+| TS2339 | 1666 |
 | TS2551 | 202 |
 | TS2304 | 71 |
 | TS2307 | 36 |
-| TS2322 | 21 |
+| TS2322 | 20 |
 | TS2580 | 13 |
 | TS2349 | 12 |
 | TS2550 | 11 |
@@ -75,7 +75,7 @@
 | TS2741 | 1 |
 
 ## Priority recommendations (mechanical)
-1. Start with **js/Civication/** (761 diagnostics)** because it currently has the highest baseline volume.
+1. Start with **js/Civication/** (756 diagnostics)** because it currently has the highest baseline volume.
 2. Focus first on concentrated hotspots: `js/ui/place-card.js` (123), `js/Civication/ui/CivicationUI.js` (102), `js/Civication/core/civicationEventEngine.js` (91), `js/ui/popup-utils.js` (80), `js/profile.js` (79).
 3. Defer broader/sensitive areas until hotspot reduction is complete: `other`, `js/ui/**`, `js/profile.js`.
 4. Keep this report read-only and rerun after each migration phase to validate trend direction.
@@ -86,11 +86,6 @@
 > tsc -p tsconfig.json
 js/Civication/CivicationBoot.js(172,7): error TS2322: Type 'CivicationEventEngine' is not assignable to type 'CiviMethodBag'.
   Index signature for type 'string' is missing in type 'CivicationEventEngine'.
-js/Civication/capitalMaintenanceEngine.js(41,44): error TS2339: Property 'maintenanceDays' does not exist on type 'object'.
-js/Civication/capitalMaintenanceEngine.js(41,65): error TS2339: Property 'maintenanceDays' does not exist on type 'object'.
-js/Civication/capitalMaintenanceEngine.js(42,40): error TS2339: Property 'decayPerDay' does not exist on type 'object'.
-js/Civication/capitalMaintenanceEngine.js(42,57): error TS2339: Property 'decayPerDay' does not exist on type 'object'.
-js/Civication/capitalMaintenanceEngine.js(205,5): error TS2322: Type 'unknown' is not assignable to type 'number'.
 js/Civication/civicationCommercial.js(33,25): error TS2339: Property 'balance' does not exist on type 'unknown'.
 js/Civication/civicationCommercial.js(99,36): error TS2339: Property 'packs' does not exist on type 'unknown'.
 js/Civication/civicationCommercial.js(99,53): error TS2339: Property 'packs' does not exist on type 'unknown'.
@@ -162,4 +157,9 @@ js/Civication/core/civicationEconomyEngine.js(409,25): error TS2339: Property 'g
 js/Civication/core/civicationEconomyEngine.js(410,25): error TS2339: Property 'global_rules' does not exist on type 'unknown[] | CiviRecord'.
   Property 'global_rules' does not exist on type 'unknown[]'.
 js/Civication/core/civicationEconomyEngine.js(411,25): error TS2339: Property 'global_rules' does not exist on type 'unknown[] | CiviRecord'.
+  Property 'global_rules' does not exist on type 'unknown[]'.
+js/Civication/core/civicationEconomyEngine.js(414,25): error TS2339: Property 'global_rules' does not exist on type 'unknown[] | CiviRecord'.
+  Property 'global_rules' does not exist on type 'unknown[]'.
+js/Civication/core/civicationEconomyEngine.js(485,43): error TS2339: Property 'id' does not exist on type 'unknown'.
+js/Civication/core/civicationEconomyEngine.js(491,54): error TS2339: Property 'career_id' does not exist on type 'unknown'.
 ```
