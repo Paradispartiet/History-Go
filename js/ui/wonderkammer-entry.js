@@ -308,9 +308,9 @@
         </header>
         <div class="hg-modal-body">
         ${description ? `<p class="hg-popup-desc">${esc(description)}</p>` : ""}
+        ${treasureSectionsHtml(entry)}
         ${activityText ? `<section class="wk-entry-section"><h3>Hva kan man gjøre her?</h3><p>${esc(activityText)}</p></section>` : ""}
         ${ageHint ? `<section class="wk-entry-section"><h3>Alder / nivå</h3><p>${esc(ageHint)}</p></section>` : ""}
-        ${treasureSectionsHtml(entry)}
         ${smartSectionsHtml(entry)}
         ${metaGridHtml(entry)}
         ${childListHtml(entry)}
