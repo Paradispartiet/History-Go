@@ -169,8 +169,9 @@ function tickPCIncomeWeekly() {
     window.CivicationState.getWallet()
   );
 
+  /** @type {CiviEconomyCareer | null} */
   const active =
-    window.CivicationState.getActivePosition();
+    /** @type {CiviEconomyCareer | null} */ (window.CivicationState.getActivePosition());
 
   const now = new Date();
 
@@ -191,7 +192,7 @@ function tickPCIncomeWeekly() {
   let navWeeklyPc = 0;
 
   if (Array.isArray(window.CIVI_CAREER_RULES)) {
-    const any = window.CIVI_CAREER_RULES[0];
+    const any = /** @type {CiviEconomyRecord} */ (window.CIVI_CAREER_RULES[0]);
     navAfterWeeks =
       Number(any?.global_rules?.unemployment?.nav_after_weeks || 0);
     navWeeklyPc =
@@ -233,11 +234,13 @@ function tickPCIncomeWeekly() {
   // I JOBB
   // =========================================================
 
+  /** @type {CiviEconomyCareer | null} */
   const career =
     Array.isArray(window.HG_CAREERS)
-      ? window.HG_CAREERS.find(
+      ? /** @type {CiviEconomyCareer | null} */ (window.HG_CAREERS.find(
+          /** @param {CiviEconomyCareer} c */
           c => String(c.career_id) === String(active.career_id)
-        )
+        ) || null)
       : null;
 
   if (!career) {
@@ -255,9 +258,10 @@ function tickPCIncomeWeekly() {
     Number(merits[active.career_id]?.points || 0);
 
   const badge =
-    window.BADGES?.find(
+    /** @type {CiviEconomyBadge | undefined} */ (window.BADGES?.find(
+      /** @param {CiviEconomyBadge} b */
       b => b.id === active.career_id
-    );
+    ));
 
   if (!badge) {
     wallet.last_tick_iso = now.toISOString();

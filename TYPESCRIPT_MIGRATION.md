@@ -251,3 +251,13 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Added narrow local variable/function-level JSDoc annotations in existing economy helpers only (no new runtime helpers, no flow refactors).
 - No runtime/economy/salary/weekly tick/wallet/balance/career/progression/badge/tier/`deriveTierFromPoints`/`window.HGLearningLog`/localStorage/UI/data behavior changed.
 - Remaining typecheck baseline outside this focused pass is expected.
+
+
+## Phase 28: Third focused Civication economy engine JSDoc pass
+
+- Added a third focused, JSDoc-only typing pass in `js/Civication/core/civicationEconomyEngine.js` after Phase 27.
+- Added safe local casts/annotations for active position, career lookups, badge lookups, and career-rule access to reduce `unknown` property-access diagnostics without changing runtime flow.
+- Added declaration-only Civication globals in `schemas/civication-globals.d.ts` for existing runtime symbols (`CivicationPsyche`, `getQuizCountLastWeek`) to reduce missing-global friction.
+- Runtime behavior is unchanged: no economy logic, wallet/balance/salary/weekly tick/career/progression/badge/tier behavior, localStorage keys, dispatch/updateProfile flow, UI/layout, or data contracts were changed.
+- Regenerated `reports/typecheck-baseline-report.md` and retained it with non-regressive baseline trend.
+
