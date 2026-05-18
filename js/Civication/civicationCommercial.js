@@ -303,7 +303,7 @@
   async function buyPack(packId) {
 
     const packs = await getVisiblePacks();
-    const pack = packs.find((p) => String(p.id) === String(packId));
+    const pack = packs.find(p => String(p.id) === String(packId));
 
     if (!pack) {
       return { ok: false, reason: "PACK_NOT_FOUND" };
