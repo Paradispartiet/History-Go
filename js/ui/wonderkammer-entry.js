@@ -182,13 +182,14 @@
   }
 
   function metaGridHtml(entry) {
+    // adultRole får egen seksjon via SMART_SECTIONS når den finnes – derfor
+    // utelater vi den fra meta-griden for å unngå duplisert visning.
     const fields = [
       ["safetyNote", "Trygghet"],
       ["durationHint", "Varighet"],
       ["intensity", "Intensitet"],
       ["equipment", "Utstyr"],
       ["season", "Sesong"],
-      ["adultRole", "Voksenrolle"],
       ["playMode", "Lekemodus"],
       ["socialMode", "Sosial modus"]
     ];
@@ -213,6 +214,39 @@
         <div class="wk-entry-meta-grid">${blocks}</div>
       </section>
     `;
+  }
+
+  // Valgfrie smart-felt. Vises kun når feltet finnes på entryen.
+  // Rekkefølgen styrer rekkefølgen i popupen.
+  const SMART_SECTIONS = [
+    ["observationHook", "Se etter"],
+    ["whyItMatters", "Hvorfor det betyr noe"],
+    ["placeSpecificDetail", "Stedsspesifikk detalj"],
+    ["sensoryPrompt", "Sans dette"],
+    ["microMission", "Mikrooppgave"],
+    ["childAction", "Barnets handling"],
+    ["adultRole", "Voksenrollen"],
+    ["historyLayer", "Historisk lag"],
+    ["socialLayer", "Sosialt lag"],
+    ["materialLayer", "Materiallag"],
+    ["conceptHook", "Begrepskrok"],
+    ["collectibleHint", "Kan samles som"]
+  ];
+
+  function smartSectionsHtml(entry) {
+    return SMART_SECTIONS
+      .map(([key, label]) => {
+        const value = norm(entry?.[key]);
+        if (!value) return "";
+        return `
+          <section class="wk-entry-section wk-entry-section--smart" data-wk-field="${esc(key)}">
+            <h3>${esc(label)}</h3>
+            <p>${esc(value)}</p>
+          </section>
+        `;
+      })
+      .filter(Boolean)
+      .join("");
   }
 
   function openEntry(entryId) {
@@ -244,6 +278,7 @@
         ${description ? `<p class="hg-popup-desc">${esc(description)}</p>` : ""}
         ${activityText ? `<section class="wk-entry-section"><h3>Hva kan man gjøre her?</h3><p>${esc(activityText)}</p></section>` : ""}
         ${ageHint ? `<section class="wk-entry-section"><h3>Alder / nivå</h3><p>${esc(ageHint)}</p></section>` : ""}
+        ${smartSectionsHtml(entry)}
         ${metaGridHtml(entry)}
         ${childListHtml(entry)}
         </div>

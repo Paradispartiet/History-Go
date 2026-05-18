@@ -13,6 +13,31 @@ const ACTIVITY_TEXT_TYPES = new Set([
 ]);
 const GENERIC_TITLE_LIMIT = 3;
 
+// Valgfrie smart-felt som løfter en chamber fra banal til stedlig.
+// Brukes til varsler – ikke hard error – jf. data/wonderkammer/README.md.
+const SMART_FIELDS = [
+  "observationHook",
+  "whyItMatters",
+  "placeSpecificDetail",
+  "sensoryPrompt",
+  "microMission",
+  "childAction",
+  "adultRole",
+  "historyLayer",
+  "socialLayer",
+  "materialLayer",
+  "conceptHook",
+  "collectibleHint"
+];
+const SHORT_DESCRIPTION_LIMIT = 40;
+const GENERIC_ACTIVITY_PATTERNS = [
+  /^se etter\b/i,
+  /^tell\b/i,
+  /^løp\b/i,
+  /^finn fem\b/i,
+  /^finn tre\b/i
+];
+
 const errors = [];
 const warnings = [];
 const entryIds = new Map();
@@ -113,6 +138,49 @@ function rememberTitle(title) {
   titleCounts.set(title, (titleCounts.get(title) || 0) + 1);
 }
 
+function hasAnySmartField(entry) {
+  return SMART_FIELDS.some(key => {
+    const value = entry?.[key];
+    return typeof value === "string" && value.trim().length > 0;
+  });
+}
+
+function isGenericActivityText(text) {
+  const value = String(text || "").trim();
+  if (!value) return false;
+  if (value.length > 120) return false;
+  return GENERIC_ACTIVITY_PATTERNS.some(rx => rx.test(value));
+}
+
+function flagBanalEntry(entry, location) {
+  if (!entry || typeof entry !== "object") return;
+
+  const description = typeof entry.description === "string" ? entry.description.trim() : "";
+  const activityText = typeof entry.activityText === "string" ? entry.activityText.trim() : "";
+  const hasSmart = hasAnySmartField(entry);
+  const hasPlaceSpecific =
+    typeof entry.placeSpecificDetail === "string" && entry.placeSpecificDetail.trim().length > 0;
+
+  // Helt blottet for smart-felt – kan være banal. Varsel, ikke hard error.
+  if (!hasSmart && description && description.length < SHORT_DESCRIPTION_LIMIT) {
+    warnings.push(
+      `${location}: kort description (${description.length} tegn) uten smart-felt – kan virke banal`
+    );
+  }
+
+  if (!hasSmart && isGenericActivityText(activityText)) {
+    warnings.push(
+      `${location}: activityText starter generisk ("${activityText.slice(0, 40)}…") uten støttende smart-felt`
+    );
+  }
+
+  if (!hasPlaceSpecific && !hasSmart) {
+    warnings.push(
+      `${location}: mangler både placeSpecificDetail og øvrige smart-felt – vurder om chamberen er stedsspesifikk nok`
+    );
+  }
+}
+
 function validateEntry(entry, location) {
   if (!entry || typeof entry !== "object") {
     errors.push(`${location}: entry er ikke et objekt`);
@@ -130,6 +198,8 @@ function validateEntry(entry, location) {
       errors.push(`${location}: type ${entry.type} mangler activityText`);
     }
   }
+
+  flagBanalEntry(entry, location);
 
   rememberEntryId(entry.id, location);
   rememberTitle(entry.title);
