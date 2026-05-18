@@ -1,12 +1,12 @@
 # Data Health Summary
 
-Generated: 2026-05-18T11:15:35.566Z
+Generated: 2026-05-18T11:38:12.817Z
 
 ## Total summary
 - Places: **444**
-- Files checked: **160**
-- Hard errors: **155**
-- Warnings: **3067**
+- Files checked: **163**
+- Hard errors: **9**
+- Warnings: **3200**
 
 ## Not configured
 - none
@@ -37,11 +37,12 @@ Generated: 2026-05-18T11:15:35.566Z
 
 ## Missing grouped by type
 ### missing_cardImage
-Count: 340
+Count: 408
 
 - `aker_brygge`
 - `aker_brygge_pop`
 - `akerhus_slott`
+- `akerselva`
 - `akerselva_industri`
 - `akerselva_utlop_bjorvika`
 - `akershus_energi`
@@ -59,15 +60,24 @@ Count: 340
 - `alnsjoen_alna_kilde`
 - `ankerbrua`
 - `astrup_fearnley`
+- `bankplassen`
+- `barcode`
 - `barcode_pop`
 - `beierbrua`
+- `birkelunden`
 - `bislett_stadion`
+- `bispelokket`
 - `bjoelsenfossen`
 - `bjoelsenparken_elvenaer`
+- `bjorvika`
 - `bjørvika_pop`
 - `bla`
 - `blaa`
 - `bogerudmyra`
+- `bogstad_gard`
+- `bogstadveien`
+- `botsfengselet`
+- `botsparken`
 - `bryn_industriomrade`
 - `bygdoy_bygdoynes`
 - `bygdoy_dronningberget`
@@ -76,19 +86,9 @@ Count: 340
 - `bygdoy_natur`
 - `bygdoy_paradisbukta`
 - `bygdoy_roykenvika`
+- `camilla_collett_statue`
+- `carl_berner_plass`
 - `chateau_neuf`
-- `christiania_seildugsfabrik`
-- `cinemateket_oslo`
-- `colosseum_kino`
-- `daelenenga_idrettspark`
-- `det_norske_teatret`
-- `eidsvolls_plass`
-- `ekebergparken`
-- `ekebergsletta`
-- `elvestrekning_bla_brenneriveien`
-- `folketeateret`
-- `fornebu_teknologipark`
-- `fossveien_elvestrekning`
 
 ### missing_emne_ids
 Count: 39
@@ -188,11 +188,12 @@ Count: 444
 - `bygdoy_roykenvika`
 
 ### missing_image
-Count: 341
+Count: 405
 
 - `aker_brygge`
 - `aker_brygge_pop`
 - `akerhus_slott`
+- `akerselva`
 - `akerselva_industri`
 - `akerselva_utlop_bjorvika`
 - `akershus_energi`
@@ -210,15 +211,24 @@ Count: 341
 - `alnsjoen_alna_kilde`
 - `ankerbrua`
 - `astrup_fearnley`
+- `bankplassen`
+- `barcode`
 - `barcode_pop`
 - `beierbrua`
+- `birkelunden`
 - `bislett_stadion`
+- `bispelokket`
 - `bjoelsenfossen`
 - `bjoelsenparken_elvenaer`
+- `bjorvika`
 - `bjørvika_pop`
 - `bla`
 - `blaa`
 - `bogerudmyra`
+- `bogstad_gard`
+- `bogstadveien`
+- `botsfengselet`
+- `botsparken`
 - `bryn_industriomrade`
 - `bygdoy_bygdoynes`
 - `bygdoy_dronningberget`
@@ -227,19 +237,9 @@ Count: 341
 - `bygdoy_natur`
 - `bygdoy_paradisbukta`
 - `bygdoy_roykenvika`
+- `carl_berner_plass`
 - `chateau_neuf`
 - `christiania_seildugsfabrik`
-- `cinemateket_oslo`
-- `colosseum_kino`
-- `daelenenga_idrettspark`
-- `det_norske_teatret`
-- `eidsvolls_plass`
-- `ekebergparken`
-- `ekebergsletta`
-- `elvestrekning_bla_brenneriveien`
-- `folketeateret`
-- `fornebu_teknologipark`
-- `fossveien_elvestrekning`
 
 ### missing_leksikon
 Count: 272
@@ -456,6 +456,11 @@ Count: 65
 - `ostensjovannet_nord`
 - `ostensjovannet_sivbelte`
 - `ostensjovannet_sor`
+
+### missing_popupImage
+Count: 1
+
+- `vinmonopolet_lager`
 
 ### missing_quiz_profile
 Count: 89
