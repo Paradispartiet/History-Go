@@ -30,6 +30,10 @@ const SMART_FIELDS = [
   "collectibleHint"
 ];
 const SHORT_DESCRIPTION_LIMIT = 40;
+const TREASURE_FIELDS = ["treasureTitle","treasureType","cabinetCategory","curiosity","whereToFind","whatToDo","whatToNotice","material","rarity","collectible","collectionNote","sourceNote"];
+const CABINET_CATEGORIES = new Set(["naturalia","artificialia","scientifica","mirabilia","memorabilia","urbania","sonica","lingua","relic"]);
+const RARITY_VALUES = new Set(["vanlig","uvanlig","sjelden","skjult","legendarisk","mytisk"]);
+const HYPOTHETICAL_PATTERNS=[/\bkan finnes\b/i,/\bkan være\b/i,/\btypisk\b/i,/\bmulig spor\b/i,/\bantatt\b/i];
 const GENERIC_ACTIVITY_PATTERNS = [
   /^se etter\b/i,
   /^tell\b/i,
@@ -138,6 +142,29 @@ function rememberTitle(title) {
   titleCounts.set(title, (titleCounts.get(title) || 0) + 1);
 }
 
+function hasAnyTreasureField(entry) {
+  return TREASURE_FIELDS.some(key => {
+    const value = entry?.[key];
+    return typeof value === "string" && value.trim().length > 0;
+  });
+}
+
+function hasConcreteThingSignals(entry) {
+  return Boolean(
+    (typeof entry?.treasureTitle === "string" && entry.treasureTitle.trim()) ||
+    (typeof entry?.treasureType === "string" && entry.treasureType.trim()) ||
+    (typeof entry?.placeSpecificDetail === "string" && entry.placeSpecificDetail.trim()) ||
+    (typeof entry?.observationHook === "string" && entry.observationHook.trim())
+  );
+}
+
+function containsHypotheticalLanguage(entry) {
+  const text = [entry?.description, entry?.activityText, entry?.whatToDo, entry?.whatToNotice, entry?.curiosity]
+    .filter(v => typeof v === "string")
+    .join(" ");
+  return HYPOTHETICAL_PATTERNS.some(rx => rx.test(text));
+}
+
 function hasAnySmartField(entry) {
   return SMART_FIELDS.some(key => {
     const value = entry?.[key];
@@ -200,6 +227,35 @@ function validateEntry(entry, location) {
   }
 
   flagBanalEntry(entry, location);
+
+  const hasSmart = hasAnySmartField(entry);
+  const hasTreasure = hasAnyTreasureField(entry);
+
+  if (!hasSmart && !hasTreasure) {
+    warnings.push(`${location}: mangler både smartfelt og treasurefelt`);
+  }
+
+  if (typeof entry.activityText === "string" && entry.activityText.trim() && !hasConcreteThingSignals(entry)) {
+    warnings.push(`${location}: har activityText, men ingen konkret skatt/ting/spor/detalj`);
+  }
+
+  if (typeof entry.whatToDo === "string" && entry.whatToDo.trim()) {
+    if (!(typeof entry.treasureTitle === "string" && entry.treasureTitle.trim()) || !(typeof entry.treasureType === "string" && entry.treasureType.trim())) {
+      warnings.push(`${location}: har whatToDo, men mangler treasureTitle eller treasureType`);
+    }
+  }
+
+  if (typeof entry.cabinetCategory === "string" && entry.cabinetCategory.trim() && !CABINET_CATEGORIES.has(entry.cabinetCategory.trim())) {
+    warnings.push(`${location}: cabinetCategory utenfor tillatte verdier`);
+  }
+
+  if (typeof entry.rarity === "string" && entry.rarity.trim() && !RARITY_VALUES.has(entry.rarity.trim())) {
+    warnings.push(`${location}: rarity utenfor tillatte verdier`);
+  }
+
+  if (containsHypotheticalLanguage(entry) && !(typeof entry.sourceNote === "string" && entry.sourceNote.trim())) {
+    warnings.push(`${location}: hypotetisk formulering uten sourceNote`);
+  }
 
   rememberEntryId(entry.id, location);
   rememberTitle(entry.title);

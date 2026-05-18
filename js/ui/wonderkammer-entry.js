@@ -233,6 +233,38 @@
     ["collectibleHint", "Kan samles som"]
   ];
 
+
+  const TREASURE_SECTIONS = [
+    ["treasureTitle", "Skatten"],
+    ["cabinetCategory", "Kategori"],
+    ["treasureType", "Type"],
+    ["curiosity", "Hva er forunderlig?"],
+    ["whereToFind", "Hvor finner du den?"],
+    ["whatToDo", "Hva kan du gjøre med den?"],
+    ["whatToNotice", "Legg merke til"],
+    ["material", "Materiale"],
+    ["rarity", "Sjeldenhet"],
+    ["collectible", "Kan samles som"],
+    ["collectionNote", "Samlingsnotat"],
+    ["sourceNote", "Grunnlag"]
+  ];
+
+  function treasureSectionsHtml(entry) {
+    return TREASURE_SECTIONS
+      .map(([key, label]) => {
+        const value = norm(entry?.[key]);
+        if (!value) return "";
+        return `
+          <section class="wk-entry-section wk-entry-section--treasure" data-wk-field="${esc(key)}">
+            <h3>${esc(label)}</h3>
+            <p>${esc(value)}</p>
+          </section>
+        `;
+      })
+      .filter(Boolean)
+      .join("");
+  }
+
   function smartSectionsHtml(entry) {
     return SMART_SECTIONS
       .map(([key, label]) => {
@@ -278,6 +310,7 @@
         ${description ? `<p class="hg-popup-desc">${esc(description)}</p>` : ""}
         ${activityText ? `<section class="wk-entry-section"><h3>Hva kan man gjøre her?</h3><p>${esc(activityText)}</p></section>` : ""}
         ${ageHint ? `<section class="wk-entry-section"><h3>Alder / nivå</h3><p>${esc(ageHint)}</p></section>` : ""}
+        ${treasureSectionsHtml(entry)}
         ${smartSectionsHtml(entry)}
         ${metaGridHtml(entry)}
         ${childListHtml(entry)}
