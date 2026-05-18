@@ -1,11 +1,40 @@
 (function () {
   "use strict";
 
+  /**
+   * @typedef {Record<string, any>} CiviPsycheRecord
+   * @typedef {CiviPsycheRecord & {
+   *   collapses?: number,
+   *   lastCollapse?: CiviPsycheRecord | null,
+   *   collapseHistory?: CiviPsycheRecord[]
+   * }} CiviPsycheTrustMeta
+   * @typedef {CiviPsycheRecord & {
+   *   trust?: Record<string, number>,
+   *   trustMeta?: Record<string, CiviPsycheTrustMeta>,
+   *   integrity?: number,
+   *   visibility?: number,
+   *   economicRoom?: number,
+   *   autonomyOverride?: number | null,
+   *   burnoutActive?: boolean,
+   *   roleBaseline?: CiviPsycheRecord,
+   *   lastCollapseAt?: number
+   * }} CiviPsycheState
+   * @typedef {CiviPsycheRecord & {
+   *   economy_profile?: CiviPsycheRecord,
+   *   economic_profile?: CiviPsycheRecord,
+   *   autonomy?: number,
+   *   trust?: number
+   * }} CiviPsycheProfile
+   */
+
   const KEY = "hg_psyche_v1";
 
   // -----------------------------
   // Storage helpers
   // -----------------------------
+  /**
+   * @returns {CiviPsycheState}
+   */
   function load() {
     try {
       const raw = JSON.parse(localStorage.getItem(KEY) || "{}");
@@ -15,6 +44,10 @@
     }
   }
 
+  /**
+   * @param {CiviPsycheState | CiviPsycheRecord} state
+   * @returns {void}
+   */
   function save(state) {
     try {
       localStorage.setItem(KEY, JSON.stringify(state || {}));
@@ -27,6 +60,10 @@
     return Math.max(min, Math.min(max, x));
   }
 
+  /**
+   * @param {CiviPsycheState | CiviPsycheRecord} state
+   * @returns {CiviPsycheState}
+   */
   function ensure(state) {
   // --------------------------------------------------
 // TRUST – per career (badge-id)
@@ -60,6 +97,10 @@ if (!state.roleBaseline || typeof state.roleBaseline !== "object") {
   return state;
 }
 
+  /**
+   * @param {(state: CiviPsycheState) => void} patchFn
+   * @returns {CiviPsycheState}
+   */
   function write(patchFn) {
     const state = ensure(load());
     patchFn(state);
@@ -326,6 +367,7 @@ function computeAutonomy(careerId = null) {
   }
 
    // Identity influence on perceived trust (svak effekt)
+/** @type {CiviPsycheRecord | null | undefined} */
 const identityMods = window.HG_IdentityCore?.getPsycheModifiers?.();
 let identityAutonomyBoost = 0;
 let identityTrustShift = 0;
@@ -402,6 +444,7 @@ function checkBurnout() {
     };
   }
 
+  /** @type {CiviPsycheProfile | null | undefined} */
   const lifestyle = window.getPrimaryLifestyle?.() || window.HG_Lifestyle?.getStamp?.();
 
   let burnoutMod = 1;
@@ -561,6 +604,7 @@ function processCollapse() {
 
   
   function getLifestyleEconomyModifier() {
+  /** @type {CiviPsycheProfile | null | undefined} */
   const lifestyle = window.getPrimaryLifestyle?.() || window.HG_Lifestyle?.getStamp?.();
   if (!lifestyle || !lifestyle.economy_profile) {
     return { swing: 1, pressure: 1 };
@@ -586,6 +630,7 @@ function processCollapse() {
 }
 
 function getLifestyleTrustModifier() {
+  /** @type {CiviPsycheProfile | null | undefined} */
   const lifestyle = window.HG_Lifestyle?.getPrimary?.();
   if (!lifestyle) return 1;
 
@@ -599,6 +644,7 @@ function getLifestyleTrustModifier() {
 }
 
   function getLifestyleBurnoutModifier() {
+  /** @type {CiviPsycheProfile | null | undefined} */
   const lifestyle = window.getPrimaryLifestyle?.() || window.HG_Lifestyle?.getStamp?.();
   if (!lifestyle) return 1;
 
@@ -637,7 +683,7 @@ function getLifestyleTrustModifier() {
   // -----------------------------
   // PUBLIC API
   // -----------------------------
-  window.CivicationPsyche = {
+  /** @type {any} */ (window).CivicationPsyche = {
     // trust
     computeMaxTrust,
     getCareerTrust,
