@@ -1,12 +1,12 @@
 # Data Health Summary
 
-Generated: 2026-05-18T11:38:12.817Z
+Generated: 2026-05-18T11:46:38.502Z
 
 ## Total summary
 - Places: **444**
 - Files checked: **163**
-- Hard errors: **9**
-- Warnings: **3200**
+- Hard errors: **0**
+- Warnings: **3196**
 
 ## Not configured
 - none
@@ -350,7 +350,7 @@ Count: 444
 - `bygdoy_roykenvika`
 
 ### missing_people_linkage
-Count: 380
+Count: 376
 
 - `abelhaugen`
 - `aker_brygge_pop`
