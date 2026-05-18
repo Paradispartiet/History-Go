@@ -1,18 +1,18 @@
 # Typecheck baseline report
 
 ## Metadata
-- Generated at (UTC): 2026-05-18T07:57:39.104Z
+- Generated at (UTC): 2026-05-18T09:02:18.680Z
 - Command: `npm run typecheck`
 - Typecheck exit code: 2
-- Total diagnostic lines found: 2075
-- Files with diagnostics: 196
+- Total diagnostic lines found: 2062
+- Files with diagnostics: 195
 - Groups with diagnostics: 11
 - Unparsed/unknown diagnostic lines: 0
 
 ## Summary by area
 | Area | Files | Diagnostic lines | Example files |
 | --- | ---: | ---: | --- |
-| js/Civication/** | 83 | 753 | js/Civication/CivicationBoot.js<br>js/Civication/civicationCommercial.js<br>js/Civication/civicationObligationEngine.js |
+| js/Civication/** | 82 | 740 | js/Civication/CivicationBoot.js<br>js/Civication/civicationCommercial.js<br>js/Civication/core/CivicationPsyche.js |
 | other | 70 | 551 | js/DomainRegistry.js<br>js/aha.js<br>js/app.js |
 | js/ui/** | 20 | 479 | js/ui/badge-modal.js<br>js/ui/badge-unlock-toast.js<br>js/ui/badges.js |
 | js/profile.js | 1 | 79 | js/profile.js |
@@ -51,7 +51,7 @@
 ## Diagnostic types (TypeScript error code)
 | Error code | Count |
 | --- | ---: |
-| TS2339 | 1663 |
+| TS2339 | 1650 |
 | TS2551 | 202 |
 | TS2304 | 71 |
 | TS2307 | 36 |
@@ -75,7 +75,7 @@
 | TS2741 | 1 |
 
 ## Priority recommendations (mechanical)
-1. Start with **js/Civication/** (753 diagnostics)** because it currently has the highest baseline volume.
+1. Start with **js/Civication/** (740 diagnostics)** because it currently has the highest baseline volume.
 2. Focus first on concentrated hotspots: `js/ui/place-card.js` (123), `js/Civication/ui/CivicationUI.js` (102), `js/Civication/core/civicationEventEngine.js` (91), `js/ui/popup-utils.js` (80), `js/profile.js` (79).
 3. Defer broader/sensitive areas until hotspot reduction is complete: `other`, `js/ui/**`, `js/profile.js`.
 4. Keep this report read-only and rerun after each migration phase to validate trend direction.
@@ -94,19 +94,6 @@ js/Civication/civicationCommercial.js(164,54): error TS2339: Property 'stores' d
 js/Civication/civicationCommercial.js(230,47): error TS2339: Property 'map' does not exist on type 'unknown'.
 js/Civication/civicationCommercial.js(231,52): error TS2339: Property 'map' does not exist on type 'unknown'.
 js/Civication/civicationCommercial.js(259,52): error TS2339: Property 'map' does not exist on type 'unknown'.
-js/Civication/civicationObligationEngine.js(52,27): error TS2339: Property 'career' does not exist on type 'unknown'.
-js/Civication/civicationObligationEngine.js(52,42): error TS2339: Property 'career' does not exist on type 'unknown'.
-js/Civication/civicationObligationEngine.js(103,28): error TS2339: Property 'career_id' does not exist on type 'unknown'.
-js/Civication/civicationObligationEngine.js(106,23): error TS2339: Property 'career' does not exist on type 'unknown'.
-js/Civication/civicationObligationEngine.js(112,26): error TS2339: Property 'career' does not exist on type 'unknown'.
-js/Civication/civicationObligationEngine.js(120,44): error TS2339: Property 'career_id' does not exist on type 'unknown'.
-js/Civication/civicationObligationEngine.js(177,21): error TS2339: Property 'career' does not exist on type 'unknown'.
-js/Civication/civicationObligationEngine.js(288,21): error TS2339: Property 'career' does not exist on type 'unknown'.
-js/Civication/civicationObligationEngine.js(388,27): error TS2339: Property 'warning_used' does not exist on type 'unknown'.
-js/Civication/civicationObligationEngine.js(394,19): error TS2339: Property 'warning_used' does not exist on type 'unknown'.
-js/Civication/civicationObligationEngine.js(397,19): error TS2339: Property 'career' does not exist on type 'unknown'.
-js/Civication/civicationObligationEngine.js(485,24): error TS2339: Property 'achieved_at' does not exist on type 'unknown'.
-js/Civication/civicationObligationEngine.js(486,27): error TS2339: Property 'achieved_at' does not exist on type 'unknown'.
 js/Civication/core/CivicationPsyche.js(334,40): error TS2339: Property 'autonomy' does not exist on type 'unknown'.
 js/Civication/core/CivicationPsyche.js(337,38): error TS2339: Property 'trust' does not exist on type 'unknown'.
 js/Civication/core/CivicationPsyche.js(409,18): error TS2339: Property 'economy_profile' does not exist on type 'unknown'.
@@ -162,4 +149,17 @@ js/Civication/core/civicationEconomyEngine.js(491,54): error TS2339: Property 'c
 js/Civication/core/civicationEconomyEngine.js(492,24): error TS2339: Property 'economy' does not exist on type 'unknown'.
 js/Civication/core/civicationEconomyEngine.js(495,16): error TS2339: Property 'economy' does not exist on type 'unknown'.
 js/Civication/core/civicationEventEngine.js(41,8): error TS2362: The left-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
+js/Civication/core/civicationEventEngine.js(41,15): error TS2363: The right-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
+js/Civication/core/civicationEventEngine.js(86,39): error TS2339: Property 'HG_STATE' does not exist on type 'Window & typeof globalThis'.
+js/Civication/core/civicationEventEngine.js(118,5): error TS2322: Type 'unknown' is not assignable to type 'CiviEventEngineState'.
+  Index signature for type 'string' is missing in type '{}'.
+js/Civication/core/civicationEventEngine.js(159,16): error TS2339: Property 'CivicationMailEngine' does not exist on type 'Window & typeof globalThis'.
+js/Civication/core/civicationEventEngine.js(160,21): error TS2339: Property 'CivicationMailEngine' does not exist on type 'Window & typeof globalThis'.
+js/Civication/core/civicationEventEngine.js(162,5): error TS2740: Type '{}' is missing the following properties from type 'CiviEventEngineInboxItem[]': length, pop, push, concat, and 28 more.
+js/Civication/core/civicationEventEngine.js(167,16): error TS2339: Property 'CivicationMailEngine' does not exist on type 'Window & typeof globalThis'.
+js/Civication/core/civicationEventEngine.js(168,14): error TS2339: Property 'CivicationMailEngine' does not exist on type 'Window & typeof globalThis'.
+js/Civication/core/civicationEventEngine.js(171,16): error TS2339: Property 'CivicationMailEngine' does not exist on type 'Window & typeof globalThis'.
+js/Civication/core/civicationEventEngine.js(172,14): error TS2339: Property 'CivicationMailEngine' does not exist on type 'Window & typeof globalThis'.
+js/Civication/core/civicationEventEngine.js(199,25): error TS2339: Property 'CivicationMailEngine' does not exist on type 'Window & typeof globalThis'.
+js/Civication/core/civicationEventEngine.js(200,25): error TS2339: Property 'CivicationMailEngine' does not exist on type 'Window & typeof globalThis'.
 ```

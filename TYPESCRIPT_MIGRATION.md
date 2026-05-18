@@ -227,3 +227,11 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Annotated existing commercial helpers for wallet/inventory/data-loading/visibility/purchase flow without changing runtime behavior.
 - No runtime/shop/purchase/sell/refund/wallet/balance/packs/ownedItems/localStorage/UI/data logic was changed.
 - Remaining baseline diagnostics outside this focused file are still expected.
+
+## Phase 25: Focused civicationObligationEngine JSDoc
+
+- Added focused, file-local JSDoc typing in `js/Civication/civicationObligationEngine.js`.
+- Introduced broad local obligation aliases for record/state/career/contract/item/active-position contracts to reduce dynamic `career`/`career_id`/obligation-field type friction.
+- Annotated existing obligation helpers around state access, career bootstrapping, contract/metrics computation and quiz-history filtering only.
+- No runtime, obligation logic, career/career_id flow, state contract, localStorage keys, UI/DOM, or data/JSON behavior was changed.
+- Remaining baseline diagnostics outside this focused file are still expected.
