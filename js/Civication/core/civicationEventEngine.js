@@ -214,6 +214,7 @@ resetForNewJob(role_key) {
 
   /** @returns {string|null} */
   resolveRoleKey() {
+    /** @type {CiviEventEngineRecord|null} */
     const active = window.CivicationState.getActivePosition();
     if (!active) return null;
 
@@ -232,6 +233,7 @@ resetForNewJob(role_key) {
   }
 
   syncRoleBaselineFromActive() {
+    /** @type {CiviEventEngineRecord|null} */
     const active = window.CivicationState.getActivePosition();
 
     if (!active?.career_id) {
@@ -268,7 +270,8 @@ resetForNewJob(role_key) {
     );
   }
 
-  ensureRoleKeySynced() {
+ensureRoleKeySynced() {
+  /** @type {CiviEventEngineRecord|null} */
   const active = window.CivicationState.getActivePosition();
 
   if (!active) {
@@ -1521,9 +1524,13 @@ registerChosenMail(eventObj) {
       });
       if (res?.ok) return;
     }
+    /** @type {CiviEventEngineInboxItem[]} */
     const inbox = this.getInbox();
     const item = { status: "pending", enqueued_at: new Date().toISOString(), event: normalizedEvent };
-    this.setInbox([item].concat(inbox).slice(0, this.maxInbox));
+    this.setInbox(
+      /** @type {CiviEventEngineInboxItem[]} */
+      ([item].concat(inbox).slice(0, this.maxInbox))
+    );
   }
 
 /** @param {string} taskId
@@ -1600,6 +1607,7 @@ getTaskResultModifier(ev) {
    * @returns {CiviEventEngineRecord}
    */
   answer(eventId, choiceId) {
+    /** @type {CiviEventEngineInboxItem[]} */
     const inbox = this.getInbox();
 
     const idx = inbox.findIndex(function (x) {
@@ -1614,7 +1622,8 @@ getTaskResultModifier(ev) {
     }
 
     const item = inbox[idx];
-    const ev = item.event || {};
+	    /** @type {CiviEventEngineEvent} */
+	    const ev = item.event || {};
     /** @type {CiviEventEngineState} */
     const state = this.getState();
 
@@ -1637,7 +1646,8 @@ if (Array.isArray(ev.choices) && ev.choices.length) {
   }
 
   if (choice.moral_flag === true) {
-    const active = window.CivicationState.getActivePosition();
+	    /** @type {CiviEventEngineRecord|null} */
+	    const active = window.CivicationState.getActivePosition();
     if (active && active.career_id &&
         window.CivicationPsyche &&
         typeof window.CivicationPsyche.registerCollapse === "function") {
@@ -1662,7 +1672,9 @@ if (Array.isArray(ev.choices) && ev.choices.length) {
   let autonomy = 50;
   if (window.CivicationPsyche &&
       typeof window.CivicationPsyche.getAutonomy === "function") {
-    autonomy = window.CivicationPsyche.getAutonomy(state.active_role_key);
+	    autonomy = /** @type {number} */ (
+      window.CivicationPsyche.getAutonomy(state.active_role_key)
+    );
   }
 
   if (baseEffect < 0 && autonomy < 30) {

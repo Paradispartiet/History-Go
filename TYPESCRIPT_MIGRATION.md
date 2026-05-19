@@ -270,3 +270,11 @@ This supports gradual migration with no framework, bundler, or architecture chan
 - Did **not** add any global declaration for `getQuizCountLastWeek`; `schemas/civication-globals.d.ts` remains honest about available globals.
 - Applied a local typed-state access adjustment for `capitalState` (`stateView?.economy?.capital`) to remove the remaining unknown-state property access in this file without changing runtime behavior.
 - This is a minimal runtime/architecture clarification only; economy behavior (salary, expense, strikes/stability flow, layoff/capital flow) is otherwise unchanged.
+
+## Phase 30: focused JSDoc pass for Civication event engine
+
+- Added a focused, JSDoc/typecheck-only pass in `js/Civication/core/civicationEventEngine.js` with minimal local casts/annotations on existing dynamic values (`active position`, `inbox`, `event`, autonomy return value) while keeping flow/behavior unchanged.
+- During review adjustment, dropped the added broad global declarations from `schemas/civication-globals.d.ts` in this phase because they caused cross-file diagnostic redistribution in other Civication hotspots.
+- Also dropped the `weekKey` arithmetic expression tweak so this phase stays strictly annotation-focused.
+- No runtime/event-flow/inbox-flow/jobmail/private-message-flow changes were made, and no data/UI/DOM/CSS/layout/text/localStorage contract changes were made.
+- Regenerated `reports/typecheck-baseline-report.md` after the adjustment pass; resulting baseline satisfies non-regression for `CivicationUI.js`, `CivicationMiniSectionsUI.js`, `TS2551`, and `TS2322` while still reducing `civicationEventEngine.js`.
