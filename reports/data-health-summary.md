@@ -1,12 +1,12 @@
 # Data Health Summary
 
-Generated: 2026-05-19T13:13:48.290Z
+Generated: 2026-05-19T20:46:06.467Z
 
 ## Total summary
 - Places: **444**
-- Files checked: **170**
+- Files checked: **172**
 - Hard errors: **0**
-- Warnings: **3179**
+- Warnings: **3176**
 
 ## Not configured
 - none
@@ -14,9 +14,6 @@ Generated: 2026-05-19T13:13:48.290Z
 ## Top 20 most incomplete places
 | Place ID | Total issues | Warnings | Errors |
 |---|---:|---:|---:|
-| grorud | 10 | 10 | 0 |
-| gamlebyen | 10 | 10 | 0 |
-| frognerparken | 10 | 10 | 0 |
 | kampen_park | 10 | 10 | 0 |
 | sagene_film | 10 | 10 | 0 |
 | kampen_film | 10 | 10 | 0 |
@@ -34,6 +31,9 @@ Generated: 2026-05-19T13:13:48.290Z
 | alna_bryn | 10 | 10 | 0 |
 | svartdalen | 10 | 10 | 0 |
 | kvaernerbyen_alna | 10 | 10 | 0 |
+| alna_utlop_bjorvika | 10 | 10 | 0 |
+| bygdoy_kongeskogen | 10 | 10 | 0 |
+| bygdoy_dronningberget | 10 | 10 | 0 |
 
 ## Missing grouped by type
 ### missing_cardImage
@@ -242,7 +242,7 @@ Count: 405
 - `christiania_seildugsfabrik`
 
 ### missing_leksikon
-Count: 264
+Count: 261
 
 - `abelhaugen`
 - `aker_brygge_pop`
@@ -271,14 +271,12 @@ Count: 264
 - `folketeateret`
 - `fornebu_teknologipark`
 - `frogner_stadion`
-- `frognerparken`
 - `frognerstranda_pop`
 - `frysja_industriomrade`
 - `furuset_forum`
 - `galgeberg`
 - `gamle_deichman`
 - `gamle_radhus`
-- `gamlebyen`
 - `gamlebyen_skole`
 - `good_game_redaksjon`
 - `grand_hotel_pop`
@@ -287,13 +285,15 @@ Count: 264
 - `gronland_underganger`
 - `gronlandsleiret_pop`
 - `gronlikaia`
-- `grorud`
 - `grotta`
 - `grunerlokka_bakgardsvegger`
 - `grunnlovsbygget_bankplassen`
 - `hausmania`
 - `hausmannsgate_aksen`
 - `havnelageret`
+- `henrik_wergeland_statue`
+- `holmenkollen_nasjonalanlegg`
+- `house_of_nerds`
 
 ### missing_links
 Count: 444
@@ -626,23 +626,23 @@ Count: 203
 
 
 ## Recommended next batch order
-1. `grorud`
-2. `gamlebyen`
-3. `frognerparken`
-4. `kampen_park`
-5. `sagene_film`
-6. `kampen_film`
-7. `good_game_redaksjon`
-8. `alnaelvstien`
-9. `loelva_historisk`
-10. `trosterud_friomrade`
-11. `furuset_haugerud_skogbelte`
-12. `hellerud_gard`
-13. `alnabru_jernbane_og_logistikk`
-14. `alnsjoen_alna_kilde`
-15. `alnaparken`
-16. `groruddammen`
-17. `alna_smalvoll`
-18. `alna_bryn`
-19. `svartdalen`
-20. `kvaernerbyen_alna`
+1. `kampen_park`
+2. `sagene_film`
+3. `kampen_film`
+4. `good_game_redaksjon`
+5. `alnaelvstien`
+6. `loelva_historisk`
+7. `trosterud_friomrade`
+8. `furuset_haugerud_skogbelte`
+9. `hellerud_gard`
+10. `alnabru_jernbane_og_logistikk`
+11. `alnsjoen_alna_kilde`
+12. `alnaparken`
+13. `groruddammen`
+14. `alna_smalvoll`
+15. `alna_bryn`
+16. `svartdalen`
+17. `kvaernerbyen_alna`
+18. `alna_utlop_bjorvika`
+19. `bygdoy_kongeskogen`
+20. `bygdoy_dronningberget`
